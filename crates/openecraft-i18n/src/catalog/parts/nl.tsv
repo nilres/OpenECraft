@@ -7,6 +7,7 @@ A grant needs a user or a group	Een toekenning heeft een gebruiker of een groep 
 A group name must not be empty or contain ':'	Een groepsnaam mag niet leeg zijn en geen ':' bevatten
 A manufacturer user needs a manufacturer	Een fabrikantgebruiker heeft een fabrikant nodig
 A part number must not be empty or start or end with blanks	Een artikelnummer mag niet leeg zijn en niet met spaties beginnen of eindigen
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Een rol is een set rechten. Toekenningen geven een gebruiker of groep een rol op projecten (* en ? als jokertekens, * voor alle); een weigerende toekenning neemt de rechten van de rol weer weg, wat andere toekenningen ook geven.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Een rol is een set rechten. Toekenningen geven een gebruiker of groep een rol op de artikelen van een fabrikant (* en ? als jokertekens, * voor alle); een weigerende toekenning neemt de rechten van de rol weer weg, wat andere toekenningen ook geven.
 A user name must not be empty or contain blanks	Een gebruikersnaam mag niet leeg zijn of spaties bevatten
 Accept any certificate (test installations only)	Elk certificaat accepteren (alleen testinstallaties)
@@ -23,6 +24,7 @@ Administration	Beheer
 All manufacturers	Alle fabrikanten
 All parts	Alle artikelen
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Alle artikelen met hun gegevens, voor spreadsheets of om ze in een andere server te importeren. Hun bestanden staan alleen in de databaseback-up.
+All projects	Alle projecten
 Allowed groups	Toegestane groepen
 Also groups of groups (Active Directory)	Ook groepen van groepen (Active Directory)
 Amplifiers, controllers	Versterkers, regelaars
@@ -76,6 +78,7 @@ Check flap	Terugslagklep
 Chimney	Schoorsteen
 Choose logo…	Logo kiezen…
 Circuit breaker	Installatieautomaat
+Closed	Gesloten
 Coil	Spoel
 Complete power units	Complete aggregaten
 Compressed air filters	Persluchtfilters
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	Groep {} verwijderen? De toekenni
 Delete part {} from the server? This cannot be undone.	Artikel {} van de server verwijderen? Dit kan niet ongedaan worden gemaakt.
 Delete part {}?	Artikel {} verwijderen?
 Delete parts	Artikelen verwijderen
+Delete user {}? Their open projects are closed.	Gebruiker {} verwijderen? De geopende projecten van deze gebruiker worden gesloten.
 Delete user {}? Their sessions and favorites are removed.	Gebruiker {} verwijderen? De sessies en favorieten van deze gebruiker worden verwijderd.
 Deleted	Verwijderd
 Digital sensor, general	Digitale sensor, algemeen
@@ -140,6 +144,7 @@ Drawings box	Tekeningenhouder
 Dryer	Droger
 Dummy plate	Blindschijf
 Duplex switch filters	Dubbele omschakelfilters
+Duration	Duur
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	Catalogus {} bewerken
 Edit catalogs	Catalogi bewerken
@@ -158,6 +163,8 @@ Enclosure cooling devices	Kastkoelapparaten
 Enclosure heater	Kastverwarming
 Encryption	Versleuteling
 End clamp	Eindsteun
+Ended	Beëindigd
+Ended by	Beëindigd door
 Ends the session and forgets the token	Beëindigt de sessie en vergeet het token
 Engine	Aandrijfmachine
 Enter the address of an openecraft-parts-server and click Connect.	Voer het adres van een openecraft-parts-server in en klik op Verbinden.
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Omgevingsvariabele
 Evaporator	Verdamper
 Everybody who may read the parts sees it.	Iedereen die de artikelen mag lezen, ziet het.
 Exhaust valves	Ontluchtingsventielen
+Expired	Verlopen
 Export (CSV)	Exporteren (CSV)
 Export and backup	Export en back-up
 Export the parts, catalogs and settings, or download a backup of the whole database.	Exporteer de artikelen, catalogi en instellingen, of download een back-up van de hele database.
@@ -175,6 +183,8 @@ Female insert	Bussen-insert
 Field distribution device	Veldverdeler
 Files and history ({} files)	Bestanden en geschiedenis ({} bestanden)
 Filter fan	Filterventilator
+Filter projects…	Projecten filteren…
+Filter sessions…	Sessies filteren…
 Filters	Filters
 Fixed displacement pumps	Constantpompen
 Flange pair	Flenspaar
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Afbeeldingen (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Importeren / exporteren
 Import parts	Artikelen importeren
 Imported {} parts (revision {})	{} artikelen geïmporteerd (revisie {})
+In use by	In gebruik door
+In use by {}	In gebruik door {}
 Inductors	Spoelen
 Install	Installeren
 Install again	Opnieuw installeren
@@ -224,6 +236,7 @@ KNX actuator	KNX-actor
 KNX system device	KNX-systeemapparaat
 Key switch	Sleutelschakelaar
 Kneader	Kneder
+Last activity	Laatste activiteit
 Last changes per month	Laatste wijzigingen per maand
 Last sign-in	Laatste aanmelding
 Legend plate	Tekstplaatje
@@ -245,6 +258,7 @@ Logic items	Logische componenten
 Logos	Logo's
 Looks the users up; empty: users bind with their own name (below)	Zoekt de gebruikers op; leeg: gebruikers binden met hun eigen naam (hieronder)
 Male insert	Pennen-insert
+Managers of a project give rights on it themselves (Permissions on the project).	Projectleiders kennen zelf rechten op hun project toe (Machtigingen van het project).
 Measurement system	Meetsysteem
 Measuring connection points	Meetaansluitpunten
 Measuring couplings	Meetkoppelingen
@@ -270,11 +284,18 @@ New role	Nieuwe rol
 New user	Nieuwe gebruiker
 Newer version	Nieuwere versie
 Next	Volgende
+No devices found	Geen apparaten gevonden
+No ended sessions	Geen beëindigde sessies
 No grants: the rights by manufacturer apply	Geen toekenningen: de rechten per fabrikant gelden
+No grants: the roles of the users apply	Geen toekenningen: de rollen van de gebruikers gelden
 No grants: users have the rights of their role	Geen toekenningen: gebruikers hebben de rechten van hun rol
 No groups	Geen groepen
+No open sessions	Geen open sessies
+No projects found	Geen projecten gevonden
 No users	Geen gebruikers
+Nobody works on a project	Niemand werkt aan een project
 Non-return valves	Terugslagkleppen
+None (only grants)	Geen (alleen toekenningen)
 Not mounted	Niet gemonteerd
 Nut	Moer
 On the front	Aan de voorkant
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Alleen catalogi zonder artikelen kunn
 Only empty catalogs can be deleted	Alleen lege catalogi kunnen worden verwijderd
 Only local accounts	Alleen lokale accounts
 Only their members sign in; empty: all users	Alleen hun leden melden zich aan; leeg: alle gebruikers
+Open sessions	Open sessies
 Open sessions: {}	Open sessies: {}
 OpenECraft data portal	OpenECraft-dataportaal
 OpenECraft parts manager	OpenECraft-artikelbeheer
 OpenECraft parts server	OpenECraft-artikelserver
+OpenECraft project server	OpenECraft-projectserver
 Other file	Ander bestand
 Other labels	Overige markeringen
 Others	Overige
@@ -324,6 +347,7 @@ Password variable	Wachtwoordvariabele
 Per page	Per pagina
 Permissions	Machtigingen
 Permissions of catalog {}	Machtigingen van catalogus {}
+Permissions of project {}	Machtigingen van project {}
 Phase-out	Uitlopend
 Pipes	Buizen
 Piping part	Leidingdeel
@@ -349,6 +373,9 @@ Pressure switches	Drukschakelaars
 Pressure valves	Drukventielen
 Previous	Vorige
 Progressive feeders	Progressieve verdelers
+Project {} not found	Project {} niet gevonden
+Projects	Projecten
+Projects in use	Projecten in gebruik
 Protection devices	Beveiligingsapparaten
 Proximity switches	Naderingsschakelaars
 Pump brackets	Pompdragers
@@ -381,6 +408,7 @@ Replaced by {}	Vervangen door {}
 Resistors	Weerstanden
 Restore from a file	Herstellen uit een bestand
 Return flushing filters, all-autom.	Terugspoelfilters, volautomatisch
+Revision {} on the server	Revisie {} op de server
 Ribbon cables	Flatcables
 Roles	Rollen
 Roof hook	Dakhaak
@@ -395,6 +423,7 @@ Save the catalog first	Sla eerst de catalogus op
 Save the part first	Sla eerst het artikel op
 Saved directory {}	Directoryservice {} opgeslagen
 Saved group {}	Groep {} opgeslagen
+Saves	Opslagen
 Screw connections	Schroefverbindingen
 Screw pumps	Schroefpompen
 Screw spindle compressors	Schroefcompressoren
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Sensoren, schakelaars en drukknoppen
 Sensors - pressure gauges	Sensoren - manometers
 Serial sub-plates	Seriële aansluitplaten
 Service account	Serviceaccount
+Sessions	Sessies
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Ingesteld door de startopties van de server (--dashboard of OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Ingesteld door de startopties van de server (--registration of OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Korte naam zonder spaties; kwalificeert de groepen (id:groep)
@@ -424,11 +454,13 @@ Sight glass	Kijkglas
 Sign in as an administrator to manage the server	Meld u aan als beheerder om de server te beheren
 Sign in or connect with the access token to change parts	Meld u aan of maak verbinding met het toegangstoken om artikelen te wijzigen
 Sign in to keep favorites	Meld je aan om favorieten te bewaren
+Sign in to see the projects	Meld u aan om de projecten te zien
 Sign in with a user account	Aanmelden met een gebruikersaccount
 Sign in with the access token of the server	Aanmelden met het toegangstoken van de server
 Sign out everywhere	Overal afmelden
 Sign out {} on all devices?	{} op alle apparaten afmelden?
 Sign-in needed to read	Aanmelden vereist om te lezen
+Sign-in needed to view	Aanmelden vereist om te bekijken
 Signal device	Signaleringsapparaat
 Signal device, acoustic	Signaalapparaat, akoestisch
 Signal device, optical	Signaalapparaat, optisch
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	De laatste beheerde
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Het logo van het bedrijf: PNG, JPEG, GIF, WebP of SVG, hoogstens 512 kB
 The password needs at least {} characters	Het wachtwoord moet minstens {} tekens hebben
 The passwords do not match	De wachtwoorden komen niet overeen
+The project has no devices	Het project heeft geen apparaten
+The project has no pages	Het project heeft geen pagina's
 The project has no parts	Het project heeft geen artikelen
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	De projecten waarvoor de rol geldt (* en ? als jokertekens), gescheiden door komma's; leeg: alle
 The registration is closed	De registratie is gesloten
 The registration is open	De registratie is open
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	De hier gegeven rollen gelden voor deze catalogus en zijn artikelen, ongeacht de fabrikant; weigeren neemt de rechten van de rol weg. Lezen is een recht van de hele server.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	De hier gegeven rollen gelden voor dit project; weigeren neemt de rechten van de rol weg. Alleen beheerders heffen een weigering op.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	De rollen, de toekenningen, de groepen en de toegang zonder aanmelding, met de versie van de server. Herstellen vervangt de rollen en toekenningen en voegt de groepen toe; de directoryservices blijven zoals ingesteld op de server.
 The server cannot be reached	De server is niet bereikbaar
+The server keeps the last {} ended sessions.	De server bewaart de laatste {} beëindigde sessies.
 The server sent no text	De server heeft geen tekst verzonden
 The test failed	De test is mislukt
 The test succeeded	De test is geslaagd
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	{} uploaden naar Vault ({} %)…
 Uploading {} to Vault…	{} uploaden naar Vault…
 User account	Gebruikersaccount
 User bind	Gebruikersbind
+User deleted	Gebruiker verwijderd
 User filter	Gebruikersfilter
 User or group	Gebruiker of groep
 User {} exists already. Change it?	Gebruiker {} bestaat al. Wijzigen?
@@ -536,6 +574,7 @@ Variable displacement pumps	Regelpompen
 Vault did not continue the upload	Vault heeft het uploaden niet voortgezet
 Ventilation filters	Beluchtingsfilters
 Ventilator	Ventilator
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Kijkers openen projecten alleen-lezen, reviewers slaan ook reviews op, bewerkers wijzigen en maken projecten, projectleiders verwijderen ze ook en kennen er rechten op toe, beheerders beheren de server.
 Voltage source	Spanningsbron
 Voltage source and generator	Spanningsbron en generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Wachtende accounts kunnen zich niet aanmelden; keur ze goed of wijs ze af onder Gebruikers.
@@ -549,8 +588,10 @@ Without sign-in	Zonder aanmelding
 Wrong access token	Onjuist toegangstoken
 Wrong user name or password	Onjuiste gebruikersnaam of onjuist wachtwoord
 You may not change parts of manufacturer {}	U mag geen artikelen van fabrikant {} wijzigen
+You may not see any project	U mag geen enkel project zien
 Your account awaits the approval of an administrator	Uw account wacht op goedkeuring door een beheerder
 Your account was created. An administrator has to approve it before you can sign in.	Uw account is aangemaakt. Een beheerder moet het goedkeuren voordat u zich kunt aanmelden.
+Your rights	Uw rechten
 access denied – check the personal access token	toegang geweigerd – controleer het persoonlijke toegangstoken
 by file name	op bestandsnaam
 changed, not saved	gewijzigd, niet opgeslagen
@@ -574,6 +615,7 @@ you	u
 {} has no checksum in SHA256SUMS	{} heeft geen controlesom in SHA256SUMS
 {} parts in {} catalogs, revision {}	{} artikelen in {} catalogi, revisie {}
 {} parts, {} catalogs, {}	{} artikelen, {} catalogi, {}
+{} projects	{} projecten
 {} – save to upload it	{} – opslaan om te uploaden
 {}: a logo has at most 512 kB	{}: een logo is hoogstens 512 kB
 {}: the catalog is no longer open	{}: de catalogus is niet meer geopend

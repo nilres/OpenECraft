@@ -7,6 +7,7 @@ A grant needs a user or a group	Przydział wymaga użytkownika lub grupy
 A group name must not be empty or contain ':'	Nazwa grupy nie może być pusta ani zawierać ':'
 A manufacturer user needs a manufacturer	Użytkownik producenta wymaga podania producenta
 A part number must not be empty or start or end with blanks	Numer artykułu nie może być pusty ani zaczynać się lub kończyć spacjami
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rola to zestaw praw. Przydziały nadają użytkownikowi lub grupie rolę dla projektów (* i ? jako symbole wieloznaczne, * dla wszystkich); przydział odmowy odbiera prawa roli niezależnie od innych przydziałów.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rola to zestaw praw. Przydziały nadają użytkownikowi lub grupie rolę dla artykułów producenta (* i ? jako symbole wieloznaczne, * dla wszystkich); przydział odmowy odbiera prawa roli niezależnie od innych przydziałów.
 A user name must not be empty or contain blanks	Nazwa użytkownika nie może być pusta ani zawierać spacji
 Accept any certificate (test installations only)	Akceptuj każdy certyfikat (tylko instalacje testowe)
@@ -23,6 +24,7 @@ Administration	Administracja
 All manufacturers	Wszyscy producenci
 All parts	Wszystkie artykuły
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Wszystkie artykuły z ich danymi, do arkuszy kalkulacyjnych lub do importu na inny serwer. Ich pliki są tylko w kopii zapasowej bazy danych.
+All projects	Wszystkie projekty
 Allowed groups	Dozwolone grupy
 Also groups of groups (Active Directory)	Także grupy grup (Active Directory)
 Amplifiers, controllers	Wzmacniacze, regulatory
@@ -76,6 +78,7 @@ Check flap	Klapa zwrotna
 Chimney	Komin
 Choose logo…	Wybierz logo…
 Circuit breaker	Wyłącznik nadprądowy
+Closed	Zamknięta
 Coil	Cewka
 Complete power units	Agregaty kompletne
 Compressed air filters	Filtry sprężonego powietrza
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	Usunąć grupę {}? Jej przydzia�
 Delete part {} from the server? This cannot be undone.	Usunąć artykuł {} z serwera? Tej operacji nie można cofnąć.
 Delete part {}?	Usunąć artykuł {}?
 Delete parts	Usuwanie artykułów
+Delete user {}? Their open projects are closed.	Usunąć użytkownika {}? Jego otwarte projekty zostaną zamknięte.
 Delete user {}? Their sessions and favorites are removed.	Usunąć użytkownika {}? Jego sesje i ulubione zostaną usunięte.
 Deleted	Usunięto
 Digital sensor, general	Czujnik cyfrowy, ogólny
@@ -140,6 +144,7 @@ Drawings box	Kieszeń na dokumentację
 Dryer	Suszarka
 Dummy plate	Zaślepka
 Duplex switch filters	Filtry podwójne przełączalne
+Duration	Czas trwania
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	Edytuj katalog {}
 Edit catalogs	Edycja katalogów
@@ -158,6 +163,8 @@ Enclosure cooling devices	Urządzenia chłodzące do obudów
 Enclosure heater	Grzałka obudowy
 Encryption	Szyfrowanie
 End clamp	Element krańcowy
+Ended	Zakończona
+Ended by	Sposób zakończenia
 Ends the session and forgets the token	Kończy sesję i zapomina token
 Engine	Maszyna napędowa
 Enter the address of an openecraft-parts-server and click Connect.	Wprowadź adres serwera openecraft-parts-server i kliknij Połącz.
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Zmienna środowisk
 Evaporator	Wyparka
 Everybody who may read the parts sees it.	Widzi go każdy, kto może czytać artykuły.
 Exhaust valves	Zawory odpowietrzające
+Expired	Wygasła
 Export (CSV)	Eksport (CSV)
 Export and backup	Eksport i kopia zapasowa
 Export the parts, catalogs and settings, or download a backup of the whole database.	Wyeksportuj artykuły, katalogi i ustawienia albo pobierz kopię zapasową całej bazy danych.
@@ -175,6 +183,8 @@ Female insert	Wkład stykowy żeński
 Field distribution device	Rozdzielnica obiektowa
 Files and history ({} files)	Pliki i historia (pliki: {})
 Filter fan	Wentylator filtrujący
+Filter projects…	Filtruj projekty…
+Filter sessions…	Filtruj sesje…
 Filters	Filtry
 Fixed displacement pumps	Pompy o stałej wydajności
 Flange pair	Para kołnierzy
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Obrazy (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / eksport
 Import parts	Importuj artykuły
 Imported {} parts (revision {})	Zaimportowano artykuły: {} (rewizja {})
+In use by	Używany przez
+In use by {}	Używany przez {}
 Inductors	Cewki indukcyjne
 Install	Zainstaluj
 Install again	Zainstaluj ponownie
@@ -224,6 +236,7 @@ KNX actuator	Aktor KNX
 KNX system device	Urządzenie systemowe KNX
 Key switch	Przełącznik kluczykowy
 Kneader	Ugniatarka
+Last activity	Ostatnia aktywność
 Last changes per month	Ostatnie zmiany według miesiąca
 Last sign-in	Ostatnie logowanie
 Legend plate	Tabliczka opisowa
@@ -245,6 +258,7 @@ Logic items	Elementy logiczne
 Logos	Loga
 Looks the users up; empty: users bind with their own name (below)	Wyszukuje użytkowników; puste: użytkownicy wiążą się własną nazwą (poniżej)
 Male insert	Wkład stykowy męski
+Managers of a project give rights on it themselves (Permissions on the project).	Kierownicy projektu sami nadają prawa do niego (Uprawnienia projektu).
 Measurement system	Układ pomiarowy
 Measuring connection points	Przyłącza pomiarowe
 Measuring couplings	Złącza pomiarowe
@@ -270,11 +284,18 @@ New role	Nowa rola
 New user	Nowy użytkownik
 Newer version	Nowsza wersja
 Next	Dalej
+No devices found	Nie znaleziono urządzeń
+No ended sessions	Brak zakończonych sesji
 No grants: the rights by manufacturer apply	Brak przydziałów: obowiązują prawa według producenta
+No grants: the roles of the users apply	Brak przydziałów: obowiązują role użytkowników
 No grants: users have the rights of their role	Brak przydziałów: użytkownicy mają prawa swojej roli
 No groups	Brak grup
+No open sessions	Brak otwartych sesji
+No projects found	Nie znaleziono projektów
 No users	Brak użytkowników
+Nobody works on a project	Nikt nie pracuje nad żadnym projektem
 Non-return valves	Zawory zwrotne
+None (only grants)	Brak (tylko przydziały)
 Not mounted	Niezamontowane
 Nut	Nakrętka
 On the front	Z przodu
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Można usuwać tylko katalogi bez art
 Only empty catalogs can be deleted	Można usuwać tylko puste katalogi
 Only local accounts	Tylko konta lokalne
 Only their members sign in; empty: all users	Logują się tylko ich członkowie; puste: wszyscy użytkownicy
+Open sessions	Otwarte sesje
 Open sessions: {}	Otwarte sesje: {}
 OpenECraft data portal	Portal danych OpenECraft
 OpenECraft parts manager	Menedżer artykułów OpenECraft
 OpenECraft parts server	Serwer artykułów OpenECraft
+OpenECraft project server	Serwer projektów OpenECraft
 Other file	Inny plik
 Other labels	Inne oznaczniki
 Others	Inne
@@ -324,6 +347,7 @@ Password variable	Zmienna hasła
 Per page	Na stronę
 Permissions	Uprawnienia
 Permissions of catalog {}	Uprawnienia katalogu {}
+Permissions of project {}	Uprawnienia projektu {}
 Phase-out	Wycofywany
 Pipes	Rury
 Piping part	Element rurociągu
@@ -349,6 +373,9 @@ Pressure switches	Presostaty
 Pressure valves	Zawory ciśnieniowe
 Previous	Wstecz
 Progressive feeders	Rozdzielacze progresywne
+Project {} not found	Nie znaleziono projektu {}
+Projects	Projekty
+Projects in use	Używane projekty
 Protection devices	Urządzenia zabezpieczające
 Proximity switches	Łączniki zbliżeniowe
 Pump brackets	Wsporniki pomp
@@ -381,6 +408,7 @@ Replaced by {}	Zastąpiony przez {}
 Resistors	Rezystory
 Restore from a file	Przywróć z pliku
 Return flushing filters, all-autom.	Filtry płukane wstecznie, w pełni automatyczne
+Revision {} on the server	Rewizja {} na serwerze
 Ribbon cables	Kable taśmowe
 Roles	Role
 Roof hook	Hak dachowy
@@ -395,6 +423,7 @@ Save the catalog first	Najpierw zapisz katalog
 Save the part first	Najpierw zapisz artykuł
 Saved directory {}	Zapisano usługę katalogową {}
 Saved group {}	Zapisano grupę {}
+Saves	Zapisy
 Screw connections	Złączki gwintowe
 Screw pumps	Pompy śrubowe
 Screw spindle compressors	Sprężarki śrubowe
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Czujniki, łączniki i przyciski
 Sensors - pressure gauges	Czujniki – manometry
 Serial sub-plates	Płyty przyłączeniowe szeregowe
 Service account	Konto usługi
+Sessions	Sesje
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Ustawione przez opcje startowe serwera (--dashboard lub OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Ustawione przez opcje uruchomienia serwera (--registration lub OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Krótka nazwa bez spacji; kwalifikuje grupy (id:grupa)
@@ -424,11 +454,13 @@ Sight glass	Wziernik
 Sign in as an administrator to manage the server	Zaloguj się jako administrator, aby zarządzać serwerem
 Sign in or connect with the access token to change parts	Zaloguj się lub połącz z tokenem dostępu, aby zmieniać części
 Sign in to keep favorites	Zaloguj się, aby zapisywać ulubione
+Sign in to see the projects	Zaloguj się, aby zobaczyć projekty
 Sign in with a user account	Zaloguj się kontem użytkownika
 Sign in with the access token of the server	Zaloguj się tokenem dostępu serwera
 Sign out everywhere	Wyloguj wszędzie
 Sign out {} on all devices?	Wylogować {} na wszystkich urządzeniach?
 Sign-in needed to read	Odczyt wymaga zalogowania
+Sign-in needed to view	Przeglądanie wymaga zalogowania
 Signal device	Urządzenie sygnalizacyjne
 Signal device, acoustic	Urządzenie sygnalizacyjne, akustyczne
 Signal device, optical	Urządzenie sygnalizacyjne, optyczne
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	Ostatni administrat
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Logo firmy: PNG, JPEG, GIF, WebP lub SVG, najwyżej 512 kB
 The password needs at least {} characters	Hasło musi mieć co najmniej {} znaków
 The passwords do not match	Hasła nie są zgodne
+The project has no devices	Projekt nie ma urządzeń
+The project has no pages	Projekt nie ma stron
 The project has no parts	Projekt nie ma artykułów
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	Projekty, których dotyczy rola (* i ? jako symbole wieloznaczne), rozdzielone przecinkami; puste: wszystkie
 The registration is closed	Rejestracja jest zamknięta
 The registration is open	Rejestracja jest otwarta
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Nadane tu role dotyczą tego katalogu i jego artykułów, niezależnie od producenta; odmowa odbiera prawa roli. Czytanie jest prawem całego serwera.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Nadane tu role dotyczą tego projektu; odmowa odbiera prawa roli. Tylko administratorzy znoszą odmowę.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Role, przydziały, grupy i dostęp bez logowania, z wersją serwera. Przywrócenie zastępuje role i przydziały oraz dodaje grupy; usługi katalogowe pozostają, jak skonfigurowano na serwerze.
 The server cannot be reached	Serwer jest nieosiągalny
+The server keeps the last {} ended sessions.	Serwer przechowuje ostatnie zakończone sesje, maksymalnie {}.
 The server sent no text	Serwer nie wysłał tekstu
 The test failed	Test nie powiódł się
 The test succeeded	Test powiódł się
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	Przekazywanie {} do Vault ({} %)…
 Uploading {} to Vault…	Przekazywanie {} do Vault…
 User account	Konto użytkownika
 User bind	Wiązanie użytkownika
+User deleted	Użytkownik usunięty
 User filter	Filtr użytkowników
 User or group	Użytkownik lub grupa
 User {} exists already. Change it?	Użytkownik {} już istnieje. Zmienić go?
@@ -536,6 +574,7 @@ Variable displacement pumps	Pompy o zmiennej wydajności
 Vault did not continue the upload	Vault nie kontynuował przekazywania
 Ventilation filters	Filtry odpowietrzające
 Ventilator	Wentylator
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Przeglądający otwierają projekty tylko do odczytu, recenzenci zapisują też komentarze, redaktorzy zmieniają i tworzą projekty, kierownicy projektu także je usuwają i nadają do nich prawa, administratorzy zarządzają serwerem.
 Voltage source	Źródło napięcia
 Voltage source and generator	Źródło napięcia i generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Oczekujące konta nie mogą się logować; zatwierdź je lub odrzuć w sekcji Użytkownicy.
@@ -549,8 +588,10 @@ Without sign-in	Bez logowania
 Wrong access token	Nieprawidłowy token dostępu
 Wrong user name or password	Nieprawidłowa nazwa użytkownika lub hasło
 You may not change parts of manufacturer {}	Nie możesz zmieniać artykułów producenta {}
+You may not see any project	Nie możesz zobaczyć żadnego projektu
 Your account awaits the approval of an administrator	Konto oczekuje na zatwierdzenie przez administratora
 Your account was created. An administrator has to approve it before you can sign in.	Konto zostało utworzone. Administrator musi je zatwierdzić, zanim będzie można się zalogować.
+Your rights	Twoje prawa
 access denied – check the personal access token	odmowa dostępu – sprawdź osobisty token dostępu
 by file name	według nazwy pliku
 changed, not saved	zmieniono, nie zapisano
@@ -574,6 +615,7 @@ you	ty
 {} has no checksum in SHA256SUMS	{} nie ma sumy kontrolnej w SHA256SUMS
 {} parts in {} catalogs, revision {}	Artykuły: {} w katalogach: {}, rewizja {}
 {} parts, {} catalogs, {}	Artykuły: {}, katalogi: {}, {}
+{} projects	Projekty: {}
 {} – save to upload it	{} – zapisz, aby przesłać
 {}: a logo has at most 512 kB	{}: logo ma najwyżej 512 kB
 {}: the catalog is no longer open	{}: katalog nie jest już otwarty

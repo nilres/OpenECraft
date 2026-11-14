@@ -30,7 +30,7 @@ step.
 | **Revisions and review** | Released pages, approval workflow, baselines with compare and merge, comments, redlining and PDF comments. [Revisions and review](docs/features/revisions-and-review.md) |
 | **Parts** | A parts database with mounting data and 3D models (STEP, IGES, Parasolid, JT, IFC), BMEcat, EPLAN XML, EDZ and enclosure configurator (ZIP) import, a shared data portal. [Parts](docs/features/parts.md) · [Parts server](docs/parts-server.md) |
 | **Data exchange** | PDF, DXF / DWG, SVG; the panel as glTF, STEP, IGES, IFC, JT and Parasolid; ERP / PDM / PLM / ECAD / MCAD connectors, Autodesk Vault. [Output and data exchange](docs/features/data-exchange.md) |
-| **Teams and automation** | Shared projects with page locks, roles and directory sign-in; a command line, an MCP server for AI agents and plugins in any language. [Project server](docs/project-server.md) · [Command line and MCP](docs/command-line.md) · [Plugins](docs/plugins.md) |
+| **Teams and automation** | Shared projects with page locks, roles and directory sign-in, browsable read only on the project server's web page; a command line, an MCP server for AI agents and plugins in any language. [Project server](docs/project-server.md) · [Command line and MCP](docs/command-line.md) · [Plugins](docs/plugins.md) |
 | **20 languages** | English, German, French, Spanish and 16 more, switched while the editor runs; project texts translated for documentation per language. [Languages](docs/features/schematic.md#languages) |
 
 ## A look inside

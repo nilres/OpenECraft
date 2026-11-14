@@ -1,14 +1,21 @@
-//! Sessions and their locks. Kept in memory only: a session ends when it is closed,
-//! when the server stops or after `SESSION_TIMEOUT_SECS` without a request.
+//! Sessions and their locks. Kept in memory: a session ends when it is closed, when its
+//! user signs out or is deleted, when the server stops or after `SESSION_TIMEOUT_SECS`
+//! without a request. Ended sessions go to the history (`history`).
 
-use openecraft_core::collab::{Lock, Session, Target, SESSION_TIMEOUT_SECS};
+use crate::history::History;
+use openecraft_auth::unix_now;
+use openecraft_core::collab::{Lock, Session, SessionEnd, SessionRecord, Target, SESSION_TIMEOUT_SECS};
 use std::collections::{BTreeMap, BTreeSet};
 use std::time::{Duration, Instant};
 
 struct Entry {
+    number: u64,
     user: String,
     project: String,
+    /// Seconds since 1970.
+    started: u64,
     seen: Instant,
+    saves: u32,
     locks: BTreeSet<Target>,
     /// Hash of the sign-in token the session was opened with: signing out ends it.
     owner: Option<String>,
@@ -26,15 +33,66 @@ pub enum LockError {
 pub struct Sessions {
     sessions: BTreeMap<String, Entry>,
     counter: u64,
+    pub history: History,
+}
+
+impl Entry {
+    /// The session as administrators see it; `now` is the time of `now_unix`.
+    fn record(&self, now: Instant, now_unix: u64) -> SessionRecord {
+        let idle = now.saturating_duration_since(self.seen).as_secs();
+        SessionRecord {
+            number: self.number,
+            user: self.user.clone(),
+            project: self.project.clone(),
+            started: self.started,
+            last_seen: now_unix.saturating_sub(idle).max(self.started),
+            saves: self.saves,
+            locks: self.locks.iter().copied().collect(),
+            ..Default::default()
+        }
+    }
 }
 
 impl Sessions {
+    pub fn with_history(history: History) -> Sessions {
+        Sessions { history, ..Default::default() }
+    }
+
+    /// Removes the sessions `ended` says and puts them into the history; returns how many.
+    fn end(&mut self, how: SessionEnd, now: Instant, ended: impl Fn(&str, &Entry) -> bool) -> usize {
+        let ids: Vec<String> = self.sessions.iter().filter(|(id, e)| ended(id, e)).map(|(id, _)| id.clone()).collect();
+        let now_unix = unix_now();
+        for id in &ids {
+            if let Some(e) = self.sessions.remove(id) {
+                let record = SessionRecord { locks: Vec::new(), ended: Some(now_unix), end: Some(how), ..e.record(now, now_unix) };
+                self.history.add(record);
+            }
+        }
+        ids.len()
+    }
+
+    /// The open sessions, newest first.
+    pub fn active(&self, now: Instant) -> Vec<SessionRecord> {
+        let now_unix = unix_now();
+        let mut list: Vec<SessionRecord> = self.sessions.values().map(|e| e.record(now, now_unix)).collect();
+        list.sort_by_key(|r| std::cmp::Reverse(r.number));
+        list
+    }
+
+    /// Counts a save of the session.
+    pub fn saved(&mut self, session: &str) {
+        if let Some(e) = self.sessions.get_mut(session) {
+            e.saves += 1;
+        }
+    }
+
     /// Starts a session of `user` on `project`.
     pub fn open(&mut self, project: &str, user: &str, now: Instant) -> Session {
         self.counter += 1;
         // The number is shown to others, the random part is the key to the session.
         let id = format!("{}-{}", self.counter, openecraft_auth::new_token());
-        self.sessions.insert(id.clone(), Entry { user: user.to_string(), project: project.to_string(), seen: now, locks: BTreeSet::new(), owner: None });
+        let entry = Entry { number: self.counter, user: user.to_string(), project: project.to_string(), started: unix_now(), seen: now, saves: 0, locks: BTreeSet::new(), owner: None };
+        self.sessions.insert(id.clone(), entry);
         Session { user: user.to_string(), session: id }
     }
 
@@ -48,27 +106,23 @@ impl Sessions {
     /// Ends the sessions opened with the sign-in token whose hash is `owner` (the
     /// user signed out); returns how many.
     pub fn close_owned(&mut self, owner: &str) -> usize {
-        let before = self.sessions.len();
-        self.sessions.retain(|_, s| s.owner.as_deref() != Some(owner));
-        before - self.sessions.len()
+        self.end(SessionEnd::SignedOut, Instant::now(), |_, s| s.owner.as_deref() == Some(owner))
     }
 
     /// Ends all sessions of `user` (the account was deleted); returns how many.
     pub fn close_user(&mut self, user: &str) -> usize {
-        let before = self.sessions.len();
-        self.sessions.retain(|_, s| !s.user.eq_ignore_ascii_case(user.trim()));
-        before - self.sessions.len()
+        self.end(SessionEnd::UserDeleted, Instant::now(), |_, s| s.user.eq_ignore_ascii_case(user.trim()))
     }
 
     /// Ends the sessions without request for `SESSION_TIMEOUT_SECS`.
     pub fn expire(&mut self, now: Instant) {
         let timeout = Duration::from_secs(SESSION_TIMEOUT_SECS);
-        self.sessions.retain(|id, s| {
-            let alive = now.saturating_duration_since(s.seen) < timeout;
-            if !alive {
-                log::info!("session {id} of {} expired", s.user);
+        self.end(SessionEnd::Expired, now, |_, s| {
+            let expired = now.saturating_duration_since(s.seen) >= timeout;
+            if expired {
+                log::info!("session {} of {} on {} expired", s.number, s.user, s.project);
             }
-            alive
+            expired
         });
     }
 
@@ -125,7 +179,7 @@ impl Sessions {
     /// Ends a session and releases its locks.
     pub fn close(&mut self, project: &str, session: &Session) -> Result<(), LockError> {
         self.entry(project, session)?;
-        self.sessions.remove(&session.session);
+        self.end(SessionEnd::Closed, Instant::now(), |id, _| id == session.session);
         Ok(())
     }
 }

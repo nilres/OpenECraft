@@ -78,9 +78,11 @@ grants on `*`. The server token (`--token`) keeps full access.
 parts database (both changeable with `--access <file>`). A missing file means: no
 directories, no defined roles or grants; on the parts server anonymous requests may
 read (`"anonymous": "reader"`). Administrators change roles, grants and `anonymous`
-through the API (`GET|PUT /api/v1/access`), which rewrites the file; directories are
-only configured in the file. On the parts server the web page does so too
-(*Administration › Access rights*, which also exports and restores them).
+through the API (`GET|PUT /api/v1/access`), which rewrites the file, and the directories
+through `/api/v1/directories` (`GET`, `PUT|DELETE /{id}`, `POST /{id}/test`). The web
+pages do so too: the parts server's (*Administration › Access rights*, which also
+exports and restores them) and the project server's when it runs with `--web`
+(*Administration › Access rights* and *Directories*).
 
 ```json
 {

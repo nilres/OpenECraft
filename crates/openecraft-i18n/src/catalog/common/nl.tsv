@@ -1,6 +1,7 @@
 # English<TAB>Nederlands – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(alle)
 (no entries)	(geen items)
+(no structure)	(geen structuur)
 --json needs a JSON object	--json verwacht een JSON-object
 3D model	3D-model
 3D routing	3D-routering
@@ -16,11 +17,13 @@ Add	Toevoegen
 Add a PDF of all pages	Een PDF van alle pagina's toevoegen
 Add to favorites	Toevoegen aan favorieten
 Address	Adres
+Administrator	Beheerder
 Angle	Hoek
 Apply	Toepassen
 Approve	Goedkeuren
 Approvers	Goedkeurders
 Automatic	Automatisch
+Aux	Hulp
 Below	Onder
 Bold	Vet
 Bottom	Bodem
@@ -125,6 +128,7 @@ Downloading {}…	{} downloaden…
 Drag to turn the model	Sleep om het model te draaien
 EMC clearance	EMC-afstand
 Edit	Bewerken
+Editor	Bewerker
 Electro-fluid cross reference	Elektro-fluïdum-kruisverwijzingen
 Enclosure	Behuizing
 Enclosures	Behuizingen
@@ -144,6 +148,8 @@ Field wiring	Veldbedrading
 File	Bestand
 Files	Bestanden
 Filter	Filter
+Filter devices…	Apparaten filteren…
+Fit	Passend maken
 Fits	Past op
 Fitting at the end	Fitting aan het einde
 Fitting at the start	Fitting aan het begin
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Verwerpt een deelproject: de
 Gland plate	Wartelplaat
 Graphics	Grafiek
 Group	Groep
+Group the pages by structure	De pagina's groeperen op structuur
 Groups	Groepen
 Harness	Kabelboom
 Harness data	Kabelboomgegevens
@@ -207,9 +214,12 @@ Load	Belasting
 Loaded circuits bunched together	Gebundelde belaste stroomkringen
 Location	Locatie
 Location (+)	Plaats (+)
+Locked	Vergrendeld
+Locked by {}	Vergrendeld door {}
 Logo	Logo
 MTTFd (years)	MTTFd (jaar)
 Machine	Machine
+Main	Hoofd
 Main earthing busbar (device) it is connected to; empty: none	Hoofdaardrail (apparaat) waarop hij is aangesloten; leeg: geen
 Main earthing terminal	Hoofdaardrail
 Main switch	Hoofdschakelaar
@@ -352,9 +362,11 @@ Product subgroup	Productsubgroep
 Product top group	Producthoofdgroep
 Profile	Profiel
 Project	Project
+Project data	Projectgegevens
 Project languages	Projecttalen
 Project logo	Projectlogo
 Project management	Projectbeheer
+Project manager	Projectleider
 Project name	Projectnaam
 Project properties	Projecteigenschappen
 Properties	Eigenschappen
@@ -371,6 +383,7 @@ Rated power	Nominaal vermogen
 Rear wall	Achterwand
 Rectangle	Rechthoek
 Rectangular	Rechthoekig
+Refresh	Vernieuwen
 Reject	Afwijzen
 Relative humidity	Relatieve luchtvochtigheid
 Relay	Relais
@@ -386,6 +399,7 @@ Report blocks	Rapportblokken
 Report: {}	Rapport: {}
 Required	Vereist
 Reserve	Reserve
+Reviewer	Reviewer
 Revision	Revisie
 Revision {}	Revisie {}
 Rework	Nabewerking
@@ -429,6 +443,7 @@ Sign in	Aanmelden
 Sign out	Afmelden
 Signed in as {}	Aangemeld als {}
 Signed in as {} ({})	Aangemeld als {} ({})
+Signed out	Afgemeld
 Signing in…	Aanmelden…
 Single-line / multi-line	Eenlijnig / meerlijnig
 Size	Grootte
@@ -436,6 +451,7 @@ Socket side	Buszijde
 Solenoid not linked	Magneetspoel niet gekoppeld
 Sort by	Sorteren op
 Source	Bron
+Started	Gestart
 State	Status
 Status	Status
 String	String
@@ -498,6 +514,7 @@ User	Gebruiker
 User name	Gebruikersnaam
 Users	Gebruikers
 Version	Versie
+Viewer	Kijker
 Voltage	Spanning
 Warning	Waarschuwing
 Warnings	Waarschuwingen
@@ -540,6 +557,7 @@ yes	ja
 {} exists already	{} bestaat al
 {} is not a PNG or JPEG image	{} is geen PNG- of JPEG-afbeelding
 {} parts	{} artikelen
+{} users	{} gebruikers
 {} wires	{} draden
 {}, together with the wire to {}	{}, samen met de draad naar {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} staat niet op de vloer, kies een vloerstaand artikel

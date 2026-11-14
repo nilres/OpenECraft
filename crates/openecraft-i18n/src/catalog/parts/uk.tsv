@@ -7,6 +7,7 @@ A grant needs a user or a group	Призначенню потрібен кори
 A group name must not be empty or contain ':'	Назва групи не може бути порожньою або містити ':'
 A manufacturer user needs a manufacturer	Користувачу-виробнику потрібен виробник
 A part number must not be empty or start or end with blanks	Номер виробу не може бути порожнім, починатися чи закінчуватися пробілами
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Роль — це набір прав. Призначення надають користувачу або групі роль для проєктів (* і ? як символи підстановки, * для всіх); забороняльне призначення забирає права ролі, незалежно від інших призначень.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Роль — це набір прав. Призначення надають користувачу або групі роль для виробів виробника (* і ? як символи підстановки, * для всіх); забороняльне призначення забирає права ролі, незалежно від інших призначень.
 A user name must not be empty or contain blanks	Ім’я користувача не може бути порожнім або містити пробіли
 Accept any certificate (test installations only)	Приймати будь-який сертифікат (лише тестові встановлення)
@@ -23,6 +24,7 @@ Administration	Адміністрування
 All manufacturers	Усі виробники
 All parts	Усі вироби
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Усі вироби з їхніми даними — для електронних таблиць або імпорту на інший сервер. Їхні файли є лише в резервній копії бази даних.
+All projects	Усі проєкти
 Allowed groups	Дозволені групи
 Also groups of groups (Active Directory)	Також групи груп (Active Directory)
 Amplifiers, controllers	Підсилювачі, регулятори
@@ -76,6 +78,7 @@ Check flap	Зворотна заслінка
 Chimney	Димова труба
 Choose logo…	Вибрати логотип…
 Circuit breaker	Автоматичний вимикач
+Closed	Закрито
 Coil	Котушка
 Complete power units	Комплектні агрегати
 Compressed air filters	Фільтри стисненого повітря
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	Видалити групу {}? �
 Delete part {} from the server? This cannot be undone.	Видалити виріб {} із сервера? Цю дію не можна скасувати.
 Delete part {}?	Видалити виріб {}?
 Delete parts	Видаляти вироби
+Delete user {}? Their open projects are closed.	Видалити користувача {}? Його відкриті проєкти буде закрито.
 Delete user {}? Their sessions and favorites are removed.	Видалити користувача {}? Його сеанси та вибране буде вилучено.
 Deleted	Видалено
 Digital sensor, general	Цифровий датчик, загальний
@@ -140,6 +144,7 @@ Drawings box	Кишеня для документації
 Dryer	Сушарка
 Dummy plate	Заглушка
 Duplex switch filters	Здвоєні перемикні фільтри
+Duration	Тривалість
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	Редагувати каталог {}
 Edit catalogs	Редагувати каталоги
@@ -158,6 +163,8 @@ Enclosure cooling devices	Кондиціонери для шаф
 Enclosure heater	Нагрівач шафи
 Encryption	Шифрування
 End clamp	Кінцевий фіксатор
+Ended	Завершено
+Ended by	Спосіб завершення
 Ends the session and forgets the token	Завершує сеанс і забуває токен
 Engine	Приводна машина
 Enter the address of an openecraft-parts-server and click Connect.	Введіть адресу openecraft-parts-server і натисніть «Підключитися».
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Змінна се�
 Evaporator	Випарник
 Everybody who may read the parts sees it.	Її бачать усі, хто може читати вироби.
 Exhaust valves	Клапани для випуску повітря
+Expired	Термін минув
 Export (CSV)	Експорт (CSV)
 Export and backup	Експорт і резервна копія
 Export the parts, catalogs and settings, or download a backup of the whole database.	Експортуйте вироби, каталоги й параметри або завантажте резервну копію всієї бази даних.
@@ -175,6 +183,8 @@ Female insert	Вставка з гніздами
 Field distribution device	Польовий розподільник
 Files and history ({} files)	Файли та журнал (файлів: {})
 Filter fan	Фільтрувальний вентилятор
+Filter projects…	Фільтрувати проєкти…
+Filter sessions…	Фільтрувати сеанси…
 Filters	Фільтри
 Fixed displacement pumps	Насоси постійної подачі
 Flange pair	Пара фланців
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Зображення (PNG, JPEG, GIF, WebP, S
 Import / export	Імпорт / експорт
 Import parts	Імпорт виробів
 Imported {} parts (revision {})	Імпортовано виробів: {} (ревізія {})
+In use by	Використовує
+In use by {}	Використовує {}
 Inductors	Котушки індуктивності
 Install	Встановити
 Install again	Встановити знову
@@ -224,6 +236,7 @@ KNX actuator	Виконавчий пристрій KNX
 KNX system device	Системний пристрій KNX
 Key switch	Перемикач із ключем
 Kneader	Місильна машина
+Last activity	Остання активність
 Last changes per month	Останні зміни за місяцями
 Last sign-in	Останній вхід
 Legend plate	Табличка з написом
@@ -245,6 +258,7 @@ Logic items	Логічні елементи
 Logos	Логотипи
 Looks the users up; empty: users bind with their own name (below)	Шукає користувачів; порожньо: користувачі прив'язуються своїм ім'ям (нижче)
 Male insert	Вставка зі штирями
+Managers of a project give rights on it themselves (Permissions on the project).	Керівники проєкту самі надають права на нього (Дозволи проєкту).
 Measurement system	Вимірювальна система
 Measuring connection points	Вимірювальні приєднання
 Measuring couplings	Вимірювальні муфти
@@ -270,11 +284,18 @@ New role	Нова роль
 New user	Новий користувач
 Newer version	Новіша версія
 Next	Далі
+No devices found	Пристроїв не знайдено
+No ended sessions	Немає завершених сеансів
 No grants: the rights by manufacturer apply	Немає призначень: діють права за виробником
+No grants: the roles of the users apply	Немає призначень: діють ролі користувачів
 No grants: users have the rights of their role	Немає призначень: користувачі мають права своєї ролі
 No groups	Немає груп
+No open sessions	Немає відкритих сеансів
+No projects found	Проєктів не знайдено
 No users	Немає користувачів
+Nobody works on a project	Ніхто не працює над проєктами
 Non-return valves	Зворотні клапани
+None (only grants)	Немає (лише призначення)
 Not mounted	Не монтується
 Nut	Гайка
 On the front	Спереду
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Видаляти можна лише 
 Only empty catalogs can be deleted	Видаляти можна лише порожні каталоги
 Only local accounts	Лише локальні облікові записи
 Only their members sign in; empty: all users	Входять лише їхні учасники; порожньо: усі користувачі
+Open sessions	Відкриті сеанси
 Open sessions: {}	Відкриті сеанси: {}
 OpenECraft data portal	Портал даних OpenECraft
 OpenECraft parts manager	Керування виробами OpenECraft
 OpenECraft parts server	Сервер виробів OpenECraft
+OpenECraft project server	Сервер проєктів OpenECraft
 Other file	Інший файл
 Other labels	Інші таблички
 Others	Інші
@@ -324,6 +347,7 @@ Password variable	Змінна пароля
 Per page	На сторінці
 Permissions	Дозволи
 Permissions of catalog {}	Дозволи каталогу {}
+Permissions of project {}	Дозволи проєкту {}
 Phase-out	Знімається з виробництва
 Pipes	Труби
 Piping part	Елемент трубопроводу
@@ -349,6 +373,9 @@ Pressure switches	Реле тиску
 Pressure valves	Клапани тиску
 Previous	Назад
 Progressive feeders	Прогресивні розподільники
+Project {} not found	Проєкт {} не знайдено
+Projects	Проєкти
+Projects in use	Проєкти у використанні
 Protection devices	Захисні пристрої
 Proximity switches	Безконтактні вимикачі
 Pump brackets	Кронштейни насосів
@@ -381,6 +408,7 @@ Replaced by {}	Замінено на {}
 Resistors	Резистори
 Restore from a file	Відновити з файлу
 Return flushing filters, all-autom.	Фільтри зворотного промивання, повністю автомат.
+Revision {} on the server	Ревізія {} на сервері
 Ribbon cables	Плоскі шлейфові кабелі
 Roles	Ролі
 Roof hook	Покрівельний гак
@@ -395,6 +423,7 @@ Save the catalog first	Спочатку збережіть каталог
 Save the part first	Спочатку збережіть виріб
 Saved directory {}	Службу каталогів {} збережено
 Saved group {}	Групу {} збережено
+Saves	Збереження
 Screw connections	Різьбові з’єднання
 Screw pumps	Гвинтові насоси
 Screw spindle compressors	Гвинтові компресори
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Датчики, перемикачі та кно�
 Sensors - pressure gauges	Датчики – манометри
 Serial sub-plates	Плити послідовного приєднання
 Service account	Службовий обліковий запис
+Sessions	Сеанси
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Задано параметрами запуску сервера (--dashboard або OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Задано параметрами запуску сервера (--registration або OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Коротке ім'я без пробілів; уточнює групи (id:група)
@@ -424,11 +454,13 @@ Sight glass	Оглядове скло
 Sign in as an administrator to manage the server	Увійдіть як адміністратор, щоб керувати сервером
 Sign in or connect with the access token to change parts	Увійдіть або підключіться з токеном доступу, щоб змінювати вироби
 Sign in to keep favorites	Увійдіть, щоб зберігати вибране
+Sign in to see the projects	Увійдіть, щоб побачити проєкти
 Sign in with a user account	Увійти з обліковим записом
 Sign in with the access token of the server	Увійти з токеном доступу сервера
 Sign out everywhere	Вийти всюди
 Sign out {} on all devices?	Завершити сеанси {} на всіх пристроях?
 Sign-in needed to read	Для читання потрібен вхід
+Sign-in needed to view	Для перегляду потрібен вхід
 Signal device	Сигнальний пристрій
 Signal device, acoustic	Сигнальний пристрій, звуковий
 Signal device, optical	Сигнальний пристрій, світловий
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	Останній а
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Логотип компанії: PNG, JPEG, GIF, WebP або SVG, не більше 512 кБ
 The password needs at least {} characters	Пароль має містити щонайменше {} символів
 The passwords do not match	Паролі не збігаються
+The project has no devices	У проєкті немає пристроїв
+The project has no pages	У проєкті немає сторінок
 The project has no parts	Проєкт не має виробів
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	Проєкти, для яких діє роль (* і ? як символи підстановки), через кому; порожньо: усі
 The registration is closed	Реєстрацію закрито
 The registration is open	Реєстрацію відкрито
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Задані тут ролі діють для цього каталогу та його виробів незалежно від виробника; заборона відбирає права ролі. Читання — право всього сервера.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Задані тут ролі діють для цього проєкту; заборона відбирає права ролі. Зняти заборону можуть лише адміністратори.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Ролі, призначення, групи та доступ без входу, з версією сервера. Відновлення замінює ролі та призначення й додає групи; служби каталогів залишаються такими, як налаштовано на сервері.
 The server cannot be reached	Сервер недоступний
+The server keeps the last {} ended sessions.	Сервер зберігає останні завершені сеанси, не більше {}.
 The server sent no text	Сервер не надіслав тексту
 The test failed	Перевірка не вдалася
 The test succeeded	Перевірка пройшла успішно
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	Передавання {} у Vault ({} %)…
 Uploading {} to Vault…	Передавання {} у Vault…
 User account	Обліковий запис
 User bind	Прив'язка користувача
+User deleted	Користувача видалено
 User filter	Фільтр користувачів
 User or group	Користувач або група
 User {} exists already. Change it?	Користувач {} уже існує. Змінити його?
@@ -536,6 +574,7 @@ Variable displacement pumps	Регульовані насоси
 Vault did not continue the upload	Vault не продовжив передавання
 Ventilation filters	Сапуни
 Ventilator	Вентилятор
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Переглядачі відкривають проєкти лише для читання, рецензенти також зберігають коментарі, редактори змінюють і створюють проєкти, керівники проєкту також видаляють їх і надають права на них, адміністратори керують сервером.
 Voltage source	Джерело напруги
 Voltage source and generator	Джерело напруги та генератор
 Waiting accounts cannot sign in; approve or reject them in Users.	Облікові записи в очікуванні не можуть увійти; схваліть або відхиліть їх у розділі «Користувачі».
@@ -549,8 +588,10 @@ Without sign-in	Без входу
 Wrong access token	Неправильний токен доступу
 Wrong user name or password	Неправильне ім'я користувача або пароль
 You may not change parts of manufacturer {}	Ви не можете змінювати вироби виробника {}
+You may not see any project	Вам не дозволено бачити жоден проєкт
 Your account awaits the approval of an administrator	Обліковий запис очікує схвалення адміністратора
 Your account was created. An administrator has to approve it before you can sign in.	Обліковий запис створено. Адміністратор має схвалити його, перш ніж ви зможете увійти.
+Your rights	Ваші права
 access denied – check the personal access token	доступ заборонено – перевірте персональний маркер доступу
 by file name	за назвою файлу
 changed, not saved	змінено, не збережено
@@ -574,6 +615,7 @@ you	ви
 {} has no checksum in SHA256SUMS	Для {} немає контрольної суми в SHA256SUMS
 {} parts in {} catalogs, revision {}	Виробів: {}, каталогів: {}, ревізія {}
 {} parts, {} catalogs, {}	Виробів: {}, каталогів: {}, {}
+{} projects	Проєктів: {}
 {} – save to upload it	{} – збережіть, щоб вивантажити
 {}: a logo has at most 512 kB	{}: логотип не більше 512 кБ
 {}: the catalog is no longer open	{}: каталог більше не відкрито

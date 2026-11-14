@@ -7,6 +7,7 @@ A grant needs a user or a group	O atribuire are nevoie de un utilizator sau de o
 A group name must not be empty or contain ':'	Numele unei grupe nu poate fi gol și nu poate conține ':'
 A manufacturer user needs a manufacturer	Un utilizator producător are nevoie de un producător
 A part number must not be empty or start or end with blanks	Numărul de articol nu poate fi gol și nu poate începe sau se termina cu spații
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Un rol este un set de drepturi. Atribuirile dau unui utilizator sau unui grup un rol pentru proiecte (* și ? ca metacaractere, * pentru toți); o atribuire de refuz retrage drepturile rolului, indiferent ce dau alte atribuiri.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Un rol este un set de drepturi. Atribuirile dau unui utilizator sau unui grup un rol pentru articolele unui producător (* și ? ca metacaractere, * pentru toți); o atribuire de refuz retrage drepturile rolului, indiferent ce dau alte atribuiri.
 A user name must not be empty or contain blanks	Un nume de utilizator nu poate fi gol sau conține spații
 Accept any certificate (test installations only)	Acceptare orice certificat (doar instalări de test)
@@ -23,6 +24,7 @@ Administration	Administrare
 All manufacturers	Toți producătorii
 All parts	Toate articolele
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Toate articolele cu datele lor, pentru foi de calcul sau pentru import pe alt server. Fișierele lor sunt doar în copia de rezervă a bazei de date.
+All projects	Toate proiectele
 Allowed groups	Grupe permise
 Also groups of groups (Active Directory)	Și grupe de grupe (Active Directory)
 Amplifiers, controllers	Amplificatoare, regulatoare
@@ -76,6 +78,7 @@ Check flap	Clapetă de reținere
 Chimney	Coș de fum
 Choose logo…	Alegere logo…
 Circuit breaker	Întrerupător automat
+Closed	Închisă
 Coil	Bobină
 Complete power units	Agregate complete
 Compressed air filters	Filtre de aer comprimat
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	Ștergeți grupa {}? Atribuirile 
 Delete part {} from the server? This cannot be undone.	Ștergeți articolul {} de pe server? Această acțiune nu poate fi anulată.
 Delete part {}?	Ștergeți articolul {}?
 Delete parts	Ștergere articole
+Delete user {}? Their open projects are closed.	Ștergeți utilizatorul {}? Proiectele sale deschise sunt închise.
 Delete user {}? Their sessions and favorites are removed.	Ștergeți utilizatorul {}? Sesiunile și favoritele sale sunt eliminate.
 Deleted	Șters
 Digital sensor, general	Senzor digital, general
@@ -140,6 +144,7 @@ Drawings box	Suport pentru desene
 Dryer	Uscător
 Dummy plate	Flanșă oarbă
 Duplex switch filters	Filtre duble comutabile
+Duration	Durată
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	Editare catalog {}
 Edit catalogs	Editare cataloage
@@ -158,6 +163,8 @@ Enclosure cooling devices	Aparate de răcire pentru carcase
 Enclosure heater	Încălzitor pentru carcasă
 Encryption	Criptare
 End clamp	Opritor de capăt
+Ended	Încheiată
+Ended by	Încheiată prin
 Ends the session and forgets the token	Încheie sesiunea și uită tokenul
 Engine	Mașină de antrenare
 Enter the address of an openecraft-parts-server and click Connect.	Introduceți adresa unui openecraft-parts-server și faceți clic pe Conectare.
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Variabila de mediu
 Evaporator	Evaporator
 Everybody who may read the parts sees it.	Îl vede oricine poate citi articolele.
 Exhaust valves	Supape de evacuare
+Expired	Expirată
 Export (CSV)	Export (CSV)
 Export and backup	Export și copie de rezervă
 Export the parts, catalogs and settings, or download a backup of the whole database.	Exportați articolele, cataloagele și setările sau descărcați o copie de rezervă a întregii baze de date.
@@ -175,6 +183,8 @@ Female insert	Inserție mamă
 Field distribution device	Distribuitor de câmp
 Files and history ({} files)	Fișiere și istoric ({} fișiere)
 Filter fan	Ventilator cu filtru
+Filter projects…	Filtrare proiecte…
+Filter sessions…	Filtrare sesiuni…
 Filters	Filtre
 Fixed displacement pumps	Pompe cu debit constant
 Flange pair	Pereche de flanșe
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Imagini (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / export
 Import parts	Importare articole
 Imported {} parts (revision {})	{} articole importate (revizia {})
+In use by	În uz de către
+In use by {}	În uz de către {}
 Inductors	Inductoare
 Install	Instalare
 Install again	Reinstalare
@@ -224,6 +236,7 @@ KNX actuator	Actuator KNX
 KNX system device	Dispozitiv de sistem KNX
 Key switch	Comutator cu cheie
 Kneader	Malaxor
+Last activity	Ultima activitate
 Last changes per month	Ultimele modificări pe lună
 Last sign-in	Ultima conectare
 Legend plate	Plăcuță de marcare
@@ -245,6 +258,7 @@ Logic items	Elemente logice
 Logos	Logouri
 Looks the users up; empty: users bind with their own name (below)	Caută utilizatorii; gol: utilizatorii se leagă cu propriul nume (mai jos)
 Male insert	Inserție tată
+Managers of a project give rights on it themselves (Permissions on the project).	Managerii unui proiect acordă ei înșiși drepturi asupra lui (Permisiunile proiectului).
 Measurement system	Sistem de măsurare
 Measuring connection points	Puncte de conexiune pentru măsurare
 Measuring couplings	Cuplaje de măsurare
@@ -270,11 +284,18 @@ New role	Rol nou
 New user	Utilizator nou
 Newer version	Versiune mai nouă
 Next	Următorul
+No devices found	Nu s-au găsit dispozitive
+No ended sessions	Nicio sesiune încheiată
 No grants: the rights by manufacturer apply	Nicio atribuire: se aplică drepturile pe producător
+No grants: the roles of the users apply	Nicio atribuire: se aplică rolurile utilizatorilor
 No grants: users have the rights of their role	Nicio atribuire: utilizatorii au drepturile rolului lor
 No groups	Nicio grupă
+No open sessions	Nicio sesiune deschisă
+No projects found	Nu s-au găsit proiecte
 No users	Niciun utilizator
+Nobody works on a project	Nimeni nu lucrează la un proiect
 Non-return valves	Supape de reținere
+None (only grants)	Niciunul (doar atribuiri)
 Not mounted	Nemontat
 Nut	Piuliță
 On the front	Pe față
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Pot fi șterse numai cataloagele făr
 Only empty catalogs can be deleted	Doar cataloagele goale pot fi șterse
 Only local accounts	Doar conturi locale
 Only their members sign in; empty: all users	Se autentifică doar membrii lor; gol: toți utilizatorii
+Open sessions	Sesiuni deschise
 Open sessions: {}	Sesiuni deschise: {}
 OpenECraft data portal	Portal de date OpenECraft
 OpenECraft parts manager	Gestionar de articole OpenECraft
 OpenECraft parts server	Server de articole OpenECraft
+OpenECraft project server	Server de proiecte OpenECraft
 Other file	Alt fișier
 Other labels	Alte etichete
 Others	Altele
@@ -324,6 +347,7 @@ Password variable	Variabila parolei
 Per page	Pe pagină
 Permissions	Permisiuni
 Permissions of catalog {}	Permisiunile catalogului {}
+Permissions of project {}	Permisiunile proiectului {}
 Phase-out	În curs de retragere
 Pipes	Țevi
 Piping part	Element de conductă
@@ -349,6 +373,9 @@ Pressure switches	Presostate
 Pressure valves	Supape de presiune
 Previous	Anterior
 Progressive feeders	Distribuitoare progresive
+Project {} not found	Proiectul {} nu a fost găsit
+Projects	Proiecte
+Projects in use	Proiecte în uz
 Protection devices	Dispozitive de protecție
 Proximity switches	Comutatoare de proximitate
 Pump brackets	Suporturi de pompă
@@ -381,6 +408,7 @@ Replaced by {}	Înlocuit de {}
 Resistors	Rezistoare
 Restore from a file	Restaurare dintr-un fișier
 Return flushing filters, all-autom.	Filtre cu spălare inversă, complet automate
+Revision {} on the server	Revizia {} pe server
 Ribbon cables	Cabluri panglică
 Roles	Roluri
 Roof hook	Cârlig de acoperiș
@@ -395,6 +423,7 @@ Save the catalog first	Salvați mai întâi catalogul
 Save the part first	Salvați mai întâi articolul
 Saved directory {}	Serviciul de director {} a fost salvat
 Saved group {}	Grupa {} a fost salvată
+Saves	Salvări
 Screw connections	Racorduri filetate
 Screw pumps	Pompe cu șurub
 Screw spindle compressors	Compresoare cu șurub
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Senzori, comutatoare și butoane
 Sensors - pressure gauges	Senzori - manometre
 Serial sub-plates	Plăci de bază în serie
 Service account	Cont de serviciu
+Sessions	Sesiuni
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Stabilit de opțiunile de pornire ale serverului (--dashboard sau OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Stabilit de opțiunile de pornire ale serverului (--registration sau OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Nume scurt fără spații; califică grupele (id:grupă)
@@ -424,11 +454,13 @@ Sight glass	Vizor
 Sign in as an administrator to manage the server	Conectați-vă ca administrator pentru a gestiona serverul
 Sign in or connect with the access token to change parts	Autentificați-vă sau conectați-vă cu tokenul de acces pentru a modifica articole
 Sign in to keep favorites	Conectați-vă pentru a păstra favoritele
+Sign in to see the projects	Conectați-vă pentru a vedea proiectele
 Sign in with a user account	Conectare cu un cont de utilizator
 Sign in with the access token of the server	Conectare cu tokenul de acces al serverului
 Sign out everywhere	Deconectare peste tot
 Sign out {} on all devices?	Deconectați {} pe toate dispozitivele?
 Sign-in needed to read	Citirea necesită conectare
+Sign-in needed to view	Vizualizarea necesită conectare
 Signal device	Dispozitiv de semnalizare
 Signal device, acoustic	Dispozitiv de semnalizare, acustic
 Signal device, optical	Dispozitiv de semnalizare, optic
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	Ultimul administrat
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Logoul companiei: PNG, JPEG, GIF, WebP sau SVG, cel mult 512 kB
 The password needs at least {} characters	Parola trebuie să aibă cel puțin {} caractere
 The passwords do not match	Parolele nu se potrivesc
+The project has no devices	Proiectul nu are dispozitive
+The project has no pages	Proiectul nu are pagini
 The project has no parts	Proiectul nu are articole
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	Proiectele cărora li se aplică rolul (* și ? ca metacaractere), separate prin virgule; gol: toate
 The registration is closed	Înregistrarea este închisă
 The registration is open	Înregistrarea este deschisă
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Rolurile date aici se aplică acestui catalog și articolelor sale, oricare le-ar fi producătorul; refuzarea retrage drepturile rolului. Citirea este un drept al întregului server.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Rolurile date aici se aplică acestui proiect; refuzarea retrage drepturile rolului. Doar administratorii ridică un refuz.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Rolurile, atribuirile, grupele și accesul fără autentificare, cu versiunea serverului. Restaurarea înlocuiește rolurile și atribuirile și adaugă grupele; serviciile de director rămân cum sunt configurate pe server.
 The server cannot be reached	Serverul nu poate fi accesat
+The server keeps the last {} ended sessions.	Serverul păstrează ultimele {} sesiuni încheiate.
 The server sent no text	Serverul nu a trimis niciun text
 The test failed	Testul a eșuat
 The test succeeded	Testul a reușit
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	Se încarcă {} în Vault ({} %)…
 Uploading {} to Vault…	Se încarcă {} în Vault…
 User account	Cont de utilizator
 User bind	Legare utilizator
+User deleted	Utilizator șters
 User filter	Filtru utilizatori
 User or group	Utilizator sau grup
 User {} exists already. Change it?	Utilizatorul {} există deja. Îl modificați?
@@ -536,6 +574,7 @@ Variable displacement pumps	Pompe cu debit variabil
 Vault did not continue the upload	Vault nu a continuat încărcarea
 Ventilation filters	Filtre de aerisire
 Ventilator	Ventilator
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Vizualizatorii deschid proiectele doar în citire, examinatorii salvează și comentarii, editorii modifică și creează proiecte, managerii le și șterg și acordă drepturi asupra lor, administratorii gestionează serverul.
 Voltage source	Sursă de tensiune
 Voltage source and generator	Sursă de tensiune și generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Conturile în așteptare nu se pot conecta; aprobați-le sau respingeți-le în Utilizatori.
@@ -549,8 +588,10 @@ Without sign-in	Fără conectare
 Wrong access token	Token de acces greșit
 Wrong user name or password	Nume de utilizator sau parolă greșită
 You may not change parts of manufacturer {}	Nu puteți modifica articolele producătorului {}
+You may not see any project	Nu aveți voie să vedeți niciun proiect
 Your account awaits the approval of an administrator	Contul așteaptă aprobarea unui administrator
 Your account was created. An administrator has to approve it before you can sign in.	Contul a fost creat. Un administrator trebuie să-l aprobe înainte să vă puteți conecta.
+Your rights	Drepturile dvs.
 access denied – check the personal access token	acces refuzat – verificați tokenul de acces personal
 by file name	după numele fișierului
 changed, not saved	modificat, nesalvat
@@ -574,6 +615,7 @@ you	tu
 {} has no checksum in SHA256SUMS	{} nu are sumă de control în SHA256SUMS
 {} parts in {} catalogs, revision {}	{} articole în {} cataloage, revizia {}
 {} parts, {} catalogs, {}	{} articole, {} cataloage, {}
+{} projects	{} proiecte
 {} – save to upload it	{} – salvați pentru a-l încărca
 {}: a logo has at most 512 kB	{}: un logo are cel mult 512 kB
 {}: the catalog is no longer open	{}: catalogul nu mai este deschis

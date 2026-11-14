@@ -33,6 +33,10 @@ pub struct Args {
     /// Default: `access.json` in the data directory.
     #[arg(long)]
     access: Option<PathBuf>,
+    /// Serve the web page (`--web` or `--web true`): the projects read only and the
+    /// administration of users, access rights and directories. Off by default.
+    #[arg(long, env = "OPENECRAFT_PROJECT_WEB", num_args = 0..=1, default_missing_value = "true", value_parser = clap::builder::BoolishValueParser::new())]
+    web: Option<bool>,
 }
 
 /// The configuration file: the options without `--config`.
@@ -44,6 +48,7 @@ struct File {
     token: Option<String>,
     admin_user: Option<String>,
     access: Option<PathBuf>,
+    web: Option<bool>,
 }
 
 /// The settings the server runs with.
@@ -56,6 +61,8 @@ pub struct Settings {
     /// Administrator to create (not empty).
     pub admin_user: Option<String>,
     pub access: PathBuf,
+    /// The web page is served.
+    pub web: bool,
 }
 
 impl Settings {
@@ -79,6 +86,7 @@ impl Settings {
             bind: args.bind.or(file.bind).unwrap_or(SocketAddr::from(([127, 0, 0, 1], DEFAULT_PORT))),
             token: args.token.or(file.token).filter(|t| !t.trim().is_empty()),
             admin_user: args.admin_user.or(file.admin_user).filter(|n| !n.trim().is_empty()),
+            web: args.web.or(file.web).unwrap_or(false),
             data,
             access,
         }

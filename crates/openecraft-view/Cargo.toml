@@ -1,0 +1,14 @@
+[package]
+name = "openecraft-view"
+version.workspace = true
+edition = "2021"
+description = "Read-only views of an OpenECraft project (pages by section and structure, devices and their places), shared by the editor and the project server's web page"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+openecraft-core = { path = "../openecraft-core" }
+openecraft-i18n = { path = "../openecraft-i18n" }
+serde = { version = "1", features = ["derive"] }
+
+[dev-dependencies]
+serde_json = "1"

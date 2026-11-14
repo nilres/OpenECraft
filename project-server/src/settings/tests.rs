@@ -57,3 +57,14 @@ fn the_admin_user_can_come_from_the_environment() {
     let s = Settings::merge(args(&["--admin-user", " "]), File::default());
     assert_eq!(s.admin_user, None, "an empty name is no administrator");
 }
+
+#[test]
+fn the_web_page_is_switched_on_by_option_or_file() {
+    assert!(!Settings::merge(args(&[]), File::default()).web, "off by default");
+    assert!(Settings::merge(args(&["--web"]), File::default()).web);
+    assert!(Settings::merge(args(&["--web", "yes"]), File::default()).web);
+    assert!(Settings::merge(args(&[]), file("web = true
+")).web);
+    assert!(!Settings::merge(args(&["--web", "false"]), file("web = true
+")).web, "the command line wins");
+}

@@ -37,6 +37,7 @@ openecraft-ui = { path = "../crates/openecraft-ui" }
 openecraft-core = { path = "../crates/openecraft-core" }
 openecraft-client = { path = "../crates/openecraft-client" }
 openecraft-api = { path = "../crates/openecraft-api" }
+openecraft-view = { path = "../crates/openecraft-view" }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 env_logger = "0.11"
