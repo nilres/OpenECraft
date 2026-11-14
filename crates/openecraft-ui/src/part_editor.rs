@@ -5,7 +5,8 @@ use openecraft_i18n::{tr, tr_fmt};
 use crate::icons::{self, Icon};
 use crate::io::{short_name, FileKind};
 use egui::{vec2, Color32, Pos2, RichText, Sense, Shape, Stroke};
-use openecraft_parts::vec3::{cross, dot, norm, sub, Orbit};
+use crate::view_cube::{Action, ViewCube};
+use openecraft_parts::vec3::{cross, dot, norm, quarter_turn, sub, view_from, Orbit};
 use openecraft_parts::{
     default_connection_points, distinct_values, parse_mesh, parse_svg, natural_cmp, ConnectionPoint, Exit, FnKind, FunctionTemplate, Grouping,
     Component, Cutout, Mesh3d, Model2d, MountingData, Part, PartFilter, PlacedCutout, Prim2d, RestrictedArea, Restriction, TopGroup, ENCLOSURE_FACES, MOUNTING_KEYS, PRODUCT_GROUPS,
@@ -1182,15 +1183,29 @@ fn paint_model_2d(painter: &egui::Painter, m: &Model2d, map: &dyn Fn([f32; 2]) -
     }
 }
 
-/// Small shaded view of a mesh; drag to rotate.
+/// Starting yaw and pitch of [`mesh_preview`].
+const PREVIEW_VIEW: (f32, f32) = (0.6, 0.35);
+
+/// Steepest view of [`mesh_preview`], short of straight down.
+const PREVIEW_PITCH: f32 = 1.5;
+
+/// Small shaded view of a mesh; drag to rotate, the view cube in the corner turns it to
+/// a side, an edge or a corner.
 pub fn mesh_preview(ui: &mut egui::Ui, mesh: &Mesh3d, size: egui::Vec2) {
     let (resp, painter) = ui.allocate_painter(size, Sense::drag());
     let id = resp.id.with("angles");
-    let (mut yaw, mut pitch): (f32, f32) = ui.data(|d| d.get_temp(id)).unwrap_or((0.6, 0.35));
+    let goal_id = resp.id.with("goal");
+    let (mut yaw, mut pitch): (f32, f32) = ui.data(|d| d.get_temp(id)).unwrap_or(PREVIEW_VIEW);
+    let mut goal: Option<(f32, f32)> = ui.data(|d| d.get_temp(goal_id));
+    let orbit = |(yaw, pitch): (f32, f32), dl: egui::Vec2| (yaw - dl.x * 0.01, (pitch + dl.y * 0.01).clamp(-PREVIEW_PITCH, PREVIEW_PITCH));
     if resp.dragged() {
-        yaw -= resp.drag_delta().x * 0.01;
-        pitch = (pitch + resp.drag_delta().y * 0.01).clamp(-1.5, 1.5);
-        ui.data_mut(|d| d.insert_temp(id, (yaw, pitch)));
+        (yaw, pitch) = orbit((yaw, pitch), resp.drag_delta());
+        goal = None;
+    }
+    if let Some(g) = goal {
+        let dt = ui.input(|i| i.stable_dt).min(0.1);
+        (yaw, pitch, goal) = glide_angles((yaw, pitch), g, dt);
+        ui.ctx().request_repaint();
     }
     let dark = ui.visuals().dark_mode;
     painter.rect_filled(resp.rect, 4.0, if dark { Color32::from_rgb(30, 32, 36) } else { Color32::from_rgb(232, 235, 240) });
@@ -1284,6 +1299,50 @@ pub fn mesh_preview(ui: &mut egui::Ui, mesh: &Mesh3d, size: egui::Vec2) {
     painter.add(Shape::mesh(out));
     if resp.hovered() {
         painter.text(resp.rect.left_bottom() + vec2(4.0, -4.0), egui::Align2::LEFT_BOTTOM, tr("Drag to turn the model"), egui::FontId::proportional(10.0), Color32::GRAY);
+    }
+    let cube = ViewCube::compact();
+    let centre = resp.rect.right_top() + vec2(-cube.size().x / 2.0 - 2.0, cube.size().y / 2.0 + 2.0);
+    let aim = goal.unwrap_or((yaw, pitch));
+    match cube.show(ui, resp.id.with("view_cube"), centre, yaw, pitch) {
+        Some(Action::Look(d)) => {
+            let (y, p) = view_from(d, aim.0);
+            goal = Some((y, p.clamp(-PREVIEW_PITCH, PREVIEW_PITCH)));
+        }
+        Some(Action::Turn(q)) => goal = Some((quarter_turn(aim.0, q), aim.1)),
+        Some(Action::Home) => goal = Some(PREVIEW_VIEW),
+        Some(Action::Orbit(dl)) => {
+            (yaw, pitch) = orbit((yaw, pitch), dl);
+            goal = None;
+        }
+        Some(Action::Fit) | None => {}
+    }
+    if goal.is_some() {
+        ui.ctx().request_repaint();
+    }
+    ui.data_mut(|d| {
+        d.insert_temp(id, (yaw, pitch));
+        match goal {
+            Some(g) => {
+                d.insert_temp(goal_id, g);
+            }
+            None => {
+                d.remove::<(f32, f32)>(goal_id);
+            }
+        }
+    });
+}
+
+/// Yaw and pitch a step of `dt` seconds on the way to `goal` (the shorter way round);
+/// no goal once there.
+fn glide_angles((yaw, pitch): (f32, f32), goal: (f32, f32), dt: f32) -> (f32, f32, Option<(f32, f32)>) {
+    use std::f32::consts::{PI, TAU};
+    let t = 1.0 - (-dt * 10.0).exp();
+    let turn = (goal.0 - yaw + PI).rem_euclid(TAU) - PI;
+    let (yaw, pitch) = (yaw + turn * t, pitch + (goal.1 - pitch) * t);
+    if (turn * (1.0 - t)).abs() < 1e-3 && (goal.1 - pitch).abs() < 1e-3 {
+        (goal.0, goal.1, None)
+    } else {
+        (yaw, pitch, Some(goal))
     }
 }
 

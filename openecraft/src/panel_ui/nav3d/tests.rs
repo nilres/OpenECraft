@@ -141,18 +141,3 @@ fn looking_at_a_point_turns_to_it_and_closes_in() {
     assert!(close(fwd, norm(sub(at, eye)), 1e-3), "seen from the same direction");
     assert!(close(norm(sub(new_eye, eye)), norm(sub(at, eye)), 1e-3), "on the way to it");
 }
-
-#[test]
-fn the_standard_views_look_from_their_sides() {
-    let at = |s: Side| {
-        let (yaw, pitch) = s.angles();
-        let (eye, ..) = Orbit { yaw, pitch, dist: 1.0, target: [0.0; 3] }.basis();
-        eye
-    };
-    assert!(at(Side::Front)[2] > 0.99);
-    assert!(at(Side::Rear)[2] < -0.99);
-    assert!(at(Side::Left)[0] < -0.99);
-    assert!(at(Side::Right)[0] > 0.99);
-    assert!(at(Side::Top)[1] > 0.99);
-    assert!(Side::ALL.iter().all(|s| !s.title().is_empty()));
-}

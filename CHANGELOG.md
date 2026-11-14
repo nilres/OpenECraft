@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
+  in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
+  click on a face, edge or corner of the cube turns the camera to look from there
+  (26 views, the corners isometric), a drag on it orbits; its buttons turn the view
+  by 90°, go back to the starting view or show everything. It replaces the buttons
+  of the standard views. The 3D previews of parts (part editor, data portal,
+  installation) have a small cube without labels and glide to the view clicked.
+
 - **Shared saves keep conflicting local edits** (#181): when the project server
   leaves changes out of a save (locked or changed by another user), when a lock
   is refused or lost, or when another user changed a target first, the editor

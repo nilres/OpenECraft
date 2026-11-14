@@ -54,6 +54,54 @@ fn jt_and_ifc_models_are_assigned() {
 }
 
 #[test]
+fn the_3d_preview_glides_the_shorter_way_round() {
+    use std::f32::consts::PI;
+    // From just left of the rear to just right of it: across the rear, not the front.
+    let (yaw, _, goal) = glide_angles((PI - 0.1, 0.0), (-PI + 0.1, 0.0), 0.01);
+    assert!(yaw > PI - 0.1 && goal.is_some(), "{yaw}");
+    let mut at = (0.6, 0.35);
+    let mut goal = Some((0.0, 1.5));
+    for _ in 0..200 {
+        let Some(g) = goal else { break };
+        let (y, p, next) = glide_angles(at, g, 1.0 / 60.0);
+        (at, goal) = ((y, p), next);
+    }
+    assert_eq!((at, goal), ((0.0, 1.5), None));
+}
+
+#[test]
+fn the_view_cube_of_the_3d_preview_turns_the_model() {
+    let mut mesh = Mesh3d::default();
+    mesh.add_box([0.0; 3], [100.0, 50.0, 20.0]);
+    let ctx = egui::Context::default();
+    let size = vec2(180.0, 160.0);
+    let cube = ViewCube::compact();
+    // The preview at the top left of the screen: its cube in the top right corner.
+    let at = egui::pos2(size.x - cube.size().x / 2.0 - 2.0, cube.size().y / 2.0 + 2.0);
+    let press = |pressed| egui::Event::PointerButton { pos: at, button: egui::PointerButton::Primary, pressed, modifiers: Default::default() };
+    let mut events = vec![vec![], vec![egui::Event::PointerMoved(at)], vec![press(true)], vec![press(false)]];
+    events.extend((0..120).map(|_| vec![]));
+    let mut id = None;
+    for ev in events {
+        let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, vec2(400.0, 300.0))), events: ev, predicted_dt: 1.0 / 60.0, ..Default::default() };
+        ctx.run_ui(input, |ui| {
+            egui::CentralPanel::default().frame(egui::Frame::NONE).show(ui, |ui| {
+                id = Some(ui.next_auto_id().with("angles"));
+                mesh_preview(ui, &mesh, size);
+            });
+        })
+        .textures_delta
+        .clear();
+    }
+    // The model is now seen from the part of the cube clicked.
+    let (yaw, pitch) = PREVIEW_VIEW;
+    let clicked = crate::view_cube::region_at(&crate::view_cube::Projection::new(yaw, pitch, at, cube.half).regions(), at).unwrap();
+    let (yaw, pitch) = view_from(clicked, yaw);
+    let angles: Option<(f32, f32)> = ctx.data(|d| d.get_temp(id.unwrap()));
+    assert_eq!(angles, Some((yaw, pitch)));
+}
+
+#[test]
 fn the_3d_preview_finds_the_edges_and_splits_large_faces() {
     let mut mesh = Mesh3d::default();
     mesh.add_box([0.0; 3], [100.0, 50.0, 20.0]);
