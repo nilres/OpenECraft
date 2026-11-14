@@ -1178,10 +1178,10 @@ fn row(ui: &mut egui::Ui, name: &str, value: impl Into<egui::WidgetText>) {
 
 /// Everything about the PV array at `at`: where it is, its modules and power, its
 /// mounting with its material, its earthing, its strings with their values and the
-/// lengths of their leads, and its problems.
+/// lengths of their leads, and its problems; whether a string is to be added.
 #[allow(clippy::too_many_lines)]
-fn pv_summary(ui: &mut egui::Ui, prj: &Project, at: solar::ArrayRef) {
-    let (Some(on), Some(a)) = (solar::support(&prj.layout, at.roof), solar::array(&prj.layout, at)) else { return };
+fn pv_summary(ui: &mut egui::Ui, prj: &Project, at: solar::ArrayRef) -> bool {
+    let (Some(on), Some(a)) = (solar::support(&prj.layout, at.roof), solar::array(&prj.layout, at)) else { return false };
     let place = solar::place_name(&prj.layout, on);
     let part = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == a.module);
     let poses = panel::site_poses(prj);
@@ -1295,7 +1295,13 @@ fn pv_summary(ui: &mut egui::Ui, prj: &Project, at: solar::ArrayRef) {
         }
     });
     ui.add_space(6.0);
-    ui.label(RichText::new(tr("Strings")).strong());
+    let mut add_string = false;
+    ui.horizontal(|ui| {
+        ui.label(RichText::new(tr("Strings")).strong());
+        if icons::text_button(ui, Icon::Plus, tr("String")).on_hover_text(tr("The modules no string takes yet in series, on the first inverter")).clicked() {
+            add_string = true;
+        }
+    });
     if a.strings.is_empty() {
         ui.weak(tr("No string yet: the modules are not connected."));
     } else {
@@ -1338,6 +1344,7 @@ fn pv_summary(ui: &mut egui::Ui, prj: &Project, at: solar::ArrayRef) {
             ui.colored_label(crate::style::warning(), m);
         }
     }
+    add_string
 }
 
 impl App {
@@ -1353,6 +1360,7 @@ impl App {
         let view = PvView::of(&self.session.prj);
         let mut open = true;
         let mut add_string = false;
+        let mut add_listed = false;
         let mut delete = false;
         let name = solar::array(&self.session.prj.layout, at).map(|a| a.name.clone()).unwrap_or_default();
         let title = if at.roof.is_some() { tr_fmt!("PV array {}", name) } else { tr_fmt!("Freestanding PV array {}", name) };
@@ -1363,7 +1371,7 @@ impl App {
             });
             ui.separator();
             egui::ScrollArea::vertical().max_height(560.0).auto_shrink([false, true]).show(ui, |ui| {
-                pv_summary(ui, &self.session.prj, at);
+                add_listed = pv_summary(ui, &self.session.prj, at);
                 ui.add_space(6.0);
                 egui::CollapsingHeader::new(RichText::new(tr("Change")).strong()).id_salt(("pvpropsedit", id)).show(ui, |ui| {
                     if let Some(a) = solar::array_mut(&mut self.session.prj.layout, at) {
@@ -1373,7 +1381,7 @@ impl App {
             });
         });
         let prj = &mut self.session.prj;
-        if add_string {
+        if add_string || add_listed {
             if let Err(e) = strings::add_string(prj, at) {
                 self.panel_ui.status = e;
             }
