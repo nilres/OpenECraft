@@ -6,7 +6,7 @@
 
 use openecraft_api::{params, Plugins};
 use openecraft_canvas::editor::{Editor, Tool};
-use openecraft_canvas::panel_ui::{PanelUi, View};
+use openecraft_canvas::panel_ui::{has_site, PanelUi, View};
 use openecraft_core::params::{cli_words, CliWord};
 use openecraft_core::parts::PartsDb;
 use openecraft_core::sample;
@@ -115,6 +115,40 @@ impl Studio {
         Ok(())
     }
 
+    /// Shows a place of the panel layout view: `site` for the whole plant, otherwise
+    /// the index of an enclosure or room (`places` of [`Studio::state`]).
+    pub fn show_place(&mut self, place: &str) -> Result<(), String> {
+        let layout = &self.session.prj.layout;
+        if place == "site" && has_site(layout) {
+            self.panel.show_site();
+            return Ok(());
+        }
+        let index = place.parse().ok().filter(|i| *i < layout.enclosures.len()).ok_or_else(|| tr_fmt!("Unknown enclosure: {}", place))?;
+        self.panel.show_enclosure(&self.session.prj, index);
+        Ok(())
+    }
+
+    /// The 3D view, or the drawing of the place shown: the mounting plate of an
+    /// enclosure, the floor plan of a room, the site plan of the site.
+    pub fn set_view(&mut self, three_d: bool) {
+        let room = self.session.prj.layout.enclosures.get(self.panel.enclosure).is_some_and(|e| e.is_room());
+        self.panel.view = match three_d {
+            true => View::ThreeD,
+            false if self.panel.site || room => View::Plan,
+            false => View::Front,
+        };
+        self.panel.fit();
+    }
+
+    /// What the panel layout view shows: `site`, `room` or `enclosure`.
+    fn place_kind(&self) -> &'static str {
+        match self.session.prj.layout.enclosures.get(self.panel.enclosure) {
+            _ if self.panel.site => "site",
+            Some(e) if e.is_room() => "room",
+            _ => "enclosure",
+        }
+    }
+
     fn tool_name(&self) -> &'static str {
         match &self.editor.tool {
             Tool::Wire => "wire",
@@ -138,6 +172,7 @@ impl Studio {
             .filter(|i| !i.accepted)
             .map(|i| json!({ "severity": i.severity.key(), "message": i.message(), "page": i.target.map(|t| t.0), "item": i.target.map(|t| t.1) }))
             .collect();
+        let places: Vec<Value> = s.prj.layout.enclosures.iter().map(|e| json!({ "name": e.name, "room": e.is_room() })).collect();
         let title = sample::EXAMPLES.iter().find(|e| e.key == self.example).map_or("", |e| tr(e.title));
         json!({
             "example": self.example,
@@ -153,9 +188,11 @@ impl Studio {
             "loading": s.opening().is_some(),
             "tool": self.tool_name(),
             "view": if self.panel.view == View::ThreeD { "3d" } else { "front" },
-            "door": self.panel.door_open,
             "show_wires": self.panel.show_wires,
-            "enclosures": s.prj.layout.enclosures.len(),
+            "places": places,
+            "site": has_site(&s.prj.layout),
+            "place": if self.panel.site { json!("site") } else { json!(self.panel.enclosure.min(s.prj.layout.enclosures.len().saturating_sub(1))) },
+            "place_kind": self.place_kind(),
             "hint": self.editor.hint(),
             "message": self.message,
             "lang": openecraft_i18n::lang().code(),
@@ -255,13 +292,10 @@ impl Studio {
                 Ok(Value::Null)
             }
             "view" => {
-                self.panel.view = if arg == "front" { View::Front } else { View::ThreeD };
+                self.set_view(arg != "front");
                 Ok(Value::Null)
             }
-            "door" => {
-                self.panel.door_open = !self.panel.door_open;
-                Ok(Value::Null)
-            }
+            "place" => done(self.show_place(arg)),
             "wires" => {
                 self.panel.show_wires = !self.panel.show_wires;
                 Ok(Value::Null)

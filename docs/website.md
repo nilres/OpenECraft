@@ -7,7 +7,7 @@ WebAssembly, not copies of it:
 | On the page | Runs |
 | --- | --- |
 | Schematic editor (select, move, wire, place symbols, undo) | `openecraft_canvas::editor`, the page editor of the editor |
-| Panel in 3D / mounting plate, with the routed wiring | `openecraft_canvas::panel_ui`, the panel layout view of the editor |
+| Panel in 3D / mounting plate, with the routed wiring; the enclosures, the rooms (floor plan) and the site (site plan) of an example to switch between | `openecraft_canvas::panel_ui`, the panel layout view of the editor |
 | Project check, counts, undo and redo | `openecraft_session::session::Session` with the checks of the plugins |
 | Reports | The reports of `openecraft_api::Plugins` |
 | Console | The commands of the plugins, parameters parsed as on the command line (`openecraft_core::params::cli_words`, `from_cli`) |

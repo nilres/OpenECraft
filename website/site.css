@@ -55,7 +55,8 @@ select, input[type=search], #console-in {
     font: inherit; color: var(--text); background: rgba(255, 255, 255, .06);
     border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px;
 }
-select option { background: var(--bg2); }
+select option, select optgroup { background: var(--bg2); }
+.toolbar select { font-size: 14px; max-width: 220px; }
 
 .button, .toolbar button, .chips button, .examples button {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;

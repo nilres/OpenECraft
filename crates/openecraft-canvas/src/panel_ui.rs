@@ -1264,7 +1264,7 @@ impl PanelUi {
             }
         };
         // The site at the root: the buildings and the rooms outside them.
-        let site = !prj.layout.buildings.is_empty() || !panel::rooms(&prj.layout).is_empty() || !prj.layout.plot.is_default();
+        let site = has_site(&prj.layout);
         if site {
             headings.push((0, 0, tr("Site").to_string(), Heading::Site));
         }
@@ -1316,12 +1316,7 @@ impl PanelUi {
                             if e.is_room() {
                                 act = Some(NavAction::Open(i));
                             } else {
-                                self.site = false;
-                                self.enclosure = i;
-                                self.nav_level = None;
-                                self.selection.clear();
-                                self.fit_pending = true;
-                                self.cam = None;
+                                self.open_cabinet(i);
                             }
                         }
                         if let Some(l) = level {
@@ -2932,6 +2927,31 @@ impl PanelUi {
         }
     }
 
+    /// Shows an enclosure or a room of the project, as a click in the navigator does.
+    pub fn show_enclosure(&mut self, prj: &Project, i: usize) {
+        match prj.layout.enclosures.get(i) {
+            Some(e) if e.is_room() => self.open_room(i),
+            Some(_) => self.open_cabinet(i),
+            None => {}
+        }
+    }
+
+    /// Shows the site: its site plan, or all of the plant when the 3D view is shown.
+    pub fn show_site(&mut self) {
+        self.show_site_plan(None);
+    }
+
+    /// Shows an enclosure in the view that is shown.
+    fn open_cabinet(&mut self, i: usize) {
+        self.site = false;
+        self.enclosure = i;
+        self.in_room = false;
+        self.nav_level = None;
+        self.selection.clear();
+        self.fit_pending = true;
+        self.cam = None;
+    }
+
     /// Shows a room: the 3D view stays, any other view becomes its floor plan.
     fn open_room(&mut self, ri: usize) {
         self.site = false;
@@ -4306,6 +4326,11 @@ impl PanelUi {
             }
         }
     }
+}
+
+/// The project has a site to show: buildings, rooms or a plot.
+pub fn has_site(layout: &panel::Layout) -> bool {
+    !layout.buildings.is_empty() || !panel::rooms(layout).is_empty() || !layout.plot.is_default()
 }
 
 /// Items behind the door (cable ducts) are hidden in its front view: they cannot be

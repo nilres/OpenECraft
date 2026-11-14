@@ -15,6 +15,7 @@
     let state = null;
     let stateText = "";
     let sheetKey = "";
+    let placesKey = "";
     let report = "";
     let reports = [];
     let commands = [];
@@ -167,7 +168,7 @@
         for (const b of $$("[data-tool]")) b.classList.toggle("on", b.dataset.tool === state.tool);
         for (const b of $$("[data-view-mode]")) b.classList.toggle("on", b.dataset.viewMode === state.view);
         $("#wires").classList.toggle("on", state.show_wires);
-        $("#door").classList.toggle("on", state.door);
+        places();
         for (const b of $$("[data-example]")) b.classList.toggle("on", b.dataset.example === state.example);
 
         if (!state.loading) {
@@ -175,6 +176,30 @@
             if (report) showReport();
             if (!before || before.lang !== state.lang) $("#language").value = state.lang;
         }
+    }
+
+    // The enclosures, the rooms and the site of the project, for the panel layout view.
+    function places() {
+        const select = $("#place");
+        const key = JSON.stringify([state.places, state.site, state.lang]);
+        if (key !== placesKey) {
+            placesKey = key;
+            const option = (value, text) => {
+                const o = element("option", "", text);
+                o.value = value;
+                return o;
+            };
+            const group = (label, room) => {
+                const g = document.createElement("optgroup");
+                g.label = label;
+                state.places.forEach((p, i) => p.room === room && g.append(option(i, p.name)));
+                return g;
+            };
+            select.replaceChildren(...(state.site ? [option("site", t("Site"))] : []), ...[group(t("Enclosures"), false), group(t("Rooms"), true)].filter(g => g.children.length));
+            select.hidden = select.options.length < 2;
+        }
+        select.value = state.place;
+        $("#drawing").textContent = state.place_kind === "site" ? t("Site plan") : state.place_kind === "room" ? t("Floor plan") : t("Mounting plate");
     }
 
     // The sheet of the hero: the page being edited, as the SVG export draws it.
@@ -394,6 +419,10 @@
         for (const b of $$("[data-call]")) b.addEventListener("click", () => act(b.dataset.call));
         for (const b of $$("[data-line]")) b.addEventListener("click", () => run(b.dataset.line));
         $("#language").addEventListener("change", e => setLanguage(e.target.value));
+        $("#place").addEventListener("change", e => {
+            act("place", e.target.value);
+            activate($('.stage[data-view="layout"]'));
+        });
         $("#report-filter").addEventListener("input", listReports);
         $("#command-filter").addEventListener("input", listCommands);
         $("#console-form").addEventListener("submit", e => {

@@ -19,7 +19,7 @@ fn the_first_example_has_pages_devices_and_a_panel_layout() {
     assert_eq!(state["example"], FIRST_EXAMPLE);
     assert!(state["pages"].as_array().unwrap().len() > 3);
     assert!(state["devices"].as_u64().unwrap() > 5);
-    assert!(state["enclosures"].as_u64().unwrap() >= 1, "the 3D view needs an enclosure");
+    assert!(!state["places"].as_array().unwrap().is_empty(), "the 3D view needs an enclosure");
     assert!(state["issues"].as_array().unwrap().iter().all(|i| i["severity"] == "info"), "the examples pass the checks");
     assert_eq!(state["loading"], false);
 }
@@ -128,11 +128,46 @@ fn pages_tools_and_views_follow_the_page() {
     assert!(s.call("tool", "hammer").get("error").is_some());
     ok(&mut s, "view", "front");
     assert_eq!(ok(&mut s, "state", "")["view"], "front");
-    let door = s.panel.door_open;
-    ok(&mut s, "door", "");
-    assert_eq!(ok(&mut s, "state", "")["door"], !door);
     let svg = ok(&mut s, "svg", "0");
     assert!(svg.as_str().unwrap().starts_with("<svg"));
+}
+
+#[test]
+fn the_layout_view_switches_between_enclosures_rooms_and_the_site() {
+    let mut s = studio();
+    ok(&mut s, "open", "plant_buildings");
+    s.settle();
+    let state = ok(&mut s, "state", "");
+    let places = state["places"].as_array().unwrap().clone();
+    let room = places.iter().position(|p| p["room"] == true).expect("a room");
+    let cabinet = places.iter().position(|p| p["room"] == false).expect("an enclosure");
+    assert_eq!(state["site"], true);
+
+    ok(&mut s, "place", &room.to_string());
+    let state = ok(&mut s, "state", "");
+    assert_eq!((&state["place"], &state["place_kind"], &state["view"]), (&json!(room), &json!("room"), &json!("3d")));
+    ok(&mut s, "view", "front");
+    assert_eq!(s.panel.view, View::Plan, "the drawing of a room is its floor plan");
+
+    ok(&mut s, "view", "3d");
+    ok(&mut s, "place", "site");
+    let state = ok(&mut s, "state", "");
+    assert_eq!((&state["place"], &state["place_kind"], &state["view"]), (&json!("site"), &json!("site"), &json!("3d")));
+    ok(&mut s, "view", "front");
+    assert_eq!((s.panel.site, s.panel.view), (true, View::Plan), "the drawing of the site is the site plan");
+
+    ok(&mut s, "place", &cabinet.to_string());
+    let state = ok(&mut s, "state", "");
+    assert_eq!((&state["place"], &state["place_kind"]), (&json!(cabinet), &json!("enclosure")));
+    ok(&mut s, "view", "front");
+    assert_eq!(s.panel.view, View::Front);
+
+    assert!(s.call("place", "999").get("error").is_some());
+    // An example without rooms has no site to show.
+    ok(&mut s, "open", "conveyor");
+    s.settle();
+    assert_eq!(ok(&mut s, "state", "")["site"], false);
+    assert!(s.call("place", "site").get("error").is_some());
 }
 
 #[test]

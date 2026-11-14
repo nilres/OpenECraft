@@ -125,15 +125,15 @@
 
 <section id="layout" class="band">
     <h2 data-t>The panel in 3D</h2>
-    <p class="sub" data-t>The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Drag to turn, scroll to zoom.</p>
+    <p class="sub" data-t>The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example. Drag to turn, scroll to zoom.</p>
     <div class="examples" id="layout-examples"></div>
     <div class="stage-wrap wide">
         <div class="toolbar">
+            <select id="place"></select>
             <button data-view-mode="3d" data-t>3D view</button>
-            <button data-view-mode="front" data-t>Mounting plate</button>
+            <button data-view-mode="front" id="drawing"></button>
             <span class="gap"></span>
             <button data-call="wires" id="wires" data-t>Wiring</button>
-            <button data-call="door" id="door" data-t>Door</button>
             <button data-call="fit" data-t>Fit</button>
         </div>
         <div class="stage tall" data-view="layout">
