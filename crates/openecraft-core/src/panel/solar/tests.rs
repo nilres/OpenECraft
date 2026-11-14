@@ -52,7 +52,7 @@ fn rails_hooks_and_clamps_follow_the_modules() {
     let a = array(5000.0, 6000.0);
     let m: Vec<(Role, f32)> = mounting(&prj, &a);
     // Four rails of 4696 mm: two pieces of 4.2 m each, joined once.
-    assert_eq!(m, vec![(Role::Rail, 8.0), (Role::Connector, 4.0), (Role::Hook, 20.0), (Role::EndClamp, 8.0), (Role::MidClamp, 12.0)]);
+    assert_eq!(m, vec![(Role::Rail, 8.0), (Role::Connector, 4.0), (Role::Hook, 20.0), (Role::EndClamp, 8.0), (Role::MidClamp, 12.0), (Role::Earthing, 4.0)]);
     let mat = material(&prj, &a);
     assert_eq!(mat[0], ("GEN.PV-430W".to_string(), 8.0));
     assert!(mat.contains(&("GEN.PV-RAIL-40".to_string(), 8.0)) && mat.contains(&("GEN.PV-HOOK".to_string(), 20.0)));
@@ -114,7 +114,7 @@ fn flat_roofs_take_tilted_and_east_west_rows() {
     let t = 15f32.to_radians();
     assert!((row_pitch(&a) - (1134.0 * t.cos() + 1134.0 * t.sin() / 17f32.to_radians().tan())).abs() < 0.1);
     let m = mounting(&prj, &a);
-    assert_eq!(m, vec![(Role::Base, 15.0), (Role::EndClamp, 12.0), (Role::MidClamp, 18.0), (Role::Ballast, 20.0), (Role::Deflector, 12.0)]);
+    assert_eq!(m, vec![(Role::Base, 15.0), (Role::EndClamp, 12.0), (Role::MidClamp, 18.0), (Role::Ballast, 20.0), (Role::Deflector, 12.0), (Role::Earthing, 3.0)]);
     assert_eq!(part_for(&prj, &a, Role::Base), "GEN.PV-BASE-S15");
     // East-west: pairs facing both ways on one base each.
     let ew = PvArray { mounting: PvMounting::EastWest, azimuth: 90.0, tilt: 10.0, ..a };
@@ -122,7 +122,7 @@ fn flat_roofs_take_tilted_and_east_west_rows() {
     assert_eq!(g.modules.len(), 24);
     assert_eq!(g.modules.iter().filter(|m| normal_of(&m[..])[0] > 0.0).count(), 12, "half of them facing +x");
     let m = mounting(&prj, &ew);
-    assert_eq!(m, vec![(Role::Base, 15.0), (Role::EndClamp, 24.0), (Role::MidClamp, 36.0), (Role::Ballast, 39.0)]);
+    assert_eq!(m, vec![(Role::Base, 15.0), (Role::EndClamp, 24.0), (Role::MidClamp, 36.0), (Role::Ballast, 39.0), (Role::Earthing, 3.0)]);
     assert_eq!(part_for(&prj, &ew, Role::Base), "GEN.PV-BASE-EW10");
     assert!(problems(&prj).is_empty(), "{:?}", problems(&prj));
 }
@@ -169,9 +169,20 @@ fn modules_and_mounting_are_drawn_on_the_roof() {
     let b = &prj.layout.buildings[bi];
     let f = faces(b, &b.roofs[0]);
     let count = |k: RoofFaceKind| f.iter().filter(|x| x.kind == k).count();
-    // Each module: the cells, four frame pieces on top, four sides and the bottom.
-    assert_eq!((count(RoofFaceKind::Module), count(RoofFaceKind::ModuleFrame)), (8, 8 * 9));
-    assert_eq!(count(RoofFaceKind::Mounting), 4 * 4, "four sides of each rail");
+    // Each module: the cells, four frame pieces on top, four sides and the bottom, and
+    // its junction box (a box of six faces).
+    assert_eq!((count(RoofFaceKind::Module), count(RoofFaceKind::ModuleFrame)), (8, 8 * 9 + 8 * 6));
+    // The four rails and the 20 roof hooks under them (the hook and its plate), as many as
+    // the bill of materials counts.
+    let g = geometry(&b.roofs[0], &b.roofs[0].solar[0]).unwrap();
+    assert_eq!((g.rails.len(), g.hooks.len()), (4, 20));
+    assert!(mounting(&prj, &b.roofs[0].solar[0]).contains(&(Role::Hook, 20.0)));
+    assert_eq!(count(RoofFaceKind::Mounting), 4 * 6 + 20 * 2 * 6);
+    // The hooks stand on the covering and carry the rails.
+    let cover = |q: V3| g.plane.at([q[0], q[2]]) + 300.0 * (1.0 + g.plane.slope() * g.plane.slope()).sqrt();
+    assert!(g.hooks.iter().all(|(foot, top)| (foot[1] - cover(*foot)).abs() < 0.5 && top[1] > foot[1] + 50.0));
+    // An earthing clamp on each rail.
+    assert_eq!((g.earth.len(), count(RoofFaceKind::Earthing)), (4, 4 * 6));
     // A module's part sets its size.
     let mut a = array(0.0, 0.0);
     set_module(&prj, &mut a, "GEN.PV-400W-FB").unwrap();

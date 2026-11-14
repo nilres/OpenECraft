@@ -195,6 +195,18 @@ pub fn underside_at(r: &Roof, q: [f32; 2]) -> Option<f32> {
     inside_lins(&reg).iter().all(|f| f.at(q) <= 0.5).then(|| planes(r).iter().map(|l| l.at(q)).fold(f32::INFINITY, f32::min))
 }
 
+/// The planes of the covering of a roof: those of its underside raised by its thickness.
+pub fn top_planes(r: &Roof) -> Vec<Lin> {
+    planes(r).iter().map(|l| l.plus(r.thickness.max(1.0) * (1.0 + l.slope() * l.slope()).sqrt())).collect()
+}
+
+/// Height of the covering of a roof at a point of the building's floor plan, `None` off
+/// the roof.
+pub fn covering_at(r: &Roof, q: [f32; 2]) -> Option<f32> {
+    underside_at(r, q)?;
+    Some(lowest(&top_planes(r), q))
+}
+
 /// The slopes of a roof in the building's floor plan (their edges are the eaves, the
 /// ridge and the hips).
 pub fn slopes(r: &Roof) -> Vec<Vec<[f32; 2]>> {
@@ -436,8 +448,10 @@ pub enum RoofFaceKind {
     Module,
     /// The frame of a PV module.
     ModuleFrame,
-    /// Rails, mounting bases and wind deflectors of a PV array.
+    /// Rails, roof hooks, mounting bases and wind deflectors of a PV array.
     Mounting,
+    /// The earthing clamps of the mounting of a PV array.
+    Earthing,
 }
 
 pub(super) fn normal_of(pts: &[V3]) -> V3 {

@@ -145,9 +145,15 @@ fn pv_arrays_on_pitched_and_flat_roofs() {
     assert_eq!((a["name"].as_str(), a["mounting"].as_str(), a["modules"].as_u64()), (Some("PV1"), Some("parallel"), Some(8)));
     assert!((a["peak_kw"].as_f64().unwrap() - 3.2).abs() < 1e-4);
     let parts: Vec<&str> = a["material"].as_array().unwrap().iter().map(|m| m["part"].as_str().unwrap()).collect();
-    assert_eq!(parts, ["GEN.PV-400W-FB", "GEN.PV-RAIL-40", "GEN.PV-RAIL-CONN", "GEN.PV-HOOK", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID"]);
+    assert_eq!(parts, ["GEN.PV-400W-FB", "GEN.PV-RAIL-40", "GEN.PV-RAIL-CONN", "GEN.PV-HOOK", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-EARTH-CLAMP"]);
     let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
     assert_eq!(list["problems"], json!([]), "{}", list["problems"]);
+    // Its mounting bonded to an earthing busbar: one that does not exist is reported.
+    let b = run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "earthing": "=PV-PE1" })).unwrap();
+    assert_eq!(b["roofs"][0]["solar"][0]["earthing"], "=PV-PE1");
+    let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
+    assert!(list["problems"].to_string().contains("=PV-PE1"), "{}", list["problems"]);
+    run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "earthing": "" })).unwrap();
     let b = run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "pv1", "columns": 5, "rows": 1, "landscape": true })).unwrap();
     assert_eq!(b["roofs"][0]["solar"][0]["modules"], 5);
     assert!(run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "mounting": "wall" })).unwrap_err().contains("wall"));
@@ -223,4 +229,56 @@ fn the_plot_boundary_and_the_reference_point() {
     run(&mut s, "set_reference_point", json!({ "remove": true })).unwrap();
     let p = run(&mut s, "set_plot", json!({ "remove": true })).unwrap();
     assert_eq!(p["outline"], json!([]));
+}
+
+#[test]
+fn earth_electrodes_and_lightning_protection() {
+    let mut s = demo_session();
+    run(&mut s, "add_building", json!({ "name": "+H1", "x": 30000, "z": 0 })).unwrap();
+    run(&mut s, "add_room", json!({ "name": "+EG", "building": "+H1", "level": "L0", "x": 0, "z": 0, "width": 10000, "depth": 8000 })).unwrap();
+    run(&mut s, "add_roof", json!({ "building": "+H1", "shape": "gable", "pitch": 35 })).unwrap();
+    // A foundation earth electrode, a ring and an earth rod.
+    let b = run(&mut s, "add_earth_electrode", json!({ "building": "+H1", "kind": "foundation" })).unwrap();
+    assert_eq!((b["electrodes"][0]["name"].as_str(), b["electrodes"][0]["kind"].as_str(), b["electrodes"][0]["part"].as_str()), (Some("E1"), Some("foundation"), Some("GEN.ER-STRIP-FE30")));
+    run(&mut s, "add_earth_electrode", json!({ "building": "+H1", "kind": "ring", "distance": 800 })).unwrap();
+    let b = run(&mut s, "add_earth_electrode", json!({ "building": "+H1", "kind": "rod", "x": -2000, "z": -2000, "length": 4500 })).unwrap();
+    assert_eq!((b["electrodes"][1]["distance"].as_f64(), b["electrodes"][2]["length"].as_f64()), (Some(800.0), Some(4500.0)));
+    assert!(run(&mut s, "add_earth_electrode", json!({ "building": "+H1", "kind": "plate" })).unwrap_err().contains("plate"));
+    let b = run(&mut s, "set_earth_electrode", json!({ "building": "+H1", "electrode": "e3", "remove": true })).unwrap();
+    assert_eq!(b["electrodes"].as_array().unwrap().len(), 2);
+    // Lightning protection of class II: its down conductors at most 10 m apart.
+    let b = run(&mut s, "set_lightning_protection", json!({ "building": "+H1", "class": 2 })).unwrap();
+    let lp = &b["lightning"];
+    assert_eq!((lp["class_name"].as_str(), lp["down_conductors"].as_u64()), (Some("II"), Some(4)));
+    assert!(lp["air_termination_length"].as_f64().unwrap() > 10.0);
+    assert!(run(&mut s, "set_lightning_protection", json!({ "building": "+H1", "class": 5 })).is_err());
+    let b = run(&mut s, "add_air_rod", json!({ "building": "+H1", "height": 2000 })).unwrap();
+    assert_eq!((b["lightning"]["rods"][0]["name"].as_str(), b["lightning"]["rods"][0]["height"].as_f64()), (Some("F1"), Some(2000.0)));
+    let b = run(&mut s, "set_air_rod", json!({ "building": "+H1", "rod": "f1", "height": 1000 })).unwrap();
+    assert_eq!(b["lightning"]["rods"][0]["height"], 1000.0);
+    let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
+    assert_eq!(list["problems"], json!([]), "{}", list["problems"]);
+    // Too few down conductors are reported.
+    run(&mut s, "set_lightning_protection", json!({ "building": "+H1", "down_conductors": 2 })).unwrap();
+    let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
+    assert!(list["problems"].to_string().contains("class II needs 4"), "{}", list["problems"]);
+    let b = run(&mut s, "set_lightning_protection", json!({ "building": "+H1", "remove": true })).unwrap();
+    assert!(b["lightning"].is_null());
+}
+
+#[test]
+fn materials_diameters_and_mounting_of_earthing_and_lightning_protection() {
+    let mut s = demo_session();
+    run(&mut s, "add_building", json!({ "name": "+H1", "x": 30000, "z": 0 })).unwrap();
+    run(&mut s, "add_room", json!({ "name": "+EG", "building": "+H1", "level": "L0", "x": 0, "z": 0, "width": 10000, "depth": 8000 })).unwrap();
+    run(&mut s, "add_roof", json!({ "building": "+H1", "shape": "gable", "pitch": 35 })).unwrap();
+    let b = run(&mut s, "add_earth_electrode", json!({ "building": "+H1", "kind": "rod", "x": -2000, "z": -2000, "material": "stainless_steel" })).unwrap();
+    assert_eq!((b["electrodes"][0]["part"].as_str(), b["electrodes"][0]["diameter"].as_f64()), (Some("GEN.ER-ROD-V4A-1500"), Some(20.0)));
+    assert!(run(&mut s, "set_earth_electrode", json!({ "building": "+H1", "electrode": "E1", "material": "gold" })).unwrap_err().contains("gold"));
+    let b = run(&mut s, "set_lightning_protection", json!({ "building": "+H1", "material": "copper", "diameter": 8, "wall_holder": "GEN.LP-HOLDER-WALL-SPACER", "test_joint": 500 })).unwrap();
+    let lp = &b["lightning"];
+    assert_eq!((lp["conductor_material"].as_str(), lp["part"].as_str(), lp["wall_holder"].as_str(), lp["test_joint"].as_f64()), (Some("copper"), Some("GEN.LP-WIRE-CU8"), Some("GEN.LP-HOLDER-WALL-SPACER"), Some(500.0)));
+    let b = run(&mut s, "add_air_rod", json!({ "building": "+H1", "material": "copper", "base": "concrete_base" })).unwrap();
+    assert_eq!((b["lightning"]["rods"][0]["part"].as_str(), b["lightning"]["rods"][0]["base"].as_str()), (Some("GEN.LP-ROD-CU16"), Some("concrete_base")));
+    assert!(run(&mut s, "set_air_rod", json!({ "building": "+H1", "rod": "F1", "base": "magic" })).unwrap_err().contains("magic"));
 }

@@ -51,6 +51,7 @@ Catalog id	Katalog-ID	Identifiant du catalogue	ID del catálogo
 Category	Kategorie	Catégorie	Categoría
 Centred	Zentriert	Centré	Centrado
 Certificates	Zertifikate	Certificats	Certificados
+Change	Änderung	Modification	Cambio
 Channel	Kanal	Canal	Canal
 Characteristic	Charakteristik	Caractéristique	Característica
 Check settings	Prüfeinstellungen	Réglages de vérification	Ajustes de comprobación
@@ -113,6 +114,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Geräteanschlusspunkt	Point de connexion d'appareil	Punto de conexión del dispositivo
 Device description	Gerätebeschreibung	Description d'appareil	Descripción de dispositivo
 Device tag	Betriebsmittelkennzeichen	Repère d'appareil	Designación de dispositivo
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Gerät, zu dem der Erdungsleiter der Unterkonstruktion führt (Erdungs- oder Potentialausgleichsschiene); leer: keines	Appareil auquel mène le conducteur de terre du support (barre de terre ou de liaison équipotentielle) ; vide : aucun	Equipo al que va el conductor de tierra de la estructura (barra de tierra o de equipotencialidad); vacío: ninguno
 Device {}	Betriebsmittel {}	Appareil {}	Dispositivo {}
 Devices	Betriebsmittel	Appareils	Dispositivos
 Dimensions	Abmessungen	Dimensions	Dimensiones
@@ -163,6 +165,7 @@ Function text	Funktionstext	Texte de fonction	Texto de función
 Functional safety	Funktionale Sicherheit	Sécurité fonctionnelle	Seguridad funcional
 Functions	Funktionen	Fonctions	Funciones
 General	Allgemein	Général	General
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Generatoranschlusskasten (Gerät), zu dem die Strings führen, von dort eine DC-Hauptleitung zu jedem Wechselrichter; leer: keiner	Boîte de jonction générateur (appareil) vers laquelle vont les chaînes, de là un câble principal DC vers chaque onduleur ; vide : aucune	Caja de conexión del generador (equipo) a la que van los strings, desde allí un cable principal de CC a cada inversor; vacío: ninguna
 Gives up a subproject: its pages are unlocked again	Verwirft ein Teilprojekt: Seine Seiten werden wieder entsperrt	Abandonne un sous-projet : ses pages sont à nouveau déverrouillées	Descarta un subproyecto: sus páginas se desbloquean de nuevo
 Gland plate	Flanschplatte	Plaque passe-câbles	Placa pasacables
 Graphics	Grafik	Graphiques	Gráficos
@@ -188,6 +191,7 @@ Input	Eingang	Entrée	Entrada
 Integration	Integration	Intégration	Integración
 Internal (bottom)	Intern (unten)	Interne (bas)	Interno (abajo)
 Interruption point	Unterbrechungspunkt	Point d'interruption	Punto de interrupción
+Inverter	Wechselrichter	Onduleur	Inversor
 Italic	Kursiv	Italique	Cursiva
 Its MPP tracker (input), from 1	Sein MPP-Tracker (Eingang), ab 1	Son tracker MPP (entrée), à partir de 1	Su seguidor MPP (entrada), desde 1
 Job	Auftrag	Ordre	Trabajo
@@ -216,6 +220,7 @@ Location along the segment, 0 … 1	Position entlang des Segments, 0 … 1	Posit
 Logo	Logo	Logo	Logotipo
 MTTFd (years)	MTTFd (Jahre)	MTTFd (ans)	MTTFd (años)
 Machine	Maschine	Machine	Máquina
+Main earthing busbar (device) it is connected to; empty: none	Haupterdungsschiene (Gerät), an die er angeschlossen ist; leer: keine	Borne principale de terre (appareil) à laquelle elle est raccordée ; vide : aucune	Barra principal de tierra (equipo) a la que está conectado; vacío: ninguna
 Main earthing terminal	Haupterdungsschiene	Borne principale de terre	Borne principal de tierra
 Main switch	Hauptschalter	Interrupteur principal	Interruptor principal
 Manufacturer	Hersteller	Fabricant	Fabricante
@@ -231,6 +236,8 @@ Minimum digits of the counter (leading zeros)	Mindestanzahl Stellen des Zählers
 Missing parameter: {}	Fehlender Parameter: {}	Paramètre manquant : {}	Falta el parámetro: {}
 Missing value for --{}	Fehlender Wert für --{}	Valeur manquante pour --{}	Falta el valor de --{}
 Model import failed: {}	Modellimport fehlgeschlagen: {}	Échec de l'import du modèle : {}	Error al importar el modelo: {}
+Module	Modul	Module	Módulo
+Modules	Module	Modules	Módulos
 Modules in series	Module in Reihe	Modules en série	Módulos en serie
 Modules side by side in a row	Module nebeneinander in einer Reihe	Modules côte à côte dans une rangée	Módulos uno al lado de otro en una fila
 Mounted	Montiert	Monté	Montado
@@ -285,6 +292,7 @@ Not in the schematic	Nicht im Schaltplan	Pas dans le schéma	No está en el esqu
 Note	Hinweis	Remarque	Nota
 Notes	Notizen	Notes	Notas
 Number	Nummer	Numéro	Número
+Number of down conductors (0: as many as the class needs for the walls)	Zahl der Ableitungen (0: so viele, wie die Klasse für die Wände braucht)	Nombre de conducteurs de descente (0 : autant que la classe en exige pour les murs)	Número de bajantes (0: tantas como la clase necesita para los muros)
 Number the sections 1, 2, 3 … on every level first	Zuerst die Abschnitte auf jeder Ebene mit 1, 2, 3 … nummerieren	Numéroter d'abord les sections 1, 2, 3 … à chaque niveau	Numerar primero las secciones 1, 2, 3 … en cada nivel
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Nummeriert die Betriebsmittelkennzeichen je Struktur und Kennbuchstabe in Schaltplanreihenfolge (Seite, Spalte, von oben nach unten)	Numérote les repères d'appareils par structure et lettre repère dans l'ordre du schéma (page, colonne, de haut en bas)	Numera las identificaciones de dispositivos por estructura y letra de código en el orden del esquema (página, columna, de arriba abajo)
 Only rows containing this text	Nur Zeilen mit diesem Text	Seulement les lignes contenant ce texte	Solo filas que contienen este texto
@@ -382,6 +390,7 @@ Released pages cannot be moved	Freigegebene Seiten können nicht verschoben werd
 Remove	Entfernen	Retirer	Quitar
 Remove from favorites	Aus Favoriten entfernen	Retirer des favoris	Quitar de favoritos
 Remove the boundary	Grenze entfernen	Supprimer la limite	Eliminar el límite
+Remove the lightning protection system	Blitzschutzsystem entfernen	Supprimer le système de protection contre la foudre	Eliminar el sistema de protección contra el rayo
 Remove the reference point	Bezugspunkt entfernen	Supprimer le point de référence	Eliminar el punto de referencia
 Report	Bericht	Rapport	Informe
 Report blocks	Auswertungsblöcke	Blocs de rapports	Bloques de informes
@@ -393,6 +402,7 @@ Revision {}	Revision {}	Révision {}	Revisión {}
 Rework	Nacharbeit	Reprise	Retrabajo
 Right	Rechts	Droite	Derecha
 Role	Rolle	Rôle	Rol
+Roof	Dach	Toit	Techo
 Rooms	Räume	Salles	Salas
 Round	Rund	Rond	Redondo
 Route	Führen	Router	Trazar
@@ -528,6 +538,7 @@ not bonded	nicht angeschlossen	non relié	no conectado
 not connected	nicht angeschlossen	non raccordé	no conectado
 open	offen	ouvert	abierto
 pcs	Stk.	pce	uds.
+portrait	hoch	portrait	vertical
 rejected	abgelehnt	refusé	rechazado
 right	nach rechts	vers la droite	hacia la derecha
 spare	Reserve	réserve	reserva

@@ -26,6 +26,8 @@ Adds a text to a page	Dodaje tekst do strony
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Dodaje wszystkie wiersze tekstów projektu do słownika, opcjonalnie usuwając wpisy, które nie są już używane
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Dodaje akcesorium do końca kabla: dławik, dławik EMC, złącze, odciążenie, zacisk ekranu, wąż ochronny, tulejkę zakończeniową, oznacznik
 Adds an accessory to a device; it must fit one of the device's parts	Dodaje akcesorium do urządzenia; musi pasować do jednej z części urządzenia
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Dodaje iglicę odgromową na dachach budynku, połączoną z jego zwodami; budynek otrzymuje ochronę odgromową klasy III, jeśli jej nie ma
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Dodaje uziom do budynku: uziom fundamentowy w płycie najniższego poziomu wzdłuż ścian zewnętrznych w oczkach, uziom otokowy w gruncie wokół ścian lub uziom pionowy; jego materiał trafia do zestawienia materiałów
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Dodaje obudowę: z systemu w jednym z jego rozmiarów (lub w rozmiarze niestandardowym) albo z artykułu obudowy
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Dodaje przewód wyrównawczy między dwoma punktami połączenia wyrównawczego (główna szyna uziemiająca, obudowy, obrysy przewodzące, metalowe nośniki kabli)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Dodaje lub zmienia schemat oznaczania projektu, usuwa go lub wybiera schemat używany do eksportu oznaczeń
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Dodaje urządzenia z szablonu do segmentu
 Adds the outline of a machine, building or area to the plant layout	Dodaje obrys maszyny, budynku lub obszaru do planu instalacji
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Dodaje, zastępuje lub usuwa profil: konektor z nazwami kolumn używanymi przez inny system
+Air-termination rod: its name	Iglica odgromowa: jej nazwa
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Wyrównuje elementy, rozmieszcza je równomiernie, ustawia urządzenia w rzędzie na szynie lub kopiuje elementy według wzoru
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Wyrównuje symbole, teksty i grafikę do wspólnej krawędzi lub środka; podłączone końce przewodów podążają za nimi
 Allow renaming onto an identifier in use: both become one	Zezwól na zmianę nazwy na używany identyfikator: oba staną się jednym
@@ -70,6 +73,7 @@ Between page and column (default .)	Między stroną a kolumną (domyślnie .)
 Bonding point	Punkt połączenia wyrównawczego
 Border around the text	Obramowanie wokół tekstu
 Both classes are needed	Wymagane są obie klasy
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Budynki instalacji z poziomami, szachtami, schodami i dachami z polami PV, uziomami i ochroną odgromową, pomieszczeniami na poziomach i połączeniami między budynkami
 Bus system name	Nazwa systemu magistrali
 Bus system name, e.g. PN/IE_1	Nazwa systemu magistrali, np. PN/IE_1
 Busbar machine program (CSV)	Program maszyny do obróbki szyn (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Zmienia drzwi lub okno pomieszczenia: sposób otwierania (zawiasy z lewej lub prawej, do wewnątrz lub na zewnątrz, albo przesuwnie), położenie wzdłuż ściany, wymiary i parapet
 Changes a placed symbol; when it moves, connected wire ends follow	Zmienia umieszczony symbol; gdy jest przesuwany, podłączone końce przewodów podążają za nim
 Changes a text (only the given properties)	Zmienia tekst (tylko podane właściwości)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Zmienia uziom budynku: miejsce, długość, odległość od ścian, głębokość, oczko, część lub szynę; zmienia jego nazwę lub go usuwa
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Przestawia urządzenia z wycofywanymi lub wycofanymi artykułami na artykuły następcze (następcy muszą być artykułami projektu)
 Changes name, description or structure of a page	Zmienia nazwę, opis lub strukturę strony
 Changes name, description, function, location or parent of a segment	Zmienia nazwę, opis, funkcję, miejsce montażu lub element nadrzędny segmentu
@@ -100,6 +105,7 @@ Check {} failed: {}	Kontrola {} nie powiodła się: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Sprawdza zabudowę szafy: kolizje, odstępy (montażowe, wentylacyjne, EMC), przestrzeń serwisową, wysokości nad podłogą, klasy kolizji, temperatury i wykonalność produkcyjną
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Wybiera sposób zakończenia końców przewodów: goły, z tulejką lub zaciskaną końcówką; w punkcie przyłączenia, we wszystkich punktach przyłączenia urządzenia lub tylko dla jednego przewodu
 Chosen value	Wybrana wartość
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Klasa ochrony odgromowej, 1 … 4 (I … IV; domyślnie III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Odstępy, przestrzeń serwisowa, wysokości, klasy kolizji, symulacja termiczna i wykonalność produkcyjna zabudowy szafy
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Klimatyzacja obudów (IEC/TR 60890): straty mocy, temperatura wewnętrzna, wymagany wentylator lub klimatyzator i ogrzewanie; opcjonalnie zmienia ustawienia jednej z nich
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Klasa kolizji: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, własna klasa lub * dla dowolnej
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Urządzenia, przewody, potencjały, kable, listwy zaciskowe, PLC, zabudowa szafy, technika płynowa, obliczenia elektryczne, struktura i tłumaczenia
 Diameter in mm	Średnica w mm
 Diameter of a hole at both ends (0: none)	Średnica otworu na obu końcach (0: brak)
+Diameter of the conductors, mm (default 8)	Średnica przewodów, mm (domyślnie 8)
+Diameter of the rod, mm (default 16)	Średnica iglicy, mm (domyślnie 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Kierunek trzonu: left, right, up lub down (domyślnie: według przewodów w tym miejscu)
 Distance between power and signal or fluid in mm	Odległość między obwodami mocy a sygnałem lub płynem w mm
 Distance from devices, rails and busbars in mm	Odległość od urządzeń, szyn i szyn zbiorczych w mm
@@ -222,6 +230,10 @@ Draws a wire through two or more points	Rysuje przewód przez dwa lub więcej pu
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Rysuje przewody w ich kolorze na stronach schematu i w eksporcie PDF / SVG lub na czarno
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Rysuje przewody między wolnymi punktami przyłączenia symboli leżącymi naprzeciw siebie oraz do wolnych ramion trójników i narożników
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Klasy EMC kabli (wyjście napędu, analogowe, mocy, sygnałowe, ekran) i problemy EMC
+Earth electrode: its name	Uziom: jego nazwa
+Earth rod: its length, mm (default 3000)	Uziom pionowy: jego długość, mm (domyślnie 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Uziom pionowy: x jego miejsca w rzucie budynku, mm
+Earth rod: z of its place in the floor plan of the building, mm	Uziom pionowy: z jego miejsca w rzucie budynku, mm
 Edge length of the routing grid in mm	Długość krawędzi siatki prowadzenia w mm
 Electrical device tags separated by commas or blanks (empty = remove the links)	Oznaczenia urządzeń elektrycznych oddzielone przecinkami lub spacjami (puste = usuń powiązania)
 Electrical engineering	Elektrotechnika
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	Pierwszy port jako stacja:port, np. 
 First row with the column names	Pierwszy wiersz z nazwami kolumn
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format nazwy urządzenia: {letter}, {n} (licznik), {page}, {column}, {row}; domyślnie {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format schematu format: {n} (licznik), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Uziom fundamentowy: jak daleko wewnątrz ścian zewnętrznych (domyślnie 100), otokowy: jak daleko na zewnątrz (domyślnie 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Uziom fundamentowy: jego największe oczko, mm (domyślnie 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Ramka wyjściowa dla nowej ramki (domyślnie: A3 landscape)
 Free space in front of every device on the plate	Wolna przestrzeń przed każdym urządzeniem na płycie
 Freezes routes for production (kept by the recalculation while possible) or releases them	Zamraża trasy na potrzeby produkcji (zachowywane przez ponowne obliczanie, dopóki to możliwe) lub je zwalnia
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Generuje schemat wielokreskowy (symbole mocy, przewody, cewki styczników) dla symboli jednokreskowych strony na nowej stronie za nią
 Generates the program of the busbar machine: cuts, punched holes and bends	Generuje program maszyny do obróbki szyn: cięcia, wykrawane otwory i gięcia
 Give a device tag or a part number	Podaj oznaczenie urządzenia lub numer części
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Nadaje budynkowi ochronę odgromową lub ją zmienia: klasę, liczbę przewodów odprowadzających i część przewodów; zwody na kalenicach i narożach (siatka na dachach płaskich), przewody odprowadzające ze złączami kontrolnymi do uziomów; albo ją usuwa
+Greatest distance of the conductor holders, mm (default 1000)	Największy odstęp uchwytów przewodu, mm (domyślnie 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupuje elementy w zespół, który jest zaznaczany i przesuwany razem; bez nazwy elementy opuszczają swoje zespoły
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Przekazuje programy obudowy do produkcji jako zlecenie: manifest i programy wszystkich jej powierzchni i szyn miedzianych
 Has a divider between power and signal cables	Ma przegrodę między kablami mocy i sygnałowymi
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	Wysokość nad płytą monta�
 Height in mm	Wysokość w mm
 Height in mm without plinth; negative: unknown (wall mounted)	Wysokość w mm bez cokołu; ujemna: nieznana (montaż naścienny)
 Height in mm; the logo keeps its aspect ratio inside	Wysokość w mm; logo zachowuje w niej swoje proporcje
+Height of the rod above the covering, mm (default 1500)	Wysokość iglicy nad pokryciem, mm (domyślnie 1500)
+Height of the test joints above the ground, mm (default 1000)	Wysokość złączy kontrolnych nad terenem, mm (domyślnie 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspekt produktu nadrzędnego (-) strony; urządzenia na stronie są przenoszone razem z nią
 Highest actuator on the door above the floor (0: not checked)	Najwyższy element sterowniczy na drzwiach nad podłogą (0: nie sprawdzane)
 Highest air temperature at devices without data (0: not checked)	Najwyższa temperatura powietrza przy urządzeniach bez danych (0: nie sprawdzane)
@@ -427,17 +445,21 @@ Manufacturing package (CNC programs, JSON)	Pakiet produkcyjny (programy CNC, JSO
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Oznaczniki, rozdzielone przecinkami: device, terminal, wire, cable (puste: wszystkie)
 Marks a panel item as mounted or as a problem, or as open again	Oznacza element zabudowy jako zamontowany, jako problem lub ponownie jako otwarty
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Oznacza poprowadzony przewód jako podłączony lub jako problem albo ponownie jako otwarty; przewód jest określany przez jego dwa końce
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Materiał: galvanised_steel, stainless_steel, copper, copper_bonded_steel lub aluminium
 Maximum fill of a carrier in percent	Maksymalne wypełnienie nośnika kabli w procentach
 Maximum operating pressure in bar	Maksymalne ciśnienie robocze w bar
 Measuring range or set point	Zakres pomiarowy lub wartość zadana
 Message code, e.g. wires.3f9a1c	Kod komunikatu, np. wires.3f9a1c
 Milling feed, mm/min	Posuw frezowania, mm/min
 Mirror the symbol	Odbij symbol
+Moves an air-termination rod, changes its height, renames or removes it	Przesuwa iglicę odgromową, zmienia jej wysokość, nazwę lub ją usuwa
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Przesuwa jeden koniec przewodu: odłącza się od tego, do czego był podłączony, i łączy z tym, co napotka; przewód pozostaje prostokątny
 Moves symbols, wires and texts; connected wire ends follow	Przesuwa symbole, przewody i teksty; podłączone końce przewodów podążają za nimi
 Moves the page before this page of its section (or of the section given)	Przenosi stronę przed tę stronę jej sekcji (lub podanej sekcji)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Przenosi sekcję przed tę sekcję jej sekcji nadrzędnej (lub podanej); numery biegną dalej po kolei
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Układ deski montażowej wiązki: odgałęzienia od wspólnego węzła do złączy z długością, kierunkiem, średnicą wiązki i pinami oraz skala rysunku
+Name (default E1, E2, …)	Nazwa (domyślnie E1, E2, …)
+Name (default F1, F2, …)	Nazwa (domyślnie F1, F2, …)
 Name of the assembly	Nazwa zespołu
 Name of the bar, e.g. L1 -Q1	Nazwa szyny, np. L1 -Q1
 Name of the check	Nazwa kontroli
@@ -461,6 +483,7 @@ New page name	Nowa nazwa strony
 New parent segment (empty: top level)	Nowy segment nadrzędny (puste: najwyższy poziom)
 New value	Nowa wartość
 No PCT loop {}	Brak pętli AKPiA {}
+No air-termination rod {} on building {}	Brak iglicy odgromowej {} na budynku {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Żadne wbudowane sprawdzenie nie nazywa się {}: ustawienie dotyczy sprawdzenia wtyczki o tej nazwie (list_checks)
 No bus system {}	Brak systemu magistrali {}
 No connection point {} on this page	Brak punktu połączenia {} na tej stronie
@@ -468,6 +491,7 @@ No connection symbol with id {}	Brak symbolu połączenia o id {}
 No copper bar {}	Brak szyny miedzianej {}
 No device description {}	Brak opisu urządzenia {}
 No device group {}	Brak grupy urządzeń {}
+No earth electrode {} in building {}	Brak uziomu {} w budynku {}
 No enclosure named {}	Brak obudowy o nazwie {}
 No entry for {} and {}	Brak wpisu dla {} i {}
 No hose {}	Brak węża {}
@@ -570,7 +594,12 @@ Part number of the downstream device	Numer artykułu urządzenia podrzędnego
 Part number of the hose / tube / pipe	Numer artykułu węża / przewodu rurowego / rurociągu
 Part number of the upstream device	Numer artykułu urządzenia nadrzędnego
 Part number, e.g. GEN.LMP-GN-24	Numer artykułu, np. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Część jego bednarki, drutu lub pręta (puste: ogólna)
+Part of the conductor holders on the roof (empty: generic)	Część uchwytów przewodu na dachu (puste: ogólna)
+Part of the conductor holders on the walls (empty: generic)	Część uchwytów przewodu na ścianach (puste: ogólna)
+Part of the conductors (round wire; empty: generic)	Część przewodów (drut okrągły; puste: ogólna)
 Part of the key or name	Część klucza lub nazwy
+Part of the rod (empty: the one of its material and diameter)	Część iglicy (puste: ta z jej materiału i średnicy)
 Part {} has no function with a symbol	Artykuł {} nie ma funkcji z symbolem
 Parts phased out or discontinued	Artykuły wycofywane lub wycofane
 Pass ids or pages	Podaj identyfikatory lub strony
@@ -651,6 +680,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	Wilgotnoś�
 Release instead of freeze	Zwolnij zamiast zamrażać
 Released pages keep their names: {}	Wydane strony zachowują swoje nazwy: {}
 Remote I/O: station of the controller	Rozproszone wejścia/wyjścia: stacja sterownika
+Remove the air-termination rod	Usuń iglicę odgromową
+Remove the earth electrode	Usuń uziom
 Remove the entry of upstream and downstream	Usuń wpis dla upstream i downstream
 Remove the profile	Usuń profil
 Remove the scheme from the project	Usuń schemat z projektu
@@ -682,6 +713,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Reszta (mm)
 Reuse failed searches during one routing calculation	Ponownie używaj nieudanych wyszukiwań w ramach jednego obliczania tras
 Right side bayed (no side panel)	Prawa strona szeregowana (bez ściany bocznej)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Otokowy: głębokość pod terenem, pionowy: głębokość górnego końca, mm (domyślnie 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Uziom pionowy: jego średnica (domyślnie 20), fundamentowy i otokowy: drutu okrągłego, 0 dla bednarki, mm
 Room {} exists already	Pomieszczenie {} już istnieje
 Rotation in degrees clockwise: 0, 90, 180 or 270	Obrót w stopniach zgodnie z ruchem wskazówek zegara: 0, 90, 180 lub 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Obrót w stopniach, przeciwnie do ruchu wskazówek zegara (90 czyta się od dołu do góry)
@@ -871,6 +904,7 @@ Unknown address scheme: {}	Nieznany schemat adresowania: {}
 Unknown alignment: {}	Nieznane wyrównanie: {}
 Unknown anchor: {}	Nieznane zakotwiczenie: {}
 Unknown aspect: {}	Nieznany aspekt: {}
+Unknown base: {}	Nieznana podstawa: {}
 Unknown bonding kind: {}	Nieznany rodzaj połączenia wyrównawczego: {}
 Unknown bonding point: {}	Nieznany punkt połączenia wyrównawczego: {}
 Unknown bus system: {}	Nieznany system magistrali: {}
@@ -879,6 +913,7 @@ Unknown check: {}	Nieznane sprawdzenie: {}
 Unknown class: {}	Nieznana klasa: {}
 Unknown data type: {}	Nieznany typ danych: {}
 Unknown direction {}: left, right, up or down	Nieznany kierunek {}: left, right, up lub down
+Unknown earth electrode: {}	Nieznany uziom: {}
 Unknown earthing system: {}	Nieznany układ sieci: {}
 Unknown face {}	Nieznana powierzchnia {}
 Unknown fastening: {}	Nieznane mocowanie: {}
@@ -970,9 +1005,11 @@ device (default), position, cross_section or number	device (domyślnie), positio
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages lub parts
 error, warning, info, off, or default to take the change back	error, warning, info, off lub default, aby cofnąć zmianę
 false takes the acceptance back (default true)	false cofa akceptację (domyślnie true)
+foundation, ring or rod	foundation, ring lub rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted lub middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) lub product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker lub other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (uchwyt iglicy na dachu) lub concrete_base (na dachach płaskich)
 hose, tube or pipe	hose, tube lub pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (maszyny, przewody fazowe BK) lub iec60445 (przewody fazowe BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (domyślnie), power, control, signal lub fluid
@@ -999,6 +1036,8 @@ too long	za długa
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (domyślnie), ladder, trunking, conduit, drag_chain, buried lub free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit lub other
 wired, problem or open	wired, problem lub open
+x of the foot of the rod in the floor plan of the building, mm	x podstawy iglicy w rzucie budynku, mm
+z of the foot of the rod in the floor plan of the building, mm	z podstawy iglicy w rzucie budynku, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} i {} to oba końce jednej funkcji: przewód by ją zwarł
 {} and {} are needed together	{} i {} muszą być podane razem
 {} cannot be bayed to itself	{} nie może być szeregowana sama ze sobą

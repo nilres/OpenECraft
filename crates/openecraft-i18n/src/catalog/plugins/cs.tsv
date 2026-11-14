@@ -26,6 +26,8 @@ Adds a text to a page	Přidá text na stránku
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Přidá do slovníku všechny řádky textů projektu, volitelně odebere již nepoužívané položky
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Přidá příslušenství ke konci kabelu: vývodka, vývodka EMC, konektor, odlehčení tahu, stínicí svorka, ochranná hadice, dutinka, popisovač
 Adds an accessory to a device; it must fit one of the device's parts	Přidá příslušenství k přístroji; musí se hodit k jednomu z dílů přístroje
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Přidá jímací tyč na střechy budovy, spojenou s jejími jímacími vedeními; budova dostane ochranu před bleskem třídy III, pokud žádnou nemá
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Přidá budově zemnič: základový zemnič v základové desce nejnižšího podlaží podél obvodových zdí v okách, obvodový zemnič v zemi kolem zdí nebo tyčový zemnič; jeho materiál jde do kusovníku
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Přidá skříň: ze systému v jedné z jeho velikostí (nebo ve vlastní velikosti), nebo z artiklu skříně
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Přidá vodič ochranného pospojování mezi dvěma body pospojování (hlavní uzemňovací svorka, skříně, vodivé obrysy, kovové nosné konstrukce)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Přidá nebo změní schéma popisování projektu, odebere jej nebo vybere schéma použité pro export popisování
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Přidá přístroje šablony do segmentu
 Adds the outline of a machine, building or area to the plant layout	Přidá obrys stroje, budovy nebo oblasti do dispozice zařízení
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Přidá, nahradí nebo odebere profil: konektor s názvy sloupců, které používá jiný systém
+Air-termination rod: its name	Jímací tyč: její název
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Zarovná prvky, rovnoměrně je rozmístí, seřadí přístroje na liště nebo zkopíruje prvky do vzoru
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Zarovná symboly, texty a grafiku ke společné hraně nebo středu; připojené konce vodičů následují
 Allow renaming onto an identifier in use: both become one	Povolit přejmenování na používaný identifikátor: oba se stanou jedním
@@ -70,6 +73,7 @@ Between page and column (default .)	Mezi stránkou a sloupcem (výchozí .)
 Bonding point	Bod pospojování
 Border around the text	Ohraničení kolem textu
 Both classes are needed	Jsou potřeba obě třídy
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Budovy zařízení s podlažími, šachtami, schodišti a střechami s FV poli, zemniči a ochranou před bleskem, místnostmi v podlažích a spojeními mezi budovami
 Bus system name	Název sběrnicového systému
 Bus system name, e.g. PN/IE_1	Název sběrnicového systému, např. PN/IE_1
 Busbar machine program (CSV)	Program stroje na zpracování přípojnic (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Změní dveře nebo okno místnosti: způsob otevírání (závěsy vlevo nebo vpravo, dovnitř nebo ven, nebo posuvně), polohu podél stěny, velikost a parapet
 Changes a placed symbol; when it moves, connected wire ends follow	Změní umístěný symbol; při jeho přesunu se připojené konce vodičů posunou s ním
 Changes a text (only the given properties)	Změní text (pouze zadané vlastnosti)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Změní zemnič budovy: místo, délku, vzdálenost od zdí, hloubku, oko, díl nebo přípojnici; přejmenuje ho nebo odstraní
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Převede přístroje s dobíhajícími artikly nebo artikly s ukončenou výrobou na nástupnické artikly (nástupci musí být artikly projektu)
 Changes name, description or structure of a page	Změní název, popis nebo strukturu stránky
 Changes name, description, function, location or parent of a segment	Změní název, popis, funkci, umístění nebo nadřazený segment segmentu
@@ -100,6 +105,7 @@ Check {} failed: {}	Kontrola {} selhala: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Zkontroluje rozvržení rozváděče: kolize, odstupy (montážní, větrací, EMC), servisní prostor, výšky nad podlahou, třídy kolizí, teploty a vyrobitelnost
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Volí zakončení konců vodičů: odizolované, s dutinkou nebo lisovaným okem; v připojovacím bodě, ve všech připojovacích bodech zařízení nebo jen pro jeden vodič
 Chosen value	Zvolená hodnota
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Třída ochrany před bleskem, 1 … 4 (I … IV; výchozí III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Odstupy, servisní prostor, výšky, třídy kolizí, tepelná simulace a vyrobitelnost rozvržení rozváděče
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Klimatizace skříní (IEC/TR 60890): ztrátový výkon, vnitřní teplota, potřebný ventilátor nebo chladicí jednotka a topení; na přání změní nastavení jedné skříně
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Třída kolize: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, vlastní třída nebo * pro libovolnou
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Přístroje, vodiče, potenciály, kabely, svorkovnice, PLC, rozváděč, tekutiny, elektrické výpočty, struktura a překlady
 Diameter in mm	Průměr v mm
 Diameter of a hole at both ends (0: none)	Průměr otvoru na obou koncích (0: žádný)
+Diameter of the conductors, mm (default 8)	Průměr vodičů, mm (výchozí 8)
+Diameter of the rod, mm (default 16)	Průměr tyče, mm (výchozí 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Směr stopky: left, right, up nebo down (výchozí: podle vodičů v místě)
 Distance between power and signal or fluid in mm	Vzdálenost mezi silovými a signálními obvody nebo tekutinami v mm
 Distance from devices, rails and busbars in mm	Vzdálenost od přístrojů, lišt a přípojnic v mm
@@ -222,6 +230,10 @@ Draws a wire through two or more points	Nakreslí vodič přes dva nebo více bo
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Kreslí vodiče na stránkách schématu a v exportu PDF / SVG v jejich barvě, nebo černě
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Kreslí vodiče mezi volnými připojovacími body symbolů ležícími naproti sobě a k volným ramenům T-kusů a rohů
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Třídy EMC kabelů (výstup měniče, analogové, silové, signální, stínění) a problémy EMC
+Earth electrode: its name	Zemnič: jeho název
+Earth rod: its length, mm (default 3000)	Tyčový zemnič: jeho délka, mm (výchozí 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Tyčový zemnič: x jeho místa v půdorysu budovy, mm
+Earth rod: z of its place in the floor plan of the building, mm	Tyčový zemnič: z jeho místa v půdorysu budovy, mm
 Edge length of the routing grid in mm	Délka hrany rastru vedení v mm
 Electrical device tags separated by commas or blanks (empty = remove the links)	Označení elektrických přístrojů oddělená čárkami nebo mezerami (prázdné = odebrat propojení)
 Electrical engineering	Elektrotechnika
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	První port jako stanice:port, např
 First row with the column names	První řádek s názvy sloupců
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formát názvu přístroje: {letter}, {n} (čítač), {page}, {column}, {row}; výchozí {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formát schématu format: {n} (čítač), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Základový zemnič: jak daleko uvnitř obvodových zdí (výchozí 100), obvodový: jak daleko vně (výchozí 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Základový zemnič: jeho největší oko, mm (výchozí 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Výchozí rámeček pro nový rámeček (výchozí: A3 landscape)
 Free space in front of every device on the plate	Volný prostor před každým přístrojem na desce
 Freezes routes for production (kept by the recalculation while possible) or releases them	Zmrazí trasy pro výrobu (přepočet je zachová, dokud je to možné) nebo je uvolní
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Vygeneruje vícepólové schéma zapojení (silové symboly, vodiče, cívky stykačů) pro jednopólové symboly stránky na nové stránce za ní
 Generates the program of the busbar machine: cuts, punched holes and bends	Vygeneruje program stroje na zpracování přípojnic: řezy, děrované otvory a ohyby
 Give a device tag or a part number	Zadejte označení přístroje nebo číslo dílu
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Dá budově ochranu před bleskem nebo ji změní: třídu, počet svodů a díl vodičů; jímací vedení na hřebenech a nárožích (mřížová soustava na plochých střechách), svody se zkušebními svorkami k zemničům; nebo ji odstraní
+Greatest distance of the conductor holders, mm (default 1000)	Největší vzdálenost podpěr vedení, mm (výchozí 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Seskupí prvky do sestavy, která se vybírá a přesouvá společně; bez názvu prvky opustí své sestavy
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Předá programy skříně do výroby jako zakázku: manifest a programy všech jejích ploch a měděných přípojnic
 Has a divider between power and signal cables	Má přepážku mezi silovými a signálními kabely
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	Výška nad montážní desko
 Height in mm	Výška v mm
 Height in mm without plinth; negative: unknown (wall mounted)	Výška v mm bez soklu; záporná: neznámá (montáž na stěnu)
 Height in mm; the logo keeps its aspect ratio inside	Výška v mm; logo si v ní zachová poměr stran
+Height of the rod above the covering, mm (default 1500)	Výška tyče nad krytinou, mm (výchozí 1500)
+Height of the test joints above the ground, mm (default 1000)	Výška zkušebních svorek nad terénem, mm (výchozí 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspekt nadřazeného produktu (-) stránky; přístroje na stránce se přesunou s ním
 Highest actuator on the door above the floor (0: not checked)	Nejvyšší ovládací prvek na dveřích nad podlahou (0: nekontroluje se)
 Highest air temperature at devices without data (0: not checked)	Nejvyšší teplota vzduchu u přístrojů bez údajů (0: nekontroluje se)
@@ -427,17 +445,21 @@ Manufacturing package (CNC programs, JSON)	Výrobní balíček (programy CNC, JS
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Popisy oddělené čárkou: device, terminal, wire, cable (prázdné: vše)
 Marks a panel item as mounted or as a problem, or as open again	Označí prvek rozváděče jako namontovaný, jako problém nebo znovu jako otevřený
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Označí vedený vodič jako zapojený nebo jako problém, nebo znovu jako otevřený; vodič se zadává svými dvěma konci
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Materiál: galvanised_steel, stainless_steel, copper, copper_bonded_steel nebo aluminium
 Maximum fill of a carrier in percent	Maximální zaplnění nosné konstrukce v procentech
 Maximum operating pressure in bar	Maximální provozní tlak v bar
 Measuring range or set point	Měřicí rozsah nebo žádaná hodnota
 Message code, e.g. wires.3f9a1c	Kód hlášení, např. wires.3f9a1c
 Milling feed, mm/min	Posuv frézování, mm/min
 Mirror the symbol	Zrcadlit symbol
+Moves an air-termination rod, changes its height, renames or removes it	Přesune jímací tyč, změní její výšku, přejmenuje ji nebo odstraní
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Přesune jeden konec vodiče: odpojí se od toho, k čemu je připojen, a připojí se k tomu, na co narazí; vodič zůstane pravoúhlý
 Moves symbols, wires and texts; connected wire ends follow	Přesune symboly, vodiče a texty; připojené konce vodičů se posunou s nimi
 Moves the page before this page of its section (or of the section given)	Přesune stránku před tuto stránku jejího oddílu (nebo zadaného oddílu)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Přesune oddíl před tento oddíl jeho nadřazeného oddílu (nebo zadaného); čísla pokračují v pořadí
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Rozvržení formovací desky kabelového svazku: větve od společného uzlu ke konektorům s délkou, směrem, průměrem svazku a kolíky a měřítko výkresu
+Name (default E1, E2, …)	Název (výchozí E1, E2, …)
+Name (default F1, F2, …)	Název (výchozí F1, F2, …)
 Name of the assembly	Název sestavy
 Name of the bar, e.g. L1 -Q1	Název přípojnice, např. L1 -Q1
 Name of the check	Název kontroly
@@ -461,6 +483,7 @@ New page name	Nový název stránky
 New parent segment (empty: top level)	Nový nadřazený segment (prázdné: nejvyšší úroveň)
 New value	Nová hodnota
 No PCT loop {}	Žádná smyčka MaR {}
+No air-termination rod {} on building {}	Žádná jímací tyč {} na budově {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Žádná vestavěná kontrola se nejmenuje {}: nastavení platí pro kontrolu pluginu s tímto názvem (list_checks)
 No bus system {}	Žádný sběrnicový systém {}
 No connection point {} on this page	Na této stránce není přípojný bod {}
@@ -468,6 +491,7 @@ No connection symbol with id {}	Žádný symbol spojení s id {}
 No copper bar {}	Žádná měděná přípojnice {}
 No device description {}	Žádný popis zařízení {}
 No device group {}	Žádná skupina přístrojů {}
+No earth electrode {} in building {}	Žádný zemnič {} v budově {}
 No enclosure named {}	Žádná skříň s názvem {}
 No entry for {} and {}	Žádná položka pro {} a {}
 No hose {}	Žádná hadice {}
@@ -570,7 +594,12 @@ Part number of the downstream device	Číslo artiklu následného přístroje
 Part number of the hose / tube / pipe	Číslo artiklu hadice / trubky / potrubí
 Part number of the upstream device	Číslo artiklu předřazeného přístroje
 Part number, e.g. GEN.LMP-GN-24	Číslo artiklu, např. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Díl jeho pásku, drátu nebo tyče (prázdné: obecný)
+Part of the conductor holders on the roof (empty: generic)	Díl podpěr vedení na střeše (prázdné: obecný)
+Part of the conductor holders on the walls (empty: generic)	Díl podpěr vedení na stěnách (prázdné: obecný)
+Part of the conductors (round wire; empty: generic)	Díl vodičů (kulatý drát; prázdné: obecný)
 Part of the key or name	Část klíče nebo názvu
+Part of the rod (empty: the one of its material and diameter)	Díl tyče (prázdné: podle jejího materiálu a průměru)
 Part {} has no function with a symbol	Artikl {} nemá funkci se symbolem
 Parts phased out or discontinued	Dobíhající artikly nebo artikly s ukončenou výrobou
 Pass ids or pages	Zadejte ID nebo stránky
@@ -651,6 +680,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	Relativní 
 Release instead of freeze	Uvolnit místo zmrazení
 Released pages keep their names: {}	Uvolněné stránky si ponechají své názvy: {}
 Remote I/O: station of the controller	Decentrální periferie: stanice řídicího systému
+Remove the air-termination rod	Odstranit jímací tyč
+Remove the earth electrode	Odstranit zemnič
 Remove the entry of upstream and downstream	Odebrat položku upstream a downstream
 Remove the profile	Odebrat profil
 Remove the scheme from the project	Odebrat schéma z projektu
@@ -682,6 +713,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Zbytek (mm)
 Reuse failed searches during one routing calculation	Znovu použít neúspěšná hledání během jednoho výpočtu tras
 Right side bayed (no side panel)	Pravá strana spojená do řady (bez boční stěny)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Obvodový: hloubka pod terénem, tyčový: hloubka horního konce, mm (výchozí 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Tyčový zemnič: jeho průměr (výchozí 20), základový a obvodový: kulatého drátu, 0 pro pásek, mm
 Room {} exists already	Místnost {} již existuje
 Rotation in degrees clockwise: 0, 90, 180 or 270	Otočení ve stupních ve směru hodinových ručiček: 0, 90, 180 nebo 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Otočení ve stupních, proti směru hodinových ručiček (90 se čte zdola nahoru)
@@ -871,6 +904,7 @@ Unknown address scheme: {}	Neznámé schéma adresování: {}
 Unknown alignment: {}	Neznámé zarovnání: {}
 Unknown anchor: {}	Neznámé ukotvení: {}
 Unknown aspect: {}	Neznámý aspekt: {}
+Unknown base: {}	Neznámý podstavec: {}
 Unknown bonding kind: {}	Neznámý druh pospojování: {}
 Unknown bonding point: {}	Neznámý bod pospojování: {}
 Unknown bus system: {}	Neznámý sběrnicový systém: {}
@@ -879,6 +913,7 @@ Unknown check: {}	Neznámá kontrola: {}
 Unknown class: {}	Neznámá třída: {}
 Unknown data type: {}	Neznámý datový typ: {}
 Unknown direction {}: left, right, up or down	Neznámý směr {}: left, right, up nebo down
+Unknown earth electrode: {}	Neznámý zemnič: {}
 Unknown earthing system: {}	Neznámá soustava uzemnění: {}
 Unknown face {}	Neznámá plocha {}
 Unknown fastening: {}	Neznámé upevnění: {}
@@ -970,9 +1005,11 @@ device (default), position, cross_section or number	device (výchozí), position
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages nebo parts
 error, warning, info, off, or default to take the change back	error, warning, info, off nebo default pro vrácení změny
 false takes the acceptance back (default true)	false vrátí přijetí zpět (výchozí true)
+foundation, ring or rod	foundation, ring nebo rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted nebo middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) nebo product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker nebo other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (držák tyče na střeše) nebo concrete_base (na plochých střechách)
 hose, tube or pipe	hose, tube nebo pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (stroje, fázové vodiče BK) nebo iec60445 (fázové vodiče BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (výchozí), power, control, signal nebo fluid
@@ -999,6 +1036,8 @@ too long	příliš dlouhé
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (výchozí), ladder, trunking, conduit, drag_chain, buried nebo free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit nebo other
 wired, problem or open	wired, problem nebo open
+x of the foot of the rod in the floor plan of the building, mm	x paty tyče v půdorysu budovy, mm
+z of the foot of the rod in the floor plan of the building, mm	z paty tyče v půdorysu budovy, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} a {} jsou oba konce jedné funkce: vodič by ji zkratoval
 {} and {} are needed together	{} a {} jsou potřeba společně
 {} cannot be bayed to itself	{} nelze připojit do řady samo k sobě

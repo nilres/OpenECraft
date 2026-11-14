@@ -48,6 +48,7 @@ Catalog id	Katalog kimliği
 Category	Kategori
 Centred	Ortalanmış
 Certificates	Sertifikalar
+Change	Değişiklik
 Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrol ayarları
@@ -109,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Cihaz bağlantı noktası
 Device description	Cihaz tanımı
 Device tag	Cihaz etiketi
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Montaj sisteminin topraklama iletkeninin gittiği cihaz (topraklama veya eşpotansiyel barası); boş: yok
 Device {}	Cihaz {}
 Devices	Cihazlar
 Dimensions	Boyutlar
@@ -158,6 +160,7 @@ Function text	Fonksiyon metni
 Functional safety	Fonksiyonel güvenlik
 Functions	Fonksiyonlar
 General	Genel
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Dizilerin gittiği jeneratör bağlantı kutusu (cihaz), oradan her invertere bir DC ana kablo; boş: yok
 Gives up a subproject: its pages are unlocked again	Bir alt projeden vazgeçer: sayfalarının kilidi yeniden açılır
 Gland plate	Rakor plakası
 Graphics	Grafik
@@ -206,6 +209,7 @@ Location (+)	Konum (+)
 Logo	Logo
 MTTFd (years)	MTTFd (yıl)
 Machine	Makine
+Main earthing busbar (device) it is connected to; empty: none	Bağlı olduğu ana topraklama barası (cihaz); boş: yok
 Main earthing terminal	Ana topraklama barası
 Main switch	Ana şalter
 Manufacturer	Üretici
@@ -220,6 +224,8 @@ Minimum digits of the counter (leading zeros)	Sayacın en az basamak sayısı (b
 Missing parameter: {}	Eksik parametre: {}
 Missing value for --{}	--{} için değer eksik
 Model import failed: {}	Model içe aktarma başarısız oldu: {}
+Module	Modül
+Modules	Modüller
 Modules in series	Seri bağlı modüller
 Modules side by side in a row	Bir sırada yan yana modüller
 Mounted	Monte edildi
@@ -272,6 +278,7 @@ Not in the schematic	Şemada değil
 Note	Not
 Notes	Notlar
 Number	Numara
+Number of down conductors (0: as many as the class needs for the walls)	İniş iletkeni sayısı (0: sınıfın duvarlar için gerektirdiği kadar)
 Number the sections 1, 2, 3 … on every level first	Önce bölümleri her düzeyde 1, 2, 3 … olarak numaralandır
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Cihaz etiketlerini yapı ve tanıtıcı harf başına şema sırasına göre (sayfa, sütun, yukarıdan aşağıya) numaralandırır
 Only rows containing this text	Yalnızca bu metni içeren satırlar
@@ -368,6 +375,7 @@ Released pages cannot be moved	Yayımlanmış sayfalar taşınamaz
 Remove	Kaldır
 Remove from favorites	Sık kullanılanlardan kaldır
 Remove the boundary	Sınırı kaldır
+Remove the lightning protection system	Yıldırımdan korunma sistemini kaldır
 Remove the reference point	Referans noktasını kaldır
 Report	Rapor
 Report blocks	Rapor blokları
@@ -379,6 +387,7 @@ Revision {}	Revizyon {}
 Rework	Yeniden işleme
 Right	Sağ
 Role	Rol
+Roof	Üst
 Rooms	Odalar
 Round	Yuvarlak
 Route	Yönlendir
@@ -511,6 +520,7 @@ not bonded	kuşaklanmadı
 not connected	bağlı değil
 open	açık
 pcs	adet
+portrait	dikey
 rejected	reddedildi
 right	sağa
 spare	yedek

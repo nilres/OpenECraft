@@ -112,6 +112,9 @@ Air at devices at most	Vzduch u přístrojů nejvýše
 Air temperature	Teplota vzduchu
 Air temperature at the devices	Teplota vzduchu u přístrojů
 Air temperature {} … {} °C	Teplota vzduchu {} … {} °C
+Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Jímací vedení na hřebenech a nárožích (mřížová soustava na plochých střechách), svody podél obvodových zdí se zkušebními svorkami, končící na zemničích
+Air-termination rod	Jímací tyč
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Jímací tyč umístěna na budově {}; klikněte pro další · Esc: konec
 Align	Zarovnat
 Aligned	Zarovnaná
 Alignment	Zarovnání
@@ -157,6 +160,7 @@ Arc	Oblouk
 Archive and version	Archiv a verze
 Archive project…	Archivovat projekt…
 Arms	Ramena
+Array	Pole
 As defined by the check	Podle definice kontroly
 As the rules say ({})	Podle pravidel ({})
 Aspects of the pages	Aspekty stránek
@@ -185,6 +189,7 @@ Automatic ({})	Automaticky ({})
 Automatic accessories	Automatické příslušenství
 Automatic configuration	Automatická konfigurace
 Automatic placement	Automatické umístění
+Automatic: {}	Automaticky: {}
 Automation	Automatizace
 Aux	Pomocné
 Avoid:	Vyhnout se:
@@ -222,6 +227,9 @@ Boundary	Hranice
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Vypínací schopnost vůči zkratovému proudu u každého ochranného přístroje sítě, odpojení při nejnižším poruchovém proudu na konci jeho obvodu, zkratová odolnost kabelů a selektivita s předřazeným přístrojem.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Most: čtyři vodiče; spojení přichází z jedné strany a jde ke třem ostatním, nejprve k protilehlé
 Building {} added with a level at ground level	Budova {} přidána s podlažím v úrovni terénu
+Building {} at x {} m, z {} m	Budova {} na x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Budova {} na x {} m, z {} m, otočená o {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Budova {} na x {} m, z {} m, otočená o {}°: stojí mimo hranici pozemku
 Built-in frames cannot be changed; copy one to adapt it.	Vestavěné rámečky nelze měnit; chcete-li některý upravit, zkopírujte jej.
 Built-in scheme: copy it to change it.	Vestavěné schéma: chcete-li jej změnit, zkopírujte jej.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Vestavěná rohová razítka jsou jen pro čtení – pomocí „Kopírovat jako nové“ vytvoříte vlastní.
@@ -295,10 +303,14 @@ Choose another project	Vybrat jiný projekt
 Choose file…	Vybrat soubor…
 Choose image…	Vybrat obrázek…
 Choose pages	Vybrat stránky
+Choose the building.	Vyberte budovu.
 Chooses the pages whose structure starts with this	Vybere stránky, jejichž struktura tímto začíná
 Circle	Kružnice
 Circuits of a generic manifold	Okruhy obecného rozdělovače
+Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Třída ochrany před bleskem: vzdálenost svodů, oko plochých střech a ochranný úhel
+Class {}	Třída {}
 Clear	Vymazat
+Clear the search	Vymazat hledání
 Clearance	Odstup
 Click	Klepnutí
 Click a text: open its link	Klepnutí na text: otevřít jeho odkaz
@@ -307,6 +319,7 @@ Click centre, then a point on the circle	Klikněte na střed, pak na bod kružni
 Click in the panel layout: a single item of an assembly	Klepnutí v rozvržení rozváděče: jediná položka sestavy
 Click into the page to place the image	Kliknutím do stránky umístíte obrázek
 Click into the page to place {}	Kliknutím do stránky umístíte {}
+Click on a roof of building {}	Klikněte na střechu budovy {}
 Click on a wall	Klikněte na stěnu
 Click on a wire to place the connection definition point	Kliknutím na vodič umístíte bod definice spojení
 Click on the 4 mm grid	Klikněte na rastr 4 mm
@@ -331,8 +344,12 @@ Click two corners	Klikněte na dva rohy
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Klikněte na dva rohy rámečku struktury a poté nastavte jeho identifikátory ve vlastnostech · Esc nebo pravé tlačítko ukončí
 Click two nodes to connect them	Klikněte na dva uzly, které chcete propojit
 Click two points to measure from one to the other · Esc: stop	Klikněte na dva body pro měření od jednoho k druhému · Esc: ukončit
+Click where an air-termination rod goes on a roof · Esc: stop	Klikněte, kde stojí jímací tyč na střeše · Esc: konec
+Click where an earth rod goes, at or round a building · Esc: stop	Klikněte, kde je tyčový zemnič u budovy nebo kolem ní · Esc: konec
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klepněte, kde se stýkají čtyři vodiče: most vede spojení z jedné strany ke třem ostatním, nejprve k protilehlé · {} jej otočí · Esc nebo pravé tlačítko ukončí
 Click where it is in the site plan	Klikněte na jeho místo v situačním plánu
+Click where the air-termination rods go on the roofs in the site plan	Klikněte v situačním plánu, kde stojí jímací tyče na střechách
+Click where the earth rods go in the site plan	Klikněte v situačním plánu, kde jsou tyčové zemniče
 Click where the reference point is	Klikněte tam, kde leží referenční bod
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klepněte, kde se stýkají tři vodiče: T-kus určuje přístroj, od něhož vodiče vycházejí, a pořadí jejich cílů · {} jej otočí, kde se vodiče ještě nestýkají · Esc nebo pravé tlačítko ukončí
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klepněte, kde se kříží dva vodiče: křížení je spojí a vede každý konec své čáry nejprve rovně, pak napříč · {} jej otočí · Esc nebo pravé tlačítko ukončí
@@ -376,9 +393,11 @@ Compare and baselines	Porovnání a základní verze
 Compare with	Porovnat s
 Compare with a baseline, a revision or another project file and take differences over	Porovnat se základní verzí, revizí nebo jiným souborem projektu a převzít rozdíly
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Úplné označení: {}\nChybějící aspekty se převezmou ze stránky (=funkce +umístění) nebo z rámečku struktury, ve kterém symbol leží.
+Concrete base	Betonový podstavec
 Condition	Podmínka
 Condition (OPTION=value & …)	Podmínka (OPTION=hodnota & …)
 Conductive frame	Vodivý rám
+Conductor	Vodič
 Conflicts	Konflikty
 Connected devices	Připojené přístroje
 Connected to:	Připojeno k:
@@ -430,6 +449,7 @@ Cross references…	Křížové odkazy…
 Crossed wires	Překřížené vodiče
 Ctrl + click on the text opens it as well	Ctrl + kliknutí na text jej také otevře
 Ctrl+A	Ctrl+A
+Current at maximum power	Proud při maximálním výkonu
 Current-carrying capacity: {} × IEC 60204-1, table 6	Proudová zatížitelnost: {} × IEC 60204-1, tabulka 6
 Customer rule sets	Zákaznické sady pravidel
 Customer, plant or standard	Zákazník, závod nebo norma
@@ -442,6 +462,7 @@ Cut length step tubes	Krok délky řezu trubek
 Cut length step wires	Krok délky řezu vodičů
 Cutout {} × {} mm	Výřez {} × {} mm
 Cutting allowance per end	Přídavek na řez na každý konec
+DC leads	Vodiče DC
 DRAFT	NÁVRH
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	NÁVRH, KE SCHVÁLENÍ a SCHVÁLENO v aktuálním jazyce; po uvolnění nic
 DWG import failed: {}	Import DWG selhal: {}
@@ -465,9 +486,11 @@ Define all used	Definovat všechny použité
 Defined potentials	Definované potenciály
 Del	Del
 Delete PV array	Smazat FV pole
+Delete air-termination rod	Smazat jímací tyč
 Delete cable (its wires are removed from it)	Odstranit kabel (jeho vodiče z něj budou odebrány)
 Delete comment	Odstranit komentář
 Delete connection point	Odstranit přípojný bod
+Delete earth electrode	Smazat zemnič
 Delete element	Odstranit prvek
 Delete enclosure	Odstranit skříň
 Delete enclosure {} with everything placed in it?	Odstranit skříň {} se vším, co je v ní umístěno?
@@ -494,8 +517,10 @@ Delete this workspace	Odstranit tento pracovní prostor
 Delete variant	Odstranit variantu
 Delete zone	Smazat zónu
 Depth / mounted at	Hloubka / montáž na
+Depth below the ground	Hloubka pod terénem
 Depth from / to	Hloubka od / do
 Depth in the floor	Hloubka v podlaze
+Depth of its top below the ground	Hloubka horního konce pod terénem
 Derive project definition	Odvodit projektovou definici
 Descriptions	Popisy
 Deselect	Zrušit výběr
@@ -529,6 +554,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Přístr
 Dew point	Rosný bod
 Diameter	Průměr
 Diameter / bends	Průměr / ohyby
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Průměr kulatého drátu; 0: pásek 30 x 3,5 mm
+Diameter of the rod	Průměr tyče
 Dictionary for translators: one column per language	Slovník pro překladatele: jeden sloupec na jazyk
 Digits	Číslice
 Dimension	Kóta
@@ -567,6 +594,7 @@ Door cutouts (CSV)	Výřezy ve dveřích (CSV)
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
 Double-click	Dvojklik
+Down conductors	Svody
 Download into database	Stáhnout do databáze
 Download project	Stáhnout projekt
 Downloaded {} (version {})	Staženo {} (verze {})
@@ -577,6 +605,7 @@ Draft	Návrh
 Draft of revision {} created	Koncept revize {} vytvořen
 Draft of revision {} discarded	Koncept revize {} zahozen
 Drag	Tažení
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Přetáhněte budovu pro přesun · R: otočit budovu pod ukazatelem o 90° · Esc: konec
 Drag a connection point designation of the selected symbol to place it.	Přetažením označení přípojného bodu vybraného symbolu jej umístíte.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Táhněte konec vybraného vodiče, chcete-li přesunout jen tento konec. Tažení s Alt obrátí Zachovat propojení.
 Drag an entry into the page, or click it and then click into the page.	Přetáhněte položku do stránky nebo na ni klikněte a potom klikněte do stránky.
@@ -617,12 +646,20 @@ Duct fill limit	Mez zaplnění kanálu
 Duplicate	Duplikovat
 Each example builds on the one before and shows more of the features.	Každý příklad navazuje na předchozí a ukazuje více funkcí.
 Each point-to-point connection can belong to a harness	Každé spojení bod–bod může patřit ke kabelovému svazku
+Earth electrodes	Zemniče
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Zemniče budovy (základový a obvodový, tyčové zemniče klikané do situačního plánu) a její ochrana před bleskem s jímacími tyčemi klikanými na střechy
+Earth rod placed at building {}; click for the next one · Esc: stop	Tyčový zemnič umístěn u budovy {}; klikněte pro další · Esc: konec
+Earthing and lightning protection	Uzemnění a ochrana před bleskem
+Earthing busbar	Uzemňovací přípojnice
+Earthing conductor	Uzemňovací vodič
+Earthing points	Body uzemnění
 Earthing system	Soustava uzemnění
 Easting, northing	Východní, severní souřadnice
 Eaves	Okap
 Edge length of the routing grid: smaller is finer and slower	Délka hrany rastru vedení: menší je jemnější a pomalejší
 Edit in table	Upravit v tabulce
 Edit in table…	Upravit v tabulce…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Režim úprav: přetáhněte budovy na jejich místa v situačním plánu a otočte je; kliknutí na místnost ji už neotevře
 Editable copy of this plot frame	Upravitelná kopie tohoto rámečku výkresu
 Editable copy of this title block	Upravitelná kopie tohoto rohového razítka
 Effective surface	Účinná plocha
@@ -773,6 +810,7 @@ Generated page – edit via page properties	Vygenerovaná stránka – upravte v
 Generates the pages of all report blocks again	Znovu vytvoří stránky všech bloků výkazů
 Generates {} pages	Vytvoří stránky: {}
 Generation failed: {}	Vytvoření se nezdařilo: {}
+Generator junction box	Generátorová přípojková skříň
 Generic	Obecné
 German zones (DIN 18015-3)	Německé zóny (DIN 18015-3)
 Getting started	Začínáme
@@ -782,6 +820,7 @@ Go to page	Přejít na stránku
 Graphic line	Grafická čára
 Graphic rectangle	Grafický obdélník
 Graphical form	Grafický formulář
+Greatest distance of the conductor holders on the roof and on the walls	Největší vzdálenost podpěr vedení na střeše a na stěnách
 Greatest distance of the roof hooks along a rail	Největší vzdálenost střešních háků podél lišty
 Grid	Rastr
 Grid north	Sever sítě
@@ -805,14 +844,20 @@ Height above the floor	Výška nad podlahou
 Height above the mounting plate	Výška nad montážní deskou
 Height above the plate	Výška nad deskou
 Height of the plinth, 0 without plinth	Výška soklu, 0 bez soklu
+Height of the rod above the covering	Výška tyče nad krytinou
+Height of the test joints above the ground	Výška zkušebních svorek nad terénem
 Heights above floor (IEC 60204-1)	Výšky nad podlahou (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Drží se při klepnutí, přesouvání nebo posouvání. Ctrl je v macOS Cmd.
 Help	Nápověda
+Hide PV modules	Skrýt FV moduly
 Hide the groups you do not need and put the commands you use most into own groups.	Skryjte skupiny, které nepotřebujete, a nejpoužívanější příkazy dejte do vlastních skupin.
 Highest phase unbalance	Nejvyšší nesymetrie fází
 Highest short-circuit current	Nejvyšší zkratový proud
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Nejvyšší napětí (naprázdno při nejnižší teplotě), střední a nejnižší napětí (při maximálním výkonu při střední a nejvyšší teplotě), proud při maximálním výkonu, špičkový výkon
 Highest: the lowest voltage	Nejvyšší: nejnižší napětí
+Holder distance	Vzdálenost podpěr
+Holders on the roof	Podpěry na střeše
+Holders on the walls	Podpěry na stěnách
 Hole to sheet edge	Otvor od okraje plechu
 Home	Domů
 Hook distance	Vzdálenost háků
@@ -827,6 +872,8 @@ Hose defaults and PCT loops of the pre-planning	Výchozí hodnoty hadic a smyčk
 Hose number	Číslo hadice
 Hoses and pipes	Hadice a potrubí
 Hoses rated below it are errors; 0 = not checked	Hadice dimenzované na nižší tlak jsou chyby; 0 = nekontroluje se
+How far inside the outer walls	Jak daleko uvnitř obvodových zdí
+How far outside the outer walls	Jak daleko vně obvodových zdí
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Jak se otevírá křídlo: závěsy na levé nebo pravé hraně (při pohledu z místnosti), dovnitř nebo ven z místnosti, nebo posuvně podél stěny
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Jak je vodič na tomto konci zakončen; výchozí je volba pro připojovací bod nebo jeho zařízení, jinak podle nastavení dutinek v rozvržení
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Jak vodiče přeskakují křížené vodiče, jak se značí spojení T a zda přesunuté prvky vedou svá spojení znovu
@@ -940,6 +987,7 @@ Labeling scheme	Schéma popisování
 Landscape	Na šířku
 Large dot	Velká tečka
 Larger texts and buttons for a touch screen at the workbench	Větší texty a tlačítka pro dotykovou obrazovku u pracovního stolu
+Largest mesh	Největší oko
 Latitude, longitude	Zeměpisná šířka, délka
 Layer	Vrstva
 Layer {}	Vrstva {}
@@ -953,6 +1001,7 @@ Layout space	Montážní prostor
 Layout spaces	Montážní prostory
 Leave out the ceilings of the rooms and the roofs in the 3D view	Vynechat stropy místností a střechy ve 3D zobrazení
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Ve 3D zobrazení vynechá víka všech kabelových kanálů: vodiče v nich jsou vidět
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Vynechat moduly FV polí ve 3D pohledu: jsou vidět lišty, střešní háky, podpěry, uzemnění a kabeláž
 Leave repeated values of the first column blank	Opakované hodnoty prvního sloupce ponechat prázdné
 Left button	Levé tlačítko
 Left edges	Levé hrany
@@ -960,6 +1009,7 @@ Legend plates (door devices)	Popisné štítky (přístroje ve dveřích)
 Length from the node to the device	Délka od uzlu k přístroji
 Length inside an enclosure	Délka uvnitř skříně
 Length of a shield pigtail where there is no shield clamp	Délka pigtailu stínění tam, kde není svorka stínění
+Length of the rod	Délka zemniče
 Length of wires that are not routed in the panel layout	Délka vodičů, které nejsou vedeny v rozvržení rozváděče
 Length {} mm	Délka {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Písmena, číslice, mezera, - _ . (až 64 znaků)
@@ -970,6 +1020,8 @@ Level {} added to building {}; new rooms go onto it	Podlaží {} přidáno do bu
 Level {} of building {}	Podlaží {} budovy {}
 Levels	Podlaží
 Library	Knihovna
+Lightning protection	Ochrana před bleskem
+Lightning protection of building {}	Ochrana před bleskem budovy {}
 Like two fingers	Jako dva prsty
 Limits	Mezní hodnoty
 Limits in effect	Platné mezní hodnoty
@@ -1020,7 +1072,9 @@ Macros	Makra
 Macros ({})	Makra ({})
 Macro…	Makro…
 Main	Hlavní
+Main earthing busbar	Hlavní uzemňovací přípojnice
 Make the selected elements of this project equal to the compared ones	Sladit vybrané prvky tohoto projektu s porovnávanými
+Maker	Výrobce
 Makes the current page content of the option	Udělá z aktuální stránky obsah volby
 Manage plugins	Spravovat pluginy
 Management	Správa
@@ -1063,6 +1117,7 @@ Mixed	Smíšené
 Mode	Režim
 Model of a part (2D / 3D)	Model artiklu (2D / 3D)
 Modifier keys	Modifikační klávesy
+Module area	Plocha modulů
 Module part; its size comes from the part	Díl modulu; jeho velikost pochází z dílu
 Motors feed the short circuit	Motory napájejí zkrat
 Mounted on	Namontováno na
@@ -1075,6 +1130,7 @@ Mouse	Myš
 Move	Posunout
 Move ahead in the 3D view (held)	Pohyb vpřed v 3D pohledu (držet)
 Move back in the 3D view (held)	Pohyb vzad v 3D pohledu (držet)
+Move buildings	Přesunout budovy
 Move down	Posunout dolů
 Move down in the 3D view (held)	Pohyb dolů v 3D pohledu (držet)
 Move faster with the keys of the 3D view	Rychlejší pohyb klávesami 3D pohledu
@@ -1163,6 +1219,7 @@ No PLC cards in the project.	V projektu nejsou žádné karty PLC.
 No PLC inputs / outputs placed.	Nejsou umístěny žádné vstupy / výstupy PLC.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Žádné příslušenství: vývodky, konektory, stínicí svorky … se zahrnou do kusovníku a zkontrolují vůči kabelu.
 No bus systems.	Žádné sběrnicové systémy.
+No busbar	Bez přípojnice
 No cable passage to {}: wires to it are not routed	Žádná kabelová průchodka do {}: vodiče tam se nevedou
 No cables defined.	Nejsou definovány žádné kabely.
 No cables yet. Draw a cable definition across wires or add a cable.	Zatím žádné kabely. Nakreslete definici kabelu přes vodiče nebo přidejte kabel.
@@ -1174,6 +1231,7 @@ No device has mounting data yet: assign parts with dimensions to the devices (Pr
 No differences to {}.	Žádné rozdíly oproti {}.
 No document embedded	Není vložen žádný dokument
 No dot: plain T	Bez tečky: prosté T
+No earth electrode yet: a foundation earth electrode in the foundation slab, a ring earth electrode round the walls or earth rods.	Zatím žádný zemnič: základový zemnič v základové desce, obvodový zemnič kolem zdí nebo tyčové zemniče.
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Zatím žádná skříň – vytvořte ji pomocí Nová skříň, nebo místnost pro rozváděče pomocí Nová místnost.
 No field cables: place the enclosures and field devices at nodes of the route network.	Žádné polní kabely: umístěte skříně a polní přístroje do uzlů sítě tras.
 No filter fans: an air/air heat exchanger or a cooling unit	Bez filtračních ventilátorů: výměník tepla vzduch/vzduch nebo chladicí jednotka
@@ -1186,6 +1244,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Zatím žá
 No modules: plug in PLC cards of the schematic.	Žádné moduly: zasuňte karty PLC ze schématu.
 No numbers for	Bez čísel pro
 No panel items: place the devices in the panel layout.	Žádné prvky rozváděče: umístěte přístroje v rozvržení rozváděče.
+No part matches.	Žádný díl neodpovídá.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Zatím žádné artikly označené pro montáž na podlahu. Označte artikl ve správě artiklů: editor artiklů › Montážní data › Montáž na podlahu.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Zatím žádné artikly označené pro montáž na stěnu. Označte artikl ve správě artiklů: editor artiklů › Montážní data › Montáž na stěnu.
 No parts of the product group Cables in the parts database.	V databázi artiklů nejsou žádné artikly skupiny produktů Kabely.
@@ -1204,6 +1263,7 @@ No segments yet: draw them in the plant layout.	Zatím žádné úseky: nakresle
 No shortcut	Bez klávesové zkratky
 No single-line symbols and no power devices in the schematic.	Žádné jednopólové symboly a žádné silové přístroje ve schématu zapojení.
 No stations: add one or use the automatic configuration.	Žádné stanice: přidejte stanici nebo použijte automatickou konfiguraci.
+No string yet: the modules are not connected.	Zatím žádný string: moduly nejsou zapojeny.
 No subprojects were taken out of this project.	Z tohoto projektu nebyly vyčleněny žádné podprojekty.
 No terminal strips: place terminals in a schematic first.	Žádné svorkovnice: nejprve umístěte svorky do schématu.
 No user symbols yet. Create one or copy a built-in symbol.	Zatím žádné uživatelské symboly. Vytvořte nový nebo zkopírujte vestavěný symbol.
@@ -1240,6 +1300,7 @@ Offset from one row to the next: downwards for lists, sideways for rows side by 
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Na dotykové obrazovce a touchpadu. Jen posouvat: roztažení prstů nepřibližuje; jen přibližovat: posouvání dvěma prsty na touchpadu také přibližuje, kde systém touchpady rozlišuje. Jeden prst funguje jako levé tlačítko myši.
 On a touch screen; trackpads leave three-finger gestures to the system.	Na dotykové obrazovce; touchpady nechávají gesta třemi prsty systému.
 On startup	Při spuštění
+On the roof, joined to the air-termination conductors; move it to its place	Na střeše, spojená s jímacím vedením; přesuňte ji na její místo
 One row per label	Jeden řádek na štítek
 Only devices on the current page	Pouze přístroje na aktuální stránce
 Only frames no page uses can be deleted	Odstranit lze jen rámečky, které nepoužívá žádná stránka
@@ -1267,6 +1328,7 @@ Open the selection: its properties, in the floor plan its face	Otevřít výběr
 Open to {}: wires cross beside the mounting plates	Otevřeno do {}: vodiče přecházejí vedle montážních desek
 Open walls and floors	Otevřít stěny a podlahy
 Open, save, import, export, print and the settings	Otevřít, uložit, importovat, exportovat, tisknout a nastavení
+Open-circuit voltage	Napětí naprázdno
 OpenECraft page templates	Šablony stránek OpenECraft
 OpenECraft page templates (JSON)	Šablony stránek OpenECraft (JSON)
 OpenECraft project	Projekt OpenECraft
@@ -1309,6 +1371,7 @@ Other values ({})	Další hodnoty ({})
 Otherwise from the plant layout, or next to the other line-ups	Jinak z dispozice zařízení nebo vedle ostatních řad skříní
 Out since {} (pages locked)	Vyčleněno od {} (stránky zamčeny)
 Outer diameter (e.g. 8 mm) or DN	Vnější průměr (např. 8 mm) nebo DN
+Outlets	Zásuvky
 Outlets, switches, heating	Zásuvky, spínače, topení
 Outline	Obrys
 Outlines	Obrysy
@@ -1331,6 +1394,10 @@ PLC channels	Kanály PLC
 PLC hardware and bus topology	Hardware PLC a topologie sběrnice
 PLC overview	Přehled PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Bitmapa PNG nebo JPEG, např. logo nebo fotografie
+PV array {}	FV pole {}
+PV array {} lies outside the protection of the air-termination system	FV pole {} leží mimo ochranu jímací soustavy
+PV array {} of building {}: {} modules	FV pole {} budovy {}: {} modulů
+PV array {} of building {}: {} modules, {} kWp	FV pole {} budovy {}: {} modulů, {} kWp
 PV arrays	FV pole
 Page graphics	Grafika stránky
 Page heading	Nadpis stránky
@@ -1378,6 +1445,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Text funkce cesty
 Pattern	Vzor
 Pattern…	Vzor…
+Peak power	Špičkový výkon
+Pick a part in the list.	Vyberte díl ze seznamu.
 Pin-out	Zapojení pinů
 Pipe run	Potrubní trasa
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Potrubní trasa na stěně, stropu nebo podlaze místnosti, podél které se vedou hadice, trubky a potrubí: klikněte na rohy, poklikáním nebo Enter ukončíte
@@ -1395,6 +1464,7 @@ Place in the building	Umístění v budově
 Place in the plant	Umístění v zařízení
 Place in the room	Místo v místnosti
 Place in the site plan	Umístit v situačním plánu
+Place on the wall	Umístit na stěnu
 Place text	Umístit text
 Place the georeferenced point everything is measured from	Umístit georeferencovaný bod, od kterého se vše měří
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Umístěte georeferencovaný bod zařízení do situačního plánu; jeho souřadnice se zadávají v panelu Budovy, každý bod se pak měří od něj
@@ -1427,6 +1497,7 @@ Plug in card	Zasunout kartu
 Plugin commands	Příkazy pluginů
 Plugins	Pluginy
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Pluginy přidávají příkazy, kontroly, výkazy a exporty. Externí pluginy se načítají ze složek v proměnné prostředí {} (jedna podsložka se souborem plugin.json pro každý plugin).
+Plus and minus leads from the modules to the inverter	Kladný a záporný vodič od modulů ke střídači
 Points	Body
 Polygon	Mnohoúhelník
 Polyline	Lomená čára
@@ -1629,6 +1700,8 @@ Right edges	Pravé hrany
 Right neighbour	Pravý soused
 Rights	Práva
 Risers	Podstupnice
+Rod holder	Držák tyče
+Roof pitch	Sklon střechy
 Roof window	Střešní okno
 Roof windows	Střešní okna
 Roofs	Střechy
@@ -1724,11 +1797,13 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Posouvání přibližuje, i tam, kde jinak posouvá
 Search (* and ? as placeholders)…	Hledat (* a ? jako zástupné znaky)…
 Search below this folder	Hledat pod touto složkou
+Search number, description, maker	Hledat číslo, popis, výrobce
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Prohledávat server artiklů podle katalogu, skupiny produktů a technických údajů, přidávat artikly a kontrolovat aktualizace databáze
 Second channel	Druhý kanál
 Section properties	Vlastnosti oddílu
 Section properties…	Vlastnosti oddílu…
 Section {} is now section {}	Oddíl {} je nyní oddíl {}
+See-through PV modules	Průhledné FV moduly
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Pohled na čelní strany konektorů; barvy jsou barvy vodičů a žil kabelů na pinech.
 Segment {}	Segment {}
 Segments	Úseky
@@ -1784,6 +1859,7 @@ Shielded analogue cables	Stíněné analogové kabely
 Shielded drive cables	Stíněné kabely pohonů
 Short circuit and selectivity	Zkrat a selektivita
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Zkrat, selektivita, zatížení, EMC, funkční bezpečnost a ověření podle sad pravidel
+Short-circuit current	Zkratový proud
 Short-circuit currents	Zkratové proudy
 Short-circuit power of the network	Zkratový výkon sítě
 Shortest profile	Nejkratší profil
@@ -1803,6 +1879,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Zobrazit nebo skrýt panely;
 Show project manager	Zobrazit správce projektů
 Show the enclosures bayed to this one as well	Zobrazit i skříně připojené do řady k této
 Show the messages accepted as checked	Zobrazit hlášení přijatá jako zkontrolovaná
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Zobrazit moduly FV polí ve 3D pohledu průhledně: je vidět propojení modulů pod nimi
 Show the other wires	Zobrazit ostatní vodiče
 Show the pane as a window	Zobrazit panel jako okno
 Show the ribbon	Zobrazit pás karet
@@ -1896,6 +1973,7 @@ Surge protection	Přepěťová ochrana
 Swing the enclosure door open or shut (door devices and their wires move with it)	Otevřít nebo zavřít dveře skříně (přístroje ve dveřích a jejich vodiče se otáčejí s nimi)
 Switch off the check \"{}\"	Vypnout kontrolu \"{}\"
 Switched off on this computer ({})	Vypnuto na tomto počítači ({})
+Switches	Spínače
 Switches the options with a condition by the configurator options	Přepne volby s podmínkou podle voleb konfigurátoru
 Switches to this workspace with its panes at their default places	Přepne do tohoto pracovního prostoru s panely na jejich výchozích místech
 Switches, push buttons and room thermostats	Spínače, tlačítka a prostorové termostaty
@@ -1944,6 +2022,7 @@ Terminals at least	Svorky alespoň
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Svorky se stejným číslem propojky jsou propojeny (stejný potenciál). Rezervní svorky se započítávají do kusovníku.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Výrazy oddělené ';': klíč=hodnota (rovná se), klíč~text (obsahuje) nebo text kdekoli
 Test connection	Otestovat připojení
+Test joints	Zkušební svorky
 Text offset	Posun textu
 Text size	Velikost textu
 Texts	Texty
@@ -2001,6 +2080,7 @@ The web version is updated on its server.	Webová verze se aktualizuje na svém 
 The wire tool routes around symbols and other wires	Nástroj pro vodiče vede vodiče kolem symbolů a jiných vodičů
 The wires get the free cores of the cable in order (left to right)	Vodiče dostanou postupně (zleva doprava) volné žíly kabelu
 The wires of the connection take these values again	Vodiče spojení znovu převezmou tyto hodnoty
+Their places, sizes and busbars are set in the Buildings pane.	Jejich místa, rozměry a přípojnice se nastavují v panelu Budovy.
 Theme	Motiv
 These settings are edited in their panes:	Tato nastavení se upravují v jejich panelech:
 Thickness	Tloušťka
@@ -2098,6 +2178,7 @@ Via:	Přes:
 View	Zobrazení
 Visible	Viditelná
 Voltage (line to line)	Napětí (sdružené)
+Voltage at maximum power	Napětí při maximálním výkonu
 Voltage drop	Úbytek napětí
 WGS 84, written into the site of IFC exports	WGS 84, zapisuje se do pozemku exportů IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Stěna {}, {} m: přetažením ji přesunete, dvojklik ji zobrazí k osazení
@@ -2285,6 +2366,8 @@ x y	x y
 {} (default)	{} (výchozí)
 {} (first column)	{} (první sloupec)
 {} (locked by {})	{} (uzamkl {})
+{} (no such device)	{} (zařízení neexistuje)
+{} (not placed in the layout)	{} (není umístěno v rozvržení)
 {} (project server, revision {})	{} (projektový server, revize {})
 {} (spare)	{} (rezerva)
 {} (subproject of {})	{} (podprojekt projektu {})
@@ -2294,7 +2377,9 @@ x y	x y
 {} PLC function texts updated	Aktualizováno textů funkcí PLC: {}
 {} Vault items found for the project parts	Nalezené položky Vault pro artikly projektu: {}
 {} Vault items found: review the changes in the integration window	Nalezené položky Vault: {}; zkontrolujte změny v okně integrace
+{} added to building {}	{} přidán k budově {}
 {} addresses changed	Změněno adres: {}
+{} air-termination rods	{} jímacích tyčí
 {} bundles, {} branch points	Svazky: {}, body odbočení: {}
 {} bus cables created	Vytvořeno sběrnicových kabelů: {}
 {} bus connections	Sběrnicová spojení: {}
@@ -2332,6 +2417,7 @@ x y	x y
 {} devices renamed	Přejmenováno {} přístrojů
 {} differences to {}	Rozdíly oproti {1}: {0}
 {} doors	Dveře: {}
+{} down conductors with test joints, {} m of conductors	{} svodů se zkušebními svorkami, {} m vodičů
 {} entries in {}	Položky v {1}: {0}
 {} errors	Chyby: {}
 {} errors, {} warnings	Chyby: {}, upozornění: {}
@@ -2346,6 +2432,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} nemá funkci se symbolem; přiřaďte jej přístroji v jeho vlastnostech
 {} has unsaved changes. Discard them?	{} obsahuje neuložené změny. Zahodit je?
 {} imported into the parts database and placed as {}	{} importován do databáze artiklů a umístěn jako {}
+{} in {}	{} v {}
 {} is neither in the parts database nor on the parts server	{} není v databázi artiklů ani na serveru artiklů
 {} is not in the disk image	{} není v obrazu disku
 {} is not made for wall mounting: place it on a mounting rail	{} není určen pro montáž na stěnu: umístěte jej na lištu
@@ -2375,6 +2462,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	Zobrazeno {} z {} položek: zúžte seznam hledáním
 {} of {} items	{} z {} prvků
 {} of {} pages locked	Uzamčeno {} z {} stránek
+{} of {} parts · double-click: place	{} z {} dílů · dvojklik: umístit
 {} of {} pins used	Obsazeno {} z {} kolíků
 {} of {} rows	{} z {} řádků
 {} of {} wires	{} z {} vodičů
@@ -2426,8 +2514,10 @@ x y	x y
 {} wires changed	Změněno vodičů: {}
 {} wires, {} cables and {} tubes routed	Vedeno vodičů: {}, kabelů: {} a trubek: {}
 {} wires, {} – {} mm	Vodiče: {}, {} – {} mm
+{} {} of building {}	{} {} budovy {}
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixelů, {}
 {} – {} ({} pages)	{} – {} (stránky: {})
 {} – {} here (Esc cancels)	{} – {} zde (Esc ruší)
@@ -2435,6 +2525,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: krimpovat společně s vodičem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: přetažením přesunete, R otočí, dvojklik otevře
 {}: drag to move it, a double-click shows the floor	{}: přetažením přesunete, dvojklik zobrazí podlahu
+{}: drag to move, R: turn by 90°	{}: přetáhnout pro přesun, R: otočit o 90°
 {}: nothing to change	{}: není co měnit
 {}: pin {}	{}: pin {}
 {}: strip {} mm, {}	{}: odizolovat {} mm, {}

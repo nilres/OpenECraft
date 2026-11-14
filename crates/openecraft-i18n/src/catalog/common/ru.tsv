@@ -48,6 +48,7 @@ Catalog id	ID каталога
 Category	Категория
 Centred	По центру
 Certificates	Сертификаты
+Change	Изменение
 Channel	Канал
 Characteristic	Характеристика
 Check settings	Настройки проверки
@@ -109,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Точка подключения устройства
 Device description	Описание устройства
 Device tag	Обозначение устройства
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Устройство, к которому идёт заземляющий проводник конструкции (шина заземления или уравнивания потенциалов); пусто: нет
 Device {}	Устройство {}
 Devices	Устройства
 Dimensions	Размеры
@@ -158,6 +160,7 @@ Function text	Текст функции
 Functional safety	Функциональная безопасность
 Functions	Функции
 General	Общие
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Генераторная соединительная коробка (устройство), к которой идут стринги, оттуда главный кабель DC к каждому инвертору; пусто: нет
 Gives up a subproject: its pages are unlocked again	Отменяет подпроект: его листы снова разблокируются
 Gland plate	Кабельный ввод (фланец)
 Graphics	Графика
@@ -206,6 +209,7 @@ Location (+)	Место установки (+)
 Logo	Логотип
 MTTFd (years)	MTTFd (лет)
 Machine	Машина
+Main earthing busbar (device) it is connected to; empty: none	Главная заземляющая шина (устройство), к которой он подключён; пусто: нет
 Main earthing terminal	Главная заземляющая шина
 Main switch	Главный выключатель
 Manufacturer	Производитель
@@ -220,6 +224,8 @@ Minimum digits of the counter (leading zeros)	Минимальное число 
 Missing parameter: {}	Отсутствует параметр: {}
 Missing value for --{}	Отсутствует значение для --{}
 Model import failed: {}	Ошибка импорта модели: {}
+Module	Модуль
+Modules	Модули
 Modules in series	Модули последовательно
 Modules side by side in a row	Модули рядом в ряду
 Mounted	Смонтировано
@@ -272,6 +278,7 @@ Not in the schematic	Нет на схеме
 Note	Примечание
 Notes	Примечания
 Number	Номер
+Number of down conductors (0: as many as the class needs for the walls)	Число токоотводов (0: столько, сколько требует класс для стен)
 Number the sections 1, 2, 3 … on every level first	Сначала пронумеровать разделы 1, 2, 3 … на каждом уровне
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Нумерует обозначения устройств по структуре и буквенному коду в порядке схемы (лист, столбец, сверху вниз)
 Only rows containing this text	Только строки с этим текстом
@@ -368,6 +375,7 @@ Released pages cannot be moved	Выпущенные листы нельзя пе
 Remove	Удалить
 Remove from favorites	Удалить из избранного
 Remove the boundary	Удалить границу
+Remove the lightning protection system	Удалить молниезащиту
 Remove the reference point	Удалить опорную точку
 Report	Отчёт
 Report blocks	Блоки отчётов
@@ -379,6 +387,7 @@ Revision {}	Ревизия {}
 Rework	Доработка
 Right	Справа
 Role	Роль
+Roof	Крыша
 Rooms	Помещения
 Round	Круглый
 Route	Обход
@@ -511,6 +520,7 @@ not bonded	не подключён
 not connected	не подключено
 open	открыто
 pcs	шт.
+portrait	книжная
 rejected	отклонено
 right	вправо
 spare	резерв

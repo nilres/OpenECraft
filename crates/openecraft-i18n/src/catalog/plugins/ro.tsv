@@ -26,6 +26,8 @@ Adds a text to a page	Adaugă un text pe o pagină
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Adaugă în dicționar toate rândurile textelor proiectului, opțional eliminând intrările care nu mai sunt folosite
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Adaugă un accesoriu la un capăt de cablu: presetupă, presetupă CEM, conector, detensionare, clemă de ecran, tub flexibil de protecție, manșon de capăt, marcaj
 Adds an accessory to a device; it must fit one of the device's parts	Adaugă un accesoriu la un aparat; trebuie să se potrivească cu unul dintre articolele aparatului
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Adaugă o tijă de captare pe acoperișurile unei clădiri, legată de conductoarele ei de captare; clădirea primește o protecție contra trăsnetului de clasa III dacă nu are
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Adaugă o priză de pământ unei clădiri: o priză de pământ de fundație în placa celui mai de jos nivel de-a lungul pereților exteriori în ochiuri, o priză de pământ inelară în sol în jurul pereților sau un electrod vertical; materialul ei intră în lista de materiale
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Adaugă o carcasă: dintr-un sistem, într-una dintre dimensiunile sale (sau o dimensiune personalizată), sau dintr-un articol de carcasă
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Adaugă un conductor de legătură echipotențială între două puncte de legătură echipotențială (bornă principală de împământare, carcase, contururi conductoare, suporturi metalice)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Adaugă sau modifică o schemă de marcare a proiectului, o elimină sau selectează schema folosită pentru exportul de marcare
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Adaugă dispozitivele unui șablon într-un segment
 Adds the outline of a machine, building or area to the plant layout	Adaugă conturul unei mașini, al unei clădiri sau al unei zone în planul de amplasare a instalației
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Adaugă, înlocuiește sau elimină un profil: un conector cu numele de coloane folosite de celălalt sistem
+Air-termination rod: its name	Tijă de captare: numele ei
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Aliniază elemente, le distanțează uniform, aliniază dispozitive pe o șină sau copiază elemente după un model
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Aliniază simbolurile, textele și grafica la o margine sau un centru comun; capetele conectate ale conductoarelor urmează
 Allow renaming onto an identifier in use: both become one	Permite redenumirea într-un identificator folosit: ambele devin unul
@@ -70,6 +73,7 @@ Between page and column (default .)	Între pagină și coloană (implicit .)
 Bonding point	Punct de legătură echipotențială
 Border around the text	Bordură în jurul textului
 Both classes are needed	Sunt necesare ambele clase
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Clădirile instalației cu niveluri, puțuri, scări și acoperișuri cu câmpuri PV, prize de pământ și protecție contra trăsnetului, încăperi pe niveluri și legături între clădiri
 Bus system name	Nume sistem de magistrală
 Bus system name, e.g. PN/IE_1	Nume sistem de magistrală, de ex. PN/IE_1
 Busbar machine program (CSV)	Programul mașinii de prelucrare a barelor (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Modifică o ușă sau o fereastră a unei încăperi: cum se deschide (balamale în stânga sau în dreapta, spre interior sau exterior, sau glisant), locul de-a lungul peretelui, dimensiunea și parapetul
 Changes a placed symbol; when it moves, connected wire ends follow	Modifică un simbol plasat; când acesta se mută, capetele conductoarelor conectate îl urmează
 Changes a text (only the given properties)	Modifică un text (numai proprietățile indicate)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Modifică o priză de pământ a unei clădiri: locul, lungimea, distanța față de pereți, adâncimea, ochiul, articolul sau bara; o redenumește sau o elimină
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Trece dispozitivele cu articole în curs de retragere sau scoase din fabricație la articolele succesoare (succesorii trebuie să fie articole ale proiectului)
 Changes name, description or structure of a page	Modifică numele, descrierea sau structura unei pagini
 Changes name, description, function, location or parent of a segment	Modifică numele, descrierea, funcția, locul de montare sau segmentul părinte al unui segment
@@ -100,6 +105,7 @@ Check {} failed: {}	Verificarea {} a eșuat: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Verifică amplasarea în tablou: coliziuni, distanțe (montaj, ventilație, CEM), spațiu de service, înălțimi deasupra podelei, clase de coliziune, temperaturi și fabricabilitate
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Alege cum se termină capetele conductoarelor: dezizolate, cu manșon sau papuc sertizat; la un punct de conectare, la toate punctele de conectare ale unui echipament sau doar pentru un conductor
 Chosen value	Valoare aleasă
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Clasa protecției contra trăsnetului, 1 … 4 (I … IV; implicit III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Distanțe, spațiu de service, înălțimi, clase de coliziune, simulare termică și fabricabilitatea amplasării în tablou
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Climatizarea carcaselor (IEC/TR 60890): putere disipată, temperatură interioară, ventilator sau unitate de răcire și încălzire necesare; opțional modifică setările uneia dintre ele
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Clasă de coliziune: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, o clasă proprie sau * pentru oricare
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Dispozitive, conductoare, potențiale, cabluri, șiruri de borne, PLC, tablou, tehnică fluidică, calcule electrice, structură și traduceri
 Diameter in mm	Diametru în mm
 Diameter of a hole at both ends (0: none)	Diametrul unei găuri la ambele capete (0: niciuna)
+Diameter of the conductors, mm (default 8)	Diametrul conductoarelor, mm (implicit 8)
+Diameter of the rod, mm (default 16)	Diametrul tijei, mm (implicit 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Direcția tijei: left, right, up sau down (implicit: după firele de acolo)
 Distance between power and signal or fluid in mm	Distanța dintre putere și semnal sau fluid în mm
 Distance from devices, rails and busbars in mm	Distanța față de dispozitive, șine și bare colectoare în mm
@@ -222,6 +230,10 @@ Draws a wire through two or more points	Desenează un conductor prin două sau m
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Desenează conductoarele pe paginile de schemă și în exportul PDF / SVG în culoarea lor sau în negru
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Desenează fire între punctele de conexiune libere ale simbolurilor aflate față în față și către brațele libere ale pieselor T și colțurilor
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Clasele CEM ale cablurilor (ieșire de acționare, analogic, putere, semnal, ecran) și problemele CEM
+Earth electrode: its name	Priză de pământ: numele ei
+Earth rod: its length, mm (default 3000)	Electrod vertical: lungimea lui, mm (implicit 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Electrod vertical: x al locului lui în planul clădirii, mm
+Earth rod: z of its place in the floor plan of the building, mm	Electrod vertical: z al locului lui în planul clădirii, mm
 Edge length of the routing grid in mm	Lungimea laturii grilei de pozare în mm
 Electrical device tags separated by commas or blanks (empty = remove the links)	Identificatorii dispozitivelor electrice separați prin virgule sau spații (gol = eliminare legături)
 Electrical engineering	Electrotehnică
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	Primul port ca stație:port, de ex. 
 First row with the column names	Primul rând cu numele coloanelor
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formatul numelui dispozitivului: {letter}, {n} (contor), {page}, {column}, {row}; implicit {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formatul schemei format: {n} (contor), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Priză de fundație: cât de mult în interiorul pereților exteriori (implicit 100), inelară: cât de mult în afara lor (implicit 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Priză de fundație: cel mai mare ochi al ei, mm (implicit 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Chenarul de pornire când chenarul este nou (implicit: A3 landscape)
 Free space in front of every device on the plate	Spațiu liber în fața fiecărui dispozitiv de pe placă
 Freezes routes for production (kept by the recalculation while possible) or releases them	Fixează traseele pentru producție (păstrate de recalculare cât timp este posibil) sau le eliberează
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Generează schema multifilară (simboluri de putere, conductoare, bobine de contactor) pentru simbolurile monofilare ale unei pagini, pe o pagină nouă după aceasta
 Generates the program of the busbar machine: cuts, punched holes and bends	Generează programul mașinii de prelucrare a barelor: tăieri, găuri poansonate și îndoiri
 Give a device tag or a part number	Indicați o identificare de aparat sau un număr de articol
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Dă unei clădiri o protecție contra trăsnetului sau o modifică: clasa, numărul conductoarelor de coborâre și articolul conductoarelor; conductoare de captare pe coame și muchii (o rețea pe acoperișurile plate), conductoare de coborâre cu piese de separație până la prizele de pământ; sau o elimină
+Greatest distance of the conductor holders, mm (default 1000)	Distanța maximă a suporturilor de conductor, mm (implicit 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupează elemente într-un ansamblu care se selectează și se mută împreună; fără nume, elementele își părăsesc ansamblurile
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Predă programele unei carcase către producție ca o comandă de lucru: manifestul și programele tuturor fețelor și barelor de cupru
 Has a divider between power and signal cables	Are un separator între cablurile de putere și cele de semnal
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	Înălțime deasupra plăcii 
 Height in mm	Înălțime în mm
 Height in mm without plinth; negative: unknown (wall mounted)	Înălțime în mm fără soclu; negativ: necunoscută (montaj pe perete)
 Height in mm; the logo keeps its aspect ratio inside	Înălțime în mm; sigla își păstrează proporțiile în interior
+Height of the rod above the covering, mm (default 1500)	Înălțimea tijei deasupra învelitorii, mm (implicit 1500)
+Height of the test joints above the ground, mm (default 1000)	Înălțimea pieselor de separație deasupra terenului, mm (implicit 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspectul de produs de nivel superior (-) al paginii; dispozitivele de pe pagină se mută odată cu ea
 Highest actuator on the door above the floor (0: not checked)	Cel mai înalt element de acționare pe ușă deasupra podelei (0: neverificat)
 Highest air temperature at devices without data (0: not checked)	Cea mai ridicată temperatură a aerului la dispozitive fără date (0: neverificat)
@@ -427,17 +445,21 @@ Manufacturing package (CNC programs, JSON)	Pachet de fabricație (programe CNC, 
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Marcaje, separate prin virgulă: device, terminal, wire, cable (gol: toate)
 Marks a panel item as mounted or as a problem, or as open again	Marchează un element de tablou ca montat, ca problemă sau din nou ca deschis
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Marchează un conductor pozat ca cablat sau ca problemă, ori din nou ca deschis; conductorul este dat prin cele două capete ale sale
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel sau aluminium
 Maximum fill of a carrier in percent	Grad maxim de umplere a unui suport de cabluri în procente
 Maximum operating pressure in bar	Presiunea de lucru maximă în bar
 Measuring range or set point	Domeniu de măsură sau valoare prescrisă
 Message code, e.g. wires.3f9a1c	Cod de mesaj, de ex. wires.3f9a1c
 Milling feed, mm/min	Avans de frezare, mm/min
 Mirror the symbol	Oglindire simbol
+Moves an air-termination rod, changes its height, renames or removes it	Mută o tijă de captare, îi modifică înălțimea, o redenumește sau o elimină
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Mută un capăt al unui conductor: acesta părăsește ceea ce era conectat și se conectează la ceea ce întâlnește; conductorul rămâne ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Mută simboluri, conductoare și texte; capetele conductoarelor conectate le urmează
 Moves the page before this page of its section (or of the section given)	Mută pagina înaintea acestei pagini din secțiunea ei (sau din secțiunea dată)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Mută secțiunea înaintea acestei secțiuni a părintelui ei (sau a părintelui dat); numerele continuă în ordine
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Amplasarea pe planșetă a unui cablaj: ramificațiile de la nodul comun la conectori, cu lungime, direcție, diametrul fasciculului și pini, precum și scara desenului
+Name (default E1, E2, …)	Nume (implicit E1, E2, …)
+Name (default F1, F2, …)	Nume (implicit F1, F2, …)
 Name of the assembly	Numele ansamblului
 Name of the bar, e.g. L1 -Q1	Numele barei, de ex. L1 -Q1
 Name of the check	Numele verificării
@@ -461,6 +483,7 @@ New page name	Nume de pagină nou
 New parent segment (empty: top level)	Segment părinte nou (gol: nivelul superior)
 New value	Valoare nouă
 No PCT loop {}	Nicio buclă AMC {}
+No air-termination rod {} on building {}	Nicio tijă de captare {} pe clădirea {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Nicio verificare integrată nu se numește {}: setarea se aplică unei verificări a unui plugin cu acest nume (list_checks)
 No bus system {}	Niciun sistem de magistrală {}
 No connection point {} on this page	Niciun punct de conexiune {} pe această pagină
@@ -468,6 +491,7 @@ No connection symbol with id {}	Niciun simbol de conexiune cu id {}
 No copper bar {}	Nu există bara de cupru {}
 No device description {}	Nicio descriere de dispozitiv {}
 No device group {}	Niciun grup de dispozitive {}
+No earth electrode {} in building {}	Nicio priză de pământ {} în clădirea {}
 No enclosure named {}	Nicio carcasă cu numele {}
 No entry for {} and {}	Nicio intrare pentru {} și {}
 No hose {}	Niciun furtun {}
@@ -570,7 +594,12 @@ Part number of the downstream device	Numărul de articol al dispozitivului din a
 Part number of the hose / tube / pipe	Numărul de articol al furtunului / tubului / conductei
 Part number of the upstream device	Numărul de articol al dispozitivului din amonte
 Part number, e.g. GEN.LMP-GN-24	Număr articol, de ex. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Articolul platbandei, sârmei sau electrodului (gol: generic)
+Part of the conductor holders on the roof (empty: generic)	Articolul suporturilor de conductor pe acoperiș (gol: generic)
+Part of the conductor holders on the walls (empty: generic)	Articolul suporturilor de conductor pe pereți (gol: generic)
+Part of the conductors (round wire; empty: generic)	Articolul conductoarelor (sârmă rotundă; gol: generic)
 Part of the key or name	Parte din cheie sau din nume
+Part of the rod (empty: the one of its material and diameter)	Articolul tijei (gol: cel după materialul și diametrul ei)
 Part {} has no function with a symbol	Articolul {} nu are nicio funcție cu simbol
 Parts phased out or discontinued	Articole în curs de retragere sau scoase din fabricație
 Pass ids or pages	Indicați ID-uri sau pagini
@@ -651,6 +680,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	Umiditatea 
 Release instead of freeze	Eliberare în loc de fixare
 Released pages keep their names: {}	Paginile aprobate își păstrează numele: {}
 Remote I/O: station of the controller	I/O descentralizate: stația controlerului
+Remove the air-termination rod	Elimină tija de captare
+Remove the earth electrode	Elimină priza de pământ
 Remove the entry of upstream and downstream	Eliminarea intrării pentru upstream și downstream
 Remove the profile	Eliminarea profilului
 Remove the scheme from the project	Eliminarea schemei din proiect
@@ -682,6 +713,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Rest (mm)
 Reuse failed searches during one routing calculation	Reutilizează căutările nereușite în cadrul aceluiași calcul de traseu
 Right side bayed (no side panel)	Partea dreaptă alăturată (fără perete lateral)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Inelară: adâncime sub teren, verticală: adâncimea capătului superior, mm (implicit 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Electrod vertical: diametrul lui (implicit 20), fundație și inel: al unei sârme rotunde, 0 pentru platbandă, mm
 Room {} exists already	Încăperea {} există deja
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotație în grade, în sensul acelor de ceasornic: 0, 90, 180 sau 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotire în grade, în sens antiorar (90 se citește de jos în sus)
@@ -871,6 +904,7 @@ Unknown address scheme: {}	Schemă de adresare necunoscută: {}
 Unknown alignment: {}	Aliniere necunoscută: {}
 Unknown anchor: {}	Ancoră necunoscută: {}
 Unknown aspect: {}	Aspect necunoscut: {}
+Unknown base: {}	Bază necunoscută: {}
 Unknown bonding kind: {}	Tip de legătură echipotențială necunoscut: {}
 Unknown bonding point: {}	Punct de legătură echipotențială necunoscut: {}
 Unknown bus system: {}	Sistem de magistrală necunoscut: {}
@@ -879,6 +913,7 @@ Unknown check: {}	Verificare necunoscută: {}
 Unknown class: {}	Clasă necunoscută: {}
 Unknown data type: {}	Tip de date necunoscut: {}
 Unknown direction {}: left, right, up or down	Direcție necunoscută {}: left, right, up sau down
+Unknown earth electrode: {}	Priză de pământ necunoscută: {}
 Unknown earthing system: {}	Sistem de legare la pământ necunoscut: {}
 Unknown face {}	Față necunoscută {}
 Unknown fastening: {}	Fixare necunoscută: {}
@@ -970,9 +1005,11 @@ device (default), position, cross_section or number	device (implicit), position,
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages sau parts
 error, warning, info, off, or default to take the change back	error, warning, info, off sau default pentru a anula modificarea
 false takes the acceptance back (default true)	false anulează acceptarea (implicit true)
+foundation, ring or rod	foundation, ring sau rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted sau middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) sau product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker sau other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (un suport de tijă pe acoperiș) sau concrete_base (pe acoperișuri plate)
 hose, tube or pipe	hose, tube sau pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (mașini, faze BK) sau iec60445 (faze BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (implicit), power, control, signal sau fluid
@@ -999,6 +1036,8 @@ too long	prea lung
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (implicit), ladder, trunking, conduit, drag_chain, buried sau free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit sau other
 wired, problem or open	wired, problem sau open
+x of the foot of the rod in the floor plan of the building, mm	x al bazei tijei în planul clădirii, mm
+z of the foot of the rod in the floor plan of the building, mm	z al bazei tijei în planul clădirii, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} și {} sunt ambele capete ale unei funcții: conductorul ar scurtcircuita-o
 {} and {} are needed together	{} și {} sunt necesare împreună
 {} cannot be bayed to itself	{} nu poate fi alăturat lui însuși

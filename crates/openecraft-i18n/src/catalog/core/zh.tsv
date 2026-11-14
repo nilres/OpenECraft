@@ -179,7 +179,6 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	电池温度�
 Centre horizontally	水平居中
 Centre vertically	垂直居中
 Centrifugal pump	离心泵
-Change	更改
 Changed since mounted	自安装后已更改
 Changed since wired	接线后已更改
 Changeover contact	转换触点
@@ -284,6 +283,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	铜排 {}：{} mm 超过 {} mm 的库存长度
 Copper bar {}: {} mm are too thick for {}	铜排 {}：{} mm 对于 {} 来说太厚
 Copper bar {}: {} segments need {} bends	铜排 {}：{} 个段需要 {} 个折弯
+Copper-bonded steel	铜包钢
 Cores used	已用芯线
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	第 {} 页上的拐角与其连接线不匹配：需要两个方向各一条连接线，且该处不能有连接点
 Counter contact NC	计数器触点，常闭
@@ -424,6 +424,7 @@ ERP item master and bill of materials (CSV)	ERP 物料主数据和物料清单 (
 ERP number	ERP 编号
 ETIM class	ETIM 类别
 Earth electrode	接地极
+Earth rod	垂直接地极
 East-west on a flat roof	平屋顶上东西向
 Edit pages	编辑页
 Edit project data	编辑项目数据
@@ -541,6 +542,7 @@ Foot switch NO (NFPA)	脚踏开关，常开 (NFPA)
 Force	力
 Fork terminal	叉形端子
 Format (placeholders)	格式（占位符）
+Foundation earth electrode	基础接地极
 Frame size	机座号
 Free	自由
 Free air (mm)	自由布线 (mm)
@@ -837,8 +839,6 @@ Minimum operating temperature	最低工作温度
 Mirror contacts	镜像触点
 Mirrored	已镜像
 Mission time	任务时间
-Module	组件
-Modules	组件
 Moisture	湿度
 Moment of inertia	转动惯量
 Motion detector	移动探测器
@@ -1331,13 +1331,13 @@ Revision table: description of the last revision (2: the one before …)	修订�
 Revision table: index of the last revision (2: the one before …)	修订表：最近一次修订的索引（2：再前一次 …）
 Right side	右侧
 Right side panel	右侧板
+Ring earth electrode	环形接地极
 Ring terminal	环形端子
 Rivet nut	拉铆螺母
 RoHS compliant	符合 RoHS
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
 Roller switch NC	滚轮开关，常闭
 Roller switch NO	滚轮开关，常开
-Roof	顶板
 Room floor	房间地面
 Room {} stands outside the plot boundary	房间 {} 位于场地边界之外
 Rotation	旋转
@@ -1469,6 +1469,7 @@ Spare terminal	备用端子
 Speed	转速
 Spiral	螺旋
 Stainless steel	不锈钢
+Stainless steel V4A	不锈钢 V4A
 Standard	标准
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	带继电器的启动 / 停止电路：线圈和触点组成一个设备，带交叉引用和触点映像；端子排、导线编号、端子图和连接列表。
 Start date	开始日期
@@ -1481,6 +1482,7 @@ Station name {} is used {} times	站名 {} 被使用了 {} 次
 Station {} is not connected to bus {}	站 {} 未连接到总线 {}
 Station {}: bus system {} does not exist	站 {}：总线系统 {} 不存在
 Steam	蒸汽
+Steel, hot-dip galvanised	热镀锌钢
 Stock	库存
 Stop category	停止类别
 Storage temperature range	存储温度范围
@@ -1875,7 +1877,6 @@ page properties	页属性
 pigtail {} mm	屏蔽辫线 {} mm
 pilot	先导
 pink	粉红色
-portrait	纵向
 pressure	压力
 red	红色
 released	已发布
@@ -1957,6 +1958,7 @@ yellow	黄色
 {}: PV array {} covers a roof window	{}：光伏阵列 {} 遮挡了一扇屋顶窗
 {}: PV array {} has {} modules, its device {} has {}	{}：光伏阵列 {} 有 {} 块组件，其设备 {} 有 {} 块
 {}: PV array {} is mounted tilted on a pitched roof	{}：光伏阵列 {} 在坡屋顶上倾斜安装
+{}: PV array {} lies outside the protection of the air-termination system	{}：光伏阵列 {} 位于接闪器保护范围之外
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}：屋顶 {2} 的光伏阵列 {1} 跨过屋脊、斜脊或屋顶边缘
 {}: PV array {} of roof {} lies outside the roof	{0}：屋顶 {2} 的光伏阵列 {1} 位于屋顶之外
 {}: PV arrays {} and {} lie over each other	{}：光伏阵列 {} 与 {} 相互重叠
@@ -1966,6 +1968,7 @@ yellow	黄色
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}：{} mm² 的导线比连接点可接的细（至少 {} mm²）
 {}: accessory {} fits none of the device's parts	{}：附件 {} 不适配设备的任何部件
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}：操作元件 {} 离地 {} mm，建议 {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}：接闪杆 {} 不在屋顶上
 {}: auxiliary function(s) without main function	{}：辅助功能没有主功能
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}：分断能力 {} kA 低于短路电流 {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}：位于 {} mm 处的线槽填充率为 {} %（限值 {} %）
@@ -1986,6 +1989,8 @@ yellow	黄色
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}：{3} 上 {1} 和 {2} 的开孔距离太近（筋宽 {4} mm，至少 {5} mm）
 {}: designation '{}' used more than once	{}：标识“{}”被多次使用
 {}: device tag without device name	{}：设备标识符没有设备名称
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}：接地极 {} 没有可沿着敷设的墙：建筑物没有房间或屋顶
+{}: earth rod {} stands inside the walls of the building	{}：垂直接地极 {} 位于建筑物墙体以内
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}：{2} 处的故障电流 {1} A 无法在 {3} s 内切断（需要 {4} A）
 {}: function texts differ in the single-line diagram and the schematic	{}：单线图和原理图中的功能文本不同
 {}: hole of {} is too close to the cutout of {} on the {}	{0}：{1} 的孔距离 {3} 上 {2} 的开孔太近
@@ -2045,7 +2050,12 @@ yellow	黄色
 {}: terminal {} is on level {}, but no terminal block is before it	{}：端子 {} 位于第 {} 层，但其前面没有端子块
 {}: terminal {} uses {} levels, its part {} has {}	{}：端子 {} 使用 {} 层，其部件 {} 有 {} 层
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}：端子 {} 离地 {} mm，至少需要 {} mm
+{}: the busbar {} of earth electrode {} does not exist	{0}：接地极 {2} 的母线 {1} 不存在
 {}: the device {} of PV array {} does not exist	{0}：光伏阵列 {2} 的设备 {1} 不存在
+{}: the earthing busbar {} of PV array {} does not exist	{0}：光伏阵列 {2} 的接地母线 {1} 不存在
+{}: the generator junction box {} of PV array {} does not exist	{0}：光伏阵列 {2} 的光伏汇流箱 {1} 不存在
+{}: the lightning protection has no earth electrode	{}：防雷没有接地极
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}：防雷没有可沿着敷设的墙：建筑物没有房间或屋顶
 {}: the module {} of PV array {} has no electrical data	{0}：光伏阵列 {2} 的组件 {1} 没有电气数据
 {}: the station has no port {}	{}：该站没有端口 {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}：光伏阵列 {} 的组串连接了 {} 块组件，阵列共有 {} 块
@@ -2062,6 +2072,7 @@ yellow	黄色
 {}: {} carries {} A, the load {} needs {} A	{}：{} 的载流量为 {} A，负载 {} 需要 {} A
 {}: {} changed after it was mounted	{}：{} 在安装后已更改
 {}: {} collides with {}	{}：{} 与 {} 碰撞
+{}: {} down conductors, class {} needs {} round the building	{}：{} 根引下线，类别 {} 需要在建筑物周围设置 {} 根
 {}: {} inputs used, the module has {}	{}：已使用 {} 个输入，模块只有 {} 个
 {}: {} is a fluid device, not an electrical one	{}：{} 是流体设备，而不是电气设备
 {}: {} is closer than {} mm to a cable duct	{}：{} 与线槽的距离小于 {} mm

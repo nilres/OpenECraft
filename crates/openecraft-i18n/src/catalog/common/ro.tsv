@@ -48,6 +48,7 @@ Catalog id	ID catalog
 Category	Categorie
 Centred	Centrat
 Certificates	Certificate
+Change	Modificare
 Channel	Canal
 Characteristic	Caracteristică
 Check settings	Setări de verificare
@@ -109,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Punct de conexiune al dispozitivului
 Device description	Descriere de dispozitiv
 Device tag	Identificator de dispozitiv
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Aparatul la care merge conductorul de împământare al structurii (bară de împământare sau de echipotențializare); gol: niciunul
 Device {}	Dispozitiv {}
 Devices	Dispozitive
 Dimensions	Dimensiuni
@@ -158,6 +160,7 @@ Function text	Text de funcție
 Functional safety	Siguranță funcțională
 Functions	Funcții
 General	General
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Cutie de joncțiune a generatorului (aparat) la care merg șirurile, de acolo un cablu principal CC la fiecare invertor; gol: niciuna
 Gives up a subproject: its pages are unlocked again	Renunță la un subproiect: paginile sale sunt deblocate din nou
 Gland plate	Placă pentru presetupe
 Graphics	Grafică
@@ -206,6 +209,7 @@ Location (+)	Loc de montare (+)
 Logo	Siglă
 MTTFd (years)	MTTFd (ani)
 Machine	Mașină
+Main earthing busbar (device) it is connected to; empty: none	Bara principală de împământare (aparat) la care este conectată; gol: niciuna
 Main earthing terminal	Bornă principală de împământare
 Main switch	Întrerupător principal
 Manufacturer	Producător
@@ -220,6 +224,8 @@ Minimum digits of the counter (leading zeros)	Numărul minim de cifre al contoru
 Missing parameter: {}	Parametru lipsă: {}
 Missing value for --{}	Valoare lipsă pentru --{}
 Model import failed: {}	Importul modelului nu a reușit: {}
+Module	Modul
+Modules	Module
 Modules in series	Module în serie
 Modules side by side in a row	Module unul lângă altul într-un rând
 Mounted	Montat
@@ -272,6 +278,7 @@ Not in the schematic	Nu este în schemă
 Note	Notă
 Notes	Note
 Number	Număr
+Number of down conductors (0: as many as the class needs for the walls)	Numărul conductoarelor de coborâre (0: câte cere clasa pentru pereți)
 Number the sections 1, 2, 3 … on every level first	Numerotează mai întâi secțiunile 1, 2, 3 … pe fiecare nivel
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numerotează identificatorii de dispozitiv pe structură și literă de identificare, în ordinea schemei (pagină, coloană, de sus în jos)
 Only rows containing this text	Doar rândurile care conțin acest text
@@ -368,6 +375,7 @@ Released pages cannot be moved	Paginile aprobate nu pot fi mutate
 Remove	Eliminare
 Remove from favorites	Eliminare din favorite
 Remove the boundary	Eliminați limita
+Remove the lightning protection system	Elimină protecția contra trăsnetului
 Remove the reference point	Eliminați punctul de referință
 Report	Raport
 Report blocks	Blocuri de raport
@@ -379,6 +387,7 @@ Revision {}	Revizia {}
 Rework	Remaniere
 Right	Dreapta
 Role	Rol
+Roof	Plafon
 Rooms	Încăperi
 Round	Rotund
 Route	Traseu
@@ -511,6 +520,7 @@ not bonded	nelegat
 not connected	neconectat
 open	deschis
 pcs	buc.
+portrait	portret
 rejected	respins
 right	spre dreapta
 spare	rezervă

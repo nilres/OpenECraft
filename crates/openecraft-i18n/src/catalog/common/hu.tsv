@@ -48,6 +48,7 @@ Catalog id	Katalógusazonosító
 Category	Kategória
 Centred	Középre igazítva
 Certificates	Tanúsítványok
+Change	Változás
 Channel	Csatorna
 Characteristic	Jelleggörbe
 Check settings	Ellenőrzési beállítások
@@ -109,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Eszköz csatlakozási pontja
 Device description	Eszközleírás
 Device tag	Készülékazonosító
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Eszköz, amelyhez a tartószerkezet földelővezetője fut (földelő- vagy potenciálkiegyenlítő sín); üres: nincs
 Device {}	{} készülék
 Devices	Készülékek
 Dimensions	Méretek
@@ -158,6 +160,7 @@ Function text	Funkciószöveg
 Functional safety	Funkcionális biztonság
 Functions	Funkciók
 General	Általános
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Generátor csatlakozódoboz (eszköz), amelyhez a stringek futnak, onnan egy DC fővezeték minden inverterhez; üres: nincs
 Gives up a subproject: its pages are unlocked again	Elvet egy alprojektet: oldalai zárolása feloldódik
 Gland plate	Kábelbevezető lemez
 Graphics	Grafika
@@ -206,6 +209,7 @@ Location (+)	Szerelési hely (+)
 Logo	Logó
 MTTFd (years)	MTTFd (év)
 Machine	Gép
+Main earthing busbar (device) it is connected to; empty: none	Fő földelősín (eszköz), amelyhez csatlakozik; üres: nincs
 Main earthing terminal	Fő földelősín
 Main switch	Főkapcsoló
 Manufacturer	Gyártó
@@ -220,6 +224,8 @@ Minimum digits of the counter (leading zeros)	A számláló minimális számjegy
 Missing parameter: {}	Hiányzó paraméter: {}
 Missing value for --{}	Hiányzó érték: --{}
 Model import failed: {}	Sikertelen modellimportálás: {}
+Module	Modul
+Modules	Modulok
 Modules in series	Sorba kötött modulok
 Modules side by side in a row	Modulok egymás mellett egy sorban
 Mounted	Felszerelve
@@ -272,6 +278,7 @@ Not in the schematic	Nincs a kapcsolási rajzon
 Note	Megjegyzés
 Notes	Megjegyzések
 Number	Szám
+Number of down conductors (0: as many as the class needs for the walls)	A levezetők száma (0: annyi, amennyit az osztály a falakhoz megkövetel)
 Number the sections 1, 2, 3 … on every level first	Először a szakaszok számozása 1, 2, 3 … minden szinten
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Számozza a készülékazonosítókat struktúránként és kódbetűnként, a kapcsolási rajz sorrendjében (oldal, oszlop, fentről lefelé)
 Only rows containing this text	Csak az ezt a szöveget tartalmazó sorok
@@ -368,6 +375,7 @@ Released pages cannot be moved	A kiadott oldalak nem helyezhetők át
 Remove	Eltávolítás
 Remove from favorites	Eltávolítás a kedvencek közül
 Remove the boundary	Határ eltávolítása
+Remove the lightning protection system	Villámvédelem eltávolítása
 Remove the reference point	Referenciapont eltávolítása
 Report	Kimutatás
 Report blocks	Kimutatásblokkok
@@ -379,6 +387,7 @@ Revision {}	{}. revízió
 Rework	Utómunka
 Right	Jobb
 Role	Szerepkör
+Roof	Tető
 Rooms	Helyiségek
 Round	Kerek
 Route	Elvezetés
@@ -511,6 +520,7 @@ not bonded	nincs bekötve
 not connected	nincs csatlakoztatva
 open	nyitott
 pcs	db
+portrait	álló
 rejected	elutasítva
 right	jobbra
 spare	tartalék
