@@ -39,13 +39,13 @@ pub fn root_from_env() -> Option<PathBuf> {
 }
 
 /// Parameters of the tools that name files or folders.
-const PATH_PARAMS: [&str; 8] = ["path", "output", "folder", "database", "target", "template", "macros", "logo"];
+const PATH_PARAMS: [&str; 11] = ["path", "output", "folder", "database", "target", "template", "macros", "logo", "base", "ours", "theirs"];
 
 /// Parameters of the tools that name several files, separated by `;`.
 const PATH_LIST_PARAMS: [&str; 1] = ["files"];
 
-/// Parameters of those names that are ids of the vault, not files (tool, parameter).
-const NOT_PATHS: [(&str, &str); 2] = [("vault_browse", "folder"), ("vault_upload", "folder")];
+/// Parameters that are ids of the vault or a format, not files (tool, parameter).
+const NOT_PATHS: [(&str, &str); 3] = [("vault_browse", "folder"), ("vault_upload", "folder"), ("convert_project", "format")];
 
 /// The absolute path without `.` and `..`, its existing part with symbolic links
 /// resolved.
@@ -88,7 +88,7 @@ fn confine(root: &Path, tool: &str, args: &Map<String, Value>) -> Result<(), Str
             continue;
         }
         // Built-in templates are names, not files.
-        let file = path.contains(['/', '\\']) || [".oec", ".oecz"].iter().any(|e| path.to_lowercase().ends_with(e));
+        let file = path.contains(['/', '\\']) || [".oec", ".oecp", ".oecz"].iter().any(|e| path.to_lowercase().ends_with(e));
         if name == "template" && !file {
             continue;
         }
