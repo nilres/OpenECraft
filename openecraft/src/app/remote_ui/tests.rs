@@ -1,5 +1,8 @@
 use super::*;
 use openecraft_core::model::{Page, PageKind, Project};
+use openecraft_core::collab::{Opened, ProjectAccess, ProjectRole, ProjectSummary, Shared};
+use crate::startup::{Reconnect, ReconnectState, ServerProject};
+use std::collections::HashMap;
 
 fn frame(app: &mut App, ctx: &egui::Context) {
     ctx.run_ui(egui::RawInput { time: Some(0.), ..Default::default() }, |ui| {
@@ -44,6 +47,7 @@ fn live_http_shared_saves_are_serialized_and_confirm_only_what_they_sent() {
         let ctx = egui::Context::default();
         let mut app = App::new(&eframe::CreationContext::_new_kittest(ctx.clone()));
         app.replace_project(project(), None);
+        app.remote = Remote::default();
         app.remote.url = url.clone();
         app.remote.user = user.into();
         app.remote.token = std::env::var(format!("OPENECRAFT_LIVE_TEST_{}", user.to_uppercase())).expect("test account token");
@@ -174,4 +178,98 @@ fn live_http_shared_saves_are_serialized_and_confirm_only_what_they_sent() {
     bob.remote.close();
     idle(&mut bob, &b);
     println!("PASS: closing during a save keeps the save");
+}
+
+#[derive(Default)]
+struct MemoryStorage(HashMap<String, String>);
+
+impl eframe::Storage for MemoryStorage {
+    fn remove_string(&mut self, key: &str) { self.0.remove(key); }
+    fn get_string(&self, key: &str) -> Option<String> { self.0.get(key).cloned() }
+    fn set_string(&mut self, key: &str, value: String) { self.0.insert(key.into(), value); }
+    fn flush(&mut self) {}
+}
+
+fn shared_app() -> (App, Project, ServerProject) {
+    let ctx = egui::Context::default();
+    let mut storage = MemoryStorage::default();
+    let shell = crate::app::ShellState { update_check: false, ..Default::default() };
+    eframe::set_value(&mut storage, crate::app::UI_KEY, &shell);
+    let mut creation = eframe::CreationContext::_new_kittest(ctx);
+    creation.storage = Some(&storage);
+    let mut app = App::new(&creation);
+    let mut baseline = Project::default();
+    baseline.info.name = "Synthetic baseline".into();
+    app.replace_project(baseline, None);
+    let baseline = app.session.prj.clone();
+    // A fresh Remote has no real Store attached; the query prevents OS lookup.
+    app.remote = Remote::default();
+    app.remote.url = "http://127.0.0.1:9/?synthetic-app-sign-out-test".into();
+    app.remote.user = "synthetic-Alice".into();
+    app.remote.token = "synthetic-token".into();
+    app.remote.password = "synthetic-unsent-password".into();
+    app.remote.role = Some(ProjectRole::Editor);
+    app.remote.rights = vec![ProjectRight::View, ProjectRight::EditPages];
+    app.remote.access = Some(ProjectAccess::default());
+    app.remote.projects = vec![ProjectSummary { name: "synthetic-project".into(), ..Default::default() }];
+    app.remote.sign_in.signed_in = true;
+    let opened = Opened {
+        session: openecraft_core::collab::Session { user: app.remote.user.clone(), session: "synthetic-page-session".into() },
+        snapshot: Snapshot { project: baseline.clone(), ..Default::default() },
+        ..Default::default()
+    };
+    app.remote.shared = Some(Shared::open("synthetic-project", opened).0);
+    let project = app.remote.project().unwrap();
+    app.reconnect = Some(Reconnect { project: project.clone(), state: ReconnectState::Failed("synthetic disconnect".into()) });
+    app.session.prj.info.name = "Synthetic local work".into();
+    assert!(app.session.commit(true));
+    assert!(app.session.dirty());
+    (app, baseline, project)
+}
+
+fn assert_signed_out_preserves_work(app: &App, before: &Project, state: u64, revision: u64, recovery: &ServerProject) {
+    assert_eq!(&app.session.prj, before);
+    assert_eq!(app.session.history.state(), state);
+    assert_eq!(app.session.history.rev, revision);
+    assert!(app.session.dirty());
+    assert!(app.session.file_name.is_none());
+    assert_eq!(app.recovery.as_ref(), Some(recovery));
+    assert!(app.reconnect.is_none());
+    assert_eq!(app.remote.url, recovery.url);
+    assert!(app.remote.shared.is_none());
+    assert!(app.remote.token.is_empty() && app.remote.password.is_empty());
+    assert!(app.remote.role.is_none() && app.remote.rights.is_empty() && app.remote.access.is_none());
+    assert!(app.remote.projects.is_empty());
+    assert!(!app.remote.sign_in.signed_in && !app.remote.sign_in.remember);
+    assert!(!app.remote.sign_in.credential_changes_pending());
+}
+
+#[test]
+fn signing_out_keeps_unsaved_project_undo_and_local_recovery() {
+    let (mut app, baseline, project) = shared_app();
+    let before = app.session.prj.clone();
+    let state = app.session.history.state();
+    let revision = app.session.history.rev;
+    app.sign_out_remote(false);
+    assert_signed_out_preserves_work(&app, &before, state, revision, &project);
+    assert_eq!(app.remote.user, "synthetic-Alice");
+    app.session.undo();
+    assert_eq!(app.session.prj, baseline);
+    app.session.redo();
+    assert_eq!(app.session.prj, before);
+}
+
+#[test]
+fn changing_user_clears_only_the_account_and_keeps_local_work_and_undo() {
+    let (mut app, baseline, project) = shared_app();
+    let before = app.session.prj.clone();
+    let state = app.session.history.state();
+    let revision = app.session.history.rev;
+    app.sign_out_remote(true);
+    assert_signed_out_preserves_work(&app, &before, state, revision, &project);
+    assert!(app.remote.user.is_empty());
+    app.session.undo();
+    assert_eq!(app.session.prj, baseline);
+    app.session.redo();
+    assert_eq!(app.session.prj, before);
 }

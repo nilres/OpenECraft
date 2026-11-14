@@ -40,6 +40,8 @@ pub(super) fn rename_property(props: &mut std::collections::BTreeMap<String, Str
 impl App {
     pub(super) fn closing_window(&mut self, ui: &mut egui::Ui) {
         let ctx = ui.ctx().clone();
+        self.remote.poll_credentials();
+        let credentials_busy = self.remote.sign_in.credential_changes_pending();
         let shutdown = self.shutdown.as_mut().expect("closing job");
         let complete = shutdown.poll();
         let step = shutdown.step();
@@ -54,6 +56,7 @@ impl App {
                 ui.label(error);
                 cancel = ui.button(tr("Cancel")).clicked();
             } else {
+                if credentials_busy { ui.label(tr("Finishing the sign-in changes on this device…")); }
                 ui.label(tr_fmt!("Step {} of {}: {}", step + 1, crate::shutdown::STEPS.len(), tr(crate::shutdown::STEPS[step])));
                 ui.add(egui::ProgressBar::new(step as f32 / crate::shutdown::STEPS.len() as f32).animate(true));
                 ui.spinner();
@@ -62,7 +65,7 @@ impl App {
         if cancel {
             self.shutdown = None;
             self.updater.restart = false;
-        } else if complete {
+        } else if complete && !credentials_busy {
             self.closing = true;
             ctx.send_viewport_cmd(egui::ViewportCommand::Close);
         }

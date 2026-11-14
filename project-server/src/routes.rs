@@ -11,7 +11,7 @@ use axum::routing::{get, post, put};
 use axum::{Json, Router};
 use openecraft_auth::{AccessFile, ClientIp, SignInError, Throttle};
 use openecraft_core::collab::{
-    changes, merge, save_plan, valid_name, Access, CreateRequest, Grant, Lock, LockRequest, LoginRequest, LoginResponse, OpenRequest, Opened, Owned, Policy, ProjectAccess,
+    changes, merge, save_plan, valid_name, Access, CreateRequest, CurrentAccount, Grant, Lock, LockRequest, LoginRequest, LoginResponse, OpenRequest, Opened, Owned, Policy, ProjectAccess,
     ProjectRight, ProjectRole, ProjectSummary, ProjectUser, Right, SaveRequest, ServerInfo, Session, Settings, Snapshot, Status, Subject, Target,
     UserUpdate, API_PREFIX, SERVER,
 };
@@ -226,6 +226,7 @@ pub fn router(state: AppState) -> Router {
         .route(&format!("{project}/access"), get(project_access).put(save_project_access))
         .route(&format!("{API_PREFIX}/login"), post(login).layer(DefaultBodyLimit::max(SMALL_BODY)))
         .route(&format!("{API_PREFIX}/logout"), post(logout))
+        .route(&format!("{API_PREFIX}/session"), get(current_account))
         .route(&format!("{API_PREFIX}/users"), get(list_users))
         .route(&format!("{API_PREFIX}/users/{{name}}"), put(save_user).delete(delete_user))
         .route(&format!("{API_PREFIX}/access"), get(access).put(save_access))
@@ -688,6 +689,17 @@ async fn login(State(state): State<AppState>, ClientIp(client): ClientIp, Json(r
     log::info!("{} signed in with {}", user.name, user.provider);
     let access = server.access_of(&user);
     Ok(Json(LoginResponse { token, user, access }))
+}
+
+/// Restores only a user's sign-in, never the server token or anonymous access.
+/// Reading it neither creates a token nor extends its absolute lifetime.
+async fn current_account(State(state): State<AppState>, headers: HeaderMap) -> Result<Response> {
+    let server = lock_server(&state);
+    let token = presented(&headers).filter(|t| !state.token.as_ref().is_some_and(|root| token_matches(t, root)));
+    let user = token.and_then(|t| server.users.by_token(t)).map(|a| a.user.clone())
+        .ok_or_else(|| AppError(StatusCode::UNAUTHORIZED, "a signed-in user session is required".into()))?;
+    let access = server.access_of(&user);
+    Ok(([(header::CACHE_CONTROL, "no-store")], Json(CurrentAccount { user, access })).into_response())
 }
 
 async fn logout(State(state): State<AppState>, headers: HeaderMap) -> Result<StatusCode> {

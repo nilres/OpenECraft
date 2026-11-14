@@ -673,3 +673,86 @@ async fn the_last_administrator_stays_also_by_grant_and_access_settings() {
     assert_eq!(with(&app, "PUT", "/api/v1/access", &anna, &Policy::<ProjectRight>::default()).await.0, StatusCode::CONFLICT);
     assert!(with(&app, "GET", "/api/v1/users", &anna, &()).await.0.is_success());
 }
+
+#[tokio::test]
+async fn current_account_has_fresh_identity_and_rights_without_credentials() {
+    let app = app(Some(TOKEN));
+    let tokens = sign_in(&app, &[("Anna", Some(ProjectRole::Editor), &["qa"])]).await;
+    let token = &tokens[0];
+    let (code, body) = with(&app, "GET", "/api/v1/session", token, &()).await;
+    assert_eq!(code, StatusCode::OK, "{body}");
+    let current: CurrentAccount = serde_json::from_str(&body).unwrap();
+    assert_eq!(current.user.name, "Anna");
+    assert_eq!(current.user.role, Some(ProjectRole::Editor));
+    assert_eq!(current.user.groups, ["qa"]);
+    assert!(current.access.allows("Plant 1", ProjectRight::EditPages));
+    let json: serde_json::Value = serde_json::from_str(&body).unwrap();
+    assert!(json.get("token").is_none());
+    assert!(!body.contains(token));
+    assert!(!body.contains("password"));
+
+    let update = UserUpdate { role: Some(ProjectRole::Viewer), projects: vec!["Plant 1".into()], ..Default::default() };
+    assert_eq!(with(&app, "PUT", "/api/v1/users/anna", TOKEN, &update).await.0, StatusCode::OK);
+    let (code, body) = with(&app, "GET", "/api/v1/session", token, &()).await;
+    assert_eq!(code, StatusCode::OK, "{body}");
+    let current: CurrentAccount = serde_json::from_str(&body).unwrap();
+    assert_eq!(current.user.name, "Anna");
+    assert_eq!(current.user.role, Some(ProjectRole::Viewer));
+    assert_eq!(current.user.projects, ["Plant 1"]);
+    assert!(current.access.allows("Plant 1", ProjectRight::View));
+    assert!(!current.access.allows("Plant 1", ProjectRight::EditPages));
+    assert!(!current.access.allows("Other", ProjectRight::View));
+
+    assert_eq!(with(&app, "POST", "/api/v1/logout", token, &()).await.0, StatusCode::NO_CONTENT);
+    assert_eq!(with(&app, "GET", "/api/v1/session", token, &()).await.0, StatusCode::UNAUTHORIZED);
+}
+
+#[tokio::test]
+async fn current_account_refuses_root_open_anonymous_and_invalid_tokens() {
+    let open = app(None);
+    assert_eq!(call(&open, "GET", "/api/v1/projects", None, String::new()).await.0, StatusCode::OK);
+    assert_eq!(call(&open, "GET", "/api/v1/session", None, String::new()).await.0, StatusCode::UNAUTHORIZED);
+    assert_eq!(with(&open, "GET", "/api/v1/session", "wrong", &()).await.0, StatusCode::UNAUTHORIZED);
+
+    let app = app(Some(TOKEN));
+    for token in [None, Some(TOKEN), Some("wrong")] {
+        assert_eq!(call(&app, "GET", "/api/v1/session", token, String::new()).await.0, StatusCode::UNAUTHORIZED);
+    }
+    let policy = Policy::<ProjectRight> { anonymous: "viewer".into(), ..Default::default() };
+    assert_eq!(with(&app, "PUT", "/api/v1/access", TOKEN, &policy).await.0, StatusCode::OK);
+    assert_eq!(call(&app, "GET", "/api/v1/projects", None, String::new()).await.0, StatusCode::OK);
+    for token in [None, Some(TOKEN), Some("wrong")] {
+        assert_eq!(call(&app, "GET", "/api/v1/session", token, String::new()).await.0, StatusCode::UNAUTHORIZED);
+    }
+}
+
+#[tokio::test]
+async fn current_account_does_not_renew_tokens_and_rejects_expired_sessions() {
+    let now = openecraft_auth::unix_now();
+    let mut sessions = Vec::new();
+    let token = openecraft_auth::start_session(&mut sessions, now - 60);
+    let valid = Account {
+        user: ProjectUser { name: "DirectoryUser".into(), provider: "corp".into(), groups: vec!["corp:qa".into()], ..Default::default() },
+        password: String::new(), sessions,
+    };
+    let mut sessions = Vec::new();
+    let expired_token = openecraft_auth::start_session(&mut sessions, now - openecraft_auth::SESSION_LIFETIME_SECS);
+    let expired = Account { user: ProjectUser { name: "expired".into(), ..Default::default() }, password: String::new(), sessions };
+    let accounts = vec![valid, expired];
+    let mut users = Users::default();
+    users.accounts = accounts.clone();
+    let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users, access: AccessFile::in_memory(Default::default()), throttle: Throttle::default() };
+    let state = AppState { server: Arc::new(Mutex::new(server)), token: Some(TOKEN.into()) };
+    let app = router(state.clone());
+    for _ in 0..2 {
+        let request = Request::builder().uri("/api/v1/session").header(header::AUTHORIZATION, format!("Bearer {token}")).body(Body::empty()).unwrap();
+        let response = app.clone().oneshot(request).await.unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+        assert_eq!(response.headers().get(header::CACHE_CONTROL).unwrap(), "no-store");
+        let body = response.into_body().collect().await.unwrap().to_bytes();
+        let current: CurrentAccount = serde_json::from_slice(&body).unwrap();
+        assert_eq!(current.user, accounts[0].user);
+    }
+    assert_eq!(with(&app, "GET", "/api/v1/session", &expired_token, &()).await.0, StatusCode::UNAUTHORIZED);
+    assert_eq!(lock_server(&state).users.accounts, accounts);
+}

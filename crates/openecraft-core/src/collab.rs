@@ -28,6 +28,7 @@
 //! | GET | `/api/v1/projects/{name}/access` | [`ProjectAccess`] ([`ProjectRight::ManageAccess`]) |
 //! | PUT | `/api/v1/projects/{name}/access` | [`Grant`] list → [`ProjectAccess`] |
 //! | POST | `/api/v1/login` | [`LoginRequest`] → [`LoginResponse`] |
+//! | GET | `/api/v1/session` | [`CurrentAccount`] (signed-in user sessions only) |
 //! | POST | `/api/v1/logout` | ends the session of the bearer token |
 //! | GET | `/api/v1/users` | [`ProjectUser`] list (administrators) |
 //! | PUT | `/api/v1/users/{name}` | [`UserUpdate`] → [`ProjectUser`] (administrators) |
@@ -374,6 +375,14 @@ pub struct LoginResponse {
     pub token: String,
     pub user: ProjectUser,
     /// What the user may do.
+    pub access: Access<ProjectRight>,
+}
+
+/// Current identity and permissions of a signed-in user, without credentials.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct CurrentAccount {
+    pub user: ProjectUser,
     pub access: Access<ProjectRight>,
 }
 

@@ -6,14 +6,15 @@ use openecraft_i18n::tr_fmt;
 use openecraft_parts::api::{encode_component, ServerInfo};
 
 #[cfg(windows)]
-#[path = "credentials/windows.rs"]
-mod native;
+pub(crate) mod windows;
+#[cfg(windows)]
+pub(crate) use windows as native;
 
 #[cfg(not(windows))]
 mod native {
     use super::CredentialError;
     pub fn load(_: &str) -> Result<Option<String>, CredentialError> { Ok(None) }
-    pub fn save(_: &str, _: &str) -> Result<bool, CredentialError> { Ok(false) }
+    pub fn save(_: &str, _: &str, _: &str) -> Result<bool, CredentialError> { Ok(false) }
     pub fn forget(_: &str) -> Result<bool, CredentialError> { Ok(false) }
 }
 
@@ -61,7 +62,7 @@ impl CredentialStore for SystemCredentialStore {
     }
     fn save(&self, url: &str, token: &str) -> Result<bool, CredentialError> {
         match target_name(url).filter(|_| !token.trim().is_empty()) {
-            Some(target) => native::save(&target, token.trim()),
+            Some(target) => native::save(&target, token.trim(), "EPLAN Data Portal"),
             None => Ok(false),
         }
     }

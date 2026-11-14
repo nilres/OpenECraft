@@ -3,12 +3,17 @@
 //! collects the answers. The rules of shared editing are in `openecraft_core::collab`.
 
 use openecraft_client::{decode, ehttp, ProjectEndpoint};
-use openecraft_core::collab::{self, Grant, Kept, KeptReason, LoginResponse, Opened, ProjectAccess, ProjectRight, ProjectRole, ProjectSummary, Shared, Snapshot, Status, Target};
+use openecraft_core::collab::{self, CurrentAccount, Grant, Kept, KeptReason, LoginResponse, Opened, ProjectAccess, ProjectRight, ProjectRole, ProjectSummary, Shared, Snapshot, Status, Target};
 use crate::session::Session;
 use openecraft_core::model::Project;
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::io::Store;
 use std::sync::{Arc, Mutex};
+
+mod credentials;
+mod sign_in;
+use sign_in::{After, SignIn, RestoreFailure};
+use openecraft_client::project_credentials::Account;
 
 /// Key of the kept local changes in the app's store.
 const KEPT_KEY: &str = "shared_kept";
@@ -33,7 +38,6 @@ pub struct Sent {
 }
 
 /// Answer of a request. Answers for a session that is no longer open are dropped.
-#[derive(Debug)]
 pub enum Reply {
     List(Result<Vec<ProjectSummary>, String>),
     /// Name on the server and the opened project.
@@ -44,6 +48,9 @@ pub enum Reply {
     /// Requested targets and the answer.
     Locked(String, Vec<Target>, Result<Status, String>),
     Login(Result<LoginResponse, String>),
+    /// Internal: checked before a remembered token is used for project requests.
+    Restored(Account, String, Result<CurrentAccount, RestoreFailure>),
+    SignedOut(Result<(), String>),
     /// Grants on the open project (loaded or saved).
     Access(String, Result<ProjectAccess, String>),
     Closed,
@@ -54,9 +61,17 @@ impl Reply {
         match self {
             Reply::Saved(sent, _) => Some(&sent.session),
             Reply::Snapshot(s, _) | Reply::Status(s, _) | Reply::Locked(s, _, _) | Reply::Access(s, _) => Some(s),
-            Reply::List(_) | Reply::Opened(..) | Reply::Login(_) | Reply::Closed => None,
+            Reply::List(_) | Reply::Opened(..) | Reply::Login(_) | Reply::Restored(..) | Reply::SignedOut(_) | Reply::Closed => None,
         }
     }
+}
+
+/// Requests belong to the server/account selection that sent them. No Debug:
+/// endpoints and login answers may contain a bearer token.
+struct Answer {
+    generation: u64,
+    endpoint: ProjectEndpoint,
+    reply: Reply,
 }
 
 pub struct Remote {
@@ -66,6 +81,7 @@ pub struct Remote {
     pub user: String,
     /// Password of a user account (kept until signing in).
     pub password: String,
+    pub sign_in: SignIn,
     /// Role of the signed-in user; None without user account (token or open server)
     /// or without built-in role (rights from grants only).
     pub role: Option<ProjectRole>,
@@ -111,7 +127,7 @@ pub struct Remote {
     /// until their copies are discarded.
     pub unconfirmed: Option<u64>,
     ctx: Option<egui::Context>,
-    inbox: Arc<Mutex<Vec<Reply>>>,
+    inbox: Arc<Mutex<Vec<Answer>>>,
     cancelled_locks: Vec<(String, Vec<Target>)>,
 }
 
@@ -124,6 +140,7 @@ impl Default for Remote {
             token,
             user,
             password: String::new(),
+            sign_in: SignIn::default(),
             role: None,
             rights: Vec::new(),
             access: None,
@@ -159,7 +176,7 @@ impl Remote {
     }
 
     pub fn busy(&self) -> bool {
-        self.pending > 0
+        self.pending > 0 || self.sign_in.busy()
     }
 
     fn send(&mut self, request: ehttp::Request, status: String, wrap: impl 'static + Send + FnOnce(ehttp::Result<ehttp::Response>) -> Reply) {
@@ -172,9 +189,11 @@ impl Remote {
         self.pending += 1;
         let inbox = self.inbox.clone();
         let ctx = self.ctx.clone();
+        let generation = self.sign_in.generation;
+        let endpoint = self.endpoint();
         move |reply| {
             if let Ok(mut inbox) = inbox.lock() {
-                inbox.push(reply);
+                inbox.push(Answer { generation, endpoint, reply });
             }
             if let Some(ctx) = ctx {
                 ctx.request_repaint();
@@ -185,6 +204,7 @@ impl Remote {
     /// Answers wake up the window from the start on; the kept local changes are read.
     pub fn attach(&mut self, ctx: &egui::Context) {
         self.ctx = Some(ctx.clone());
+        self.sign_in.attach(ctx);
         if self.kept_store.is_none() {
             let store = Store::new("OpenECraft");
             store.load(ctx, KEPT_KEY);
@@ -329,12 +349,6 @@ impl Remote {
         self.shared.as_ref().map(|s| s.session.session.clone()).unwrap_or_default()
     }
 
-    /// Signs in with user name and password; the session token replaces the token.
-    pub fn sign_in(&mut self) {
-        let req = self.endpoint().login(self.user.trim(), &std::mem::take(&mut self.password));
-        self.send(req, tr("Signing in…").into(), |r| Reply::Login(decode(r)));
-    }
-
     /// The user may do this with the open project. Older servers send no rights: then
     /// the role decides (none: token or open server, everything).
     pub fn may(&self, right: ProjectRight) -> bool {
@@ -367,11 +381,13 @@ impl Remote {
 
     /// Lists the projects of the server.
     pub fn list(&mut self) {
+        if self.restore_before(Some(After::List)) { return; }
         let req = self.endpoint().list();
         self.send(req, tr("Connecting…").into(), |r| Reply::List(decode(r)));
     }
 
     pub fn open(&mut self, name: &str) {
+        if self.restore_before(Some(After::Open(name.into()))) { return; }
         let req = self.endpoint().open(name, self.user.trim());
         let n = name.to_string();
         self.send(req, tr_fmt!("Opening {}…", name), move |r| Reply::Opened(n, decode(r).map(Box::new)));
@@ -520,11 +536,21 @@ impl Remote {
     pub fn poll(&mut self, ctx: &egui::Context) -> Vec<Reply> {
         self.ctx = Some(ctx.clone());
         self.load_kept();
-        let replies: Vec<Reply> = self.inbox.lock().map(|mut i| std::mem::take(&mut *i)).unwrap_or_default();
+        self.poll_credentials();
+        let replies: Vec<Answer> = self.inbox.lock().map(|mut i| std::mem::take(&mut *i)).unwrap_or_default();
         let current = self.session_id();
         let mut out = Vec::new();
-        for reply in replies {
+        for answer in replies {
+            if answer.generation != self.sign_in.generation {
+                self.discard_answer(answer);
+                continue;
+            }
+            let mut reply = answer.reply;
             self.pending = self.pending.saturating_sub(1);
+            let restored = matches!(reply, Reply::Restored(..));
+            if let Reply::Restored(account, token, result) = reply {
+                reply = Reply::Login(self.finish_restore(account, token, result));
+            }
             match &reply {
                 Reply::Status(..) => self.polling = false,
                 Reply::Snapshot(..) => self.fetching = false,
@@ -561,6 +587,8 @@ impl Remote {
                 // The "Locking…" of the request is over.
                 Reply::Locked(_, _, Ok(_)) => String::new(),
                 Reply::Access(_, Err(e)) => tr_fmt!("Project server: {}", e),
+                Reply::SignedOut(Ok(())) => tr("Signed out on the project server.").into(),
+                Reply::SignedOut(Err(_)) => tr("Signed out on this device. The server sign-in could not be ended; check the connection.").into(),
                 Reply::List(Err(e))
                 | Reply::Opened(_, Err(e))
                 | Reply::Saved(_, Err(e))
@@ -578,10 +606,7 @@ impl Remote {
                 self.projects = list.clone();
             }
             if let Reply::Login(Ok(r)) = &reply {
-                self.token = r.token.clone();
-                self.user = r.user.name.clone();
-                self.role = r.user.role;
-                self.list();
+                self.accept_login(r, restored);
             }
             if let Reply::Opened(_, Ok(o)) = &reply {
                 self.rights = o.rights.clone();
