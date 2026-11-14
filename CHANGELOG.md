@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Docker image of the web editor:** `ghcr.io/nilres/openecraft-web` serves the
+  web editor with nginx on port 8080, built by `installer/docker/Dockerfile`
+  (target `editor-web`) and published with the server images;
+  `installer/docker/compose.yaml` starts it with both servers
+  ([installation](docs/installation.md#docker-image-of-the-web-editor)).
 - **Shared projects recover expired sessions** (#183): the editor tells a server
   that does not answer, an ended project session (expired, or the server restarted)
   and an invalid sign-in apart. An ended session opens the project again with the

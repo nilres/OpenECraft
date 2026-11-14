@@ -191,10 +191,11 @@ jobs:
           name: openecraft-macos-dmg
           path: target/installer/*.dmg
 
-  # Images of the parts and project servers (installer/docker/Dockerfile), started once
-  # to see that they answer. Pushed to GitHub Container Registry on master and for a
-  # release tag (ghcr.io/<owner>/openecraft-parts-server, …-project-server); every other
-  # build only checks them.
+  # Images of the parts and project servers and of the web editor
+  # (installer/docker/Dockerfile), started once to see that they answer. Pushed to GitHub
+  # Container Registry on master and for a release tag
+  # (ghcr.io/<owner>/openecraft-parts-server, …-project-server, openecraft-web); every
+  # other build only checks them.
   docker:
     runs-on: ubuntu-24.04
     permissions:
@@ -229,6 +230,15 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=edge,branch=master
             type=sha
+      - uses: docker/metadata-action@v5
+        id: editor-web
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/openecraft-web
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=edge,branch=master
+            type=sha
       - uses: docker/build-push-action@v6
         with:
           context: .
@@ -246,6 +256,16 @@ jobs:
           load: true
           tags: openecraft-project-server:ci
           cache-from: type=gha
+      # The web build has its own cache: one export per scope keeps the servers' layers.
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: installer/docker/Dockerfile
+          target: editor-web
+          load: true
+          tags: openecraft-web:ci
+          cache-from: type=gha,scope=editor-web
+          cache-to: type=gha,scope=editor-web,mode=max
       - name: Start the servers
         run: |
           docker run -d --name parts -p 8090:8090 -e OPENECRAFT_TOKEN=ci-token openecraft-parts-server:ci --install-catalogs all
@@ -258,6 +278,21 @@ jobs:
           docker logs projects
           docker exec parts ls /usr/share/doc/openecraft/THIRD-PARTY-LICENSES.html
           docker stop parts projects
+      - name: Start the web editor
+        run: |
+          docker run -d --name web -p 8080:8080 openecraft-web:ci
+          for _ in $(seq 30); do curl -fs http://127.0.0.1:8080/ > /dev/null && break; sleep 1; done
+          curl -fsS http://127.0.0.1:8080/ -o index.html || { docker logs web; exit 1; }
+          grep -q openecraft_canvas index.html
+          wasm=$(grep -o '[^"/]*_bg\.wasm' index.html | head -n 1)
+          test -n "$wasm"
+          curl -fsS -o /dev/null -w '%{content_type}\n' "http://127.0.0.1:8080/$wasm" | tee type.txt
+          grep -qx 'application/wasm' type.txt
+          for file in LICENSE-MIT LICENSE-APACHE OFL-NotoSans.txt THIRD-PARTY-LICENSES.html; do
+            curl -fsS -o /dev/null "http://127.0.0.1:8080/$file"
+          done
+          docker logs web
+          docker stop web
       - uses: docker/build-push-action@v6
         if: env.PUSH == 'true'
         with:
@@ -278,6 +313,16 @@ jobs:
           tags: ${{ steps.project-server.outputs.tags }}
           labels: ${{ steps.project-server.outputs.labels }}
           cache-from: type=gha
+      - uses: docker/build-push-action@v6
+        if: env.PUSH == 'true'
+        with:
+          context: .
+          file: installer/docker/Dockerfile
+          target: editor-web
+          push: true
+          tags: ${{ steps.editor-web.outputs.tags }}
+          labels: ${{ steps.editor-web.outputs.labels }}
+          cache-from: type=gha,scope=editor-web
 
   web:
     runs-on: ubuntu-24.04
