@@ -44,7 +44,7 @@ impl App {
             Cmd::Quit => FileIo::has_own_window(),
             Cmd::CheckForUpdates => crate::updater::supported() && !self.updater.busy(),
             Cmd::InstallUpdate => matches!(self.updater.state(), crate::updater::State::Ready { .. }),
-            Cmd::SaveAs => FileIo::can_save_in_place(),
+            Cmd::SaveAs | Cmd::SaveAsSplit => FileIo::can_save_in_place(),
             Cmd::NextPageTab | Cmd::PreviousPageTab | Cmd::ClosePageTab => self.page_tabs.len() > 1,
             Cmd::LayoutDoorInside | Cmd::LayoutDoor | Cmd::LayoutFront => self.panel_ui.view == crate::panel_ui::View::Front && !self.panel_ui.in_room,
             Cmd::LayoutWalls => self.panel_ui.view != crate::panel_ui::View::ThreeD,
@@ -55,7 +55,7 @@ impl App {
             Cmd::LayoutBuilding => self.panel_ui.view == crate::panel_ui::View::ThreeD && self.panel_ui.in_room,
             Cmd::LayoutZones => self.panel_ui.in_room,
             Cmd::LayoutOpenWalls => self.panel_ui.view == crate::panel_ui::View::ThreeD && self.panel_ui.in_room,
-            Cmd::LayoutLineup | Cmd::LayoutSite | Cmd::LayoutHideFrontWalls | Cmd::LayoutHideCeiling | Cmd::LayoutOpenDucts => self.panel_ui.view == crate::panel_ui::View::ThreeD,
+            Cmd::LayoutLineup | Cmd::LayoutSite | Cmd::LayoutHideFrontWalls | Cmd::LayoutHideCeiling | Cmd::LayoutHidePvModules | Cmd::LayoutSeeThroughPv | Cmd::LayoutOpenDucts => self.panel_ui.view == crate::panel_ui::View::ThreeD,
             _ => true,
         }
     }
@@ -125,6 +125,7 @@ impl App {
             Cmd::LayoutPlotBoundary => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Boundary,
             Cmd::LayoutReferencePoint => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Reference,
             Cmd::LayoutMeasure => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Measure,
+            Cmd::LayoutMoveBuildings => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Move,
             Cmd::LayoutInnerWalls => self.panel_ui.tool == crate::panel_ui::Tool::InnerWalls,
             Cmd::LayoutRoomDoor => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Door),
             Cmd::LayoutRoomWindow => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Window),
@@ -140,6 +141,8 @@ impl App {
             Cmd::LayoutOpenWalls => self.panel_ui.open_walls,
             Cmd::LayoutHideFrontWalls => self.panel_ui.hide_front_walls,
             Cmd::LayoutHideCeiling => self.panel_ui.hide_ceiling,
+            Cmd::LayoutHidePvModules => self.panel_ui.hide_pv_modules,
+            Cmd::LayoutSeeThroughPv => self.panel_ui.see_through_pv,
             Cmd::LayoutOpenDucts => self.panel_ui.open_ducts,
             Cmd::WiringMode => !self.mounting_ui.active,
             Cmd::MountingMode => self.mounting_ui.active,
@@ -219,6 +222,7 @@ impl App {
             Cmd::Open => self.io.open(ctx, Purpose::Project),
             Cmd::Save => self.save(ctx, false),
             Cmd::SaveAs => self.save(ctx, true),
+            Cmd::SaveAsSplit => self.save_split(ctx),
             Cmd::SaveAsProjectTemplate => {
                 let t = openecraft_core::project_templates::as_template(&self.session.prj);
                 let name = format!("{}_template.oec", self.session.prj.info.name.replace(' ', "_"));
@@ -446,11 +450,12 @@ impl App {
             }
             Cmd::LayoutFloorPlan => self.panel_ui.floor_plan(),
             Cmd::LayoutDrawWalls => self.panel_ui.choose_tool(crate::panel_ui::Tool::Walls),
-            Cmd::LayoutPlotBoundary | Cmd::LayoutReferencePoint | Cmd::LayoutMeasure => {
+            Cmd::LayoutPlotBoundary | Cmd::LayoutReferencePoint | Cmd::LayoutMeasure | Cmd::LayoutMoveBuildings => {
                 self.set_workspace(Workspace::Panel);
                 let tool = match cmd {
                     Cmd::LayoutPlotBoundary => crate::panel_ui::SiteTool::Boundary,
                     Cmd::LayoutReferencePoint => crate::panel_ui::SiteTool::Reference,
+                    Cmd::LayoutMoveBuildings => crate::panel_ui::SiteTool::Move,
                     _ => crate::panel_ui::SiteTool::Measure,
                 };
                 self.panel_ui.choose_site_tool(tool);
@@ -489,6 +494,8 @@ impl App {
             Cmd::LayoutOpenWalls => self.panel_ui.open_walls = !self.panel_ui.open_walls,
             Cmd::LayoutHideFrontWalls => self.panel_ui.hide_front_walls = !self.panel_ui.hide_front_walls,
             Cmd::LayoutHideCeiling => self.panel_ui.hide_ceiling = !self.panel_ui.hide_ceiling,
+            Cmd::LayoutHidePvModules => self.panel_ui.hide_pv_modules = !self.panel_ui.hide_pv_modules,
+            Cmd::LayoutSeeThroughPv => self.panel_ui.see_through_pv = !self.panel_ui.see_through_pv,
             Cmd::LayoutOpenDucts => self.panel_ui.open_ducts = !self.panel_ui.open_ducts,
             Cmd::LayoutFit => self.panel_ui.fit(),
             Cmd::LayoutReports => {
@@ -727,6 +734,10 @@ impl App {
             Cmd::Layout3dMacro => self.panel_ui.macro_menu(ui, &mut self.session.prj),
             Cmd::LayoutWallPart => self.panel_ui.wall_part_menu(ui, &self.session.prj, &self.parts_db),
             Cmd::LayoutInstallation => self.panel_ui.installation_menu(ui, &mut self.session.prj, &self.parts_db),
+            Cmd::LayoutEarthing => {
+                self.set_workspace(Workspace::Panel);
+                self.panel_ui.earthing_menu(ui, &mut self.session.prj);
+            }
             Cmd::LayoutRackPart => self.panel_ui.rack_part_menu(ui, &mut self.session.prj, &self.parts_db),
             Cmd::LayoutFloorPart => self.panel_ui.floor_part_menu(ui, &self.session.prj, &self.parts_db),
             Cmd::LayoutWalls => self.panel_ui.walls_menu(ui, &self.session.prj),

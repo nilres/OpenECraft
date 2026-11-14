@@ -181,7 +181,6 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	セル温度�
 Centre horizontally	左右中央揃え
 Centre vertically	上下中央揃え
 Centrifugal pump	遠心ポンプ
-Change	変更
 Changed since mounted	取付後に変更
 Changed since wired	配線後に変更
 Changeover contact	c接点
@@ -286,6 +285,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	銅バー {}: {} mm は定尺長 {} mm より長いです
 Copper bar {}: {} mm are too thick for {}	銅バー {}: {} mm は {} には厚すぎます
 Copper bar {}: {} segments need {} bends	銅バー {}: {} 区間には {} 箇所の曲げが必要です
+Copper-bonded steel	銅覆鋼
 Cores used	使用心線
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	ページ {} のコーナーがその接続線と合いません：2つの方向にそれぞれ1本の接続線が必要で、その位置に接続点があってはなりません
 Counter contact NC	カウンター接点 b接点
@@ -426,6 +426,7 @@ ERP item master and bill of materials (CSV)	ERP 品目マスターと部品表 (
 ERP number	ERP 番号
 ETIM class	ETIM クラス
 Earth electrode	接地極
+Earth rod	接地棒
 East-west on a flat roof	陸屋根に東西向き
 Edit pages	ページの編集
 Edit project data	プロジェクトデータの編集
@@ -543,6 +544,7 @@ Foot switch NO (NFPA)	フットスイッチ a接点 (NFPA)
 Force	力
 Fork terminal	Y形端子
 Format (placeholders)	書式 (プレースホルダー)
+Foundation earth electrode	基礎接地極
 Frame size	フレームサイズ
 Free	自由
 Free air (mm)	空中 (mm)
@@ -838,8 +840,6 @@ Minimum operating temperature	最低動作温度
 Mirror contacts	ミラー接点
 Mirrored	反転
 Mission time	ミッションタイム
-Module	モジュール
-Modules	モジュール
 Moisture	湿度
 Moment of inertia	慣性モーメント
 Motion detector	人感センサー
@@ -1330,6 +1330,7 @@ Revision table: date of the last revision (2: the one before …)	リビジョ�
 Revision table: description of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの説明（2: その前 …）
 Revision table: index of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの記号（2: その前 …）
 Right side panel	右側板
+Ring earth electrode	環状接地極
 Ring terminal	丸形端子
 Rivet nut	リベットナット
 RoHS compliant	RoHS 準拠
@@ -1467,6 +1468,7 @@ Spare terminal	予備端子
 Speed	速度
 Spiral	らせん
 Stainless steel	ステンレス鋼
+Stainless steel V4A	ステンレス鋼 V4A
 Standard	規格
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	リレーによる起動 / 停止回路：コイルと接点は相互参照と接点イメージを持つ1つの機器を構成します。端子台、線番号、端子図、接続リスト。
 Start date	開始日
@@ -1479,6 +1481,7 @@ Station name {} is used {} times	ステーション名 {} が {} 回使用され
 Station {} is not connected to bus {}	ステーション {} がバス {} に接続されていません
 Station {}: bus system {} does not exist	ステーション {}: バスシステム {} が存在しません
 Steam	蒸気
+Steel, hot-dip galvanised	溶融亜鉛めっき鋼
 Stock	在庫
 Stop category	停止カテゴリ
 Storage temperature range	保管温度範囲
@@ -1568,6 +1571,7 @@ The archive contains no project	アーカイブにプロジェクトが含まれ
 The archive has no manifest	アーカイブにマニフェストがありません
 The archive is damaged	アーカイブが破損しています
 The archive unpacks to more than {} MB	アーカイブの展開後のサイズが {} MB を超えます
+The archive was written by a newer version (archive version {})	このアーカイブは新しいバージョンで書き込まれています（アーカイブのバージョン {}）
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	アセンブリの製造者を明記する必要があります (IEC 61439-1、6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	部屋に設置した列盤：L 字形の平面図、内壁、扉とウィンドウ、所定の位置の列盤、壁のコンセント付きレール、壁付けの非常灯、天井下のケーブルラック。
 The configuration is not a JSON object	構成が JSON オブジェクトではありません
@@ -1580,6 +1584,7 @@ The embedded document {} is damaged	埋め込みドキュメント {} が破損�
 The file is empty	ファイルが空です
 The file was written by a newer version (format {}): data this version does not know is lost when saving	このファイルは新しいバージョン (形式 {}) で書き込まれています。このバージョンが認識しないデータは保存時に失われます
 The first column must be Key	最初の列は Key である必要があります
+The folder {} already holds the project {}: a split project needs a folder of its own	フォルダー {} には既にプロジェクト {} があります。分割プロジェクトには専用のフォルダーが必要です
 The function definition needs a key and a name	機能定義にはキーと名前が必要です
 The last page cannot be deleted	最後のページは削除できません
 The macro box has no items left	マクロボックスにアイテムが残っていません
@@ -1871,7 +1876,6 @@ page properties	ページプロパティ
 pigtail {} mm	ピグテール {} mm
 pilot	パイロット
 pink	ピンク
-portrait	縦
 pressure	圧力
 red	赤
 released	リリース済み
@@ -1953,6 +1957,7 @@ yellow	黄
 {}: PV array {} covers a roof window	{}：PVアレイ {} が天窓を覆っています
 {}: PV array {} has {} modules, its device {} has {}	{}：PVアレイ {} のモジュールは {} 枚、その機器 {} では {} 枚
 {}: PV array {} is mounted tilted on a pitched roof	{}：PVアレイ {} が勾配屋根に傾斜設置されています
+{}: PV array {} lies outside the protection of the air-termination system	{}：PVアレイ {} は受雷部の保護範囲外にあります
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}：屋根 {2} のPVアレイ {1} が棟、隅棟または屋根の端にかかっています
 {}: PV array {} of roof {} lies outside the roof	{0}：屋根 {2} のPVアレイ {1} が屋根の外にあります
 {}: PV arrays {} and {} lie over each other	{}：PVアレイ {} と {} が重なっています
@@ -1962,6 +1967,7 @@ yellow	黄
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}：{} mm² の電線は細すぎます（接続ポイントは最小 {} mm²）
 {}: accessory {} fits none of the device's parts	{}: アクセサリ {} は機器のどの部品にも適合しません
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: 操作部 {} は床面から {} mm です (推奨 {} … {} mm)
+{}: air-termination rod {} stands off the roofs	{}：突針 {} は屋根の外にあります
 {}: auxiliary function(s) without main function	{}: 主機能のない補助機能
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: 遮断容量 {} kA が短絡電流 {} kA を下回っています
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: {} mm の位置の配線ダクトの充填率 {} % (上限 {} %)
@@ -1983,6 +1989,8 @@ yellow	黄
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3} 上の {1} と {2} の切り欠きが近すぎます (残し幅 {4} mm、最小 {5} mm)
 {}: designation '{}' used more than once	{}: 名称 '{}' が複数回使用されています
 {}: device tag without device name	{}: デバイス名のないデバイスタグ
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}：接地極 {} には沿うべき壁がありません。建物に部屋も屋根もありません
+{}: earth rod {} stands inside the walls of the building	{}：接地棒 {} は建物の壁の内側にあります
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}: {1} での故障電流 {2} A では {3} s 以内に遮断されません ({4} A が必要)
 {}: function texts differ in the single-line diagram and the schematic	{}: 単線結線図と回路図で機能テキストが異なります
 {}: hole of {} is too close to the cutout of {} on the {}	{0}: {3} 上で {1} の穴が {2} の切り欠きに近すぎます
@@ -2043,7 +2051,12 @@ yellow	黄
 {}: terminal {} is on level {}, but no terminal block is before it	{}: 端子 {} は {} 段目にありますが、その前に端子ブロックがありません
 {}: terminal {} uses {} levels, its part {} has {}	{}: 端子 {} は {} 段を使用していますが、その部品 {} は {} 段です
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: 端子 {} は床面から {} mm です。{} mm 以上必要です
+{}: the busbar {} of earth electrode {} does not exist	{0}：接地極 {2} のブスバー {1} は存在しません
 {}: the device {} of PV array {} does not exist	{0}：PVアレイ {2} の機器 {1} は存在しません
+{}: the earthing busbar {} of PV array {} does not exist	{0}：PVアレイ {2} の接地ブスバー {1} は存在しません
+{}: the generator junction box {} of PV array {} does not exist	{0}：PVアレイ {2} の接続箱 {1} は存在しません
+{}: the lightning protection has no earth electrode	{}：雷保護に接地極がありません
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}：雷保護には沿うべき壁がありません。建物に部屋も屋根もありません
 {}: the module {} of PV array {} has no electrical data	{0}：PVアレイ {2} のモジュール {1} には電気データがありません
 {}: the station has no port {}	{}: ステーションにポート {} がありません
 {}: the strings of PV array {} connect {} modules, the array has {}	{}：PVアレイ {} のストリングは {} 枚のモジュールを接続していますが、アレイには {} 枚です
@@ -2060,6 +2073,7 @@ yellow	黄
 {}: {} carries {} A, the load {} needs {} A	{0}: {1} の許容電流は {2} A ですが、負荷 {3} には {4} A が必要です
 {}: {} changed after it was mounted	{}: {} は取付後に変更されました
 {}: {} collides with {}	{}: {} が {} と干渉しています
+{}: {} down conductors, class {} needs {} round the building	{}：引下げ導線 {} 本、クラス {} では建物の周囲に {} 本必要です
 {}: {} inputs used, the module has {}	{}: {} 点の入力を使用していますが、モジュールの入力は {} 点です
 {}: {} is a fluid device, not an electrical one	{}: {} は電気デバイスではなく流体デバイスです
 {}: {} is closer than {} mm to a cable duct	{}: {} と配線ダクトの距離が {} mm 未満です

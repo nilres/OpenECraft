@@ -26,6 +26,8 @@ Adds a text to a page	Tilføjer en tekst til en side
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Føjer alle linjer i projektteksterne til ordbogen og fjerner eventuelt poster, der ikke længere bruges
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Tilføjer tilbehør til en kabelende: forskruning, EMC-forskruning, stikforbinder, trækaflastning, skærmklemme, beskyttelsesslange, terminalrør, mærkat
 Adds an accessory to a device; it must fit one of the device's parts	Tilføjer et tilbehør til en enhed; det skal passe til en af enhedens artikler
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Tilføjer en fangstang på en bygnings tage, forbundet med dens fangledere; bygningen får en lynbeskyttelse af klasse III, hvis den ikke har en
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Tilføjer en jordelektrode til en bygning: en fundamentjord i bundpladen på det laveste niveau langs ydervæggene i masker, en ringjord i jorden rundt om væggene eller et jordspyd; materialet kommer i styklisten
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Tilføjer en kapsling: fra et system i en af dets størrelser (eller en brugerdefineret størrelse) eller fra en kapslingsartikel
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Tilføjer en udligningsleder mellem to udligningspunkter (hovedjordskinne, kapslinger, ledende omrids, metalliske kabelbærere)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Tilføjer eller ændrer et mærkningsskema i projektet, fjerner det eller vælger det skema, der bruges til mærkningseksporten
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Føjer enhederne fra en skabelon til et segment
 Adds the outline of a machine, building or area to the plant layout	Tilføjer omridset af en maskine, en bygning eller et område til anlægslayoutet
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Tilføjer, erstatter eller fjerner en profil: en connector med de kolonnenavne, det andet system bruger
+Air-termination rod: its name	Fangstang: dens navn
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Justerer elementer, fordeler dem jævnt, stiller enheder op på en skinne eller kopierer elementer i et mønster
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Justerer symboler, tekster og grafik efter en fælles kant eller midte; tilsluttede ledningsender følger med
 Allow renaming onto an identifier in use: both become one	Tillad omdøbning til en betegnelse i brug: begge bliver én
@@ -70,6 +73,7 @@ Between page and column (default .)	Mellem side og kolonne (standard .)
 Bonding point	Udligningspunkt
 Border around the text	Kant omkring teksten
 Both classes are needed	Begge klasser er påkrævet
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Anlæggets bygninger med niveauer, skakte, trapper og tage med solcellefelter, jordelektroder og lynbeskyttelse, rum på niveauerne og forbindelser mellem bygninger
 Bus system name	Bussystemets navn
 Bus system name, e.g. PN/IE_1	Bussystemets navn, f.eks. PN/IE_1
 Busbar machine program (CSV)	Program til skinnebearbejdningsmaskine (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Ændrer en dør eller et vindue i et rum: hvordan det åbner (hængsler til venstre eller højre, indad eller udad, eller skydes), dets plads langs væggen, størrelse og brystning
 Changes a placed symbol; when it moves, connected wire ends follow	Ændrer et placeret symbol; når det flyttes, følger tilsluttede ledningsender med
 Changes a text (only the given properties)	Ændrer en tekst (kun de angivne egenskaber)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Ændrer en jordelektrode i en bygning: placering, længde, afstand fra væggene, dybde, maske, del eller skinne; omdøber eller fjerner den
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Skifter enheder med udfasede eller udgåede artikler til efterfølgerartiklerne (efterfølgerne skal være projektartikler)
 Changes name, description or structure of a page	Ændrer navn, beskrivelse eller struktur for en side
 Changes name, description, function, location or parent of a segment	Ændrer et segments navn, beskrivelse, funktion, placering eller overordnede segment
@@ -100,6 +105,7 @@ Check {} failed: {}	Kontrol {} mislykkedes: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Kontrollerer tavlelayoutet: kollisioner, afstande (montering, ventilation, EMC), serviceområde, højder over gulvet, kollisionsklasser, temperaturer og producerbarhed
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Vælger hvordan lederender afsluttes: afisoleret, med terminalrør eller krympet kabelsko; ved et tilslutningspunkt, ved alle tilslutningspunkter på en enhed eller kun for én leder
 Chosen value	Valgt værdi
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Lynbeskyttelsens klasse, 1 … 4 (I … IV; standard III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Afstande, serviceområde, højder, kollisionsklasser, termisk simulering og producerbarhed af tavlelayoutet
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Klimatisering af kapslingerne (IEC/TR 60890): effekttab, indvendig temperatur, nødvendig ventilator eller køleaggregat og opvarmning; ændrer eventuelt indstillingerne for en af dem
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Kollisionsklasse: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, en egen klasse eller * for alle
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Enheder, ledninger, potentialer, kabler, klemrækker, PLC, tavle, fluid, elektriske beregninger, struktur og oversættelser
 Diameter in mm	Diameter i mm
 Diameter of a hole at both ends (0: none)	Diameter af et hul i begge ender (0: intet)
+Diameter of the conductors, mm (default 8)	Ledernes diameter, mm (standard 8)
+Diameter of the rod, mm (default 16)	Stangens diameter, mm (standard 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Stammens retning: left, right, up eller down (standard: efter lederne der)
 Distance between power and signal or fluid in mm	Afstand mellem kraft og signal eller fluid i mm
 Distance from devices, rails and busbars in mm	Afstand fra enheder, skinner og samleskinner i mm
@@ -222,6 +230,10 @@ Draws a wire through two or more points	Tegner en ledning gennem to eller flere 
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Tegner ledningerne i deres farve på diagramsiderne og i PDF- / SVG-eksport eller i sort
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Tegner ledere mellem frie tilslutningspunkter på symboler, der vender mod hinanden, og til de frie arme på T-stykker og hjørner
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	EMC-klasser for kablerne (drevudgang, analog, kraft, signal, skærm) og EMC-problemerne
+Earth electrode: its name	Jordelektrode: dens navn
+Earth rod: its length, mm (default 3000)	Jordspyd: dets længde, mm (standard 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Jordspyd: x for dets placering i bygningens plan, mm
+Earth rod: z of its place in the floor plan of the building, mm	Jordspyd: z for dets placering i bygningens plan, mm
 Edge length of the routing grid in mm	Kantlængde for føringsgitteret i mm
 Electrical device tags separated by commas or blanks (empty = remove the links)	Elektriske enhedsmærkninger adskilt af kommaer eller mellemrum (tom = fjern tilknytningerne)
 Electrical engineering	Elektroteknik
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	Første port som station:port, f.eks
 First row with the column names	Første række med kolonnenavnene
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format for enhedsnavnet: {letter}, {n} (tæller), {page}, {column}, {row}; standard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format for skemaet format: {n} (tæller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Fundamentjord: hvor langt inden for ydervæggene (standard 100), ring: hvor langt uden for dem (standard 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Fundamentjord: dens største maske, mm (standard 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Ramme, der tages udgangspunkt i, når rammen er ny (standard: A3 landscape)
 Free space in front of every device on the plate	Fri plads foran hver enhed på pladen
 Freezes routes for production (kept by the recalculation while possible) or releases them	Fastlåser føringer til produktion (bevares af genberegningen, så længe det er muligt) eller frigiver dem
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Genererer det flerstregede diagram (effektsymboler, ledere, kontaktorspoler) for de enstregede symboler på en side på en ny side efter den
 Generates the program of the busbar machine: cuts, punched holes and bends	Genererer programmet til skinnebearbejdningsmaskinen: snit, stansede huller og bukninger
 Give a device tag or a part number	Angiv en enhedsbetegnelse eller et artikelnummer
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Giver en bygning en lynbeskyttelse eller ændrer den: klasse, antal nedledere og ledernes del; fangledere på rygninger og grater (en maske på flade tage), nedledere med målesamlinger til jordelektroderne; eller fjerner den
+Greatest distance of the conductor holders, mm (default 1000)	Største afstand mellem lederholderne, mm (standard 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupperer elementer i en samling, der markeres og flyttes samlet; uden navn forlader elementerne deres samlinger
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Overdrager en kapslings programmer til produktionen som en ordre: manifest og programmer for alle dens flader og kobberskinner
 Has a divider between power and signal cables	Har en skillevæg mellem effekt- og signalkabler
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	Højde over monteringspladen 
 Height in mm	Højde i mm
 Height in mm without plinth; negative: unknown (wall mounted)	Højde i mm uden sokkel; negativ: ukendt (vægmonteret)
 Height in mm; the logo keeps its aspect ratio inside	Højde i mm; logoet bevarer sit billedformat indeni
+Height of the rod above the covering, mm (default 1500)	Stangens højde over tagdækningen, mm (standard 1500)
+Height of the test joints above the ground, mm (default 1000)	Målesamlingernes højde over terræn, mm (standard 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspektet overordnet produkt (-) for siden; enhederne på siden flytter med
 Highest actuator on the door above the floor (0: not checked)	Højeste betjeningselement på døren over gulvet (0: kontrolleres ikke)
 Highest air temperature at devices without data (0: not checked)	Højeste lufttemperatur ved enheder uden data (0: kontrolleres ikke)
@@ -427,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Produktionspakke (CNC-programmer, JSO
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Mærkater, kommasepareret: device, terminal, wire, cable (tom: alle)
 Marks a panel item as mounted or as a problem, or as open again	Markerer et layoutelement som monteret, som et problem eller som åbent igen
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Markerer en ført ledning som trukket eller som et problem eller som åben igen; ledningen angives ved dens to ender
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Materiale: galvanised_steel, stainless_steel, copper, copper_bonded_steel eller aluminium
 Maximum fill of a carrier in percent	Maksimal fyldning af en kabelbærer i procent
 Maximum operating pressure in bar	Maksimalt driftstryk i bar
 Measuring range or set point	Måleområde eller sætpunkt
@@ -435,11 +454,14 @@ Milling feed, mm/min	Fræsetilspænding, mm/min
 Mirror the symbol	Spejl symbolet
 Mounting plate size as width and height; empty object restores the centred plate	Monteringspladens størrelse som bredde og højde; et tomt objekt gendanner den centrerede plade
 Mounting size must contain a positive width and height	Monteringsstørrelsen skal indeholde en positiv bredde og højde
+Moves an air-termination rod, changes its height, renames or removes it	Flytter en fangstang, ændrer dens højde, omdøber eller fjerner den
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flytter én ende af en ledning: den forlader det, den er tilsluttet, og forbindes med det, den møder; ledningen forbliver vinkelret
 Moves symbols, wires and texts; connected wire ends follow	Flytter symboler, ledninger og tekster; tilsluttede ledningsender følger med
 Moves the page before this page of its section (or of the section given)	Flytter siden foran denne side i dens afsnit (eller i det angivne afsnit)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Flytter afsnittet foran dette afsnit i dets overordnede afsnit (eller i det angivne); numrene tæller fortsat i rækkefølge
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Sømbrætlayout af et ledningsnet: grenene fra den fælles knude til stikkene med længde, retning, bundtdiameter og ben samt tegningens målestok
+Name (default E1, E2, …)	Navn (standard E1, E2, …)
+Name (default F1, F2, …)	Navn (standard F1, F2, …)
 Name of the assembly	Samlingens navn
 Name of the bar, e.g. L1 -Q1	Skinnens navn, f.eks. L1 -Q1
 Name of the check	Kontrollens navn
@@ -463,6 +485,7 @@ New page name	Nyt sidenavn
 New parent segment (empty: top level)	Nyt overordnet segment (tom: øverste niveau)
 New value	Ny værdi
 No PCT loop {}	Ingen PCT-sløjfe {}
+No air-termination rod {} on building {}	Ingen fangstang {} på bygning {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Ingen indbygget kontrol hedder {}: indstillingen gælder en kontrol i et plugin med det navn (list_checks)
 No bus system {}	Intet bussystem {}
 No connection point {} on this page	Intet tilslutningspunkt {} på denne side
@@ -470,6 +493,7 @@ No connection symbol with id {}	Intet forbindelsessymbol med id {}
 No copper bar {}	Ingen kobberskinne {}
 No device description {}	Ingen enhedsbeskrivelse {}
 No device group {}	Ingen enhedsgruppe {}
+No earth electrode {} in building {}	Ingen jordelektrode {} i bygning {}
 No enclosure named {}	Ingen kapsling med navnet {}
 No entry for {} and {}	Ingen post for {} og {}
 No hose {}	Ingen slange {}
@@ -572,7 +596,12 @@ Part number of the downstream device	Artikelnummer for den efterkoblede enhed
 Part number of the hose / tube / pipe	Artikelnummer for slangen / røret / rørledningen
 Part number of the upstream device	Artikelnummer for den forankoblede enhed
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, f.eks. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Del til dens bånd, tråd eller spyd (tom: generisk)
+Part of the conductor holders on the roof (empty: generic)	Del til lederholderne på taget (tom: generisk)
+Part of the conductor holders on the walls (empty: generic)	Del til lederholderne på væggene (tom: generisk)
+Part of the conductors (round wire; empty: generic)	Ledernes del (rundtråd; tom: generisk)
 Part of the key or name	Del af nøglen eller navnet
+Part of the rod (empty: the one of its material and diameter)	Del til stangen (tom: den til dens materiale og diameter)
 Part {} has no function with a symbol	Artiklen {} har ingen funktion med symbol
 Parts phased out or discontinued	Artikler, der udfases eller er udgået
 Pass ids or pages	Angiv id'er eller sider
@@ -653,6 +682,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	Omgivelsesl
 Release instead of freeze	Frigiv i stedet for at fastlåse
 Released pages keep their names: {}	Frigivne sider beholder deres navne: {}
 Remote I/O: station of the controller	Decentral I/O: controllerens station
+Remove the air-termination rod	Fjern fangstangen
+Remove the earth electrode	Fjern jordelektroden
 Remove the entry of upstream and downstream	Fjern posten for upstream og downstream
 Remove the profile	Fjern profilen
 Remove the scheme from the project	Fjern skemaet fra projektet
@@ -684,6 +715,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Rest (mm)
 Reuse failed searches during one routing calculation	Genbrug mislykkede søgninger under én ruteberegning
 Right side bayed (no side panel)	Højre side sammenbygget (ingen sideplade)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: dybde under terræn, spyd: dybde for øverste ende, mm (standard 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Jordspyd: dets diameter (standard 20), fundament- og ringjord: en rundtråds, 0 for et bånd, mm
 Room {} exists already	Rummet {} findes allerede
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotation i grader med uret: 0, 90, 180 eller 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotation i grader, mod uret (90 læses nedefra og op)
@@ -873,6 +906,7 @@ Unknown address scheme: {}	Ukendt adresseskema: {}
 Unknown alignment: {}	Ukendt justering: {}
 Unknown anchor: {}	Ukendt anker: {}
 Unknown aspect: {}	Ukendt aspekt: {}
+Unknown base: {}	Ukendt fod: {}
 Unknown bonding kind: {}	Ukendt type udligning: {}
 Unknown bonding point: {}	Ukendt udligningspunkt: {}
 Unknown bus system: {}	Ukendt bussystem: {}
@@ -881,6 +915,7 @@ Unknown check: {}	Ukendt kontrol: {}
 Unknown class: {}	Ukendt klasse: {}
 Unknown data type: {}	Ukendt datatype: {}
 Unknown direction {}: left, right, up or down	Ukendt retning {}: left, right, up eller down
+Unknown earth electrode: {}	Ukendt jordelektrode: {}
 Unknown earthing system: {}	Ukendt jordingssystem: {}
 Unknown face {}	Ukendt flade {}
 Unknown fastening: {}	Ukendt fastgørelse: {}
@@ -972,9 +1007,11 @@ device (default), position, cross_section or number	device (standard), position,
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages eller parts
 error, warning, info, off, or default to take the change back	error, warning, info, off eller default for at fortryde ændringen
 false takes the acceptance back (default true)	false trækker accepten tilbage (standard true)
+foundation, ring or rod	foundation, ring eller rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted eller middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) eller product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker eller other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (en stangholder på taget) eller concrete_base (på flade tage)
 hose, tube or pipe	hose, tube eller pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (maskiner, faseledere BK) eller iec60445 (faseledere BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (standard), power, control, signal eller fluid
@@ -1001,6 +1038,8 @@ too long	for lang
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (standard), ladder, trunking, conduit, drag_chain, buried eller free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit eller other
 wired, problem or open	wired, problem eller open
+x of the foot of the rod in the floor plan of the building, mm	x for stangens fod i bygningens plan, mm
+z of the foot of the rod in the floor plan of the building, mm	z for stangens fod i bygningens plan, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} og {} er begge ender af én funktion: ledningen ville kortslutte den
 {} and {} are needed together	{} og {} skal angives sammen
 {} cannot be bayed to itself	{} kan ikke sammenbygges med sig selv

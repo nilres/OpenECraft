@@ -237,7 +237,11 @@ or Enter), walls are dragged to move them or get a length in the room's properti
   (*Insert › Wall-mounted part*, also without a device tag).
 - **Outlets, switches and heating** (*Insert › Outlets, switches, heating*): socket
   outlets, data and antenna outlets, switches, push buttons, dimmers, room thermostats,
-  heating circuit manifolds and single-room control boxes (RTL / TH). The menu lists
+  heating circuit manifolds and single-room control boxes (RTL / TH), drawn with their
+  models in the 3D view. The menu has a tab for outlets, switches and heating, a search,
+  filters by maker and type, the list and the part picked with its 3D model (drag to
+  turn it), its size and mounting height (*Place on the wall* or a double-click places
+  it). It lists
   the generic parts of the catalog (`GEN.SOCKET-F-UP`, `GEN.SW-2WAY-UP`, …, manifolds
   `GEN.HCM-2` … `GEN.HCM-12`, the number of circuits chosen in the menu, `GEN.RTL-BOX`)
   and those of the parts database and of the shipped catalogs `gira` (System 55),
@@ -299,7 +303,10 @@ The navigator (*Enclosures and rooms*) has the **site** at its root, above the
 buildings with their levels and rooms and the rooms outside buildings. A click on a room
 keeps the 3D view when it is shown and otherwise shows the room's floor plan. A click on
 the site shows the site plan of all buildings in the Layout space (the wheel zooms,
-dragging moves it, a click on a room opens its floor plan) or, in the 3D view, all of
+dragging moves it, a click on a room opens its floor plan; in the edit mode *Site ›
+Move buildings* a building is dragged to its place and R turns it by 90° about its
+middle, with its rooms, cabinets, stairs and roofs and the rooms standing in it without
+being on one of its levels) or, in the 3D view, all of
 the plant with its buildings, floor slabs, stairs and roofs; a click on a building shows
 the site plan with it highlighted. A level clicked while the 3D view is shown shows all
 rooms of that level side by side at their places, with the cabinets standing in them,
@@ -406,8 +413,27 @@ hips dashed) with their roof windows, and the links.
   `GEN.PV-BASE-EW10` fills in what a system lacks. The modules (unless a device, a PV
   generator, counts them) and the mounting material go into the bill of materials;
   `list_buildings` gives each array's modules, peak power and material. The site plan
-  draws the modules, the 3D view the modules with their frames, the rails, the mounting
-  bases and the wind deflectors.
+  draws the modules, the 3D view the modules with their frames and junction boxes, the
+  rails on their roof hooks, the mounting bases and the wind deflectors.
+  *Show › Hide PV modules* leaves the modules out to show the mounting, *Show ›
+  See-through PV modules* shows them see-through with the wiring under them. The mounting
+  has an **earthing point** with an earthing clamp (`GEN.PV-EARTH-CLAMP`, in the bill of
+  materials) on each rail or row of mounting bases; its **earthing conductor**
+  (`earthing`: the device of an earthing or equipotential bonding busbar) bonds them
+  and runs to that busbar. The 3D view draws the **cabling** of each string: the leads
+  of every module: its plus lead (red) and its minus lead (black) out of its junction
+  box, the plus lead of a module meeting the minus lead of the next one at a connector
+  under the modules, and the minus lead of the first module and the plus lead of the
+  last one along the roof, through it beside the array and under it down onto the
+  **generator junction box** of the array (`combiner`, a device such as `GEN.GAK-2S`)
+  and from there a DC main cable (plus and minus) to each inverter (without a generator junction box
+  down onto the inverter), and the earthing conductor (green-yellow) down to its
+  busbar, as far as the devices are placed in the layout. A click on an array in the 3D view opens its
+  **properties**: where it is, its modules with their electrical data, peak power and
+  area, its mounting with the material and the earthing, its strings with their
+  voltages, currents and the length of their leads, its problems, and the settings of
+  the Buildings pane. A room under the roof shown alone shows the arrays over it and
+  the roof windows from outside too.
 - **PV strings** (*String* under a PV array in the pane, `add_pv_string`,
   `set_pv_string`, `pv_strings`): the modules of an array in series as strings, several
   strings of a kind in parallel, each on an MPP tracker of an inverter or charge
@@ -428,6 +454,43 @@ hips dashed) with their roof windows, and the links.
   trackers the inverter does not have, trackers whose strings together exceed their
   short-circuit or input current or differ in voltage, and arrays with more modules in
   strings than they have or modules in no string.
+- **Earth electrodes** (*Earthing and lightning protection* in the pane,
+  `add_earth_electrode`, `set_earth_electrode`): a **foundation earth electrode** in the
+  foundation slab of the lowest level, a closed ring 100 mm inside the outer walls
+  divided by strips across into meshes of at most 20 × 20 m (`GEN.ER-STRIP-FE30`, its
+  spacers every 2 m and cross connectors), a **ring earth electrode** in the soil a
+  metre outside the walls and half a metre deep (`GEN.ER-STRIP-V4A30`), and **earth
+  rods** at a place of the floor plan, driven from half a metre down (sections
+  `GEN.ER-ROD-1500`, tip and clamp). Each electrode has a **material** (hot-dip
+  galvanised steel, stainless steel V4A, copper, copper-bonded steel) and a
+  **diameter** (of a rod, or of a round wire instead of a flat strip); its part is the
+  one of the parts database or the catalog of that material and diameter (by the
+  technical data `Material` and `Diameter`) unless one is chosen. The outer walls are the rectangle the roofs cover,
+  otherwise that of the rooms. An electrode connected to a main earthing busbar (a
+  device) runs up to it with a connection lug. All of it goes into the bill of
+  materials.
+- **Lightning protection** (`set_lightning_protection`, `add_air_rod`, `set_air_rod`):
+  of class I to IV, an **air-termination system** of conductors on the ridges and hips
+  of pitched roofs and round the edge and as a mesh (5, 10, 15 or 20 m by class) on
+  flat and shed roofs, and **air-termination rods** joined to them; **down
+  conductors** round the outer walls at most 10, 10, 15 or 20 m apart (at least two,
+  or as many as given), each from under the eaves to its **test joint** a metre above
+  the ground and on into the soil to the ring earth electrode (otherwise the
+  foundation earth electrode or the earth rods), the roof conductor from the eaves
+  over the roof to the air-termination system. The **material** and **diameter** of
+  the conductors and of each rod choose their parts, the **mounting hardware** is the
+  conductor holders on the roof and on the walls (roof, ridge or flat roof holders,
+  wall holders with or without a spacer) at a distance of their own, a rod stands in a
+  rod holder or on a concrete base; the height of the test joints is set too. The
+  round wire, its holders, the rods with their holders or bases, test joints, earth
+  entries and clamps go into the bill of materials. A click on an electrode, a
+  conductor or a rod in the 3D view or the site plan opens its **properties** with all
+  of these settings. The PV arrays on the roofs have to lie in its protection by the
+  **protection angle** of the class (70 - 79° up to 2 m above the surface, down to 23°
+  at the radius of the rolling sphere). The 3D view and the site plan draw the
+  electrodes and the system. *Site › Earthing and lightning protection* adds them to
+  a building: foundation and ring earth electrodes, earth rods and air-termination
+  rods clicked into the site plan, lightning protection with its class.
 - **Links between buildings** (`add_site_link`, `set_site_link`): a cable trench, a
   conduit or a cable bridge from a building entry of a room to a building entry of a
   room in another building, through corners in the plant. Routes pass them like a wall
@@ -443,13 +506,20 @@ roof windows off their slope or across a ridge or hip, rooms the roof comes down
 floor of, cabinets higher than the sloped ceiling at their place and items on the walls
 or the ceiling above the slope, PV arrays off their roof or across a ridge, a hip or its
 edge, tilted on a pitched roof, over a roof window or over each other, and PV arrays
-whose device is missing or counts another number of modules. Example 15 (`plant_buildings`) shows a main building
+whose device is missing or counts another number of modules or whose earthing busbar
+is missing, earth electrodes whose busbar is missing, earth rods inside the walls,
+lightning protection without earth electrode or with fewer down conductors than its
+class needs, air-termination rods off the roofs and PV arrays outside the protection
+of the air-termination system. Example 15 (`plant_buildings`) shows a main building
 with two levels and a shaft, a pump house linked by a cable trench through which a
 motor cable is routed, façade lights and a weather station on the roof; example 16
 (`office_building`) adds an office building with an attic under a gable roof, a stair
 turned at a quarter landing, roof windows, a PV array of ten LONGi modules on rails and
-roof hooks in the rear slope, outlets and switches of Gira and MDT and a COSMO heating
-circuit manifold.
+roof hooks in the rear slope with its inverter and the bonding busbar of its mounting
+on the attic's gable wall, a foundation earth electrode on the main earthing busbar, a
+ring earth electrode and a lightning protection system of class III with an
+air-termination rod, outlets and switches of Gira and MDT and a COSMO heating circuit
+manifold.
 
 **In 3D**, *Layout space › Show › Whole building* shows the building of the room shown
 with all its levels and rooms, their floor slabs, the stairs and the roofs; *All

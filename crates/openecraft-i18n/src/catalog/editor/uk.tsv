@@ -49,6 +49,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	Кабель шинного типу для кожного з’єднання без кабелю
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Виріз того самого розміру в тому самому місці бічної стінки сусіда: разом вони утворюють кабельний прохід
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Однойменний файл у папці отримує нову версію (отримання для редагування й повернення), інакше файл додається
+A folder with one small file per page, device and part instead of one project file, for version control such as git	Папка з одним невеликим файлом на кожну сторінку, пристрій і виріб замість одного файлу проєкту, для систем керування версіями, як-от git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Великий текст через кожну сторінку, наприклад ЧЕРНЕТКА, поки готується зміна; тексти приймають заповнювачі, порожньо: без штампа.
 A level on top of the highest one	Поверх над найвищим
 A local file opens locally, a server project is opened on the project server again	Локальний файл відкривається локально, проєкт сервера знову відкривається на сервері проєктів
@@ -65,6 +66,8 @@ A reference point at the origin of the plant	Опорна точка в поча
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Блок звітів генерує сторінки звіту, напр. одну схему клем на колодку, і оновлює їх.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Сторінка схеми 3.1, 3.2, … після поточної сторінки, що залишається підсторінкою під час перенумерування
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Сторінка схеми для кожного запланованого пристрою з макросом сторінки, якого ще немає на схемі (вибраний сегмент, інакше всі)
+A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Розділений проєкт (.oecp) — це папка з одним невеликим файлом на кожну сторінку, пристрій, виріб і вбудований файл, для систем керування версіями, як-от git: Файл › Зберегти як розділений проєкт.
+A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Розділений проєкт — це папка з файлами: браузер не може її відкрити. Спочатку перетворіть його на файл проєкту (.oec) або архів (.oecz).
 A template of this name is replaced.	Шаблон із цією назвою буде замінено.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Шаблон задає тип сторінки, рамку аркуша, основний напис, структуру й опис нової сторінки та розміщує її вміст.
 A way through free air costs this many times the way in a duct or routing path	Шлях у вільному просторі коштує в стільки разів більше, ніж у каналі чи на трасі прокладання
@@ -109,6 +112,9 @@ Air at devices at most	Повітря біля пристроїв не біль�
 Air temperature	Температура повітря
 Air temperature at the devices	Температура повітря біля пристроїв
 Air temperature {} … {} °C	Температура повітря {} … {} °C
+Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Блискавкоприймальні провідники на гребенях і ребрах (сітка на плоских дахах), струмовідводи вздовж зовнішніх стін з контрольними з'єднаннями, що закінчуються на заземлювачах
+Air-termination rod	Блискавкоприймальний стрижень
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Блискавкоприймальний стрижень встановлено на будівлі {}; клацніть для наступного · Esc: стоп
 Align	Вирівняти
 Aligned	Вирівняний
 Alignment	Вирівнювання
@@ -154,6 +160,7 @@ Arc	Дуга
 Archive and version	Архів і версія
 Archive project…	Архівувати проєкт…
 Arms	Плечі
+Array	Поле
 As defined by the check	Як визначено перевіркою
 As the rules say ({})	За правилами ({})
 Aspects of the pages	Аспекти сторінок
@@ -182,6 +189,7 @@ Automatic ({})	Автоматично ({})
 Automatic accessories	Автоматичні аксесуари
 Automatic configuration	Автоматична конфігурація
 Automatic placement	Автоматичне розміщення
+Automatic: {}	Автоматично: {}
 Automation	Автоматизація
 Aux	Доп.
 Avoid:	Уникати:
@@ -219,6 +227,9 @@ Boundary	Межа
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Відключна здатність щодо струму короткого замикання на кожному захисному пристрої мережі, вимкнення за найменшого струму замикання в кінці його кола, стійкість кабелів до короткого замикання та селективність із пристроєм, розташованим вище за схемою.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Міст: чотири проводи; з'єднання надходить з одного боку і йде до трьох інших, спочатку до протилежного
 Building {} added with a level at ground level	Будівлю {} додано з поверхом на рівні землі
+Building {} at x {} m, z {} m	Будівля {} у x {} м, z {} м
+Building {} at x {} m, z {} m, turned {}°	Будівля {} у x {} м, z {} м, повернута на {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Будівля {} у x {} м, z {} м, повернута на {}°: вона стоїть за межею ділянки
 Built-in frames cannot be changed; copy one to adapt it.	Вбудовані рамки не можна змінити; скопіюйте рамку, щоб адаптувати її.
 Built-in scheme: copy it to change it.	Вбудована схема: скопіюйте її, щоб змінити.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Вбудовані основні написи доступні лише для читання – скористайтеся «Копіювати як новий», щоб створити власний.
@@ -292,10 +303,14 @@ Choose another project	Вибрати інший проєкт
 Choose file…	Вибрати файл…
 Choose image…	Вибрати зображення…
 Choose pages	Вибрати сторінки
+Choose the building.	Виберіть будівлю.
 Chooses the pages whose structure starts with this	Вибирає сторінки, структура яких починається з цього
 Circle	Коло
 Circuits of a generic manifold	Контури типового розподільника
+Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Клас блискавкозахисту: відстань між струмовідводами, комірка плоских дахів і захисний кут
+Class {}	Клас {}
 Clear	Очистити
+Clear the search	Очистити пошук
 Clearance	Відступ
 Click	Клацання
 Click a text: open its link	Клацання по тексту: відкрити його посилання
@@ -304,6 +319,7 @@ Click centre, then a point on the circle	Клацніть центр, потім
 Click in the panel layout: a single item of an assembly	Клацання в компонуванні шафи: окремий елемент збірки
 Click into the page to place the image	Клацніть на сторінці, щоб розмістити зображення
 Click into the page to place {}	Клацніть на сторінці, щоб розмістити {}
+Click on a roof of building {}	Клацніть по даху будівлі {}
 Click on a wall	Клацніть по стіні
 Click on a wire to place the connection definition point	Клацніть провід, щоб розмістити точку визначення з’єднання
 Click on the 4 mm grid	Клацніть на сітці 4 мм
@@ -328,8 +344,12 @@ Click two corners	Клацніть два кути
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Клацніть два кути рамки структури, потім задайте її позначення у властивостях · Esc або правий клік для завершення
 Click two nodes to connect them	Клацніть два вузли, щоб з’єднати їх
 Click two points to measure from one to the other · Esc: stop	Клацніть дві точки, щоб виміряти від однієї до іншої · Esc: стоп
+Click where an air-termination rod goes on a roof · Esc: stop	Клацніть, де стоїть блискавкоприймальний стрижень на даху · Esc: стоп
+Click where an earth rod goes, at or round a building · Esc: stop	Клацніть, де розташовано вертикальний заземлювач біля будівлі чи навколо неї · Esc: стоп
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Клацніть, де сходяться чотири проводи: міст веде з'єднання з одного боку до трьох інших, спочатку до протилежного · {} повертає його · Esc або права кнопка завершує
 Click where it is in the site plan	Клацніть на його місці на генплані
+Click where the air-termination rods go on the roofs in the site plan	Клацніть на ситуаційному плані, де стоять блискавкоприймальні стрижні на дахах
+Click where the earth rods go in the site plan	Клацніть на ситуаційному плані, де розташовано вертикальні заземлювачі
 Click where the reference point is	Клацніть там, де розташована опорна точка
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Клацніть, де сходяться три проводи: Т-подібний вузол задає пристрій, від якого йдуть проводи, і порядок їхніх цілей · {} повертає його, де проводи ще не сходяться · Esc або права кнопка завершує
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Клацніть, де перехрещуються два проводи: перехрестя з'єднує їх і веде кожен кінець своєї лінії спочатку прямо, потім упоперек · {} повертає його · Esc або права кнопка завершує
@@ -372,9 +392,11 @@ Compare and baselines	Порівняння та базові версії
 Compare with	Порівняти з
 Compare with a baseline, a revision or another project file and take differences over	Порівняти з базовою версією, ревізією або іншим файлом проєкту та перенести відмінності
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Повне позначення: {}\nАспекти, яких тут бракує, беруться зі сторінки (=функція +розташування) або з рамки структури, у якій лежить символ.
+Concrete base	Бетонна основа
 Condition	Умова
 Condition (OPTION=value & …)	Умова (OPTION=значення & …)
 Conductive frame	Струмопровідна рама
+Conductor	Провідник
 Conflicts	Конфлікти
 Connected devices	Підключені пристрої
 Connected to:	Підключено до:
@@ -426,6 +448,7 @@ Cross references…	Перехресні посилання…
 Crossed wires	Перетнуті проводи
 Ctrl + click on the text opens it as well	Ctrl + клацання тексту також відкриває його
 Ctrl+A	Ctrl+A
+Current at maximum power	Струм за максимальної потужності
 Current-carrying capacity: {} × IEC 60204-1, table 6	Допустимий струм: {} × IEC 60204-1, таблиця 6
 Customer rule sets	Набори правил замовників
 Customer, plant or standard	Замовник, підприємство або стандарт
@@ -438,6 +461,7 @@ Cut length step tubes	Крок довжини відрізання шлангі�
 Cut length step wires	Крок довжини відрізання проводів
 Cutout {} × {} mm	Виріз {} × {} мм
 Cutting allowance per end	Припуск на відрізання на кінець
+DC leads	Кабелі DC
 DRAFT	ЧЕРНЕТКА
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	ЧЕРНЕТКА, НА ЗАТВЕРДЖЕННЯ і ЗАТВЕРДЖЕНО поточною мовою; після випуску нічого
 DWG import failed: {}	Помилка імпорту DWG: {}
@@ -461,9 +485,11 @@ Define all used	Визначити всі використані
 Defined potentials	Визначені потенціали
 Del	Del
 Delete PV array	Видалити фотоелектричне поле
+Delete air-termination rod	Видалити блискавкоприймальний стрижень
 Delete cable (its wires are removed from it)	Видалити кабель (його проводи буде вилучено з нього)
 Delete comment	Видалити коментар
 Delete connection point	Видалити точку підключення
+Delete earth electrode	Видалити заземлювач
 Delete element	Видалити елемент
 Delete enclosure	Видалити корпус
 Delete enclosure {} with everything placed in it?	Видалити корпус {} з усім, що в ньому розміщено?
@@ -490,8 +516,10 @@ Delete this workspace	Видалити цей робочий простір
 Delete variant	Видалити варіант
 Delete zone	Видалити зону
 Depth / mounted at	Глибина / монтаж на
+Depth below the ground	Глибина під землею
 Depth from / to	Глибина від / до
 Depth in the floor	Глибина в підлозі
+Depth of its top below the ground	Глибина верхнього кінця під землею
 Derive project definition	Створити похідне визначення проєкту
 Descriptions	Описи
 Deselect	Скасувати вибір
@@ -525,6 +553,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Прис
 Dew point	Точка роси
 Diameter	Діаметр
 Diameter / bends	Діаметр / згини
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Діаметр круглого дроту; 0: смуга 30 x 3,5 мм
+Diameter of the rod	Діаметр стрижня
 Dictionary for translators: one column per language	Словник для перекладачів: один стовпець на мову
 Digits	Цифри
 Dimension	Розмір
@@ -563,6 +593,7 @@ Door cutouts (CSV)	Вирізи дверей (CSV)
 Door: {} devices, {} cutouts	Двері: пристроїв – {}, вирізів – {}
 Dot	Точка
 Double-click	Подвійне клацання
+Down conductors	Струмовідводи
 Download into database	Завантажити до бази даних
 Download project	Завантажити проєкт
 Downloaded {} (version {})	{} завантажено (версія {})
@@ -573,6 +604,7 @@ Draft	Чернетка
 Draft of revision {} created	Чернетку ревізії {} створено
 Draft of revision {} discarded	Чернетку ревізії {} відхилено
 Drag	Перетягування
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Перетягніть будівлю, щоб перемістити її · R: повернути будівлю під вказівником на 90° · Esc: стоп
 Drag a connection point designation of the selected symbol to place it.	Перетягніть позначення точки підключення вибраного символу, щоб розмістити його.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Перетягніть кінець вибраного проводу, щоб перемістити лише цей кінець. Перетягування з Alt змінює Зберігати з'єднання на протилежне.
 Drag an entry into the page, or click it and then click into the page.	Перетягніть запис на сторінку або клацніть його, а потім клацніть на сторінці.
@@ -613,12 +645,20 @@ Duct fill limit	Межа заповнення каналу
 Duplicate	Дублювати
 Each example builds on the one before and shows more of the features.	Кожен приклад ґрунтується на попередньому та показує більше функцій.
 Each point-to-point connection can belong to a harness	Кожне з’єднання «точка–точка» може належати до джгута
+Earth electrodes	Заземлювачі
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Заземлювачі будівлі (фундаментний і кільцевий, вертикальні заземлювачі клацанням на ситуаційному плані) та її блискавкозахист із блискавкоприймальними стрижнями, встановленими клацанням на дахах
+Earth rod placed at building {}; click for the next one · Esc: stop	Вертикальний заземлювач встановлено біля будівлі {}; клацніть для наступного · Esc: стоп
+Earthing and lightning protection	Заземлення та блискавкозахист
+Earthing busbar	Шина заземлення
+Earthing conductor	Заземлювальний провідник
+Earthing points	Точки заземлення
 Earthing system	Тип системи заземлення
 Easting, northing	Східна, північна координата
 Eaves	Карниз
 Edge length of the routing grid: smaller is finer and slower	Довжина ребра сітки прокладання: менше – точніше й повільніше
 Edit in table	Редагувати в таблиці
 Edit in table…	Редагувати в таблиці…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Режим редагування: перетягуйте будівлі на їхні місця на ситуаційному плані й повертайте їх; клацання по приміщенню більше не відкриває його
 Editable copy of this plot frame	Редагована копія цієї рамки аркуша
 Editable copy of this title block	Редагована копія цього основного напису
 Effective surface	Ефективна поверхня
@@ -769,6 +809,7 @@ Generated page – edit via page properties	Згенерована сторін�
 Generates the pages of all report blocks again	Повторно генерує сторінки всіх блоків звітів
 Generates {} pages	Генерує сторінок: {}
 Generation failed: {}	Помилка генерування: {}
+Generator junction box	Генераторна з'єднувальна коробка
 Generic	Загальний
 German zones (DIN 18015-3)	Німецькі зони (DIN 18015-3)
 Getting started	Початок роботи
@@ -778,6 +819,7 @@ Go to page	Перейти до сторінки
 Graphic line	Графічна лінія
 Graphic rectangle	Графічний прямокутник
 Graphical form	Графічна форма
+Greatest distance of the conductor holders on the roof and on the walls	Найбільша відстань між тримачами провідника на даху та на стінах
 Greatest distance of the roof hooks along a rail	Найбільша відстань покрівельних гаків уздовж рейки
 Grid	Сітка
 Grid north	Північ сітки
@@ -801,14 +843,20 @@ Height above the floor	Висота над підлогою
 Height above the mounting plate	Висота над монтажною панеллю
 Height above the plate	Висота над панеллю
 Height of the plinth, 0 without plinth	Висота цоколя, 0 – без цоколя
+Height of the rod above the covering	Висота стрижня над покрівлею
+Height of the test joints above the ground	Висота контрольних з'єднань над землею
 Heights above floor (IEC 60204-1)	Висоти над підлогою (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Утримується під час клацання, переміщення чи прокручування. Ctrl у macOS — Cmd.
 Help	Довідка
+Hide PV modules	Сховати модулі ФЕ
 Hide the groups you do not need and put the commands you use most into own groups.	Сховайте непотрібні групи й розмістіть найуживаніші команди у власних групах.
 Highest phase unbalance	Найбільша несиметрія фаз
 Highest short-circuit current	Найбільший струм короткого замикання
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Найбільша напруга (холостого ходу за найнижчої температури), середня та найменша напруга (за максимальної потужності за середньої та найвищої температури), струм за максимальної потужності, пікова потужність
 Highest: the lowest voltage	Найвища: найменша напруга
+Holder distance	Крок тримачів
+Holders on the roof	Тримачі на даху
+Holders on the walls	Тримачі на стінах
 Hole to sheet edge	Від отвору до краю листа
 Home	Основне
 Hook distance	Крок гаків
@@ -823,6 +871,8 @@ Hose defaults and PCT loops of the pre-planning	Параметри шлангі�
 Hose number	Номер шланга
 Hoses and pipes	Шланги й трубопроводи
 Hoses rated below it are errors; 0 = not checked	Шланги з меншим номінальним тиском – помилки; 0 = не перевіряється
+How far inside the outer walls	Наскільки всередині зовнішніх стін
+How far outside the outer walls	Наскільки зовні зовнішніх стін
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Як відчиняється стулка: петлі біля лівого чи правого краю (вигляд зсередини приміщення), всередину чи назовні приміщення, або зсувається вздовж стіни
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Як провід оконцьовано на цьому кінці; за замовчуванням як вибрано для точки підключення або її пристрою, інакше за налаштуванням наконечників компонування
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Як проводи перескакують через проводи, які вони перетинають, як позначаються T-з'єднання та чи прокладаються з'єднання переміщених елементів заново
@@ -936,6 +986,7 @@ Labeling scheme	Схема маркування
 Landscape	Альбомна
 Large dot	Велика крапка
 Larger texts and buttons for a touch screen at the workbench	Більші тексти й кнопки для сенсорного екрана на робочому місці
+Largest mesh	Найбільша комірка
 Latitude, longitude	Широта, довгота
 Layer	Шар
 Layer {}	Шар {}
@@ -949,6 +1000,7 @@ Layout space	Монтажний простір
 Layout spaces	Монтажні простори
 Leave out the ceilings of the rooms and the roofs in the 3D view	Не показувати стелі приміщень і дахи у 3D-виді
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	У 3D-вигляді не показувати кришки всіх кабельних каналів: дроти в них стає видно
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Не показувати модулі фотоелектричних полів у 3D-виді: видно рейки, покрівельні гаки, опори, заземлення й кабелі
 Leave repeated values of the first column blank	Залишати повторювані значення першого стовпця порожніми
 Left button	Ліва кнопка
 Left edges	Ліві краї
@@ -956,6 +1008,7 @@ Legend plates (door devices)	Таблички з написами (пристр�
 Length from the node to the device	Довжина від вузла до пристрою
 Length inside an enclosure	Довжина всередині шафи
 Length of a shield pigtail where there is no shield clamp	Довжина косички екрана там, де немає затискача екрана
+Length of the rod	Довжина заземлювача
 Length of wires that are not routed in the panel layout	Довжина проводів, не прокладених у компонуванні шафи
 Length {} mm	Довжина {} мм
 Letters, digits, space, - _ . (up to 64 characters)	Літери, цифри, пробіл, - _ . (до 64 символів)
@@ -966,6 +1019,8 @@ Level {} added to building {}; new rooms go onto it	Поверх {} додано
 Level {} of building {}	Поверх {} будівлі {}
 Levels	Поверхи
 Library	Бібліотека
+Lightning protection	Блискавкозахист
+Lightning protection of building {}	Блискавкозахист будівлі {}
 Like two fingers	Як два пальці
 Limits	Граничні значення
 Limits in effect	Чинні граничні значення
@@ -1016,7 +1071,9 @@ Macros	Макроси
 Macros ({})	Макроси ({})
 Macro…	Макрос…
 Main	Головн.
+Main earthing busbar	Головна заземлювальна шина
 Make the selected elements of this project equal to the compared ones	Зробити вибрані елементи цього проєкту такими самими, як порівнювані
+Maker	Виробник
 Makes the current page content of the option	Робить поточну сторінку вмістом опції
 Manage plugins	Керувати плагінами
 Management	Керування
@@ -1059,6 +1116,7 @@ Mixed	Різні
 Mode	Режим
 Model of a part (2D / 3D)	Модель виробу (2D / 3D)
 Modifier keys	Клавіші-модифікатори
+Module area	Площа модулів
 Module part; its size comes from the part	Виріб модуля; його розмір береться з виробу
 Motors feed the short circuit	Двигуни підживлюють коротке замикання
 Mounted on	Змонтовано на
@@ -1071,6 +1129,7 @@ Mouse	Миша
 Move	Перемістити
 Move ahead in the 3D view (held)	Рухатися вперед у 3D-вигляді (утримувати)
 Move back in the 3D view (held)	Рухатися назад у 3D-вигляді (утримувати)
+Move buildings	Перемістити будівлі
 Move down	Перемістити вниз
 Move down in the 3D view (held)	Рухатися вниз у 3D-вигляді (утримувати)
 Move faster with the keys of the 3D view	Швидше рухатися клавішами 3D-вигляду
@@ -1159,6 +1218,7 @@ No PLC cards in the project.	У проєкті немає плат ПЛК.
 No PLC inputs / outputs placed.	Входи / виходи ПЛК не розміщено.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Немає аксесуарів: вводи, роз’єми, затискачі екрана … потрапляють до специфікації та перевіряються щодо кабелю.
 No bus systems.	Немає шинних систем.
+No busbar	Без шини
 No cable passage to {}: wires to it are not routed	Немає кабельного проходу до {}: проводи до нього не прокладаються
 No cables defined.	Кабелі не визначено.
 No cables yet. Draw a cable definition across wires or add a cable.	Кабелів ще немає. Намалюйте визначення кабелю через проводи або додайте кабель.
@@ -1170,6 +1230,7 @@ No device has mounting data yet: assign parts with dimensions to the devices (Pr
 No differences to {}.	Немає відмінностей від {}.
 No document embedded	Документ не вбудовано
 No dot: plain T	Без крапки: просте T
+No earth electrode yet: a foundation earth electrode in the foundation slab, a ring earth electrode round the walls or earth rods.	Заземлювачів ще немає: фундаментний заземлювач у плиті, кільцевий заземлювач навколо стін або вертикальні заземлювачі.
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Корпусів ще немає – створіть корпус командою Новий корпус або приміщення для шаф командою Нове приміщення.
 No field cables: place the enclosures and field devices at nodes of the route network.	Немає польових кабелів: розмістіть шафи та польові пристрої у вузлах мережі трас.
 No filter fans: an air/air heat exchanger or a cooling unit	Без фільтрувальних вентиляторів: теплообмінник повітря/повітря або холодильний агрегат
@@ -1182,6 +1243,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Макро�
 No modules: plug in PLC cards of the schematic.	Немає модулів: встановіть плати ПЛК зі схеми.
 No numbers for	Без номерів для
 No panel items: place the devices in the panel layout.	Немає елементів компонування: розмістіть пристрої в компонуванні шафи.
+No part matches.	Немає відповідних виробів.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Ще немає виробів із позначкою монтажу на підлогу. Позначте виріб у керуванні виробами: редактор виробів › Дані монтажу › Монтаж на підлогу.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Ще немає виробів із позначкою настінного монтажу. Позначте виріб у керуванні виробами: редактор виробів › Дані монтажу › Настінний монтаж.
 No parts of the product group Cables in the parts database.	У базі даних виробів немає виробів групи продуктів «Кабелі».
@@ -1200,6 +1262,7 @@ No segments yet: draw them in the plant layout.	Ділянок ще немає: 
 No shortcut	Немає сполучення клавіш
 No single-line symbols and no power devices in the schematic.	Немає однолінійних символів і силових пристроїв на схемі.
 No stations: add one or use the automatic configuration.	Немає станцій: додайте станцію або скористайтеся автоматичною конфігурацією.
+No string yet: the modules are not connected.	Стрингів ще немає: модулі не з'єднані.
 No subprojects were taken out of this project.	З цього проєкту не винесено жодного підпроєкту.
 No terminal strips: place terminals in a schematic first.	Немає клемних колодок: спочатку розмістіть клеми на схемі.
 No user symbols yet. Create one or copy a built-in symbol.	Символів користувача ще немає. Створіть символ або скопіюйте вбудований.
@@ -1236,6 +1299,7 @@ Offset from one row to the next: downwards for lists, sideways for rows side by 
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	На сенсорному екрані й тачпаді. Лише зсув: щипок не масштабує; лише масштабування: прокручування двома пальцями на тачпаді теж масштабує, якщо система розрізняє тачпади. Один палець працює як ліва кнопка миші.
 On a touch screen; trackpads leave three-finger gestures to the system.	На сенсорному екрані; тачпади залишають жести трьома пальцями системі.
 On startup	Під час запуску
+On the roof, joined to the air-termination conductors; move it to its place	На даху, з'єднаний з блискавкоприймальними провідниками; перемістіть його на місце
 One row per label	Один рядок на кожну мітку
 Only devices on the current page	Лише пристрої на поточній сторінці
 Only frames no page uses can be deleted	Видаляти можна лише рамки, які не використовує жодна сторінка
@@ -1263,6 +1327,7 @@ Open the selection: its properties, in the floor plan its face	Відкрити 
 Open to {}: wires cross beside the mounting plates	Відкрито до {}: проводи проходять поруч із монтажними панелями
 Open walls and floors	Відкрити стіни й підлоги
 Open, save, import, export, print and the settings	Відкриття, збереження, імпорт, експорт, друк і параметри
+Open-circuit voltage	Напруга холостого ходу
 OpenECraft page templates	Шаблони сторінок OpenECraft
 OpenECraft page templates (JSON)	Шаблони сторінок OpenECraft (JSON)
 OpenECraft project	Проєкт OpenECraft
@@ -1273,6 +1338,7 @@ OpenECraft property library	Бібліотека властивостей OpenEC
 OpenECraft property library (JSON)	Бібліотека властивостей OpenECraft (JSON)
 OpenECraft rule sets	Набори правил OpenECraft
 OpenECraft rule sets (JSON)	Набори правил OpenECraft (JSON)
+OpenECraft split project	Розділений проєкт OpenECraft
 OpenECraft structure template	Шаблон структури OpenECraft
 OpenECraft structure template (JSON)	Шаблон структури OpenECraft (JSON)
 OpenECraft symbol library	Бібліотека символів OpenECraft
@@ -1304,6 +1370,7 @@ Other values ({})	Інші значення ({})
 Otherwise from the plant layout, or next to the other line-ups	Інакше – за планом установки або поруч з іншими рядами
 Out since {} (pages locked)	Винесено з {} (сторінки заблоковано)
 Outer diameter (e.g. 8 mm) or DN	Зовнішній діаметр (напр. 8 мм) або DN
+Outlets	Розетки
 Outlets, switches, heating	Розетки, вимикачі, опалення
 Outline	Контур
 Outlines	Контури
@@ -1326,6 +1393,10 @@ PLC channels	Канали ПЛК
 PLC hardware and bus topology	Апаратне забезпечення ПЛК і топологія шини
 PLC overview	Огляд ПЛК
 PNG or JPEG bitmap, e.g. a logo or a photo	Растрове зображення PNG або JPEG, напр. логотип або фото
+PV array {}	Фотоелектричне поле {}
+PV array {} lies outside the protection of the air-termination system	Фотоелектричне поле {} поза зоною захисту блискавкоприймача
+PV array {} of building {}: {} modules	Фотоелектричне поле {} будівлі {}: {} модулів
+PV array {} of building {}: {} modules, {} kWp	Фотоелектричне поле {} будівлі {}: {} модулів, {} кВт пік
 PV arrays	Фотоелектричні поля
 Page graphics	Графіка сторінки
 Page heading	Заголовок сторінки
@@ -1373,6 +1444,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Текст функції шляху
 Pattern	Масив
 Pattern…	Масив…
+Peak power	Пікова потужність
+Pick a part in the list.	Виберіть виріб у списку.
 Pin-out	Розпіновка
 Pipe run	Траса трубопроводу
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Траса трубопроводу на стіні, стелі або підлозі приміщення, уздовж якої прокладаються шланги, трубки та труби: клацніть кути, подвійне клацання або Enter – завершити
@@ -1390,6 +1463,7 @@ Place in the building	Місце в будівлі
 Place in the plant	Місце на об'єкті
 Place in the room	Місце в приміщенні
 Place in the site plan	Розмістити на генплані
+Place on the wall	Розмістити на стіні
 Place text	Розмістити текст
 Place the georeferenced point everything is measured from	Розмістити геоприв'язану точку, від якої все вимірюється
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Розмістити геоприв'язану точку установки на генплані; її координати вводяться на панелі Будівлі, кожна точка вимірюється від неї
@@ -1422,6 +1496,7 @@ Plug in card	Встановити плату
 Plugin commands	Команди плагінів
 Plugins	Плагіни
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Плагіни додають команди, перевірки, звіти та експорти. Зовнішні плагіни завантажуються з папок у змінній середовища {} (одна вкладена папка з plugin.json для кожного плагіна).
+Plus and minus leads from the modules to the inverter	Плюсовий і мінусовий кабелі від модулів до інвертора
 Points	Точки
 Polygon	Багатокутник
 Polyline	Ламана
@@ -1624,6 +1699,8 @@ Right edges	Праві краї
 Right neighbour	Сусід праворуч
 Rights	Права
 Risers	Підйоми
+Rod holder	Тримач стрижня
+Roof pitch	Ухил даху
 Roof window	Мансардне вікно
 Roof windows	Мансардні вікна
 Roofs	Дахи
@@ -1673,6 +1750,7 @@ Save as local file	Зберегти як локальний файл
 Save as macro	Зберегти як макрос
 Save as project template…	Зберегти як шаблон проєкту…
 Save as scheme	Зберегти як схему
+Save as split project…	Зберегти як розділений проєкт…
 Save as template	Зберегти як шаблон
 Save as template…	Зберегти як шаблон…
 Save asks for a file	«Зберегти» запитає файл
@@ -1696,6 +1774,8 @@ Save workspace…	Зберегти робочий простір…
 Saved to	Збережено в
 Saved to the project server (revision {})	Збережено на сервері проєктів (ревізія {})
 Saved workspaces	Збережені робочі простори
+Saved {}, but the changes of another program could not be read: {}	Збережено: {}, але зміни іншої програми не вдалося прочитати: {}
+Saved {}. Another program changed files of the project meanwhile ({}): the project was read again with their changes	Збережено: {}. Інша програма тим часом змінила файли проєкту ({}): проєкт прочитано знову з їхніми змінами
 Saves the placed properties as a placement scheme of the project	Зберігає розміщені властивості як схему розміщення проєкту
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Зберігає проєкт без ревізій, базових версій, рецензування та позначок монтажу проводів як шаблон для нових проєктів
 Saves the project's own properties, function definitions and schemes for other projects	Зберігає власні властивості, визначення функцій і схеми проєкту для інших проєктів
@@ -1716,11 +1796,13 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Прокручування масштабує, навіть там, де воно зсуває
 Search (* and ? as placeholders)…	Пошук (* і ? як символи підстановки)…
 Search below this folder	Шукати в цій папці та вкладених
+Search number, description, maker	Пошук номера, опису, виробника
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Шукати на сервері виробів за каталогом, групою продуктів і технічними даними, додавати вироби та перевіряти базу даних на оновлення
 Second channel	Другий канал
 Section properties	Властивості розділу
 Section properties…	Властивості розділу…
 Section {} is now section {}	Розділ {} тепер розділ {}
+See-through PV modules	Прозорі модулі ФЕ
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Вигляд з боку з'єднання; кольори відповідають проводам і жилам кабелів на контактах.
 Segment {}	Сегмент {}
 Segments	Ділянки
@@ -1776,6 +1858,7 @@ Shielded analogue cables	Екрановані кабелі аналогових 
 Shielded drive cables	Екрановані кабелі приводів
 Short circuit and selectivity	Коротке замикання та селективність
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Коротке замикання, селективність, навантаження, ЕМС, функціональна безпека та перевірка за наборами правил
+Short-circuit current	Струм короткого замикання
 Short-circuit currents	Струми короткого замикання
 Short-circuit power of the network	Потужність короткого замикання мережі
 Shortest profile	Найкоротший профіль
@@ -1795,6 +1878,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Показати або сх
 Show project manager	Показати менеджер проєктів
 Show the enclosures bayed to this one as well	Також показувати корпуси, приєднані до цього
 Show the messages accepted as checked	Показати повідомлення, прийняті як перевірені
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Показувати модулі фотоелектричних полів прозорими в 3D-виді: видно з'єднання модулів між собою під ними
 Show the other wires	Показати інші проводи
 Show the pane as a window	Показати панель в окремому вікні
 Show the ribbon	Показати стрічку
@@ -1888,6 +1972,7 @@ Surge protection	Захист від перенапруг
 Swing the enclosure door open or shut (door devices and their wires move with it)	Відчинити або зачинити двері корпусу (пристрої на дверях і їхні проводи рухаються разом із ними)
 Switch off the check \"{}\"	Вимкнути перевірку «{}»
 Switched off on this computer ({})	Вимкнено на цьому комп'ютері ({})
+Switches	Вимикачі
 Switches the options with a condition by the configurator options	Перемикає опції з умовою відповідно до опцій конфігуратора
 Switches to this workspace with its panes at their default places	Перемикає на цей робочий простір із панелями на їхніх типових місцях
 Switches, push buttons and room thermostats	Вимикачі, кнопки та кімнатні термостати
@@ -1936,6 +2021,7 @@ Terminals at least	Клеми щонайменше
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Клеми з однаковим номером перемички з’єднані (однаковий потенціал). Резервні клеми враховуються в специфікації.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Умови через ';': ключ=значення (дорівнює), ключ~текст (містить) або текст у будь-якому місці
 Test connection	Перевірити підключення
+Test joints	Контрольні з'єднання
 Text offset	Зміщення тексту
 Text size	Розмір тексту
 Texts	Тексти
@@ -1993,6 +2079,7 @@ The web version is updated on its server.	Вебверсія оновлюєть�
 The wire tool routes around symbols and other wires	Інструмент «Провід» прокладає проводи в обхід символів та інших проводів
 The wires get the free cores of the cable in order (left to right)	Проводи по черзі (зліва направо) отримують вільні жили кабелю
 The wires of the connection take these values again	Проводи з’єднання знову беруть ці значення
+Their places, sizes and busbars are set in the Buildings pane.	Їхні місця, розміри й шини задаються на панелі «Будівлі».
 Theme	Тема
 These settings are edited in their panes:	Ці параметри змінюються в їхніх панелях:
 Thickness	Товщина
@@ -2090,6 +2177,7 @@ Via:	Через:
 View	Вигляд
 Visible	Видимий
 Voltage (line to line)	Напруга (лінійна)
+Voltage at maximum power	Напруга за максимальної потужності
 Voltage drop	Спад напруги
 WGS 84, written into the site of IFC exports	WGS 84, записується в ділянку під час експорту IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Стіна {}, {} м: перетягніть, щоб перемістити, подвійне клацання покаже її для оснащення
@@ -2277,6 +2365,8 @@ x y	x y
 {} (default)	{} (за замовчуванням)
 {} (first column)	{} (перший стовпець)
 {} (locked by {})	{} (заблоковано користувачем {})
+{} (no such device)	{} (немає такого пристрою)
+{} (not placed in the layout)	{} (не розміщено в компонуванні)
 {} (project server, revision {})	{} (сервер проєктів, ревізія {})
 {} (spare)	{} (резерв)
 {} (subproject of {})	{} (підпроєкт {})
@@ -2286,7 +2376,9 @@ x y	x y
 {} PLC function texts updated	Оновлено текстів функцій ПЛК: {}
 {} Vault items found for the project parts	Знайдено елементів Vault для виробів проєкту: {}
 {} Vault items found: review the changes in the integration window	Знайдено елементів Vault: {}; перегляньте зміни у вікні інтеграції
+{} added to building {}	{} додано до будівлі {}
 {} addresses changed	Змінено адрес: {}
+{} air-termination rods	Блискавкоприймальних стрижнів: {}
 {} bundles, {} branch points	Пучків: {}, точок відгалуження: {}
 {} bus cables created	Створено шинних кабелів: {}
 {} bus connections	Шинних з’єднань: {}
@@ -2324,6 +2416,7 @@ x y	x y
 {} devices renamed	Перейменовано пристроїв: {}
 {} differences to {}	Відмінностей від {}: {}
 {} doors	Двері: {}
+{} down conductors with test joints, {} m of conductors	{} струмовідводів з контрольними з'єднаннями, {} м провідників
 {} entries in {}	Записів у {1}: {0}
 {} errors	Помилок: {}
 {} errors, {} warnings	Помилок: {}, попереджень: {}
@@ -2338,6 +2431,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} не має функції із символом; призначте його пристрою в його властивостях
 {} has unsaved changes. Discard them?	У {} є незбережені зміни. Скасувати їх?
 {} imported into the parts database and placed as {}	{} імпортовано до бази даних виробів і розміщено як {}
+{} in {}	{} у {}
 {} is neither in the parts database nor on the parts server	{} немає ні в базі даних виробів, ні на сервері виробів
 {} is not in the disk image	{} немає в образі диска
 {} is not made for wall mounting: place it on a mounting rail	{} не призначений для настінного монтажу: встановіть його на рейку
@@ -2367,6 +2461,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	Показано записів: {} з {}; скористайтеся пошуком, щоб звузити список
 {} of {} items	{} з {} елементів
 {} of {} pages locked	Заблоковано {} з {} сторінок
+{} of {} parts · double-click: place	{} з {} виробів · подвійне клацання: розмістити
 {} of {} pins used	Зайнято {} з {} штирів
 {} of {} rows	{} з {} рядків
 {} of {} wires	{} з {} проводів
@@ -2418,8 +2513,10 @@ x y	x y
 {} wires changed	Змінено проводів: {}
 {} wires, {} cables and {} tubes routed	Прокладено проводів: {}, кабелів: {} і шлангів: {}
 {} wires, {} – {} mm	Проводів: {}, {} – {} мм
+{} {} of building {}	{} {} будівлі {}
 {} °C (max. {} °C)	{} °C (макс. {} °C)
 {} °C (max.)	{} °C (макс.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} пікселів, {}
 {} – {} ({} pages)	{} – {} (сторінок: {})
 {} – {} here (Esc cancels)	{} – {} тут (Esc скасовує)
@@ -2427,6 +2524,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: обтиснути разом із проводом до {}
 {}: drag to move it, R turns it, a double-click opens it	{}: перетягніть, щоб перемістити, R повертає, подвійне клацання відкриває
 {}: drag to move it, a double-click shows the floor	{}: перетягніть, щоб перемістити, подвійне клацання показує підлогу
+{}: drag to move, R: turn by 90°	{}: перетягнути для переміщення, R: повернути на 90°
 {}: nothing to change	{}: нічого змінювати
 {}: pin {}	{}: контакт {}
 {}: strip {} mm, {}	{}: зачистити {} мм, {}

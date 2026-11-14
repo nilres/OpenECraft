@@ -5,6 +5,71 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **PV arrays in 3D:** a click on an array opens its properties (modules and their
+  data, peak power, mounting and material, earthing, strings with their values and the
+  lengths of their leads, problems, and its settings). The cabling of the strings is
+  drawn from module to module and down to the generator junction box (`combiner`) with
+  the DC main cable on to the inverter: every module's plus lead (red) meets the next
+  module's minus lead (black) at a connector; *Show › See-through PV modules* shows it
+  under the modules. The mounting gets roof hooks
+  and an earthing point with its clamp on each rail or row of mounting bases, bonded by
+  the earthing conductor to an earthing busbar (`set_pv_array` `earthing`). *Show ›
+  Hide PV modules* shows the mounting. A room under the roof shown alone shows the
+  arrays and the roof windows over it; roof windows are no longer covered by the roof
+  seen through from outside. Example 16 places the inverter and the bonding busbar in
+  the attic ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
+- **Earthing and lightning protection:** buildings get earth electrodes (foundation
+  earth electrode in meshes, ring earth electrode, earth rods; connected to a main
+  earthing busbar) and a lightning protection system of class I - IV (air-termination
+  conductors on ridges and hips or as a mesh on flat roofs, air-termination rods, down
+  conductors with test joints into the electrodes), added in *Site › Earthing and
+  lightning protection* (rods clicked into the site plan), with their material,
+  diameter and mounting hardware (conductor holders, rod holders or concrete bases),
+  selected by a click in 3D or the site plan and set in their properties, drawn in 3D and in the site plan,
+  their material in the bill of materials, checked (down conductors per class, PV
+  arrays in the protection angle). Commands: `add_earth_electrode`,
+  `set_earth_electrode`, `set_lightning_protection`, `add_air_rod`, `set_air_rod`
+  ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
+- **Moving buildings:** *Site › Move buildings* is an edit mode of the site plan in which
+  buildings are dragged to their places and turned by 90°, with the rooms standing in
+  them.
+- **Outlets, switches and heating:** the menu has tabs, a search, filters by maker and
+  type and a 3D preview of the part picked; outlets and switches are drawn with their
+  models in the 3D view (frames, sockets with earthing clips, tilted rockers).
+- **Split projects for version control.** A project can be stored as
+  a folder of small files instead of one `.oec` file: the index `<name>.oecp`, one file
+  per page, one per device, part, cable and other record of the project-wide data, and
+  the embedded documents and images as plain files named by their hash. Every JSON
+  file is one line and depends only on the content, so a change touches only the files
+  it concerns and two people editing different pages do not conflict. `convert_project
+  --format oec|oecp|oecz` converts between the project file, the split project and the
+  archive; `--project <name>.oecp`, `open_project`, `save_project`, templates,
+  subprojects, the project index and batch changes read and write split projects. In
+  the desktop editor *File › Save as split project…* writes one (into a folder of its
+  own when the chosen folder holds other files), *Open*, the recent files, templates,
+  the comparison, subprojects and the project database read them, *Save* rewrites only
+  the changed files, and the installers open `.oecp` files with the editor. The web
+  version cannot open folders and keeps `.oec` and `.oecz`. **Archives (`.oecz`) are
+  written in version 2**: they hold the files of a split project instead of one
+  `project.oec`, so an embedded file used several times is stored once; the manifest
+  names the version (`version`), archives of version 1 are still read, and versions
+  of OpenECraft before this one cannot read the new archives. The **project server
+  stores its projects as split projects** (`<name>/<name>.oecp` in the data
+  directory) and writes only the files a save changed; project files of earlier
+  versions are converted at the first start and kept as `<name>.oec.bak`. For **git**,
+  saving writes a `.gitattributes` that keeps the files unconverted, and the merge
+  driver `merge_project_file` merges the JSON files record by record (fields of a
+  record, records by their id, the order of pages and records, the id counter);
+  `check_project_data --repair` renumbers ids two branches gave twice
+  (`docs/command-line.md`). Copies of a split project start the ids of their new
+  objects at different random places, so that this is rare. A save writes only the
+  files this side changed: what another program changed in the folder meanwhile (a
+  `git pull`) is kept and read in, and a file changed by both is not overwritten.
+  A file git merged as text is named when the project is opened. Large split
+  projects stay fast: the records of a kind are spread over 16 folders, a save
+  writes only the pages and data that changed, the folder is read once on all
+  threads, and a save is one step that a crash either leaves undone or the next
+  access finishes (journal `.oecp-save`). The `.oec` file stays the default (#149).
 - **Parts server: groups, catalog permissions, directories and a dashboard.** Users
   are gathered in **groups** of the server (*Administration › Groups*, `/api/v1/groups`;
   the groups of local accounts become such groups at startup), and grants to a group

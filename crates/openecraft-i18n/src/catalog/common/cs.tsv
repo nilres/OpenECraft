@@ -42,11 +42,13 @@ Cable tag, e.g. -W20	Označení kabelu, např. -W20
 Cables	Kabely
 Cancel	Zrušit
 Cannot read {}: {}	Nelze číst {}: {}
+Cannot write {}: {}	Nelze zapsat {}: {}
 Catalog	Katalog
 Catalog id	ID katalogu
 Category	Kategorie
 Centred	Na střed
 Certificates	Certifikáty
+Change	Změna
 Channel	Kanál
 Characteristic	Charakteristika
 Check settings	Nastavení kontroly
@@ -108,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Připojovací bod zařízení
 Device description	Popis zařízení
 Device tag	Označení přístroje
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Zařízení, ke kterému vede uzemňovací vodič konstrukce (uzemňovací nebo ekvipotenciální přípojnice); prázdné: žádné
 Device {}	Přístroj {}
 Devices	Přístroje
 Dimensions	Rozměry
@@ -157,6 +160,7 @@ Function text	Text funkce
 Functional safety	Funkční bezpečnost
 Functions	Funkce
 General	Obecné
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Generátorová přípojková skříň (zařízení), ke které vedou stringy, odtud hlavní kabel DC ke každému střídači; prázdné: žádná
 Gives up a subproject: its pages are unlocked again	Zruší podprojekt: jeho stránky se opět odemknou
 Gland plate	Přírubová deska
 Graphics	Grafika
@@ -206,6 +210,7 @@ Location (+)	Umístění (+)
 Logo	Logo
 MTTFd (years)	MTTFd (roky)
 Machine	Stroj
+Main earthing busbar (device) it is connected to; empty: none	Hlavní uzemňovací přípojnice (zařízení), ke které je připojen; prázdné: žádná
 Main earthing terminal	Hlavní uzemňovací svorka
 Main switch	Hlavní vypínač
 Manufacturer	Výrobce
@@ -220,6 +225,8 @@ Minimum digits of the counter (leading zeros)	Minimální počet číslic číta
 Missing parameter: {}	Chybí parametr: {}
 Missing value for --{}	Chybí hodnota pro --{}
 Model import failed: {}	Import modelu se nezdařil: {}
+Module	Modul
+Modules	Moduly
 Modules in series	Moduly v sérii
 Modules side by side in a row	Moduly vedle sebe v řadě
 Mounted	Namontováno
@@ -272,6 +279,7 @@ Not in the schematic	Není ve schématu
 Note	Poznámka
 Notes	Poznámky
 Number	Číslo
+Number of down conductors (0: as many as the class needs for the walls)	Počet svodů (0: tolik, kolik třída vyžaduje pro zdi)
 Number the sections 1, 2, 3 … on every level first	Nejprve očíslovat oddíly 1, 2, 3 … na každé úrovni
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Očísluje označení přístrojů podle struktury a identifikačního písmene v pořadí schématu (stránka, sloupec, shora dolů)
 Only rows containing this text	Jen řádky s tímto textem
@@ -369,6 +377,7 @@ Released pages cannot be moved	Uvolněné stránky nelze přesouvat
 Remove	Odebrat
 Remove from favorites	Odebrat z oblíbených
 Remove the boundary	Odstranit hranici
+Remove the lightning protection system	Odstranit ochranu před bleskem
 Remove the reference point	Odstranit referenční bod
 Report	Výkaz
 Report blocks	Bloky výkazů
@@ -514,6 +523,7 @@ not bonded	nepospojeno
 not connected	nepřipojeno
 open	otevřený
 pcs	ks
+portrait	na výšku
 rejected	zamítnuto
 right	doprava
 spare	rezerva

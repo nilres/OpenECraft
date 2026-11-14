@@ -40,11 +40,13 @@ Cable tag, e.g. -W20	케이블 태그, 예: -W20
 Cables	케이블
 Cancel	취소
 Cannot read {}: {}	{0}을(를) 읽을 수 없음: {1}
+Cannot write {}: {}	{0}을(를) 쓸 수 없음: {1}
 Catalog	카탈로그
 Catalog id	카탈로그 ID
 Category	범주
 Centred	가운데
 Certificates	인증서
+Change	변경
 Channel	채널
 Characteristic	특성
 Check settings	검사 설정
@@ -106,6 +108,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	장치 연결 지점
 Device description	장치 설명
 Device tag	장치 태그
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	가대의 접지 도체가 연결되는 장치 (접지 또는 등전위 본딩 부스바); 비어 있음: 없음
 Device {}	장치 {}
 Devices	장치
 Dimensions	치수
@@ -155,6 +158,7 @@ Function text	기능 텍스트
 Functional safety	기능 안전
 Functions	기능
 General	일반
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	스트링이 연결되는 접속함 (장치), 거기서 각 인버터로 직류 간선이 갑니다; 비어 있음: 없음
 Gives up a subproject: its pages are unlocked again	하위 프로젝트를 포기합니다. 해당 페이지의 잠금이 다시 해제됩니다
 Gland plate	글랜드 플레이트
 Graphics	그래픽
@@ -204,6 +208,7 @@ Location (+)	위치 (+)
 Logo	로고
 MTTFd (years)	MTTFd(년)
 Machine	기계
+Main earthing busbar (device) it is connected to; empty: none	연결된 주 접지 부스바 (장치); 비어 있음: 없음
 Main earthing terminal	주 접지 단자
 Main switch	주 스위치
 Manufacturer	제조업체
@@ -218,6 +223,8 @@ Minimum digits of the counter (leading zeros)	카운터의 최소 자릿수(앞�
 Missing parameter: {}	매개 변수 누락: {}
 Missing value for --{}	--{}의 값 누락
 Model import failed: {}	모델 가져오기 실패: {}
+Module	모듈
+Modules	모듈
 Modules in series	직렬 모듈
 Modules side by side in a row	한 열에 나란히 놓인 모듈
 Mounted	장착됨
@@ -270,6 +277,7 @@ Not in the schematic	회로도에 없음
 Note	참고
 Notes	메모
 Number	번호
+Number of down conductors (0: as many as the class needs for the walls)	인하 도선 수 (0: 등급이 벽에 요구하는 만큼)
 Number the sections 1, 2, 3 … on every level first	먼저 각 수준의 구역에 1, 2, 3 … 번호 매기기
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	구조 및 식별 문자별로 회로도 순서(페이지, 열, 위에서 아래)에 따라 장치 태그에 번호를 매깁니다
 Only rows containing this text	이 텍스트가 포함된 행만
@@ -367,6 +375,7 @@ Released pages cannot be moved	릴리스된 페이지는 이동할 수 없습니
 Remove	제거
 Remove from favorites	즐겨찾기에서 제거
 Remove the boundary	경계 제거
+Remove the lightning protection system	피뢰 시스템 삭제
 Remove the reference point	기준점 제거
 Report	보고서
 Report blocks	보고서 블록
@@ -511,6 +520,7 @@ not bonded	본딩 안 됨
 not connected	연결되지 않음
 open	열림
 pcs	개
+portrait	세로
 rejected	거부됨
 right	오른쪽
 spare	예비

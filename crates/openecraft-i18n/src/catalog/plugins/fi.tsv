@@ -26,6 +26,8 @@ Adds a text to a page	Lisää tekstin sivulle
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Lisää kaikki projektin tekstien rivit sanakirjaan ja poistaa valinnaisesti merkinnät, joita ei enää käytetä
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Lisää tarvikkeen kaapelin päähän: läpivienti, EMC-läpivienti, liitin, vedonpoisto, suojavaippapuristin, suojaletku, pääteholkki, merkki
 Adds an accessory to a device; it must fit one of the device's parts	Lisää laitteeseen lisävarusteen; sen on sovittava johonkin laitteen osaan
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Lisää rakennuksen katoille ukkosenjohdatintangon, joka on yhdistetty sen sieppausjohtimiin; rakennus saa luokan III ukkossuojauksen, jos sillä ei ole sellaista
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Lisää rakennukseen maadoituselektrodin: perustusmaadoituksen alimman kerroksen pohjalaattaan ulkoseinien viereen silmukoina, rengasmaadoituksen maahan seinien ympärille tai maadoitussauvan; sen materiaali menee materiaaliluetteloon
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Lisää kotelon: järjestelmästä jossakin sen koossa (tai mukautetussa koossa) tai kotelo-osasta
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Lisää potentiaalintasausjohtimen kahden liitäntäpisteen välille (päämaadoituskisko, kotelot, johtavat ääriviivat, metalliset kannattimet)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Lisää tai muuttaa projektin merkintäskeeman, poistaa sen tai valitsee merkintöjen viennissä käytettävän skeeman
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Lisää mallin laitteet segmenttiin
 Adds the outline of a machine, building or area to the plant layout	Lisää koneen, rakennuksen tai alueen ääriviivan laitoksen sijoituskuvaan
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Lisää, korvaa tai poistaa profiilin: konnektori, jossa on toisen järjestelmän käyttämät sarakkeiden nimet
+Air-termination rod: its name	Ukkosenjohdatintanko: sen nimi
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Tasaa kohteet, jakaa ne tasaisesti, rivittää laitteet kiskolle tai kopioi kohteet kuvioksi
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Tasaa symbolit, tekstit ja grafiikan yhteiseen reunaan tai keskikohtaan; liitetyt johtojen päät seuraavat
 Allow renaming onto an identifier in use: both become one	Salli uudelleennimeäminen käytössä olevaksi tunnukseksi: molemmista tulee yksi
@@ -70,6 +73,7 @@ Between page and column (default .)	Sivun ja sarakkeen välissä (oletus .)
 Bonding point	Potentiaalintasauksen liitäntäpiste
 Border around the text	Reunus tekstin ympärillä
 Both classes are needed	Molemmat luokat tarvitaan
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Laitoksen rakennukset kerroksineen, kuiluineen, portaineen ja aurinkopaneelikenttäisine katoineen, maadoituselektrodeineen ja ukkossuojauksineen, kerrosten huoneineen ja rakennusten välisine yhteyksineen
 Bus system name	Väyläjärjestelmän nimi
 Bus system name, e.g. PN/IE_1	Väyläjärjestelmän nimi, esim. PN/IE_1
 Busbar machine program (CSV)	Kiskontyöstökoneen ohjelma (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Muuttaa huoneen ovea tai ikkunaa: miten se avautuu (saranat vasemmalla tai oikealla, sisään- tai ulospäin, tai liukuva), sen paikan seinällä, koon ja kaiteen korkeuden
 Changes a placed symbol; when it moves, connected wire ends follow	Muuttaa sijoitettua symbolia; kun se siirtyy, liitettyjen johtojen päät seuraavat
 Changes a text (only the given properties)	Muuttaa tekstiä (vain annetut ominaisuudet)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Muuttaa rakennuksen maadoituselektrodia: paikka, pituus, etäisyys seinistä, syvyys, silmä, osa tai kisko; nimeää sen uudelleen tai poistaa sen
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Vaihtaa poistumassa olevia tai valikoimasta poistuneita osia käyttävät laitteet seuraajaosiin (seuraajien on oltava projektin osia)
 Changes name, description or structure of a page	Muuttaa sivun nimeä, kuvausta tai rakennetta
 Changes name, description, function, location or parent of a segment	Muuttaa segmentin nimeä, kuvausta, toimintoa, sijaintia tai ylätasoa
@@ -100,6 +105,7 @@ Check {} failed: {}	Tarkistus {} epäonnistui: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Tarkistaa kaappiasennuksen: törmäykset, etäisyydet (asennus, tuuletus, EMC), huoltotilan, korkeudet lattiasta, törmäysluokat, lämpötilat ja valmistettavuuden
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Valitsee, miten johdinten päät päätetään: kuorittuna, pääteholkilla tai puristetulla kaapelikengällä; liitäntäpisteessä, laitteen kaikissa liitäntäpisteissä tai vain yhdelle johtimelle
 Chosen value	Valittu arvo
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Ukkossuojauksen luokka, 1 … 4 (I … IV; oletus III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Kaappiasennuksen etäisyydet, huoltotila, korkeudet, törmäysluokat, lämpösimulaatio ja valmistettavuus
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Kotelojen ilmastointi (IEC/TR 60890): häviöteho, sisälämpötila, tarvittava tuuletin tai jäähdytyslaite ja lämmitys; muuttaa valinnaisesti yhden kotelon asetuksia
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Törmäysluokka: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, oma luokka tai * mille tahansa
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Laitteet, johdot, potentiaalit, kaapelit, riviliitinrimat, PLC, kaappi, fluidi, sähkölaskelmat, rakenne ja käännökset
 Diameter in mm	Halkaisija millimetreinä
 Diameter of a hole at both ends (0: none)	Reiän halkaisija molemmissa päissä (0: ei reikää)
+Diameter of the conductors, mm (default 8)	Johtimien halkaisija, mm (oletus 8)
+Diameter of the rod, mm (default 16)	Tangon halkaisija, mm (oletus 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Rungon suunta: left, right, up tai down (oletus: paikan johtimien mukaan)
 Distance between power and signal or fluid in mm	Tehon ja signaalin tai fluidin välinen etäisyys millimetreinä
 Distance from devices, rails and busbars in mm	Etäisyys laitteista, kiskoista ja kokoojakiskoista millimetreinä
@@ -222,6 +230,10 @@ Draws a wire through two or more points	Piirtää johdon kahden tai useamman pis
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Piirtää johdot piirikaaviosivuilla ja PDF- / SVG-viennissä niiden värillä tai mustana
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Piirtää johtimet toisiaan vastapäätä olevien symbolien vapaiden liitäntäpisteiden välille sekä T-haarojen ja kulmien vapaisiin haaroihin
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Kaapelien EMC-luokat (käytön lähtö, analoginen, teho, signaali, suojavaippa) ja EMC-ongelmat
+Earth electrode: its name	Maadoituselektrodi: sen nimi
+Earth rod: its length, mm (default 3000)	Maadoitussauva: sen pituus, mm (oletus 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Maadoitussauva: sen paikan x rakennuksen pohjapiirroksessa, mm
+Earth rod: z of its place in the floor plan of the building, mm	Maadoitussauva: sen paikan z rakennuksen pohjapiirroksessa, mm
 Edge length of the routing grid in mm	Reititysruudukon sivun pituus millimetreinä
 Electrical device tags separated by commas or blanks (empty = remove the links)	Sähkölaitteiden tunnukset pilkuilla tai välilyönneillä erotettuina (tyhjä = poista linkit)
 Electrical engineering	Sähkötekniikka
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	Ensimmäinen portti muodossa asema:p
 First row with the column names	Ensimmäinen rivi sarakkeiden nimillä
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Laitteen nimen muoto: {letter}, {n} (laskuri), {page}, {column}, {row}; oletus {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Skeeman format muoto: {n} (laskuri), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Perustusmaadoitus: kuinka paljon ulkoseinien sisäpuolella (oletus 100), rengas: kuinka paljon ulkopuolella (oletus 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Perustusmaadoitus: sen suurin silmä, mm (oletus 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Kehys, josta aloitetaan, kun kehys on uusi (oletus: A3 landscape)
 Free space in front of every device on the plate	Vapaa tila jokaisen levyllä olevan laitteen edessä
 Freezes routes for production (kept by the recalculation while possible) or releases them	Lukitsee reitit tuotantoa varten (uudelleenlaskenta säilyttää ne, kun mahdollista) tai vapauttaa ne
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Luo moninapaisen piirikaavion (tehopiirin symbolit, johtimet, kontaktorien kelat) sivun yksinapaisille symboleille uudelle sivulle sen jälkeen
 Generates the program of the busbar machine: cuts, punched holes and bends	Luo kiskontyöstökoneen ohjelman: leikkaukset, lävistetyt reiät ja taivutukset
 Give a device tag or a part number	Anna laitetunnus tai osanumero
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Antaa rakennukselle ukkossuojauksen tai muuttaa sitä: luokka, alastulojohtimien määrä ja johtimien osa; sieppausjohtimet harjoilla ja taitteilla (silmukka tasakatoilla), alastulojohtimet mittausliitoksin maadoituselektrodeille; tai poistaa sen
+Greatest distance of the conductor holders, mm (default 1000)	Johdinpidikkeiden suurin väli, mm (oletus 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Ryhmittää kohteet kokoonpanoksi, joka valitaan ja siirretään yhdessä; ilman nimeä kohteet poistuvat kokoonpanoistaan
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Luovuttaa kotelon ohjelmat tuotantoon työnä: kaikkien sen pintojen ja kuparikiskojen manifesti ja ohjelmat
 Has a divider between power and signal cables	Teho- ja signaalikaapelien välissä on erotin
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	Korkeus asennuslevyn yläpuol
 Height in mm	Korkeus millimetreinä
 Height in mm without plinth; negative: unknown (wall mounted)	Korkeus mm ilman sokkelia; negatiivinen: tuntematon (seinäasennus)
 Height in mm; the logo keeps its aspect ratio inside	Korkeus millimetreinä; logo säilyttää sen sisällä kuvasuhteensa
+Height of the rod above the covering, mm (default 1500)	Tangon korkeus katteen yläpuolella, mm (oletus 1500)
+Height of the test joints above the ground, mm (default 1000)	Mittausliitosten korkeus maanpinnasta, mm (oletus 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Sivun ylemmän tason tuote -aspekti (-); sivun laitteet siirtyvät mukana
 Highest actuator on the door above the floor (0: not checked)	Oven ylin käyttöelin lattiasta (0: ei tarkisteta)
 Highest air temperature at devices without data (0: not checked)	Korkein ilman lämpötila laitteilla, joilla ei ole tietoja (0: ei tarkisteta)
@@ -427,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Valmistuspaketti (CNC-ohjelmat, JSON)
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Merkinnät pilkuilla erotettuina: device, terminal, wire, cable (tyhjä: kaikki)
 Marks a panel item as mounted or as a problem, or as open again	Merkitsee asennusosan asennetuksi tai ongelmaksi tai jälleen avoimeksi
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Merkitsee reititetyn johdon johdotetuksi tai ongelmaksi tai jälleen avoimeksi; johto annetaan sen kahden pään avulla
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Materiaali: galvanised_steel, stainless_steel, copper, copper_bonded_steel tai aluminium
 Maximum fill of a carrier in percent	Kannattimen suurin täyttöaste prosentteina
 Maximum operating pressure in bar	Suurin käyttöpaine bareina
 Measuring range or set point	Mittausalue tai asetusarvo
@@ -435,11 +454,14 @@ Milling feed, mm/min	Jyrsintäsyöttö, mm/min
 Mirror the symbol	Peilaa symboli
 Mounting plate size as width and height; empty object restores the centred plate	Asennuslevyn koko leveytenä ja korkeutena; tyhjä objekti palauttaa keskitetyn levyn
 Mounting size must contain a positive width and height	Asennuskoon on sisällettävä positiivinen leveys ja korkeus
+Moves an air-termination rod, changes its height, renames or removes it	Siirtää ukkosenjohdatintankoa, muuttaa sen korkeutta, nimeää sen uudelleen tai poistaa sen
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Siirtää johdon yhtä päätä: se irtoaa siitä, mihin se on liitetty, ja liittyy siihen, mihin se osuu; johto pysyy suorakulmaisena
 Moves symbols, wires and texts; connected wire ends follow	Siirtää symboleja, johtoja ja tekstejä; liitettyjen johtojen päät seuraavat
 Moves the page before this page of its section (or of the section given)	Siirtää sivun osionsa (tai annetun osion) tämän sivun eteen
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Siirtää osion yläosionsa (tai annetun) tämän osion eteen; numerot jatkuvat järjestyksessä
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Johtosarjan naulalautaesitys: haarat yhteisestä solmusta liittimiin pituuksineen, suuntineen, nipun halkaisijoineen ja nastoineen sekä piirustuksen mittakaava
+Name (default E1, E2, …)	Nimi (oletus E1, E2, …)
+Name (default F1, F2, …)	Nimi (oletus F1, F2, …)
 Name of the assembly	Kokoonpanon nimi
 Name of the bar, e.g. L1 -Q1	Kiskon nimi, esim. L1 -Q1
 Name of the check	Tarkistuksen nimi
@@ -463,6 +485,7 @@ New page name	Uusi sivun nimi
 New parent segment (empty: top level)	Uusi ylätason segmentti (tyhjä: ylin taso)
 New value	Uusi arvo
 No PCT loop {}	Ei instrumentointipiiriä {}
+No air-termination rod {} on building {}	Ei ukkosenjohdatintankoa {} rakennuksessa {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Sisäänrakennettua tarkistusta nimeltä {} ei ole: asetus koskee samannimistä laajennuksen tarkistusta (list_checks)
 No bus system {}	Ei väyläjärjestelmää {}
 No connection point {} on this page	Tällä sivulla ei ole liitäntäpistettä {}
@@ -470,6 +493,7 @@ No connection symbol with id {}	Ei liitossymbolia tunnuksella {}
 No copper bar {}	Kuparikiskoa {} ei ole
 No device description {}	Ei laitekuvausta {}
 No device group {}	Ei laiteryhmää {}
+No earth electrode {} in building {}	Ei maadoituselektrodia {} rakennuksessa {}
 No enclosure named {}	Ei koteloa nimeltä {}
 No entry for {} and {}	Ei merkintää kohteille {} ja {}
 No hose {}	Ei letkua {}
@@ -572,7 +596,12 @@ Part number of the downstream device	Jälkimmäisen laitteen osanumero
 Part number of the hose / tube / pipe	Letkun / putken / putkiston osanumero
 Part number of the upstream device	Edeltävän laitteen osanumero
 Part number, e.g. GEN.LMP-GN-24	Osanumero, esim. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Sen lattaraudan, langan tai sauvan osa (tyhjä: yleinen)
+Part of the conductor holders on the roof (empty: generic)	Katon johdinpidikkeiden osa (tyhjä: yleinen)
+Part of the conductor holders on the walls (empty: generic)	Seinien johdinpidikkeiden osa (tyhjä: yleinen)
+Part of the conductors (round wire; empty: generic)	Johtimien osa (pyörölanka; tyhjä: yleinen)
 Part of the key or name	Osa avaimesta tai nimestä
+Part of the rod (empty: the one of its material and diameter)	Tangon osa (tyhjä: sen materiaalin ja halkaisijan mukainen)
 Part {} has no function with a symbol	Osalla {} ei ole symbolillista toimintoa
 Parts phased out or discontinued	Poistumassa olevat tai valikoimasta poistuneet osat
 Pass ids or pages	Anna tunnukset tai sivut
@@ -653,6 +682,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	Ympäröiv�
 Release instead of freeze	Vapauta lukitsemisen sijaan
 Released pages keep their names: {}	Vapautetut sivut säilyttävät nimensä: {}
 Remote I/O: station of the controller	Hajautettu I/O: ohjaimen asema
+Remove the air-termination rod	Poista ukkosenjohdatintanko
+Remove the earth electrode	Poista maadoituselektrodi
 Remove the entry of upstream and downstream	Poista arvojen upstream ja downstream merkintä
 Remove the profile	Poista profiili
 Remove the scheme from the project	Poista skeema projektista
@@ -684,6 +715,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Jäännös (mm)
 Reuse failed searches during one routing calculation	Käytä epäonnistuneita hakuja uudelleen saman reitityslaskennan aikana
 Right side bayed (no side panel)	Oikea puoli rivitetty (ei sivuseinää)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Rengas: syvyys maanpinnan alla, sauva: yläpään syvyys, mm (oletus 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Maadoitussauva: sen halkaisija (oletus 20), perustus- ja rengasmaadoitus: pyörölangan, 0 lattaraudalle, mm
 Room {} exists already	Tila {} on jo olemassa
 Rotation in degrees clockwise: 0, 90, 180 or 270	Kierto asteina myötäpäivään: 0, 90, 180 tai 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Kierto asteina vastapäivään (90 luetaan alhaalta ylöspäin)
@@ -873,6 +906,7 @@ Unknown address scheme: {}	Tuntematon osoitemalli: {}
 Unknown alignment: {}	Tuntematon tasaus: {}
 Unknown anchor: {}	Tuntematon ankkuri: {}
 Unknown aspect: {}	Tuntematon aspekti: {}
+Unknown base: {}	Tuntematon jalka: {}
 Unknown bonding kind: {}	Tuntematon potentiaalintasauksen laji: {}
 Unknown bonding point: {}	Tuntematon potentiaalintasauksen liitäntäpiste: {}
 Unknown bus system: {}	Tuntematon väyläjärjestelmä: {}
@@ -881,6 +915,7 @@ Unknown check: {}	Tuntematon tarkistus: {}
 Unknown class: {}	Tuntematon luokka: {}
 Unknown data type: {}	Tuntematon tietotyyppi: {}
 Unknown direction {}: left, right, up or down	Tuntematon suunta {}: left, right, up tai down
+Unknown earth electrode: {}	Tuntematon maadoituselektrodi: {}
 Unknown earthing system: {}	Tuntematon maadoitusjärjestelmä: {}
 Unknown face {}	Tuntematon pinta {}
 Unknown fastening: {}	Tuntematon kiinnitys: {}
@@ -972,9 +1007,11 @@ device (default), position, cross_section or number	device (oletus), position, c
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages tai parts
 error, warning, info, off, or default to take the change back	error, warning, info, off tai default muutoksen perumiseksi
 false takes the acceptance back (default true)	false peruu hyväksynnän (oletus true)
+foundation, ring or rod	foundation, ring tai rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted tai middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) tai product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker tai other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (tangon pidike katolla) tai concrete_base (tasakatoilla)
 hose, tube or pipe	hose, tube tai pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (koneet, vaiheet BK) tai iec60445 (vaiheet BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (oletus), power, control, signal tai fluid
@@ -1001,6 +1038,8 @@ too long	liian pitkä
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (oletus), ladder, trunking, conduit, drag_chain, buried tai free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit tai other
 wired, problem or open	wired, problem tai open
+x of the foot of the rod in the floor plan of the building, mm	Tangon jalan x rakennuksen pohjapiirroksessa, mm
+z of the foot of the rod in the floor plan of the building, mm	Tangon jalan z rakennuksen pohjapiirroksessa, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} ja {} ovat saman toiminnon molemmat päät: johdin oikosulkisi sen
 {} and {} are needed together	{} ja {} tarvitaan yhdessä
 {} cannot be bayed to itself	Kohdetta {} ei voi rivittää itseensä

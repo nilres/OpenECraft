@@ -188,7 +188,7 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Темпер�
 Centre horizontally	Центрувати по горизонталі
 Centre vertically	Центрувати по вертикалі
 Centrifugal pump	Відцентровий насос
-Change	Зміна
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Змінено в папці проєкту іншою програмою, а також у відкритому проєкті: {}{}. Збережіть проєкт під іншим ім'ям або відкрийте його знову й повторіть зміни
 Changed since mounted	Змінено після встановлення
 Changed since wired	Змінено після монтажу
 Changeover contact	Перемикальний контакт
@@ -293,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Мідна шина {}: {} мм довше за складську довжину {} мм
 Copper bar {}: {} mm are too thick for {}	Мідна шина {}: {} мм – надто товста для {}
 Copper bar {}: {} segments need {} bends	Мідна шина {}: для {} ділянок потрібно {} згинів
+Copper-bonded steel	Обміднена сталь
 Cores used	Зайняті жили
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Кут на сторінці {} не відповідає своїм проводам: потрібен один провід у кожному з його двох напрямків і жодної точки підключення там
 Counter contact NC	Контакт лічильника, розмикальний
@@ -433,6 +434,7 @@ ERP item master and bill of materials (CSV)	Довідник номенклат�
 ERP number	Номер ERP
 ETIM class	Клас ETIM
 Earth electrode	Заземлювач
+Earth rod	Вертикальний заземлювач
 East-west on a flat roof	Схід-захід на плоскому даху
 Edit pages	Редагувати сторінки
 Edit project data	Редагувати дані проєкту
@@ -550,6 +552,7 @@ Foot switch NO (NFPA)	Педальний вимикач, замикальний 
 Force	Сила
 Fork terminal	Вилковий наконечник
 Format (placeholders)	Формат (заповнювачі)
+Foundation earth electrode	Фундаментний заземлювач
 Frame size	Типорозмір
 Free	Вільно
 Free air (mm)	Вільне прокладання (мм)
@@ -846,8 +849,6 @@ Minimum operating temperature	Мінімальна робоча температ
 Mirror contacts	Дзеркальні контакти
 Mirrored	Віддзеркалено
 Mission time	Тривалість експлуатації
-Module	Модуль
-Modules	Модулі
 Moisture	Вологість
 Moment of inertia	Момент інерції
 Motion detector	Датчик руху
@@ -1341,6 +1342,7 @@ Revision table: date of the last revision (2: the one before …)	Таблиця
 Revision table: description of the last revision (2: the one before …)	Таблиця змін: опис останньої зміни (2: попередньої …)
 Revision table: index of the last revision (2: the one before …)	Таблиця змін: індекс останньої зміни (2: попередньої …)
 Right side panel	Права бічна стінка
+Ring earth electrode	Кільцевий заземлювач
 Ring terminal	Кільцевий наконечник
 Rivet nut	Заклепкова гайка
 RoHS compliant	Відповідає RoHS
@@ -1479,6 +1481,7 @@ Spare terminal	Резервна клема
 Speed	Швидкість обертання
 Spiral	Гвинтові
 Stainless steel	Нержавна сталь
+Stainless steel V4A	Нержавна сталь V4A
 Standard	Стандарт
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Схема пуску / зупинки з реле: котушка та контакти утворюють один пристрій із перехресними посиланнями та дзеркалом контактів, клемник, номери проводів, схема клемника та перелік з'єднань.
 Start date	Дата початку
@@ -1491,6 +1494,7 @@ Station name {} is used {} times	Назву станції {} використа
 Station {} is not connected to bus {}	Станцію {} не підключено до шини {}
 Station {}: bus system {} does not exist	Станція {}: шинна система {} не існує
 Steam	Пара
+Steel, hot-dip galvanised	Сталь гарячеоцинкована
 Stock	Запас
 Stop category	Категорія зупинки
 Storage temperature range	Діапазон температури зберігання
@@ -1580,6 +1584,7 @@ The archive contains no project	Архів не містить проєкту
 The archive has no manifest	Архів не має маніфесту
 The archive is damaged	Архів пошкоджено
 The archive unpacks to more than {} MB	Архів розпаковується більш ніж у {} МБ
+The archive was written by a newer version (archive version {})	Архів записано новішою версією (версія архіву {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Слід вказати виробника комплектного пристрою (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Ряд шаф у своєму приміщенні: Г-подібний план, внутрішня стіна, двері та вікно, ряд шаф на своєму місці, рейка з розеткою на стіні, настінний аварійний світильник і кабельний лоток під стелею.
 The configuration is not a JSON object	Конфігурація не є об’єктом JSON
@@ -1592,7 +1597,10 @@ The embedded document {} is damaged	Вбудований документ {} п�
 The file is empty	Файл порожній
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Файл записано новішою версією (формат {}): дані, невідомі цій версії, буде втрачено під час збереження
 The first column must be Key	Перший стовпець має бути Key
+The folder {} already holds the project {}: a split project needs a folder of its own	Папка {} уже містить проєкт {}: розділеному проєкту потрібна власна папка
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Папка {} містить файли, що не належать до жодного проєкту ({}): розділеному проєкту потрібна власна папка
 The function definition needs a key and a name	Визначенню функції потрібні ключ і назва
+The index of the project names no file layout: it was not written by OpenECraft	Індекс проєкту не вказує структуру файлів: його записано не OpenECraft
 The last page cannot be deleted	Останню сторінку не можна видалити
 The macro box has no items left	У рамці макросу не залишилося елементів
 The next free id is already in use	Наступний вільний ідентифікатор уже зайнято
@@ -1602,7 +1610,10 @@ The pages were changed after the submission; submit the revision again	Стор�
 The plot boundary crosses itself	Межа ділянки перетинає сама себе
 The plot boundary encloses no area	Межа ділянки не охоплює площі
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Межа ділянки не є багатокутником: вона перетинає сама себе або має менше трьох кутів
+The project cannot be written as files: {}	Проєкт не можна записати у вигляді файлів: {}
+The project file {} is missing	Файл проєкту {} відсутній
 The project has no panel layout	Проєкт не має компонування шафи
+The project was written by a newer version (file layout {})	Проєкт записано новішою версією (структура файлів {})
 The property needs a name	Властивості потрібна назва
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Насосна станція у двох з'єднаних підлогових шафах: система збірних шин, рейки та кабель-канали, пристрої на дверях і ручки, вентилятор із фільтром, світильник, шина PE, кабельні вводи, кабельний прохід, розрахунок клімату, заповнення кабель-каналів і 3D-трасування.
 The revision is already released	Ревізію вже затверджено
@@ -1884,7 +1895,6 @@ page properties	властивості сторінки
 pigtail {} mm	косичка {} мм
 pilot	керування
 pink	рожевий
-portrait	книжкова
 pressure	тиск
 red	червоний
 released	затверджено
@@ -1922,6 +1932,7 @@ yellow	жовтий
 {} has no MTTFd, B10d, PL or PFHd	{} не має MTTFd, B10d, PL або PFHd
 {} has no door or window {}	{} не має дверей чи вікна {}
 {} has nothing to manufacture	{} не має що виготовляти
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} містить нерозв'язаний конфлікт злиття git: файл було об'єднано як текст. Візьміть одну версію файлу (git checkout --ours або --theirs), потім налаштуйте драйвер злиття для розділених проєктів (merge_project_file) перед повторним злиттям
 {} is a built-in function definition	{} – вбудоване визначення функції
 {} is a built-in property	{} – вбудована властивість
 {} is a built-in scheme	{} – вбудована схема
@@ -1967,6 +1978,7 @@ yellow	жовтий
 {}: PV array {} covers a roof window	{}: фотоелектричне поле {} закриває мансардне вікно
 {}: PV array {} has {} modules, its device {} has {}	{}: фотоелектричне поле {} має {} модулів, його пристрій {} — {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: фотоелектричне поле {} змонтоване з нахилом на скатному даху
+{}: PV array {} lies outside the protection of the air-termination system	{}: фотоелектричне поле {} поза зоною захисту блискавкоприймача
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: фотоелектричне поле {} даху {} лежить поперек гребеня, ребра або краю даху
 {}: PV array {} of roof {} lies outside the roof	{}: фотоелектричне поле {} даху {} лежить поза дахом
 {}: PV arrays {} and {} lie over each other	{}: фотоелектричні поля {} і {} перекриваються
@@ -1976,6 +1988,7 @@ yellow	жовтий
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: провід {} мм² тонший, ніж приймає точка підключення (не менше {} мм²)
 {}: accessory {} fits none of the device's parts	{}: приладдя {} не підходить до жодного виробу пристрою
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: орган керування {} розташовано на {} мм над підлогою, рекомендовано {} … {} мм
+{}: air-termination rod {} stands off the roofs	{}: блискавкоприймальний стрижень {} стоїть поза дахами
 {}: auxiliary function(s) without main function	{}: допоміжні функції без головної функції
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: відключна здатність {} kA менша за струм короткого замикання {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: кабельний канал на {} мм заповнено на {} % (межа {} %)
@@ -1997,6 +2010,8 @@ yellow	жовтий
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: вирізи {} і {} на {} розташовано надто близько (перемичка {} мм, щонайменше {} мм)
 {}: designation '{}' used more than once	{}: позначення '{}' використано кілька разів
 {}: device tag without device name	{}: позначення пристрою без назви пристрою
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: заземлювач {} не має стін, уздовж яких проходить: у будівлі немає приміщень і дахів
+{}: earth rod {} stands inside the walls of the building	{}: вертикальний заземлювач {} стоїть усередині стін будівлі
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: струм замикання {} A на {} не забезпечує вимкнення протягом {} s (потрібно {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: тексти функцій в однолінійній схемі та на схемі відрізняються
 {}: hole of {} is too close to the cutout of {} on the {}	{}: отвір {} розташовано надто близько до вирізу {} на {}
@@ -2058,7 +2073,12 @@ yellow	жовтий
 {}: terminal {} uses {} levels, its part {} has {}	{}: клема {} використовує ярусів: {}, її виріб {} має {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: клеми {} розташовано на {} мм над підлогою, потрібно щонайменше {} мм
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система збірних шин з {} шинами з'єднує {} провідники ({}): коротке замикання
+{}: the busbar {} of earth electrode {} does not exist	{}: шини {} заземлювача {} не існує
 {}: the device {} of PV array {} does not exist	{}: пристрій {} фотоелектричного поля {} не існує
+{}: the earthing busbar {} of PV array {} does not exist	{}: шини заземлення {} фотоелектричного поля {} не існує
+{}: the generator junction box {} of PV array {} does not exist	{}: генераторної з'єднувальної коробки {} фотоелектричного поля {} не існує
+{}: the lightning protection has no earth electrode	{}: у блискавкозахисту немає заземлювача
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: блискавкозахист не має стін, уздовж яких проходить: у будівлі немає приміщень і дахів
 {}: the module {} of PV array {} has no electrical data	{}: модуль {} фотоелектричного поля {} не має електричних даних
 {}: the station has no port {}	{}: станція не має порту {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: ланцюжки фотоелектричного поля {} з'єднують {} модулів, у полі {}
@@ -2075,6 +2095,7 @@ yellow	жовтий
 {}: {} carries {} A, the load {} needs {} A	{}: {} витримує {} A, навантаження {} потребує {} A
 {}: {} changed after it was mounted	{}: {} змінено після встановлення
 {}: {} collides with {}	{}: {} перетинається з {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} струмовідводів, класу {} потрібно {} навколо будівлі
 {}: {} inputs used, the module has {}	{}: використано входів – {}, модуль має {}
 {}: {} is a fluid device, not an electrical one	{}: {} – гідропневматичний пристрій, а не електричний
 {}: {} is closer than {} mm to a cable duct	{}: {} розташовано ближче ніж {} мм до кабельного каналу

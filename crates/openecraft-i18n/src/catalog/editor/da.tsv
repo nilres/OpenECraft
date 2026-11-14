@@ -49,6 +49,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	Et kabel af bustypen til hver forbindelse uden kabel
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	En udskæring af samme størrelse på samme sted i naboens sidevæg: Sammen udgør de en kabelgennemføring
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samme navn i mappen får en ny version (tjekket ud og ind), ellers tilføjes filen
+A folder with one small file per page, device and part instead of one project file, for version control such as git	En mappe med en lille fil pr. side, komponent og artikel i stedet for en projektfil, til versionsstyring som git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	En stor tekst hen over hver side, f.eks. UDKAST mens en revision forberedes; teksterne tager pladsholdere, tom: intet stempel.
 A level on top of the highest one	En etage over den øverste
 A local file opens locally, a server project is opened on the project server again	En lokal fil åbnes lokalt, et serverprojekt åbnes igen på projektserveren
@@ -65,6 +66,8 @@ A reference point at the origin of the plant	Et referencepunkt i anlæggets orig
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	En rapportblok genererer siderne i en rapport, f.eks. ét klemdiagram pr. klemrække, og opdaterer dem.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	En diagramside 3.1, 3.2, … efter den aktuelle side, som bevares som underside ved omnummerering
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	En diagramside pr. planlagt enhed med en sidemakro, der endnu ikke er i diagrammet (valgt segment, ellers alle)
+A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Et opdelt projekt (.oecp) er en mappe med en lille fil pr. side, komponent, artikel og indlejret fil, til versionsstyring som git: Filer › Gem som opdelt projekt.
+A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Et opdelt projekt er en mappe med filer: browseren kan ikke åbne det. Konverter det først til en projektfil (.oec) eller et arkiv (.oecz).
 A template of this name is replaced.	En skabelon med dette navn erstattes.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	En skabelon angiver sidetype, plotramme, tegningshoved, struktur og beskrivelse for en ny side og placerer dens indhold.
 A way through free air costs this many times the way in a duct or routing path	En vej gennem fri luft koster så mange gange mere end vejen i en kanal eller føringsvej
@@ -109,6 +112,9 @@ Air at devices at most	Luft ved enheder højst
 Air temperature	Lufttemperatur
 Air temperature at the devices	Lufttemperatur ved enhederne
 Air temperature {} … {} °C	Lufttemperatur {} … {} °C
+Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Fangledere på rygninger og grater (en maske på flade tage), nedledere langs ydervæggene med målesamlinger, der ender i jordelektroderne
+Air-termination rod	Fangstang
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Fangstang placeret på bygning {}; klik for den næste · Esc: stop
 Align	Justér
 Aligned	Justeret
 Alignment	Justering
@@ -154,6 +160,7 @@ Arc	Bue
 Archive and version	Arkiv og version
 Archive project…	Arkivér projekt…
 Arms	Arme
+Array	Felt
 As defined by the check	Som defineret af kontrollen
 As the rules say ({})	Efter reglerne ({})
 Aspects of the pages	Sidernes aspekter
@@ -182,6 +189,7 @@ Automatic ({})	Automatisk ({})
 Automatic accessories	Automatisk tilbehør
 Automatic configuration	Automatisk konfiguration
 Automatic placement	Automatisk placering
+Automatic: {}	Automatisk: {}
 Automation	Automatisering
 Aux	Hjælpe
 Avoid:	Undgå:
@@ -219,6 +227,9 @@ Boundary	Grænse
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brydeevne mod kortslutningsstrømmen ved hver beskyttelsesenhed i forsyningsnettet, udkobling ved den laveste fejlstrøm i slutningen af dens kreds, kablernes kortslutningsstyrke og selektivitet med den foranliggende enhed.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Bro: fire ledere; forbindelsen kommer ind på én side og går til de tre andre, den modsatte side først
 Building {} added with a level at ground level	Bygning {} tilføjet med en etage i terrænniveau
+Building {} at x {} m, z {} m	Bygning {} ved x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Bygning {} ved x {} m, z {} m, drejet {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Bygning {} ved x {} m, z {} m, drejet {}°: den står uden for grundgrænsen
 Built-in frames cannot be changed; copy one to adapt it.	Indbyggede rammer kan ikke ændres; kopiér en for at tilpasse den.
 Built-in scheme: copy it to change it.	Indbygget skema: kopiér det for at ændre det.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Indbyggede tegningshoveder er skrivebeskyttede – brug »Kopiér som ny« for at lave dit eget.
@@ -292,10 +303,14 @@ Choose another project	Vælg et andet projekt
 Choose file…	Vælg fil…
 Choose image…	Vælg billede…
 Choose pages	Vælg sider
+Choose the building.	Vælg bygningen.
 Chooses the pages whose structure starts with this	Vælger de sider, hvis struktur begynder med dette
 Circle	Cirkel
 Circuits of a generic manifold	Kredse i en generisk fordeler
+Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Lynbeskyttelsens klasse: afstanden mellem nedlederne, masken på flade tage og beskyttelsesvinklen
+Class {}	Klasse {}
 Clear	Ryd
+Clear the search	Ryd søgningen
 Clearance	Frigang
 Click	Klik
 Click a text: open its link	Klik på en tekst: åbn dens link
@@ -304,6 +319,7 @@ Click centre, then a point on the circle	Klik på centrum og derefter på et pun
 Click in the panel layout: a single item of an assembly	Klik i tavlelayoutet: et enkelt element i en samling
 Click into the page to place the image	Klik på siden for at placere billedet
 Click into the page to place {}	Klik på siden for at placere {}
+Click on a roof of building {}	Klik på et tag på bygning {}
 Click on a wall	Klik på en væg
 Click on a wire to place the connection definition point	Klik på en ledning for at placere forbindelsesdefinitionspunktet
 Click on the 4 mm grid	Klik på 4 mm-gitteret
@@ -328,8 +344,12 @@ Click two corners	Klik på to hjørner
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Klik på to hjørner af strukturboksen, og angiv derefter dens betegnelser i egenskaberne · Esc eller højreklik afslutter
 Click two nodes to connect them	Klik på to knuder for at forbinde dem
 Click two points to measure from one to the other · Esc: stop	Klik på to punkter for at måle fra det ene til det andet · Esc: stop
+Click where an air-termination rod goes on a roof · Esc: stop	Klik hvor en fangstang skal stå på et tag · Esc: stop
+Click where an earth rod goes, at or round a building · Esc: stop	Klik hvor et jordspyd skal sidde, ved eller rundt om en bygning · Esc: stop
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klik hvor fire ledere mødes: broen fører forbindelsen fra én side til de tre andre, den modsatte først · {} drejer den · Esc eller højreklik afslutter
 Click where it is in the site plan	Klik, hvor det ligger i situationsplanen
+Click where the air-termination rods go on the roofs in the site plan	Klik i situationsplanen hvor fangstængerne skal stå på tagene
+Click where the earth rods go in the site plan	Klik i situationsplanen hvor jordspydene skal sidde
 Click where the reference point is	Klik, hvor referencepunktet ligger
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klik hvor tre ledere mødes: T-stykket angiver den enhed, lederne udgår fra, og rækkefølgen af deres mål · {} drejer det, hvor ingen ledere mødes endnu · Esc eller højreklik afslutter
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klik hvor to ledere krydser hinanden: krydsningen forbinder dem og fører hver ende af sin linje først ligeud, derefter på tværs · {} drejer den · Esc eller højreklik afslutter
@@ -373,9 +393,11 @@ Compare and baselines	Sammenligning og baselines
 Compare with	Sammenlign med
 Compare with a baseline, a revision or another project file and take differences over	Sammenlign med en baseline, en revision eller en anden projektfil, og overtag forskelle
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Fuldstændig mærkning: {}\nAspekter, der mangler her, overtages fra siden (=funktion +placering) eller fra den strukturboks, symbolet ligger i.
+Concrete base	Betonfod
 Condition	Betingelse
 Condition (OPTION=value & …)	Betingelse (OPTION=værdi & …)
 Conductive frame	Ledende ramme
+Conductor	Leder
 Conflicts	Konflikter
 Connected devices	Tilsluttede enheder
 Connected to:	Forbundet med:
@@ -427,6 +449,7 @@ Cross references…	Krydsreferencer…
 Crossed wires	Krydsede ledninger
 Ctrl + click on the text opens it as well	Ctrl + klik på teksten åbner den også
 Ctrl+A	Ctrl+A
+Current at maximum power	Strøm ved maksimal effekt
 Current-carrying capacity: {} × IEC 60204-1, table 6	Strømbelastningsevne: {} × IEC 60204-1, tabel 6
 Customer rule sets	Kunderegelsæt
 Customer, plant or standard	Kunde, anlæg eller standard
@@ -439,6 +462,7 @@ Cut length step tubes	Afkortningstrin slanger
 Cut length step wires	Afkortningstrin ledninger
 Cutout {} × {} mm	Udskæring {} × {} mm
 Cutting allowance per end	Skæretillæg pr. ende
+DC leads	DC-ledninger
 DRAFT	UDKAST
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	UDKAST, TIL GODKENDELSE og GODKENDT på det aktuelle sprog; intet når det er frigivet
 DWG import failed: {}	DWG-import mislykkedes: {}
@@ -462,9 +486,11 @@ Define all used	Definer alle brugte
 Defined potentials	Definerede potentialer
 Del	Del
 Delete PV array	Slet solcelleanlæg
+Delete air-termination rod	Slet fangstang
 Delete cable (its wires are removed from it)	Slet kabel (dets ledninger fjernes fra det)
 Delete comment	Slet kommentar
 Delete connection point	Slet tilslutningspunkt
+Delete earth electrode	Slet jordelektrode
 Delete element	Slet element
 Delete enclosure	Slet kapsling
 Delete enclosure {} with everything placed in it?	Slet kapslingen {} med alt, der er placeret i den?
@@ -491,8 +517,10 @@ Delete this workspace	Slet dette arbejdsområde
 Delete variant	Slet variant
 Delete zone	Slet zone
 Depth / mounted at	Dybde / monteret ved
+Depth below the ground	Dybde under terræn
 Depth from / to	Dybde fra / til
 Depth in the floor	Dybde i gulvet
+Depth of its top below the ground	Dybde for øverste ende under terræn
 Derive project definition	Afled projektdefinition
 Descriptions	Beskrivelser
 Deselect	Fravælg
@@ -526,6 +554,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Enheder,
 Dew point	Dugpunkt
 Diameter	Diameter
 Diameter / bends	Diameter / bøjninger
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Diameter på en rundtråd; 0: et bånd 30 x 3,5 mm
+Diameter of the rod	Stangens diameter
 Dictionary for translators: one column per language	Ordbog til oversættere: én kolonne pr. sprog
 Digits	Cifre
 Dimension	Målsætning
@@ -564,6 +594,7 @@ Door cutouts (CSV)	Dørudskæringer (CSV)
 Door: {} devices, {} cutouts	Dør: {} enheder, {} udskæringer
 Dot	Punkt
 Double-click	Dobbeltklik
+Down conductors	Nedledere
 Download into database	Download til database
 Download project	Download projekt
 Downloaded {} (version {})	{} er downloadet (version {})
@@ -574,6 +605,7 @@ Draft	Udkast
 Draft of revision {} created	Kladde til revision {} er oprettet
 Draft of revision {} discarded	Kladden til revision {} er kasseret
 Drag	Træk
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Træk en bygning for at flytte den · R: drej bygningen under markøren 90° · Esc: stop
 Drag a connection point designation of the selected symbol to place it.	Træk en tilslutningsbetegnelse for det markerede symbol for at placere den.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Træk i en ende af en markeret ledning for kun at flytte den ende. Trækning med Alt vender Bevar forbindelser om.
 Drag an entry into the page, or click it and then click into the page.	Træk en post ind på siden, eller klik på den, og klik derefter på siden.
@@ -614,12 +646,20 @@ Duct fill limit	Grænse for kanalfyldning
 Duplicate	Dupliker
 Each example builds on the one before and shows more of the features.	Hvert eksempel bygger på det forrige og viser flere af funktionerne.
 Each point-to-point connection can belong to a harness	Hver punkt-til-punkt-forbindelse kan høre til et ledningsnet
+Earth electrodes	Jordelektroder
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	En bygnings jordelektroder (fundament- og ringjord, jordspyd klikket ind i situationsplanen) og dens lynbeskyttelse med fangstængerne klikket på tagene
+Earth rod placed at building {}; click for the next one · Esc: stop	Jordspyd placeret ved bygning {}; klik for det næste · Esc: stop
+Earthing and lightning protection	Jording og lynbeskyttelse
+Earthing busbar	Jordskinne
+Earthing conductor	Jordleder
+Earthing points	Jordingspunkter
 Earthing system	Jordingssystem
 Easting, northing	Østkoordinat, nordkoordinat
 Eaves	Tagfod
 Edge length of the routing grid: smaller is finer and slower	Kantlængde for føringsgitteret: mindre er finere og langsommere
 Edit in table	Rediger i tabel
 Edit in table…	Rediger i tabel…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Redigeringstilstand: træk bygningerne på plads i situationsplanen og drej dem; et klik på et rum åbner det ikke længere
 Editable copy of this plot frame	Redigerbar kopi af denne plotramme
 Editable copy of this title block	Redigerbar kopi af dette tegningshoved
 Effective surface	Effektiv overflade
@@ -770,6 +810,7 @@ Generated page – edit via page properties	Genereret side – rediger via sidee
 Generates the pages of all report blocks again	Genererer siderne for alle rapportblokke igen
 Generates {} pages	Genererer {} sider
 Generation failed: {}	Genereringen mislykkedes: {}
+Generator junction box	Generatortilslutningsboks
 Generic	Generisk
 German zones (DIN 18015-3)	Tyske zoner (DIN 18015-3)
 Getting started	Kom i gang
@@ -779,6 +820,7 @@ Go to page	Gå til side
 Graphic line	Grafisk linje
 Graphic rectangle	Grafisk rektangel
 Graphical form	Grafisk formular
+Greatest distance of the conductor holders on the roof and on the walls	Største afstand mellem lederholderne på taget og på væggene
 Greatest distance of the roof hooks along a rail	Største afstand mellem tagkrogene langs en skinne
 Grid	Gitter
 Grid north	Gitternord
@@ -802,14 +844,20 @@ Height above the floor	Højde over gulvet
 Height above the mounting plate	Højde over monteringspladen
 Height above the plate	Højde over pladen
 Height of the plinth, 0 without plinth	Soklens højde, 0 uden sokkel
+Height of the rod above the covering	Stangens højde over tagdækningen
+Height of the test joints above the ground	Målesamlingernes højde over terræn
 Heights above floor (IEC 60204-1)	Højder over gulv (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Holdes nede ved klik, flytning eller rulning. Ctrl er Cmd på macOS.
 Help	Hjælp
+Hide PV modules	Skjul solcellemoduler
 Hide the groups you do not need and put the commands you use most into own groups.	Skjul de grupper, du ikke har brug for, og læg de mest brugte kommandoer i egne grupper.
 Highest phase unbalance	Højeste faseubalance
 Highest short-circuit current	Højeste kortslutningsstrøm
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Højeste spænding (tomgang ved laveste temperatur), middel- og laveste spænding (ved maksimal effekt ved middel- og højeste temperatur), strøm ved maksimal effekt, spidseffekt
 Highest: the lowest voltage	Højeste: den laveste spænding
+Holder distance	Holderafstand
+Holders on the roof	Holdere på taget
+Holders on the walls	Holdere på væggene
 Hole to sheet edge	Hul til pladekant
 Home	Hjem
 Hook distance	Krogafstand
@@ -824,6 +872,8 @@ Hose defaults and PCT loops of the pre-planning	Standardværdier for slanger og 
 Hose number	Slangenummer
 Hoses and pipes	Slanger og rør
 Hoses rated below it are errors; 0 = not checked	Slanger med lavere trykklasse er fejl; 0 = kontrolleres ikke
+How far inside the outer walls	Hvor langt inden for ydervæggene
+How far outside the outer walls	Hvor langt uden for ydervæggene
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hvordan fløjen åbner: hængsler i venstre eller højre kant (set inde fra rummet), ind i eller ud af rummet, eller skydes langs væggen
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hvordan lederen afsluttes i denne ende; som standard som valgt for tilslutningspunktet eller dets enhed, ellers efter layoutets indstilling for terminalrør
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hvordan ledninger springer over de ledninger, de krydser, hvordan T-forbindelser markeres, og om flyttede elementer får deres forbindelser trukket på ny
@@ -937,6 +987,7 @@ Labeling scheme	Mærkningsskema
 Landscape	Liggende
 Large dot	Stor prik
 Larger texts and buttons for a touch screen at the workbench	Større tekster og knapper til en berøringsskærm ved arbejdsbordet
+Largest mesh	Største maske
 Latitude, longitude	Bredde, længde
 Layer	Lag
 Layer {}	Lag {}
@@ -950,6 +1001,7 @@ Layout space	Monteringsrum
 Layout spaces	Monteringsrum
 Leave out the ceilings of the rooms and the roofs in the 3D view	Udelad rummenes lofter og tagene i 3D-visningen
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Udelad lågene på alle kabelkanaler i 3D-visningen: lederne i dem bliver synlige
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Udelad modulerne i solcelleanlæggene i 3D-visningen: skinner, tagkroge, stativer, jording og kabler ses
 Leave repeated values of the first column blank	Lad gentagne værdier i den første kolonne være tomme
 Left button	Venstre knap
 Left edges	Venstre kanter
@@ -957,6 +1009,7 @@ Legend plates (door devices)	Betegnelsesskilte (dørenheder)
 Length from the node to the device	Længde fra knuden til enheden
 Length inside an enclosure	Længde inde i en kapsling
 Length of a shield pigtail where there is no shield clamp	Længde af en skærmpigtail, hvor der ikke er en skærmklemme
+Length of the rod	Spydets længde
 Length of wires that are not routed in the panel layout	Længde af ledninger, der ikke er trukket i tavlelayoutet
 Length {} mm	Længde {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Bogstaver, cifre, mellemrum, - _ . (op til 64 tegn)
@@ -967,6 +1020,8 @@ Level {} added to building {}; new rooms go onto it	Etage {} tilføjet til bygni
 Level {} of building {}	Etage {} i bygning {}
 Levels	Etager
 Library	Bibliotek
+Lightning protection	Lynbeskyttelse
+Lightning protection of building {}	Lynbeskyttelse af bygning {}
 Like two fingers	Som to fingre
 Limits	Grænser
 Limits in effect	Gældende grænser
@@ -1017,7 +1072,9 @@ Macros	Makroer
 Macros ({})	Makroer ({})
 Macro…	Makro…
 Main	Hoved
+Main earthing busbar	Hovedjordskinne
 Make the selected elements of this project equal to the compared ones	Gør de valgte elementer i dette projekt lig med de sammenlignede
+Maker	Producent
 Makes the current page content of the option	Gør den aktuelle side til indhold i optionen
 Manage plugins	Administrer plugins
 Management	Administration
@@ -1060,6 +1117,7 @@ Mixed	Blandet
 Mode	Tilstand
 Model of a part (2D / 3D)	Model af en artikel (2D / 3D)
 Modifier keys	Modifikatortaster
+Module area	Modulareal
 Module part; its size comes from the part	Moduldel; dens størrelse kommer fra delen
 Motors feed the short circuit	Motorer føder kortslutningen
 Mounted on	Monteret på
@@ -1072,6 +1130,7 @@ Mouse	Mus
 Move	Flyt
 Move ahead in the 3D view (held)	Flyt fremad i 3D-visningen (hold nede)
 Move back in the 3D view (held)	Flyt bagud i 3D-visningen (hold nede)
+Move buildings	Flyt bygninger
 Move down	Flyt ned
 Move down in the 3D view (held)	Flyt nedad i 3D-visningen (hold nede)
 Move faster with the keys of the 3D view	Flyt hurtigere med tasterne i 3D-visningen
@@ -1160,6 +1219,7 @@ No PLC cards in the project.	Ingen PLC-kort i projektet.
 No PLC inputs / outputs placed.	Ingen PLC-indgange / -udgange placeret.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Intet tilbehør: forskruninger, stikforbindere, skærmklemmer … indgår i styklisten og kontrolleres mod kablet.
 No bus systems.	Ingen bussystemer.
+No busbar	Ingen skinne
 No cable passage to {}: wires to it are not routed	Ingen kabelgennemføring til {}: Ledninger dertil føres ikke
 No cables defined.	Ingen kabler defineret.
 No cables yet. Draw a cable definition across wires or add a cable.	Endnu ingen kabler. Tegn en kabeldefinition hen over ledninger, eller tilføj et kabel.
@@ -1171,6 +1231,7 @@ No device has mounting data yet: assign parts with dimensions to the devices (Pr
 No differences to {}.	Ingen forskelle i forhold til {}.
 No document embedded	Intet dokument integreret
 No dot: plain T	Ingen prik: almindeligt T
+No earth electrode yet: a foundation earth electrode in the foundation slab, a ring earth electrode round the walls or earth rods.	Ingen jordelektrode endnu: en fundamentjord i bundpladen, en ringjord rundt om væggene eller jordspyd.
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ingen kapsling endnu – opret en med Ny kapsling, eller et rum til skabe med Nyt rum.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ingen feltkabler: placer kapslingerne og feltenhederne ved knuder i føringsnettet.
 No filter fans: an air/air heat exchanger or a cooling unit	Ingen filterventilatorer: en luft/luft-varmeveksler eller en køleenhed
@@ -1183,6 +1244,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Endnu ingen
 No modules: plug in PLC cards of the schematic.	Ingen moduler: Isæt PLC-kort fra diagrammet.
 No numbers for	Ingen numre for
 No panel items: place the devices in the panel layout.	Ingen layoutelementer: placer enhederne i tavlelayoutet.
+No part matches.	Ingen dele passer.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Ingen artikler er markeret til gulvmontage endnu. Markér en i artikelstyringen: artikeleditor › Monteringsdata › Gulvmontage.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Ingen artikler er markeret til vægmontage endnu. Markér en i artikelstyringen: artikeleditor › Monteringsdata › Vægmontage.
 No parts of the product group Cables in the parts database.	Ingen artikler fra produktgruppen Kabler i artikeldatabasen.
@@ -1201,6 +1263,7 @@ No segments yet: draw them in the plant layout.	Ingen afsnit endnu: tegn dem i a
 No shortcut	Ingen genvej
 No single-line symbols and no power devices in the schematic.	Ingen enstregede symboler og ingen effektenheder i diagrammet.
 No stations: add one or use the automatic configuration.	Ingen stationer: Tilføj en, eller brug den automatiske konfiguration.
+No string yet: the modules are not connected.	Ingen streng endnu: modulerne er ikke forbundet.
 No subprojects were taken out of this project.	Der er ikke udtaget delprojekter fra dette projekt.
 No terminal strips: place terminals in a schematic first.	Ingen klemrækker: Placer først klemmer i et diagram.
 No user symbols yet. Create one or copy a built-in symbol.	Endnu ingen brugersymboler. Opret et, eller kopiér et indbygget symbol.
@@ -1237,6 +1300,7 @@ Offset from one row to the next: downwards for lists, sideways for rows side by 
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	På berøringsskærm og pegefelt. Kun panorering: knib zoomer ikke; kun zoom: rulning med to fingre på pegefeltet zoomer også, hvor systemet skelner pegefelter. En finger virker som venstre museknap.
 On a touch screen; trackpads leave three-finger gestures to the system.	På berøringsskærm; pegefelter overlader bevægelser med tre fingre til systemet.
 On startup	Ved start
+On the roof, joined to the air-termination conductors; move it to its place	På taget, forbundet med fanglederne; flyt den på plads
 One row per label	Én række pr. mærkat
 Only devices on the current page	Kun enheder på den aktuelle side
 Only frames no page uses can be deleted	Kun rammer, som ingen side bruger, kan slettes
@@ -1264,6 +1328,7 @@ Open the selection: its properties, in the floor plan its face	Åbn markeringen:
 Open to {}: wires cross beside the mounting plates	Åben mod {}: Ledninger krydser ved siden af monteringspladerne
 Open walls and floors	Åbn vægge og gulve
 Open, save, import, export, print and the settings	Åbn, gem, importér, eksportér, udskriv og indstillingerne
+Open-circuit voltage	Tomgangsspænding
 OpenECraft page templates	OpenECraft-sideskabeloner
 OpenECraft page templates (JSON)	OpenECraft-sideskabeloner (JSON)
 OpenECraft project	OpenECraft-projekt
@@ -1274,6 +1339,7 @@ OpenECraft property library	OpenECraft-egenskabsbibliotek
 OpenECraft property library (JSON)	OpenECraft-egenskabsbibliotek (JSON)
 OpenECraft rule sets	OpenECraft-regelsæt
 OpenECraft rule sets (JSON)	OpenECraft-regelsæt (JSON)
+OpenECraft split project	Opdelt OpenECraft-projekt
 OpenECraft structure template	OpenECraft-strukturskabelon
 OpenECraft structure template (JSON)	OpenECraft-strukturskabelon (JSON)
 OpenECraft symbol library	OpenECraft-symbolbibliotek
@@ -1305,6 +1371,7 @@ Other values ({})	Andre værdier ({})
 Otherwise from the plant layout, or next to the other line-ups	Ellers fra anlægslayoutet eller ved siden af de andre sammenbygninger
 Out since {} (pages locked)	Udtaget siden {} (sider låst)
 Outer diameter (e.g. 8 mm) or DN	Udvendig diameter (f.eks. 8 mm) eller DN
+Outlets	Stikkontakter
 Outlets, switches, heating	Udtag, afbrydere, varme
 Outline	Omrids
 Outlines	Omrids
@@ -1327,6 +1394,10 @@ PLC channels	PLC-kanaler
 PLC hardware and bus topology	PLC-hardware og bustopologi
 PLC overview	PLC-oversigt
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- eller JPEG-bitmap, f.eks. et logo eller et foto
+PV array {}	Solcellefelt {}
+PV array {} lies outside the protection of the air-termination system	Solcellefelt {} ligger uden for fangsystemets beskyttelse
+PV array {} of building {}: {} modules	Solcellefelt {} i bygning {}: {} moduler
+PV array {} of building {}: {} modules, {} kWp	Solcellefelt {} i bygning {}: {} moduler, {} kWp
 PV arrays	Solcelleanlæg
 Page graphics	Sidegrafik
 Page heading	Sideoverskrift
@@ -1374,6 +1445,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Strømvejsfunktionstekst
 Pattern	Mønster
 Pattern…	Mønster…
+Peak power	Spidseffekt
+Pick a part in the list.	Vælg en del på listen.
 Pin-out	Benforbindelse
 Pipe run	Rørtracé
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rørtracé på en væg, loftet eller gulvet i rummet, langs hvilket slanger, rør og rørledninger føres: klik på hjørnerne, dobbeltklik eller Enter for at afslutte
@@ -1391,6 +1464,7 @@ Place in the building	Placering i bygningen
 Place in the plant	Placering i anlægget
 Place in the room	Plads i rummet
 Place in the site plan	Placér i situationsplanen
+Place on the wall	Placer på væggen
 Place text	Placer tekst
 Place the georeferenced point everything is measured from	Placér det georefererede punkt, som alt måles fra
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Placér anlæggets georefererede punkt i situationsplanen; dets koordinater indtastes i ruden Bygninger, hvert punkt måles derefter fra det
@@ -1423,6 +1497,7 @@ Plug in card	Isæt kort
 Plugin commands	Plugin-kommandoer
 Plugins	Plugins
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Plugins tilføjer kommandoer, kontroller, rapporter og eksporter. Eksterne plugins indlæses fra mapperne i miljøvariablen {} (én undermappe med en plugin.json pr. plugin).
+Plus and minus leads from the modules to the inverter	Plus- og minusledninger fra modulerne til inverteren
 Points	Punkter
 Polygon	Polygon
 Polyline	Polylinje
@@ -1625,6 +1700,8 @@ Right edges	Højre kanter
 Right neighbour	Højre nabo
 Rights	Rettigheder
 Risers	Stigninger
+Rod holder	Stangholder
+Roof pitch	Taghældning
 Roof window	Ovenlysvindue
 Roof windows	Ovenlysvinduer
 Roofs	Tage
@@ -1674,6 +1751,7 @@ Save as local file	Gem som lokal fil
 Save as macro	Gem som makro
 Save as project template…	Gem som projektskabelon…
 Save as scheme	Gem som skema
+Save as split project…	Gem som opdelt projekt…
 Save as template	Gem som skabelon
 Save as template…	Gem som skabelon…
 Save asks for a file	Gem spørger efter en fil
@@ -1697,6 +1775,8 @@ Save workspace…	Gem arbejdsområde…
 Saved to	Gemt i
 Saved to the project server (revision {})	Gemt på projektserveren (revision {})
 Saved workspaces	Gemte arbejdsområder
+Saved {}, but the changes of another program could not be read: {}	{} gemt, men ændringerne fra et andet program kunne ikke læses: {}
+Saved {}. Another program changed files of the project meanwhile ({}): the project was read again with their changes	{} gemt. Et andet program har i mellemtiden ændret filer i projektet ({}): projektet blev læst igen med deres ændringer
 Saves the placed properties as a placement scheme of the project	Gemmer de placerede egenskaber som et placeringsskema i projektet
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Gemmer projektet uden revisioner, baselines, gennemsyn og ledningsmarkeringer som en skabelon til nye projekter
 Saves the project's own properties, function definitions and schemes for other projects	Gemmer projektets egne egenskaber, funktionsdefinitioner og skemaer til andre projekter
@@ -1717,11 +1797,13 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Rulning zoomer, også hvor den panorerer
 Search (* and ? as placeholders)…	Søg (* og ? som jokertegn)…
 Search below this folder	Søg under denne mappe
+Search number, description, maker	Søg nummer, beskrivelse, producent
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Søg på artikelserveren efter katalog, produktgruppe og tekniske data, tilføj artikler, og kontrollér databasen for opdateringer
 Second channel	Anden kanal
 Section properties	Afsnitsegenskaber
 Section properties…	Afsnitsegenskaber…
 Section {} is now section {}	Afsnit {} er nu afsnit {}
+See-through PV modules	Gennemsigtige solcellemoduler
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Set mod stiksiderne; farverne er ledernes og kabellederes ved benene.
 Segment {}	Segment {}
 Segments	Afsnit
@@ -1777,6 +1859,7 @@ Shielded analogue cables	Skærmede analogkabler
 Shielded drive cables	Skærmede drevkabler
 Short circuit and selectivity	Kortslutning og selektivitet
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Kortslutning, selektivitet, belastninger, EMC, funktionel sikkerhed og verifikation op imod regelsæt
+Short-circuit current	Kortslutningsstrøm
 Short-circuit currents	Kortslutningsstrømme
 Short-circuit power of the network	Nettets kortslutningseffekt
 Shortest profile	Korteste profil
@@ -1796,6 +1879,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Vis eller skjul paneler; tr�
 Show project manager	Vis projektstyring
 Show the enclosures bayed to this one as well	Vis også de kapslinger, der er sammenbygget med denne
 Show the messages accepted as checked	Vis de meddelelser, der er accepteret som kontrolleret
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Vis solcellefelternes moduler gennemsigtige i 3D-visningen: modulernes indbyrdes ledningsføring under dem ses
 Show the other wires	Vis de andre ledninger
 Show the pane as a window	Vis panelet som et vindue
 Show the ribbon	Vis båndet
@@ -1889,6 +1973,7 @@ Surge protection	Overspændingsbeskyttelse
 Swing the enclosure door open or shut (door devices and their wires move with it)	Sving kapslingsdøren op eller i (dørenheder og deres ledninger følger med)
 Switch off the check \"{}\"	Slå kontrollen \"{}\" fra
 Switched off on this computer ({})	Slået fra på denne computer ({})
+Switches	Afbrydere
 Switches the options with a condition by the configurator options	Skifter optionerne med en betingelse efter konfiguratorens optioner
 Switches to this workspace with its panes at their default places	Skifter til dette arbejdsområde med panelerne på deres standardpladser
 Switches, push buttons and room thermostats	Afbrydere, trykknapper og rumtermostater
@@ -1937,6 +2022,7 @@ Terminals at least	Klemmer mindst
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Klemmer med samme bronummer er forbundet (samme potentiale). Reserveklemmer medregnes i styklisten.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Termer adskilt af ';': nøgle=værdi (lig med), nøgle~tekst (indeholder) eller tekst et vilkårligt sted
 Test connection	Test forbindelse
+Test joints	Målesamlinger
 Text offset	Tekstforskydning
 Text size	Tekststørrelse
 Texts	Tekster
@@ -1994,6 +2080,7 @@ The web version is updated on its server.	Webversionen opdateres på sin server.
 The wire tool routes around symbols and other wires	Ledningsværktøjet fører uden om symboler og andre ledninger
 The wires get the free cores of the cable in order (left to right)	Ledningerne får kablets ledige ledere i rækkefølge (fra venstre mod højre)
 The wires of the connection take these values again	Forbindelsens ledninger overtager disse værdier igen
+Their places, sizes and busbars are set in the Buildings pane.	Deres placeringer, mål og skinner indstilles i ruden Bygninger.
 Theme	Tema
 These settings are edited in their panes:	Disse indstillinger redigeres i deres paneler:
 Thickness	Tykkelse
@@ -2091,6 +2178,7 @@ Via:	Via:
 View	Vis
 Visible	Synlig
 Voltage (line to line)	Spænding (mellem faser)
+Voltage at maximum power	Spænding ved maksimal effekt
 Voltage drop	Spændingsfald
 WGS 84, written into the site of IFC exports	WGS 84, skrives ind i grunden ved IFC-eksport
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Væg {}, {} m: træk for at flytte, dobbeltklik viser den, så den kan udstyres
@@ -2278,6 +2366,8 @@ x y	x y
 {} (default)	{} (standard)
 {} (first column)	{} (første kolonne)
 {} (locked by {})	{} (låst af {})
+{} (no such device)	{} (intet sådant apparat)
+{} (not placed in the layout)	{} (ikke placeret i layoutet)
 {} (project server, revision {})	{} (projektserver, revision {})
 {} (spare)	{} (reserve)
 {} (subproject of {})	{} (delprojekt af {})
@@ -2287,7 +2377,9 @@ x y	x y
 {} PLC function texts updated	{} PLC-funktionstekster opdateret
 {} Vault items found for the project parts	{} Vault-elementer fundet for projektartiklerne
 {} Vault items found: review the changes in the integration window	{} Vault-elementer fundet: gennemgå ændringerne i integrationsvinduet
+{} added to building {}	{} tilføjet til bygning {}
 {} addresses changed	{} adresser ændret
+{} air-termination rods	{} fangstænger
 {} bundles, {} branch points	{} bundter, {} forgreningspunkter
 {} bus cables created	{} buskabler oprettet
 {} bus connections	{} busforbindelser
@@ -2325,6 +2417,7 @@ x y	x y
 {} devices renamed	{} enheder omdøbt
 {} differences to {}	{} forskelle i forhold til {}
 {} doors	{} døre
+{} down conductors with test joints, {} m of conductors	{} nedledere med målesamlinger, {} m ledere
 {} entries in {}	{} poster i {}
 {} errors	{} fejl
 {} errors, {} warnings	{} fejl, {} advarsler
@@ -2339,6 +2432,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} har ingen funktion med symbol; tildel den til en enhed i enhedens egenskaber
 {} has unsaved changes. Discard them?	{} har ikke-gemte ændringer. Kassér dem?
 {} imported into the parts database and placed as {}	{} importeret til artikeldatabasen og placeret som {}
+{} in {}	{} i {}
 {} is neither in the parts database nor on the parts server	{} findes hverken i artikeldatabasen eller på artikelserveren
 {} is not in the disk image	{} er ikke i diskbilledet
 {} is not made for wall mounting: place it on a mounting rail	{} er ikke beregnet til vægmontage: placer den på en skinne
@@ -2368,6 +2462,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	{} af {} poster vist: søg for at indsnævre listen
 {} of {} items	{} af {} elementer
 {} of {} pages locked	{} af {} sider låst
+{} of {} parts · double-click: place	{} af {} dele · dobbeltklik: placer
 {} of {} pins used	{} af {} ben i brug
 {} of {} rows	{} af {} rækker
 {} of {} wires	{} af {} ledninger
@@ -2419,8 +2514,10 @@ x y	x y
 {} wires changed	{} ledninger ændret
 {} wires, {} cables and {} tubes routed	{} ledninger, {} kabler og {} slanger ført
 {} wires, {} – {} mm	{} ledninger, {} – {} mm
+{} {} of building {}	{} {} i bygning {}
 {} °C (max. {} °C)	{} °C (maks. {} °C)
 {} °C (max.)	{} °C (maks.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixel, {}
 {} – {} ({} pages)	{} – {} ({} sider)
 {} – {} here (Esc cancels)	{} – {} her (Esc annullerer)
@@ -2428,6 +2525,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: krymp sammen med lederen til {}
 {}: drag to move it, R turns it, a double-click opens it	{}: træk for at flytte, R drejer, dobbeltklik åbner
 {}: drag to move it, a double-click shows the floor	{}: træk for at flytte, dobbeltklik viser gulvet
+{}: drag to move, R: turn by 90°	{}: træk for at flytte, R: drej 90°
 {}: nothing to change	{}: intet at ændre
 {}: pin {}	{}: ben {}
 {}: strip {} mm, {}	{}: afisoler {} mm, {}

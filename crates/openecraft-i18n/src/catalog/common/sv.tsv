@@ -42,11 +42,13 @@ Cable tag, e.g. -W20	Kabelbeteckning, t.ex. -W20
 Cables	Kablar
 Cancel	Avbryt
 Cannot read {}: {}	Det går inte att läsa {}: {}
+Cannot write {}: {}	Det går inte att skriva {}: {}
 Catalog	Katalog
 Catalog id	Katalog-ID
 Category	Kategori
 Centred	Centrerad
 Certificates	Certifikat
+Change	Ändring
 Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrollinställningar
@@ -108,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Apparatanslutningspunkt
 Device description	Enhetsbeskrivning
 Device tag	Apparatbeteckning
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Apparat som stativets jordledare går till (jordnings- eller potentialutjämningsskena); tom: ingen
 Device {}	Apparat {}
 Devices	Apparater
 Dimensions	Mått
@@ -157,6 +160,7 @@ Function text	Funktionstext
 Functional safety	Funktionssäkerhet
 Functions	Funktioner
 General	Allmänt
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Generatoranslutningslåda (apparat) som strängarna går till, därifrån en DC-huvudkabel till varje växelriktare; tom: ingen
 Gives up a subproject: its pages are unlocked again	Överger ett delprojekt: dess sidor låses upp igen
 Gland plate	Genomföringsplåt
 Graphics	Grafik
@@ -206,6 +210,7 @@ Location (+)	Placering (+)
 Logo	Logotyp
 MTTFd (years)	MTTFd (år)
 Machine	Maskin
+Main earthing busbar (device) it is connected to; empty: none	Huvudjordningsskena (apparat) som det är anslutet till; tom: ingen
 Main earthing terminal	Huvudjordningsskena
 Main switch	Huvudbrytare
 Manufacturer	Tillverkare
@@ -220,6 +225,8 @@ Minimum digits of the counter (leading zeros)	Minsta antal siffror i räknaren (
 Missing parameter: {}	Parameter saknas: {}
 Missing value for --{}	Värde saknas för --{}
 Model import failed: {}	Modellimporten misslyckades: {}
+Module	Modul
+Modules	Moduler
 Modules in series	Moduler i serie
 Modules side by side in a row	Moduler bredvid varandra i en rad
 Mounted	Monterad
@@ -272,6 +279,7 @@ Not in the schematic	Inte i schemat
 Note	Obs!
 Notes	Anteckningar
 Number	Nummer
+Number of down conductors (0: as many as the class needs for the walls)	Antal nedledare (0: så många som klassen kräver för väggarna)
 Number the sections 1, 2, 3 … on every level first	Numrera först avsnitten 1, 2, 3 … på varje nivå
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numrerar apparatbeteckningarna per struktur och kodbokstav i schemaordning (sida, kolumn, uppifrån och ned)
 Only rows containing this text	Endast rader som innehåller den här texten
@@ -369,6 +377,7 @@ Released pages cannot be moved	Frisläppta sidor kan inte flyttas
 Remove	Ta bort
 Remove from favorites	Ta bort från favoriter
 Remove the boundary	Ta bort gränsen
+Remove the lightning protection system	Ta bort åskskyddet
 Remove the reference point	Ta bort referenspunkten
 Report	Rapport
 Report blocks	Rapportblock
@@ -514,6 +523,7 @@ not bonded	inte ansluten
 not connected	inte ansluten
 open	öppen
 pcs	st.
+portrait	stående
 rejected	avvisad
 right	höger
 spare	reserv

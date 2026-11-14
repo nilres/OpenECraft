@@ -188,7 +188,7 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Hücre sıcak
 Centre horizontally	Yatay ortala
 Centre vertically	Dikey ortala
 Centrifugal pump	Santrifüj pompa
-Change	Değişiklik
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Proje klasöründe başka bir program tarafından ve ayrıca açık projede değiştirildi: {}{}. Projeyi başka bir adla kaydedin veya yeniden açıp değişiklikleri tekrarlayın
 Changed since mounted	Montajdan sonra değişti
 Changed since wired	Kablolamadan sonra değişti
 Changeover contact	Değiştirici kontak
@@ -293,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Bakır bara {}: {} mm, {} mm stok uzunluğundan uzun
 Copper bar {}: {} mm are too thick for {}	Bakır bara {}: {} mm, {} için çok kalın
 Copper bar {}: {} segments need {} bends	Bakır bara {}: {} segment için {} büküm gerekli
+Copper-bonded steel	Bakır kaplı çelik
 Cores used	Kullanılan damarlar
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Sayfa {} üzerindeki köşe tellerine uymuyor: iki yönünün her birinde bir tel gerekir ve orada bağlantı noktası olmamalı
 Counter contact NC	Sayaç kontağı NK
@@ -433,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP malzeme ana verileri ve malzeme 
 ERP number	ERP numarası
 ETIM class	ETIM sınıfı
 Earth electrode	Topraklama elektrodu
+Earth rod	Topraklama kazığı
 East-west on a flat roof	Düz çatıda doğu-batı
 Edit pages	Sayfaları düzenle
 Edit project data	Proje verilerini düzenle
@@ -550,6 +552,7 @@ Foot switch NO (NFPA)	Ayak şalteri NA (NFPA)
 Force	Kuvvet
 Fork terminal	Çatal kablo pabucu
 Format (placeholders)	Format (yer tutucular)
+Foundation earth electrode	Temel topraklaması
 Frame size	Yapı boyutu
 Free	Serbest
 Free air (mm)	Serbest hava (mm)
@@ -846,8 +849,6 @@ Minimum operating temperature	Minimum çalışma sıcaklığı
 Mirror contacts	Ayna kontaklar
 Mirrored	Yansıtılmış
 Mission time	Görev süresi
-Module	Modül
-Modules	Modüller
 Moisture	Nem
 Moment of inertia	Atalet momenti
 Motion detector	Hareket dedektörü
@@ -1341,6 +1342,7 @@ Revision table: date of the last revision (2: the one before …)	Revizyon tablo
 Revision table: description of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun açıklaması (2: bir öncekinin …)
 Revision table: index of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun indeksi (2: bir öncekinin …)
 Right side panel	Sağ yan panel
+Ring earth electrode	Halka topraklama
 Ring terminal	Halka kablo pabucu
 Rivet nut	Perçin somun
 RoHS compliant	RoHS uyumlu
@@ -1479,6 +1481,7 @@ Spare terminal	Yedek klemens
 Speed	Hız
 Spiral	Döner
 Stainless steel	Paslanmaz çelik
+Stainless steel V4A	Paslanmaz çelik V4A
 Standard	Standart
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Röleli başlat / durdur devresi: bobin ve kontaklar çapraz referanslar ve kontak görüntüsüyle tek bir cihaz oluşturur; klemens dizisi, kablo numaraları, klemens şeması ve bağlantı listesi.
 Start date	Başlangıç tarihi
@@ -1491,6 +1494,7 @@ Station name {} is used {} times	İstasyon adı {} {} kez kullanılıyor
 Station {} is not connected to bus {}	İstasyon {}, {} bus'ına bağlı değil
 Station {}: bus system {} does not exist	İstasyon {}: {} bus sistemi mevcut değil
 Steam	Buhar
+Steel, hot-dip galvanised	Sıcak daldırma galvanizli çelik
 Stock	Stok
 Stop category	Durdurma kategorisi
 Storage temperature range	Depolama sıcaklığı aralığı
@@ -1580,6 +1584,7 @@ The archive contains no project	Arşiv proje içermiyor
 The archive has no manifest	Arşivin manifestosu yok
 The archive is damaged	Arşiv hasarlı
 The archive unpacks to more than {} MB	Arşiv açıldığında {} MB'tan büyük oluyor
+The archive was written by a newer version (archive version {})	Arşiv daha yeni bir sürümle yazılmış (arşiv sürümü {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Düzen imalatçısı belirtilmelidir (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Odasındaki yan yana panolar: L biçimli kat planı, iç duvar, kapı ve pencere, yerindeki pano dizisi, bir duvarda prizli bir ray, duvara monte acil durum aydınlatması ve tavan altında bir kablo tavası.
 The configuration is not a JSON object	Yapılandırma bir JSON nesnesi değil
@@ -1592,7 +1597,10 @@ The embedded document {} is damaged	Gömülü belge {} hasarlı
 The file is empty	Dosya boş
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Dosya daha yeni bir sürümle yazılmış (format {}): bu sürümün tanımadığı veriler kaydederken kaybolur
 The first column must be Key	İlk sütun Key olmalıdır
+The folder {} already holds the project {}: a split project needs a folder of its own	{} klasörü zaten {} projesini içeriyor: bölünmüş bir proje kendi klasörüne ihtiyaç duyar
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	{} klasörü hiçbir projeye ait olmayan dosyalar içeriyor ({}): bölünmüş bir proje kendi klasörüne ihtiyaç duyar
 The function definition needs a key and a name	Fonksiyon tanımı için bir anahtar ve ad gerekli
+The index of the project names no file layout: it was not written by OpenECraft	Projenin dizini bir dosya düzeni belirtmiyor: OpenECraft tarafından yazılmamış
 The last page cannot be deleted	Son sayfa silinemez
 The macro box has no items left	Makro kutusunda hiç öğe kalmadı
 The next free id is already in use	Sonraki boş kimlik zaten kullanımda
@@ -1602,7 +1610,10 @@ The pages were changed after the submission; submit the revision again	Sayfalar 
 The plot boundary crosses itself	Arsa sınırı kendisiyle kesişiyor
 The plot boundary encloses no area	Arsa sınırı bir alan çevrelemiyor
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Arsa sınırı bir çokgen değil: kendisiyle kesişiyor veya üçten az köşesi var
+The project cannot be written as files: {}	Proje dosyalar olarak yazılamıyor: {}
+The project file {} is missing	Proje dosyası {} eksik
 The project has no panel layout	Projede pano yerleşimi yok
+The project was written by a newer version (file layout {})	Proje daha yeni bir sürümle yazılmış (dosya düzeni {})
 The property needs a name	Özellik için bir ad gerekli
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	İki yan yana zemin panosuna kurulmuş pompa istasyonu: bara sistemi, raylar ve kablo kanalları, kapı cihazları ve kollar, filtreli fan, aydınlatma, PE barası, kablo rakorları, bir kablo geçişi, iklimlendirme hesabı, kanal doluluğu ve 3D yönlendirme.
 The revision is already released	Revizyon zaten yayımlandı
@@ -1884,7 +1895,6 @@ page properties	sayfa özellikleri
 pigtail {} mm	pigtail {} mm
 pilot	pilot
 pink	pembe
-portrait	dikey
 pressure	basınç
 red	kırmızı
 released	yayımlandı
@@ -1922,6 +1932,7 @@ yellow	sarı
 {} has no MTTFd, B10d, PL or PFHd	{} için MTTFd, B10d, PL veya PFHd yok
 {} has no door or window {}	{0} içinde {1} kapısı veya penceresi yok
 {} has nothing to manufacture	{} için üretilecek bir şey yok
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} çözülmemiş bir git birleştirme çakışması içeriyor: dosya metin olarak birleştirildi. Dosyanın bir sürümünü alın (git checkout --ours veya --theirs), ardından yeniden birleştirmeden önce bölünmüş projeler için birleştirme sürücüsünü kurun (merge_project_file)
 {} is a built-in function definition	{} yerleşik bir fonksiyon tanımıdır
 {} is a built-in property	{} yerleşik bir özelliktir
 {} is a built-in scheme	{} yerleşik bir şemadır
@@ -1967,6 +1978,7 @@ yellow	sarı
 {}: PV array {} covers a roof window	{}: PV dizisi {} bir çatı penceresini örtüyor
 {}: PV array {} has {} modules, its device {} has {}	{}: PV dizisi {} {} modüle sahip, cihazı {} ise {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: PV dizisi {} eğimli bir çatıya eğik monte edilmiş
+{}: PV array {} lies outside the protection of the air-termination system	{}: PV dizisi {} yakalama sisteminin koruma alanı dışında
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: {2} çatısının PV dizisi {1} bir mahya, kırma veya çatı kenarı üzerinden geçiyor
 {}: PV array {} of roof {} lies outside the roof	{0}: {2} çatısının PV dizisi {1} çatının dışında
 {}: PV arrays {} and {} lie over each other	{}: PV dizileri {} ve {} üst üste biniyor
@@ -1976,6 +1988,7 @@ yellow	sarı
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: {} mm² tel, bağlantı noktasının aldığından ince (en az {} mm²)
 {}: accessory {} fits none of the device's parts	{}: {} aksesuarı cihazın hiçbir parçasına uymuyor
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{0}: {1} kumanda elemanı zeminden {2} mm yukarıda, önerilen {3} … {4} mm
+{}: air-termination rod {} stands off the roofs	{}: paratoner çubuğu {} çatıların dışında duruyor
 {}: auxiliary function(s) without main function	{}: ana fonksiyonu olmayan yardımcı fonksiyon(lar)
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: kesme kapasitesi {} kA, kısa devre akımı {} kA değerinin altında
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: {} mm'deki kablo kanalı %{} dolu (sınır %{})
@@ -1997,6 +2010,8 @@ yellow	sarı
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3} üzerindeki {1} ve {2} kesimleri birbirine çok yakın ({4} mm ara, en az {5} mm)
 {}: designation '{}' used more than once	{}: '{}' tanımı birden fazla kez kullanılıyor
 {}: device tag without device name	{}: cihaz adı olmayan cihaz etiketi
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: topraklama elektrodu {} boyunca uzanacağı duvarlara sahip değil: binada oda veya çatı yok
+{}: earth rod {} stands inside the walls of the building	{}: topraklama kazığı {} binanın duvarlarının içinde duruyor
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: {} A arıza akımı ({} noktasında) {} s içinde açma yapmıyor ({} A gerekli)
 {}: function texts differ in the single-line diagram and the schematic	{}: fonksiyon metinleri tek hat şeması ile şemada farklı
 {}: hole of {} is too close to the cutout of {} on the {}	{0}: {1} deliği, {3} üzerindeki {2} kesimine çok yakın
@@ -2058,7 +2073,12 @@ yellow	sarı
 {}: terminal {} uses {} levels, its part {} has {}	{}: {} klemensi {} kat kullanıyor, {} parçasında {} var
 {}: terminals {} are {} mm above the floor, at least {} mm required	{0}: {1} klemensleri zeminden {2} mm yukarıda, en az {3} mm gerekli
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: {} baralı bara sistemi {} iletkeni birleştiriyor ({}): kısa devre
+{}: the busbar {} of earth electrode {} does not exist	{0}: topraklama elektrodu {2} için {1} barası yok
 {}: the device {} of PV array {} does not exist	{0}: PV dizisi {2} için {1} cihazı mevcut değil
+{}: the earthing busbar {} of PV array {} does not exist	{0}: PV dizisi {2} için topraklama barası {1} yok
+{}: the generator junction box {} of PV array {} does not exist	{0}: PV dizisi {2} için jeneratör bağlantı kutusu {1} yok
+{}: the lightning protection has no earth electrode	{}: yıldırımdan korunmanın topraklama elektrodu yok
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: yıldırımdan korunmanın boyunca uzanacağı duvarlar yok: binada oda veya çatı yok
 {}: the module {} of PV array {} has no electrical data	{0}: PV dizisi {2} içindeki {1} modülünün elektrik verisi yok
 {}: the station has no port {}	{}: istasyonda {} portu yok
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: PV dizisi {} içindeki diziler {} modül bağlıyor, dizide {} var
@@ -2075,6 +2095,7 @@ yellow	sarı
 {}: {} carries {} A, the load {} needs {} A	{}: {}, {} A taşıyor; {} yükü {} A gerektiriyor
 {}: {} changed after it was mounted	{}: {} monte edildikten sonra değiştirildi
 {}: {} collides with {}	{}: {}, {} ile çakışıyor
+{}: {} down conductors, class {} needs {} round the building	{}: {} iniş iletkeni, {} sınıfı bina çevresinde {} gerektirir
 {}: {} inputs used, the module has {}	{}: {} giriş kullanılıyor, modülde {} var
 {}: {} is a fluid device, not an electrical one	{}: {} bir akışkan cihazıdır, elektrik cihazı değil
 {}: {} is closer than {} mm to a cable duct	{0}: {1} bir kablo kanalına {2} mm'den daha yakın

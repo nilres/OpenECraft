@@ -42,11 +42,13 @@ Cable tag, e.g. -W20	Kabelcode, bijv. -W20
 Cables	Kabels
 Cancel	Annuleren
 Cannot read {}: {}	Kan {} niet lezen: {}
+Cannot write {}: {}	Kan {} niet schrijven: {}
 Catalog	Catalogus
 Catalog id	Catalogus-ID
 Category	Categorie
 Centred	Gecentreerd
 Certificates	Certificaten
+Change	Wijziging
 Channel	Kanaal
 Characteristic	Karakteristiek
 Check settings	Controle-instellingen
@@ -108,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Apparaataansluitpunt
 Device description	Apparaatbeschrijving
 Device tag	Apparaataanduiding
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Apparaat waar de aardgeleider van de onderconstructie naartoe loopt (aard- of potentiaalvereffeningsrail); leeg: geen
 Device {}	Apparaat {}
 Devices	Apparaten
 Dimensions	Afmetingen
@@ -157,6 +160,7 @@ Function text	Functietekst
 Functional safety	Functionele veiligheid
 Functions	Functies
 General	Algemeen
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Generatoraansluitkast (apparaat) waar de strings naartoe lopen, van daar een DC-hoofdkabel naar elke omvormer; leeg: geen
 Gives up a subproject: its pages are unlocked again	Verwerpt een deelproject: de pagina's ervan worden weer ontgrendeld
 Gland plate	Wartelplaat
 Graphics	Grafiek
@@ -206,6 +210,7 @@ Location (+)	Plaats (+)
 Logo	Logo
 MTTFd (years)	MTTFd (jaar)
 Machine	Machine
+Main earthing busbar (device) it is connected to; empty: none	Hoofdaardrail (apparaat) waarop hij is aangesloten; leeg: geen
 Main earthing terminal	Hoofdaardrail
 Main switch	Hoofdschakelaar
 Manufacturer	Fabrikant
@@ -220,6 +225,8 @@ Minimum digits of the counter (leading zeros)	Minimumaantal cijfers van de telle
 Missing parameter: {}	Ontbrekende parameter: {}
 Missing value for --{}	Ontbrekende waarde voor --{}
 Model import failed: {}	Model importeren mislukt: {}
+Module	Module
+Modules	Modules
 Modules in series	Modules in serie
 Modules side by side in a row	Modules naast elkaar in een rij
 Mounted	Gemonteerd
@@ -272,6 +279,7 @@ Not in the schematic	Niet in het schema
 Note	Opmerking
 Notes	Notities
 Number	Nummer
+Number of down conductors (0: as many as the class needs for the walls)	Aantal afleidingen (0: zoveel als de klasse voor de muren nodig heeft)
 Number the sections 1, 2, 3 … on every level first	Eerst de secties op elk niveau nummeren met 1, 2, 3 …
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Nummert de apparaataanduidingen per structuur en kenletter in schemavolgorde (pagina, kolom, van boven naar beneden)
 Only rows containing this text	Alleen rijen die deze tekst bevatten
@@ -369,6 +377,7 @@ Released pages cannot be moved	Vrijgegeven pagina's kunnen niet worden verplaats
 Remove	Verwijderen
 Remove from favorites	Verwijderen uit favorieten
 Remove the boundary	Grens verwijderen
+Remove the lightning protection system	De bliksembeveiliging verwijderen
 Remove the reference point	Referentiepunt verwijderen
 Report	Rapport
 Report blocks	Rapportblokken
@@ -514,6 +523,7 @@ not bonded	niet aangesloten
 not connected	niet aangesloten
 open	open
 pcs	st.
+portrait	staand
 rejected	afgewezen
 right	naar rechts
 spare	reserve

@@ -161,6 +161,8 @@ fn solar_mounting(c: &mut C) {
         ("GEN.PV-CLAMP-MID", "Middle clamp aluminium for framed PV modules 30 - 40 mm, with hammer-head bolt M8, earthing pin", "PV middle clamp", 2.3, (40.0, 40.0, 45.0, 0.06), clamps),
         ("GEN.PV-BALLAST", "Ballast concrete block 400 x 250 x 50 mm, 12.5 kg, for flat roof mounting bases", "Ballast", 3.5, (400.0, 250.0, 50.0, 12.5), "Material: concrete"),
         ("GEN.PV-DEFLECTOR", "Wind deflector aluminium for south-facing flat roof mounting, for one module in landscape", "Wind deflector", 19.0, (1134.0, 400.0, 2.0, 1.6), "Material: aluminium"),
+        ("GEN.PV-EARTH-CLAMP", "Earthing clamp stainless steel for PV mounting rails and mounting bases, for the earthing conductor 6 - 16 mm² Cu or round wire Ø 8 mm, with hammer-head bolt M8", "PV earthing clamp", 6.8, (30.0, 30.0, 30.0, 0.08), "Material: stainless steel A2
+Conductor: 6 - 16 mm² Cu, round wire Ø 8 mm"),
     ] {
         let p = c.add(number, desc, m, subgroup, "", price, dims, &[]);
         p.mounting = "Roof".into();
@@ -170,7 +172,7 @@ fn solar_mounting(c: &mut C) {
     let p = c.add("GEN.PV-RAIL-40", "PV mounting rail aluminium 40 x 40 mm, length 4.2 m, for module clamps and roof hooks", m, "PV mounting rail", "", 38.0, (4200.0, 40.0, 40.0, 3.4), &[]);
     p.mounting = "Roof".into();
     p.tech_data = "Material: aluminium EN AW-6063 T66\nMax. span: 1.5 m".into();
-    p.accessories = ["GEN.PV-HOOK", "GEN.PV-RAIL-CONN", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID"].map(String::from).to_vec();
+    p.accessories = ["GEN.PV-HOOK", "GEN.PV-RAIL-CONN", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-EARTH-CLAMP"].map(String::from).to_vec();
     for (number, desc, price, tech) in [
         ("GEN.PV-BASE-S15", "Flat roof mounting base south 15° aluminium, for framed modules in landscape, with protective mat and ballast tray", 24.0, "Tilt: 15°\nOrientation: south\nFastening: ballast"),
         ("GEN.PV-BASE-EW10", "Flat roof mounting base east-west 10° aluminium, for framed modules in landscape, with protective mat and ballast tray", 29.0, "Tilt: 10°\nOrientation: east-west\nFastening: ballast"),
@@ -178,11 +180,59 @@ fn solar_mounting(c: &mut C) {
         let p = c.add(number, desc, m, "PV mounting base", "", price, (1300.0, 400.0, 350.0, 2.2), &[]);
         p.mounting = "Roof".into();
         p.tech_data = tech.into();
-        let mut acc = vec!["GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-BALLAST"];
+        let mut acc = vec!["GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-BALLAST", "GEN.PV-EARTH-CLAMP"];
         if number == "GEN.PV-BASE-S15" {
             acc.push("GEN.PV-DEFLECTOR");
         }
         p.accessories = acc.into_iter().map(String::from).collect();
+    }
+}
+
+/// The material of earth electrodes (foundation and ring earth electrodes, earth rods)
+/// and of lightning protection systems (round wire, holders, air-termination rods, test
+/// joints, earth entries and clamps).
+fn earthing_and_lightning(c: &mut C) {
+    let g = "Mounting";
+    // (number, description, subgroup, price, (w, h, d, weight), sold by the metre, technical data)
+    for (number, desc, subgroup, price, dims, metre, tech) in [
+        ("GEN.ER-STRIP-FE30", "Steel strip 30 x 3.5 mm hot-dip galvanised, for foundation earth electrodes in concrete", "Earth electrode material", 2.6, (1000.0, 30.0, 3.5, 0.82), true, "Material: steel, hot-dip galvanised\nCross-section: 105 mm²\nFor: concrete"),
+        ("GEN.ER-STRIP-V4A30", "Stainless steel strip V4A 30 x 3.5 mm, for ring earth electrodes in the soil", "Earth electrode material", 9.8, (1000.0, 30.0, 3.5, 0.82), true, "Material: stainless steel V4A (1.4404)\nCross-section: 105 mm²\nFor: soil"),
+        ("GEN.ER-WIRE-FE10", "Round wire steel Ø 10 mm hot-dip galvanised, for foundation earth electrodes in concrete", "Earth electrode material", 1.9, (1000.0, 10.0, 10.0, 0.62), true, "Material: steel, hot-dip galvanised\nDiameter: 10 mm\nCross-section: 78 mm²\nFor: concrete"),
+        ("GEN.ER-WIRE-V4A10", "Round wire stainless steel V4A Ø 10 mm, for ring earth electrodes in the soil", "Earth electrode material", 7.4, (1000.0, 10.0, 10.0, 0.62), true, "Material: stainless steel V4A (1.4404)\nDiameter: 10 mm\nCross-section: 78 mm²\nFor: soil"),
+        ("GEN.ER-WIRE-CU8", "Round wire copper Ø 8 mm, for ring earth electrodes in the soil", "Earth electrode material", 8.9, (1000.0, 8.0, 8.0, 0.45), true, "Material: copper\nDiameter: 8 mm\nCross-section: 50 mm²\nFor: soil"),
+        ("GEN.ER-ROD-1500", "Earth rod section steel Ø 20 mm, 1500 mm, hot-dip galvanised, with coupling, for driven earth electrodes", "Earth rod", 24.0, (20.0, 1500.0, 20.0, 3.7), false, "Material: steel, hot-dip galvanised\nDiameter: 20 mm\nLength: 1500 mm\nCoupling: integrated"),
+        ("GEN.ER-ROD-FE25-1500", "Earth rod section steel Ø 25 mm, 1500 mm, hot-dip galvanised, with coupling, for driven earth electrodes in hard soil", "Earth rod", 31.0, (25.0, 1500.0, 25.0, 5.8), false, "Material: steel, hot-dip galvanised\nDiameter: 25 mm\nLength: 1500 mm\nCoupling: integrated"),
+        ("GEN.ER-ROD-V4A-1500", "Earth rod section stainless steel V4A Ø 20 mm, 1500 mm, with coupling pin, for driven earth electrodes", "Earth rod", 58.0, (20.0, 1500.0, 20.0, 3.7), false, "Material: stainless steel V4A (1.4404)\nDiameter: 20 mm\nLength: 1500 mm\nCoupling: pin"),
+        ("GEN.ER-ROD-CU-1500", "Earth rod section copper-bonded steel Ø 17.2 mm, 1500 mm, with coupling, for driven earth electrodes", "Earth rod", 36.0, (17.2, 1500.0, 17.2, 2.7), false, "Material: copper-bonded steel (250 µm)\nDiameter: 17.2 mm\nLength: 1500 mm\nCoupling: threaded"),
+        ("GEN.ER-ROD-TIP", "Driving tip for earth rods Ø 17 - 25 mm", "Earth rod accessory", 3.9, (20.0, 60.0, 20.0, 0.1), false, "Material: steel"),
+        ("GEN.ER-CLAMP-ROD", "Connection clamp for earth rods Ø 17 - 25 mm to flat strip 30 x 3.5 mm and round wire Ø 8 - 10 mm", "Earth rod accessory", 8.5, (60.0, 60.0, 40.0, 0.2), false, "Material: stainless steel V4A"),
+        ("GEN.ER-CROSS", "Cross connector stainless steel V4A for flat strip 30 x 3.5 mm and round wire Ø 8 - 10 mm", "Earth electrode accessory", 6.9, (60.0, 60.0, 20.0, 0.2), false, "Material: stainless steel V4A"),
+        ("GEN.ER-SPACER", "Spacer for foundation earth electrodes, holds the strip upright on the reinforcement", "Earth electrode accessory", 1.4, (60.0, 120.0, 20.0, 0.1), false, "Material: steel"),
+        ("GEN.LP-WIRE-AL8", "Round wire aluminium Ø 8 mm, for air-termination and down conductors", "Lightning protection conductor", 1.9, (1000.0, 8.0, 8.0, 0.14), true, "Material: aluminium\nDiameter: 8 mm\nCross-section: 50 mm²"),
+        ("GEN.LP-WIRE-AL10", "Round wire aluminium Ø 10 mm, for air-termination and down conductors", "Lightning protection conductor", 2.6, (1000.0, 10.0, 10.0, 0.21), true, "Material: aluminium\nDiameter: 10 mm\nCross-section: 78 mm²"),
+        ("GEN.LP-WIRE-CU8", "Round wire copper Ø 8 mm, for air-termination and down conductors", "Lightning protection conductor", 7.9, (1000.0, 8.0, 8.0, 0.45), true, "Material: copper\nDiameter: 8 mm\nCross-section: 50 mm²"),
+        ("GEN.LP-WIRE-FE8", "Round wire steel Ø 8 mm hot-dip galvanised, for air-termination and down conductors", "Lightning protection conductor", 1.4, (1000.0, 8.0, 8.0, 0.4), true, "Material: steel, hot-dip galvanised\nDiameter: 8 mm\nCross-section: 50 mm²"),
+        ("GEN.LP-WIRE-V4A10", "Round wire stainless steel V4A Ø 10 mm, for air-termination and down conductors", "Lightning protection conductor", 6.8, (1000.0, 10.0, 10.0, 0.62), true, "Material: stainless steel V4A (1.4404)\nDiameter: 10 mm\nCross-section: 78 mm²"),
+        ("GEN.LP-HOLDER-ROOF", "Roof conductor holder for round wire Ø 8 - 10 mm, for roof tiles", "Conductor holder", 3.2, (40.0, 120.0, 60.0, 0.1), false, "Material: stainless steel\nMounting: roof"),
+        ("GEN.LP-HOLDER-RIDGE", "Ridge conductor holder for round wire Ø 8 - 10 mm, clamped onto the ridge tiles", "Conductor holder", 4.1, (40.0, 140.0, 80.0, 0.12), false, "Material: stainless steel\nMounting: roof"),
+        ("GEN.LP-HOLDER-FLAT", "Flat roof conductor holder in a concrete block for round wire Ø 8 - 10 mm, loose on the roof", "Conductor holder", 5.6, (100.0, 100.0, 70.0, 1.0), false, "Material: concrete, plastic\nMounting: roof"),
+        ("GEN.LP-HOLDER-WALL", "Conductor holder for round wire Ø 8 - 10 mm on the wall, with dowel", "Conductor holder", 1.8, (30.0, 40.0, 60.0, 0.05), false, "Material: stainless steel\nMounting: wall"),
+        ("GEN.LP-HOLDER-WALL-SPACER", "Conductor holder for round wire Ø 8 - 10 mm with a 100 mm spacer, for insulated façades", "Conductor holder", 4.9, (30.0, 40.0, 160.0, 0.12), false, "Material: stainless steel\nMounting: wall"),
+        ("GEN.LP-ROD-AL16", "Air-termination rod aluminium Ø 16 mm, 1500 mm", "Air-termination rod", 32.0, (16.0, 1500.0, 16.0, 0.8), false, "Material: aluminium\nDiameter: 16 mm\nLength: 1500 mm"),
+        ("GEN.LP-ROD-AL10", "Air-termination rod aluminium Ø 10 mm, 1000 mm", "Air-termination rod", 14.0, (10.0, 1000.0, 10.0, 0.2), false, "Material: aluminium\nDiameter: 10 mm\nLength: 1000 mm"),
+        ("GEN.LP-ROD-V4A16", "Air-termination rod stainless steel V4A Ø 16 mm, 1500 mm", "Air-termination rod", 61.0, (16.0, 1500.0, 16.0, 2.4), false, "Material: stainless steel V4A (1.4404)\nDiameter: 16 mm\nLength: 1500 mm"),
+        ("GEN.LP-ROD-CU16", "Air-termination rod copper Ø 16 mm, 1500 mm", "Air-termination rod", 78.0, (16.0, 1500.0, 16.0, 2.7), false, "Material: copper\nDiameter: 16 mm\nLength: 1500 mm"),
+        ("GEN.LP-ROD-HOLDER", "Rod holder for air-termination rods Ø 10 - 16 mm, on the ridge or the roof", "Air-termination rod base", 9.8, (60.0, 120.0, 60.0, 0.3), false, "Material: stainless steel"),
+        ("GEN.LP-ROD-BASE", "Concrete base 17 kg for air-termination rods Ø 10 - 16 mm on flat roofs, with protective mat", "Air-termination rod base", 24.0, (340.0, 80.0, 340.0, 17.0), false, "Material: concrete"),
+        ("GEN.LP-TEST-JOINT", "Test joint stainless steel for round wire Ø 8 - 10 mm and flat strip", "Test joint", 7.5, (50.0, 50.0, 30.0, 0.15), false, "Material: stainless steel"),
+        ("GEN.LP-EARTH-ENTRY", "Earth entry rod stainless steel V4A Ø 16 mm, 1500 mm, from the test joint into the soil", "Earth entry", 29.0, (16.0, 1500.0, 16.0, 2.4), false, "Material: stainless steel V4A\nLength: 1500 mm"),
+        ("GEN.LP-CLAMP-MV", "MV clamp for round wire Ø 8 - 10 mm, parallel and cross connection", "Lightning protection clamp", 4.6, (50.0, 50.0, 30.0, 0.12), false, "Material: stainless steel"),
+    ] {
+        let p = c.add(number, desc, g, subgroup, "", price, dims, &[]);
+        if metre {
+            p.quantity_unit = "m".into();
+        }
+        p.tech_data = tech.into();
     }
 }
 
@@ -492,7 +542,13 @@ Breaking capacity: 100 kA".into();
     p.power = "40 kW".into();
     p.mounting = "Wall".into();
     p.tech_data = "Max. PV input voltage: 1100 V\nMPPT voltage range: 200 - 1000 V\nMPP trackers: 4\nMax. input current per MPPT: 32 A\nMax. short-circuit current per MPPT: 40 A\nMax. PV power: 60 kWp".into();
-    let p = c.add("GEN.INV-PV-10KW", "PV inverter 3-phase 10 kW, 2 MPP trackers, 400 V AC, wall-mounted", "Power supplies, transformers", "Inverter", "TB", 1650.0, (0.0, 0.0, 0.0, 17.0), &[(PowerSupply, "L1 L2 L3 N PE")]);
+    let p = c.add("GEN.GAK-2S", "PV generator junction box for 2 strings, string fuses 15 A, surge arrester type 2 1000 V DC, DC switch disconnector, IP65, wall-mounted", "Power supplies, transformers", "Generator junction box", "U", 290.0, (300.0, 400.0, 160.0, 4.5), &[]);
+    p.voltage = "1000 V DC".into();
+    p.mounting = "Wall".into();
+    p.mounting_data.wall_mount = true;
+    p.tech_data = "Strings: 2\nString fuses: 15 A gPV\nSurge protection: type 2, 1000 V DC\nDC switch disconnector: 32 A\nDegree of protection: IP65".into();
+    let p = c.add("GEN.INV-PV-10KW", "PV inverter 3-phase 10 kW, 2 MPP trackers, 400 V AC, wall-mounted", "Power supplies, transformers", "Inverter", "TB", 1650.0, (480.0, 560.0, 200.0, 17.0), &[(PowerSupply, "L1 L2 L3 N PE")]);
+    p.mounting_data.wall_mount = true;
     p.voltage = "3 x 230/400 V AC".into();
     p.current = "16 A".into();
     p.power = "10 kW".into();
@@ -525,6 +581,7 @@ Breaking capacity: 100 kA".into();
     p.mounting = "Roof".into();
     p.tech_data = "Open-circuit voltage: 39.2 V\nShort-circuit current: 13.9 A\nVoltage at maximum power: 32.6 V\nCurrent at maximum power: 13.2 A\nEfficiency: 22 %\nMax. system voltage: 1500 V DC\nTemperature coefficient of Pmax: -0.30 %/K\nTemperature coefficient of Voc: -0.25 %/K\nTemperature coefficient of Isc: +0.046 %/K".into();
     solar_mounting(&mut c);
+    earthing_and_lightning(&mut c);
     let p = c.add("GEN.PLC-CPU", "PLC CPU 24 V DC, 2 x Ethernet (Modbus TCP, EtherCAT master), 1 MB work memory", "PLC", "CPU", "A", 690.0, (60.0, 100.0, 75.0, 0.3), &[(Generic, "L+ M"), (Generic, "X1 X2")]);
     p.voltage = "24 V DC".into();
     p.tech_data = "Power loss: 6 W\nCurrent consumption: 250 mA".into();

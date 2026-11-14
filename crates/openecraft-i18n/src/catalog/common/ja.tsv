@@ -40,11 +40,13 @@ Cable tag, e.g. -W20	ケーブルのタグ、例: -W20
 Cables	ケーブル
 Cancel	キャンセル
 Cannot read {}: {}	{} を読み取れません: {}
+Cannot write {}: {}	{} に書き込めません: {}
 Catalog	カタログ
 Catalog id	カタログ ID
 Category	カテゴリ
 Centred	中央
 Certificates	証明書
+Change	変更
 Channel	チャンネル
 Characteristic	特性
 Check settings	チェックの設定
@@ -106,6 +108,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	機器接続ポイント
 Device description	デバイス記述
 Device tag	デバイスタグ
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	架台の接地導体の接続先デバイス (接地ブスバーまたは等電位ボンディングブスバー)。空欄: なし
 Device {}	デバイス {}
 Devices	デバイス
 Dimensions	寸法
@@ -155,6 +158,7 @@ Function text	機能テキスト
 Functional safety	機能安全
 Functions	機能
 General	全般
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	ストリングの接続先の接続箱 (デバイス)。そこから各インバーターへ直流幹線が通ります。空欄: なし
 Gives up a subproject: its pages are unlocked again	サブプロジェクトを破棄します。そのページのロックが再び解除されます
 Gland plate	グランドプレート
 Graphics	図形
@@ -204,6 +208,7 @@ Location (+)	取付場所 (+)
 Logo	ロゴ
 MTTFd (years)	MTTFd (年)
 Machine	機械
+Main earthing busbar (device) it is connected to; empty: none	接続先の主接地ブスバー (デバイス)。空欄: なし
 Main earthing terminal	主接地端子
 Main switch	主開閉器
 Manufacturer	メーカー
@@ -218,6 +223,8 @@ Minimum digits of the counter (leading zeros)	カウンターの最小桁数 (�
 Missing parameter: {}	パラメーターがありません: {}
 Missing value for --{}	--{} の値がありません
 Model import failed: {}	モデルのインポートに失敗しました: {}
+Module	モジュール
+Modules	モジュール
 Modules in series	直列のモジュール
 Modules side by side in a row	1列に並ぶモジュール
 Mounted	取付済み
@@ -270,6 +277,7 @@ Not in the schematic	回路図にありません
 Note	注記
 Notes	メモ
 Number	番号
+Number of down conductors (0: as many as the class needs for the walls)	引下げ導線の数 (0: クラスが壁に必要とする数)
 Number the sections 1, 2, 3 … on every level first	最初に各レベルのセクションを 1, 2, 3 … と番号付けする
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	デバイスタグを構造と識別文字ごとに回路図の順序 (ページ、列、上から下) で番号付けします
 Only rows containing this text	このテキストを含む行のみ
@@ -367,6 +375,7 @@ Released pages cannot be moved	リリース済みのページは移動できま�
 Remove	削除
 Remove from favorites	お気に入りから削除
 Remove the boundary	境界を削除
+Remove the lightning protection system	雷保護システムを削除
 Remove the reference point	基準点を削除
 Report	レポート
 Report blocks	レポートブロック
@@ -510,6 +519,7 @@ not bonded	未ボンディング
 not connected	未接続
 open	開
 pcs	個
+portrait	縦
 rejected	却下
 right	右
 spare	予備

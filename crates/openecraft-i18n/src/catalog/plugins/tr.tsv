@@ -26,6 +26,8 @@ Adds a text to a page	Bir sayfaya metin ekler
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Proje metinlerinin tüm satırlarını sözlüğe ekler, isteğe bağlı olarak artık kullanılmayan girdileri kaldırır
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Bir kablo ucuna aksesuar ekler: rakor, EMC rakoru, konnektör, çekme kuvveti giderici, ekran kelepçesi, koruma hortumu, kablo yüksüğü, işaretleyici
 Adds an accessory to a device; it must fit one of the device's parts	Bir cihaza aksesuar ekler; cihazın parçalarından birine uymalıdır
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Bir binanın çatılarına, yakalama iletkenlerine bağlı bir paratoner çubuğu ekler; binada yıldırımdan korunma sistemi yoksa III. sınıf bir sistem eklenir
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Bir binaya topraklama elektrodu ekler: en alt katın temel plağında dış duvarlar boyunca gözlü bir temel topraklaması, duvarların çevresinde toprakta bir halka topraklama veya bir topraklama kazığı; malzemesi malzeme listesine girer
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Bir pano ekler: bir sistemden, boyutlarından birinde (veya özel boyutta) ya da bir pano parçasından
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	İki kuşaklama noktası arasına bir eş potansiyel kuşaklama iletkeni ekler (ana topraklama barası, panolar, iletken dış hatlar, metal taşıyıcılar)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Projenin bir etiketleme şemasını ekler veya değiştirir, kaldırır ya da etiketleme dışa aktarımı için kullanılacak şemayı seçer
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Bir şablonun cihazlarını bir segmente ekler
 Adds the outline of a machine, building or area to the plant layout	Tesis yerleşimine bir makinenin, binanın veya alanın dış hatlarını ekler
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Bir profil ekler, değiştirir veya kaldırır: diğer sistemin kullandığı sütun adlarına sahip bir bağlayıcı
+Air-termination rod: its name	Paratoner çubuğu: adı
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Öğeleri hizalar, eşit aralıklarla dağıtır, cihazları bir ray üzerinde sıralar veya öğeleri bir desen halinde kopyalar
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Sembolleri, metinleri ve grafikleri ortak bir kenara veya merkeze hizalar; bağlı tel uçları takip eder
 Allow renaming onto an identifier in use: both become one	Kullanımdaki bir tanımlayıcıya yeniden adlandırmaya izin ver: ikisi bir olur
@@ -70,6 +73,7 @@ Between page and column (default .)	Sayfa ile sütun arasında (varsayılan .)
 Bonding point	Kuşaklama noktası
 Border around the text	Metnin etrafında kenarlık
 Both classes are needed	Her iki sınıf da gerekli
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Katları, şaftları, merdivenleri ve PV dizili çatıları, topraklama elektrotları ve yıldırımdan korunması, katlardaki odaları ve binalar arası bağlantıları ile tesisin binaları
 Bus system name	Bus sistemi adı
 Bus system name, e.g. PN/IE_1	Bus sistemi adı, ör. PN/IE_1
 Busbar machine program (CSV)	Bara işleme makinesi programı (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Bir odanın kapısını veya penceresini değiştirir: nasıl açıldığı (menteşe solda veya sağda, içe veya dışa, ya da sürgülü), duvar boyunca yeri, boyutu ve denizliği
 Changes a placed symbol; when it moves, connected wire ends follow	Yerleştirilmiş bir sembolü değiştirir; sembol taşındığında bağlı tel uçları onu izler
 Changes a text (only the given properties)	Bir metni değiştirir (yalnızca verilen özellikleri)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Bir binanın topraklama elektrodunu değiştirir: yer, uzunluk, duvarlara uzaklık, derinlik, göz, parça veya bara; yeniden adlandırır veya kaldırır
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Üretimden kalkan veya üretimi durdurulan parçalara sahip cihazları halef parçalara geçirir (halefler proje parçası olmalıdır)
 Changes name, description or structure of a page	Bir sayfanın adını, açıklamasını veya yapısını değiştirir
 Changes name, description, function, location or parent of a segment	Bir segmentin adını, açıklamasını, fonksiyonunu, konumunu veya üst segmentini değiştirir
@@ -100,6 +105,7 @@ Check {} failed: {}	{} kontrolü başarısız oldu: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Pano yerleşimini kontrol eder: çakışmalar, mesafeler (montaj, havalandırma, EMC), servis alanı, zeminden yükseklikler, çakışma sınıfları, sıcaklıklar ve üretilebilirlik
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Tel uçlarının nasıl sonlandırılacağını seçer: çıplak, yüksüklü veya sıkma pabuçlu; bir bağlantı noktasında, bir cihazın tüm bağlantı noktalarında veya yalnızca bir tel için
 Chosen value	Seçilen değer
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Yıldırımdan korunma sisteminin sınıfı, 1 … 4 (I … IV; varsayılan III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Pano yerleşiminin mesafeleri, servis alanı, yükseklikleri, çakışma sınıfları, termik simülasyonu ve üretilebilirliği
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Panoların iklimlendirmesi (IEC/TR 60890): güç kaybı, iç sıcaklık, gereken fan veya soğutma ünitesi ve ısıtma; isteğe bağlı olarak bir panonun ayarlarını değiştirir
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Çakışma sınıfı: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, kendi sınıfınız veya herhangi biri için *
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Cihazlar, teller, potansiyeller, kablolar, klemens şeritleri, PLC, pano, akışkan, elektriksel hesaplamalar, yapı ve çeviriler
 Diameter in mm	mm cinsinden çap
 Diameter of a hole at both ends (0: none)	Her iki uçtaki deliğin çapı (0: yok)
+Diameter of the conductors, mm (default 8)	İletkenlerin çapı, mm (varsayılan 8)
+Diameter of the rod, mm (default 16)	Çubuğun çapı, mm (varsayılan 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Gövdenin yönü: left, right, up veya down (varsayılan: oradaki tellere göre)
 Distance between power and signal or fluid in mm	mm cinsinden güç ile sinyal veya akışkan arasındaki mesafe
 Distance from devices, rails and busbars in mm	mm cinsinden cihazlara, raylara ve baralara olan mesafe
@@ -222,6 +230,10 @@ Draws a wire through two or more points	İki veya daha fazla noktadan geçen bir
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Telleri şema sayfalarında ve PDF / SVG dışa aktarımında kendi renklerinde veya siyah çizer
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Birbirine bakan sembollerin boş bağlantı noktaları arasına ve T parçalarıyla köşelerin boş kollarına tel çizer
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Kabloların EMC sınıfları (sürücü çıkışı, analog, güç, sinyal, ekran) ve EMC sorunları
+Earth electrode: its name	Topraklama elektrodu: adı
+Earth rod: its length, mm (default 3000)	Topraklama kazığı: uzunluğu, mm (varsayılan 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Topraklama kazığı: binanın planındaki yerinin x'i, mm
+Earth rod: z of its place in the floor plan of the building, mm	Topraklama kazığı: binanın planındaki yerinin z'si, mm
 Edge length of the routing grid in mm	mm cinsinden yönlendirme ızgarasının kenar uzunluğu
 Electrical device tags separated by commas or blanks (empty = remove the links)	Virgül veya boşlukla ayrılmış elektrik cihazı etiketleri (boş = ilişkileri kaldır)
 Electrical engineering	Elektrik mühendisliği
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	istasyon:port biçiminde ilk port, �
 First row with the column names	Sütun adlarını içeren ilk satır
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Cihaz adının formatı: {letter}, {n} (sayaç), {page}, {column}, {row}; varsayılan {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format şemasının formatı: {n} (sayaç), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Temel topraklaması: dış duvarların ne kadar içinde (varsayılan 100), halka: ne kadar dışında (varsayılan 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Temel topraklaması: en büyük gözü, mm (varsayılan 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Çerçeve yeniyse başlangıç alınacak çerçeve (varsayılan: A3 landscape)
 Free space in front of every device on the plate	Plakadaki her cihazın önündeki boş alan
 Freezes routes for production (kept by the recalculation while possible) or releases them	Güzergâhları üretim için dondurur (yeniden hesaplama mümkün olduğu sürece korur) veya serbest bırakır
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Bir sayfanın tek hatlı sembolleri için çok hatlı şemayı (güç sembolleri, iletkenler, kontaktör bobinleri) ardından gelen yeni bir sayfada oluşturur
 Generates the program of the busbar machine: cuts, punched holes and bends	Bara işleme makinesinin programını oluşturur: kesimler, zımbalanmış delikler ve bükümler
 Give a device tag or a part number	Bir cihaz etiketi veya parça numarası girin
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Bir binaya yıldırımdan korunma sistemi verir veya değiştirir: sınıfı, iniş iletkenlerinin sayısı ve iletkenlerin parçası; mahyalarda ve kırma çizgilerinde yakalama iletkenleri (düz çatılarda bir göz ağı), topraklama elektrotlarına ölçü klemensli iniş iletkenleri; veya kaldırır
+Greatest distance of the conductor holders, mm (default 1000)	İletken tutucularının en büyük aralığı, mm (varsayılan 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Öğeleri birlikte seçilen ve taşınan bir montaj grubunda toplar; ad verilmezse öğeler montaj gruplarından çıkar
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Bir panonun programlarını iş emri olarak üretime teslim eder: tüm yüzeylerinin ve bakır baralarının manifestosu ve programları
 Has a divider between power and signal cables	Güç ve sinyal kabloları arasında ayırıcı var
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	mm cinsinden montaj plakası 
 Height in mm	mm cinsinden yükseklik
 Height in mm without plinth; negative: unknown (wall mounted)	Kaide hariç mm cinsinden yükseklik; negatif: bilinmiyor (duvara monte)
 Height in mm; the logo keeps its aspect ratio inside	mm cinsinden yükseklik; logo içinde en boy oranını korur
+Height of the rod above the covering, mm (default 1500)	Çubuğun çatı kaplamasının üstündeki yüksekliği, mm (varsayılan 1500)
+Height of the test joints above the ground, mm (default 1000)	Ölçü klemenslerinin zeminden yüksekliği, mm (varsayılan 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Sayfanın üst düzey ürün yönü (-); sayfadaki cihazlar da birlikte taşınır
 Highest actuator on the door above the floor (0: not checked)	Kapıdaki en yüksek kumanda elemanının zeminden yüksekliği (0: kontrol edilmez)
 Highest air temperature at devices without data (0: not checked)	Verisi olmayan cihazlarda en yüksek hava sıcaklığı (0: kontrol edilmez)
@@ -427,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Üretim paketi (CNC programları, JSO
 Markers, comma separated: device, terminal, wire, cable (empty: all)	İşaretleyiciler, virgülle ayrılmış: device, terminal, wire, cable (boş: tümü)
 Marks a panel item as mounted or as a problem, or as open again	Bir pano öğesini monte edildi veya sorunlu ya da yeniden açık olarak işaretler
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Yönlendirilmiş bir teli kablolandı, sorunlu veya yeniden açık olarak işaretler; tel iki ucuyla belirtilir
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Malzeme: galvanised_steel, stainless_steel, copper, copper_bonded_steel veya aluminium
 Maximum fill of a carrier in percent	Yüzde cinsinden bir taşıyıcının maksimum doluluğu
 Maximum operating pressure in bar	bar cinsinden maksimum çalışma basıncı
 Measuring range or set point	Ölçüm aralığı veya ayar noktası
@@ -435,11 +454,14 @@ Milling feed, mm/min	Frezeleme ilerlemesi, mm/dk
 Mirror the symbol	Sembolü yansıt
 Mounting plate size as width and height; empty object restores the centred plate	Montaj plakası boyutu genişlik ve yükseklik olarak; boş nesne ortalanmış plakayı geri getirir
 Mounting size must contain a positive width and height	Montaj boyutu pozitif bir genişlik ve yükseklik içermelidir
+Moves an air-termination rod, changes its height, renames or removes it	Bir paratoner çubuğunu taşır, yüksekliğini değiştirir, yeniden adlandırır veya kaldırır
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Bir telin bir ucunu taşır: bağlı olduğu yerden ayrılır ve karşılaştığı şeye bağlanır; tel dik açılı kalır
 Moves symbols, wires and texts; connected wire ends follow	Sembolleri, telleri ve metinleri taşır; bağlı tel uçları onları izler
 Moves the page before this page of its section (or of the section given)	Sayfayı bölümünün (veya verilen bölümün) bu sayfasının önüne taşır
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Bölümü üst bölümünün (veya verilen üst bölümün) bu bölümünün önüne taşır; numaralar sırayla devam eder
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Bir kablo demetinin çivili tahta yerleşimi: ortak düğümden konnektörlere uzunluk, yön, demet çapı ve pinlerle dallar ve çizim ölçeği
+Name (default E1, E2, …)	Ad (varsayılan E1, E2, …)
+Name (default F1, F2, …)	Ad (varsayılan F1, F2, …)
 Name of the assembly	Montaj grubunun adı
 Name of the bar, e.g. L1 -Q1	Baranın adı, ör. L1 -Q1
 Name of the check	Kontrolün adı
@@ -463,6 +485,7 @@ New page name	Yeni sayfa adı
 New parent segment (empty: top level)	Yeni üst segment (boş: en üst düzey)
 New value	Yeni değer
 No PCT loop {}	{} PCT döngüsü yok
+No air-termination rod {} on building {}	{1} binasında {0} paratoner çubuğu yok
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	{} adlı yerleşik bir kontrol yok: ayar, bu adı taşıyan bir eklenti kontrolü için geçerlidir (list_checks)
 No bus system {}	{} bus sistemi yok
 No connection point {} on this page	Bu sayfada {} bağlantı noktası yok
@@ -470,6 +493,7 @@ No connection symbol with id {}	{} kimlikli bağlantı sembolü yok
 No copper bar {}	{} bakır barası yok
 No device description {}	{} cihaz tanımı yok
 No device group {}	{} cihaz grubu yok
+No earth electrode {} in building {}	{1} binasında {0} topraklama elektrodu yok
 No enclosure named {}	{} adlı pano yok
 No entry for {} and {}	{} ve {} için giriş yok
 No hose {}	{} hortumu yok
@@ -572,7 +596,12 @@ Part number of the downstream device	Alt taraftaki cihazın parça numarası
 Part number of the hose / tube / pipe	Hortumun / tüpün / borunun parça numarası
 Part number of the upstream device	Üst taraftaki cihazın parça numarası
 Part number, e.g. GEN.LMP-GN-24	Parça numarası, ör. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Şeridinin, telinin veya kazığının parçası (boş: genel)
+Part of the conductor holders on the roof (empty: generic)	Çatıdaki iletken tutucularının parçası (boş: genel)
+Part of the conductor holders on the walls (empty: generic)	Duvarlardaki iletken tutucularının parçası (boş: genel)
+Part of the conductors (round wire; empty: generic)	İletkenlerin parçası (yuvarlak tel; boş: genel)
 Part of the key or name	Anahtarın veya adın bir kısmı
+Part of the rod (empty: the one of its material and diameter)	Çubuğun parçası (boş: malzemesine ve çapına göre olanı)
 Part {} has no function with a symbol	{} parçasının sembollü işlevi yok
 Parts phased out or discontinued	Üretimden kalkan veya üretimi durdurulan parçalar
 Pass ids or pages	Kimlikler veya sayfalar belirtin
@@ -653,6 +682,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	% cinsinden
 Release instead of freeze	Dondurmak yerine serbest bırak
 Released pages keep their names: {}	Yayımlanmış sayfalar adlarını korur: {}
 Remote I/O: station of the controller	Uzak I/O: kontrolörün istasyonu
+Remove the air-termination rod	Paratoner çubuğunu kaldır
+Remove the earth electrode	Topraklama elektrodunu kaldır
 Remove the entry of upstream and downstream	upstream ve downstream girişini kaldır
 Remove the profile	Profili kaldır
 Remove the scheme from the project	Şemayı projeden kaldır
@@ -684,6 +715,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Kalan (mm)
 Reuse failed searches during one routing calculation	Aynı güzergâh hesaplamasında başarısız aramaları yeniden kullan
 Right side bayed (no side panel)	Sağ taraf yan yana bağlı (yan panel yok)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Halka: zeminin altındaki derinlik, kazık: üst ucunun derinliği, mm (varsayılan 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Kazık: çapı (varsayılan 20), temel ve halka: yuvarlak telinki, şerit için 0, mm
 Room {} exists already	Oda {} zaten var
 Rotation in degrees clockwise: 0, 90, 180 or 270	Saat yönünde derece cinsinden döndürme: 0, 90, 180 veya 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Derece cinsinden dönüş, saat yönünün tersine (90 aşağıdan yukarıya okunur)
@@ -873,6 +906,7 @@ Unknown address scheme: {}	Bilinmeyen adres şeması: {}
 Unknown alignment: {}	Bilinmeyen hizalama: {}
 Unknown anchor: {}	Bilinmeyen ankraj: {}
 Unknown aspect: {}	Bilinmeyen yön: {}
+Unknown base: {}	Bilinmeyen taban: {}
 Unknown bonding kind: {}	Bilinmeyen kuşaklama türü: {}
 Unknown bonding point: {}	Bilinmeyen kuşaklama noktası: {}
 Unknown bus system: {}	Bilinmeyen bus sistemi: {}
@@ -881,6 +915,7 @@ Unknown check: {}	Bilinmeyen kontrol: {}
 Unknown class: {}	Bilinmeyen sınıf: {}
 Unknown data type: {}	Bilinmeyen veri türü: {}
 Unknown direction {}: left, right, up or down	Bilinmeyen yön {}: left, right, up veya down
+Unknown earth electrode: {}	Bilinmeyen topraklama elektrodu: {}
 Unknown earthing system: {}	Bilinmeyen topraklama sistemi: {}
 Unknown face {}	Bilinmeyen yüzey {}
 Unknown fastening: {}	Bilinmeyen sabitleme: {}
@@ -972,9 +1007,11 @@ device (default), position, cross_section or number	device (varsayılan), positi
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages veya parts
 error, warning, info, off, or default to take the change back	error, warning, info, off veya değişikliği geri almak için default
 false takes the acceptance back (default true)	false kabulü geri alır (varsayılan true)
+foundation, ring or rod	foundation, ring veya rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted veya middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) veya product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker veya other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (çatıda çubuk tutucu) veya concrete_base (düz çatılarda)
 hose, tube or pipe	hose, tube veya pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (makineler, fazlar BK) veya iec60445 (fazlar BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (varsayılan), power, control, signal veya fluid
@@ -1001,6 +1038,8 @@ too long	çok uzun
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (varsayılan), ladder, trunking, conduit, drag_chain, buried veya free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit veya other
 wired, problem or open	wired, problem veya open
+x of the foot of the rod in the floor plan of the building, mm	Çubuğun ayağının binanın planındaki x'i, mm
+z of the foot of the rod in the floor plan of the building, mm	Çubuğun ayağının binanın planındaki z'si, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} ve {} aynı işlevin iki ucu: tel onu kısa devre yapar
 {} and {} are needed together	{} ve {} birlikte gerekli
 {} cannot be bayed to itself	{} kendisine yan yana bağlanamaz

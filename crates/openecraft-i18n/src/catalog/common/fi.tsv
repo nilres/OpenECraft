@@ -42,11 +42,13 @@ Cable tag, e.g. -W20	Kaapelin tunnus, esim. -W20
 Cables	Kaapelit
 Cancel	Peruuta
 Cannot read {}: {}	Ei voi lukea kohdetta {}: {}
+Cannot write {}: {}	Ei voi kirjoittaa kohdetta {}: {}
 Catalog	Luettelo
 Catalog id	Luettelon ID
 Category	Luokka
 Centred	Keskitetty
 Certificates	Sertifikaatit
+Change	Muutos
 Channel	Kanava
 Characteristic	Ominaiskäyrä
 Check settings	Tarkistusasetukset
@@ -108,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Laitteen liitäntäpiste
 Device description	Laitekuvaus
 Device tag	Laitetunnus
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Laite, johon telineen maadoitusjohdin kulkee (maadoitus- tai potentiaalintasauskisko); tyhjä: ei mitään
 Device {}	Laite {}
 Devices	Laitteet
 Dimensions	Mitat
@@ -157,6 +160,7 @@ Function text	Toimintoteksti
 Functional safety	Toiminnallinen turvallisuus
 Functions	Toiminnot
 General	Yleiset
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Generaattorin liitäntäkotelo (laite), johon ketjut tulevat, sieltä DC-pääkaapeli kullekin vaihtosuuntaajalle; tyhjä: ei mitään
 Gives up a subproject: its pages are unlocked again	Hylkää aliprojektin: sen sivujen lukitus poistetaan
 Gland plate	Läpivientilevy
 Graphics	Grafiikka
@@ -206,6 +210,7 @@ Location (+)	Sijainti (+)
 Logo	Logo
 MTTFd (years)	MTTFd (vuotta)
 Machine	Kone
+Main earthing busbar (device) it is connected to; empty: none	Päämaadoituskisko (laite), johon se on liitetty; tyhjä: ei mitään
 Main earthing terminal	Päämaadoituskisko
 Main switch	Pääkytkin
 Manufacturer	Valmistaja
@@ -220,6 +225,8 @@ Minimum digits of the counter (leading zeros)	Laskurin vähimmäisnumeromäärä
 Missing parameter: {}	Puuttuva parametri: {}
 Missing value for --{}	Puuttuva arvo valitsimelle --{}
 Model import failed: {}	Mallin tuonti epäonnistui: {}
+Module	Moduuli
+Modules	Moduulit
 Modules in series	Moduulit sarjassa
 Modules side by side in a row	Moduulit vierekkäin rivissä
 Mounted	Asennettu
@@ -272,6 +279,7 @@ Not in the schematic	Ei piirikaaviossa
 Note	Huomautus
 Notes	Huomautukset
 Number	Numero
+Number of down conductors (0: as many as the class needs for the walls)	Alastulojohtimien määrä (0: niin monta kuin luokka seinille vaatii)
 Number the sections 1, 2, 3 … on every level first	Numeroi ensin osiot 1, 2, 3 … jokaisella tasolla
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numeroi laitetunnukset rakenteittain ja tunnuskirjaimittain piirikaavion järjestyksessä (sivu, sarake, ylhäältä alas)
 Only rows containing this text	Vain rivit, jotka sisältävät tämän tekstin
@@ -369,6 +377,7 @@ Released pages cannot be moved	Vapautettuja sivuja ei voi siirtää
 Remove	Poista
 Remove from favorites	Poista suosikeista
 Remove the boundary	Poista raja
+Remove the lightning protection system	Poista ukkossuojaus
 Remove the reference point	Poista vertailupiste
 Report	Raportti
 Report blocks	Raporttilohkot
@@ -514,6 +523,7 @@ not bonded	ei liitetty
 not connected	ei liitetty
 open	avoin
 pcs	kpl
+portrait	pysty
 rejected	hylätty
 right	oikealle
 spare	vara

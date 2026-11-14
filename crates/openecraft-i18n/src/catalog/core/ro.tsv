@@ -188,7 +188,7 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Temperaturile
 Centre horizontally	Centrare pe orizontală
 Centre vertically	Centrare pe verticală
 Centrifugal pump	Pompă centrifugă
-Change	Modificare
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Modificat în dosarul proiectului de alt program și, de asemenea, în proiectul deschis: {}{}. Salvați proiectul sub alt nume sau deschideți-l din nou și repetați modificările
 Changed since mounted	Modificat de la montare
 Changed since wired	Modificat de la cablare
 Changeover contact	Contact comutator
@@ -293,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Bara de cupru {}: {} mm depășește lungimea de stoc de {} mm
 Copper bar {}: {} mm are too thick for {}	Bara de cupru {}: {} mm este prea gros pentru {}
 Copper bar {}: {} segments need {} bends	Bara de cupru {}: {} segmente necesită {} îndoiri
+Copper-bonded steel	Oțel cuprat
 Cores used	Fire utilizate
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Colțul de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în fiecare dintre cele două direcții și niciun punct de conexiune acolo
 Counter contact NC	Contact de contor NÎ
@@ -433,6 +434,7 @@ ERP item master and bill of materials (CSV)	Date de bază ale articolelor ERP ș
 ERP number	Număr ERP
 ETIM class	Clasă ETIM
 Earth electrode	Electrod de pământare
+Earth rod	Electrod vertical de pământ
 East-west on a flat roof	Est-vest pe acoperiș plat
 Edit pages	Editare pagini
 Edit project data	Editare date proiect
@@ -550,6 +552,7 @@ Foot switch NO (NFPA)	Comutator de picior ND (NFPA)
 Force	Forță
 Fork terminal	Papuc furcă
 Format (placeholders)	Format (substituenți)
+Foundation earth electrode	Priză de pământ de fundație
 Frame size	Mărime constructivă
 Free	Liber
 Free air (mm)	Pozare liberă (mm)
@@ -846,8 +849,6 @@ Minimum operating temperature	Temperatură minimă de funcționare
 Mirror contacts	Contacte oglindă
 Mirrored	Oglindit
 Mission time	Durată de misiune
-Module	Modul
-Modules	Module
 Moisture	Umiditate
 Moment of inertia	Moment de inerție
 Motion detector	Detector de mișcare
@@ -1341,6 +1342,7 @@ Revision table: date of the last revision (2: the one before …)	Tabel de reviz
 Revision table: description of the last revision (2: the one before …)	Tabel de revizii: descrierea ultimei revizii (2: a celei dinainte …)
 Revision table: index of the last revision (2: the one before …)	Tabel de revizii: indicele ultimei revizii (2: a celei dinainte …)
 Right side panel	Perete lateral dreapta
+Ring earth electrode	Priză de pământ inelară
 Ring terminal	Papuc inel
 Rivet nut	Piuliță nituită
 RoHS compliant	Conform RoHS
@@ -1479,6 +1481,7 @@ Spare terminal	Bornă de rezervă
 Speed	Turație
 Spiral	În spirală
 Stainless steel	Oțel inoxidabil
+Stainless steel V4A	Oțel inoxidabil V4A
 Standard	Standard
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Circuit pornire / oprire cu un releu: bobina și contactele formează un aparat cu referințe încrucișate și imaginea contactelor, șir de cleme, numere de fire, schema șirului de cleme și lista conexiunilor.
 Start date	Data de început
@@ -1491,6 +1494,7 @@ Station name {} is used {} times	Numele de stație {} este folosit de {} ori
 Station {} is not connected to bus {}	Stația {} nu este conectată la magistrala {}
 Station {}: bus system {} does not exist	Stația {}: sistemul de magistrală {} nu există
 Steam	Abur
+Steel, hot-dip galvanised	Oțel zincat la cald
 Stock	Stoc
 Stop category	Categorie de oprire
 Storage temperature range	Domeniu de temperatură de depozitare
@@ -1580,6 +1584,7 @@ The archive contains no project	Arhiva nu conține niciun proiect
 The archive has no manifest	Arhiva nu are manifest
 The archive is damaged	Arhiva este deteriorată
 The archive unpacks to more than {} MB	Arhiva se dezarhivează la mai mult de {} MB
+The archive was written by a newer version (archive version {})	Arhiva a fost scrisă de o versiune mai nouă (versiunea arhivei {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Producătorul ansamblului trebuie să fie indicat (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Șirul de dulapuri în camera sa: plan în formă de L, perete interior, ușă și fereastră, șirul de dulapuri la locul său, o șină cu o priză pe un perete, un corp de iluminat de siguranță montat pe perete și un jgheab de cabluri sub tavan.
 The configuration is not a JSON object	Configurația nu este un obiect JSON
@@ -1592,7 +1597,10 @@ The embedded document {} is damaged	Documentul încorporat {} este deteriorat
 The file is empty	Fișierul este gol
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Fișierul a fost scris de o versiune mai nouă (format {}): datele pe care această versiune nu le cunoaște se pierd la salvare
 The first column must be Key	Prima coloană trebuie să fie Key
+The folder {} already holds the project {}: a split project needs a folder of its own	Dosarul {} conține deja proiectul {}: un proiect divizat are nevoie de un dosar propriu
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Dosarul {} conține fișiere care nu aparțin niciunui proiect ({}): un proiect divizat are nevoie de un dosar propriu
 The function definition needs a key and a name	Definiția de funcție necesită o cheie și un nume
+The index of the project names no file layout: it was not written by OpenECraft	Indexul proiectului nu indică nicio structură a fișierelor: nu a fost scris de OpenECraft
 The last page cannot be deleted	Ultima pagină nu poate fi ștearsă
 The macro box has no items left	Caseta macro nu mai are elemente
 The next free id is already in use	Următorul ID liber este deja utilizat
@@ -1602,7 +1610,10 @@ The pages were changed after the submission; submit the revision again	Paginile 
 The plot boundary crosses itself	Limita terenului se intersectează cu ea însăși
 The plot boundary encloses no area	Limita terenului nu înconjoară nicio suprafață
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Limita terenului nu este un poligon: se intersectează sau are mai puțin de trei colțuri
+The project cannot be written as files: {}	Proiectul nu poate fi scris ca fișiere: {}
+The project file {} is missing	Fișierul de proiect {} lipsește
 The project has no panel layout	Proiectul nu are amplasare în tablou
+The project was written by a newer version (file layout {})	Proiectul a fost scris de o versiune mai nouă (structura fișierelor {})
 The property needs a name	Proprietatea necesită un nume
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Stația de pompare montată în două dulapuri de podea alăturate: sistem de bare, șine și canale de cablu, aparate pe ușă și mânere, ventilator cu filtru, iluminat, bară PE, presetupe, o trecere de cabluri, calculul climatizării, gradul de umplere al canalelor și rutare 3D.
 The revision is already released	Revizia este deja aprobată
@@ -1884,7 +1895,6 @@ page properties	proprietăți pagină
 pigtail {} mm	pigtail {} mm
 pilot	pilotare
 pink	roz
-portrait	portret
 pressure	presiune
 red	roșu
 released	aprobat
@@ -1922,6 +1932,7 @@ yellow	galben
 {} has no MTTFd, B10d, PL or PFHd	{} nu are MTTFd, B10d, PL sau PFHd
 {} has no door or window {}	{} nu are ușa sau fereastra {}
 {} has nothing to manufacture	{} nu are nimic de fabricat
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} conține un conflict de îmbinare git nerezolvat: fișierul a fost îmbinat ca text. Luați o versiune a fișierului (git checkout --ours sau --theirs), apoi configurați driverul de îmbinare pentru proiecte divizate (merge_project_file) înainte de a îmbina din nou
 {} is a built-in function definition	{} este o definiție de funcție integrată
 {} is a built-in property	{} este o proprietate integrată
 {} is a built-in scheme	{} este o schemă integrată
@@ -1967,6 +1978,7 @@ yellow	galben
 {}: PV array {} covers a roof window	{}: câmpul fotovoltaic {} acoperă o fereastră de acoperiș
 {}: PV array {} has {} modules, its device {} has {}	{}: câmpul fotovoltaic {} are {} module, dispozitivul său {} are {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: câmpul fotovoltaic {} este montat înclinat pe un acoperiș înclinat
+{}: PV array {} lies outside the protection of the air-termination system	{}: câmpul PV {} se află în afara protecției sistemului de captare
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: câmpul fotovoltaic {} al acoperișului {} trece peste o coamă, o muchie sau marginea acoperișului
 {}: PV array {} of roof {} lies outside the roof	{}: câmpul fotovoltaic {} al acoperișului {} se află în afara acoperișului
 {}: PV arrays {} and {} lie over each other	{}: câmpurile fotovoltaice {} și {} se suprapun
@@ -1976,6 +1988,7 @@ yellow	galben
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: un conductor de {} mm² este mai subțire decât primește punctul de conexiune (cel puțin {} mm²)
 {}: accessory {} fits none of the device's parts	{}: accesoriul {} nu se potrivește cu niciun articol al aparatului
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: elementul de acționare {} este la {} mm deasupra podelei, recomandat {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: tija de captare {} stă în afara acoperișurilor
 {}: auxiliary function(s) without main function	{}: funcție (funcții) auxiliară (auxiliare) fără funcție principală
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: capacitatea de rupere {} kA este sub curentul de scurtcircuit {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: canalul de cablu la {} mm este umplut {} % (limită {} %)
@@ -1997,6 +2010,8 @@ yellow	galben
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: decupajele {} și {} pe {} sunt prea apropiate (punte de material de {} mm, cel puțin {} mm)
 {}: designation '{}' used more than once	{}: denumirea '{}' este folosită de mai multe ori
 {}: device tag without device name	{}: identificator de dispozitiv fără nume de dispozitiv
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: priza de pământ {} nu are pereți de-a lungul cărora să meargă: clădirea nu are încăperi sau acoperișuri
+{}: earth rod {} stands inside the walls of the building	{}: electrodul vertical {} stă în interiorul pereților clădirii
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: curentul de defect {} A la {} nu deconectează în {} s (necesită {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: textele de funcție diferă între schema monofilară și schemă
 {}: hole of {} is too close to the cutout of {} on the {}	{}: gaura {} este prea aproape de decupajul {} pe {}
@@ -2058,7 +2073,12 @@ yellow	galben
 {}: terminal {} uses {} levels, its part {} has {}	{}: borna {} folosește {} niveluri, articolul său {} are {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: bornele {} sunt la {} mm deasupra podelei, sunt necesari cel puțin {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: sistemul de bare cu {} bare unește {} conductoare ({}): scurtcircuit
+{}: the busbar {} of earth electrode {} does not exist	{}: bara {} a prizei de pământ {} nu există
 {}: the device {} of PV array {} does not exist	{}: dispozitivul {} al câmpului fotovoltaic {} nu există
+{}: the earthing busbar {} of PV array {} does not exist	{}: bara de împământare {} a câmpului PV {} nu există
+{}: the generator junction box {} of PV array {} does not exist	{}: cutia de joncțiune a generatorului {} a câmpului PV {} nu există
+{}: the lightning protection has no earth electrode	{}: protecția contra trăsnetului nu are priză de pământ
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: protecția contra trăsnetului nu are pereți de-a lungul cărora să meargă: clădirea nu are încăperi sau acoperișuri
 {}: the module {} of PV array {} has no electrical data	{}: modulul {} al câmpului fotovoltaic {} nu are date electrice
 {}: the station has no port {}	{}: stația nu are portul {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: șirurile câmpului fotovoltaic {} conectează {} module, câmpul are {}
@@ -2075,6 +2095,7 @@ yellow	galben
 {}: {} carries {} A, the load {} needs {} A	{}: {} suportă {} A, consumatorul {} necesită {} A
 {}: {} changed after it was mounted	{}: {} a fost modificat după montare
 {}: {} collides with {}	{}: {} intră în coliziune cu {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} conductoare de coborâre, clasa {} cere {} în jurul clădirii
 {}: {} inputs used, the module has {}	{}: {} intrări utilizate, modulul are {}
 {}: {} is a fluid device, not an electrical one	{}: {} este un dispozitiv de fluid, nu unul electric
 {}: {} is closer than {} mm to a cable duct	{}: {} este la mai puțin de {} mm de un canal de cablu
