@@ -13,7 +13,7 @@ fn create_save_and_reload() {
     assert!(store.projects.is_empty());
     let mut prj = Project::default();
     prj.info.name = "Plant".into();
-    store.create("Plant 1", prj.clone()).unwrap();
+    store.create("Plant 1", prj.clone(), None).unwrap();
     assert_eq!(store.get("Plant 1").unwrap().revision, 1);
     let first = store.reserve_ids("Plant 1").unwrap();
     assert_eq!(store.get("Plant 1").unwrap().next_id, first + ID_BLOCK);
@@ -61,7 +61,7 @@ fn ignores_other_files() {
 fn a_save_writes_only_the_files_that_changed() {
     let dir = temp_dir("changed");
     let mut store = Store::open(&dir).unwrap();
-    store.create("p", openecraft_core::sample::demo_project()).unwrap();
+    store.create("p", openecraft_core::sample::demo_project(), None).unwrap();
     let folder = dir.join("p");
     let page = |store: &Store, i: usize| folder.join("pages").join(format!("{}.json", store.get("p").unwrap().project.pages[i].id));
     let modified = |path: &Path| std::fs::metadata(path).unwrap().modified().unwrap();
@@ -85,7 +85,7 @@ fn a_save_writes_only_the_files_that_changed() {
 fn the_project_of_the_server_replaces_files_changed_by_another_program() {
     let dir = temp_dir("foreign");
     let mut store = Store::open(&dir).unwrap();
-    store.create("p", openecraft_core::sample::demo_project()).unwrap();
+    store.create("p", openecraft_core::sample::demo_project(), None).unwrap();
     let id = store.get("p").unwrap().project.pages[0].id;
     let page = dir.join("p").join("pages").join(format!("{id}.json"));
     let mut text = std::fs::read_to_string(&page).unwrap();
@@ -132,7 +132,7 @@ fn project_files_of_earlier_versions_are_converted() {
 fn ids_never_go_below_the_project() {
     let mut store = Store::in_memory();
     let prj = Project { next_id: 500, ..Default::default() };
-    store.create("p", prj).unwrap();
+    store.create("p", prj, None).unwrap();
     let first = store.reserve_ids("p").unwrap();
     assert!(first >= 500);
     assert!(store.reserve_ids("p").unwrap() >= first + ID_BLOCK);
@@ -141,7 +141,7 @@ fn ids_never_go_below_the_project() {
 #[test]
 fn earlier_revisions_are_kept_for_a_while() {
     let mut store = Store::in_memory();
-    store.create("p", Project::default()).unwrap();
+    store.create("p", Project::default(), None).unwrap();
     for i in 0..KEPT_REVISIONS + 2 {
         let mut prj = store.get("p").unwrap().project.clone();
         prj.info.name = format!("v{i}");

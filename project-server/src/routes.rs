@@ -13,8 +13,8 @@ use axum::{Json, Router};
 use openecraft_auth::admin::{self, DirectoryEntry, DirectoryTestRequest};
 use openecraft_auth::{AccessFile, ClientIp, Directory, SignInError, Throttle};
 use openecraft_core::collab::{
-    changes, merge, save_plan, valid_name, Access, CreateRequest, CurrentAccount, Grant, Lock, LockRequest, LoginRequest, LoginResponse, OpenRequest, Opened, Owned, Policy, ProjectAccess,
-    ProjectRight, ProjectRole, ProjectSummary, ProjectUser, Right, SaveRequest, ServerInfo, Session, SessionList, Settings, Snapshot, Status, Subject,
+    changes, copy_of, merge, save_plan, valid_name, Access, CopyRequest, CopySource, CreateRequest, Created, CurrentAccount, Grant, Lock, LockRequest, LoginRequest, LoginResponse,
+    OpenRequest, Opened, Owned, Policy, ProjectAccess, ProjectProperties, ProjectRight, ProjectRole, ProjectSummary, ProjectUser, PropertiesUpdate, Right, SaveRequest, ServerInfo, Session, SessionList, Settings, Snapshot, Status, Subject,
     Target, UserUpdate, API_PREFIX, SERVER,
 };
 use openecraft_core::model::Project;
@@ -233,6 +233,8 @@ pub fn router(state: AppState) -> Router {
         .route(&format!("{project}/release"), post(release))
         .route(&format!("{project}/close"), post(close))
         .route(&format!("{project}/access"), get(project_access).put(save_project_access))
+        .route(&format!("{project}/properties"), get(properties).put(save_properties))
+        .route(&format!("{project}/copy"), post(copy))
         .route(&format!("{API_PREFIX}/login"), post(login).layer(DefaultBodyLimit::max(SMALL_BODY)))
         .route(&format!("{API_PREFIX}/logout"), post(logout))
         .route(&format!("{API_PREFIX}/session"), get(current_account))
@@ -422,6 +424,7 @@ async fn list(State(state): State<AppState>, headers: HeaderMap) -> Result<Json<
             revision: e.revision,
             users: server.sessions.users(name),
             rights: caller.rights(name).into_iter().collect(),
+            created: e.created.clone(),
         })
         .collect();
     Ok(Json(list))
@@ -443,19 +446,105 @@ async fn create(State(state): State<AppState>, headers: HeaderMap, Json(body): J
     if let Some(existing) = server.store.taken(&req.name) {
         return Err(AppError(StatusCode::CONFLICT, format!("project '{existing}' already exists")));
     }
-    server.store.create(&req.name, req.project)?;
-    log::info!("{user} created {}", req.name);
-    // A signed-in user manages the projects they create.
-    if let Some(owner) = caller.user.clone().filter(|_| !caller.may(&req.name, ProjectRight::ManageAccess)) {
-        let mut policy = server.access.config.policy.clone();
-        let owner_grant = Grant::new(Subject::User(owner), ProjectRole::Manager.name(), &req.name);
-        policy.grants.push(owner_grant.clone());
-        server.access.set_policy(policy).map_err(|e| AppError(StatusCode::INTERNAL_SERVER_ERROR, e))?;
-        caller.access = caller.access.with(Policy::default().access(&Default::default(), &[owner_grant]));
+    let opened = server.create(&mut caller, &headers, &req.name, &user, req.project, None)?;
+    Ok((StatusCode::CREATED, Json(opened)))
+}
+
+impl Server {
+    /// Stores `project` as the new project `name` (checked and free) and opens it for
+    /// `user`. If a step fails, the project is not left on the server.
+    fn create(&mut self, caller: &mut Caller, headers: &HeaderMap, name: &str, user: &str, project: Project, from: Option<CopySource>) -> Result<Opened> {
+        let created = Created { by: user.to_string(), at: openecraft_auth::unix_now(), from };
+        self.store.create(name, project, Some(created))?;
+        // A signed-in user manages the projects they create.
+        if let Some(owner) = caller.user.clone().filter(|_| !caller.may(name, ProjectRight::ManageAccess)) {
+            let mut policy = self.access.config.policy.clone();
+            let owner_grant = Grant::new(Subject::User(owner), ProjectRole::Manager.name(), name);
+            policy.grants.push(owner_grant.clone());
+            if let Err(e) = self.access.set_policy(policy) {
+                self.store.delete(name)?;
+                return Err(AppError(StatusCode::INTERNAL_SERVER_ERROR, e));
+            }
+            caller.access = std::mem::take(&mut caller.access).with(Policy::default().access(&Default::default(), &[owner_grant]));
+        }
+        log::info!("{user} created {name}");
+        let rights = caller.rights(name);
+        let owner = owner(headers, caller);
+        self.open(name, user, rights, owner)
     }
-    let rights = caller.rights(&req.name);
-    let owner = owner(&headers, &caller);
-    Ok((StatusCode::CREATED, Json(server.open(&req.name, &user, rights, owner)?)))
+
+    /// The project info of `name` as saved, for `caller`.
+    fn properties(&self, name: &str, caller: &Caller) -> Result<ProjectProperties> {
+        let entry = self.store.get(name).ok_or_else(|| not_found(name))?;
+        Ok(ProjectProperties {
+            name: name.to_string(),
+            revision: entry.revision,
+            info: entry.project.info.clone(),
+            locked_by: self.sessions.locks(name).into_iter().find(|l| l.target == Target::Project).map(|l| l.user),
+            rights: caller.rights(name).into_iter().collect(),
+            created: entry.created.clone(),
+        })
+    }
+}
+
+fn changed(name: &str, revision: u64) -> AppError {
+    AppError(StatusCode::PRECONDITION_FAILED, format!("project '{name}' was changed meanwhile (revision {revision})"))
+}
+
+async fn properties(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>) -> Result<Json<ProjectProperties>> {
+    let (server, caller) = server(&state, &headers)?;
+    let name = canonical(&server, name);
+    caller.see(&name)?;
+    Ok(Json(server.properties(&name, &caller)?))
+}
+
+/// Changes the project info of a project the caller has not opened, and nothing else of
+/// it. Refused while a session has locked the project data, or if the info was changed
+/// since the revision it was loaded at.
+async fn save_properties(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Json(req): Json<PropertiesUpdate>) -> Result<Json<ProjectProperties>> {
+    let (mut server, caller) = server(&state, &headers)?;
+    let name = canonical(&server, name);
+    caller.need(&name, ProjectRight::EditProject)?;
+    let entry = server.store.get(&name).ok_or_else(|| not_found(&name))?;
+    if let Some(l) = server.sessions.locks(&name).into_iter().find(|l| l.target == Target::Project) {
+        return Err(AppError(StatusCode::CONFLICT, format!("the project data is locked by {}", l.user)));
+    }
+    if server.store.at(&name, req.revision).is_none_or(|base| base.info != entry.project.info) {
+        return Err(changed(&name, entry.revision));
+    }
+    let mut project = entry.project.clone();
+    project.info = req.info;
+    let revision = server.store.save(&name, project)?;
+    log::info!("{} changed the properties of {name} (revision {revision})", caller.user.as_deref().unwrap_or("token"));
+    Ok(Json(server.properties(&name, &caller)?))
+}
+
+/// Creates a project from the saved state of another one (`openecraft_core::collab::copy_of`)
+/// and opens it. Sessions, locks and grants of the source are not copied; the source
+/// stays as it is.
+async fn copy(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Json(req): Json<CopyRequest>) -> Result<(StatusCode, Json<Opened>)> {
+    let (mut server, mut caller) = server(&state, &headers)?;
+    let name = canonical(&server, name);
+    caller.see(&name)?;
+    let user = caller.name(&req.user, &server.users)?;
+    if !caller.may(&req.name, ProjectRight::Create) {
+        return Err(AppError(StatusCode::FORBIDDEN, format!("you may not create project '{}'", req.name)));
+    }
+    if !valid_name(&req.name) {
+        return Err(bad(format!("'{}' is not a valid project name", req.name)));
+    }
+    if let Some(existing) = server.store.taken(&req.name) {
+        return Err(AppError(StatusCode::CONFLICT, format!("project '{existing}' already exists")));
+    }
+    let entry = server.store.get(&name).ok_or_else(|| not_found(&name))?;
+    if req.revision > 0 && req.revision != entry.revision {
+        return Err(changed(&name, entry.revision));
+    }
+    let from = CopySource { name: name.clone(), revision: entry.revision };
+    let project = copy_of(&entry.project, req.info, req.records);
+    let opened = server.create(&mut caller, &headers, &req.name, &user, project, Some(from))?;
+    log::info!("{user} copied {name} to {}", req.name);
+    Ok((StatusCode::CREATED, Json(opened)))
 }
 
 async fn delete_project(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>) -> Result<StatusCode> {

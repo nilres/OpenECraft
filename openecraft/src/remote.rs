@@ -4,7 +4,8 @@
 
 use openecraft_client::{decode, decode_failure, ehttp, ProjectEndpoint};
 use openecraft_core::collab::{
-    self, CurrentAccount, Failed, Failure, Grant, Kept, KeptReason, LoginResponse, Opened, ProjectAccess, ProjectRight, ProjectRole, ProjectSummary, Shared, Snapshot, Status, Target,
+    self, CurrentAccount, Failed, Failure, Grant, Kept, KeptReason, LoginResponse, Opened, ProjectAccess, ProjectProperties, ProjectRight, ProjectRole, ProjectSummary, Shared, Snapshot,
+    Status, Target,
 };
 use crate::session::Session;
 use openecraft_core::model::Project;
@@ -13,7 +14,9 @@ use openecraft_ui::io::Store;
 use std::sync::{Arc, Mutex};
 
 mod credentials;
+mod draft;
 mod sign_in;
+pub use draft::{Blocked, Draft, NameError, Refusal};
 use sign_in::{After, SignIn, RestoreFailure};
 use openecraft_client::project_credentials::Account;
 
@@ -75,6 +78,12 @@ pub enum Reply {
     /// Grants on the open project (loaded or saved).
     Access(String, Result<ProjectAccess, Failed>),
     Closed(u64),
+    /// Internal: the properties of a project (by name) for the draft.
+    Properties(String, Result<ProjectProperties, String>),
+    /// Internal: the properties of a project (by name) were saved.
+    PropertiesSaved(String, Result<ProjectProperties, Refusal>),
+    /// Internal: the copy (by its name) was created and opened; goes on as `Opened`.
+    Copied(String, Result<Box<Opened>, Refusal>),
 }
 
 impl Reply {
@@ -83,6 +92,7 @@ impl Reply {
             Reply::Saved(sent, _) => Some(&sent.session),
             Reply::Snapshot(s, _) | Reply::Status(s, _) | Reply::Locked(s, _, _) | Reply::Access(s, _) | Reply::Reopened(s, _) => Some(s),
             Reply::List(_) | Reply::Opened(..) | Reply::Login(_) | Reply::Restored(..) | Reply::SignedOut(_) | Reply::Closed(_) => None,
+            Reply::Properties(..) | Reply::PropertiesSaved(..) | Reply::Copied(..) => None,
         }
     }
 
@@ -94,6 +104,7 @@ impl Reply {
             Reply::Status(_, r) | Reply::Locked(_, _, r) => Some(r.as_ref().map(|_| ())),
             Reply::Access(_, r) => Some(r.as_ref().map(|_| ())),
             Reply::List(_) | Reply::Opened(..) | Reply::Login(_) | Reply::Restored(..) | Reply::SignedOut(_) | Reply::Closed(_) => None,
+            Reply::Properties(..) | Reply::PropertiesSaved(..) | Reply::Copied(..) => None,
         }
     }
 }
@@ -129,6 +140,12 @@ pub struct Remote {
     pub shared: Option<Shared>,
     /// Name for uploading the current project.
     pub new_name: String,
+    /// Project selected in the list.
+    pub selected: Option<String>,
+    /// Properties of a project of the list, or of a copy of it to create.
+    pub draft: Option<Draft>,
+    /// Source of the copy that is being opened (for the message).
+    copied: Option<String>,
     pub status: String,
     pub window: bool,
     /// State of the connection of the open shared project.
@@ -187,6 +204,9 @@ impl Default for Remote {
             projects: Vec::new(),
             shared: None,
             new_name: String::new(),
+            selected: None,
+            draft: None,
+            copied: None,
             status: String::new(),
             window: false,
             link: Link::Online,
@@ -675,8 +695,8 @@ impl Remote {
                 } else { self.discard_answer(answer); }
                 continue;
             }
-            let mut reply = answer.reply;
             if answer.counted { self.pending = self.pending.saturating_sub(1); }
+            let Some(mut reply) = self.take_draft(answer.reply) else { continue };
             let restored = matches!(reply, Reply::Restored(..));
             if let Reply::Restored(account, token, result) = reply {
                 reply = Reply::Login(self.finish_restore(account, token, result));
@@ -706,7 +726,10 @@ impl Remote {
             self.status = match &reply {
                 Reply::List(Ok(list)) if list.len() == 1 => tr("1 project on the server").to_string(),
                 Reply::List(Ok(list)) => tr_fmt!("{} projects on the server", list.len()),
-                Reply::Opened(name, Ok(_)) => tr_fmt!("Opened {} from the project server", name),
+                Reply::Opened(name, Ok(_)) => match self.copied.take() {
+                    Some(source) => tr_fmt!("Created {} as a copy of {} and opened it", name, source),
+                    None => tr_fmt!("Opened {} from the project server", name),
+                },
                 Reply::Reopened(_, Ok(_)) => tr("Opened the project again on the project server: a new session").into(),
                 Reply::Saved(_, result) => Self::save_status(result),
                 Reply::Login(Ok(r)) => match r.user.role {

@@ -262,7 +262,11 @@ pub fn today() -> String {
 
 /// Date and time now, `YYYY-MM-DD HH:MM UTC`.
 pub fn now_text() -> String {
-    let secs = unix_now();
+    time_text(unix_now())
+}
+
+/// Date and time of `secs` (seconds since 1970), `YYYY-MM-DD HH:MM UTC`.
+pub fn time_text(secs: u64) -> String {
     format!("{} {:02}:{:02} UTC", openecraft_parts::date_from_unix(secs), secs % 86_400 / 3_600, secs % 3_600 / 60)
 }
 

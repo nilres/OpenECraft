@@ -159,6 +159,8 @@ impl Remote {
         self.rights.clear();
         self.access = None;
         self.projects.clear();
+        self.selected = None;
+        self.draft = None;
         self.shared = None;
         self.pending = 0;
         self.polling = false;
@@ -546,7 +548,7 @@ impl Remote {
                 let endpoint = ProjectEndpoint { token: login.token, ..answer.endpoint };
                 ehttp::fetch(endpoint.logout(), |_| {});
             }
-            Reply::Opened(name, Ok(opened)) => ehttp::fetch(answer.endpoint.close(&name, &opened.session), |_| {}),
+            Reply::Opened(name, Ok(opened)) | Reply::Copied(name, Ok(opened)) => ehttp::fetch(answer.endpoint.close(&name, &opened.session), |_| {}),
             Reply::Reopened(_, Ok(opened)) => {
                 if let Some(name) = answer.project {
                     ehttp::fetch(answer.endpoint.close(&name, &opened.session), |_| {});

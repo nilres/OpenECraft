@@ -113,6 +113,30 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   Project: …* (*connection lost* while the server does not answer its status); a
   project restored from the last session or closed on the server shows as *Local
   recovery copy of server project: …* and is saved to a local file.
+- The project list selects a project (a double click opens it). *Properties…* loads its
+  properties from the server (never from the list) and shows who created it on the
+  server and when (*Not recorded* for projects created before the server kept that;
+  this is not the *Created by* of the drawing, which users edit). Who may edit the
+  project data changes them there without opening the project, unless a session has
+  locked the project data; the server then replaces only the project info, and refuses
+  if it was changed since it was loaded (*Reload* shows the newer one). For the open
+  shared project, *Properties…* is the usual dialog, which locks the project data.
+- *Copy project…* (for the selected or the open shared project) shows the properties
+  of the copy at once: a free name on the server (*… copy*) and the title,
+  description, company, author, date, revision and project properties of the original,
+  all to be changed. Nothing exists on the server until *Create and open*; *Cancel*
+  leaves nothing behind, and a refused copy (name taken, no right to create it) keeps
+  the entries to correct. The copy is made on the server from the saved state:
+  changes nobody has saved yet, also those of other users, are not part of it. With
+  unsaved changes in the open project the editor asks first whether to save them. If
+  the original was changed on the server after the dialog loaded it, the copy is not
+  made until confirmed again. Sessions, page locks and access rights are not copied:
+  the copy is opened in a new session and a signed-in user manages it like any project
+  they create. Comments, markup, approvals (with their signatures), change requests,
+  released revisions and baselines are left out unless *Also copy revisions, baselines
+  and review records* is ticked; the approvers of the release workflow stay like all
+  settings. The server records who created the copy, when, and from which project and
+  revision.
 - *File › Settings › On startup* decides what the editor opens when it starts: the
   start page with local files and server projects, the last project (a server project
   is opened on the server again), the project list of the server or a chosen file or
@@ -123,6 +147,14 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   caller may see; answered without token too), `GET|POST /projects` (`POST` needs the
   `project`), `GET|PUT|DELETE /projects/{name}`,
   `POST /projects/{name}/open|status|lock|release|close`, `GET|PUT /projects/{name}/access`,
+  `GET|PUT /projects/{name}/properties` (the project info with the revision, who has
+  locked the project data, the caller's rights and who created the project; `PUT`
+  takes `revision` and `info`, needs the right to edit the project data, answers `409`
+  while the project data is locked and `412` if the info changed since `revision`),
+  `POST /projects/{name}/copy` (`name` and `user` of the copy, optionally the
+  `revision` the source must still have – `412` otherwise –, its `info` and `records`;
+  needs the right to view the source and to create the new name, answers like opening
+  a project),
   `POST /login` (`user` and `password`; `name` is taken for `user`, as on the parts
   server), `POST /logout`, `GET /users`, `PUT|DELETE /users/{name}`, `GET|PUT /access`,
   `GET /directories`, `PUT|DELETE /directories/{id}`, `POST /directories/{id}/test`

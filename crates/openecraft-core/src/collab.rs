@@ -27,6 +27,9 @@
 //! | DELETE | `/api/v1/projects/{name}` | deletes a project without sessions ([`ProjectRight::Delete`]) |
 //! | GET | `/api/v1/projects/{name}/access` | [`ProjectAccess`] ([`ProjectRight::ManageAccess`]) |
 //! | PUT | `/api/v1/projects/{name}/access` | [`Grant`] list → [`ProjectAccess`] |
+//! | GET | `/api/v1/projects/{name}/properties` | [`ProjectProperties`] (the project info as saved, without opening the project) |
+//! | PUT | `/api/v1/projects/{name}/properties` | [`PropertiesUpdate`] → [`ProjectProperties`] (changes only the project info; [`ProjectRight::EditProject`], refused while the project data is locked) |
+//! | POST | `/api/v1/projects/{name}/copy` | [`CopyRequest`] → [`Opened`] (a new project from the saved state, [`copy_of`]) |
 //! | POST | `/api/v1/login` | [`LoginRequest`] → [`LoginResponse`] |
 //! | GET | `/api/v1/session` | [`CurrentAccount`] (signed-in user sessions only) |
 //! | POST | `/api/v1/logout` | ends the session of the bearer token |
@@ -44,7 +47,7 @@
 //! (`openecraft_parts::access`); the scope of a grant is a project name. Errors are
 //! returned as `openecraft_parts::api::ApiError` JSON.
 
-use crate::model::{Page, Project};
+use crate::model::{Page, Project, ProjectInfo};
 use openecraft_i18n::tr_const;
 pub use openecraft_parts::access::{Access, Grant, Identity, Policy, Right, Settings, Subject, SERVER};
 use openecraft_parts::api::encode_component;
@@ -120,6 +123,115 @@ pub struct ProjectSummary {
     pub users: Vec<String>,
     /// What the caller may do with the project.
     pub rights: Vec<ProjectRight>,
+    /// Who created the project on the server; none for projects older than this record.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub created: Option<Created>,
+}
+
+/// Who created a project on the server and when. Not the drawing author of the
+/// project info (`ProjectInfo::creator`), which users edit.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Created {
+    /// User of the request that created the project.
+    pub by: String,
+    /// Seconds since 1970 (UTC).
+    pub at: u64,
+    /// The project it was copied from.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub from: Option<CopySource>,
+}
+
+/// Where a copied project comes from.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct CopySource {
+    pub name: String,
+    /// Revision of the source that was copied.
+    pub revision: u64,
+}
+
+/// The project info of a project as saved on the server, with what decides whether
+/// the caller can change it now.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct ProjectProperties {
+    /// Name on the server.
+    pub name: String,
+    pub revision: u64,
+    pub info: ProjectInfo,
+    /// User whose session has locked the project data: the info cannot be changed now.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub locked_by: Option<String>,
+    /// What the caller may do with the project.
+    pub rights: Vec<ProjectRight>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub created: Option<Created>,
+}
+
+/// Changes the project info of a project that the caller has not opened.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct PropertiesUpdate {
+    /// Revision the info was loaded at ([`ProjectProperties::revision`]): the change is
+    /// refused (`412`) if the info was changed since.
+    pub revision: u64,
+    pub info: ProjectInfo,
+}
+
+/// Creates a project from the saved state of another one and opens it.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct CopyRequest {
+    /// Name of the new project on the server.
+    pub name: String,
+    pub user: String,
+    /// Revision of the source the copy was prepared from; the copy is refused (`412`)
+    /// if the source has another one now. 0: whatever is saved now.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub revision: u64,
+    /// Project info of the copy; none: that of the source.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub info: Option<ProjectInfo>,
+    /// Also copy the records of the source's reviews and releases ([`copy_of`]).
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub records: bool,
+}
+
+/// HTTP status of a properties change or a copy refused because the project was
+/// changed since the revision the request names.
+pub const CHANGED_STATUS: u16 = 412;
+
+/// The project a copy of `source` starts as, with the project info `info`. A copy is a
+/// project of its own: without `records` it has no review records (comments, markup,
+/// approvals with their signatures, change requests), released revisions or baselines
+/// of the source. The approvers of the release workflow stay, like all other settings.
+pub fn copy_of(source: &Project, info: Option<ProjectInfo>, records: bool) -> Project {
+    let mut prj = source.clone();
+    if let Some(info) = info {
+        prj.info = info;
+    }
+    if !records {
+        prj.review = Default::default();
+        prj.revisions.clear();
+        prj.baselines.clear();
+    }
+    prj
+}
+
+/// A free name for a copy of the project `source`: "`source` copy", then numbered.
+/// `taken` are the names on the server.
+pub fn copy_name(source: &str, taken: &[&str]) -> String {
+    let free = |name: &str| valid_name(name) && !taken.iter().any(|t| name_key(t) == name_key(name));
+    for n in 1..1000 {
+        let suffix = if n == 1 { " copy".to_string() } else { format!(" copy {n}") };
+        let stem: String = source.chars().take(64 - suffix.chars().count()).collect();
+        let name = format!("{}{suffix}", stem.trim_end());
+        if free(&name) {
+            return name;
+        }
+    }
+    String::new()
 }
 
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
@@ -516,6 +628,16 @@ pub fn user_path(name: &str) -> String {
 /// Path of the grants of a project, e.g. `/api/v1/projects/Plant%201/access`.
 pub fn access_path(name: &str) -> String {
     format!("{}/access", project_path(name))
+}
+
+/// Path of the project info of a project, e.g. `/api/v1/projects/Plant%201/properties`.
+pub fn properties_path(name: &str) -> String {
+    format!("{}/properties", project_path(name))
+}
+
+/// Path that copies a project, e.g. `/api/v1/projects/Plant%201/copy`.
+pub fn copy_path(name: &str) -> String {
+    format!("{}/copy", project_path(name))
 }
 
 /// Path of a project, e.g. `/api/v1/projects/Plant%201`.

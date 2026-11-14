@@ -5,6 +5,21 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Properties and copies of server projects** (#186): the project list of the
+  *Project server* pane selects a project; *Properties…* shows its properties as
+  saved on the server and changes them without opening the project (for who may
+  change the project data, while nobody has locked it; only the properties are
+  written, never the whole project). *Copy project…* shows the properties of the copy
+  at once: a free name on the server and the title, description, company, author,
+  date, revision and project properties of the original to adjust; *Create and open*
+  creates the copy from the saved state and opens it, *Cancel* leaves nothing on the
+  server. The original, its sessions, locks and access rights stay untouched; the
+  copy belongs to who created it and starts without the original's review records,
+  released revisions and baselines unless asked for. Unsaved changes of the open
+  project are asked about first; a project changed on the server meanwhile is
+  reported before the copy is made. The server records who created a project and
+  what it was copied from. Needs the updated project server.
+
 - **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
   in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
   click on a face, edge or corner of the cube turns the camera to look from there
