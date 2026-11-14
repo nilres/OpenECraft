@@ -32,6 +32,35 @@ used twice or not in the cable.
 
 ## Connection and cable definitions
 
+Cable core labels keep clear of the definition line and their wire automatically.
+Layout checks estimated text areas, other cable labels, wires, nearby symbol
+graphics, pin/property/tag texts and free texts. It tries a bounded set of nearby
+positions in a deterministic order; it does not guarantee that every crowded
+drawing has a free place. Remaining conflicts have a red outline in the editor.
+Existing manual offsets retain their original meaning and are never silently reset.
+
+This rendering change also applies to automatic labels in existing projects,
+including released pages and PDF/SVG exports. Releasing a page protects its data
+from edits; it does not freeze the renderer. Manual offsets keep their positions.
+For an unchanged record of an earlier release, keep the PDF exported at release.
+The editor calculates one page layout per frame and uses the actual drawn text
+areas for both selection and dragging. Multi-page exports reuse their project index.
+
+Hover a core text or the cable tag beside a wire to see its drag target. Drag it
+directly to move only the text, without first selecting the wire; this also works
+with a previous multiple selection. Wire ends remain separate geometry handles.
+Released pages and projects opened read-only cannot be changed this way.
+
+Select a cable definition and choose **Align core labels…** in its context menu,
+the Connections ribbon or its properties. Choose above/left or below/right and a
+minimum clearance. The page shows a preview; nothing changes until **Apply**.
+The crossed core labels of that cable on this page are aligned together, using a
+common clearance increased when needed to avoid obstacles. Applying deliberately
+replaces their manual positions in one undo step. Cable tag positions, wire
+geometry, cable/core assignments and other pages stay unchanged. If no clear
+placement is found, change the options or place the texts individually. Stored
+positions survive save/reopen and use the same rendering path for SVG/PDF export.
+
 To rename a cable, right-click its definition line or label and choose **Rename
 cable…**. The same action is in the cable navigator and in the properties opened
 with F2 or a double-click. The dialog selects the full tag: type the new tag and

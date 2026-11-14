@@ -1,6 +1,33 @@
 use super::*;
 
 #[test]
+fn core_label_preview_and_alignment_are_registered_and_guarded() {
+    let mut session = new_session();
+    let prj = session.project_mut().unwrap();
+    for i in 0..5 { prj.pages[0].wires.push(Wire { id: 100+i, a:p(80.+i as f32*12.,60.), b:p(80.+i as f32*12.,140.), ..Default::default() }); }
+    prj.fix_next_id();
+    let id = cabledef::add(prj,0,p(70.,100.),p(140.,100.),"");
+    let original = prj.clone();
+    let args = json!({"page":"1","id":id,"before":false,"gap":2.0});
+    let preview = run(&mut session,"preview_core_labels",args.clone()).unwrap();
+    assert_eq!(preview["labels"].as_array().unwrap().len(),5);
+    assert_eq!(preview["can_apply"],true);
+    assert_eq!(session.project().unwrap(),&original);
+    session.project_mut().unwrap().pages[0].locked=true;
+    assert!(run(&mut session,"preview_core_labels",args.clone()).is_ok());
+    assert!(run(&mut session,"align_core_labels",args.clone()).is_err());
+    session.project_mut().unwrap().pages[0].locked=false;
+    assert!(run(&mut session,"align_core_labels",json!({"page":"1","id":id,"gap":-1})).is_err());
+    assert!(run(&mut session,"preview_core_labels",json!({"page":"1","id":0})).is_err());
+    let result=run(&mut session,"align_core_labels",args).unwrap();
+    assert_eq!(result["applied"],5);
+    for (w,old) in session.project().unwrap().pages[0].wires.iter().zip(&original.pages[0].wires) {
+        assert_eq!((w.a,w.b,&w.cable,&w.core),(old.a,old.b,&old.cable,&old.core));
+        assert!(w.core_offset.is_some());
+    }
+}
+
+#[test]
 fn conflicting_new_cable_definition_reports_no_created_cable_or_assigned_cores() {
     let mut session = new_session();
     let prj = session.project_mut().unwrap();

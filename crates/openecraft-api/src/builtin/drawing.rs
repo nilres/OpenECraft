@@ -338,6 +338,18 @@ pub static COMMANDS: &[Spec] = &[
         run: autoconnect,
     },
     Spec {
+        name: "preview_core_labels",
+        help: tr_const!("Previews page-local cable core label alignment without changing the project"),
+        params: &[PAGE, param("id", Kind::Int, tr_const!("Cable definition id")), optional("before", Kind::Bool, tr_const!("Above or left of the definition line (default: true)")), optional("gap", Kind::Num, tr_const!("Clearance in mm, from 0.5 to 10 (default: 0.8)"))],
+        run: preview_core_labels,
+    },
+    Spec {
+        name: "align_core_labels",
+        help: tr_const!("Aligns core labels only when the preview has no placement conflicts; replaces manual core label positions"),
+        params: &[PAGE, param("id", Kind::Int, tr_const!("Cable definition id")), optional("before", Kind::Bool, tr_const!("Above or left of the definition line (default: true)")), optional("gap", Kind::Num, tr_const!("Clearance in mm, from 0.5 to 10 (default: 0.8)"))],
+        run: align_core_labels,
+    },
+    Spec {
         name: "preview_cable_definition",
         help: tr_const!("Previews crossed wires and free cable cores without changing assignments"),
         params: &[PAGE, param("points", Kind::Points, tr_const!("Start and end point of the line")), optional("cable", Kind::Str, tr_const!("Cable tag, e.g. -W1"))],
@@ -1234,6 +1246,32 @@ fn autoconnect(prj: &mut Project, a: &Args) -> Result<Value, String> {
     routing::apply_autoconnect(prj, i, &ids);
     let added: Vec<u64> = prj.pages[i].wires[before..].iter().map(|w| w.id).collect();
     Ok(json!({ "ids": added }))
+}
+
+fn core_label_input(prj: &Project, a: &Args) -> Result<(usize, u64, bool, f32), String> {
+    let pi = page_index(prj, a.req("page"))?;
+    let id = a.int("id").unwrap_or_default() as u64;
+    if !prj.pages[pi].cable_defs.iter().any(|d| d.id == id) { return Err(tr_fmt!("No cable definition {}", id)); }
+    let gap = a.num("gap").unwrap_or(0.8);
+    if !gap.is_finite() || !(0.5..=10.).contains(&gap) { return Err(tr("Clearance must be between 0.5 and 10 mm").into()); }
+    Ok((pi, id, !a.0.contains_key("before") || a.flag("before"), gap))
+}
+
+fn core_label_json(labels: &[render::CoreLabel]) -> Value {
+    json!({"labels": labels.iter().map(|l| json!({"wire":l.wire,"text":l.text,"x":l.pos.x,"y":l.pos.y,"conflict":l.conflict})).collect::<Vec<_>>(), "conflicts": labels.iter().filter(|l| l.conflict).count(), "can_apply": !labels.is_empty() && labels.iter().all(|l| !l.conflict)})
+}
+
+fn preview_core_labels(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (pi,id,before,gap) = core_label_input(prj,a)?;
+    Ok(core_label_json(&render::preview_core_labels(prj,pi,id,before,gap)))
+}
+
+fn align_core_labels(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    editable(prj,a.req("page"))?;
+    let (pi,id,before,gap) = core_label_input(prj,a)?;
+    let preview = render::preview_core_labels(prj,pi,id,before,gap);
+    let applied = render::align_core_labels(prj,pi,id,before,gap);
+    Ok(json!({"applied":applied, "preview":core_label_json(&preview)}))
 }
 
 fn cable_definition_input(prj: &Project, a: &Args) -> Result<(usize, P, P), String> {

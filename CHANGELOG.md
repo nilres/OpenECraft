@@ -5,6 +5,20 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Cable core labels** (#172): automatic text clearance from definition lines,
+  wires, nearby symbols and labels; direct text dragging without selecting the
+  wire first, with a hover target. Align the crossed core labels of a definition
+  with a page preview, common side and clearance. Applying replaces only those
+  label positions in one undo step; manual offsets retain their original meaning.
+  Unresolved placement conflicts are outlined in the editor and block alignment.
+  The same positions are used by screen, SVG and PDF, and by the registered
+  `preview_core_labels` / `align_core_labels` commands.
+  **Rendering change for existing projects:** automatic labels without manual
+  offsets use the new layout, including on released pages and in PDF/SVG exports.
+  Release protection prevents edits; it does not select the previous renderer.
+  Saved manual offsets retain their positions. Page drawing reuses the caller's
+  index and the editor shares one label layout for drawing and pointer targets.
+
 - **Quick cable rename** (#174): select a cable definition or its label and use
   *Rename cable…* in the context menu, the properties or the cable navigator.
   The dialog selects the complete tag, validates it before applying and updates

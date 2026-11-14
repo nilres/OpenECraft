@@ -59,6 +59,7 @@ pub enum Cmd {
     Mirror,
     Align,
     Distribute,
+    AlignCoreLabels,
     MoveBy,
     Find,
     CommandSearch,
@@ -283,6 +284,7 @@ pub fn changes_page(cmd: Cmd) -> bool {
             | Cmd::MultipleCopy
             | Cmd::Align
             | Cmd::Distribute
+            | Cmd::AlignCoreLabels
             | Cmd::AutoConnectSelection
             | Cmd::JoinCollinear
             | Cmd::SpecialText
@@ -455,6 +457,7 @@ pub static ALL: &[Def] = &[
     d(C::Mirror, "mirror", tr_const!("Mirror"), I::Mirror).keys("M").canvas().tip(tr_const!("Mirror (selection or symbol being placed)")),
     d(C::Align, "align", tr_const!("Align"), I::Align).menu(),
     d(C::Distribute, "distribute", tr_const!("Distribute"), I::Distribute).menu(),
+    d(C::AlignCoreLabels, "align_core_labels", tr_const!("Align core labels…"), I::Align),
     d(C::MoveBy, "move_by", tr_const!("Move selection by…"), I::Move),
     d(C::Find, "find", tr_const!("Find…"), I::Find).keys("Ctrl+F").tip(tr_const!("Find and replace in the whole project")),
     d(C::CommandSearch, "command_search", tr_const!("Find a command…"), I::Find).keys("Ctrl+Shift+P|F3").tip(tr_const!("Every command of the editor and of the plugins by name")),

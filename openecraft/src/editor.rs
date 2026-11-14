@@ -582,6 +582,11 @@ pub struct Editor {
     pub autoroute: bool,
     /// Cable of new cable definition lines; empty = a new cable.
     pub cable_target: String,
+    pub core_label_preview: Vec<render::CoreLabel>,
+    pub core_label_preview_page: Option<u64>,
+    core_label_hits: Vec<(u64, render::CoreText, R)>,
+    core_labels: Vec<render::CoreLabel>,
+    core_label_page: Option<u64>,
     /// Device tag of the next symbols placed (navigator: place a function); ends with
     /// the Place tool.
     pub place_tag: Option<String>,
@@ -647,6 +652,11 @@ impl Default for Editor {
             shortcuts: Default::default(),
             gestures: Default::default(),
             cable_target: String::new(),
+            core_label_preview: Vec::new(),
+            core_label_preview_page: None,
+            core_label_hits: Vec::new(),
+            core_labels: Vec::new(),
+            core_label_page: None,
             place_tag: None,
             place_part: None,
             read_only: false,
@@ -917,6 +927,9 @@ impl Editor {
         let page = &prj.pages[page_i];
         let tol = (8.0 / self.zoom).max(0.4);
         let usable = |layer: &str| graphics::shown(prj, layer, false) && !graphics::locked(prj, layer);
+        if self.core_label_page == Some(page.id) {
+            if let Some((id, _, _)) = self.core_label_hits.iter().find(|(_, _, r)| r.expand((2. / self.zoom).max(0.3)).contains(q)) { return Some(*id); }
+        }
         for t in page.texts.iter().rev().filter(|t| usable(&t.layer)) {
             if render::text_bounds(prj, page_i, t).expand(tol * 0.5).contains(q) {
                 return Some(t.id);
@@ -978,6 +991,9 @@ impl Editor {
     /// Tag block or placed property of a selected symbol under `q`.
     fn prop_hit(&self, prj: &Project, idx: &Index, page_i: usize, q: P) -> Option<PropHandle> {
         let page = &prj.pages[page_i];
+        if let Some((id, which, _)) = self.core_label_hits.iter().find(|(_,_,r)| r.expand((2. / self.zoom).max(0.3)).contains(q)) {
+            return Some(PropHandle::Wire(*id, *which));
+        }
         for s in page.symbols.iter().filter(|s| self.selection.contains(&s.id)) {
             for (i, pp) in s.props.iter().enumerate() {
                 if render::prop_bounds(prj, page_i, s, pp).expand(0.3).contains(q) {
@@ -994,13 +1010,6 @@ impl Editor {
             }
             if let Some((t, _)) = render::interruption_text_bounds(prj, idx, page_i, &def, s).into_iter().find(|(_, r)| r.expand(0.3).contains(q)) {
                 return Some(PropHandle::Symbol(s.id, Handle::Intr(t)));
-            }
-        }
-        for w in page.wires.iter().filter(|w| self.selection.contains(&w.id)) {
-            for which in [render::CoreText::Core, render::CoreText::Cable] {
-                if render::core_text_bounds(page, w, which).is_some_and(|r| r.expand(0.3).contains(q)) {
-                    return Some(PropHandle::Wire(w.id, which));
-                }
             }
         }
         None
@@ -1141,6 +1150,18 @@ impl Editor {
         let covered = |p: Pos2| ui.ctx().layer_id_at(p).is_some_and(|l| l != ui.layer_id()) && !resp.is_pointer_button_down_on();
         let ptr = ui.input(|i| i.pointer.hover_pos()).filter(|p| rect.contains(*p) && !covered(*p));
         let world = ptr.map(|s| self.s2w(rect, s));
+        // Hit the actual galley drawn at this zoom/DPI, rather than an estimated
+        // model text box. This also gives unselected texts their own drag target.
+        self.core_labels = render::core_labels_with_index(prj, idx, page_i);
+        self.core_label_page = Some(prj.pages[page_i].id);
+        self.core_label_hits = self.core_labels.iter().map(|l| {
+            let galley = ui.painter().layout_no_wrap(l.text.clone(), FontId::proportional(render::SMALL_SIZE * self.zoom * 1.25), Color32::WHITE);
+            let size = galley.size() / self.zoom;
+            let dx = match l.anchor { Anchor::Left => 0., Anchor::Center => -size.x / 2., Anchor::Right => -size.x };
+            let dy = match l.v { VAnchor::Top => 0., VAnchor::Middle => -size.y / 2., VAnchor::Bottom => -size.y };
+            let min = l.pos + p(dx, dy);
+            (l.wire, l.which, R::from_points(min, min + p(size.x, size.y)))
+        }).collect();
         // Connection points and wire ends off the grid are invisible grid lines.
         let placing = match self.tool {
             Tool::Place(key) => Some((key, true)),
@@ -1252,7 +1273,7 @@ impl Editor {
         }
         let origin = rect.min + self.offset;
         let mut d = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: None, mirror: None, textures: Some(&self.textures) };
-        render::draw_page(&mut d, prj, idx, an, page_i, &opts);
+        render::draw_page_with_core_labels(&mut d, prj, idx, an, page_i, &opts, &self.core_labels);
 
         // Previews
         if let (Tool::Markup(kind, _), Some(&a), Some(b)) = (&self.tool, self.pts.first(), world) {
@@ -1262,7 +1283,7 @@ impl Editor {
                 _ => g.rect(a, b, 0.5, Ink::Ghost, false),
             }
         }
-        if self.tool == Tool::Select && matches!(self.drag, Drag::None) {
+        if self.tool == Tool::Select && matches!(self.drag, Drag::None) && !matches!(pointer_prop, Some(PropHandle::Wire(..))) {
             self.draw_hover(&painter, rect, &pal, prj, page_i, pointer_hit, an);
         }
         if let (Some(sn), Some(pl), true) = (snapped, resp.dnd_hover_payload::<PlacePayload>(), editable) {
@@ -1345,12 +1366,29 @@ impl Editor {
                 }
             }
             if let Some(w) = page.wires.iter().find(|w| self.selection.contains(&w.id)) {
-                boxes.extend([render::CoreText::Core, render::CoreText::Cable].into_iter().filter_map(|which| render::core_text_bounds(page, w, which)));
+                boxes.extend(self.core_label_hits.iter().filter(|(id,_,_)| *id == w.id).map(|(_,_,r)| *r));
             }
             for r in boxes {
                 let sr = Rect::from_min_max(self.w2s(rect, r.min), self.w2s(rect, r.max)).expand(1.0);
                 painter.rect_stroke(sr, 0.0, Stroke::new(1.0, pal.ghost), egui::StrokeKind::Outside);
             }
+        }
+        if self.tool == Tool::Select && editable {
+            for label in &self.core_labels {
+                let target = self.core_label_hits.iter().find(|(id,which,_)| *id == label.wire && *which == label.which).map(|(_,_,r)| *r).unwrap_or(label.bounds);
+                let hover = world.is_some_and(|q| target.expand((2. / self.zoom).max(0.3)).contains(q));
+                if hover || label.conflict {
+                    let sr = Rect::from_min_max(self.w2s(rect, target.min), self.w2s(rect, target.max)).expand(2.);
+                    painter.rect_stroke(sr, 0., Stroke::new(1., if label.conflict { pal.error } else { pal.selected }), egui::StrokeKind::Outside);
+                    if hover { ui.ctx().set_cursor_icon(if matches!(self.drag, Drag::Prop { handle: PropHandle::Wire(..), .. }) { egui::CursorIcon::Grabbing } else { egui::CursorIcon::Grab }); }
+                }
+            }
+        }
+        for label in self.core_label_preview.iter().filter(|_| self.core_label_preview_page == Some(prj.pages[page_i].id)) {
+            let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(if label.conflict { Ink::Error } else { Ink::Ghost }), mirror: None, textures: None };
+            g.text(label.pos, &label.text, render::SMALL_SIZE, label.anchor, label.v, Ink::Ghost);
+            let sr = Rect::from_min_max(self.w2s(rect, label.bounds.min), self.w2s(rect, label.bounds.max)).expand(2.);
+            painter.rect_stroke(sr, 0., Stroke::new(1., if label.conflict { pal.error } else { pal.ghost }), egui::StrokeKind::Outside);
         }
         if !editable {
             let msg = if locked {
@@ -2069,15 +2107,16 @@ impl Editor {
         if resp.drag_started_by(PointerButton::Primary) {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
             let ow = self.s2w(rect, origin);
-            let end = self.wire_end_hit(prj, page_i, ow).filter(|_| editable);
-            let handle = self.prop_hit(prj, idx, page_i, ow).filter(|_| editable && end.is_none());
+            let handle = self.prop_hit(prj, idx, page_i, ow).filter(|_| editable);
+            let end = self.wire_end_hit(prj, page_i, ow).filter(|_| editable && !matches!(handle, Some(PropHandle::Wire(..))));
+            let handle = handle.filter(|_| end.is_none());
             // The texts of a single selected symbol are placed on their own; with several
             // selected, dragging a text moves them all.
             let group = handle.filter(|_| self.selection.len() > 1).map(PropHandle::id);
             let hit = self.hit(prj, page_i, ow).or(group).filter(|_| editable);
             if let Some(end) = end {
                 self.start_end_drag(prj, page_i, ow, end);
-            } else if let Some(handle) = handle.filter(|_| self.selection.len() == 1) {
+            } else if let Some(handle) = handle.filter(|h| matches!(h, PropHandle::Wire(..)) || self.selection.len() == 1) {
                 let page = &prj.pages[page_i];
                 let orig = match handle {
                     PropHandle::Symbol(id, h) => match (page.symbols.iter().find(|s| s.id == id), h) {
@@ -2090,13 +2129,14 @@ impl Editor {
                         (Some(s), Handle::Intr(t)) => prj.symbol(&s.sym).map(|def| intr_place(&def, s, t).offset).unwrap_or_default(),
                         _ => P::default(),
                     },
-                    PropHandle::Wire(id, which) => page.wires.iter().find(|w| w.id == id).and_then(|w| which.offset(w)).unwrap_or_default(),
+                    PropHandle::Wire(id, which) => self.core_labels.iter().find(|l| l.wire == id && l.which == which).map(|l| l.offset).unwrap_or_default(),
                 };
                 // A designation placed automatically keeps the place it has now.
                 let side = match handle {
                     PropHandle::Symbol(id, Handle::Pin(i)) => page.symbols.iter().find(|s| s.id == id).and_then(|s| pin_place(prj, idx, page_i, s, i)).map(|l| l.side),
                     _ => None,
                 };
+                if matches!(handle, PropHandle::Wire(..)) { self.selection = BTreeSet::from([handle.id()]); }
                 self.drag = Drag::Prop { handle, start: ow, orig, side };
             } else if let Some(id) = hit {
                 if !self.selection.contains(&id) {

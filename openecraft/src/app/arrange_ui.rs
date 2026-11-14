@@ -12,6 +12,7 @@ pub const GRIDS: [f32; 5] = [1.0, 2.0, 4.0, 8.0, 16.0];
 
 pub struct ArrangeUi {
     coord: String,
+    core_labels: Option<(u64, u64, bool, f32)>,
     pub show_move: bool,
     pub show_copy: bool,
     /// Distance of Move selection by (mm): nothing moves until one is typed.
@@ -23,7 +24,7 @@ pub struct ArrangeUi {
 
 impl Default for ArrangeUi {
     fn default() -> Self {
-        ArrangeUi { coord: String::new(), show_move: false, show_copy: false, move_by: (0.0, 0.0), copy_by: (0.0, 40.0), count: 3 }
+        ArrangeUi { core_labels: None, coord: String::new(), show_move: false, show_copy: false, move_by: (0.0, 0.0), copy_by: (0.0, 40.0), count: 3 }
     }
 }
 
@@ -63,7 +64,59 @@ impl App {
         }
     }
 
+    pub(super) fn core_label_definition(&self) -> Option<u64> {
+        if self.editor.selection.len() != 1 { return None; }
+        self.session.prj.pages[self.session.page].cable_defs.iter().find(|d| self.editor.selection.contains(&d.id)).map(|d| d.id)
+    }
+
+    pub(super) fn start_core_label_alignment(&mut self) {
+        if let Some(id) = self.core_label_definition().filter(|_| self.page_editable()) {
+            self.arrange_ui.core_labels = Some((self.session.prj.pages[self.session.page].id, id, true, 0.8));
+        }
+    }
+
+    fn core_label_window(&mut self, ctx: &egui::Context) {
+        use openecraft_core::render;
+        self.editor.core_label_preview.clear();
+        let Some((page_id, id, mut before, mut gap)) = self.arrange_ui.core_labels else { return };
+        let pi = self.session.page;
+        if self.session.prj.pages[pi].id != page_id || !self.page_editable() {
+            self.arrange_ui.core_labels = None; return;
+        }
+        let mut apply = false;
+        let mut cancel = false;
+        let (window, esc) = self.dialogs.window(ctx, tr("Align core labels…"), "core_label_align", None);
+        let mut open = !esc;
+        window.open(&mut open).resizable(false).show(ctx, |ui| {
+            ui.label(tr("Preview only. Applying replaces the manual positions of these core labels."));
+            ui.radio_value(&mut before, true, tr("Above / left of the definition line"));
+            ui.radio_value(&mut before, false, tr("Below / right of the definition line"));
+            ui.horizontal(|ui| {
+                ui.label(tr("Clearance (mm)"));
+                ui.add(egui::DragValue::new(&mut gap).range(0.5..=10.).speed(0.1));
+            });
+            let labels = render::preview_core_labels(&self.session.prj, pi, id, before, gap);
+            let conflicts = labels.iter().filter(|l| l.conflict).count();
+            ui.label(tr_fmt!("{} core labels; {} placement conflicts", labels.len(), conflicts));
+            if conflicts > 0 { ui.colored_label(crate::style::warning(), tr("No clear placement found. Change the side or clearance, or move the labels individually.")); }
+            ui.horizontal(|ui| {
+                apply = ui.add_enabled(!labels.is_empty() && conflicts == 0, egui::Button::new(tr("Apply"))).clicked();
+                cancel = ui.button(tr("Cancel")).clicked();
+            });
+            self.editor.core_label_preview = labels;
+            self.editor.core_label_preview_page = Some(page_id);
+        });
+        if apply && self.page_editable() {
+            render::align_core_labels(&mut self.session.prj, pi, id, before, gap);
+        }
+        if !open || apply || cancel {
+            self.arrange_ui.core_labels = None;
+            self.editor.core_label_preview.clear();
+        } else { self.arrange_ui.core_labels = Some((page_id, id, before, gap)); }
+    }
+
     pub(super) fn arrange_windows(&mut self, ctx: &egui::Context) {
+        self.core_label_window(ctx);
         let page = self.session.page;
         if self.arrange_ui.show_move {
             let mut apply = false;

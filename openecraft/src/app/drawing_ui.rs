@@ -698,6 +698,7 @@ impl App {
         if let Some(c) = self.session.prj.pages[pi].cable_defs.iter_mut().find(|c| c.id == id) {
             *c = def.clone();
         }
+        if ui.button(tr("Align core labels…")).clicked() { self.start_core_label_alignment(); }
         if apply {
             cabledef::apply(&mut self.session.prj, pi, id);
             let result = cabledef::plan(&self.session.prj, pi, def.a, def.b, &def.cable);

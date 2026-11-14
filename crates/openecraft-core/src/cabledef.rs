@@ -29,7 +29,7 @@ fn cross(a: P, b: P) -> f32 {
 }
 
 /// Parameter (0..1 along `a`–`b`) where the segment `c`–`d` crosses it.
-fn crossing(a: P, b: P, c: P, d: P) -> Option<f32> {
+pub(crate) fn crossing(a: P, b: P, c: P, d: P) -> Option<f32> {
     let r = b - a;
     let s = d - c;
     let den = cross(r, s);

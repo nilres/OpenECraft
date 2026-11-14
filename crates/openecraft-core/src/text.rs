@@ -15,6 +15,24 @@ pub fn est_width(text: &str, size: f32) -> f32 {
     text.chars().count() as f32 * size * 0.62
 }
 
+/// Glyph widths of Helvetica (1/1000 em) for ASCII 32..=126.
+pub(crate) const HELVETICA: [u16; 95] = [
+    278, 278, 355, 556, 556, 889, 667, 191, 333, 333, 389, 584, 278, 333, 278, 278, 556, 556, 556, 556, 556, 556, 556, 556, 556, 556,
+    278, 278, 584, 584, 584, 556, 1015, 667, 667, 722, 722, 667, 611, 778, 722, 278, 500, 667, 556, 833, 722, 778, 667, 778, 722, 667,
+    611, 722, 667, 944, 667, 667, 611, 278, 278, 278, 469, 556, 333, 556, 556, 500, 556, 556, 278, 556, 556, 222, 222, 500, 222, 833,
+    556, 556, 556, 556, 333, 500, 278, 556, 500, 722, 500, 500, 500, 334, 260, 334, 584,
+];
+
+/// Conservative annotation width at the 1.25 rendering scale. Wide ASCII glyphs
+/// use the PDF metrics; narrow glyphs retain the canvas estimate and other scripts
+/// reserve one em per character.
+pub fn annotation_width(text: &str, size: f32) -> f32 {
+    text.chars().map(|c| match c {
+        ' '..='~' => HELVETICA[c as usize - 32].max(620) as f32,
+        _ => 1000.,
+    }).sum::<f32>() * size * 1.25 / 1000.
+}
+
 /// How a text is drawn: height, anchors, rotation and style.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct TextStyle {
