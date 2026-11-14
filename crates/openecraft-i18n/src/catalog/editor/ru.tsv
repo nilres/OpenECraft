@@ -131,6 +131,7 @@ All pages	Все листы
 All report pages	Все листы отчётов
 All user symbols as library file	Все пользовательские символы как файл библиотеки
 All wires of this potential are highlighted.	Все провода этого потенциала выделены.
+Also copy revisions, baselines and review records	Копировать также ревизии, базовые версии и записи проверок
 Also the groups that do not fit the function definition	Также группы, не соответствующие определению функции
 Altitude	Высота над уровнем моря
 Always	Всегда
@@ -435,6 +436,9 @@ Copy	Копировать
 Copy / cut / paste (devices get new tags)	Копировать / вырезать / вставить (устройства получают новые обозначения)
 Copy as new	Копировать как новую
 Copy built-in…	Копировать встроенную…
+Copy of	Копия проекта
+Copy project	Копировать проект
+Copy project…	Копировать проект…
 Core designations separated by blanks	Обозначения жил через пробел
 Core labels placed by hand	Надписи жил размещены вручную
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Жилы 1, 2, 3 … для пересекаемых проводов, плюс GNYE
@@ -446,11 +450,16 @@ Covers what is behind the text	Закрывает то, что находитс�
 Create	Создать
 Create an enclosure in the panel layout first.	Сначала создайте корпус в компоновке шкафа.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Создайте корпус или помещение (Монтажное пространство › Новый корпус, Новое помещение), чтобы начать компоновку.
+Create and open	Создать и открыть
 Create baseline	Создать базовую версию
 Create bus cables	Создать шинные кабели
 Create draft	Создать черновик
 Create revision	Создать ревизию
+Created on the server	Создан на сервере
 Created {}	Создано {}
+Created {} as a copy of {} and opened it	{} создан как копия {} и открыт
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Создаёт на сервере новый проект из сохранённого состояния этого проекта; сначала вы задаёте его имя и свойства
+Creating {} as a copy of {}…	Создание {} как копии {}…
 Cross references…	Перекрёстные ссылки…
 Crossed wires	Пересекаемые провода
 Ctrl + click on the text opens it as well	Ctrl + щелчок по тексту также открывает его
@@ -1059,6 +1068,7 @@ Load reserve	Запас по нагрузке
 Load template…	Загрузить шаблон…
 Loading changes…	Загрузка изменений…
 Loading the project access…	Загрузка доступа к проекту…
+Loading the properties of {}…	Загрузка свойств {}…
 Loads	Нагрузки
 Local file	Локальный файл
 Local file: {}	Локальный файл: {}
@@ -1631,6 +1641,7 @@ Release: lock all pages	Выпуск: заблокировать все лист
 Released page – read only	Выпущенный лист – только чтение
 Released pages in it keep their names	Выпущенные листы в нём сохраняют свои имена
 Released pages keep their name.	Выпущенные листы сохраняют своё имя.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Выпущенные ревизии, базовые версии, комментарии, пометки, согласования и запросы на изменение оригинала. Без них копия начинается как новый проект.
 Releases all locks; the project stays open as a local copy	Снимает все блокировки; проект остаётся открытым как локальная копия
 Releasing…	Снятие блокировки…
 Remove from cable	Удалить из кабеля
@@ -1809,6 +1820,7 @@ Save to project server: {} – the connection is lost, saving tries again	Сох
 Save workspace	Сохранить рабочее пространство
 Save workspace…	Сохранить рабочее пространство…
 Saved	Сохранено
+Saved the properties of {} (revision {})	Свойства {} сохранены (ревизия {})
 Saved to	Сохранено в
 Saved to the project server (revision {})	Сохранено на сервере проектов (ревизия {})
 Saved workspaces	Сохранённые рабочие пространства
@@ -1821,6 +1833,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Сохр
 Saves your version of the whole project as a project file	Сохраняет вашу версию всего проекта в файл проекта
 Saving failed: {}	Ошибка сохранения: {}
 Saving the project access…	Сохранение доступа к проекту…
+Saving the properties of {}…	Сохранение свойств {}…
 Saving to the project server…	Сохранение на сервере проектов…
 Schematic crosshair	Перекрестие курсора схемы
 Scheme	Схема
@@ -1855,6 +1868,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Выберите макрос.
 Select a part. Double click adds it to the device.	Выберите изделие. Двойной щелчок добавляет его к устройству.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Выберите схему размещения. Схема размещает свойства рядом с символами; использующие её символы обновляются при её изменении.
+Select a project in the list	Выберите проект в списке
 Select a report block.	Выберите блок отчёта.
 Select a request.	Выберите запрос.
 Select a segment.	Выберите сегмент.
@@ -1876,6 +1890,7 @@ Semicolon	Точка с запятой
 Separator	Сепаратор
 Server URL	URL сервера
 Server address and sign-in	Адрес сервера и вход
+Server project properties	Свойства проекта сервера
 Server type	Тип сервера
 Servers	Серверы
 Service space in front	Зона обслуживания спереди
@@ -1931,6 +1946,7 @@ Shown now: {}	Сейчас показывается: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Показывается на титульном листе и в элементах изображения основных надписей, показывающих логотип проекта
 Shows	Показывает
 Shows the differences of your version to the open project; selected ones can be taken over	Показывает отличия вашей версии от открытого проекта; выбранные можно перенять
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Показывает свойства, сохранённые на сервере проектов; вы изменяете их здесь, если имеете право и никто не заблокировал данные проекта
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Боковые стенки, задняя стенка, крыша и дно снаружи: вентиляторы, кабельные вводы, вырезы
 Sign in in the Project server pane; the project opens afterwards	Войдите в панели «Сервер проектов»; затем проект откроется
 Sign in…	Войти…
@@ -2074,6 +2090,7 @@ The aspect ratio is kept.	Соотношение сторон сохраняет
 The check warns about cable ducts filled above this level	Проверка предупреждает о кабельных каналах, заполненных сверх этого уровня
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Проверки соблюдают расстояния между классами и допускают перекрытие классов, как задано в «Проверках компоновки»
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Команды всех плагинов по плагинам, с поиском; звёздочка закрепляет команду на вкладке «Плагины»
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Копия создаётся из состояния, сохранённого на сервере проектов. Изменения, которые другие пользователи ещё не сохранили, в неё не входят. Сеансы, блокировки и права доступа не копируются; оригинал остаётся как есть.
 The crossed wires get free cores of the cable in order	Пересекаемые провода по порядку получают свободные жилы кабеля
 The current page belongs to option {}.	Текущий лист относится к опции {}.
 The devices do not fit onto the rail	Устройства не помещаются на рейку
@@ -2093,8 +2110,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	В библиотеке макросов нет макросов листов (Макросы › Сохранить лист как макрос…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Модификаторы, с которыми колесо сдвигает вбок или масштабирует, задаются в разделе «Клавиши-модификаторы».
 The modules no string takes yet in series, on the first inverter	Модули, не занятые ни одной цепочкой, последовательно, на первом инверторе
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	Имя на сервере состоит из букв, цифр, пробелов, - _ . (до 64 символов).
 The names of its pages follow	Имена его листов меняются вместе с ним
 The open project already has your version	Открытый проект уже содержит вашу версию
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	В открытом проекте есть изменения, ещё не сохранённые на сервере проектов. Вас спросят, сохранить ли их сначала; в копию входят только сохранённые изменения.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Открытый проект — локальная копия восстановления этого проекта. Его изменений нет на сервере проектов, и в копию они не входят.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Открытый проект – локальная копия восстановления. Его изменения не сохранены на сервере проектов; перед открытием общего проекта вы решаете, сохранить их локально или отбросить.
 The page name gets the section number	Имя листа получает номер раздела
 The page type, plot frame, title block, structure, description and the whole content are saved.	Сохраняются тип листа, рамка, основная надпись, структура, описание и всё содержимое.
@@ -2104,6 +2124,7 @@ The point's coordinates in the coordinate reference system	Координаты 
 The post; its accessories are the table beams, rails and clamps	Стойка; её принадлежности — балки стола, рейки и зажимы
 The project changed since the search.	Проект изменился после поиска.
 The project check	Проверка проекта
+The project data is locked by {}: the properties cannot be changed now.	Данные проекта заблокированы пользователем {}: свойства сейчас изменить нельзя.
 The project database needs the desktop version: the browser cannot search folders.	Для базы данных проектов требуется настольная версия: браузер не может просматривать папки.
 The project server does not answer: changes are not saved on it until the connection is back	Сервер проектов не отвечает: изменения не сохраняются на нём, пока соединение не восстановится
 The project server has confirmed no save of this session yet	Сервер проектов ещё не подтвердил ни одного сохранения в этом сеансе
@@ -2111,7 +2132,9 @@ The project server {} could not open {}.	Сервер проектов {} не �
 The project's own page templates as a file	Собственные шаблоны листов проекта в виде файла
 The project's own title blocks	Собственные основные надписи проекта
 The project's own title blocks and report schemes	Собственные основные надписи и схемы отчётов проекта
+The properties of the open project; changing them locks the project data	Свойства открытого проекта; их изменение блокирует данные проекта
 The properties of the selection in a window beside the page	Свойства выделенного в окне рядом с листом
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Тем временем свойства были изменены на сервере проектов. Перезагрузка покажет их; введённое вами будет заменено.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Рейка или монтажное основание; его принадлежности — крюки, зажимы и балласт
 The recalculation keeps frozen routes as long as they are still possible	При пересчёте зафиксированные трассы сохраняются, пока это возможно
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Лента с вкладкой Файл заменяет меню; Ctrl+Shift+P находит любую команду.
@@ -2157,6 +2180,7 @@ Total selectivity	Полная селективность
 Touch screen	Сенсорный экран
 Transfer project parts to database	Передать изделия проекта в базу данных
 Translate the project texts; documentation per language	Перевод текстов проекта; документация на каждом языке
+Try again	Повторить
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Поворот вокруг вертикальной оси, против часовой стрелки при виде сверху (90 °: лицевые стороны обращены вправо)
 Turn the 3D view to the point	Повернуть 3D-вид к точке
 Tutorial	Учебник
@@ -2250,6 +2274,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Где в 3D-виде щёлкнули по крыше
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Откуда берётся структура устройства: аспекты, равные структуре вокруг символа, наследуются и меняются при перемещении в рамку структуры или из неё; остальные аспекты принадлежат устройству и сохраняются.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Где провод начинается и заканчивается: точка подключения из данных изделия, точка, созданная из шаблона функций, или центр устройства, если ни одна точка подключения не подходит
+Who created the project on the project server and when; not the drawing author below	Кто и когда создал проект на сервере проектов; это не автор чертежа ниже
 Whole building	Всё здание
 Whole words	Слова целиком
 Width / going	Ширина / проступь
@@ -2422,6 +2447,7 @@ x y	x y
 {} (no such device)	{} (нет такого устройства)
 {} (not placed in the layout)	{} (не размещено в компоновке)
 {} (project server, revision {})	{} (сервер проектов, ревизия {})
+{} (revision {})	{} (ревизия {})
 {} (spare)	{} (резерв)
 {} (subproject of {})	{} (подпроект {})
 {} (unused)	{} (не используется)
@@ -2433,6 +2459,7 @@ x y	x y
 {} added to building {}	{} добавлен к зданию {}
 {} addresses changed	Изменено адресов: {}
 {} air-termination rods	Молниеприёмных стержней: {}
+{} already exists on the project server.	{} уже существует на сервере проектов.
 {} bundles, {} branch points	Пучков: {}, точек ответвления: {}
 {} bus cables created	Создано шинных кабелей: {}
 {} bus connections	Шинных соединений: {}
@@ -2562,6 +2589,7 @@ x y	x y
 {} unused structure identifiers removed	Удалено неиспользуемых идентификаторов структуры: {}
 {} values taken over	Принято значений: {}
 {} warnings	Предупреждений: {}
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	Тем временем {} был изменён на сервере проектов. Введённое вами сохранено; создайте копию ещё раз, чтобы скопировать текущее сохранённое состояние.
 {} was imported into the parts database; its page no longer exists	{} импортировано в базу данных изделий; его страница больше не существует
 {} windows	Окон: {}
 {} wire pieces joined	Объединено отрезков проводов: {}
@@ -2578,6 +2606,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} (листов: {})
 {} – {} here (Esc cancels)	{} – {} здесь (Esc отменяет)
 {}, freestanding	{}, наземное
+{}, {} (copy of {}, revision {})	{}, {} (копия {}, ревизия {})
 {}: click to show its floor plan	{}: щёлкните, чтобы показать план
 {}: crimp together with the wire to {}	{}: обжать вместе с проводом к {}
 {}: drag to move it, R turns it, a double-click opens it	{}: перетащите, чтобы переместить, R поворачивает, двойной щелчок открывает

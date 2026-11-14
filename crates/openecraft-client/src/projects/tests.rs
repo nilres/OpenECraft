@@ -28,6 +28,16 @@ fn requests_of_the_api() {
     let grants = [Grant::new(openecraft_core::collab::Subject::Group("corp:QA".into()), "reviewer", "Plant 1")];
     let put = e.save_project_access("Plant 1", &grants);
     assert_eq!((put.method, serde_json::from_slice::<Vec<Grant>>(&put.body).unwrap()), (ehttp::Method::PUT, grants.to_vec()));
+    assert_eq!((e.properties("Plant 1").url.as_str(), e.properties("Plant 1").method), ("http://host:8091/api/v1/projects/Plant%201/properties", ehttp::Method::GET));
+    let info = openecraft_core::model::ProjectInfo { name: "Press".into(), ..Default::default() };
+    let put = e.save_properties("Plant 1", "anna", 4, &info);
+    assert_eq!((put.url.as_str(), put.method), ("http://host:8091/api/v1/projects/Plant%201/properties", ehttp::Method::PUT));
+    let body: openecraft_core::collab::PropertiesUpdate = serde_json::from_slice(&put.body).unwrap();
+    assert_eq!((body.user.as_str(), body.revision, body.info), ("anna", 4, info.clone()));
+    let req = openecraft_core::collab::CopyRequest { name: "Plant 2".into(), user: "anna".into(), revision: 4, info: Some(info), records: false };
+    let copy = e.copy("Plant 1", &req);
+    assert_eq!((copy.url.as_str(), copy.method), ("http://host:8091/api/v1/projects/Plant%201/copy", ehttp::Method::POST));
+    assert_eq!(serde_json::from_slice::<openecraft_core::collab::CopyRequest>(&copy.body).unwrap(), req);
     assert_eq!(e.access().url, "http://host:8091/api/v1/access");
     assert_eq!(e.save_access(&Policy::default()).method, ehttp::Method::PUT);
     // Every request carries the token.

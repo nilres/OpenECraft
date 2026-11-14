@@ -217,6 +217,8 @@ enum Replace {
     Path(String),
     /// A project of the project server.
     Shared(String),
+    /// The copy of a project of the project server (`Remote::draft`), created and opened.
+    Copy,
     /// A project file of the vault.
     Vault(Box<openecraft_client::vault::FileVersion>),
     /// The window closes; with `restart` the editor starts again, updated.
@@ -819,6 +821,7 @@ impl App {
                 self.backstage = None;
             }
             Replace::Shared(name) => self.remote.open(&name),
+            Replace::Copy => self.remote.copy(),
             Replace::Vault(file) => self.vault.download(*file, crate::vault::Use::Project),
             Replace::Close { restart } => {
                 self.updater.restart = restart;

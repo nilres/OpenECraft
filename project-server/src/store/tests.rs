@@ -13,7 +13,7 @@ fn create_save_and_reload() {
     assert!(store.projects.is_empty());
     let mut prj = Project::default();
     prj.info.name = "Plant".into();
-    store.create("Plant 1", prj.clone(), "anna", 100).unwrap();
+    store.create("Plant 1", prj.clone(), "anna", 100, None).unwrap();
     assert_eq!(store.get("Plant 1").unwrap().revision, 1);
     let first = store.reserve_ids("Plant 1").unwrap();
     assert_eq!(store.get("Plant 1").unwrap().next_id, first + ID_BLOCK);
@@ -61,7 +61,7 @@ fn ignores_other_files() {
 fn a_save_writes_only_the_files_that_changed() {
     let dir = temp_dir("changed");
     let mut store = Store::open(&dir).unwrap();
-    store.create("p", openecraft_core::sample::demo_project(), "anna", 100).unwrap();
+    store.create("p", openecraft_core::sample::demo_project(), "anna", 100, None).unwrap();
     let folder = dir.join("p");
     let page = |store: &Store, i: usize| folder.join("pages").join(format!("{}.json", store.get("p").unwrap().project.pages[i].id));
     let modified = |path: &Path| std::fs::metadata(path).unwrap().modified().unwrap();
@@ -85,7 +85,7 @@ fn a_save_writes_only_the_files_that_changed() {
 fn the_project_of_the_server_replaces_files_changed_by_another_program() {
     let dir = temp_dir("foreign");
     let mut store = Store::open(&dir).unwrap();
-    store.create("p", openecraft_core::sample::demo_project(), "anna", 100).unwrap();
+    store.create("p", openecraft_core::sample::demo_project(), "anna", 100, None).unwrap();
     let id = store.get("p").unwrap().project.pages[0].id;
     let page = dir.join("p").join("pages").join(format!("{id}.json"));
     let mut text = std::fs::read_to_string(&page).unwrap();
@@ -132,7 +132,7 @@ fn project_files_of_earlier_versions_are_converted() {
 fn ids_never_go_below_the_project() {
     let mut store = Store::in_memory();
     let prj = Project { next_id: 500, ..Default::default() };
-    store.create("p", prj, "anna", 100).unwrap();
+    store.create("p", prj, "anna", 100, None).unwrap();
     let first = store.reserve_ids("p").unwrap();
     assert!(first >= 500);
     assert!(store.reserve_ids("p").unwrap() >= first + ID_BLOCK);
@@ -141,7 +141,7 @@ fn ids_never_go_below_the_project() {
 #[test]
 fn earlier_revisions_are_kept_for_a_while() {
     let mut store = Store::in_memory();
-    store.create("p", Project::default(), "anna", 100).unwrap();
+    store.create("p", Project::default(), "anna", 100, None).unwrap();
     for i in 0..KEPT_REVISIONS + 2 {
         let mut prj = store.get("p").unwrap().project.clone();
         prj.info.name = format!("v{i}");
@@ -160,7 +160,7 @@ fn earlier_revisions_are_kept_for_a_while() {
 fn keeps_who_created_and_changed() {
     let dir = temp_dir("meta");
     let mut store = Store::open(&dir).unwrap();
-    store.create("p", Project::default(), "anna", 100).unwrap();
+    store.create("p", Project::default(), "anna", 100, None).unwrap();
     assert_eq!(store.get("p").unwrap().meta, ProjectMeta::created("anna", 100));
     // Reserving ids and saving the same content change nobody's project.
     store.reserve_ids("p").unwrap();
@@ -180,7 +180,7 @@ fn keeps_who_created_and_changed() {
 fn old_state_files_have_unknown_metadata() {
     let dir = temp_dir("old-meta");
     let mut store = Store::open(&dir).unwrap();
-    store.create("p", Project::default(), "anna", 100).unwrap();
+    store.create("p", Project::default(), "anna", 100, None).unwrap();
     std::fs::write(dir.join("p.state.json"), r#"{"revision": 4, "next_id": 9}"#).unwrap();
     let mut store = Store::open(&dir).unwrap();
     assert_eq!(store.get("p").unwrap().meta, ProjectMeta::default());

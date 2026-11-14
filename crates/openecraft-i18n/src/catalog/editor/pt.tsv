@@ -131,6 +131,7 @@ All pages	Todas as páginas
 All report pages	Todas as páginas de relatório
 All user symbols as library file	Todos os símbolos do usuário como arquivo de biblioteca
 All wires of this potential are highlighted.	Todos os fios deste potencial estão realçados.
+Also copy revisions, baselines and review records	Copiar também revisões, linhas de base e registros de revisão
 Also the groups that do not fit the function definition	Também os grupos que não correspondem à definição de função
 Altitude	Altitude
 Always	Sempre
@@ -436,6 +437,9 @@ Copy	Copiar
 Copy / cut / paste (devices get new tags)	Copiar / recortar / colar (os dispositivos recebem novos identificadores)
 Copy as new	Copiar como novo
 Copy built-in…	Copiar integrado…
+Copy of	Cópia de
+Copy project	Copiar projeto
+Copy project…	Copiar projeto…
 Core designations separated by blanks	Designações das veias separadas por espaços
 Core labels placed by hand	Rótulos das veias posicionados manualmente
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Veias 1, 2, 3 … para os fios cruzados, mais GNYE
@@ -447,11 +451,16 @@ Covers what is behind the text	Cobre o que está atrás do texto
 Create	Criar
 Create an enclosure in the panel layout first.	Crie primeiro um gabinete no layout do painel.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Crie um gabinete ou uma sala (Espaço de montagem › Novo gabinete, Nova sala) para começar o layout de montagem.
+Create and open	Criar e abrir
 Create baseline	Criar linha de base
 Create bus cables	Criar cabos de barramento
 Create draft	Criar rascunho
 Create revision	Criar revisão
+Created on the server	Criado no servidor
 Created {}	Criado em {}
+Created {} as a copy of {} and opened it	{} criado como cópia de {} e aberto
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Cria no servidor um novo projeto a partir do estado salvo deste; primeiro você define o nome e as propriedades
+Creating {} as a copy of {}…	Criando {} como cópia de {}…
 Cross references…	Referências cruzadas…
 Crossed wires	Fios cruzados
 Ctrl + click on the text opens it as well	Ctrl + clique no texto também o abre
@@ -1060,6 +1069,7 @@ Load reserve	Reserva de carga
 Load template…	Carregar modelo…
 Loading changes…	Carregando alterações…
 Loading the project access…	Carregando o acesso ao projeto…
+Loading the properties of {}…	Carregando as propriedades de {}…
 Loads	Cargas
 Local file	Arquivo local
 Local file: {}	Arquivo local: {}
@@ -1632,6 +1642,7 @@ Release: lock all pages	Liberar: bloquear todas as páginas
 Released page – read only	Página liberada – somente leitura
 Released pages in it keep their names	As páginas liberadas nela mantêm seus nomes
 Released pages keep their name.	Páginas liberadas mantêm seu nome.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Revisões liberadas, linhas de base, comentários, marcações, aprovações e solicitações de alteração do original. Sem eles, a cópia começa como um projeto novo.
 Releases all locks; the project stays open as a local copy	Libera todos os bloqueios; o projeto permanece aberto como cópia local
 Releasing…	Liberando…
 Remove from cable	Remover do cabo
@@ -1810,6 +1821,7 @@ Save to project server: {} – the connection is lost, saving tries again	Salvar
 Save workspace	Salvar espaço de trabalho
 Save workspace…	Salvar espaço de trabalho…
 Saved	Salvo
+Saved the properties of {} (revision {})	Propriedades de {} salvas (revisão {})
 Saved to	Salvo em
 Saved to the project server (revision {})	Salvo no servidor de projetos (revisão {})
 Saved workspaces	Espaços de trabalho salvos
@@ -1822,6 +1834,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Salva o 
 Saves your version of the whole project as a project file	Salva a sua versão do projeto inteiro como arquivo de projeto
 Saving failed: {}	Falha ao salvar: {}
 Saving the project access…	Salvando o acesso ao projeto…
+Saving the properties of {}…	Salvando as propriedades de {}…
 Saving to the project server…	Salvando no servidor de projetos…
 Schematic crosshair	Mira do esquema elétrico
 Scheme	Esquema
@@ -1856,6 +1869,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Selecione uma macro.
 Select a part. Double click adds it to the device.	Selecione uma peça. Um clique duplo a adiciona ao dispositivo.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Selecione um esquema de posicionamento. Um esquema posiciona propriedades ao lado dos símbolos; os símbolos que o utilizam são atualizados quando ele é alterado.
+Select a project in the list	Selecione um projeto na lista
 Select a report block.	Selecione um bloco de relatório.
 Select a request.	Selecione uma solicitação.
 Select a segment.	Selecione um segmento.
@@ -1877,6 +1891,7 @@ Semicolon	Ponto e vírgula
 Separator	Separador
 Server URL	URL do servidor
 Server address and sign-in	Endereço do servidor e login
+Server project properties	Propriedades do projeto do servidor
 Server type	Tipo de servidor
 Servers	Servidores
 Service space in front	Espaço de serviço à frente
@@ -1932,6 +1947,7 @@ Shown now: {}	Mostrado agora: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Mostrado na capa e pelos elementos de imagem dos selos que mostram o logotipo do projeto
 Shows	Mostra
 Shows the differences of your version to the open project; selected ones can be taken over	Mostra as diferenças da sua versão em relação ao projeto aberto; as selecionadas podem ser adotadas
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Mostra as propriedades salvas no servidor de projetos; você as altera aqui se tiver permissão e se ninguém tiver bloqueado os dados do projeto
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Paredes laterais, parede traseira, teto e fundo vistos de fora: ventiladores, prensa-cabos, recortes
 Sign in in the Project server pane; the project opens afterwards	Entre no painel Servidor de projetos; o projeto abre em seguida
 Sign in…	Entrar…
@@ -2075,6 +2091,7 @@ The aspect ratio is kept.	A proporção é mantida.
 The check warns about cable ducts filled above this level	A verificação avisa sobre canaletas ocupadas acima deste nível
 The checks keep the distances between classes and let classes overlap as set in Layout checks	As verificações mantêm as distâncias entre classes e permitem que classes se sobreponham conforme definido em Verificações de layout
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Os comandos de todos os plug-ins por plug-in, com pesquisa; a estrela fixa um comando na guia Plug-ins
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	A cópia é criada a partir do estado salvo no servidor de projetos. As alterações que outros usuários ainda não salvaram não fazem parte dela. Sessões, bloqueios e direitos de acesso não são copiados; o original permanece como está.
 The crossed wires get free cores of the cable in order	Os fios cruzados recebem veias livres do cabo em ordem
 The current page belongs to option {}.	A página atual pertence à opção {}.
 The devices do not fit onto the rail	Os dispositivos não cabem no trilho
@@ -2094,8 +2111,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	A biblioteca de macros não tem macros de página (Macros › Salvar página como macro…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	As teclas modificadoras que fazem a roda mover para os lados ou aplicar zoom são definidas em Teclas modificadoras.
 The modules no string takes yet in series, on the first inverter	Os módulos que nenhuma string usa ainda, em série, no primeiro inversor
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	O nome no servidor precisa de letras, dígitos, espaços, - _ . (até 64 caracteres).
 The names of its pages follow	Os nomes de suas páginas acompanham
 The open project already has your version	O projeto aberto já tem a sua versão
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	O projeto aberto tem alterações que ainda não foram salvas no servidor de projetos. Você será perguntado se elas devem ser salvas antes; somente as alterações salvas fazem parte da cópia.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	O projeto aberto é uma cópia de recuperação local deste projeto. Suas alterações não estão no servidor de projetos e não fazem parte da cópia.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	O projeto aberto é uma cópia de recuperação local. Suas alterações não estão salvas no servidor de projetos; antes de o projeto compartilhado abrir, você decide se as salva localmente ou as descarta.
 The page name gets the section number	O nome da página recebe o número da seção
 The page type, plot frame, title block, structure, description and the whole content are saved.	O tipo de página, a moldura de plotagem, o selo, a estrutura, a descrição e todo o conteúdo são salvos.
@@ -2105,6 +2125,7 @@ The point's coordinates in the coordinate reference system	As coordenadas do pon
 The post; its accessories are the table beams, rails and clamps	A estaca; seus acessórios são as vigas da mesa, os trilhos e as braçadeiras
 The project changed since the search.	O projeto foi alterado desde a pesquisa.
 The project check	A verificação do projeto
+The project data is locked by {}: the properties cannot be changed now.	Os dados do projeto estão bloqueados por {}: as propriedades não podem ser alteradas agora.
 The project database needs the desktop version: the browser cannot search folders.	O banco de dados de projetos precisa da versão desktop: o navegador não pode pesquisar pastas.
 The project server does not answer: changes are not saved on it until the connection is back	O servidor de projetos não responde: as alterações não são salvas nele até a conexão voltar
 The project server has confirmed no save of this session yet	O servidor de projetos ainda não confirmou nenhum salvamento desta sessão
@@ -2112,7 +2133,9 @@ The project server {} could not open {}.	O servidor de projetos {} não consegui
 The project's own page templates as a file	Os modelos de página próprios do projeto como arquivo
 The project's own title blocks	Os selos próprios do projeto
 The project's own title blocks and report schemes	Os selos e esquemas de relatório próprios do projeto
+The properties of the open project; changing them locks the project data	As propriedades do projeto aberto; alterá-las bloqueia os dados do projeto
 The properties of the selection in a window beside the page	As propriedades da seleção em uma janela ao lado da página
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	As propriedades foram alteradas no servidor de projetos nesse meio-tempo. Recarregar as mostra; o que você digitou é substituído.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	O trilho ou a base de montagem; seus acessórios são os ganchos, grampos e lastro
 The recalculation keeps frozen routes as long as they are still possible	O recálculo mantém as rotas congeladas enquanto ainda forem possíveis
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	A faixa de opções com a guia Arquivo substitui os menus; Ctrl+Shift+P encontra qualquer comando.
@@ -2158,6 +2181,7 @@ Total selectivity	Seletividade total
 Touch screen	Tela sensível ao toque
 Transfer project parts to database	Transferir peças do projeto para o banco de dados
 Translate the project texts; documentation per language	Traduzir os textos do projeto; documentação por idioma
+Try again	Tentar novamente
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotação em torno da vertical, no sentido anti-horário visto de cima (90 °: as frentes ficam voltadas para a direita)
 Turn the 3D view to the point	Girar a vista 3D para o ponto
 Tutorial	Tutorial
@@ -2251,6 +2275,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Onde o telhado foi clicado na vista 3D
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	De onde vem a estrutura do dispositivo: aspectos iguais à estrutura em torno do símbolo são herdados e acompanham quando ele entra ou sai de uma caixa de estrutura; os outros aspectos são do próprio dispositivo e permanecem.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Onde o fio começa e termina: um ponto de conexão dos dados da peça, um gerado a partir do modelo de função ou o centro do dispositivo, se nenhum ponto de conexão corresponder
+Who created the project on the project server and when; not the drawing author below	Quem criou o projeto no servidor de projetos e quando; não é o autor do desenho abaixo
 Whole building	Edifício inteiro
 Whole words	Palavras inteiras
 Width / going	Largura / piso
@@ -2423,6 +2448,7 @@ x y	x y
 {} (no such device)	{} (dispositivo inexistente)
 {} (not placed in the layout)	{} (não colocado no layout)
 {} (project server, revision {})	{} (servidor de projetos, revisão {})
+{} (revision {})	{} (revisão {})
 {} (spare)	{} (reserva)
 {} (subproject of {})	{} (subprojeto de {})
 {} (unused)	{} (não usado)
@@ -2434,6 +2460,7 @@ x y	x y
 {} added to building {}	{} adicionado ao edifício {}
 {} addresses changed	{} endereços alterados
 {} air-termination rods	{} captores tipo haste
+{} already exists on the project server.	{} já existe no servidor de projetos.
 {} bundles, {} branch points	{} feixes, {} pontos de derivação
 {} bus cables created	{} cabos de barramento criados
 {} bus connections	{} conexões de barramento
@@ -2563,6 +2590,7 @@ x y	x y
 {} unused structure identifiers removed	{} identificadores de estrutura não usados removidos
 {} values taken over	{} valores adotados
 {} warnings	{} avisos
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	{} foi alterado no servidor de projetos nesse meio-tempo. O que você digitou foi mantido; crie a cópia novamente para copiar o estado salvo atual.
 {} was imported into the parts database; its page no longer exists	{} foi importada para o banco de dados de peças; a página dela não existe mais
 {} windows	{} janelas
 {} wire pieces joined	{} trechos de fio unidos
@@ -2579,6 +2607,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} ({} páginas)
 {} – {} here (Esc cancels)	{} – {} aqui (Esc cancela)
 {}, freestanding	{}, no solo
+{}, {} (copy of {}, revision {})	{}, {} (cópia de {}, revisão {})
 {}: click to show its floor plan	{}: clique para mostrar a sua planta
 {}: crimp together with the wire to {}	{}: crimpar junto com o fio para {}
 {}: drag to move it, R turns it, a double-click opens it	{}: arraste para mover, R para girar, clique duplo para abrir

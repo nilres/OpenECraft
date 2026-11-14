@@ -37,6 +37,80 @@ pub(super) fn rename_property(props: &mut std::collections::BTreeMap<String, Str
     }
 }
 
+/// The rows of the project info (name to revision) in a grid of two columns: of the
+/// open project and of a project of the project server.
+pub(super) fn info_rows(ui: &mut egui::Ui, info: &mut openecraft_core::model::ProjectInfo) {
+    let line = |ui: &mut egui::Ui, text: &mut String| ui.add(egui::TextEdit::singleline(text).desired_width(f32::INFINITY));
+    ui.label(tr("Project name"));
+    line(ui, &mut info.name);
+    ui.end_row();
+    ui.label(tr("Description"));
+    ui.add(egui::TextEdit::multiline(&mut info.description).desired_width(f32::INFINITY));
+    ui.end_row();
+    ui.label(tr("Company"));
+    line(ui, &mut info.company);
+    ui.end_row();
+    ui.label(tr("Created by"));
+    line(ui, &mut info.creator);
+    ui.end_row();
+    ui.label(tr("Date"));
+    line(ui, &mut info.date);
+    ui.end_row();
+    ui.label(tr("Revision"));
+    line(ui, &mut info.revision);
+    ui.end_row();
+}
+
+/// The free project properties: a list at most `height` high that scrolls, and the
+/// button that adds one.
+pub(super) fn property_list(ui: &mut egui::Ui, props: &mut std::collections::BTreeMap<String, String>, height: f32) {
+    ui.label(RichText::new(tr("Project properties")).strong()).on_hover_text(tr("Shown in title blocks with {prop:Name}"));
+    let mut remove = None;
+    let mut rename = None;
+    egui::ScrollArea::vertical().id_salt("prjprops").max_height(height).auto_shrink([false, true]).show(ui, |ui| {
+        let gap = ui.spacing().item_spacing.x;
+        // A floating scroll bar is drawn over the rows: keep the remove buttons clear of it.
+        let scroll = &ui.spacing().scroll;
+        let bar = if scroll.floating { scroll.bar_width + scroll.bar_inner_margin } else { 0.0 };
+        let (name_w, value_w) = property_widths(ui.available_width() - bar, ui.spacing().interact_size.y, gap);
+        for (k, v) in props.iter_mut() {
+            ui.horizontal(|ui| {
+                // The name is applied when the field loses focus: renaming
+                // re-sorts the rows, so a rename per key stroke would move the
+                // text cursor to another property.
+                let id = ui.make_persistent_id(("prjprop", k.as_str()));
+                let mut name = ui.data_mut(|d| d.get_temp::<String>(id)).unwrap_or_else(|| k.clone());
+                let r = ui.add(egui::TextEdit::singleline(&mut name).id(id.with("edit")).desired_width(name_w));
+                if r.lost_focus() && !ui.input(|i| i.key_pressed(egui::Key::Escape)) {
+                    rename = Some((k.clone(), name.clone()));
+                }
+                if r.has_focus() {
+                    ui.data_mut(|d| d.insert_temp(id, name));
+                } else {
+                    ui.data_mut(|d| d.remove::<String>(id));
+                }
+                ui.add(egui::TextEdit::singleline(v).desired_width(value_w));
+                if icons::button(ui, Icon::Delete, tr("Remove")).clicked() {
+                    remove = Some(k.clone());
+                }
+            });
+        }
+    });
+    if let Some((old, new)) = rename {
+        rename_property(props, &old, new);
+    }
+    if let Some(k) = remove {
+        props.remove(&k);
+    }
+    if icons::text_button(ui, Icon::Plus, tr("Property")).clicked() {
+        let mut n = props.len() + 1;
+        while props.contains_key(&format!("Property{n}")) {
+            n += 1;
+        }
+        props.insert(format!("Property{n}"), String::new());
+    }
+}
+
 impl App {
     pub(super) fn closing_window(&mut self, ui: &mut egui::Ui) {
         let ctx = ui.ctx().clone();
@@ -75,6 +149,7 @@ impl App {
     pub(super) fn windows(&mut self, ctx: &egui::Context) {
         self.discard_window(ctx);
         self.reconnect_window(ctx);
+        self.server_project_window(ctx);
         self.delete_page_window(ctx);
         self.remove_layout_window(ctx);
         self.export_form_window(ctx);
@@ -288,26 +363,8 @@ impl App {
         let cover_place = openecraft_core::render::cover_logo_place(&self.session.prj, &openecraft_core::frame::of_page(&self.session.prj, cover_page));
         window.open(&mut open).default_width(520.0).min_width(360.0).show(ctx, |ui| {
             let info = &mut self.session.prj.info;
-            let line = |ui: &mut egui::Ui, text: &mut String| ui.add(egui::TextEdit::singleline(text).desired_width(f32::INFINITY));
             egui::Grid::new("prj").num_columns(2).show(ui, |ui| {
-                ui.label(tr("Project name"));
-                line(ui, &mut info.name);
-                ui.end_row();
-                ui.label(tr("Description"));
-                ui.add(egui::TextEdit::multiline(&mut info.description).desired_width(f32::INFINITY));
-                ui.end_row();
-                ui.label(tr("Company"));
-                line(ui, &mut info.company);
-                ui.end_row();
-                ui.label(tr("Created by"));
-                line(ui, &mut info.creator);
-                ui.end_row();
-                ui.label(tr("Date"));
-                line(ui, &mut info.date);
-                ui.end_row();
-                ui.label(tr("Revision"));
-                line(ui, &mut info.revision);
-                ui.end_row();
+                info_rows(ui, info);
                 ui.label(tr("Logo")).on_hover_text(tr("Shown on the cover page and by the image elements of title blocks that show the project logo"));
                 ui.horizontal(|ui| {
                     match &info.logo {
@@ -363,55 +420,10 @@ impl App {
                 ui.end_row();
             });
             ui.separator();
-            ui.label(RichText::new(tr("Project properties")).strong()).on_hover_text(tr("Shown in title blocks with {prop:Name}"));
-            let props = &mut self.session.prj.info.properties;
-            let mut remove = None;
-            let mut rename = None;
             // The list fills the height the user gives the dialog (at least a few rows)
             // and scrolls; the slack below keeps the window from growing with it.
             let height = (ui.available_height() - 2.0 * ui.spacing().interact_size.y).max(PROPERTY_LIST_HEIGHT);
-            egui::ScrollArea::vertical().id_salt("prjprops").max_height(height).auto_shrink([false, true]).show(ui, |ui| {
-                let gap = ui.spacing().item_spacing.x;
-                // A floating scroll bar is drawn over the rows: keep the remove buttons clear of it.
-                let scroll = &ui.spacing().scroll;
-                let bar = if scroll.floating { scroll.bar_width + scroll.bar_inner_margin } else { 0.0 };
-                let (name_w, value_w) = property_widths(ui.available_width() - bar, ui.spacing().interact_size.y, gap);
-                for (k, v) in props.iter_mut() {
-                    ui.horizontal(|ui| {
-                        // The name is applied when the field loses focus: renaming
-                        // re-sorts the rows, so a rename per key stroke would move the
-                        // text cursor to another property.
-                        let id = ui.make_persistent_id(("prjprop", k.as_str()));
-                        let mut name = ui.data_mut(|d| d.get_temp::<String>(id)).unwrap_or_else(|| k.clone());
-                        let r = ui.add(egui::TextEdit::singleline(&mut name).id(id.with("edit")).desired_width(name_w));
-                        if r.lost_focus() && !ui.input(|i| i.key_pressed(egui::Key::Escape)) {
-                            rename = Some((k.clone(), name.clone()));
-                        }
-                        if r.has_focus() {
-                            ui.data_mut(|d| d.insert_temp(id, name));
-                        } else {
-                            ui.data_mut(|d| d.remove::<String>(id));
-                        }
-                        ui.add(egui::TextEdit::singleline(v).desired_width(value_w));
-                        if icons::button(ui, Icon::Delete, tr("Remove")).clicked() {
-                            remove = Some(k.clone());
-                        }
-                    });
-                }
-            });
-            if let Some((old, new)) = rename {
-                rename_property(props, &old, new);
-            }
-            if let Some(k) = remove {
-                props.remove(&k);
-            }
-            if icons::text_button(ui, Icon::Plus, tr("Property")).clicked() {
-                let mut n = props.len() + 1;
-                while props.contains_key(&format!("Property{n}")) {
-                    n += 1;
-                }
-                props.insert(format!("Property{n}"), String::new());
-            }
+            property_list(ui, &mut self.session.prj.info.properties, height);
         });
         self.show_project = open;
         if choose_logo {

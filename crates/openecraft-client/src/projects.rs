@@ -1,10 +1,10 @@
 use crate::endpoint::with_content_type;
 use openecraft_i18n::tr;
 use openecraft_core::collab::{
-    access_path, project_path, user_path, CreateRequest, Failed, Failure, Grant, LockRequest, LoginRequest, OpenRequest, Policy, ProjectRight, SaveRequest,
-    Session, Snapshot, Status, Target, UserUpdate, API_PREFIX, DEFAULT_PORT,
+    access_path, copy_path, project_path, properties_path, user_path, CopyRequest, CreateRequest, Failed, Failure, Grant, LockRequest, LoginRequest, OpenRequest, Policy, ProjectRight,
+    PropertiesUpdate, SaveRequest, Session, Snapshot, Status, Target, UserUpdate, API_PREFIX, DEFAULT_PORT,
 };
-use openecraft_core::model::Project;
+use openecraft_core::model::{Project, ProjectInfo};
 use openecraft_parts::api;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
@@ -170,6 +170,21 @@ impl ProjectEndpoint {
     /// DELETE /api/v1/projects/{name}: deletes a project nobody has open.
     pub fn delete(&self, name: &str) -> ehttp::Request {
         self.request(ehttp::Request::delete(&api::url(&self.url, &project_path(name))))
+    }
+
+    /// GET /api/v1/projects/{name}/properties: the project info as saved.
+    pub fn properties(&self, name: &str) -> ehttp::Request {
+        self.get(&properties_path(name))
+    }
+
+    /// PUT /api/v1/projects/{name}/properties: `user` changes the project info loaded at `revision`.
+    pub fn save_properties(&self, name: &str, user: &str, revision: u64, info: &ProjectInfo) -> ehttp::Request {
+        self.json("PUT", &properties_path(name), &PropertiesUpdate { user: user.into(), revision, info: info.clone() })
+    }
+
+    /// POST /api/v1/projects/{name}/copy: a new project from the saved state, opened.
+    pub fn copy(&self, name: &str, req: &CopyRequest) -> ehttp::Request {
+        self.json("POST", &copy_path(name), req)
     }
 
     /// GET /api/v1/projects/{name}/access: the grants on the project.

@@ -433,6 +433,74 @@ fn a_viewer_sends_no_automatic_save() {
 }
 
 #[test]
+fn copying_asks_about_unsaved_changes_before_anything_is_created() {
+    let (mut app, _, _) = shared_app();
+    let ctx = egui::Context::default();
+    let before = app.session.prj.clone();
+    let mut draft = crate::remote::Draft::new("synthetic-project", true, &app.remote.projects);
+    assert_eq!(draft.name, "synthetic-project copy");
+    draft.take(openecraft_core::collab::ProjectProperties { revision: 3, rights: vec![ProjectRight::View], ..Default::default() });
+    app.remote.draft = Some(draft);
+    app.request_replace(&ctx, crate::app::Replace::Copy);
+    // The question waits: no request is sent, the draft and the open project stay.
+    assert!(matches!(app.discard.pending(), Some(crate::app::Replace::Copy)));
+    let d = app.remote.draft.as_ref().unwrap();
+    assert!(!d.busy && !d.creating);
+    assert!(!app.remote.busy());
+    app.discard.cancel();
+    assert!(app.remote.draft.is_some() && app.remote.shared.is_some());
+    assert_eq!(app.session.prj, before);
+    assert!(app.session.dirty());
+}
+
+#[test]
+fn the_dialog_shows_every_state_of_a_draft_and_keeps_it_until_asked() {
+    use openecraft_core::collab::ProjectProperties;
+    let (mut app, _, _) = shared_app();
+    let ctx = egui::Context::default();
+    let show = |app: &mut App| {
+        for _ in 0..2 {
+            ctx.run_ui(egui::RawInput { time: Some(0.), ..Default::default() }, |ui| app.server_project_window(ui.ctx())).drop_without_applying_deltas();
+        }
+    };
+    let loaded = |rights: &[ProjectRight], locked_by: Option<&str>| {
+        let mut p = ProjectProperties { name: "synthetic-project".into(), revision: 3, rights: rights.to_vec(), locked_by: locked_by.map(String::from), ..Default::default() };
+        p.info.properties.insert("Customer".into(), "Bolt Ltd".into());
+        p
+    };
+    // Still loading, then a failed load.
+    let mut draft = crate::remote::Draft::new("synthetic-project", true, &app.remote.projects);
+    draft.busy = true;
+    app.remote.draft = Some(draft);
+    show(&mut app);
+    app.remote.draft.as_mut().unwrap().refused(crate::remote::Refusal { changed: false, error: "connection failed".into() });
+    show(&mut app);
+    // The copy of the open project with unsaved changes; its source changed meanwhile.
+    app.remote.draft.as_mut().unwrap().take(loaded(&[ProjectRight::View], None));
+    show(&mut app);
+    app.remote.draft.as_mut().unwrap().refused(crate::remote::Refusal { changed: true, error: "changed".into() });
+    app.remote.draft.as_mut().unwrap().name = "synthetic-project".into();
+    show(&mut app);
+    assert!(app.remote.draft.as_ref().is_some_and(|d| d.copy && d.loaded));
+    // Properties of an existing project: read only, locked, free.
+    for (rights, locked_by) in [(&[ProjectRight::View][..], None), (&[ProjectRight::View, ProjectRight::EditProject][..], Some("anna")), (&[ProjectRight::View, ProjectRight::EditProject][..], None)] {
+        let mut draft = crate::remote::Draft::new("synthetic-project", false, &app.remote.projects);
+        draft.take(loaded(rights, locked_by));
+        app.remote.draft = Some(draft);
+        show(&mut app);
+        assert!(app.remote.draft.is_some());
+    }
+    // Who created the project and what it is a copy of, or nothing without a record.
+    assert_eq!(created_text(&ProjectMeta::default(), None), None);
+    let meta = ProjectMeta::created("anna", 1_792_713_600 + 3723);
+    assert_eq!(created_text(&meta, None).as_deref(), Some("anna, 2026-10-23 01:02 UTC"));
+    let from = CopySource { name: "Plant 1".into(), revision: 4 };
+    assert_eq!(created_text(&meta, Some(&from)), Some(tr_fmt!("{}, {} (copy of {}, revision {})", "anna", "2026-10-23 01:02 UTC", "Plant 1", 4)));
+    // Nothing was sent and the open project is as it was.
+    assert!(!app.remote.busy() && app.remote.shared.is_some() && app.discard.pending().is_none());
+}
+
+#[test]
 fn project_list_names_unknown_metadata() {
     let unknown = meta_texts(&ProjectMeta::default());
     assert!(unknown.iter().all(|t| *t == tr("Unknown")));
