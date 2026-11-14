@@ -63,7 +63,7 @@ fn walls_seen_from_the_outside_are_translucent_or_left_out() {
 }
 
 fn face(n: u8, side: Option<usize>, obj: Option<usize>, decal: bool) -> SceneFace {
-    SceneFace { pts: [[0.0; 3], [1.0, 0.0, 0.0], [1.0, 1.0, 0.0], [0.0, 1.0, 0.0]], n, normal: [0.0, 0.0, 1.0], color: Color32::RED, layer: 1, side, obj, item: None, outline: n == 4, decal }
+    SceneFace { pts: [[0.0; 3], [1.0, 0.0, 0.0], [1.0, 1.0, 0.0], [0.0, 1.0, 0.0]], n, normal: [0.0, 0.0, 1.0], color: Color32::RED, layer: 1, side, obj, item: None, outline: n == 4, decal, pv: None }
 }
 
 fn line(stripe: Option<Color32>) -> SceneLine {

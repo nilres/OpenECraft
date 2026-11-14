@@ -48,6 +48,7 @@ Catalog id	Ідентифікатор каталогу
 Category	Категорія
 Centred	По центру
 Certificates	Сертифікати
+Change	Зміна
 Channel	Канал
 Characteristic	Характеристика
 Check settings	Параметри перевірки
@@ -109,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Точка підключення пристрою
 Device description	Опис пристрою
 Device tag	Позначення пристрою
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Пристрій, до якого йде заземлювальний провідник конструкції (шина заземлення або вирівнювання потенціалів); порожньо: немає
 Device {}	Пристрій {}
 Devices	Пристрої
 Dimensions	Розміри
@@ -158,6 +160,7 @@ Function text	Текст функції
 Functional safety	Функціональна безпека
 Functions	Функції
 General	Загальні
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Генераторна з'єднувальна коробка (пристрій), до якої йдуть стринги, звідти головний кабель DC до кожного інвертора; порожньо: немає
 Gives up a subproject: its pages are unlocked again	Скасовує підпроєкт: його сторінки знову розблоковуються
 Gland plate	Фланцева панель
 Graphics	Графіка
@@ -206,6 +209,7 @@ Location (+)	Розташування (+)
 Logo	Логотип
 MTTFd (years)	MTTFd (роки)
 Machine	Машина
+Main earthing busbar (device) it is connected to; empty: none	Головна заземлювальна шина (пристрій), до якої він під'єднаний; порожньо: немає
 Main earthing terminal	Головна заземлювальна шина
 Main switch	Головний вимикач
 Manufacturer	Виробник
@@ -220,6 +224,8 @@ Minimum digits of the counter (leading zeros)	Мінімальна кількі�
 Missing parameter: {}	Відсутній параметр: {}
 Missing value for --{}	Відсутнє значення для --{}
 Model import failed: {}	Помилка імпорту моделі: {}
+Module	Модуль
+Modules	Модулі
 Modules in series	Модулі послідовно
 Modules side by side in a row	Модулі поруч у ряду
 Mounted	Встановлено
@@ -272,6 +278,7 @@ Not in the schematic	Немає на схемі
 Note	Примітка
 Notes	Примітки
 Number	Номер
+Number of down conductors (0: as many as the class needs for the walls)	Кількість струмовідводів (0: стільки, скільки потребує клас для стін)
 Number the sections 1, 2, 3 … on every level first	Спочатку пронумерувати розділи 1, 2, 3 … на кожному рівні
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Нумерує позначення пристроїв за структурою та літерним кодом у порядку схеми (сторінка, стовпець, згори донизу)
 Only rows containing this text	Лише рядки з цим текстом
@@ -368,6 +375,7 @@ Released pages cannot be moved	Затверджені сторінки не мо
 Remove	Вилучити
 Remove from favorites	Вилучити з вибраного
 Remove the boundary	Видалити межу
+Remove the lightning protection system	Видалити блискавкозахист
 Remove the reference point	Видалити опорну точку
 Report	Звіт
 Report blocks	Блоки звітів
@@ -379,6 +387,7 @@ Revision {}	Ревізія {}
 Rework	Доопрацювання
 Right	Праворуч
 Role	Роль
+Roof	Дах
 Rooms	Приміщення
 Round	Круглий
 Route	Обхід
@@ -511,6 +520,7 @@ not bonded	не підключено
 not connected	не підключено
 open	відкрито
 pcs	шт.
+portrait	книжкова
 rejected	відхилено
 right	праворуч
 spare	резерв

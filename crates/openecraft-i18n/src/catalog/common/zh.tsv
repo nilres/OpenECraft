@@ -46,6 +46,7 @@ Catalog id	目录 ID
 Category	类别
 Centred	居中
 Certificates	证书
+Change	更改
 Channel	通道
 Characteristic	特性
 Check settings	检查设置
@@ -107,6 +108,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	设备连接点
 Device description	设备描述
 Device tag	设备标识符
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	支架接地导体所连接的设备（接地母线或等电位连接母线）；空：无
 Device {}	设备 {}
 Devices	设备
 Dimensions	尺寸
@@ -156,6 +158,7 @@ Function text	功能文本
 Functional safety	功能安全
 Functions	功能
 General	常规
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	组串所连接的光伏汇流箱（设备），从那里有一根直流主电缆通往每台逆变器；空：无
 Gives up a subproject: its pages are unlocked again	放弃子项目：其页重新解锁
 Gland plate	法兰板
 Graphics	图形
@@ -204,6 +207,7 @@ Location (+)	位置 (+)
 Logo	标志
 MTTFd (years)	MTTFd（年）
 Machine	机器
+Main earthing busbar (device) it is connected to; empty: none	所连接的总接地母线（设备）；空：无
 Main earthing terminal	总接地端子
 Main switch	主开关
 Manufacturer	制造商
@@ -218,6 +222,8 @@ Minimum digits of the counter (leading zeros)	计数器最小位数（前导零�
 Missing parameter: {}	缺少参数：{}
 Missing value for --{}	缺少 --{} 的值
 Model import failed: {}	模型导入失败：{}
+Module	组件
+Modules	组件
 Modules in series	串联组件
 Modules side by side in a row	一行中并排的组件
 Mounted	已安装
@@ -270,6 +276,7 @@ Not in the schematic	不在原理图中
 Note	注释
 Notes	备注
 Number	编号
+Number of down conductors (0: as many as the class needs for the walls)	引下线数量（0：按类别对墙体所需的数量）
 Number the sections 1, 2, 3 … on every level first	先在每一级将分节编号为 1, 2, 3 …
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	按结构和标识字母以原理图顺序（页、列、从上到下）为设备标识符编号
 Only rows containing this text	仅包含此文本的行
@@ -366,6 +373,7 @@ Released pages cannot be moved	无法移动已发布页
 Remove	删除
 Remove from favorites	从收藏夹中删除
 Remove the boundary	删除边界
+Remove the lightning protection system	删除防雷系统
 Remove the reference point	删除参考点
 Report	报表
 Report blocks	报表块
@@ -377,6 +385,7 @@ Revision {}	修订 {}
 Rework	返工
 Right	右
 Role	角色
+Roof	顶板
 Rooms	房间
 Round	圆形
 Route	布线
@@ -508,6 +517,7 @@ not bonded	未联结
 not connected	未连接
 open	开放
 pcs	件
+portrait	纵向
 rejected	已拒绝
 right	向右
 spare	备用

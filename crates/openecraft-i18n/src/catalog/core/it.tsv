@@ -188,7 +188,6 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Temperature d
 Centre horizontally	Centra orizzontalmente
 Centre vertically	Centra verticalmente
 Centrifugal pump	Pompa centrifuga
-Change	Modifica
 Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Modificato nella cartella del progetto da un altro programma e anche nel progetto aperto: {}{}. Salvare il progetto con un altro nome, oppure riaprirlo e ripetere le modifiche
 Changed since mounted	Modificato dopo il montaggio
 Changed since wired	Modificato dopo la cablatura
@@ -294,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Barra di rame {}: {} mm sono più lunghi della lunghezza di magazzino di {} mm
 Copper bar {}: {} mm are too thick for {}	Barra di rame {}: {} mm sono troppo spessi per {}
 Copper bar {}: {} segments need {} bends	Barra di rame {}: {} tratti richiedono {} piegature
+Copper-bonded steel	Acciaio ramato
 Cores used	Anime utilizzate
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	L'angolo a pagina {} non corrisponde ai suoi conduttori: serve un conduttore in ciascuna delle sue due direzioni e nessun punto di collegamento lì
 Counter contact NC	Contatto NC del contatore
@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	Anagrafica articoli ERP e distinta b
 ERP number	Numero ERP
 ETIM class	Classe ETIM
 Earth electrode	Dispersore di terra
+Earth rod	Dispersore a picchetto
 East-west on a flat roof	Est-ovest su tetto piano
 Edit pages	Modifica pagine
 Edit project data	Modifica dati del progetto
@@ -551,6 +552,7 @@ Foot switch NO (NFPA)	Interruttore a pedale NA (NFPA)
 Force	Forza
 Fork terminal	Capocorda a forcella
 Format (placeholders)	Formato (segnaposto)
+Foundation earth electrode	Dispersore di fondazione
 Frame size	Grandezza costruttiva
 Free	Libero
 Free air (mm)	Aria libera (mm)
@@ -848,8 +850,6 @@ Minimum operating temperature	Temperatura di esercizio minima
 Mirror contacts	Contatti a specchio
 Mirrored	Specchiato
 Mission time	Durata di missione
-Module	Modulo
-Modules	Moduli
 Moisture	Umidità
 Moment of inertia	Momento d'inerzia
 Motion detector	Rilevatore di movimento
@@ -1345,13 +1345,13 @@ Revision table: description of the last revision (2: the one before …)	Tabella
 Revision table: index of the last revision (2: the one before …)	Tabella delle revisioni: indice dell'ultima revisione (2: quella precedente …)
 Right side	Lato destro
 Right side panel	Parete laterale destra
+Ring earth electrode	Dispersore ad anello
 Ring terminal	Capocorda ad occhiello
 Rivet nut	Inserto filettato
 RoHS compliant	Conforme RoHS
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
 Roller switch NC	Interruttore a rotella NC
 Roller switch NO	Interruttore a rotella NA
-Roof	Tetto
 Roof top	Copertura
 Room floor	Pavimento del locale
 Room {} stands outside the plot boundary	Il locale {} si trova fuori dal confine del lotto
@@ -1484,6 +1484,7 @@ Spare terminal	Morsetto di riserva
 Speed	Velocità
 Spiral	A chiocciola
 Stainless steel	Acciaio inox
+Stainless steel V4A	Acciaio inox V4A
 Standard	Norma
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Circuito marcia / arresto con un relè: bobina e contatti formano un dispositivo con riferimenti incrociati e immagine dei contatti, morsettiera, numeri dei fili, schema morsettiera ed elenco collegamenti.
 Start date	Data di inizio
@@ -1496,6 +1497,7 @@ Station name {} is used {} times	Il nome stazione {} è usato {} volte
 Station {} is not connected to bus {}	La stazione {} non è collegata al bus {}
 Station {}: bus system {} does not exist	Stazione {}: il sistema bus {} non esiste
 Steam	Vapore
+Steel, hot-dip galvanised	Acciaio zincato a caldo
 Stock	Giacenza
 Stop category	Categoria di arresto
 Storage temperature range	Campo di temperatura di immagazzinamento
@@ -1896,7 +1898,6 @@ page properties	proprietà pagina
 pigtail {} mm	pigtail {} mm
 pilot	pilotaggio
 pink	rosa
-portrait	verticale
 pressure	pressione
 red	rosso
 released	rilasciato
@@ -1980,6 +1981,7 @@ yellow	giallo
 {}: PV array {} covers a roof window	{}: il campo fotovoltaico {} copre una finestra da tetto
 {}: PV array {} has {} modules, its device {} has {}	{}: il campo fotovoltaico {} ha {} moduli, il suo dispositivo {} ne ha {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: il campo fotovoltaico {} è montato inclinato su un tetto a falde
+{}: PV array {} lies outside the protection of the air-termination system	{}: il campo FV {} è fuori dalla protezione del sistema di captazione
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: il campo fotovoltaico {} del tetto {} passa su un colmo, un displuvio o il bordo del tetto
 {}: PV array {} of roof {} lies outside the roof	{}: il campo fotovoltaico {} del tetto {} è fuori dal tetto
 {}: PV arrays {} and {} lie over each other	{}: i campi fotovoltaici {} e {} si sovrappongono
@@ -1989,6 +1991,7 @@ yellow	giallo
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: un conduttore da {} mm² è più sottile di quanto accetti il punto di connessione (almeno {} mm²)
 {}: accessory {} fits none of the device's parts	{}: l'accessorio {} non è compatibile con nessun articolo del dispositivo
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: l'attuatore {} è a {} mm dal pavimento, consigliati {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: l'asta di captazione {} è fuori dai tetti
 {}: auxiliary function(s) without main function	{}: funzioni ausiliarie senza funzione principale
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: potere di interruzione {} kA inferiore alla corrente di cortocircuito {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: canalina a {} mm riempita al {} % (limite {} %)
@@ -2009,6 +2012,8 @@ yellow	giallo
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: le forature di {} e {} su {} sono troppo vicine ({} mm di nervatura, almeno {} mm)
 {}: designation '{}' used more than once	{}: designazione '{}' usata più volte
 {}: device tag without device name	{}: sigla dispositivo senza nome dispositivo
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: il dispersore {} non ha muri da seguire: l'edificio non ha locali né tetti
+{}: earth rod {} stands inside the walls of the building	{}: il picchetto {} è all'interno dei muri dell'edificio
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: la corrente di guasto {} A in {} non provoca l'interruzione entro {} s (richiesti {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: i testi di funzione differiscono tra schema unifilare e schema
 {}: hole of {} is too close to the cutout of {} on the {}	{}: il foro di {} è troppo vicino alla foratura di {} su {}
@@ -2069,7 +2074,12 @@ yellow	giallo
 {}: terminal {} uses {} levels, its part {} has {}	{}: il morsetto {} usa {} livelli, il suo articolo {} ne ha {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: i morsetti {} sono a {} mm dal pavimento, sono richiesti almeno {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: il sistema di sbarre con {} barre unisce {} conduttori ({}): cortocircuito
+{}: the busbar {} of earth electrode {} does not exist	{}: la barra {} del dispersore {} non esiste
 {}: the device {} of PV array {} does not exist	{}: il dispositivo {} del campo fotovoltaico {} non esiste
+{}: the earthing busbar {} of PV array {} does not exist	{}: la barra di terra {} del campo FV {} non esiste
+{}: the generator junction box {} of PV array {} does not exist	{}: il quadro di campo {} del campo FV {} non esiste
+{}: the lightning protection has no earth electrode	{}: la protezione contro i fulmini non ha dispersore
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: la protezione contro i fulmini non ha muri da seguire: l'edificio non ha locali né tetti
 {}: the module {} of PV array {} has no electrical data	{}: il modulo {} del campo fotovoltaico {} non ha dati elettrici
 {}: the station has no port {}	{}: la stazione non ha la porta {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: le stringhe del campo fotovoltaico {} collegano {} moduli, il campo ne ha {}
@@ -2086,6 +2096,7 @@ yellow	giallo
 {}: {} carries {} A, the load {} needs {} A	{}: {} porta {} A, l'utenza {} richiede {} A
 {}: {} changed after it was mounted	{}: {} è stato modificato dopo il montaggio
 {}: {} collides with {}	{}: {} collide con {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} calate, la classe {} ne richiede {} attorno all'edificio
 {}: {} inputs used, the module has {}	{}: {} ingressi utilizzati, il modulo ne ha {}
 {}: {} is a fluid device, not an electrical one	{}: {} è un dispositivo fluidico, non elettrico
 {}: {} is closer than {} mm to a cable duct	{}: {} è a meno di {} mm da una canalina

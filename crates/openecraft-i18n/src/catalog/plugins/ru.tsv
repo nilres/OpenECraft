@@ -26,6 +26,8 @@ Adds a text to a page	Добавляет текст на лист
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Добавляет все строки текстов проекта в словарь, при необходимости удаляя больше не используемые записи
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Добавляет принадлежность к концу кабеля: кабельный ввод, кабельный ввод ЭМС, разъём, разгрузку от натяжения, зажим экрана, защитный рукав, наконечник-гильзу, маркер
 Adds an accessory to a device; it must fit one of the device's parts	Добавляет принадлежность к устройству; она должна подходить к одному из изделий устройства
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Добавляет молниеприёмный стержень на крыши здания, соединённый с его молниеприёмными проводниками; здание получает молниезащиту класса III, если её нет
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Добавляет заземлитель к зданию: фундаментный заземлитель в фундаментной плите нижнего уровня вдоль наружных стен с ячейками, кольцевой заземлитель в грунте вокруг стен или вертикальный заземлитель; его материал попадает в спецификацию
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Добавляет корпус: системы в одном из её размеров (или в пользовательском размере) либо из изделия корпуса
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Добавляет проводник уравнивания потенциалов между двумя точками подключения (главная заземляющая шина, корпуса, проводящие контуры, металлические кабельные конструкции)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Добавляет или изменяет схему маркировки проекта, удаляет её или выбирает схему для экспорта маркировки
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Добавляет устройства шаблона в сегмент
 Adds the outline of a machine, building or area to the plant layout	Добавляет контур машины, здания или участка на план установки
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Добавляет, заменяет или удаляет профиль: коннектор с именами столбцов, используемыми другой системой
+Air-termination rod: its name	Молниеприёмный стержень: его имя
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Выравнивает элементы, равномерно распределяет их, выстраивает устройства на рейке или копирует элементы массивом
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Выравнивает символы, тексты и графику по общему краю или центру; концы подключённых проводов следуют за ними
 Allow renaming onto an identifier in use: both become one	Разрешить переименование в используемый идентификатор: оба станут одним
@@ -70,6 +73,7 @@ Between page and column (default .)	Между листом и столбцом 
 Bonding point	Точка подключения уравнивания потенциалов
 Border around the text	Граница вокруг текста
 Both classes are needed	Требуются оба класса
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Здания установки с уровнями, шахтами, лестницами и крышами с фотоэлектрическими полями, заземлителями и молниезащитой, помещениями на уровнях и связями между зданиями
 Bus system name	Имя шинной системы
 Bus system name, e.g. PN/IE_1	Имя шинной системы, например PN/IE_1
 Busbar machine program (CSV)	Программа станка для обработки шин (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Изменяет дверь или окно помещения: как открывается (петли слева или справа, внутрь или наружу, или раздвижная), положение вдоль стены, размер и подоконник
 Changes a placed symbol; when it moves, connected wire ends follow	Изменяет размещённый символ; при его перемещении подключённые концы проводов следуют за ним
 Changes a text (only the given properties)	Изменяет текст (только указанные свойства)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Изменяет заземлитель здания: место, длину, расстояние от стен, глубину, ячейку, изделие или шину; переименовывает или удаляет его
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Переводит устройства с изделиями, снимаемыми или снятыми с производства, на изделия-преемники (преемники должны быть изделиями проекта)
 Changes name, description or structure of a page	Изменяет имя, описание или структуру листа
 Changes name, description, function, location or parent of a segment	Изменяет имя, описание, функциональное назначение, место установки или родительский сегмент сегмента
@@ -100,6 +105,7 @@ Check {} failed: {}	Сбой проверки {}: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Проверяет компоновку шкафа: коллизии, зазоры (монтажные, вентиляционные, ЭМС), зону обслуживания, высоты над полом, классы коллизий, температуры и технологичность
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Выбирает оконцевание проводов: зачищенный конец, наконечник-гильза или опрессованный наконечник; в точке подключения, во всех точках подключения устройства или только для одного провода
 Chosen value	Выбранное значение
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Класс молниезащиты, 1 … 4 (I … IV; по умолчанию III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Зазоры, зона обслуживания, высоты, классы коллизий, тепловое моделирование и технологичность компоновки шкафа
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Климат корпусов (IEC/TR 60890): потери мощности, внутренняя температура, требуемый вентилятор или холодильный агрегат и обогрев; при необходимости изменяет настройки одного корпуса
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Класс коллизий: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, собственный класс или * для любого
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Устройства, провода, потенциалы, кабели, клеммные колодки, ПЛК, шкаф, гидропневматика, электрические расчёты, структура и переводы
 Diameter in mm	Диаметр в мм
 Diameter of a hole at both ends (0: none)	Диаметр отверстия на обоих концах (0: нет)
+Diameter of the conductors, mm (default 8)	Диаметр проводников, мм (по умолчанию 8)
+Diameter of the rod, mm (default 16)	Диаметр стержня, мм (по умолчанию 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Направление ножки: left, right, up или down (по умолчанию: по проводам в этой точке)
 Distance between power and signal or fluid in mm	Расстояние между силовыми и сигнальными линиями или гидропневматикой в мм
 Distance from devices, rails and busbars in mm	Расстояние от устройств, реек и шин в мм
@@ -222,6 +230,10 @@ Draws a wire through two or more points	Рисует провод через д�
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Рисует провода на листах схем и при экспорте в PDF / SVG их цветом или чёрным
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Проводит провода между свободными точками подключения символов, расположенными напротив друг друга, и к свободным плечам Т-образных узлов и углов
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Классы ЭМС кабелей (выход привода, аналоговые, силовые, сигнальные, экран) и проблемы ЭМС
+Earth electrode: its name	Заземлитель: его имя
+Earth rod: its length, mm (default 3000)	Вертикальный заземлитель: его длина, мм (по умолчанию 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Вертикальный заземлитель: x его места на плане здания, мм
+Earth rod: z of its place in the floor plan of the building, mm	Вертикальный заземлитель: z его места на плане здания, мм
 Edge length of the routing grid in mm	Длина ребра сетки прокладки в мм
 Electrical device tags separated by commas or blanks (empty = remove the links)	Обозначения электрических устройств через запятую или пробел (пусто = удалить связи)
 Electrical engineering	Электротехника
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	Первый порт в виде с
 First row with the column names	Первая строка с именами столбцов
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Формат имени устройства: {letter}, {n} (счётчик), {page}, {column}, {row}; по умолчанию {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Формат для схемы format: {n} (счётчик), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Фундаментный заземлитель: насколько внутри наружных стен (по умолчанию 100), кольцевой: насколько снаружи (по умолчанию 1000), мм
+Foundation earth electrode: its largest mesh, mm (default 20000)	Фундаментный заземлитель: его наибольшая ячейка, мм (по умолчанию 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Исходная рамка для новой рамки (по умолчанию: A3 landscape)
 Free space in front of every device on the plate	Свободное пространство перед каждым устройством на панели
 Freezes routes for production (kept by the recalculation while possible) or releases them	Фиксирует трассы для производства (сохраняются при пересчёте, пока это возможно) или освобождает их
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Создаёт многолинейную схему (силовые символы, проводники, катушки контакторов) для однолинейных символов листа на новом листе после него
 Generates the program of the busbar machine: cuts, punched holes and bends	Создаёт программу станка для обработки шин: резы, пробитые отверстия и гибы
 Give a device tag or a part number	Укажите обозначение устройства или номер изделия
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Даёт зданию молниезащиту или изменяет её: класс, число токоотводов и изделие проводников; молниеприёмные проводники на коньках и рёбрах (сетка на плоских крышах), токоотводы с контрольными соединениями к заземлителям; или удаляет её
+Greatest distance of the conductor holders, mm (default 1000)	Наибольшее расстояние между держателями проводника, мм (по умолчанию 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Группирует элементы в сборку, которая выделяется и перемещается целиком; без имени элементы выходят из своих сборок
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Передаёт программы корпуса в производство как задание: манифест и программы всех его поверхностей и медных шин
 Has a divider between power and signal cables	Есть разделительная перегородка между силовыми и сигнальными кабелями
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	Высота над монт�
 Height in mm	Высота в мм
 Height in mm without plinth; negative: unknown (wall mounted)	Высота в мм без цоколя; отрицательная: неизвестна (настенный монтаж)
 Height in mm; the logo keeps its aspect ratio inside	Высота в мм; логотип сохраняет внутри свои пропорции
+Height of the rod above the covering, mm (default 1500)	Высота стержня над кровлей, мм (по умолчанию 1500)
+Height of the test joints above the ground, mm (default 1000)	Высота контрольных соединений над землёй, мм (по умолчанию 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Аспект вышестоящего продукта (-) листа; устройства на листе перемещаются вместе с ним
 Highest actuator on the door above the floor (0: not checked)	Самый высокий орган управления на двери над полом (0: не проверяется)
 Highest air temperature at devices without data (0: not checked)	Максимальная температура воздуха у устройств без данных (0: не проверяется)
@@ -427,17 +445,21 @@ Manufacturing package (CNC programs, JSON)	Производственный па
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Маркеры через запятую: device, terminal, wire, cable (пусто: все)
 Marks a panel item as mounted or as a problem, or as open again	Отмечает элемент компоновки как смонтированный, как проблемный или снова как открытый
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Отмечает проложенный провод как смонтированный, как проблему или снова как открытый; провод задаётся двумя его концами
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Материал: galvanised_steel, stainless_steel, copper, copper_bonded_steel или aluminium
 Maximum fill of a carrier in percent	Максимальное заполнение кабельной конструкции в процентах
 Maximum operating pressure in bar	Максимальное рабочее давление в bar
 Measuring range or set point	Диапазон измерения или уставка
 Message code, e.g. wires.3f9a1c	Код сообщения, например wires.3f9a1c
 Milling feed, mm/min	Подача при фрезеровании, мм/мин
 Mirror the symbol	Отразить символ
+Moves an air-termination rod, changes its height, renames or removes it	Перемещает молниеприёмный стержень, изменяет его высоту, переименовывает или удаляет его
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Перемещает один конец провода: он отсоединяется от того, к чему подключён, и подключается к тому, чего касается; провод остаётся прямоугольным
 Moves symbols, wires and texts; connected wire ends follow	Перемещает символы, провода и тексты; подключённые концы проводов следуют за ними
 Moves the page before this page of its section (or of the section given)	Перемещает лист перед этим листом его раздела (или указанного раздела)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Перемещает раздел перед этим разделом его родительского раздела (или указанного); номера идут по порядку
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Компоновка плаза жгута: ответвления от общего узла к разъёмам с длиной, направлением, диаметром пучка и контактами, а также масштаб чертежа
+Name (default E1, E2, …)	Имя (по умолчанию E1, E2, …)
+Name (default F1, F2, …)	Имя (по умолчанию F1, F2, …)
 Name of the assembly	Имя сборки
 Name of the bar, e.g. L1 -Q1	Имя шины, например L1 -Q1
 Name of the check	Имя проверки
@@ -461,6 +483,7 @@ New page name	Новое имя листа
 New parent segment (empty: top level)	Новый родительский сегмент (пусто: верхний уровень)
 New value	Новое значение
 No PCT loop {}	Нет контура КИПиА {}
+No air-termination rod {} on building {}	Нет молниеприёмного стержня {} на здании {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Встроенной проверки с именем {} нет: настройка относится к проверке плагина с этим именем (list_checks)
 No bus system {}	Нет шинной системы {}
 No connection point {} on this page	На этом листе нет точки подключения {}
@@ -468,6 +491,7 @@ No connection symbol with id {}	Нет символа соединения с id
 No copper bar {}	Нет медной шины {}
 No device description {}	Нет описания устройства {}
 No device group {}	Нет группы устройств {}
+No earth electrode {} in building {}	Нет заземлителя {} в здании {}
 No enclosure named {}	Нет корпуса с именем {}
 No entry for {} and {}	Нет записи для {} и {}
 No hose {}	Нет шланга {}
@@ -570,7 +594,12 @@ Part number of the downstream device	Номер изделия нижестоя�
 Part number of the hose / tube / pipe	Номер изделия шланга / трубки / трубы
 Part number of the upstream device	Номер изделия вышестоящего устройства
 Part number, e.g. GEN.LMP-GN-24	Номер изделия, например GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Изделие его полосы, проволоки или стержня (пусто: типовое)
+Part of the conductor holders on the roof (empty: generic)	Изделие держателей проводника на крыше (пусто: типовое)
+Part of the conductor holders on the walls (empty: generic)	Изделие держателей проводника на стенах (пусто: типовое)
+Part of the conductors (round wire; empty: generic)	Изделие проводников (круглая проволока; пусто: типовое)
 Part of the key or name	Часть ключа или имени
+Part of the rod (empty: the one of its material and diameter)	Изделие стержня (пусто: по его материалу и диаметру)
 Part {} has no function with a symbol	У изделия {} нет функции с символом
 Parts phased out or discontinued	Изделия, снимаемые или снятые с производства
 Pass ids or pages	Укажите идентификаторы или листы
@@ -651,6 +680,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	Относ�
 Release instead of freeze	Освободить вместо фиксации
 Released pages keep their names: {}	Выпущенные листы сохраняют свои имена: {}
 Remote I/O: station of the controller	Распределённый ввод-вывод: станция контроллера
+Remove the air-termination rod	Удалить молниеприёмный стержень
+Remove the earth electrode	Удалить заземлитель
 Remove the entry of upstream and downstream	Удалить запись для upstream и downstream
 Remove the profile	Удалить профиль
 Remove the scheme from the project	Удалить схему из проекта
@@ -682,6 +713,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Остаток (мм)
 Reuse failed searches during one routing calculation	Повторно использовать неудачные поиски в рамках одного расчёта трасс
 Right side bayed (no side panel)	Правая сторона пристыкована (без боковой стенки)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Кольцевой: глубина под землёй, вертикальный: глубина верхнего конца, мм (по умолчанию 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Вертикальный заземлитель: его диаметр (по умолчанию 20), фундаментный и кольцевой: круглого провода, 0 для полосы, мм
 Room {} exists already	Помещение {} уже существует
 Rotation in degrees clockwise: 0, 90, 180 or 270	Поворот в градусах по часовой стрелке: 0, 90, 180 или 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Поворот в градусах против часовой стрелки (при 90 текст читается снизу вверх)
@@ -871,6 +904,7 @@ Unknown address scheme: {}	Неизвестная схема адресации:
 Unknown alignment: {}	Неизвестное выравнивание: {}
 Unknown anchor: {}	Неизвестная привязка: {}
 Unknown aspect: {}	Неизвестный аспект: {}
+Unknown base: {}	Неизвестное основание: {}
 Unknown bonding kind: {}	Неизвестный вид уравнивания потенциалов: {}
 Unknown bonding point: {}	Неизвестная точка подключения уравнивания потенциалов: {}
 Unknown bus system: {}	Неизвестная шинная система: {}
@@ -879,6 +913,7 @@ Unknown check: {}	Неизвестная проверка: {}
 Unknown class: {}	Неизвестный класс: {}
 Unknown data type: {}	Неизвестный тип данных: {}
 Unknown direction {}: left, right, up or down	Неизвестное направление {}: left, right, up или down
+Unknown earth electrode: {}	Неизвестный заземлитель: {}
 Unknown earthing system: {}	Неизвестный тип системы заземления: {}
 Unknown face {}	Неизвестная поверхность {}
 Unknown fastening: {}	Неизвестное крепление: {}
@@ -970,9 +1005,11 @@ device (default), position, cross_section or number	device (по умолчан�
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages или parts
 error, warning, info, off, or default to take the change back	error, warning, info, off или default, чтобы отменить изменение
 false takes the acceptance back (default true)	false отменяет принятие (по умолчанию true)
+foundation, ring or rod	foundation, ring или rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted или middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) или product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker или other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (держатель стержня на крыше) или concrete_base (на плоских крышах)
 hose, tube or pipe	hose, tube или pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (машины, фазы BK) или iec60445 (фазы BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (по умолчанию), power, control, signal или fluid
@@ -999,6 +1036,8 @@ too long	слишком длинная
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (по умолчанию), ladder, trunking, conduit, drag_chain, buried или free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit или other
 wired, problem or open	wired, problem или open
+x of the foot of the rod in the floor plan of the building, mm	x основания стержня на плане здания, мм
+z of the foot of the rod in the floor plan of the building, mm	z основания стержня на плане здания, мм
 {} and {} are both ends of one function: the wire would short-circuit it	{} и {} — оба конца одной функции: провод замкнул бы её накоротко
 {} and {} are needed together	{} и {} требуются вместе
 {} cannot be bayed to itself	{} нельзя пристыковать к самому себе

@@ -188,7 +188,6 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Темпер�
 Centre horizontally	Центрувати по горизонталі
 Centre vertically	Центрувати по вертикалі
 Centrifugal pump	Відцентровий насос
-Change	Зміна
 Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Змінено в папці проєкту іншою програмою, а також у відкритому проєкті: {}{}. Збережіть проєкт під іншим ім'ям або відкрийте його знову й повторіть зміни
 Changed since mounted	Змінено після встановлення
 Changed since wired	Змінено після монтажу
@@ -294,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Мідна шина {}: {} мм довше за складську довжину {} мм
 Copper bar {}: {} mm are too thick for {}	Мідна шина {}: {} мм – надто товста для {}
 Copper bar {}: {} segments need {} bends	Мідна шина {}: для {} ділянок потрібно {} згинів
+Copper-bonded steel	Обміднена сталь
 Cores used	Зайняті жили
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Кут на сторінці {} не відповідає своїм проводам: потрібен один провід у кожному з його двох напрямків і жодної точки підключення там
 Counter contact NC	Контакт лічильника, розмикальний
@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	Довідник номенклат�
 ERP number	Номер ERP
 ETIM class	Клас ETIM
 Earth electrode	Заземлювач
+Earth rod	Вертикальний заземлювач
 East-west on a flat roof	Схід-захід на плоскому даху
 Edit pages	Редагувати сторінки
 Edit project data	Редагувати дані проєкту
@@ -551,6 +552,7 @@ Foot switch NO (NFPA)	Педальний вимикач, замикальний 
 Force	Сила
 Fork terminal	Вилковий наконечник
 Format (placeholders)	Формат (заповнювачі)
+Foundation earth electrode	Фундаментний заземлювач
 Frame size	Типорозмір
 Free	Вільно
 Free air (mm)	Вільне прокладання (мм)
@@ -848,8 +850,6 @@ Minimum operating temperature	Мінімальна робоча температ
 Mirror contacts	Дзеркальні контакти
 Mirrored	Віддзеркалено
 Mission time	Тривалість експлуатації
-Module	Модуль
-Modules	Модулі
 Moisture	Вологість
 Moment of inertia	Момент інерції
 Motion detector	Датчик руху
@@ -1345,13 +1345,13 @@ Revision table: description of the last revision (2: the one before …)	Таб�
 Revision table: index of the last revision (2: the one before …)	Таблиця змін: індекс останньої зміни (2: попередньої …)
 Right side	Права сторона
 Right side panel	Права бічна стінка
+Ring earth electrode	Кільцевий заземлювач
 Ring terminal	Кільцевий наконечник
 Rivet nut	Заклепкова гайка
 RoHS compliant	Відповідає RoHS
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
 Roller switch NC	Роликовий вимикач, розмикальний
 Roller switch NO	Роликовий вимикач, замикальний
-Roof	Дах
 Roof top	Покрівля
 Room floor	Підлога приміщення
 Room {} stands outside the plot boundary	Приміщення {} розташоване за межею ділянки
@@ -1484,6 +1484,7 @@ Spare terminal	Резервна клема
 Speed	Швидкість обертання
 Spiral	Гвинтові
 Stainless steel	Нержавна сталь
+Stainless steel V4A	Нержавна сталь V4A
 Standard	Стандарт
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Схема пуску / зупинки з реле: котушка та контакти утворюють один пристрій із перехресними посиланнями та дзеркалом контактів, клемник, номери проводів, схема клемника та перелік з'єднань.
 Start date	Дата початку
@@ -1496,6 +1497,7 @@ Station name {} is used {} times	Назву станції {} використа
 Station {} is not connected to bus {}	Станцію {} не підключено до шини {}
 Station {}: bus system {} does not exist	Станція {}: шинна система {} не існує
 Steam	Пара
+Steel, hot-dip galvanised	Сталь гарячеоцинкована
 Stock	Запас
 Stop category	Категорія зупинки
 Storage temperature range	Діапазон температури зберігання
@@ -1896,7 +1898,6 @@ page properties	властивості сторінки
 pigtail {} mm	косичка {} мм
 pilot	керування
 pink	рожевий
-portrait	книжкова
 pressure	тиск
 red	червоний
 released	затверджено
@@ -1980,6 +1981,7 @@ yellow	жовтий
 {}: PV array {} covers a roof window	{}: фотоелектричне поле {} закриває мансардне вікно
 {}: PV array {} has {} modules, its device {} has {}	{}: фотоелектричне поле {} має {} модулів, його пристрій {} — {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: фотоелектричне поле {} змонтоване з нахилом на скатному даху
+{}: PV array {} lies outside the protection of the air-termination system	{}: фотоелектричне поле {} поза зоною захисту блискавкоприймача
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: фотоелектричне поле {} даху {} лежить поперек гребеня, ребра або краю даху
 {}: PV array {} of roof {} lies outside the roof	{}: фотоелектричне поле {} даху {} лежить поза дахом
 {}: PV arrays {} and {} lie over each other	{}: фотоелектричні поля {} і {} перекриваються
@@ -1989,6 +1991,7 @@ yellow	жовтий
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: провід {} мм² тонший, ніж приймає точка підключення (не менше {} мм²)
 {}: accessory {} fits none of the device's parts	{}: приладдя {} не підходить до жодного виробу пристрою
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: орган керування {} розташовано на {} мм над підлогою, рекомендовано {} … {} мм
+{}: air-termination rod {} stands off the roofs	{}: блискавкоприймальний стрижень {} стоїть поза дахами
 {}: auxiliary function(s) without main function	{}: допоміжні функції без головної функції
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: відключна здатність {} kA менша за струм короткого замикання {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: кабельний канал на {} мм заповнено на {} % (межа {} %)
@@ -2009,6 +2012,8 @@ yellow	жовтий
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: вирізи {} і {} на {} розташовано надто близько (перемичка {} мм, щонайменше {} мм)
 {}: designation '{}' used more than once	{}: позначення '{}' використано кілька разів
 {}: device tag without device name	{}: позначення пристрою без назви пристрою
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: заземлювач {} не має стін, уздовж яких проходить: у будівлі немає приміщень і дахів
+{}: earth rod {} stands inside the walls of the building	{}: вертикальний заземлювач {} стоїть усередині стін будівлі
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: струм замикання {} A на {} не забезпечує вимкнення протягом {} s (потрібно {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: тексти функцій в однолінійній схемі та на схемі відрізняються
 {}: hole of {} is too close to the cutout of {} on the {}	{}: отвір {} розташовано надто близько до вирізу {} на {}
@@ -2069,7 +2074,12 @@ yellow	жовтий
 {}: terminal {} uses {} levels, its part {} has {}	{}: клема {} використовує ярусів: {}, її виріб {} має {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: клеми {} розташовано на {} мм над підлогою, потрібно щонайменше {} мм
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система збірних шин з {} шинами з'єднує {} провідники ({}): коротке замикання
+{}: the busbar {} of earth electrode {} does not exist	{}: шини {} заземлювача {} не існує
 {}: the device {} of PV array {} does not exist	{}: пристрій {} фотоелектричного поля {} не існує
+{}: the earthing busbar {} of PV array {} does not exist	{}: шини заземлення {} фотоелектричного поля {} не існує
+{}: the generator junction box {} of PV array {} does not exist	{}: генераторної з'єднувальної коробки {} фотоелектричного поля {} не існує
+{}: the lightning protection has no earth electrode	{}: у блискавкозахисту немає заземлювача
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: блискавкозахист не має стін, уздовж яких проходить: у будівлі немає приміщень і дахів
 {}: the module {} of PV array {} has no electrical data	{}: модуль {} фотоелектричного поля {} не має електричних даних
 {}: the station has no port {}	{}: станція не має порту {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: ланцюжки фотоелектричного поля {} з'єднують {} модулів, у полі {}
@@ -2086,6 +2096,7 @@ yellow	жовтий
 {}: {} carries {} A, the load {} needs {} A	{}: {} витримує {} A, навантаження {} потребує {} A
 {}: {} changed after it was mounted	{}: {} змінено після встановлення
 {}: {} collides with {}	{}: {} перетинається з {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} струмовідводів, класу {} потрібно {} навколо будівлі
 {}: {} inputs used, the module has {}	{}: використано входів – {}, модуль має {}
 {}: {} is a fluid device, not an electrical one	{}: {} – гідропневматичний пристрій, а не електричний
 {}: {} is closer than {} mm to a cable duct	{}: {} розташовано ближче ніж {} мм до кабельного каналу

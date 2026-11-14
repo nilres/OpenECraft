@@ -26,6 +26,8 @@ Adds a text to a page	Voegt een tekst toe aan een pagina
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Voegt alle regels van de projectteksten toe aan het woordenboek en verwijdert optioneel items die niet meer worden gebruikt
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Voegt toebehoren toe aan een kabeleinde: wartel, EMC-wartel, connector, trekontlasting, afschermklem, beschermslang, adereindhuls, markering
 Adds an accessory to a device; it must fit one of the device's parts	Voegt toebehoren toe aan een apparaat; het moet op een van de artikelen van het apparaat passen
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Voegt een opvangstaaf op de daken van een gebouw toe, verbonden met de opvanggeleiders; het gebouw krijgt een bliksembeveiliging van klasse III als het er geen heeft
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Voegt een aardelektrode aan een gebouw toe: een funderingsaarde in de vloerplaat van het laagste niveau langs de buitenmuren in mazen, een ringaarde in de grond rond de muren of een aardpen; het materiaal gaat naar de stuklijst
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Voegt een behuizing toe: van een systeem in een van de formaten (of een aangepast formaat), of uit een behuizingsartikel
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Voegt een vereffeningsleider toe tussen twee aansluitpunten (hoofdaardrail, behuizingen, geleidende contouren, metalen kabeldragers)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Voegt een markeringsschema aan het project toe of wijzigt het, verwijdert het, of selecteert het schema dat voor de markeringsexport wordt gebruikt
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Voegt de apparaten van een sjabloon toe aan een segment
 Adds the outline of a machine, building or area to the plant layout	Voegt de contour van een machine, gebouw of zone toe aan de installatielay-out
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Voegt een profiel toe, vervangt of verwijdert het: een connector met de kolomnamen die het andere systeem gebruikt
+Air-termination rod: its name	Opvangstaaf: de naam
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Lijnt elementen uit, verdeelt ze gelijkmatig, plaatst apparaten op een rij op een rail of kopieert elementen in een patroon
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Lijnt symbolen, teksten en grafiek uit op een gemeenschappelijke rand of middenlijn; aangesloten draadeinden volgen mee
 Allow renaming onto an identifier in use: both become one	Hernoemen naar een gebruikte aanduiding toestaan: beide worden één
@@ -70,6 +73,7 @@ Between page and column (default .)	Tussen pagina en kolom (standaard .)
 Bonding point	Aansluitpunt van de potentiaalvereffening
 Border around the text	Rand rond de tekst
 Both classes are needed	Beide klassen zijn vereist
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Gebouwen van de installatie met niveaus, schachten, trappen en daken met PV-velden, aardelektroden en bliksembeveiliging, ruimten op de niveaus en verbindingen tussen gebouwen
 Bus system name	Naam van het bussysteem
 Bus system name, e.g. PN/IE_1	Naam van het bussysteem, bijv. PN/IE_1
 Busbar machine program (CSV)	Programma van de railbewerkingsmachine (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Wijzigt een deur of raam van een ruimte: hoe het opent (scharnieren links of rechts, naar binnen of buiten, of schuivend), de plaats langs de wand, de maat en de borstwering
 Changes a placed symbol; when it moves, connected wire ends follow	Wijzigt een geplaatst symbool; als het wordt verplaatst, volgen aangesloten draadeinden
 Changes a text (only the given properties)	Wijzigt een tekst (alleen de opgegeven eigenschappen)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Wijzigt een aardelektrode van een gebouw: plaats, lengte, afstand tot de muren, diepte, maas, artikel of rail; hernoemt of verwijdert hem
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Zet apparaten met uitlopende of niet meer leverbare artikelen om naar de opvolgerartikelen (de opvolgers moeten projectartikelen zijn)
 Changes name, description or structure of a page	Wijzigt naam, beschrijving of structuur van een pagina
 Changes name, description, function, location or parent of a segment	Wijzigt naam, beschrijving, functie, plaats of bovenliggend segment van een segment
@@ -100,6 +105,7 @@ Check {} failed: {}	Controle {} mislukt: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Controleert de kastlay-out: botsingen, afstanden (montage, ventilatie, EMC), serviceruimte, hoogten boven de vloer, botsingsklassen, temperaturen en maakbaarheid
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Kiest hoe draadeinden worden afgewerkt: blank, met adereindhuls of gekrimpte kabelschoen; op een aansluitpunt, op alle aansluitpunten van een apparaat of alleen voor één draad
 Chosen value	Gekozen waarde
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Klasse van de bliksembeveiliging, 1 … 4 (I … IV; standaard III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Afstanden, serviceruimte, hoogten, botsingsklassen, thermische simulatie en maakbaarheid van de kastlay-out
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Klimaatbeheersing van de behuizingen (IEC/TR 60890): vermogensverlies, binnentemperatuur, benodigde ventilator of koelaggregaat en verwarming; wijzigt desgewenst de instellingen van een behuizing
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Botsingsklasse: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, een eigen klasse of * voor elke
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Apparaten, draden, potentialen, kabels, klemmenstroken, PLC, kast, fluïdtechniek, elektrische berekeningen, structuur en vertalingen
 Diameter in mm	Diameter in mm
 Diameter of a hole at both ends (0: none)	Diameter van een boring aan beide einden (0: geen)
+Diameter of the conductors, mm (default 8)	Diameter van de geleiders, mm (standaard 8)
+Diameter of the rod, mm (default 16)	Diameter van de staaf, mm (standaard 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Richting van de steel: left, right, up of down (standaard: volgens de draden daar)
 Distance between power and signal or fluid in mm	Afstand tussen vermogen en signaal of fluïdum in mm
 Distance from devices, rails and busbars in mm	Afstand tot apparaten, rails en stroomrails in mm
@@ -222,6 +230,10 @@ Draws a wire through two or more points	Tekent een draad door twee of meer punte
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Tekent de draden in hun kleur op de schemapagina's en in de PDF- / SVG-export, of in zwart
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Tekent draden tussen vrije aansluitpunten van symbolen die tegenover elkaar liggen en naar de vrije armen van T-stukken en hoeken
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	EMC-klassen van de kabels (omvormeruitgang, analoog, vermogen, signaal, afscherming) en de EMC-problemen
+Earth electrode: its name	Aardelektrode: de naam
+Earth rod: its length, mm (default 3000)	Aardpen: de lengte, mm (standaard 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Aardpen: x van de plaats in de plattegrond van het gebouw, mm
+Earth rod: z of its place in the floor plan of the building, mm	Aardpen: z van de plaats in de plattegrond van het gebouw, mm
 Edge length of the routing grid in mm	Randlengte van het routeringsraster in mm
 Electrical device tags separated by commas or blanks (empty = remove the links)	Aanduidingen van elektrische apparaten, gescheiden door komma's of spaties (leeg = koppelingen verwijderen)
 Electrical engineering	Elektrotechniek
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	Eerste poort als station:poort, bijv
 First row with the column names	Eerste rij met de kolomnamen
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Indeling van de apparaatnaam: {letter}, {n} (teller), {page}, {column}, {row}; standaard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Indeling van het schema format: {n} (teller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Funderingsaarde: hoe ver binnen de buitenmuren (standaard 100), ring: hoe ver erbuiten (standaard 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Funderingsaarde: de grootste maas, mm (standaard 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Kader om mee te beginnen als het kader nieuw is (standaard: A3 landscape)
 Free space in front of every device on the plate	Vrije ruimte voor elk apparaat op de plaat
 Freezes routes for production (kept by the recalculation while possible) or releases them	Bevriest routes voor de productie (door de herberekening behouden zolang mogelijk) of geeft ze vrij
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Genereert het meerlijnige schema (vermogenssymbolen, geleiders, magneetschakelaarspoelen) voor de eenlijnige symbolen van een pagina op een nieuwe pagina daarna
 Generates the program of the busbar machine: cuts, punched holes and bends	Genereert het programma van de railbewerkingsmachine: snedes, geponste gaten en buigingen
 Give a device tag or a part number	Geef een apparaataanduiding of een artikelnummer op
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Geeft een gebouw een bliksembeveiliging of wijzigt die: de klasse, het aantal afleidingen en het artikel van de geleiders; opvanggeleiders op de nokken en hoekkepers (een maas op platte daken), afleidingen met meetverbindingen naar de aardelektroden; of verwijdert die
+Greatest distance of the conductor holders, mm (default 1000)	Grootste afstand van de geleiderhouders, mm (standaard 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Groepeert elementen tot een samenstel dat samen wordt geselecteerd en verplaatst; zonder naam verlaten de elementen hun samenstellen
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Draagt de programma's van een behuizing als opdracht over aan de productie: manifest en programma's van alle vlakken en koperrails
 Has a divider between power and signal cables	Heeft een scheidingsschot tussen vermogens- en signaalkabels
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	Hoogte boven de montageplaat 
 Height in mm	Hoogte in mm
 Height in mm without plinth; negative: unknown (wall mounted)	Hoogte in mm zonder sokkel; negatief: onbekend (wandmontage)
 Height in mm; the logo keeps its aspect ratio inside	Hoogte in mm; het logo behoudt daarbinnen zijn beeldverhouding
+Height of the rod above the covering, mm (default 1500)	Hoogte van de staaf boven de dakbedekking, mm (standaard 1500)
+Height of the test joints above the ground, mm (default 1000)	Hoogte van de meetverbindingen boven maaiveld, mm (standaard 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspect bovenliggend product (-) van de pagina; de apparaten op de pagina gaan mee
 Highest actuator on the door above the floor (0: not checked)	Hoogste bedieningselement in de deur boven de vloer (0: niet gecontroleerd)
 Highest air temperature at devices without data (0: not checked)	Hoogste luchttemperatuur bij apparaten zonder gegevens (0: niet gecontroleerd)
@@ -427,17 +445,21 @@ Manufacturing package (CNC programs, JSON)	Productiepakket (CNC-programma's, JSO
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Markeringen, gescheiden door komma's: device, terminal, wire, cable (leeg: alle)
 Marks a panel item as mounted or as a problem, or as open again	Markeert een element als gemonteerd of als probleem, of weer als open
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Markeert een gerouteerde draad als bedraad of als probleem, of weer als open; de draad wordt opgegeven met zijn twee uiteinden
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Materiaal: galvanised_steel, stainless_steel, copper, copper_bonded_steel of aluminium
 Maximum fill of a carrier in percent	Maximale vulling van een kabeldrager in procent
 Maximum operating pressure in bar	Maximale werkdruk in bar
 Measuring range or set point	Meetbereik of setpoint
 Message code, e.g. wires.3f9a1c	Meldingscode, bijv. wires.3f9a1c
 Milling feed, mm/min	Freesvoeding, mm/min
 Mirror the symbol	Het symbool spiegelen
+Moves an air-termination rod, changes its height, renames or removes it	Verplaatst een opvangstaaf, wijzigt de hoogte, hernoemt of verwijdert hem
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Verplaatst één uiteinde van een draad: het laat los waar het op aangesloten is en verbindt met wat het raakt; de draad blijft haaks
 Moves symbols, wires and texts; connected wire ends follow	Verplaatst symbolen, draden en teksten; aangesloten draadeinden volgen
 Moves the page before this page of its section (or of the section given)	Verplaatst de pagina vóór deze pagina van haar sectie (of van de opgegeven sectie)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Verplaatst de sectie vóór deze sectie van de bovenliggende sectie (of van de opgegeven); de nummers lopen door in volgorde
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Spijkerbordindeling van een kabelboom: de aftakkingen van het gemeenschappelijke knooppunt naar de connectors met lengte, richting, bundeldiameter en pinnen, en de tekenschaal
+Name (default E1, E2, …)	Naam (standaard E1, E2, …)
+Name (default F1, F2, …)	Naam (standaard F1, F2, …)
 Name of the assembly	Naam van het samenstel
 Name of the bar, e.g. L1 -Q1	Naam van de rail, bijv. L1 -Q1
 Name of the check	Naam van de controle
@@ -461,6 +483,7 @@ New page name	Nieuwe paginanaam
 New parent segment (empty: top level)	Nieuw bovenliggend segment (leeg: hoogste niveau)
 New value	Nieuwe waarde
 No PCT loop {}	Geen PCT-lus {}
+No air-termination rod {} on building {}	Geen opvangstaaf {} op gebouw {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Geen ingebouwde controle heet {}: de instelling geldt voor een controle van een plugin met die naam (list_checks)
 No bus system {}	Geen bussysteem {}
 No connection point {} on this page	Geen aansluitpunt {} op deze pagina
@@ -468,6 +491,7 @@ No connection symbol with id {}	Geen verbindingssymbool met id {}
 No copper bar {}	Geen koperrail {}
 No device description {}	Geen apparaatbeschrijving {}
 No device group {}	Geen apparaatgroep {}
+No earth electrode {} in building {}	Geen aardelektrode {} in gebouw {}
 No enclosure named {}	Geen behuizing met de naam {}
 No entry for {} and {}	Geen item voor {} en {}
 No hose {}	Geen slang {}
@@ -570,7 +594,12 @@ Part number of the downstream device	Artikelnummer van het nageschakelde apparaa
 Part number of the hose / tube / pipe	Artikelnummer van de slang / buis / pijpleiding
 Part number of the upstream device	Artikelnummer van het voorgeschakelde apparaat
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, bijv. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Artikel van de strip, draad of pen (leeg: generiek)
+Part of the conductor holders on the roof (empty: generic)	Artikel van de geleiderhouders op het dak (leeg: generiek)
+Part of the conductor holders on the walls (empty: generic)	Artikel van de geleiderhouders aan de muren (leeg: generiek)
+Part of the conductors (round wire; empty: generic)	Artikel van de geleiders (ronddraad; leeg: generiek)
 Part of the key or name	Deel van de sleutel of naam
+Part of the rod (empty: the one of its material and diameter)	Artikel van de staaf (leeg: dat van zijn materiaal en diameter)
 Part {} has no function with a symbol	Artikel {} heeft geen functie met symbool
 Parts phased out or discontinued	Uitlopende of niet meer leverbare artikelen
 Pass ids or pages	Geef ID's of pagina's op
@@ -651,6 +680,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	Relatieve v
 Release instead of freeze	Vrijgeven in plaats van bevriezen
 Released pages keep their names: {}	Vrijgegeven pagina's behouden hun naam: {}
 Remote I/O: station of the controller	Decentrale I/O: station van de controller
+Remove the air-termination rod	De opvangstaaf verwijderen
+Remove the earth electrode	De aardelektrode verwijderen
 Remove the entry of upstream and downstream	Het item van upstream en downstream verwijderen
 Remove the profile	Het profiel verwijderen
 Remove the scheme from the project	Het schema uit het project verwijderen
@@ -682,6 +713,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Rest (mm)
 Reuse failed searches during one routing calculation	Mislukte zoekacties binnen één routeringsberekening hergebruiken
 Right side bayed (no side panel)	Rechterzijde gekoppeld (geen zijwand)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: diepte onder maaiveld, pen: diepte van de bovenkant, mm (standaard 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Aardpen: zijn diameter (standaard 20), fundering en ring: die van een ronddraad, 0 voor een strip, mm
 Room {} exists already	Ruimte {} bestaat al
 Rotation in degrees clockwise: 0, 90, 180 or 270	Draaiing in graden met de klok mee: 0, 90, 180 of 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Draaiing in graden, linksom (90 leest van onder naar boven)
@@ -871,6 +904,7 @@ Unknown address scheme: {}	Onbekend adresschema: {}
 Unknown alignment: {}	Onbekende uitlijning: {}
 Unknown anchor: {}	Onbekende verankering: {}
 Unknown aspect: {}	Onbekend aspect: {}
+Unknown base: {}	Onbekende voet: {}
 Unknown bonding kind: {}	Onbekende soort potentiaalvereffening: {}
 Unknown bonding point: {}	Onbekend aansluitpunt van de potentiaalvereffening: {}
 Unknown bus system: {}	Onbekend bussysteem: {}
@@ -879,6 +913,7 @@ Unknown check: {}	Onbekende controle: {}
 Unknown class: {}	Onbekende klasse: {}
 Unknown data type: {}	Onbekend gegevenstype: {}
 Unknown direction {}: left, right, up or down	Onbekende richting {}: left, right, up of down
+Unknown earth electrode: {}	Onbekende aardelektrode: {}
 Unknown earthing system: {}	Onbekend aardingsstelsel: {}
 Unknown face {}	Onbekend vlak {}
 Unknown fastening: {}	Onbekende bevestiging: {}
@@ -970,9 +1005,11 @@ device (default), position, cross_section or number	device (standaard), position
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages of parts
 error, warning, info, off, or default to take the change back	error, warning, info, off, of default om de wijziging ongedaan te maken
 false takes the acceptance back (default true)	false trekt de acceptatie in (standaard true)
+foundation, ring or rod	foundation, ring of rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted of middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) of product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker of other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (een staafhouder op het dak) of concrete_base (op platte daken)
 hose, tube or pipe	hose, tube of pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (machines, fasegeleiders BK) of iec60445 (fasegeleiders BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (standaard), power, control, signal of fluid
@@ -999,6 +1036,8 @@ too long	te lang
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (standaard), ladder, trunking, conduit, drag_chain, buried of free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit of other
 wired, problem or open	wired, problem of open
+x of the foot of the rod in the floor plan of the building, mm	x van de voet van de staaf in de plattegrond van het gebouw, mm
+z of the foot of the rod in the floor plan of the building, mm	z van de voet van de staaf in de plattegrond van het gebouw, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} en {} zijn beide uiteinden van één functie: de draad zou die kortsluiten
 {} and {} are needed together	{} en {} zijn samen vereist
 {} cannot be bayed to itself	{} kan niet aan zichzelf worden gekoppeld

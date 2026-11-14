@@ -1,14 +1,15 @@
 //! Tools of the site plan: drawing the boundary of the plot corner by corner, placing
 //! the reference point, measuring from one point to another and dragging the corners
-//! of the boundary ([`openecraft_core::panel::plot`]). The points snap to the corners
-//! of the boundary, the rooms and the shafts and to the reference point.
+//! of the boundary ([`openecraft_core::panel::plot`]), and the edit mode in which the
+//! buildings are dragged to their places and turned. The points snap to the corners of
+//! the boundary, the rooms and the shafts and to the reference point.
 
 use super::site_plan::{self, Frame};
 use super::{PanelUi, View};
 use egui::{vec2, Key, Pos2, Rect, Response, Stroke};
 use openecraft_core::model::Project;
-use openecraft_core::panel::{plot, GeoReference};
-use openecraft_i18n::tr_fmt;
+use openecraft_core::panel::{self, plot, GeoReference};
+use openecraft_i18n::{tr, tr_fmt};
 
 /// What a click in the site plan does.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
@@ -22,6 +23,12 @@ pub enum SiteTool {
     Reference,
     /// Measures from one point to another.
     Measure,
+    /// Edit mode: the buildings are dragged to their places and turned.
+    Move,
+    /// Places earth rods of a building where clicked.
+    EarthRod,
+    /// Places air-termination rods on the roofs of a building where clicked.
+    AirRod,
 }
 
 /// A measure written out: distance, how far east and north, the direction.
@@ -40,6 +47,8 @@ impl PanelUi {
         self.view = View::Plan;
         self.site_points.clear();
         self.site_drag = None;
+        self.site_move = None;
+        self.site_hover = None;
         self.site_tool = if again { SiteTool::Select } else { tool };
         self.status.clear();
     }
@@ -48,7 +57,7 @@ impl PanelUi {
     /// first corner of the boundary drawn.
     pub(super) fn site_click(&mut self, prj: &mut Project, q: [f32; 2], close: bool) {
         match self.site_tool {
-            SiteTool::Select => {}
+            SiteTool::Select | SiteTool::Move => {}
             SiteTool::Boundary if close && self.site_points.len() >= 3 => self.finish_boundary(prj),
             SiteTool::Boundary => self.site_points.push(q),
             SiteTool::Reference => {
@@ -61,6 +70,7 @@ impl PanelUi {
                     Err(e) => self.status = e,
                 }
             }
+            SiteTool::EarthRod | SiteTool::AirRod => self.place_rod(prj, q),
             SiteTool::Measure => {
                 if self.site_points.len() >= 2 {
                     self.site_points.clear();
@@ -71,6 +81,36 @@ impl PanelUi {
                 }
             }
         }
+    }
+
+    /// An earth rod or an air-termination rod at `q` (the plant) for the building there,
+    /// otherwise the building of the earthing menu.
+    fn place_rod(&mut self, prj: &mut Project, q: [f32; 2]) {
+        let poses = panel::site_poses(prj);
+        let Some(bi) = panel::buildings::building_at(prj, &poses, q).or(self.earthing_building(prj)) else {
+            self.status = tr("Choose the building.").to_string();
+            return;
+        };
+        let local = panel::buildings::building_pose(&prj.layout.buildings[bi]).local([q[0], 0.0, q[1]]);
+        let at = [local[0].round(), local[2].round()];
+        let name = prj.layout.buildings[bi].name.clone();
+        if self.site_tool == SiteTool::AirRod {
+            let b = &prj.layout.buildings[bi];
+            if !b.roofs.iter().any(|r| panel::roofs::covering_at(r, at).is_some()) {
+                self.status = tr_fmt!("Click on a roof of building {}", name);
+                return;
+            }
+            match panel::lightning::add_rod(prj, bi, Some(at)) {
+                Ok(_) => self.status = tr_fmt!("Air-termination rod placed on building {}; click for the next one · Esc: stop", name),
+                Err(e) => self.status = e,
+            }
+        } else {
+            match panel::earthing::add_electrode(prj, bi, panel::ElectrodeKind::Rod, Some(at)) {
+                Ok(_) => self.status = tr_fmt!("Earth rod placed at building {}; click for the next one · Esc: stop", name),
+                Err(e) => self.status = e,
+            }
+        }
+        self.earthing_target = Some(bi);
     }
 
     /// Closes the boundary drawn: it becomes the plot's (or stays to be corrected).
@@ -120,6 +160,9 @@ impl PanelUi {
     /// corner of the boundary is dragged (the view is then not moved).
     pub(super) fn site_tools(&mut self, ui: &egui::Ui, rect: Rect, resp: &Response, prj: &mut Project) -> bool {
         let frame = site_plan::frame(rect, prj, &self.site_plan);
+        if self.site_tool == SiteTool::Move {
+            return self.move_buildings(ui, resp, prj, &frame);
+        }
         if self.site_tool == SiteTool::Select {
             if resp.drag_started() {
                 if let Some(k) = ui.input(|i| i.pointer.press_origin()).and_then(|p| Self::corner_at(prj, &frame, p)) {
@@ -177,13 +220,97 @@ impl PanelUi {
         false
     }
 
+    /// The edit mode of the site plan: a building is dragged to its new place, R turns
+    /// the one under the pointer (or dragged) by 90° about its middle, Escape stops.
+    /// Gives whether a building is dragged (the view is then not moved).
+    fn move_buildings(&mut self, ui: &egui::Ui, resp: &Response, prj: &mut Project, frame: &Frame) -> bool {
+        let poses = panel::site_poses(prj);
+        let hover = resp.hover_pos().and_then(|p| site_plan::building_at(prj, &poses, frame, p));
+        if resp.drag_started() {
+            if let Some((p, bi)) = ui.input(|i| i.pointer.press_origin()).and_then(|p| site_plan::building_at(prj, &poses, frame, p).map(|bi| (p, bi))) {
+                self.site_move = Some((bi, frame.plant(p), prj.layout.buildings[bi].site));
+            }
+        }
+        if let (Some((bi, from, place)), Some(p)) = (self.site_move, resp.interact_pointer_pos()) {
+            let q = frame.plant(p);
+            let site = panel::SitePlace { x: ((place.x + q[0] - from[0]) / 10.0).round() * 10.0, z: ((place.z + q[1] - from[1]) / 10.0).round() * 10.0, ..place };
+            if panel::buildings::place_building(prj, bi, site).is_ok() {
+                let b = &prj.layout.buildings[bi];
+                self.status = tr_fmt!("Building {} at x {} m, z {} m", b.name, format!("{:.2}", b.site.x / 1000.0), format!("{:.2}", b.site.z / 1000.0));
+            }
+        }
+        if resp.drag_stopped() {
+            if let Some((bi, ..)) = self.site_move.take() {
+                self.report_building(prj, bi);
+            }
+        }
+        let target = self.site_move.map(|m| m.0).or(hover);
+        if !ui.ctx().egui_wants_keyboard_input() && (resp.hovered() || self.site_move.is_some()) {
+            let (turn, escape) = ui.input(|i| (i.key_pressed(Key::R), i.key_pressed(Key::Escape)));
+            if let (true, Some(bi)) = (turn, target) {
+                match panel::buildings::move_building(prj, bi, [0.0, 0.0], 90.0) {
+                    Ok(()) => {
+                        if let Some(m) = self.site_move.as_mut() {
+                            // Dragged on from where it is now.
+                            m.2 = prj.layout.buildings[bi].site;
+                            m.1 = resp.interact_pointer_pos().map_or(m.1, |p| frame.plant(p));
+                        }
+                        self.report_building(prj, bi);
+                    }
+                    Err(e) => self.status = e,
+                }
+            }
+            if escape && self.site_move.is_none() {
+                self.site_tool = SiteTool::Select;
+            }
+        }
+        if self.site_move.is_some() {
+            ui.ctx().set_cursor_icon(egui::CursorIcon::Grabbing);
+        } else if hover.is_some() {
+            ui.ctx().set_cursor_icon(egui::CursorIcon::Grab);
+        }
+        self.site_hover = target;
+        self.site_move.is_some()
+    }
+
+    /// The status after a building was moved or turned: its place and angle, and what of
+    /// it stands outside the plot boundary.
+    fn report_building(&mut self, prj: &Project, bi: usize) {
+        let Some(b) = prj.layout.buildings.get(bi) else { return };
+        let outside = plot::outside(prj).into_iter().any(|s| match s {
+            plot::Standing::Room(i) => panel::buildings::building_of(&prj.layout, i) == Some(bi),
+            plot::Standing::Roof(b, _) => b == bi,
+            plot::Standing::Cabinet(_) => false,
+        });
+        let at = (format!("{:.2}", b.site.x / 1000.0), format!("{:.2}", b.site.z / 1000.0), format!("{:.0}", b.site.angle));
+        self.status = if outside {
+            tr_fmt!("Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary", b.name, at.0, at.1, at.2)
+        } else {
+            tr_fmt!("Building {} at x {} m, z {} m, turned {}°", b.name, at.0, at.1, at.2)
+        };
+    }
+
     /// What the tools of the site plan show over it: the boundary being drawn, the
-    /// measure, the point snapped to and the coordinates under the pointer.
+    /// measure, the building to move, the point snapped to and the coordinates under the
+    /// pointer.
     pub(super) fn paint_site_tools(&self, ui: &egui::Ui, rect: Rect, prj: &Project, pointer: Option<Pos2>) {
         let frame = site_plan::frame(rect, prj, &self.site_plan);
         let painter = ui.painter_at(rect);
         let visuals = ui.visuals();
         let accent = visuals.selection.stroke.color;
+        if let (SiteTool::Move, Some(bi)) = (self.site_tool, self.site_hover) {
+            let poses = panel::site_poses(prj);
+            for poly in panel::buildings::building_footprint(prj, &poses, bi) {
+                let pts: Vec<Pos2> = poly.iter().map(|&q| frame.at(q)).collect();
+                painter.add(egui::Shape::closed_line(pts, Stroke::new(2.5, accent)));
+            }
+            if let Some(b) = prj.layout.buildings.get(bi) {
+                let at = frame.at([b.site.x, b.site.z]);
+                painter.circle_stroke(at, 5.0, Stroke::new(1.5, accent));
+                let text = tr_fmt!("{}: drag to move, R: turn by 90°", b.name);
+                painter.text(at + vec2(8.0, 8.0), egui::Align2::LEFT_TOP, text, egui::FontId::proportional(11.0), accent);
+            }
+        }
         let at = pointer.filter(|p| rect.contains(*p)).map(|p| site_plan::snap(&site_plan::snap_points(prj, self.site_drag.as_ref().map(|d| d.0)), &frame, p));
         let drawing = self.site_tool != SiteTool::Select;
         let mut pts: Vec<Pos2> = self.site_points.iter().map(|&q| frame.at(q)).collect();
