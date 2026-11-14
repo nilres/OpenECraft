@@ -32,6 +32,35 @@ used twice or not in the cable.
 
 ## Connection and cable definitions
 
+Drawing a cable definition previews the crossed wires and free cores. Its
+properties show assigned/unassigned counts and the assignment order, starting at
+the first point of the line. Reversing the line reverses the order for free cores;
+existing assignments keep their core. Cores already used elsewhere in the project
+are unavailable. The cable label (for example `4x1.5`) describes the entered cable,
+not the number of crossings.
+
+If there are too few free cores or a crossed wire already has a conflicting
+assignment, **none of the pending wires is assigned**. The line remains in the
+plan with a check warning and a correction hint in its properties. Edit the core
+list or select another cable, then choose **Assign crossed wires**. Existing
+assignments must be changed explicitly in the wire properties; another cable is
+never overwritten silently. The physical cable/core list is never enlarged
+automatically to make a mismatch disappear.
+
+When creating a new cable is blocked by a conflicting assignment, only the
+definition line is kept: no unused cable is created. Select a cable in its
+properties after correcting the conflict. An imported core designation without
+a cable is also a conflict; clear or change it explicitly in the wire properties.
+The disabled **Assign crossed wires** button explains shortages and conflicts
+when hovered. Interactive previews reuse the session's assignment index; applying
+always checks the current project again.
+
+Automation uses `preview_cable_definition` with `page`, two `points` and an
+optional `cable` for a read-only preview. `apply_cable_definition` takes `page` and
+the definition `id`, and reports `changed` plus its resulting `assignment`.
+`add_cable_definition` keeps its existing response fields and adds `assignment`,
+including counts, free cores, conflicts and ordered wire/core candidates.
+
 A connection definition point on a wire sets
 number, colour and cross-section of the whole connection and the core of its wire; a
 cable definition line drawn across wires makes them cores of a cable (new cable with

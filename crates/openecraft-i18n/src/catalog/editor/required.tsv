@@ -219,6 +219,7 @@ Assign to cable	Kabel zuweisen	Affecter au câble	Asignar al cable
 Assign to existing device	Vorhandenem Betriebsmittel zuweisen	Affecter à un appareil existant	Asignar a un dispositivo existente
 Assign to harness	Kabelbaum zuweisen	Affecter au faisceau	Asignar al mazo
 Assign wires: select them in the schematic › Assign to cable.	Leitungen zuweisen: Wählen Sie sie im Schaltplan › Kabel zuweisen.	Affecter des fils : sélectionnez-les dans le schéma › Affecter au câble.	Asignar hilos: selecciónalos en el esquema › Asignar al cable.
+Assignment order from line start	Zuordnungsreihenfolge ab Linienanfang	Ordre d'affectation depuis le début de la ligne	Orden de asignación desde el inicio de la línea
 Assume Windows trackpad (default) pans unknown point-based or fractional-line scrolling; whole-line and page scrolling zoom. Strict treats every unknown source as a mouse wheel.	Windows-Trackpad annehmen (Standard) verschiebt Scrollen mit unbekannter Quelle in Punkten oder Zeilenbruchteilen; ganze Zeilen- und Seitenschritte zoomen. Streng behandelt jede unbekannte Quelle als Mausrad.	Supposer un pavé tactile Windows (par défaut) déplace les défilements inconnus en points ou en fractions de ligne ; les lignes entières et les pages zooment. Strict traite toute source inconnue comme une molette de souris.	Suponer panel táctil de Windows (predeterminado) desplaza los desplazamientos desconocidos en puntos o fracciones de línea; las líneas completas y las páginas hacen zoom. Estricto trata todas las fuentes desconocidas como ruedas de ratón.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Asynchronmotoren am Netz erhöhen den größten Kurzschlussstrom (IEC 60909-0)	Les moteurs asynchrones sur le réseau augmentent le courant de court-circuit maximal (CEI 60909-0)	Los motores asíncronos de la red aumentan la corriente de cortocircuito máxima (IEC 60909-0)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Bei der höchsten Umgebungstemperatur; die Heizung hält den Taupunkt. 0 = nicht berücksichtigt	À la température ambiante maximale ; le chauffage maintient le point de rosée. 0 = non pris en compte	A la temperatura ambiente máxima; la calefacción mantiene el punto de rocío. 0 = no se considera
@@ -776,6 +777,7 @@ Edge length of the routing grid: smaller is finer and slower	Kantenlänge des Ve
 Edit in table	In Tabelle bearbeiten	Modifier dans un tableau	Editar en tabla
 Edit in table…	In Tabelle bearbeiten…	Modifier dans un tableau…	Editar en tabla…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Bearbeitungsmodus: Gebäude im Lageplan an ihren Platz ziehen und drehen; ein Klick auf einen Raum öffnet ihn dann nicht mehr	Mode édition : faire glisser les bâtiments à leur place dans le plan de situation et les tourner ; un clic sur une pièce ne l'ouvre plus	Modo de edición: arrastre los edificios a su sitio en el plano de situación y gírelos; un clic en un local ya no lo abre
+Edit the cable's core list or select another cable, then assign the crossed wires. Existing assignments must be changed explicitly in the wire properties.	Aderliste des Kabels bearbeiten oder anderes Kabel wählen, dann die gekreuzten Drähte zuordnen. Vorhandene Zuordnungen müssen ausdrücklich in den Drahteigenschaften geändert werden.	Modifiez la liste des conducteurs du câble ou sélectionnez un autre câble, puis affectez les fils croisés. Les affectations existantes doivent être modifiées explicitement dans les propriétés des fils.	Edite la lista de conductores del cable o seleccione otro cable y después asigne los hilos cruzados. Las asignaciones existentes deben modificarse expresamente en las propiedades de los hilos.
 Editable copy of this plot frame	Bearbeitbare Kopie dieses Plotrahmens	Copie modifiable de ce cadre	Copia editable de este marco
 Editable copy of this title block	Bearbeitbare Kopie dieses Schriftfelds	Copie modifiable de ce cartouche	Copia editable de este cajetín
 Effective surface	Wirksame Oberfläche	Surface effective	Superficie efectiva
@@ -1403,6 +1405,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Noch kein Gehäuse – mit Neues Gehäuse anlegen, oder mit Neuer Raum einen Raum für Schaltschränke.	Pas encore d'enveloppe – créez-en une avec Nouvelle enveloppe, ou une salle pour les armoires avec Nouvelle salle.	Aún no hay envolvente – cree una con Nueva envolvente, o una sala para armarios con Nueva sala.
 No field cables: place the enclosures and field devices at nodes of the route network.	Keine Feldkabel: Schaltschränke und Feldgeräte an Knoten des Trassennetzes platzieren.	Aucun câble de terrain : placez les armoires et les appareils de terrain sur des nœuds du réseau.	No hay cables de campo: coloque los armarios y aparatos de campo en nodos de la red de recorridos.
 No filter fans: an air/air heat exchanger or a cooling unit	Keine Filterlüfter: ein Luft/Luft-Wärmetauscher oder ein Kühlgerät	Pas de ventilateurs à filtre : un échangeur thermique air/air ou un climatiseur	Sin ventiladores con filtro: un intercambiador de calor aire/aire o un equipo de refrigeración
+No free core	Keine freie Ader	Aucun conducteur libre	No hay conductor libre
 No gesture	Keine Geste	Aucun geste	Sin gesto
 No harnesses defined.	Keine Kabelbäume definiert.	Aucun faisceau défini.	No hay mazos definidos.
 No harnesses yet – Connections › Harnesses	Noch keine Kabelbäume – Verbindungen › Kabelbäume	Pas encore de faisceaux – Liaisons › Faisceaux	Aún no hay mazos – Conexiones › Mazos
@@ -1542,6 +1545,7 @@ Operations / year	Schaltspiele / Jahr	Manœuvres / an	Maniobras / año
 Option	Option	Option	Opción
 Options	Optionen	Options	Opciones
 Orbit the 3D view	3D-Ansicht drehen	Faire pivoter la vue 3D	Orbitar la vista 3D
+Order follows the line start. Existing assignments stay in place.	Die Reihenfolge beginnt am Linienanfang. Vorhandene Zuordnungen bleiben bestehen.	L'ordre suit le début de la ligne. Les affectations existantes sont conservées.	El orden sigue el inicio de la línea. Las asignaciones existentes se conservan.
 Ordinary cable	Normales Kabel	Câble ordinaire	Cable normal
 Orientation	Ausrichtung	Orientation	Orientación
 Origin	Herkunft	Origine	Origen
@@ -2663,6 +2667,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} Vault items found for the project parts	{} Vault-Elemente zu den Projektartikeln gefunden	{} éléments Vault trouvés pour les articles du projet	{} elementos de Vault encontrados para los artículos del proyecto
 {} Vault items found: review the changes in the integration window	{} Vault-Elemente gefunden: Änderungen im Integrationsfenster prüfen	{} éléments Vault trouvés : vérifiez les modifications dans la fenêtre d'intégration	{} elementos de Vault encontrados: revise los cambios en la ventana de integración
 {} added to building {}	{} zu Gebäude {} hinzugefügt	{} ajouté au bâtiment {}	{} añadido al edificio {}
+{} additional cores required; {} conflicting assignments. No wire assignments will be changed.	{} zusätzliche Adern erforderlich; {} widersprüchliche Zuordnungen. Keine Drahtzuordnung wird geändert.	{} conducteurs supplémentaires nécessaires ; {} affectations en conflit. Aucune affectation de fil ne sera modifiée.	Se requieren {} conductores adicionales; {} asignaciones en conflicto. No se modificará ninguna asignación de hilos.
 {} addresses changed	{} Adressen geändert	{} adresses modifiées	{} direcciones cambiadas
 {} air-termination rods	{} Fangstangen	{} tiges captrices	{} puntas captadoras
 {} bundles, {} branch points	{} Bündel, {} Abzweigpunkte	{} faisceaux, {} points de dérivation	{} haces, {} puntos de derivación

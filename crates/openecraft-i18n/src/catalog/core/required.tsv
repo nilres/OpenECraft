@@ -177,8 +177,10 @@ By wire number	Nach Drahtnummer	Par numéro de fil	Por número de cable
 CPU	CPU	CPU	CPU
 Cable bridge	Kabelbrücke	Passerelle de câbles	Puente de cables
 Cable connection diagram	Kabelanschlussplan	Plan de raccordement des câbles	Esquema de conexión de cables
+Cable definition on page {} has no cable. Select a cable before assigning crossed wires.	Kabeldefinitionslinie auf Seite {} hat kein Kabel. Vor der Aderzuordnung ein Kabel auswählen.	La définition de câble sur la page {} n'a pas de câble. Sélectionnez un câble avant d'affecter les fils traversés.	La definición de cable en la página {} no tiene cable. Seleccione un cable antes de asignar los hilos cruzados.
 Cable definition on page {} refers to the unknown cable {}	Kabeldefinition auf Seite {} verweist auf das unbekannte Kabel {}	La définition de câble en page {} renvoie au câble inconnu {}	La definición de manguera en la página {} remite a la manguera desconocida {}
 Cable definition {} on page {} crosses no wire	Kabeldefinition {} auf Seite {} kreuzt keine Verbindung	La définition de câble {} en page {} ne croise aucun fil	La definición de manguera {} en la página {} no cruza ningún cable
+Cable definition {} on page {}: {} crossed wires, {} unassigned, {} free cores, {} additional cores required, {} conflicting assignments	Kabeldefinition {} auf Seite {}: {} gekreuzte Drähte, {} ohne Zuordnung, {} freie Adern, {} zusätzliche Adern erforderlich, {} widersprüchliche Zuordnungen	Définition de câble {} sur la page {} : {} fils croisés, {} non affectés, {} conducteurs libres, {} conducteurs supplémentaires nécessaires, {} affectations en conflit	Definición de cable {} en la página {}: {} hilos cruzados, {} sin asignar, {} conductores libres, {} conductores adicionales necesarios, {} asignaciones en conflicto
 Cable definitions	Kabeldefinitionen	Définitions de câbles	Definiciones de cable
 Cable diagram	Kabelplan	Schéma de câbles	Diagrama de cables
 Cable entry 5 x M25	Kabeleinführung 5 x M25	Entrée de câbles 5 x M25	Entrada de cables 5 x M25
@@ -2111,6 +2113,7 @@ yellow	gelb	jaune	amarillo
 {} symbols, {} wires, {} texts / graphics	{} Symbole, {} Leitungen, {} Texte / Grafiken	{} symboles, {} fils, {} textes / graphiques	{} símbolos, {} hilos, {} textos / gráficos
 {} texts are not translated into {}	{} Texte sind nicht in {} übersetzt	{} textes ne sont pas traduits en {}	{} textos no están traducidos al {}
 {} unused device data records removed	{} unbenutzte Gerätedatensätze entfernt	{} enregistrements de données d'appareil inutilisés supprimés	{} registros de datos de dispositivo sin uso eliminados
+{} wires crossed, {} assigned, {} free cores, {} unassigned	{} Drähte gekreuzt, {} zugeordnet, {} freie Adern, {} ohne Zuordnung	{} fils croisés, {} affectés, {} conducteurs libres, {} non affectés	{} hilos cruzados, {} asignados, {} conductores libres, {} sin asignar
 {} wiring marks belong to wires that no longer exist	{} Verdrahtungsmarkierungen gehören zu Drähten, die es nicht mehr gibt	{} marques de câblage appartiennent à des fils qui n'existent plus	{} marcas de cableado pertenecen a cables que ya no existen
 {} without device tag on page {}	{} ohne Betriebsmittelkennzeichen auf Seite {}	{} sans repère d'appareil sur la page {}	{} sin designación de dispositivo en la página {}
 {} {} cannot be laid flush-mounted: the installation zones of the room do not join its ends	{} {} kann nicht unter Putz verlegt werden: die Installationszonen des Raums verbinden seine Enden nicht	{} {} ne peut pas être posé encastré : les zones d'installation de la salle ne relient pas ses extrémités	{} {} no se puede tender empotrado: las zonas de instalación de la sala no unen sus extremos

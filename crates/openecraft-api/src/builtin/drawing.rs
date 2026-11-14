@@ -338,6 +338,18 @@ pub static COMMANDS: &[Spec] = &[
         run: autoconnect,
     },
     Spec {
+        name: "preview_cable_definition",
+        help: tr_const!("Previews crossed wires and free cable cores without changing assignments"),
+        params: &[PAGE, param("points", Kind::Points, tr_const!("Start and end point of the line")), optional("cable", Kind::Str, tr_const!("Cable tag, e.g. -W1"))],
+        run: preview_cable_definition,
+    },
+    Spec {
+        name: "apply_cable_definition",
+        help: tr_const!("Assigns crossed wires only when enough cores are free and no existing assignment conflicts"),
+        params: &[PAGE, param("id", Kind::Int, tr_const!("Object id"))],
+        run: apply_cable_definition,
+    },
+    Spec {
         name: "add_cable_definition",
         help: tr_const!("Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)"),
         params: &[
@@ -1224,8 +1236,8 @@ fn autoconnect(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(json!({ "ids": added }))
 }
 
-fn add_cable_definition(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let i = editable(prj, a.req("page"))?;
+fn cable_definition_input(prj: &Project, a: &Args) -> Result<(usize, P, P), String> {
+    let i = page_index(prj, a.req("page"))?;
     let pts = raw_points(a, "points");
     let [[x0, y0], [x1, y1]] = pts.as_slice() else {
         return Err(tr("A cable definition needs a start and an end point").to_string());
@@ -1241,10 +1253,38 @@ fn add_cable_definition(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if !cable.is_empty() && prj.cable(cable).is_none() {
         return Err(tr_fmt!("No cable {}", cable));
     }
+    Ok((i, from, to))
+}
+
+fn assignment_json(plan: &cabledef::AssignmentPlan) -> Value {
+    json!({ "crossed": plan.crossed.len(), "assigned": plan.kept.len(), "unassigned": plan.unassigned(), "free_cores": plan.free_cores.len(), "additional_cores": plan.missing.len(), "conflicts": plan.conflicts.len(), "can_apply": plan.can_apply(), "order": plan })
+}
+
+fn preview_cable_definition(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (i, from, to) = cable_definition_input(prj, a)?;
+    Ok(assignment_json(&cabledef::plan(prj, i, from, to, a.str("cable").unwrap_or_default())))
+}
+
+fn apply_cable_definition(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let i = editable(prj, a.req("page"))?;
+    let id = a.int("id").unwrap_or_default() as u64;
+    let def = prj.pages[i].cable_defs.iter().find(|c| c.id == id).cloned().ok_or_else(|| tr_fmt!("No cable definition {}", id))?;
+    if prj.cable(&def.cable).is_none() { return Err(tr_fmt!("No cable {}", def.cable)); }
+    let preview = cabledef::plan(prj, i, def.a, def.b, &def.cable);
+    let changed = preview.can_apply() && !preview.assignments.is_empty();
+    cabledef::apply(prj, i, id);
+    Ok(json!({ "changed": changed, "assignment": assignment_json(&cabledef::plan(prj, i, def.a, def.b, &def.cable)) }))
+}
+
+fn add_cable_definition(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    editable(prj, a.req("page"))?;
+    let (i, from, to) = cable_definition_input(prj, a)?;
+    let cable = a.str("cable").unwrap_or_default();
     let id = cabledef::add(prj, i, from, to, cable);
     let def = prj.pages[i].cable_defs.iter().find(|c| c.id == id).cloned().unwrap_or_default();
-    let cores: Vec<Value> = prj.pages[i].wires.iter().filter(|w| w.cable == def.cable).map(|w| json!({ "wire": w.id, "core": w.core })).collect();
-    Ok(json!({ "id": id, "cable": def.cable, "cores": cores }))
+    let cores: Vec<Value> = prj.pages[i].wires.iter().filter(|w| !def.cable.is_empty() && w.cable == def.cable).map(|w| json!({ "wire": w.id, "core": w.core })).collect();
+    let assignment = cabledef::plan(prj, i, def.a, def.b, &def.cable);
+    Ok(json!({ "id": id, "cable": def.cable, "cores": cores, "assignment": assignment_json(&assignment) }))
 }
 
 fn add_connection_definition(prj: &mut Project, a: &Args) -> Result<Value, String> {

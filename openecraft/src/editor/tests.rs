@@ -4,6 +4,25 @@ use openecraft_core::sample::demo_project;
 use egui::{Event, Modifiers, RawInput};
 
 #[test]
+fn cable_definition_tool_reports_all_crossings_and_leaves_shortage_unassigned() {
+    let mut prj = Project::default();
+    for i in 0..5 {
+        prj.pages[0].wires.push(Wire { id: 100 + i, a: p(40. + i as f32 * 8., 40.), b: p(40. + i as f32 * 8., 100.), ..Default::default() });
+    }
+    prj.cables.push(Cable { id: 90, tag: "-W1".into(), cores: "BN BK GY GNYE".into(), ..Default::default() });
+    prj.fix_next_id();
+    let wires = prj.pages[0].wires.clone();
+    let mut ed = Editor { tool: Tool::CableDef, cable_target: "-W1".into(), pts: vec![p(36., 60.), p(76., 60.)], ..Default::default() };
+    let mut out = CanvasOutput::default();
+    ed.complete(&mut prj, 0, &mut out);
+    assert!(out.open_properties);
+    assert_eq!(prj.pages[0].wires, wires);
+    let def = &prj.pages[0].cable_defs[0];
+    assert_eq!(out.message, Some(cabledef::plan(&prj, 0, def.a, def.b, "-W1").summary()));
+    assert_eq!(ed.selection, BTreeSet::from([def.id]));
+}
+
+#[test]
 fn electrical_items_remain_selectable_inside_page_graphics() {
     use openecraft_core::{symbols::{Func, Prim}, symlib::UserSymbol};
     let mut prj = Project::default();

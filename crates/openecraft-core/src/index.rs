@@ -59,12 +59,19 @@ pub struct DeviceEntry {
 pub struct Index {
     pub devices: BTreeMap<String, DeviceEntry>,
     pub interruptions: HashMap<String, Vec<Loc>>,
+    /// Cable assignments across all pages: page, wire id, core designation.
+    pub cable_cores: HashMap<String, Vec<(usize, u64, String)>>,
 }
 
 impl Index {
     pub fn build(prj: &Project) -> Index {
         let mut idx = Index::default();
         for (pi, page) in prj.pages.iter().enumerate() {
+            for w in &page.wires {
+                if !w.cable.is_empty() {
+                    idx.cable_cores.entry(w.cable.clone()).or_default().push((pi, w.id, w.core.clone()));
+                }
+            }
             // Overview pages are not evaluated, only their single-line representations
             // belong to the devices.
             if !matches!(page.kind, PageKind::Schematic | PageKind::Overview) {
