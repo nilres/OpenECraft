@@ -52,7 +52,7 @@ date), and the versions of the tools are pinned. Raise them together:
 | File | Built by |
 | --- | --- |
 | `OpenECraft-<version>-setup.exe` | `installer/windows/build.ps1` |
-| `openecraft_<version>_amd64.deb`, `openecraft-<version>-1.x86_64.rpm`, `OpenECraft-<version>-x86_64.AppImage`, `OpenECraft-<version>-linux-x86_64.tar.gz` | `installer/linux/build.sh` |
+| `openecraft_<version>_amd64.deb`, `openecraft-<version>-1.x86_64.rpm`, `OpenECraft-<version>-x86_64.AppImage` (and its `.zsync`), `OpenECraft-<version>-linux-x86_64.tar.gz` | `installer/linux/build.sh` |
 | `OpenECraft-<version>-x86_64.flatpak`, `openecraft_<version>_amd64.snap` | `installer/linux/build.sh flatpak snap` |
 | `OpenECraft-<version>-macos.dmg` | `installer/macos/build.sh` |
 | `OpenECraft-<version>-web.zip`, `OpenECraft-Parts-Manager-<version>-web.zip` | `trunk build --release` |
@@ -61,7 +61,10 @@ date), and the versions of the tools are pinned. Raise them together:
 
 The editor updates itself from the latest published release (no drafts, no
 pre-releases): it needs `SHA256SUMS` and the file names above, so keep them when
-changing the packages (`openecraft_client::update::Package`).
+changing the packages (`openecraft_client::update::Package`). AppImageUpdate and
+similar tools do the same with the update information in the AppImage
+(`gh-releases-zsync|<owner>|<repo>|latest|OpenECraft-*-x86_64.AppImage.zsync`, set by
+`build_appimage`), so the AppImage keeps its name pattern and its `.zsync` file.
 
 ## Licenses
 

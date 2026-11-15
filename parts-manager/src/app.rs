@@ -90,6 +90,7 @@ impl ManagerApp {
         let mut client = ServerClient::default();
         openecraft_i18n::init(cc.storage.and_then(|s| eframe::get_value::<String>(s, openecraft_ui::language::STORAGE_KEY)).as_deref());
         openecraft_ui::fonts::install_system_fallbacks(&cc.egui_ctx);
+        openecraft_ui::theme::follow_system(&cc.egui_ctx);
         if let Some(url) = cc.storage.and_then(|s| eframe::get_value::<String>(s, URL_KEY)) {
             client.url = url;
         }

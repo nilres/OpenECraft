@@ -424,6 +424,7 @@ impl App {
                 break;
             }
         }
+        openecraft_ui::theme::follow_system(&cc.egui_ctx);
         let mut prj: Option<Project> = None;
         let mut file_name = None;
         let mut parts_db: Option<PartsDb> = None;

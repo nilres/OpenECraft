@@ -3,6 +3,19 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [0.1.3] - unreleased
+
+- **Light theme on Linux:** with the theme *System* the editor and the parts manager
+  started dark on Linux, where the window system does not report the desktop's theme.
+  They now take the colour scheme of the desktop from the settings portal (GNOME, KDE
+  and others, also in Flatpak and snap) or a dark GTK theme (`GTK_THEME`), follow a
+  change of it while running and are light without either. A theme chosen in the
+  settings stays as it is.
+- **AppImage updates with AppImageUpdate:** the AppImage carries update information
+  (`gh-releases-zsync`) and each release has its `.zsync` file, so AppImageUpdate,
+  Gear Lever and similar tools update it from the latest release, downloading only the
+  changed parts. The editor's own update keeps working.
+
 ## [0.1.2] - 2026-11-15
 
 - **Website with live demos:** `website/` is a page that presents the project and

@@ -7,6 +7,7 @@
 //! - [`io`] – file dialogs on desktop, file picker and downloads in the browser
 //! - [`language`] – language menu (UI texts are translated with `openecraft-i18n`)
 //! - [`nav`] – zoom and pan of the views by mouse wheel, trackpad and touch screen
+//! - [`theme`] – light or dark theme of the desktop where the window system does not report it
 
 pub mod client;
 pub mod faces;
@@ -18,4 +19,5 @@ pub mod logos;
 pub mod nav;
 pub mod part_editor;
 pub mod portal;
+pub mod theme;
 pub mod view_cube;

@@ -11,7 +11,11 @@
 #   rpm       rpmbuild (dnf install rpm-build, apt install rpm)
 #   appimage  Debian or Ubuntu (dpkg-query), patchelf, appimagetool (APPIMAGETOOL=<path>,
 #             otherwise release 1.9.1 is downloaded) and the AppImage runtime (release
-#             20251108, downloaded; both checksums verified)
+#             20251108, downloaded; both checksums verified), zsyncmake (apt install zsync)
+#             for the update information: AppImageUpdate and similar tools update the
+#             AppImage from the latest GitHub release of GITHUB_REPOSITORY (set in CI,
+#             otherwise nilres/OpenECraft) with the .zsync file built next to it;
+#             APPIMAGE_UPDATE_INFO=<string> embeds other update information, an empty one none
 #   flatpak   flatpak, flatpak-builder (the runtime is installed from Flathub)
 #   snap      snapcraft (SNAPCRAFT="sudo snapcraft" SNAPCRAFT_ARGS=--destructive-mode in CI)
 #
@@ -218,8 +222,12 @@ glibc_needed() {
 }
 
 build_appimage() {
-    local dir="$work/OpenECraft.AppDir" tool="${APPIMAGETOOL:-}" runtime
+    local dir="$work/OpenECraft.AppDir" tool="${APPIMAGETOOL:-}" runtime repo="${GITHUB_REPOSITORY:-nilres/OpenECraft}"
+    local file="$out/OpenECraft-$version-$arch.AppImage"
+    local update="${APPIMAGE_UPDATE_INFO-gh-releases-zsync|${repo%%/*}|${repo#*/}|latest|OpenECraft-*-$arch.AppImage.zsync}"
     [ -n "${runtime_sha256[$arch]:-}" ] || die "no AppImage runtime for $arch"
+    # appimagetool writes the .zsync file only with zsyncmake.
+    [ -z "$update" ] || need zsyncmake "the update information of the AppImage (apt install zsync)"
     stage "$dir/usr"
     bundle_libs "$dir"
     # The AppImage catalog and appimagetool look for AppStream data by its older name.
@@ -235,11 +243,16 @@ build_appimage() {
             "$tool" "${appimagetool_sha256[$arch]}"
         chmod +x "$tool"
     fi
+    # A relative APPIMAGETOOL path, appimagetool runs in $out.
+    [[ "$tool" != */* ]] || tool="$(readlink -f "$tool")"
     runtime="$work/runtime-$runtime_version-$arch"
     download "https://github.com/AppImage/type2-runtime/releases/download/$runtime_version/runtime-$arch" \
         "$runtime" "${runtime_sha256[$arch]}"
-    # Extract-and-run works without FUSE (containers, CI).
-    ARCH="$arch" APPIMAGE_EXTRACT_AND_RUN=1 "$tool" --runtime-file "$runtime" "$dir" "$out/OpenECraft-$version-$arch.AppImage"
+    rm -f "$file" "$file.zsync"
+    # Extract-and-run works without FUSE (containers, CI). The .zsync file is written to
+    # the current folder.
+    (cd "$out" && ARCH="$arch" APPIMAGE_EXTRACT_AND_RUN=1 "$tool" --runtime-file "$runtime" ${update:+-u "$update"} "$dir" "$file")
+    [ -z "$update" ] || [ -f "$file.zsync" ] || die "appimagetool wrote no $file.zsync"
 }
 
 build_flatpak() {
