@@ -6,7 +6,6 @@
 (() => {
     const $ = (selector, root = document) => root.querySelector(selector);
     const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-    const meta = name => $(`meta[name="${name}"]`)?.content || "";
     const CONSOLE_LIMIT = 6000;
     const COMMAND_ROWS = 80;
 
@@ -42,16 +41,23 @@
     // ---- static parts: links, texts, sections fading in -------------------------------
 
     function links() {
-        const editor = meta("openecraft-editor");
-        for (const a of $$("[data-editor]")) {
-            a.hidden = !editor;
-            a.href = editor;
-        }
-        const repository = meta("openecraft-repository");
-        for (const a of $$("[data-repository]")) {
-            a.hidden = !repository;
-            a.href = repository + a.dataset.repository;
-            a.rel = "noopener";
+        // Where the links lead is set in config.js; a link without an address is hidden.
+        const site = window.OPENECRAFT_SITE || {};
+        const address = name => String(site[name] || "").trim();
+        const folder = name => address(name).replace(/\/+$/, "");
+        const repository = folder("repository");
+        const targets = {
+            editor: address("editor"),
+            repository,
+            downloads: address("downloads") || (repository && repository + "/releases/latest"),
+            documentation: folder("documentation") || (repository && repository + "/blob/master/docs"),
+            issues: address("issues") || (repository && repository + "/issues"),
+        };
+        for (const a of $$("[data-link]")) {
+            const target = targets[a.dataset.link];
+            a.hidden = !target;
+            if (target) a.href = target + (a.dataset.path || "");
+            if (a.dataset.link !== "editor") a.rel = "noopener";
         }
     }
 

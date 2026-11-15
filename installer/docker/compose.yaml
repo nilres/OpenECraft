@@ -50,6 +50,15 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:8088:8080"
+    # Where the links of the page lead (docs/website.md): the web editor (a folder
+    # beside the page or an address), the repository, and optionally the downloads,
+    # the documentation folder and the issues, which default to those of the repository.
+    environment:
+      OPENECRAFT_EDITOR_URL: ${OPENECRAFT_EDITOR_URL:-editor/}
+      OPENECRAFT_REPOSITORY_URL: ${OPENECRAFT_REPOSITORY_URL:-https://github.com/nilres/OpenECraft}
+      OPENECRAFT_DOWNLOADS_URL: ${OPENECRAFT_DOWNLOADS_URL:-}
+      OPENECRAFT_DOCUMENTATION_URL: ${OPENECRAFT_DOCUMENTATION_URL:-}
+      OPENECRAFT_ISSUES_URL: ${OPENECRAFT_ISSUES_URL:-}
 
 volumes:
   parts:

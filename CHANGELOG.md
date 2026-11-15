@@ -11,7 +11,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   on one example project in the browser, in the 20 languages of the editor. It is
   deployed as static files (`cd website && trunk build --release`) or with the Docker
   image `ghcr.io/nilres/openecraft-website`, which serves the web editor at `/editor/`
-  as well ([website](docs/website.md)). The demos are the editor's own code: its
+  as well ([website](docs/website.md)); where the links of the page lead (web editor,
+  repository, downloads, documentation, issues) is set in `config.js` or with
+  environment variables of the image (`OPENECRAFT_EDITOR_URL`, …). The demos are the editor's own code: its
   shell tables, document state and drawing views moved into the library crates
   `openecraft-shell`, `openecraft-session` and `openecraft-canvas`.
 

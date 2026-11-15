@@ -91,9 +91,16 @@ RUN cd website \
     && trunk build --release --public-url ./ --dist /src/target/website-editor
 
 # Static files served by nginx as an unprivileged user on port 8080: the website at /,
-# the web editor at /editor/ (the links of the page lead there).
+# the web editor at /editor/. Where the links of the page lead is set with the
+# variables below (website/config.js; an empty one takes the address named there):
+# the image writes its nginx site from the template at every start.
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS website
-COPY installer/docker/website.conf /etc/nginx/conf.d/default.conf
+ENV OPENECRAFT_EDITOR_URL=editor/ \
+    OPENECRAFT_REPOSITORY_URL=https://github.com/nilres/OpenECraft \
+    OPENECRAFT_DOWNLOADS_URL= \
+    OPENECRAFT_DOCUMENTATION_URL= \
+    OPENECRAFT_ISSUES_URL=
+COPY installer/docker/website.conf /etc/nginx/templates/default.conf.template
 COPY --from=website-build /src/website/dist/ /usr/share/nginx/html/
 COPY --from=website-build /src/target/website-editor/ /usr/share/nginx/html/editor/
 EXPOSE 8080

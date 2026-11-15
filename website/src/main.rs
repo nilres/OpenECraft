@@ -9,6 +9,8 @@
 //! `layout` as argument: only that one), `call <function> [argument]` prints an answer
 //! of the studio as the page gets it, `export <exporter>` writes the file of an export.
 
+#[cfg(test)]
+mod links;
 mod studio;
 mod texts;
 mod views;

@@ -7,14 +7,14 @@
     <meta name="description" content="OpenECraft is an open source electrical CAE editor: schematics, reports, panel layout in 3D, a command line and an MCP server. Try it live in the browser." />
     <!-- Where the links to the web editor lead: next to the page in the Docker image
          (target website); another address or empty (no links) for other deployments. -->
-    <meta name="openecraft-editor" content="editor/" />
-    <meta name="openecraft-repository" content="https://github.com/nilres/OpenECraft" />
     <link data-trunk rel="rust" href="Cargo.toml" data-bin="openecraft-website" data-wasm-opt="2" />
     <link data-trunk rel="css" href="site.css" />
     <link data-trunk rel="copy-file" href="site.js" />
+    <link data-trunk rel="copy-file" href="config.js" />
     <link data-trunk rel="copy-file" href="../assets/icon.svg" />
     <link data-trunk rel="copy-dir" href="../docs/images" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <script src="config.js"></script>
     <script src="site.js" defer></script>
 </head>
 <body>
@@ -32,7 +32,7 @@
     </nav>
     <div class="nav-right">
         <select id="language" aria-label="Language"></select>
-        <a class="button ghost" data-repository href="#" data-t>Source code</a>
+        <a class="button ghost" data-link="repository" href="#" data-t>Source code</a>
     </div>
 </header>
 
@@ -45,7 +45,7 @@
         <p class="lead" data-t>OpenECraft plans electrical systems: device-oriented schematics, live reports, panel layout with routed wiring and the documentation for the customer. One code base for Windows, Linux, macOS and the browser.</p>
         <div class="actions">
             <a class="button primary" href="#studio" data-t>Try the live demo</a>
-            <a class="button" data-editor href="#" data-t>Open the web editor</a>
+            <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
             <a class="button ghost" href="#get" data-t>Download</a>
         </div>
         <ul class="facts">
@@ -209,10 +209,10 @@
     <h2 data-t>Get OpenECraft</h2>
     <p class="sub" data-t>Free to use, free to change. Pick what fits you.</p>
     <div class="cards get">
-        <article class="card"><h3 data-t>In the browser</h3><p data-t>The full editor as a web application. Nothing to install, your projects stay on your computer.</p><a class="button primary" data-editor href="#" data-t>Open the web editor</a></article>
-        <article class="card"><h3 data-t>On the desktop</h3><p data-t>Installers for Windows, Linux packages and a macOS disk image, with automatic updates.</p><a class="button" data-repository="/releases/latest" href="#" data-t>Download the latest release</a></article>
-        <article class="card"><h3 data-t>For your team</h3><p data-t>Parts server, project server and the web editor as Docker images for your own network.</p><pre><code>docker run -p 8080:8080 ghcr.io/nilres/openecraft-web</code></pre><a class="button ghost" data-repository="/blob/master/docs/installation.md" href="#" data-t>Installation guide</a></article>
-        <article class="card"><h3 data-t>From source</h3><p data-t>Written in Rust. Clone the repository and run it.</p><pre><code>cargo run --release -p openecraft</code></pre><a class="button ghost" data-repository href="#" data-t>Source code</a></article>
+        <article class="card"><h3 data-t>In the browser</h3><p data-t>The full editor as a web application. Nothing to install, your projects stay on your computer.</p><a class="button primary" data-link="editor" href="#" data-t>Open the web editor</a></article>
+        <article class="card"><h3 data-t>On the desktop</h3><p data-t>Installers for Windows, Linux packages and a macOS disk image, with automatic updates.</p><a class="button" data-link="downloads" href="#" data-t>Download the latest release</a></article>
+        <article class="card"><h3 data-t>For your team</h3><p data-t>Parts server, project server and the web editor as Docker images for your own network.</p><pre><code>docker run -p 8080:8080 ghcr.io/nilres/openecraft-web</code></pre><a class="button ghost" data-link="documentation" data-path="/installation.md" href="#" data-t>Installation guide</a></article>
+        <article class="card"><h3 data-t>From source</h3><p data-t>Written in Rust. Clone the repository and run it.</p><pre><code>cargo run --release -p openecraft</code></pre><a class="button ghost" data-link="repository" href="#" data-t>Source code</a></article>
     </div>
 </section>
 
@@ -221,10 +221,10 @@
 <footer>
     <div><img src="icon.svg" alt="" width="22" height="22" /> <b>OpenECraft</b> · <span data-t>Open source under the MIT and Apache-2.0 licenses.</span></div>
     <div class="links">
-        <a data-repository="/blob/master/docs/tutorial.md" href="#" data-t>Tutorial</a>
-        <a data-repository="/blob/master/docs/plugins.md" href="#" data-t>Plugins</a>
-        <a data-repository="/blob/master/docs/command-line.md" href="#" data-t>Command line and MCP</a>
-        <a data-repository="/issues" href="#" data-t>Report a problem</a>
+        <a data-link="documentation" data-path="/tutorial.md" href="#" data-t>Tutorial</a>
+        <a data-link="documentation" data-path="/plugins.md" href="#" data-t>Plugins</a>
+        <a data-link="documentation" data-path="/command-line.md" href="#" data-t>Command line and MCP</a>
+        <a data-link="issues" href="#" data-t>Report a problem</a>
     </div>
     <p class="fine" data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</p>
 </footer>

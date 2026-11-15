@@ -316,10 +316,14 @@ jobs:
           docker stop web
       - name: Start the website
         run: |
-          docker run -d --name site -p 8088:8080 openecraft-website:ci
+          docker run -d --name site -p 8088:8080 -e OPENECRAFT_EDITOR_URL=https://editor.example/ openecraft-website:ci
           for _ in $(seq 30); do curl -fs http://127.0.0.1:8088/ > /dev/null && break; sleep 1; done
           curl -fsS http://127.0.0.1:8088/ -o site.html || { docker logs site; exit 1; }
           grep -q canvas-schematic site.html
+          # The links of the page come from the environment.
+          curl -fsS http://127.0.0.1:8088/config.js | tee config.js
+          grep -q 'editor: "https://editor.example/"' config.js
+          grep -q 'repository: "https://github.com/' config.js
           wasm=$(grep -o '[^"/]*_bg\.wasm' site.html | head -n 1)
           test -n "$wasm"
           curl -fsS -o /dev/null -w '%{content_type}\n' "http://127.0.0.1:8088/$wasm" | tee type.txt

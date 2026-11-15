@@ -35,10 +35,16 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   canvases in a window, `cargo run -p openecraft-website -- call state` prints an
   answer as the page gets it, `… -- export pdf` writes the file of an exporter.
 
-Two settings are `<meta>` elements in `index.html`: `openecraft-editor`, where the
-links to the web editor lead (`editor/` beside the page, as in the Docker image; any
-other address; empty hides the links), and `openecraft-repository`, the address of
-the source repository for the links to releases and documentation.
+Where the links of the page lead is set in `config.js` beside it, which the page
+loads first; the Docker image takes the same settings from environment variables:
+
+| `config.js` | Variable of the image | Leads to | Empty |
+| --- | --- | --- | --- |
+| `editor` | `OPENECRAFT_EDITOR_URL` | The web editor: a folder beside the page (`editor/`, the default) or any address | Hides the links |
+| `repository` | `OPENECRAFT_REPOSITORY_URL` | The source repository | Hides the links |
+| `downloads` | `OPENECRAFT_DOWNLOADS_URL` | The downloads | The latest release of the repository |
+| `documentation` | `OPENECRAFT_DOCUMENTATION_URL` | The folder with `tutorial.md`, `plugins.md`, `command-line.md` and `installation.md` | The `docs` folder of the repository |
+| `issues` | `OPENECRAFT_ISSUES_URL` | Where problems are reported | The issues of the repository |
 
 ## Development
 
@@ -69,8 +75,8 @@ For the links to the web editor, either put a build of the editor into the folde
 cd openecraft && trunk build --release --public-url ./ --dist ../website/dist/editor
 ```
 
-or set the `openecraft-editor` element to the address of a web editor hosted
-elsewhere.
+or set `editor` in `dist/config.js` to the address of a web editor hosted elsewhere.
+`config.js` is a plain file: it can be edited on the server without a new build.
 
 ## Docker image
 
@@ -82,7 +88,19 @@ docker run -d --name openecraft-website -p 127.0.0.1:8088:8080 ghcr.io/nilres/op
 docker build -f installer/docker/Dockerfile --target website -t openecraft-website .
 ```
 
-`installer/docker/compose.yaml` has it as the service `website`. The nginx site is
-`installer/docker/website.conf` (mount your own at `/etc/nginx/conf.d/default.conf`);
+The links of the page are set with the variables of the table above, for example a
+web editor and a repository of your own:
+
+```bash
+docker run -d -p 127.0.0.1:8088:8080 \
+  -e OPENECRAFT_EDITOR_URL=https://editor.example.com/ \
+  -e OPENECRAFT_REPOSITORY_URL=https://git.example.com/acme/openecraft \
+  ghcr.io/nilres/openecraft-website
+```
+
+`installer/docker/compose.yaml` has it as the service `website` and passes the same
+variables on. The nginx site is `installer/docker/website.conf`, a template the image
+fills in at every start (it answers `/config.js` from the variables; mount your own
+at `/etc/nginx/templates/default.conf.template`);
 put a TLS reverse proxy in front of it for a public site. The page needs no server
 side: nothing a visitor does leaves the browser.
