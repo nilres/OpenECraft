@@ -23,6 +23,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   *Open GitHub issue form* opens a new issue on GitHub with the report filled in and
   copies it; nothing is sent from the editor. The screenshot is copied or saved as PNG
   to attach it there.
+- **Compressed downloads behind a reverse proxy:** the website and web editor images
+  sent the WebAssembly (40 MB instead of 15 MB for the website), the scripts and the
+  style sheet uncompressed when a reverse proxy spoke HTTP/1.0 to them, as nginx's
+  `proxy_pass` does by default. They now compress for HTTP/1.0 too and answer with
+  `Vary: Accept-Encoding`, so that caches keep the compressed and plain files apart.
 
 ## [0.1.2] - 2026-11-15
 

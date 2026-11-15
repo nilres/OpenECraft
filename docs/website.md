@@ -245,8 +245,10 @@ site from `installer/docker/website.conf` (mount your own at
 `/robots.txt` and `/sitemap.xml` with the files of `/tmp/openecraft/`);
 put a TLS reverse proxy in front of it for a public site. The WebAssembly (40 MB,
 15 MB compressed), the scripts and the routings have a compressed copy from the
-build of the image, which nginx sends as it is (`gzip_static`); a server of your own
-should compress them once as well instead of for every visitor. The log of the
+build of the image, which nginx sends as it is (`gzip_static`), also to a reverse
+proxy speaking HTTP/1.0 (the default of nginx's `proxy_pass`) and with
+`Vary: Accept-Encoding`; a server of your own should compress them once as well
+instead of for every visitor. The log of the
 visits (the output of the container) has no whole address of a visitor: nginx leaves
 out the last part of an IPv4 address and all but the first three groups of an IPv6
 address (`log_format visits` of `website.conf`); its error log, which is seldom
