@@ -187,6 +187,17 @@ docker run -d --name openecraft-website -p 127.0.0.1:8088:8080 ghcr.io/nilres/op
 docker build -f installer/docker/Dockerfile --target website -t openecraft-website .
 ```
 
+CI pushes the image with the others on master and for a release. To get only a new
+website image, without the rest of CI, start the workflow *Website image*
+(`.github/workflows/website-image.yml`) by hand under *Actions*, on the branch to
+build: it builds the image, starts it once and pushes it with the tags `edge` (on
+master; the name of any other branch), `sha-<commit>` and a tag of your choice, or
+only builds and checks it with *push* off. From a terminal:
+
+```bash
+gh workflow run website-image.yml --ref master -f tag=latest
+```
+
 The public address of the site, the links of the page and the legal notice are set
 with the variables above, for example the address, a web editor and a repository of
 your own and the operator of the site:
