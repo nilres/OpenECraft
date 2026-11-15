@@ -9,6 +9,13 @@
     const CONSOLE_LIMIT = 6000;
     const COMMAND_ROWS = 80;
 
+    // The language of the page as it was written: de.html shows German.
+    const pageLang = document.documentElement.lang || "en";
+    // The module and its WebAssembly, named by trunk in the page (Trunk.toml).
+    const [moduleUrl, wasmUrl] = (window.OPENECRAFT_MODULE || []).map(a => new URL(a, document.baseURI).href);
+    let loading = null;
+    // The canvas a visitor clicked before the module was there.
+    let wanted = null;
     let api = null;
     let texts = {};
     let state = null;
@@ -277,6 +284,7 @@
             svg.removeAttribute("width");
             svg.removeAttribute("height");
             $("#hero-sheet").replaceChildren(svg);
+            $(".sheet-note").hidden = false;
         } catch (e) { /* the page went away meanwhile: the next state draws it */ }
     }
 
@@ -296,8 +304,7 @@
     // second instance of the module searches it in a worker and the page stays
     // usable; without a worker (an old browser) the page searches it itself.
     function startWorker() {
-        const module = $('link[rel="modulepreload"]')?.href;
-        const wasm = $('link[rel="preload"][type="application/wasm"]')?.href;
+        const [module, wasm] = [moduleUrl, wasmUrl];
         if (!module || !wasm || !window.Worker) return;
         let started;
         const failed = () => {
@@ -541,6 +548,7 @@
 
     function loadLanguages() {
         const languages = call("languages");
+        $("#language").hidden = false;
         $("#language").replaceChildren(...languages.map(l => {
             const o = element("option", "", l.name);
             o.value = l.code;
@@ -669,14 +677,52 @@
         });
     }
 
+    // The module is 40 MB: the page is shown first. It is loaded when the visitor
+    // starts to use the page, and otherwise once the page is there and the browser has
+    // time, unless the visitor asked the browser to save data.
+    function load() {
+        loading ||= import(moduleUrl).then(async module => {
+            await module.default({ module_or_path: wasmUrl });
+            api = module;
+            boot();
+        }).catch(() => {
+            for (const veil of $$(".veil span")) veil.textContent = t("The demo could not start in this browser. It needs WebGL and WebAssembly.");
+        });
+        return loading;
+    }
+
+    function whenNeeded() {
+        for (const stage of $$(".stage")) $(".veil", stage).addEventListener("click", () => wanted = stage, { once: true });
+        if (!moduleUrl) return;
+        const uses = ["scroll", "pointerdown", "keydown", "touchstart"];
+        const start = () => {
+            for (const use of uses) removeEventListener(use, start);
+            load();
+        };
+        for (const use of uses) addEventListener(use, start, { passive: true });
+        if (location.hash) return start();
+        if (navigator.connection && navigator.connection.saveData) return;
+        const idle = () => window.requestIdleCallback ? requestIdleCallback(start, { timeout: 3000 }) : setTimeout(start, 1500);
+        if (document.readyState === "complete") idle();
+        else addEventListener("load", idle, { once: true });
+    }
+
     function boot() {
-        api = window.wasmBindings;
         loadLanguages();
         controls();
         stages();
         startWorker();
         poll();
-        localized(state ? state.lang : "en");
+        // A page written in a language shows it; the English one follows the browser.
+        let lang = state ? state.lang : "en";
+        if (pageLang !== "en" && pageLang !== lang) {
+            try {
+                call("language", pageLang);
+                lang = pageLang;
+            } catch (e) { /* a language the module does not have */ }
+        }
+        localized(lang);
+        if (wanted) activate(wanted);
         print(t("These are the commands of the command line and the MCP server, run on the project of the demo above."), "dim");
         print(t("Type help for the commands, or pick one on the right."), "dim");
         poll();
@@ -686,6 +732,5 @@
     links();
     legal();
     reveal();
-    if (window.wasmBindings) boot();
-    else window.addEventListener("TrunkApplicationStarted", boot, { once: true });
+    whenNeeded();
 })();

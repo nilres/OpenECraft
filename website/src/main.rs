@@ -7,7 +7,8 @@
 //! Built with trunk for the browser (`cd website && trunk serve`). The native build is
 //! for working on the demos: it shows the canvases in a window (`schematic` or
 //! `layout` as argument: only that one), `call <function> [argument]` prints an answer
-//! of the studio as the page gets it, `export <exporter>` writes the file of an export.
+//! of the studio as the page gets it, `export <exporter>` writes the file of an export,
+//! `sheet` prints the still picture of the first screen (`sheet.svg`).
 
 #[cfg(test)]
 mod links;
@@ -16,6 +17,18 @@ mod seo;
 mod studio;
 mod texts;
 mod views;
+
+/// The page the demo opens with as SVG, in English: the still picture the page shows
+/// until the module is loaded (`sheet.svg`; `… -- sheet > website/sheet.svg`).
+#[cfg(not(target_arch = "wasm32"))]
+fn first_sheet() -> String {
+    openecraft_i18n::with_lang(openecraft_i18n::Lang::En, || {
+        let mut studio = studio::Studio::default();
+        studio.settle();
+        let page = studio.call("state", "")["page"].as_u64().unwrap_or_default();
+        studio.call("svg", &page.to_string()).as_str().unwrap_or_default().to_string()
+    })
+}
 
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result {
@@ -58,6 +71,10 @@ fn main() -> eframe::Result {
             }
             return Ok(());
         }
+        ["sheet"] => {
+            print!("{}", first_sheet());
+            return Ok(());
+        }
         _ => {}
     }
     let options = eframe::NativeOptions { viewport: egui::ViewportBuilder::default().with_title("OpenECraft").with_inner_size([1440.0, 800.0]), ..Default::default() };
@@ -81,7 +98,7 @@ fn main() {
     }
 }
 
-/// What the page calls (`window.wasmBindings` of trunk).
+/// What the page calls: the module, which `site.js` loads once the page is shown.
 #[cfg(target_arch = "wasm32")]
 mod web {
     use crate::studio::Studio;

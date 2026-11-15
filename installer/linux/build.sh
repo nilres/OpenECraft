@@ -125,7 +125,7 @@ Section: electronics
 Priority: optional
 Homepage: https://github.com/nilres/OpenECraft
 Description: Electrical CAE editor: schematics, panel layouts and reports
- OpenECraft is an open electrical CAE editor in the spirit of EPLAN Electric P8:
+ OpenECraft is an open source electrical CAE editor:
  schematic pages with device tags, cross references and a netlist, panel layout
  in 2D and 3D, checks, reports and exports.
  .

@@ -120,3 +120,59 @@ fn the_address_is_set_in_the_image_and_by_the_script() {
     assert!(script.contains("printf 'User-agent: *\\nAllow: /\\n'"));
     assert!(read("index.html").contains("rel=\"copy-file\" href=\"robots.txt\""));
 }
+
+#[test]
+fn every_language_has_a_page_search_engines_can_read() {
+    use openecraft_i18n::page::{file_name, translated};
+    let html = read("index.html");
+    assert_eq!(attribute(&html, "<meta name=\"description\"", "content"), DESCRIPTION);
+    for lang in Lang::REQUIRED.into_iter().filter(|l| *l != Lang::En) {
+        let page = translated(&html, lang);
+        let description = openecraft_i18n::translate(DESCRIPTION, lang);
+        assert!(page.contains(&format!("<html lang=\"{}\">", lang.code())), "{}", lang.code());
+        assert!(description != DESCRIPTION && attribute(&page, "<meta name=\"description\"", "content") == description);
+        assert_eq!(attribute(&page, "property=\"og:description\"", "content"), description);
+        assert!(!page.contains("<title data-t>") && page.contains("<title data-t=\"OpenECraft – open source electrical CAE\">"));
+        // Every text of the page is in the language, and the script finds its English.
+        let left: Vec<&str> = page.split(" data-t>").skip(1).filter_map(|rest| rest.split('<').next()).collect();
+        assert!(left.is_empty(), "{}: not translated: {left:?}", lang.code());
+        assert_eq!(page.matches(" data-t=\"").count(), html.matches(" data-t>").count());
+        assert_eq!(page.matches(" placeholder=\"").count(), html.matches(" data-t-placeholder=\"").count());
+        assert_eq!(page.lines().count(), html.lines().count());
+    }
+    // The build writes them, the script of the address and nginx know them.
+    let names: Vec<String> = Lang::ALL.into_iter().map(file_name).collect();
+    assert!(names.iter().skip(1).all(|n| n.len() == 7 && n.ends_with(".html")), "two letters: {names:?}");
+    assert!(read("Trunk.toml").contains("\"openecraft-i18n\", \"--example\", \"pages\""));
+    let script = read("../installer/docker/website-site.sh");
+    assert!(script.contains("\"$page\"/[a-z][a-z].html") && script.contains("hreflang=\\\"x-default\\\""));
+    assert!(script.contains("tags index.html \"\"") && script.contains("%s%s.html</loc>"));
+    let nginx = read("../installer/docker/website.conf").replace("\r\n", "\n");
+    assert!(nginx.contains("location ~ ^/([a-z][a-z]\\.html)$ {\n        alias /tmp/openecraft/$1;"), "website.conf: the pages of the languages");
+    assert!(read("site.js").contains("document.documentElement.lang"), "the page of a language shows it");
+}
+
+#[test]
+fn the_page_is_shown_before_its_module_is_loaded() {
+    let trunk = read("Trunk.toml");
+    let script = read("site.js");
+    let html = read("index.html");
+    // trunk names the module, site.js loads it: no script or preload of trunk's own.
+    assert!(trunk.contains("pattern_script = \"<script>window.OPENECRAFT_MODULE = [\\\"{base}{js}\\\", \\\"{base}{wasm}\\\"];</script>\""));
+    assert!(trunk.contains("pattern_preload = "));
+    assert!(script.contains("window.OPENECRAFT_MODULE") && script.contains("import(moduleUrl)") && script.contains("module_or_path: wasmUrl"));
+    assert!(!script.contains("wasmBindings") && !script.contains("TrunkApplicationStarted") && !script.contains("modulepreload"));
+    assert!(script.contains("navigator.connection.saveData") && script.contains("requestIdleCallback"));
+    // Until then the first screen has a picture, and nothing that needs the module.
+    assert!(html.contains("id=\"hero-sheet\"><img src=\"sheet.svg\"") && html.contains("class=\"sheet-note\" hidden"));
+    assert!(html.contains("<select id=\"language\" aria-label=\"Language\" hidden>"));
+}
+
+#[test]
+fn the_log_of_the_image_has_no_whole_addresses() {
+    let nginx = read("../installer/docker/website.conf");
+    assert!(nginx.contains("map $remote_addr $visitor {") && nginx.contains("log_format visits '$visitor "));
+    assert!(nginx.contains("access_log /var/log/nginx/access.log visits;"));
+    let format = nginx.split("log_format visits").nth(1).and_then(|rest| rest.split(';').next()).unwrap();
+    assert!(!format.contains("remote_addr") && !format.contains("forwarded"), "{format}");
+}

@@ -8,6 +8,7 @@
 //! moves every text to the file of its area.
 
 mod catalog;
+pub mod page;
 pub mod scan;
 mod translate;
 

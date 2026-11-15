@@ -1,6 +1,7 @@
 # OpenECraft
 
-An open source electrical CAE editor written in Rust, in the spirit of EPLAN Electric P8.
+An open source electrical CAE editor written in Rust: device-oriented schematics, live
+reports and panel layout in 3D.
 One code base runs natively on **Windows, Linux and macOS** and in the **browser**
 (WebAssembly), built with [egui / eframe](https://github.com/emilk/egui).
 

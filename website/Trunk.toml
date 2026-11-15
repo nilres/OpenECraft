@@ -3,6 +3,10 @@ target = "index.html"
 dist = "dist"
 # Relative addresses: the page works in any folder of a web server.
 public_url = "./"
+# The page shows itself first and loads the module (40 MB) afterwards: trunk only
+# names the module and the WebAssembly, site.js loads them (docs/website.md).
+pattern_script = "<script>window.OPENECRAFT_MODULE = [\"{base}{js}\", \"{base}{wasm}\"];</script>"
+pattern_preload = "<!-- the module is loaded by site.js -->"
 
 [serve]
 addresses = ["127.0.0.1"]
@@ -24,3 +28,10 @@ command_arguments = ["-ExecutionPolicy", "Bypass", "-File", "..\\installer\\web\
 stage = "post_build"
 command = "cargo"
 command_arguments = ["run", "--release", "-p", "openecraft-core", "--example", "routings"]
+
+# The page in every language beside the English one (de.html, …), for search engines
+# (docs/website.md).
+[[hooks]]
+stage = "post_build"
+command = "cargo"
+command_arguments = ["run", "--release", "-p", "openecraft-i18n", "--example", "pages"]

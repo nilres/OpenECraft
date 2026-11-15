@@ -50,6 +50,11 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   smaller from the screenshots of `docs/images/` of the same name: make them again
   when a screenshot changes), the preview image of links in chats and social media
   (1200 × 630) and the robots.txt of a page without a public address.
+- `social.jpg` is drawn by `social.py`: icon, name and what OpenECraft is beside the
+  screenshot `docs/images/panel-3d.png`.
+- `sheet.svg`: the sheet of the first screen as a picture, shown until the module is
+  loaded and draws it (`cargo run -p openecraft-website -- sheet > website/sheet.svg`;
+  a test compares it with the page the demo opens with).
 - `apple-touch-icon.png`: the icon of the page on the home screen of an iPhone or
   iPad, which takes no SVG: the drawing of `assets/icon.svg` (the icon of the page
   everywhere else) as an opaque square, drawn by `apple-touch-icon.py`.
@@ -58,6 +63,12 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   is a tool for working on the demos: `cargo run -p openecraft-website` shows both
   canvases in a window, `cargo run -p openecraft-website -- call state` prints an
   answer as the page gets it, `… -- export pdf` writes the file of an exporter.
+
+The module is 40 MB (15 MB compressed), so the page is shown first: trunk only names
+the module in the page (`pattern_script` of `Trunk.toml`) and `site.js` loads it when
+the visitor scrolls, clicks or types, and otherwise once the page is there and the
+browser has time. A visitor who asked the browser to save data gets it only on such
+a use. Until then the first screen shows `sheet.svg`.
 
 Where the links of the page lead is set in `config.js` beside it, which the page
 loads first; the Docker image takes the same settings from environment variables:
@@ -104,7 +115,8 @@ The footer always has two more links, each opening a dialog (`#privacy` and
 - *Privacy* says what the page itself does, in the language of the page: no cookies,
   no tracking, nothing loaded from other servers, the demos and exports run in the
   browser, the routings kept in the cache of the browser, the IP address every web
-  server receives, and that the links lead to other sites. What only the operator
+  server receives, and that the links lead to other sites. The Docker image logs
+  the visits without whole addresses (below). What only the operator
   knows (who hosts the site, what the server logs and for how long, whom to ask, as
   Article 13 GDPR asks for) is set in `legal.privacy` and shown below it. Keep the
   texts of the page true: a change that stores or sends something changes them too.
@@ -145,8 +157,16 @@ start. For a page deployed by hand, run it once on the build:
 OPENECRAFT_SITE_URL=https://openecraft.example.com/ sh installer/docker/website-site.sh website/dist website/dist
 ```
 
-Running it again replaces the tags. The page is indexed in English: the languages
-are switched in the browser, under the same address.
+Running it again replaces the tags.
+
+The page has an address in every language: the build writes `de.html`, `fr.html`, …
+beside the English `index.html` (a hook of `Trunk.toml` runs `cargo run --release -p
+openecraft-i18n --example pages`, `openecraft_i18n::page`), the same page with its
+texts, its title and its description from the catalog, so that a search engine reads
+them without running the demos. Such a page opens in its language; the English one
+follows the language of the browser, and the visitor switches on either. With the
+public address every page names itself as canonical and all of them as its
+alternates (`hreflang`), and the sitemap lists them.
 
 ## Development
 
@@ -226,5 +246,9 @@ site from `installer/docker/website.conf` (mount your own at
 put a TLS reverse proxy in front of it for a public site. The WebAssembly (40 MB,
 15 MB compressed), the scripts and the routings have a compressed copy from the
 build of the image, which nginx sends as it is (`gzip_static`); a server of your own
-should compress them once as well instead of for every visitor. The page needs no server
+should compress them once as well instead of for every visitor. The log of the
+visits (the output of the container) has no whole address of a visitor: nginx leaves
+out the last part of an IPv4 address and all but the first three groups of an IPv6
+address (`log_format visits` of `website.conf`); its error log, which is seldom
+written, has them. The page needs no server
 side: nothing a visitor does leaves the browser.

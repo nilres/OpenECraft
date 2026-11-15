@@ -216,6 +216,16 @@ pub fn translate(en: &'static str, lang: Lang) -> &'static str {
     }
 }
 
+/// The translation of an English text that is not a literal of the program (read from
+/// a file, for example), if the catalog of `lang` has it.
+pub fn translation(en: &str, lang: Lang) -> Option<&'static str> {
+    match lang {
+        Lang::En => None,
+        Lang::De | Lang::Fr | Lang::Es => table().get(en).map(|t| t[lang.index() as usize - 1]),
+        _ => further_table(lang).get(en).copied(),
+    }
+}
+
 /// A file error in the current language: the operating system words its errors in
 /// its own language, which may differ from the program's.
 pub fn io_error(e: &std::io::Error) -> String {

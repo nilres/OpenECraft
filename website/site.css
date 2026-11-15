@@ -92,8 +92,7 @@ h1 {
     animation: float 9s ease-in-out infinite;
 }
 .sheet:hover { transform: rotateY(-4deg) rotateX(2deg); }
-.sheet svg { width: 100%; height: 100%; display: block; }
-.sheet-wait { position: absolute; inset: 0; display: grid; place-items: center; color: #5b6b86; font-weight: 600; background: repeating-linear-gradient(45deg, #f4f7fb 0 14px, #eaf0f8 14px 28px); }
+.sheet svg, .sheet img { width: 100%; height: 100%; display: block; }
 .sheet-note { color: var(--muted); font-size: 13px; margin-top: 22px; text-align: center; }
 @keyframes float { 50% { translate: 0 -10px; } }
 

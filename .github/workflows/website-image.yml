@@ -62,7 +62,8 @@ jobs:
           grep -q canvas-schematic site.html
           wasm=$(grep -o '[^"/]*_bg\.wasm' site.html | head -n 1)
           test -n "$wasm"
-          for file in "$wasm" config.js site.js apple-touch-icon.png LICENSE-MIT THIRD-PARTY-LICENSES.html routing/index.json editor/; do
+          curl -fsS http://127.0.0.1:8088/de.html | grep -qF '<html lang="de">'
+          for file in "$wasm" config.js site.js sheet.svg apple-touch-icon.png LICENSE-MIT THIRD-PARTY-LICENSES.html routing/index.json editor/; do
             curl -fsS -o /dev/null "http://127.0.0.1:8088/$file"
           done
           # The WebAssembly is sent as the build of the image compressed it.

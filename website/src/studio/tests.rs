@@ -328,3 +328,20 @@ fn typed_lines_are_split_at_blanks_outside_quotes() {
     assert!(split_line("a \"b").is_err());
     assert!(split_line("   ").unwrap().is_empty());
 }
+
+#[test]
+fn the_still_picture_of_the_page_is_the_first_sheet_of_the_demo() {
+    let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    let picture = std::fs::read_to_string(dir.join("sheet.svg")).unwrap().replace("\r\n", "\n");
+    let sheet = crate::first_sheet();
+    assert!(sheet.starts_with("<svg ") && sheet.len() < 60_000, "{} bytes", sheet.len());
+    // The export lists the junctions of the wires in no fixed order.
+    let sorted = |svg: &str| {
+        let mut lines: Vec<String> = svg.trim_end().lines().map(String::from).collect();
+        lines.sort();
+        lines
+    };
+    assert!(sorted(&picture) == sorted(&sheet), "website/sheet.svg is not the page the demo opens with: cargo run -p openecraft-website -- sheet > website/sheet.svg");
+    let html = std::fs::read_to_string(dir.join("index.html")).unwrap();
+    assert!(html.contains("<img src=\"sheet.svg\"") && html.contains("rel=\"copy-file\" href=\"sheet.svg\""));
+}

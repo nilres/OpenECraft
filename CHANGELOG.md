@@ -35,6 +35,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   ([website](docs/website.md#privacy-notice-licenses-and-disclaimers)). The image
   sends the WebAssembly compressed by its build instead of compressing it for every
   visitor, and the page has an icon for the home screen of iPhones.
+- **Website shown before its demos are loaded, and in every language for search
+  engines:** the page shows a picture of the first sheet and loads the 40 MB module
+  afterwards (at the first scroll, click or key, or when the browser has time). The
+  build writes the page in every language beside the English one (`de.html`, …) with
+  translated title and description; with the public address the pages name each
+  other (`hreflang`) and the sitemap lists them. The image logs visits without whole
+  IP addresses, and links to the page are previewed with the name and a screenshot
+  ([website](docs/website.md#search-engines-and-link-previews)).
 - **Website for search engines and link previews:** the page has Open Graph and
   Twitter card tags, structured data (`SoftwareApplication`), a translated title,
   texts for the pictures of the gallery, which are WebP files of a fourteenth of the

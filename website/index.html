@@ -32,8 +32,8 @@
         "keywords": "electrical CAE, schematic editor, panel layout, IEC 81346, terminal diagram, open source"
     }
     </script>
-    <!-- Where the links to the web editor lead: next to the page in the Docker image
-         (target website); another address or empty (no links) for other deployments. -->
+    <!-- The module: trunk names it here (pattern_script of Trunk.toml), site.js loads
+         it once the page is shown. -->
     <link data-trunk rel="rust" href="Cargo.toml" data-bin="openecraft-website" data-wasm-opt="2" />
     <link data-trunk rel="css" href="site.css" />
     <link data-trunk rel="copy-file" href="site.js" />
@@ -41,6 +41,7 @@
     <link data-trunk rel="copy-file" href="worker.js" />
     <link data-trunk rel="copy-file" href="../assets/icon.svg" />
     <link data-trunk rel="copy-file" href="apple-touch-icon.png" />
+    <link data-trunk rel="copy-file" href="sheet.svg" />
     <link data-trunk rel="copy-dir" href="images" />
     <link data-trunk rel="copy-file" href="social.jpg" />
     <link data-trunk rel="copy-file" href="robots.txt" />
@@ -63,7 +64,7 @@
         <a href="#get" data-t>Get it</a>
     </nav>
     <div class="nav-right">
-        <select id="language" aria-label="Language"></select>
+        <select id="language" aria-label="Language" hidden></select>
         <a class="button ghost" data-link="repository" href="#" data-t>Source code</a>
     </div>
 </header>
@@ -88,8 +89,9 @@
         </ul>
     </div>
     <div class="hero-art">
-        <div class="sheet" id="hero-sheet"><div class="sheet-wait" data-t>The live demo is loading…</div></div>
-        <p class="sheet-note" data-t>This page is drawn right now by the editor's own code, running in your browser.</p>
+        <!-- The first sheet of the demo as a picture (sheet.svg), until the module is loaded and draws it. -->
+        <div class="sheet" id="hero-sheet"><img src="sheet.svg" width="420" height="297" alt="A schematic page of the demo project, drawn by OpenECraft" data-t-alt="A schematic page of the demo project, drawn by OpenECraft" /></div>
+        <p class="sheet-note" hidden data-t>This page is drawn right now by the editor's own code, running in your browser.</p>
     </div>
 </section>
 
