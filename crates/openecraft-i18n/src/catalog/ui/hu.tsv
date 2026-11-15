@@ -5,6 +5,7 @@
 2D front view	2D elölnézet
 2D front view (SVG)	2D elölnézet (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-modell (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Rövid cím a problémához (nem kötelező)
 Accessories of this part	A cikk tartozékai
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	A tartozékok csak azokkal a cikkekkel működnek, amelyekhez illeszkednek. A cikk felsorolja a tartozékait, a tartozék azokat a cikkeket, amelyekhez illeszkedik; elég az egyik oldal.
 Accessory, mounted: {}	Tartozék, szerelés: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Csatlakozzon egy alkatrészszerverhez, és keressen.
 Connected: {} {} – {} parts, revision {}, {}	Csatlakozva: {} {} – {} alkatrész, {}. revízió, {}
 Connection designations	Összeköttetés-megnevezések
+Copy report	Jelentés másolása
+Copy screenshot	Képernyőkép másolása
 Corner radius	Sarokrádiusz
+Could not save the screenshot: {}	A képernyőkép nem menthető: {}
 Cut-out	Kivágás
 Datasheet (URL)	Adatlap (URL)
 Deleted catalog {}	A(z) {} katalógus törölve
 Deleted part {}	A(z) {} alkatrész törölve
 Deleted user {}	A(z) {} felhasználó törölve
 Deleting {}…	{} törlése…
+Describe the problem you saw	Írja le a látott problémát
+Describe what happened before continuing.	Mielőtt folytatná, írja le, mi történt.
 Door cutouts	Ajtókivágások
 Downloaded {} ({} bytes)	{} letöltve ({} bájt)
 Downloading parts…	Alkatrészek letöltése…
 Drag it onto a schematic page to place it	Húzza egy kapcsolási rajz oldalra az elhelyezéshez
 EPLAN numbers	EPLAN-számok
 EPLAN product groups	EPLAN-termékcsoportok
+Expected result (optional)	Várt eredmény (nem kötelező)
 FLOOR	PADLÓ
 Faces	Felületek
 Filter (number, type, manufacturer, text …)	Szűrő (szám, típus, gyártó, szöveg …)
@@ -52,6 +59,7 @@ Floor mounting	Padlóra szerelés
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Az alkatrész által biztosított funkciók. A készülékválasztáshoz, az érintkezőtükörhöz (tartalék érintkezők), a projektellenőrzéshez és a csatlakozásmegnevezések kiosztásához használatos. A megnevezések a szimbólum csatlakozási sorrendjében, szóközzel elválasztva szerepelnek.
 Generate from function template	Generálás funkciósablonból
 Group by	Csoportosítás e szerint
+Hides this form and takes a screenshot of the window as it is now	Elrejti ezt az űrlapot, és képernyőképet készít az ablak mostani állapotáról
 Identifying letter of devices using this part (K, Q, S …)	Az ezt az alkatrészt használó készülékek kódbetűje (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT importálása…
 Import SVG…	SVG importálása…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Az olyan sorokat, mint
 No own connection points – the generated ones are shown.	Nincsenek saját csatlakozási pontok – a generáltak láthatók.
 No part of the database comes from the EPLAN Data Portal	Az adatbázis egyik alkatrésze sem az EPLAN Data Portalból származik
 No parts found.	Nem található alkatrész.
+No screenshot could be taken of this window.	Erről az ablakról nem készíthető képernyőkép.
+Offline, or GitHub does not open? Copy the report and submit it later.	Nincs kapcsolat, vagy nem nyílik meg a GitHub? Másolja ki a jelentést, és küldje be később.
 Only floor-standing parts	Csak padlón álló alkatrészek
 Only parts for direct wall mounting	Csak közvetlen falra szerelésre szolgáló cikkek
+Open GitHub issue form	GitHub issue-űrlap megnyitása
 Open datasheet	Adatlap megnyitása
 Open in the browser	Megnyitás a böngészőben
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Megnyitja a böngészőt, és kimásolja a jelentést, hogy beillessze a GitHub issue-űrlapjába.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Megnyitja a böngészőt a kitöltött jelentéssel, és kimásolja azt. Ellenőrizze, és küldje be a GitHubon.
 Outside the face	A felületen kívül
 Pan and zoom together	Mozgatás és nagyítás együtt
 Pan only	Csak mozgatás
@@ -93,17 +106,28 @@ Prices / other	Árak / egyéb
 Rear	Hátul
 Remove all	Összes eltávolítása
 Remove picture	Kép eltávolítása
+Remove screenshot	Képernyőkép eltávolítása
 Removing the file…	A fájl eltávolítása…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	A csatlakozási pontokat az IEC-konvenció szerint cseréli le: páratlan megnevezések felül, párosak alul
+Report copied. Keep it to submit on GitHub when you are online.	Jelentés kimásolva. Őrizze meg, hogy a GitHubon beküldhesse, amikor újra online lesz.
+Report copied. Paste it into the GitHub issue form and submit it there.	Jelentés kimásolva. Illessze be a GitHub issue-űrlapjába, és ott küldje be.
+Reports are public. A GitHub account is needed to submit them.	A jelentések nyilvánosak. A beküldésükhöz GitHub-fiók kell.
 Reset filter	Szűrő alaphelyzetbe állítása
 Restricted areas: {}	Tiltott területek: {}
+Retake screenshot	Képernyőkép újrakészítése
+Review your report on GitHub and submit it there.	Ellenőrizze a jelentést a GitHubon, és ott küldje be.
 Rotate 90°:	Forgatás 90°-kal:
+Save screenshot…	Képernyőkép mentése…
 Save the file	A fájl mentése
 Saved part {}	A(z) {} alkatrész mentve
 Saved the library {}	{} könyvtár mentve
 Saving favorites…	Kedvencek mentése…
 Saving {}…	{} mentése…
 Scale ×	Lépték ×
+Screenshot (optional)	Képernyőkép (nem kötelező)
+Screenshot copied. Paste it into the GitHub issue form.	Képernyőkép kimásolva. Illessze be a GitHub issue-űrlapjába.
+Screenshot removed from this report.	Képernyőkép eltávolítva ebből a jelentésből.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Képernyőkép mentve. Csatolja a PNG-fájlt a GitHub issue-űrlapjában.
 Select a part to see its details.	Válasszon ki egy alkatrészt a részletei megtekintéséhez.
 Select a row, then click into the view to place it.	Jelöljön ki egy sort, majd kattintson a nézetbe az elhelyezéséhez.
 Server revision	Szerverrevízió
@@ -112,12 +136,17 @@ Signing out…	Kijelentkezés…
 Smallest conductor the clamp takes (0: not known)	A kapocs által befogadott legkisebb vezető (0: ismeretlen)
 Stands on the floor of a room	Egy helyiség padlóján áll
 Stands on the floor of a room, like pumps, tanks and compressors	Egy helyiség padlóján áll, mint a szivattyúk, tartályok és kompresszorok
+Steps to reproduce (optional)	Az előidézés lépései (nem kötelező)
 Successor {}	Utód: {}
+Summary	Összefoglalás
 Take {} values from the technical data	{} érték átvétele a műszaki adatokból
+Technical details	Műszaki adatok
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	A 2D elölnézet a szekrény elölnézetében és a szerelésiterv-oldalakon, a 3D-modell a 3D szekrénynézetben használatos. Mindkettő a szerelési adatokhoz (szélesség × magasság × mélység) igazodik.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	A modell ({} × {} × {}) eltér a szerelési adatoktól ({} × {} × {}); a szerelési adatokra nyújtjuk.
 The parts server has no library {} yet	Az alkatrészkiszolgálón még nincs {} könyvtár
 The price refers to this many units	Az ár ennyi egységre vonatkozik
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	A jelentés tartalmazza a verziót, a rendszert és a nyitott projekt elemeinek számát, de a projekt tartalmát nem. Megosztás előtt ellenőrizze az adatokat.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	A képernyőkép nem csatolódik magától: másolja ki vagy mentse el, majd adja hozzá a GitHub issue-űrlapjához.
 The successor is not in this parts list	Az utód nem szerepel ebben az alkatrészlistában
 This part is an accessory	Ez a cikk tartozék
 Top group	Főcsoport
@@ -134,6 +163,9 @@ Use model size as mounting data	Modellméret átvétele szerelési adatként
 Voltage / current	Feszültség / áram
 WALL	FAL
 Wall mounting	Falra szerelés
+What did you do just before the problem? A short list is enough	Mit csinált közvetlenül a probléma előtt? Elég egy rövid lista
+What did you expect to see?	Mit várt, mit fog látni?
+What happened?	Mi történt?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Hol helyezkedik el a tartozék az illeszkedő cikken, a szekrényelrendezésben és a 3D-nézetben
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	A kivágások helye: a középpont az elölnézet közepétől (x jobbra, y lefelé), az elforgatás az óramutatóval ellentétesen.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	A vezetékek bekötési helye a szekrényelrendezésben: a megnevezés a funkciósablon szerint, a pozíció az elölnézetben (x balról, y felülről, z a szerelőfelület fölött) és a vezeték kilépési iránya. A saját csatlakozási pontok nélküli alkatrészek a funkciósablonból kapják meg azokat.

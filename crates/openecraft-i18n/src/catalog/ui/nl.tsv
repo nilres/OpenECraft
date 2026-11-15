@@ -5,6 +5,7 @@
 2D front view	2D-vooraanzicht
 2D front view (SVG)	2D-vooraanzicht (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Een korte titel voor het probleem (optioneel)
 Accessories of this part	Toebehoren van dit artikel
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Toebehoren werkt alleen samen met de artikelen waarop het past. Een artikel noemt zijn toebehoren, een toebehoren de artikelen waarop het past; één kant is genoeg.
 Accessory, mounted: {}	Toebehoren, gemonteerd: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Maak verbinding met een artikelserver en zoek.
 Connected: {} {} – {} parts, revision {}, {}	Verbonden: {} {} – {} artikelen, revisie {}, {}
 Connection designations	Aansluitbenamingen
+Copy report	Rapport kopiëren
+Copy screenshot	Schermafbeelding kopiëren
 Corner radius	Hoekradius
+Could not save the screenshot: {}	De schermafbeelding kon niet worden opgeslagen: {}
 Cut-out	Uitsparing
 Datasheet (URL)	Gegevensblad (URL)
 Deleted catalog {}	Catalogus {} verwijderd
 Deleted part {}	Artikel {} verwijderd
 Deleted user {}	Gebruiker {} verwijderd
 Deleting {}…	{} verwijderen…
+Describe the problem you saw	Beschrijf het probleem dat u zag
+Describe what happened before continuing.	Beschrijf wat er is gebeurd voordat u verdergaat.
 Door cutouts	Deuruitsparingen
 Downloaded {} ({} bytes)	{} gedownload ({} bytes)
 Downloading parts…	Artikelen downloaden…
 Drag it onto a schematic page to place it	Sleep naar een schemapagina om te plaatsen
 EPLAN numbers	EPLAN-nummers
 EPLAN product groups	EPLAN-productgroepen
+Expected result (optional)	Verwacht resultaat (optioneel)
 FLOOR	VLOER
 Faces	Vlakken
 Filter (number, type, manufacturer, text …)	Filter (nummer, type, fabrikant, tekst …)
@@ -52,6 +59,7 @@ Floor mounting	Vloermontage
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Functies die het artikel biedt. Gebruikt voor de apparaatselectie, het contactbeeld (reservecontacten), de projectcontrole en het toekennen van aansluitbenamingen. Benamingen worden vermeld in de aansluitvolgorde van het symbool, gescheiden door spaties.
 Generate from function template	Genereren uit functiesjabloon
 Group by	Groeperen op
+Hides this form and takes a screenshot of the window as it is now	Verbergt dit formulier en maakt een schermafbeelding van het venster zoals het nu is
 Identifying letter of devices using this part (K, Q, S …)	Kenletter van apparaten met dit artikel (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT importeren…
 Import SVG…	SVG importeren…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Verplaatst regels zoal
 No own connection points – the generated ones are shown.	Geen eigen aansluitpunten – de gegenereerde worden weergegeven.
 No part of the database comes from the EPLAN Data Portal	Geen enkel artikel van de database komt uit het EPLAN Data Portal
 No parts found.	Geen artikelen gevonden.
+No screenshot could be taken of this window.	Van dit venster kon geen schermafbeelding worden gemaakt.
+Offline, or GitHub does not open? Copy the report and submit it later.	Offline, of opent GitHub niet? Kopieer het rapport en verstuur het later.
 Only floor-standing parts	Alleen vloerstaande artikelen
 Only parts for direct wall mounting	Alleen artikelen voor directe wandmontage
+Open GitHub issue form	GitHub-issueformulier openen
 Open datasheet	Gegevensblad openen
 Open in the browser	Openen in de browser
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Opent de browser en kopieert het rapport zodat u het in het GitHub-issueformulier kunt plakken.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Opent de browser met het ingevulde rapport en kopieert het. Controleer en verstuur het op GitHub.
 Outside the face	Buiten het vlak
 Pan and zoom together	Tegelijk verschuiven en zoomen
 Pan only	Alleen verschuiven
@@ -93,17 +106,28 @@ Prices / other	Prijzen / overig
 Rear	Achterkant
 Remove all	Alles verwijderen
 Remove picture	Afbeelding verwijderen
+Remove screenshot	Schermafbeelding verwijderen
 Removing the file…	Bestand verwijderen…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Vervangt de aansluitpunten volgens de IEC-conventie: oneven benamingen boven, even benamingen onder
+Report copied. Keep it to submit on GitHub when you are online.	Rapport gekopieerd. Bewaar het om het op GitHub te versturen zodra u online bent.
+Report copied. Paste it into the GitHub issue form and submit it there.	Rapport gekopieerd. Plak het in het GitHub-issueformulier en verstuur het daar.
+Reports are public. A GitHub account is needed to submit them.	Rapporten zijn openbaar. Voor het versturen is een GitHub-account nodig.
 Reset filter	Filter herstellen
 Restricted areas: {}	Verboden zones: {}
+Retake screenshot	Schermafbeelding opnieuw maken
+Review your report on GitHub and submit it there.	Controleer uw rapport op GitHub en verstuur het daar.
 Rotate 90°:	90° draaien:
+Save screenshot…	Schermafbeelding opslaan…
 Save the file	Het bestand opslaan
 Saved part {}	Artikel {} opgeslagen
 Saved the library {}	Bibliotheek {} opgeslagen
 Saving favorites…	Favorieten opslaan…
 Saving {}…	{} opslaan…
 Scale ×	Schaal ×
+Screenshot (optional)	Schermafbeelding (optioneel)
+Screenshot copied. Paste it into the GitHub issue form.	Schermafbeelding gekopieerd. Plak haar in het GitHub-issueformulier.
+Screenshot removed from this report.	Schermafbeelding uit dit rapport verwijderd.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Schermafbeelding opgeslagen. Voeg het PNG-bestand toe in het GitHub-issueformulier.
 Select a part to see its details.	Selecteer een artikel om de details te zien.
 Select a row, then click into the view to place it.	Selecteer een rij en klik dan in de weergave om het aansluitpunt te plaatsen.
 Server revision	Serverrevisie
@@ -112,12 +136,17 @@ Signing out…	Afmelden…
 Smallest conductor the clamp takes (0: not known)	Kleinste geleider die de klem opneemt (0: onbekend)
 Stands on the floor of a room	Staat op de vloer van een ruimte
 Stands on the floor of a room, like pumps, tanks and compressors	Staat op de vloer van een ruimte, zoals pompen, tanks en compressoren
+Steps to reproduce (optional)	Stappen om het na te bootsen (optioneel)
 Successor {}	Opvolger {}
+Summary	Samenvatting
 Take {} values from the technical data	{} waarden uit de technische gegevens overnemen
+Technical details	Technische gegevens
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	Het 2D-vooraanzicht wordt gebruikt in het vooraanzicht van de kast en op montageplanpagina's, het 3D-model in de 3D-kastweergave. Beide worden aangepast aan de montagegegevens (breedte × hoogte × diepte).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Het model ({} × {} × {}) wijkt af van de montagegegevens ({} × {} × {}); het wordt uitgerekt tot de montagegegevens.
 The parts server has no library {} yet	De onderdelenserver heeft nog geen bibliotheek {}
 The price refers to this many units	De prijs geldt voor dit aantal eenheden
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Het rapport bevat de versie, het systeem en aantallen van wat het open project bevat, maar geen projectinhoud. Controleer de gegevens voordat u ze deelt.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	De schermafbeelding wordt niet vanzelf bijgevoegd: kopieer of bewaar haar en voeg haar dan toe aan het GitHub-issueformulier.
 The successor is not in this parts list	De opvolger staat niet in deze artikellijst
 This part is an accessory	Dit artikel is toebehoren
 Top group	Hoofdgroep
@@ -134,6 +163,9 @@ Use model size as mounting data	Modelgrootte als montagegegevens overnemen
 Voltage / current	Spanning / stroom
 WALL	WAND
 Wall mounting	Wandmontage
+What did you do just before the problem? A short list is enough	Wat deed u vlak voor het probleem? Een korte lijst is genoeg
+What did you expect to see?	Wat had u verwacht te zien?
+What happened?	Wat is er gebeurd?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Waar het toebehoren op het passende artikel zit, in de kastopbouw en de 3D-weergave
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Positie van de uitsparingen: het middelpunt vanaf het midden van het vooraanzicht (x naar rechts, y omlaag), de draaiing tegen de klok in.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Waar de draden in de kastlay-out worden aangesloten: de benaming zoals in de functiesjabloon, de positie in het vooraanzicht (x vanaf links, y vanaf boven, z boven het montagevlak) en de richting waarin de draad vertrekt. Artikelen zonder eigen aansluitpunten krijgen ze uit de functiesjabloon.

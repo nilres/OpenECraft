@@ -5,6 +5,7 @@
 2D front view	2D-frontvisning
 2D front view (SVG)	2D-frontvisning (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	En kort titel på problemet (valgfrit)
 Accessories of this part	Tilbehør til denne artikel
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Tilbehør virker kun sammen med de artikler, det passer til. En artikel angiver sit tilbehør, et tilbehør de artikler, det passer til; én side er nok.
 Accessory, mounted: {}	Tilbehør, monteret: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Opret forbindelse til en artikelserver, og søg.
 Connected: {} {} – {} parts, revision {}, {}	Forbundet: {} {} – {} artikler, revision {}, {}
 Connection designations	Forbindelsesbetegnelser
+Copy report	Kopiér rapporten
+Copy screenshot	Kopiér skærmbilledet
 Corner radius	Hjørneradius
+Could not save the screenshot: {}	Skærmbilledet kunne ikke gemmes: {}
 Cut-out	Udskæring
 Datasheet (URL)	Datablad (URL)
 Deleted catalog {}	Kataloget {} er slettet
 Deleted part {}	Artiklen {} er slettet
 Deleted user {}	Brugeren {} er slettet
 Deleting {}…	Sletter {}…
+Describe the problem you saw	Beskriv det problem, du så
+Describe what happened before continuing.	Beskriv, hvad der skete, før du fortsætter.
 Door cutouts	Dørudskæringer
 Downloaded {} ({} bytes)	{} er downloadet ({} byte)
 Downloading parts…	Downloader artikler…
 Drag it onto a schematic page to place it	Træk til en diagramside for at placere
 EPLAN numbers	EPLAN-numre
 EPLAN product groups	EPLAN-produktgrupper
+Expected result (optional)	Forventet resultat (valgfrit)
 FLOOR	GULV
 Faces	Flader
 Filter (number, type, manufacturer, text …)	Filter (nummer, type, producent, tekst …)
@@ -52,6 +59,7 @@ Floor mounting	Gulvmontage
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Funktioner, som artiklen leverer. Bruges til valg af enhed, kontaktbilledet (reservekontakter), projektkontrollen og til tildeling af tilslutningsbetegnelser. Betegnelser angives i symbolets tilslutningsrækkefølge, adskilt af mellemrum.
 Generate from function template	Generer fra funktionsskabelon
 Group by	Gruppér efter
+Hides this form and takes a screenshot of the window as it is now	Skjuler denne formular og tager et skærmbillede af vinduet, som det ser ud nu
 Identifying letter of devices using this part (K, Q, S …)	Kendebogstav for enheder, der bruger denne artikel (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Importér STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Importér SVG…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Flytter linjer som Pow
 No own connection points – the generated ones are shown.	Ingen egne tilslutningspunkter – de genererede vises.
 No part of the database comes from the EPLAN Data Portal	Ingen artikler i databasen stammer fra EPLAN Data Portal
 No parts found.	Ingen artikler fundet.
+No screenshot could be taken of this window.	Der kunne ikke tages et skærmbillede af dette vindue.
+Offline, or GitHub does not open? Copy the report and submit it later.	Offline, eller åbner GitHub ikke? Kopiér rapporten, og indsend den senere.
 Only floor-standing parts	Kun gulvstående artikler
 Only parts for direct wall mounting	Kun artikler til direkte vægmontage
+Open GitHub issue form	Åbn GitHubs issue-formular
 Open datasheet	Åbn datablad
 Open in the browser	Åbn i browseren
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Åbner browseren og kopierer rapporten, så du kan indsætte den i GitHubs issue-formular.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Åbner browseren med rapporten udfyldt og kopierer den. Gennemse og indsend den på GitHub.
 Outside the face	Uden for fladen
 Pan and zoom together	Panorer og zoom samtidig
 Pan only	Kun panorering
@@ -93,17 +106,28 @@ Prices / other	Priser / andet
 Rear	Bagside
 Remove all	Fjern alle
 Remove picture	Fjern billede
+Remove screenshot	Fjern skærmbilledet
 Removing the file…	Fjerner filen…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Erstatter tilslutningspunkterne efter IEC-konventionen: ulige betegnelser øverst, lige nederst
+Report copied. Keep it to submit on GitHub when you are online.	Rapport kopieret. Gem den for at indsende den på GitHub, når du er online.
+Report copied. Paste it into the GitHub issue form and submit it there.	Rapport kopieret. Indsæt den i GitHubs issue-formular, og indsend den der.
+Reports are public. A GitHub account is needed to submit them.	Rapporter er offentlige. Der kræves en GitHub-konto for at indsende dem.
 Reset filter	Nulstil filter
 Restricted areas: {}	Spærrede områder: {}
+Retake screenshot	Tag skærmbilledet igen
+Review your report on GitHub and submit it there.	Gennemse din rapport på GitHub, og indsend den der.
 Rotate 90°:	Roter 90°:
+Save screenshot…	Gem skærmbilledet…
 Save the file	Gem filen
 Saved part {}	Artiklen {} er gemt
 Saved the library {}	Biblioteket {} er gemt
 Saving favorites…	Gemmer favoritter…
 Saving {}…	Gemmer {}…
 Scale ×	Skala ×
+Screenshot (optional)	Skærmbillede (valgfrit)
+Screenshot copied. Paste it into the GitHub issue form.	Skærmbillede kopieret. Indsæt det i GitHubs issue-formular.
+Screenshot removed from this report.	Skærmbillede fjernet fra denne rapport.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Skærmbillede gemt. Vedhæft PNG-filen i GitHubs issue-formular.
 Select a part to see its details.	Vælg en artikel for at se dens detaljer.
 Select a row, then click into the view to place it.	Vælg en række, og klik derefter i visningen for at placere den.
 Server revision	Serverrevision
@@ -112,12 +136,17 @@ Signing out…	Logger af…
 Smallest conductor the clamp takes (0: not known)	Mindste leder, klemmen tager (0: ukendt)
 Stands on the floor of a room	Står på gulvet i et rum
 Stands on the floor of a room, like pumps, tanks and compressors	Står på gulvet i et rum, som pumper, tanke og kompressorer
+Steps to reproduce (optional)	Trin til at genskabe det (valgfrit)
 Successor {}	Efterfølger {}
+Summary	Resumé
 Take {} values from the technical data	Overtag {} værdier fra de tekniske data
+Technical details	Tekniske oplysninger
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D-frontvisningen bruges i tavlens frontvisning og på monteringslayoutsider, 3D-modellen i 3D-tavlevisningen. Begge tilpasses monteringsdataene (bredde × højde × dybde).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Modellen ({} × {} × {}) afviger fra monteringsdataene ({} × {} × {}); den strækkes til monteringsdataene.
 The parts server has no library {} yet	Komponentserveren har endnu intet bibliotek {}
 The price refers to this many units	Prisen gælder for dette antal enheder
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Rapporten indeholder versionen, systemet og antal af det, det åbne projekt indeholder, men intet projektindhold. Gennemse oplysningerne, før du deler dem.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Skærmbilledet vedhæftes ikke af sig selv: kopiér eller gem det, og tilføj det derefter i GitHubs issue-formular.
 The successor is not in this parts list	Efterfølgeren er ikke i denne artikelliste
 This part is an accessory	Denne artikel er tilbehør
 Top group	Hovedgruppe
@@ -134,6 +163,9 @@ Use model size as mounting data	Brug modelstørrelsen som monteringsdata
 Voltage / current	Spænding / strøm
 WALL	VÆG
 Wall mounting	Vægmontage
+What did you do just before the problem? A short list is enough	Hvad gjorde du lige før problemet? En kort liste er nok
+What did you expect to see?	Hvad forventede du at se?
+What happened?	Hvad skete der?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Hvor tilbehøret sidder på den artikel, det passer til, i tavlelayoutet og 3D-visningen
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Hvor udskæringerne sidder: midtpunktet fra midten af forsiden (x til højre, y nedad), drejningen mod uret.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Hvor ledningerne tilsluttes i tavlelayoutet: betegnelsen som i funktionsskabelonen, positionen i frontvisningen (x fra venstre, y fra toppen, z over monteringsfladen) og den retning, ledningen forlader i. Artikler uden egne tilslutningspunkter får dem fra funktionsskabelonen.

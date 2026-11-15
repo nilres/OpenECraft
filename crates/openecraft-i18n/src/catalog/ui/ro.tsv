@@ -5,6 +5,7 @@
 2D front view	Vedere frontală 2D
 2D front view (SVG)	Vedere frontală 2D (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	Model 3D (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Un titlu scurt pentru problemă (opțional)
 Accessories of this part	Accesoriile acestui articol
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Accesoriile funcționează doar împreună cu articolele cu care se potrivesc. Un articol își enumeră accesoriile, un accesoriu articolele cu care se potrivește; este suficientă o parte.
 Accessory, mounted: {}	Accesoriu, montat: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Conectați-vă la un server de articole și căutați.
 Connected: {} {} – {} parts, revision {}, {}	Conectat: {} {} – {} articole, revizia {}, {}
 Connection designations	Denumiri de conexiuni
+Copy report	Copiază raportul
+Copy screenshot	Copiază captura de ecran
 Corner radius	Rază de colț
+Could not save the screenshot: {}	Captura de ecran nu a putut fi salvată: {}
 Cut-out	Decupaj
 Datasheet (URL)	Fișă tehnică (URL)
 Deleted catalog {}	Catalogul {} a fost șters
 Deleted part {}	Articolul {} a fost șters
 Deleted user {}	Utilizatorul {} a fost șters
 Deleting {}…	Se șterge {}…
+Describe the problem you saw	Descrieți problema pe care ați văzut-o
+Describe what happened before continuing.	Descrieți ce s-a întâmplat înainte de a continua.
 Door cutouts	Decupaje în ușă
 Downloaded {} ({} bytes)	{} descărcat ({} octeți)
 Downloading parts…	Se descarcă articolele…
 Drag it onto a schematic page to place it	Trageți pe o pagină de schemă pentru a plasa
 EPLAN numbers	Numere EPLAN
 EPLAN product groups	Grupe de produse EPLAN
+Expected result (optional)	Rezultat așteptat (opțional)
 FLOOR	PARDOSEALĂ
 Faces	Fețe
 Filter (number, type, manufacturer, text …)	Filtru (număr, tip, producător, text …)
@@ -52,6 +59,7 @@ Floor mounting	Montaj pe pardoseală
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Funcțiile pe care le oferă articolul. Folosite pentru selecția dispozitivului, imaginea contactelor (contacte de rezervă), verificarea proiectului și atribuirea denumirilor de conexiuni. Denumirile se listează în ordinea conexiunilor simbolului, separate prin spații.
 Generate from function template	Generare din șablonul de funcție
 Group by	Grupare după
+Hides this form and takes a screenshot of the window as it is now	Ascunde acest formular și face o captură a ferestrei așa cum este acum
 Identifying letter of devices using this part (K, Q, S …)	Litera de identificare a dispozitivelor care folosesc acest articol (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Import STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Import SVG…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Mută rânduri precum 
 No own connection points – the generated ones are shown.	Fără puncte de conexiune proprii – se afișează cele generate.
 No part of the database comes from the EPLAN Data Portal	Niciun articol din baza de date nu provine din EPLAN Data Portal
 No parts found.	Nu s-au găsit articole.
+No screenshot could be taken of this window.	Nu s-a putut face nicio captură a acestei ferestre.
+Offline, or GitHub does not open? Copy the report and submit it later.	Sunteți offline sau GitHub nu se deschide? Copiați raportul și trimiteți-l mai târziu.
 Only floor-standing parts	Doar articole care stau pe pardoseală
 Only parts for direct wall mounting	Doar articole pentru montaj direct pe perete
+Open GitHub issue form	Deschide formularul de issue GitHub
 Open datasheet	Deschidere fișă tehnică
 Open in the browser	Deschidere în browser
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Deschide browserul și copiază raportul ca să îl lipiți în formularul de issue GitHub.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Deschide browserul cu raportul completat și îl copiază. Verificați-l și trimiteți-l pe GitHub.
 Outside the face	În afara feței
 Pan and zoom together	Deplasare și mărire împreună
 Pan only	Doar deplasare
@@ -93,17 +106,28 @@ Prices / other	Prețuri / altele
 Rear	Spate
 Remove all	Eliminare toate
 Remove picture	Eliminare imagine
+Remove screenshot	Elimină captura de ecran
 Removing the file…	Se elimină fișierul…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Înlocuiește punctele de conexiune conform convenției IEC: denumirile impare sus, cele pare jos
+Report copied. Keep it to submit on GitHub when you are online.	Raport copiat. Păstrați-l ca să îl trimiteți pe GitHub când sunteți online.
+Report copied. Paste it into the GitHub issue form and submit it there.	Raport copiat. Lipiți-l în formularul de issue GitHub și trimiteți-l acolo.
+Reports are public. A GitHub account is needed to submit them.	Rapoartele sunt publice. Pentru a le trimite este nevoie de un cont GitHub.
 Reset filter	Resetare filtru
 Restricted areas: {}	Zone interzise: {}
+Retake screenshot	Refă captura de ecran
+Review your report on GitHub and submit it there.	Verificați raportul pe GitHub și trimiteți-l acolo.
 Rotate 90°:	Rotire cu 90°:
+Save screenshot…	Salvează captura de ecran…
 Save the file	Salvare fișier
 Saved part {}	Articolul {} a fost salvat
 Saved the library {}	Biblioteca {} a fost salvată
 Saving favorites…	Se salvează favoritele…
 Saving {}…	Se salvează {}…
 Scale ×	Scară ×
+Screenshot (optional)	Captură de ecran (opțional)
+Screenshot copied. Paste it into the GitHub issue form.	Captură de ecran copiată. Lipiți-o în formularul de issue GitHub.
+Screenshot removed from this report.	Captură de ecran eliminată din acest raport.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Captură de ecran salvată. Atașați fișierul PNG în formularul de issue GitHub.
 Select a part to see its details.	Selectați un articol pentru a-i vedea detaliile.
 Select a row, then click into the view to place it.	Selectați un rând, apoi faceți clic în vedere pentru a-l plasa.
 Server revision	Revizie server
@@ -112,12 +136,17 @@ Signing out…	Se deconectează…
 Smallest conductor the clamp takes (0: not known)	Cel mai mic conductor pe care îl primește clema (0: necunoscut)
 Stands on the floor of a room	Stă pe pardoseala unei încăperi
 Stands on the floor of a room, like pumps, tanks and compressors	Stă pe pardoseala unei încăperi, ca pompele, rezervoarele și compresoarele
+Steps to reproduce (optional)	Pași pentru reproducere (opțional)
 Successor {}	Succesor {}
+Summary	Rezumat
 Take {} values from the technical data	Preluare {} valori din datele tehnice
+Technical details	Detalii tehnice
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	Vederea frontală 2D se folosește în vederea frontală a tabloului și pe paginile de plan de montaj, modelul 3D în vederea 3D a tabloului. Ambele se ajustează la datele de montaj (lățime × înălțime × adâncime).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Modelul ({} × {} × {}) diferă de datele de montaj ({} × {} × {}); este întins la datele de montaj.
 The parts server has no library {} yet	Serverul de piese nu are încă biblioteca {}
 The price refers to this many units	Prețul se referă la acest număr de unități
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Raportul include versiunea, sistemul și numărul elementelor din proiectul deschis, dar niciun conținut al proiectului. Verificați detaliile înainte de a le partaja.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Captura de ecran nu se atașează singură: copiați-o sau salvați-o, apoi adăugați-o în formularul de issue GitHub.
 The successor is not in this parts list	Succesorul nu se află în această listă de articole
 This part is an accessory	Acest articol este un accesoriu
 Top group	Grupă principală
@@ -134,6 +163,9 @@ Use model size as mounting data	Preluare dimensiune model ca date de montaj
 Voltage / current	Tensiune / curent
 WALL	PERETE
 Wall mounting	Montaj pe perete
+What did you do just before the problem? A short list is enough	Ce ați făcut chiar înainte de problemă? O listă scurtă este suficientă
+What did you expect to see?	Ce vă așteptați să vedeți?
+What happened?	Ce s-a întâmplat?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Unde se află accesoriul pe articolul cu care se potrivește, în schema de montaj și în vederea 3D
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Poziția decupajelor: centrul de la mijlocul vederii din față (x spre dreapta, y în jos), rotirea în sens antiorar.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Unde se conectează conductoarele în amplasarea în tablou: denumirea ca în șablonul de funcție, poziția în vederea frontală (x de la stânga, y de sus, z deasupra suprafeței de montaj) și direcția în care iese conductorul. Articolele fără puncte de conexiune proprii le primesc din șablonul de funcție.

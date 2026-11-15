@@ -438,6 +438,7 @@ impl App {
         self.parts_ui.selector(ctx, &self.parts_db, &mut self.session.prj);
         self.rename_device_window(ctx);
         self.rename_cable_window(ctx);
+        self.bug_report_window(ctx);
         self.numbering_windows(ctx);
         self.arrange_windows(ctx);
         self.save_macro_dialog(ctx);

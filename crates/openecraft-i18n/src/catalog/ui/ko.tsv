@@ -5,6 +5,7 @@
 2D front view	2D 정면도
 2D front view (SVG)	2D 정면도(SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D 모델(STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	문제의 짧은 제목(선택 사항)
 Accessories of this part	이 부품의 액세서리
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	액세서리는 호환되는 부품과 함께일 때만 작동합니다. 부품은 액세서리를, 액세서리는 호환되는 부품을 나열하며, 어느 한쪽이면 충분합니다.
 Accessory, mounted: {}	액세서리, 장착: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	부품 서버에 연결하여 검색하세요.
 Connected: {} {} – {} parts, revision {}, {}	연결됨: {} {} – 부품 {}개, 개정 {}, {}
 Connection designations	연결 명칭
+Copy report	보고서 복사
+Copy screenshot	스크린샷 복사
 Corner radius	모서리 반경
+Could not save the screenshot: {}	스크린샷을 저장할 수 없습니다: {}
 Cut-out	컷아웃
 Datasheet (URL)	데이터시트(URL)
 Deleted catalog {}	카탈로그 {}을(를) 삭제했습니다
 Deleted part {}	부품 {} 삭제됨
 Deleted user {}	사용자 {}을(를) 삭제했습니다
 Deleting {}…	{} 삭제 중…
+Describe the problem you saw	본 문제를 설명하세요
+Describe what happened before continuing.	계속하기 전에 무슨 일이 있었는지 설명하세요.
 Door cutouts	도어 컷아웃
 Downloaded {} ({} bytes)	{}을(를) 다운로드했습니다({}바이트)
 Downloading parts…	부품 다운로드 중…
 Drag it onto a schematic page to place it	회로도 페이지로 드래그하여 배치
 EPLAN numbers	EPLAN 번호
 EPLAN product groups	EPLAN 제품 그룹
+Expected result (optional)	예상 결과(선택 사항)
 FLOOR	바닥
 Faces	면
 Filter (number, type, manufacturer, text …)	필터(번호, 유형, 제조업체, 텍스트 …)
@@ -52,6 +59,7 @@ Floor mounting	바닥 설치
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	부품이 제공하는 기능입니다. 장치 선택, 접점 이미지(예비 접점), 프로젝트 검사 및 연결 명칭 지정에 사용됩니다. 명칭은 심볼의 연결 순서대로 공백으로 구분하여 나열됩니다.
 Generate from function template	기능 템플릿에서 생성
 Group by	그룹화 기준
+Hides this form and takes a screenshot of the window as it is now	이 양식을 숨기고 지금 상태의 창을 스크린샷으로 찍습니다
 Identifying letter of devices using this part (K, Q, S …)	이 부품을 사용하는 장치의 식별 문자(K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT 가져오기…
 Import SVG…	SVG 가져오기…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Power loss: 3 W 같은
 No own connection points – the generated ones are shown.	고유 연결 지점 없음 – 생성된 연결 지점이 표시됩니다.
 No part of the database comes from the EPLAN Data Portal	데이터베이스에 EPLAN Data Portal에서 가져온 부품이 없습니다
 No parts found.	부품을 찾을 수 없습니다.
+No screenshot could be taken of this window.	이 창의 스크린샷을 찍을 수 없습니다.
+Offline, or GitHub does not open? Copy the report and submit it later.	오프라인이거나 GitHub가 열리지 않나요? 보고서를 복사해 두었다가 나중에 제출하세요.
 Only floor-standing parts	바닥 설치형 부품만
 Only parts for direct wall mounting	직접 벽 설치 부품만
+Open GitHub issue form	GitHub 이슈 양식 열기
 Open datasheet	데이터시트 열기
 Open in the browser	브라우저에서 열기
+Opens your browser and copies the report for you to paste into the GitHub issue form.	브라우저를 열고 GitHub 이슈 양식에 붙여 넣을 수 있도록 보고서를 복사합니다.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	보고서를 채운 상태로 브라우저를 열고 보고서를 복사합니다. GitHub에서 검토한 후 제출하세요.
 Outside the face	면 바깥
 Pan and zoom together	이동과 확대/축소를 함께
 Pan only	이동만
@@ -93,17 +106,28 @@ Prices / other	가격 / 기타
 Rear	뒤
 Remove all	모두 제거
 Remove picture	이미지 제거
+Remove screenshot	스크린샷 제거
 Removing the file…	파일을 제거하는 중…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	IEC 규칙에 따라 연결 지점을 교체합니다: 홀수 명칭은 위쪽, 짝수 명칭은 아래쪽
+Report copied. Keep it to submit on GitHub when you are online.	보고서를 복사했습니다. 온라인 상태가 되면 GitHub에서 제출할 수 있도록 보관하세요.
+Report copied. Paste it into the GitHub issue form and submit it there.	보고서를 복사했습니다. GitHub 이슈 양식에 붙여 넣고 그곳에서 제출하세요.
+Reports are public. A GitHub account is needed to submit them.	보고서는 공개됩니다. 제출하려면 GitHub 계정이 필요합니다.
 Reset filter	필터 재설정
 Restricted areas: {}	금지 영역: {}
+Retake screenshot	스크린샷 다시 찍기
+Review your report on GitHub and submit it there.	GitHub에서 보고서를 검토하고 그곳에서 제출하세요.
 Rotate 90°:	90° 회전:
+Save screenshot…	스크린샷 저장…
 Save the file	파일 저장
 Saved part {}	부품 {} 저장됨
 Saved the library {}	라이브러리 {}을(를) 저장했습니다
 Saving favorites…	즐겨찾기를 저장하는 중…
 Saving {}…	{} 저장 중…
 Scale ×	배율 ×
+Screenshot (optional)	스크린샷(선택 사항)
+Screenshot copied. Paste it into the GitHub issue form.	스크린샷을 복사했습니다. GitHub 이슈 양식에 붙여 넣으세요.
+Screenshot removed from this report.	이 보고서에서 스크린샷을 제거했습니다.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	스크린샷을 저장했습니다. GitHub 이슈 양식에 PNG 파일을 첨부하세요.
 Select a part to see its details.	세부 정보를 보려면 부품을 선택하세요.
 Select a row, then click into the view to place it.	행을 선택한 후 보기를 클릭하여 배치하세요.
 Server revision	서버 개정
@@ -112,12 +136,17 @@ Signing out…	로그아웃 중…
 Smallest conductor the clamp takes (0: not known)	단자가 받는 가장 작은 도체 (0: 알 수 없음)
 Stands on the floor of a room	방 바닥에 설치
 Stands on the floor of a room, like pumps, tanks and compressors	펌프, 탱크, 압축기처럼 방 바닥에 설치
+Steps to reproduce (optional)	재현 단계(선택 사항)
 Successor {}	후속 제품 {}
+Summary	요약
 Take {} values from the technical data	기술 데이터에서 값 {}개 가져오기
+Technical details	기술 정보
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D 정면도는 패널 정면도와 장착 레이아웃 페이지에서, 3D 모델은 3D 패널 보기에서 사용됩니다. 둘 다 장착 데이터(너비 × 높이 × 깊이)에 맞춰집니다.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	모델({} × {} × {})이 장착 데이터({} × {} × {})와 다릅니다. 장착 데이터에 맞게 늘어납니다.
 The parts server has no library {} yet	부품 서버에 아직 라이브러리 {}이(가) 없습니다
 The price refers to this many units	가격 기준 단위 수량
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	보고서에는 버전, 시스템, 열린 프로젝트에 들어 있는 항목의 개수가 포함되지만 프로젝트 내용은 포함되지 않습니다. 공유하기 전에 세부 정보를 검토하세요.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	스크린샷은 자동으로 첨부되지 않습니다. 복사하거나 저장한 다음 GitHub 이슈 양식에 추가하세요.
 The successor is not in this parts list	후속 제품이 이 부품 목록에 없습니다
 This part is an accessory	이 부품은 액세서리입니다
 Top group	상위 그룹
@@ -134,6 +163,9 @@ Use model size as mounting data	모델 크기를 장착 데이터로 사용
 Voltage / current	전압 / 전류
 WALL	벽
 Wall mounting	벽 설치
+What did you do just before the problem? A short list is enough	문제 직전에 무엇을 했나요? 짧은 목록이면 충분합니다
+What did you expect to see?	무엇이 보일 것으로 예상했나요?
+What happened?	무슨 일이 있었나요?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	호환 부품에서 액세서리가 위치하는 곳(패널 레이아웃과 3D 보기)
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	컷아웃 위치: 정면도 가운데에서 중심 (x는 오른쪽, y는 아래), 회전은 시계 반대 방향.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	패널 레이아웃에서 전선이 연결되는 곳: 기능 템플릿과 같은 명칭, 정면도에서의 위치(x는 왼쪽부터, y는 위쪽부터, z는 장착면 위) 및 전선이 나가는 방향. 고유 연결 지점이 없는 부품은 기능 템플릿에서 연결 지점을 받습니다.

@@ -5,6 +5,7 @@
 2D front view	Vista frontale 2D
 2D front view (SVG)	Vista frontale 2D (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	Modello 3D (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Un titolo breve per il problema (facoltativo)
 Accessories of this part	Accessori di questo articolo
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Gli accessori funzionano solo insieme agli articoli con cui sono compatibili. Un articolo elenca i suoi accessori, un accessorio gli articoli con cui è compatibile; basta un lato.
 Accessory, mounted: {}	Accessorio, montato: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Connettiti a un server articoli e avvia la ricerca.
 Connected: {} {} – {} parts, revision {}, {}	Connesso: {} {} – {} articoli, revisione {}, {}
 Connection designations	Designazioni delle connessioni
+Copy report	Copia la segnalazione
+Copy screenshot	Copia lo screenshot
 Corner radius	Raggio dell'angolo
+Could not save the screenshot: {}	Impossibile salvare lo screenshot: {}
 Cut-out	Foratura
 Datasheet (URL)	Scheda tecnica (URL)
 Deleted catalog {}	Catalogo {} eliminato
 Deleted part {}	Articolo {} eliminato
 Deleted user {}	Utente {} eliminato
 Deleting {}…	Eliminazione di {}…
+Describe the problem you saw	Descrivi il problema che hai visto
+Describe what happened before continuing.	Descrivi che cosa è successo prima di continuare.
 Door cutouts	Forature della porta
 Downloaded {} ({} bytes)	{} scaricato ({} byte)
 Downloading parts…	Download degli articoli in corso…
 Drag it onto a schematic page to place it	Trascinalo su una pagina di schema per posizionarlo
 EPLAN numbers	Numeri EPLAN
 EPLAN product groups	Gruppi di prodotti EPLAN
+Expected result (optional)	Risultato atteso (facoltativo)
 FLOOR	PAVIMENTO
 Faces	Facce
 Filter (number, type, manufacturer, text …)	Filtro (numero, tipo, produttore, testo …)
@@ -52,6 +59,7 @@ Floor mounting	Montaggio a pavimento
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Funzioni fornite dall'articolo. Utilizzate per la selezione dei dispositivi, l'immagine contatti (contatti di riserva), la verifica del progetto e l'assegnazione delle designazioni delle connessioni. Le designazioni sono elencate nell'ordine delle connessioni del simbolo, separate da spazi.
 Generate from function template	Genera dal modello di funzione
 Group by	Raggruppa per
+Hides this form and takes a screenshot of the window as it is now	Nasconde questo modulo e fa uno screenshot della finestra com'è ora
 Identifying letter of devices using this part (K, Q, S …)	Lettera identificativa dei dispositivi che usano questo articolo (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Importa STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Importa SVG…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Sposta righe come Powe
 No own connection points – the generated ones are shown.	Nessun punto di connessione proprio – vengono mostrati quelli generati.
 No part of the database comes from the EPLAN Data Portal	Nessun articolo del database proviene dall'EPLAN Data Portal
 No parts found.	Nessun articolo trovato.
+No screenshot could be taken of this window.	Non è stato possibile fare uno screenshot di questa finestra.
+Offline, or GitHub does not open? Copy the report and submit it later.	Offline, o GitHub non si apre? Copia la segnalazione e inviala più tardi.
 Only floor-standing parts	Solo articoli a pavimento
 Only parts for direct wall mounting	Solo articoli per montaggio diretto a parete
+Open GitHub issue form	Apri il modulo delle issue di GitHub
 Open datasheet	Apri scheda tecnica
 Open in the browser	Apri nel browser
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Apre il browser e copia la segnalazione da incollare nel modulo delle issue di GitHub.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Apre il browser con la segnalazione compilata e la copia. Controllala e inviala su GitHub.
 Outside the face	Al di fuori della faccia
 Pan and zoom together	Spostare e zoomare insieme
 Pan only	Solo spostare
@@ -93,17 +106,28 @@ Prices / other	Prezzi / altro
 Rear	Retro
 Remove all	Rimuovi tutto
 Remove picture	Rimuovi immagine
+Remove screenshot	Rimuovi lo screenshot
 Removing the file…	Rimozione del file…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Sostituisce i punti di connessione secondo la convenzione IEC: designazioni dispari in alto, pari in basso
+Report copied. Keep it to submit on GitHub when you are online.	Segnalazione copiata. Conservala per inviarla su GitHub quando sei online.
+Report copied. Paste it into the GitHub issue form and submit it there.	Segnalazione copiata. Incollala nel modulo delle issue di GitHub e inviala lì.
+Reports are public. A GitHub account is needed to submit them.	Le segnalazioni sono pubbliche. Per inviarle serve un account GitHub.
 Reset filter	Reimposta filtro
 Restricted areas: {}	Aree interdette: {}
+Retake screenshot	Rifai lo screenshot
+Review your report on GitHub and submit it there.	Controlla la segnalazione su GitHub e inviala lì.
 Rotate 90°:	Ruota di 90°:
+Save screenshot…	Salva lo screenshot…
 Save the file	Salva il file
 Saved part {}	Articolo {} salvato
 Saved the library {}	Libreria {} salvata
 Saving favorites…	Salvataggio dei preferiti…
 Saving {}…	Salvataggio di {}…
 Scale ×	Scala ×
+Screenshot (optional)	Screenshot (facoltativo)
+Screenshot copied. Paste it into the GitHub issue form.	Screenshot copiato. Incollalo nel modulo delle issue di GitHub.
+Screenshot removed from this report.	Screenshot rimosso da questa segnalazione.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Screenshot salvato. Allega il file PNG nel modulo delle issue di GitHub.
 Select a part to see its details.	Seleziona un articolo per visualizzarne i dettagli.
 Select a row, then click into the view to place it.	Seleziona una riga, quindi fai clic nella vista per posizionarla.
 Server revision	Revisione del server
@@ -112,12 +136,17 @@ Signing out…	Disconnessione in corso…
 Smallest conductor the clamp takes (0: not known)	Conduttore più piccolo accettato dal morsetto (0: sconosciuto)
 Stands on the floor of a room	Poggia sul pavimento di un locale
 Stands on the floor of a room, like pumps, tanks and compressors	Poggia sul pavimento di un locale, come pompe, serbatoi e compressori
+Steps to reproduce (optional)	Passi per riprodurlo (facoltativo)
 Successor {}	Successore {}
+Summary	Riepilogo
 Take {} values from the technical data	Applica {} valori dai dati tecnici
+Technical details	Dettagli tecnici
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	La vista frontale 2D viene usata nella vista frontale del quadro e nelle pagine del layout di montaggio, il modello 3D nella vista 3D del quadro. Entrambi vengono adattati ai dati di montaggio (larghezza × altezza × profondità).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Il modello ({} × {} × {}) differisce dai dati di montaggio ({} × {} × {}); viene adattato ai dati di montaggio.
 The parts server has no library {} yet	Il server articoli non ha ancora la libreria {}
 The price refers to this many units	Il prezzo si riferisce a questo numero di unità
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	La segnalazione contiene la versione, il sistema e il numero degli elementi del progetto aperto, ma nessun contenuto del progetto. Controlla i dettagli prima di condividerli.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Lo screenshot non viene allegato da solo: copialo o salvalo, poi aggiungilo al modulo delle issue di GitHub.
 The successor is not in this parts list	Il successore non è in questo elenco di articoli
 This part is an accessory	Questo articolo è un accessorio
 Top group	Gruppo principale
@@ -134,6 +163,9 @@ Use model size as mounting data	Usa le dimensioni del modello come dati di monta
 Voltage / current	Tensione / corrente
 WALL	PARETE
 Wall mounting	Montaggio a parete
+What did you do just before the problem? A short list is enough	Che cosa hai fatto subito prima del problema? Basta un breve elenco
+What did you expect to see?	Che cosa ti aspettavi di vedere?
+What happened?	Che cosa è successo?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Dove si trova l'accessorio sull'articolo compatibile, nel layout del quadro e nella vista 3D
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Posizione delle aperture: il centro dal centro della vista frontale (x verso destra, y verso il basso), la rotazione in senso antiorario.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Dove vengono collegati i conduttori nel layout quadro: la designazione come nel modello di funzione, la posizione nella vista frontale (x da sinistra, y dall'alto, z sopra la superficie di montaggio) e la direzione di uscita del conduttore. Gli articoli senza punti di connessione propri li ricevono dal modello di funzione.

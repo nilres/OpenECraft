@@ -33,6 +33,7 @@ mod arrange_ui;
 mod backstage;
 mod cables_ui;
 mod cable_rename;
+mod bug_report_ui;
 mod check_ui;
 mod command_search;
 mod commands_ui;
@@ -263,6 +264,10 @@ pub struct App {
     /// Rename device dialog: old tag and the tag entered.
     rename_device: Option<(String, String)>,
     rename_cable: Option<cable_rename::Draft>,
+    /// Report a bug: the form and its screenshot.
+    bug_report: openecraft_ui::bug_report::Report,
+    /// Report a bug was chosen: the form opens when the frame's windows are drawn.
+    bug_report_wanted: bool,
     /// Active work area (name); empty = the whole project.
     work_area: String,
     structure_ui: structure_ui::StructureUi,
@@ -551,6 +556,8 @@ impl App {
             report_filter: String::new(),
             rename_device: None,
             rename_cable: None,
+            bug_report: Default::default(),
+            bug_report_wanted: false,
             work_area: String::new(),
             structure_ui: Default::default(),
             properties_ui: Default::default(),

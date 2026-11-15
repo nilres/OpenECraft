@@ -5,6 +5,7 @@
 2D front view	Вид спереди 2D
 2D front view (SVG)	Вид спереди 2D (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-модель (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Короткий заголовок проблемы (необязательно)
 Accessories of this part	Принадлежности этого изделия
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Принадлежности работают только вместе с изделиями, к которым они подходят. Изделие перечисляет свои принадлежности, принадлежность — изделия, к которым подходит; достаточно одной стороны.
 Accessory, mounted: {}	Принадлежность, монтаж: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Подключитесь к серверу изделий и выполните поиск.
 Connected: {} {} – {} parts, revision {}, {}	Подключено: {} {} – изделий: {}, ревизия {}, {}
 Connection designations	Обозначения соединений
+Copy report	Копировать отчёт
+Copy screenshot	Копировать снимок экрана
 Corner radius	Радиус угла
+Could not save the screenshot: {}	Не удалось сохранить снимок экрана: {}
 Cut-out	Вырез
 Datasheet (URL)	Технический паспорт (URL)
 Deleted catalog {}	Каталог {} удалён
 Deleted part {}	Изделие {} удалено
 Deleted user {}	Пользователь {} удалён
 Deleting {}…	Удаление {}…
+Describe the problem you saw	Опишите проблему, которую вы увидели
+Describe what happened before continuing.	Опишите, что произошло, прежде чем продолжить.
 Door cutouts	Вырезы в двери
 Downloaded {} ({} bytes)	{} скачан ({} байт)
 Downloading parts…	Скачивание изделий…
 Drag it onto a schematic page to place it	Перетащите на страницу схемы, чтобы разместить
 EPLAN numbers	Номера EPLAN
 EPLAN product groups	Группы продуктов EPLAN
+Expected result (optional)	Ожидаемый результат (необязательно)
 FLOOR	ПОЛ
 Faces	Поверхности
 Filter (number, type, manufacturer, text …)	Фильтр (номер, тип, производитель, текст …)
@@ -52,6 +59,7 @@ Floor mounting	Напольный монтаж
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Функции, которые предоставляет изделие. Используются для выбора устройства, зеркала контактов (резервные контакты), проверки проекта и назначения обозначений подключений. Обозначения перечисляются в порядке подключений символа через пробел.
 Generate from function template	Создать из шаблона функций
 Group by	Группировать по
+Hides this form and takes a screenshot of the window as it is now	Скрывает эту форму и делает снимок окна в его текущем виде
 Identifying letter of devices using this part (K, Q, S …)	Буквенный код устройств с этим изделием (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Импортировать STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Импортировать SVG…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Переносит с�
 No own connection points – the generated ones are shown.	Собственных точек подключения нет – показаны созданные автоматически.
 No part of the database comes from the EPLAN Data Portal	Ни одно изделие базы данных не получено из EPLAN Data Portal
 No parts found.	Изделия не найдены.
+No screenshot could be taken of this window.	Не удалось сделать снимок этого окна.
+Offline, or GitHub does not open? Copy the report and submit it later.	Нет сети или GitHub не открывается? Скопируйте отчёт и отправьте его позже.
 Only floor-standing parts	Только напольные изделия
 Only parts for direct wall mounting	Только изделия для прямого настенного монтажа
+Open GitHub issue form	Открыть форму issue на GitHub
 Open datasheet	Открыть технический паспорт
 Open in the browser	Открыть в браузере
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Открывает браузер и копирует отчёт, чтобы вы вставили его в форму issue на GitHub.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Открывает браузер с заполненным отчётом и копирует его. Проверьте и отправьте его на GitHub.
 Outside the face	За пределами поверхности
 Pan and zoom together	Сдвиг и масштабирование вместе
 Pan only	Только сдвиг
@@ -93,17 +106,28 @@ Prices / other	Цены / прочее
 Rear	Сзади
 Remove all	Удалить все
 Remove picture	Удалить изображение
+Remove screenshot	Удалить снимок экрана
 Removing the file…	Удаление файла…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Заменяет точки подключения по правилу IEC: нечётные обозначения сверху, чётные снизу
+Report copied. Keep it to submit on GitHub when you are online.	Отчёт скопирован. Сохраните его, чтобы отправить на GitHub, когда появится сеть.
+Report copied. Paste it into the GitHub issue form and submit it there.	Отчёт скопирован. Вставьте его в форму issue на GitHub и отправьте там.
+Reports are public. A GitHub account is needed to submit them.	Отчёты публичны. Для отправки нужна учётная запись GitHub.
 Reset filter	Сбросить фильтр
 Restricted areas: {}	Запретные зоны: {}
+Retake screenshot	Сделать снимок экрана заново
+Review your report on GitHub and submit it there.	Проверьте отчёт на GitHub и отправьте его там.
 Rotate 90°:	Повернуть на 90°:
+Save screenshot…	Сохранить снимок экрана…
 Save the file	Сохранить файл
 Saved part {}	Изделие {} сохранено
 Saved the library {}	Библиотека {} сохранена
 Saving favorites…	Сохранение избранного…
 Saving {}…	Сохранение {}…
 Scale ×	Масштаб ×
+Screenshot (optional)	Снимок экрана (необязательно)
+Screenshot copied. Paste it into the GitHub issue form.	Снимок экрана скопирован. Вставьте его в форму issue на GitHub.
+Screenshot removed from this report.	Снимок экрана удалён из этого отчёта.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Снимок экрана сохранён. Прикрепите файл PNG в форме issue на GitHub.
 Select a part to see its details.	Выберите изделие, чтобы просмотреть сведения о нем.
 Select a row, then click into the view to place it.	Выберите строку, затем щёлкните в виде, чтобы разместить её.
 Server revision	Ревизия сервера
@@ -112,12 +136,17 @@ Signing out…	Выход…
 Smallest conductor the clamp takes (0: not known)	Наименьший проводник, который принимает клемма (0: неизвестно)
 Stands on the floor of a room	Стоит на полу помещения
 Stands on the floor of a room, like pumps, tanks and compressors	Стоит на полу помещения, как насосы, баки и компрессоры
+Steps to reproduce (optional)	Шаги для воспроизведения (необязательно)
 Successor {}	Преемник {}
+Summary	Краткое описание
 Take {} values from the technical data	Взять значения из технических данных ({})
+Technical details	Технические данные
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	Вид спереди 2D используется в виде спереди шкафа и на листах монтажного плана, 3D-модель – в 3D-виде шкафа. Оба подгоняются под монтажные данные (ширина × высота × глубина).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Модель ({} × {} × {}) отличается от монтажных данных ({} × {} × {}); она растягивается до монтажных данных.
 The parts server has no library {} yet	На сервере изделий ещё нет библиотеки {}
 The price refers to this many units	Цена относится к этому количеству единиц
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Отчёт содержит версию, систему и количество элементов открытого проекта, но не содержимое проекта. Проверьте данные, прежде чем делиться ими.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Снимок экрана не прикрепляется сам: скопируйте или сохраните его, а затем добавьте в форму issue на GitHub.
 The successor is not in this parts list	Преемника нет в этом списке изделий
 This part is an accessory	Это изделие — принадлежность
 Top group	Основная группа
@@ -134,6 +163,9 @@ Use model size as mounting data	Принять размер модели как 
 Voltage / current	Напряжение / ток
 WALL	СТЕНА
 Wall mounting	Настенный монтаж
+What did you do just before the problem? A short list is enough	Что вы сделали непосредственно перед проблемой? Достаточно короткого списка
+What did you expect to see?	Что вы ожидали увидеть?
+What happened?	Что произошло?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Где принадлежность располагается на подходящем изделии, в компоновке шкафа и в 3D-виде
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Положение вырезов: центр от середины вида спереди (x вправо, y вниз), поворот против часовой стрелки.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Где провода подключаются в компоновке шкафа: обозначение как в шаблоне функций, положение на виде спереди (x слева, y сверху, z над монтажной поверхностью) и направление выхода провода. Изделия без собственных точек подключения получают их из шаблона функций.

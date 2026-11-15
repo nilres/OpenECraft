@@ -5,6 +5,7 @@
 2D front view	2D 正面図
 2D front view (SVG)	2D 正面図 (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D モデル (STL、OBJ、STEP、IGES、Parasolid、IFC、JT)
+A short title for the problem (optional)	問題の短いタイトル（任意）
 Accessories of this part	この部品のアクセサリ
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	アクセサリは適合する部品と組み合わせた場合にのみ機能します。部品はそのアクセサリを、アクセサリは適合する部品を示します。どちらか一方だけで足ります。
 Accessory, mounted: {}	アクセサリ、取付: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	部品サーバーに接続して検索してください。
 Connected: {} {} – {} parts, revision {}, {}	接続済み: {} {} – 部品 {} 個、リビジョン {}、{}
 Connection designations	接続名称
+Copy report	報告をコピー
+Copy screenshot	スクリーンショットをコピー
 Corner radius	角の半径
+Could not save the screenshot: {}	スクリーンショットを保存できませんでした: {}
 Cut-out	切り欠き
 Datasheet (URL)	データシート (URL)
 Deleted catalog {}	カタログ {} を削除しました
 Deleted part {}	部品 {} を削除しました
 Deleted user {}	ユーザー {} を削除しました
 Deleting {}…	{} を削除中…
+Describe the problem you saw	見た問題を説明してください
+Describe what happened before continuing.	続行する前に、何が起きたかを説明してください。
 Door cutouts	扉の切り欠き
 Downloaded {} ({} bytes)	{} をダウンロードしました ({} バイト)
 Downloading parts…	部品をダウンロード中…
 Drag it onto a schematic page to place it	回路図ページにドラッグして配置
 EPLAN numbers	EPLAN 番号
 EPLAN product groups	EPLAN 製品グループ
+Expected result (optional)	期待した結果（任意）
 FLOOR	床
 Faces	面
 Filter (number, type, manufacturer, text …)	フィルター (番号、タイプ、メーカー、テキスト …)
@@ -52,6 +59,7 @@ Floor mounting	床置き
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	部品が提供する機能。デバイスの選択、接点イメージ (予備接点)、プロジェクトチェック、接続名称の割り当てに使用されます。名称はシンボルの接続順にスペース区切りで記載します。
 Generate from function template	機能テンプレートから生成
 Group by	グループ化
+Hides this form and takes a screenshot of the window as it is now	このフォームを隠し、現在のウィンドウのスクリーンショットを撮ります
 Identifying letter of devices using this part (K, Q, S …)	この部品を使用するデバイスの識別文字 (K、Q、S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT をインポート…
 Import SVG…	SVG をインポート…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Power loss: 3 W のよ
 No own connection points – the generated ones are shown.	独自の接続ポイントはありません – 生成された接続ポイントを表示しています。
 No part of the database comes from the EPLAN Data Portal	データベースに EPLAN Data Portal 由来の部品はありません
 No parts found.	部品が見つかりません。
+No screenshot could be taken of this window.	このウィンドウのスクリーンショットを撮れませんでした。
+Offline, or GitHub does not open? Copy the report and submit it later.	オフラインですか、または GitHub が開きませんか？報告をコピーして後で送信してください。
 Only floor-standing parts	床置き部品のみ
 Only parts for direct wall mounting	直接壁取付できる部品のみ
+Open GitHub issue form	GitHub の Issue フォームを開く
 Open datasheet	データシートを開く
 Open in the browser	ブラウザーで開く
+Opens your browser and copies the report for you to paste into the GitHub issue form.	ブラウザーを開き、GitHub の Issue フォームに貼り付けられるよう報告をコピーします。
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	報告を記入した状態でブラウザーを開き、報告をコピーします。GitHub で確認して送信してください。
 Outside the face	面の外側
 Pan and zoom together	パンとズームを同時に
 Pan only	パンのみ
@@ -93,17 +106,28 @@ Prices / other	価格 / その他
 Rear	背面
 Remove all	すべて削除
 Remove picture	画像を削除
+Remove screenshot	スクリーンショットを削除
 Removing the file…	ファイルを削除しています…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	IEC の規則で接続ポイントを置き換えます: 奇数の名称を上、偶数の名称を下に配置
+Report copied. Keep it to submit on GitHub when you are online.	報告をコピーしました。オンラインになったら GitHub で送信できるよう保管してください。
+Report copied. Paste it into the GitHub issue form and submit it there.	報告をコピーしました。GitHub の Issue フォームに貼り付けて、そこで送信してください。
+Reports are public. A GitHub account is needed to submit them.	報告は公開されます。送信には GitHub アカウントが必要です。
 Reset filter	フィルターをリセット
 Restricted areas: {}	禁止領域: {}
+Retake screenshot	スクリーンショットを撮り直す
+Review your report on GitHub and submit it there.	GitHub で報告を確認し、そこで送信してください。
 Rotate 90°:	90° 回転:
+Save screenshot…	スクリーンショットを保存…
 Save the file	ファイルを保存
 Saved part {}	部品 {} を保存しました
 Saved the library {}	ライブラリ {} を保存しました
 Saving favorites…	お気に入りを保存しています…
 Saving {}…	{} を保存中…
 Scale ×	尺度 ×
+Screenshot (optional)	スクリーンショット（任意）
+Screenshot copied. Paste it into the GitHub issue form.	スクリーンショットをコピーしました。GitHub の Issue フォームに貼り付けてください。
+Screenshot removed from this report.	この報告からスクリーンショットを削除しました。
+Screenshot saved. Attach the PNG file in the GitHub issue form.	スクリーンショットを保存しました。GitHub の Issue フォームで PNG ファイルを添付してください。
 Select a part to see its details.	詳細を表示するには部品を選択してください。
 Select a row, then click into the view to place it.	行を選択し、ビュー内をクリックして配置してください。
 Server revision	サーバーのリビジョン
@@ -112,12 +136,17 @@ Signing out…	サインアウトしています…
 Smallest conductor the clamp takes (0: not known)	端子が接続できる最小の導体（0：不明）
 Stands on the floor of a room	部屋の床に設置
 Stands on the floor of a room, like pumps, tanks and compressors	ポンプ、タンク、コンプレッサーなど、部屋の床に設置
+Steps to reproduce (optional)	再現手順（任意）
 Successor {}	後継品 {}
+Summary	概要
 Take {} values from the technical data	技術データから {} 個の値を取り込む
+Technical details	技術情報
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D 正面図は盤の正面図と取付図ページで、3D モデルは盤の 3D ビューで使用されます。どちらも取付データ (幅 × 高さ × 奥行き) に合わせられます。
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	モデル ({} × {} × {}) が取付データ ({} × {} × {}) と異なります。モデルは取付データに合わせて伸縮されます。
 The parts server has no library {} yet	部品サーバーにはまだライブラリ {} がありません
 The price refers to this many units	価格はこの数量に対するものです
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	報告にはバージョン、システム、開いているプロジェクトの項目数が含まれますが、プロジェクトの内容は含まれません。共有する前に詳細を確認してください。
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	スクリーンショットは自動では添付されません。コピーまたは保存してから、GitHub の Issue フォームに追加してください。
 The successor is not in this parts list	後継品がこの部品リストにありません
 This part is an accessory	この部品はアクセサリです
 Top group	トップグループ
@@ -134,6 +163,9 @@ Use model size as mounting data	モデルサイズを取付データとして使
 Voltage / current	電圧 / 電流
 WALL	壁
 Wall mounting	壁取付
+What did you do just before the problem? A short list is enough	問題の直前に何をしましたか？短い箇条書きで十分です
+What did you expect to see?	何が表示されると思っていましたか？
+What happened?	何が起きましたか？
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	適合する部品上でのアクセサリの位置（盤レイアウトと 3D ビュー）
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	切り欠きの位置：正面図の中心からの中心点（x は右、y は下）、回転は反時計回り。
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	盤レイアウトで電線が接続される場所: 機能テンプレートと同じ名称、正面図での位置 (x は左から、y は上から、z は取付面からの高さ)、電線が出る方向。独自の接続ポイントを持たない部品は、機能テンプレートから接続ポイントを取得します。

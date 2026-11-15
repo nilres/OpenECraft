@@ -5,6 +5,7 @@
 2D front view	Vista frontal 2D
 2D front view (SVG)	Vista frontal 2D (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	Modelo 3D (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Um título curto para o problema (opcional)
 Accessories of this part	Acessórios desta peça
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Acessórios só funcionam junto com as peças em que servem. Uma peça lista seus acessórios, um acessório as peças em que serve; basta um dos lados.
 Accessory, mounted: {}	Acessório, montado: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Conecte-se a um servidor de peças e pesquise.
 Connected: {} {} – {} parts, revision {}, {}	Conectado: {} {} – {} peças, revisão {}, {}
 Connection designations	Designações de conexão
+Copy report	Copiar o relatório
+Copy screenshot	Copiar a captura de tela
 Corner radius	Raio do canto
+Could not save the screenshot: {}	Não foi possível salvar a captura de tela: {}
 Cut-out	Recorte
 Datasheet (URL)	Folha de dados (URL)
 Deleted catalog {}	Catálogo {} excluído
 Deleted part {}	Peça {} excluída
 Deleted user {}	Usuário {} excluído
 Deleting {}…	Excluindo {}…
+Describe the problem you saw	Descreva o problema que você viu
+Describe what happened before continuing.	Descreva o que aconteceu antes de continuar.
 Door cutouts	Recortes da porta
 Downloaded {} ({} bytes)	{} baixado ({} bytes)
 Downloading parts…	Baixando peças…
 Drag it onto a schematic page to place it	Arraste para uma página de esquema para posicioná-la
 EPLAN numbers	Números EPLAN
 EPLAN product groups	Grupos de produtos EPLAN
+Expected result (optional)	Resultado esperado (opcional)
 FLOOR	PISO
 Faces	Faces
 Filter (number, type, manufacturer, text …)	Filtro (número, tipo, fabricante, texto …)
@@ -52,6 +59,7 @@ Floor mounting	Montagem no piso
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Funções que a peça oferece. Usadas para a seleção de dispositivo, a imagem de contatos (contatos de reserva), a verificação do projeto e para atribuir designações de conexão. As designações são listadas na ordem de conexões do símbolo, separadas por espaços.
 Generate from function template	Gerar a partir do modelo de função
 Group by	Agrupar por
+Hides this form and takes a screenshot of the window as it is now	Oculta este formulário e faz uma captura de tela da janela como está agora
 Identifying letter of devices using this part (K, Q, S …)	Letra de identificação dos dispositivos que usam esta peça (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Importar STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Importar SVG…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Move linhas como Power
 No own connection points – the generated ones are shown.	Sem pontos de conexão próprios – os gerados são exibidos.
 No part of the database comes from the EPLAN Data Portal	Nenhuma peça do banco de dados vem do EPLAN Data Portal
 No parts found.	Nenhuma peça encontrada.
+No screenshot could be taken of this window.	Não foi possível fazer uma captura de tela desta janela.
+Offline, or GitHub does not open? Copy the report and submit it later.	Sem conexão, ou o GitHub não abre? Copie o relatório e envie-o mais tarde.
 Only floor-standing parts	Somente peças apoiadas no piso
 Only parts for direct wall mounting	Somente peças para montagem direta na parede
+Open GitHub issue form	Abrir o formulário de issue do GitHub
 Open datasheet	Abrir folha de dados
 Open in the browser	Abrir no navegador
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Abre o navegador e copia o relatório para você colar no formulário de issue do GitHub.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Abre o navegador com o relatório preenchido e o copia. Revise e envie no GitHub.
 Outside the face	Fora da face
 Pan and zoom together	Mover e aplicar zoom juntos
 Pan only	Apenas mover
@@ -93,17 +106,28 @@ Prices / other	Preços / outros
 Rear	Traseira
 Remove all	Remover tudo
 Remove picture	Remover imagem
+Remove screenshot	Remover a captura de tela
 Removing the file…	Removendo o arquivo…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Substitui os pontos de conexão conforme a convenção IEC: designações ímpares em cima, pares embaixo
+Report copied. Keep it to submit on GitHub when you are online.	Relatório copiado. Guarde-o para enviar no GitHub quando estiver online.
+Report copied. Paste it into the GitHub issue form and submit it there.	Relatório copiado. Cole-o no formulário de issue do GitHub e envie-o lá.
+Reports are public. A GitHub account is needed to submit them.	Os relatórios são públicos. É preciso uma conta do GitHub para enviá-los.
 Reset filter	Redefinir filtro
 Restricted areas: {}	Áreas restritas: {}
+Retake screenshot	Refazer a captura de tela
+Review your report on GitHub and submit it there.	Revise seu relatório no GitHub e envie-o lá.
 Rotate 90°:	Girar 90°:
+Save screenshot…	Salvar a captura de tela…
 Save the file	Salvar o arquivo
 Saved part {}	Peça {} salva
 Saved the library {}	Biblioteca {} salva
 Saving favorites…	Salvando favoritos…
 Saving {}…	Salvando {}…
 Scale ×	Escala ×
+Screenshot (optional)	Captura de tela (opcional)
+Screenshot copied. Paste it into the GitHub issue form.	Captura de tela copiada. Cole-a no formulário de issue do GitHub.
+Screenshot removed from this report.	Captura de tela removida deste relatório.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Captura de tela salva. Anexe o arquivo PNG no formulário de issue do GitHub.
 Select a part to see its details.	Selecione uma peça para ver seus detalhes.
 Select a row, then click into the view to place it.	Selecione uma linha e clique na vista para posicioná-la.
 Server revision	Revisão do servidor
@@ -112,12 +136,17 @@ Signing out…	Saindo…
 Smallest conductor the clamp takes (0: not known)	Menor condutor que o borne aceita (0: desconhecido)
 Stands on the floor of a room	Fica no piso de uma sala
 Stands on the floor of a room, like pumps, tanks and compressors	Fica no piso de uma sala, como bombas, tanques e compressores
+Steps to reproduce (optional)	Passos para reproduzir (opcional)
 Successor {}	Sucessora {}
+Summary	Resumo
 Take {} values from the technical data	Adotar {} valores dos dados técnicos
+Technical details	Detalhes técnicos
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	A vista frontal 2D é usada na vista frontal do painel e nas páginas de layout de montagem, o modelo 3D na vista 3D do painel. Ambos são ajustados aos dados de montagem (largura × altura × profundidade).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	O modelo ({} × {} × {}) difere dos dados de montagem ({} × {} × {}); ele é esticado até os dados de montagem.
 The parts server has no library {} yet	O servidor de peças ainda não tem a biblioteca {}
 The price refers to this many units	O preço se refere a esta quantidade de unidades
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	O relatório inclui a versão, o sistema e as contagens do que o projeto aberto contém, mas nenhum conteúdo do projeto. Revise os detalhes antes de compartilhá-los.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	A captura de tela não é anexada sozinha: copie ou salve-a e depois adicione-a ao formulário de issue do GitHub.
 The successor is not in this parts list	A sucessora não está nesta lista de peças
 This part is an accessory	Esta peça é um acessório
 Top group	Grupo principal
@@ -134,6 +163,9 @@ Use model size as mounting data	Usar o tamanho do modelo como dados de montagem
 Voltage / current	Tensão / corrente
 WALL	PAREDE
 Wall mounting	Montagem na parede
+What did you do just before the problem? A short list is enough	O que você fez logo antes do problema? Uma lista curta basta
+What did you expect to see?	O que você esperava ver?
+What happened?	O que aconteceu?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Onde o acessório fica na peça em que serve, no layout do painel e na vista 3D
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Posição dos recortes: o centro a partir do meio da vista frontal (x para a direita, y para baixo), a rotação no sentido anti-horário.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Onde os fios são conectados no layout do painel: a designação como no modelo de função, a posição na vista frontal (x a partir da esquerda, y a partir do topo, z acima da superfície de montagem) e a direção em que o fio sai. As peças sem pontos de conexão próprios os recebem do modelo de função.

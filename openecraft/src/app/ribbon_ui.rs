@@ -128,6 +128,14 @@ impl App {
                 // On a narrow window the project name goes first, then the search text
                 // (the icon stays): nothing is drawn over the commands on the left.
                 let room = ui.available_width();
+                // Report a bug stays at the right end, as an icon on a narrow window.
+                let report = commands::def(Cmd::ReportBug);
+                let label = tr("Report a bug");
+                let r = if room > 640.0 { icons::text_button(ui, report.icon, label) } else { icons::button(ui, report.icon, label) };
+                if r.on_hover_text(tr(report.tip)).clicked() {
+                    self.run(&ui.ctx().clone(), Cmd::ReportBug);
+                }
+                let room = ui.available_width();
                 if room > 420.0 {
                     let dirty = if self.session.dirty() { " *" } else { "" };
                     ui.add(egui::Label::new(RichText::new(format!("{}{}", self.session.prj.info.name, dirty)).weak()).truncate());

@@ -169,11 +169,12 @@ pub enum Icon {
     StructureBox,
     TurnLeft,
     TurnRight,
+    Bug,
 }
 
 impl Icon {
     /// Every icon, for the tests.
-    pub const ALL: [Icon; 156] = [
+    pub const ALL: [Icon; 157] = [
         Icon::File, Icon::FileNew, Icon::FolderOpen, Icon::Save, Icon::SaveAs, Icon::Download, Icon::Upload, Icon::Print, Icon::Template,
         Icon::Info, Icon::Settings, Icon::Help, Icon::Quit, Icon::Home, Icon::Undo, Icon::Redo, Icon::Cut, Icon::Copy, Icon::Paste,
         Icon::Delete, Icon::Rotate, Icon::Mirror, Icon::Align, Icon::Distribute, Icon::Move, Icon::MultiCopy, Icon::Find, Icon::Select,
@@ -198,6 +199,7 @@ impl Icon {
         Icon::StructureBox,
         Icon::TurnLeft,
         Icon::TurnRight,
+        Icon::Bug,
     ];
 
     /// The path of the icon (see the module documentation).
@@ -214,6 +216,7 @@ impl Icon {
             Icon::Template => "R 2 2 12 12 ; M 2 5.5 14 5.5 ; M 6 5.5 6 14",
             Icon::Info => "C 8 8 6.5 ; M 8 7 8 11.5 ; D 8 4.8 0.9",
             Icon::Settings => "C 8 8 2.3 ; C 8 8 4.8 ; M 8 1.5 8 3.2 ; M 8 12.8 8 14.5 ; M 1.5 8 3.2 8 ; M 12.8 8 14.5 8 ; M 3.4 3.4 4.6 4.6 ; M 11.4 11.4 12.6 12.6 ; M 3.4 12.6 4.6 11.4 ; M 11.4 4.6 12.6 3.4",
+            Icon::Bug => "E 8 10 3.5 4.5 ; A 8 5.5 2.5 180 360 ; M 8 5.5 8 14.5 ; M 4.5 8 1.5 6.5 ; M 4.5 10.5 1.5 10.5 ; M 5 13 2 14.5 ; M 11.5 8 14.5 6.5 ; M 11.5 10.5 14.5 10.5 ; M 11 13 14 14.5 ; M 6.5 3.5 5 1.5 ; M 9.5 3.5 11 1.5",
             Icon::Help => "C 8 8 6.5 ; M 6 6.2 6 5.2 7 4.2 9 4.2 10 5.2 10 6.5 8 8 8 9.5 ; D 8 11.8 0.9",
             Icon::Quit => "M 9 2 3 2 3 14 9 14 ; M 7 8 14.5 8 ; M 12 5.5 14.5 8 12 10.5",
             Icon::Home => "M 1.5 8 8 2 14.5 8 ; M 3.5 6.5 3.5 14 12.5 14 12.5 6.5 ; R 6.5 9.5 3 4.5",

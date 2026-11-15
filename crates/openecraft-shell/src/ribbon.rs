@@ -258,7 +258,7 @@ pub static TABS: &[Tab] = &[
         title: tr_const!("Help"),
         key_tip: 'Y',
         context: false,
-        groups: &[g("help", tr_const!("Help"), &[L(C::Help), L(C::Tutorial), S(C::StartPage), S(C::Shortcuts), S(C::About)])],
+        groups: &[g("help", tr_const!("Help"), &[L(C::Help), L(C::Tutorial), S(C::StartPage), S(C::Shortcuts), S(C::About), S(C::ReportBug)])],
     },
     Tab {
         id: TabId::LayoutSpace,
@@ -411,7 +411,7 @@ impl Page {
             Page::Export => &[C::ExportSettings, C::PdfInLanguage, C::CheckInVault],
             Page::Print => &[C::PrintAll, C::PrintPage],
             Page::Info => &[C::ProjectProperties, C::ProjectManagement, C::MessagesPane, C::Revisions],
-            Page::Help => &[C::Help, C::Tutorial, C::Shortcuts, C::CommandSearch, C::CustomizeRibbon, C::About, C::CheckForUpdates, C::InstallUpdate],
+            Page::Help => &[C::Help, C::Tutorial, C::Shortcuts, C::CommandSearch, C::CustomizeRibbon, C::About, C::ReportBug, C::CheckForUpdates, C::InstallUpdate],
         }
     }
 }

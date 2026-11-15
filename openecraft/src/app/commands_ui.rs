@@ -252,6 +252,7 @@ impl App {
             Cmd::Settings => self.settings.open(),
             Cmd::Tutorial => self.help_chapter(1),
             Cmd::About => self.help_about(),
+            Cmd::ReportBug => self.report_bug(),
             Cmd::CheckForUpdates => self.check_for_updates(ctx),
             Cmd::InstallUpdate => self.restart_to_update(ctx),
             Cmd::Quit => ctx.send_viewport_cmd(egui::ViewportCommand::Close),

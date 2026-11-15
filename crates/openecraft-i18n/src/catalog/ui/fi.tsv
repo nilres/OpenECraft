@@ -5,6 +5,7 @@
 2D front view	2D-etunäkymä
 2D front view (SVG)	2D-etunäkymä (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-malli (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Lyhyt otsikko ongelmalle (valinnainen)
 Accessories of this part	Tämän osan lisävarusteet
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Lisävarusteet toimivat vain niiden osien kanssa, joihin ne sopivat. Osa luettelee lisävarusteensa, lisävaruste osat, joihin se sopii; toinen puoli riittää.
 Accessory, mounted: {}	Lisävaruste, asennus: {}
@@ -31,19 +32,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Muodosta yhteys osapalvelimeen ja hae.
 Connected: {} {} – {} parts, revision {}, {}	Yhdistetty: {} {} – {} osaa, revisio {}, {}
 Connection designations	Yhteysmerkinnät
+Copy report	Kopioi raportti
+Copy screenshot	Kopioi kuvakaappaus
 Corner radius	Kulman säde
+Could not save the screenshot: {}	Kuvakaappausta ei voitu tallentaa: {}
 Cut-out	Aukko
 Datasheet (URL)	Tietolehti (URL)
 Deleted catalog {}	Luettelo {} poistettiin
 Deleted part {}	Osa {} poistettu
 Deleted user {}	Käyttäjä {} poistettiin
 Deleting {}…	Poistetaan {}…
+Describe the problem you saw	Kuvaa näkemäsi ongelma
+Describe what happened before continuing.	Kuvaa ennen jatkamista, mitä tapahtui.
 Door cutouts	Oven aukot
 Downloaded {} ({} bytes)	{} ladattiin ({} tavua)
 Downloading parts…	Ladataan osia…
 Drag it onto a schematic page to place it	Sijoita vetämällä kaaviosivulle
 EPLAN numbers	EPLAN-numerot
 EPLAN product groups	EPLAN-tuoteryhmät
+Expected result (optional)	Odotettu tulos (valinnainen)
 FLOOR	LATTIA
 Faces	Pinnat
 Filter (number, type, manufacturer, text …)	Suodatin (numero, tyyppi, valmistaja, teksti …)
@@ -54,6 +61,7 @@ Forget saved token	Poista tallennettu tunniste
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Osan tarjoamat toiminnot. Käytetään laitevalintaan, kosketinkuvaan (varakoskettimet), projektin tarkistukseen ja liitäntämerkintöjen määrittämiseen. Merkinnät luetellaan symbolin liitäntäjärjestyksessä välilyönneillä erotettuina.
 Generate from function template	Luo toimintomallista
 Group by	Ryhmittelyperuste
+Hides this form and takes a screenshot of the window as it is now	Piilottaa tämän lomakkeen ja ottaa kuvakaappauksen ikkunasta sellaisena kuin se nyt on
 Identifying letter of devices using this part (K, Q, S …)	Tätä osaa käyttävien laitteiden tunnuskirjain (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Tuo STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Tuo SVG…
@@ -80,10 +88,15 @@ No own connection points – the generated ones are shown.	Ei omia liitäntäpis
 No part of the database comes from the EPLAN Data Portal	Mikään tietokannan osa ei ole peräisin EPLAN Data Portalista
 No parts found.	Osia ei löytynyt.
 No saved Data Portal token for this endpoint	Tälle päätepisteelle ei ole tallennettua Data Portal -tunnistetta
+No screenshot could be taken of this window.	Tästä ikkunasta ei voitu ottaa kuvakaappausta.
+Offline, or GitHub does not open? Copy the report and submit it later.	Ei yhteyttä, tai GitHub ei aukea? Kopioi raportti ja lähetä se myöhemmin.
 Only floor-standing parts	Vain lattialle sijoitettavat osat
 Only parts for direct wall mounting	Vain suoraan seinään asennettavat osat
+Open GitHub issue form	Avaa GitHubin issue-lomake
 Open datasheet	Avaa tietolehti
 Open in the browser	Avaa selaimessa
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Avaa selaimen ja kopioi raportin, jotta voit liittää sen GitHubin issue-lomakkeeseen.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Avaa selaimen täytetyn raportin kanssa ja kopioi raportin. Tarkista ja lähetä se GitHubissa.
 Outside the face	Pinnan ulkopuolella
 Pan and zoom together	Panoroi ja zoomaa yhdessä
 Pan only	Vain panorointi
@@ -98,11 +111,18 @@ Rear	Takaa
 Remember token on this computer	Muista tunniste tällä tietokoneella
 Remove all	Poista kaikki
 Remove picture	Poista kuva
+Remove screenshot	Poista kuvakaappaus
 Removing the file…	Poistetaan tiedostoa…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Korvaa liitäntäpisteet IEC-käytännön mukaan: parittomat merkinnät ylhäällä, parilliset alhaalla
+Report copied. Keep it to submit on GitHub when you are online.	Raportti kopioitu. Säilytä se lähettääksesi sen GitHubissa, kun olet verkossa.
+Report copied. Paste it into the GitHub issue form and submit it there.	Raportti kopioitu. Liitä se GitHubin issue-lomakkeeseen ja lähetä se siellä.
+Reports are public. A GitHub account is needed to submit them.	Raportit ovat julkisia. Niiden lähettämiseen tarvitaan GitHub-tili.
 Reset filter	Nollaa suodatin
 Restricted areas: {}	Kielletyt alueet: {}
+Retake screenshot	Ota kuvakaappaus uudelleen
+Review your report on GitHub and submit it there.	Tarkista raporttisi GitHubissa ja lähetä se siellä.
 Rotate 90°:	Kierrä 90°:
+Save screenshot…	Tallenna kuvakaappaus…
 Save the file	Tallenna tiedosto
 Saved Data Portal token removed	Tallennettu Data Portal -tunniste poistettu
 Saved part {}	Osa {} tallennettu
@@ -110,6 +130,10 @@ Saved the library {}	Kirjasto {} tallennettu
 Saving favorites…	Tallennetaan suosikkeja…
 Saving {}…	Tallennetaan {}…
 Scale ×	Mittakaava ×
+Screenshot (optional)	Kuvakaappaus (valinnainen)
+Screenshot copied. Paste it into the GitHub issue form.	Kuvakaappaus kopioitu. Liitä se GitHubin issue-lomakkeeseen.
+Screenshot removed from this report.	Kuvakaappaus poistettu tästä raportista.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Kuvakaappaus tallennettu. Liitä PNG-tiedosto GitHubin issue-lomakkeessa.
 Select a part to see its details.	Valitse osa nähdäksesi sen tiedot.
 Select a row, then click into the view to place it.	Valitse rivi ja napsauta sitten näkymää sijoittaaksesi sen.
 Server revision	Palvelimen revisio
@@ -118,12 +142,17 @@ Signing out…	Kirjaudutaan ulos…
 Smallest conductor the clamp takes (0: not known)	Pienin johdin, jonka liitin ottaa (0: ei tiedossa)
 Stands on the floor of a room	Seisoo huoneen lattialla
 Stands on the floor of a room, like pumps, tanks and compressors	Seisoo huoneen lattialla, kuten pumput, säiliöt ja kompressorit
+Steps to reproduce (optional)	Toistamisen vaiheet (valinnainen)
 Successor {}	Seuraaja {}
+Summary	Yhteenveto
 Take {} values from the technical data	Ota {} arvoa teknisistä tiedoista
+Technical details	Tekniset tiedot
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D-etunäkymää käytetään kaapin etunäkymässä ja asennuskuvasivuilla, 3D-mallia kaapin 3D-näkymässä. Molemmat sovitetaan asennustietoihin (leveys × korkeus × syvyys).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Malli ({} × {} × {}) poikkeaa asennustiedoista ({} × {} × {}); se venytetään asennustietojen mukaiseksi.
 The parts server has no library {} yet	Osapalvelimella ei ole vielä kirjastoa {}
 The price refers to this many units	Hinta koskee tätä yksikkömäärää
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Raportissa on versio, järjestelmä ja avoimen projektin sisältämien kohteiden määrät, mutta ei projektin sisältöä. Tarkista tiedot ennen niiden jakamista.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Kuvakaappausta ei liitetä itsestään: kopioi tai tallenna se ja lisää se sitten GitHubin issue-lomakkeeseen.
 The successor is not in this parts list	Seuraaja ei ole tässä osaluettelossa
 This part is an accessory	Tämä osa on lisävaruste
 Top group	Pääryhmä
@@ -140,6 +169,9 @@ Use model size as mounting data	Käytä mallin kokoa asennustietoina
 Voltage / current	Jännite / virta
 WALL	SEINÄ
 Wall mounting	Seinäasennus
+What did you do just before the problem? A short list is enough	Mitä teit juuri ennen ongelmaa? Lyhyt luettelo riittää
+What did you expect to see?	Mitä odotit näkeväsi?
+What happened?	Mitä tapahtui?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Missä lisävaruste on siinä osassa, johon se sopii, kaappiasettelussa ja 3D-näkymässä
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Aukkojen sijainti: keskipiste etunäkymän keskeltä (x oikealle, y alas), kierto vastapäivään.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Missä johdot liitetään kaappiasennuksessa: nimitys kuten toimintomallissa, sijainti etunäkymässä (x vasemmalta, y ylhäältä, z asennuspinnan yläpuolella) ja suunta, johon johto lähtee. Osat, joilla ei ole omia liitäntäpisteitä, saavat ne toimintomallista.

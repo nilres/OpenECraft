@@ -15,6 +15,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   (`gh-releases-zsync`) and each release has its `.zsync` file, so AppImageUpdate,
   Gear Lever and similar tools update it from the latest release, downloading only the
   changed parts. The editor's own update keeps working.
+- **Report a bug from the editor:** a *Report a bug* button at the right of the quick
+  access row (also Help › Report a bug… and File › Help) opens a form for what
+  happened, the steps and the expected result, with a screenshot of the window and
+  the technical details (version, system, language, workspace, counts of the open
+  project, the last messages; no project contents), all reviewable and editable.
+  *Open GitHub issue form* opens a new issue on GitHub with the report filled in and
+  copies it; nothing is sent from the editor. The screenshot is copied or saved as PNG
+  to attach it there.
 
 ## [0.1.2] - 2026-11-15
 

@@ -5,6 +5,7 @@
 2D front view	2D-Frontansicht	Vue de face 2D	Vista frontal 2D
 2D front view (SVG)	2D-Frontansicht (SVG)	Vue de face 2D (SVG)	Vista frontal 2D (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-Modell (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	Modèle 3D (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	Modelo 3D (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Ein kurzer Titel für das Problem (optional)	Un titre court pour le problème (facultatif)	Un título breve para el problema (opcional)
 Accessories of this part	Zubehör dieses Artikels	Accessoires de cet article	Accesorios de este artículo
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Zubehör funktioniert nur zusammen mit den Artikeln, zu denen es passt. Ein Artikel nennt sein Zubehör, ein Zubehör die Artikel, zu denen es passt; eine Seite genügt.	Les accessoires ne fonctionnent qu'avec les articles auxquels ils conviennent. Un article indique ses accessoires, un accessoire les articles auxquels il convient ; un seul côté suffit.	Los accesorios solo funcionan junto con los artículos con los que son compatibles. Un artículo indica sus accesorios, un accesorio los artículos con los que es compatible; basta con un lado.
 Accessory, mounted: {}	Zubehör, montiert: {}	Accessoire, monté : {}	Accesorio, montado: {}
@@ -33,19 +34,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Verbinden Sie sich mit einem Artikelserver und suchen Sie.	Connectez-vous à un serveur d'articles et lancez une recherche.	Conéctese a un servidor de artículos y busque.
 Connected: {} {} – {} parts, revision {}, {}	Verbunden: {} {} – {} Artikel, Revision {}, {}	Connecté : {} {} – {} articles, révision {}, {}	Conectado: {} {} – {} artículos, revisión {}, {}
 Connection designations	Verbindungsbezeichnungen	Désignations des liaisons	Designaciones de conexión
+Copy report	Bericht kopieren	Copier le rapport	Copiar el informe
+Copy screenshot	Bildschirmfoto kopieren	Copier la capture d'écran	Copiar la captura de pantalla
 Corner radius	Eckenradius	Rayon d'angle	Radio de esquina
+Could not save the screenshot: {}	Das Bildschirmfoto konnte nicht gespeichert werden: {}	Impossible d'enregistrer la capture d'écran : {}	No se pudo guardar la captura de pantalla: {}
 Cut-out	Ausschnitt	Découpe	Recorte
 Datasheet (URL)	Datenblatt (URL)	Fiche technique (URL)	Hoja de datos (URL)
 Deleted catalog {}	Katalog {} gelöscht	Catalogue {} supprimé	Catálogo {} eliminado
 Deleted part {}	Artikel {} gelöscht	Article {} supprimé	Artículo {} eliminado
 Deleted user {}	Benutzer {} gelöscht	Utilisateur {} supprimé	Usuario {} eliminado
 Deleting {}…	Lösche {} …	Suppression de {}…	Eliminando {}…
+Describe the problem you saw	Beschreiben Sie das Problem, das Sie gesehen haben	Décrivez le problème que vous avez vu	Describa el problema que ha visto
+Describe what happened before continuing.	Beschreiben Sie, was passiert ist, bevor Sie fortfahren.	Décrivez ce qui s'est passé avant de continuer.	Describa qué ha pasado antes de continuar.
 Door cutouts	Türausschnitte	Découpes de porte	Recortes de puerta
 Downloaded {} ({} bytes)	{} heruntergeladen ({} Bytes)	{} téléchargé ({} octets)	{} descargado ({} bytes)
 Downloading parts…	Artikel werden heruntergeladen …	Téléchargement des articles…	Descargando artículos…
 Drag it onto a schematic page to place it	Auf eine Schaltplanseite ziehen, um ihn zu platzieren	Faites-le glisser sur une page de schéma pour le placer	Arrástrelo a una página de esquema para colocarlo
 EPLAN numbers	EPLAN-Nummern	Numéros EPLAN	Números EPLAN
 EPLAN product groups	EPLAN-Produktgruppen	Groupes de produits EPLAN	Grupos de productos EPLAN
+Expected result (optional)	Erwartetes Ergebnis (optional)	Résultat attendu (facultatif)	Resultado esperado (opcional)
 FLOOR	BODEN	SOL	SUELO
 Faces	Flächen	Faces	Caras
 Filter (number, type, manufacturer, text …)	Filter (Nummer, Typ, Hersteller, Text …)	Filtre (numéro, type, fabricant, texte …)	Filtro (número, tipo, fabricante, texto …)
@@ -56,6 +63,7 @@ Forget saved token	Gespeichertes Token entfernen	Supprimer le jeton enregistré	
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Funktionen, die der Artikel bietet. Verwendet für die Gerätewahl, das Kontaktbild (Reservekontakte), die Projektprüfung und die Vergabe von Anschlussbezeichnungen. Bezeichnungen werden in der Anschlussreihenfolge des Symbols aufgeführt, durch Leerzeichen getrennt.	Fonctions fournies par l'article. Utilisées pour la sélection d'appareil, l'image des contacts (contacts de réserve), le contrôle du projet et l'attribution des désignations de connexion. Les désignations sont listées dans l'ordre des connexions du symbole, séparées par des espaces.	Funciones que ofrece el artículo. Se usan para la selección de dispositivos, la imagen de contactos (contactos de reserva), la comprobación del proyecto y la asignación de designaciones de conexión. Las designaciones se enumeran en el orden de conexión del símbolo, separadas por espacios.
 Generate from function template	Aus Funktionsschablone erzeugen	Générer à partir du modèle de fonctions	Generar a partir de la plantilla de funciones
 Group by	Gruppieren nach	Grouper par	Agrupar por
+Hides this form and takes a screenshot of the window as it is now	Blendet dieses Formular aus und nimmt ein Bildschirmfoto des Fensters auf, wie es jetzt ist	Masque ce formulaire et prend une capture d'écran de la fenêtre telle qu'elle est maintenant	Oculta este formulario y toma una captura de pantalla de la ventana tal como está ahora
 Identifying letter of devices using this part (K, Q, S …)	Kennbuchstabe von Betriebsmitteln mit diesem Artikel (K, Q, S …)	Lettre d'identification des appareils utilisant cet article (K, Q, S …)	Letra identificativa de los dispositivos que usan este artículo (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT importieren…	Importer STL / OBJ / STEP / IGES / IFC / JT…	Importar STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	SVG importieren…	Importer SVG…	Importar SVG…
@@ -82,10 +90,15 @@ No own connection points – the generated ones are shown.	Keine eigenen Anschl�
 No part of the database comes from the EPLAN Data Portal	Kein Artikel der Datenbank stammt aus dem EPLAN Data Portal	Aucun article de la base ne provient de l'EPLAN Data Portal	Ningún artículo de la base de datos procede del EPLAN Data Portal
 No parts found.	Keine Artikel gefunden.	Aucun article trouvé.	No se encontraron artículos.
 No saved Data Portal token for this endpoint	Kein gespeicherter Data-Portal-Token für diesen Endpunkt	Aucun jeton Data Portal enregistré pour ce point de terminaison	No hay un token de Data Portal guardado para este destino
+No screenshot could be taken of this window.	Von diesem Fenster konnte kein Bildschirmfoto aufgenommen werden.	Aucune capture d'écran n'a pu être prise de cette fenêtre.	No se pudo tomar ninguna captura de pantalla de esta ventana.
+Offline, or GitHub does not open? Copy the report and submit it later.	Offline oder GitHub öffnet sich nicht? Kopieren Sie den Bericht und senden Sie ihn später ab.	Hors ligne, ou GitHub ne s'ouvre pas ? Copiez le rapport et envoyez-le plus tard.	¿Sin conexión, o GitHub no se abre? Copie el informe y envíelo más tarde.
 Only floor-standing parts	Nur bodenstehende Artikel	Seulement les articles posés au sol	Solo artículos de pie sobre el suelo
 Only parts for direct wall mounting	Nur Artikel für direkte Wandmontage	Seulement les articles pour montage mural direct	Solo artículos para montaje mural directo
+Open GitHub issue form	GitHub-Formular öffnen	Ouvrir le formulaire de ticket GitHub	Abrir el formulario de incidencia de GitHub
 Open datasheet	Datenblatt öffnen	Ouvrir la fiche technique	Abrir hoja de datos
 Open in the browser	Im Browser öffnen	Ouvrir dans le navigateur	Abrir en el navegador
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Öffnet den Browser und kopiert den Bericht, damit Sie ihn in das GitHub-Formular einfügen.	Ouvre votre navigateur et copie le rapport pour que vous le colliez dans le formulaire de ticket GitHub.	Abre el navegador y copia el informe para que lo pegue en el formulario de incidencia de GitHub.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Öffnet den Browser mit dem ausgefüllten Bericht und kopiert ihn. Prüfen und senden Sie ihn auf GitHub ab.	Ouvre votre navigateur avec le rapport rempli et le copie. Vérifiez-le et envoyez-le sur GitHub.	Abre el navegador con el informe rellenado y lo copia. Revíselo y envíelo en GitHub.
 Outside the face	Außerhalb der Fläche	À l'extérieur de la face	Fuera de la cara
 Pan and zoom together	Verschieben und zoomen zugleich	Déplacer et zoomer ensemble	Desplazar y hacer zoom a la vez
 Pan only	Nur verschieben	Déplacer seulement	Solo desplazar
@@ -100,11 +113,18 @@ Rear	Hinten	Arrière	Atrás
 Remember token on this computer	Token auf diesem Computer speichern	Mémoriser le jeton sur cet ordinateur	Recordar el token en este equipo
 Remove all	Alle entfernen	Tout supprimer	Quitar todos
 Remove picture	Bild entfernen	Supprimer l'image	Quitar la imagen
+Remove screenshot	Bildschirmfoto entfernen	Retirer la capture d'écran	Quitar la captura de pantalla
 Removing the file…	Datei wird entfernt…	Suppression du fichier…	Quitando el archivo…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Ersetzt die Anschlüsse nach IEC-Konvention: ungerade Bezeichnungen oben, gerade unten	Remplace les points de connexion selon la convention CEI : désignations impaires en haut, paires en bas	Sustituye los puntos de conexión según la convención IEC: designaciones impares arriba, pares abajo
+Report copied. Keep it to submit on GitHub when you are online.	Bericht kopiert. Bewahren Sie ihn auf, um ihn auf GitHub abzusenden, sobald Sie online sind.	Rapport copié. Gardez-le pour l'envoyer sur GitHub une fois en ligne.	Informe copiado. Guárdelo para enviarlo en GitHub cuando tenga conexión.
+Report copied. Paste it into the GitHub issue form and submit it there.	Bericht kopiert. Fügen Sie ihn in das GitHub-Formular ein und senden Sie ihn dort ab.	Rapport copié. Collez-le dans le formulaire de ticket GitHub et envoyez-le là-bas.	Informe copiado. Péguelo en el formulario de incidencia de GitHub y envíelo allí.
+Reports are public. A GitHub account is needed to submit them.	Berichte sind öffentlich. Zum Absenden ist ein GitHub-Konto nötig.	Les rapports sont publics. Un compte GitHub est nécessaire pour les envoyer.	Los informes son públicos. Se necesita una cuenta de GitHub para enviarlos.
 Reset filter	Filter zurücksetzen	Réinitialiser le filtre	Restablecer el filtro
 Restricted areas: {}	Sperrflächen: {}	Zones interdites : {}	Zonas restringidas: {}
+Retake screenshot	Bildschirmfoto neu aufnehmen	Reprendre la capture d'écran	Repetir la captura de pantalla
+Review your report on GitHub and submit it there.	Prüfen Sie Ihren Bericht auf GitHub und senden Sie ihn dort ab.	Vérifiez votre rapport sur GitHub et envoyez-le là-bas.	Revise su informe en GitHub y envíelo allí.
 Rotate 90°:	Um 90° drehen:	Pivoter de 90° :	Girar 90°:
+Save screenshot…	Bildschirmfoto speichern…	Enregistrer la capture d'écran…	Guardar la captura de pantalla…
 Save the file	Datei speichern	Enregistrer le fichier	Guardar el archivo
 Saved Data Portal token removed	Gespeichertes Data-Portal-Token entfernt	Jeton Data Portal enregistré supprimé	Token de Data Portal guardado eliminado
 Saved part {}	Artikel {} gespeichert	Article {} enregistré	Artículo {} guardado
@@ -112,6 +132,10 @@ Saved the library {}	Bibliothek {} gespeichert	Bibliothèque {} enregistrée	Bib
 Saving favorites…	Favoriten werden gespeichert…	Enregistrement des favoris…	Guardando favoritos…
 Saving {}…	{} wird gespeichert …	Enregistrement de {}…	Guardando {}…
 Scale ×	Maßstab ×	Échelle ×	Escala ×
+Screenshot (optional)	Bildschirmfoto (optional)	Capture d'écran (facultatif)	Captura de pantalla (opcional)
+Screenshot copied. Paste it into the GitHub issue form.	Bildschirmfoto kopiert. Fügen Sie es in das GitHub-Formular ein.	Capture d'écran copiée. Collez-la dans le formulaire de ticket GitHub.	Captura de pantalla copiada. Péguela en el formulario de incidencia de GitHub.
+Screenshot removed from this report.	Bildschirmfoto aus diesem Bericht entfernt.	Capture d'écran retirée de ce rapport.	Captura de pantalla quitada de este informe.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Bildschirmfoto gespeichert. Hängen Sie die PNG-Datei im GitHub-Formular an.	Capture d'écran enregistrée. Joignez le fichier PNG dans le formulaire de ticket GitHub.	Captura de pantalla guardada. Adjunte el archivo PNG en el formulario de incidencia de GitHub.
 Select a part to see its details.	Wählen Sie einen Artikel, um seine Details zu sehen.	Sélectionnez un article pour voir ses détails.	Seleccione un artículo para ver sus detalles.
 Select a row, then click into the view to place it.	Zeile wählen, dann in die Ansicht klicken, um den Anschluss zu platzieren.	Choisissez une ligne, puis cliquez dans la vue pour la placer.	Elija una fila y haga clic en la vista para colocarla.
 Server revision	Server-Revision	Révision du serveur	Revisión del servidor
@@ -120,13 +144,18 @@ Signing out…	Abmeldung…	Déconnexion…	Cerrando sesión…
 Smallest conductor the clamp takes (0: not known)	Kleinster Leiter, den die Klemmstelle aufnimmt (0: unbekannt)	Plus petit conducteur accepté par la borne (0 : inconnu)	Conductor más pequeño que admite el borne (0: desconocido)
 Stands on the floor of a room	Steht auf dem Boden eines Raums	Posé au sol d'une salle	Se apoya en el suelo de una sala
 Stands on the floor of a room, like pumps, tanks and compressors	Steht auf dem Boden eines Raums, wie Pumpen, Behälter und Kompressoren	Posé au sol d'une salle, comme les pompes, réservoirs et compresseurs	Se apoya en el suelo de una sala, como bombas, depósitos y compresores
+Steps to reproduce (optional)	Schritte zum Nachstellen (optional)	Étapes pour reproduire (facultatif)	Pasos para reproducirlo (opcional)
 Strict	Streng	Strict	Estricto
 Successor {}	Nachfolger {}	Successeur {}	Sucesor {}
+Summary	Zusammenfassung	Résumé	Resumen
 Take {} values from the technical data	{} Werte aus den technischen Daten übernehmen	Reprendre {} valeurs des données techniques	Tomar {} valores de los datos técnicos
+Technical details	Technische Angaben	Détails techniques	Detalles técnicos
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	Die 2D-Frontansicht wird in der Schaltschrank-Frontansicht und auf Montageplan-Seiten verwendet, das 3D-Modell in der 3D-Schaltschrankansicht. Beide werden an die Montagedaten (Breite × Höhe × Tiefe) angepasst.	La vue de face 2D est utilisée dans la vue de face de l'armoire et sur les pages d'implantation, le modèle 3D dans la vue 3D de l'armoire. Les deux sont adaptés aux données de montage (largeur × hauteur × profondeur).	La vista frontal 2D se usa en la vista frontal del armario y en las páginas de distribución de montaje, el modelo 3D en la vista 3D del armario. Ambos se ajustan a los datos de montaje (ancho × alto × profundidad).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Das Modell ({} × {} × {}) weicht von den Montagedaten ({} × {} × {}) ab; es wird auf die Montagedaten gestreckt.	Le modèle ({} × {} × {}) diffère des données de montage ({} × {} × {}) ; il est étiré aux données de montage.	El modelo ({} × {} × {}) difiere de los datos de montaje ({} × {} × {}); se estira a los datos de montaje.
 The parts server has no library {} yet	Der Artikelserver hat noch keine Bibliothek {}	Le serveur d'articles n'a pas encore de bibliothèque {}	El servidor de artículos aún no tiene la biblioteca {}
 The price refers to this many units	Der Preis bezieht sich auf diese Anzahl Einheiten	Le prix se rapporte à ce nombre d'unités	El precio se refiere a esta cantidad de unidades
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Der Bericht enthält die Version, das System und Anzahlen dessen, was das offene Projekt enthält, aber keine Projektinhalte. Prüfen Sie die Angaben, bevor Sie sie teilen.	Le rapport contient la version, le système et le nombre d'éléments du projet ouvert, mais aucun contenu du projet. Vérifiez les détails avant de les partager.	El informe incluye la versión, el sistema y cuántos elementos contiene el proyecto abierto, pero ningún contenido del proyecto. Revise los detalles antes de compartirlos.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Das Bildschirmfoto wird nicht von selbst angehängt: Kopieren oder speichern Sie es und fügen Sie es dann in das GitHub-Formular ein.	La capture d'écran n'est pas jointe d'elle-même : copiez-la ou enregistrez-la, puis ajoutez-la au formulaire de ticket GitHub.	La captura de pantalla no se adjunta sola: cópiela o guárdela y luego añádala al formulario de incidencia de GitHub.
 The successor is not in this parts list	Der Nachfolger ist nicht in dieser Artikelliste	Le successeur n'est pas dans cette liste d'articles	El sucesor no está en esta lista de artículos
 This part is an accessory	Dieser Artikel ist Zubehör	Cet article est un accessoire	Este artículo es un accesorio
 Top group	Hauptgruppe	Groupe principal	Grupo principal
@@ -143,6 +172,9 @@ Use model size as mounting data	Modellgröße als Montagedaten übernehmen	Utili
 Voltage / current	Spannung / Strom	Tension / courant	Tensión / corriente
 WALL	WAND	MUR	PARED
 Wall mounting	Wandmontage	Montage mural	Montaje mural
+What did you do just before the problem? A short list is enough	Was haben Sie kurz vor dem Problem getan? Eine kurze Liste genügt	Qu'avez-vous fait juste avant le problème ? Une courte liste suffit	¿Qué hizo justo antes del problema? Basta con una lista breve
+What did you expect to see?	Was hätten Sie erwartet?	Que vous attendiez-vous à voir ?	¿Qué esperaba ver?
+What happened?	Was ist passiert?	Que s'est-il passé ?	¿Qué ha pasado?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Wo das Zubehör am passenden Artikel sitzt, im Aufbauplan und in der 3D-Ansicht	Emplacement de l'accessoire sur l'article auquel il convient, dans l'implantation et la vue 3D	Dónde se sitúa el accesorio en el artículo compatible, en el esquema de montaje y en la vista 3D
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Lage der Ausschnitte: der Mittelpunkt von der Mitte der Frontansicht aus (x nach rechts, y nach unten), die Drehung gegen den Uhrzeigersinn.	Position des découpes : le centre à partir du milieu de la vue de face (x vers la droite, y vers le bas), la rotation dans le sens antihoraire.	Posición de los recortes: el centro desde el medio de la vista frontal (x hacia la derecha, y hacia abajo), el giro en sentido antihorario.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Wo im Aufbau verdrahtet wird: die Bezeichnung wie in der Funktionsschablone, die Lage in der Frontansicht (x von links, y von oben, z über der Montagefläche) und die Richtung, in der die Leitung abgeht. Artikel ohne eigene Anschlüsse erhalten sie aus der Funktionsschablone.	Où les fils sont raccordés dans l'implantation : la désignation comme dans le modèle de fonctions, la position dans la vue de face (x depuis la gauche, y depuis le haut, z au-dessus de la surface de montage) et la direction de départ du fil. Les articles sans points propres les reçoivent du modèle de fonctions.	Dónde se conectan los cables en el montaje: la designación como en la plantilla de funciones, la posición en la vista frontal (x desde la izquierda, y desde arriba, z sobre la superficie de montaje) y la dirección en la que sale el cable. Los artículos sin puntos propios los obtienen de la plantilla de funciones.

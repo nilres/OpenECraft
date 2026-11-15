@@ -5,6 +5,7 @@
 2D front view	2D ön görünüm
 2D front view (SVG)	2D ön görünüm (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Sorun için kısa bir başlık (isteğe bağlı)
 Accessories of this part	Bu parçanın aksesuarları
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Aksesuarlar yalnızca uydukları parçalarla birlikte çalışır. Bir parça aksesuarlarını, bir aksesuar uyduğu parçaları listeler; tek taraf yeterlidir.
 Accessory, mounted: {}	Aksesuar, montaj: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Bir parça sunucusuna bağlanın ve arayın.
 Connected: {} {} – {} parts, revision {}, {}	Bağlandı: {} {} – {} parça, revizyon {}, {}
 Connection designations	Bağlantı tanımları
+Copy report	Raporu kopyala
+Copy screenshot	Ekran görüntüsünü kopyala
 Corner radius	Köşe yarıçapı
+Could not save the screenshot: {}	Ekran görüntüsü kaydedilemedi: {}
 Cut-out	Kesim
 Datasheet (URL)	Veri sayfası (URL)
 Deleted catalog {}	{} kataloğu silindi
 Deleted part {}	{} parçası silindi
 Deleted user {}	{} kullanıcısı silindi
 Deleting {}…	{} siliniyor…
+Describe the problem you saw	Gördüğünüz sorunu anlatın
+Describe what happened before continuing.	Devam etmeden önce ne olduğunu anlatın.
 Door cutouts	Kapı kesimleri
 Downloaded {} ({} bytes)	{} indirildi ({} bayt)
 Downloading parts…	Parçalar indiriliyor…
 Drag it onto a schematic page to place it	Yerleştirmek için bir şema sayfasına sürükleyin
 EPLAN numbers	EPLAN numaraları
 EPLAN product groups	EPLAN ürün grupları
+Expected result (optional)	Beklenen sonuç (isteğe bağlı)
 FLOOR	ZEMİN
 Faces	Yüzeyler
 Filter (number, type, manufacturer, text …)	Filtre (numara, tip, üretici, metin …)
@@ -52,6 +59,7 @@ Floor mounting	Zemine montaj
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Parçanın sağladığı fonksiyonlar. Cihaz seçimi, kontak görüntüsü (yedek kontaklar), proje kontrolü ve bağlantı tanımlarının atanması için kullanılır. Tanımlar sembolün bağlantı sırasına göre, boşlukla ayrılarak listelenir.
 Generate from function template	Fonksiyon şablonundan oluştur
 Group by	Gruplama ölçütü
+Hides this form and takes a screenshot of the window as it is now	Bu formu gizler ve pencerenin şimdiki halinin ekran görüntüsünü alır
 Identifying letter of devices using this part (K, Q, S …)	Bu parçayı kullanan cihazların tanıtıcı harfi (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT içe aktar…
 Import SVG…	SVG içe aktar…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Power loss: 3 W gibi s
 No own connection points – the generated ones are shown.	Kendi bağlantı noktası yok – oluşturulanlar gösteriliyor.
 No part of the database comes from the EPLAN Data Portal	Veritabanındaki hiçbir parça EPLAN Data Portal'dan gelmiyor
 No parts found.	Parça bulunamadı.
+No screenshot could be taken of this window.	Bu pencerenin ekran görüntüsü alınamadı.
+Offline, or GitHub does not open? Copy the report and submit it later.	Çevrimdışı mısınız veya GitHub açılmıyor mu? Raporu kopyalayın ve daha sonra gönderin.
 Only floor-standing parts	Yalnızca zemine konan parçalar
 Only parts for direct wall mounting	Yalnızca doğrudan duvara montaj parçaları
+Open GitHub issue form	GitHub issue formunu aç
 Open datasheet	Veri sayfasını aç
 Open in the browser	Tarayıcıda aç
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Tarayıcıyı açar ve raporu GitHub issue formuna yapıştırmanız için kopyalar.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Tarayıcıyı doldurulmuş raporla açar ve raporu kopyalar. GitHub'da gözden geçirip gönderin.
 Outside the face	Yüzeyin dışında
 Pan and zoom together	Birlikte kaydır ve yakınlaştır
 Pan only	Yalnızca kaydır
@@ -93,17 +106,28 @@ Prices / other	Fiyatlar / diğer
 Rear	Arka
 Remove all	Tümünü kaldır
 Remove picture	Resmi kaldır
+Remove screenshot	Ekran görüntüsünü kaldır
 Removing the file…	Dosya kaldırılıyor…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Bağlantı noktalarını IEC kuralına göre değiştirir: tek tanımlar üstte, çift olanlar altta
+Report copied. Keep it to submit on GitHub when you are online.	Rapor kopyalandı. Çevrimiçi olduğunuzda GitHub'da göndermek için saklayın.
+Report copied. Paste it into the GitHub issue form and submit it there.	Rapor kopyalandı. GitHub issue formuna yapıştırın ve orada gönderin.
+Reports are public. A GitHub account is needed to submit them.	Raporlar herkese açıktır. Göndermek için bir GitHub hesabı gerekir.
 Reset filter	Filtreyi sıfırla
 Restricted areas: {}	Yasak alanlar: {}
+Retake screenshot	Ekran görüntüsünü yeniden al
+Review your report on GitHub and submit it there.	Raporunuzu GitHub'da gözden geçirin ve orada gönderin.
 Rotate 90°:	90° döndür:
+Save screenshot…	Ekran görüntüsünü kaydet…
 Save the file	Dosyayı kaydet
 Saved part {}	{} parçası kaydedildi
 Saved the library {}	{} kütüphanesi kaydedildi
 Saving favorites…	Sık kullanılanlar kaydediliyor…
 Saving {}…	{} kaydediliyor…
 Scale ×	Ölçek ×
+Screenshot (optional)	Ekran görüntüsü (isteğe bağlı)
+Screenshot copied. Paste it into the GitHub issue form.	Ekran görüntüsü kopyalandı. GitHub issue formuna yapıştırın.
+Screenshot removed from this report.	Ekran görüntüsü bu rapordan kaldırıldı.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Ekran görüntüsü kaydedildi. PNG dosyasını GitHub issue formuna ekleyin.
 Select a part to see its details.	Ayrıntılarını görmek için bir parça seçin.
 Select a row, then click into the view to place it.	Bir satır seçin, ardından yerleştirmek için görünüme tıklayın.
 Server revision	Sunucu revizyonu
@@ -112,12 +136,17 @@ Signing out…	Oturum kapatılıyor…
 Smallest conductor the clamp takes (0: not known)	Klemensin aldığı en küçük iletken (0: bilinmiyor)
 Stands on the floor of a room	Bir odanın zemininde durur
 Stands on the floor of a room, like pumps, tanks and compressors	Pompalar, tanklar ve kompresörler gibi bir odanın zemininde durur
+Steps to reproduce (optional)	Yeniden oluşturma adımları (isteğe bağlı)
 Successor {}	Halef {}
+Summary	Özet
 Take {} values from the technical data	Teknik verilerden {} değeri al
+Technical details	Teknik ayrıntılar
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D ön görünüm pano ön görünümünde ve montaj planı sayfalarında, 3D model ise 3D pano görünümünde kullanılır. Her ikisi de montaj verilerine (genişlik × yükseklik × derinlik) uydurulur.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Model ({} × {} × {}) montaj verilerinden ({} × {} × {}) farklı; montaj verilerine göre esnetilir.
 The parts server has no library {} yet	Parça sunucusunda henüz {} kütüphanesi yok
 The price refers to this many units	Fiyat bu sayıda birim için geçerlidir
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Rapor sürümü, sistemi ve açık projenin içerdiklerinin sayılarını içerir, ancak proje içeriği içermez. Paylaşmadan önce ayrıntıları gözden geçirin.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Ekran görüntüsü kendiliğinden eklenmez: kopyalayın veya kaydedin, ardından GitHub issue formuna ekleyin.
 The successor is not in this parts list	Halef bu parça listesinde yok
 This part is an accessory	Bu parça bir aksesuardır
 Top group	Ana grup
@@ -134,6 +163,9 @@ Use model size as mounting data	Model boyutunu montaj verisi olarak kullan
 Voltage / current	Gerilim / akım
 WALL	DUVAR
 Wall mounting	Duvara montaj
+What did you do just before the problem? A short list is enough	Sorundan hemen önce ne yaptınız? Kısa bir liste yeterli
+What did you expect to see?	Ne görmeyi bekliyordunuz?
+What happened?	Ne oldu?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Aksesuarın uyduğu parçada nerede durduğu, pano yerleşiminde ve 3D görünümde
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Kesimlerin konumu: ön görünüşün ortasından merkez (x sağa, y aşağı), dönüş saat yönünün tersine.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Pano yerleşiminde tellerin bağlandığı yer: fonksiyon şablonundaki tanım, ön görünümdeki konum (x soldan, y üstten, z montaj yüzeyinin üstünde) ve telin çıkış yönü. Kendi bağlantı noktası olmayan parçalar bunları fonksiyon şablonundan alır.

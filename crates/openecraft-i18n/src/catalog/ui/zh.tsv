@@ -5,6 +5,7 @@
 2D front view	2D 正视图
 2D front view (SVG)	2D 正视图 (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D 模型 (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	问题的简短标题（可选）
 Accessories of this part	此部件的附件
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	附件只能与其适配的部件配合使用。部件列出其附件，附件列出其适配的部件；任一侧即可。
 Accessory, mounted: {}	附件，安装：{}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	请连接到部件服务器并进行搜索。
 Connected: {} {} – {} parts, revision {}, {}	已连接：{} {} – {} 个部件，修订 {}，{}
 Connection designations	连接标识
+Copy report	复制报告
+Copy screenshot	复制屏幕截图
 Corner radius	圆角半径
+Could not save the screenshot: {}	无法保存屏幕截图：{}
 Cut-out	开孔
 Datasheet (URL)	数据表 (URL)
 Deleted catalog {}	已删除目录 {}
 Deleted part {}	已删除部件 {}
 Deleted user {}	已删除用户 {}
 Deleting {}…	正在删除 {}…
+Describe the problem you saw	描述您看到的问题
+Describe what happened before continuing.	请先描述发生了什么，然后再继续。
 Door cutouts	柜门开孔
 Downloaded {} ({} bytes)	已下载 {}（{} 字节）
 Downloading parts…	正在下载部件…
 Drag it onto a schematic page to place it	拖到原理图页面上即可放置
 EPLAN numbers	EPLAN 编号
 EPLAN product groups	EPLAN 产品组
+Expected result (optional)	预期结果（可选）
 FLOOR	落地
 Faces	面
 Filter (number, type, manufacturer, text …)	筛选（编号、类型、制造商、文本 …）
@@ -52,6 +59,7 @@ Floor mounting	落地安装
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	部件提供的功能。用于设备选择、触点映像（备用触点）、项目检查以及分配连接点标识。标识按符号连接点顺序列出，以空格分隔。
 Generate from function template	从功能模板生成
 Group by	分组依据
+Hides this form and takes a screenshot of the window as it is now	隐藏此表单，并按窗口当前的样子截图
 Identifying letter of devices using this part (K, Q, S …)	使用此部件的设备的标识字母（K、Q、S …）
 Import STL / OBJ / STEP / IGES / IFC / JT…	导入 STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	导入 SVG…
@@ -75,10 +83,15 @@ Moves lines such as Power loss: 3 W into the typed fields	将 Power loss: 3 W �
 No own connection points – the generated ones are shown.	无自有连接点 – 显示生成的连接点。
 No part of the database comes from the EPLAN Data Portal	数据库中没有来自 EPLAN Data Portal 的部件
 No parts found.	未找到部件。
+No screenshot could be taken of this window.	无法为此窗口截图。
+Offline, or GitHub does not open? Copy the report and submit it later.	处于离线状态或无法打开 GitHub？请复制报告，稍后再提交。
 Only floor-standing parts	仅落地式部件
 Only parts for direct wall mounting	仅限直接墙面安装的部件
+Open GitHub issue form	打开 GitHub 问题表单
 Open datasheet	打开数据表
 Open in the browser	在浏览器中打开
+Opens your browser and copies the report for you to paste into the GitHub issue form.	打开浏览器并复制报告，供您粘贴到 GitHub 的问题表单中。
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	打开浏览器并填好报告，同时复制报告。请在 GitHub 上检查并提交。
 Outside the face	面外
 Pan and zoom together	同时平移和缩放
 Pan only	仅平移
@@ -92,17 +105,28 @@ Prices / other	价格 / 其他
 Rear	后
 Remove all	全部移除
 Remove picture	删除图片
+Remove screenshot	移除屏幕截图
 Removing the file…	正在删除文件…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	按 IEC 惯例替换连接点：奇数标识在上，偶数标识在下
+Report copied. Keep it to submit on GitHub when you are online.	报告已复制。请保留它，联网后在 GitHub 上提交。
+Report copied. Paste it into the GitHub issue form and submit it there.	报告已复制。请将其粘贴到 GitHub 的问题表单中并在那里提交。
+Reports are public. A GitHub account is needed to submit them.	报告是公开的。提交报告需要 GitHub 帐户。
 Reset filter	重置筛选
 Restricted areas: {}	禁止区域：{}
+Retake screenshot	重新截图
+Review your report on GitHub and submit it there.	请在 GitHub 上检查您的报告并在那里提交。
 Rotate 90°:	旋转 90°：
+Save screenshot…	保存屏幕截图…
 Save the file	保存文件
 Saved part {}	已保存部件 {}
 Saved the library {}	已保存库 {}
 Saving favorites…	正在保存收藏夹…
 Saving {}…	正在保存 {}…
 Scale ×	比例 ×
+Screenshot (optional)	屏幕截图（可选）
+Screenshot copied. Paste it into the GitHub issue form.	屏幕截图已复制。请将其粘贴到 GitHub 的问题表单中。
+Screenshot removed from this report.	已从此报告中移除屏幕截图。
+Screenshot saved. Attach the PNG file in the GitHub issue form.	屏幕截图已保存。请在 GitHub 的问题表单中附加该 PNG 文件。
 Select a part to see its details.	选择部件以查看其详细信息。
 Select a row, then click into the view to place it.	选择一行，然后在视图中单击以放置。
 Server revision	服务器修订
@@ -111,12 +135,17 @@ Signing out…	正在注销…
 Smallest conductor the clamp takes (0: not known)	端子可接的最小导线（0：未知）
 Stands on the floor of a room	立于房间地面
 Stands on the floor of a room, like pumps, tanks and compressors	立于房间地面，如泵、储罐和压缩机
+Steps to reproduce (optional)	重现步骤（可选）
 Successor {}	后续产品 {}
+Summary	摘要
 Take {} values from the technical data	从技术数据中采用 {} 个值
+Technical details	技术信息
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D 正视图用于安装板正视图和安装布局页，3D 模型用于 3D 机柜视图。两者都会按安装数据（宽 × 高 × 深）调整。
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	模型（{} × {} × {}）与安装数据（{} × {} × {}）不同；它将被拉伸为安装数据的尺寸。
 The parts server has no library {} yet	零件服务器上还没有库 {}
 The price refers to this many units	价格对应的单位数量
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	报告包含版本、系统以及打开的项目中各类内容的数量，但不包含项目内容。分享前请检查这些信息。
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	屏幕截图不会自动附加：请复制或保存它，然后将其添加到 GitHub 的问题表单中。
 The successor is not in this parts list	后续产品不在此部件列表中
 This part is an accessory	此部件是附件
 Top group	主组
@@ -133,6 +162,9 @@ Use model size as mounting data	将模型尺寸用作安装数据
 Voltage / current	电压 / 电流
 WALL	墙
 Wall mounting	墙面安装
+What did you do just before the problem? A short list is enough	出现问题前您刚做了什么？简短列出即可
+What did you expect to see?	您预期看到什么？
+What happened?	发生了什么？
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	附件在其适配部件上的位置（在柜体布局和 3D 视图中）
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	开孔位置：中心相对于正视图中心（x 向右，y 向下），旋转为逆时针。
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	导线在安装板布局中的连接位置：功能模板中的标识、正视图中的位置（x 从左侧算起，y 从顶部算起，z 为安装面以上高度）以及导线引出方向。没有自有连接点的部件从功能模板获取连接点。

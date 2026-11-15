@@ -274,6 +274,16 @@ fn unix_now() -> u64 {
     secs
 }
 
+/// The system the app runs on, for bug reports: operating system and processor on the
+/// desktop, the browser's user agent in the browser.
+pub fn platform() -> String {
+    #[cfg(not(target_arch = "wasm32"))]
+    let text = format!("{} {} (desktop)", std::env::consts::OS, std::env::consts::ARCH);
+    #[cfg(target_arch = "wasm32")]
+    let text = format!("web: {}", web_sys::window().and_then(|w| w.navigator().user_agent().ok()).unwrap_or_default());
+    text
+}
+
 /// The local file system can be searched and written by path (desktop, not the
 /// browser).
 pub fn has_file_system() -> bool {

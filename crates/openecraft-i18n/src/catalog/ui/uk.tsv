@@ -5,6 +5,7 @@
 2D front view	2D-фронтальний вигляд
 2D front view (SVG)	2D-фронтальний вигляд (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-модель (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A short title for the problem (optional)	Короткий заголовок проблеми (необов'язково)
 Accessories of this part	Приладдя цього виробу
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Приладдя працює лише разом із виробами, до яких воно підходить. Виріб перелічує своє приладдя, приладдя — вироби, до яких підходить; достатньо одного боку.
 Accessory, mounted: {}	Приладдя, монтаж: {}
@@ -30,19 +31,25 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Підключіться до сервера виробів і виконайте пошук.
 Connected: {} {} – {} parts, revision {}, {}	Підключено: {} {} – виробів: {}, ревізія {}, {}
 Connection designations	Позначення підключень
+Copy report	Копіювати звіт
+Copy screenshot	Копіювати знімок екрана
 Corner radius	Радіус кута
+Could not save the screenshot: {}	Не вдалося зберегти знімок екрана: {}
 Cut-out	Виріз
 Datasheet (URL)	Технічний паспорт (URL)
 Deleted catalog {}	Каталог {} видалено
 Deleted part {}	Виріб {} видалено
 Deleted user {}	Користувача {} видалено
 Deleting {}…	Видалення {}…
+Describe the problem you saw	Опишіть проблему, яку ви побачили
+Describe what happened before continuing.	Опишіть, що сталося, перш ніж продовжити.
 Door cutouts	Вирізи у дверцятах
 Downloaded {} ({} bytes)	{} завантажено ({} байтів)
 Downloading parts…	Завантаження виробів…
 Drag it onto a schematic page to place it	Перетягніть на сторінку схеми, щоб розмістити
 EPLAN numbers	Номери EPLAN
 EPLAN product groups	Групи продуктів EPLAN
+Expected result (optional)	Очікуваний результат (необов'язково)
 FLOOR	ПІДЛОГА
 Faces	Грані
 Filter (number, type, manufacturer, text …)	Фільтр (номер, тип, виробник, текст …)
@@ -52,6 +59,7 @@ Floor mounting	Монтаж на підлогу
 Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Функції, які надає виріб. Використовуються для вибору пристрою, зображення контактів (резервні контакти), перевірки проєкту та призначення позначень підключень. Позначення перелічуються в порядку підключень символу, розділені пробілами.
 Generate from function template	Створити із шаблону функцій
 Group by	Групувати за
+Hides this form and takes a screenshot of the window as it is now	Ховає цю форму й робить знімок вікна в його теперішньому вигляді
 Identifying letter of devices using this part (K, Q, S …)	Літерний код пристроїв із цим виробом (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Імпортувати STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Імпортувати SVG…
@@ -76,10 +84,15 @@ Moves lines such as Power loss: 3 W into the typed fields	Переносить �
 No own connection points – the generated ones are shown.	Немає власних точок підключення – показано згенеровані.
 No part of the database comes from the EPLAN Data Portal	Жоден виріб бази даних не походить з EPLAN Data Portal
 No parts found.	Вироби не знайдено.
+No screenshot could be taken of this window.	Не вдалося зробити знімок цього вікна.
+Offline, or GitHub does not open? Copy the report and submit it later.	Немає мережі або GitHub не відкривається? Скопіюйте звіт і надішліть його пізніше.
 Only floor-standing parts	Лише вироби, що стоять на підлозі
 Only parts for direct wall mounting	Лише вироби для прямого настінного монтажу
+Open GitHub issue form	Відкрити форму issue на GitHub
 Open datasheet	Відкрити технічний паспорт
 Open in the browser	Відкрити в браузері
+Opens your browser and copies the report for you to paste into the GitHub issue form.	Відкриває браузер і копіює звіт, щоб ви вставили його у форму issue на GitHub.
+Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Відкриває браузер із заповненим звітом і копіює його. Перевірте й надішліть його на GitHub.
 Outside the face	Поза гранню
 Pan and zoom together	Зсув і масштабування разом
 Pan only	Лише зсув
@@ -93,17 +106,28 @@ Prices / other	Ціни / інше
 Rear	Ззаду
 Remove all	Вилучити все
 Remove picture	Вилучити зображення
+Remove screenshot	Вилучити знімок екрана
 Removing the file…	Вилучення файлу…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Замінює точки підключення за правилом IEC: непарні позначення вгорі, парні внизу
+Report copied. Keep it to submit on GitHub when you are online.	Звіт скопійовано. Збережіть його, щоб надіслати на GitHub, коли з'явиться мережа.
+Report copied. Paste it into the GitHub issue form and submit it there.	Звіт скопійовано. Вставте його у форму issue на GitHub і надішліть там.
+Reports are public. A GitHub account is needed to submit them.	Звіти публічні. Щоб надіслати їх, потрібен обліковий запис GitHub.
 Reset filter	Скинути фільтр
 Restricted areas: {}	Заборонені зони: {}
+Retake screenshot	Зробити знімок екрана знову
+Review your report on GitHub and submit it there.	Перевірте звіт на GitHub і надішліть його там.
 Rotate 90°:	Повернути на 90°:
+Save screenshot…	Зберегти знімок екрана…
 Save the file	Зберегти файл
 Saved part {}	Виріб {} збережено
 Saved the library {}	Бібліотеку {} збережено
 Saving favorites…	Збереження вибраного…
 Saving {}…	Збереження {}…
 Scale ×	Масштаб ×
+Screenshot (optional)	Знімок екрана (необов'язково)
+Screenshot copied. Paste it into the GitHub issue form.	Знімок екрана скопійовано. Вставте його у форму issue на GitHub.
+Screenshot removed from this report.	Знімок екрана вилучено з цього звіту.
+Screenshot saved. Attach the PNG file in the GitHub issue form.	Знімок екрана збережено. Додайте файл PNG у формі issue на GitHub.
 Select a part to see its details.	Виберіть виріб, щоб переглянути відомості про нього.
 Select a row, then click into the view to place it.	Виберіть рядок, потім клацніть у вигляді, щоб розмістити точку підключення.
 Server revision	Ревізія сервера
@@ -112,12 +136,17 @@ Signing out…	Вихід…
 Smallest conductor the clamp takes (0: not known)	Найменший провідник, який приймає клема (0: невідомо)
 Stands on the floor of a room	Стоїть на підлозі приміщення
 Stands on the floor of a room, like pumps, tanks and compressors	Стоїть на підлозі приміщення, як насоси, баки та компресори
+Steps to reproduce (optional)	Кроки для відтворення (необов'язково)
 Successor {}	Наступник {}
+Summary	Короткий опис
 Take {} values from the technical data	Перенести значення з технічних даних ({})
+Technical details	Технічні дані
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D-фронтальний вигляд використовується у фронтальному вигляді шафи та на сторінках плану монтажу, 3D-модель – у 3D-вигляді шафи. Обидва підганяються під дані монтажу (ширина × висота × глибина).
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Модель ({} × {} × {}) відрізняється від даних монтажу ({} × {} × {}); її розтягнуто відповідно до даних монтажу.
 The parts server has no library {} yet	На сервері виробів ще немає бібліотеки {}
 The price refers to this many units	Ціна стосується такої кількості одиниць
+The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Звіт містить версію, систему й кількість елементів відкритого проєкту, але не вміст проєкту. Перевірте дані, перш ніж ділитися ними.
+The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Знімок екрана не додається сам: скопіюйте або збережіть його, а потім додайте у форму issue на GitHub.
 The successor is not in this parts list	Наступника немає в цьому списку виробів
 This part is an accessory	Цей виріб — приладдя
 Top group	Основна група
@@ -134,6 +163,9 @@ Use model size as mounting data	Використати розмір моделі
 Voltage / current	Напруга / струм
 WALL	СТІНА
 Wall mounting	Настінний монтаж
+What did you do just before the problem? A short list is enough	Що ви зробили безпосередньо перед проблемою? Досить короткого списку
+What did you expect to see?	Що ви очікували побачити?
+What happened?	Що сталося?
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Де приладдя розташоване на відповідному виробі, у компонуванні шафи та в 3D-вигляді
 Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Положення вирізів: центр від середини вигляду спереду (x праворуч, y донизу), поворот проти годинникової стрілки.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Де виконуються підключення проводів у компонуванні шафи: позначення як у шаблоні функцій, положення у фронтальному вигляді (x зліва, y згори, z над монтажною поверхнею) і напрямок виходу проводу. Вироби без власних точок підключення отримують їх із шаблону функцій.
