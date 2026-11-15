@@ -35,5 +35,9 @@ window.OPENECRAFT_SITE = {
         responsible: "",
         // Further text: disclaimers, dispute resolution, … (OPENECRAFT_LEGAL_TEXT).
         text: "",
+        // What the operator adds to the privacy notice of the page, which is shown
+        // without it too: who hosts the site, what the server logs and for how long,
+        // whom to ask (OPENECRAFT_LEGAL_PRIVACY).
+        privacy: "",
     },
 };

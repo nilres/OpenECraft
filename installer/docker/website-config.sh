@@ -36,6 +36,7 @@ BEGIN {
     setting("        ", "vat", "OPENECRAFT_LEGAL_VAT_ID")
     setting("        ", "responsible", "OPENECRAFT_LEGAL_RESPONSIBLE")
     setting("        ", "text", "OPENECRAFT_LEGAL_TEXT")
+    setting("        ", "privacy", "OPENECRAFT_LEGAL_PRIVACY")
     print "    },"
     print "};"
 }' > /tmp/openecraft/config.js

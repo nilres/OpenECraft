@@ -29,6 +29,41 @@ fn every_field_of_the_legal_notice_has_a_place() {
 }
 
 #[test]
+fn the_page_links_its_licenses_and_its_privacy_notice() {
+    let html = read("index.html");
+    let script = read("site.js");
+    for name in ["licenses", "privacy", "legal"] {
+        assert!(html.contains(&format!("id=\"{name}-open\" href=\"#{name}\"")) && html.contains(&format!("<dialog id=\"{name}\"")), "{name}");
+        assert!(script.contains(&format!("\"{name}\"")), "site.js opens {name}");
+    }
+    let hooks = [read("../installer/web/licenses.sh"), read("../installer/web/licenses.ps1")];
+    for file in LICENSES {
+        assert!(html.contains(&format!("<a href=\"{file}\"")), "the page links {file}");
+        assert!(hooks.iter().all(|hook| hook.contains(file)), "the build writes {file}");
+    }
+    assert!(read("Trunk.toml").contains("installer/web/licenses.sh"));
+}
+
+#[test]
+fn the_page_loads_nothing_from_elsewhere() {
+    let html = read("index.html");
+    let policy = html.split("http-equiv=\"Content-Security-Policy\" content=\"").nth(1).and_then(|rest| rest.split('"').next()).expect("a policy");
+    assert!(html.find("Content-Security-Policy").unwrap() < html.find("<script").unwrap(), "the policy comes before the scripts");
+    assert!(policy.starts_with("default-src 'self';") && policy.contains("object-src 'none'") && policy.contains("'wasm-unsafe-eval'"));
+    assert!(!policy.contains("http") && !policy.contains('*') && !policy.contains("'unsafe-eval'"), "no other host: {policy}");
+    for file in ["site.js", "worker.js", "site.css"] {
+        let text = read(file).replace("http://www.w3.org/", "");
+        assert!(!text.contains("http://") && !text.contains("https://"), "{file} names an address");
+    }
+    // nginx drops the headers of the server in a block with headers of its own.
+    let nginx = read("../installer/docker/website.conf");
+    let blocks = nginx.matches("add_header Cache-Control").count();
+    for header in HEADERS {
+        assert_eq!(nginx.matches(&format!("add_header {header} always;")).count(), blocks, "website.conf: {header}");
+    }
+}
+
+#[test]
 fn the_settings_are_the_same_everywhere() {
     let config = read("config.js");
     let script = read("site.js");

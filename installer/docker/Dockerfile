@@ -112,7 +112,8 @@ ENV OPENECRAFT_SITE_URL= \
     OPENECRAFT_LEGAL_REGISTER= \
     OPENECRAFT_LEGAL_VAT_ID= \
     OPENECRAFT_LEGAL_RESPONSIBLE= \
-    OPENECRAFT_LEGAL_TEXT=
+    OPENECRAFT_LEGAL_TEXT= \
+    OPENECRAFT_LEGAL_PRIVACY=
 COPY installer/docker/website.conf /etc/nginx/templates/default.conf.template
 COPY --chmod=0755 installer/docker/website-config.sh /docker-entrypoint.d/40-openecraft-website-config.sh
 COPY --chmod=0755 installer/docker/website-site.sh /docker-entrypoint.d/41-openecraft-website-site.sh

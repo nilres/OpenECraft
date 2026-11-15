@@ -73,6 +73,8 @@ services:
       OPENECRAFT_LEGAL_VAT_ID: ${OPENECRAFT_LEGAL_VAT_ID:-}
       OPENECRAFT_LEGAL_RESPONSIBLE: ${OPENECRAFT_LEGAL_RESPONSIBLE:-}
       OPENECRAFT_LEGAL_TEXT: ${OPENECRAFT_LEGAL_TEXT:-}
+      # Added to the privacy notice of the page: the hosting and the server logs.
+      OPENECRAFT_LEGAL_PRIVACY: ${OPENECRAFT_LEGAL_PRIVACY:-}
 
 volumes:
   parts:

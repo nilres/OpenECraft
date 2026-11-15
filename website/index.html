@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The page loads and sends nothing beyond its own address (docs/website.md). -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <title data-t>OpenECraft – open source electrical CAE</title>
     <meta name="description" content="OpenECraft is an open source electrical CAE editor: schematics, reports, panel layout in 3D, a command line and an MCP server. Try it live in the browser." />
     <meta name="theme-color" content="#070b14" />
@@ -253,10 +255,40 @@
         <a data-link="documentation" data-path="/plugins.md" href="#" data-t>Plugins</a>
         <a data-link="documentation" data-path="/command-line.md" href="#" data-t>Command line and MCP</a>
         <a data-link="issues" href="#" data-t>Report a problem</a>
+        <a id="licenses-open" href="#licenses" data-t>Licenses</a>
+        <a id="privacy-open" href="#privacy" data-t>Privacy</a>
         <a id="legal-open" href="#legal" hidden data-t>Legal notice</a>
     </div>
-    <p class="fine" data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</p>
+    <p class="fine"><span data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</span> <span data-t>It is not affiliated with, endorsed by or sponsored by the owners of these names.</span></p>
+    <p class="fine" data-t>OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.</p>
 </footer>
+
+<!-- The licenses of OpenECraft and of what it contains: the files the build puts beside
+     the page (installer/web/licenses.sh; the third-party licenses in release builds). -->
+<dialog id="licenses" class="legal" aria-labelledby="licenses-title">
+    <h2 id="licenses-title" data-t>Licenses</h2>
+    <p data-t>OpenECraft is open source under the MIT license or the Apache License 2.0, at your choice. It contains fonts and libraries of others under their own licenses.</p>
+    <ul>
+        <li><a href="LICENSE-MIT">MIT License</a></li>
+        <li><a href="LICENSE-APACHE">Apache License 2.0</a></li>
+        <li><a href="OFL-NotoSans.txt">SIL Open Font License 1.1 (Noto Sans)</a></li>
+        <li><a href="THIRD-PARTY-LICENSES.html" data-t>Third-party licenses</a></li>
+    </ul>
+    <form method="dialog"><button class="button" data-t>Close</button></form>
+</dialog>
+
+<!-- What the page does with the data of a visitor; the operator adds the hosting and
+     the server logs in config.js (legal.privacy). -->
+<dialog id="privacy" class="legal" aria-labelledby="privacy-title">
+    <h2 id="privacy-title" data-t>Privacy</h2>
+    <p data-t>This page sets no cookies, uses no tracking and loads nothing from other servers.</p>
+    <p data-t>The live demos, the console and the exports run in your browser. The project you edit here is not sent anywhere.</p>
+    <p data-t>To show an example faster the next time, your browser keeps the wiring it calculated for it in its cache. Nothing else is stored; clearing the site data of the browser removes it.</p>
+    <p data-t>As with every website, the server that delivers this page receives the IP address of your device in order to answer.</p>
+    <p data-t>The links to the source code, the downloads and the documentation lead to other sites, which have privacy notices of their own.</p>
+    <div class="legal-text" data-legal="privacy"></div>
+    <form method="dialog"><button class="button" data-t>Close</button></form>
+</dialog>
 
 <!-- The legal notice of the operator, from config.js (legal); without a name it is not shown. -->
 <dialog id="legal" class="legal" aria-labelledby="legal-title">

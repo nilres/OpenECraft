@@ -84,13 +84,11 @@
         const notice = (window.OPENECRAFT_SITE || {}).legal || {};
         const field = name => String(notice[name] || "").trim();
         const lines = name => field(name).split(/\s*(?:\n|\|)\s*/).filter(Boolean);
-        const dialog = $("#legal");
-        if (!field("name") || !dialog.showModal) return;
-        for (const e of $$("[data-legal]", dialog)) {
+        for (const e of $$("[data-legal]")) {
             const name = e.dataset.legal;
             if (name === "address") {
                 lines(name).forEach((line, i) => e.append(...(i ? [document.createElement("br"), line] : [line])));
-            } else if (name === "text") {
+            } else if (name === "text" || name === "privacy") {
                 for (const line of lines(name)) e.append(element("p", "", line));
             } else {
                 e.textContent = field(name);
@@ -98,16 +96,24 @@
             if (name === "email") e.href = "mailto:" + field(name);
             (e.closest("dl > div") || e).hidden = !field(name);
         }
-        const open = $("#legal-open");
-        open.hidden = false;
-        open.addEventListener("click", e => {
-            e.preventDefault();
-            dialog.showModal();
-        });
-        // A link to #legal opens it as well.
-        const follow = () => location.hash === "#legal" && !dialog.open && dialog.showModal();
-        addEventListener("hashchange", follow);
-        follow();
+        // The licenses and the privacy notice are always there, the legal notice with a name.
+        for (const name of ["licenses", "privacy", "legal"]) {
+            const dialog = $("#" + name);
+            const open = $(`#${name}-open`);
+            if (!dialog.showModal || (name === "legal" && !field("name"))) {
+                open.hidden = true;
+                continue;
+            }
+            open.hidden = false;
+            open.addEventListener("click", e => {
+                e.preventDefault();
+                dialog.showModal();
+            });
+            // A link to #legal, #privacy or #licenses opens it as well.
+            const follow = () => location.hash === "#" + name && !dialog.open && dialog.showModal();
+            addEventListener("hashchange", follow);
+            follow();
+        }
     }
 
     function translate() {

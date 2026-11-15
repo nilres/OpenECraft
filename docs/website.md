@@ -86,11 +86,43 @@ the text take several lines, separated by `\n` in `config.js` or by `|`:
 | `legal.register` | `OPENECRAFT_LEGAL_REGISTER` | Register court and number |
 | `legal.vat` | `OPENECRAFT_LEGAL_VAT_ID` | VAT identification number |
 | `legal.responsible` | `OPENECRAFT_LEGAL_RESPONSIBLE` | Who is responsible for the content, with address |
-| `legal.text` | `OPENECRAFT_LEGAL_TEXT` | Further text: disclaimers, dispute resolution, a note on privacy |
+| `legal.text` | `OPENECRAFT_LEGAL_TEXT` | Further text: disclaimers, dispute resolution |
+| `legal.privacy` | `OPENECRAFT_LEGAL_PRIVACY` | What the operator adds to the privacy notice (below), lines as in the text |
 
 The labels follow the language of the page; the values are shown as they are set.
 Whether a site needs a legal notice, and what it has to say, depends on the operator
 and the country: OpenECraft only shows what is set.
+
+### Privacy notice, licenses and disclaimers
+
+The footer always has two more links, each opening a dialog (`#privacy` and
+`#licenses` at the end of the address open them at once):
+
+- *Privacy* says what the page itself does, in the language of the page: no cookies,
+  no tracking, nothing loaded from other servers, the demos and exports run in the
+  browser, the routings kept in the cache of the browser, the IP address every web
+  server receives, and that the links lead to other sites. What only the operator
+  knows (who hosts the site, what the server logs and for how long, whom to ask, as
+  Article 13 GDPR asks for) is set in `legal.privacy` and shown below it. Keep the
+  texts of the page true: a change that stores or sends something changes them too.
+- *Licenses* links the files the build puts beside the page (`installer/web/licenses.sh`):
+  `LICENSE-MIT`, `LICENSE-APACHE`, `OFL-NotoSans.txt` of the bundled fonts and
+  `THIRD-PARTY-LICENSES.html` of the libraries, which only a release build writes.
+
+Below the links the footer says that the product names on the page are trademarks of
+their owners, with whom OpenECraft is not affiliated, and that it comes without
+warranty: its calculations and checks do not replace the verification by a qualified
+person.
+
+### What the page may load
+
+The head of `index.html` has a Content Security Policy: scripts, styles, pictures and
+requests of the page's own address only (`'unsafe-inline'` for the script trunk
+writes into the page, `'wasm-unsafe-eval'` for the WebAssembly), so it holds on any
+web server. A page that is to load something from another host needs it named there.
+The nginx site of the Docker image adds `Referrer-Policy`, `X-Frame-Options` and
+`X-Content-Type-Options`; `Strict-Transport-Security` belongs to the TLS reverse
+proxy in front of it.
 
 ### Search engines and link previews
 
