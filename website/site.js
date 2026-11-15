@@ -23,6 +23,19 @@
     let historyAt = 0;
     // Examples about to be opened: their loading animation stays until they are.
     let opening = 0;
+    // The worker that searches the 3D routing (worker.js), once it is ready, and the
+    // number of the search it was last asked for.
+    let worker = null;
+    let searching = null;
+    // The routings found, by language and project: an example opened again, or shown
+    // in a language it was shown in before, is not searched again. `kept` has those of
+    // this visit, `store` (a cache of the browser, named after the build of the
+    // module) those of earlier visits too.
+    const KEPT = 24;
+    const kept = new Map();
+    let store = null;
+    // The searches the worker is working on: the key of each by its number.
+    const jobs = new Map();
 
     const t = english => texts[english] || english;
     const fill = (text, ...values) => values.reduce((out, v) => out.replace("{}", v), text);
@@ -129,7 +142,8 @@
             return;
         }
         if (!next || next.busy) return;
-        if (!next.loading && !opening) for (const stage of $$(".stage.loading")) stage.classList.remove("loading");
+        if (next.search !== null && next.search !== searching) search(next.search);
+        for (const stage of $$(".stage")) stage.classList.toggle("loading", next.loading || opening > 0);
         const text = JSON.stringify(next);
         if (text === stateText) return;
         const before = state;
@@ -235,9 +249,131 @@
         poll();
     }
 
-    // Opens an example. Its analysis keeps the browser busy for a moment (a page has
-    // one thread), so the canvases show the loading animation first: it is drawn
-    // before the work starts and goes on turning meanwhile.
+    // ---- the worker ------------------------------------------------------------------------
+
+    // The 3D routing of a big project takes seconds. A page has one thread, so a
+    // second instance of the module searches it in a worker and the page stays
+    // usable; without a worker (an old browser) the page searches it itself.
+    function startWorker() {
+        const module = $('link[rel="modulepreload"]')?.href;
+        const wasm = $('link[rel="preload"][type="application/wasm"]')?.href;
+        if (!module || !wasm || !window.Worker) return;
+        let started;
+        const failed = () => {
+            started.terminate();
+            if (worker !== started) return;
+            worker = null;
+            try {
+                call("worker", "off");
+            } catch (e) { /* the search under way ends below */ }
+            if (searching !== null) routed(searching, "");
+        };
+        try {
+            started = new Worker("worker.js", { type: "module" });
+        } catch (e) {
+            return;
+        }
+        started.onerror = failed;
+        started.onmessage = event => {
+            const answer = event.data;
+            if (answer.failed) {
+                failed();
+            } else if (answer.ready) {
+                worker = started;
+                call("worker", "on");
+            } else {
+                found(answer.search, answer.routing);
+            }
+        };
+        started.postMessage({ module, wasm });
+        openStore(module);
+    }
+
+    // The cache of the browser for the routings of this build of the module; those
+    // of other builds are dropped. Without one (no secure context, private mode) the
+    // routings are kept for this visit only.
+    async function openStore(module) {
+        try {
+            const name = "openecraft-routing-" + module.split("/").pop();
+            for (const other of await caches.keys()) if (other.startsWith("openecraft-routing-") && other !== name) await caches.delete(other);
+            store = await caches.open(name);
+        } catch (e) {
+            store = null;
+        }
+    }
+
+    // The address of a routing in the cache of the browser: a digest of what it is of.
+    async function address(key) {
+        const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
+        return "routing/" + [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function stored(key) {
+        if (!store) return "";
+        try {
+            const answer = await store.match(await address(key));
+            return answer ? await answer.text() : "";
+        } catch (e) {
+            return "";
+        }
+    }
+
+    function keep(key, routing) {
+        kept.delete(key);
+        kept.set(key, routing);
+        if (kept.size > KEPT) kept.delete(kept.keys().next().value);
+    }
+
+    // The routing for the search the studio asks for: one kept from before, or the
+    // worker searches it for the project.
+    function search(number) {
+        if (!worker) return routed(number, "");
+        let job;
+        try {
+            job = call("project");
+        } catch (e) {
+            return;
+        }
+        if (!job || job.busy) return;
+        searching = job.search;
+        const key = job.lang + "\n" + job.project;
+        if (kept.has(key)) return routed(job.search, kept.get(key));
+        stored(key).then(routing => {
+            if (searching !== job.search) return;
+            if (routing) {
+                keep(key, routing);
+                routed(job.search, routing);
+            } else if (worker) {
+                jobs.set(job.search, key);
+                worker.postMessage(job);
+            } else {
+                routed(job.search, "");
+            }
+        });
+    }
+
+    // The answer of the worker: kept for the next time, then handed to the studio.
+    function found(number, routing) {
+        const key = jobs.get(number);
+        jobs.delete(number);
+        if (key && routing) {
+            keep(key, routing);
+            if (store) address(key).then(a => store.put(a, new Response(routing))).catch(() => {});
+        }
+        routed(number, routing);
+    }
+
+    function routed(number, routing) {
+        if (number === searching) searching = null;
+        try {
+            call("routed", `${number}\n${routing}`);
+        } catch (e) { /* a canvas is drawing: the studio asks again */ }
+        poll();
+    }
+
+    // Opens an example. Without the worker its analysis keeps the browser busy for a
+    // moment, so the canvases show the loading animation first: it is drawn before
+    // the work starts and goes on turning meanwhile.
     function open(example) {
         for (const stage of $$(".stage")) stage.classList.add("loading");
         let opened = false;
@@ -315,10 +451,19 @@
 
     function loadExports() {
         exporters = call("exporters");
-        $("#exports").replaceChildren(...exporters.map(x => {
-            const b = element("button", "", `${x.title} (.${x.extension})`);
-            b.addEventListener("click", () => download(x));
-            return b;
+        const groups = new Map();
+        for (const x of exporters) groups.set(x.group, [...(groups.get(x.group) || []), x]);
+        $("#exports").replaceChildren(...[...groups].map(([title, list]) => {
+            const group = element("div", "export-group");
+            const buttons = element("div", "chips");
+            buttons.append(...list.map(x => {
+                const b = element("button", "", x.title);
+                b.append(element("small", "", "." + x.extension));
+                b.addEventListener("click", () => download(x));
+                return b;
+            }));
+            group.append(element("h4", "", title), buttons);
+            return group;
         }));
     }
 
@@ -470,6 +615,7 @@
         loadLanguages();
         controls();
         stages();
+        startWorker();
         poll();
         localized(state ? state.lang : "en");
         print(t("These are the commands of the command line and the MCP server, run on the project of the demo above."), "dim");

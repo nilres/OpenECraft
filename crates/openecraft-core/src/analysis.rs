@@ -113,6 +113,19 @@ impl Cache {
         self.netlist.scanned + self.open.scanned
     }
 
+    /// The 3D routing kept here as text, for [`Cache::adopt_routing`] of a build of
+    /// the same project where it cannot be handed over otherwise (another process,
+    /// the worker of a web page); none before the first build.
+    pub fn routing_searched(&self) -> Option<String> {
+        self.routing.searched()
+    }
+
+    /// Takes a 3D routing searched elsewhere ([`Cache::routing_searched`]): the next
+    /// build takes it instead of searching, if it is of the same wiring and language.
+    pub fn adopt_routing(&mut self, searched: &str) -> Result<(), String> {
+        self.routing.adopt(searched)
+    }
+
     /// Takes the 3D routing kept by `other` (a build of the same project elsewhere,
     /// e.g. in the background).
     pub fn keep_routing(&mut self, other: Cache) {

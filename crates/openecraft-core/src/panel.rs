@@ -1657,7 +1657,7 @@ pub fn outside(e: &Enclosure) -> Vec<u64> {
 
 // ---------------------------------------------------------------------- routing
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Route {
     /// Path on the plate (plate coordinates).
     pub points: Vec<P>,
@@ -1670,7 +1670,7 @@ pub struct Route {
 
 /// Stretch of a duct a wire runs through: from / to along the duct's axis (x of
 /// horizontal, y of vertical ducts), `from <= to`.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct DuctRun {
     pub duct: u64,
     pub from: f32,
@@ -1979,7 +1979,7 @@ pub fn route_weighted(e: &Enclosure, from: WireEnd, to: WireEnd, cost: &dyn Fn(u
 }
 
 /// A routed wire of the virtual wiring.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct RoutedWire {
     pub enclosure: usize,
     pub from: String,
@@ -2017,7 +2017,7 @@ pub struct RoutedWire {
 }
 
 /// Where a routed wire end comes from.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum EndKind {
     /// The device centre: no connection point of its parts matches.
     Centre,

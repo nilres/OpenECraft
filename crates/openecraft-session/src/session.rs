@@ -37,6 +37,8 @@ pub struct Session {
     opening: Option<Opening>,
     /// Without threads: the build of `opening`, run by the next `refresh`.
     waiting: Option<Box<dyn FnOnce() + Send>>,
+    /// The 3D routing is searched elsewhere ([`Session::await_routing`]).
+    awaiting: bool,
     /// The 3D routing of an edited project being searched on another thread: the
     /// analysis after an edit takes it from the cache once it is there.
     routing: Option<Routed>,
@@ -106,6 +108,7 @@ impl Session {
             replaced: true,
             opening: None,
             waiting: None,
+            awaiting: false,
             routing: None,
             route_here: false,
             structure_kept: Vec::new(),
@@ -138,7 +141,37 @@ impl Session {
         self.replaced = true;
         self.opening = None;
         self.waiting = None;
+        self.awaiting = false;
         self.routing = None;
+    }
+
+    /// The 3D routing of the project as it is now is searched elsewhere (the worker
+    /// of a web page, where the session has no threads and a search would stop the
+    /// page): the analysis is not built until [`Session::routing_found`], and the
+    /// project counts as being opened meanwhile ([`Session::opening`]).
+    pub fn await_routing(&mut self) {
+        self.awaiting = true;
+        self.replaced = true;
+        self.opening = None;
+        self.waiting = None;
+    }
+
+    /// The search of [`Session::await_routing`] ended: with the routing it found
+    /// ([`Cache::routing_searched`]), which the analysis takes, or with none, and the
+    /// analysis searches it here.
+    pub fn routing_found(&mut self, searched: Option<&str>) {
+        if !std::mem::take(&mut self.awaiting) {
+            return;
+        }
+        if let Some(searched) = searched {
+            // One that cannot be read is searched here.
+            let _ = self.cache.adopt_routing(searched);
+        }
+    }
+
+    /// The analysis waits for a routing searched elsewhere.
+    pub fn awaits_routing(&self) -> bool {
+        self.awaiting
     }
 
     /// Puts the files of the split project in place as an earlier run of the app
@@ -208,7 +241,7 @@ impl Session {
         self.take_opened();
         self.take_routed();
         let lang = openecraft_i18n::lang();
-        if self.opening.is_none() && (self.analysis_rev != self.history.rev || self.analysis_lang != lang) {
+        if self.opening.is_none() && !self.awaiting && (self.analysis_rev != self.history.rev || self.analysis_lang != lang) {
             if self.replaced {
                 self.open_in_background(plugins.checks().cloned().collect(), plugins.reports().cloned().collect());
             } else {
@@ -230,6 +263,9 @@ impl Session {
     /// Where the analysis of the project just opened is while it is built in the
     /// background: the editor shows it instead of the project.
     pub fn opening(&self) -> Option<Progress> {
+        if self.awaiting {
+            return Some(STARTED);
+        }
         let o = self.opening.as_ref()?;
         Some(o.shared.lock().ok().map(|b| b.progress).unwrap_or(STARTED))
     }

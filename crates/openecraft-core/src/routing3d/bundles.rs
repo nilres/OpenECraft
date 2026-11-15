@@ -10,7 +10,7 @@ use crate::parts::vec3::{add, cross, dist, dot, fillet_each, norm, segment_in_bo
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 
 /// Stretch shared by two or more routed items.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Bundle {
     /// Indices into the routed items.
     pub items: Vec<usize>,
@@ -22,7 +22,7 @@ pub struct Bundle {
 }
 
 /// Where items join or leave bundles.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Branch {
     pub at: V3,
     /// Bundles that meet there (indices).

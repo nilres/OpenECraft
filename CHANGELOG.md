@@ -13,7 +13,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   image `ghcr.io/nilres/openecraft-website`, which serves the web editor at `/editor/`
   as well ([website](docs/website.md)); where the links of the page lead (web editor,
   repository, downloads, documentation, issues) is set in `config.js` or with
-  environment variables of the image (`OPENECRAFT_EDITOR_URL`, …). The demos are the editor's own code: its
+  environment variables of the image (`OPENECRAFT_EDITOR_URL`, …). The 3D routing
+  of an example is searched in a worker, so the page stays usable while a big project
+  is opened. The demos are the editor's own code: its
   shell tables, document state and drawing views moved into the library crates
   `openecraft-shell`, `openecraft-session` and `openecraft-canvas`.
 

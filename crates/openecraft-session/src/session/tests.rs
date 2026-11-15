@@ -210,6 +210,45 @@ fn an_opened_project_is_analysed_in_the_background() {
 }
 
 #[test]
+fn a_routing_searched_elsewhere_is_awaited_and_taken() {
+    let plugins = Plugins::new(Vec::<String>::new());
+    let prj = (openecraft_core::sample::EXAMPLES.iter().find(|e| e.key == "conveyor").unwrap().build)();
+    let mut elsewhere = Cache::default();
+    let found = Analysis::build_with(&prj, &mut elsewhere);
+    assert!(!found.routing.items.is_empty());
+    let searched = elsewhere.routing_searched().unwrap();
+
+    let mut s = Session::new(prj.clone(), None);
+    s.await_routing();
+    for _ in 0..3 {
+        s.refresh(&plugins, false);
+        assert!(s.opening().is_some() && s.awaits_routing(), "the project is being opened until the routing is there");
+        assert!(s.analysis.routing.items.is_empty(), "nothing is searched here meanwhile");
+    }
+    s.routing_found(Some(&searched));
+    assert!(!s.awaits_routing());
+    s.refresh(&plugins, false);
+    opened(&mut s, &plugins);
+    assert_eq!(s.analysis.routing, found.routing);
+    // A routing that arrives when none is awaited is not taken.
+    s.routing_found(Some("no routing"));
+
+    // Without one (the search failed) the analysis searches it here; so it does
+    // for a project that replaced the one the search was for.
+    s.await_routing();
+    s.routing_found(None);
+    s.refresh(&plugins, false);
+    opened(&mut s, &plugins);
+    assert_eq!(s.analysis.routing, found.routing);
+    s.await_routing();
+    s.replace(prj, None, None);
+    assert!(!s.awaits_routing());
+    s.refresh(&plugins, false);
+    opened(&mut s, &plugins);
+    assert_eq!(s.analysis.routing, found.routing);
+}
+
+#[test]
 fn a_project_replaced_while_opening_gets_its_own_analysis() {
     let plugins = Plugins::new(Vec::<String>::new());
     let mut s = Session::new(Project::new_default(), None);

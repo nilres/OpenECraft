@@ -17,7 +17,7 @@ pub fn is_shielded(c: &Cable) -> bool {
 }
 
 /// How the shield is terminated at an end.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub enum Termination {
     /// On a shield clamp rail (item id), at this distance from where the cable ends.
     Clamp { rail: u64, distance: f32 },
@@ -40,13 +40,13 @@ impl Termination {
     }
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct ShieldEnd {
     pub tag: String,
     pub termination: Termination,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct ShieldInfo {
     pub cable: String,
     pub bus: bool,

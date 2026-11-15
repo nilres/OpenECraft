@@ -136,6 +136,12 @@ h1 {
 .examples button, .chips button { padding: 6px 12px; font-size: 14px; font-weight: 500; border-radius: 999px; }
 .examples button.on, .chips button.on, .toolbar button.on { border-color: var(--cyan); background: rgba(58, 214, 255, .18); color: #fff; }
 .chips.column { flex-direction: column; align-items: stretch; }
+.export-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.export-group { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 2px; background: rgba(255, 255, 255, .02); }
+.export-group h4 { margin: 0 0 10px; }
+.export-group .chips { margin-bottom: 12px; }
+.export-group button { border-radius: 8px; text-align: left; }
+.export-group small { margin-left: 8px; color: var(--muted); font-family: var(--mono); }
 .chips.column button { justify-content: flex-start; border-radius: 8px; font-family: var(--mono); font-size: 13px; }
 
 .studio { display: grid; grid-template-columns: 230px minmax(0, 1fr) 290px; gap: 16px; align-items: start; }

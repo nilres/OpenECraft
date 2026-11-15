@@ -401,7 +401,7 @@ pub fn add_facing_cutout(prj: &mut Project, ei: usize, id: u64) -> Option<u64> {
 }
 
 /// Stretch of a wire in a further enclosure of the line-up.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Leg {
     pub enclosure: usize,
     pub route: Route,

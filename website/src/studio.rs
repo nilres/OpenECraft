@@ -7,10 +7,12 @@
 use openecraft_api::{params, Plugins};
 use openecraft_canvas::editor::{Editor, Tool};
 use openecraft_canvas::panel_ui::{has_site, PanelUi, View};
+use openecraft_core::analysis::{Analysis, Cache};
+use openecraft_core::model::Project;
 use openecraft_core::params::{cli_words, CliWord};
 use openecraft_core::parts::PartsDb;
 use openecraft_core::sample;
-use openecraft_i18n::{tr, tr_fmt, Lang};
+use openecraft_i18n::{tr, tr_const, tr_fmt, Lang};
 use openecraft_session::session::Session;
 use serde_json::{json, Map, Value};
 
@@ -22,6 +24,19 @@ pub const REPORT_ROWS: usize = 250;
 
 /// Symbols the page offers for placing: name on the page, key of the built-in symbol.
 pub const SYMBOLS: [(&str, &str); 6] = [("no", "no"), ("nc", "nc"), ("coil", "coil"), ("lamp", "lamp"), ("pb_no", "pb_no"), ("estop", "estop")];
+
+/// The groups the page shows the exports in, each with the exporters it holds (the
+/// last one takes the rest).
+pub const EXPORT_GROUPS: [(&str, &[&str]); 8] = [
+    (tr_const!("Documents"), &["html", "pdf", "dictionary", "device_tags"]),
+    (tr_const!("Drawings"), &["dxf", "dwg"]),
+    (tr_const!("3D models"), &["gltf", "step", "iges", "ifc", "jt", "parasolid"]),
+    (tr_const!("PLC and automation"), &["plc_table", "plc_variables", "plc_tia", "plc_rockwell", "plc_step7", "plc_twincat", "plc_mitsubishi", "plc_schneider", "aml"]),
+    (tr_const!("Wiring and harnesses"), &["wire_list", "pinouts", "kbl", "kbl_zip", "harness_json", "harness_processing", "harness_gltf", "harness_jt"]),
+    (tr_const!("Manufacturing"), &["marking", "marking_xlsx", "manufacturing_package", "copper_bar_program"]),
+    (tr_const!("Planning"), &["preplanning_csv", "preplanning_xlsx"]),
+    (tr_const!("Other"), &[]),
+];
 
 pub struct Studio {
     pub session: Session,
@@ -35,6 +50,13 @@ pub struct Studio {
     pub message: String,
     /// The egui contexts of the canvases: repainted after a change from the page.
     pub contexts: Vec<egui::Context>,
+    /// The page has a worker that searches the 3D routing ([`search_routing`]): a
+    /// project that is opened waits for it instead of searching here, where the
+    /// search would stop the page.
+    pub worker: bool,
+    /// Number of the search the worker is asked for; the answer to an earlier one
+    /// is dropped.
+    pub search: u64,
 }
 
 impl Default for Studio {
@@ -51,6 +73,8 @@ impl Default for Studio {
             example: example.key,
             message: String::new(),
             contexts: Vec::new(),
+            worker: false,
+            search: 0,
         }
     }
 }
@@ -68,7 +92,34 @@ impl Studio {
         self.panel = PanelUi::default();
         self.panel.view = view;
         self.message.clear();
+        self.ask_worker();
         Ok(())
+    }
+
+    /// Has the worker of the page search the 3D routing of the project as it is now
+    /// (`search` of [`Studio::state`], `project`, then `routed`); the project counts
+    /// as loading until then. Without a worker the analysis searches it.
+    fn ask_worker(&mut self) {
+        if self.worker {
+            self.search += 1;
+            self.session.await_routing();
+        }
+    }
+
+    /// What the worker gets for a search: its number, the language and the project.
+    fn project(&self) -> Value {
+        json!({ "search": self.search, "lang": openecraft_i18n::lang().code(), "project": serde_json::to_string(&self.session.prj).unwrap_or_default() })
+    }
+
+    /// The answer of the worker: the number of the search, then in a line of its own
+    /// the routing it found ([`search_routing`]; none: it failed, the analysis
+    /// searches here).
+    pub fn routed(&mut self, answer: &str) {
+        let (search, searched) = answer.split_once('\n').unwrap_or((answer, ""));
+        if search.parse() == Ok(self.search) {
+            self.session.routing_found((!searched.is_empty()).then_some(searched));
+            self.tick();
+        }
     }
 
     /// Commits finished changes and brings the analysis up to date (the canvases do
@@ -80,6 +131,10 @@ impl Studio {
 
     /// Waits for the analysis of a project just opened (tests, the first answer).
     pub fn settle(&mut self) {
+        if self.session.awaits_routing() {
+            self.search += 1;
+            self.session.routing_found(None);
+        }
         self.tick();
         while self.session.opening().is_some() {
             std::thread::yield_now();
@@ -173,7 +228,7 @@ impl Studio {
             .map(|i| json!({ "severity": i.severity.key(), "message": i.message(), "page": i.target.map(|t| t.0), "item": i.target.map(|t| t.1) }))
             .collect();
         let places: Vec<Value> = s.prj.layout.enclosures.iter().map(|e| json!({ "name": e.name, "room": e.is_room() })).collect();
-        let title = sample::EXAMPLES.iter().find(|e| e.key == self.example).map_or("", |e| tr(e.title));
+        let title = sample::EXAMPLES.iter().find(|e| e.key == self.example).map_or("", |e| plain_title(tr(e.title)));
         json!({
             "example": self.example,
             "title": title,
@@ -186,6 +241,7 @@ impl Studio {
             "undo": s.history.can_undo(),
             "redo": s.history.can_redo(),
             "loading": s.opening().is_some(),
+            "search": s.awaits_routing().then_some(self.search),
             "tool": self.tool_name(),
             "view": if self.panel.view == View::ThreeD { "3d" } else { "front" },
             "show_wires": self.panel.show_wires,
@@ -209,6 +265,7 @@ impl Studio {
 
     /// The table of a report of the plugins.
     pub fn report(&self, name: &str) -> Result<Value, String> {
+        self.loaded()?;
         let report = self.plugins.report(name).ok_or_else(|| tr_fmt!("Unknown report: {}", name))?;
         let table = (report.run)(&self.session.prj, &self.session.analysis)?;
         let headers: Vec<&str> = table.headers.iter().map(params::text).collect();
@@ -246,9 +303,26 @@ impl Studio {
 
     /// The file of an exporter of the plugins: its name and content.
     pub fn export(&self, name: &str) -> Result<(String, Vec<u8>), String> {
+        self.loaded()?;
         let exporter = self.plugins.exporter(name).ok_or_else(|| tr_fmt!("Unknown export: {}", name))?;
         let file = (exporter.run)(&self.session.prj, &self.session.analysis, &params::Args(&Map::new()))?;
         Ok((format!("{}.{}", self.example, exporter.extension), file.into_bytes()))
+    }
+
+    /// Reports and exports are of the analysis: not while it is built.
+    fn loaded(&self) -> Result<(), String> {
+        match self.session.opening() {
+            Some(_) => Err(tr("Loading…").to_string()),
+            None => Ok(()),
+        }
+    }
+
+    /// The exports the page offers (those that need no parameters), in their groups.
+    fn exporters(&self) -> Value {
+        let group = |name: &str| EXPORT_GROUPS.iter().position(|g| g.1.contains(&name)).unwrap_or(EXPORT_GROUPS.len() - 1);
+        let mut exporters: Vec<_> = self.plugins.exporters().filter(|e| e.params.iter().all(|p| !p.required)).collect();
+        exporters.sort_by_key(|e| group(&e.name));
+        exporters.iter().map(|e| json!({ "name": e.name, "title": params::text(&e.title), "extension": e.extension, "group": tr(EXPORT_GROUPS[group(&e.name)].0) })).collect()
     }
 
     /// Switches the language of the canvases and of everything generated.
@@ -258,6 +332,8 @@ impl Studio {
         for ctx in &self.contexts {
             openecraft_ui::fonts::follow_language(ctx);
         }
+        // The 3D routing is searched again in the new language.
+        self.ask_worker();
         self.tick();
         Ok(())
     }
@@ -271,18 +347,20 @@ impl Studio {
                 self.tick();
                 Ok(self.state())
             }
-            "examples" => Ok(sample::EXAMPLES.iter().zip(with_layout()).map(|(e, layout)| json!({ "key": e.key, "level": e.level, "title": tr(e.title), "description": tr(e.description), "layout": layout })).collect()),
+            "examples" => Ok(sample::EXAMPLES.iter().zip(with_layout()).map(|(e, layout)| json!({ "key": e.key, "level": e.level, "title": plain_title(tr(e.title)), "description": tr(e.description), "layout": layout })).collect()),
             "open" => done(self.open(arg)),
             "page" => done(arg.parse().map(|i| self.show_page(i)).map_err(|_| tr_fmt!("Unknown page: {}", arg))),
             "issue" => done(arg.parse().map(|i| self.goto_issue(i)).map_err(|_| tr_fmt!("Unknown page: {}", arg))),
-            "undo" => {
-                self.session.undo();
+            "undo" | "redo" => {
+                match method {
+                    "undo" => self.session.undo(),
+                    _ => self.session.redo(),
+                };
                 self.session.clamp_page();
-                Ok(Value::Null)
-            }
-            "redo" => {
-                self.session.redo();
-                self.session.clamp_page();
+                // A search under way is of the project as it was.
+                if self.session.awaits_routing() {
+                    self.search += 1;
+                }
                 Ok(Value::Null)
             }
             "tool" => done(self.set_tool(arg)),
@@ -304,7 +382,17 @@ impl Studio {
             "report" => self.report(arg),
             "commands" => Ok(self.plugins.commands().map(command_help).collect()),
             "run" => self.run(arg).map(Value::String),
-            "exporters" => Ok(self.plugins.exporters().filter(|e| e.params.iter().all(|p| !p.required)).map(|e| json!({ "name": e.name, "title": params::text(&e.title), "extension": e.extension })).collect()),
+            "exporters" => Ok(self.exporters()),
+            "worker" => {
+                self.worker = arg == "on";
+                Ok(Value::Null)
+            }
+            "project" => Ok(self.project()),
+            "routing" => search_routing(&serde_json::to_string(&self.session.prj).unwrap_or_default(), openecraft_i18n::lang().code()).map(Value::String),
+            "routed" => {
+                self.routed(arg);
+                Ok(Value::Null)
+            }
             "languages" => Ok(Lang::ALL.iter().map(|l| json!({ "code": l.code(), "name": l.native_name() })).collect()),
             "language" => done(self.set_language(arg)),
             "texts" => Ok(crate::texts::translations(openecraft_i18n::lang())),
@@ -318,6 +406,26 @@ impl Studio {
         };
         self.repaint();
         result.unwrap_or_else(|e| json!({ "error": e }))
+    }
+}
+
+/// The 3D routing of a project (as JSON) in a language, for the analysis of the same
+/// project elsewhere ([`Studio::routed`]). The worker of the page runs it.
+pub fn search_routing(project: &str, lang: &str) -> Result<String, String> {
+    let prj: Project = serde_json::from_str(project).map_err(|e| e.to_string())?;
+    let lang = Lang::from_code(lang).ok_or_else(|| tr_fmt!("Unknown language: {}", lang))?;
+    let mut cache = Cache::default();
+    openecraft_i18n::with_lang(lang, || Analysis::build_with(&prj, &mut cache));
+    cache.routing_searched().ok_or_else(|| tr("Loading…").to_string())
+}
+
+/// The title of an example without its number in the gallery of the editor
+/// ("4 · Conveyor …"): the page shows the examples as chips, not as a numbered list.
+pub fn plain_title(title: &str) -> &str {
+    let rest = title.trim_start_matches(|c: char| c.is_ascii_digit());
+    match rest.len() < title.len() {
+        true => rest.trim_start_matches(|c: char| c.is_whitespace() || matches!(c, '·' | '.' | ':' | '-' | '–')),
+        false => title,
     }
 }
 

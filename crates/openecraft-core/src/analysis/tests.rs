@@ -21,6 +21,48 @@ fn schematic_pages(prj: &Project) -> usize {
     prj.pages.iter().filter(|p| p.kind == PageKind::Schematic).count()
 }
 
+/// Builds the analysis and tells whether the 3D routing was searched for it.
+fn build_searching(prj: &Project, cache: &mut Cache) -> (Analysis, bool) {
+    let searched = std::sync::atomic::AtomicBool::new(false);
+    let an = Analysis::build_progress(prj, cache, &|p| {
+        if p.step == Step::Routing && p.total > 0 {
+            searched.store(true, std::sync::atomic::Ordering::Relaxed);
+        }
+    });
+    (an, searched.into_inner())
+}
+
+#[test]
+fn a_routing_searched_elsewhere_is_taken_instead_of_a_search() {
+    let example = |key: &str| (crate::sample::EXAMPLES.iter().find(|e| e.key == key).unwrap().build)();
+    let prj = example("conveyor");
+    let mut elsewhere = Cache::default();
+    assert!(elsewhere.routing_searched().is_none());
+    let (first, searched) = build_searching(&prj, &mut elsewhere);
+    assert!(searched && !first.routing.items.is_empty());
+    let text = elsewhere.routing_searched().unwrap();
+
+    // Another build of the project as it was read from its file takes it.
+    let read: Project = serde_json::from_str(&serde_json::to_string(&prj).unwrap()).unwrap();
+    let mut cache = Cache::default();
+    cache.adopt_routing(&text).unwrap();
+    let (taken, searched) = build_searching(&read, &mut cache);
+    assert!(!searched);
+    assert_eq!(taken.routing, first.routing);
+    assert_eq!(taken.wiring, first.wiring);
+    // It is kept like a routing searched here.
+    assert!(!build_searching(&read, &mut cache).1);
+
+    // One of another wiring or language is not taken, nor is text that is none.
+    let mut other = Cache::default();
+    other.adopt_routing(&text).unwrap();
+    assert!(openecraft_i18n::with_lang(openecraft_i18n::Lang::De, || build_searching(&prj, &mut other).1));
+    let mut other = Cache::default();
+    other.adopt_routing(&text).unwrap();
+    assert!(build_searching(&example("cabinet_lineup"), &mut other).1);
+    assert!(Cache::default().adopt_routing("{}").is_err());
+}
+
 #[test]
 fn a_second_build_scans_only_the_changed_page() {
     let mut prj = crate::sample::demo_project();

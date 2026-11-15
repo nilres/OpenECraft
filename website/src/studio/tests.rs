@@ -7,7 +7,11 @@ fn the_page_calls_functions_the_module_has() {
     let (script, module) = (read("site.js"), read("src/main.rs"));
     let called: std::collections::BTreeSet<&str> = script.split("api.").skip(1).filter_map(|rest| rest.split_once('(')).map(|(name, _)| name).filter(|n| n.chars().all(|c| c.is_alphanumeric() || c == '_')).collect();
     assert_eq!(called.into_iter().collect::<Vec<_>>(), ["call", "export_file", "start"]);
-    for name in ["call", "export_file", "start"] {
+    // The worker starts the module and has it search the routing.
+    let worker = read("worker.js");
+    assert!(worker.contains("api.default({ module_or_path: job.wasm })") && worker.contains("api.search_routing(job.project, job.lang)"));
+    assert!(script.contains("new Worker(\"worker.js\", { type: \"module\" })") && read("index.html").contains("rel=\"copy-file\" href=\"worker.js\""));
+    for name in ["call", "export_file", "start", "search_routing"] {
         assert!(module.contains(&format!("#[wasm_bindgen]\n    pub fn {name}(")), "{name}");
     }
     // wasm-bindgen gives a function named like a JavaScript keyword another name.
@@ -108,6 +112,129 @@ fn reports_and_exports_come_from_the_plugins() {
         let (name, bytes) = s.export(e["name"].as_str().unwrap()).unwrap_or_else(|err| panic!("{e}: {err}"));
         assert!(name.starts_with(FIRST_EXAMPLE) && !bytes.is_empty(), "{e}");
     }
+}
+
+#[test]
+fn the_exports_are_shown_in_groups() {
+    let mut s = studio();
+    let exporters = ok(&mut s, "exporters", "");
+    let exporters = exporters.as_array().unwrap();
+    let names: Vec<&str> = exporters.iter().map(|e| e["name"].as_str().unwrap()).collect();
+    let other = tr(EXPORT_GROUPS.last().unwrap().0);
+    let mut groups: Vec<&str> = Vec::new();
+    for e in exporters {
+        let group = e["group"].as_str().unwrap();
+        assert_ne!(group, other, "{e} belongs to a group of EXPORT_GROUPS");
+        if groups.last() != Some(&group) {
+            assert!(!groups.contains(&group), "the exports of {group} are not together");
+            groups.push(group);
+        }
+    }
+    assert_eq!(groups, EXPORT_GROUPS[..EXPORT_GROUPS.len() - 1].iter().map(|g| tr(g.0)).collect::<Vec<_>>());
+    // The table names no export twice and none that is not offered.
+    let listed: Vec<&str> = EXPORT_GROUPS.iter().flat_map(|g| g.1.iter().copied()).collect();
+    for name in &listed {
+        assert!(names.contains(name), "{name} is no export of the page");
+        assert_eq!(listed.iter().filter(|n| n == &name).count(), 1, "{name}");
+    }
+}
+
+#[test]
+fn the_examples_are_shown_without_their_numbers() {
+    assert_eq!(plain_title("4 · Conveyor with PLC"), "Conveyor with PLC");
+    assert_eq!(plain_title("16. Office building"), "Office building");
+    assert_eq!(plain_title("3D models"), "D models", "a number is taken off; no title of an example starts like this");
+    assert_eq!(plain_title("Conveyor 2"), "Conveyor 2");
+    let mut s = studio();
+    for lang in Lang::ALL {
+        openecraft_i18n::with_lang(lang, || {
+            let examples = ok(&mut s, "examples", "");
+            for (e, example) in examples.as_array().unwrap().iter().zip(sample::EXAMPLES) {
+                let title = e["title"].as_str().unwrap();
+                assert!(!title.is_empty() && tr(example.title).ends_with(title), "{lang:?}: {title}");
+                assert!(title.starts_with(|c: char| c.is_alphabetic()), "{lang:?}: {title}");
+            }
+            let title = ok(&mut s, "state", "")["title"].as_str().unwrap().to_string();
+            assert!(title.starts_with(|c: char| c.is_alphabetic()), "{lang:?}: {title}");
+        });
+    }
+}
+
+#[test]
+fn an_example_is_the_same_project_every_time_it_is_opened() {
+    // The page keeps the routing of an example by the text of its project.
+    let mut s = studio();
+    ok(&mut s, "open", "cabinet_lineup");
+    let first = ok(&mut s, "project", "")["project"].clone();
+    ok(&mut s, "open", "conveyor");
+    assert_ne!(ok(&mut s, "project", "")["project"], first);
+    ok(&mut s, "open", "cabinet_lineup");
+    assert_eq!(ok(&mut s, "project", "")["project"], first);
+}
+
+/// Asks for the state until the project is loaded.
+fn loaded(s: &mut Studio) {
+    while ok(s, "state", "")["loading"] == true {
+        std::thread::yield_now();
+    }
+}
+
+#[test]
+fn the_worker_of_the_page_searches_the_routing() {
+    const EXAMPLE: &str = "cabinet_lineup";
+    let mut s = studio();
+    assert!(ok(&mut s, "state", "")["search"].is_null());
+    let mut here = studio();
+    ok(&mut here, "open", EXAMPLE);
+    here.settle();
+    assert!(!here.session.analysis.routing.items.is_empty());
+
+    // With a worker the project waits for its routing instead of searching it.
+    ok(&mut s, "worker", "on");
+    ok(&mut s, "open", EXAMPLE);
+    let state = ok(&mut s, "state", "");
+    let search = state["search"].as_u64().unwrap();
+    assert_eq!(state["loading"], true);
+    assert!(s.call("report", "bom").get("error").is_some() && s.export("pdf").is_err(), "reports and exports wait for the analysis");
+    let job = ok(&mut s, "project", "");
+    assert_eq!((job["search"].as_u64(), job["lang"].as_str()), (Some(search), Some(openecraft_i18n::lang().code())));
+    let routing = search_routing(job["project"].as_str().unwrap(), job["lang"].as_str().unwrap()).unwrap();
+    assert_eq!(ok(&mut s, "routing", ""), Value::String(routing.clone()));
+    // The answer to another search is dropped.
+    ok(&mut s, "routed", &format!("{}\n{routing}", search + 7));
+    assert_eq!(ok(&mut s, "state", "")["search"], search);
+    ok(&mut s, "routed", &format!("{search}\n{routing}"));
+    loaded(&mut s);
+    assert!(ok(&mut s, "state", "")["search"].is_null());
+    assert_eq!(s.session.analysis.routing, here.session.analysis.routing);
+    assert!(s.export("pdf").is_ok());
+
+    // A change of the language asks again; undo meanwhile asks for the project as it
+    // is then, and a search that failed is made here.
+    s.ask_worker();
+    let asked = ok(&mut s, "state", "")["search"].as_u64().unwrap();
+    assert!(asked > search);
+    ok(&mut s, "undo", "");
+    let again = ok(&mut s, "state", "")["search"].as_u64().unwrap();
+    assert!(again > asked);
+    ok(&mut s, "routed", &format!("{asked}\n{routing}"));
+    assert_eq!(ok(&mut s, "state", "")["loading"], true);
+    ok(&mut s, "routed", &format!("{again}\n"));
+    loaded(&mut s);
+    assert_eq!(s.session.analysis.routing, here.session.analysis.routing);
+    assert!(search_routing("no project", "en").is_err() && search_routing(job["project"].as_str().unwrap(), "xx").is_err());
+
+    // A console command does not wait for the worker.
+    s.ask_worker();
+    ok(&mut s, "run", "list_pages");
+    assert_eq!(ok(&mut s, "state", "")["loading"], false);
+
+    // Without the worker the project is analysed here again.
+    ok(&mut s, "worker", "off");
+    ok(&mut s, "open", EXAMPLE);
+    assert!(ok(&mut s, "state", "")["search"].is_null());
+    loaded(&mut s);
+    assert_eq!(s.session.analysis.routing, here.session.analysis.routing);
 }
 
 #[test]

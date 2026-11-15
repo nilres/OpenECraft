@@ -308,7 +308,7 @@ impl RoutingRules {
 // ---------------------------------------------------------------------- results
 
 /// An end of a route.
-#[derive(Clone, Debug, Default, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct End {
     /// Device tag, or the cable gland / "field".
     pub tag: String,
@@ -338,7 +338,7 @@ pub struct End {
     pub leave: Option<V3>,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub enum Status {
     Routed,
     /// Kept from the frozen route.
@@ -350,7 +350,7 @@ pub enum Status {
 }
 
 /// A routed wire, cable or tube.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct RoutedItem {
     pub kind: RouteKind,
     /// Stable key across recalculations: wires `from|to`, cables their tag, tubes
@@ -389,7 +389,7 @@ pub struct RoutedItem {
 }
 
 /// A stretch of a route in one line-up or room.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct RouteLeg {
     /// Enclosure (index) the stretch starts in: a cabinet of the line-up, or the room.
     pub enclosure: usize,
@@ -442,7 +442,7 @@ impl RoutedItem {
 }
 
 /// Use of a routing path.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct PathUse {
     pub enclosure: usize,
     pub path: u64,
@@ -454,7 +454,7 @@ pub struct PathUse {
 }
 
 /// Length of a frozen route against its current length.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Change {
     pub key: String,
     pub label: String,
@@ -463,14 +463,14 @@ pub struct Change {
     pub after: Option<f32>,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum Level {
     Error,
     Warning,
     Info,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Problem {
     pub level: Level,
     pub message: String,
@@ -479,7 +479,7 @@ pub struct Problem {
     pub target: Option<(usize, u64)>,
 }
 
-#[derive(Clone, Debug, Default, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct Routing {
     pub items: Vec<RoutedItem>,
     pub bundles: Vec<Bundle>,
@@ -1050,6 +1050,36 @@ pub fn analyse_with(prj: &Project, wiring: &mut [RoutedWire], conns: &[Connectio
 #[derive(Clone, Default)]
 pub struct Cache {
     last: Option<Box<Last>>,
+    /// A routing searched elsewhere, for the next search here ([`Cache::adopt`]).
+    searched: Option<Box<Searched>>,
+}
+
+/// A routing as it is handed from one build of a project to another: the language it
+/// was searched in, the wiring before and after it, and the routing.
+#[derive(Clone, serde::Serialize, serde::Deserialize)]
+struct Searched {
+    lang: String,
+    wiring: Vec<RoutedWire>,
+    routed: Vec<RoutedWire>,
+    routing: Routing,
+}
+
+impl Cache {
+    /// The routing kept here as text, for [`Cache::adopt`] of a build of the same
+    /// project elsewhere (another process, the worker of a web page); none before the
+    /// first routing.
+    pub fn searched(&self) -> Option<String> {
+        let last = self.last.as_deref()?;
+        let searched = Searched { lang: last.lang.code().to_string(), wiring: last.wiring.clone(), routed: last.routed.clone(), routing: last.routing.clone() };
+        serde_json::to_string(&searched).ok()
+    }
+
+    /// Takes a routing searched elsewhere ([`Cache::searched`]): the next routing that
+    /// would have to be searched is this one, if it is of the same wiring and language.
+    pub fn adopt(&mut self, searched: &str) -> Result<(), String> {
+        self.searched = Some(Box::new(serde_json::from_str(searched).map_err(|e| e.to_string())?));
+        Ok(())
+    }
 }
 
 #[derive(Clone)]
@@ -1072,7 +1102,13 @@ pub fn analyse_cached(prj: &Project, wiring: &mut [RoutedWire], conns: &[Connect
         Err(key) => {
             let (rest, lang, jobs) = *key;
             let before = wiring.to_vec();
-            let routing = route_straight_out(prj, wiring, jobs.clone(), progress, crate::parallel::threads().min(ROUTING_THREADS));
+            let routing = match cache.searched.take().filter(|s| s.lang == lang.code() && s.wiring == before && s.routed.len() == before.len()) {
+                Some(searched) => {
+                    wiring.clone_from_slice(&searched.routed);
+                    searched.routing
+                }
+                None => route_straight_out(prj, wiring, jobs.clone(), progress, crate::parallel::threads().min(ROUTING_THREADS)),
+            };
             cache.last = Some(Box::new(Last { prj: rest, lang, jobs, wiring: before, routed: wiring.to_vec(), routing: routing.clone() }));
             routing
         }

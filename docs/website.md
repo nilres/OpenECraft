@@ -30,7 +30,17 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   (`Studio::call`, answers as JSON). No UI code, unit tested.
 - `src/views.rs`: draws a canvas the way the editor does around its views (keys and
   gestures, the analysis before, the undo step after).
-- `src/main.rs`: the exports for the page (`call`, `export`, `start`). The native build
+- `worker.js`: a worker of the page with a second instance of the module. It
+  searches the 3D routing of a project that is opened or shown in another language,
+  which takes seconds for a big one and would stop the page (a page has one thread):
+  the studio hands it the project (`project`), waits (`Session::await_routing`) and
+  takes the routing it found (`routed`, `Cache::adopt_routing`). The page keeps the
+  routings by language and project, for the visit and in a cache of the browser
+  named after the build of the module (Cache Storage, `openecraft-routing-…`): an
+  example opened again is there at once, a changed project is searched. In a browser without
+  module workers the page searches the routing itself.
+- `src/main.rs`: the exports for the page (`call`, `export_file`, `start`, and
+  `search_routing` for the worker). The native build
   is a tool for working on the demos: `cargo run -p openecraft-website` shows both
   canvases in a window, `cargo run -p openecraft-website -- call state` prints an
   answer as the page gets it, `… -- export pdf` writes the file of an exporter.
