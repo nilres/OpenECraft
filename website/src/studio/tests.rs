@@ -1,5 +1,19 @@
 use super::*;
 
+#[test]
+fn the_page_calls_functions_the_module_has() {
+    let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    let read = |path: &str| std::fs::read_to_string(dir.join(path)).unwrap_or_else(|e| panic!("{path}: {e}"));
+    let (script, module) = (read("site.js"), read("src/main.rs"));
+    let called: std::collections::BTreeSet<&str> = script.split("api.").skip(1).filter_map(|rest| rest.split_once('(')).map(|(name, _)| name).filter(|n| n.chars().all(|c| c.is_alphanumeric() || c == '_')).collect();
+    assert_eq!(called.into_iter().collect::<Vec<_>>(), ["call", "export_file", "start"]);
+    for name in ["call", "export_file", "start"] {
+        assert!(module.contains(&format!("#[wasm_bindgen]\n    pub fn {name}(")), "{name}");
+    }
+    // wasm-bindgen gives a function named like a JavaScript keyword another name.
+    assert!(!module.contains("pub fn export("));
+}
+
 fn studio() -> Studio {
     let mut s = Studio::default();
     s.settle();

@@ -21,6 +21,8 @@
     let exporters = [];
     const history = [];
     let historyAt = 0;
+    // Examples about to be opened: their loading animation stays until they are.
+    let opening = 0;
 
     const t = english => texts[english] || english;
     const fill = (text, ...values) => values.reduce((out, v) => out.replace("{}", v), text);
@@ -127,6 +129,7 @@
             return;
         }
         if (!next || next.busy) return;
+        if (!next.loading && !opening) for (const stage of $$(".stage.loading")) stage.classList.remove("loading");
         const text = JSON.stringify(next);
         if (text === stateText) return;
         const before = state;
@@ -232,6 +235,24 @@
         poll();
     }
 
+    // Opens an example. Its analysis keeps the browser busy for a moment (a page has
+    // one thread), so the canvases show the loading animation first: it is drawn
+    // before the work starts and goes on turning meanwhile.
+    function open(example) {
+        for (const stage of $$(".stage")) stage.classList.add("loading");
+        let opened = false;
+        opening += 1;
+        const go = () => {
+            if (opened) return;
+            opened = true;
+            opening -= 1;
+            act("open", example);
+        };
+        requestAnimationFrame(() => requestAnimationFrame(go));
+        // A page that is not drawn (a tab in the background) gets no frames.
+        setTimeout(go, 250);
+    }
+
     // ---- examples, reports, exports, languages ---------------------------------------
 
     function loadExamples() {
@@ -241,7 +262,7 @@
             const b = element("button", "", example.title);
             b.dataset.example = example.key;
             b.title = example.description;
-            b.addEventListener("click", () => act("open", example.key));
+            b.addEventListener("click", () => open(example.key));
             return b;
         };
         $("#examples").replaceChildren(...examples.map(chip));
@@ -303,7 +324,7 @@
 
     function download(exporter) {
         try {
-            const url = URL.createObjectURL(new Blob([api.export(exporter.name)]));
+            const url = URL.createObjectURL(new Blob([api.export_file(exporter.name)]));
             const a = element("a");
             a.href = url;
             a.download = `${state.example}.${exporter.extension}`;

@@ -123,8 +123,9 @@ mod web {
     }
 
     /// The file of an exporter; its name is `<example>.<extension of the exporter>`.
+    /// Not `export`: wasm-bindgen renames a function with the name of a JavaScript keyword.
     #[wasm_bindgen]
-    pub fn export(name: &str) -> Result<Vec<u8>, JsValue> {
+    pub fn export_file(name: &str) -> Result<Vec<u8>, JsValue> {
         STUDIO.with(|s| s.borrow().export(name)).map(|(_, bytes)| bytes).map_err(|e| JsValue::from_str(&e))
     }
 
