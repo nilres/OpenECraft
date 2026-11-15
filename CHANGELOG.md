@@ -3,7 +3,7 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
-## [0.1.2] - unreleased
+## [0.1.2] - 2026-11-15
 
 - **Website with live demos:** `website/` is a page that presents the project and
   runs it: the schematic editor and the panel in 3D as canvases, the project check,
@@ -18,7 +18,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   worker, so the page stays usable meanwhile. The demos are the editor's own code: its
   shell tables, document state and drawing views moved into the library crates
   `openecraft-shell`, `openecraft-session` and `openecraft-canvas`.
-
 - **Automatic saving of shared projects**: a project opened from the project server
   is saved to it by itself, 30 seconds after a change and every 30 seconds while the
   work goes on (*Settings › Servers* or the *Project server* pane: on / off, 10 to
@@ -43,7 +42,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   project are asked about first; a project changed on the server meanwhile is
   reported before the copy is made. The server records the project and revision a copy
   was made from. Needs the updated project server.
-
 - **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
   in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
   click on a face, edge or corner of the cube turns the camera to look from there
@@ -51,7 +49,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   by 90°, go back to the starting view or show everything. It replaces the buttons
   of the standard views. The 3D previews of parts (part editor, data portal,
   installation) have a small cube without labels and glide to the view clicked.
-
 - **Who created and last changed a shared project**: the project list of the
   *Project server* pane and of the server's web page shows *Created by*, *Last
   changed by* and *Last changed* for each project (`created_by`, `created_at`,
@@ -59,7 +56,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   the signed-in user of the creation and of every save that changes the project;
   opening, keeping a session alive and saving unchanged content do not count.
   Projects of earlier versions show *Unknown* until their next change.
-
 - **Docker image of the web editor:** `ghcr.io/nilres/openecraft-web` serves the
   web editor with nginx on port 8080, built by `installer/docker/Dockerfile`
   (target `editor-web`) and published with the server images;
@@ -80,7 +76,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   administration and styles with the parts server's data portal (new crate
   `openecraft-web`), and its project views with the editor's navigator (new crate
   `openecraft-view`).
-
 - **Shared projects recover expired sessions** (#183): the editor tells a server
   that does not answer, an ended project session (expired, or the server restarted)
   and an invalid sign-in apart. An ended session opens the project again with the
@@ -93,7 +88,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   whether your changes are saved on the server, and a restored connection clears the
   old connection error but not an unsaved failed save. *Keep working on a local
   copy* ends the shared session and keeps the project with your changes locally.
-
 - **Freestanding PV arrays:** ground-mounted PV arrays on the plot, added in the
   Buildings pane (*Freestanding PV arrays*) or clicked into the site plan: rows of
   tilted tables with modules on top of each other, on rails over table beams on rammed
@@ -116,7 +110,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   releases nothing more, and closing or replacing a shared project ends its
   session only after the save under way. The live project server tests run with
   `scripts/test-project-server-live.ps1` (formerly `test-cable-rename.ps1`).
-
 - **Keep me signed in** (#184): optional project-server sign-in persistence on
   Windows using Credential Manager, separately for each server and account. The
   editor validates the saved session and reads current account rights before
@@ -128,7 +121,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Linux sign-ins remain in memory only; remembering does not extend server expiry.
   Remembered sign-in requires the updated project server; older servers still
   support manual sign-in.
-
 - **Shared saves keep conflicting local edits** (#181): when the project server
   leaves changes out of a save (locked or changed by another user), when a lock
   is refused or lost, or when another user changed a target first, the editor
@@ -139,7 +131,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   project. A partial save is reported as such and never marks the project as
   saved; the unsaved-changes question mentions the kept copies. Changes still
   waiting for their lock are no longer replaced by a refresh.
-
 - **Cable core labels** (#172): automatic text clearance from definition lines,
   wires, nearby symbols and labels; direct text dragging without selecting the
   wire first, with a hover target. Align the crossed core labels of a definition
@@ -153,7 +144,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Release protection prevents edits; it does not select the previous renderer.
   Saved manual offsets retain their positions. Page drawing reuses the caller's
   index and the editor shares one label layout for drawing and pointer targets.
-
 - **Quick cable rename** (#174): select a cable definition or its label and use
   *Rename cable…* in the context menu, the properties or the cable navigator.
   The dialog selects the complete tag, validates it before applying and updates
@@ -166,7 +156,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   at the same revision, preserving own locks without guessing from user names.
   Cancelling an in-flight rename releases its new locks after the request has
   finished; existing locks and locks protecting other local edits are kept.
-
 - **Cable core assignment** (#173): preview crossed wires, free cores and the
   assignment order from the line start. Insufficient cores or conflicting wire
   assignments leave all pending assignments unchanged and show a persistent
@@ -176,7 +165,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Rejected new definitions do not create unused cables. Imported core names
   without a cable are preserved as conflicts; disabled assignment buttons explain
   the reason. Interactive previews reuse the session index.
-
 - **PV arrays in 3D:** a click on an array opens its properties (modules and their
   data, peak power, mounting and material, earthing, strings with their values and the
   lengths of their leads, problems, and its settings). The cabling of the strings is
@@ -357,7 +345,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Credential Manager ([parts server](docs/parts-server.md#shared-data-portal-pat-on-windows)). The first
   GUI request loads the saved PAT in the background automatically, without requiring
   a connection test. Concurrent requests share the lookup.
-
 - **Straight ferrules and terminals:** a wire or cable core with a ferrule or a crimped
   terminal runs straight out of its connection point for the length of it (with its
   collar or insulated sleeve) and bends only behind it, in the 3D routing and in the 3D
@@ -385,7 +372,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   and `OPENECRAFT_PROJECT_ADMIN_USER` (project server) name the administrator account
   created at startup, as `--admin-user` does, so a Docker container gets its first user
   from environment variables alone ([installation](docs/installation.md#docker-images-of-the-servers)).
-
 - **Full-canvas schematic crosshair:** *File › Settings › Appearance* can extend the
   placement crosshair to the edges of the schematic canvas, following the snapped
   working point.
@@ -550,7 +536,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   ([schematic](docs/features/schematic.md)).
 - CAD drawing imports return original geometry bounds and their page origin, so
   external importers can recover drawing coordinates without changing page placement.
-
 - **Device boxes with device connection points:** a dashed box of any size drawn on
   the schematic is a device of its own (power supply, measuring instrument, control
   module) without a library symbol; device connection points placed on its outline
@@ -568,7 +553,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   list that connection once, and neither role counts as a second main function. Role
   on `add_device_box` and `update_device_box`, command `show_device_pins`
   ([schematic](docs/features/schematic.md)).
-
 - **Cable cores at the cable definition line:** the stroke, core designation and cable
   tag of each core sit where a cable definition line of its cable crosses the wire, so
   they line up on wires of different lengths (30 % of the wire without a line). The core
@@ -617,16 +601,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   structure. Commands `add_structure_box`,
   `update_structure_box`, `list_structure_boxes`
   ([schematic](docs/features/schematic.md#structure-identifiers-iec-81346)).
-
 - **Tag blocks clear of neighbouring symbols:** a tag block placed automatically that
   would run into a neighbouring symbol goes on the other side of its symbol, above or
   below, whichever is clear of symbols and wires; the tag of functions of one device
   side by side in a row is shown once, at the first of them (the surge protective
   devices `-F1` of the transformer metering examples no longer overlap). Tag blocks
   placed by hand stay where they are.
-
 - Preserve imported plot-frame artwork and live page fields as reusable frames, separate from selectable page content, including canvas, frame preview and exports.
-
 - PLC addresses that are not byte.bit addresses, such as imported card positions like `A1.3.1`, are compared as whole texts, so different addresses are no longer reported as duplicates.
 - Keep the closing window responsive while preparing recovery data, with progress for the previous autosave, project, parts database and macro library.
 - Reuse Insert center symbol groups and search results while scrolling, refreshing them when definitions, parts, search text or language change.
@@ -704,11 +685,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - Preserve the connectivity domain of imported fluid and process symbols so their ports stay distinct from electrical connections.
 - Keep imported property text angles and pin designation fields editable and linked to their placed symbol.
 - Support imported secondary device functions and local junction paths without adding spurious main functions or device endpoints.
-
 - **Accessories from macros:** a macro can list in `device_part_additions` the literal
   accessory articles of its devices to add when it extends an existing device; the other
   articles and the local quantities of that device stay as they are.
-
 - **Reusing failed route searches:** with the routing rule `reuse_failed_searches` (off by
   default), a search that found no route is not repeated when later routes only fill the
   channels.

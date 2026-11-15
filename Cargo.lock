@@ -3508,7 +3508,7 @@ checksum = "384b8ab6d37215f3c5301a95a4accb5d64aa607f1fcb26a11b5303878451b4fe"
 
 [[package]]
 name = "openecraft"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "eframe",
  "egui",
@@ -3537,7 +3537,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-api"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "openecraft-core",
  "openecraft-i18n",
@@ -3547,7 +3547,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-auth"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "argon2",
  "axum",
@@ -3565,7 +3565,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-canvas"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "eframe",
  "egui",
@@ -3583,7 +3583,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-cli"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "openecraft-api",
  "openecraft-client",
@@ -3598,7 +3598,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-client"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "ehttp",
  "openecraft-core",
@@ -3614,7 +3614,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-core"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "acadrust",
  "epaint_default_fonts",
@@ -3632,7 +3632,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-edz"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "image",
  "openecraft-core",
@@ -3645,15 +3645,15 @@ dependencies = [
 
 [[package]]
 name = "openecraft-fonts"
-version = "0.1.1"
+version = "0.1.2"
 
 [[package]]
 name = "openecraft-i18n"
-version = "0.1.1"
+version = "0.1.2"
 
 [[package]]
 name = "openecraft-jt"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "miniz_oxide 0.8.9",
  "openecraft-parts",
@@ -3661,7 +3661,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-parts"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "ron",
  "serde",
@@ -3670,7 +3670,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-parts-manager"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "eframe",
  "egui",
@@ -3690,7 +3690,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-parts-server"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "axum",
  "clap",
@@ -3711,7 +3711,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-project-server"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "axum",
  "clap",
@@ -3733,7 +3733,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-session"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "openecraft-api",
  "openecraft-core",
@@ -3742,7 +3742,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-shell"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "egui",
  "egui_tiles",
@@ -3754,7 +3754,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-step"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "cadmpeg-codec-iges",
  "cadmpeg-ir",
@@ -3770,7 +3770,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-ui"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "egui",
  "image",
@@ -3793,7 +3793,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-view"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "openecraft-core",
  "openecraft-i18n",
@@ -3803,7 +3803,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-web"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "axum",
  "openecraft-i18n",
@@ -3813,7 +3813,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-website"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "eframe",
  "egui",
@@ -3835,7 +3835,7 @@ dependencies = [
 
 [[package]]
 name = "openecraft-xt"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "parasolid-core",
 ]
