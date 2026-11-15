@@ -146,7 +146,7 @@ h1 {
 
 .studio { display: grid; grid-template-columns: 230px minmax(0, 1fr) 290px; gap: 16px; align-items: start; }
 .pane { padding: 14px; }
-.pane h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; display: flex; gap: 8px; align-items: center; }
+.pane h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; display: flex; gap: 8px; align-items: center; }
 .count { background: rgba(255, 255, 255, .1); border-radius: 999px; padding: 1px 9px; color: var(--text); letter-spacing: 0; }
 .count.ok { background: rgba(70, 211, 154, .2); color: var(--ok); }
 .count.bad { background: rgba(255, 107, 107, .2); color: var(--error); }
@@ -203,7 +203,7 @@ h1 {
 .reports { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 16px; align-items: start; }
 .reports input, .automation input[type=search] { width: 100%; margin-bottom: 8px; }
 .table-pane { min-width: 0; }
-.table-pane h4 { color: var(--text); text-transform: none; letter-spacing: 0; font-size: 17px; }
+.table-pane h3 { color: var(--text); text-transform: none; letter-spacing: 0; font-size: 17px; }
 .table-scroll { max-height: 440px; overflow: auto; border-radius: 8px; border: 1px solid var(--line); }
 table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
 th { position: sticky; top: 0; background: #14203a; text-align: left; white-space: nowrap; }
@@ -226,13 +226,33 @@ tr:hover td { background: rgba(255, 255, 255, .04); }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; margin-top: 26px; }
 figure { margin: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--panel); transition: .2s; }
 figure:hover { transform: scale(1.02); border-color: rgba(76, 157, 255, .55); }
-figure img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; display: block; }
+figure img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; display: block; }
 figcaption { padding: 10px 14px; color: var(--muted); font-size: 14px; }
 
 footer { margin-top: 80px; padding: 32px clamp(16px, 4vw, 48px) 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: grid; gap: 12px; }
 footer div { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; }
 footer b { color: var(--text); }
 .fine { font-size: 12px; opacity: .8; }
+.legal {
+    width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 64px); padding: 28px 32px;
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg2); color: var(--text);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .6);
+}
+.legal::backdrop { background: rgba(3, 6, 12, .7); backdrop-filter: blur(4px); }
+.legal h2 { margin: 0 0 16px; font-size: 22px; }
+.legal p { margin: 0 0 12px; }
+.legal-name { font-weight: 600; }
+.legal dl { display: grid; gap: 8px; margin: 16px 0; }
+.legal dl div { display: grid; grid-template-columns: minmax(120px, 40%) 1fr; gap: 12px; }
+.legal dt { color: var(--muted); }
+.legal dd { margin: 0; overflow-wrap: anywhere; }
+.legal a { color: var(--cyan); }
+.legal-text { color: var(--muted); font-size: 14px; }
+.legal form { margin: 20px 0 0; text-align: right; }
+@media (max-width: 520px) {
+    .legal { padding: 22px 18px; }
+    .legal dl div { grid-template-columns: 1fr; gap: 0; }
+}
 .noscript { text-align: center; padding: 20px; color: var(--amber); }
 
 /* Sections fade in when they come into view (set by site.js). */

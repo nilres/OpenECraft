@@ -91,16 +91,31 @@ RUN cd website \
     && trunk build --release --public-url ./ --dist /src/target/website-editor
 
 # Static files served by nginx as an unprivileged user on port 8080: the website at /,
-# the web editor at /editor/. Where the links of the page lead is set with the
-# variables below (website/config.js; an empty one takes the address named there):
-# the image writes its nginx site from the template at every start.
+# the web editor at /editor/. Where the links of the page lead and the legal notice
+# of the operator are set with the variables below (website/config.js; an empty link
+# takes the address named there, an empty OPENECRAFT_LEGAL_NAME hides the notice), the
+# public address of the site for search engines and link previews with
+# OPENECRAFT_SITE_URL: the image writes the settings of the page, the parts that need
+# the address and its nginx site at every start.
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS website
-ENV OPENECRAFT_EDITOR_URL=editor/ \
+ENV OPENECRAFT_SITE_URL= \
+    OPENECRAFT_EDITOR_URL=editor/ \
     OPENECRAFT_REPOSITORY_URL=https://github.com/nilres/OpenECraft \
     OPENECRAFT_DOWNLOADS_URL= \
     OPENECRAFT_DOCUMENTATION_URL= \
-    OPENECRAFT_ISSUES_URL=
+    OPENECRAFT_ISSUES_URL= \
+    OPENECRAFT_LEGAL_NAME= \
+    OPENECRAFT_LEGAL_ADDRESS= \
+    OPENECRAFT_LEGAL_EMAIL= \
+    OPENECRAFT_LEGAL_PHONE= \
+    OPENECRAFT_LEGAL_REPRESENTATIVE= \
+    OPENECRAFT_LEGAL_REGISTER= \
+    OPENECRAFT_LEGAL_VAT_ID= \
+    OPENECRAFT_LEGAL_RESPONSIBLE= \
+    OPENECRAFT_LEGAL_TEXT=
 COPY installer/docker/website.conf /etc/nginx/templates/default.conf.template
+COPY --chmod=0755 installer/docker/website-config.sh /docker-entrypoint.d/40-openecraft-website-config.sh
+COPY --chmod=0755 installer/docker/website-site.sh /docker-entrypoint.d/41-openecraft-website-site.sh
 COPY --from=website-build /src/website/dist/ /usr/share/nginx/html/
 COPY --from=website-build /src/target/website-editor/ /usr/share/nginx/html/editor/
 EXPOSE 8080

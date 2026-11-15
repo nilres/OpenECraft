@@ -14,6 +14,7 @@ fn page_texts() -> BTreeSet<String> {
     let mut out: BTreeSet<String> = BTreeSet::new();
     out.extend(between(&html, " data-t>", '<').into_iter().map(|t| t.replace("&amp;", "&")));
     out.extend(between(&html, "data-t-placeholder=\"", '"').into_iter().map(String::from));
+    out.extend(between(&html, "data-t-alt=\"", '"').into_iter().map(String::from));
     // `t("…")`, not `act("…")` or `print("…")`.
     for before in [' ', '(', '?', ':', '='] {
         out.extend(between(&js, &format!("{before}t(\""), '"').into_iter().map(String::from));

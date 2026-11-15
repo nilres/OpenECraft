@@ -15,4 +15,25 @@ window.OPENECRAFT_SITE = {
     // Where problems are reported (OPENECRAFT_ISSUES_URL); empty: the issues of the
     // repository.
     issues: "",
+    // The legal notice (Impressum) of the operator of the site, shown by the link
+    // "Legal notice" of the footer. Without a name there is neither link nor notice.
+    // Addresses and texts take several lines, separated by "\n" or "|".
+    legal: {
+        // Person or company running the site (OPENECRAFT_LEGAL_NAME).
+        name: "",
+        // Postal address (OPENECRAFT_LEGAL_ADDRESS).
+        address: "",
+        // Email address (OPENECRAFT_LEGAL_EMAIL) and phone number (OPENECRAFT_LEGAL_PHONE).
+        email: "",
+        phone: "",
+        // Who represents a company (OPENECRAFT_LEGAL_REPRESENTATIVE).
+        representative: "",
+        // Register court and number (OPENECRAFT_LEGAL_REGISTER), VAT ID (OPENECRAFT_LEGAL_VAT_ID).
+        register: "",
+        vat: "",
+        // Responsible for the content, with address (OPENECRAFT_LEGAL_RESPONSIBLE).
+        responsible: "",
+        // Further text: disclaimers, dispute resolution, … (OPENECRAFT_LEGAL_TEXT).
+        text: "",
+    },
 };

@@ -46,6 +46,10 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   language, the others one per language; `index.json` lists them. The page hands
   the file of an unchanged example to the worker, which takes it only if it is of
   the wiring of the project and searches otherwise.
+- `images/`, `social.jpg`, `robots.txt`: the pictures of the gallery (WebP, made
+  smaller from the screenshots of `docs/images/` of the same name: make them again
+  when a screenshot changes), the preview image of links in chats and social media
+  (1200 × 630) and the robots.txt of a page without a public address.
 - `src/main.rs`: the exports for the page (`call`, `export_file`, `start`, and
   `search_routing` for the worker). The native build
   is a tool for working on the demos: `cargo run -p openecraft-website` shows both
@@ -62,6 +66,52 @@ loads first; the Docker image takes the same settings from environment variables
 | `downloads` | `OPENECRAFT_DOWNLOADS_URL` | The downloads | The latest release of the repository |
 | `documentation` | `OPENECRAFT_DOCUMENTATION_URL` | The folder with `tutorial.md`, `plugins.md`, `command-line.md` and `installation.md` | The `docs` folder of the repository |
 | `issues` | `OPENECRAFT_ISSUES_URL` | Where problems are reported | The issues of the repository |
+
+### Legal notice
+
+Who runs the site, as many countries require of a public one (in Germany the
+*Impressum* of § 5 DDG), is set in `legal` of `config.js` or with these variables.
+With a name the footer has a link *Legal notice* (*Impressum* in German) that opens
+it in a dialog, and `#legal` at the end of the address opens it at once; without a
+name there is neither. A line is shown only when its field is set. The address and
+the text take several lines, separated by `\n` in `config.js` or by `|`:
+
+| `config.js` | Variable of the image | Shows |
+| --- | --- | --- |
+| `legal.name` | `OPENECRAFT_LEGAL_NAME` | The person or company running the site; empty hides the notice |
+| `legal.address` | `OPENECRAFT_LEGAL_ADDRESS` | Its postal address |
+| `legal.email` | `OPENECRAFT_LEGAL_EMAIL` | Email address, as a link |
+| `legal.phone` | `OPENECRAFT_LEGAL_PHONE` | Phone number |
+| `legal.representative` | `OPENECRAFT_LEGAL_REPRESENTATIVE` | Who represents a company |
+| `legal.register` | `OPENECRAFT_LEGAL_REGISTER` | Register court and number |
+| `legal.vat` | `OPENECRAFT_LEGAL_VAT_ID` | VAT identification number |
+| `legal.responsible` | `OPENECRAFT_LEGAL_RESPONSIBLE` | Who is responsible for the content, with address |
+| `legal.text` | `OPENECRAFT_LEGAL_TEXT` | Further text: disclaimers, dispute resolution, a note on privacy |
+
+The labels follow the language of the page; the values are shown as they are set.
+Whether a site needs a legal notice, and what it has to say, depends on the operator
+and the country: OpenECraft only shows what is set.
+
+### Search engines and link previews
+
+The page is plain HTML: search engines read its texts without running the demos.
+Its head names the title and description for search results and link previews
+(Open Graph, Twitter cards) and describes OpenECraft as structured data
+(`SoftwareApplication`, JSON-LD); the pictures of the gallery have texts of their
+own. The tags that need the public address of the site (the canonical address, the
+address and preview image of a link, `robots.txt` with the sitemap and `sitemap.xml`)
+are written by `installer/docker/website-site.sh` from the variable
+`OPENECRAFT_SITE_URL` (`https://…/`, the folder of the page), between the markers
+`site address` of `index.html`; without it they are left out, as an address in the
+wrong place does more harm than none. The Docker image runs the script at every
+start. For a page deployed by hand, run it once on the build:
+
+```bash
+OPENECRAFT_SITE_URL=https://openecraft.example.com/ sh installer/docker/website-site.sh website/dist website/dist
+```
+
+Running it again replaces the tags. The page is indexed in English: the languages
+are switched in the browser, under the same address.
 
 ## Development
 
@@ -105,19 +155,27 @@ docker run -d --name openecraft-website -p 127.0.0.1:8088:8080 ghcr.io/nilres/op
 docker build -f installer/docker/Dockerfile --target website -t openecraft-website .
 ```
 
-The links of the page are set with the variables of the table above, for example a
-web editor and a repository of your own:
+The public address of the site, the links of the page and the legal notice are set
+with the variables above, for example the address, a web editor and a repository of
+your own and the operator of the site:
 
 ```bash
 docker run -d -p 127.0.0.1:8088:8080 \
+  -e OPENECRAFT_SITE_URL=https://openecraft.example.com/ \
   -e OPENECRAFT_EDITOR_URL=https://editor.example.com/ \
   -e OPENECRAFT_REPOSITORY_URL=https://git.example.com/acme/openecraft \
+  -e OPENECRAFT_LEGAL_NAME="ACME Automation GmbH" \
+  -e OPENECRAFT_LEGAL_ADDRESS="Example Street 1 | 12345 Example City | Germany" \
+  -e OPENECRAFT_LEGAL_EMAIL=info@example.com \
   ghcr.io/nilres/openecraft-website
 ```
 
 `installer/docker/compose.yaml` has it as the service `website` and passes the same
-variables on. The nginx site is `installer/docker/website.conf`, a template the image
-fills in at every start (it answers `/config.js` from the variables; mount your own
-at `/etc/nginx/templates/default.conf.template`);
+variables on. At every start the image writes `config.js` from the variables
+(`installer/docker/website-config.sh`, any character allowed in a value), the tags
+of the public address, `robots.txt` and `sitemap.xml` (`website-site.sh`) and its nginx
+site from `installer/docker/website.conf` (mount your own at
+`/etc/nginx/templates/default.conf.template`; it answers `/config.js`, `/index.html`,
+`/robots.txt` and `/sitemap.xml` with the files of `/tmp/openecraft/`);
 put a TLS reverse proxy in front of it for a public site. The page needs no server
 side: nothing a visitor does leaves the browser.

@@ -3,8 +3,33 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>OpenECraft – open source electrical CAE</title>
+    <title data-t>OpenECraft – open source electrical CAE</title>
     <meta name="description" content="OpenECraft is an open source electrical CAE editor: schematics, reports, panel layout in 3D, a command line and an MCP server. Try it live in the browser." />
+    <meta name="theme-color" content="#070b14" />
+    <!-- What search engines and link previews show; the tags that need the public
+         address of the site go between the two markers (docs/website.md). -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenECraft" />
+    <meta property="og:title" content="OpenECraft – open source electrical CAE" />
+    <meta property="og:description" content="OpenECraft is an open source electrical CAE editor: schematics, reports, panel layout in 3D, a command line and an MCP server. Try it live in the browser." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- site address (installer/docker/website-site.sh) -->
+    <!-- /site address -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "OpenECraft",
+        "description": "OpenECraft is an open source electrical CAE editor: schematics, reports, panel layout in 3D, a command line and an MCP server. Try it live in the browser.",
+        "applicationCategory": "DesignApplication",
+        "applicationSubCategory": "Electrical CAE",
+        "operatingSystem": "Windows, Linux, macOS, web browser",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "inLanguage": ["en", "de", "fr", "es", "pt-BR", "it", "nl", "pl", "cs", "ru", "uk", "tr", "sv", "da", "fi", "hu", "ro", "zh-CN", "ja", "ko"],
+        "keywords": "electrical CAE, schematic editor, panel layout, IEC 81346, terminal diagram, open source"
+    }
+    </script>
     <!-- Where the links to the web editor lead: next to the page in the Docker image
          (target website); another address or empty (no links) for other deployments. -->
     <link data-trunk rel="rust" href="Cargo.toml" data-bin="openecraft-website" data-wasm-opt="2" />
@@ -13,7 +38,9 @@
     <link data-trunk rel="copy-file" href="config.js" />
     <link data-trunk rel="copy-file" href="worker.js" />
     <link data-trunk rel="copy-file" href="../assets/icon.svg" />
-    <link data-trunk rel="copy-dir" href="../docs/images" />
+    <link data-trunk rel="copy-dir" href="images" />
+    <link data-trunk rel="copy-file" href="social.jpg" />
+    <link data-trunk rel="copy-file" href="robots.txt" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <script src="config.js"></script>
     <script src="site.js" defer></script>
@@ -87,7 +114,7 @@
     <div class="examples" id="examples"></div>
     <div class="studio">
         <aside class="pane">
-            <h4 data-t>Pages</h4>
+            <h3 data-t>Pages</h3>
             <ul class="list" id="pages"></ul>
         </aside>
         <div class="stage-wrap">
@@ -112,7 +139,7 @@
             <p class="hint" id="hint"></p>
         </div>
         <aside class="pane">
-            <h4><span data-t>Project check</span> <span class="count" id="issue-count"></span></h4>
+            <h3><span data-t>Project check</span> <span class="count" id="issue-count"></span></h3>
             <ul class="list issues" id="issues"></ul>
             <div class="stats">
                 <div><b id="stat-devices">–</b><span data-t>Devices</span></div>
@@ -153,7 +180,7 @@
             <ul class="list" id="report-list"></ul>
         </aside>
         <div class="pane table-pane">
-            <h4 id="report-title"></h4>
+            <h3 id="report-title"></h3>
             <div class="table-scroll"><table id="report-table"></table></div>
             <p class="tip" id="report-more"></p>
         </div>
@@ -173,7 +200,7 @@
             <form id="console-form"><span class="prompt">&gt;</span><input id="console-in" autocomplete="off" spellcheck="false" data-t-placeholder="Type a command, or help" /></form>
         </div>
         <aside class="pane">
-            <h4 data-t>Try these</h4>
+            <h3 data-t>Try these</h3>
             <div class="chips column" id="suggestions">
                 <button data-line="list_pages">list_pages</button>
                 <button data-line="list_devices">list_devices</button>
@@ -197,12 +224,12 @@
 <section id="gallery" class="band">
     <h2 data-t>A look inside</h2>
     <div class="gallery">
-        <figure><img loading="lazy" src="images/schematic.png" alt="" /><figcaption data-t>The schematic editor with ribbon and page navigator</figcaption></figure>
-        <figure><img loading="lazy" src="images/panel-3d.png" alt="" /><figcaption data-t>Two bayed enclosures with rails, ducts and busbars</figcaption></figure>
-        <figure><img loading="lazy" src="images/heat-map.png" alt="" /><figcaption data-t>Enclosure climate with a heat map of the mounting plate</figcaption></figure>
-        <figure><img loading="lazy" src="images/wiring-assistant.png" alt="" /><figcaption data-t>The wiring assistant shows the next wire in 3D</figcaption></figure>
-        <figure><img loading="lazy" src="images/pneumatics.png" alt="" /><figcaption data-t>Fluid power linked to the electrical schematic</figcaption></figure>
-        <figure><img loading="lazy" src="images/terminal-diagram.png" alt="" /><figcaption data-t>Graphical terminal diagram</figcaption></figure>
+        <figure><img loading="lazy" src="images/schematic.webp" width="1080" height="608" alt="Screenshot of the schematic editor of OpenECraft" data-t-alt="Screenshot of the schematic editor of OpenECraft" /><figcaption data-t>The schematic editor with ribbon and page navigator</figcaption></figure>
+        <figure><img loading="lazy" src="images/panel-3d.webp" width="1080" height="608" alt="Screenshot of two bayed enclosures in the 3D panel layout" data-t-alt="Screenshot of two bayed enclosures in the 3D panel layout" /><figcaption data-t>Two bayed enclosures with rails, ducts and busbars</figcaption></figure>
+        <figure><img loading="lazy" src="images/heat-map.webp" width="1080" height="608" alt="Screenshot of the heat map of a mounting plate" data-t-alt="Screenshot of the heat map of a mounting plate" /><figcaption data-t>Enclosure climate with a heat map of the mounting plate</figcaption></figure>
+        <figure><img loading="lazy" src="images/wiring-assistant.webp" width="1080" height="608" alt="Screenshot of the wiring assistant in the 3D view" data-t-alt="Screenshot of the wiring assistant in the 3D view" /><figcaption data-t>The wiring assistant shows the next wire in 3D</figcaption></figure>
+        <figure><img loading="lazy" src="images/pneumatics.webp" width="1080" height="608" alt="Screenshot of a pneumatic circuit linked to the schematic" data-t-alt="Screenshot of a pneumatic circuit linked to the schematic" /><figcaption data-t>Fluid power linked to the electrical schematic</figcaption></figure>
+        <figure><img loading="lazy" src="images/terminal-diagram.webp" width="1080" height="608" alt="Screenshot of a graphical terminal diagram" data-t-alt="Screenshot of a graphical terminal diagram" /><figcaption data-t>Graphical terminal diagram</figcaption></figure>
     </div>
 </section>
 
@@ -226,9 +253,27 @@
         <a data-link="documentation" data-path="/plugins.md" href="#" data-t>Plugins</a>
         <a data-link="documentation" data-path="/command-line.md" href="#" data-t>Command line and MCP</a>
         <a data-link="issues" href="#" data-t>Report a problem</a>
+        <a id="legal-open" href="#legal" hidden data-t>Legal notice</a>
     </div>
     <p class="fine" data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</p>
 </footer>
+
+<!-- The legal notice of the operator, from config.js (legal); without a name it is not shown. -->
+<dialog id="legal" class="legal" aria-labelledby="legal-title">
+    <h2 id="legal-title" data-t>Legal notice</h2>
+    <p class="legal-name" data-legal="name"></p>
+    <p data-legal="address"></p>
+    <dl>
+        <div><dt data-t>Represented by</dt><dd data-legal="representative"></dd></div>
+        <div><dt data-t>Email</dt><dd><a data-legal="email"></a></dd></div>
+        <div><dt data-t>Phone</dt><dd data-legal="phone"></dd></div>
+        <div><dt data-t>Register entry</dt><dd data-legal="register"></dd></div>
+        <div><dt data-t>VAT ID</dt><dd data-legal="vat"></dd></div>
+        <div><dt data-t>Responsible for the content</dt><dd data-legal="responsible"></dd></div>
+    </dl>
+    <div class="legal-text" data-legal="text"></div>
+    <form method="dialog"><button class="button" data-t>Close</button></form>
+</dialog>
 
 <noscript><p class="noscript">The live demos need JavaScript and WebAssembly.</p></noscript>
 </body>

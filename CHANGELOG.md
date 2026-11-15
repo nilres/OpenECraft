@@ -18,6 +18,20 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   worker, so the page stays usable meanwhile. The demos are the editor's own code: its
   shell tables, document state and drawing views moved into the library crates
   `openecraft-shell`, `openecraft-session` and `openecraft-canvas`.
+- **Legal notice on the website:** the operator of a site sets a legal notice
+  (*Impressum*: name, address, email, phone, representative, register entry, VAT ID,
+  responsible person, further text) in `legal` of `config.js` or with the variables
+  `OPENECRAFT_LEGAL_…` of the Docker image; the footer then links to it, labelled in
+  the language of the page ([website](docs/website.md#legal-notice)). The image
+  writes `config.js` with a start script, so any character is allowed in a setting.
+- **Website for search engines and link previews:** the page has Open Graph and
+  Twitter card tags, structured data (`SoftwareApplication`), a translated title,
+  texts for the pictures of the gallery, which are WebP files of a fourteenth of the
+  size of the screenshots, and headings in order. With its public address
+  (`OPENECRAFT_SITE_URL` of the Docker image, or `installer/docker/website-site.sh`
+  on a page deployed by hand) it gets a canonical address, a preview image for links,
+  a sitemap and a robots.txt naming it
+  ([website](docs/website.md#search-engines-and-link-previews)).
 - **Automatic saving of shared projects**: a project opened from the project server
   is saved to it by itself, 30 seconds after a change and every 30 seconds while the
   work goes on (*Settings › Servers* or the *Project server* pane: on / off, 10 to

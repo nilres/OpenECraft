@@ -54,11 +54,25 @@ services:
     # beside the page or an address), the repository, and optionally the downloads,
     # the documentation folder and the issues, which default to those of the repository.
     environment:
+      # The public address of the site (https://…/) for search engines and link
+      # previews: canonical address, preview image, sitemap.
+      OPENECRAFT_SITE_URL: ${OPENECRAFT_SITE_URL:-}
       OPENECRAFT_EDITOR_URL: ${OPENECRAFT_EDITOR_URL:-editor/}
       OPENECRAFT_REPOSITORY_URL: ${OPENECRAFT_REPOSITORY_URL:-https://github.com/nilres/OpenECraft}
       OPENECRAFT_DOWNLOADS_URL: ${OPENECRAFT_DOWNLOADS_URL:-}
       OPENECRAFT_DOCUMENTATION_URL: ${OPENECRAFT_DOCUMENTATION_URL:-}
       OPENECRAFT_ISSUES_URL: ${OPENECRAFT_ISSUES_URL:-}
+      # The legal notice (Impressum) of the operator: shown when a name is set. Lines
+      # of the address and the text are separated by "|".
+      OPENECRAFT_LEGAL_NAME: ${OPENECRAFT_LEGAL_NAME:-}
+      OPENECRAFT_LEGAL_ADDRESS: ${OPENECRAFT_LEGAL_ADDRESS:-}
+      OPENECRAFT_LEGAL_EMAIL: ${OPENECRAFT_LEGAL_EMAIL:-}
+      OPENECRAFT_LEGAL_PHONE: ${OPENECRAFT_LEGAL_PHONE:-}
+      OPENECRAFT_LEGAL_REPRESENTATIVE: ${OPENECRAFT_LEGAL_REPRESENTATIVE:-}
+      OPENECRAFT_LEGAL_REGISTER: ${OPENECRAFT_LEGAL_REGISTER:-}
+      OPENECRAFT_LEGAL_VAT_ID: ${OPENECRAFT_LEGAL_VAT_ID:-}
+      OPENECRAFT_LEGAL_RESPONSIBLE: ${OPENECRAFT_LEGAL_RESPONSIBLE:-}
+      OPENECRAFT_LEGAL_TEXT: ${OPENECRAFT_LEGAL_TEXT:-}
 
 volumes:
   parts:

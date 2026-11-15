@@ -78,12 +78,45 @@
         }
     }
 
+    function legal() {
+        // The legal notice of config.js (legal): shown only with the operator's name, a
+        // line of it only with its value. Texts, never markup.
+        const notice = (window.OPENECRAFT_SITE || {}).legal || {};
+        const field = name => String(notice[name] || "").trim();
+        const lines = name => field(name).split(/\s*(?:\n|\|)\s*/).filter(Boolean);
+        const dialog = $("#legal");
+        if (!field("name") || !dialog.showModal) return;
+        for (const e of $$("[data-legal]", dialog)) {
+            const name = e.dataset.legal;
+            if (name === "address") {
+                lines(name).forEach((line, i) => e.append(...(i ? [document.createElement("br"), line] : [line])));
+            } else if (name === "text") {
+                for (const line of lines(name)) e.append(element("p", "", line));
+            } else {
+                e.textContent = field(name);
+            }
+            if (name === "email") e.href = "mailto:" + field(name);
+            (e.closest("dl > div") || e).hidden = !field(name);
+        }
+        const open = $("#legal-open");
+        open.hidden = false;
+        open.addEventListener("click", e => {
+            e.preventDefault();
+            dialog.showModal();
+        });
+        // A link to #legal opens it as well.
+        const follow = () => location.hash === "#legal" && !dialog.open && dialog.showModal();
+        addEventListener("hashchange", follow);
+        follow();
+    }
+
     function translate() {
         for (const e of $$("[data-t]")) {
             e.dataset.t ||= e.textContent.trim();
             e.textContent = t(e.dataset.t);
         }
         for (const e of $$("[data-t-placeholder]")) e.placeholder = t(e.dataset.tPlaceholder);
+        for (const e of $$("[data-t-alt]")) e.alt = t(e.dataset.tAlt);
     }
 
     function reveal() {
@@ -645,6 +678,7 @@
     }
 
     links();
+    legal();
     reveal();
     if (window.wasmBindings) boot();
     else window.addEventListener("TrunkApplicationStarted", boot, { once: true });

@@ -316,7 +316,9 @@ jobs:
           docker stop web
       - name: Start the website
         run: |
-          docker run -d --name site -p 8088:8080 -e OPENECRAFT_EDITOR_URL=https://editor.example/ openecraft-website:ci
+          docker run -d --name site -p 8088:8080 -e OPENECRAFT_EDITOR_URL=https://editor.example/ \
+            -e OPENECRAFT_SITE_URL=https://site.example/openecraft \
+            -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' -e OPENECRAFT_LEGAL_ADDRESS='Street 1 | 12345 City' openecraft-website:ci
           for _ in $(seq 30); do curl -fs http://127.0.0.1:8088/ > /dev/null && break; sleep 1; done
           curl -fsS http://127.0.0.1:8088/ -o site.html || { docker logs site; exit 1; }
           grep -q canvas-schematic site.html
@@ -324,6 +326,16 @@ jobs:
           curl -fsS http://127.0.0.1:8088/config.js | tee config.js
           grep -q 'editor: "https://editor.example/"' config.js
           grep -q 'repository: "https://github.com/' config.js
+          # The legal notice too, quotes escaped.
+          grep -qF 'name: "ACME \"Tools\" GmbH",' config.js
+          grep -qF 'address: "Street 1 | 12345 City",' config.js
+          node --check config.js
+          # The tags of the public address, robots.txt and the sitemap.
+          grep -qF '<link rel="canonical" href="https://site.example/openecraft/" />' site.html
+          grep -qF '<meta property="og:image" content="https://site.example/openecraft/social.jpg" />' site.html
+          curl -fsS http://127.0.0.1:8088/robots.txt | grep -qx 'Sitemap: https://site.example/openecraft/sitemap.xml'
+          curl -fsS http://127.0.0.1:8088/sitemap.xml | grep -qF '<loc>https://site.example/openecraft/</loc>'
+          curl -fsS http://127.0.0.1:8088/index.html | grep -qF 'rel="canonical"'
           # The routings of the examples come with the page.
           curl -fsS http://127.0.0.1:8088/routing/index.json | grep -q '"conveyor.json"'
           curl -fsS http://127.0.0.1:8088/routing/conveyor.json | grep -q '"routing"'
@@ -331,7 +343,7 @@ jobs:
           test -n "$wasm"
           curl -fsS -o /dev/null -w '%{content_type}\n' "http://127.0.0.1:8088/$wasm" | tee type.txt
           grep -qx 'application/wasm' type.txt
-          for file in site.js icon.svg images/schematic.png LICENSE-MIT THIRD-PARTY-LICENSES.html; do
+          for file in site.js icon.svg images/schematic.webp social.jpg LICENSE-MIT THIRD-PARTY-LICENSES.html; do
             curl -fsS -o /dev/null "http://127.0.0.1:8088/$file"
           done
           curl -fsS http://127.0.0.1:8088/editor/ | grep -q openecraft_canvas

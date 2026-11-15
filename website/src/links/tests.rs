@@ -20,21 +20,39 @@ fn every_link_of_the_page_has_a_setting() {
 }
 
 #[test]
+fn every_field_of_the_legal_notice_has_a_place() {
+    let html = read("index.html");
+    let used: BTreeSet<&str> = html.split("data-legal=\"").skip(1).filter_map(|rest| rest.split('"').next()).collect();
+    let fields: BTreeSet<&str> = LEGAL.iter().map(|s| s.0).collect();
+    assert_eq!(used, fields);
+    assert!(html.contains("id=\"legal-open\" href=\"#legal\" hidden"), "the link waits for a name");
+}
+
+#[test]
 fn the_settings_are_the_same_everywhere() {
     let config = read("config.js");
     let script = read("site.js");
+    let writer = read("../installer/docker/website-config.sh");
     let nginx = read("../installer/docker/website.conf");
     let dockerfile = read("../installer/docker/Dockerfile");
     let compose = read("../installer/docker/compose.yaml");
     let docs = read("../docs/website.md");
-    for (name, variable) in SETTINGS {
-        assert!(config.contains(&format!("\n    {name}: \"")), "config.js: {name}");
+    let all = SETTINGS.iter().map(|s| ("    ", "", s)).chain(LEGAL.iter().map(|s| ("        ", "legal.", s)));
+    for (indent, prefix, (name, variable)) in all {
+        assert!(config.contains(&format!("\n{indent}{name}: \"")), "config.js: {prefix}{name}");
         assert!(config.contains(variable), "config.js names {variable}");
-        assert!(script.contains(&format!("(\"{name}\")")), "site.js: {name}");
-        assert!(nginx.contains(&format!("{name}: \"${{{variable}}}\"")), "website.conf: {name}");
+        assert!(writer.contains(&format!("setting(\"{indent}\", \"{name}\", \"{variable}\")")), "website-config.sh: {variable}");
         assert!(dockerfile.contains(&format!("{variable}=")), "Dockerfile: {variable}");
         assert!(compose.contains(&format!("{variable}: ${{{variable}:-")), "compose.yaml: {variable}");
-        assert!(docs.contains(&format!("| `{name}` | `{variable}` |")), "docs/website.md: {name}");
+        assert!(docs.contains(&format!("| `{prefix}{name}` | `{variable}` |")), "docs/website.md: {prefix}{name}");
     }
-    assert_eq!(config.lines().filter(|l| l.starts_with("    ") && !l.trim_start().starts_with("//")).count(), SETTINGS.len(), "a setting of config.js is not listed");
+    for (name, _) in SETTINGS {
+        assert!(script.contains(&format!("(\"{name}\")")), "site.js: {name}");
+    }
+    let listed = |indent: &str| config.lines().filter(|l| l.starts_with(indent) && !l[indent.len()..].starts_with([' ', '/', '}'])).count();
+    assert_eq!(listed("    "), SETTINGS.len() + 1, "a setting of config.js is not listed");
+    assert_eq!(listed("        "), LEGAL.len(), "a field of the legal notice is not listed");
+    assert!(nginx.contains("alias /tmp/openecraft/config.js;") && writer.contains("> /tmp/openecraft/config.js"));
+    assert!(dockerfile.contains("installer/docker/website-config.sh /docker-entrypoint.d/"));
+    assert!(!writer.contains('\r'), "website-config.sh runs on Linux");
 }
