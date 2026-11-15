@@ -343,9 +343,14 @@ jobs:
           test -n "$wasm"
           curl -fsS -o /dev/null -w '%{content_type}\n' "http://127.0.0.1:8088/$wasm" | tee type.txt
           grep -qx 'application/wasm' type.txt
-          for file in site.js icon.svg images/schematic.webp social.jpg LICENSE-MIT THIRD-PARTY-LICENSES.html; do
+          for file in site.js icon.svg apple-touch-icon.png images/schematic.webp social.jpg LICENSE-MIT THIRD-PARTY-LICENSES.html; do
             curl -fsS -o /dev/null "http://127.0.0.1:8088/$file"
           done
+          # The WebAssembly is sent as the build of the image compressed it.
+          curl -fsS -o wasm.gz -D headers.txt -H 'Accept-Encoding: gzip' "http://127.0.0.1:8088/$wasm"
+          grep -qi '^content-encoding: gzip' headers.txt
+          gzip -t wasm.gz
+          curl -fsS http://127.0.0.1:8088/config.js | grep -q 'editor: "https://editor.example/"'
           curl -fsS http://127.0.0.1:8088/editor/ | grep -q openecraft_canvas
           docker logs site
           docker stop site

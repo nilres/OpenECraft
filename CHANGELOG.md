@@ -32,7 +32,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   product names it mentions and comes without warranty. The page has a Content
   Security Policy that keeps it to its own address, the Docker image sends
   `Referrer-Policy` and `X-Frame-Options`
-  ([website](docs/website.md#privacy-notice-licenses-and-disclaimers)).
+  ([website](docs/website.md#privacy-notice-licenses-and-disclaimers)). The image
+  sends the WebAssembly compressed by its build instead of compressing it for every
+  visitor, and the page has an icon for the home screen of iPhones.
 - **Website for search engines and link previews:** the page has Open Graph and
   Twitter card tags, structured data (`SoftwareApplication`), a translated title,
   texts for the pictures of the gallery, which are WebP files of a fourteenth of the

@@ -84,11 +84,17 @@ EXPOSE 8080
 
 # The website (website/, docs/website.md): the page with its live demos, and the web
 # editor built once more with relative addresses for the folder /editor/ beside it.
+# The WebAssembly, the scripts and the other big texts get a compressed copy beside
+# them, which nginx sends as it is (gzip_static of website.conf) instead of
+# compressing 40 MB for every visitor; config.js is written at every start.
 FROM web-build AS website-build
 RUN cd website \
     && trunk build --release \
     && cd ../openecraft \
-    && trunk build --release --public-url ./ --dist /src/target/website-editor
+    && trunk build --release --public-url ./ --dist /src/target/website-editor \
+    && find /src/website/dist /src/target/website-editor -type f \
+        \( -name '*.wasm' -o -name '*.js' -o -name '*.css' -o -name '*.json' -o -name '*.svg' -o -name 'THIRD-PARTY-LICENSES.html' \) \
+        ! -name config.js -exec gzip -9 -k {} +
 
 # Static files served by nginx as an unprivileged user on port 8080: the website at /,
 # the web editor at /editor/. Where the links of the page lead and the legal notice

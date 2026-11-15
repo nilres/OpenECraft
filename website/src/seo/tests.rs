@@ -73,6 +73,32 @@ fn the_gallery_has_small_pictures_with_texts() {
 }
 
 #[test]
+fn the_page_has_an_icon_for_every_browser() {
+    let html = read("index.html");
+    let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    assert!(html.contains("<link rel=\"icon\" href=\"icon.svg\" type=\"image/svg+xml\" />"));
+    assert!(html.contains("rel=\"copy-file\" href=\"../assets/icon.svg\""));
+    // iOS takes a PNG for the home screen: opaque, as it shows transparent corners black.
+    assert!(html.contains("<link rel=\"apple-touch-icon\" href=\"apple-touch-icon.png\" />"));
+    assert!(html.contains("rel=\"copy-file\" href=\"apple-touch-icon.png\""));
+    let icon = std::fs::read(dir.join("apple-touch-icon.png")).unwrap();
+    assert!(icon.starts_with(b"\x89PNG\r\n\x1a\n") && &icon[12..16] == b"IHDR");
+    assert_eq!(icon[16..24], [0, 0, 0, 180, 0, 0, 0, 180], "180 × 180 pixels");
+    assert_eq!(icon[25], 2, "RGB without transparency");
+}
+
+#[test]
+fn the_image_sends_the_big_files_compressed_by_its_build() {
+    let dockerfile = read("../installer/docker/Dockerfile");
+    let nginx = read("../installer/docker/website.conf");
+    assert!(nginx.contains("\n    gzip_static on;"), "website.conf sends file.gz");
+    let build = dockerfile.split("AS website-build").nth(1).and_then(|rest| rest.split("\nFROM ").next()).unwrap();
+    assert!(build.contains("-exec gzip -9 -k {} +") && build.contains("-name '*.wasm'"), "the build of the image compresses");
+    // The files written at every start have no copy that would be sent in their place.
+    assert!(build.contains("! -name config.js") && !build.contains("'*.html'") && !build.contains("'*.txt'"));
+}
+
+#[test]
 fn the_address_is_set_in_the_image_and_by_the_script() {
     let script = read("../installer/docker/website-site.sh");
     let dockerfile = read("../installer/docker/Dockerfile");

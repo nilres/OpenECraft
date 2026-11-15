@@ -50,6 +50,9 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   smaller from the screenshots of `docs/images/` of the same name: make them again
   when a screenshot changes), the preview image of links in chats and social media
   (1200 × 630) and the robots.txt of a page without a public address.
+- `apple-touch-icon.png`: the icon of the page on the home screen of an iPhone or
+  iPad, which takes no SVG: the drawing of `assets/icon.svg` (the icon of the page
+  everywhere else) as an opaque square, drawn by `apple-touch-icon.py`.
 - `src/main.rs`: the exports for the page (`call`, `export_file`, `start`, and
   `search_routing` for the worker). The native build
   is a tool for working on the demos: `cargo run -p openecraft-website` shows both
@@ -220,5 +223,8 @@ of the public address, `robots.txt` and `sitemap.xml` (`website-site.sh`) and it
 site from `installer/docker/website.conf` (mount your own at
 `/etc/nginx/templates/default.conf.template`; it answers `/config.js`, `/index.html`,
 `/robots.txt` and `/sitemap.xml` with the files of `/tmp/openecraft/`);
-put a TLS reverse proxy in front of it for a public site. The page needs no server
+put a TLS reverse proxy in front of it for a public site. The WebAssembly (40 MB,
+15 MB compressed), the scripts and the routings have a compressed copy from the
+build of the image, which nginx sends as it is (`gzip_static`); a server of your own
+should compress them once as well instead of for every visitor. The page needs no server
 side: nothing a visitor does leaves the browser.

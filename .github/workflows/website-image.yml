@@ -62,9 +62,13 @@ jobs:
           grep -q canvas-schematic site.html
           wasm=$(grep -o '[^"/]*_bg\.wasm' site.html | head -n 1)
           test -n "$wasm"
-          for file in "$wasm" config.js site.js LICENSE-MIT THIRD-PARTY-LICENSES.html routing/index.json editor/; do
+          for file in "$wasm" config.js site.js apple-touch-icon.png LICENSE-MIT THIRD-PARTY-LICENSES.html routing/index.json editor/; do
             curl -fsS -o /dev/null "http://127.0.0.1:8088/$file"
           done
+          # The WebAssembly is sent as the build of the image compressed it.
+          curl -fsS -o wasm.gz -D headers.txt -H 'Accept-Encoding: gzip' "http://127.0.0.1:8088/$wasm"
+          grep -qi '^content-encoding: gzip' headers.txt
+          gzip -t wasm.gz
           docker logs site
           docker stop site
       - uses: docker/build-push-action@v6
