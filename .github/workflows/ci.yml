@@ -302,7 +302,10 @@ jobs:
           docker stop parts projects
       - name: Start the web editor
         run: bash installer/docker/check-editor-web.sh openecraft-web:ci 8080
+      # Outside the checkout: files written into the build context would change the
+      # COPY . . of the builds below and miss their cache.
       - name: Start the website
+        working-directory: ${{ runner.temp }}
         run: |
           docker run -d --name site -p 8088:8080 -e OPENECRAFT_EDITOR_URL=https://editor.example/ \
             -e OPENECRAFT_SITE_URL=https://site.example/openecraft \
