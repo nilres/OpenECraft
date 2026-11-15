@@ -106,9 +106,12 @@ impl Studio {
         }
     }
 
-    /// What the worker gets for a search: its number, the language and the project.
+    /// What the worker gets for a search: its number, the language and the project,
+    /// and the example the project is while nothing was changed in it (the page has
+    /// the routings of the examples from its build, `routing/`).
     fn project(&self) -> Value {
-        json!({ "search": self.search, "lang": openecraft_i18n::lang().code(), "project": serde_json::to_string(&self.session.prj).unwrap_or_default() })
+        let example = (!self.session.history.can_undo()).then_some(self.example);
+        json!({ "search": self.search, "lang": openecraft_i18n::lang().code(), "example": example, "project": serde_json::to_string(&self.session.prj).unwrap_or_default() })
     }
 
     /// The answer of the worker: the number of the search, then in a line of its own
@@ -388,7 +391,7 @@ impl Studio {
                 Ok(Value::Null)
             }
             "project" => Ok(self.project()),
-            "routing" => search_routing(&serde_json::to_string(&self.session.prj).unwrap_or_default(), openecraft_i18n::lang().code()).map(Value::String),
+            "routing" => search_routing(&serde_json::to_string(&self.session.prj).unwrap_or_default(), openecraft_i18n::lang().code(), "").map(Value::String),
             "routed" => {
                 self.routed(arg);
                 Ok(Value::Null)
@@ -411,10 +414,17 @@ impl Studio {
 
 /// The 3D routing of a project (as JSON) in a language, for the analysis of the same
 /// project elsewhere ([`Studio::routed`]). The worker of the page runs it.
-pub fn search_routing(project: &str, lang: &str) -> Result<String, String> {
+/// `prebuilt`: a routing of the project from the build of the page (none: empty); it
+/// is taken instead of a search if it is of the wiring of the project, which is
+/// seen here and not where the page is drawn.
+pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, String> {
     let prj: Project = serde_json::from_str(project).map_err(|e| e.to_string())?;
     let lang = Lang::from_code(lang).ok_or_else(|| tr_fmt!("Unknown language: {}", lang))?;
     let mut cache = Cache::default();
+    if !prebuilt.is_empty() {
+        // One that cannot be read is searched.
+        let _ = cache.adopt_routing(prebuilt);
+    }
     openecraft_i18n::with_lang(lang, || Analysis::build_with(&prj, &mut cache));
     cache.routing_searched().ok_or_else(|| tr("Loading…").to_string())
 }

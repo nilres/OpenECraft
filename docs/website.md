@@ -39,6 +39,13 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   named after the build of the module (Cache Storage, `openecraft-routing-…`): an
   example opened again is there at once, a changed project is searched. In a browser without
   module workers the page searches the routing itself.
+- `routing/` in the built page: the routings of the examples, searched by the build
+  (a hook of `Trunk.toml` runs `cargo run --release -p openecraft-core --example
+  routings`, release builds only), so that an example is there at once on the first
+  visit too. An example whose routing has no translated text has one file for every
+  language, the others one per language; `index.json` lists them. The page hands
+  the file of an unchanged example to the worker, which takes it only if it is of
+  the wiring of the project and searches otherwise.
 - `src/main.rs`: the exports for the page (`call`, `export_file`, `start`, and
   `search_routing` for the worker). The native build
   is a tool for working on the demos: `cargo run -p openecraft-website` shows both

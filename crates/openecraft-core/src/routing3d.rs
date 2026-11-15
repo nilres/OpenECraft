@@ -1055,7 +1055,8 @@ pub struct Cache {
 }
 
 /// A routing as it is handed from one build of a project to another: the language it
-/// was searched in, the wiring before and after it, and the routing.
+/// was searched in (none: it has no translated text and is of any language), the
+/// wiring before and after it, and the routing.
 #[derive(Clone, serde::Serialize, serde::Deserialize)]
 struct Searched {
     lang: String,
@@ -1080,6 +1081,14 @@ impl Cache {
         self.searched = Some(Box::new(serde_json::from_str(searched).map_err(|e| e.to_string())?));
         Ok(())
     }
+
+    /// A routing ([`Cache::searched`]) as one of any language, for a routing known to
+    /// have no translated text (the same in several languages).
+    pub fn for_any_language(searched: &str) -> Result<String, String> {
+        let mut searched: Searched = serde_json::from_str(searched).map_err(|e| e.to_string())?;
+        searched.lang.clear();
+        serde_json::to_string(&searched).map_err(|e| e.to_string())
+    }
 }
 
 #[derive(Clone)]
@@ -1102,7 +1111,7 @@ pub fn analyse_cached(prj: &Project, wiring: &mut [RoutedWire], conns: &[Connect
         Err(key) => {
             let (rest, lang, jobs) = *key;
             let before = wiring.to_vec();
-            let routing = match cache.searched.take().filter(|s| s.lang == lang.code() && s.wiring == before && s.routed.len() == before.len()) {
+            let routing = match cache.searched.take().filter(|s| (s.lang.is_empty() || s.lang == lang.code()) && s.wiring == before && s.routed.len() == before.len()) {
                 Some(searched) => {
                     wiring.clone_from_slice(&searched.routed);
                     searched.routing

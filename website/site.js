@@ -34,6 +34,8 @@
     const KEPT = 24;
     const kept = new Map();
     let store = null;
+    // The routings of the examples from the build of the page (routing/index.json).
+    let prebuilt = [];
     // The searches the worker is working on: the key of each by its number.
     const jobs = new Map();
 
@@ -287,6 +289,22 @@
         };
         started.postMessage({ module, wasm });
         openStore(module);
+        fetch("routing/index.json").then(answer => answer.json()).then(files => {
+            if (Array.isArray(files)) prebuilt = files;
+        }).catch(() => {});
+    }
+
+    // The routing of an unchanged example from the build of the page: the one of its
+    // language, or the one for every language. The worker takes it if it fits.
+    async function built(job) {
+        const file = [`${job.example}.${job.lang}.json`, `${job.example}.json`].find(f => prebuilt.includes(f));
+        if (!job.example || !file) return "";
+        try {
+            const answer = await fetch("routing/" + file);
+            return answer.ok ? await answer.text() : "";
+        } catch (e) {
+            return "";
+        }
     }
 
     // The cache of the browser for the routings of this build of the module; those
@@ -343,12 +361,14 @@
             if (routing) {
                 keep(key, routing);
                 routed(job.search, routing);
-            } else if (worker) {
-                jobs.set(job.search, key);
-                worker.postMessage(job);
-            } else {
-                routed(job.search, "");
+                return;
             }
+            return built(job).then(text => {
+                if (searching !== job.search) return;
+                if (!worker) return routed(job.search, "");
+                jobs.set(job.search, key);
+                worker.postMessage({ ...job, prebuilt: text });
+            });
         });
     }
 

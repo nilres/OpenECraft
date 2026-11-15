@@ -14,8 +14,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   as well ([website](docs/website.md)); where the links of the page lead (web editor,
   repository, downloads, documentation, issues) is set in `config.js` or with
   environment variables of the image (`OPENECRAFT_EDITOR_URL`, …). The 3D routing
-  of an example is searched in a worker, so the page stays usable while a big project
-  is opened. The demos are the editor's own code: its
+  of the examples comes with the page; that of a changed project is searched in a
+  worker, so the page stays usable meanwhile. The demos are the editor's own code: its
   shell tables, document state and drawing views moved into the library crates
   `openecraft-shell`, `openecraft-session` and `openecraft-canvas`.
 

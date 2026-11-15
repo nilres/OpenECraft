@@ -20,7 +20,7 @@ onmessage = async event => {
     }
     let routing = "";
     try {
-        routing = api.search_routing(job.project, job.lang);
+        routing = api.search_routing(job.project, job.lang, job.prebuilt || "");
     } catch (error) { /* without a routing the page searches it itself */ }
     postMessage({ search: job.search, routing });
 };

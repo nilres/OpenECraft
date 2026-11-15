@@ -126,6 +126,12 @@ impl Cache {
         self.routing.adopt(searched)
     }
 
+    /// A routing ([`Cache::routing_searched`]) as one of any language, for a routing
+    /// known to have no translated text (the same in several languages).
+    pub fn routing_for_any_language(searched: &str) -> Result<String, String> {
+        crate::routing3d::Cache::for_any_language(searched)
+    }
+
     /// Takes the 3D routing kept by `other` (a build of the same project elsewhere,
     /// e.g. in the background).
     pub fn keep_routing(&mut self, other: Cache) {

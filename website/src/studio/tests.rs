@@ -9,7 +9,7 @@ fn the_page_calls_functions_the_module_has() {
     assert_eq!(called.into_iter().collect::<Vec<_>>(), ["call", "export_file", "start"]);
     // The worker starts the module and has it search the routing.
     let worker = read("worker.js");
-    assert!(worker.contains("api.default({ module_or_path: job.wasm })") && worker.contains("api.search_routing(job.project, job.lang)"));
+    assert!(worker.contains("api.default({ module_or_path: job.wasm })") && worker.contains("api.search_routing(job.project, job.lang, job.prebuilt || \"\")"));
     assert!(script.contains("new Worker(\"worker.js\", { type: \"module\" })") && read("index.html").contains("rel=\"copy-file\" href=\"worker.js\""));
     for name in ["call", "export_file", "start", "search_routing"] {
         assert!(module.contains(&format!("#[wasm_bindgen]\n    pub fn {name}(")), "{name}");
@@ -198,7 +198,14 @@ fn the_worker_of_the_page_searches_the_routing() {
     assert!(s.call("report", "bom").get("error").is_some() && s.export("pdf").is_err(), "reports and exports wait for the analysis");
     let job = ok(&mut s, "project", "");
     assert_eq!((job["search"].as_u64(), job["lang"].as_str()), (Some(search), Some(openecraft_i18n::lang().code())));
-    let routing = search_routing(job["project"].as_str().unwrap(), job["lang"].as_str().unwrap()).unwrap();
+    assert_eq!(job["example"], EXAMPLE, "the page has the routing of an unchanged example from its build");
+    let routing = search_routing(job["project"].as_str().unwrap(), job["lang"].as_str().unwrap(), "").unwrap();
+    // A routing from the build of the page is taken if it is of the project.
+    let prebuilt = Cache::routing_for_any_language(&routing).unwrap();
+    assert_eq!(search_routing(job["project"].as_str().unwrap(), job["lang"].as_str().unwrap(), &prebuilt).unwrap(), routing);
+    let other = search_routing(&serde_json::to_string(&(sample::EXAMPLES.iter().find(|e| e.key == "conveyor").unwrap().build)()).unwrap(), "en", "").unwrap();
+    assert_eq!(search_routing(job["project"].as_str().unwrap(), job["lang"].as_str().unwrap(), &other).unwrap(), routing);
+    assert_eq!(search_routing(job["project"].as_str().unwrap(), job["lang"].as_str().unwrap(), "no routing").unwrap(), routing);
     assert_eq!(ok(&mut s, "routing", ""), Value::String(routing.clone()));
     // The answer to another search is dropped.
     ok(&mut s, "routed", &format!("{}\n{routing}", search + 7));
@@ -222,12 +229,15 @@ fn the_worker_of_the_page_searches_the_routing() {
     ok(&mut s, "routed", &format!("{again}\n"));
     loaded(&mut s);
     assert_eq!(s.session.analysis.routing, here.session.analysis.routing);
-    assert!(search_routing("no project", "en").is_err() && search_routing(job["project"].as_str().unwrap(), "xx").is_err());
+    assert!(search_routing("no project", "en", "").is_err() && search_routing(job["project"].as_str().unwrap(), "xx", "").is_err());
 
     // A console command does not wait for the worker.
     s.ask_worker();
     ok(&mut s, "run", "list_pages");
     assert_eq!(ok(&mut s, "state", "")["loading"], false);
+    // A changed example is not the one of the build.
+    ok(&mut s, "run", "set_project_languages --source en --targets de");
+    assert!(ok(&mut s, "project", "")["example"].is_null());
 
     // Without the worker the project is analysed here again.
     ok(&mut s, "worker", "off");

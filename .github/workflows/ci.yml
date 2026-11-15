@@ -324,6 +324,9 @@ jobs:
           curl -fsS http://127.0.0.1:8088/config.js | tee config.js
           grep -q 'editor: "https://editor.example/"' config.js
           grep -q 'repository: "https://github.com/' config.js
+          # The routings of the examples come with the page.
+          curl -fsS http://127.0.0.1:8088/routing/index.json | grep -q '"conveyor.json"'
+          curl -fsS http://127.0.0.1:8088/routing/conveyor.json | grep -q '"routing"'
           wasm=$(grep -o '[^"/]*_bg\.wasm' site.html | head -n 1)
           test -n "$wasm"
           curl -fsS -o /dev/null -w '%{content_type}\n' "http://127.0.0.1:8088/$wasm" | tee type.txt

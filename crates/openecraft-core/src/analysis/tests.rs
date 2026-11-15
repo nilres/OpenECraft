@@ -61,6 +61,19 @@ fn a_routing_searched_elsewhere_is_taken_instead_of_a_search() {
     other.adopt_routing(&text).unwrap();
     assert!(build_searching(&example("cabinet_lineup"), &mut other).1);
     assert!(Cache::default().adopt_routing("{}").is_err());
+
+    // One without translated text is taken in every language, and stays right there.
+    let any = Cache::routing_for_any_language(&text).unwrap();
+    assert_ne!(any, text);
+    assert!(Cache::routing_for_any_language("{}").is_err());
+    openecraft_i18n::with_lang(openecraft_i18n::Lang::De, || {
+        let mut cache = Cache::default();
+        cache.adopt_routing(&any).unwrap();
+        let (taken, searched) = build_searching(&prj, &mut cache);
+        assert!(!searched);
+        assert_eq!(taken.routing, Analysis::build(&prj).routing);
+        assert_eq!(Cache::routing_for_any_language(&cache.routing_searched().unwrap()).unwrap(), any);
+    });
 }
 
 #[test]
