@@ -270,6 +270,9 @@ Changed message levels ({})	Zmienione poziomy komunikatów ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Zmienione od montażu: było w X {} mm, Y {} mm z artykułem {}
 Changed since wired: was {} · {} · {}	Zmieniono od podłączenia: było {} · {} · {}
 Changes	Zmiany
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Zmiany nie są jeszcze zapisane na serwerze projektów: zakończone zmiany są zapisywane automatycznie w ciągu {} s
+Changes not saved on the project server: save them when the server answers again.	Zmiany nie są zapisane na serwerze projektów: zapisz je, gdy serwer znów odpowie.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Zmiany nie są zapisane na serwerze projektów: zostaną zapisane, gdy tylko serwer znów odpowie.
 Changes since revision {}	Zmiany od rewizji {}
 Changes the page order; the name stays	Zmienia kolejność stron; nazwa pozostaje
 Changes the tag of all functions of this device	Zmienia oznaczenie wszystkich funkcji tego urządzenia
@@ -761,6 +764,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Znajdź…
 Finish a wire, polyline, polygon or wall	Zakończenie przewodu, polilinii, wielokąta lub ściany
 Finish or cancel the drawing, then back to selecting	Zakończenie lub anulowanie rysowania, potem powrót do zaznaczania
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Zakończone zmiany projektu otwartego z serwera projektów są na nim zapisywane samoczynnie; trwające wprowadzanie jest zapisywane po jego zakończeniu. Blokady pozostają. Zapisz (Ctrl+S) nadal zapisuje od razu.
 First row	Pierwszy wiersz
 Fit page	Dopasuj stronę
 Fits {}	Pasuje do {}
@@ -968,6 +972,7 @@ Instead of user name and password	Zamiast nazwy użytkownika i hasła
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Przyrządy na schemacie P&ID mają w etykiecie litery funkcji i numer pętli (TIC 101); ich oznaczenie urządzenia łączy je ze schematem.
 Insulation	Izolacja
 Interruption points refer to	Punkty przerwania odsyłają do
+Interval	Odstęp
 Introduction	Wprowadzenie
 Invalid value	Nieprawidłowa wartość
 Invert the direction of panning by scrolling	Odwróć kierunek przesuwania przewijaniem
@@ -1007,6 +1012,7 @@ Landscape	Poziomo
 Large dot	Duża kropka
 Larger texts and buttons for a touch screen at the workbench	Większe teksty i przyciski dla ekranu dotykowego przy stole roboczym
 Largest mesh	Największe oczko
+Last save confirmed by the project server: {}	Ostatni zapis potwierdzony przez serwer projektów: {}
 Latitude, longitude	Szerokość, długość geograficzna
 Layer	Warstwa
 Layer {}	Warstwa {}
@@ -1065,6 +1071,7 @@ Loads	Odbiorniki
 Local file	Plik lokalny
 Local file: {}	Plik lokalny: {}
 Local recovery copy of server project: {}	Lokalna kopia odzyskiwania projektu z serwera: {}
+Local recovery copy with these changes written: {}	Lokalna kopia odzyskiwania z tymi zmianami zapisana: {}
 Lock all	Zablokuj wszystko
 Lock all pages	Zablokuj wszystkie strony
 Lock current page	Zablokuj bieżącą stronę
@@ -1261,6 +1268,7 @@ No gesture	Brak gestu
 No harnesses defined.	Nie zdefiniowano wiązek.
 No inverter	Brak falownika
 No jump: plain crossing, connections have dots	Bez przeskoku: zwykłe skrzyżowanie, połączenia mają kropki
+No local recovery copy of these changes has been written yet	Nie zapisano jeszcze lokalnej kopii odzyskiwania tych zmian
 No longer reported	Już niezgłaszany
 No macros yet. Select items in a schematic and save them as a macro.	Brak makr. Zaznacz elementy na schemacie i zapisz je jako makro.
 No modules: plug in PLC cards of the schematic.	Brak modułów: wstaw karty PLC ze schematu.
@@ -1302,6 +1310,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nie zmieniono:
 Not found: {}	Nie znaleziono: {}
 Not in the project parts – synchronize in parts management	Brak wśród artykułów projektu – zsynchronizuj w zarządzaniu artykułami
 Not on a wire	Nie na przewodzie
+Not saved yet	Jeszcze nie zapisano
 Not saved, locked or changed by another user	Nie zapisano, zablokowane lub zmienione przez innego użytkownika
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nie przyjęto: sam lewy przycisk zaznacza, rysuje i przesuwa; przytrzymaj klawisz modyfikujący lub użyj innego przycisku.
 Not the shared project: changes are saved locally until it is opened on the project server again	To nie jest wspólny projekt: zmiany są zapisywane lokalnie, dopóki nie zostanie ponownie otwarty na serwerze projektów
@@ -1456,8 +1465,10 @@ Part of the profile: generic types or parts from the parts store	Artykuł profil
 Part selection from the parts database	Wybór artykułu z bazy danych artykułów
 Part selection – {}	Wybór artykułu – {}
 Part selection…	Wybór artykułu…
+Partly saved	Zapisano częściowo
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Częściowo zapisano (rewizja {}). Nie zapisano, zablokowane lub zmienione przez innego użytkownika: {}. Twoja wersja jest przechowywana w panelu Serwer projektów.
 Partly saved to the project server (revision {})	Częściowo zapisano na serwerze projektów (rewizja {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Zapisano częściowo: serwer projektów pominął część zmian. Twoja wersja jest przechowywana poniżej; nie są one zapisane na serwerze.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artykuły można upuszczać tylko na strony, które można zmieniać; ta jest zwolniona, zablokowana lub wygenerowana
 Parts management	Zarządzanie artykułami
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artykuły oznaczone do montażu na podłodze (pompy, zbiorniki, sprężarki): wybierz jeden, a następnie kliknij miejsce na podłodze pomieszczenia
@@ -1787,6 +1798,7 @@ Save asks for a file	Zapisz pyta o plik
 Save as…	Zapisz jako…
 Save current page as template…	Zapisz bieżącą stronę jako szablon…
 Save current…	Zapisz bieżący…
+Save failed	Zapis nie powiódł się
 Save file…	Zapisz plik…
 Save locally	Zapisz lokalnie
 Save locally to {}	Zapisz lokalnie w {}
@@ -1795,12 +1807,14 @@ Save page as macro…	Zapisz stronę jako makro…
 Save page as template	Zapisz stronę jako szablon
 Save page as template…	Zapisz stronę jako szablon…
 Save selection as macro…	Zapisz zaznaczenie jako makro…
+Save shared projects to the project server automatically	Zapisuj projekty współdzielone na serwerze projektów automatycznie
 Save the box content as the macro in the library	Zapisz zawartość ramki jako makro w bibliotece
 Save to project server	Zapisz na serwerze projektów
 Save to project server: {}	Zapisz na serwerze projektów: {}
 Save to project server: {} – the connection is lost, saving tries again	Zapisz na serwerze projektów: {} – połączenie zostało utracone, zapis spróbuje ponownie
 Save workspace	Zapisz obszar roboczy
 Save workspace…	Zapisz obszar roboczy…
+Saved	Zapisano
 Saved the properties of {} (revision {})	Zapisano właściwości {} (rewizja {})
 Saved to	Zapisano w
 Saved to the project server (revision {})	Zapisano na serwerze projektów (rewizja {})
@@ -1832,6 +1846,7 @@ Search below this folder	Szukaj poniżej tego folderu
 Search number, description, maker	Szukaj numeru, opisu, producenta
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Przeszukaj serwer artykułów według katalogu, grupy produktów i danych technicznych, dodaj artykuły i sprawdź bazę danych pod kątem aktualizacji
 Second channel	Drugi kanał
+Seconds from a change to its automatic save (10 to 600)	Sekundy od zmiany do jej automatycznego zapisu (od 10 do 600)
 Section properties	Właściwości sekcji
 Section properties…	Właściwości sekcji…
 Section {} is now section {}	Sekcja {} jest teraz sekcją {}
@@ -2078,6 +2093,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Obudowa przylega lewą stroną do prawej strony wybranej obudowy; przewody przechodzą między nimi przez przepusty kablowe
 The horizontal wire	Przewód poziomy
 The items are selected and moved together	Elementy są zaznaczane i przesuwane razem
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	Ostatni zapis nie powiódł się: {}. Twoje zmiany nie są zapisane na serwerze projektów; automatyczny zapis ponowi próbę.
+The local recovery copy is of {}: your latest changes are not in it yet	Lokalna kopia odzyskiwania pochodzi z {}: nie ma w niej jeszcze ostatnich zmian
 The lock was refused	Blokada została odrzucona
 The logo is fitted into this area keeping its aspect ratio	Logo jest dopasowywane do tego obszaru z zachowaniem proporcji
 The logo of the project properties, e.g. the customer's	Logo z właściwości projektu, np. logo klienta
@@ -2102,6 +2119,7 @@ The project check	Kontrola projektu
 The project data is locked by {}: the properties cannot be changed now.	Dane projektu są zablokowane przez {}: właściwości nie można teraz zmienić.
 The project database needs the desktop version: the browser cannot search folders.	Baza danych projektów wymaga wersji desktopowej: przeglądarka nie może przeszukiwać folderów.
 The project server does not answer: changes are not saved on it until the connection is back	Serwer projektów nie odpowiada: zmiany nie są na nim zapisywane, dopóki połączenie nie wróci
+The project server has confirmed no save of this session yet	Serwer projektów nie potwierdził jeszcze żadnego zapisu w tej sesji
 The project server {} could not open {}.	Serwer projektów {} nie mógł otworzyć {}.
 The project's own page templates as a file	Własne szablony stron projektu jako plik
 The project's own title blocks	Własne tabliczki rysunkowe projektu
@@ -2116,6 +2134,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	Podwójne zwarcie jest sprawdzane przy napięciu przewód–ziemia
 The selected devices side by side on the selected rail, from its left end	Zaznaczone urządzenia obok siebie na zaznaczonej szynie, od jej lewego końca
 The side of {} is open	Strona {} jest otwarta
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	Stan zapisu jest widoczny na pasku stanu i w panelu Serwer projektów: zapisano, jeszcze nie zapisano, zapisywanie, oczekiwanie na serwer, niepowodzenie lub zapisano częściowo. Lokalna kopia odzyskiwania jest prowadzona dodatkowo; nie jest zapisem na serwerze projektów.
 The symbol is placed in the project	Symbol jest używany w projekcie
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Artykuły zacisków nie wskazują uchwytów końcowych ani pokryw końcowych (dane techniczne End bracket, End plate).
 The update failed	Aktualizacja nie powiodła się
@@ -2223,6 +2242,7 @@ Voltage (line to line)	Napięcie (międzyfazowe)
 Voltage at maximum power	Napięcie przy mocy maksymalnej
 Voltage drop	Spadek napięcia
 WGS 84, written into the site of IFC exports	WGS 84, zapisywana w terenie eksportów IFC
+Waiting for the server	Oczekiwanie na serwer
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Ściana {}, {} m: przeciągnij, aby przesunąć, dwuklik pokazuje ją do wyposażenia
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Ściana {}, {} m: ściana pokazana w widoku ściany (wyróżniona); przeciągnij, aby przesunąć
 Wall-mounted part	Artykuł naścienny

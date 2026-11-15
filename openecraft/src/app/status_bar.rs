@@ -5,6 +5,7 @@
 use super::*;
 use crate::commands::Cmd;
 use crate::remote::Link;
+use crate::server_save::State;
 
 impl App {
     /// The box of a result the user waits for ([`App::notify_popup`]) at the bottom
@@ -226,11 +227,16 @@ impl App {
             Origin::New => (ui.visuals().weak_text_color(), tr("Save asks for a file").to_string()),
         };
         // Whether the changes are on the server, apart from the connection.
-        let tip = match (origin, &self.remote.save_error) {
-            (Origin::Server { .. }, Some(_)) => format!("{tip}\n{}", tr("The last save failed: the changes are not saved on the project server")),
-            (Origin::Server { .. }, None) if self.session.dirty() => format!("{tip}\n{}", tr("Changes not saved on the project server yet")),
-            (Origin::Server { .. }, None) => format!("{tip}\n{}", tr("All changes are saved on the project server")),
+        let state = origin.is_server().then(|| self.save_state());
+        let tip = match (state, &self.remote.last_saved) {
+            (Some(_), Some(time)) => format!("{tip}\n{}\n{}", self.save_state_text(), tr_fmt!("Last save confirmed by the project server: {}", time)),
+            (Some(_), None) => format!("{tip}\n{}", self.save_state_text()),
             _ => tip,
+        };
+        let color = match state {
+            Some(State::Failed | State::Offline) => c.error,
+            Some(State::Partial) => c.warning,
+            _ => color,
         };
         let icon = match origin {
             Origin::Server { link: Link::Online, .. } => Some(Icon::Server),
@@ -239,7 +245,10 @@ impl App {
             Origin::Recovery(_) => Some(Icon::Warning),
             _ => None,
         };
-        let text = format!("{}{}", origin.label(), if self.session.dirty() { " *" } else { "" });
+        let mut text = format!("{}{}", origin.label(), if self.session.dirty() { " *" } else { "" });
+        if let Some(state) = state {
+            text = format!("{text} – {}", state.label());
+        }
         let r = ui.add(egui::Button::new(RichText::new(text).color(color)).frame(false)).on_hover_text(tip);
         if let Some(icon) = icon {
             icons::show(ui, icon, 14.0);

@@ -125,6 +125,21 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   Project: …* (*connection lost* while the server does not answer its status); a
   project restored from the last session or closed on the server shows as *Local
   recovery copy of server project: …* and is saved to a local file.
+- **Automatic saving:** while a shared project is open, its finished changes are
+  saved to the server by themselves, 30 seconds after a change and then every 30
+  seconds while the work goes on (*File › Settings › Servers* or the *Project server*
+  pane: on / off and the interval, 10 to 600 s). A drag or a text input under way is
+  not sent; it is saved as soon as it is finished. Only one save runs at a time, an
+  automatic save releases no lock and nothing is sent without changes. *Save*
+  (`Ctrl+S`) still saves at once. The status bar and the pane tell the states apart:
+  *Saved*, *Not saved yet*, *Saving…*, *Waiting for the server* (no answer, session
+  ended, signed out: the changes are saved as soon as the session goes on), *Save
+  failed* (tried again with the next interval) and *Partly saved* (the server left
+  out what another user has locked or changed; your version is kept in the pane and
+  is not sent again by itself), with the time of the last save the server confirmed.
+  A project counts as saved only after the server's answer. The local recovery copy
+  is no save on the server: during an outage it is written at once, and the pane
+  says so only after it was written.
 - The project list selects a project (a double click opens it). *Properties…* loads its
   properties from the server (never from the list) and shows who created it on the
   server and when (*Unknown* for projects created before the server kept that;

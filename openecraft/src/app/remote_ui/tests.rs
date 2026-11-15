@@ -329,6 +329,109 @@ fn review193_change_user_keeps_the_old_accounts_remembered_token() {
     assert!(app.remote.has_saved_sign_in());
 }
 
+/// A frame at `time` with the automatic save (`committed`: no input under way).
+fn tick(app: &mut App, time: f64, committed: bool) {
+    let ctx = egui::Context::default();
+    ctx.run_ui(egui::RawInput { time: Some(time), ..Default::default() }, |ui| app.autosave_remote(ui.ctx(), committed)).drop_without_applying_deltas();
+}
+
+#[test]
+fn changes_of_a_shared_project_are_saved_after_thirty_seconds() {
+    let (mut app, _, _) = shared_app();
+    assert_eq!(app.shell.server_autosave, crate::server_save::Settings::default());
+    assert_eq!(app.save_state(), State::Pending);
+    tick(&mut app, 100.0, true);
+    tick(&mut app, 129.0, true);
+    assert!(!app.remote.saving());
+    // Typing or dragging: the unfinished input is not sent.
+    tick(&mut app, 131.0, false);
+    assert!(!app.remote.saving());
+    tick(&mut app, 131.5, true);
+    assert!(app.remote.saving());
+    assert_eq!(app.save_state(), State::Saving);
+}
+
+#[test]
+fn an_unchanged_shared_project_is_not_saved() {
+    let (mut app, _, _) = shared_app();
+    app.session.mark_saved();
+    assert_eq!(app.save_state(), State::Saved);
+    tick(&mut app, 0.0, true);
+    tick(&mut app, 500.0, true);
+    assert!(!app.remote.saving() && !app.remote.busy());
+}
+
+#[test]
+fn changes_a_save_left_out_are_not_saved_again_by_themselves() {
+    let (mut app, _, _) = shared_app();
+    app.remote.unconfirmed = Some(app.session.history.state());
+    assert_eq!(app.save_state(), State::Partial);
+    tick(&mut app, 0.0, true);
+    tick(&mut app, 500.0, true);
+    assert!(!app.remote.saving());
+    assert!(app.session.dirty(), "not shown as saved either");
+    // A further edit is a change to save.
+    app.session.prj.info.name = "Synthetic later work".into();
+    assert!(app.session.commit(true));
+    tick(&mut app, 501.0, true);
+    tick(&mut app, 531.0, true);
+    assert!(app.remote.saving());
+}
+
+#[test]
+fn the_automatic_save_can_be_switched_off_and_slowed_down() {
+    let (mut app, _, _) = shared_app();
+    app.shell.server_autosave.enabled = false;
+    tick(&mut app, 0.0, true);
+    tick(&mut app, 500.0, true);
+    assert!(!app.remote.saving());
+    app.shell.server_autosave = crate::server_save::Settings { enabled: true, secs: 120 };
+    tick(&mut app, 501.0, true);
+    tick(&mut app, 560.0, true);
+    assert!(!app.remote.saving());
+    tick(&mut app, 621.0, true);
+    assert!(app.remote.saving());
+}
+
+#[test]
+fn during_an_outage_changes_wait_and_are_saved_when_the_session_goes_on() {
+    for link in [Link::Offline, Link::Ended, Link::SignedOut] {
+        let (mut app, _, _) = shared_app();
+        app.remote.link = link;
+        tick(&mut app, 0.0, true);
+        tick(&mut app, 300.0, true);
+        assert!(!app.remote.saving(), "{link:?}");
+        assert_eq!(app.save_state(), State::Offline, "{link:?}");
+        assert!(app.session.dirty(), "{link:?}: never shown as saved");
+        app.remote.link = Link::Online;
+        tick(&mut app, 301.0, true);
+        assert!(app.remote.saving(), "{link:?}");
+    }
+}
+
+#[test]
+fn a_local_project_is_never_sent_to_a_server() {
+    let (mut app, _, _) = shared_app();
+    app.remote.shared = None;
+    tick(&mut app, 0.0, true);
+    tick(&mut app, 500.0, true);
+    assert!(!app.remote.saving() && !app.remote.busy());
+}
+
+#[test]
+fn a_viewer_sends_no_automatic_save() {
+    let (mut app, _, _) = shared_app();
+    app.remote.rights = vec![ProjectRight::View];
+    tick(&mut app, 0.0, true);
+    tick(&mut app, 500.0, true);
+    assert!(!app.remote.saving() && !app.remote.busy());
+    // A reviewer's comments and approvals are saved.
+    app.remote.rights.push(ProjectRight::Review);
+    tick(&mut app, 501.0, true);
+    tick(&mut app, 531.0, true);
+    assert!(app.remote.saving());
+}
+
 #[test]
 fn copying_asks_about_unsaved_changes_before_anything_is_created() {
     let (mut app, _, _) = shared_app();

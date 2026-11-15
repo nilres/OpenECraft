@@ -270,6 +270,9 @@ Changed message levels ({})	Níveis de mensagem alterados ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Alterado desde a montagem: estava em X {} mm, Y {} mm com a peça {}
 Changed since wired: was {} · {} · {}	Alterado desde a fiação: era {} · {} · {}
 Changes	Alterações
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Alterações ainda não salvas no servidor de projetos: as alterações concluídas são salvas automaticamente em até {} s
+Changes not saved on the project server: save them when the server answers again.	Alterações não salvas no servidor de projetos: salve-as quando o servidor voltar a responder.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Alterações não salvas no servidor de projetos: elas serão salvas assim que o servidor voltar a responder.
 Changes since revision {}	Alterações desde a revisão {}
 Changes the page order; the name stays	Muda a ordem das páginas; o nome permanece
 Changes the tag of all functions of this device	Altera o identificador de todas as funções deste dispositivo
@@ -761,6 +764,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Localizar…
 Finish a wire, polyline, polygon or wall	Concluir um fio, polilinha, polígono ou parede
 Finish or cancel the drawing, then back to selecting	Concluir ou cancelar o desenho e voltar a selecionar
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	As alterações concluídas de um projeto aberto do servidor de projetos são salvas nele automaticamente; uma entrada em andamento é salva assim que é concluída. Os bloqueios são mantidos. Salvar (Ctrl+S) continua salvando imediatamente.
 First row	Primeira linha
 Fit page	Ajustar página
 Fits {}	Compatível com {}
@@ -968,6 +972,7 @@ Instead of user name and password	Em vez de nome de usuário e senha
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Os instrumentos no P&ID levam letras de identificação e número da malha em seu rótulo (TIC 101); seu identificador de dispositivo os vincula ao esquema elétrico.
 Insulation	Isolação
 Interruption points refer to	Os pontos de interrupção referem-se a
+Interval	Intervalo
 Introduction	Introdução
 Invalid value	Valor inválido
 Invert the direction of panning by scrolling	Inverter a direção do movimento da vista pela rolagem
@@ -1007,6 +1012,7 @@ Landscape	Paisagem
 Large dot	Ponto grande
 Larger texts and buttons for a touch screen at the workbench	Textos e botões maiores para uma tela sensível ao toque na bancada
 Largest mesh	Maior malha
+Last save confirmed by the project server: {}	Último salvamento confirmado pelo servidor de projetos: {}
 Latitude, longitude	Latitude, longitude
 Layer	Camada
 Layer {}	Camada {}
@@ -1065,6 +1071,7 @@ Loads	Cargas
 Local file	Arquivo local
 Local file: {}	Arquivo local: {}
 Local recovery copy of server project: {}	Cópia de recuperação local do projeto do servidor: {}
+Local recovery copy with these changes written: {}	Cópia de recuperação local com estas alterações gravada: {}
 Lock all	Bloquear tudo
 Lock all pages	Bloquear todas as páginas
 Lock current page	Bloquear página atual
@@ -1261,6 +1268,7 @@ No gesture	Nenhum gesto
 No harnesses defined.	Nenhum chicote definido.
 No inverter	Sem inversor
 No jump: plain crossing, connections have dots	Sem salto: cruzamento simples, as junções têm pontos
+No local recovery copy of these changes has been written yet	Ainda não foi gravada nenhuma cópia de recuperação local destas alterações
 No longer reported	Não é mais relatada
 No macros yet. Select items in a schematic and save them as a macro.	Ainda não há macros. Selecione itens em um esquema elétrico e salve-os como macro.
 No modules: plug in PLC cards of the schematic.	Nenhum módulo: insira cartões de CLP do esquema elétrico.
@@ -1302,6 +1310,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Não alterado:
 Not found: {}	Não encontrado: {}
 Not in the project parts – synchronize in parts management	Não está nas peças do projeto – sincronize no gerenciamento de peças
 Not on a wire	Não está em um fio
+Not saved yet	Ainda não salvo
 Not saved, locked or changed by another user	Não salvo, bloqueado ou alterado por outro usuário
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Não aceito: o botão esquerdo sozinho seleciona, desenha e move; mantenha uma tecla modificadora ou use outro botão.
 Not the shared project: changes are saved locally until it is opened on the project server again	Não é o projeto compartilhado: as alterações são salvas localmente até ele ser aberto novamente no servidor de projetos
@@ -1456,8 +1465,10 @@ Part of the profile: generic types or parts from the parts store	Peça do perfil
 Part selection from the parts database	Seleção de peças do banco de dados de peças
 Part selection – {}	Seleção de peças – {}
 Part selection…	Seleção de peça…
+Partly saved	Salvo em parte
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Salvo em parte (revisão {}). Não salvo, bloqueado ou alterado por outro usuário: {}. Sua versão fica guardada no painel Servidor de projetos.
 Partly saved to the project server (revision {})	Salvo em parte no servidor de projetos (revisão {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Salvo em parte: o servidor de projetos deixou alterações de fora. A sua versão delas é mantida abaixo; elas não estão salvas no servidor.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	As peças só podem ser soltas em páginas que podem ser alteradas; esta está liberada, bloqueada ou gerada
 Parts management	Gerenciamento de peças
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Peças marcadas para montagem no piso (bombas, tanques, compressores): escolha uma e clique onde ela fica no piso da sala
@@ -1787,6 +1798,7 @@ Save asks for a file	Salvar pede um arquivo
 Save as…	Salvar como…
 Save current page as template…	Salvar a página atual como modelo…
 Save current…	Salvar atual…
+Save failed	Falha ao salvar
 Save file…	Salvar arquivo…
 Save locally	Salvar localmente
 Save locally to {}	Salvar localmente em {}
@@ -1795,12 +1807,14 @@ Save page as macro…	Salvar página como macro…
 Save page as template	Salvar página como modelo
 Save page as template…	Salvar página como modelo…
 Save selection as macro…	Salvar seleção como macro…
+Save shared projects to the project server automatically	Salvar automaticamente os projetos compartilhados no servidor de projetos
 Save the box content as the macro in the library	Salvar o conteúdo da caixa como a macro na biblioteca
 Save to project server	Salvar no servidor de projetos
 Save to project server: {}	Salvar no servidor de projetos: {}
 Save to project server: {} – the connection is lost, saving tries again	Salvar no servidor de projetos: {} – a conexão foi perdida, salvar tenta novamente
 Save workspace	Salvar espaço de trabalho
 Save workspace…	Salvar espaço de trabalho…
+Saved	Salvo
 Saved the properties of {} (revision {})	Propriedades de {} salvas (revisão {})
 Saved to	Salvo em
 Saved to the project server (revision {})	Salvo no servidor de projetos (revisão {})
@@ -1832,6 +1846,7 @@ Search below this folder	Pesquisar abaixo desta pasta
 Search number, description, maker	Pesquisar número, descrição, fabricante
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Pesquisar no servidor de peças por catálogo, grupo de produtos e dados técnicos, adicionar peças e verificar se há atualizações no banco de dados
 Second channel	Segundo canal
+Seconds from a change to its automatic save (10 to 600)	Segundos entre uma alteração e o seu salvamento automático (10 a 600)
 Section properties	Propriedades da seção
 Section properties…	Propriedades da seção…
 Section {} is now section {}	A seção {} agora é a seção {}
@@ -2078,6 +2093,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	O gabinete fica com seu lado esquerdo encostado no lado direito do gabinete escolhido; os fios passam entre eles por passagens de cabos
 The horizontal wire	O fio horizontal
 The items are selected and moved together	Os itens são selecionados e movidos juntos
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	O último salvamento falhou: {}. As suas alterações não estão salvas no servidor de projetos; o salvamento automático tenta novamente.
+The local recovery copy is of {}: your latest changes are not in it yet	A cópia de recuperação local é de {}: as suas últimas alterações ainda não estão nela
 The lock was refused	O bloqueio foi recusado
 The logo is fitted into this area keeping its aspect ratio	O logotipo é ajustado a esta área mantendo a proporção
 The logo of the project properties, e.g. the customer's	O logotipo das propriedades do projeto, p. ex. o do cliente
@@ -2102,6 +2119,7 @@ The project check	A verificação do projeto
 The project data is locked by {}: the properties cannot be changed now.	Os dados do projeto estão bloqueados por {}: as propriedades não podem ser alteradas agora.
 The project database needs the desktop version: the browser cannot search folders.	O banco de dados de projetos precisa da versão desktop: o navegador não pode pesquisar pastas.
 The project server does not answer: changes are not saved on it until the connection is back	O servidor de projetos não responde: as alterações não são salvas nele até a conexão voltar
+The project server has confirmed no save of this session yet	O servidor de projetos ainda não confirmou nenhum salvamento desta sessão
 The project server {} could not open {}.	O servidor de projetos {} não conseguiu abrir {}.
 The project's own page templates as a file	Os modelos de página próprios do projeto como arquivo
 The project's own title blocks	Os selos próprios do projeto
@@ -2116,6 +2134,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	A segunda falta é verificada com a tensão fase-terra
 The selected devices side by side on the selected rail, from its left end	Os dispositivos selecionados lado a lado no trilho selecionado, a partir de sua extremidade esquerda
 The side of {} is open	O lado de {} está aberto
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	O estado do salvamento aparece na barra de status e no painel Servidor de projetos: salvo, ainda não salvo, salvando, aguardando o servidor, com falha ou salvo em parte. A cópia de recuperação local é mantida à parte; ela não é um salvamento no servidor de projetos.
 The symbol is placed in the project	O símbolo está posicionado no projeto
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	As peças de borne não indicam suportes finais nem tampas finais (dados técnicos End bracket, End plate).
 The update failed	A atualização falhou
@@ -2223,6 +2242,7 @@ Voltage (line to line)	Tensão (entre fases)
 Voltage at maximum power	Tensão na potência máxima
 Voltage drop	Queda de tensão
 WGS 84, written into the site of IFC exports	WGS 84, gravada no terreno das exportações IFC
+Waiting for the server	Aguardando o servidor
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Parede {}, {} m: arraste para movê-la, clique duplo para mostrá-la e equipá-la
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Parede {}, {} m: a parede mostrada na vista da parede (destacada); arraste para movê-la
 Wall-mounted part	Peça de montagem na parede

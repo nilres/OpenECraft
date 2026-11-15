@@ -366,6 +366,8 @@ struct StoreQueue {
     writing: bool,
     /// Result of the last write (it fails e.g. without IndexedDB in a private window).
     last_ok: Option<bool>,
+    /// Keys whose last write succeeded.
+    stored: Vec<String>,
 }
 
 impl Store {
@@ -444,6 +446,12 @@ impl Store {
         self.queue.lock().is_ok_and(|q| q.last_ok == Some(true))
     }
 
+    /// The value last given to [`Store::store`] for `key` is written: no write of it
+    /// waits, is under way or failed.
+    pub fn stored(&self, key: &str) -> bool {
+        self.queue.lock().is_ok_and(|q| !q.writing && q.pending.is_empty() && q.stored.iter().any(|k| k == key))
+    }
+
     fn next_pending(&self) -> Option<(String, Vec<u8>)> {
         let mut q = self.queue.lock().ok()?;
         if q.pending.is_empty() {
@@ -453,9 +461,13 @@ impl Store {
         Some(q.pending.remove(0))
     }
 
-    fn written(&self, ok: bool) {
+    fn written(&self, key: &str, ok: bool) {
         if let Ok(mut q) = self.queue.lock() {
             q.last_ok = Some(ok);
+            q.stored.retain(|k| k != key);
+            if ok {
+                q.stored.push(key.to_string());
+            }
         }
     }
 
@@ -468,7 +480,7 @@ impl Store {
             if let Err(e) = &result {
                 log::error!("Could not write {}: {e}", path.display());
             }
-            self.written(result.is_ok());
+            self.written(&key, result.is_ok());
         }
     }
 
@@ -479,7 +491,7 @@ impl Store {
             if let Err(e) = &result {
                 log::error!("Could not write {key} to IndexedDB: {e:?}");
             }
-            self.written(result.is_ok());
+            self.written(&key, result.is_ok());
         }
     }
 

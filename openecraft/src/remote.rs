@@ -57,6 +57,8 @@ pub struct Sent {
     pub revision: u64,
     pub project: Project,
     pub release: Vec<Target>,
+    /// Sent by the automatic save, not asked for by the user.
+    pub auto: bool,
 }
 
 /// Answer of a request. Answers for a session that is no longer open are dropped.
@@ -152,6 +154,10 @@ pub struct Remote {
     pub link: Link,
     /// Error of the last save, until a save succeeds (the changes are not on the server).
     pub save_error: Option<String>,
+    /// Saves failed in a row.
+    pub save_failures: u32,
+    /// When the server last confirmed a save of this session (`now_text`).
+    pub last_saved: Option<String>,
     pending: usize,
     /// A status request is under way.
     polling: bool,
@@ -211,6 +217,8 @@ impl Default for Remote {
             window: false,
             link: Link::Online,
             save_error: None,
+            save_failures: 0,
+            last_saved: None,
             pending: 0,
             polling: false,
             reopening: false,
@@ -518,7 +526,7 @@ impl Remote {
         }
         self.status = match self.link {
             Link::Online | Link::Offline => {
-                if let Some(sent) = self.begin_save(prj, release) {
+                if let Some(sent) = self.begin_save(prj, release, false) {
                     self.send_save(sent);
                 }
                 return true;
@@ -533,6 +541,39 @@ impl Remote {
         false
     }
 
+    /// The automatic save: sends the project if the session is online and no save is
+    /// under way (it never queues behind one) and releases no lock. Returns whether it
+    /// was sent.
+    pub fn autosave(&mut self, prj: &Project) -> bool {
+        if self.saving.is_some() || self.link != Link::Online {
+            return false;
+        }
+        let Some(sent) = self.begin_save(prj, Vec::new(), true) else { return false };
+        self.send_save(sent);
+        true
+    }
+
+    /// A save is under way, not answered yet.
+    pub fn saving(&self) -> bool {
+        self.saving.is_some()
+    }
+
+    /// The answer of a save: what is shown of it until the next one.
+    fn save_answered(&mut self, result: &Result<Box<Snapshot>, Failed>) {
+        self.status = Self::save_status(result);
+        match result {
+            Ok(_) => {
+                self.save_error = None;
+                self.save_failures = 0;
+                self.last_saved = Some(openecraft_ui::io::now_text());
+            }
+            Err(e) => {
+                self.save_error = Some(e.error.clone());
+                self.save_failures += 1;
+            }
+        }
+    }
+
     /// Tries the connection again now: the status of the session, or opening the
     /// project again when the session ended or was refused.
     pub fn retry(&mut self) {
@@ -543,7 +584,7 @@ impl Remote {
     }
 
     /// The save to send now, or none: queued behind the one under way.
-    fn begin_save(&mut self, prj: &Project, release: Vec<Target>) -> Option<Sent> {
+    fn begin_save(&mut self, prj: &Project, release: Vec<Target>, auto: bool) -> Option<Sent> {
         self.shared.as_ref()?;
         if self.saving.is_some() {
             let queued = self.queued.get_or_insert_with(Vec::new);
@@ -555,7 +596,7 @@ impl Remote {
             return None;
         }
         let revision = self.shared.as_ref().map_or(0, |sh| sh.revision);
-        let sent = Sent { session: self.session_id(), revision, project: prj.clone(), release };
+        let sent = Sent { session: self.session_id(), revision, project: prj.clone(), release, auto };
         self.saving = Some(sent.session.clone());
         Some(sent)
     }
@@ -576,7 +617,7 @@ impl Remote {
         if release.is_empty() && !session.dirty() {
             return None;
         }
-        self.begin_save(&session.prj, release)
+        self.begin_save(&session.prj, release, false)
     }
 
     /// Call after the answers were taken: sends the queued save, then loads a newer
@@ -641,6 +682,8 @@ impl Remote {
         let Some(sh) = self.shared.take() else { return };
         self.link = Link::Online;
         self.save_error = None;
+        self.save_failures = 0;
+        self.last_saved = None;
         self.reopening = false;
         self.due = false;
         self.queued = None;
@@ -685,8 +728,7 @@ impl Remote {
                 if self.kept_save(&answer) {
                     self.saving = None;
                     if let Reply::Saved(_, result) = &answer.reply {
-                        self.status = Self::save_status(result);
-                        self.save_error = result.as_ref().err().map(|e| e.error.clone());
+                        self.save_answered(result);
                         if result.is_err() { self.queued = None; }
                     }
                     // The project still owns this save, but an old result must
@@ -751,11 +793,13 @@ impl Remote {
                 _ => std::mem::take(&mut self.status),
             };
             if let Reply::Saved(_, r) = &reply {
-                self.save_error = r.as_ref().err().map(|e| e.error.clone());
+                self.save_answered(r);
             }
             if let Reply::Opened(_, Ok(_)) = &reply {
                 self.link = Link::Online;
                 self.save_error = None;
+                self.save_failures = 0;
+                self.last_saved = None;
             }
             self.follow(&reply);
             if let Reply::List(Ok(list)) = &reply {

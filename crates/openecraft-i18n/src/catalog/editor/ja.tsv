@@ -267,6 +267,9 @@ Changed message levels ({})	変更したメッセージレベル ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	取付後に変更されました: 以前は X {} mm、Y {} mm、部品 {}
 Changed since wired: was {} · {} · {}	配線後に変更されました: 変更前 {} · {} · {}
 Changes	変更
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	変更はまだプロジェクトサーバーに保存されていません: 完了した変更は {} 秒以内に自動保存されます
+Changes not saved on the project server: save them when the server answers again.	変更はプロジェクトサーバーに保存されていません: サーバーが再び応答したら保存してください。
+Changes not saved on the project server: they are saved as soon as the server answers again.	変更はプロジェクトサーバーに保存されていません: サーバーが再び応答するとただちに保存されます。
 Changes since revision {}	リビジョン {} 以降の変更
 Changes the page order; the name stays	ページの順序を変更します。名前は変わりません
 Changes the tag of all functions of this device	このデバイスのすべての機能のタグを変更します
@@ -754,6 +757,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	検索…
 Finish a wire, polyline, polygon or wall	配線、ポリライン、多角形、壁を終了
 Finish or cancel the drawing, then back to selecting	描画を終了またはキャンセルし、選択に戻る
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	プロジェクトサーバーから開いたプロジェクトの完了した変更は、自動的にサーバーに保存されます。入力中の内容は完了後に保存されます。ロックは保持されます。保存 (Ctrl+S) は引き続きただちに保存します。
 First row	最初の行
 Fit page	ページに合わせる
 Fits {}	{} に適合
@@ -960,6 +964,7 @@ Instead of user name and password	ユーザー名とパスワードの代わり
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	P&ID の計器は、ラベルに機能文字とループ番号 (TIC 101) を持ちます。デバイスタグによって回路図とリンクされます。
 Insulation	絶縁
 Interruption points refer to	中断ポイントの参照先
+Interval	間隔
 Introduction	はじめに
 Invalid value	無効な値
 Invert the direction of panning by scrolling	スクロールによるパンの方向を反転する
@@ -998,6 +1003,7 @@ Landscape	横
 Large dot	大きい点
 Larger texts and buttons for a touch screen at the workbench	作業台のタッチスクリーン用に文字とボタンを大きく
 Largest mesh	最大の網目
+Last save confirmed by the project server: {}	プロジェクトサーバーが確認した最後の保存: {}
 Latitude, longitude	緯度、経度
 Layer	レイヤー
 Layer {}	レイヤー {}
@@ -1053,6 +1059,7 @@ Loads	負荷
 Local file	ローカルファイル
 Local file: {}	ローカルファイル：{}
 Local recovery copy of server project: {}	サーバープロジェクトのローカル復元コピー：{}
+Local recovery copy with these changes written: {}	これらの変更を含むローカル復元コピーを書き込みました: {}
 Lock all	すべてロック
 Lock all pages	すべてのページをロック
 Lock current page	現在のページをロック
@@ -1247,6 +1254,7 @@ No gesture	ジェスチャーなし
 No harnesses defined.	ハーネスが定義されていません。
 No inverter	インバーターなし
 No jump: plain crossing, connections have dots	ジャンプなし: 単純な交差、接続には点
+No local recovery copy of these changes has been written yet	これらの変更のローカル復元コピーはまだ書き込まれていません
 No longer reported	報告されなくなりました
 No macros yet. Select items in a schematic and save them as a macro.	マクロはまだありません。回路図で要素を選択し、マクロとして保存してください。
 No modules: plug in PLC cards of the schematic.	モジュールがありません: 回路図の PLC カードを装着してください。
@@ -1288,6 +1296,7 @@ Not changed: {}. Your version is kept in the Project server pane.	変更され�
 Not found: {}	見つかりません: {}
 Not in the project parts – synchronize in parts management	プロジェクト部品にありません – 部品管理で同期してください
 Not on a wire	電線上にありません
+Not saved yet	未保存
 Not saved, locked or changed by another user	他のユーザーがロックまたは変更しているため保存されていません
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	使えません：左ボタンのみは選択、描画、移動に使われます。モディファイアキーを押すか別のボタンを使ってください。
 Not the shared project: changes are saved locally until it is opened on the project server again	共有プロジェクトではありません：プロジェクトサーバーで再度開くまで変更はローカルに保存されます
@@ -1442,8 +1451,10 @@ Part of the profile: generic types or parts from the parts store	プロファイ
 Part selection from the parts database	部品データベースからの部品選択
 Part selection – {}	部品選択 – {}
 Part selection…	部品の選択…
+Partly saved	一部保存
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	一部を保存しました (リビジョン {})。他のユーザーがロックまたは変更しているため保存されていません: {}。あなたの版はプロジェクトサーバーのペインに保管されています。
 Partly saved to the project server (revision {})	プロジェクトサーバーに一部を保存しました (リビジョン {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	一部保存: プロジェクトサーバーは一部の変更を保存しませんでした。あなたのバージョンは下に保持されています。サーバーには保存されていません。
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	部品は変更可能なページにのみドロップできます。このページはリリース済み、ロック済み、または生成ページです
 Parts management	部品管理
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	床置きとしてマークされた部品 (ポンプ、タンク、コンプレッサー): 1 つ選択し、部屋の床の設置場所をクリックします
@@ -1769,6 +1780,7 @@ Save asks for a file	「保存」でファイルを選択します
 Save as…	名前を付けて保存…
 Save current page as template…	現在のページをテンプレートとして保存…
 Save current…	現在の状態を保存…
+Save failed	保存に失敗
 Save file…	ファイルを保存…
 Save locally	ローカルに保存
 Save locally to {}	ローカルの {} に保存
@@ -1777,12 +1789,14 @@ Save page as macro…	ページをマクロとして保存…
 Save page as template	ページをテンプレートとして保存
 Save page as template…	ページをテンプレートとして保存…
 Save selection as macro…	選択範囲をマクロとして保存…
+Save shared projects to the project server automatically	共有プロジェクトをプロジェクトサーバーに自動保存する
 Save the box content as the macro in the library	ボックスの内容をマクロとしてライブラリに保存
 Save to project server	プロジェクトサーバーに保存
 Save to project server: {}	プロジェクトサーバーに保存：{}
 Save to project server: {} – the connection is lost, saving tries again	プロジェクトサーバーに保存：{} – 接続が切れています。保存は再試行します
 Save workspace	ワークスペースを保存
 Save workspace…	ワークスペースを保存…
+Saved	保存済み
 Saved the properties of {} (revision {})	{} のプロパティを保存しました (リビジョン {})
 Saved to	保存先
 Saved to the project server (revision {})	プロジェクトサーバーに保存しました (リビジョン {})
@@ -1812,6 +1826,7 @@ Search below this folder	このフォルダーの下を検索
 Search number, description, maker	番号、説明、メーカーを検索
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	カタログ、製品グループ、技術データで部品サーバーを検索し、部品を追加して、データベースの更新を確認します
 Second channel	第 2 チャンネル
+Seconds from a change to its automatic save (10 to 600)	変更から自動保存までの秒数 (10 ～ 600)
 Section properties	セクションのプロパティ
 Section properties…	セクションのプロパティ…
 Section {} is now section {}	セクション {} はセクション {} になりました
@@ -2057,6 +2072,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	エンクロージャーの左側を選択したエンクロージャーの右側に接して設置します。電線はケーブル貫通口を通って両者の間を通ります
 The horizontal wire	水平の配線
 The items are selected and moved together	アイテムはまとめて選択、移動されます
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	最後の保存に失敗しました: {}。変更はプロジェクトサーバーに保存されていません。自動保存が再試行します。
+The local recovery copy is of {}: your latest changes are not in it yet	ローカル復元コピーは {} のものです: 最新の変更はまだ含まれていません
 The lock was refused	ロックが拒否されました
 The logo is fitted into this area keeping its aspect ratio	ロゴは縦横比を保ってこの領域に収まります
 The logo of the project properties, e.g. the customer's	プロジェクトのプロパティのロゴ（例: 顧客のロゴ）
@@ -2081,6 +2098,7 @@ The project check	プロジェクトのチェック
 The project data is locked by {}: the properties cannot be changed now.	プロジェクトデータは {} によってロックされています: 現在プロパティは変更できません。
 The project database needs the desktop version: the browser cannot search folders.	プロジェクトデータベースにはデスクトップ版が必要です。ブラウザーではフォルダーを検索できません。
 The project server does not answer: changes are not saved on it until the connection is back	プロジェクトサーバーが応答しません：接続が戻るまで変更はサーバーに保存されません
+The project server has confirmed no save of this session yet	プロジェクトサーバーはこのセッションの保存をまだ確認していません
 The project server {} could not open {}.	プロジェクトサーバー {} は {} を開けませんでした。
 The project's own page templates as a file	プロジェクト独自のページテンプレート (ファイル)
 The project's own title blocks	プロジェクト独自の表題欄
@@ -2095,6 +2113,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	二重地絡は対地電圧でチェックされます
 The selected devices side by side on the selected rail, from its left end	選択したデバイスを、選択したレール上に左端から並べて配置します
 The side of {} is open	{} の側面は開放されています
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	保存の状態はステータスバーとプロジェクトサーバーのペインに表示されます: 保存済み、未保存、保存中、サーバー待ち、失敗、一部保存。ローカル復元コピーは別に保持されますが、プロジェクトサーバーへの保存ではありません。
 The symbol is placed in the project	シンボルはプロジェクト内で使用されています
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	端子部品にエンドクランプまたはエンドカバーの指定がありません (技術データ End bracket、End plate)。
 The update failed	更新に失敗しました
@@ -2201,6 +2220,7 @@ Voltage (line to line)	電圧 (線間)
 Voltage at maximum power	最大出力時の電圧
 Voltage drop	電圧降下
 WGS 84, written into the site of IFC exports	WGS 84。IFC エクスポートの敷地に書き込まれます
+Waiting for the server	サーバー待ち
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	壁 {}、{} m: ドラッグで移動、ダブルクリックで表示して取り付け
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	壁 {}、{} m: 壁ビューに表示中の壁 (強調表示)、ドラッグで移動
 Wall-mounted part	壁取付部品

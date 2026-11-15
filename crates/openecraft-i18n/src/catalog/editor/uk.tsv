@@ -270,6 +270,9 @@ Changed message levels ({})	Змінені рівні повідомлень ({}
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Змінено після встановлення: був на X {} мм, Y {} мм з виробом {}
 Changed since wired: was {} · {} · {}	Змінено після монтажу: було {} · {} · {}
 Changes	Зміни
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Зміни ще не збережено на сервері проєктів: завершені зміни зберігаються автоматично протягом {} с
+Changes not saved on the project server: save them when the server answers again.	Зміни не збережено на сервері проєктів: збережіть їх, коли сервер знову відповість.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Зміни не збережено на сервері проєктів: їх буде збережено, щойно сервер знову відповість.
 Changes since revision {}	Зміни після ревізії {}
 Changes the page order; the name stays	Змінює порядок сторінок; ім'я залишається
 Changes the tag of all functions of this device	Змінює позначення всіх функцій цього пристрою
@@ -760,6 +763,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Знайти…
 Finish a wire, polyline, polygon or wall	Завершити провід, полілінію, багатокутник або стіну
 Finish or cancel the drawing, then back to selecting	Завершити або скасувати малювання й повернутися до вибору
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Завершені зміни проєкту, відкритого із сервера проєктів, зберігаються на ньому самі; незавершене введення зберігається після його завершення. Блокування залишаються. Зберегти (Ctrl+S) і далі зберігає одразу.
 First row	Перший рядок
 Fit page	Умістити сторінку
 Fits {}	Підходить до {}
@@ -967,6 +971,7 @@ Instead of user name and password	Замість імені користувач
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Прилади на P&ID мають у своїй мітці літери функції та номер контуру (TIC 101); їхнє позначення пристрою пов’язує їх зі схемою.
 Insulation	Ізоляція
 Interruption points refer to	Точки розриву посилаються на
+Interval	Інтервал
 Introduction	Вступ
 Invalid value	Недійсне значення
 Invert the direction of panning by scrolling	Обернути напрямок зсуву прокручуванням
@@ -1006,6 +1011,7 @@ Landscape	Альбомна
 Large dot	Велика крапка
 Larger texts and buttons for a touch screen at the workbench	Більші тексти й кнопки для сенсорного екрана на робочому місці
 Largest mesh	Найбільша комірка
+Last save confirmed by the project server: {}	Останнє збереження, підтверджене сервером проєктів: {}
 Latitude, longitude	Широта, довгота
 Layer	Шар
 Layer {}	Шар {}
@@ -1064,6 +1070,7 @@ Loads	Навантаження
 Local file	Локальний файл
 Local file: {}	Локальний файл: {}
 Local recovery copy of server project: {}	Локальна копія відновлення проєкту сервера: {}
+Local recovery copy with these changes written: {}	Локальну копію відновлення з цими змінами записано: {}
 Lock all	Заблокувати все
 Lock all pages	Заблокувати всі сторінки
 Lock current page	Заблокувати поточну сторінку
@@ -1260,6 +1267,7 @@ No gesture	Без жесту
 No harnesses defined.	Джгути не визначено.
 No inverter	Без інвертора
 No jump: plain crossing, connections have dots	Без перескоку: просте перетинання, з'єднання позначені крапками
+No local recovery copy of these changes has been written yet	Локальну копію відновлення цих змін ще не записано
 No longer reported	Більше не повідомляється
 No macros yet. Select items in a schematic and save them as a macro.	Макросів ще немає. Виберіть елементи на схемі та збережіть їх як макрос.
 No modules: plug in PLC cards of the schematic.	Немає модулів: встановіть плати ПЛК зі схеми.
@@ -1301,6 +1309,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Не змін�
 Not found: {}	Не знайдено: {}
 Not in the project parts – synchronize in parts management	Немає у виробах проєкту – синхронізуйте в керуванні виробами
 Not on a wire	Не на проводі
+Not saved yet	Ще не збережено
 Not saved, locked or changed by another user	Не збережено, заблоковано або змінено іншим користувачем
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Не прийнято: сама ліва кнопка вибирає, малює та переміщує; утримуйте модифікатор або використайте іншу кнопку.
 Not the shared project: changes are saved locally until it is opened on the project server again	Це не спільний проєкт: зміни зберігаються локально, доки його знову не відкрито на сервері проєктів
@@ -1455,8 +1464,10 @@ Part of the profile: generic types or parts from the parts store	Вироби п
 Part selection from the parts database	Вибір виробу з бази даних виробів
 Part selection – {}	Вибір виробу – {}
 Part selection…	Вибір виробу…
+Partly saved	Збережено частково
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Частково збережено (ревізія {}). Не збережено, заблоковано або змінено іншим користувачем: {}. Вашу версію збережено на панелі «Сервер проєктів».
 Partly saved to the project server (revision {})	Частково збережено на сервері проєктів (ревізія {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Збережено частково: сервер проєктів пропустив частину змін. Вашу версію збережено нижче; на сервері їх не збережено.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Вироби можна перетягувати лише на сторінки, які можна змінювати; ця випущена, заблокована або згенерована
 Parts management	Керування виробами
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Вироби з позначкою монтажу на підлогу (насоси, баки, компресори): виберіть один, потім клацніть місце на підлозі приміщення
@@ -1786,6 +1797,7 @@ Save asks for a file	«Зберегти» запитає файл
 Save as…	Зберегти як…
 Save current page as template…	Зберегти поточну сторінку як шаблон…
 Save current…	Зберегти поточний…
+Save failed	Помилка збереження
 Save file…	Зберегти файл…
 Save locally	Зберегти локально
 Save locally to {}	Зберегти локально в {}
@@ -1794,12 +1806,14 @@ Save page as macro…	Зберегти сторінку як макрос…
 Save page as template	Зберегти сторінку як шаблон
 Save page as template…	Зберегти сторінку як шаблон…
 Save selection as macro…	Зберегти виділене як макрос…
+Save shared projects to the project server automatically	Автоматично зберігати спільні проєкти на сервері проєктів
 Save the box content as the macro in the library	Зберегти вміст рамки як макрос у бібліотеці
 Save to project server	Зберегти на сервері проєктів
 Save to project server: {}	Зберегти на сервері проєктів: {}
 Save to project server: {} – the connection is lost, saving tries again	Зберегти на сервері проєктів: {} – з'єднання втрачено, збереження спробує знову
 Save workspace	Зберегти робочий простір
 Save workspace…	Зберегти робочий простір…
+Saved	Збережено
 Saved the properties of {} (revision {})	Властивості {} збережено (ревізія {})
 Saved to	Збережено в
 Saved to the project server (revision {})	Збережено на сервері проєктів (ревізія {})
@@ -1831,6 +1845,7 @@ Search below this folder	Шукати в цій папці та вкладени
 Search number, description, maker	Пошук номера, опису, виробника
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Шукати на сервері виробів за каталогом, групою продуктів і технічними даними, додавати вироби та перевіряти базу даних на оновлення
 Second channel	Другий канал
+Seconds from a change to its automatic save (10 to 600)	Секунди від зміни до її автоматичного збереження (від 10 до 600)
 Section properties	Властивості розділу
 Section properties…	Властивості розділу…
 Section {} is now section {}	Розділ {} тепер розділ {}
@@ -2077,6 +2092,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Корпус стоїть лівою стороною впритул до правої сторони вибраного; проводи проходять між ними через кабельні проходи
 The horizontal wire	Горизонтальний провід
 The items are selected and moved together	Елементи вибираються й переміщуються разом
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	Останнє збереження не вдалося: {}. Ваші зміни не збережено на сервері проєктів; автоматичне збереження повторить спробу.
+The local recovery copy is of {}: your latest changes are not in it yet	Локальна копія відновлення від {}: ваших останніх змін у ній ще немає
 The lock was refused	Блокування відхилено
 The logo is fitted into this area keeping its aspect ratio	Логотип вписується в цю область зі збереженням пропорцій
 The logo of the project properties, e.g. the customer's	Логотип із властивостей проєкту, наприклад логотип замовника
@@ -2101,6 +2118,7 @@ The project check	Перевірка проєкту
 The project data is locked by {}: the properties cannot be changed now.	Дані проєкту заблокував користувач {}: властивості зараз змінити не можна.
 The project database needs the desktop version: the browser cannot search folders.	Для бази даних проєктів потрібна настільна версія: браузер не може шукати в папках.
 The project server does not answer: changes are not saved on it until the connection is back	Сервер проєктів не відповідає: зміни не зберігаються на ньому, доки з'єднання не відновиться
+The project server has confirmed no save of this session yet	Сервер проєктів ще не підтвердив жодного збереження в цьому сеансі
 The project server {} could not open {}.	Сервер проєктів {} не зміг відкрити {}.
 The project's own page templates as a file	Власні шаблони сторінок проєкту як файл
 The project's own title blocks	Власні основні написи проєкту
@@ -2115,6 +2133,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	Подвійне замикання перевіряється при напрузі між фазою та землею
 The selected devices side by side on the selected rail, from its left end	Вибрані пристрої поруч один з одним на вибраній рейці, від її лівого кінця
 The side of {} is open	Сторона {} відкрита
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	Стан збереження показано в рядку стану та на панелі «Сервер проєктів»: збережено, ще не збережено, збереження, очікування сервера, помилка або збережено частково. Локальна копія відновлення ведеться додатково; вона не є збереженням на сервері проєктів.
 The symbol is placed in the project	Символ використовується в проєкті
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Вироби клем не вказують кінцевих фіксаторів або кінцевих кришок (технічні дані End bracket, End plate).
 The update failed	Не вдалося виконати оновлення
@@ -2222,6 +2241,7 @@ Voltage (line to line)	Напруга (лінійна)
 Voltage at maximum power	Напруга за максимальної потужності
 Voltage drop	Спад напруги
 WGS 84, written into the site of IFC exports	WGS 84, записується в ділянку під час експорту IFC
+Waiting for the server	Очікування сервера
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Стіна {}, {} м: перетягніть, щоб перемістити, подвійне клацання покаже її для оснащення
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Стіна {}, {} м: стіна, показана у вигляді стіни (виділена); перетягніть, щоб перемістити
 Wall-mounted part	Настінний виріб

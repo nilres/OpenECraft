@@ -270,6 +270,9 @@ Changed message levels ({})	Ændrede meddelelsesniveauer ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Ændret siden montering: var ved X {} mm, Y {} mm med artikel {}
 Changed since wired: was {} · {} · {}	Ændret siden trækning: var {} · {} · {}
 Changes	Ændringer
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Ændringerne er endnu ikke gemt på projektserveren: afsluttede ændringer gemmes automatisk inden for {} s
+Changes not saved on the project server: save them when the server answers again.	Ændringerne er ikke gemt på projektserveren: gem dem, når serveren svarer igen.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Ændringerne er ikke gemt på projektserveren: de gemmes, så snart serveren svarer igen.
 Changes since revision {}	Ændringer siden revision {}
 Changes the page order; the name stays	Ændrer siderækkefølgen; navnet bliver
 Changes the tag of all functions of this device	Ændrer mærkningen for alle funktioner i denne enhed
@@ -761,6 +764,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Søg…
 Finish a wire, polyline, polygon or wall	Afslut en leder, polylinje, polygon eller væg
 Finish or cancel the drawing, then back to selecting	Afslut eller annullér tegningen, derefter tilbage til valg
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Afsluttede ændringer i et projekt, der er åbnet fra projektserveren, gemmes der af sig selv; igangværende indtastning gemmes, når den er afsluttet. Låse bevares. Gem (Ctrl+S) gemmer stadig med det samme.
 First row	Første række
 Fit page	Tilpas side
 Fits {}	Passer til {}
@@ -968,6 +972,7 @@ Instead of user name and password	I stedet for brugernavn og adgangskode
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Instrumenter i P&ID'et har funktionsbogstaver og sløjfenummer i deres etiket (TIC 101); deres enhedsmærkning forbinder dem med diagrammet.
 Insulation	Isolering
 Interruption points refer to	Afbrydelsespunkter henviser til
+Interval	Interval
 Introduction	Indledning
 Invalid value	Ugyldig værdi
 Invert the direction of panning by scrolling	Vend retningen for panorering med rulning
@@ -1007,6 +1012,7 @@ Landscape	Liggende
 Large dot	Stor prik
 Larger texts and buttons for a touch screen at the workbench	Større tekster og knapper til en berøringsskærm ved arbejdsbordet
 Largest mesh	Største maske
+Last save confirmed by the project server: {}	Seneste lagring bekræftet af projektserveren: {}
 Latitude, longitude	Bredde, længde
 Layer	Lag
 Layer {}	Lag {}
@@ -1065,6 +1071,7 @@ Loads	Belastninger
 Local file	Lokal fil
 Local file: {}	Lokal fil: {}
 Local recovery copy of server project: {}	Lokal gendannelseskopi af serverprojekt: {}
+Local recovery copy with these changes written: {}	Lokal gendannelseskopi med disse ændringer skrevet: {}
 Lock all	Lås alle
 Lock all pages	Lås alle sider
 Lock current page	Lås aktuel side
@@ -1261,6 +1268,7 @@ No gesture	Ingen bevægelse
 No harnesses defined.	Ingen ledningsnet defineret.
 No inverter	Ingen inverter
 No jump: plain crossing, connections have dots	Intet spring: almindelig krydsning, forbindelser har prikker
+No local recovery copy of these changes has been written yet	Der er endnu ikke skrevet nogen lokal gendannelseskopi af disse ændringer
 No longer reported	Rapporteres ikke længere
 No macros yet. Select items in a schematic and save them as a macro.	Endnu ingen makroer. Vælg elementer i et diagram, og gem dem som en makro.
 No modules: plug in PLC cards of the schematic.	Ingen moduler: Isæt PLC-kort fra diagrammet.
@@ -1302,6 +1310,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Ikke ændret: 
 Not found: {}	Ikke fundet: {}
 Not in the project parts – synchronize in parts management	Ikke i projektets artikler – synkroniser i artikelstyringen
 Not on a wire	Ikke på en ledning
+Not saved yet	Ikke gemt endnu
 Not saved, locked or changed by another user	Ikke gemt, låst eller ændret af en anden bruger
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ikke taget: venstre knap alene markerer, tegner og flytter; hold en modifikatortast nede eller brug en anden knap.
 Not the shared project: changes are saved locally until it is opened on the project server again	Ikke det delte projekt: ændringer gemmes lokalt, indtil det åbnes på projektserveren igen
@@ -1456,8 +1465,10 @@ Part of the profile: generic types or parts from the parts store	Profilens artik
 Part selection from the parts database	Artikelvalg fra artikeldatabasen
 Part selection – {}	Artikelvalg – {}
 Part selection…	Artikelvalg…
+Partly saved	Delvist gemt
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Delvist gemt (revision {}). Ikke gemt, låst eller ændret af en anden bruger: {}. Din version gemmes i ruden Projektserver.
 Partly saved to the project server (revision {})	Delvist gemt på projektserveren (revision {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Delvist gemt: projektserveren udelod ændringer. Din version af dem opbevares nedenfor; de er ikke gemt på serveren.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artikler kan kun slippes på sider, der kan ændres; denne er frigivet, låst eller genereret
 Parts management	Artikelstyring
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artikler markeret til gulvmontage (pumper, tanke, kompressorer): vælg en, og klik, hvor den skal stå på rummets gulv
@@ -1787,6 +1798,7 @@ Save asks for a file	Gem spørger efter en fil
 Save as…	Gem som…
 Save current page as template…	Gem aktuel side som skabelon…
 Save current…	Gem aktuelt…
+Save failed	Lagringen mislykkedes
 Save file…	Gem fil…
 Save locally	Gem lokalt
 Save locally to {}	Gem lokalt i {}
@@ -1795,12 +1807,14 @@ Save page as macro…	Gem side som makro…
 Save page as template	Gem side som skabelon
 Save page as template…	Gem side som skabelon…
 Save selection as macro…	Gem markering som makro…
+Save shared projects to the project server automatically	Gem delte projekter automatisk på projektserveren
 Save the box content as the macro in the library	Gem boksens indhold som makroen i biblioteket
 Save to project server	Gem på projektserveren
 Save to project server: {}	Gem på projektserveren: {}
 Save to project server: {} – the connection is lost, saving tries again	Gem på projektserveren: {} – forbindelsen er mistet, gemning prøver igen
 Save workspace	Gem arbejdsområde
 Save workspace…	Gem arbejdsområde…
+Saved	Gemt
 Saved the properties of {} (revision {})	Egenskaberne for {} er gemt (revision {})
 Saved to	Gemt i
 Saved to the project server (revision {})	Gemt på projektserveren (revision {})
@@ -1832,6 +1846,7 @@ Search below this folder	Søg under denne mappe
 Search number, description, maker	Søg nummer, beskrivelse, producent
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Søg på artikelserveren efter katalog, produktgruppe og tekniske data, tilføj artikler, og kontrollér databasen for opdateringer
 Second channel	Anden kanal
+Seconds from a change to its automatic save (10 to 600)	Sekunder fra en ændring til dens automatiske lagring (10 til 600)
 Section properties	Afsnitsegenskaber
 Section properties…	Afsnitsegenskaber…
 Section {} is now section {}	Afsnit {} er nu afsnit {}
@@ -2078,6 +2093,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin venstre side mod den valgtes højre side; ledninger føres mellem dem gennem kabelgennemføringer
 The horizontal wire	Den vandrette ledning
 The items are selected and moved together	Elementerne markeres og flyttes samlet
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	Den seneste lagring mislykkedes: {}. Dine ændringer er ikke gemt på projektserveren; den automatiske lagring prøver igen.
+The local recovery copy is of {}: your latest changes are not in it yet	Den lokale gendannelseskopi er fra {}: dine seneste ændringer er endnu ikke med i den
 The lock was refused	Låsen blev afvist
 The logo is fitted into this area keeping its aspect ratio	Logoet tilpasses dette område med bevaret billedformat
 The logo of the project properties, e.g. the customer's	Logoet fra projektegenskaberne, f.eks. kundens
@@ -2102,6 +2119,7 @@ The project check	Projektkontrollen
 The project data is locked by {}: the properties cannot be changed now.	Projektdata er låst af {}: Egenskaberne kan ikke ændres nu.
 The project database needs the desktop version: the browser cannot search folders.	Projektdatabasen kræver desktopversionen: browseren kan ikke gennemsøge mapper.
 The project server does not answer: changes are not saved on it until the connection is back	Projektserveren svarer ikke: ændringer gemmes ikke der, før forbindelsen er tilbage
+The project server has confirmed no save of this session yet	Projektserveren har endnu ikke bekræftet nogen lagring i denne session
 The project server {} could not open {}.	Projektserveren {} kunne ikke åbne {}.
 The project's own page templates as a file	Projektets egne sideskabeloner som fil
 The project's own title blocks	Projektets egne tegningshoveder
@@ -2116,6 +2134,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	Dobbeltfejlen kontrolleres ved spændingen fase–jord
 The selected devices side by side on the selected rail, from its left end	De markerede enheder side om side på den markerede skinne, fra dens venstre ende
 The side of {} is open	Siden af {} er åben
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	Lagringens tilstand vises i statuslinjen og i ruden Projektserver: gemt, ikke gemt endnu, gemmer, venter på serveren, mislykkedes eller delvist gemt. Den lokale gendannelseskopi føres ved siden af; den er ikke en lagring på projektserveren.
 The symbol is placed in the project	Symbolet bruges i projektet
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Klemmeartiklerne angiver ingen endeholdere eller endeplader (tekniske data End bracket, End plate).
 The update failed	Opdateringen mislykkedes
@@ -2223,6 +2242,7 @@ Voltage (line to line)	Spænding (mellem faser)
 Voltage at maximum power	Spænding ved maksimal effekt
 Voltage drop	Spændingsfald
 WGS 84, written into the site of IFC exports	WGS 84, skrives ind i grunden ved IFC-eksport
+Waiting for the server	Venter på serveren
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Væg {}, {} m: træk for at flytte, dobbeltklik viser den, så den kan udstyres
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Væg {}, {} m: væggen, der vises i vægvisningen (fremhævet); træk for at flytte den
 Wall-mounted part	Vægmonteret artikel

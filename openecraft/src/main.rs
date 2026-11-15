@@ -22,6 +22,7 @@ mod startup;
 mod parts_ui;
 mod remote;
 mod vault;
+mod server_save;
 mod updater;
 mod wiring_ui;
 

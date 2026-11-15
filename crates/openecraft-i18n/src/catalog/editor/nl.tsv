@@ -270,6 +270,9 @@ Changed message levels ({})	Gewijzigde meldingsniveaus ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Gewijzigd sinds montage: was op X {} mm, Y {} mm met artikel {}
 Changed since wired: was {} · {} · {}	Gewijzigd sinds bedraden: was {} · {} · {}
 Changes	Wijzigingen
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Wijzigingen nog niet opgeslagen op de projectserver: voltooide wijzigingen worden binnen {} s automatisch opgeslagen
+Changes not saved on the project server: save them when the server answers again.	Wijzigingen niet opgeslagen op de projectserver: sla ze op zodra de server weer antwoordt.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Wijzigingen niet opgeslagen op de projectserver: ze worden opgeslagen zodra de server weer antwoordt.
 Changes since revision {}	Wijzigingen sinds revisie {}
 Changes the page order; the name stays	Wijzigt de paginavolgorde; de naam blijft
 Changes the tag of all functions of this device	Wijzigt de aanduiding van alle functies van dit apparaat
@@ -761,6 +764,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Zoeken…
 Finish a wire, polyline, polygon or wall	Een draad, polylijn, veelhoek of wand afronden
 Finish or cancel the drawing, then back to selecting	Tekenen afronden of annuleren, daarna terug naar selecteren
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Voltooide wijzigingen van een project dat van de projectserver is geopend, worden daar vanzelf opgeslagen; lopende invoer wordt opgeslagen zodra die is voltooid. Vergrendelingen blijven behouden. Opslaan (Ctrl+S) slaat nog steeds direct op.
 First row	Eerste rij
 Fit page	Pagina passend maken
 Fits {}	Past op {}
@@ -968,6 +972,7 @@ Instead of user name and password	In plaats van gebruikersnaam en wachtwoord
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Instrumenten in het P&ID dragen functieletters en lusnummer in hun label (TIC 101); hun apparaataanduiding koppelt ze aan het schema.
 Insulation	Isolatie
 Interruption points refer to	Onderbrekingspunten verwijzen naar
+Interval	Interval
 Introduction	Inleiding
 Invalid value	Ongeldige waarde
 Invert the direction of panning by scrolling	Richting van verschuiven door scrollen omkeren
@@ -1007,6 +1012,7 @@ Landscape	Liggend
 Large dot	Grote punt
 Larger texts and buttons for a touch screen at the workbench	Grotere teksten en knoppen voor een aanraakscherm aan de werkbank
 Largest mesh	Grootste maas
+Last save confirmed by the project server: {}	Laatste door de projectserver bevestigde opslag: {}
 Latitude, longitude	Breedtegraad, lengtegraad
 Layer	Laag
 Layer {}	Laag {}
@@ -1065,6 +1071,7 @@ Loads	Belastingen
 Local file	Lokaal bestand
 Local file: {}	Lokaal bestand: {}
 Local recovery copy of server project: {}	Lokale herstelkopie van serverproject: {}
+Local recovery copy with these changes written: {}	Lokale herstelkopie met deze wijzigingen geschreven: {}
 Lock all	Alles vergrendelen
 Lock all pages	Alle pagina's vergrendelen
 Lock current page	Huidige pagina vergrendelen
@@ -1261,6 +1268,7 @@ No gesture	Geen gebaar
 No harnesses defined.	Geen kabelbomen gedefinieerd.
 No inverter	Geen omvormer
 No jump: plain crossing, connections have dots	Geen sprong: gewone kruising, verbindingen hebben punten
+No local recovery copy of these changes has been written yet	Er is nog geen lokale herstelkopie van deze wijzigingen geschreven
 No longer reported	Wordt niet meer gemeld
 No macros yet. Select items in a schematic and save them as a macro.	Nog geen macro's. Selecteer elementen in een schema en sla ze op als macro.
 No modules: plug in PLC cards of the schematic.	Geen modules: plaats PLC-kaarten uit het schema.
@@ -1302,6 +1310,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Niet gewijzigd
 Not found: {}	Niet gevonden: {}
 Not in the project parts – synchronize in parts management	Niet in de projectartikelen – synchroniseer in het artikelbeheer
 Not on a wire	Niet op een draad
+Not saved yet	Nog niet opgeslagen
 Not saved, locked or changed by another user	Niet opgeslagen, vergrendeld of gewijzigd door een andere gebruiker
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Niet overgenomen: de linkerknop alleen selecteert, tekent en verplaatst; houd een combinatietoets ingedrukt of gebruik een andere knop.
 Not the shared project: changes are saved locally until it is opened on the project server again	Niet het gedeelde project: wijzigingen worden lokaal opgeslagen tot het opnieuw op de projectserver wordt geopend
@@ -1456,8 +1465,10 @@ Part of the profile: generic types or parts from the parts store	Artikel van het
 Part selection from the parts database	Artikelselectie uit de artikeldatabase
 Part selection – {}	Artikelselectie – {}
 Part selection…	Artikelkeuze…
+Partly saved	Gedeeltelijk opgeslagen
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Gedeeltelijk opgeslagen (revisie {}). Niet opgeslagen, vergrendeld of gewijzigd door een andere gebruiker: {}. Je versie blijft bewaard in het deelvenster Projectserver.
 Partly saved to the project server (revision {})	Gedeeltelijk opgeslagen op de projectserver (revisie {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Gedeeltelijk opgeslagen: de projectserver heeft wijzigingen overgeslagen. Uw versie ervan wordt hieronder bewaard; ze zijn niet op de server opgeslagen.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artikelen kunnen alleen op wijzigbare pagina's worden neergezet; deze is vrijgegeven, vergrendeld of gegenereerd
 Parts management	Artikelbeheer
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artikelen gemarkeerd voor vloermontage (pompen, tanks, compressoren): kies er een en klik waar het op de vloer van de ruimte staat
@@ -1787,6 +1798,7 @@ Save asks for a file	Opslaan vraagt om een bestand
 Save as…	Opslaan als…
 Save current page as template…	Huidige pagina opslaan als sjabloon…
 Save current…	Huidige opslaan…
+Save failed	Opslaan mislukt
 Save file…	Bestand opslaan…
 Save locally	Lokaal opslaan
 Save locally to {}	Lokaal opslaan in {}
@@ -1795,12 +1807,14 @@ Save page as macro…	Pagina opslaan als macro…
 Save page as template	Pagina opslaan als sjabloon
 Save page as template…	Pagina opslaan als sjabloon…
 Save selection as macro…	Selectie opslaan als macro…
+Save shared projects to the project server automatically	Gedeelde projecten automatisch op de projectserver opslaan
 Save the box content as the macro in the library	De inhoud van het kader als de macro in de bibliotheek opslaan
 Save to project server	Opslaan op de projectserver
 Save to project server: {}	Opslaan op projectserver: {}
 Save to project server: {} – the connection is lost, saving tries again	Opslaan op projectserver: {} – de verbinding is verbroken, opslaan probeert het opnieuw
 Save workspace	Werkruimte opslaan
 Save workspace…	Werkruimte opslaan…
+Saved	Opgeslagen
 Saved the properties of {} (revision {})	Eigenschappen van {} opgeslagen (revisie {})
 Saved to	Opgeslagen in
 Saved to the project server (revision {})	Opgeslagen op de projectserver (revisie {})
@@ -1832,6 +1846,7 @@ Search below this folder	Zoeken onder deze map
 Search number, description, maker	Nummer, beschrijving, fabrikant zoeken
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	De artikelserver doorzoeken op catalogus, productgroep en technische gegevens, artikelen toevoegen en de database controleren op updates
 Second channel	Tweede kanaal
+Seconds from a change to its automatic save (10 to 600)	Seconden van een wijziging tot de automatische opslag ervan (10 tot 600)
 Section properties	Sectie-eigenschappen
 Section properties…	Sectie-eigenschappen…
 Section {} is now section {}	Sectie {} is nu sectie {}
@@ -2078,6 +2093,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	De behuizing staat met haar linkerzijde tegen de rechterzijde van de gekozen behuizing; draden lopen ertussen door kabeldoorvoeren
 The horizontal wire	De horizontale draad
 The items are selected and moved together	De elementen worden samen geselecteerd en verplaatst
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	De laatste opslag is mislukt: {}. Uw wijzigingen zijn niet op de projectserver opgeslagen; de automatische opslag probeert het opnieuw.
+The local recovery copy is of {}: your latest changes are not in it yet	De lokale herstelkopie is van {}: uw laatste wijzigingen staan er nog niet in
 The lock was refused	De vergrendeling is geweigerd
 The logo is fitted into this area keeping its aspect ratio	Het logo wordt met behoud van de beeldverhouding in dit gebied ingepast
 The logo of the project properties, e.g. the customer's	Het logo uit de projecteigenschappen, bijv. dat van de klant
@@ -2102,6 +2119,7 @@ The project check	De projectcontrole
 The project data is locked by {}: the properties cannot be changed now.	De projectgegevens zijn vergrendeld door {}: de eigenschappen kunnen nu niet worden gewijzigd.
 The project database needs the desktop version: the browser cannot search folders.	De projectdatabase vereist de desktopversie: de browser kan geen mappen doorzoeken.
 The project server does not answer: changes are not saved on it until the connection is back	De projectserver antwoordt niet: wijzigingen worden daar pas opgeslagen als de verbinding terug is
+The project server has confirmed no save of this session yet	De projectserver heeft nog geen opslag van deze sessie bevestigd
 The project server {} could not open {}.	De projectserver {} kon {} niet openen.
 The project's own page templates as a file	De eigen paginasjablonen van het project als bestand
 The project's own title blocks	De eigen titelblokken van het project
@@ -2116,6 +2134,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	De dubbele fout wordt gecontroleerd met de spanning fase–aarde
 The selected devices side by side on the selected rail, from its left end	De geselecteerde apparaten naast elkaar op de geselecteerde rail, vanaf het linkeruiteinde
 The side of {} is open	De zijde van {} is open
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	De status van de opslag staat in de statusbalk en in het deelvenster Projectserver: opgeslagen, nog niet opgeslagen, bezig met opslaan, wachten op de server, mislukt of gedeeltelijk opgeslagen. De lokale herstelkopie wordt daarnaast bijgehouden; die is geen opslag op de projectserver.
 The symbol is placed in the project	Het symbool wordt in het project gebruikt
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	De klemartikelen noemen geen eindsteunen of afdekplaten (technische gegevens End bracket, End plate).
 The update failed	De update is mislukt
@@ -2223,6 +2242,7 @@ Voltage (line to line)	Spanning (fase-fase)
 Voltage at maximum power	Spanning bij maximaal vermogen
 Voltage drop	Spanningsval
 WGS 84, written into the site of IFC exports	WGS 84, wordt in het terrein van IFC-exports geschreven
+Waiting for the server	Wachten op de server
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Wand {}, {} m: slepen om te verplaatsen, dubbelklik toont hem om uit te rusten
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Wand {}, {} m: de wand die in het wandaanzicht wordt getoond (gemarkeerd); slepen om te verplaatsen
 Wall-mounted part	Wandmontage-artikel

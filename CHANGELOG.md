@@ -17,6 +17,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   shell tables, document state and drawing views moved into the library crates
   `openecraft-shell`, `openecraft-session` and `openecraft-canvas`.
 
+- **Automatic saving of shared projects**: a project opened from the project server
+  is saved to it by itself, 30 seconds after a change and every 30 seconds while the
+  work goes on (*Settings › Servers* or the *Project server* pane: on / off, 10 to
+  600 s). Unfinished drags and text inputs are not sent, saves run one at a time and
+  release no locks; `Ctrl+S` still saves at once. The status bar and the pane show
+  *Saved*, *Not saved yet*, *Saving…*, *Waiting for the server*, *Save failed* and
+  *Partly saved* apart, with the time of the last save the server confirmed. During
+  an outage the changes wait, the local recovery copy is written at once (and named
+  only once it is written) and the save follows when the session goes on
+  ([project server](docs/project-server.md)).
 - **Properties and copies of server projects** (#186): the project list of the
   *Project server* pane selects a project; *Properties…* shows its properties as
   saved on the server and changes them without opening the project (for who may

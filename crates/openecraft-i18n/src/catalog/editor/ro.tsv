@@ -270,6 +270,9 @@ Changed message levels ({})	Niveluri de mesaj modificate ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Modificat de la montare: era la X {} mm, Y {} mm cu articolul {}
 Changed since wired: was {} · {} · {}	Modificat de la cablare: era {} · {} · {}
 Changes	Modificări
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Modificările nu sunt încă salvate pe serverul de proiecte: modificările încheiate sunt salvate automat în cel mult {} s
+Changes not saved on the project server: save them when the server answers again.	Modificările nu sunt salvate pe serverul de proiecte: salvați-le când serverul răspunde din nou.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Modificările nu sunt salvate pe serverul de proiecte: vor fi salvate de îndată ce serverul răspunde din nou.
 Changes since revision {}	Modificări de la revizia {}
 Changes the page order; the name stays	Schimbă ordinea paginilor; numele rămâne
 Changes the tag of all functions of this device	Modifică identificatorul tuturor funcțiilor acestui dispozitiv
@@ -761,6 +764,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Găsire…
 Finish a wire, polyline, polygon or wall	Terminarea unui fir, unei polilinii, unui poligon sau unui perete
 Finish or cancel the drawing, then back to selecting	Terminarea sau anularea desenului, apoi înapoi la selectare
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Modificările încheiate ale unui proiect deschis de pe serverul de proiecte sunt salvate acolo de la sine; o introducere în curs este salvată după ce se încheie. Blocările se păstrează. Salvare (Ctrl+S) salvează în continuare imediat.
 First row	Primul rând
 Fit page	Încadrare pagină
 Fits {}	Compatibil cu {}
@@ -968,6 +972,7 @@ Instead of user name and password	În locul numelui de utilizator și al parolei
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Instrumentele din P&ID poartă literele de funcție și numărul buclei în eticheta lor (TIC 101); identificatorul lor de dispozitiv le leagă de schemă.
 Insulation	Izolație
 Interruption points refer to	Punctele de întrerupere fac referire la
+Interval	Interval
 Introduction	Introducere
 Invalid value	Valoare nevalidă
 Invert the direction of panning by scrolling	Inversează direcția deplasării prin derulare
@@ -1007,6 +1012,7 @@ Landscape	Vedere
 Large dot	Punct mare
 Larger texts and buttons for a touch screen at the workbench	Texte și butoane mai mari pentru un ecran tactil la banca de lucru
 Largest mesh	Cel mai mare ochi
+Last save confirmed by the project server: {}	Ultima salvare confirmată de serverul de proiecte: {}
 Latitude, longitude	Latitudine, longitudine
 Layer	Strat
 Layer {}	Stratul {}
@@ -1065,6 +1071,7 @@ Loads	Consumatori
 Local file	Fișier local
 Local file: {}	Fișier local: {}
 Local recovery copy of server project: {}	Copie locală de recuperare a proiectului de pe server: {}
+Local recovery copy with these changes written: {}	Copia locală de recuperare cu aceste modificări a fost scrisă: {}
 Lock all	Blocare toate
 Lock all pages	Blocare toate paginile
 Lock current page	Blocare pagină curentă
@@ -1261,6 +1268,7 @@ No gesture	Niciun gest
 No harnesses defined.	Nu sunt definite cablaje.
 No inverter	Fără invertor
 No jump: plain crossing, connections have dots	Fără salt: încrucișare simplă, joncțiunile au puncte
+No local recovery copy of these changes has been written yet	Nu a fost scrisă încă nicio copie locală de recuperare a acestor modificări
 No longer reported	Nu mai este raportat
 No macros yet. Select items in a schematic and save them as a macro.	Încă nu există macro-uri. Selectați elemente într-o schemă și salvați-le ca macro.
 No modules: plug in PLC cards of the schematic.	Nu există module: inserați carduri PLC din schemă.
@@ -1302,6 +1310,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nemodificat: {
 Not found: {}	Negăsit: {}
 Not in the project parts – synchronize in parts management	Nu se află în articolele proiectului – sincronizați în gestionarea articolelor
 Not on a wire	Nu se află pe un conductor
+Not saved yet	Încă nesalvat
 Not saved, locked or changed by another user	Nesalvat, blocat sau modificat de alt utilizator
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nepreluat: butonul stâng singur selectează, desenează și mută; țineți apăsată o tastă modificatoare sau folosiți alt buton.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nu este proiectul partajat: modificările sunt salvate local până când este redeschis pe serverul de proiecte
@@ -1456,8 +1465,10 @@ Part of the profile: generic types or parts from the parts store	Articolul profi
 Part selection from the parts database	Selecție articol din baza de date de articole
 Part selection – {}	Selecție articol – {}
 Part selection…	Selecție articol…
+Partly saved	Salvat parțial
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Salvat parțial (revizia {}). Nesalvat, blocat sau modificat de alt utilizator: {}. Versiunea dvs. este păstrată în panoul Server de proiecte.
 Partly saved to the project server (revision {})	Salvat parțial pe serverul de proiecte (revizia {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Salvat parțial: serverul de proiecte a omis modificări. Versiunea dvs. este păstrată mai jos; ele nu sunt salvate pe server.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Articolele pot fi plasate doar pe pagini care pot fi modificate; aceasta este eliberată, blocată sau generată
 Parts management	Gestionare articole
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Articole marcate pentru montaj pe pardoseală (pompe, rezervoare, compresoare): alegeți unul, apoi faceți clic unde stă pe pardoseala încăperii
@@ -1787,6 +1798,7 @@ Save asks for a file	Salvează cere un fișier
 Save as…	Salvare ca…
 Save current page as template…	Salvare pagină curentă ca șablon…
 Save current…	Salvare curent…
+Save failed	Salvarea a eșuat
 Save file…	Salvare fișier…
 Save locally	Salvează local
 Save locally to {}	Salvează local în {}
@@ -1795,12 +1807,14 @@ Save page as macro…	Salvare pagină ca macro…
 Save page as template	Salvare pagină ca șablon
 Save page as template…	Salvare pagină ca șablon…
 Save selection as macro…	Salvare selecție ca macro…
+Save shared projects to the project server automatically	Salvează automat proiectele partajate pe serverul de proiecte
 Save the box content as the macro in the library	Salvarea conținutului casetei ca macro în bibliotecă
 Save to project server	Salvare pe serverul de proiecte
 Save to project server: {}	Salvează pe serverul de proiecte: {}
 Save to project server: {} – the connection is lost, saving tries again	Salvează pe serverul de proiecte: {} – conexiunea s-a pierdut, salvarea încearcă din nou
 Save workspace	Salvare spațiu de lucru
 Save workspace…	Salvare spațiu de lucru…
+Saved	Salvat
 Saved the properties of {} (revision {})	Proprietățile {} au fost salvate (revizia {})
 Saved to	Salvat în
 Saved to the project server (revision {})	Salvat pe serverul de proiecte (revizia {})
@@ -1832,6 +1846,7 @@ Search below this folder	Căutare sub acest folder
 Search number, description, maker	Caută număr, descriere, producător
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Căutați în serverul de articole după catalog, grupă de produse și date tehnice, adăugați articole și verificați baza de date pentru actualizări
 Second channel	Al doilea canal
+Seconds from a change to its automatic save (10 to 600)	Secunde de la o modificare până la salvarea ei automată (de la 10 la 600)
 Section properties	Proprietățile secțiunii
 Section properties…	Proprietățile secțiunii…
 Section {} is now section {}	Secțiunea {} este acum secțiunea {}
@@ -2078,6 +2093,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Carcasa stă cu partea stângă lipită de partea dreaptă a celei alese; conductoarele trec între ele prin treceri de cabluri
 The horizontal wire	Firul orizontal
 The items are selected and moved together	Elementele se selectează și se mută împreună
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	Ultima salvare a eșuat: {}. Modificările dvs. nu sunt salvate pe serverul de proiecte; salvarea automată încearcă din nou.
+The local recovery copy is of {}: your latest changes are not in it yet	Copia locală de recuperare este din {}: ultimele dvs. modificări nu sunt încă în ea
 The lock was refused	Blocarea a fost refuzată
 The logo is fitted into this area keeping its aspect ratio	Sigla este încadrată în această zonă păstrând proporțiile
 The logo of the project properties, e.g. the customer's	Sigla din proprietățile proiectului, de ex. cea a clientului
@@ -2102,6 +2119,7 @@ The project check	Verificarea proiectului
 The project data is locked by {}: the properties cannot be changed now.	Datele proiectului sunt blocate de {}: proprietățile nu pot fi modificate acum.
 The project database needs the desktop version: the browser cannot search folders.	Baza de date de proiecte necesită versiunea desktop: browserul nu poate căuta în foldere.
 The project server does not answer: changes are not saved on it until the connection is back	Serverul de proiecte nu răspunde: modificările nu sunt salvate pe el până nu revine conexiunea
+The project server has confirmed no save of this session yet	Serverul de proiecte nu a confirmat încă nicio salvare a acestei sesiuni
 The project server {} could not open {}.	Serverul de proiecte {} nu a putut deschide {}.
 The project's own page templates as a file	Șabloanele de pagină proprii ale proiectului ca fișier
 The project's own title blocks	Cartușele proprii ale proiectului
@@ -2116,6 +2134,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	Al doilea defect este verificat la tensiunea fază-pământ
 The selected devices side by side on the selected rail, from its left end	Dispozitivele selectate unul lângă altul pe șina selectată, de la capătul ei stâng
 The side of {} is open	Partea lui {} este deschisă
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	Starea salvării apare în bara de stare și în panoul Server de proiecte: salvat, încă nesalvat, se salvează, se așteaptă serverul, eșuat sau salvat parțial. Copia locală de recuperare este ținută separat; ea nu este o salvare pe serverul de proiecte.
 The symbol is placed in the project	Simbolul este plasat în proiect
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Articolele de bornă nu indică opritoare de capăt sau plăci de capăt (date tehnice End bracket, End plate).
 The update failed	Actualizarea a eșuat
@@ -2223,6 +2242,7 @@ Voltage (line to line)	Tensiune (între faze)
 Voltage at maximum power	Tensiune la putere maximă
 Voltage drop	Cădere de tensiune
 WGS 84, written into the site of IFC exports	WGS 84, scrisă în terenul exporturilor IFC
+Waiting for the server	Se așteaptă serverul
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Peretele {}, {} m: trageți pentru a-l muta, dublu clic îl afișează pentru echipare
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Peretele {}, {} m: peretele afișat în vederea peretelui (evidențiat); trageți pentru a-l muta
 Wall-mounted part	Articol de montat pe perete

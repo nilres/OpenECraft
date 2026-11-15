@@ -7,6 +7,7 @@
 use openecraft_ui::icons::{self, Icon};
 use super::App;
 use openecraft_core::history::History;
+use crate::server_save::{Facts, State};
 use crate::remote::{Blocked, Link, NameError, Remote, Reply, Sent};
 use egui::{Color32, RichText};
 use openecraft_core::collab::{restore, valid_name, CopySource, Failure, Grant, KeptReason, ProjectMeta, ProjectRight, Right, Shared, Snapshot, Subject, Target};
@@ -106,7 +107,10 @@ impl App {
                     let status = self.remote.status.clone();
                     self.take_snapshot(ctx, *snapshot, Some(&sent));
                     if ignored.is_empty() {
-                        self.notify_ok(ctx, status);
+                        // The automatic save shows in the state of the save only.
+                        if !sent.auto {
+                            self.notify_ok(ctx, status);
+                        }
                     } else {
                         self.notify_warning(
                             ctx,
@@ -145,7 +149,15 @@ impl App {
                         self.notify_warning(ctx, tr_fmt!("Not changed, the lock was refused: {}. Your version is kept in the Project server pane.", kept.join(", ")));
                     }
                 }
-                Reply::Opened(_, Err(_)) | Reply::Saved(_, Err(_)) | Reply::Access(_, Err(_)) => {
+                Reply::Saved(sent, Err(e)) => {
+                    // The automatic save tells its first failure; a lost connection
+                    // or session is told once, with its state. It tries again.
+                    if !sent.auto || (e.why == Failure::Refused && self.remote.save_failures == 1) {
+                        self.notify_error(ctx, self.remote.status.clone());
+                    }
+                    self.write_recovery();
+                }
+                Reply::Opened(_, Err(_)) | Reply::Access(_, Err(_)) => {
                     self.notify_error(ctx, self.remote.status.clone());
                 }
                 Reply::Login(Err(_)) => {
@@ -167,6 +179,9 @@ impl App {
 
     /// Tells once what a change of the connection's state means for the open project.
     fn link_changed(&mut self, ctx: &egui::Context, before: Link) {
+        if self.remote.link != Link::Online {
+            self.write_recovery();
+        }
         match self.remote.link {
             // A reopened project is told with its new session; after signing in again
             // the session is checked first.
@@ -277,6 +292,67 @@ impl App {
     /// false without a session to save with (`Remote::status` tells why).
     pub(super) fn save_remote(&mut self, release: Vec<Target>) -> bool {
         self.remote.save(&self.session.prj, release)
+    }
+
+    /// Writes the local recovery copy now (it is written every 30 s otherwise): the
+    /// changes cannot go to the server for the time being.
+    fn write_recovery(&mut self) {
+        if self.session.dirty() {
+            self.autosave.save(&self.session, &self.parts_db);
+        }
+    }
+
+    /// The automatic save of the shared project: sends the finished changes when they
+    /// are due (`committed`: no drag or text input is under way). Call after the
+    /// frame's edits were committed and their locks checked.
+    pub(super) fn autosave_remote(&mut self, ctx: &egui::Context, committed: bool) {
+        if self.remote.shared.is_none() {
+            self.server_auto = crate::server_save::Auto::default();
+            return;
+        }
+        let now = ctx.input(|i| i.time);
+        let facts = Facts {
+            // Changes a save left out wait for the user, not for the next save.
+            // A viewer has nothing the server takes.
+            changed: self.session.dirty()
+                && self.remote.unconfirmed != Some(self.session.history.state())
+                && (!self.remote.viewer() || self.remote.may(ProjectRight::Review)),
+            committed,
+            saving: self.remote.saving(),
+            link: self.remote.link,
+        };
+        let settings = self.shell.server_autosave;
+        if self.server_auto.due(now, &settings, &facts) {
+            self.remote.autosave(&self.session.prj);
+        }
+        if let Some(wait) = self.server_auto.wait(now, &settings).filter(|w| *w > 0.0) {
+            ctx.request_repaint_after(std::time::Duration::from_secs_f64(wait));
+        }
+    }
+
+    /// Whether the changes of the shared project are on the server.
+    pub(super) fn save_state(&self) -> State {
+        let partial = self.remote.unconfirmed == Some(self.session.history.state());
+        State::of(self.remote.link, self.remote.saving(), self.remote.save_error.is_some(), partial, self.session.dirty())
+    }
+
+    /// The state of the save as a sentence, with what the automatic save does about it.
+    pub(super) fn save_state_text(&self) -> String {
+        let auto = self.shell.server_autosave;
+        self.save_state().text(self.remote.save_error.as_deref(), auto.enabled.then_some(auto.secs))
+    }
+
+    /// The setting of the automatic save to the project server.
+    pub(super) fn server_autosave_setting(&mut self, ui: &mut egui::Ui) {
+        use crate::server_save::{MAX_SECS, MIN_SECS};
+        let s = &mut self.shell.server_autosave;
+        ui.checkbox(&mut s.enabled, tr("Save shared projects to the project server automatically"))
+            .on_hover_text(tr("Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once."));
+        ui.horizontal(|ui| {
+            ui.label(tr("Interval"));
+            ui.add_enabled(s.enabled, egui::DragValue::new(&mut s.secs).range(MIN_SECS..=MAX_SECS).suffix(" s"))
+                .on_hover_text(tr("Seconds from a change to its automatic save (10 to 600)"));
+        });
     }
 
     /// Ends the shared session; the project stays open as a local recovery copy.
@@ -829,12 +905,28 @@ impl App {
             Link::Refused => (c.error, tr("The project server does not open this project again. Try again, or keep working on a local copy.").to_string()),
         };
         ui.colored_label(color, text);
-        let (color, saved) = match &self.remote.save_error {
-            Some(e) => (c.error, tr_fmt!("The last save failed: {}. Your changes are not saved on the project server.", e)),
-            None if self.session.dirty() => (c.warning, tr("Changes not saved on the project server yet").to_string()),
-            None => (ui.visuals().weak_text_color(), tr("All changes are saved on the project server").to_string()),
+        let state = self.save_state();
+        let color = match state {
+            State::Saved | State::Saving => ui.visuals().weak_text_color(),
+            State::Pending | State::Partial => c.warning,
+            State::Offline | State::Failed => c.error,
         };
-        ui.colored_label(color, saved);
+        ui.colored_label(color, self.save_state_text());
+        match &self.remote.last_saved {
+            Some(time) => ui.weak(tr_fmt!("Last save confirmed by the project server: {}", time)),
+            None => ui.weak(tr("The project server has confirmed no save of this session yet")),
+        };
+        // During an outage: whether the changes are in the local recovery copy. Only
+        // a copy that was written is claimed.
+        if matches!(state, State::Offline | State::Failed) {
+            let now = self.session.history.state();
+            match self.autosave.backup() {
+                Some((written, time)) if *written == now => ui.weak(tr_fmt!("Local recovery copy with these changes written: {}", time)),
+                Some((_, time)) => ui.colored_label(c.warning, tr_fmt!("The local recovery copy is of {}: your latest changes are not in it yet", time)),
+                None => ui.colored_label(c.warning, tr("No local recovery copy of these changes has been written yet")),
+            };
+        }
+        self.server_autosave_setting(ui);
         if self.remote.online() {
             return;
         }

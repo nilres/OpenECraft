@@ -512,7 +512,7 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
     let observer = second_restart.endpoint();
     let observer_open: Opened = request(observer.open(&name, &other_user));
     let endpoint = reauth.endpoint();
-    let sent = reauth.begin_save(&session.prj, Vec::new()).unwrap();
+    let sent = reauth.begin_save(&session.prj, Vec::new(), false).unwrap();
     let delayed = reauth.receiver("synthetic delayed save".into());
     let shared = reauth.shared.as_ref().unwrap();
     let snapshot: openecraft_core::collab::Snapshot = request(endpoint.save(&name, &shared.session, &sent.project, sent.release.clone(), sent.revision));
