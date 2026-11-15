@@ -206,6 +206,20 @@ The nginx site is `installer/docker/editor-web.conf` (mount your own at
 and the WebAssembly, named after their hash, are cached for a year. Put a TLS reverse
 proxy in front of it for other machines, as for the servers.
 
+The workflow *Docker image of the web editor* (`.github/workflows/docker-web.yml`)
+rebuilds this image alone, without the rest of CI: Actions › Docker image of the web
+editor › Run workflow, with a branch, a release tag (`v0.1.2`, also one older than the
+workflow) or a commit, further tags, whether to push and whether to build without the
+build cache. It checks the image like CI (`installer/docker/check-editor-web.sh`) and
+pushes it with the tags CI gives that commit (`sha-<commit>`, `edge` for the tip of
+master, `<version>`, and `<major>.<minor>` and `latest` only when no newer release
+has them), plus the tags given. From the command line:
+
+```bash
+gh workflow run docker-web.yml -f ref=v0.1.2
+gh workflow run docker-web.yml -f ref=master -f no-cache=true
+```
+
 ### Website
 
 The website of the project with its live demos is a web build of its own (`website/`),

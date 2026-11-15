@@ -301,20 +301,7 @@ jobs:
           docker exec parts ls /usr/share/doc/openecraft/THIRD-PARTY-LICENSES.html
           docker stop parts projects
       - name: Start the web editor
-        run: |
-          docker run -d --name web -p 8080:8080 openecraft-web:ci
-          for _ in $(seq 30); do curl -fs http://127.0.0.1:8080/ > /dev/null && break; sleep 1; done
-          curl -fsS http://127.0.0.1:8080/ -o index.html || { docker logs web; exit 1; }
-          grep -q openecraft_canvas index.html
-          wasm=$(grep -o '[^"/]*_bg\.wasm' index.html | head -n 1)
-          test -n "$wasm"
-          curl -fsS -o /dev/null -w '%{content_type}\n' "http://127.0.0.1:8080/$wasm" | tee type.txt
-          grep -qx 'application/wasm' type.txt
-          for file in LICENSE-MIT LICENSE-APACHE OFL-NotoSans.txt THIRD-PARTY-LICENSES.html; do
-            curl -fsS -o /dev/null "http://127.0.0.1:8080/$file"
-          done
-          docker logs web
-          docker stop web
+        run: bash installer/docker/check-editor-web.sh openecraft-web:ci 8080
       - name: Start the website
         run: |
           docker run -d --name site -p 8088:8080 -e OPENECRAFT_EDITOR_URL=https://editor.example/ \
