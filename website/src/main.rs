@@ -148,11 +148,11 @@ mod web {
         STUDIO.with(|s| s.borrow().export(name)).map(|(_, bytes)| bytes).map_err(|e| JsValue::from_str(&e))
     }
 
-    /// The 3D routing of a project in a language (`studio::search_routing`): called
+    /// The 3D routing of a project in a language (`session::search_routing`): called
     /// in the worker of the page, a second instance of this module.
     #[wasm_bindgen]
     pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, JsValue> {
-        crate::studio::search_routing(project, lang, prebuilt).map_err(|e| JsValue::from_str(&e))
+        openecraft_session::session::search_routing(project, lang, prebuilt).map_err(|e| JsValue::from_str(&e))
     }
 
     /// Starts a view (`schematic`, `layout`) in the canvas with the id.

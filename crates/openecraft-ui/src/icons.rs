@@ -9,7 +9,7 @@
 //!
 //! Shapes are separated by `;`.
 
-use egui::{pos2, vec2, Color32, Painter, Pos2, Rect, Response, Sense, Shape, Stroke, Ui, Vec2, WidgetInfo, Role};
+use egui::{pos2, vec2, Color32, Mesh, Painter, Pos2, Rect, Response, Sense, Shape, Stroke, Ui, Vec2, WidgetInfo, Role};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Icon {
@@ -399,7 +399,13 @@ pub fn parse(path: &str) -> Option<Vec<Prim>> {
                 _ => Prim::Fill(pts()),
             },
             "C" | "D" if nums.len() == 3 => Prim::Circle(pos2(nums[0], nums[1]), nums[2], op == "D"),
-            "E" if nums.len() == 4 => Prim::Lines(arc(pos2(nums[0], nums[1]), nums[2], nums[3], 0.0, 360.0), true),
+            "E" if nums.len() == 4 => {
+                // Without the end point: it repeats the start but for rounding, and egui
+                // draws the corner at such a tiny segment as a long spike.
+                let mut pts = arc(pos2(nums[0], nums[1]), nums[2], nums[3], 0.0, 360.0);
+                pts.pop();
+                Prim::Lines(pts, true)
+            }
             "R" if nums.len() == 4 => {
                 let (x, y, w, h) = (nums[0], nums[1], nums[2], nums[3]);
                 Prim::Lines(vec![pos2(x, y), pos2(x + w, y), pos2(x + w, y + h), pos2(x, y + h)], true)
@@ -415,38 +421,51 @@ pub fn parse(path: &str) -> Option<Vec<Prim>> {
 
 /// Paints an icon into `rect` (square) in `color`.
 pub fn paint(painter: &Painter, rect: Rect, icon: Icon, color: Color32) {
-    let Some(prims) = parse(icon.path()) else { return };
+    painter.extend(shapes(rect, icon, color));
+}
+
+/// The shapes of an icon drawn into `rect` (square) in `color`.
+pub fn shapes(rect: Rect, icon: Icon, color: Color32) -> Vec<Shape> {
+    let Some(prims) = parse(icon.path()) else { return Vec::new() };
     let s = rect.width().min(rect.height()) / 16.0;
     let o = rect.center() - vec2(8.0, 8.0) * s;
     let at = |p: Pos2| o + p.to_vec2() * s;
     let stroke = Stroke::new((1.25 * s).max(1.0), color);
+    let mut out = Vec::new();
     for prim in prims {
         match prim {
             Prim::Lines(pts, closed) => {
                 let pts: Vec<Pos2> = pts.into_iter().map(at).collect();
                 if closed {
-                    painter.add(Shape::closed_line(pts, stroke));
+                    out.push(Shape::closed_line(pts, stroke));
                 } else {
-                    painter.add(Shape::line(pts, stroke));
+                    out.push(Shape::line(pts, stroke));
                 }
             }
             Prim::Fill(pts) => {
                 let pts: Vec<Pos2> = pts.into_iter().map(at).collect();
-                // Concave outlines (arrow, star) are drawn as a fan from the first point.
-                for i in 1..pts.len().saturating_sub(1) {
-                    painter.add(Shape::convex_polygon(vec![pts[0], pts[i], pts[i + 1]], color, Stroke::NONE));
+                // Concave outlines (arrow, star) are drawn as a fan from the first point,
+                // a mesh: egui would feather each thin triangle of the fan into spikes.
+                let mut mesh = Mesh::default();
+                for &p in &pts {
+                    mesh.colored_vertex(p, color);
                 }
-                painter.add(Shape::closed_line(pts, Stroke::new(0.5 * s, color)));
+                for i in 1..pts.len().saturating_sub(1) as u32 {
+                    mesh.add_triangle(0, i, i + 1);
+                }
+                out.push(Shape::mesh(mesh));
+                out.push(Shape::closed_line(pts, Stroke::new(0.5 * s, color)));
             }
             Prim::Circle(c, r, filled) => {
                 if filled {
-                    painter.circle_filled(at(c), r * s, color);
+                    out.push(Shape::circle_filled(at(c), r * s, color));
                 } else {
-                    painter.circle_stroke(at(c), r * s, stroke);
+                    out.push(Shape::circle_stroke(at(c), r * s, stroke));
                 }
             }
         }
     }
+    out
 }
 
 /// An icon of `size` points as a widget (no interaction).

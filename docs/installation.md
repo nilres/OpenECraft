@@ -204,7 +204,10 @@ docker build -f installer/docker/Dockerfile --target editor-web -t openecraft-we
 The nginx site is `installer/docker/editor-web.conf` (mount your own at
 `/etc/nginx/conf.d/default.conf`): `index.html` is checked at every visit, the scripts
 and the WebAssembly, named after their hash, are cached for a year. Put a TLS reverse
-proxy in front of it for other machines, as for the servers.
+proxy in front of it for other machines, as for the servers. Beside the page are
+`worker.js`, a worker that searches the 3D routing of an opened project so the page
+stays responsive meanwhile, and `routing/`, the routings of the examples from the
+build, so that an example opens at once.
 
 The workflow *Docker image of the web editor* (`.github/workflows/docker-web.yml`)
 rebuilds this image alone, without the rest of CI: Actions › Docker image of the web

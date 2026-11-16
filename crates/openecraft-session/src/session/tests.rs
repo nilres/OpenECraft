@@ -279,6 +279,45 @@ fn a_routing_searched_elsewhere_is_awaited_and_taken() {
 }
 
 #[test]
+fn without_threads_the_routing_of_an_opened_panel_layout_is_searched_elsewhere() {
+    let plugins = Plugins::new(Vec::<String>::new());
+    let prj = (openecraft_core::sample::EXAMPLES.iter().find(|e| e.key == "conveyor").unwrap().build)();
+    assert!(!prj.layout.enclosures.is_empty());
+    let mut elsewhere = Cache::default();
+    let found = Analysis::build_with(&prj, &mut elsewhere);
+    let searched = elsewhere.routing_searched().unwrap();
+
+    // The desktop builds it on another thread.
+    let s = Session::new(prj.clone(), None);
+    assert!(!s.routes_here());
+
+    // The browser: the search would stop the page, a worker has it searched.
+    let mut s = Session::new(prj.clone(), None);
+    s.threaded = false;
+    assert!(s.routes_here());
+    s.await_routing();
+    assert!(!s.routes_here(), "it is searched elsewhere");
+    assert_eq!(s.opening().map(|p| p.step), Some(Step::Routing), "the loading screen tells what is being done");
+    s.routing_found(Some(&searched));
+    assert!(!s.routes_here(), "the analysis is built here with the routing found");
+    s.opening_shown();
+    s.refresh(&plugins, false);
+    s.opening_shown();
+    s.refresh(&plugins, false);
+    assert!(s.opening().is_none());
+    assert_eq!(s.analysis.routing, found.routing);
+    assert!(!s.routes_here(), "an opened project is not searched elsewhere again");
+
+    // A project opened next is searched elsewhere again; one without a panel layout
+    // has no routing to search.
+    s.replace(prj, None, None);
+    assert!(s.routes_here());
+    s.replace(Project::new_default(), None, None);
+    assert!(s.prj.layout.enclosures.is_empty());
+    assert!(!s.routes_here());
+}
+
+#[test]
 fn a_project_replaced_while_opening_gets_its_own_analysis() {
     let plugins = Plugins::new(Vec::<String>::new());
     let mut s = Session::new(Project::new_default(), None);
@@ -324,6 +363,79 @@ fn edits_of_the_layout_are_routed_in_the_background() {
     }
     assert_eq!(s.analysis.routing, Analysis::build(&s.prj).routing, "as routed at once");
     assert_ne!(s.analysis.routing, before);
+}
+
+#[test]
+fn without_threads_edits_and_languages_are_routed_elsewhere() {
+    let plugins = Plugins::new(Vec::<String>::new());
+    // The browser: no threads, a worker of the page searches the routing.
+    let mut s = Session::new(demo_project(), None);
+    s.threaded = false;
+    s.search_routing_elsewhere(true);
+    s.opening_shown();
+    s.refresh(&plugins, false);
+    s.opening_shown();
+    s.refresh(&plugins, false);
+    assert!(s.opening().is_none());
+    let before = s.analysis.routing.clone();
+    assert!(!before.items.is_empty() && !s.routing_wanted());
+    let worker = |s: &Session| search_routing(&serde_json::to_string(&s.prj).unwrap(), openecraft_i18n::lang().code(), "").unwrap();
+    let move_k1 = |s: &mut Session| {
+        let ei = s.prj.layout.enclosures.iter().position(|e| e.items.iter().any(|i| i.tag == "-K1")).unwrap();
+        s.prj.layout.enclosures[ei].items.iter_mut().find(|i| i.tag == "-K1").unwrap().x += 25.0;
+        s.commit(true);
+    };
+
+    // A device moved in the layout: the analysis follows at once, the routes once the
+    // worker found them; nothing is searched here meanwhile.
+    move_k1(&mut s);
+    s.refresh(&plugins, false);
+    assert!(s.analysis.routes_pending && s.routing_wanted() && !s.routing());
+    let stale = worker(&s);
+    s.routing_asked();
+    assert!(!s.routing_wanted() && s.routing(), "one search at a time");
+    // Moved again while it was searched: its routing is of the state before.
+    move_k1(&mut s);
+    s.refresh(&plugins, false);
+    assert!(s.analysis.routes_pending && !s.routing_wanted());
+    s.routing_found(Some(&stale));
+    s.refresh(&plugins, false);
+    assert!(s.analysis.routes_pending && s.routing_wanted(), "the project as it is now is searched");
+    let found = worker(&s);
+    s.routing_asked();
+    s.routing_found(Some(&found));
+    s.refresh(&plugins, false);
+    assert!(!s.analysis.routes_pending && !s.routing_wanted() && !s.routing());
+    assert_eq!(s.analysis.routing, Analysis::build(&s.prj).routing, "as routed at once");
+    assert_ne!(s.analysis.routing, before);
+
+    // Another language: its routing is searched there too.
+    openecraft_i18n::with_lang(openecraft_i18n::Lang::De, || {
+        s.refresh(&plugins, false);
+        assert!(s.analysis.routes_pending && s.routing_wanted());
+        let found = worker(&s);
+        s.routing_asked();
+        s.routing_found(Some(&found));
+        s.refresh(&plugins, false);
+        assert!(!s.analysis.routes_pending && !s.routing());
+        assert_eq!(s.analysis.routing, Analysis::build(&s.prj).routing);
+    });
+
+    // The search failed, or the worker stopped: the routing is searched here.
+    s.refresh(&plugins, false);
+    assert!(s.routing_wanted());
+    s.routing_asked();
+    s.routing_found(None);
+    s.refresh(&plugins, false);
+    assert!(!s.analysis.routes_pending && !s.routing());
+    move_k1(&mut s);
+    s.refresh(&plugins, false);
+    s.routing_asked();
+    s.search_routing_elsewhere(false);
+    assert!(!s.routing());
+    s.refresh(&plugins, false);
+    assert!(!s.analysis.routes_pending);
+    assert_eq!(s.analysis.routing, Analysis::build(&s.prj).routing);
 }
 
 #[test]

@@ -23,11 +23,23 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   *Open GitHub issue form* opens a new issue on GitHub with the report filled in and
   copies it; nothing is sent from the editor. The screenshot is copied or saved as PNG
   to attach it there.
+- **Logo in the editor:** the quick access row at the top of the editor (desktop and
+  web) starts with the OpenECraft logo and name, as the website and the servers' web
+  pages do; clicking them shows *About OpenECraft*. The web editor's browser tab shows
+  the logo too.
+- **Icons without stray lines:** the icons with an ellipse (Report a bug, language,
+  cable, ellipse, database) drew a thin line through themselves and their
+  surroundings, and the filled ones (select, star, theme) had faint spikes at their
+  points. They are now drawn cleanly in the light and the dark theme.
 - **Loading screen in the web editor:** opening a large project in the browser, such as
-  example 11, froze the page with no feedback until it was analysed, because the
-  analysis started before the *Opening the project* screen had been drawn. The web
-  editor now shows that screen first, as the desktop app does, and analyses the
-  project after it.
+  example 11, froze the page for up to half a minute (Firefox reported the page as not
+  responding). The web editor now shows the *Opening the project* screen, as the desktop
+  app does, and searches the 3D routing of the cables, which took nearly all of that
+  time, in a worker of the page (`worker.js`, a second instance of the module), so the
+  page stays responsive meanwhile. So it does after an edit that changes the wiring
+  and after a change of the language: the analysis follows at once, the routes once
+  the worker found them, as on the desktop. The examples' routings come with the page
+  (`routing/`, as on the website), so an example opens in about a second.
 - **Website on phones and tablets:** the console section made the page several
   screens wide and the bar was cut off on a phone. The sections now fit the screen,
   the links of the bar are a menu on narrow screens, the demos follow the width of the

@@ -62,10 +62,12 @@ fn main() {
     if let Some(lang) = web_sys::window().and_then(|w| w.navigator().language()).and_then(|code| openecraft_i18n::Lang::from_code(&code)) {
         openecraft_i18n::set_lang(lang);
     }
+    // The worker of the page (`worker.js`) has no window: it only searches routings.
+    let Some(window) = web_sys::window() else { return };
     // `…/#wiring` opens the wiring assistant (tablets in the workshop).
-    let wiring = web_sys::window().and_then(|w| w.location().hash().ok()).is_some_and(|h| h == "#wiring");
+    let wiring = window.location().hash().is_ok_and(|h| h == "#wiring");
     wasm_bindgen_futures::spawn_local(async move {
-        let document = web_sys::window().expect("no window").document().expect("no document");
+        let document = window.document().expect("no document");
         let canvas = document
             .get_element_by_id("openecraft_canvas")
             .expect("canvas missing")
@@ -84,4 +86,12 @@ fn main() {
             }
         }
     });
+}
+
+/// The 3D routing of a project in a language (`openecraft_session::session::search_routing`):
+/// called in the worker of the page (`worker.js`), a second instance of this module.
+#[cfg(target_arch = "wasm32")]
+#[wasm_bindgen::prelude::wasm_bindgen]
+pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, wasm_bindgen::JsValue> {
+    openecraft_session::session::search_routing(project, lang, prebuilt).map_err(|e| wasm_bindgen::JsValue::from_str(&e))
 }
