@@ -7,6 +7,7 @@ A grant needs a user or a group	Přidělení potřebuje uživatele nebo skupinu
 A group name must not be empty or contain ':'	Název skupiny nesmí být prázdný ani obsahovat ':'
 A manufacturer user needs a manufacturer	Uživatel výrobce potřebuje výrobce
 A part number must not be empty or start or end with blanks	Číslo artiklu nesmí být prázdné ani začínat či končit mezerami
+A project names who changed it last.	Projekt uvádí, kdo jej naposledy změnil.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Role je sada práv. Přidělení dávají uživateli nebo skupině roli pro projekty (* a ? jako zástupné znaky, * pro všechny); odepírající přidělení práva role odebere bez ohledu na jiná přidělení.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Role je sada práv. Přidělení dávají uživateli nebo skupině roli pro artikly výrobce (* a ? jako zástupné znaky, * pro všechny); odepírající přidělení práva role odebere bez ohledu na jiná přidělení.
 A user name must not be empty or contain blanks	Uživatelské jméno nesmí být prázdné ani obsahovat mezery
@@ -194,6 +195,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	Tekutinový motor
 Fluid power - special items	Tekutinová technika – speciální součásti
 Fluid power components	Komponenty tekutinové techniky
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	U uživatelského účtu server ukládá uživatelské jméno, roli, skupiny a heslo pouze jako hash. U účtu z adresářové služby ověřuje heslo a uvádí skupiny adresářová služba.
 Former	Tvarovací stroj
 Front view (2D)	Čelní pohled (2D)
 Funnel	Násypka
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	Kontrolní součet {}
 The dashboard is hidden	Přehled je skrytý
 The dashboard is shown	Přehled se zobrazuje
 The directory checks the password and sets the groups at every sign-in	Adresářová služba ověřuje heslo a nastavuje skupiny při každém přihlášení
+The favorites of a user are stored with the account.	Oblíbené položky uživatele se ukládají s účtem.
 The file holds no access settings	Soubor neobsahuje nastavení přístupu
 The groups would leave nobody who manages users	Skupiny by nenechaly nikoho, kdo spravuje uživatele
 The last administrator cannot lose the right to manage users	Poslední správce nemůže přijít o právo spravovat uživatele
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Role, přidělení, skupiny a přístup bez přihlášení, s verzí serveru. Obnovení nahradí role a přidělení a přidá skupiny; adresářové služby zůstanou, jak jsou nastaveny na serveru.
 The server cannot be reached	Server není dostupný
 The server keeps the last {} ended sessions.	Server uchovává poslední ukončené relace, nejvýše {}.
+The server records who changed a part and when (the history of the part).	Server zaznamenává, kdo a kdy artikl změnil (historie artiklu).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	Server zaznamenává, kdo a kdy pracuje na kterém projektu: otevřené relace, zamčené stránky a poslední ukončené relace s jejich uloženími. Ostatní uživatelé projektu vidí, kdo stránku zamkl; správci vidí relace.
 The server sent no text	Server neposlal žádný text
 The test failed	Test selhal
 The test succeeded	Test proběhl úspěšně
@@ -541,6 +546,7 @@ Throttle plate	Škrticí clona
 Timeout (s)	Časový limit (s)
 Timer relay	Časové relé
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Chcete-li ji obnovit, spusťte server s --data <soubor> nebo ji zkopírujte do nové databáze pomocí --migrate-from <soubor>.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	Aby server zpomalil hádání hesel, pamatuje si krátkou dobu neúspěšná přihlášení; na disk se nezapisují.
 Too many failed sign-ins, try again later	Příliš mnoho neúspěšných přihlášení, zkuste to později
 Too many registrations from this address, try again later	Příliš mnoho registrací z této adresy, zkuste to později
 Top cover	Střecha
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	Nesmíte měnit artikly výrobce {}
 You may not see any project	Nesmíte vidět žádný projekt
 Your account awaits the approval of an administrator	Váš účet čeká na schválení správcem
 Your account was created. An administrator has to approve it before you can sign in.	Váš účet byl vytvořen. Než se budete moci přihlásit, musí jej schválit správce.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Váš prohlížeč uchovává jazyk a nastavení stránky, které jste zvolili, a po dobu vašeho přihlášení také klíč vaší relace. Odhlášením se klíč odstraní; vymazáním dat webu v prohlížeči se odstraní vše.
 Your rights	Vaše práva
 access denied – check the personal access token	přístup odepřen – zkontrolujte osobní přístupový token
 by file name	podle názvu souboru

@@ -5,6 +5,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Legal notice, disclaimer and privacy notice in the editor and on the servers:**
+  *Help › Legal and privacy* of the editor and *Legal and privacy* of the parts manager
+  show the disclaimer of OpenECraft and a privacy notice (what the application stores
+  and which servers it talks to); the web pages
+  of the parts server and the project server have the links *Privacy* and *Legal
+  notice* and the disclaimers below the page. The operator of a web editor or a server
+  sets the legal notice (*Impressum*) and an addition to the privacy notice with the
+  fields of the website: `legal` of the `config.js` of a web editor or a web parts manager, `[legal]` of a
+  server's configuration file, or the variables `OPENECRAFT_LEGAL_…` of the Docker
+  images ([web editor](docs/installation.md#legal-notice-of-a-web-editor),
+  [parts server](docs/parts-server.md#legal-notice-disclaimer-and-privacy-notice),
+  [project server](docs/project-server.md#legal-notice-disclaimer-and-privacy-notice)).
 - **Light theme on Linux:** with the theme *System* the editor and the parts manager
   started dark on Linux, where the window system does not report the desktop's theme.
   They now take the colour scheme of the desktop from the settings portal (GNOME, KDE

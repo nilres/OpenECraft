@@ -7,6 +7,7 @@ A grant needs a user or a group	권한 부여에는 사용자 또는 그룹이 �
 A group name must not be empty or contain ':'	그룹 이름은 비워 둘 수 없으며 ':'를 포함할 수 없습니다
 A manufacturer user needs a manufacturer	제조업체 사용자에게는 제조업체가 필요합니다
 A part number must not be empty or start or end with blanks	부품 번호는 비워 둘 수 없으며 공백으로 시작하거나 끝날 수 없습니다
+A project names who changed it last.	프로젝트에는 마지막으로 변경한 사람이 표시됩니다.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	역할은 권한의 집합입니다. 권한 부여는 사용자 또는 그룹에 프로젝트에 대한 역할을 제공합니다(* 및 ?는 와일드카드, *는 전체). 거부 권한 부여는 다른 권한 부여와 관계없이 역할의 권한을 회수합니다.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	역할은 권한의 집합입니다. 권한 부여는 사용자 또는 그룹에 제조업체의 부품에 대한 역할을 제공합니다(* 및 ?는 와일드카드, *는 전체). 거부 권한 부여는 다른 권한 부여와 관계없이 역할의 권한을 회수합니다.
 A user name must not be empty or contain blanks	사용자 이름은 비어 있거나 공백을 포함할 수 없습니다
@@ -193,6 +194,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	유체 모터
 Fluid power - special items	유체 동력 - 특수 품목
 Fluid power components	유체 동력 구성 요소
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	사용자 계정에 대해 서버는 사용자 이름, 역할, 그룹을 저장하고 암호는 해시로만 저장합니다. 디렉터리 서비스의 계정인 경우 디렉터리 서비스가 암호를 확인하고 그룹을 지정합니다.
 Former	성형기
 Front view (2D)	정면도(2D)
 Funnel	깔때기
@@ -506,6 +508,7 @@ The checksum of {} does not match: the download is damaged	{}의 SHA-256 값이 
 The dashboard is hidden	대시보드가 숨겨짐
 The dashboard is shown	대시보드가 표시됨
 The directory checks the password and sets the groups at every sign-in	디렉터리 서비스는 로그인할 때마다 암호를 확인하고 그룹을 설정합니다
+The favorites of a user are stored with the account.	사용자의 즐겨찾기는 계정과 함께 저장됩니다.
 The file holds no access settings	파일에 액세스 설정이 없습니다
 The groups would leave nobody who manages users	그룹을 변경하면 사용자를 관리할 사람이 남지 않습니다
 The last administrator cannot lose the right to manage users	마지막 관리자의 사용자 관리 권한은 제거할 수 없습니다
@@ -523,6 +526,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	역할, 권한 부여, 그룹 및 로그인 없는 액세스(서버 버전 포함). 복원하면 역할과 권한 부여가 대체되고 그룹이 추가됩니다. 디렉터리 서비스는 서버에 설정된 대로 유지됩니다.
 The server cannot be reached	서버에 연결할 수 없습니다
 The server keeps the last {} ended sessions.	서버는 종료된 세션을 최근 {}개까지 보관합니다.
+The server records who changed a part and when (the history of the part).	서버는 누가 언제 부품을 변경했는지 기록합니다(부품의 기록).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	서버는 누가 언제 어떤 프로젝트에서 작업하는지 기록합니다. 열린 세션, 잠긴 페이지, 그리고 최근에 종료된 세션과 그 저장 내역입니다. 프로젝트의 다른 사용자는 누가 페이지를 잠갔는지 볼 수 있고, 관리자는 세션을 볼 수 있습니다.
 The server sent no text	서버가 텍스트를 보내지 않았습니다
 The test failed	테스트에 실패했습니다
 The test succeeded	테스트에 성공했습니다
@@ -540,6 +545,7 @@ Throttle plate	오리피스 플레이트
 Timeout (s)	시간 제한(초)
 Timer relay	타이머 릴레이
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	복원하려면 --data <파일>로 서버를 시작하거나 --migrate-from <파일>로 새 데이터베이스에 복사하십시오.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	암호 추측을 지연시키기 위해 서버는 실패한 로그인을 잠시 동안 기억합니다. 이는 디스크에 기록되지 않습니다.
 Too many failed sign-ins, try again later	로그인 실패가 너무 많습니다. 나중에 다시 시도하세요
 Too many registrations from this address, try again later	이 주소에서 가입이 너무 많습니다. 나중에 다시 시도하십시오
 Top cover	상부 커버
@@ -586,6 +592,7 @@ You may not change parts of manufacturer {}	제조업체 {}의 부품은 변경�
 You may not see any project	볼 수 있는 프로젝트가 없습니다
 Your account awaits the approval of an administrator	계정이 관리자의 승인을 기다리고 있습니다
 Your account was created. An administrator has to approve it before you can sign in.	계정을 만들었습니다. 로그인하려면 관리자의 승인이 필요합니다.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	브라우저는 선택한 언어와 페이지 설정을 보관하고, 로그인되어 있는 동안에는 세션 키도 보관합니다. 로그아웃하면 키가 삭제되고, 브라우저의 사이트 데이터를 지우면 모두 삭제됩니다.
 Your rights	내 권한
 access denied – check the personal access token	액세스 거부됨 – 개인 액세스 토큰을 확인하세요
 by file name	파일 이름 기준

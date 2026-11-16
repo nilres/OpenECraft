@@ -157,6 +157,8 @@ pub struct AppState {
     pub token: Option<String>,
     /// The web page is served (`--web`).
     pub web: bool,
+    /// The legal notice of the operator, shown by the web page.
+    pub legal: Arc<openecraft_parts::legal::LegalNotice>,
 }
 
 pub struct AppError(StatusCode, String);
@@ -248,6 +250,7 @@ pub fn router(state: AppState) -> Router {
     if state.web {
         app = app
             .merge(crate::web::routes())
+            .merge(openecraft_web::legal_route(state.legal.clone()))
             .route(&format!("{API_PREFIX}/texts"), get(crate::web::texts))
             .route(&format!("{project}/view"), get(view))
             .route(&format!("{project}/pages/{{id}}/svg"), get(page_svg));

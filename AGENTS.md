@@ -55,7 +55,7 @@ cargo clippy -p openecraft -p openecraft-parts-manager -p openecraft-website --t
 | --- | --- | --- |
 | `openecraft` | `openecraft/` | Editor (desktop + web), built by trunk (own `index.html` / `Trunk.toml`) |
 | `openecraft-core` | `crates/openecraft-core` | Headless project model: pages, symbols, devices, netlist, checks, reports, panel layout, SVG / PDF / DXF / DWG export |
-| `openecraft-parts` | `crates/openecraft-parts` | Shared library: part model, function templates, CSV/JSON, catalog, EPLAN product groups, parts server API types, data portal rules (faceted search, lifecycle, update check), role based access control of both servers (`access`) |
+| `openecraft-parts` | `crates/openecraft-parts` | Shared library: part model, function templates, CSV/JSON, catalog, EPLAN product groups, parts server API types, data portal rules (faceted search, lifecycle, update check), role based access control of both servers (`access`), the legal notice of who runs a web editor or a server (`legal`) |
 | `openecraft-i18n` | `crates/openecraft-i18n` | Languages and UI translations (English, German, French, Spanish and 16 further languages); no dependencies |
 | `openecraft-fonts` | `crates/openecraft-fonts` | Bundled Chinese, Japanese and Korean fonts (Noto Sans subsets, `subset.py`) and the order of the fallback fonts, used on screen (`openecraft-ui`) and in PDF exports (`openecraft-core`); no dependencies |
 | `openecraft-step` | `crates/openecraft-step` | STEP, IGES and Parasolid import (B-rep → part mesh) with the `monstertruck` CAD kernel (Parasolid parsed by `parasolid-core`); kept out of `openecraft-parts` because of its size |

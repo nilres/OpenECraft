@@ -7,6 +7,7 @@ A grant needs a user or a group	授权需要用户或组
 A group name must not be empty or contain ':'	组名不能为空，也不能包含“:”
 A manufacturer user needs a manufacturer	制造商用户需要指定制造商
 A part number must not be empty or start or end with blanks	部件编号不能为空，也不能以空格开头或结尾
+A project names who changed it last.	项目会注明最后更改它的人。
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	角色是一组权限。授权为用户或组授予项目上的角色（* 和 ? 为通配符，* 表示全部）；拒绝授权会收回该角色的权限，无论其他授权给予什么。
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	角色是一组权限。授权为用户或组授予某个制造商的部件上的角色（* 和 ? 为通配符，* 表示全部）；拒绝授权会收回该角色的权限，无论其他授权给予什么。
 A user name must not be empty or contain blanks	用户名不能为空，也不能包含空格
@@ -193,6 +194,7 @@ Fluid Control Terminal	流体控制终端
 Fluid motor	流体马达
 Fluid power - special items	流体动力 - 特殊元件
 Fluid power components	流体动力组件
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	对于用户帐户，服务器存储用户名、角色和组，密码仅以散列形式存储。对于目录服务的帐户，由目录服务检查密码并给出组。
 Former	成型机
 Front view (2D)	正视图 (2D)
 Funnel	漏斗
@@ -506,6 +508,7 @@ The checksum of {} does not match: the download is damaged	{} 的校验和不匹
 The dashboard is hidden	仪表板已隐藏
 The dashboard is shown	仪表板已显示
 The directory checks the password and sets the groups at every sign-in	目录服务在每次登录时检查密码并设置组
+The favorites of a user are stored with the account.	用户的收藏夹与帐户一起存储。
 The file holds no access settings	该文件不包含访问设置
 The groups would leave nobody who manages users	这些组将不再留下任何管理用户的人
 The last administrator cannot lose the right to manage users	最后一个管理员不能失去管理用户的权限
@@ -523,6 +526,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	角色、授权、组以及无需登录的访问，附带服务器版本。恢复会替换角色和授权并添加组；目录服务保持服务器上的设置。
 The server cannot be reached	无法连接到服务器
 The server keeps the last {} ended sessions.	服务器保留最近 {} 个已结束的会话。
+The server records who changed a part and when (the history of the part).	服务器会记录谁在何时更改了部件（部件的历史记录）。
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	服务器会记录谁在何时处理哪个项目：打开的会话、已锁定的页以及最近结束的会话及其保存操作。项目的其他用户可以看到谁锁定了某一页；管理员可以看到会话。
 The server sent no text	服务器未发送文本
 The test failed	测试失败
 The test succeeded	测试成功
@@ -540,6 +545,7 @@ Throttle plate	节流板
 Timeout (s)	超时（秒）
 Timer relay	时间继电器
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	要恢复它，请使用 --data <文件> 启动服务器，或使用 --migrate-from <文件> 将其复制到新数据库中。
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	为了减慢对密码的猜测，服务器会在短时间内记住失败的登录；它们不会被写入磁盘。
 Too many failed sign-ins, try again later	登录失败次数过多，请稍后再试
 Too many registrations from this address, try again later	来自此地址的注册过多，请稍后再试
 Top cover	顶盖
@@ -586,6 +592,7 @@ You may not change parts of manufacturer {}	您不能更改制造商 {} 的部�
 You may not see any project	您无权查看任何项目
 Your account awaits the approval of an administrator	您的帐户正在等待管理员批准
 Your account was created. An administrator has to approve it before you can sign in.	您的帐户已创建。管理员批准后您才能登录。
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	您的浏览器会保存您选择的语言和页面设置，并在您登录期间保存会话的密钥。注销会删除该密钥；清除浏览器的网站数据会删除所有这些内容。
 Your rights	您的权限
 access denied – check the personal access token	访问被拒绝 – 请检查个人访问令牌
 by file name	按文件名

@@ -7,6 +7,7 @@ A grant needs a user or a group	付与にはユーザーまたはグループが
 A group name must not be empty or contain ':'	グループ名は空にできず、「:」を含めることもできません
 A manufacturer user needs a manufacturer	メーカーユーザーにはメーカーが必要です
 A part number must not be empty or start or end with blanks	部品番号は空にできず、空白で始めたり終えたりすることもできません
+A project names who changed it last.	プロジェクトには、最後に変更したユーザーが記録されます。
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	ロールは権限のセットです。付与により、ユーザーまたはグループにプロジェクトに対するロールが与えられます (* と ? はワイルドカード、* はすべて)。拒否の付与は、ほかの付与に関係なくロールの権限を取り消します。
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	ロールは権限のセットです。付与により、ユーザーまたはグループにメーカーの部品に対するロールが与えられます (* と ? はワイルドカード、* はすべて)。拒否の付与は、ほかの付与に関係なくロールの権限を取り消します。
 A user name must not be empty or contain blanks	ユーザー名は空にできず、空白を含めることもできません
@@ -193,6 +194,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	流体モーター
 Fluid power - special items	流体技術 - 特殊品
 Fluid power components	流体技術コンポーネント
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	ユーザーアカウントについて、サーバーはユーザー名、ロール、グループを保存し、パスワードはハッシュとしてのみ保存します。ディレクトリのアカウントの場合は、ディレクトリがパスワードを確認し、グループを指定します。
 Former	成形機
 Front view (2D)	正面図 (2D)
 Funnel	ホッパー
@@ -506,6 +508,7 @@ The checksum of {} does not match: the download is damaged	{} のチェックサ
 The dashboard is hidden	ダッシュボードは非表示です
 The dashboard is shown	ダッシュボードは表示されています
 The directory checks the password and sets the groups at every sign-in	ディレクトリはサインインのたびにパスワードを確認し、グループを設定します
+The favorites of a user are stored with the account.	ユーザーのお気に入りはアカウントとともに保存されます。
 The file holds no access settings	このファイルにはアクセス設定が含まれていません
 The groups would leave nobody who manages users	これらのグループではユーザーを管理するユーザーがいなくなります
 The last administrator cannot lose the right to manage users	最後の管理者からユーザー管理の権限を外すことはできません
@@ -523,6 +526,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	ロール、付与、グループ、サインインなしのアクセス（サーバーのバージョン付き）。復元するとロールと付与が置き換えられ、グループが追加されます。ディレクトリはサーバーの設定のまま残ります。
 The server cannot be reached	サーバーに接続できません
 The server keeps the last {} ended sessions.	サーバーは終了したセッションを最新 {} 件まで保持します。
+The server records who changed a part and when (the history of the part).	サーバーは、誰がいつ部品を変更したかを記録します (部品の履歴)。
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	サーバーは、誰がいつどのプロジェクトで作業しているかを記録します。開いているセッション、ロックされたページ、および最近終了したセッションとその保存です。プロジェクトの他のユーザーには誰がページをロックしたかが表示され、管理者にはセッションが表示されます。
 The server sent no text	サーバーからテキストが送信されませんでした
 The test failed	テストに失敗しました
 The test succeeded	テストに成功しました
@@ -540,6 +545,7 @@ Throttle plate	オリフィス板
 Timeout (s)	タイムアウト（秒）
 Timer relay	タイマーリレー
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	復元するには、--data <ファイル> でサーバーを起動するか、--migrate-from <ファイル> で新しいデータベースにコピーします。
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	パスワードの推測を遅らせるため、サーバーは失敗したサインインを短時間保持します。これらはディスクに書き込まれません。
 Too many failed sign-ins, try again later	サインインの失敗が多すぎます。後でもう一度お試しください
 Too many registrations from this address, try again later	このアドレスからの登録が多すぎます。後でもう一度お試しください
 Top cover	天板
@@ -586,6 +592,7 @@ You may not change parts of manufacturer {}	メーカー {} の部品は変更�
 You may not see any project	表示できるプロジェクトはありません
 Your account awaits the approval of an administrator	アカウントは管理者の承認待ちです
 Your account was created. An administrator has to approve it before you can sign in.	アカウントを作成しました。サインインする前に管理者の承認が必要です。
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	ブラウザーは、選択した言語とページの設定、およびサインインしている間はセッションのキーを保持します。サインアウトするとキーが削除され、ブラウザーのサイトデータを消去するとすべてが削除されます。
 Your rights	あなたの権限
 access denied – check the personal access token	アクセスが拒否されました – 個人用アクセストークンを確認してください
 by file name	ファイル名で

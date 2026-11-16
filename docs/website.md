@@ -103,7 +103,12 @@ the text take several lines, separated by `\n` in `config.js` or by `|`:
 | `legal.text` | `OPENECRAFT_LEGAL_TEXT` | Further text: disclaimers, dispute resolution |
 | `legal.privacy` | `OPENECRAFT_LEGAL_PRIVACY` | What the operator adds to the privacy notice (below), lines as in the text |
 
-The labels follow the language of the page; the values are shown as they are set.
+The labels follow the language of the page; the values are shown as they are set. The
+web editor at `/editor/` of the Docker image shows the same notice in *Help › Legal and
+privacy*; a web editor hosted alone and the web pages of the parts and project servers
+take the same fields and variables ([installation.md](installation.md#legal-notice-of-a-web-editor),
+[parts-server.md](parts-server.md#legal-notice-disclaimer-and-privacy-notice),
+[project-server.md](project-server.md#legal-notice-disclaimer-and-privacy-notice)).
 Whether a site needs a legal notice, and what it has to say, depends on the operator
 and the country: OpenECraft only shows what is set.
 

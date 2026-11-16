@@ -197,6 +197,47 @@ async function logout() {
   signedOut(true);
 }
 
+// Legal notice and privacy
+
+/// The legal notice of the operator and what they add to the privacy notice (`/legal`).
+let legalNotice = null;
+function legalField(name) { return String((legalNotice || {})[name] || "").trim(); }
+function legalLines(name) { return legalField(name).split(/\s*(?:\n|\|)\s*/).filter(Boolean); }
+
+/// The links below the page with their dialogs (the privacy notice; the legal notice
+/// when the operator has a name) and the disclaimers. `privacy()` gives the paragraphs
+/// the page adds to the privacy notice; called again after a change of the language.
+async function renderLegal(privacy) {
+  const box = document.getElementById("legal");
+  if (!box) return;
+  if (!legalNotice) { try { legalNotice = await api("/legal"); } catch (e) { legalNotice = {}; } }
+  const p = text => "<p>" + esc(text) + "</p>";
+  const dialog = (id, title, body) => '<dialog id="' + id + '" class="legal" aria-labelledby="' + id + '-title"><h2 id="' + id + '-title">' + esc(title) + "</h2>" + body +
+    '<div class="buttons"><button type="button" data-close>' + esc(t("Close")) + "</button></div></dialog>";
+  const link = (id, title) => '<button type="button" class="link" data-open="' + id + '">' + esc(title) + "</button>";
+  const own = [
+    t("This page sets no cookies, uses no tracking and loads nothing from other servers."),
+    t("Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it."),
+    t("As with every website, the server that delivers this page receives the IP address of your device in order to answer."),
+    t("For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups."),
+    t("To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk."),
+  ].concat(privacy ? privacy() : []);
+  let html = '<div class="links">' + link("privacy-notice", t("Privacy"));
+  let dialogs = dialog("privacy-notice", t("Privacy"), own.map(p).join("") + legalLines("privacy").map(p).join(""));
+  if (legalField("name")) {
+    const row = (label, name, value) => legalField(name) ? "<dt>" + esc(t(label)) + "</dt><dd>" + (value || esc(legalField(name))) + "</dd>" : "";
+    html += link("legal-notice", t("Legal notice"));
+    dialogs += dialog("legal-notice", t("Legal notice"), '<p class="legal-name">' + esc(legalField("name")) + "</p><p>" + legalLines("address").map(esc).join("<br>") + "</p><dl>" +
+      row("Represented by", "representative") + row("Email", "email", '<a href="mailto:' + esc(legalField("email")) + '">' + esc(legalField("email")) + "</a>") + row("Phone", "phone") +
+      row("Register entry", "register") + row("VAT ID", "vat") + row("Responsible for the content", "responsible") + "</dl>" + legalLines("text").map(p).join(""));
+  }
+  box.innerHTML = html + '</div><p class="fine">' + esc(t("EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.")) + " " +
+    esc(t("It is not affiliated with, endorsed by or sponsored by the owners of these names.")) + '</p><p class="fine">' +
+    esc(t("OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.")) + "</p>" + dialogs;
+  box.querySelectorAll("[data-open]").forEach(b => b.onclick = () => { const d = document.getElementById(b.dataset.open); if (d.showModal) d.showModal(); else d.setAttribute("open", ""); });
+  box.querySelectorAll("[data-close]").forEach(b => b.onclick = () => { const d = b.closest("dialog"); if (d.close) d.close(); else d.removeAttribute("open"); });
+}
+
 // Administration
 
 /// The access settings being edited (saved together).

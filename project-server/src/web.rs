@@ -116,6 +116,8 @@ const TEXTS: &[&str] = &[
     tr_const!("Editor"),
     tr_const!("Project manager"),
     tr_const!("Administrator"),
+    tr_const!("The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions."),
+    tr_const!("A project names who changed it last."),
 ];
 
 pub async fn index() -> impl IntoResponse {

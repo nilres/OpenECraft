@@ -205,6 +205,7 @@ pub enum Cmd {
     Help,
     Tutorial,
     About,
+    Legal,
     ReportBug,
     CheckForUpdates,
     InstallUpdate,
@@ -662,6 +663,7 @@ pub static ALL: &[Def] = &[
     d(C::Help, "help", tr_const!("Help"), I::Help).tool(ToolPane::Help).keys("F1").tip(tr_const!("Quick guide, tutorial and shortcuts; F1 opens the help of the pane in use")),
     d(C::Tutorial, "tutorial", tr_const!("Tutorial"), I::Book).tip(tr_const!("The tutorial in 13 chapters, from the first project to the automation")),
     d(C::About, "about", tr_const!("About OpenECraft"), I::Info).tip(tr_const!("Version and project page")),
+    d(C::Legal, "legal", tr_const!("Legal and privacy"), I::Info).tip(tr_const!("Legal notice of the operator, disclaimer and privacy notice")),
     d(C::ReportBug, "report_bug", tr_const!("Report a bug…"), I::Bug)
         .tip(tr_const!("Describe a problem with a screenshot and the technical details and open it as a new issue on GitHub")),
     d(C::CheckForUpdates, "check_for_updates", tr_const!("Check for updates"), I::Download)

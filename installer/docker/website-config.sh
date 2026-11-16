@@ -1,7 +1,9 @@
 #!/bin/sh
 # Writes the settings of the OpenECraft website (website/config.js, docs/website.md) from
 # the environment at every start of its Docker image (installer/docker/Dockerfile, target
-# website); nginx answers /config.js with the file (website.conf). Each value is written
+# website); nginx answers /config.js with the file (website.conf). The image of the web
+# editor (target editor-web) runs it too: the editor reads the legal notice of the file
+# (openecraft/config.js, editor-web.conf). Each value is written
 # as a JavaScript string: quotes and backslashes are escaped, line breaks kept as "\n".
 set -eu
 mkdir -p /tmp/openecraft

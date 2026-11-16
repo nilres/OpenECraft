@@ -141,7 +141,7 @@ async fn main() {
     if let Some(shown) = args.dashboard {
         log::info!("dashboard {} (start options)", if shown { "shown" } else { "hidden" });
     }
-    let state = routes::AppState::new(store, token, access).with_registration(args.registration).with_dashboard(args.dashboard);
+    let state = routes::AppState::new(store, token, access).with_registration(args.registration).with_dashboard(args.dashboard).with_legal(args.legal);
     let listener = tokio::net::TcpListener::bind(args.bind).await.unwrap_or_else(|e| fail(format!("cannot listen on {}: {e}", args.bind)));
     log::info!("listening on http://{}", args.bind);
     let shutdown = async {

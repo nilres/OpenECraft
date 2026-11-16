@@ -7,6 +7,7 @@ A grant needs a user or a group	En tilldelning behöver en användare eller en g
 A group name must not be empty or contain ':'	Ett gruppnamn får inte vara tomt eller innehålla ':'
 A manufacturer user needs a manufacturer	En tillverkaranvändare behöver en tillverkare
 A part number must not be empty or start or end with blanks	Ett artikelnummer får inte vara tomt eller börja eller sluta med mellanslag
+A project names who changed it last.	Ett projekt anger vem som senast ändrade det.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En roll är en uppsättning rättigheter. Tilldelningar ger en användare eller grupp en roll för projekt (* och ? som jokertecken, * för alla); en nekande tilldelning tar bort rollens rättigheter, oavsett vad andra tilldelningar ger.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En roll är en uppsättning rättigheter. Tilldelningar ger en användare eller grupp en roll för en tillverkares artiklar (* och ? som jokertecken, * för alla); en nekande tilldelning tar bort rollens rättigheter, oavsett vad andra tilldelningar ger.
 A user name must not be empty or contain blanks	Ett användarnamn får inte vara tomt eller innehålla blanksteg
@@ -194,6 +195,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	Fluidmotor
 Fluid power - special items	Fluidteknik – specialkomponenter
 Fluid power components	Fluidtekniska komponenter
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	För ett användarkonto lagrar servern användarnamnet, rollen, grupperna och lösenordet, det senare endast som hash. För ett konto i en katalogtjänst kontrollerar katalogtjänsten lösenordet och anger grupperna.
 Former	Formningsmaskin
 Front view (2D)	Frontvy (2D)
 Funnel	Tratt
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	Kontrollsumman för {
 The dashboard is hidden	Översikten är dold
 The dashboard is shown	Översikten visas
 The directory checks the password and sets the groups at every sign-in	Katalogtjänsten kontrollerar lösenordet och anger grupperna vid varje inloggning
+The favorites of a user are stored with the account.	En användares favoriter lagras med kontot.
 The file holds no access settings	Filen innehåller inga åtkomstinställningar
 The groups would leave nobody who manages users	Grupperna skulle inte lämna någon som hanterar användare
 The last administrator cannot lose the right to manage users	Den sista administratören kan inte förlora rätten att hantera användare
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Rollerna, tilldelningarna, grupperna och åtkomsten utan inloggning, med serverns version. Återställning ersätter rollerna och tilldelningarna och lägger till grupperna; katalogtjänsterna förblir som de är inställda på servern.
 The server cannot be reached	Servern kan inte nås
 The server keeps the last {} ended sessions.	Servern behåller de senaste {} avslutade sessionerna.
+The server records who changed a part and when (the history of the part).	Servern registrerar vem som ändrade en artikel och när (artikelns historik).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	Servern registrerar vem som arbetar med vilket projekt och när: de öppna sessionerna, de låsta sidorna och de senast avslutade sessionerna med deras sparningar. De andra användarna av ett projekt ser vem som har låst en sida; administratörer ser sessionerna.
 The server sent no text	Servern skickade ingen text
 The test failed	Testet misslyckades
 The test succeeded	Testet lyckades
@@ -541,6 +546,7 @@ Throttle plate	Strypbricka
 Timeout (s)	Tidsgräns (s)
 Timer relay	Tidrelä
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Starta servern med --data <fil> för att återställa den, eller kopiera den till en ny databas med --migrate-from <fil>.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	För att bromsa gissning av lösenord kommer servern ihåg misslyckade inloggningar en kort tid; de skrivs inte till disk.
 Too many failed sign-ins, try again later	För många misslyckade inloggningar, försök igen senare
 Too many registrations from this address, try again later	För många registreringar från den här adressen, försök igen senare
 Top cover	Tak
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	Du får inte ändra artiklar från t
 You may not see any project	Du får inte se något projekt
 Your account awaits the approval of an administrator	Ditt konto väntar på godkännande av en administratör
 Your account was created. An administrator has to approve it before you can sign in.	Ditt konto har skapats. En administratör måste godkänna det innan du kan logga in.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Din webbläsare lagrar det språk och de sidinställningar du har valt och, så länge du är inloggad, nyckeln till din session. När du loggar ut tas nyckeln bort; om du rensar webbplatsdata i webbläsaren tas allt bort.
 Your rights	Dina rättigheter
 access denied – check the personal access token	åtkomst nekad – kontrollera den personliga åtkomsttoken
 by file name	efter filnamn

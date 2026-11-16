@@ -28,6 +28,8 @@ const TEXTS: &[&str] = &[
     tr_const!("Search parts"),
     tr_const!("Search"),
     tr_const!("Favorites"),
+    tr_const!("The server records who changed a part and when (the history of the part)."),
+    tr_const!("The favorites of a user are stored with the account."),
     tr_const!("All parts"),
     tr_const!("Catalogs"),
     tr_const!("Product top group"),

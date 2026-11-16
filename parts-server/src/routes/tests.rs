@@ -390,6 +390,19 @@ async fn web_page_and_texts() {
 }
 
 #[tokio::test]
+async fn the_legal_notice_of_the_operator_is_shown_without_sign_in() {
+    use openecraft_parts::legal::LegalNotice;
+    let empty: LegalNotice = json(&app(Some("secret")), "GET", "/api/v1/legal", None, "").await;
+    assert!(!empty.shown());
+    let notice = LegalNotice { name: "ACME GmbH".into(), address: "Street 1 | 12345 City".into(), privacy: "Hosted by ACME".into(), ..Default::default() };
+    let app = router(state(Some("secret")).with_legal(notice.clone()));
+    let shown: LegalNotice = json(&app, "GET", "/api/v1/legal", None, "").await;
+    assert_eq!(shown, notice);
+    let (_, _, page) = send(&app, "GET", "/", None, Vec::new()).await;
+    assert!(String::from_utf8(page).unwrap().contains("<div id=\"legal\"></div>"));
+}
+
+#[tokio::test]
 async fn cors_preflight_allows_authorization_header() {
     let req = Request::builder()
         .method("OPTIONS")

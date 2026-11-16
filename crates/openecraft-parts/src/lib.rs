@@ -32,6 +32,7 @@ mod filter;
 mod graphics;
 pub mod mechanics;
 mod ifc;
+pub mod legal;
 mod mounting;
 mod part;
 pub mod portal;

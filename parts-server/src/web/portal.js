@@ -491,15 +491,24 @@ async function footer() {
   } catch (e) {}
 }
 
+/// What the privacy notice says about this server.
+function privacy() {
+  return [
+    t("The server records who changed a part and when (the history of the part)."),
+    t("The favorites of a user are stored with the account."),
+  ];
+}
+
 async function start() {
   try { await setLanguage(startLanguage()); } catch (e) {}
+  renderLegal(privacy);
   try { (await api("/catalogs")).forEach(rememberCatalog); } catch (e) {}
   await refreshSession();
   await loadFavorites();
   try { serverInfo = await api("/info"); } catch (e) {}
   document.getElementById("nav-dashboard").hidden = !(serverInfo && serverInfo.dashboard);
   renderAccount();
-  document.getElementById("lang").onchange = async e => { await setLanguage(e.target.value); route(); footer(); };
+  document.getElementById("lang").onchange = async e => { await setLanguage(e.target.value); route(); footer(); renderLegal(privacy); };
   document.getElementById("search-form").onsubmit = e => {
     e.preventDefault();
     query.q = document.getElementById("q").value.trim() || null;

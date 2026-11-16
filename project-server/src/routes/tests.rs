@@ -42,13 +42,18 @@ async fn session_snapshot_keeps_own_locks_and_never_exposes_another_sessions_id(
     assert!(!with(&app, "POST", &format!("{path}/snapshot"), &tokens[0], &invalid).await.0.is_success());
 }
 
+/// The legal notice of the test servers.
+fn legal() -> openecraft_parts::legal::LegalNotice {
+    openecraft_parts::legal::LegalNotice { name: "ACME GmbH".into(), privacy: "Hosted by ACME".into(), ..Default::default() }
+}
+
 fn app(token: Option<&str>) -> Router {
     app_with(token, false)
 }
 
 fn app_with(token: Option<&str>, web: bool) -> Router {
     let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users: Users::default(), access: AccessFile::in_memory(Default::default()), throttle: Throttle::default(), views: Views::default() };
-    router(AppState { server: Arc::new(Mutex::new(server)), token: token.map(String::from), web })
+    router(AppState { server: Arc::new(Mutex::new(server)), token: token.map(String::from), web, legal: Arc::new(legal()) })
 }
 
 async fn call(app: &Router, method: &str, uri: &str, token: Option<&str>, body: String) -> (StatusCode, String) {
@@ -400,7 +405,7 @@ async fn directory_sign_in() {
     };
     server.access.config.directories.push(corp);
     server.users.set_admin("root", "root-password").unwrap();
-    let app = router(AppState { server: Arc::new(Mutex::new(server)), token: None, web: false });
+    let app = router(AppState { server: Arc::new(Mutex::new(server)), token: None, web: false, legal: Arc::default() });
     // A directory alone makes the server private.
     let (s, _) = call(&app, "GET", "/api/v1/projects", None, String::new()).await;
     assert_eq!(s, StatusCode::UNAUTHORIZED);
@@ -747,7 +752,7 @@ async fn current_account_does_not_renew_tokens_and_rejects_expired_sessions() {
     let mut users = Users::default();
     users.accounts = accounts.clone();
     let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users, access: AccessFile::in_memory(Default::default()), throttle: Throttle::default(), views: Views::default() };
-    let state = AppState { server: Arc::new(Mutex::new(server)), token: Some(TOKEN.into()), web: false };
+    let state = AppState { server: Arc::new(Mutex::new(server)), token: Some(TOKEN.into()), web: false, legal: Arc::default() };
     let app = router(state.clone());
     for _ in 0..2 {
         let request = Request::builder().uri("/api/v1/session").header(header::AUTHORIZATION, format!("Bearer {token}")).body(Body::empty()).unwrap();
@@ -778,7 +783,7 @@ async fn the_web_page_is_served_only_with_the_option() {
     let off = app(Some(TOKEN));
     let (status, _, text) = get(&off, "/", None).await;
     assert!(status.is_success() && text.contains("--web"), "{text}");
-    for uri in ["/project.js", "/common.js", "/api/v1/texts", "/api/v1/projects/Plant/view"] {
+    for uri in ["/project.js", "/common.js", "/api/v1/texts", "/api/v1/legal", "/api/v1/projects/Plant/view"] {
         assert_eq!(get(&off, uri, Some(TOKEN)).await.0, StatusCode::NOT_FOUND, "{uri}");
     }
     let on = app_with(Some(TOKEN), true);
@@ -794,6 +799,11 @@ async fn the_web_page_is_served_only_with_the_option() {
     let (_, _, texts) = get(&on, "/api/v1/texts?lang=de", None).await;
     let texts: openecraft_web::WebTexts = serde_json::from_str(&texts).unwrap();
     assert_eq!(texts.lang, "de");
+    // The legal notice of the operator is shown without sign-in.
+    let (status, _, notice) = get(&on, "/api/v1/legal", None).await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(serde_json::from_str::<openecraft_parts::legal::LegalNotice>(&notice).unwrap(), legal());
+    assert!(page.contains("<div id=\"legal\"></div>"));
     let info: ServerInfo = serde_json::from_str(&get(&on, "/api/v1/info", None).await.2).unwrap();
     assert!(info.web);
     assert!(!serde_json::from_str::<ServerInfo>(&get(&off, "/api/v1/info", None).await.2).unwrap().web);

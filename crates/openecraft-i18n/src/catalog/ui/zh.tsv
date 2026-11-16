@@ -43,6 +43,7 @@ Deleted user {}	已删除用户 {}
 Deleting {}…	正在删除 {}…
 Describe the problem you saw	描述您看到的问题
 Describe what happened before continuing.	请先描述发生了什么，然后再继续。
+Disclaimer	免责声明
 Door cutouts	柜门开孔
 Downloaded {} ({} bytes)	已下载 {}（{} 字节）
 Downloading parts…	正在下载部件…
@@ -66,6 +67,7 @@ Import SVG…	导入 SVG…
 In the door, when they differ from the cutouts	在柜门上，当与开孔不同时
 Internal values of the EPLAN part exchange (0: undefined)	EPLAN 部件交换的内部值（0：未定义）
 Isometric view, everything shown	等轴测视图，显示全部
+It connects only to the parts server you name, which receives your requests, your sign-in and the parts you save. Its operator has a privacy notice of their own.	它仅连接到您指定的部件服务器，该服务器会收到您的请求、您的登录信息以及您保存的部件。其运营者有自己的隐私声明。
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	它只有安装在其适配的部件上才能工作；项目检查会在没有此类部件的设备上报告它
 Largest conductor the clamp takes (0: not known)	端子可接的最大导线（0：未知）
 Loaded the library {}	已加载库 {}
@@ -90,6 +92,7 @@ Only parts for direct wall mounting	仅限直接墙面安装的部件
 Open GitHub issue form	打开 GitHub 问题表单
 Open datasheet	打开数据表
 Open in the browser	在浏览器中打开
+OpenECraft uses no tracking and no analytics. Your projects stay where you save them; nothing is sent to the makers of OpenECraft.	OpenECraft 不使用跟踪，也不使用分析。您的项目保留在您保存它们的位置；不会向 OpenECraft 的开发者发送任何内容。
 Opens your browser and copies the report for you to paste into the GitHub issue form.	打开浏览器并复制报告，供您粘贴到 GitHub 的问题表单中。
 Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	打开浏览器并填好报告，同时复制报告。请在 GitHub 上检查并提交。
 Outside the face	面外
@@ -110,6 +113,7 @@ Removing the file…	正在删除文件…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	按 IEC 惯例替换连接点：奇数标识在上，偶数标识在下
 Report copied. Keep it to submit on GitHub when you are online.	报告已复制。请保留它，联网后在 GitHub 上提交。
 Report copied. Paste it into the GitHub issue form and submit it there.	报告已复制。请将其粘贴到 GitHub 的问题表单中并在那里提交。
+Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before.	报告错误时会在您的浏览器中打开 GitHub，并带上表单所显示的详细信息；在此之前不会发送任何内容。
 Reports are public. A GitHub account is needed to submit them.	报告是公开的。提交报告需要 GitHub 帐户。
 Reset filter	重置筛选
 Restricted areas: {}	禁止区域：{}
@@ -141,13 +145,19 @@ Summary	摘要
 Take {} values from the technical data	从技术数据中采用 {} 个值
 Technical details	技术信息
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D 正视图用于安装板正视图和安装布局页，3D 模型用于 3D 机柜视图。两者都会按安装数据（宽 × 高 × 深）调整。
+The address of the server and your settings are kept in your user folder on this computer; the access token and your password are not stored.	服务器的地址和您的设置保存在此计算机上您的用户文件夹中；访问令牌和您的密码不会被存储。
+The editor connects only to the servers you set up: parts servers, project servers, the EPLAN Data Portal and Autodesk Vault receive your requests, your sign-in and what you save to them. Their operators have privacy notices of their own.	编辑器仅连接到您设置的服务器：部件服务器、项目服务器、EPLAN Data Portal 和 Autodesk Vault 会收到您的请求、您的登录信息以及您保存到其中的内容。它们的运营者有各自的隐私声明。
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	模型（{} × {} × {}）与安装数据（{} × {} × {}）不同；它将被拉伸为安装数据的尺寸。
+The parts manager sets no cookies. It keeps the address of the server and your settings in the storage of your browser; clearing the site data of the browser removes them. The access token and your password are not stored.	部件管理器不设置任何 Cookie。它将服务器的地址和您的设置保存在浏览器的存储中；清除浏览器的网站数据会将其删除。访问令牌和您的密码不会被存储。
+The parts manager uses no tracking and no analytics; nothing is sent to the makers of OpenECraft.	部件管理器不使用跟踪，也不使用分析；不会向 OpenECraft 的开发者发送任何内容。
 The parts server has no library {} yet	零件服务器上还没有库 {}
 The price refers to this many units	价格对应的单位数量
 The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	报告包含版本、系统以及打开的项目中各类内容的数量，但不包含项目内容。分享前请检查这些信息。
 The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	屏幕截图不会自动附加：请复制或保存它，然后将其添加到 GitHub 的问题表单中。
 The successor is not in this parts list	后续产品不在此部件列表中
+The web editor sets no cookies. It keeps your settings and the data to restore your work in the storage of your browser; clearing the site data of the browser removes them.	Web 编辑器不设置任何 Cookie。它将您的设置和用于恢复工作的数据保存在浏览器的存储中；清除浏览器的网站数据会将其删除。
 This part is an accessory	此部件是附件
+To find updates, OpenECraft asks GitHub for the latest release when it starts, unless you switch that off in the settings; GitHub receives the IP address of your computer.	为了查找更新，OpenECraft 在启动时向 GitHub 查询最新版本，除非您在设置中将其关闭；GitHub 会收到您计算机的 IP 地址。
 Top group	主组
 Top group {}, product group {}, subgroup {}	主组 {}，产品组 {}，子组 {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	旋转模型，使其正面朝向观察者 (+Z)，顶面为 +Y
@@ -171,6 +181,7 @@ Where the wires are connected in the panel layout: the designation as in the fun
 Width / Ø	宽度 / Ø
 Wire connection	导线连接
 Wire leaves	导线引出方向
+Your settings and the data to restore your work are kept in your user folder on this computer.	您的设置和用于恢复工作的数据保存在此计算机上您的用户文件夹中。
 Zoom only	仅缩放
 Zooms (mouse wheel)	缩放（鼠标滚轮）
 changes with token	使用令牌进行更改

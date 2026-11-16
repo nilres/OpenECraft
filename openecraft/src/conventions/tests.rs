@@ -337,3 +337,41 @@ fn the_snap_names_only_licenses_snapd_knows() {
         assert!(!license.contains(unknown), "snapd does not know {unknown}");
     }
 }
+
+/// The legal notice of an operator has the same fields and variables wherever it is
+/// set: the website, the web editor, both servers and their Docker images.
+#[test]
+fn the_legal_notice_is_set_the_same_way_everywhere() {
+    let read = |path: &str| std::fs::read_to_string(root().join(path)).unwrap_or_else(|e| panic!("{path}: {e}")).replace("\r\n", "\n");
+    let config = read("openecraft/config.js");
+    let website = read("website/src/links.rs");
+    let dockerfile = read("installer/docker/Dockerfile");
+    let editor_image = dockerfile.split("AS editor-web").nth(1).and_then(|rest| rest.split("\nFROM ").next()).expect("the image of the web editor");
+    let compose = read("installer/docker/compose.yaml");
+    let examples = [read("parts-server/parts-server.example.toml"), read("project-server/project-server.example.toml")];
+    let docs = [read("docs/installation.md"), read("docs/parts-server.md"), read("docs/project-server.md")];
+    for (name, variable) in openecraft_parts::legal::FIELDS {
+        assert!(config.contains(&format!("\n        {name}: \"")), "openecraft/config.js: {name}");
+        assert!(config.contains(variable), "openecraft/config.js names {variable}");
+        assert!(website.contains(&format!("(\"{name}\", \"{variable}\")")), "website/src/links.rs: {name}");
+        assert!(editor_image.contains(&format!("{variable}=")), "Dockerfile, editor-web: {variable}");
+        assert!(compose.contains(&format!("  {variable}: ${{{variable}:-}}")), "compose.yaml: {variable}");
+        for example in &examples {
+            assert!(example.contains(&format!("\n# {name} = \"")), "example configuration: {name}");
+            assert!(example.contains(variable.trim_start_matches("OPENECRAFT_LEGAL")), "example configuration: {variable}");
+        }
+        for text in &docs {
+            assert!(text.contains(variable), "the documentation names {variable}");
+        }
+    }
+    assert_eq!(compose.matches("<<: *legal").count(), 4, "every service of compose.yaml takes the legal notice");
+    // The page of the web editor loads the settings before the editor starts; its
+    // images write them at every start.
+    let page = read("openecraft/index.html");
+    assert!(page.contains("rel=\"copy-file\" href=\"config.js\"") && page.contains("<script src=\"config.js\"></script>"));
+    let manager = read("parts-manager/index.html");
+    assert!(manager.contains("rel=\"copy-file\" href=\"../openecraft/config.js\"") && manager.contains("<script src=\"config.js\"></script>"));
+    assert!(editor_image.contains("installer/docker/website-config.sh /docker-entrypoint.d/"));
+    assert!(read("installer/docker/editor-web.conf").contains("location = /config.js {\n        alias /tmp/openecraft/config.js;"));
+    assert!(read("installer/docker/website.conf").contains("location = /editor/config.js {\n        alias /tmp/openecraft/config.js;"));
+}

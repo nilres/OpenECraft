@@ -78,6 +78,10 @@ pub struct ManagerApp {
     title: String,
     /// Language the status text was made in.
     shown_lang: openecraft_i18n::Lang,
+    /// The legal texts are shown (Legal and privacy).
+    legal_open: bool,
+    /// The legal notice of who runs this web build, read when first shown.
+    legal: Option<openecraft_parts::legal::LegalNotice>,
 }
 
 const URL_KEY: &str = "server_url";
@@ -110,6 +114,8 @@ impl ManagerApp {
             user_name: String::new(),
             password: String::new(),
             started: false,
+            legal_open: false,
+            legal: None,
             title: String::new(),
             shown_lang: openecraft_i18n::lang(),
         }
@@ -277,6 +283,9 @@ impl ManagerApp {
                 });
                 if pref != ui.ctx().options(|o| o.theme_preference) {
                     ui.ctx().set_theme(pref);
+                }
+                if ui.selectable_label(self.legal_open, tr("Legal and privacy")).on_hover_text(tr("Legal notice of the operator, disclaimer and privacy notice")).clicked() {
+                    self.legal_open = !self.legal_open;
                 }
             });
         });
@@ -663,6 +672,19 @@ impl ManagerApp {
         });
     }
 
+    /// The legal notice of the operator, the disclaimer and the privacy notice.
+    fn legal_window(&mut self, ctx: &egui::Context) {
+        if !self.legal_open {
+            return;
+        }
+        let notice = self.legal.get_or_insert_with(openecraft_ui::io::site_legal);
+        egui::Window::new(tr("Legal and privacy")).open(&mut self.legal_open).collapsible(false).default_width(560.0).default_height(480.0).show(ctx, |ui| {
+            egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
+                openecraft_ui::legal::show(ui, notice, openecraft_ui::legal::Program::PartsManager);
+            });
+        });
+    }
+
     fn dialogs(&mut self, ctx: &egui::Context) {
         let Some(confirm) = &self.confirm else { return };
         let (text, button) = match confirm {
@@ -746,6 +768,7 @@ impl eframe::App for ManagerApp {
             }
         }
         self.dialogs(&ctx);
+        self.legal_window(&ctx);
 
         let title = format!("{} – {}{}", tr("OpenECraft parts manager"), self.client.url, if self.session.dirty() { " *" } else { "" });
         if title != self.title {

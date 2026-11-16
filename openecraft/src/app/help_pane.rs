@@ -1,6 +1,7 @@
 //! The Help pane (F1): the quick guide, the tutorial (`docs/tutorial.md`, rendered),
-//! the keyboard shortcuts and the version. F1 or the pane menu › Help opens the
-//! tutorial chapter of the pane in use.
+//! the keyboard shortcuts, the version and the legal texts (the legal notice of who
+//! runs a web editor, the disclaimer, the privacy notice). F1 or the pane menu › Help
+//! opens the tutorial chapter of the pane in use.
 
 use super::*;
 use crate::shortcuts;
@@ -15,16 +16,19 @@ pub(super) enum Section {
     Tutorial(usize),
     Shortcuts,
     About,
+    Legal,
 }
 
 pub(super) struct HelpUi {
     section: Section,
     scroll_top: bool,
+    /// The legal notice of who runs this web editor, read when first shown.
+    legal: Option<openecraft_parts::legal::LegalNotice>,
 }
 
 impl Default for HelpUi {
     fn default() -> Self {
-        HelpUi { section: Section::Guide, scroll_top: false }
+        HelpUi { section: Section::Guide, scroll_top: false, legal: None }
     }
 }
 
@@ -79,6 +83,13 @@ impl App {
         self.show_pane(Pane::Tool(ToolPane::Help));
     }
 
+    /// Shows the legal notice, the disclaimer and the privacy notice (Help › Legal and privacy).
+    pub(super) fn help_legal(&mut self) {
+        self.help.section = Section::Legal;
+        self.help.scroll_top = true;
+        self.show_pane(Pane::Tool(ToolPane::Help));
+    }
+
     /// Opens the help at the chapter of a pane.
     pub(super) fn help_for(&mut self, pane: Pane) {
         self.help_chapter(chapter_of(pane));
@@ -95,7 +106,7 @@ impl App {
         let chapters = chapters();
         egui::Panel::left("help_sections").resizable(true).default_size(220.0).show(ui, |ui| {
             egui::ScrollArea::vertical().id_salt("help_sections").auto_shrink([false, false]).show(ui, |ui| {
-                for (s, title) in [(Section::Guide, tr("Quick guide")), (Section::Shortcuts, tr("Keyboard shortcuts")), (Section::About, tr("About OpenECraft"))] {
+                for (s, title) in [(Section::Guide, tr("Quick guide")), (Section::Shortcuts, tr("Keyboard shortcuts")), (Section::About, tr("About OpenECraft")), (Section::Legal, tr("Legal and privacy"))] {
                     if ui.selectable_label(self.help.section == s, title).clicked() {
                         self.help.section = s;
                         self.help.scroll_top = true;
@@ -133,6 +144,10 @@ impl App {
                         ui.label(tr_fmt!("Version {}", env!("CARGO_PKG_VERSION")));
                         ui.label(tr("An open electrical CAE editor in the spirit of EPLAN Electric P8."));
                         ui.hyperlink("https://github.com/nilres/OpenECraft");
+                    }
+                    Section::Legal => {
+                        let notice = self.help.legal.get_or_insert_with(openecraft_ui::io::site_legal);
+                        openecraft_ui::legal::show(ui, notice, openecraft_ui::legal::Program::Editor);
                     }
                 }
             });

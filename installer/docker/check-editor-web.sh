@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Starts the image of the web editor once and checks that it serves the page, the
-# WebAssembly as application/wasm and the license files; used by the CI workflows
+# WebAssembly as application/wasm, the license files and the legal notice of the
+# operator from the environment; used by the CI workflows
 # (ci.yml, docker-web.yml).
 #
 #   bash installer/docker/check-editor-web.sh [image] [port]
@@ -12,7 +13,7 @@ name=openecraft-web-check
 work=$(mktemp -d)
 trap 'docker rm -f "$name" > /dev/null 2>&1 || true; rm -rf "$work"' EXIT
 
-docker run -d --name "$name" -p "$port:8080" "$image" > /dev/null
+docker run -d --name "$name" -p "$port:8080" -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' "$image" > /dev/null
 for _ in $(seq 30); do curl -fs "http://127.0.0.1:$port/" > /dev/null && break; sleep 1; done
 curl -fsS "http://127.0.0.1:$port/" -o "$work/index.html" || { docker logs "$name"; exit 1; }
 grep -q openecraft_canvas "$work/index.html"
@@ -24,5 +25,7 @@ test "$type" = application/wasm
 for file in LICENSE-MIT LICENSE-APACHE OFL-NotoSans.txt THIRD-PARTY-LICENSES.html; do
   curl -fsS -o /dev/null "http://127.0.0.1:$port/$file"
 done
+grep -q 'src="config.js"' "$work/index.html"
+curl -fsS "http://127.0.0.1:$port/config.js" | grep -qF 'name: "ACME \"Tools\" GmbH",'
 docker logs "$name"
 echo "$image serves the web editor"

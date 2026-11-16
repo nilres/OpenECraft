@@ -7,6 +7,7 @@ A grant needs a user or a group	Przydział wymaga użytkownika lub grupy
 A group name must not be empty or contain ':'	Nazwa grupy nie może być pusta ani zawierać ':'
 A manufacturer user needs a manufacturer	Użytkownik producenta wymaga podania producenta
 A part number must not be empty or start or end with blanks	Numer artykułu nie może być pusty ani zaczynać się lub kończyć spacjami
+A project names who changed it last.	Projekt wskazuje, kto zmienił go jako ostatni.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rola to zestaw praw. Przydziały nadają użytkownikowi lub grupie rolę dla projektów (* i ? jako symbole wieloznaczne, * dla wszystkich); przydział odmowy odbiera prawa roli niezależnie od innych przydziałów.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rola to zestaw praw. Przydziały nadają użytkownikowi lub grupie rolę dla artykułów producenta (* i ? jako symbole wieloznaczne, * dla wszystkich); przydział odmowy odbiera prawa roli niezależnie od innych przydziałów.
 A user name must not be empty or contain blanks	Nazwa użytkownika nie może być pusta ani zawierać spacji
@@ -194,6 +195,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	Silnik hydrauliczny/pneumatyczny
 Fluid power - special items	Technika płynowa – elementy specjalne
 Fluid power components	Komponenty techniki płynowej
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	Dla konta użytkownika serwer przechowuje nazwę użytkownika, rolę, grupy oraz hasło wyłącznie w postaci skrótu. W przypadku konta z usługi katalogowej to usługa katalogowa sprawdza hasło i podaje grupy.
 Former	Formierka
 Front view (2D)	Widok z przodu (2D)
 Funnel	Lej
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	Suma kontrolna {} si�
 The dashboard is hidden	Pulpit jest ukryty
 The dashboard is shown	Pulpit jest widoczny
 The directory checks the password and sets the groups at every sign-in	Usługa katalogowa sprawdza hasło i ustawia grupy przy każdym logowaniu
+The favorites of a user are stored with the account.	Ulubione użytkownika są przechowywane razem z kontem.
 The file holds no access settings	Plik nie zawiera ustawień dostępu
 The groups would leave nobody who manages users	Grupy nie zostawiłyby nikogo, kto zarządza użytkownikami
 The last administrator cannot lose the right to manage users	Ostatni administrator nie może utracić prawa do zarządzania użytkownikami
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Role, przydziały, grupy i dostęp bez logowania, z wersją serwera. Przywrócenie zastępuje role i przydziały oraz dodaje grupy; usługi katalogowe pozostają, jak skonfigurowano na serwerze.
 The server cannot be reached	Serwer jest nieosiągalny
 The server keeps the last {} ended sessions.	Serwer przechowuje ostatnie zakończone sesje, maksymalnie {}.
+The server records who changed a part and when (the history of the part).	Serwer rejestruje, kto i kiedy zmienił artykuł (historia artykułu).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	Serwer rejestruje, kto i kiedy pracuje nad którym projektem: otwarte sesje, zablokowane strony oraz ostatnie zakończone sesje wraz z ich zapisami. Pozostali użytkownicy projektu widzą, kto zablokował stronę; administratorzy widzą sesje.
 The server sent no text	Serwer nie wysłał tekstu
 The test failed	Test nie powiódł się
 The test succeeded	Test powiódł się
@@ -541,6 +546,7 @@ Throttle plate	Kryza dławiąca
 Timeout (s)	Limit czasu (s)
 Timer relay	Przekaźnik czasowy
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Aby ją przywrócić, uruchom serwer z --data <plik> lub skopiuj ją do nowej bazy danych za pomocą --migrate-from <plik>.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	Aby utrudnić zgadywanie haseł, serwer przez krótki czas pamięta nieudane logowania; nie są one zapisywane na dysku.
 Too many failed sign-ins, try again later	Zbyt wiele nieudanych logowań, spróbuj później
 Too many registrations from this address, try again later	Zbyt wiele rejestracji z tego adresu, spróbuj ponownie później
 Top cover	Dach
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	Nie możesz zmieniać artykułów pr
 You may not see any project	Nie możesz zobaczyć żadnego projektu
 Your account awaits the approval of an administrator	Konto oczekuje na zatwierdzenie przez administratora
 Your account was created. An administrator has to approve it before you can sign in.	Konto zostało utworzone. Administrator musi je zatwierdzić, zanim będzie można się zalogować.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Państwa przeglądarka przechowuje wybrany język i ustawienia strony oraz, dopóki są Państwo zalogowani, klucz Państwa sesji. Wylogowanie usuwa klucz; wyczyszczenie danych witryny w przeglądarce usuwa wszystko.
 Your rights	Twoje prawa
 access denied – check the personal access token	odmowa dostępu – sprawdź osobisty token dostępu
 by file name	według nazwy pliku

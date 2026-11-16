@@ -7,6 +7,7 @@ A grant needs a user or a group	Myöntö tarvitsee käyttäjän tai ryhmän
 A group name must not be empty or contain ':'	Ryhmän nimi ei saa olla tyhjä eikä sisältää merkkiä ':'
 A manufacturer user needs a manufacturer	Valmistajakäyttäjä tarvitsee valmistajan
 A part number must not be empty or start or end with blanks	Osanumero ei saa olla tyhjä eikä alkaa tai päättyä välilyöntiin
+A project names who changed it last.	Projekti kertoo, kuka muutti sitä viimeksi.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rooli on joukko oikeuksia. Myönnöt antavat käyttäjälle tai ryhmälle roolin projekteihin (* ja ? jokerimerkkeinä, * kaikille); estävä myöntö poistaa roolin oikeudet riippumatta muista myönnöistä.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rooli on joukko oikeuksia. Myönnöt antavat käyttäjälle tai ryhmälle roolin valmistajan osiin (* ja ? jokerimerkkeinä, * kaikille); estävä myöntö poistaa roolin oikeudet riippumatta muista myönnöistä.
 A user name must not be empty or contain blanks	Käyttäjänimi ei saa olla tyhjä eikä sisältää välilyöntejä
@@ -197,6 +198,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	Fluidimoottori
 Fluid power - special items	Fluiditekniikka – erikoisosat
 Fluid power components	Fluiditekniikan komponentit
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	Käyttäjätilistä palvelin tallentaa käyttäjänimen, roolin ja ryhmät sekä salasanan vain tiivisteenä. Hakemistopalvelun tilin kohdalla hakemistopalvelu tarkistaa salasanan ja ilmoittaa ryhmät.
 Former	Muotoilulaite
 Front view (2D)	Etunäkymä (2D)
 Funnel	Suppilo
@@ -510,6 +512,7 @@ The checksum of {} does not match: the download is damaged	Tiedoston {} tarkistu
 The dashboard is hidden	Koontinäyttö on piilotettu
 The dashboard is shown	Koontinäyttö näytetään
 The directory checks the password and sets the groups at every sign-in	Hakemistopalvelu tarkistaa salasanan ja asettaa ryhmät jokaisella kirjautumisella
+The favorites of a user are stored with the account.	Käyttäjän suosikit tallennetaan tilin yhteyteen.
 The file holds no access settings	Tiedostossa ei ole käyttöoikeusasetuksia
 The groups would leave nobody who manages users	Ryhmien jälkeen kukaan ei hallitsisi käyttäjiä
 The last administrator cannot lose the right to manage users	Viimeinen järjestelmänvalvoja ei voi menettää oikeutta hallita käyttäjiä
@@ -527,6 +530,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Roolit, myönnöt, ryhmät ja käyttö ilman kirjautumista palvelimen versiolla. Palautus korvaa roolit ja myönnöt ja lisää ryhmät; hakemistopalvelut pysyvät palvelimelle määritettyinä.
 The server cannot be reached	Palvelimeen ei saada yhteyttä
 The server keeps the last {} ended sessions.	Palvelin säilyttää {} viimeisintä päättynyttä istuntoa.
+The server records who changed a part and when (the history of the part).	Palvelin kirjaa, kuka muutti osaa ja milloin (osan historia).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	Palvelin kirjaa, kuka työskentelee minkä projektin parissa ja milloin: avoimet istunnot, lukitut sivut ja viimeisimmät päättyneet istunnot tallennuksineen. Projektin muut käyttäjät näkevät, kuka on lukinnut sivun; järjestelmänvalvojat näkevät istunnot.
 The server sent no text	Palvelin ei lähettänyt tekstiä
 The test failed	Testi epäonnistui
 The test succeeded	Testi onnistui
@@ -544,6 +549,7 @@ Throttle plate	Kuristuslevy
 Timeout (s)	Aikakatkaisu (s)
 Timer relay	Aikarele
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Palauta se käynnistämällä palvelin valinnalla --data <tiedosto> tai kopioi se uuteen tietokantaan valinnalla --migrate-from <tiedosto>.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	Salasanojen arvaamisen hidastamiseksi palvelin muistaa epäonnistuneet kirjautumiset lyhyen aikaa; niitä ei kirjoiteta levylle.
 Too many failed sign-ins, try again later	Liian monta epäonnistunutta kirjautumista, yritä myöhemmin uudelleen
 Too many registrations from this address, try again later	Liian monta rekisteröitymistä tästä osoitteesta, yritä myöhemmin uudelleen
 Top cover	Katto
@@ -592,6 +598,7 @@ You may not change parts of manufacturer {}	Et saa muuttaa valmistajan {} osia
 You may not see any project	Et saa nähdä yhtään projektia
 Your account awaits the approval of an administrator	Tilisi odottaa järjestelmänvalvojan hyväksyntää
 Your account was created. An administrator has to approve it before you can sign in.	Tilisi on luotu. Järjestelmänvalvojan on hyväksyttävä se, ennen kuin voit kirjautua.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Selaimesi säilyttää valitsemasi kielen ja sivun asetukset sekä istuntosi avaimen niin kauan kuin olet kirjautuneena. Uloskirjautuminen poistaa avaimen; selaimen sivustotietojen tyhjentäminen poistaa kaiken.
 Your rights	Oikeutesi
 access denied – check the personal access token	käyttö estetty – tarkista henkilökohtainen käyttöoikeustokeni
 by file name	tiedostonimen mukaan

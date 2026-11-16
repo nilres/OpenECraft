@@ -6,6 +6,7 @@ use crate::storage::StorageKind;
 use clap::Parser;
 use openecraft_auth::server_config;
 use openecraft_parts::api::DEFAULT_PORT;
+use openecraft_parts::legal::LegalNotice;
 use serde::Deserialize;
 use std::net::SocketAddr;
 use std::path::PathBuf;
@@ -69,6 +70,8 @@ struct File {
     access: Option<PathBuf>,
     registration: Option<bool>,
     dashboard: Option<bool>,
+    /// The legal notice of the operator (`[legal]`; the variables `OPENECRAFT_LEGAL_…` win).
+    legal: LegalNotice,
 }
 
 /// The settings the server runs with.
@@ -88,6 +91,8 @@ pub struct Settings {
     pub registration: Option<bool>,
     /// Dashboard shown or hidden by the start options; `None`: as administrators set it.
     pub dashboard: Option<bool>,
+    /// The legal notice of the operator, shown by the web page.
+    pub legal: LegalNotice,
 }
 
 impl Settings {
@@ -97,7 +102,9 @@ impl Settings {
             Some(path) => server_config::load(path)?,
             None => File::default(),
         };
-        Ok(Settings::merge(args, file))
+        let mut settings = Settings::merge(args, file);
+        settings.legal = settings.legal.with_environment(|variable| std::env::var(variable).ok());
+        Ok(settings)
     }
 
     fn merge(args: Args, file: File) -> Settings {
@@ -116,6 +123,7 @@ impl Settings {
             install_catalogs: if args.install_catalogs.is_empty() { file.install_catalogs } else { args.install_catalogs },
             registration: args.registration.or(file.registration),
             dashboard: args.dashboard.or(file.dashboard),
+            legal: file.legal,
             data,
             access,
         }

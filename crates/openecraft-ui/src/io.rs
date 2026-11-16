@@ -284,6 +284,24 @@ pub fn platform() -> String {
     text
 }
 
+/// The legal notice of who runs this web editor (`legal` of `window.OPENECRAFT_SITE`,
+/// set in `config.js` beside the page); empty on the desktop, which nobody hosts.
+pub fn site_legal() -> openecraft_parts::legal::LegalNotice {
+    #[allow(unused_mut)]
+    let mut notice = openecraft_parts::legal::LegalNotice::default();
+    #[cfg(target_arch = "wasm32")]
+    {
+        let field = |object: &wasm_bindgen::JsValue, name: &str| js_sys::Reflect::get(object, &wasm_bindgen::JsValue::from_str(name)).ok();
+        let legal = web_sys::window().and_then(|w| field(&w, "OPENECRAFT_SITE")).and_then(|site| field(&site, "legal"));
+        for (name, _) in openecraft_parts::legal::FIELDS {
+            if let Some(value) = legal.as_ref().and_then(|l| field(l, name)).and_then(|v| v.as_string()) {
+                notice.set(name, value);
+            }
+        }
+    }
+    notice
+}
+
 /// The local file system can be searched and written by path (desktop, not the
 /// browser).
 pub fn has_file_system() -> bool {

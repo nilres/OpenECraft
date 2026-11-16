@@ -7,6 +7,7 @@ A grant needs a user or a group	Uma concessão precisa de um usuário ou de um g
 A group name must not be empty or contain ':'	O nome de um grupo não pode estar vazio nem conter ':'
 A manufacturer user needs a manufacturer	Um usuário fabricante precisa de um fabricante
 A part number must not be empty or start or end with blanks	O número da peça não pode estar vazio nem começar ou terminar com espaços
+A project names who changed it last.	Um projeto indica quem o alterou por último.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Uma função é um conjunto de direitos. As concessões dão a um usuário ou grupo uma função sobre projetos (* e ? como curingas, * para todos); uma concessão de negação retira os direitos da função, independentemente do que outras concessões concedam.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Uma função é um conjunto de direitos. As concessões dão a um usuário ou grupo uma função sobre as peças de um fabricante (* e ? como curingas, * para todos); uma concessão de negação retira os direitos da função, independentemente do que outras concessões concedam.
 A user name must not be empty or contain blanks	Um nome de usuário não pode estar vazio nem conter espaços
@@ -194,6 +195,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	Motor de fluido
 Fluid power - special items	Tecnologia de fluidos - itens especiais
 Fluid power components	Componentes de tecnologia de fluidos
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	Para uma conta de usuário, o servidor armazena o nome de usuário, a função, os grupos e a senha somente como hash. No caso de uma conta de um serviço de diretório, o serviço de diretório verifica a senha e informa os grupos.
 Former	Conformador
 Front view (2D)	Vista frontal (2D)
 Funnel	Funil
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	A soma de verificaç�
 The dashboard is hidden	O painel está oculto
 The dashboard is shown	O painel é exibido
 The directory checks the password and sets the groups at every sign-in	O serviço de diretório verifica a senha e define os grupos a cada entrada
+The favorites of a user are stored with the account.	Os favoritos de um usuário são armazenados com a conta.
 The file holds no access settings	O arquivo não contém configurações de acesso
 The groups would leave nobody who manages users	Os grupos não deixariam ninguém para gerenciar os usuários
 The last administrator cannot lose the right to manage users	O último administrador não pode perder o direito de gerenciar usuários
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	As funções, as concessões, os grupos e o acesso sem entrada, com a versão do servidor. Restaurar substitui as funções e concessões e adiciona os grupos; os serviços de diretório ficam como configurados no servidor.
 The server cannot be reached	Não é possível acessar o servidor
 The server keeps the last {} ended sessions.	O servidor mantém as últimas {} sessões encerradas.
+The server records who changed a part and when (the history of the part).	O servidor registra quem alterou uma peça e quando (o histórico da peça).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	O servidor registra quem trabalha em qual projeto e quando: as sessões abertas, as páginas bloqueadas e as últimas sessões encerradas com seus salvamentos. Os outros usuários de um projeto veem quem bloqueou uma página; os administradores veem as sessões.
 The server sent no text	O servidor não enviou texto
 The test failed	O teste falhou
 The test succeeded	O teste foi bem-sucedido
@@ -541,6 +546,7 @@ Throttle plate	Placa de orifício
 Timeout (s)	Tempo limite (s)
 Timer relay	Relé temporizador
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Para restaurá-lo, inicie o servidor com --data <arquivo> ou copie-o para um novo banco de dados com --migrate-from <arquivo>.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	Para dificultar a adivinhação de senhas, o servidor memoriza por pouco tempo as tentativas de login malsucedidas; elas não são gravadas em disco.
 Too many failed sign-ins, try again later	Muitas tentativas de login falharam, tente novamente mais tarde
 Too many registrations from this address, try again later	Muitos cadastros deste endereço, tente novamente mais tarde
 Top cover	Teto
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	Você não pode alterar peças do fa
 You may not see any project	Você não pode ver nenhum projeto
 Your account awaits the approval of an administrator	Sua conta aguarda a aprovação de um administrador
 Your account was created. An administrator has to approve it before you can sign in.	Sua conta foi criada. Um administrador precisa aprová-la antes que você possa entrar.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Seu navegador mantém o idioma e as configurações da página que você escolheu e, enquanto você estiver conectado, a chave da sua sessão. Sair remove a chave; limpar os dados do site no navegador remove tudo.
 Your rights	Seus direitos
 access denied – check the personal access token	acesso negado – verifique o token de acesso pessoal
 by file name	por nome de arquivo

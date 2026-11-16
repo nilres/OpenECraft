@@ -43,6 +43,7 @@ Deleted user {}	Brugeren {} er slettet
 Deleting {}…	Sletter {}…
 Describe the problem you saw	Beskriv det problem, du så
 Describe what happened before continuing.	Beskriv, hvad der skete, før du fortsætter.
+Disclaimer	Ansvarsfraskrivelse
 Door cutouts	Dørudskæringer
 Downloaded {} ({} bytes)	{} er downloadet ({} byte)
 Downloading parts…	Downloader artikler…
@@ -66,6 +67,7 @@ Import SVG…	Importér SVG…
 In the door, when they differ from the cutouts	I døren, når de afviger fra udskæringerne
 Internal values of the EPLAN part exchange (0: undefined)	Interne værdier for EPLAN-artikeludvekslingen (0: udefineret)
 Isometric view, everything shown	Isometrisk visning, alt vist
+It connects only to the parts server you name, which receives your requests, your sign-in and the parts you save. Its operator has a privacy notice of their own.	Den opretter kun forbindelse til den artikelserver, du angiver, som modtager dine forespørgsler, dit login og de artikler, du gemmer. Dens operatør har sin egen privatlivsmeddelelse.
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Det virker kun monteret på en af de artikler, det passer til; projektkontrollen melder det på en enhed uden en sådan artikel
 Largest conductor the clamp takes (0: not known)	Største leder, klemmen tager (0: ukendt)
 Loaded the library {}	Biblioteket {} er indlæst
@@ -91,6 +93,7 @@ Only parts for direct wall mounting	Kun artikler til direkte vægmontage
 Open GitHub issue form	Åbn GitHubs issue-formular
 Open datasheet	Åbn datablad
 Open in the browser	Åbn i browseren
+OpenECraft uses no tracking and no analytics. Your projects stay where you save them; nothing is sent to the makers of OpenECraft.	OpenECraft bruger hverken sporing eller analyse. Dine projekter bliver, hvor du gemmer dem; intet sendes til udviklerne af OpenECraft.
 Opens your browser and copies the report for you to paste into the GitHub issue form.	Åbner browseren og kopierer rapporten, så du kan indsætte den i GitHubs issue-formular.
 Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Åbner browseren med rapporten udfyldt og kopierer den. Gennemse og indsend den på GitHub.
 Outside the face	Uden for fladen
@@ -111,6 +114,7 @@ Removing the file…	Fjerner filen…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Erstatter tilslutningspunkterne efter IEC-konventionen: ulige betegnelser øverst, lige nederst
 Report copied. Keep it to submit on GitHub when you are online.	Rapport kopieret. Gem den for at indsende den på GitHub, når du er online.
 Report copied. Paste it into the GitHub issue form and submit it there.	Rapport kopieret. Indsæt den i GitHubs issue-formular, og indsend den der.
+Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before.	Når du rapporterer en fejl, åbnes GitHub i din browser med de oplysninger, formularen viser; intet sendes inden da.
 Reports are public. A GitHub account is needed to submit them.	Rapporter er offentlige. Der kræves en GitHub-konto for at indsende dem.
 Reset filter	Nulstil filter
 Restricted areas: {}	Spærrede områder: {}
@@ -142,13 +146,19 @@ Summary	Resumé
 Take {} values from the technical data	Overtag {} værdier fra de tekniske data
 Technical details	Tekniske oplysninger
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D-frontvisningen bruges i tavlens frontvisning og på monteringslayoutsider, 3D-modellen i 3D-tavlevisningen. Begge tilpasses monteringsdataene (bredde × højde × dybde).
+The address of the server and your settings are kept in your user folder on this computer; the access token and your password are not stored.	Serverens adresse og dine indstillinger opbevares i din brugermappe på denne computer; adgangstokenet og din adgangskode gemmes ikke.
+The editor connects only to the servers you set up: parts servers, project servers, the EPLAN Data Portal and Autodesk Vault receive your requests, your sign-in and what you save to them. Their operators have privacy notices of their own.	Editoren opretter kun forbindelse til de servere, du konfigurerer: artikelservere, projektservere, EPLAN Data Portal og Autodesk Vault modtager dine forespørgsler, dit login og det, du gemmer på dem. Deres operatører har deres egne privatlivsmeddelelser.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Modellen ({} × {} × {}) afviger fra monteringsdataene ({} × {} × {}); den strækkes til monteringsdataene.
+The parts manager sets no cookies. It keeps the address of the server and your settings in the storage of your browser; clearing the site data of the browser removes them. The access token and your password are not stored.	Artikelstyringen sætter ingen cookies. Den opbevarer serverens adresse og dine indstillinger i din browsers lager; hvis du rydder browserens webstedsdata, fjernes de. Adgangstokenet og din adgangskode gemmes ikke.
+The parts manager uses no tracking and no analytics; nothing is sent to the makers of OpenECraft.	Artikelstyringen bruger hverken sporing eller analyse; intet sendes til udviklerne af OpenECraft.
 The parts server has no library {} yet	Komponentserveren har endnu intet bibliotek {}
 The price refers to this many units	Prisen gælder for dette antal enheder
 The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Rapporten indeholder versionen, systemet og antal af det, det åbne projekt indeholder, men intet projektindhold. Gennemse oplysningerne, før du deler dem.
 The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Skærmbilledet vedhæftes ikke af sig selv: kopiér eller gem det, og tilføj det derefter i GitHubs issue-formular.
 The successor is not in this parts list	Efterfølgeren er ikke i denne artikelliste
+The web editor sets no cookies. It keeps your settings and the data to restore your work in the storage of your browser; clearing the site data of the browser removes them.	Webeditoren sætter ingen cookies. Den opbevarer dine indstillinger og de data, der bruges til at gendanne dit arbejde, i din browsers lager; hvis du rydder browserens webstedsdata, fjernes de.
 This part is an accessory	Denne artikel er tilbehør
+To find updates, OpenECraft asks GitHub for the latest release when it starts, unless you switch that off in the settings; GitHub receives the IP address of your computer.	For at finde opdateringer spørger OpenECraft GitHub om den nyeste version ved start, medmindre du slår det fra i indstillingerne; GitHub modtager din computers IP-adresse.
 Top group	Hovedgruppe
 Top group {}, product group {}, subgroup {}	Hovedgruppe {}, produktgruppe {}, undergruppe {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	Drej modellen, så forsiden vender mod beskueren (+Z), og oversiden er +Y
@@ -172,6 +182,7 @@ Where the wires are connected in the panel layout: the designation as in the fun
 Width / Ø	Bredde / Ø
 Wire connection	Ledningstilslutning
 Wire leaves	Ledningsudgang
+Your settings and the data to restore your work are kept in your user folder on this computer.	Dine indstillinger og de data, der bruges til at gendanne dit arbejde, opbevares i din brugermappe på denne computer.
 Zoom only	Kun zoom
 Zooms (mouse wheel)	Zoomer (musehjul)
 changes with token	ændringer med token

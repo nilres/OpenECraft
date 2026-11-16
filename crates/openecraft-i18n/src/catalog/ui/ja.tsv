@@ -43,6 +43,7 @@ Deleted user {}	ユーザー {} を削除しました
 Deleting {}…	{} を削除中…
 Describe the problem you saw	見た問題を説明してください
 Describe what happened before continuing.	続行する前に、何が起きたかを説明してください。
+Disclaimer	免責事項
 Door cutouts	扉の切り欠き
 Downloaded {} ({} bytes)	{} をダウンロードしました ({} バイト)
 Downloading parts…	部品をダウンロード中…
@@ -66,6 +67,7 @@ Import SVG…	SVG をインポート…
 In the door, when they differ from the cutouts	扉で、切り欠きと異なる場合
 Internal values of the EPLAN part exchange (0: undefined)	EPLAN 部品交換の内部値 (0: 未定義)
 Isometric view, everything shown	等角ビュー、すべて表示
+It connects only to the parts server you name, which receives your requests, your sign-in and the parts you save. Its operator has a privacy notice of their own.	ご自身が指定した部品サーバーにのみ接続し、そのサーバーはリクエスト、サインイン情報、および保存した部品を受け取ります。その運営者には独自のプライバシーに関する通知があります。
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	適合する部品のいずれかに取り付けた場合にのみ機能します。そのような部品のない機器ではプロジェクトチェックが報告します
 Largest conductor the clamp takes (0: not known)	端子が接続できる最大の導体（0：不明）
 Loaded the library {}	ライブラリ {} を読み込みました
@@ -91,6 +93,7 @@ Only parts for direct wall mounting	直接壁取付できる部品のみ
 Open GitHub issue form	GitHub の Issue フォームを開く
 Open datasheet	データシートを開く
 Open in the browser	ブラウザーで開く
+OpenECraft uses no tracking and no analytics. Your projects stay where you save them; nothing is sent to the makers of OpenECraft.	OpenECraft はトラッキングもアクセス解析も使用しません。プロジェクトはご自身が保存した場所にとどまり、OpenECraft の開発者には何も送信されません。
 Opens your browser and copies the report for you to paste into the GitHub issue form.	ブラウザーを開き、GitHub の Issue フォームに貼り付けられるよう報告をコピーします。
 Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	報告を記入した状態でブラウザーを開き、報告をコピーします。GitHub で確認して送信してください。
 Outside the face	面の外側
@@ -111,6 +114,7 @@ Removing the file…	ファイルを削除しています…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	IEC の規則で接続ポイントを置き換えます: 奇数の名称を上、偶数の名称を下に配置
 Report copied. Keep it to submit on GitHub when you are online.	報告をコピーしました。オンラインになったら GitHub で送信できるよう保管してください。
 Report copied. Paste it into the GitHub issue form and submit it there.	報告をコピーしました。GitHub の Issue フォームに貼り付けて、そこで送信してください。
+Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before.	不具合を報告すると、フォームに表示されている内容とともにブラウザーで GitHub が開きます。それまでは何も送信されません。
 Reports are public. A GitHub account is needed to submit them.	報告は公開されます。送信には GitHub アカウントが必要です。
 Reset filter	フィルターをリセット
 Restricted areas: {}	禁止領域: {}
@@ -142,13 +146,19 @@ Summary	概要
 Take {} values from the technical data	技術データから {} 個の値を取り込む
 Technical details	技術情報
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D 正面図は盤の正面図と取付図ページで、3D モデルは盤の 3D ビューで使用されます。どちらも取付データ (幅 × 高さ × 奥行き) に合わせられます。
+The address of the server and your settings are kept in your user folder on this computer; the access token and your password are not stored.	サーバーのアドレスと設定は、このコンピューターのユーザーフォルダーに保存されます。アクセストークンとパスワードは保存されません。
+The editor connects only to the servers you set up: parts servers, project servers, the EPLAN Data Portal and Autodesk Vault receive your requests, your sign-in and what you save to them. Their operators have privacy notices of their own.	エディターは、ご自身が設定したサーバーにのみ接続します。部品サーバー、プロジェクトサーバー、EPLAN Data Portal および Autodesk Vault は、リクエスト、サインイン情報、およびそこに保存した内容を受け取ります。これらの運営者には、それぞれ独自のプライバシーに関する通知があります。
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	モデル ({} × {} × {}) が取付データ ({} × {} × {}) と異なります。モデルは取付データに合わせて伸縮されます。
+The parts manager sets no cookies. It keeps the address of the server and your settings in the storage of your browser; clearing the site data of the browser removes them. The access token and your password are not stored.	部品マネージャーは Cookie を設定しません。サーバーのアドレスと設定はブラウザーのストレージに保持され、ブラウザーのサイトデータを消去すると削除されます。アクセストークンとパスワードは保存されません。
+The parts manager uses no tracking and no analytics; nothing is sent to the makers of OpenECraft.	部品マネージャーはトラッキングもアクセス解析も使用しません。OpenECraft の開発者には何も送信されません。
 The parts server has no library {} yet	部品サーバーにはまだライブラリ {} がありません
 The price refers to this many units	価格はこの数量に対するものです
 The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	報告にはバージョン、システム、開いているプロジェクトの項目数が含まれますが、プロジェクトの内容は含まれません。共有する前に詳細を確認してください。
 The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	スクリーンショットは自動では添付されません。コピーまたは保存してから、GitHub の Issue フォームに追加してください。
 The successor is not in this parts list	後継品がこの部品リストにありません
+The web editor sets no cookies. It keeps your settings and the data to restore your work in the storage of your browser; clearing the site data of the browser removes them.	Web エディターは Cookie を設定しません。設定と作業を復元するためのデータはブラウザーのストレージに保持され、ブラウザーのサイトデータを消去すると削除されます。
 This part is an accessory	この部品はアクセサリです
+To find updates, OpenECraft asks GitHub for the latest release when it starts, unless you switch that off in the settings; GitHub receives the IP address of your computer.	更新を確認するため、設定で無効にしない限り、OpenECraft は起動時に GitHub に最新リリースを問い合わせます。このとき GitHub はコンピューターの IP アドレスを受け取ります。
 Top group	トップグループ
 Top group {}, product group {}, subgroup {}	トップグループ {}、製品グループ {}、サブグループ {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	モデルの前面が視点側 (+Z)、上面が +Y を向くように回転させます
@@ -172,6 +182,7 @@ Where the wires are connected in the panel layout: the designation as in the fun
 Width / Ø	幅 / Ø
 Wire connection	電線の接続
 Wire leaves	電線の出る方向
+Your settings and the data to restore your work are kept in your user folder on this computer.	設定と作業を復元するためのデータは、このコンピューターのユーザーフォルダーに保存されます。
 Zoom only	ズームのみ
 Zooms (mouse wheel)	ズーム（マウスホイール）
 changes with token	トークンで変更可能

@@ -95,7 +95,7 @@ async fn main() {
         }
     };
     let server = routes::Server { store, sessions: sessions::Sessions::with_history(history), users, access, throttle: Default::default(), views: Default::default() };
-    let state = routes::AppState { server: Arc::new(Mutex::new(server)), token, web: args.web };
+    let state = routes::AppState { server: Arc::new(Mutex::new(server)), token, web: args.web, legal: Arc::new(args.legal) };
     let listener = match tokio::net::TcpListener::bind(args.bind).await {
         Ok(l) => l,
         Err(e) => {

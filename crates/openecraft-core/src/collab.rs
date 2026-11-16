@@ -14,6 +14,7 @@
 //! | Method | Path | |
 //! | --- | --- | --- |
 //! | GET | `/api/v1/info` | [`ServerInfo`] |
+//! | GET | `/api/v1/legal` | the legal notice of the operator (`openecraft_parts::legal::LegalNotice`; with the web page) |
 //! | GET | `/api/v1/projects` | [`ProjectSummary`] list |
 //! | POST | `/api/v1/projects` | [`CreateRequest`] → [`Opened`] |
 //! | GET | `/api/v1/projects/{name}` | [`Snapshot`] |

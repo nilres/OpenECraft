@@ -46,6 +46,7 @@
 //! | GET | `/api/v1/bundled` | [`BundledCatalog`] list: catalogs shipped with the server (administrator) |
 //! | POST | `/api/v1/bundled/{id}` | installs or updates a bundled catalog (administrator) → [`Installed`] |
 //! | GET | `/api/v1/texts?lang=de` | translations of the web portal |
+//! | GET | `/api/v1/legal` | [`crate::legal::LegalNotice`] of the operator, for the web portal |
 //!
 //! Requests of a user carry `Authorization: Bearer <token>`: the token of a
 //! [`Session`] or the server's administrator token (`--token`). Users sign in with a

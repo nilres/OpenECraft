@@ -195,3 +195,40 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   the caller's rights, from `openecraft_view`) and `GET /projects/{name}/pages/{id}/svg`
   (a page as SVG); both need the right to view the project and are drawn from one
   analysis per project and revision (the last 8 projects are kept).
+
+## Legal notice, disclaimer and privacy notice
+
+Below the web page (`--web`) are the links *Privacy* and, when the operator has a name, *Legal
+notice* (in German *Datenschutz* and *Impressum*), each opening a dialog, and the
+disclaimers of OpenECraft (no warranty, the product names it mentions belong to their
+owners). They are there without sign-in, as for the [website](website.md#legal-notice),
+whose fields and variables are the same:
+
+| Key of `[legal]` | Variable | Shows |
+| --- | --- | --- |
+| `name` | `OPENECRAFT_LEGAL_NAME` | The person or company running the server; empty hides the legal notice |
+| `address` | `OPENECRAFT_LEGAL_ADDRESS` | Its postal address |
+| `email` | `OPENECRAFT_LEGAL_EMAIL` | Email address, as a link |
+| `phone` | `OPENECRAFT_LEGAL_PHONE` | Phone number |
+| `representative` | `OPENECRAFT_LEGAL_REPRESENTATIVE` | Who represents a company |
+| `register` | `OPENECRAFT_LEGAL_REGISTER` | Register court and number |
+| `vat` | `OPENECRAFT_LEGAL_VAT_ID` | VAT identification number |
+| `responsible` | `OPENECRAFT_LEGAL_RESPONSIBLE` | Who is responsible for the content, with address |
+| `text` | `OPENECRAFT_LEGAL_TEXT` | Further text: disclaimers, dispute resolution |
+| `privacy` | `OPENECRAFT_LEGAL_PRIVACY` | What the operator adds to the privacy notice: the hosting, the logs, whom to ask |
+
+Set them in the table `[legal]` of the configuration file or with the variables, which
+win; lines of the address and of the texts are separated by `|` (or line breaks in the
+file). `GET /api/v1/legal` answers them as JSON. The labels follow the language of the
+page; the values are shown as they are set.
+
+The privacy notice says what the page and the server do, in the language of the page:
+no cookies, no tracking, nothing loaded from other servers; the language, the settings
+of the page and the key of the session in the storage of the browser; the accounts
+(name, role, groups, the password as a hash); the failed sign-ins remembered for a
+short time; who works on which project and when (sessions, locks, the latest ended sessions) and who changed a project last. What only the operator knows (who hosts the
+server, what a reverse proxy logs and for how long, whom to ask, as Article 13 GDPR
+asks for) is set in `privacy` and shown below it. Keep the texts true: a change that
+stores or sends something else changes them too (`renderLegal` of `common.js`,
+`privacy()` of the page's script). Whether a server needs a legal notice, and what it
+has to say, depends on the operator and the country: OpenECraft only shows what is set.

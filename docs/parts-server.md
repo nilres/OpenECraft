@@ -214,6 +214,43 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   machines, e.g. with [Caddy](https://caddyserver.com/), which fetches the certificate:
   `caddy reverse-proxy --from parts.example.com --to 127.0.0.1:8090`.
 
+## Legal notice, disclaimer and privacy notice
+
+Below the web page are the links *Privacy* and, when the operator has a name, *Legal
+notice* (in German *Datenschutz* and *Impressum*), each opening a dialog, and the
+disclaimers of OpenECraft (no warranty, the product names it mentions belong to their
+owners). They are there without sign-in, as for the [website](website.md#legal-notice),
+whose fields and variables are the same:
+
+| Key of `[legal]` | Variable | Shows |
+| --- | --- | --- |
+| `name` | `OPENECRAFT_LEGAL_NAME` | The person or company running the server; empty hides the legal notice |
+| `address` | `OPENECRAFT_LEGAL_ADDRESS` | Its postal address |
+| `email` | `OPENECRAFT_LEGAL_EMAIL` | Email address, as a link |
+| `phone` | `OPENECRAFT_LEGAL_PHONE` | Phone number |
+| `representative` | `OPENECRAFT_LEGAL_REPRESENTATIVE` | Who represents a company |
+| `register` | `OPENECRAFT_LEGAL_REGISTER` | Register court and number |
+| `vat` | `OPENECRAFT_LEGAL_VAT_ID` | VAT identification number |
+| `responsible` | `OPENECRAFT_LEGAL_RESPONSIBLE` | Who is responsible for the content, with address |
+| `text` | `OPENECRAFT_LEGAL_TEXT` | Further text: disclaimers, dispute resolution |
+| `privacy` | `OPENECRAFT_LEGAL_PRIVACY` | What the operator adds to the privacy notice: the hosting, the logs, whom to ask |
+
+Set them in the table `[legal]` of the configuration file or with the variables, which
+win; lines of the address and of the texts are separated by `|` (or line breaks in the
+file). `GET /api/v1/legal` answers them as JSON. The labels follow the language of the
+page; the values are shown as they are set.
+
+The privacy notice says what the page and the server do, in the language of the page:
+no cookies, no tracking, nothing loaded from other servers; the language, the settings
+of the page and the key of the session in the storage of the browser; the accounts
+(name, role, groups, the password as a hash); the failed sign-ins remembered for a
+short time; who changed a part and when (its history) and the favorites of a user. What only the operator knows (who hosts the
+server, what a reverse proxy logs and for how long, whom to ask, as Article 13 GDPR
+asks for) is set in `privacy` and shown below it. Keep the texts true: a change that
+stores or sends something else changes them too (`renderLegal` of `common.js`,
+`privacy()` of the page's script). Whether a server needs a legal notice, and what it
+has to say, depends on the operator and the country: OpenECraft only shows what is set.
+
 ## EPLAN Data Portal
 
 The parts handling also connects to the EPLAN Data Portal: choose *EPLAN Data Portal*
@@ -302,6 +339,10 @@ cargo run --release -p openecraft-parts-manager        # desktop
 cd parts-manager && trunk serve                        # web, http://127.0.0.1:8082
 cd parts-manager && trunk build --release              # static files in parts-manager/dist/
 ```
+
+*Legal and privacy* of the top bar shows the disclaimer and the privacy notice of the
+parts manager and, in a web build whose `config.js` names an operator, their legal
+notice ([installation.md](installation.md#legal-notice-of-a-web-editor)).
 
 Enter the server URL and the access token (kept in memory only) and click *Connect*, or
 sign in with a user name and password. Changes are saved to the server with *Save*

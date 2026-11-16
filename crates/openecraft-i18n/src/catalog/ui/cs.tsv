@@ -43,6 +43,7 @@ Deleted user {}	Uživatel {} odstraněn
 Deleting {}…	Odstraňování {}…
 Describe the problem you saw	Popište problém, který jste viděli
 Describe what happened before continuing.	Než budete pokračovat, popište, co se stalo.
+Disclaimer	Vyloučení odpovědnosti
 Door cutouts	Výřezy ve dveřích
 Downloaded {} ({} bytes)	Staženo {} ({} bajtů)
 Downloading parts…	Stahování artiklů…
@@ -66,6 +67,7 @@ Import SVG…	Importovat SVG…
 In the door, when they differ from the cutouts	Ve dveřích, pokud se liší od výřezů
 Internal values of the EPLAN part exchange (0: undefined)	Interní hodnoty výměny artiklů EPLAN (0: nedefinováno)
 Isometric view, everything shown	Izometrický pohled, vše viditelné
+It connects only to the parts server you name, which receives your requests, your sign-in and the parts you save. Its operator has a privacy notice of their own.	Připojuje se pouze k serveru artiklů, který zadáte; ten obdrží vaše požadavky, vaše přihlášení a artikly, které uložíte. Jeho provozovatel má vlastní zásady ochrany osobních údajů.
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Funguje jen připevněné k jednomu z dílů, ke kterým se hodí; kontrola projektu je hlásí u přístroje bez takového dílu
 Largest conductor the clamp takes (0: not known)	Největší vodič, který svorka pojme (0: neznámý)
 Loaded the library {}	Knihovna {} načtena
@@ -91,6 +93,7 @@ Only parts for direct wall mounting	Pouze díly pro přímou montáž na stěnu
 Open GitHub issue form	Otevřít formulář issue na GitHubu
 Open datasheet	Otevřít katalogový list
 Open in the browser	Otevřít v prohlížeči
+OpenECraft uses no tracking and no analytics. Your projects stay where you save them; nothing is sent to the makers of OpenECraft.	OpenECraft nepoužívá žádné sledování ani analytiku. Vaše projekty zůstávají tam, kam je uložíte; tvůrcům OpenECraft se nic neodesílá.
 Opens your browser and copies the report for you to paste into the GitHub issue form.	Otevře prohlížeč a zkopíruje hlášení, abyste ho vložili do formuláře issue na GitHubu.
 Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Otevře prohlížeč s vyplněným hlášením a zkopíruje ho. Zkontrolujte ho a odešlete na GitHubu.
 Outside the face	Mimo plochu
@@ -111,6 +114,7 @@ Removing the file…	Odebírání souboru…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Nahradí přípojné body podle konvence IEC: lichá označení nahoře, sudá dole
 Report copied. Keep it to submit on GitHub when you are online.	Hlášení zkopírováno. Uschovejte si ho a odešlete na GitHubu, až budete online.
 Report copied. Paste it into the GitHub issue form and submit it there.	Hlášení zkopírováno. Vložte ho do formuláře issue na GitHubu a odešlete ho tam.
+Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before.	Nahlášení chyby otevře GitHub ve vašem prohlížeči s údaji, které zobrazuje formulář; předtím se nic neodesílá.
 Reports are public. A GitHub account is needed to submit them.	Hlášení jsou veřejná. K jejich odeslání je potřeba účet GitHub.
 Reset filter	Obnovit filtr
 Restricted areas: {}	Zakázané oblasti: {}
@@ -142,13 +146,19 @@ Summary	Shrnutí
 Take {} values from the technical data	Převzít {} hodnot z technických údajů
 Technical details	Technické údaje
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D čelní pohled se používá v čelním pohledu rozváděče a na stránkách montážního plánu, 3D model ve 3D pohledu rozváděče. Oba se přizpůsobí montážním datům (šířka × výška × hloubka).
+The address of the server and your settings are kept in your user folder on this computer; the access token and your password are not stored.	Adresa serveru a vaše nastavení jsou uloženy ve vaší uživatelské složce v tomto počítači; přístupový token a vaše heslo se neukládají.
+The editor connects only to the servers you set up: parts servers, project servers, the EPLAN Data Portal and Autodesk Vault receive your requests, your sign-in and what you save to them. Their operators have privacy notices of their own.	Editor se připojuje pouze k serverům, které nastavíte: servery artiklů, projektové servery, EPLAN Data Portal a Autodesk Vault obdrží vaše požadavky, vaše přihlášení a to, co na ně uložíte. Jejich provozovatelé mají vlastní zásady ochrany osobních údajů.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Model ({} × {} × {}) se liší od montážních dat ({} × {} × {}); bude roztažen podle montážních dat.
+The parts manager sets no cookies. It keeps the address of the server and your settings in the storage of your browser; clearing the site data of the browser removes them. The access token and your password are not stored.	Správce artiklů neukládá žádné soubory cookie. Adresu serveru a vaše nastavení uchovává v úložišti vašeho prohlížeče; vymazáním dat webu v prohlížeči je odstraníte. Přístupový token a vaše heslo se neukládají.
+The parts manager uses no tracking and no analytics; nothing is sent to the makers of OpenECraft.	Správce artiklů nepoužívá žádné sledování ani analytiku; tvůrcům OpenECraft se nic neodesílá.
 The parts server has no library {} yet	Server dílů zatím nemá knihovnu {}
 The price refers to this many units	Cena se vztahuje na tento počet jednotek
 The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Hlášení obsahuje verzi, systém a počty toho, co otevřený projekt obsahuje, ale žádný obsah projektu. Před sdílením údaje zkontrolujte.
 The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Snímek obrazovky se nepřipojí sám: zkopírujte ho nebo uložte a pak ho přidejte do formuláře issue na GitHubu.
 The successor is not in this parts list	Nástupce není v tomto seznamu artiklů
+The web editor sets no cookies. It keeps your settings and the data to restore your work in the storage of your browser; clearing the site data of the browser removes them.	Webový editor neukládá žádné soubory cookie. Vaše nastavení a data pro obnovení vaší práce uchovává v úložišti vašeho prohlížeče; vymazáním dat webu v prohlížeči je odstraníte.
 This part is an accessory	Tento díl je příslušenství
+To find updates, OpenECraft asks GitHub for the latest release when it starts, unless you switch that off in the settings; GitHub receives the IP address of your computer.	Aby OpenECraft našel aktualizace, dotazuje se při spuštění služby GitHub na nejnovější vydání, pokud to v nastavení nevypnete; GitHub přitom obdrží IP adresu vašeho počítače.
 Top group	Hlavní skupina
 Top group {}, product group {}, subgroup {}	Hlavní skupina {}, skupina produktů {}, podskupina {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	Otočte model tak, aby jeho přední strana směřovala k pozorovateli (+Z) a horní strana byla +Y
@@ -172,6 +182,7 @@ Where the wires are connected in the panel layout: the designation as in the fun
 Width / Ø	Šířka / Ø
 Wire connection	Připojení vodičů
 Wire leaves	Vývod vodiče
+Your settings and the data to restore your work are kept in your user folder on this computer.	Vaše nastavení a data pro obnovení vaší práce jsou uložena ve vaší uživatelské složce v tomto počítači.
 Zoom only	Jen přibližovat
 Zooms (mouse wheel)	Přibližuje (kolečko myši)
 changes with token	změny s tokenem

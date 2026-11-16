@@ -7,6 +7,7 @@ A grant needs a user or a group	O atribuire are nevoie de un utilizator sau de o
 A group name must not be empty or contain ':'	Numele unei grupe nu poate fi gol și nu poate conține ':'
 A manufacturer user needs a manufacturer	Un utilizator producător are nevoie de un producător
 A part number must not be empty or start or end with blanks	Numărul de articol nu poate fi gol și nu poate începe sau se termina cu spații
+A project names who changed it last.	Un proiect indică cine l-a modificat ultima dată.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Un rol este un set de drepturi. Atribuirile dau unui utilizator sau unui grup un rol pentru proiecte (* și ? ca metacaractere, * pentru toți); o atribuire de refuz retrage drepturile rolului, indiferent ce dau alte atribuiri.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Un rol este un set de drepturi. Atribuirile dau unui utilizator sau unui grup un rol pentru articolele unui producător (* și ? ca metacaractere, * pentru toți); o atribuire de refuz retrage drepturile rolului, indiferent ce dau alte atribuiri.
 A user name must not be empty or contain blanks	Un nume de utilizator nu poate fi gol sau conține spații
@@ -194,6 +195,7 @@ Fluid Control Terminal	Terminal de comandă fluidică
 Fluid motor	Motor fluidic
 Fluid power - special items	Tehnică fluidică - componente speciale
 Fluid power components	Componente de tehnică fluidică
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	Pentru un cont de utilizator, serverul stochează numele de utilizator, rolul, grupele și parola numai sub formă de hash. În cazul unui cont dintr-un serviciu de director, serviciul de director verifică parola și indică grupele.
 Former	Dispozitiv de formare
 Front view (2D)	Vedere frontală (2D)
 Funnel	Pâlnie
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	Suma de control a {} 
 The dashboard is hidden	Tabloul de bord este ascuns
 The dashboard is shown	Tabloul de bord este afișat
 The directory checks the password and sets the groups at every sign-in	Serviciul de director verifică parola și setează grupurile la fiecare conectare
+The favorites of a user are stored with the account.	Favoritele unui utilizator sunt stocate împreună cu contul.
 The file holds no access settings	Fișierul nu conține setări de acces
 The groups would leave nobody who manages users	Grupele nu ar mai lăsa pe nimeni care administrează utilizatorii
 The last administrator cannot lose the right to manage users	Ultimul administrator nu poate pierde dreptul de a gestiona utilizatorii
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Rolurile, atribuirile, grupele și accesul fără autentificare, cu versiunea serverului. Restaurarea înlocuiește rolurile și atribuirile și adaugă grupele; serviciile de director rămân cum sunt configurate pe server.
 The server cannot be reached	Serverul nu poate fi accesat
 The server keeps the last {} ended sessions.	Serverul păstrează ultimele {} sesiuni încheiate.
+The server records who changed a part and when (the history of the part).	Serverul înregistrează cine a modificat un articol și când (istoricul articolului).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	Serverul înregistrează cine lucrează la ce proiect și când: sesiunile deschise, paginile blocate și ultimele sesiuni încheiate, cu salvările lor. Ceilalți utilizatori ai unui proiect văd cine a blocat o pagină; administratorii văd sesiunile.
 The server sent no text	Serverul nu a trimis niciun text
 The test failed	Testul a eșuat
 The test succeeded	Testul a reușit
@@ -541,6 +546,7 @@ Throttle plate	Diafragmă de strangulare
 Timeout (s)	Timp limită (s)
 Timer relay	Releu de timp
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Pentru restaurare, porniți serverul cu --data <fișier> sau copiați-o într-o bază de date nouă cu --migrate-from <fișier>.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	Pentru a încetini ghicirea parolelor, serverul reține pentru scurt timp conectările eșuate; acestea nu sunt scrise pe disc.
 Too many failed sign-ins, try again later	Prea multe autentificări eșuate, încercați mai târziu
 Too many registrations from this address, try again later	Prea multe înregistrări de la această adresă, încercați din nou mai târziu
 Top cover	Capac superior
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	Nu puteți modifica articolele produ
 You may not see any project	Nu aveți voie să vedeți niciun proiect
 Your account awaits the approval of an administrator	Contul așteaptă aprobarea unui administrator
 Your account was created. An administrator has to approve it before you can sign in.	Contul a fost creat. Un administrator trebuie să-l aprobe înainte să vă puteți conecta.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Browserul dumneavoastră păstrează limba și setările paginii pe care le-ați ales și, cât timp sunteți conectat, cheia sesiunii dumneavoastră. Deconectarea elimină cheia; ștergerea datelor site-ului din browser elimină totul.
 Your rights	Drepturile dvs.
 access denied – check the personal access token	acces refuzat – verificați tokenul de acces personal
 by file name	după numele fișierului

@@ -187,6 +187,25 @@ the page.
 
 In the browser "Save" downloads the project file and "Open" uses the file picker.
 
+### Legal notice of a web editor
+
+*Help › Legal and privacy* of the editor shows the disclaimer of OpenECraft (no
+warranty, the product names it mentions belong to their owners) and its privacy notice:
+what the editor stores and where, and which servers it talks to. A web editor that is
+hosted for others also shows who runs it, as many countries require (in Germany the
+*Impressum* of § 5 DDG), and what the operator adds to the privacy notice (the hosting,
+the logs of the web server, whom to ask). Both are set in `legal` of `config.js` beside
+the page (`openecraft/config.js`, copied by the build; edit it after a build) with the
+fields of the [website](website.md#legal-notice): `name` (empty: no legal notice),
+`address`, `email`, `phone`, `representative`, `register`, `vat`, `responsible`, `text`
+and `privacy`; lines of the address and the texts are separated by `\n` or `|`. The
+web editor the website brings along at `/editor/` shows the notice of the website. The
+desktop editor has no operator and shows the disclaimer and the privacy notice alone.
+The parts manager has the same texts behind *Legal and privacy* of its top bar, with a
+privacy notice of its own; its web build takes the same `config.js`.
+Keep the texts true: a change of the editor that stores or sends something else
+changes them too (`crates/openecraft-ui/src/legal.rs`).
+
 ### Docker image of the web editor
 
 `ghcr.io/nilres/openecraft-web` (same tags as the server images) serves the release
@@ -200,6 +219,13 @@ compose file); both servers allow requests from every origin.
 docker run -d --name openecraft-web -p 127.0.0.1:8080:8080 ghcr.io/nilres/openecraft-web
 docker build -f installer/docker/Dockerfile --target editor-web -t openecraft-web .
 ```
+
+Who runs the editor is set with the variables `OPENECRAFT_LEGAL_NAME`,
+`OPENECRAFT_LEGAL_ADDRESS`, `OPENECRAFT_LEGAL_EMAIL`, `OPENECRAFT_LEGAL_PHONE`,
+`OPENECRAFT_LEGAL_REPRESENTATIVE`, `OPENECRAFT_LEGAL_REGISTER`, `OPENECRAFT_LEGAL_VAT_ID`,
+`OPENECRAFT_LEGAL_RESPONSIBLE`, `OPENECRAFT_LEGAL_TEXT` and `OPENECRAFT_LEGAL_PRIVACY`
+(below, [Legal notice of a web editor](#legal-notice-of-a-web-editor)): the image writes
+`config.js` from them at every start.
 
 The nginx site is `installer/docker/editor-web.conf` (mount your own at
 `/etc/nginx/conf.d/default.conf`): `index.html` is checked at every visit, the scripts

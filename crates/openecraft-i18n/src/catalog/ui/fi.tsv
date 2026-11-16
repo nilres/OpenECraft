@@ -44,6 +44,7 @@ Deleted user {}	Käyttäjä {} poistettiin
 Deleting {}…	Poistetaan {}…
 Describe the problem you saw	Kuvaa näkemäsi ongelma
 Describe what happened before continuing.	Kuvaa ennen jatkamista, mitä tapahtui.
+Disclaimer	Vastuuvapauslauseke
 Door cutouts	Oven aukot
 Downloaded {} ({} bytes)	{} ladattiin ({} tavua)
 Downloading parts…	Ladataan osia…
@@ -68,6 +69,7 @@ Import SVG…	Tuo SVG…
 In the door, when they differ from the cutouts	Ovessa, kun ne poikkeavat aukoista
 Internal values of the EPLAN part exchange (0: undefined)	EPLAN-osasiirron sisäiset arvot (0: määrittelemätön)
 Isometric view, everything shown	Isometrinen näkymä, kaikki näkyvissä
+It connects only to the parts server you name, which receives your requests, your sign-in and the parts you save. Its operator has a privacy notice of their own.	Se muodostaa yhteyden vain nimeämääsi osapalvelimeen, joka saa pyyntösi, kirjautumisesi ja tallentamasi osat. Sen ylläpitäjällä on oma tietosuojaselosteensa.
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Se toimii vain kiinnitettynä johonkin osaan, johon se sopii; projektin tarkistus ilmoittaa siitä laitteessa, jossa tällaista osaa ei ole
 Largest conductor the clamp takes (0: not known)	Suurin johdin, jonka liitin ottaa (0: ei tiedossa)
 Leave blank to use the saved token automatically. Saving a replacement requires Remember token.	Jätä tyhjäksi käyttääksesi tallennettua tunnistetta automaattisesti. Korvaavan tunnisteen tallennus edellyttää Muista tunniste -valintaa.
@@ -95,6 +97,7 @@ Only parts for direct wall mounting	Vain suoraan seinään asennettavat osat
 Open GitHub issue form	Avaa GitHubin issue-lomake
 Open datasheet	Avaa tietolehti
 Open in the browser	Avaa selaimessa
+OpenECraft uses no tracking and no analytics. Your projects stay where you save them; nothing is sent to the makers of OpenECraft.	OpenECraft ei käytä seurantaa eikä analytiikkaa. Projektisi pysyvät siellä, minne tallennat ne; OpenECraftin tekijöille ei lähetetä mitään.
 Opens your browser and copies the report for you to paste into the GitHub issue form.	Avaa selaimen ja kopioi raportin, jotta voit liittää sen GitHubin issue-lomakkeeseen.
 Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Avaa selaimen täytetyn raportin kanssa ja kopioi raportin. Tarkista ja lähetä se GitHubissa.
 Outside the face	Pinnan ulkopuolella
@@ -116,6 +119,7 @@ Removing the file…	Poistetaan tiedostoa…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Korvaa liitäntäpisteet IEC-käytännön mukaan: parittomat merkinnät ylhäällä, parilliset alhaalla
 Report copied. Keep it to submit on GitHub when you are online.	Raportti kopioitu. Säilytä se lähettääksesi sen GitHubissa, kun olet verkossa.
 Report copied. Paste it into the GitHub issue form and submit it there.	Raportti kopioitu. Liitä se GitHubin issue-lomakkeeseen ja lähetä se siellä.
+Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before.	Virheestä ilmoittaminen avaa GitHubin selaimessasi lomakkeessa näkyvillä tiedoilla; sitä ennen ei lähetetä mitään.
 Reports are public. A GitHub account is needed to submit them.	Raportit ovat julkisia. Niiden lähettämiseen tarvitaan GitHub-tili.
 Reset filter	Nollaa suodatin
 Restricted areas: {}	Kielletyt alueet: {}
@@ -148,13 +152,19 @@ Summary	Yhteenveto
 Take {} values from the technical data	Ota {} arvoa teknisistä tiedoista
 Technical details	Tekniset tiedot
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D-etunäkymää käytetään kaapin etunäkymässä ja asennuskuvasivuilla, 3D-mallia kaapin 3D-näkymässä. Molemmat sovitetaan asennustietoihin (leveys × korkeus × syvyys).
+The address of the server and your settings are kept in your user folder on this computer; the access token and your password are not stored.	Palvelimen osoite ja asetuksesi säilytetään käyttäjäkansiossasi tällä tietokoneella; käyttöoikeustokenia ja salasanaasi ei tallenneta.
+The editor connects only to the servers you set up: parts servers, project servers, the EPLAN Data Portal and Autodesk Vault receive your requests, your sign-in and what you save to them. Their operators have privacy notices of their own.	Editori muodostaa yhteyden vain määrittämiisi palvelimiin: osapalvelimet, projektipalvelimet, EPLAN Data Portal ja Autodesk Vault saavat pyyntösi, kirjautumisesi ja sen, mitä tallennat niihin. Niiden ylläpitäjillä on omat tietosuojaselosteensa.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Malli ({} × {} × {}) poikkeaa asennustiedoista ({} × {} × {}); se venytetään asennustietojen mukaiseksi.
+The parts manager sets no cookies. It keeps the address of the server and your settings in the storage of your browser; clearing the site data of the browser removes them. The access token and your password are not stored.	Osien hallinta ei aseta evästeitä. Se säilyttää palvelimen osoitteen ja asetuksesi selaimesi tallennustilassa; selaimen sivustotietojen tyhjentäminen poistaa ne. Käyttöoikeustokenia ja salasanaasi ei tallenneta.
+The parts manager uses no tracking and no analytics; nothing is sent to the makers of OpenECraft.	Osien hallinta ei käytä seurantaa eikä analytiikkaa; OpenECraftin tekijöille ei lähetetä mitään.
 The parts server has no library {} yet	Osapalvelimella ei ole vielä kirjastoa {}
 The price refers to this many units	Hinta koskee tätä yksikkömäärää
 The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Raportissa on versio, järjestelmä ja avoimen projektin sisältämien kohteiden määrät, mutta ei projektin sisältöä. Tarkista tiedot ennen niiden jakamista.
 The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Kuvakaappausta ei liitetä itsestään: kopioi tai tallenna se ja lisää se sitten GitHubin issue-lomakkeeseen.
 The successor is not in this parts list	Seuraaja ei ole tässä osaluettelossa
+The web editor sets no cookies. It keeps your settings and the data to restore your work in the storage of your browser; clearing the site data of the browser removes them.	Verkkoeditori ei aseta evästeitä. Se säilyttää asetuksesi ja työsi palauttamiseen tarvittavat tiedot selaimesi tallennustilassa; selaimen sivustotietojen tyhjentäminen poistaa ne.
 This part is an accessory	Tämä osa on lisävaruste
+To find updates, OpenECraft asks GitHub for the latest release when it starts, unless you switch that off in the settings; GitHub receives the IP address of your computer.	Päivitysten löytämiseksi OpenECraft kysyy käynnistyessään GitHubilta uusinta julkaisua, ellet poista tätä käytöstä asetuksista; GitHub saa tietokoneesi IP-osoitteen.
 Top group	Pääryhmä
 Top group {}, product group {}, subgroup {}	Pääryhmä {}, tuoteryhmä {}, alaryhmä {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	Käännä mallia niin, että sen etupuoli on katsojaan päin (+Z) ja yläpuoli on +Y
@@ -178,6 +188,7 @@ Where the wires are connected in the panel layout: the designation as in the fun
 Width / Ø	Leveys / Ø
 Wire connection	Johtoliitäntä
 Wire leaves	Johdon lähtösuunta
+Your settings and the data to restore your work are kept in your user folder on this computer.	Asetuksesi ja työsi palauttamiseen tarvittavat tiedot säilytetään käyttäjäkansiossasi tällä tietokoneella.
 Zoom only	Vain zoomaus
 Zooms (mouse wheel)	Zoomaa (hiiren rulla)
 changes with token	muutokset tokenilla

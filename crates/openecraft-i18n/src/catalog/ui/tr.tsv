@@ -43,6 +43,7 @@ Deleted user {}	{} kullanıcısı silindi
 Deleting {}…	{} siliniyor…
 Describe the problem you saw	Gördüğünüz sorunu anlatın
 Describe what happened before continuing.	Devam etmeden önce ne olduğunu anlatın.
+Disclaimer	Sorumluluk reddi
 Door cutouts	Kapı kesimleri
 Downloaded {} ({} bytes)	{} indirildi ({} bayt)
 Downloading parts…	Parçalar indiriliyor…
@@ -66,6 +67,7 @@ Import SVG…	SVG içe aktar…
 In the door, when they differ from the cutouts	Kapıda, kesimlerden farklı olduklarında
 Internal values of the EPLAN part exchange (0: undefined)	EPLAN parça değişiminin dahili değerleri (0: tanımsız)
 Isometric view, everything shown	İzometrik görünüm, her şey görünür
+It connects only to the parts server you name, which receives your requests, your sign-in and the parts you save. Its operator has a privacy notice of their own.	Yalnızca sizin belirttiğiniz parça sunucusuna bağlanır; bu sunucu isteklerinizi, oturum açma bilgilerinizi ve kaydettiğiniz parçaları alır. İşletmecisinin kendi gizlilik bildirimi vardır.
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Yalnızca uyduğu parçalardan birine takılıyken çalışır; proje kontrolü böyle bir parçası olmayan cihazda bunu bildirir
 Largest conductor the clamp takes (0: not known)	Klemensin aldığı en büyük iletken (0: bilinmiyor)
 Loaded the library {}	{} kütüphanesi yüklendi
@@ -91,6 +93,7 @@ Only parts for direct wall mounting	Yalnızca doğrudan duvara montaj parçalar�
 Open GitHub issue form	GitHub issue formunu aç
 Open datasheet	Veri sayfasını aç
 Open in the browser	Tarayıcıda aç
+OpenECraft uses no tracking and no analytics. Your projects stay where you save them; nothing is sent to the makers of OpenECraft.	OpenECraft izleme ve analiz kullanmaz. Projeleriniz kaydettiğiniz yerde kalır; OpenECraft geliştiricilerine hiçbir şey gönderilmez.
 Opens your browser and copies the report for you to paste into the GitHub issue form.	Tarayıcıyı açar ve raporu GitHub issue formuna yapıştırmanız için kopyalar.
 Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Tarayıcıyı doldurulmuş raporla açar ve raporu kopyalar. GitHub'da gözden geçirip gönderin.
 Outside the face	Yüzeyin dışında
@@ -111,6 +114,7 @@ Removing the file…	Dosya kaldırılıyor…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Bağlantı noktalarını IEC kuralına göre değiştirir: tek tanımlar üstte, çift olanlar altta
 Report copied. Keep it to submit on GitHub when you are online.	Rapor kopyalandı. Çevrimiçi olduğunuzda GitHub'da göndermek için saklayın.
 Report copied. Paste it into the GitHub issue form and submit it there.	Rapor kopyalandı. GitHub issue formuna yapıştırın ve orada gönderin.
+Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before.	Hata bildirmek, GitHub'ı tarayıcınızda formun gösterdiği ayrıntılarla açar; öncesinde hiçbir şey gönderilmez.
 Reports are public. A GitHub account is needed to submit them.	Raporlar herkese açıktır. Göndermek için bir GitHub hesabı gerekir.
 Reset filter	Filtreyi sıfırla
 Restricted areas: {}	Yasak alanlar: {}
@@ -142,13 +146,19 @@ Summary	Özet
 Take {} values from the technical data	Teknik verilerden {} değeri al
 Technical details	Teknik ayrıntılar
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D ön görünüm pano ön görünümünde ve montaj planı sayfalarında, 3D model ise 3D pano görünümünde kullanılır. Her ikisi de montaj verilerine (genişlik × yükseklik × derinlik) uydurulur.
+The address of the server and your settings are kept in your user folder on this computer; the access token and your password are not stored.	Sunucunun adresi ve ayarlarınız bu bilgisayardaki kullanıcı klasörünüzde tutulur; erişim belirteci ve parolanız saklanmaz.
+The editor connects only to the servers you set up: parts servers, project servers, the EPLAN Data Portal and Autodesk Vault receive your requests, your sign-in and what you save to them. Their operators have privacy notices of their own.	Düzenleyici yalnızca sizin ayarladığınız sunuculara bağlanır: parça sunucuları, proje sunucuları, EPLAN Data Portal ve Autodesk Vault isteklerinizi, oturum açma bilgilerinizi ve bunlara kaydettiklerinizi alır. Bunların işletmecilerinin kendi gizlilik bildirimleri vardır.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Model ({} × {} × {}) montaj verilerinden ({} × {} × {}) farklı; montaj verilerine göre esnetilir.
+The parts manager sets no cookies. It keeps the address of the server and your settings in the storage of your browser; clearing the site data of the browser removes them. The access token and your password are not stored.	Parça yöneticisi çerez yerleştirmez. Sunucunun adresini ve ayarlarınızı tarayıcınızın depolama alanında tutar; tarayıcının site verilerini temizlemek bunları kaldırır. Erişim belirteci ve parolanız saklanmaz.
+The parts manager uses no tracking and no analytics; nothing is sent to the makers of OpenECraft.	Parça yöneticisi izleme ve analiz kullanmaz; OpenECraft geliştiricilerine hiçbir şey gönderilmez.
 The parts server has no library {} yet	Parça sunucusunda henüz {} kütüphanesi yok
 The price refers to this many units	Fiyat bu sayıda birim için geçerlidir
 The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	Rapor sürümü, sistemi ve açık projenin içerdiklerinin sayılarını içerir, ancak proje içeriği içermez. Paylaşmadan önce ayrıntıları gözden geçirin.
 The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	Ekran görüntüsü kendiliğinden eklenmez: kopyalayın veya kaydedin, ardından GitHub issue formuna ekleyin.
 The successor is not in this parts list	Halef bu parça listesinde yok
+The web editor sets no cookies. It keeps your settings and the data to restore your work in the storage of your browser; clearing the site data of the browser removes them.	Web düzenleyicisi çerez yerleştirmez. Ayarlarınızı ve çalışmanızı geri yüklemek için gereken verileri tarayıcınızın depolama alanında tutar; tarayıcının site verilerini temizlemek bunları kaldırır.
 This part is an accessory	Bu parça bir aksesuardır
+To find updates, OpenECraft asks GitHub for the latest release when it starts, unless you switch that off in the settings; GitHub receives the IP address of your computer.	Güncellemeleri bulmak için OpenECraft, ayarlardan kapatmadığınız sürece başlatıldığında GitHub'a en son sürümü sorar; GitHub bilgisayarınızın IP adresini alır.
 Top group	Ana grup
 Top group {}, product group {}, subgroup {}	Ana grup {}, ürün grubu {}, alt grup {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	Modeli, ön yüzü izleyiciye (+Z) ve üst yüzü +Y yönüne bakacak şekilde döndürün
@@ -172,6 +182,7 @@ Where the wires are connected in the panel layout: the designation as in the fun
 Width / Ø	Genişlik / Ø
 Wire connection	Tel bağlantısı
 Wire leaves	Tel çıkışı
+Your settings and the data to restore your work are kept in your user folder on this computer.	Ayarlarınız ve çalışmanızı geri yüklemek için gereken veriler bu bilgisayardaki kullanıcı klasörünüzde tutulur.
 Zoom only	Yalnızca yakınlaştır
 Zooms (mouse wheel)	Yakınlaştırır (fare tekerleği)
 changes with token	belirteçle değişiklik

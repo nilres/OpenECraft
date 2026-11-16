@@ -7,6 +7,7 @@ A grant needs a user or a group	Egy hozzárendeléshez felhasználó vagy csopor
 A group name must not be empty or contain ':'	A csoport neve nem lehet üres és nem tartalmazhat ':' karaktert
 A manufacturer user needs a manufacturer	A gyártói felhasználóhoz gyártó szükséges
 A part number must not be empty or start or end with blanks	A cikkszám nem lehet üres, és nem kezdődhet vagy végződhet szóközzel
+A project names who changed it last.	A projekt megnevezi, hogy ki módosította utoljára.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	A szerepkör jogok halmaza. A hozzárendelések egy felhasználónak vagy csoportnak szerepkört adnak projektekre (* és ? helyettesítő karakterként, * mindegyikre); a megtagadó hozzárendelés elveszi a szerepkör jogait, bármit adnak is más hozzárendelések.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	A szerepkör jogok halmaza. A hozzárendelések egy felhasználónak vagy csoportnak szerepkört adnak egy gyártó alkatrészeire (* és ? helyettesítő karakterként, * mindegyikre); a megtagadó hozzárendelés elveszi a szerepkör jogait, bármit adnak is más hozzárendelések.
 A user name must not be empty or contain blanks	A felhasználónév nem lehet üres, és nem tartalmazhat szóközt
@@ -194,6 +195,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	Fluidmotor
 Fluid power - special items	Fluidtechnika – különleges elemek
 Fluid power components	Fluidtechnikai komponensek
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	Felhasználói fiók esetén a szerver a felhasználónevet, a szerepkört, a csoportokat és - kizárólag hash formájában - a jelszót tárolja. Címtárbeli fiók esetén a címtár ellenőrzi a jelszót, és adja meg a csoportokat.
 Former	Formázó
 Front view (2D)	Elölnézet (2D)
 Funnel	Tölcsér
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	A(z) {} ellenőrzőö
 The dashboard is hidden	Az irányítópult rejtett
 The dashboard is shown	Az irányítópult látható
 The directory checks the password and sets the groups at every sign-in	A címtár minden bejelentkezéskor ellenőrzi a jelszót és beállítja a csoportokat
+The favorites of a user are stored with the account.	A felhasználó kedvencei a fiókkal együtt kerülnek tárolásra.
 The file holds no access settings	A fájl nem tartalmaz hozzáférési beállításokat
 The groups would leave nobody who manages users	A csoportok után senki sem maradna, aki a felhasználókat kezeli
 The last administrator cannot lose the right to manage users	Az utolsó rendszergazda nem veszítheti el a felhasználók kezelésének jogát
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	A szerepkörök, a hozzárendelések, a csoportok és a bejelentkezés nélküli hozzáférés, a kiszolgáló verziójával. A visszaállítás lecseréli a szerepköröket és hozzárendeléseket, és hozzáadja a csoportokat; a címtárak úgy maradnak, ahogy a kiszolgálón be vannak állítva.
 The server cannot be reached	A szerver nem érhető el
 The server keeps the last {} ended sessions.	A szerver az utolsó {} befejezett munkamenetet őrzi meg.
+The server records who changed a part and when (the history of the part).	A szerver rögzíti, hogy ki és mikor módosított egy alkatrészt (az alkatrész előzményei).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	A szerver rögzíti, hogy ki melyik projekten és mikor dolgozik: a nyitott munkameneteket, a zárolt oldalakat és a legutóbb befejezett munkameneteket a mentéseikkel együtt. A projekt többi felhasználója látja, hogy ki zárolt egy oldalt; a rendszergazdák látják a munkameneteket.
 The server sent no text	A szerver nem küldött szöveget
 The test failed	A teszt nem sikerült
 The test succeeded	A teszt sikerült
@@ -541,6 +546,7 @@ Throttle plate	Fojtótárcsa
 Timeout (s)	Időkorlát (s)
 Timer relay	Időrelé
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	A visszaállításhoz indítsa el a szervert a --data <fájl> kapcsolóval, vagy másolja egy új adatbázisba a --migrate-from <fájl> kapcsolóval.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	A jelszavak találgatásának lassítása érdekében a szerver rövid ideig megjegyzi a sikertelen bejelentkezéseket; ezek nem kerülnek lemezre.
 Too many failed sign-ins, try again later	Túl sok sikertelen bejelentkezés, próbálja újra később
 Too many registrations from this address, try again later	Túl sok regisztráció erről a címről, próbálja újra később
 Top cover	Tetőlemez
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	Nem módosíthatja a(z) {} gyártó 
 You may not see any project	Egyetlen projektet sem láthat
 Your account awaits the approval of an administrator	A fiókja rendszergazdai jóváhagyásra vár
 Your account was created. An administrator has to approve it before you can sign in.	A fiókja létrejött. Egy rendszergazdának jóvá kell hagynia, mielőtt bejelentkezhet.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Böngészője megőrzi az Ön által választott nyelvet és oldalbeállításokat, valamint, amíg be van jelentkezve, a munkamenete kulcsát. A kijelentkezés eltávolítja a kulcsot; a böngészőben a webhelyadatok törlése mindent eltávolít.
 Your rights	Az Ön jogai
 access denied – check the personal access token	hozzáférés megtagadva – ellenőrizze a személyes hozzáférési tokent
 by file name	fájlnév szerint

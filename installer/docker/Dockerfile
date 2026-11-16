@@ -46,7 +46,8 @@ USER openecraft
 # Data portal: parts-db.sqlite and parts-db.sqlite.access.json in /data. The settings
 # come from the configuration file below (mount your own there, or give options on the
 # command line: `docker run … openecraft-parts-server --install-catalogs all`); the
-# administrator token is read from OPENECRAFT_TOKEN.
+# administrator token is read from OPENECRAFT_TOKEN, the legal notice of the operator
+# shown by the web page from the variables OPENECRAFT_LEGAL_… (docs/parts-server.md).
 FROM runtime AS parts-server
 COPY --from=build /out/openecraft-parts-server /usr/local/bin/
 COPY installer/docker/parts-server.toml /etc/openecraft/parts-server.toml
@@ -55,7 +56,8 @@ EXPOSE 8090
 ENTRYPOINT ["openecraft-parts-server"]
 
 # Project server: the project files, users.json and access.json in /data; the access
-# token is read from OPENECRAFT_PROJECT_TOKEN.
+# token is read from OPENECRAFT_PROJECT_TOKEN, the legal notice of the operator shown by
+# the web page from the variables OPENECRAFT_LEGAL_… (docs/project-server.md).
 FROM runtime AS project-server
 COPY --from=build /out/openecraft-project-server /usr/local/bin/
 COPY installer/docker/project-server.toml /etc/openecraft/project-server.toml
@@ -76,9 +78,22 @@ RUN cargo fetch --locked \
 
 # Static files served by nginx as an unprivileged user on port 8080. The page reaches the
 # parts and project servers from the browser: give their addresses in the editor (the
-# servers allow requests from every origin).
+# servers allow requests from every origin). The legal notice of the operator (Help >
+# Legal and privacy; an empty OPENECRAFT_LEGAL_NAME: none) is set with the variables
+# below: the image writes config.js from them at every start.
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS editor-web
+ENV OPENECRAFT_LEGAL_NAME= \
+    OPENECRAFT_LEGAL_ADDRESS= \
+    OPENECRAFT_LEGAL_EMAIL= \
+    OPENECRAFT_LEGAL_PHONE= \
+    OPENECRAFT_LEGAL_REPRESENTATIVE= \
+    OPENECRAFT_LEGAL_REGISTER= \
+    OPENECRAFT_LEGAL_VAT_ID= \
+    OPENECRAFT_LEGAL_RESPONSIBLE= \
+    OPENECRAFT_LEGAL_TEXT= \
+    OPENECRAFT_LEGAL_PRIVACY=
 COPY installer/docker/editor-web.conf /etc/nginx/conf.d/default.conf
+COPY --chmod=0755 installer/docker/website-config.sh /docker-entrypoint.d/40-openecraft-website-config.sh
 COPY --from=web-build /src/openecraft/dist/ /usr/share/nginx/html/
 EXPOSE 8080
 

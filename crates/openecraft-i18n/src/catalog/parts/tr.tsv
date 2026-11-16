@@ -7,6 +7,7 @@ A grant needs a user or a group	Bir yetki atamasının bir kullanıcıya veya gr
 A group name must not be empty or contain ':'	Grup adı boş olamaz ve ':' içeremez
 A manufacturer user needs a manufacturer	Üretici kullanıcısı için bir üretici gerekir
 A part number must not be empty or start or end with blanks	Parça numarası boş olamaz, boşlukla başlayamaz veya bitemez
+A project names who changed it last.	Bir proje, kendisini en son kimin değiştirdiğini belirtir.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rol, bir haklar kümesidir. Yetki atamaları bir kullanıcıya veya gruba projeler üzerinde bir rol verir (joker karakter olarak * ve ?, tümü için *); reddeden bir atama, diğer atamalar ne verirse versin rolün haklarını geri alır.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rol, bir haklar kümesidir. Yetki atamaları bir kullanıcıya veya gruba bir üreticinin parçaları üzerinde bir rol verir (joker karakter olarak * ve ?, tümü için *); reddeden bir atama, diğer atamalar ne verirse versin rolün haklarını geri alır.
 A user name must not be empty or contain blanks	Kullanıcı adı boş olamaz veya boşluk içeremez
@@ -194,6 +195,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	Akışkan motoru
 Fluid power - special items	Akışkan gücü - özel öğeler
 Fluid power components	Akışkan gücü bileşenleri
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	Bir kullanıcı hesabı için sunucu kullanıcı adını, rolü, grupları ve yalnızca karma (hash) olarak parolayı saklar. Bir dizin hizmetinin hesabında parolayı dizin hizmeti denetler ve grupları o bildirir.
 Former	Şekillendirici
 Front view (2D)	Ön görünüm (2D)
 Funnel	Huni
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	{} sağlama toplamı 
 The dashboard is hidden	Pano gizli
 The dashboard is shown	Pano gösteriliyor
 The directory checks the password and sets the groups at every sign-in	Dizin hizmeti her oturum açmada parolayı denetler ve grupları ayarlar
+The favorites of a user are stored with the account.	Bir kullanıcının sık kullanılanları hesapla birlikte saklanır.
 The file holds no access settings	Dosya erişim ayarı içermiyor
 The groups would leave nobody who manages users	Gruplar, kullanıcıları yöneten kimseyi bırakmaz
 The last administrator cannot lose the right to manage users	Son yönetici, kullanıcıları yönetme hakkını kaybedemez
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Roller, yetki atamaları, gruplar ve oturum açmadan erişim, sunucunun sürümüyle. Geri yükleme rolleri ve yetki atamalarını değiştirir ve grupları ekler; dizin hizmetleri sunucuda ayarlandığı gibi kalır.
 The server cannot be reached	Sunucuya ulaşılamıyor
 The server keeps the last {} ended sessions.	Sunucu sona eren son {} oturumu saklar.
+The server records who changed a part and when (the history of the part).	Sunucu bir parçayı kimin ne zaman değiştirdiğini kaydeder (parçanın geçmişi).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	Sunucu kimin hangi proje üzerinde ne zaman çalıştığını kaydeder: açık oturumlar, kilitli sayfalar ve kaydetme işlemleriyle birlikte en son sona eren oturumlar. Bir projenin diğer kullanıcıları bir sayfayı kimin kilitlediğini görür; yöneticiler oturumları görür.
 The server sent no text	Sunucu metin göndermedi
 The test failed	Test başarısız oldu
 The test succeeded	Test başarılı oldu
@@ -541,6 +546,7 @@ Throttle plate	Kısma diski
 Timeout (s)	Zaman aşımı (s)
 Timer relay	Zaman rölesi
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Geri yüklemek için sunucuyu --data <dosya> ile başlatın veya --migrate-from <dosya> ile yeni bir veritabanına kopyalayın.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	Parola tahminini yavaşlatmak için sunucu başarısız oturum açma denemelerini kısa bir süre aklında tutar; bunlar diske yazılmaz.
 Too many failed sign-ins, try again later	Çok fazla başarısız oturum açma, daha sonra yeniden deneyin
 Too many registrations from this address, try again later	Bu adresten çok fazla kayıt yapıldı, daha sonra tekrar deneyin
 Top cover	Üst kapak
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	{} üreticisinin parçalarını değ
 You may not see any project	Hiçbir projeyi göremezsiniz
 Your account awaits the approval of an administrator	Hesabınız bir yöneticinin onayını bekliyor
 Your account was created. An administrator has to approve it before you can sign in.	Hesabınız oluşturuldu. Oturum açabilmeniz için bir yöneticinin onaylaması gerekir.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Tarayıcınız seçtiğiniz dili ve sayfa ayarlarını, oturumunuz açık olduğu sürece de oturumunuzun anahtarını tutar. Oturumu kapatmak anahtarı kaldırır; tarayıcının site verilerini temizlemek bunların tümünü kaldırır.
 Your rights	Haklarınız
 access denied – check the personal access token	erişim reddedildi – kişisel erişim belirtecini kontrol edin
 by file name	dosya adına göre

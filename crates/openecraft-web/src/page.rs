@@ -6,6 +6,7 @@ use axum::routing::get;
 use axum::Router;
 use openecraft_i18n::{tr_const, translate, Lang};
 use openecraft_parts::access::Right;
+use openecraft_parts::legal::LegalNotice;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
@@ -115,6 +116,23 @@ pub const TEXTS: &[&str] = &[
     tr_const!("StartTLS (for ldap://)"),
     tr_const!("Accept any certificate (test installations only)"),
     tr_const!("Also groups of groups (Active Directory)"),
+    tr_const!("Privacy"),
+    tr_const!("Legal notice"),
+    tr_const!("Close"),
+    tr_const!("Represented by"),
+    tr_const!("Email"),
+    tr_const!("Phone"),
+    tr_const!("Register entry"),
+    tr_const!("VAT ID"),
+    tr_const!("Responsible for the content"),
+    tr_const!("EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project."),
+    tr_const!("It is not affiliated with, endorsed by or sponsored by the owners of these names."),
+    tr_const!("OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply."),
+    tr_const!("This page sets no cookies, uses no tracking and loads nothing from other servers."),
+    tr_const!("Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it."),
+    tr_const!("As with every website, the server that delivers this page receives the IP address of your device in order to answer."),
+    tr_const!("For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups."),
+    tr_const!("To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk."),
 ];
 
 /// A page with the policy of [`PAGE_CSP`].
@@ -134,6 +152,12 @@ pub fn routes<S: Clone + Send + Sync + 'static>() -> Router<S> {
         .route("/access.js", get(|| async { script(ACCESS_SCRIPT) }))
         .route("/web.css", get(|| async { ([(header::CONTENT_TYPE, "text/css; charset=utf-8")], STYLE) }))
         .route("/logo.svg", get(|| async { ([(header::CONTENT_TYPE, "image/svg+xml"), (header::CACHE_CONTROL, "max-age=86400")], LOGO) }))
+}
+
+/// `GET /api/v1/legal`: the legal notice of the operator and what they add to the
+/// privacy notice ([`LegalNotice`]), which the pages show to everyone.
+pub fn legal_route<S: Clone + Send + Sync + 'static>(notice: std::sync::Arc<LegalNotice>) -> Router<S> {
+    Router::new().route("/api/v1/legal", get(move || async move { axum::Json(notice.as_ref().clone()) }))
 }
 
 /// The query of `GET /api/v1/texts?lang=de`.

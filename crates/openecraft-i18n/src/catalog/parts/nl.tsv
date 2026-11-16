@@ -7,6 +7,7 @@ A grant needs a user or a group	Een toekenning heeft een gebruiker of een groep 
 A group name must not be empty or contain ':'	Een groepsnaam mag niet leeg zijn en geen ':' bevatten
 A manufacturer user needs a manufacturer	Een fabrikantgebruiker heeft een fabrikant nodig
 A part number must not be empty or start or end with blanks	Een artikelnummer mag niet leeg zijn en niet met spaties beginnen of eindigen
+A project names who changed it last.	Een project vermeldt wie het als laatste heeft gewijzigd.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Een rol is een set rechten. Toekenningen geven een gebruiker of groep een rol op projecten (* en ? als jokertekens, * voor alle); een weigerende toekenning neemt de rechten van de rol weer weg, wat andere toekenningen ook geven.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Een rol is een set rechten. Toekenningen geven een gebruiker of groep een rol op de artikelen van een fabrikant (* en ? als jokertekens, * voor alle); een weigerende toekenning neemt de rechten van de rol weer weg, wat andere toekenningen ook geven.
 A user name must not be empty or contain blanks	Een gebruikersnaam mag niet leeg zijn of spaties bevatten
@@ -194,6 +195,7 @@ Fluid Control Terminal	Fluid Control Terminal
 Fluid motor	Fluïdummotor
 Fluid power - special items	Fluïdtechniek - speciale onderdelen
 Fluid power components	Fluïdtechnische componenten
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	Voor een gebruikersaccount slaat de server de gebruikersnaam, de rol, de groepen en het wachtwoord uitsluitend als hash op. Bij een account van een directoryservice controleert de directoryservice het wachtwoord en geeft deze de groepen op.
 Former	Vormgever
 Front view (2D)	Vooraanzicht (2D)
 Funnel	Trechter
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	De controlesom van {}
 The dashboard is hidden	Het dashboard is verborgen
 The dashboard is shown	Het dashboard wordt weergegeven
 The directory checks the password and sets the groups at every sign-in	De directoryservice controleert het wachtwoord en stelt bij elke aanmelding de groepen in
+The favorites of a user are stored with the account.	De favorieten van een gebruiker worden bij het account opgeslagen.
 The file holds no access settings	Het bestand bevat geen toegangsinstellingen
 The groups would leave nobody who manages users	De groepen zouden niemand overlaten die gebruikers beheert
 The last administrator cannot lose the right to manage users	De laatste beheerder kan het recht om gebruikers te beheren niet verliezen
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	De rollen, de toekenningen, de groepen en de toegang zonder aanmelding, met de versie van de server. Herstellen vervangt de rollen en toekenningen en voegt de groepen toe; de directoryservices blijven zoals ingesteld op de server.
 The server cannot be reached	De server is niet bereikbaar
 The server keeps the last {} ended sessions.	De server bewaart de laatste {} beëindigde sessies.
+The server records who changed a part and when (the history of the part).	De server legt vast wie een artikel heeft gewijzigd en wanneer (de geschiedenis van het artikel).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	De server legt vast wie wanneer aan welk project werkt: de open sessies, de vergrendelde pagina's en de laatste beëindigde sessies met hun opslagen. De andere gebruikers van een project zien wie een pagina heeft vergrendeld; beheerders zien de sessies.
 The server sent no text	De server heeft geen tekst verzonden
 The test failed	De test is mislukt
 The test succeeded	De test is geslaagd
@@ -541,6 +546,7 @@ Throttle plate	Smoorschijf
 Timeout (s)	Time-out (s)
 Timer relay	Tijdrelais
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Om hem te herstellen, start u de server met --data <bestand> of kopieert u hem met --migrate-from <bestand> naar een nieuwe database.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	Om het raden van wachtwoorden af te remmen, onthoudt de server mislukte aanmeldingen korte tijd; ze worden niet naar schijf geschreven.
 Too many failed sign-ins, try again later	Te veel mislukte aanmeldingen, probeer het later opnieuw
 Too many registrations from this address, try again later	Te veel registraties vanaf dit adres, probeer het later opnieuw
 Top cover	Dak
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	U mag geen artikelen van fabrikant {
 You may not see any project	U mag geen enkel project zien
 Your account awaits the approval of an administrator	Uw account wacht op goedkeuring door een beheerder
 Your account was created. An administrator has to approve it before you can sign in.	Uw account is aangemaakt. Een beheerder moet het goedkeuren voordat u zich kunt aanmelden.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Uw browser bewaart de taal en de instellingen van de pagina die u hebt gekozen en, zolang u bent aangemeld, de sleutel van uw sessie. Afmelden verwijdert de sleutel; het wissen van de sitegegevens in de browser verwijdert alles.
 Your rights	Uw rechten
 access denied – check the personal access token	toegang geweigerd – controleer het persoonlijke toegangstoken
 by file name	op bestandsnaam

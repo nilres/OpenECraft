@@ -43,6 +43,7 @@ Deleted user {}	Usuário {} excluído
 Deleting {}…	Excluindo {}…
 Describe the problem you saw	Descreva o problema que você viu
 Describe what happened before continuing.	Descreva o que aconteceu antes de continuar.
+Disclaimer	Isenção de responsabilidade
 Door cutouts	Recortes da porta
 Downloaded {} ({} bytes)	{} baixado ({} bytes)
 Downloading parts…	Baixando peças…
@@ -66,6 +67,7 @@ Import SVG…	Importar SVG…
 In the door, when they differ from the cutouts	Na porta, quando diferem dos recortes
 Internal values of the EPLAN part exchange (0: undefined)	Valores internos do intercâmbio de peças EPLAN (0: indefinido)
 Isometric view, everything shown	Vista isométrica, tudo visível
+It connects only to the parts server you name, which receives your requests, your sign-in and the parts you save. Its operator has a privacy notice of their own.	Ele se conecta apenas ao servidor de peças que você indica, que recebe suas solicitações, seu login e as peças que você salva. O operador desse servidor tem um aviso de privacidade próprio.
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Só funciona montado em uma das peças em que serve; a verificação do projeto o indica em um dispositivo sem tal peça
 Largest conductor the clamp takes (0: not known)	Maior condutor que o borne aceita (0: desconhecido)
 Loaded the library {}	Biblioteca {} carregada
@@ -91,6 +93,7 @@ Only parts for direct wall mounting	Somente peças para montagem direta na pared
 Open GitHub issue form	Abrir o formulário de issue do GitHub
 Open datasheet	Abrir folha de dados
 Open in the browser	Abrir no navegador
+OpenECraft uses no tracking and no analytics. Your projects stay where you save them; nothing is sent to the makers of OpenECraft.	O OpenECraft não usa rastreamento nem análise de uso. Seus projetos permanecem onde você os salva; nada é enviado aos criadores do OpenECraft.
 Opens your browser and copies the report for you to paste into the GitHub issue form.	Abre o navegador e copia o relatório para você colar no formulário de issue do GitHub.
 Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	Abre o navegador com o relatório preenchido e o copia. Revise e envie no GitHub.
 Outside the face	Fora da face
@@ -111,6 +114,7 @@ Removing the file…	Removendo o arquivo…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Substitui os pontos de conexão conforme a convenção IEC: designações ímpares em cima, pares embaixo
 Report copied. Keep it to submit on GitHub when you are online.	Relatório copiado. Guarde-o para enviar no GitHub quando estiver online.
 Report copied. Paste it into the GitHub issue form and submit it there.	Relatório copiado. Cole-o no formulário de issue do GitHub e envie-o lá.
+Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before.	Relatar um bug abre o GitHub no seu navegador com os detalhes mostrados no formulário; nada é enviado antes disso.
 Reports are public. A GitHub account is needed to submit them.	Os relatórios são públicos. É preciso uma conta do GitHub para enviá-los.
 Reset filter	Redefinir filtro
 Restricted areas: {}	Áreas restritas: {}
@@ -142,13 +146,19 @@ Summary	Resumo
 Take {} values from the technical data	Adotar {} valores dos dados técnicos
 Technical details	Detalhes técnicos
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	A vista frontal 2D é usada na vista frontal do painel e nas páginas de layout de montagem, o modelo 3D na vista 3D do painel. Ambos são ajustados aos dados de montagem (largura × altura × profundidade).
+The address of the server and your settings are kept in your user folder on this computer; the access token and your password are not stored.	O endereço do servidor e suas configurações são mantidos em sua pasta de usuário neste computador; o token de acesso e sua senha não são armazenados.
+The editor connects only to the servers you set up: parts servers, project servers, the EPLAN Data Portal and Autodesk Vault receive your requests, your sign-in and what you save to them. Their operators have privacy notices of their own.	O editor se conecta apenas aos servidores que você configura: os servidores de peças, os servidores de projetos, o EPLAN Data Portal e o Autodesk Vault recebem suas solicitações, seu login e o que você salva neles. Os operadores desses servidores têm avisos de privacidade próprios.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	O modelo ({} × {} × {}) difere dos dados de montagem ({} × {} × {}); ele é esticado até os dados de montagem.
+The parts manager sets no cookies. It keeps the address of the server and your settings in the storage of your browser; clearing the site data of the browser removes them. The access token and your password are not stored.	O gerenciador de peças não define cookies. Ele mantém o endereço do servidor e suas configurações no armazenamento do seu navegador; limpar os dados do site no navegador os remove. O token de acesso e sua senha não são armazenados.
+The parts manager uses no tracking and no analytics; nothing is sent to the makers of OpenECraft.	O gerenciador de peças não usa rastreamento nem análise de uso; nada é enviado aos criadores do OpenECraft.
 The parts server has no library {} yet	O servidor de peças ainda não tem a biblioteca {}
 The price refers to this many units	O preço se refere a esta quantidade de unidades
 The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	O relatório inclui a versão, o sistema e as contagens do que o projeto aberto contém, mas nenhum conteúdo do projeto. Revise os detalhes antes de compartilhá-los.
 The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	A captura de tela não é anexada sozinha: copie ou salve-a e depois adicione-a ao formulário de issue do GitHub.
 The successor is not in this parts list	A sucessora não está nesta lista de peças
+The web editor sets no cookies. It keeps your settings and the data to restore your work in the storage of your browser; clearing the site data of the browser removes them.	O editor web não define cookies. Ele mantém suas configurações e os dados para restaurar seu trabalho no armazenamento do seu navegador; limpar os dados do site no navegador os remove.
 This part is an accessory	Esta peça é um acessório
+To find updates, OpenECraft asks GitHub for the latest release when it starts, unless you switch that off in the settings; GitHub receives the IP address of your computer.	Para encontrar atualizações, o OpenECraft consulta o GitHub sobre a versão mais recente ao iniciar, a menos que você desative isso nas configurações; o GitHub recebe o endereço IP do seu computador.
 Top group	Grupo principal
 Top group {}, product group {}, subgroup {}	Grupo principal {}, grupo de produtos {}, subgrupo {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	Gire o modelo de modo que sua frente fique voltada para o observador (+Z) e seu topo seja +Y
@@ -172,6 +182,7 @@ Where the wires are connected in the panel layout: the designation as in the fun
 Width / Ø	Largura / Ø
 Wire connection	Conexão de fios
 Wire leaves	Saída do fio
+Your settings and the data to restore your work are kept in your user folder on this computer.	Suas configurações e os dados para restaurar seu trabalho são mantidos em sua pasta de usuário neste computador.
 Zoom only	Apenas zoom
 Zooms (mouse wheel)	Aplica zoom (roda do mouse)
 changes with token	alterações com token

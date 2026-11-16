@@ -35,3 +35,22 @@ data = "parts-db.sqlite"
 # OPENECRAFT_DASHBOARD, --dashboard true|false). Without it, administrators switch it on
 # the web page (Administration > Overview); it is shown by default.
 # dashboard = false
+
+# The legal notice of who runs the server, shown by the web page (in Germany the
+# Impressum): a link "Legal notice" below the page when a name is set. Lines of the
+# address and of the texts are separated by "|". Each field is also set by a variable:
+# OPENECRAFT_LEGAL_NAME, _ADDRESS, _EMAIL, _PHONE, _REPRESENTATIVE, _REGISTER, _VAT_ID,
+# _RESPONSIBLE, _TEXT, _PRIVACY (a variable wins over this file).
+# [legal]
+# name = "ACME Automation GmbH"
+# address = "Example Street 1 | 12345 Example City | Germany"
+# email = "info@example.com"
+# phone = "+49 123 456789"
+# representative = "Jane Doe"
+# register = "Amtsgericht Example, HRB 12345"
+# vat = "DE123456789"
+# responsible = "Jane Doe, address as above"
+# Further text: disclaimers, dispute resolution.
+# text = "We are not obliged to take part in dispute resolution proceedings."
+# Added to the privacy notice of the page: the hosting, the logs, whom to ask.
+# privacy = "Hosted by Example Hosting GmbH. | Questions: privacy@example.com"

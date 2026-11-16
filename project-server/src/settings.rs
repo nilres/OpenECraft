@@ -5,6 +5,7 @@
 use clap::Parser;
 use openecraft_auth::server_config;
 use openecraft_core::collab::DEFAULT_PORT;
+use openecraft_parts::legal::LegalNotice;
 use serde::Deserialize;
 use std::net::SocketAddr;
 use std::path::PathBuf;
@@ -49,6 +50,8 @@ struct File {
     admin_user: Option<String>,
     access: Option<PathBuf>,
     web: Option<bool>,
+    /// The legal notice of the operator (`[legal]`; the variables `OPENECRAFT_LEGAL_…` win).
+    legal: LegalNotice,
 }
 
 /// The settings the server runs with.
@@ -63,6 +66,8 @@ pub struct Settings {
     pub access: PathBuf,
     /// The web page is served.
     pub web: bool,
+    /// The legal notice of the operator, shown by the web page.
+    pub legal: LegalNotice,
 }
 
 impl Settings {
@@ -72,7 +77,9 @@ impl Settings {
             Some(path) => server_config::load(path)?,
             None => File::default(),
         };
-        Ok(Settings::merge(args, file))
+        let mut settings = Settings::merge(args, file);
+        settings.legal = settings.legal.with_environment(|variable| std::env::var(variable).ok());
+        Ok(settings)
     }
 
     fn merge(args: Args, file: File) -> Settings {
@@ -87,6 +94,7 @@ impl Settings {
             token: args.token.or(file.token).filter(|t| !t.trim().is_empty()),
             admin_user: args.admin_user.or(file.admin_user).filter(|n| !n.trim().is_empty()),
             web: args.web.or(file.web).unwrap_or(false),
+            legal: file.legal,
             data,
             access,
         }

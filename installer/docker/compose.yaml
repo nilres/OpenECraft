@@ -12,6 +12,23 @@
 # http://127.0.0.1:8091, as the browser reaches them. The website with its live demos
 # (docs/website.md) is on http://127.0.0.1:8088; it brings a web editor of its own at
 # /editor/, so a public site needs only this service.
+#
+# The legal notice (Impressum) of the operator, the same for all four: shown when a name
+# is set, by the footer of the website and of the servers' web pages and by Help > Legal
+# and privacy of the web editor. Lines of the address and the texts are separated by
+# "|"; OPENECRAFT_LEGAL_PRIVACY is added to the privacy notices (the hosting, the logs).
+x-legal: &legal
+  OPENECRAFT_LEGAL_NAME: ${OPENECRAFT_LEGAL_NAME:-}
+  OPENECRAFT_LEGAL_ADDRESS: ${OPENECRAFT_LEGAL_ADDRESS:-}
+  OPENECRAFT_LEGAL_EMAIL: ${OPENECRAFT_LEGAL_EMAIL:-}
+  OPENECRAFT_LEGAL_PHONE: ${OPENECRAFT_LEGAL_PHONE:-}
+  OPENECRAFT_LEGAL_REPRESENTATIVE: ${OPENECRAFT_LEGAL_REPRESENTATIVE:-}
+  OPENECRAFT_LEGAL_REGISTER: ${OPENECRAFT_LEGAL_REGISTER:-}
+  OPENECRAFT_LEGAL_VAT_ID: ${OPENECRAFT_LEGAL_VAT_ID:-}
+  OPENECRAFT_LEGAL_RESPONSIBLE: ${OPENECRAFT_LEGAL_RESPONSIBLE:-}
+  OPENECRAFT_LEGAL_TEXT: ${OPENECRAFT_LEGAL_TEXT:-}
+  OPENECRAFT_LEGAL_PRIVACY: ${OPENECRAFT_LEGAL_PRIVACY:-}
+
 services:
   parts-server:
     image: ghcr.io/nilres/openecraft-parts-server:${OPENECRAFT_TAG:-latest}
@@ -19,6 +36,7 @@ services:
     ports:
       - "127.0.0.1:8090:8090"
     environment:
+      <<: *legal
       OPENECRAFT_TOKEN: ${OPENECRAFT_TOKEN:?administrator token of the parts server}
       OPENECRAFT_ADMIN_USER: ${OPENECRAFT_ADMIN_USER:-}
       OPENECRAFT_ADMIN_PASSWORD: ${OPENECRAFT_ADMIN_PASSWORD:-}
@@ -33,6 +51,7 @@ services:
     ports:
       - "127.0.0.1:8091:8091"
     environment:
+      <<: *legal
       OPENECRAFT_PROJECT_TOKEN: ${OPENECRAFT_PROJECT_TOKEN:?access token of the project server}
       OPENECRAFT_PROJECT_ADMIN_USER: ${OPENECRAFT_PROJECT_ADMIN_USER:-}
       OPENECRAFT_PROJECT_ADMIN_PASSWORD: ${OPENECRAFT_PROJECT_ADMIN_PASSWORD:-}
@@ -44,6 +63,8 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:8080:8080"
+    environment:
+      <<: *legal
 
   website:
     image: ghcr.io/nilres/openecraft-website:${OPENECRAFT_TAG:-latest}
@@ -54,6 +75,7 @@ services:
     # beside the page or an address), the repository, and optionally the downloads,
     # the documentation folder and the issues, which default to those of the repository.
     environment:
+      <<: *legal
       # The public address of the site (https://…/) for search engines and link
       # previews: canonical address, preview image, sitemap.
       OPENECRAFT_SITE_URL: ${OPENECRAFT_SITE_URL:-}
@@ -62,19 +84,6 @@ services:
       OPENECRAFT_DOWNLOADS_URL: ${OPENECRAFT_DOWNLOADS_URL:-}
       OPENECRAFT_DOCUMENTATION_URL: ${OPENECRAFT_DOCUMENTATION_URL:-}
       OPENECRAFT_ISSUES_URL: ${OPENECRAFT_ISSUES_URL:-}
-      # The legal notice (Impressum) of the operator: shown when a name is set. Lines
-      # of the address and the text are separated by "|".
-      OPENECRAFT_LEGAL_NAME: ${OPENECRAFT_LEGAL_NAME:-}
-      OPENECRAFT_LEGAL_ADDRESS: ${OPENECRAFT_LEGAL_ADDRESS:-}
-      OPENECRAFT_LEGAL_EMAIL: ${OPENECRAFT_LEGAL_EMAIL:-}
-      OPENECRAFT_LEGAL_PHONE: ${OPENECRAFT_LEGAL_PHONE:-}
-      OPENECRAFT_LEGAL_REPRESENTATIVE: ${OPENECRAFT_LEGAL_REPRESENTATIVE:-}
-      OPENECRAFT_LEGAL_REGISTER: ${OPENECRAFT_LEGAL_REGISTER:-}
-      OPENECRAFT_LEGAL_VAT_ID: ${OPENECRAFT_LEGAL_VAT_ID:-}
-      OPENECRAFT_LEGAL_RESPONSIBLE: ${OPENECRAFT_LEGAL_RESPONSIBLE:-}
-      OPENECRAFT_LEGAL_TEXT: ${OPENECRAFT_LEGAL_TEXT:-}
-      # Added to the privacy notice of the page: the hosting and the server logs.
-      OPENECRAFT_LEGAL_PRIVACY: ${OPENECRAFT_LEGAL_PRIVACY:-}
 
 volumes:
   parts:

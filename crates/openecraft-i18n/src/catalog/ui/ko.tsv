@@ -43,6 +43,7 @@ Deleted user {}	사용자 {}을(를) 삭제했습니다
 Deleting {}…	{} 삭제 중…
 Describe the problem you saw	본 문제를 설명하세요
 Describe what happened before continuing.	계속하기 전에 무슨 일이 있었는지 설명하세요.
+Disclaimer	면책 조항
 Door cutouts	도어 컷아웃
 Downloaded {} ({} bytes)	{}을(를) 다운로드했습니다({}바이트)
 Downloading parts…	부품 다운로드 중…
@@ -66,6 +67,7 @@ Import SVG…	SVG 가져오기…
 In the door, when they differ from the cutouts	도어에서, 컷아웃과 다를 때
 Internal values of the EPLAN part exchange (0: undefined)	EPLAN 부품 교환의 내부 값(0: 정의되지 않음)
 Isometric view, everything shown	등각 뷰, 모두 표시
+It connects only to the parts server you name, which receives your requests, your sign-in and the parts you save. Its operator has a privacy notice of their own.	사용자가 지정한 부품 서버에만 연결하며, 이 서버는 사용자의 요청, 로그인 정보 및 저장하는 부품을 받습니다. 해당 운영자는 자체 개인정보 처리방침을 두고 있습니다.
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	호환되는 부품 중 하나에 장착된 경우에만 작동합니다. 해당 부품이 없는 장치에서는 프로젝트 검사가 보고합니다
 Largest conductor the clamp takes (0: not known)	단자가 받는 가장 큰 도체 (0: 알 수 없음)
 Loaded the library {}	라이브러리 {}을(를) 불러왔습니다
@@ -91,6 +93,7 @@ Only parts for direct wall mounting	직접 벽 설치 부품만
 Open GitHub issue form	GitHub 이슈 양식 열기
 Open datasheet	데이터시트 열기
 Open in the browser	브라우저에서 열기
+OpenECraft uses no tracking and no analytics. Your projects stay where you save them; nothing is sent to the makers of OpenECraft.	OpenECraft는 추적이나 분석을 사용하지 않습니다. 프로젝트는 사용자가 저장한 위치에 그대로 있으며, OpenECraft 제작자에게는 아무것도 전송되지 않습니다.
 Opens your browser and copies the report for you to paste into the GitHub issue form.	브라우저를 열고 GitHub 이슈 양식에 붙여 넣을 수 있도록 보고서를 복사합니다.
 Opens your browser with the report filled in and copies it. Review and submit it on GitHub.	보고서를 채운 상태로 브라우저를 열고 보고서를 복사합니다. GitHub에서 검토한 후 제출하세요.
 Outside the face	면 바깥
@@ -111,6 +114,7 @@ Removing the file…	파일을 제거하는 중…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	IEC 규칙에 따라 연결 지점을 교체합니다: 홀수 명칭은 위쪽, 짝수 명칭은 아래쪽
 Report copied. Keep it to submit on GitHub when you are online.	보고서를 복사했습니다. 온라인 상태가 되면 GitHub에서 제출할 수 있도록 보관하세요.
 Report copied. Paste it into the GitHub issue form and submit it there.	보고서를 복사했습니다. GitHub 이슈 양식에 붙여 넣고 그곳에서 제출하세요.
+Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before.	버그를 신고하면 양식에 표시된 세부 정보와 함께 브라우저에서 GitHub가 열립니다. 그 전에는 아무것도 전송되지 않습니다.
 Reports are public. A GitHub account is needed to submit them.	보고서는 공개됩니다. 제출하려면 GitHub 계정이 필요합니다.
 Reset filter	필터 재설정
 Restricted areas: {}	금지 영역: {}
@@ -142,13 +146,19 @@ Summary	요약
 Take {} values from the technical data	기술 데이터에서 값 {}개 가져오기
 Technical details	기술 정보
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D 정면도는 패널 정면도와 장착 레이아웃 페이지에서, 3D 모델은 3D 패널 보기에서 사용됩니다. 둘 다 장착 데이터(너비 × 높이 × 깊이)에 맞춰집니다.
+The address of the server and your settings are kept in your user folder on this computer; the access token and your password are not stored.	서버 주소와 설정은 이 PC의 사용자 폴더에 보관됩니다. 액세스 토큰과 암호는 저장되지 않습니다.
+The editor connects only to the servers you set up: parts servers, project servers, the EPLAN Data Portal and Autodesk Vault receive your requests, your sign-in and what you save to them. Their operators have privacy notices of their own.	편집기는 사용자가 설정한 서버에만 연결합니다. 부품 서버, 프로젝트 서버, EPLAN Data Portal 및 Autodesk Vault는 사용자의 요청, 로그인 정보 및 그곳에 저장하는 내용을 받습니다. 해당 운영자는 자체 개인정보 처리방침을 두고 있습니다.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	모델({} × {} × {})이 장착 데이터({} × {} × {})와 다릅니다. 장착 데이터에 맞게 늘어납니다.
+The parts manager sets no cookies. It keeps the address of the server and your settings in the storage of your browser; clearing the site data of the browser removes them. The access token and your password are not stored.	부품 관리자는 쿠키를 설정하지 않습니다. 서버 주소와 설정은 브라우저의 저장소에 보관되며, 브라우저의 사이트 데이터를 지우면 삭제됩니다. 액세스 토큰과 암호는 저장되지 않습니다.
+The parts manager uses no tracking and no analytics; nothing is sent to the makers of OpenECraft.	부품 관리자는 추적이나 분석을 사용하지 않으며, OpenECraft 제작자에게는 아무것도 전송되지 않습니다.
 The parts server has no library {} yet	부품 서버에 아직 라이브러리 {}이(가) 없습니다
 The price refers to this many units	가격 기준 단위 수량
 The report includes the version, the system and counts of what the open project holds, but no project contents. Review the details before sharing them.	보고서에는 버전, 시스템, 열린 프로젝트에 들어 있는 항목의 개수가 포함되지만 프로젝트 내용은 포함되지 않습니다. 공유하기 전에 세부 정보를 검토하세요.
 The screenshot is not attached by itself: copy or save it, then add it to the GitHub issue form.	스크린샷은 자동으로 첨부되지 않습니다. 복사하거나 저장한 다음 GitHub 이슈 양식에 추가하세요.
 The successor is not in this parts list	후속 제품이 이 부품 목록에 없습니다
+The web editor sets no cookies. It keeps your settings and the data to restore your work in the storage of your browser; clearing the site data of the browser removes them.	웹 편집기는 쿠키를 설정하지 않습니다. 설정과 작업 복원을 위한 데이터는 브라우저의 저장소에 보관되며, 브라우저의 사이트 데이터를 지우면 삭제됩니다.
 This part is an accessory	이 부품은 액세서리입니다
+To find updates, OpenECraft asks GitHub for the latest release when it starts, unless you switch that off in the settings; GitHub receives the IP address of your computer.	업데이트를 찾기 위해 OpenECraft는 설정에서 끄지 않는 한 시작할 때 GitHub에 최신 릴리스를 문의합니다. 이때 GitHub는 PC의 IP 주소를 받습니다.
 Top group	상위 그룹
 Top group {}, product group {}, subgroup {}	상위 그룹 {}, 제품 그룹 {}, 하위 그룹 {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	모델의 앞면이 보는 사람을 향하고(+Z) 윗면이 +Y가 되도록 모델을 회전하세요
@@ -172,6 +182,7 @@ Where the wires are connected in the panel layout: the designation as in the fun
 Width / Ø	너비 / Ø
 Wire connection	전선 연결
 Wire leaves	전선 인출 방향
+Your settings and the data to restore your work are kept in your user folder on this computer.	설정과 작업 복원을 위한 데이터는 이 PC의 사용자 폴더에 보관됩니다.
 Zoom only	확대/축소만
 Zooms (mouse wheel)	확대/축소(마우스 휠)
 changes with token	토큰으로 변경

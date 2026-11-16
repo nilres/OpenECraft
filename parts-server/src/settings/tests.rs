@@ -86,3 +86,14 @@ fn the_dashboard_is_switched_by_the_options() {
     let arg = command.get_arguments().find(|a| a.get_id() == "dashboard").unwrap();
     assert_eq!(arg.get_env(), Some(std::ffi::OsStr::new("OPENECRAFT_DASHBOARD")));
 }
+
+#[test]
+fn the_file_holds_the_legal_notice_of_the_operator() {
+    let f = file("[legal]\nname = \"ACME GmbH\"\naddress = \"Street 1 | 12345 City\"\nprivacy = \"Hosted by ACME\"\n");
+    let s = Settings::merge(args(&[]), f);
+    assert!(s.legal.shown());
+    assert_eq!(s.legal.lines("address"), ["Street 1", "12345 City"]);
+    assert_eq!(s.legal.field("privacy"), "Hosted by ACME");
+    assert!(!Settings::merge(args(&[]), File::default()).legal.shown());
+    assert!(server_config::parse::<File>("[legal]\nnmae = \"x\"\n").is_err(), "a misspelt field is refused");
+}

@@ -50,9 +50,15 @@ pub struct AppState {
     /// Dashboard shown or hidden by the start options (`--dashboard`); `None`: as the
     /// access settings say.
     pub dashboard: Option<bool>,
+    /// The legal notice of the operator, shown by the web page.
+    pub legal: Arc<openecraft_parts::legal::LegalNotice>,
 }
 
 impl AppState {
+    pub fn with_legal(self, legal: openecraft_parts::legal::LegalNotice) -> AppState {
+        AppState { legal: Arc::new(legal), ..self }
+    }
+
     pub fn new(store: Store, token: Option<String>, access: AccessFile<PartsRight>) -> AppState {
         AppState {
             store: Arc::new(Mutex::new(store)),
@@ -62,6 +68,7 @@ impl AppState {
             registration: None,
             registrations: Arc::default(),
             dashboard: None,
+            legal: Arc::default(),
         }
     }
 
@@ -131,6 +138,7 @@ pub fn router(state: AppState) -> Router {
         .route("/dashboard.js", get(web::dashboard_script))
         .route(&api("/texts"), get(web::texts))
         .merge(openecraft_web::routes())
+        .merge(openecraft_web::legal_route(state.legal.clone()))
         .route(&api("/info"), get(info))
         .route(&api("/parts"), get(list))
         .route(&api("/search"), post(search).layer(DefaultBodyLimit::max(SMALL_BODY)))

@@ -17,6 +17,7 @@ pub mod fonts;
 pub mod icons;
 pub mod io;
 pub mod language;
+pub mod legal;
 pub mod logos;
 pub mod nav;
 pub mod part_editor;

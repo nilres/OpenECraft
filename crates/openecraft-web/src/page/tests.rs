@@ -12,6 +12,18 @@ fn the_shared_scripts_use_known_texts_only() {
 }
 
 #[test]
+fn the_shared_script_shows_every_field_of_the_legal_notice() {
+    for (name, _) in openecraft_parts::legal::FIELDS {
+        assert!(COMMON_SCRIPT.contains(&format!("\"{name}\")")), "common.js does not show {name}");
+    }
+    for label in ["Represented by", "Email", "Phone", "Register entry", "VAT ID", "Responsible for the content"] {
+        assert!(TEXTS.contains(&label) && COMMON_SCRIPT.contains(&format!("row(\"{label}\"")), "{label}");
+    }
+    // The pages route by the fragment of the address: the notices open by buttons.
+    assert!(!COMMON_SCRIPT.contains("href=\"#"));
+}
+
+#[test]
 fn unknown_texts_are_found_once() {
     let page = r#"<b data-t="Known">x</b> t("New") tf("New") tp("Other {}") at("not a text")"#;
     assert_eq!(unknown_texts(&[page], &["Known"]), ["New", "Other {}"]);

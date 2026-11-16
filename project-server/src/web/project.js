@@ -317,12 +317,21 @@ async function footer() {
   } catch (e) {}
 }
 
+/// What the privacy notice says about this server.
+function privacy() {
+  return [
+    t("The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions."),
+    t("A project names who changed it last."),
+  ];
+}
+
 async function start() {
   try { await setLanguage(startLanguage()); } catch (e) {}
+  renderLegal(privacy);
   await refreshSession();
   await footer();
   renderAccount();
-  document.getElementById("lang").onchange = async e => { await setLanguage(e.target.value); project = null; route(); };
+  document.getElementById("lang").onchange = async e => { await setLanguage(e.target.value); project = null; route(); renderLegal(privacy); };
   document.getElementById("home").onclick = e => { e.preventDefault(); view = "projects"; go(); };
   document.getElementById("nav-projects").onclick = () => { view = "projects"; go(); };
   document.getElementById("nav-admin").onclick = () => { view = "admin"; go(); };

@@ -68,3 +68,14 @@ fn the_web_page_is_switched_on_by_option_or_file() {
     assert!(!Settings::merge(args(&["--web", "false"]), file("web = true
 ")).web, "the command line wins");
 }
+
+#[test]
+fn the_file_holds_the_legal_notice_of_the_operator() {
+    let f = file("[legal]\nname = \"ACME GmbH\"\naddress = \"Street 1 | 12345 City\"\nprivacy = \"Hosted by ACME\"\n");
+    let s = Settings::merge(args(&[]), f);
+    assert!(s.legal.shown());
+    assert_eq!(s.legal.lines("address"), ["Street 1", "12345 City"]);
+    assert_eq!(s.legal.field("privacy"), "Hosted by ACME");
+    assert!(!Settings::merge(args(&[]), File::default()).legal.shown());
+    assert!(server_config::parse::<File>("[legal]\nnmae = \"x\"\n").is_err(), "a misspelt field is refused");
+}

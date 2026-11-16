@@ -7,6 +7,7 @@ A grant needs a user or a group	Назначению нужен пользова
 A group name must not be empty or contain ':'	Имя группы не может быть пустым или содержать ':'
 A manufacturer user needs a manufacturer	Пользователю-производителю нужен производитель
 A part number must not be empty or start or end with blanks	Номер изделия не может быть пустым, начинаться или заканчиваться пробелами
+A project names who changed it last.	В проекте указано, кто изменил его последним.
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Роль — это набор прав. Назначения дают пользователю или группе роль для проектов (* и ? как подстановочные знаки, * для всех); запрещающее назначение отнимает права роли, что бы ни давали другие назначения.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Роль — это набор прав. Назначения дают пользователю или группе роль для изделий производителя (* и ? как подстановочные знаки, * для всех); запрещающее назначение отнимает права роли, что бы ни давали другие назначения.
 A user name must not be empty or contain blanks	Имя пользователя не может быть пустым или содержать пробелы
@@ -194,6 +195,7 @@ Fluid Control Terminal	Пневмоостров
 Fluid motor	Гидропневмодвигатель
 Fluid power - special items	Гидропневматика – специальные изделия
 Fluid power components	Компоненты гидропневматики
+For a user account the server stores the user name, the role, the groups and the password as a hash only. With an account of a directory, the directory checks the password and names the groups.	Для учётной записи сервер хранит имя пользователя, роль, группы и пароль только в виде хеша. Для учётной записи из службы каталогов пароль проверяет и группы сообщает служба каталогов.
 Former	Формовочная машина
 Front view (2D)	Вид спереди (2D)
 Funnel	Воронка
@@ -507,6 +509,7 @@ The checksum of {} does not match: the download is damaged	Контрольна�
 The dashboard is hidden	Панель скрыта
 The dashboard is shown	Панель показывается
 The directory checks the password and sets the groups at every sign-in	Служба каталогов проверяет пароль и задаёт группы при каждом входе
+The favorites of a user are stored with the account.	Избранное пользователя хранится вместе с учётной записью.
 The file holds no access settings	Файл не содержит настроек доступа
 The groups would leave nobody who manages users	После изменения групп не останется никого, кто управляет пользователями
 The last administrator cannot lose the right to manage users	Последний администратор не может лишиться права управлять пользователями
@@ -524,6 +527,8 @@ The roles given here apply to this project; deny takes the rights of the role aw
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Роли, назначения, группы и доступ без входа, с версией сервера. Восстановление заменяет роли и назначения и добавляет группы; службы каталогов остаются такими, как настроены на сервере.
 The server cannot be reached	Сервер недоступен
 The server keeps the last {} ended sessions.	Сервер хранит последние завершённые сеансы, не более {}.
+The server records who changed a part and when (the history of the part).	Сервер записывает, кто и когда изменил изделие (история изделия).
+The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions.	Сервер записывает, кто, когда и над каким проектом работает: открытые сеансы, заблокированные страницы и последние завершённые сеансы с их сохранениями. Другие пользователи проекта видят, кто заблокировал страницу; администраторы видят сеансы.
 The server sent no text	Сервер не отправил текст
 The test failed	Проверка не удалась
 The test succeeded	Проверка прошла успешно
@@ -541,6 +546,7 @@ Throttle plate	Дроссельная шайба
 Timeout (s)	Тайм-аут (с)
 Timer relay	Реле времени
 To restore it, start the server with --data <file>, or copy it into a new database with --migrate-from <file>.	Чтобы восстановить её, запустите сервер с --data <файл> или скопируйте её в новую базу данных с помощью --migrate-from <файл>.
+To slow down the guessing of passwords, the server remembers failed sign-ins for a short time; they are not written to disk.	Чтобы замедлить подбор паролей, сервер недолго помнит неудачные попытки входа; на диск они не записываются.
 Too many failed sign-ins, try again later	Слишком много неудачных попыток входа, повторите позже
 Too many registrations from this address, try again later	Слишком много регистраций с этого адреса, повторите попытку позже
 Top cover	Крыша
@@ -588,6 +594,7 @@ You may not change parts of manufacturer {}	Вы не можете изменя�
 You may not see any project	Вам не разрешено видеть ни один проект
 Your account awaits the approval of an administrator	Учётная запись ожидает одобрения администратора
 Your account was created. An administrator has to approve it before you can sign in.	Учётная запись создана. Администратор должен одобрить её, прежде чем вы сможете войти.
+Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Ваш браузер хранит выбранные вами язык и настройки страницы, а пока вы выполнили вход - ключ вашего сеанса. При выходе ключ удаляется; очистка данных сайта в браузере удаляет всё.
 Your rights	Ваши права
 access denied – check the personal access token	доступ запрещён – проверьте персональный маркер доступа
 by file name	по имени файла
