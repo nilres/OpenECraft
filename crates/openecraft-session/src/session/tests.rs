@@ -279,6 +279,45 @@ fn a_routing_searched_elsewhere_is_awaited_and_taken() {
 }
 
 #[test]
+fn without_threads_the_routing_of_an_opened_panel_layout_is_searched_elsewhere() {
+    let plugins = Plugins::new(Vec::<String>::new());
+    let prj = (openecraft_core::sample::EXAMPLES.iter().find(|e| e.key == "conveyor").unwrap().build)();
+    assert!(!prj.layout.enclosures.is_empty());
+    let mut elsewhere = Cache::default();
+    let found = Analysis::build_with(&prj, &mut elsewhere);
+    let searched = elsewhere.routing_searched().unwrap();
+
+    // The desktop builds it on another thread.
+    let s = Session::new(prj.clone(), None);
+    assert!(!s.routes_here());
+
+    // The browser: the search would stop the page, a worker has it searched.
+    let mut s = Session::new(prj.clone(), None);
+    s.threaded = false;
+    assert!(s.routes_here());
+    s.await_routing();
+    assert!(!s.routes_here(), "it is searched elsewhere");
+    assert_eq!(s.opening().map(|p| p.step), Some(Step::Routing), "the loading screen tells what is being done");
+    s.routing_found(Some(&searched));
+    assert!(!s.routes_here(), "the analysis is built here with the routing found");
+    s.opening_shown();
+    s.refresh(&plugins, false);
+    s.opening_shown();
+    s.refresh(&plugins, false);
+    assert!(s.opening().is_none());
+    assert_eq!(s.analysis.routing, found.routing);
+    assert!(!s.routes_here(), "an opened project is not searched elsewhere again");
+
+    // A project opened next is searched elsewhere again; one without a panel layout
+    // has no routing to search.
+    s.replace(prj, None, None);
+    assert!(s.routes_here());
+    s.replace(Project::new_default(), None, None);
+    assert!(s.prj.layout.enclosures.is_empty());
+    assert!(!s.routes_here());
+}
+
+#[test]
 fn a_project_replaced_while_opening_gets_its_own_analysis() {
     let plugins = Plugins::new(Vec::<String>::new());
     let mut s = Session::new(Project::new_default(), None);

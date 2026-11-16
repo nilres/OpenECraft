@@ -54,3 +54,20 @@ fn projects_are_read_and_written_by_the_kind_of_their_file() {
     let (back, _, archive) = read_project("demo.oecz", &zip).unwrap();
     assert!(back == prj && archive);
 }
+
+#[test]
+fn the_worker_of_the_web_page_searches_with_the_module() {
+    let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    let read = |path: &str| std::fs::read_to_string(dir.join(path)).unwrap_or_else(|e| panic!("{path}: {e}")).replace("\r\n", "\n");
+    // The page has the worker beside it, which starts the module of the page and has
+    // it search the routing (`openecraft_ui::io::RoutingWorker` sends the jobs).
+    assert!(read("index.html").contains("rel=\"copy-file\" href=\"worker.js\""));
+    let worker = read("worker.js");
+    assert!(worker.contains("api.default({ module_or_path: job.wasm })") && worker.contains("api.search_routing(job.project, job.lang, await built(job))"));
+    let module = read("src/main.rs");
+    assert!(module.contains("#[wasm_bindgen::prelude::wasm_bindgen]\npub fn search_routing(project: &str, lang: &str, prebuilt: &str)"));
+    // In the worker the module only searches: without a window it starts no editor.
+    assert!(module.contains("let Some(window) = web_sys::window() else { return };"));
+    // The routings of the examples come with a release build of the page.
+    assert!(read("Trunk.toml").contains("command_arguments = [\"run\", \"--release\", \"-p\", \"openecraft-core\", \"--example\", \"routings\"]"));
+}

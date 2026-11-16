@@ -45,6 +45,8 @@ pub struct Session {
     threaded: bool,
     /// The 3D routing is searched elsewhere ([`Session::await_routing`]).
     awaiting: bool,
+    /// The search elsewhere for the project opened ended: its analysis is built here.
+    searched: bool,
     /// The 3D routing of an edited project being searched on another thread: the
     /// analysis after an edit takes it from the cache once it is there.
     routing: Option<Routed>,
@@ -117,6 +119,7 @@ impl Session {
             shown: false,
             threaded: analysis::threads() >= 2,
             awaiting: false,
+            searched: false,
             routing: None,
             route_here: false,
             structure_kept: Vec::new(),
@@ -150,6 +153,7 @@ impl Session {
         self.opening = None;
         self.waiting = None;
         self.awaiting = false;
+        self.searched = false;
         self.routing = None;
     }
 
@@ -171,6 +175,7 @@ impl Session {
         if !std::mem::take(&mut self.awaiting) {
             return;
         }
+        self.searched = true;
         if let Some(searched) = searched {
             // One that cannot be read is searched here.
             let _ = self.cache.adopt_routing(searched);
@@ -180,6 +185,20 @@ impl Session {
     /// The analysis waits for a routing searched elsewhere.
     pub fn awaits_routing(&self) -> bool {
         self.awaiting
+    }
+
+    /// The next `refresh` would build the analysis of the project just opened here,
+    /// without threads, searching its 3D routing (a project with a panel layout),
+    /// which stops the window for seconds: a front end with a worker has the routing
+    /// searched there instead ([`Session::await_routing`]).
+    pub fn routes_here(&self) -> bool {
+        !self.threaded
+            && self.replaced
+            && !self.awaiting
+            && !self.searched
+            && self.opening.is_none()
+            && !self.prj.layout.enclosures.is_empty()
+            && (self.analysis_rev != self.history.rev || self.analysis_lang != openecraft_i18n::lang())
     }
 
     /// Puts the files of the split project in place as an earlier run of the app
@@ -272,7 +291,7 @@ impl Session {
     /// background: the editor shows it instead of the project.
     pub fn opening(&self) -> Option<Progress> {
         if self.awaiting {
-            return Some(STARTED);
+            return Some(Progress { step: Step::Routing, done: 0, total: 0 });
         }
         let o = self.opening.as_ref()?;
         Some(o.shared.lock().ok().map(|b| b.progress).unwrap_or(STARTED))
@@ -342,6 +361,9 @@ impl Session {
                     self.analysis_rev = rev;
                     self.analysis_lang = lang;
                     self.replaced = false;
+                } else {
+                    // Of another state or language: its routing is searched anew.
+                    self.searched = false;
                 }
             }
             // Built again here, where a failure shows.
@@ -449,6 +471,23 @@ impl Snapshot {
         let Snapshot { prj, cache, checks, reports, lang } = self;
         openecraft_i18n::with_lang(*lang, || analyse(prj, cache, None, reports.clone(), |p, a| openecraft_api::run_checks(checks.iter(), p, a), &|_| {}))
     }
+}
+
+/// The 3D routing of a project (as JSON) in a language, for the analysis of the same
+/// project elsewhere ([`Session::await_routing`], [`Session::routing_found`]): the
+/// worker of a web page runs it, where a search would stop the page.
+/// `prebuilt`: a routing of the project from the build of the page (none: empty); it
+/// is taken instead of a search if it is of the wiring of the project.
+pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, String> {
+    let prj: Project = serde_json::from_str(project).map_err(|e| e.to_string())?;
+    let lang = openecraft_i18n::Lang::from_code(lang).ok_or_else(|| openecraft_i18n::tr_fmt!("Unknown language: {}", lang))?;
+    let mut cache = Cache::default();
+    if !prebuilt.is_empty() {
+        // One that cannot be read is searched.
+        let _ = cache.adopt_routing(prebuilt);
+    }
+    openecraft_i18n::with_lang(lang, || Analysis::build_with(&prj, &mut cache));
+    cache.routing_searched().ok_or_else(|| openecraft_i18n::tr("Loading…").to_string())
 }
 
 /// The analysis of `prj` with the reports and the issues `check` finds, telling

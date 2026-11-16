@@ -1,4 +1,5 @@
 use super::*;
+use openecraft_core::analysis::Cache;
 
 #[test]
 fn the_page_calls_functions_the_module_has() {
