@@ -23,6 +23,7 @@ use openecraft_core::structure::{self, Aspect, Dt};
 use openecraft_core::symbols::Func;
 use openecraft_core::{potentials, properties, sample, translation, wirenum};
 use openecraft_ui::icons::{self, Icon};
+use openecraft_ui::logos;
 use egui::{Key, RichText};
 use openecraft_api::params::{text, Args};
 use openecraft_client::PortalKind;

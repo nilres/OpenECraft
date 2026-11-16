@@ -79,6 +79,13 @@ impl App {
 
     fn quick_access(&mut self, ui: &mut egui::Ui) {
         ui.horizontal(|ui| {
+            // The logo and the name, as on the website and the servers' web pages.
+            let logo = logos::show_openecraft(ui, ui.spacing().interact_size.y);
+            let name = ui.add(egui::Label::new(RichText::new(tr("OpenECraft")).strong()).sense(egui::Sense::click()));
+            if logo.union(name).on_hover_text(tr("About OpenECraft")).clicked() {
+                self.run(&ui.ctx().clone(), Cmd::About);
+            }
+            ui.separator();
             for &cmd in ribbon::QUICK_ACCESS.iter().filter(|c| **c != Cmd::Backstage) {
                 self.icon_cmd(ui, cmd);
                 if cmd == Cmd::Undo && self.session.history.undo_steps() > 1 {

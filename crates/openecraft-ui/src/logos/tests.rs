@@ -61,3 +61,12 @@ fn wide_logos_are_drawn_whole() {
     assert!(image.pixels[(h / 2) * w + w - 1].a() > 200);
     assert_eq!(fit([200, 100], egui::vec2(100.0, 100.0)), egui::vec2(100.0, 50.0));
 }
+
+#[test]
+fn the_openecraft_logo_is_drawn_for_the_pixels_of_the_screen() {
+    for pixels in [18, 27, 36] {
+        let image = render_svg(OPENECRAFT, pixels).expect("the logo is read");
+        assert_eq!(image.size, [pixels as usize; 2]);
+        assert!(ink(&image, 0..image.size[0]) > (pixels * pixels / 2) as usize, "{pixels}: the tile is drawn");
+    }
+}

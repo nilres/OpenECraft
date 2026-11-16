@@ -51,6 +51,11 @@ fn fonts() -> Arc<usvg::fontdb::Database> {
 }
 
 fn decode_svg(data: &[u8]) -> Option<ColorImage> {
+    render_svg(data, PIXELS)
+}
+
+/// An SVG image drawn `pixels` high, very wide ones narrower to fit `MAX_ASPECT`.
+fn render_svg(data: &[u8], pixels: u32) -> Option<ColorImage> {
     let fonts = fonts();
     let family = fonts.family_name(&usvg::fontdb::Family::SansSerif).to_string();
     let options = usvg::Options { fontdb: fonts, font_family: family, ..Default::default() };
@@ -60,7 +65,7 @@ fn decode_svg(data: &[u8]) -> Option<ColorImage> {
         return None;
     }
     // The whole logo, also a very wide one.
-    let scale = (PIXELS as f32 / size.height()).min(PIXELS as f32 * MAX_ASPECT / size.width());
+    let scale = (pixels as f32 / size.height()).min(pixels as f32 * MAX_ASPECT / size.width());
     let (width, height) = ((size.width() * scale).ceil().max(1.0) as u32, (size.height() * scale).ceil().max(1.0) as u32);
     let mut pixmap = tiny_skia::Pixmap::new(width, height)?;
     resvg::render(&tree, tiny_skia::Transform::from_scale(scale, scale), &mut pixmap.as_mut());
@@ -140,6 +145,25 @@ impl Logos {
         let (rect, _) = ui.allocate_exact_size(column, egui::Sense::hover());
         let mut cell = ui.new_child(egui::UiBuilder::new().max_rect(rect).layout(egui::Layout::left_to_right(egui::Align::Center)));
         self.show(&mut cell, client, catalog, height);
+    }
+}
+
+/// The OpenECraft logo: the icon of the apps, the website and the servers' web pages.
+pub const OPENECRAFT: &[u8] = include_bytes!("../../../assets/icon.svg");
+
+/// Draws the OpenECraft logo `size` points square, rendered sharp for the screen's
+/// pixels (once per size).
+pub fn show_openecraft(ui: &mut egui::Ui, size: f32) -> egui::Response {
+    let pixels = (size * ui.ctx().pixels_per_point()).round().max(1.0) as u32;
+    let id = egui::Id::unique(("openecraft-logo", pixels));
+    let texture = ui.ctx().data(|d| d.get_temp::<Option<egui::TextureHandle>>(id)).unwrap_or_else(|| {
+        let texture = render_svg(OPENECRAFT, pixels).map(|image| ui.ctx().load_texture("openecraft-logo", image, egui::TextureOptions::LINEAR));
+        ui.ctx().data_mut(|d| d.insert_temp(id, texture.clone()));
+        texture
+    });
+    match texture {
+        Some(texture) => ui.add(egui::Image::new((texture.id(), egui::Vec2::splat(size))).sense(egui::Sense::click())),
+        None => ui.allocate_response(egui::Vec2::splat(size), egui::Sense::click()),
     }
 }
 
