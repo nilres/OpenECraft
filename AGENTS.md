@@ -262,3 +262,6 @@ violations. Do not weaken or delete that test to make a change pass.
 - Commit only when asked. Use an imperative summary line and a short body listing
   the changes.
 - Never commit IDE folders (`.idea/` is ignored) or build output (`target/`, `dist/`).
+- Merging the base branch into a branch: when `CHANGELOG.md` is the only file with
+  conflicts, keep the entries of both sides, commit and push; the tests and clippy do
+  not have to run again for it. A conflict in any other file gets the checks above.
