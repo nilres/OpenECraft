@@ -7,13 +7,11 @@
 use openecraft_api::{params, Plugins};
 use openecraft_canvas::editor::{Editor, Tool};
 use openecraft_canvas::panel_ui::{has_site, PanelUi, View};
-use openecraft_core::analysis::{Analysis, Cache};
-use openecraft_core::model::Project;
 use openecraft_core::params::{cli_words, CliWord};
 use openecraft_core::parts::PartsDb;
 use openecraft_core::sample;
 use openecraft_i18n::{tr, tr_const, tr_fmt, Lang};
-use openecraft_session::session::Session;
+use openecraft_session::session::{search_routing, Session};
 use serde_json::{json, Map, Value};
 
 /// The example shown first: schematics, PLC and a panel layout for the 3D view.
@@ -412,23 +410,6 @@ impl Studio {
         self.repaint();
         result.unwrap_or_else(|e| json!({ "error": e }))
     }
-}
-
-/// The 3D routing of a project (as JSON) in a language, for the analysis of the same
-/// project elsewhere ([`Studio::routed`]). The worker of the page runs it.
-/// `prebuilt`: a routing of the project from the build of the page (none: empty); it
-/// is taken instead of a search if it is of the wiring of the project, which is
-/// seen here and not where the page is drawn.
-pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, String> {
-    let prj: Project = serde_json::from_str(project).map_err(|e| e.to_string())?;
-    let lang = Lang::from_code(lang).ok_or_else(|| tr_fmt!("Unknown language: {}", lang))?;
-    let mut cache = Cache::default();
-    if !prebuilt.is_empty() {
-        // One that cannot be read is searched.
-        let _ = cache.adopt_routing(prebuilt);
-    }
-    openecraft_i18n::with_lang(lang, || Analysis::build_with(&prj, &mut cache));
-    cache.routing_searched().ok_or_else(|| tr("Loading…").to_string())
 }
 
 /// The title of an example without its number in the gallery of the editor

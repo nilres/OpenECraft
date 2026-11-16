@@ -301,6 +301,12 @@ pub struct App {
     confirm_remove_layout: Option<String>,
     /// Example project chosen in a list, opened by `Cmd::OpenExample`.
     pending_example: Option<&'static str>,
+    /// The example the open project was opened as (its routing may come with the page).
+    example: Option<&'static str>,
+    /// The worker of the web page that searches the 3D routing of an opened project
+    /// (none on the desktop, which has threads), and the number of the last search.
+    routing_worker: Option<openecraft_ui::io::RoutingWorker>,
+    routing_search: u64,
     /// The docked panes are being drawn (their tree is taken out of `dock`): commands
     /// and device jumps wait in `deferred` until it is back.
     in_dock: bool,
@@ -583,6 +589,9 @@ impl App {
             confirm_delete_page: None,
             confirm_remove_layout: None,
             pending_example: None,
+            example: None,
+            routing_worker: openecraft_ui::io::RoutingWorker::start(&cc.egui_ctx),
+            routing_search: 0,
             in_dock: false,
             deferred: Vec::new(),
             jobs: Vec::new(),
@@ -853,6 +862,7 @@ impl App {
         // The files of a split project as they were just read, if this is that project.
         let tracked = self.opened.take();
         self.session.replace(prj, file_name, tracked);
+        self.example = None;
         self.find_ui.clear_results();
         parts::link_unassigned_plc_parts(&mut self.session.prj, &self.parts_db, None);
         self.editor.selection.clear();
@@ -860,6 +870,38 @@ impl App {
         self.editor.fit_pending = true;
         self.page_tabs.clear();
         self.backstage = None;
+    }
+
+    /// In the browser the 3D routing of a project being opened, edited or shown in
+    /// another language is searched by the worker of the page, so that the page goes
+    /// on while it is searched; without a worker (or once it failed) the analysis
+    /// searches it here.
+    fn route_elsewhere(&mut self) {
+        let Some(worker) = &self.routing_worker else { return };
+        for (search, routing) in worker.answers() {
+            if search == self.routing_search {
+                self.session.routing_found(routing.as_deref());
+            }
+        }
+        if worker.failed() {
+            self.session.search_routing_elsewhere(false);
+            self.session.routing_found(None);
+            self.routing_worker = None;
+            return;
+        }
+        self.session.search_routing_elsewhere(true);
+        let opening = self.session.routes_here();
+        if !opening && !self.session.routing_wanted() {
+            return;
+        }
+        self.routing_search += 1;
+        let example = self.example.filter(|_| !self.session.history.can_undo());
+        worker.search(self.routing_search, &serde_json::to_string(&self.session.prj).unwrap_or_default(), openecraft_i18n::lang().code(), example);
+        if opening {
+            self.session.await_routing();
+        } else {
+            self.session.routing_asked();
+        }
     }
 
     /// Puts a project file at the top of the recent files.
@@ -1177,6 +1219,7 @@ impl eframe::App for App {
         // The device index follows every committed change; while an edit may be in
         // progress (mouse down, text field focused, drag) it is rebuilt every frame.
         let editing = ctx.input(|i| i.pointer.any_down()) || ctx.memory(|m| m.focused().is_some()) || self.editor.busy() || self.panel_ui.busy() || self.symed.busy() || self.forms_ui.busy();
+        self.route_elsewhere();
         self.session.refresh(&self.plugins, editing);
         // The routes searched in the background show as soon as they are ready.
         if self.session.routing() {

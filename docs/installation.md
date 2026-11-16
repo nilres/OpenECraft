@@ -171,6 +171,31 @@ CI builds both images on every push, starts them once and checks that they answe
 on `master` and for a release tag it pushes them to the GitHub Container Registry
 (job `docker`), together with the image of the web editor (below).
 
+Every image has a workflow that rebuilds it alone, without the rest of CI, started by
+hand under *Actions* (› Run workflow):
+
+| Image | Workflow | Check |
+| --- | --- | --- |
+| `openecraft-parts-server` | *Docker image of the parts server* (`docker-parts-server.yml`) | `check-server.sh parts` |
+| `openecraft-project-server` | *Docker image of the project server* (`docker-project-server.yml`) | `check-server.sh project` |
+| `openecraft-web` | *Docker image of the web editor* (`docker-web.yml`) | `check-editor-web.sh` |
+| `openecraft-website` | *Docker image of the website* (`docker-website.yml`) | `check-website.sh` |
+
+All four take the same inputs and share their steps (`.github/workflows/docker-image.yml`):
+a branch, a release tag (`v0.1.2`, also one older than the workflow) or a commit to
+build (`ref`), further tags (`tags`), whether to push (`push`) and whether to build
+without the build cache (`no-cache`). The image is checked like in CI (the scripts of
+`installer/docker/`) and pushed with the tags CI gives that commit (`sha-<commit>`,
+`edge` for the tip of master, `<version>`, and `<major>.<minor>` and `latest` only
+when no newer release has them), plus the tags given. From the command line:
+
+```bash
+gh workflow run docker-parts-server.yml -f ref=v0.1.2
+gh workflow run docker-project-server.yml -f ref=master -f no-cache=true
+gh workflow run docker-web.yml -f tags=test
+gh workflow run docker-website.yml -f push=false
+```
+
 ## Web (WebAssembly)
 
 ```bash
@@ -230,21 +255,14 @@ Who runs the editor is set with the variables `OPENECRAFT_LEGAL_NAME`,
 The nginx site is `installer/docker/editor-web.conf` (mount your own at
 `/etc/nginx/conf.d/default.conf`): `index.html` is checked at every visit, the scripts
 and the WebAssembly, named after their hash, are cached for a year. Put a TLS reverse
-proxy in front of it for other machines, as for the servers.
+proxy in front of it for other machines, as for the servers. Beside the page are
+`worker.js`, a worker that searches the 3D routing of an opened project so the page
+stays responsive meanwhile, and `routing/`, the routings of the examples from the
+build, so that an example opens at once.
 
 The workflow *Docker image of the web editor* (`.github/workflows/docker-web.yml`)
-rebuilds this image alone, without the rest of CI: Actions › Docker image of the web
-editor › Run workflow, with a branch, a release tag (`v0.1.2`, also one older than the
-workflow) or a commit, further tags, whether to push and whether to build without the
-build cache. It checks the image like CI (`installer/docker/check-editor-web.sh`) and
-pushes it with the tags CI gives that commit (`sha-<commit>`, `edge` for the tip of
-master, `<version>`, and `<major>.<minor>` and `latest` only when no newer release
-has them), plus the tags given. From the command line:
-
-```bash
-gh workflow run docker-web.yml -f ref=v0.1.2
-gh workflow run docker-web.yml -f ref=master -f no-cache=true
-```
+rebuilds this image alone, without the rest of CI
+([above](#docker-images-of-the-servers)).
 
 ### Website
 

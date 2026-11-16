@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Starts the image of the web editor once and checks that it serves the page, the
-# WebAssembly as application/wasm, the license files and the legal notice of the
-# operator from the environment; used by the CI workflows
+# WebAssembly as application/wasm, the license files, the worker, the routings of the
+# examples and the legal notice of the operator from the environment; used by the CI
+# workflows
 # (ci.yml, docker-web.yml).
 #
 #   bash installer/docker/check-editor-web.sh [image] [port]
@@ -23,6 +24,11 @@ type=$(curl -fsS -o /dev/null -w '%{content_type}' "http://127.0.0.1:$port/$wasm
 echo "$wasm: $type"
 test "$type" = application/wasm
 for file in LICENSE-MIT LICENSE-APACHE OFL-NotoSans.txt THIRD-PARTY-LICENSES.html; do
+  curl -fsS -o /dev/null "http://127.0.0.1:$port/$file"
+done
+# The worker that searches the 3D routing of an opened project, and the routings of
+# the examples from the build.
+for file in worker.js routing/index.json; do
   curl -fsS -o /dev/null "http://127.0.0.1:$port/$file"
 done
 grep -q 'src="config.js"' "$work/index.html"

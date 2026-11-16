@@ -50,7 +50,24 @@ p { margin: 0; }
 .nav nav { display: flex; gap: 22px; flex: 1; flex-wrap: wrap; }
 .nav nav a { color: var(--muted); font-size: 15px; }
 .nav nav a:hover { color: var(--text); text-decoration: none; }
-.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav nav .menu-only, .nav-toggle { display: none; }
+.nav-toggle {
+    width: 44px; height: 44px; padding: 0; align-items: center; justify-content: center; cursor: pointer;
+    color: var(--text); background: rgba(255, 255, 255, .06); border: 1px solid var(--line); border-radius: 10px;
+}
+.bars, .bars::before, .bars::after { display: block; width: 18px; height: 2px; border-radius: 1px; background: currentColor; }
+.bars { position: relative; }
+.bars::before, .bars::after { content: ""; position: absolute; left: 0; top: -6px; }
+.bars::after { top: 6px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.nav-right { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.nav-right select { min-width: 0; }
+/* What is said to a mouse and to a finger. */
+.for-touch { display: none; }
+@media (pointer: coarse) {
+    .for-mouse { display: none; }
+    .for-touch { display: revert; }
+}
 select, input[type=search], #console-in {
     font: inherit; color: var(--text); background: rgba(255, 255, 255, .06);
     border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px;
@@ -67,7 +84,7 @@ select option, select optgroup { background: var(--bg2); }
     text-decoration: none; border-color: var(--blue); background: rgba(76, 157, 255, .16);
 }
 .button.primary { border: 0; color: #06101f; background: linear-gradient(135deg, var(--cyan), var(--blue)); box-shadow: 0 8px 30px rgba(76, 157, 255, .35); }
-.button.primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.button.primary:hover { filter: brightness(1.08); }
 .button.ghost { background: transparent; }
 [hidden] { display: none !important; }
 
@@ -91,7 +108,6 @@ h1 {
     box-shadow: 0 40px 90px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .12), 0 0 80px rgba(58, 214, 255, .22);
     animation: float 9s ease-in-out infinite;
 }
-.sheet:hover { transform: rotateY(-4deg) rotateX(2deg); }
 .sheet svg, .sheet img { width: 100%; height: 100%; display: block; }
 .sheet-note { color: var(--muted); font-size: 13px; margin-top: 22px; text-align: center; }
 @keyframes float { 50% { translate: 0 -10px; } }
@@ -101,13 +117,12 @@ h1 {
 .sub { color: var(--muted); font-size: 18px; max-width: 54em; margin: 14px 0 26px; }
 .sub-head { font-size: 24px; margin-top: 44px; }
 
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 18px; }
 .card, .pane {
     background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
     backdrop-filter: blur(10px); padding: 22px;
 }
 .card { transition: .2s; display: flex; flex-direction: column; gap: 10px; }
-.card:hover { transform: translateY(-3px); border-color: rgba(76, 157, 255, .55); box-shadow: 0 18px 50px rgba(0, 0, 0, .35); }
 .card h3 { font-size: 19px; }
 .card p { color: var(--muted); font-size: 15px; flex: 1; }
 .card pre { margin: 0; padding: 10px 12px; background: rgba(0, 0, 0, .4); border-radius: 8px; overflow-x: auto; font: 13px var(--mono); color: #cfe3ff; }
@@ -135,7 +150,7 @@ h1 {
 .examples button, .chips button { padding: 6px 12px; font-size: 14px; font-weight: 500; border-radius: 999px; }
 .examples button.on, .chips button.on, .toolbar button.on { border-color: var(--cyan); background: rgba(58, 214, 255, .18); color: #fff; }
 .chips.column { flex-direction: column; align-items: stretch; }
-.export-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.export-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 14px; }
 .export-group { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 2px; background: rgba(255, 255, 255, .02); }
 .export-group h4 { margin: 0 0 10px; }
 .export-group .chips { margin-bottom: 12px; }
@@ -144,6 +159,8 @@ h1 {
 .chips.column button { justify-content: flex-start; border-radius: 8px; font-family: var(--mono); font-size: 13px; }
 
 .studio { display: grid; grid-template-columns: 230px minmax(0, 1fr) 290px; gap: 16px; align-items: start; }
+/* A column is never wider than the page, whatever a line in it would like. */
+.studio > *, .reports > *, .automation > * { min-width: 0; }
 .pane { padding: 14px; }
 .pane h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; display: flex; gap: 8px; align-items: center; }
 .count { background: rgba(255, 255, 255, .1); border-radius: 999px; padding: 1px 9px; color: var(--text); letter-spacing: 0; }
@@ -178,10 +195,10 @@ h1 {
 .toolbar button:disabled { opacity: .4; cursor: default; }
 .toolbar .gap { flex: 1; }
 .stage {
-    position: relative; height: min(68vh, 560px); border-radius: var(--radius); overflow: hidden;
+    position: relative; height: min(68vh, 560px); height: min(68dvh, 560px); border-radius: var(--radius); overflow: hidden;
     border: 1px solid var(--line); background: #1b1c1f; box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
 }
-.stage.tall { height: min(76vh, 680px); }
+.stage.tall { height: min(76vh, 680px); height: min(76dvh, 680px); }
 .stage canvas { width: 100%; height: 100%; display: block; outline: none; }
 /* Until it is clicked, a stage lets the wheel scroll the page. */
 .stage:not(.live) canvas { pointer-events: none; }
@@ -222,9 +239,15 @@ tr:hover td { background: rgba(255, 255, 255, .04); }
 .prompt { color: var(--amber); font: 700 15px var(--mono); }
 #console-in { flex: 1; border: 0; background: transparent; font: 14px var(--mono); outline: none; padding: 4px 0; }
 
-.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; margin-top: 26px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 18px; margin-top: 26px; }
 figure { margin: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--panel); transition: .2s; }
-figure:hover { transform: scale(1.02); border-color: rgba(76, 157, 255, .55); }
+/* Movement under the pointer: a finger would leave it stuck after a tap. */
+@media (hover: hover) {
+    .button.primary:hover { transform: translateY(-1px); }
+    .sheet:hover { transform: rotateY(-4deg) rotateX(2deg); }
+    .card:hover { transform: translateY(-3px); border-color: rgba(76, 157, 255, .55); box-shadow: 0 18px 50px rgba(0, 0, 0, .35); }
+    figure:hover { transform: scale(1.02); border-color: rgba(76, 157, 255, .55); }
+}
 figure img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; display: block; }
 figcaption { padding: 10px 14px; color: var(--muted); font-size: 14px; }
 
@@ -233,7 +256,7 @@ footer div { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center;
 footer b { color: var(--text); }
 .fine { font-size: 12px; opacity: .8; }
 .legal {
-    width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 64px); padding: 28px 32px;
+    width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 64px); max-height: calc(100dvh - 64px); padding: 28px 32px;
     border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg2); color: var(--text);
     box-shadow: 0 24px 80px rgba(0, 0, 0, .6);
 }
@@ -264,8 +287,37 @@ footer b { color: var(--text); }
     .studio { grid-template-columns: 1fr; }
     .studio .pane .list { max-height: 180px; }
     .reports, .automation { grid-template-columns: 1fr; }
-    .nav nav { display: none; }
-    .nav-right { margin-left: auto; }
+    /* The links become a menu below the bar, opened by the button at its end. */
+    .nav { gap: 12px; }
+    .nav-toggle { display: inline-flex; order: 3; flex: none; }
+    .nav-right { margin-left: auto; order: 2; }
+    .nav nav {
+        display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+        padding: 6px clamp(16px, 4vw, 48px) 12px; background: rgba(7, 11, 20, .97); border-bottom: 1px solid var(--line);
+        max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px); overflow-y: auto;
+    }
+    .nav.open nav { display: flex; }
+    .nav nav a { padding: 12px 0; font-size: 17px; }
+    .nav nav a + a { border-top: 1px solid var(--line); }
+}
+@media (max-width: 700px) {
+    /* The source code moves into the menu; the bar keeps the brand and the language. */
+    .nav-right .button { display: none; }
+    .nav nav .menu-only { display: block; }
+    /* A sheet is landscape: the stage follows the width instead of the height. */
+    .stage { height: auto; aspect-ratio: 4 / 3; }
+    .stage.tall { height: auto; aspect-ratio: 3 / 4; max-height: 76vh; max-height: 76dvh; }
+    .hero { gap: 32px; padding-bottom: 32px; }
+    .lead, .sub { font-size: 17px; }
+    .veil { padding: 14px; }
+}
+/* A finger needs more room than a pointer, and iOS zooms into fields below 16px. */
+@media (pointer: coarse) {
+    .examples button, .chips button, .toolbar button, .toolbar select, .nav-right select { min-height: 44px; }
+    .list li { padding-top: 11px; padding-bottom: 11px; }
+    .toolbar select, #console-in { font-size: 16px; }
+    footer .links { gap: 0 18px; }
+    footer .links a { padding: 10px 0; }
 }
 @media (prefers-reduced-motion: reduce) {
     .sheet, .stage.waiting::after, .stage.loading::after { animation: none; }

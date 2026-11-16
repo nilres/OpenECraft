@@ -597,6 +597,153 @@ mod idb {
     }
 }
 
+/// The answer to a search of a [`RoutingWorker`]: its number and the routing found
+/// (none: the search failed, the routing is searched here).
+pub type Routed = (u64, Option<String>);
+
+/// A worker of the web page with a second instance of the module (`worker.js` beside
+/// the page): it searches the 3D routing of a project being opened, which takes
+/// seconds for a big one and would stop the page, as a page has one thread. None on
+/// the desktop, which has threads, and in a browser without module workers.
+pub struct RoutingWorker {
+    answers: Arc<Mutex<Vec<Routed>>>,
+    failed: Arc<Mutex<bool>>,
+    #[cfg(target_arch = "wasm32")]
+    web: web_worker::Handle,
+}
+
+impl RoutingWorker {
+    /// Starts the worker with the module of the page; a repaint follows each answer.
+    pub fn start(ctx: &egui::Context) -> Option<RoutingWorker> {
+        #[cfg(not(target_arch = "wasm32"))]
+        {
+            let _ = ctx;
+            None
+        }
+        #[cfg(target_arch = "wasm32")]
+        {
+            let (answers, failed) = (Arc::default(), Arc::default());
+            let web = web_worker::start(ctx, Arc::clone(&answers), Arc::clone(&failed))?;
+            Some(RoutingWorker { answers, failed, web })
+        }
+    }
+
+    /// Search number `search`: the routing of `project` (JSON) in the language `lang`;
+    /// `example`: the example the project is while nothing was changed in it, whose
+    /// routing the page may have from its build (`routing/`).
+    pub fn search(&self, search: u64, project: &str, lang: &str, example: Option<&str>) {
+        #[cfg(not(target_arch = "wasm32"))]
+        let _ = (search, project, lang, example);
+        #[cfg(target_arch = "wasm32")]
+        if self.web.search(search, project, lang, example).is_err() {
+            self.fail();
+        }
+    }
+
+    /// The answers that arrived since the last call.
+    pub fn answers(&self) -> Vec<Routed> {
+        self.answers.lock().map(|mut a| std::mem::take(&mut *a)).unwrap_or_default()
+    }
+
+    /// The worker could not start or stopped: nothing more is searched there.
+    pub fn failed(&self) -> bool {
+        self.failed.lock().map_or(true, |f| *f)
+    }
+
+    #[cfg(target_arch = "wasm32")]
+    fn fail(&self) {
+        if let Ok(mut f) = self.failed.lock() {
+            *f = true;
+        }
+    }
+}
+
+#[cfg(target_arch = "wasm32")]
+mod web_worker {
+    use super::Routed;
+    use std::sync::{Arc, Mutex};
+    use wasm_bindgen::{closure::Closure, JsCast, JsValue};
+
+    pub struct Handle {
+        worker: web_sys::Worker,
+        _message: Closure<dyn FnMut(web_sys::MessageEvent)>,
+        _error: Closure<dyn FnMut(web_sys::Event)>,
+    }
+
+    /// The module and the WebAssembly of the page, as trunk preloads them.
+    fn module() -> Option<(String, String)> {
+        let doc = web_sys::window()?.document()?;
+        let base = doc.base_uri().ok().flatten()?;
+        let href = |selector: &str| {
+            let href = doc.query_selector(selector).ok().flatten()?.get_attribute("href")?;
+            web_sys::Url::new_with_base(&href, &base).ok().map(|u| u.href())
+        };
+        Some((href("link[rel=modulepreload]")?, href("link[rel=preload][type='application/wasm']")?))
+    }
+
+    fn set(target: &js_sys::Object, key: &str, value: &JsValue) -> Result<(), JsValue> {
+        js_sys::Reflect::set(target, &JsValue::from_str(key), value).map(|_| ())
+    }
+
+    pub fn start(ctx: &egui::Context, answers: Arc<Mutex<Vec<Routed>>>, failed: Arc<Mutex<bool>>) -> Option<Handle> {
+        let (module, wasm) = module()?;
+        let options = web_sys::WorkerOptions::new();
+        options.set_type(web_sys::WorkerType::Module);
+        let worker = web_sys::Worker::new_with_options("worker.js", &options).ok()?;
+        let fail = {
+            let (failed, ctx) = (Arc::clone(&failed), ctx.clone());
+            move || {
+                if let Ok(mut f) = failed.lock() {
+                    *f = true;
+                }
+                ctx.request_repaint();
+            }
+        };
+        let message = {
+            let (ctx, fail) = (ctx.clone(), fail.clone());
+            Closure::<dyn FnMut(web_sys::MessageEvent)>::new(move |event: web_sys::MessageEvent| {
+                let data = event.data();
+                let get = |key: &str| js_sys::Reflect::get(&data, &JsValue::from_str(key)).unwrap_or(JsValue::UNDEFINED);
+                if get("failed").is_truthy() {
+                    fail();
+                    return;
+                }
+                let Some(search) = get("search").as_f64() else { return };
+                let routing = get("routing").as_string().filter(|r| !r.is_empty());
+                if let Ok(mut a) = answers.lock() {
+                    a.push((search as u64, routing));
+                }
+                ctx.request_repaint();
+            })
+        };
+        let error = Closure::<dyn FnMut(web_sys::Event)>::new(move |_: web_sys::Event| fail());
+        worker.set_onmessage(Some(message.as_ref().unchecked_ref()));
+        worker.set_onerror(Some(error.as_ref().unchecked_ref()));
+        let init = js_sys::Object::new();
+        set(&init, "module", &JsValue::from_str(&module)).ok()?;
+        set(&init, "wasm", &JsValue::from_str(&wasm)).ok()?;
+        worker.post_message(&init).ok()?;
+        Some(Handle { worker, _message: message, _error: error })
+    }
+
+    impl Handle {
+        pub fn search(&self, search: u64, project: &str, lang: &str, example: Option<&str>) -> Result<(), JsValue> {
+            let job = js_sys::Object::new();
+            set(&job, "search", &JsValue::from_f64(search as f64))?;
+            set(&job, "project", &JsValue::from_str(project))?;
+            set(&job, "lang", &JsValue::from_str(lang))?;
+            set(&job, "example", &example.map_or(JsValue::NULL, JsValue::from_str))?;
+            self.worker.post_message(&job)
+        }
+    }
+
+    impl Drop for Handle {
+        fn drop(&mut self) {
+            self.worker.terminate();
+        }
+    }
+}
+
 /// File name without directories, for window titles.
 pub fn short_name(path: &str) -> &str {
     path.rsplit(['/', '\\']).next().unwrap_or(path)

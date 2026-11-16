@@ -213,8 +213,11 @@ impl App {
             Cmd::NewProject => self.replace_project(Project::new_default(), None),
             Cmd::NewFromTemplateFile => self.io.open(ctx, Purpose::ProjectTemplate),
             Cmd::OpenDemo => self.replace_project(sample::demo_project(), None),
-            Cmd::OpenExample => match self.pending_example.take().and_then(sample::example) {
-                Some(prj) => self.replace_project(prj, None),
+            Cmd::OpenExample => match self.pending_example.take().and_then(|key| sample::example(key).map(|prj| (key, prj))) {
+                Some((key, prj)) => {
+                    self.replace_project(prj, None);
+                    self.example = Some(key);
+                }
                 // Without a chosen example: the start page lists them.
                 None => {
                     self.backstage = None;

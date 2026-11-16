@@ -45,12 +45,21 @@ pub struct Session {
     threaded: bool,
     /// The 3D routing is searched elsewhere ([`Session::await_routing`]).
     awaiting: bool,
+    /// The search elsewhere for the project opened ended: its analysis is built here.
+    searched: bool,
     /// The 3D routing of an edited project being searched on another thread: the
     /// analysis after an edit takes it from the cache once it is there.
     routing: Option<Routed>,
     /// The search in the background failed: the next analysis searches here, where a
-    /// failure shows.
+    /// failure shows. Also after a routing searched elsewhere was adopted: the next
+    /// analysis takes it from the cache instead of searching.
     route_here: bool,
+    /// Without threads the front end has the 3D routing after an edit searched
+    /// elsewhere ([`Session::search_routing_elsewhere`]).
+    elsewhere: bool,
+    /// The history revision and language whose 3D routing is being searched
+    /// elsewhere ([`Session::routing_asked`]).
+    asked: Option<(u64, openecraft_i18n::Lang)>,
     /// Devices that could not follow the structure box they were moved into (see
     /// `openecraft_core::structure_boxes::follow`), to be shown once.
     pub structure_kept: Vec<String>,
@@ -117,8 +126,11 @@ impl Session {
             shown: false,
             threaded: analysis::threads() >= 2,
             awaiting: false,
+            searched: false,
             routing: None,
             route_here: false,
+            elsewhere: false,
+            asked: None,
             structure_kept: Vec::new(),
         }
     }
@@ -150,7 +162,9 @@ impl Session {
         self.opening = None;
         self.waiting = None;
         self.awaiting = false;
+        self.searched = false;
         self.routing = None;
+        self.asked = None;
     }
 
     /// The 3D routing of the project as it is now is searched elsewhere (the worker
@@ -167,19 +181,72 @@ impl Session {
     /// The search of [`Session::await_routing`] ended: with the routing it found
     /// ([`Cache::routing_searched`]), which the analysis takes, or with none, and the
     /// analysis searches it here.
+    /// A search asked for after an edit ([`Session::routing_asked`]) is taken only if
+    /// the project and the language are still as they were: the next analysis builds
+    /// with it; otherwise [`Session::routing_wanted`] asks for the project as it is now.
     pub fn routing_found(&mut self, searched: Option<&str>) {
         if !std::mem::take(&mut self.awaiting) {
+            if self.asked.take() == Some((self.history.rev, openecraft_i18n::lang())) {
+                // The next analysis takes it; without one (the search failed) or one
+                // that cannot be read it searches here, where a failure shows.
+                if let Some(searched) = searched {
+                    let _ = self.cache.adopt_routing(searched);
+                }
+                self.route_here = true;
+                self.invalidate();
+            }
             return;
         }
+        self.searched = true;
         if let Some(searched) = searched {
             // One that cannot be read is searched here.
             let _ = self.cache.adopt_routing(searched);
         }
     }
 
+    /// Without threads, the front end searches the 3D routing after an edit or a
+    /// change of the language elsewhere (the worker of a web page), where a search
+    /// would stop the window: the analysis is built without it, keeping what still
+    /// fits of the routing before, until the routing asked for
+    /// ([`Session::routing_wanted`]) is found.
+    pub fn search_routing_elsewhere(&mut self, on: bool) {
+        self.elsewhere = on;
+        if !on && self.asked.take().is_some() {
+            self.route_here = true;
+            self.invalidate();
+        }
+    }
+
+    /// The analysis has a routing standing in for one not searched yet
+    /// ([`Analysis::routes_pending`]) and the front end searches routings elsewhere:
+    /// it is to search the routing of the project as it is now, then call
+    /// [`Session::routing_asked`] and, once it is found, [`Session::routing_found`].
+    pub fn routing_wanted(&self) -> bool {
+        self.elsewhere && self.asked.is_none() && !self.awaiting && self.opening.is_none() && self.analysis.routes_pending
+    }
+
+    /// The routing of the project as it is now is being searched elsewhere.
+    pub fn routing_asked(&mut self) {
+        self.asked = Some((self.history.rev, openecraft_i18n::lang()));
+    }
+
     /// The analysis waits for a routing searched elsewhere.
     pub fn awaits_routing(&self) -> bool {
         self.awaiting
+    }
+
+    /// The next `refresh` would build the analysis of the project just opened here,
+    /// without threads, searching its 3D routing (a project with a panel layout),
+    /// which stops the window for seconds: a front end with a worker has the routing
+    /// searched there instead ([`Session::await_routing`]).
+    pub fn routes_here(&self) -> bool {
+        !self.threaded
+            && self.replaced
+            && !self.awaiting
+            && !self.searched
+            && self.opening.is_none()
+            && !self.prj.layout.enclosures.is_empty()
+            && (self.analysis_rev != self.history.rev || self.analysis_lang != openecraft_i18n::lang())
     }
 
     /// Puts the files of the split project in place as an earlier run of the app
@@ -242,7 +309,8 @@ impl Session {
     /// (reports and checks of `plugins`), and the device index after a committed
     /// change or, while `editing`, every frame. The analysis of a project just opened
     /// is built in the background ([`Session::opening`]); after an edit, where threads
-    /// are, only the 3D routing is searched in the background
+    /// are, only the 3D routing is searched in the background, without them where the
+    /// front end searches it elsewhere ([`Session::search_routing_elsewhere`])
     /// ([`Analysis::routes_pending`] until it is ready, then the analysis is built
     /// again with it).
     pub fn refresh(&mut self, plugins: &Plugins, editing: bool) {
@@ -253,11 +321,11 @@ impl Session {
             if self.replaced {
                 self.open_in_background(plugins.checks().cloned().collect(), plugins.reports().cloned().collect());
             } else {
-                let before = (analysis::threads() >= 2 && !std::mem::take(&mut self.route_here)).then(|| std::mem::take(&mut self.analysis.routing));
+                let before = ((self.threaded || self.elsewhere) && !std::mem::take(&mut self.route_here)).then(|| std::mem::take(&mut self.analysis.routing));
                 self.analysis = analyse(&self.prj, &mut self.cache, before.as_ref(), plugins.reports().cloned(), |p, a| plugins.check(p, a), &|_| {});
                 self.analysis_rev = self.history.rev;
                 self.analysis_lang = lang;
-                if self.analysis.routes_pending && self.routing.is_none() {
+                if self.analysis.routes_pending && self.routing.is_none() && self.threaded {
                     self.route_in_background();
                 }
             }
@@ -272,7 +340,7 @@ impl Session {
     /// background: the editor shows it instead of the project.
     pub fn opening(&self) -> Option<Progress> {
         if self.awaiting {
-            return Some(STARTED);
+            return Some(Progress { step: Step::Routing, done: 0, total: 0 });
         }
         let o = self.opening.as_ref()?;
         Some(o.shared.lock().ok().map(|b| b.progress).unwrap_or(STARTED))
@@ -342,6 +410,9 @@ impl Session {
                     self.analysis_rev = rev;
                     self.analysis_lang = lang;
                     self.replaced = false;
+                } else {
+                    // Of another state or language: its routing is searched anew.
+                    self.searched = false;
                 }
             }
             // Built again here, where a failure shows.
@@ -381,9 +452,9 @@ impl Session {
         self.invalidate();
     }
 
-    /// The 3D routing is being searched in the background.
+    /// The 3D routing is being searched in the background or elsewhere.
     pub fn routing(&self) -> bool {
-        self.routing.is_some()
+        self.routing.is_some() || self.asked.is_some()
     }
 
     /// What an analysis of the project as it is now needs on another thread (an
@@ -449,6 +520,23 @@ impl Snapshot {
         let Snapshot { prj, cache, checks, reports, lang } = self;
         openecraft_i18n::with_lang(*lang, || analyse(prj, cache, None, reports.clone(), |p, a| openecraft_api::run_checks(checks.iter(), p, a), &|_| {}))
     }
+}
+
+/// The 3D routing of a project (as JSON) in a language, for the analysis of the same
+/// project elsewhere ([`Session::await_routing`], [`Session::routing_found`]): the
+/// worker of a web page runs it, where a search would stop the page.
+/// `prebuilt`: a routing of the project from the build of the page (none: empty); it
+/// is taken instead of a search if it is of the wiring of the project.
+pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, String> {
+    let prj: Project = serde_json::from_str(project).map_err(|e| e.to_string())?;
+    let lang = openecraft_i18n::Lang::from_code(lang).ok_or_else(|| openecraft_i18n::tr_fmt!("Unknown language: {}", lang))?;
+    let mut cache = Cache::default();
+    if !prebuilt.is_empty() {
+        // One that cannot be read is searched.
+        let _ = cache.adopt_routing(prebuilt);
+    }
+    openecraft_i18n::with_lang(lang, || Analysis::build_with(&prj, &mut cache));
+    cache.routing_searched().ok_or_else(|| openecraft_i18n::tr("Loading…").to_string())
 }
 
 /// The analysis of `prj` with the reports and the issues `check` finds, telling

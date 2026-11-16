@@ -55,13 +55,16 @@
 
 <header class="nav">
     <a class="brand" href="#top"><img src="icon.svg" alt="" width="30" height="30" /><span>OpenECraft</span></a>
-    <nav>
+    <!-- On a narrow screen the links are a menu this button opens (site.js). -->
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" hidden><span class="bars" aria-hidden="true"></span><span class="sr" data-t>Menu</span></button>
+    <nav id="nav-links">
         <a href="#features" data-t>Features</a>
         <a href="#studio" data-t>Live demo</a>
         <a href="#layout" data-t>3D</a>
         <a href="#reports" data-t>Reports</a>
         <a href="#automation" data-t>Automation</a>
         <a href="#get" data-t>Get it</a>
+        <a class="menu-only" data-link="repository" href="#" data-t>Source code</a>
     </nav>
     <div class="nav-right">
         <select id="language" aria-label="Language" hidden></select>
@@ -140,9 +143,10 @@
             </div>
             <div class="stage" data-view="schematic">
                 <canvas id="canvas-schematic"></canvas>
-                <button class="veil"><span data-t>Click to work in the editor</span></button>
+                <button class="veil"><span class="for-mouse" data-t>Click to work in the editor</span><span class="for-touch" data-t>Tap to work in the editor</span></button>
             </div>
             <p class="hint" id="hint"></p>
+            <p class="tip for-touch" data-t>On a touch screen one finger works like the left mouse button; two fingers move and zoom the view.</p>
         </div>
         <aside class="pane">
             <h3><span data-t>Project check</span> <span class="count" id="issue-count"></span></h3>
@@ -159,7 +163,7 @@
 
 <section id="layout" class="band">
     <h2 data-t>The panel in 3D</h2>
-    <p class="sub" data-t>The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example. Drag to turn, scroll to zoom.</p>
+    <p class="sub" data-t>The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example.</p>
     <div class="examples" id="layout-examples"></div>
     <div class="stage-wrap wide">
         <div class="toolbar">
@@ -172,8 +176,9 @@
         </div>
         <div class="stage tall" data-view="layout">
             <canvas id="canvas-layout"></canvas>
-            <button class="veil"><span data-t>Click to explore the panel</span></button>
+            <button class="veil"><span class="for-mouse" data-t>Click to explore the panel</span><span class="for-touch" data-t>Tap to explore the panel</span></button>
         </div>
+        <p class="hint"><span class="for-mouse" data-t>Drag to turn, scroll to zoom.</span><span class="for-touch" data-t>Drag to turn, pinch with two fingers to zoom.</span></p>
     </div>
 </section>
 

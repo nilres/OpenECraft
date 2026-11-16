@@ -67,8 +67,15 @@ deleted in the schematic shows in the check, in the reports and in the next expo
 The module is 40 MB (15 MB compressed), so the page is shown first: trunk only names
 the module in the page (`pattern_script` of `Trunk.toml`) and `site.js` loads it when
 the visitor scrolls, clicks or types, and otherwise once the page is there and the
-browser has time. A visitor who asked the browser to save data gets it only on such
-a use. Until then the first screen shows `sheet.svg`.
+browser has time. A visitor who asked the browser to save data gets it only with the
+first click or key, not by scrolling. Until then the first screen shows `sheet.svg`.
+
+The page is laid out for phones and tablets too (`site.css`): below 1080 px the
+sections are one column and the links of the bar a menu (`#nav-toggle`), below 700 px
+the canvases follow the width of the screen. What is said to a finger instead of a
+mouse is a second element beside the first, `class="for-touch"` next to
+`class="for-mouse"`; the style sheet shows the one of the device (`pointer: coarse`),
+which also gets larger buttons and list rows.
 
 Where the links of the page lead is set in `config.js` beside it, which the page
 loads first; the Docker image takes the same settings from environment variables:
@@ -216,14 +223,17 @@ docker build -f installer/docker/Dockerfile --target website -t openecraft-websi
 ```
 
 CI pushes the image with the others on master and for a release. To get only a new
-website image, without the rest of CI, start the workflow *Website image*
-(`.github/workflows/website-image.yml`) by hand under *Actions*, on the branch to
-build: it builds the image, starts it once and pushes it with the tags `edge` (on
-master; the name of any other branch), `sha-<commit>` and a tag of your choice, or
-only builds and checks it with *push* off. From a terminal:
+website image, without the rest of CI, start the workflow *Docker image of the
+website* (`.github/workflows/docker-website.yml`) by hand under *Actions*, with the
+branch, release tag or commit to build: like the workflows of the other images
+([installation](installation.md#docker-images-of-the-servers)) it builds the image,
+starts it once (`installer/docker/check-website.sh`) and pushes it with the tags CI
+gives that commit (`edge` for the tip of master, `sha-<commit>`, the version of a
+release tag) and the tags of your choice, or only builds and checks it with *push*
+off. From a terminal:
 
 ```bash
-gh workflow run website-image.yml --ref master -f tag=latest
+gh workflow run docker-website.yml -f ref=master -f tags=test
 ```
 
 The public address of the site, the links of the page and the legal notice are set

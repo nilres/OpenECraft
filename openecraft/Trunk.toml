@@ -15,3 +15,11 @@ command_arguments = ["../installer/web/licenses.sh"]
 [hooks.windows]
 command = "powershell"
 command_arguments = ["-ExecutionPolicy", "Bypass", "-File", "..\\installer\\web\\licenses.ps1"]
+
+# The 3D routings of the examples beside the page (routing/): the worker of the page
+# (worker.js) takes the one of an example opened unchanged instead of searching it,
+# which takes seconds for a big one. Release builds only.
+[[hooks]]
+stage = "post_build"
+command = "cargo"
+command_arguments = ["run", "--release", "-p", "openecraft-core", "--example", "routings"]
