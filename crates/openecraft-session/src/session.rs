@@ -51,8 +51,15 @@ pub struct Session {
     /// analysis after an edit takes it from the cache once it is there.
     routing: Option<Routed>,
     /// The search in the background failed: the next analysis searches here, where a
-    /// failure shows.
+    /// failure shows. Also after a routing searched elsewhere was adopted: the next
+    /// analysis takes it from the cache instead of searching.
     route_here: bool,
+    /// Without threads the front end has the 3D routing after an edit searched
+    /// elsewhere ([`Session::search_routing_elsewhere`]).
+    elsewhere: bool,
+    /// The history revision and language whose 3D routing is being searched
+    /// elsewhere ([`Session::routing_asked`]).
+    asked: Option<(u64, openecraft_i18n::Lang)>,
     /// Devices that could not follow the structure box they were moved into (see
     /// `openecraft_core::structure_boxes::follow`), to be shown once.
     pub structure_kept: Vec<String>,
@@ -122,6 +129,8 @@ impl Session {
             searched: false,
             routing: None,
             route_here: false,
+            elsewhere: false,
+            asked: None,
             structure_kept: Vec::new(),
         }
     }
@@ -155,6 +164,7 @@ impl Session {
         self.awaiting = false;
         self.searched = false;
         self.routing = None;
+        self.asked = None;
     }
 
     /// The 3D routing of the project as it is now is searched elsewhere (the worker
@@ -171,8 +181,20 @@ impl Session {
     /// The search of [`Session::await_routing`] ended: with the routing it found
     /// ([`Cache::routing_searched`]), which the analysis takes, or with none, and the
     /// analysis searches it here.
+    /// A search asked for after an edit ([`Session::routing_asked`]) is taken only if
+    /// the project and the language are still as they were: the next analysis builds
+    /// with it; otherwise [`Session::routing_wanted`] asks for the project as it is now.
     pub fn routing_found(&mut self, searched: Option<&str>) {
         if !std::mem::take(&mut self.awaiting) {
+            if self.asked.take() == Some((self.history.rev, openecraft_i18n::lang())) {
+                // The next analysis takes it; without one (the search failed) or one
+                // that cannot be read it searches here, where a failure shows.
+                if let Some(searched) = searched {
+                    let _ = self.cache.adopt_routing(searched);
+                }
+                self.route_here = true;
+                self.invalidate();
+            }
             return;
         }
         self.searched = true;
@@ -180,6 +202,32 @@ impl Session {
             // One that cannot be read is searched here.
             let _ = self.cache.adopt_routing(searched);
         }
+    }
+
+    /// Without threads, the front end searches the 3D routing after an edit or a
+    /// change of the language elsewhere (the worker of a web page), where a search
+    /// would stop the window: the analysis is built without it, keeping what still
+    /// fits of the routing before, until the routing asked for
+    /// ([`Session::routing_wanted`]) is found.
+    pub fn search_routing_elsewhere(&mut self, on: bool) {
+        self.elsewhere = on;
+        if !on && self.asked.take().is_some() {
+            self.route_here = true;
+            self.invalidate();
+        }
+    }
+
+    /// The analysis has a routing standing in for one not searched yet
+    /// ([`Analysis::routes_pending`]) and the front end searches routings elsewhere:
+    /// it is to search the routing of the project as it is now, then call
+    /// [`Session::routing_asked`] and, once it is found, [`Session::routing_found`].
+    pub fn routing_wanted(&self) -> bool {
+        self.elsewhere && self.asked.is_none() && !self.awaiting && self.opening.is_none() && self.analysis.routes_pending
+    }
+
+    /// The routing of the project as it is now is being searched elsewhere.
+    pub fn routing_asked(&mut self) {
+        self.asked = Some((self.history.rev, openecraft_i18n::lang()));
     }
 
     /// The analysis waits for a routing searched elsewhere.
@@ -261,7 +309,8 @@ impl Session {
     /// (reports and checks of `plugins`), and the device index after a committed
     /// change or, while `editing`, every frame. The analysis of a project just opened
     /// is built in the background ([`Session::opening`]); after an edit, where threads
-    /// are, only the 3D routing is searched in the background
+    /// are, only the 3D routing is searched in the background, without them where the
+    /// front end searches it elsewhere ([`Session::search_routing_elsewhere`])
     /// ([`Analysis::routes_pending`] until it is ready, then the analysis is built
     /// again with it).
     pub fn refresh(&mut self, plugins: &Plugins, editing: bool) {
@@ -272,11 +321,11 @@ impl Session {
             if self.replaced {
                 self.open_in_background(plugins.checks().cloned().collect(), plugins.reports().cloned().collect());
             } else {
-                let before = (analysis::threads() >= 2 && !std::mem::take(&mut self.route_here)).then(|| std::mem::take(&mut self.analysis.routing));
+                let before = ((self.threaded || self.elsewhere) && !std::mem::take(&mut self.route_here)).then(|| std::mem::take(&mut self.analysis.routing));
                 self.analysis = analyse(&self.prj, &mut self.cache, before.as_ref(), plugins.reports().cloned(), |p, a| plugins.check(p, a), &|_| {});
                 self.analysis_rev = self.history.rev;
                 self.analysis_lang = lang;
-                if self.analysis.routes_pending && self.routing.is_none() {
+                if self.analysis.routes_pending && self.routing.is_none() && self.threaded {
                     self.route_in_background();
                 }
             }
@@ -403,9 +452,9 @@ impl Session {
         self.invalidate();
     }
 
-    /// The 3D routing is being searched in the background.
+    /// The 3D routing is being searched in the background or elsewhere.
     pub fn routing(&self) -> bool {
-        self.routing.is_some()
+        self.routing.is_some() || self.asked.is_some()
     }
 
     /// What an analysis of the project as it is now needs on another thread (an

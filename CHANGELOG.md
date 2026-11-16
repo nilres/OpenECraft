@@ -36,7 +36,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   responding). The web editor now shows the *Opening the project* screen, as the desktop
   app does, and searches the 3D routing of the cables, which took nearly all of that
   time, in a worker of the page (`worker.js`, a second instance of the module), so the
-  page stays responsive meanwhile. The examples' routings come with the page
+  page stays responsive meanwhile. So it does after an edit that changes the wiring
+  and after a change of the language: the analysis follows at once, the routes once
+  the worker found them, as on the desktop. The examples' routings come with the page
   (`routing/`, as on the website), so an example opens in about a second.
 - **Compressed downloads behind a reverse proxy:** the website and web editor images
   sent the WebAssembly (40 MB instead of 15 MB for the website), the scripts and the

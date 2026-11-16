@@ -872,9 +872,10 @@ impl App {
         self.backstage = None;
     }
 
-    /// In the browser the 3D routing of a project being opened is searched by the
-    /// worker of the page, so that the page goes on while it is searched; without a
-    /// worker (or once it failed) the analysis searches it here.
+    /// In the browser the 3D routing of a project being opened, edited or shown in
+    /// another language is searched by the worker of the page, so that the page goes
+    /// on while it is searched; without a worker (or once it failed) the analysis
+    /// searches it here.
     fn route_elsewhere(&mut self) {
         let Some(worker) = &self.routing_worker else { return };
         for (search, routing) in worker.answers() {
@@ -883,15 +884,23 @@ impl App {
             }
         }
         if worker.failed() {
+            self.session.search_routing_elsewhere(false);
             self.session.routing_found(None);
             self.routing_worker = None;
             return;
         }
-        if self.session.routes_here() {
-            self.routing_search += 1;
-            let example = self.example.filter(|_| !self.session.history.can_undo());
-            worker.search(self.routing_search, &serde_json::to_string(&self.session.prj).unwrap_or_default(), openecraft_i18n::lang().code(), example);
+        self.session.search_routing_elsewhere(true);
+        let opening = self.session.routes_here();
+        if !opening && !self.session.routing_wanted() {
+            return;
+        }
+        self.routing_search += 1;
+        let example = self.example.filter(|_| !self.session.history.can_undo());
+        worker.search(self.routing_search, &serde_json::to_string(&self.session.prj).unwrap_or_default(), openecraft_i18n::lang().code(), example);
+        if opening {
             self.session.await_routing();
+        } else {
+            self.session.routing_asked();
         }
     }
 
