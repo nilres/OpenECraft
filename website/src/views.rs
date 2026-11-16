@@ -47,6 +47,7 @@ pub fn show(ui: &mut egui::Ui, kind: Kind, studio: &mut Studio, gl: bool) {
     egui::CentralPanel::default().show(ui, |ui| {
         if studio.session.opening().is_some() {
             ui.centered_and_justified(|ui| ui.label(tr("Loading…")));
+            studio.session.opening_shown();
             ctx.request_repaint();
             return;
         }

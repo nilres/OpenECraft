@@ -169,7 +169,8 @@ impl App {
         let i = steps.iter().position(|s| *s == progress.step).unwrap_or(0);
         let within = if progress.total > 0 { progress.done as f32 / progress.total as f32 } else { 0.0 };
         let step = if progress.total > 0 { tr_fmt!("{} ({} of {})", progress.step.title(), progress.done + 1, progress.total) } else { progress.step.title().to_string() };
-        egui::Modal::new(egui::Id::unique("opening_project")).show(&ctx, |ui| {
+        let id = egui::Id::unique("opening_project");
+        egui::Modal::new(id).show(&ctx, |ui| {
             ui.set_width(420.0);
             ui.heading(tr("Opening the project"));
             ui.label(RichText::new(&self.session.prj.info.name).strong());
@@ -180,6 +181,12 @@ impl App {
             ui.label(tr_fmt!("Step {} of {}: {}", i + 1, steps.len(), step));
             ui.add(egui::ProgressBar::new((i as f32 + within) / steps.len() as f32).animate(true));
         });
+        // Laid out unseen in its first frame, then faded in: this frame drew it fully
+        // once the fade is over (without threads the build stops the window after it).
+        let faded = egui::AreaState::load(&ctx, id).and_then(|a| a.last_became_visible_at).is_some_and(|t| ctx.input(|i| i.time) - t >= f64::from(ctx.global_style().animation_time));
+        if faded {
+            self.session.opening_shown();
+        }
         ctx.request_repaint_after(std::time::Duration::from_millis(50));
     }
 
