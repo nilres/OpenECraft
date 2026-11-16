@@ -1,0 +1,52 @@
+name: Docker image of the website
+
+# Rebuilds only the image of the website (installer/docker/Dockerfile, target website;
+# docs/website.md), started by hand (Actions › Docker image of the website › Run
+# workflow): of a branch, a release tag or a commit, also of one older than this
+# workflow. The image is started once and checked (installer/docker/check-website.sh)
+# before it is pushed to ghcr.io/<owner>/openecraft-website with the tags ci.yml gives
+# it and any tags given (docker-image.yml).
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch, tag (v0.1.2) or commit to build; empty = the branch the workflow runs on
+        required: false
+        default: ''
+      tags:
+        description: Further tags of the image, separated by spaces or commas (e.g. test)
+        required: false
+        default: ''
+      push:
+        description: Push the image to the GitHub Container Registry (off = build and check only)
+        type: boolean
+        default: true
+      no-cache:
+        description: Build every layer anew (no build cache)
+        type: boolean
+        default: false
+
+# One rebuild at a time: a later one waits instead of pushing the same tags in between.
+concurrency:
+  group: docker-website
+  cancel-in-progress: false
+
+jobs:
+  website:
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/docker-image.yml
+    with:
+      image: openecraft-website
+      target: website
+      check: check-website.sh
+      # The caches of ci.yml: the website builds on the stage of the web editor.
+      cache-from: |
+        type=gha,scope=editor-web
+        type=gha,scope=website
+      cache-to: type=gha,scope=website,mode=max
+      ref: ${{ inputs.ref }}
+      tags: ${{ inputs.tags }}
+      push: ${{ inputs.push }}
+      no-cache: ${{ inputs.no-cache }}

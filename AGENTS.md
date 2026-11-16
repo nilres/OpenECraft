@@ -38,8 +38,10 @@ cargo clippy -p openecraft -p openecraft-parts-manager -p openecraft-website --t
   installer/docker/Dockerfile --target parts-server|project-server|editor-web|website .`
   (the servers' settings in `installer/docker/*.toml`, the nginx sites of the editor and
   the website in `installer/docker/editor-web.conf` and `website.conf`; CI pushes them
-  to ghcr.io on master and for release tags; `.github/workflows/docker-web.yml`
-  rebuilds the web editor's image alone, started by hand)
+  to ghcr.io on master and for release tags; `.github/workflows/docker-parts-server.yml`,
+  `docker-project-server.yml`, `docker-web.yml` and `docker-website.yml` rebuild one
+  image alone, started by hand: they only name their image and call `docker-image.yml`,
+  and every image has a check script `installer/docker/check-*.sh` that CI runs too)
 - The installer scripts and `trunk build --release` need cargo-about for the third-party
   licenses (`cargo install cargo-about@0.9.3 --locked --features cli`, configuration
   `installer/about.toml`); the installer scripts take the version from

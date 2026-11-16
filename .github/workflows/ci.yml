@@ -288,76 +288,16 @@ jobs:
             type=gha,scope=editor-web
             type=gha,scope=website
           cache-to: type=gha,scope=website,mode=max
+      # The checks keep their downloads out of the checkout: files written into the
+      # build context would change the COPY . . of the builds below and miss their cache.
       - name: Start the servers
         run: |
-          docker run -d --name parts -p 8090:8090 -e OPENECRAFT_TOKEN=ci-token openecraft-parts-server:ci --install-catalogs all
-          docker run -d --name projects -p 8091:8091 -e OPENECRAFT_PROJECT_TOKEN=ci-token openecraft-project-server:ci
-          for port in 8090 8091; do
-            for _ in $(seq 60); do curl -fs "http://127.0.0.1:$port/" > /dev/null && break; sleep 1; done
-            curl -fsS "http://127.0.0.1:$port/" > /dev/null || { docker logs parts; docker logs projects; exit 1; }
-          done
-          docker logs parts
-          docker logs projects
-          docker exec parts ls /usr/share/doc/openecraft/THIRD-PARTY-LICENSES.html
-          docker stop parts projects
+          bash installer/docker/check-server.sh parts openecraft-parts-server:ci
+          bash installer/docker/check-server.sh project openecraft-project-server:ci
       - name: Start the web editor
-        run: bash installer/docker/check-editor-web.sh openecraft-web:ci 8080
-      # Outside the checkout: files written into the build context would change the
-      # COPY . . of the builds below and miss their cache.
+        run: bash installer/docker/check-editor-web.sh openecraft-web:ci
       - name: Start the website
-        working-directory: ${{ runner.temp }}
-        run: |
-          docker run -d --name site -p 8088:8080 -e OPENECRAFT_EDITOR_URL=https://editor.example/ \
-            -e OPENECRAFT_SITE_URL=https://site.example/openecraft \
-            -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' -e OPENECRAFT_LEGAL_ADDRESS='Street 1 | 12345 City' openecraft-website:ci
-          for _ in $(seq 30); do curl -fs http://127.0.0.1:8088/ > /dev/null && break; sleep 1; done
-          curl -fsS http://127.0.0.1:8088/ -o site.html || { docker logs site; exit 1; }
-          grep -q canvas-schematic site.html
-          # The links of the page come from the environment.
-          curl -fsS http://127.0.0.1:8088/config.js | tee config.js
-          grep -q 'editor: "https://editor.example/"' config.js
-          grep -q 'repository: "https://github.com/' config.js
-          # The legal notice too, quotes escaped.
-          grep -qF 'name: "ACME \"Tools\" GmbH",' config.js
-          grep -qF 'address: "Street 1 | 12345 City",' config.js
-          node --check config.js
-          # The tags of the public address, robots.txt and the sitemap.
-          grep -qF '<link rel="canonical" href="https://site.example/openecraft/" />' site.html
-          grep -qF '<meta property="og:image" content="https://site.example/openecraft/social.jpg" />' site.html
-          curl -fsS http://127.0.0.1:8088/robots.txt | grep -qx 'Sitemap: https://site.example/openecraft/sitemap.xml'
-          curl -fsS http://127.0.0.1:8088/sitemap.xml | grep -qF '<loc>https://site.example/openecraft/</loc>'
-          curl -fsS http://127.0.0.1:8088/index.html | grep -qF 'rel="canonical"'
-          # The page in the other languages, each with its own address and the others'.
-          grep -qF '<link rel="alternate" hreflang="de" href="https://site.example/openecraft/de.html" />' site.html
-          curl -fsS http://127.0.0.1:8088/de.html -o de.html
-          grep -qF '<html lang="de">' de.html
-          grep -qF '<link rel="canonical" href="https://site.example/openecraft/de.html" />' de.html
-          curl -fsS http://127.0.0.1:8088/sitemap.xml | grep -qF '<loc>https://site.example/openecraft/ja.html</loc>'
-          # The module is named in the page and loaded by its script; the first sheet is a picture.
-          grep -q 'window.OPENECRAFT_MODULE = \["./openecraft-website-[0-9a-f]*\.js", "./openecraft-website-[0-9a-f]*_bg\.wasm"\]' site.html
-          if grep -q 'rel="modulepreload"' site.html; then exit 1; fi
-          curl -fsS -o /dev/null http://127.0.0.1:8088/sheet.svg
-          # The log has no whole address of a visitor.
-          docker logs site 2>&1 | grep -q '"GET /de.html HTTP/1.1" 200'
-          if docker logs site 2>&1 | grep 'GET /de.html' | grep -vqE '^[0-9]+\.[0-9]+\.[0-9]+\.0 '; then exit 1; fi
-          # The routings of the examples come with the page.
-          curl -fsS http://127.0.0.1:8088/routing/index.json | grep -q '"conveyor.json"'
-          curl -fsS http://127.0.0.1:8088/routing/conveyor.json | grep -q '"routing"'
-          wasm=$(grep -o '[^"/]*_bg\.wasm' site.html | head -n 1)
-          test -n "$wasm"
-          curl -fsS -o /dev/null -w '%{content_type}\n' "http://127.0.0.1:8088/$wasm" | tee type.txt
-          grep -qx 'application/wasm' type.txt
-          for file in site.js icon.svg apple-touch-icon.png images/schematic.webp social.jpg LICENSE-MIT THIRD-PARTY-LICENSES.html; do
-            curl -fsS -o /dev/null "http://127.0.0.1:8088/$file"
-          done
-          # The WebAssembly is sent as the build of the image compressed it.
-          curl -fsS -o wasm.gz -D headers.txt -H 'Accept-Encoding: gzip' "http://127.0.0.1:8088/$wasm"
-          grep -qi '^content-encoding: gzip' headers.txt
-          gzip -t wasm.gz
-          curl -fsS http://127.0.0.1:8088/config.js | grep -q 'editor: "https://editor.example/"'
-          curl -fsS http://127.0.0.1:8088/editor/ | grep -q openecraft_canvas
-          docker logs site
-          docker stop site
+        run: bash installer/docker/check-website.sh openecraft-website:ci
       - uses: docker/build-push-action@v6
         if: env.PUSH == 'true'
         with:

@@ -1,0 +1,50 @@
+name: Docker image of the parts server
+
+# Rebuilds only the image of the parts server (installer/docker/Dockerfile, target
+# parts-server), started by hand (Actions › Docker image of the parts server › Run
+# workflow): of a branch, a release tag or a commit, also of one older than this
+# workflow. The image is started once and checked (installer/docker/check-server.sh)
+# before it is pushed to ghcr.io/<owner>/openecraft-parts-server with the tags ci.yml
+# gives it and any tags given (docker-image.yml).
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch, tag (v0.1.2) or commit to build; empty = the branch the workflow runs on
+        required: false
+        default: ''
+      tags:
+        description: Further tags of the image, separated by spaces or commas (e.g. test)
+        required: false
+        default: ''
+      push:
+        description: Push the image to the GitHub Container Registry (off = build and check only)
+        type: boolean
+        default: true
+      no-cache:
+        description: Build every layer anew (no build cache)
+        type: boolean
+        default: false
+
+# One rebuild at a time: a later one waits instead of pushing the same tags in between.
+concurrency:
+  group: docker-parts-server
+  cancel-in-progress: false
+
+jobs:
+  parts-server:
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/docker-image.yml
+    with:
+      image: openecraft-parts-server
+      target: parts-server
+      check: check-server.sh parts
+      # The cache of the servers is the one of ci.yml, written by this image there too.
+      cache-from: type=gha
+      cache-to: type=gha,mode=max
+      ref: ${{ inputs.ref }}
+      tags: ${{ inputs.tags }}
+      push: ${{ inputs.push }}
+      no-cache: ${{ inputs.no-cache }}

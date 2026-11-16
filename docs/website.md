@@ -211,14 +211,17 @@ docker build -f installer/docker/Dockerfile --target website -t openecraft-websi
 ```
 
 CI pushes the image with the others on master and for a release. To get only a new
-website image, without the rest of CI, start the workflow *Website image*
-(`.github/workflows/website-image.yml`) by hand under *Actions*, on the branch to
-build: it builds the image, starts it once and pushes it with the tags `edge` (on
-master; the name of any other branch), `sha-<commit>` and a tag of your choice, or
-only builds and checks it with *push* off. From a terminal:
+website image, without the rest of CI, start the workflow *Docker image of the
+website* (`.github/workflows/docker-website.yml`) by hand under *Actions*, with the
+branch, release tag or commit to build: like the workflows of the other images
+([installation](installation.md#docker-images-of-the-servers)) it builds the image,
+starts it once (`installer/docker/check-website.sh`) and pushes it with the tags CI
+gives that commit (`edge` for the tip of master, `sha-<commit>`, the version of a
+release tag) and the tags of your choice, or only builds and checks it with *push*
+off. From a terminal:
 
 ```bash
-gh workflow run website-image.yml --ref master -f tag=latest
+gh workflow run docker-website.yml -f ref=master -f tags=test
 ```
 
 The public address of the site, the links of the page and the legal notice are set
