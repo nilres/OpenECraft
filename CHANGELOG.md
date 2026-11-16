@@ -31,6 +31,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   cable, ellipse, database) drew a thin line through themselves and their
   surroundings, and the filled ones (select, star, theme) had faint spikes at their
   points. They are now drawn cleanly in the light and the dark theme.
+- **Loading screen in the web editor:** opening a large project in the browser, such as
+  example 11, froze the page with no feedback until it was analysed, because the
+  analysis started before the *Opening the project* screen had been drawn. The web
+  editor now shows that screen first, as the desktop app does, and analyses the
+  project after it.
 - **Compressed downloads behind a reverse proxy:** the website and web editor images
   sent the WebAssembly (40 MB instead of 15 MB for the website), the scripts and the
   style sheet uncompressed when a reverse proxy spoke HTTP/1.0 to them, as nginx's

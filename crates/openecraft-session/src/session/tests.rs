@@ -210,6 +210,36 @@ fn an_opened_project_is_analysed_in_the_background() {
 }
 
 #[test]
+fn without_threads_the_opened_project_is_analysed_once_its_loading_screen_was_shown() {
+    let plugins = Plugins::new(Vec::<String>::new());
+    let mut s = Session::new(demo_project(), None);
+    // The browser: the build stops the window, so the loading screen must be on
+    // screen before it runs.
+    s.threaded = false;
+    s.opening_shown();
+    for _ in 0..3 {
+        s.refresh(&plugins, false);
+        assert!(s.opening().is_some(), "the loading screen was not shown yet");
+        assert!(s.analysis.index.devices.is_empty());
+    }
+    s.opening_shown();
+    s.refresh(&plugins, false);
+    assert!(s.opening().is_none());
+    assert!(!s.analysis.index.devices.is_empty());
+
+    // So for a project opened later, also one replaced while it was waiting.
+    s.replace(demo_project(), None, None);
+    s.refresh(&plugins, false);
+    s.opening_shown();
+    s.replace(demo_project(), Some("demo.oec".into()), None);
+    s.refresh(&plugins, false);
+    assert!(s.opening().is_some(), "the screen was shown for the project before");
+    s.opening_shown();
+    s.refresh(&plugins, false);
+    assert!(s.opening().is_none() && !s.analysis.index.devices.is_empty());
+}
+
+#[test]
 fn a_routing_searched_elsewhere_is_awaited_and_taken() {
     let plugins = Plugins::new(Vec::<String>::new());
     let prj = (openecraft_core::sample::EXAMPLES.iter().find(|e| e.key == "conveyor").unwrap().build)();

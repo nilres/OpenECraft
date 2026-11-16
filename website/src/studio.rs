@@ -126,8 +126,10 @@ impl Studio {
     }
 
     /// Commits finished changes and brings the analysis up to date (the canvases do
-    /// the same every frame; the page calls it while none of them is drawn).
+    /// the same every frame; the page calls it while none of them is drawn, after it
+    /// showed that the project is loading).
     pub fn tick(&mut self) {
+        self.session.opening_shown();
         self.session.commit(!self.editor.busy() && !self.panel.busy());
         self.session.refresh(&self.plugins, false);
     }

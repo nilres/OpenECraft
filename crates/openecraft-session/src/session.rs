@@ -35,8 +35,14 @@ pub struct Session {
     replaced: bool,
     /// The analysis of the opened project being built on another thread.
     opening: Option<Opening>,
-    /// Without threads: the build of `opening`, run by the next `refresh`.
+    /// Without threads: the build of `opening`, run by the first `refresh` after the
+    /// loading screen was shown ([`Session::opening_shown`]).
     waiting: Option<Box<dyn FnOnce() + Send>>,
+    /// The loading screen of `opening` was on screen: the build that stops the window
+    /// (`waiting`) may run.
+    shown: bool,
+    /// The analysis of an opened project may be built on another thread.
+    threaded: bool,
     /// The 3D routing is searched elsewhere ([`Session::await_routing`]).
     awaiting: bool,
     /// The 3D routing of an edited project being searched on another thread: the
@@ -108,6 +114,8 @@ impl Session {
             replaced: true,
             opening: None,
             waiting: None,
+            shown: false,
+            threaded: analysis::threads() >= 2,
             awaiting: false,
             routing: None,
             route_here: false,
@@ -270,8 +278,16 @@ impl Session {
         Some(o.shared.lock().ok().map(|b| b.progress).unwrap_or(STARTED))
     }
 
+    /// The front end shows the loading screen of [`Session::opening`] (fully drawn,
+    /// not only laid out): without threads the build, which stops the window until it
+    /// is done, runs at the next `refresh`, so that the screen stays meanwhile.
+    pub fn opening_shown(&mut self) {
+        self.shown = self.waiting.is_some();
+    }
+
     /// Starts building the analysis of the project on another thread, or (without
-    /// threads) has the next `refresh` build it, after the progress was shown once.
+    /// threads) has the next `refresh` build it once the loading screen was shown
+    /// ([`Session::opening_shown`]).
     fn open_in_background(&mut self, checks: Vec<Check>, reports: Vec<Report>) {
         let shared = Arc::new(Mutex::new(Built { progress: STARTED, result: None }));
         let (rev, lang) = (self.history.rev, openecraft_i18n::lang());
@@ -296,20 +312,23 @@ impl Session {
                 }
             }
         };
-        if analysis::threads() < 2 {
-            self.waiting = Some(Box::new(job));
-        } else {
+        if self.threaded {
             std::thread::spawn(job);
+        } else {
+            self.waiting = Some(Box::new(job));
+            self.shown = false;
         }
         self.opening = Some(Opening { rev, lang, shared });
     }
 
     /// Takes the analysis built in the background once it is ready (or builds it,
-    /// without threads). One built for an earlier state or language is dropped and the
-    /// next `refresh` builds it again.
+    /// without threads, once the loading screen was shown). One built for an earlier
+    /// state or language is dropped and the next `refresh` builds it again.
     fn take_opened(&mut self) {
-        if let Some(job) = self.waiting.take() {
-            job();
+        if std::mem::take(&mut self.shown) {
+            if let Some(job) = self.waiting.take() {
+                job();
+            }
         }
         let Some(o) = &self.opening else { return };
         let Some(result) = o.shared.lock().ok().and_then(|mut b| b.result.take()) else { return };
