@@ -169,6 +169,27 @@ fn the_page_is_shown_before_its_module_is_loaded() {
 }
 
 #[test]
+fn the_page_fits_phones_and_tablets() {
+    let html = read("index.html");
+    let css = read("site.css");
+    let script = read("site.js");
+    assert!(html.contains("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />"));
+    // A long line in a list must not widen its column beyond the screen.
+    assert!(css.contains(".studio > *, .reports > *, .automation > * { min-width: 0; }"));
+    // On a narrow screen the links are a menu, opened by a button the script shows.
+    assert!(html.contains("id=\"nav-toggle\" aria-expanded=\"false\" aria-controls=\"nav-links\" hidden>") && html.contains("<nav id=\"nav-links\">"));
+    assert!(css.contains(".nav.open nav { display: flex; }") && script.contains("$(\"#nav-toggle\")") && script.contains("toggle.hidden = false"));
+    // What tells of the mouse has a text for fingers beside it, and every veil both.
+    assert_eq!(html.matches("class=\"for-mouse\"").count(), 3);
+    assert_eq!(html.matches("<span class=\"for-mouse\" data-t>").count(), html.matches("</span><span class=\"for-touch\" data-t>").count());
+    assert_eq!(html.matches("<button class=\"veil\"><span class=\"for-mouse\"").count(), html.matches("class=\"veil\"").count());
+    assert!(css.contains(".for-touch { display: none; }") && css.contains("@media (pointer: coarse)"));
+    // Nothing moves under a finger that cannot hover.
+    let hover = css.split("@media (hover: hover)").next().unwrap();
+    assert!(!hover.lines().any(|line| line.contains(":hover") && line.contains("transform")), "a transform on :hover outside the hover query");
+}
+
+#[test]
 fn the_log_of_the_image_has_no_whole_addresses() {
     let nginx = read("../installer/docker/website.conf");
     assert!(nginx.contains("map $remote_addr $visitor {") && nginx.contains("log_format visits '$visitor "));

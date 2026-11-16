@@ -28,6 +28,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   analysis started before the *Opening the project* screen had been drawn. The web
   editor now shows that screen first, as the desktop app does, and analyses the
   project after it.
+- **Website on phones and tablets:** the console section made the page several
+  screens wide and the bar was cut off on a phone. The sections now fit the screen,
+  the links of the bar are a menu on narrow screens, the demos follow the width of the
+  screen and say how to use them with fingers, and buttons and list rows are larger
+  on touch screens. With the browser's data saver the 40 MB module is loaded with the
+  first tap, not while scrolling.
+- **Website in all 20 languages:** the texts of the website were translated into
+  English, German, French and Spanish only; the 16 further languages now have them
+  too.
 - **Compressed downloads behind a reverse proxy:** the website and web editor images
   sent the WebAssembly (40 MB instead of 15 MB for the website), the scripts and the
   style sheet uncompressed when a reverse proxy spoke HTTP/1.0 to them, as nginx's

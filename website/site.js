@@ -85,6 +85,22 @@
         }
     }
 
+    // The links of the bar as a menu on a narrow screen (site.css shows the button there).
+    function menu() {
+        const bar = $(".nav");
+        const toggle = $("#nav-toggle");
+        const set = open => {
+            bar.classList.toggle("open", open);
+            toggle.setAttribute("aria-expanded", open);
+        };
+        toggle.hidden = false;
+        toggle.addEventListener("click", () => set(!bar.classList.contains("open")));
+        // A link, a tap beside the menu or Escape closes it.
+        $("nav", bar).addEventListener("click", e => e.target.closest("a") && set(false));
+        document.addEventListener("pointerdown", e => bar.contains(e.target) || set(false));
+        addEventListener("keydown", e => e.key === "Escape" && set(false));
+    }
+
     function legal() {
         // The legal notice of config.js (legal): shown only with the operator's name, a
         // line of it only with its value. Texts, never markup.
@@ -159,7 +175,7 @@
                     try {
                         api.start($("canvas", stage).id, stage.dataset.view);
                     } catch (e) {
-                        $(".veil span", stage).textContent = t("The demo could not start in this browser. It needs WebGL and WebAssembly.");
+                        for (const veil of $$(".veil span", stage)) veil.textContent = t("The demo could not start in this browser. It needs WebGL and WebAssembly.");
                     }
                     setTimeout(() => stage.classList.remove("waiting"), 1500);
                 }
@@ -679,7 +695,8 @@
 
     // The module is 40 MB: the page is shown first. It is loaded when the visitor
     // starts to use the page, and otherwise once the page is there and the browser has
-    // time, unless the visitor asked the browser to save data.
+    // time. A visitor who asked the browser to save data gets it with the first click
+    // or key only: scrolling through the page with a finger does not load it.
     function load() {
         loading ||= import(moduleUrl).then(async module => {
             await module.default({ module_or_path: wasmUrl });
@@ -694,14 +711,15 @@
     function whenNeeded() {
         for (const stage of $$(".stage")) $(".veil", stage).addEventListener("click", () => wanted = stage, { once: true });
         if (!moduleUrl) return;
-        const uses = ["scroll", "pointerdown", "keydown", "touchstart"];
+        const saving = !!(navigator.connection && navigator.connection.saveData);
+        const uses = saving ? ["click", "keydown"] : ["scroll", "pointerdown", "keydown", "touchstart"];
         const start = () => {
             for (const use of uses) removeEventListener(use, start);
             load();
         };
         for (const use of uses) addEventListener(use, start, { passive: true });
         if (location.hash) return start();
-        if (navigator.connection && navigator.connection.saveData) return;
+        if (saving) return;
         const idle = () => window.requestIdleCallback ? requestIdleCallback(start, { timeout: 3000 }) : setTimeout(start, 1500);
         if (document.readyState === "complete") idle();
         else addEventListener("load", idle, { once: true });
@@ -730,6 +748,7 @@
     }
 
     links();
+    menu();
     legal();
     reveal();
     whenNeeded();
