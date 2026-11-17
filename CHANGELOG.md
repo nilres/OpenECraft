@@ -42,6 +42,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   and the parts database are kept). A release build of the page is optimised for size
   (cargo profile `web`), which makes a search of the 3D routing 7 % slower. Together
   the WebAssembly shrinks from 61 MB to 32 MB: 8 MB with Brotli, 12 MB with gzip.
+  The web builds of the parts manager (28 MB to 23 MB) and of the website's module
+  (40 MB to 28 MB) are optimised for size as well; the desktop programs stay
+  optimised for speed.
 - **Light theme on Linux:** with the theme *System* the editor and the parts manager
   started dark on Linux, where the window system does not report the desktop's theme.
   They now take the colour scheme of the desktop from the settings portal (GNOME, KDE

@@ -10,9 +10,10 @@ version = "0.1.2"
 [profile.release]
 opt-level = 2
 
-# The release build of the web editor (`data-cargo-profile-release` in
-# openecraft/index.html): optimised for size, as the page is the download of its
-# WebAssembly. 32 MB instead of 51 MB, and a routing search 7 % slower.
+# The release builds for the browser (`data-cargo-profile-release` in the index.html
+# of the editor, the parts manager and the website): optimised for size, as a page is
+# the download of its WebAssembly. The editor: 32 MB instead of 51 MB, and a routing
+# search 7 % slower. The desktop builds keep `release`.
 [profile.web]
 inherits = "release"
 opt-level = "s"
