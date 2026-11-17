@@ -56,7 +56,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
 mod kept;
-pub use kept::{keep, restore, Kept, KeptReason, MAX_KEPT};
+pub use kept::{keep, kept_from_json, kept_to_json, restore, Kept, KeptReason, MAX_KEPT};
 
 pub const API_PREFIX: &str = "/api/v1";
 pub const DEFAULT_PORT: u16 = 8091;

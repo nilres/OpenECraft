@@ -93,9 +93,13 @@ fn the_image_sends_the_big_files_compressed_by_its_build() {
     let nginx = read("../installer/docker/website.conf");
     assert!(nginx.contains("\n    gzip_static on;"), "website.conf sends file.gz");
     let build = dockerfile.split("AS website-build").nth(1).and_then(|rest| rest.split("\nFROM ").next()).unwrap();
-    assert!(build.contains("-exec gzip -9 -k {} +") && build.contains("-name '*.wasm'"), "the build of the image compresses");
+    assert!(build.contains("sh installer/docker/compress.sh /src/website/dist /src/target/website-editor"), "the build of the image compresses");
+    let script = read("../installer/docker/compress.sh");
+    assert!(script.contains("gzip -9 -k") && script.contains("brotli -q 11 -k") && script.contains("-name '*.wasm'"));
     // The files written at every start have no copy that would be sent in their place.
-    assert!(build.contains("! -name config.js") && !build.contains("'*.html'") && !build.contains("'*.txt'"));
+    assert!(script.contains("! -name config.js") && !script.contains("'*.html'") && !script.contains("'*.txt'"));
+    // Brotli copies are sent to who takes them, without a module of nginx.
+    assert!(nginx.contains("rewrite ^ $uri.br last;") && nginx.contains("add_header Content-Encoding br;"));
 }
 
 #[test]

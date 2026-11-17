@@ -17,6 +17,23 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   images ([web editor](docs/installation.md#legal-notice-of-a-web-editor),
   [parts server](docs/parts-server.md#legal-notice-disclaimer-and-privacy-notice),
   [project server](docs/project-server.md#legal-notice-disclaimer-and-privacy-notice)).
+- **Smaller download of the web editor:** the Docker image of the web editor
+  compressed the 61 MB WebAssembly anew for every visitor, quickly and therefore to
+  24 MB. The build of the image now compresses it once and nginx sends that copy:
+  12 MB with Brotli to browsers that ask for it (over HTTPS), 21 MB with gzip
+  otherwise. The image of the website sends Brotli copies of its module and of its web
+  editor as well. `worker.js` of the web editor, which has no hash in its name, is no
+  longer cached for a year, so a new image is not run with the worker of the old one
+  ([web editor](docs/installation.md#docker-image-of-the-web-editor)).
+- **Faster start of the web editor:** the page shows the progress of its download
+  instead of a text alone. It no longer carries the texts of all twenty languages:
+  those of English, German, French and Spanish are built in, the file of another
+  language is fetched when the language is used (`i18n/` beside the page). The
+  settings of the editor are stored as JSON, which leaves the code for a second format
+  out of the page; the desktop still reads the settings stored before, the web editor
+  starts once with its default settings and an empty macro library (the open project
+  and the parts database are kept). The WebAssembly shrinks from 61 MB to 51 MB with
+  it: 10 MB with Brotli, 18 MB with gzip.
 - **Light theme on Linux:** with the theme *System* the editor and the parts manager
   started dark on Linux, where the window system does not report the desktop's theme.
   They now take the colour scheme of the desktop from the settings portal (GNOME, KDE

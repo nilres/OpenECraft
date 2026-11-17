@@ -68,13 +68,22 @@ ENTRYPOINT ["openecraft-project-server"]
 # The web editor: the release build of trunk (as in the job `web`), with the license
 # files next to the page (installer/web/licenses.sh, run by trunk).
 FROM tools AS web-build
-RUN rustup target add wasm32-unknown-unknown \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends brotli \
+    && rm -rf /var/lib/apt/lists/* \
+    && rustup target add wasm32-unknown-unknown \
     && cargo install trunk@0.22.1 --locked
 WORKDIR /src
 COPY . .
 RUN cargo fetch --locked \
     && cd openecraft \
     && trunk build --release
+
+# The WebAssembly, its script and the other big texts get compressed copies beside
+# them (compress.sh), which nginx sends as they are (editor-web.conf) instead of
+# compressing 50 MB for every visitor.
+FROM web-build AS web-compressed
+RUN sh installer/docker/compress.sh /src/openecraft/dist
 
 # Static files served by nginx as an unprivileged user on port 8080. The page reaches the
 # parts and project servers from the browser: give their addresses in the editor (the
@@ -94,22 +103,21 @@ ENV OPENECRAFT_LEGAL_NAME= \
     OPENECRAFT_LEGAL_PRIVACY=
 COPY installer/docker/editor-web.conf /etc/nginx/conf.d/default.conf
 COPY --chmod=0755 installer/docker/website-config.sh /docker-entrypoint.d/40-openecraft-website-config.sh
-COPY --from=web-build /src/openecraft/dist/ /usr/share/nginx/html/
+COPY --from=web-compressed /src/openecraft/dist/ /usr/share/nginx/html/
 EXPOSE 8080
 
 # The website (website/, docs/website.md): the page with its live demos, and the web
 # editor built once more with relative addresses for the folder /editor/ beside it.
-# The WebAssembly, the scripts and the other big texts get a compressed copy beside
-# them, which nginx sends as it is (gzip_static of website.conf) instead of
+# The WebAssembly, the scripts and the other big texts get compressed copies beside
+# them (compress.sh), which nginx sends as they are (website.conf) instead of
 # compressing 40 MB for every visitor; config.js is written at every start.
 FROM web-build AS website-build
 RUN cd website \
     && trunk build --release \
     && cd ../openecraft \
     && trunk build --release --public-url ./ --dist /src/target/website-editor \
-    && find /src/website/dist /src/target/website-editor -type f \
-        \( -name '*.wasm' -o -name '*.js' -o -name '*.css' -o -name '*.json' -o -name '*.svg' -o -name 'THIRD-PARTY-LICENSES.html' \) \
-        ! -name config.js -exec gzip -9 -k {} +
+    && cd .. \
+    && sh installer/docker/compress.sh /src/website/dist /src/target/website-editor
 
 # Static files served by nginx as an unprivileged user on port 8080: the website at /,
 # the web editor at /editor/. Where the links of the page lead and the legal notice

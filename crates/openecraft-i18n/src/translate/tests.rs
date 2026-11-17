@@ -34,6 +34,23 @@ fn further_languages_translate_and_fall_back_to_english() {
     }
 }
 
+#[test]
+fn the_file_of_a_language_holds_its_catalog() {
+    const { assert!(catalog::EMBEDDED, "the tests run with the catalogs") };
+    for l in [Lang::It, Lang::Ja] {
+        assert!(loaded(l));
+        let table = table_of(Box::leak(catalog_file(l).into_boxed_str()));
+        let texts = catalog_translations(l);
+        assert_eq!(table.len(), texts.iter().map(|t| t.0).collect::<std::collections::HashSet<_>>().len());
+        assert!(texts.iter().all(|(en, t)| translate(en, l) == *t && table.get(en) == Some(&translate(en, l))));
+    }
+    assert!(catalog_file(Lang::De).is_empty(), "the required languages are in the program");
+    // A language the program has is not replaced.
+    install(Lang::It, "Open	nothing
+".to_string());
+    assert_ne!(translate("Open", Lang::It), "nothing");
+}
+
 /// `{}` / `{0}` … placeholders and named template fields (`{page}`) of a text.
 fn placeholders(s: &str) -> (usize, Vec<&str>) {
     let mut positional = 0;

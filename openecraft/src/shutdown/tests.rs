@@ -52,7 +52,7 @@ fn closing_waits_off_thread_and_restores_the_final_snapshot() {
     assert_eq!(restored_parts, parts);
     let prepared = closing.prepared.as_ref().unwrap();
     assert_eq!(prepared.get_string("project_packed"), Some(String::new()));
-    assert_eq!(eframe::get_value::<MacroLibrary>(prepared, "macros").unwrap(), macros);
+    assert_eq!(MacroLibrary::from_json(&prepared.get_string("macros").unwrap()).unwrap(), macros);
 }
 
 #[test]
@@ -65,6 +65,6 @@ fn failed_store_keeps_the_recovery_fallback_and_macros() {
     closing.prepared.as_ref().unwrap().apply(&mut final_storage);
     let recovered = openecraft_core::archive::unpack(&final_storage.get_string("project_packed").unwrap()).unwrap();
     assert_eq!(recovered.info.name, "recovery");
-    assert!(eframe::get_value::<PartsDb>(&final_storage, "parts_db").is_some());
-    assert!(eframe::get_value::<MacroLibrary>(&final_storage, "macros").is_some());
+    assert!(PartsDb::from_json(&final_storage.get_string("parts_db").unwrap()).is_some());
+    assert!(MacroLibrary::from_json(&final_storage.get_string("macros").unwrap()).is_ok());
 }

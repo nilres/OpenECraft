@@ -31,6 +31,16 @@ async function built(job) {
     }
 }
 
+// The texts of the language of a search: the module has the catalogs of English,
+// German, French and Spanish only and is handed the one of another language.
+async function language(api, lang) {
+    if (api.language_loaded(lang)) return;
+    try {
+        const answer = await fetch(`i18n/${lang}.tsv`);
+        if (answer.ok) api.install_language(lang, await answer.text());
+    } catch (error) { /* searched in English */ }
+}
+
 onmessage = async event => {
     const job = event.data;
     if (job.module) {
@@ -41,6 +51,7 @@ onmessage = async event => {
     let routing = "";
     try {
         const api = await loading;
+        await language(api, job.lang);
         routing = api.search_routing(job.project, job.lang, await built(job));
     } catch (error) { /* without a routing the editor searches it itself */ }
     postMessage({ search: job.search, routing });

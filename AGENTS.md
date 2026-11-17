@@ -183,6 +183,12 @@ complex shaping (Arabic, Hebrew, Indic scripts, Thai) cannot be drawn by egui.
   part data and log messages.
 - Language choice: stored by the apps (`language` key), otherwise the OS / browser
   language if supported, otherwise English (`openecraft_i18n::init`).
+- The web editor is built without the catalogs of the 16 further languages (feature
+  `lazy` of `openecraft-i18n`) and fetches the file of a language when it is used
+  (`i18n/<code>.tsv` beside the page, written by a hook of `openecraft/Trunk.toml`;
+  `openecraft_ui::io::load_language`); until then `lang()` stays the language before.
+  Code that generates text in another language than the editor's (`with_lang`) has
+  to ask for its catalog first.
 
 ## Unit tests – mandatory layout
 

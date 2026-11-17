@@ -102,6 +102,11 @@ impl MacroLibrary {
         }
     }
 
+    /// The library as the applications store it between sessions.
+    pub fn to_json(&self) -> String {
+        serde_json::to_string(self).unwrap_or_default()
+    }
+
     /// Adds a macro or replaces the one with the same name.
     pub fn upsert(&mut self, m: Macro) {
         match self.macros.iter_mut().find(|x| x.name == m.name) {

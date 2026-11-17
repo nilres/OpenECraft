@@ -667,6 +667,16 @@ impl Default for PartsDb {
 }
 
 impl PartsDb {
+    /// The database as the applications store it between sessions.
+    pub fn to_json(&self) -> String {
+        serde_json::to_string(self).unwrap_or_default()
+    }
+
+    /// The database of [`PartsDb::to_json`]; none for something else.
+    pub fn from_json(text: &str) -> Option<PartsDb> {
+        serde_json::from_str(text).ok()
+    }
+
     pub fn get(&self, number: &str) -> Option<&Part> {
         self.parts.iter().find(|p| p.number == number)
     }

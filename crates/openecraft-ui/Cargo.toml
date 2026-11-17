@@ -26,6 +26,10 @@ resvg = { version = "0.45", default-features = false, features = ["text", "raste
 [target.'cfg(target_os = "linux")'.dependencies]
 zbus = { version = "5.19", default-features = false, features = ["async-io", "blocking-api"] }
 
+# Settings stored before version 0.1.3 (`io::stored`); the version eframe has.
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+ron = "0.12"
+
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
@@ -34,5 +38,5 @@ web-sys = { version = "0.3", features = [
     "Window", "Document", "Element", "HtmlAnchorElement", "Blob", "BlobPropertyBag", "Url",
     "DomStringList", "Event", "EventTarget", "IdbDatabase", "IdbFactory", "IdbObjectStore", "IdbOpenDbRequest",
     "IdbRequest", "IdbTransaction", "IdbTransactionMode", "IdbVersionChangeEvent", "Navigator",
-    "MessageEvent", "Worker", "WorkerOptions", "WorkerType",
+    "MessageEvent", "Response", "Worker", "WorkerOptions", "WorkerType",
 ] }

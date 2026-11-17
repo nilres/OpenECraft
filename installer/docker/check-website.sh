@@ -64,6 +64,21 @@ done
 curl -fsS -o wasm.gz -D headers.txt -H 'Accept-Encoding: gzip' "$url/$wasm"
 grep -qi '^content-encoding: gzip' headers.txt
 gzip -t wasm.gz
-curl -fsS "$url/editor/" | grep -q openecraft_canvas
+# With Brotli to who takes it, the one of the web editor as well.
+curl -fsS -o wasm.br -D headers.txt -H 'Accept-Encoding: gzip, deflate, br, zstd' "$url/$wasm"
+grep -qi '^content-encoding: br' headers.txt
+grep -qi '^content-type: application/wasm' headers.txt
+grep -qi '^vary: accept-encoding' headers.txt
+grep -qi '^cache-control: .*immutable' headers.txt
+test "$(wc -c < wasm.br)" -lt "$(wc -c < wasm.gz)"
+curl -fsS "$url/editor/" -o editor.html
+grep -q openecraft_canvas editor.html
+editor=$(grep -o '[^"/]*_bg\.wasm' editor.html | head -n 1)
+test -n "$editor"
+curl -fsS -o /dev/null -D headers.txt -H 'Accept-Encoding: br' "$url/editor/$editor"
+grep -qi '^content-encoding: br' headers.txt
+curl -fsS -o /dev/null -D headers.txt -H 'Accept-Encoding: br' "$url/editor/${editor%_bg.wasm}.js"
+grep -qi '^content-encoding: br' headers.txt
+grep -qi '^content-type: application/javascript' headers.txt
 docker logs "$name"
 echo "$image serves the website"

@@ -7,6 +7,9 @@
 //! each, `<code>.tsv`, with `English<TAB>translation` lines; a text without a line
 //! there is shown in English. Lines starting with `#` are comments.
 //!
+//! With the feature `lazy` the files of the further languages are not part of the
+//! program: it is handed the file of a language when it is used (`crate::install`).
+//!
 //! Every file is sorted by its English text and holds the texts of its area only, so
 //! that branches adding texts rarely touch the same lines; `cargo run -p openecraft-i18n
 //! --example tidy` sorts and places the entries, the tests check it.
@@ -26,6 +29,7 @@ macro_rules! area_names {
 macro_rules! required_files {
     ([$($area:literal),*]) => { [$(($area, include_str!(concat!("catalog/", $area, "/required.tsv")))),*] };
 }
+#[cfg(not(feature = "lazy"))]
 macro_rules! further_files {
     ($code:literal, [$($area:literal),*]) => { ($code, [$(($area, include_str!(concat!("catalog/", $area, "/", $code, ".tsv")))),*]) };
 }
@@ -33,7 +37,14 @@ macro_rules! further_files {
 /// `(area, file)` of the required languages.
 const REQUIRED: [(&str, &str); AREAS.len()] = with_areas!(required_files);
 
+/// Whether the catalogs of the further languages are part of the program.
+pub const EMBEDDED: bool = cfg!(not(feature = "lazy"));
+
+#[cfg(feature = "lazy")]
+const FURTHER: [(&str, [(&str, &str); AREAS.len()]); 0] = [];
+
 /// The catalogs of the further languages by ISO code: `(area, file)` per area.
+#[cfg(not(feature = "lazy"))]
 const FURTHER: [(&str, [(&str, &str); AREAS.len()]); 16] = [
     with_areas!(further_files, "pt"),
     with_areas!(further_files, "it"),

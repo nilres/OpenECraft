@@ -56,3 +56,11 @@ fn catalog_uses_the_function_kinds() {
         assert!(parts.iter().any(|p| p.functions.iter().any(|f| f.kind == k)), "no part with {}", k.title());
     }
 }
+
+#[test]
+fn the_stored_database_is_read_back() {
+    let db = PartsDb { parts: vec![Part { number: "A.1".to_string(), ..Default::default() }] };
+    assert_eq!(PartsDb::from_json(&db.to_json()), Some(db));
+    assert_eq!(PartsDb::from_json(""), None);
+    assert_eq!(PartsDb::from_json("(parts:[])"), None, "not JSON");
+}

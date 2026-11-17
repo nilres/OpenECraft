@@ -302,6 +302,86 @@ pub fn site_legal() -> openecraft_parts::legal::LegalNotice {
     notice
 }
 
+/// A value an application stored with its settings: JSON. The desktop reads RON as
+/// well, which the settings were stored as before version 0.1.3; the web page leaves
+/// the code for it out, as it made a tenth of its WebAssembly.
+pub fn stored<T: serde::de::DeserializeOwned>(text: &str) -> Option<T> {
+    stored_as(text, |text| serde_json::from_str(text).ok())
+}
+
+/// [`stored`] with the reader of a library for the JSON: the application does not
+/// get a second copy of the code that reads a big type.
+pub fn stored_as<T: serde::de::DeserializeOwned>(text: &str, json: impl FnOnce(&str) -> Option<T>) -> Option<T> {
+    let value = json(text);
+    #[cfg(not(target_arch = "wasm32"))]
+    let value = value.or_else(|| ron::from_str(text).ok());
+    value
+}
+
+/// Gets the texts of `lang` if the program lacks them (`openecraft_i18n::loaded`):
+/// the web editor is built without the catalogs of the further languages and fetches
+/// the one of a language when it is first used (`i18n/<code>.tsv` beside the page);
+/// a repaint follows. The desktop has them all.
+pub fn load_language(lang: openecraft_i18n::Lang, ctx: &egui::Context) {
+    #[cfg(not(target_arch = "wasm32"))]
+    let _ = (lang, ctx);
+    #[cfg(target_arch = "wasm32")]
+    web_language::load(lang, ctx.clone());
+}
+
+/// [`load_language`] before a page starts: done when the texts are there (or cannot
+/// be had: the page is shown in English).
+#[cfg(target_arch = "wasm32")]
+pub async fn fetch_language(lang: openecraft_i18n::Lang) {
+    web_language::fetch(lang).await;
+}
+
+#[cfg(target_arch = "wasm32")]
+mod web_language {
+    use openecraft_i18n::Lang;
+    use std::cell::RefCell;
+    use wasm_bindgen::JsCast;
+    use wasm_bindgen_futures::JsFuture;
+
+    thread_local! {
+        /// The languages asked for: each is fetched once.
+        static ASKED: RefCell<Vec<Lang>> = const { RefCell::new(Vec::new()) };
+    }
+
+    fn wanted(lang: Lang) -> bool {
+        !openecraft_i18n::loaded(lang) && !ASKED.with_borrow(|a| a.contains(&lang))
+    }
+
+    async fn catalog(lang: Lang) -> Option<String> {
+        let answer = JsFuture::from(web_sys::window()?.fetch_with_str(&format!("i18n/{}.tsv", lang.code()))).await.ok()?;
+        let answer: web_sys::Response = answer.dyn_into().ok()?;
+        if !answer.ok() {
+            return None;
+        }
+        JsFuture::from(answer.text().ok()?).await.ok()?.as_string()
+    }
+
+    pub async fn fetch(lang: Lang) {
+        if !wanted(lang) {
+            return;
+        }
+        ASKED.with_borrow_mut(|a| a.push(lang));
+        match catalog(lang).await {
+            Some(file) => openecraft_i18n::install(lang, file),
+            None => log::warn!("no catalog of the language {}", lang.code()),
+        }
+    }
+
+    pub fn load(lang: Lang, ctx: egui::Context) {
+        if wanted(lang) {
+            wasm_bindgen_futures::spawn_local(async move {
+                fetch(lang).await;
+                ctx.request_repaint();
+            });
+        }
+    }
+}
+
 /// The local file system can be searched and written by path (desktop, not the
 /// browser).
 pub fn has_file_system() -> bool {

@@ -25,6 +25,16 @@ pub enum KeptReason {
     NoLock,
 }
 
+/// The kept copies as an application stores them between sessions.
+pub fn kept_to_json(kept: &[Kept]) -> String {
+    serde_json::to_string(kept).unwrap_or_default()
+}
+
+/// The copies of [`kept_to_json`]; none for something else.
+pub fn kept_from_json(text: &str) -> Option<Vec<Kept>> {
+    serde_json::from_str(text).ok()
+}
+
 /// Local version of `targets` of a shared project, replaced by the server's version
 /// of `revision`.
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]

@@ -188,3 +188,10 @@ fn a_change_of_a_page_another_user_removed_is_kept() {
     removed.pages.remove(last);
     assert!(Kept::capture(&base, &removed, &removed, KeptReason::Changed).is_none());
 }
+
+#[test]
+fn the_stored_copies_are_read_back() {
+    let kept = vec![Kept { name: "Plant".to_string(), revision: 3, project: server(), ..Default::default() }];
+    assert_eq!(kept_from_json(&kept_to_json(&kept)), Some(kept));
+    assert_eq!(kept_from_json(""), None);
+}

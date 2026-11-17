@@ -528,7 +528,7 @@ impl Snapshot {
 /// `prebuilt`: a routing of the project from the build of the page (none: empty); it
 /// is taken instead of a search if it is of the wiring of the project.
 pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, String> {
-    let prj: Project = serde_json::from_str(project).map_err(|e| e.to_string())?;
+    let prj = Project::read_json(project)?;
     let lang = openecraft_i18n::Lang::from_code(lang).ok_or_else(|| openecraft_i18n::tr_fmt!("Unknown language: {}", lang))?;
     let mut cache = Cache::default();
     if !prebuilt.is_empty() {

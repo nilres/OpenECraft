@@ -6,6 +6,7 @@ use openecraft_i18n::{tr, tr_fmt};
 use crate::commands::Cmd;
 use crate::editor::{symbol_icon, Editor, Tool};
 use crate::session::Session;
+use crate::stored;
 use crate::workspaces::Workspace;
 use openecraft_core::index::Index;
 use crate::io::{self, FileIo, Loaded, Purpose, PROJECT_EXT};
@@ -464,51 +465,51 @@ impl App {
         let mut tracked = None;
         if let Some(storage) = cc.storage {
             stored = storage.get_string("file_name").is_some();
-            language = eframe::get_value(storage, openecraft_ui::language::STORAGE_KEY);
+            language = stored::get(storage, openecraft_ui::language::STORAGE_KEY);
             // Packed; stores written before have the plain project.
-            prj = storage.get_string("project_packed").and_then(|s| openecraft_core::archive::unpack(&s).ok()).or_else(|| eframe::get_value(storage, "project"));
-            file_name = eframe::get_value(storage, "file_name").flatten();
-            tracked = eframe::get_value(storage, TRACKED_KEY).flatten();
-            parts_db = eframe::get_value(storage, "parts_db");
-            server_url = eframe::get_value(storage, "parts_server_url");
-            eplan_url = eframe::get_value(storage, "eplan_portal_url");
-            server_kind = eframe::get_value(storage, "parts_server_kind");
-            macro_lib = eframe::get_value(storage, "macros");
-            if let Some(db) = eframe::get_value(storage, "project_database") {
+            prj = storage.get_string("project_packed").and_then(|s| openecraft_core::archive::unpack(&s).ok()).or_else(|| stored::get_as(storage, "project", |text| Project::from_json(text).ok()));
+            file_name = stored::get(storage, "file_name").flatten();
+            tracked = stored::get(storage, TRACKED_KEY).flatten();
+            parts_db = stored::get_as(storage, "parts_db", PartsDb::from_json);
+            server_url = stored::get(storage, "parts_server_url");
+            eplan_url = stored::get(storage, "eplan_portal_url");
+            server_kind = stored::get(storage, "parts_server_kind");
+            macro_lib = stored::get_as(storage, "macros", |text| openecraft_core::macros::MacroLibrary::from_json(text).ok());
+            if let Some(db) = stored::get_as(storage, "project_database", |text| openecraft_core::projects::Database::from_json(text).ok()) {
                 projects_ui.db = db;
             }
-            disabled_plugins = eframe::get_value(storage, plugins_ui::STORAGE_KEY).unwrap_or_default();
-            plugin_folders = eframe::get_value(storage, plugins_ui::FOLDERS_KEY).unwrap_or_default();
-            if let Some(stored) = eframe::get_value(storage, crate::shortcuts::STORAGE_KEY) {
+            disabled_plugins = stored::get(storage, plugins_ui::STORAGE_KEY).unwrap_or_default();
+            plugin_folders = stored::get(storage, plugins_ui::FOLDERS_KEY).unwrap_or_default();
+            if let Some(stored) = stored::get(storage, crate::shortcuts::STORAGE_KEY) {
                 shortcuts = crate::shortcuts::Shortcuts::from_storage(&stored);
             }
-            if let Some(stored) = eframe::get_value(storage, crate::gestures::STORAGE_KEY) {
+            if let Some(stored) = stored::get(storage, crate::gestures::STORAGE_KEY) {
                 gestures = crate::gestures::Gestures::from_storage(&stored);
             }
-            layouts = eframe::get_value(storage, crate::workspaces::STORAGE_KEY).unwrap_or_default();
+            layouts = stored::get(storage, crate::workspaces::STORAGE_KEY).unwrap_or_default();
             dock = storage.get_string(crate::dock::STORAGE_KEY).and_then(|s| crate::dock::from_json(&s));
-            recent = eframe::get_value(storage, RECENT_KEY).unwrap_or_default();
-            shell = eframe::get_value(storage, UI_KEY).unwrap_or_default();
+            recent = stored::get(storage, RECENT_KEY).unwrap_or_default();
+            shell = stored::get(storage, UI_KEY).unwrap_or_default();
             if let Some(c) = storage.get_string(crate::ribbon::STORAGE_KEY).and_then(|s| crate::ribbon::Custom::from_json(&s).ok()) {
                 ribbon.custom = c;
             }
-            insert_center = eframe::get_value(storage, crate::insert_center::STORAGE_KEY).unwrap_or_default();
-            plugin_cmds = eframe::get_value(storage, crate::plugin_commands::STORAGE_KEY).unwrap_or_default();
-            if let Some(url) = eframe::get_value(storage, "project_server_url") {
+            insert_center = stored::get(storage, crate::insert_center::STORAGE_KEY).unwrap_or_default();
+            plugin_cmds = stored::get(storage, crate::plugin_commands::STORAGE_KEY).unwrap_or_default();
+            if let Some(url) = stored::get(storage, "project_server_url") {
                 remote.url = url;
             }
-            if let Some(user) = eframe::get_value::<String>(storage, "project_server_user").filter(|u| !u.is_empty()) {
+            if let Some(user) = stored::get::<String>(storage, "project_server_user").filter(|u| !u.is_empty()) {
                 remote.user = user;
             }
             // The restored project is only a copy of the server project of the last session.
-            recovery = eframe::get_value::<Option<crate::startup::ServerProject>>(storage, SERVER_PROJECT_KEY).flatten().filter(|_| file_name.is_none());
-            if let Some(url) = eframe::get_value(storage, "vault_url") {
+            recovery = stored::get::<Option<crate::startup::ServerProject>>(storage, SERVER_PROJECT_KEY).flatten().filter(|_| file_name.is_none());
+            if let Some(url) = stored::get(storage, "vault_url") {
                 vault.url = url;
             }
-            if let Some(name) = eframe::get_value::<String>(storage, "vault_name").filter(|n| !n.is_empty()) {
+            if let Some(name) = stored::get::<String>(storage, "vault_name").filter(|n| !n.is_empty()) {
                 vault.vault_name = name;
             }
-            if let Some(user) = eframe::get_value(storage, "vault_user") {
+            if let Some(user) = stored::get(storage, "vault_user") {
                 vault.user = user;
             }
         }
@@ -1061,6 +1062,16 @@ impl App {
     }
 
     /// The flags of the tools with the pane each opens.
+    /// The texts of the chosen language and of the languages of the project, whose
+    /// documents are generated in them: the web editor fetches those it lacks.
+    fn load_languages(&self, ctx: &egui::Context) {
+        openecraft_ui::io::load_language(openecraft_i18n::chosen_lang(), ctx);
+        let languages = &self.session.prj.languages;
+        for lang in std::iter::once(&languages.source).chain(&languages.targets).filter_map(|code| openecraft_i18n::Lang::from_code(code)) {
+            openecraft_ui::io::load_language(lang, ctx);
+        }
+    }
+
     /// Status texts were made in the language before: they would stay in it.
     fn language_changed(&mut self) {
         self.shown_lang = openecraft_i18n::lang();
@@ -1241,7 +1252,10 @@ impl eframe::App for App {
         self.last_selection = now;
         let idx = std::mem::take(&mut self.session.index);
 
+        self.load_languages(&ctx);
         if openecraft_i18n::lang() != self.shown_lang {
+            // Chosen in a menu, or its texts arrived (`load_languages`).
+            openecraft_ui::fonts::follow_language(&ctx);
             self.language_changed();
         }
         self.open_requests(true);
@@ -1318,40 +1332,40 @@ impl eframe::App for App {
             storage.set_string("parts_db", String::new());
         } else {
             storage.set_string("project_packed", openecraft_core::archive::pack(&self.session.prj));
-            eframe::set_value(storage, "parts_db", &self.parts_db);
+            storage.set_string("parts_db", self.parts_db.to_json());
         }
         storage.set_string("project", String::new());
-        eframe::set_value(storage, "file_name", &self.session.file_name);
-        eframe::set_value(storage, TRACKED_KEY, &self.session.tracked);
-        eframe::set_value(storage, "parts_server_url", &self.parts_ui.server.url_of(PortalKind::OpenECraft));
-        eframe::set_value(storage, "eplan_portal_url", &self.parts_ui.server.url_of(PortalKind::Eplan));
-        eframe::set_value(storage, "parts_server_kind", &self.parts_ui.server.kind);
+        stored::set(storage, "file_name", &self.session.file_name);
+        stored::set(storage, TRACKED_KEY, &self.session.tracked);
+        stored::set(storage, "parts_server_url", &self.parts_ui.server.url_of(PortalKind::OpenECraft));
+        stored::set(storage, "eplan_portal_url", &self.parts_ui.server.url_of(PortalKind::Eplan));
+        stored::set(storage, "parts_server_kind", &self.parts_ui.server.kind);
         if self.shutdown.is_none() {
-            eframe::set_value(storage, "macros", &self.macro_lib);
+            storage.set_string("macros", self.macro_lib.to_json());
         }
-        eframe::set_value(storage, "project_database", &self.projects_ui.db);
-        eframe::set_value(storage, "project_server_url", &self.remote.url);
-        eframe::set_value(storage, "project_server_user", &self.remote.user);
-        eframe::set_value(storage, SERVER_PROJECT_KEY, &self.remote.project().or_else(|| self.recovery.clone()));
-        eframe::set_value(storage, "vault_url", &self.vault.url);
-        eframe::set_value(storage, "vault_name", &self.vault.vault_name);
-        eframe::set_value(storage, "vault_user", &self.vault.user);
-        eframe::set_value(storage, plugins_ui::STORAGE_KEY, &self.plugins.disabled());
-        eframe::set_value(storage, plugins_ui::FOLDERS_KEY, &self.plugins_ui.folders());
-        eframe::set_value(storage, crate::shortcuts::STORAGE_KEY, &self.editor.shortcuts.to_storage());
-        eframe::set_value(storage, crate::gestures::STORAGE_KEY, &self.editor.gestures.to_storage());
-        eframe::set_value(storage, crate::workspaces::STORAGE_KEY, &self.layouts);
+        storage.set_string("project_database", self.projects_ui.db.to_json());
+        stored::set(storage, "project_server_url", &self.remote.url);
+        stored::set(storage, "project_server_user", &self.remote.user);
+        stored::set(storage, SERVER_PROJECT_KEY, &self.remote.project().or_else(|| self.recovery.clone()));
+        stored::set(storage, "vault_url", &self.vault.url);
+        stored::set(storage, "vault_name", &self.vault.vault_name);
+        stored::set(storage, "vault_user", &self.vault.user);
+        stored::set(storage, plugins_ui::STORAGE_KEY, &self.plugins.disabled());
+        stored::set(storage, plugins_ui::FOLDERS_KEY, &self.plugins_ui.folders());
+        stored::set(storage, crate::shortcuts::STORAGE_KEY, &self.editor.shortcuts.to_storage());
+        stored::set(storage, crate::gestures::STORAGE_KEY, &self.editor.gestures.to_storage());
+        stored::set(storage, crate::workspaces::STORAGE_KEY, &self.layouts);
         storage.set_string(crate::dock::STORAGE_KEY, crate::dock::to_json(&self.dock));
         storage.set_string(crate::ribbon::STORAGE_KEY, self.ribbon.custom.to_json());
-        eframe::set_value(storage, crate::insert_center::STORAGE_KEY, &self.insert_center);
-        eframe::set_value(storage, crate::plugin_commands::STORAGE_KEY, &self.plugin_cmds);
-        eframe::set_value(storage, RECENT_KEY, &self.recent);
+        stored::set(storage, crate::insert_center::STORAGE_KEY, &self.insert_center);
+        stored::set(storage, crate::plugin_commands::STORAGE_KEY, &self.plugin_cmds);
+        stored::set(storage, RECENT_KEY, &self.recent);
         let mut shell = self.shell.clone();
         shell.dirty = self.session.dirty();
         shell.workspace = self.workspace.key().to_string();
         shell.docks = self.docks.iter().map(|(w, t)| (w.key().to_string(), crate::dock::to_json(t))).collect();
-        eframe::set_value(storage, UI_KEY, &shell);
-        eframe::set_value(storage, openecraft_ui::language::STORAGE_KEY, &openecraft_i18n::lang().code());
+        stored::set(storage, UI_KEY, &shell);
+        stored::set(storage, openecraft_ui::language::STORAGE_KEY, &openecraft_i18n::chosen_lang().code());
     }
 }
 

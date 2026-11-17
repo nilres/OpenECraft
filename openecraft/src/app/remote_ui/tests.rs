@@ -194,7 +194,7 @@ fn shared_app() -> (App, Project, ServerProject) {
     let ctx = egui::Context::default();
     let mut storage = MemoryStorage::default();
     let shell = crate::app::ShellState { update_check: false, ..Default::default() };
-    eframe::set_value(&mut storage, crate::app::UI_KEY, &shell);
+    crate::stored::set(&mut storage, crate::app::UI_KEY, &shell);
     let mut creation = eframe::CreationContext::_new_kittest(ctx);
     creation.storage = Some(&storage);
     let mut app = App::new(&creation);

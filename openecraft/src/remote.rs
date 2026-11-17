@@ -427,7 +427,7 @@ impl Remote {
 
     fn store_kept(&self) {
         if let Some(store) = self.kept_store.as_ref().filter(|_| self.kept_loaded) {
-            store.store(KEPT_KEY, serde_json::to_vec(&self.kept).unwrap_or_default());
+            store.store(KEPT_KEY, collab::kept_to_json(&self.kept).into_bytes());
         }
     }
 
@@ -438,7 +438,7 @@ impl Remote {
             if key != KEPT_KEY || self.kept_loaded {
                 continue;
             }
-            let mut stored: Vec<Kept> = value.and_then(|v| serde_json::from_slice(&v).ok()).unwrap_or_default();
+            let mut stored: Vec<Kept> = value.and_then(|v| collab::kept_from_json(std::str::from_utf8(&v).ok()?)).unwrap_or_default();
             let since = std::mem::take(&mut self.kept);
             let changed = !since.is_empty();
             for k in since {

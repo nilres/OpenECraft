@@ -19,6 +19,7 @@ mod io;
 mod mounting_ui;
 mod plugin_commands;
 mod startup;
+mod stored;
 mod parts_ui;
 mod remote;
 mod vault;
@@ -59,7 +60,13 @@ fn icon() -> egui::IconData {
 fn main() {
     use wasm_bindgen::JsCast;
     eframe::WebLogger::init(log::LevelFilter::Info).ok();
-    if let Some(lang) = web_sys::window().and_then(|w| w.navigator().language()).and_then(|code| openecraft_i18n::Lang::from_code(&code)) {
+    // The language chosen before (as `App` stores it), otherwise the one of the browser.
+    let stored = web_sys::window()
+        .and_then(|w| w.local_storage().ok().flatten())
+        .and_then(|s| s.get_item(openecraft_ui::language::STORAGE_KEY).ok().flatten())
+        .and_then(|code| openecraft_i18n::Lang::from_code(code.trim_matches('"')));
+    let browser = || web_sys::window().and_then(|w| w.navigator().language()).and_then(|code| openecraft_i18n::Lang::from_code(&code));
+    if let Some(lang) = stored.or_else(browser) {
         openecraft_i18n::set_lang(lang);
     }
     // The worker of the page (`worker.js`) has no window: it only searches routings.
@@ -73,6 +80,8 @@ fn main() {
             .expect("canvas missing")
             .dyn_into::<web_sys::HtmlCanvasElement>()
             .expect("not a canvas");
+        // The texts of the language before anything is shown or generated in it.
+        openecraft_ui::io::fetch_language(openecraft_i18n::chosen_lang()).await;
         let result = eframe::WebRunner::new()
             .start(canvas, eframe::WebOptions::default(), Box::new(move |cc| Ok(Box::new(app::App::new(cc).start(wiring, None)))))
             .await;
@@ -94,4 +103,21 @@ fn main() {
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, wasm_bindgen::JsValue> {
     openecraft_session::session::search_routing(project, lang, prebuilt).map_err(|e| wasm_bindgen::JsValue::from_str(&e))
+}
+
+/// Whether this instance has the texts of a language (`worker.js` fetches the
+/// catalog of one it lacks: `i18n/<code>.tsv`).
+#[cfg(target_arch = "wasm32")]
+#[wasm_bindgen::prelude::wasm_bindgen]
+pub fn language_loaded(lang: &str) -> bool {
+    openecraft_i18n::Lang::from_code(lang).is_none_or(openecraft_i18n::loaded)
+}
+
+/// Hands this instance the catalog of a language (`worker.js`).
+#[cfg(target_arch = "wasm32")]
+#[wasm_bindgen::prelude::wasm_bindgen]
+pub fn install_language(lang: &str, catalog: String) {
+    if let Some(lang) = openecraft_i18n::Lang::from_code(lang) {
+        openecraft_i18n::install(lang, catalog);
+    }
 }

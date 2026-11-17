@@ -134,14 +134,36 @@ impl Lang {
 }
 
 static CURRENT: AtomicU8 = AtomicU8::new(0);
+/// The language in use before one the program has no texts of yet was chosen.
+static SHOWN: AtomicU8 = AtomicU8::new(0);
 
 thread_local! {
     /// Language of output generated on this thread (see [`with_lang`]).
     static OVERRIDE: Cell<Option<Lang>> = const { Cell::new(None) };
 }
 
+/// The language texts are shown in: the chosen one ([`set_lang`]). A program built
+/// without the catalogs of the further languages (feature `lazy`) stays in the
+/// language before until it is handed the catalog of the chosen one ([`install`]),
+/// so that nothing is generated half translated.
 pub fn lang() -> Lang {
-    OVERRIDE.with(Cell::get).unwrap_or_else(|| Lang::ALL[CURRENT.load(Ordering::Relaxed) as usize % Lang::ALL.len()])
+    OVERRIDE.with(Cell::get).unwrap_or_else(|| {
+        let chosen = chosen_lang();
+        if catalog::EMBEDDED {
+            chosen
+        } else if loaded(chosen) {
+            SHOWN.store(chosen.index(), Ordering::Relaxed);
+            chosen
+        } else {
+            Lang::ALL[SHOWN.load(Ordering::Relaxed) as usize % Lang::ALL.len()]
+        }
+    })
+}
+
+/// The language chosen with [`set_lang`]: [`lang`], or the one it becomes once the
+/// program has its texts ([`loaded`]).
+pub fn chosen_lang() -> Lang {
+    Lang::ALL[CURRENT.load(Ordering::Relaxed) as usize % Lang::ALL.len()]
 }
 
 /// Runs `f` with `lang` as the language of this thread, e.g. to generate a PDF in
@@ -196,10 +218,43 @@ fn table() -> &'static HashMap<&'static str, [&'static str; 3]> {
     TABLE.get_or_init(|| catalog::all().map(|(en, de, fr, es)| (en, [de, fr, es])).collect())
 }
 
-/// The table of a further language, read when the language is first used.
-fn further_table(lang: Lang) -> &'static HashMap<&'static str, &'static str> {
-    static TABLES: [OnceLock<HashMap<&'static str, &'static str>>; Lang::ALL.len()] = [const { OnceLock::new() }; Lang::ALL.len()];
-    TABLES[lang.index() as usize].get_or_init(|| catalog::further(lang.code()).flatten().collect())
+static FURTHER: [OnceLock<HashMap<&'static str, &'static str>>; Lang::ALL.len()] = [const { OnceLock::new() }; Lang::ALL.len()];
+
+/// The table of a further language, read when the language is first used; none
+/// while a program built without the catalogs (feature `lazy`) was not handed it.
+fn further_table(lang: Lang) -> Option<&'static HashMap<&'static str, &'static str>> {
+    let table = &FURTHER[lang.index() as usize];
+    if catalog::EMBEDDED {
+        Some(table.get_or_init(|| catalog::further(lang.code()).flatten().collect()))
+    } else {
+        table.get()
+    }
+}
+
+/// Whether the program has the texts of `lang`. One built without the catalogs of
+/// the further languages (feature `lazy`) shows such a language in English until it
+/// is handed the catalog ([`install`]).
+pub fn loaded(lang: Lang) -> bool {
+    lang.is_required() || further_table(lang).is_some()
+}
+
+/// The catalog of a further language as one file ([`install`]); empty in a program
+/// built without the catalogs.
+pub fn catalog_file(lang: Lang) -> String {
+    catalog::further_files(lang.code()).flat_map(|(_, file)| catalog::lines(file)).fold(String::new(), |out, line| out + line + "
+")
+}
+
+/// Hands a program built without the catalogs the one of `lang` ([`catalog_file`]);
+/// a language it has already is left as it is.
+pub fn install(lang: Lang, file: String) {
+    if !loaded(lang) {
+        let _ = FURTHER[lang.index() as usize].set(table_of(Box::leak(file.into_boxed_str())));
+    }
+}
+
+fn table_of(file: &'static str) -> HashMap<&'static str, &'static str> {
+    catalog::lines(file).filter_map(catalog::parse_further).collect()
 }
 
 /// Translation of the English text `en` into the current language; unknown texts are
@@ -212,7 +267,7 @@ pub fn translate(en: &'static str, lang: Lang) -> &'static str {
     match lang {
         Lang::En => en,
         Lang::De | Lang::Fr | Lang::Es => table().get(en).map(|t| t[lang.index() as usize - 1]).unwrap_or(en),
-        _ => further_table(lang).get(en).copied().unwrap_or(en),
+        _ => further_table(lang).and_then(|t| t.get(en).copied()).unwrap_or(en),
     }
 }
 
@@ -222,7 +277,7 @@ pub fn translation(en: &str, lang: Lang) -> Option<&'static str> {
     match lang {
         Lang::En => None,
         Lang::De | Lang::Fr | Lang::Es => table().get(en).map(|t| t[lang.index() as usize - 1]),
-        _ => further_table(lang).get(en).copied(),
+        _ => further_table(lang).and_then(|t| t.get(en).copied()),
     }
 }
 

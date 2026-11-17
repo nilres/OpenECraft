@@ -5,4 +5,10 @@ edition = "2021"
 description = "Language selection and UI translations (English, German, French, Spanish and 16 further languages) of OpenECraft"
 license = "MIT OR Apache-2.0"
 
+[features]
+# The catalogs of the further languages are left out of the program and handed to it
+# when a language is used (`install`): the web editor fetches the file of a language
+# instead of carrying all of them in its WebAssembly.
+lazy = []
+
 [dependencies]

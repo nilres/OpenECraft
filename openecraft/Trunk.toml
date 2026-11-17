@@ -16,6 +16,13 @@ command_arguments = ["../installer/web/licenses.sh"]
 command = "powershell"
 command_arguments = ["-ExecutionPolicy", "Bypass", "-File", "..\\installer\\web\\licenses.ps1"]
 
+# The catalogs of the further languages beside the page (i18n/): it is built without
+# them and fetches the one of the language in use.
+[[hooks]]
+stage = "post_build"
+command = "cargo"
+command_arguments = ["run", "--release", "-p", "openecraft-i18n", "--example", "catalogs"]
+
 # The 3D routings of the examples beside the page (routing/): the worker of the page
 # (worker.js) takes the one of an example opened unchanged instead of searching it,
 # which takes seconds for a big one. Release builds only.

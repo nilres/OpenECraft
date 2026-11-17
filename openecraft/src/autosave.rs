@@ -60,7 +60,7 @@ impl Autosave {
                 }
                 PARTS => {
                     let start = self.awaiting_parts.take();
-                    let db = value.and_then(|v| serde_json::from_slice::<PartsDb>(&v).ok());
+                    let db = value.and_then(|v| PartsDb::from_json(std::str::from_utf8(&v).ok()?));
                     if let Some(db) = db.filter(|_| start.as_ref() == Some(parts)) {
                         *parts = db;
                     }
@@ -91,7 +91,7 @@ impl Autosave {
                 store.store(PROJECT, openecraft_core::archive::pack(&prj).into_bytes());
             }
             if let Some(parts) = parts {
-                store.store(PARTS, serde_json::to_vec(&parts).unwrap_or_default());
+                store.store(PARTS, parts.to_json().into_bytes());
             }
         };
         self.finish();

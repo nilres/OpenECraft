@@ -48,4 +48,7 @@ env_logger = "0.11"
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
-web-sys = { version = "0.3", features = ["Window", "Document", "Element", "HtmlCanvasElement", "Location", "Navigator"] }
+web-sys = { version = "0.3", features = ["Window", "Document", "Element", "HtmlCanvasElement", "Location", "Navigator", "Storage"] }
+# The page fetches the catalog of a further language when it is used (i18n/ beside
+# it, `openecraft_ui::io::load_language`) instead of carrying all of them.
+openecraft-i18n = { path = "../crates/openecraft-i18n", features = ["lazy"] }

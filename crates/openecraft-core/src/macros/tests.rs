@@ -208,3 +208,10 @@ fn files_without_variants_still_load() {
     let json = serde_json::to_string(&lib).unwrap();
     assert!(!json.contains("variants"));
 }
+
+#[test]
+fn the_stored_library_is_read_back() {
+    let lib = MacroLibrary { macros: vec![Macro { name: "Motor starter".to_string(), ..Default::default() }] };
+    assert_eq!(MacroLibrary::from_json(&lib.to_json()), Ok(lib));
+    assert_eq!(MacroLibrary::from_json(&MacroLibrary::default().to_json()), Ok(MacroLibrary::default()));
+}

@@ -253,12 +253,21 @@ Who runs the editor is set with the variables `OPENECRAFT_LEGAL_NAME`,
 `config.js` from them at every start.
 
 The nginx site is `installer/docker/editor-web.conf` (mount your own at
-`/etc/nginx/conf.d/default.conf`): `index.html` is checked at every visit, the scripts
-and the WebAssembly, named after their hash, are cached for a year. Put a TLS reverse
+`/etc/nginx/conf.d/default.conf`): `index.html` and the other files are checked at
+every visit, the WebAssembly and its script, named after their hash, are cached for a
+year. The WebAssembly is 51 MB; the build of the image compresses it once
+(`installer/docker/compress.sh`) and nginx sends the copy as it is: 10 MB with Brotli
+to browsers that ask for it, which they do over HTTPS only, 18 MB with gzip otherwise.
+A server of your own should send such copies as well instead of compressing the file
+for every visitor. Put a TLS reverse
 proxy in front of it for other machines, as for the servers. Beside the page are
 `worker.js`, a worker that searches the 3D routing of an opened project so the page
-stays responsive meanwhile, and `routing/`, the routings of the examples from the
-build, so that an example opens at once.
+stays responsive meanwhile, `routing/`, the routings of the examples from the
+build, so that an example opens at once, and `i18n/`, the texts of the languages
+other than English, German, French and Spanish (`<code>.tsv`): the page fetches the
+file of a language when it is used instead of carrying all of them, and shows the
+language in English if the file is missing. While the WebAssembly is loaded the page
+shows the progress (`loading.js`).
 
 The workflow *Docker image of the web editor* (`.github/workflows/docker-web.yml`)
 rebuilds this image alone, without the rest of CI

@@ -41,15 +41,15 @@ impl Shutdown {
             prepared.set_string("project_packed", if project_ok { String::new() } else { packed });
             progress.store(2, Ordering::Relaxed);
             if ready {
-                store.store("parts_db", serde_json::to_vec(&parts).expect("serializable parts database"));
+                store.store("parts_db", parts.to_json().into_bytes());
             }
             if ready && store.works() {
                 prepared.set_string("parts_db", String::new());
             } else {
-                eframe::set_value(&mut prepared, "parts_db", &parts);
+                prepared.set_string("parts_db", parts.to_json());
             }
             progress.store(3, Ordering::Relaxed);
-            eframe::set_value(&mut prepared, "macros", &macros);
+            prepared.set_string("macros", macros.to_json());
             prepared
         });
         Self { job, step, prepared: None, error: None }

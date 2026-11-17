@@ -2107,9 +2107,16 @@ impl Project {
 
     /// Reads a project file and prepares it for editing ([`Project::normalize`]).
     pub fn from_json(text: &str) -> Result<Project, String> {
-        let mut prj: Project = serde_json::from_str(text).map_err(|e| tr_fmt!("Not a valid project file: {}", e))?;
+        let mut prj = Project::read_json(text)?;
         prj.normalize();
         Ok(prj)
+    }
+
+    /// The project of a file as it is written there, for a project handed on by the
+    /// program itself. Read here, so that a crate reading projects does not get its
+    /// own copy of the code for it.
+    pub fn read_json(text: &str) -> Result<Project, String> {
+        serde_json::from_str(text).map_err(|e| tr_fmt!("Not a valid project file: {}", e))
     }
 
     /// Content of a project file.
