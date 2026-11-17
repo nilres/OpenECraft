@@ -196,6 +196,16 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   (a page as SVG); both need the right to view the project and are drawn from one
   analysis per project and revision (the last 8 projects are kept).
 
+## Public project server
+
+The project runs a public project server at
+[project-server.openecraft.org](https://project-server.openecraft.org) with its web
+page switched on. Working on it needs an account: sign in on the web page to see the
+projects you may open, and enter the server URL `https://project-server.openecraft.org`
+in the editor's *Project server* pane and sign in there with the same account. It shows how
+several users work on one project; projects of a company belong on a project server of
+its own (above), behind its own access settings.
+
 ## Legal notice, disclaimer and privacy notice
 
 Below the web page (`--web`) are the links *Privacy* and, when the operator has a name, *Legal

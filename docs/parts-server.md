@@ -214,6 +214,21 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   machines, e.g. with [Caddy](https://caddyserver.com/), which fetches the certificate:
   `caddy reverse-proxy --from parts.example.com --to 127.0.0.1:8090`.
 
+## Public parts server
+
+The project runs a public parts server at
+[parts-server.openecraft.org](https://parts-server.openecraft.org) with the example
+catalog and the bundled manufacturer catalogs. Everybody reads it without an account:
+on its web page (search, catalogs, dashboard, the details of a part with its front view
+and 3D model), in the editor (*Master data › Data portal*, server URL
+`https://parts-server.openecraft.org`) and on the command line or by AI agents
+(`--server https://parts-server.openecraft.org`, or `parts_connect` with this `url`).
+It is a place to try the
+data portal and to take parts into your own database; a company keeps its own parts on
+a server of its own (above), where it decides who may change them. The data of the
+catalogs is compiled from public data sheets: check the parts against the
+manufacturer's data before ordering.
+
 ## Legal notice, disclaimer and privacy notice
 
 Below the web page are the links *Privacy* and, when the operator has a name, *Legal

@@ -5,6 +5,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Website and public servers:** the website [openecraft.org](https://openecraft.org)
+  with its live demos, the web editor at
+  [editor.openecraft.org](https://editor.openecraft.org), a public parts server at
+  [parts-server.openecraft.org](https://parts-server.openecraft.org) (the bundled
+  manufacturer catalogs, readable without an account) and a public project server at
+  [project-server.openecraft.org](https://project-server.openecraft.org) (with an
+  account). The packages name the website as their homepage.
 - **Legal notice, disclaimer and privacy notice in the editor and on the servers:**
   *Help › Legal and privacy* of the editor and *Legal and privacy* of the parts manager
   show the disclaimer of OpenECraft and a privacy notice (what the application stores

@@ -198,6 +198,10 @@ gh workflow run docker-website.yml -f push=false
 
 ## Web (WebAssembly)
 
+The web version runs without installing at
+[editor.openecraft.org](https://editor.openecraft.org); the project's website
+[openecraft.org](https://openecraft.org) links to it. To host it yourself:
+
 ```bash
 rustup target add wasm32-unknown-unknown
 cargo install trunk@0.22.1 --locked
@@ -275,7 +279,8 @@ rebuilds this image alone, without the rest of CI
 
 ### Website
 
-The website of the project with its live demos is a web build of its own (`website/`),
+The website of the project with its live demos, [openecraft.org](https://openecraft.org),
+is a web build of its own (`website/`),
 deployed by hand as static files or with the Docker image
 `ghcr.io/nilres/openecraft-website`, which brings the web editor along at `/editor/`:
 see [website.md](website.md).

@@ -127,7 +127,7 @@ Depends: $shlibs, libxkbcommon0, libgl1, libegl1
 Recommends: libwayland-client0, libwayland-egl1, libx11-6, libxcursor1, libxi6, libxrandr2, libxkbcommon-x11-0, xdg-desktop-portal
 Section: electronics
 Priority: optional
-Homepage: https://github.com/nilres/OpenECraft
+Homepage: https://openecraft.org/
 Description: Electrical CAE editor: schematics, panel layouts and reports
  OpenECraft is an open source electrical CAE editor:
  schematic pages with device tags, cross references and a netlist, panel layout
