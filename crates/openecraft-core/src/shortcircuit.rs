@@ -264,6 +264,42 @@ fn feeders<'a>(prj: &'a Project, nl: &Netlist, conns: &[Connection], cs: &[Circu
         .collect()
 }
 
+/// A cable on the way from the supply to a protective device: its tag, length (m),
+/// cross-section (mm²), the protective device upstream feeding through it and the
+/// number of phases it carries.
+#[derive(Clone, Debug, PartialEq)]
+pub struct FeederCable {
+    pub tag: String,
+    pub length: f32,
+    pub mm2: f32,
+    pub device: String,
+    pub phases: usize,
+}
+
+/// Reactance of a cable per metre, Ω (IEC 60909: 0.08 mΩ/m).
+pub const CABLE_REACTANCE: f32 = X_CABLE;
+
+/// The cables from the supply to each protective device of the mains (by its tag),
+/// the one nearest the supply first.
+pub fn feeder_cables(prj: &Project, nl: &Netlist, conns: &[Connection]) -> std::collections::HashMap<String, Vec<FeederCable>> {
+    let cs = crate::electrical::circuits(prj, nl);
+    let behind: Vec<Vec<(&Cable, f32)>> = cs.iter().map(|c| cables_at(prj, nl, conns, &c.nets)).collect();
+    let mut out = std::collections::HashMap::new();
+    for i in 0..cs.len() {
+        let (mut at, mut depth, mut chain) = (i, 0, Vec::new());
+        while let (Some(up), true) = (cs[at].parent, depth < cs.len()) {
+            let line: Vec<(&Cable, f32)> = cables_at(prj, nl, conns, &cs[at].line).into_iter().filter(|x| behind[up].iter().any(|u| u.0.tag == x.0.tag)).collect();
+            if let Some((cb, mm2)) = longest(&line) {
+                chain.insert(0, FeederCable { tag: cb.tag.clone(), length: cb.length, mm2, device: cs[up].device.clone(), phases: cs[up].phases.len() });
+            }
+            at = up;
+            depth += 1;
+        }
+        out.insert(cs[i].device.clone(), chain);
+    }
+    out
+}
+
 /// Locked-rotor current of a motor (`Locked rotor current: 7.2 x In` or in A).
 fn locked_rotor(prj: &Project, tag: &str, rated: f32) -> f32 {
     crate::sizing::device_parts(prj, tag)

@@ -296,6 +296,110 @@ pub fn paint_scan(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, bi:
     }
 }
 
+/// The site plan of level `level` of building `bi`, fitted to the level: its rooms and
+/// the floor plan on paper under it (all of the plant for no level).
+pub fn level_plan(prj: &Project, bi: usize, level: u64) -> SitePlan {
+    let mut plan = SitePlan { building: Some(bi), level, ..Default::default() };
+    if level == 0 {
+        return plan;
+    }
+    let poses = panel::site_poses(prj);
+    let mut pts: Vec<[f32; 2]> = room_outlines(prj, &poses).into_iter().filter(|(ri, _)| prj.layout.enclosures[*ri].level == level).flat_map(|r| r.1).collect();
+    pts.extend(floor_plan_corners(prj, bi, level).map(|c| c.1).into_iter().flatten());
+    if !pts.is_empty() {
+        let (lo, hi) = panel::bounds(&pts);
+        plan.extent = Some(([lo[0] - 1000.0, lo[1] - 1000.0], [hi[0] + 1000.0, hi[1] + 1000.0]));
+    }
+    plan
+}
+
+/// Colour of the circuit with index `k`.
+pub fn circuit_color(k: usize) -> Color32 {
+    const COLORS: [Color32; 8] = [
+        Color32::from_rgb(220, 70, 60),
+        Color32::from_rgb(40, 130, 220),
+        Color32::from_rgb(40, 160, 80),
+        Color32::from_rgb(200, 130, 20),
+        Color32::from_rgb(150, 80, 200),
+        Color32::from_rgb(20, 160, 170),
+        Color32::from_rgb(200, 60, 150),
+        Color32::from_rgb(120, 120, 40),
+    ];
+    COLORS[k % COLORS.len()]
+}
+
+/// The room on the level shown under `p` (one of the building highlighted).
+pub fn room_at(prj: &Project, plan: &SitePlan, frame: &Frame, p: Pos2) -> Option<usize> {
+    let poses = panel::site_poses(prj);
+    room_outlines(prj, &poses).into_iter().find(|(ri, pts)| {
+        let e = &prj.layout.enclosures[*ri];
+        (plan.level == 0 || e.level == plan.level) && plan.building.is_none_or(|b| bld::building_of(&prj.layout, *ri) == Some(b)) && inside(&pts.iter().map(|&q| frame.at(q)).collect::<Vec<_>>(), p)
+    }).map(|r| r.0)
+}
+
+/// The socket outlets, switches and lights of the rooms on the level shown.
+fn installation_items(prj: &Project, plan: &SitePlan) -> Vec<openecraft_core::installation::Placed> {
+    let poses = panel::site_poses(prj);
+    openecraft_core::installation::items(prj, &poses)
+        .into_iter()
+        .filter(|p| (plan.level == 0 || p.level == plan.level) && plan.building.is_none_or(|b| bld::building_of(&prj.layout, p.room) == Some(b)))
+        .collect()
+}
+
+/// The socket outlet, switch or light within 8 points of `p` (its item id).
+pub fn installation_at(prj: &Project, plan: &SitePlan, frame: &Frame, p: Pos2) -> Option<u64> {
+    installation_items(prj, plan).into_iter().map(|q| (q.item, frame.at(q.at).distance(p))).filter(|q| q.1 <= 8.0).min_by(|a, b| a.1.total_cmp(&b.1)).map(|q| q.0)
+}
+
+/// Draws the installation of the level shown: the runs of the final circuits (from
+/// their board through their items; the one highlighted thicker) and the socket
+/// outlets, switches and lights as symbols of installation plans (IEC 60617-11) in the
+/// colour of their circuit.
+pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, highlight: Option<u64>) {
+    use openecraft_core::installation::{self as inst, Kind};
+    let painter = ui.painter_at(size);
+    let frame = frame(size, prj, plan);
+    let items = installation_items(prj, plan);
+    let weak = ui.visuals().text_color();
+    for (k, (c, r)) in prj.layout.circuits.iter().zip(inst::runs(prj, &inst::Supply::default())).enumerate() {
+        if !r.items.iter().any(|id| items.iter().any(|p| p.item == *id)) {
+            continue;
+        }
+        let pts: Vec<Pos2> = r.points.iter().map(|q| frame.at(q.at)).collect();
+        let width = if highlight == Some(c.id) { 3.0 } else { 1.3 };
+        for w in pts.windows(2) {
+            // Along the walls: first along x, then along z.
+            let corner = pos2(w[1].x, w[0].y);
+            painter.extend(egui::Shape::dashed_line(&[w[0], corner, w[1]], Stroke::new(width, circuit_color(k)), 5.0, 3.0));
+        }
+    }
+    for p in &items {
+        let color = inst::circuit_of(prj, p.item).map_or(weak, circuit_color);
+        let c = frame.at(p.at);
+        let s = Stroke::new(1.5, color);
+        match p.kind {
+            Kind::Socket => {
+                // A half circle on a line, open towards the wall.
+                let r = 6.0;
+                let arc: Vec<Pos2> = (0..=8).map(|i| c + vec2((std::f32::consts::PI * i as f32 / 8.0).cos() * r, -(std::f32::consts::PI * i as f32 / 8.0).sin() * r)).collect();
+                painter.add(egui::Shape::line(arc, s));
+                painter.line_segment([c - vec2(r, 0.0), c + vec2(r, 0.0)], s);
+            }
+            Kind::Switch => {
+                painter.circle_filled(c, 3.5, color);
+                painter.line_segment([c, c + vec2(7.0, -7.0)], s);
+            }
+            Kind::Light => {
+                let r = 6.0;
+                painter.circle_stroke(c, r, s);
+                let d = r * std::f32::consts::FRAC_1_SQRT_2;
+                painter.line_segment([c - vec2(d, d), c + vec2(d, d)], s);
+                painter.line_segment([c + vec2(d, -d), c - vec2(d, -d)], s);
+            }
+        }
+    }
+}
+
 /// Whether `p` lies inside the polygon `pts`.
 fn inside(pts: &[Pos2], p: Pos2) -> bool {
     let mut odd = false;

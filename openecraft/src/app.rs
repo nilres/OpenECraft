@@ -63,6 +63,7 @@ mod form_layout_ui;
 mod forms_ui;
 mod buildings_ui;
 mod floor_plan_ui;
+mod installation_ui;
 mod harness_ui;
 mod integration_ui;
 mod languages_ui;
