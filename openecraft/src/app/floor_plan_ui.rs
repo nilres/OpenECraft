@@ -3,7 +3,7 @@
 //! a known distance), place and area, the walls, doors, windows and rooms found in it
 //! and the rooms made of them (`openecraft_core::panel::floorplan`).
 
-use crate::panel_ui::site_plan::{self, SitePlan};
+use crate::panel_ui::site_plan;
 use egui::{vec2, Pos2, RichText, Sense, Stroke};
 use openecraft_core::model::Project;
 use openecraft_core::panel::{buildings as bld, floorplan, FloorPlan};
@@ -256,7 +256,7 @@ impl FloorPlanUi {
         let fp = floorplan::plan_of(&prj.layout, level).filter(|_| level != 0).cloned();
         let picking = fp.is_some() && self.pick != Pick::None;
         let (size, resp) = ui.allocate_exact_size(vec2(ui.available_width(), 360.0), if picking || click { Sense::click() } else { Sense::hover() });
-        let plan = SitePlan { building: Some(bi), level, ..Default::default() };
+        let plan = site_plan::level_plan(prj, bi, level);
         site_plan::paint(ui, size, prj, &plan, None);
         let Some(fp) = fp else { return (resp, size) };
         if let Some((_, _, scan)) = self.found.as_ref().filter(|(l, p, _)| *l == level && *p == fp) {

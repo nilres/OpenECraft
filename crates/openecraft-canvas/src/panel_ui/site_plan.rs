@@ -296,6 +296,23 @@ pub fn paint_scan(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, bi:
     }
 }
 
+/// The site plan of level `level` of building `bi`, fitted to the level: its rooms and
+/// the floor plan on paper under it (all of the plant for no level).
+pub fn level_plan(prj: &Project, bi: usize, level: u64) -> SitePlan {
+    let mut plan = SitePlan { building: Some(bi), level, ..Default::default() };
+    if level == 0 {
+        return plan;
+    }
+    let poses = panel::site_poses(prj);
+    let mut pts: Vec<[f32; 2]> = room_outlines(prj, &poses).into_iter().filter(|(ri, _)| prj.layout.enclosures[*ri].level == level).flat_map(|r| r.1).collect();
+    pts.extend(floor_plan_corners(prj, bi, level).map(|c| c.1).into_iter().flatten());
+    if !pts.is_empty() {
+        let (lo, hi) = panel::bounds(&pts);
+        plan.extent = Some(([lo[0] - 1000.0, lo[1] - 1000.0], [hi[0] + 1000.0, hi[1] + 1000.0]));
+    }
+    plan
+}
+
 /// Colour of the circuit with index `k`.
 pub fn circuit_color(k: usize) -> Color32 {
     const COLORS: [Color32; 8] = [

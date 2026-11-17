@@ -74,14 +74,19 @@ impl Kind {
     }
 }
 
-/// What a part is for the installation: by its subgroup (socket outlets, switches,
-/// push buttons, dimmers, lights) or its functions; `None` for anything else.
+/// What a part is for the installation: a part for the walls or the ceiling of a room
+/// by its subgroup (socket outlets, switches, push buttons, dimmers, lights) or its
+/// functions; `None` for anything else (devices of cabinets: motor protection
+/// switches, rail sockets).
 pub fn kind_of(part: &Part) -> Option<Kind> {
-    let sub = part.subgroup.to_lowercase();
-    if sub.contains("socket") {
+    if !part.wall_mountable() && !on_ceiling(part) {
+        return None;
+    }
+    let sub = part.subgroup.trim().to_lowercase();
+    if sub.contains("socket outlet") {
         return Some(Kind::Socket);
     }
-    if ["switch", "push button", "dimmer"].iter().any(|k| sub.contains(k)) {
+    if ["switch", "push button", "blind switch", "dimmer", "glass push button"].contains(&sub.as_str()) {
         return Some(Kind::Switch);
     }
     if ["luminaire", "light", "lamp"].iter().any(|k| sub.contains(k)) {

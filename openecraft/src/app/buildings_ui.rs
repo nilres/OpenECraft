@@ -1185,7 +1185,7 @@ fn site_plan_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi,
         if installing {
             st.inst.overlay(ui, prj, &resp, size, st.sel, st.level);
         } else {
-            let plan = crate::panel_ui::site_plan::SitePlan { building: Some(st.sel), level: st.level, ..Default::default() };
+            let plan = crate::panel_ui::site_plan::level_plan(prj, st.sel, st.level);
             crate::panel_ui::site_plan::paint_installation(ui, size, prj, &plan, None);
         }
     }

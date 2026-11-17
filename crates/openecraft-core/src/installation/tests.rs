@@ -35,6 +35,9 @@ fn parts_are_sockets_switches_or_lights() {
     assert_eq!(kind("GEN.DIM-LED-UP"), Some(Kind::Switch));
     assert_eq!(kind("GEN.LAMP-CEILING-LED"), Some(Kind::Light));
     assert_eq!(kind("GEN.MCB-1P-B10"), None);
+    // Devices of cabinets are no installation devices.
+    assert_eq!(kind("GEN.MPS-2.5-4A"), None);
+    assert_eq!(kind("GEN.SOCKET-DIN-16A"), None);
     assert!(cat.iter().filter(|p| p.number.starts_with("GEN.LAMP-")).all(|p| p.wall_mountable()));
     assert!(on_ceiling(cat.iter().find(|p| p.number == "GEN.LAMP-DOWNLIGHT-LED").unwrap()));
     assert!(!on_ceiling(cat.iter().find(|p| p.number == "GEN.LAMP-WALL-LED").unwrap()));

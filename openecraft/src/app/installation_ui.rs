@@ -3,7 +3,7 @@
 //! feed them from the protective devices of a distribution board, wired with clicks on
 //! their items, with cable lengths and voltage drops (`openecraft_core::installation`).
 
-use crate::panel_ui::site_plan::{self, SitePlan};
+use crate::panel_ui::site_plan;
 use egui::{vec2, RichText};
 use openecraft_core::installation as inst;
 use openecraft_core::model::Project;
@@ -48,7 +48,7 @@ impl InstallationUi {
     #[allow(clippy::too_many_lines)]
     pub fn section(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
         let nl = &an.netlist;
-        ui.label(RichText::new(tr("Installation")).strong());
+        ui.label(RichText::new(tr("Electrical installation")).strong());
         let parts = choices(prj);
         if self.part.is_empty() {
             self.part = parts.first().map(|p| p.0.clone()).unwrap_or_default();
@@ -174,7 +174,7 @@ impl InstallationUi {
 
     /// The installation over the site plan drawn in `size` and the clicks on it.
     pub fn overlay(&mut self, ui: &egui::Ui, prj: &mut Project, resp: &egui::Response, size: egui::Rect, bi: usize, level: u64) {
-        let plan = SitePlan { building: Some(bi), level, ..Default::default() };
+        let plan = site_plan::level_plan(prj, bi, level);
         site_plan::paint_installation(ui, size, prj, &plan, self.wiring.or(self.selected));
         if !self.picking() {
             return;
