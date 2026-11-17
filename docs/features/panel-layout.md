@@ -660,10 +660,30 @@ the site plan) on its floor plan; plugin `installation`, `openecraft_core::insta
   levels, 0.3 m for each box: an estimate for planning. *Write cable lengths*
   (`write_circuit_cables`) writes type, cross-section and length (to the half metre up)
   into the cable list, a new cable `-W<n>` for a circuit without one.
-- **Voltage drop**: ΔU = k · I · L · ρ · cos φ / A (k = 2 single-phase, √3 three-phase,
-  ρ of copper at its operating temperature of the electrical settings) with the rated
-  current of the protective device, or the load given (W, power factor), against the
-  limit of the rule sets (*Voltage drop*).
+- **Voltage drop from the supply** (*From the supply*; `total_drop_percent` of
+  `list_circuits`): per cable ΔU = k · I · L · (ρ / A · cos φ + X' · sin φ) (k = 2
+  single-phase, √3 three-phase, ρ of copper at its operating temperature of the
+  electrical settings, X' = 0.08 mΩ/m, cos φ 0.95 unless set). The circuit's cable
+  carries the rated current of its protective device, or the load given; the feeder
+  cables from the supply to the distribution board (those the short-circuit
+  calculation follows, with their lengths in the cable list) the design current of the
+  protective device upstream (load calculation) or its rated current; a planned
+  protective device takes the feeder of another one in the same board. The sum is
+  checked against the limit of the rule sets (*Voltage drop*); the tooltip tells the
+  feeder's share.
+- **Devices and single-line diagram** (*Single-line page*, `installation_overview`):
+  the socket outlets, switches and lights of the circuits get device tags in their room
+  (`+ROOM1-XD1` socket outlets, `-SF1` switches, `-EA1` lights) with their parts, and
+  generated overview pages show each circuit as a single-line diagram: its protective
+  device (single-line circuit breaker, the same device as in the schematic), its cable
+  and its items with their installation plan symbols, rooms beside them. The pages are
+  made again each time.
+- **New protective device** (*+* beside the protective device, `new_circuit_breaker`):
+  a planned miniature circuit breaker of 16 A (10 or 32 A by command), single- or
+  three-phase like the circuit, `-F<n>`, starting in the board most circuits start at.
+  It is drawn in the single-line page; *single-line → schematic* makes it a 1-pole
+  (or 3-, 4-pole by its part) breaker of the schematic, to connect to the supply. A
+  single-line circuit breaker stands for 1-, 2-, 3- and 4-pole breakers.
 - **Check** *Installation circuits*: circuits without protective device or board,
   protective devices not in the schematic or feeding several circuits, cables thinner
   than their protective device asks (current-carrying capacity under the installation

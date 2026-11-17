@@ -61,6 +61,10 @@ pub struct Layout {
     /// `crate::installation`).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub circuits: Vec<FinalCircuit>,
+    /// Ids of the overview pages drawn of the circuits (made again each time, see
+    /// `crate::installation::overview`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub installation_pages: Vec<u64>,
     /// The plot the plant stands on: its boundary, which the buildings stay inside, and
     /// the reference point that ties the plant to a geographic coordinate system (see
     /// `crate::panel::plot`).

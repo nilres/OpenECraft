@@ -29,8 +29,25 @@ const MAPPING: [(&str, &str, Option<&str>); 8] = [
     ("sl_trafo", "trafo", None),
 ];
 
-/// Further multi-line power symbols and their single-line symbol.
-const ALSO: [(&str, &str); 2] = [("cb4", "sl_cb"), ("main4", "sl_contactor")];
+/// Further multi-line power symbols and their single-line symbol: a single-line circuit
+/// breaker stands for any number of poles.
+const ALSO: [(&str, &str); 4] = [("cb1", "sl_cb"), ("cb2", "sl_cb"), ("cb4", "sl_cb"), ("main4", "sl_contactor")];
+
+/// The multi-line symbol of a single-line circuit breaker by the poles of the device's
+/// part (`cb3` without one).
+fn breaker_symbol(prj: &Project, tag: &str) -> Option<&'static str> {
+    use openecraft_parts::FnKind;
+    let numbers: Vec<&str> = prj.devices.get(tag).map(|d| d.parts.iter().map(|r| r.number.as_str()).collect()).unwrap_or_default();
+    let generic = openecraft_parts::default_catalog();
+    let parts: Vec<&openecraft_parts::Part> = numbers.into_iter().filter_map(|n| prj.parts.iter().chain(generic.iter()).find(|p| p.number == n)).collect();
+    parts.iter().flat_map(|p| p.functions.iter()).find_map(|f| match f.kind {
+        FnKind::Breaker1 => Some("cb1"),
+        FnKind::Breaker2 => Some("cb2"),
+        FnKind::Breaker3 => Some("cb3"),
+        FnKind::Breaker4 => Some("cb4"),
+        _ => None,
+    })
+}
 
 /// Multi-line power symbol generated for a single-line symbol.
 pub fn multi_of(single: &str) -> Option<&'static str> {
@@ -360,7 +377,8 @@ pub fn to_multiline(prj: &mut Project, from: usize) -> Result<Generated, String>
             skipped.push(s.tag.clone());
             continue;
         }
-        todo.push((s, m.1, m.2));
+        let multi = if s.sym == "sl_cb" { breaker_symbol(prj, &s.tag).unwrap_or(m.1) } else { m.1 };
+        todo.push((s, multi, m.2));
     }
     if todo.is_empty() {
         return Err(if src.symbols.iter().any(|s| is_single_line(prj, &s.sym)) {

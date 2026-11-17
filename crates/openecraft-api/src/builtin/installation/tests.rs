@@ -56,3 +56,20 @@ fn circuits_with_lengths_and_voltage_drops() {
     run(&mut s, "set_circuit", json!({ "circuit": "Room sockets", "remove_circuit": true })).unwrap();
     assert!(s.project().unwrap().layout.circuits.is_empty());
 }
+
+#[test]
+fn planned_breakers_and_the_single_line_page() {
+    let (mut s, room, at) = room_session();
+    run(&mut s, "add_circuit", json!({ "name": "Lights" })).unwrap();
+    let q = at(s.project().unwrap(), 0.5, 0.5);
+    run(&mut s, "place_installation", json!({ "room": room, "part": "GEN.LAMP-CEILING-LED", "x": q[0], "z": q[1], "circuit": "Lights" })).unwrap();
+    assert!(run(&mut s, "new_circuit_breaker", json!({ "circuit": "Lights", "rated": 20 })).is_err());
+    let c = run(&mut s, "new_circuit_breaker", json!({ "circuit": "Lights" })).unwrap();
+    assert!(c[0]["breaker"].as_str().unwrap().starts_with("-F"));
+    assert_eq!(c[0]["rated"], 16.0);
+    assert!(c[0]["total_drop_percent"].is_number() || c[0]["board"].is_null());
+    let o = run(&mut s, "installation_overview", json!({})).unwrap();
+    assert_eq!(o["pages"].as_array().unwrap().len(), 1);
+    let prj = s.project().unwrap();
+    assert!(prj.layout.enclosures.iter().flat_map(|e| e.items.iter()).any(|it| it.tag.ends_with("-EA1")));
+}

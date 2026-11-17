@@ -233,11 +233,13 @@ fn installation_circuits(prj: &Project) -> Table {
         (tr_const!("Length (m)"), 0.5),
         (tr_const!("Current (A)"), 0.5),
         (tr_const!("Voltage drop (%)"), 0.6),
+        (tr_const!("From the supply (%)"), 0.6),
     ]);
     let poses = crate::panel::site_poses(prj);
     let all = crate::installation::items(prj, &poses);
     let mut total = 0.0;
-    for (c, r) in prj.layout.circuits.iter().zip(crate::installation::runs(prj)) {
+    let supply = crate::installation::Supply::build(prj);
+    for (c, r) in prj.layout.circuits.iter().zip(crate::installation::runs(prj, &supply)) {
         let mut rooms: Vec<&str> = r.items.iter().filter_map(|id| all.iter().find(|p| p.item == *id)).map(|p| prj.layout.enclosures[p.room].name.as_str()).collect();
         rooms.dedup();
         let cable = format!("{} {}", c.cable, c.cable_type).trim().to_string();
@@ -253,12 +255,13 @@ fn installation_circuits(prj: &Project) -> Table {
                 format!("{:.1}", r.length),
                 r.current.map_or_else(String::new, |v| format!("{v:.1}")),
                 r.drop.map_or_else(String::new, |d| format!("{:.2}", d.1)),
+                r.total().map_or_else(String::new, |v| format!("{v:.2}")),
             ],
             None,
         );
     }
     if total > 0.0 {
-        let mut last = vec![String::new(); 9];
+        let mut last = vec![String::new(); 10];
         last[5] = tr("Total").into();
         last[6] = format!("{total:.1}");
         t.push(last, None);

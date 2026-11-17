@@ -85,6 +85,18 @@ pub static COMMANDS: &[Spec] = &[
         run: list_circuits,
     },
     Spec {
+        name: "new_circuit_breaker",
+        help: tr_const!("Gives a circuit a new planned protective device: a miniature circuit breaker (single- or three-phase like the circuit) in the board of the other circuits, drawn in the single-line diagram of the installation; single_line_to_schematic then puts it into the schematic"),
+        params: &[param("circuit", Kind::Str, CIRCUIT), optional("rated", Kind::Num, tr_const!("Rated current in A: 10, 16 or 32 (default 16)"))],
+        run: new_circuit_breaker,
+    },
+    Spec {
+        name: "installation_overview",
+        help: tr_const!("Gives the socket outlets, switches and lights of the circuits device tags and draws the circuits as single-line diagrams on overview pages (protective device, cable, items; made again each time)"),
+        params: &[],
+        run: installation_overview,
+    },
+    Spec {
         name: "write_circuit_cables",
         help: tr_const!("Writes the cable of every final circuit into the cable list: type, cross-section and length (a new cable for a circuit without one)"),
         params: &[],
@@ -112,14 +124,15 @@ fn circuit_json(prj: &Project, ci: usize, run: &inst::Run, all: &[inst::Placed])
         "name": c.name, "breaker": c.breaker, "board": board, "cable": c.cable, "cable_type": c.cable_type, "cross_section": inst::cross_section(c),
         "three_phase": c.three_phase, "load": c.load, "items": items,
         "length": r2(run.length), "rated": run.rated, "current": run.current.map(r2), "voltage": r2(run.voltage),
-        "drop_v": run.drop.map(|d| r2(d.0)), "drop_percent": run.drop.map(|d| r2(d.1)), "ampacity": run.ampacity,
+        "drop_v": run.drop.map(|d| r2(d.0)), "drop_percent": run.drop.map(|d| r2(d.1)), "feeder_drop_percent": run.upstream.map(r2),
+        "total_drop_percent": run.total().map(r2), "ampacity": run.ampacity,
     })
 }
 
 fn circuits_json(prj: &Project, only: Option<usize>) -> Value {
     let poses = panel::site_poses(prj);
     let all = inst::items(prj, &poses);
-    let runs = inst::runs(prj);
+    let runs = inst::runs(prj, &inst::Supply::build(prj));
     Value::Array(runs.iter().enumerate().filter(|(ci, _)| only.is_none_or(|o| o == *ci)).map(|(ci, r)| circuit_json(prj, ci, r, &all)).collect())
 }
 
@@ -216,6 +229,18 @@ fn set_circuit(prj: &mut Project, a: &Args) -> Result<Value, String> {
 fn list_circuits(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let only = a.str("circuit").map(|c| circuit_arg(prj, c)).transpose()?;
     Ok(circuits_json(prj, only))
+}
+
+fn new_circuit_breaker(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let ci = circuit_arg(prj, a.req("circuit"))?;
+    inst::new_breaker(prj, ci, a.num("rated").unwrap_or(16.0))?;
+    Ok(circuits_json(prj, Some(ci)))
+}
+
+fn installation_overview(prj: &mut Project, _: &Args) -> Result<Value, String> {
+    let pages = inst::overview(prj)?;
+    let names: Vec<&str> = pages.iter().map(|&k| prj.pages[k].name.as_str()).collect();
+    Ok(json!({ "pages": names }))
 }
 
 fn write_circuit_cables(prj: &mut Project, _: &Args) -> Result<Value, String> {

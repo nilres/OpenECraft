@@ -94,7 +94,8 @@ fn circuits_from_a_breaker_to_their_items() {
     connect(&mut prj, 0, s1).unwrap();
     connect(&mut prj, 0, s2).unwrap();
     assert!(connect(&mut prj, 0, 999_999).is_err());
-    let r = &runs(&prj)[0];
+    prj.layout.circuits[0].cos_phi = 1.0;
+    let r = &runs(&prj, &Supply::default())[0];
     assert_eq!(r.circuit, id);
     assert!(r.from_board);
     assert_eq!(r.items, vec![s1, s2]);
@@ -107,7 +108,7 @@ fn circuits_from_a_breaker_to_their_items() {
     assert!((r.voltage - 230.94).abs() < 0.1);
     // A load given: its current.
     prj.layout.circuits[0].load = 2300.0;
-    assert!((runs(&prj)[0].current.unwrap() - 2300.0 / r.voltage).abs() < 1e-3);
+    assert!((runs(&prj, &Supply::default())[0].current.unwrap() - 2300.0 / r.voltage).abs() < 1e-3);
     // The breaker now has a circuit; an item moves to another circuit.
     let nl = Netlist::build(&prj, false);
     assert_eq!(breakers(&prj, &nl).iter().find(|b| b.tag == tag).unwrap().circuit.as_deref(), Some(prj.layout.circuits[0].name.as_str()));
@@ -128,7 +129,10 @@ fn checks_and_cables() {
     add_circuit(&mut prj, "Sockets", &tag, false).unwrap();
     add_circuit(&mut prj, "Lights", "", false).unwrap();
     connect(&mut prj, 0, s).unwrap();
-    let keys = |prj: &Project| -> Vec<String> { problems(prj, &Netlist::build(prj, false)).iter().map(|i| i.message()).collect() };
+    let keys = |prj: &Project| -> Vec<String> {
+        let (nl, open) = (Netlist::build(prj, true), Netlist::build(prj, false));
+        problems(prj, &nl, &crate::netlist::connections(prj, &nl, &open)).iter().map(|i| i.message()).collect()
+    };
     let p = keys(&prj);
     assert!(p.iter().any(|m| m.contains("Lights") && m.contains("no protective device")), "{p:?}");
     assert!(p.iter().any(|m| m.contains("in no circuit")), "{p:?}");
@@ -147,9 +151,104 @@ fn checks_and_cables() {
     let c = &prj.layout.circuits[0];
     let cable = prj.cables.iter().find(|x| x.tag == c.cable).unwrap();
     assert_eq!(cable.cable_type, DEFAULT_CABLE);
-    assert_eq!(cable.length, (runs(&prj)[0].length * 2.0).ceil() / 2.0);
+    assert_eq!(cable.length, (runs(&prj, &Supply::default())[0].length * 2.0).ceil() / 2.0);
     assert_ne!(prj.layout.circuits[0].cable, prj.layout.circuits[1].cable);
     // Gone items are reported.
     prj.layout.enclosures[ri].items.retain(|i| i.id != s);
     assert!(keys(&prj).iter().any(|m| m.contains("are gone")));
+}
+
+#[test]
+fn reactance_counts_with_the_power_factor() {
+    let (prj, _) = room();
+    let rho = prj.electrical.conditions.rho_hot();
+    let (du1, _) = drop(&prj, 10.0, 20.0, 1.5, 1.0, 230.0, false);
+    assert!((du1 - 2.0 * 10.0 * 20.0 * rho / 1.5).abs() < 1e-4);
+    let (du, pct) = drop(&prj, 10.0, 20.0, 1.5, 0.8, 230.0, false);
+    let expect = 2.0 * 10.0 * 20.0 * (rho / 1.5 * 0.8 + crate::shortcircuit::CABLE_REACTANCE * 0.6);
+    assert!((du - expect).abs() < 1e-4 && (pct - du / 230.0 * 100.0).abs() < 1e-4);
+    let (d3, _) = drop(&prj, 10.0, 20.0, 1.5, 1.0, 400.0, true);
+    assert!((d3 - du1 * 3f32.sqrt() / 2.0).abs() < 1e-4);
+}
+
+#[test]
+fn the_drop_counts_from_the_supply() {
+    // The building example: its distribution has feeder cables with lengths.
+    let mut prj = crate::sample::example("building_services").unwrap();
+    let supply = Supply::build(&prj);
+    let nl = Netlist::build(&prj, true);
+    let fed = breakers(&prj, &nl).into_iter().find(|b| supply.feeders.get(&b.tag).is_some_and(|f| !f.is_empty()) && prj.layout.find_device(&b.tag).is_some()).expect("a breaker behind a feeder cable");
+    let ri = panel::rooms(&prj.layout)[0];
+    let s = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
+    add_circuit(&mut prj, "Sockets", &fed.tag, false).unwrap();
+    connect(&mut prj, 0, s).unwrap();
+    let r = &runs(&prj, &supply)[0];
+    let up = r.upstream.expect("feeder drop");
+    assert!(up > 0.0, "{up}");
+    assert!((r.total().unwrap() - r.drop.unwrap().1 - up).abs() < 1e-5);
+    // Without the supply's cables only the circuit's own.
+    assert_eq!(runs(&prj, &Supply::default())[0].upstream, None);
+}
+
+#[test]
+fn items_become_devices_on_a_single_line_page() {
+    let (mut prj, ri) = room();
+    let tag = {
+        let nl = Netlist::build(&prj, false);
+        breakers(&prj, &nl).into_iter().find(|b| b.tag.ends_with("-F2")).unwrap().tag
+    };
+    let s = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.4, 0.4); place(&mut prj, ri, "GEN.LAMP-CEILING-LED", q) }.unwrap();
+    add_circuit(&mut prj, "Room", &tag, false).unwrap();
+    connect(&mut prj, 0, s).unwrap();
+    connect(&mut prj, 0, l).unwrap();
+    let pages = prj.pages.len();
+    let made = overview(&mut prj).unwrap();
+    assert_eq!((made.len(), prj.pages.len()), (1, pages + 1));
+    let room_name = prj.layout.enclosures[ri].name.clone();
+    let socket = prj.layout.enclosures[ri].item(s).unwrap().clone();
+    assert_eq!((socket.kind, socket.tag.clone()), (ItemKind::Device, format!("{room_name}-XD1")));
+    assert_eq!(prj.layout.enclosures[ri].item(l).unwrap().tag, format!("{room_name}-EA1"));
+    assert_eq!(prj.devices[&socket.tag].parts[0].number, "GEN.SOCKET-F-UP");
+    let page = &prj.pages[made[0]];
+    assert_eq!(page.kind, crate::model::PageKind::Overview);
+    let syms: Vec<(&str, &str)> = page.symbols.iter().map(|x| (x.sym.as_str(), x.tag.as_str())).collect();
+    assert!(syms.contains(&("sl_cb", tag.as_str())) && syms.contains(&("inst_socket2", socket.tag.as_str())) && syms.iter().any(|x| x.0 == "inst_lamp"), "{syms:?}");
+    // The breaker drawn single-line is no mismatch with its 1-pole schematic symbol.
+    let idx = crate::index::Index::build(&prj);
+    let dev = crate::singleline::devices(&prj, &idx).into_iter().find(|d| d.tag == tag).unwrap();
+    assert_eq!(dev.status, crate::singleline::Status::Engineered);
+    // Made again: the page is replaced, the tags stay.
+    assert_eq!(link_devices(&mut prj), 0);
+    overview(&mut prj).unwrap();
+    assert_eq!(prj.pages.len(), pages + 1);
+}
+
+#[test]
+fn planned_breakers_for_new_circuits() {
+    let (mut prj, ri) = room();
+    let s = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
+    let f2 = {
+        let nl = Netlist::build(&prj, false);
+        breakers(&prj, &nl).into_iter().find(|b| b.tag.ends_with("-F2")).unwrap().tag
+    };
+    add_circuit(&mut prj, "Old", &f2, false).unwrap();
+    add_circuit(&mut prj, "New", "", false).unwrap();
+    connect(&mut prj, 1, s).unwrap();
+    assert!(new_breaker(&mut prj, 1, 13.0).is_err());
+    let tag = new_breaker(&mut prj, 1, 16.0).unwrap();
+    assert!(tag.starts_with("-F"));
+    assert_eq!(crate::protection::of_device(&prj, &tag).unwrap().rated, 16.0);
+    // It starts at the board of the other circuit.
+    assert_eq!(board_of(&prj, &prj.layout.circuits[1]), board_of(&prj, &prj.layout.circuits[0]));
+    let r = &runs(&prj, &Supply::default())[1];
+    assert_eq!(r.rated, Some(16.0));
+    assert!(r.from_board && r.drop.is_some());
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let msgs: Vec<String> = problems(&prj, &nl, &crate::netlist::connections(&prj, &nl, &open)).iter().map(|i| i.message()).collect();
+    assert!(msgs.iter().any(|m| m.contains(&tag) && m.contains("planned")), "{msgs:?}");
+    // The single-line diagram turns it into a 1-pole breaker of the schematic.
+    let page = overview(&mut prj).unwrap()[0];
+    let made = crate::singleline::to_multiline(&mut prj, page).unwrap();
+    assert!(prj.pages[made.page].symbols.iter().any(|x| x.tag == tag && x.sym == "cb1"));
 }

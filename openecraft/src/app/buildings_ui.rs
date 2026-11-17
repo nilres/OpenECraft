@@ -464,7 +464,7 @@ fn entry_label(choices: &[(u64, String)], id: u64) -> String {
 impl App {
     #[allow(clippy::too_many_lines)]
     pub(super) fn buildings_pane(&mut self, ui: &mut egui::Ui) {
-        let (prj, st, nl) = (&mut self.session.prj, &mut self.buildings_ui, &self.session.analysis.netlist);
+        let (prj, st, an) = (&mut self.session.prj, &mut self.buildings_ui, &self.session.analysis);
         ui.horizontal_wrapped(|ui| {
             if icons::text_button(ui, Icon::Plus, tr("New building")).on_hover_text(tr("A building with one level at ground level, beside what stands in the plant")).clicked() {
                 let name = bld::free_building_name(&prj.layout);
@@ -530,7 +530,7 @@ impl App {
             ui.separator();
             links_section(ui, prj, st);
             ui.separator();
-            open_plan = site_plan_section(ui, prj, st, nl);
+            open_plan = site_plan_section(ui, prj, st, an);
         });
         if let Some(level) = open_plan {
             self.io.open(ui.ctx(), crate::io::Purpose::FloorPlan(level));
@@ -1155,7 +1155,7 @@ fn links_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi) {
 /// windows and the links between the buildings.
 /// The site plan with a level chosen, the floor plan on paper under that level; gives
 /// the level a floor plan file is to be opened for.
-fn site_plan_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, nl: &openecraft_core::netlist::Netlist) -> Option<u64> {
+fn site_plan_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, an: &openecraft_core::analysis::Analysis) -> Option<u64> {
     let layout = &prj.layout;
     let b = layout.buildings.get(st.sel)?;
     ui.horizontal(|ui| {
@@ -1176,7 +1176,7 @@ fn site_plan_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi,
     }
     if st.level != 0 {
         ui.separator();
-        st.inst.section(ui, prj, nl);
+        st.inst.section(ui, prj, an);
     }
     // Clicks are for the floor plan's points, otherwise for the installation.
     let installing = st.level != 0 && st.inst.picking() && !st.floor.picking();

@@ -262,6 +262,7 @@ Circuit {} has no protective device	Stromkreis {} hat kein Schutzorgan	Le circui
 Circuit {}: no protective device {} in the schematic	Stromkreis {}: kein Schutzorgan {} im Schaltplan	Circuit {} : aucun dispositif de protection {} dans le schéma	Circuito {}: no hay dispositivo de protección {} en el esquema
 Circuit {}: protective device {} feeds other circuits too	Stromkreis {}: Schutzorgan {} speist auch andere Stromkreise	Circuit {} : le dispositif de protection {} alimente aussi d'autres circuits	Circuito {}: el dispositivo de protección {} alimenta también otros circuitos
 Circuit {}: protective device {} is in no distribution board of the layout	Stromkreis {}: Schutzorgan {} ist in keinem Verteiler des Aufbaus	Circuit {} : le dispositif de protection {} n'est dans aucun tableau de l'implantation	Circuito {}: el dispositivo de protección {} no está en ningún cuadro de la disposición
+Circuit {}: protective device {} is planned only: generate it into the schematic from the single-line diagram and connect it to the supply	Stromkreis {}: Schutzorgan {} ist nur geplant: aus dem Übersichtsschaltplan in den Stromlaufplan erzeugen und an die Einspeisung anschließen	Circuit {} : le dispositif de protection {} est seulement prévu : générez-le dans le schéma depuis l'unifilaire et raccordez-le à l'alimentation	Circuito {}: el dispositivo de protección {} solo está previsto: genérelo en el esquema desde el unifilar y conéctelo a la alimentación
 Circuit {}: voltage drop {} % over the limit of {} % ({} m)	Stromkreis {}: Spannungsfall {} % über der Grenze von {} % ({} m)	Circuit {} : chute de tension de {} % au-dessus de la limite de {} % ({} m)	Circuito {}: caída de tensión de {} % por encima del límite de {} % ({} m)
 Circuit {}: {} mm² carry {} A, less than the {} A of its protective device	Stromkreis {}: {} mm² tragen {} A, weniger als die {} A seines Schutzorgans	Circuit {} : {} mm² supportent {} A, moins que les {} A de son dispositif de protection	Circuito {}: {} mm² soportan {} A, menos que los {} A de su dispositivo de protección
 Circuit {}: {} of its items are gone	Stromkreis {}: {} seiner Betriebsmittel fehlen	Circuit {} : {} de ses éléments ont disparu	Circuito {}: faltan {} de sus elementos
@@ -620,6 +621,7 @@ Frequency converter	Frequenzumrichter	Variateur de fréquence	Variador de frecue
 Frequency meter	Frequenzmesser	Fréquencemètre	Frecuencímetro
 From end	Vom Ende	Depuis la fin	Desde el final
 From start	Vom Anfang	Depuis le début	Desde el inicio
+From the supply (%)	Ab Einspeisung (%)	Depuis l'alimentation (%)	Desde la alimentación (%)
 Frozen route of {} is no longer possible and was routed again	Eingefrorene Verlegung von {} ist nicht mehr möglich und wurde neu verlegt	Le tracé figé de {} n'est plus possible et a été re-routé	El recorrido congelado de {} ya no es posible y se ha vuelto a tender
 Full page name	Vollständiger Seitenname	Nom de page complet	Nombre completo de la página
 Full page name (=A1+CAB1/3)	Vollständiger Seitenname (=A1+CAB1/3)	Nom complet de la page (=A1+CAB1/3)	Nombre completo de la página (=A1+CAB1/3)
@@ -1021,6 +1023,8 @@ Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutralleiter müsse
 Next inspection	Nächste Prüfung	Prochaine inspection	Próxima inspección
 Next page number in section	Nächste Seitennummer im Abschnitt	Numéro de page suivant dans la section	Número de página siguiente en la sección
 Nibbling	Nibbeln	Grignotage	Roedura
+No circuit breaker of {} A	Kein Leitungsschutzschalter mit {} A	Aucun disjoncteur de {} A	Ningún interruptor automático de {} A
+No circuit yet	Noch kein Stromkreis	Pas encore de circuit	Todavía no hay circuito
 No connection {}	Keine Verbindung {}	Aucune liaison {}	No hay conexión {}
 No device box with this id on the page	Keine Gerätebox mit dieser ID auf der Seite	Aucune boîte d'appareil avec cet ID sur la page	No hay ninguna caja de dispositivo con este ID en la página
 No device connection point with this id on the page	Kein Geräteanschlusspunkt mit dieser ID auf der Seite	Aucun point de connexion d'appareil avec cet ID sur la page	No hay ningún punto de conexión del dispositivo con este ID en la página
@@ -1884,6 +1888,7 @@ Unknown macro	Unbekanntes Makro	Macro inconnue	Macro desconocida
 Unknown macro box	Unbekannter Makrokasten	Boîte de macro inconnue	Caja de macro desconocida
 Unknown object: {}	Unbekanntes Objekt: {}	Objet inconnu : {}	Objeto desconocido: {}
 Unknown revision	Unbekannte Revision	Révision inconnue	Revisión desconocida
+Unknown symbol	Unbekanntes Symbol	Symbole inconnu	Símbolo desconocido
 Unknown symbol '{}'	Unbekanntes Symbol '{}'	Symbole inconnu '{}'	Símbolo desconocido '{}'
 Unknown tool {}	Unbekanntes Werkzeug {}	Outil inconnu {}	Herramienta desconocida {}
 Unsupported PDF filter {}	Nicht unterstützter PDF-Filter {}	Filtre PDF non pris en charge {}	Filtro PDF no compatible {}

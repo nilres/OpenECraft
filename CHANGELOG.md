@@ -10,11 +10,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   click on the floor plan of a level (*Buildings* pane) and drawn there with the
   symbols of installation plans; final circuits feed them from a protective device of
   the distribution board (spare ones marked) through a cable wired item by item. The
-  cable length along the installation zones and the voltage drop are worked out,
-  checked against the rule sets and written into the cable list; report *Installation
+  cable length along the installation zones and the voltage drop from the supply
+  (feeder cables to the board, cable reactance) are worked out, checked against the
+  rule sets and written into the cable list. The items become devices with tags, a
+  generated single-line page shows the circuits, and a circuit without a protective
+  device gets a planned one for the single-line diagram. Report *Installation
   circuits*, check *Installation circuits*, plugin `installation` (`place_installation`,
-  `list_breakers`, `add_circuit`, `set_circuit`, `list_circuits`,
-  `write_circuit_cables`) ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
+  `list_breakers`, `add_circuit`, `set_circuit`, `list_circuits`, `new_circuit_breaker`,
+  `installation_overview`, `write_circuit_cables`) ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
 - **Floor plans on paper under the levels of a building:** a scan or drawing (PDF,
   PNG, JPEG, TIFF, …) goes under a level in the *Buildings* pane, to scale (measured on
   a dimension of the drawing) and in place; *Find rooms* finds the walls, doors,

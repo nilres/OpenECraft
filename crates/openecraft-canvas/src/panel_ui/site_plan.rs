@@ -344,7 +344,7 @@ pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SiteP
     let frame = frame(size, prj, plan);
     let items = installation_items(prj, plan);
     let weak = ui.visuals().text_color();
-    for (k, (c, r)) in prj.layout.circuits.iter().zip(inst::runs(prj)).enumerate() {
+    for (k, (c, r)) in prj.layout.circuits.iter().zip(inst::runs(prj, &inst::Supply::default())).enumerate() {
         if !r.items.iter().any(|id| items.iter().any(|p| p.item == *id)) {
             continue;
         }

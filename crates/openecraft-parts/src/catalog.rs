@@ -344,6 +344,17 @@ Breaking capacity: 10 kA".into();
     p.tech_data = "Power loss: 2 W
 Characteristic: B
 Breaking capacity: 10 kA".into();
+    // Final circuits of buildings: socket outlets and lights at 16 A.
+    let p = c.add("GEN.MCB-1P-B16", "Miniature circuit breaker 1P B16", sd, "Circuit breaker", "F", 8.9, (18.0, 90.0, 70.0, 0.12), &[(Breaker1, "1 2")]);
+    p.current = "16 A".into();
+    p.tech_data = "Power loss: 2.5 W
+Characteristic: B
+Breaking capacity: 10 kA".into();
+    let p = c.add("GEN.MCB-3P-B16", "Miniature circuit breaker 3P B16", sd, "Circuit breaker", "Q", 27.3, (54.0, 90.0, 70.0, 0.36), &[(Breaker3, main3)]);
+    p.current = "16 A".into();
+    p.tech_data = "Power loss: 7 W
+Characteristic: B
+Breaking capacity: 10 kA".into();
     // Auxiliary switch beside the breakers: the accessory names the parts it fits.
     let p = c.add("GEN.MCB-AUX-1CO", "Auxiliary switch for miniature circuit breakers, 1 CO, side mounting, 1/2 module", sd, "Auxiliary switch", "F", 14.2, (9.0, 90.0, 70.0, 0.03), &[(Changeover, "11 12 14")]);
     p.current = "6 A".into();

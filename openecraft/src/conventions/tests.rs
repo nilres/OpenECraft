@@ -198,7 +198,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("plc", &["frame", "model", "netlist", "plc_hw", "symbols", "symlib", "text"]),
     ("plc_hw", &["devdesc", "issue", "model", "ops", "parts", "plc"]),
     ("devdesc", &["model", "parts", "xml"]),
-    ("installation", &["electrical", "geom", "issue", "model", "netlist", "panel", "parts", "protection", "rules", "sizing"]),
+    ("installation", &["electrical", "frame", "geom", "issue", "loads", "model", "netlist", "ops", "panel", "parts", "protection", "rules", "shortcircuit", "sizing", "symbols"]),
     ("electrical", &["model", "netlist", "parts", "potentials", "protection", "sizing"]),
     ("protection", &["electrical", "model", "parts", "sizing"]),
     ("sizing", &["issue", "model", "netlist", "parts", "potentials", "production", "rules", "symbols", "wirenum"]),

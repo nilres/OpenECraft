@@ -7,7 +7,7 @@ use crate::panel_ui::site_plan::{self, SitePlan};
 use egui::{vec2, RichText};
 use openecraft_core::installation as inst;
 use openecraft_core::model::Project;
-use openecraft_core::netlist::Netlist;
+use openecraft_core::analysis::Analysis;
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
 
@@ -46,7 +46,8 @@ impl InstallationUi {
 
     /// Placing items and the final circuits.
     #[allow(clippy::too_many_lines)]
-    pub fn section(&mut self, ui: &mut egui::Ui, prj: &mut Project, nl: &Netlist) {
+    pub fn section(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
+        let nl = &an.netlist;
         ui.label(RichText::new(tr("Installation")).strong());
         let parts = choices(prj);
         if self.part.is_empty() {
@@ -65,7 +66,7 @@ impl InstallationUi {
             }
         });
         let breakers = inst::breakers(prj, nl);
-        let runs = inst::runs(prj);
+        let runs = inst::runs(prj, &inst::Supply::of(prj, nl, &an.connections));
         let limit = openecraft_core::rules::limits(prj).voltage_drop;
         ui.horizontal_wrapped(|ui| {
             ui.label(RichText::new(tr("Circuits")).strong());
@@ -83,14 +84,21 @@ impl InstallationUi {
             if !prj.layout.circuits.is_empty() && ui.button(tr("Write cable lengths")).on_hover_text(tr("Writes the cable of every circuit into the cable list with its type, cross-section and length")).clicked() {
                 self.status = tr_fmt!("{} cables written", inst::write_cables(prj));
             }
+            if !prj.layout.circuits.is_empty() && ui.button(tr("Single-line page")).on_hover_text(tr("Gives the items device tags and draws the circuits as single-line diagrams on overview pages (made again each time)")).clicked() {
+                self.status = match inst::overview(prj) {
+                    Ok(pages) => tr_fmt!("Single-line diagram of the circuits on page {}", pages.iter().map(|&k| prj.pages[k].name.clone()).collect::<Vec<_>>().join(", ")),
+                    Err(e) => e,
+                };
+            }
         });
         if prj.layout.circuits.is_empty() {
             ui.weak(tr("No circuit yet: a circuit feeds socket outlets and lights from a protective device of the distribution board (single-line or schematic)."));
         }
         let mut remove = None;
-        egui::Grid::new("instcircuits").num_columns(7).striped(true).spacing([8.0, 4.0]).show(ui, |ui| {
+        let mut planned = None;
+        egui::Grid::new("instcircuits").num_columns(8).striped(true).spacing([8.0, 4.0]).show(ui, |ui| {
             if !prj.layout.circuits.is_empty() {
-                for h in [tr("Name"), tr("Protective device"), tr("Cross-section"), tr("Items"), tr("Length"), tr("Voltage drop"), ""] {
+                for h in [tr("Name"), tr("Protective device"), tr("Cross-section"), tr("Items"), tr("Length"), tr("Voltage drop"), tr("From the supply"), ""] {
                     ui.label(RichText::new(h).weak());
                 }
                 ui.end_row();
@@ -105,11 +113,16 @@ impl InstallationUi {
                     }
                 });
                 let shown = if c.breaker.is_empty() { tr("None").to_string() } else { c.breaker.clone() };
-                egui::ComboBox::from_id_salt(("instbreaker", c.id)).selected_text(shown).width(110.0).show_ui(ui, |ui| {
-                    ui.selectable_value(&mut c.breaker, String::new(), tr("None"));
-                    for b in &breakers {
-                        let text = if b.spare { tr_fmt!("{} {} {} A (spare)", b.tag, b.characteristic, format!("{:.0}", b.rated)) } else { format!("{} {} {:.0} A", b.tag, b.characteristic, b.rated) };
-                        ui.selectable_value(&mut c.breaker, b.tag.clone(), text);
+                ui.horizontal(|ui| {
+                    egui::ComboBox::from_id_salt(("instbreaker", c.id)).selected_text(shown).width(110.0).show_ui(ui, |ui| {
+                        ui.selectable_value(&mut c.breaker, String::new(), tr("None"));
+                        for b in &breakers {
+                            let text = if b.spare { tr_fmt!("{} {} {} A (spare)", b.tag, b.characteristic, format!("{:.0}", b.rated)) } else { format!("{} {} {:.0} A", b.tag, b.characteristic, b.rated) };
+                            ui.selectable_value(&mut c.breaker, b.tag.clone(), text);
+                        }
+                    });
+                    if icons::button(ui, Icon::Plus, tr("A new planned circuit breaker of 16 A for the circuit, drawn in the single-line diagram")).clicked() {
+                        planned = Some(k);
                     }
                 });
                 let mut mm2 = inst::cross_section(c);
@@ -119,8 +132,13 @@ impl InstallationUi {
                 ui.label(r.items.len().to_string());
                 ui.label(format!("{:.1} m", r.length));
                 match r.drop {
-                    Some((_, pct)) if pct > limit => ui.colored_label(crate::style::warning(), format!("{pct:.2} %")),
                     Some((_, pct)) => ui.label(format!("{pct:.2} %")),
+                    None => ui.weak("–"),
+                };
+                let feeder = r.upstream.map_or_else(|| tr("No feeder cables with lengths up to the board").to_string(), |u| tr_fmt!("Of it the feeder cables up to the board: {} %", format!("{u:.2}")));
+                match r.total() {
+                    Some(pct) if pct > limit => ui.colored_label(crate::style::warning(), format!("{pct:.2} %")).on_hover_text(feeder),
+                    Some(pct) => ui.label(format!("{pct:.2} %")).on_hover_text(feeder),
                     None => ui.weak("–"),
                 };
                 ui.horizontal(|ui| {
@@ -137,6 +155,12 @@ impl InstallationUi {
                 ui.end_row();
             }
         });
+        if let Some(k) = planned {
+            match inst::new_breaker(prj, k, 16.0) {
+                Ok(tag) => self.status = tr_fmt!("{} planned: draw the single-line page, then make it in the schematic from it", tag),
+                Err(e) => self.status = e,
+            }
+        }
         if let Some(k) = remove {
             let id = prj.layout.circuits.remove(k).id;
             if self.wiring == Some(id) {
