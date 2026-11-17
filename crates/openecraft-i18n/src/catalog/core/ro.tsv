@@ -283,6 +283,7 @@ Control transformer TC (GB)	Transformator de comandă TC (GB)
 Control valve	Robinet de reglare
 Control voltage	Tensiune de comandă
 Control voltage type	Tipul tensiunii de comandă
+Conventional touch voltage limit UL (V)	Tensiune de atingere limită convențională UL (V)
 Converted from file format {} to {}: {}	Convertit din formatul de fișier {} în {}: {}
 Coolant	Agent de răcire
 Cooler	Răcitor
@@ -346,6 +347,7 @@ DWG export failed: {}	Exportul DWG nu a reușit: {}
 Data sheet	Fișă tehnică
 Date of the approval of the last revision	Data aprobării ultimei revizii
 Date of the last revision	Data ultimei revizii
+Default {} ({})	Implicit {} ({})
 Degree of protection	Grad de protecție
 Delete projects	Ștergere proiecte
 Delivery date	Data livrării
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Oprire de urgență SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Dispozitivele de oprire de urgență necesită o valoare B10d (ISO 13849-1, anexa C)
 Emergency stop, mushroom head (NFPA)	Oprire de urgență, buton ciupercă (NFPA)
 Empty (IEC 60204-1)	Gol (IEC 60204-1)
+Empty: removes the item	Gol: elimină punctul
 Enclosure body	Corpul carcasei
 Enclosure climate	Climatizarea carcasei
 Enclosure light	Lampă de carcasă
@@ -790,7 +793,10 @@ Load calculation	Calculul sarcinii
 Loads and power supplies	Consumatori și surse de alimentare
 Loads behind it: {}	Consumatori în aval: {}
 Location of the page	Locul de montare al paginii
+Longest RCD trip time at 5 × IΔn (ms)	Timp maxim de declanșare DDR la 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Timp maxim de declanșare DDR la IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Ansambluri de aparataj de joasă tensiune: factor de diversitate nominal, încălzire, documentație
+Lowest insulation resistance of the mains (MΩ)	Rezistența de izolație minimă a rețelei (MΩ)
 Lubricant	Lubrifiant
 Luminaire, fluorescent	Corp de iluminat, fluorescent
 MAC address	Adresă MAC
@@ -840,6 +846,7 @@ Maximum installation altitude	Altitudine maximă de instalare
 Maximum operating temperature	Temperatură maximă de funcționare
 Maximum pressure	Presiune maximă
 Measured variable	Mărime măsurată
+Measures against electromagnetic disturbances	Măsuri împotriva perturbațiilor electromagnetice
 Measuring instrument	Aparat de măsură
 Measuring instruments	Aparate de măsură
 Measuring point	Punct de măsurare
@@ -934,6 +941,7 @@ Network (m)	Rețea (m)
 Neutral (N)	Neutru (N)
 Neutral and protective conductors identified	Conductoare de nul și de protecție marcate
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Conductoarele neutre trebuie să fie albastru deschis (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Punct propriu nou al examinării vizuale
 Nibbling	Nibelare
 No connection {}	Nicio conexiune {}
 No devices to add to the single-line diagram	Niciun dispozitiv de adăugat în schema monofilară
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Prezentare generală (neevaluată)
 Overview / single-line	Prezentare generală / monofilar
 Overvoltage category	Categorie de supratensiune
 Overvoltage relay	Releu de supratensiune
+Own item {}	Punct propriu {}
 P&ID / process (ISO 10628)	P&ID / procese (ISO 10628)
 P&ID number	Număr P&ID
 PCT loop {} has no instrument in the P&ID	Bucla AMC {} nu are niciun instrument în P&ID
@@ -1462,6 +1471,7 @@ Single, free-standing	Individual, independent
 Single, wall mounted	Individual, montat pe perete
 Single-line / overview	Monofilar / prezentare generală
 Single-line diagram	Schemă monofilară
+Single-pole switching devices in the line conductors	Aparate de comutație unipolare în conductoarele de fază
 Siren	Sirenă
 Site address	Adresa amplasamentului
 Size (mm)	Dimensiune (mm)
@@ -1870,6 +1880,7 @@ in work	în lucru
 in {}	în {}
 in-line	trecere
 incl.	incl.
+instead of {}	în loc de {}
 ip (kA)	ip (kA)
 is	este
 is at least	este cel puțin

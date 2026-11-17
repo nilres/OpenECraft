@@ -273,6 +273,7 @@ Control transformer TC (GB)	控制变压器 TC (GB)
 Control valve	调节阀
 Control voltage	控制电压
 Control voltage type	控制电压类型
+Conventional touch voltage limit UL (V)	约定接触电压限值 UL (V)
 Converted from file format {} to {}: {}	已从文件格式 {} 转换为 {}：{}
 Coolant	冷却液
 Cooler	冷却器
@@ -336,6 +337,7 @@ DWG export failed: {}	DWG 导出失败：{}
 Data sheet	数据表
 Date of the approval of the last revision	最新修订的批准日期
 Date of the last revision	最新修订的日期
+Default {} ({})	默认 {} ({})
 Degree of protection	防护等级
 Delete projects	删除项目
 Delivery date	交货日期
@@ -459,6 +461,7 @@ Emergency stop SB (GOST)	急停 SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	急停设备需要 B10d 值（ISO 13849-1，附录 C）
 Emergency stop, mushroom head (NFPA)	急停，蘑菇头 (NFPA)
 Empty (IEC 60204-1)	空 (IEC 60204-1)
+Empty: removes the item	空：删除该项目
 Enclosure body	柜体
 Enclosure climate	机柜温控
 Enclosure light	机柜照明灯
@@ -778,7 +781,10 @@ Load calculation	负载计算
 Loads and power supplies	负载和电源
 Loads behind it: {}	下游负载：{}
 Location of the page	页的位置
+Longest RCD trip time at 5 × IΔn (ms)	5 × IΔn 时 RCD 最长动作时间 (ms)
+Longest RCD trip time at IΔn (ms)	IΔn 时 RCD 最长动作时间 (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	低压成套开关设备：额定分散系数、温升、文档
+Lowest insulation resistance of the mains (MΩ)	电网最小绝缘电阻 (MΩ)
 Lubricant	润滑剂
 Luminaire, fluorescent	荧光灯具
 MAC address	MAC 地址
@@ -828,6 +834,7 @@ Maximum installation altitude	最大安装海拔
 Maximum operating temperature	最高工作温度
 Maximum pressure	最大压力
 Measured variable	测量变量
+Measures against electromagnetic disturbances	EMC 措施
 Measuring instrument	测量仪表
 Measuring instruments	测量仪表
 Measuring point	测量点
@@ -921,6 +928,7 @@ Network (m)	网络 (m)
 Neutral (N)	中性线 (N)
 Neutral and protective conductors identified	中性线和保护导体已标识
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	中性导体必须为浅蓝色 (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	目视检查的新自定义项目
 Nibbling	步冲
 No connection {}	没有连接 {}
 No devices to add to the single-line diagram	没有要添加到单线图的设备
@@ -1025,6 +1033,7 @@ Overview (not evaluated)	概览（不评估）
 Overview / single-line	概览 / 单线
 Overvoltage category	过电压类别
 Overvoltage relay	过电压继电器
+Own item {}	自定义项目 {}
 P&ID / process (ISO 10628)	P&ID / 过程 (ISO 10628)
 P&ID number	P&ID 编号
 PCT loop {} has no instrument in the P&ID	PCT 回路 {} 在 P&ID 中没有仪表
@@ -1446,6 +1455,7 @@ Single, free-standing	单柜，落地式
 Single, wall mounted	单柜，壁挂式
 Single-line / overview	单线 / 概览
 Single-line diagram	单线图
+Single-pole switching devices in the line conductors	相线中的单极开关装置
 Siren	警报器
 Site address	安装场所地址
 Size (mm)	大小 (mm)
@@ -1849,6 +1859,7 @@ in work	处理中
 in {}	在 {} 中
 in-line	直通
 incl.	含
+instead of {}	而不是 {}
 ip (kA)	ip (kA)
 is	等于
 is at least	至少为

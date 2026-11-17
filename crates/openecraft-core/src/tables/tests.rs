@@ -187,13 +187,13 @@ fn inspection_results_are_entered_in_the_table() {
     assert_eq!(f1.cells[2], "C 6 A");
     assert_eq!(f1.cells[col("Result")], crate::inspection::Verdict::NotTested.title());
     let (_, open) = nets(&prj);
-    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Insulation resistance (MΩ)"), "> 500").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Insulation L–PE (MΩ)"), "> 500").unwrap());
     assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Function test"), "OK").unwrap());
     assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Loop impedance Zs (Ω)"), "lots").is_err());
     assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Result"), "fine").is_err());
     assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-K1", col("Remark"), "x").unwrap_err().contains("-K1"));
     let f1 = table(&prj, TableKind::Inspection).into_iter().find(|r| r.key == "-F1").unwrap();
-    assert_eq!((f1.cells[col("Insulation resistance (MΩ)")].as_str(), f1.cells[col("Function test")].as_str()), ("> 500", openecraft_i18n::tr("OK")));
+    assert_eq!((f1.cells[col("Insulation L–PE (MΩ)")].as_str(), f1.cells[col("Function test")].as_str()), ("> 500", openecraft_i18n::tr("OK")));
     assert_eq!(f1.cells[col("Result")], crate::inspection::Verdict::Incomplete.title());
     // The CSV round trip.
     let csv = to_csv(TableKind::Inspection, &table(&prj, TableKind::Inspection)).replace("> 500", "320");
@@ -208,8 +208,16 @@ fn inspection_data_is_entered_in_the_table() {
     let mut prj = demo_project();
     let (nl, open) = nets(&prj);
     let rows = rows(&prj, &nl, &open, TableKind::InspectionData);
-    // The demo is a TN system: no IT tests; its power supply is a source of 4 values.
-    assert_eq!(rows.len(), crate::inspection::HeaderField::ALL.len() - 2 + crate::inspection::CHECKS.len() + 4 * crate::inspection::sources(&prj).len());
+    // The demo is a TN system: no IT tests; its power supply is a source of 4 values;
+    // a row adds an own item; the limits.
+    let expected = crate::inspection::HeaderField::ALL.len() - 2 + crate::inspection::CHECKS.len() + 1 + 4 * crate::inspection::sources(&prj).len() + crate::inspection::LIMITS.len();
+    assert_eq!(rows.len(), expected);
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "own.1.title", 1, "Emergency lighting").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "limit.loop_factor", 1, "0.8").unwrap());
+    let rows = table(&prj, TableKind::InspectionData);
+    assert!(rows.iter().any(|r| r.key == "own.1" && r.cells[0] == "Emergency lighting"));
+    assert!(rows.iter().any(|r| r.key == "own.2.title"));
+    assert_eq!(rows.iter().find(|r| r.key == "limit.loop_factor").unwrap().cells[1], "0.8");
     let source = crate::inspection::sources(&prj)[0].device.clone();
     assert!(set_cell(&mut prj, &open, TableKind::InspectionData, &format!("source.{source}.measure"), 1, "PELV").unwrap());
     assert_eq!(prj.inspection.source(&source).unwrap().measure, "pelv");

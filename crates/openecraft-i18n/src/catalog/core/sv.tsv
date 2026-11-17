@@ -283,6 +283,7 @@ Control transformer TC (GB)	Manövertransformator TC (GB)
 Control valve	Reglerventil
 Control voltage	Manöverspänning
 Control voltage type	Typ av manöverspänning
+Conventional touch voltage limit UL (V)	Konventionell gräns för beröringsspänning UL (V)
 Converted from file format {} to {}: {}	Konverterad från filformat {} till {}: {}
 Coolant	Kylmedel
 Cooler	Kylare
@@ -346,6 +347,7 @@ DWG export failed: {}	DWG-exporten misslyckades: {}
 Data sheet	Datablad
 Date of the approval of the last revision	Datum för godkännandet av den senaste revisionen
 Date of the last revision	Datum för den senaste revisionen
+Default {} ({})	Standard {} ({})
 Degree of protection	Kapslingsklass
 Delete projects	Ta bort projekt
 Delivery date	Leveransdatum
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Nödstopp SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Nödstoppsdon behöver ett B10d-värde (ISO 13849-1, bilaga C)
 Emergency stop, mushroom head (NFPA)	Nödstopp, svampknapp (NFPA)
 Empty (IEC 60204-1)	Tom (IEC 60204-1)
+Empty: removes the item	Tom: tar bort punkten
 Enclosure body	Skåpstomme
 Enclosure climate	Kapslingsklimat
 Enclosure light	Skåpbelysning
@@ -790,7 +793,10 @@ Load calculation	Lastberäkning
 Loads and power supplies	Laster och strömförsörjning
 Loads behind it: {}	Laster efter den: {}
 Location of the page	Sidans placering
+Longest RCD trip time at 5 × IΔn (ms)	Längsta utlösningstid för jordfelsbrytare vid 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Längsta utlösningstid för jordfelsbrytare vid IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Kopplingsutrustningar för lågspänning: märklastfaktor, temperaturstegring, dokumentation
+Lowest insulation resistance of the mains (MΩ)	Lägsta isolationsresistans för nätet (MΩ)
 Lubricant	Smörjmedel
 Luminaire, fluorescent	Lysrörsarmatur
 MAC address	MAC-adress
@@ -840,6 +846,7 @@ Maximum installation altitude	Högsta installationshöjd
 Maximum operating temperature	Högsta drifttemperatur
 Maximum pressure	Högsta tryck
 Measured variable	Mätstorhet
+Measures against electromagnetic disturbances	Åtgärder mot elektromagnetiska störningar
 Measuring instrument	Mätinstrument
 Measuring instruments	Mätinstrument
 Measuring point	Mätpunkt
@@ -934,6 +941,7 @@ Network (m)	Nät (m)
 Neutral (N)	Neutralledare (N)
 Neutral and protective conductors identified	Neutral- och skyddsledare märkta
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutralledare måste vara ljusblå (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Ny egen punkt i den okulära besiktningen
 Nibbling	Nibbling
 No connection {}	Ingen förbindelse {}
 No devices to add to the single-line diagram	Inga apparater att lägga till i enlinjeschemat
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Översikt (utvärderas inte)
 Overview / single-line	Översikt / enlinje
 Overvoltage category	Överspänningskategori
 Overvoltage relay	Överspänningsrelä
+Own item {}	Egen punkt {}
 P&ID / process (ISO 10628)	P&ID / process (ISO 10628)
 P&ID number	P&ID-nummer
 PCT loop {} has no instrument in the P&ID	Instrumentslinga {} har inget instrument i P&ID
@@ -1462,6 +1471,7 @@ Single, free-standing	Enskild, fristående
 Single, wall mounted	Enskild, väggmonterad
 Single-line / overview	Enlinje / översikt
 Single-line diagram	Enlinjeschema
+Single-pole switching devices in the line conductors	Enpoliga kopplingsdon i fasledarna
 Siren	Siren
 Site address	Uppställningsplatsens adress
 Size (mm)	Storlek (mm)
@@ -1870,6 +1880,7 @@ in work	under arbete
 in {}	i {}
 in-line	genomgående
 incl.	inkl.
+instead of {}	i stället för {}
 ip (kA)	ip (kA)
 is	är
 is at least	är minst

@@ -1206,7 +1206,7 @@ async fn inspection_results_are_entered_without_opening_the_project() {
     assert!(s.is_success(), "{text}");
     let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
     assert_eq!((sheet.report.header.inspector.as_str(), sheet.report.header.rev), ("Kim", 2));
-    assert_eq!(sheet.report.checks.iter().find(|c| c.key == "fire").unwrap().answer, "ok");
+    assert_eq!(sheet.report.checks.iter().find(|c| c.key == "check.fire").unwrap().answer, "ok");
     assert_eq!(with(&app, "PUT", path, kim, &data).await.0, StatusCode::CONFLICT);
     let bad_answer = InspectionUpdate { rev: 2, values: values(&[("check.fire", "maybe")]), ..Default::default() };
     assert_eq!(with(&app, "PUT", path, kim, &bad_answer).await.0, StatusCode::BAD_REQUEST);

@@ -199,7 +199,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("electrical", &["model", "netlist", "parts", "potentials", "properties", "protection", "sizing"]),
     ("protection", &["electrical", "model", "parts", "sizing"]),
     ("sizing", &["issue", "model", "netlist", "parts", "potentials", "production", "rules", "symbols", "wirenum"]),
-    ("inspection", &["electrical", "model", "netlist", "parts", "properties", "protection", "rules", "shortcircuit", "sizing", "table"]),
+    ("inspection", &["electrical", "model", "netlist", "parts", "production", "properties", "protection", "rules", "shortcircuit", "sizing", "table"]),
     ("shortcircuit", &["electrical", "issue", "loads", "model", "netlist", "parts", "production", "protection", "rules", "sizing"]),
     ("loads", &["electrical", "issue", "model", "netlist", "parts", "potentials", "rules", "sizing", "symbols"]),
     ("emc", &["electrical", "issue", "model", "netlist", "parts", "potentials", "routing3d", "rules"]),

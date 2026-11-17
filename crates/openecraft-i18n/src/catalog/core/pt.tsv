@@ -283,6 +283,7 @@ Control transformer TC (GB)	Transformador de comando TC (GB)
 Control valve	Válvula de controle
 Control voltage	Tensão de comando
 Control voltage type	Tipo de tensão de comando
+Conventional touch voltage limit UL (V)	Tensão de contato limite convencional UL (V)
 Converted from file format {} to {}: {}	Convertido do formato de arquivo {} para {}: {}
 Coolant	Líquido de arrefecimento
 Cooler	Resfriador
@@ -346,6 +347,7 @@ DWG export failed: {}	Falha na exportação DWG: {}
 Data sheet	Folha de dados
 Date of the approval of the last revision	Data da aprovação da última revisão
 Date of the last revision	Data da última revisão
+Default {} ({})	Padrão {} ({})
 Degree of protection	Grau de proteção
 Delete projects	Excluir projetos
 Delivery date	Data de entrega
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Parada de emergência SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Os dispositivos de parada de emergência precisam de um valor B10d (ISO 13849-1, anexo C)
 Emergency stop, mushroom head (NFPA)	Parada de emergência, cabeça de cogumelo (NFPA)
 Empty (IEC 60204-1)	Vazio (IEC 60204-1)
+Empty: removes the item	Vazio: remove o item
 Enclosure body	Corpo do gabinete
 Enclosure climate	Climatização do gabinete
 Enclosure light	Luminária do gabinete
@@ -790,7 +793,10 @@ Load calculation	Cálculo de carga
 Loads and power supplies	Cargas e fontes de alimentação
 Loads behind it: {}	Cargas a jusante: {}
 Location of the page	Localização da página
+Longest RCD trip time at 5 × IΔn (ms)	Tempo máximo de disparo do DR a 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Tempo máximo de disparo do DR a IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Conjuntos de manobra e controle de baixa tensão: fator de diversidade nominal, elevação de temperatura, documentação
+Lowest insulation resistance of the mains (MΩ)	Resistência de isolamento mínima da rede (MΩ)
 Lubricant	Lubrificante
 Luminaire, fluorescent	Luminária fluorescente
 MAC address	Endereço MAC
@@ -840,6 +846,7 @@ Maximum installation altitude	Altitude de instalação máxima
 Maximum operating temperature	Temperatura de operação máxima
 Maximum pressure	Pressão máxima
 Measured variable	Variável medida
+Measures against electromagnetic disturbances	Medidas contra perturbações eletromagnéticas
 Measuring instrument	Instrumento de medição
 Measuring instruments	Instrumentos de medição
 Measuring point	Ponto de medição
@@ -934,6 +941,7 @@ Network (m)	Rede (m)
 Neutral (N)	Neutro (N)
 Neutral and protective conductors identified	Condutores neutro e de proteção identificados
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Os condutores neutros devem ser azul-claro (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Novo item próprio da inspeção visual
 Nibbling	Roedura
 No connection {}	Nenhuma conexão {}
 No devices to add to the single-line diagram	Nenhum dispositivo a adicionar ao diagrama unifilar
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Visão geral (não avaliada)
 Overview / single-line	Visão geral / unifilar
 Overvoltage category	Categoria de sobretensão
 Overvoltage relay	Relé de sobretensão
+Own item {}	Item próprio {}
 P&ID / process (ISO 10628)	P&ID / processo (ISO 10628)
 P&ID number	Número do P&ID
 PCT loop {} has no instrument in the P&ID	A malha de instrumentação {} não tem instrumento no P&ID
@@ -1462,6 +1471,7 @@ Single, free-standing	Individual, autoportante
 Single, wall mounted	Individual, montado na parede
 Single-line / overview	Unifilar / visão geral
 Single-line diagram	Diagrama unifilar
+Single-pole switching devices in the line conductors	Dispositivos de manobra unipolares nos condutores de fase
 Siren	Sirene
 Site address	Endereço do local de instalação
 Size (mm)	Tamanho (mm)
@@ -1870,6 +1880,7 @@ in work	em execução
 in {}	em {}
 in-line	passagem
 incl.	incl.
+instead of {}	em vez de {}
 ip (kA)	ip (kA)
 is	é
 is at least	é no mínimo

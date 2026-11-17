@@ -21,9 +21,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   (client, site, installer, reason, inspector, instruments, Ze, prospective fault
   current, earth electrode resistance, main bonding, insulating floors and walls, in
   IT systems the insulation monitoring device and the first fault current, next
-  inspection), the visual inspection of 6.4.2, an overall verdict (*Passed*, *Not
-  passed*, *Incomplete*, *Not tested*) and a signature that any later change takes
-  away. Entered in *Edit in table*, with the command `inspection_report` and **on a
+  inspection), the visual inspection of 6.4.2 with own items, an overall verdict
+  (*Passed*, *Not passed*, *Incomplete*, *Not tested*) and a signature that any later
+  change takes away. Insulation is recorded L–PE, N–PE and L–N; the protective
+  conductor is shown against its resistance calculated from the cables; the fault
+  current measured at the origin is checked against the breaking capacities. Every
+  limit is a setting of the report with its default and source, for the edition the
+  installation is verified against. Entered in *Edit in table*, with the command `inspection_report` and **on a
   tablet or a phone** on the web page of the project server, where reviewers and
   editors save each card without opening the project and without a lock. The report
   exports as an Excel workbook ([#215](https://github.com/nilres/OpenECraft/issues/215)).

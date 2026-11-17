@@ -11,30 +11,45 @@ use crate::electrical::Earthing;
 use crate::model::*;
 use crate::netlist::{Connection, Netlist};
 use crate::parts::{kind_of_symbol, FnKind};
+use crate::model;
 use crate::table::Table;
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 pub use crate::model::inspection::{Header, Inspection, SourceResult, TestResult};
 
-/// Lowest insulation resistance of a circuit of the mains, MΩ (IEC 60364-6, table 6.1;
-/// up to 500 V at 500 V DC, above at 1000 V DC).
-pub const MIN_INSULATION: f32 = 1.0;
-/// Conventional touch voltage limit UL, V (AC, IEC 60364-4-41): highest contact voltage
-/// at the rated residual current; TT: RA × IΔn ≤ UL; IT: RA × Id ≤ UL.
-pub const CONTACT_VOLTAGE: f32 = 50.0;
 /// The measured loop impedance may reach this share of the calculated limit: the
-/// conductors warm up in use (IEC 60364-6, annex C).
+/// conductors warm up in use.
 pub const LOOP_FACTOR: f32 = 2.0 / 3.0;
-/// Tripping times of residual current devices, ms (IEC 61008-1 / IEC 61009-1): at the
-/// rated residual current and at five times of it, general and selective (type S).
-const RCD_TIME: (Option<f32>, Option<f32>) = (None, Some(300.0));
-const RCD_TIME_5: (Option<f32>, Option<f32>) = (None, Some(40.0));
-const RCD_TIME_S: (Option<f32>, Option<f32>) = (Some(130.0), Some(500.0));
-const RCD_TIME_5_S: (Option<f32>, Option<f32>) = (Some(50.0), Some(150.0));
-/// Highest voltages of SELV and PELV circuits, V (IEC 60364-4-41, 414.1.1: band I).
-const SELV_AC: f32 = 50.0;
-const SELV_DC: f32 = 120.0;
+const RCD: &str = "IEC 61008-1, IEC 61009-1";
+const TABLE_6_1: &str = "IEC 60364-6, table 6.1 (6A in the 2006 edition)";
+
+/// The limits of the report: key, English title, default and where the default comes
+/// from. A project may set other values ([`Header::limits`]), those of the edition
+/// of the standard it is verified against.
+pub const LIMITS: [(&str, &str, f32, &str); 16] = [
+    ("min_insulation", tr_const!("Lowest insulation resistance of the mains (MΩ)"), 1.0, TABLE_6_1),
+    ("selv_insulation", tr_const!("Lowest insulation resistance of SELV and PELV (MΩ)"), 0.5, TABLE_6_1),
+    ("selv_test_voltage", tr_const!("Insulation test voltage of SELV and PELV (V)"), 250.0, TABLE_6_1),
+    ("loop_factor", tr_const!("Share of the calculated loop impedance the measured one may reach"), LOOP_FACTOR, "IEC 60364-6, informative annex (C.61.3.6.2 of the 2006 edition)"),
+    ("contact_voltage", tr_const!("Conventional touch voltage limit UL (V)"), 50.0, "IEC 60364-4-41, 411.5.3, 411.6.2"),
+    ("rcd_time", tr_const!("Longest RCD trip time at IΔn (ms)"), 300.0, RCD),
+    ("rcd_time_5", tr_const!("Longest RCD trip time at 5 × IΔn (ms)"), 40.0, RCD),
+    ("rcd_time_s_min", tr_const!("Shortest trip time of selective RCDs at IΔn (ms)"), 130.0, RCD),
+    ("rcd_time_s", tr_const!("Longest trip time of selective RCDs at IΔn (ms)"), 500.0, RCD),
+    ("rcd_time_5_s_min", tr_const!("Shortest trip time of selective RCDs at 5 × IΔn (ms)"), 50.0, RCD),
+    ("rcd_time_5_s", tr_const!("Longest trip time of selective RCDs at 5 × IΔn (ms)"), 150.0, RCD),
+    ("selv_ac", tr_const!("Highest voltage of SELV and PELV, AC (V)"), 50.0, "IEC 60364-4-41, 414.1.1"),
+    ("selv_dc", tr_const!("Highest voltage of SELV and PELV, DC (V)"), 120.0, "IEC 60364-4-41, 414.1.1"),
+    ("floor_insulation", tr_const!("Lowest resistance of insulating floors and walls up to 500 V (kΩ)"), 50.0, "IEC 60364-4-41, C.1"),
+    ("floor_insulation_high", tr_const!("Lowest resistance of insulating floors and walls above 500 V (kΩ)"), 100.0, "IEC 60364-4-41, C.1"),
+    ("continuity_factor", tr_const!("Protective conductor: a hint above this multiple of the calculated resistance"), 1.5, "OpenECraft: the standard sets no limit"),
+];
+
+/// A limit of the report: its own value or the default.
+pub fn limit(h: &Header, key: &str) -> f32 {
+    h.limits.get(key).copied().or_else(|| LIMITS.iter().find(|l| l.0 == key).map(|l| l.2)).unwrap_or(0.0)
+}
 
 impl Inspection {
     pub fn is_empty(&self) -> bool {
@@ -83,6 +98,8 @@ pub enum Field {
     Continuity,
     InsulationVoltage,
     Insulation,
+    InsulationNPe,
+    InsulationLN,
     LoopImpedance,
     VoltageDrop,
     RcdCurrent,
@@ -100,10 +117,12 @@ pub enum Field {
 }
 
 impl Field {
-    pub const ALL: [Field; 16] = [
+    pub const ALL: [Field; 18] = [
         Field::Continuity,
         Field::InsulationVoltage,
         Field::Insulation,
+        Field::InsulationNPe,
+        Field::InsulationLN,
         Field::LoopImpedance,
         Field::VoltageDrop,
         Field::RcdCurrent,
@@ -125,6 +144,8 @@ impl Field {
             Field::Continuity => "continuity",
             Field::InsulationVoltage => "insulation_voltage",
             Field::Insulation => "insulation",
+            Field::InsulationNPe => "insulation_n_pe",
+            Field::InsulationLN => "insulation_l_n",
             Field::LoopImpedance => "loop_impedance",
             Field::VoltageDrop => "voltage_drop",
             Field::RcdCurrent => "rcd_current",
@@ -146,7 +167,9 @@ impl Field {
         match self {
             Field::Continuity => tr_const!("Protective conductor (Ω)"),
             Field::InsulationVoltage => tr_const!("Insulation test voltage (V)"),
-            Field::Insulation => tr_const!("Insulation resistance (MΩ)"),
+            Field::Insulation => tr_const!("Insulation L–PE (MΩ)"),
+            Field::InsulationNPe => tr_const!("Insulation N–PE (MΩ)"),
+            Field::InsulationLN => tr_const!("Insulation L–N (MΩ)"),
             Field::LoopImpedance => tr_const!("Loop impedance Zs (Ω)"),
             Field::VoltageDrop => tr_const!("Voltage drop (%)"),
             Field::RcdCurrent => tr_const!("RCD trip current (mA)"),
@@ -180,6 +203,8 @@ impl Field {
             Field::Continuity
                 | Field::InsulationVoltage
                 | Field::Insulation
+                | Field::InsulationNPe
+                | Field::InsulationLN
                 | Field::LoopImpedance
                 | Field::VoltageDrop
                 | Field::RcdCurrent
@@ -209,6 +234,8 @@ impl Field {
             Field::Continuity => &r.continuity,
             Field::InsulationVoltage => &r.insulation_voltage,
             Field::Insulation => &r.insulation,
+            Field::InsulationNPe => &r.insulation_n_pe,
+            Field::InsulationLN => &r.insulation_l_n,
             Field::LoopImpedance => &r.loop_impedance,
             Field::VoltageDrop => &r.voltage_drop,
             Field::RcdCurrent => &r.rcd_current,
@@ -230,6 +257,8 @@ impl Field {
             Field::Continuity => &mut r.continuity,
             Field::InsulationVoltage => &mut r.insulation_voltage,
             Field::Insulation => &mut r.insulation,
+            Field::InsulationNPe => &mut r.insulation_n_pe,
+            Field::InsulationLN => &mut r.insulation_l_n,
             Field::LoopImpedance => &mut r.loop_impedance,
             Field::VoltageDrop => &mut r.voltage_drop,
             Field::RcdCurrent => &mut r.rcd_current,
@@ -487,7 +516,7 @@ fn measure_text(v: &str) -> String {
 }
 
 /// The items of the visual inspection (IEC 60364-6, 6.4.2): key and English text.
-pub const CHECKS: [(&str, &str); 14] = [
+pub const CHECKS: [(&str, &str); 16] = [
     ("protection", tr_const!("Protection against electric shock: the measures and their components")),
     ("fire", tr_const!("Fire barriers and protection against thermal effects")),
     ("conductors", tr_const!("Conductors selected for current-carrying capacity and voltage drop")),
@@ -495,6 +524,7 @@ pub const CHECKS: [(&str, &str); 14] = [
     ("isolation", tr_const!("Isolating and switching devices in the right places")),
     ("influences", tr_const!("Equipment and protective measures suit the external influences")),
     ("identification", tr_const!("Neutral and protective conductors identified")),
+    ("single_pole", tr_const!("Single-pole switching devices in the line conductors")),
     ("documents", tr_const!("Diagrams, warning notices and similar information present")),
     ("labels", tr_const!("Circuits, protective devices, switches and terminals labelled")),
     ("connections", tr_const!("Connections of the conductors")),
@@ -502,6 +532,7 @@ pub const CHECKS: [(&str, &str); 14] = [
     ("access", tr_const!("Equipment accessible for operation, inspection and maintenance")),
     ("additional", tr_const!("Additional protection by RCDs of at most 30 mA where required")),
     ("surge", tr_const!("Surge protection where required")),
+    ("emc", tr_const!("Measures against electromagnetic disturbances")),
 ];
 
 /// Stored answers of the tests and of the visual inspection.
@@ -621,6 +652,24 @@ pub fn set_source(prj: &mut Project, device: &str, field: SourceField, value: &s
 pub fn set_header(prj: &mut Project, key: &str, value: &str) -> Result<bool, String> {
     let key = key.trim();
     let h = &mut prj.inspection.header;
+    if let Some(rest) = key.strip_prefix("own.") {
+        return set_own_check(h, key, rest, value);
+    }
+    if let Some(name) = key.strip_prefix("limit.") {
+        let Some(default) = LIMITS.iter().find(|l| l.0 == name).map(|l| l.2) else { return Err(tr_fmt!("Unknown field: {}", key)) };
+        let v = if value.trim().is_empty() { None } else { Some(number(value).filter(|v| *v > 0.0).ok_or_else(|| tr_fmt!("Not a number: {}", value.trim()))?) };
+        let v = v.filter(|v| (v - default).abs() > f32::EPSILON);
+        if h.limits.get(name).copied() == v {
+            return Ok(false);
+        }
+        match v {
+            Some(v) => h.limits.insert(name.into(), v),
+            None => h.limits.remove(name),
+        };
+        h.rev += 1;
+        unsign(h);
+        return Ok(true);
+    }
     if let Some(item) = key.strip_prefix("check.") {
         if !CHECKS.iter().any(|c| c.0 == item) {
             return Err(tr_fmt!("Unknown field: {}", key));
@@ -652,13 +701,85 @@ pub fn set_header(prj: &mut Project, key: &str, value: &str) -> Result<bool, Str
     Ok(true)
 }
 
-/// Sets several values of the report ([`set_header`]); the signature last, so that it
-/// stays when it is given with other changes. Returns whether something changed.
+/// An own item of the visual inspection: `own.<n>.title` sets the text of item `n`
+/// (1-based; the next number adds one, an empty text removes it), `own.<n>` its answer.
+fn set_own_check(h: &mut Header, key: &str, rest: &str, value: &str) -> Result<bool, String> {
+    let (n, title) = match rest.strip_suffix(".title") {
+        Some(n) => (n, true),
+        None => (rest, false),
+    };
+    let i = n.parse::<usize>().ok().filter(|n| *n >= 1 && *n <= h.own_checks.len() + usize::from(title)).ok_or_else(|| tr_fmt!("Unknown field: {}", key))? - 1;
+    let value = value.trim();
+    if title {
+        match (i < h.own_checks.len(), value.is_empty()) {
+            (false, true) => return Ok(false),
+            (false, false) => h.own_checks.push(model::inspection::OwnCheck { title: value.into(), answer: String::new() }),
+            (true, true) => {
+                h.own_checks.remove(i);
+            }
+            (true, false) if h.own_checks[i].title == value => return Ok(false),
+            (true, false) => h.own_checks[i].title = value.into(),
+        }
+    } else {
+        let a = if value.is_empty() { String::new() } else { answer(value, true)? };
+        if h.own_checks[i].answer == a {
+            return Ok(false);
+        }
+        h.own_checks[i].answer = a;
+    }
+    h.rev += 1;
+    unsign(h);
+    Ok(true)
+}
+
+/// Sets several values of the report ([`set_header`]), numbered as the report was
+/// loaded: the answers of existing own items first, then their texts (removals from
+/// the last one), then new own items with their answers, the signature last, so that
+/// it stays when it is given with other changes. Returns whether something changed.
 pub fn set_header_all<'a>(prj: &mut Project, values: impl IntoIterator<Item = (&'a str, &'a str)>) -> Result<bool, String> {
     let signature = |k: &str| [HeaderField::SignedBy, HeaderField::SignedOn].iter().any(|f| f.key().eq_ignore_ascii_case(k.trim()));
-    let (sign, rest): (Vec<_>, Vec<_>) = values.into_iter().partition(|(k, _)| signature(k));
+    let own = |k: &str| {
+        let rest = k.trim().strip_prefix("own.")?;
+        let (n, title) = rest.strip_suffix(".title").map_or((rest, false), |n| (n, true));
+        n.parse::<usize>().ok().map(|n| (n, title))
+    };
+    let len = prj.inspection.header.own_checks.len();
+    let values: Vec<(&str, &str)> = values.into_iter().collect();
+    let (mut answers, mut titles, mut added, mut rest, mut sign) = (Vec::new(), Vec::new(), Vec::new(), Vec::new(), Vec::new());
+    for (k, v) in values {
+        match own(k) {
+            Some((n, false)) if n <= len => answers.push((k.to_string(), v)),
+            Some((n, true)) if n <= len => titles.push((n, v)),
+            Some((n, _)) => added.push((n, k, v)),
+            None if signature(k) => sign.push((k, v)),
+            None => rest.push((k, v)),
+        }
+    }
     let mut changed = false;
-    for (k, v) in rest.into_iter().chain(sign) {
+    for (k, v) in answers.iter().map(|(k, v)| (k.as_str(), *v)).chain(rest) {
+        changed |= set_header(prj, k, v)?;
+    }
+    titles.sort_by_key(|t| std::cmp::Reverse(t.0));
+    for (n, v) in titles {
+        changed |= set_header(prj, &format!("own.{n}.title"), v)?;
+    }
+    // New items: the numbers follow on the items left, their answers go with them.
+    added.sort_by_key(|(n, k, _)| (*n, !k.ends_with(".title")));
+    let mut at = std::collections::BTreeMap::new();
+    for (n, k, v) in added {
+        if k.ends_with(".title") {
+            let i = prj.inspection.header.own_checks.len() + 1;
+            if set_header(prj, &format!("own.{i}.title"), v)? {
+                at.insert(n, i);
+                changed = true;
+            }
+        } else if let Some(i) = at.get(&n) {
+            changed |= set_header(prj, &format!("own.{i}"), v)?;
+        } else {
+            return Err(tr_fmt!("Unknown field: {}", k));
+        }
+    }
+    for (k, v) in sign {
         changed |= set_header(prj, k, v)?;
     }
     Ok(changed)
@@ -782,10 +903,22 @@ pub struct Circuit {
     pub zs_max: Option<f32>,
     /// The ranges of the measured values (a value without one is only recorded).
     pub limits: Vec<Limit>,
+    /// Resistance of the protective conductor from the cables of the circuit (length,
+    /// cross-section, conductor material at 20 °C), Ω; `None`: not known.
+    pub continuity_calculated: Option<f32>,
+    /// Breaking capacity of the protective device, kA; `None`: not given.
+    pub breaking: Option<f32>,
+    /// Fed directly from the origin (no protective device upstream).
+    pub at_origin: bool,
+    /// The device upstream protects it where its breaking capacity is too low.
+    pub backup: bool,
     pub result: TestResult,
     pub verdict: Verdict,
     /// Values out of the limits.
     pub failed: Vec<Field>,
+    /// Values to look at again, without failing: a protective conductor far above its
+    /// calculated resistance.
+    pub notes: Vec<Field>,
 }
 
 impl Circuit {
@@ -814,6 +947,14 @@ impl Circuit {
 
     pub fn limit(&self, field: Field) -> Option<&Limit> {
         self.limits.iter().find(|l| l.field == field)
+    }
+
+    /// A protective conductor far above its calculated resistance (`factor` times).
+    fn notes(&self, factor: f32) -> Vec<Field> {
+        match (number(&self.result.continuity), self.continuity_calculated) {
+            (Some(v), Some(r)) if v > r * factor => vec![Field::Continuity],
+            _ => Vec::new(),
+        }
     }
 
     /// The values out of the limits and the failed tests.
@@ -873,6 +1014,8 @@ pub struct Source {
     pub description: Option<String>,
     /// Output voltage, V; `None`: not given.
     pub voltage: Option<f32>,
+    /// Highest voltage of SELV and PELV circuits from this source (AC or DC), V.
+    pub selv_max: f32,
     /// The ranges by protective measure (`selv`, `pelv`, `separation`).
     pub limits: BTreeMap<String, Vec<KeyLimit>>,
     pub result: SourceResult,
@@ -882,15 +1025,10 @@ pub struct Source {
 }
 
 impl Source {
-    /// The highest voltage of SELV and PELV circuits from this source (AC 50 V, DC 120 V).
-    pub fn selv_limit(&self) -> f32 {
-        if self.transformer { SELV_AC } else { SELV_DC }
-    }
-
     fn evaluate(&mut self) {
         let r = &self.result;
         let mut failed = Vec::new();
-        if matches!(r.measure.as_str(), "selv" | "pelv") && self.voltage.is_some_and(|v| v > self.selv_limit()) {
+        if matches!(r.measure.as_str(), "selv" | "pelv") && self.voltage.is_some_and(|v| v > self.selv_max) {
             failed.push(SourceField::Measure.key().to_string());
         }
         for l in self.limits.get(&r.measure).into_iter().flatten() {
@@ -918,6 +1056,12 @@ impl Source {
 /// A number without needless decimals.
 fn fmt(v: f32) -> String {
     let s = format!("{v:.2}");
+    s.trim_end_matches('0').trim_end_matches('.').to_string()
+}
+
+/// A limit as written (three decimals at most: ⅔ is 0.667).
+pub fn limit_text(v: f32) -> String {
+    let s = format!("{v:.3}");
     s.trim_end_matches('0').trim_end_matches('.').to_string()
 }
 
@@ -954,6 +1098,9 @@ pub fn insulation_voltage(prj: &Project) -> f32 {
 /// connections of the analysis.
 pub fn circuits(prj: &Project, nl: &Netlist, conns: &[Connection]) -> Vec<Circuit> {
     let supply = &prj.electrical.supply;
+    let h = &prj.inspection.header;
+    let lim = |key: &str| limit(h, key);
+    let rho = prj.electrical.conditions.material.rho20();
     let u0 = supply.u0();
     let tt = supply.earthing == Earthing::Tt;
     // IT: the second fault in another phase (411.6.4): U / 2 without, U0 / 2 with a
@@ -990,16 +1137,19 @@ pub fn circuits(prj: &Project, nl: &Netlist, conns: &[Connection]) -> Vec<Circui
                 .filter(|_| characteristic.is_some())
                 .map(|x| x.trip_current)
                 .filter(|ia| ia.is_finite() && *ia > 0.0)
-                .map(|ia| LOOP_FACTOR * it_voltage.unwrap_or(u0) / ia);
-            let by_rcd = rcd.as_ref().and_then(|d| d.rated).map(|i| if tt { CONTACT_VOLTAGE } else { u0 } / (i / 1000.0));
+                .map(|ia| lim("loop_factor") * it_voltage.unwrap_or(u0) / ia);
+            let by_rcd = rcd.as_ref().and_then(|d| d.rated).map(|i| if tt { lim("contact_voltage") } else { u0 } / (i / 1000.0));
             let zs_max = match (by_device, by_rcd) {
                 (Some(a), Some(b)) => Some(a.max(b)),
                 (a, b) => a.or(b),
             };
             let limit = |field, (min, max): (Option<f32>, Option<f32>)| Limit { field, min, max };
+            let insulation = (Some(lim("min_insulation")), None);
             let mut limits = vec![
                 limit(Field::InsulationVoltage, (Some(insulation_voltage(prj)), None)),
-                limit(Field::Insulation, (Some(MIN_INSULATION), None)),
+                limit(Field::Insulation, insulation),
+                limit(Field::InsulationNPe, insulation),
+                limit(Field::InsulationLN, insulation),
                 limit(Field::VoltageDrop, (None, Some(rules.voltage_drop))),
             ];
             if let Some(max) = zs_max {
@@ -1010,12 +1160,23 @@ pub fn circuits(prj: &Project, nl: &Netlist, conns: &[Connection]) -> Vec<Circui
                     // Between half the rated residual current and the rated residual current.
                     limits.push(limit(Field::RcdCurrent, (Some(i / 2.0), Some(i))));
                 }
-                let s = d.selective();
-                limits.push(limit(Field::RcdTime, if s { RCD_TIME_S } else { RCD_TIME }));
-                limits.push(limit(Field::RcdTime5, if s { RCD_TIME_5_S } else { RCD_TIME_5 }));
-                limits.push(limit(Field::RcdVoltage, (None, Some(CONTACT_VOLTAGE))));
+                let (time, time_5) = if d.selective() {
+                    ((Some(lim("rcd_time_s_min")), Some(lim("rcd_time_s"))), (Some(lim("rcd_time_5_s_min")), Some(lim("rcd_time_5_s"))))
+                } else {
+                    ((None, Some(lim("rcd_time"))), (None, Some(lim("rcd_time_5"))))
+                };
+                limits.push(limit(Field::RcdTime, time));
+                limits.push(limit(Field::RcdTime5, time_5));
+                limits.push(limit(Field::RcdVoltage, (None, Some(lim("contact_voltage")))));
             }
             limits.sort_by_key(|l| Field::ALL.iter().position(|x| *x == l.field));
+            // The protective conductor of the cable of the highest resistance, as thick
+            // as the line conductors.
+            let continuity_calculated = cables
+                .iter()
+                .filter_map(|c| crate::production::cross_section_mm2(&c.cross_section).filter(|a| *a > 0.0 && c.length > 0.0).map(|a| rho * c.length / a))
+                .reduce(f32::max);
+            let fault = faults.iter().find(|x| x.device == f.device);
             let mut c = Circuit {
                 description: description(prj, &f.device),
                 target: (f.page, f.symbol),
@@ -1023,16 +1184,22 @@ pub fn circuits(prj: &Project, nl: &Netlist, conns: &[Connection]) -> Vec<Circui
                 cables: cable_texts.collect(),
                 cross_section: (!sections.is_empty()).then(|| sections.into_iter().collect::<Vec<_>>().join(", ")),
                 characteristic: characteristic.map(|c| c.title().to_string()),
-                rated: protection.map(|p| p.rated),
+                rated: protection.as_ref().map(|p| p.rated),
                 rcd,
                 zs_max,
                 limits,
+                continuity_calculated,
+                breaking: protection.as_ref().and_then(|p| p.breaking),
+                at_origin: f.parent.is_none(),
+                backup: fault.is_some_and(|x| x.backup.is_some()),
                 result: prj.inspection.result(&f.device).cloned().unwrap_or_else(|| TestResult { circuit: f.device.clone(), ..Default::default() }),
                 circuit: f.device,
                 verdict: Verdict::NotTested,
                 failed: Vec::new(),
+                notes: Vec::new(),
             };
             c.failed = c.evaluate();
+            c.notes = c.notes(lim("continuity_factor"));
             c.verdict = c.verdict();
             c
         })
@@ -1051,6 +1218,7 @@ fn output_voltage(prj: &Project, tag: &str) -> Option<f32> {
 /// The power supplies and transformers of the schematic that may feed SELV, PELV or
 /// separated circuits, in schematic order, with the results of `prj.inspection`.
 pub fn sources(prj: &Project) -> Vec<Source> {
+    let h = &prj.inspection.header;
     let mut out: Vec<Source> = Vec::new();
     for (pi, pg) in prj.pages.iter().enumerate().filter(|(_, p)| p.kind == PageKind::Schematic) {
         for s in &pg.symbols {
@@ -1060,13 +1228,15 @@ pub fn sources(prj: &Project) -> Vec<Source> {
             }
             let k = |key: &str, min: f32| KeyLimit::new(key, Some(min), None);
             // Table 6.1: SELV and PELV at 250 V, at least 0.5 MΩ; separation as the mains.
-            let selv = vec![k(SourceField::InsulationVoltage.key(), 250.0), k(SourceField::Insulation.key(), 0.5)];
-            let separation = vec![k(SourceField::InsulationVoltage.key(), insulation_voltage(prj)), k(SourceField::Insulation.key(), MIN_INSULATION)];
+            let selv = vec![k(SourceField::InsulationVoltage.key(), limit(h, "selv_test_voltage")), k(SourceField::Insulation.key(), limit(h, "selv_insulation"))];
+            let separation = vec![k(SourceField::InsulationVoltage.key(), insulation_voltage(prj)), k(SourceField::Insulation.key(), limit(h, "min_insulation"))];
+            let transformer = kind == Some(FnKind::Transformer);
             let limits = BTreeMap::from([("selv".to_string(), selv.clone()), ("pelv".to_string(), selv), ("separation".to_string(), separation)]);
             let mut src = Source {
                 device: s.tag.clone(),
                 target: (pi, s.id),
-                transformer: kind == Some(FnKind::Transformer),
+                transformer,
+                selv_max: limit(h, if transformer { "selv_ac" } else { "selv_dc" }),
                 description: description(prj, &s.tag),
                 voltage: output_voltage(prj, &s.tag),
                 limits,
@@ -1084,8 +1254,9 @@ pub fn sources(prj: &Project) -> Vec<Source> {
 /// An item of the visual inspection with its answer.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CheckItem {
+    /// `check.<item>` of [`CHECKS`] or `own.<n>` for an own item.
     pub key: String,
-    /// English text (translated where shown).
+    /// English text (translated where shown; own items as entered).
     pub title: String,
     /// `ok`, `failed`, `n/a` or empty.
     pub answer: String,
@@ -1112,8 +1283,27 @@ pub struct Report {
     pub sources: Vec<Source>,
     pub circuits: Vec<Circuit>,
     pub verdict: Verdict,
-    /// What fails besides the circuits and sources: header keys, `check.<key>`.
+    /// What fails besides the circuits and sources: header keys, `check.<key>`,
+    /// `own.<n>`, `breaking.<circuit>` (a protective device fed from the origin breaks
+    /// less than the fault current measured there).
     pub failed: Vec<String>,
+    /// What to look at again: `breaking.<circuit>` (a protective device further down
+    /// breaks less than the fault current measured at the origin).
+    pub notes: Vec<String>,
+    /// The limits in effect, with their defaults and sources.
+    pub settings: Vec<LimitSetting>,
+}
+
+/// A limit of the report in effect.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct LimitSetting {
+    pub key: String,
+    /// English title (translated where shown).
+    pub title: String,
+    pub value: f32,
+    pub default: f32,
+    /// Where the default comes from.
+    pub source: String,
 }
 
 impl Report {
@@ -1127,16 +1317,20 @@ impl Report {
         let it = supply.earthing == Earthing::It;
         let mut limits = Vec::new();
         let largest = circuits.iter().filter_map(|c| c.rcd.as_ref()?.rated).reduce(f32::max);
+        let ul = limit(h, "contact_voltage");
         if let Some(i) = largest.filter(|_| tt) {
-            limits.push(KeyLimit::new(HeaderField::EarthElectrode.key(), None, Some(CONTACT_VOLTAGE / (i / 1000.0))));
+            limits.push(KeyLimit::new(HeaderField::EarthElectrode.key(), None, Some(ul / (i / 1000.0))));
         }
         // Non-conducting locations (IEC 60364-4-41, C.1): 50 kΩ up to 500 V, 100 kΩ above.
-        limits.push(KeyLimit::new(HeaderField::FloorInsulation.key(), Some(if supply.voltage <= 500.0 { 50.0 } else { 100.0 }), None));
+        let floor = limit(h, if supply.voltage <= 500.0 { "floor_insulation" } else { "floor_insulation_high" });
+        limits.push(KeyLimit::new(HeaderField::FloorInsulation.key(), Some(floor), None));
         if let Some(ra) = number(&h.earth_electrode).filter(|ra| it && *ra > 0.0) {
             // IT, first fault: RA × Id ≤ UL (411.6.2).
-            limits.push(KeyLimit::new(HeaderField::FirstFault.key(), None, Some(CONTACT_VOLTAGE / ra)));
+            limits.push(KeyLimit::new(HeaderField::FirstFault.key(), None, Some(ul / ra)));
         }
-        let checks: Vec<CheckItem> = CHECKS.iter().map(|(k, t)| CheckItem { key: k.to_string(), title: t.to_string(), answer: h.checks.get(*k).cloned().unwrap_or_default() }).collect();
+        let mut checks: Vec<CheckItem> =
+            CHECKS.iter().map(|(k, t)| CheckItem { key: format!("check.{k}"), title: t.to_string(), answer: h.checks.get(*k).cloned().unwrap_or_default() }).collect();
+        checks.extend(h.own_checks.iter().enumerate().map(|(i, c)| CheckItem { key: format!("own.{}", i + 1), title: c.title.clone(), answer: c.answer.clone() }));
         let mut failed: Vec<String> = limits
             .iter()
             .filter(|l| HeaderField::ALL.iter().find(|f| f.key() == l.key).and_then(|f| number(f.get(h))).is_some_and(|v| !l.passes(v)))
@@ -1145,7 +1339,16 @@ impl Report {
         if it && h.imd == FUNCTION_FAILED {
             failed.push(HeaderField::Imd.key().to_string());
         }
-        failed.extend(checks.iter().filter(|c| c.answer == FUNCTION_FAILED).map(|c| format!("check.{}", c.key)));
+        failed.extend(checks.iter().filter(|c| c.answer == FUNCTION_FAILED).map(|c| c.key.clone()));
+        // The breaking capacities against the fault current measured at the origin: it
+        // is the highest of the installation, so a device further down may break less
+        // (434.5.1, a hint there).
+        let mut notes = Vec::new();
+        if let Some(ik) = number(&h.ik) {
+            for c in circuits.iter().filter(|c| !c.backup && c.breaking.is_some_and(|b| b < ik)) {
+                if c.at_origin { &mut failed } else { &mut notes }.push(format!("breaking.{}", c.circuit));
+            }
+        }
         let started = checks.iter().any(|c| !c.answer.is_empty())
             || circuits.iter().any(|c| c.verdict != Verdict::NotTested)
             || sources.iter().any(|s| s.verdict != Verdict::NotTested)
@@ -1177,6 +1380,11 @@ impl Report {
             circuits,
             verdict,
             failed,
+            notes,
+            settings: LIMITS
+                .iter()
+                .map(|(k, t, d, src)| LimitSetting { key: k.to_string(), title: t.to_string(), value: limit(h, k), default: *d, source: src.to_string() })
+                .collect(),
         }
     }
 
@@ -1267,13 +1475,22 @@ pub fn summary_table(r: &Report) -> Table {
     for f in r.header_fields() {
         t.push(vec![f.title().into(), f.display(h), r.limit(f.key()).map(KeyLimit::text).unwrap_or_default()], None);
     }
-    t.push(vec![Field::InsulationVoltage.title().into(), fmt(r.insulation_voltage), format!("≥ {} MΩ", fmt(MIN_INSULATION))], None);
+    let min_insulation = r.settings.iter().find(|s| s.key == "min_insulation").map_or(1.0, |s| s.value);
+    t.push(vec![Field::InsulationVoltage.title().into(), fmt(r.insulation_voltage), format!("≥ {} MΩ", fmt(min_insulation))], None);
     for c in &r.checks {
-        let title = CHECKS.iter().find(|x| x.0 == c.key).map_or(c.title.as_str(), |x| tr(x.1));
+        let title = CHECKS.iter().find(|x| format!("check.{}", x.0) == c.key).map_or(c.title.as_str(), |x| tr(x.1));
         t.push(vec![title.into(), if c.answer.is_empty() { String::new() } else { answer_text(&c.answer) }, String::new()], None);
     }
     for s in &r.sources {
         t.push(vec![tr_fmt!("Source {}", s.device), SourceField::Measure.display(&s.result), s.verdict.title().into()], None);
+    }
+    for (key, failed) in r.failed.iter().map(|k| (k, true)).chain(r.notes.iter().map(|k| (k, false))) {
+        let Some(c) = key.strip_prefix("breaking.").and_then(|c| r.circuits.iter().find(|x| x.circuit == c)) else { continue };
+        let note = if failed { Verdict::Failed.title().to_string() } else { tr("To check").to_string() };
+        t.push(vec![tr_fmt!("Breaking capacity of {} below the fault current at the origin", c.circuit), c.breaking.map(|b| format!("{} kA", fmt(b))).unwrap_or_default(), note], None);
+    }
+    for l in r.settings.iter().filter(|l| (l.value - l.default).abs() > f32::EPSILON) {
+        t.push(vec![tr(LIMITS.iter().find(|x| x.0 == l.key).map_or("", |x| x.1)).into(), fmt(l.value), tr_fmt!("instead of {}", fmt(l.default))], None);
     }
     let passed = r.circuits.iter().filter(|c| c.verdict == Verdict::Passed).count();
     t.push(vec![tr("Circuits").into(), tr_fmt!("{} of {} passed", passed, r.circuits.len()), String::new()], None);

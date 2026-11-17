@@ -283,6 +283,7 @@ Control transformer TC (GB)	Transformator sterowniczy TC (GB)
 Control valve	Zawór regulacyjny
 Control voltage	Napięcie sterowania
 Control voltage type	Rodzaj napięcia sterowania
+Conventional touch voltage limit UL (V)	Umowne napięcie dotykowe dopuszczalne UL (V)
 Converted from file format {} to {}: {}	Przekonwertowano z formatu pliku {} na {}: {}
 Coolant	Chłodziwo
 Cooler	Chłodnica
@@ -346,6 +347,7 @@ DWG export failed: {}	Eksport DWG nie powiódł się: {}
 Data sheet	Karta katalogowa
 Date of the approval of the last revision	Data zatwierdzenia ostatniej rewizji
 Date of the last revision	Data ostatniej rewizji
+Default {} ({})	Domyślnie {} ({})
 Degree of protection	Stopień ochrony
 Delete projects	Usuwanie projektów
 Delivery date	Termin dostawy
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Zatrzymanie awaryjne SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Urządzenia zatrzymania awaryjnego wymagają wartości B10d (ISO 13849-1, załącznik C)
 Emergency stop, mushroom head (NFPA)	Zatrzymanie awaryjne, przycisk grzybkowy (NFPA)
 Empty (IEC 60204-1)	Pusty (IEC 60204-1)
+Empty: removes the item	Puste: usuwa punkt
 Enclosure body	Korpus obudowy
 Enclosure climate	Klimatyzacja obudowy
 Enclosure light	Oświetlenie obudowy
@@ -790,7 +793,10 @@ Load calculation	Obliczenie obciążenia
 Loads and power supplies	Odbiorniki i zasilacze
 Loads behind it: {}	Odbiorniki za nim: {}
 Location of the page	Miejsce montażu strony
+Longest RCD trip time at 5 × IΔn (ms)	Najdłuższy czas zadziałania RCD przy 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Najdłuższy czas zadziałania RCD przy IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Rozdzielnice i sterownice niskonapięciowe: znamionowy współczynnik obciążenia, przyrost temperatury, dokumentacja
+Lowest insulation resistance of the mains (MΩ)	Najmniejsza rezystancja izolacji sieci (MΩ)
 Lubricant	Środek smarny
 Luminaire, fluorescent	Oprawa świetlówkowa
 MAC address	Adres MAC
@@ -840,6 +846,7 @@ Maximum installation altitude	Maksymalna wysokość ustawienia
 Maximum operating temperature	Maksymalna temperatura pracy
 Maximum pressure	Maksymalne ciśnienie
 Measured variable	Wielkość mierzona
+Measures against electromagnetic disturbances	Środki przeciw zaburzeniom elektromagnetycznym
 Measuring instrument	Przyrząd pomiarowy
 Measuring instruments	Przyrządy pomiarowe
 Measuring point	Punkt pomiarowy
@@ -934,6 +941,7 @@ Network (m)	Sieć (m)
 Neutral (N)	Przewód neutralny (N)
 Neutral and protective conductors identified	Przewody neutralne i ochronne oznaczone
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Przewody neutralne muszą być jasnoniebieskie (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Nowy własny punkt oględzin
 Nibbling	Nadkrawanie
 No connection {}	Brak połączenia {}
 No devices to add to the single-line diagram	Brak urządzeń do dodania do schematu jednokreskowego
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Przegląd (nieanalizowany)
 Overview / single-line	Przegląd / schemat jednokreskowy
 Overvoltage category	Kategoria przepięciowa
 Overvoltage relay	Przekaźnik nadnapięciowy
+Own item {}	Własny punkt {}
 P&ID / process (ISO 10628)	P&ID / procesy (ISO 10628)
 P&ID number	Numer P&ID
 PCT loop {} has no instrument in the P&ID	Pętla AKPiA {} nie ma przyrządu na schemacie P&ID
@@ -1462,6 +1471,7 @@ Single, free-standing	Pojedyncza, wolnostojąca
 Single, wall mounted	Pojedyncza, montaż naścienny
 Single-line / overview	Schemat jednokreskowy / przegląd
 Single-line diagram	Schemat jednokreskowy
+Single-pole switching devices in the line conductors	Łączniki jednobiegunowe w przewodach fazowych
 Siren	Syrena
 Site address	Adres miejsca instalacji
 Size (mm)	Rozmiar (mm)
@@ -1870,6 +1880,7 @@ in work	w opracowaniu
 in {}	w {}
 in-line	przelotowe
 incl.	w tym
+instead of {}	zamiast {}
 ip (kA)	ip (kA)
 is	jest
 is at least	wynosi co najmniej

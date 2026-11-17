@@ -275,6 +275,7 @@ Control transformer TC (GB)	制御用変圧器 TC (GB)
 Control valve	調節弁
 Control voltage	制御電圧
 Control voltage type	制御電圧の種類
+Conventional touch voltage limit UL (V)	規約接触電圧限度 UL (V)
 Converted from file format {} to {}: {}	ファイル形式 {} から {} に変換しました: {}
 Coolant	冷却液
 Cooler	冷却器
@@ -338,6 +339,7 @@ DWG export failed: {}	DWG のエクスポートに失敗しました: {}
 Data sheet	データシート
 Date of the approval of the last revision	最終リビジョンの承認日
 Date of the last revision	最終リビジョンの日付
+Default {} ({})	既定値 {} ({})
 Degree of protection	保護等級
 Delete projects	プロジェクトの削除
 Delivery date	納期
@@ -461,6 +463,7 @@ Emergency stop SB (GOST)	非常停止 SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	非常停止機器には B10d 値が必要です (ISO 13849-1、附属書 C)
 Emergency stop, mushroom head (NFPA)	非常停止 (きのこ形、NFPA)
 Empty (IEC 60204-1)	空 (IEC 60204-1)
+Empty: removes the item	空：項目を削除
 Enclosure body	エンクロージャー本体
 Enclosure climate	エンクロージャーの温度管理
 Enclosure light	盤内照明
@@ -780,7 +783,10 @@ Load calculation	負荷計算
 Loads and power supplies	負荷と電源
 Loads behind it: {}	下位の負荷: {}
 Location of the page	ページの取付場所
+Longest RCD trip time at 5 × IΔn (ms)	5 × IΔn での RCD 最長動作時間 (ms)
+Longest RCD trip time at IΔn (ms)	IΔn での RCD 最長動作時間 (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	低電圧開閉装置アセンブリ: 定格分散率、温度上昇、ドキュメント
+Lowest insulation resistance of the mains (MΩ)	電源系統の最小絶縁抵抗 (MΩ)
 Lubricant	潤滑剤
 Luminaire, fluorescent	蛍光灯器具
 MAC address	MAC アドレス
@@ -830,6 +836,7 @@ Maximum installation altitude	最大設置高度
 Maximum operating temperature	最高動作温度
 Maximum pressure	最大圧力
 Measured variable	測定変数
+Measures against electromagnetic disturbances	EMC 対策
 Measuring instrument	計測器
 Measuring instruments	計測機器
 Measuring point	測定点
@@ -923,6 +930,7 @@ Network (m)	ネットワーク (m)
 Neutral (N)	中性線 (N)
 Neutral and protective conductors identified	中性線と保護導体に表示あり
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	中性線は水色である必要があります (IEC 60204-1、13.2.3)
+New own item of the visual inspection	目視点検の新しい独自項目
 Nibbling	ニブリング
 No connection {}	接続 {} はありません
 No devices to add to the single-line diagram	単線結線図に追加するデバイスはありません
@@ -1027,6 +1035,7 @@ Overview (not evaluated)	概要 (評価されません)
 Overview / single-line	概要 / 単線
 Overvoltage category	過電圧カテゴリ
 Overvoltage relay	過電圧継電器
+Own item {}	独自項目 {}
 P&ID / process (ISO 10628)	P&ID / プロセス (ISO 10628)
 P&ID number	P&ID 番号
 PCT loop {} has no instrument in the P&ID	計装ループ {} には P&ID 内に計器がありません
@@ -1448,6 +1457,7 @@ Single, free-standing	単独、自立型
 Single, wall mounted	単独、壁掛け型
 Single-line / overview	単線 / 概要
 Single-line diagram	単線結線図
+Single-pole switching devices in the line conductors	相導体の単極開閉器
 Siren	サイレン
 Site address	設置場所の住所
 Size (mm)	サイズ (mm)
@@ -1851,6 +1861,7 @@ in work	作業中
 in {}	{} 内
 in-line	インライン
 incl.	含む
+instead of {}	{} ではなく
 ip (kA)	ip (kA)
 is	と等しい
 is at least	以上

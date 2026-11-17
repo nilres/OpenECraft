@@ -283,6 +283,7 @@ Control transformer TC (GB)	Трансформатор цепей управле
 Control valve	Регулирующий клапан
 Control voltage	Напряжение управления
 Control voltage type	Род тока управления
+Conventional touch voltage limit UL (V)	Условное предельное напряжение прикосновения UL (В)
 Converted from file format {} to {}: {}	Преобразовано из формата файла {} в {}: {}
 Coolant	Охлаждающая жидкость
 Cooler	Охладитель
@@ -346,6 +347,7 @@ DWG export failed: {}	Сбой экспорта DWG: {}
 Data sheet	Технический паспорт
 Date of the approval of the last revision	Дата утверждения последнего изменения
 Date of the last revision	Дата последней ревизии
+Default {} ({})	По умолчанию {} ({})
 Degree of protection	Степень защиты
 Delete projects	Удаление проектов
 Delivery date	Дата поставки
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Аварийный останов SB (ГОСТ)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Устройствам аварийного останова нужно значение B10d (ISO 13849-1, приложение C)
 Emergency stop, mushroom head (NFPA)	Аварийный останов, грибовидная кнопка (NFPA)
 Empty (IEC 60204-1)	Пустой (IEC 60204-1)
+Empty: removes the item	Пусто: удаляет пункт
 Enclosure body	Корпус шкафа
 Enclosure climate	Климат корпуса
 Enclosure light	Светильник шкафа
@@ -790,7 +793,10 @@ Load calculation	Расчёт нагрузок
 Loads and power supplies	Нагрузки и источники питания
 Loads behind it: {}	Нижестоящие нагрузки: {}
 Location of the page	Место установки листа
+Longest RCD trip time at 5 × IΔn (ms)	Наибольшее время срабатывания УЗО при 5 × IΔn (мс)
+Longest RCD trip time at IΔn (ms)	Наибольшее время срабатывания УЗО при IΔn (мс)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Низковольтные комплектные устройства: номинальный коэффициент разновремённости, превышение температуры, документация
+Lowest insulation resistance of the mains (MΩ)	Наименьшее сопротивление изоляции сети (МОм)
 Lubricant	Смазка
 Luminaire, fluorescent	Светильник люминесцентный
 MAC address	MAC-адрес
@@ -840,6 +846,7 @@ Maximum installation altitude	Максимальная высота устано
 Maximum operating temperature	Максимальная рабочая температура
 Maximum pressure	Максимальное давление
 Measured variable	Измеряемая величина
+Measures against electromagnetic disturbances	Меры против электромагнитных помех
 Measuring instrument	Измерительный прибор
 Measuring instruments	Измерительные приборы
 Measuring point	Точка измерения
@@ -934,6 +941,7 @@ Network (m)	Сеть (м)
 Neutral (N)	Нейтральный проводник (N)
 Neutral and protective conductors identified	Нулевые и защитные проводники обозначены
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Нейтральные проводники должны быть голубыми (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Новый собственный пункт осмотра
 Nibbling	Высечка
 No connection {}	Нет соединения {}
 No devices to add to the single-line diagram	Нет устройств для добавления на однолинейную схему
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Обзор (не обрабатывается)
 Overview / single-line	Обзор / однолинейное изображение
 Overvoltage category	Категория перенапряжения
 Overvoltage relay	Реле максимального напряжения
+Own item {}	Собственный пункт {}
 P&ID / process (ISO 10628)	P&ID / технологические процессы (ISO 10628)
 P&ID number	Номер P&ID
 PCT loop {} has no instrument in the P&ID	У контура КИПиА {} нет прибора на P&ID
@@ -1462,6 +1471,7 @@ Single, free-standing	Отдельный, отдельностоящий
 Single, wall mounted	Отдельный, настенный
 Single-line / overview	Однолинейное изображение / обзор
 Single-line diagram	Однолинейная схема
+Single-pole switching devices in the line conductors	Однополюсные коммутационные аппараты в фазных проводниках
 Siren	Сирена
 Site address	Адрес места установки
 Size (mm)	Размер (мм)
@@ -1870,6 +1880,7 @@ in work	в работе
 in {}	в {}
 in-line	проходной
 incl.	вкл.
+instead of {}	вместо {}
 ip (kA)	ip (kA)
 is	равно
 is at least	не менее

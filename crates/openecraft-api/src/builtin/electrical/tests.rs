@@ -100,6 +100,9 @@ fn inspection_results_are_set_and_checked() {
     assert_eq!((r["header"]["inspector"].as_str(), r["header"]["ze"].as_str(), r["verdict"].as_str()), (Some("Kim"), Some("0.3"), Some("failed")));
     assert_eq!(r["failed"], json!(["check.fire"]));
     assert_eq!(r["checks"].as_array().unwrap().len(), inspection::CHECKS.len());
+    let r = run(&mut s, "inspection_report", json!({ "header": { "own.1.title": "Emergency lighting", "limit.min_insulation": 0.5 } })).unwrap();
+    assert_eq!(r["checks"].as_array().unwrap().last().unwrap()["key"], "own.1");
+    assert_eq!(r["settings"].as_array().unwrap().iter().find(|l| l["key"] == "min_insulation").unwrap()["value"], 0.5);
     assert!(run(&mut s, "inspection_report", json!({ "header": { "check.fire": "maybe" } })).is_err());
     // The demo's power supply as the source of PELV circuits.
     let source = r["sources"][0]["device"].as_str().unwrap().to_string();

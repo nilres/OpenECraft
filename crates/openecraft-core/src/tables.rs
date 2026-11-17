@@ -91,7 +91,7 @@ const PARTS: [Column; 7] = [
     col(tr_const!("Devices"), false),
 ];
 /// The editable columns are the fields of the results (`inspection::Field` by title).
-const INSPECTION: [Column; 22] = [
+const INSPECTION: [Column; 24] = [
     col(tr_const!("Circuit"), false),
     col(tr_const!("Description"), false),
     col(tr_const!("Protective device"), false),
@@ -99,7 +99,9 @@ const INSPECTION: [Column; 22] = [
     col(tr_const!("Zs max (Ω)"), false),
     col(tr_const!("Protective conductor (Ω)"), true),
     col(tr_const!("Insulation test voltage (V)"), true),
-    col(tr_const!("Insulation resistance (MΩ)"), true),
+    col(tr_const!("Insulation L–PE (MΩ)"), true),
+    col(tr_const!("Insulation N–PE (MΩ)"), true),
+    col(tr_const!("Insulation L–N (MΩ)"), true),
     col(tr_const!("Loop impedance Zs (Ω)"), true),
     col(tr_const!("Voltage drop (%)"), true),
     col(tr_const!("RCD trip current (mA)"), true),
@@ -392,8 +394,9 @@ fn inspection_rows(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Row> {
 }
 
 /// The data of the report (key: the field), the items of the visual inspection (key:
-/// `check.<item>`) and the values of the sources of SELV, PELV and separated circuits
-/// (key: `source.<device>.<field>`).
+/// `check.<item>`, own items `own.<n>` with their text as `own.<n>.title`; the last row
+/// adds one), the values of the sources of SELV, PELV and separated circuits (key:
+/// `source.<device>.<field>`) and the limits (key: `limit.<name>`).
 fn inspection_data_rows(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Row> {
     use crate::inspection::{answer_text, Report, SourceField, CHECKS};
     let report = Report::of(prj, nl, &crate::netlist::connections(prj, nl, open));
@@ -412,6 +415,11 @@ fn inspection_data_rows(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Row>
         let a = h.checks.get(key).map(|a| answer_text(a)).unwrap_or_default();
         out.push(row(format!("check.{key}"), vec![tr(title).into(), a, answers()], None));
     }
+    for (i, c) in h.own_checks.iter().enumerate() {
+        out.push(row(format!("own.{}.title", i + 1), vec![tr_fmt!("Own item {}", i + 1), c.title.clone(), tr("Empty: removes the item").into()], None));
+        out.push(row(format!("own.{}", i + 1), vec![c.title.clone(), answer_text(&c.answer), answers()], None));
+    }
+    out.push(row(format!("own.{}.title", h.own_checks.len() + 1), vec![tr("New own item of the visual inspection").into(), String::new(), String::new()], None));
     for s in &report.sources {
         for f in SourceField::ALL {
             let note = match f {
@@ -420,6 +428,11 @@ fn inspection_data_rows(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Row>
             };
             out.push(row(format!("source.{}.{}", s.device, f.key()), vec![format!("{}: {}", s.device, f.title()), f.display(&s.result), note], Some(s.target)));
         }
+    }
+    for l in &report.settings {
+        let title = crate::inspection::LIMITS.iter().find(|x| x.0 == l.key).map_or("", |x| x.1);
+        let note = tr_fmt!("Default {} ({})", crate::inspection::limit_text(l.default), l.source);
+        out.push(row(format!("limit.{}", l.key), vec![tr(title).into(), crate::inspection::limit_text(l.value), note], None));
     }
     out
 }

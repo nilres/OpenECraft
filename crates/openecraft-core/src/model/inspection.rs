@@ -75,6 +75,22 @@ pub struct Header {
     /// The visual inspection: `ok`, `failed` or `n/a` by item (`crate::inspection::CHECKS`).
     #[serde(skip_serializing_if = "BTreeMap::is_empty")]
     pub checks: BTreeMap<String, String>,
+    /// Items of the visual inspection added for this installation.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub own_checks: Vec<OwnCheck>,
+    /// Limits that differ from the defaults (`crate::inspection::LIMITS`) by key.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty")]
+    pub limits: BTreeMap<String, f32>,
+}
+
+/// An item of the visual inspection added for this installation.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct OwnCheck {
+    pub title: String,
+    /// `ok`, `failed`, `n/a` or empty.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub answer: String,
 }
 
 impl Header {
@@ -98,10 +114,16 @@ pub struct TestResult {
     /// Test voltage of the insulation measurement, V DC.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub insulation_voltage: String,
-    /// Insulation resistance (the lowest of the conductors against each other and
-    /// against earth), MΩ.
+    /// Insulation resistance between the line conductors (or all live conductors
+    /// connected together) and the protective conductor, MΩ.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub insulation: String,
+    /// Insulation resistance between the neutral and the protective conductor, MΩ.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub insulation_n_pe: String,
+    /// Insulation resistance between the live conductors, MΩ.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub insulation_l_n: String,
     /// Earth fault loop impedance Zs, Ω.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub loop_impedance: String,

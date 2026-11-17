@@ -283,6 +283,7 @@ Control transformer TC (GB)	Styretransformer TC (GB)
 Control valve	Reguleringsventil
 Control voltage	Styrespænding
 Control voltage type	Styrespændingstype
+Conventional touch voltage limit UL (V)	Konventionel grænse for berøringsspænding UL (V)
 Converted from file format {} to {}: {}	Konverteret fra filformat {} til {}: {}
 Coolant	Kølemiddel
 Cooler	Køler
@@ -346,6 +347,7 @@ DWG export failed: {}	DWG-eksport mislykkedes: {}
 Data sheet	Datablad
 Date of the approval of the last revision	Dato for godkendelsen af den seneste revision
 Date of the last revision	Dato for den seneste revision
+Default {} ({})	Standard {} ({})
 Degree of protection	Kapslingsklasse
 Delete projects	Slet projekter
 Delivery date	Leveringsdato
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Nødstop SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Nødstopenheder kræver en B10d-værdi (ISO 13849-1, bilag C)
 Emergency stop, mushroom head (NFPA)	Nødstop, svampehoved (NFPA)
 Empty (IEC 60204-1)	Tom (IEC 60204-1)
+Empty: removes the item	Tom: fjerner punktet
 Enclosure body	Kapslingskrop
 Enclosure climate	Kapslingsklimatisering
 Enclosure light	Tavlelampe
@@ -790,7 +793,10 @@ Load calculation	Belastningsberegning
 Loads and power supplies	Belastninger og strømforsyninger
 Loads behind it: {}	Efterfølgende belastninger: {}
 Location of the page	Sidens placering
+Longest RCD trip time at 5 × IΔn (ms)	Længste HPFI-udløsetid ved 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Længste HPFI-udløsetid ved IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Lavspændingstavler: mærkesamtidighedsfaktor, temperaturstigning, dokumentation
+Lowest insulation resistance of the mains (MΩ)	Laveste isolationsmodstand for nettet (MΩ)
 Lubricant	Smøremiddel
 Luminaire, fluorescent	Armatur, lysstof
 MAC address	MAC-adresse
@@ -840,6 +846,7 @@ Maximum installation altitude	Maksimal opstillingshøjde
 Maximum operating temperature	Maksimal driftstemperatur
 Maximum pressure	Maksimalt tryk
 Measured variable	Målt størrelse
+Measures against electromagnetic disturbances	Foranstaltninger mod elektromagnetiske forstyrrelser
 Measuring instrument	Måleinstrument
 Measuring instruments	Måleinstrumenter
 Measuring point	Målested
@@ -934,6 +941,7 @@ Network (m)	Net (m)
 Neutral (N)	Nulleder (N)
 Neutral and protective conductors identified	Nul- og beskyttelsesledere mærket
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Nulledere skal være lyseblå (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Nyt eget punkt i den visuelle kontrol
 Nibbling	Nibling
 No connection {}	Ingen forbindelse {}
 No devices to add to the single-line diagram	Ingen enheder at føje til enstregsdiagrammet
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Oversigt (evalueres ikke)
 Overview / single-line	Oversigt / enstreget
 Overvoltage category	Overspændingskategori
 Overvoltage relay	Overspændingsrelæ
+Own item {}	Eget punkt {}
 P&ID / process (ISO 10628)	P&ID / proces (ISO 10628)
 P&ID number	P&ID-nummer
 PCT loop {} has no instrument in the P&ID	PCT-sløjfen {} har intet instrument i P&ID'et
@@ -1462,6 +1471,7 @@ Single, free-standing	Enkelt, fritstående
 Single, wall mounted	Enkelt, vægmonteret
 Single-line / overview	Enstreget / oversigt
 Single-line diagram	Enstregsdiagram
+Single-pole switching devices in the line conductors	Enpolede koblingsudstyr i faselederne
 Siren	Sirene
 Site address	Opstillingsstedets adresse
 Size (mm)	Størrelse (mm)
@@ -1870,6 +1880,7 @@ in work	under arbejde
 in {}	i {}
 in-line	gennemgang
 incl.	inkl.
+instead of {}	i stedet for {}
 ip (kA)	ip (kA)
 is	er
 is at least	er mindst

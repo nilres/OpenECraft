@@ -283,6 +283,7 @@ Control transformer TC (GB)	Ohjausmuuntaja TC (GB)
 Control valve	Säätöventtiili
 Control voltage	Ohjausjännite
 Control voltage type	Ohjausjännitteen laji
+Conventional touch voltage limit UL (V)	Sovittu kosketusjänniteraja UL (V)
 Converted from file format {} to {}: {}	Muunnettu tiedostomuodosta {} muotoon {}: {}
 Coolant	Jäähdytysneste
 Cooler	Jäähdytin
@@ -346,6 +347,7 @@ DWG export failed: {}	DWG-vienti epäonnistui: {}
 Data sheet	Tietolehti
 Date of the approval of the last revision	Viimeisimmän revision hyväksymispäivä
 Date of the last revision	Viimeisimmän revision päivämäärä
+Default {} ({})	Oletus {} ({})
 Degree of protection	Kotelointiluokka
 Delete projects	Poista projekteja
 Delivery date	Toimituspäivä
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Hätäpysäytys SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Hätäpysäytyslaitteet tarvitsevat B10d-arvon (ISO 13849-1, liite C)
 Emergency stop, mushroom head (NFPA)	Hätäpysäytys, sienipainike (NFPA)
 Empty (IEC 60204-1)	Tyhjä (IEC 60204-1)
+Empty: removes the item	Tyhjä: poistaa kohdan
 Enclosure body	Kotelon runko
 Enclosure climate	Kotelon ilmastointi
 Enclosure light	Kotelon valaisin
@@ -790,7 +793,10 @@ Load calculation	Kuormituslaskenta
 Loads and power supplies	Kuormat ja virtalähteet
 Loads behind it: {}	Sen jälkeiset kuormat: {}
 Location of the page	Sivun sijainti
+Longest RCD trip time at 5 × IΔn (ms)	Vikavirtasuojan pisin laukaisuaika 5 × IΔn:llä (ms)
+Longest RCD trip time at IΔn (ms)	Vikavirtasuojan pisin laukaisuaika IΔn:llä (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Pienjännitekojeistot: mitoituskuormituskerroin, lämpeneminen, dokumentaatio
+Lowest insulation resistance of the mains (MΩ)	Verkon pienin eristysresistanssi (MΩ)
 Lubricant	Voiteluaine
 Luminaire, fluorescent	Loistevalaisin
 MAC address	MAC-osoite
@@ -840,6 +846,7 @@ Maximum installation altitude	Suurin asennuskorkeus
 Maximum operating temperature	Suurin käyttölämpötila
 Maximum pressure	Suurin paine
 Measured variable	Mittasuure
+Measures against electromagnetic disturbances	Toimenpiteet sähkömagneettisia häiriöitä vastaan
 Measuring instrument	Mittalaite
 Measuring instruments	Mittalaitteet
 Measuring point	Mittauspiste
@@ -934,6 +941,7 @@ Network (m)	Verkko (m)
 Neutral (N)	Nollajohdin (N)
 Neutral and protective conductors identified	Nolla- ja suojajohtimet merkitty
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Nollajohtimien on oltava vaaleansinisiä (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Uusi oma silmämääräisen tarkastuksen kohta
 Nibbling	Nakerrus
 No connection {}	Ei yhteyttä {}
 No devices to add to the single-line diagram	Ei laitteita lisättäväksi yksinapaiseen kaavioon
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Yleiskatsaus (ei arvioida)
 Overview / single-line	Yleiskatsaus / yksinapainen
 Overvoltage category	Ylijänniteluokka
 Overvoltage relay	Ylijänniterele
+Own item {}	Oma kohta {}
 P&ID / process (ISO 10628)	PI / prosessi (ISO 10628)
 P&ID number	PI-kaavion numero
 PCT loop {} has no instrument in the P&ID	Instrumentointipiirillä {} ei ole instrumenttia PI-kaaviossa
@@ -1462,6 +1471,7 @@ Single, free-standing	Yksittäinen, vapaasti seisova
 Single, wall mounted	Yksittäinen, seinäasennus
 Single-line / overview	Yksinapainen / yleiskatsaus
 Single-line diagram	Yksinapainen kaavio
+Single-pole switching devices in the line conductors	Yksinapaiset kytkinlaitteet vaihejohtimissa
 Siren	Sireeni
 Site address	Asennuspaikan osoite
 Size (mm)	Koko (mm)
@@ -1870,6 +1880,7 @@ in work	työn alla
 in {}	kohteessa {}
 in-line	läpivirtaus
 incl.	sis.
+instead of {}	eikä {}
 ip (kA)	ip (kA)
 is	on
 is at least	on vähintään

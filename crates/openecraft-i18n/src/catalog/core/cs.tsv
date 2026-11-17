@@ -283,6 +283,7 @@ Control transformer TC (GB)	Ovládací transformátor TC (GB)
 Control valve	Regulační ventil
 Control voltage	Řídicí napětí
 Control voltage type	Druh řídicího napětí
+Conventional touch voltage limit UL (V)	Dohodnutá mez dotykového napětí UL (V)
 Converted from file format {} to {}: {}	Převedeno z formátu souboru {} na {}: {}
 Coolant	Chladicí kapalina
 Cooler	Chladič
@@ -346,6 +347,7 @@ DWG export failed: {}	Export DWG selhal: {}
 Data sheet	Katalogový list
 Date of the approval of the last revision	Datum schválení poslední revize
 Date of the last revision	Datum poslední revize
+Default {} ({})	Výchozí {} ({})
 Degree of protection	Stupeň krytí
 Delete projects	Odstraňovat projekty
 Delivery date	Termín dodání
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Nouzové zastavení SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Přístroje nouzového zastavení potřebují hodnotu B10d (ISO 13849-1, příloha C)
 Emergency stop, mushroom head (NFPA)	Nouzové zastavení, hřibové tlačítko (NFPA)
 Empty (IEC 60204-1)	Prázdný (IEC 60204-1)
+Empty: removes the item	Prázdné: odstraní bod
 Enclosure body	Tělo skříně
 Enclosure climate	Klimatizace skříně
 Enclosure light	Svítidlo rozváděče
@@ -790,7 +793,10 @@ Load calculation	Výpočet zatížení
 Loads and power supplies	Spotřebiče a napájecí zdroje
 Loads behind it: {}	Následné spotřebiče: {}
 Location of the page	Umístění stránky
+Longest RCD trip time at 5 × IΔn (ms)	Nejdelší vybavovací doba chrániče při 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Nejdelší vybavovací doba chrániče při IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Rozváděče nízkého napětí: jmenovitý součinitel soudobosti, oteplení, dokumentace
+Lowest insulation resistance of the mains (MΩ)	Nejmenší izolační odpor sítě (MΩ)
 Lubricant	Mazivo
 Luminaire, fluorescent	Svítidlo, zářivkové
 MAC address	MAC adresa
@@ -840,6 +846,7 @@ Maximum installation altitude	Maximální nadmořská výška instalace
 Maximum operating temperature	Maximální provozní teplota
 Maximum pressure	Maximální tlak
 Measured variable	Měřená veličina
+Measures against electromagnetic disturbances	Opatření proti elektromagnetickému rušení
 Measuring instrument	Měřicí přístroj
 Measuring instruments	Měřicí přístroje
 Measuring point	Měřicí místo
@@ -934,6 +941,7 @@ Network (m)	Síť (m)
 Neutral (N)	Střední vodič (N)
 Neutral and protective conductors identified	Nulové a ochranné vodiče označeny
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Střední vodiče musí být světle modré (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Nový vlastní bod prohlídky
 Nibbling	Prostřihování
 No connection {}	Žádné spojení {}
 No devices to add to the single-line diagram	Žádné přístroje k přidání do jednopólového schématu
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Přehled (nevyhodnocuje se)
 Overview / single-line	Přehled / jednopólové
 Overvoltage category	Kategorie přepětí
 Overvoltage relay	Přepěťové relé
+Own item {}	Vlastní bod {}
 P&ID / process (ISO 10628)	P&ID / procesní technika (ISO 10628)
 P&ID number	Číslo P&ID
 PCT loop {} has no instrument in the P&ID	Smyčka MaR {} nemá v P&ID žádný přístroj
@@ -1462,6 +1471,7 @@ Single, free-standing	Samostatně, volně stojící
 Single, wall mounted	Samostatně, montáž na stěnu
 Single-line / overview	Jednopólové / přehled
 Single-line diagram	Jednopólové schéma
+Single-pole switching devices in the line conductors	Jednopólové spínače ve fázových vodičích
 Siren	Siréna
 Site address	Adresa místa instalace
 Size (mm)	Velikost (mm)
@@ -1870,6 +1880,7 @@ in work	ve zpracování
 in {}	v {}
 in-line	průchozí
 incl.	vč.
+instead of {}	místo {}
 ip (kA)	ip (kA)
 is	je
 is at least	je alespoň

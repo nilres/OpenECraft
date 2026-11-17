@@ -237,6 +237,13 @@ fn the_report_has_a_verdict_and_a_signature() {
     set_header(&mut k.prj, "check.fire", "Not OK").unwrap();
     let r = report_of(&k.prj);
     assert_eq!((r.verdict, r.failed.as_slice()), (Verdict::Failed, &["check.fire".to_string()][..]));
+    set_header(&mut k.prj, "check.fire", "OK").unwrap();
+    // An own item takes part like the others.
+    set_header(&mut k.prj, "own.1.title", "Emergency lighting").unwrap();
+    assert_eq!(report_of(&k.prj).verdict, Verdict::Incomplete, "the own item is not answered");
+    set_header(&mut k.prj, "own.1", "Not OK").unwrap();
+    let r = report_of(&k.prj);
+    assert_eq!((r.failed.as_slice(), r.checks.last().map(|c| c.title.as_str())), (&["own.1".to_string()][..], Some("Emergency lighting")));
     let t = summary_table(&r);
     assert_eq!(t.rows.last().unwrap()[1], Verdict::Failed.title());
     assert!(t.rows.iter().any(|row| row[0] == tr("Inspector") && row[1] == "A. Smith"));
@@ -372,4 +379,93 @@ fn sources_of_selv_pelv_and_separation() {
     let r = report_of(&k.prj);
     assert_eq!(r.sources.len(), 2);
     assert_eq!(source_table(&r.sources).rows[0][3], tr("SELV"));
+}
+
+/// Own items: added with the next number, renamed, removed with an empty text.
+#[test]
+fn own_items_of_the_visual_inspection() {
+    let mut prj = Project::default();
+    assert!(set_header(&mut prj, "own.2.title", "Gap").is_err(), "numbers follow on");
+    assert_eq!(set_header(&mut prj, "own.1.title", "Emergency lighting"), Ok(true));
+    assert_eq!(set_header(&mut prj, "own.2.title", "Lightning protection"), Ok(true));
+    assert_eq!(set_header(&mut prj, "own.2", "n/a"), Ok(true));
+    assert!(set_header(&mut prj, "own.3", "ok").is_err());
+    assert_eq!(set_header(&mut prj, "own.1.title", ""), Ok(true));
+    let own = &prj.inspection.header.own_checks;
+    assert_eq!((own.len(), own[0].title.as_str(), own[0].answer.as_str()), (1, "Lightning protection", NOT_APPLICABLE));
+}
+
+/// Limits of another edition: set per project, back to the default when cleared.
+#[test]
+fn limits_are_set_per_project() {
+    let mut k = installation();
+    set(&mut k.prj, "-F1", Field::Insulation, "0.8").unwrap();
+    assert_eq!(by(&circuits_of(&k.prj), "-F1").failed, [Field::Insulation]);
+    assert_eq!(set_header(&mut k.prj, "limit.min_insulation", "0,5"), Ok(true));
+    assert!(by(&circuits_of(&k.prj), "-F1").failed.is_empty());
+    let r = report_of(&k.prj);
+    let s = r.settings.iter().find(|s| s.key == "min_insulation").unwrap();
+    assert_eq!((s.value, s.default), (0.5, 1.0));
+    assert!(set_header(&mut k.prj, "limit.min_insulation", "lots").is_err());
+    assert!(set_header(&mut k.prj, "limit.rocket", "1").is_err());
+    assert_eq!(set_header(&mut k.prj, "limit.min_insulation", "1"), Ok(true), "the default is no own value");
+    assert!(k.prj.inspection.header.limits.is_empty());
+    set_header(&mut k.prj, "limit.rcd_time", "200").unwrap();
+    assert_eq!(by(&circuits_of(&k.prj), "-F1").limit(Field::RcdTime).and_then(|l| l.max), Some(200.0));
+    assert_eq!(limit_text(LOOP_FACTOR), "0.667");
+}
+
+/// Insulation between each pair of conductors, all against the same limit.
+#[test]
+fn insulation_between_the_conductors() {
+    let mut k = installation();
+    set(&mut k.prj, "-F1", Field::InsulationNPe, "0.6").unwrap();
+    set(&mut k.prj, "-F1", Field::InsulationLN, "> 500").unwrap();
+    assert_eq!(by(&circuits_of(&k.prj), "-F1").failed, [Field::InsulationNPe]);
+    assert!(!by(&circuits_of(&k.prj), "-F1").required().contains(&Field::InsulationNPe), "with the live conductors connected together L–PE is enough");
+}
+
+/// The protective conductor against the resistance of the cable: a hint, no failure.
+#[test]
+fn the_protective_conductor_against_its_calculated_resistance() {
+    let mut k = installation();
+    // -W1: 20 m of 2.5 mm² copper.
+    let f1 = by(&circuits_of(&k.prj), "-F1").clone();
+    let r = f1.continuity_calculated.unwrap();
+    assert!((r - k.prj.electrical.conditions.material.rho20() * 20.0 / 2.5).abs() < 1e-4, "{r}");
+    set(&mut k.prj, "-F1", Field::Continuity, "0.18").unwrap();
+    assert!(by(&circuits_of(&k.prj), "-F1").notes.is_empty());
+    set(&mut k.prj, "-F1", Field::Continuity, "0.9").unwrap();
+    let f1 = by(&circuits_of(&k.prj), "-F1").clone();
+    assert_eq!((f1.notes.as_slice(), f1.failed.as_slice()), (&[Field::Continuity][..], &[][..]));
+    assert_eq!(by(&circuits_of(&k.prj), "-F3").continuity_calculated, None, "no cable");
+}
+
+/// The fault current measured at the origin against the breaking capacities: a device
+/// fed from the origin fails.
+#[test]
+fn breaking_capacities_against_the_measured_fault_current() {
+    let mut k = installation();
+    for p in k.prj.parts.iter_mut().filter(|p| p.number.contains("F1") || p.number.contains("F3")) {
+        p.tech_data = format!("{}\nBreaking capacity: 6 kA", p.tech_data).trim().into();
+    }
+    set_header(&mut k.prj, "ik", "4.5").unwrap();
+    let r = report_of(&k.prj);
+    assert!(r.failed.is_empty() && r.notes.is_empty());
+    set_header(&mut k.prj, "ik", "8").unwrap();
+    let r = report_of(&k.prj);
+    assert!(r.failed.contains(&"breaking.-F3".to_string()), "{:?}", r.failed);
+    assert_eq!(r.verdict, Verdict::Failed);
+    assert!(summary_table(&r).rows.iter().any(|row| row[0].contains("-F3") && row[1] == "6 kA"));
+}
+
+/// Own items changed together: numbered as loaded, a new one with its answer, a removed
+/// one moving the others up.
+#[test]
+fn own_items_change_together() {
+    let mut prj = Project::default();
+    set_header_all(&mut prj, [("own.1.title", "A"), ("own.1", "ok"), ("own.2.title", "B")]).unwrap();
+    set_header_all(&mut prj, [("own.1.title", ""), ("own.2", "failed"), ("own.3.title", "C"), ("own.3", "n/a")]).unwrap();
+    let own: Vec<(&str, &str)> = prj.inspection.header.own_checks.iter().map(|c| (c.title.as_str(), c.answer.as_str())).collect();
+    assert_eq!(own, [("B", FUNCTION_FAILED), ("C", NOT_APPLICABLE)]);
 }

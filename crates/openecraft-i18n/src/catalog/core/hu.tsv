@@ -283,6 +283,7 @@ Control transformer TC (GB)	Vezérlőtranszformátor TC (GB)
 Control valve	Szabályozószelep
 Control voltage	Vezérlőfeszültség
 Control voltage type	Vezérlőfeszültség fajtája
+Conventional touch voltage limit UL (V)	Megegyezés szerinti érintési feszültséghatár UL (V)
 Converted from file format {} to {}: {}	Átalakítva a(z) {} fájlformátumról erre: {}: {}
 Coolant	Hűtőközeg
 Cooler	Hűtő
@@ -346,6 +347,7 @@ DWG export failed: {}	A DWG-exportálás sikertelen: {}
 Data sheet	Adatlap
 Date of the approval of the last revision	Az utolsó revízió jóváhagyásának dátuma
 Date of the last revision	Az utolsó revízió dátuma
+Default {} ({})	Alapértelmezés {} ({})
 Degree of protection	Védettségi fokozat
 Delete projects	Projektek törlése
 Delivery date	Szállítási határidő
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Vészleállító SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	A vészleállító készülékekhez B10d-érték szükséges (ISO 13849-1, C melléklet)
 Emergency stop, mushroom head (NFPA)	Vészleállító, gombafejes (NFPA)
 Empty (IEC 60204-1)	Üres (IEC 60204-1)
+Empty: removes the item	Üres: eltávolítja a pontot
 Enclosure body	Szekrénytest
 Enclosure climate	Szekrényklimatizálás
 Enclosure light	Szekrényvilágítás
@@ -790,7 +793,10 @@ Load calculation	Terhelésszámítás
 Loads and power supplies	Fogyasztók és tápellátás
 Loads behind it: {}	Utána kapcsolt fogyasztók: {}
 Location of the page	Az oldal szerelési helye
+Longest RCD trip time at 5 × IΔn (ms)	Áram-védőkapcsoló leghosszabb kioldási ideje 5 × IΔn-nél (ms)
+Longest RCD trip time at IΔn (ms)	Áram-védőkapcsoló leghosszabb kioldási ideje IΔn-nél (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Kisfeszültségű kapcsoló- és vezérlőberendezések: névleges egyidejűségi tényező, melegedés, dokumentáció
+Lowest insulation resistance of the mains (MΩ)	A hálózat legkisebb szigetelési ellenállása (MΩ)
 Lubricant	Kenőanyag
 Luminaire, fluorescent	Fénycsöves lámpatest
 MAC address	MAC-cím
@@ -840,6 +846,7 @@ Maximum installation altitude	Maximális telepítési magasság
 Maximum operating temperature	Maximális üzemi hőmérséklet
 Maximum pressure	Maximális nyomás
 Measured variable	Mért jellemző
+Measures against electromagnetic disturbances	Intézkedések az elektromágneses zavarok ellen
 Measuring instrument	Mérőműszer
 Measuring instruments	Mérőműszerek
 Measuring point	Mérési pont
@@ -934,6 +941,7 @@ Network (m)	Hálózat (m)
 Neutral (N)	Nullavezető (N)
 Neutral and protective conductors identified	Nulla- és védővezetők jelölve
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	A nullavezetőknek világoskéknek kell lenniük (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	A szemrevételezés új saját pontja
 Nibbling	Nibbelés
 No connection {}	Nincs {} összeköttetés
 No devices to add to the single-line diagram	Nincs az egyvonalas rajzhoz hozzáadandó készülék
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Áttekintés (nincs kiértékelés)
 Overview / single-line	Áttekintés / egyvonalas
 Overvoltage category	Túlfeszültség-kategória
 Overvoltage relay	Túlfeszültség-relé
+Own item {}	Saját pont: {}
 P&ID / process (ISO 10628)	P&ID / folyamattechnika (ISO 10628)
 P&ID number	P&ID-szám
 PCT loop {} has no instrument in the P&ID	A(z) {} PCT-körnek nincs műszere a P&ID-ben
@@ -1462,6 +1471,7 @@ Single, free-standing	Egyedi, szabadon álló
 Single, wall mounted	Egyedi, falra szerelt
 Single-line / overview	Egyvonalas / áttekintés
 Single-line diagram	Egyvonalas rajz
+Single-pole switching devices in the line conductors	Egypólusú kapcsolókészülékek a fázisvezetőkben
 Siren	Sziréna
 Site address	Telephely címe
 Size (mm)	Méret (mm)
@@ -1870,6 +1880,7 @@ in work	munka alatt
 in {}	itt: {}
 in-line	átmenő
 incl.	beleértve
+instead of {}	{} helyett
 ip (kA)	ip (kA)
 is	egyenlő
 is at least	legalább

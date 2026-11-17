@@ -283,6 +283,7 @@ Control transformer TC (GB)	Трансформатор кіл керування
 Control valve	Регулювальний клапан
 Control voltage	Напруга керування
 Control voltage type	Рід струму керування
+Conventional touch voltage limit UL (V)	Умовна гранична напруга дотику UL (В)
 Converted from file format {} to {}: {}	Перетворено з формату файлу {} на {}: {}
 Coolant	Охолоджувальна рідина
 Cooler	Охолоджувач
@@ -346,6 +347,7 @@ DWG export failed: {}	Помилка експорту DWG: {}
 Data sheet	Технічний паспорт
 Date of the approval of the last revision	Дата затвердження останньої зміни
 Date of the last revision	Дата останньої ревізії
+Default {} ({})	Типово {} ({})
 Degree of protection	Ступінь захисту
 Delete projects	Видаляти проєкти
 Delivery date	Дата поставки
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Аварійна зупинка SB (ГОСТ)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Пристрої аварійної зупинки потребують значення B10d (ISO 13849-1, додаток C)
 Emergency stop, mushroom head (NFPA)	Аварійна зупинка, грибоподібна кнопка (NFPA)
 Empty (IEC 60204-1)	Порожній (IEC 60204-1)
+Empty: removes the item	Порожньо: видаляє пункт
 Enclosure body	Корпус (основа)
 Enclosure climate	Тепловий режим корпусу
 Enclosure light	Світильник шафи
@@ -790,7 +793,10 @@ Load calculation	Розрахунок навантаження
 Loads and power supplies	Споживачі та джерела живлення
 Loads behind it: {}	Навантаження за ним: {}
 Location of the page	Розташування сторінки
+Longest RCD trip time at 5 × IΔn (ms)	Найбільший час спрацювання ПЗВ при 5 × IΔn (мс)
+Longest RCD trip time at IΔn (ms)	Найбільший час спрацювання ПЗВ при IΔn (мс)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Низьковольтні комплектні пристрої розподілу та керування: номінальний коефіцієнт одночасності, перевищення температури, документація
+Lowest insulation resistance of the mains (MΩ)	Найменший опір ізоляції мережі (МОм)
 Lubricant	Мастило
 Luminaire, fluorescent	Люмінесцентний світильник
 MAC address	MAC-адреса
@@ -840,6 +846,7 @@ Maximum installation altitude	Максимальна висота встанов
 Maximum operating temperature	Максимальна робоча температура
 Maximum pressure	Максимальний тиск
 Measured variable	Вимірювана величина
+Measures against electromagnetic disturbances	Заходи проти електромагнітних завад
 Measuring instrument	Вимірювальний прилад
 Measuring instruments	Вимірювальні прилади
 Measuring point	Точка вимірювання
@@ -934,6 +941,7 @@ Network (m)	Мережа (м)
 Neutral (N)	Нейтральний провідник (N)
 Neutral and protective conductors identified	Нульові та захисні провідники позначені
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Нейтральні провідники мають бути блакитними (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Новий власний пункт огляду
 Nibbling	Висічка
 No connection {}	Немає з’єднання {}
 No devices to add to the single-line diagram	Немає пристроїв для додавання до однолінійної схеми
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Огляд (не обробляється)
 Overview / single-line	Огляд / однолінійна
 Overvoltage category	Категорія перенапруги
 Overvoltage relay	Реле максимальної напруги
+Own item {}	Власний пункт {}
 P&ID / process (ISO 10628)	P&ID / технологія (ISO 10628)
 P&ID number	Номер P&ID
 PCT loop {} has no instrument in the P&ID	Контур КВПіА {} не має приладу на P&ID
@@ -1462,6 +1471,7 @@ Single, free-standing	Окрема, окремостояча
 Single, wall mounted	Окрема, настінна
 Single-line / overview	Однолінійна / огляд
 Single-line diagram	Однолінійна схема
+Single-pole switching devices in the line conductors	Однополюсні комутаційні апарати у фазних провідниках
 Siren	Сирена
 Site address	Адреса місця встановлення
 Size (mm)	Розмір (мм)
@@ -1870,6 +1880,7 @@ in work	у роботі
 in {}	у {}
 in-line	прохідний
 incl.	вкл.
+instead of {}	замість {}
 ip (kA)	ip (kA)
 is	дорівнює
 is at least	не менше

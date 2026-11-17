@@ -283,6 +283,7 @@ Control transformer TC (GB)	Kumanda transformatörü TC (GB)
 Control valve	Kontrol vanası
 Control voltage	Kumanda gerilimi
 Control voltage type	Kumanda gerilimi tipi
+Conventional touch voltage limit UL (V)	Geleneksel dokunma gerilimi sınırı UL (V)
 Converted from file format {} to {}: {}	{} dosya formatından {} formatına dönüştürüldü: {}
 Coolant	Soğutucu
 Cooler	Soğutucu
@@ -346,6 +347,7 @@ DWG export failed: {}	DWG dışa aktarımı başarısız oldu: {}
 Data sheet	Veri sayfası
 Date of the approval of the last revision	Son revizyonun onay tarihi
 Date of the last revision	Son revizyonun tarihi
+Default {} ({})	Varsayılan {} ({})
 Degree of protection	Koruma derecesi
 Delete projects	Projeleri sil
 Delivery date	Teslim tarihi
@@ -469,6 +471,7 @@ Emergency stop SB (GOST)	Acil durdurma SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Acil durdurma cihazları bir B10d değerine ihtiyaç duyar (ISO 13849-1, Ek C)
 Emergency stop, mushroom head (NFPA)	Acil durdurma, mantar başlı (NFPA)
 Empty (IEC 60204-1)	Boş (IEC 60204-1)
+Empty: removes the item	Boş: maddeyi kaldırır
 Enclosure body	Pano gövdesi
 Enclosure climate	Pano iklimlendirmesi
 Enclosure light	Pano aydınlatması
@@ -790,7 +793,10 @@ Load calculation	Yük hesabı
 Loads and power supplies	Yükler ve güç kaynakları
 Loads behind it: {}	Arkasındaki yükler: {}
 Location of the page	Sayfanın konumu
+Longest RCD trip time at 5 × IΔn (ms)	5 × IΔn'de en uzun kaçak akım rölesi açma süresi (ms)
+Longest RCD trip time at IΔn (ms)	IΔn'de en uzun kaçak akım rölesi açma süresi (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Alçak gerilim anahtarlama düzenleri: anma çeşitlilik faktörü, sıcaklık artışı, dokümantasyon
+Lowest insulation resistance of the mains (MΩ)	Şebekenin en düşük yalıtım direnci (MΩ)
 Lubricant	Yağlayıcı
 Luminaire, fluorescent	Floresan armatür
 MAC address	MAC adresi
@@ -840,6 +846,7 @@ Maximum installation altitude	Maksimum kurulum yüksekliği
 Maximum operating temperature	Maksimum çalışma sıcaklığı
 Maximum pressure	Maksimum basınç
 Measured variable	Ölçülen büyüklük
+Measures against electromagnetic disturbances	Elektromanyetik bozulmalara karşı önlemler
 Measuring instrument	Ölçü aleti
 Measuring instruments	Ölçü aletleri
 Measuring point	Ölçüm noktası
@@ -934,6 +941,7 @@ Network (m)	Ağ (m)
 Neutral (N)	Nötr (N)
 Neutral and protective conductors identified	Nötr ve koruma iletkenleri işaretli
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Nötr iletkenler açık mavi olmalıdır (IEC 60204-1, 13.2.3)
+New own item of the visual inspection	Gözle muayenenin yeni kendi maddesi
 Nibbling	Nibbling
 No connection {}	{} bağlantısı yok
 No devices to add to the single-line diagram	Tek hat şemasına eklenecek cihaz yok
@@ -1040,6 +1048,7 @@ Overview (not evaluated)	Genel bakış (değerlendirilmez)
 Overview / single-line	Genel bakış / tek hat
 Overvoltage category	Aşırı gerilim kategorisi
 Overvoltage relay	Aşırı gerilim rölesi
+Own item {}	Kendi madde {}
 P&ID / process (ISO 10628)	P&ID / proses (ISO 10628)
 P&ID number	P&ID numarası
 PCT loop {} has no instrument in the P&ID	PCT döngüsü {} için P&ID'de enstrüman yok
@@ -1462,6 +1471,7 @@ Single, free-standing	Tekli, serbest duran
 Single, wall mounted	Tekli, duvara monte
 Single-line / overview	Tek hat / genel bakış
 Single-line diagram	Tek hat şeması
+Single-pole switching devices in the line conductors	Faz iletkenlerinde tek kutuplu anahtarlama cihazları
 Siren	Siren
 Site address	Kurulum yeri adresi
 Size (mm)	Boyut (mm)
@@ -1870,6 +1880,7 @@ in work	üzerinde çalışılıyor
 in {}	{} içinde
 in-line	geçiş
 incl.	dahil
+instead of {}	{} yerine
 ip (kA)	ip (kA)
 is	eşittir
 is at least	en az

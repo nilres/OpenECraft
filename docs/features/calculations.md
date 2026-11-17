@@ -109,9 +109,10 @@ limits:
 
 | Result | Limit |
 | --- | --- |
-| Continuity of the protective conductor (Ω) | recorded |
+| Continuity of the protective conductor (Ω) | no limit in the standard; next to it the resistance calculated from the cables of the circuit (length, cross-section, conductor material at 20 °C), a hint above 1.5 times of it |
 | Insulation test voltage (V) | at least 500 V up to 500 V nominal, 1000 V above (table 6.1) |
-| Insulation resistance (MΩ, the lowest measured) | at least 1 MΩ |
+| Insulation L–PE (MΩ; the line conductors, or all live conductors connected together, against PE) | at least 1 MΩ |
+| Insulation N–PE and L–N (MΩ, where measured apart) | at least 1 MΩ |
 | Loop impedance Zs (Ω) | the highest loop impedance above |
 | Voltage drop (%) | the limit of the rule sets (5 % without one) |
 | RCD tripping current (mA) | ½ IΔn … IΔn |
@@ -138,6 +139,12 @@ other circuits and earth with the test voltage: SELV and PELV at least 250 V and
 0.5 MΩ (table 6.1), electrical separation as the mains. A SELV or PELV source above
 50 V AC or 120 V DC does not pass.
 
+**The fault current measured at the origin** is checked against the breaking
+capacities of the protective devices (part data, `Breaking capacity`; 434.5.1): a
+device fed directly from the origin whose breaking capacity is lower does not pass,
+one further down (where the fault current is lower) is marked to check; back-up
+protection by the device upstream (coordination tables) covers it.
+
 **The data of the report**: client, installation site, installer, reason for the test
 (new installation, extension, change, repair), inspector, test instruments
 (IEC 61557), the values measured at the origin (external loop impedance Ze,
@@ -148,11 +155,34 @@ next inspection. In a TT system RA must not exceed 50 V / the largest rated resi
 current of the installation. In an IT system the report adds the function test of
 the insulation monitoring device and the current of a first fault Id, which must
 not exceed 50 V / RA (411.6.2). **The visual inspection** (6.4.2)
-answers 14 items with OK, Not OK or Not applicable: protection against electric shock,
+answers 16 items with OK, Not OK or Not applicable: protection against electric shock,
 fire barriers, conductors, protective devices, isolating and switching devices,
-external influences, identification of N and PE, diagrams and warning notices,
-labelling, connections, protective and bonding conductors, accessibility, additional
-protection by RCDs of at most 30 mA, surge protection.
+external influences, identification of N and PE, single-pole switching devices in the
+line conductors, diagrams and warning notices, labelling, connections, protective and
+bonding conductors, accessibility, additional protection by RCDs of at most 30 mA,
+surge protection, measures against electromagnetic disturbances. Own items are added
+for the installation (the items of the edition the installation is verified against,
+a customer's checklist); they take part in the verdict like the others.
+
+**The limits** are settings of the report: each has a default and its source, and a
+project sets other values where the edition of the standard it is verified against
+differs (*Limits* on the report card of the web page, the rows `limit.<name>` of
+*Inspection and test report: data*, `limit.<name>` in the `header` of
+`inspection_report`). The defaults were compared with public secondary sources
+(manufacturers' and training documents) in November 2026, not with the text of the
+standards:
+
+| Limit | Default | Source |
+| --- | --- | --- |
+| Lowest insulation resistance of the mains | 1 MΩ | IEC 60364-6, table 6.1 (6A in the 2006 edition) |
+| Lowest insulation resistance and test voltage of SELV and PELV | 0.5 MΩ at 250 V | IEC 60364-6, table 6.1 |
+| Share of U0 / Ia the measured loop impedance may reach | ⅔ | IEC 60364-6, informative annex (C.61.3.6.2 of the 2006 edition); BS 7671 uses 0.8 |
+| Conventional touch voltage limit UL | 50 V | IEC 60364-4-41, 411.5.3 (TT), 411.6.2 (IT) |
+| RCD trip time at IΔn / 5 × IΔn | 300 ms / 40 ms | IEC 61008-1, IEC 61009-1 |
+| Selective RCDs at IΔn / 5 × IΔn | 130 – 500 ms / 50 – 150 ms | IEC 61008-1, IEC 61009-1 |
+| Highest voltage of SELV and PELV | 50 V AC, 120 V DC | IEC 60364-4-41, 414.1.1 |
+| Insulating floors and walls | 50 kΩ up to 500 V, 100 kΩ above | IEC 60364-4-41, C.1 (UK guidance uses 0.5 MΩ) |
+| Protective conductor: hint above the calculated resistance | 1.5 times | OpenECraft; the standard sets no limit |
 
 **The verdict** of the report is *Not passed* when a circuit, a source, an item of
 the visual inspection or a value of the report fails, *Passed* when every circuit and

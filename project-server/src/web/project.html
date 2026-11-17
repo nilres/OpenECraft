@@ -62,6 +62,15 @@ main { padding: 16px; max-width: 1700px; margin: 0 auto; }
 .measure .wide { grid-column: 1 / -1; }
 .measure .bad input, .measure .bad select { border-color: var(--bad); outline: 1px solid var(--bad); }
 .measure .bad > span { color: var(--bad); }
+.measure .note input { border-color: var(--warn); outline: 1px solid var(--warn); }
+.measure .note > span, .warn { color: var(--warn); }
+.own-items { display: grid; gap: 8px; }
+.own-item { display: grid; grid-template-columns: minmax(0, 1fr) 160px; gap: 8px; }
+.own-item.bad input, .own-item.bad select { border-color: var(--bad); }
+.measure details.limits summary { cursor: pointer; color: var(--text); font-weight: 600; padding: 6px 0; }
+.limit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.limit-item .limit { display: block; white-space: normal; overflow-wrap: anywhere; }
+.measure details.limits { min-width: 0; }
 .circuit .buttons button { min-height: 44px; padding: 8px 18px; }
 .circuit.report { border-color: var(--accent); margin-bottom: 14px; }
 .inspection .group-title { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 16px 2px 8px; }
@@ -79,7 +88,7 @@ main { padding: 16px; max-width: 1700px; margin: 0 auto; }
   main { padding: 8px; }
   section.panel { padding: 8px; }
   .measure { grid-template-columns: 1fr; }
-  .measure .check-item { grid-template-columns: 1fr; }
+  .measure .check-item, .own-item { grid-template-columns: 1fr; }
 }
 </style>
 </head>

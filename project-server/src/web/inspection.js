@@ -17,7 +17,9 @@ let drafts = load("inspectionDrafts") || {};
 const FIELDS = [
   { key: "continuity", title: "Protective conductor (Ω)", measure: true },
   { key: "insulation_voltage", title: "Insulation test voltage (V)", measure: true },
-  { key: "insulation", title: "Insulation resistance (MΩ)", measure: true },
+  { key: "insulation", title: "Insulation L–PE (MΩ)", measure: true },
+  { key: "insulation_n_pe", title: "Insulation N–PE (MΩ)", measure: true },
+  { key: "insulation_l_n", title: "Insulation L–N (MΩ)", measure: true },
   { key: "loop_impedance", title: "Loop impedance Zs (Ω)", measure: true },
   { key: "voltage_drop", title: "Voltage drop (%)", measure: true },
   { key: "rcd_current", title: "RCD trip current (mA)", measure: true, rcd: true },
@@ -68,11 +70,14 @@ function mayRecord() { return !!sheet && ["review", "edit_pages", "edit_project"
 function sourceOf(card) { return card.startsWith("source:") ? sheet.sources.find(s => s.device === card.slice(7)) : null; }
 function draftKey(card) { return sheet.name + "|" + card; }
 function keepDrafts() { save("inspectionDrafts", drafts); }
-/// The saved values of a card, with the answers of the visual inspection as `check.<item>`.
+/// The saved values of a card: the report with the answers of the visual inspection
+/// (`check.<item>`, `own.<n>` and `own.<n>.title`) and its own limits (`limit.<name>`).
 function storedValues(card) {
   if (card === "") {
     const h = Object.assign({}, sheet.header);
-    for (const [k, v] of Object.entries(h.checks || {})) h["check." + k] = v;
+    for (const c of sheet.checks) h[c.key] = c.answer;
+    (h.own_checks || []).forEach((c, i) => h["own." + (i + 1) + ".title"] = c.title);
+    for (const [k, v] of Object.entries(h.limits || {})) h["limit." + k] = String(v);
     return h;
   }
   const s = sourceOf(card);
@@ -105,7 +110,7 @@ function limitText(l) {
 function bad(card, key, value) {
   const s = sourceOf(card);
   if (s && key === "measure") return s.failed.includes("measure") && value === s.result.measure;
-  if (FIELDS.some(f => f.key === key && f.answer) || key === "imd" || key.startsWith("check.")) return value === "failed";
+  if (FIELDS.some(f => f.key === key && f.answer) || key === "imd" || key.startsWith("check.") || /^own\.\d+$/.test(key)) return value === "failed";
   const v = measured(value), l = limitOf(card, key);
   return v !== null && !!l && ((l.min != null && v < l.min) || (l.max != null && v > l.max));
 }
@@ -173,9 +178,13 @@ function input(card, fd) {
     const extra = fd.measure ? ' inputmode="decimal" autocomplete="off" enterkeyhint="next"' : fd.list ? ' list="' + fd.list + '"' : "";
     html = '<input data-field="' + fd.key + '"' + extra + ' value="' + esc(v) + '">';
   }
-  const limit = fd.measure ? limitText(limitOf(card, fd.key)) : "";
-  const cls = [fd.wide ? "wide" : "", fd.long ? "check-item" : "", bad(card, fd.key, v) ? "bad" : ""].filter(Boolean).join(" ");
-  return '<label class="' + cls + '"><span>' + esc(t(fd.title)) + ' <span class="limit">' + esc(limit) + "</span></span>" + html + "</label>";
+  const c = card !== "" && !sourceOf(card) ? sheet.circuits.find(x => x.circuit === card) : null;
+  // The protective conductor: its calculated resistance as a guide, a hint far above it.
+  const calculated = c && fd.key === "continuity" && c.continuity_calculated != null ? "≈ " + num(c.continuity_calculated) : "";
+  const limit = fd.measure ? limitText(limitOf(card, fd.key)) || calculated : "";
+  const note = c && c.notes.includes(fd.key) && v === stored(card, fd.key);
+  const cls = [fd.wide ? "wide" : "", fd.long ? "check-item" : "", bad(card, fd.key, v) ? "bad" : note ? "note" : ""].filter(Boolean).join(" ");
+  return '<label class="' + cls + '"><span>' + esc(fd.own ? fd.title : t(fd.title)) + ' <span class="limit">' + esc(limit) + "</span></span>" + html + "</label>";
 }
 
 function buttons(extra) {
@@ -195,21 +204,42 @@ function drawReportCard() {
   if (!box) return;
   const h = sheet.header;
   const titles = Object.fromEntries(HEADER.concat(ORIGIN, IT).map(f => [f.key, f.title]));
-  const fails = (sheet.failed || []).map(f => t(titles[f] || (sheet.checks.find(c => "check." + c.key === f) || {}).title || f));
+  const text = f => {
+    if (f.startsWith("breaking.")) return tf("Breaking capacity of {} below the fault current at the origin", f.slice(9));
+    const check = sheet.checks.find(c => c.key === f);
+    return esc(check && f.startsWith("own.") ? check.title : t(titles[f] || (check || {}).title || f));
+  };
+  const fails = (sheet.failed || []).map(text);
+  const notes = (sheet.notes || []).map(text);
   const facts = [
     ["Supply system", esc("U0 " + Math.round(sheet.u0) + " V · " + sheet.earthing)],
     ["Insulation test voltage (V)", esc(num(sheet.insulation_voltage))],
     ["Signature", h.signed_by ? tf("Signed by {} on {}", h.signed_by, h.signed_on) : esc(t("Not signed"))],
   ];
-  if (fails.length) facts.push(["Not passed", '<span class="error">' + fails.map(esc).join(", ") + "</span>"]);
+  if (fails.length) facts.push(["Not passed", '<span class="error">' + fails.join(", ") + "</span>"]);
+  if (notes.length) facts.push(["To check", '<span class="warn">' + notes.join(", ") + "</span>"]);
   const section = title => '<h4 class="wide">' + esc(t(title)) + "</h4>";
+  const checks = sheet.checks.filter(c => c.key.startsWith("check.")).map(c => input("", { key: c.key, title: c.title, check: true, long: true })).join("");
+  const own = (h.own_checks || []).map((c, i) => ownItem(i + 1)).join("");
+  const limits = sheet.settings.map(l => '<label class="limit-item" title="' + esc(l.source) + '"><span>' + esc(t(l.title)) + ' <span class="limit">' + esc(l.source) + "</span></span>" +
+    '<input data-field="limit.' + esc(l.key) + '" inputmode="decimal" autocomplete="off" placeholder="' + esc(num(l.default)) + '" value="' + esc(shownValue("", "limit." + l.key)) + '"></label>').join("");
   const fields = HEADER.map(fd => input("", fd)).join("") + section("Measured at the origin") + ORIGIN.map(fd => input("", fd)).join("") +
     (sheet.it ? section("IT system") + IT.map(fd => input("", fd)).join("") : "") +
-    section("Visual inspection") + sheet.checks.map(c => input("", { key: "check." + c.key, title: c.title, check: true, long: true })).join("");
+    section("Visual inspection") + checks + '<div class="wide own-items">' + own + "</div>" +
+    (mayRecord() ? '<div class="wide"><button type="button" data-add-own>' + esc(t("Add an item")) + "</button></div>" : "") +
+    '<details class="wide limits"><summary>' + esc(t("Limits")) + '</summary><p class="muted">' + esc(t("Empty: the default. Set other values where the edition of the standard the installation is verified against differs.")) + '</p><div class="limit-grid">' + limits + "</div></details>";
   const sign = mayRecord() ? '<button data-sign title="' + esc(t("Changing the data or the results afterwards takes the signature away.")) + '">' + esc(t("Sign the report")) + "</button>" : "";
   const badges = (h.signed_by ? '<span class="badge passed">' + esc(t("Signed")) + "</span>" : "") + verdictBadge(sheet.verdict);
   box.innerHTML = cardHtml("", t("Report data and visual inspection"), esc([h.client, h.site].filter(Boolean).join(" · ")), badges, facts, fields, sign);
   wire(box.querySelector("details"));
+}
+
+/// An own item of the visual inspection: its text and its answer.
+function ownItem(n) {
+  const key = "own." + n;
+  const title = shownValue("", key + ".title");
+  return '<div class="own-item' + (bad("", key, shownValue("", key)) ? " bad" : "") + '"><input data-field="' + key + '.title" placeholder="' + esc(t("Own item of the visual inspection")) + '" value="' + esc(title) + '">' +
+    input("", { key, title: "", check: true }).replace(/^<label class="[^"]*"><span>.*?<\/span><\/span>/, "").replace(/<\/label>$/, "") + "</div>";
 }
 
 function drawSources() {
@@ -269,14 +299,23 @@ function wire(d) {
       // The measure of a source sets the ranges of its other fields.
       const fields = field.dataset.field === "measure" ? [...d.querySelectorAll("[data-field]")] : [field];
       for (const f of fields) {
-        const label = f.closest("label");
+        const label = f.closest("label, .own-item");
+        if (!label) continue;
         label.classList.toggle("bad", bad(key, f.dataset.field, f.value));
-        if (field.dataset.field === "measure") label.querySelector(".limit").textContent = limitText(limitOf(key, f.dataset.field));
+        if (field.dataset.field === "measure" && label.querySelector(".limit")) label.querySelector(".limit").textContent = limitText(limitOf(key, f.dataset.field));
       }
     };
   });
   const saveButton = d.querySelector("[data-save]");
   if (saveButton) saveButton.onclick = () => saveCard(key, d);
+  const add = d.querySelector("[data-add-own]");
+  if (add) add.onclick = () => {
+    const box = d.querySelector(".own-items");
+    const n = box.querySelectorAll(".own-item").length + 1;
+    box.insertAdjacentHTML("beforeend", ownItem(n));
+    wire(d);
+    box.lastElementChild.querySelector("input").focus();
+  };
   const sign = d.querySelector("[data-sign]");
   if (sign) sign.onclick = () => {
     const who = (session ? session.user.name : "") || d.querySelector('[data-field="inspector"]').value;

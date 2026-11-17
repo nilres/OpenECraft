@@ -207,6 +207,15 @@ const TEXTS: &[&str] = &[
     tr_const!("Output voltage (V)"),
     tr_const!("Above {} V: no SELV or PELV"),
     tr_const!("Sign in or name the inspector in the report data first."),
+    tr_const!("Insulation L–PE (MΩ)"),
+    tr_const!("Insulation N–PE (MΩ)"),
+    tr_const!("Insulation L–N (MΩ)"),
+    tr_const!("Breaking capacity of {} below the fault current at the origin"),
+    tr_const!("To check"),
+    tr_const!("Add an item"),
+    tr_const!("Own item of the visual inspection"),
+    tr_const!("Limits"),
+    tr_const!("Empty: the default. Set other values where the edition of the standard the installation is verified against differs."),
 ];
 
 pub async fn index() -> impl IntoResponse {
@@ -223,8 +232,8 @@ pub fn routes<S: Clone + Send + Sync + 'static>() -> Router<S> {
 
 pub fn web_texts(lang: Lang) -> WebTexts {
     let role_title = |name: &str| ProjectRole::ALL.iter().find(|r| r.name() == name).map_or("", |r| r.title());
-    // The items of the visual inspection come with the report, in English.
-    let checks = openecraft_core::inspection::CHECKS.iter().map(|c| c.1);
+    // The items of the visual inspection and the limits come with the report, in English.
+    let checks = openecraft_core::inspection::CHECKS.iter().map(|c| c.1).chain(openecraft_core::inspection::LIMITS.iter().map(|l| l.1));
     WebTexts::new::<ProjectRight>(lang, TEXTS.iter().copied().chain(checks), role_title)
 }
 

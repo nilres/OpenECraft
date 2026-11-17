@@ -275,6 +275,7 @@ Control transformer TC (GB)	제어용 변압기 TC(GB)
 Control valve	제어 밸브
 Control voltage	제어 전압
 Control voltage type	제어 전압 유형
+Conventional touch voltage limit UL (V)	약정 접촉 전압 한계 UL (V)
 Converted from file format {} to {}: {}	파일 형식 {}에서 {}(으)로 변환됨: {}
 Coolant	냉각수
 Cooler	냉각기
@@ -338,6 +339,7 @@ DWG export failed: {}	DWG 내보내기 실패: {}
 Data sheet	데이터시트
 Date of the approval of the last revision	마지막 개정의 승인 날짜
 Date of the last revision	마지막 개정 날짜
+Default {} ({})	기본값 {} ({})
 Degree of protection	보호 등급
 Delete projects	프로젝트 삭제
 Delivery date	납품일
@@ -461,6 +463,7 @@ Emergency stop SB (GOST)	비상 정지 SB(GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	비상 정지 장치에는 B10d 값이 필요합니다(ISO 13849-1, 부속서 C)
 Emergency stop, mushroom head (NFPA)	비상 정지, 버섯형 헤드(NFPA)
 Empty (IEC 60204-1)	빈 프로젝트(IEC 60204-1)
+Empty: removes the item	비어 있음: 항목 삭제
 Enclosure body	외함 본체
 Enclosure climate	외함 온도 관리
 Enclosure light	외함 조명
@@ -781,7 +784,10 @@ Load calculation	부하 계산
 Loads and power supplies	부하 및 전원 공급 장치
 Loads behind it: {}	하위 부하: {}
 Location of the page	페이지 위치
+Longest RCD trip time at 5 × IΔn (ms)	5 × IΔn에서 RCD 최장 동작 시간 (ms)
+Longest RCD trip time at IΔn (ms)	IΔn에서 RCD 최장 동작 시간 (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	저압 개폐 장치 조립품: 정격 부등률, 온도 상승, 문서
+Lowest insulation resistance of the mains (MΩ)	전원 계통의 최소 절연 저항 (MΩ)
 Lubricant	윤활유
 Luminaire, fluorescent	형광등 기구
 MAC address	MAC 주소
@@ -831,6 +837,7 @@ Maximum installation altitude	최대 설치 고도
 Maximum operating temperature	최대 작동 온도
 Maximum pressure	최대 압력
 Measured variable	측정 변수
+Measures against electromagnetic disturbances	전자기 장해 대책
 Measuring instrument	측정 기기
 Measuring instruments	계측기
 Measuring point	측정점
@@ -924,6 +931,7 @@ Network (m)	네트워크(m)
 Neutral (N)	중성선(N)
 Neutral and protective conductors identified	중성선과 보호 도체 표시됨
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	중성선은 하늘색이어야 합니다(IEC 60204-1, 13.2.3)
+New own item of the visual inspection	외관 검사의 새 자체 항목
 Nibbling	니블링
 No connection {}	연결 {} 없음
 No devices to add to the single-line diagram	단선도에 추가할 장치가 없습니다
@@ -1028,6 +1036,7 @@ Overview (not evaluated)	개요(평가되지 않음)
 Overview / single-line	개요 / 단선
 Overvoltage category	과전압 범주
 Overvoltage relay	과전압 릴레이
+Own item {}	자체 항목 {}
 P&ID / process (ISO 10628)	P&ID / 공정(ISO 10628)
 P&ID number	P&ID 번호
 PCT loop {} has no instrument in the P&ID	PCT 루프 {}에 P&ID의 계기가 없습니다
@@ -1449,6 +1458,7 @@ Single, free-standing	단독, 독립형
 Single, wall mounted	단독, 벽면 장착
 Single-line / overview	단선 / 개요
 Single-line diagram	단선도
+Single-pole switching devices in the line conductors	상도체의 단극 개폐 장치
 Siren	사이렌
 Site address	설치 장소 주소
 Size (mm)	크기(mm)
@@ -1852,6 +1862,7 @@ in work	작업 중
 in {}	{} 내
 in-line	인라인
 incl.	포함
+instead of {}	{} 대신
 ip (kA)	ip(kA)
 is	같음
 is at least	이상
