@@ -81,7 +81,7 @@ RUN cargo fetch --locked \
 
 # The WebAssembly, its script and the other big texts get compressed copies beside
 # them (compress.sh), which nginx sends as they are (editor-web.conf) instead of
-# compressing 50 MB for every visitor.
+# compressing 30 MB for every visitor.
 FROM web-build AS web-compressed
 RUN sh installer/docker/compress.sh /src/openecraft/dist
 

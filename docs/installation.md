@@ -259,9 +259,11 @@ Who runs the editor is set with the variables `OPENECRAFT_LEGAL_NAME`,
 The nginx site is `installer/docker/editor-web.conf` (mount your own at
 `/etc/nginx/conf.d/default.conf`): `index.html` and the other files are checked at
 every visit, the WebAssembly and its script, named after their hash, are cached for a
-year. The WebAssembly is 51 MB; the build of the image compresses it once
-(`installer/docker/compress.sh`) and nginx sends the copy as it is: 10 MB with Brotli
-to browsers that ask for it, which they do over HTTPS only, 18 MB with gzip otherwise.
+year. The WebAssembly is 32 MB (a release build of the page is optimised for size: the
+profile `web` of the root `Cargo.toml`, which takes about a quarter of an hour); the
+build of the image compresses it once
+(`installer/docker/compress.sh`) and nginx sends the copy as it is: 8 MB with Brotli
+to browsers that ask for it, which they do over HTTPS only, 12 MB with gzip otherwise.
 A server of your own should send such copies as well instead of compressing the file
 for every visitor. Put a TLS reverse
 proxy in front of it for other machines, as for the servers. Beside the page are

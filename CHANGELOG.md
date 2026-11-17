@@ -39,8 +39,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   settings of the editor are stored as JSON, which leaves the code for a second format
   out of the page; the desktop still reads the settings stored before, the web editor
   starts once with its default settings and an empty macro library (the open project
-  and the parts database are kept). The WebAssembly shrinks from 61 MB to 51 MB with
-  it: 10 MB with Brotli, 18 MB with gzip.
+  and the parts database are kept). A release build of the page is optimised for size
+  (cargo profile `web`), which makes a search of the 3D routing 7 % slower. Together
+  the WebAssembly shrinks from 61 MB to 32 MB: 8 MB with Brotli, 12 MB with gzip.
 - **Light theme on Linux:** with the theme *System* the editor and the parts manager
   started dark on Linux, where the window system does not report the desktop's theme.
   They now take the colour scheme of the desktop from the settings portal (GNOME, KDE
