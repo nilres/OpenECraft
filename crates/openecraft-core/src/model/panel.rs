@@ -658,6 +658,42 @@ pub struct Level {
     /// Height from its floor to the floor of the level above, mm (ceiling slab
     /// included).
     pub height: f32,
+    /// The floor plan of the level drawn on paper (a scan or picture) under its rooms
+    /// (see `crate::panel::floorplan`).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub plan: Option<FloorPlan>,
+}
+
+/// A floor plan on paper put under a level: the rooms are drawn on it or found in it.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct FloorPlan {
+    /// The picture: a grey PNG file (its name that of the file it came from).
+    pub image: super::document::Document,
+    /// Its width and height in pixels.
+    pub px: [u32; 2],
+    /// Size of a pixel on the paper, mm (25.4 / dpi of the scan).
+    pub paper: f32,
+    /// Scale of the drawing: 1 : `scale` (100 for 1:100).
+    pub scale: f32,
+    /// Where its top left corner lies in the building's floor plan, mm, and its turn
+    /// about it (degrees, counter-clockwise seen from above like a room's).
+    pub x: f32,
+    pub z: f32,
+    pub angle: f32,
+    /// The part of the picture the rooms are found in (pixels: left, top, right,
+    /// bottom); all of it when `None`.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub area: Option<[u32; 4]>,
+    /// How strongly it is shown, 0 … 1 (0: hidden).
+    pub opacity: f32,
+}
+
+impl FloorPlan {
+    /// Size of a pixel in the building, mm.
+    pub fn mm_per_px(&self) -> f32 {
+        self.paper * self.scale
+    }
 }
 
 /// A vertical shaft (riser) through levels of a building: cables, tubes and pipes run

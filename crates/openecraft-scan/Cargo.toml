@@ -1,0 +1,13 @@
+[package]
+name = "openecraft-scan"
+version.workspace = true
+edition = "2021"
+description = "Floor plans on paper for OpenECraft: pictures (PNG, JPEG, …) and the pages of PDF files (scans and drawings) read as grey images"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+openecraft-core = { path = "../openecraft-core" }
+openecraft-i18n = { path = "../openecraft-i18n" }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp", "tiff", "bmp"] }
+miniz_oxide = "0.8"
+fax = "0.2"

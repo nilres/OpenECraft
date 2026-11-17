@@ -265,7 +265,7 @@ pub fn add_building(prj: &mut Project, name: &str) -> Result<usize, String> {
     let corners = placed_corners(prj, None);
     let x = if corners.is_empty() { 0.0 } else { super::bounds(&corners).1[0] + BUILDING_GAP };
     let id = prj.new_id().max(1);
-    let level = Level { id: prj.new_id().max(1), name: "L0".into(), elevation: 0.0, height: LEVEL_HEIGHT };
+    let level = Level { id: prj.new_id().max(1), name: "L0".into(), elevation: 0.0, height: LEVEL_HEIGHT, plan: None };
     prj.layout.buildings.push(Building { id, name: name.into(), site: SitePlace { x: x.round(), z: 0.0, angle: 0.0 }, levels: vec![level], ..Default::default() });
     Ok(prj.layout.buildings.len() - 1)
 }
@@ -321,7 +321,7 @@ pub fn add_level(prj: &mut Project, bi: usize, name: Option<&str>, elevation: Op
     };
     let id = prj.new_id().max(1);
     let b = &mut prj.layout.buildings[bi];
-    b.levels.push(Level { id, name, elevation, height });
+    b.levels.push(Level { id, name, elevation, height, plan: None });
     sort_levels(b);
     Ok(id)
 }

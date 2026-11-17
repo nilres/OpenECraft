@@ -316,3 +316,56 @@ fn freestanding_pv_arrays_on_the_plot() {
     let p = run(&mut s, "set_pv_array", json!({ "array": "PV1", "remove": true })).unwrap();
     assert_eq!(p["solar"], json!([]));
 }
+
+/// A level carrying a drawn floor plan: two rooms with a door between them and a
+/// window, 10 mm a pixel at 1:20.
+fn session_with_floor_plan() -> crate::builtin::testing::Session {
+    let mut img = openecraft_core::raster::Gray::new(600, 400, 240);
+    for (lo, hi) in [([50, 50], [550, 80]), ([50, 320], [550, 350]), ([50, 50], [80, 350]), ([520, 50], [550, 350]), ([290, 80], [302, 320])] {
+        img.fill(lo, hi, 170);
+    }
+    img.fill([120, 50], [240, 80], 240);
+    img.fill([120, 60], [240, 62], 60);
+    img.fill([120, 68], [240, 70], 60);
+    img.fill([290, 180], [302, 270], 240);
+    let mut s = new_session();
+    run(&mut s, "add_building", json!({ "name": "+B1", "x": 0, "z": 0 })).unwrap();
+    let prj = s.project_mut().unwrap();
+    let id = prj.layout.buildings[0].levels[0].id;
+    floorplan::set_plan(prj, id, Some(floorplan::new_plan("plan.png", &img, 0.5))).unwrap();
+    s
+}
+
+#[test]
+fn floor_plans_under_levels() {
+    let mut s = session_with_floor_plan();
+    let lvl = json!({ "building": "+B1", "level": "L0" });
+    let list = run(&mut s, "list_buildings", json!({})).unwrap();
+    let plan = &list["buildings"][0]["levels"][0]["floor_plan"];
+    assert_eq!((plan["pixels"].clone(), plan["scale"].as_f64()), (json!([600, 400]), Some(100.0)));
+    // 500 pixels (the house) are 5 m: 1:20.
+    let p = run(&mut s, "calibrate_floor_plan", json!({ "building": "+B1", "level": "L0", "points": [[50, 60], [550, 60]], "distance": 5000 })).unwrap();
+    assert_eq!(p["scale"], 20.0);
+    assert_eq!(p["mm_per_pixel"], 10.0);
+    let b = run(&mut s, "set_floor_plan", json!({ "building": "+B1", "level": "L0", "x": 1000, "opacity": 2, "area": [[600, 400], [0, 0]] })).unwrap();
+    let plan = &b["levels"][0]["floor_plan"];
+    assert_eq!((plan["x"].as_f64(), plan["opacity"].as_f64(), plan["area"].clone()), (Some(1000.0), Some(1.0), json!([0, 0, 600, 400])));
+    assert!(run(&mut s, "set_floor_plan", json!({ "building": "+B1", "level": "L0", "scale": 0 })).is_err());
+    // Found without changing the project, then made into rooms.
+    let found = run(&mut s, "detect_floor_plan", lvl.clone()).unwrap();
+    assert_eq!(found["rooms"].as_array().unwrap().len(), 2);
+    assert!((found["rooms"][0]["area"].as_f64().unwrap() - 5.0).abs() < 0.3, "{}", found["rooms"][0]["area"]);
+    let kinds: Vec<&str> = found["openings"].as_array().unwrap().iter().map(|o| o["kind"].as_str().unwrap()).collect();
+    assert_eq!(kinds.len(), 2);
+    assert!(kinds.contains(&"door") && kinds.contains(&"window"));
+    assert!(s.project().unwrap().layout.enclosures.is_empty());
+    let t = run(&mut s, "trace_floor_plan", lvl.clone()).unwrap();
+    assert_eq!(t["rooms"], json!(["+ROOM1", "+ROOM2"]));
+    assert_eq!((t["doors"].as_u64(), t["windows"].as_u64()), (Some(1), Some(1)));
+    let r = run(&mut s, "list_rooms", json!({ "room": "+ROOM1" })).unwrap();
+    assert_eq!(r[0]["building"], "+B1");
+    // Removed, the rooms stay.
+    run(&mut s, "set_floor_plan", json!({ "building": "+B1", "level": "L0", "remove": true })).unwrap();
+    assert!(run(&mut s, "detect_floor_plan", lvl).unwrap_err().contains("no floor plan"));
+    assert_eq!(s.project().unwrap().layout.enclosures.len(), 2);
+}

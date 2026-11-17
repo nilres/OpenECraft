@@ -5,6 +5,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Floor plans on paper under the levels of a building:** a scan or drawing (PDF,
+  PNG, JPEG, TIFF, …) goes under a level in the *Buildings* pane, to scale (measured on
+  a dimension of the drawing) and in place; *Find rooms* finds the walls, doors,
+  windows and rooms in it and *Make rooms* makes them rooms of the level with their
+  doors and windows. Commands `import_floor_plan`, `set_floor_plan`,
+  `calibrate_floor_plan`, `detect_floor_plan`, `trace_floor_plan`
+  ([floor plans on paper](docs/features/panel-layout.md#floor-plans-on-paper)).
 - **Website and public servers:** the website [openecraft.org](https://openecraft.org)
   with its live demos, the web editor at
   [editor.openecraft.org](https://editor.openecraft.org), a public parts server at

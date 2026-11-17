@@ -6,9 +6,8 @@
 //! [`openecraft_core::panel::solar`]).
 
 use super::App;
-use crate::panel_ui::site_plan::{self, SitePlan};
 use crate::panel_ui::SiteTool;
-use egui::{vec2, RichText, Sense};
+use egui::RichText;
 use openecraft_core::model::Project;
 use openecraft_core::parts::vec3;
 use openecraft_core::panel::solar::strings;
@@ -31,6 +30,8 @@ pub struct BuildingsUi {
     /// Kind of a new stair and shape of a new roof.
     stair_kind: StairKind,
     roof_shape: RoofShape,
+    /// The floor plans on paper under the levels.
+    pub(super) floor: super::floor_plan_ui::FloorPlanUi,
 }
 
 /// A part to choose: its number, description and size (width, height, depth).
@@ -507,6 +508,7 @@ impl App {
             }
         });
         ui.separator();
+        let mut open_plan = None;
         egui::ScrollArea::vertical().id_salt("bldscroll").auto_shrink([false, false]).show(ui, |ui| {
             let bi = st.sel;
             building_section(ui, prj, st, bi);
@@ -526,8 +528,11 @@ impl App {
             ui.separator();
             links_section(ui, prj, st);
             ui.separator();
-            site_plan_section(ui, prj, st);
+            open_plan = site_plan_section(ui, prj, st);
         });
+        if let Some(level) = open_plan {
+            self.io.open(ui.ctx(), crate::io::Purpose::FloorPlan(level));
+        }
     }
 }
 
@@ -1146,9 +1151,11 @@ fn links_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi) {
 /// The site plan: the rooms of all buildings seen from above (those of the level shown
 /// highlighted), the shafts, the stairs reaching the level shown, the roofs with their
 /// windows and the links between the buildings.
-fn site_plan_section(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
+/// The site plan with a level chosen, the floor plan on paper under that level; gives
+/// the level a floor plan file is to be opened for.
+fn site_plan_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi) -> Option<u64> {
     let layout = &prj.layout;
-    let Some(b) = layout.buildings.get(st.sel) else { return };
+    let b = layout.buildings.get(st.sel)?;
     ui.horizontal(|ui| {
         ui.label(RichText::new(tr("Site plan")).strong());
         let shown = b.levels.iter().find(|l| l.id == st.level).map_or_else(|| tr("All levels").to_string(), |l| l.name.clone());
@@ -1159,9 +1166,15 @@ fn site_plan_section(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
             }
         });
     });
-    let (size, _) = ui.allocate_exact_size(vec2(ui.available_width(), 320.0), Sense::hover());
-    let plan = SitePlan { building: Some(st.sel), level: st.level, ..Default::default() };
-    site_plan::paint(ui, size, prj, &plan, None);
+    let mut open = None;
+    if st.level == 0 {
+        ui.weak(tr("Choose a level to put a floor plan on paper (a scan or drawing) under it."));
+    } else if st.floor.section(ui, prj, st.level) {
+        open = Some(st.level);
+    }
+    st.floor.site_plan(ui, prj, st.sel, st.level);
+    st.floor.take_area(prj, st.level);
+    open
 }
 
 /// Metres with one decimal.

@@ -6,7 +6,7 @@
 
 use egui::{pos2, vec2, Color32, Pos2, Rect, Stroke, Vec2};
 use openecraft_core::model::Project;
-use openecraft_core::panel::{self, buildings as bld, plot, roofs, solar, stairs};
+use openecraft_core::panel::{self, buildings as bld, floorplan, plot, roofs, solar, stairs};
 use openecraft_i18n::{tr, tr_fmt};
 
 /// Corners in the floor plan.
@@ -91,7 +91,8 @@ pub fn extent(prj: &Project) -> ([f32; 2], [f32; 2]) {
     let poses = panel::site_poses(prj);
     let mut all: Vec<[f32; 2]> = room_outlines(prj, &poses).into_iter().flat_map(|r| r.1).collect();
     all.extend(layout.site_links.iter().filter_map(|l| bld::site_link_path(prj, &poses, l)).flatten().map(|q| [q[0], q[2]]));
-    for b in &layout.buildings {
+    for (bi, b) in layout.buildings.iter().enumerate() {
+        all.extend(b.levels.iter().filter_map(|l| floor_plan_corners(prj, bi, l.id)).flat_map(|c| c.1));
         all.extend(b.shafts.iter().flat_map(|s| bld::shaft_corners(b, s)));
         let bp = bld::building_pose(b);
         all.extend(b.roofs.iter().flat_map(roofs::slopes).flatten().map(|q| {
@@ -199,6 +200,102 @@ pub fn ground_array_at(prj: &Project, frame: &Frame, p: Pos2) -> Option<u64> {
     prj.layout.plot.solar.iter().rev().find(|a| inside(&solar::ground_geometry(a).outline.iter().map(|&q| frame.at(q)).collect::<Vec<_>>(), p)).map(|a| a.id)
 }
 
+/// The floor plan on paper under level `level` of building `bi` (index) and where its
+/// corners (top left, top right, bottom right, bottom left) lie in the plant.
+fn floor_plan_corners(prj: &Project, bi: usize, level: u64) -> Option<(&panel::FloorPlan, [[f32; 2]; 4])> {
+    let b = prj.layout.buildings.get(bi)?;
+    let fp = b.levels.iter().find(|l| l.id == level)?.plan.as_ref()?;
+    let pose = bld::building_pose(b);
+    Some((fp, floorplan::corners(fp).map(|q| {
+        let v = pose.apply([q[0], 0.0, q[1]]);
+        [v[0], v[2]]
+    })))
+}
+
+/// The point of a building's floor plan on paper (pixels of its picture) under `p` in
+/// the site plan.
+pub fn picture_point(prj: &Project, bi: usize, fp: &panel::FloorPlan, frame: &Frame, p: Pos2) -> Option<[f32; 2]> {
+    let b = prj.layout.buildings.get(bi)?;
+    let q = frame.plant(p);
+    let local = bld::building_pose(b).local([q[0], 0.0, q[1]]);
+    Some(floorplan::to_pixel(fp, [local[0], local[2]]))
+}
+
+/// The point of the site plan at pixel `q` of a building's floor plan on paper.
+pub fn picture_on_screen(prj: &Project, bi: usize, fp: &panel::FloorPlan, frame: &Frame, q: [f32; 2]) -> Pos2 {
+    let Some(b) = prj.layout.buildings.get(bi) else { return Pos2::ZERO };
+    let m = floorplan::to_building(fp, q);
+    let v = bld::building_pose(b).apply([m[0], 0.0, m[1]]);
+    frame.at([v[0], v[2]])
+}
+
+/// The picture of a floor plan as a texture (kept while the picture stays the same;
+/// shrunk to what the graphics card takes).
+fn floor_texture(ctx: &egui::Context, fp: &panel::FloorPlan) -> Option<egui::TextureHandle> {
+    let data: &str = &fp.image.data;
+    let key = egui::Id::unique(("floor-plan", data.as_ptr() as usize, data.len()));
+    if let Some(t) = ctx.data(|d| d.get_temp::<Option<egui::TextureHandle>>(key)) {
+        return t;
+    }
+    let texture = floorplan::image(fp).ok().map(|img| {
+        let side = ctx.input(|i| i.max_texture_side).max(256);
+        let img = img.shrunk(img.w.max(img.h).div_ceil(side));
+        ctx.load_texture(format!("floor-plan-{}", data.len()), egui::ColorImage::from_gray([img.w, img.h], &img.px), egui::TextureOptions::LINEAR)
+    });
+    ctx.data_mut(|d| d.insert_temp(key, texture.clone()));
+    texture
+}
+
+/// Draws the floor plan on paper under the level shown (one level of one building).
+fn paint_floor_plan(ui: &egui::Ui, painter: &egui::Painter, frame: &Frame, prj: &Project, plan: &SitePlan) {
+    let (Some(bi), level) = (plan.building, plan.level) else { return };
+    let Some((fp, corners)) = floor_plan_corners(prj, bi, level) else { return };
+    if fp.opacity <= 0.0 {
+        return;
+    }
+    let Some(texture) = floor_texture(ui.ctx(), fp) else { return };
+    let tint = Color32::from_white_alpha((fp.opacity.clamp(0.0, 1.0) * 255.0) as u8);
+    let mut mesh = egui::Mesh::with_texture(texture.id());
+    for (q, uv) in corners.iter().zip([pos2(0.0, 0.0), pos2(1.0, 0.0), pos2(1.0, 1.0), pos2(0.0, 1.0)]) {
+        mesh.vertices.push(egui::epaint::Vertex { pos: frame.at(*q), uv, color: tint });
+    }
+    mesh.indices.extend_from_slice(&[0, 1, 2, 0, 2, 3]);
+    painter.add(egui::Shape::mesh(mesh));
+    // The part the rooms are found in.
+    if let Some([l, t, r, b]) = fp.area {
+        let pts: Vec<Pos2> = [[l, t], [r, t], [r, b], [l, b]].iter().map(|q| picture_on_screen(prj, bi, fp, frame, q.map(|v| v as f32))).collect();
+        for k in 0..4 {
+            painter.extend(egui::Shape::dashed_line(&[pts[k], pts[(k + 1) % 4]], Stroke::new(1.0, ui.visuals().selection.stroke.color), 6.0, 4.0));
+        }
+    }
+}
+
+/// Draws what was found in the floor plan on paper `fp` of building `bi`: the rooms
+/// outlined, the doors and windows filled (doors in the colour of warnings, windows
+/// blue), a swing as a dot at the hinge.
+pub fn paint_scan(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, bi: usize, fp: &panel::FloorPlan, found: &openecraft_core::wallscan::Scan) {
+    let painter = ui.painter_at(size);
+    let frame = frame(size, prj, plan);
+    let at = |q: [f32; 2]| picture_on_screen(prj, bi, fp, &frame, q);
+    let accent = ui.visuals().selection.stroke.color;
+    for r in &found.rooms {
+        let pts: Vec<Pos2> = r.outline.iter().map(|&q| at(q)).collect();
+        painter.add(egui::Shape::closed_line(pts, Stroke::new(2.0, accent)));
+    }
+    for g in &found.openings {
+        let color = if g.kind == openecraft_core::wallscan::GapKind::Door { crate::style::warning() } else { GLASS };
+        let pts: Vec<Pos2> = [[g.lo[0], g.lo[1]], [g.hi[0], g.lo[1]], [g.hi[0], g.hi[1]], [g.lo[0], g.hi[1]]].iter().map(|&q| at(q)).collect();
+        painter.add(egui::Shape::convex_polygon(pts, color, Stroke::NONE));
+        if let Some((side, lo)) = g.swing {
+            let (axis, cross) = if g.along_x { (0, 1) } else { (1, 0) };
+            let mut q = [0.0; 2];
+            q[axis] = if lo { g.lo[axis] } else { g.hi[axis] };
+            q[cross] = if side == 0 { g.lo[cross] } else { g.hi[cross] };
+            painter.circle_filled(at(q), 3.0, color);
+        }
+    }
+}
+
 /// Whether `p` lies inside the polygon `pts`.
 fn inside(pts: &[Pos2], p: Pos2) -> bool {
     let mut odd = false;
@@ -261,8 +358,9 @@ pub fn paint(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, pointer:
     let frame = frame(size, prj, plan);
     let scale = frame.scale;
     let at = |q: [f32; 2]| -> Pos2 { frame.at(q) };
+    paint_floor_plan(ui, &painter, &frame, prj, plan);
     let plot = &layout.plot;
-    if rooms.is_empty() && plot.is_default() {
+    if rooms.is_empty() && plot.is_default() && !layout.buildings.iter().any(|b| b.levels.iter().any(|l| l.plan.is_some())) {
         painter.text(size.center_top() + vec2(0.0, 24.0), egui::Align2::CENTER_CENTER, tr("No rooms in the plant yet"), egui::FontId::proportional(13.0), weak);
     }
     // The plot boundary below everything, with its corners, name and area.
