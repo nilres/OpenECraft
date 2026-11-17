@@ -635,9 +635,10 @@ pub struct PanelUi {
 
 /// The tabs of the installation menu: title, what it holds and the subgroups of their
 /// parts.
-const INSTALLATION: [(&str, &str, &[&str]); 3] = [
+const INSTALLATION: [(&str, &str, &[&str]); 4] = [
     (tr_const!("Outlets"), tr_const!("Socket outlets, data and antenna outlets"), &["Socket outlet", "Data outlet", "Antenna outlet"]),
     (tr_const!("Switches"), tr_const!("Switches, push buttons and room thermostats"), &["Switch", "Push button", "Blind switch", "Dimmer", "Glass push button", "Room thermostat"]),
+    (tr_const!("Lights"), tr_const!("Ceiling lights, downlights and wall lights"), &["Luminaire"]),
     (tr_const!("Heating"), tr_const!("Heating circuit manifolds and control boxes"), &["Heating circuit manifold", "Control box"]),
 ];
 

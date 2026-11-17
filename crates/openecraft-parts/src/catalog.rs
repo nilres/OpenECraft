@@ -119,6 +119,23 @@ fn room_installation(c: &mut C) {
     let p = c.add("GEN.RTR-UP", "Room thermostat 230 V for thermal actuators of an underfloor heating, flush-mounted, with display and frame 80 x 80 mm", sw, "Room thermostat", "BT", 49.0, (80.0, 80.0, 20.0, 0.1), &[(Generic, "L N 1")]);
     p.voltage = "230 V AC".into();
     wall(p, 1500.0, "Setting range: 5 - 30 °C");
+    // Lights: on the ceiling of a room (a ceiling light, a downlight) or on its wall.
+    for (number, desc, size, power, ceiling) in [
+        ("GEN.LAMP-CEILING-LED", "Ceiling light LED 18 W, 2000 lm, 3000 K, IP20, round 300 mm, surface-mounted", (300.0, 300.0, 80.0, 1.1), "18 W", true),
+        ("GEN.LAMP-DOWNLIGHT-LED", "Downlight LED 7 W, 600 lm, 3000 K, IP44, round 90 mm, for recessed mounting in ceilings", (90.0, 90.0, 60.0, 0.2), "7 W", true),
+        ("GEN.LAMP-WALL-LED", "Wall light LED 10 W, 900 lm, 3000 K, IP44, 250 x 120 mm, surface-mounted", (250.0, 120.0, 90.0, 0.6), "10 W", false),
+    ] {
+        let p = c.add(number, desc, inst, "Luminaire", "EA", if ceiling { 39.0 } else { 45.0 }, size, &[(Signal, "L N PE")]);
+        p.voltage = "230 V AC".into();
+        p.power = power.into();
+        if ceiling {
+            p.mounting = "Ceiling".into();
+            p.mounting_data.wall_mount = true;
+            p.tech_data = "Ceiling mounting: yes".into();
+        } else {
+            wall(p, 2000.0, "");
+        }
+    }
     // Heating circuit manifolds: flow and return 1", the circuits 3/4" Eurocone at 50 mm.
     for n in 2..=12usize {
         // Flow and return in, then each circuit: one function per pair.

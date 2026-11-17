@@ -408,10 +408,11 @@ pub enum ReportKind {
     Bonding,
     RackElevation,
     PvStrings,
+    InstallationCircuits,
 }
 
 impl ReportKind {
-    pub const ALL: [ReportKind; 43] = [
+    pub const ALL: [ReportKind; 44] = [
         ReportKind::TableOfContents,
         ReportKind::DeviceList,
         ReportKind::BillOfMaterials,
@@ -455,6 +456,7 @@ impl ReportKind {
         ReportKind::Bonding,
         ReportKind::RackElevation,
         ReportKind::PvStrings,
+        ReportKind::InstallationCircuits,
     ];
 
     /// English catalog key of the title.
@@ -503,6 +505,7 @@ impl ReportKind {
             ReportKind::Bonding => tr_const!("Equipotential bonding"),
             ReportKind::RackElevation => tr_const!("19-inch rack elevation"),
             ReportKind::PvStrings => tr_const!("PV strings"),
+            ReportKind::InstallationCircuits => tr_const!("Installation circuits (cable lengths, voltage drop)"),
         }
     }
 
@@ -557,6 +560,7 @@ impl ReportKind {
             ReportKind::Bonding => "bonding",
             ReportKind::RackElevation => "rack_elevation",
             ReportKind::PvStrings => "pv_strings",
+            ReportKind::InstallationCircuits => "installation_circuits",
         }
     }
 

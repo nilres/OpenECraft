@@ -250,19 +250,20 @@ impl FloorPlanUi {
     }
 
     /// The site plan of building `bi` with level `level` highlighted, its floor plan
-    /// under it, what was found in it and the points picked.
-    pub fn site_plan(&mut self, ui: &mut egui::Ui, prj: &Project, bi: usize, level: u64) {
+    /// under it, what was found in it and the points picked; clickable also when
+    /// `click` (for the installation). Gives its response and rectangle.
+    pub fn site_plan(&mut self, ui: &mut egui::Ui, prj: &Project, bi: usize, level: u64, click: bool) -> (egui::Response, egui::Rect) {
         let fp = floorplan::plan_of(&prj.layout, level).filter(|_| level != 0).cloned();
         let picking = fp.is_some() && self.pick != Pick::None;
-        let (size, resp) = ui.allocate_exact_size(vec2(ui.available_width(), 360.0), if picking { Sense::click() } else { Sense::hover() });
+        let (size, resp) = ui.allocate_exact_size(vec2(ui.available_width(), 360.0), if picking || click { Sense::click() } else { Sense::hover() });
         let plan = SitePlan { building: Some(bi), level, ..Default::default() };
         site_plan::paint(ui, size, prj, &plan, None);
-        let Some(fp) = fp else { return };
+        let Some(fp) = fp else { return (resp, size) };
         if let Some((_, _, scan)) = self.found.as_ref().filter(|(l, p, _)| *l == level && *p == fp) {
             site_plan::paint_scan(ui, size, prj, &plan, bi, &fp, scan);
         }
         if !picking {
-            return;
+            return (resp, size);
         }
         let frame = site_plan::frame(size, prj, &plan);
         if resp.clicked() {
@@ -297,6 +298,12 @@ impl FloorPlanUi {
             (_, _) => tr("Click two corners of the part with the floor plan"),
         };
         painter.text(size.left_top() + vec2(8.0, 8.0), egui::Align2::LEFT_TOP, hint, egui::FontId::proportional(12.0), color);
+        (resp, size)
+    }
+
+    /// Whether clicks in the site plan pick points of the floor plan.
+    pub fn picking(&self) -> bool {
+        self.pick != Pick::None
     }
 
     /// The area picked, once both corners are: taken into the plan of `level`.

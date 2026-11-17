@@ -87,6 +87,7 @@ pub fn table(prj: &Project, an: &Analysis, kind: ReportKind) -> Table {
         ReportKind::Bonding => bonding_list(prj),
         ReportKind::RackElevation => rack_elevation(prj),
         ReportKind::PvStrings => pv_strings(prj),
+        ReportKind::InstallationCircuits => installation_circuits(prj),
     }
 }
 
@@ -219,6 +220,52 @@ fn rack_elevation(prj: &Project) -> Table {
 /// (highest: open circuit at the lowest temperature; lowest and mean: at maximum power at
 /// the highest and the mean temperature), currents and power, then the total power and
 /// the design temperatures.
+/// The final circuits of the installation: protective device, cable, the rooms of
+/// their items, cable length, current and voltage drop.
+fn installation_circuits(prj: &Project) -> Table {
+    let mut t = Table::with_widths(&[
+        (tr_const!("Circuit"), 1.0),
+        (tr_const!("Protective device"), 0.7),
+        (tr_const!("Rated current (A)"), 0.6),
+        (tr_const!("Cable"), 1.1),
+        (tr_const!("Rooms"), 1.2),
+        (tr_const!("Items"), 0.4),
+        (tr_const!("Length (m)"), 0.5),
+        (tr_const!("Current (A)"), 0.5),
+        (tr_const!("Voltage drop (%)"), 0.6),
+    ]);
+    let poses = crate::panel::site_poses(prj);
+    let all = crate::installation::items(prj, &poses);
+    let mut total = 0.0;
+    for (c, r) in prj.layout.circuits.iter().zip(crate::installation::runs(prj)) {
+        let mut rooms: Vec<&str> = r.items.iter().filter_map(|id| all.iter().find(|p| p.item == *id)).map(|p| prj.layout.enclosures[p.room].name.as_str()).collect();
+        rooms.dedup();
+        let cable = format!("{} {}", c.cable, c.cable_type).trim().to_string();
+        total += r.length;
+        t.push(
+            vec![
+                c.name.clone(),
+                c.breaker.clone(),
+                r.rated.map_or_else(String::new, |v| format!("{v:.0}")),
+                cable,
+                rooms.join(", "),
+                r.items.len().to_string(),
+                format!("{:.1}", r.length),
+                r.current.map_or_else(String::new, |v| format!("{v:.1}")),
+                r.drop.map_or_else(String::new, |d| format!("{:.2}", d.1)),
+            ],
+            None,
+        );
+    }
+    if total > 0.0 {
+        let mut last = vec![String::new(); 9];
+        last[5] = tr("Total").into();
+        last[6] = format!("{total:.1}");
+        t.push(last, None);
+    }
+    t
+}
+
 fn pv_strings(prj: &Project) -> Table {
     use crate::panel::solar::strings;
     let mut t = Table::with_widths(&[
