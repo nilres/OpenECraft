@@ -62,6 +62,7 @@ pub mod nailboard;
 pub mod page_select;
 pub mod pdf;
 pub mod qr;
+pub mod raster;
 pub mod preplanning;
 pub mod settings_scheme;
 pub mod pdf_comments;
@@ -104,6 +105,7 @@ pub mod symlib;
 pub mod table;
 pub mod text;
 pub mod tables;
+pub mod wallscan;
 pub mod verify;
 #[cfg(test)]
 mod testkit;

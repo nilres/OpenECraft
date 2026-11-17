@@ -10,9 +10,10 @@ use crate::params::{optional, param, Args, Kind};
 use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
 use openecraft_core::model::Project;
+use openecraft_core::wallscan;
 use openecraft_core::panel::buildings::{self as bld, SHAFT_SIZE};
 use openecraft_core::panel::solar::strings;
-use openecraft_core::panel::{self, earthing, lightning, plot, roofs, solar, stairs, ElectrodeKind, LinkKind, Opening, PvMounting, RoofShape, SitePlace, StairKind, Turn};
+use openecraft_core::panel::{self, earthing, floorplan, lightning, plot, roofs, solar, stairs, ElectrodeKind, LinkKind, Opening, PvMounting, RoofShape, SitePlace, StairKind, Turn};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 
@@ -143,6 +144,46 @@ pub static COMMANDS: &[Spec] = &[
             optional("remove", Kind::Bool, tr_const!("Remove the level")),
         ],
         run: set_level,
+    },
+    Spec {
+        name: "set_floor_plan",
+        help: tr_const!("Changes the floor plan on paper under a level (a scan or picture put there with import_floor_plan): its scale, place and turn in the floor plan of the building, the part of the picture the rooms are found in and how strongly it is shown, or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("level", Kind::Str, LEVEL),
+            optional("scale", Kind::Num, tr_const!("Scale of the drawing: 100 for 1:100")),
+            optional("dpi", Kind::Num, tr_const!("Resolution of the scan in dots per inch")),
+            optional("x", Kind::Num, tr_const!("Top left corner of the picture in the floor plan of the building, x in mm")),
+            optional("z", Kind::Num, tr_const!("Top left corner of the picture in the floor plan of the building, z in mm")),
+            optional("angle", Kind::Num, tr_const!("Turn about the vertical in degrees, counter-clockwise seen from above")),
+            optional("area", Kind::Points, tr_const!("Part of the picture the rooms are found in: its top left and bottom right corner in pixels; no points for all of it")),
+            optional("opacity", Kind::Num, tr_const!("How strongly it is shown, 0 (hidden) to 1")),
+            optional("remove", Kind::Bool, tr_const!("Remove the floor plan")),
+        ],
+        run: set_floor_plan,
+    },
+    Spec {
+        name: "calibrate_floor_plan",
+        help: tr_const!("Sets the scale of the floor plan under a level from two points of its picture and their distance in the building (a dimension of the drawing)"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("level", Kind::Str, LEVEL),
+            param("points", Kind::Points, tr_const!("The two points in the picture (x, y in pixels)")),
+            param("distance", Kind::Num, tr_const!("Their distance in the building in mm")),
+        ],
+        run: calibrate_floor_plan,
+    },
+    Spec {
+        name: "detect_floor_plan",
+        help: tr_const!("Finds the walls, doors, windows and rooms in the floor plan under a level without changing the project: the rooms with their outlines and areas, the openings with their width and the rooms on either side (mm in the floor plan of the building)"),
+        params: &[param("building", Kind::Str, BUILDING), param("level", Kind::Str, LEVEL)],
+        run: detect_floor_plan,
+    },
+    Spec {
+        name: "trace_floor_plan",
+        help: tr_const!("Makes rooms on a level of the rooms found in its floor plan, with their doors and windows"),
+        params: &[param("building", Kind::Str, BUILDING), param("level", Kind::Str, LEVEL)],
+        run: trace_floor_plan,
     },
     Spec {
         name: "place_on_level",
@@ -624,7 +665,11 @@ fn building_json(prj: &Project, bi: usize) -> Value {
                     room
                 })
                 .collect();
-            json!({ "name": l.name, "elevation": l.elevation, "height": l.height, "rooms": rooms })
+            let mut level = json!({ "name": l.name, "elevation": l.elevation, "height": l.height, "rooms": rooms });
+            if let Some(p) = &l.plan {
+                level["floor_plan"] = floor_plan_json(p);
+            }
+            level
         })
         .collect();
     let shafts: Vec<Value> = b
@@ -1564,6 +1609,99 @@ fn locate(prj: &mut Project, a: &Args) -> Result<Value, String> {
         "east": (d[0] * 1000.0).round() / 1000.0, "north": (d[1] * 1000.0).round() / 1000.0,
         "on_plot": on_plot,
     }))
+}
+
+fn floor_plan_json(p: &panel::FloorPlan) -> Value {
+    let r1 = |v: f32| (v * 10.0).round() / 10.0;
+    json!({
+        "file": p.image.name, "pixels": p.px, "dpi": r1(25.4 / p.paper), "scale": r1(p.scale), "mm_per_pixel": (p.mm_per_px() * 1000.0).round() / 1000.0,
+        "x": r1(p.x), "z": r1(p.z), "angle": r1(p.angle), "area": p.area, "opacity": p.opacity,
+    })
+}
+
+/// The level of `building` and `level` and its floor plan.
+fn floor_plan_arg(prj: &Project, a: &Args) -> Result<(usize, u64, panel::FloorPlan), String> {
+    let bi = building_arg(prj, a, "building")?;
+    let id = level_arg(prj, bi, a.req("level"))?;
+    let plan = floorplan::plan_of(&prj.layout, id).cloned().ok_or_else(|| tr_fmt!("Level {} has no floor plan", level_name(prj, id)))?;
+    Ok((bi, id, plan))
+}
+
+fn set_floor_plan(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (bi, id, _) = floor_plan_arg(prj, a)?;
+    if a.flag("remove") {
+        floorplan::set_plan(prj, id, None)?;
+        return Ok(building_json(prj, bi));
+    }
+    let area = match a.value("area").map(|_| a.points("area")) {
+        None => None,
+        Some(v) if v.is_empty() => Some(None),
+        Some(v) if v.len() == 2 => Some(Some([v[0][0].min(v[1][0]), v[0][1].min(v[1][1]), v[0][0].max(v[1][0]), v[0][1].max(v[1][1])].map(|c| c.max(0.0).round() as u32))),
+        Some(_) => return Err(tr("Give two points").to_string()),
+    };
+    floorplan::edit_plan(prj, id, |p| {
+        if let Some(v) = a.num("scale") {
+            p.scale = v;
+        }
+        if let Some(v) = a.num("dpi") {
+            p.paper = floorplan::paper_of_dpi(v);
+        }
+        if let Some(v) = a.num("x") {
+            p.x = v;
+        }
+        if let Some(v) = a.num("z") {
+            p.z = v;
+        }
+        if let Some(v) = a.num("angle") {
+            p.angle = v;
+        }
+        if let Some(v) = a.num("opacity") {
+            p.opacity = v.clamp(0.0, 1.0);
+        }
+        if let Some(v) = area {
+            p.area = v;
+        }
+    })?;
+    Ok(building_json(prj, bi))
+}
+
+fn calibrate_floor_plan(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (_, id, plan) = floor_plan_arg(prj, a)?;
+    let [pa, pb] = a.points("points")[..] else { return Err(tr("Give two points").to_string()) };
+    let scale = floorplan::calibrated(&plan, pa, pb, a.num("distance").unwrap_or(0.0))?;
+    floorplan::edit_plan(prj, id, |p| p.scale = scale)?;
+    Ok(floor_plan_json(floorplan::plan_of(&prj.layout, id).unwrap_or(&plan)))
+}
+
+fn detect_floor_plan(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (_, _, plan) = floor_plan_arg(prj, a)?;
+    let found = floorplan::detect(&plan)?;
+    let m = plan.mm_per_px();
+    let at = |q: [f32; 2]| floorplan::to_building(&plan, q).map(|v| v.round());
+    let rooms: Vec<Value> = found.rooms.iter().enumerate().map(|(k, r)| json!({ "room": k + 1, "area": (r.area * m * m / 1e4).round() / 100.0, "outline": r.outline.iter().map(|&q| at(q)).collect::<Vec<_>>() })).collect();
+    let openings: Vec<Value> = found
+        .openings
+        .iter()
+        .map(|g| {
+            let (w, t) = g.size();
+            let side = |s: Option<usize>| s.map_or(Value::Null, |k| json!(k + 1));
+            json!({
+                "kind": if g.kind == wallscan::GapKind::Door { "door" } else { "window" },
+                "width": (w * m).round(), "wall": (t * m).round(),
+                "middle": at([(g.lo[0] + g.hi[0]) / 2.0, (g.lo[1] + g.hi[1]) / 2.0]),
+                "rooms": [side(g.sides[0]), side(g.sides[1])],
+                "swing": g.swing.is_some(),
+            })
+        })
+        .collect();
+    Ok(json!({ "rooms": rooms, "openings": openings }))
+}
+
+fn trace_floor_plan(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (_, id, _) = floor_plan_arg(prj, a)?;
+    let t = floorplan::trace(prj, id)?;
+    let rooms: Vec<&str> = t.rooms.iter().map(|&ri| prj.layout.enclosures[ri].name.as_str()).collect();
+    Ok(json!({ "rooms": rooms, "doors": t.doors, "windows": t.windows, "skipped": t.skipped }))
 }
 
 fn measure(prj: &mut Project, a: &Args) -> Result<Value, String> {

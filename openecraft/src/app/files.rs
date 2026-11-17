@@ -12,6 +12,8 @@ pub(super) enum Done {
     /// A model file read for the part it was chosen for.
     Model { name: String, model: Result<pe::Model, String> },
     Parts(Result<Vec<parts::Part>, String>),
+    /// The sheets of a floor plan for a level (its id).
+    FloorPlan { level: u64, name: String, sheets: Result<Vec<openecraft_scan::Sheet>, String> },
 }
 
 impl App {
@@ -264,6 +266,11 @@ impl App {
                     self.notify(ctx, msg);
                 }
                 Ok(Done::Parts(list)) => self.add_parts(ctx, list),
+                Ok(Done::FloorPlan { level, name, sheets: Ok(sheets) }) => {
+                    let msg = self.buildings_ui.floor.read(&mut self.session.prj, level, name, sheets);
+                    self.notify(ctx, msg);
+                }
+                Ok(Done::FloorPlan { sheets: Err(e), .. }) => self.notify_error(ctx, tr_fmt!("Floor plan import failed: {}", e)),
                 Err(err) => self.notify_error(ctx, tr_fmt!("{} stopped with an error: {}", job.label, err)),
             }
         }
@@ -374,6 +381,15 @@ impl App {
             },
             Purpose::Forms => self.import_forms(ctx, &loaded.text()),
             Purpose::Drawing => self.import_drawing(ctx, &loaded),
+            Purpose::FloorPlan(level) => {
+                // Large scans take a moment.
+                let (name, bytes) = (io::short_name(&loaded.name).to_string(), loaded.bytes.clone());
+                let label = tr_fmt!("Reading {}", name);
+                self.jobs.push(Job::start(label, ctx, move || {
+                    let sheets = openecraft_scan::read(&name, &bytes);
+                    Done::FloorPlan { level, name, sheets }
+                }));
+            }
             Purpose::Table(kind) => {
                 let text = if openecraft_core::archive::is_archive(&loaded.bytes) { openecraft_core::xlsx::first_sheet_csv(&loaded.bytes) } else { Ok(loaded.text()) };
                 match text {

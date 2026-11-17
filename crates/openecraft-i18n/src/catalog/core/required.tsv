@@ -25,8 +25,10 @@
 9 · Electrical room	9 · Elektroraum	9 · Local électrique	9 · Sala eléctrica
 A building keeps at least one level	Ein Gebäude behält mindestens eine Ebene	Un bâtiment garde au moins un niveau	Un edificio conserva al menos un nivel
 A building needs a name	Ein Gebäude braucht einen Namen	Un bâtiment a besoin d'un nom	Un edificio necesita un nombre
+A compressed stream of the PDF file is damaged	Ein komprimierter Datenstrom der PDF-Datei ist beschädigt	Un flux compressé du fichier PDF est endommagé	Un flujo comprimido del archivo PDF está dañado
 A device box needs a width and a height of at least one grid step (4 mm)	Eine Gerätebox braucht eine Breite und eine Höhe von mindestens einem Rasterschritt (4 mm)	Une boîte d'appareil doit avoir une largeur et une hauteur d'au moins un pas de grille (4 mm)	Una caja de dispositivo necesita un ancho y un alto de al menos un paso de cuadrícula (4 mm)
 A device tag must not be empty	Ein Betriebsmittelkennzeichen darf nicht leer sein	Un repère d'appareil ne doit pas être vide	Una designación de dispositivo no debe estar vacía
+A fax image of the PDF file cannot be read	Ein Faxbild der PDF-Datei kann nicht gelesen werden	Une image fax du fichier PDF ne peut pas être lue	No se puede leer una imagen de fax del archivo PDF
 A layer needs a name	Eine Ebene braucht einen Namen	Un calque doit avoir un nom	Una capa necesita un nombre
 A level is at least {} mm high	Eine Ebene ist mindestens {} mm hoch	Un niveau a au moins {} mm de haut	Un nivel tiene al menos {} mm de altura
 A link joins building entries of two different rooms	Eine Verbindung verbindet Gebäudeeinführungen zweier verschiedener Räume	Une liaison relie les entrées de bâtiment de deux pièces différentes	Un enlace une entradas de edificio de dos salas distintas
@@ -81,6 +83,8 @@ Aluminium	Aluminium	Aluminium	Aluminio
 Ammeter	Strommesser	Ampèremètre	Amperímetro
 Ammeter, reactive current	Strommesser, Blindstrom	Ampèremètre, courant réactif	Amperímetro, corriente reactiva
 Ampere-hour meter	Amperestundenzähler	Compteur d'ampères-heures	Contador de amperios-hora
+An image of the PDF file cannot be read: {}	Ein Bild der PDF-Datei kann nicht gelesen werden: {}	Une image du fichier PDF ne peut pas être lue : {}	No se puede leer una imagen del archivo PDF: {}
+An image of the PDF file has no size or is too large	Ein Bild der PDF-Datei hat keine Größe oder ist zu groß	Une image du fichier PDF n'a pas de taille ou est trop grande	Una imagen del archivo PDF no tiene tamaño o es demasiado grande
 An option cannot hide all pages	Eine Option kann nicht alle Seiten ausblenden	Une option ne peut pas masquer toutes les pages	Una opción no puede ocultar todas las páginas
 Analog input module	Analogeingabebaugruppe	Module d'entrées analogiques	Módulo de entradas analógicas
 Analog output module	Analogausgabebaugruppe	Module de sorties analogiques	Módulo de salidas analógicas
@@ -517,6 +521,7 @@ Enclosure climate	Gehäuseklimatisierung	Climatisation des armoires	Climatizaci�
 Enclosure light	Schaltschrankleuchte	Éclairage d'armoire	Luz de armario
 Enclosure not found - choose another one in the page properties	Gehäuse nicht gefunden – wählen Sie in den Seiteneigenschaften ein anderes	Enveloppe introuvable - choisissez-en une autre dans les propriétés de la page	Envolvente no encontrada - elige otra en las propiedades de la página
 Encoder	Geber	Codeur	Encoder
+Encrypted PDF files cannot be read	Verschlüsselte PDF-Dateien können nicht gelesen werden	Les fichiers PDF chiffrés ne peuvent pas être lus	No se pueden leer archivos PDF cifrados
 End bracket	Endhalter	Butée d'arrêt	Soporte final
 End customer	Endkunde	Client final	Cliente final
 End mill	Schaftfräser	Fraise à queue	Fresa de mango
@@ -1047,6 +1052,7 @@ No page with id {}	Keine Seite mit der ID {}	Aucune page avec l'ID {}	No hay nin
 No pin view with this id on the page	Keine Anschlussansicht mit dieser ID auf der Seite	Aucune vue de connexions avec cet ID sur la page	Ninguna vista de conexiones con este ID en la página
 No plugs	Keine Stecker	Aucun connecteur	Sin conectores
 No report block {}	Kein Auswertungsblock {}	Aucun bloc de rapports {}	Ningún bloque de informes {}
+No rooms found in the floor plan	Keine Räume im Grundriss erkannt	Aucune pièce détectée dans le plan	No se detectaron salas en el plano
 No segment template named {}	Keine Segmentvorlage namens {}	Aucun modèle de segment nommé {}	No hay ninguna plantilla de segmento llamada {}
 No subproject {}	Kein Teilprojekt {}	Aucun sous-projet {}	No hay ningún subproyecto {}
 No such building	Kein solches Gebäude	Bâtiment introuvable	No existe ese edificio
@@ -1067,15 +1073,18 @@ Not a PDF file	Keine PDF-Datei	Ce n'est pas un fichier PDF	No es un archivo PDF
 Not a change request file: the column \"Number\" is missing	Keine Änderungsantragsdatei: die Spalte \"Number\" fehlt	Pas un fichier de demandes de modification : la colonne \"Number\" manque	No es un archivo de solicitudes de cambio: falta la columna \"Number\"
 Not a change request file: {}	Keine Änderungsantragsdatei: {}	Pas un fichier de demandes de modification : {}	No es un archivo de solicitudes de cambio: {}
 Not a check scheme: {}	Kein Prüfschema: {}	Ce n'est pas un schéma de vérification : {}	No es un esquema de comprobación: {}
+Not a number	Keine Zahl	Pas un nombre	No es un número
 Not a number: {}	Keine Zahl: {}	Pas un nombre : {}	No es un número: {}
 Not a packed project	Kein gepacktes Projekt	Pas un projet compressé	No es un proyecto comprimido
 Not a project database: {}	Keine Projektdatenbank: {}	Pas une base de données de projets : {}	No es una base de datos de proyectos: {}
+Not a readable PNG image: {}	Kein lesbares PNG-Bild: {}	Image PNG illisible : {}	No es una imagen PNG legible: {}
 Not a settings scheme: {}	Kein Einstellungsschema: {}	Ce n'est pas un schéma de paramètres : {}	No es un esquema de ajustes: {}
 Not a structure template: {}	Keine Strukturvorlage: {}	Pas un modèle de structure : {}	No es una plantilla de estructura: {}
 Not a valid JSON file: {}	Keine gültige JSON-Datei: {}	Fichier JSON non valide : {}	Archivo JSON no válido: {}
 Not a valid project file: {}	Keine gültige Projektdatei: {}	Fichier de projet non valide : {}	No es un archivo de proyecto válido: {}
 Not a valid property library: {}	Keine gültige Eigenschaftsbibliothek: {}	Bibliothèque de propriétés invalide : {}	No es una biblioteca de propiedades válida: {}
 Not an Excel workbook (.xlsx)	Keine Excel-Arbeitsmappe (.xlsx)	Pas un classeur Excel (.xlsx)	No es un libro de Excel (.xlsx)
+Not an image	Kein Bild	Pas une image	No es una imagen
 Not connected	Nicht aufgelegt	Non raccordé	No conectado
 Not in the single-line diagram	Nicht im Übersichtsschaltplan	Absent du schéma unifilaire	No está en el esquema unifilar
 Number of NC contacts	Anzahl Öffner	Nombre de contacts à ouverture	Número de contactos NC
@@ -1247,6 +1256,7 @@ Photoelectric sensor, diffuse, 4-wire	Reflexions-Lichttaster, 4-Leiter	Détecteu
 Photoelectric sensor, retro-reflective, 3-wire	Reflexions-Lichtschranke, 3-Leiter	Barrière photoélectrique reflex, 3 fils	Fotocélula réflex, 3 hilos
 Photoelectric sensor, retro-reflective, 4-wire	Reflexions-Lichtschranke, 4-Leiter	Barrière photoélectrique reflex, 4 fils	Fotocélula réflex, 4 hilos
 Photoresistor (LDR)	Fotowiderstand (LDR)	Photorésistance (LDR)	Fotorresistencia (LDR)
+Pick two points apart and give their distance	Zwei getrennte Punkte wählen und ihren Abstand angeben	Choisissez deux points distincts et indiquez leur distance	Elija dos puntos separados e indique su distancia
 Pick-up power	Anzugsleistung	Puissance d'appel	Potencia de atracción
 Pick-up time	Anzugszeit	Temps de fermeture	Tiempo de conexión
 Pilot lamp PL (JIS)	Meldeleuchte PL (JIS)	Voyant PL (JIS)	Piloto luminoso PL (JIS)
@@ -1459,7 +1469,6 @@ Residual current device 3-pole	Fehlerstromschutzschalter 3-polig	Interrupteur di
 Residual current device 4-pole	Fehlerstromschutzschalter 4-polig	Interrupteur différentiel 4 pôles	Interruptor diferencial 4 polos
 Residual current type	Fehlerstromtyp	Type de courant différentiel	Tipo de corriente diferencial
 Resistor	Widerstand	Résistance	Resistencia
-Resolution	Auflösung	Résolution	Resolución
 Response time	Ansprechzeit	Temps de réponse	Tiempo de respuesta
 Result	Ergebnis	Résultat	Resultado
 Return / exhaust line	Rücklauf- / Abluftleitung	Conduite de retour / d'échappement	Línea de retorno / escape
@@ -1724,6 +1733,8 @@ Termination (from)	Abschluss (von)	Terminaison (de)	Terminación (desde)
 Termination (to)	Abschluss (nach)	Terminaison (à)	Terminación (hasta)
 Text file	Textdatei	Fichier texte	Archivo de texto
 The DXF file contains nothing that can be imported	Die DXF-Datei enthält nichts, was importiert werden kann	Le fichier DXF ne contient rien d'importable	El archivo DXF no contiene nada que se pueda importar
+The PDF file has no pages	Die PDF-Datei hat keine Seiten	Le fichier PDF n'a pas de pages	El archivo PDF no tiene páginas
+The PDF file has nothing to show	Die PDF-Datei enthält nichts Darstellbares	Le fichier PDF n'a rien à afficher	El archivo PDF no tiene nada que mostrar
 The PDF has no pages that can be read	Das PDF hat keine lesbaren Seiten	Le PDF n'a aucune page lisible	El PDF no tiene páginas legibles
 The answer is OK, Not OK or Not applicable, not {}	Die Antwort ist OK, Nicht OK oder Entfällt, nicht {}	La réponse est OK, Non conforme ou Sans objet, pas {}	La respuesta es OK, No conforme o No aplicable, no {}
 The archive contains no project	Das Archiv enthält kein Projekt	L'archive ne contient aucun projet	El archivo comprimido no contiene ningún proyecto
@@ -1731,6 +1742,7 @@ The archive has no manifest	Das Archiv hat kein Manifest	L'archive n'a pas de ma
 The archive is damaged	Das Archiv ist beschädigt	L'archive est endommagée	El archivo comprimido está dañado
 The archive unpacks to more than {} MB	Das Archiv entpackt sich zu mehr als {} MB	L'archive se décompresse en plus de {} Mo	El archivo comprimido se descomprime en más de {} MB
 The archive was written by a newer version (archive version {})	Das Archiv wurde von einer neueren Version geschrieben (Archivversion {})	L'archive a été écrite par une version plus récente (version d'archive {})	El archivo comprimido fue escrito por una versión más reciente (versión de archivo comprimido {})
+The area of the floor plan is empty	Der Bereich des Grundrisses ist leer	La zone du plan est vide	La zona del plano está vacía
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Der Hersteller der Schaltgerätekombination muss angegeben sein (IEC 61439-1, 6.1)	Le constructeur de l'ensemble doit être indiqué (IEC 61439-1, 6.1)	El fabricante del conjunto debe indicarse (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Die Schrankanreihung in ihrem Raum: L-förmiger Grundriss, Innenwand, Tür und Fenster, die Anreihung an ihrem Platz, eine Tragschiene mit Steckdose an einer Wand, eine wandmontierte Notleuchte und eine Kabelrinne unter der Decke.	Les armoires juxtaposées dans leur local : plan en L, cloison, porte et fenêtre, les armoires à leur place, un rail avec une prise murale, un éclairage de secours fixé au mur et un chemin de câbles sous le plafond.	La batería de armarios en su sala: planta en L, tabique, puerta y ventana, la batería en su lugar, un carril con una toma de corriente en una pared, una luz de emergencia montada en la pared y una bandeja de cables bajo el techo.
 The configuration is not a JSON object	Die Konfiguration ist kein JSON-Objekt	La configuration n'est pas un objet JSON	La configuración no es un objeto JSON
@@ -1751,9 +1763,11 @@ The folder {} already holds the project {}: a split project needs a folder of it
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Der Ordner {} enthält Dateien, die zu keinem Projekt gehören ({}): ein geteiltes Projekt braucht einen eigenen Ordner	Le dossier {} contient des fichiers qui n'appartiennent à aucun projet ({}) : un projet fractionné a besoin de son propre dossier	La carpeta {} contiene archivos que no pertenecen a ningún proyecto ({}): un proyecto dividido necesita una carpeta propia
 The function definition needs a key and a name	Die Funktionsdefinition braucht einen Schlüssel und einen Namen	La définition de fonction a besoin d'une clé et d'un nom	La definición de función necesita una clave y un nombre
 The function test is OK or Not OK, not {}	Die Funktionsprüfung ist OK oder Nicht OK, nicht {}	L'essai de fonctionnement est OK ou Non conforme, pas {}	La prueba de funcionamiento es OK o No conforme, no {}
+The image is too large ({} × {} pixels)	Das Bild ist zu groß ({} × {} Pixel)	L'image est trop grande ({} × {} pixels)	La imagen es demasiado grande ({} × {} píxeles)
 The index of the project names no file layout: it was not written by OpenECraft	Der Index des Projekts nennt kein Dateilayout: er wurde nicht von OpenECraft geschrieben	L'index du projet n'indique aucune structure de fichiers : il n'a pas été écrit par OpenECraft	El índice del proyecto no indica ninguna estructura de archivos: no fue escrito por OpenECraft
 The inner wall leaves the room	Die Innenwand verlässt den Raum	Le mur intérieur sort de la salle	La pared interior sale de la sala
 The last page cannot be deleted	Die letzte Seite kann nicht gelöscht werden	La dernière page ne peut pas être supprimée	La última página no se puede eliminar
+The level has no floor plan	Die Ebene hat keinen Grundriss	Le niveau n'a pas de plan	El nivel no tiene plano
 The level would overlap level {}	Die Ebene würde Ebene {} überlappen	Le niveau chevaucherait le niveau {}	El nivel se solaparía con el nivel {}
 The macro box has no items left	Der Makrokasten hat keine Elemente mehr	La boîte de macro n'a plus d'éléments	La caja de macro ya no tiene elementos
 The next free id is already in use	Die nächste freie ID ist bereits vergeben	Le prochain ID libre est déjà utilisé	El siguiente ID libre ya está en uso
@@ -1779,6 +1793,7 @@ The revision is not approved	Die Revision ist nicht genehmigt	La révision n'est
 The revision is not in review	Die Revision ist nicht in Prüfung	La révision n'est pas en vérification	La revisión no está en revisión
 The room of the line-up with its pumps: pump motors fed through cable glands in the roofs of the cabinets, a pump and a vessel standing on the floor, ball valves and a gauge on the wall, and the DN25 pipes of the water circuit routed in 3D along a pipe run on the wall.	Der Raum der Anreihung mit seinen Pumpen: Pumpenmotoren, durch Kabelverschraubungen in den Schrankdächern versorgt, eine Pumpe und ein Behälter auf dem Boden, Kugelhähne und ein Manometer an der Wand und die DN25-Rohrleitungen des Wasserkreislaufs, in 3D entlang einer Rohrtrasse an der Wand verlegt.	La salle de la juxtaposition avec ses pompes : moteurs de pompe alimentés par des presse-étoupes dans les toits des armoires, une pompe et un réservoir posés au sol, des vannes à boisseau sphérique et un manomètre au mur, et les tuyaux DN25 du circuit d'eau posés en 3D le long d'un chemin de tuyauterie au mur.	La sala de la alineación con sus bombas: motores de bomba alimentados a través de prensaestopas en los techos de los armarios, una bomba y un depósito de pie sobre el suelo, válvulas de bola y un manómetro en la pared, y las tuberías DN25 del circuito de agua tendidas en 3D a lo largo de un recorrido de tuberías en la pared.
 The row lies on a released page	Die Zeile liegt auf einer freigegebenen Seite	La ligne se trouve sur une page validée	La fila está en una página liberada
+The scale of the floor plan must be greater than 0	Der Maßstab des Grundrisses muss größer als 0 sein	L'échelle du plan doit être supérieure à 0	La escala del plano debe ser mayor que 0
 The scheme needs a name	Das Schema braucht einen Namen	Le schéma a besoin d'un nom	El esquema necesita un nombre
 The subproject needs a name	Das Teilprojekt braucht einen Namen	Le sous-projet doit avoir un nom	El subproyecto necesita un nombre
 The symbol has no connection points.	Das Symbol hat keine Anschlusspunkte.	Le symbole n'a aucun point de connexion.	El símbolo no tiene puntos de conexión.
@@ -1899,6 +1914,7 @@ Unknown object: {}	Unbekanntes Objekt: {}	Objet inconnu : {}	Objeto desconocido:
 Unknown revision	Unbekannte Revision	Révision inconnue	Revisión desconocida
 Unknown symbol '{}'	Unbekanntes Symbol '{}'	Symbole inconnu '{}'	Símbolo desconocido '{}'
 Unknown tool {}	Unbekanntes Werkzeug {}	Outil inconnu {}	Herramienta desconocida {}
+Unsupported PDF filter {}	Nicht unterstützter PDF-Filter {}	Filtre PDF non pris en charge {}	Filtro PDF no compatible {}
 Upstream	Vorgeschaltet	Amont	Aguas arriba
 Use drawn wire targets	Gezeichnete Drahtziele verwenden	Utiliser les destinations des fils dessinés	Usar los destinos de los hilos dibujados
 User defined	Benutzerdefiniert	Défini par l'utilisateur	Definido por el usuario
@@ -2115,6 +2131,7 @@ yellow	gelb	jaune	amarillo
 {} is inside the structure box {} but has another structure	{} liegt im Strukturkasten {}, hat aber eine andere Struktur	{} se trouve dans le cadre de structure {} mais a une autre structure	{} está dentro del recuadro de estructura {} pero tiene otra estructura
 {} is no 19-inch part ({} mm wide)	{} ist kein 19-Zoll-Teil ({} mm breit)	{} n'est pas une pièce 19 pouces ({} mm de large)	{} no es una pieza de 19 pulgadas ({} mm de ancho)
 {} is not a busbar machine	{} ist keine Schienenbearbeitungsmaschine	{} n'est pas une machine à barres	{} no es una máquina de pletinas
+{} is not a picture or PDF file: {}	{} ist keine Bild- oder PDF-Datei: {}	{} n'est pas un fichier image ou PDF : {}	{} no es un archivo de imagen ni PDF: {}
 {} is not a property of {}	{} ist keine Eigenschaft von {}	{} n'est pas une propriété de {}	{} no es una propiedad de {}
 {} is not an approver of this project	{} ist kein Genehmiger dieses Projekts	{} n'est pas approbateur de ce projet	{} no es aprobador de este proyecto
 {} is not made for wall mounting: place a mounting rail on the wall first	{} ist nicht für Wandmontage vorgesehen: zuerst eine Tragschiene an die Wand setzen	{} n'est pas prévu pour le montage mural : placez d'abord un rail sur le mur	{} no está previsto para montaje mural: coloque primero un carril en la pared

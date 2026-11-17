@@ -5,6 +5,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Floor plans on paper under the levels of a building:** a scan or drawing (PDF,
+  PNG, JPEG, TIFF, …) goes under a level in the *Buildings* pane, to scale (measured on
+  a dimension of the drawing) and in place; *Find rooms* finds the walls, doors,
+  windows and rooms in it and *Make rooms* makes them rooms of the level with their
+  doors and windows. Commands `import_floor_plan`, `set_floor_plan`,
+  `calibrate_floor_plan`, `detect_floor_plan`, `trace_floor_plan`
+  ([floor plans on paper](docs/features/panel-layout.md#floor-plans-on-paper)).
 - **Inspection and test report (IEC 60364-6 / DIN VDE 0100-600):** a report of the
   initial verification of the installation, filled in from the schematic: every
   protective device fed from the mains is a circuit, with its description, cables,

@@ -30,6 +30,8 @@ pub enum Purpose {
     Forms,
     /// A drawing (DXF, DWG) to import as a page.
     Drawing,
+    /// A floor plan on paper (PDF, picture) to put under a level (its id).
+    FloorPlan(u64),
     /// A table (CSV) changed in a spreadsheet.
     Table(openecraft_core::tables::TableKind),
     /// Translation dictionary (CSV) of the project texts.
@@ -105,6 +107,7 @@ impl FileKind for Purpose {
             Purpose::Table(_) => (tr("CSV or Excel"), &["csv", "txt", "xlsx"]),
             Purpose::Dictionary => ("CSV", &["csv", "txt"]),
             Purpose::Drawing => (tr("Drawing (DXF, DWG)"), &["dxf", "dwg"]),
+            Purpose::FloorPlan(_) => (tr("Floor plan (PDF, PNG, JPEG, TIFF)"), &["pdf", "png", "jpg", "jpeg", "tif", "tiff", "gif", "webp", "bmp"]),
             Purpose::Aml => ("AutomationML", &["aml", "xml"]),
             Purpose::Integration => (tr("Files of other systems (CSV, JSON)"), &["csv", "json", "txt"]),
             Purpose::DeviceDescription => (tr("Device description (GSDML, ESI)"), &["xml"]),

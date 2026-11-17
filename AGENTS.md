@@ -64,6 +64,7 @@ cargo clippy -p openecraft -p openecraft-parts-manager -p openecraft-website --t
 | `openecraft-i18n` | `crates/openecraft-i18n` | Languages and UI translations (English, German, French, Spanish and 16 further languages); no dependencies |
 | `openecraft-fonts` | `crates/openecraft-fonts` | Bundled Chinese, Japanese and Korean fonts (Noto Sans subsets, `subset.py`) and the order of the fallback fonts, used on screen (`openecraft-ui`) and in PDF exports (`openecraft-core`); no dependencies |
 | `openecraft-step` | `crates/openecraft-step` | STEP, IGES and Parasolid import (B-rep → part mesh) with the `monstertruck` CAD kernel (Parasolid parsed by `parasolid-core`); kept out of `openecraft-parts` because of its size |
+| `openecraft-scan` | `crates/openecraft-scan` | Floor plans on paper: pictures (PNG, JPEG, TIFF, …) and PDF pages (scans with their fax masks, drawings without text) read as grey images to put under a level; kept out of `openecraft-core` because of the picture decoders |
 | `openecraft-edz` | `crates/openecraft-edz` | EDZ import (EPLAN Data Portal archives): unpacks the 7-Zip archive and reads its parts XML with `openecraft-parts`; kept out of `openecraft-parts` because of the 7-Zip dependency |
 | `openecraft-jt` | `crates/openecraft-jt` | JT writer (panel layout export) and reader (part models) for triangle meshes |
 | `openecraft-xt` | `crates/openecraft-xt` | Parasolid XT writer (panel layout export): meshes as faceted B-rep bodies; no dependencies |

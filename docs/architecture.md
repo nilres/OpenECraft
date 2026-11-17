@@ -9,7 +9,7 @@ is in [architecture-analysis.md](architecture-analysis.md).
 ```
 openecraft-i18n ──┐
 openecraft-fonts ─┤
-openecraft-parts ─┼─► openecraft-jt / openecraft-xt / openecraft-step / openecraft-edz
+openecraft-parts ─┼─► openecraft-jt / openecraft-xt / openecraft-step / openecraft-edz / openecraft-scan
                   └─► openecraft-core ─► openecraft-api ─► editor, cli
                            │                 ▲
 openecraft-client ─► openecraft-ui ──────────┘ (editor, parts-manager)
@@ -70,7 +70,8 @@ exceptions, to be removed over time.
 Layers, bottom up (a module may use its own layer and the layers below):
 
 1. Foundations without dependencies: `geom`, `xml`, `zip`, `xlsx` (Excel workbooks), `qr`
-   (QR codes),
+   (QR codes), `raster` (grey images, PNG, morphology), `wallscan` (walls, doors,
+   windows and rooms found in a floor plan on paper; uses `raster`),
    `ttf` (TrueType reader and
    subsetter for PDF fonts), `params` (typed parameters and
    `Text`), `table` (report tables), `parallel` (work spread over the threads), `issue` (`Issue`, `Severity`; a built-in check's

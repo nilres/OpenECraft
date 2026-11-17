@@ -150,6 +150,8 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("ttf", &[]),
     ("parallel", &[]),
     ("qr", &[]),
+    ("raster", &[]),
+    ("wallscan", &["raster"]),
     // 2 symbols
     ("symbols", &["geom"]),
     ("symlib", &["geom", "model", "symbols"]),
@@ -177,7 +179,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("props", &["geom", "model", "properties", "symbols", "symlib"]),
     // 5 feature logic and page editing
     ("ops", &["device_boxes", "electrofluid", "geom", "graphics", "harness", "model", "plc_hw", "sections", "structure", "symbols", "symlib", "text"]),
-    ("panel", &["climate", "electrofluid", "geom", "harness", "issue", "model", "netlist", "parts", "production", "strips", "symbols"]),
+    ("panel", &["climate", "electrofluid", "geom", "harness", "issue", "model", "netlist", "parts", "production", "raster", "strips", "symbols", "wallscan"]),
     ("climate", &["model", "panel", "parts"]),
     ("manufacturing", &["geom", "model", "panel", "parts", "production"]),
     ("routing", &["cabledef", "conndef", "frame", "geom", "model", "netlist", "ops", "symbols", "symlib"]),

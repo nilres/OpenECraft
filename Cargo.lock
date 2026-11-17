@@ -3523,6 +3523,7 @@ dependencies = [
  "openecraft-edz",
  "openecraft-i18n",
  "openecraft-parts",
+ "openecraft-scan",
  "openecraft-session",
  "openecraft-shell",
  "openecraft-step",
@@ -3591,6 +3592,7 @@ dependencies = [
  "openecraft-edz",
  "openecraft-i18n",
  "openecraft-parts",
+ "openecraft-scan",
  "serde",
  "serde_json",
  "sevenz-rust2",
@@ -3729,6 +3731,17 @@ dependencies = [
  "tokio",
  "tower",
  "tower-http",
+]
+
+[[package]]
+name = "openecraft-scan"
+version = "0.1.2"
+dependencies = [
+ "fax",
+ "image",
+ "miniz_oxide 0.8.9",
+ "openecraft-core",
+ "openecraft-i18n",
 ]
 
 [[package]]

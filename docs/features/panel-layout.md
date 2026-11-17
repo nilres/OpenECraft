@@ -564,6 +564,74 @@ plant in 3D draws the plot boundary on the ground and the reference point as a p
 
 ![Floor plan of the electrical_room example: L-shaped room, inner wall, door, window and the two cabinets](../images/room.png)
 
+## Floor plans on paper
+
+Electrical floor plans are drawn on the architect's drawing of the building. A
+**floor plan on paper** goes under a level (*Buildings* pane, choose the level of the
+site plan, *Floor plan…*; command line `import_floor_plan`): a picture (PNG, JPEG,
+TIFF, GIF, WebP, BMP) or a page of a PDF file, a scan (also those of office scanners,
+which split a page into a background picture and black and white fax masks) or a
+drawing (its lines and filled areas; texts are not drawn). Of a PDF file with several
+pages the page is chosen in the pane. The site plan shows it under the level's rooms;
+the picture is kept in the project as a grey PNG (crate `openecraft-scan` reads the
+files, `openecraft_core::panel::floorplan` holds the rest).
+
+- **Scale and place** (*Scale*, *Resolution*, *Top left corner*, *Turn*, *Shown*;
+  command `set_floor_plan`): the scale of the drawing (1:100 for a new one) and the
+  resolution of the scan (from the PDF page, 150 dpi for a picture) give the size of
+  a pixel in the building. *Measure* (command `calibrate_floor_plan`) sets the scale
+  from two points clicked in the site plan and their distance, a dimension of the
+  drawing. The top left corner of the picture lies at a point of the building's floor
+  plan, the picture turned about it like a room.
+- **Area** (*Pick*, `area` of `set_floor_plan`): the part of the picture the rooms are
+  found in, without title block, sections or the other drawings of the sheet; shown
+  dashed.
+- **Find rooms** (command `detect_floor_plan`) finds the walls, doors, windows and rooms
+  in the floor plan and shows them in the site plan: the rooms outlined, doors in the
+  colour of warnings, windows blue, a door swing as a dot at its hinge. Nothing changes
+  yet.
+- **Make rooms** (command `trace_floor_plan`) makes a room on the level of each room
+  found (`+ROOM1`, …): its outline the inside faces of its walls, as high as the level
+  less its slab, at its place in the building; a door goes into the room it opens to
+  (its swing drawn) or the smaller of the two rooms, hinged at the side drawn; a window
+  into the room behind it. Rooms whose outline is no outline of walls at right angles
+  are reported and left out. The floor plan stays under the level to check the rooms
+  against it and to draw on; *Remove* takes it away, the rooms stay.
+
+**How the rooms are found** (`openecraft_core::wallscan`, pure image processing, no
+model): walls drawn filled, shaded or hatched (the way cut walls are drawn) at right
+angles to the edges of the sheet.
+
+1. *Ink*: a pixel clearly darker (10 levels) than the paper round it (the brightest
+   level within the thickest wall, measured on the sheet shrunk; scans fade and yellow
+   unevenly), after a 3 × 3 median that removes specks.
+2. *Walls*: the ink opened morphologically by the thinnest wall (90 mm): text,
+   dimension lines, door swings and the lines of windows go, the filled walls stay. Of
+   what is left only large parts away from the edges of the sheet are walls.
+3. *Straight pieces*: runs across a wall (a column of a wall along x) as thin as a
+   wall that keep their place over at least twice their thickness; runs reaching over
+   a piece (a wall meeting it, a blot of pencil on its side) carry it on.
+4. *Openings*: from the free end of a piece (not where another piece meets it) a ray
+   along it in the rows of its middle to the next wall: as long as a door or window
+   (0.5 … 5 m) in most rows. Ending at a wall across it (a door beside a corner) it is
+   at most 1.5 m; wider only up to the next piece of the same wall (a window between
+   two pieces). An opening whose two sides are joined anyway (a blot in a room) is
+   none.
+5. *Rooms*: the free areas enclosed by the walls with the openings closed (those
+   reaching the edge of the sheet are outside), at least 1 m². Their outline: cut along
+   the lines where the border runs for at least 150 mm, the cells of these cuts mostly
+   inside the room make up the floor plan (walls at right angles, no step shorter than
+   75 mm).
+6. *Doors and windows*: an opening between two rooms is a door; one to the outside a
+   window when lines run through it along the wall (glass, frame, sill), else a door.
+   A quarter circle of ink from one end of a door into a room is its swing.
+
+On the scanned plans of a house from 1972 (1:50, 150 dpi, pencil) it finds the rooms
+of the ground floor with their doors and windows in half a second; walls drawn as two
+lines without filling, slanted or curved walls, and sheets scanned askew are not found
+yet. The rooms found are a start to check and correct: rooms joined by an opening
+without a drawn door are one room, and stairs or chimneys are walls.
+
 ## House connection boxes
 
 The enclosure system *House connection box* (`house_connection`, command
