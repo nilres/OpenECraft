@@ -1210,6 +1210,15 @@ async fn inspection_results_are_entered_without_opening_the_project() {
     assert_eq!(with(&app, "PUT", path, kim, &data).await.0, StatusCode::CONFLICT);
     let bad_answer = InspectionUpdate { rev: 2, values: values(&[("check.fire", "maybe")]), ..Default::default() };
     assert_eq!(with(&app, "PUT", path, kim, &bad_answer).await.0, StatusCode::BAD_REQUEST);
+    // A source of SELV or PELV circuits.
+    let source = sheet.report.sources[0].device.clone();
+    let pelv = InspectionUpdate { source: source.clone(), values: values(&[("measure", "pelv"), ("insulation", "2")]), ..Default::default() };
+    let (s, text) = with(&app, "PUT", path, kim, &pelv).await;
+    assert!(s.is_success(), "{text}");
+    let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
+    assert_eq!(sheet.report.sources[0].result.measure, "pelv");
+    let unknown = InspectionUpdate { source: "-X9".into(), values: values(&[("measure", "pelv")]), ..Default::default() };
+    assert_eq!(with(&app, "PUT", path, kim, &unknown).await.0, StatusCode::NOT_FOUND);
 
     let (s, headers, _) = get(&app, &format!("{path}.xlsx?lang=de"), Some(vic)).await;
     assert_eq!(s, StatusCode::OK);

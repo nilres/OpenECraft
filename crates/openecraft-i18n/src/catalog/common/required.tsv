@@ -146,6 +146,7 @@ EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is 
 Earth electrode resistance RA (Ω)	Erdungswiderstand RA (Ω)	Résistance de la prise de terre RA (Ω)	Resistencia del electrodo de tierra RA (Ω)
 Edit	Bearbeiten	Édition	Edición
 Editor	Bearbeiter	Éditeur	Editor
+Electrical separation	Schutztrennung	Séparation électrique	Separación eléctrica
 Electro-fluid cross reference	Elektro-Fluid-Querverweise	Renvois électro-fluidiques	Referencias cruzadas electro-fluidos
 Email	E-Mail	E-mail	Correo electrónico
 Enclosure	Gehäuse	Enveloppe	Envolvente
@@ -170,6 +171,7 @@ File	Datei	Fichier	Archivo
 Files	Dateien	Fichiers	Archivos
 Filter	Filter	Filtre	Filtro
 Filter devices…	Betriebsmittel filtern …	Filtrer les appareils…	Filtrar dispositivos…
+First fault current Id (A)	Fehlerstrom beim ersten Fehler Id (A)	Courant de premier défaut Id (A)	Corriente del primer defecto Id (A)
 Fit	Einpassen	Ajuster	Ajustar
 Fits	Passt zu	Compatible avec	Compatible con
 Fitting at the end	Verschraubung am Ende	Raccord à la fin	Racor al final
@@ -219,6 +221,8 @@ Inspection and test report	Prüfprotokoll	Rapport de vérification	Informe de in
 Inspector	Prüfer	Vérificateur	Inspector
 Installation site	Aufstellungsort	Lieu d'installation	Lugar de instalación
 Installer	Errichter	Installateur	Instalador
+Insulating floors and walls (kΩ)	Isolierende Fußböden und Wände (kΩ)	Sols et parois isolants (kΩ)	Suelos y paredes aislantes (kΩ)
+Insulation monitoring device	Isolationsüberwachungseinrichtung	Contrôleur permanent d'isolement	Vigilante de aislamiento
 Insulation resistance (MΩ)	Isolationswiderstand (MΩ)	Résistance d'isolement (MΩ)	Resistencia de aislamiento (MΩ)
 Insulation test voltage (V)	Messspannung Isolation (V)	Tension d'essai d'isolement (V)	Tensión de ensayo de aislamiento (V)
 Integration	Integration	Intégration	Integración
@@ -324,6 +328,7 @@ No part {} in the project	Kein Artikel {} im Projekt	Pas d'article {} dans le pr
 No parts found	Keine Artikel gefunden	Aucun article trouvé	No se encontraron artículos
 No plot frame named {}	Kein Plotrahmen namens {}	Aucun cadre nommé {}	Ningún marco llamado {}
 No plug {}	Kein Stecker {}	Aucun connecteur {}	No hay conector {}
+No protective measure of its own	Keine eigene Schutzmaßnahme	Pas de mesure de protection propre	Sin medida de protección propia
 No report block named {}	Kein Auswertungsblock namens {}	Aucun bloc de rapports nommé {}	Ningún bloque de informes llamado {}
 No segment {}	Kein Segment {}	Aucun segment {}	No hay ningún segmento {}
 No station {}	Keine Station {}	Pas de station {}	No hay estación {}
@@ -360,9 +365,11 @@ Order number	Bestellnummer	Référence de commande	Número de pedido
 Other	Sonstiges	Autre	Otro
 Outer diameter	Außendurchmesser	Diamètre extérieur	Diámetro exterior
 Output	Ausgang	Sortie	Salida
+Output voltage (V)	Ausgangsspannung (V)	Tension de sortie (V)	Tensión de salida (V)
 Overview	Übersicht	Vue d'ensemble	Vista general
 PCT loop	PLT-Stelle	Boucle CCP	Lazo PCT
 PCT loop overview	PLT-Stellenübersicht	Vue d'ensemble des boucles CCP	Resumen de lazos PCT
+PELV	PELV	TBTP	MBTP
 PL	PL	PL	PL
 PLC	SPS	API	PLC
 PLC card	SPS-Karte	Carte API	Tarjeta PLC
@@ -390,6 +397,7 @@ Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artikel (CSV, JSON, BMEcat, EPLAN
 Parts import failed: {}	Artikelimport fehlgeschlagen: {}	Échec de l'import des articles : {}	Error al importar artículos: {}
 Passed	Bestanden	Conforme	Aprobado
 Password	Passwort	Mot de passe	Contraseña
+Phase sequence	Drehfeld	Ordre des phases	Secuencia de fases
 Phases	Phasen	Phases	Fases
 Phone	Telefon	Téléphone	Teléfono
 Picture	Bild	Image	Imagen
@@ -407,6 +415,7 @@ Plug	Stecker	Connecteur	Conector
 Plug diagram	Steckerplan	Plan des connecteurs	Esquema de conectores
 Plugins	Plugins	Plugins	Plugins
 Plugs	Stecker	Connecteurs	Conectores
+Polarity	Polarität	Polarité	Polaridad
 Poles	Pole	Pôles	Polos
 Ports	Ports	Ports	Puertos
 Position	Position	Position	Posición
@@ -442,6 +451,7 @@ Prospective fault current at the origin (kA)	Kurzschlussstrom am Speisepunkt (kA
 Protection	Schutz	Protection	Protección
 Protective conductor (Ω)	Schutzleiter (Ω)	Conducteur de protection (Ω)	Conductor de protección (Ω)
 Protective device	Schutzorgan	Appareil de protection	Dispositivo de protección
+Protective measure	Schutzmaßnahme	Mesure de protection	Medida de protección
 Quantity	Menge	Quantité	Cantidad
 Quantity (default 1)	Menge (Standard 1)	Quantité (1 par défaut)	Cantidad (1 por defecto)
 Quantity unit	Mengeneinheit	Unité de quantité	Unidad de cantidad
@@ -495,6 +505,7 @@ Routing	Verlegung	Cheminement	Tendido
 Rows of modules (east-west: rows of pairs)	Modulreihen (Ost-West: Reihen von Paaren)	Rangées de modules (est-ouest : rangées de paires)	Filas de módulos (este-oeste: filas de pares)
 Rule	Regel	Règle	Regla
 Rule set	Regelwerk	Jeu de règles	Conjunto de reglas
+SELV	SELV	TBTS	MBTS
 Safety function	Sicherheitsfunktion	Fonction de sécurité	Función de seguridad
 Save	Speichern	Enregistrer	Guardar
 Saved	Gespeichert	Enregistré	Guardado
@@ -618,6 +629,7 @@ Value	Wert	Valeur	Valor
 Version	Version	Version	Versión
 Viewer	Betrachter	Lecteur	Lector
 Voltage	Spannung	Tension	Tensión
+Voltage drop (%)	Spannungsfall (%)	Chute de tension (%)	Caída de tensión (%)
 Wall penetration	Wanddurchbruch	Traversée de mur	Pasamuros
 Warning	Warnung	Avertissement	Advertencia
 Warnings	Warnungen	Avertissements	Advertencias

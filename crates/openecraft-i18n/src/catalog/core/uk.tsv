@@ -715,6 +715,7 @@ Input voltage	Вхідна напруга
 Inputs from	Входи від
 Inrush current	Пусковий струм
 Inside (°C)	Усередині (°C)
+Inspection and test report: SELV, PELV and separation	Протокол огляду та випробувань: БННН, ЗННН і розділення
 Inspection and test report: data	Протокол огляду та випробувань: дані
 Inspection and test report: summary	Протокол огляду та випробувань: підсумок
 Installation altitude	Висота встановлення
@@ -1366,6 +1367,7 @@ Rule {}: no macro {}	Правило {}: немає макросу {}
 Rule {}: {}	Правило {}: {}
 Rule {}: {} has no variant {}	Правило {}: {} не має варіанта {}
 Rule {}: {} is no page macro	Правило {}: {} не є макросом сторінки
+SELV, PELV, Electrical separation or none	БННН, ЗННН, Електричне розділення або немає
 SVG image (one page)	Зображення SVG (одна сторінка)
 Saddle jumper	Сідлоподібна перемичка
 Safe torque off (STO)	Безпечне вимкнення моменту (STO)
@@ -1478,6 +1480,7 @@ Solenoid valve coil YA (GOST)	Котушка електромагнітного 
 Solenoid valve coil YV (GB)	Котушка електромагнітного клапана YV (GB)
 Sort code	Код сортування
 Sound level	Рівень шуму
+Source {}	Джерело {}
 Source {}, first target {}, second target {}	Джерело {}, перша ціль {}, друга ціль {}
 Source {}, targets {}, {} and {}	Джерело {}, цілі {}, {} і {}
 Spare	Резерв
@@ -1621,6 +1624,7 @@ The project file {} is missing	Файл проєкту {} відсутній
 The project has no panel layout	Проєкт не має компонування шафи
 The project was written by a newer version (file layout {})	Проєкт записано новішою версією (структура файлів {})
 The property needs a name	Властивості потрібна назва
+The protective measure is SELV, PELV, electrical separation or none, not {}	Захід захисту: БННН, ЗННН, електричне розділення або немає, а не {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Насосна станція у двох з'єднаних підлогових шафах: система збірних шин, рейки та кабель-канали, пристрої на дверях і ручки, вентилятор із фільтром, світильник, шина PE, кабельні вводи, кабельний прохід, розрахунок клімату, заповнення кабель-каналів і 3D-трасування.
 The revision is already released	Ревізію вже затверджено
 The revision is not approved	Ревізію не погоджено
@@ -1762,7 +1766,6 @@ Vibration resistance	Вібростійкість
 View projects	Переглядати проєкти
 Violations	Порушення
 Voltage (V)	Напруга (V)
-Voltage drop (%)	Спад напруги (%)
 Voltage drop (V)	Спад напруги (V)
 Voltage protection level	Рівень захисту за напругою
 Voltage range	Діапазон напруги

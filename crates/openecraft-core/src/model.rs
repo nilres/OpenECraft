@@ -413,6 +413,8 @@ pub enum ReportKind {
     Inspection,
     /// Its data, visual inspection and verdict.
     InspectionSummary,
+    /// Its sources of SELV, PELV and separated circuits.
+    InspectionSources,
     FieldRouting,
     Bonding,
     RackElevation,
@@ -420,7 +422,7 @@ pub enum ReportKind {
 }
 
 impl ReportKind {
-    pub const ALL: [ReportKind; 45] = [
+    pub const ALL: [ReportKind; 46] = [
         ReportKind::TableOfContents,
         ReportKind::DeviceList,
         ReportKind::BillOfMaterials,
@@ -462,6 +464,7 @@ impl ReportKind {
         ReportKind::Verification,
         ReportKind::Inspection,
         ReportKind::InspectionSummary,
+        ReportKind::InspectionSources,
         ReportKind::FieldRouting,
         ReportKind::Bonding,
         ReportKind::RackElevation,
@@ -512,6 +515,7 @@ impl ReportKind {
             ReportKind::Verification => tr_const!("Rule set verification"),
             ReportKind::Inspection => tr_const!("Inspection and test report"),
             ReportKind::InspectionSummary => tr_const!("Inspection and test report: summary"),
+            ReportKind::InspectionSources => tr_const!("Inspection and test report: SELV, PELV and separation"),
             ReportKind::FieldRouting => tr_const!("Field cable routing"),
             ReportKind::Bonding => tr_const!("Equipotential bonding"),
             ReportKind::RackElevation => tr_const!("19-inch rack elevation"),
@@ -568,6 +572,7 @@ impl ReportKind {
             ReportKind::Verification => "verification",
             ReportKind::Inspection => "inspection",
             ReportKind::InspectionSummary => "inspection_summary",
+            ReportKind::InspectionSources => "inspection_sources",
             ReportKind::FieldRouting => "field_routing",
             ReportKind::Bonding => "bonding",
             ReportKind::RackElevation => "rack_elevation",

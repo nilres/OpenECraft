@@ -715,6 +715,7 @@ Input voltage	Tensione d'ingresso
 Inputs from	Ingressi da
 Inrush current	Corrente di spunto
 Inside (°C)	Interna (°C)
+Inspection and test report: SELV, PELV and separation	Rapporto di verifica: SELV, PELV e separazione
 Inspection and test report: data	Rapporto di verifica: dati
 Inspection and test report: summary	Rapporto di verifica: sintesi
 Installation altitude	Altitudine d'installazione
@@ -1366,6 +1367,7 @@ Rule {}: no macro {}	Regola {}: nessuna macro {}
 Rule {}: {}	Regola {}: {}
 Rule {}: {} has no variant {}	Regola {}: {} non ha la variante {}
 Rule {}: {} is no page macro	Regola {}: {} non è una macro di pagina
+SELV, PELV, Electrical separation or none	SELV, PELV, Separazione elettrica o nessuna
 SVG image (one page)	Immagine SVG (una pagina)
 Saddle jumper	Ponticello a innesto
 Safe torque off (STO)	Safe Torque Off (STO)
@@ -1478,6 +1480,7 @@ Solenoid valve coil YA (GOST)	Bobina elettrovalvola YA (GOST)
 Solenoid valve coil YV (GB)	Bobina elettrovalvola YV (GB)
 Sort code	Codice di ordinamento
 Sound level	Livello sonoro
+Source {}	Sorgente {}
 Source {}, first target {}, second target {}	Sorgente {}, primo obiettivo {}, secondo obiettivo {}
 Source {}, targets {}, {} and {}	Sorgente {}, obiettivi {}, {} e {}
 Spare	Riserva
@@ -1621,6 +1624,7 @@ The project file {} is missing	Il file di progetto {} è mancante
 The project has no panel layout	Il progetto non ha un layout del quadro
 The project was written by a newer version (file layout {})	Il progetto è stato scritto da una versione più recente (struttura dei file {})
 The property needs a name	La proprietà richiede un nome
+The protective measure is SELV, PELV, electrical separation or none, not {}	La misura di protezione è SELV, PELV, separazione elettrica o nessuna, non {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	La stazione di pompaggio montata in due armadi a pavimento affiancati: sistema di sbarre, guide e canaline, apparecchi sulla porta e maniglie, ventilatore con filtro, lampada, barra di terra, pressacavi, un passaggio cavi, calcolo della climatizzazione, riempimento delle canaline e instradamento 3D.
 The revision is already released	La revisione è già rilasciata
 The revision is not approved	La revisione non è approvata
@@ -1762,7 +1766,6 @@ Vibration resistance	Resistenza alle vibrazioni
 View projects	Visualizza progetti
 Violations	Violazioni
 Voltage (V)	Tensione (V)
-Voltage drop (%)	Caduta di tensione (%)
 Voltage drop (V)	Caduta di tensione (V)
 Voltage protection level	Livello di protezione in tensione
 Voltage range	Campo di tensione

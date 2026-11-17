@@ -715,6 +715,7 @@ Input voltage	Vstupní napětí
 Inputs from	Vstupy z
 Inrush current	Zapínací proud
 Inside (°C)	Uvnitř (°C)
+Inspection and test report: SELV, PELV and separation	Revizní zpráva: SELV, PELV a oddělení
 Inspection and test report: data	Revizní zpráva: údaje
 Inspection and test report: summary	Revizní zpráva: souhrn
 Installation altitude	Nadmořská výška instalace
@@ -1366,6 +1367,7 @@ Rule {}: no macro {}	Pravidlo {}: žádné makro {}
 Rule {}: {}	Pravidlo {}: {}
 Rule {}: {} has no variant {}	Pravidlo {}: {} nemá variantu {}
 Rule {}: {} is no page macro	Pravidlo {}: {} není makro stránky
+SELV, PELV, Electrical separation or none	SELV, PELV, Elektrické oddělení nebo žádné
 SVG image (one page)	Obrázek SVG (jedna stránka)
 Saddle jumper	Zásuvná propojka
 Safe torque off (STO)	Bezpečně vypnutý moment (STO)
@@ -1478,6 +1480,7 @@ Solenoid valve coil YA (GOST)	Cívka elektromagnetického ventilu YA (GOST)
 Solenoid valve coil YV (GB)	Cívka elektromagnetického ventilu YV (GB)
 Sort code	Třídicí kód
 Sound level	Hladina hluku
+Source {}	Zdroj {}
 Source {}, first target {}, second target {}	Zdroj {}, první cíl {}, druhý cíl {}
 Source {}, targets {}, {} and {}	Zdroj {}, cíle {}, {} a {}
 Spare	Rezerva
@@ -1621,6 +1624,7 @@ The project file {} is missing	Soubor projektu {} chybí
 The project has no panel layout	Projekt nemá rozvržení rozváděče
 The project was written by a newer version (file layout {})	Projekt byl zapsán novější verzí (rozložení souborů {})
 The property needs a name	Vlastnost potřebuje název
+The protective measure is SELV, PELV, electrical separation or none, not {}	Ochranné opatření je SELV, PELV, elektrické oddělení nebo žádné, ne {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Čerpací stanice vestavěná do dvou řazených stojanových skříní: přípojnicový systém, lišty a kabelové žlaby, přístroje ve dveřích a rukojeti, ventilátor s filtrem, osvětlení, přípojnice PE, kabelové vývodky, kabelová průchodka, výpočet klimatizace, zaplnění žlabů a 3D trasování.
 The revision is already released	Revize je již uvolněna
 The revision is not approved	Revize není schválena
@@ -1762,7 +1766,6 @@ Vibration resistance	Odolnost proti vibracím
 View projects	Prohlížet projekty
 Violations	Porušení
 Voltage (V)	Napětí (V)
-Voltage drop (%)	Úbytek napětí (%)
 Voltage drop (V)	Úbytek napětí (V)
 Voltage protection level	Ochranná napěťová hladina
 Voltage range	Rozsah napětí

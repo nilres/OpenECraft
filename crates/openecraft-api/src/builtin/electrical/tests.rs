@@ -85,7 +85,7 @@ fn inspection_results_are_set_and_checked() {
     let f1 = r["circuits"].as_array().unwrap().iter().find(|c| c["circuit"] == "-F1").unwrap().clone();
     assert_eq!((f1["characteristic"].as_str(), f1["rated"].as_f64(), f1["verdict"].as_str()), (Some("C"), Some(6.0), Some("not_tested")));
     assert!(f1["zs_max"].as_f64().unwrap() > 1.0);
-    let results = json!({ "continuity": "0.3", "insulation_voltage": 500, "insulation": 500, "loop_impedance": "0,9", "function": "ok", "tester": "Kim" });
+    let results = json!({ "continuity": "0.3", "insulation_voltage": 500, "insulation": 500, "loop_impedance": "0,9", "polarity": "ok", "function": "ok", "tester": "Kim" });
     let r = run(&mut s, "inspection_report", json!({ "circuit": "-F1", "results": results })).unwrap();
     let f1 = r["circuits"].as_array().unwrap().iter().find(|c| c["circuit"] == "-F1").unwrap();
     assert_eq!((f1["result"]["insulation"].as_str(), f1["verdict"].as_str()), (Some("500"), Some("passed")));
@@ -101,4 +101,9 @@ fn inspection_results_are_set_and_checked() {
     assert_eq!(r["failed"], json!(["check.fire"]));
     assert_eq!(r["checks"].as_array().unwrap().len(), inspection::CHECKS.len());
     assert!(run(&mut s, "inspection_report", json!({ "header": { "check.fire": "maybe" } })).is_err());
+    // The demo's power supply as the source of PELV circuits.
+    let source = r["sources"][0]["device"].as_str().unwrap().to_string();
+    let r = run(&mut s, "inspection_report", json!({ "source": source, "source_results": { "measure": "pelv", "insulation_voltage": 250, "insulation": 2 } })).unwrap();
+    assert_eq!((r["sources"][0]["result"]["measure"].as_str(), r["sources"][0]["verdict"].as_str()), (Some("pelv"), Some("passed")));
+    assert!(run(&mut s, "inspection_report", json!({ "source": "-X9", "source_results": { "measure": "pelv" } })).unwrap_err().contains("-X9"));
 }

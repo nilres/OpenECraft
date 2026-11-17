@@ -142,6 +142,7 @@ EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is 
 Earth electrode resistance RA (Ω)	Maadoituselektrodin resistanssi RA (Ω)
 Edit	Muokkaa
 Editor	Muokkaaja
+Electrical separation	Sähköinen erotus
 Electro-fluid cross reference	Sähkö-fluidi-ristiviittaukset
 Email	Sähköposti
 Enclosure	Kotelo
@@ -164,6 +165,7 @@ File	Tiedosto
 Files	Tiedostot
 Filter	Suodatin
 Filter devices…	Suodata laitteita…
+First fault current Id (A)	Ensimmäisen vian virta Id (A)
 Fit	Sovita
 Fits	Sopii
 Fitting at the end	Putkiliitin lopussa
@@ -209,6 +211,8 @@ Inspection and test report	Tarkastus- ja testauspöytäkirja
 Inspector	Tarkastaja
 Installation site	Asennuspaikka
 Installer	Asentaja
+Insulating floors and walls (kΩ)	Eristävät lattiat ja seinät (kΩ)
+Insulation monitoring device	Eristystilan valvontalaite
 Insulation resistance (MΩ)	Eristysresistanssi (MΩ)
 Insulation test voltage (V)	Eristysresistanssin mittausjännite (V)
 Integration	Integraatio
@@ -309,6 +313,7 @@ No part {} in the project	Projektissa ei ole osaa {}
 No parts found	Osia ei löytynyt
 No plot frame named {}	Ei piirustuskehystä nimeltä {}
 No plug {}	Ei pistoliitintä {}
+No protective measure of its own	Ei omaa suojausta
 No report block named {}	Ei raporttilohkoa nimeltä {}
 No segment {}	Segmenttiä {} ei ole
 No station {}	Ei asemaa {}
@@ -344,9 +349,11 @@ Order number	Tilausnumero
 Other	Muu
 Outer diameter	Ulkohalkaisija
 Output	Lähtö
+Output voltage (V)	Lähtöjännite (V)
 Overview	Yleiskatsaus
 PCT loop	Instrumentointipiiri
 PCT loop overview	Instrumentointipiirien yleiskatsaus
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC-kortti
@@ -374,6 +381,7 @@ Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Osat (CSV, JSON, BMEcat, EPLAN XM
 Parts import failed: {}	Osien tuonti epäonnistui: {}
 Passed	Hyväksytty
 Password	Salasana
+Phase sequence	Vaihejärjestys
 Phases	Vaiheet
 Phone	Puhelin
 Picture	Kuva
@@ -390,6 +398,7 @@ Plug	Pistoliitin
 Plug diagram	Pistoliitinkaavio
 Plugins	Laajennukset
 Plugs	Pistoliittimet
+Polarity	Napaisuus
 Poles	Navat
 Ports	Portit
 Position	Paikka
@@ -425,6 +434,7 @@ Prospective fault current at the origin (kA)	Odotettavissa oleva vikavirta liitt
 Protection	Suojaus
 Protective conductor (Ω)	Suojajohdin (Ω)
 Protective device	Suojalaite
+Protective measure	Suojaus
 Quantity	Määrä
 Quantity (default 1)	Määrä (oletus 1)
 Quantity unit	Määräyksikkö
@@ -478,6 +488,7 @@ Routing	Reititys
 Rows of modules (east-west: rows of pairs)	Moduulirivit (itä-länsi: paririvit)
 Rule	Sääntö
 Rule set	Sääntökokoelma
+SELV	SELV
 Safety function	Turvatoiminto
 Save	Tallenna
 Saved	Tallennettu
@@ -599,6 +610,7 @@ Value	Arvo
 Version	Versio
 Viewer	Katselija
 Voltage	Jännite
+Voltage drop (%)	Jännitteenalenema (%)
 Warning	Varoitus
 Warnings	Varoitukset
 Weight	Paino

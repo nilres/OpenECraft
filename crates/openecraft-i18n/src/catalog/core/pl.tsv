@@ -715,6 +715,7 @@ Input voltage	Napięcie wejściowe
 Inputs from	Wejścia z
 Inrush current	Prąd załączania
 Inside (°C)	Wewnątrz (°C)
+Inspection and test report: SELV, PELV and separation	Protokół z badań odbiorczych: SELV, PELV i separacja
 Inspection and test report: data	Protokół z badań odbiorczych: dane
 Inspection and test report: summary	Protokół z badań odbiorczych: podsumowanie
 Installation altitude	Wysokość ustawienia
@@ -1366,6 +1367,7 @@ Rule {}: no macro {}	Reguła {}: brak makra {}
 Rule {}: {}	Reguła {}: {}
 Rule {}: {} has no variant {}	Reguła {}: {} nie ma wariantu {}
 Rule {}: {} is no page macro	Reguła {}: {} nie jest makrem strony
+SELV, PELV, Electrical separation or none	SELV, PELV, Separacja elektryczna lub brak
 SVG image (one page)	Obraz SVG (jedna strona)
 Saddle jumper	Mostek wtykowy
 Safe torque off (STO)	Bezpieczne wyłączenie momentu (STO)
@@ -1478,6 +1480,7 @@ Solenoid valve coil YA (GOST)	Cewka zaworu elektromagnetycznego YA (GOST)
 Solenoid valve coil YV (GB)	Cewka zaworu elektromagnetycznego YV (GB)
 Sort code	Kod sortowania
 Sound level	Poziom hałasu
+Source {}	Źródło {}
 Source {}, first target {}, second target {}	Źródło {}, pierwszy cel {}, drugi cel {}
 Source {}, targets {}, {} and {}	Źródło {}, cele {}, {} i {}
 Spare	Rezerwa
@@ -1621,6 +1624,7 @@ The project file {} is missing	Brak pliku projektu {}
 The project has no panel layout	Projekt nie ma zabudowy szafy
 The project was written by a newer version (file layout {})	Projekt został zapisany przez nowszą wersję (układ plików {})
 The property needs a name	Właściwość wymaga nazwy
+The protective measure is SELV, PELV, electrical separation or none, not {}	Środek ochrony to SELV, PELV, separacja elektryczna lub brak, nie {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Przepompownia zabudowana w dwóch szeregowanych szafach stojących: system szyn zbiorczych, szyny i korytka, urządzenia na drzwiach i uchwyty, wentylator z filtrem, oświetlenie, szyna PE, dławnice kablowe, przepust kablowy, obliczenia klimatyzacji, zapełnienie korytek i trasowanie 3D.
 The revision is already released	Rewizja jest już wydana
 The revision is not approved	Rewizja nie jest zatwierdzona
@@ -1762,7 +1766,6 @@ Vibration resistance	Odporność na wibracje
 View projects	Wyświetlanie projektów
 Violations	Naruszenia
 Voltage (V)	Napięcie (V)
-Voltage drop (%)	Spadek napięcia (%)
 Voltage drop (V)	Spadek napięcia (V)
 Voltage protection level	Napięciowy poziom ochrony
 Voltage range	Zakres napięcia

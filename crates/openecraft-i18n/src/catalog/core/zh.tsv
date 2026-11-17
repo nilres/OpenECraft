@@ -703,6 +703,7 @@ Input voltage	输入电压
 Inputs from	输入来自
 Inrush current	浪涌电流
 Inside (°C)	内部 (°C)
+Inspection and test report: SELV, PELV and separation	检验和测试报告：SELV、PELV 和隔离
 Inspection and test report: data	检验和测试报告：数据
 Inspection and test report: summary	检验和测试报告：摘要
 Installation altitude	安装海拔
@@ -1350,6 +1351,7 @@ Rule {}: no macro {}	规则 {}：没有宏 {}
 Rule {}: {}	规则 {}：{}
 Rule {}: {} has no variant {}	规则 {}：{} 没有变体 {}
 Rule {}: {} is no page macro	规则 {}：{} 不是页宏
+SELV, PELV, Electrical separation or none	SELV、PELV、电气隔离或无
 SVG image (one page)	SVG 图像（一页）
 Saddle jumper	鞍形跳线
 Safe torque off (STO)	安全转矩关断 (STO)
@@ -1462,6 +1464,7 @@ Solenoid valve coil YA (GOST)	电磁阀线圈 YA (GOST)
 Solenoid valve coil YV (GB)	电磁阀线圈 YV (GB)
 Sort code	排序代码
 Sound level	声级
+Source {}	电源 {}
 Source {}, first target {}, second target {}	源{}，第一目标{}，第二目标{}
 Source {}, targets {}, {} and {}	源{}，目标{}、{}和{}
 Spare	备用
@@ -1600,6 +1603,7 @@ The plot boundary encloses no area	场地边界未围成面积
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	场地边界不是多边形：它自相交或少于三个角点
 The project has no panel layout	项目没有安装板布局
 The property needs a name	属性需要名称
+The protective measure is SELV, PELV, electrical separation or none, not {}	保护措施应为 SELV、PELV、电气隔离或无，而不是 {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	安装在两台并柜落地柜中的泵站：母线系统、导轨和线槽、柜门设备和把手、过滤风扇、照明灯、PE 排、电缆密封接头、电缆通道、柜内温控计算、线槽填充率和三维布线。
 The revision is already released	该修订已发布
 The revision is not approved	该修订未获批准
@@ -1741,7 +1745,6 @@ Vibration resistance	抗振性
 View projects	查看项目
 Violations	违规
 Voltage (V)	电压 (V)
-Voltage drop (%)	电压降 (%)
 Voltage drop (V)	电压降 (V)
 Voltage protection level	电压保护水平
 Voltage range	电压范围

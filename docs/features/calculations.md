@@ -75,12 +75,14 @@ circuit breaker, not the breaker).
 ## Inspection and test report
 
 The **inspection and test report** (initial verification, IEC 60364-6 / DIN VDE
-0100-600) has three parts: the data of the report with the visual inspection, the
-circuits with their results, and the verdict with the signature. It is shown in the
-reports *Inspection and test report* (the circuits) and *Inspection and test report:
-summary*, edited in *Project data › Edit in table* (*Inspection and test report*, one
-row per circuit, and *Inspection and test report: data*, one row per value), with the
-command `inspection_report` and on the web page of the project server.
+0100-600) has four parts: the data of the report with the visual inspection, the
+sources of SELV, PELV and separated circuits, the circuits with their results, and the
+verdict with the signature. It is shown in the reports *Inspection and test report*
+(the circuits), *Inspection and test report: SELV, PELV and separation* and
+*Inspection and test report: summary*, edited in *Project data › Edit in table*
+(*Inspection and test report*, one row per circuit, and *Inspection and test report:
+data*, one row per value of the report and of the sources), with the command
+`inspection_report` and on the web page of the project server.
 
 **The circuits** are the protective devices fed from the mains, in schematic order,
 filled in from the schematic:
@@ -95,7 +97,8 @@ filled in from the schematic:
   marks a selective one) and rated residual current;
 - the highest loop impedance that passes: two thirds of U0 / Ia (Ia: the current that
   disconnects within the time of table 41.1; IEC 60364-6, annex C; also in TT systems,
-  411.5.4), or where a residual current device protects the circuit U0 / IΔn (TN, IT)
+  411.5.4; IT: the second fault, U / 2 Ia or with a distributed neutral U0 / 2 Ia,
+  411.6.4), or where a residual current device protects the circuit U0 / IΔn (TN, IT)
   and 50 V / IΔn (TT: RA × IΔn ≤ UL, 411.5.3; Zs includes RA).
 
 What the project does not give is shown as *missing*, never assumed: no characteristic
@@ -110,45 +113,60 @@ limits:
 | Insulation test voltage (V) | at least 500 V up to 500 V nominal, 1000 V above (table 6.1) |
 | Insulation resistance (MΩ, the lowest measured) | at least 1 MΩ |
 | Loop impedance Zs (Ω) | the highest loop impedance above |
+| Voltage drop (%) | the limit of the rule sets (5 % without one) |
 | RCD tripping current (mA) | ½ IΔn … IΔn |
 | RCD tripping time at IΔn (ms) | at most 300 ms; type S 130 … 500 ms |
 | RCD tripping time at 5 × IΔn (ms) | at most 40 ms; type S 50 … 150 ms |
 | Contact voltage UB at IΔn (V) | at most 50 V |
-| Function test (polarity, rotation, switching) | OK / Not OK |
+| Polarity | OK / Not OK |
+| Phase sequence (three-phase circuits) | OK / Not OK |
+| Function test (switchgear, interlocks, controls) | OK / Not OK |
 | Tested by, date, test instrument, remark | recorded |
 
-A circuit is *Not passed* when a value is out of its limit or the function test
-failed, *Passed* when the continuity, the insulation (with its test voltage), the
-loop impedance, the function test and (with an RCD) the tripping time at IΔn are
-there, *Incomplete* in between and *Not tested* without values.
+A circuit is *Not passed* when a value is out of its limit or a test failed, *Passed*
+when the continuity, the insulation (with its test voltage), the loop impedance, the
+polarity, the function test, (three-phase) the phase sequence and (with an RCD) the
+tripping time at IΔn are there, *Incomplete* in between and *Not tested* without
+values.
+
+**SELV, PELV and electrical separation** (6.4.3.4): every power supply and transformer
+of the schematic is a source, with its output voltage (the part's `Voltage` after the
+`/`, as in `230 V / 24 V DC`, or `Output voltage`; DC for power supplies, AC for
+transformers). The inspector chooses its protective measure – SELV, PELV, electrical
+separation or none of its own – and enters the insulation of its circuits against
+other circuits and earth with the test voltage: SELV and PELV at least 250 V and
+0.5 MΩ (table 6.1), electrical separation as the mains. A SELV or PELV source above
+50 V AC or 120 V DC does not pass.
 
 **The data of the report**: client, installation site, installer, reason for the test
 (new installation, extension, change, repair), inspector, test instruments
 (IEC 61557), the values measured at the origin (external loop impedance Ze,
-prospective fault current, earth electrode resistance RA, main equipotential bonding)
-and the date of the next inspection. In a TT system RA must not exceed 50 V / the
-largest rated residual current of the installation. **The visual inspection** (6.4.2)
+prospective fault current, earth electrode resistance RA, main equipotential
+bonding, the resistance of insulating floors and walls of non-conducting locations:
+at least 50 kΩ up to 500 V, 100 kΩ above, IEC 60364-4-41, C.1) and the date of the
+next inspection. In a TT system RA must not exceed 50 V / the largest rated residual
+current of the installation. In an IT system the report adds the function test of
+the insulation monitoring device and the current of a first fault Id, which must
+not exceed 50 V / RA (411.6.2). **The visual inspection** (6.4.2)
 answers 14 items with OK, Not OK or Not applicable: protection against electric shock,
 fire barriers, conductors, protective devices, isolating and switching devices,
 external influences, identification of N and PE, diagrams and warning notices,
 labelling, connections, protective and bonding conductors, accessibility, additional
 protection by RCDs of at most 30 mA, surge protection.
 
-**The verdict** of the report is *Not passed* when a circuit, an item of the visual
-inspection or RA fails, *Passed* when every circuit passed, every item is answered,
-the inspector named and (TT) RA measured. **Signing** records who signed and when;
+**The verdict** of the report is *Not passed* when a circuit, a source, an item of
+the visual inspection or a value of the report fails, *Passed* when every circuit and
+source passed, every item is answered, the inspector named, (TT) RA measured and (IT)
+the insulation monitoring device tested. **Signing** records who signed and when;
 any later change of the data or of a result takes the signature away. The report
-exports as an Excel workbook (on the web page with a summary sheet and a sheet of
-the circuits).
-
-Not covered: protection by SELV, PELV or electrical separation, floor and wall
-insulation, IT systems (insulation monitoring, first fault), measured voltage drop and
-a separate polarity or phase sequence test (part of the function test).
+exports as an Excel workbook (on the web page with a summary sheet, the circuits and
+the sources).
 
 **On site, with a tablet or a phone:** the web page of the project server
 ([project server](../project-server.md)) shows the report of every project under
 *Inspection and test report*: a card with the data of the report, the visual
-inspection, the verdict and *Sign the report*, then a card per circuit with the data
+inspection, the verdict and *Sign the report*, a card per source of SELV, PELV or
+separated circuits, then a card per circuit with the data
 of the schematic and the fields of the results (number keyboard, the limit next to
 each field, values out of the limits marked at once; the insulation test voltage, who
 tests, today and the last instrument are filled in for a new circuit). Who may save

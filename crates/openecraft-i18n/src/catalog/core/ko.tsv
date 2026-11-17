@@ -706,6 +706,7 @@ Input voltage	입력 전압
 Inputs from	입력 출처
 Inrush current	돌입 전류
 Inside (°C)	내부(°C)
+Inspection and test report: SELV, PELV and separation	검사 및 시험 보고서: SELV, PELV 및 분리
 Inspection and test report: data	검사 및 시험 보고서: 데이터
 Inspection and test report: summary	검사 및 시험 보고서: 요약
 Installation altitude	설치 고도
@@ -1353,6 +1354,7 @@ Rule {}: no macro {}	규칙 {}: 매크로 {} 없음
 Rule {}: {}	규칙 {}: {}
 Rule {}: {} has no variant {}	규칙 {0}: {1}에 변형 {2}이(가) 없습니다
 Rule {}: {} is no page macro	규칙 {}: {}은(는) 페이지 매크로가 아닙니다
+SELV, PELV, Electrical separation or none	SELV, PELV, 전기적 분리 또는 없음
 SVG image (one page)	SVG 이미지(한 페이지)
 Saddle jumper	새들 점퍼
 Safe torque off (STO)	안전 토크 차단(STO)
@@ -1465,6 +1467,7 @@ Solenoid valve coil YA (GOST)	솔레노이드 밸브 코일 YA(GOST)
 Solenoid valve coil YV (GB)	솔레노이드 밸브 코일 YV(GB)
 Sort code	정렬 코드
 Sound level	소음 레벨
+Source {}	전원 {}
 Source {}, first target {}, second target {}	원점 {}, 첫째 대상 {}, 둘째 대상 {}
 Source {}, targets {}, {} and {}	원점 {}, 대상 {}, {} 및 {}
 Spare	예비
@@ -1603,6 +1606,7 @@ The plot boundary encloses no area	부지 경계가 면적을 둘러싸지 않�
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	부지 경계가 다각형이 아닙니다: 자기 교차하거나 꼭짓점이 3개 미만입니다
 The project has no panel layout	프로젝트에 패널 레이아웃이 없습니다
 The property needs a name	속성에는 이름이 필요합니다
+The protective measure is SELV, PELV, electrical separation or none, not {}	보호 조치는 SELV, PELV, 전기적 분리 또는 없음이어야 합니다. {}은(는) 아닙니다
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	나란히 연결된 두 개의 자립형 외함에 설치된 펌프장: 부스바 시스템, 레일과 덕트, 도어 장치와 손잡이, 필터 팬, 조명, PE 바, 케이블 글랜드, 케이블 통로, 외함 기후 계산, 덕트 충전율 및 3D 라우팅.
 The revision is already released	개정이 이미 릴리스되었습니다
 The revision is not approved	개정이 승인되지 않았습니다
@@ -1744,7 +1748,6 @@ Vibration resistance	내진동성
 View projects	프로젝트 보기
 Violations	위반
 Voltage (V)	전압(V)
-Voltage drop (%)	전압 강하(%)
 Voltage drop (V)	전압 강하(V)
 Voltage protection level	전압 보호 레벨
 Voltage range	전압 범위

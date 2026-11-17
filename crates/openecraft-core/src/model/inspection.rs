@@ -14,6 +14,9 @@ pub struct Inspection {
     pub header: Header,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub results: Vec<TestResult>,
+    /// Protection by SELV, PELV or electrical separation, per source.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub sources: Vec<SourceResult>,
 }
 
 /// The data of the report as a whole: who, where, why, what was measured at the
@@ -51,6 +54,16 @@ pub struct Header {
     /// Continuity of the main equipotential bonding, Ω.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub bonding: String,
+    /// Resistance of insulating floors and walls (non-conducting locations), kΩ;
+    /// empty: there are none.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub floor_insulation: String,
+    /// IT system: function test of the insulation monitoring device (`ok`, `failed`, `n/a`).
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub imd: String,
+    /// IT system: current of a first fault to earth, A.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub first_fault: String,
     /// Date of the next inspection (`YYYY-MM-DD`).
     #[serde(skip_serializing_if = "String::is_empty")]
     pub next_inspection: String,
@@ -92,6 +105,9 @@ pub struct TestResult {
     /// Earth fault loop impedance Zs, Ω.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub loop_impedance: String,
+    /// Voltage drop measured at the end of the circuit, %.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub voltage_drop: String,
     /// Tripping current of the residual current device, mA.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub rcd_current: String,
@@ -104,7 +120,13 @@ pub struct TestResult {
     /// Contact voltage at the rated residual current, V.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub rcd_voltage: String,
-    /// Functional test (polarity, rotation, switching): `ok`, `failed` or empty.
+    /// Polarity: `ok`, `failed` or empty.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub polarity: String,
+    /// Phase sequence of multi-phase circuits: `ok`, `failed` or empty.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub phase_sequence: String,
+    /// Functional test (switchgear, interlocks, controls): `ok`, `failed` or empty.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub function: String,
     #[serde(skip_serializing_if = "String::is_empty")]
@@ -117,4 +139,27 @@ pub struct TestResult {
     /// Test instrument (make, type, serial number).
     #[serde(skip_serializing_if = "String::is_empty")]
     pub instrument: String,
+}
+
+/// What was found for a power supply or transformer feeding circuits protected by
+/// SELV, PELV or electrical separation.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct SourceResult {
+    /// Device tag of the power supply or transformer.
+    pub device: String,
+    /// Number of edits: merging keeps the record with more.
+    pub rev: u64,
+    /// `selv`, `pelv`, `separation` or `n/a` (no protective measure of its own).
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub measure: String,
+    /// Test voltage of the insulation measurement, V DC.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub insulation_voltage: String,
+    /// Insulation resistance of the separated circuits against other circuits and
+    /// earth, MΩ.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub insulation: String,
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub remark: String,
 }

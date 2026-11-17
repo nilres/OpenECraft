@@ -142,6 +142,7 @@ EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is 
 Earth electrode resistance RA (Ω)	Odpor uzemnění RA (Ω)
 Edit	Úpravy
 Editor	Editor
+Electrical separation	Elektrické oddělení
 Electro-fluid cross reference	Elektro-tekutinové křížové odkazy
 Email	E-mail
 Enclosure	Skříň
@@ -164,6 +165,7 @@ File	Soubor
 Files	Soubory
 Filter	Filtr
 Filter devices…	Filtrovat přístroje…
+First fault current Id (A)	Proud první poruchy Id (A)
 Fit	Přizpůsobit
 Fits	Hodí se k
 Fitting at the end	Šroubení na konci
@@ -209,6 +211,8 @@ Inspection and test report	Revizní zpráva
 Inspector	Revizní technik
 Installation site	Místo instalace
 Installer	Montážní firma
+Insulating floors and walls (kΩ)	Izolující podlahy a stěny (kΩ)
+Insulation monitoring device	Hlídač izolačního stavu
 Insulation resistance (MΩ)	Izolační odpor (MΩ)
 Insulation test voltage (V)	Zkušební napětí izolace (V)
 Integration	Integrace
@@ -309,6 +313,7 @@ No part {} in the project	Žádný díl {} v projektu
 No parts found	Nebyly nalezeny žádné artikly
 No plot frame named {}	Žádný rámeček výkresu s názvem {}
 No plug {}	Žádný konektor {}
+No protective measure of its own	Žádné vlastní ochranné opatření
 No report block named {}	Žádný blok výkazů s názvem {}
 No segment {}	Žádný segment {}
 No station {}	Žádná stanice {}
@@ -344,9 +349,11 @@ Order number	Objednací číslo
 Other	Ostatní
 Outer diameter	Vnější průměr
 Output	Výstup
+Output voltage (V)	Výstupní napětí (V)
 Overview	Přehled
 PCT loop	Smyčka MaR
 PCT loop overview	Přehled smyček MaR
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	Karta PLC
@@ -374,6 +381,7 @@ Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artikly (CSV, JSON, BMEcat, EPLAN
 Parts import failed: {}	Import artiklů se nezdařil: {}
 Passed	Vyhovuje
 Password	Heslo
+Phase sequence	Sled fází
 Phases	Fáze
 Phone	Telefon
 Picture	Obrázek
@@ -390,6 +398,7 @@ Plug	Konektor
 Plug diagram	Schéma konektoru
 Plugins	Pluginy
 Plugs	Konektory
+Polarity	Polarita
 Poles	Póly
 Ports	Porty
 Position	Poloha
@@ -425,6 +434,7 @@ Prospective fault current at the origin (kA)	Předpokládaný poruchový proud v
 Protection	Ochrana
 Protective conductor (Ω)	Ochranný vodič (Ω)
 Protective device	Ochranný přístroj
+Protective measure	Ochranné opatření
 Quantity	Množství
 Quantity (default 1)	Množství (výchozí 1)
 Quantity unit	Jednotka množství
@@ -478,6 +488,7 @@ Routing	Vedení
 Rows of modules (east-west: rows of pairs)	Řady modulů (východ-západ: řady dvojic)
 Rule	Pravidlo
 Rule set	Sada pravidel
+SELV	SELV
 Safety function	Bezpečnostní funkce
 Save	Uložit
 Saved	Uloženo
@@ -599,6 +610,7 @@ Value	Hodnota
 Version	Verze
 Viewer	Prohlížející
 Voltage	Napětí
+Voltage drop (%)	Úbytek napětí (%)
 Warning	Upozornění
 Warnings	Upozornění
 Weight	Hmotnost

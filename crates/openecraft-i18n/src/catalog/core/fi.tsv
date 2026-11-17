@@ -715,6 +715,7 @@ Input voltage	Tulojännite
 Inputs from	Tulot lähteestä
 Inrush current	Kytkentävirtasysäys
 Inside (°C)	Sisällä (°C)
+Inspection and test report: SELV, PELV and separation	Tarkastus- ja testauspöytäkirja: SELV, PELV ja erotus
 Inspection and test report: data	Tarkastus- ja testauspöytäkirja: tiedot
 Inspection and test report: summary	Tarkastus- ja testauspöytäkirja: yhteenveto
 Installation altitude	Asennuskorkeus
@@ -1366,6 +1367,7 @@ Rule {}: no macro {}	Sääntö {}: ei makroa {}
 Rule {}: {}	Sääntö {}: {}
 Rule {}: {} has no variant {}	Sääntö {}: kohteella {} ei ole muunnelmaa {}
 Rule {}: {} is no page macro	Sääntö {}: {} ei ole sivumakro
+SELV, PELV, Electrical separation or none	SELV, PELV, Sähköinen erotus tai ei mitään
 SVG image (one page)	SVG-kuva (yksi sivu)
 Saddle jumper	Satulasilta
 Safe torque off (STO)	Turvallinen vääntömomentin poisto (STO)
@@ -1478,6 +1480,7 @@ Solenoid valve coil YA (GOST)	Magneettiventtiilin kela YA (GOST)
 Solenoid valve coil YV (GB)	Magneettiventtiilin kela YV (GB)
 Sort code	Lajittelutunnus
 Sound level	Äänitaso
+Source {}	Lähde {}
 Source {}, first target {}, second target {}	Lähde {}, ensimmäinen kohde {}, toinen kohde {}
 Source {}, targets {}, {} and {}	Lähde {}, kohteet {}, {} ja {}
 Spare	Vara
@@ -1621,6 +1624,7 @@ The project file {} is missing	Projektitiedosto {} puuttuu
 The project has no panel layout	Projektissa ei ole kaappiasennusta
 The project was written by a newer version (file layout {})	Projektin on kirjoittanut uudempi versio (tiedostorakenne {})
 The property needs a name	Ominaisuus tarvitsee nimen
+The protective measure is SELV, PELV, electrical separation or none, not {}	Suojaus on SELV, PELV, sähköinen erotus tai ei mitään, ei {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Pumppaamo kahteen rinnakkain liitettyyn lattiakaappiin rakennettuna: kiskojärjestelmä, kiskot ja johtokanavat, ovilaitteet ja kahvat, suodatintuuletin, valaisin, PE-kisko, kaapeliläpiviennit, kaapeliläpivienti kaappien välillä, ilmastointilaskenta, kanavien täyttöaste ja 3D-reititys.
 The revision is already released	Revisio on jo vapautettu
 The revision is not approved	Revisiota ei ole hyväksytty
@@ -1762,7 +1766,6 @@ Vibration resistance	Värähtelynkesto
 View projects	Katsele projekteja
 Violations	Rikkomukset
 Voltage (V)	Jännite (V)
-Voltage drop (%)	Jännitteenalenema (%)
 Voltage drop (V)	Jännitteenalenema (V)
 Voltage protection level	Jännitesuojaustaso
 Voltage range	Jännitealue

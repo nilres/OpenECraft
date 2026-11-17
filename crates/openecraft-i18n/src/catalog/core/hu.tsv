@@ -715,6 +715,7 @@ Input voltage	Bemeneti feszültség
 Inputs from	Bemenetek innen
 Inrush current	Bekapcsolási áram
 Inside (°C)	Belül (°C)
+Inspection and test report: SELV, PELV and separation	Ellenőrzési és vizsgálati jegyzőkönyv: SELV, PELV és elválasztás
 Inspection and test report: data	Ellenőrzési és vizsgálati jegyzőkönyv: adatok
 Inspection and test report: summary	Ellenőrzési és vizsgálati jegyzőkönyv: összefoglaló
 Installation altitude	Telepítési magasság
@@ -1366,6 +1367,7 @@ Rule {}: no macro {}	{}. szabály: nincs {} makró
 Rule {}: {}	{}. szabály: {}
 Rule {}: {} has no variant {}	{}. szabály: a(z) {} makrónak nincs {} változata
 Rule {}: {} is no page macro	{}. szabály: a(z) {} nem oldalmakró
+SELV, PELV, Electrical separation or none	SELV, PELV, Villamos elválasztás vagy nincs
 SVG image (one page)	SVG-kép (egy oldal)
 Saddle jumper	Dugaszolható áthidaló
 Safe torque off (STO)	Biztonságos nyomatékkikapcsolás (STO)
@@ -1478,6 +1480,7 @@ Solenoid valve coil YA (GOST)	Mágnesszelep tekercse YA (GOST)
 Solenoid valve coil YV (GB)	Mágnesszelep tekercse YV (GB)
 Sort code	Rendezési kód
 Sound level	Zajszint
+Source {}	Forrás: {}
 Source {}, first target {}, second target {}	Forrás {}, első cél {}, második cél {}
 Source {}, targets {}, {} and {}	Forrás {}, célok {}, {} és {}
 Spare	Tartalék
@@ -1621,6 +1624,7 @@ The project file {} is missing	A(z) {} projektfájl hiányzik
 The project has no panel layout	A projektnek nincs szekrényelrendezése
 The project was written by a newer version (file layout {})	A projektet egy újabb verzió írta (fájlelrendezés {})
 The property needs a name	A tulajdonsághoz név szükséges
+The protective measure is SELV, PELV, electrical separation or none, not {}	A védelmi intézkedés SELV, PELV, villamos elválasztás vagy nincs, nem {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	A szivattyútelep két sorolt álló szekrényben: gyűjtősín-rendszer, sínek és kábelcsatornák, ajtókészülékek és fogantyúk, szűrős ventilátor, lámpa, PE-sín, kábeltömszelencék, kábelátvezetés, klimatizálási számítás, csatornatöltöttség és 3D-útvonaltervezés.
 The revision is already released	A revízió már ki van adva
 The revision is not approved	A revízió nincs jóváhagyva
@@ -1762,7 +1766,6 @@ Vibration resistance	Rezgésállóság
 View projects	Projektek megtekintése
 Violations	Megsértések
 Voltage (V)	Feszültség (V)
-Voltage drop (%)	Feszültségesés (%)
 Voltage drop (V)	Feszültségesés (V)
 Voltage protection level	Feszültségvédelmi szint
 Voltage range	Feszültségtartomány

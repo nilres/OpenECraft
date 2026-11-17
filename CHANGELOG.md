@@ -10,13 +10,17 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   protective device fed from the mains is a circuit, with its description, cables,
   cross-section, tripping characteristic and rated current, the residual current
   device protecting it (type, selective or not, rated residual current) and the
-  highest loop impedance that passes (TN and IT: U0 / Ia or U0 / IΔn; TT: 50 V / IΔn).
-  What the project does not give is marked *missing*, not assumed. The results
-  measured on site (protective conductor, insulation with its test voltage, loop
-  impedance, RCD tripping current, tripping times at IΔn and 5 × IΔn, contact voltage,
-  function test, tester, date, instrument, remark) are checked against the limits;
-  the report adds its data (client, site, installer, reason, inspector, instruments,
-  Ze, prospective fault current, earth electrode resistance, main bonding, next
+  highest loop impedance that passes (TN: U0 / Ia or U0 / IΔn; TT: 50 V / IΔn; IT:
+  the second fault). What the project does not give is marked *missing*, not
+  assumed. The results measured on site (protective conductor, insulation with its
+  test voltage, loop impedance, voltage drop, RCD tripping current, tripping times at
+  IΔn and 5 × IΔn, contact voltage, polarity, phase sequence, function test, tester,
+  date, instrument, remark) are checked against the limits. The power supplies and
+  transformers are the sources of SELV, PELV and separated circuits, with their
+  insulation and the highest voltage of SELV and PELV. The report adds its data
+  (client, site, installer, reason, inspector, instruments, Ze, prospective fault
+  current, earth electrode resistance, main bonding, insulating floors and walls, in
+  IT systems the insulation monitoring device and the first fault current, next
   inspection), the visual inspection of 6.4.2, an overall verdict (*Passed*, *Not
   passed*, *Incomplete*, *Not tested*) and a signature that any later change takes
   away. Entered in *Edit in table*, with the command `inspection_report` and **on a

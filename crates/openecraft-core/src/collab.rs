@@ -33,7 +33,7 @@
 //! | PUT | `/api/v1/projects/{name}/properties` | [`PropertiesUpdate`] → [`ProjectProperties`] (changes only the project info; [`ProjectRight::EditProject`], refused while the project data is locked) |
 //! | POST | `/api/v1/projects/{name}/copy` | [`CopyRequest`] → [`Opened`] (a new project from the saved state, [`copy_of`]) |
 //! | GET | `/api/v1/projects/{name}/inspection?lang=de` | [`InspectionSheet`] (the inspection and test report as saved, without opening the project) |
-//! | PUT | `/api/v1/projects/{name}/inspection?lang=de` | [`InspectionUpdate`] → [`InspectionSheet`] (results of one circuit or the data of the report, without a lock; [`ProjectRight::Review`] or an editing right) |
+//! | PUT | `/api/v1/projects/{name}/inspection?lang=de` | [`InspectionUpdate`] → [`InspectionSheet`] (results of one circuit or source or the data of the report, without a lock; [`ProjectRight::Review`] or an editing right) |
 //! | GET | `/api/v1/projects/{name}/inspection.xlsx?lang=de` | the report as an Excel workbook |
 //! | POST | `/api/v1/login` | [`LoginRequest`] → [`LoginResponse`] |
 //! | GET | `/api/v1/session` | [`CurrentAccount`] (signed-in user sessions only) |
@@ -229,14 +229,18 @@ pub struct InspectionSheet {
 pub struct InspectionUpdate {
     /// Who enters them, where the caller is not signed in (as in [`OpenRequest`]).
     pub user: String,
-    /// Device tag of the protective device of the circuit; empty: the values are the
-    /// data of the report and the visual inspection (`inspection::set_header`).
+    /// Device tag of the protective device of the circuit; empty: the values are those
+    /// of `source` or (both empty) the data of the report and the visual inspection
+    /// (`inspection::set_header`).
     pub circuit: String,
-    /// `rev` of the results (of the header) as loaded (0: none yet): refused (`409`)
-    /// if they were changed since.
+    /// Device tag of a power supply or transformer (`inspection::set_source`).
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub source: String,
+    /// `rev` of the results (of the source, of the header) as loaded (0: none yet):
+    /// refused (`409`) if they were changed since.
     pub rev: u64,
-    /// Values by field (`inspection::Field::key`, `HeaderField::key`, `check.<item>`);
-    /// an empty value clears one.
+    /// Values by field (`inspection::Field::key`, `SourceField::key`, `HeaderField::key`,
+    /// `check.<item>`); an empty value clears one.
     pub values: std::collections::BTreeMap<String, String>,
 }
 

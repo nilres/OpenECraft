@@ -1,14 +1,15 @@
 "use strict";
 /// The inspection and test report of the open project (project.js), made for a tablet
 /// or a phone on site: a card with the data of the report, the visual inspection, the
-/// verdict and the signature, then a card per circuit with what the schematic gives
-/// (missing data marked as such) and the fields of the results. Each card is saved on
-/// its own without opening the project; values typed but not saved stay in the browser.
+/// verdict and the signature, a card per source of SELV, PELV or separated circuits and
+/// a card per circuit with what the schematic gives (missing data marked as such) and
+/// the fields of the results. Each card is saved on its own without opening the
+/// project; values typed but not saved stay in the browser.
 
 /// The answer of `/inspection` for the open project.
 let sheet = null;
 let circuitFilter = "";
-/// The card that is open: a circuit, `""` for the report card, `null` for none.
+/// The card that is open (see `sourceOf`), `null` for none.
 let openCard = null;
 /// Values typed but not saved by `project|card`: `{ field: value }`.
 let drafts = load("inspectionDrafts") || {};
@@ -18,10 +19,13 @@ const FIELDS = [
   { key: "insulation_voltage", title: "Insulation test voltage (V)", measure: true },
   { key: "insulation", title: "Insulation resistance (MΩ)", measure: true },
   { key: "loop_impedance", title: "Loop impedance Zs (Ω)", measure: true },
+  { key: "voltage_drop", title: "Voltage drop (%)", measure: true },
   { key: "rcd_current", title: "RCD trip current (mA)", measure: true, rcd: true },
   { key: "rcd_time", title: "RCD trip time (ms)", measure: true, rcd: true },
   { key: "rcd_time_5", title: "RCD trip time at 5 × IΔn (ms)", measure: true, rcd: true },
   { key: "rcd_voltage", title: "Contact voltage UB (V)", measure: true, rcd: true },
+  { key: "polarity", title: "Polarity", answer: true },
+  { key: "phase_sequence", title: "Phase sequence", answer: true, phases: true },
   { key: "function", title: "Function test", answer: true },
   { key: "tester", title: "Tested by" },
   { key: "date", title: "Date", date: true },
@@ -42,21 +46,37 @@ const ORIGIN = [
   { key: "ik", title: "Prospective fault current at the origin (kA)", measure: true },
   { key: "earth_electrode", title: "Earth electrode resistance RA (Ω)", measure: true },
   { key: "bonding", title: "Main equipotential bonding (Ω)", measure: true },
+  { key: "floor_insulation", title: "Insulating floors and walls (kΩ)", measure: true },
 ];
+const IT = [
+  { key: "imd", title: "Insulation monitoring device", check: true },
+  { key: "first_fault", title: "First fault current Id (A)", measure: true },
+];
+const SOURCE = [
+  { key: "measure", title: "Protective measure", measures: true },
+  { key: "insulation_voltage", title: "Insulation test voltage (V)", measure: true },
+  { key: "insulation", title: "Insulation resistance (MΩ)", measure: true },
+  { key: "remark", title: "Remark", wide: true, area: true },
+];
+const MEASURES = [["", "–"], ["selv", "SELV"], ["pelv", "PELV"], ["separation", "Electrical separation"], ["n/a", "No protective measure of its own"]];
 const REASONS = ["New installation", "Extension", "Change", "Repair"];
 const VERDICTS = { failed: "Not passed", incomplete: "Incomplete", not_tested: "Not tested", passed: "Passed" };
 
 /// Reviewers and editors enter results.
 function mayRecord() { return !!sheet && ["review", "edit_pages", "edit_project"].some(r => sheet.rights.includes(r)); }
+/// The key of a card is a circuit's device tag, `source:<tag>` or `""` for the report.
+function sourceOf(card) { return card.startsWith("source:") ? sheet.sources.find(s => s.device === card.slice(7)) : null; }
 function draftKey(card) { return sheet.name + "|" + card; }
 function keepDrafts() { save("inspectionDrafts", drafts); }
-/// The saved values of a card: the results of a circuit, or (`""`) the header with
-/// the answers of the visual inspection as `check.<item>`.
+/// The saved values of a card, with the answers of the visual inspection as `check.<item>`.
 function storedValues(card) {
-  if (card !== "") return sheet.circuits.find(c => c.circuit === card).result;
-  const h = Object.assign({}, sheet.header);
-  for (const [k, v] of Object.entries(h.checks || {})) h["check." + k] = v;
-  return h;
+  if (card === "") {
+    const h = Object.assign({}, sheet.header);
+    for (const [k, v] of Object.entries(h.checks || {})) h["check." + k] = v;
+    return h;
+  }
+  const s = sourceOf(card);
+  return s ? s.result : sheet.circuits.find(c => c.circuit === card).result;
 }
 function stored(card, key) { return storedValues(card)[key] || ""; }
 function storedRev(card) { return storedValues(card).rev || 0; }
@@ -70,9 +90,11 @@ function missing() { return '<span class="missing">' + esc(t("missing")) + "</sp
 function today() { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); }
 function verdictBadge(v) { return '<span class="badge ' + v + '">' + esc(t(VERDICTS[v])) + "</span>"; }
 
-/// The range of a field of a card, as the server checks it.
+/// The range of a field of a card, as the server checks it (a source: by the measure shown).
 function limitOf(card, key) {
-  if (card === "") return key === "earth_electrode" && sheet.earth_electrode_max != null ? { min: null, max: sheet.earth_electrode_max } : null;
+  if (card === "") return sheet.limits.find(l => l.key === key) || null;
+  const s = sourceOf(card);
+  if (s) return (s.limits[shownValue(card, "measure")] || []).find(l => l.key === key) || null;
   return sheet.circuits.find(c => c.circuit === card).limits.find(l => l.field === key) || null;
 }
 function limitText(l) {
@@ -81,7 +103,9 @@ function limitText(l) {
   return lo !== null && hi !== null ? num(lo) + " – " + num(hi) : lo !== null ? "≥ " + num(lo) : hi !== null ? "≤ " + num(hi) : "";
 }
 function bad(card, key, value) {
-  if (key === "function" || key.startsWith("check.")) return value === "failed";
+  const s = sourceOf(card);
+  if (s && key === "measure") return s.failed.includes("measure") && value === s.result.measure;
+  if (FIELDS.some(f => f.key === key && f.answer) || key === "imd" || key.startsWith("check.")) return value === "failed";
   const v = measured(value), l = limitOf(card, key);
   return v !== null && !!l && ((l.min != null && v < l.min) || (l.max != null && v > l.max));
 }
@@ -109,21 +133,22 @@ function drawInspection() {
     '<div class="filter"><input type="search" id="circuit-filter" placeholder="' + esc(t("Filter circuits…")) + '" aria-label="' + esc(t("Filter circuits…")) + '" value="' + esc(circuitFilter) + '">' +
     '<button id="excel" title="' + esc(t("Download the report as an Excel workbook")) + '">' + esc(t("Excel")) + '</button><span id="excel-msg"></span></div></div>';
   if (!mayRecord()) html += '<p class="notice">' + esc(t("You may read the report; entering results needs the right to save reviews.")) + "</p>";
-  html += datalist("instruments", instruments) + datalist("reasons", REASONS.map(t)) + '<div id="report-card"></div><div id="circuits"></div>';
+  html += datalist("instruments", instruments) + datalist("reasons", REASONS.map(t)) + '<div id="report-card"></div><div id="sources"></div><div id="circuits"></div>';
   box.innerHTML = html;
   document.getElementById("circuit-filter").oninput = e => { circuitFilter = e.target.value; drawCircuits(); };
   document.getElementById("excel").onclick = downloadExcel;
   drawReportCard();
+  drawSources();
   drawCircuits();
 }
 
-/// The value a field shows: typed, saved, otherwise for a new record who tests, today,
+/// The value a field shows: typed, saved, otherwise for a new circuit who tests, today,
 /// the instrument used last and the test voltage of the standard.
 function shownValue(card, key) {
   const draft = drafts[draftKey(card)] || {};
   if (key in draft) return draft[key];
   const v = stored(card, key);
-  if (v || !mayRecord() || card === "" || storedRev(card) > 0) return v;
+  if (v || !mayRecord() || card === "" || sourceOf(card) || storedRev(card) > 0) return v;
   if (key === "tester") return session ? session.user.name : sheet.header.inspector || "";
   if (key === "date") return today();
   if (key === "instrument") return load("inspectionInstrument") || "";
@@ -134,10 +159,12 @@ function shownValue(card, key) {
 /// An input of a card with its label, its range and its state.
 function input(card, fd) {
   const v = shownValue(card, fd.key);
+  const select = options => '<select data-field="' + esc(fd.key) + '">' + options.map(([k, l]) => '<option value="' + k + '"' + (k === v ? " selected" : "") + ">" + esc(l) + "</option>").join("") + "</select>";
   let html;
-  if (fd.answer || fd.check) {
-    const answers = [["", "–"], ["ok", t("OK")], ["failed", t("Not OK")]].concat(fd.check ? [["n/a", t("Not applicable")]] : []);
-    html = '<select data-field="' + esc(fd.key) + '">' + answers.map(([k, l]) => '<option value="' + k + '"' + (k === v ? " selected" : "") + ">" + esc(l) + "</option>").join("") + "</select>";
+  if (fd.measures) {
+    html = select(MEASURES.map(([k, l]) => [k, k ? t(l) : l]));
+  } else if (fd.answer || fd.check) {
+    html = select([["", "–"], ["ok", t("OK")], ["failed", t("Not OK")]].concat(fd.check ? [["n/a", t("Not applicable")]] : []));
   } else if (fd.area) {
     html = '<textarea rows="2" data-field="' + fd.key + '">' + esc(v) + "</textarea>";
   } else if (fd.date) {
@@ -147,36 +174,56 @@ function input(card, fd) {
     html = '<input data-field="' + fd.key + '"' + extra + ' value="' + esc(v) + '">';
   }
   const limit = fd.measure ? limitText(limitOf(card, fd.key)) : "";
-  const cls = [fd.wide ? "wide" : "", fd.check ? "check-item" : "", bad(card, fd.key, v) ? "bad" : ""].filter(Boolean).join(" ");
-  return '<label class="' + cls + '"><span>' + esc(t(fd.title)) + (limit ? ' <span class="limit">' + esc(limit) + "</span>" : "") + "</span>" + html + "</label>";
+  const cls = [fd.wide ? "wide" : "", fd.long ? "check-item" : "", bad(card, fd.key, v) ? "bad" : ""].filter(Boolean).join(" ");
+  return '<label class="' + cls + '"><span>' + esc(t(fd.title)) + ' <span class="limit">' + esc(limit) + "</span></span>" + html + "</label>";
 }
 
 function buttons(extra) {
   return mayRecord() ? '<div class="buttons"><button class="primary" data-save>' + esc(t("Save")) + "</button>" + extra + '<span class="msg"></span></div>' : "";
 }
 
+/// A card: its summary line, the facts of the schematic and the fields.
+function cardHtml(key, title, desc, badges, facts, fields, extra) {
+  const draft = drafts[draftKey(key)];
+  return '<details class="circuit' + (key === "" ? " report" : "") + '" data-card="' + esc(key) + '"' + (openCard === key ? " open" : "") + "><summary><strong>" + esc(title) + '</strong><span class="desc">' + desc + "</span>" +
+    (draft ? '<span class="badge incomplete">' + esc(t("Not saved")) + "</span>" : "") + badges + '</summary><div class="body"><dl>' +
+    facts.map(([k, v]) => "<dt>" + esc(t(k)) + "</dt><dd>" + v + "</dd>").join("") + '</dl><fieldset class="measure"' + (mayRecord() ? "" : " disabled") + ">" + fields + "</fieldset>" + buttons(extra) + "</div></details>";
+}
+
 function drawReportCard() {
   const box = document.getElementById("report-card");
   if (!box) return;
   const h = sheet.header;
-  const draft = drafts[draftKey("")];
-  const fails = (sheet.failed || []).map(f => f === "earth_electrode" ? t("Earth electrode resistance RA (Ω)") : t((sheet.checks.find(c => "check." + c.key === f) || {}).title || f));
-  const signature = h.signed_by ? tf("Signed by {} on {}", h.signed_by, h.signed_on) : esc(t("Not signed"));
+  const titles = Object.fromEntries(HEADER.concat(ORIGIN, IT).map(f => [f.key, f.title]));
+  const fails = (sheet.failed || []).map(f => t(titles[f] || (sheet.checks.find(c => "check." + c.key === f) || {}).title || f));
   const facts = [
     ["Supply system", esc("U0 " + Math.round(sheet.u0) + " V · " + sheet.earthing)],
     ["Insulation test voltage (V)", esc(num(sheet.insulation_voltage))],
-    ["Signature", signature],
+    ["Signature", h.signed_by ? tf("Signed by {} on {}", h.signed_by, h.signed_on) : esc(t("Not signed"))],
   ];
   if (fails.length) facts.push(["Not passed", '<span class="error">' + fails.map(esc).join(", ") + "</span>"]);
-  const checks = sheet.checks.map(c => input("", { key: "check." + c.key, title: c.title, check: true })).join("");
+  const section = title => '<h4 class="wide">' + esc(t(title)) + "</h4>";
+  const fields = HEADER.map(fd => input("", fd)).join("") + section("Measured at the origin") + ORIGIN.map(fd => input("", fd)).join("") +
+    (sheet.it ? section("IT system") + IT.map(fd => input("", fd)).join("") : "") +
+    section("Visual inspection") + sheet.checks.map(c => input("", { key: "check." + c.key, title: c.title, check: true, long: true })).join("");
   const sign = mayRecord() ? '<button data-sign title="' + esc(t("Changing the data or the results afterwards takes the signature away.")) + '">' + esc(t("Sign the report")) + "</button>" : "";
-  box.innerHTML = '<details class="circuit report" data-circuit=""' + (openCard === "" ? " open" : "") + "><summary><strong>" + esc(t("Report data and visual inspection")) + '</strong><span class="desc">' +
-    esc([h.client, h.site].filter(Boolean).join(" · ")) + "</span>" + (draft ? '<span class="badge incomplete">' + esc(t("Not saved")) + "</span>" : "") +
-    (h.signed_by ? '<span class="badge passed">' + esc(t("Signed")) + "</span>" : "") + verdictBadge(sheet.verdict) + '</summary><div class="body"><dl>' +
-    facts.map(([k, v]) => "<dt>" + esc(t(k)) + "</dt><dd>" + v + "</dd>").join("") + '</dl><fieldset class="measure"' + (mayRecord() ? "" : " disabled") + ">" +
-    HEADER.map(fd => input("", fd)).join("") + '<h4 class="wide">' + esc(t("Measured at the origin")) + "</h4>" + ORIGIN.map(fd => input("", fd)).join("") +
-    '<h4 class="wide">' + esc(t("Visual inspection")) + "</h4>" + checks + "</fieldset>" + buttons(sign) + "</div></details>";
+  const badges = (h.signed_by ? '<span class="badge passed">' + esc(t("Signed")) + "</span>" : "") + verdictBadge(sheet.verdict);
+  box.innerHTML = cardHtml("", t("Report data and visual inspection"), esc([h.client, h.site].filter(Boolean).join(" · ")), badges, facts, fields, sign);
   wire(box.querySelector("details"));
+}
+
+function drawSources() {
+  const box = document.getElementById("sources");
+  if (!box) return;
+  if (!sheet.sources.length) { box.innerHTML = ""; return; }
+  box.innerHTML = '<h3 class="group-title">' + esc(t("SELV, PELV and separation")) + "</h3>" + sheet.sources.map(s => {
+    const voltage = s.voltage != null ? esc(num(s.voltage) + " V " + (s.transformer ? "AC" : "DC")) : missing();
+    const facts = [["Kind", esc(s.transformer ? t("Transformer") : t("Power supply unit"))], ["Output voltage (V)", voltage]];
+    if (s.failed.includes("measure")) facts.push(["Not passed", '<span class="error">' + tf("Above {} V: no SELV or PELV", s.transformer ? 50 : 120) + "</span>"]);
+    const key = "source:" + s.device;
+    return cardHtml(key, s.device, s.description ? esc(s.description) : missing(), verdictBadge(s.verdict), facts, SOURCE.map(fd => input(key, fd)).join(""), "");
+  }).join("");
+  box.querySelectorAll("details.circuit").forEach(wire);
 }
 
 function drawCircuits() {
@@ -184,12 +231,12 @@ function drawCircuits() {
   if (!box) return;
   const f = circuitFilter.trim().toLowerCase();
   const list = sheet.circuits.filter(c => !f || c.circuit.toLowerCase().includes(f) || (c.description || "").toLowerCase().includes(f));
-  box.innerHTML = list.map(card).join("") || '<p class="muted">' + esc(sheet.circuits.length ? t("No circuits found") : t("The project has no circuits fed from the mains")) + "</p>";
+  box.innerHTML = (sheet.sources.length ? '<h3 class="group-title">' + esc(t("Circuits")) + "</h3>" : "") +
+    (list.map(circuitCard).join("") || '<p class="muted">' + esc(sheet.circuits.length ? t("No circuits found") : t("The project has no circuits fed from the mains")) + "</p>");
   box.querySelectorAll("details.circuit").forEach(wire);
 }
 
-function card(c) {
-  const draft = drafts[draftKey(c.circuit)];
+function circuitCard(c) {
   const device = (c.characteristic ? esc(c.characteristic) : missing()) + " " + (c.rated != null ? esc(num(c.rated)) + " A" : missing());
   const rcd = c.rcd ? esc(c.rcd.device) + " · " + (c.rcd.kind ? esc(c.rcd.kind) : missing()) + " · " + (c.rcd.rated != null ? esc(num(c.rcd.rated)) + " mA" : missing()) : "–";
   const facts = [
@@ -200,15 +247,12 @@ function card(c) {
     ["RCD", rcd],
     ["Zs max (Ω)", c.zs_max != null ? esc(num(c.zs_max)) : missing()],
   ];
-  const inputs = FIELDS.filter(fd => !fd.rcd || c.rcd).map(fd => input(c.circuit, fd)).join("");
-  return '<details class="circuit" data-circuit="' + esc(c.circuit) + '"' + (openCard === c.circuit ? " open" : "") + "><summary><strong>" + esc(c.circuit) + '</strong><span class="desc">' +
-    (c.description ? esc(c.description) : missing()) + "</span>" + (draft ? '<span class="badge incomplete">' + esc(t("Not saved")) + "</span>" : "") + verdictBadge(c.verdict) +
-    '</summary><div class="body"><dl>' + facts.map(([k, v]) => "<dt>" + esc(t(k)) + "</dt><dd>" + v + "</dd>").join("") +
-    '</dl><fieldset class="measure"' + (mayRecord() ? "" : " disabled") + ">" + inputs + "</fieldset>" + buttons("<button data-next>" + esc(t("Next circuit")) + "</button>") + "</div></details>";
+  const fields = FIELDS.filter(fd => (!fd.rcd || c.rcd) && (!fd.phases || c.phases.length >= 3)).map(fd => input(c.circuit, fd)).join("");
+  return cardHtml(c.circuit, c.circuit, c.description ? esc(c.description) : missing(), verdictBadge(c.verdict), facts, fields, "<button data-next>" + esc(t("Next circuit")) + "</button>");
 }
 
 function wire(d) {
-  const key = d.dataset.circuit;
+  const key = d.dataset.card;
   d.ontoggle = () => {
     if (d.open) {
       openCard = key;
@@ -222,7 +266,13 @@ function wire(d) {
       if (field.value === stored(key, field.dataset.field)) delete draft[field.dataset.field]; else draft[field.dataset.field] = field.value;
       if (Object.keys(draft).length) drafts[k] = draft; else delete drafts[k];
       keepDrafts();
-      field.closest("label").classList.toggle("bad", bad(key, field.dataset.field, field.value));
+      // The measure of a source sets the ranges of its other fields.
+      const fields = field.dataset.field === "measure" ? [...d.querySelectorAll("[data-field]")] : [field];
+      for (const f of fields) {
+        const label = f.closest("label");
+        label.classList.toggle("bad", bad(key, f.dataset.field, f.value));
+        if (field.dataset.field === "measure") label.querySelector(".limit").textContent = limitText(limitOf(key, f.dataset.field));
+      }
     };
   });
   const saveButton = d.querySelector("[data-save]");
@@ -251,8 +301,15 @@ async function saveCard(key, d, extra) {
   if (!Object.keys(values).length) { msg(t("Nothing to save")); return; }
   d.querySelectorAll("button").forEach(b => b.disabled = true);
   const user = values.tester || values.inspector || stored(key, key === "" ? "inspector" : "tester") || (session ? session.user.name : "") || sheet.header.inspector || "";
+  if (!user && !session) {
+    d.querySelectorAll("button").forEach(b => b.disabled = false);
+    msg(t("Sign in or name the inspector in the report data first."));
+    return;
+  }
+  const source = sourceOf(key);
+  const target = source ? { circuit: "", source: source.device } : { circuit: key };
   try {
-    sheet = await api(projectPath(sheet.name) + "/inspection?lang=" + encodeURIComponent(T.lang), { method: "PUT", json: { user, circuit: key, rev: storedRev(key), values } });
+    sheet = await api(projectPath(sheet.name) + "/inspection?lang=" + encodeURIComponent(T.lang), { method: "PUT", json: Object.assign({ user, rev: storedRev(key), values }, target) });
   } catch (e) {
     d.querySelectorAll("button").forEach(b => b.disabled = false);
     if (e.status !== 409) { msg(e.message); return; }

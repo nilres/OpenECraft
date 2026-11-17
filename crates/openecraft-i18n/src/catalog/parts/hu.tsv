@@ -11,6 +11,7 @@ A project names who changed it last.	A projekt megnevezi, hogy ki módosította 
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	A szerepkör jogok halmaza. A hozzárendelések egy felhasználónak vagy csoportnak szerepkört adnak projektekre (* és ? helyettesítő karakterként, * mindegyikre); a megtagadó hozzárendelés elveszi a szerepkör jogait, bármit adnak is más hozzárendelések.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	A szerepkör jogok halmaza. A hozzárendelések egy felhasználónak vagy csoportnak szerepkört adnak egy gyártó alkatrészeire (* és ? helyettesítő karakterként, * mindegyikre); a megtagadó hozzárendelés elveszi a szerepkör jogait, bármit adnak is más hozzárendelések.
 A user name must not be empty or contain blanks	A felhasználónév nem lehet üres, és nem tartalmazhat szóközt
+Above {} V: no SELV or PELV	{} V felett: sem SELV, sem PELV
 Accept any certificate (test installations only)	Bármely tanúsítvány elfogadása (csak teszttelepítések)
 Access rights	Hozzáférési jogok
 Access settings saved	Hozzáférési beállítások mentve
@@ -225,6 +226,7 @@ Housing accessories, external extension	Háztartozékok, külső bővítés
 Housing accessories, internal extension	Háztartozékok, belső bővítés
 Hydraulic motors	Hidromotorok
 Hydraulic tanks	Hidraulikatartályok
+IT system	IT-rendszer
 Images (PNG, JPEG, GIF, WebP, SVG)	Képek (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Importálás / exportálás
 Import parts	Alkatrészek importálása
@@ -371,6 +373,7 @@ Plug pin	Csatlakozódugó-tű
 Position switch	Helyzetkapcsoló
 Power cable	Erősáramú kábel
 Power contactor	Teljesítmény-mágneskapcsoló
+Power supply unit	Tápegység
 Power switchgear	Erősáramú kapcsolókészülékek
 Power units and plants	Aggregátok és berendezések
 Prefabricated	Előre szerelt
@@ -427,6 +430,7 @@ Roof hook	Tetőkampó
 Routing accessories	Fektetési tartozékok
 Routing path (topology)	Nyomvonalszakasz (topológia)
 Routing point (topology)	Fektetési pont (topológia)
+SELV, PELV and separation	SELV, PELV és elválasztás
 Safety accumulators	Biztonsági tárolók
 Safety devices	Védőberendezések
 Safety fuse	Olvadóbiztosító
@@ -465,6 +469,7 @@ Sifter	Osztályozó
 Sight glass	Kémlelőüveg
 Sign in as an administrator to manage the server	Jelentkezzen be rendszergazdaként a szerver kezeléséhez
 Sign in or connect with the access token to change parts	Jelentkezzen be, vagy csatlakozzon a hozzáférési tokennel az alkatrészek módosításához
+Sign in or name the inspector in the report data first.	Jelentkezzen be, vagy először adja meg az ellenőrt a jegyzőkönyvadatokban.
 Sign in to keep favorites	Jelentkezzen be a kedvencek megőrzéséhez
 Sign in to see the projects	Jelentkezzen be a projektek megtekintéséhez
 Sign in with a user account	Bejelentkezés felhasználói fiókkal

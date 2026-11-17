@@ -11,6 +11,7 @@ A project names who changed it last.	プロジェクトには、最後に変更�
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	ロールは権限のセットです。付与により、ユーザーまたはグループにプロジェクトに対するロールが与えられます (* と ? はワイルドカード、* はすべて)。拒否の付与は、ほかの付与に関係なくロールの権限を取り消します。
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	ロールは権限のセットです。付与により、ユーザーまたはグループにメーカーの部品に対するロールが与えられます (* と ? はワイルドカード、* はすべて)。拒否の付与は、ほかの付与に関係なくロールの権限を取り消します。
 A user name must not be empty or contain blanks	ユーザー名は空にできず、空白を含めることもできません
+Above {} V: no SELV or PELV	{} V を超える：SELV でも PELV でもない
 Accept any certificate (test installations only)	すべての証明書を受け入れる（テスト環境のみ）
 Access rights	アクセス権
 Access settings saved	アクセス設定を保存しました
@@ -224,6 +225,7 @@ Housing accessories, external extension	筐体付属品 (外部増設)
 Housing accessories, internal extension	筐体付属品 (内部増設)
 Hydraulic motors	油圧モーター
 Hydraulic tanks	油圧タンク
+IT system	IT 系統
 Images (PNG, JPEG, GIF, WebP, SVG)	画像（PNG、JPEG、GIF、WebP、SVG）
 Import / export	インポート / エクスポート
 Import parts	部品のインポート
@@ -370,6 +372,7 @@ Plug pin	プラグピン
 Position switch	位置スイッチ
 Power cable	電力ケーブル
 Power contactor	電力用電磁接触器
+Power supply unit	電源装置
 Power switchgear	電力用開閉装置
 Power units and plants	動力ユニットと設備
 Prefabricated	既製品
@@ -426,6 +429,7 @@ Roof hook	屋根フック
 Routing accessories	配線付属品
 Routing path (topology)	配線経路 (トポロジー)
 Routing point (topology)	配線ポイント (トポロジー)
+SELV, PELV and separation	SELV、PELV、分離
 Safety accumulators	安全アキュムレーター
 Safety devices	保護装置
 Safety fuse	ヒューズ
@@ -464,6 +468,7 @@ Sifter	分級機
 Sight glass	サイトグラス
 Sign in as an administrator to manage the server	サーバーを管理するには管理者としてサインインしてください
 Sign in or connect with the access token to change parts	部品を変更するには、サインインするかアクセストークンで接続してください
+Sign in or name the inspector in the report data first.	サインインするか、先に報告書データに点検者を入力してください。
 Sign in to keep favorites	お気に入りを保存するにはサインインしてください
 Sign in to see the projects	プロジェクトを表示するにはサインインしてください
 Sign in with a user account	ユーザーアカウントでサインイン

@@ -208,7 +208,12 @@ fn inspection_data_is_entered_in_the_table() {
     let mut prj = demo_project();
     let (nl, open) = nets(&prj);
     let rows = rows(&prj, &nl, &open, TableKind::InspectionData);
-    assert_eq!(rows.len(), crate::inspection::HeaderField::ALL.len() + crate::inspection::CHECKS.len());
+    // The demo is a TN system: no IT tests; its power supply is a source of 4 values.
+    assert_eq!(rows.len(), crate::inspection::HeaderField::ALL.len() - 2 + crate::inspection::CHECKS.len() + 4 * crate::inspection::sources(&prj).len());
+    let source = crate::inspection::sources(&prj)[0].device.clone();
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, &format!("source.{source}.measure"), 1, "PELV").unwrap());
+    assert_eq!(prj.inspection.source(&source).unwrap().measure, "pelv");
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "source.-X9.measure", 1, "PELV").is_err());
     assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "client", 1, "ACME").unwrap());
     assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "check.fire", 1, "OK").unwrap());
     assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "check.fire", 2, "x").is_err(), "the note is not editable");

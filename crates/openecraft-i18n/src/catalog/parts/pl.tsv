@@ -11,6 +11,7 @@ A project names who changed it last.	Projekt wskazuje, kto zmienił go jako osta
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rola to zestaw praw. Przydziały nadają użytkownikowi lub grupie rolę dla projektów (* i ? jako symbole wieloznaczne, * dla wszystkich); przydział odmowy odbiera prawa roli niezależnie od innych przydziałów.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rola to zestaw praw. Przydziały nadają użytkownikowi lub grupie rolę dla artykułów producenta (* i ? jako symbole wieloznaczne, * dla wszystkich); przydział odmowy odbiera prawa roli niezależnie od innych przydziałów.
 A user name must not be empty or contain blanks	Nazwa użytkownika nie może być pusta ani zawierać spacji
+Above {} V: no SELV or PELV	Powyżej {} V: ani SELV, ani PELV
 Accept any certificate (test installations only)	Akceptuj każdy certyfikat (tylko instalacje testowe)
 Access rights	Prawa dostępu
 Access settings saved	Zapisano ustawienia dostępu
@@ -225,6 +226,7 @@ Housing accessories, external extension	Akcesoria obudowy, zabudowa zewnętrzna
 Housing accessories, internal extension	Akcesoria obudowy, zabudowa wewnętrzna
 Hydraulic motors	Silniki hydrauliczne
 Hydraulic tanks	Zbiorniki hydrauliczne
+IT system	Układ IT
 Images (PNG, JPEG, GIF, WebP, SVG)	Obrazy (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / eksport
 Import parts	Importuj artykuły
@@ -371,6 +373,7 @@ Plug pin	Pin wtyku
 Position switch	Łącznik pozycyjny
 Power cable	Kabel energetyczny
 Power contactor	Stycznik mocy
+Power supply unit	Zasilacz
 Power switchgear	Aparatura łączeniowa mocy
 Power units and plants	Agregaty i instalacje
 Prefabricated	Prefabrykowany
@@ -427,6 +430,7 @@ Roof hook	Hak dachowy
 Routing accessories	Akcesoria do układania
 Routing path (topology)	Odcinek trasy (topologia)
 Routing point (topology)	Punkt trasy (topologia)
+SELV, PELV and separation	SELV, PELV i separacja
 Safety accumulators	Akumulatory bezpieczeństwa
 Safety devices	Urządzenia zabezpieczające
 Safety fuse	Bezpiecznik topikowy
@@ -465,6 +469,7 @@ Sifter	Odsiewacz
 Sight glass	Wziernik
 Sign in as an administrator to manage the server	Zaloguj się jako administrator, aby zarządzać serwerem
 Sign in or connect with the access token to change parts	Zaloguj się lub połącz z tokenem dostępu, aby zmieniać części
+Sign in or name the inspector in the report data first.	Zaloguj się lub najpierw wpisz sprawdzającego w danych protokołu.
 Sign in to keep favorites	Zaloguj się, aby zapisywać ulubione
 Sign in to see the projects	Zaloguj się, aby zobaczyć projekty
 Sign in with a user account	Zaloguj się kontem użytkownika

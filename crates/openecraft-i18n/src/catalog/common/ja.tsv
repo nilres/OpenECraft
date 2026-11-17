@@ -140,6 +140,7 @@ EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is 
 Earth electrode resistance RA (Ω)	接地極抵抗 RA (Ω)
 Edit	編集
 Editor	編集者
+Electrical separation	電気的分離
 Electro-fluid cross reference	電気-流体相互参照
 Email	メール
 Enclosure	エンクロージャー
@@ -162,6 +163,7 @@ File	ファイル
 Files	ファイル
 Filter	フィルター
 Filter devices…	デバイスをフィルター…
+First fault current Id (A)	一線地絡電流 Id (A)
 Fit	全体表示
 Fits	適合先
 Fitting at the end	終端の継手
@@ -207,6 +209,8 @@ Inspection and test report	点検・試験報告書
 Inspector	点検者
 Installation site	設置場所
 Installer	施工者
+Insulating floors and walls (kΩ)	絶縁性の床と壁 (kΩ)
+Insulation monitoring device	絶縁監視装置
 Insulation resistance (MΩ)	絶縁抵抗 (MΩ)
 Insulation test voltage (V)	絶縁試験電圧 (V)
 Integration	統合
@@ -307,6 +311,7 @@ No part {} in the project	プロジェクトに部品 {} がありません
 No parts found	部品が見つかりません
 No plot frame named {}	{} という名前の図枠はありません
 No plug {}	プラグ {} はありません
+No protective measure of its own	独自の保護方式なし
 No report block named {}	{} という名前のレポートブロックはありません
 No segment {}	セグメント {} がありません
 No station {}	ステーション {} はありません
@@ -342,9 +347,11 @@ Order number	注文番号
 Other	その他
 Outer diameter	外径
 Output	出力
+Output voltage (V)	出力電圧 (V)
 Overview	概要
 PCT loop	計装ループ
 PCT loop overview	計装ループ概要
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC カード
@@ -372,6 +379,7 @@ Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	部品 (CSV、JSON、BMEcat、EPL
 Parts import failed: {}	部品のインポートに失敗しました: {}
 Passed	合格
 Password	パスワード
+Phase sequence	相順
 Phases	相
 Phone	電話
 Picture	画像
@@ -388,6 +396,7 @@ Plug	プラグ
 Plug diagram	プラグ図
 Plugins	プラグイン
 Plugs	プラグ
+Polarity	極性
 Poles	極数
 Ports	ポート
 Position	位置
@@ -423,6 +432,7 @@ Prospective fault current at the origin (kA)	引込口の推定故障電流 (kA)
 Protection	保護
 Protective conductor (Ω)	保護導体 (Ω)
 Protective device	保護機器
+Protective measure	保護方式
 Quantity	量
 Quantity (default 1)	数量 (既定値 1)
 Quantity unit	数量単位
@@ -476,6 +486,7 @@ Routing	配線ルート
 Rows of modules (east-west: rows of pairs)	モジュールの列（東西向き：ペアの列）
 Rule	ルール
 Rule set	ルールセット
+SELV	SELV
 Safety function	安全機能
 Save	保存
 Saved	保存済み
@@ -597,6 +608,7 @@ Value	値
 Version	バージョン
 Viewer	ビューアー
 Voltage	電圧
+Voltage drop (%)	電圧降下 (%)
 Warning	警告
 Warnings	警告
 Weight	重量

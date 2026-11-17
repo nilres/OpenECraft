@@ -142,6 +142,7 @@ EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is 
 Earth electrode resistance RA (Ω)	Сопротивление заземлителя RA (Ом)
 Edit	Правка
 Editor	Редактор
+Electrical separation	Электрическое разделение
 Electro-fluid cross reference	Перекрёстные ссылки электрика – гидропневматика
 Email	Эл. почта
 Enclosure	Корпус
@@ -164,6 +165,7 @@ File	Файл
 Files	Файлы
 Filter	Фильтр
 Filter devices…	Фильтр устройств…
+First fault current Id (A)	Ток первого замыкания Id (А)
 Fit	Вписать
 Fits	Подходит к
 Fitting at the end	Фитинг в конце
@@ -209,6 +211,8 @@ Inspection and test report	Протокол осмотра и испытаний
 Inspector	Проверяющий
 Installation site	Объект установки
 Installer	Монтажная организация
+Insulating floors and walls (kΩ)	Изолирующие полы и стены (кОм)
+Insulation monitoring device	Устройство контроля изоляции
 Insulation resistance (MΩ)	Сопротивление изоляции (МОм)
 Insulation test voltage (V)	Испытательное напряжение изоляции (В)
 Integration	Интеграция
@@ -309,6 +313,7 @@ No part {} in the project	Нет изделия {} в проекте
 No parts found	Изделия не найдены
 No plot frame named {}	Нет рамки листа с именем {}
 No plug {}	Нет штекера {}
+No protective measure of its own	Без собственной меры защиты
 No report block named {}	Нет блока отчёта с именем {}
 No segment {}	Нет сегмента {}
 No station {}	Нет станции {}
@@ -344,9 +349,11 @@ Order number	Номер для заказа
 Other	Прочее
 Outer diameter	Наружный диаметр
 Output	Выход
+Output voltage (V)	Выходное напряжение (В)
 Overview	Обзор
 PCT loop	Контур КИПиА
 PCT loop overview	Обзор контуров КИПиА
+PELV	ЗСНН
 PL	PL
 PLC	ПЛК
 PLC card	Плата ПЛК
@@ -374,6 +381,7 @@ Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Изделия (CSV, JSON, BMEcat
 Parts import failed: {}	Ошибка импорта изделий: {}
 Passed	Пройдено
 Password	Пароль
+Phase sequence	Чередование фаз
 Phases	Фазы
 Phone	Телефон
 Picture	Изображение
@@ -390,6 +398,7 @@ Plug	Штекер
 Plug diagram	Схема штекеров
 Plugins	Плагины
 Plugs	Штекеры
+Polarity	Полярность
 Poles	Полюсы
 Ports	Порты
 Position	Позиция
@@ -425,6 +434,7 @@ Prospective fault current at the origin (kA)	Ожидаемый ток КЗ на
 Protection	Защита
 Protective conductor (Ω)	Защитный проводник (Ом)
 Protective device	Защитное устройство
+Protective measure	Мера защиты
 Quantity	Количество
 Quantity (default 1)	Количество (по умолчанию 1)
 Quantity unit	Единица количества
@@ -478,6 +488,7 @@ Routing	Прокладка
 Rows of modules (east-west: rows of pairs)	Ряды модулей (восток-запад: ряды пар)
 Rule	Правило
 Rule set	Набор правил
+SELV	БСНН
 Safety function	Функция безопасности
 Save	Сохранить
 Saved	Сохранено
@@ -599,6 +610,7 @@ Value	Значение
 Version	Версия
 Viewer	Наблюдатель
 Voltage	Напряжение
+Voltage drop (%)	Падение напряжения (%)
 Warning	Предупреждение
 Warnings	Предупреждения
 Weight	Масса

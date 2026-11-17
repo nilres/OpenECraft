@@ -191,12 +191,12 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   `GET|PUT /projects/{name}/inspection?lang=de` (the inspection and test report as
   saved: the data of the report, the visual inspection, the circuits with the data of
   the schematic, their limits, results and verdicts, and the verdict of the report,
-  `InspectionSheet`; `PUT` takes `user`, `circuit` (empty: the data of the report and
-  the visual inspection as `check.<item>`), the `rev` of its record as loaded and the
+  `InspectionSheet`; `PUT` takes `user`, `circuit` or `source` (both empty: the data of
+  the report and the visual inspection as `check.<item>`), the `rev` of its record as loaded and the
   `values` by field, needs the right to save reviews or to edit, answers `409` if the
   record changed since `rev` and counts as a change of the project),
   `GET /projects/{name}/inspection.xlsx?lang=de` (the report as an Excel workbook: a
-  summary and the circuits),
+  summary, the circuits and the sources),
   `POST /login` (`user` and `password`; `name` is taken for `user`, as on the parts
   server), `POST /logout`, `GET /users`, `PUT|DELETE /users/{name}`, `GET|PUT /access`,
   `GET /directories`, `PUT|DELETE /directories/{id}`, `POST /directories/{id}/test`

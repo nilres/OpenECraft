@@ -142,6 +142,7 @@ EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is 
 Earth electrode resistance RA (Ω)	Topraklama elektrodu direnci RA (Ω)
 Edit	Düzen
 Editor	Düzenleyici
+Electrical separation	Elektriksel ayırma
 Electro-fluid cross reference	Elektro-akışkan çapraz referansı
 Email	E-posta
 Enclosure	Pano
@@ -164,6 +165,7 @@ File	Dosya
 Files	Dosyalar
 Filter	Filtre
 Filter devices…	Cihazları filtrele…
+First fault current Id (A)	İlk arıza akımı Id (A)
 Fit	Sığdır
 Fits	Uyumlu
 Fitting at the end	Sondaki rakor
@@ -209,6 +211,8 @@ Inspection and test report	Muayene ve test raporu
 Inspector	Muayene eden
 Installation site	Kurulum yeri
 Installer	Tesisatçı
+Insulating floors and walls (kΩ)	Yalıtkan zemin ve duvarlar (kΩ)
+Insulation monitoring device	Yalıtım izleme cihazı
 Insulation resistance (MΩ)	Yalıtım direnci (MΩ)
 Insulation test voltage (V)	Yalıtım test gerilimi (V)
 Integration	Entegrasyon
@@ -309,6 +313,7 @@ No part {} in the project	Projede {} parçası yok
 No parts found	Parça bulunamadı
 No plot frame named {}	{} adlı çizim çerçevesi yok
 No plug {}	{} fişi yok
+No protective measure of its own	Kendi koruma önlemi yok
 No report block named {}	{} adlı rapor bloğu yok
 No segment {}	{} segmenti yok
 No station {}	{} istasyonu yok
@@ -344,9 +349,11 @@ Order number	Sipariş numarası
 Other	Diğer
 Outer diameter	Dış çap
 Output	Çıkış
+Output voltage (V)	Çıkış gerilimi (V)
 Overview	Genel bakış
 PCT loop	PCT döngüsü
 PCT loop overview	PCT döngüsü genel bakışı
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC kartı
@@ -374,6 +381,7 @@ Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Parçalar (CSV, JSON, BMEcat, EPL
 Parts import failed: {}	Parça içe aktarma başarısız oldu: {}
 Passed	Geçti
 Password	Parola
+Phase sequence	Faz sırası
 Phases	Fazlar
 Phone	Telefon
 Picture	Resim
@@ -390,6 +398,7 @@ Plug	Fiş
 Plug diagram	Fiş şeması
 Plugins	Eklentiler
 Plugs	Fişler
+Polarity	Polarite
 Poles	Kutuplar
 Ports	Portlar
 Position	Konum
@@ -425,6 +434,7 @@ Prospective fault current at the origin (kA)	Besleme noktasında beklenen arıza
 Protection	Koruma
 Protective conductor (Ω)	Koruma iletkeni (Ω)
 Protective device	Koruma cihazı
+Protective measure	Koruma önlemi
 Quantity	Miktar
 Quantity (default 1)	Miktar (varsayılan 1)
 Quantity unit	Miktar birimi
@@ -478,6 +488,7 @@ Routing	Yönlendirme
 Rows of modules (east-west: rows of pairs)	Modül sıraları (doğu-batı: çift sıraları)
 Rule	Kural
 Rule set	Kural seti
+SELV	SELV
 Safety function	Güvenlik fonksiyonu
 Save	Kaydet
 Saved	Kaydedildi
@@ -599,6 +610,7 @@ Value	Değer
 Version	Sürüm
 Viewer	Görüntüleyici
 Voltage	Gerilim
+Voltage drop (%)	Gerilim düşümü (%)
 Warning	Uyarı
 Warnings	Uyarılar
 Weight	Ağırlık

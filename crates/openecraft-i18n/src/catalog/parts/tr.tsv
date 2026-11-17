@@ -11,6 +11,7 @@ A project names who changed it last.	Bir proje, kendisini en son kimin değişti
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rol, bir haklar kümesidir. Yetki atamaları bir kullanıcıya veya gruba projeler üzerinde bir rol verir (joker karakter olarak * ve ?, tümü için *); reddeden bir atama, diğer atamalar ne verirse versin rolün haklarını geri alır.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rol, bir haklar kümesidir. Yetki atamaları bir kullanıcıya veya gruba bir üreticinin parçaları üzerinde bir rol verir (joker karakter olarak * ve ?, tümü için *); reddeden bir atama, diğer atamalar ne verirse versin rolün haklarını geri alır.
 A user name must not be empty or contain blanks	Kullanıcı adı boş olamaz veya boşluk içeremez
+Above {} V: no SELV or PELV	{} V üzerinde: SELV veya PELV değil
 Accept any certificate (test installations only)	Her sertifikayı kabul et (yalnızca test kurulumları)
 Access rights	Erişim hakları
 Access settings saved	Erişim ayarları kaydedildi
@@ -225,6 +226,7 @@ Housing accessories, external extension	Gövde aksesuarları, dış eklenti
 Housing accessories, internal extension	Gövde aksesuarları, iç eklenti
 Hydraulic motors	Hidrolik motorlar
 Hydraulic tanks	Hidrolik tanklar
+IT system	IT sistemi
 Images (PNG, JPEG, GIF, WebP, SVG)	Görüntüler (PNG, JPEG, GIF, WebP, SVG)
 Import / export	İçe / dışa aktarma
 Import parts	Parçaları içe aktar
@@ -371,6 +373,7 @@ Plug pin	Fiş pini
 Position switch	Konum şalteri
 Power cable	Güç kablosu
 Power contactor	Güç kontaktörü
+Power supply unit	Güç kaynağı
 Power switchgear	Güç şalt cihazları
 Power units and plants	Güç üniteleri ve tesisler
 Prefabricated	Önceden hazırlanmış
@@ -427,6 +430,7 @@ Roof hook	Çatı kancası
 Routing accessories	Döşeme aksesuarları
 Routing path (topology)	Güzergâh yolu (topoloji)
 Routing point (topology)	Güzergâh noktası (topoloji)
+SELV, PELV and separation	SELV, PELV ve ayırma
 Safety accumulators	Emniyet akümülatörleri
 Safety devices	Koruma cihazları
 Safety fuse	Eriyen sigorta
@@ -465,6 +469,7 @@ Sifter	Eleme makinesi
 Sight glass	Gözetleme camı
 Sign in as an administrator to manage the server	Sunucuyu yönetmek için yönetici olarak oturum açın
 Sign in or connect with the access token to change parts	Parçaları değiştirmek için oturum açın veya erişim belirteciyle bağlanın
+Sign in or name the inspector in the report data first.	Oturum açın veya önce rapor verilerinde muayene edeni girin.
 Sign in to keep favorites	Sık kullanılanları saklamak için oturum açın
 Sign in to see the projects	Projeleri görmek için oturum açın
 Sign in with a user account	Kullanıcı hesabıyla oturum aç

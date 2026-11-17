@@ -715,6 +715,7 @@ Input voltage	Входное напряжение
 Inputs from	Входы от
 Inrush current	Пусковой ток
 Inside (°C)	Внутри (°C)
+Inspection and test report: SELV, PELV and separation	Протокол осмотра и испытаний: БСНН, ЗСНН и разделение
 Inspection and test report: data	Протокол осмотра и испытаний: данные
 Inspection and test report: summary	Протокол осмотра и испытаний: итоги
 Installation altitude	Высота установки над уровнем моря
@@ -1366,6 +1367,7 @@ Rule {}: no macro {}	Правило {}: нет макроса {}
 Rule {}: {}	Правило {}: {}
 Rule {}: {} has no variant {}	Правило {}: у {} нет варианта {}
 Rule {}: {} is no page macro	Правило {}: {} не является макросом листа
+SELV, PELV, Electrical separation or none	БСНН, ЗСНН, Электрическое разделение или нет
 SVG image (one page)	Изображение SVG (один лист)
 Saddle jumper	Седловая перемычка
 Safe torque off (STO)	Безопасное отключение крутящего момента (STO)
@@ -1478,6 +1480,7 @@ Solenoid valve coil YA (GOST)	Катушка электромагнитного 
 Solenoid valve coil YV (GB)	Катушка электромагнитного клапана YV (GB)
 Sort code	Код сортировки
 Sound level	Уровень шума
+Source {}	Источник {}
 Source {}, first target {}, second target {}	Источник {}, первая цель {}, вторая цель {}
 Source {}, targets {}, {} and {}	Источник {}, цели {}, {} и {}
 Spare	Резерв
@@ -1621,6 +1624,7 @@ The project file {} is missing	Файл проекта {} отсутствует
 The project has no panel layout	В проекте нет компоновки шкафа
 The project was written by a newer version (file layout {})	Проект записан более новой версией (структура файлов {})
 The property needs a name	Для свойства требуется имя
+The protective measure is SELV, PELV, electrical separation or none, not {}	Мера защиты: БСНН, ЗСНН, электрическое разделение или нет, а не {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Насосная станция в двух соединённых напольных шкафах: система сборных шин, рейки и кабель-каналы, устройства на двери и ручки, вентилятор с фильтром, светильник, шина PE, кабельные вводы, кабельный проход, расчёт климата, заполнение кабель-каналов и 3D-трассировка.
 The revision is already released	Ревизия уже выпущена
 The revision is not approved	Ревизия не утверждена
@@ -1762,7 +1766,6 @@ Vibration resistance	Вибростойкость
 View projects	Просмотр проектов
 Violations	Нарушения
 Voltage (V)	Напряжение (V)
-Voltage drop (%)	Падение напряжения (%)
 Voltage drop (V)	Падение напряжения (V)
 Voltage protection level	Уровень напряжения защиты
 Voltage range	Диапазон напряжения

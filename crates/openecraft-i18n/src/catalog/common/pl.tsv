@@ -142,6 +142,7 @@ EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is 
 Earth electrode resistance RA (Ω)	Rezystancja uziemienia RA (Ω)
 Edit	Edycja
 Editor	Redaktor
+Electrical separation	Separacja elektryczna
 Electro-fluid cross reference	Odsyłacze elektryczno-płynowe
 Email	E-mail
 Enclosure	Obudowa
@@ -164,6 +165,7 @@ File	Plik
 Files	Pliki
 Filter	Filtr
 Filter devices…	Filtruj urządzenia…
+First fault current Id (A)	Prąd pierwszego zwarcia Id (A)
 Fit	Dopasuj
 Fits	Pasuje do
 Fitting at the end	Złączka na końcu
@@ -209,6 +211,8 @@ Inspection and test report	Protokół z badań odbiorczych
 Inspector	Sprawdzający
 Installation site	Miejsce instalacji
 Installer	Instalator
+Insulating floors and walls (kΩ)	Izolujące podłogi i ściany (kΩ)
+Insulation monitoring device	Urządzenie do monitorowania stanu izolacji
 Insulation resistance (MΩ)	Rezystancja izolacji (MΩ)
 Insulation test voltage (V)	Napięcie probiercze izolacji (V)
 Integration	Integracja
@@ -309,6 +313,7 @@ No part {} in the project	Brak części {} w projekcie
 No parts found	Nie znaleziono artykułów
 No plot frame named {}	Brak ramki rysunku o nazwie {}
 No plug {}	Brak wtyku {}
+No protective measure of its own	Brak własnego środka ochrony
 No report block named {}	Brak bloku raportu o nazwie {}
 No segment {}	Brak segmentu {}
 No station {}	Brak stacji {}
@@ -344,9 +349,11 @@ Order number	Numer zamówieniowy
 Other	Inne
 Outer diameter	Średnica zewnętrzna
 Output	Wyjście
+Output voltage (V)	Napięcie wyjściowe (V)
 Overview	Przegląd
 PCT loop	Pętla AKPiA
 PCT loop overview	Przegląd pętli AKPiA
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	Karta PLC
@@ -374,6 +381,7 @@ Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artykuły (CSV, JSON, BMEcat, EPL
 Parts import failed: {}	Import artykułów nie powiódł się: {}
 Passed	Pozytywny
 Password	Hasło
+Phase sequence	Kolejność faz
 Phases	Fazy
 Phone	Telefon
 Picture	Obraz
@@ -390,6 +398,7 @@ Plug	Wtyk
 Plug diagram	Schemat wtyku
 Plugins	Wtyczki
 Plugs	Wtyki
+Polarity	Biegunowość
 Poles	Bieguny
 Ports	Porty
 Position	Pozycja
@@ -425,6 +434,7 @@ Prospective fault current at the origin (kA)	Spodziewany prąd zwarciowy w złą
 Protection	Ochrona
 Protective conductor (Ω)	Przewód ochronny (Ω)
 Protective device	Urządzenie zabezpieczające
+Protective measure	Środek ochrony
 Quantity	Ilość
 Quantity (default 1)	Ilość (domyślnie 1)
 Quantity unit	Jednostka ilości
@@ -478,6 +488,7 @@ Routing	Prowadzenie
 Rows of modules (east-west: rows of pairs)	Rzędy modułów (wschód-zachód: rzędy par)
 Rule	Reguła
 Rule set	Zestaw reguł
+SELV	SELV
 Safety function	Funkcja bezpieczeństwa
 Save	Zapisz
 Saved	Zapisano
@@ -599,6 +610,7 @@ Value	Wartość
 Version	Wersja
 Viewer	Przeglądający
 Voltage	Napięcie
+Voltage drop (%)	Spadek napięcia (%)
 Warning	Ostrzeżenie
 Warnings	Ostrzeżenia
 Weight	Masa

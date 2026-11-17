@@ -85,6 +85,7 @@ pub fn table(prj: &Project, an: &Analysis, kind: ReportKind) -> Table {
         ReportKind::Verification => electrical_reports::verification(prj, conns),
         ReportKind::Inspection => crate::inspection::circuit_table(&crate::inspection::circuits(prj, netlist, conns)),
         ReportKind::InspectionSummary => crate::inspection::summary_table(&crate::inspection::Report::of(prj, netlist, conns)),
+        ReportKind::InspectionSources => crate::inspection::source_table(&crate::inspection::sources(prj)),
         ReportKind::FieldRouting => field_routing(prj, &an.field),
         ReportKind::Bonding => bonding_list(prj),
         ReportKind::RackElevation => rack_elevation(prj),

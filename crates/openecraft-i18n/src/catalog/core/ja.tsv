@@ -705,6 +705,7 @@ Input voltage	入力電圧
 Inputs from	入力元
 Inrush current	突入電流
 Inside (°C)	内部 (°C)
+Inspection and test report: SELV, PELV and separation	点検・試験報告書：SELV、PELV、分離
 Inspection and test report: data	点検・試験報告書：データ
 Inspection and test report: summary	点検・試験報告書：概要
 Installation altitude	設置高度
@@ -1352,6 +1353,7 @@ Rule {}: no macro {}	ルール {}: マクロ {} はありません
 Rule {}: {}	ルール {}: {}
 Rule {}: {} has no variant {}	ルール {}: {} にバリアント {} はありません
 Rule {}: {} is no page macro	ルール {}: {} はページマクロではありません
+SELV, PELV, Electrical separation or none	SELV、PELV、電気的分離、なし
 SVG image (one page)	SVG 画像 (1 ページ)
 Saddle jumper	サドルジャンパー
 Safe torque off (STO)	安全トルクオフ (STO)
@@ -1464,6 +1466,7 @@ Solenoid valve coil YA (GOST)	電磁弁コイル YA (GOST)
 Solenoid valve coil YV (GB)	電磁弁コイル YV (GB)
 Sort code	ソートコード
 Sound level	騒音レベル
+Source {}	電源 {}
 Source {}, first target {}, second target {}	源{}、第1目標{}、第2目標{}
 Source {}, targets {}, {} and {}	源{}、目標{}、{}、{}
 Spare	予備
@@ -1602,6 +1605,7 @@ The plot boundary encloses no area	敷地境界が面積を囲んでいません
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	敷地境界が多角形ではありません：自己交差しているか、頂点が3つ未満です
 The project has no panel layout	プロジェクトに盤レイアウトがありません
 The property needs a name	プロパティには名前が必要です
+The protective measure is SELV, PELV, electrical separation or none, not {}	保護方式は SELV、PELV、電気的分離、なしのいずれかです（{} ではありません）
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	2 台の列盤自立盤に組み込んだポンプ場：ブスバーシステム、レールと配線ダクト、扉機器とハンドル、フィルタファン、照明、PE バー、ケーブルグランド、ケーブル通路、盤内温度計算、ダクト占有率、3D 配線。
 The revision is already released	このリビジョンは既にリリースされています
 The revision is not approved	このリビジョンは承認されていません
@@ -1743,7 +1747,6 @@ Vibration resistance	耐振動性
 View projects	プロジェクトの閲覧
 Violations	違反
 Voltage (V)	電圧 (V)
-Voltage drop (%)	電圧降下 (%)
 Voltage drop (V)	電圧降下 (V)
 Voltage protection level	電圧防護レベル
 Voltage range	電圧範囲

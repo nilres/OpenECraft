@@ -52,7 +52,7 @@ fn rcd_part(k: &mut Kit) -> &mut Part {
 
 /// The results that pass in -F1 (B16 behind a 30 mA RCD).
 fn passing(prj: &mut Project) {
-    for (f, v) in [(Field::Continuity, "0,2"), (Field::InsulationVoltage, "500"), (Field::Insulation, "> 500"), (Field::LoopImpedance, "0.85"), (Field::Function, "OK"), (Field::RcdTime, "24")] {
+    for (f, v) in [(Field::Continuity, "0,2"), (Field::InsulationVoltage, "500"), (Field::Insulation, "> 500"), (Field::LoopImpedance, "0.85"), (Field::Polarity, "OK"), (Field::Function, "OK"), (Field::RcdTime, "24")] {
         set(prj, "-F1", f, v).unwrap();
     }
 }
@@ -73,7 +73,8 @@ fn circuits_are_filled_in_from_the_schematic() {
     let u0 = k.prj.electrical.supply.u0();
     assert!((f1.zs_max.unwrap() - u0 / 0.03).abs() < 0.5);
     assert_eq!(f1.verdict, Verdict::NotTested);
-    assert_eq!(f1.required(), [Field::Continuity, Field::InsulationVoltage, Field::Insulation, Field::LoopImpedance, Field::Function, Field::RcdTime]);
+    assert_eq!(f1.required(), [Field::Continuity, Field::InsulationVoltage, Field::Insulation, Field::LoopImpedance, Field::Polarity, Field::Function, Field::RcdTime]);
+    assert!(!f1.fields().contains(&Field::PhaseSequence), "one phase");
     assert_eq!(f1.limit(Field::RcdTime).map(|l| (l.min, l.max)), Some((None, Some(300.0))));
     assert_eq!(f1.limit(Field::RcdCurrent).map(|l| l.text()), Some("15 – 30".into()));
     assert_eq!(f1.limit(Field::InsulationVoltage).map(|l| l.text()), Some("≥ 500".into()));
@@ -172,12 +173,12 @@ fn tt_systems_limit_the_earth_electrode_to_the_touch_voltage() {
     let r = report_of(&k.prj);
     let f1 = by(&r.circuits, "-F1");
     assert!((f1.zs_max.unwrap() - 50.0 / 0.03).abs() < 0.5, "{:?}", f1.zs_max);
-    assert!((r.earth_electrode_max.unwrap() - 50.0 / 0.03).abs() < 0.5);
+    assert!((r.limit("earth_electrode").unwrap().max.unwrap() - 50.0 / 0.03).abs() < 0.5);
     set_header(&mut k.prj, "earth_electrode", "1800").unwrap();
     let r = report_of(&k.prj);
     assert_eq!((r.verdict, r.failed.as_slice()), (Verdict::Failed, &["earth_electrode".to_string()][..]));
     k.prj.electrical.supply.earthing = Earthing::TnS;
-    assert_eq!(report_of(&k.prj).earth_electrode_max, None);
+    assert_eq!(report_of(&k.prj).limit("earth_electrode"), None);
 }
 
 #[test]
@@ -279,4 +280,96 @@ fn the_report_lists_the_results() {
     assert_eq!(f1[col("Tested by")], "A. Smith");
     assert_eq!(t.rows[2][col("RCD trip time (ms)")], "–", "-F3 has no RCD");
     assert_eq!(t.targets[0], Some(cs[0].target));
+}
+
+/// Polarity for every circuit, the phase sequence for three-phase ones, the voltage
+/// drop against the limit of the rule sets.
+#[test]
+fn polarity_phase_sequence_and_voltage_drop() {
+    let mut k = Kit::new();
+    let pots: Vec<u64> = ["L1", "L2", "L3"].iter().enumerate().map(|(i, l)| k.sym(&format!("pot_{}", l.to_lowercase()), 100.0 + 8.0 * i as f32, 20.0, "", l)).collect();
+    let q1 = k.sym("mps3", 100.0, 40.0, "-Q1", "");
+    for (i, p) in pots.iter().enumerate() {
+        k.wire((*p, ""), (q1, ["1", "3", "5"][i]));
+    }
+    k.part("-Q1", FnKind::MotorProtection, "1 2 3 4 5 6", |p| p.current = "10 A".into());
+    let q1 = by(&circuits_of(&k.prj), "-Q1").clone();
+    assert!(q1.multi_phase() && q1.required().contains(&Field::PhaseSequence));
+    assert_eq!(q1.limit(Field::VoltageDrop).and_then(|l| l.max), Some(crate::sizing::VOLTAGE_DROP_LIMIT));
+    set(&mut k.prj, "-Q1", Field::PhaseSequence, "Not OK").unwrap();
+    set(&mut k.prj, "-Q1", Field::Polarity, "OK").unwrap();
+    set(&mut k.prj, "-Q1", Field::VoltageDrop, "6.5").unwrap();
+    assert_eq!(by(&circuits_of(&k.prj), "-Q1").failed, [Field::VoltageDrop, Field::PhaseSequence]);
+    assert!(set(&mut k.prj, "-Q1", Field::Polarity, "n/a").is_err(), "polarity is tested");
+}
+
+/// IT: the second fault at U / 2 (no neutral) or U0 / 2, the insulation monitoring
+/// device and the first fault current against UL / RA.
+#[test]
+fn it_systems_test_the_monitoring_and_the_first_fault() {
+    let mut k = installation();
+    rcd_part(&mut k).tech_data.clear();
+    k.prj.electrical.supply.earthing = Earthing::It;
+    let r = report_of(&k.prj);
+    assert!(r.it && r.header_fields().contains(&HeaderField::Imd));
+    // B16: Ia = 80 A, U = 400 V: ⅔ × 200 V / 80 A.
+    let f1 = by(&r.circuits, "-F1");
+    assert!((f1.zs_max.unwrap() - LOOP_FACTOR * 200.0 / 80.0).abs() < 0.01, "{:?}", f1.zs_max);
+    k.prj.electrical.supply.neutral = true;
+    let u0 = k.prj.electrical.supply.u0();
+    assert!((by(&circuits_of(&k.prj), "-F1").zs_max.unwrap() - LOOP_FACTOR * u0 / 2.0 / 80.0).abs() < 0.01);
+    set_header(&mut k.prj, "earth_electrode", "10").unwrap();
+    set_header(&mut k.prj, "first_fault", "6").unwrap();
+    set_header(&mut k.prj, "imd", "failed").unwrap();
+    let r = report_of(&k.prj);
+    assert_eq!(r.limit("first_fault").and_then(|l| l.max), Some(5.0));
+    assert_eq!(r.failed, ["first_fault", "imd"]);
+    k.prj.electrical.supply.earthing = Earthing::TnS;
+    let r = report_of(&k.prj);
+    assert!(!r.header_fields().contains(&HeaderField::Imd) && r.failed.is_empty(), "no IT tests in TN systems");
+}
+
+/// Floors and walls of non-conducting locations: at least 50 kΩ up to 500 V.
+#[test]
+fn insulating_floors_and_walls() {
+    let mut k = installation();
+    assert_eq!(report_of(&k.prj).limit("floor_insulation").and_then(|l| l.min), Some(50.0));
+    set_header(&mut k.prj, "floor_insulation", "40").unwrap();
+    assert_eq!(report_of(&k.prj).failed, ["floor_insulation"]);
+    k.prj.electrical.supply.voltage = 690.0;
+    assert_eq!(report_of(&k.prj).limit("floor_insulation").and_then(|l| l.min), Some(100.0));
+}
+
+/// Power supplies and transformers are the sources of SELV, PELV and separated
+/// circuits: the measure decides the limits, SELV and PELV also the highest voltage.
+#[test]
+fn sources_of_selv_pelv_and_separation() {
+    let mut k = installation();
+    k.sym("psu", 300.0, 40.0, "-T1", "");
+    k.part("-T1", FnKind::PowerSupply, "L N + -", |p| {
+        p.voltage = "230 V / 24 V DC".into();
+        p.current = "5 A".into();
+    });
+    k.sym("trafo", 360.0, 40.0, "-T2", "");
+    k.part("-T2", FnKind::Transformer, "1 2 3 4", |p| p.voltage = "400 V / 230 V".into());
+    let ss = sources(&k.prj);
+    assert_eq!(ss.iter().map(|s| (s.device.as_str(), s.voltage, s.transformer)).collect::<Vec<_>>(), [("-T1", Some(24.0), false), ("-T2", Some(230.0), true)]);
+    assert_eq!(ss[0].verdict, Verdict::NotTested);
+    set_source(&mut k.prj, "-T1", SourceField::Measure, "SELV").unwrap();
+    set_source(&mut k.prj, "-T1", SourceField::InsulationVoltage, "250").unwrap();
+    set_source(&mut k.prj, "-T1", SourceField::Insulation, "0.8").unwrap();
+    set_source(&mut k.prj, "-T2", SourceField::Measure, "pelv").unwrap();
+    let ss = sources(&k.prj);
+    assert_eq!((ss[0].verdict, ss[0].result.measure.as_str()), (Verdict::Passed, "selv"));
+    assert_eq!((ss[1].verdict, ss[1].failed.as_slice()), (Verdict::Failed, &["measure".to_string()][..]), "230 V is no PELV");
+    set_source(&mut k.prj, "-T2", SourceField::Measure, "Electrical separation").unwrap();
+    set_source(&mut k.prj, "-T2", SourceField::InsulationVoltage, "250").unwrap();
+    set_source(&mut k.prj, "-T2", SourceField::Insulation, "0.8").unwrap();
+    assert_eq!(sources(&k.prj)[1].failed, ["insulation_voltage", "insulation"], "separation is tested like the mains");
+    set_source(&mut k.prj, "-T2", SourceField::Measure, "none").unwrap();
+    assert_eq!(sources(&k.prj)[1].verdict, Verdict::Passed, "no protective measure of its own");
+    assert!(set_source(&mut k.prj, "-T2", SourceField::Measure, "FELV").is_err());
+    let r = report_of(&k.prj);
+    assert_eq!(r.sources.len(), 2);
+    assert_eq!(source_table(&r.sources).rows[0][3], tr("SELV"));
 }

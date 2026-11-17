@@ -802,6 +802,7 @@ async fn inspection_xlsx(State(state): State<AppState>, headers: HeaderMap, Path
             openecraft_core::xlsx::write(&[
                 (tr("Summary").to_string(), inspection::summary_table(&report).sheet_rows()),
                 (tr("Circuits").to_string(), inspection::circuit_table(&report.circuits).sheet_rows()),
+                (tr("SELV, PELV and separation").to_string(), inspection::source_table(&report.sources).sheet_rows()),
             ])
         })
     })
@@ -812,9 +813,9 @@ async fn inspection_xlsx(State(state): State<AppState>, headers: HeaderMap, Path
     Ok(([(header::CONTENT_TYPE, kind), (header::CONTENT_DISPOSITION, disposition)], bytes).into_response())
 }
 
-/// Sets the results of one circuit of the inspection (or, without a circuit, the data
-/// of the report and the visual inspection) in the saved project, without opening it
-/// and without a lock (sessions merge them record by record). Refused if they were
+/// Sets the results of one circuit or source of the inspection (or, without either, the
+/// data of the report and the visual inspection) in the saved project, without opening
+/// it and without a lock (sessions merge them record by record). Refused if they were
 /// changed since they were loaded.
 async fn save_inspection(
     State(state): State<AppState>,
@@ -828,41 +829,69 @@ async fn save_inspection(
     if !records(&answer.rights) {
         return Err(AppError(StatusCode::FORBIDDEN, format!("you may not enter inspection results in project '{name}'")));
     }
-    let header = req.circuit.trim().is_empty();
-    let fields = if header {
-        Vec::new()
+    // What the update is about: a circuit, a source or the header.
+    enum Record {
+        Circuit(Vec<(inspection::Field, String)>),
+        Source(Vec<(inspection::SourceField, String)>),
+        Header,
+    }
+    let unknown = |k: &String| bad(format!("unknown field '{k}'"));
+    let record = if !req.circuit.trim().is_empty() {
+        Record::Circuit(req.values.iter().map(|(k, v)| inspection::Field::from_key(k).map(|f| (f, v.clone())).ok_or_else(|| unknown(k))).collect::<Result<_>>()?)
+    } else if !req.source.trim().is_empty() {
+        Record::Source(req.values.iter().map(|(k, v)| inspection::SourceField::from_key(k).map(|f| (f, v.clone())).ok_or_else(|| unknown(k))).collect::<Result<_>>()?)
     } else {
-        req.values.iter().map(|(k, v)| inspection::Field::from_key(k).map(|f| (f, v.clone())).ok_or_else(|| bad(format!("unknown field '{k}'")))).collect::<Result<Vec<_>>>()?
+        Record::Header
     };
-    let circuit = req.circuit.clone();
-    if !header && !blocking(move || before.inspection().circuits.iter().any(|c| c.circuit == circuit)).await? {
-        return Err(AppError(StatusCode::NOT_FOUND, format!("circuit '{}' not found", req.circuit)));
+    let (circuit, source, is_circuit) = (req.circuit.clone(), req.source.clone(), matches!(record, Record::Circuit(_)));
+    let exists = blocking(move || {
+        let report = before.inspection();
+        if is_circuit { report.circuits.iter().any(|c| c.circuit == circuit) } else { report.sources.iter().any(|s| s.device == source) }
+    });
+    let what = match &record {
+        Record::Circuit(_) => format!("the results of {}", req.circuit),
+        Record::Source(_) => format!("the results of {}", req.source),
+        Record::Header => "the data of the report".to_string(),
+    };
+    if !matches!(record, Record::Header) && !exists.await? {
+        let tag = if req.circuit.trim().is_empty() { &req.source } else { &req.circuit };
+        return Err(AppError(StatusCode::NOT_FOUND, format!("circuit or source '{tag}' not found")));
     }
     {
         let (mut server, caller) = server(&state, &headers)?;
         let user = caller.name(&req.user, &server.users)?;
         let entry = server.store.get(&name).ok_or_else(|| not_found(&name))?;
         let stored = &entry.project.inspection;
-        let rev = if header { stored.header.rev } else { stored.result(&req.circuit).map_or(0, |r| r.rev) };
+        let rev = match &record {
+            Record::Circuit(_) => stored.result(&req.circuit).map_or(0, |r| r.rev),
+            Record::Source(_) => stored.source(&req.source).map_or(0, |r| r.rev),
+            Record::Header => stored.header.rev,
+        };
         if rev != req.rev {
-            let what = if header { "the data of the report".to_string() } else { format!("the results of {}", req.circuit) };
             return Err(AppError(StatusCode::CONFLICT, format!("{what} were changed meanwhile: load them again")));
         }
         let mut project = entry.project.clone();
-        if header {
-            inspection::set_header_all(&mut project, req.values.iter().map(|(k, v)| (k.as_str(), v.as_str()))).map_err(bad)?;
-        } else {
-            for (field, value) in &fields {
-                inspection::set(&mut project, &req.circuit, *field, value).map_err(bad)?;
+        match &record {
+            Record::Circuit(fields) => {
+                for (field, value) in fields {
+                    inspection::set(&mut project, &req.circuit, *field, value).map_err(bad)?;
+                }
+                if project.inspection.result(&req.circuit).is_some_and(|r| r.tester.is_empty() && r.rev > 0) {
+                    inspection::set(&mut project, &req.circuit, inspection::Field::Tester, &user).map_err(bad)?;
+                }
             }
-            if project.inspection.result(&req.circuit).is_some_and(|r| r.tester.is_empty() && r.rev > 0) {
-                inspection::set(&mut project, &req.circuit, inspection::Field::Tester, &user).map_err(bad)?;
+            Record::Source(fields) => {
+                for (field, value) in fields {
+                    inspection::set_source(&mut project, &req.source, *field, value).map_err(bad)?;
+                }
+            }
+            Record::Header => {
+                inspection::set_header_all(&mut project, req.values.iter().map(|(k, v)| (k.as_str(), v.as_str()))).map_err(bad)?;
             }
         }
         if project.inspection != entry.project.inspection {
             let revision = server.store.save(&name, project, &user, openecraft_auth::unix_now())?;
-            let what = if header { "the inspection report data".to_string() } else { format!("inspection results of {}", req.circuit) };
-            log::info!("{user} entered {what} in {name} (revision {revision})");
+            log::info!("{user} entered {what} of the inspection in {name} (revision {revision})");
         }
     }
     let (viewed, answer) = viewed(&state, &headers, name).await?;

@@ -91,7 +91,7 @@ const PARTS: [Column; 7] = [
     col(tr_const!("Devices"), false),
 ];
 /// The editable columns are the fields of the results (`inspection::Field` by title).
-const INSPECTION: [Column; 19] = [
+const INSPECTION: [Column; 22] = [
     col(tr_const!("Circuit"), false),
     col(tr_const!("Description"), false),
     col(tr_const!("Protective device"), false),
@@ -101,10 +101,13 @@ const INSPECTION: [Column; 19] = [
     col(tr_const!("Insulation test voltage (V)"), true),
     col(tr_const!("Insulation resistance (MΩ)"), true),
     col(tr_const!("Loop impedance Zs (Ω)"), true),
+    col(tr_const!("Voltage drop (%)"), true),
     col(tr_const!("RCD trip current (mA)"), true),
     col(tr_const!("RCD trip time (ms)"), true),
     col(tr_const!("RCD trip time at 5 × IΔn (ms)"), true),
     col(tr_const!("Contact voltage UB (V)"), true),
+    col(tr_const!("Polarity"), true),
+    col(tr_const!("Phase sequence"), true),
     col(tr_const!("Function test"), true),
     col(tr_const!("Result"), false),
     col(tr_const!("Tested by"), true),
@@ -379,36 +382,44 @@ fn inspection_rows(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Row> {
     use crate::inspection::Field;
     let mut out = Vec::new();
     for c in crate::inspection::circuits(prj, nl, &crate::netlist::connections(prj, nl, open)) {
-        let r = &c.result;
         let mut cells = vec![c.circuit.clone(), c.description.clone().unwrap_or_default(), c.device_text(), c.rcd_text(), c.zs_max.map(|v| format!("{v:.2}")).unwrap_or_default()];
-        cells.extend(Field::ALL.iter().take(9).map(|f| if f.is_rcd() && c.rcd.is_none() { "–".into() } else { f.display(r) }));
+        cells.extend(Field::ALL.iter().filter(|f| f.is_test()).map(|f| c.cell(*f)));
         cells.push(c.verdict.title().into());
-        cells.extend(Field::ALL.iter().skip(9).map(|f| f.display(r)));
+        cells.extend(Field::ALL.iter().filter(|f| !f.is_test()).map(|f| c.cell(*f)));
         out.push(Row { key: c.circuit.clone(), cells, target: Some(c.target), locked: false });
     }
     out
 }
 
 /// The data of the report (key: the field), the items of the visual inspection (key:
-/// `check.<item>`) and the verdict (not editable).
+/// `check.<item>`) and the values of the sources of SELV, PELV and separated circuits
+/// (key: `source.<device>.<field>`).
 fn inspection_data_rows(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Row> {
-    use crate::inspection::{answer_text, HeaderField, Report, CHECKS};
+    use crate::inspection::{answer_text, Report, SourceField, CHECKS};
     let report = Report::of(prj, nl, &crate::netlist::connections(prj, nl, open));
     let h = &report.header;
-    let row = |key: String, cells: Vec<String>| Row { key, cells, target: None, locked: false };
-    let mut out: Vec<Row> = HeaderField::ALL
+    let row = |key: String, cells: Vec<String>, target| Row { key, cells, target, locked: false };
+    let answers = || tr("OK, Not OK or Not applicable").to_string();
+    let mut out: Vec<Row> = report
+        .header_fields()
         .into_iter()
         .map(|f| {
-            let note = match f {
-                HeaderField::EarthElectrode => report.earth_electrode_max.map(|m| format!("≤ {m:.0}")).unwrap_or_default(),
-                _ => String::new(),
-            };
-            row(f.key().into(), vec![f.title().into(), f.get(h).to_string(), note])
+            let note = if f.is_answer() { answers() } else { report.limit(f.key()).map(|l| l.text()).unwrap_or_default() };
+            row(f.key().into(), vec![f.title().into(), f.display(h), note], None)
         })
         .collect();
     for (key, title) in CHECKS {
         let a = h.checks.get(key).map(|a| answer_text(a)).unwrap_or_default();
-        out.push(row(format!("check.{key}"), vec![tr(title).into(), a, tr("OK, Not OK or Not applicable").into()]));
+        out.push(row(format!("check.{key}"), vec![tr(title).into(), a, answers()], None));
+    }
+    for s in &report.sources {
+        for f in SourceField::ALL {
+            let note = match f {
+                SourceField::Measure => tr("SELV, PELV, Electrical separation or none").to_string(),
+                _ => s.limits.get(&s.result.measure).and_then(|l| l.iter().find(|l| l.key == f.key())).map(|l| l.text()).unwrap_or_default(),
+            };
+            out.push(row(format!("source.{}.{}", s.device, f.key()), vec![format!("{}: {}", s.device, f.title()), f.display(&s.result), note], Some(s.target)));
+        }
     }
     out
 }
@@ -619,7 +630,12 @@ fn set(prj: &mut Project, open: &Netlist, kind: TableKind, key: &str, column: us
             let Some(field) = crate::inspection::Field::from_key(c.name) else { return Err(tr_fmt!("Unknown column: {}", column)) };
             return crate::inspection::set(prj, key, field, value);
         }
-        TableKind::InspectionData => return crate::inspection::set_header(prj, key, value),
+        TableKind::InspectionData => {
+            let Some(rest) = key.strip_prefix("source.") else { return crate::inspection::set_header(prj, key, value) };
+            let field = rest.rsplit_once('.').and_then(|(d, f)| crate::inspection::SourceField::from_key(f).map(|f| (d, f)));
+            let Some((device, field)) = field.filter(|(d, _)| crate::inspection::sources(prj).iter().any(|s| s.device == *d)) else { return Err(tr_fmt!("Row {} not found", key)) };
+            return crate::inspection::set_source(prj, device, field, value);
+        }
     }
     Ok(true)
 }

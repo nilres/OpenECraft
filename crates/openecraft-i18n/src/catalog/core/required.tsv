@@ -785,6 +785,7 @@ Input voltage	Eingangsspannung	Tension d'entrée	Tensión de entrada
 Inputs from	Eingänge von	Entrées de	Entradas de
 Inrush current	Einschaltstrom	Courant d'appel	Corriente de arranque
 Inside (°C)	Innen (°C)	Intérieur (°C)	Interior (°C)
+Inspection and test report: SELV, PELV and separation	Prüfprotokoll: SELV, PELV und Schutztrennung	Rapport de vérification : TBTS, TBTP et séparation	Informe de inspección y ensayo: MBTS, MBTP y separación
 Inspection and test report: data	Prüfprotokoll: Daten	Rapport de vérification : données	Informe de inspección y ensayo: datos
 Inspection and test report: summary	Prüfprotokoll: Zusammenfassung	Rapport de vérification : synthèse	Informe de inspección y ensayo: resumen
 Installation altitude	Aufstellhöhe	Altitude d'installation	Altitud de instalación
@@ -1473,6 +1474,7 @@ Rule {}: no macro {}	Regel {}: kein Makro {}	Règle {} : aucune macro {}	Regla {
 Rule {}: {}	Regel {}: {}	Règle {} : {}	Regla {}: {}
 Rule {}: {} has no variant {}	Regel {}: {} hat keine Variante {}	Règle {} : {} n'a pas de variante {}	Regla {}: {} no tiene variante {}
 Rule {}: {} is no page macro	Regel {}: {} ist kein Seitenmakro	Règle {} : {} n'est pas une macro de page	Regla {}: {} no es una macro de página
+SELV, PELV, Electrical separation or none	SELV, PELV, Schutztrennung oder keine	TBTS, TBTP, Séparation électrique ou aucune	MBTS, MBTP, Separación eléctrica o ninguna
 SVG image (one page)	SVG-Bild (eine Seite)	Image SVG (une page)	Imagen SVG (una página)
 Saddle jumper	Steckbrücke	Pont enfichable	Puente enchufable
 Safe torque off (STO)	Sicher abgeschaltetes Moment (STO)	Suppression sûre du couple (STO)	Desconexión segura del par (STO)
@@ -1588,6 +1590,7 @@ Solenoid valve coil YA (GOST)	Magnetventilspule YA (GOST)	Bobine d'électrovanne
 Solenoid valve coil YV (GB)	Magnetventilspule YV (GB)	Bobine d'électrovanne YV (GB)	Bobina de electroválvula YV (GB)
 Sort code	Sortierkennung	Code de tri	Código de orden
 Sound level	Schallpegel	Niveau sonore	Nivel sonoro
+Source {}	Quelle {}	Source {}	Fuente {}
 Source {}, first target {}, second target {}	Quelle {}, erstes Ziel {}, zweites Ziel {}	Source {}, première cible {}, deuxième cible {}	Origen {}, primer destino {}, segundo destino {}
 Source {}, targets {}, {} and {}	Quelle {}, Ziele {}, {} und {}	Source {}, cibles {}, {} et {}	Origen {}, destinos {}, {} y {}
 Spare	Reserve	Réserve	Reserva
@@ -1746,6 +1749,7 @@ The project has no panel layout	Das Projekt hat keinen Schaltschrankaufbau	Le pr
 The project has several harnesses: {}	Das Projekt hat mehrere Kabelbäume: {}	Le projet a plusieurs faisceaux : {}	El proyecto tiene varios mazos: {}
 The project was written by a newer version (file layout {})	Das Projekt wurde von einer neueren Version geschrieben (Dateilayout {})	Le projet a été écrit par une version plus récente (structure de fichiers {})	El proyecto fue escrito por una versión más reciente (estructura de archivos {})
 The property needs a name	Die Eigenschaft braucht einen Namen	La propriété a besoin d'un nom	La propiedad necesita un nombre
+The protective measure is SELV, PELV, electrical separation or none, not {}	Die Schutzmaßnahme ist SELV, PELV, Schutztrennung oder keine, nicht {}	La mesure de protection est TBTS, TBTP, séparation électrique ou aucune, pas {}	La medida de protección es MBTS, MBTP, separación eléctrica o ninguna, no {}
 The pump room in a plant of two buildings: the main building with the electrical room on its ground level and the control room above, joined by a shaft; the pump house with pump motor 2, linked by a cable trench between the building entries through which its motor cable is routed; façade lights on the outside walls and a weather station on the roof.	Der Pumpenraum in einer Anlage aus zwei Gebäuden: das Hauptgebäude mit dem Elektroraum im Erdgeschoss und der Leitwarte darüber, durch einen Schacht verbunden; das Pumpenhaus mit Pumpenmotor 2, über einen Kabelgraben zwischen den Gebäudeeinführungen angebunden, durch den sein Motorkabel verlegt wird; Fassadenleuchten an den Außenwänden und eine Wetterstation auf dem Dach.	La salle des pompes dans une installation de deux bâtiments : le bâtiment principal avec le local électrique au rez-de-chaussée et la salle de commande au-dessus, reliés par une gaine ; la station de pompage avec le moteur de pompe 2, reliée par une tranchée de câbles entre les entrées de bâtiment par laquelle passe son câble moteur ; des appliques sur les murs extérieurs et une station météo sur la toiture.	La sala de bombas en una instalación de dos edificios: el edificio principal con la sala eléctrica en planta baja y la sala de control encima, unidas por un patinillo; la caseta de bombas con el motor de la bomba 2, unida por una zanja de cables entre las entradas de edificio por la que se tiende su cable de motor; apliques en los muros exteriores y una estación meteorológica en la cubierta.
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Die Pumpstation in zwei angereihten Standschränken: Sammelschienensystem, Tragschienen und Kabelkanäle, Türgeräte und Griffe, Filterlüfter, Leuchte, PE-Schiene, Kabelverschraubungen, ein Kabeldurchgang, Klimatisierungsberechnung, Kanalfüllgrad und 3D-Routing.	La station de pompage montée dans deux armoires au sol juxtaposées : jeu de barres, rails et goulottes, appareils de porte et poignées, ventilateur à filtre, éclairage, barre de terre, presse-étoupes, un passage de câbles, calcul de climatisation, taux de remplissage des goulottes et routage 3D.	La estación de bombeo montada en dos armarios de pie en batería: sistema de embarrado, carriles y canaletas, equipos de puerta y manetas, ventilador con filtro, luminaria, barra de tierra, prensaestopas, un paso de cables, cálculo de climatización, ocupación de canaletas y enrutado 3D.
 The revision is already released	Die Revision ist bereits freigegeben	La révision est déjà diffusée	La revisión ya está liberada
@@ -1898,7 +1902,6 @@ Vibration resistance	Vibrationsfestigkeit	Résistance aux vibrations	Resistencia
 View projects	Projekte ansehen	Consulter les projets	Ver proyectos
 Violations	Verstöße	Violations	Infracciones
 Voltage (V)	Spannung (V)	Tension (V)	Tensión (V)
-Voltage drop (%)	Spannungsfall (%)	Chute de tension (%)	Caída de tensión (%)
 Voltage drop (V)	Spannungsfall (V)	Chute de tension (V)	Caída de tensión (V)
 Voltage protection level	Schutzpegel	Niveau de protection en tension	Nivel de protección de tensión
 Voltage range	Spannungsbereich	Plage de tension	Rango de tensión

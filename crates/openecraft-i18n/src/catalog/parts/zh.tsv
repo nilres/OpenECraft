@@ -11,6 +11,7 @@ A project names who changed it last.	项目会注明最后更改它的人。
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	角色是一组权限。授权为用户或组授予项目上的角色（* 和 ? 为通配符，* 表示全部）；拒绝授权会收回该角色的权限，无论其他授权给予什么。
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	角色是一组权限。授权为用户或组授予某个制造商的部件上的角色（* 和 ? 为通配符，* 表示全部）；拒绝授权会收回该角色的权限，无论其他授权给予什么。
 A user name must not be empty or contain blanks	用户名不能为空，也不能包含空格
+Above {} V: no SELV or PELV	超过 {} V：不是 SELV 或 PELV
 Accept any certificate (test installations only)	接受任何证书（仅限测试安装）
 Access rights	访问权限
 Access settings saved	访问设置已保存
@@ -224,6 +225,7 @@ Housing accessories, external extension	外壳附件，外部扩展
 Housing accessories, internal extension	外壳附件，内部扩展
 Hydraulic motors	液压马达
 Hydraulic tanks	液压油箱
+IT system	IT 系统
 Images (PNG, JPEG, GIF, WebP, SVG)	图像（PNG、JPEG、GIF、WebP、SVG）
 Import / export	导入 / 导出
 Import parts	导入部件
@@ -370,6 +372,7 @@ Plug pin	插头插针
 Position switch	位置开关
 Power cable	动力电缆
 Power contactor	功率接触器
+Power supply unit	电源
 Power switchgear	电力开关设备
 Power units and plants	动力单元和装置
 Prefabricated	预制
@@ -426,6 +429,7 @@ Roof hook	屋面挂钩
 Routing accessories	布线附件
 Routing path (topology)	布线路径（拓扑）
 Routing point (topology)	布线点（拓扑）
+SELV, PELV and separation	SELV、PELV 和隔离
 Safety accumulators	安全蓄能器
 Safety devices	安全装置
 Safety fuse	熔断器
@@ -464,6 +468,7 @@ Sifter	筛分机
 Sight glass	视镜
 Sign in as an administrator to manage the server	以管理员身份登录以管理服务器
 Sign in or connect with the access token to change parts	请登录或使用访问令牌连接以更改部件
+Sign in or name the inspector in the report data first.	请先登录，或在报告数据中填写检验员。
 Sign in to keep favorites	登录以保存收藏夹
 Sign in to see the projects	登录以查看项目
 Sign in with a user account	使用用户帐户登录

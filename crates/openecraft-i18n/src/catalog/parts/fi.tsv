@@ -11,6 +11,7 @@ A project names who changed it last.	Projekti kertoo, kuka muutti sitä viimeksi
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rooli on joukko oikeuksia. Myönnöt antavat käyttäjälle tai ryhmälle roolin projekteihin (* ja ? jokerimerkkeinä, * kaikille); estävä myöntö poistaa roolin oikeudet riippumatta muista myönnöistä.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rooli on joukko oikeuksia. Myönnöt antavat käyttäjälle tai ryhmälle roolin valmistajan osiin (* ja ? jokerimerkkeinä, * kaikille); estävä myöntö poistaa roolin oikeudet riippumatta muista myönnöistä.
 A user name must not be empty or contain blanks	Käyttäjänimi ei saa olla tyhjä eikä sisältää välilyöntejä
+Above {} V: no SELV or PELV	Yli {} V: ei SELV eikä PELV
 Accept any certificate (test installations only)	Hyväksy mikä tahansa varmenne (vain testiasennukset)
 Access rights	Käyttöoikeudet
 Access settings saved	Käyttöoikeusasetukset tallennettu
@@ -228,6 +229,7 @@ Housing accessories, external extension	Kotelotarvikkeet, ulkoinen asennus
 Housing accessories, internal extension	Kotelotarvikkeet, sisäinen asennus
 Hydraulic motors	Hydraulimoottorit
 Hydraulic tanks	Hydraulisäiliöt
+IT system	IT-järjestelmä
 Images (PNG, JPEG, GIF, WebP, SVG)	Kuvat (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Tuonti / vienti
 Import parts	Tuo osia
@@ -374,6 +376,7 @@ Plug pin	Pistoliittimen nasta
 Position switch	Asentokytkin
 Power cable	Tehokaapeli
 Power contactor	Tehokontaktori
+Power supply unit	Virtalähde
 Power switchgear	Vahvavirtakytkinlaitteet
 Power units and plants	Koneikot ja laitokset
 Prefabricated	Esivalmistettu
@@ -430,6 +433,7 @@ Roof hook	Kattokoukku
 Routing accessories	Reititystarvikkeet
 Routing path (topology)	Reittiosuus (topologia)
 Routing point (topology)	Reittipiste (topologia)
+SELV, PELV and separation	SELV, PELV ja erotus
 Safety accumulators	Turva-akut
 Safety devices	Suojalaitteet
 Safety fuse	Sulake
@@ -468,6 +472,7 @@ Sifter	Seulain
 Sight glass	Näkölasi
 Sign in as an administrator to manage the server	Kirjaudu sisään järjestelmänvalvojana hallitaksesi palvelinta
 Sign in or connect with the access token to change parts	Kirjaudu sisään tai yhdistä käyttöoikeustunnuksella muuttaaksesi osia
+Sign in or name the inspector in the report data first.	Kirjaudu sisään tai anna ensin tarkastaja pöytäkirjan tiedoissa.
 Sign in to keep favorites	Kirjaudu sisään, jotta voit tallentaa suosikkeja
 Sign in to see the projects	Kirjaudu sisään nähdäksesi projektit
 Sign in with a user account	Kirjaudu käyttäjätilillä

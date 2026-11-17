@@ -140,6 +140,7 @@ EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is 
 Earth electrode resistance RA (Ω)	접지 전극 저항 RA (Ω)
 Edit	편집
 Editor	편집자
+Electrical separation	전기적 분리
 Electro-fluid cross reference	전기-유체 상호 참조
 Email	이메일
 Enclosure	외함
@@ -162,6 +163,7 @@ File	파일
 Files	파일
 Filter	필터
 Filter devices…	장치 필터…
+First fault current Id (A)	1선 지락 전류 Id (A)
 Fit	맞춤
 Fits	호환 대상
 Fitting at the end	끝 쪽 피팅
@@ -207,6 +209,8 @@ Inspection and test report	검사 및 시험 보고서
 Inspector	검사자
 Installation site	설치 장소
 Installer	시공자
+Insulating floors and walls (kΩ)	절연성 바닥과 벽 (kΩ)
+Insulation monitoring device	절연 감시 장치
 Insulation resistance (MΩ)	절연 저항 (MΩ)
 Insulation test voltage (V)	절연 시험 전압 (V)
 Integration	통합
@@ -307,6 +311,7 @@ No part {} in the project	프로젝트에 부품 {}이(가) 없습니다
 No parts found	부품을 찾을 수 없습니다
 No plot frame named {}	이름이 {}인 플롯 프레임 없음
 No plug {}	플러그 {} 없음
+No protective measure of its own	자체 보호 조치 없음
 No report block named {}	이름이 {}인 보고서 블록 없음
 No segment {}	세그먼트 {}이(가) 없습니다
 No station {}	스테이션 {} 없음
@@ -342,9 +347,11 @@ Order number	주문 번호
 Other	기타
 Outer diameter	외경
 Output	출력
+Output voltage (V)	출력 전압 (V)
 Overview	개요
 PCT loop	PCT 루프
 PCT loop overview	PCT 루프 개요
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC 카드
@@ -372,6 +379,7 @@ Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	부품(CSV, JSON, BMEcat, EPLAN X
 Parts import failed: {}	부품 가져오기 실패: {}
 Passed	합격
 Password	암호
+Phase sequence	상순
 Phases	상
 Phone	전화
 Picture	이미지
@@ -388,6 +396,7 @@ Plug	플러그
 Plug diagram	플러그 다이어그램
 Plugins	플러그인
 Plugs	플러그
+Polarity	극성
 Poles	극수
 Ports	포트
 Position	위치
@@ -423,6 +432,7 @@ Prospective fault current at the origin (kA)	인입점의 예상 고장 전류 (
 Protection	보호
 Protective conductor (Ω)	보호 도체 (Ω)
 Protective device	보호 장치
+Protective measure	보호 조치
 Quantity	수량
 Quantity (default 1)	수량(기본값 1)
 Quantity unit	수량 단위
@@ -476,6 +486,7 @@ Routing	배선 경로
 Rows of modules (east-west: rows of pairs)	모듈 열 (동서 방향: 쌍의 열)
 Rule	규칙
 Rule set	규칙 세트
+SELV	SELV
 Safety function	안전 기능
 Save	저장
 Saved	저장됨
@@ -597,6 +608,7 @@ Value	값
 Version	버전
 Viewer	뷰어
 Voltage	전압
+Voltage drop (%)	전압 강하(%)
 Warning	경고
 Warnings	경고
 Weight	무게
