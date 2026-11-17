@@ -77,7 +77,10 @@ editor=$(grep -o '[^"/]*_bg\.wasm' editor.html | head -n 1)
 test -n "$editor"
 curl -fsS -o /dev/null -D headers.txt -H 'Accept-Encoding: br' "$url/editor/$editor"
 grep -qi '^content-encoding: br' headers.txt
-curl -fsS -o /dev/null -D headers.txt -H 'Accept-Encoding: br' "$url/editor/${editor%_bg.wasm}.js"
+# trunk names the script after its own hash, not after the one of the WebAssembly.
+script=$(grep -o 'openecraft-[0-9a-f]*\.js' editor.html | head -n 1)
+test -n "$script"
+curl -fsS -o /dev/null -D headers.txt -H 'Accept-Encoding: br' "$url/editor/$script"
 grep -qi '^content-encoding: br' headers.txt
 grep -qi '^content-type: application/javascript' headers.txt
 docker logs "$name"

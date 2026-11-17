@@ -43,7 +43,9 @@ grep -qi '^content-type: application/wasm' "$work/headers.txt"
 grep -qi '^vary: accept-encoding' "$work/headers.txt"
 grep -qi '^cache-control: .*immutable' "$work/headers.txt"
 test "$(wc -c < "$work/wasm.br")" -lt "$(wc -c < "$work/wasm.gz")"
-script=${wasm%_bg.wasm}.js
+# trunk names the script after its own hash, not after the one of the WebAssembly.
+script=$(grep -o 'openecraft-[0-9a-f]*\.js' "$work/index.html" | head -n 1)
+test -n "$script"
 curl -fsS -o /dev/null -D "$work/headers.txt" -H 'Accept-Encoding: br' "http://127.0.0.1:$port/$script"
 grep -qi '^content-encoding: br' "$work/headers.txt"
 grep -qi '^content-type: application/javascript' "$work/headers.txt"
