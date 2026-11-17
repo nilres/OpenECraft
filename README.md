@@ -15,6 +15,15 @@ New to OpenECraft? The [tutorial](docs/tutorial.md) walks from the first page to
 of materials, and the [example projects](#example-projects) show the features step by
 step.
 
+## Try it online
+
+| | |
+| --- | --- |
+| **Website** | [openecraft.org](https://openecraft.org) – what OpenECraft does, with live demos of the schematic editor, the panel in 3D, the check, the reports and the exports in the browser ([website](docs/website.md)) |
+| **Web editor** | [editor.openecraft.org](https://editor.openecraft.org) – the full editor in the browser, nothing to install; *Save* downloads the project file ([web version](docs/installation.md#web-webassembly)) |
+| **Parts server** | [parts-server.openecraft.org](https://parts-server.openecraft.org) – the public data portal with the bundled manufacturer catalogs; browse it on its web page or enter its address in the editor's *Data portal* ([parts server](docs/parts-server.md#public-parts-server)) |
+| **Project server** | [project-server.openecraft.org](https://project-server.openecraft.org) – a public project server for shared projects with page locks; it needs an account ([project server](docs/project-server.md#public-project-server)) |
+
 ## Highlights
 
 | | |

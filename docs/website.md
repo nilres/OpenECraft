@@ -1,7 +1,9 @@
 # Website
 
-`website/` is the public page of the project: what OpenECraft does, shown with live
-demos instead of screenshots. The demos are the editor's own code compiled to
+`website/` is the public page of the project, online at
+[openecraft.org](https://openecraft.org) with the web editor at
+[editor.openecraft.org](https://editor.openecraft.org): what OpenECraft does, shown with
+live demos instead of screenshots. The demos are the editor's own code compiled to
 WebAssembly, not copies of it:
 
 | On the page | Runs |

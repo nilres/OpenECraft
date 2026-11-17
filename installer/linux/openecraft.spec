@@ -9,7 +9,7 @@ Version:        %{pkg_version}
 Release:        1
 Summary:        Electrical CAE editor: schematics, panel layouts and reports
 License:        (MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0 AND Bitstream-Vera AND MPL-2.0
-URL:            https://github.com/nilres/OpenECraft
+URL:            https://openecraft.org/
 # The window system and OpenGL libraries are loaded at run time, rpmbuild does not
 # see them.
 Requires:       libxkbcommon.so.0()(64bit)
