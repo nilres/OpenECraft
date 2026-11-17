@@ -20,10 +20,14 @@ fn texts_are_translated_with_the_rights_and_roles() {
 #[test]
 fn the_page_uses_known_texts_only() {
     let known: Vec<&str> = TEXTS.iter().chain(openecraft_web::TEXTS).copied().collect();
-    let missing = openecraft_web::unknown_texts(&[PAGE, SCRIPT, ADMIN_SCRIPT], &known);
+    let missing = openecraft_web::unknown_texts(&[PAGE, SCRIPT, ADMIN_SCRIPT, INSPECTION_SCRIPT], &known);
     assert!(missing.is_empty(), "texts of the page missing in web.rs TEXTS: {missing:?}");
     // Titles and labels the scripts translate by name.
     for label in ["Sessions", "Open sessions", "Closed", "Expired", "Signed out", "User deleted", "New password", "Overview", "Users", "Access rights", "Directories", "Server", "Version", "Projects", "Defined roles", "Grants", "Without sign-in", "Description", "Company", "Created by", "Date", "Revision"] {
+        assert!(known.contains(&label), "{label}");
+    }
+    // The fields, facts and verdicts of the inspection.
+    for label in ["Phases", "Cable", "Cross-section", "Protective device", "RCD", "Zs max (Ω)", "Protective conductor (Ω)", "Insulation resistance (MΩ)", "Loop impedance Zs (Ω)", "RCD trip current (mA)", "RCD trip time (ms)", "Function test", "Tested by", "Test instrument", "Remark", "Passed", "Not passed", "Incomplete", "Not tested"] {
         assert!(known.contains(&label), "{label}");
     }
 }

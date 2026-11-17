@@ -139,6 +139,7 @@ Discontinued	Megszűnt
 Display device	Kijelzőkészülék
 Document holder	Dokumentumtartó
 Door handle	Ajtófogantyú
+Download the report as an Excel workbook	A jegyzőkönyv letöltése Excel-munkafüzetként
 Drawings box	Rajztartó
 Dryer	Szárító
 Dummy plate	Vakkarima
@@ -170,6 +171,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Adja meg egy 
 Environment variable with the password of the service account	Környezeti változó a szolgáltatásfiók jelszavával
 Evaporator	Elpárologtató
 Everybody who may read the parts sees it.	Mindenki látja, aki olvashatja az alkatrészeket.
+Excel	Excel
 Exhaust valves	Légtelenítő szelepek
 Expired	Lejárt
 Export (CSV)	Exportálás (CSV)
@@ -181,6 +183,7 @@ Feed-through terminal	Átmenő sorkapocs
 Female insert	Hüvelyes betét
 Field distribution device	Terepi elosztó
 Files and history ({} files)	Fájlok és előzmények ({} fájl)
+Filter circuits…	Áramkörök szűrése…
 Filter fan	Szűrős ventilátor
 Filter projects…	Projektek szűrése…
 Filter sessions…	Munkamenetek szűrése…
@@ -283,6 +286,8 @@ New role	Új szerepkör
 New user	Új felhasználó
 Newer version	Újabb verzió
 Next	Következő
+Next circuit	Következő áramkör
+No circuits found	Nem található áramkör
 No devices found	Nem található készülék
 No ended sessions	Nincsenek befejezett munkamenetek
 No grants: the rights by manufacturer apply	Nincsenek hozzárendelések: a gyártó szerinti jogok érvényesek
@@ -296,6 +301,8 @@ Nobody works on a project	Senki sem dolgozik projekten
 Non-return valves	Visszacsapó szelepek
 None (only grants)	Nincs (csak hozzárendelések)
 Not mounted	Nincs felszerelve
+Not saved	Nincs mentve
+Nothing to save	Nincs mit menteni
 Nut	Anya
 On the front	Elöl
 On the left side	A bal oldalon
@@ -516,6 +523,7 @@ The last administrator cannot lose the right to manage users	Az utolsó rendszer
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	A cég logója: PNG, JPEG, GIF, WebP vagy SVG, legfeljebb 512 kB
 The password needs at least {} characters	A jelszónak legalább {} karakterből kell állnia
 The passwords do not match	A jelszavak nem egyeznek
+The project has no circuits fed from the mains	A projektben nincs hálózatról táplált áramkör
 The project has no devices	A projektben nincsenek készülékek
 The project has no pages	A projektben nincsenek oldalak
 The project has no parts	A projektnek nincsenek alkatrészei
@@ -616,6 +624,7 @@ unchanged if empty	változatlan, ha üres
 unexpected answer: {}	váratlan válasz: {}
 you	Ön
 {} ({}, {})	{} ({}, {})
+{} circuits	{} áramkör
 {} has no checksum in SHA256SUMS	A(z) {} fájlnak nincs ellenőrzőösszege az SHA256SUMS fájlban
 {} parts in {} catalogs, revision {}	{} alkatrész {} katalógusban, {}. revízió
 {} parts, {} catalogs, {}	{} alkatrész, {} katalógus, {}

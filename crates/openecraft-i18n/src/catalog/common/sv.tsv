@@ -133,6 +133,7 @@ Door cutout	Dörrurtag
 Download	Ladda ned
 Downloading {}…	Laddar ned {}…
 Drag to turn the model	Dra för att vrida modellen
+Drawings	Ritningar
 EMC clearance	EMC-avstånd
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal och andra namn är varumärken som tillhör sina ägare. OpenECraft är ett fristående projekt.
 Edit	Redigera
@@ -172,6 +173,7 @@ Function	Funktion
 Function (=)	Funktion (=)
 Function definition	Funktionsdefinition
 Function template	Funktionsmall
+Function test	Funktionsprov
 Function text	Funktionstext
 Functional safety	Funktionssäkerhet
 Functions	Funktioner
@@ -196,7 +198,10 @@ Identifier	Identifierare
 Identifying letter	Kodbokstav
 Image	Bild
 Import	Import
+Incomplete	Ofullständig
 Input	Ingång
+Inspection and test report	Besiktnings- och provningsprotokoll
+Insulation resistance (MΩ)	Isolationsresistans (MΩ)
 Integration	Integration
 Internal (bottom)	Intern (nedan)
 Interruption point	Avbrottspunkt
@@ -234,6 +239,7 @@ Location (+)	Placering (+)
 Locked	Låst
 Locked by {}	Låst av {}
 Logo	Logotyp
+Loop impedance Zs (Ω)	Slingimpedans Zs (Ω)
 MTTFd (years)	MTTFd (år)
 Machine	Maskin
 Main	Huvud
@@ -278,6 +284,7 @@ Next page	Nästa sida
 No	Nej
 No Vault item matches a part of the project	Inget Vault-objekt matchar någon artikel i projektet
 No cable {}	Ingen kabel {}
+No circuit {}	Ingen krets {}
 No connection point {}	Ingen anslutningspunkt {}
 No device {}	Ingen apparat {}
 No enclosure {}	Ingen kapsling {}
@@ -300,18 +307,22 @@ No such section	Avsnittet finns inte
 No symbol with id {}	Ingen symbol med ID {}
 No title block of the project named {}	Ingen namnruta i projektet med namnet {}
 Nominal size	Nominell storlek
+Not OK	Inte OK
 Not a language code: {}	Inte en språkkod: {}
 Not a macro file: {}	Inte en makrofil: {}
 Not a symbol id: {}	Inget symbol-ID: {}
 Not a title block file: {}	Inte en namnrutefil: {}
 Not a valid rule set file: {}	Inte en giltig regelverksfil: {}
 Not in the schematic	Inte i schemat
+Not passed	Underkänd
+Not tested	Inte provad
 Note	Obs!
 Notes	Anteckningar
 Number	Nummer
 Number of down conductors (0: as many as the class needs for the walls)	Antal nedledare (0: så många som klassen kräver för väggarna)
 Number the sections 1, 2, 3 … on every level first	Numrera först avsnitten 1, 2, 3 … på varje nivå
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numrerar apparatbeteckningarna per struktur och kodbokstav i schemaordning (sida, kolumn, uppifrån och ned)
+OK	OK
 Only rows containing this text	Endast rader som innehåller den här texten
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft levereras utan garanti. Dess beräkningar och kontroller stöder projekteringen; en kvalificerad person måste kontrollera resultaten mot gällande standarder och föreskrifter.
@@ -349,7 +360,9 @@ Part {}	Artikel {}
 Parts	Artiklar
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artiklar (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Artikelimporten misslyckades: {}
+Passed	Godkänd
 Password	Lösenord
+Phases	Faser
 Phone	Telefon
 Picture	Bild
 Pieces	Antal
@@ -397,9 +410,14 @@ Project properties	Projektegenskaper
 Properties	Egenskaper
 Property	Egenskap
 Protection	Skydd
+Protective conductor (Ω)	Skyddsledare (Ω)
+Protective device	Skyddsdon
 Quantity	Mängd
 Quantity (default 1)	Antal (standard 1)
 Quantity unit	Mängdenhet
+RCD	Jordfelsbrytare
+RCD trip current (mA)	Jordfelsbrytarens utlösningsström (mA)
+RCD trip time (ms)	Jordfelsbrytarens utlösningstid (ms)
 Rack	Rack
 Rail	Skena
 Range	Område
@@ -416,6 +434,7 @@ Relative humidity	Relativ luftfuktighet
 Relay	Relä
 Released	Frisläppt
 Released pages cannot be moved	Frisläppta sidor kan inte flyttas
+Remark	Anmärkning
 Remove	Ta bort
 Remove from favorites	Ta bort från favoriter
 Remove the boundary	Ta bort gränsen
@@ -446,6 +465,7 @@ Rule	Regel
 Rule set	Regelverk
 Safety function	Säkerhetsfunktion
 Save	Spara
+Saved	Sparat
 Saved catalog {}	Katalog {} sparad
 Saved user {}	Användare {} sparad
 Saved {}	{} sparad
@@ -509,6 +529,8 @@ Terminal strip	Plintrad
 Terminal strips	Plintrader
 Terminal type	Plinttyp
 Terminals	Plintar
+Test instrument	Mätinstrument
+Tested by	Provad av
 Text	Text
 Text to find	Text att söka efter
 The freestanding PV array {} stands outside the plot boundary	Det markmonterade solcellsfältet {} står utanför tomtgränsen
@@ -571,12 +593,14 @@ Wired	Inkopplad
 Wires	Ledningar
 Wiring	Inkoppling
 Yes	Ja
+Zs max (Ω)	Zs max (Ω)
 access denied	åtkomst nekad
 approved	godkänd
 bonded	ansluten
 file or folder not found	filen eller mappen hittades inte
 landscape	liggande
 left	vänster
+missing	saknas
 mm	mm
 none	inget
 normal	normal

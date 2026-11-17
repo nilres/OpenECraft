@@ -133,6 +133,7 @@ Door cutout	Wycięcie w drzwiach
 Download	Pobierz
 Downloading {}…	Pobieranie {}…
 Drag to turn the model	Przeciągnij, aby obrócić model
+Drawings	Rysunki
 EMC clearance	Odstęp EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal i inne nazwy są znakami towarowymi ich właścicieli. OpenECraft jest niezależnym projektem.
 Edit	Edycja
@@ -172,6 +173,7 @@ Function	Funkcja
 Function (=)	Funkcja (=)
 Function definition	Definicja funkcji
 Function template	Szablon funkcji
+Function test	Próba działania
 Function text	Tekst funkcji
 Functional safety	Bezpieczeństwo funkcjonalne
 Functions	Funkcje
@@ -196,7 +198,10 @@ Identifier	Identyfikator
 Identifying letter	Litera kodu
 Image	Obraz
 Import	Import
+Incomplete	Niekompletne
 Input	Wejście
+Inspection and test report	Protokół z badań odbiorczych
+Insulation resistance (MΩ)	Rezystancja izolacji (MΩ)
 Integration	Integracja
 Internal (bottom)	Wewnętrzny (dół)
 Interruption point	Punkt przerwania
@@ -234,6 +239,7 @@ Location (+)	Miejsce montażu (+)
 Locked	Zablokowana
 Locked by {}	Zablokowane przez {}
 Logo	Logo
+Loop impedance Zs (Ω)	Impedancja pętli zwarcia Zs (Ω)
 MTTFd (years)	MTTFd (lata)
 Machine	Maszyna
 Main	Główny
@@ -278,6 +284,7 @@ Next page	Następna strona
 No	Nie
 No Vault item matches a part of the project	Żaden element Vault nie pasuje do artykułu projektu
 No cable {}	Brak kabla {}
+No circuit {}	Brak obwodu {}
 No connection point {}	Brak punktu przyłączeniowego {}
 No device {}	Brak urządzenia {}
 No enclosure {}	Brak obudowy {}
@@ -300,18 +307,22 @@ No such section	Nie ma takiej sekcji
 No symbol with id {}	Brak symbolu o identyfikatorze {}
 No title block of the project named {}	Brak tabliczki rysunkowej projektu o nazwie {}
 Nominal size	Średnica nominalna
+Not OK	Nie OK
 Not a language code: {}	To nie jest kod języka: {}
 Not a macro file: {}	To nie jest plik makr: {}
 Not a symbol id: {}	To nie jest identyfikator symbolu: {}
 Not a title block file: {}	To nie jest plik tabliczek rysunkowych: {}
 Not a valid rule set file: {}	To nie jest prawidłowy plik zestawu reguł: {}
 Not in the schematic	Nie na schemacie
+Not passed	Negatywny
+Not tested	Nie badano
 Note	Uwaga
 Notes	Notatki
 Number	Numer
 Number of down conductors (0: as many as the class needs for the walls)	Liczba przewodów odprowadzających (0: tyle, ile klasa wymaga dla ścian)
 Number the sections 1, 2, 3 … on every level first	Najpierw numeruj sekcje 1, 2, 3 … na każdym poziomie
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numeruje oznaczenia urządzeń według struktury i litery kodu w kolejności schematu (strona, kolumna, od góry do dołu)
+OK	OK
 Only rows containing this text	Tylko wiersze zawierające ten tekst
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft jest dostarczany bez gwarancji. Jego obliczenia i kontrole wspomagają projektowanie; wykwalifikowana osoba musi sprawdzić wyniki pod kątem obowiązujących norm i przepisów.
@@ -349,7 +360,9 @@ Part {}	Artykuł {}
 Parts	Artykuły
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artykuły (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Import artykułów nie powiódł się: {}
+Passed	Pozytywny
 Password	Hasło
+Phases	Fazy
 Phone	Telefon
 Picture	Obraz
 Pieces	Sztuki
@@ -397,9 +410,14 @@ Project properties	Właściwości projektu
 Properties	Właściwości
 Property	Właściwość
 Protection	Ochrona
+Protective conductor (Ω)	Przewód ochronny (Ω)
+Protective device	Urządzenie zabezpieczające
 Quantity	Ilość
 Quantity (default 1)	Ilość (domyślnie 1)
 Quantity unit	Jednostka ilości
+RCD	RCD
+RCD trip current (mA)	Prąd zadziałania RCD (mA)
+RCD trip time (ms)	Czas zadziałania RCD (ms)
 Rack	Kaseta
 Rail	Szyna
 Range	Zakres
@@ -416,6 +434,7 @@ Relative humidity	Wilgotność względna
 Relay	Przekaźnik
 Released	Wydane
 Released pages cannot be moved	Nie można przenosić wydanych stron
+Remark	Uwaga
 Remove	Usuń
 Remove from favorites	Usuń z ulubionych
 Remove the boundary	Usuń granicę
@@ -446,6 +465,7 @@ Rule	Reguła
 Rule set	Zestaw reguł
 Safety function	Funkcja bezpieczeństwa
 Save	Zapisz
+Saved	Zapisano
 Saved catalog {}	Zapisano katalog {}
 Saved user {}	Zapisano użytkownika {}
 Saved {}	Zapisano {}
@@ -509,6 +529,8 @@ Terminal strip	Listwa zaciskowa
 Terminal strips	Listwy zaciskowe
 Terminal type	Typ zacisku
 Terminals	Zaciski
+Test instrument	Przyrząd pomiarowy
+Tested by	Badał
 Text	Tekst
 Text to find	Tekst do znalezienia
 The freestanding PV array {} stands outside the plot boundary	Naziemne pole PV {} stoi poza granicą działki
@@ -571,12 +593,14 @@ Wired	Podłączone
 Wires	Przewody
 Wiring	Okablowanie
 Yes	Tak
+Zs max (Ω)	Zs maks. (Ω)
 access denied	odmowa dostępu
 approved	zatwierdzona
 bonded	przyłączone
 file or folder not found	nie znaleziono pliku ani folderu
 landscape	poziomo
 left	w lewo
+missing	brak
 mm	mm
 none	brak
 normal	normalny

@@ -133,6 +133,7 @@ Door cutout	Výřez ve dveřích
 Download	Stáhnout
 Downloading {}…	Stahování {}…
 Drag to turn the model	Tažením model otočíte
+Drawings	Výkresy
 EMC clearance	Odstup EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal a další názvy jsou ochranné známky svých vlastníků. OpenECraft je nezávislý projekt.
 Edit	Úpravy
@@ -172,6 +173,7 @@ Function	Funkce
 Function (=)	Funkce (=)
 Function definition	Definice funkce
 Function template	Šablona funkce
+Function test	Zkouška funkce
 Function text	Text funkce
 Functional safety	Funkční bezpečnost
 Functions	Funkce
@@ -196,7 +198,10 @@ Identifier	Identifikátor
 Identifying letter	Kódové písmeno
 Image	Obrázek
 Import	Import
+Incomplete	Neúplné
 Input	Vstup
+Inspection and test report	Revizní zpráva
+Insulation resistance (MΩ)	Izolační odpor (MΩ)
 Integration	Integrace
 Internal (bottom)	Interní (dole)
 Interruption point	Bod přerušení
@@ -234,6 +239,7 @@ Location (+)	Umístění (+)
 Locked	Uzamčená
 Locked by {}	Uzamčeno uživatelem {}
 Logo	Logo
+Loop impedance Zs (Ω)	Impedance smyčky Zs (Ω)
 MTTFd (years)	MTTFd (roky)
 Machine	Stroj
 Main	Hlavní
@@ -278,6 +284,7 @@ Next page	Další stránka
 No	Ne
 No Vault item matches a part of the project	Žádná položka Vault neodpovídá artiklu projektu
 No cable {}	Žádný kabel {}
+No circuit {}	Žádný obvod {}
 No connection point {}	Žádný připojovací bod {}
 No device {}	Přístroj {} neexistuje
 No enclosure {}	Žádná skříň {}
@@ -300,18 +307,22 @@ No such section	Takový oddíl neexistuje
 No symbol with id {}	Žádný symbol s ID {}
 No title block of the project named {}	Žádné rohové razítko projektu s názvem {}
 Nominal size	Jmenovitá světlost
+Not OK	Nevyhovuje
 Not a language code: {}	Nejde o kód jazyka: {}
 Not a macro file: {}	Nejde o soubor maker: {}
 Not a symbol id: {}	Není ID symbolu: {}
 Not a title block file: {}	Nejde o soubor rohových razítek: {}
 Not a valid rule set file: {}	Neplatný soubor sady pravidel: {}
 Not in the schematic	Není ve schématu
+Not passed	Nevyhovuje
+Not tested	Nezkoušeno
 Note	Poznámka
 Notes	Poznámky
 Number	Číslo
 Number of down conductors (0: as many as the class needs for the walls)	Počet svodů (0: tolik, kolik třída vyžaduje pro zdi)
 Number the sections 1, 2, 3 … on every level first	Nejprve očíslovat oddíly 1, 2, 3 … na každé úrovni
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Očísluje označení přístrojů podle struktury a identifikačního písmene v pořadí schématu (stránka, sloupec, shora dolů)
+OK	OK
 Only rows containing this text	Jen řádky s tímto textem
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft je poskytován bez záruky. Jeho výpočty a kontroly podporují projektování; výsledky musí kvalifikovaná osoba ověřit podle platných norem a předpisů.
@@ -349,7 +360,9 @@ Part {}	Artikl {}
 Parts	Artikly
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artikly (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Import artiklů se nezdařil: {}
+Passed	Vyhovuje
 Password	Heslo
+Phases	Fáze
 Phone	Telefon
 Picture	Obrázek
 Pieces	Kusy
@@ -397,9 +410,14 @@ Project properties	Vlastnosti projektu
 Properties	Vlastnosti
 Property	Vlastnost
 Protection	Ochrana
+Protective conductor (Ω)	Ochranný vodič (Ω)
+Protective device	Ochranný přístroj
 Quantity	Množství
 Quantity (default 1)	Množství (výchozí 1)
 Quantity unit	Jednotka množství
+RCD	Proudový chránič
+RCD trip current (mA)	Vybavovací proud chrániče (mA)
+RCD trip time (ms)	Vybavovací doba chrániče (ms)
 Rack	Nosný rám
 Rail	Lišta
 Range	Rozsah
@@ -416,6 +434,7 @@ Relative humidity	Relativní vlhkost vzduchu
 Relay	Relé
 Released	Uvolněno
 Released pages cannot be moved	Uvolněné stránky nelze přesouvat
+Remark	Poznámka
 Remove	Odebrat
 Remove from favorites	Odebrat z oblíbených
 Remove the boundary	Odstranit hranici
@@ -446,6 +465,7 @@ Rule	Pravidlo
 Rule set	Sada pravidel
 Safety function	Bezpečnostní funkce
 Save	Uložit
+Saved	Uloženo
 Saved catalog {}	Katalog {} uložen
 Saved user {}	Uživatel {} uložen
 Saved {}	Uloženo: {}
@@ -509,6 +529,8 @@ Terminal strip	Svorkovnice
 Terminal strips	Svorkovnice
 Terminal type	Typ svorky
 Terminals	Svorky
+Test instrument	Měřicí přístroj
+Tested by	Zkoušel
 Text	Text
 Text to find	Hledaný text
 The freestanding PV array {} stands outside the plot boundary	Pozemní FV pole {} stojí mimo hranice pozemku
@@ -571,12 +593,14 @@ Wired	Zapojeno
 Wires	Vodiče
 Wiring	Zapojování
 Yes	Ano
+Zs max (Ω)	Zs max (Ω)
 access denied	přístup odepřen
 approved	schváleno
 bonded	pospojeno
 file or folder not found	soubor nebo složka nenalezeny
 landscape	na šířku
 left	doleva
+missing	chybí
 mm	mm
 none	žádná
 normal	normální

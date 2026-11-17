@@ -29,7 +29,7 @@ zoom, language, check results and the messages of the session.
 | Wire numbers | *Connections › Wire numbering…*; single wire: type a number (kept by automatic numbering) |
 | Macros | select items, right click › *Save selection as macro…*; place them from the Insert center or *Insert › Macro…* |
 | Configurator | *Project data › Configurator*: options, rules with page macros, *Generate pages* |
-| Bulk changes | *Project data › Edit in table* (or the table button of a navigator): devices, connections, terminals, cables, plug pins, PLC points, pages and parts; filter, edit, fill, find and replace, CSV |
+| Bulk changes | *Project data › Edit in table* (or the table button of a navigator): devices, connections, terminals, cables, plug pins, PLC points, pages, parts and the results of the inspection; filter, edit, fill, find and replace, CSV |
 | Project check | *Messages* pane (`F4`): sortable table of the messages; click shows the object, right click accepts, changes the level or switches the check off |
 | Enclosure climate | panel layout: select the enclosure › *Climate (IEC 60890)* |
 | Terminal strips / PLC | *Devices › Terminal strips* / *Devices › PLC overview* |

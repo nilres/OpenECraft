@@ -131,6 +131,7 @@ Door cutout	扉の切り欠き
 Download	ダウンロード
 Downloading {}…	{} をダウンロードしています…
 Drag to turn the model	ドラッグしてモデルを回転
+Drawings	図面
 EMC clearance	EMC クリアランス
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN、TIA Portal、その他の名称は各所有者の商標です。OpenECraft は独立したプロジェクトです。
 Edit	編集
@@ -170,6 +171,7 @@ Function	機能
 Function (=)	機能 (=)
 Function definition	機能定義
 Function template	機能テンプレート
+Function test	動作試験
 Function text	機能テキスト
 Functional safety	機能安全
 Functions	機能
@@ -194,7 +196,10 @@ Identifier	識別子
 Identifying letter	識別文字
 Image	画像
 Import	インポート
+Incomplete	未完了
 Input	入力
+Inspection and test report	点検・試験報告書
+Insulation resistance (MΩ)	絶縁抵抗 (MΩ)
 Integration	統合
 Internal (bottom)	内部 (下)
 Interruption point	中断ポイント
@@ -232,6 +237,7 @@ Location (+)	取付場所 (+)
 Locked	ロック
 Locked by {}	{} がロック中
 Logo	ロゴ
+Loop impedance Zs (Ω)	ループインピーダンス Zs (Ω)
 MTTFd (years)	MTTFd (年)
 Machine	機械
 Main	メイン
@@ -276,6 +282,7 @@ Next page	次のページ
 No	いいえ
 No Vault item matches a part of the project	プロジェクトの部品に一致する Vault アイテムはありません
 No cable {}	ケーブル {} はありません
+No circuit {}	回路 {} がありません
 No connection point {}	接続点 {} がありません
 No device {}	デバイス {} はありません
 No enclosure {}	エンクロージャー {} はありません
@@ -298,18 +305,22 @@ No such section	そのセクションはありません
 No symbol with id {}	ID {} のシンボルはありません
 No title block of the project named {}	プロジェクトに {} という名前の表題欄はありません
 Nominal size	呼び径
+Not OK	NG
 Not a language code: {}	言語コードではありません: {}
 Not a macro file: {}	マクロファイルではありません: {}
 Not a symbol id: {}	シンボル ID ではありません: {}
 Not a title block file: {}	表題欄ファイルではありません: {}
 Not a valid rule set file: {}	有効なルールセットファイルではありません: {}
 Not in the schematic	回路図にありません
+Not passed	不合格
+Not tested	未試験
 Note	注記
 Notes	メモ
 Number	番号
 Number of down conductors (0: as many as the class needs for the walls)	引下げ導線の数 (0: クラスが壁に必要とする数)
 Number the sections 1, 2, 3 … on every level first	最初に各レベルのセクションを 1, 2, 3 … と番号付けする
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	デバイスタグを構造と識別文字ごとに回路図の順序 (ページ、列、上から下) で番号付けします
+OK	OK
 Only rows containing this text	このテキストを含む行のみ
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft は無保証で提供されます。計算とチェックは設計を支援するものであり、結果は有資格者が適用される規格と規制に照らして確認する必要があります。
@@ -347,7 +358,9 @@ Part {}	部品 {}
 Parts	部品
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	部品 (CSV、JSON、BMEcat、EPLAN XML、EDZ、ZIP)
 Parts import failed: {}	部品のインポートに失敗しました: {}
+Passed	合格
 Password	パスワード
+Phases	相
 Phone	電話
 Picture	画像
 Pieces	個数
@@ -395,9 +408,14 @@ Project properties	プロジェクトプロパティ
 Properties	プロパティ
 Property	プロパティ
 Protection	保護
+Protective conductor (Ω)	保護導体 (Ω)
+Protective device	保護機器
 Quantity	量
 Quantity (default 1)	数量 (既定値 1)
 Quantity unit	数量単位
+RCD	RCD
+RCD trip current (mA)	RCD 動作電流 (mA)
+RCD trip time (ms)	RCD 動作時間 (ms)
 Rack	ラック
 Rail	レール
 Range	範囲
@@ -414,6 +432,7 @@ Relative humidity	相対湿度
 Relay	リレー
 Released	リリース済み
 Released pages cannot be moved	リリース済みのページは移動できません
+Remark	備考
 Remove	削除
 Remove from favorites	お気に入りから削除
 Remove the boundary	境界を削除
@@ -444,6 +463,7 @@ Rule	ルール
 Rule set	ルールセット
 Safety function	安全機能
 Save	保存
+Saved	保存済み
 Saved catalog {}	カタログ {} を保存しました
 Saved user {}	ユーザー {} を保存しました
 Saved {}	{} を保存しました
@@ -507,6 +527,8 @@ Terminal strip	端子台
 Terminal strips	端子台
 Terminal type	端子タイプ
 Terminals	端子
+Test instrument	測定器
+Tested by	試験者
 Text	テキスト
 Text to find	検索するテキスト
 The freestanding PV array {} stands outside the plot boundary	野立てPVアレイ {} は敷地境界の外にあります
@@ -568,12 +590,14 @@ Wired	配線済み
 Wires	電線
 Wiring	配線作業
 Yes	はい
+Zs max (Ω)	Zs 最大 (Ω)
 access denied	アクセスが拒否されました
 approved	承認済み
 bonded	ボンディング済み
 file or folder not found	ファイルまたはフォルダーが見つかりません
 landscape	横
 left	左
+missing	なし
 mm	mm
 normal	標準
 not bonded	未ボンディング

@@ -85,7 +85,7 @@ pub static COMMANDS: &[Spec] = &[
     },
 ];
 
-pub const KIND: Param = param("table", Kind::Str, tr_const!("devices, connections, terminals, cables, plugs, plc, pages or parts"));
+pub const KIND: Param = param("table", Kind::Str, tr_const!("devices, connections, terminals, cables, plugs, plc, pages, parts or inspection"));
 
 fn list_connections(prj: &mut Project, _: &Args) -> Result<Value, String> {
     let potentials = Netlist::build(prj, true);

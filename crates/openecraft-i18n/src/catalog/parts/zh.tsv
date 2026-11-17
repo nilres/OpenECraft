@@ -138,6 +138,7 @@ Discontinued	已停产
 Display device	显示设备
 Document holder	文件夹
 Door handle	门把手
+Download the report as an Excel workbook	将报告下载为 Excel 工作簿
 Drawings box	图纸盒
 Dryer	干燥机
 Dummy plate	盲板
@@ -169,6 +170,7 @@ Enter the address of an openecraft-parts-server and click Connect.	输入 openec
 Environment variable with the password of the service account	包含服务帐户密码的环境变量
 Evaporator	蒸发器
 Everybody who may read the parts sees it.	所有可以读取部件的人都能看到。
+Excel	Excel
 Exhaust valves	排气阀
 Expired	已过期
 Export (CSV)	导出 (CSV)
@@ -180,6 +182,7 @@ Feed-through terminal	直通端子
 Female insert	母头插芯
 Field distribution device	现场分配器
 Files and history ({} files)	文件和历史记录（{} 个文件）
+Filter circuits…	筛选回路…
 Filter fan	过滤风扇
 Filter projects…	筛选项目…
 Filter sessions…	筛选会话…
@@ -282,6 +285,8 @@ New role	新建角色
 New user	新建用户
 Newer version	有更新版本
 Next	下一页
+Next circuit	下一个回路
+No circuits found	未找到回路
 No devices found	未找到设备
 No ended sessions	没有已结束的会话
 No grants: the rights by manufacturer apply	没有授权：按制造商的权限生效
@@ -295,6 +300,8 @@ Nobody works on a project	没有人在处理项目
 Non-return valves	单向阀
 None (only grants)	无（仅授权）
 Not mounted	不安装
+Not saved	未保存
+Nothing to save	没有要保存的内容
 Nut	螺母
 On the front	前面
 On the left side	左侧
@@ -515,6 +522,7 @@ The last administrator cannot lose the right to manage users	最后一个管理�
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	公司的标志：PNG、JPEG、GIF、WebP 或 SVG，最大 512 kB
 The password needs at least {} characters	密码至少需要 {} 个字符
 The passwords do not match	两次输入的密码不一致
+The project has no circuits fed from the mains	项目中没有由电网供电的回路
 The project has no devices	该项目没有设备
 The project has no pages	该项目没有页
 The project has no parts	项目没有部件
@@ -614,6 +622,7 @@ unchanged if empty	留空则不更改
 unexpected answer: {}	意外的响应：{}
 you	您
 {} ({}, {})	{} ({}, {})
+{} circuits	{} 个回路
 {} has no checksum in SHA256SUMS	SHA256SUMS 中没有 {} 的校验和
 {} parts in {} catalogs, revision {}	{1} 个目录中共 {0} 个部件，修订 {2}
 {} parts, {} catalogs, {}	{} 个部件，{} 个目录，{}

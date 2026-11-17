@@ -1,5 +1,6 @@
 //! Electrical calculations and verification: supply and installation conditions,
-//! short circuit and selectivity, loads, EMC, safety functions and rule sets.
+//! short circuit and selectivity, loads, EMC, safety functions, rule sets and the
+//! inspection and test report of the installation.
 
 use crate::builtin::common::{int_in, num_in, NO_MAX};
 use crate::params::{optional, Args, Kind};
@@ -11,8 +12,9 @@ use openecraft_core::shortcircuit::Basis;
 use openecraft_core::model::Project;
 use openecraft_core::rules::{self, RuleSet};
 use openecraft_core::safety::{self, SafetyFunction};
+use openecraft_core::inspection::{self, Field};
 use openecraft_core::{emc, loads, shortcircuit};
-use openecraft_i18n::{tr_const, tr_fmt};
+use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 
 pub struct Electrical;
@@ -102,6 +104,15 @@ pub static COMMANDS: &[Spec] = &[
             optional("remove", Kind::Str, tr_const!("Name of the customer rule set to remove")),
         ],
         run: rule_sets,
+    },
+    Spec {
+        name: "inspection_report",
+        help: tr_const!("Inspection and test report of the installation (IEC 60364-6): every circuit of the mains with what the schematic gives (description, cables, protective device, residual current device, highest loop impedance; null: missing in the project), the results measured and the verdict; sets results of a circuit"),
+        params: &[
+            optional("circuit", Kind::Str, tr_const!("Device tag of the protective device whose results to set")),
+            optional("results", Kind::Object, tr_const!("Results to set: continuity (Ω), insulation (MΩ), loop_impedance (Ω), rcd_current (mA), rcd_time (ms), function (ok or failed), tester, date, instrument, remark; an empty text clears")),
+        ],
+        run: inspection_report,
     },
     Spec {
         name: "verify_project",
@@ -195,6 +206,40 @@ fn finite(v: f32) -> Value {
     } else {
         Value::Null
     }
+}
+
+fn inspection_report(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    if let Some(results) = a.value("results") {
+        let circuit = a.str("circuit").ok_or_else(|| tr("Name the circuit whose results to set").to_string())?;
+        let results = results.as_object().ok_or_else(|| tr("The results are an object of fields and values").to_string())?;
+        let an = Analysis::build(prj);
+        if !inspection::circuits(prj, &an.netlist, &an.connections).iter().any(|c| c.circuit == circuit) {
+            return Err(tr_fmt!("No circuit {}", circuit));
+        }
+        // All values or none.
+        let mut changed = prj.clone();
+        for (key, value) in results {
+            let field = Field::from_key(key).ok_or_else(|| tr_fmt!("Unknown field: {}", key))?;
+            let text = match value {
+                Value::String(s) => s.clone(),
+                Value::Number(n) => n.to_string(),
+                Value::Null => String::new(),
+                _ => return Err(tr_fmt!("Unknown field: {}", key)),
+            };
+            inspection::set(&mut changed, circuit, field, &text)?;
+        }
+        prj.inspection = changed.inspection;
+    }
+    let an = Analysis::build(prj);
+    let supply = &prj.electrical.supply;
+    Ok(json!({
+        "u0_v": supply.u0(),
+        "earthing": supply.earthing.title(),
+        "min_insulation_mohm": inspection::MIN_INSULATION,
+        "max_rcd_time_ms": inspection::MAX_RCD_TIME,
+        "loop_factor": inspection::LOOP_FACTOR,
+        "circuits": inspection::circuits(prj, &an.netlist, &an.connections),
+    }))
 }
 
 fn short_circuit(prj: &mut Project, _: &Args) -> Result<Value, String> {

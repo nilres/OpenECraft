@@ -96,6 +96,8 @@ Layers, bottom up (a module may use its own layer and the layers below):
    wrapping, rotation, path function texts).
 5. Feature logic and page editing: `ops`, `routing` (schematic wires: routes, wires that follow a move), `arrange` (align, distribute, multiple copy), `device_boxes` (freely drawn device boxes and their device connection points; `ops` uses it for new points), `panel`, `electrical`, `fluid`, `plc`,
    `plc_hw`, `field`, `routing3d`, `strips`, `plugs`, `pinout` (connector faces, flat cables), `harness`, `marking`, `forms`,
+   `inspection` (the circuits of the inspection and test report with their results;
+   shared projects merge the results circuit by circuit, like the review),
    `report_blocks`, `revision`, `review`, `compare`, …
 6. Derived data and the registry: `analysis` (`Analysis`: index, netlists,
    connections, wire ends, panel wiring, routing, field plan, report tables on demand), `checks`

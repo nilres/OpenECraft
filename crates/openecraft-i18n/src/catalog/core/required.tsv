@@ -236,6 +236,7 @@ Checked	Geprüft	Vérifiés	Comprobados
 Checked by	Geprüft von	Vérifié par	Revisado por
 Checking the project	Projekt wird geprüft	Vérification du projet	Comprobando el proyecto
 Choose the pages of the subproject	Wählen Sie die Seiten des Teilprojekts	Choisissez les pages du sous-projet	Elija las páginas del subproyecto
+Circuit	Stromkreis	Circuit	Circuito
 Circuit breaker (single-line)	Leistungsschalter (einpolig dargestellt)	Disjoncteur (unifilaire)	Interruptor automático (unifilar)
 Circuit breaker 1-pole	Leitungsschutzschalter 1-polig	Disjoncteur 1 pôle	Interruptor automático 1 polo
 Circuit breaker 1-pole (NFPA)	Leitungsschutzschalter 1-polig (NFPA)	Disjoncteur unipolaire (NFPA)	Interruptor automático unipolar (NFPA)
@@ -1032,7 +1033,6 @@ No wall {}	Keine Wand {}	Pas de mur {}	No hay pared {}
 No wires at the pins of {}	Keine Verbindungen an den Pins von {}	Aucun fil aux broches de {}	No hay cables en los pines de {}
 Nominal discharge current	Nennableitstoßstrom	Courant nominal de décharge	Corriente nominal de descarga
 Non-return valve	Rückschlagventil	Clapet anti-retour	Válvula de retención
-Not OK	Nicht OK	Non conforme	No conforme
 Not a DWG file	Keine DWG-Datei	Pas un fichier DWG	No es un archivo DWG
 Not a DXF file	Keine DXF-Datei	Pas un fichier DXF	No es un archivo DXF
 Not a DXF file (binary DXF is not supported)	Keine DXF-Datei (binäres DXF wird nicht unterstützt)	Pas un fichier DXF (le DXF binaire n'est pas pris en charge)	No es un archivo DXF (el DXF binario no es compatible)
@@ -1068,7 +1068,6 @@ Number of switch positions	Anzahl Schaltstellungen	Nombre de positions	Número d
 Number of symbols	Anzahl Symbole	Nombre de symboles	Número de símbolos
 Numbers (0, 1, 2)	Zahlen (0, 1, 2)	Nombres (0, 1, 2)	Números (0, 1, 2)
 Numbers (1, 2, 3)	Zahlen (1, 2, 3)	Chiffres (1, 2, 3)	Números (1, 2, 3)
-OK	OK	OK	OK
 Ohmmeter	Widerstandsmesser	Ohmmètre	Óhmetro
 Oil resistant	Ölbeständig	Résistant à l'huile	Resistente al aceite
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Eine Schaltplanseite mit den Potentialen +24V / 0V, Tastern, einem Wahlschalter, Leuchten und einer Sicherung; Artikel und Stückliste.	Une page de schéma avec les potentiels +24V / 0V, des boutons-poussoirs, un commutateur, des voyants et un fusible ; articles et nomenclature.	Una página de esquema con los potenciales +24V / 0V, pulsadores, un selector, pilotos y un fusible; artículos y lista de materiales.
@@ -1213,7 +1212,6 @@ Phase (L)	Außenleiter (L)	Phase (L)	Fase (L)
 Phase meter	Phasenwinkelmesser	Phasemètre	Fasímetro
 Phase unbalance {} % above {} %	Phasenunsymmetrie {} % über {} %	Déséquilibre des phases {} % supérieur à {} %	Desequilibrio de fases {} % superior al {} %
 Phase {}	Phase {}	Phase {}	Fase {}
-Phases	Phasen	Phases	Fases
 Photodiode	Fotodiode	Photodiode	Fotodiodo
 Photoelectric sensor, diffuse, 3-wire	Reflexions-Lichttaster, 3-Leiter	Détecteur photoélectrique en mode diffus, 3 fils	Fotocélula de detección directa, 3 hilos
 Photoelectric sensor, diffuse, 4-wire	Reflexions-Lichttaster, 4-Leiter	Détecteur photoélectrique en mode diffus, 4 fils	Fotocélula de detección directa, 4 hilos
@@ -1332,7 +1330,6 @@ Protection class	Schutzklasse	Classe de protection	Clase de protección
 Protection setting	Schutzeinstellung	Réglage de protection	Ajuste de protección
 Protective conductor {} with wire colour {} (must be GNYE)	Schutzleiter {} mit Aderfarbe {} (muss GNYE sein)	Conducteur de protection {} de couleur {} (doit être GNYE)	Conductor de protección {} con color {} (debe ser GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Schutzleiter müssen grün-gelb sein (IEC 60204-1, 13.2.2)	Les conducteurs de protection doivent être vert-jaune (IEC 60204-1, 13.2.2)	Los conductores de protección deben ser verde-amarillo (IEC 60204-1, 13.2.2)
-Protective device	Schutzorgan	Appareil de protection	Dispositivo de protección
 Protective devices	Schutzgeräte	Appareils de protection	Dispositivos de protección
 Protective earth	Schutzerde	Terre de protection	Tierra de protección
 Protective earth (PE)	Schutzleiter (PE)	Terre de protection (PE)	Tierra de protección (PE)
@@ -1710,6 +1707,7 @@ The first column must be Key	Die erste Spalte muss Key sein	La première colonne
 The folder {} already holds the project {}: a split project needs a folder of its own	Der Ordner {} enthält bereits das Projekt {}: ein geteiltes Projekt braucht einen eigenen Ordner	Le dossier {} contient déjà le projet {} : un projet fractionné a besoin de son propre dossier	La carpeta {} ya contiene el proyecto {}: un proyecto dividido necesita una carpeta propia
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Der Ordner {} enthält Dateien, die zu keinem Projekt gehören ({}): ein geteiltes Projekt braucht einen eigenen Ordner	Le dossier {} contient des fichiers qui n'appartiennent à aucun projet ({}) : un projet fractionné a besoin de son propre dossier	La carpeta {} contiene archivos que no pertenecen a ningún proyecto ({}): un proyecto dividido necesita una carpeta propia
 The function definition needs a key and a name	Die Funktionsdefinition braucht einen Schlüssel und einen Namen	La définition de fonction a besoin d'une clé et d'un nom	La definición de función necesita una clave y un nombre
+The function test is OK or Not OK, not {}	Die Funktionsprüfung ist OK oder Nicht OK, nicht {}	L'essai de fonctionnement est OK ou Non conforme, pas {}	La prueba de funcionamiento es OK o No conforme, no {}
 The index of the project names no file layout: it was not written by OpenECraft	Der Index des Projekts nennt kein Dateilayout: er wurde nicht von OpenECraft geschrieben	L'index du projet n'indique aucune structure de fichiers : il n'a pas été écrit par OpenECraft	El índice del proyecto no indica ninguna estructura de archivos: no fue escrito por OpenECraft
 The inner wall leaves the room	Die Innenwand verlässt den Raum	Le mur intérieur sort de la salle	La pared interior sale de la sala
 The last page cannot be deleted	Die letzte Seite kann nicht gelöscht werden	La dernière page ne peut pas être supprimée	La última página no se puede eliminar

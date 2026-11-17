@@ -133,6 +133,7 @@ Door cutout	Deuruitsparing
 Download	Downloaden
 Downloading {}…	{} downloaden…
 Drag to turn the model	Sleep om het model te draaien
+Drawings	Tekeningen
 EMC clearance	EMC-afstand
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal en andere namen zijn handelsmerken van hun eigenaren. OpenECraft is een onafhankelijk project.
 Edit	Bewerken
@@ -172,6 +173,7 @@ Function	Functie
 Function (=)	Functie (=)
 Function definition	Functiedefinitie
 Function template	Functiesjabloon
+Function test	Functietest
 Function text	Functietekst
 Functional safety	Functionele veiligheid
 Functions	Functies
@@ -196,7 +198,10 @@ Identifier	Identificatie
 Identifying letter	Kenletter
 Image	Afbeelding
 Import	Importeren
+Incomplete	Onvolledig
 Input	Ingang
+Inspection and test report	Inspectie- en testrapport
+Insulation resistance (MΩ)	Isolatieweerstand (MΩ)
 Integration	Integratie
 Internal (bottom)	Intern (onder)
 Interruption point	Onderbrekingspunt
@@ -234,6 +239,7 @@ Location (+)	Plaats (+)
 Locked	Vergrendeld
 Locked by {}	Vergrendeld door {}
 Logo	Logo
+Loop impedance Zs (Ω)	Lusimpedantie Zs (Ω)
 MTTFd (years)	MTTFd (jaar)
 Machine	Machine
 Main	Hoofd
@@ -278,6 +284,7 @@ Next page	Volgende pagina
 No	Nee
 No Vault item matches a part of the project	Geen Vault-item komt overeen met een artikel van het project
 No cable {}	Geen kabel {}
+No circuit {}	Geen stroomkring {}
 No connection point {}	Geen aansluitpunt {}
 No device {}	Geen apparaat {}
 No enclosure {}	Geen behuizing {}
@@ -300,18 +307,22 @@ No such section	Sectie bestaat niet
 No symbol with id {}	Geen symbool met id {}
 No title block of the project named {}	Geen titelblok van het project met de naam {}
 Nominal size	Nominale diameter
+Not OK	Niet OK
 Not a language code: {}	Geen taalcode: {}
 Not a macro file: {}	Geen macrobestand: {}
 Not a symbol id: {}	Geen symbool-ID: {}
 Not a title block file: {}	Geen titelblokbestand: {}
 Not a valid rule set file: {}	Geen geldig regelsetbestand: {}
 Not in the schematic	Niet in het schema
+Not passed	Afgekeurd
+Not tested	Niet getest
 Note	Opmerking
 Notes	Notities
 Number	Nummer
 Number of down conductors (0: as many as the class needs for the walls)	Aantal afleidingen (0: zoveel als de klasse voor de muren nodig heeft)
 Number the sections 1, 2, 3 … on every level first	Eerst de secties op elk niveau nummeren met 1, 2, 3 …
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Nummert de apparaataanduidingen per structuur en kenletter in schemavolgorde (pagina, kolom, van boven naar beneden)
+OK	OK
 Only rows containing this text	Alleen rijen die deze tekst bevatten
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft wordt zonder garantie geleverd. De berekeningen en controles ondersteunen het ontwerp; een gekwalificeerd persoon moet de resultaten toetsen aan de geldende normen en voorschriften.
@@ -349,7 +360,9 @@ Part {}	Artikel {}
 Parts	Artikelen
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artikelen (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Artikelen importeren mislukt: {}
+Passed	Goedgekeurd
 Password	Wachtwoord
+Phases	Fasen
 Phone	Telefoon
 Picture	Afbeelding
 Pieces	Stuks
@@ -397,9 +410,14 @@ Project properties	Projecteigenschappen
 Properties	Eigenschappen
 Property	Eigenschap
 Protection	Beveiliging
+Protective conductor (Ω)	Beschermingsleiding (Ω)
+Protective device	Beveiligingsapparaat
 Quantity	Hoeveelheid
 Quantity (default 1)	Aantal (standaard 1)
 Quantity unit	Hoeveelheidseenheid
+RCD	Aardlekschakelaar
+RCD trip current (mA)	Aanspreekstroom aardlekschakelaar (mA)
+RCD trip time (ms)	Aanspreektijd aardlekschakelaar (ms)
 Rack	Rack
 Rail	Rail
 Range	Bereik
@@ -416,6 +434,7 @@ Relative humidity	Relatieve luchtvochtigheid
 Relay	Relais
 Released	Vrijgegeven
 Released pages cannot be moved	Vrijgegeven pagina's kunnen niet worden verplaatst
+Remark	Opmerking
 Remove	Verwijderen
 Remove from favorites	Verwijderen uit favorieten
 Remove the boundary	Grens verwijderen
@@ -446,6 +465,7 @@ Rule	Regel
 Rule set	Regelset
 Safety function	Veiligheidsfunctie
 Save	Opslaan
+Saved	Opgeslagen
 Saved catalog {}	Catalogus {} opgeslagen
 Saved user {}	Gebruiker {} opgeslagen
 Saved {}	{} opgeslagen
@@ -509,6 +529,8 @@ Terminal strip	Klemmenstrook
 Terminal strips	Klemmenstroken
 Terminal type	Klemtype
 Terminals	Klemmen
+Test instrument	Meetinstrument
+Tested by	Getest door
 Text	Tekst
 Text to find	Te zoeken tekst
 The freestanding PV array {} stands outside the plot boundary	Het vrijstaande PV-veld {} staat buiten de perceelgrens
@@ -571,12 +593,14 @@ Wired	Bedraad
 Wires	Draden
 Wiring	Bedrading
 Yes	Ja
+Zs max (Ω)	Zs max (Ω)
 access denied	toegang geweigerd
 approved	goedgekeurd
 bonded	aangesloten
 file or folder not found	bestand of map niet gevonden
 landscape	liggend
 left	naar links
+missing	ontbreekt
 mm	mm
 none	geen
 normal	normaal

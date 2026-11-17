@@ -175,3 +175,29 @@ fn fill_and_find_replace_on_filtered_rows() {
     assert!(n >= 2);
     assert!(prj.devices.values().any(|d| d.description == "Door device"));
 }
+
+/// The demo's breaker -F1 (C6) is a circuit of the mains: its results are entered in
+/// the table, measurements must be numbers and other circuits are refused.
+#[test]
+fn inspection_results_are_entered_in_the_table() {
+    let mut prj = demo_project();
+    let rows = table(&prj, TableKind::Inspection);
+    let f1 = rows.iter().find(|r| r.key == "-F1").unwrap();
+    assert_eq!(f1.cells[2], "C 6 A");
+    assert_eq!(f1.cells[11], crate::inspection::Verdict::NotTested.title());
+    let (_, open) = nets(&prj);
+    let col = |name: &str| TableKind::Inspection.column(name).unwrap();
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Insulation resistance (MΩ)"), "> 500").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Function test"), "OK").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Loop impedance Zs (Ω)"), "lots").is_err());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Result"), "fine").is_err());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-K1", col("Remark"), "x").unwrap_err().contains("-K1"));
+    let f1 = table(&prj, TableKind::Inspection).into_iter().find(|r| r.key == "-F1").unwrap();
+    assert_eq!((f1.cells[6].as_str(), f1.cells[10].as_str()), ("> 500", openecraft_i18n::tr("OK")));
+    assert_eq!(f1.cells[11], crate::inspection::Verdict::Incomplete.title());
+    // The CSV round trip.
+    let csv = to_csv(TableKind::Inspection, &table(&prj, TableKind::Inspection)).replace("> 500", "320");
+    let (nl, open) = nets(&prj);
+    assert_eq!(apply_csv(&mut prj, &nl, &open, TableKind::Inspection, &csv).unwrap(), (1, vec![]));
+    assert_eq!(prj.inspection.result("-F1").unwrap().insulation, "320");
+}

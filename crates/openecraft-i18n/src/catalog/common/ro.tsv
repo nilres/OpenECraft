@@ -133,6 +133,7 @@ Door cutout	Decupaj în ușă
 Download	Descărcare
 Downloading {}…	Se descarcă {}…
 Drag to turn the model	Trageți pentru a roti modelul
+Drawings	Desene
 EMC clearance	Distanță CEM
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal și alte denumiri sunt mărci ale proprietarilor lor. OpenECraft este un proiect independent.
 Edit	Editare
@@ -172,6 +173,7 @@ Function	Funcție
 Function (=)	Funcție (=)
 Function definition	Definiție de funcție
 Function template	Șablon de funcție
+Function test	Probă de funcționare
 Function text	Text de funcție
 Functional safety	Siguranță funcțională
 Functions	Funcții
@@ -196,7 +198,10 @@ Identifier	Identificator
 Identifying letter	Literă de identificare
 Image	Imagine
 Import	Import
+Incomplete	Incomplet
 Input	Intrare
+Inspection and test report	Raport de verificare
+Insulation resistance (MΩ)	Rezistența de izolație (MΩ)
 Integration	Integrare
 Internal (bottom)	Intern (jos)
 Interruption point	Punct de întrerupere
@@ -234,6 +239,7 @@ Location (+)	Loc de montare (+)
 Locked	Blocat
 Locked by {}	Blocat de {}
 Logo	Siglă
+Loop impedance Zs (Ω)	Impedanța buclei Zs (Ω)
 MTTFd (years)	MTTFd (ani)
 Machine	Mașină
 Main	Principal
@@ -278,6 +284,7 @@ Next page	Pagina următoare
 No	Nu
 No Vault item matches a part of the project	Niciun element Vault nu corespunde unui articol al proiectului
 No cable {}	Niciun cablu {}
+No circuit {}	Niciun circuit {}
 No connection point {}	Niciun punct de conectare {}
 No device {}	Niciun dispozitiv {}
 No enclosure {}	Nicio carcasă {}
@@ -300,18 +307,22 @@ No such section	Secțiunea nu există
 No symbol with id {}	Niciun simbol cu ID-ul {}
 No title block of the project named {}	Niciun cartuș al proiectului numit {}
 Nominal size	Diametru nominal
+Not OK	Nu este OK
 Not a language code: {}	Nu este un cod de limbă: {}
 Not a macro file: {}	Nu este un fișier de macro-uri: {}
 Not a symbol id: {}	Nu este un ID de simbol: {}
 Not a title block file: {}	Nu este un fișier de cartușe: {}
 Not a valid rule set file: {}	Nu este un fișier valid de set de reguli: {}
 Not in the schematic	Nu este în schemă
+Not passed	Respins
+Not tested	Neverificat
 Note	Notă
 Notes	Note
 Number	Număr
 Number of down conductors (0: as many as the class needs for the walls)	Numărul conductoarelor de coborâre (0: câte cere clasa pentru pereți)
 Number the sections 1, 2, 3 … on every level first	Numerotează mai întâi secțiunile 1, 2, 3 … pe fiecare nivel
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numerotează identificatorii de dispozitiv pe structură și literă de identificare, în ordinea schemei (pagină, coloană, de sus în jos)
+OK	OK
 Only rows containing this text	Doar rândurile care conțin acest text
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft este oferit fără garanție. Calculele și verificările sale sprijină proiectarea; o persoană calificată trebuie să verifice rezultatele în raport cu standardele și reglementările aplicabile.
@@ -349,7 +360,9 @@ Part {}	Articolul {}
 Parts	Articole
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Articole (CSV, JSON, BMEcat, XML EPLAN, EDZ, ZIP)
 Parts import failed: {}	Importul articolelor nu a reușit: {}
+Passed	Admis
 Password	Parolă
+Phases	Faze
 Phone	Telefon
 Picture	Imagine
 Pieces	Bucăți
@@ -397,9 +410,14 @@ Project properties	Proprietăți proiect
 Properties	Proprietăți
 Property	Proprietate
 Protection	Protecție
+Protective conductor (Ω)	Conductor de protecție (Ω)
+Protective device	Dispozitiv de protecție
 Quantity	Cantitate
 Quantity (default 1)	Cantitate (implicit 1)
 Quantity unit	Unitate de cantitate
+RCD	DDR
+RCD trip current (mA)	Curent de declanșare DDR (mA)
+RCD trip time (ms)	Timp de declanșare DDR (ms)
 Rack	Rack
 Rail	Șină
 Range	Domeniu
@@ -416,6 +434,7 @@ Relative humidity	Umiditate relativă
 Relay	Releu
 Released	Aprobat
 Released pages cannot be moved	Paginile aprobate nu pot fi mutate
+Remark	Observație
 Remove	Eliminare
 Remove from favorites	Eliminare din favorite
 Remove the boundary	Eliminați limita
@@ -446,6 +465,7 @@ Rule	Regulă
 Rule set	Set de reguli
 Safety function	Funcție de siguranță
 Save	Salvare
+Saved	Salvat
 Saved catalog {}	Catalogul {} a fost salvat
 Saved user {}	Utilizatorul {} a fost salvat
 Saved {}	S-a salvat {}
@@ -509,6 +529,8 @@ Terminal strip	Șir de borne
 Terminal strips	Șiruri de borne
 Terminal type	Tip de bornă
 Terminals	Borne
+Test instrument	Aparat de măsură
+Tested by	Verificat de
 Text	Text
 Text to find	Text de căutat
 The freestanding PV array {} stands outside the plot boundary	Câmpul PV la sol {} se află în afara limitei terenului
@@ -571,12 +593,14 @@ Wired	Cablat
 Wires	Conductoare
 Wiring	Cablare
 Yes	Da
+Zs max (Ω)	Zs max (Ω)
 access denied	acces refuzat
 approved	avizat
 bonded	legat
 file or folder not found	fișierul sau folderul nu a fost găsit
 landscape	vedere
 left	spre stânga
+missing	lipsește
 mm	mm
 none	niciuna
 normal	normală

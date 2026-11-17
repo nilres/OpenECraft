@@ -133,6 +133,7 @@ Door cutout	Kapı kesimi
 Download	İndir
 Downloading {}…	{} indiriliyor…
 Drag to turn the model	Modeli döndürmek için sürükleyin
+Drawings	Çizimler
 EMC clearance	EMC mesafesi
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal ve diğer adlar sahiplerinin ticari markalarıdır. OpenECraft bağımsız bir projedir.
 Edit	Düzen
@@ -172,6 +173,7 @@ Function	Fonksiyon
 Function (=)	Fonksiyon (=)
 Function definition	Fonksiyon tanımı
 Function template	Fonksiyon şablonu
+Function test	Fonksiyon testi
 Function text	Fonksiyon metni
 Functional safety	Fonksiyonel güvenlik
 Functions	Fonksiyonlar
@@ -196,7 +198,10 @@ Identifier	Tanımlayıcı
 Identifying letter	Tanıtıcı harf
 Image	Görüntü
 Import	İçe aktar
+Incomplete	Eksik
 Input	Giriş
+Inspection and test report	Muayene ve test raporu
+Insulation resistance (MΩ)	Yalıtım direnci (MΩ)
 Integration	Entegrasyon
 Internal (bottom)	Dahili (alt)
 Interruption point	Kesinti noktası
@@ -234,6 +239,7 @@ Location (+)	Konum (+)
 Locked	Kilitli
 Locked by {}	{} tarafından kilitlendi
 Logo	Logo
+Loop impedance Zs (Ω)	Çevrim empedansı Zs (Ω)
 MTTFd (years)	MTTFd (yıl)
 Machine	Makine
 Main	Ana
@@ -278,6 +284,7 @@ Next page	Sonraki sayfa
 No	Hayır
 No Vault item matches a part of the project	Hiçbir Vault öğesi projenin bir parçasıyla eşleşmiyor
 No cable {}	{} kablosu yok
+No circuit {}	{} devresi yok
 No connection point {}	{} bağlantı noktası yok
 No device {}	{} cihazı yok
 No enclosure {}	{} panosu yok
@@ -300,18 +307,22 @@ No such section	Böyle bir bölüm yok
 No symbol with id {}	{} kimlikli sembol yok
 No title block of the project named {}	Projede {} adında antet yok
 Nominal size	Nominal çap
+Not OK	Tamam değil
 Not a language code: {}	Dil kodu değil: {}
 Not a macro file: {}	Makro dosyası değil: {}
 Not a symbol id: {}	Sembol kimliği değil: {}
 Not a title block file: {}	Antet dosyası değil: {}
 Not a valid rule set file: {}	Geçerli bir kural seti dosyası değil: {}
 Not in the schematic	Şemada değil
+Not passed	Geçmedi
+Not tested	Test edilmedi
 Note	Not
 Notes	Notlar
 Number	Numara
 Number of down conductors (0: as many as the class needs for the walls)	İniş iletkeni sayısı (0: sınıfın duvarlar için gerektirdiği kadar)
 Number the sections 1, 2, 3 … on every level first	Önce bölümleri her düzeyde 1, 2, 3 … olarak numaralandır
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Cihaz etiketlerini yapı ve tanıtıcı harf başına şema sırasına göre (sayfa, sütun, yukarıdan aşağıya) numaralandırır
+OK	Tamam
 Only rows containing this text	Yalnızca bu metni içeren satırlar
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft garantisiz sunulur. Hesapları ve kontrolleri planlamayı destekler; sonuçları geçerli standartlara ve yönetmeliklere göre yetkin bir kişinin doğrulaması gerekir.
@@ -349,7 +360,9 @@ Part {}	Parça {}
 Parts	Parçalar
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Parçalar (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Parça içe aktarma başarısız oldu: {}
+Passed	Geçti
 Password	Parola
+Phases	Fazlar
 Phone	Telefon
 Picture	Resim
 Pieces	Adet
@@ -397,9 +410,14 @@ Project properties	Proje özellikleri
 Properties	Özellikler
 Property	Özellik
 Protection	Koruma
+Protective conductor (Ω)	Koruma iletkeni (Ω)
+Protective device	Koruma cihazı
 Quantity	Miktar
 Quantity (default 1)	Miktar (varsayılan 1)
 Quantity unit	Miktar birimi
+RCD	Kaçak akım rölesi
+RCD trip current (mA)	Kaçak akım rölesi açma akımı (mA)
+RCD trip time (ms)	Kaçak akım rölesi açma süresi (ms)
 Rack	Modül rafı
 Rail	Ray
 Range	Aralık
@@ -416,6 +434,7 @@ Relative humidity	Bağıl nem
 Relay	Röle
 Released	Yayımlanmış
 Released pages cannot be moved	Yayımlanmış sayfalar taşınamaz
+Remark	Not
 Remove	Kaldır
 Remove from favorites	Sık kullanılanlardan kaldır
 Remove the boundary	Sınırı kaldır
@@ -446,6 +465,7 @@ Rule	Kural
 Rule set	Kural seti
 Safety function	Güvenlik fonksiyonu
 Save	Kaydet
+Saved	Kaydedildi
 Saved catalog {}	{} kataloğu kaydedildi
 Saved user {}	{} kullanıcısı kaydedildi
 Saved {}	{} kaydedildi
@@ -509,6 +529,8 @@ Terminal strip	Klemens şeridi
 Terminal strips	Klemens şeritleri
 Terminal type	Klemens tipi
 Terminals	Klemensler
+Test instrument	Ölçü aleti
+Tested by	Test eden
 Text	Metin
 Text to find	Aranacak metin
 The freestanding PV array {} stands outside the plot boundary	Arazi tipi PV dizisi {} arsa sınırının dışında duruyor
@@ -571,12 +593,14 @@ Wired	Kablolandı
 Wires	Teller
 Wiring	Kablolama
 Yes	Evet
+Zs max (Ω)	Zs maks. (Ω)
 access denied	erişim reddedildi
 approved	onaylandı
 bonded	kuşaklandı
 file or folder not found	dosya veya klasör bulunamadı
 landscape	yatay
 left	sola
+missing	eksik
 mm	mm
 none	yok
 normal	normal

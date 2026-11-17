@@ -142,6 +142,7 @@ Discontinued	Poistunut valikoimasta
 Display device	Näyttölaite
 Document holder	Asiakirjatasku
 Door handle	Ovenkahva
+Download the report as an Excel workbook	Lataa pöytäkirja Excel-työkirjana
 Drawings box	Piirustustasku
 Dryer	Kuivain
 Dummy plate	Sokkolaippa
@@ -173,6 +174,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Kirjoita open
 Environment variable with the password of the service account	Ympäristömuuttuja, jossa on palvelutilin salasana
 Evaporator	Höyrystin
 Everybody who may read the parts sees it.	Sen näkevät kaikki, jotka saavat lukea osia.
+Excel	Excel
 Exhaust valves	Ilmanpoistoventtiilit
 Expired	Vanhentunut
 Export (CSV)	Vienti (CSV)
@@ -184,6 +186,7 @@ Feed-through terminal	Läpivientiriviliitin
 Female insert	Holkkiosa
 Field distribution device	Kenttäjakolaite
 Files and history ({} files)	Tiedostot ja historia ({} tiedostoa)
+Filter circuits…	Suodata virtapiirejä…
 Filter fan	Suodatintuuletin
 Filter projects…	Suodata projekteja…
 Filter sessions…	Suodata istuntoja…
@@ -286,6 +289,8 @@ New role	Uusi rooli
 New user	Uusi käyttäjä
 Newer version	Uudempi versio
 Next	Seuraava
+Next circuit	Seuraava virtapiiri
+No circuits found	Virtapiirejä ei löytynyt
 No devices found	Laitteita ei löytynyt
 No ended sessions	Ei päättyneitä istuntoja
 No grants: the rights by manufacturer apply	Ei myöntöjä: valmistajakohtaiset oikeudet ovat voimassa
@@ -299,6 +304,8 @@ Nobody works on a project	Kukaan ei työskentele minkään projektin parissa
 Non-return valves	Takaiskuventtiilit
 None (only grants)	Ei mitään (vain myönnöt)
 Not mounted	Ei asennettu
+Not saved	Ei tallennettu
+Nothing to save	Ei tallennettavaa
 Nut	Mutteri
 On the front	Edessä
 On the left side	Vasemmalla puolella
@@ -519,6 +526,7 @@ The last administrator cannot lose the right to manage users	Viimeinen järjeste
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Yrityksen logo: PNG, JPEG, GIF, WebP tai SVG, enintään 512 kt
 The password needs at least {} characters	Salasanassa on oltava vähintään {} merkkiä
 The passwords do not match	Salasanat eivät täsmää
+The project has no circuits fed from the mains	Projektissa ei ole verkosta syötettyjä virtapiirejä
 The project has no devices	Projektissa ei ole laitteita
 The project has no pages	Projektissa ei ole sivuja
 The project has no parts	Projektissa ei ole osia
@@ -620,6 +628,7 @@ unchanged if empty	ennallaan, jos tyhjä
 unexpected answer: {}	odottamaton vastaus: {}
 you	sinä
 {} ({}, {})	{} ({}, {})
+{} circuits	Virtapiirejä: {}
 {} has no checksum in SHA256SUMS	Tiedostolla {} ei ole tarkistussummaa SHA256SUMS-tiedostossa
 {} parts in {} catalogs, revision {}	{} osaa {} luettelossa, revisio {}
 {} parts, {} catalogs, {}	{} osaa, {} luetteloa, {}

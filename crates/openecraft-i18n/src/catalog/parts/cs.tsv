@@ -139,6 +139,7 @@ Discontinued	Ukončená výroba
 Display device	Zobrazovací přístroj
 Document holder	Kapsa na dokumentaci
 Door handle	Klika dveří
+Download the report as an Excel workbook	Stáhnout protokol jako sešit Excel
 Drawings box	Kapsa na výkresy
 Dryer	Sušárna
 Dummy plate	Zaslepovací deska
@@ -170,6 +171,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Zadejte adres
 Environment variable with the password of the service account	Proměnná prostředí s heslem servisního účtu
 Evaporator	Odparka
 Everybody who may read the parts sees it.	Vidí jej každý, kdo smí číst artikly.
+Excel	Excel
 Exhaust valves	Odvzdušňovací ventily
 Expired	Vypršela
 Export (CSV)	Export (CSV)
@@ -181,6 +183,7 @@ Feed-through terminal	Průchozí svorka
 Female insert	Dutinková vložka
 Field distribution device	Polní rozbočovač
 Files and history ({} files)	Soubory a historie (soubory: {})
+Filter circuits…	Filtrovat obvody…
 Filter fan	Filtrační ventilátor
 Filter projects…	Filtrovat projekty…
 Filter sessions…	Filtrovat relace…
@@ -283,6 +286,8 @@ New role	Nová role
 New user	Nový uživatel
 Newer version	Novější verze
 Next	Další
+Next circuit	Další obvod
+No circuits found	Nenalezeny žádné obvody
 No devices found	Nebyly nalezeny žádné přístroje
 No ended sessions	Žádné ukončené relace
 No grants: the rights by manufacturer apply	Žádná přidělení: platí práva podle výrobce
@@ -296,6 +301,8 @@ Nobody works on a project	Na žádném projektu nikdo nepracuje
 Non-return valves	Zpětné ventily
 None (only grants)	Žádná (jen přidělení)
 Not mounted	Nemontováno
+Not saved	Neuloženo
+Nothing to save	Nic k uložení
 Nut	Matice
 On the front	Vpředu
 On the left side	Na levé straně
@@ -516,6 +523,7 @@ The last administrator cannot lose the right to manage users	Poslední správce 
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Logo firmy: PNG, JPEG, GIF, WebP nebo SVG, nejvýše 512 kB
 The password needs at least {} characters	Heslo musí mít alespoň {} znaků
 The passwords do not match	Hesla se neshodují
+The project has no circuits fed from the mains	Projekt nemá žádné obvody napájené ze sítě
 The project has no devices	Projekt nemá žádné přístroje
 The project has no pages	Projekt nemá žádné stránky
 The project has no parts	Projekt nemá žádné artikly
@@ -616,6 +624,7 @@ unchanged if empty	beze změny, pokud je prázdné
 unexpected answer: {}	neočekávaná odpověď: {}
 you	vy
 {} ({}, {})	{} ({}, {})
+{} circuits	Obvody: {}
 {} has no checksum in SHA256SUMS	{} nemá kontrolní součet v SHA256SUMS
 {} parts in {} catalogs, revision {}	Artikly: {}, katalogy: {}, revize {}
 {} parts, {} catalogs, {}	Artikly: {}, katalogy: {}, {}

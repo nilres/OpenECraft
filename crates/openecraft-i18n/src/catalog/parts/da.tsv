@@ -139,6 +139,7 @@ Discontinued	Udgået
 Display device	Visningsenhed
 Document holder	Dokumentlomme
 Door handle	Dørhåndtag
+Download the report as an Excel workbook	Download rapporten som Excel-projektmappe
 Drawings box	Tegningslomme
 Dryer	Tørrer
 Dummy plate	Blindskive
@@ -170,6 +171,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Angiv adresse
 Environment variable with the password of the service account	Miljøvariabel med tjenestekontoens adgangskode
 Evaporator	Fordamper
 Everybody who may read the parts sees it.	Alle, der må læse artiklerne, ser den.
+Excel	Excel
 Exhaust valves	Udluftningsventiler
 Expired	Udløbet
 Export (CSV)	Eksport (CSV)
@@ -181,6 +183,7 @@ Feed-through terminal	Gennemgangsklemme
 Female insert	Bøsningsindsats
 Field distribution device	Feltfordeler
 Files and history ({} files)	Filer og historik ({} filer)
+Filter circuits…	Filtrer kredse…
 Filter fan	Filterventilator
 Filter projects…	Filtrer projekter…
 Filter sessions…	Filtrer sessioner…
@@ -283,6 +286,8 @@ New role	Ny rolle
 New user	Ny bruger
 Newer version	Nyere version
 Next	Næste
+Next circuit	Næste kreds
+No circuits found	Ingen kredse fundet
 No devices found	Ingen enheder fundet
 No ended sessions	Ingen afsluttede sessioner
 No grants: the rights by manufacturer apply	Ingen tildelinger: rettighederne pr. producent gælder
@@ -296,6 +301,8 @@ Nobody works on a project	Ingen arbejder på et projekt
 Non-return valves	Kontraventiler
 None (only grants)	Ingen (kun tildelinger)
 Not mounted	Ikke monteret
+Not saved	Ikke gemt
+Nothing to save	Intet at gemme
 Nut	Møtrik
 On the front	På forsiden
 On the left side	På venstre side
@@ -516,6 +523,7 @@ The last administrator cannot lose the right to manage users	Den sidste administ
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Virksomhedens logo: PNG, JPEG, GIF, WebP eller SVG, højst 512 kB
 The password needs at least {} characters	Adgangskoden skal have mindst {} tegn
 The passwords do not match	Adgangskoderne er ikke ens
+The project has no circuits fed from the mains	Projektet har ingen kredse forsynet fra nettet
 The project has no devices	Projektet har ingen enheder
 The project has no pages	Projektet har ingen sider
 The project has no parts	Projektet har ingen artikler
@@ -616,6 +624,7 @@ unchanged if empty	uændret, hvis tom
 unexpected answer: {}	uventet svar: {}
 you	dig
 {} ({}, {})	{} ({}, {})
+{} circuits	{} kredse
 {} has no checksum in SHA256SUMS	{} har ingen kontrolsum i SHA256SUMS
 {} parts in {} catalogs, revision {}	{} artikler i {} kataloger, revision {}
 {} parts, {} catalogs, {}	{} artikler, {} kataloger, {}

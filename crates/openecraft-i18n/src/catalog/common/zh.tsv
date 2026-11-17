@@ -131,6 +131,7 @@ Door cutout	柜门开孔
 Download	下载
 Downloading {}…	正在下载 {}…
 Drag to turn the model	拖动以旋转模型
+Drawings	图纸
 EMC clearance	EMC 间距
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN、TIA Portal 和其他名称是其所有者的商标。OpenECraft 是一个独立项目。
 Edit	编辑
@@ -170,6 +171,7 @@ Function	功能
 Function (=)	功能 (=)
 Function definition	功能定义
 Function template	功能模板
+Function test	功能测试
 Function text	功能文本
 Functional safety	功能安全
 Functions	功能
@@ -194,7 +196,10 @@ Identifier	标识
 Identifying letter	标识字母
 Image	图像
 Import	导入
+Incomplete	不完整
 Input	输入
+Inspection and test report	检验和测试报告
+Insulation resistance (MΩ)	绝缘电阻 (MΩ)
 Integration	集成
 Internal (bottom)	内部（下）
 Interruption point	中断点
@@ -232,6 +237,7 @@ Location (+)	位置 (+)
 Locked	已锁定
 Locked by {}	已被 {} 锁定
 Logo	标志
+Loop impedance Zs (Ω)	回路阻抗 Zs (Ω)
 MTTFd (years)	MTTFd（年）
 Machine	机器
 Main	主
@@ -276,6 +282,7 @@ Next page	下一页
 No	否
 No Vault item matches a part of the project	没有与项目部件匹配的 Vault 项
 No cable {}	没有电缆 {}
+No circuit {}	没有回路 {}
 No connection point {}	没有连接点 {}
 No device {}	没有设备 {}
 No enclosure {}	没有机柜 {}
@@ -298,18 +305,22 @@ No such section	没有此分节
 No symbol with id {}	没有 ID 为 {} 的符号
 No title block of the project named {}	项目中没有名为 {} 的标题栏
 Nominal size	公称尺寸
+Not OK	不合格
 Not a language code: {}	不是语言代码：{}
 Not a macro file: {}	不是宏文件：{}
 Not a symbol id: {}	不是符号 ID：{}
 Not a title block file: {}	不是标题栏文件：{}
 Not a valid rule set file: {}	不是有效的规则集文件：{}
 Not in the schematic	不在原理图中
+Not passed	未通过
+Not tested	未测试
 Note	注释
 Notes	备注
 Number	编号
 Number of down conductors (0: as many as the class needs for the walls)	引下线数量（0：按类别对墙体所需的数量）
 Number the sections 1, 2, 3 … on every level first	先在每一级将分节编号为 1, 2, 3 …
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	按结构和标识字母以原理图顺序（页、列、从上到下）为设备标识符编号
+OK	OK
 Only rows containing this text	仅包含此文本的行
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft 不提供任何担保。其计算和检查用于辅助设计；必须由具备资质的人员对照适用的标准和法规核实结果。
@@ -347,7 +358,9 @@ Part {}	部件 {}
 Parts	部件
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	部件 (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	部件导入失败：{}
+Passed	通过
 Password	密码
+Phases	相
 Phone	电话
 Picture	图片
 Pieces	件数
@@ -395,9 +408,14 @@ Project properties	项目属性
 Properties	属性
 Property	属性
 Protection	保护
+Protective conductor (Ω)	保护导体 (Ω)
+Protective device	保护设备
 Quantity	数量
 Quantity (default 1)	数量（默认 1）
 Quantity unit	数量单位
+RCD	RCD
+RCD trip current (mA)	RCD 动作电流 (mA)
+RCD trip time (ms)	RCD 动作时间 (ms)
 Rack	机架
 Rail	导轨
 Range	范围
@@ -414,6 +432,7 @@ Relative humidity	相对湿度
 Relay	继电器
 Released	已发布
 Released pages cannot be moved	无法移动已发布页
+Remark	备注
 Remove	删除
 Remove from favorites	从收藏夹中删除
 Remove the boundary	删除边界
@@ -444,6 +463,7 @@ Rule	规则
 Rule set	规则集
 Safety function	安全功能
 Save	保存
+Saved	已保存
 Saved catalog {}	已保存目录 {}
 Saved user {}	已保存用户 {}
 Saved {}	已保存 {}
@@ -507,6 +527,8 @@ Terminal strip	端子排
 Terminal strips	端子排
 Terminal type	端子类型
 Terminals	端子
+Test instrument	测试仪器
+Tested by	测试人
 Text	文本
 Text to find	要查找的文本
 The freestanding PV array {} stands outside the plot boundary	地面光伏阵列 {} 位于场地边界之外
@@ -569,12 +591,14 @@ Wired	已接线
 Wires	导线
 Wiring	接线
 Yes	是
+Zs max (Ω)	Zs 最大值 (Ω)
 access denied	拒绝访问
 approved	已批准
 bonded	已联结
 file or folder not found	未找到文件或文件夹
 landscape	横向
 left	向左
+missing	缺失
 mm	mm
 normal	普通
 not bonded	未联结

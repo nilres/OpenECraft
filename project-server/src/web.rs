@@ -1,5 +1,7 @@
 //! Web page of the project server (`--web`): the projects the user may see, read only
-//! (pages by section or structure, devices, the pages as SVG), and the administration
+//! (pages by section or structure, devices, the pages as SVG) with their inspection and
+//! test report, whose results reviewers and editors enter there (on a tablet or a
+//! phone on site), and the administration
 //! of the users, the access rights and the directories. Plain HTML / JavaScript on top
 //! of the API and of the scripts the servers share (`openecraft_web`); its texts are
 //! written in English and translated through [`texts`].
@@ -15,6 +17,7 @@ use openecraft_web::{TextQuery, WebTexts};
 const PAGE: &str = include_str!("web/project.html");
 const SCRIPT: &str = include_str!("web/project.js");
 const ADMIN_SCRIPT: &str = include_str!("web/admin.js");
+const INSPECTION_SCRIPT: &str = include_str!("web/inspection.js");
 
 /// Texts of the page besides those of the shared scripts (`{}`: placeholders filled in
 /// by the page).
@@ -118,6 +121,43 @@ const TEXTS: &[&str] = &[
     tr_const!("Administrator"),
     tr_const!("The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions."),
     tr_const!("A project names who changed it last."),
+    tr_const!("Drawings"),
+    tr_const!("Inspection and test report"),
+    tr_const!("{} circuits"),
+    tr_const!("Filter circuits…"),
+    tr_const!("Download the report as an Excel workbook"),
+    tr_const!("Excel"),
+    tr_const!("You may read the report; entering results needs the right to save reviews."),
+    tr_const!("No circuits found"),
+    tr_const!("The project has no circuits fed from the mains"),
+    tr_const!("missing"),
+    tr_const!("Phases"),
+    tr_const!("Cable"),
+    tr_const!("Cross-section"),
+    tr_const!("Protective device"),
+    tr_const!("RCD"),
+    tr_const!("Zs max (Ω)"),
+    tr_const!("Protective conductor (Ω)"),
+    tr_const!("Insulation resistance (MΩ)"),
+    tr_const!("Loop impedance Zs (Ω)"),
+    tr_const!("RCD trip current (mA)"),
+    tr_const!("RCD trip time (ms)"),
+    tr_const!("Function test"),
+    tr_const!("Tested by"),
+    tr_const!("Test instrument"),
+    tr_const!("Remark"),
+    tr_const!("OK"),
+    tr_const!("Not OK"),
+    tr_const!("Passed"),
+    tr_const!("Not passed"),
+    tr_const!("Incomplete"),
+    tr_const!("Not tested"),
+    tr_const!("Not saved"),
+    tr_const!("Save"),
+    tr_const!("Saved"),
+    tr_const!("Next circuit"),
+    tr_const!("Nothing to save"),
+    tr_const!("Someone saved results of this circuit meanwhile. Check the values and save again."),
 ];
 
 pub async fn index() -> impl IntoResponse {
@@ -129,6 +169,7 @@ pub fn routes<S: Clone + Send + Sync + 'static>() -> Router<S> {
     openecraft_web::routes()
         .route("/project.js", get(|| async { openecraft_web::script(SCRIPT) }))
         .route("/admin.js", get(|| async { openecraft_web::script(ADMIN_SCRIPT) }))
+        .route("/inspection.js", get(|| async { openecraft_web::script(INSPECTION_SCRIPT) }))
 }
 
 pub fn web_texts(lang: Lang) -> WebTexts {

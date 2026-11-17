@@ -77,3 +77,22 @@ fn safety_functions_and_rule_sets() {
     run(&mut s, "rule_sets", json!({ "remove": "ACME" })).unwrap();
     assert!(run(&mut s, "rule_sets", json!({ "enable": "nfpa" })).is_err());
 }
+
+#[test]
+fn inspection_results_are_set_and_checked() {
+    let mut s = demo_session();
+    let r = run(&mut s, "inspection_report", json!({})).unwrap();
+    let f1 = r["circuits"].as_array().unwrap().iter().find(|c| c["circuit"] == "-F1").unwrap().clone();
+    assert_eq!((f1["characteristic"].as_str(), f1["rated"].as_f64(), f1["verdict"].as_str()), (Some("C"), Some(6.0), Some("not_tested")));
+    assert!(f1["zs_max"].as_f64().unwrap() > 1.0);
+    let results = json!({ "continuity": "0.3", "insulation": 500, "loop_impedance": "0,9", "function": "ok", "tester": "Kim" });
+    let r = run(&mut s, "inspection_report", json!({ "circuit": "-F1", "results": results })).unwrap();
+    let f1 = r["circuits"].as_array().unwrap().iter().find(|c| c["circuit"] == "-F1").unwrap();
+    assert_eq!((f1["result"]["insulation"].as_str(), f1["verdict"].as_str()), (Some("500"), Some("passed")));
+    // All or nothing: a bad value leaves the others unset.
+    let bad = json!({ "circuit": "-F1", "results": { "remark": "loose", "rcd_time": "fast" } });
+    assert!(run(&mut s, "inspection_report", bad).unwrap_err().contains("fast"));
+    assert!(s.project().unwrap().inspection.result("-F1").unwrap().remark.is_empty());
+    assert!(run(&mut s, "inspection_report", json!({ "circuit": "-K1", "results": { "remark": "x" } })).unwrap_err().contains("-K1"));
+    assert!(run(&mut s, "inspection_report", json!({ "circuit": "-F1", "results": { "colour": "red" } })).unwrap_err().contains("colour"));
+}

@@ -138,6 +138,7 @@ Discontinued	生産終了
 Display device	表示器
 Document holder	図面ポケット
 Door handle	ドアハンドル
+Download the report as an Excel workbook	レポートを Excel ブックとしてダウンロード
 Drawings box	図面ポケット
 Dryer	乾燥機
 Dummy plate	閉止板
@@ -169,6 +170,7 @@ Enter the address of an openecraft-parts-server and click Connect.	openecraft-pa
 Environment variable with the password of the service account	サービスアカウントのパスワードを含む環境変数
 Evaporator	蒸発器
 Everybody who may read the parts sees it.	部品を閲覧できるすべてのユーザーに表示されます。
+Excel	Excel
 Exhaust valves	排気弁
 Expired	期限切れ
 Export (CSV)	エクスポート (CSV)
@@ -180,6 +182,7 @@ Feed-through terminal	中継端子
 Female insert	メスインサート
 Field distribution device	フィールド分配器
 Files and history ({} files)	ファイルと履歴 ({} 個のファイル)
+Filter circuits…	回路を絞り込む…
 Filter fan	フィルターファン
 Filter projects…	プロジェクトをフィルター…
 Filter sessions…	セッションをフィルター…
@@ -282,6 +285,8 @@ New role	新しいロール
 New user	新しいユーザー
 Newer version	新しいバージョン
 Next	次へ
+Next circuit	次の回路
+No circuits found	回路が見つかりません
 No devices found	デバイスが見つかりません
 No ended sessions	終了したセッションはありません
 No grants: the rights by manufacturer apply	付与がありません：メーカー別の権限が適用されます
@@ -295,6 +300,8 @@ Nobody works on a project	プロジェクトで作業しているユーザーは
 Non-return valves	チェック弁
 None (only grants)	なし (付与のみ)
 Not mounted	取り付けなし
+Not saved	未保存
+Nothing to save	保存するものはありません
 Nut	ナット
 On the front	前面
 On the left side	左側
@@ -515,6 +522,7 @@ The last administrator cannot lose the right to manage users	最後の管理者�
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	会社のロゴ：PNG、JPEG、GIF、WebP または SVG、512 kB まで
 The password needs at least {} characters	パスワードは {} 文字以上必要です
 The passwords do not match	パスワードが一致しません
+The project has no circuits fed from the mains	プロジェクトに電源から給電される回路がありません
 The project has no devices	プロジェクトにデバイスがありません
 The project has no pages	プロジェクトにページがありません
 The project has no parts	プロジェクトに部品がありません
@@ -614,6 +622,7 @@ unchanged if empty	空欄の場合は変更なし
 unexpected answer: {}	予期しない応答: {}
 you	あなた
 {} ({}, {})	{} ({}, {})
+{} circuits	{} 回路
 {} has no checksum in SHA256SUMS	SHA256SUMS に {} のチェックサムがありません
 {} parts in {} catalogs, revision {}	部品 {} 個 (カタログ {} 個)、リビジョン {}
 {} parts, {} catalogs, {}	部品 {} 個、カタログ {} 個、{}

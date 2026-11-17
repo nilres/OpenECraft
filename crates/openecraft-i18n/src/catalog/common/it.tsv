@@ -133,6 +133,7 @@ Door cutout	Foratura della porta
 Download	Scarica
 Downloading {}…	Download di {}…
 Drag to turn the model	Trascina per ruotare il modello
+Drawings	Disegni
 EMC clearance	Distanza EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal e altri nomi sono marchi dei rispettivi proprietari. OpenECraft è un progetto indipendente.
 Edit	Modifica
@@ -172,6 +173,7 @@ Function	Funzione
 Function (=)	Funzione (=)
 Function definition	Definizione di funzione
 Function template	Modello di funzione
+Function test	Prova di funzionamento
 Function text	Testo funzione
 Functional safety	Sicurezza funzionale
 Functions	Funzioni
@@ -196,7 +198,10 @@ Identifier	Identificatore
 Identifying letter	Lettera identificativa
 Image	Immagine
 Import	Importazione
+Incomplete	Incompleto
 Input	Ingresso
+Inspection and test report	Rapporto di verifica
+Insulation resistance (MΩ)	Resistenza di isolamento (MΩ)
 Integration	Integrazione
 Internal (bottom)	Interno (sotto)
 Interruption point	Punto di interruzione
@@ -234,6 +239,7 @@ Location (+)	Luogo (+)
 Locked	Bloccato
 Locked by {}	Bloccato da {}
 Logo	Logo
+Loop impedance Zs (Ω)	Impedenza dell'anello di guasto Zs (Ω)
 MTTFd (years)	MTTFd (anni)
 Machine	Macchina
 Main	Princ.
@@ -278,6 +284,7 @@ Next page	Pagina successiva
 No	No
 No Vault item matches a part of the project	Nessun elemento di Vault corrisponde a un articolo del progetto
 No cable {}	Nessun cavo {}
+No circuit {}	Nessun circuito {}
 No connection point {}	Nessun punto di connessione {}
 No device {}	Nessun dispositivo {}
 No enclosure {}	Nessun armadio {}
@@ -300,18 +307,22 @@ No such section	Sezione inesistente
 No symbol with id {}	Nessun simbolo con ID {}
 No title block of the project named {}	Nessun cartiglio del progetto di nome {}
 Nominal size	Diametro nominale
+Not OK	Non OK
 Not a language code: {}	Non è un codice lingua: {}
 Not a macro file: {}	Non è un file di macro: {}
 Not a symbol id: {}	Non è un ID di simbolo: {}
 Not a title block file: {}	Non è un file di cartigli: {}
 Not a valid rule set file: {}	Non è un file di set di regole valido: {}
 Not in the schematic	Non nello schema
+Not passed	Non superato
+Not tested	Non verificato
 Note	Nota
 Notes	Note
 Number	Numero
 Number of down conductors (0: as many as the class needs for the walls)	Numero di calate (0: quante ne richiede la classe per i muri)
 Number the sections 1, 2, 3 … on every level first	Numerare prima le sezioni 1, 2, 3 … a ogni livello
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numera le sigle dispositivo per struttura e lettera identificativa nell'ordine dello schema (pagina, colonna, dall'alto verso il basso)
+OK	OK
 Only rows containing this text	Solo righe che contengono questo testo
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft è fornito senza garanzia. I suoi calcoli e le sue verifiche supportano la progettazione; una persona qualificata deve verificare i risultati rispetto alle norme e ai regolamenti applicabili.
@@ -349,7 +360,9 @@ Part {}	Articolo {}
 Parts	Articoli
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Articoli (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Importazione articoli non riuscita: {}
+Passed	Superato
 Password	Password
+Phases	Fasi
 Phone	Telefono
 Picture	Immagine
 Pieces	Pezzi
@@ -397,9 +410,14 @@ Project properties	Proprietà progetto
 Properties	Proprietà
 Property	Proprietà
 Protection	Protezione
+Protective conductor (Ω)	Conduttore di protezione (Ω)
+Protective device	Dispositivo di protezione
 Quantity	Quantità
 Quantity (default 1)	Quantità (predefinito 1)
 Quantity unit	Unità di quantità
+RCD	Differenziale
+RCD trip current (mA)	Corrente di intervento del differenziale (mA)
+RCD trip time (ms)	Tempo di intervento del differenziale (ms)
 Rack	Rack
 Rail	Guida
 Range	Campo
@@ -416,6 +434,7 @@ Relative humidity	Umidità relativa
 Relay	Relè
 Released	Rilasciato
 Released pages cannot be moved	Le pagine rilasciate non possono essere spostate
+Remark	Osservazione
 Remove	Rimuovi
 Remove from favorites	Rimuovi dai preferiti
 Remove the boundary	Rimuovi il confine
@@ -446,6 +465,7 @@ Rule	Regola
 Rule set	Set di regole
 Safety function	Funzione di sicurezza
 Save	Salva
+Saved	Salvato
 Saved catalog {}	Catalogo {} salvato
 Saved user {}	Utente {} salvato
 Saved {}	{} salvato
@@ -509,6 +529,8 @@ Terminal strip	Morsettiera
 Terminal strips	Morsettiere
 Terminal type	Tipo di morsetto
 Terminals	Morsetti
+Test instrument	Strumento di misura
+Tested by	Verificato da
 Text	Testo
 Text to find	Testo da trovare
 The freestanding PV array {} stands outside the plot boundary	Il campo FV a terra {} è fuori dal confine del lotto
@@ -571,12 +593,14 @@ Wired	Cablato
 Wires	Conduttori
 Wiring	Cablatura
 Yes	Sì
+Zs max (Ω)	Zs max (Ω)
 access denied	accesso negato
 approved	approvato
 bonded	collegato
 file or folder not found	file o cartella non trovati
 landscape	orizzontale
 left	verso sinistra
+missing	mancante
 mm	mm
 none	nessuno
 normal	normale

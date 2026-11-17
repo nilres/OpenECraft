@@ -133,6 +133,7 @@ Door cutout	Вырез в двери
 Download	Скачать
 Downloading {}…	Скачивание {}…
 Drag to turn the model	Перетащите, чтобы повернуть модель
+Drawings	Чертежи
 EMC clearance	Зазор ЭМС
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal и другие названия являются товарными знаками их владельцев. OpenECraft — независимый проект.
 Edit	Правка
@@ -172,6 +173,7 @@ Function	Функция
 Function (=)	Функциональное назначение (=)
 Function definition	Определение функции
 Function template	Шаблон функции
+Function test	Проверка функционирования
 Function text	Текст функции
 Functional safety	Функциональная безопасность
 Functions	Функции
@@ -196,7 +198,10 @@ Identifier	Идентификатор
 Identifying letter	Буквенный код
 Image	Изображение
 Import	Импорт
+Incomplete	Не завершено
 Input	Вход
+Inspection and test report	Протокол осмотра и испытаний
+Insulation resistance (MΩ)	Сопротивление изоляции (МОм)
 Integration	Интеграция
 Internal (bottom)	Внутренняя (снизу)
 Interruption point	Точка разрыва
@@ -234,6 +239,7 @@ Location (+)	Место установки (+)
 Locked	Заблокирован
 Locked by {}	Заблокировано: {}
 Logo	Логотип
+Loop impedance Zs (Ω)	Сопротивление петли Zs (Ом)
 MTTFd (years)	MTTFd (лет)
 Machine	Машина
 Main	Главн.
@@ -278,6 +284,7 @@ Next page	Следующий лист
 No	Нет
 No Vault item matches a part of the project	Ни один элемент Vault не соответствует изделию проекта
 No cable {}	Нет кабеля {}
+No circuit {}	Нет цепи {}
 No connection point {}	Нет точки подключения {}
 No device {}	Нет устройства {}
 No enclosure {}	Нет корпуса {}
@@ -300,18 +307,22 @@ No such section	Нет такого раздела
 No symbol with id {}	Нет символа с ID {}
 No title block of the project named {}	Нет основной надписи проекта с именем {}
 Nominal size	Условный проход
+Not OK	Не OK
 Not a language code: {}	Не код языка: {}
 Not a macro file: {}	Не файл макросов: {}
 Not a symbol id: {}	Не идентификатор символа: {}
 Not a title block file: {}	Не файл основных надписей: {}
 Not a valid rule set file: {}	Недопустимый файл набора правил: {}
 Not in the schematic	Нет на схеме
+Not passed	Не пройдено
+Not tested	Не проверено
 Note	Примечание
 Notes	Примечания
 Number	Номер
 Number of down conductors (0: as many as the class needs for the walls)	Число токоотводов (0: столько, сколько требует класс для стен)
 Number the sections 1, 2, 3 … on every level first	Сначала пронумеровать разделы 1, 2, 3 … на каждом уровне
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Нумерует обозначения устройств по структуре и буквенному коду в порядке схемы (лист, столбец, сверху вниз)
+OK	OK
 Only rows containing this text	Только строки с этим текстом
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft предоставляется без гарантий. Его расчёты и проверки помогают при проектировании; квалифицированный специалист должен проверить результаты на соответствие действующим стандартам и нормам.
@@ -349,7 +360,9 @@ Part {}	Изделие {}
 Parts	Изделия
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Изделия (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Ошибка импорта изделий: {}
+Passed	Пройдено
 Password	Пароль
+Phases	Фазы
 Phone	Телефон
 Picture	Изображение
 Pieces	Штук
@@ -397,9 +410,14 @@ Project properties	Свойства проекта
 Properties	Свойства
 Property	Свойство
 Protection	Защита
+Protective conductor (Ω)	Защитный проводник (Ом)
+Protective device	Защитное устройство
 Quantity	Количество
 Quantity (default 1)	Количество (по умолчанию 1)
 Quantity unit	Единица количества
+RCD	УЗО
+RCD trip current (mA)	Ток срабатывания УЗО (мА)
+RCD trip time (ms)	Время срабатывания УЗО (мс)
 Rack	Стойка
 Rail	Рейка
 Range	Диапазон
@@ -416,6 +434,7 @@ Relative humidity	Относительная влажность
 Relay	Реле
 Released	Выпущено
 Released pages cannot be moved	Выпущенные листы нельзя перемещать
+Remark	Примечание
 Remove	Удалить
 Remove from favorites	Удалить из избранного
 Remove the boundary	Удалить границу
@@ -446,6 +465,7 @@ Rule	Правило
 Rule set	Набор правил
 Safety function	Функция безопасности
 Save	Сохранить
+Saved	Сохранено
 Saved catalog {}	Каталог {} сохранён
 Saved user {}	Пользователь {} сохранён
 Saved {}	Сохранено: {}
@@ -509,6 +529,8 @@ Terminal strip	Клеммная колодка
 Terminal strips	Клеммные колодки
 Terminal type	Тип клеммы
 Terminals	Клеммы
+Test instrument	Измерительный прибор
+Tested by	Проверил
 Text	Текст
 Text to find	Искомый текст
 The freestanding PV array {} stands outside the plot boundary	Наземное фотоэлектрическое поле {} стоит за границей участка
@@ -571,12 +593,14 @@ Wired	Смонтирован
 Wires	Провода
 Wiring	Монтаж проводов
 Yes	Да
+Zs max (Ω)	Zs макс. (Ом)
 access denied	доступ запрещён
 approved	утверждено
 bonded	подключён
 file or folder not found	файл или папка не найдены
 landscape	альбомная
 left	влево
+missing	отсутствует
 mm	мм
 none	нет
 normal	обычный

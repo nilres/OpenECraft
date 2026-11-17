@@ -133,6 +133,7 @@ Door cutout	Dørudskæring
 Download	Download
 Downloading {}…	Downloader {}…
 Drag to turn the model	Træk for at dreje modellen
+Drawings	Tegninger
 EMC clearance	EMC-afstand
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal og andre navne er varemærker tilhørende deres ejere. OpenECraft er et uafhængigt projekt.
 Edit	Rediger
@@ -172,6 +173,7 @@ Function	Funktion
 Function (=)	Funktion (=)
 Function definition	Funktionsdefinition
 Function template	Funktionsskabelon
+Function test	Funktionsafprøvning
 Function text	Funktionstekst
 Functional safety	Funktionel sikkerhed
 Functions	Funktioner
@@ -196,7 +198,10 @@ Identifier	Id
 Identifying letter	Kendebogstav
 Image	Billede
 Import	Import
+Incomplete	Ufuldstændig
 Input	Indgang
+Inspection and test report	Eftersyns- og afprøvningsrapport
+Insulation resistance (MΩ)	Isolationsmodstand (MΩ)
 Integration	Integration
 Internal (bottom)	Intern (nederst)
 Interruption point	Afbrydelsespunkt
@@ -234,6 +239,7 @@ Location (+)	Placering (+)
 Locked	Låst
 Locked by {}	Låst af {}
 Logo	Logo
+Loop impedance Zs (Ω)	Sløjfeimpedans Zs (Ω)
 MTTFd (years)	MTTFd (år)
 Machine	Maskine
 Main	Hoved
@@ -278,6 +284,7 @@ Next page	Næste side
 No	Nej
 No Vault item matches a part of the project	Intet Vault-element passer til en artikel i projektet
 No cable {}	Intet kabel {}
+No circuit {}	Ingen kreds {}
 No connection point {}	Intet tilslutningspunkt {}
 No device {}	Ingen enhed {}
 No enclosure {}	Ingen kapsling {}
@@ -300,18 +307,22 @@ No such section	Afsnittet findes ikke
 No symbol with id {}	Intet symbol med id {}
 No title block of the project named {}	Intet tegningshoved i projektet med navnet {}
 Nominal size	Nominel størrelse
+Not OK	Ikke OK
 Not a language code: {}	Ikke en sprogkode: {}
 Not a macro file: {}	Ikke en makrofil: {}
 Not a symbol id: {}	Ikke et symbol-id: {}
 Not a title block file: {}	Ikke en tegningshovedfil: {}
 Not a valid rule set file: {}	Ikke en gyldig regelsætfil: {}
 Not in the schematic	Ikke i diagrammet
+Not passed	Ikke godkendt
+Not tested	Ikke afprøvet
 Note	Bemærkning
 Notes	Noter
 Number	Nummer
 Number of down conductors (0: as many as the class needs for the walls)	Antal nedledere (0: så mange som klassen kræver for væggene)
 Number the sections 1, 2, 3 … on every level first	Nummerér først afsnittene 1, 2, 3 … på hvert niveau
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Nummererer enhedsmærkningerne pr. struktur og kendebogstav i diagramrækkefølge (side, kolonne, oppefra og ned)
+OK	OK
 Only rows containing this text	Kun rækker, der indeholder denne tekst
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft leveres uden garanti. Dets beregninger og kontroller understøtter projekteringen; en kvalificeret person skal kontrollere resultaterne mod de gældende standarder og forskrifter.
@@ -349,7 +360,9 @@ Part {}	Artikel {}
 Parts	Artikler
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artikler (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Artikelimporten mislykkedes: {}
+Passed	Godkendt
 Password	Adgangskode
+Phases	Faser
 Phone	Telefon
 Picture	Billede
 Pieces	Stk.
@@ -397,9 +410,14 @@ Project properties	Projektegenskaber
 Properties	Egenskaber
 Property	Egenskab
 Protection	Beskyttelse
+Protective conductor (Ω)	Beskyttelsesleder (Ω)
+Protective device	Beskyttelsesenhed
 Quantity	Mængde
 Quantity (default 1)	Antal (standard 1)
 Quantity unit	Mængdeenhed
+RCD	HPFI
+RCD trip current (mA)	HPFI-udløsestrøm (mA)
+RCD trip time (ms)	HPFI-udløsetid (ms)
 Rack	Rack
 Rail	Skinne
 Range	Område
@@ -416,6 +434,7 @@ Relative humidity	Relativ luftfugtighed
 Relay	Relæ
 Released	Frigivet
 Released pages cannot be moved	Frigivne sider kan ikke flyttes
+Remark	Bemærkning
 Remove	Fjern
 Remove from favorites	Fjern fra favoritter
 Remove the boundary	Fjern grænsen
@@ -446,6 +465,7 @@ Rule	Regel
 Rule set	Regelsæt
 Safety function	Sikkerhedsfunktion
 Save	Gem
+Saved	Gemt
 Saved catalog {}	Kataloget {} er gemt
 Saved user {}	Brugeren {} er gemt
 Saved {}	{} er gemt
@@ -509,6 +529,8 @@ Terminal strip	Klemrække
 Terminal strips	Klemrækker
 Terminal type	Klemmetype
 Terminals	Klemmer
+Test instrument	Måleinstrument
+Tested by	Afprøvet af
 Text	Tekst
 Text to find	Tekst, der skal søges efter
 The freestanding PV array {} stands outside the plot boundary	Det jordmonterede solcellefelt {} står uden for grundgrænsen
@@ -571,12 +593,14 @@ Wired	Trukket
 Wires	Ledninger
 Wiring	Ledningsføring
 Yes	Ja
+Zs max (Ω)	Zs maks. (Ω)
 access denied	adgang nægtet
 approved	godkendt
 bonded	tilsluttet
 file or folder not found	filen eller mappen blev ikke fundet
 landscape	liggende
 left	venstre
+missing	mangler
 mm	mm
 none	ingen
 normal	normal

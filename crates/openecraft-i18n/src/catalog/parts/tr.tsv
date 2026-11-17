@@ -139,6 +139,7 @@ Discontinued	Üretimi durduruldu
 Display device	Gösterge cihazı
 Document holder	Doküman cebi
 Door handle	Kapı kolu
+Download the report as an Excel workbook	Raporu Excel çalışma kitabı olarak indir
 Drawings box	Çizim kutusu
 Dryer	Kurutucu
 Dummy plate	Kör flanş
@@ -170,6 +171,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Bir openecraf
 Environment variable with the password of the service account	Hizmet hesabının parolasını içeren ortam değişkeni
 Evaporator	Evaporatör
 Everybody who may read the parts sees it.	Parçaları okuyabilen herkes görür.
+Excel	Excel
 Exhaust valves	Tahliye valfleri
 Expired	Süresi doldu
 Export (CSV)	Dışa aktar (CSV)
@@ -181,6 +183,7 @@ Feed-through terminal	Geçiş klemensi
 Female insert	Dişi uç
 Field distribution device	Saha dağıtım cihazı
 Files and history ({} files)	Dosyalar ve geçmiş ({} dosya)
+Filter circuits…	Devreleri filtrele…
 Filter fan	Filtreli fan
 Filter projects…	Projeleri filtrele…
 Filter sessions…	Oturumları filtrele…
@@ -283,6 +286,8 @@ New role	Yeni rol
 New user	Yeni kullanıcı
 Newer version	Daha yeni sürüm
 Next	İleri
+Next circuit	Sonraki devre
+No circuits found	Devre bulunamadı
 No devices found	Cihaz bulunamadı
 No ended sessions	Sona eren oturum yok
 No grants: the rights by manufacturer apply	Yetki ataması yok: üreticiye göre haklar geçerlidir
@@ -296,6 +301,8 @@ Nobody works on a project	Hiç kimse bir proje üzerinde çalışmıyor
 Non-return valves	Çek valfler
 None (only grants)	Yok (yalnızca yetki atamaları)
 Not mounted	Monte edilmez
+Not saved	Kaydedilmedi
+Nothing to save	Kaydedilecek bir şey yok
 Nut	Somun
 On the front	Önde
 On the left side	Sol tarafta
@@ -516,6 +523,7 @@ The last administrator cannot lose the right to manage users	Son yönetici, kull
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Şirketin logosu: PNG, JPEG, GIF, WebP veya SVG, en fazla 512 kB
 The password needs at least {} characters	Parola en az {} karakter olmalıdır
 The passwords do not match	Parolalar eşleşmiyor
+The project has no circuits fed from the mains	Projede şebekeden beslenen devre yok
 The project has no devices	Projede cihaz yok
 The project has no pages	Projede sayfa yok
 The project has no parts	Projede parça yok
@@ -616,6 +624,7 @@ unchanged if empty	boşsa değişmez
 unexpected answer: {}	beklenmeyen yanıt: {}
 you	siz
 {} ({}, {})	{} ({}, {})
+{} circuits	{} devre
 {} has no checksum in SHA256SUMS	{} için SHA256SUMS içinde sağlama toplamı yok
 {} parts in {} catalogs, revision {}	{} katalogda {} parça, revizyon {}
 {} parts, {} catalogs, {}	{} parça, {} katalog, {}

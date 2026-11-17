@@ -133,6 +133,7 @@ Door cutout	Ajtókivágás
 Download	Letöltés
 Downloading {}…	{} letöltése…
 Drag to turn the model	Húzással forgathatja a modellt
+Drawings	Rajzok
 EMC clearance	EMC-távolság
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	Az EPLAN, a TIA Portal és más nevek a tulajdonosaik védjegyei. Az OpenECraft független projekt.
 Edit	Szerkesztés
@@ -172,6 +173,7 @@ Function	Funkció
 Function (=)	Funkció (=)
 Function definition	Funkciódefiníció
 Function template	Funkciósablon
+Function test	Működéspróba
 Function text	Funkciószöveg
 Functional safety	Funkcionális biztonság
 Functions	Funkciók
@@ -196,7 +198,10 @@ Identifier	Azonosító
 Identifying letter	Kódbetű
 Image	Kép
 Import	Importálás
+Incomplete	Hiányos
 Input	Bemenet
+Inspection and test report	Ellenőrzési és vizsgálati jegyzőkönyv
+Insulation resistance (MΩ)	Szigetelési ellenállás (MΩ)
 Integration	Integráció
 Internal (bottom)	Belső (alul)
 Interruption point	Megszakítási pont
@@ -234,6 +239,7 @@ Location (+)	Szerelési hely (+)
 Locked	Zárolt
 Locked by {}	Zárolta: {}
 Logo	Logó
+Loop impedance Zs (Ω)	Hurokimpedancia Zs (Ω)
 MTTFd (years)	MTTFd (év)
 Machine	Gép
 Main	Fő
@@ -278,6 +284,7 @@ Next page	Következő oldal
 No	Nem
 No Vault item matches a part of the project	Egyik Vault-elem sem felel meg a projekt egyik alkatrészének sem
 No cable {}	Nincs {} kábel
+No circuit {}	Nincs {} áramkör
 No connection point {}	Nincs {} csatlakozási pont
 No device {}	Nincs {} készülék
 No enclosure {}	Nincs {} szekrény
@@ -300,18 +307,22 @@ No such section	Nincs ilyen szakasz
 No symbol with id {}	Nincs {} azonosítójú szimbólum
 No title block of the project named {}	A projektben nincs {} nevű szövegmező
 Nominal size	Névleges méret
+Not OK	Nem OK
 Not a language code: {}	Nem nyelvkód: {}
 Not a macro file: {}	Nem makrófájl: {}
 Not a symbol id: {}	Nem szimbólumazonosító: {}
 Not a title block file: {}	Nem szövegmezőfájl: {}
 Not a valid rule set file: {}	Nem érvényes szabálykészletfájl: {}
 Not in the schematic	Nincs a kapcsolási rajzon
+Not passed	Nem felelt meg
+Not tested	Nincs vizsgálva
 Note	Megjegyzés
 Notes	Megjegyzések
 Number	Szám
 Number of down conductors (0: as many as the class needs for the walls)	A levezetők száma (0: annyi, amennyit az osztály a falakhoz megkövetel)
 Number the sections 1, 2, 3 … on every level first	Először a szakaszok számozása 1, 2, 3 … minden szinten
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Számozza a készülékazonosítókat struktúránként és kódbetűnként, a kapcsolási rajz sorrendjében (oldal, oszlop, fentről lefelé)
+OK	OK
 Only rows containing this text	Csak az ezt a szöveget tartalmazó sorok
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	Az OpenECraft garancia nélkül érhető el. Számításai és ellenőrzései a tervezést segítik; az eredményeket szakképzett személynek kell ellenőriznie a vonatkozó szabványok és előírások szerint.
@@ -349,7 +360,9 @@ Part {}	Alkatrész {}
 Parts	Alkatrészek
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Alkatrészek (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Sikertelen alkatrészimportálás: {}
+Passed	Megfelelt
 Password	Jelszó
+Phases	Fázisok
 Phone	Telefon
 Picture	Kép
 Pieces	Darab
@@ -397,9 +410,14 @@ Project properties	Projekttulajdonságok
 Properties	Tulajdonságok
 Property	Tulajdonság
 Protection	Védelem
+Protective conductor (Ω)	Védővezető (Ω)
+Protective device	Védőkészülék
 Quantity	Mennyiség
 Quantity (default 1)	Mennyiség (alapértelmezés: 1)
 Quantity unit	Mennyiségi egység
+RCD	Áram-védőkapcsoló
+RCD trip current (mA)	Áram-védőkapcsoló kioldóárama (mA)
+RCD trip time (ms)	Áram-védőkapcsoló kioldási ideje (ms)
 Rack	Modultartó
 Rail	Sín
 Range	Tartomány
@@ -416,6 +434,7 @@ Relative humidity	Relatív páratartalom
 Relay	Relé
 Released	Kiadva
 Released pages cannot be moved	A kiadott oldalak nem helyezhetők át
+Remark	Megjegyzés
 Remove	Eltávolítás
 Remove from favorites	Eltávolítás a kedvencek közül
 Remove the boundary	Határ eltávolítása
@@ -446,6 +465,7 @@ Rule	Szabály
 Rule set	Szabálykészlet
 Safety function	Biztonsági funkció
 Save	Mentés
+Saved	Mentve
 Saved catalog {}	A(z) {} katalógus mentve
 Saved user {}	A(z) {} felhasználó mentve
 Saved {}	{} mentve
@@ -509,6 +529,8 @@ Terminal strip	Sorkapocsléc
 Terminal strips	Sorkapocslécek
 Terminal type	Sorkapocstípus
 Terminals	Sorkapcsok
+Test instrument	Mérőműszer
+Tested by	Vizsgálta
 Text	Szöveg
 Text to find	Keresendő szöveg
 The freestanding PV array {} stands outside the plot boundary	A(z) {} szabadföldi PV-mező a telekhatáron kívül áll
@@ -571,12 +593,14 @@ Wired	Bekötve
 Wires	Vezetékek
 Wiring	Huzalozás
 Yes	Igen
+Zs max (Ω)	Zs max. (Ω)
 access denied	hozzáférés megtagadva
 approved	jóváhagyva
 bonded	bekötve
 file or folder not found	a fájl vagy mappa nem található
 landscape	fekvő
 left	balra
+missing	hiányzik
 mm	mm
 none	nincs
 normal	normál

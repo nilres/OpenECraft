@@ -139,6 +139,7 @@ Discontinued	Utgått
 Display device	Indikeringsenhet
 Document holder	Dokumentficka
 Door handle	Dörrhandtag
+Download the report as an Excel workbook	Ladda ned protokollet som Excel-arbetsbok
 Drawings box	Ritningsfack
 Dryer	Tork
 Dummy plate	Blindbricka
@@ -170,6 +171,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Ange adressen
 Environment variable with the password of the service account	Miljövariabel med tjänstekontots lösenord
 Evaporator	Förångare
 Everybody who may read the parts sees it.	Alla som får läsa artiklarna ser den.
+Excel	Excel
 Exhaust valves	Avluftningsventiler
 Expired	Utgången
 Export (CSV)	Export (CSV)
@@ -181,6 +183,7 @@ Feed-through terminal	Genomgångsplint
 Female insert	Hylsinsats
 Field distribution device	Fältfördelare
 Files and history ({} files)	Filer och historik ({} filer)
+Filter circuits…	Filtrera kretsar…
 Filter fan	Filterfläkt
 Filter projects…	Filtrera projekt…
 Filter sessions…	Filtrera sessioner…
@@ -283,6 +286,8 @@ New role	Ny roll
 New user	Ny användare
 Newer version	Nyare version
 Next	Nästa
+Next circuit	Nästa krets
+No circuits found	Inga kretsar hittades
 No devices found	Inga apparater hittades
 No ended sessions	Inga avslutade sessioner
 No grants: the rights by manufacturer apply	Inga tilldelningar: rättigheterna per tillverkare gäller
@@ -296,6 +301,8 @@ Nobody works on a project	Ingen arbetar med något projekt
 Non-return valves	Backventiler
 None (only grants)	Ingen (endast tilldelningar)
 Not mounted	Inte monterat
+Not saved	Inte sparad
+Nothing to save	Inget att spara
 Nut	Mutter
 On the front	På framsidan
 On the left side	På vänster sida
@@ -516,6 +523,7 @@ The last administrator cannot lose the right to manage users	Den sista administr
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Företagets logotyp: PNG, JPEG, GIF, WebP eller SVG, högst 512 kB
 The password needs at least {} characters	Lösenordet måste ha minst {} tecken
 The passwords do not match	Lösenorden matchar inte
+The project has no circuits fed from the mains	Projektet har inga kretsar som matas från nätet
 The project has no devices	Projektet har inga apparater
 The project has no pages	Projektet har inga sidor
 The project has no parts	Projektet har inga artiklar
@@ -616,6 +624,7 @@ unchanged if empty	oförändrat om tomt
 unexpected answer: {}	oväntat svar: {}
 you	du
 {} ({}, {})	{} ({}, {})
+{} circuits	{} kretsar
 {} has no checksum in SHA256SUMS	{} har ingen kontrollsumma i SHA256SUMS
 {} parts in {} catalogs, revision {}	{} artiklar i {} kataloger, revision {}
 {} parts, {} catalogs, {}	{} artiklar, {} kataloger, {}

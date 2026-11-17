@@ -139,6 +139,7 @@ Discontinued	Знято з виробництва
 Display device	Пристрій індикації
 Document holder	Кишеня для документації
 Door handle	Дверна ручка
+Download the report as an Excel workbook	Завантажити протокол як книгу Excel
 Drawings box	Кишеня для документації
 Dryer	Сушарка
 Dummy plate	Заглушка
@@ -170,6 +171,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Введіт�
 Environment variable with the password of the service account	Змінна середовища з паролем службового облікового запису
 Evaporator	Випарник
 Everybody who may read the parts sees it.	Її бачать усі, хто може читати вироби.
+Excel	Excel
 Exhaust valves	Клапани для випуску повітря
 Expired	Термін минув
 Export (CSV)	Експорт (CSV)
@@ -181,6 +183,7 @@ Feed-through terminal	Прохідна клема
 Female insert	Вставка з гніздами
 Field distribution device	Польовий розподільник
 Files and history ({} files)	Файли та журнал (файлів: {})
+Filter circuits…	Фільтр кіл…
 Filter fan	Фільтрувальний вентилятор
 Filter projects…	Фільтрувати проєкти…
 Filter sessions…	Фільтрувати сеанси…
@@ -283,6 +286,8 @@ New role	Нова роль
 New user	Новий користувач
 Newer version	Новіша версія
 Next	Далі
+Next circuit	Наступне коло
+No circuits found	Кола не знайдено
 No devices found	Пристроїв не знайдено
 No ended sessions	Немає завершених сеансів
 No grants: the rights by manufacturer apply	Немає призначень: діють права за виробником
@@ -296,6 +301,8 @@ Nobody works on a project	Ніхто не працює над проєктами
 Non-return valves	Зворотні клапани
 None (only grants)	Немає (лише призначення)
 Not mounted	Не монтується
+Not saved	Не збережено
+Nothing to save	Нічого зберігати
 Nut	Гайка
 On the front	Спереду
 On the left side	Ліворуч
@@ -516,6 +523,7 @@ The last administrator cannot lose the right to manage users	Останній а
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Логотип компанії: PNG, JPEG, GIF, WebP або SVG, не більше 512 кБ
 The password needs at least {} characters	Пароль має містити щонайменше {} символів
 The passwords do not match	Паролі не збігаються
+The project has no circuits fed from the mains	У проєкті немає кіл, що живляться від мережі
 The project has no devices	У проєкті немає пристроїв
 The project has no pages	У проєкті немає сторінок
 The project has no parts	Проєкт не має виробів
@@ -616,6 +624,7 @@ unchanged if empty	без змін, якщо порожньо
 unexpected answer: {}	неочікувана відповідь: {}
 you	ви
 {} ({}, {})	{} ({}, {})
+{} circuits	Кіл: {}
 {} has no checksum in SHA256SUMS	Для {} немає контрольної суми в SHA256SUMS
 {} parts in {} catalogs, revision {}	Виробів: {}, каталогів: {}, ревізія {}
 {} parts, {} catalogs, {}	Виробів: {}, каталогів: {}, {}

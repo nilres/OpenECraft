@@ -148,6 +148,7 @@ Discontinued	Abgekündigt	Arrêté	Descatalogado
 Display device	Anzeigegerät	Afficheur	Indicador
 Document holder	Schaltplantasche	Porte-documents	Portadocumentos
 Door handle	Türgriff	Poignée de porte	Manija de puerta
+Download the report as an Excel workbook	Das Protokoll als Excel-Arbeitsmappe herunterladen	Télécharger le rapport comme classeur Excel	Descargar el informe como libro de Excel
 Drawings box	Zeichnungsbehälter	Boîtes graphiques	Cajas de diseño
 Dryer	Trockner	Dessicateur	Secador
 Dummy plate	Blindscheibe	Joint plein	Disco ciego
@@ -179,6 +180,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Geben Sie die
 Environment variable with the password of the service account	Umgebungsvariable mit dem Passwort des Dienstkontos	Variable d'environnement contenant le mot de passe du compte de service	Variable de entorno con la contraseña de la cuenta de servicio
 Evaporator	Verdampfer	Evaporateur	Evaporador
 Everybody who may read the parts sees it.	Alle, die die Artikel lesen dürfen, sehen es.	Toute personne autorisée à lire les articles le voit.	Lo ve todo el que puede leer los artículos.
+Excel	Excel	Excel	Excel
 Exhaust valves	Entlüftungsventile	Soupapes de décharge	Válvulas de ventilación
 Expired	Abgelaufen	Expirée	Caducada
 Export (CSV)	Export (CSV)	Exporter (CSV)	Exportar (CSV)
@@ -190,6 +192,7 @@ Feed-through terminal	Durchgangsklemme	Borne de passage	Borne de paso
 Female insert	Buchseneinsatz	Contact femelle	Bloque de bases
 Field distribution device	Feldverteiler	Répartiteur	Repartidor
 Files and history ({} files)	Dateien und Verlauf ({} Dateien)	Fichiers et historique ({} fichiers)	Archivos e historial ({} archivos)
+Filter circuits…	Stromkreise filtern…	Filtrer les circuits…	Filtrar circuitos…
 Filter fan	Filterlüfter	Ventilateur à filtre	Ventilador con filtro
 Filter projects…	Projekte filtern …	Filtrer les projets…	Filtrar proyectos…
 Filter sessions…	Sitzungen filtern …	Filtrer les sessions…	Filtrar sesiones…
@@ -292,6 +295,8 @@ New role	Neue Rolle	Nouveau rôle	Nuevo rol
 New user	Neuer Benutzer	Nouvel utilisateur	Nuevo usuario
 Newer version	Neuere Version	Version plus récente	Versión más reciente
 Next	Weiter	Suivant	Siguiente
+Next circuit	Nächster Stromkreis	Circuit suivant	Circuito siguiente
+No circuits found	Keine Stromkreise gefunden	Aucun circuit trouvé	No se encontraron circuitos
 No devices found	Keine Betriebsmittel gefunden	Aucun appareil trouvé	No se encontraron dispositivos
 No ended sessions	Keine beendeten Sitzungen	Aucune session terminée	No hay sesiones finalizadas
 No grants: the rights by manufacturer apply	Keine Zuweisungen: es gelten die Rechte nach Hersteller	Aucune attribution : les droits par fabricant s'appliquent	Sin asignaciones: se aplican los derechos por fabricante
@@ -305,6 +310,8 @@ Nobody works on a project	Niemand arbeitet an einem Projekt	Personne ne travaill
 Non-return valves	Rückschlagventile	Clapets anti-retour	Válvulas de retención
 None (only grants)	Keine (nur Zuweisungen)	Aucun (attributions seulement)	Ninguno (solo asignaciones)
 Not mounted	Nicht montiert	Non monté	No montado
+Not saved	Nicht gespeichert	Non enregistré	No guardado
+Nothing to save	Nichts zu speichern	Rien à enregistrer	Nada que guardar
 Nut	Mutter	Écrou	Tuerca
 On the front	Vorne	Sur la face avant	En el frente
 On the left side	Links daneben	Sur le côté gauche	En el lado izquierdo
@@ -481,6 +488,7 @@ Single-stage filters	Einfachfilter	Filtres unipolaires	Filtros sencillos
 Siphon	Syphon	Syphon	Sifón
 Size of the files	Größe der Dateien	Taille des fichiers	Tamaño de los archivos
 Solenoid valve	Magnetventil	Électrovanne	Electroválvula
+Someone saved results of this circuit meanwhile. Check the values and save again.	Jemand hat inzwischen Ergebnisse dieses Stromkreises gespeichert. Prüfen Sie die Werte und speichern Sie erneut.	Quelqu'un a enregistré entre-temps des résultats de ce circuit. Vérifiez les valeurs et enregistrez à nouveau.	Alguien guardó resultados de este circuito mientras tanto. Compruebe los valores y vuelva a guardar.
 Sorter	Sortierer	Trieuse	Clasificador
 Start a server with:  openecraft-parts-server --token <secret>	Starten Sie einen Server mit:  openecraft-parts-server --token <secret>	Démarrez un serveur avec :  openecraft-parts-server --token <secret>	Inicia un servidor con:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Starten Sie openecraft-parts-server mit --token, um Änderungen zu erlauben	Démarrez openecraft-parts-server avec --token pour autoriser les modifications	Inicia openecraft-parts-server con --token para permitir cambios
@@ -526,6 +534,7 @@ The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Das Logo de
 The password needs at least {} characters	Das Passwort braucht mindestens {} Zeichen	Le mot de passe doit comporter au moins {} caractères	La contraseña necesita al menos {} caracteres
 The passwords do not match	Die Passwörter stimmen nicht überein	Les mots de passe ne correspondent pas	Las contraseñas no coinciden
 The project changed while loading. Its changes will be loaded again.	Das Projekt wurde während des Ladens geändert. Die Änderungen werden erneut geladen.	Le projet a changé pendant le chargement. Ses modifications seront rechargées.	El proyecto cambió durante la carga. Se volverán a cargar sus cambios.
+The project has no circuits fed from the mains	Das Projekt hat keine aus dem Netz gespeisten Stromkreise	Le projet n'a aucun circuit alimenté par le réseau	El proyecto no tiene circuitos alimentados desde la red
 The project has no devices	Das Projekt hat keine Betriebsmittel	Le projet n'a aucun appareil	El proyecto no tiene dispositivos
 The project has no pages	Das Projekt hat keine Seiten	Le projet n'a aucune page	El proyecto no tiene páginas
 The project has no parts	Das Projekt hat keine Artikel	Le projet n'a pas d'articles	El proyecto no tiene artículos
@@ -603,6 +612,7 @@ Wrong access token	Falsches Zugriffstoken	Jeton d'accès incorrect	Token de acce
 Wrong user name or password	Falscher Benutzername oder falsches Passwort	Nom d'utilisateur ou mot de passe incorrect	Nombre de usuario o contraseña incorrectos
 You may not change parts of manufacturer {}	Sie dürfen Artikel des Herstellers {} nicht ändern	Vous ne pouvez pas modifier les articles du fabricant {}	No puede modificar artículos del fabricante {}
 You may not see any project	Sie dürfen kein Projekt sehen	Vous ne pouvez voir aucun projet	No puede ver ningún proyecto
+You may read the report; entering results needs the right to save reviews.	Sie können das Protokoll lesen; zum Eintragen von Ergebnissen ist das Recht „Prüfungen speichern“ nötig.	Vous pouvez lire le rapport ; saisir des résultats nécessite le droit « Enregistrer les révisions ».	Puede leer el informe; introducir resultados requiere el derecho «Guardar revisiones».
 Your account awaits the approval of an administrator	Ihr Konto wartet auf die Freigabe durch einen Administrator	Votre compte attend l'approbation d'un administrateur	Su cuenta está pendiente de la aprobación de un administrador
 Your account was created. An administrator has to approve it before you can sign in.	Ihr Konto wurde angelegt. Ein Administrator muss es freigeben, bevor Sie sich anmelden können.	Votre compte a été créé. Un administrateur doit l'approuver avant que vous puissiez vous connecter.	Se ha creado su cuenta. Un administrador tiene que aprobarla antes de que pueda iniciar sesión.
 Your browser keeps the language and the settings of the page you chose and, while you are signed in, the key of your session. Signing out removes the key; clearing the site data of the browser removes all of it.	Ihr Browser hält die gewählte Sprache und die Einstellungen der Seite und, solange Sie angemeldet sind, den Schlüssel Ihrer Sitzung. Das Abmelden entfernt den Schlüssel; das Löschen der Websitedaten im Browser entfernt alles.	Votre navigateur conserve la langue et les réglages de la page que vous avez choisis et, tant que vous êtes connecté, la clé de votre session. La déconnexion supprime la clé ; effacer les données du site dans le navigateur supprime le tout.	Su navegador guarda el idioma y los ajustes de la página que eligió y, mientras tenga la sesión iniciada, la clave de su sesión. Cerrar la sesión elimina la clave; borrar los datos del sitio en el navegador lo elimina todo.
@@ -627,6 +637,7 @@ unchanged if empty	unverändert, wenn leer	inchangé si vide	sin cambios si est�
 unexpected answer: {}	unerwartete Antwort: {}	réponse inattendue : {}	respuesta inesperada: {}
 you	Sie	vous	usted
 {} ({}, {})	{} ({}, {})	{} ({}, {})	{} ({}, {})
+{} circuits	{} Stromkreise	{} circuits	{} circuitos
 {} has no checksum in SHA256SUMS	{} hat keine Prüfsumme in SHA256SUMS	{} n'a pas de somme de contrôle dans SHA256SUMS	{} no tiene suma de comprobación en SHA256SUMS
 {} parts in {} catalogs, revision {}	{} Artikel in {} Katalogen, Revision {}	{} articles dans {} catalogues, révision {}	{} artículos en {} catálogos, revisión {}
 {} parts, {} catalogs, {}	{} Artikel, {} Kataloge, {}	{} articles, {} catalogues, {}	{} artículos, {} catálogos, {}

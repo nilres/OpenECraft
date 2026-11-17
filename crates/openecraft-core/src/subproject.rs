@@ -93,6 +93,7 @@ pub fn extract(prj: &mut Project, name: &str, description: &str, pages: &[u64], 
     sub.revisions.clear();
     sub.baselines.clear();
     sub.review = Default::default();
+    sub.inspection = Default::default();
     sub.wiring_marks.clear();
     sub.report_blocks.clear();
     sub.harnesses.clear();

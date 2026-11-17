@@ -139,6 +139,7 @@ Discontinued	Снято с производства
 Display device	Устройство индикации
 Document holder	Карман для документации
 Door handle	Дверная ручка
+Download the report as an Excel workbook	Скачать протокол как книгу Excel
 Drawings box	Карман для документации
 Dryer	Сушилка
 Dummy plate	Глухая шайба
@@ -170,6 +171,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Введит�
 Environment variable with the password of the service account	Переменная среды с паролем служебной учётной записи
 Evaporator	Испаритель
 Everybody who may read the parts sees it.	Её видят все, кто может читать изделия.
+Excel	Excel
 Exhaust valves	Воздуховыпускные клапаны
 Expired	Истёк
 Export (CSV)	Экспорт (CSV)
@@ -181,6 +183,7 @@ Feed-through terminal	Проходная клемма
 Female insert	Вставка с гнездами
 Field distribution device	Полевой распределитель
 Files and history ({} files)	Файлы и история (файлов: {})
+Filter circuits…	Фильтр цепей…
 Filter fan	Фильтрующий вентилятор
 Filter projects…	Фильтр проектов…
 Filter sessions…	Фильтр сеансов…
@@ -283,6 +286,8 @@ New role	Новая роль
 New user	Новый пользователь
 Newer version	Более новая версия
 Next	Далее
+Next circuit	Следующая цепь
+No circuits found	Цепи не найдены
 No devices found	Устройства не найдены
 No ended sessions	Нет завершённых сеансов
 No grants: the rights by manufacturer apply	Нет назначений: действуют права по производителю
@@ -296,6 +301,8 @@ Nobody works on a project	Никто не работает над проекта
 Non-return valves	Обратные клапаны
 None (only grants)	Нет (только назначения)
 Not mounted	Не монтируется
+Not saved	Не сохранено
+Nothing to save	Нечего сохранять
 Nut	Гайка
 On the front	Спереди
 On the left side	Слева
@@ -516,6 +523,7 @@ The last administrator cannot lose the right to manage users	Последний 
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Логотип компании: PNG, JPEG, GIF, WebP или SVG, не более 512 кБ
 The password needs at least {} characters	Пароль должен содержать не менее {} символов
 The passwords do not match	Пароли не совпадают
+The project has no circuits fed from the mains	В проекте нет цепей, питаемых от сети
 The project has no devices	В проекте нет устройств
 The project has no pages	В проекте нет листов
 The project has no parts	В проекте нет изделий
@@ -616,6 +624,7 @@ unchanged if empty	без изменений, если пусто
 unexpected answer: {}	непредвиденный ответ: {}
 you	вы
 {} ({}, {})	{} ({}, {})
+{} circuits	Цепей: {}
 {} has no checksum in SHA256SUMS	Для {} нет контрольной суммы в SHA256SUMS
 {} parts in {} catalogs, revision {}	Изделий: {}, каталогов: {}, ревизия {}
 {} parts, {} catalogs, {}	Изделий: {}, каталогов: {}, {}

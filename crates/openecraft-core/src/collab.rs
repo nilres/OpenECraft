@@ -9,7 +9,8 @@
 //! ([`SaveRequest::base_revision`]) also takes over changes of free targets (they are
 //! locked for the session first) and lists the changes it leaves out ([`save_plan`],
 //! [`Snapshot::ignored`]). Review records (comments, markup, approvals, change
-//! requests) need no lock: they are merged record by record (`review::merge`).
+//! requests) and the results of the inspection need no lock: they are merged record by
+//! record (`review::merge`, `inspection::merge`).
 //!
 //! | Method | Path | |
 //! | --- | --- | --- |
@@ -31,6 +32,9 @@
 //! | GET | `/api/v1/projects/{name}/properties` | [`ProjectProperties`] (the project info as saved, without opening the project) |
 //! | PUT | `/api/v1/projects/{name}/properties` | [`PropertiesUpdate`] → [`ProjectProperties`] (changes only the project info; [`ProjectRight::EditProject`], refused while the project data is locked) |
 //! | POST | `/api/v1/projects/{name}/copy` | [`CopyRequest`] → [`Opened`] (a new project from the saved state, [`copy_of`]) |
+//! | GET | `/api/v1/projects/{name}/inspection` | [`InspectionSheet`] (the inspection and test report as saved, without opening the project) |
+//! | PUT | `/api/v1/projects/{name}/inspection` | [`InspectionUpdate`] → [`InspectionSheet`] (results of one circuit, without a lock; [`ProjectRight::Review`] or an editing right) |
+//! | GET | `/api/v1/projects/{name}/inspection.xlsx?lang=de` | the report as an Excel workbook |
 //! | POST | `/api/v1/login` | [`LoginRequest`] → [`LoginResponse`] |
 //! | GET | `/api/v1/session` | [`CurrentAccount`] (signed-in user sessions only) |
 //! | POST | `/api/v1/logout` | ends the session of the bearer token |
@@ -206,6 +210,39 @@ pub struct PropertiesUpdate {
     pub info: ProjectInfo,
 }
 
+/// The inspection and test report of a project as saved ([`crate::inspection`]).
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct InspectionSheet {
+    pub name: String,
+    pub revision: u64,
+    /// What the caller may do: entering results needs [`ProjectRight::Review`],
+    /// [`ProjectRight::EditPages`] or [`ProjectRight::EditProject`].
+    pub rights: Vec<ProjectRight>,
+    /// Line-to-earth voltage of the supply, V.
+    pub u0: f32,
+    pub earthing: String,
+    /// Limits of the results that are the same for every circuit.
+    pub min_insulation: f32,
+    pub max_rcd_time: f32,
+    pub circuits: Vec<crate::inspection::Circuit>,
+}
+
+/// Results of one circuit of the inspection, entered without opening the project.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct InspectionUpdate {
+    /// Who enters them, where the caller is not signed in (as in [`OpenRequest`]).
+    pub user: String,
+    /// Device tag of the protective device of the circuit.
+    pub circuit: String,
+    /// `rev` of the results as loaded (0: none yet): refused (`409`) if they were
+    /// changed since.
+    pub rev: u64,
+    /// Values by field (`inspection::Field::key`); an empty value clears one.
+    pub values: std::collections::BTreeMap<String, String>,
+}
+
 /// Creates a project from the saved state of another one and opens it.
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
@@ -240,6 +277,7 @@ pub fn copy_of(source: &Project, info: Option<ProjectInfo>, records: bool) -> Pr
     }
     if !records {
         prj.review = Default::default();
+        prj.inspection = Default::default();
         prj.revisions.clear();
         prj.baselines.clear();
     }
@@ -802,6 +840,7 @@ pub fn merge(theirs: &Project, mine: &Project, owned: &Owned) -> Project {
     let mut out = if owned.project { data_clone(mine) } else { data_clone(theirs) };
     out.pages = pages;
     out.review = crate::review::merge(&theirs.review, &mine.review);
+    out.inspection = crate::inspection::merge(&theirs.inspection, &mine.inspection);
     out.next_id = mine.next_id;
     out
 }
@@ -863,6 +902,7 @@ fn with_data(out: &mut Project, src: &Project) {
         mounting_marks,
         preplanning,
         review: _,
+        inspection: _,
         next_id: _,
         id_floor: _,
         symbol_cache: _,
@@ -960,6 +1000,7 @@ fn same_data(a: &Project, b: &Project) -> bool {
         mounting_marks,
         preplanning,
         review: _,
+        inspection: _,
         next_id: _,
         id_floor: _,
         symbol_cache: _,
@@ -1100,7 +1141,7 @@ impl Shared {
     /// `prj` has changes the server takes on saving.
     pub fn has_changes(&self, prj: &Project) -> bool {
         let owned = self.owned();
-        self.base.review != prj.review || changes(&self.base, prj).into_iter().any(|t| owned.contains(t))
+        self.base.review != prj.review || self.base.inspection != prj.inspection || changes(&self.base, prj).into_iter().any(|t| owned.contains(t))
     }
 
     /// `prj` with `targets` set back to the server's version.
@@ -1134,7 +1175,7 @@ impl Shared {
 
     /// `prj` is the server's project as this session knows it: nothing to save.
     pub fn in_sync(&self, prj: &Project) -> bool {
-        self.base.review == prj.review && changes(&self.base, prj).is_empty()
+        self.base.review == prj.review && self.base.inspection == prj.inspection && changes(&self.base, prj).is_empty()
     }
 
     /// A new session of the project after this one ended on the server (it expired or

@@ -14,9 +14,10 @@ use openecraft_auth::admin::{self, DirectoryEntry, DirectoryTestRequest};
 use openecraft_auth::{AccessFile, ClientIp, Directory, SignInError, Throttle};
 use openecraft_core::collab::{
     changes, copy_of, merge, save_plan, valid_name, Access, CopyRequest, CopySource, CreateRequest, CurrentAccount, Grant, Lock, LockRequest, LoginRequest, LoginResponse,
-    OpenRequest, Opened, Owned, Policy, ProjectAccess, ProjectProperties, ProjectRight, ProjectRole, ProjectSummary, ProjectUser, PropertiesUpdate, Right, SaveRequest, ServerInfo, Session, SessionList, Settings, Snapshot, Status, Subject,
+    InspectionSheet, InspectionUpdate, OpenRequest, Opened, Owned, Policy, ProjectAccess, ProjectProperties, ProjectRight, ProjectRole, ProjectSummary, ProjectUser, PropertiesUpdate, Right, SaveRequest, ServerInfo, Session, SessionList, Settings, Snapshot, Status, Subject,
     Target, UserUpdate, API_PREFIX, SERVER,
 };
+use openecraft_core::inspection;
 use openecraft_core::model::Project;
 use openecraft_parts::api::{bearer_token, token_matches, ApiError, DirectoryTest};
 use openecraft_view::ProjectView;
@@ -237,6 +238,8 @@ pub fn router(state: AppState) -> Router {
         .route(&format!("{project}/access"), get(project_access).put(save_project_access))
         .route(&format!("{project}/properties"), get(properties).put(save_properties))
         .route(&format!("{project}/copy"), post(copy))
+        .route(&format!("{project}/inspection"), get(inspection).put(save_inspection))
+        .route(&format!("{project}/inspection.xlsx"), get(inspection_xlsx))
         .route(&format!("{API_PREFIX}/login"), post(login).layer(DefaultBodyLimit::max(SMALL_BODY)))
         .route(&format!("{API_PREFIX}/logout"), post(logout))
         .route(&format!("{API_PREFIX}/session"), get(current_account))
@@ -763,6 +766,90 @@ async fn view(State(state): State<AppState>, headers: HeaderMap, Path(name): Pat
     let (viewed, mut answer) = viewed(&state, &headers, name).await?;
     answer.view = viewed.view(q.lang());
     Ok(Json(answer))
+}
+
+/// Work on a viewed project (its analysis) on another thread.
+async fn blocking<T: Send + 'static>(f: impl FnOnce() -> T + Send + 'static) -> Result<T> {
+    tokio::task::spawn_blocking(f).await.map_err(|e| AppError(StatusCode::INTERNAL_SERVER_ERROR, e.to_string()))
+}
+
+/// The caller may enter results of the inspection: reviewers and editors.
+fn records(rights: &[ProjectRight]) -> bool {
+    [ProjectRight::Review, ProjectRight::EditPages, ProjectRight::EditProject].iter().any(|r| rights.contains(r))
+}
+
+fn inspection_sheet(viewed: &Viewed, answer: ViewAnswer) -> InspectionSheet {
+    let supply = &viewed.project().electrical.supply;
+    InspectionSheet {
+        name: answer.name,
+        revision: answer.server_revision,
+        rights: answer.rights,
+        u0: supply.u0(),
+        earthing: supply.earthing.title().into(),
+        min_insulation: inspection::MIN_INSULATION,
+        max_rcd_time: inspection::MAX_RCD_TIME,
+        circuits: viewed.inspection(),
+    }
+}
+
+/// `GET /api/v1/projects/{name}/inspection`: the inspection and test report as saved.
+async fn inspection(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>) -> Result<Json<InspectionSheet>> {
+    let (viewed, answer) = viewed(&state, &headers, name).await?;
+    Ok(Json(blocking(move || inspection_sheet(&viewed, answer)).await?))
+}
+
+/// `GET /api/v1/projects/{name}/inspection.xlsx?lang=de`: the report as an Excel workbook.
+async fn inspection_xlsx(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Query(q): Query<TextQuery>) -> Result<Response> {
+    let (viewed, answer) = viewed(&state, &headers, name).await?;
+    let lang = q.lang();
+    let bytes = blocking(move || {
+        openecraft_i18n::with_lang(lang, || {
+            let table = inspection::report(&viewed.inspection());
+            openecraft_core::xlsx::write(&[(openecraft_i18n::tr("Inspection and test report").to_string(), table.sheet_rows())])
+        })
+    })
+    .await?;
+    let file: String = answer.name.chars().map(|c| if c.is_ascii_alphanumeric() || c == '-' || c == '_' { c } else { '_' }).collect();
+    let disposition = header::HeaderValue::from_str(&format!("attachment; filename=\"{file}-inspection.xlsx\"")).map_err(|e| bad(e.to_string()))?;
+    let kind = header::HeaderValue::from_static("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    Ok(([(header::CONTENT_TYPE, kind), (header::CONTENT_DISPOSITION, disposition)], bytes).into_response())
+}
+
+/// Sets the results of one circuit of the inspection in the saved project, without
+/// opening it and without a lock (sessions merge them record by record). Refused if
+/// the results of the circuit were changed since they were loaded.
+async fn save_inspection(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Json(req): Json<InspectionUpdate>) -> Result<Json<InspectionSheet>> {
+    let (before, answer) = viewed(&state, &headers, name).await?;
+    let name = answer.name.clone();
+    if !records(&answer.rights) {
+        return Err(AppError(StatusCode::FORBIDDEN, format!("you may not enter inspection results in project '{name}'")));
+    }
+    let fields = req.values.iter().map(|(k, v)| inspection::Field::from_key(k).map(|f| (f, v.clone())).ok_or_else(|| bad(format!("unknown field '{k}'")))).collect::<Result<Vec<_>>>()?;
+    let circuit = req.circuit.clone();
+    if !blocking(move || before.inspection().iter().any(|c| c.circuit == circuit)).await? {
+        return Err(AppError(StatusCode::NOT_FOUND, format!("circuit '{}' not found", req.circuit)));
+    }
+    {
+        let (mut server, caller) = server(&state, &headers)?;
+        let user = caller.name(&req.user, &server.users)?;
+        let entry = server.store.get(&name).ok_or_else(|| not_found(&name))?;
+        if entry.project.inspection.result(&req.circuit).map_or(0, |r| r.rev) != req.rev {
+            return Err(AppError(StatusCode::CONFLICT, format!("the results of {} were changed meanwhile: load them again", req.circuit)));
+        }
+        let mut project = entry.project.clone();
+        for (field, value) in &fields {
+            inspection::set(&mut project, &req.circuit, *field, value).map_err(bad)?;
+        }
+        if project.inspection.result(&req.circuit).is_some_and(|r| r.tester.is_empty() && r.rev > 0) {
+            inspection::set(&mut project, &req.circuit, inspection::Field::Tester, &user).map_err(bad)?;
+        }
+        if project.inspection != entry.project.inspection {
+            let revision = server.store.save(&name, project, &user, openecraft_auth::unix_now())?;
+            log::info!("{user} entered inspection results of {} in {name} (revision {revision})", req.circuit);
+        }
+    }
+    let (viewed, answer) = viewed(&state, &headers, name).await?;
+    Ok(Json(blocking(move || inspection_sheet(&viewed, answer)).await?))
 }
 
 /// `GET /api/v1/projects/{name}/pages/{id}/svg`: a page drawn as on paper.

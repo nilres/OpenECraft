@@ -36,6 +36,7 @@ pub mod config;
 pub mod structure;
 pub mod subproject;
 pub mod review;
+pub mod inspection;
 pub mod revision;
 pub mod compare;
 pub mod properties;
@@ -187,6 +188,9 @@ pub struct Project {
     /// Comments, redline / greenline markup, approvals and change requests.
     #[serde(skip_serializing_if = "review::Review::is_empty")]
     pub review: review::Review,
+    /// Results of the inspection and test of the installation, per circuit.
+    #[serde(skip_serializing_if = "inspection::Inspection::is_empty")]
+    pub inspection: inspection::Inspection,
     /// Supply, installation conditions, safety functions and rule sets.
     #[serde(skip_serializing_if = "electrical::Electrical::is_default")]
     pub electrical: electrical::Electrical,
@@ -261,6 +265,7 @@ impl Default for Project {
             workflow: Default::default(),
             baselines: Vec::new(),
             review: Default::default(),
+            inspection: Default::default(),
             electrical: Default::default(),
             property_db: Default::default(),
             field: Default::default(),
@@ -404,6 +409,8 @@ pub enum ReportKind {
     PowerSupplyBudget,
     SafetyFunctions,
     Verification,
+    /// Inspection and test report of the installation (`crate::inspection`).
+    Inspection,
     FieldRouting,
     Bonding,
     RackElevation,
@@ -411,7 +418,7 @@ pub enum ReportKind {
 }
 
 impl ReportKind {
-    pub const ALL: [ReportKind; 43] = [
+    pub const ALL: [ReportKind; 44] = [
         ReportKind::TableOfContents,
         ReportKind::DeviceList,
         ReportKind::BillOfMaterials,
@@ -451,6 +458,7 @@ impl ReportKind {
         ReportKind::PowerSupplyBudget,
         ReportKind::SafetyFunctions,
         ReportKind::Verification,
+        ReportKind::Inspection,
         ReportKind::FieldRouting,
         ReportKind::Bonding,
         ReportKind::RackElevation,
@@ -499,6 +507,7 @@ impl ReportKind {
             ReportKind::PowerSupplyBudget => tr_const!("Power supply load budget"),
             ReportKind::SafetyFunctions => tr_const!("Safety functions (ISO 13849-1)"),
             ReportKind::Verification => tr_const!("Rule set verification"),
+            ReportKind::Inspection => tr_const!("Inspection and test report"),
             ReportKind::FieldRouting => tr_const!("Field cable routing"),
             ReportKind::Bonding => tr_const!("Equipotential bonding"),
             ReportKind::RackElevation => tr_const!("19-inch rack elevation"),
@@ -553,6 +562,7 @@ impl ReportKind {
             ReportKind::PowerSupplyBudget => "power_supply_budget",
             ReportKind::SafetyFunctions => "safety_functions",
             ReportKind::Verification => "verification",
+            ReportKind::Inspection => "inspection",
             ReportKind::FieldRouting => "field_routing",
             ReportKind::Bonding => "bonding",
             ReportKind::RackElevation => "rack_elevation",

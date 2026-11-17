@@ -1,6 +1,6 @@
 # Electrical sizing, calculations and verification
 
-Conductor sizing, short circuit and protection coordination, load calculation, EMC, functional safety and rule sets – all part of the project check.
+Conductor sizing, short circuit and protection coordination, load calculation, EMC, functional safety and rule sets – all part of the project check – and the inspection and test report of the installation.
 
 ## Electrical sizing
 
@@ -71,3 +71,46 @@ circuit breaker, not the breaker).
   "every item of a scope (project, pages, devices, parts, cables, connections,
   potentials) that meets these conditions must meet this one"; report *Rule set
   verification*; all results are part of the project check.
+
+## Inspection and test report
+
+The **inspection and test report** (initial verification, IEC 60364-6 / DIN VDE
+0100-600; report *Inspection and test report*, *Project data › Edit in table ›
+Inspection and test report*, the command `inspection_report` and the web page of the
+project server) lists every protective device fed from the mains as a circuit, in
+schematic order, filled in from the schematic:
+
+- circuit (device tag), description (of the device, otherwise its function text),
+  phases, the cables behind the device with their types, the cross-section (of the
+  cables, otherwise of the wires);
+- protective device: tripping characteristic and rated current (part data, as for the
+  short-circuit calculation);
+- residual current device protecting the circuit (its own or one upstream) with its
+  type (`Residual current type` of the device or of its part) and rated residual
+  current;
+- the highest loop impedance that passes: two thirds of U0 / Ia (Ia: the current
+  that disconnects within the time of table 41.1; IEC 60364-6, annex C), or
+  U0 / IΔn where a residual current device protects the circuit (TT: only that).
+
+What the project does not give is shown as *missing*, never assumed: no characteristic
+C, no 30 mA and no limit resting on them, unlike the calculations, which assume them.
+The results are entered per circuit: continuity of the protective conductor (Ω),
+insulation resistance (MΩ), loop impedance Zs (Ω), tripping current (mA) and time (ms)
+of the residual current device, function test (OK / Not OK), tested by, date, test
+instrument, remark. Values are kept as entered (`0,35`, `> 500`). Each circuit gets a
+verdict: *Not passed* when a value is out of the limits (insulation below 1 MΩ, Zs above
+its limit, RCD tripping current outside ½ IΔn … IΔn or tripping time above 300 ms, a
+failed function test), *Passed* when the continuity, insulation, loop impedance,
+function test and (with an RCD) tripping time are there, *Incomplete* in between and
+*Not tested* without values. The report exports as an Excel workbook like the others.
+
+**On site, with a tablet or a phone:** the web page of the project server
+([project server](../project-server.md)) shows the report of every project under
+*Inspection and test report*: a card per circuit with the data of the schematic and
+the fields of the results (number keyboard, the limit next to each field, values out
+of the limits marked at once). Who may save reviews or edit the project enters the
+results there and saves them circuit by circuit, without opening the project and
+without a lock; values not yet saved stay in the browser (also across a lost
+connection). The editors that have the project open take them over with the next
+revision; their own saves keep them (the results are merged circuit by circuit, as the
+review records). *Excel* downloads the report.

@@ -133,6 +133,7 @@ Door cutout	Recorte da porta
 Download	Baixar
 Downloading {}…	Baixando {}…
 Drag to turn the model	Arraste para girar o modelo
+Drawings	Desenhos
 EMC clearance	Distância EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal e outros nomes são marcas de seus proprietários. O OpenECraft é um projeto independente.
 Edit	Editar
@@ -172,6 +173,7 @@ Function	Função
 Function (=)	Função (=)
 Function definition	Definição de função
 Function template	Modelo de função
+Function test	Teste de funcionamento
 Function text	Texto de função
 Functional safety	Segurança funcional
 Functions	Funções
@@ -196,7 +198,10 @@ Identifier	Identificador
 Identifying letter	Letra de identificação
 Image	Imagem
 Import	Importação
+Incomplete	Incompleto
 Input	Entrada
+Inspection and test report	Relatório de inspeção e ensaio
+Insulation resistance (MΩ)	Resistência de isolamento (MΩ)
 Integration	Integração
 Internal (bottom)	Interno (embaixo)
 Interruption point	Ponto de interrupção
@@ -234,6 +239,7 @@ Location (+)	Localização (+)
 Locked	Bloqueada
 Locked by {}	Bloqueado por {}
 Logo	Logotipo
+Loop impedance Zs (Ω)	Impedância de laço Zs (Ω)
 MTTFd (years)	MTTFd (anos)
 Machine	Máquina
 Main	Principal
@@ -278,6 +284,7 @@ Next page	Próxima página
 No	Não
 No Vault item matches a part of the project	Nenhum item do Vault corresponde a uma peça do projeto
 No cable {}	Nenhum cabo {}
+No circuit {}	Nenhum circuito {}
 No connection point {}	Nenhum ponto de conexão {}
 No device {}	Nenhum dispositivo {}
 No enclosure {}	Nenhum gabinete {}
@@ -300,18 +307,22 @@ No such section	Seção inexistente
 No symbol with id {}	Nenhum símbolo com o ID {}
 No title block of the project named {}	Nenhum selo do projeto chamado {}
 Nominal size	Diâmetro nominal
+Not OK	Não OK
 Not a language code: {}	Não é um código de idioma: {}
 Not a macro file: {}	Não é um arquivo de macro: {}
 Not a symbol id: {}	Não é um ID de símbolo: {}
 Not a title block file: {}	Não é um arquivo de selo: {}
 Not a valid rule set file: {}	Não é um arquivo de conjunto de regras válido: {}
 Not in the schematic	Não está no esquema elétrico
+Not passed	Reprovado
+Not tested	Não verificado
 Note	Nota
 Notes	Notas
 Number	Número
 Number of down conductors (0: as many as the class needs for the walls)	Número de descidas (0: tantas quanto a classe exige para as paredes)
 Number the sections 1, 2, 3 … on every level first	Numerar primeiro as seções 1, 2, 3 … em cada nível
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numera os identificadores de dispositivo por estrutura e letra de identificação na ordem do esquema elétrico (página, coluna, de cima para baixo)
+OK	OK
 Only rows containing this text	Apenas linhas que contêm este texto
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	O OpenECraft é fornecido sem garantia. Seus cálculos e verificações apoiam o projeto; uma pessoa qualificada precisa conferir os resultados com as normas e os regulamentos aplicáveis.
@@ -349,7 +360,9 @@ Part {}	Peça {}
 Parts	Peças
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Peças (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Falha na importação de peças: {}
+Passed	Aprovado
 Password	Senha
+Phases	Fases
 Phone	Telefone
 Picture	Imagem
 Pieces	Unidades
@@ -397,9 +410,14 @@ Project properties	Propriedades do projeto
 Properties	Propriedades
 Property	Propriedade
 Protection	Proteção
+Protective conductor (Ω)	Condutor de proteção (Ω)
+Protective device	Dispositivo de proteção
 Quantity	Quantidade
 Quantity (default 1)	Quantidade (padrão 1)
 Quantity unit	Unidade de quantidade
+RCD	DR
+RCD trip current (mA)	Corrente de disparo do DR (mA)
+RCD trip time (ms)	Tempo de disparo do DR (ms)
 Rack	Rack
 Rail	Trilho
 Range	Faixa
@@ -416,6 +434,7 @@ Relative humidity	Umidade relativa
 Relay	Relé
 Released	Liberado
 Released pages cannot be moved	Páginas liberadas não podem ser movidas
+Remark	Observação
 Remove	Remover
 Remove from favorites	Remover dos favoritos
 Remove the boundary	Remover o limite
@@ -446,6 +465,7 @@ Rule	Regra
 Rule set	Conjunto de regras
 Safety function	Função de segurança
 Save	Salvar
+Saved	Salvo
 Saved catalog {}	Catálogo {} salvo
 Saved user {}	Usuário {} salvo
 Saved {}	{} salvo
@@ -509,6 +529,8 @@ Terminal strip	Régua de bornes
 Terminal strips	Réguas de bornes
 Terminal type	Tipo de borne
 Terminals	Bornes
+Test instrument	Instrumento de medição
+Tested by	Verificado por
 Text	Texto
 Text to find	Texto a localizar
 The freestanding PV array {} stands outside the plot boundary	O arranjo FV no solo {} fica fora do limite do terreno
@@ -571,12 +593,14 @@ Wired	Fiado
 Wires	Fios
 Wiring	Fiação
 Yes	Sim
+Zs max (Ω)	Zs máx (Ω)
 access denied	acesso negado
 approved	aprovado
 bonded	equipotencializado
 file or folder not found	arquivo ou pasta não encontrado
 landscape	paisagem
 left	para a esquerda
+missing	ausente
 mm	mm
 none	nenhum
 normal	normal

@@ -138,6 +138,7 @@ Discontinued	단종
 Display device	표시 장치
 Document holder	문서 홀더
 Door handle	문 손잡이
+Download the report as an Excel workbook	보고서를 Excel 통합 문서로 다운로드
 Drawings box	도면 보관함
 Dryer	건조기
 Dummy plate	블라인드 플레이트
@@ -169,6 +170,7 @@ Enter the address of an openecraft-parts-server and click Connect.	openecraft-pa
 Environment variable with the password of the service account	서비스 계정의 암호가 있는 환경 변수
 Evaporator	증발기
 Everybody who may read the parts sees it.	부품을 읽을 수 있는 모든 사람이 볼 수 있습니다.
+Excel	Excel
 Exhaust valves	배기 밸브
 Expired	만료됨
 Export (CSV)	내보내기(CSV)
@@ -180,6 +182,7 @@ Feed-through terminal	관통 단자
 Female insert	암 인서트
 Field distribution device	필드 분배 장치
 Files and history ({} files)	파일 및 기록(파일 {}개)
+Filter circuits…	회로 필터…
 Filter fan	필터 팬
 Filter projects…	프로젝트 필터…
 Filter sessions…	세션 필터…
@@ -282,6 +285,8 @@ New role	새 역할
 New user	새 사용자
 Newer version	최신 버전
 Next	다음
+Next circuit	다음 회로
+No circuits found	회로를 찾을 수 없음
 No devices found	장치를 찾을 수 없음
 No ended sessions	종료된 세션 없음
 No grants: the rights by manufacturer apply	권한 부여 없음: 제조업체별 권한이 적용됩니다
@@ -295,6 +300,8 @@ Nobody works on a project	프로젝트에서 작업 중인 사람이 없습니�
 Non-return valves	논리턴 밸브
 None (only grants)	없음(권한 부여만)
 Not mounted	장착 안 함
+Not saved	저장되지 않음
+Nothing to save	저장할 내용 없음
 Nut	너트
 On the front	앞면
 On the left side	왼쪽
@@ -515,6 +522,7 @@ The last administrator cannot lose the right to manage users	마지막 관리자
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	회사 로고: PNG, JPEG, GIF, WebP 또는 SVG, 최대 512 kB
 The password needs at least {} characters	암호는 {}자 이상이어야 합니다
 The passwords do not match	암호가 일치하지 않습니다
+The project has no circuits fed from the mains	프로젝트에 전원에서 공급되는 회로가 없습니다
 The project has no devices	프로젝트에 장치가 없습니다
 The project has no pages	프로젝트에 페이지가 없습니다
 The project has no parts	프로젝트에 부품이 없습니다
@@ -614,6 +622,7 @@ unchanged if empty	비워 두면 변경 안 함
 unexpected answer: {}	예기치 않은 응답: {}
 you	나
 {} ({}, {})	{}({}, {})
+{} circuits	회로 {}개
 {} has no checksum in SHA256SUMS	SHA256SUMS에 {}의 SHA-256 값이 없습니다
 {} parts in {} catalogs, revision {}	부품 {}개, 카탈로그 {}개, 개정 {}
 {} parts, {} catalogs, {}	부품 {}개, 카탈로그 {}개, {}

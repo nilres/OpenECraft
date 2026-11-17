@@ -131,6 +131,7 @@ Door cutout	도어 컷아웃
 Download	다운로드
 Downloading {}…	{} 다운로드 중…
 Drag to turn the model	끌어서 모델 회전
+Drawings	도면
 EMC clearance	EMC 이격 거리
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal 및 기타 이름은 해당 소유자의 상표입니다. OpenECraft는 독립적인 프로젝트입니다.
 Edit	편집
@@ -170,6 +171,7 @@ Function	기능
 Function (=)	기능 (=)
 Function definition	기능 정의
 Function template	기능 템플릿
+Function test	기능 시험
 Function text	기능 텍스트
 Functional safety	기능 안전
 Functions	기능
@@ -194,7 +196,10 @@ Identifier	식별자
 Identifying letter	식별 문자
 Image	이미지
 Import	가져오기
+Incomplete	미완료
 Input	입력
+Inspection and test report	검사 및 시험 보고서
+Insulation resistance (MΩ)	절연 저항 (MΩ)
 Integration	통합
 Internal (bottom)	내부(아래)
 Interruption point	중단점
@@ -232,6 +237,7 @@ Location (+)	위치 (+)
 Locked	잠김
 Locked by {}	{}이(가) 잠금
 Logo	로고
+Loop impedance Zs (Ω)	루프 임피던스 Zs (Ω)
 MTTFd (years)	MTTFd(년)
 Machine	기계
 Main	주
@@ -276,6 +282,7 @@ Next page	다음 페이지
 No	아니요
 No Vault item matches a part of the project	프로젝트의 부품과 일치하는 Vault 항목이 없습니다
 No cable {}	케이블 {} 없음
+No circuit {}	회로 {} 없음
 No connection point {}	연결 지점 {} 없음
 No device {}	장치 {} 없음
 No enclosure {}	외함 {} 없음
@@ -298,18 +305,22 @@ No such section	해당 구역이 없습니다
 No symbol with id {}	ID가 {}인 심볼 없음
 No title block of the project named {}	프로젝트에 이름이 {}인 표제란이 없습니다
 Nominal size	호칭경
+Not OK	OK 아님
 Not a language code: {}	언어 코드가 아님: {}
 Not a macro file: {}	매크로 파일이 아님: {}
 Not a symbol id: {}	심볼 ID가 아닙니다: {}
 Not a title block file: {}	표제란 파일이 아님: {}
 Not a valid rule set file: {}	유효한 규칙 세트 파일이 아님: {}
 Not in the schematic	회로도에 없음
+Not passed	불합격
+Not tested	시험 안 함
 Note	참고
 Notes	메모
 Number	번호
 Number of down conductors (0: as many as the class needs for the walls)	인하 도선 수 (0: 등급이 벽에 요구하는 만큼)
 Number the sections 1, 2, 3 … on every level first	먼저 각 수준의 구역에 1, 2, 3 … 번호 매기기
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	구조 및 식별 문자별로 회로도 순서(페이지, 열, 위에서 아래)에 따라 장치 태그에 번호를 매깁니다
+OK	OK
 Only rows containing this text	이 텍스트가 포함된 행만
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft는 보증 없이 제공됩니다. 계산과 검사는 설계를 지원하는 것이며, 자격을 갖춘 사람이 적용되는 표준과 규정에 따라 결과를 확인해야 합니다.
@@ -347,7 +358,9 @@ Part {}	부품 {}
 Parts	부품
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	부품(CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	부품 가져오기 실패: {}
+Passed	합격
 Password	암호
+Phases	상
 Phone	전화
 Picture	이미지
 Pieces	개수
@@ -395,9 +408,14 @@ Project properties	프로젝트 속성
 Properties	속성
 Property	속성
 Protection	보호
+Protective conductor (Ω)	보호 도체 (Ω)
+Protective device	보호 장치
 Quantity	수량
 Quantity (default 1)	수량(기본값 1)
 Quantity unit	수량 단위
+RCD	RCD
+RCD trip current (mA)	RCD 동작 전류 (mA)
+RCD trip time (ms)	RCD 동작 시간 (ms)
 Rack	랙
 Rail	레일
 Range	범위
@@ -414,6 +432,7 @@ Relative humidity	상대 습도
 Relay	릴레이
 Released	릴리스됨
 Released pages cannot be moved	릴리스된 페이지는 이동할 수 없습니다
+Remark	비고
 Remove	제거
 Remove from favorites	즐겨찾기에서 제거
 Remove the boundary	경계 제거
@@ -444,6 +463,7 @@ Rule	규칙
 Rule set	규칙 세트
 Safety function	안전 기능
 Save	저장
+Saved	저장됨
 Saved catalog {}	카탈로그 {}을(를) 저장했습니다
 Saved user {}	사용자 {}을(를) 저장했습니다
 Saved {}	{} 저장됨
@@ -507,6 +527,8 @@ Terminal strip	단자대
 Terminal strips	단자대
 Terminal type	단자 유형
 Terminals	단자
+Test instrument	측정기
+Tested by	시험자
 Text	텍스트
 Text to find	찾을 텍스트
 The freestanding PV array {} stands outside the plot boundary	지상형 태양광 어레이 {}이(가) 부지 경계 밖에 있습니다
@@ -569,12 +591,14 @@ Wired	배선 완료
 Wires	전선
 Wiring	배선 작업
 Yes	예
+Zs max (Ω)	Zs 최대 (Ω)
 access denied	액세스가 거부되었습니다
 approved	승인됨
 bonded	본딩됨
 file or folder not found	파일 또는 폴더를 찾을 수 없습니다
 landscape	가로
 left	왼쪽
+missing	누락됨
 mm	mm
 normal	보통
 not bonded	본딩 안 됨

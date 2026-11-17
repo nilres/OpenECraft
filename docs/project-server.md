@@ -36,7 +36,12 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   signed out or user deleted), the users (role, projects, groups,
   password), the access rights (access without sign-in, defined roles, grants) and the
   directories (Active Directory, LDAP, with a test of the connection and of a
-  sign-in). The page is in all languages of the app; it uses the API below, so the
+  sign-in). *Inspection and test report* of a project shows its circuits for the
+  inspection on site, made for a tablet or a phone: reviewers and editors enter the
+  measured results there circuit by circuit, without opening the project and without
+  a lock, and download the report as an Excel workbook
+  ([inspection and test report](features/calculations.md#inspection-and-test-report)).
+  The page is in all languages of the app; it uses the API below, so the
   server checks every request as for the editor. Without `--web` the server answers
   `/` with a short text and has no page routes.
 - **Created by, last changed by, last changed**: the server keeps for each project
@@ -182,6 +187,13 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   `revision` the source must still have – `412` otherwise –, its `info` and `records`;
   needs the right to view the source and to create the new name, answers like opening
   a project),
+  `GET|PUT /projects/{name}/inspection` (the inspection and test report as saved:
+  the circuits with the data of the schematic, the limits, the results and the
+  verdicts, `InspectionSheet`; `PUT` takes `user`, `circuit`, the `rev` of its results
+  as loaded and the `values` by field, needs the right to save reviews or to edit,
+  answers `409` if the results of the circuit changed since `rev` and counts as a
+  change of the project), `GET /projects/{name}/inspection.xlsx?lang=de` (the report as
+  an Excel workbook),
   `POST /login` (`user` and `password`; `name` is taken for `user`, as on the parts
   server), `POST /logout`, `GET /users`, `PUT|DELETE /users/{name}`, `GET|PUT /access`,
   `GET /directories`, `PUT|DELETE /directories/{id}`, `POST /directories/{id}/test`
