@@ -74,6 +74,7 @@ Certificate	Certifikat
 Changed	Ændret
 Changed last	Senest ændret
 Changes allowed	Ændringer tilladt
+Changing the data or the results afterwards takes the signature away.	Ændres data eller resultater bagefter, fjernes underskriften.
 Check control valve	Kontraventil
 Check flap	Kontraspjæld
 Chimney	Skorsten
@@ -261,6 +262,7 @@ Logos	Logoer
 Looks the users up; empty: users bind with their own name (below)	Slår brugerne op; tomt: brugerne binder med deres eget navn (nedenfor)
 Male insert	Stiftindsats
 Managers of a project give rights on it themselves (Permissions on the project).	Projektledere giver selv rettigheder til deres projekt (Tilladelser for projektet).
+Measured at the origin	Målt ved forsyningspunktet
 Measurement system	Målesystem
 Measuring connection points	Måletilslutninger
 Measuring couplings	Målekoblinger
@@ -279,6 +281,7 @@ Name attribute	Navneattribut
 New accounts need the approval of an administrator	Nye konti skal godkendes af en administrator
 New catalog	Nyt katalog
 New directory	Ny katalogtjeneste
+New installation	Ny installation
 New part	Ny artikel
 New part based on the open one	Ny artikel baseret på den åbne
 New password	Ny adgangskode
@@ -302,6 +305,7 @@ Non-return valves	Kontraventiler
 None (only grants)	Ingen (kun tildelinger)
 Not mounted	Ikke monteret
 Not saved	Ikke gemt
+Not signed	Ikke underskrevet
 Nothing to save	Intet at gemme
 Nut	Møtrik
 On the front	På forsiden
@@ -408,9 +412,11 @@ Remove logo	Fjern logo
 Remove the file from the part	Fjern filen fra artiklen
 Remove the logo	Fjern logoet
 Removed from the server	Fjernet fra serveren
+Repair	Reparation
 Repeat password	Gentag adgangskoden
 Replace the roles and grants with those of the file?	Vil du erstatte rollerne og tildelingerne med dem fra filen?
 Replaced by {}	Erstattet af {}
+Report data and visual inspection	Rapportdata og visuel kontrol
 Resistors	Modstande
 Restore from a file	Gendan fra en fil
 Return flushing filters, all-autom.	Returskyllefiltre, fuldautomatiske
@@ -465,12 +471,16 @@ Sign in with a user account	Log på med en brugerkonto
 Sign in with the access token of the server	Log på med serverens adgangstoken
 Sign out everywhere	Log af overalt
 Sign out {} on all devices?	Log {} af på alle enheder?
+Sign the report	Underskriv rapporten
 Sign-in needed to read	Login kræves for at læse
 Sign-in needed to view	Login kræves for at se
 Signal device	Signalenhed
 Signal device, acoustic	Signalenhed, akustisk
 Signal device, optical	Signalenhed, optisk
 Signal lamp	Signallampe
+Signature	Underskrift
+Signed	Underskrevet
+Signed by {} on {}	Underskrevet af {} den {}
 Signed in	Logget på
 Silencers	Lyddæmpere
 Silo	Silo
@@ -479,6 +489,7 @@ Single-stage filters	Enkelttrinsfiltre
 Siphon	Sifon
 Size of the files	Filernes størrelse
 Solenoid valve	Magnetventil
+Someone saved this meanwhile. Check the values and save again.	Nogen har gemt dette i mellemtiden. Kontrollér værdierne, og gem igen.
 Sorter	Sorterer
 Start a server with:  openecraft-parts-server --token <secret>	Start en server med:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Start openecraft-parts-server med --token for at tillade ændringer
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault fortsatte ikke uploaden
 Ventilation filters	Ventilationsfiltre
 Ventilator	Ventilator
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Fremvisere åbner projekter skrivebeskyttet, korrekturlæsere gemmer også gennemsyn, redaktører ændrer og opretter projekter, projektledere sletter dem også og giver rettigheder til dem, administratorer administrerer serveren.
+Visual inspection	Visuel kontrol
 Voltage source	Spændingskilde
 Voltage source and generator	Spændingskilde og generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Ventende konti kan ikke logge på; godkend eller afvis dem under Brugere.

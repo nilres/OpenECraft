@@ -43,6 +43,7 @@ Actuated by	Приводиться в дію
 Actuation	Приведення в дію
 Actuator type	Тип приводного елемента
 Additional page description	Додатковий опис сторінки
+Additional protection by RCDs of at most 30 mA where required	Додатковий захист ПЗВ не більше 30 мА, де потрібно
 Address ranges of {} and {} overlap	Діапазони адрес {} і {} перекриваються
 Address {} is used by {} and {}	Адресу {} використовують {} і {}
 Adhesive	Клей
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Автоматичний вимикач, 3-пол
 Circuit breaker 3-pole QF (GOST)	Автоматичний вимикач, 3-полюсний QF (ГОСТ)
 Circuit breaker 3-pole, thermal-magnetic	Автоматичний вимикач, 3-полюсний, тепловий та електромагнітний
 Circuit breaker 4-pole	Автоматичний вимикач, 4-полюсний
+Circuits, protective devices, switches and terminals labelled	Кола, захисні пристрої, вимикачі та клеми марковані
 Circular milling	Кругове фрезерування
 Clip / snap-on	Затискач / защіпка
 Cloud	Хмара
@@ -241,6 +243,7 @@ Compressed air supply	Подача стисненого повітря
 Compressor	Компресор
 Condition '{}' needs OPTION=value	Умова '{}' потребує OPTION=значення
 Conductor class	Клас провідника
+Conductors selected for current-carrying capacity and voltage drop	Провідники вибрані за допустимим струмом і спадом напруги
 Conduit	Монтажна труба
 Connected	Зайнято
 Connection definition point on page {} is not applied to its connection	Точку визначення з’єднання на сторінці {} не застосовано до її з’єднання
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Символи з'єднань
 Connection type	Тип підключення
 Connection {} has contradicting connection definition points	З’єднання {} має суперечливі точки визначення з’єднання
+Connections of the conductors	З'єднання провідників
 Connector pin-outs and flat cables	Розпіновки роз'ємів і плоскі кабелі
 Connector pin-outs: mating faces and pin tables (SVG)	Розпіновки роз'ємів: боки з'єднання і таблиці контактів (SVG)
 Contact material	Матеріал контактів
@@ -374,6 +378,7 @@ Devices without power loss	Пристрої без втрат потужност
 Dew point (°C)	Точка роси (°C)
 Diagnostic coverage (DC)	Діагностичне покриття (DC)
 Diagnostics	Діагностика
+Diagrams, warning notices and similar information present	Схеми, попереджувальні написи та подібна інформація наявні
 Diameter (mm)	Діаметр (мм)
 Different wire numbers in one connection: {}	Різні номери проводів в одному з’єднанні: {}
 Digital input / output module	Модуль дискретних входів / виходів
@@ -481,6 +486,8 @@ Energy limitation class	Клас обмеження енергії
 Engineered	Спроєктовано
 Engineering unit	Фізична одиниця
 Environment	Навколишнє середовище
+Equipment accessible for operation, inspection and maintenance	Обладнання доступне для керування, перевірки та обслуговування
+Equipment and protective measures suit the external influences	Обладнання та заходи захисту відповідають зовнішнім впливам
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Провідники заземлення обладнання мають бути зеленими (NFPA 79, 13.2.2)
 Excel workbook	Книга Excel
 Exhaust {} open to the atmosphere (no silencer)	Випуск {} відкритий в атмосферу (без глушника)
@@ -516,6 +523,7 @@ File name written into the file header	Назва файлу, що запису�
 Fill level (%)	Ступінь заповнення (%)
 Filter fan with outlet filter	Вентилятор із фільтром і вихідним фільтром
 Filter rating	Тонкість фільтрації
+Fire barriers and protection against thermal effects	Протипожежні перегородки та захист від теплових впливів
 Firmware version	Версія мікропрограми
 First end only	Лише перший кінець
 Fitting	Фітинг
@@ -707,12 +715,13 @@ Input voltage	Вхідна напруга
 Inputs from	Входи від
 Inrush current	Пусковий струм
 Inside (°C)	Усередині (°C)
+Inspection and test report: data	Протокол огляду та випробувань: дані
+Inspection and test report: summary	Протокол огляду та випробувань: підсумок
 Installation altitude	Висота встановлення
 Installation date	Дата встановлення
 Installation devices	Електроустановчі пристрої
 Installation method	Спосіб прокладання
 Installation plan (IEC 60617-11)	План електроустановки (IEC 60617-11)
-Installation site	Місце встановлення
 Installation site (++)	Місце встановлення (++)
 Installation site and location	Місце встановлення та розташування
 Installation site of the page	Місце встановлення сторінки
@@ -735,6 +744,7 @@ Invalid length {}	Недійсна довжина {}
 Invalid property key: {}	Недійсний ключ властивості: {}
 Inverter / charger	Інвертор / зарядний пристрій
 Inverter DC/AC	Інвертор DC/AC
+Isolating and switching devices in the right places	Пристрої відключення та комутації в потрібних місцях
 Item	Елемент
 Item ID	Ідентифікатор позиції
 Items	Елементи
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	Замикальний контакт із за
 Nailboard {}	Шаблон джгута {}
 Network (m)	Мережа (м)
 Neutral (N)	Нейтральний провідник (N)
+Neutral and protective conductors identified	Нульові та захисні провідники позначені
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Нейтральні провідники мають бути блакитними (IEC 60204-1, 13.2.3)
-Next inspection	Наступна перевірка
 Nibbling	Висічка
 No connection {}	Немає з’єднання {}
 No devices to add to the single-line diagram	Немає пристроїв для додавання до однолінійної схеми
@@ -977,6 +987,7 @@ Number of sheets	Кількість аркушів
 Number of switch positions	Кількість положень перемикача
 Number of symbols	Кількість символів
 Numbers (1, 2, 3)	Цифри (1, 2, 3)
+OK, Not OK or Not applicable	OK, Не OK або Не застосовується
 Ohmmeter	Омметр
 Oil resistant	Оливостійкий
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Одна сторінка схеми з потенціалами +24V / 0V, кнопками, перемикачем, лампами та запобіжником; вироби та специфікація.
@@ -1223,14 +1234,17 @@ Project revision	Ревізія проєкту
 Project symbols	Символи проєкту
 Proof test interval	Інтервал контрольних випробувань
 Prospective short-circuit current	Очікуваний струм короткого замикання
+Protection against electric shock: the measures and their components	Захист від ураження електричним струмом: заходи та їх елементи
 Protection class	Клас захисту
 Protection setting	Уставка захисту
+Protective and monitoring devices selected and set correctly	Захисні та контрольні пристрої вибрані та налаштовані правильно
 Protective conductor {} with wire colour {} (must be GNYE)	Захисний провідник {} з кольором проводу {} (має бути GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Захисні провідники мають бути зелено-жовтими (IEC 60204-1, 13.2.2)
 Protective devices	Захисні пристрої
 Protective earth	Захисне заземлення
 Protective earth (PE)	Захисний провідник (PE)
 Protective hose	Захисний рукав
+Protective, earthing and bonding conductors present and adequate	Захисні, заземлювальні та зрівнювальні провідники наявні та достатні
 Proximity sensor	Безконтактний датчик
 Proximity sensor NO	Безконтактний датчик, замикальний
 Proximity switch NO (NFPA)	Безконтактний вимикач, замикальний (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Сигнальні пристрої
 Signal name	Назва сигналу
 Signal range	Діапазон сигналу
 Signal type	Тип сигналу
+Signed by	Підписав
+Signed on	Дата підпису
 Silencer	Глушник
 Single, free-standing	Окрема, окремостояча
 Single, wall mounted	Окрема, настінна
@@ -1518,6 +1534,7 @@ Supply voltage	Напруга живлення
 Surface (m²)	Поверхня (м²)
 Surface-mounted	Відкрите прокладання
 Surge protection type	Тип захисту від перенапруги
+Surge protection where required	Захист від перенапруг, де потрібно
 Surge protective device	Пристрій захисту від перенапруг
 Surge suppressor	Обмежувач перенапруги
 Switch, 1-pole (installation)	Вимикач, однополюсний (електроустановка)
@@ -1568,6 +1585,7 @@ Termination (to)	Оконцювання (до)
 Text file	Текстовий файл
 The DXF file contains nothing that can be imported	Файл DXF не містить нічого, що можна імпортувати
 The PDF has no pages that can be read	PDF не містить сторінок, які можна прочитати
+The answer is OK, Not OK or Not applicable, not {}	Відповідь: OK, Не OK або Не застосовується, а не {}
 The archive contains no project	Архів не містить проєкту
 The archive has no manifest	Архів не має маніфесту
 The archive is damaged	Архів пошкоджено
@@ -1937,6 +1955,7 @@ yellow	жовтий
 {} lies outside page {}	{} знаходиться поза сторінкою {}
 {} min {} s	{} хв {} с
 {} mounting marks belong to items that no longer exist	Позначок встановлення, що належать елементам, яких більше не існує: {}
+{} of {} passed	Пройдено {} з {}
 {} option assignments of deleted objects removed	Вилучено призначень опцій для видалених об’єктів: {}
 {} placed properties converted to property keys	Розміщених властивостей, перетворених на ключі властивостей: {}
 {} planned devices are not in the schematic yet	Запланованих пристроїв, яких ще немає на схемі: {}

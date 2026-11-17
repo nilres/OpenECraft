@@ -60,12 +60,14 @@ Channel	Canale
 Characteristic	Caratteristica
 Check settings	Impostazioni della verifica
 Checks	Verifiche
+Circuits	Circuiti
 Class	Classe
 Classes	Classi
 Clear filters	Cancella filtri
 Clearance bottom	Distanza in basso
 Clearance top	Distanza in alto
 Clearances	Distanze
+Client	Committente
 Close	Chiudi
 Coding: {}	Codifica: {}
 Coil voltage	Tensione della bobina
@@ -85,6 +87,7 @@ Connection point	Punto di connessione
 Connection points	Punti di connessione
 Connections	Collegamenti
 Connector	Connettore
+Contact voltage UB (V)	Tensione di contatto UB (V)
 Controller	Controllore
 Cooling	Raffreddamento
 Core	Anima
@@ -136,6 +139,7 @@ Drag to turn the model	Trascina per ruotare il modello
 Drawings	Disegni
 EMC clearance	Distanza EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal e altri nomi sono marchi dei rispettivi proprietari. OpenECraft è un progetto indipendente.
+Earth electrode resistance RA (Ω)	Resistenza del dispersore RA (Ω)
 Edit	Modifica
 Editor	Editor
 Electro-fluid cross reference	Riferimenti incrociati elettro-fluidici
@@ -150,6 +154,7 @@ Export as CSV…	Esporta come CSV…
 Export as JSON…	Esporta come JSON…
 Export failed: {}	Esportazione non riuscita: {}
 External (top)	Esterno (sopra)
+External loop impedance Ze (Ω)	Impedenza dell'anello esterna Ze (Ω)
 Face	Faccia
 Failed	Non riuscito
 Fastening	Fissaggio
@@ -201,7 +206,11 @@ Import	Importazione
 Incomplete	Incompleto
 Input	Ingresso
 Inspection and test report	Rapporto di verifica
+Inspector	Verificatore
+Installation site	Sito di installazione
+Installer	Installatore
 Insulation resistance (MΩ)	Resistenza di isolamento (MΩ)
+Insulation test voltage (V)	Tensione di prova dell'isolamento (V)
 Integration	Integrazione
 Internal (bottom)	Interno (sotto)
 Interruption point	Punto di interruzione
@@ -245,6 +254,7 @@ Machine	Macchina
 Main	Princ.
 Main earthing busbar (device) it is connected to; empty: none	Collettore principale di terra (apparecchio) a cui è collegato; vuoto: nessuno
 Main earthing terminal	Collettore principale di terra
+Main equipotential bonding (Ω)	Collegamento equipotenziale principale (Ω)
 Main switch	Interruttore generale
 Manufacturer	Produttore
 Manufacturers	Produttori
@@ -280,6 +290,7 @@ Net	Rete
 Never	Mai
 New group	Nuovo gruppo
 New name	Nuovo nome
+Next inspection	Prossima ispezione
 Next page	Pagina successiva
 No	No
 No Vault item matches a part of the project	Nessun elemento di Vault corrisponde a un articolo del progetto
@@ -313,6 +324,7 @@ Not a macro file: {}	Non è un file di macro: {}
 Not a symbol id: {}	Non è un ID di simbolo: {}
 Not a title block file: {}	Non è un file di cartigli: {}
 Not a valid rule set file: {}	Non è un file di set di regole valido: {}
+Not applicable	Non applicabile
 Not in the schematic	Non nello schema
 Not passed	Non superato
 Not tested	Non verificato
@@ -409,6 +421,7 @@ Project name	Nome progetto
 Project properties	Proprietà progetto
 Properties	Proprietà
 Property	Proprietà
+Prospective fault current at the origin (kA)	Corrente di guasto presunta all'origine (kA)
 Protection	Protezione
 Protective conductor (Ω)	Conduttore di protezione (Ω)
 Protective device	Dispositivo di protezione
@@ -418,12 +431,14 @@ Quantity unit	Unità di quantità
 RCD	Differenziale
 RCD trip current (mA)	Corrente di intervento del differenziale (mA)
 RCD trip time (ms)	Tempo di intervento del differenziale (ms)
+RCD trip time at 5 × IΔn (ms)	Tempo di intervento del differenziale a 5 × IΔn (ms)
 Rack	Rack
 Rail	Guida
 Range	Campo
 Rated current	Corrente nominale
 Rated power	Potenza nominale
 Rear wall	Parete posteriore
+Reason for the test	Motivo della verifica
 Rectangle	Rettangolo
 Rectangular	Rettangolare
 Redo	Ripeti
@@ -513,8 +528,10 @@ Structure	Struttura
 Subproject name	Nome del sottoprogetto
 Subsystem	Sottosistema
 Successor	Successore
+Summary	Riepilogo
 Supplier	Fornitore
 Supply	Approvvigionamento
+Supply system	Sistema di alimentazione
 Symbol	Simbolo
 Symbol key	Chiave del simbolo
 Symbolic address	Indirizzo simbolico
@@ -530,6 +547,7 @@ Terminal strips	Morsettiere
 Terminal type	Tipo di morsetto
 Terminals	Morsetti
 Test instrument	Strumento di misura
+Test instruments (IEC 61557)	Strumenti di misura (IEC 61557)
 Tested by	Verificato da
 Text	Testo
 Text to find	Testo da trovare
@@ -558,6 +576,7 @@ Unknown column: {}	Colonna sconosciuta: {}
 Unknown connector: {}	Connettore sconosciuto: {}
 Unknown enclosure system: {}	Sistema di armadi sconosciuto: {}
 Unknown face: {}	Faccia sconosciuta: {}
+Unknown field: {}	Campo sconosciuto: {}
 Unknown format: {}	Formato sconosciuto: {}
 Unknown function definition: {}	Definizione di funzione sconosciuta: {}
 Unknown language: {}	Lingua sconosciuta: {}
@@ -576,6 +595,7 @@ User	Utente
 User name	Nome utente
 Users	Utenti
 VAT ID	Partita IVA
+Value	Valore
 Version	Versione
 Viewer	Visualizzatore
 Voltage	Tensione

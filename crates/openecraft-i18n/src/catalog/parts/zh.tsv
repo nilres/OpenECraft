@@ -73,6 +73,7 @@ Certificate	证书
 Changed	已更改
 Changed last	最近更改
 Changes allowed	允许更改
+Changing the data or the results afterwards takes the signature away.	之后修改数据或结果会撤销签名。
 Check control valve	止回阀
 Check flap	止回挡板
 Chimney	烟囱
@@ -260,6 +261,7 @@ Logos	标志
 Looks the users up; empty: users bind with their own name (below)	用于查找用户；为空：用户以自己的名称认证（见下方）
 Male insert	公头插芯
 Managers of a project give rights on it themselves (Permissions on the project).	项目经理自行授予其项目的权限（项目的权限）。
+Measured at the origin	在电源进线处测量
 Measurement system	测量系统
 Measuring connection points	测量接口
 Measuring couplings	测压接头
@@ -278,6 +280,7 @@ Name attribute	名称属性
 New accounts need the approval of an administrator	新帐户需要管理员批准
 New catalog	新建目录
 New directory	新建目录服务
+New installation	新安装
 New part	新建部件
 New part based on the open one	基于打开的部件新建部件
 New password	新密码
@@ -301,6 +304,7 @@ Non-return valves	单向阀
 None (only grants)	无（仅授权）
 Not mounted	不安装
 Not saved	未保存
+Not signed	未签名
 Nothing to save	没有要保存的内容
 Nut	螺母
 On the front	前面
@@ -407,9 +411,11 @@ Remove logo	删除标志
 Remove the file from the part	从部件中删除该文件
 Remove the logo	删除标志
 Removed from the server	已从服务器删除
+Repair	维修
 Repeat password	重复密码
 Replace the roles and grants with those of the file?	是否用文件中的角色和授权替换现有的？
 Replaced by {}	已由 {} 替代
+Report data and visual inspection	报告数据和目视检查
 Resistors	电阻器
 Restore from a file	从文件恢复
 Return flushing filters, all-autom.	全自动反冲洗过滤器
@@ -464,12 +470,16 @@ Sign in with a user account	使用用户帐户登录
 Sign in with the access token of the server	使用服务器的访问令牌登录
 Sign out everywhere	全部注销
 Sign out {} on all devices?	是否在所有设备上注销 {}？
+Sign the report	在报告上签名
 Sign-in needed to read	需要登录才能读取
 Sign-in needed to view	需要登录才能查看
 Signal device	信号设备
 Signal device, acoustic	信号装置，声响
 Signal device, optical	信号装置，光
 Signal lamp	信号灯
+Signature	签名
+Signed	已签名
+Signed by {} on {}	由 {} 于 {} 签名
 Signed in	已登录
 Silencers	消声器
 Silo	筒仓
@@ -478,6 +488,7 @@ Single-stage filters	单级过滤器
 Siphon	虹吸管
 Size of the files	文件大小
 Solenoid valve	电磁阀
+Someone saved this meanwhile. Check the values and save again.	其他人在此期间保存了此内容。请检查数值后重新保存。
 Sorter	分选机
 Start a server with:  openecraft-parts-server --token <secret>	使用以下命令启动服务器：  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	使用 --token 启动 openecraft-parts-server 以允许更改
@@ -584,6 +595,7 @@ Vault did not continue the upload	Vault 未继续上传
 Ventilation filters	通气过滤器
 Ventilator	风机
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	查看者以只读方式打开项目，审阅者还可保存审阅，编辑者更改和创建项目，项目经理还可删除项目并授予其权限，管理员管理服务器。
+Visual inspection	目视检查
 Voltage source	电压源
 Voltage source and generator	电压源和发电机
 Waiting accounts cannot sign in; approve or reject them in Users.	等待中的帐户无法登录；请在“用户”中批准或拒绝它们。

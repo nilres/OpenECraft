@@ -107,10 +107,11 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "inspection_report",
-        help: tr_const!("Inspection and test report of the installation (IEC 60364-6): every circuit of the mains with what the schematic gives (description, cables, protective device, residual current device, highest loop impedance; null: missing in the project), the results measured and the verdict; sets results of a circuit"),
+        help: tr_const!("Inspection and test report of the installation (IEC 60364-6): the data of the report, the visual inspection, every circuit of the mains with what the schematic gives (description, cables, protective device, residual current device, limits; null: missing in the project), the results measured and the verdicts; sets the data of the report and the results of a circuit"),
         params: &[
             optional("circuit", Kind::Str, tr_const!("Device tag of the protective device whose results to set")),
-            optional("results", Kind::Object, tr_const!("Results to set: continuity (Ω), insulation (MΩ), loop_impedance (Ω), rcd_current (mA), rcd_time (ms), function (ok or failed), tester, date, instrument, remark; an empty text clears")),
+            optional("results", Kind::Object, tr_const!("Results to set: continuity (Ω), insulation_voltage (V), insulation (MΩ), loop_impedance (Ω), rcd_current (mA), rcd_time (ms), rcd_time_5 (ms), rcd_voltage (V), function (ok or failed), tester, date, instrument, remark; an empty text clears")),
+            optional("header", Kind::Object, tr_const!("Data of the report to set: client, site, installer, reason, inspector, instruments, ze (Ω), ik (kA), earth_electrode (Ω), bonding (Ω), next_inspection, signed_by, signed_on and the visual inspection as check.<item> (ok, failed or n/a); an empty text clears")),
         ],
         run: inspection_report,
     },
@@ -208,7 +209,19 @@ fn finite(v: f32) -> Value {
     }
 }
 
+/// A value of an object parameter as text (numbers too; null clears).
+fn value_text(key: &str, value: &Value) -> Result<String, String> {
+    match value {
+        Value::String(s) => Ok(s.clone()),
+        Value::Number(n) => Ok(n.to_string()),
+        Value::Null => Ok(String::new()),
+        _ => Err(tr_fmt!("Unknown field: {}", key)),
+    }
+}
+
 fn inspection_report(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    // All values or none.
+    let mut changed = prj.clone();
     if let Some(results) = a.value("results") {
         let circuit = a.str("circuit").ok_or_else(|| tr("Name the circuit whose results to set").to_string())?;
         let results = results.as_object().ok_or_else(|| tr("The results are an object of fields and values").to_string())?;
@@ -216,30 +229,19 @@ fn inspection_report(prj: &mut Project, a: &Args) -> Result<Value, String> {
         if !inspection::circuits(prj, &an.netlist, &an.connections).iter().any(|c| c.circuit == circuit) {
             return Err(tr_fmt!("No circuit {}", circuit));
         }
-        // All values or none.
-        let mut changed = prj.clone();
         for (key, value) in results {
             let field = Field::from_key(key).ok_or_else(|| tr_fmt!("Unknown field: {}", key))?;
-            let text = match value {
-                Value::String(s) => s.clone(),
-                Value::Number(n) => n.to_string(),
-                Value::Null => String::new(),
-                _ => return Err(tr_fmt!("Unknown field: {}", key)),
-            };
-            inspection::set(&mut changed, circuit, field, &text)?;
+            inspection::set(&mut changed, circuit, field, &value_text(key, value)?)?;
         }
-        prj.inspection = changed.inspection;
     }
+    if let Some(header) = a.value("header") {
+        let header = header.as_object().ok_or_else(|| tr("The results are an object of fields and values").to_string())?;
+        let values = header.iter().map(|(k, v)| value_text(k, v).map(|v| (k.as_str(), v))).collect::<Result<Vec<_>, _>>()?;
+        inspection::set_header_all(&mut changed, values.iter().map(|(k, v)| (*k, v.as_str())))?;
+    }
+    prj.inspection = changed.inspection;
     let an = Analysis::build(prj);
-    let supply = &prj.electrical.supply;
-    Ok(json!({
-        "u0_v": supply.u0(),
-        "earthing": supply.earthing.title(),
-        "min_insulation_mohm": inspection::MIN_INSULATION,
-        "max_rcd_time_ms": inspection::MAX_RCD_TIME,
-        "loop_factor": inspection::LOOP_FACTOR,
-        "circuits": inspection::circuits(prj, &an.netlist, &an.connections),
-    }))
+    serde_json::to_value(inspection::Report::of(prj, &an.netlist, &an.connections)).map_err(|e| e.to_string())
 }
 
 fn short_circuit(prj: &mut Project, _: &Args) -> Result<Value, String> {

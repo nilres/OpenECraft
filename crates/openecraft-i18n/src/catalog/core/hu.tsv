@@ -43,6 +43,7 @@ Actuated by	Működteti
 Actuation	Működtetés
 Actuator type	Működtető típusa
 Additional page description	További oldalleírás
+Additional protection by RCDs of at most 30 mA where required	Kiegészítő védelem legfeljebb 30 mA-es áram-védőkapcsolókkal, ahol előírt
 Address ranges of {} and {} overlap	A(z) {} és {} címtartománya átfedi egymást
 Address {} is used by {} and {}	A(z) {} címet {} és {} is használja
 Adhesive	Ragasztás
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Megszakító, 3 pólusú QF (GB)
 Circuit breaker 3-pole QF (GOST)	Megszakító, 3 pólusú QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Megszakító, 3 pólusú, termikus-mágneses
 Circuit breaker 4-pole	Megszakító, 4 pólusú
+Circuits, protective devices, switches and terminals labelled	Áramkörök, védőkészülékek, kapcsolók és sorkapcsok jelölve
 Circular milling	Körkörös marás
 Clip / snap-on	Bepattintás
 Cloud	Felhő
@@ -241,6 +243,7 @@ Compressed air supply	Sűrítettlevegő-ellátás
 Compressor	Kompresszor
 Condition '{}' needs OPTION=value	A(z) '{}' feltételhez OPTION=érték szükséges
 Conductor class	Vezetőosztály
+Conductors selected for current-carrying capacity and voltage drop	Vezetők a terhelhetőség és a feszültségesés alapján kiválasztva
 Conduit	Védőcső
 Connected	Foglalt
 Connection definition point on page {} is not applied to its connection	A(z) {}. oldalon lévő összeköttetés-definíciós pont nincs alkalmazva az összeköttetésére
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Kapcsolati szimbólumok
 Connection type	Csatlakozás típusa
 Connection {} has contradicting connection definition points	A(z) {} összeköttetésnek ellentmondó összeköttetés-definíciós pontjai vannak
+Connections of the conductors	A vezetők csatlakozásai
 Connector pin-outs and flat cables	Csatlakozók lábkiosztása és szalagkábelek
 Connector pin-outs: mating faces and pin tables (SVG)	Csatlakozók lábkiosztása: csatlakozó felületek és lábtáblázatok (SVG)
 Contact material	Érintkezőanyag
@@ -374,6 +378,7 @@ Devices without power loss	Veszteségi teljesítmény nélküli készülékek
 Dew point (°C)	Harmatpont (°C)
 Diagnostic coverage (DC)	Diagnosztikai lefedettség (DC)
 Diagnostics	Diagnosztika
+Diagrams, warning notices and similar information present	Kapcsolási rajzok, figyelmeztetések és hasonló információk megvannak
 Diameter (mm)	Átmérő (mm)
 Different wire numbers in one connection: {}	Eltérő vezetékszámok egy összeköttetésben: {}
 Digital input / output module	Digitális be-/kimeneti modul
@@ -481,6 +486,8 @@ Energy limitation class	Energiakorlátozási osztály
 Engineered	Megtervezve
 Engineering unit	Fizikai egység
 Environment	Környezet
+Equipment accessible for operation, inspection and maintenance	Berendezések hozzáférhetők kezelésre, ellenőrzésre és karbantartásra
+Equipment and protective measures suit the external influences	Berendezések és védelmi intézkedések megfelelnek a külső hatásoknak
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	A berendezés-földelővezetőknek zöldnek kell lenniük (NFPA 79, 13.2.2)
 Excel workbook	Excel-munkafüzet
 Exhaust {} open to the atmosphere (no silencer)	A(z) {} kipufogó nyitott a légkör felé (nincs hangtompító)
@@ -516,6 +523,7 @@ File name written into the file header	A fájlfejlécbe írt fájlnév
 Fill level (%)	Töltöttség (%)
 Filter fan with outlet filter	Szűrős ventilátor kilépő szűrővel
 Filter rating	Szűrési finomság
+Fire barriers and protection against thermal effects	Tűzgátak és védelem a hőhatások ellen
 Firmware version	Firmware-verzió
 First end only	Csak az első vég
 Fitting	Csatlakozószerelvény
@@ -707,12 +715,13 @@ Input voltage	Bemeneti feszültség
 Inputs from	Bemenetek innen
 Inrush current	Bekapcsolási áram
 Inside (°C)	Belül (°C)
+Inspection and test report: data	Ellenőrzési és vizsgálati jegyzőkönyv: adatok
+Inspection and test report: summary	Ellenőrzési és vizsgálati jegyzőkönyv: összefoglaló
 Installation altitude	Telepítési magasság
 Installation date	Beépítés dátuma
 Installation devices	Installációs készülékek
 Installation method	Fektetési mód
 Installation plan (IEC 60617-11)	Installációs terv (IEC 60617-11)
-Installation site	Telepítési hely
 Installation site (++)	Telepítési hely (++)
 Installation site and location	Telepítési hely és szerelési hely
 Installation site of the page	Az oldal telepítési helye
@@ -735,6 +744,7 @@ Invalid length {}	Érvénytelen hossz: {}
 Invalid property key: {}	Érvénytelen tulajdonságkulcs: {}
 Inverter / charger	Inverter / töltő
 Inverter DC/AC	Inverter DC/AC
+Isolating and switching devices in the right places	Leválasztó és kapcsolókészülékek a megfelelő helyen
 Item	Elem
 Item ID	Tételazonosító
 Items	Elemek
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	Záróérintkező, késleltetett zárás (NFPA)
 Nailboard {}	Szögestábla: {}
 Network (m)	Hálózat (m)
 Neutral (N)	Nullavezető (N)
+Neutral and protective conductors identified	Nulla- és védővezetők jelölve
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	A nullavezetőknek világoskéknek kell lenniük (IEC 60204-1, 13.2.3)
-Next inspection	Következő felülvizsgálat
 Nibbling	Nibbelés
 No connection {}	Nincs {} összeköttetés
 No devices to add to the single-line diagram	Nincs az egyvonalas rajzhoz hozzáadandó készülék
@@ -977,6 +987,7 @@ Number of sheets	Lapok száma
 Number of switch positions	Kapcsolóállások száma
 Number of symbols	Szimbólumok száma
 Numbers (1, 2, 3)	Számok (1, 2, 3)
+OK, Not OK or Not applicable	OK, Nem OK vagy Nem alkalmazható
 Ohmmeter	Ellenállásmérő
 Oil resistant	Olajálló
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Egy kapcsolási rajz oldal +24V / 0V potenciálokkal, nyomógombokkal, választókapcsolóval, jelzőlámpákkal és biztosítóval; alkatrészek és anyagjegyzék.
@@ -1223,14 +1234,17 @@ Project revision	Projektrevízió
 Project symbols	Projektszimbólumok
 Proof test interval	Ellenőrző vizsgálat időköze
 Prospective short-circuit current	Várható zárlati áram
+Protection against electric shock: the measures and their components	Áramütés elleni védelem: az intézkedések és elemeik
 Protection class	Érintésvédelmi osztály
 Protection setting	Védelmi beállítás
+Protective and monitoring devices selected and set correctly	Védő- és felügyeleti készülékek helyesen kiválasztva és beállítva
 Protective conductor {} with wire colour {} (must be GNYE)	A(z) {} védővezető érszíne {} (GNYE kell legyen)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	A védővezetőknek zöld-sárgának kell lenniük (IEC 60204-1, 13.2.2)
 Protective devices	Védőkészülékek
 Protective earth	Védőföldelés
 Protective earth (PE)	Védővezető (PE)
 Protective hose	Védőtömlő
+Protective, earthing and bonding conductors present and adequate	Védő-, földelő- és egyenpotenciálú összekötő vezetők megvannak és megfelelők
 Proximity sensor	Közelítéskapcsoló
 Proximity sensor NO	Közelítéskapcsoló, záróérintkező
 Proximity switch NO (NFPA)	Közelítéskapcsoló, záróérintkező (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Jelzőkészülékek
 Signal name	Jelnév
 Signal range	Jeltartomány
 Signal type	Jeltípus
+Signed by	Aláírta
+Signed on	Aláírás dátuma
 Silencer	Hangtompító
 Single, free-standing	Egyedi, szabadon álló
 Single, wall mounted	Egyedi, falra szerelt
@@ -1518,6 +1534,7 @@ Supply voltage	Tápfeszültség
 Surface (m²)	Felület (m²)
 Surface-mounted	Falon kívüli
 Surge protection type	Túlfeszültség-védelem típusa
+Surge protection where required	Túlfeszültség-védelem, ahol előírt
 Surge protective device	Túlfeszültség-védelmi eszköz
 Surge suppressor	Túlfeszültség-korlátozó
 Switch, 1-pole (installation)	Kapcsoló, egypólusú (installációs)
@@ -1568,6 +1585,7 @@ Termination (to)	Lezárás (hová)
 Text file	Szövegfájl
 The DXF file contains nothing that can be imported	A DXF-fájl nem tartalmaz importálható elemet
 The PDF has no pages that can be read	A PDF-ben nincsenek olvasható oldalak
+The answer is OK, Not OK or Not applicable, not {}	A válasz OK, Nem OK vagy Nem alkalmazható, nem {}
 The archive contains no project	Az archívum nem tartalmaz projektet
 The archive has no manifest	Az archívumnak nincs manifestje
 The archive is damaged	Az archívum sérült
@@ -1937,6 +1955,7 @@ yellow	sárga
 {} lies outside page {}	{} a(z) {} oldalon kívül esik
 {} min {} s	{} perc {} mp
 {} mounting marks belong to items that no longer exist	{} szerelési jelölés már nem létező elemekhez tartozik
+{} of {} passed	{} / {} megfelelt
 {} option assignments of deleted objects removed	{} törölt objektumokhoz tartozó opció-hozzárendelés eltávolítva
 {} placed properties converted to property keys	{} elhelyezett tulajdonság tulajdonságkulccsá alakítva
 {} planned devices are not in the schematic yet	{} tervezett készülék még nem szerepel a kapcsolási rajzon

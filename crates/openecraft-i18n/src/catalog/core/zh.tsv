@@ -39,6 +39,7 @@ Actuated by	驱动元件
 Actuation	操作方式
 Actuator type	操作元件类型
 Additional page description	附加页描述
+Additional protection by RCDs of at most 30 mA where required	必要时由不超过 30 mA 的 RCD 提供附加保护
 Address ranges of {} and {} overlap	{} 和 {} 的地址范围重叠
 Address {} is used by {} and {}	地址 {} 被 {} 和 {} 使用
 Adhesive	粘接
@@ -210,6 +211,7 @@ Circuit breaker 3-pole QF (GB)	断路器，3 极 QF (GB)
 Circuit breaker 3-pole QF (GOST)	断路器，3 极 QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	断路器，3 极，热磁式
 Circuit breaker 4-pole	断路器 4 极
+Circuits, protective devices, switches and terminals labelled	回路、保护装置、开关和端子已标识
 Circular milling	圆周铣削
 Clip / snap-on	卡扣 / 卡装
 Cloud	云线
@@ -231,6 +233,7 @@ Compressed air supply	压缩空气供给
 Compressor	压缩机
 Condition '{}' needs OPTION=value	条件“{}”需要 OPTION=值
 Conductor class	导体等级
+Conductors selected for current-carrying capacity and voltage drop	导体按载流量和电压降选择
 Conduit	导管
 Connected	已连接
 Connection definition point on page {} is not applied to its connection	页 {} 上的连接定义点未应用到其连接
@@ -244,6 +247,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	连接符号
 Connection type	连接类型
 Connection {} has contradicting connection definition points	连接 {} 有相互矛盾的连接定义点
+Connections of the conductors	导体的连接
 Connector pin-outs and flat cables	连接器引脚分配和扁平电缆
 Connector pin-outs: mating faces and pin tables (SVG)	连接器引脚分配：插合面和引脚表 (SVG)
 Contact material	触点材料
@@ -364,6 +368,7 @@ Devices without power loss	没有功率损耗的设备
 Dew point (°C)	露点 (°C)
 Diagnostic coverage (DC)	诊断覆盖率 (DC)
 Diagnostics	诊断
+Diagrams, warning notices and similar information present	有图纸、警告标志和其他信息
 Diameter (mm)	直径 (mm)
 Different wire numbers in one connection: {}	一个连接中的线号不同：{}
 Digital input / output module	数字量输入 / 输出模块
@@ -471,6 +476,8 @@ Energy limitation class	能量限制等级
 Engineered	已设计
 Engineering unit	工程单位
 Environment	环境
+Equipment accessible for operation, inspection and maintenance	设备便于操作、检查和维护
+Equipment and protective measures suit the external influences	设备和保护措施适合外部影响
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	设备接地导体必须为绿色 (NFPA 79, 13.2.2)
 Excel workbook	Excel 工作簿
 Exhaust {} open to the atmosphere (no silencer)	排气口 {} 向大气开放（无消声器）
@@ -696,12 +703,13 @@ Input voltage	输入电压
 Inputs from	输入来自
 Inrush current	浪涌电流
 Inside (°C)	内部 (°C)
+Inspection and test report: data	检验和测试报告：数据
+Inspection and test report: summary	检验和测试报告：摘要
 Installation altitude	安装海拔
 Installation date	安装日期
 Installation devices	安装电器
 Installation method	敷设方式
 Installation plan (IEC 60617-11)	安装平面图 (IEC 60617-11)
-Installation site	安装地点
 Installation site (++)	安装地点 (++)
 Installation site and location	安装地点和位置
 Installation site of the page	页的安装地点
@@ -724,6 +732,7 @@ Invalid length {}	无效长度 {}
 Invalid property key: {}	无效的属性键：{}
 Inverter / charger	逆变器 / 充电器
 Inverter DC/AC	逆变器 DC/AC
+Isolating and switching devices in the right places	隔离和开关装置位置正确
 Item	元素
 Item ID	物料 ID
 Items	元素
@@ -909,8 +918,8 @@ NO contact, timed closing (NFPA)	常开触点，延时闭合 (NFPA)
 Nailboard {}	钉板图 {}
 Network (m)	网络 (m)
 Neutral (N)	中性线 (N)
+Neutral and protective conductors identified	中性线和保护导体已标识
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	中性导体必须为浅蓝色 (IEC 60204-1, 13.2.3)
-Next inspection	下次检验
 Nibbling	步冲
 No connection {}	没有连接 {}
 No devices to add to the single-line diagram	没有要添加到单线图的设备
@@ -965,6 +974,7 @@ Number of sheets	图纸张数
 Number of switch positions	开关挡位数
 Number of symbols	符号数
 Numbers (1, 2, 3)	数字（1、2、3）
+OK, Not OK or Not applicable	OK、不合格或不适用
 Ohmmeter	欧姆表
 Oil resistant	耐油
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	一页原理图，包含 +24V / 0V 电位、按钮、选择开关、指示灯和熔断器；部件和物料清单。
@@ -1209,14 +1219,17 @@ Project revision	项目修订
 Project symbols	项目符号
 Proof test interval	检验测试间隔
 Prospective short-circuit current	预期短路电流
+Protection against electric shock: the measures and their components	电击防护：措施及其组成部分
 Protection class	保护类别
 Protection setting	保护设置
+Protective and monitoring devices selected and set correctly	保护和监视装置选择和整定正确
 Protective conductor {} with wire colour {} (must be GNYE)	保护导体 {} 的导线颜色为 {}（必须为 GNYE）
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	保护导体必须为绿黄色 (IEC 60204-1, 13.2.2)
 Protective devices	保护设备
 Protective earth	保护接地
 Protective earth (PE)	保护导体 (PE)
 Protective hose	保护软管
+Protective, earthing and bonding conductors present and adequate	保护、接地和联结导体齐全且合适
 Proximity sensor	接近开关
 Proximity sensor NO	接近开关 常开触点
 Proximity switch NO (NFPA)	接近开关，常开 (NFPA)
@@ -1424,6 +1437,8 @@ Signal devices	信号设备
 Signal name	信号名称
 Signal range	信号范围
 Signal type	信号类型
+Signed by	签名人
+Signed on	签名日期
 Silencer	消声器
 Single, free-standing	单柜，落地式
 Single, wall mounted	单柜，壁挂式
@@ -1503,6 +1518,7 @@ Supply voltage	供电电压
 Surface (m²)	表面积 (m²)
 Surface-mounted	明装
 Surge protection type	浪涌保护类型
+Surge protection where required	必要时的电涌保护
 Surge protective device	浪涌保护器
 Surge suppressor	浪涌抑制器
 Switch, 1-pole (installation)	单极开关（建筑安装）
@@ -1553,6 +1569,7 @@ Termination (to)	端接（终点）
 Text file	文本文件
 The DXF file contains nothing that can be imported	DXF 文件中没有可导入的内容
 The PDF has no pages that can be read	PDF 中没有可读取的页
+The answer is OK, Not OK or Not applicable, not {}	答案应为 OK、不合格或不适用，而不是 {}
 The archive contains no project	归档中不包含项目
 The archive has no manifest	归档没有清单
 The archive is damaged	归档已损坏
@@ -1915,6 +1932,7 @@ yellow	黄色
 {} lies outside page {}	{} 位于页面 {} 之外
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} 个安装标记属于已不存在的元件
+{} of {} passed	{} / {} 通过
 {} option assignments of deleted objects removed	已删除已删除对象的 {} 个选项分配
 {} placed properties converted to property keys	已将 {} 个放置的属性转换为属性键
 {} planned devices are not in the schematic yet	{} 个已规划设备尚未在原理图中

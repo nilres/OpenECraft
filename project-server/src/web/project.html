@@ -63,6 +63,9 @@ main { padding: 16px; max-width: 1700px; margin: 0 auto; }
 .measure .bad input, .measure .bad select { border-color: var(--bad); outline: 1px solid var(--bad); }
 .measure .bad > span { color: var(--bad); }
 .circuit .buttons button { min-height: 44px; padding: 8px 18px; }
+.circuit.report { border-color: var(--accent); margin-bottom: 14px; }
+.measure h4 { margin: 8px 0 0; font-size: 14px; color: var(--text); border-top: 1px solid var(--line); padding-top: 10px; }
+.measure .check-item { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) 160px; align-items: center; gap: 4px 12px; color: var(--text); font-size: 14px; }
 @media (max-width: 800px) {
   main { padding: 12px 16px; }
   .viewer { grid-template-columns: 1fr; }
@@ -75,6 +78,7 @@ main { padding: 16px; max-width: 1700px; margin: 0 auto; }
   main { padding: 8px; }
   section.panel { padding: 8px; }
   .measure { grid-template-columns: 1fr; }
+  .measure .check-item { grid-template-columns: 1fr; }
 }
 </style>
 </head>

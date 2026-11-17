@@ -74,6 +74,7 @@ Certificate	Sertifika
 Changed	Değiştirildi
 Changed last	Son değiştirilenler
 Changes allowed	Değişikliklere izin verilir
+Changing the data or the results afterwards takes the signature away.	Verileri veya sonuçları sonradan değiştirmek imzayı kaldırır.
 Check control valve	Çek valf
 Check flap	Çek klape
 Chimney	Baca
@@ -261,6 +262,7 @@ Logos	Logolar
 Looks the users up; empty: users bind with their own name (below)	Kullanıcıları arar; boş: kullanıcılar kendi adlarıyla bağlanır (aşağıda)
 Male insert	Erkek uç
 Managers of a project give rights on it themselves (Permissions on the project).	Bir projenin yöneticileri, proje üzerindeki hakları kendileri verir (Projenin izinleri).
+Measured at the origin	Besleme noktasında ölçüldü
 Measurement system	Ölçüm sistemi
 Measuring connection points	Ölçüm bağlantı noktaları
 Measuring couplings	Ölçüm kaplinleri
@@ -279,6 +281,7 @@ Name attribute	Ad özniteliği
 New accounts need the approval of an administrator	Yeni hesaplar bir yöneticinin onayını gerektirir
 New catalog	Yeni katalog
 New directory	Yeni dizin hizmeti
+New installation	Yeni tesisat
 New part	Yeni parça
 New part based on the open one	Açık olanı temel alan yeni parça
 New password	Yeni parola
@@ -302,6 +305,7 @@ Non-return valves	Çek valfler
 None (only grants)	Yok (yalnızca yetki atamaları)
 Not mounted	Monte edilmez
 Not saved	Kaydedilmedi
+Not signed	İmzalanmadı
 Nothing to save	Kaydedilecek bir şey yok
 Nut	Somun
 On the front	Önde
@@ -408,9 +412,11 @@ Remove logo	Logoyu kaldır
 Remove the file from the part	Dosyayı parçadan kaldır
 Remove the logo	Logoyu kaldır
 Removed from the server	Sunucudan kaldırıldı
+Repair	Onarım
 Repeat password	Parolayı yinele
 Replace the roles and grants with those of the file?	Roller ve yetki atamaları dosyadakilerle değiştirilsin mi?
 Replaced by {}	{} ile değiştirildi
+Report data and visual inspection	Rapor verileri ve gözle muayene
 Resistors	Dirençler
 Restore from a file	Bir dosyadan geri yükle
 Return flushing filters, all-autom.	Geri yıkamalı filtreler, tam otomatik
@@ -465,12 +471,16 @@ Sign in with a user account	Kullanıcı hesabıyla oturum aç
 Sign in with the access token of the server	Sunucunun erişim belirteciyle oturum aç
 Sign out everywhere	Her yerde oturumu kapat
 Sign out {} on all devices?	{} kullanıcısının tüm cihazlardaki oturumu kapatılsın mı?
+Sign the report	Raporu imzala
 Sign-in needed to read	Okumak için oturum açmak gerekir
 Sign-in needed to view	Görüntülemek için oturum açmak gerekir
 Signal device	Sinyal cihazı
 Signal device, acoustic	Sinyal cihazı, akustik
 Signal device, optical	Sinyal cihazı, optik
 Signal lamp	Sinyal lambası
+Signature	İmza
+Signed	İmzalandı
+Signed by {} on {}	{} tarafından {} tarihinde imzalandı
 Signed in	Oturum açmış
 Silencers	Susturucular
 Silo	Silo
@@ -479,6 +489,7 @@ Single-stage filters	Tek kademeli filtreler
 Siphon	Sifon
 Size of the files	Dosyaların boyutu
 Solenoid valve	Solenoid valf
+Someone saved this meanwhile. Check the values and save again.	Biri bu arada bunu kaydetti. Değerleri kontrol edip yeniden kaydedin.
 Sorter	Ayıklayıcı
 Start a server with:  openecraft-parts-server --token <secret>	Şununla bir sunucu başlatın:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Değişikliklere izin vermek için openecraft-parts-server'ı --token ile başlatın
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault karşıya yüklemeye devam etmedi
 Ventilation filters	Havalandırma filtreleri
 Ventilator	Vantilatör
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Görüntüleyiciler projeleri salt okunur açar, incelemeciler incelemeleri de kaydeder, düzenleyiciler projeleri değiştirir ve oluşturur, proje yöneticileri bunları ayrıca siler ve üzerlerinde hak verir, yöneticiler sunucuyu yönetir.
+Visual inspection	Gözle muayene
 Voltage source	Gerilim kaynağı
 Voltage source and generator	Gerilim kaynağı ve jeneratör
 Waiting accounts cannot sign in; approve or reject them in Users.	Bekleyen hesaplar oturum açamaz; onları Kullanıcılar bölümünde onaylayın veya reddedin.

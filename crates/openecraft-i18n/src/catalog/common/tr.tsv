@@ -60,12 +60,14 @@ Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrol ayarları
 Checks	Kontroller
+Circuits	Devreler
 Class	Sınıf
 Classes	Sınıflar
 Clear filters	Filtreleri temizle
 Clearance bottom	Alt mesafe
 Clearance top	Üst mesafe
 Clearances	Mesafeler
+Client	Müşteri
 Close	Kapat
 Coding: {}	Kodlama: {}
 Coil voltage	Bobin gerilimi
@@ -85,6 +87,7 @@ Connection point	Bağlantı noktası
 Connection points	Bağlantı noktaları
 Connections	Bağlantılar
 Connector	Konnektör
+Contact voltage UB (V)	Dokunma gerilimi UB (V)
 Controller	Kontrolör
 Cooling	Soğutma
 Core	Damar
@@ -136,6 +139,7 @@ Drag to turn the model	Modeli döndürmek için sürükleyin
 Drawings	Çizimler
 EMC clearance	EMC mesafesi
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal ve diğer adlar sahiplerinin ticari markalarıdır. OpenECraft bağımsız bir projedir.
+Earth electrode resistance RA (Ω)	Topraklama elektrodu direnci RA (Ω)
 Edit	Düzen
 Editor	Düzenleyici
 Electro-fluid cross reference	Elektro-akışkan çapraz referansı
@@ -150,6 +154,7 @@ Export as CSV…	CSV olarak dışa aktar…
 Export as JSON…	JSON olarak dışa aktar…
 Export failed: {}	Dışa aktarma başarısız oldu: {}
 External (top)	Harici (üst)
+External loop impedance Ze (Ω)	Harici çevrim empedansı Ze (Ω)
 Face	Yüzey
 Failed	Başarısız
 Fastening	Sabitleme
@@ -201,7 +206,11 @@ Import	İçe aktar
 Incomplete	Eksik
 Input	Giriş
 Inspection and test report	Muayene ve test raporu
+Inspector	Muayene eden
+Installation site	Kurulum yeri
+Installer	Tesisatçı
 Insulation resistance (MΩ)	Yalıtım direnci (MΩ)
+Insulation test voltage (V)	Yalıtım test gerilimi (V)
 Integration	Entegrasyon
 Internal (bottom)	Dahili (alt)
 Interruption point	Kesinti noktası
@@ -245,6 +254,7 @@ Machine	Makine
 Main	Ana
 Main earthing busbar (device) it is connected to; empty: none	Bağlı olduğu ana topraklama barası (cihaz); boş: yok
 Main earthing terminal	Ana topraklama barası
+Main equipotential bonding (Ω)	Ana eş potansiyel kuşaklama (Ω)
 Main switch	Ana şalter
 Manufacturer	Üretici
 Manufacturers	Üreticiler
@@ -280,6 +290,7 @@ Net	Ağ
 Never	Hiçbir zaman
 New group	Yeni grup
 New name	Yeni ad
+Next inspection	Sonraki muayene
 Next page	Sonraki sayfa
 No	Hayır
 No Vault item matches a part of the project	Hiçbir Vault öğesi projenin bir parçasıyla eşleşmiyor
@@ -313,6 +324,7 @@ Not a macro file: {}	Makro dosyası değil: {}
 Not a symbol id: {}	Sembol kimliği değil: {}
 Not a title block file: {}	Antet dosyası değil: {}
 Not a valid rule set file: {}	Geçerli bir kural seti dosyası değil: {}
+Not applicable	Uygulanamaz
 Not in the schematic	Şemada değil
 Not passed	Geçmedi
 Not tested	Test edilmedi
@@ -409,6 +421,7 @@ Project name	Proje adı
 Project properties	Proje özellikleri
 Properties	Özellikler
 Property	Özellik
+Prospective fault current at the origin (kA)	Besleme noktasında beklenen arıza akımı (kA)
 Protection	Koruma
 Protective conductor (Ω)	Koruma iletkeni (Ω)
 Protective device	Koruma cihazı
@@ -418,12 +431,14 @@ Quantity unit	Miktar birimi
 RCD	Kaçak akım rölesi
 RCD trip current (mA)	Kaçak akım rölesi açma akımı (mA)
 RCD trip time (ms)	Kaçak akım rölesi açma süresi (ms)
+RCD trip time at 5 × IΔn (ms)	5 × IΔn'de kaçak akım rölesi açma süresi (ms)
 Rack	Modül rafı
 Rail	Ray
 Range	Aralık
 Rated current	Anma akımı
 Rated power	Anma gücü
 Rear wall	Arka duvar
+Reason for the test	Test nedeni
 Rectangle	Dikdörtgen
 Rectangular	Dikdörtgen
 Redo	Yinele
@@ -513,8 +528,10 @@ Structure	Yapı
 Subproject name	Alt proje adı
 Subsystem	Alt sistem
 Successor	Halef
+Summary	Özet
 Supplier	Tedarikçi
 Supply	Besleme
+Supply system	Besleme şebekesi
 Symbol	Sembol
 Symbol key	Sembol anahtarı
 Symbolic address	Sembolik adres
@@ -530,6 +547,7 @@ Terminal strips	Klemens şeritleri
 Terminal type	Klemens tipi
 Terminals	Klemensler
 Test instrument	Ölçü aleti
+Test instruments (IEC 61557)	Ölçü aletleri (IEC 61557)
 Tested by	Test eden
 Text	Metin
 Text to find	Aranacak metin
@@ -558,6 +576,7 @@ Unknown column: {}	Bilinmeyen sütun: {}
 Unknown connector: {}	Bilinmeyen bağlayıcı: {}
 Unknown enclosure system: {}	Bilinmeyen pano sistemi: {}
 Unknown face: {}	Bilinmeyen yüzey: {}
+Unknown field: {}	Bilinmeyen alan: {}
 Unknown format: {}	Bilinmeyen biçim: {}
 Unknown function definition: {}	Bilinmeyen fonksiyon tanımı: {}
 Unknown language: {}	Bilinmeyen dil: {}
@@ -576,6 +595,7 @@ User	Kullanıcı
 User name	Kullanıcı adı
 Users	Kullanıcılar
 VAT ID	KDV numarası
+Value	Değer
 Version	Sürüm
 Viewer	Görüntüleyici
 Voltage	Gerilim

@@ -60,12 +60,14 @@ Channel	Kanál
 Characteristic	Charakteristika
 Check settings	Nastavení kontroly
 Checks	Kontroly
+Circuits	Obvody
 Class	Třída
 Classes	Třídy
 Clear filters	Vymazat filtry
 Clearance bottom	Odstup dole
 Clearance top	Odstup nahoře
 Clearances	Odstupy
+Client	Objednatel
 Close	Zavřít
 Coding: {}	Kódování: {}
 Coil voltage	Napětí cívky
@@ -85,6 +87,7 @@ Connection point	Přípojný bod
 Connection points	Přípojné body
 Connections	Spojení
 Connector	Konektor
+Contact voltage UB (V)	Dotykové napětí UB (V)
 Controller	Řídicí systém
 Cooling	Chlazení
 Core	Žíla
@@ -136,6 +139,7 @@ Drag to turn the model	Tažením model otočíte
 Drawings	Výkresy
 EMC clearance	Odstup EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal a další názvy jsou ochranné známky svých vlastníků. OpenECraft je nezávislý projekt.
+Earth electrode resistance RA (Ω)	Odpor uzemnění RA (Ω)
 Edit	Úpravy
 Editor	Editor
 Electro-fluid cross reference	Elektro-tekutinové křížové odkazy
@@ -150,6 +154,7 @@ Export as CSV…	Exportovat jako CSV…
 Export as JSON…	Exportovat jako JSON…
 Export failed: {}	Export se nezdařil: {}
 External (top)	Externí (nahoře)
+External loop impedance Ze (Ω)	Vnější impedance smyčky Ze (Ω)
 Face	Plocha
 Failed	Selhalo
 Fastening	Upevnění
@@ -201,7 +206,11 @@ Import	Import
 Incomplete	Neúplné
 Input	Vstup
 Inspection and test report	Revizní zpráva
+Inspector	Revizní technik
+Installation site	Místo instalace
+Installer	Montážní firma
 Insulation resistance (MΩ)	Izolační odpor (MΩ)
+Insulation test voltage (V)	Zkušební napětí izolace (V)
 Integration	Integrace
 Internal (bottom)	Interní (dole)
 Interruption point	Bod přerušení
@@ -245,6 +254,7 @@ Machine	Stroj
 Main	Hlavní
 Main earthing busbar (device) it is connected to; empty: none	Hlavní uzemňovací přípojnice (zařízení), ke které je připojen; prázdné: žádná
 Main earthing terminal	Hlavní uzemňovací svorka
+Main equipotential bonding (Ω)	Hlavní ochranné pospojování (Ω)
 Main switch	Hlavní vypínač
 Manufacturer	Výrobce
 Manufacturers	Výrobci
@@ -280,6 +290,7 @@ Net	Síť
 Never	Nikdy
 New group	Nová skupina
 New name	Nový název
+Next inspection	Příští revize
 Next page	Další stránka
 No	Ne
 No Vault item matches a part of the project	Žádná položka Vault neodpovídá artiklu projektu
@@ -313,6 +324,7 @@ Not a macro file: {}	Nejde o soubor maker: {}
 Not a symbol id: {}	Není ID symbolu: {}
 Not a title block file: {}	Nejde o soubor rohových razítek: {}
 Not a valid rule set file: {}	Neplatný soubor sady pravidel: {}
+Not applicable	Nehodí se
 Not in the schematic	Není ve schématu
 Not passed	Nevyhovuje
 Not tested	Nezkoušeno
@@ -409,6 +421,7 @@ Project name	Název projektu
 Project properties	Vlastnosti projektu
 Properties	Vlastnosti
 Property	Vlastnost
+Prospective fault current at the origin (kA)	Předpokládaný poruchový proud v předávacím místě (kA)
 Protection	Ochrana
 Protective conductor (Ω)	Ochranný vodič (Ω)
 Protective device	Ochranný přístroj
@@ -418,12 +431,14 @@ Quantity unit	Jednotka množství
 RCD	Proudový chránič
 RCD trip current (mA)	Vybavovací proud chrániče (mA)
 RCD trip time (ms)	Vybavovací doba chrániče (ms)
+RCD trip time at 5 × IΔn (ms)	Vybavovací doba chrániče při 5 × IΔn (ms)
 Rack	Nosný rám
 Rail	Lišta
 Range	Rozsah
 Rated current	Jmenovitý proud
 Rated power	Jmenovitý výkon
 Rear wall	Zadní stěna
+Reason for the test	Důvod revize
 Rectangle	Obdélník
 Rectangular	Obdélníkový
 Redo	Znovu
@@ -513,8 +528,10 @@ Structure	Struktura
 Subproject name	Název podprojektu
 Subsystem	Subsystém
 Successor	Nástupce
+Summary	Shrnutí
 Supplier	Dodavatel
 Supply	Zásobování
+Supply system	Napájecí síť
 Symbol	Symbol
 Symbol key	Klíč symbolu
 Symbolic address	Symbolická adresa
@@ -530,6 +547,7 @@ Terminal strips	Svorkovnice
 Terminal type	Typ svorky
 Terminals	Svorky
 Test instrument	Měřicí přístroj
+Test instruments (IEC 61557)	Měřicí přístroje (IEC 61557)
 Tested by	Zkoušel
 Text	Text
 Text to find	Hledaný text
@@ -558,6 +576,7 @@ Unknown column: {}	Neznámý sloupec: {}
 Unknown connector: {}	Neznámý konektor: {}
 Unknown enclosure system: {}	Neznámý systém skříní: {}
 Unknown face: {}	Neznámá plocha: {}
+Unknown field: {}	Neznámé pole: {}
 Unknown format: {}	Neznámý formát: {}
 Unknown function definition: {}	Neznámá definice funkce: {}
 Unknown language: {}	Neznámý jazyk: {}
@@ -576,6 +595,7 @@ User	Uživatel
 User name	Uživatelské jméno
 Users	Uživatelé
 VAT ID	DIČ
+Value	Hodnota
 Version	Verze
 Viewer	Prohlížející
 Voltage	Napětí

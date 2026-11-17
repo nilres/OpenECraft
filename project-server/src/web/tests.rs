@@ -13,6 +13,8 @@ fn texts_are_translated_with_the_rights_and_roles() {
     assert_eq!(de.roles[0].rights, ["view"]);
     assert_eq!(de.roles[3].title, translate("Project manager", Lang::De));
     assert!(web_texts(Lang::En).texts.iter().all(|(k, v)| k == v));
+    let (key, text) = openecraft_core::inspection::CHECKS[0];
+    assert_eq!((key, de.texts[text].as_str()), ("protection", translate(text, Lang::De)), "the items of the visual inspection");
 }
 
 /// Every text the page shows through `t("…")` / `tf("…")` / `data-t` is in [`TEXTS`]

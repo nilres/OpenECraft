@@ -58,12 +58,14 @@ Channel	チャンネル
 Characteristic	特性
 Check settings	チェックの設定
 Checks	チェック
+Circuits	回路
 Class	クラス
 Classes	クラス
 Clear filters	フィルターをクリア
 Clearance bottom	下のクリアランス
 Clearance top	上のクリアランス
 Clearances	クリアランス
+Client	依頼者
 Close	閉じる
 Coding: {}	コーディング: {}
 Coil voltage	コイル電圧
@@ -83,6 +85,7 @@ Connection point	接続ポイント
 Connection points	接続ポイント
 Connections	接続
 Connector	コネクター
+Contact voltage UB (V)	接触電圧 UB (V)
 Controller	コントローラー
 Cooling	冷却
 Core	心線
@@ -134,6 +137,7 @@ Drag to turn the model	ドラッグしてモデルを回転
 Drawings	図面
 EMC clearance	EMC クリアランス
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN、TIA Portal、その他の名称は各所有者の商標です。OpenECraft は独立したプロジェクトです。
+Earth electrode resistance RA (Ω)	接地極抵抗 RA (Ω)
 Edit	編集
 Editor	編集者
 Electro-fluid cross reference	電気-流体相互参照
@@ -148,6 +152,7 @@ Export as CSV…	CSV としてエクスポート…
 Export as JSON…	JSON としてエクスポート…
 Export failed: {}	エクスポートに失敗しました: {}
 External (top)	外部 (上)
+External loop impedance Ze (Ω)	外部ループインピーダンス Ze (Ω)
 Face	面
 Failed	失敗
 Fastening	固定方法
@@ -199,7 +204,11 @@ Import	インポート
 Incomplete	未完了
 Input	入力
 Inspection and test report	点検・試験報告書
+Inspector	点検者
+Installation site	設置場所
+Installer	施工者
 Insulation resistance (MΩ)	絶縁抵抗 (MΩ)
+Insulation test voltage (V)	絶縁試験電圧 (V)
 Integration	統合
 Internal (bottom)	内部 (下)
 Interruption point	中断ポイント
@@ -243,6 +252,7 @@ Machine	機械
 Main	メイン
 Main earthing busbar (device) it is connected to; empty: none	接続先の主接地ブスバー (デバイス)。空欄: なし
 Main earthing terminal	主接地端子
+Main equipotential bonding (Ω)	主等電位ボンディング (Ω)
 Main switch	主開閉器
 Manufacturer	メーカー
 Manufacturers	メーカー
@@ -278,6 +288,7 @@ Net	ネット
 Never	表示しない
 New group	新しいグループ
 New name	新しい名前
+Next inspection	次回の点検
 Next page	次のページ
 No	いいえ
 No Vault item matches a part of the project	プロジェクトの部品に一致する Vault アイテムはありません
@@ -311,6 +322,7 @@ Not a macro file: {}	マクロファイルではありません: {}
 Not a symbol id: {}	シンボル ID ではありません: {}
 Not a title block file: {}	表題欄ファイルではありません: {}
 Not a valid rule set file: {}	有効なルールセットファイルではありません: {}
+Not applicable	該当なし
 Not in the schematic	回路図にありません
 Not passed	不合格
 Not tested	未試験
@@ -407,6 +419,7 @@ Project name	プロジェクト名
 Project properties	プロジェクトプロパティ
 Properties	プロパティ
 Property	プロパティ
+Prospective fault current at the origin (kA)	引込口の推定故障電流 (kA)
 Protection	保護
 Protective conductor (Ω)	保護導体 (Ω)
 Protective device	保護機器
@@ -416,12 +429,14 @@ Quantity unit	数量単位
 RCD	RCD
 RCD trip current (mA)	RCD 動作電流 (mA)
 RCD trip time (ms)	RCD 動作時間 (ms)
+RCD trip time at 5 × IΔn (ms)	5 × IΔn での RCD 動作時間 (ms)
 Rack	ラック
 Rail	レール
 Range	範囲
 Rated current	定格電流
 Rated power	定格出力
 Rear wall	背板
+Reason for the test	試験の理由
 Rectangle	四角形
 Rectangular	四角形
 Redo	やり直し
@@ -511,8 +526,10 @@ Structure	構造
 Subproject name	サブプロジェクト名
 Subsystem	サブシステム
 Successor	後継品
+Summary	概要
 Supplier	仕入先
 Supply	供給
+Supply system	電源系統
 Symbol	シンボル
 Symbol key	シンボルキー
 Symbolic address	シンボリックアドレス
@@ -528,6 +545,7 @@ Terminal strips	端子台
 Terminal type	端子タイプ
 Terminals	端子
 Test instrument	測定器
+Test instruments (IEC 61557)	測定器 (IEC 61557)
 Tested by	試験者
 Text	テキスト
 Text to find	検索するテキスト
@@ -556,6 +574,7 @@ Unknown column: {}	不明な列: {}
 Unknown connector: {}	不明なコネクター: {}
 Unknown enclosure system: {}	不明なエンクロージャーシステム: {}
 Unknown face: {}	不明な面: {}
+Unknown field: {}	不明なフィールド: {}
 Unknown format: {}	不明な形式: {}
 Unknown function definition: {}	不明な機能定義: {}
 Unknown language: {}	不明な言語: {}
@@ -574,6 +593,7 @@ User	ユーザー
 User name	ユーザー名
 Users	ユーザー
 VAT ID	付加価値税番号
+Value	値
 Version	バージョン
 Viewer	ビューアー
 Voltage	電圧

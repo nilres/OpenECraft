@@ -43,6 +43,7 @@ Actuated by	Bediend door
 Actuation	Bediening
 Actuator type	Type bedieningselement
 Additional page description	Aanvullende paginabeschrijving
+Additional protection by RCDs of at most 30 mA where required	Aanvullende bescherming door aardlekschakelaars van ten hoogste 30 mA waar vereist
 Address ranges of {} and {} overlap	Adresbereiken van {} en {} overlappen
 Address {} is used by {} and {}	Adres {} wordt gebruikt door {} en {}
 Adhesive	Lijm
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Vermogensschakelaar 3-polig QF (GB)
 Circuit breaker 3-pole QF (GOST)	Vermogensschakelaar 3-polig QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Vermogensschakelaar 3-polig, thermisch-magnetisch
 Circuit breaker 4-pole	Vermogensschakelaar 4-polig
+Circuits, protective devices, switches and terminals labelled	Stroomkringen, beveiligingen, schakelaars en klemmen gemarkeerd
 Circular milling	Circulair frezen
 Clip / snap-on	Klem / klik
 Cloud	Wolk
@@ -241,6 +243,7 @@ Compressed air supply	Persluchtvoorziening
 Compressor	Compressor
 Condition '{}' needs OPTION=value	Voorwaarde '{}' heeft OPTION=waarde nodig
 Conductor class	Geleiderklasse
+Conductors selected for current-carrying capacity and voltage drop	Geleiders gekozen op stroombelastbaarheid en spanningsval
 Conduit	Installatiebuis
 Connected	Aangesloten
 Connection definition point on page {} is not applied to its connection	Verbindingsdefinitiepunt op pagina {} is niet toegepast op zijn verbinding
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Verbindingssymbolen
 Connection type	Aansluittype
 Connection {} has contradicting connection definition points	Verbinding {} heeft tegenstrijdige verbindingsdefinitiepunten
+Connections of the conductors	Verbindingen van de geleiders
 Connector pin-outs and flat cables	Pinbezettingen van connectoren en platte kabels
 Connector pin-outs: mating faces and pin tables (SVG)	Pinbezettingen: steekzijden en pintabellen (SVG)
 Contact material	Contactmateriaal
@@ -374,6 +378,7 @@ Devices without power loss	Apparaten zonder vermogensverlies
 Dew point (°C)	Dauwpunt (°C)
 Diagnostic coverage (DC)	Diagnosedekkingsgraad (DC)
 Diagnostics	Diagnose
+Diagrams, warning notices and similar information present	Schema's, waarschuwingen en soortgelijke informatie aanwezig
 Diameter (mm)	Diameter (mm)
 Different wire numbers in one connection: {}	Verschillende draadnummers in één verbinding: {}
 Digital input / output module	Digitale in-/uitgangsmodule
@@ -481,6 +486,8 @@ Energy limitation class	Energiebegrenzingsklasse
 Engineered	Ge-engineerd
 Engineering unit	Fysische eenheid
 Environment	Omgeving
+Equipment accessible for operation, inspection and maintenance	Materieel toegankelijk voor bediening, inspectie en onderhoud
+Equipment and protective measures suit the external influences	Materieel en beschermingsmaatregelen passen bij de uitwendige invloeden
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Beschermingsleidingen van apparatuur moeten groen zijn (NFPA 79, 13.2.2)
 Excel workbook	Excel-werkmap
 Exhaust {} open to the atmosphere (no silencer)	Ontluchting {} open naar de atmosfeer (geen geluiddemper)
@@ -516,6 +523,7 @@ File name written into the file header	Bestandsnaam die in de bestandskop wordt 
 Fill level (%)	Vullingsgraad (%)
 Filter fan with outlet filter	Filterventilator met uitblaasfilter
 Filter rating	Filterfijnheid
+Fire barriers and protection against thermal effects	Brandscheidingen en bescherming tegen thermische effecten
 Firmware version	Firmwareversie
 First end only	Alleen eerste uiteinde
 Fitting	Fitting
@@ -707,12 +715,13 @@ Input voltage	Ingangsspanning
 Inputs from	Ingangen van
 Inrush current	Inschakelstroom
 Inside (°C)	Binnen (°C)
+Inspection and test report: data	Inspectie- en testrapport: gegevens
+Inspection and test report: summary	Inspectie- en testrapport: samenvatting
 Installation altitude	Opstellingshoogte
 Installation date	Installatiedatum
 Installation devices	Installatieapparaten
 Installation method	Installatiemethode
 Installation plan (IEC 60617-11)	Installatieschema (IEC 60617-11)
-Installation site	Installatieplaats
 Installation site (++)	Installatie (++)
 Installation site and location	Installatieplaats en locatie
 Installation site of the page	Installatieplaats van de pagina
@@ -735,6 +744,7 @@ Invalid length {}	Ongeldige lengte {}
 Invalid property key: {}	Ongeldige eigenschapssleutel: {}
 Inverter / charger	Omvormer / lader
 Inverter DC/AC	Omvormer DC/AC
+Isolating and switching devices in the right places	Scheidings- en schakelapparaten op de juiste plaatsen
 Item	Element
 Item ID	Item-ID
 Items	Elementen
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	Maakcontact, vertraagd sluitend (NFPA)
 Nailboard {}	Spijkerbord {}
 Network (m)	Net (m)
 Neutral (N)	Neutrale geleider (N)
+Neutral and protective conductors identified	Nul- en beschermingsleidingen gemarkeerd
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutrale geleiders moeten lichtblauw zijn (IEC 60204-1, 13.2.3)
-Next inspection	Volgende keuring
 Nibbling	Nibbelen
 No connection {}	Geen verbinding {}
 No devices to add to the single-line diagram	Geen apparaten om aan het eenlijnschema toe te voegen
@@ -977,6 +987,7 @@ Number of sheets	Aantal bladen
 Number of switch positions	Aantal schakelstanden
 Number of symbols	Aantal symbolen
 Numbers (1, 2, 3)	Cijfers (1, 2, 3)
+OK, Not OK or Not applicable	OK, Niet OK of Niet van toepassing
 Ohmmeter	Ohmmeter
 Oil resistant	Oliebestendig
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Eén schemapagina met de potentialen +24V / 0V, drukknoppen, een keuzeschakelaar, signaallampen en een zekering; artikelen en stuklijst.
@@ -1223,14 +1234,17 @@ Project revision	Projectrevisie
 Project symbols	Projectsymbolen
 Proof test interval	Interval proeftest
 Prospective short-circuit current	Prospectieve kortsluitstroom
+Protection against electric shock: the measures and their components	Bescherming tegen elektrische schok: de maatregelen en hun onderdelen
 Protection class	Beschermingsklasse
 Protection setting	Beveiligingsinstelling
+Protective and monitoring devices selected and set correctly	Beveiligings- en bewakingstoestellen juist gekozen en ingesteld
 Protective conductor {} with wire colour {} (must be GNYE)	Beschermingsleiding {} met draadkleur {} (moet GNYE zijn)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Beschermingsleidingen moeten groen-geel zijn (IEC 60204-1, 13.2.2)
 Protective devices	Beveiligingsapparaten
 Protective earth	Beschermingsaarde
 Protective earth (PE)	Beschermingsaarde (PE)
 Protective hose	Beschermslang
+Protective, earthing and bonding conductors present and adequate	Beschermings-, aardings- en vereffeningsleidingen aanwezig en toereikend
 Proximity sensor	Naderingsschakelaar
 Proximity sensor NO	Naderingsschakelaar maakcontact
 Proximity switch NO (NFPA)	Naderingsschakelaar maakcontact (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Meldapparaten
 Signal name	Signaalnaam
 Signal range	Signaalbereik
 Signal type	Signaaltype
+Signed by	Ondertekend door
+Signed on	Ondertekend op
 Silencer	Geluiddemper
 Single, free-standing	Enkel, vrijstaand
 Single, wall mounted	Enkel, wandmontage
@@ -1518,6 +1534,7 @@ Supply voltage	Voedingsspanning
 Surface (m²)	Oppervlak (m²)
 Surface-mounted	Opbouw
 Surge protection type	Type overspanningsbeveiliging
+Surge protection where required	Overspanningsbeveiliging waar vereist
 Surge protective device	Overspanningsbeveiliging
 Surge suppressor	Overspanningsbegrenzer
 Switch, 1-pole (installation)	Schakelaar, enkelpolig (installatie)
@@ -1568,6 +1585,7 @@ Termination (to)	Afwerking (naar)
 Text file	Tekstbestand
 The DXF file contains nothing that can be imported	Het DXF-bestand bevat niets wat kan worden geïmporteerd
 The PDF has no pages that can be read	De PDF heeft geen leesbare pagina's
+The answer is OK, Not OK or Not applicable, not {}	Het antwoord is OK, Niet OK of Niet van toepassing, niet {}
 The archive contains no project	Het archief bevat geen project
 The archive has no manifest	Het archief heeft geen manifest
 The archive is damaged	Het archief is beschadigd
@@ -1937,6 +1955,7 @@ yellow	geel
 {} lies outside page {}	{} ligt buiten pagina {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} montagemarkeringen horen bij elementen die niet meer bestaan
+{} of {} passed	{} van {} goedgekeurd
 {} option assignments of deleted objects removed	{} optietoewijzingen van verwijderde objecten verwijderd
 {} placed properties converted to property keys	{} geplaatste eigenschappen omgezet in eigenschapssleutels
 {} planned devices are not in the schematic yet	{} geplande apparaten staan nog niet in het schema

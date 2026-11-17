@@ -60,12 +60,14 @@ Channel	Канал
 Characteristic	Характеристика
 Check settings	Настройки проверки
 Checks	Проверки
+Circuits	Цепи
 Class	Класс
 Classes	Классы
 Clear filters	Сбросить фильтры
 Clearance bottom	Зазор снизу
 Clearance top	Зазор сверху
 Clearances	Зазоры
+Client	Заказчик
 Close	Закрыть
 Coding: {}	Кодировка: {}
 Coil voltage	Напряжение катушки
@@ -85,6 +87,7 @@ Connection point	Точка подключения
 Connection points	Точки подключения
 Connections	Соединения
 Connector	Разъём
+Contact voltage UB (V)	Напряжение прикосновения UB (В)
 Controller	Контроллер
 Cooling	Охлаждение
 Core	Жила
@@ -136,6 +139,7 @@ Drag to turn the model	Перетащите, чтобы повернуть мо�
 Drawings	Чертежи
 EMC clearance	Зазор ЭМС
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal и другие названия являются товарными знаками их владельцев. OpenECraft — независимый проект.
+Earth electrode resistance RA (Ω)	Сопротивление заземлителя RA (Ом)
 Edit	Правка
 Editor	Редактор
 Electro-fluid cross reference	Перекрёстные ссылки электрика – гидропневматика
@@ -150,6 +154,7 @@ Export as CSV…	Экспортировать в CSV…
 Export as JSON…	Экспортировать в JSON…
 Export failed: {}	Ошибка экспорта: {}
 External (top)	Внешняя (сверху)
+External loop impedance Ze (Ω)	Внешнее сопротивление петли Ze (Ом)
 Face	Поверхность
 Failed	Сбой
 Fastening	Крепление
@@ -201,7 +206,11 @@ Import	Импорт
 Incomplete	Не завершено
 Input	Вход
 Inspection and test report	Протокол осмотра и испытаний
+Inspector	Проверяющий
+Installation site	Объект установки
+Installer	Монтажная организация
 Insulation resistance (MΩ)	Сопротивление изоляции (МОм)
+Insulation test voltage (V)	Испытательное напряжение изоляции (В)
 Integration	Интеграция
 Internal (bottom)	Внутренняя (снизу)
 Interruption point	Точка разрыва
@@ -245,6 +254,7 @@ Machine	Машина
 Main	Главн.
 Main earthing busbar (device) it is connected to; empty: none	Главная заземляющая шина (устройство), к которой он подключён; пусто: нет
 Main earthing terminal	Главная заземляющая шина
+Main equipotential bonding (Ω)	Основная система уравнивания потенциалов (Ом)
 Main switch	Главный выключатель
 Manufacturer	Производитель
 Manufacturers	Производители
@@ -280,6 +290,7 @@ Net	Цепь
 Never	Никогда
 New group	Новая группа
 New name	Новое имя
+Next inspection	Следующая проверка
 Next page	Следующий лист
 No	Нет
 No Vault item matches a part of the project	Ни один элемент Vault не соответствует изделию проекта
@@ -313,6 +324,7 @@ Not a macro file: {}	Не файл макросов: {}
 Not a symbol id: {}	Не идентификатор символа: {}
 Not a title block file: {}	Не файл основных надписей: {}
 Not a valid rule set file: {}	Недопустимый файл набора правил: {}
+Not applicable	Не применимо
 Not in the schematic	Нет на схеме
 Not passed	Не пройдено
 Not tested	Не проверено
@@ -409,6 +421,7 @@ Project name	Имя проекта
 Project properties	Свойства проекта
 Properties	Свойства
 Property	Свойство
+Prospective fault current at the origin (kA)	Ожидаемый ток КЗ на вводе (кА)
 Protection	Защита
 Protective conductor (Ω)	Защитный проводник (Ом)
 Protective device	Защитное устройство
@@ -418,12 +431,14 @@ Quantity unit	Единица количества
 RCD	УЗО
 RCD trip current (mA)	Ток срабатывания УЗО (мА)
 RCD trip time (ms)	Время срабатывания УЗО (мс)
+RCD trip time at 5 × IΔn (ms)	Время срабатывания УЗО при 5 × IΔn (мс)
 Rack	Стойка
 Rail	Рейка
 Range	Диапазон
 Rated current	Номинальный ток
 Rated power	Номинальная мощность
 Rear wall	Задняя стенка
+Reason for the test	Причина испытания
 Rectangle	Прямоугольник
 Rectangular	Прямоугольный
 Redo	Повторить
@@ -513,8 +528,10 @@ Structure	Структура
 Subproject name	Имя подпроекта
 Subsystem	Подсистема
 Successor	Преемник
+Summary	Краткое описание
 Supplier	Поставщик
 Supply	Снабжение
+Supply system	Питающая сеть
 Symbol	Символ
 Symbol key	Ключ символа
 Symbolic address	Символьный адрес
@@ -530,6 +547,7 @@ Terminal strips	Клеммные колодки
 Terminal type	Тип клеммы
 Terminals	Клеммы
 Test instrument	Измерительный прибор
+Test instruments (IEC 61557)	Измерительные приборы (IEC 61557)
 Tested by	Проверил
 Text	Текст
 Text to find	Искомый текст
@@ -558,6 +576,7 @@ Unknown column: {}	Неизвестный столбец: {}
 Unknown connector: {}	Неизвестный коннектор: {}
 Unknown enclosure system: {}	Неизвестная система корпусов: {}
 Unknown face: {}	Неизвестная поверхность: {}
+Unknown field: {}	Неизвестное поле: {}
 Unknown format: {}	Неизвестный формат: {}
 Unknown function definition: {}	Неизвестное определение функции: {}
 Unknown language: {}	Неизвестный язык: {}
@@ -576,6 +595,7 @@ User	Пользователь
 User name	Имя пользователя
 Users	Пользователи
 VAT ID	Номер плательщика НДС
+Value	Значение
 Version	Версия
 Viewer	Наблюдатель
 Voltage	Напряжение

@@ -74,6 +74,7 @@ Certificate	Certificat
 Changed	Modificat
 Changed last	Modificate ultimele
 Changes allowed	Modificări permise
+Changing the data or the results afterwards takes the signature away.	Modificarea ulterioară a datelor sau rezultatelor anulează semnătura.
 Check control valve	Armătură de reținere
 Check flap	Clapetă de reținere
 Chimney	Coș de fum
@@ -261,6 +262,7 @@ Logos	Logouri
 Looks the users up; empty: users bind with their own name (below)	Caută utilizatorii; gol: utilizatorii se leagă cu propriul nume (mai jos)
 Male insert	Inserție tată
 Managers of a project give rights on it themselves (Permissions on the project).	Managerii unui proiect acordă ei înșiși drepturi asupra lui (Permisiunile proiectului).
+Measured at the origin	Măsurat la origine
 Measurement system	Sistem de măsurare
 Measuring connection points	Puncte de conexiune pentru măsurare
 Measuring couplings	Cuplaje de măsurare
@@ -279,6 +281,7 @@ Name attribute	Atributul numelui
 New accounts need the approval of an administrator	Conturile noi necesită aprobarea unui administrator
 New catalog	Catalog nou
 New directory	Serviciu de director nou
+New installation	Instalație nouă
 New part	Articol nou
 New part based on the open one	Articol nou pe baza celui deschis
 New password	Parolă nouă
@@ -302,6 +305,7 @@ Non-return valves	Supape de reținere
 None (only grants)	Niciunul (doar atribuiri)
 Not mounted	Nemontat
 Not saved	Nesalvat
+Not signed	Nesemnat
 Nothing to save	Nimic de salvat
 Nut	Piuliță
 On the front	Pe față
@@ -408,9 +412,11 @@ Remove logo	Eliminare logo
 Remove the file from the part	Eliminarea fișierului din articol
 Remove the logo	Eliminare logo
 Removed from the server	Eliminat de pe server
+Repair	Reparație
 Repeat password	Repetați parola
 Replace the roles and grants with those of the file?	Înlocuiți rolurile și atribuirile cu cele din fișier?
 Replaced by {}	Înlocuit de {}
+Report data and visual inspection	Datele raportului și examinare vizuală
 Resistors	Rezistoare
 Restore from a file	Restaurare dintr-un fișier
 Return flushing filters, all-autom.	Filtre cu spălare inversă, complet automate
@@ -465,12 +471,16 @@ Sign in with a user account	Conectare cu un cont de utilizator
 Sign in with the access token of the server	Conectare cu tokenul de acces al serverului
 Sign out everywhere	Deconectare peste tot
 Sign out {} on all devices?	Deconectați {} pe toate dispozitivele?
+Sign the report	Semnează raportul
 Sign-in needed to read	Citirea necesită conectare
 Sign-in needed to view	Vizualizarea necesită conectare
 Signal device	Dispozitiv de semnalizare
 Signal device, acoustic	Dispozitiv de semnalizare, acustic
 Signal device, optical	Dispozitiv de semnalizare, optic
 Signal lamp	Lampă de semnalizare
+Signature	Semnătură
+Signed	Semnat
+Signed by {} on {}	Semnat de {} la {}
 Signed in	Conectați
 Silencers	Amortizoare de zgomot
 Silo	Siloz
@@ -479,6 +489,7 @@ Single-stage filters	Filtre simple
 Siphon	Sifon
 Size of the files	Dimensiunea fișierelor
 Solenoid valve	Electrovalvă
+Someone saved this meanwhile. Check the values and save again.	Cineva a salvat între timp. Verificați valorile și salvați din nou.
 Sorter	Sortator
 Start a server with:  openecraft-parts-server --token <secret>	Porniți un server cu:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Porniți openecraft-parts-server cu --token pentru a permite modificări
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault nu a continuat încărcarea
 Ventilation filters	Filtre de aerisire
 Ventilator	Ventilator
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Vizualizatorii deschid proiectele doar în citire, examinatorii salvează și comentarii, editorii modifică și creează proiecte, managerii le și șterg și acordă drepturi asupra lor, administratorii gestionează serverul.
+Visual inspection	Examinare vizuală
 Voltage source	Sursă de tensiune
 Voltage source and generator	Sursă de tensiune și generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Conturile în așteptare nu se pot conecta; aprobați-le sau respingeți-le în Utilizatori.

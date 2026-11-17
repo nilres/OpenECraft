@@ -6,7 +6,7 @@
 
 use openecraft_core::analysis::Analysis;
 use openecraft_core::index::Index;
-use openecraft_core::inspection::Circuit;
+use openecraft_core::inspection::Report;
 use openecraft_core::model::Project;
 use openecraft_i18n::Lang;
 use openecraft_view::ProjectView;
@@ -35,19 +35,15 @@ impl Viewed {
         openecraft_view::project_view(&self.project, &self.index, lang)
     }
 
-    pub fn project(&self) -> &Project {
-        &self.project
-    }
-
     /// The analysis, built at the first call (takes a while for large projects).
     fn analysis(&self) -> &Analysis {
         self.analysis.get_or_init(|| Analysis::with_builtin(&self.project))
     }
 
-    /// The circuits of the inspection and test report with their results.
-    pub fn inspection(&self) -> Vec<Circuit> {
+    /// The inspection and test report.
+    pub fn inspection(&self) -> Report {
         let an = self.analysis();
-        openecraft_core::inspection::circuits(&self.project, &an.netlist, &an.connections)
+        Report::of(&self.project, &an.netlist, &an.connections)
     }
 
     /// The page `id` as SVG; `None` if the project has no such page. The first page

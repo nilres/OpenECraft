@@ -73,6 +73,7 @@ Certificate	証明書
 Changed	変更
 Changed last	最近変更された部品
 Changes allowed	変更可能
+Changing the data or the results afterwards takes the signature away.	後からデータや結果を変更するとサインは取り消されます。
 Check control valve	逆止弁
 Check flap	逆止ダンパー
 Chimney	煙突
@@ -260,6 +261,7 @@ Logos	ロゴ
 Looks the users up; empty: users bind with their own name (below)	ユーザーを検索します。空の場合：ユーザーが自分の名前でバインドします（下記）
 Male insert	オスインサート
 Managers of a project give rights on it themselves (Permissions on the project).	プロジェクトのマネージャーは、自分でプロジェクトに権限を付与します (プロジェクトの権限)。
+Measured at the origin	引込口で測定
 Measurement system	計測システム
 Measuring connection points	測定用接続ポイント
 Measuring couplings	測定用カップリング
@@ -278,6 +280,7 @@ Name attribute	名前属性
 New accounts need the approval of an administrator	新しいアカウントには管理者の承認が必要です
 New catalog	新しいカタログ
 New directory	新しいディレクトリ
+New installation	新設
 New part	新しい部品
 New part based on the open one	開いている部品に基づく新しい部品
 New password	新しいパスワード
@@ -301,6 +304,7 @@ Non-return valves	チェック弁
 None (only grants)	なし (付与のみ)
 Not mounted	取り付けなし
 Not saved	未保存
+Not signed	未サイン
 Nothing to save	保存するものはありません
 Nut	ナット
 On the front	前面
@@ -407,9 +411,11 @@ Remove logo	ロゴを削除
 Remove the file from the part	ファイルを部品から削除
 Remove the logo	ロゴを削除
 Removed from the server	サーバーから削除済み
+Repair	修理
 Repeat password	パスワードの再入力
 Replace the roles and grants with those of the file?	ロールと付与をファイルの内容で置き換えますか?
 Replaced by {}	{} に置き換え済み
+Report data and visual inspection	報告書データと目視点検
 Resistors	抵抗器
 Restore from a file	ファイルから復元
 Return flushing filters, all-autom.	全自動逆洗フィルター
@@ -464,12 +470,16 @@ Sign in with a user account	ユーザーアカウントでサインイン
 Sign in with the access token of the server	サーバーのアクセストークンでサインイン
 Sign out everywhere	すべてサインアウト
 Sign out {} on all devices?	すべてのデバイスで {} をサインアウトしますか?
+Sign the report	報告書にサイン
 Sign-in needed to read	閲覧にはサインインが必要
 Sign-in needed to view	表示にはサインインが必要
 Signal device	表示機器
 Signal device, acoustic	信号装置 (音響)
 Signal device, optical	信号装置 (光学)
 Signal lamp	表示灯
+Signature	サイン
+Signed	サイン済み
+Signed by {} on {}	{} が {} にサイン
 Signed in	サインイン中
 Silencers	サイレンサー
 Silo	サイロ
@@ -478,6 +488,7 @@ Single-stage filters	単式フィルター
 Siphon	サイフォン
 Size of the files	ファイルのサイズ
 Solenoid valve	電磁弁
+Someone saved this meanwhile. Check the values and save again.	その間に他の人が保存しました。値を確認して再度保存してください。
 Sorter	選別機
 Start a server with:  openecraft-parts-server --token <secret>	サーバーの起動方法:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	変更を許可するには openecraft-parts-server を --token 付きで起動してください
@@ -584,6 +595,7 @@ Vault did not continue the upload	Vault がアップロードを続行しませ�
 Ventilation filters	エアブリーザー
 Ventilator	送風機
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	ビューアーはプロジェクトを読み取り専用で開き、レビュー担当者はレビューも保存し、編集者はプロジェクトを変更・作成し、マネージャーはさらにプロジェクトを削除して権限を付与し、管理者はサーバーを管理します。
+Visual inspection	目視点検
 Voltage source	電圧源
 Voltage source and generator	電圧源と発電機
 Waiting accounts cannot sign in; approve or reject them in Users.	承認待ちのアカウントはサインインできません。「ユーザー」で承認または却下してください。

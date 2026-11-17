@@ -74,6 +74,7 @@ Certificate	Сертифікат
 Changed	Змінено
 Changed last	Змінені останніми
 Changes allowed	Зміни дозволено
+Changing the data or the results afterwards takes the signature away.	Подальша зміна даних або результатів знімає підпис.
 Check control valve	Зворотна арматура
 Check flap	Зворотна заслінка
 Chimney	Димова труба
@@ -261,6 +262,7 @@ Logos	Логотипи
 Looks the users up; empty: users bind with their own name (below)	Шукає користувачів; порожньо: користувачі прив'язуються своїм ім'ям (нижче)
 Male insert	Вставка зі штирями
 Managers of a project give rights on it themselves (Permissions on the project).	Керівники проєкту самі надають права на нього (Дозволи проєкту).
+Measured at the origin	Виміряно на вводі
 Measurement system	Вимірювальна система
 Measuring connection points	Вимірювальні приєднання
 Measuring couplings	Вимірювальні муфти
@@ -279,6 +281,7 @@ Name attribute	Атрибут імені
 New accounts need the approval of an administrator	Новим обліковим записам потрібне схвалення адміністратора
 New catalog	Новий каталог
 New directory	Нова служба каталогів
+New installation	Нова установка
 New part	Новий виріб
 New part based on the open one	Новий виріб на основі відкритого
 New password	Новий пароль
@@ -302,6 +305,7 @@ Non-return valves	Зворотні клапани
 None (only grants)	Немає (лише призначення)
 Not mounted	Не монтується
 Not saved	Не збережено
+Not signed	Не підписано
 Nothing to save	Нічого зберігати
 Nut	Гайка
 On the front	Спереду
@@ -408,9 +412,11 @@ Remove logo	Видалити логотип
 Remove the file from the part	Вилучити файл із виробу
 Remove the logo	Видалити логотип
 Removed from the server	Вилучено із сервера
+Repair	Ремонт
 Repeat password	Повторіть пароль
 Replace the roles and grants with those of the file?	Замінити ролі та призначення даними з файлу?
 Replaced by {}	Замінено на {}
+Report data and visual inspection	Дані протоколу та візуальний огляд
 Resistors	Резистори
 Restore from a file	Відновити з файлу
 Return flushing filters, all-autom.	Фільтри зворотного промивання, повністю автомат.
@@ -465,12 +471,16 @@ Sign in with a user account	Увійти з обліковим записом
 Sign in with the access token of the server	Увійти з токеном доступу сервера
 Sign out everywhere	Вийти всюди
 Sign out {} on all devices?	Завершити сеанси {} на всіх пристроях?
+Sign the report	Підписати протокол
 Sign-in needed to read	Для читання потрібен вхід
 Sign-in needed to view	Для перегляду потрібен вхід
 Signal device	Сигнальний пристрій
 Signal device, acoustic	Сигнальний пристрій, звуковий
 Signal device, optical	Сигнальний пристрій, світловий
 Signal lamp	Сигнальна лампа
+Signature	Підпис
+Signed	Підписано
+Signed by {} on {}	Підписав {} {}
 Signed in	Увійшли
 Silencers	Глушники
 Silo	Силос
@@ -479,6 +489,7 @@ Single-stage filters	Одноступеневі фільтри
 Siphon	Сифон
 Size of the files	Розмір файлів
 Solenoid valve	Електромагнітний клапан
+Someone saved this meanwhile. Check the values and save again.	Хтось тим часом зберіг це. Перевірте значення та збережіть знову.
 Sorter	Сортувальник
 Start a server with:  openecraft-parts-server --token <secret>	Запустіть сервер командою:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Запустіть openecraft-parts-server із --token, щоб дозволити зміни
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault не продовжив передава
 Ventilation filters	Сапуни
 Ventilator	Вентилятор
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Переглядачі відкривають проєкти лише для читання, рецензенти також зберігають коментарі, редактори змінюють і створюють проєкти, керівники проєкту також видаляють їх і надають права на них, адміністратори керують сервером.
+Visual inspection	Візуальний огляд
 Voltage source	Джерело напруги
 Voltage source and generator	Джерело напруги та генератор
 Waiting accounts cannot sign in; approve or reject them in Users.	Облікові записи в очікуванні не можуть увійти; схваліть або відхиліть їх у розділі «Користувачі».

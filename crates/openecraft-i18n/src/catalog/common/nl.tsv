@@ -60,12 +60,14 @@ Channel	Kanaal
 Characteristic	Karakteristiek
 Check settings	Controle-instellingen
 Checks	Controles
+Circuits	Stroomkringen
 Class	Klasse
 Classes	Klassen
 Clear filters	Filters wissen
 Clearance bottom	Afstand onder
 Clearance top	Afstand boven
 Clearances	Afstanden
+Client	Opdrachtgever
 Close	Sluiten
 Coding: {}	Codering: {}
 Coil voltage	Spoelspanning
@@ -85,6 +87,7 @@ Connection point	Aansluitpunt
 Connection points	Aansluitpunten
 Connections	Verbindingen
 Connector	Connector
+Contact voltage UB (V)	Aanraakspanning UB (V)
 Controller	Controller
 Cooling	Koeling
 Core	Ader
@@ -136,6 +139,7 @@ Drag to turn the model	Sleep om het model te draaien
 Drawings	Tekeningen
 EMC clearance	EMC-afstand
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal en andere namen zijn handelsmerken van hun eigenaren. OpenECraft is een onafhankelijk project.
+Earth electrode resistance RA (Ω)	Aardingsweerstand RA (Ω)
 Edit	Bewerken
 Editor	Bewerker
 Electro-fluid cross reference	Elektro-fluïdum-kruisverwijzingen
@@ -150,6 +154,7 @@ Export as CSV…	Exporteren als CSV…
 Export as JSON…	Exporteren als JSON…
 Export failed: {}	Exporteren mislukt: {}
 External (top)	Extern (boven)
+External loop impedance Ze (Ω)	Externe lusimpedantie Ze (Ω)
 Face	Vlak
 Failed	Mislukt
 Fastening	Bevestiging
@@ -201,7 +206,11 @@ Import	Importeren
 Incomplete	Onvolledig
 Input	Ingang
 Inspection and test report	Inspectie- en testrapport
+Inspector	Inspecteur
+Installation site	Installatieplaats
+Installer	Installateur
 Insulation resistance (MΩ)	Isolatieweerstand (MΩ)
+Insulation test voltage (V)	Meetspanning isolatie (V)
 Integration	Integratie
 Internal (bottom)	Intern (onder)
 Interruption point	Onderbrekingspunt
@@ -245,6 +254,7 @@ Machine	Machine
 Main	Hoofd
 Main earthing busbar (device) it is connected to; empty: none	Hoofdaardrail (apparaat) waarop hij is aangesloten; leeg: geen
 Main earthing terminal	Hoofdaardrail
+Main equipotential bonding (Ω)	Hoofdpotentiaalvereffening (Ω)
 Main switch	Hoofdschakelaar
 Manufacturer	Fabrikant
 Manufacturers	Fabrikanten
@@ -280,6 +290,7 @@ Net	Net
 Never	Nooit
 New group	Nieuwe groep
 New name	Nieuwe naam
+Next inspection	Volgende keuring
 Next page	Volgende pagina
 No	Nee
 No Vault item matches a part of the project	Geen Vault-item komt overeen met een artikel van het project
@@ -313,6 +324,7 @@ Not a macro file: {}	Geen macrobestand: {}
 Not a symbol id: {}	Geen symbool-ID: {}
 Not a title block file: {}	Geen titelblokbestand: {}
 Not a valid rule set file: {}	Geen geldig regelsetbestand: {}
+Not applicable	Niet van toepassing
 Not in the schematic	Niet in het schema
 Not passed	Afgekeurd
 Not tested	Niet getest
@@ -409,6 +421,7 @@ Project name	Projectnaam
 Project properties	Projecteigenschappen
 Properties	Eigenschappen
 Property	Eigenschap
+Prospective fault current at the origin (kA)	Prospectieve foutstroom bij de oorsprong (kA)
 Protection	Beveiliging
 Protective conductor (Ω)	Beschermingsleiding (Ω)
 Protective device	Beveiligingsapparaat
@@ -418,12 +431,14 @@ Quantity unit	Hoeveelheidseenheid
 RCD	Aardlekschakelaar
 RCD trip current (mA)	Aanspreekstroom aardlekschakelaar (mA)
 RCD trip time (ms)	Aanspreektijd aardlekschakelaar (ms)
+RCD trip time at 5 × IΔn (ms)	Aanspreektijd aardlekschakelaar bij 5 × IΔn (ms)
 Rack	Rack
 Rail	Rail
 Range	Bereik
 Rated current	Nominale stroom
 Rated power	Nominaal vermogen
 Rear wall	Achterwand
+Reason for the test	Reden van de test
 Rectangle	Rechthoek
 Rectangular	Rechthoekig
 Redo	Opnieuw
@@ -513,8 +528,10 @@ Structure	Structuur
 Subproject name	Naam van het deelproject
 Subsystem	Subsysteem
 Successor	Opvolger
+Summary	Samenvatting
 Supplier	Leverancier
 Supply	Voorziening
+Supply system	Voedingsnet
 Symbol	Symbool
 Symbol key	Symboolsleutel
 Symbolic address	Symbolisch adres
@@ -530,6 +547,7 @@ Terminal strips	Klemmenstroken
 Terminal type	Klemtype
 Terminals	Klemmen
 Test instrument	Meetinstrument
+Test instruments (IEC 61557)	Meetinstrumenten (IEC 61557)
 Tested by	Getest door
 Text	Tekst
 Text to find	Te zoeken tekst
@@ -558,6 +576,7 @@ Unknown column: {}	Onbekende kolom: {}
 Unknown connector: {}	Onbekende connector: {}
 Unknown enclosure system: {}	Onbekend behuizingssysteem: {}
 Unknown face: {}	Onbekend vlak: {}
+Unknown field: {}	Onbekend veld: {}
 Unknown format: {}	Onbekende indeling: {}
 Unknown function definition: {}	Onbekende functiedefinitie: {}
 Unknown language: {}	Onbekende taal: {}
@@ -576,6 +595,7 @@ User	Gebruiker
 User name	Gebruikersnaam
 Users	Gebruikers
 VAT ID	Btw-nummer
+Value	Waarde
 Version	Versie
 Viewer	Kijker
 Voltage	Spanning

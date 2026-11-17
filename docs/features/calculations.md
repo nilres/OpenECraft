@@ -75,10 +75,15 @@ circuit breaker, not the breaker).
 ## Inspection and test report
 
 The **inspection and test report** (initial verification, IEC 60364-6 / DIN VDE
-0100-600; report *Inspection and test report*, *Project data › Edit in table ›
-Inspection and test report*, the command `inspection_report` and the web page of the
-project server) lists every protective device fed from the mains as a circuit, in
-schematic order, filled in from the schematic:
+0100-600) has three parts: the data of the report with the visual inspection, the
+circuits with their results, and the verdict with the signature. It is shown in the
+reports *Inspection and test report* (the circuits) and *Inspection and test report:
+summary*, edited in *Project data › Edit in table* (*Inspection and test report*, one
+row per circuit, and *Inspection and test report: data*, one row per value), with the
+command `inspection_report` and on the web page of the project server.
+
+**The circuits** are the protective devices fed from the mains, in schematic order,
+filled in from the schematic:
 
 - circuit (device tag), description (of the device, otherwise its function text),
   phases, the cables behind the device with their types, the cross-section (of the
@@ -86,31 +91,69 @@ schematic order, filled in from the schematic:
 - protective device: tripping characteristic and rated current (part data, as for the
   short-circuit calculation);
 - residual current device protecting the circuit (its own or one upstream) with its
-  type (`Residual current type` of the device or of its part) and rated residual
-  current;
-- the highest loop impedance that passes: two thirds of U0 / Ia (Ia: the current
-  that disconnects within the time of table 41.1; IEC 60364-6, annex C), or
-  U0 / IΔn where a residual current device protects the circuit (TT: only that).
+  type (`Residual current type` of the device or of its part; an `S`, as in `A S`,
+  marks a selective one) and rated residual current;
+- the highest loop impedance that passes: two thirds of U0 / Ia (Ia: the current that
+  disconnects within the time of table 41.1; IEC 60364-6, annex C; also in TT systems,
+  411.5.4), or where a residual current device protects the circuit U0 / IΔn (TN, IT)
+  and 50 V / IΔn (TT: RA × IΔn ≤ UL, 411.5.3; Zs includes RA).
 
 What the project does not give is shown as *missing*, never assumed: no characteristic
 C, no 30 mA and no limit resting on them, unlike the calculations, which assume them.
-The results are entered per circuit: continuity of the protective conductor (Ω),
-insulation resistance (MΩ), loop impedance Zs (Ω), tripping current (mA) and time (ms)
-of the residual current device, function test (OK / Not OK), tested by, date, test
-instrument, remark. Values are kept as entered (`0,35`, `> 500`). Each circuit gets a
-verdict: *Not passed* when a value is out of the limits (insulation below 1 MΩ, Zs above
-its limit, RCD tripping current outside ½ IΔn … IΔn or tripping time above 300 ms, a
-failed function test), *Passed* when the continuity, insulation, loop impedance,
-function test and (with an RCD) tripping time are there, *Incomplete* in between and
-*Not tested* without values. The report exports as an Excel workbook like the others.
+
+The results of a circuit, kept as entered (`0,35`, `> 500`) and checked against their
+limits:
+
+| Result | Limit |
+| --- | --- |
+| Continuity of the protective conductor (Ω) | recorded |
+| Insulation test voltage (V) | at least 500 V up to 500 V nominal, 1000 V above (table 6.1) |
+| Insulation resistance (MΩ, the lowest measured) | at least 1 MΩ |
+| Loop impedance Zs (Ω) | the highest loop impedance above |
+| RCD tripping current (mA) | ½ IΔn … IΔn |
+| RCD tripping time at IΔn (ms) | at most 300 ms; type S 130 … 500 ms |
+| RCD tripping time at 5 × IΔn (ms) | at most 40 ms; type S 50 … 150 ms |
+| Contact voltage UB at IΔn (V) | at most 50 V |
+| Function test (polarity, rotation, switching) | OK / Not OK |
+| Tested by, date, test instrument, remark | recorded |
+
+A circuit is *Not passed* when a value is out of its limit or the function test
+failed, *Passed* when the continuity, the insulation (with its test voltage), the
+loop impedance, the function test and (with an RCD) the tripping time at IΔn are
+there, *Incomplete* in between and *Not tested* without values.
+
+**The data of the report**: client, installation site, installer, reason for the test
+(new installation, extension, change, repair), inspector, test instruments
+(IEC 61557), the values measured at the origin (external loop impedance Ze,
+prospective fault current, earth electrode resistance RA, main equipotential bonding)
+and the date of the next inspection. In a TT system RA must not exceed 50 V / the
+largest rated residual current of the installation. **The visual inspection** (6.4.2)
+answers 14 items with OK, Not OK or Not applicable: protection against electric shock,
+fire barriers, conductors, protective devices, isolating and switching devices,
+external influences, identification of N and PE, diagrams and warning notices,
+labelling, connections, protective and bonding conductors, accessibility, additional
+protection by RCDs of at most 30 mA, surge protection.
+
+**The verdict** of the report is *Not passed* when a circuit, an item of the visual
+inspection or RA fails, *Passed* when every circuit passed, every item is answered,
+the inspector named and (TT) RA measured. **Signing** records who signed and when;
+any later change of the data or of a result takes the signature away. The report
+exports as an Excel workbook (on the web page with a summary sheet and a sheet of
+the circuits).
+
+Not covered: protection by SELV, PELV or electrical separation, floor and wall
+insulation, IT systems (insulation monitoring, first fault), measured voltage drop and
+a separate polarity or phase sequence test (part of the function test).
 
 **On site, with a tablet or a phone:** the web page of the project server
 ([project server](../project-server.md)) shows the report of every project under
-*Inspection and test report*: a card per circuit with the data of the schematic and
-the fields of the results (number keyboard, the limit next to each field, values out
-of the limits marked at once). Who may save reviews or edit the project enters the
-results there and saves them circuit by circuit, without opening the project and
-without a lock; values not yet saved stay in the browser (also across a lost
-connection). The editors that have the project open take them over with the next
-revision; their own saves keep them (the results are merged circuit by circuit, as the
-review records). *Excel* downloads the report.
+*Inspection and test report*: a card with the data of the report, the visual
+inspection, the verdict and *Sign the report*, then a card per circuit with the data
+of the schematic and the fields of the results (number keyboard, the limit next to
+each field, values out of the limits marked at once; the insulation test voltage, who
+tests, today and the last instrument are filled in for a new circuit). Who may save
+reviews or edit the project enters them there and saves each card on its own,
+without opening the project and without a lock; values not yet saved stay in the
+browser (also across a lost connection). The editors that have the project open take
+them over with the next revision; their own saves keep them (the data and the results
+are merged card by card, as the review records). *Excel* downloads the report.

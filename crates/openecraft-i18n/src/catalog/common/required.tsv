@@ -63,12 +63,14 @@ Channel	Kanal	Canal	Canal
 Characteristic	Charakteristik	Caractéristique	Característica
 Check settings	Prüfeinstellungen	Réglages de vérification	Ajustes de comprobación
 Checks	Prüfungen	Vérifications	Comprobaciones
+Circuits	Stromkreise	Circuits	Circuitos
 Class	Klasse	Classe	Clase
 Classes	Klassen	Classes	Clases
 Clear filters	Filter zurücksetzen	Effacer les filtres	Borrar filtros
 Clearance bottom	Abstand unten	Dégagement en bas	Distancia inferior
 Clearance top	Abstand oben	Dégagement en haut	Distancia superior
 Clearances	Abstände	Distances	Distancias
+Client	Auftraggeber	Client	Cliente
 Close	Schließen	Fermer	Cerrar
 Coding: {}	Kodierung: {}	Codage : {}	Codificación: {}
 Coil voltage	Spulenspannung	Tension de bobine	Tensión de bobina
@@ -88,6 +90,7 @@ Connection point	Anschluss	Point de raccordement	Punto de conexión
 Connection points	Anschlusspunkte	Points de connexion	Puntos de conexión
 Connections	Verbindungen	Liaisons	Conexiones
 Connector	Steckverbinder	Connecteur	Conector
+Contact voltage UB (V)	Berührungsspannung UB (V)	Tension de contact UB (V)	Tensión de contacto UB (V)
 Controller	Steuerung	Contrôleur	Controlador
 Cooling	Kühlung	Refroidissement	Refrigeración
 Core	Ader	Âme	Núcleo
@@ -140,6 +143,7 @@ Drag to turn the model	Ziehen, um das Modell zu drehen	Faites glisser pour tourn
 Drawings	Zeichnungen	Dessins	Dibujos
 EMC clearance	EMV-Abstand	Distance CEM	Distancia CEM
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal und andere Namen sind Marken ihrer Inhaber. OpenECraft ist ein unabhängiges Projekt.	EPLAN, TIA Portal et les autres noms sont des marques de leurs propriétaires. OpenECraft est un projet indépendant.	EPLAN, TIA Portal y otros nombres son marcas de sus propietarios. OpenECraft es un proyecto independiente.
+Earth electrode resistance RA (Ω)	Erdungswiderstand RA (Ω)	Résistance de la prise de terre RA (Ω)	Resistencia del electrodo de tierra RA (Ω)
 Edit	Bearbeiten	Édition	Edición
 Editor	Bearbeiter	Éditeur	Editor
 Electro-fluid cross reference	Elektro-Fluid-Querverweise	Renvois électro-fluidiques	Referencias cruzadas electro-fluidos
@@ -154,7 +158,9 @@ Exclude from bill of materials	Von der Stückliste ausschließen	Exclure de la n
 Export as CSV…	Als CSV exportieren…	Exporter en CSV…	Exportar como CSV…
 Export as JSON…	Als JSON exportieren…	Exporter en JSON…	Exportar como JSON…
 Export failed: {}	Export fehlgeschlagen: {}	Échec de l'export : {}	Error al exportar: {}
+Extension	Erweiterung	Extension	Extensión
 External (top)	Extern (oben)	Externe (haut)	Externo (arriba)
+External loop impedance Ze (Ω)	Externe Schleifenimpedanz Ze (Ω)	Impédance de boucle externe Ze (Ω)	Impedancia de bucle externa Ze (Ω)
 Face	Fläche	Face	Cara
 Failed	Fehlgeschlagen	Échoué	Fallido
 Fastening	Befestigung	Fixation	Fijación
@@ -210,7 +216,11 @@ Incomplete	Unvollständig	Incomplet	Incompleto
 Infer panel rotation from part dimensions	Drehung aus Artikelabmessungen ableiten	Déduire la rotation des dimensions de l’article	Deducir la rotación de las dimensiones del artículo
 Input	Eingang	Entrée	Entrada
 Inspection and test report	Prüfprotokoll	Rapport de vérification	Informe de inspección y ensayo
+Inspector	Prüfer	Vérificateur	Inspector
+Installation site	Aufstellungsort	Lieu d'installation	Lugar de instalación
+Installer	Errichter	Installateur	Instalador
 Insulation resistance (MΩ)	Isolationswiderstand (MΩ)	Résistance d'isolement (MΩ)	Resistencia de aislamiento (MΩ)
+Insulation test voltage (V)	Messspannung Isolation (V)	Tension d'essai d'isolement (V)	Tensión de ensayo de aislamiento (V)
 Integration	Integration	Intégration	Integración
 Internal (bottom)	Intern (unten)	Interne (bas)	Interno (abajo)
 Interruption point	Unterbrechungspunkt	Point d'interruption	Punto de interrupción
@@ -257,6 +267,7 @@ Machine	Maschine	Machine	Máquina
 Main	Haupt	Principal	Principal
 Main earthing busbar (device) it is connected to; empty: none	Haupterdungsschiene (Gerät), an die er angeschlossen ist; leer: keine	Borne principale de terre (appareil) à laquelle elle est raccordée ; vide : aucune	Barra principal de tierra (equipo) a la que está conectado; vacío: ninguna
 Main earthing terminal	Haupterdungsschiene	Borne principale de terre	Borne principal de tierra
+Main equipotential bonding (Ω)	Schutzpotentialausgleich (Ω)	Liaison équipotentielle principale (Ω)	Conexión equipotencial principal (Ω)
 Main switch	Hauptschalter	Interrupteur principal	Interruptor principal
 Manufacturer	Hersteller	Fabricant	Fabricante
 Manufacturers	Hersteller	Fabricants	Fabricantes
@@ -293,6 +304,7 @@ Net	Netz	Réseau	Red
 Never	Nie	Jamais	Nunca
 New group	Neue Gruppe	Nouveau groupe	Nuevo grupo
 New name	Neuer Name	Nouveau nom	Nuevo nombre
+Next inspection	Nächste Prüfung	Prochaine inspection	Próxima inspección
 Next page	Nächste Seite	Page suivante	Página siguiente
 No	Nein	Non	No
 No Vault item matches a part of the project	Kein Vault-Element passt zu einem Artikel des Projekts	Aucun élément Vault ne correspond à un article du projet	Ningún elemento de Vault coincide con un artículo del proyecto
@@ -328,6 +340,7 @@ Not a macro file: {}	Keine Makrodatei: {}	Ce n'est pas un fichier de macros : {}
 Not a symbol id: {}	Keine Symbol-ID: {}	Pas un identifiant de symbole : {}	No es un id de símbolo: {}
 Not a title block file: {}	Keine Schriftfelddatei: {}	Ce n'est pas un fichier de cartouches : {}	No es un archivo de cajetines: {}
 Not a valid rule set file: {}	Keine gültige Regelwerksdatei: {}	Fichier de règles non valide : {}	Archivo de reglas no válido: {}
+Not applicable	Entfällt	Sans objet	No aplicable
 Not in the schematic	Nicht im Schaltplan	Pas dans le schéma	No está en el esquema
 Not passed	Nicht bestanden	Non conforme	No aprobado
 Not tested	Nicht geprüft	Non vérifié	No verificado
@@ -425,6 +438,7 @@ Project name	Projektname	Nom du projet	Nombre del proyecto
 Project properties	Projekteigenschaften	Propriétés du projet	Propiedades del proyecto
 Properties	Eigenschaften	Propriétés	Propiedades
 Property	Eigenschaft	Propriété	Propiedad
+Prospective fault current at the origin (kA)	Kurzschlussstrom am Speisepunkt (kA)	Courant de défaut présumé à l'origine (kA)	Corriente de defecto presunta en el origen (kA)
 Protection	Schutz	Protection	Protección
 Protective conductor (Ω)	Schutzleiter (Ω)	Conducteur de protection (Ω)	Conductor de protección (Ω)
 Protective device	Schutzorgan	Appareil de protection	Dispositivo de protección
@@ -434,12 +448,14 @@ Quantity unit	Mengeneinheit	Unité de quantité	Unidad de cantidad
 RCD	RCD	DDR	Diferencial
 RCD trip current (mA)	RCD-Auslösestrom (mA)	Courant de déclenchement DDR (mA)	Corriente de disparo del diferencial (mA)
 RCD trip time (ms)	RCD-Auslösezeit (ms)	Temps de déclenchement DDR (ms)	Tiempo de disparo del diferencial (ms)
+RCD trip time at 5 × IΔn (ms)	RCD-Auslösezeit bei 5 × IΔn (ms)	Temps de déclenchement DDR à 5 × IΔn (ms)	Tiempo de disparo del diferencial a 5 × IΔn (ms)
 Rack	Baugruppenträger	Châssis	Bastidor
 Rail	Schiene	Rail	Carril
 Range	Bereich	Plage	Rango
 Rated current	Bemessungsstrom	Courant assigné	Corriente nominal
 Rated power	Bemessungsleistung	Puissance assignée	Potencia nominal
 Rear wall	Rückwand	Paroi arrière	Pared trasera
+Reason for the test	Anlass der Prüfung	Motif de la vérification	Motivo del ensayo
 Rectangle	Rechteck	Rectangle	Rectángulo
 Rectangular	Rechteckig	Rectangulaire	Rectangular
 Redo	Wiederholen	Rétablir	Rehacer
@@ -529,8 +545,10 @@ Structure	Struktur	Structure	Estructura
 Subproject name	Name des Teilprojekts	Nom du sous-projet	Nombre del subproyecto
 Subsystem	Teilsystem	Sous-système	Subsistema
 Successor	Nachfolger	Successeur	Sucesor
+Summary	Zusammenfassung	Résumé	Resumen
 Supplier	Lieferant	Fournisseur	Proveedor
 Supply	Versorgung	Approvisionnement	Suministro
+Supply system	Netz	Réseau d'alimentation	Red de alimentación
 Symbol	Symbol	Symbole	Símbolo
 Symbol key	Symbolschlüssel	Clé du symbole	Clave del símbolo
 Symbolic address	Symbolische Adresse	Adresse symbolique	Dirección simbólica
@@ -546,6 +564,7 @@ Terminal strips	Klemmenleisten	Borniers	Regletas de bornes
 Terminal type	Klemmentyp	Type de borne	Tipo de borne
 Terminals	Klemmen	Bornes	Bornes
 Test instrument	Messgerät	Appareil de mesure	Instrumento de medida
+Test instruments (IEC 61557)	Messgeräte (IEC 61557)	Appareils de mesure (CEI 61557)	Instrumentos de medida (IEC 61557)
 Tested by	Geprüft von	Vérifié par	Verificado por
 Text	Text	Texte	Texto
 Text to find	Zu suchender Text	Texte à rechercher	Texto a buscar
@@ -576,6 +595,7 @@ Unknown column: {}	Unbekannte Spalte: {}	Colonne inconnue : {}	Columna desconoci
 Unknown connector: {}	Unbekannter Konnektor: {}	Connecteur inconnu : {}	Conector desconocido: {}
 Unknown enclosure system: {}	Unbekanntes Gehäusesystem: {}	Système d'armoire inconnu : {}	Sistema de armario desconocido: {}
 Unknown face: {}	Unbekannte Fläche: {}	Face inconnue : {}	Cara desconocida: {}
+Unknown field: {}	Unbekanntes Feld: {}	Champ inconnu : {}	Campo desconocido: {}
 Unknown format: {}	Unbekanntes Format: {}	Format inconnu : {}	Formato desconocido: {}
 Unknown function definition: {}	Unbekannte Funktionsdefinition: {}	Définition de fonction inconnue : {}	Definición de función desconocida: {}
 Unknown language: {}	Unbekannte Sprache: {}	Langue inconnue : {}	Idioma desconocido: {}
@@ -594,6 +614,7 @@ User	Benutzer	Utilisateur	Usuario
 User name	Benutzername	Nom d'utilisateur	Nombre de usuario
 Users	Benutzer	Utilisateurs	Usuarios
 VAT ID	Umsatzsteuer-ID	Numéro de TVA	NIF-IVA
+Value	Wert	Valeur	Valor
 Version	Version	Version	Versión
 Viewer	Betrachter	Lecteur	Lector
 Voltage	Spannung	Tension	Tensión

@@ -74,6 +74,7 @@ Certificate	Certyfikat
 Changed	Zmieniono
 Changed last	Ostatnio zmienione
 Changes allowed	Zmiany dozwolone
+Changing the data or the results afterwards takes the signature away.	Późniejsza zmiana danych lub wyników usuwa podpis.
 Check control valve	Armatura zwrotna
 Check flap	Klapa zwrotna
 Chimney	Komin
@@ -261,6 +262,7 @@ Logos	Loga
 Looks the users up; empty: users bind with their own name (below)	Wyszukuje użytkowników; puste: użytkownicy wiążą się własną nazwą (poniżej)
 Male insert	Wkład stykowy męski
 Managers of a project give rights on it themselves (Permissions on the project).	Kierownicy projektu sami nadają prawa do niego (Uprawnienia projektu).
+Measured at the origin	Zmierzone w złączu
 Measurement system	Układ pomiarowy
 Measuring connection points	Przyłącza pomiarowe
 Measuring couplings	Złącza pomiarowe
@@ -279,6 +281,7 @@ Name attribute	Atrybut nazwy
 New accounts need the approval of an administrator	Nowe konta wymagają zatwierdzenia przez administratora
 New catalog	Nowy katalog
 New directory	Nowa usługa katalogowa
+New installation	Nowa instalacja
 New part	Nowy artykuł
 New part based on the open one	Nowy artykuł na podstawie otwartego
 New password	Nowe hasło
@@ -302,6 +305,7 @@ Non-return valves	Zawory zwrotne
 None (only grants)	Brak (tylko przydziały)
 Not mounted	Niezamontowane
 Not saved	Nie zapisano
+Not signed	Niepodpisany
 Nothing to save	Nic do zapisania
 Nut	Nakrętka
 On the front	Z przodu
@@ -408,9 +412,11 @@ Remove logo	Usuń logo
 Remove the file from the part	Usuń plik z artykułu
 Remove the logo	Usuń logo
 Removed from the server	Usunięto z serwera
+Repair	Naprawa
 Repeat password	Powtórz hasło
 Replace the roles and grants with those of the file?	Zastąpić role i przydziały tymi z pliku?
 Replaced by {}	Zastąpiony przez {}
+Report data and visual inspection	Dane protokołu i oględziny
 Resistors	Rezystory
 Restore from a file	Przywróć z pliku
 Return flushing filters, all-autom.	Filtry płukane wstecznie, w pełni automatyczne
@@ -465,12 +471,16 @@ Sign in with a user account	Zaloguj się kontem użytkownika
 Sign in with the access token of the server	Zaloguj się tokenem dostępu serwera
 Sign out everywhere	Wyloguj wszędzie
 Sign out {} on all devices?	Wylogować {} na wszystkich urządzeniach?
+Sign the report	Podpisz protokół
 Sign-in needed to read	Odczyt wymaga zalogowania
 Sign-in needed to view	Przeglądanie wymaga zalogowania
 Signal device	Urządzenie sygnalizacyjne
 Signal device, acoustic	Urządzenie sygnalizacyjne, akustyczne
 Signal device, optical	Urządzenie sygnalizacyjne, optyczne
 Signal lamp	Lampka sygnalizacyjna
+Signature	Podpis
+Signed	Podpisany
+Signed by {} on {}	Podpisał {} dnia {}
 Signed in	Zalogowani
 Silencers	Tłumiki
 Silo	Silos
@@ -479,6 +489,7 @@ Single-stage filters	Filtry pojedyncze
 Siphon	Syfon
 Size of the files	Rozmiar plików
 Solenoid valve	Zawór elektromagnetyczny
+Someone saved this meanwhile. Check the values and save again.	Ktoś w międzyczasie to zapisał. Sprawdź wartości i zapisz ponownie.
 Sorter	Sortownik
 Start a server with:  openecraft-parts-server --token <secret>	Uruchom serwer poleceniem:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Uruchom openecraft-parts-server z opcją --token, aby zezwolić na zmiany
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault nie kontynuował przekazywania
 Ventilation filters	Filtry odpowietrzające
 Ventilator	Wentylator
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Przeglądający otwierają projekty tylko do odczytu, recenzenci zapisują też komentarze, redaktorzy zmieniają i tworzą projekty, kierownicy projektu także je usuwają i nadają do nich prawa, administratorzy zarządzają serwerem.
+Visual inspection	Oględziny
 Voltage source	Źródło napięcia
 Voltage source and generator	Źródło napięcia i generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Oczekujące konta nie mogą się logować; zatwierdź je lub odrzuć w sekcji Użytkownicy.

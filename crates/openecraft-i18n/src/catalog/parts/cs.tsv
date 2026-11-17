@@ -74,6 +74,7 @@ Certificate	Certifikát
 Changed	Změněno
 Changed last	Naposledy změněné
 Changes allowed	Změny povoleny
+Changing the data or the results afterwards takes the signature away.	Pozdější změna údajů nebo výsledků odstraní podpis.
 Check control valve	Zpětná armatura
 Check flap	Zpětná klapka
 Chimney	Komín
@@ -261,6 +262,7 @@ Logos	Loga
 Looks the users up; empty: users bind with their own name (below)	Vyhledává uživatele; prázdné: uživatelé se vážou vlastním jménem (níže)
 Male insert	Kolíková vložka
 Managers of a project give rights on it themselves (Permissions on the project).	Vedoucí projektu sami udělují práva na svůj projekt (Oprávnění projektu).
+Measured at the origin	Měřeno v předávacím místě
 Measurement system	Měřicí zařízení
 Measuring connection points	Měřicí přípojky
 Measuring couplings	Měřicí spojky
@@ -279,6 +281,7 @@ Name attribute	Atribut jména
 New accounts need the approval of an administrator	Nové účty potřebují schválení správcem
 New catalog	Nový katalog
 New directory	Nová adresářová služba
+New installation	Nová instalace
 New part	Nový artikl
 New part based on the open one	Nový artikl na základě otevřeného
 New password	Nové heslo
@@ -302,6 +305,7 @@ Non-return valves	Zpětné ventily
 None (only grants)	Žádná (jen přidělení)
 Not mounted	Nemontováno
 Not saved	Neuloženo
+Not signed	Nepodepsáno
 Nothing to save	Nic k uložení
 Nut	Matice
 On the front	Vpředu
@@ -408,9 +412,11 @@ Remove logo	Odebrat logo
 Remove the file from the part	Odebrat soubor z artiklu
 Remove the logo	Odebrat logo
 Removed from the server	Odebráno ze serveru
+Repair	Oprava
 Repeat password	Zopakovat heslo
 Replace the roles and grants with those of the file?	Nahradit role a přidělení těmi ze souboru?
 Replaced by {}	Nahrazeno artiklem {}
+Report data and visual inspection	Údaje zprávy a prohlídka
 Resistors	Rezistory
 Restore from a file	Obnovit ze souboru
 Return flushing filters, all-autom.	Samočisticí filtry se zpětným proplachem, plně automatické
@@ -465,12 +471,16 @@ Sign in with a user account	Přihlásit se uživatelským účtem
 Sign in with the access token of the server	Přihlásit se přístupovým tokenem serveru
 Sign out everywhere	Odhlásit všude
 Sign out {} on all devices?	Odhlásit {} na všech zařízeních?
+Sign the report	Podepsat zprávu
 Sign-in needed to read	Čtení vyžaduje přihlášení
 Sign-in needed to view	Zobrazení vyžaduje přihlášení
 Signal device	Signalizační přístroj
 Signal device, acoustic	Signalizační zařízení, akustické
 Signal device, optical	Signalizační zařízení, optické
 Signal lamp	Signálka
+Signature	Podpis
+Signed	Podepsáno
+Signed by {} on {}	Podepsal {} dne {}
 Signed in	Přihlášeni
 Silencers	Tlumiče hluku
 Silo	Silo
@@ -479,6 +489,7 @@ Single-stage filters	Jednoduché filtry
 Siphon	Sifon
 Size of the files	Velikost souborů
 Solenoid valve	Elektromagnetický ventil
+Someone saved this meanwhile. Check the values and save again.	Někdo to mezitím uložil. Zkontrolujte hodnoty a uložte znovu.
 Sorter	Třídič
 Start a server with:  openecraft-parts-server --token <secret>	Spusťte server příkazem:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Chcete-li povolit změny, spusťte openecraft-parts-server s parametrem --token
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault nepokračoval v nahrávání
 Ventilation filters	Odvzdušňovací filtry
 Ventilator	Ventilátor
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Prohlížející otevírají projekty jen pro čtení, kontroloři také ukládají komentáře, editoři mění a vytvářejí projekty, vedoucí projektu je také odstraňují a udělují na ně práva, správci spravují server.
+Visual inspection	Prohlídka
 Voltage source	Zdroj napětí
 Voltage source and generator	Zdroj napětí a generátor
 Waiting accounts cannot sign in; approve or reject them in Users.	Čekající účty se nemohou přihlásit; schvalte je nebo odmítněte v části Uživatelé.

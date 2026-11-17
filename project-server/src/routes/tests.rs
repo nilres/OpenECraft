@@ -1169,7 +1169,7 @@ async fn inspection_results_are_entered_without_opening_the_project() {
     let (s, _, text) = get(&app, path, Some(vic)).await;
     assert_eq!(s, StatusCode::OK, "{text}");
     let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
-    let f1 = sheet.circuits.iter().find(|c| c.circuit == "-F1").unwrap();
+    let f1 = sheet.report.circuits.iter().find(|c| c.circuit == "-F1").unwrap();
     assert_eq!((f1.characteristic.as_deref(), f1.rated, f1.result.rev), (Some("C"), Some(6.0), 0));
     assert_eq!(sheet.rights, [ProjectRight::View]);
     let values = |pairs: &[(&str, &str)]| pairs.iter().map(|(k, v)| (k.to_string(), v.to_string())).collect();
@@ -1179,7 +1179,7 @@ async fn inspection_results_are_entered_without_opening_the_project() {
     let (s, text) = with(&app, "PUT", path, kim, &update).await;
     assert!(s.is_success(), "{text}");
     let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
-    let f1 = sheet.circuits.iter().find(|c| c.circuit == "-F1").unwrap();
+    let f1 = sheet.report.circuits.iter().find(|c| c.circuit == "-F1").unwrap();
     assert_eq!((f1.result.insulation.as_str(), f1.result.tester.as_str(), f1.result.rev), ("> 500", "kim", 3));
     assert_eq!(f1.verdict, inspection::Verdict::Incomplete);
     assert_eq!(sheet.revision, opened.snapshot.revision + 1);
@@ -1199,6 +1199,17 @@ async fn inspection_results_are_entered_without_opening_the_project() {
     let saved: Snapshot = serde_json::from_str(&text).unwrap();
     assert_eq!(saved.project.inspection.result("-F1").unwrap().insulation, "> 500");
     assert_eq!(saved.project.pages[1].description, "Changed in the editor");
+
+    // The data of the report and the visual inspection: no circuit, the header's rev.
+    let data = InspectionUpdate { values: values(&[("inspector", "Kim"), ("check.fire", "ok")]), ..Default::default() };
+    let (s, text) = with(&app, "PUT", path, kim, &data).await;
+    assert!(s.is_success(), "{text}");
+    let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
+    assert_eq!((sheet.report.header.inspector.as_str(), sheet.report.header.rev), ("Kim", 2));
+    assert_eq!(sheet.report.checks.iter().find(|c| c.key == "fire").unwrap().answer, "ok");
+    assert_eq!(with(&app, "PUT", path, kim, &data).await.0, StatusCode::CONFLICT);
+    let bad_answer = InspectionUpdate { rev: 2, values: values(&[("check.fire", "maybe")]), ..Default::default() };
+    assert_eq!(with(&app, "PUT", path, kim, &bad_answer).await.0, StatusCode::BAD_REQUEST);
 
     let (s, headers, _) = get(&app, &format!("{path}.xlsx?lang=de"), Some(vic)).await;
     assert_eq!(s, StatusCode::OK);

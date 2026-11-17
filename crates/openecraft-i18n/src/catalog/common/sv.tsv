@@ -60,12 +60,14 @@ Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrollinställningar
 Checks	Kontroller
+Circuits	Kretsar
 Class	Klass
 Classes	Klasser
 Clear filters	Rensa filter
 Clearance bottom	Avstånd nedåt
 Clearance top	Avstånd uppåt
 Clearances	Avstånd
+Client	Beställare
 Close	Stäng
 Coding: {}	Kodning: {}
 Coil voltage	Spolspänning
@@ -85,6 +87,7 @@ Connection point	Anslutningspunkt
 Connection points	Anslutningspunkter
 Connections	Förbindelser
 Connector	Kontaktdon
+Contact voltage UB (V)	Beröringsspänning UB (V)
 Controller	Styrenhet
 Cooling	Kylning
 Core	Ledare
@@ -136,6 +139,7 @@ Drag to turn the model	Dra för att vrida modellen
 Drawings	Ritningar
 EMC clearance	EMC-avstånd
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal och andra namn är varumärken som tillhör sina ägare. OpenECraft är ett fristående projekt.
+Earth electrode resistance RA (Ω)	Jordtagsresistans RA (Ω)
 Edit	Redigera
 Editor	Redigerare
 Electro-fluid cross reference	Elektro-fluid-korsreferens
@@ -150,6 +154,7 @@ Export as CSV…	Exportera som CSV…
 Export as JSON…	Exportera som JSON…
 Export failed: {}	Exporten misslyckades: {}
 External (top)	Extern (ovan)
+External loop impedance Ze (Ω)	Extern slingimpedans Ze (Ω)
 Face	Yta
 Failed	Misslyckad
 Fastening	Fastsättning
@@ -201,7 +206,11 @@ Import	Import
 Incomplete	Ofullständig
 Input	Ingång
 Inspection and test report	Besiktnings- och provningsprotokoll
+Inspector	Besiktningsman
+Installation site	Uppställningsplats
+Installer	Installatör
 Insulation resistance (MΩ)	Isolationsresistans (MΩ)
+Insulation test voltage (V)	Provspänning isolation (V)
 Integration	Integration
 Internal (bottom)	Intern (nedan)
 Interruption point	Avbrottspunkt
@@ -245,6 +254,7 @@ Machine	Maskin
 Main	Huvud
 Main earthing busbar (device) it is connected to; empty: none	Huvudjordningsskena (apparat) som det är anslutet till; tom: ingen
 Main earthing terminal	Huvudjordningsskena
+Main equipotential bonding (Ω)	Huvudpotentialutjämning (Ω)
 Main switch	Huvudbrytare
 Manufacturer	Tillverkare
 Manufacturers	Tillverkare
@@ -280,6 +290,7 @@ Net	Nät
 Never	Aldrig
 New group	Ny grupp
 New name	Nytt namn
+Next inspection	Nästa besiktning
 Next page	Nästa sida
 No	Nej
 No Vault item matches a part of the project	Inget Vault-objekt matchar någon artikel i projektet
@@ -313,6 +324,7 @@ Not a macro file: {}	Inte en makrofil: {}
 Not a symbol id: {}	Inget symbol-ID: {}
 Not a title block file: {}	Inte en namnrutefil: {}
 Not a valid rule set file: {}	Inte en giltig regelverksfil: {}
+Not applicable	Ej tillämplig
 Not in the schematic	Inte i schemat
 Not passed	Underkänd
 Not tested	Inte provad
@@ -409,6 +421,7 @@ Project name	Projektnamn
 Project properties	Projektegenskaper
 Properties	Egenskaper
 Property	Egenskap
+Prospective fault current at the origin (kA)	Förväntad felström vid matningspunkten (kA)
 Protection	Skydd
 Protective conductor (Ω)	Skyddsledare (Ω)
 Protective device	Skyddsdon
@@ -418,12 +431,14 @@ Quantity unit	Mängdenhet
 RCD	Jordfelsbrytare
 RCD trip current (mA)	Jordfelsbrytarens utlösningsström (mA)
 RCD trip time (ms)	Jordfelsbrytarens utlösningstid (ms)
+RCD trip time at 5 × IΔn (ms)	Jordfelsbrytarens utlösningstid vid 5 × IΔn (ms)
 Rack	Rack
 Rail	Skena
 Range	Område
 Rated current	Märkström
 Rated power	Märkeffekt
 Rear wall	Bakvägg
+Reason for the test	Anledning till provningen
 Rectangle	Rektangel
 Rectangular	Rektangulär
 Redo	Gör om
@@ -513,8 +528,10 @@ Structure	Struktur
 Subproject name	Delprojektets namn
 Subsystem	Delsystem
 Successor	Efterföljare
+Summary	Sammanfattning
 Supplier	Leverantör
 Supply	Försörjning
+Supply system	Matningsnät
 Symbol	Symbol
 Symbol key	Symbolnyckel
 Symbolic address	Symbolisk adress
@@ -530,6 +547,7 @@ Terminal strips	Plintrader
 Terminal type	Plinttyp
 Terminals	Plintar
 Test instrument	Mätinstrument
+Test instruments (IEC 61557)	Mätinstrument (IEC 61557)
 Tested by	Provad av
 Text	Text
 Text to find	Text att söka efter
@@ -558,6 +576,7 @@ Unknown column: {}	Okänd kolumn: {}
 Unknown connector: {}	Okänd anslutning: {}
 Unknown enclosure system: {}	Okänt kapslingssystem: {}
 Unknown face: {}	Okänd yta: {}
+Unknown field: {}	Okänt fält: {}
 Unknown format: {}	Okänt format: {}
 Unknown function definition: {}	Okänd funktionsdefinition: {}
 Unknown language: {}	Okänt språk: {}
@@ -576,6 +595,7 @@ User	Användare
 User name	Användarnamn
 Users	Användare
 VAT ID	Momsregistreringsnummer
+Value	Värde
 Version	Version
 Viewer	Visare
 Voltage	Spänning

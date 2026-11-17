@@ -74,6 +74,7 @@ Certificate	Сертификат
 Changed	Изменено
 Changed last	Изменены последними
 Changes allowed	Изменения разрешены
+Changing the data or the results afterwards takes the signature away.	Последующее изменение данных или результатов снимает подпись.
 Check control valve	Обратная арматура
 Check flap	Обратная заслонка
 Chimney	Дымовая труба
@@ -261,6 +262,7 @@ Logos	Логотипы
 Looks the users up; empty: users bind with their own name (below)	Ищет пользователей; пусто: пользователи привязываются своим именем (ниже)
 Male insert	Вставка со штырями
 Managers of a project give rights on it themselves (Permissions on the project).	Руководители проекта сами дают права на него (Разрешения проекта).
+Measured at the origin	Измерено на вводе
 Measurement system	Измерительное устройство
 Measuring connection points	Точки подключения измерений
 Measuring couplings	Измерительные муфты
@@ -279,6 +281,7 @@ Name attribute	Атрибут имени
 New accounts need the approval of an administrator	Новым учётным записям нужно одобрение администратора
 New catalog	Новый каталог
 New directory	Новая служба каталогов
+New installation	Новая установка
 New part	Новое изделие
 New part based on the open one	Новое изделие на основе открытого
 New password	Новый пароль
@@ -302,6 +305,7 @@ Non-return valves	Обратные клапаны
 None (only grants)	Нет (только назначения)
 Not mounted	Не монтируется
 Not saved	Не сохранено
+Not signed	Не подписано
 Nothing to save	Нечего сохранять
 Nut	Гайка
 On the front	Спереди
@@ -408,9 +412,11 @@ Remove logo	Удалить логотип
 Remove the file from the part	Удалить файл из изделия
 Remove the logo	Удалить логотип
 Removed from the server	Удалено с сервера
+Repair	Ремонт
 Repeat password	Повторите пароль
 Replace the roles and grants with those of the file?	Заменить роли и назначения данными из файла?
 Replaced by {}	Заменено на {}
+Report data and visual inspection	Данные протокола и визуальный осмотр
 Resistors	Резисторы
 Restore from a file	Восстановить из файла
 Return flushing filters, all-autom.	Фильтры с обратной промывкой, полностью автом.
@@ -465,12 +471,16 @@ Sign in with a user account	Войти с учётной записью
 Sign in with the access token of the server	Войти с маркером доступа сервера
 Sign out everywhere	Выйти везде
 Sign out {} on all devices?	Завершить сеансы {} на всех устройствах?
+Sign the report	Подписать протокол
 Sign-in needed to read	Для чтения нужен вход
 Sign-in needed to view	Для просмотра нужен вход
 Signal device	Сигнальное устройство
 Signal device, acoustic	Сигнальное устройство, звуковое
 Signal device, optical	Сигнальное устройство, световое
 Signal lamp	Сигнальная лампа
+Signature	Подпись
+Signed	Подписано
+Signed by {} on {}	Подписал {} {}
 Signed in	Вошли
 Silencers	Глушители
 Silo	Силос
@@ -479,6 +489,7 @@ Single-stage filters	Одинарные фильтры
 Siphon	Сифон
 Size of the files	Размер файлов
 Solenoid valve	Электромагнитный клапан
+Someone saved this meanwhile. Check the values and save again.	Кто-то сохранил это тем временем. Проверьте значения и сохраните снова.
 Sorter	Сортировщик
 Start a server with:  openecraft-parts-server --token <secret>	Запустите сервер командой:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Запустите openecraft-parts-server с параметром --token, чтобы разрешить изменения
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault не продолжил выгрузку
 Ventilation filters	Сапунные фильтры
 Ventilator	Вентилятор
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Наблюдатели открывают проекты только для чтения, рецензенты также сохраняют рецензии, редакторы изменяют и создают проекты, руководители проекта также удаляют их и дают права на них, администраторы управляют сервером.
+Visual inspection	Визуальный осмотр
 Voltage source	Источник напряжения
 Voltage source and generator	Источник напряжения и генератор
 Waiting accounts cannot sign in; approve or reject them in Users.	Ожидающие учётные записи не могут войти; одобрите или отклоните их в разделе «Пользователи».

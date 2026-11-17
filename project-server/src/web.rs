@@ -157,7 +157,36 @@ const TEXTS: &[&str] = &[
     tr_const!("Saved"),
     tr_const!("Next circuit"),
     tr_const!("Nothing to save"),
-    tr_const!("Someone saved results of this circuit meanwhile. Check the values and save again."),
+    tr_const!("Someone saved this meanwhile. Check the values and save again."),
+    tr_const!("Insulation test voltage (V)"),
+    tr_const!("RCD trip time at 5 × IΔn (ms)"),
+    tr_const!("Contact voltage UB (V)"),
+    tr_const!("Client"),
+    tr_const!("Installation site"),
+    tr_const!("Installer"),
+    tr_const!("Reason for the test"),
+    tr_const!("Inspector"),
+    tr_const!("Next inspection"),
+    tr_const!("Test instruments (IEC 61557)"),
+    tr_const!("External loop impedance Ze (Ω)"),
+    tr_const!("Prospective fault current at the origin (kA)"),
+    tr_const!("Earth electrode resistance RA (Ω)"),
+    tr_const!("Main equipotential bonding (Ω)"),
+    tr_const!("New installation"),
+    tr_const!("Extension"),
+    tr_const!("Change"),
+    tr_const!("Repair"),
+    tr_const!("Not applicable"),
+    tr_const!("Supply system"),
+    tr_const!("Signature"),
+    tr_const!("Signed by {} on {}"),
+    tr_const!("Not signed"),
+    tr_const!("Changing the data or the results afterwards takes the signature away."),
+    tr_const!("Sign the report"),
+    tr_const!("Signed"),
+    tr_const!("Report data and visual inspection"),
+    tr_const!("Measured at the origin"),
+    tr_const!("Visual inspection"),
 ];
 
 pub async fn index() -> impl IntoResponse {
@@ -174,7 +203,9 @@ pub fn routes<S: Clone + Send + Sync + 'static>() -> Router<S> {
 
 pub fn web_texts(lang: Lang) -> WebTexts {
     let role_title = |name: &str| ProjectRole::ALL.iter().find(|r| r.name() == name).map_or("", |r| r.title());
-    WebTexts::new::<ProjectRight>(lang, TEXTS.iter().copied(), role_title)
+    // The items of the visual inspection come with the report, in English.
+    let checks = openecraft_core::inspection::CHECKS.iter().map(|c| c.1);
+    WebTexts::new::<ProjectRight>(lang, TEXTS.iter().copied().chain(checks), role_title)
 }
 
 /// `GET /api/v1/texts?lang=de`: the page's texts in a language (English if unknown).

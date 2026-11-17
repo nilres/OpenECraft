@@ -40,6 +40,7 @@ Actuated by	작동 장치
 Actuation	조작
 Actuator type	조작부 유형
 Additional page description	추가 페이지 설명
+Additional protection by RCDs of at most 30 mA where required	필요한 곳에 30 mA 이하 RCD에 의한 추가 보호
 Address ranges of {} and {} overlap	{0}와(과) {1}의 주소 범위가 겹칩니다
 Address {} is used by {} and {}	주소 {0}을(를) {1}와(과) {2}이(가) 사용합니다
 Adhesive	접착
@@ -212,6 +213,7 @@ Circuit breaker 3-pole QF (GB)	차단기 3극 QF(GB)
 Circuit breaker 3-pole QF (GOST)	차단기 3극 QF(GOST)
 Circuit breaker 3-pole, thermal-magnetic	차단기 3극, 열동-전자식
 Circuit breaker 4-pole	차단기 4극
+Circuits, protective devices, switches and terminals labelled	회로, 보호 장치, 스위치 및 단자 표시됨
 Circular milling	원형 밀링
 Clip / snap-on	클립 / 스냅 장착
 Cloud	구름
@@ -233,6 +235,7 @@ Compressed air supply	압축 공기 공급
 Compressor	압축기
 Condition '{}' needs OPTION=value	조건 '{}'에는 OPTION=값이 필요합니다
 Conductor class	도체 등급
+Conductors selected for current-carrying capacity and voltage drop	허용 전류와 전압 강하에 따라 도체 선정
 Conduit	전선관
 Connected	연결됨
 Connection definition point on page {} is not applied to its connection	페이지 {}의 연결 정의점이 해당 연결에 적용되지 않았습니다
@@ -246,6 +249,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	연결 기호
 Connection type	연결 유형
 Connection {} has contradicting connection definition points	연결 {}에 서로 모순되는 연결 정의점이 있습니다
+Connections of the conductors	도체의 접속
 Connector pin-outs and flat cables	커넥터 핀 배치와 리본 케이블
 Connector pin-outs: mating faces and pin tables (SVG)	커넥터 핀 배치: 결합면과 핀 표 (SVG)
 Contact material	접점 재질
@@ -366,6 +370,7 @@ Devices without power loss	전력 손실 없는 장치
 Dew point (°C)	이슬점(°C)
 Diagnostic coverage (DC)	진단 범위(DC)
 Diagnostics	진단
+Diagrams, warning notices and similar information present	도면, 경고 표지 및 유사한 정보 있음
 Diameter (mm)	직경(mm)
 Different wire numbers in one connection: {}	한 연결에 서로 다른 전선 번호: {}
 Digital input / output module	디지털 입력 / 출력 모듈
@@ -473,6 +478,8 @@ Energy limitation class	에너지 제한 등급
 Engineered	설계 완료
 Engineering unit	공학 단위
 Environment	환경
+Equipment accessible for operation, inspection and maintenance	조작, 점검 및 유지보수를 위해 기기에 접근 가능
+Equipment and protective measures suit the external influences	기기와 보호 조치가 외부 영향에 적합
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	장비 접지 도체는 녹색이어야 합니다(NFPA 79, 13.2.2)
 Excel workbook	Excel 통합 문서
 Exhaust {} open to the atmosphere (no silencer)	배기 {}이(가) 대기에 개방됨(소음기 없음)
@@ -508,6 +515,7 @@ File name written into the file header	파일 헤더에 기록되는 파일 이�
 Fill level (%)	충전율(%)
 Filter fan with outlet filter	배출 필터가 있는 필터 팬
 Filter rating	여과 등급
+Fire barriers and protection against thermal effects	방화 구획 및 열적 영향에 대한 보호
 Firmware version	펌웨어 버전
 First end only	첫 번째 끝만
 Fitting	피팅
@@ -698,12 +706,13 @@ Input voltage	입력 전압
 Inputs from	입력 출처
 Inrush current	돌입 전류
 Inside (°C)	내부(°C)
+Inspection and test report: data	검사 및 시험 보고서: 데이터
+Inspection and test report: summary	검사 및 시험 보고서: 요약
 Installation altitude	설치 고도
 Installation date	설치일
 Installation devices	설치 장치
 Installation method	포설 방법
 Installation plan (IEC 60617-11)	옥내 배선도(IEC 60617-11)
-Installation site	설치 장소
 Installation site (++)	설치 장소 (++)
 Installation site and location	설치 장소 및 위치
 Installation site of the page	페이지의 설치 장소
@@ -726,6 +735,7 @@ Invalid length {}	잘못된 길이 {}
 Invalid property key: {}	잘못된 속성 키: {}
 Inverter / charger	인버터 / 충전기
 Inverter DC/AC	인버터 DC/AC
+Isolating and switching devices in the right places	분리 및 개폐 장치가 올바른 위치에 있음
 Item	항목
 Item ID	품목 ID
 Items	항목
@@ -911,8 +921,8 @@ NO contact, timed closing (NFPA)	a접점, 지연 닫힘(NFPA)
 Nailboard {}	네일보드 {}
 Network (m)	네트워크(m)
 Neutral (N)	중성선(N)
+Neutral and protective conductors identified	중성선과 보호 도체 표시됨
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	중성선은 하늘색이어야 합니다(IEC 60204-1, 13.2.3)
-Next inspection	다음 점검
 Nibbling	니블링
 No connection {}	연결 {} 없음
 No devices to add to the single-line diagram	단선도에 추가할 장치가 없습니다
@@ -967,6 +977,7 @@ Number of sheets	시트 수
 Number of switch positions	스위치 위치 수
 Number of symbols	심볼 수
 Numbers (1, 2, 3)	숫자(1, 2, 3)
+OK, Not OK or Not applicable	OK, 불합격 또는 해당 없음
 Ohmmeter	저항계
 Oil resistant	내유성
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V 전위, 푸시 버튼, 선택 스위치, 표시등, 퓨즈가 있는 회로도 한 페이지; 부품과 자재 명세서.
@@ -1211,14 +1222,17 @@ Project revision	프로젝트 개정
 Project symbols	프로젝트 심볼
 Proof test interval	보증 시험 주기
 Prospective short-circuit current	추정 단락 전류
+Protection against electric shock: the measures and their components	감전 보호: 조치와 그 구성 요소
 Protection class	보호 클래스
 Protection setting	보호 설정
+Protective and monitoring devices selected and set correctly	보호 및 감시 장치가 올바르게 선정 및 설정됨
 Protective conductor {} with wire colour {} (must be GNYE)	전선 색상이 {1}인 보호 도체 {0}(GNYE여야 함)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	보호 도체는 녹황색이어야 합니다(IEC 60204-1, 13.2.2)
 Protective devices	보호 장치
 Protective earth	보호 접지
 Protective earth (PE)	보호 도체(PE)
 Protective hose	보호 호스
+Protective, earthing and bonding conductors present and adequate	보호, 접지 및 본딩 도체가 있고 적절함
 Proximity sensor	근접 센서
 Proximity sensor NO	근접 센서 a접점
 Proximity switch NO (NFPA)	근접 스위치 a접점(NFPA)
@@ -1426,6 +1440,8 @@ Signal devices	신호 장치
 Signal name	신호 이름
 Signal range	신호 범위
 Signal type	신호 유형
+Signed by	서명자
+Signed on	서명일
 Silencer	소음기
 Single, free-standing	단독, 독립형
 Single, wall mounted	단독, 벽면 장착
@@ -1505,6 +1521,7 @@ Supply voltage	공급 전압
 Surface (m²)	표면적(m²)
 Surface-mounted	노출 배선
 Surge protection type	서지 보호 유형
+Surge protection where required	필요한 곳의 서지 보호
 Surge protective device	서지 보호 장치
 Surge suppressor	서지 억제기
 Switch, 1-pole (installation)	스위치, 단극(옥내 배선)
@@ -1555,6 +1572,7 @@ Termination (to)	마감(끝)
 Text file	텍스트 파일
 The DXF file contains nothing that can be imported	DXF 파일에 가져올 수 있는 내용이 없습니다
 The PDF has no pages that can be read	PDF에 읽을 수 있는 페이지가 없습니다
+The answer is OK, Not OK or Not applicable, not {}	답은 OK, 불합격 또는 해당 없음이어야 합니다. {}은(는) 아닙니다
 The archive contains no project	아카이브에 프로젝트가 없습니다
 The archive has no manifest	아카이브에 매니페스트가 없습니다
 The archive is damaged	아카이브가 손상되었습니다
@@ -1917,6 +1935,7 @@ yellow	노랑
 {} lies outside page {}	{}이(가) 페이지 {} 밖에 있습니다
 {} min {} s	{}분 {}초
 {} mounting marks belong to items that no longer exist	장착 표시 {}개가 더 이상 존재하지 않는 항목에 속합니다
+{} of {} passed	{} / {} 합격
 {} option assignments of deleted objects removed	삭제된 개체의 옵션 할당 {}개를 제거했습니다
 {} placed properties converted to property keys	배치된 속성 {}개를 속성 키로 변환했습니다
 {} planned devices are not in the schematic yet	계획된 장치 {}개가 아직 회로도에 없습니다

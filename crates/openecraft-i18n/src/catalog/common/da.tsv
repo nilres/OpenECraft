@@ -60,12 +60,14 @@ Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrolindstillinger
 Checks	Kontroller
+Circuits	Kredse
 Class	Klasse
 Classes	Klasser
 Clear filters	Ryd filtre
 Clearance bottom	Afstand nederst
 Clearance top	Afstand øverst
 Clearances	Afstande
+Client	Bygherre
 Close	Luk
 Coding: {}	Kodning: {}
 Coil voltage	Spolespænding
@@ -85,6 +87,7 @@ Connection point	Tilslutningspunkt
 Connection points	Tilslutningspunkter
 Connections	Forbindelser
 Connector	Stikforbinder
+Contact voltage UB (V)	Berøringsspænding UB (V)
 Controller	Controller
 Cooling	Køling
 Core	Leder
@@ -136,6 +139,7 @@ Drag to turn the model	Træk for at dreje modellen
 Drawings	Tegninger
 EMC clearance	EMC-afstand
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal og andre navne er varemærker tilhørende deres ejere. OpenECraft er et uafhængigt projekt.
+Earth electrode resistance RA (Ω)	Jordelektrodemodstand RA (Ω)
 Edit	Rediger
 Editor	Redaktør
 Electro-fluid cross reference	Elektro-fluid-krydsreference
@@ -150,6 +154,7 @@ Export as CSV…	Eksportér som CSV…
 Export as JSON…	Eksportér som JSON…
 Export failed: {}	Eksporten mislykkedes: {}
 External (top)	Ekstern (øverst)
+External loop impedance Ze (Ω)	Ekstern sløjfeimpedans Ze (Ω)
 Face	Flade
 Failed	Mislykkedes
 Fastening	Fastgørelse
@@ -201,7 +206,11 @@ Import	Import
 Incomplete	Ufuldstændig
 Input	Indgang
 Inspection and test report	Eftersyns- og afprøvningsrapport
+Inspector	Kontrollant
+Installation site	Opstillingssted
+Installer	Installatør
 Insulation resistance (MΩ)	Isolationsmodstand (MΩ)
+Insulation test voltage (V)	Prøvespænding isolation (V)
 Integration	Integration
 Internal (bottom)	Intern (nederst)
 Interruption point	Afbrydelsespunkt
@@ -245,6 +254,7 @@ Machine	Maskine
 Main	Hoved
 Main earthing busbar (device) it is connected to; empty: none	Hovedjordskinne (apparat), som den er tilsluttet; tom: ingen
 Main earthing terminal	Hovedjordskinne
+Main equipotential bonding (Ω)	Hovedudligningsforbindelse (Ω)
 Main switch	Hovedafbryder
 Manufacturer	Producent
 Manufacturers	Producenter
@@ -280,6 +290,7 @@ Net	Net
 Never	Aldrig
 New group	Ny gruppe
 New name	Nyt navn
+Next inspection	Næste inspektion
 Next page	Næste side
 No	Nej
 No Vault item matches a part of the project	Intet Vault-element passer til en artikel i projektet
@@ -313,6 +324,7 @@ Not a macro file: {}	Ikke en makrofil: {}
 Not a symbol id: {}	Ikke et symbol-id: {}
 Not a title block file: {}	Ikke en tegningshovedfil: {}
 Not a valid rule set file: {}	Ikke en gyldig regelsætfil: {}
+Not applicable	Ikke relevant
 Not in the schematic	Ikke i diagrammet
 Not passed	Ikke godkendt
 Not tested	Ikke afprøvet
@@ -409,6 +421,7 @@ Project name	Projektnavn
 Project properties	Projektegenskaber
 Properties	Egenskaber
 Property	Egenskab
+Prospective fault current at the origin (kA)	Forventet fejlstrøm ved forsyningspunktet (kA)
 Protection	Beskyttelse
 Protective conductor (Ω)	Beskyttelsesleder (Ω)
 Protective device	Beskyttelsesenhed
@@ -418,12 +431,14 @@ Quantity unit	Mængdeenhed
 RCD	HPFI
 RCD trip current (mA)	HPFI-udløsestrøm (mA)
 RCD trip time (ms)	HPFI-udløsetid (ms)
+RCD trip time at 5 × IΔn (ms)	HPFI-udløsetid ved 5 × IΔn (ms)
 Rack	Rack
 Rail	Skinne
 Range	Område
 Rated current	Mærkestrøm
 Rated power	Mærkeeffekt
 Rear wall	Bagvæg
+Reason for the test	Årsag til afprøvningen
 Rectangle	Rektangel
 Rectangular	Rektangulær
 Redo	Annuller fortryd
@@ -513,8 +528,10 @@ Structure	Struktur
 Subproject name	Delprojektets navn
 Subsystem	Delsystem
 Successor	Efterfølger
+Summary	Resumé
 Supplier	Leverandør
 Supply	Forsyning
+Supply system	Forsyningsnet
 Symbol	Symbol
 Symbol key	Symbolnøgle
 Symbolic address	Symbolsk adresse
@@ -530,6 +547,7 @@ Terminal strips	Klemrækker
 Terminal type	Klemmetype
 Terminals	Klemmer
 Test instrument	Måleinstrument
+Test instruments (IEC 61557)	Måleinstrumenter (IEC 61557)
 Tested by	Afprøvet af
 Text	Tekst
 Text to find	Tekst, der skal søges efter
@@ -558,6 +576,7 @@ Unknown column: {}	Ukendt kolonne: {}
 Unknown connector: {}	Ukendt connector: {}
 Unknown enclosure system: {}	Ukendt kapslingssystem: {}
 Unknown face: {}	Ukendt flade: {}
+Unknown field: {}	Ukendt felt: {}
 Unknown format: {}	Ukendt format: {}
 Unknown function definition: {}	Ukendt funktionsdefinition: {}
 Unknown language: {}	Ukendt sprog: {}
@@ -576,6 +595,7 @@ User	Bruger
 User name	Brugernavn
 Users	Brugere
 VAT ID	Momsnummer
+Value	Værdi
 Version	Version
 Viewer	Fremviser
 Voltage	Spænding

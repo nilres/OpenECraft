@@ -33,13 +33,28 @@ fn installation() -> Kit {
     k
 }
 
-fn circuits_of(prj: &Project) -> Vec<Circuit> {
+fn report_of(prj: &Project) -> Report {
     let an = Analysis::build(prj);
-    circuits(prj, &an.netlist, &an.connections)
+    Report::of(prj, &an.netlist, &an.connections)
+}
+
+fn circuits_of(prj: &Project) -> Vec<Circuit> {
+    report_of(prj).circuits
 }
 
 fn by<'a>(cs: &'a [Circuit], tag: &str) -> &'a Circuit {
     cs.iter().find(|c| c.circuit == tag).unwrap()
+}
+
+fn rcd_part(k: &mut Kit) -> &mut Part {
+    k.prj.parts.iter_mut().find(|p| p.number.contains("Q1")).unwrap()
+}
+
+/// The results that pass in -F1 (B16 behind a 30 mA RCD).
+fn passing(prj: &mut Project) {
+    for (f, v) in [(Field::Continuity, "0,2"), (Field::InsulationVoltage, "500"), (Field::Insulation, "> 500"), (Field::LoopImpedance, "0.85"), (Field::Function, "OK"), (Field::RcdTime, "24")] {
+        set(prj, "-F1", f, v).unwrap();
+    }
 }
 
 #[test]
@@ -58,7 +73,11 @@ fn circuits_are_filled_in_from_the_schematic() {
     let u0 = k.prj.electrical.supply.u0();
     assert!((f1.zs_max.unwrap() - u0 / 0.03).abs() < 0.5);
     assert_eq!(f1.verdict, Verdict::NotTested);
-    assert_eq!(f1.required(), [Field::Continuity, Field::Insulation, Field::LoopImpedance, Field::Function, Field::RcdTime]);
+    assert_eq!(f1.required(), [Field::Continuity, Field::InsulationVoltage, Field::Insulation, Field::LoopImpedance, Field::Function, Field::RcdTime]);
+    assert_eq!(f1.limit(Field::RcdTime).map(|l| (l.min, l.max)), Some((None, Some(300.0))));
+    assert_eq!(f1.limit(Field::RcdCurrent).map(|l| l.text()), Some("15 – 30".into()));
+    assert_eq!(f1.limit(Field::InsulationVoltage).map(|l| l.text()), Some("≥ 500".into()));
+    assert!(by(&cs, "-F3").fields().iter().all(|f| !f.is_rcd()), "no RCD tests without an RCD");
 }
 
 /// Data the project does not give are missing, not assumed (no C characteristic, no
@@ -66,10 +85,11 @@ fn circuits_are_filled_in_from_the_schematic() {
 #[test]
 fn missing_data_are_marked_not_assumed() {
     let mut k = installation();
-    k.prj.parts.iter_mut().find(|p| p.number.contains("Q1")).unwrap().tech_data.clear();
+    rcd_part(&mut k).tech_data.clear();
     let cs = circuits_of(&k.prj);
     let f1 = by(&cs, "-F1");
     assert_eq!(f1.rcd, Some(Rcd { device: "-Q1".into(), kind: None, rated: None }));
+    assert!(f1.limit(Field::RcdCurrent).is_none());
     // The breaker's own limit remains: U0 / Ia with Ia = 5 × 16 A (B), two thirds of it.
     let u0 = k.prj.electrical.supply.u0();
     assert!((f1.zs_max.unwrap() - LOOP_FACTOR * u0 / 80.0).abs() < 0.01);
@@ -81,30 +101,32 @@ fn missing_data_are_marked_not_assumed() {
     assert_eq!(f3.device_text(), format!("{missing} 16 A"));
     assert_eq!(f1.rcd_text(), format!("-Q1 {missing} {missing}"));
     assert_eq!(f3.rcd_text(), "–");
-    let t = report(&cs);
+    let t = circuit_table(&cs);
     let row = |tag: &str| &t.rows[cs.iter().position(|c| c.circuit == tag).unwrap()];
     assert_eq!(row("-F2")[1], missing);
     assert_eq!(row("-F2")[4], missing);
-    assert_eq!(row("-F3")[10], missing);
+    assert_eq!(row("-F3")[7], missing);
 }
 
 #[test]
 fn measurements_are_checked_against_the_limits() {
     let mut k = installation();
-    for (f, v) in [(Field::Continuity, "0,2"), (Field::Insulation, "> 500"), (Field::LoopImpedance, "0.85"), (Field::Function, "OK")] {
-        assert!(set(&mut k.prj, "-F1", f, v).unwrap());
-    }
+    passing(&mut k.prj);
+    set(&mut k.prj, "-F1", Field::RcdTime, "").unwrap();
     assert_eq!(by(&circuits_of(&k.prj), "-F1").verdict, Verdict::Incomplete, "the RCD test is missing");
     set(&mut k.prj, "-F1", Field::RcdTime, "24").unwrap();
     set(&mut k.prj, "-F1", Field::RcdCurrent, "21 mA").unwrap();
     let f1 = by(&circuits_of(&k.prj), "-F1").clone();
     assert_eq!((f1.verdict, f1.failed.as_slice()), (Verdict::Passed, &[][..]));
+    set(&mut k.prj, "-F1", Field::InsulationVoltage, "250").unwrap();
     set(&mut k.prj, "-F1", Field::Insulation, "0.4").unwrap();
     set(&mut k.prj, "-F1", Field::RcdTime, "320").unwrap();
+    set(&mut k.prj, "-F1", Field::RcdTime5, "45").unwrap();
+    set(&mut k.prj, "-F1", Field::RcdVoltage, "51").unwrap();
     set(&mut k.prj, "-F1", Field::RcdCurrent, "12").unwrap();
     let f1 = by(&circuits_of(&k.prj), "-F1").clone();
     assert_eq!(f1.verdict, Verdict::Failed);
-    assert_eq!(f1.failed, [Field::Insulation, Field::RcdCurrent, Field::RcdTime]);
+    assert_eq!(f1.failed, [Field::InsulationVoltage, Field::Insulation, Field::RcdCurrent, Field::RcdTime, Field::RcdTime5, Field::RcdVoltage]);
     // The loop impedance against the breaker alone (-F3 has no RCD, a B characteristic now).
     k.prj.parts.iter_mut().find(|p| p.number.contains("F3")).unwrap().tech_data = "Characteristic: B".into();
     set(&mut k.prj, "-F3", Field::LoopImpedance, "2.5").unwrap();
@@ -114,6 +136,50 @@ fn measurements_are_checked_against_the_limits() {
     assert_eq!(by(&circuits_of(&k.prj), "-F3").verdict, Verdict::Incomplete);
 }
 
+/// Above 500 V the insulation is measured at 1000 V.
+#[test]
+fn the_insulation_test_voltage_follows_the_supply() {
+    let mut k = installation();
+    assert_eq!(insulation_voltage(&k.prj), 500.0);
+    k.prj.electrical.supply.voltage = 690.0;
+    assert_eq!(insulation_voltage(&k.prj), 1000.0);
+    set(&mut k.prj, "-F1", Field::InsulationVoltage, "500").unwrap();
+    assert_eq!(by(&circuits_of(&k.prj), "-F1").failed, [Field::InsulationVoltage]);
+}
+
+/// Selective RCDs trip later: 130 – 500 ms at IΔn, 50 – 150 ms at 5 × IΔn.
+#[test]
+fn selective_rcds_have_their_own_times() {
+    let mut k = installation();
+    rcd_part(&mut k).tech_data = "Rated residual current: 300 mA\nResidual current type: A S".into();
+    set(&mut k.prj, "-F1", Field::RcdTime, "350").unwrap();
+    set(&mut k.prj, "-F1", Field::RcdTime5, "100").unwrap();
+    let f1 = by(&circuits_of(&k.prj), "-F1").clone();
+    assert!(f1.rcd.as_ref().unwrap().selective());
+    assert!(f1.failed.is_empty(), "{:?}", f1.failed);
+    set(&mut k.prj, "-F1", Field::RcdTime, "90").unwrap();
+    assert_eq!(by(&circuits_of(&k.prj), "-F1").failed, [Field::RcdTime], "too fast for type S");
+    for (kind, s) in [("AS", true), ("B+ S", true), ("S", true), ("A", false), ("AC", false), ("F", false)] {
+        assert_eq!(Rcd { device: String::new(), kind: Some(kind.into()), rated: None }.selective(), s, "{kind}");
+    }
+}
+
+/// TT: RA × IΔn ≤ 50 V, not Zs × IΔn ≤ U0; the earth electrode is checked in the header.
+#[test]
+fn tt_systems_limit_the_earth_electrode_to_the_touch_voltage() {
+    let mut k = installation();
+    k.prj.electrical.supply.earthing = Earthing::Tt;
+    let r = report_of(&k.prj);
+    let f1 = by(&r.circuits, "-F1");
+    assert!((f1.zs_max.unwrap() - 50.0 / 0.03).abs() < 0.5, "{:?}", f1.zs_max);
+    assert!((r.earth_electrode_max.unwrap() - 50.0 / 0.03).abs() < 0.5);
+    set_header(&mut k.prj, "earth_electrode", "1800").unwrap();
+    let r = report_of(&k.prj);
+    assert_eq!((r.verdict, r.failed.as_slice()), (Verdict::Failed, &["earth_electrode".to_string()][..]));
+    k.prj.electrical.supply.earthing = Earthing::TnS;
+    assert_eq!(report_of(&k.prj).earth_electrode_max, None);
+}
+
 #[test]
 fn values_are_checked_when_entered() {
     let mut prj = Project::default();
@@ -121,6 +187,7 @@ fn values_are_checked_when_entered() {
     assert!(prj.inspection.is_empty());
     assert!(set(&mut prj, "-F1", Field::Insulation, "many").is_err());
     assert!(set(&mut prj, "-F1", Field::Function, "maybe").is_err());
+    assert!(set(&mut prj, "-F1", Field::Function, "n/a").is_err(), "a function test is done");
     assert_eq!(set(&mut prj, "-F1", Field::Function, "not ok"), Ok(true));
     assert_eq!(prj.inspection.result("-F1").unwrap().function, FUNCTION_FAILED);
     assert_eq!(set(&mut prj, "-F1", Field::Function, "failed"), Ok(false));
@@ -132,23 +199,64 @@ fn values_are_checked_when_entered() {
     assert_eq!(number("0,35 Ω"), Some(0.35));
     assert_eq!(number("-1"), None);
     assert_eq!(Field::from_key("Loop impedance Zs (Ω)"), Some(Field::LoopImpedance));
-    assert_eq!(Field::from_key("RCD_TIME"), Some(Field::RcdTime));
+    assert_eq!(Field::from_key("RCD_TIME_5"), Some(Field::RcdTime5));
+    assert!(set_header(&mut prj, "ze", "low").is_err());
+    assert!(set_header(&mut prj, "check.protection", "perhaps").is_err());
+    assert!(set_header(&mut prj, "check.rocket", "ok").is_err());
+    assert!(set_header(&mut prj, "colour", "red").is_err());
+    assert_eq!(set_header(&mut prj, "check.surge", "Not applicable"), Ok(true));
+    assert_eq!(prj.inspection.header.checks["surge"], NOT_APPLICABLE);
+    assert_eq!(set_header(&mut prj, "Installation site", "Hall 3"), Ok(true), "by its title too");
+    assert_eq!(prj.inspection.header.site, "Hall 3");
 }
 
-/// Two users enter results at the same time: each circuit keeps the record with more
-/// edits, new records of both stay.
+/// The report passes when every circuit passes, the visual inspection is answered
+/// and an inspector named; a change after signing takes the signature away.
+#[test]
+fn the_report_has_a_verdict_and_a_signature() {
+    let mut k = installation();
+    assert_eq!(report_of(&k.prj).verdict, Verdict::NotTested);
+    for c in ["-F2", "-F3"] {
+        k.prj.devices.remove(c);
+    }
+    k.prj.pages[0].symbols.retain(|s| s.tag != "-F2" && s.tag != "-F3");
+    passing(&mut k.prj);
+    assert_eq!(report_of(&k.prj).verdict, Verdict::Incomplete, "the visual inspection is missing");
+    for (key, _) in CHECKS {
+        set_header(&mut k.prj, &format!("check.{key}"), if key == "surge" { "n/a" } else { "ok" }).unwrap();
+    }
+    assert_eq!(report_of(&k.prj).verdict, Verdict::Incomplete, "no inspector");
+    set_header(&mut k.prj, "inspector", "A. Smith").unwrap();
+    assert_eq!(report_of(&k.prj).verdict, Verdict::Passed);
+    // Signed together with a change: the signature comes last and stays.
+    set_header_all(&mut k.prj, [("signed_by", "A. Smith"), ("signed_on", "2026-11-17"), ("site", "Hall 3")]).unwrap();
+    assert_eq!((k.prj.inspection.header.signed_by.as_str(), k.prj.inspection.header.site.as_str()), ("A. Smith", "Hall 3"));
+    set(&mut k.prj, "-F1", Field::Remark, "Checked again").unwrap();
+    assert!(k.prj.inspection.header.signed_by.is_empty() && k.prj.inspection.header.signed_on.is_empty());
+    set_header(&mut k.prj, "check.fire", "Not OK").unwrap();
+    let r = report_of(&k.prj);
+    assert_eq!((r.verdict, r.failed.as_slice()), (Verdict::Failed, &["check.fire".to_string()][..]));
+    let t = summary_table(&r);
+    assert_eq!(t.rows.last().unwrap()[1], Verdict::Failed.title());
+    assert!(t.rows.iter().any(|row| row[0] == tr("Inspector") && row[1] == "A. Smith"));
+}
+
+/// Two users enter results at the same time: each circuit and the header keep the
+/// record with more edits, new records of both stay.
 #[test]
 fn results_merge_record_by_record() {
     let mut base = Project::default();
     set(&mut base, "-F1", Field::Insulation, "300").unwrap();
     let (mut theirs, mut mine) = (base.clone(), base.clone());
     set(&mut theirs, "-F2", Field::Insulation, "200").unwrap();
+    set_header(&mut theirs, "client", "ACME").unwrap();
     set(&mut mine, "-F1", Field::LoopImpedance, "0.5").unwrap();
     set(&mut mine, "-F3", Field::Insulation, "100").unwrap();
     let merged = merge(&theirs.inspection, &mine.inspection);
     let circuits: Vec<&str> = merged.results.iter().map(|r| r.circuit.as_str()).collect();
     assert_eq!(circuits, ["-F1", "-F2", "-F3"]);
     assert_eq!(merged.result("-F1").unwrap().loop_impedance, "0.5");
+    assert_eq!(merged.header.client, "ACME");
     assert_eq!(merge(&mine.inspection, &theirs.inspection).result("-F1").unwrap().loop_impedance, "0.5");
 }
 
@@ -158,15 +266,17 @@ fn the_report_lists_the_results() {
     set(&mut k.prj, "-F1", Field::Tester, "A. Smith").unwrap();
     set(&mut k.prj, "-F1", Field::Function, "ok").unwrap();
     let cs = circuits_of(&k.prj);
-    let t = report(&cs);
+    let t = circuit_table(&cs);
     assert_eq!(t.rows.len(), 3);
     assert_eq!(t.header_keys()[0], "Circuit");
+    let col = |name: &str| t.header_keys().iter().position(|h| *h == name).unwrap();
     let f1 = &t.rows[0];
     assert_eq!(&f1[..4], ["-F1", "Heating", "L1", "-W1 NYM-J 3x2.5"]);
     assert_eq!(f1[5], "B 16 A");
     assert_eq!(f1[6], "-Q1 A 30 mA");
-    assert_eq!(f1[13], tr("OK"));
-    assert_eq!(f1[14], Verdict::Incomplete.title());
-    assert_eq!(f1[15], "A. Smith");
+    assert_eq!(f1[col("Function test")], tr("OK"));
+    assert_eq!(f1[col("Result")], Verdict::Incomplete.title());
+    assert_eq!(f1[col("Tested by")], "A. Smith");
+    assert_eq!(t.rows[2][col("RCD trip time (ms)")], "–", "-F3 has no RCD");
     assert_eq!(t.targets[0], Some(cs[0].target));
 }

@@ -74,6 +74,7 @@ Certificate	Certificaat
 Changed	Gewijzigd
 Changed last	Laatst gewijzigd
 Changes allowed	Wijzigingen toegestaan
+Changing the data or the results afterwards takes the signature away.	Wijzigen van de gegevens of resultaten achteraf trekt de handtekening in.
 Check control valve	Terugslagarmatuur
 Check flap	Terugslagklep
 Chimney	Schoorsteen
@@ -261,6 +262,7 @@ Logos	Logo's
 Looks the users up; empty: users bind with their own name (below)	Zoekt de gebruikers op; leeg: gebruikers binden met hun eigen naam (hieronder)
 Male insert	Pennen-insert
 Managers of a project give rights on it themselves (Permissions on the project).	Projectleiders kennen zelf rechten op hun project toe (Machtigingen van het project).
+Measured at the origin	Gemeten bij de oorsprong
 Measurement system	Meetsysteem
 Measuring connection points	Meetaansluitpunten
 Measuring couplings	Meetkoppelingen
@@ -279,6 +281,7 @@ Name attribute	Naamattribuut
 New accounts need the approval of an administrator	Nieuwe accounts hebben de goedkeuring van een beheerder nodig
 New catalog	Nieuwe catalogus
 New directory	Nieuwe directoryservice
+New installation	Nieuwe installatie
 New part	Nieuw artikel
 New part based on the open one	Nieuw artikel op basis van het geopende
 New password	Nieuw wachtwoord
@@ -302,6 +305,7 @@ Non-return valves	Terugslagkleppen
 None (only grants)	Geen (alleen toekenningen)
 Not mounted	Niet gemonteerd
 Not saved	Niet opgeslagen
+Not signed	Niet ondertekend
 Nothing to save	Niets op te slaan
 Nut	Moer
 On the front	Aan de voorkant
@@ -408,9 +412,11 @@ Remove logo	Logo verwijderen
 Remove the file from the part	Het bestand uit het artikel verwijderen
 Remove the logo	Logo verwijderen
 Removed from the server	Verwijderd van de server
+Repair	Reparatie
 Repeat password	Wachtwoord herhalen
 Replace the roles and grants with those of the file?	De rollen en toekenningen vervangen door die van het bestand?
 Replaced by {}	Vervangen door {}
+Report data and visual inspection	Rapportgegevens en visuele inspectie
 Resistors	Weerstanden
 Restore from a file	Herstellen uit een bestand
 Return flushing filters, all-autom.	Terugspoelfilters, volautomatisch
@@ -465,12 +471,16 @@ Sign in with a user account	Aanmelden met een gebruikersaccount
 Sign in with the access token of the server	Aanmelden met het toegangstoken van de server
 Sign out everywhere	Overal afmelden
 Sign out {} on all devices?	{} op alle apparaten afmelden?
+Sign the report	Rapport ondertekenen
 Sign-in needed to read	Aanmelden vereist om te lezen
 Sign-in needed to view	Aanmelden vereist om te bekijken
 Signal device	Signaleringsapparaat
 Signal device, acoustic	Signaalapparaat, akoestisch
 Signal device, optical	Signaalapparaat, optisch
 Signal lamp	Signaallamp
+Signature	Handtekening
+Signed	Ondertekend
+Signed by {} on {}	Ondertekend door {} op {}
 Signed in	Aangemeld
 Silencers	Geluiddempers
 Silo	Silo
@@ -479,6 +489,7 @@ Single-stage filters	Enkelvoudige filters
 Siphon	Sifon
 Size of the files	Grootte van de bestanden
 Solenoid valve	Magneetventiel
+Someone saved this meanwhile. Check the values and save again.	Iemand heeft dit intussen opgeslagen. Controleer de waarden en sla opnieuw op.
 Sorter	Sorteerder
 Start a server with:  openecraft-parts-server --token <secret>	Start een server met:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Start openecraft-parts-server met --token om wijzigingen toe te staan
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault heeft het uploaden niet voortgezet
 Ventilation filters	Beluchtingsfilters
 Ventilator	Ventilator
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Kijkers openen projecten alleen-lezen, reviewers slaan ook reviews op, bewerkers wijzigen en maken projecten, projectleiders verwijderen ze ook en kennen er rechten op toe, beheerders beheren de server.
+Visual inspection	Visuele inspectie
 Voltage source	Spanningsbron
 Voltage source and generator	Spanningsbron en generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Wachtende accounts kunnen zich niet aanmelden; keur ze goed of wijs ze af onder Gebruikers.

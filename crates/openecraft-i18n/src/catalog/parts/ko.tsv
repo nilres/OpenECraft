@@ -73,6 +73,7 @@ Certificate	인증서
 Changed	변경됨
 Changed last	최근 변경됨
 Changes allowed	변경 허용
+Changing the data or the results afterwards takes the signature away.	나중에 데이터나 결과를 변경하면 서명이 취소됩니다.
 Check control valve	체크 제어 밸브
 Check flap	체크 플랩
 Chimney	굴뚝
@@ -260,6 +261,7 @@ Logos	로고
 Looks the users up; empty: users bind with their own name (below)	사용자를 조회합니다. 비어 있으면 사용자가 자신의 이름으로 바인딩합니다(아래)
 Male insert	수 인서트
 Managers of a project give rights on it themselves (Permissions on the project).	프로젝트 관리자가 직접 프로젝트에 권한을 부여합니다(프로젝트의 권한).
+Measured at the origin	인입점에서 측정
 Measurement system	측정 시스템
 Measuring connection points	측정 연결점
 Measuring couplings	측정 커플링
@@ -278,6 +280,7 @@ Name attribute	이름 특성
 New accounts need the approval of an administrator	새 계정은 관리자의 승인이 필요합니다
 New catalog	새 카탈로그
 New directory	새 디렉터리 서비스
+New installation	신규 설치
 New part	새 부품
 New part based on the open one	열린 부품을 기반으로 새 부품
 New password	새 암호
@@ -301,6 +304,7 @@ Non-return valves	논리턴 밸브
 None (only grants)	없음(권한 부여만)
 Not mounted	장착 안 함
 Not saved	저장되지 않음
+Not signed	서명 안 됨
 Nothing to save	저장할 내용 없음
 Nut	너트
 On the front	앞면
@@ -407,9 +411,11 @@ Remove logo	로고 제거
 Remove the file from the part	부품에서 파일 제거
 Remove the logo	로고 제거
 Removed from the server	서버에서 제거됨
+Repair	수리
 Repeat password	암호 확인
 Replace the roles and grants with those of the file?	역할과 권한 부여를 파일의 내용으로 바꾸시겠습니까?
 Replaced by {}	{}(으)로 대체됨
+Report data and visual inspection	보고서 데이터 및 외관 검사
 Resistors	저항기
 Restore from a file	파일에서 복원
 Return flushing filters, all-autom.	역세척 필터, 전자동
@@ -464,12 +470,16 @@ Sign in with a user account	사용자 계정으로 로그인
 Sign in with the access token of the server	서버의 액세스 토큰으로 로그인
 Sign out everywhere	모든 곳에서 로그아웃
 Sign out {} on all devices?	모든 기기에서 {}을(를) 로그아웃하시겠습니까?
+Sign the report	보고서 서명
 Sign-in needed to read	읽으려면 로그인 필요
 Sign-in needed to view	보려면 로그인 필요
 Signal device	신호 장치
 Signal device, acoustic	신호 장치, 음향
 Signal device, optical	신호 장치, 광학
 Signal lamp	표시등
+Signature	서명
+Signed	서명됨
+Signed by {} on {}	{}이(가) {}에 서명
 Signed in	로그인됨
 Silencers	소음기
 Silo	사일로
@@ -478,6 +488,7 @@ Single-stage filters	단단 필터
 Siphon	사이펀
 Size of the files	파일 크기
 Solenoid valve	솔레노이드 밸브
+Someone saved this meanwhile. Check the values and save again.	그 사이에 다른 사람이 저장했습니다. 값을 확인하고 다시 저장하세요.
 Sorter	선별기
 Start a server with:  openecraft-parts-server --token <secret>	서버 시작 명령:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	변경을 허용하려면 --token을 사용하여 openecraft-parts-server를 시작하세요
@@ -584,6 +595,7 @@ Vault did not continue the upload	Vault에서 업로드를 계속하지 않았�
 Ventilation filters	통기 필터
 Ventilator	송풍기
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	뷰어는 프로젝트를 읽기 전용으로 열고, 검토자는 검토도 저장하며, 편집자는 프로젝트를 변경하고 생성하며, 프로젝트 관리자는 프로젝트를 삭제하고 권한도 부여하며, 관리자는 서버를 관리합니다.
+Visual inspection	외관 검사
 Voltage source	전압원
 Voltage source and generator	전압원 및 발전기
 Waiting accounts cannot sign in; approve or reject them in Users.	대기 중인 계정은 로그인할 수 없습니다. 사용자에서 승인하거나 거부하십시오.

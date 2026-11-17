@@ -58,12 +58,14 @@ Channel	通道
 Characteristic	特性
 Check settings	检查设置
 Checks	检查
+Circuits	回路
 Class	类别
 Classes	类别
 Clear filters	清除筛选器
 Clearance bottom	底部间距
 Clearance top	顶部间距
 Clearances	间距
+Client	客户
 Close	关闭
 Coding: {}	编码：{}
 Coil voltage	线圈电压
@@ -83,6 +85,7 @@ Connection point	连接点
 Connection points	连接点
 Connections	连接
 Connector	连接器
+Contact voltage UB (V)	接触电压 UB (V)
 Controller	控制器
 Cooling	冷却
 Core	芯线
@@ -134,6 +137,7 @@ Drag to turn the model	拖动以旋转模型
 Drawings	图纸
 EMC clearance	EMC 间距
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN、TIA Portal 和其他名称是其所有者的商标。OpenECraft 是一个独立项目。
+Earth electrode resistance RA (Ω)	接地电极电阻 RA (Ω)
 Edit	编辑
 Editor	编辑者
 Electro-fluid cross reference	电气-流体交叉引用
@@ -148,6 +152,7 @@ Export as CSV…	导出为 CSV…
 Export as JSON…	导出为 JSON…
 Export failed: {}	导出失败：{}
 External (top)	外部（上）
+External loop impedance Ze (Ω)	外部回路阻抗 Ze (Ω)
 Face	面
 Failed	失败
 Fastening	紧固
@@ -199,7 +204,11 @@ Import	导入
 Incomplete	不完整
 Input	输入
 Inspection and test report	检验和测试报告
+Inspector	检验员
+Installation site	安装地点
+Installer	安装单位
 Insulation resistance (MΩ)	绝缘电阻 (MΩ)
+Insulation test voltage (V)	绝缘测试电压 (V)
 Integration	集成
 Internal (bottom)	内部（下）
 Interruption point	中断点
@@ -243,6 +252,7 @@ Machine	机器
 Main	主
 Main earthing busbar (device) it is connected to; empty: none	所连接的总接地母线（设备）；空：无
 Main earthing terminal	总接地端子
+Main equipotential bonding (Ω)	总等电位联结 (Ω)
 Main switch	主开关
 Manufacturer	制造商
 Manufacturers	制造商
@@ -278,6 +288,7 @@ Net	网络
 Never	从不
 New group	新建组
 New name	新名称
+Next inspection	下次检验
 Next page	下一页
 No	否
 No Vault item matches a part of the project	没有与项目部件匹配的 Vault 项
@@ -311,6 +322,7 @@ Not a macro file: {}	不是宏文件：{}
 Not a symbol id: {}	不是符号 ID：{}
 Not a title block file: {}	不是标题栏文件：{}
 Not a valid rule set file: {}	不是有效的规则集文件：{}
+Not applicable	不适用
 Not in the schematic	不在原理图中
 Not passed	未通过
 Not tested	未测试
@@ -407,6 +419,7 @@ Project name	项目名称
 Project properties	项目属性
 Properties	属性
 Property	属性
+Prospective fault current at the origin (kA)	电源进线处的预期故障电流 (kA)
 Protection	保护
 Protective conductor (Ω)	保护导体 (Ω)
 Protective device	保护设备
@@ -416,12 +429,14 @@ Quantity unit	数量单位
 RCD	RCD
 RCD trip current (mA)	RCD 动作电流 (mA)
 RCD trip time (ms)	RCD 动作时间 (ms)
+RCD trip time at 5 × IΔn (ms)	5 × IΔn 时 RCD 动作时间 (ms)
 Rack	机架
 Rail	导轨
 Range	范围
 Rated current	额定电流
 Rated power	额定功率
 Rear wall	后板
+Reason for the test	测试原因
 Rectangle	矩形
 Rectangular	矩形
 Redo	重做
@@ -511,8 +526,10 @@ Structure	结构
 Subproject name	子项目名称
 Subsystem	子系统
 Successor	后续产品
+Summary	摘要
 Supplier	供应商
 Supply	供给
+Supply system	供电系统
 Symbol	符号
 Symbol key	符号键
 Symbolic address	符号地址
@@ -528,6 +545,7 @@ Terminal strips	端子排
 Terminal type	端子类型
 Terminals	端子
 Test instrument	测试仪器
+Test instruments (IEC 61557)	测试仪器 (IEC 61557)
 Tested by	测试人
 Text	文本
 Text to find	要查找的文本
@@ -556,6 +574,7 @@ Unknown column: {}	未知列：{}
 Unknown connector: {}	未知接口：{}
 Unknown enclosure system: {}	未知机柜系统：{}
 Unknown face: {}	未知面：{}
+Unknown field: {}	未知字段：{}
 Unknown format: {}	未知格式：{}
 Unknown function definition: {}	未知功能定义：{}
 Unknown language: {}	未知语言：{}
@@ -574,6 +593,7 @@ User	用户
 User name	用户名
 Users	用户
 VAT ID	增值税号
+Value	值
 Version	版本
 Viewer	查看者
 Voltage	电压

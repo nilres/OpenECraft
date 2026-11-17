@@ -74,6 +74,7 @@ Certificate	Certificato
 Changed	Modificato
 Changed last	Modificati per ultimi
 Changes allowed	Modifiche consentite
+Changing the data or the results afterwards takes the signature away.	Modificare in seguito i dati o i risultati toglie la firma.
 Check control valve	Valvola di ritegno
 Check flap	Clapet di ritegno
 Chimney	Camino
@@ -261,6 +262,7 @@ Logos	Loghi
 Looks the users up; empty: users bind with their own name (below)	Cerca gli utenti; vuoto: gli utenti si collegano con il proprio nome (sotto)
 Male insert	Inserto maschio
 Managers of a project give rights on it themselves (Permissions on the project).	I capi progetto assegnano essi stessi i diritti sul proprio progetto (Autorizzazioni del progetto).
+Measured at the origin	Misurato all'origine
 Measurement system	Sistema di misura
 Measuring connection points	Punti di connessione di misura
 Measuring couplings	Raccordi di misura
@@ -279,6 +281,7 @@ Name attribute	Attributo del nome
 New accounts need the approval of an administrator	I nuovi account richiedono l'approvazione di un amministratore
 New catalog	Nuovo catalogo
 New directory	Nuovo servizio di directory
+New installation	Nuovo impianto
 New part	Nuovo articolo
 New part based on the open one	Nuovo articolo basato su quello aperto
 New password	Nuova password
@@ -302,6 +305,7 @@ Non-return valves	Valvole di non ritorno
 None (only grants)	Nessuno (solo assegnazioni)
 Not mounted	Non montato
 Not saved	Non salvato
+Not signed	Non firmato
 Nothing to save	Niente da salvare
 Nut	Dado
 On the front	Sul fronte
@@ -408,9 +412,11 @@ Remove logo	Rimuovi logo
 Remove the file from the part	Rimuovi il file dall'articolo
 Remove the logo	Rimuovi il logo
 Removed from the server	Rimosso dal server
+Repair	Riparazione
 Repeat password	Ripeti password
 Replace the roles and grants with those of the file?	Sostituire i ruoli e le assegnazioni con quelli del file?
 Replaced by {}	Sostituito da {}
+Report data and visual inspection	Dati del rapporto ed esame a vista
 Resistors	Resistori
 Restore from a file	Ripristina da un file
 Return flushing filters, all-autom.	Filtri autopulenti, completamente automatici
@@ -465,12 +471,16 @@ Sign in with a user account	Accedi con un account utente
 Sign in with the access token of the server	Accedi con il token di accesso del server
 Sign out everywhere	Disconnetti ovunque
 Sign out {} on all devices?	Disconnettere {} su tutti i dispositivi?
+Sign the report	Firma il rapporto
 Sign-in needed to read	Accesso necessario per leggere
 Sign-in needed to view	Accesso necessario per visualizzare
 Signal device	Dispositivo di segnalazione
 Signal device, acoustic	Dispositivo di segnalazione acustica
 Signal device, optical	Dispositivo di segnalazione ottica
 Signal lamp	Lampada di segnalazione
+Signature	Firma
+Signed	Firmato
+Signed by {} on {}	Firmato da {} il {}
 Signed in	Connessi
 Silencers	Silenziatori
 Silo	Silo
@@ -479,6 +489,7 @@ Single-stage filters	Filtri semplici
 Siphon	Sifone
 Size of the files	Dimensione dei file
 Solenoid valve	Elettrovalvola
+Someone saved this meanwhile. Check the values and save again.	Qualcuno l'ha salvato nel frattempo. Controlla i valori e salva di nuovo.
 Sorter	Selezionatrice
 Start a server with:  openecraft-parts-server --token <secret>	Avvia un server con:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Avvia openecraft-parts-server con --token per consentire le modifiche
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault non ha proseguito il caricamento
 Ventilation filters	Filtri di ventilazione
 Ventilator	Ventilatore
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	I visualizzatori aprono i progetti in sola lettura, i revisori salvano anche i riesami, gli editor modificano e creano progetti, i capi progetto li eliminano anche e assegnano diritti su di essi, gli amministratori gestiscono il server.
+Visual inspection	Esame a vista
 Voltage source	Sorgente di tensione
 Voltage source and generator	Sorgente di tensione e generatore
 Waiting accounts cannot sign in; approve or reject them in Users.	Gli account in attesa non possono accedere; approvali o rifiutali in Utenti.

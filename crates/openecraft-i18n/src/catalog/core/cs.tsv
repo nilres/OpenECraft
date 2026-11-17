@@ -43,6 +43,7 @@ Actuated by	Ovládáno
 Actuation	Ovládání
 Actuator type	Typ ovladače
 Additional page description	Doplňující popis stránky
+Additional protection by RCDs of at most 30 mA where required	Doplňková ochrana proudovými chrániči nejvýše 30 mA, kde je požadována
 Address ranges of {} and {} overlap	Rozsahy adres {} a {} se překrývají
 Address {} is used by {} and {}	Adresu {} používají {} a {}
 Adhesive	Lepení
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Jistič 3pólový QF (GB)
 Circuit breaker 3-pole QF (GOST)	Jistič 3pólový QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Jistič 3pólový, tepelně-magnetický
 Circuit breaker 4-pole	Jistič 4pólový
+Circuits, protective devices, switches and terminals labelled	Obvody, jisticí přístroje, spínače a svorky označeny
 Circular milling	Kruhové frézování
 Clip / snap-on	Svorka / nacvaknutí
 Cloud	Oblak
@@ -241,6 +243,7 @@ Compressed air supply	Přívod stlačeného vzduchu
 Compressor	Kompresor
 Condition '{}' needs OPTION=value	Podmínka '{}' vyžaduje OPTION=hodnota
 Conductor class	Třída vodiče
+Conductors selected for current-carrying capacity and voltage drop	Vodiče zvoleny podle proudové zatížitelnosti a úbytku napětí
 Conduit	Elektroinstalační trubka
 Connected	Obsazeno
 Connection definition point on page {} is not applied to its connection	Bod definice spojení na stránce {} není použit na své spojení
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Symboly spojení
 Connection type	Typ připojení
 Connection {} has contradicting connection definition points	Spojení {} má protichůdné body definice spojení
+Connections of the conductors	Spoje vodičů
 Connector pin-outs and flat cables	Zapojení konektorů a ploché kabely
 Connector pin-outs: mating faces and pin tables (SVG)	Zapojení konektorů: čelní strany a tabulky pinů (SVG)
 Contact material	Materiál kontaktů
@@ -374,6 +378,7 @@ Devices without power loss	Přístroje bez ztrátového výkonu
 Dew point (°C)	Rosný bod (°C)
 Diagnostic coverage (DC)	Diagnostické pokrytí (DC)
 Diagnostics	Diagnostika
+Diagrams, warning notices and similar information present	Schémata, výstražné pokyny a podobné informace k dispozici
 Diameter (mm)	Průměr (mm)
 Different wire numbers in one connection: {}	Různá čísla vodičů v jednom spojení: {}
 Digital input / output module	Modul digitálních vstupů / výstupů
@@ -481,6 +486,8 @@ Energy limitation class	Třída omezení energie
 Engineered	Projektováno
 Engineering unit	Fyzikální jednotka
 Environment	Prostředí
+Equipment accessible for operation, inspection and maintenance	Zařízení přístupná pro obsluhu, kontrolu a údržbu
+Equipment and protective measures suit the external influences	Zařízení a ochranná opatření odpovídají vnějším vlivům
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Ochranné vodiče zařízení musí být zelené (NFPA 79, 13.2.2)
 Excel workbook	Sešit Excel
 Exhaust {} open to the atmosphere (no silencer)	Odfuk {} otevřený do atmosféry (bez tlumiče hluku)
@@ -516,6 +523,7 @@ File name written into the file header	Název souboru zapsaný do záhlaví soub
 Fill level (%)	Zaplnění (%)
 Filter fan with outlet filter	Filtrační ventilátor s výstupním filtrem
 Filter rating	Jemnost filtrace
+Fire barriers and protection against thermal effects	Protipožární přepážky a ochrana před tepelnými účinky
 Firmware version	Verze firmwaru
 First end only	Jen první konec
 Fitting	Šroubení
@@ -707,12 +715,13 @@ Input voltage	Vstupní napětí
 Inputs from	Vstupy z
 Inrush current	Zapínací proud
 Inside (°C)	Uvnitř (°C)
+Inspection and test report: data	Revizní zpráva: údaje
+Inspection and test report: summary	Revizní zpráva: souhrn
 Installation altitude	Nadmořská výška instalace
 Installation date	Datum instalace
 Installation devices	Instalační přístroje
 Installation method	Způsob uložení
 Installation plan (IEC 60617-11)	Instalační plán (IEC 60617-11)
-Installation site	Místo instalace
 Installation site (++)	Místo instalace (++)
 Installation site and location	Místo instalace a umístění
 Installation site of the page	Místo instalace stránky
@@ -735,6 +744,7 @@ Invalid length {}	Neplatná délka {}
 Invalid property key: {}	Neplatný klíč vlastnosti: {}
 Inverter / charger	Střídač / nabíječka
 Inverter DC/AC	Střídač DC/AC
+Isolating and switching devices in the right places	Odpojovací a spínací přístroje na správných místech
 Item	Prvek
 Item ID	ID položky
 Items	Prvky
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	Spínací kontakt, zpožděné sepnutí (NFPA)
 Nailboard {}	Formovací deska {}
 Network (m)	Síť (m)
 Neutral (N)	Střední vodič (N)
+Neutral and protective conductors identified	Nulové a ochranné vodiče označeny
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Střední vodiče musí být světle modré (IEC 60204-1, 13.2.3)
-Next inspection	Příští revize
 Nibbling	Prostřihování
 No connection {}	Žádné spojení {}
 No devices to add to the single-line diagram	Žádné přístroje k přidání do jednopólového schématu
@@ -977,6 +987,7 @@ Number of sheets	Počet listů
 Number of switch positions	Počet spínacích poloh
 Number of symbols	Počet symbolů
 Numbers (1, 2, 3)	Čísla (1, 2, 3)
+OK, Not OK or Not applicable	OK, Nevyhovuje nebo Nehodí se
 Ohmmeter	Ohmmetr
 Oil resistant	Odolný proti oleji
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Jedna stránka schématu s potenciály +24V / 0V, tlačítky, přepínačem, kontrolkami a pojistkou; díly a kusovník.
@@ -1223,14 +1234,17 @@ Project revision	Revize projektu
 Project symbols	Symboly projektu
 Proof test interval	Interval kontrolních zkoušek
 Prospective short-circuit current	Předpokládaný zkratový proud
+Protection against electric shock: the measures and their components	Ochrana před úrazem elektrickým proudem: opatření a jejich části
 Protection class	Třída ochrany
 Protection setting	Nastavení ochrany
+Protective and monitoring devices selected and set correctly	Ochranné a monitorovací přístroje správně zvoleny a nastaveny
 Protective conductor {} with wire colour {} (must be GNYE)	Ochranný vodič {} s barvou vodiče {} (musí být GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Ochranné vodiče musí být zelenožluté (IEC 60204-1, 13.2.2)
 Protective devices	Ochranné přístroje
 Protective earth	Ochranné uzemnění
 Protective earth (PE)	Ochranný vodič (PE)
 Protective hose	Ochranná hadice
+Protective, earthing and bonding conductors present and adequate	Ochranné, uzemňovací a pospojovací vodiče přítomny a vyhovující
 Proximity sensor	Přibližovací spínač
 Proximity sensor NO	Přibližovací snímač spínací
 Proximity switch NO (NFPA)	Přibližovací spínač, spínací (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Signalizační přístroje
 Signal name	Název signálu
 Signal range	Rozsah signálu
 Signal type	Druh signálu
+Signed by	Podepsal
+Signed on	Podepsáno dne
 Silencer	Tlumič hluku
 Single, free-standing	Samostatně, volně stojící
 Single, wall mounted	Samostatně, montáž na stěnu
@@ -1518,6 +1534,7 @@ Supply voltage	Napájecí napětí
 Surface (m²)	Plocha (m²)
 Surface-mounted	Na omítce
 Surge protection type	Typ přepěťové ochrany
+Surge protection where required	Přepěťová ochrana, kde je požadována
 Surge protective device	Přepěťová ochrana
 Surge suppressor	Omezovač přepětí
 Switch, 1-pole (installation)	Vypínač, jednopólový (instalace)
@@ -1568,6 +1585,7 @@ Termination (to)	Zakončení (do)
 Text file	Textový soubor
 The DXF file contains nothing that can be imported	Soubor DXF neobsahuje nic, co by bylo možné importovat
 The PDF has no pages that can be read	PDF nemá žádné čitelné stránky
+The answer is OK, Not OK or Not applicable, not {}	Odpověď je OK, Nevyhovuje nebo Nehodí se, ne {}
 The archive contains no project	Archiv neobsahuje žádný projekt
 The archive has no manifest	Archiv nemá manifest
 The archive is damaged	Archiv je poškozen
@@ -1937,6 +1955,7 @@ yellow	žlutá
 {} lies outside page {}	{} leží mimo stránku {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} značek montáže patří k prvkům, které již neexistují
+{} of {} passed	{} z {} vyhovuje
 {} option assignments of deleted objects removed	Odebráno {} přiřazení voleb odstraněných objektů
 {} placed properties converted to property keys	{} umístěných vlastností převedeno na klíče vlastností
 {} planned devices are not in the schematic yet	{} plánovaných přístrojů ještě není ve schématu

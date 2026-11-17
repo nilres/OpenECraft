@@ -32,8 +32,8 @@
 //! | GET | `/api/v1/projects/{name}/properties` | [`ProjectProperties`] (the project info as saved, without opening the project) |
 //! | PUT | `/api/v1/projects/{name}/properties` | [`PropertiesUpdate`] → [`ProjectProperties`] (changes only the project info; [`ProjectRight::EditProject`], refused while the project data is locked) |
 //! | POST | `/api/v1/projects/{name}/copy` | [`CopyRequest`] → [`Opened`] (a new project from the saved state, [`copy_of`]) |
-//! | GET | `/api/v1/projects/{name}/inspection` | [`InspectionSheet`] (the inspection and test report as saved, without opening the project) |
-//! | PUT | `/api/v1/projects/{name}/inspection` | [`InspectionUpdate`] → [`InspectionSheet`] (results of one circuit, without a lock; [`ProjectRight::Review`] or an editing right) |
+//! | GET | `/api/v1/projects/{name}/inspection?lang=de` | [`InspectionSheet`] (the inspection and test report as saved, without opening the project) |
+//! | PUT | `/api/v1/projects/{name}/inspection?lang=de` | [`InspectionUpdate`] → [`InspectionSheet`] (results of one circuit or the data of the report, without a lock; [`ProjectRight::Review`] or an editing right) |
 //! | GET | `/api/v1/projects/{name}/inspection.xlsx?lang=de` | the report as an Excel workbook |
 //! | POST | `/api/v1/login` | [`LoginRequest`] → [`LoginResponse`] |
 //! | GET | `/api/v1/session` | [`CurrentAccount`] (signed-in user sessions only) |
@@ -219,13 +219,8 @@ pub struct InspectionSheet {
     /// What the caller may do: entering results needs [`ProjectRight::Review`],
     /// [`ProjectRight::EditPages`] or [`ProjectRight::EditProject`].
     pub rights: Vec<ProjectRight>,
-    /// Line-to-earth voltage of the supply, V.
-    pub u0: f32,
-    pub earthing: String,
-    /// Limits of the results that are the same for every circuit.
-    pub min_insulation: f32,
-    pub max_rcd_time: f32,
-    pub circuits: Vec<crate::inspection::Circuit>,
+    #[serde(flatten)]
+    pub report: crate::inspection::Report,
 }
 
 /// Results of one circuit of the inspection, entered without opening the project.
@@ -234,12 +229,14 @@ pub struct InspectionSheet {
 pub struct InspectionUpdate {
     /// Who enters them, where the caller is not signed in (as in [`OpenRequest`]).
     pub user: String,
-    /// Device tag of the protective device of the circuit.
+    /// Device tag of the protective device of the circuit; empty: the values are the
+    /// data of the report and the visual inspection (`inspection::set_header`).
     pub circuit: String,
-    /// `rev` of the results as loaded (0: none yet): refused (`409`) if they were
-    /// changed since.
+    /// `rev` of the results (of the header) as loaded (0: none yet): refused (`409`)
+    /// if they were changed since.
     pub rev: u64,
-    /// Values by field (`inspection::Field::key`); an empty value clears one.
+    /// Values by field (`inspection::Field::key`, `HeaderField::key`, `check.<item>`);
+    /// an empty value clears one.
     pub values: std::collections::BTreeMap<String, String>,
 }
 

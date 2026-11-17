@@ -9,16 +9,20 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   initial verification of the installation, filled in from the schematic: every
   protective device fed from the mains is a circuit, with its description, cables,
   cross-section, tripping characteristic and rated current, the residual current
-  device protecting it (type, rated residual current) and the highest loop impedance
-  that passes. What the project does not give is marked *missing*, not assumed. The
-  results measured on site (protective conductor, insulation, loop impedance, RCD
-  tripping current and time, function test, tester, date, instrument, remark) are
-  entered per circuit and checked against the limits (*Passed*, *Not passed*,
-  *Incomplete*, *Not tested*): in *Edit in table*, with the command
-  `inspection_report`, and **on a tablet or a phone** on the web page of the project
-  server, where reviewers and editors save them circuit by circuit without opening
-  the project and without a lock. The report exports as an Excel workbook
-  ([#215](https://github.com/nilres/OpenECraft/issues/215)).
+  device protecting it (type, selective or not, rated residual current) and the
+  highest loop impedance that passes (TN and IT: U0 / Ia or U0 / IΔn; TT: 50 V / IΔn).
+  What the project does not give is marked *missing*, not assumed. The results
+  measured on site (protective conductor, insulation with its test voltage, loop
+  impedance, RCD tripping current, tripping times at IΔn and 5 × IΔn, contact voltage,
+  function test, tester, date, instrument, remark) are checked against the limits;
+  the report adds its data (client, site, installer, reason, inspector, instruments,
+  Ze, prospective fault current, earth electrode resistance, main bonding, next
+  inspection), the visual inspection of 6.4.2, an overall verdict (*Passed*, *Not
+  passed*, *Incomplete*, *Not tested*) and a signature that any later change takes
+  away. Entered in *Edit in table*, with the command `inspection_report` and **on a
+  tablet or a phone** on the web page of the project server, where reviewers and
+  editors save each card without opening the project and without a lock. The report
+  exports as an Excel workbook ([#215](https://github.com/nilres/OpenECraft/issues/215)).
 - **Website and public servers:** the website [openecraft.org](https://openecraft.org)
   with its live demos, the web editor at
   [editor.openecraft.org](https://editor.openecraft.org), a public parts server at

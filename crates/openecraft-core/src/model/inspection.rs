@@ -1,15 +1,73 @@
 //! Data of `crate::inspection` that the project file holds (see `docs/architecture.md`).
 
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 
-/// The results of the inspection and test of the installation (initial verification,
-/// IEC 60364-6 / DIN VDE 0100-600), one record per circuit. Shared projects merge
-/// them record by record, like the review: entering results needs no lock.
+/// The inspection and test of the installation (initial verification, IEC 60364-6 /
+/// DIN VDE 0100-600): the data of the report, the visual inspection and the results
+/// of each circuit. Shared projects merge the header and each circuit's results as
+/// records, like the review: entering them needs no lock.
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
 pub struct Inspection {
+    #[serde(skip_serializing_if = "Header::is_empty")]
+    pub header: Header,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub results: Vec<TestResult>,
+}
+
+/// The data of the report as a whole: who, where, why, what was measured at the
+/// origin, the visual inspection and the signature. Values as entered.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Header {
+    /// Number of edits: merging keeps the header with more.
+    pub rev: u64,
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub client: String,
+    /// Address or name of the installation.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub site: String,
+    /// Company that built the installation.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub installer: String,
+    /// New installation, extension, change, repair.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub reason: String,
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub inspector: String,
+    /// Test instruments used (IEC 61557: make, type, serial number).
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub instruments: String,
+    /// External earth fault loop impedance at the origin, Ω.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub ze: String,
+    /// Prospective fault current at the origin, kA.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub ik: String,
+    /// Resistance of the earth electrode (TT system), Ω.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub earth_electrode: String,
+    /// Continuity of the main equipotential bonding, Ω.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub bonding: String,
+    /// Date of the next inspection (`YYYY-MM-DD`).
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub next_inspection: String,
+    /// Who signed the report; any change of the data afterwards clears it.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub signed_by: String,
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub signed_on: String,
+    /// The visual inspection: `ok`, `failed` or `n/a` by item (`crate::inspection::CHECKS`).
+    #[serde(skip_serializing_if = "BTreeMap::is_empty")]
+    pub checks: BTreeMap<String, String>,
+}
+
+impl Header {
+    pub fn is_empty(&self) -> bool {
+        *self == Header::default()
+    }
 }
 
 /// What was measured and found in one circuit. Values are kept as entered (decimal
@@ -24,7 +82,11 @@ pub struct TestResult {
     /// Continuity of the protective conductor, Ω.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub continuity: String,
-    /// Insulation resistance, MΩ.
+    /// Test voltage of the insulation measurement, V DC.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub insulation_voltage: String,
+    /// Insulation resistance (the lowest of the conductors against each other and
+    /// against earth), MΩ.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub insulation: String,
     /// Earth fault loop impedance Zs, Ω.
@@ -33,9 +95,15 @@ pub struct TestResult {
     /// Tripping current of the residual current device, mA.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub rcd_current: String,
-    /// Tripping time of the residual current device at the rated residual current, ms.
+    /// Tripping time of the residual current device at its rated residual current, ms.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub rcd_time: String,
+    /// Tripping time at five times the rated residual current, ms.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub rcd_time_5: String,
+    /// Contact voltage at the rated residual current, V.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub rcd_voltage: String,
     /// Functional test (polarity, rotation, switching): `ok`, `failed` or empty.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub function: String,

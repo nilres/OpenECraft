@@ -74,6 +74,7 @@ Certificate	Zertifikat	Certificat	Certificado
 Changed	Geändert	Modifié	Modificado
 Changed last	Zuletzt geändert	Modifiés en dernier	Modificados por último
 Changes allowed	Änderungen erlaubt	Modifications autorisées	Cambios permitidos
+Changing the data or the results afterwards takes the signature away.	Werden Daten oder Ergebnisse danach geändert, entfällt die Unterschrift.	Modifier ensuite les données ou les résultats retire la signature.	Cambiar después los datos o los resultados retira la firma.
 Check control valve	Rückschlagarmatur	Armature anti-retour	Dispositivo de retención
 Check flap	Rückschlagklappe	Clapet anti-retour	Mariposa de retención
 Chimney	Schornstein	Cheminée	Chimenea
@@ -270,6 +271,7 @@ Logos	Logos	Logos	Logotipos
 Looks the users up; empty: users bind with their own name (below)	Sucht die Benutzer; leer: Benutzer binden sich mit ihrem eigenen Namen (unten)	Recherche les utilisateurs ; vide : les utilisateurs se lient avec leur propre nom (ci-dessous)	Busca a los usuarios; vacío: los usuarios se vinculan con su propio nombre (abajo)
 Male insert	Stifteinsatz	Contact mâle	Bloque de clavijas
 Managers of a project give rights on it themselves (Permissions on the project).	Projektleiter vergeben Rechte auf ihr Projekt selbst (Berechtigungen am Projekt).	Les chefs de projet donnent eux-mêmes des droits sur leur projet (Autorisations du projet).	Los jefes de proyecto dan ellos mismos derechos sobre su proyecto (Permisos del proyecto).
+Measured at the origin	Am Speisepunkt gemessen	Mesuré à l'origine	Medido en el origen
 Measurement system	Messeinrichtung	Equipement de mesure	Dispositivo de medición
 Measuring connection points	Messanschlüsse	Raccords de mesure	Conexiones de medición
 Measuring couplings	Messkupplungen	Accouplements de mesure	Acoplamientos de medición
@@ -288,6 +290,7 @@ Name attribute	Namensattribut	Attribut du nom	Atributo del nombre
 New accounts need the approval of an administrator	Neue Konten brauchen die Freigabe eines Administrators	Les nouveaux comptes doivent être approuvés par un administrateur	Las cuentas nuevas necesitan la aprobación de un administrador
 New catalog	Neuer Katalog	Nouveau catalogue	Nuevo catálogo
 New directory	Neuer Verzeichnisdienst	Nouvel annuaire	Nuevo directorio
+New installation	Neuanlage	Installation neuve	Instalación nueva
 New part	Neuer Artikel	Nouvel article	Nuevo artículo
 New part based on the open one	Neuer Artikel auf Basis des geöffneten	Nouvel article basé sur celui qui est ouvert	Nuevo artículo basado en el abierto
 New password	Neues Passwort	Nouveau mot de passe	Nueva contraseña
@@ -311,6 +314,7 @@ Non-return valves	Rückschlagventile	Clapets anti-retour	Válvulas de retención
 None (only grants)	Keine (nur Zuweisungen)	Aucun (attributions seulement)	Ninguno (solo asignaciones)
 Not mounted	Nicht montiert	Non monté	No montado
 Not saved	Nicht gespeichert	Non enregistré	No guardado
+Not signed	Nicht unterschrieben	Non signé	Sin firmar
 Nothing to save	Nichts zu speichern	Rien à enregistrer	Nada que guardar
 Nut	Mutter	Écrou	Tuerca
 On the front	Vorne	Sur la face avant	En el frente
@@ -417,9 +421,11 @@ Remove logo	Logo entfernen	Supprimer le logo	Quitar logotipo
 Remove the file from the part	Datei vom Artikel entfernen	Retirer le fichier de l'article	Quitar el archivo del artículo
 Remove the logo	Logo entfernen	Supprimer le logo	Quitar el logotipo
 Removed from the server	Vom Server entfernt	Supprimé du serveur	Eliminado del servidor
+Repair	Instandsetzung	Réparation	Reparación
 Repeat password	Passwort wiederholen	Répéter le mot de passe	Repetir la contraseña
 Replace the roles and grants with those of the file?	Rollen und Zuweisungen durch die der Datei ersetzen?	Remplacer les rôles et les attributions par ceux du fichier ?	¿Sustituir los roles y las asignaciones por los del archivo?
 Replaced by {}	Ersetzt durch {}	Remplacé par {}	Sustituido por {}
+Report data and visual inspection	Protokolldaten und Besichtigung	Données du rapport et examen visuel	Datos del informe e inspección visual
 Resistors	Widerstände	Résistances	Resistencias
 Restore from a file	Aus einer Datei wiederherstellen	Restaurer depuis un fichier	Restaurar desde un archivo
 Return flushing filters, all-autom.	Rückspülfilter vollautomatisch	Filtres à lavage à contre-courant automatiques	Filtros de relavado totalmente automático
@@ -474,12 +480,16 @@ Sign in with a user account	Mit einem Benutzerkonto anmelden	Se connecter avec u
 Sign in with the access token of the server	Mit dem Zugriffstoken des Servers anmelden	Se connecter avec le jeton d'accès du serveur	Iniciar sesión con el token de acceso del servidor
 Sign out everywhere	Überall abmelden	Déconnecter partout	Cerrar todas las sesiones
 Sign out {} on all devices?	{} auf allen Geräten abmelden?	Déconnecter {} sur tous les appareils ?	¿Cerrar la sesión de {} en todos los dispositivos?
+Sign the report	Protokoll unterschreiben	Signer le rapport	Firmar el informe
 Sign-in needed to read	Lesen nur nach Anmeldung	Connexion requise pour lire	Se requiere iniciar sesión para leer
 Sign-in needed to view	Anmeldung zum Ansehen nötig	Connexion nécessaire pour consulter	Inicio de sesión necesario para ver
 Signal device	Meldegerät	Appareil de signalisation	Dispositivo de señalización
 Signal device, acoustic	Meldeeinrichtung, akustisch	Unité d'alarme, acoustique	Dispositivo de avisos acústicos
 Signal device, optical	Meldeeinrichtung, optisch	Unité d'alarme, optique	Dispositivo de avisos ópticos
 Signal lamp	Meldeleuchte	Témoin d'avertissement	Luz de aviso
+Signature	Unterschrift	Signature	Firma
+Signed	Unterschrieben	Signé	Firmado
+Signed by {} on {}	Unterschrieben von {} am {}	Signé par {} le {}	Firmado por {} el {}
 Signed in	Angemeldet	Connectés	Con sesión abierta
 Silencers	Schalldämpfer	Amortisseurs	Silenciadores
 Silo	Silo	Silo	Silo
@@ -488,7 +498,7 @@ Single-stage filters	Einfachfilter	Filtres unipolaires	Filtros sencillos
 Siphon	Syphon	Syphon	Sifón
 Size of the files	Größe der Dateien	Taille des fichiers	Tamaño de los archivos
 Solenoid valve	Magnetventil	Électrovanne	Electroválvula
-Someone saved results of this circuit meanwhile. Check the values and save again.	Jemand hat inzwischen Ergebnisse dieses Stromkreises gespeichert. Prüfen Sie die Werte und speichern Sie erneut.	Quelqu'un a enregistré entre-temps des résultats de ce circuit. Vérifiez les valeurs et enregistrez à nouveau.	Alguien guardó resultados de este circuito mientras tanto. Compruebe los valores y vuelva a guardar.
+Someone saved this meanwhile. Check the values and save again.	Jemand hat dies inzwischen gespeichert. Prüfen Sie die Werte und speichern Sie erneut.	Quelqu'un a enregistré ceci entre-temps. Vérifiez les valeurs et enregistrez à nouveau.	Alguien guardó esto mientras tanto. Compruebe los valores y vuelva a guardar.
 Sorter	Sortierer	Trieuse	Clasificador
 Start a server with:  openecraft-parts-server --token <secret>	Starten Sie einen Server mit:  openecraft-parts-server --token <secret>	Démarrez un serveur avec :  openecraft-parts-server --token <secret>	Inicia un servidor con:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Starten Sie openecraft-parts-server mit --token, um Änderungen zu erlauben	Démarrez openecraft-parts-server avec --token pour autoriser les modifications	Inicia openecraft-parts-server con --token para permitir cambios
@@ -598,6 +608,7 @@ Vault did not continue the upload	Vault hat das Hochladen nicht fortgesetzt	Vaul
 Ventilation filters	Belüftungsfilter	Filtres d'aération	Filtros de ventilación
 Ventilator	Ventilator	Ventilateur	Ventilador
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Betrachter öffnen Projekte schreibgeschützt, Prüfer speichern auch Prüfungen, Bearbeiter ändern und erstellen Projekte, Projektleiter löschen sie auch und vergeben Rechte darauf, Administratoren verwalten den Server.	Les lecteurs ouvrent les projets en lecture seule, les réviseurs enregistrent aussi des révisions, les éditeurs modifient et créent des projets, les chefs de projet les suppriment aussi et donnent des droits dessus, les administrateurs gèrent le serveur.	Los lectores abren proyectos en solo lectura, los revisores también guardan revisiones, los editores modifican y crean proyectos, los jefes de proyecto también los eliminan y dan derechos sobre ellos, los administradores gestionan el servidor.
+Visual inspection	Besichtigung	Examen visuel	Inspección visual
 Voltage source	Spannungsquelle	Source de tension	Fuente de voltaje
 Voltage source and generator	Spannungsquelle und Generator	Source de tension et générateur	Fuente de voltaje y generador
 Waiting accounts cannot sign in; approve or reject them in Users.	Wartende Konten können sich nicht anmelden; geben Sie sie unter Benutzer frei oder lehnen Sie sie ab.	Les comptes en attente ne peuvent pas se connecter ; approuvez-les ou refusez-les dans Utilisateurs.	Las cuentas pendientes no pueden iniciar sesión; apruébelas o rechácelas en Usuarios.

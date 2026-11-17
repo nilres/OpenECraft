@@ -74,6 +74,7 @@ Certificate	Certifikat
 Changed	Ändrad
 Changed last	Senast ändrade
 Changes allowed	Ändringar tillåtna
+Changing the data or the results afterwards takes the signature away.	Ändras data eller resultat i efterhand tas signaturen bort.
 Check control valve	Backventil
 Check flap	Backspjäll
 Chimney	Skorsten
@@ -261,6 +262,7 @@ Logos	Logotyper
 Looks the users up; empty: users bind with their own name (below)	Söker upp användarna; tomt: användarna binder med sitt eget namn (nedan)
 Male insert	Stiftinsats
 Managers of a project give rights on it themselves (Permissions on the project).	Projektledare ger själva rättigheter till sitt projekt (Behörigheter för projektet).
+Measured at the origin	Uppmätt vid matningspunkten
 Measurement system	Mätanordning
 Measuring connection points	Mätanslutningar
 Measuring couplings	Mätkopplingar
@@ -279,6 +281,7 @@ Name attribute	Namnattribut
 New accounts need the approval of an administrator	Nya konton behöver godkännas av en administratör
 New catalog	Ny katalog
 New directory	Ny katalogtjänst
+New installation	Ny installation
 New part	Ny artikel
 New part based on the open one	Ny artikel baserad på den öppna
 New password	Nytt lösenord
@@ -302,6 +305,7 @@ Non-return valves	Backventiler
 None (only grants)	Ingen (endast tilldelningar)
 Not mounted	Inte monterat
 Not saved	Inte sparad
+Not signed	Inte signerad
 Nothing to save	Inget att spara
 Nut	Mutter
 On the front	På framsidan
@@ -408,9 +412,11 @@ Remove logo	Ta bort logotyp
 Remove the file from the part	Ta bort filen från artikeln
 Remove the logo	Ta bort logotypen
 Removed from the server	Borttagen från servern
+Repair	Reparation
 Repeat password	Upprepa lösenordet
 Replace the roles and grants with those of the file?	Vill du ersätta rollerna och tilldelningarna med dem i filen?
 Replaced by {}	Ersatt av {}
+Report data and visual inspection	Protokolldata och okulär besiktning
 Resistors	Resistorer
 Restore from a file	Återställ från en fil
 Return flushing filters, all-autom.	Backspolningsfilter, helautomatiska
@@ -465,12 +471,16 @@ Sign in with a user account	Logga in med ett användarkonto
 Sign in with the access token of the server	Logga in med serverns åtkomsttoken
 Sign out everywhere	Logga ut överallt
 Sign out {} on all devices?	Logga ut {} på alla enheter?
+Sign the report	Signera protokollet
 Sign-in needed to read	Inloggning krävs för att läsa
 Sign-in needed to view	Inloggning krävs för att visa
 Signal device	Signalapparat
 Signal device, acoustic	Signaldon, akustiskt
 Signal device, optical	Signaldon, optiskt
 Signal lamp	Signallampa
+Signature	Signatur
+Signed	Signerad
+Signed by {} on {}	Signerad av {} den {}
 Signed in	Inloggade
 Silencers	Ljuddämpare
 Silo	Silo
@@ -479,6 +489,7 @@ Single-stage filters	Enstegsfilter
 Siphon	Vattenlås
 Size of the files	Filernas storlek
 Solenoid valve	Magnetventil
+Someone saved this meanwhile. Check the values and save again.	Någon har sparat detta under tiden. Kontrollera värdena och spara igen.
 Sorter	Sorterare
 Start a server with:  openecraft-parts-server --token <secret>	Starta en server med:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Starta openecraft-parts-server med --token för att tillåta ändringar
@@ -586,6 +597,7 @@ Vault did not continue the upload	Vault fortsatte inte uppladdningen
 Ventilation filters	Ventilationsfilter
 Ventilator	Fläkt
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Visare öppnar projekt skrivskyddat, granskare sparar även granskningar, redigerare ändrar och skapar projekt, projektledare tar även bort dem och ger rättigheter till dem, administratörer hanterar servern.
+Visual inspection	Okulär besiktning
 Voltage source	Spänningskälla
 Voltage source and generator	Spänningskälla och generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Väntande konton kan inte logga in; godkänn eller avvisa dem under Användare.

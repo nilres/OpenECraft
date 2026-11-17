@@ -409,8 +409,10 @@ pub enum ReportKind {
     PowerSupplyBudget,
     SafetyFunctions,
     Verification,
-    /// Inspection and test report of the installation (`crate::inspection`).
+    /// Inspection and test report of the installation (`crate::inspection`): the circuits.
     Inspection,
+    /// Its data, visual inspection and verdict.
+    InspectionSummary,
     FieldRouting,
     Bonding,
     RackElevation,
@@ -418,7 +420,7 @@ pub enum ReportKind {
 }
 
 impl ReportKind {
-    pub const ALL: [ReportKind; 44] = [
+    pub const ALL: [ReportKind; 45] = [
         ReportKind::TableOfContents,
         ReportKind::DeviceList,
         ReportKind::BillOfMaterials,
@@ -459,6 +461,7 @@ impl ReportKind {
         ReportKind::SafetyFunctions,
         ReportKind::Verification,
         ReportKind::Inspection,
+        ReportKind::InspectionSummary,
         ReportKind::FieldRouting,
         ReportKind::Bonding,
         ReportKind::RackElevation,
@@ -508,6 +511,7 @@ impl ReportKind {
             ReportKind::SafetyFunctions => tr_const!("Safety functions (ISO 13849-1)"),
             ReportKind::Verification => tr_const!("Rule set verification"),
             ReportKind::Inspection => tr_const!("Inspection and test report"),
+            ReportKind::InspectionSummary => tr_const!("Inspection and test report: summary"),
             ReportKind::FieldRouting => tr_const!("Field cable routing"),
             ReportKind::Bonding => tr_const!("Equipotential bonding"),
             ReportKind::RackElevation => tr_const!("19-inch rack elevation"),
@@ -563,6 +567,7 @@ impl ReportKind {
             ReportKind::SafetyFunctions => "safety_functions",
             ReportKind::Verification => "verification",
             ReportKind::Inspection => "inspection",
+            ReportKind::InspectionSummary => "inspection_summary",
             ReportKind::FieldRouting => "field_routing",
             ReportKind::Bonding => "bonding",
             ReportKind::RackElevation => "rack_elevation",

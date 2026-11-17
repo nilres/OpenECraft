@@ -58,12 +58,14 @@ Channel	채널
 Characteristic	특성
 Check settings	검사 설정
 Checks	검사
+Circuits	회로
 Class	클래스
 Classes	클래스
 Clear filters	필터 지우기
 Clearance bottom	아래쪽 이격 거리
 Clearance top	위쪽 이격 거리
 Clearances	이격 거리
+Client	의뢰인
 Close	닫기
 Coding: {}	코딩: {}
 Coil voltage	코일 전압
@@ -83,6 +85,7 @@ Connection point	연결 지점
 Connection points	연결 지점
 Connections	연결
 Connector	커넥터
+Contact voltage UB (V)	접촉 전압 UB (V)
 Controller	컨트롤러
 Cooling	냉각
 Core	심선
@@ -134,6 +137,7 @@ Drag to turn the model	끌어서 모델 회전
 Drawings	도면
 EMC clearance	EMC 이격 거리
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal 및 기타 이름은 해당 소유자의 상표입니다. OpenECraft는 독립적인 프로젝트입니다.
+Earth electrode resistance RA (Ω)	접지 전극 저항 RA (Ω)
 Edit	편집
 Editor	편집자
 Electro-fluid cross reference	전기-유체 상호 참조
@@ -148,6 +152,7 @@ Export as CSV…	CSV로 내보내기…
 Export as JSON…	JSON으로 내보내기…
 Export failed: {}	내보내기 실패: {}
 External (top)	외부(위)
+External loop impedance Ze (Ω)	외부 루프 임피던스 Ze (Ω)
 Face	면
 Failed	실패
 Fastening	고정 방식
@@ -199,7 +204,11 @@ Import	가져오기
 Incomplete	미완료
 Input	입력
 Inspection and test report	검사 및 시험 보고서
+Inspector	검사자
+Installation site	설치 장소
+Installer	시공자
 Insulation resistance (MΩ)	절연 저항 (MΩ)
+Insulation test voltage (V)	절연 시험 전압 (V)
 Integration	통합
 Internal (bottom)	내부(아래)
 Interruption point	중단점
@@ -243,6 +252,7 @@ Machine	기계
 Main	주
 Main earthing busbar (device) it is connected to; empty: none	연결된 주 접지 부스바 (장치); 비어 있음: 없음
 Main earthing terminal	주 접지 단자
+Main equipotential bonding (Ω)	주 등전위 본딩 (Ω)
 Main switch	주 스위치
 Manufacturer	제조업체
 Manufacturers	제조업체
@@ -278,6 +288,7 @@ Net	네트
 Never	안 함
 New group	새 그룹
 New name	새 이름
+Next inspection	다음 점검
 Next page	다음 페이지
 No	아니요
 No Vault item matches a part of the project	프로젝트의 부품과 일치하는 Vault 항목이 없습니다
@@ -311,6 +322,7 @@ Not a macro file: {}	매크로 파일이 아님: {}
 Not a symbol id: {}	심볼 ID가 아닙니다: {}
 Not a title block file: {}	표제란 파일이 아님: {}
 Not a valid rule set file: {}	유효한 규칙 세트 파일이 아님: {}
+Not applicable	해당 없음
 Not in the schematic	회로도에 없음
 Not passed	불합격
 Not tested	시험 안 함
@@ -407,6 +419,7 @@ Project name	프로젝트 이름
 Project properties	프로젝트 속성
 Properties	속성
 Property	속성
+Prospective fault current at the origin (kA)	인입점의 예상 고장 전류 (kA)
 Protection	보호
 Protective conductor (Ω)	보호 도체 (Ω)
 Protective device	보호 장치
@@ -416,12 +429,14 @@ Quantity unit	수량 단위
 RCD	RCD
 RCD trip current (mA)	RCD 동작 전류 (mA)
 RCD trip time (ms)	RCD 동작 시간 (ms)
+RCD trip time at 5 × IΔn (ms)	5 × IΔn에서 RCD 동작 시간 (ms)
 Rack	랙
 Rail	레일
 Range	범위
 Rated current	정격 전류
 Rated power	정격 전력
 Rear wall	후면벽
+Reason for the test	시험 사유
 Rectangle	사각형
 Rectangular	사각형
 Redo	다시 실행
@@ -511,8 +526,10 @@ Structure	구조
 Subproject name	하위 프로젝트 이름
 Subsystem	하위 시스템
 Successor	후속 제품
+Summary	요약
 Supplier	공급업체
 Supply	공급
+Supply system	전원 계통
 Symbol	심볼
 Symbol key	심볼 키
 Symbolic address	심볼릭 주소
@@ -528,6 +545,7 @@ Terminal strips	단자대
 Terminal type	단자 유형
 Terminals	단자
 Test instrument	측정기
+Test instruments (IEC 61557)	측정기 (IEC 61557)
 Tested by	시험자
 Text	텍스트
 Text to find	찾을 텍스트
@@ -556,6 +574,7 @@ Unknown column: {}	알 수 없는 열: {}
 Unknown connector: {}	알 수 없는 커넥터: {}
 Unknown enclosure system: {}	알 수 없는 외함 시스템: {}
 Unknown face: {}	알 수 없는 면: {}
+Unknown field: {}	알 수 없는 필드: {}
 Unknown format: {}	알 수 없는 형식: {}
 Unknown function definition: {}	알 수 없는 기능 정의: {}
 Unknown language: {}	알 수 없는 언어: {}
@@ -574,6 +593,7 @@ User	사용자
 User name	사용자 이름
 Users	사용자
 VAT ID	부가가치세 번호
+Value	값
 Version	버전
 Viewer	뷰어
 Voltage	전압

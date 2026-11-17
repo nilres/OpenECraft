@@ -74,6 +74,7 @@ Certificate	Sertifikaatti
 Changed	Muutettu
 Changed last	Viimeksi muutetut
 Changes allowed	Muutokset sallittu
+Changing the data or the results afterwards takes the signature away.	Tietojen tai tulosten muuttaminen jälkikäteen poistaa allekirjoituksen.
 Check control valve	Takaiskuventtiili
 Check flap	Takaiskuläppä
 Chimney	Savupiippu
@@ -264,6 +265,7 @@ Logos	Logot
 Looks the users up; empty: users bind with their own name (below)	Hakee käyttäjät; tyhjä: käyttäjät sitoutuvat omalla nimellään (alla)
 Male insert	Nastaosa
 Managers of a project give rights on it themselves (Permissions on the project).	Projektipäälliköt antavat itse oikeuksia projektiinsa (Projektin oikeudet).
+Measured at the origin	Mitattu liittymiskohdassa
 Measurement system	Mittausjärjestelmä
 Measuring connection points	Mittausliitännät
 Measuring couplings	Mittausliittimet
@@ -282,6 +284,7 @@ Name attribute	Nimimäärite
 New accounts need the approval of an administrator	Uudet tilit tarvitsevat järjestelmänvalvojan hyväksynnän
 New catalog	Uusi luettelo
 New directory	Uusi hakemistopalvelu
+New installation	Uusi asennus
 New part	Uusi osa
 New part based on the open one	Uusi osa avoinna olevan pohjalta
 New password	Uusi salasana
@@ -305,6 +308,7 @@ Non-return valves	Takaiskuventtiilit
 None (only grants)	Ei mitään (vain myönnöt)
 Not mounted	Ei asennettu
 Not saved	Ei tallennettu
+Not signed	Ei allekirjoitettu
 Nothing to save	Ei tallennettavaa
 Nut	Mutteri
 On the front	Edessä
@@ -411,9 +415,11 @@ Remove logo	Poista logo
 Remove the file from the part	Poista tiedosto osasta
 Remove the logo	Poista logo
 Removed from the server	Poistettu palvelimelta
+Repair	Korjaus
 Repeat password	Toista salasana
 Replace the roles and grants with those of the file?	Korvataanko roolit ja myönnöt tiedoston rooleilla ja myönnöillä?
 Replaced by {}	Korvattu osalla {}
+Report data and visual inspection	Pöytäkirjan tiedot ja silmämääräinen tarkastus
 Resistors	Vastukset
 Restore from a file	Palauta tiedostosta
 Return flushing filters, all-autom.	Huuhtelusuodattimet, täysautomaattiset
@@ -468,12 +474,16 @@ Sign in with a user account	Kirjaudu käyttäjätilillä
 Sign in with the access token of the server	Kirjaudu palvelimen käyttöoikeustokenilla
 Sign out everywhere	Kirjaa ulos kaikkialta
 Sign out {} on all devices?	Kirjataanko {} ulos kaikilla laitteilla?
+Sign the report	Allekirjoita pöytäkirja
 Sign-in needed to read	Lukeminen vaatii kirjautumisen
 Sign-in needed to view	Katselu vaatii kirjautumisen
 Signal device	Merkinantolaite
 Signal device, acoustic	Merkinantolaite, akustinen
 Signal device, optical	Merkinantolaite, optinen
 Signal lamp	Merkkivalo
+Signature	Allekirjoitus
+Signed	Allekirjoitettu
+Signed by {} on {}	Allekirjoittanut {} {}
 Signed in	Kirjautuneet
 Silencers	Äänenvaimentimet
 Silo	Siilo
@@ -482,6 +492,7 @@ Single-stage filters	Yksivaiheiset suodattimet
 Siphon	Vesilukko
 Size of the files	Tiedostojen koko
 Solenoid valve	Magneettiventtiili
+Someone saved this meanwhile. Check the values and save again.	Joku tallensi tämän sillä välin. Tarkista arvot ja tallenna uudelleen.
 Sorter	Lajittelija
 Start a server with:  openecraft-parts-server --token <secret>	Käynnistä palvelin komennolla:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Käynnistä openecraft-parts-server valitsimella --token salliaksesi muutokset
@@ -590,6 +601,7 @@ Vault did not continue the upload	Vault ei jatkanut latausta palvelimelle
 Ventilation filters	Tuuletussuodattimet
 Ventilator	Puhallin
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Katselijat avaavat projektit vain luku -tilassa, tarkastajat tallentavat myös kommentteja, muokkaajat muuttavat ja luovat projekteja, projektipäälliköt myös poistavat niitä ja antavat niihin oikeuksia, järjestelmänvalvojat hallitsevat palvelinta.
+Visual inspection	Silmämääräinen tarkastus
 Voltage source	Jännitelähde
 Voltage source and generator	Jännitelähde ja generaattori
 Waiting accounts cannot sign in; approve or reject them in Users.	Odottavat tilit eivät voi kirjautua; hyväksy tai hylkää ne kohdassa Käyttäjät.

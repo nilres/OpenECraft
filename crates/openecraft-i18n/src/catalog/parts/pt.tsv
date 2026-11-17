@@ -74,6 +74,7 @@ Certificate	Certificado
 Changed	Alterado
 Changed last	Alteradas por último
 Changes allowed	Alterações permitidas
+Changing the data or the results afterwards takes the signature away.	Alterar depois os dados ou os resultados remove a assinatura.
 Check control valve	Válvula de retenção
 Check flap	Válvula de retenção tipo portinhola
 Chimney	Chaminé
@@ -261,6 +262,7 @@ Logos	Logotipos
 Looks the users up; empty: users bind with their own name (below)	Procura os usuários; vazio: os usuários se vinculam com o próprio nome (abaixo)
 Male insert	Inserto macho
 Managers of a project give rights on it themselves (Permissions on the project).	Os gerentes de um projeto concedem eles mesmos direitos sobre ele (Permissões do projeto).
+Measured at the origin	Medido na origem
 Measurement system	Sistema de medição
 Measuring connection points	Pontos de conexão de medição
 Measuring couplings	Acoplamentos de medição
@@ -279,6 +281,7 @@ Name attribute	Atributo do nome
 New accounts need the approval of an administrator	Novas contas precisam da aprovação de um administrador
 New catalog	Novo catálogo
 New directory	Novo serviço de diretório
+New installation	Instalação nova
 New part	Nova peça
 New part based on the open one	Nova peça com base na aberta
 New password	Nova senha
@@ -302,6 +305,7 @@ Non-return valves	Válvulas de retenção
 None (only grants)	Nenhuma (somente concessões)
 Not mounted	Não montado
 Not saved	Não salvo
+Not signed	Não assinado
 Nothing to save	Nada a salvar
 Nut	Porca
 On the front	Na frente
@@ -408,9 +412,11 @@ Remove logo	Remover logotipo
 Remove the file from the part	Remover o arquivo da peça
 Remove the logo	Remover o logotipo
 Removed from the server	Removido do servidor
+Repair	Reparo
 Repeat password	Repetir a senha
 Replace the roles and grants with those of the file?	Substituir as funções e as concessões pelas do arquivo?
 Replaced by {}	Substituído por {}
+Report data and visual inspection	Dados do relatório e inspeção visual
 Resistors	Resistores
 Restore from a file	Restaurar de um arquivo
 Return flushing filters, all-autom.	Filtros de retrolavagem totalmente automáticos
@@ -465,12 +471,16 @@ Sign in with a user account	Entrar com uma conta de usuário
 Sign in with the access token of the server	Entrar com o token de acesso do servidor
 Sign out everywhere	Sair de todos os dispositivos
 Sign out {} on all devices?	Desconectar {} em todos os dispositivos?
+Sign the report	Assinar o relatório
 Sign-in needed to read	É preciso entrar para ler
 Sign-in needed to view	É preciso entrar para visualizar
 Signal device	Dispositivo de sinalização
 Signal device, acoustic	Dispositivo de sinalização acústica
 Signal device, optical	Dispositivo de sinalização óptica
 Signal lamp	Sinaleiro
+Signature	Assinatura
+Signed	Assinado
+Signed by {} on {}	Assinado por {} em {}
 Signed in	Conectados
 Silencers	Silenciadores
 Silo	Silo
@@ -479,6 +489,7 @@ Single-stage filters	Filtros simples
 Siphon	Sifão
 Size of the files	Tamanho dos arquivos
 Solenoid valve	Válvula solenoide
+Someone saved this meanwhile. Check the values and save again.	Alguém salvou isto nesse meio-tempo. Verifique os valores e salve novamente.
 Sorter	Separador por seleção
 Start a server with:  openecraft-parts-server --token <secret>	Inicie um servidor com:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Inicie o openecraft-parts-server com --token para permitir alterações
@@ -586,6 +597,7 @@ Vault did not continue the upload	O Vault não continuou o envio
 Ventilation filters	Filtros de ventilação
 Ventilator	Ventilador
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Visualizadores abrem projetos somente para leitura, revisores também salvam comentários, editores alteram e criam projetos, gerentes também os excluem e concedem direitos sobre eles, administradores gerenciam o servidor.
+Visual inspection	Inspeção visual
 Voltage source	Fonte de tensão
 Voltage source and generator	Fonte de tensão e gerador
 Waiting accounts cannot sign in; approve or reject them in Users.	Contas pendentes não podem entrar; aprove-as ou recuse-as em Usuários.

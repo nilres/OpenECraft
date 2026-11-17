@@ -60,12 +60,14 @@ Channel	Canal
 Characteristic	Característica
 Check settings	Configurações de verificação
 Checks	Verificações
+Circuits	Circuitos
 Class	Classe
 Classes	Classes
 Clear filters	Limpar filtros
 Clearance bottom	Distância inferior
 Clearance top	Distância superior
 Clearances	Distâncias
+Client	Cliente
 Close	Fechar
 Coding: {}	Codificação: {}
 Coil voltage	Tensão da bobina
@@ -85,6 +87,7 @@ Connection point	Ponto de conexão
 Connection points	Pontos de conexão
 Connections	Conexões
 Connector	Conector
+Contact voltage UB (V)	Tensão de contato UB (V)
 Controller	Controlador
 Cooling	Refrigeração
 Core	Veia
@@ -136,6 +139,7 @@ Drag to turn the model	Arraste para girar o modelo
 Drawings	Desenhos
 EMC clearance	Distância EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal e outros nomes são marcas de seus proprietários. O OpenECraft é um projeto independente.
+Earth electrode resistance RA (Ω)	Resistência do eletrodo de aterramento RA (Ω)
 Edit	Editar
 Editor	Editor
 Electro-fluid cross reference	Referência cruzada eletrofluídica
@@ -150,6 +154,7 @@ Export as CSV…	Exportar como CSV…
 Export as JSON…	Exportar como JSON…
 Export failed: {}	Falha na exportação: {}
 External (top)	Externo (em cima)
+External loop impedance Ze (Ω)	Impedância de laço externa Ze (Ω)
 Face	Face
 Failed	Falhou
 Fastening	Fixação
@@ -201,7 +206,11 @@ Import	Importação
 Incomplete	Incompleto
 Input	Entrada
 Inspection and test report	Relatório de inspeção e ensaio
+Inspector	Inspetor
+Installation site	Local de instalação
+Installer	Instalador
 Insulation resistance (MΩ)	Resistência de isolamento (MΩ)
+Insulation test voltage (V)	Tensão de ensaio de isolamento (V)
 Integration	Integração
 Internal (bottom)	Interno (embaixo)
 Interruption point	Ponto de interrupção
@@ -245,6 +254,7 @@ Machine	Máquina
 Main	Principal
 Main earthing busbar (device) it is connected to; empty: none	Barramento de equipotencialização principal (dispositivo) ao qual está ligado; vazio: nenhum
 Main earthing terminal	Barramento de aterramento principal
+Main equipotential bonding (Ω)	Equipotencialização principal (Ω)
 Main switch	Chave geral
 Manufacturer	Fabricante
 Manufacturers	Fabricantes
@@ -280,6 +290,7 @@ Net	Rede
 Never	Nunca
 New group	Novo grupo
 New name	Novo nome
+Next inspection	Próxima inspeção
 Next page	Próxima página
 No	Não
 No Vault item matches a part of the project	Nenhum item do Vault corresponde a uma peça do projeto
@@ -313,6 +324,7 @@ Not a macro file: {}	Não é um arquivo de macro: {}
 Not a symbol id: {}	Não é um ID de símbolo: {}
 Not a title block file: {}	Não é um arquivo de selo: {}
 Not a valid rule set file: {}	Não é um arquivo de conjunto de regras válido: {}
+Not applicable	Não aplicável
 Not in the schematic	Não está no esquema elétrico
 Not passed	Reprovado
 Not tested	Não verificado
@@ -409,6 +421,7 @@ Project name	Nome do projeto
 Project properties	Propriedades do projeto
 Properties	Propriedades
 Property	Propriedade
+Prospective fault current at the origin (kA)	Corrente de falta presumida na origem (kA)
 Protection	Proteção
 Protective conductor (Ω)	Condutor de proteção (Ω)
 Protective device	Dispositivo de proteção
@@ -418,12 +431,14 @@ Quantity unit	Unidade de quantidade
 RCD	DR
 RCD trip current (mA)	Corrente de disparo do DR (mA)
 RCD trip time (ms)	Tempo de disparo do DR (ms)
+RCD trip time at 5 × IΔn (ms)	Tempo de disparo do DR a 5 × IΔn (ms)
 Rack	Rack
 Rail	Trilho
 Range	Faixa
 Rated current	Corrente nominal
 Rated power	Potência nominal
 Rear wall	Parede traseira
+Reason for the test	Motivo do ensaio
 Rectangle	Retângulo
 Rectangular	Retangular
 Redo	Refazer
@@ -513,8 +528,10 @@ Structure	Estrutura
 Subproject name	Nome do subprojeto
 Subsystem	Subsistema
 Successor	Sucessor
+Summary	Resumo
 Supplier	Fornecedor
 Supply	Abastecimento
+Supply system	Rede de alimentação
 Symbol	Símbolo
 Symbol key	Chave do símbolo
 Symbolic address	Endereço simbólico
@@ -530,6 +547,7 @@ Terminal strips	Réguas de bornes
 Terminal type	Tipo de borne
 Terminals	Bornes
 Test instrument	Instrumento de medição
+Test instruments (IEC 61557)	Instrumentos de medição (IEC 61557)
 Tested by	Verificado por
 Text	Texto
 Text to find	Texto a localizar
@@ -558,6 +576,7 @@ Unknown column: {}	Coluna desconhecida: {}
 Unknown connector: {}	Conector desconhecido: {}
 Unknown enclosure system: {}	Sistema de gabinete desconhecido: {}
 Unknown face: {}	Face desconhecida: {}
+Unknown field: {}	Campo desconhecido: {}
 Unknown format: {}	Formato desconhecido: {}
 Unknown function definition: {}	Definição de função desconhecida: {}
 Unknown language: {}	Idioma desconhecido: {}
@@ -576,6 +595,7 @@ User	Usuário
 User name	Nome de usuário
 Users	Usuários
 VAT ID	Número de IVA
+Value	Valor
 Version	Versão
 Viewer	Visualizador
 Voltage	Tensão

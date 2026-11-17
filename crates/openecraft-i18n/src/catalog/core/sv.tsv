@@ -43,6 +43,7 @@ Actuated by	Manövreras av
 Actuation	Manövrering
 Actuator type	Manöverdonstyp
 Additional page description	Ytterligare sidbeskrivning
+Additional protection by RCDs of at most 30 mA where required	Kompletterande skydd med jordfelsbrytare om högst 30 mA där det krävs
 Address ranges of {} and {} overlap	Adressområdena för {} och {} överlappar
 Address {} is used by {} and {}	Adress {} används av {} och {}
 Adhesive	Lim
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Effektbrytare 3-polig QF (GB)
 Circuit breaker 3-pole QF (GOST)	Effektbrytare 3-polig QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Effektbrytare 3-polig, termisk-magnetisk
 Circuit breaker 4-pole	Effektbrytare 4-polig
+Circuits, protective devices, switches and terminals labelled	Kretsar, skyddsanordningar, brytare och plintar märkta
 Circular milling	Cirkelfräsning
 Clip / snap-on	Clips / snäppfäste
 Cloud	Moln
@@ -241,6 +243,7 @@ Compressed air supply	Tryckluftsförsörjning
 Compressor	Kompressor
 Condition '{}' needs OPTION=value	Villkoret '{}' kräver OPTION=värde
 Conductor class	Ledarklass
+Conductors selected for current-carrying capacity and voltage drop	Ledare valda efter strömvärde och spänningsfall
 Conduit	Installationsrör
 Connected	Ansluten
 Connection definition point on page {} is not applied to its connection	Förbindelsedefinitionspunkten på sida {} har inte tillämpats på sin förbindelse
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Förbindelsesymboler
 Connection type	Anslutningstyp
 Connection {} has contradicting connection definition points	Förbindelse {} har motstridiga förbindelsedefinitionspunkter
+Connections of the conductors	Ledarnas anslutningar
 Connector pin-outs and flat cables	Kontakters stiftbeläggning och flatkablar
 Connector pin-outs: mating faces and pin tables (SVG)	Kontakters stiftbeläggning: anslutningssidor och stifttabeller (SVG)
 Contact material	Kontaktmaterial
@@ -374,6 +378,7 @@ Devices without power loss	Apparater utan effektförlust
 Dew point (°C)	Daggpunkt (°C)
 Diagnostic coverage (DC)	Diagnostisk täckning (DC)
 Diagnostics	Diagnostik
+Diagrams, warning notices and similar information present	Scheman, varningsskyltar och liknande information finns
 Diameter (mm)	Diameter (mm)
 Different wire numbers in one connection: {}	Olika ledningsnummer i en förbindelse: {}
 Digital input / output module	Digital in-/utgångsmodul
@@ -481,6 +486,8 @@ Energy limitation class	Energibegränsningsklass
 Engineered	Projekterad
 Engineering unit	Teknisk enhet
 Environment	Miljö
+Equipment accessible for operation, inspection and maintenance	Materiel åtkomlig för manövrering, kontroll och underhåll
+Equipment and protective measures suit the external influences	Materiel och skyddsåtgärder passar de yttre förhållandena
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Skyddsjordledare måste vara gröna (NFPA 79, 13.2.2)
 Excel workbook	Excel-arbetsbok
 Exhaust {} open to the atmosphere (no silencer)	Avluft {} öppen mot atmosfären (ingen ljuddämpare)
@@ -516,6 +523,7 @@ File name written into the file header	Filnamn som skrivs i filhuvudet
 Fill level (%)	Fyllnadsgrad (%)
 Filter fan with outlet filter	Filterfläkt med utloppsfilter
 Filter rating	Filterfinhet
+Fire barriers and protection against thermal effects	Brandavskiljningar och skydd mot termisk påverkan
 Firmware version	Firmwareversion
 First end only	Endast första änden
 Fitting	Koppling
@@ -707,12 +715,13 @@ Input voltage	Ingångsspänning
 Inputs from	Ingångar från
 Inrush current	Inkopplingsström
 Inside (°C)	Inne (°C)
+Inspection and test report: data	Besiktnings- och provningsprotokoll: data
+Inspection and test report: summary	Besiktnings- och provningsprotokoll: sammanfattning
 Installation altitude	Installationshöjd
 Installation date	Installationsdatum
 Installation devices	Installationsapparater
 Installation method	Förläggningssätt
 Installation plan (IEC 60617-11)	Installationsritning (IEC 60617-11)
-Installation site	Uppställningsplats
 Installation site (++)	Uppställningsplats (++)
 Installation site and location	Uppställningsplats och placering
 Installation site of the page	Sidans uppställningsplats
@@ -735,6 +744,7 @@ Invalid length {}	Ogiltig längd {}
 Invalid property key: {}	Ogiltig egenskapsnyckel: {}
 Inverter / charger	Växelriktare / laddare
 Inverter DC/AC	Växelriktare DC/AC
+Isolating and switching devices in the right places	Frånskiljande och manöverdon på rätt platser
 Item	Objekt
 Item ID	Artikel-ID
 Items	Objekt
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	Slutande kontakt, tidsfördröjd slutning (NFPA
 Nailboard {}	Spikbräde {}
 Network (m)	Nät (m)
 Neutral (N)	Neutralledare (N)
+Neutral and protective conductors identified	Neutral- och skyddsledare märkta
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutralledare måste vara ljusblå (IEC 60204-1, 13.2.3)
-Next inspection	Nästa besiktning
 Nibbling	Nibbling
 No connection {}	Ingen förbindelse {}
 No devices to add to the single-line diagram	Inga apparater att lägga till i enlinjeschemat
@@ -977,6 +987,7 @@ Number of sheets	Antal blad
 Number of switch positions	Antal kopplingslägen
 Number of symbols	Antal symboler
 Numbers (1, 2, 3)	Siffror (1, 2, 3)
+OK, Not OK or Not applicable	OK, Inte OK eller Ej tillämplig
 Ohmmeter	Ohmmeter
 Oil resistant	Oljebeständig
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	En schemasida med potentialerna +24V / 0V, tryckknappar, en väljare, lampor och en säkring; artiklar och stycklista.
@@ -1223,14 +1234,17 @@ Project revision	Projektrevision
 Project symbols	Projektsymboler
 Proof test interval	Intervall för återkommande provning
 Prospective short-circuit current	Förväntad kortslutningsström
+Protection against electric shock: the measures and their components	Skydd mot elchock: åtgärderna och deras delar
 Protection class	Skyddsklass
 Protection setting	Skyddsinställning
+Protective and monitoring devices selected and set correctly	Skydds- och övervakningsanordningar rätt valda och inställda
 Protective conductor {} with wire colour {} (must be GNYE)	Skyddsledare {} med ledarfärg {} (måste vara GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Skyddsledare måste vara grön-gula (IEC 60204-1, 13.2.2)
 Protective devices	Skyddsanordningar
 Protective earth	Skyddsjord
 Protective earth (PE)	Skyddsledare (PE)
 Protective hose	Skyddsslang
+Protective, earthing and bonding conductors present and adequate	Skydds-, jordnings- och potentialutjämningsledare finns och är tillräckliga
 Proximity sensor	Närhetsgivare
 Proximity sensor NO	Närhetsgivare slutande
 Proximity switch NO (NFPA)	Närhetsbrytare, slutande (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Signaldon
 Signal name	Signalnamn
 Signal range	Signalområde
 Signal type	Signaltyp
+Signed by	Signerad av
+Signed on	Signerad den
 Silencer	Ljuddämpare
 Single, free-standing	Enskild, fristående
 Single, wall mounted	Enskild, väggmonterad
@@ -1518,6 +1534,7 @@ Supply voltage	Matningsspänning
 Surface (m²)	Yta (m²)
 Surface-mounted	Utanpåliggande
 Surge protection type	Typ av överspänningsskydd
+Surge protection where required	Överspänningsskydd där det krävs
 Surge protective device	Överspänningsskydd
 Surge suppressor	Överspänningsbegränsare
 Switch, 1-pole (installation)	Strömställare, 1-polig (installation)
@@ -1568,6 +1585,7 @@ Termination (to)	Avslutning (till)
 Text file	Textfil
 The DXF file contains nothing that can be imported	DXF-filen innehåller inget som kan importeras
 The PDF has no pages that can be read	PDF-filen har inga sidor som kan läsas
+The answer is OK, Not OK or Not applicable, not {}	Svaret är OK, Inte OK eller Ej tillämplig, inte {}
 The archive contains no project	Arkivet innehåller inget projekt
 The archive has no manifest	Arkivet har inget manifest
 The archive is damaged	Arkivet är skadat
@@ -1937,6 +1955,7 @@ yellow	gul
 {} lies outside page {}	{} ligger utanför sida {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} monteringsmarkeringar hör till objekt som inte längre finns
+{} of {} passed	{} av {} godkända
 {} option assignments of deleted objects removed	{} alternativtilldelningar för borttagna objekt borttagna
 {} placed properties converted to property keys	{} placerade egenskaper konverterade till egenskapsnycklar
 {} planned devices are not in the schematic yet	{} planerade apparater finns ännu inte i kretsschemat

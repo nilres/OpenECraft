@@ -43,6 +43,7 @@ Actuated by	Ohjaa
 Actuation	Käyttötapa
 Actuator type	Käyttöelimen tyyppi
 Additional page description	Sivun lisäkuvaus
+Additional protection by RCDs of at most 30 mA where required	Lisäsuojaus enintään 30 mA:n vikavirtasuojilla, missä vaaditaan
 Address ranges of {} and {} overlap	Kohteiden {} ja {} osoitealueet ovat päällekkäin
 Address {} is used by {} and {}	Osoitetta {} käyttävät {} ja {}
 Adhesive	Liima
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Johdonsuojakatkaisija, 3-napainen QF (GB)
 Circuit breaker 3-pole QF (GOST)	Johdonsuojakatkaisija, 3-napainen QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Johdonsuojakatkaisija, 3-napainen, termis-magneettinen
 Circuit breaker 4-pole	Katkaisija 4-napainen
+Circuits, protective devices, switches and terminals labelled	Virtapiirit, suojalaitteet, kytkimet ja liittimet merkitty
 Circular milling	Ympyräjyrsintä
 Clip / snap-on	Pidike / napsautuskiinnitys
 Cloud	Pilvi
@@ -241,6 +243,7 @@ Compressed air supply	Paineilman syöttö
 Compressor	Kompressori
 Condition '{}' needs OPTION=value	Ehto '{}' vaatii muodon OPTION=arvo
 Conductor class	Johdinluokka
+Conductors selected for current-carrying capacity and voltage drop	Johtimet valittu kuormitettavuuden ja jännitteenaleneman mukaan
 Conduit	Asennusputki
 Connected	Käytössä
 Connection definition point on page {} is not applied to its connection	Yhteyden määrityspistettä sivulla {} ei ole käytetty yhteyteensä
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Liitossymbolit
 Connection type	Liitäntätyyppi
 Connection {} has contradicting connection definition points	Yhteydellä {} on ristiriitaisia yhteyden määrityspisteitä
+Connections of the conductors	Johtimien liitokset
 Connector pin-outs and flat cables	Liittimien nastajärjestykset ja lattakaapelit
 Connector pin-outs: mating faces and pin tables (SVG)	Liittimien nastajärjestykset: liitinpinnat ja nastataulukot (SVG)
 Contact material	Kosketinmateriaali
@@ -374,6 +378,7 @@ Devices without power loss	Laitteet ilman häviötehoa
 Dew point (°C)	Kastepiste (°C)
 Diagnostic coverage (DC)	Diagnostiikan kattavuus (DC)
 Diagnostics	Diagnostiikka
+Diagrams, warning notices and similar information present	Kaaviot, varoitukset ja vastaavat tiedot saatavilla
 Diameter (mm)	Halkaisija (mm)
 Different wire numbers in one connection: {}	Eri johtonumerot yhdessä yhteydessä: {}
 Digital input / output module	Digitaalitulo- / -lähtömoduuli
@@ -481,6 +486,8 @@ Energy limitation class	Energianrajoitusluokka
 Engineered	Suunnittelu valmis
 Engineering unit	Fysikaalinen yksikkö
 Environment	Ympäristö
+Equipment accessible for operation, inspection and maintenance	Laitteet käytettävissä käyttöä, tarkastusta ja huoltoa varten
+Equipment and protective measures suit the external influences	Laitteet ja suojaustoimenpiteet sopivat ulkoisiin olosuhteisiin
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Laitteiston maadoitusjohtimien on oltava vihreitä (NFPA 79, 13.2.2)
 Excel workbook	Excel-työkirja
 Exhaust {} open to the atmosphere (no silencer)	Poisto {} avoin ilmakehään (ei äänenvaimenninta)
@@ -516,6 +523,7 @@ File name written into the file header	Tiedoston otsakkeeseen kirjoitettava tied
 Fill level (%)	Täyttöaste (%)
 Filter fan with outlet filter	Suodatintuuletin poistosuodattimella
 Filter rating	Suodatustarkkuus
+Fire barriers and protection against thermal effects	Palokatkot ja suojaus lämpövaikutuksilta
 Firmware version	Laiteohjelmistoversio
 First end only	Vain ensimmäinen pää
 Fitting	Putkiliitin
@@ -707,12 +715,13 @@ Input voltage	Tulojännite
 Inputs from	Tulot lähteestä
 Inrush current	Kytkentävirtasysäys
 Inside (°C)	Sisällä (°C)
+Inspection and test report: data	Tarkastus- ja testauspöytäkirja: tiedot
+Inspection and test report: summary	Tarkastus- ja testauspöytäkirja: yhteenveto
 Installation altitude	Asennuskorkeus
 Installation date	Asennuspäivä
 Installation devices	Asennuslaitteet
 Installation method	Asennustapa
 Installation plan (IEC 60617-11)	Asennuskaavio (IEC 60617-11)
-Installation site	Asennuspaikka
 Installation site (++)	Asennuspaikka (++)
 Installation site and location	Asennuspaikka ja sijainti
 Installation site of the page	Sivun asennuspaikka
@@ -735,6 +744,7 @@ Invalid length {}	Virheellinen pituus {}
 Invalid property key: {}	Virheellinen ominaisuusavain: {}
 Inverter / charger	Invertteri / laturi
 Inverter DC/AC	Vaihtosuuntaaja DC/AC
+Isolating and switching devices in the right places	Erotus- ja kytkinlaitteet oikeissa paikoissa
 Item	Kohde
 Item ID	Nimikkeen ID
 Items	Kohteet
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	Sulkeutuva kosketin, hidastettu sulkeutuminen (
 Nailboard {}	Naulalauta {}
 Network (m)	Verkko (m)
 Neutral (N)	Nollajohdin (N)
+Neutral and protective conductors identified	Nolla- ja suojajohtimet merkitty
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Nollajohtimien on oltava vaaleansinisiä (IEC 60204-1, 13.2.3)
-Next inspection	Seuraava tarkastus
 Nibbling	Nakerrus
 No connection {}	Ei yhteyttä {}
 No devices to add to the single-line diagram	Ei laitteita lisättäväksi yksinapaiseen kaavioon
@@ -977,6 +987,7 @@ Number of sheets	Arkkien määrä
 Number of switch positions	Kytkinasentojen määrä
 Number of symbols	Symbolien määrä
 Numbers (1, 2, 3)	Numerot (1, 2, 3)
+OK, Not OK or Not applicable	OK, Ei OK tai Ei sovellu
 Ohmmeter	Resistanssimittari
 Oil resistant	Öljynkestävä
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Yksi kaaviosivu, jossa potentiaalit +24V / 0V, painikkeet, valintakytkin, merkkivalot ja sulake; nimikkeet ja osaluettelo.
@@ -1223,14 +1234,17 @@ Project revision	Projektin revisio
 Project symbols	Projektin symbolit
 Proof test interval	Määräaikaistestausväli
 Prospective short-circuit current	Odotettavissa oleva oikosulkuvirta
+Protection against electric shock: the measures and their components	Suojaus sähköiskulta: toimenpiteet ja niiden osat
 Protection class	Suojausluokka
 Protection setting	Suoja-asettelu
+Protective and monitoring devices selected and set correctly	Suoja- ja valvontalaitteet oikein valittu ja asetettu
 Protective conductor {} with wire colour {} (must be GNYE)	Suojajohdin {} johtovärillä {} (on oltava GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Suojajohtimien on oltava vihreä-keltaisia (IEC 60204-1, 13.2.2)
 Protective devices	Suojalaitteet
 Protective earth	Suojamaadoitus
 Protective earth (PE)	Suojajohdin (PE)
 Protective hose	Suojaletku
+Protective, earthing and bonding conductors present and adequate	Suoja-, maadoitus- ja potentiaalintasausjohtimet olemassa ja riittävät
 Proximity sensor	Läheisyysanturi
 Proximity sensor NO	Lähestymiskytkin sulkeutuva
 Proximity switch NO (NFPA)	Läheisyyskytkin, sulkeutuva (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Merkinantolaitteet
 Signal name	Signaalin nimi
 Signal range	Signaalialue
 Signal type	Signaalityyppi
+Signed by	Allekirjoittaja
+Signed on	Allekirjoituspäivä
 Silencer	Äänenvaimennin
 Single, free-standing	Yksittäinen, vapaasti seisova
 Single, wall mounted	Yksittäinen, seinäasennus
@@ -1518,6 +1534,7 @@ Supply voltage	Syöttöjännite
 Surface (m²)	Pinta-ala (m²)
 Surface-mounted	Pinta-asennus
 Surge protection type	Ylijännitesuojan tyyppi
+Surge protection where required	Ylijännitesuojaus, missä vaaditaan
 Surge protective device	Ylijännitesuoja
 Surge suppressor	Ylijännitesuoja
 Switch, 1-pole (installation)	Kytkin, 1-napainen (asennus)
@@ -1568,6 +1585,7 @@ Termination (to)	Pääte (mihin)
 Text file	Tekstitiedosto
 The DXF file contains nothing that can be imported	DXF-tiedosto ei sisällä mitään tuotavaa
 The PDF has no pages that can be read	PDF-tiedostossa ei ole luettavia sivuja
+The answer is OK, Not OK or Not applicable, not {}	Vastaus on OK, Ei OK tai Ei sovellu, ei {}
 The archive contains no project	Arkisto ei sisällä projektia
 The archive has no manifest	Arkistossa ei ole manifestia
 The archive is damaged	Arkisto on vioittunut
@@ -1937,6 +1955,7 @@ yellow	keltainen
 {} lies outside page {}	{} on sivun {} ulkopuolella
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} asennusmerkintää kuuluu kohteisiin, joita ei enää ole
+{} of {} passed	{}/{} hyväksytty
 {} option assignments of deleted objects removed	{} poistettujen objektien vaihtoehtomääritystä poistettiin
 {} placed properties converted to property keys	{} sijoitettua ominaisuutta muunnettiin ominaisuusavaimiksi
 {} planned devices are not in the schematic yet	{} suunniteltua laitetta ei ole vielä piirikaaviossa

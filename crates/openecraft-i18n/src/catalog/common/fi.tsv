@@ -60,12 +60,14 @@ Channel	Kanava
 Characteristic	Ominaiskäyrä
 Check settings	Tarkistusasetukset
 Checks	Tarkistukset
+Circuits	Virtapiirit
 Class	Luokka
 Classes	Luokat
 Clear filters	Tyhjennä suodattimet
 Clearance bottom	Etäisyys alhaalla
 Clearance top	Etäisyys ylhäällä
 Clearances	Etäisyydet
+Client	Tilaaja
 Close	Sulje
 Coding: {}	Koodaus: {}
 Coil voltage	Kelan jännite
@@ -85,6 +87,7 @@ Connection point	Liitäntäpiste
 Connection points	Liitäntäpisteet
 Connections	Yhteydet
 Connector	Liitin
+Contact voltage UB (V)	Kosketusjännite UB (V)
 Controller	Ohjain
 Cooling	Jäähdytys
 Core	Johdin
@@ -136,6 +139,7 @@ Drag to turn the model	Käännä mallia vetämällä
 Drawings	Piirustukset
 EMC clearance	EMC-etäisyys
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal ja muut nimet ovat omistajiensa tavaramerkkejä. OpenECraft on itsenäinen projekti.
+Earth electrode resistance RA (Ω)	Maadoituselektrodin resistanssi RA (Ω)
 Edit	Muokkaa
 Editor	Muokkaaja
 Electro-fluid cross reference	Sähkö-fluidi-ristiviittaukset
@@ -150,6 +154,7 @@ Export as CSV…	Vie CSV-muodossa…
 Export as JSON…	Vie JSON-muodossa…
 Export failed: {}	Vienti epäonnistui: {}
 External (top)	Ulkoinen (ylhäällä)
+External loop impedance Ze (Ω)	Ulkoinen silmukkaimpedanssi Ze (Ω)
 Face	Pinta
 Failed	Epäonnistui
 Fastening	Kiinnitys
@@ -201,7 +206,11 @@ Import	Tuonti
 Incomplete	Keskeneräinen
 Input	Tulo
 Inspection and test report	Tarkastus- ja testauspöytäkirja
+Inspector	Tarkastaja
+Installation site	Asennuspaikka
+Installer	Asentaja
 Insulation resistance (MΩ)	Eristysresistanssi (MΩ)
+Insulation test voltage (V)	Eristysresistanssin mittausjännite (V)
 Integration	Integraatio
 Internal (bottom)	Sisäinen (alhaalla)
 Interruption point	Katkospiste
@@ -245,6 +254,7 @@ Machine	Kone
 Main	Pää
 Main earthing busbar (device) it is connected to; empty: none	Päämaadoituskisko (laite), johon se on liitetty; tyhjä: ei mitään
 Main earthing terminal	Päämaadoituskisko
+Main equipotential bonding (Ω)	Pääpotentiaalintasaus (Ω)
 Main switch	Pääkytkin
 Manufacturer	Valmistaja
 Manufacturers	Valmistajat
@@ -280,6 +290,7 @@ Net	Verkko
 Never	Ei koskaan
 New group	Uusi ryhmä
 New name	Uusi nimi
+Next inspection	Seuraava tarkastus
 Next page	Seuraava sivu
 No	Ei
 No Vault item matches a part of the project	Mikään Vault-nimike ei vastaa projektin osaa
@@ -313,6 +324,7 @@ Not a macro file: {}	Ei makrotiedosto: {}
 Not a symbol id: {}	Ei symbolin tunnus: {}
 Not a title block file: {}	Ei nimiötiedosto: {}
 Not a valid rule set file: {}	Ei kelvollinen sääntökokoelmatiedosto: {}
+Not applicable	Ei sovellu
 Not in the schematic	Ei piirikaaviossa
 Not passed	Hylätty
 Not tested	Ei testattu
@@ -409,6 +421,7 @@ Project name	Projektin nimi
 Project properties	Projektin ominaisuudet
 Properties	Ominaisuudet
 Property	Ominaisuus
+Prospective fault current at the origin (kA)	Odotettavissa oleva vikavirta liittymiskohdassa (kA)
 Protection	Suojaus
 Protective conductor (Ω)	Suojajohdin (Ω)
 Protective device	Suojalaite
@@ -418,12 +431,14 @@ Quantity unit	Määräyksikkö
 RCD	Vikavirtasuoja
 RCD trip current (mA)	Vikavirtasuojan laukaisuvirta (mA)
 RCD trip time (ms)	Vikavirtasuojan laukaisuaika (ms)
+RCD trip time at 5 × IΔn (ms)	Vikavirtasuojan laukaisuaika 5 × IΔn:llä (ms)
 Rack	Teline
 Rail	Kisko
 Range	Alue
 Rated current	Mitoitusvirta
 Rated power	Mitoitusteho
 Rear wall	Takaseinä
+Reason for the test	Testauksen syy
 Rectangle	Suorakulmio
 Rectangular	Suorakulmainen
 Redo	Tee uudelleen
@@ -513,8 +528,10 @@ Structure	Rakenne
 Subproject name	Aliprojektin nimi
 Subsystem	Osajärjestelmä
 Successor	Seuraaja
+Summary	Yhteenveto
 Supplier	Toimittaja
 Supply	Syöttö
+Supply system	Syöttöverkko
 Symbol	Symboli
 Symbol key	Symbolin avain
 Symbolic address	Symbolinen osoite
@@ -530,6 +547,7 @@ Terminal strips	Riviliitinrimat
 Terminal type	Riviliittimen tyyppi
 Terminals	Riviliittimet
 Test instrument	Mittalaite
+Test instruments (IEC 61557)	Mittalaitteet (IEC 61557)
 Tested by	Testaaja
 Text	Teksti
 Text to find	Etsittävä teksti
@@ -558,6 +576,7 @@ Unknown column: {}	Tuntematon sarake: {}
 Unknown connector: {}	Tuntematon konnektori: {}
 Unknown enclosure system: {}	Tuntematon kotelojärjestelmä: {}
 Unknown face: {}	Tuntematon pinta: {}
+Unknown field: {}	Tuntematon kenttä: {}
 Unknown format: {}	Tuntematon muoto: {}
 Unknown function definition: {}	Tuntematon toimintomäärittely: {}
 Unknown language: {}	Tuntematon kieli: {}
@@ -576,6 +595,7 @@ User	Käyttäjä
 User name	Käyttäjänimi
 Users	Käyttäjät
 VAT ID	ALV-tunniste
+Value	Arvo
 Version	Versio
 Viewer	Katselija
 Voltage	Jännite

@@ -43,6 +43,7 @@ Actuated by	Acționat de
 Actuation	Acționare
 Actuator type	Tip de element de acționare
 Additional page description	Descriere suplimentară a paginii
+Additional protection by RCDs of at most 30 mA where required	Protecție suplimentară prin DDR de cel mult 30 mA unde este cerută
 Address ranges of {} and {} overlap	Domeniile de adrese ale {} și {} se suprapun
 Address {} is used by {} and {}	Adresa {} este folosită de {} și {}
 Adhesive	Lipire
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Întrerupător automat tripolar QF (GB)
 Circuit breaker 3-pole QF (GOST)	Întrerupător automat tripolar QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Întrerupător automat tripolar, termomagnetic
 Circuit breaker 4-pole	Întrerupător automat tetrapolar
+Circuits, protective devices, switches and terminals labelled	Circuite, dispozitive de protecție, întrerupătoare și borne marcate
 Circular milling	Frezare circulară
 Clip / snap-on	Clemă / fixare prin clic
 Cloud	Nor
@@ -241,6 +243,7 @@ Compressed air supply	Alimentare cu aer comprimat
 Compressor	Compresor
 Condition '{}' needs OPTION=value	Condiția '{}' necesită OPTION=valoare
 Conductor class	Clasa conductorului
+Conductors selected for current-carrying capacity and voltage drop	Conductoare alese după curentul admisibil și căderea de tensiune
 Conduit	Tub de protecție
 Connected	Ocupat
 Connection definition point on page {} is not applied to its connection	Punctul de definire a conexiunii de pe pagina {} nu este aplicat conexiunii sale
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Simboluri de conexiune
 Connection type	Tip de conexiune
 Connection {} has contradicting connection definition points	Conexiunea {} are puncte de definire a conexiunii contradictorii
+Connections of the conductors	Conexiunile conductoarelor
 Connector pin-outs and flat cables	Configurația pinilor conectorilor și cabluri plate
 Connector pin-outs: mating faces and pin tables (SVG)	Configurația pinilor conectorilor: fețe de cuplare și tabele de pini (SVG)
 Contact material	Material de contact
@@ -374,6 +378,7 @@ Devices without power loss	Dispozitive fără putere disipată
 Dew point (°C)	Punct de rouă (°C)
 Diagnostic coverage (DC)	Acoperire de diagnosticare (DC)
 Diagnostics	Diagnosticare
+Diagrams, warning notices and similar information present	Scheme, avertizări și informații similare prezente
 Diameter (mm)	Diametru (mm)
 Different wire numbers in one connection: {}	Numere de conductor diferite într-o conexiune: {}
 Digital input / output module	Modul de intrări / ieșiri digitale
@@ -481,6 +486,8 @@ Energy limitation class	Clasă de limitare a energiei
 Engineered	Proiectat
 Engineering unit	Unitate fizică
 Environment	Mediu
+Equipment accessible for operation, inspection and maintenance	Echipamente accesibile pentru exploatare, verificare și întreținere
+Equipment and protective measures suit the external influences	Echipamente și măsuri de protecție potrivite influențelor externe
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Conductoarele de împământare a echipamentelor trebuie să fie verzi (NFPA 79, 13.2.2)
 Excel workbook	Registru de lucru Excel
 Exhaust {} open to the atmosphere (no silencer)	Evacuarea {} este deschisă spre atmosferă (fără amortizor de zgomot)
@@ -516,6 +523,7 @@ File name written into the file header	Numele fișierului scris în antetul fiș
 Fill level (%)	Grad de umplere (%)
 Filter fan with outlet filter	Ventilator cu filtru și filtru de evacuare
 Filter rating	Finețe de filtrare
+Fire barriers and protection against thermal effects	Bariere antifoc și protecție împotriva efectelor termice
 Firmware version	Versiune firmware
 First end only	Doar primul capăt
 Fitting	Racord
@@ -707,12 +715,13 @@ Input voltage	Tensiune de intrare
 Inputs from	Intrări de la
 Inrush current	Curent de pornire
 Inside (°C)	Interior (°C)
+Inspection and test report: data	Raport de verificare: date
+Inspection and test report: summary	Raport de verificare: rezumat
 Installation altitude	Altitudine de instalare
 Installation date	Data instalării
 Installation devices	Aparataj de instalații
 Installation method	Mod de pozare
 Installation plan (IEC 60617-11)	Plan de instalații (IEC 60617-11)
-Installation site	Amplasament
 Installation site (++)	Amplasament (++)
 Installation site and location	Amplasament și loc de montare
 Installation site of the page	Amplasamentul paginii
@@ -735,6 +744,7 @@ Invalid length {}	Lungime nevalidă {}
 Invalid property key: {}	Cheie de proprietate nevalidă: {}
 Inverter / charger	Invertor / încărcător
 Inverter DC/AC	Invertor c.c./c.a.
+Isolating and switching devices in the right places	Dispozitive de separare și comutare în locurile potrivite
 Item	Element
 Item ID	ID articol
 Items	Elemente
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	Contact ND, închidere temporizată (NFPA)
 Nailboard {}	Planșetă {}
 Network (m)	Rețea (m)
 Neutral (N)	Neutru (N)
+Neutral and protective conductors identified	Conductoare de nul și de protecție marcate
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Conductoarele neutre trebuie să fie albastru deschis (IEC 60204-1, 13.2.3)
-Next inspection	Următoarea inspecție
 Nibbling	Nibelare
 No connection {}	Nicio conexiune {}
 No devices to add to the single-line diagram	Niciun dispozitiv de adăugat în schema monofilară
@@ -977,6 +987,7 @@ Number of sheets	Număr de foi
 Number of switch positions	Număr de poziții de comutare
 Number of symbols	Număr de simboluri
 Numbers (1, 2, 3)	Numere (1, 2, 3)
+OK, Not OK or Not applicable	OK, Neconform sau Nu se aplică
 Ohmmeter	Ohmmetru
 Oil resistant	Rezistent la ulei
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	O pagină de schemă cu potențialele +24V / 0V, butoane, un comutator selector, lămpi și o siguranță; piese și lista de materiale.
@@ -1223,14 +1234,17 @@ Project revision	Revizia proiectului
 Project symbols	Simbolurile proiectului
 Proof test interval	Interval de testare periodică
 Prospective short-circuit current	Curent de scurtcircuit prezumat
+Protection against electric shock: the measures and their components	Protecție împotriva șocului electric: măsurile și componentele lor
 Protection class	Clasă de protecție
 Protection setting	Reglaj de protecție
+Protective and monitoring devices selected and set correctly	Dispozitive de protecție și supraveghere alese și reglate corect
 Protective conductor {} with wire colour {} (must be GNYE)	Conductor de protecție {} cu culoarea {} (trebuie să fie GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Conductoarele de protecție trebuie să fie verde-galben (IEC 60204-1, 13.2.2)
 Protective devices	Dispozitive de protecție
 Protective earth	Împământare de protecție
 Protective earth (PE)	Conductor de protecție (PE)
 Protective hose	Tub flexibil de protecție
+Protective, earthing and bonding conductors present and adequate	Conductoare de protecție, de împământare și de echipotențializare prezente și adecvate
 Proximity sensor	Senzor de proximitate
 Proximity sensor NO	Senzor de proximitate ND
 Proximity switch NO (NFPA)	Comutator de proximitate ND (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Dispozitive de semnalizare
 Signal name	Nume semnal
 Signal range	Domeniu de semnal
 Signal type	Tip de semnal
+Signed by	Semnat de
+Signed on	Semnat la
 Silencer	Amortizor de zgomot
 Single, free-standing	Individual, independent
 Single, wall mounted	Individual, montat pe perete
@@ -1518,6 +1534,7 @@ Supply voltage	Tensiune de alimentare
 Surface (m²)	Suprafață (m²)
 Surface-mounted	Aparent
 Surge protection type	Tip de protecție la supratensiune
+Surge protection where required	Protecție la supratensiuni unde este cerută
 Surge protective device	Dispozitiv de protecție la supratensiune
 Surge suppressor	Limitator de supratensiune
 Switch, 1-pole (installation)	Întrerupător, monopolar (instalații)
@@ -1568,6 +1585,7 @@ Termination (to)	Terminație (la)
 Text file	Fișier text
 The DXF file contains nothing that can be imported	Fișierul DXF nu conține nimic ce poate fi importat
 The PDF has no pages that can be read	PDF-ul nu are pagini care pot fi citite
+The answer is OK, Not OK or Not applicable, not {}	Răspunsul este OK, Neconform sau Nu se aplică, nu {}
 The archive contains no project	Arhiva nu conține niciun proiect
 The archive has no manifest	Arhiva nu are manifest
 The archive is damaged	Arhiva este deteriorată
@@ -1937,6 +1955,7 @@ yellow	galben
 {} lies outside page {}	{} se află în afara paginii {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} marcaje de montaj aparțin unor elemente care nu mai există
+{} of {} passed	{} din {} admise
 {} option assignments of deleted objects removed	{} atribuiri de opțiuni ale obiectelor șterse eliminate
 {} placed properties converted to property keys	{} proprietăți plasate convertite în chei de proprietate
 {} planned devices are not in the schematic yet	{} dispozitive planificate nu sunt încă în schemă

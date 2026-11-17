@@ -60,12 +60,14 @@ Channel	Kanał
 Characteristic	Charakterystyka
 Check settings	Ustawienia kontroli
 Checks	Kontrole
+Circuits	Obwody
 Class	Klasa
 Classes	Klasy
 Clear filters	Wyczyść filtry
 Clearance bottom	Odstęp dolny
 Clearance top	Odstęp górny
 Clearances	Odstępy
+Client	Zleceniodawca
 Close	Zamknij
 Coding: {}	Kodowanie: {}
 Coil voltage	Napięcie cewki
@@ -85,6 +87,7 @@ Connection point	Punkt połączenia
 Connection points	Punkty połączeń
 Connections	Połączenia
 Connector	Złącze
+Contact voltage UB (V)	Napięcie dotykowe UB (V)
 Controller	Sterownik
 Cooling	Chłodzenie
 Core	Żyła
@@ -136,6 +139,7 @@ Drag to turn the model	Przeciągnij, aby obrócić model
 Drawings	Rysunki
 EMC clearance	Odstęp EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal i inne nazwy są znakami towarowymi ich właścicieli. OpenECraft jest niezależnym projektem.
+Earth electrode resistance RA (Ω)	Rezystancja uziemienia RA (Ω)
 Edit	Edycja
 Editor	Redaktor
 Electro-fluid cross reference	Odsyłacze elektryczno-płynowe
@@ -150,6 +154,7 @@ Export as CSV…	Eksportuj jako CSV…
 Export as JSON…	Eksportuj jako JSON…
 Export failed: {}	Eksport nie powiódł się: {}
 External (top)	Zewnętrzny (góra)
+External loop impedance Ze (Ω)	Zewnętrzna impedancja pętli Ze (Ω)
 Face	Powierzchnia
 Failed	Niepowodzenie
 Fastening	Mocowanie
@@ -201,7 +206,11 @@ Import	Import
 Incomplete	Niekompletne
 Input	Wejście
 Inspection and test report	Protokół z badań odbiorczych
+Inspector	Sprawdzający
+Installation site	Miejsce instalacji
+Installer	Instalator
 Insulation resistance (MΩ)	Rezystancja izolacji (MΩ)
+Insulation test voltage (V)	Napięcie probiercze izolacji (V)
 Integration	Integracja
 Internal (bottom)	Wewnętrzny (dół)
 Interruption point	Punkt przerwania
@@ -245,6 +254,7 @@ Machine	Maszyna
 Main	Główny
 Main earthing busbar (device) it is connected to; empty: none	Główna szyna uziemiająca (urządzenie), do której jest podłączony; puste: brak
 Main earthing terminal	Główna szyna uziemiająca
+Main equipotential bonding (Ω)	Połączenia wyrównawcze główne (Ω)
 Main switch	Wyłącznik główny
 Manufacturer	Producent
 Manufacturers	Producenci
@@ -280,6 +290,7 @@ Net	Sieć
 Never	Nigdy
 New group	Nowa grupa
 New name	Nowa nazwa
+Next inspection	Następna kontrola
 Next page	Następna strona
 No	Nie
 No Vault item matches a part of the project	Żaden element Vault nie pasuje do artykułu projektu
@@ -313,6 +324,7 @@ Not a macro file: {}	To nie jest plik makr: {}
 Not a symbol id: {}	To nie jest identyfikator symbolu: {}
 Not a title block file: {}	To nie jest plik tabliczek rysunkowych: {}
 Not a valid rule set file: {}	To nie jest prawidłowy plik zestawu reguł: {}
+Not applicable	Nie dotyczy
 Not in the schematic	Nie na schemacie
 Not passed	Negatywny
 Not tested	Nie badano
@@ -409,6 +421,7 @@ Project name	Nazwa projektu
 Project properties	Właściwości projektu
 Properties	Właściwości
 Property	Właściwość
+Prospective fault current at the origin (kA)	Spodziewany prąd zwarciowy w złączu (kA)
 Protection	Ochrona
 Protective conductor (Ω)	Przewód ochronny (Ω)
 Protective device	Urządzenie zabezpieczające
@@ -418,12 +431,14 @@ Quantity unit	Jednostka ilości
 RCD	RCD
 RCD trip current (mA)	Prąd zadziałania RCD (mA)
 RCD trip time (ms)	Czas zadziałania RCD (ms)
+RCD trip time at 5 × IΔn (ms)	Czas zadziałania RCD przy 5 × IΔn (ms)
 Rack	Kaseta
 Rail	Szyna
 Range	Zakres
 Rated current	Prąd znamionowy
 Rated power	Moc znamionowa
 Rear wall	Ściana tylna
+Reason for the test	Powód badania
 Rectangle	Prostokąt
 Rectangular	Prostokątny
 Redo	Ponów
@@ -513,8 +528,10 @@ Structure	Struktura
 Subproject name	Nazwa podprojektu
 Subsystem	Podsystem
 Successor	Następca
+Summary	Podsumowanie
 Supplier	Dostawca
 Supply	Zasilanie mediami
+Supply system	Sieć zasilająca
 Symbol	Symbol
 Symbol key	Klucz symbolu
 Symbolic address	Adres symboliczny
@@ -530,6 +547,7 @@ Terminal strips	Listwy zaciskowe
 Terminal type	Typ zacisku
 Terminals	Zaciski
 Test instrument	Przyrząd pomiarowy
+Test instruments (IEC 61557)	Przyrządy pomiarowe (IEC 61557)
 Tested by	Badał
 Text	Tekst
 Text to find	Tekst do znalezienia
@@ -558,6 +576,7 @@ Unknown column: {}	Nieznana kolumna: {}
 Unknown connector: {}	Nieznany konektor: {}
 Unknown enclosure system: {}	Nieznany system obudów: {}
 Unknown face: {}	Nieznana ściana: {}
+Unknown field: {}	Nieznane pole: {}
 Unknown format: {}	Nieznany format: {}
 Unknown function definition: {}	Nieznana definicja funkcji: {}
 Unknown language: {}	Nieznany język: {}
@@ -576,6 +595,7 @@ User	Użytkownik
 User name	Nazwa użytkownika
 Users	Użytkownicy
 VAT ID	NIP UE
+Value	Wartość
 Version	Wersja
 Viewer	Przeglądający
 Voltage	Napięcie

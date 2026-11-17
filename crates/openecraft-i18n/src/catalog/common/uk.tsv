@@ -60,12 +60,14 @@ Channel	Канал
 Characteristic	Характеристика
 Check settings	Параметри перевірки
 Checks	Перевірки
+Circuits	Кола
 Class	Клас
 Classes	Класи
 Clear filters	Скинути фільтри
 Clearance bottom	Відстань знизу
 Clearance top	Відстань згори
 Clearances	Відстані
+Client	Замовник
 Close	Закрити
 Coding: {}	Кодування: {}
 Coil voltage	Напруга котушки
@@ -85,6 +87,7 @@ Connection point	Точка підключення
 Connection points	Точки підключення
 Connections	З’єднання
 Connector	Роз’єм
+Contact voltage UB (V)	Напруга дотику UB (В)
 Controller	Контролер
 Cooling	Охолодження
 Core	Жила
@@ -136,6 +139,7 @@ Drag to turn the model	Перетягніть, щоб повернути мод�
 Drawings	Креслення
 EMC clearance	Відстань ЕМС
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal та інші назви є торговельними марками їхніх власників. OpenECraft — незалежний проєкт.
+Earth electrode resistance RA (Ω)	Опір заземлювача RA (Ом)
 Edit	Редагувати
 Editor	Редактор
 Electro-fluid cross reference	Електро-гідропневматичні перехресні посилання
@@ -150,6 +154,7 @@ Export as CSV…	Експортувати як CSV…
 Export as JSON…	Експортувати як JSON…
 Export failed: {}	Помилка експорту: {}
 External (top)	Зовнішній (зверху)
+External loop impedance Ze (Ω)	Зовнішній опір петлі Ze (Ом)
 Face	Грань
 Failed	Збій
 Fastening	Кріплення
@@ -201,7 +206,11 @@ Import	Імпорт
 Incomplete	Не завершено
 Input	Вхід
 Inspection and test report	Протокол огляду та випробувань
+Inspector	Перевіряючий
+Installation site	Місце встановлення
+Installer	Монтажна організація
 Insulation resistance (MΩ)	Опір ізоляції (МОм)
+Insulation test voltage (V)	Випробувальна напруга ізоляції (В)
 Integration	Інтеграція
 Internal (bottom)	Внутрішній (знизу)
 Interruption point	Точка розриву
@@ -245,6 +254,7 @@ Machine	Машина
 Main	Головн.
 Main earthing busbar (device) it is connected to; empty: none	Головна заземлювальна шина (пристрій), до якої він під'єднаний; порожньо: немає
 Main earthing terminal	Головна заземлювальна шина
+Main equipotential bonding (Ω)	Основне зрівнювання потенціалів (Ом)
 Main switch	Головний вимикач
 Manufacturer	Виробник
 Manufacturers	Виробники
@@ -280,6 +290,7 @@ Net	Мережа
 Never	Ніколи
 New group	Нова група
 New name	Нова назва
+Next inspection	Наступна перевірка
 Next page	Наступна сторінка
 No	Ні
 No Vault item matches a part of the project	Жоден елемент Vault не відповідає виробу проєкту
@@ -313,6 +324,7 @@ Not a macro file: {}	Не файл макросів: {}
 Not a symbol id: {}	Не є ідентифікатором символу: {}
 Not a title block file: {}	Не файл основних написів: {}
 Not a valid rule set file: {}	Недійсний файл набору правил: {}
+Not applicable	Не застосовується
 Not in the schematic	Немає на схемі
 Not passed	Не пройдено
 Not tested	Не перевірено
@@ -409,6 +421,7 @@ Project name	Назва проєкту
 Project properties	Властивості проєкту
 Properties	Властивості
 Property	Властивість
+Prospective fault current at the origin (kA)	Очікуваний струм КЗ на вводі (кА)
 Protection	Захист
 Protective conductor (Ω)	Захисний провідник (Ом)
 Protective device	Захисний пристрій
@@ -418,12 +431,14 @@ Quantity unit	Одиниця кількості
 RCD	ПЗВ
 RCD trip current (mA)	Струм спрацювання ПЗВ (мА)
 RCD trip time (ms)	Час спрацювання ПЗВ (мс)
+RCD trip time at 5 × IΔn (ms)	Час спрацювання ПЗВ при 5 × IΔn (мс)
 Rack	Монтажний каркас
 Rail	Рейка
 Range	Діапазон
 Rated current	Номінальний струм
 Rated power	Номінальна потужність
 Rear wall	Задня стінка
+Reason for the test	Причина випробування
 Rectangle	Прямокутник
 Rectangular	Прямокутний
 Redo	Повторити
@@ -513,8 +528,10 @@ Structure	Структура
 Subproject name	Назва підпроєкту
 Subsystem	Підсистема
 Successor	Наступник
+Summary	Короткий опис
 Supplier	Постачальник
 Supply	Постачання
+Supply system	Мережа живлення
 Symbol	Символ
 Symbol key	Ключ символу
 Symbolic address	Символьна адреса
@@ -530,6 +547,7 @@ Terminal strips	Клемні колодки
 Terminal type	Тип клеми
 Terminals	Клеми
 Test instrument	Вимірювальний прилад
+Test instruments (IEC 61557)	Вимірювальні прилади (IEC 61557)
 Tested by	Перевірив
 Text	Текст
 Text to find	Текст для пошуку
@@ -558,6 +576,7 @@ Unknown column: {}	Невідомий стовпець: {}
 Unknown connector: {}	Невідомий конектор: {}
 Unknown enclosure system: {}	Невідома система корпусів: {}
 Unknown face: {}	Невідома грань: {}
+Unknown field: {}	Невідоме поле: {}
 Unknown format: {}	Невідомий формат: {}
 Unknown function definition: {}	Невідоме визначення функції: {}
 Unknown language: {}	Невідома мова: {}
@@ -576,6 +595,7 @@ User	Користувач
 User name	Ім’я користувача
 Users	Користувачі
 VAT ID	Номер платника ПДВ
+Value	Значення
 Version	Версія
 Viewer	Переглядач
 Voltage	Напруга

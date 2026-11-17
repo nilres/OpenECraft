@@ -43,6 +43,7 @@ Actuated by	Azionato da
 Actuation	Attuazione
 Actuator type	Tipo di attuatore
 Additional page description	Descrizione pagina aggiuntiva
+Additional protection by RCDs of at most 30 mA where required	Protezione addizionale con differenziali di al massimo 30 mA dove richiesta
 Address ranges of {} and {} overlap	Gli intervalli di indirizzi di {} e {} si sovrappongono
 Address {} is used by {} and {}	L'indirizzo {} è usato da {} e {}
 Adhesive	Adesivo
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Interruttore automatico tripolare QF (GB)
 Circuit breaker 3-pole QF (GOST)	Interruttore automatico tripolare QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Interruttore automatico tripolare, magnetotermico
 Circuit breaker 4-pole	Interruttore automatico 4 poli
+Circuits, protective devices, switches and terminals labelled	Circuiti, dispositivi di protezione, interruttori e morsetti identificati
 Circular milling	Fresatura circolare
 Clip / snap-on	Clip / a scatto
 Cloud	Nuvola
@@ -241,6 +243,7 @@ Compressed air supply	Alimentazione aria compressa
 Compressor	Compressore
 Condition '{}' needs OPTION=value	La condizione '{}' richiede OPTION=valore
 Conductor class	Classe del conduttore
+Conductors selected for current-carrying capacity and voltage drop	Conduttori scelti per portata e caduta di tensione
 Conduit	Tubo protettivo
 Connected	Collegato
 Connection definition point on page {} is not applied to its connection	Il punto di definizione collegamento a pagina {} non è applicato al suo collegamento
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Simboli di collegamento
 Connection type	Tipo di connessione
 Connection {} has contradicting connection definition points	Il collegamento {} ha punti di definizione collegamento in contraddizione
+Connections of the conductors	Connessioni dei conduttori
 Connector pin-outs and flat cables	Piedinature dei connettori e cavi piatti
 Connector pin-outs: mating faces and pin tables (SVG)	Piedinature dei connettori: facce di accoppiamento e tabelle dei pin (SVG)
 Contact material	Materiale dei contatti
@@ -374,6 +378,7 @@ Devices without power loss	Dispositivi senza potenza dissipata
 Dew point (°C)	Punto di rugiada (°C)
 Diagnostic coverage (DC)	Copertura diagnostica (DC)
 Diagnostics	Diagnostica
+Diagrams, warning notices and similar information present	Schemi, avvertenze e informazioni simili presenti
 Diameter (mm)	Diametro (mm)
 Different wire numbers in one connection: {}	Numeri conduttore diversi in un collegamento: {}
 Digital input / output module	Modulo di ingressi / uscite digitali
@@ -481,6 +486,8 @@ Energy limitation class	Classe di limitazione energetica
 Engineered	Progettato
 Engineering unit	Unità fisica
 Environment	Ambiente
+Equipment accessible for operation, inspection and maintenance	Apparecchiature accessibili per esercizio, verifica e manutenzione
+Equipment and protective measures suit the external influences	Apparecchiature e misure di protezione adatte alle influenze esterne
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	I conduttori di terra delle apparecchiature devono essere verdi (NFPA 79, 13.2.2)
 Excel workbook	Cartella di lavoro Excel
 Exhaust {} open to the atmosphere (no silencer)	Scarico {} aperto verso l'atmosfera (senza silenziatore)
@@ -516,6 +523,7 @@ File name written into the file header	Nome del file scritto nell'intestazione d
 Fill level (%)	Livello di riempimento (%)
 Filter fan with outlet filter	Ventilatore con filtro e filtro di uscita
 Filter rating	Grado di filtrazione
+Fire barriers and protection against thermal effects	Barriere tagliafuoco e protezione contro gli effetti termici
 Firmware version	Versione firmware
 First end only	Solo prima estremità
 Fitting	Raccordo
@@ -707,12 +715,13 @@ Input voltage	Tensione d'ingresso
 Inputs from	Ingressi da
 Inrush current	Corrente di spunto
 Inside (°C)	Interna (°C)
+Inspection and test report: data	Rapporto di verifica: dati
+Inspection and test report: summary	Rapporto di verifica: sintesi
 Installation altitude	Altitudine d'installazione
 Installation date	Data d'installazione
 Installation devices	Apparecchi d'installazione
 Installation method	Modalità di posa
 Installation plan (IEC 60617-11)	Schema di installazione (IEC 60617-11)
-Installation site	Sito di installazione
 Installation site (++)	Sito di installazione (++)
 Installation site and location	Sito di installazione e luogo
 Installation site of the page	Sito di installazione della pagina
@@ -735,6 +744,7 @@ Invalid length {}	Lunghezza non valida {}
 Invalid property key: {}	Chiave di proprietà non valida: {}
 Inverter / charger	Inverter / caricabatterie
 Inverter DC/AC	Inverter DC/AC
+Isolating and switching devices in the right places	Dispositivi di sezionamento e comando nei punti giusti
 Item	Elemento
 Item ID	ID elemento
 Items	Elementi
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	Contatto NA, chiusura ritardata (NFPA)
 Nailboard {}	Tavola chiodata {}
 Network (m)	Rete (m)
 Neutral (N)	Neutro (N)
+Neutral and protective conductors identified	Conduttori di neutro e di protezione identificati
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	I conduttori di neutro devono essere blu chiaro (IEC 60204-1, 13.2.3)
-Next inspection	Prossima ispezione
 Nibbling	Roditura
 No connection {}	Nessun collegamento {}
 No devices to add to the single-line diagram	Nessun dispositivo da aggiungere allo schema unifilare
@@ -977,6 +987,7 @@ Number of sheets	Numero di fogli
 Number of switch positions	Numero di posizioni di commutazione
 Number of symbols	Numero di simboli
 Numbers (1, 2, 3)	Numeri (1, 2, 3)
+OK, Not OK or Not applicable	OK, Non conforme o Non applicabile
 Ohmmeter	Ohmmetro
 Oil resistant	Resistente all'olio
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Una pagina di schema con i potenziali +24V / 0V, pulsanti, un selettore, spie e un fusibile; articoli e distinta materiali.
@@ -1223,14 +1234,17 @@ Project revision	Revisione progetto
 Project symbols	Simboli del progetto
 Proof test interval	Intervallo di prova
 Prospective short-circuit current	Corrente di cortocircuito presunta
+Protection against electric shock: the measures and their components	Protezione contro i contatti elettrici: le misure e i loro componenti
 Protection class	Classe di protezione
 Protection setting	Impostazione della protezione
+Protective and monitoring devices selected and set correctly	Dispositivi di protezione e controllo scelti e regolati correttamente
 Protective conductor {} with wire colour {} (must be GNYE)	Conduttore di protezione {} con colore {} (deve essere GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	I conduttori di protezione devono essere giallo-verdi (IEC 60204-1, 13.2.2)
 Protective devices	Dispositivi di protezione
 Protective earth	Terra di protezione
 Protective earth (PE)	Conduttore di protezione (PE)
 Protective hose	Guaina protettiva
+Protective, earthing and bonding conductors present and adequate	Conduttori di protezione, di terra ed equipotenziali presenti e adeguati
 Proximity sensor	Sensore di prossimità
 Proximity sensor NO	Sensore di prossimità NA
 Proximity switch NO (NFPA)	Interruttore di prossimità NA (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Dispositivi di segnalazione
 Signal name	Nome del segnale
 Signal range	Campo del segnale
 Signal type	Tipo di segnale
+Signed by	Firmato da
+Signed on	Firmato il
 Silencer	Silenziatore
 Single, free-standing	Singolo, autoportante
 Single, wall mounted	Singolo, montaggio a parete
@@ -1518,6 +1534,7 @@ Supply voltage	Tensione di alimentazione
 Surface (m²)	Superficie (m²)
 Surface-mounted	A vista
 Surge protection type	Tipo di protezione da sovratensioni
+Surge protection where required	Protezione contro le sovratensioni dove richiesta
 Surge protective device	Limitatore di sovratensione
 Surge suppressor	Limitatore di sovratensione
 Switch, 1-pole (installation)	Interruttore unipolare (installazione)
@@ -1568,6 +1585,7 @@ Termination (to)	Terminazione (a)
 Text file	File di testo
 The DXF file contains nothing that can be imported	Il file DXF non contiene nulla che possa essere importato
 The PDF has no pages that can be read	Il PDF non ha pagine leggibili
+The answer is OK, Not OK or Not applicable, not {}	La risposta è OK, Non conforme o Non applicabile, non {}
 The archive contains no project	L'archivio non contiene alcun progetto
 The archive has no manifest	L'archivio non ha un manifest
 The archive is damaged	L'archivio è danneggiato
@@ -1937,6 +1955,7 @@ yellow	giallo
 {} lies outside page {}	{} si trova fuori dalla pagina {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} contrassegni di montaggio appartengono a elementi che non esistono più
+{} of {} passed	{} di {} superati
 {} option assignments of deleted objects removed	{} assegnazioni di opzioni di oggetti eliminati rimosse
 {} placed properties converted to property keys	{} proprietà posizionate convertite in chiavi di proprietà
 {} planned devices are not in the schematic yet	{} dispositivi pianificati non sono ancora nello schema

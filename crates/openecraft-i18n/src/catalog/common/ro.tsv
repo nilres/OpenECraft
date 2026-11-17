@@ -60,12 +60,14 @@ Channel	Canal
 Characteristic	Caracteristică
 Check settings	Setări de verificare
 Checks	Verificări
+Circuits	Circuite
 Class	Clasă
 Classes	Clase
 Clear filters	Ștergere filtre
 Clearance bottom	Distanță jos
 Clearance top	Distanță sus
 Clearances	Distanțe
+Client	Beneficiar
 Close	Închidere
 Coding: {}	Codificare: {}
 Coil voltage	Tensiunea bobinei
@@ -85,6 +87,7 @@ Connection point	Punct de conexiune
 Connection points	Puncte de conexiune
 Connections	Conexiuni
 Connector	Conector
+Contact voltage UB (V)	Tensiune de atingere UB (V)
 Controller	Controler
 Cooling	Răcire
 Core	Fir
@@ -136,6 +139,7 @@ Drag to turn the model	Trageți pentru a roti modelul
 Drawings	Desene
 EMC clearance	Distanță CEM
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal și alte denumiri sunt mărci ale proprietarilor lor. OpenECraft este un proiect independent.
+Earth electrode resistance RA (Ω)	Rezistența prizei de pământ RA (Ω)
 Edit	Editare
 Editor	Editor
 Electro-fluid cross reference	Referințe încrucișate electro-fluid
@@ -150,6 +154,7 @@ Export as CSV…	Export ca CSV…
 Export as JSON…	Export ca JSON…
 Export failed: {}	Exportul nu a reușit: {}
 External (top)	Extern (sus)
+External loop impedance Ze (Ω)	Impedanța buclei externe Ze (Ω)
 Face	Față
 Failed	Eșuat
 Fastening	Fixare
@@ -201,7 +206,11 @@ Import	Import
 Incomplete	Incomplet
 Input	Intrare
 Inspection and test report	Raport de verificare
+Inspector	Verificator
+Installation site	Amplasament
+Installer	Instalator
 Insulation resistance (MΩ)	Rezistența de izolație (MΩ)
+Insulation test voltage (V)	Tensiune de încercare a izolației (V)
 Integration	Integrare
 Internal (bottom)	Intern (jos)
 Interruption point	Punct de întrerupere
@@ -245,6 +254,7 @@ Machine	Mașină
 Main	Principal
 Main earthing busbar (device) it is connected to; empty: none	Bara principală de împământare (aparat) la care este conectată; gol: niciuna
 Main earthing terminal	Bornă principală de împământare
+Main equipotential bonding (Ω)	Legătură de echipotențializare principală (Ω)
 Main switch	Întrerupător principal
 Manufacturer	Producător
 Manufacturers	Producători
@@ -280,6 +290,7 @@ Net	Rețea
 Never	Niciodată
 New group	Grup nou
 New name	Nume nou
+Next inspection	Următoarea inspecție
 Next page	Pagina următoare
 No	Nu
 No Vault item matches a part of the project	Niciun element Vault nu corespunde unui articol al proiectului
@@ -313,6 +324,7 @@ Not a macro file: {}	Nu este un fișier de macro-uri: {}
 Not a symbol id: {}	Nu este un ID de simbol: {}
 Not a title block file: {}	Nu este un fișier de cartușe: {}
 Not a valid rule set file: {}	Nu este un fișier valid de set de reguli: {}
+Not applicable	Nu se aplică
 Not in the schematic	Nu este în schemă
 Not passed	Respins
 Not tested	Neverificat
@@ -409,6 +421,7 @@ Project name	Nume proiect
 Project properties	Proprietăți proiect
 Properties	Proprietăți
 Property	Proprietate
+Prospective fault current at the origin (kA)	Curent de defect prezumat la origine (kA)
 Protection	Protecție
 Protective conductor (Ω)	Conductor de protecție (Ω)
 Protective device	Dispozitiv de protecție
@@ -418,12 +431,14 @@ Quantity unit	Unitate de cantitate
 RCD	DDR
 RCD trip current (mA)	Curent de declanșare DDR (mA)
 RCD trip time (ms)	Timp de declanșare DDR (ms)
+RCD trip time at 5 × IΔn (ms)	Timp de declanșare DDR la 5 × IΔn (ms)
 Rack	Rack
 Rail	Șină
 Range	Domeniu
 Rated current	Curent nominal
 Rated power	Putere nominală
 Rear wall	Perete din spate
+Reason for the test	Motivul verificării
 Rectangle	Dreptunghi
 Rectangular	Dreptunghiular
 Redo	Refacere
@@ -513,8 +528,10 @@ Structure	Structură
 Subproject name	Nume subproiect
 Subsystem	Subsistem
 Successor	Succesor
+Summary	Rezumat
 Supplier	Furnizor
 Supply	Alimentare
+Supply system	Rețea de alimentare
 Symbol	Simbol
 Symbol key	Cheie simbol
 Symbolic address	Adresă simbolică
@@ -530,6 +547,7 @@ Terminal strips	Șiruri de borne
 Terminal type	Tip de bornă
 Terminals	Borne
 Test instrument	Aparat de măsură
+Test instruments (IEC 61557)	Aparate de măsură (IEC 61557)
 Tested by	Verificat de
 Text	Text
 Text to find	Text de căutat
@@ -558,6 +576,7 @@ Unknown column: {}	Coloană necunoscută: {}
 Unknown connector: {}	Conector necunoscut: {}
 Unknown enclosure system: {}	Sistem de carcase necunoscut: {}
 Unknown face: {}	Față necunoscută: {}
+Unknown field: {}	Câmp necunoscut: {}
 Unknown format: {}	Format necunoscut: {}
 Unknown function definition: {}	Definiție de funcție necunoscută: {}
 Unknown language: {}	Limbă necunoscută: {}
@@ -576,6 +595,7 @@ User	Utilizator
 User name	Nume de utilizator
 Users	Utilizatori
 VAT ID	Cod de TVA
+Value	Valoare
 Version	Versiune
 Viewer	Vizualizator
 Voltage	Tensiune

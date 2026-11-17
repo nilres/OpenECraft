@@ -43,6 +43,7 @@ Actuated by	Tahrik eden
 Actuation	Tahrik
 Actuator type	Tahrik elemanı tipi
 Additional page description	Ek sayfa açıklaması
+Additional protection by RCDs of at most 30 mA where required	Gerekli yerlerde en fazla 30 mA kaçak akım rölesiyle ek koruma
 Address ranges of {} and {} overlap	{} ve {} adres aralıkları çakışıyor
 Address {} is used by {} and {}	Adres {}, {} ve {} tarafından kullanılıyor
 Adhesive	Yapıştırma
@@ -220,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Devre kesici 3 kutuplu QF (GB)
 Circuit breaker 3-pole QF (GOST)	Devre kesici 3 kutuplu QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Devre kesici 3 kutuplu, termik-manyetik
 Circuit breaker 4-pole	Devre kesici 4 kutuplu
+Circuits, protective devices, switches and terminals labelled	Devreler, koruma cihazları, anahtarlar ve klemensler etiketli
 Circular milling	Dairesel frezeleme
 Clip / snap-on	Klips / geçmeli
 Cloud	Bulut
@@ -241,6 +243,7 @@ Compressed air supply	Basınçlı hava beslemesi
 Compressor	Kompresör
 Condition '{}' needs OPTION=value	'{}' koşulu SEÇENEK=değer gerektirir
 Conductor class	İletken sınıfı
+Conductors selected for current-carrying capacity and voltage drop	İletkenler akım taşıma kapasitesi ve gerilim düşümüne göre seçilmiş
 Conduit	Tesisat borusu
 Connected	Bağlı
 Connection definition point on page {} is not applied to its connection	{} sayfasındaki bağlantı tanım noktası bağlantısına uygulanmamış
@@ -254,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Bağlantı sembolleri
 Connection type	Bağlantı tipi
 Connection {} has contradicting connection definition points	{} bağlantısında çelişen bağlantı tanım noktaları var
+Connections of the conductors	İletken bağlantıları
 Connector pin-outs and flat cables	Konnektör pin dizilimleri ve yassı kablolar
 Connector pin-outs: mating faces and pin tables (SVG)	Konnektör pin dizilimleri: eşleşme yüzleri ve pin tabloları (SVG)
 Contact material	Kontak malzemesi
@@ -374,6 +378,7 @@ Devices without power loss	Güç kaybı olmayan cihazlar
 Dew point (°C)	Çiğ noktası (°C)
 Diagnostic coverage (DC)	Teşhis kapsamı (DC)
 Diagnostics	Teşhis
+Diagrams, warning notices and similar information present	Şemalar, uyarı notları ve benzeri bilgiler mevcut
 Diameter (mm)	Çap (mm)
 Different wire numbers in one connection: {}	Bir bağlantıda farklı tel numaraları: {}
 Digital input / output module	Dijital giriş / çıkış modülü
@@ -481,6 +486,8 @@ Energy limitation class	Enerji sınırlama sınıfı
 Engineered	Projelendirildi
 Engineering unit	Fiziksel birim
 Environment	Ortam
+Equipment accessible for operation, inspection and maintenance	Ekipman işletme, muayene ve bakım için erişilebilir
+Equipment and protective measures suit the external influences	Ekipman ve koruma önlemleri dış etkilere uygun
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Ekipman topraklama iletkenleri yeşil olmalıdır (NFPA 79, 13.2.2)
 Excel workbook	Excel çalışma kitabı
 Exhaust {} open to the atmosphere (no silencer)	Egzoz {} atmosfere açık (susturucu yok)
@@ -516,6 +523,7 @@ File name written into the file header	Dosya başlığına yazılan dosya adı
 Fill level (%)	Doluluk oranı (%)
 Filter fan with outlet filter	Çıkış filtreli filtreli fan
 Filter rating	Filtre inceliği
+Fire barriers and protection against thermal effects	Yangın bariyerleri ve termal etkilere karşı koruma
 Firmware version	Donanım yazılımı sürümü
 First end only	Yalnızca ilk uç
 Fitting	Rakor
@@ -707,12 +715,13 @@ Input voltage	Giriş gerilimi
 Inputs from	Girişler şuradan
 Inrush current	Kalkış akımı
 Inside (°C)	İç (°C)
+Inspection and test report: data	Muayene ve test raporu: veriler
+Inspection and test report: summary	Muayene ve test raporu: özet
 Installation altitude	Kurulum yüksekliği
 Installation date	Montaj tarihi
 Installation devices	Tesisat cihazları
 Installation method	Döşeme yöntemi
 Installation plan (IEC 60617-11)	Tesisat planı (IEC 60617-11)
-Installation site	Kurulum yeri
 Installation site (++)	Kurulum yeri (++)
 Installation site and location	Kurulum yeri ve konum
 Installation site of the page	Sayfanın kurulum yeri
@@ -735,6 +744,7 @@ Invalid length {}	Geçersiz uzunluk {}
 Invalid property key: {}	Geçersiz özellik anahtarı: {}
 Inverter / charger	İnvertör / şarj cihazı
 Inverter DC/AC	İnvertör DC/AC
+Isolating and switching devices in the right places	Ayırma ve anahtarlama cihazları doğru yerlerde
 Item	Öğe
 Item ID	Öğe kimliği
 Items	Öğeler
@@ -921,8 +931,8 @@ NO contact, timed closing (NFPA)	NA kontak, gecikmeli kapanan (NFPA)
 Nailboard {}	Çivili tahta {}
 Network (m)	Ağ (m)
 Neutral (N)	Nötr (N)
+Neutral and protective conductors identified	Nötr ve koruma iletkenleri işaretli
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Nötr iletkenler açık mavi olmalıdır (IEC 60204-1, 13.2.3)
-Next inspection	Sonraki muayene
 Nibbling	Nibbling
 No connection {}	{} bağlantısı yok
 No devices to add to the single-line diagram	Tek hat şemasına eklenecek cihaz yok
@@ -977,6 +987,7 @@ Number of sheets	Pafta sayısı
 Number of switch positions	Şalter konumu sayısı
 Number of symbols	Sembol sayısı
 Numbers (1, 2, 3)	Sayılar (1, 2, 3)
+OK, Not OK or Not applicable	OK, Not OK veya Uygulanamaz
 Ohmmeter	Ohmmetre
 Oil resistant	Yağa dayanıklı
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V potansiyelleri, butonlar, bir seçici anahtar, lambalar ve bir sigorta içeren tek şema sayfası; parçalar ve malzeme listesi.
@@ -1223,14 +1234,17 @@ Project revision	Proje revizyonu
 Project symbols	Proje sembolleri
 Proof test interval	Periyodik test aralığı
 Prospective short-circuit current	Beklenen kısa devre akımı
+Protection against electric shock: the measures and their components	Elektrik çarpmasına karşı koruma: önlemler ve bileşenleri
 Protection class	Koruma sınıfı
 Protection setting	Koruma ayarı
+Protective and monitoring devices selected and set correctly	Koruma ve izleme cihazları doğru seçilmiş ve ayarlanmış
 Protective conductor {} with wire colour {} (must be GNYE)	{} koruma iletkeninin tel rengi {} (GNYE olmalıdır)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Koruma iletkenleri yeşil-sarı olmalıdır (IEC 60204-1, 13.2.2)
 Protective devices	Koruma cihazları
 Protective earth	Koruma topraklaması
 Protective earth (PE)	Koruma iletkeni (PE)
 Protective hose	Koruma hortumu
+Protective, earthing and bonding conductors present and adequate	Koruma, topraklama ve kuşaklama iletkenleri mevcut ve yeterli
 Proximity sensor	Yaklaşım sensörü
 Proximity sensor NO	Yaklaşım sensörü NA
 Proximity switch NO (NFPA)	Yaklaşım şalteri NA (NFPA)
@@ -1439,6 +1453,8 @@ Signal devices	Sinyal cihazları
 Signal name	Sinyal adı
 Signal range	Sinyal aralığı
 Signal type	Sinyal türü
+Signed by	İmzalayan
+Signed on	İmza tarihi
 Silencer	Susturucu
 Single, free-standing	Tekli, serbest duran
 Single, wall mounted	Tekli, duvara monte
@@ -1518,6 +1534,7 @@ Supply voltage	Besleme gerilimi
 Surface (m²)	Yüzey (m²)
 Surface-mounted	Sıva üstü
 Surge protection type	Aşırı gerilim koruma tipi
+Surge protection where required	Gerekli yerlerde aşırı gerilim koruması
 Surge protective device	Aşırı gerilim koruma cihazı
 Surge suppressor	Aşırı gerilim sınırlayıcı
 Switch, 1-pole (installation)	Anahtar, tek kutuplu (tesisat)
@@ -1568,6 +1585,7 @@ Termination (to)	Sonlandırma (bitiş)
 Text file	Metin dosyası
 The DXF file contains nothing that can be imported	DXF dosyası içe aktarılabilecek bir şey içermiyor
 The PDF has no pages that can be read	PDF'te okunabilir sayfa yok
+The answer is OK, Not OK or Not applicable, not {}	Yanıt OK, Not OK veya Uygulanamaz olmalı, {} değil
 The archive contains no project	Arşiv proje içermiyor
 The archive has no manifest	Arşivin manifestosu yok
 The archive is damaged	Arşiv hasarlı
@@ -1937,6 +1955,7 @@ yellow	sarı
 {} lies outside page {}	{} sayfa {} dışında
 {} min {} s	{} dk {} sn
 {} mounting marks belong to items that no longer exist	{} montaj işareti artık mevcut olmayan öğelere ait
+{} of {} passed	{} / {} geçti
 {} option assignments of deleted objects removed	Silinmiş nesnelere ait {} seçenek ataması kaldırıldı
 {} placed properties converted to property keys	{} yerleştirilmiş özellik, özellik anahtarlarına dönüştürüldü
 {} planned devices are not in the schematic yet	{} planlanmış cihaz henüz şemada değil

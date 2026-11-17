@@ -778,34 +778,31 @@ fn records(rights: &[ProjectRight]) -> bool {
     [ProjectRight::Review, ProjectRight::EditPages, ProjectRight::EditProject].iter().any(|r| rights.contains(r))
 }
 
-fn inspection_sheet(viewed: &Viewed, answer: ViewAnswer) -> InspectionSheet {
-    let supply = &viewed.project().electrical.supply;
-    InspectionSheet {
-        name: answer.name,
-        revision: answer.server_revision,
-        rights: answer.rights,
-        u0: supply.u0(),
-        earthing: supply.earthing.title().into(),
-        min_insulation: inspection::MIN_INSULATION,
-        max_rcd_time: inspection::MAX_RCD_TIME,
-        circuits: viewed.inspection(),
-    }
+/// The report of a viewed project in a language (the titles of the characteristics).
+fn inspection_sheet(viewed: &Viewed, answer: ViewAnswer, lang: openecraft_i18n::Lang) -> InspectionSheet {
+    InspectionSheet { name: answer.name, revision: answer.server_revision, rights: answer.rights, report: openecraft_i18n::with_lang(lang, || viewed.inspection()) }
 }
 
-/// `GET /api/v1/projects/{name}/inspection`: the inspection and test report as saved.
-async fn inspection(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>) -> Result<Json<InspectionSheet>> {
+/// `GET /api/v1/projects/{name}/inspection?lang=de`: the inspection and test report as saved.
+async fn inspection(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Query(q): Query<TextQuery>) -> Result<Json<InspectionSheet>> {
     let (viewed, answer) = viewed(&state, &headers, name).await?;
-    Ok(Json(blocking(move || inspection_sheet(&viewed, answer)).await?))
+    let lang = q.lang();
+    Ok(Json(blocking(move || inspection_sheet(&viewed, answer, lang)).await?))
 }
 
-/// `GET /api/v1/projects/{name}/inspection.xlsx?lang=de`: the report as an Excel workbook.
+/// `GET /api/v1/projects/{name}/inspection.xlsx?lang=de`: the report as an Excel workbook
+/// (the summary and the circuits).
 async fn inspection_xlsx(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Query(q): Query<TextQuery>) -> Result<Response> {
     let (viewed, answer) = viewed(&state, &headers, name).await?;
     let lang = q.lang();
     let bytes = blocking(move || {
         openecraft_i18n::with_lang(lang, || {
-            let table = inspection::report(&viewed.inspection());
-            openecraft_core::xlsx::write(&[(openecraft_i18n::tr("Inspection and test report").to_string(), table.sheet_rows())])
+            let report = viewed.inspection();
+            let tr = openecraft_i18n::tr;
+            openecraft_core::xlsx::write(&[
+                (tr("Summary").to_string(), inspection::summary_table(&report).sheet_rows()),
+                (tr("Circuits").to_string(), inspection::circuit_table(&report.circuits).sheet_rows()),
+            ])
         })
     })
     .await?;
@@ -815,41 +812,62 @@ async fn inspection_xlsx(State(state): State<AppState>, headers: HeaderMap, Path
     Ok(([(header::CONTENT_TYPE, kind), (header::CONTENT_DISPOSITION, disposition)], bytes).into_response())
 }
 
-/// Sets the results of one circuit of the inspection in the saved project, without
-/// opening it and without a lock (sessions merge them record by record). Refused if
-/// the results of the circuit were changed since they were loaded.
-async fn save_inspection(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Json(req): Json<InspectionUpdate>) -> Result<Json<InspectionSheet>> {
+/// Sets the results of one circuit of the inspection (or, without a circuit, the data
+/// of the report and the visual inspection) in the saved project, without opening it
+/// and without a lock (sessions merge them record by record). Refused if they were
+/// changed since they were loaded.
+async fn save_inspection(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Path(name): Path<String>,
+    Query(q): Query<TextQuery>,
+    Json(req): Json<InspectionUpdate>,
+) -> Result<Json<InspectionSheet>> {
     let (before, answer) = viewed(&state, &headers, name).await?;
     let name = answer.name.clone();
     if !records(&answer.rights) {
         return Err(AppError(StatusCode::FORBIDDEN, format!("you may not enter inspection results in project '{name}'")));
     }
-    let fields = req.values.iter().map(|(k, v)| inspection::Field::from_key(k).map(|f| (f, v.clone())).ok_or_else(|| bad(format!("unknown field '{k}'")))).collect::<Result<Vec<_>>>()?;
+    let header = req.circuit.trim().is_empty();
+    let fields = if header {
+        Vec::new()
+    } else {
+        req.values.iter().map(|(k, v)| inspection::Field::from_key(k).map(|f| (f, v.clone())).ok_or_else(|| bad(format!("unknown field '{k}'")))).collect::<Result<Vec<_>>>()?
+    };
     let circuit = req.circuit.clone();
-    if !blocking(move || before.inspection().iter().any(|c| c.circuit == circuit)).await? {
+    if !header && !blocking(move || before.inspection().circuits.iter().any(|c| c.circuit == circuit)).await? {
         return Err(AppError(StatusCode::NOT_FOUND, format!("circuit '{}' not found", req.circuit)));
     }
     {
         let (mut server, caller) = server(&state, &headers)?;
         let user = caller.name(&req.user, &server.users)?;
         let entry = server.store.get(&name).ok_or_else(|| not_found(&name))?;
-        if entry.project.inspection.result(&req.circuit).map_or(0, |r| r.rev) != req.rev {
-            return Err(AppError(StatusCode::CONFLICT, format!("the results of {} were changed meanwhile: load them again", req.circuit)));
+        let stored = &entry.project.inspection;
+        let rev = if header { stored.header.rev } else { stored.result(&req.circuit).map_or(0, |r| r.rev) };
+        if rev != req.rev {
+            let what = if header { "the data of the report".to_string() } else { format!("the results of {}", req.circuit) };
+            return Err(AppError(StatusCode::CONFLICT, format!("{what} were changed meanwhile: load them again")));
         }
         let mut project = entry.project.clone();
-        for (field, value) in &fields {
-            inspection::set(&mut project, &req.circuit, *field, value).map_err(bad)?;
-        }
-        if project.inspection.result(&req.circuit).is_some_and(|r| r.tester.is_empty() && r.rev > 0) {
-            inspection::set(&mut project, &req.circuit, inspection::Field::Tester, &user).map_err(bad)?;
+        if header {
+            inspection::set_header_all(&mut project, req.values.iter().map(|(k, v)| (k.as_str(), v.as_str()))).map_err(bad)?;
+        } else {
+            for (field, value) in &fields {
+                inspection::set(&mut project, &req.circuit, *field, value).map_err(bad)?;
+            }
+            if project.inspection.result(&req.circuit).is_some_and(|r| r.tester.is_empty() && r.rev > 0) {
+                inspection::set(&mut project, &req.circuit, inspection::Field::Tester, &user).map_err(bad)?;
+            }
         }
         if project.inspection != entry.project.inspection {
             let revision = server.store.save(&name, project, &user, openecraft_auth::unix_now())?;
-            log::info!("{user} entered inspection results of {} in {name} (revision {revision})", req.circuit);
+            let what = if header { "the inspection report data".to_string() } else { format!("inspection results of {}", req.circuit) };
+            log::info!("{user} entered {what} in {name} (revision {revision})");
         }
     }
     let (viewed, answer) = viewed(&state, &headers, name).await?;
-    Ok(Json(blocking(move || inspection_sheet(&viewed, answer)).await?))
+    let lang = q.lang();
+    Ok(Json(blocking(move || inspection_sheet(&viewed, answer, lang)).await?))
 }
 
 /// `GET /api/v1/projects/{name}/pages/{id}/svg`: a page drawn as on paper.
