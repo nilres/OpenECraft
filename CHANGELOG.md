@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Reports found by their standards:** the filter of the *Reports* pane (and of the
+  website, `list_reports` with `search`) also finds a report by the standards it
+  follows, ignoring spaces and dashes: `VDE 0100 600` or `IEC 60364-6` find the
+  inspection and test report, `ISO 13849` the safety functions. Plugins give their
+  reports search terms with `keywords`.
 - **Installation plans with circuits:** socket outlets, switches and lights (new
   generic ceiling lights, downlights and wall lights, in the schematic with the new
   symbol *Luminaire*: L, N and PE) are put into the rooms with a

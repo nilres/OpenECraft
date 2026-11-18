@@ -96,7 +96,42 @@ pub fn table(prj: &Project, an: &Analysis, kind: ReportKind) -> Table {
 
 /// The built-in reports as registry entries, in the order of the Reports menu.
 pub fn builtin() -> Vec<Report> {
-    ReportKind::ALL.into_iter().map(|k| Report { name: k.name().into(), title: Text::Borrowed(k.title_key()), run: Arc::new(move |prj, an| Ok(table(prj, an, k))) }).collect()
+    ReportKind::ALL
+        .into_iter()
+        .map(|k| Report {
+            name: k.name().into(),
+            title: Text::Borrowed(k.title_key()),
+            keywords: keywords(k).iter().map(|w| (*w).to_string()).collect(),
+            run: Arc::new(move |prj, an| Ok(table(prj, an, k))),
+        })
+        .collect()
+}
+
+/// The search terms of a built-in report besides its title: the standards it follows
+/// (with their national editions) and other names of it.
+pub fn keywords(k: ReportKind) -> &'static [&'static str] {
+    use ReportKind as K;
+    match k {
+        K::Inspection | K::InspectionSummary | K::InspectionSources => &[
+            "DIN VDE 0100-600",
+            "IEC 60364-6",
+            "HD 60364-6",
+            "ÖVE E 8101",
+            "BS 7671",
+            "Initial verification",
+            "Erstprüfung",
+            "Prüfprotokoll",
+            "Messprotokoll",
+        ],
+        K::ShortCircuit => &["IEC 60909-0", "DIN EN 60909-0", "VDE 0102", "IEC 60364-4-41", "DIN VDE 0100-410"],
+        K::Selectivity => &["Discrimination", "IEC 60364-4-43", "DIN VDE 0100-430"],
+        K::CableSizing => &["Voltage drop", "IEC 60204-1", "IEC 60364-5-52", "DIN VDE 0100-520", "DIN VDE 0298-4"],
+        K::LoadCalculation => &["Diversity factor", "IEC 61439-1", "DIN EN 61439-1"],
+        K::SafetyFunctions => &["ISO 13849-1", "DIN EN ISO 13849-1", "Performance level", "SIL"],
+        K::Verification => &["IEC 60204-1", "IEC 61439-1", "UL 508A", "NFPA 79", "ISO 13849-1"],
+        K::BillOfMaterials => &["BOM", "Parts list"],
+        _ => &[],
+    }
 }
 
 fn hose_list(prj: &Project, open: &Netlist) -> Table {

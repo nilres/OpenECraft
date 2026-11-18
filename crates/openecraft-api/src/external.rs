@@ -49,8 +49,17 @@ fn api_version() -> u32 {
 struct Description {
     commands: Vec<CommandDesc>,
     checks: Vec<Named>,
-    reports: Vec<Named>,
+    reports: Vec<ReportDesc>,
     exporters: Vec<ExporterDesc>,
+}
+
+#[derive(Deserialize)]
+struct ReportDesc {
+    name: String,
+    #[serde(default)]
+    title: String,
+    #[serde(default)]
+    keywords: Vec<String>,
 }
 
 #[derive(Deserialize)]
@@ -301,7 +310,8 @@ impl Plugin for External {
                     table.push(row, None);
                 }
                 Ok(table)
-            });
+            })
+            .keywords(r.keywords);
         }
         for e in desc.exporters {
             let (t, name) = (self.transport.clone(), e.name.clone());

@@ -55,11 +55,18 @@ impl Plugin for Spares {
         })
         .check("spares_missing", tr_const!("Spare parts"), |prj, analysis| Ok(vec![Issue::plain(Severity::Info, "nothing missing", None)]))
         .report("spares", tr_const!("Spare parts"), |prj, analysis| Ok(Table::new([tr_const!("Part")])))
+        .keywords(["IEC 60300-3-4", "Spares"])
         .exporter("spares_csv", tr_const!("Spare parts (CSV)"), "csv", |prj| Ok(String::new()));
         Ok(())
     }
 }
 ```
+
+`keywords` are further search terms of the report added last, not translated: the
+standards it follows and other names. The *Reports* pane, `list_reports` (`search`)
+and the website find a report by every word of the search in its title as shown, its
+name or one keyword, ignoring case, spaces and punctuation (`Report::matches`), so
+`VDE 0100 600` finds the inspection and test report by `DIN VDE 0100-600`.
 
 Texts given as `&'static str` are English catalog entries (`tr_const!`, see AGENTS.md)
 and are shown translated. Issues of a check carry either a finished text
@@ -114,7 +121,7 @@ project; using a separate updated CLI does not give an older editor these featur
 
 | Request | Answer |
 | --- | --- |
-| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}]}], "checks": [{"name", "title"}], "reports": [{"name", "title"}], "exporters": [{"name", "title", "extension", "params"}]}` (all lists optional, `params` of exporters too) |
+| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}]}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (all lists optional, `params` of exporters and `keywords` of reports too) |
 | `{"method": "command", "name", "params": {…}, "project": {…}}` | `{"result": <any JSON>, "project": {…}}` – `project` only if the command changed it |
 | `{"method": "check", "name", "project"}` | `{"issues": [{"severity": "error" \| "warning" \| "info", "message", "page": <page index>, "item": <item id>}]}` – `page` / `item` optional; `page` alone points at the page, a page the project does not have at nothing |
 | `{"method": "report", "name", "project"}` | `{"headers": ["…"], "rows": [["…"]]}` |

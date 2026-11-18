@@ -279,6 +279,7 @@ Values to set (name: value; an empty value removes a property)	設定する値 (
 Vault user name (signs in)	Vault のユーザー名 (サインイン)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	書き込む形式: oec（プロジェクトファイル）、oecp（専用フォルダー内の分割プロジェクト）、oecz（アーカイブ）。既定: 出力の拡張子による
 Width and height must be greater than 0	幅と高さは 0 より大きくなければなりません
+Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	レポートのタイトル、名前、検索語 (VDE 0100-600 などの規格) で検索する語
 Write the table as CSV to this file	表を CSV としてこのファイルに書き込む
 Writes the check scheme of the project (checks switched off, message levels) to a file	プロジェクトのチェックスキーム (オフにしたチェック、メッセージレベル) をファイルに書き込みます
 Writes the embedded file of a document page	ドキュメントページの埋め込みファイルを書き出します

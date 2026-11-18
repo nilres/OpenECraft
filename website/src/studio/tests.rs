@@ -99,6 +99,10 @@ fn reports_and_exports_come_from_the_plugins() {
     let reports = ok(&mut s, "reports", "");
     let reports = reports.as_array().unwrap();
     assert!(reports.len() > 5);
+    // The filter of the page: by title, name or the standard a report follows.
+    let found = ok(&mut s, "reports", "VDE 0100 600");
+    assert_eq!(found.as_array().unwrap().iter().map(|r| r["name"].as_str().unwrap()).collect::<Vec<_>>(), ["inspection", "inspection_summary", "inspection_sources"]);
+    assert!(ok(&mut s, "reports", "bill").as_array().unwrap().iter().any(|r| r["name"] == "bill_of_materials"));
     let mut filled = 0;
     for r in reports {
         let table = ok(&mut s, "report", r["name"].as_str().unwrap());
