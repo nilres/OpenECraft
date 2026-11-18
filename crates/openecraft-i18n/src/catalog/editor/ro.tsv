@@ -948,6 +948,7 @@ In the structure of the current page	În structura paginii curente
 Include manually set numbers	Includere numere setate manual
 Index	Index
 Indices	Indici
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	Verificare inițială (IEC 60364-6, DIN VDE 0100-600): completată din schemă, rezultatele introduse aici
 Inner walls	Pereți interiori
 Input bytes	Octeți de intrare
 Inputs	Intrări
@@ -1046,7 +1047,6 @@ Library	Bibliotecă
 Lightning protection	Protecție contra trăsnetului
 Lightning protection of building {}	Protecția contra trăsnetului a clădirii {}
 Like two fingers	Ca două degete
-Limits	Limite
 Limits in effect	Limite în vigoare
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fază–PE în punctul de alimentare; 0 = din cel mai mare curent de scurtcircuit
 Line up on the rail	Aliniere pe șină
@@ -1189,6 +1189,7 @@ NC data of this face (DXF)	Date NC ale acestei fețe (DXF)
 Nailboard (SVG)…	Planșetă (SVG)…
 Name and cross reference	Nume și referință încrucișată
 Name on the server	Nume pe server
+Name the inspector in the report data first.	Indicați mai întâi inspectorul în datele raportului.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Name; Data Type; Logical Address; Comment – pentru instrumentele de programare PLC
 Named copy of this form, for report blocks	Copie denumită a acestui formular, pentru blocuri de raport
 Navigators	Navigatoare
@@ -1814,7 +1815,6 @@ Save to project server: {}	Salvează pe serverul de proiecte: {}
 Save to project server: {} – the connection is lost, saving tries again	Salvează pe serverul de proiecte: {} – conexiunea s-a pierdut, salvarea încearcă din nou
 Save workspace	Salvare spațiu de lucru
 Save workspace…	Salvare spațiu de lucru…
-Saved	Salvat
 Saved the properties of {} (revision {})	Proprietățile {} au fost salvate (revizia {})
 Saved to	Salvat în
 Saved to the project server (revision {})	Salvat pe serverul de proiecte (revizia {})
@@ -2129,6 +2129,7 @@ The properties of the selection in a window beside the page	Proprietățile sele
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Între timp, proprietățile au fost modificate pe serverul de proiecte. Reîncărcarea le afișează; ce ați introdus este înlocuit.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Șina sau baza de montaj; accesoriile ei sunt cârligele, clemele și balastul
 The recalculation keeps frozen routes as long as they are still possible	Recalcularea păstrează traseele fixate atât timp cât sunt încă posibile
+The report as tables and report pages	Raportul ca tabele și pagini de raport
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Panglica cu fila Fișier înlocuiește meniurile; Ctrl+Shift+P găsește orice comandă.
 The rooms of the level side by side; click the level again for all of the plant	Încăperile nivelului una lângă alta; faceți din nou clic pe nivel pentru toată instalația
 The second fault is checked at the line-to-earth voltage	Al doilea defect este verificat la tensiunea fază-pământ
@@ -2162,6 +2163,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	Cartușe
 Title blocks, plot frames and page templates	Cartușe, chenare și șabloane de pagină
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	Cartușe, scheme de rapoarte și chenare partajate de toate proiectele pe serverul de piese (Piese › Server de piese)
+Title or standard, e.g. VDE 0100-600	Titlu sau standard, de ex. VDE 0100-600
 To do	De făcut
 Toggle corner direction while drawing wires	Comutare direcție colț la desenarea conductoarelor
 Toggle routing around symbols (wire tool)	Comutare pozare în jurul simbolurilor (instrument conductor)
@@ -2209,7 +2211,6 @@ Used on {} of {} pages	Utilizat pe {} din {} pagini
 User / group	Utilizator / grup
 User defined property	Proprietate definită de utilizator
 User names, separated by commas	Nume de utilizator, separate prin virgule
-Value	Valoare
 Value set	Set de valori
 Value sets	Seturi de valori
 Values	Valori
@@ -2377,7 +2378,6 @@ male	tată
 manual	manual
 max. {} °C	max. {} °C
 may overlap	se pot suprapune
-missing	lipsește
 model	model
 name	nume
 no	nu

@@ -12,11 +12,13 @@ A page needs a name	페이지에는 이름이 필요합니다
 A routing path needs {} points at least	배선 경로에는 점이 {}개 이상 필요합니다
 A section cannot be moved into itself	구역을 자기 자신 안으로 이동할 수 없습니다
 Above	위
+Above {} V: no SELV or PELV	{} V 초과: SELV 또는 PELV 아님
 Access token	액세스 토큰
 Accessories	부속품
 Accessory	부속품
 Add	추가
 Add a PDF of all pages	모든 페이지의 PDF 추가
+Add an item	항목 추가
 Add to favorites	즐겨찾기에 추가
 Address	주소
 Administrator	관리자
@@ -33,6 +35,7 @@ Bold	굵게
 Bottom	바닥
 Bottom with removable gland plate	분리형 글랜드 플레이트가 있는 바닥
 Breaking capacity	차단 용량
+Breaking capacity of {} below the fault current at the origin	{}의 차단 용량이 인입점의 고장 전류보다 낮음
 Bridge	브리지
 Bundles	번들
 Busbar	부스바
@@ -54,16 +57,19 @@ Category	범주
 Centred	가운데
 Certificates	인증서
 Change	변경
+Changing the data or the results afterwards takes the signature away.	나중에 데이터나 결과를 변경하면 서명이 취소됩니다.
 Channel	채널
 Characteristic	특성
 Check settings	검사 설정
 Checks	검사
+Circuits	회로
 Class	클래스
 Classes	클래스
 Clear filters	필터 지우기
 Clearance bottom	아래쪽 이격 거리
 Clearance top	위쪽 이격 거리
 Clearances	이격 거리
+Client	의뢰인
 Close	닫기
 Coding: {}	코딩: {}
 Coil voltage	코일 전압
@@ -83,6 +89,7 @@ Connection point	연결 지점
 Connection points	연결 지점
 Connections	연결
 Connector	커넥터
+Contact voltage UB (V)	접촉 전압 UB (V)
 Controller	컨트롤러
 Cooling	냉각
 Core	심선
@@ -129,14 +136,19 @@ Done	완료
 Door	도어
 Door cutout	도어 컷아웃
 Download	다운로드
+Download the report as an Excel workbook	보고서를 Excel 통합 문서로 다운로드
 Downloading {}…	{} 다운로드 중…
 Drag to turn the model	끌어서 모델 회전
+Drawings	도면
 EMC clearance	EMC 이격 거리
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal 및 기타 이름은 해당 소유자의 상표입니다. OpenECraft는 독립적인 프로젝트입니다.
+Earth electrode resistance RA (Ω)	접지 전극 저항 RA (Ω)
 Edit	편집
 Editor	편집자
+Electrical separation	전기적 분리
 Electro-fluid cross reference	전기-유체 상호 참조
 Email	이메일
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	비어 있음: 기본값. 설비를 검증하는 규격의 판이 다르면 다른 값을 설정하세요.
 Enclosure	외함
 Enclosures	외함
 Enterprise integration	엔터프라이즈 통합
@@ -147,6 +159,7 @@ Export as CSV…	CSV로 내보내기…
 Export as JSON…	JSON으로 내보내기…
 Export failed: {}	내보내기 실패: {}
 External (top)	외부(위)
+External loop impedance Ze (Ω)	외부 루프 임피던스 Ze (Ω)
 Face	면
 Failed	실패
 Fastening	고정 방식
@@ -155,7 +168,9 @@ Field wiring	필드 배선
 File	파일
 Files	파일
 Filter	필터
+Filter circuits…	회로 필터…
 Filter devices…	장치 필터…
+First fault current Id (A)	1선 지락 전류 Id (A)
 Fit	맞춤
 Fits	호환 대상
 Fitting at the end	끝 쪽 피팅
@@ -170,6 +185,7 @@ Function	기능
 Function (=)	기능 (=)
 Function definition	기능 정의
 Function template	기능 템플릿
+Function test	기능 시험
 Function text	기능 텍스트
 Functional safety	기능 안전
 Functions	기능
@@ -190,12 +206,25 @@ Height	높이
 Height above floor	바닥으로부터의 높이
 History	기록
 Hose no.	호스 번호
+IT system	IT 계통
 Identifier	식별자
 Identifying letter	식별 문자
 Image	이미지
 Import	가져오기
+Incomplete	미완료
 Input	입력
+Inspection and test report	검사 및 시험 보고서
+Inspector	검사자
 Installation	설치 방식
+Installation site	설치 장소
+Installer	시공자
+Insulating floors and walls (kΩ)	절연성 바닥과 벽 (kΩ)
+Insulation L–N (MΩ)	절연 L–N (MΩ)
+Insulation L–PE (MΩ)	절연 L–PE (MΩ)
+Insulation N–PE (MΩ)	절연 N–PE (MΩ)
+Insulation monitoring device	절연 감시 장치
+Insulation resistance (MΩ)	절연 저항 (MΩ)
+Insulation test voltage (V)	절연 시험 전압 (V)
 Integration	통합
 Internal (bottom)	내부(아래)
 Interruption point	중단점
@@ -223,6 +252,7 @@ Length	길이
 Level	레벨
 Lifecycle	수명 주기
 Light	밝게
+Limits	한계값
 Line	선
 Link	링크
 Linked	연결됨
@@ -234,11 +264,13 @@ Location (+)	위치 (+)
 Locked	잠김
 Locked by {}	{}이(가) 잠금
 Logo	로고
+Loop impedance Zs (Ω)	루프 임피던스 Zs (Ω)
 MTTFd (years)	MTTFd(년)
 Machine	기계
 Main	주
 Main earthing busbar (device) it is connected to; empty: none	연결된 주 접지 부스바 (장치); 비어 있음: 없음
 Main earthing terminal	주 접지 단자
+Main equipotential bonding (Ω)	주 등전위 본딩 (Ω)
 Main switch	주 스위치
 Manufacturer	제조업체
 Manufacturers	제조업체
@@ -246,6 +278,7 @@ Manufacturing	제조
 Marking	마킹
 Match case	대/소문자 구분
 Material	재질
+Measured at the origin	인입점에서 측정
 Medium	매체
 Metal carriers meeting at a node are connected	노드에서 만나는 금속 케이블 지지대는 서로 연결됨
 Minimum digits of the counter (leading zeros)	카운터의 최소 자릿수(앞에 0 채움)
@@ -273,11 +306,15 @@ Name of the scheme	스키마 이름
 Net	네트
 Never	안 함
 New group	새 그룹
+New installation	신규 설치
 New name	새 이름
+Next inspection	다음 점검
 Next page	다음 페이지
 No	아니요
 No Vault item matches a part of the project	프로젝트의 부품과 일치하는 Vault 항목이 없습니다
 No cable {}	케이블 {} 없음
+No circuit {}	회로 {} 없음
+No circuits found	회로를 찾을 수 없음
 No connection point {}	연결 지점 {} 없음
 No device {}	장치 {} 없음
 No enclosure {}	외함 {} 없음
@@ -291,6 +328,7 @@ No part {} in the project	프로젝트에 부품 {}이(가) 없습니다
 No parts found	부품을 찾을 수 없습니다
 No plot frame named {}	이름이 {}인 플롯 프레임 없음
 No plug {}	플러그 {} 없음
+No protective measure of its own	자체 보호 조치 없음
 No report block named {}	이름이 {}인 보고서 블록 없음
 No segment {}	세그먼트 {}이(가) 없습니다
 No station {}	스테이션 {} 없음
@@ -300,18 +338,24 @@ No such section	해당 구역이 없습니다
 No symbol with id {}	ID가 {}인 심볼 없음
 No title block of the project named {}	프로젝트에 이름이 {}인 표제란이 없습니다
 Nominal size	호칭경
+Not OK	OK 아님
 Not a language code: {}	언어 코드가 아님: {}
 Not a macro file: {}	매크로 파일이 아님: {}
 Not a symbol id: {}	심볼 ID가 아닙니다: {}
 Not a title block file: {}	표제란 파일이 아님: {}
 Not a valid rule set file: {}	유효한 규칙 세트 파일이 아님: {}
+Not applicable	해당 없음
 Not in the schematic	회로도에 없음
+Not passed	불합격
+Not signed	서명 안 됨
+Not tested	시험 안 함
 Note	참고
 Notes	메모
 Number	번호
 Number of down conductors (0: as many as the class needs for the walls)	인하 도선 수 (0: 등급이 벽에 요구하는 만큼)
 Number the sections 1, 2, 3 … on every level first	먼저 각 수준의 구역에 1, 2, 3 … 번호 매기기
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	구조 및 식별 문자별로 회로도 순서(페이지, 열, 위에서 아래)에 따라 장치 태그에 번호를 매깁니다
+OK	OK
 Only rows containing this text	이 텍스트가 포함된 행만
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft는 보증 없이 제공됩니다. 계산과 검사는 설계를 지원하는 것이며, 자격을 갖춘 사람이 적용되는 표준과 규정에 따라 결과를 확인해야 합니다.
@@ -321,9 +365,12 @@ Order number	주문 번호
 Other	기타
 Outer diameter	외경
 Output	출력
+Output voltage (V)	출력 전압 (V)
 Overview	개요
+Own item of the visual inspection	외관 검사의 자체 항목
 PCT loop	PCT 루프
 PCT loop overview	PCT 루프 개요
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC 카드
@@ -349,7 +396,10 @@ Part {}	부품 {}
 Parts	부품
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	부품(CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	부품 가져오기 실패: {}
+Passed	합격
 Password	암호
+Phase sequence	상순
+Phases	상
 Phone	전화
 Picture	이미지
 Pieces	개수
@@ -365,6 +415,7 @@ Plug	플러그
 Plug diagram	플러그 다이어그램
 Plugins	플러그인
 Plugs	플러그
+Polarity	극성
 Poles	극수
 Ports	포트
 Position	위치
@@ -375,6 +426,7 @@ Potentials	전위
 Power	전력
 Power (kW)	전력(kW)
 Power loss	전력 손실
+Power supply unit	전원 장치
 Pre-planning	사전 계획
 Press	프레스
 Previous page	이전 페이지
@@ -396,17 +448,25 @@ Project name	프로젝트 이름
 Project properties	프로젝트 속성
 Properties	속성
 Property	속성
+Prospective fault current at the origin (kA)	인입점의 예상 고장 전류 (kA)
 Protection	보호
+Protective conductor (Ω)	보호 도체 (Ω)
 Protective device	보호 장치
+Protective measure	보호 조치
 Quantity	수량
 Quantity (default 1)	수량(기본값 1)
 Quantity unit	수량 단위
+RCD	RCD
+RCD trip current (mA)	RCD 동작 전류 (mA)
+RCD trip time (ms)	RCD 동작 시간 (ms)
+RCD trip time at 5 × IΔn (ms)	5 × IΔn에서 RCD 동작 시간 (ms)
 Rack	랙
 Rail	레일
 Range	범위
 Rated current	정격 전류
 Rated power	정격 전력
 Rear wall	후면벽
+Reason for the test	시험 사유
 Rectangle	사각형
 Rectangular	사각형
 Redo	다시 실행
@@ -417,13 +477,16 @@ Relative humidity	상대 습도
 Relay	릴레이
 Released	릴리스됨
 Released pages cannot be moved	릴리스된 페이지는 이동할 수 없습니다
+Remark	비고
 Remove	제거
 Remove from favorites	즐겨찾기에서 제거
 Remove the boundary	경계 제거
 Remove the lightning protection system	피뢰 시스템 삭제
 Remove the reference point	기준점 제거
+Repair	수리
 Report	보고서
 Report blocks	보고서 블록
+Report data and visual inspection	보고서 데이터 및 외관 검사
 Report: {}	보고서: {}
 Reports	보고서
 Represented by	대표자
@@ -446,8 +509,11 @@ Routing	배선 경로
 Rows of modules (east-west: rows of pairs)	모듈 열 (동서 방향: 쌍의 열)
 Rule	규칙
 Rule set	규칙 세트
+SELV	SELV
+SELV, PELV and separation	SELV, PELV 및 분리
 Safety function	안전 기능
 Save	저장
+Saved	저장됨
 Saved catalog {}	카탈로그 {}을(를) 저장했습니다
 Saved user {}	사용자 {}을(를) 저장했습니다
 Saved {}	{} 저장됨
@@ -474,6 +540,9 @@ Show the row after the column	열 다음에 행 표시
 Side	측
 Sign in	로그인
 Sign out	로그아웃
+Sign the report	보고서 서명
+Signed	서명됨
+Signed by {} on {}	{}이(가) {}에 서명
 Signed in as {}	{}(으)로 로그인됨
 Signed in as {} ({})	{}({})(으)로 로그인됨
 Signed out	로그아웃됨
@@ -495,8 +564,10 @@ Structure	구조
 Subproject name	하위 프로젝트 이름
 Subsystem	하위 시스템
 Successor	후속 제품
+Summary	요약
 Supplier	공급업체
 Supply	공급
+Supply system	전원 계통
 Symbol	심볼
 Symbol key	심볼 키
 Symbolic address	심볼릭 주소
@@ -511,18 +582,23 @@ Terminal strip	단자대
 Terminal strips	단자대
 Terminal type	단자 유형
 Terminals	단자
+Test instrument	측정기
+Test instruments (IEC 61557)	측정기 (IEC 61557)
+Tested by	시험자
 Text	텍스트
 Text to find	찾을 텍스트
 The freestanding PV array {} stands outside the plot boundary	지상형 태양광 어레이 {}이(가) 부지 경계 밖에 있습니다
 The identifier must not be empty	식별자는 비워 둘 수 없습니다
 The long side of the modules along the rows	모듈의 긴 변을 열 방향으로
 The page is released	페이지가 릴리스되었습니다
+The project has no circuits fed from the mains	프로젝트에 전원에서 공급되는 회로가 없습니다
 There is a connection symbol at this point already	이 지점에는 이미 연결 기호가 있습니다
 Thermal	열
 This page sets no cookies, uses no tracking and loads nothing from other servers.	이 페이지는 쿠키를 설정하지 않고, 추적을 사용하지 않으며, 다른 서버에서 아무것도 불러오지 않습니다.
 Time	시간
 Title block	표제란
 To	끝
+To check	확인 필요
 Tools	공구
 Top	위쪽
 Total	총계
@@ -538,6 +614,7 @@ Unknown column: {}	알 수 없는 열: {}
 Unknown connector: {}	알 수 없는 커넥터: {}
 Unknown enclosure system: {}	알 수 없는 외함 시스템: {}
 Unknown face: {}	알 수 없는 면: {}
+Unknown field: {}	알 수 없는 필드: {}
 Unknown format: {}	알 수 없는 형식: {}
 Unknown function definition: {}	알 수 없는 기능 정의: {}
 Unknown language: {}	알 수 없는 언어: {}
@@ -556,9 +633,12 @@ User	사용자
 User name	사용자 이름
 Users	사용자
 VAT ID	부가가치세 번호
+Value	값
 Version	버전
 Viewer	뷰어
+Visual inspection	외관 검사
 Voltage	전압
+Voltage drop (%)	전압 강하(%)
 Warning	경고
 Warnings	경고
 Weight	무게
@@ -573,12 +653,14 @@ Wired	배선 완료
 Wires	전선
 Wiring	배선 작업
 Yes	예
+Zs max (Ω)	Zs 최대 (Ω)
 access denied	액세스가 거부되었습니다
 approved	승인됨
 bonded	본딩됨
 file or folder not found	파일 또는 폴더를 찾을 수 없습니다
 landscape	가로
 left	왼쪽
+missing	누락됨
 mm	mm
 normal	보통
 not bonded	본딩 안 됨
@@ -595,6 +677,7 @@ the file exists already	파일이 이미 있습니다
 this is a folder	폴더입니다
 yes	예
 {} ({})	{}({})
+{} circuits	회로 {}개
 {} does not stand on the floor: choose a part marked for floor mounting	{}은(는) 바닥 설치형이 아닙니다: 바닥 설치로 표시된 부품을 선택하십시오
 {} exists already	{}이(가) 이미 있습니다
 {} is not a PNG or JPEG image	{}은(는) PNG 또는 JPEG 이미지가 아닙니다

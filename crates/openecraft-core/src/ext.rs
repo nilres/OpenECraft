@@ -64,7 +64,26 @@ pub struct Check {
 pub struct Report {
     pub name: String,
     pub title: Text,
+    /// Further search terms besides the title, not translated: the standards the report
+    /// follows (`DIN VDE 0100-600`, `IEC 60364-6`), other names of it.
+    pub keywords: Vec<String>,
     pub run: Arc<ReportFn>,
+}
+
+impl Report {
+    /// Whether a search finds the report: every word of `query` is in its title as shown,
+    /// its name or one of its keywords (all in one of them), ignoring case, spaces and
+    /// punctuation, so that `VDE 0100 600` finds `DIN VDE 0100-600`.
+    pub fn matches(&self, title: &str, query: &str) -> bool {
+        let words: Vec<String> = query.split_whitespace().map(squeeze).filter(|w| !w.is_empty()).collect();
+        words.is_empty()
+            || [title, self.name.as_str()].into_iter().chain(self.keywords.iter().map(String::as_str)).map(squeeze).any(|t| words.iter().all(|w| t.contains(w.as_str())))
+    }
+}
+
+/// Lower case letters and digits of a text, without spaces and punctuation.
+fn squeeze(s: &str) -> String {
+    s.chars().filter(|c| c.is_alphanumeric()).flat_map(char::to_lowercase).collect()
 }
 
 /// A file generated from the project (editor: File › Export, command line: `export`).
@@ -104,7 +123,15 @@ impl Registry {
     }
 
     pub fn report(&mut self, name: impl Into<String>, title: impl Into<Text>, run: impl Fn(&Project, &Analysis) -> Result<Table, String> + Send + Sync + 'static) -> &mut Self {
-        self.reports.push(Report { name: name.into(), title: title.into(), run: Arc::new(run) });
+        self.reports.push(Report { name: name.into(), title: title.into(), keywords: Vec::new(), run: Arc::new(run) });
+        self
+    }
+
+    /// Sets the search terms of the report added last ([`Report::keywords`]).
+    pub fn keywords<S: Into<String>>(&mut self, words: impl IntoIterator<Item = S>) -> &mut Self {
+        if let Some(r) = self.reports.last_mut() {
+            r.keywords = words.into_iter().map(Into::into).collect();
+        }
         self
     }
 

@@ -947,6 +947,7 @@ In the structure of the current page	В структуре текущего ли
 Include manually set numbers	Включить номера, заданные вручную
 Index	Индекс
 Indices	Индексы
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	Первичная проверка (IEC 60364-6, DIN VDE 0100-600): заполнена по схеме, результаты вводятся здесь
 Inner walls	Внутренние стены
 Input bytes	Байты входов
 Inputs	Входы
@@ -1045,7 +1046,6 @@ Library	Библиотека
 Lightning protection	Молниезащита
 Lightning protection of building {}	Молниезащита здания {}
 Like two fingers	Как два пальца
-Limits	Пределы
 Limits in effect	Действующие пределы
 Line to PE at the supply point; 0 = from the highest short-circuit current	Фаза – PE в точке питания; 0 = из наибольшего тока короткого замыкания
 Line up on the rail	Выстроить на рейке
@@ -1188,6 +1188,7 @@ NC data of this face (DXF)	Данные ЧПУ этой поверхности (
 Nailboard (SVG)…	Плаз (SVG)…
 Name and cross reference	Имя и перекрёстная ссылка
 Name on the server	Имя на сервере
+Name the inspector in the report data first.	Сначала укажите проверяющего в данных протокола.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Имя; тип данных; логический адрес; комментарий – для средств программирования ПЛК
 Named copy of this form, for report blocks	Именованная копия этой формы для блоков отчётов
 Navigators	Навигаторы
@@ -1813,7 +1814,6 @@ Save to project server: {}	Сохранить на сервере проекто
 Save to project server: {} – the connection is lost, saving tries again	Сохранить на сервере проектов: {} – соединение потеряно, сохранение повторит попытку
 Save workspace	Сохранить рабочее пространство
 Save workspace…	Сохранить рабочее пространство…
-Saved	Сохранено
 Saved the properties of {} (revision {})	Свойства {} сохранены (ревизия {})
 Saved to	Сохранено в
 Saved to the project server (revision {})	Сохранено на сервере проектов (ревизия {})
@@ -2128,6 +2128,7 @@ The properties of the selection in a window beside the page	Свойства в�
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Тем временем свойства были изменены на сервере проектов. Перезагрузка покажет их; введённое вами будет заменено.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Рейка или монтажное основание; его принадлежности — крюки, зажимы и балласт
 The recalculation keeps frozen routes as long as they are still possible	При пересчёте зафиксированные трассы сохраняются, пока это возможно
+The report as tables and report pages	Протокол в виде таблиц и страниц отчётов
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Лента с вкладкой Файл заменяет меню; Ctrl+Shift+P находит любую команду.
 The rooms of the level side by side; click the level again for all of the plant	Помещения этажа рядом друг с другом; щёлкните этаж ещё раз, чтобы увидеть всю установку
 The second fault is checked at the line-to-earth voltage	Двойное замыкание проверяется при напряжении между фазой и землёй
@@ -2161,6 +2162,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	Основные надписи
 Title blocks, plot frames and page templates	Основные надписи, рамки листов и шаблоны листов
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	Основные надписи, схемы отчётов и рамки, общие для всех проектов на сервере изделий (Изделия › Сервер изделий)
+Title or standard, e.g. VDE 0100-600	Название или стандарт, например VDE 0100-600
 To do	Осталось
 Toggle corner direction while drawing wires	Переключать направление угла при рисовании проводов
 Toggle routing around symbols (wire tool)	Обход символов вкл. / выкл. (инструмент «Соединение»)
@@ -2208,7 +2210,6 @@ Used on {} of {} pages	Используется на {} из {} листов
 User / group	Пользователь / группа
 User defined property	Пользовательское свойство
 User names, separated by commas	Имена пользователей через запятую
-Value	Значение
 Value set	Набор значений
 Value sets	Наборы значений
 Values	Значения
@@ -2376,7 +2377,6 @@ male	штырь
 manual	вручную
 max. {} °C	макс. {} °C
 may overlap	могут перекрываться
-missing	отсутствует
 model	модель
 name	имя
 no	нет

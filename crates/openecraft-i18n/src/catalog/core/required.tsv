@@ -60,6 +60,7 @@ Actuated by	Betätigt durch	Actionné par	Accionado por
 Actuation	Betätigung	Actionnement	Accionamiento
 Actuator type	Betätigerart	Type d'actionneur	Tipo de actuador
 Additional page description	Zusätzliche Seitenbeschreibung	Description de page supplémentaire	Descripción adicional de la página
+Additional protection by RCDs of at most 30 mA where required	Zusätzlicher Schutz durch RCDs mit höchstens 30 mA, wo gefordert	Protection complémentaire par DDR de 30 mA au plus là où elle est exigée	Protección adicional mediante diferenciales de 30 mA como máximo donde se exige
 Address ranges of {} and {} overlap	Adressbereiche von {} und {} überschneiden sich	Les plages d'adresses de {} et {} se chevauchent	Los rangos de direcciones de {} y {} se solapan
 Address {} is used by {} and {}	Adresse {} wird von {} und {} verwendet	L'adresse {} est utilisée par {} et {}	La dirección {} la usan {} y {}
 Adhesive	Kleben	Collé	Adhesivo
@@ -266,6 +267,7 @@ Circuit {}: protective device {} is planned only: generate it into the schematic
 Circuit {}: voltage drop {} % over the limit of {} % ({} m)	Stromkreis {}: Spannungsfall {} % über der Grenze von {} % ({} m)	Circuit {} : chute de tension de {} % au-dessus de la limite de {} % ({} m)	Circuito {}: caída de tensión de {} % por encima del límite de {} % ({} m)
 Circuit {}: {} mm² carry {} A, less than the {} A of its protective device	Stromkreis {}: {} mm² tragen {} A, weniger als die {} A seines Schutzorgans	Circuit {} : {} mm² supportent {} A, moins que les {} A de son dispositif de protection	Circuito {}: {} mm² soportan {} A, menos que los {} A de su dispositivo de protección
 Circuit {}: {} of its items are gone	Stromkreis {}: {} seiner Betriebsmittel fehlen	Circuit {} : {} de ses éléments ont disparu	Circuito {}: faltan {} de sus elementos
+Circuits, protective devices, switches and terminals labelled	Stromkreise, Schutzeinrichtungen, Schalter und Klemmen gekennzeichnet	Circuits, appareils de protection, interrupteurs et bornes repérés	Circuitos, dispositivos de protección, interruptores y bornes identificados
 Circular milling	Zirkularfräsen	Fraisage circulaire	Fresado circular
 Clip	Clip	Clip	Clip
 Clip / snap-on	Klemmen / Aufschnappen	Clipsé / encliqueté	Clip / encaje a presión
@@ -289,6 +291,7 @@ Compressed air supply	Druckluftversorgung	Alimentation en air comprimé	Suminist
 Compressor	Kompressor / Verdichter	Compresseur / Compresseur	Compresor / condensador
 Condition '{}' needs OPTION=value	Bedingung '{}' braucht OPTION=Wert	La condition '{}' requiert OPTION=valeur	La condición '{}' necesita OPCIÓN=valor
 Conductor class	Leiterklasse	Classe d'âme	Clase de conductor
+Conductors selected for current-carrying capacity and voltage drop	Leiter nach Strombelastbarkeit und Spannungsfall ausgewählt	Conducteurs choisis selon le courant admissible et la chute de tension	Conductores elegidos según la intensidad admisible y la caída de tensión
 Conduit	Installationsrohr	Conduit	Tubo protector
 Connected	Belegt	Raccordées	Conectadas
 Connection definition point on page {} is not applied to its connection	Verbindungsdefinitionspunkt auf Seite {} ist nicht auf seine Verbindung angewendet	Le point de définition de liaison en page {} n'est pas appliqué à sa liaison	El punto de definición de conexión en la página {} no está aplicado a su conexión
@@ -303,6 +306,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Verbindungssymbole	Symboles de liaison	Símbolos de conexión
 Connection type	Anschlussart	Type de raccordement	Tipo de conexión
 Connection {} has contradicting connection definition points	Verbindung {} hat widersprüchliche Verbindungsdefinitionspunkte	La liaison {} a des points de définition contradictoires	La conexión {} tiene puntos de definición contradictorios
+Connections of the conductors	Verbindungen der Leiter	Connexions des conducteurs	Conexiones de los conductores
 Connector pin-outs and flat cables	Steckerbelegungen und Flachbandkabel	Brochages des connecteurs et câbles plats	Asignación de pines de conectores y cables planos
 Connector pin-outs: mating faces and pin tables (SVG)	Steckerbelegungen: Steckseiten und Pintabellen (SVG)	Brochages des connecteurs : faces d'accouplement et tableaux des broches (SVG)	Asignación de pines: caras de acoplamiento y tablas de pines (SVG)
 Contact material	Kontaktmaterial	Matériau des contacts	Material de los contactos
@@ -328,6 +332,7 @@ Control transformer TC (GB)	Steuertransformator TC (GB)	Transformateur de comman
 Control valve	Stellventil	Vanne de régulation	Válvula de control
 Control voltage	Steuerspannung	Tension de commande	Tensión de mando
 Control voltage type	Steuerspannungsart	Type de tension de commande	Tipo de tensión de mando
+Conventional touch voltage limit UL (V)	Vereinbarte Grenze der Berührungsspannung UL (V)	Tension limite conventionnelle de contact UL (V)	Tensión límite convencional de contacto UL (V)
 Converted from file format {} to {}: {}	Von Dateiformat {} nach {} konvertiert: {}	Converti du format de fichier {} au format {} : {}	Convertido del formato de archivo {} al {}: {}
 Coolant	Kühlmittel	Liquide de refroidissement	Refrigerante
 Cooler	Kühler	Refroidisseur	Refrigerador
@@ -393,6 +398,7 @@ DWG export failed: {}	DWG-Export fehlgeschlagen: {}	Échec de l'export DWG : {}	
 Data sheet	Datenblatt	Fiche technique	Hoja de datos
 Date of the approval of the last revision	Datum der Freigabe der letzten Revision	Date de l'approbation de la dernière révision	Fecha de la aprobación de la última revisión
 Date of the last revision	Datum der letzten Revision	Date de la dernière révision	Fecha de la última revisión
+Default {} ({})	Vorgabe {} ({})	Par défaut {} ({})	Por defecto {} ({})
 Degree of protection	Schutzart	Indice de protection	Grado de protección
 Delete projects	Projekte löschen	Supprimer des projets	Eliminar proyectos
 Delivery date	Liefertermin	Date de livraison	Fecha de entrega
@@ -426,6 +432,7 @@ Devices without power loss	Betriebsmittel ohne Verlustleistung	Appareils sans pu
 Dew point (°C)	Taupunkt (°C)	Point de rosée (°C)	Punto de rocío (°C)
 Diagnostic coverage (DC)	Diagnosedeckungsgrad (DC)	Couverture du diagnostic (DC)	Cobertura de diagnóstico (DC)
 Diagnostics	Diagnose	Diagnostic	Diagnóstico
+Diagrams, warning notices and similar information present	Schaltpläne, Warnhinweise und ähnliche Informationen vorhanden	Schémas, avertissements et informations similaires présents	Esquemas, avisos de advertencia e información similar presentes
 Diameter (mm)	Durchmesser (mm)	Diamètre (mm)	Diámetro (mm)
 Different wire numbers in one connection: {}	Unterschiedliche Leitungsnummern in einer Verbindung: {}	Numéros de fil différents dans une liaison : {}	Números de hilo distintos en una conexión: {}
 Digital input / output module	Digitalein-/-ausgabebaugruppe	Module d'entrées / sorties TOR	Módulo de entradas / salidas digitales
@@ -517,6 +524,7 @@ Emergency stop SB (GOST)	Not-Halt SB (GOST)	Arrêt d'urgence SB (GOST)	Parada de
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Not-Halt-Geräte brauchen einen B10d-Wert (ISO 13849-1, Anhang C)	Les arrêts d'urgence ont besoin d'une valeur B10d (ISO 13849-1, annexe C)	Las paradas de emergencia necesitan un valor B10d (ISO 13849-1, anexo C)
 Emergency stop, mushroom head (NFPA)	Not-Halt, Pilzkopf (NFPA)	Arrêt d'urgence, tête champignon (NFPA)	Parada de emergencia, cabeza de seta (NFPA)
 Empty (IEC 60204-1)	Leer (IEC 60204-1)	Vide (IEC 60204-1)	Vacío (IEC 60204-1)
+Empty: removes the item	Leer: entfernt den Punkt	Vide : supprime le point	Vacío: elimina el punto
 Enclosure body	Gehäusekörper	Corps de l'armoire	Cuerpo del armario
 Enclosure climate	Gehäuseklimatisierung	Climatisation des armoires	Climatización de armarios
 Enclosure light	Schaltschrankleuchte	Éclairage d'armoire	Luz de armario
@@ -539,6 +547,8 @@ Energy meter 3-phase, transformer-operated	Energiezähler 3-phasig, Wandlermessu
 Engineered	Projektiert	Étudiée	Diseñado
 Engineering unit	Physikalische Einheit	Unité physique	Unidad física
 Environment	Umgebung	Environnement	Entorno
+Equipment accessible for operation, inspection and maintenance	Betriebsmittel für Bedienung, Prüfung und Wartung zugänglich	Matériel accessible pour l'exploitation, la vérification et la maintenance	Equipos accesibles para el manejo, la inspección y el mantenimiento
+Equipment and protective measures suit the external influences	Betriebsmittel und Schutzmaßnahmen passend zu den äußeren Einflüssen	Matériel et mesures de protection adaptés aux influences externes	Equipos y medidas de protección adecuados a las influencias externas
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Schutzleiter müssen grün sein (NFPA 79, 13.2.2)	Les conducteurs de mise à la terre doivent être verts (NFPA 79, 13.2.2)	Los conductores de puesta a tierra deben ser verdes (NFPA 79, 13.2.2)
 Excel workbook	Excel-Arbeitsmappe	Classeur Excel	Libro de Excel
 Exhaust {} open to the atmosphere (no silencer)	Entlüftung {} offen zur Atmosphäre (kein Schalldämpfer)	Échappement {} ouvert à l'atmosphère (sans silencieux)	Escape {} abierto a la atmósfera (sin silenciador)
@@ -575,6 +585,7 @@ Fill level (%)	Füllgrad (%)	Taux de remplissage (%)	Grado de llenado (%)
 Filling the cable ducts	Kabelkanäle werden befüllt	Remplissage des goulottes	Llenando las canaletas
 Filter fan with outlet filter	Filterlüfter mit Austrittsfilter	Ventilateur à filtre avec filtre de sortie	Ventilador con filtro y filtro de salida
 Filter rating	Filterfeinheit	Finesse de filtration	Finura de filtración
+Fire barriers and protection against thermal effects	Brandabschottungen und Schutz gegen thermische Auswirkungen	Barrières coupe-feu et protection contre les effets thermiques	Barreras cortafuegos y protección contra los efectos térmicos
 Firmware version	Firmwareversion	Version du firmware	Versión de firmware
 First end only	Nur erstes Ende	Première extrémité seulement	Solo el primer extremo
 Fitting	Verschraubung	Raccord	Racor
@@ -721,6 +732,8 @@ Heating water	Heizungswasser	Eau de chauffage	Agua de calefacción
 Higher-level product (-)	Übergeordnetes Produkt (-)	Produit de niveau supérieur (-)	Producto de nivel superior (-)
 Higher-level product of the page	Übergeordnetes Produkt der Seite	Produit de niveau supérieur de la page	Producto de nivel superior de la página
 Highest (°C)	Höchstens (°C)	Maximum (°C)	Máximo (°C)
+Highest voltage of SELV and PELV, AC (V)	Höchste Spannung von SELV und PELV, AC (V)	Tension maximale TBTS et TBTP, CA (V)	Tensión máxima MBTS y MBTP, CA (V)
+Highest voltage of SELV and PELV, DC (V)	Höchste Spannung von SELV und PELV, DC (V)	Tension maximale TBTS et TBTP, CC (V)	Tensión máxima MBTS y MBTP, CC (V)
 Hinged left, opens inwards	Anschlag links, öffnet nach innen	Paumelles à gauche, ouvre vers l'intérieur	Bisagras a la izquierda, abre hacia dentro
 Hinged left, opens outwards	Anschlag links, öffnet nach außen	Paumelles à gauche, ouvre vers l'extérieur	Bisagras a la izquierda, abre hacia fuera
 Hinged right, opens inwards	Anschlag rechts, öffnet nach innen	Paumelles à droite, ouvre vers l'intérieur	Bisagras a la derecha, abre hacia dentro
@@ -792,6 +805,9 @@ Input voltage	Eingangsspannung	Tension d'entrée	Tensión de entrada
 Inputs from	Eingänge von	Entrées de	Entradas de
 Inrush current	Einschaltstrom	Courant d'appel	Corriente de arranque
 Inside (°C)	Innen (°C)	Intérieur (°C)	Interior (°C)
+Inspection and test report: SELV, PELV and separation	Prüfprotokoll: SELV, PELV und Schutztrennung	Rapport de vérification : TBTS, TBTP et séparation	Informe de inspección y ensayo: MBTS, MBTP y separación
+Inspection and test report: data	Prüfprotokoll: Daten	Rapport de vérification : données	Informe de inspección y ensayo: datos
+Inspection and test report: summary	Prüfprotokoll: Zusammenfassung	Rapport de vérification : synthèse	Informe de inspección y ensayo: resumen
 Installation altitude	Aufstellhöhe	Altitude d'installation	Altitud de instalación
 Installation circuits	Installationsstromkreise	Circuits d'installation	Circuitos de instalación
 Installation circuits (cable lengths, voltage drop)	Installationsstromkreise (Kabellängen, Spannungsfall)	Circuits d'installation (longueurs de câble, chute de tension)	Circuitos de instalación (longitudes de cable, caída de tensión)
@@ -799,7 +815,6 @@ Installation date	Einbaudatum	Date d'installation	Fecha de instalación
 Installation devices	Installationsgeräte	Appareils d'installation	Aparatos de instalación
 Installation method	Verlegeart	Mode de pose	Método de instalación
 Installation plan (IEC 60617-11)	Installationsplan (IEC 60617-11)	Plan d'installation (IEC 60617-11)	Plano de instalación (IEC 60617-11)
-Installation site	Aufstellungsort	Lieu d'installation	Lugar de instalación
 Installation site (++)	Anlage (++)	Site d'installation (++)	Emplazamiento (++)
 Installation site and location	Aufstellungsort und Ort	Lieu d'installation et emplacement	Lugar de instalación y ubicación
 Installation site of the page	Aufstellungsort der Seite	Lieu d'installation de la page	Lugar de instalación de la página
@@ -808,6 +823,7 @@ Installed	Installiert	Installée	Instalada
 Instrument (PCT loop)	Instrument (PLT-Stelle)	Instrument (boucle CCP)	Instrumento (lazo PCT)
 Instrument {}: label '{}' has no function letters and loop number (e.g. TIC 101)	Instrument {}: Bezeichnung '{}' enthält keine Kennbuchstaben und Stellennummer (z. B. TIC 101)	Instrument {} : le libellé '{}' n'a pas de lettres de fonction ni de numéro de boucle (p. ex. TIC 101)	Instrumento {}: la etiqueta '{}' no tiene letras de función ni número de lazo (p. ej. TIC 101)
 Insulation class	Isolierstoffklasse	Classe d'isolation	Clase de aislamiento
+Insulation test voltage of SELV and PELV (V)	Messspannung Isolation SELV und PELV (V)	Tension d'essai d'isolement TBTS et TBTP (V)	Tensión de ensayo de aislamiento MBTS y MBTP (V)
 Integer	Ganzzahl	Entier	Entero
 Integrated EMC filter	Integrierter EMV-Filter	Filtre CEM intégré	Filtro CEM integrado
 Intermediate relay coil KA (GB)	Spule Hilfsrelais KA (GB)	Bobine de relais auxiliaire KA (GB)	Bobina de relé auxiliar KA (GB)
@@ -823,6 +839,7 @@ Invalid property key: {}	Ungültiger Eigenschaftsschlüssel: {}	Clé de proprié
 Inverter (single-line)	Wechselrichter (einpolig)	Onduleur (unifilaire)	Inversor (unifilar)
 Inverter / charger	Wechselrichter / Ladegerät	Onduleur / chargeur	Inversor / cargador
 Inverter DC/AC	Wechselrichter DC/AC	Onduleur DC/AC	Inversor DC/AC
+Isolating and switching devices in the right places	Trenn- und Schaltgeräte an den richtigen Stellen	Dispositifs de sectionnement et de commande aux bons endroits	Dispositivos de seccionamiento y maniobra en los lugares correctos
 Item	Element	Élément	Elemento
 Item ID	Teile-ID	ID d'article	ID de artículo
 JIS (JIS C 0617)	JIS (JIS C 0617)	JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -873,9 +890,18 @@ Loads behind it: {}	Nachgeschaltete Verbraucher: {}	Charges en aval : {}	Cargas 
 Local page number	Lokale Seitennummer	Numéro de page local	Número de página local
 Location designation	Ortskennzeichen	Désignation de localisation	Designación de ubicación
 Location of the page	Ort der Seite	Emplacement de la page	Ubicación de la página
+Longest RCD trip time at 5 × IΔn (ms)	Längste RCD-Auslösezeit bei 5 × IΔn (ms)	Temps de déclenchement DDR maximal à 5 × IΔn (ms)	Tiempo máximo de disparo del diferencial a 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Längste RCD-Auslösezeit bei IΔn (ms)	Temps de déclenchement DDR maximal à IΔn (ms)	Tiempo máximo de disparo del diferencial a IΔn (ms)
+Longest trip time of selective RCDs at 5 × IΔn (ms)	Längste Auslösezeit selektiver RCDs bei 5 × IΔn (ms)	Temps de déclenchement maximal des DDR sélectifs à 5 × IΔn (ms)	Tiempo máximo de disparo de diferenciales selectivos a 5 × IΔn (ms)
+Longest trip time of selective RCDs at IΔn (ms)	Längste Auslösezeit selektiver RCDs bei IΔn (ms)	Temps de déclenchement maximal des DDR sélectifs à IΔn (ms)	Tiempo máximo de disparo de diferenciales selectivos a IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Niederspannungs-Schaltgerätekombinationen: Bemessungsbelastungsfaktor, Erwärmung, Dokumentation	Ensembles d'appareillage à basse tension : facteur de diversité assigné, échauffement, documentation	Conjuntos de aparamenta de baja tensión: factor de diversidad asignado, calentamiento, documentación
+Lowest insulation resistance of SELV and PELV (MΩ)	Kleinster Isolationswiderstand SELV und PELV (MΩ)	Résistance d'isolement minimale TBTS et TBTP (MΩ)	Resistencia de aislamiento mínima MBTS y MBTP (MΩ)
+Lowest insulation resistance of the mains (MΩ)	Kleinster Isolationswiderstand des Netzes (MΩ)	Résistance d'isolement minimale du réseau (MΩ)	Resistencia de aislamiento mínima de la red (MΩ)
+Lowest resistance of insulating floors and walls above 500 V (kΩ)	Kleinster Widerstand isolierender Fußböden und Wände über 500 V (kΩ)	Résistance minimale des sols et parois isolants au-delà de 500 V (kΩ)	Resistencia mínima de suelos y paredes aislantes por encima de 500 V (kΩ)
+Lowest resistance of insulating floors and walls up to 500 V (kΩ)	Kleinster Widerstand isolierender Fußböden und Wände bis 500 V (kΩ)	Résistance minimale des sols et parois isolants jusqu'à 500 V (kΩ)	Resistencia mínima de suelos y paredes aislantes hasta 500 V (kΩ)
 Lubricant	Schmierstoff	Lubrifiant	Lubricante
 Lubricator (oiler)	Öler	Lubrificateur	Lubricador
+Luminaire	Leuchte	Luminaire	Luminaria
 Luminaire, fluorescent	Leuchtstofflampe	Luminaire fluorescent	Luminaria fluorescente
 MAC address	MAC-Adresse	Adresse MAC	Dirección MAC
 MCAD	MCAD	CAO mécanique	MCAD
@@ -924,6 +950,7 @@ Maximum installation altitude	Maximale Aufstellhöhe	Altitude d'installation max
 Maximum operating temperature	Maximale Betriebstemperatur	Température de service maximale	Temperatura de servicio máxima
 Maximum pressure	Maximaler Druck	Pression maximale	Presión máxima
 Measured variable	Messgröße	Grandeur mesurée	Variable medida
+Measures against electromagnetic disturbances	Maßnahmen gegen elektromagnetische Störungen	Mesures contre les perturbations électromagnétiques	Medidas contra las perturbaciones electromagnéticas
 Measuring instrument	Messgerät	Appareil de mesure	Instrumento de medida
 Measuring instruments	Messgeräte	Appareils de mesure	Instrumentos de medida
 Measuring point	Messstelle	Point de mesure	Punto de medida
@@ -1019,8 +1046,9 @@ Nailboard {}	Nagelbrett {}	Plan de clouage {}	Plano de clavos {}
 Name already used	Name bereits vergeben	Nom déjà utilisé	Nombre ya utilizado
 Network (m)	Netz (m)	Réseau (m)	Red (m)
 Neutral (N)	Neutralleiter (N)	Neutre (N)	Neutro (N)
+Neutral and protective conductors identified	Neutral- und Schutzleiter gekennzeichnet	Conducteurs neutre et de protection repérés	Conductores neutro y de protección identificados
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutralleiter müssen hellblau sein (IEC 60204-1, 13.2.3)	Les conducteurs neutres doivent être bleu clair (IEC 60204-1, 13.2.3)	Los conductores neutros deben ser azul claro (IEC 60204-1, 13.2.3)
-Next inspection	Nächste Prüfung	Prochaine inspection	Próxima inspección
+New own item of the visual inspection	Neuer eigener Punkt der Besichtigung	Nouveau point propre de l'examen visuel	Nuevo punto propio de la inspección visual
 Next page number in section	Nächste Seitennummer im Abschnitt	Numéro de page suivant dans la section	Número de página siguiente en la sección
 Nibbling	Nibbeln	Grignotage	Roedura
 No circuit breaker of {} A	Kein Leitungsschutzschalter mit {} A	Aucun disjoncteur de {} A	Ningún interruptor automático de {} A
@@ -1055,7 +1083,6 @@ No wall {}	Keine Wand {}	Pas de mur {}	No hay pared {}
 No wires at the pins of {}	Keine Verbindungen an den Pins von {}	Aucun fil aux broches de {}	No hay cables en los pines de {}
 Nominal discharge current	Nennableitstoßstrom	Courant nominal de décharge	Corriente nominal de descarga
 Non-return valve	Rückschlagventil	Clapet anti-retour	Válvula de retención
-Not OK	Nicht OK	Non conforme	No conforme
 Not a DWG file	Keine DWG-Datei	Pas un fichier DWG	No es un archivo DWG
 Not a DXF file	Keine DXF-Datei	Pas un fichier DXF	No es un archivo DXF
 Not a DXF file (binary DXF is not supported)	Keine DXF-Datei (binäres DXF wird nicht unterstützt)	Pas un fichier DXF (le DXF binaire n'est pas pris en charge)	No es un archivo DXF (el DXF binario no es compatible)
@@ -1094,7 +1121,7 @@ Number of switch positions	Anzahl Schaltstellungen	Nombre de positions	Número d
 Number of symbols	Anzahl Symbole	Nombre de symboles	Número de símbolos
 Numbers (0, 1, 2)	Zahlen (0, 1, 2)	Nombres (0, 1, 2)	Números (0, 1, 2)
 Numbers (1, 2, 3)	Zahlen (1, 2, 3)	Chiffres (1, 2, 3)	Números (1, 2, 3)
-OK	OK	OK	OK
+OK, Not OK or Not applicable	OK, Nicht OK oder Entfällt	OK, Non conforme ou Sans objet	OK, No conforme o No aplicable
 Ohmmeter	Widerstandsmesser	Ohmmètre	Óhmetro
 Oil resistant	Ölbeständig	Résistant à l'huile	Resistente al aceite
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Eine Schaltplanseite mit den Potentialen +24V / 0V, Tastern, einem Wahlschalter, Leuchten und einer Sicherung; Artikel und Stückliste.	Une page de schéma avec les potentiels +24V / 0V, des boutons-poussoirs, un commutateur, des voyants et un fusible ; articles et nomenclature.	Una página de esquema con los potenciales +24V / 0V, pulsadores, un selector, pilotos y un fusible; artículos y lista de materiales.
@@ -1147,6 +1174,7 @@ Overview (not evaluated)	Übersicht (nicht ausgewertet)	Vue d'ensemble (non éva
 Overview / single-line	Übersicht / einpolig	Vue d'ensemble / unifilaire	Resumen / unifilar
 Overvoltage category	Überspannungskategorie	Catégorie de surtension	Categoría de sobretensión
 Overvoltage relay	Überspannungsrelais	Relais à maximum de tension	Relé de sobretensión
+Own item {}	Eigener Punkt {}	Point propre {}	Punto propio {}
 P&ID / process (ISO 10628)	R&I / Verfahrenstechnik (ISO 10628)	P&ID / procédé (ISO 10628)	P&ID / proceso (ISO 10628)
 P&ID number	R&I-Nummer	Numéro P&ID	Número P&ID
 PCT loop {} has no instrument in the P&ID	PLT-Stelle {} hat kein Instrument im R&I-Fließschema	La boucle CCP {} n'a pas d'instrument dans le P&ID	El lazo PCT {} no tiene instrumento en el P&ID
@@ -1239,7 +1267,6 @@ Phase (L)	Außenleiter (L)	Phase (L)	Fase (L)
 Phase meter	Phasenwinkelmesser	Phasemètre	Fasímetro
 Phase unbalance {} % above {} %	Phasenunsymmetrie {} % über {} %	Déséquilibre des phases {} % supérieur à {} %	Desequilibrio de fases {} % superior al {} %
 Phase {}	Phase {}	Phase {}	Fase {}
-Phases	Phasen	Phases	Fases
 Photodiode	Fotodiode	Photodiode	Fotodiodo
 Photoelectric sensor, diffuse, 3-wire	Reflexions-Lichttaster, 3-Leiter	Détecteur photoélectrique en mode diffus, 3 fils	Fotocélula de detección directa, 3 hilos
 Photoelectric sensor, diffuse, 4-wire	Reflexions-Lichttaster, 4-Leiter	Détecteur photoélectrique en mode diffus, 4 fils	Fotocélula de detección directa, 4 hilos
@@ -1355,14 +1382,18 @@ Project revision	Projektrevision	Révision du projet	Revisión del proyecto
 Project symbols	Projektsymbole	Symboles du projet	Símbolos del proyecto
 Proof test interval	Prüfintervall	Intervalle de test périodique	Intervalo de prueba
 Prospective short-circuit current	Unbeeinflusster Kurzschlussstrom	Courant de court-circuit présumé	Corriente de cortocircuito prevista
+Protection against electric shock: the measures and their components	Schutz gegen elektrischen Schlag: Schutzmaßnahmen und ihre Bestandteile	Protection contre les chocs électriques : les mesures et leurs composants	Protección contra el choque eléctrico: las medidas y sus componentes
 Protection class	Schutzklasse	Classe de protection	Clase de protección
 Protection setting	Schutzeinstellung	Réglage de protection	Ajuste de protección
+Protective and monitoring devices selected and set correctly	Schutz- und Überwachungseinrichtungen richtig ausgewählt und eingestellt	Appareils de protection et de surveillance correctement choisis et réglés	Dispositivos de protección y vigilancia correctamente elegidos y ajustados
 Protective conductor {} with wire colour {} (must be GNYE)	Schutzleiter {} mit Aderfarbe {} (muss GNYE sein)	Conducteur de protection {} de couleur {} (doit être GNYE)	Conductor de protección {} con color {} (debe ser GNYE)
+Protective conductor: a hint above this multiple of the calculated resistance	Schutzleiter: Hinweis über diesem Vielfachen des berechneten Widerstands	Conducteur de protection : avertissement au-delà de ce multiple de la résistance calculée	Conductor de protección: aviso por encima de este múltiplo de la resistencia calculada
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Schutzleiter müssen grün-gelb sein (IEC 60204-1, 13.2.2)	Les conducteurs de protection doivent être vert-jaune (IEC 60204-1, 13.2.2)	Los conductores de protección deben ser verde-amarillo (IEC 60204-1, 13.2.2)
 Protective devices	Schutzgeräte	Appareils de protection	Dispositivos de protección
 Protective earth	Schutzerde	Terre de protection	Tierra de protección
 Protective earth (PE)	Schutzleiter (PE)	Terre de protection (PE)	Tierra de protección (PE)
 Protective hose	Schutzschlauch	Gaine de protection	Manguera protectora
+Protective, earthing and bonding conductors present and adequate	Schutz-, Erdungs- und Potentialausgleichsleiter vorhanden und ausreichend	Conducteurs de protection, de terre et d'équipotentialité présents et adéquats	Conductores de protección, de tierra y equipotenciales presentes y adecuados
 Proximity sensor	Näherungsschalter	Détecteur de proximité	Detector de proximidad
 Proximity sensor NO	Näherungsschalter Schließer	Capteur de proximité NO	Sensor de proximidad NA
 Proximity switch NO (NFPA)	Näherungsschalter Schließer (NFPA)	Détecteur de proximité NO (NFPA)	Detector de proximidad NA (NFPA)
@@ -1487,6 +1518,7 @@ Rule {}: no macro {}	Regel {}: kein Makro {}	Règle {} : aucune macro {}	Regla {
 Rule {}: {}	Regel {}: {}	Règle {} : {}	Regla {}: {}
 Rule {}: {} has no variant {}	Regel {}: {} hat keine Variante {}	Règle {} : {} n'a pas de variante {}	Regla {}: {} no tiene variante {}
 Rule {}: {} is no page macro	Regel {}: {} ist kein Seitenmakro	Règle {} : {} n'est pas une macro de page	Regla {}: {} no es una macro de página
+SELV, PELV, Electrical separation or none	SELV, PELV, Schutztrennung oder keine	TBTS, TBTP, Séparation électrique ou aucune	MBTS, MBTP, Separación eléctrica o ninguna
 SVG image (one page)	SVG-Bild (eine Seite)	Image SVG (une page)	Imagen SVG (una página)
 Saddle jumper	Steckbrücke	Pont enfichable	Puente enchufable
 Safe torque off (STO)	Sicher abgeschaltetes Moment (STO)	Suppression sûre du couple (STO)	Desconexión segura del par (STO)
@@ -1554,6 +1586,7 @@ Service unit	Wartungseinheit	Unité de conditionnement	Unidad de mantenimiento
 Service unit (filter, regulator, lubricator)	Wartungseinheit (Filter, Regler, Öler)	Unité de conditionnement (filtre, régulateur, lubrificateur)	Unidad de mantenimiento (filtro, regulador, lubricador)
 Setpoint	Sollwert	Consigne	Consigna
 Setting range	Einstellbereich	Plage de réglage	Rango de ajuste
+Share of the calculated loop impedance the measured one may reach	Anteil der berechneten Schleifenimpedanz, den die gemessene erreichen darf	Part de l'impédance de boucle calculée que la mesurée peut atteindre	Parte de la impedancia de bucle calculada que puede alcanzar la medida
 Sheath colour	Mantelfarbe	Couleur de la gaine	Color de la cubierta
 Sheath material	Mantelmaterial	Matériau de la gaine	Material de la cubierta
 Shed roof	Pultdach	Toit en appentis	Cubierta a un agua
@@ -1568,6 +1601,8 @@ Shielded cable {} runs together with power conductors over {} mm	Geschirmtes Kab
 Shock resistance	Schockfestigkeit	Résistance aux chocs	Resistencia a impactos
 Short circuit and disconnection	Kurzschluss und Abschaltung	Court-circuit et coupure	Cortocircuito y desconexión
 Short circuit between potentials {}	Kurzschluss zwischen den Potenzialen {}	Court-circuit entre les potentiels {}	Cortocircuito entre los potenciales {}
+Shortest trip time of selective RCDs at 5 × IΔn (ms)	Kürzeste Auslösezeit selektiver RCDs bei 5 × IΔn (ms)	Temps de déclenchement minimal des DDR sélectifs à 5 × IΔn (ms)	Tiempo mínimo de disparo de diferenciales selectivos a 5 × IΔn (ms)
+Shortest trip time of selective RCDs at IΔn (ms)	Kürzeste Auslösezeit selektiver RCDs bei IΔn (ms)	Temps de déclenchement minimal des DDR sélectifs à IΔn (ms)	Tiempo mínimo de disparo de diferenciales selectivos a IΔn (ms)
 Shut-off valve	Absperrventil	Vanne d'arrêt	Válvula de cierre
 Siemens (I0.0 / Q0.0)	Siemens (I0.0 / Q0.0)	Siemens (I0.0 / Q0.0)	Siemens (I0.0 / Q0.0)
 Signal	Signal	Signal	Señal
@@ -1576,11 +1611,14 @@ Signal devices	Meldegeräte	Appareils de signalisation	Aparatos de señalizació
 Signal name	Signalname	Nom du signal	Nombre de la señal
 Signal range	Signalbereich	Plage du signal	Rango de la señal
 Signal type	Signalart	Type de signal	Tipo de señal
+Signed by	Unterschrieben von	Signé par	Firmado por
+Signed on	Unterschrieben am	Signé le	Firmado el
 Silencer	Schalldämpfer	Silencieux	Silenciador
 Single, free-standing	Einzeln, freistehend	Seule, autoportante	Individual, autoportante
 Single, wall mounted	Einzeln, Wandmontage	Seule, montage mural	Individual, montaje mural
 Single-line / overview	Einpolig / Übersicht	Unifilaire / vue d'ensemble	Unifilar / resumen
 Single-line diagram	Übersichtsschaltplan	Schéma unifilaire	Esquema unifilar
+Single-pole switching devices in the line conductors	Einpolige Schaltgeräte in den Außenleitern	Appareils de commande unipolaires dans les conducteurs de phase	Aparatos de maniobra unipolares en los conductores de línea
 Siren	Sirene	Sirène	Sirena
 Site address	Adresse des Aufstellorts	Adresse du site	Dirección del emplazamiento
 Size (mm)	Größe (mm)	Taille (mm)	Tamaño (mm)
@@ -1600,6 +1638,7 @@ Solenoid valve coil YA (GOST)	Magnetventilspule YA (GOST)	Bobine d'électrovanne
 Solenoid valve coil YV (GB)	Magnetventilspule YV (GB)	Bobine d'électrovanne YV (GB)	Bobina de electroválvula YV (GB)
 Sort code	Sortierkennung	Code de tri	Código de orden
 Sound level	Schallpegel	Niveau sonore	Nivel sonoro
+Source {}	Quelle {}	Source {}	Fuente {}
 Source {}, first target {}, second target {}	Quelle {}, erstes Ziel {}, zweites Ziel {}	Source {}, première cible {}, deuxième cible {}	Origen {}, primer destino {}, segundo destino {}
 Source {}, targets {}, {} and {}	Quelle {}, Ziele {}, {} und {}	Source {}, cibles {}, {} et {}	Origen {}, destinos {}, {} y {}
 Spare	Reserve	Réserve	Reserva
@@ -1660,6 +1699,7 @@ Supply voltage	Versorgungsspannung	Tension d'alimentation	Tensión de alimentaci
 Surface (m²)	Oberfläche (m²)	Surface (m²)	Superficie (m²)
 Surface-mounted	Aufputz	En saillie	En superficie
 Surge protection type	Überspannungsschutz-Typ	Type de parafoudre	Tipo de protección contra sobretensiones
+Surge protection where required	Überspannungsschutz, wo gefordert	Protection contre les surtensions là où elle est exigée	Protección contra sobretensiones donde se exige
 Surge protective device	Überspannungsschutz	Parafoudre	Protector contra sobretensiones
 Surge suppressor	Überspannungsbegrenzer	Limiteur de surtension	Supresor de sobretensiones
 Switch	Schalter	Interrupteur	Interruptor
@@ -1714,6 +1754,7 @@ The DXF file contains nothing that can be imported	Die DXF-Datei enthält nichts
 The PDF file has no pages	Die PDF-Datei hat keine Seiten	Le fichier PDF n'a pas de pages	El archivo PDF no tiene páginas
 The PDF file has nothing to show	Die PDF-Datei enthält nichts Darstellbares	Le fichier PDF n'a rien à afficher	El archivo PDF no tiene nada que mostrar
 The PDF has no pages that can be read	Das PDF hat keine lesbaren Seiten	Le PDF n'a aucune page lisible	El PDF no tiene páginas legibles
+The answer is OK, Not OK or Not applicable, not {}	Die Antwort ist OK, Nicht OK oder Entfällt, nicht {}	La réponse est OK, Non conforme ou Sans objet, pas {}	La respuesta es OK, No conforme o No aplicable, no {}
 The archive contains no project	Das Archiv enthält kein Projekt	L'archive ne contient aucun projet	El archivo comprimido no contiene ningún proyecto
 The archive has no manifest	Das Archiv hat kein Manifest	L'archive n'a pas de manifeste	El archivo comprimido no tiene manifiesto
 The archive is damaged	Das Archiv ist beschädigt	L'archive est endommagée	El archivo comprimido está dañado
@@ -1739,6 +1780,7 @@ The first column must be Key	Die erste Spalte muss Key sein	La première colonne
 The folder {} already holds the project {}: a split project needs a folder of its own	Der Ordner {} enthält bereits das Projekt {}: ein geteiltes Projekt braucht einen eigenen Ordner	Le dossier {} contient déjà le projet {} : un projet fractionné a besoin de son propre dossier	La carpeta {} ya contiene el proyecto {}: un proyecto dividido necesita una carpeta propia
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Der Ordner {} enthält Dateien, die zu keinem Projekt gehören ({}): ein geteiltes Projekt braucht einen eigenen Ordner	Le dossier {} contient des fichiers qui n'appartiennent à aucun projet ({}) : un projet fractionné a besoin de son propre dossier	La carpeta {} contiene archivos que no pertenecen a ningún proyecto ({}): un proyecto dividido necesita una carpeta propia
 The function definition needs a key and a name	Die Funktionsdefinition braucht einen Schlüssel und einen Namen	La définition de fonction a besoin d'une clé et d'un nom	La definición de función necesita una clave y un nombre
+The function test is OK or Not OK, not {}	Die Funktionsprüfung ist OK oder Nicht OK, nicht {}	L'essai de fonctionnement est OK ou Non conforme, pas {}	La prueba de funcionamiento es OK o No conforme, no {}
 The image is too large ({} × {} pixels)	Das Bild ist zu groß ({} × {} Pixel)	L'image est trop grande ({} × {} pixels)	La imagen es demasiado grande ({} × {} píxeles)
 The index of the project names no file layout: it was not written by OpenECraft	Der Index des Projekts nennt kein Dateilayout: er wurde nicht von OpenECraft geschrieben	L'index du projet n'indique aucune structure de fichiers : il n'a pas été écrit par OpenECraft	El índice del proyecto no indica ninguna estructura de archivos: no fue escrito por OpenECraft
 The inner wall leaves the room	Die Innenwand verlässt den Raum	Le mur intérieur sort de la salle	La pared interior sale de la sala
@@ -1762,6 +1804,7 @@ The project has no panel layout	Das Projekt hat keinen Schaltschrankaufbau	Le pr
 The project has several harnesses: {}	Das Projekt hat mehrere Kabelbäume: {}	Le projet a plusieurs faisceaux : {}	El proyecto tiene varios mazos: {}
 The project was written by a newer version (file layout {})	Das Projekt wurde von einer neueren Version geschrieben (Dateilayout {})	Le projet a été écrit par une version plus récente (structure de fichiers {})	El proyecto fue escrito por una versión más reciente (estructura de archivos {})
 The property needs a name	Die Eigenschaft braucht einen Namen	La propriété a besoin d'un nom	La propiedad necesita un nombre
+The protective measure is SELV, PELV, electrical separation or none, not {}	Die Schutzmaßnahme ist SELV, PELV, Schutztrennung oder keine, nicht {}	La mesure de protection est TBTS, TBTP, séparation électrique ou aucune, pas {}	La medida de protección es MBTS, MBTP, separación eléctrica o ninguna, no {}
 The pump room in a plant of two buildings: the main building with the electrical room on its ground level and the control room above, joined by a shaft; the pump house with pump motor 2, linked by a cable trench between the building entries through which its motor cable is routed; façade lights on the outside walls and a weather station on the roof.	Der Pumpenraum in einer Anlage aus zwei Gebäuden: das Hauptgebäude mit dem Elektroraum im Erdgeschoss und der Leitwarte darüber, durch einen Schacht verbunden; das Pumpenhaus mit Pumpenmotor 2, über einen Kabelgraben zwischen den Gebäudeeinführungen angebunden, durch den sein Motorkabel verlegt wird; Fassadenleuchten an den Außenwänden und eine Wetterstation auf dem Dach.	La salle des pompes dans une installation de deux bâtiments : le bâtiment principal avec le local électrique au rez-de-chaussée et la salle de commande au-dessus, reliés par une gaine ; la station de pompage avec le moteur de pompe 2, reliée par une tranchée de câbles entre les entrées de bâtiment par laquelle passe son câble moteur ; des appliques sur les murs extérieurs et une station météo sur la toiture.	La sala de bombas en una instalación de dos edificios: el edificio principal con la sala eléctrica en planta baja y la sala de control encima, unidas por un patinillo; la caseta de bombas con el motor de la bomba 2, unida por una zanja de cables entre las entradas de edificio por la que se tiende su cable de motor; apliques en los muros exteriores y una estación meteorológica en la cubierta.
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Die Pumpstation in zwei angereihten Standschränken: Sammelschienensystem, Tragschienen und Kabelkanäle, Türgeräte und Griffe, Filterlüfter, Leuchte, PE-Schiene, Kabelverschraubungen, ein Kabeldurchgang, Klimatisierungsberechnung, Kanalfüllgrad und 3D-Routing.	La station de pompage montée dans deux armoires au sol juxtaposées : jeu de barres, rails et goulottes, appareils de porte et poignées, ventilateur à filtre, éclairage, barre de terre, presse-étoupes, un passage de câbles, calcul de climatisation, taux de remplissage des goulottes et routage 3D.	La estación de bombeo montada en dos armarios de pie en batería: sistema de embarrado, carriles y canaletas, equipos de puerta y manetas, ventilador con filtro, luminaria, barra de tierra, prensaestopas, un paso de cables, cálculo de climatización, ocupación de canaletas y enrutado 3D.
 The revision is already released	Die Revision ist bereits freigegeben	La révision est déjà diffusée	La revisión ya está liberada
@@ -1917,7 +1960,6 @@ Vibration resistance	Vibrationsfestigkeit	Résistance aux vibrations	Resistencia
 View projects	Projekte ansehen	Consulter les projets	Ver proyectos
 Violations	Verstöße	Violations	Infracciones
 Voltage (V)	Spannung (V)	Tension (V)	Tensión (V)
-Voltage drop (%)	Spannungsfall (%)	Chute de tension (%)	Caída de tensión (%)
 Voltage drop (V)	Spannungsfall (V)	Chute de tension (V)	Caída de tensión (V)
 Voltage protection level	Schutzpegel	Niveau de protection en tension	Nivel de protección de tensión
 Voltage range	Spannungsbereich	Plage de tension	Rango de tensión
@@ -2027,6 +2069,7 @@ in work	in Bearbeitung	en traitement	en trabajo
 in {}	in {}	dans {}	en {}
 in-line	Durchgang	en ligne	en línea
 incl.	inkl.	incl.	incl.
+instead of {}	statt {}	au lieu de {}	en lugar de {}
 ip (kA)	ip (kA)	ip (kA)	ip (kA)
 is	ist	est	es
 is at least	ist mindestens	est au moins	es al menos
@@ -2123,6 +2166,7 @@ yellow	gelb	jaune	amarillo
 {} min {} s	{} min {} s	{} min {} s	{} min {} s
 {} mm, L = {} mm	{} mm, L = {} mm	{} mm, L = {} mm	{} mm, L = {} mm
 {} mounting marks belong to items that no longer exist	{} Montagemarkierungen gehören zu Teilen, die es nicht mehr gibt	{} marques de montage appartiennent à des éléments qui n'existent plus	{} marcas de montaje pertenecen a elementos que ya no existen
+{} of {} passed	{} von {} bestanden	{} sur {} conformes	{} de {} aprobados
 {} option assignments of deleted objects removed	{} Optionszuordnungen gelöschter Objekte entfernt	{} affectations d'option d'objets supprimés retirées	{} asignaciones de opción de objetos eliminados quitadas
 {} placed properties converted to property keys	{} platzierte Eigenschaften in Eigenschaftsschlüssel umgewandelt	{} propriétés placées converties en clés de propriété	{} propiedades colocadas convertidas en claves de propiedad
 {} planned devices are not in the schematic yet	{} geplante Geräte sind noch nicht im Schaltplan	{} appareils planifiés ne sont pas encore dans le schéma	{} equipos planificados aún no están en el esquema

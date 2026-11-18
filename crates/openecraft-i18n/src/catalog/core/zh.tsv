@@ -39,6 +39,7 @@ Actuated by	驱动元件
 Actuation	操作方式
 Actuator type	操作元件类型
 Additional page description	附加页描述
+Additional protection by RCDs of at most 30 mA where required	必要时由不超过 30 mA 的 RCD 提供附加保护
 Address ranges of {} and {} overlap	{} 和 {} 的地址范围重叠
 Address {} is used by {} and {}	地址 {} 被 {} 和 {} 使用
 Adhesive	粘接
@@ -193,6 +194,7 @@ Check valve	止回阀
 Checked	已检查
 Checked by	检查人
 Choose the pages of the subproject	选择子项目的页
+Circuit	回路
 Circuit breaker (single-line)	断路器（单线）
 Circuit breaker 1-pole	微型断路器 1 极
 Circuit breaker 1-pole (NFPA)	断路器，1 极 (NFPA)
@@ -209,6 +211,7 @@ Circuit breaker 3-pole QF (GB)	断路器，3 极 QF (GB)
 Circuit breaker 3-pole QF (GOST)	断路器，3 极 QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	断路器，3 极，热磁式
 Circuit breaker 4-pole	断路器 4 极
+Circuits, protective devices, switches and terminals labelled	回路、保护装置、开关和端子已标识
 Circular milling	圆周铣削
 Clip / snap-on	卡扣 / 卡装
 Cloud	云线
@@ -230,6 +233,7 @@ Compressed air supply	压缩空气供给
 Compressor	压缩机
 Condition '{}' needs OPTION=value	条件“{}”需要 OPTION=值
 Conductor class	导体等级
+Conductors selected for current-carrying capacity and voltage drop	导体按载流量和电压降选择
 Conduit	导管
 Connected	已连接
 Connection definition point on page {} is not applied to its connection	页 {} 上的连接定义点未应用到其连接
@@ -243,6 +247,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	连接符号
 Connection type	连接类型
 Connection {} has contradicting connection definition points	连接 {} 有相互矛盾的连接定义点
+Connections of the conductors	导体的连接
 Connector pin-outs and flat cables	连接器引脚分配和扁平电缆
 Connector pin-outs: mating faces and pin tables (SVG)	连接器引脚分配：插合面和引脚表 (SVG)
 Contact material	触点材料
@@ -268,6 +273,7 @@ Control transformer TC (GB)	控制变压器 TC (GB)
 Control valve	调节阀
 Control voltage	控制电压
 Control voltage type	控制电压类型
+Conventional touch voltage limit UL (V)	约定接触电压限值 UL (V)
 Converted from file format {} to {}: {}	已从文件格式 {} 转换为 {}：{}
 Coolant	冷却液
 Cooler	冷却器
@@ -331,6 +337,7 @@ DWG export failed: {}	DWG 导出失败：{}
 Data sheet	数据表
 Date of the approval of the last revision	最新修订的批准日期
 Date of the last revision	最新修订的日期
+Default {} ({})	默认 {} ({})
 Degree of protection	防护等级
 Delete projects	删除项目
 Delivery date	交货日期
@@ -363,6 +370,7 @@ Devices without power loss	没有功率损耗的设备
 Dew point (°C)	露点 (°C)
 Diagnostic coverage (DC)	诊断覆盖率 (DC)
 Diagnostics	诊断
+Diagrams, warning notices and similar information present	有图纸、警告标志和其他信息
 Diameter (mm)	直径 (mm)
 Different wire numbers in one connection: {}	一个连接中的线号不同：{}
 Digital input / output module	数字量输入 / 输出模块
@@ -453,6 +461,7 @@ Emergency stop SB (GOST)	急停 SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	急停设备需要 B10d 值（ISO 13849-1，附录 C）
 Emergency stop, mushroom head (NFPA)	急停，蘑菇头 (NFPA)
 Empty (IEC 60204-1)	空 (IEC 60204-1)
+Empty: removes the item	空：删除该项目
 Enclosure body	柜体
 Enclosure climate	机柜温控
 Enclosure light	机柜照明灯
@@ -470,6 +479,8 @@ Energy limitation class	能量限制等级
 Engineered	已设计
 Engineering unit	工程单位
 Environment	环境
+Equipment accessible for operation, inspection and maintenance	设备便于操作、检查和维护
+Equipment and protective measures suit the external influences	设备和保护措施适合外部影响
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	设备接地导体必须为绿色 (NFPA 79, 13.2.2)
 Excel workbook	Excel 工作簿
 Exhaust {} open to the atmosphere (no silencer)	排气口 {} 向大气开放（无消声器）
@@ -695,12 +706,14 @@ Input voltage	输入电压
 Inputs from	输入来自
 Inrush current	浪涌电流
 Inside (°C)	内部 (°C)
+Inspection and test report: SELV, PELV and separation	检验和测试报告：SELV、PELV 和隔离
+Inspection and test report: data	检验和测试报告：数据
+Inspection and test report: summary	检验和测试报告：摘要
 Installation altitude	安装海拔
 Installation date	安装日期
 Installation devices	安装电器
 Installation method	敷设方式
 Installation plan (IEC 60617-11)	安装平面图 (IEC 60617-11)
-Installation site	安装地点
 Installation site (++)	安装地点 (++)
 Installation site and location	安装地点和位置
 Installation site of the page	页的安装地点
@@ -723,6 +736,7 @@ Invalid length {}	无效长度 {}
 Invalid property key: {}	无效的属性键：{}
 Inverter / charger	逆变器 / 充电器
 Inverter DC/AC	逆变器 DC/AC
+Isolating and switching devices in the right places	隔离和开关装置位置正确
 Item	元素
 Item ID	物料 ID
 JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -766,8 +780,12 @@ Load calculation	负载计算
 Loads and power supplies	负载和电源
 Loads behind it: {}	下游负载：{}
 Location of the page	页的位置
+Longest RCD trip time at 5 × IΔn (ms)	5 × IΔn 时 RCD 最长动作时间 (ms)
+Longest RCD trip time at IΔn (ms)	IΔn 时 RCD 最长动作时间 (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	低压成套开关设备：额定分散系数、温升、文档
+Lowest insulation resistance of the mains (MΩ)	电网最小绝缘电阻 (MΩ)
 Lubricant	润滑剂
+Luminaire	灯具
 Luminaire, fluorescent	荧光灯具
 MAC address	MAC 地址
 MCAD	MCAD
@@ -816,6 +834,7 @@ Maximum installation altitude	最大安装海拔
 Maximum operating temperature	最高工作温度
 Maximum pressure	最大压力
 Measured variable	测量变量
+Measures against electromagnetic disturbances	EMC 措施
 Measuring instrument	测量仪表
 Measuring instruments	测量仪表
 Measuring point	测量点
@@ -907,8 +926,9 @@ NO contact, timed closing (NFPA)	常开触点，延时闭合 (NFPA)
 Nailboard {}	钉板图 {}
 Network (m)	网络 (m)
 Neutral (N)	中性线 (N)
+Neutral and protective conductors identified	中性线和保护导体已标识
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	中性导体必须为浅蓝色 (IEC 60204-1, 13.2.3)
-Next inspection	下次检验
+New own item of the visual inspection	目视检查的新自定义项目
 Nibbling	步冲
 No connection {}	没有连接 {}
 No devices to add to the single-line diagram	没有要添加到单线图的设备
@@ -929,7 +949,6 @@ No user defined property {}	用户定义属性 {} 不存在
 No wires at the pins of {}	{} 的引脚上没有导线
 Nominal discharge current	标称放电电流
 Non-return valve	单向阀
-Not OK	不合格
 Not a DWG file	不是 DWG 文件
 Not a DXF file	不是 DXF 文件
 Not a DXF file (binary DXF is not supported)	不是 DXF 文件（不支持二进制 DXF）
@@ -964,7 +983,7 @@ Number of sheets	图纸张数
 Number of switch positions	开关挡位数
 Number of symbols	符号数
 Numbers (1, 2, 3)	数字（1、2、3）
-OK	OK
+OK, Not OK or Not applicable	OK、不合格或不适用
 Ohmmeter	欧姆表
 Oil resistant	耐油
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	一页原理图，包含 +24V / 0V 电位、按钮、选择开关、指示灯和熔断器；部件和物料清单。
@@ -1014,6 +1033,7 @@ Overview (not evaluated)	概览（不评估）
 Overview / single-line	概览 / 单线
 Overvoltage category	过电压类别
 Overvoltage relay	过电压继电器
+Own item {}	自定义项目 {}
 P&ID / process (ISO 10628)	P&ID / 过程 (ISO 10628)
 P&ID number	P&ID 编号
 PCT loop {} has no instrument in the P&ID	PCT 回路 {} 在 P&ID 中没有仪表
@@ -1099,7 +1119,6 @@ Phase (L)	相线 (L)
 Phase meter	相位表
 Phase unbalance {} % above {} %	相不平衡度 {} % 超过 {} %
 Phase {}	相 {}
-Phases	相
 Photodiode	光电二极管
 Photoelectric sensor, diffuse, 3-wire	光电传感器，漫反射式，3 线制
 Photoelectric sensor, diffuse, 4-wire	光电传感器，漫反射式，4 线制
@@ -1210,14 +1229,17 @@ Project revision	项目修订
 Project symbols	项目符号
 Proof test interval	检验测试间隔
 Prospective short-circuit current	预期短路电流
+Protection against electric shock: the measures and their components	电击防护：措施及其组成部分
 Protection class	保护类别
 Protection setting	保护设置
+Protective and monitoring devices selected and set correctly	保护和监视装置选择和整定正确
 Protective conductor {} with wire colour {} (must be GNYE)	保护导体 {} 的导线颜色为 {}（必须为 GNYE）
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	保护导体必须为绿黄色 (IEC 60204-1, 13.2.2)
 Protective devices	保护设备
 Protective earth	保护接地
 Protective earth (PE)	保护导体 (PE)
 Protective hose	保护软管
+Protective, earthing and bonding conductors present and adequate	保护、接地和联结导体齐全且合适
 Proximity sensor	接近开关
 Proximity sensor NO	接近开关 常开触点
 Proximity switch NO (NFPA)	接近开关，常开 (NFPA)
@@ -1337,6 +1359,7 @@ Rule {}: no macro {}	规则 {}：没有宏 {}
 Rule {}: {}	规则 {}：{}
 Rule {}: {} has no variant {}	规则 {}：{} 没有变体 {}
 Rule {}: {} is no page macro	规则 {}：{} 不是页宏
+SELV, PELV, Electrical separation or none	SELV、PELV、电气隔离或无
 SVG image (one page)	SVG 图像（一页）
 Saddle jumper	鞍形跳线
 Safe torque off (STO)	安全转矩关断 (STO)
@@ -1424,11 +1447,14 @@ Signal devices	信号设备
 Signal name	信号名称
 Signal range	信号范围
 Signal type	信号类型
+Signed by	签名人
+Signed on	签名日期
 Silencer	消声器
 Single, free-standing	单柜，落地式
 Single, wall mounted	单柜，壁挂式
 Single-line / overview	单线 / 概览
 Single-line diagram	单线图
+Single-pole switching devices in the line conductors	相线中的单极开关装置
 Siren	警报器
 Site address	安装场所地址
 Size (mm)	大小 (mm)
@@ -1447,6 +1473,7 @@ Solenoid valve coil YA (GOST)	电磁阀线圈 YA (GOST)
 Solenoid valve coil YV (GB)	电磁阀线圈 YV (GB)
 Sort code	排序代码
 Sound level	声级
+Source {}	电源 {}
 Source {}, first target {}, second target {}	源{}，第一目标{}，第二目标{}
 Source {}, targets {}, {} and {}	源{}，目标{}、{}和{}
 Spare	备用
@@ -1503,6 +1530,7 @@ Supply voltage	供电电压
 Surface (m²)	表面积 (m²)
 Surface-mounted	明装
 Surge protection type	浪涌保护类型
+Surge protection where required	必要时的电涌保护
 Surge protective device	浪涌保护器
 Surge suppressor	浪涌抑制器
 Switch, 1-pole (installation)	单极开关（建筑安装）
@@ -1553,6 +1581,7 @@ Termination (to)	端接（终点）
 Text file	文本文件
 The DXF file contains nothing that can be imported	DXF 文件中没有可导入的内容
 The PDF has no pages that can be read	PDF 中没有可读取的页
+The answer is OK, Not OK or Not applicable, not {}	答案应为 OK、不合格或不适用，而不是 {}
 The archive contains no project	归档中不包含项目
 The archive has no manifest	归档没有清单
 The archive is damaged	归档已损坏
@@ -1583,6 +1612,7 @@ The plot boundary encloses no area	场地边界未围成面积
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	场地边界不是多边形：它自相交或少于三个角点
 The project has no panel layout	项目没有安装板布局
 The property needs a name	属性需要名称
+The protective measure is SELV, PELV, electrical separation or none, not {}	保护措施应为 SELV、PELV、电气隔离或无，而不是 {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	安装在两台并柜落地柜中的泵站：母线系统、导轨和线槽、柜门设备和把手、过滤风扇、照明灯、PE 排、电缆密封接头、电缆通道、柜内温控计算、线槽填充率和三维布线。
 The revision is already released	该修订已发布
 The revision is not approved	该修订未获批准
@@ -1724,7 +1754,6 @@ Vibration resistance	抗振性
 View projects	查看项目
 Violations	违规
 Voltage (V)	电压 (V)
-Voltage drop (%)	电压降 (%)
 Voltage drop (V)	电压降 (V)
 Voltage protection level	电压保护水平
 Voltage range	电压范围
@@ -1829,6 +1858,7 @@ in work	处理中
 in {}	在 {} 中
 in-line	直通
 incl.	含
+instead of {}	而不是 {}
 ip (kA)	ip (kA)
 is	等于
 is at least	至少为
@@ -1915,6 +1945,7 @@ yellow	黄色
 {} lies outside page {}	{} 位于页面 {} 之外
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} 个安装标记属于已不存在的元件
+{} of {} passed	{} / {} 通过
 {} option assignments of deleted objects removed	已删除已删除对象的 {} 个选项分配
 {} placed properties converted to property keys	已将 {} 个放置的属性转换为属性键
 {} planned devices are not in the schematic yet	{} 个已规划设备尚未在原理图中

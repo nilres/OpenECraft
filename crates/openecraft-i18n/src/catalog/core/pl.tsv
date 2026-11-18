@@ -43,6 +43,7 @@ Actuated by	Uruchamiane przez
 Actuation	Uruchamianie
 Actuator type	Typ elementu uruchamiającego
 Additional page description	Dodatkowy opis strony
+Additional protection by RCDs of at most 30 mA where required	Ochrona uzupełniająca wyłącznikami RCD o prądzie najwyżej 30 mA tam, gdzie jest wymagana
 Address ranges of {} and {} overlap	Zakresy adresów {} i {} nakładają się
 Address {} is used by {} and {}	Adres {} jest używany przez {} i {}
 Adhesive	Klejenie
@@ -203,6 +204,7 @@ Check valve	Zawór zwrotny
 Checked	Sprawdzone
 Checked by	Sprawdził
 Choose the pages of the subproject	Wybierz strony podprojektu
+Circuit	Obwód
 Circuit breaker (single-line)	Wyłącznik nadprądowy (jednokreskowy)
 Circuit breaker 1-pole	Wyłącznik nadprądowy 1-biegunowy
 Circuit breaker 1-pole (NFPA)	Wyłącznik nadprądowy 1-biegunowy (NFPA)
@@ -219,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Wyłącznik nadprądowy 3-biegunowy QF (GB)
 Circuit breaker 3-pole QF (GOST)	Wyłącznik nadprądowy 3-biegunowy QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Wyłącznik nadprądowy 3-biegunowy, termiczno-elektromagnetyczny
 Circuit breaker 4-pole	Wyłącznik nadprądowy 4-biegunowy
+Circuits, protective devices, switches and terminals labelled	Obwody, zabezpieczenia, łączniki i zaciski oznaczone
 Circular milling	Frezowanie po okręgu
 Clip / snap-on	Zatrzask
 Cloud	Chmurka
@@ -240,6 +243,7 @@ Compressed air supply	Zasilanie sprężonym powietrzem
 Compressor	Sprężarka
 Condition '{}' needs OPTION=value	Warunek '{}' wymaga OPTION=wartość
 Conductor class	Klasa żyły
+Conductors selected for current-carrying capacity and voltage drop	Przewody dobrane pod względem obciążalności i spadku napięcia
 Conduit	Rura instalacyjna
 Connected	Zajęte
 Connection definition point on page {} is not applied to its connection	Punkt definicji połączenia na stronie {} nie został zastosowany do swojego połączenia
@@ -253,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Symbole połączeń
 Connection type	Rodzaj przyłącza
 Connection {} has contradicting connection definition points	Połączenie {} ma sprzeczne punkty definicji połączenia
+Connections of the conductors	Połączenia przewodów
 Connector pin-outs and flat cables	Rozkłady pinów złączy i kable płaskie
 Connector pin-outs: mating faces and pin tables (SVG)	Rozkłady pinów złączy: strony styku i tabele pinów (SVG)
 Contact material	Materiał styków
@@ -278,6 +283,7 @@ Control transformer TC (GB)	Transformator sterowniczy TC (GB)
 Control valve	Zawór regulacyjny
 Control voltage	Napięcie sterowania
 Control voltage type	Rodzaj napięcia sterowania
+Conventional touch voltage limit UL (V)	Umowne napięcie dotykowe dopuszczalne UL (V)
 Converted from file format {} to {}: {}	Przekonwertowano z formatu pliku {} na {}: {}
 Coolant	Chłodziwo
 Cooler	Chłodnica
@@ -341,6 +347,7 @@ DWG export failed: {}	Eksport DWG nie powiódł się: {}
 Data sheet	Karta katalogowa
 Date of the approval of the last revision	Data zatwierdzenia ostatniej rewizji
 Date of the last revision	Data ostatniej rewizji
+Default {} ({})	Domyślnie {} ({})
 Degree of protection	Stopień ochrony
 Delete projects	Usuwanie projektów
 Delivery date	Termin dostawy
@@ -373,6 +380,7 @@ Devices without power loss	Urządzenia bez strat mocy
 Dew point (°C)	Punkt rosy (°C)
 Diagnostic coverage (DC)	Pokrycie diagnostyczne (DC)
 Diagnostics	Diagnostyka
+Diagrams, warning notices and similar information present	Schematy, ostrzeżenia i podobne informacje obecne
 Diameter (mm)	Średnica (mm)
 Different wire numbers in one connection: {}	Różne numery przewodów w jednym połączeniu: {}
 Digital input / output module	Moduł wejść / wyjść cyfrowych
@@ -463,6 +471,7 @@ Emergency stop SB (GOST)	Zatrzymanie awaryjne SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Urządzenia zatrzymania awaryjnego wymagają wartości B10d (ISO 13849-1, załącznik C)
 Emergency stop, mushroom head (NFPA)	Zatrzymanie awaryjne, przycisk grzybkowy (NFPA)
 Empty (IEC 60204-1)	Pusty (IEC 60204-1)
+Empty: removes the item	Puste: usuwa punkt
 Enclosure body	Korpus obudowy
 Enclosure climate	Klimatyzacja obudowy
 Enclosure light	Oświetlenie obudowy
@@ -480,6 +489,8 @@ Energy limitation class	Klasa ograniczenia energii
 Engineered	Zaprojektowana
 Engineering unit	Jednostka fizyczna
 Environment	Środowisko
+Equipment accessible for operation, inspection and maintenance	Urządzenia dostępne do obsługi, kontroli i konserwacji
+Equipment and protective measures suit the external influences	Urządzenia i środki ochrony dostosowane do wpływów zewnętrznych
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Przewody ochronne muszą być zielone (NFPA 79, 13.2.2)
 Excel workbook	Skoroszyt programu Excel
 Exhaust {} open to the atmosphere (no silencer)	Odpowietrzenie {} otwarte do atmosfery (brak tłumika)
@@ -515,6 +526,7 @@ File name written into the file header	Nazwa pliku zapisywana w nagłówku pliku
 Fill level (%)	Stopień wypełnienia (%)
 Filter fan with outlet filter	Wentylator z filtrem i filtrem wylotowym
 Filter rating	Dokładność filtracji
+Fire barriers and protection against thermal effects	Przegrody ogniowe i ochrona przed skutkami cieplnymi
 Firmware version	Wersja oprogramowania układowego
 First end only	Tylko pierwszy koniec
 Fitting	Złączka
@@ -706,12 +718,14 @@ Input voltage	Napięcie wejściowe
 Inputs from	Wejścia z
 Inrush current	Prąd załączania
 Inside (°C)	Wewnątrz (°C)
+Inspection and test report: SELV, PELV and separation	Protokół z badań odbiorczych: SELV, PELV i separacja
+Inspection and test report: data	Protokół z badań odbiorczych: dane
+Inspection and test report: summary	Protokół z badań odbiorczych: podsumowanie
 Installation altitude	Wysokość ustawienia
 Installation date	Data montażu
 Installation devices	Aparatura instalacyjna
 Installation method	Sposób ułożenia
 Installation plan (IEC 60617-11)	Plan instalacji (IEC 60617-11)
-Installation site	Miejsce instalacji
 Installation site (++)	Miejsce instalacji (++)
 Installation site and location	Miejsce instalacji i miejsce montażu
 Installation site of the page	Miejsce instalacji strony
@@ -734,6 +748,7 @@ Invalid length {}	Nieprawidłowa długość {}
 Invalid property key: {}	Nieprawidłowy klucz właściwości: {}
 Inverter / charger	Falownik / ładowarka
 Inverter DC/AC	Falownik DC/AC
+Isolating and switching devices in the right places	Urządzenia odłączające i łączeniowe we właściwych miejscach
 Item	Element
 Item ID	Identyfikator pozycji
 JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -777,8 +792,12 @@ Load calculation	Obliczenie obciążenia
 Loads and power supplies	Odbiorniki i zasilacze
 Loads behind it: {}	Odbiorniki za nim: {}
 Location of the page	Miejsce montażu strony
+Longest RCD trip time at 5 × IΔn (ms)	Najdłuższy czas zadziałania RCD przy 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Najdłuższy czas zadziałania RCD przy IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Rozdzielnice i sterownice niskonapięciowe: znamionowy współczynnik obciążenia, przyrost temperatury, dokumentacja
+Lowest insulation resistance of the mains (MΩ)	Najmniejsza rezystancja izolacji sieci (MΩ)
 Lubricant	Środek smarny
+Luminaire	Oprawa oświetleniowa
 Luminaire, fluorescent	Oprawa świetlówkowa
 MAC address	Adres MAC
 MCAD	MCAD
@@ -827,6 +846,7 @@ Maximum installation altitude	Maksymalna wysokość ustawienia
 Maximum operating temperature	Maksymalna temperatura pracy
 Maximum pressure	Maksymalne ciśnienie
 Measured variable	Wielkość mierzona
+Measures against electromagnetic disturbances	Środki przeciw zaburzeniom elektromagnetycznym
 Measuring instrument	Przyrząd pomiarowy
 Measuring instruments	Przyrządy pomiarowe
 Measuring point	Punkt pomiarowy
@@ -919,8 +939,9 @@ NO contact, timed closing (NFPA)	Styk zwierny, zamykanie z opóźnieniem (NFPA)
 Nailboard {}	Deska montażowa {}
 Network (m)	Sieć (m)
 Neutral (N)	Przewód neutralny (N)
+Neutral and protective conductors identified	Przewody neutralne i ochronne oznaczone
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Przewody neutralne muszą być jasnoniebieskie (IEC 60204-1, 13.2.3)
-Next inspection	Następna kontrola
+New own item of the visual inspection	Nowy własny punkt oględzin
 Nibbling	Nadkrawanie
 No connection {}	Brak połączenia {}
 No devices to add to the single-line diagram	Brak urządzeń do dodania do schematu jednokreskowego
@@ -941,7 +962,6 @@ No user defined property {}	Brak właściwości zdefiniowanej przez użytkownika
 No wires at the pins of {}	Brak przewodów na pinach {}
 Nominal discharge current	Znamionowy prąd wyładowczy
 Non-return valve	Zawór zwrotny
-Not OK	Nie OK
 Not a DWG file	To nie jest plik DWG
 Not a DXF file	To nie jest plik DXF
 Not a DXF file (binary DXF is not supported)	To nie jest plik DXF (binarny DXF nie jest obsługiwany)
@@ -976,7 +996,7 @@ Number of sheets	Liczba arkuszy
 Number of switch positions	Liczba położeń łącznika
 Number of symbols	Liczba symboli
 Numbers (1, 2, 3)	Liczby (1, 2, 3)
-OK	OK
+OK, Not OK or Not applicable	OK, Nie OK lub Nie dotyczy
 Ohmmeter	Omomierz
 Oil resistant	Olejoodporny
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Jedna strona schematu z potencjałami +24V / 0V, przyciskami, przełącznikiem wyboru, lampkami i bezpiecznikiem; artykuły i zestawienie materiałów.
@@ -1028,6 +1048,7 @@ Overview (not evaluated)	Przegląd (nieanalizowany)
 Overview / single-line	Przegląd / schemat jednokreskowy
 Overvoltage category	Kategoria przepięciowa
 Overvoltage relay	Przekaźnik nadnapięciowy
+Own item {}	Własny punkt {}
 P&ID / process (ISO 10628)	P&ID / procesy (ISO 10628)
 P&ID number	Numer P&ID
 PCT loop {} has no instrument in the P&ID	Pętla AKPiA {} nie ma przyrządu na schemacie P&ID
@@ -1113,7 +1134,6 @@ Phase (L)	Przewód fazowy (L)
 Phase meter	Fazomierz
 Phase unbalance {} % above {} %	Asymetria faz {} % powyżej {} %
 Phase {}	Faza {}
-Phases	Fazy
 Photodiode	Fotodioda
 Photoelectric sensor, diffuse, 3-wire	Czujnik fotoelektryczny odbiciowy, 3-przewodowy
 Photoelectric sensor, diffuse, 4-wire	Czujnik fotoelektryczny odbiciowy, 4-przewodowy
@@ -1224,14 +1244,17 @@ Project revision	Rewizja projektu
 Project symbols	Symbole projektu
 Proof test interval	Interwał testów okresowych
 Prospective short-circuit current	Spodziewany prąd zwarciowy
+Protection against electric shock: the measures and their components	Ochrona przed porażeniem prądem elektrycznym: środki i ich elementy
 Protection class	Klasa ochronności
 Protection setting	Nastawa zabezpieczenia
+Protective and monitoring devices selected and set correctly	Urządzenia zabezpieczające i monitorujące poprawnie dobrane i nastawione
 Protective conductor {} with wire colour {} (must be GNYE)	Przewód ochronny {} w kolorze {} (musi być GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Przewody ochronne muszą być zielono-żółte (IEC 60204-1, 13.2.2)
 Protective devices	Urządzenia zabezpieczające
 Protective earth	Uziemienie ochronne
 Protective earth (PE)	Przewód ochronny (PE)
 Protective hose	Wąż ochronny
+Protective, earthing and bonding conductors present and adequate	Przewody ochronne, uziemiające i wyrównawcze obecne i odpowiednie
 Proximity sensor	Czujnik zbliżeniowy
 Proximity sensor NO	Czujnik zbliżeniowy NO
 Proximity switch NO (NFPA)	Łącznik zbliżeniowy, zwierny (NFPA)
@@ -1352,6 +1375,7 @@ Rule {}: no macro {}	Reguła {}: brak makra {}
 Rule {}: {}	Reguła {}: {}
 Rule {}: {} has no variant {}	Reguła {}: {} nie ma wariantu {}
 Rule {}: {} is no page macro	Reguła {}: {} nie jest makrem strony
+SELV, PELV, Electrical separation or none	SELV, PELV, Separacja elektryczna lub brak
 SVG image (one page)	Obraz SVG (jedna strona)
 Saddle jumper	Mostek wtykowy
 Safe torque off (STO)	Bezpieczne wyłączenie momentu (STO)
@@ -1439,11 +1463,14 @@ Signal devices	Aparatura sygnalizacyjna
 Signal name	Nazwa sygnału
 Signal range	Zakres sygnału
 Signal type	Rodzaj sygnału
+Signed by	Podpisał
+Signed on	Data podpisu
 Silencer	Tłumik
 Single, free-standing	Pojedyncza, wolnostojąca
 Single, wall mounted	Pojedyncza, montaż naścienny
 Single-line / overview	Schemat jednokreskowy / przegląd
 Single-line diagram	Schemat jednokreskowy
+Single-pole switching devices in the line conductors	Łączniki jednobiegunowe w przewodach fazowych
 Siren	Syrena
 Site address	Adres miejsca instalacji
 Size (mm)	Rozmiar (mm)
@@ -1462,6 +1489,7 @@ Solenoid valve coil YA (GOST)	Cewka zaworu elektromagnetycznego YA (GOST)
 Solenoid valve coil YV (GB)	Cewka zaworu elektromagnetycznego YV (GB)
 Sort code	Kod sortowania
 Sound level	Poziom hałasu
+Source {}	Źródło {}
 Source {}, first target {}, second target {}	Źródło {}, pierwszy cel {}, drugi cel {}
 Source {}, targets {}, {} and {}	Źródło {}, cele {}, {} i {}
 Spare	Rezerwa
@@ -1518,6 +1546,7 @@ Supply voltage	Napięcie zasilania
 Surface (m²)	Powierzchnia (m²)
 Surface-mounted	Natynkowo
 Surge protection type	Typ ochrony przeciwprzepięciowej
+Surge protection where required	Ochrona przeciwprzepięciowa tam, gdzie jest wymagana
 Surge protective device	Ogranicznik przepięć
 Surge suppressor	Ogranicznik przepięć
 Switch, 1-pole (installation)	Łącznik jednobiegunowy (instalacyjny)
@@ -1568,6 +1597,7 @@ Termination (to)	Zakończenie (do)
 Text file	Plik tekstowy
 The DXF file contains nothing that can be imported	Plik DXF nie zawiera niczego, co można zaimportować
 The PDF has no pages that can be read	Plik PDF nie zawiera stron, które można odczytać
+The answer is OK, Not OK or Not applicable, not {}	Odpowiedź to OK, Nie OK lub Nie dotyczy, nie {}
 The archive contains no project	Archiwum nie zawiera projektu
 The archive has no manifest	Archiwum nie ma manifestu
 The archive is damaged	Archiwum jest uszkodzone
@@ -1603,6 +1633,7 @@ The project file {} is missing	Brak pliku projektu {}
 The project has no panel layout	Projekt nie ma zabudowy szafy
 The project was written by a newer version (file layout {})	Projekt został zapisany przez nowszą wersję (układ plików {})
 The property needs a name	Właściwość wymaga nazwy
+The protective measure is SELV, PELV, electrical separation or none, not {}	Środek ochrony to SELV, PELV, separacja elektryczna lub brak, nie {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Przepompownia zabudowana w dwóch szeregowanych szafach stojących: system szyn zbiorczych, szyny i korytka, urządzenia na drzwiach i uchwyty, wentylator z filtrem, oświetlenie, szyna PE, dławnice kablowe, przepust kablowy, obliczenia klimatyzacji, zapełnienie korytek i trasowanie 3D.
 The revision is already released	Rewizja jest już wydana
 The revision is not approved	Rewizja nie jest zatwierdzona
@@ -1744,7 +1775,6 @@ Vibration resistance	Odporność na wibracje
 View projects	Wyświetlanie projektów
 Violations	Naruszenia
 Voltage (V)	Napięcie (V)
-Voltage drop (%)	Spadek napięcia (%)
 Voltage drop (V)	Spadek napięcia (V)
 Voltage protection level	Napięciowy poziom ochrony
 Voltage range	Zakres napięcia
@@ -1849,6 +1879,7 @@ in work	w opracowaniu
 in {}	w {}
 in-line	przelotowe
 incl.	w tym
+instead of {}	zamiast {}
 ip (kA)	ip (kA)
 is	jest
 is at least	wynosi co najmniej
@@ -1937,6 +1968,7 @@ yellow	żółty
 {} lies outside page {}	{} leży poza stroną {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	Znaczniki montażu należące do elementów, które już nie istnieją: {}
+{} of {} passed	{} z {} pozytywnie
 {} option assignments of deleted objects removed	Usunięto przypisania do opcji usuniętych obiektów: {}
 {} placed properties converted to property keys	Przekonwertowano umieszczone właściwości na klucze właściwości: {}
 {} planned devices are not in the schematic yet	Zaplanowane urządzenia, których jeszcze nie ma na schemacie: {}

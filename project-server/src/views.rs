@@ -1,11 +1,12 @@
-//! What the web page shows of a project (read only): its view (pages, sections,
-//! structures, devices: `openecraft_view`) from the device index and its pages as SVG,
-//! drawn from the analysis of the project. Both are kept per project and revision:
-//! the analysis is built on another thread when the first page is drawn, the pages
-//! when they are asked for.
+//! What the web page shows of a project: its view (pages, sections, structures,
+//! devices: `openecraft_view`) from the device index, its pages as SVG and its
+//! inspection and test report, drawn from the analysis of the project. They are kept
+//! per project and revision: the analysis is built on another thread when the first
+//! page or the report is asked for, the pages when they are asked for.
 
 use openecraft_core::analysis::Analysis;
 use openecraft_core::index::Index;
+use openecraft_core::inspection::Report;
 use openecraft_core::model::Project;
 use openecraft_i18n::Lang;
 use openecraft_view::ProjectView;
@@ -34,6 +35,17 @@ impl Viewed {
         openecraft_view::project_view(&self.project, &self.index, lang)
     }
 
+    /// The analysis, built at the first call (takes a while for large projects).
+    fn analysis(&self) -> &Analysis {
+        self.analysis.get_or_init(|| Analysis::with_builtin(&self.project))
+    }
+
+    /// The inspection and test report.
+    pub fn inspection(&self) -> Report {
+        let an = self.analysis();
+        Report::of(&self.project, &an.netlist, &an.connections)
+    }
+
     /// The page `id` as SVG; `None` if the project has no such page. The first page
     /// analyses the project (takes a while for large projects).
     pub fn page_svg(&self, id: u64) -> Option<Arc<String>> {
@@ -41,7 +53,7 @@ impl Viewed {
         if let Some(svg) = self.pages.lock().unwrap_or_else(|e| e.into_inner()).get(&id) {
             return Some(svg.clone());
         }
-        let analysis = self.analysis.get_or_init(|| Analysis::with_builtin(&self.project));
+        let analysis = self.analysis();
         let svg = Arc::new(openecraft_core::svg::page_svg_with(&self.project, analysis, i));
         Some(self.pages.lock().unwrap_or_else(|e| e.into_inner()).entry(id).or_insert(svg).clone())
     }

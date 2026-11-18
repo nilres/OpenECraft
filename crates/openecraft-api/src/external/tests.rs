@@ -33,7 +33,7 @@ fn fake(log: Arc<Mutex<Vec<Value>>>) -> External {
                 ("describe", _) => json!({
                     "commands": [{ "name": "set_title", "help": "Sets the title", "params": [{ "name": "title", "kind": "str" }] }, { "name": "fail" }],
                     "checks": [{ "name": "titled", "title": "Title set" }],
-                    "reports": [{ "name": "titles", "title": "Titles" }],
+                    "reports": [{ "name": "titles", "title": "Titles", "keywords": ["ISO 7200"] }],
                     "exporters": [{ "name": "title_txt", "title": "Title", "extension": "txt" }],
                 }),
                 ("command", Some("fail")) => json!({ "error": "failed on purpose" }),
@@ -69,6 +69,10 @@ fn external_plugins_answer_json_requests() {
     assert_eq!(p.run(p.command("set_title").unwrap(), &mut prj, &args).unwrap(), "ok");
     assert_eq!(prj.info.name, "Plant 7");
     assert_eq!(p.run(p.command("fail").unwrap(), &mut prj, &Default::default()).unwrap_err(), "failed on purpose");
+
+    let titles = p.report("titles").unwrap();
+    assert_eq!(titles.keywords, ["ISO 7200"]);
+    assert!(titles.matches("Titles", "iso 7200"));
 
     let issues = p.check(&prj, &Analysis::default());
     assert_eq!(issues[0].severity, Severity::Error);

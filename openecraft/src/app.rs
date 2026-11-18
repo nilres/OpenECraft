@@ -70,6 +70,7 @@ mod languages_ui;
 mod config_ui;
 mod drawing_ui;
 mod electrical_ui;
+mod inspection_ui;
 mod plc_ui;
 mod plugins_ui;
 mod plugs_ui;
@@ -348,6 +349,7 @@ pub struct App {
     process_ui: process_ui::ProcessUi,
     preplanning_ui: preplanning_ui::PreplanningUi,
     electrical_ui: electrical_ui::ElectricalUi,
+    inspection_ui: inspection_ui::InspectionUi,
     singleline_ui: singleline_ui::SingleLineUi,
     languages_ui: languages_ui::LanguagesUi,
     tables_ui: tables_ui::TablesUi,
@@ -624,6 +626,7 @@ impl App {
             process_ui: Default::default(),
             preplanning_ui: Default::default(),
             electrical_ui: Default::default(),
+            inspection_ui: Default::default(),
             singleline_ui: Default::default(),
             languages_ui: Default::default(),
             tables_ui: Default::default(),
@@ -776,8 +779,9 @@ impl App {
     }
 
     /// The reports of the registry (built-in and of plugins): id and title.
-    fn report_list(&self) -> Vec<(ReportId, String)> {
-        self.plugins.reports().map(|r| (ReportId::new(&r.name), text(&r.title).to_string())).collect()
+    /// The reports a search finds (all for an empty one), with their titles.
+    fn report_list(&self, query: &str) -> Vec<(ReportId, String)> {
+        self.plugins.reports().map(|r| (r, text(&r.title).to_string())).filter(|(r, t)| r.matches(t, query)).map(|(r, t)| (ReportId::new(&r.name), t)).collect()
     }
 
     /// Title of a report: from the registry, otherwise of the built-in kind or the name.

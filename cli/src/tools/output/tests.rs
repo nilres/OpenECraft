@@ -69,6 +69,11 @@ fn every_built_in_report_is_listed_and_accepted() {
         run(&mut s, "report", json!({ "kind": name })).unwrap_or_else(|e| panic!("{name}: {e}"));
     }
     assert!(names.contains(&"project_statistics".to_string()), "plugin reports are listed");
+    // A search finds a report by the standard it follows.
+    let found = run(&mut s, "list_reports", json!({ "search": "VDE 0100 600" })).unwrap();
+    let found: Vec<&str> = found.as_array().unwrap().iter().map(|r| r["name"].as_str().unwrap()).collect();
+    assert_eq!(found, ["inspection", "inspection_summary", "inspection_sources"]);
+    assert!(listed.as_array().unwrap().iter().any(|r| r["keywords"].as_array().is_some_and(|k| k.iter().any(|w| w == "IEC 60364-6"))));
 }
 
 #[test]

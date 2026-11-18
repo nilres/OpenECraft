@@ -531,8 +531,7 @@
     }
 
     function listReports() {
-        const words = $("#report-filter").value.toLowerCase().split(/\s+/).filter(Boolean);
-        const shown = reports.filter(r => words.every(w => (r.title + " " + r.name).toLowerCase().includes(w)));
+        const shown = call("reports", $("#report-filter").value);
         $("#report-list").replaceChildren(...shown.map(r => {
             const li = element("li", r.name === report ? "on" : "");
             li.append(element("span", "", r.title));

@@ -34,7 +34,7 @@ impl App {
     pub(super) fn report_blocks_pane(&mut self, ui: &mut egui::Ui) {
         let ctx = &ui.ctx().clone();
         let mut action = None;
-        let reports = self.report_list();
+        let reports = self.report_list("");
         let title_of = |id: ReportId| reports.iter().find(|(k, _)| *k == id).map(|(_, t)| t.clone()).unwrap_or_else(|| id.title());
         ui.scope(|ui| {
             let ru = &mut self.report_blocks_ui;

@@ -32,8 +32,10 @@ before (marked in the page properties, switch off to keep one); option values fi
 ## Editing in tables
 
 **Editing in tables** (*Project data › Edit in table…*): devices (tag, function text,
-description, part), connections (wire number, colour, cross-section, cable, core) and
-terminals (strip, number, function text) as rows; filter, edit cells in place, fill a
+description, part), connections (wire number, colour, cross-section, cable, core),
+terminals (strip, number, function text) and the inspection and test report (the
+results, one row per circuit; its data and visual inspection, one row per value) as
+rows; filter, edit cells in place, fill a
 column or find and replace in the filtered rows; CSV export / import for changes in a
 spreadsheet (rows by key, only changed cells are applied); rows on released pages
 stay unchanged. Renaming a device moves its strip, plug and PLC card data along.

@@ -248,3 +248,15 @@ fn assemblies_list_their_components_in_the_bom() {
     assert_eq!(sub[1].parse::<f32>().unwrap(), qty * 4.0);
     assert_eq!(sub[7], format!("in {number}"));
 }
+
+#[test]
+fn the_inspection_reports_are_found_by_their_standards() {
+    let found = |q: &str| -> Vec<String> { builtin().into_iter().filter(|r| r.matches(crate::params::text(&r.title), q)).map(|r| r.name).collect() };
+    let inspection = ["inspection", "inspection_summary", "inspection_sources"];
+    for q in ["VDE 0100 600", "DIN VDE 0100-600", "vde 0100-600", "IEC 60364-6", "60364-6", "Prüfprotokoll", "BS 7671"] {
+        assert_eq!(found(q), inspection, "{q:?}");
+    }
+    assert_eq!(found("VDE 0100-410"), ["short_circuit"]);
+    assert!(found("ISO 13849").contains(&"safety_functions".to_string()));
+    assert_eq!(found("").len(), ReportKind::ALL.len());
+}

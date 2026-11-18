@@ -43,6 +43,7 @@ Actuated by	Приводиться в дію
 Actuation	Приведення в дію
 Actuator type	Тип приводного елемента
 Additional page description	Додатковий опис сторінки
+Additional protection by RCDs of at most 30 mA where required	Додатковий захист ПЗВ не більше 30 мА, де потрібно
 Address ranges of {} and {} overlap	Діапазони адрес {} і {} перекриваються
 Address {} is used by {} and {}	Адресу {} використовують {} і {}
 Adhesive	Клей
@@ -203,6 +204,7 @@ Check valve	Зворотний клапан
 Checked	Перевірено
 Checked by	Перевірив
 Choose the pages of the subproject	Виберіть сторінки підпроєкту
+Circuit	Коло
 Circuit breaker (single-line)	Автоматичний вимикач (однолінійне зображення)
 Circuit breaker 1-pole	Автоматичний вимикач, 1-полюсний
 Circuit breaker 1-pole (NFPA)	Автоматичний вимикач, 1-полюсний (NFPA)
@@ -219,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Автоматичний вимикач, 3-пол
 Circuit breaker 3-pole QF (GOST)	Автоматичний вимикач, 3-полюсний QF (ГОСТ)
 Circuit breaker 3-pole, thermal-magnetic	Автоматичний вимикач, 3-полюсний, тепловий та електромагнітний
 Circuit breaker 4-pole	Автоматичний вимикач, 4-полюсний
+Circuits, protective devices, switches and terminals labelled	Кола, захисні пристрої, вимикачі та клеми марковані
 Circular milling	Кругове фрезерування
 Clip / snap-on	Затискач / защіпка
 Cloud	Хмара
@@ -240,6 +243,7 @@ Compressed air supply	Подача стисненого повітря
 Compressor	Компресор
 Condition '{}' needs OPTION=value	Умова '{}' потребує OPTION=значення
 Conductor class	Клас провідника
+Conductors selected for current-carrying capacity and voltage drop	Провідники вибрані за допустимим струмом і спадом напруги
 Conduit	Монтажна труба
 Connected	Зайнято
 Connection definition point on page {} is not applied to its connection	Точку визначення з’єднання на сторінці {} не застосовано до її з’єднання
@@ -253,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Символи з'єднань
 Connection type	Тип підключення
 Connection {} has contradicting connection definition points	З’єднання {} має суперечливі точки визначення з’єднання
+Connections of the conductors	З'єднання провідників
 Connector pin-outs and flat cables	Розпіновки роз'ємів і плоскі кабелі
 Connector pin-outs: mating faces and pin tables (SVG)	Розпіновки роз'ємів: боки з'єднання і таблиці контактів (SVG)
 Contact material	Матеріал контактів
@@ -278,6 +283,7 @@ Control transformer TC (GB)	Трансформатор кіл керування
 Control valve	Регулювальний клапан
 Control voltage	Напруга керування
 Control voltage type	Рід струму керування
+Conventional touch voltage limit UL (V)	Умовна гранична напруга дотику UL (В)
 Converted from file format {} to {}: {}	Перетворено з формату файлу {} на {}: {}
 Coolant	Охолоджувальна рідина
 Cooler	Охолоджувач
@@ -341,6 +347,7 @@ DWG export failed: {}	Помилка експорту DWG: {}
 Data sheet	Технічний паспорт
 Date of the approval of the last revision	Дата затвердження останньої зміни
 Date of the last revision	Дата останньої ревізії
+Default {} ({})	Типово {} ({})
 Degree of protection	Ступінь захисту
 Delete projects	Видаляти проєкти
 Delivery date	Дата поставки
@@ -373,6 +380,7 @@ Devices without power loss	Пристрої без втрат потужност
 Dew point (°C)	Точка роси (°C)
 Diagnostic coverage (DC)	Діагностичне покриття (DC)
 Diagnostics	Діагностика
+Diagrams, warning notices and similar information present	Схеми, попереджувальні написи та подібна інформація наявні
 Diameter (mm)	Діаметр (мм)
 Different wire numbers in one connection: {}	Різні номери проводів в одному з’єднанні: {}
 Digital input / output module	Модуль дискретних входів / виходів
@@ -463,6 +471,7 @@ Emergency stop SB (GOST)	Аварійна зупинка SB (ГОСТ)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Пристрої аварійної зупинки потребують значення B10d (ISO 13849-1, додаток C)
 Emergency stop, mushroom head (NFPA)	Аварійна зупинка, грибоподібна кнопка (NFPA)
 Empty (IEC 60204-1)	Порожній (IEC 60204-1)
+Empty: removes the item	Порожньо: видаляє пункт
 Enclosure body	Корпус (основа)
 Enclosure climate	Тепловий режим корпусу
 Enclosure light	Світильник шафи
@@ -480,6 +489,8 @@ Energy limitation class	Клас обмеження енергії
 Engineered	Спроєктовано
 Engineering unit	Фізична одиниця
 Environment	Навколишнє середовище
+Equipment accessible for operation, inspection and maintenance	Обладнання доступне для керування, перевірки та обслуговування
+Equipment and protective measures suit the external influences	Обладнання та заходи захисту відповідають зовнішнім впливам
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Провідники заземлення обладнання мають бути зеленими (NFPA 79, 13.2.2)
 Excel workbook	Книга Excel
 Exhaust {} open to the atmosphere (no silencer)	Випуск {} відкритий в атмосферу (без глушника)
@@ -515,6 +526,7 @@ File name written into the file header	Назва файлу, що запису�
 Fill level (%)	Ступінь заповнення (%)
 Filter fan with outlet filter	Вентилятор із фільтром і вихідним фільтром
 Filter rating	Тонкість фільтрації
+Fire barriers and protection against thermal effects	Протипожежні перегородки та захист від теплових впливів
 Firmware version	Версія мікропрограми
 First end only	Лише перший кінець
 Fitting	Фітинг
@@ -706,12 +718,14 @@ Input voltage	Вхідна напруга
 Inputs from	Входи від
 Inrush current	Пусковий струм
 Inside (°C)	Усередині (°C)
+Inspection and test report: SELV, PELV and separation	Протокол огляду та випробувань: БННН, ЗННН і розділення
+Inspection and test report: data	Протокол огляду та випробувань: дані
+Inspection and test report: summary	Протокол огляду та випробувань: підсумок
 Installation altitude	Висота встановлення
 Installation date	Дата встановлення
 Installation devices	Електроустановчі пристрої
 Installation method	Спосіб прокладання
 Installation plan (IEC 60617-11)	План електроустановки (IEC 60617-11)
-Installation site	Місце встановлення
 Installation site (++)	Місце встановлення (++)
 Installation site and location	Місце встановлення та розташування
 Installation site of the page	Місце встановлення сторінки
@@ -734,6 +748,7 @@ Invalid length {}	Недійсна довжина {}
 Invalid property key: {}	Недійсний ключ властивості: {}
 Inverter / charger	Інвертор / зарядний пристрій
 Inverter DC/AC	Інвертор DC/AC
+Isolating and switching devices in the right places	Пристрої відключення та комутації в потрібних місцях
 Item	Елемент
 Item ID	Ідентифікатор позиції
 JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -777,8 +792,12 @@ Load calculation	Розрахунок навантаження
 Loads and power supplies	Споживачі та джерела живлення
 Loads behind it: {}	Навантаження за ним: {}
 Location of the page	Розташування сторінки
+Longest RCD trip time at 5 × IΔn (ms)	Найбільший час спрацювання ПЗВ при 5 × IΔn (мс)
+Longest RCD trip time at IΔn (ms)	Найбільший час спрацювання ПЗВ при IΔn (мс)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Низьковольтні комплектні пристрої розподілу та керування: номінальний коефіцієнт одночасності, перевищення температури, документація
+Lowest insulation resistance of the mains (MΩ)	Найменший опір ізоляції мережі (МОм)
 Lubricant	Мастило
+Luminaire	Світильник
 Luminaire, fluorescent	Люмінесцентний світильник
 MAC address	MAC-адреса
 MCAD	MCAD
@@ -827,6 +846,7 @@ Maximum installation altitude	Максимальна висота встанов
 Maximum operating temperature	Максимальна робоча температура
 Maximum pressure	Максимальний тиск
 Measured variable	Вимірювана величина
+Measures against electromagnetic disturbances	Заходи проти електромагнітних завад
 Measuring instrument	Вимірювальний прилад
 Measuring instruments	Вимірювальні прилади
 Measuring point	Точка вимірювання
@@ -919,8 +939,9 @@ NO contact, timed closing (NFPA)	Замикальний контакт із за
 Nailboard {}	Шаблон джгута {}
 Network (m)	Мережа (м)
 Neutral (N)	Нейтральний провідник (N)
+Neutral and protective conductors identified	Нульові та захисні провідники позначені
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Нейтральні провідники мають бути блакитними (IEC 60204-1, 13.2.3)
-Next inspection	Наступна перевірка
+New own item of the visual inspection	Новий власний пункт огляду
 Nibbling	Висічка
 No connection {}	Немає з’єднання {}
 No devices to add to the single-line diagram	Немає пристроїв для додавання до однолінійної схеми
@@ -941,7 +962,6 @@ No user defined property {}	Немає користувацької власти
 No wires at the pins of {}	Немає проводів на контактах {}
 Nominal discharge current	Номінальний розрядний струм
 Non-return valve	Зворотний клапан
-Not OK	Не OK
 Not a DWG file	Не є файлом DWG
 Not a DXF file	Не файл DXF
 Not a DXF file (binary DXF is not supported)	Не файл DXF (двійковий DXF не підтримується)
@@ -976,7 +996,7 @@ Number of sheets	Кількість аркушів
 Number of switch positions	Кількість положень перемикача
 Number of symbols	Кількість символів
 Numbers (1, 2, 3)	Цифри (1, 2, 3)
-OK	OK
+OK, Not OK or Not applicable	OK, Не OK або Не застосовується
 Ohmmeter	Омметр
 Oil resistant	Оливостійкий
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Одна сторінка схеми з потенціалами +24V / 0V, кнопками, перемикачем, лампами та запобіжником; вироби та специфікація.
@@ -1028,6 +1048,7 @@ Overview (not evaluated)	Огляд (не обробляється)
 Overview / single-line	Огляд / однолінійна
 Overvoltage category	Категорія перенапруги
 Overvoltage relay	Реле максимальної напруги
+Own item {}	Власний пункт {}
 P&ID / process (ISO 10628)	P&ID / технологія (ISO 10628)
 P&ID number	Номер P&ID
 PCT loop {} has no instrument in the P&ID	Контур КВПіА {} не має приладу на P&ID
@@ -1113,7 +1134,6 @@ Phase (L)	Фазний провідник (L)
 Phase meter	Фазометр
 Phase unbalance {} % above {} %	Несиметрія фаз {} % перевищує {} %
 Phase {}	Фаза {}
-Phases	Фази
 Photodiode	Фотодіод
 Photoelectric sensor, diffuse, 3-wire	Оптичний датчик, дифузний, 3-провідний
 Photoelectric sensor, diffuse, 4-wire	Оптичний датчик, дифузний, 4-провідний
@@ -1224,14 +1244,17 @@ Project revision	Ревізія проєкту
 Project symbols	Символи проєкту
 Proof test interval	Інтервал контрольних випробувань
 Prospective short-circuit current	Очікуваний струм короткого замикання
+Protection against electric shock: the measures and their components	Захист від ураження електричним струмом: заходи та їх елементи
 Protection class	Клас захисту
 Protection setting	Уставка захисту
+Protective and monitoring devices selected and set correctly	Захисні та контрольні пристрої вибрані та налаштовані правильно
 Protective conductor {} with wire colour {} (must be GNYE)	Захисний провідник {} з кольором проводу {} (має бути GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Захисні провідники мають бути зелено-жовтими (IEC 60204-1, 13.2.2)
 Protective devices	Захисні пристрої
 Protective earth	Захисне заземлення
 Protective earth (PE)	Захисний провідник (PE)
 Protective hose	Захисний рукав
+Protective, earthing and bonding conductors present and adequate	Захисні, заземлювальні та зрівнювальні провідники наявні та достатні
 Proximity sensor	Безконтактний датчик
 Proximity sensor NO	Безконтактний датчик, замикальний
 Proximity switch NO (NFPA)	Безконтактний вимикач, замикальний (NFPA)
@@ -1352,6 +1375,7 @@ Rule {}: no macro {}	Правило {}: немає макросу {}
 Rule {}: {}	Правило {}: {}
 Rule {}: {} has no variant {}	Правило {}: {} не має варіанта {}
 Rule {}: {} is no page macro	Правило {}: {} не є макросом сторінки
+SELV, PELV, Electrical separation or none	БННН, ЗННН, Електричне розділення або немає
 SVG image (one page)	Зображення SVG (одна сторінка)
 Saddle jumper	Сідлоподібна перемичка
 Safe torque off (STO)	Безпечне вимкнення моменту (STO)
@@ -1439,11 +1463,14 @@ Signal devices	Сигнальні пристрої
 Signal name	Назва сигналу
 Signal range	Діапазон сигналу
 Signal type	Тип сигналу
+Signed by	Підписав
+Signed on	Дата підпису
 Silencer	Глушник
 Single, free-standing	Окрема, окремостояча
 Single, wall mounted	Окрема, настінна
 Single-line / overview	Однолінійна / огляд
 Single-line diagram	Однолінійна схема
+Single-pole switching devices in the line conductors	Однополюсні комутаційні апарати у фазних провідниках
 Siren	Сирена
 Site address	Адреса місця встановлення
 Size (mm)	Розмір (мм)
@@ -1462,6 +1489,7 @@ Solenoid valve coil YA (GOST)	Котушка електромагнітного 
 Solenoid valve coil YV (GB)	Котушка електромагнітного клапана YV (GB)
 Sort code	Код сортування
 Sound level	Рівень шуму
+Source {}	Джерело {}
 Source {}, first target {}, second target {}	Джерело {}, перша ціль {}, друга ціль {}
 Source {}, targets {}, {} and {}	Джерело {}, цілі {}, {} і {}
 Spare	Резерв
@@ -1518,6 +1546,7 @@ Supply voltage	Напруга живлення
 Surface (m²)	Поверхня (м²)
 Surface-mounted	Відкрите прокладання
 Surge protection type	Тип захисту від перенапруги
+Surge protection where required	Захист від перенапруг, де потрібно
 Surge protective device	Пристрій захисту від перенапруг
 Surge suppressor	Обмежувач перенапруги
 Switch, 1-pole (installation)	Вимикач, однополюсний (електроустановка)
@@ -1568,6 +1597,7 @@ Termination (to)	Оконцювання (до)
 Text file	Текстовий файл
 The DXF file contains nothing that can be imported	Файл DXF не містить нічого, що можна імпортувати
 The PDF has no pages that can be read	PDF не містить сторінок, які можна прочитати
+The answer is OK, Not OK or Not applicable, not {}	Відповідь: OK, Не OK або Не застосовується, а не {}
 The archive contains no project	Архів не містить проєкту
 The archive has no manifest	Архів не має маніфесту
 The archive is damaged	Архів пошкоджено
@@ -1603,6 +1633,7 @@ The project file {} is missing	Файл проєкту {} відсутній
 The project has no panel layout	Проєкт не має компонування шафи
 The project was written by a newer version (file layout {})	Проєкт записано новішою версією (структура файлів {})
 The property needs a name	Властивості потрібна назва
+The protective measure is SELV, PELV, electrical separation or none, not {}	Захід захисту: БННН, ЗННН, електричне розділення або немає, а не {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Насосна станція у двох з'єднаних підлогових шафах: система збірних шин, рейки та кабель-канали, пристрої на дверях і ручки, вентилятор із фільтром, світильник, шина PE, кабельні вводи, кабельний прохід, розрахунок клімату, заповнення кабель-каналів і 3D-трасування.
 The revision is already released	Ревізію вже затверджено
 The revision is not approved	Ревізію не погоджено
@@ -1744,7 +1775,6 @@ Vibration resistance	Вібростійкість
 View projects	Переглядати проєкти
 Violations	Порушення
 Voltage (V)	Напруга (V)
-Voltage drop (%)	Спад напруги (%)
 Voltage drop (V)	Спад напруги (V)
 Voltage protection level	Рівень захисту за напругою
 Voltage range	Діапазон напруги
@@ -1849,6 +1879,7 @@ in work	у роботі
 in {}	у {}
 in-line	прохідний
 incl.	вкл.
+instead of {}	замість {}
 ip (kA)	ip (kA)
 is	дорівнює
 is at least	не менше
@@ -1937,6 +1968,7 @@ yellow	жовтий
 {} lies outside page {}	{} знаходиться поза сторінкою {}
 {} min {} s	{} хв {} с
 {} mounting marks belong to items that no longer exist	Позначок встановлення, що належать елементам, яких більше не існує: {}
+{} of {} passed	Пройдено {} з {}
 {} option assignments of deleted objects removed	Вилучено призначень опцій для видалених об’єктів: {}
 {} placed properties converted to property keys	Розміщених властивостей, перетворених на ключі властивостей: {}
 {} planned devices are not in the schematic yet	Запланованих пристроїв, яких ще немає на схемі: {}

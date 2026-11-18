@@ -12,11 +12,13 @@ A page needs a name	Een pagina heeft een naam nodig
 A routing path needs {} points at least	Een routeringspad heeft minstens {} punten nodig
 A section cannot be moved into itself	Een sectie kan niet in zichzelf worden verplaatst
 Above	Boven
+Above {} V: no SELV or PELV	Boven {} V: geen SELV of PELV
 Access token	Toegangstoken
 Accessories	Toebehoren
 Accessory	Toebehoren
 Add	Toevoegen
 Add a PDF of all pages	Een PDF van alle pagina's toevoegen
+Add an item	Punt toevoegen
 Add to favorites	Toevoegen aan favorieten
 Address	Adres
 Administrator	Beheerder
@@ -33,6 +35,7 @@ Bold	Vet
 Bottom	Bodem
 Bottom with removable gland plate	Bodem met afneembare wartelplaat
 Breaking capacity	Uitschakelvermogen
+Breaking capacity of {} below the fault current at the origin	Uitschakelvermogen van {} lager dan de foutstroom bij de oorsprong
 Bridge	Brug
 Building	Gebouw
 Buildings	Gebouwen
@@ -56,16 +59,19 @@ Category	Categorie
 Centred	Gecentreerd
 Certificates	Certificaten
 Change	Wijziging
+Changing the data or the results afterwards takes the signature away.	Wijzigen van de gegevens of resultaten achteraf trekt de handtekening in.
 Channel	Kanaal
 Characteristic	Karakteristiek
 Check settings	Controle-instellingen
 Checks	Controles
+Circuits	Stroomkringen
 Class	Klasse
 Classes	Klassen
 Clear filters	Filters wissen
 Clearance bottom	Afstand onder
 Clearance top	Afstand boven
 Clearances	Afstanden
+Client	Opdrachtgever
 Close	Sluiten
 Coding: {}	Codering: {}
 Coil voltage	Spoelspanning
@@ -85,6 +91,7 @@ Connection point	Aansluitpunt
 Connection points	Aansluitpunten
 Connections	Verbindingen
 Connector	Connector
+Contact voltage UB (V)	Aanraakspanning UB (V)
 Controller	Controller
 Cooling	Koeling
 Core	Ader
@@ -131,14 +138,19 @@ Done	Gereed
 Door	Deur
 Door cutout	Deuruitsparing
 Download	Downloaden
+Download the report as an Excel workbook	Het rapport als Excel-werkmap downloaden
 Downloading {}…	{} downloaden…
 Drag to turn the model	Sleep om het model te draaien
+Drawings	Tekeningen
 EMC clearance	EMC-afstand
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal en andere namen zijn handelsmerken van hun eigenaren. OpenECraft is een onafhankelijk project.
+Earth electrode resistance RA (Ω)	Aardingsweerstand RA (Ω)
 Edit	Bewerken
 Editor	Bewerker
+Electrical separation	Elektrische scheiding
 Electro-fluid cross reference	Elektro-fluïdum-kruisverwijzingen
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Leeg: de standaard. Stel andere waarden in waar de editie van de norm waartegen de installatie wordt geverifieerd afwijkt.
 Enclosure	Behuizing
 Enclosures	Behuizingen
 Enterprise integration	Bedrijfsintegratie
@@ -149,6 +161,7 @@ Export as CSV…	Exporteren als CSV…
 Export as JSON…	Exporteren als JSON…
 Export failed: {}	Exporteren mislukt: {}
 External (top)	Extern (boven)
+External loop impedance Ze (Ω)	Externe lusimpedantie Ze (Ω)
 Face	Vlak
 Failed	Mislukt
 Fastening	Bevestiging
@@ -157,7 +170,9 @@ Field wiring	Veldbedrading
 File	Bestand
 Files	Bestanden
 Filter	Filter
+Filter circuits…	Stroomkringen filteren…
 Filter devices…	Apparaten filteren…
+First fault current Id (A)	Foutstroom bij de eerste fout Id (A)
 Fit	Passend maken
 Fits	Past op
 Fitting at the end	Fitting aan het einde
@@ -172,6 +187,7 @@ Function	Functie
 Function (=)	Functie (=)
 Function definition	Functiedefinitie
 Function template	Functiesjabloon
+Function test	Functietest
 Function text	Functietekst
 Functional safety	Functionele veiligheid
 Functions	Functies
@@ -192,12 +208,25 @@ Height	Hoogte
 Height above floor	Hoogte boven vloer
 History	Geschiedenis
 Hose no.	Slangnr.
+IT system	IT-stelsel
 Identifier	Identificatie
 Identifying letter	Kenletter
 Image	Afbeelding
 Import	Importeren
+Incomplete	Onvolledig
 Input	Ingang
+Inspection and test report	Inspectie- en testrapport
+Inspector	Inspecteur
 Installation	Opstelling
+Installation site	Installatieplaats
+Installer	Installateur
+Insulating floors and walls (kΩ)	Isolerende vloeren en wanden (kΩ)
+Insulation L–N (MΩ)	Isolatie L–N (MΩ)
+Insulation L–PE (MΩ)	Isolatie L–PE (MΩ)
+Insulation N–PE (MΩ)	Isolatie N–PE (MΩ)
+Insulation monitoring device	Isolatiewachter
+Insulation resistance (MΩ)	Isolatieweerstand (MΩ)
+Insulation test voltage (V)	Meetspanning isolatie (V)
 Integration	Integratie
 Internal (bottom)	Intern (onder)
 Interruption point	Onderbrekingspunt
@@ -225,6 +254,7 @@ Length	Lengte
 Level	Niveau
 Lifecycle	Levenscyclus
 Light	Licht
+Limits	Grenswaarden
 Line	Lijn
 Link	Koppeling
 Linked	Gekoppeld
@@ -236,11 +266,13 @@ Location (+)	Plaats (+)
 Locked	Vergrendeld
 Locked by {}	Vergrendeld door {}
 Logo	Logo
+Loop impedance Zs (Ω)	Lusimpedantie Zs (Ω)
 MTTFd (years)	MTTFd (jaar)
 Machine	Machine
 Main	Hoofd
 Main earthing busbar (device) it is connected to; empty: none	Hoofdaardrail (apparaat) waarop hij is aangesloten; leeg: geen
 Main earthing terminal	Hoofdaardrail
+Main equipotential bonding (Ω)	Hoofdpotentiaalvereffening (Ω)
 Main switch	Hoofdschakelaar
 Manufacturer	Fabrikant
 Manufacturers	Fabrikanten
@@ -248,6 +280,7 @@ Manufacturing	Productie
 Marking	Markering
 Match case	Hoofdlettergevoelig
 Material	Materiaal
+Measured at the origin	Gemeten bij de oorsprong
 Medium	Medium
 Metal carriers meeting at a node are connected	Metalen kabeldragers die bij een knooppunt samenkomen, zijn verbonden
 Minimum digits of the counter (leading zeros)	Minimumaantal cijfers van de teller (voorloopnullen)
@@ -275,11 +308,15 @@ Name of the scheme	Naam van het schema
 Net	Net
 Never	Nooit
 New group	Nieuwe groep
+New installation	Nieuwe installatie
 New name	Nieuwe naam
+Next inspection	Volgende keuring
 Next page	Volgende pagina
 No	Nee
 No Vault item matches a part of the project	Geen Vault-item komt overeen met een artikel van het project
 No cable {}	Geen kabel {}
+No circuit {}	Geen stroomkring {}
+No circuits found	Geen stroomkringen gevonden
 No connection point {}	Geen aansluitpunt {}
 No device {}	Geen apparaat {}
 No enclosure {}	Geen behuizing {}
@@ -293,6 +330,7 @@ No part {} in the project	Geen artikel {} in het project
 No parts found	Geen artikelen gevonden
 No plot frame named {}	Geen plotkader met de naam {}
 No plug {}	Geen stekker {}
+No protective measure of its own	Geen eigen beschermingsmaatregel
 No report block named {}	Geen rapportblok met de naam {}
 No segment {}	Geen segment {}
 No station {}	Geen station {}
@@ -302,18 +340,24 @@ No such section	Sectie bestaat niet
 No symbol with id {}	Geen symbool met id {}
 No title block of the project named {}	Geen titelblok van het project met de naam {}
 Nominal size	Nominale diameter
+Not OK	Niet OK
 Not a language code: {}	Geen taalcode: {}
 Not a macro file: {}	Geen macrobestand: {}
 Not a symbol id: {}	Geen symbool-ID: {}
 Not a title block file: {}	Geen titelblokbestand: {}
 Not a valid rule set file: {}	Geen geldig regelsetbestand: {}
+Not applicable	Niet van toepassing
 Not in the schematic	Niet in het schema
+Not passed	Afgekeurd
+Not signed	Niet ondertekend
+Not tested	Niet getest
 Note	Opmerking
 Notes	Notities
 Number	Nummer
 Number of down conductors (0: as many as the class needs for the walls)	Aantal afleidingen (0: zoveel als de klasse voor de muren nodig heeft)
 Number the sections 1, 2, 3 … on every level first	Eerst de secties op elk niveau nummeren met 1, 2, 3 …
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Nummert de apparaataanduidingen per structuur en kenletter in schemavolgorde (pagina, kolom, van boven naar beneden)
+OK	OK
 Only rows containing this text	Alleen rijen die deze tekst bevatten
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft wordt zonder garantie geleverd. De berekeningen en controles ondersteunen het ontwerp; een gekwalificeerd persoon moet de resultaten toetsen aan de geldende normen en voorschriften.
@@ -323,9 +367,12 @@ Order number	Bestelnummer
 Other	Overig
 Outer diameter	Buitendiameter
 Output	Uitgang
+Output voltage (V)	Uitgangsspanning (V)
 Overview	Overzicht
+Own item of the visual inspection	Eigen punt van de visuele inspectie
 PCT loop	PCT-lus
 PCT loop overview	Overzicht PCT-lussen
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC-kaart
@@ -351,7 +398,10 @@ Part {}	Artikel {}
 Parts	Artikelen
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artikelen (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Artikelen importeren mislukt: {}
+Passed	Goedgekeurd
 Password	Wachtwoord
+Phase sequence	Fasevolgorde
+Phases	Fasen
 Phone	Telefoon
 Picture	Afbeelding
 Pieces	Stuks
@@ -367,6 +417,7 @@ Plug	Stekker
 Plug diagram	Stekkerschema
 Plugins	Plugins
 Plugs	Stekkers
+Polarity	Polariteit
 Poles	Polen
 Ports	Poorten
 Position	Positie
@@ -377,6 +428,7 @@ Potentials	Potentialen
 Power	Vermogen
 Power (kW)	Vermogen (kW)
 Power loss	Vermogensverlies
+Power supply unit	Voeding
 Pre-planning	Voorplanning
 Press	Pers
 Previous page	Vorige pagina
@@ -398,17 +450,25 @@ Project name	Projectnaam
 Project properties	Projecteigenschappen
 Properties	Eigenschappen
 Property	Eigenschap
+Prospective fault current at the origin (kA)	Prospectieve foutstroom bij de oorsprong (kA)
 Protection	Beveiliging
+Protective conductor (Ω)	Beschermingsleiding (Ω)
 Protective device	Beveiligingsapparaat
+Protective measure	Beschermingsmaatregel
 Quantity	Hoeveelheid
 Quantity (default 1)	Aantal (standaard 1)
 Quantity unit	Hoeveelheidseenheid
+RCD	Aardlekschakelaar
+RCD trip current (mA)	Aanspreekstroom aardlekschakelaar (mA)
+RCD trip time (ms)	Aanspreektijd aardlekschakelaar (ms)
+RCD trip time at 5 × IΔn (ms)	Aanspreektijd aardlekschakelaar bij 5 × IΔn (ms)
 Rack	Rack
 Rail	Rail
 Range	Bereik
 Rated current	Nominale stroom
 Rated power	Nominaal vermogen
 Rear wall	Achterwand
+Reason for the test	Reden van de test
 Rectangle	Rechthoek
 Rectangular	Rechthoekig
 Redo	Opnieuw
@@ -419,13 +479,16 @@ Relative humidity	Relatieve luchtvochtigheid
 Relay	Relais
 Released	Vrijgegeven
 Released pages cannot be moved	Vrijgegeven pagina's kunnen niet worden verplaatst
+Remark	Opmerking
 Remove	Verwijderen
 Remove from favorites	Verwijderen uit favorieten
 Remove the boundary	Grens verwijderen
 Remove the lightning protection system	De bliksembeveiliging verwijderen
 Remove the reference point	Referentiepunt verwijderen
+Repair	Reparatie
 Report	Rapport
 Report blocks	Rapportblokken
+Report data and visual inspection	Rapportgegevens en visuele inspectie
 Report: {}	Rapport: {}
 Reports	Rapporten
 Represented by	Vertegenwoordigd door
@@ -448,8 +511,11 @@ Routing	Routering
 Rows of modules (east-west: rows of pairs)	Rijen modules (oost-west: rijen van paren)
 Rule	Regel
 Rule set	Regelset
+SELV	SELV
+SELV, PELV and separation	SELV, PELV en scheiding
 Safety function	Veiligheidsfunctie
 Save	Opslaan
+Saved	Opgeslagen
 Saved catalog {}	Catalogus {} opgeslagen
 Saved user {}	Gebruiker {} opgeslagen
 Saved {}	{} opgeslagen
@@ -476,6 +542,9 @@ Show the row after the column	De rij na de kolom weergeven
 Side	Zijde
 Sign in	Aanmelden
 Sign out	Afmelden
+Sign the report	Rapport ondertekenen
+Signed	Ondertekend
+Signed by {} on {}	Ondertekend door {} op {}
 Signed in as {}	Aangemeld als {}
 Signed in as {} ({})	Aangemeld als {} ({})
 Signed out	Afgemeld
@@ -497,8 +566,10 @@ Structure	Structuur
 Subproject name	Naam van het deelproject
 Subsystem	Subsysteem
 Successor	Opvolger
+Summary	Samenvatting
 Supplier	Leverancier
 Supply	Voorziening
+Supply system	Voedingsnet
 Symbol	Symbool
 Symbol key	Symboolsleutel
 Symbolic address	Symbolisch adres
@@ -513,18 +584,23 @@ Terminal strip	Klemmenstrook
 Terminal strips	Klemmenstroken
 Terminal type	Klemtype
 Terminals	Klemmen
+Test instrument	Meetinstrument
+Test instruments (IEC 61557)	Meetinstrumenten (IEC 61557)
+Tested by	Getest door
 Text	Tekst
 Text to find	Te zoeken tekst
 The freestanding PV array {} stands outside the plot boundary	Het vrijstaande PV-veld {} staat buiten de perceelgrens
 The identifier must not be empty	De aanduiding mag niet leeg zijn
 The long side of the modules along the rows	De lange zijde van de modules langs de rijen
 The page is released	De pagina is vrijgegeven
+The project has no circuits fed from the mains	Het project heeft geen stroomkringen die door het net worden gevoed
 There is a connection symbol at this point already	Op dit punt is al een verbindingssymbool
 Thermal	Thermisch
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Deze pagina plaatst geen cookies, gebruikt geen tracking en laadt niets van andere servers.
 Time	Tijd
 Title block	Titelblok
 To	Naar
+To check	Te controleren
 Tools	Gereedschappen
 Top	Boven
 Total	Totaal
@@ -540,6 +616,7 @@ Unknown column: {}	Onbekende kolom: {}
 Unknown connector: {}	Onbekende connector: {}
 Unknown enclosure system: {}	Onbekend behuizingssysteem: {}
 Unknown face: {}	Onbekend vlak: {}
+Unknown field: {}	Onbekend veld: {}
 Unknown format: {}	Onbekende indeling: {}
 Unknown function definition: {}	Onbekende functiedefinitie: {}
 Unknown language: {}	Onbekende taal: {}
@@ -558,9 +635,12 @@ User	Gebruiker
 User name	Gebruikersnaam
 Users	Gebruikers
 VAT ID	Btw-nummer
+Value	Waarde
 Version	Versie
 Viewer	Kijker
+Visual inspection	Visuele inspectie
 Voltage	Spanning
+Voltage drop (%)	Spanningsval (%)
 Warning	Waarschuwing
 Warnings	Waarschuwingen
 Weight	Gewicht
@@ -575,12 +655,14 @@ Wired	Bedraad
 Wires	Draden
 Wiring	Bedrading
 Yes	Ja
+Zs max (Ω)	Zs max (Ω)
 access denied	toegang geweigerd
 approved	goedgekeurd
 bonded	aangesloten
 file or folder not found	bestand of map niet gevonden
 landscape	liggend
 left	naar links
+missing	ontbreekt
 mm	mm
 none	geen
 normal	normaal
@@ -598,6 +680,7 @@ the file exists already	het bestand bestaat al
 this is a folder	dit is een map
 yes	ja
 {} ({})	{} ({})
+{} circuits	{} stroomkringen
 {} does not stand on the floor: choose a part marked for floor mounting	{} staat niet op de vloer: kies een artikel dat voor vloermontage is gemarkeerd
 {} exists already	{} bestaat al
 {} is not a PNG or JPEG image	{} is geen PNG- of JPEG-afbeelding

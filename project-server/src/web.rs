@@ -1,5 +1,7 @@
 //! Web page of the project server (`--web`): the projects the user may see, read only
-//! (pages by section or structure, devices, the pages as SVG), and the administration
+//! (pages by section or structure, devices, the pages as SVG) with their inspection and
+//! test report, whose results reviewers and editors enter there (on a tablet or a
+//! phone on site), and the administration
 //! of the users, the access rights and the directories. Plain HTML / JavaScript on top
 //! of the API and of the scripts the servers share (`openecraft_web`); its texts are
 //! written in English and translated through [`texts`].
@@ -15,6 +17,7 @@ use openecraft_web::{TextQuery, WebTexts};
 const PAGE: &str = include_str!("web/project.html");
 const SCRIPT: &str = include_str!("web/project.js");
 const ADMIN_SCRIPT: &str = include_str!("web/admin.js");
+const INSPECTION_SCRIPT: &str = include_str!("web/inspection.js");
 
 /// Texts of the page besides those of the shared scripts (`{}`: placeholders filled in
 /// by the page).
@@ -118,6 +121,101 @@ const TEXTS: &[&str] = &[
     tr_const!("Administrator"),
     tr_const!("The server records who works on which project and when: the open sessions, the locked pages and the latest ended sessions with their saves. The other users of a project see who has locked a page; administrators see the sessions."),
     tr_const!("A project names who changed it last."),
+    tr_const!("Drawings"),
+    tr_const!("Inspection and test report"),
+    tr_const!("{} circuits"),
+    tr_const!("Filter circuits…"),
+    tr_const!("Download the report as an Excel workbook"),
+    tr_const!("Excel"),
+    tr_const!("You may read the report; entering results needs the right to save reviews."),
+    tr_const!("No circuits found"),
+    tr_const!("The project has no circuits fed from the mains"),
+    tr_const!("missing"),
+    tr_const!("Phases"),
+    tr_const!("Cable"),
+    tr_const!("Cross-section"),
+    tr_const!("Protective device"),
+    tr_const!("RCD"),
+    tr_const!("Zs max (Ω)"),
+    tr_const!("Protective conductor (Ω)"),
+    tr_const!("Insulation resistance (MΩ)"),
+    tr_const!("Loop impedance Zs (Ω)"),
+    tr_const!("RCD trip current (mA)"),
+    tr_const!("RCD trip time (ms)"),
+    tr_const!("Function test"),
+    tr_const!("Tested by"),
+    tr_const!("Test instrument"),
+    tr_const!("Remark"),
+    tr_const!("OK"),
+    tr_const!("Not OK"),
+    tr_const!("Passed"),
+    tr_const!("Not passed"),
+    tr_const!("Incomplete"),
+    tr_const!("Not tested"),
+    tr_const!("Not saved"),
+    tr_const!("Save"),
+    tr_const!("Saved"),
+    tr_const!("Next circuit"),
+    tr_const!("Nothing to save"),
+    tr_const!("Someone saved this meanwhile. Check the values and save again."),
+    tr_const!("Insulation test voltage (V)"),
+    tr_const!("RCD trip time at 5 × IΔn (ms)"),
+    tr_const!("Contact voltage UB (V)"),
+    tr_const!("Client"),
+    tr_const!("Installation site"),
+    tr_const!("Installer"),
+    tr_const!("Reason for the test"),
+    tr_const!("Inspector"),
+    tr_const!("Next inspection"),
+    tr_const!("Test instruments (IEC 61557)"),
+    tr_const!("External loop impedance Ze (Ω)"),
+    tr_const!("Prospective fault current at the origin (kA)"),
+    tr_const!("Earth electrode resistance RA (Ω)"),
+    tr_const!("Main equipotential bonding (Ω)"),
+    tr_const!("New installation"),
+    tr_const!("Extension"),
+    tr_const!("Change"),
+    tr_const!("Repair"),
+    tr_const!("Not applicable"),
+    tr_const!("Supply system"),
+    tr_const!("Signature"),
+    tr_const!("Signed by {} on {}"),
+    tr_const!("Not signed"),
+    tr_const!("Changing the data or the results afterwards takes the signature away."),
+    tr_const!("Sign the report"),
+    tr_const!("Signed"),
+    tr_const!("Report data and visual inspection"),
+    tr_const!("Measured at the origin"),
+    tr_const!("Visual inspection"),
+    tr_const!("Voltage drop (%)"),
+    tr_const!("Polarity"),
+    tr_const!("Phase sequence"),
+    tr_const!("Insulating floors and walls (kΩ)"),
+    tr_const!("Insulation monitoring device"),
+    tr_const!("First fault current Id (A)"),
+    tr_const!("IT system"),
+    tr_const!("Protective measure"),
+    tr_const!("SELV"),
+    tr_const!("PELV"),
+    tr_const!("Electrical separation"),
+    tr_const!("No protective measure of its own"),
+    tr_const!("SELV, PELV and separation"),
+    tr_const!("Circuits"),
+    tr_const!("Kind"),
+    tr_const!("Transformer"),
+    tr_const!("Power supply unit"),
+    tr_const!("Output voltage (V)"),
+    tr_const!("Above {} V: no SELV or PELV"),
+    tr_const!("Sign in or name the inspector in the report data first."),
+    tr_const!("Insulation L–PE (MΩ)"),
+    tr_const!("Insulation N–PE (MΩ)"),
+    tr_const!("Insulation L–N (MΩ)"),
+    tr_const!("Breaking capacity of {} below the fault current at the origin"),
+    tr_const!("To check"),
+    tr_const!("Add an item"),
+    tr_const!("Own item of the visual inspection"),
+    tr_const!("Limits"),
+    tr_const!("Empty: the default. Set other values where the edition of the standard the installation is verified against differs."),
 ];
 
 pub async fn index() -> impl IntoResponse {
@@ -129,11 +227,14 @@ pub fn routes<S: Clone + Send + Sync + 'static>() -> Router<S> {
     openecraft_web::routes()
         .route("/project.js", get(|| async { openecraft_web::script(SCRIPT) }))
         .route("/admin.js", get(|| async { openecraft_web::script(ADMIN_SCRIPT) }))
+        .route("/inspection.js", get(|| async { openecraft_web::script(INSPECTION_SCRIPT) }))
 }
 
 pub fn web_texts(lang: Lang) -> WebTexts {
     let role_title = |name: &str| ProjectRole::ALL.iter().find(|r| r.name() == name).map_or("", |r| r.title());
-    WebTexts::new::<ProjectRight>(lang, TEXTS.iter().copied(), role_title)
+    // The items of the visual inspection and the limits come with the report, in English.
+    let checks = openecraft_core::inspection::CHECKS.iter().map(|c| c.1).chain(openecraft_core::inspection::LIMITS.iter().map(|l| l.1));
+    WebTexts::new::<ProjectRight>(lang, TEXTS.iter().copied().chain(checks), role_title)
 }
 
 /// `GET /api/v1/texts?lang=de`: the page's texts in a language (English if unknown).

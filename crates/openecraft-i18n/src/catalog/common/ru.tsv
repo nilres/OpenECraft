@@ -12,11 +12,13 @@ A page needs a name	Странице нужно имя
 A routing path needs {} points at least	Пути прокладки нужно не менее {} точек
 A section cannot be moved into itself	Раздел нельзя переместить в самого себя
 Above	Сверху
+Above {} V: no SELV or PELV	Выше {} В: не БСНН и не ЗСНН
 Access token	Маркер доступа
 Accessories	Принадлежности
 Accessory	Принадлежность
 Add	Добавить
 Add a PDF of all pages	Добавить PDF всех листов
+Add an item	Добавить пункт
 Add to favorites	Добавить в избранное
 Address	Адрес
 Administrator	Администратор
@@ -33,6 +35,7 @@ Bold	Полужирный
 Bottom	Дно
 Bottom with removable gland plate	Дно со съёмной фланцевой панелью
 Breaking capacity	Отключающая способность
+Breaking capacity of {} below the fault current at the origin	Отключающая способность {} ниже тока КЗ на вводе
 Bridge	Мост
 Building	Здание
 Buildings	Здания
@@ -56,16 +59,19 @@ Category	Категория
 Centred	По центру
 Certificates	Сертификаты
 Change	Изменение
+Changing the data or the results afterwards takes the signature away.	Последующее изменение данных или результатов снимает подпись.
 Channel	Канал
 Characteristic	Характеристика
 Check settings	Настройки проверки
 Checks	Проверки
+Circuits	Цепи
 Class	Класс
 Classes	Классы
 Clear filters	Сбросить фильтры
 Clearance bottom	Зазор снизу
 Clearance top	Зазор сверху
 Clearances	Зазоры
+Client	Заказчик
 Close	Закрыть
 Coding: {}	Кодировка: {}
 Coil voltage	Напряжение катушки
@@ -85,6 +91,7 @@ Connection point	Точка подключения
 Connection points	Точки подключения
 Connections	Соединения
 Connector	Разъём
+Contact voltage UB (V)	Напряжение прикосновения UB (В)
 Controller	Контроллер
 Cooling	Охлаждение
 Core	Жила
@@ -131,14 +138,19 @@ Done	Выполнено
 Door	Дверь
 Door cutout	Вырез в двери
 Download	Скачать
+Download the report as an Excel workbook	Скачать протокол как книгу Excel
 Downloading {}…	Скачивание {}…
 Drag to turn the model	Перетащите, чтобы повернуть модель
+Drawings	Чертежи
 EMC clearance	Зазор ЭМС
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal и другие названия являются товарными знаками их владельцев. OpenECraft — независимый проект.
+Earth electrode resistance RA (Ω)	Сопротивление заземлителя RA (Ом)
 Edit	Правка
 Editor	Редактор
+Electrical separation	Электрическое разделение
 Electro-fluid cross reference	Перекрёстные ссылки электрика – гидропневматика
 Email	Эл. почта
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Пусто: значение по умолчанию. Задайте другие значения там, где издание стандарта, по которому проверяется установка, отличается.
 Enclosure	Корпус
 Enclosures	Корпуса
 Enterprise integration	Интеграция с корпоративными системами
@@ -149,6 +161,7 @@ Export as CSV…	Экспортировать в CSV…
 Export as JSON…	Экспортировать в JSON…
 Export failed: {}	Ошибка экспорта: {}
 External (top)	Внешняя (сверху)
+External loop impedance Ze (Ω)	Внешнее сопротивление петли Ze (Ом)
 Face	Поверхность
 Failed	Сбой
 Fastening	Крепление
@@ -157,7 +170,9 @@ Field wiring	Полевой монтаж
 File	Файл
 Files	Файлы
 Filter	Фильтр
+Filter circuits…	Фильтр цепей…
 Filter devices…	Фильтр устройств…
+First fault current Id (A)	Ток первого замыкания Id (А)
 Fit	Вписать
 Fits	Подходит к
 Fitting at the end	Фитинг в конце
@@ -172,6 +187,7 @@ Function	Функция
 Function (=)	Функциональное назначение (=)
 Function definition	Определение функции
 Function template	Шаблон функции
+Function test	Проверка функционирования
 Function text	Текст функции
 Functional safety	Функциональная безопасность
 Functions	Функции
@@ -192,12 +208,25 @@ Height	Высота
 Height above floor	Высота над полом
 History	История
 Hose no.	№ шланга
+IT system	Система IT
 Identifier	Идентификатор
 Identifying letter	Буквенный код
 Image	Изображение
 Import	Импорт
+Incomplete	Не завершено
 Input	Вход
+Inspection and test report	Протокол осмотра и испытаний
+Inspector	Проверяющий
 Installation	Установка
+Installation site	Объект установки
+Installer	Монтажная организация
+Insulating floors and walls (kΩ)	Изолирующие полы и стены (кОм)
+Insulation L–N (MΩ)	Изоляция L–N (МОм)
+Insulation L–PE (MΩ)	Изоляция L–PE (МОм)
+Insulation N–PE (MΩ)	Изоляция N–PE (МОм)
+Insulation monitoring device	Устройство контроля изоляции
+Insulation resistance (MΩ)	Сопротивление изоляции (МОм)
+Insulation test voltage (V)	Испытательное напряжение изоляции (В)
 Integration	Интеграция
 Internal (bottom)	Внутренняя (снизу)
 Interruption point	Точка разрыва
@@ -225,6 +254,7 @@ Length	Длина
 Level	Уровень
 Lifecycle	Жизненный цикл
 Light	Светлая
+Limits	Пределы
 Line	Линия
 Link	Связь
 Linked	Связано
@@ -236,11 +266,13 @@ Location (+)	Место установки (+)
 Locked	Заблокирован
 Locked by {}	Заблокировано: {}
 Logo	Логотип
+Loop impedance Zs (Ω)	Сопротивление петли Zs (Ом)
 MTTFd (years)	MTTFd (лет)
 Machine	Машина
 Main	Главн.
 Main earthing busbar (device) it is connected to; empty: none	Главная заземляющая шина (устройство), к которой он подключён; пусто: нет
 Main earthing terminal	Главная заземляющая шина
+Main equipotential bonding (Ω)	Основная система уравнивания потенциалов (Ом)
 Main switch	Главный выключатель
 Manufacturer	Производитель
 Manufacturers	Производители
@@ -248,6 +280,7 @@ Manufacturing	Изготовление
 Marking	Маркировка
 Match case	С учётом регистра
 Material	Материал
+Measured at the origin	Измерено на вводе
 Medium	Среда
 Metal carriers meeting at a node are connected	Металлические кабельные конструкции, сходящиеся в узле, соединены
 Minimum digits of the counter (leading zeros)	Минимальное число разрядов счётчика (ведущие нули)
@@ -275,11 +308,15 @@ Name of the scheme	Имя схемы
 Net	Цепь
 Never	Никогда
 New group	Новая группа
+New installation	Новая установка
 New name	Новое имя
+Next inspection	Следующая проверка
 Next page	Следующий лист
 No	Нет
 No Vault item matches a part of the project	Ни один элемент Vault не соответствует изделию проекта
 No cable {}	Нет кабеля {}
+No circuit {}	Нет цепи {}
+No circuits found	Цепи не найдены
 No connection point {}	Нет точки подключения {}
 No device {}	Нет устройства {}
 No enclosure {}	Нет корпуса {}
@@ -293,6 +330,7 @@ No part {} in the project	Нет изделия {} в проекте
 No parts found	Изделия не найдены
 No plot frame named {}	Нет рамки листа с именем {}
 No plug {}	Нет штекера {}
+No protective measure of its own	Без собственной меры защиты
 No report block named {}	Нет блока отчёта с именем {}
 No segment {}	Нет сегмента {}
 No station {}	Нет станции {}
@@ -302,18 +340,24 @@ No such section	Нет такого раздела
 No symbol with id {}	Нет символа с ID {}
 No title block of the project named {}	Нет основной надписи проекта с именем {}
 Nominal size	Условный проход
+Not OK	Не OK
 Not a language code: {}	Не код языка: {}
 Not a macro file: {}	Не файл макросов: {}
 Not a symbol id: {}	Не идентификатор символа: {}
 Not a title block file: {}	Не файл основных надписей: {}
 Not a valid rule set file: {}	Недопустимый файл набора правил: {}
+Not applicable	Не применимо
 Not in the schematic	Нет на схеме
+Not passed	Не пройдено
+Not signed	Не подписано
+Not tested	Не проверено
 Note	Примечание
 Notes	Примечания
 Number	Номер
 Number of down conductors (0: as many as the class needs for the walls)	Число токоотводов (0: столько, сколько требует класс для стен)
 Number the sections 1, 2, 3 … on every level first	Сначала пронумеровать разделы 1, 2, 3 … на каждом уровне
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Нумерует обозначения устройств по структуре и буквенному коду в порядке схемы (лист, столбец, сверху вниз)
+OK	OK
 Only rows containing this text	Только строки с этим текстом
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft предоставляется без гарантий. Его расчёты и проверки помогают при проектировании; квалифицированный специалист должен проверить результаты на соответствие действующим стандартам и нормам.
@@ -323,9 +367,12 @@ Order number	Номер для заказа
 Other	Прочее
 Outer diameter	Наружный диаметр
 Output	Выход
+Output voltage (V)	Выходное напряжение (В)
 Overview	Обзор
+Own item of the visual inspection	Собственный пункт осмотра
 PCT loop	Контур КИПиА
 PCT loop overview	Обзор контуров КИПиА
+PELV	ЗСНН
 PL	PL
 PLC	ПЛК
 PLC card	Плата ПЛК
@@ -351,7 +398,10 @@ Part {}	Изделие {}
 Parts	Изделия
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Изделия (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Ошибка импорта изделий: {}
+Passed	Пройдено
 Password	Пароль
+Phase sequence	Чередование фаз
+Phases	Фазы
 Phone	Телефон
 Picture	Изображение
 Pieces	Штук
@@ -367,6 +417,7 @@ Plug	Штекер
 Plug diagram	Схема штекеров
 Plugins	Плагины
 Plugs	Штекеры
+Polarity	Полярность
 Poles	Полюсы
 Ports	Порты
 Position	Позиция
@@ -377,6 +428,7 @@ Potentials	Потенциалы
 Power	Мощность
 Power (kW)	Мощность (kW)
 Power loss	Потери мощности
+Power supply unit	Блок питания
 Pre-planning	Предварительное планирование
 Press	Пресс
 Previous page	Предыдущий лист
@@ -398,17 +450,25 @@ Project name	Имя проекта
 Project properties	Свойства проекта
 Properties	Свойства
 Property	Свойство
+Prospective fault current at the origin (kA)	Ожидаемый ток КЗ на вводе (кА)
 Protection	Защита
+Protective conductor (Ω)	Защитный проводник (Ом)
 Protective device	Защитное устройство
+Protective measure	Мера защиты
 Quantity	Количество
 Quantity (default 1)	Количество (по умолчанию 1)
 Quantity unit	Единица количества
+RCD	УЗО
+RCD trip current (mA)	Ток срабатывания УЗО (мА)
+RCD trip time (ms)	Время срабатывания УЗО (мс)
+RCD trip time at 5 × IΔn (ms)	Время срабатывания УЗО при 5 × IΔn (мс)
 Rack	Стойка
 Rail	Рейка
 Range	Диапазон
 Rated current	Номинальный ток
 Rated power	Номинальная мощность
 Rear wall	Задняя стенка
+Reason for the test	Причина испытания
 Rectangle	Прямоугольник
 Rectangular	Прямоугольный
 Redo	Повторить
@@ -419,13 +479,16 @@ Relative humidity	Относительная влажность
 Relay	Реле
 Released	Выпущено
 Released pages cannot be moved	Выпущенные листы нельзя перемещать
+Remark	Примечание
 Remove	Удалить
 Remove from favorites	Удалить из избранного
 Remove the boundary	Удалить границу
 Remove the lightning protection system	Удалить молниезащиту
 Remove the reference point	Удалить опорную точку
+Repair	Ремонт
 Report	Отчёт
 Report blocks	Блоки отчётов
+Report data and visual inspection	Данные протокола и визуальный осмотр
 Report: {}	Отчёт: {}
 Reports	Отчёты
 Represented by	Представитель
@@ -448,8 +511,11 @@ Routing	Прокладка
 Rows of modules (east-west: rows of pairs)	Ряды модулей (восток-запад: ряды пар)
 Rule	Правило
 Rule set	Набор правил
+SELV	БСНН
+SELV, PELV and separation	БСНН, ЗСНН и разделение
 Safety function	Функция безопасности
 Save	Сохранить
+Saved	Сохранено
 Saved catalog {}	Каталог {} сохранён
 Saved user {}	Пользователь {} сохранён
 Saved {}	Сохранено: {}
@@ -476,6 +542,9 @@ Show the row after the column	Показывать строку после ст�
 Side	Сторона
 Sign in	Войти
 Sign out	Выйти
+Sign the report	Подписать протокол
+Signed	Подписано
+Signed by {} on {}	Подписал {} {}
 Signed in as {}	Вход выполнен как {}
 Signed in as {} ({})	Вход выполнен как {} ({})
 Signed out	Выход выполнен
@@ -497,8 +566,10 @@ Structure	Структура
 Subproject name	Имя подпроекта
 Subsystem	Подсистема
 Successor	Преемник
+Summary	Краткое описание
 Supplier	Поставщик
 Supply	Снабжение
+Supply system	Питающая сеть
 Symbol	Символ
 Symbol key	Ключ символа
 Symbolic address	Символьный адрес
@@ -513,18 +584,23 @@ Terminal strip	Клеммная колодка
 Terminal strips	Клеммные колодки
 Terminal type	Тип клеммы
 Terminals	Клеммы
+Test instrument	Измерительный прибор
+Test instruments (IEC 61557)	Измерительные приборы (IEC 61557)
+Tested by	Проверил
 Text	Текст
 Text to find	Искомый текст
 The freestanding PV array {} stands outside the plot boundary	Наземное фотоэлектрическое поле {} стоит за границей участка
 The identifier must not be empty	Идентификатор не может быть пустым
 The long side of the modules along the rows	Длинная сторона модулей вдоль рядов
 The page is released	Лист выпущен
+The project has no circuits fed from the mains	В проекте нет цепей, питаемых от сети
 There is a connection symbol at this point already	В этой точке уже есть символ соединения
 Thermal	Тепловой режим
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Эта страница не устанавливает файлы cookie, не использует отслеживание и ничего не загружает с других серверов.
 Time	Время
 Title block	Основная надпись
 To	К
+To check	Проверить
 Tools	Инструменты
 Top	Сверху
 Total	Итого
@@ -540,6 +616,7 @@ Unknown column: {}	Неизвестный столбец: {}
 Unknown connector: {}	Неизвестный коннектор: {}
 Unknown enclosure system: {}	Неизвестная система корпусов: {}
 Unknown face: {}	Неизвестная поверхность: {}
+Unknown field: {}	Неизвестное поле: {}
 Unknown format: {}	Неизвестный формат: {}
 Unknown function definition: {}	Неизвестное определение функции: {}
 Unknown language: {}	Неизвестный язык: {}
@@ -558,9 +635,12 @@ User	Пользователь
 User name	Имя пользователя
 Users	Пользователи
 VAT ID	Номер плательщика НДС
+Value	Значение
 Version	Версия
 Viewer	Наблюдатель
+Visual inspection	Визуальный осмотр
 Voltage	Напряжение
+Voltage drop (%)	Падение напряжения (%)
 Warning	Предупреждение
 Warnings	Предупреждения
 Weight	Масса
@@ -575,12 +655,14 @@ Wired	Смонтирован
 Wires	Провода
 Wiring	Монтаж проводов
 Yes	Да
+Zs max (Ω)	Zs макс. (Ом)
 access denied	доступ запрещён
 approved	утверждено
 bonded	подключён
 file or folder not found	файл или папка не найдены
 landscape	альбомная
 left	влево
+missing	отсутствует
 mm	мм
 none	нет
 normal	обычный
@@ -598,6 +680,7 @@ the file exists already	файл уже существует
 this is a folder	это папка
 yes	да
 {} ({})	{} ({})
+{} circuits	Цепей: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} не устанавливается на пол: выберите изделие с отметкой напольного монтажа
 {} exists already	{} уже существует
 {} is not a PNG or JPEG image	{} не является изображением PNG или JPEG

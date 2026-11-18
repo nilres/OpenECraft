@@ -58,7 +58,7 @@ pub fn kind_of_symbol(key: &str) -> Option<FnKind> {
         "softstarter" => FnKind::SoftStarter,
         "heater" => FnKind::Heater,
         "socket" => FnKind::SocketOutlet,
-        "lamp" | "horn" | "nfpa_lamp" => FnKind::Signal,
+        "lamp" | "horn" | "nfpa_lamp" | "luminaire" => FnKind::Signal,
         "ammeter" | "voltmeter" => FnKind::Meter,
         "psu" => FnKind::PowerSupply,
         "trafo" => FnKind::Transformer,

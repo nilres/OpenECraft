@@ -279,12 +279,12 @@ impl App {
         let mut export = None;
         let mut export_xlsx = None;
         let mut add_page = None;
-        let reports = self.report_list();
         egui::Panel::left("report_list").resizable(true).default_size(220.0).show(ui, |ui| {
-            ui.add(egui::TextEdit::singleline(&mut self.report_filter).hint_text(tr("Filter…")).desired_width(f32::INFINITY));
-            let f = self.report_filter.to_lowercase();
+            ui.add(egui::TextEdit::singleline(&mut self.report_filter).hint_text(tr("Filter…")).desired_width(f32::INFINITY))
+                .on_hover_text(tr("Title or standard, e.g. VDE 0100-600"));
+            let reports = self.report_list(&self.report_filter);
             egui::ScrollArea::vertical().id_salt("report_list").auto_shrink([false, false]).show(ui, |ui| {
-                for (k, title) in reports.iter().filter(|(_, t)| f.is_empty() || t.to_lowercase().contains(&f)) {
+                for (k, title) in &reports {
                     ui.selectable_value(&mut self.report_kind, *k, title);
                 }
             });
@@ -486,7 +486,7 @@ impl App {
             let frame_names = openecraft_core::frame::names(&self.session.prj);
             let page_aspects = self.session.prj.structures.page_aspects();
             let structure_entries = self.session.prj.structures.entries.clone();
-            let reports = self.report_list();
+            let reports = self.report_list("");
             let sections = (!self.session.prj.sections.is_empty()).then(|| (self.section_choices(), openecraft_core::sections::of_page(&self.session.prj, pi)));
             window.open(&mut open).resizable(false).show(ctx, |ui| {
                 let pg = &mut self.session.prj.pages[pi];

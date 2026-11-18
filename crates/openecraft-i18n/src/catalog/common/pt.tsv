@@ -12,11 +12,13 @@ A page needs a name	Uma página precisa de um nome
 A routing path needs {} points at least	Um caminho de roteamento requer pelo menos {} pontos
 A section cannot be moved into itself	Uma seção não pode ser movida para dentro de si mesma
 Above	Acima
+Above {} V: no SELV or PELV	Acima de {} V: nem SELV nem PELV
 Access token	Token de acesso
 Accessories	Acessórios
 Accessory	Acessório
 Add	Adicionar
 Add a PDF of all pages	Adicionar um PDF de todas as páginas
+Add an item	Adicionar um item
 Add to favorites	Adicionar aos favoritos
 Address	Endereço
 Administrator	Administrador
@@ -33,6 +35,7 @@ Bold	Negrito
 Bottom	Fundo
 Bottom with removable gland plate	Fundo com placa de entrada de cabos removível
 Breaking capacity	Capacidade de interrupção
+Breaking capacity of {} below the fault current at the origin	Capacidade de interrupção de {} abaixo da corrente de falta na origem
 Bridge	Ponte
 Building	Edifício
 Buildings	Edifícios
@@ -56,16 +59,19 @@ Category	Categoria
 Centred	Centralizado
 Certificates	Certificados
 Change	Alteração
+Changing the data or the results afterwards takes the signature away.	Alterar depois os dados ou os resultados remove a assinatura.
 Channel	Canal
 Characteristic	Característica
 Check settings	Configurações de verificação
 Checks	Verificações
+Circuits	Circuitos
 Class	Classe
 Classes	Classes
 Clear filters	Limpar filtros
 Clearance bottom	Distância inferior
 Clearance top	Distância superior
 Clearances	Distâncias
+Client	Cliente
 Close	Fechar
 Coding: {}	Codificação: {}
 Coil voltage	Tensão da bobina
@@ -85,6 +91,7 @@ Connection point	Ponto de conexão
 Connection points	Pontos de conexão
 Connections	Conexões
 Connector	Conector
+Contact voltage UB (V)	Tensão de contato UB (V)
 Controller	Controlador
 Cooling	Refrigeração
 Core	Veia
@@ -131,14 +138,19 @@ Done	Concluído
 Door	Porta
 Door cutout	Recorte da porta
 Download	Baixar
+Download the report as an Excel workbook	Baixar o relatório como pasta de trabalho do Excel
 Downloading {}…	Baixando {}…
 Drag to turn the model	Arraste para girar o modelo
+Drawings	Desenhos
 EMC clearance	Distância EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal e outros nomes são marcas de seus proprietários. O OpenECraft é um projeto independente.
+Earth electrode resistance RA (Ω)	Resistência do eletrodo de aterramento RA (Ω)
 Edit	Editar
 Editor	Editor
+Electrical separation	Separação elétrica
 Electro-fluid cross reference	Referência cruzada eletrofluídica
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Vazio: o padrão. Defina outros valores onde a edição da norma pela qual a instalação é verificada for diferente.
 Enclosure	Gabinete
 Enclosures	Gabinetes
 Enterprise integration	Integração empresarial
@@ -149,6 +161,7 @@ Export as CSV…	Exportar como CSV…
 Export as JSON…	Exportar como JSON…
 Export failed: {}	Falha na exportação: {}
 External (top)	Externo (em cima)
+External loop impedance Ze (Ω)	Impedância de laço externa Ze (Ω)
 Face	Face
 Failed	Falhou
 Fastening	Fixação
@@ -157,7 +170,9 @@ Field wiring	Fiação de campo
 File	Arquivo
 Files	Arquivos
 Filter	Filtro
+Filter circuits…	Filtrar circuitos…
 Filter devices…	Filtrar dispositivos…
+First fault current Id (A)	Corrente da primeira falta Id (A)
 Fit	Ajustar
 Fits	Compatível com
 Fitting at the end	Engate no fim
@@ -172,6 +187,7 @@ Function	Função
 Function (=)	Função (=)
 Function definition	Definição de função
 Function template	Modelo de função
+Function test	Teste de funcionamento
 Function text	Texto de função
 Functional safety	Segurança funcional
 Functions	Funções
@@ -192,12 +208,25 @@ Height	Altura
 Height above floor	Altura acima do piso
 History	Histórico
 Hose no.	Nº da mangueira
+IT system	Esquema IT
 Identifier	Identificador
 Identifying letter	Letra de identificação
 Image	Imagem
 Import	Importação
+Incomplete	Incompleto
 Input	Entrada
+Inspection and test report	Relatório de inspeção e ensaio
+Inspector	Inspetor
 Installation	Instalação
+Installation site	Local de instalação
+Installer	Instalador
+Insulating floors and walls (kΩ)	Pisos e paredes isolantes (kΩ)
+Insulation L–N (MΩ)	Isolamento L–N (MΩ)
+Insulation L–PE (MΩ)	Isolamento L–PE (MΩ)
+Insulation N–PE (MΩ)	Isolamento N–PE (MΩ)
+Insulation monitoring device	Dispositivo supervisor de isolamento
+Insulation resistance (MΩ)	Resistência de isolamento (MΩ)
+Insulation test voltage (V)	Tensão de ensaio de isolamento (V)
 Integration	Integração
 Internal (bottom)	Interno (embaixo)
 Interruption point	Ponto de interrupção
@@ -225,6 +254,7 @@ Length	Comprimento
 Level	Nível
 Lifecycle	Ciclo de vida
 Light	Claro
+Limits	Limites
 Line	Linha
 Link	Vínculo
 Linked	Vinculado
@@ -236,11 +266,13 @@ Location (+)	Localização (+)
 Locked	Bloqueada
 Locked by {}	Bloqueado por {}
 Logo	Logotipo
+Loop impedance Zs (Ω)	Impedância de laço Zs (Ω)
 MTTFd (years)	MTTFd (anos)
 Machine	Máquina
 Main	Principal
 Main earthing busbar (device) it is connected to; empty: none	Barramento de equipotencialização principal (dispositivo) ao qual está ligado; vazio: nenhum
 Main earthing terminal	Barramento de aterramento principal
+Main equipotential bonding (Ω)	Equipotencialização principal (Ω)
 Main switch	Chave geral
 Manufacturer	Fabricante
 Manufacturers	Fabricantes
@@ -248,6 +280,7 @@ Manufacturing	Fabricação
 Marking	Marcação
 Match case	Diferenciar maiúsculas e minúsculas
 Material	Material
+Measured at the origin	Medido na origem
 Medium	Meio
 Metal carriers meeting at a node are connected	Os suportes metálicos que se encontram em um nó estão conectados
 Minimum digits of the counter (leading zeros)	Mínimo de dígitos do contador (zeros à esquerda)
@@ -275,11 +308,15 @@ Name of the scheme	Nome do esquema
 Net	Rede
 Never	Nunca
 New group	Novo grupo
+New installation	Instalação nova
 New name	Novo nome
+Next inspection	Próxima inspeção
 Next page	Próxima página
 No	Não
 No Vault item matches a part of the project	Nenhum item do Vault corresponde a uma peça do projeto
 No cable {}	Nenhum cabo {}
+No circuit {}	Nenhum circuito {}
+No circuits found	Nenhum circuito encontrado
 No connection point {}	Nenhum ponto de conexão {}
 No device {}	Nenhum dispositivo {}
 No enclosure {}	Nenhum gabinete {}
@@ -293,6 +330,7 @@ No part {} in the project	Nenhuma peça {} no projeto
 No parts found	Nenhuma peça encontrada
 No plot frame named {}	Nenhuma moldura de plotagem chamada {}
 No plug {}	Nenhum plugue {}
+No protective measure of its own	Sem medida de proteção própria
 No report block named {}	Nenhum bloco de relatório chamado {}
 No segment {}	Nenhum segmento {}
 No station {}	Nenhuma estação {}
@@ -302,18 +340,24 @@ No such section	Seção inexistente
 No symbol with id {}	Nenhum símbolo com o ID {}
 No title block of the project named {}	Nenhum selo do projeto chamado {}
 Nominal size	Diâmetro nominal
+Not OK	Não OK
 Not a language code: {}	Não é um código de idioma: {}
 Not a macro file: {}	Não é um arquivo de macro: {}
 Not a symbol id: {}	Não é um ID de símbolo: {}
 Not a title block file: {}	Não é um arquivo de selo: {}
 Not a valid rule set file: {}	Não é um arquivo de conjunto de regras válido: {}
+Not applicable	Não aplicável
 Not in the schematic	Não está no esquema elétrico
+Not passed	Reprovado
+Not signed	Não assinado
+Not tested	Não verificado
 Note	Nota
 Notes	Notas
 Number	Número
 Number of down conductors (0: as many as the class needs for the walls)	Número de descidas (0: tantas quanto a classe exige para as paredes)
 Number the sections 1, 2, 3 … on every level first	Numerar primeiro as seções 1, 2, 3 … em cada nível
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numera os identificadores de dispositivo por estrutura e letra de identificação na ordem do esquema elétrico (página, coluna, de cima para baixo)
+OK	OK
 Only rows containing this text	Apenas linhas que contêm este texto
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	O OpenECraft é fornecido sem garantia. Seus cálculos e verificações apoiam o projeto; uma pessoa qualificada precisa conferir os resultados com as normas e os regulamentos aplicáveis.
@@ -323,9 +367,12 @@ Order number	Número de pedido
 Other	Outro
 Outer diameter	Diâmetro externo
 Output	Saída
+Output voltage (V)	Tensão de saída (V)
 Overview	Visão geral
+Own item of the visual inspection	Item próprio da inspeção visual
 PCT loop	Malha de instrumentação
 PCT loop overview	Visão geral das malhas de instrumentação
+PELV	PELV
 PL	PL
 PLC	CLP
 PLC card	Cartão de CLP
@@ -351,7 +398,10 @@ Part {}	Peça {}
 Parts	Peças
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Peças (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Falha na importação de peças: {}
+Passed	Aprovado
 Password	Senha
+Phase sequence	Sequência de fases
+Phases	Fases
 Phone	Telefone
 Picture	Imagem
 Pieces	Unidades
@@ -367,6 +417,7 @@ Plug	Plugue
 Plug diagram	Diagrama de plugues
 Plugins	Plug-ins
 Plugs	Plugues
+Polarity	Polaridade
 Poles	Polos
 Ports	Portas
 Position	Posição
@@ -377,6 +428,7 @@ Potentials	Potenciais
 Power	Potência
 Power (kW)	Potência (kW)
 Power loss	Perda de potência
+Power supply unit	Fonte de alimentação
 Pre-planning	Pré-planejamento
 Press	Prensa
 Previous page	Página anterior
@@ -398,17 +450,25 @@ Project name	Nome do projeto
 Project properties	Propriedades do projeto
 Properties	Propriedades
 Property	Propriedade
+Prospective fault current at the origin (kA)	Corrente de falta presumida na origem (kA)
 Protection	Proteção
+Protective conductor (Ω)	Condutor de proteção (Ω)
 Protective device	Dispositivo de proteção
+Protective measure	Medida de proteção
 Quantity	Quantidade
 Quantity (default 1)	Quantidade (padrão 1)
 Quantity unit	Unidade de quantidade
+RCD	DR
+RCD trip current (mA)	Corrente de disparo do DR (mA)
+RCD trip time (ms)	Tempo de disparo do DR (ms)
+RCD trip time at 5 × IΔn (ms)	Tempo de disparo do DR a 5 × IΔn (ms)
 Rack	Rack
 Rail	Trilho
 Range	Faixa
 Rated current	Corrente nominal
 Rated power	Potência nominal
 Rear wall	Parede traseira
+Reason for the test	Motivo do ensaio
 Rectangle	Retângulo
 Rectangular	Retangular
 Redo	Refazer
@@ -419,13 +479,16 @@ Relative humidity	Umidade relativa
 Relay	Relé
 Released	Liberado
 Released pages cannot be moved	Páginas liberadas não podem ser movidas
+Remark	Observação
 Remove	Remover
 Remove from favorites	Remover dos favoritos
 Remove the boundary	Remover o limite
 Remove the lightning protection system	Remover o SPDA
 Remove the reference point	Remover o ponto de referência
+Repair	Reparo
 Report	Relatório
 Report blocks	Blocos de relatório
+Report data and visual inspection	Dados do relatório e inspeção visual
 Report: {}	Relatório: {}
 Reports	Relatórios
 Represented by	Representado por
@@ -448,8 +511,11 @@ Routing	Roteamento
 Rows of modules (east-west: rows of pairs)	Fileiras de módulos (leste-oeste: fileiras de pares)
 Rule	Regra
 Rule set	Conjunto de regras
+SELV	SELV
+SELV, PELV and separation	SELV, PELV e separação
 Safety function	Função de segurança
 Save	Salvar
+Saved	Salvo
 Saved catalog {}	Catálogo {} salvo
 Saved user {}	Usuário {} salvo
 Saved {}	{} salvo
@@ -476,6 +542,9 @@ Show the row after the column	Mostrar a linha após a coluna
 Side	Lado
 Sign in	Entrar
 Sign out	Sair
+Sign the report	Assinar o relatório
+Signed	Assinado
+Signed by {} on {}	Assinado por {} em {}
 Signed in as {}	Conectado como {}
 Signed in as {} ({})	Conectado como {} ({})
 Signed out	Desconectado
@@ -497,8 +566,10 @@ Structure	Estrutura
 Subproject name	Nome do subprojeto
 Subsystem	Subsistema
 Successor	Sucessor
+Summary	Resumo
 Supplier	Fornecedor
 Supply	Abastecimento
+Supply system	Rede de alimentação
 Symbol	Símbolo
 Symbol key	Chave do símbolo
 Symbolic address	Endereço simbólico
@@ -513,18 +584,23 @@ Terminal strip	Régua de bornes
 Terminal strips	Réguas de bornes
 Terminal type	Tipo de borne
 Terminals	Bornes
+Test instrument	Instrumento de medição
+Test instruments (IEC 61557)	Instrumentos de medição (IEC 61557)
+Tested by	Verificado por
 Text	Texto
 Text to find	Texto a localizar
 The freestanding PV array {} stands outside the plot boundary	O arranjo FV no solo {} fica fora do limite do terreno
 The identifier must not be empty	O identificador não pode ficar vazio
 The long side of the modules along the rows	O lado longo dos módulos ao longo das fileiras
 The page is released	A página está liberada
+The project has no circuits fed from the mains	O projeto não tem circuitos alimentados pela rede
 There is a connection symbol at this point already	Já existe um símbolo de conexão neste ponto
 Thermal	Térmica
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Esta página não define cookies, não usa rastreamento e não carrega nada de outros servidores.
 Time	Tempo
 Title block	Selo
 To	Para
+To check	A verificar
 Tools	Ferramentas
 Top	Superior
 Total	Total
@@ -540,6 +616,7 @@ Unknown column: {}	Coluna desconhecida: {}
 Unknown connector: {}	Conector desconhecido: {}
 Unknown enclosure system: {}	Sistema de gabinete desconhecido: {}
 Unknown face: {}	Face desconhecida: {}
+Unknown field: {}	Campo desconhecido: {}
 Unknown format: {}	Formato desconhecido: {}
 Unknown function definition: {}	Definição de função desconhecida: {}
 Unknown language: {}	Idioma desconhecido: {}
@@ -558,9 +635,12 @@ User	Usuário
 User name	Nome de usuário
 Users	Usuários
 VAT ID	Número de IVA
+Value	Valor
 Version	Versão
 Viewer	Visualizador
+Visual inspection	Inspeção visual
 Voltage	Tensão
+Voltage drop (%)	Queda de tensão (%)
 Warning	Aviso
 Warnings	Avisos
 Weight	Peso
@@ -575,12 +655,14 @@ Wired	Fiado
 Wires	Fios
 Wiring	Fiação
 Yes	Sim
+Zs max (Ω)	Zs máx (Ω)
 access denied	acesso negado
 approved	aprovado
 bonded	equipotencializado
 file or folder not found	arquivo ou pasta não encontrado
 landscape	paisagem
 left	para a esquerda
+missing	ausente
 mm	mm
 none	nenhum
 normal	normal
@@ -598,6 +680,7 @@ the file exists already	o arquivo já existe
 this is a folder	isto é uma pasta
 yes	sim
 {} ({})	{} ({})
+{} circuits	{} circuitos
 {} does not stand on the floor: choose a part marked for floor mounting	{} não fica no piso: escolha uma peça marcada para montagem no piso
 {} exists already	{} já existe
 {} is not a PNG or JPEG image	{} não é uma imagem PNG ou JPEG

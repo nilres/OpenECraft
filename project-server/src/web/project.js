@@ -1,9 +1,11 @@
 "use strict";
 /// The web page of the project server, on top of common.js: the projects the user may
 /// see and each of them read only (its pages by section or by structure, its devices,
-/// the pages drawn as on paper). The administration is in admin.js.
+/// the pages drawn as on paper) with its inspection and test report (inspection.js).
+/// The administration is in admin.js.
 let view = "projects";
-/// The open project: its name, the page shown and the navigator tab.
+/// The open project: its name, the page shown and the tab (`pages`, `devices` of the
+/// navigator or `inspection`, the report).
 let shown = { name: null, page: null, tab: "pages" };
 /// The answer of `/view` for the open project.
 let project = null;
@@ -38,7 +40,7 @@ function rightsBadges(rights) {
   return '<span class="badge" title="' + esc((rights || []).map(rightTitle).join(", ")) + '">' + esc(role.title) + "</span>";
 }
 
-/// The view of the address: `#project=<name>&page=<id>&tab=devices`, `#admin/<tab>` or the list.
+/// The view of the address: `#project=<name>&page=<id>&tab=devices|inspection`, `#admin/<tab>` or the list.
 function stateHash() {
   if (view === "admin") return "admin/" + adminTab;
   if (view !== "project") return "";
@@ -57,7 +59,8 @@ function readHash() {
   const name = p.get("project");
   if (name !== shown.name) { project = null; zoom = 0; }
   const page = parseInt(p.get("page") || "", 10);
-  shown = { name, page: Number.isFinite(page) ? page : null, tab: p.get("tab") === "devices" ? "devices" : "pages" };
+  const tab = p.get("tab");
+  shown = { name, page: Number.isFinite(page) ? page : null, tab: tab === "devices" || tab === "inspection" ? tab : "pages" };
 }
 function go() {
   const h = stateHash();
@@ -140,16 +143,21 @@ async function showProject() {
   const p = project;
   if (shown.page === null || !p.pages.some(x => x.id === shown.page)) shown.page = p.pages.length ? p.pages[0].id : null;
   const info = [["Description", p.description], ["Company", p.company], ["Created by", p.creator], ["Date", p.date], ["Revision", p.revision]].filter(([, v]) => v);
-  let html = '<div class="project"><div class="head"><h2>' + esc(p.title || p.name) + "</h2>" + '<span class="badge readonly">' + esc(t("Read only")) + "</span>" +
+  const report = shown.tab === "inspection";
+  let html = '<div class="project"><div class="head"><h2>' + esc(p.title || p.name) + "</h2>" + (report ? "" : '<span class="badge readonly">' + esc(t("Read only")) + "</span>") +
     '<span class="muted">' + esc(p.name) + " · " + tf("Revision {} on the server", p.server_revision) + '</span><span class="rights">' + rightsBadges(p.rights) + "</span>" +
     (p.users.length ? '<span class="badge locked">' + tf("In use by {}", p.users.join(", ")) + "</span>" : "") +
     (p.rights.includes("manage_access") ? '<button class="small" id="permissions">' + esc(t("Permissions")) + "</button>" : "") +
     '<a class="small" href="#">' + esc(t("All projects")) + "</a></div>";
   if (info.length) html += '<dl class="info">' + info.map(([k, v]) => "<dt>" + esc(t(k)) + "</dt><dd>" + esc(v) + "</dd>").join("") + "</dl>";
-  html += '<div id="grants"></div><div class="viewer"><aside class="nav" id="navigator"></aside><section class="sheet" id="sheet"></section></div></div>';
+  html += '<div id="grants"></div><div class="tabs modes"><button data-mode="pages"' + (report ? "" : ' class="active"') + ">" + esc(t("Drawings")) + '</button><button data-mode="inspection"' +
+    (report ? ' class="active"' : "") + ">" + esc(t("Inspection and test report")) + "</button></div>";
+  html += report ? '<div class="inspection" id="inspection"></div></div>' : '<div class="viewer"><aside class="nav" id="navigator"></aside><section class="sheet" id="sheet"></section></div></div>';
   content(html);
   const perm = document.getElementById("permissions");
   if (perm) perm.onclick = () => showGrants(p.name);
+  document.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { if (b.dataset.mode !== (report ? "inspection" : "pages")) { shown.tab = b.dataset.mode; go(); } });
+  if (report) { showInspection(); return; }
   drawNavigator();
   drawSheet();
 }
@@ -290,6 +298,12 @@ async function refresh() {
   const locks = JSON.stringify(project.locks);
   try { await loadProject(); } catch (e) { return; }
   if (view !== "project") return;
+  if (shown.tab === "inspection") {
+    // New results of others; not while the user types (the keyboard of a phone would close).
+    const typing = document.activeElement && document.activeElement.closest && document.activeElement.closest("#inspection");
+    if (project.server_revision !== before && !typing) showInspection();
+    return;
+  }
   if (project.server_revision !== before) { showProject(); return; }
   // Opened entries of the navigator stay open while nothing changed.
   if (JSON.stringify(project.locks) === locks) return;
@@ -303,7 +317,7 @@ async function refresh() {
 }
 
 document.addEventListener("keydown", e => {
-  if (view !== "project" || !project || e.target.closest("input, select, textarea")) return;
+  if (view !== "project" || !project || shown.tab === "inspection" || e.target.closest("input, select, textarea")) return;
   const i = project.pages.findIndex(x => x.id === shown.page);
   const next = e.key === "PageDown" || e.key === "ArrowRight" ? project.pages[i + 1] : e.key === "PageUp" || e.key === "ArrowLeft" ? project.pages[i - 1] : null;
   if (next) { e.preventDefault(); shown.page = next.id; go(); }

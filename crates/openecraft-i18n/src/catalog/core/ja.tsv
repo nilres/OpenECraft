@@ -40,6 +40,7 @@ Actuated by	操作元
 Actuation	操作
 Actuator type	操作部の種類
 Additional page description	追加のページ説明
+Additional protection by RCDs of at most 30 mA where required	必要な箇所に 30 mA 以下の RCD による追加保護
 Address ranges of {} and {} overlap	{} と {} のアドレス範囲が重複しています
 Address {} is used by {} and {}	アドレス {} が {} と {} で使用されています
 Adhesive	接着
@@ -195,6 +196,7 @@ Check valve	逆止弁
 Checked	チェック済み
 Checked by	チェック者
 Choose the pages of the subproject	サブプロジェクトのページを選択してください
+Circuit	回路
 Circuit breaker (single-line)	遮断器 (単線)
 Circuit breaker 1-pole	遮断器 1 極
 Circuit breaker 1-pole (NFPA)	遮断器 1 極 (NFPA)
@@ -211,6 +213,7 @@ Circuit breaker 3-pole QF (GB)	遮断器 3 極 QF (GB)
 Circuit breaker 3-pole QF (GOST)	遮断器 3 極 QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	遮断器 3 極 (熱動電磁式)
 Circuit breaker 4-pole	遮断器 4 極
+Circuits, protective devices, switches and terminals labelled	回路、保護装置、スイッチ、端子に表示あり
 Circular milling	円弧フライス加工
 Clip / snap-on	クリップ / スナップオン
 Cloud	雲マーク
@@ -232,6 +235,7 @@ Compressed air supply	圧縮空気供給
 Compressor	圧縮機
 Condition '{}' needs OPTION=value	条件 '{}' には OPTION=値 が必要です
 Conductor class	導体クラス
+Conductors selected for current-carrying capacity and voltage drop	許容電流と電圧降下に基づいて導体を選定
 Conduit	電線管
 Connected	接続済み
 Connection definition point on page {} is not applied to its connection	ページ {} の接続定義ポイントが接続に適用されていません
@@ -245,6 +249,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	接続シンボル
 Connection type	接続タイプ
 Connection {} has contradicting connection definition points	接続 {} に矛盾する接続定義ポイントがあります
+Connections of the conductors	導体の接続
 Connector pin-outs and flat cables	コネクタのピン配置とフラットケーブル
 Connector pin-outs: mating faces and pin tables (SVG)	コネクタのピン配置: 嵌合面とピン表 (SVG)
 Contact material	接点材質
@@ -270,6 +275,7 @@ Control transformer TC (GB)	制御用変圧器 TC (GB)
 Control valve	調節弁
 Control voltage	制御電圧
 Control voltage type	制御電圧の種類
+Conventional touch voltage limit UL (V)	規約接触電圧限度 UL (V)
 Converted from file format {} to {}: {}	ファイル形式 {} から {} に変換しました: {}
 Coolant	冷却液
 Cooler	冷却器
@@ -333,6 +339,7 @@ DWG export failed: {}	DWG のエクスポートに失敗しました: {}
 Data sheet	データシート
 Date of the approval of the last revision	最終リビジョンの承認日
 Date of the last revision	最終リビジョンの日付
+Default {} ({})	既定値 {} ({})
 Degree of protection	保護等級
 Delete projects	プロジェクトの削除
 Delivery date	納期
@@ -365,6 +372,7 @@ Devices without power loss	損失電力のないデバイス
 Dew point (°C)	露点 (°C)
 Diagnostic coverage (DC)	診断範囲 (DC)
 Diagnostics	診断
+Diagrams, warning notices and similar information present	図面、警告表示などの情報あり
 Diameter (mm)	直径 (mm)
 Different wire numbers in one connection: {}	1 つの接続内で電線番号が異なります: {}
 Digital input / output module	デジタル入出力モジュール
@@ -455,6 +463,7 @@ Emergency stop SB (GOST)	非常停止 SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	非常停止機器には B10d 値が必要です (ISO 13849-1、附属書 C)
 Emergency stop, mushroom head (NFPA)	非常停止 (きのこ形、NFPA)
 Empty (IEC 60204-1)	空 (IEC 60204-1)
+Empty: removes the item	空：項目を削除
 Enclosure body	エンクロージャー本体
 Enclosure climate	エンクロージャーの温度管理
 Enclosure light	盤内照明
@@ -472,6 +481,8 @@ Energy limitation class	エネルギー制限クラス
 Engineered	設計済み
 Engineering unit	工学単位
 Environment	環境
+Equipment accessible for operation, inspection and maintenance	操作、点検、保守のために機器に近づける
+Equipment and protective measures suit the external influences	機器と保護方式は外部の影響に適合
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	機器接地導体は緑である必要があります (NFPA 79、13.2.2)
 Excel workbook	Excel ブック
 Exhaust {} open to the atmosphere (no silencer)	排気 {} が大気に開放されています (サイレンサーなし)
@@ -697,12 +708,14 @@ Input voltage	入力電圧
 Inputs from	入力元
 Inrush current	突入電流
 Inside (°C)	内部 (°C)
+Inspection and test report: SELV, PELV and separation	点検・試験報告書：SELV、PELV、分離
+Inspection and test report: data	点検・試験報告書：データ
+Inspection and test report: summary	点検・試験報告書：概要
 Installation altitude	設置高度
 Installation date	設置日
 Installation devices	設置機器
 Installation method	敷設方法
 Installation plan (IEC 60617-11)	屋内配線図 (IEC 60617-11)
-Installation site	設置場所
 Installation site (++)	設置場所 (++)
 Installation site and location	設置場所と取付場所
 Installation site of the page	ページの設置場所
@@ -725,6 +738,7 @@ Invalid length {}	無効な長さ {}
 Invalid property key: {}	無効なプロパティキー: {}
 Inverter / charger	インバータ / 充電器
 Inverter DC/AC	インバーター DC/AC
+Isolating and switching devices in the right places	断路器と開閉器の位置が正しい
 Item	アイテム
 Item ID	アイテム ID
 JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -768,8 +782,12 @@ Load calculation	負荷計算
 Loads and power supplies	負荷と電源
 Loads behind it: {}	下位の負荷: {}
 Location of the page	ページの取付場所
+Longest RCD trip time at 5 × IΔn (ms)	5 × IΔn での RCD 最長動作時間 (ms)
+Longest RCD trip time at IΔn (ms)	IΔn での RCD 最長動作時間 (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	低電圧開閉装置アセンブリ: 定格分散率、温度上昇、ドキュメント
+Lowest insulation resistance of the mains (MΩ)	電源系統の最小絶縁抵抗 (MΩ)
 Lubricant	潤滑剤
+Luminaire	照明器具
 Luminaire, fluorescent	蛍光灯器具
 MAC address	MAC アドレス
 MCAD	MCAD
@@ -818,6 +836,7 @@ Maximum installation altitude	最大設置高度
 Maximum operating temperature	最高動作温度
 Maximum pressure	最大圧力
 Measured variable	測定変数
+Measures against electromagnetic disturbances	EMC 対策
 Measuring instrument	計測器
 Measuring instruments	計測機器
 Measuring point	測定点
@@ -909,8 +928,9 @@ NO contact, timed closing (NFPA)	a接点、限時閉路 (NFPA)
 Nailboard {}	布線板 {}
 Network (m)	ネットワーク (m)
 Neutral (N)	中性線 (N)
+Neutral and protective conductors identified	中性線と保護導体に表示あり
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	中性線は水色である必要があります (IEC 60204-1、13.2.3)
-Next inspection	次回の点検
+New own item of the visual inspection	目視点検の新しい独自項目
 Nibbling	ニブリング
 No connection {}	接続 {} はありません
 No devices to add to the single-line diagram	単線結線図に追加するデバイスはありません
@@ -931,7 +951,6 @@ No user defined property {}	ユーザー定義プロパティ {} がありませ
 No wires at the pins of {}	{} のピンに電線がありません
 Nominal discharge current	公称放電電流
 Non-return valve	逆止弁
-Not OK	NG
 Not a DWG file	DWG ファイルではありません
 Not a DXF file	DXF ファイルではありません
 Not a DXF file (binary DXF is not supported)	DXF ファイルではありません (バイナリ DXF はサポートされていません)
@@ -966,7 +985,7 @@ Number of sheets	シート数
 Number of switch positions	切替位置の数
 Number of symbols	シンボル数
 Numbers (1, 2, 3)	数字 (1、2、3)
-OK	OK
+OK, Not OK or Not applicable	OK、不合格、該当なし
 Ohmmeter	抵抗計
 Oil resistant	耐油性
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V の電位、押しボタン、セレクタスイッチ、表示灯、ヒューズを含む1枚の回路図ページ。部品と部品表。
@@ -1016,6 +1035,7 @@ Overview (not evaluated)	概要 (評価されません)
 Overview / single-line	概要 / 単線
 Overvoltage category	過電圧カテゴリ
 Overvoltage relay	過電圧継電器
+Own item {}	独自項目 {}
 P&ID / process (ISO 10628)	P&ID / プロセス (ISO 10628)
 P&ID number	P&ID 番号
 PCT loop {} has no instrument in the P&ID	計装ループ {} には P&ID 内に計器がありません
@@ -1101,7 +1121,6 @@ Phase (L)	相導体 (L)
 Phase meter	位相計
 Phase unbalance {} % above {} %	相不平衡 {} % が {} % を超えています
 Phase {}	相 {}
-Phases	相
 Photodiode	フォトダイオード
 Photoelectric sensor, diffuse, 3-wire	拡散反射形光電センサー (3 線式)
 Photoelectric sensor, diffuse, 4-wire	拡散反射形光電センサー (4 線式)
@@ -1212,14 +1231,17 @@ Project revision	プロジェクトリビジョン
 Project symbols	プロジェクトシンボル
 Proof test interval	プルーフテスト間隔
 Prospective short-circuit current	推定短絡電流
+Protection against electric shock: the measures and their components	感電保護：保護方式とその構成要素
 Protection class	保護クラス
 Protection setting	保護設定
+Protective and monitoring devices selected and set correctly	保護装置と監視装置の選定と設定が正しい
 Protective conductor {} with wire colour {} (must be GNYE)	保護導体 {} の電線色が {} です (GNYE である必要があります)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	保護導体は緑/黄である必要があります (IEC 60204-1、13.2.2)
 Protective devices	保護機器
 Protective earth	保護接地
 Protective earth (PE)	保護導体 (PE)
 Protective hose	保護ホース
+Protective, earthing and bonding conductors present and adequate	保護導体、接地線、ボンディング導体があり適切
 Proximity sensor	近接センサー
 Proximity sensor NO	近接センサー a接点
 Proximity switch NO (NFPA)	近接スイッチ a接点 (NFPA)
@@ -1339,6 +1361,7 @@ Rule {}: no macro {}	ルール {}: マクロ {} はありません
 Rule {}: {}	ルール {}: {}
 Rule {}: {} has no variant {}	ルール {}: {} にバリアント {} はありません
 Rule {}: {} is no page macro	ルール {}: {} はページマクロではありません
+SELV, PELV, Electrical separation or none	SELV、PELV、電気的分離、なし
 SVG image (one page)	SVG 画像 (1 ページ)
 Saddle jumper	サドルジャンパー
 Safe torque off (STO)	安全トルクオフ (STO)
@@ -1426,11 +1449,14 @@ Signal devices	表示機器
 Signal name	信号名
 Signal range	信号範囲
 Signal type	信号の種類
+Signed by	サイン者
+Signed on	サイン日
 Silencer	サイレンサー
 Single, free-standing	単独、自立型
 Single, wall mounted	単独、壁掛け型
 Single-line / overview	単線 / 概要
 Single-line diagram	単線結線図
+Single-pole switching devices in the line conductors	相導体の単極開閉器
 Siren	サイレン
 Site address	設置場所の住所
 Size (mm)	サイズ (mm)
@@ -1449,6 +1475,7 @@ Solenoid valve coil YA (GOST)	電磁弁コイル YA (GOST)
 Solenoid valve coil YV (GB)	電磁弁コイル YV (GB)
 Sort code	ソートコード
 Sound level	騒音レベル
+Source {}	電源 {}
 Source {}, first target {}, second target {}	源{}、第1目標{}、第2目標{}
 Source {}, targets {}, {} and {}	源{}、目標{}、{}、{}
 Spare	予備
@@ -1505,6 +1532,7 @@ Supply voltage	供給電圧
 Surface (m²)	表面積 (m²)
 Surface-mounted	露出配線
 Surge protection type	サージ保護タイプ
+Surge protection where required	必要な箇所のサージ保護
 Surge protective device	サージ防護デバイス
 Surge suppressor	サージサプレッサー
 Switch, 1-pole (installation)	片切スイッチ (屋内配線)
@@ -1555,6 +1583,7 @@ Termination (to)	端末処理（終点）
 Text file	テキストファイル
 The DXF file contains nothing that can be imported	DXF ファイルにインポートできる内容がありません
 The PDF has no pages that can be read	PDF に読み取り可能なページがありません
+The answer is OK, Not OK or Not applicable, not {}	回答は OK、不合格、該当なしのいずれかです（{} ではありません）
 The archive contains no project	アーカイブにプロジェクトが含まれていません
 The archive has no manifest	アーカイブにマニフェストがありません
 The archive is damaged	アーカイブが破損しています
@@ -1585,6 +1614,7 @@ The plot boundary encloses no area	敷地境界が面積を囲んでいません
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	敷地境界が多角形ではありません：自己交差しているか、頂点が3つ未満です
 The project has no panel layout	プロジェクトに盤レイアウトがありません
 The property needs a name	プロパティには名前が必要です
+The protective measure is SELV, PELV, electrical separation or none, not {}	保護方式は SELV、PELV、電気的分離、なしのいずれかです（{} ではありません）
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	2 台の列盤自立盤に組み込んだポンプ場：ブスバーシステム、レールと配線ダクト、扉機器とハンドル、フィルタファン、照明、PE バー、ケーブルグランド、ケーブル通路、盤内温度計算、ダクト占有率、3D 配線。
 The revision is already released	このリビジョンは既にリリースされています
 The revision is not approved	このリビジョンは承認されていません
@@ -1726,7 +1756,6 @@ Vibration resistance	耐振動性
 View projects	プロジェクトの閲覧
 Violations	違反
 Voltage (V)	電圧 (V)
-Voltage drop (%)	電圧降下 (%)
 Voltage drop (V)	電圧降下 (V)
 Voltage protection level	電圧防護レベル
 Voltage range	電圧範囲
@@ -1831,6 +1860,7 @@ in work	作業中
 in {}	{} 内
 in-line	インライン
 incl.	含む
+instead of {}	{} ではなく
 ip (kA)	ip (kA)
 is	と等しい
 is at least	以上
@@ -1917,6 +1947,7 @@ yellow	黄
 {} lies outside page {}	{} はページ {} の外にあります
 {} min {} s	{} 分 {} 秒
 {} mounting marks belong to items that no longer exist	取付マーク {} 件は存在しなくなったアイテムのものです
+{} of {} passed	{} / {} 合格
 {} option assignments of deleted objects removed	削除されたオブジェクトのオプション割り当て {} 件を削除しました
 {} placed properties converted to property keys	配置されたプロパティ {} 件をプロパティキーに変換しました
 {} planned devices are not in the schematic yet	{} 個の計画済みデバイスがまだ回路図にありません

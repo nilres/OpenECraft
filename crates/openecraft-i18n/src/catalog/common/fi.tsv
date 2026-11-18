@@ -12,11 +12,13 @@ A page needs a name	Sivulla on oltava nimi
 A routing path needs {} points at least	Reitityspolku tarvitsee vähintään {} pistettä
 A section cannot be moved into itself	Osiota ei voi siirtää itsensä sisään
 Above	Yläpuolella
+Above {} V: no SELV or PELV	Yli {} V: ei SELV eikä PELV
 Access token	Käyttöoikeustokeni
 Accessories	Tarvikkeet
 Accessory	Tarvike
 Add	Lisää
 Add a PDF of all pages	Lisää kaikista sivuista PDF
+Add an item	Lisää kohta
 Add to favorites	Lisää suosikkeihin
 Address	Osoite
 Administrator	Järjestelmänvalvoja
@@ -33,6 +35,7 @@ Bold	Lihavointi
 Bottom	Pohja
 Bottom with removable gland plate	Pohja irrotettavalla läpivientilevyllä
 Breaking capacity	Katkaisukyky
+Breaking capacity of {} below the fault current at the origin	Kohteen {} katkaisukyky alle liittymiskohdan vikavirran
 Bridge	Silta
 Building	Rakennus
 Buildings	Rakennukset
@@ -56,16 +59,19 @@ Category	Luokka
 Centred	Keskitetty
 Certificates	Sertifikaatit
 Change	Muutos
+Changing the data or the results afterwards takes the signature away.	Tietojen tai tulosten muuttaminen jälkikäteen poistaa allekirjoituksen.
 Channel	Kanava
 Characteristic	Ominaiskäyrä
 Check settings	Tarkistusasetukset
 Checks	Tarkistukset
+Circuits	Virtapiirit
 Class	Luokka
 Classes	Luokat
 Clear filters	Tyhjennä suodattimet
 Clearance bottom	Etäisyys alhaalla
 Clearance top	Etäisyys ylhäällä
 Clearances	Etäisyydet
+Client	Tilaaja
 Close	Sulje
 Coding: {}	Koodaus: {}
 Coil voltage	Kelan jännite
@@ -85,6 +91,7 @@ Connection point	Liitäntäpiste
 Connection points	Liitäntäpisteet
 Connections	Yhteydet
 Connector	Liitin
+Contact voltage UB (V)	Kosketusjännite UB (V)
 Controller	Ohjain
 Cooling	Jäähdytys
 Core	Johdin
@@ -131,14 +138,19 @@ Done	Valmis
 Door	Ovi
 Door cutout	Oven aukko
 Download	Lataa
+Download the report as an Excel workbook	Lataa pöytäkirja Excel-työkirjana
 Downloading {}…	Ladataan {}…
 Drag to turn the model	Käännä mallia vetämällä
+Drawings	Piirustukset
 EMC clearance	EMC-etäisyys
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal ja muut nimet ovat omistajiensa tavaramerkkejä. OpenECraft on itsenäinen projekti.
+Earth electrode resistance RA (Ω)	Maadoituselektrodin resistanssi RA (Ω)
 Edit	Muokkaa
 Editor	Muokkaaja
+Electrical separation	Sähköinen erotus
 Electro-fluid cross reference	Sähkö-fluidi-ristiviittaukset
 Email	Sähköposti
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tyhjä: oletus. Anna muut arvot, jos standardin painos, jonka mukaan asennus tarkastetaan, poikkeaa.
 Enclosure	Kotelo
 Enclosures	Kotelot
 Enterprise integration	Yritysintegraatio
@@ -149,6 +161,7 @@ Export as CSV…	Vie CSV-muodossa…
 Export as JSON…	Vie JSON-muodossa…
 Export failed: {}	Vienti epäonnistui: {}
 External (top)	Ulkoinen (ylhäällä)
+External loop impedance Ze (Ω)	Ulkoinen silmukkaimpedanssi Ze (Ω)
 Face	Pinta
 Failed	Epäonnistui
 Fastening	Kiinnitys
@@ -157,7 +170,9 @@ Field wiring	Kenttäjohdotus
 File	Tiedosto
 Files	Tiedostot
 Filter	Suodatin
+Filter circuits…	Suodata virtapiirejä…
 Filter devices…	Suodata laitteita…
+First fault current Id (A)	Ensimmäisen vian virta Id (A)
 Fit	Sovita
 Fits	Sopii
 Fitting at the end	Putkiliitin lopussa
@@ -172,6 +187,7 @@ Function	Toiminto
 Function (=)	Toiminto (=)
 Function definition	Toimintomäärittely
 Function template	Toimintomalli
+Function test	Toimintakoe
 Function text	Toimintoteksti
 Functional safety	Toiminnallinen turvallisuus
 Functions	Toiminnot
@@ -192,12 +208,25 @@ Height	Korkeus
 Height above floor	Korkeus lattiasta
 History	Historia
 Hose no.	Letkunro
+IT system	IT-järjestelmä
 Identifier	Tunniste
 Identifying letter	Tunnuskirjain
 Image	Kuva
 Import	Tuonti
+Incomplete	Keskeneräinen
 Input	Tulo
+Inspection and test report	Tarkastus- ja testauspöytäkirja
+Inspector	Tarkastaja
 Installation	Sijoitus
+Installation site	Asennuspaikka
+Installer	Asentaja
+Insulating floors and walls (kΩ)	Eristävät lattiat ja seinät (kΩ)
+Insulation L–N (MΩ)	Eristys L–N (MΩ)
+Insulation L–PE (MΩ)	Eristys L–PE (MΩ)
+Insulation N–PE (MΩ)	Eristys N–PE (MΩ)
+Insulation monitoring device	Eristystilan valvontalaite
+Insulation resistance (MΩ)	Eristysresistanssi (MΩ)
+Insulation test voltage (V)	Eristysresistanssin mittausjännite (V)
 Integration	Integraatio
 Internal (bottom)	Sisäinen (alhaalla)
 Interruption point	Katkospiste
@@ -225,6 +254,7 @@ Length	Pituus
 Level	Pinnankorkeus
 Lifecycle	Elinkaari
 Light	Vaalea
+Limits	Raja-arvot
 Line	Viiva
 Link	Linkki
 Linked	Linkitetty
@@ -236,11 +266,13 @@ Location (+)	Sijainti (+)
 Locked	Lukittu
 Locked by {}	Lukinnut: {}
 Logo	Logo
+Loop impedance Zs (Ω)	Silmukkaimpedanssi Zs (Ω)
 MTTFd (years)	MTTFd (vuotta)
 Machine	Kone
 Main	Pää
 Main earthing busbar (device) it is connected to; empty: none	Päämaadoituskisko (laite), johon se on liitetty; tyhjä: ei mitään
 Main earthing terminal	Päämaadoituskisko
+Main equipotential bonding (Ω)	Pääpotentiaalintasaus (Ω)
 Main switch	Pääkytkin
 Manufacturer	Valmistaja
 Manufacturers	Valmistajat
@@ -248,6 +280,7 @@ Manufacturing	Valmistus
 Marking	Merkinnät
 Match case	Sama kirjainkoko
 Material	Materiaali
+Measured at the origin	Mitattu liittymiskohdassa
 Medium	Väliaine
 Metal carriers meeting at a node are connected	Solmussa kohtaavat metalliset kannattimet on yhdistetty
 Minimum digits of the counter (leading zeros)	Laskurin vähimmäisnumeromäärä (etunollat)
@@ -275,11 +308,15 @@ Name of the scheme	Mallin nimi
 Net	Verkko
 Never	Ei koskaan
 New group	Uusi ryhmä
+New installation	Uusi asennus
 New name	Uusi nimi
+Next inspection	Seuraava tarkastus
 Next page	Seuraava sivu
 No	Ei
 No Vault item matches a part of the project	Mikään Vault-nimike ei vastaa projektin osaa
 No cable {}	Ei kaapelia {}
+No circuit {}	Ei virtapiiriä {}
+No circuits found	Virtapiirejä ei löytynyt
 No connection point {}	Ei liitäntäpistettä {}
 No device {}	Ei laitetta {}
 No enclosure {}	Ei koteloa {}
@@ -293,6 +330,7 @@ No part {} in the project	Projektissa ei ole osaa {}
 No parts found	Osia ei löytynyt
 No plot frame named {}	Ei piirustuskehystä nimeltä {}
 No plug {}	Ei pistoliitintä {}
+No protective measure of its own	Ei omaa suojausta
 No report block named {}	Ei raporttilohkoa nimeltä {}
 No segment {}	Segmenttiä {} ei ole
 No station {}	Ei asemaa {}
@@ -302,18 +340,24 @@ No such section	Osiota ei ole
 No symbol with id {}	Ei symbolia tunnisteella {}
 No title block of the project named {}	Projektissa ei ole nimiötä {}
 Nominal size	Nimelliskoko
+Not OK	Ei OK
 Not a language code: {}	Ei kielikoodi: {}
 Not a macro file: {}	Ei makrotiedosto: {}
 Not a symbol id: {}	Ei symbolin tunnus: {}
 Not a title block file: {}	Ei nimiötiedosto: {}
 Not a valid rule set file: {}	Ei kelvollinen sääntökokoelmatiedosto: {}
+Not applicable	Ei sovellu
 Not in the schematic	Ei piirikaaviossa
+Not passed	Hylätty
+Not signed	Ei allekirjoitettu
+Not tested	Ei testattu
 Note	Huomautus
 Notes	Huomautukset
 Number	Numero
 Number of down conductors (0: as many as the class needs for the walls)	Alastulojohtimien määrä (0: niin monta kuin luokka seinille vaatii)
 Number the sections 1, 2, 3 … on every level first	Numeroi ensin osiot 1, 2, 3 … jokaisella tasolla
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numeroi laitetunnukset rakenteittain ja tunnuskirjaimittain piirikaavion järjestyksessä (sivu, sarake, ylhäältä alas)
+OK	OK
 Only rows containing this text	Vain rivit, jotka sisältävät tämän tekstin
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft toimitetaan ilman takuuta. Sen laskelmat ja tarkistukset tukevat suunnittelua; pätevän henkilön on varmistettava tulokset sovellettavien standardien ja määräysten mukaan.
@@ -323,9 +367,12 @@ Order number	Tilausnumero
 Other	Muu
 Outer diameter	Ulkohalkaisija
 Output	Lähtö
+Output voltage (V)	Lähtöjännite (V)
 Overview	Yleiskatsaus
+Own item of the visual inspection	Oma silmämääräisen tarkastuksen kohta
 PCT loop	Instrumentointipiiri
 PCT loop overview	Instrumentointipiirien yleiskatsaus
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC-kortti
@@ -351,7 +398,10 @@ Part {}	Osa {}
 Parts	Osat
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Osat (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Osien tuonti epäonnistui: {}
+Passed	Hyväksytty
 Password	Salasana
+Phase sequence	Vaihejärjestys
+Phases	Vaiheet
 Phone	Puhelin
 Picture	Kuva
 Pieces	Kappaleet
@@ -367,6 +417,7 @@ Plug	Pistoliitin
 Plug diagram	Pistoliitinkaavio
 Plugins	Laajennukset
 Plugs	Pistoliittimet
+Polarity	Napaisuus
 Poles	Navat
 Ports	Portit
 Position	Paikka
@@ -377,6 +428,7 @@ Potentials	Potentiaalit
 Power	Teho
 Power (kW)	Teho (kW)
 Power loss	Häviöteho
+Power supply unit	Virtalähde
 Pre-planning	Esisuunnittelu
 Press	Puristin
 Previous page	Edellinen sivu
@@ -398,17 +450,25 @@ Project name	Projektin nimi
 Project properties	Projektin ominaisuudet
 Properties	Ominaisuudet
 Property	Ominaisuus
+Prospective fault current at the origin (kA)	Odotettavissa oleva vikavirta liittymiskohdassa (kA)
 Protection	Suojaus
+Protective conductor (Ω)	Suojajohdin (Ω)
 Protective device	Suojalaite
+Protective measure	Suojaus
 Quantity	Määrä
 Quantity (default 1)	Määrä (oletus 1)
 Quantity unit	Määräyksikkö
+RCD	Vikavirtasuoja
+RCD trip current (mA)	Vikavirtasuojan laukaisuvirta (mA)
+RCD trip time (ms)	Vikavirtasuojan laukaisuaika (ms)
+RCD trip time at 5 × IΔn (ms)	Vikavirtasuojan laukaisuaika 5 × IΔn:llä (ms)
 Rack	Teline
 Rail	Kisko
 Range	Alue
 Rated current	Mitoitusvirta
 Rated power	Mitoitusteho
 Rear wall	Takaseinä
+Reason for the test	Testauksen syy
 Rectangle	Suorakulmio
 Rectangular	Suorakulmainen
 Redo	Tee uudelleen
@@ -419,13 +479,16 @@ Relative humidity	Suhteellinen kosteus
 Relay	Rele
 Released	Vapautettu
 Released pages cannot be moved	Vapautettuja sivuja ei voi siirtää
+Remark	Huomautus
 Remove	Poista
 Remove from favorites	Poista suosikeista
 Remove the boundary	Poista raja
 Remove the lightning protection system	Poista ukkossuojaus
 Remove the reference point	Poista vertailupiste
+Repair	Korjaus
 Report	Raportti
 Report blocks	Raporttilohkot
+Report data and visual inspection	Pöytäkirjan tiedot ja silmämääräinen tarkastus
 Report: {}	Raportti: {}
 Reports	Raportit
 Represented by	Edustaja
@@ -448,8 +511,11 @@ Routing	Reititys
 Rows of modules (east-west: rows of pairs)	Moduulirivit (itä-länsi: paririvit)
 Rule	Sääntö
 Rule set	Sääntökokoelma
+SELV	SELV
+SELV, PELV and separation	SELV, PELV ja erotus
 Safety function	Turvatoiminto
 Save	Tallenna
+Saved	Tallennettu
 Saved catalog {}	Luettelo {} tallennettiin
 Saved user {}	Käyttäjä {} tallennettiin
 Saved {}	Tallennettu {}
@@ -476,6 +542,9 @@ Show the row after the column	Näytä rivi sarakkeen jälkeen
 Side	Puoli
 Sign in	Kirjaudu sisään
 Sign out	Kirjaudu ulos
+Sign the report	Allekirjoita pöytäkirja
+Signed	Allekirjoitettu
+Signed by {} on {}	Allekirjoittanut {} {}
 Signed in as {}	Kirjautunut käyttäjänä {}
 Signed in as {} ({})	Kirjautunut käyttäjänä {} ({})
 Signed out	Kirjauduttu ulos
@@ -497,8 +566,10 @@ Structure	Rakenne
 Subproject name	Aliprojektin nimi
 Subsystem	Osajärjestelmä
 Successor	Seuraaja
+Summary	Yhteenveto
 Supplier	Toimittaja
 Supply	Syöttö
+Supply system	Syöttöverkko
 Symbol	Symboli
 Symbol key	Symbolin avain
 Symbolic address	Symbolinen osoite
@@ -513,18 +584,23 @@ Terminal strip	Riviliitinrima
 Terminal strips	Riviliitinrimat
 Terminal type	Riviliittimen tyyppi
 Terminals	Riviliittimet
+Test instrument	Mittalaite
+Test instruments (IEC 61557)	Mittalaitteet (IEC 61557)
+Tested by	Testaaja
 Text	Teksti
 Text to find	Etsittävä teksti
 The freestanding PV array {} stands outside the plot boundary	Maa-asennettu aurinkopaneelikenttä {} on tontin rajan ulkopuolella
 The identifier must not be empty	Tunnus ei saa olla tyhjä
 The long side of the modules along the rows	Moduulien pitkä sivu rivien suuntaisesti
 The page is released	Sivu on vapautettu
+The project has no circuits fed from the mains	Projektissa ei ole verkosta syötettyjä virtapiirejä
 There is a connection symbol at this point already	Tässä pisteessä on jo liitossymboli
 Thermal	Lämpö
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Tämä sivu ei aseta evästeitä, ei käytä seurantaa eikä lataa mitään muilta palvelimilta.
 Time	Aika
 Title block	Nimiö
 To	Mihin
+To check	Tarkistettava
 Tools	Työkalut
 Top	Ylhäällä
 Total	Yhteensä
@@ -540,6 +616,7 @@ Unknown column: {}	Tuntematon sarake: {}
 Unknown connector: {}	Tuntematon konnektori: {}
 Unknown enclosure system: {}	Tuntematon kotelojärjestelmä: {}
 Unknown face: {}	Tuntematon pinta: {}
+Unknown field: {}	Tuntematon kenttä: {}
 Unknown format: {}	Tuntematon muoto: {}
 Unknown function definition: {}	Tuntematon toimintomäärittely: {}
 Unknown language: {}	Tuntematon kieli: {}
@@ -558,9 +635,12 @@ User	Käyttäjä
 User name	Käyttäjänimi
 Users	Käyttäjät
 VAT ID	ALV-tunniste
+Value	Arvo
 Version	Versio
 Viewer	Katselija
+Visual inspection	Silmämääräinen tarkastus
 Voltage	Jännite
+Voltage drop (%)	Jännitteenalenema (%)
 Warning	Varoitus
 Warnings	Varoitukset
 Weight	Paino
@@ -575,12 +655,14 @@ Wired	Johdotettu
 Wires	Johdot
 Wiring	Johdotus
 Yes	Kyllä
+Zs max (Ω)	Zs maks. (Ω)
 access denied	pääsy estetty
 approved	hyväksytty
 bonded	liitetty
 file or folder not found	tiedostoa tai kansiota ei löytynyt
 landscape	vaaka
 left	vasemmalle
+missing	puuttuu
 mm	mm
 none	ei mitään
 normal	normaali
@@ -598,6 +680,7 @@ the file exists already	tiedosto on jo olemassa
 this is a folder	tämä on kansio
 yes	kyllä
 {} ({})	{} ({})
+{} circuits	Virtapiirejä: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} ei seiso lattialla: valitse lattia-asennukseen merkitty osa
 {} exists already	{} on jo olemassa
 {} is not a PNG or JPEG image	{} ei ole PNG- tai JPEG-kuva

@@ -170,6 +170,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Bir openecraf
 Environment variable with the password of the service account	Hizmet hesabının parolasını içeren ortam değişkeni
 Evaporator	Evaporatör
 Everybody who may read the parts sees it.	Parçaları okuyabilen herkes görür.
+Excel	Excel
 Exhaust valves	Tahliye valfleri
 Expired	Süresi doldu
 Export (CSV)	Dışa aktar (CSV)
@@ -283,6 +284,7 @@ New role	Yeni rol
 New user	Yeni kullanıcı
 Newer version	Daha yeni sürüm
 Next	İleri
+Next circuit	Sonraki devre
 No devices found	Cihaz bulunamadı
 No ended sessions	Sona eren oturum yok
 No grants: the rights by manufacturer apply	Yetki ataması yok: üreticiye göre haklar geçerlidir
@@ -296,6 +298,8 @@ Nobody works on a project	Hiç kimse bir proje üzerinde çalışmıyor
 Non-return valves	Çek valfler
 None (only grants)	Yok (yalnızca yetki atamaları)
 Not mounted	Monte edilmez
+Not saved	Kaydedilmedi
+Nothing to save	Kaydedilecek bir şey yok
 Nut	Somun
 On the front	Önde
 On the left side	Sol tarafta
@@ -452,6 +456,7 @@ Sifter	Eleme makinesi
 Sight glass	Gözetleme camı
 Sign in as an administrator to manage the server	Sunucuyu yönetmek için yönetici olarak oturum açın
 Sign in or connect with the access token to change parts	Parçaları değiştirmek için oturum açın veya erişim belirteciyle bağlanın
+Sign in or name the inspector in the report data first.	Oturum açın veya önce rapor verilerinde muayene edeni girin.
 Sign in to keep favorites	Sık kullanılanları saklamak için oturum açın
 Sign in to see the projects	Projeleri görmek için oturum açın
 Sign in with a user account	Kullanıcı hesabıyla oturum aç
@@ -464,6 +469,7 @@ Signal device	Sinyal cihazı
 Signal device, acoustic	Sinyal cihazı, akustik
 Signal device, optical	Sinyal cihazı, optik
 Signal lamp	Sinyal lambası
+Signature	İmza
 Signed in	Oturum açmış
 Silencers	Susturucular
 Silo	Silo
@@ -472,6 +478,7 @@ Single-stage filters	Tek kademeli filtreler
 Siphon	Sifon
 Size of the files	Dosyaların boyutu
 Solenoid valve	Solenoid valf
+Someone saved this meanwhile. Check the values and save again.	Biri bu arada bunu kaydetti. Değerleri kontrol edip yeniden kaydedin.
 Sorter	Ayıklayıcı
 Start a server with:  openecraft-parts-server --token <secret>	Şununla bir sunucu başlatın:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Değişikliklere izin vermek için openecraft-parts-server'ı --token ile başlatın
