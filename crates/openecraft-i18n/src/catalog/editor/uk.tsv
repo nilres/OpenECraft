@@ -308,6 +308,7 @@ Choose the building.	Виберіть будівлю.
 Chooses the pages whose structure starts with this	Вибирає сторінки, структура яких починається з цього
 Circle	Коло
 Circuits of a generic manifold	Контури типового розподільника
+Circuits of the schematic	Кола схеми
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Клас блискавкозахисту: відстань між струмовідводами, комірка плоских дахів і захисний кут
 Class {}	Клас {}
 Clear	Очистити
@@ -317,6 +318,7 @@ Click	Клацання
 Click a text: open its link	Клацання по тексту: відкрити його посилання
 Click an element in the drawing to edit it.	Клацніть елемент на кресленні, щоб редагувати його.
 Click centre, then a point on the circle	Клацніть центр, потім точку на колі
+Click in a room to place {}	Клацніть у приміщенні, щоб розмістити {}
 Click in the panel layout: a single item of an assembly	Клацання в компонуванні шафи: окремий елемент збірки
 Click into the page to place the image	Клацніть на сторінці, щоб розмістити зображення
 Click into the page to place {}	Клацніть на сторінці, щоб розмістити {}
@@ -663,6 +665,7 @@ Each point-to-point connection can belong to a harness	Кожне з’єдна�
 Earth electrodes	Заземлювачі
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Заземлювачі будівлі (фундаментний і кільцевий, вертикальні заземлювачі клацанням на ситуаційному плані) та її блискавкозахист із блискавкоприймальними стрижнями, встановленими клацанням на дахах
 Earth rod placed at building {}; click for the next one · Esc: stop	Вертикальний заземлювач встановлено біля будівлі {}; клацніть для наступного · Esc: стоп
+Earthing	Заземлення
 Earthing and lightning protection	Заземлення та блискавкозахист
 Earthing busbar	Шина заземлення
 Earthing conductor	Заземлювальний провідник
@@ -856,7 +859,7 @@ Head (CPU / coupler)	Головний модуль (CPU / з’єднувач)
 Header row	Рядок заголовка
 Heat map	Теплова карта
 Heating	Обігрів
-Heating circuit manifolds and control boxes	Розподільники опалення та регулювальні коробки
+Heating elements, heating circuit manifolds and control boxes	Нагрівальні елементи, розподільники опалення та регулювальні коробки
 Height (mm)	Висота (мм)
 Height above sea level	Висота над рівнем моря
 Height above the floor	Висота над підлогою
@@ -1307,6 +1310,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Не змін�
 Not found: {}	Не знайдено: {}
 Not in the project parts – synchronize in parts management	Немає у виробах проєкту – синхронізуйте в керуванні виробами
 Not on a wire	Не на проводі
+Not placed	Не розміщено
 Not saved yet	Ще не збережено
 Not saved, locked or changed by another user	Не збережено, заблоковано або змінено іншим користувачем
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Не прийнято: сама ліва кнопка вибирає, малює та переміщує; утримуйте модифікатор або використайте іншу кнопку.
@@ -1489,6 +1493,7 @@ Pitch	Нахил
 Pitch X / Y	Крок X / Y
 Place a comment on the page	Розмістити коментар на сторінці
 Place again at all symbols using it	Розмістити знову на всіх символах, що її використовують
+Place all	Розмістити всі
 Place an enclosure, device or machine location at this node	Розмістити шафу, пристрій або місце на машині в цьому вузлі
 Place connection definition point	Розмістити точку визначення з’єднання
 Place connection points	Розмістити точки підключення
@@ -2594,6 +2599,7 @@ x y	x y
 {} – revision {}, {}	{} – ревізія {}, {}
 {} – {} ({} pages)	{} – {} (сторінок: {})
 {} – {} here (Esc cancels)	{} – {} тут (Esc скасовує)
+{} – {} of {} placed	{} – розміщено {} з {}
 {}, freestanding	{}, наземне
 {}, {} (copy of {}, revision {})	{}, {} (копія {}, ревізія {})
 {}: click to show its floor plan	{}: клацніть, щоб показати план

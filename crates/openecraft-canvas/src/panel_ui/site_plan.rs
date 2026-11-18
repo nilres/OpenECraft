@@ -202,7 +202,7 @@ pub fn ground_array_at(prj: &Project, frame: &Frame, p: Pos2) -> Option<u64> {
 
 /// The floor plan on paper under level `level` of building `bi` (index) and where its
 /// corners (top left, top right, bottom right, bottom left) lie in the plant.
-fn floor_plan_corners(prj: &Project, bi: usize, level: u64) -> Option<(&panel::FloorPlan, [[f32; 2]; 4])> {
+pub(super) fn floor_plan_corners(prj: &Project, bi: usize, level: u64) -> Option<(&panel::FloorPlan, [[f32; 2]; 4])> {
     let b = prj.layout.buildings.get(bi)?;
     let fp = b.levels.iter().find(|l| l.id == level)?.plan.as_ref()?;
     let pose = bld::building_pose(b);
@@ -231,7 +231,7 @@ pub fn picture_on_screen(prj: &Project, bi: usize, fp: &panel::FloorPlan, frame:
 
 /// The picture of a floor plan as a texture (kept while the picture stays the same;
 /// shrunk to what the graphics card takes).
-fn floor_texture(ctx: &egui::Context, fp: &panel::FloorPlan) -> Option<egui::TextureHandle> {
+pub(super) fn floor_texture(ctx: &egui::Context, fp: &panel::FloorPlan) -> Option<egui::TextureHandle> {
     let data: &str = &fp.image.data;
     let key = egui::Id::unique(("floor-plan", data.as_ptr() as usize, data.len()));
     if let Some(t) = ctx.data(|d| d.get_temp::<Option<egui::TextureHandle>>(key)) {
@@ -395,6 +395,14 @@ pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SiteP
                 let d = r * std::f32::consts::FRAC_1_SQRT_2;
                 painter.line_segment([c - vec2(d, d), c + vec2(d, d)], s);
                 painter.line_segment([c + vec2(d, -d), c - vec2(d, -d)], s);
+            }
+            Kind::Heater => {
+                // A rectangle with the hatching of a heating element.
+                let (w, h) = (8.0, 4.0);
+                painter.rect_stroke(Rect::from_center_size(c, vec2(2.0 * w, 2.0 * h)), 0.0, s, egui::StrokeKind::Middle);
+                for x in [-4.0, 0.0, 4.0] {
+                    painter.line_segment([c + vec2(x - 2.0, h), c + vec2(x + 2.0, -h)], s);
+                }
             }
         }
     }

@@ -308,6 +308,7 @@ Choose the building.	Valitse rakennus.
 Chooses the pages whose structure starts with this	Valitsee sivut, joiden rakenne alkaa tällä
 Circle	Ympyrä
 Circuits of a generic manifold	Yleisen jakotukin piirit
+Circuits of the schematic	Kaavion piirit
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Ukkossuojauksen luokka: alastulojohtimien väli, tasakattojen silmä ja suojakulma
 Class {}	Luokka {}
 Clear	Tyhjennä
@@ -317,6 +318,7 @@ Click	Napsautus
 Click a text: open its link	Tekstin napsautus: avaa sen linkki
 Click an element in the drawing to edit it.	Napsauta piirustuksen elementtiä muokataksesi sitä.
 Click centre, then a point on the circle	Napsauta keskipistettä ja sitten ympyrän pistettä
+Click in a room to place {}	Napsauta huonetta sijoittaaksesi {}
 Click in the panel layout: a single item of an assembly	Napsautus kaappiasennuksessa: kokoonpanon yksittäinen osa
 Click into the page to place the image	Napsauta sivua sijoittaaksesi kuvan
 Click into the page to place {}	Napsauta sivua sijoittaaksesi kohteen {}
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Jokainen pisteestä piste
 Earth electrodes	Maadoituselektrodit
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Rakennuksen maadoituselektrodit (perustus- ja rengasmaadoitus, asemapiirrokseen napsautetut maadoitussauvat) ja sen ukkossuojaus katoille napsautettuine ukkosenjohdatintankoineen
 Earth rod placed at building {}; click for the next one · Esc: stop	Maadoitussauva sijoitettu rakennukseen {}; napsauta seuraavaa varten · Esc: lopeta
+Earthing	Maadoitus
 Earthing and lightning protection	Maadoitus ja ukkossuojaus
 Earthing busbar	Maadoituskisko
 Earthing conductor	Maadoitusjohdin
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Pääyksikkö (CPU / väyläliitin)
 Header row	Otsikkorivi
 Heat map	Lämpökartta
 Heating	Lämmitys
-Heating circuit manifolds and control boxes	Lattialämmityksen jakotukit ja säätörasiat
+Heating elements, heating circuit manifolds and control boxes	Lämmityselementit, lattialämmityksen jakotukit ja säätörasiat
 Height (mm)	Korkeus (mm)
 Height above sea level	Korkeus merenpinnasta
 Height above the floor	Korkeus lattiasta
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Ei muutettu: {
 Not found: {}	Ei löytynyt: {}
 Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
 Not on a wire	Ei johdolla
+Not placed	Ei sijoitettu
 Not saved yet	Ei vielä tallennettu
 Not saved, locked or changed by another user	Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ei otettu: pelkkä vasen painike valitsee, piirtää ja siirtää; pidä muokkausnäppäin painettuna tai käytä toista painiketta.
@@ -1490,6 +1494,7 @@ Pitch	Kattokaltevuus
 Pitch X / Y	Jako X / Y
 Place a comment on the page	Sijoita kommentti sivulle
 Place again at all symbols using it	Sijoita uudelleen kaikkiin sitä käyttäviin symboleihin
+Place all	Sijoita kaikki
 Place an enclosure, device or machine location at this node	Sijoita kotelo, laite tai koneen sijainti tähän solmuun
 Place connection definition point	Sijoita yhteyden määrityspiste
 Place connection points	Sijoita liitäntäpisteet
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – revisio {}, {}
 {} – {} ({} pages)	{} – {} ({} sivua)
 {} – {} here (Esc cancels)	{} – {} tässä (Esc peruuttaa)
+{} – {} of {} placed	{} – {}/{} sijoitettu
 {}, freestanding	{}, maa-asennus
 {}, {} (copy of {}, revision {})	{}, {} (kopio projektista {}, revisio {})
 {}: click to show its floor plan	{}: napsauta näyttääksesi pohjapiirroksen

@@ -1,7 +1,9 @@
-//! The installation of a level in the Buildings pane: socket outlets, switches and
-//! lights put into the rooms with clicks in the site plan, and the final circuits that
-//! feed them from the protective devices of a distribution board, wired with clicks on
-//! their items, with cable lengths and voltage drops (`openecraft_core::installation`).
+//! The installation of a level in the Buildings pane: socket outlets, switches, lights
+//! and heating elements put into the rooms with clicks in the site plan, the devices of
+//! the circuits of the schematic placed there one after the other, and the final
+//! circuits that feed them from the protective devices of a distribution board, wired
+//! with clicks on their items, with cable lengths and voltage drops
+//! (`openecraft_core::installation`).
 
 use crate::panel_ui::site_plan;
 use egui::{vec2, RichText};
@@ -21,14 +23,21 @@ pub struct InstallationUi {
     wiring: Option<u64>,
     /// The circuit highlighted (its id).
     selected: Option<u64>,
+    /// The circuit of the schematic chosen (its protective device) and the device of it
+    /// clicks place (its tag).
+    breaker: String,
+    device: Option<String>,
+    /// The chosen circuit of the schematic as it is this frame.
+    schematic: Option<inst::SchematicCircuit>,
     status: String,
 }
 
-/// The parts of the installation to choose from: those of the project, then the
-/// generic ones of the catalog (number, kind, description).
+/// The parts of the installation to choose from: those of the project, the generic
+/// ones of the catalog, then those of the bundled manufacturer catalogs (number, kind,
+/// description).
 fn choices(prj: &Project) -> Vec<(String, inst::Kind, String)> {
     let mut out: Vec<(String, inst::Kind, String)> = Vec::new();
-    for p in prj.parts.iter().chain(openecraft_core::parts::catalog()) {
+    for p in prj.parts.iter().chain(openecraft_core::parts::catalog()).chain(inst::bundled_parts()) {
         if let Some(k) = inst::kind_of(p) {
             if !out.iter().any(|c| c.0 == p.number) {
                 out.push((p.number.clone(), k, p.description.clone()));
@@ -41,7 +50,74 @@ fn choices(prj: &Project) -> Vec<(String, inst::Kind, String)> {
 impl InstallationUi {
     /// Clicks in the site plan are for this.
     pub fn picking(&self) -> bool {
-        self.placing || self.wiring.is_some()
+        self.placing || self.wiring.is_some() || self.device.is_some()
+    }
+
+    /// The circuits of the schematic: one chosen, its devices listed with where they
+    /// are; a click on one places it with the next clicks in the site plan.
+    fn schematic_section(&mut self, ui: &mut egui::Ui, prj: &Project, nl: &openecraft_core::netlist::Netlist) {
+        let list = inst::schematic_circuits(prj, nl);
+        ui.horizontal_wrapped(|ui| {
+            ui.label(RichText::new(tr("Circuits of the schematic")).strong());
+            if list.is_empty() {
+                ui.weak(tr("No socket outlets, switches, lights or heating elements behind the protective devices of the schematic yet."));
+                return;
+            }
+            if !list.iter().any(|c| c.breaker == self.breaker) {
+                self.breaker = list.iter().find(|c| c.placed() < c.devices.len()).unwrap_or(&list[0]).breaker.clone();
+            }
+            let label = |c: &inst::SchematicCircuit| {
+                let name = if c.text.is_empty() { c.breaker.clone() } else { format!("{} {}", c.breaker, c.text) };
+                tr_fmt!("{} – {} of {} placed", name, c.placed(), c.devices.len())
+            };
+            let shown = list.iter().find(|c| c.breaker == self.breaker).map(label).unwrap_or_default();
+            egui::ComboBox::from_id_salt("instscheme").selected_text(shown).width(300.0).show_ui(ui, |ui| {
+                for c in &list {
+                    if ui.selectable_value(&mut self.breaker, c.breaker.clone(), label(c)).on_hover_text(format!("{} {} {:.0} A", c.breaker, c.characteristic, c.rated)).clicked() {
+                        self.device = None;
+                    }
+                }
+            });
+            if let Some(next) = list.iter().find(|c| c.breaker == self.breaker).and_then(|c| c.devices.iter().find(|d| d.placed.is_none())) {
+                if ui.button(tr("Place all")).on_hover_text(tr("Places the devices not placed yet one after the other: a click in the site plan below for each")).clicked() {
+                    self.device = Some(next.tag.clone());
+                    self.placing = false;
+                    self.wiring = None;
+                }
+            }
+        });
+        self.schematic = list.into_iter().find(|c| c.breaker == self.breaker);
+        let Some(sc) = &self.schematic else {
+            self.device = None;
+            return;
+        };
+        if let (Some(id), true) = (sc.circuit, self.device.is_some()) {
+            self.selected = Some(id);
+        }
+        egui::Grid::new("instschemedev").num_columns(4).striped(true).spacing([8.0, 2.0]).show(ui, |ui| {
+            for d in &sc.devices {
+                let on = self.device.as_deref() == Some(d.tag.as_str());
+                let tip = tr("Click in a room of the site plan below to place it there (again: to move it); a click on a socket outlet, switch, light or heating element placed without a device tag makes it this device");
+                if ui.selectable_label(on, d.tag.as_str()).on_hover_text(tip).clicked() {
+                    self.device = if on { None } else { Some(d.tag.clone()) };
+                    self.placing = false;
+                    self.wiring = None;
+                }
+                ui.label(d.kind.title());
+                match &d.part {
+                    Some(p) => ui.label(p.as_str()),
+                    None => ui.weak(d.kind.default_part()).on_hover_text(tr("No part yet: placed with this one, which becomes its part")),
+                };
+                match d.placed {
+                    Some((ri, _)) => ui.label(prj.layout.enclosures[ri].name.as_str()),
+                    None => ui.weak(tr("Not placed")),
+                };
+                ui.end_row();
+            }
+        });
+        if self.device.as_ref().is_some_and(|t| sc.device(t).is_none()) {
+            self.device = None;
+        }
     }
 
     /// Placing items and the final circuits.
@@ -49,6 +125,8 @@ impl InstallationUi {
     pub fn section(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
         let nl = &an.netlist;
         ui.label(RichText::new(tr("Electrical installation")).strong());
+        self.schematic_section(ui, prj, nl);
+        ui.add_space(4.0);
         let parts = choices(prj);
         if self.part.is_empty() {
             self.part = parts.first().map(|p| p.0.clone()).unwrap_or_default();
@@ -63,6 +141,7 @@ impl InstallationUi {
             if ui.selectable_label(self.placing, tr("Place")).on_hover_text(tr("Click in the rooms of the site plan below: a ceiling light goes where clicked, anything else on the nearest wall")).clicked() {
                 self.placing = !self.placing;
                 self.wiring = None;
+                self.device = None;
             }
         });
         let breakers = inst::breakers(prj, nl);
@@ -77,6 +156,7 @@ impl InstallationUi {
                         self.selected = Some(id);
                         self.wiring = Some(id);
                         self.placing = false;
+                        self.device = None;
                     }
                     Err(e) => self.status = e,
                 }
@@ -147,6 +227,7 @@ impl InstallationUi {
                         self.wiring = if wiring { None } else { Some(c.id) };
                         self.selected = Some(c.id);
                         self.placing = false;
+                        self.device = None;
                     }
                     if icons::button(ui, Icon::Delete, tr("Remove the circuit; its items stay")).clicked() {
                         remove = Some(k);
@@ -172,6 +253,31 @@ impl InstallationUi {
         }
     }
 
+    /// A click at `p` for device `tag` of the schematic: an item placed there without a
+    /// device tag becomes the device, otherwise the device is placed where clicked
+    /// (with the part chosen when it has none and that part is of its kind); then on to
+    /// the next device not placed yet.
+    fn place_device(&mut self, prj: &mut Project, sc: &inst::SchematicCircuit, tag: &str, plan: &site_plan::SitePlan, frame: &site_plan::Frame, p: egui::Pos2) {
+        let free = site_plan::installation_at(prj, plan, frame, p).filter(|id| prj.layout.enclosures.iter().filter_map(|e| e.item(*id)).any(|it| it.tag.is_empty()));
+        let done = match (free, site_plan::room_at(prj, plan, frame, p)) {
+            (Some(item), _) => inst::link_device(prj, sc, tag, item),
+            (None, Some(ri)) => {
+                let chosen = choices(prj).iter().any(|c| c.0 == self.part && sc.device(tag).is_some_and(|d| d.kind == c.1));
+                inst::place_device(prj, sc, tag, ri, if chosen { self.part.as_str() } else { "" }, frame.plant(p)).map(|r| r.1)
+            }
+            (None, None) => Err(tr("Click in a room").to_string()),
+        };
+        match done {
+            Ok(ci) => {
+                self.status.clear();
+                self.selected = Some(prj.layout.circuits[ci].id);
+                let at = sc.devices.iter().position(|d| d.tag == tag).unwrap_or(0);
+                self.device = sc.devices.iter().skip(at + 1).chain(sc.devices.iter().take(at)).find(|d| d.placed.is_none() && d.tag != tag).map(|d| d.tag.clone());
+            }
+            Err(e) => self.status = e,
+        }
+    }
+
     /// The installation over the site plan drawn in `size` and the clicks on it.
     pub fn overlay(&mut self, ui: &egui::Ui, prj: &mut Project, resp: &egui::Response, size: egui::Rect, bi: usize, level: u64) {
         let plan = site_plan::level_plan(prj, bi, level);
@@ -180,11 +286,17 @@ impl InstallationUi {
             return;
         }
         let color = ui.visuals().selection.stroke.color;
-        let hint = if self.placing { tr("Click in a room to place the part") } else { tr("Click the items of the circuit in the order its cable runs") };
+        let hint = match &self.device {
+            Some(tag) => tr_fmt!("Click in a room to place {}", tag),
+            None if self.placing => tr("Click in a room to place the part").to_string(),
+            None => tr("Click the items of the circuit in the order its cable runs").to_string(),
+        };
         ui.painter_at(size).text(size.left_top() + vec2(8.0, 8.0), egui::Align2::LEFT_TOP, hint, egui::FontId::proportional(12.0), color);
         let Some(p) = resp.interact_pointer_pos().filter(|_| resp.clicked()) else { return };
         let frame = site_plan::frame(size, prj, &plan);
-        if self.placing {
+        if let (Some(tag), Some(sc)) = (self.device.clone(), self.schematic.clone()) {
+            self.place_device(prj, &sc, &tag, &plan, &frame, p);
+        } else if self.placing {
             let Some(ri) = site_plan::room_at(prj, &plan, &frame, p) else {
                 self.status = tr("Click in a room").to_string();
                 return;

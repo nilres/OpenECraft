@@ -308,6 +308,7 @@ Choose the building.	Scegliere l'edificio.
 Chooses the pages whose structure starts with this	Sceglie le pagine la cui struttura inizia con questo
 Circle	Cerchio
 Circuits of a generic manifold	Circuiti di un collettore generico
+Circuits of the schematic	Circuiti dello schema
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Classe del sistema di protezione contro i fulmini: la distanza delle calate, la maglia dei tetti piani e l'angolo di protezione
 Class {}	Classe {}
 Clear	Cancella
@@ -317,6 +318,7 @@ Click	Clic
 Click a text: open its link	Clic su un testo: aprire il suo link
 Click an element in the drawing to edit it.	Fai clic su un elemento del disegno per modificarlo.
 Click centre, then a point on the circle	Fai clic sul centro, poi su un punto del cerchio
+Click in a room to place {}	Fare clic in un locale per posizionare {}
 Click in the panel layout: a single item of an assembly	Clic nel layout del quadro: un singolo elemento di un gruppo
 Click into the page to place the image	Fai clic nella pagina per posizionare l'immagine
 Click into the page to place {}	Fai clic nella pagina per posizionare {}
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Ogni collegamento punto-p
 Earth electrodes	Dispersori
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Dispersori di un edificio (di fondazione e ad anello, picchetti posizionati con un clic nella planimetria) e la sua protezione contro i fulmini con le aste di captazione posizionate con un clic sui tetti
 Earth rod placed at building {}; click for the next one · Esc: stop	Picchetto posizionato presso l'edificio {}; fare clic per il successivo · Esc: fine
+Earthing	Messa a terra
 Earthing and lightning protection	Messa a terra e protezione contro i fulmini
 Earthing busbar	Barra di terra
 Earthing conductor	Conduttore di terra
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Testa (CPU / accoppiatore)
 Header row	Riga di intestazione
 Heat map	Mappa termica
 Heating	Riscaldamento
-Heating circuit manifolds and control boxes	Collettori di riscaldamento e scatole di regolazione
+Heating elements, heating circuit manifolds and control boxes	Elementi riscaldanti, collettori di riscaldamento e scatole di regolazione
 Height (mm)	Altezza (mm)
 Height above sea level	Quota sul livello del mare
 Height above the floor	Altezza dal pavimento
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Non modificato
 Not found: {}	Non trovato: {}
 Not in the project parts – synchronize in parts management	Non presente negli articoli del progetto – sincronizza in Gestione articoli
 Not on a wire	Non su un conduttore
+Not placed	Non posizionato
 Not saved yet	Non ancora salvato
 Not saved, locked or changed by another user	Non salvato, bloccato o modificato da un altro utente
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Non accettato: il tasto sinistro da solo seleziona, disegna e sposta; tenere premuto un modificatore o usare un altro tasto.
@@ -1490,6 +1494,7 @@ Pitch	Pendenza
 Pitch X / Y	Passo X / Y
 Place a comment on the page	Inserisci un commento sulla pagina
 Place again at all symbols using it	Posiziona di nuovo su tutti i simboli che lo utilizzano
+Place all	Posiziona tutti
 Place an enclosure, device or machine location at this node	Posiziona un armadio, un dispositivo o un luogo macchina su questo nodo
 Place connection definition point	Posiziona punto di definizione collegamento
 Place connection points	Posiziona punti di connessione
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – revisione {}, {}
 {} – {} ({} pages)	{} – {} ({} pagine)
 {} – {} here (Esc cancels)	{} – {} qui (Esc annulla)
+{} – {} of {} placed	{} – {} di {} posizionati
 {}, freestanding	{}, a terra
 {}, {} (copy of {}, revision {})	{}, {} (copia di {}, revisione {})
 {}: click to show its floor plan	{}: clic per mostrarne la pianta

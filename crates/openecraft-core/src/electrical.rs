@@ -158,6 +158,11 @@ impl Electrical {
     }
 }
 
+/// The net named `name` is a potential of the supply (L, N, PE …), not a net of its own.
+pub fn is_supply_potential(prj: &Project, name: &str) -> bool {
+    net_kind(prj, name) != PotentialKind::Other
+}
+
 /// Kind of the potential of a net: as defined, otherwise from its name (L1, N, PE …).
 pub fn net_kind(prj: &Project, name: &str) -> PotentialKind {
     if let Some(d) = prj.potential(name) {

@@ -305,6 +305,7 @@ Choose the building.	请选择建筑物。
 Chooses the pages whose structure starts with this	选择结构以此开头的页
 Circle	圆
 Circuits of a generic manifold	通用分配器的回路数
+Circuits of the schematic	原理图的回路
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	防雷系统的类别：引下线间距、平屋顶网格和保护角
 Class {}	类别 {}
 Clear	清除
@@ -314,6 +315,7 @@ Click	单击
 Click a text: open its link	单击文本：打开其链接
 Click an element in the drawing to edit it.	单击图形中的元素以对其进行编辑。
 Click centre, then a point on the circle	单击圆心，然后单击圆上的一点
+Click in a room to place {}	点击房间以放置 {}
 Click in the panel layout: a single item of an assembly	在安装板布局中单击：组件中的单个项
 Click into the page to place the image	在页中单击以放置图像
 Click into the page to place {}	在页中单击以放置 {}
@@ -659,6 +661,7 @@ Each point-to-point connection can belong to a harness	每个点对点连接都�
 Earth electrodes	接地极
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	建筑物的接地极（基础接地极和环形接地极，在总平面图中单击放置的垂直接地极）及其防雷，包括在屋顶上单击放置的接闪杆
 Earth rod placed at building {}; click for the next one · Esc: stop	垂直接地极已放置在建筑物 {} 处；单击放置下一个 · Esc：结束
+Earthing	接地
 Earthing and lightning protection	接地和防雷
 Earthing busbar	接地母线
 Earthing conductor	接地导体
@@ -850,7 +853,7 @@ Head (CPU / coupler)	头模块（CPU / 耦合器）
 Header row	标题行
 Heat map	热分布图
 Heating	加热
-Heating circuit manifolds and control boxes	供暖分配器和控制盒
+Heating elements, heating circuit manifolds and control boxes	加热元件、供暖分配器和控制盒
 Height (mm)	高度 (mm)
 Height above sea level	海拔高度
 Height above the floor	离地高度
@@ -1295,6 +1298,7 @@ Not changed: {}. Your version is kept in the Project server pane.	未更改：{}
 Not found: {}	未找到：{}
 Not in the project parts – synchronize in parts management	不在项目部件中 – 请在部件管理中同步
 Not on a wire	不在导线上
+Not placed	未放置
 Not saved yet	尚未保存
 Not saved, locked or changed by another user	未保存，已被其他用户锁定或更改
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	未采用：仅左键用于选择、绘制和移动；请按住组合键或使用其他按键。
@@ -1477,6 +1481,7 @@ Pitch	坡度
 Pitch X / Y	间距 X / Y
 Place a comment on the page	在页上放置批注
 Place again at all symbols using it	在所有使用它的符号处重新放置
+Place all	全部放置
 Place an enclosure, device or machine location at this node	在此节点上放置机柜、设备或机器位置
 Place connection definition point	放置连接定义点
 Place connection points	放置连接点
@@ -2565,6 +2570,7 @@ x y	x y
 {} – revision {}, {}	{} – 修订 {}，{}
 {} – {} ({} pages)	{} – {}（{} 页）
 {} – {} here (Esc cancels)	{} – 在此{}（Esc 取消）
+{} – {} of {} placed	{} – 已放置 {}/{}
 {}, freestanding	{}，地面安装
 {}, {} (copy of {}, revision {})	{}，{}（{} 的副本，修订 {}）
 {}: click to show its floor plan	{}：单击以显示其平面图

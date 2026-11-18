@@ -876,6 +876,7 @@ Location of the page	Ort der Seite	Emplacement de la page	Ubicación de la pági
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Niederspannungs-Schaltgerätekombinationen: Bemessungsbelastungsfaktor, Erwärmung, Dokumentation	Ensembles d'appareillage à basse tension : facteur de diversité assigné, échauffement, documentation	Conjuntos de aparamenta de baja tensión: factor de diversidad asignado, calentamiento, documentación
 Lubricant	Schmierstoff	Lubrifiant	Lubricante
 Lubricator (oiler)	Öler	Lubrificateur	Lubricador
+Luminaire	Leuchte	Luminaire	Luminaria
 Luminaire, fluorescent	Leuchtstofflampe	Luminaire fluorescent	Luminaria fluorescente
 MAC address	MAC-Adresse	Adresse MAC	Dirección MAC
 MCAD	MCAD	CAO mécanique	MCAD
@@ -1040,7 +1041,6 @@ No plugs	Keine Stecker	Aucun connecteur	Sin conectores
 No report block {}	Kein Auswertungsblock {}	Aucun bloc de rapports {}	Ningún bloque de informes {}
 No rooms found in the floor plan	Keine Räume im Grundriss erkannt	Aucune pièce détectée dans le plan	No se detectaron salas en el plano
 No segment template named {}	Keine Segmentvorlage namens {}	Aucun modèle de segment nommé {}	No hay ninguna plantilla de segmento llamada {}
-No socket outlet, switch or light {}	Keine Steckdose, kein Schalter und keine Leuchte {}	Aucune prise, aucun interrupteur ni luminaire {}	Ninguna toma, interruptor ni luminaria {}
 No subproject {}	Kein Teilprojekt {}	Aucun sous-projet {}	No hay ningún subproyecto {}
 No such building	Kein solches Gebäude	Bâtiment introuvable	No existe ese edificio
 No such circuit	Kein solcher Stromkreis	Circuit inexistant	No existe ese circuito
@@ -2092,6 +2092,7 @@ yellow	gelb	jaune	amarillo
 {} cannot be removed	{} kann nicht entfernt werden	{} ne peut pas être supprimé	{} no se puede quitar
 {} cannot be renamed	{} kann nicht umbenannt werden	{} ne peut pas être renommé	{} no se puede renombrar
 {} differences taken over	{} Unterschiede übernommen	{} différences reprises	{} diferencias adoptadas
+{} does not fit {}: choose a part of its kind	{} passt nicht zu {}: einen Artikel seiner Art wählen	{} ne convient pas à {} : choisir un article de son type	{} no corresponde a {}: elija un artículo de su tipo
 {} duplicate ids renumbered	{} doppelte IDs neu nummeriert	{} ID en double renumérotés	{} ID duplicados renumerados
 {} fits none of the parts of {}	{} passt zu keinem Artikel von {}	{} ne convient à aucun article de {}	{} no es compatible con ningún artículo de {}
 {} frozen routes changed their length	{} eingefrorene Verlegungen haben ihre Länge geändert	{} tracés figés ont changé de longueur	{} recorridos congelados han cambiado de longitud
@@ -2105,8 +2106,10 @@ yellow	gelb	jaune	amarillo
 {} is a built-in scheme	{} ist ein eingebautes Schema	{} est un schéma intégré	{} es un esquema integrado
 {} is a busbar machine and makes no sheets	{} ist eine Schienenbearbeitungsmaschine und fertigt keine Bleche	{} est une machine à barres et ne fabrique pas de tôles	{} es una máquina de pletinas y no fabrica chapas
 {} is a room and cannot stand in another room	{} ist ein Raum und kann nicht in einem anderen Raum stehen	{} est une salle et ne peut pas se trouver dans une autre salle	{} es una sala y no puede estar en otra sala
+{} is device {} already	{} ist schon das Betriebsmittel {}	{} est déjà l'appareil {}	{} ya es el dispositivo {}
 {} is inside the structure box {} but has another structure	{} liegt im Strukturkasten {}, hat aber eine andere Struktur	{} se trouve dans le cadre de structure {} mais a une autre structure	{} está dentro del recuadro de estructura {} pero tiene otra estructura
 {} is no 19-inch part ({} mm wide)	{} ist kein 19-Zoll-Teil ({} mm breit)	{} n'est pas une pièce 19 pouces ({} mm de large)	{} no es una pieza de 19 pulgadas ({} mm de ancho)
+{} is no socket outlet, switch, light or heating element of circuit {}	{} ist keine Steckdose, kein Schalter, keine Leuchte und kein Heizelement des Stromkreises {}	{} n'est ni une prise, ni un interrupteur, ni un luminaire, ni un élément chauffant du circuit {}	{} no es una toma de corriente, un interruptor, una luminaria ni un elemento calefactor del circuito {}
 {} is not a busbar machine	{} ist keine Schienenbearbeitungsmaschine	{} n'est pas une machine à barres	{} no es una máquina de pletinas
 {} is not a picture or PDF file: {}	{} ist keine Bild- oder PDF-Datei: {}	{} n'est pas un fichier image ou PDF : {}	{} no es un archivo de imagen ni PDF: {}
 {} is not a property of {}	{} ist keine Eigenschaft von {}	{} n'est pas une propriété de {}	{} no es una propiedad de {}
@@ -2131,7 +2134,7 @@ yellow	gelb	jaune	amarillo
 {} report references converted to report names	{} Auswertungsverweise in Auswertungsnamen umgewandelt	{} références de rapport converties en noms de rapport	{} referencias de informe convertidas en nombres de informe
 {} s	{} s	{} s	{} s
 {} single part assignments converted to part lists	{} einzelne Artikelzuordnungen in Artikellisten umgewandelt	{} affectations d'article unique converties en listes d'articles	{} asignaciones de artículo único convertidas en listas de artículos
-{} socket outlets and lights are in no circuit	{} Steckdosen und Leuchten sind in keinem Stromkreis	{} prises et luminaires ne sont dans aucun circuit	{} tomas y luminarias no están en ningún circuito
+{} socket outlets, lights and heating elements are in no circuit	{} Steckdosen, Leuchten und Heizelemente sind in keinem Stromkreis	{} prises, luminaires et éléments chauffants ne sont dans aucun circuit	{} tomas de corriente, luminarias y elementos calefactores no están en ningún circuito
 {} stands outside the plot boundary	{} steht außerhalb der Grundstücksgrenze	{} se trouve hors de la limite du terrain	{} está fuera del límite de la parcela
 {} symbols, {} wires, {} texts / graphics	{} Symbole, {} Leitungen, {} Texte / Grafiken	{} symboles, {} fils, {} textes / graphiques	{} símbolos, {} hilos, {} textos / gráficos
 {} texts are not translated into {}	{} Texte sind nicht in {} übersetzt	{} textes ne sont pas traduits en {}	{} textos no están traducidos al {}

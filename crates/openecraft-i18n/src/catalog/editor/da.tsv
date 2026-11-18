@@ -308,6 +308,7 @@ Choose the building.	Vælg bygningen.
 Chooses the pages whose structure starts with this	Vælger de sider, hvis struktur begynder med dette
 Circle	Cirkel
 Circuits of a generic manifold	Kredse i en generisk fordeler
+Circuits of the schematic	Kredse i diagrammet
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Lynbeskyttelsens klasse: afstanden mellem nedlederne, masken på flade tage og beskyttelsesvinklen
 Class {}	Klasse {}
 Clear	Ryd
@@ -317,6 +318,7 @@ Click	Klik
 Click a text: open its link	Klik på en tekst: åbn dens link
 Click an element in the drawing to edit it.	Klik på et element i tegningen for at redigere det.
 Click centre, then a point on the circle	Klik på centrum og derefter på et punkt på cirklen
+Click in a room to place {}	Klik i et rum for at placere {}
 Click in the panel layout: a single item of an assembly	Klik i tavlelayoutet: et enkelt element i en samling
 Click into the page to place the image	Klik på siden for at placere billedet
 Click into the page to place {}	Klik på siden for at placere {}
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Hver punkt-til-punkt-forb
 Earth electrodes	Jordelektroder
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	En bygnings jordelektroder (fundament- og ringjord, jordspyd klikket ind i situationsplanen) og dens lynbeskyttelse med fangstængerne klikket på tagene
 Earth rod placed at building {}; click for the next one · Esc: stop	Jordspyd placeret ved bygning {}; klik for det næste · Esc: stop
+Earthing	Jording
 Earthing and lightning protection	Jording og lynbeskyttelse
 Earthing busbar	Jordskinne
 Earthing conductor	Jordleder
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Hoved (CPU / kobler)
 Header row	Overskriftsrække
 Heat map	Varmekort
 Heating	Opvarmning
-Heating circuit manifolds and control boxes	Gulvvarmefordelere og reguleringsbokse
+Heating elements, heating circuit manifolds and control boxes	Varmelegemer, gulvvarmefordelere og reguleringsbokse
 Height (mm)	Højde (mm)
 Height above sea level	Højde over havet
 Height above the floor	Højde over gulvet
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Ikke ændret: 
 Not found: {}	Ikke fundet: {}
 Not in the project parts – synchronize in parts management	Ikke i projektets artikler – synkroniser i artikelstyringen
 Not on a wire	Ikke på en ledning
+Not placed	Ikke placeret
 Not saved yet	Ikke gemt endnu
 Not saved, locked or changed by another user	Ikke gemt, låst eller ændret af en anden bruger
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ikke taget: venstre knap alene markerer, tegner og flytter; hold en modifikatortast nede eller brug en anden knap.
@@ -1490,6 +1494,7 @@ Pitch	Taghældning
 Pitch X / Y	Afstand X / Y
 Place a comment on the page	Placer en kommentar på siden
 Place again at all symbols using it	Placer igen ved alle symboler, der bruger det
+Place all	Placer alle
 Place an enclosure, device or machine location at this node	Placer en kapsling, en enhed eller en maskinplacering ved denne knude
 Place connection definition point	Placer forbindelsesdefinitionspunkt
 Place connection points	Placer tilslutningspunkter
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – revision {}, {}
 {} – {} ({} pages)	{} – {} ({} sider)
 {} – {} here (Esc cancels)	{} – {} her (Esc annullerer)
+{} – {} of {} placed	{} – {} af {} placeret
 {}, freestanding	{}, jordmonteret
 {}, {} (copy of {}, revision {})	{}, {} (kopi af {}, revision {})
 {}: click to show its floor plan	{}: klik for at vise plantegningen

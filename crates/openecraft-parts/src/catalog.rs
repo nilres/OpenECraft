@@ -70,9 +70,10 @@ impl AccessoryPart for Part {
     }
 }
 
-/// Flush-mounted outlets and switches of a room, heating circuit manifolds for 2 to 12
-/// circuits and single-room control boxes, all for direct wall mounting; the outlets
-/// and switches with their usual mounting height above the floor.
+/// Flush-mounted outlets and switches of a room, lights, electric heating elements,
+/// heating circuit manifolds for 2 to 12 circuits and single-room control boxes, all for
+/// direct wall (or ceiling) mounting; the outlets, switches and heaters with their usual
+/// mounting height above the floor.
 fn room_installation(c: &mut C) {
     use FnKind::*;
     let inst = "Installation devices";
@@ -125,7 +126,7 @@ fn room_installation(c: &mut C) {
         ("GEN.LAMP-DOWNLIGHT-LED", "Downlight LED 7 W, 600 lm, 3000 K, IP44, round 90 mm, for recessed mounting in ceilings", (90.0, 90.0, 60.0, 0.2), "7 W", true),
         ("GEN.LAMP-WALL-LED", "Wall light LED 10 W, 900 lm, 3000 K, IP44, 250 x 120 mm, surface-mounted", (250.0, 120.0, 90.0, 0.6), "10 W", false),
     ] {
-        let p = c.add(number, desc, inst, "Luminaire", "EA", if ceiling { 39.0 } else { 45.0 }, size, &[(Signal, "L N PE")]);
+        let p = c.add(number, desc, inst, "Luminaire", "EA", if ceiling { 39.0 } else { 45.0 }, size, &[(Signal, "L N")]);
         p.voltage = "230 V AC".into();
         p.power = power.into();
         if ceiling {
@@ -134,6 +135,25 @@ fn room_installation(c: &mut C) {
             p.tech_data = "Ceiling mounting: yes".into();
         } else {
             wall(p, 2000.0, "");
+        }
+    }
+    // Electric heating elements of rooms: on the wall (panel heaters, towel radiators) or
+    // the ceiling (infrared heating panels).
+    for (number, desc, subgroup, price, size, power, height) in [
+        ("GEN.HEATER-PANEL-1000", "Electric panel heater 1000 W, 230 V AC, with electronic thermostat, IP24, 600 x 450 mm, for wall mounting", "Room heater", 139.0, (600.0, 450.0, 90.0, 7.5), "1000 W", 400.0),
+        ("GEN.HEATER-PANEL-2000", "Electric panel heater 2000 W, 230 V AC, with electronic thermostat, IP24, 1000 x 450 mm, for wall mounting", "Room heater", 199.0, (1000.0, 450.0, 90.0, 11.5), "2000 W", 400.0),
+        ("GEN.HEATER-TOWEL-500", "Electric towel radiator 500 W, 230 V AC, with heating element and thermostat, IP44, 500 x 1200 mm, for wall mounting", "Towel radiator", 189.0, (500.0, 1200.0, 110.0, 12.0), "500 W", 900.0),
+        ("GEN.HEATER-IR-600", "Infrared heating panel 600 W, 230 V AC, IP44, 1000 x 600 mm, for ceiling mounting", "Infrared heating panel", 249.0, (1000.0, 600.0, 30.0, 9.0), "600 W", 0.0),
+    ] {
+        let p = c.add(number, desc, inst, subgroup, "EB", price, size, &[(Heater, "1 2")]);
+        p.voltage = "230 V AC".into();
+        p.power = power.into();
+        if height > 0.0 {
+            wall(p, height, "");
+        } else {
+            p.mounting = "Ceiling".into();
+            p.mounting_data.wall_mount = true;
+            p.tech_data = "Ceiling mounting: yes".into();
         }
     }
     // Heating circuit manifolds: flow and return 1", the circuits 3/4" Eurocone at 50 mm.

@@ -308,6 +308,7 @@ Choose the building.	Vyberte budovu.
 Chooses the pages whose structure starts with this	Vybere stránky, jejichž struktura tímto začíná
 Circle	Kružnice
 Circuits of a generic manifold	Okruhy obecného rozdělovače
+Circuits of the schematic	Obvody schématu
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Třída ochrany před bleskem: vzdálenost svodů, oko plochých střech a ochranný úhel
 Class {}	Třída {}
 Clear	Vymazat
@@ -317,6 +318,7 @@ Click	Klepnutí
 Click a text: open its link	Klepnutí na text: otevřít jeho odkaz
 Click an element in the drawing to edit it.	Klikněte na prvek ve výkresu, chcete-li jej upravit.
 Click centre, then a point on the circle	Klikněte na střed, pak na bod kružnice
+Click in a room to place {}	Klikněte do místnosti pro umístění {}
 Click in the panel layout: a single item of an assembly	Klepnutí v rozvržení rozváděče: jediná položka sestavy
 Click into the page to place the image	Kliknutím do stránky umístíte obrázek
 Click into the page to place {}	Kliknutím do stránky umístíte {}
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Každé spojení bod–bo
 Earth electrodes	Zemniče
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Zemniče budovy (základový a obvodový, tyčové zemniče klikané do situačního plánu) a její ochrana před bleskem s jímacími tyčemi klikanými na střechy
 Earth rod placed at building {}; click for the next one · Esc: stop	Tyčový zemnič umístěn u budovy {}; klikněte pro další · Esc: konec
+Earthing	Uzemnění
 Earthing and lightning protection	Uzemnění a ochrana před bleskem
 Earthing busbar	Uzemňovací přípojnice
 Earthing conductor	Uzemňovací vodič
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Hlavní modul (CPU / sběrnicový modul)
 Header row	Řádek záhlaví
 Heat map	Tepelná mapa
 Heating	Topení
-Heating circuit manifolds and control boxes	Rozdělovače topných okruhů a regulační boxy
+Heating elements, heating circuit manifolds and control boxes	Topná tělesa, rozdělovače topných okruhů a regulační boxy
 Height (mm)	Výška (mm)
 Height above sea level	Nadmořská výška
 Height above the floor	Výška nad podlahou
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nezměněno: {
 Not found: {}	Nenalezeno: {}
 Not in the project parts – synchronize in parts management	Není mezi artikly projektu – synchronizujte ve správě artiklů
 Not on a wire	Neleží na vodiči
+Not placed	Neumístěno
 Not saved yet	Ještě neuloženo
 Not saved, locked or changed by another user	Neuloženo, uzamčeno nebo změněno jiným uživatelem
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nepřevzato: samotné levé tlačítko vybírá, kreslí a přesouvá; podržte modifikační klávesu nebo použijte jiné tlačítko.
@@ -1490,6 +1494,7 @@ Pitch	Sklon
 Pitch X / Y	Rozteč X / Y
 Place a comment on the page	Umístit komentář na stránku
 Place again at all symbols using it	Znovu umístit u všech symbolů, které ho používají
+Place all	Umístit vše
 Place an enclosure, device or machine location at this node	Umístit skříň, přístroj nebo umístění stroje do tohoto uzlu
 Place connection definition point	Umístit bod definice spojení
 Place connection points	Umístit připojovací body
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – revize {}, {}
 {} – {} ({} pages)	{} – {} (stránky: {})
 {} – {} here (Esc cancels)	{} – {} zde (Esc ruší)
+{} – {} of {} placed	{} – umístěno {} z {}
 {}, freestanding	{}, pozemní
 {}, {} (copy of {}, revision {})	{}, {} (kopie {}, revize {})
 {}: click to show its floor plan	{}: kliknutím zobrazíte půdorys

@@ -50,14 +50,17 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   for 60 mm busbars and fuse switch disconnector strips for 185 mm with clip-in current
   transformers, circuit breakers h3+ with motor operators and releases, the NA
   protection relay EU400, univers cabinets with their component modules, energy
-  meters), `janitza` (power analyser UMG 604-PRO), `jinko` (PV modules Tiger Neo
+  meters), `janitza` (power analyser UMG 604-PRO), `ledvance` (LED ceiling lights SURFACE
+  CIRCULAR, downlight DOWNLIGHT SLIM, PANEL 600, batten DAMP PROOF, bulkhead and
+  emergency bulkhead lights), `jinko` (PV modules Tiger Neo
   54HL4-B all black 405 - 415 Wp), `longi` (PV modules Hi-MO X6 Explorer LR5-54HTH
   425 - 435 Wp), `loxone` (energy meter for
   1 / 5 A current transformers on the Tree bus), `mdt` (KNX actuators, IP
   interface / router, power supply, KNX push buttons, glass push button and room
   temperature controller for flush mounting), `phoenix_contact` (terminal blocks, relay
   modules, power supplies), `pylontech` (19-inch LiFePO4 battery modules), `siemens` (SIRIUS contactors, overload relays, motor
-  starter protectors, SENTRON circuit breakers), `victron` (MultiPlus-II inverter /
+  starter protectors, SENTRON circuit breakers), `signify` (Philips CoreLine downlight
+  DN140B, panel RC132V, waterproof batten WT120C, wall light WL120V), `victron` (MultiPlus-II inverter /
   charger, Inverter RS Smart Solar, SmartSolar MPPT, Orion-Tr, Cerbo GX, SmartShunt, BMV-712, Lynx
   Distributor; mostly parts for direct wall mounting) and `weidmueller` (terminals,
   relay module, power supplies, CD wiring ducts). `--install-catalogs all` (or ids such as

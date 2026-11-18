@@ -355,9 +355,11 @@ the Buildings pane; plugin `buildings`) is the parcel of land the plant stands o
 
 ## Buildings, levels and shafts
 
-*Layout space › Buildings* (plugin `buildings`) manages the buildings of the plant;
-the pane lists them with their levels, shafts, stairs, roofs and the links between
-buildings, and draws a site plan of all rooms (one level highlighted), shafts, the
+*Layout space › Buildings* (plugin `buildings`) manages the buildings of the plant in
+tabs: *Site* (the plot, freestanding PV arrays, the links between buildings),
+*Building* (the building chosen with its levels, shafts and stairs), *Roofs*,
+*Earthing*, *Floor plan on paper* and *Electrical installation* (both for one level).
+Every tab draws a site plan of all rooms (one level highlighted), shafts, the
 stairs reaching the level shown (steps and walking line), the roofs (eaves, ridges and
 hips dashed) with their roof windows, and the links.
 
@@ -567,13 +569,16 @@ plant in 3D draws the plot boundary on the ground and the reference point as a p
 ## Floor plans on paper
 
 Electrical floor plans are drawn on the architect's drawing of the building. A
-**floor plan on paper** goes under a level (*Buildings* pane, choose the level of the
-site plan, *Floor plan…*; command line `import_floor_plan`): a picture (PNG, JPEG,
+**floor plan on paper** goes under a level (*Buildings* pane, tab *Floor plan on
+paper*, choose the level of the site plan, *Floor plan…*; command line
+`import_floor_plan`): a picture (PNG, JPEG,
 TIFF, GIF, WebP, BMP) or a page of a PDF file, a scan (also those of office scanners,
 which split a page into a background picture and black and white fax masks) or a
 drawing (its lines and filled areas; texts are not drawn). Of a PDF file with several
-pages the page is chosen in the pane. The site plan shows it under the level's rooms;
-the picture is kept in the project as a grey PNG (crate `openecraft-scan` reads the
+pages the page is chosen in the pane. The site plan shows it under the level's rooms,
+and the floor plan of each room of the level shows it under the room at its place
+(*Show › Floor plan on paper* in the ribbon of the layout space, on by default; the
+room's floor is then drawn see-through); the picture is kept in the project as a grey PNG (crate `openecraft-scan` reads the
 files, `openecraft_core::panel::floorplan` holds the rest).
 
 - **Scale and place** (*Scale*, *Resolution*, *Top left corner*, *Turn*, *Shown*;
@@ -634,8 +639,8 @@ without a drawn door are one room, and stairs or chimneys are walls.
 
 ## Installation: outlets, switches, lights and their circuits
 
-The installation plan of a level is drawn in the *Buildings* pane (choose the level of
-the site plan) on its floor plan; plugin `installation`, `openecraft_core::installation`.
+The installation plan of a level is drawn in the *Buildings* pane (tab *Electrical
+installation*, choose the level of the site plan) on its floor plan; plugin `installation`, `openecraft_core::installation`.
 
 - **Placing** (*Place* with a part chosen; command `place_installation`): a click in a
   room of the site plan puts a socket outlet, switch or light there: a ceiling light
@@ -643,8 +648,36 @@ the site plan) on its floor plan; plugin `installation`, `openecraft_core::insta
   on the ceiling where clicked, anything else on the wall nearest to the click (within
   0.8 m) at its mounting height (outlets 300 mm, switches 1050 mm, wall lights
   2000 mm). The site plan draws them with the symbols of installation plans (IEC
-  60617-11) in the colour of their circuit; in 3D they are the parts' models. The 3D
+  60617-11) in the colour of their circuit; in 3D they are the parts' models
+  (generated ones for the generic parts and parts without a model of their own:
+  outlets and switches in their frames, round ceiling lights with their domed diffuser,
+  recessed downlights with flange and diffuser, rectangular wall, panel and batten
+  lights, emergency lights with their sign, panel heaters with grille and thermostat,
+  towel radiators with their bars, infrared heating panels). The 3D
   menu *Insert › Outlets, switches, heating* has a tab *Lights* too.
+- **Heating elements** are placed the same way: panel heaters (`GEN.HEATER-PANEL-1000`,
+  `GEN.HEATER-PANEL-2000`, 400 mm) and towel radiators (`GEN.HEATER-TOWEL-500`,
+  900 mm) on the wall, infrared heating panels (`GEN.HEATER-IR-600`) on the ceiling;
+  parts of the subgroups *Room heater*, *Towel radiator*, *Infrared heating panel* or
+  with a heating element function for walls or ceilings (enclosure heaters of cabinets
+  are none). Their tags are `-EB1`, … (*Insert › Outlets, switches, heating*, tab
+  *Heating*).
+- **Circuits of the schematic** (*Circuits of the schematic*; commands
+  `list_schematic_circuits`, `place_circuit_device`): the final circuits drawn in the
+  schematic (a protective device of the mains up to 32 A) with the socket outlets,
+  switches, lights and heating elements behind them: on the nets behind the protective
+  device, through switches, contacts, terminals and the main contacts of contactors,
+  not through further protective devices or loads. A device counts by its part (one for
+  walls or ceilings) or, without parts, by its symbol (socket outlets, heating elements,
+  lamps, installation symbols; contacts of a device whose letter code starts with `S`);
+  devices placed in a cabinet are left out. Choose a circuit and click a device (or
+  *Place all*), then click in a room of the site plan: it is placed there like a part
+  (with its own part, the part chosen if of its kind, or the generic one of its kind,
+  which becomes its part), a click on a socket outlet, switch, light or heating
+  element placed before without a device tag makes that one the device. A device placed
+  again moves. Each goes into the final circuit of its protective device, made when
+  there is none (named after the protective device's function text), in the order they
+  are placed; the next device not placed yet follows.
 - **Final circuits** (*New circuit*, commands `add_circuit`, `set_circuit`): a
   protective device of the distribution board (a circuit breaker, RCBO or fuse of the
   mains in the schematic or single-line diagram, chosen from a list that marks the
@@ -687,8 +720,8 @@ the site plan) on its floor plan; plugin `installation`, `openecraft_core::insta
 - **Check** *Installation circuits*: circuits without protective device or board,
   protective devices not in the schematic or feeding several circuits, cables thinner
   than their protective device asks (current-carrying capacity under the installation
-  conditions), voltage drops above the limit, items gone; socket outlets and lights in
-  no circuit (information).
+  conditions), voltage drops above the limit, items gone; socket outlets, lights and
+  heating elements in no circuit (information).
 
 ## House connection boxes
 

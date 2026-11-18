@@ -301,9 +301,10 @@ impl FloorPlanUi {
         (resp, size)
     }
 
-    /// Whether clicks in the site plan pick points of the floor plan.
-    pub fn picking(&self) -> bool {
-        self.pick != Pick::None
+    /// Clicks in the site plan pick no more points (another tab is shown).
+    pub fn stop_picking(&mut self) {
+        self.pick = Pick::None;
+        self.points.clear();
     }
 
     /// The area picked, once both corners are: taken into the plan of `level`.

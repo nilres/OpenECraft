@@ -41,6 +41,167 @@ fn parts_are_sockets_switches_or_lights() {
     assert!(cat.iter().filter(|p| p.number.starts_with("GEN.LAMP-")).all(|p| p.wall_mountable()));
     assert!(on_ceiling(cat.iter().find(|p| p.number == "GEN.LAMP-DOWNLIGHT-LED").unwrap()));
     assert!(!on_ceiling(cat.iter().find(|p| p.number == "GEN.LAMP-WALL-LED").unwrap()));
+    // Heating elements of rooms, not of cabinets; every kind has its generic part.
+    assert_eq!(kind("GEN.HEATER-PANEL-1000"), Some(Kind::Heater));
+    assert_eq!(kind("GEN.HEATER-TOWEL-500"), Some(Kind::Heater));
+    assert_eq!(kind("GEN.HEATER-IR-600"), Some(Kind::Heater));
+    assert!(on_ceiling(cat.iter().find(|p| p.number == "GEN.HEATER-IR-600").unwrap()));
+    assert_eq!(kind("GEN.HEATER-100W"), None);
+    for k in Kind::ALL {
+        assert_eq!(kind(k.default_part()), Some(k), "{k:?}");
+    }
+}
+
+/// Puts a symbol on page `page` (its pins as the symbol defines them).
+fn sym(prj: &mut Project, page: usize, key: &str, at: P, tag: &str, text: &str) {
+    let def = prj.symbol(key).unwrap();
+    let id = prj.new_id();
+    let pins = def.pins.iter().map(|x| x.label.to_string()).collect();
+    prj.pages[page].symbols.push(crate::model::SymbolInst { id, sym: key.into(), pos: at, tag: tag.into(), function_text: text.into(), pins, ..Default::default() });
+}
+
+fn wire(prj: &mut Project, page: usize, a: P, b: P) {
+    let id = prj.new_id();
+    prj.pages[page].wires.push(crate::model::Wire { id, a, b, ..Default::default() });
+}
+
+/// A 1-pole breaker `tag` of 10 A at `x` of the infeed page (fed from L1 at the top),
+/// its outgoing wire down to `to`.
+fn breaker(prj: &mut Project, page: usize, x: f32, tag: &str, text: &str, to: f32) {
+    sym(prj, page, "cb1", p(x, 80.0), tag, text);
+    wire(prj, page, p(x, 24.0), p(x, 76.0));
+    wire(prj, page, p(x, 84.0), p(x, to));
+    prj.devices.insert(tag.into(), crate::model::DeviceData { parts: vec![crate::parts::PartRef { number: "GEN.MCB-1P-B10".into(), ..Default::default() }], ..Default::default() });
+}
+
+/// The electrical room with three more circuits in the schematic: -F5 a socket outlet
+/// (no part), -F6 a light behind its switch, -F7 a heating element.
+fn with_schematic() -> (Project, usize) {
+    let (mut prj, ri) = room();
+    let page = prj.pages.iter().position(|p| p.function == "SUP" && p.kind == crate::model::PageKind::Schematic).unwrap();
+    breaker(&mut prj, page, 200.0, "=SUP+CAB1-F5", "Kitchen sockets", 180.0);
+    sym(&mut prj, page, "socket", p(200.0, 184.0), "+ER1-XD7", "Worktop");
+    breaker(&mut prj, page, 260.0, "=SUP+CAB1-F6", "", 116.0);
+    sym(&mut prj, page, "no", p(260.0, 120.0), "+ER1-SF3", "");
+    wire(&mut prj, page, p(260.0, 124.0), p(260.0, 146.0));
+    sym(&mut prj, page, "lamp", p(260.0, 150.0), "+ER1-EA3", "Ceiling");
+    breaker(&mut prj, page, 320.0, "=SUP+CAB1-F7", "Heating", 116.0);
+    sym(&mut prj, page, "heater", p(320.0, 120.0), "+ER1-EB1", "");
+    (prj, ri)
+}
+
+fn schematic(prj: &Project) -> Vec<SchematicCircuit> {
+    schematic_circuits(prj, &Netlist::build(prj, false))
+}
+
+#[test]
+fn devices_of_the_circuits_of_the_schematic() {
+    let (prj, _) = with_schematic();
+    let list = schematic(&prj);
+    let of = |b: &str| list.iter().find(|c| c.breaker.ends_with(b)).unwrap_or_else(|| panic!("{b}: {list:?}"));
+    let f5 = of("-F5");
+    assert_eq!(f5.text, "Kitchen sockets");
+    assert_eq!(f5.devices.iter().map(|d| (d.tag.as_str(), d.kind, d.part.clone(), d.placed)).collect::<Vec<_>>(), vec![("+ER1-XD7", Kind::Socket, None, None)]);
+    // Through the switch to the light.
+    let f6 = of("-F6");
+    assert_eq!(f6.devices.iter().map(|d| (d.tag.as_str(), d.kind)).collect::<Vec<_>>(), vec![("+ER1-SF3", Kind::Switch), ("+ER1-EA3", Kind::Light)]);
+    assert_eq!(of("-F7").devices[0].kind, Kind::Heater);
+    // The rail socket of -F2 has a part for cabinets: no device of the installation.
+    assert!(!list.iter().any(|c| c.breaker.ends_with("-F2")), "{list:?}");
+    assert!(list.iter().all(|c| c.circuit.is_none() && c.placed() == 0));
+}
+
+#[test]
+fn devices_of_the_schematic_are_placed_into_their_circuits() {
+    let (mut prj, ri) = with_schematic();
+    let sc = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F5")).unwrap();
+    let q = before_wall(&prj, ri, 0, 300.0);
+    let (id, ci) = place_device(&mut prj, &sc, "+ER1-XD7", ri, "", q).unwrap();
+    let it = prj.layout.enclosures[ri].item(id).unwrap().clone();
+    assert_eq!((it.kind, it.tag.as_str(), it.part.as_str(), it.face), (ItemKind::Device, "+ER1-XD7", "GEN.SOCKET-F-UP", Face::Wall(0)));
+    assert_eq!(prj.devices["+ER1-XD7"].parts[0].number, "GEN.SOCKET-F-UP");
+    // The final circuit of -F5 is made, named after it.
+    let c = &prj.layout.circuits[ci];
+    assert_eq!((c.name.as_str(), c.breaker.as_str(), c.items.clone()), ("Kitchen sockets", sc.breaker.as_str(), vec![id]));
+    let sc = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F5")).unwrap();
+    assert_eq!((sc.placed(), sc.circuit), (1, Some(prj.layout.circuits[0].id)));
+    // Placed again: it moves, its place in the circuit stays.
+    let q = before_wall(&prj, ri, 1, 300.0);
+    let (moved, ci2) = place_device(&mut prj, &sc, "+ER1-XD7", ri, "", q).unwrap();
+    assert_eq!(ci2, ci);
+    assert_eq!(prj.layout.circuits[ci].items, vec![moved]);
+    assert!(prj.layout.enclosures[ri].item(id).is_none());
+    assert_eq!(prj.layout.enclosures[ri].items.iter().filter(|i| i.tag == "+ER1-XD7").count(), 1);
+    assert_eq!(prj.layout.enclosures[ri].item(moved).unwrap().face, Face::Wall(1));
+    // A heating element with the generic part of its kind; a part of another kind is refused.
+    let f7 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F7")).unwrap();
+    let q = before_wall(&prj, ri, 2, 300.0);
+    assert!(place_device(&mut prj, &f7, "+ER1-EB1", ri, "GEN.SOCKET-F-UP", q).unwrap_err().contains("+ER1-EB1"));
+    let (h, _) = place_device(&mut prj, &f7, "+ER1-EB1", ri, "", q).unwrap();
+    let poses = panel::site_poses(&prj);
+    let hp = placed(&prj, &poses, ri, prj.layout.enclosures[ri].item(h).unwrap()).unwrap();
+    assert_eq!((hp.kind, hp.part.as_str()), (Kind::Heater, "GEN.HEATER-PANEL-1000"));
+    assert!((hp.height - 400.0).abs() < 5.0, "{}", hp.height);
+    assert!(place_device(&mut prj, &f7, "+ER1-XD7", ri, "", q).is_err(), "not a device of -F7");
+    assert_eq!(prj.layout.circuits.len(), 2);
+}
+
+#[test]
+fn what_was_placed_becomes_the_device_of_the_schematic() {
+    let (mut prj, ri) = with_schematic();
+    let light = { let q = inside(&prj, ri, 0.4, 0.4); place(&mut prj, ri, "GEN.LAMP-CEILING-LED", q) }.unwrap();
+    let sw = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SW-ONOFF-UP", q) }.unwrap();
+    // It was in a circuit of its own before.
+    add_circuit(&mut prj, "Old", "", false).unwrap();
+    connect(&mut prj, 0, light).unwrap();
+    let f6 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F6")).unwrap();
+    assert!(link_device(&mut prj, &f6, "+ER1-SF3", light).is_err(), "a light is no switch");
+    let ci = link_device(&mut prj, &f6, "+ER1-EA3", light).unwrap();
+    link_device(&mut prj, &f6, "+ER1-SF3", sw).unwrap();
+    let it = prj.layout.enclosures[ri].item(light).unwrap();
+    assert_eq!((it.kind, it.tag.as_str()), (ItemKind::Device, "+ER1-EA3"));
+    assert_eq!(prj.devices["+ER1-EA3"].parts[0].number, "GEN.LAMP-CEILING-LED");
+    assert_eq!(prj.layout.circuits[ci].breaker, f6.breaker);
+    assert_eq!(prj.layout.circuits[ci].items, vec![light, sw]);
+    assert!(prj.layout.circuits[0].items.is_empty(), "out of the old circuit");
+    // A device item of another tag stays what it is.
+    assert!(link_device(&mut prj, &f6, "+ER1-SF3", light).is_err());
+    let f6 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F6")).unwrap();
+    assert_eq!(f6.placed(), 2);
+    assert_eq!(f6.devices[1].part.as_deref(), Some("GEN.LAMP-CEILING-LED"));
+    // Their tags stay on the single-line page.
+    let page = overview(&mut prj).unwrap()[0];
+    assert!(prj.pages[page].symbols.iter().any(|s| s.sym == "inst_lamp" && s.tag == "+ER1-EA3"));
+}
+
+#[test]
+fn lights_of_the_manufacturer_catalogs_are_placed_and_go_into_the_project() {
+    let (mut prj, ri) = with_schematic();
+    assert!(bundled_parts().iter().any(|p| p.number == "SIG.32581100"));
+    assert!(!prj.parts.iter().any(|p| p.number == "SIG.32581100"));
+    let q = inside(&prj, ri, 0.3, 0.6);
+    let id = place(&mut prj, ri, "SIG.32581100", q).unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().face, Face::Roof);
+    assert_eq!(prj.parts.iter().filter(|p| p.number == "SIG.32581100").count(), 1);
+    // A device of the schematic placed with it takes it as its part.
+    let f6 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F6")).unwrap();
+    let q = inside(&prj, ri, 0.6, 0.6);
+    let (lamp, _) = place_device(&mut prj, &f6, "+ER1-EA3", ri, "LDV.4058075110144", q).unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(lamp).unwrap().part, "LDV.4058075110144");
+    assert_eq!(prj.devices["+ER1-EA3"].parts[0].number, "LDV.4058075110144");
+    assert!(place_device(&mut prj, &f6, "+ER1-SF3", ri, "LDV.4058075110144", q).is_err(), "a light is no switch");
+}
+
+#[test]
+fn heating_elements_on_the_single_line_page() {
+    let (mut prj, ri) = room();
+    let h = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.HEATER-TOWEL-500", q) }.unwrap();
+    add_circuit(&mut prj, "Bath", "", false).unwrap();
+    connect(&mut prj, 0, h).unwrap();
+    let page = overview(&mut prj).unwrap()[0];
+    let tag = prj.layout.enclosures[ri].item(h).unwrap().tag.clone();
+    assert!(tag.ends_with("-EB1"), "{tag}");
+    assert!(prj.pages[page].symbols.iter().any(|s| s.sym == "heater" && s.tag == tag));
 }
 
 #[test]

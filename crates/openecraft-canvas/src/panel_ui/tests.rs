@@ -14,6 +14,25 @@ fn building_and_room() -> (Project, [u64; 2], usize) {
 }
 
 #[test]
+fn the_floor_plan_on_paper_lies_under_the_room_in_its_plan() {
+    let (mut prj, levels, _) = building_and_room();
+    let ri = bld::add_room(&mut prj, "+ROOM2", Some(levels[0])).unwrap();
+    assert!(plan::paper_in_plan(&prj, ri).is_none());
+    prj.layout.buildings[0].levels[0].plan = Some(panel::FloorPlan { px: [1000, 500], paper: 0.254, scale: 100.0, opacity: 0.5, ..Default::default() });
+    let (_, c) = plan::paper_in_plan(&prj, ri).unwrap();
+    // 1000 pixels of 0.254 mm at 1:100: 25.4 m.
+    let w = ((c[1][0] - c[0][0]).powi(2) + (c[1][1] - c[0][1]).powi(2)).sqrt();
+    assert!((w - 25_400.0).abs() < 1.0, "{w}");
+    // Its corners in the room's plan are those of the site plan, in the room.
+    let (_, site) = site_plan::floor_plan_corners(&prj, 0, levels[0]).unwrap();
+    let back = panel::site_poses(&prj)[ri].apply([c[2][0], 0.0, c[2][1]]);
+    assert!((back[0] - site[2][0]).abs() < 1.0 && (back[2] - site[2][1]).abs() < 1.0, "{back:?} {site:?}");
+    // Not under rooms of other levels.
+    let upper = bld::add_room(&mut prj, "+ROOM3", Some(levels[1])).unwrap();
+    assert!(plan::paper_in_plan(&prj, upper).is_none());
+}
+
+#[test]
 fn new_rooms_go_onto_the_level_selected_in_the_navigator() {
     let (mut prj, [l0, l1], free) = building_and_room();
     let mut ui = PanelUi::default();
@@ -510,6 +529,32 @@ fn cable_cores_are_drawn_with_their_cable() {
         let at = view(*core);
         assert!(scene.wires.iter().any(|w| [w.line.a, w.line.b].iter().any(|q| (0..3).all(|k| (q[k] - at[k]).abs() < 0.5)) && w.line.a != w.line.b), "{core:?} not drawn");
     }
+}
+
+#[test]
+fn lights_and_heating_elements_of_rooms_are_drawn_in_3d_with_their_models() {
+    use openecraft_core::installation as inst;
+    let mut prj = openecraft_core::sample::example("electrical_room").unwrap();
+    let room = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let (lo, hi) = panel::bounds(&panel::outline(&prj.layout.enclosures[room]));
+    let at = |prj: &Project, fx: f32, fz: f32| {
+        let q = panel::site_poses(prj)[room].apply([lo[0] + (hi[0] - lo[0]) * fx, 0.0, lo[1] + (hi[1] - lo[1]) * fz]);
+        [q[0], q[2]]
+    };
+    let light = { let q = at(&prj, 0.5, 0.5); inst::place(&mut prj, room, "GEN.LAMP-CEILING-LED", q) }.unwrap();
+    let heater = { let q = at(&prj, 0.5, 0.02); inst::place(&mut prj, room, "GEN.HEATER-TOWEL-500", q) }.unwrap();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi::default();
+    let shown = ui.shown_3d(&prj, room);
+    let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, room, &shown);
+    for (id, name) in [(light, "light"), (heater, "heater")] {
+        let faces: Vec<&super::scene3d::SceneFace> = scene.faces.iter().filter(|f| f.item.is_some_and(|i| i.1 == id)).collect();
+        // Their models, not boxes of six faces.
+        assert!(faces.len() > 30, "{name}: {} faces", faces.len());
+    }
+    // The light hangs under the ceiling, the heater stands low on the wall.
+    let top = |id: u64| scene.faces.iter().filter(|f| f.item.is_some_and(|i| i.1 == id)).flat_map(|f| f.pts[..f.n as usize].iter().map(|q| q[1])).fold(f32::MIN, f32::max);
+    assert!(top(light) > top(heater), "{} {}", top(light), top(heater));
 }
 
 #[test]

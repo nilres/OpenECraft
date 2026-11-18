@@ -305,6 +305,7 @@ Choose the building.	建物を選択してください。
 Chooses the pages whose structure starts with this	構造がこれで始まるページを選択します
 Circle	円
 Circuits of a generic manifold	汎用ヘッダーの回路数
+Circuits of the schematic	回路図の回路
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	雷保護システムのクラス：引下げ導線の間隔、陸屋根の網目、保護角
 Class {}	クラス {}
 Clear	クリア
@@ -314,6 +315,7 @@ Click	クリック
 Click a text: open its link	テキストをクリック：リンクを開く
 Click an element in the drawing to edit it.	図面内の要素をクリックして編集します。
 Click centre, then a point on the circle	中心をクリックし、次に円周上の点をクリックします
+Click in a room to place {}	部屋をクリックして {} を配置
 Click in the panel layout: a single item of an assembly	盤レイアウトでクリック：アセンブリの単一の項目
 Click into the page to place the image	ページ内をクリックして画像を配置します
 Click into the page to place {}	ページ内をクリックして {} を配置します
@@ -658,6 +660,7 @@ Each point-to-point connection can belong to a harness	各ポイントツーポ�
 Earth electrodes	接地極
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	建物の接地極 (基礎接地極と環状接地極、配置図でクリックして置く接地棒) と、屋根の上にクリックして置く突針を含む雷保護
 Earth rod placed at building {}; click for the next one · Esc: stop	建物 {} に接地棒を配置しました。次の接地棒はクリック · Esc：終了
+Earthing	接地
 Earthing and lightning protection	接地と雷保護
 Earthing busbar	接地ブスバー
 Earthing conductor	接地導体
@@ -849,7 +852,7 @@ Head (CPU / coupler)	ヘッド (CPU / カプラー)
 Header row	ヘッダー行
 Heat map	ヒートマップ
 Heating	ヒーター
-Heating circuit manifolds and control boxes	暖房ヘッダーと制御ボックス
+Heating elements, heating circuit manifolds and control boxes	発熱体、暖房ヘッダーと制御ボックス
 Height (mm)	高さ (mm)
 Height above sea level	標高
 Height above the floor	床面からの高さ
@@ -1294,6 +1297,7 @@ Not changed: {}. Your version is kept in the Project server pane.	変更され�
 Not found: {}	見つかりません: {}
 Not in the project parts – synchronize in parts management	プロジェクト部品にありません – 部品管理で同期してください
 Not on a wire	電線上にありません
+Not placed	未配置
 Not saved yet	未保存
 Not saved, locked or changed by another user	他のユーザーがロックまたは変更しているため保存されていません
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	使えません：左ボタンのみは選択、描画、移動に使われます。モディファイアキーを押すか別のボタンを使ってください。
@@ -1476,6 +1480,7 @@ Pitch	勾配
 Pitch X / Y	ピッチ X / Y
 Place a comment on the page	ページにコメントを配置
 Place again at all symbols using it	使用しているすべてのシンボルに再配置
+Place all	すべて配置
 Place an enclosure, device or machine location at this node	このノードにエンクロージャー、デバイス、または機械の取付場所を配置
 Place connection definition point	接続定義ポイントを配置
 Place connection points	接続ポイントを配置
@@ -2566,6 +2571,7 @@ x y	x y
 {} – revision {}, {}	{} – リビジョン {}、{}
 {} – {} ({} pages)	{} – {} ({} ページ)
 {} – {} here (Esc cancels)	{} – ここで{}（Esc でキャンセル）
+{} – {} of {} placed	{} – {}/{} 配置済み
 {}, freestanding	{}、野立て
 {}, {} (copy of {}, revision {})	{}、{} ({} のコピー、リビジョン {})
 {}: click to show its floor plan	{}：クリックで平面図を表示

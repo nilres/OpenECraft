@@ -536,6 +536,8 @@ pub struct PanelUi {
     pub show_building: bool,
     /// The installation zones of the rooms are shown, see-through.
     pub show_zones: bool,
+    /// The floor plan on paper of a room's level is drawn under the room's floor plan.
+    pub show_paper: bool,
     /// The walls and floors of the rooms are opened (seen through) to show the
     /// flush-mounted lines in them.
     pub open_walls: bool,
@@ -638,8 +640,8 @@ pub struct PanelUi {
 const INSTALLATION: [(&str, &str, &[&str]); 4] = [
     (tr_const!("Outlets"), tr_const!("Socket outlets, data and antenna outlets"), &["Socket outlet", "Data outlet", "Antenna outlet"]),
     (tr_const!("Switches"), tr_const!("Switches, push buttons and room thermostats"), &["Switch", "Push button", "Blind switch", "Dimmer", "Glass push button", "Room thermostat"]),
-    (tr_const!("Lights"), tr_const!("Ceiling lights, downlights and wall lights"), &["Luminaire"]),
-    (tr_const!("Heating"), tr_const!("Heating circuit manifolds and control boxes"), &["Heating circuit manifold", "Control box"]),
+    (tr_const!("Lights"), tr_const!("Ceiling lights, downlights and wall lights"), &["Luminaire", "Downlight", "Panel light", "Batten luminaire", "Wall light", "Emergency light"]),
+    (tr_const!("Heating"), tr_const!("Heating elements, heating circuit manifolds and control boxes"), &["Room heater", "Towel radiator", "Infrared heating panel", "Heating circuit manifold", "Control box"]),
 ];
 
 /// Width of the installation menu, of its list and of the part picked beside it, points.
@@ -726,6 +728,7 @@ impl Default for PanelUi {
             site_hover: None,
             show_building: false,
             show_zones: false,
+            show_paper: true,
             open_walls: false,
             hide_front_walls: false,
             hide_ceiling: false,

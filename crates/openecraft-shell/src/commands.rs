@@ -255,6 +255,7 @@ pub enum Cmd {
     LayoutMoveBuildings,
     LayoutEarthing,
     LayoutZones,
+    LayoutPaperPlan,
     LayoutOpenWalls,
     LayoutHideFrontWalls,
     LayoutHideCeiling,
@@ -785,6 +786,9 @@ pub static ALL: &[Def] = &[
     d(C::LayoutZones, "layout_zones", tr_const!("Installation zones"), I::Grid)
         .toggle()
         .tip(tr_const!("Show the installation zones of the rooms see-through: on the walls in the 3D view and the views of the walls, in the floor in the floor plan")),
+    d(C::LayoutPaperPlan, "layout_paper_plan", tr_const!("Floor plan on paper"), I::Image)
+        .toggle()
+        .tip(tr_const!("Show the floor plan on paper (scan or drawing) of the room's level under the floor plan of the room")),
     d(C::LayoutOpenWalls, "layout_open_walls", tr_const!("Open walls and floors"), I::Wall)
         .toggle()
         .tip(tr_const!("See through the walls and floors of the rooms in the 3D view: the flush-mounted lines in them are seen")),
@@ -837,6 +841,7 @@ pub fn acts_in_layout_view(cmd: Cmd) -> bool {
             | C::LayoutHidePvModules
             | C::LayoutSeeThroughPv
             | C::LayoutZones
+            | C::LayoutPaperPlan
             | C::LayoutOpenWalls
             | C::LayoutOpenDucts
             | C::LayoutFit

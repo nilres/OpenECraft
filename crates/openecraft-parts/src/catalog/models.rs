@@ -2,8 +2,8 @@
 //! compressors, valves and pipe fittings, air treatment, wall-mounted electronics,
 //! 19-inch devices and batteries, PV modules, boxes, NH fuse switch disconnectors and
 //! fuse bases, earthing busbars and earth electrode lugs, socket outlets, switches and
-//! the other outlets of a room, heating circuit manifolds and single-room control
-//! boxes, painted in their colours, with x to the right, y up and z towards the front; each
+//! the other outlets of a room, lights, electric heating elements, heating circuit
+//! manifolds and single-room control boxes, painted in their colours, with x to the right, y up and z towards the front; each
 //! model fills the part's box. Floor-standing ones are drawn standing on the floor
 //! (x width, y depth from the front, z height) and turned upright at the end.
 
@@ -92,7 +92,26 @@ enum Kind {
     /// Single-room control box of an underfloor heating: flush box with cover, and a
     /// thermostat knob.
     ControlBox { knob: bool },
+    /// A light on a wall or ceiling (z out of it): round or rectangular, recessed (a
+    /// flange round its diffuser) or surface-mounted, an emergency light with its sign.
+    Light { round: bool, recessed: bool, emergency: bool },
+    /// An electric heating element of a room.
+    Heater(Heater),
 }
+
+/// The shape of an electric heating element.
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum Heater {
+    /// Panel heater: a flat body with the air grille at the top and its thermostat.
+    Panel,
+    /// Towel radiator: two upright tubes and the bars between them.
+    Towel,
+    /// Infrared heating panel: a thin panel in a frame.
+    Infrared,
+}
+
+/// Opal diffuser of a light.
+const OPAL: [u8; 3] = [248, 246, 236];
 
 /// What is in the frame of a room outlet.
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -175,6 +194,14 @@ fn kind_of(p: &Part) -> Option<Kind> {
         "Room thermostat" => Kind::Outlet(Outlet::Thermostat),
         "Heating circuit manifold" => Kind::HeatingManifold(p.functions.iter().flat_map(|f| f.pin_list()).count().saturating_sub(2) / 2),
         "Control box" => Kind::ControlBox { knob: has("thermostat") },
+        "Luminaire" | "Emergency light" | "Downlight" | "Ceiling light" | "Wall light" | "Panel light" | "Batten luminaire" => Kind::Light {
+            round: has("round") || has("circular") || p.subgroup == "Downlight",
+            recessed: has("recessed") || p.subgroup == "Downlight",
+            emergency: p.subgroup == "Emergency light" || has("emergency"),
+        },
+        "Room heater" => Kind::Heater(Heater::Panel),
+        "Towel radiator" => Kind::Heater(Heater::Towel),
+        "Infrared heating panel" => Kind::Heater(Heater::Infrared),
         _ => return None,
     })
 }
@@ -716,6 +743,91 @@ fn build(p: &Part) -> Option<(Model2d, Mesh3d, Option<Shaft>, Vec<Nozzle>)> {
                 m.add_painted_box([w / 2.0 - 0.1 * r, h / 2.0 + 0.4 * r, 0.9 * d], [w / 2.0 + 0.1 * r, h / 2.0 + 0.9 * r, d], DARK);
             }
             circle(&mut prims, [w / 2.0, h / 2.0], r);
+        }
+        Kind::Light { round, recessed, emergency } => {
+            let (cx, cy) = (w / 2.0, h / 2.0);
+            if round {
+                let r = 0.5 * w.min(h);
+                if recessed {
+                    // The can in the ceiling, the flange on it and the diffuser in the flange.
+                    m.add_cylinder([cx, cy, 0.0], 2, 0.62 * r, 0.82 * d, ROUND, STEEL);
+                    m.add_cylinder([cx, cy, 0.82 * d], 2, r, 0.14 * d, ROUND + 8, WHITE);
+                    m.add_cylinder([cx, cy, 0.96 * d], 2, 0.76 * r, 0.04 * d, ROUND + 8, OPAL);
+                    circle(&mut prims, [cx, h - cy], 0.76 * r);
+                } else {
+                    // The base on the ceiling and the domed diffuser on it.
+                    m.add_cylinder([cx, cy, 0.0], 2, r, 0.3 * d, ROUND + 8, WHITE);
+                    m.add_frustum([cx, cy, 0.3 * d], 2, 0.96 * r, 0.78 * r, 0.6 * d, ROUND + 8, OPAL);
+                    m.add_cylinder([cx, cy, 0.9 * d], 2, 0.78 * r, 0.1 * d, ROUND + 8, OPAL);
+                    circle(&mut prims, [cx, h - cy], 0.78 * r);
+                }
+                if emergency {
+                    // The escape sign on the front of the diffuser.
+                    let s = 0.3 * r;
+                    m.add_painted_box([cx - s, cy - 0.6 * s, 0.995 * d], [cx + s, cy + 0.6 * s, d], LED);
+                }
+                circle(&mut prims, [cx, h - cy], r);
+            } else {
+                // The housing and the diffuser in front of it, a flange when recessed.
+                let (inset, body) = if recessed { (0.03 * w.min(h), 0.2 * d) } else { (0.06 * w.min(h), 0.45 * d) };
+                m.add_painted_box([0.0, 0.0, 0.0], [w, h, body], WHITE);
+                m.add_painted_box([inset, inset, body], [w - inset, h - inset, 0.97 * d], OPAL);
+                prims.push(Prim2d::Rect { min: [inset, inset], max: [w - inset, h - inset], fill: false });
+                if emergency {
+                    // The escape sign in the middle of the diffuser.
+                    let s = 0.35 * w.min(h);
+                    m.add_painted_box([cx - s, cy - 0.6 * s, 0.97 * d], [cx + s, cy + 0.6 * s, d], LED);
+                    prims.push(Prim2d::Rect { min: [cx - s, h - cy - 0.6 * s], max: [cx + s, h - cy + 0.6 * s], fill: true });
+                } else {
+                    m.add_painted_box([inset, inset, 0.97 * d], [w - inset, h - inset, d], OPAL);
+                }
+            }
+        }
+        Kind::Heater(Heater::Panel) => {
+            // The body on its wall brackets, the front panel, the grille of the warm air
+            // at the top and the thermostat at the right.
+            for x in [0.15 * w, 0.8 * w] {
+                m.add_painted_box([x, 0.2 * h, 0.0], [x + 0.05 * w, 0.8 * h, 0.25 * d], DARK);
+            }
+            m.add_painted_box([0.0, 0.0, 0.25 * d], [w, h, 0.9 * d], WHITE);
+            m.add_painted_box([0.01 * w, 0.02 * h, 0.9 * d], [0.99 * w, 0.84 * h, d], [242, 243, 244]);
+            let n = ((w / 25.0) as usize).clamp(6, 60);
+            for k in 0..n {
+                let x = 0.04 * w + k as f32 * 0.92 * w / n as f32;
+                m.add_painted_box([x, 0.88 * h, 0.9 * d], [x + 0.45 * 0.92 * w / n as f32, 0.97 * h, 0.95 * d], DARK);
+            }
+            m.add_painted_box([0.86 * w, 0.62 * h, 0.9 * d], [0.96 * w, 0.78 * h, d], DISPLAY);
+            prims.push(Prim2d::Rect { min: [0.04 * w, 0.03 * h], max: [0.96 * w, 0.12 * h], fill: false });
+            prims.push(Prim2d::Rect { min: [0.86 * w, 0.22 * h], max: [0.96 * w, 0.38 * h], fill: true });
+        }
+        Kind::Heater(Heater::Towel) => {
+            // The two upright tubes on their brackets and the bars between them, in
+            // groups with a gap for the towels.
+            let r = (0.04 * w).min(0.3 * d);
+            for x in [r, w - r] {
+                m.add_cylinder([x, 0.0, d - r], 1, r, h, ROUND, WHITE);
+                for y in [0.15 * h, 0.85 * h] {
+                    m.add_cylinder([x, y, 0.0], 2, 0.5 * r, d - r, 8, STEEL);
+                }
+                prims.push(Prim2d::Rect { min: [x - r, 0.0], max: [x + r, h], fill: false });
+            }
+            let bar = 0.45 * r;
+            let pitch = (8.0 * bar).max(h / 40.0);
+            let mut y = 0.06 * h;
+            let mut k = 0;
+            while y < 0.96 * h {
+                m.add_cylinder([r, y, d - r], 0, bar, w - 2.0 * r, 10, WHITE);
+                prims.push(Prim2d::Line { a: [r, h - y], b: [w - r, h - y] });
+                k += 1;
+                y += if k % 6 == 0 { 2.5 * pitch } else { pitch };
+            }
+        }
+        Kind::Heater(Heater::Infrared) => {
+            // The thin panel in its frame.
+            let f = 0.02 * w.min(h);
+            m.add_painted_box([0.0, 0.0, 0.0], [w, h, 0.7 * d], [210, 212, 216]);
+            m.add_painted_box([f, f, 0.7 * d], [w - f, h - f, d], WHITE);
+            prims.push(Prim2d::Rect { min: [f, f], max: [w - f, h - f], fill: false });
         }
         Kind::EarthLug => {
             // Sealing collar on the wall at the bottom, the round wire straight out of

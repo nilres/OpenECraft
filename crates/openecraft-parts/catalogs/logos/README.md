@@ -27,5 +27,5 @@ The files under CC BY-SA 4.0 keep that licence (attribution above, share alike f
 changed versions of the file); the rest of OpenECraft is not affected by it.
 
 Commons has no freely licensed logo of the other manufacturers (`cosmo`, `janitza`,
-`mdt`, `pylontech`): their files are neutral badges with the company name, made for
+`ledvance`, `mdt`, `pylontech`, `signify`): their files are neutral badges with the company name, made for
 OpenECraft (MIT OR Apache-2.0).

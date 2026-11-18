@@ -42,6 +42,25 @@ pub static COMMANDS: &[Spec] = &[
         run: place_installation,
     },
     Spec {
+        name: "list_schematic_circuits",
+        help: tr_const!("Lists the final circuits of the schematic with the socket outlets, switches, lights and heating elements drawn behind their protective devices: kind, part, room they are placed in, and the final circuit of the installation using the protective device"),
+        params: &[optional("breaker", Kind::Str, tr_const!("Only the circuit of this protective device")), optional("unplaced", Kind::Bool, tr_const!("Only the devices not placed yet"))],
+        run: list_schematic_circuits,
+    },
+    Spec {
+        name: "place_circuit_device",
+        help: tr_const!("Places a socket outlet, switch, light or heating element of a circuit of the schematic in a room at a point of the plant like place_installation (one placed before moves), or makes an item placed without a device tag that device; it goes into the final circuit of its protective device, made when there is none"),
+        params: &[
+            param("device", Kind::Str, tr_const!("Device tag in the schematic, e.g. +ROOM1-XD1")),
+            optional("room", Kind::Str, tr_const!("Room (location, e.g. +ROOM1)")),
+            optional("x", Kind::Num, tr_const!("x in the plant in mm")),
+            optional("z", Kind::Num, tr_const!("z in the plant (towards the front) in mm")),
+            optional("part", Kind::Str, tr_const!("Part for a device without one (default: the generic part of its kind)")),
+            optional("item", Kind::Int, tr_const!("Id of a socket outlet, switch, light or heating element placed without a device tag to become the device (instead of room, x and z)")),
+        ],
+        run: place_circuit_device,
+    },
+    Spec {
         name: "list_breakers",
         help: tr_const!("Lists the protective devices of the mains for final circuits (up to 32 A): rated current, characteristic, phases, residual current protection, whether spare and the circuit using them"),
         params: &[optional("spare", Kind::Bool, tr_const!("Only the spare ones (feeding nothing yet)"))],
@@ -157,6 +176,50 @@ fn list_breakers(prj: &mut Project, a: &Args) -> Result<Value, String> {
             .map(|b| json!({ "breaker": b.tag, "rated": b.rated, "characteristic": b.characteristic, "phases": b.phases, "residual_ma": b.residual, "spare": b.spare, "circuit": b.circuit }))
             .collect(),
     ))
+}
+
+fn schematic_json(prj: &Project, sc: &inst::SchematicCircuit, unplaced: bool) -> Value {
+    let devices: Vec<Value> = sc
+        .devices
+        .iter()
+        .filter(|d| !unplaced || d.placed.is_none())
+        .map(|d| {
+            json!({
+                "device": d.tag, "kind": d.kind.key(), "text": d.text, "part": d.part.clone().unwrap_or_else(|| d.kind.default_part().to_string()), "own_part": d.part.is_some(),
+                "room": d.placed.map(|(ri, _)| prj.layout.enclosures[ri].name.clone()), "item": d.placed.map(|p| p.1),
+            })
+        })
+        .collect();
+    let circuit = sc.circuit.and_then(|id| prj.layout.circuits.iter().find(|c| c.id == id)).map(|c| c.name.clone());
+    json!({ "breaker": sc.breaker, "text": sc.text, "rated": sc.rated, "characteristic": sc.characteristic, "three_phase": sc.three_phase, "placed": sc.placed(), "devices": devices, "circuit": circuit })
+}
+
+fn list_schematic_circuits(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let nl = Netlist::build(prj, false);
+    let only = a.str("breaker").map(str::trim);
+    let list: Vec<Value> = inst::schematic_circuits(prj, &nl).iter().filter(|c| only.is_none_or(|b| c.breaker == b)).map(|c| schematic_json(prj, c, a.flag("unplaced"))).collect();
+    if let (Some(b), true) = (only, list.is_empty()) {
+        return Err(tr_fmt!("No socket outlet, switch, light or heating element behind {} in the schematic", b));
+    }
+    Ok(Value::Array(list))
+}
+
+fn place_circuit_device(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let tag = a.req("device").trim().to_string();
+    let nl = Netlist::build(prj, false);
+    let list = inst::schematic_circuits(prj, &nl);
+    let sc = inst::schematic_circuit_of(&list, &tag).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element of a circuit of the schematic", tag))?.clone();
+    let ci = match a.int("item").and_then(|v| u64::try_from(v).ok()) {
+        Some(item) => inst::link_device(prj, &sc, &tag, item)?,
+        None => {
+            let room = a.str("room").map(str::trim).unwrap_or("");
+            let ri = prj.layout.enclosures.iter().position(|e| e.is_room() && e.name == room).ok_or_else(|| tr_fmt!("No room named {}", room))?;
+            inst::place_device(prj, &sc, &tag, ri, a.str("part").unwrap_or(""), [a.num("x").unwrap_or(0.0), a.num("z").unwrap_or(0.0)])?.1
+        }
+    };
+    let (ri, it) = prj.layout.find_device(&tag).map(|(ri, it)| (ri, it.clone())).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", tag))?;
+    let e = &prj.layout.enclosures[ri];
+    Ok(json!({ "id": it.id, "device": tag, "part": it.part, "room": e.name, "face": panel::room_face_key(e, it.face), "x": it.x, "y": it.y, "circuit": prj.layout.circuits[ci].name }))
 }
 
 fn add_items(prj: &mut Project, ci: usize, ids: &[u64]) -> Result<(), String> {

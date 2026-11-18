@@ -1,0 +1,121 @@
+{
+  "catalog": {
+    "id": "signify",
+    "name": "Signify (Philips)",
+    "manufacturer": "Signify",
+    "version": "2026.1",
+    "description": "Philips CoreLine LED luminaires: the recessed downlight DN140B, the recessed panel RC132V, the waterproof batten WT120C and the wall-mounted light WL120V. Curated from the manufacturer's public data sheets; check against the manufacturer data before ordering. Mounting heights are usual installation heights, not product data."
+  },
+  "parts": [
+    {
+      "number": "SIG.32581100",
+      "type_number": "DN140B LED10S/840 PSU WR PI6",
+      "order_number": "32581100",
+      "manufacturer": "Signify",
+      "description": "Philips CoreLine Downlight DN140B LED10S/840, 9.5 W, 1100 lm, 4000 K, IP20, round 162 mm, white, for recessed mounting in ceilings",
+      "group": "Installation devices",
+      "subgroup": "Downlight",
+      "identifier": "EA",
+      "functions": [
+        {
+          "kind": "Signal",
+          "pins": "L N"
+        }
+      ],
+      "voltage": "220 - 240 V AC",
+      "power": "9.5 W",
+      "width": 162.0,
+      "height": 162.0,
+      "depth": 100.0,
+      "weight": 0.32,
+      "mounting": "Ceiling",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Ceiling mounting: yes\nLuminous flux: 1100 lm\nColour temperature: 4000 K\nProtection: IP20\nImpact resistance: IK02\nProtection class: I\nDimmable: no\nCut-out: 150 - 155 mm\n12NC: 911401631105\nEAN: 8710163325811"
+    },
+    {
+      "number": "SIG.911401890285",
+      "type_number": "RC132V G6 36S/840 PSU W60L60 NOC",
+      "order_number": "911401890285",
+      "manufacturer": "Signify",
+      "description": "Philips CoreLine Panel gen6 RC132V 36S/840, 26 W, 3600 lm, 4000 K, IP20 / IP44, 595 x 595 mm, for recessed mounting in grid ceilings with visible profiles",
+      "group": "Installation devices",
+      "subgroup": "Panel light",
+      "identifier": "EA",
+      "functions": [
+        {
+          "kind": "Signal",
+          "pins": "L N"
+        }
+      ],
+      "voltage": "220 - 240 V AC",
+      "power": "26 W",
+      "width": 595.0,
+      "height": 595.0,
+      "depth": 62.0,
+      "weight": 1.65,
+      "mounting": "Ceiling",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Ceiling mounting: yes\nLuminous flux: 3600 lm\nColour temperature: 4000 K\nProtection: IP20 / IP44\nImpact resistance: IK03\nProtection class: II\nDimmable: no\n12NC: 911401890285\nEAN: 8720169735095",
+      "datasheet": "https://www.signify.com/api/assets/v1/file/Signify/content/911401890285_EU.en_SA.PROF.FP/RC132V_G6_36S_840_PSU_W60L60_NOC.pdf"
+    },
+    {
+      "number": "SIG.911401823780",
+      "type_number": "WT120C G2 LED40S/840 PSU L1200",
+      "order_number": "911401823780",
+      "manufacturer": "Signify",
+      "description": "Philips CoreLine Waterproof WT120C G2 LED40S/840, 28.6 W, 4000 lm, 4000 K, IP65, 1215 x 80 mm, batten for surface mounting on ceilings",
+      "group": "Installation devices",
+      "subgroup": "Batten luminaire",
+      "identifier": "EA",
+      "functions": [
+        {
+          "kind": "Signal",
+          "pins": "L N"
+        }
+      ],
+      "voltage": "220 - 240 V AC",
+      "power": "28.6 W",
+      "width": 1215.0,
+      "height": 80.0,
+      "depth": 76.0,
+      "weight": 1.26,
+      "mounting": "Ceiling",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Ceiling mounting: yes\nLuminous flux: 4000 lm\nColour temperature: 4000 K\nProtection: IP65\nImpact resistance: IK08\nProtection class: I\nDimmable: no\n12NC: 911401823780\nEAN: 8718291840480",
+      "datasheet": "https://www.signify.com/api/assets/v1/file/Signify/content/911401823780_EU.en_IE.PROF.FP/Localized_commercial_leaflet_911401823780_en_IE.pdf"
+    },
+    {
+      "number": "SIG.06635599",
+      "type_number": "WL120V LED12S/840 PSU WH",
+      "order_number": "06635599",
+      "manufacturer": "Signify",
+      "description": "Philips CoreLine Wall-mounted WL120V LED12S/840, 18 W, 1200 lm, 4000 K, IP65, round 344 mm, white, surface-mounted on walls",
+      "group": "Installation devices",
+      "subgroup": "Wall light",
+      "identifier": "EA",
+      "functions": [
+        {
+          "kind": "Signal",
+          "pins": "L N"
+        }
+      ],
+      "voltage": "220 - 240 V AC",
+      "power": "18 W",
+      "width": 344.0,
+      "height": 344.0,
+      "depth": 120.0,
+      "weight": 1.65,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 2000 mm\nLuminous flux: 1200 lm\nColour temperature: 4000 K\nProtection: IP65\nImpact resistance: IK10\nProtection class: I\nDimmable: no\n12NC: 910503910012\nEAN: 8718696066355"
+    }
+  ]
+}

@@ -16,6 +16,7 @@ const FILES: &[(&str, &str)] = &[
     ("gira", include_str!("../catalogs/gira.json")),
     ("hager", include_str!("../catalogs/hager.json")),
     ("janitza", include_str!("../catalogs/janitza.json")),
+    ("ledvance", include_str!("../catalogs/ledvance.json")),
     ("jinko", include_str!("../catalogs/jinko.json")),
     ("longi", include_str!("../catalogs/longi.json")),
     ("loxone", include_str!("../catalogs/loxone.json")),
@@ -23,6 +24,7 @@ const FILES: &[(&str, &str)] = &[
     ("phoenix_contact", include_str!("../catalogs/phoenix_contact.json")),
     ("pylontech", include_str!("../catalogs/pylontech.json")),
     ("siemens", include_str!("../catalogs/siemens.json")),
+    ("signify", include_str!("../catalogs/signify.json")),
     ("victron", include_str!("../catalogs/victron.json")),
     ("weidmueller", include_str!("../catalogs/weidmueller.json")),
 ];
@@ -38,6 +40,7 @@ const LOGOS: &[(&str, &str)] = &[
     ("gira", include_str!("../catalogs/logos/gira.svg")),
     ("hager", include_str!("../catalogs/logos/hager.svg")),
     ("janitza", include_str!("../catalogs/logos/janitza.svg")),
+    ("ledvance", include_str!("../catalogs/logos/ledvance.svg")),
     ("jinko", include_str!("../catalogs/logos/jinko.svg")),
     ("longi", include_str!("../catalogs/logos/longi.svg")),
     ("loxone", include_str!("../catalogs/logos/loxone.svg")),
@@ -45,6 +48,7 @@ const LOGOS: &[(&str, &str)] = &[
     ("phoenix_contact", include_str!("../catalogs/logos/phoenix_contact.svg")),
     ("pylontech", include_str!("../catalogs/logos/pylontech.svg")),
     ("siemens", include_str!("../catalogs/logos/siemens.svg")),
+    ("signify", include_str!("../catalogs/logos/signify.svg")),
     ("victron", include_str!("../catalogs/logos/victron.svg")),
     ("weidmueller", include_str!("../catalogs/logos/weidmueller.svg")),
 ];

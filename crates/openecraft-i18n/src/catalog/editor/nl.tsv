@@ -308,6 +308,7 @@ Choose the building.	Kies het gebouw.
 Chooses the pages whose structure starts with this	Kiest de pagina's waarvan de structuur hiermee begint
 Circle	Cirkel
 Circuits of a generic manifold	Groepen van een generieke verdeler
+Circuits of the schematic	Stroomkringen van het schema
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Klasse van de bliksembeveiliging: de afstand van de afleidingen, de maas van platte daken en de beschermingshoek
 Class {}	Klasse {}
 Clear	Wissen
@@ -317,6 +318,7 @@ Click	Klik
 Click a text: open its link	Klik op een tekst: de koppeling openen
 Click an element in the drawing to edit it.	Klik op een element in de tekening om het te bewerken.
 Click centre, then a point on the circle	Klik op het middelpunt en daarna op een punt van de cirkel
+Click in a room to place {}	Klik in een ruimte om {} te plaatsen
 Click in the panel layout: a single item of an assembly	Klik in de kastlay-out: één onderdeel van een samenstelling
 Click into the page to place the image	Klik in de pagina om de afbeelding te plaatsen
 Click into the page to place {}	Klik in de pagina om {} te plaatsen
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Elke punt-tot-puntverbind
 Earth electrodes	Aardelektroden
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Aardelektroden van een gebouw (funderings- en ringaarde, aardpennen met een klik in de situatietekening) en zijn bliksembeveiliging met de opvangstaven die met een klik op de daken worden geplaatst
 Earth rod placed at building {}; click for the next one · Esc: stop	Aardpen bij gebouw {} geplaatst; klik voor de volgende · Esc: stoppen
+Earthing	Aarding
 Earthing and lightning protection	Aarding en bliksembeveiliging
 Earthing busbar	Aardrail
 Earthing conductor	Aardgeleider
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Kop (CPU / koppelaar)
 Header row	Koprij
 Heat map	Warmtekaart
 Heating	Verwarming
-Heating circuit manifolds and control boxes	Verdelers voor vloerverwarming en regelboxen
+Heating elements, heating circuit manifolds and control boxes	Verwarmingselementen, verdelers voor vloerverwarming en regelboxen
 Height (mm)	Hoogte (mm)
 Height above sea level	Hoogte boven zeeniveau
 Height above the floor	Hoogte boven de vloer
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Niet gewijzigd
 Not found: {}	Niet gevonden: {}
 Not in the project parts – synchronize in parts management	Niet in de projectartikelen – synchroniseer in het artikelbeheer
 Not on a wire	Niet op een draad
+Not placed	Niet geplaatst
 Not saved yet	Nog niet opgeslagen
 Not saved, locked or changed by another user	Niet opgeslagen, vergrendeld of gewijzigd door een andere gebruiker
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Niet overgenomen: de linkerknop alleen selecteert, tekent en verplaatst; houd een combinatietoets ingedrukt of gebruik een andere knop.
@@ -1490,6 +1494,7 @@ Pitch	Dakhelling
 Pitch X / Y	Steek X / Y
 Place a comment on the page	Een opmerking op de pagina plaatsen
 Place again at all symbols using it	Opnieuw plaatsen bij alle symbolen die het gebruiken
+Place all	Alles plaatsen
 Place an enclosure, device or machine location at this node	Behuizing, apparaat of machineplaats bij dit knooppunt plaatsen
 Place connection definition point	Verbindingsdefinitiepunt plaatsen
 Place connection points	Aansluitpunten plaatsen
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – revisie {}, {}
 {} – {} ({} pages)	{} – {} ({} pagina's)
 {} – {} here (Esc cancels)	{} – hier {} (Esc annuleert)
+{} – {} of {} placed	{} – {} van {} geplaatst
 {}, freestanding	{}, vrijstaand
 {}, {} (copy of {}, revision {})	{}, {} (kopie van {}, revisie {})
 {}: click to show its floor plan	{}: klik om de plattegrond te tonen

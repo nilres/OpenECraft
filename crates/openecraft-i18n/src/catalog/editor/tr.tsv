@@ -308,6 +308,7 @@ Choose the building.	Binayı seçin.
 Chooses the pages whose structure starts with this	Yapısı bununla başlayan sayfaları seçer
 Circle	Daire
 Circuits of a generic manifold	Genel bir kollektörün devreleri
+Circuits of the schematic	Şemanın devreleri
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Yıldırımdan korunma sisteminin sınıfı: iniş iletkenlerinin aralığı, düz çatıların gözü ve koruma açısı
 Class {}	Sınıf {}
 Clear	Temizle
@@ -317,6 +318,7 @@ Click	Tıklama
 Click a text: open its link	Bir metne tıklama: bağlantısını aç
 Click an element in the drawing to edit it.	Düzenlemek için çizimdeki bir öğeye tıklayın.
 Click centre, then a point on the circle	Merkeze, ardından dairenin üzerindeki bir noktaya tıklayın
+Click in a room to place {}	{} yerleştirmek için bir odaya tıklayın
 Click in the panel layout: a single item of an assembly	Pano yerleşiminde tıklama: bir montajın tek öğesi
 Click into the page to place the image	Görüntüyü yerleştirmek için sayfaya tıklayın
 Click into the page to place {}	{} öğesini yerleştirmek için sayfaya tıklayın
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Her noktadan noktaya bağ
 Earth electrodes	Topraklama elektrotları
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Bir binanın topraklama elektrotları (temel ve halka topraklama, vaziyet planına tıklanan kazıklar) ve çatılarına tıklanarak yerleştirilen paratoner çubuklarıyla yıldırımdan korunması
 Earth rod placed at building {}; click for the next one · Esc: stop	{} binasına topraklama kazığı yerleştirildi; sonraki için tıklayın · Esc: dur
+Earthing	Topraklama
 Earthing and lightning protection	Topraklama ve yıldırımdan korunma
 Earthing busbar	Topraklama barası
 Earthing conductor	Topraklama iletkeni
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Kafa modülü (CPU / kuplör)
 Header row	Başlık satırı
 Heat map	Isı haritası
 Heating	Isıtma
-Heating circuit manifolds and control boxes	Isıtma devresi kollektörleri ve kontrol kutuları
+Heating elements, heating circuit manifolds and control boxes	Isıtıcı elemanlar, ısıtma devresi kollektörleri ve kontrol kutuları
 Height (mm)	Yükseklik (mm)
 Height above sea level	Deniz seviyesinden yükseklik
 Height above the floor	Zeminden yükseklik
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Değiştirilme
 Not found: {}	Bulunamadı: {}
 Not in the project parts – synchronize in parts management	Proje parçalarında yok – parça yönetiminde eşitleyin
 Not on a wire	Bir tel üzerinde değil
+Not placed	Yerleştirilmedi
 Not saved yet	Henüz kaydedilmedi
 Not saved, locked or changed by another user	Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Alınmadı: tek başına sol düğme seçer, çizer ve taşır; bir değiştirici tuşu basılı tutun veya başka bir düğme kullanın.
@@ -1490,6 +1494,7 @@ Pitch	Eğim
 Pitch X / Y	Aralık X / Y
 Place a comment on the page	Sayfaya bir yorum yerleştir
 Place again at all symbols using it	Bunu kullanan tüm sembollere yeniden yerleştir
+Place all	Tümünü yerleştir
 Place an enclosure, device or machine location at this node	Bu düğüme bir pano, cihaz veya makine konumu yerleştirin
 Place connection definition point	Bağlantı tanım noktası yerleştir
 Place connection points	Bağlantı noktalarını yerleştir
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – revizyon {}, {}
 {} – {} ({} pages)	{} – {} ({} sayfa)
 {} – {} here (Esc cancels)	{} – burada {} (Esc iptal eder)
+{} – {} of {} placed	{} – {}/{} yerleştirildi
 {}, freestanding	{}, arazi tipi
 {}, {} (copy of {}, revision {})	{}, {} ({} kopyası, revizyon {})
 {}: click to show its floor plan	{}: kat planını göstermek için tıklayın

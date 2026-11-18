@@ -167,3 +167,22 @@ fn bundled_catalogs_have_logos() {
     }
     assert_eq!(LOGOS.len(), FILES.len());
 }
+
+#[test]
+fn luminaires_go_on_ceilings_and_walls_with_their_data() {
+    for (id, n) in [("ledvance", 7), ("signify", 4)] {
+        let b = load(id).unwrap();
+        assert_eq!(b.parts.len(), n, "{id}");
+        for p in &b.parts {
+            assert!(p.wall_mountable() && p.model_3d.is_some(), "{}", p.number);
+            assert!(p.tech_value("Luminous flux").is_some_and(|v| v.ends_with(" lm")), "{}", p.number);
+            assert!(p.tech_value("EAN").is_some_and(|v| v.len() == 13), "{}", p.number);
+            let ceiling = p.tech_value("Ceiling mounting") == Some("yes");
+            assert!(ceiling || p.tech_value("Mounting height").is_some(), "{}: ceiling or a height on the wall", p.number);
+        }
+    }
+    let ledvance = load("ledvance").unwrap();
+    let downlight = ledvance.parts.iter().find(|p| p.number == "LDV.4058075079052").unwrap();
+    assert_eq!((downlight.width, downlight.depth, downlight.tech_value("Cut-out")), (169.0, 30.0, Some("155 mm")));
+    assert!(ledvance.parts.iter().any(|p| p.subgroup == "Emergency light"));
+}

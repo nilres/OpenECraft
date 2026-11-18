@@ -308,6 +308,7 @@ Choose the building.	Alegeți clădirea.
 Chooses the pages whose structure starts with this	Alege paginile a căror structură începe cu aceasta
 Circle	Cerc
 Circuits of a generic manifold	Circuitele unui distribuitor generic
+Circuits of the schematic	Circuitele schemei
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Clasa protecției contra trăsnetului: distanța dintre conductoarele de coborâre, ochiul acoperișurilor plate și unghiul de protecție
 Class {}	Clasa {}
 Clear	Golire
@@ -317,6 +318,7 @@ Click	Clic
 Click a text: open its link	Clic pe un text: deschiderea legăturii lui
 Click an element in the drawing to edit it.	Faceți clic pe un element din desen pentru a-l edita.
 Click centre, then a point on the circle	Faceți clic pe centru, apoi pe un punct al cercului
+Click in a room to place {}	Faceți clic într-o încăpere pentru a plasa {}
 Click in the panel layout: a single item of an assembly	Clic în amplasarea în tablou: un singur element al unui ansamblu
 Click into the page to place the image	Faceți clic în pagină pentru a plasa imaginea
 Click into the page to place {}	Faceți clic în pagină pentru a plasa {}
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Fiecare conexiune punct l
 Earth electrodes	Prize de pământ
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Prizele de pământ ale unei clădiri (de fundație și inelare, electrozi verticali plasați cu clic în planul de situație) și protecția ei contra trăsnetului cu tijele de captare plasate cu clic pe acoperișuri
 Earth rod placed at building {}; click for the next one · Esc: stop	Electrod vertical plasat la clădirea {}; clic pentru următorul · Esc: oprire
+Earthing	Împământare
 Earthing and lightning protection	Împământare și protecție contra trăsnetului
 Earthing busbar	Bară de împământare
 Earthing conductor	Conductor de împământare
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Cap (CPU / cuplor)
 Header row	Rând de antet
 Heat map	Hartă termică
 Heating	Încălzire
-Heating circuit manifolds and control boxes	Distribuitoare de încălzire și cutii de reglare
+Heating elements, heating circuit manifolds and control boxes	Elemente de încălzire, distribuitoare de încălzire și cutii de reglare
 Height (mm)	Înălțime (mm)
 Height above sea level	Altitudine
 Height above the floor	Înălțime deasupra podelei
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nemodificat: {
 Not found: {}	Negăsit: {}
 Not in the project parts – synchronize in parts management	Nu se află în articolele proiectului – sincronizați în gestionarea articolelor
 Not on a wire	Nu se află pe un conductor
+Not placed	Neplasat
 Not saved yet	Încă nesalvat
 Not saved, locked or changed by another user	Nesalvat, blocat sau modificat de alt utilizator
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nepreluat: butonul stâng singur selectează, desenează și mută; țineți apăsată o tastă modificatoare sau folosiți alt buton.
@@ -1490,6 +1494,7 @@ Pitch	Pantă
 Pitch X / Y	Pas X / Y
 Place a comment on the page	Plasare comentariu pe pagină
 Place again at all symbols using it	Replasare la toate simbolurile care o folosesc
+Place all	Plasează toate
 Place an enclosure, device or machine location at this node	Plasați o carcasă, un dispozitiv sau un loc al mașinii la acest nod
 Place connection definition point	Plasare punct de definire a conexiunii
 Place connection points	Plasează puncte de conexiune
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – revizia {}, {}
 {} – {} ({} pages)	{} – {} ({} pagini)
 {} – {} here (Esc cancels)	{} – {} aici (Esc anulează)
+{} – {} of {} placed	{} – {} din {} plasate
 {}, freestanding	{}, la sol
 {}, {} (copy of {}, revision {})	{}, {} (copie a {}, revizia {})
 {}: click to show its floor plan	{}: clic pentru a afișa planul

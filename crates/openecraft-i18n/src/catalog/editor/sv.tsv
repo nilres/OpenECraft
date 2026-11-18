@@ -308,6 +308,7 @@ Choose the building.	Välj byggnaden.
 Chooses the pages whose structure starts with this	Väljer de sidor vars struktur börjar med det här
 Circle	Cirkel
 Circuits of a generic manifold	Kretsar för en generisk fördelare
+Circuits of the schematic	Kretsar i schemat
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Åskskyddets klass: avståndet mellan nedledarna, maskan på platta tak och skyddsvinkeln
 Class {}	Klass {}
 Clear	Rensa
@@ -317,6 +318,7 @@ Click	Klick
 Click a text: open its link	Klick på en text: öppna dess länk
 Click an element in the drawing to edit it.	Klicka på ett element i ritningen för att redigera det.
 Click centre, then a point on the circle	Klicka på mittpunkten och sedan på en punkt på cirkeln
+Click in a room to place {}	Klicka i ett rum för att placera {}
 Click in the panel layout: a single item of an assembly	Klick i skåplayouten: en enskild del av en sammansättning
 Click into the page to place the image	Klicka på sidan för att placera bilden
 Click into the page to place {}	Klicka på sidan för att placera {}
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Varje punkt-till-punkt-f�
 Earth electrodes	Jordtag
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	En byggnads jordtag (grund- och ringjordtag, jordspett klickade i situationsplanen) och dess åskskydd med spetsledarna klickade på taken
 Earth rod placed at building {}; click for the next one · Esc: stop	Jordspett placerat vid byggnad {}; klicka för nästa · Esc: avsluta
+Earthing	Jordning
 Earthing and lightning protection	Jordning och åskskydd
 Earthing busbar	Jordningsskena
 Earthing conductor	Jordledare
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Huvudenhet (CPU / kopplare)
 Header row	Rubrikrad
 Heat map	Värmekarta
 Heating	Värme
-Heating circuit manifolds and control boxes	Golvvärmefördelare och reglerboxar
+Heating elements, heating circuit manifolds and control boxes	Värmeelement, golvvärmefördelare och reglerboxar
 Height (mm)	Höjd (mm)
 Height above sea level	Höjd över havet
 Height above the floor	Höjd över golvet
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Inte ändrad: 
 Not found: {}	Hittades inte: {}
 Not in the project parts – synchronize in parts management	Inte bland projektets artiklar – synkronisera i artikelhanteringen
 Not on a wire	Inte på en ledning
+Not placed	Inte placerad
 Not saved yet	Inte sparat ännu
 Not saved, locked or changed by another user	Inte sparat, låst eller ändrat av en annan användare
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Inte tagen: vänster knapp ensam markerar, ritar och flyttar; håll ned en modifieringstangent eller använd en annan knapp.
@@ -1490,6 +1494,7 @@ Pitch	Taklutning
 Pitch X / Y	Delning X / Y
 Place a comment on the page	Placera en kommentar på sidan
 Place again at all symbols using it	Placera igen på alla symboler som använder det
+Place all	Placera alla
 Place an enclosure, device or machine location at this node	Placera en kapsling, apparat eller maskinplacering vid den här noden
 Place connection definition point	Placera förbindelsedefinitionspunkt
 Place connection points	Placera anslutningspunkter
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – revision {}, {}
 {} – {} ({} pages)	{} – {} ({} sidor)
 {} – {} here (Esc cancels)	{} – {} här (Esc avbryter)
+{} – {} of {} placed	{} – {} av {} placerade
 {}, freestanding	{}, markmonterat
 {}, {} (copy of {}, revision {})	{}, {} (kopia av {}, revision {})
 {}: click to show its floor plan	{}: klicka för att visa planritningen

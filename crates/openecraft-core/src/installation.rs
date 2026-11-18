@@ -1,7 +1,14 @@
-//! The electrical installation of a building: socket outlets, switches and lights in
-//! the rooms ([`kind_of`]), placed on the floor plan ([`place`]), and the final circuits
-//! that feed them ([`FinalCircuit`]): a protective device of a distribution board in the
-//! schematic, a cable and the items it runs to one after the other.
+//! The electrical installation of a building: socket outlets, switches, lights and
+//! heating elements in the rooms ([`kind_of`]), placed on the floor plan ([`place`]),
+//! and the final circuits that feed them ([`FinalCircuit`]): a protective device of a
+//! distribution board in the schematic, a cable and the items it runs to one after the
+//! other.
+//!
+//! **Circuits of the schematic** ([`schematic_circuits`]): the devices drawn behind a
+//! protective device of the mains (through switches, contacts and terminals) that are
+//! socket outlets, switches, lights or heating elements are placed on the floor plan
+//! ([`place_device`]) or taken from what was placed there ([`link_device`]); each goes
+//! into the final circuit of its protective device, made when there is none.
 //!
 //! **Cable length** ([`runs`]): the cable leaves the distribution board at its top and
 //! runs to each item in turn in the horizontal installation zone under the ceiling
@@ -62,22 +69,46 @@ pub enum Kind {
     Socket,
     Switch,
     Light,
+    Heater,
 }
 
 impl Kind {
+    pub const ALL: [Kind; 4] = [Kind::Socket, Kind::Switch, Kind::Light, Kind::Heater];
+
     pub fn title(self) -> &'static str {
         match self {
             Kind::Socket => tr("Socket outlet"),
             Kind::Switch => tr("Switch"),
-            Kind::Light => tr("Light"),
+            Kind::Light => tr("Luminaire"),
+            Kind::Heater => tr("Heating element"),
+        }
+    }
+
+    /// Key of the kind in the commands' answers.
+    pub fn key(self) -> &'static str {
+        match self {
+            Kind::Socket => "socket",
+            Kind::Switch => "switch",
+            Kind::Light => "light",
+            Kind::Heater => "heater",
+        }
+    }
+
+    /// The generic part a device of the schematic without a part is placed with.
+    pub fn default_part(self) -> &'static str {
+        match self {
+            Kind::Socket => "GEN.SOCKET-F-UP",
+            Kind::Switch => "GEN.SW-ONOFF-UP",
+            Kind::Light => "GEN.LAMP-CEILING-LED",
+            Kind::Heater => "GEN.HEATER-PANEL-1000",
         }
     }
 }
 
 /// What a part is for the installation: a part for the walls or the ceiling of a room
-/// by its subgroup (socket outlets, switches, push buttons, dimmers, lights) or its
-/// functions; `None` for anything else (devices of cabinets: motor protection
-/// switches, rail sockets).
+/// by its subgroup (socket outlets, switches, push buttons, dimmers, lights, room
+/// heaters) or its functions; `None` for anything else (devices of cabinets: motor
+/// protection switches, rail sockets, enclosure heaters).
 pub fn kind_of(part: &Part) -> Option<Kind> {
     if !part.wall_mountable() && !on_ceiling(part) {
         return None;
@@ -92,7 +123,15 @@ pub fn kind_of(part: &Part) -> Option<Kind> {
     if ["luminaire", "light", "lamp"].iter().any(|k| sub.contains(k)) {
         return Some(Kind::Light);
     }
-    part.functions.iter().any(|f| f.kind == crate::parts::FnKind::SocketOutlet).then_some(Kind::Socket)
+    if ["heater", "heating panel", "radiator"].iter().any(|k| sub.contains(k)) {
+        return Some(Kind::Heater);
+    }
+    let has = |k: crate::parts::FnKind| part.functions.iter().any(|f| f.kind == k);
+    if has(crate::parts::FnKind::SocketOutlet) {
+        Some(Kind::Socket)
+    } else {
+        has(crate::parts::FnKind::Heater).then_some(Kind::Heater)
+    }
 }
 
 /// The part goes on the ceiling (lights made for it).
@@ -143,6 +182,24 @@ pub fn items(prj: &Project, poses: &[SitePose]) -> Vec<Placed> {
     panel::rooms(&prj.layout).into_iter().flat_map(|ri| prj.layout.enclosures[ri].items.iter().filter_map(move |it| placed(prj, poses, ri, it))).collect()
 }
 
+/// The parts of the bundled manufacturer catalogs that are parts of the installation
+/// (read once).
+pub fn bundled_parts() -> &'static [Part] {
+    static PARTS: std::sync::OnceLock<Vec<Part>> = std::sync::OnceLock::new();
+    PARTS.get_or_init(|| crate::parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).filter(|p| kind_of(p).is_some()).collect())
+}
+
+/// Part `number` of the project or the generic catalog, or of a bundled manufacturer
+/// catalog, which then goes into the project.
+pub fn take_part(prj: &mut Project, number: &str) -> Option<Part> {
+    if let Some(p) = panel::part_by_number(prj, number) {
+        return Some(p.clone());
+    }
+    let p = bundled_parts().iter().find(|p| p.number == number)?.clone();
+    prj.parts.push(p.clone());
+    Some(p)
+}
+
 /// Puts a socket outlet, switch or light (part `part`) into room `ri` at point `at` of
 /// the plant (x, z, mm): a light made for the ceiling on the ceiling there, anything
 /// else on the wall nearest to the point (within [`WALL_REACH`]) at its mounting
@@ -152,7 +209,8 @@ pub fn place(prj: &mut Project, ri: usize, part: &str, at: [f32; 2]) -> Result<u
     if !e.is_room() {
         return Err(tr_fmt!("{} is not a room", e.name));
     }
-    let pd = panel::part_by_number(prj, part).cloned().ok_or_else(|| tr_fmt!("Unknown device or part: {}", part))?;
+    let pd = take_part(prj, part).ok_or_else(|| tr_fmt!("Unknown device or part: {}", part))?;
+    let e = &prj.layout.enclosures[ri];
     let poses = panel::site_poses(prj);
     let local = poses[ri].local([at[0], 0.0, at[1]]);
     let q = [local[0], local[2]];
@@ -451,7 +509,7 @@ pub fn problems(prj: &Project, nl: &Netlist, conns: &[crate::netlist::Connection
     let used: std::collections::HashSet<u64> = prj.layout.circuits.iter().flat_map(|c| c.items.iter().copied()).collect();
     let free: Vec<Placed> = items(prj, &poses).into_iter().filter(|p| p.kind != Kind::Switch && !used.contains(&p.item)).collect();
     if !free.is_empty() {
-        out.push(crate::issue!(Severity::Info, None, "{} socket outlets and lights are in no circuit", free.len()));
+        out.push(crate::issue!(Severity::Info, None, "{} socket outlets, lights and heating elements are in no circuit", free.len()));
     }
     out
 }
@@ -502,6 +560,262 @@ pub fn connect(prj: &mut Project, ci: usize, item: u64) -> Result<(), String> {
     Ok(())
 }
 
+/// A socket outlet, switch, light or heating element of a circuit of the schematic: its
+/// tag, kind, function text, its own part for walls or ceilings (none: placed with the
+/// part of its kind, [`Kind::default_part`]) and where it is placed (room, item).
+#[derive(Clone, Debug, PartialEq)]
+pub struct SchematicDevice {
+    pub tag: String,
+    pub kind: Kind,
+    pub text: String,
+    pub part: Option<String>,
+    pub placed: Option<(usize, u64)>,
+}
+
+/// A final circuit of the schematic (a protective device of the mains up to 32 A) with
+/// the socket outlets, switches, lights and heating elements behind it, in schematic
+/// order, and the final circuit of the installation using its protective device.
+#[derive(Clone, Debug, PartialEq)]
+pub struct SchematicCircuit {
+    pub breaker: String,
+    pub text: String,
+    pub rated: f32,
+    pub characteristic: String,
+    pub three_phase: bool,
+    pub devices: Vec<SchematicDevice>,
+    pub circuit: Option<u64>,
+}
+
+impl SchematicCircuit {
+    pub fn placed(&self) -> usize {
+        self.devices.iter().filter(|d| d.placed.is_some()).count()
+    }
+
+    pub fn device(&self, tag: &str) -> Option<&SchematicDevice> {
+        self.devices.iter().find(|d| d.tag == tag)
+    }
+}
+
+/// The symbol passes the circuit on to the devices behind it: a switch, push button,
+/// contact, terminal or junction box (all its pins one circuit).
+fn switches_through(s: &crate::model::SymbolInst) -> bool {
+    use crate::parts::FnKind as F;
+    matches!(
+        crate::parts::kind_of_symbol(&s.sym),
+        Some(F::No | F::Nc | F::Changeover | F::PushbuttonNo | F::PushbuttonNc | F::SwitchNo | F::SwitchNc | F::Terminal | F::NoOnDelay | F::NoOffDelay | F::Sensor)
+    ) || ["inst_switch", "inst_switch2", "inst_dimmer", "inst_push", "inst_junction", "inst_motion"].contains(&s.sym.as_str())
+}
+
+/// The devices on the nets behind protective device `c` of the schematic: through
+/// pass-through devices (contacts of contactors, residual current devices),
+/// switches, contacts and terminals, not through further protective devices or loads
+/// and never into a potential of the supply. Tags in schematic order.
+fn devices_behind(prj: &Project, nl: &Netlist, c: &electrical::Circuit) -> Vec<String> {
+    use crate::model::PageKind;
+    let mut todo: Vec<usize> = c.nets.iter().copied().collect();
+    let mut seen = std::collections::BTreeSet::new();
+    let mut found: HashMap<String, (usize, usize)> = HashMap::new();
+    while let Some(n) = todo.pop() {
+        let Some(net) = nl.nets.get(n) else { continue };
+        if !seen.insert(n) || (net.named && !c.nets.contains(&n) && electrical::is_supply_potential(prj, &net.name)) {
+            continue;
+        }
+        for pr in &net.pins {
+            let Some(pg) = prj.pages.get(pr.page).filter(|pg| pg.kind == PageKind::Schematic) else { continue };
+            let Some(s) = pg.symbols.get(pr.sym) else { continue };
+            if s.tag.is_empty() || s.tag == c.device {
+                continue;
+            }
+            let at = found.entry(s.tag.clone()).or_insert((pr.page, pr.sym));
+            *at = (*at).min((pr.page, pr.sym));
+            if crate::sizing::is_protective(&s.sym) {
+                continue;
+            }
+            let through: Vec<usize> = if crate::sizing::passes_current(prj, s) {
+                crate::sizing::designation_number(s, pr.pin)
+                    .map(|d| if d % 2 == 1 { d + 1 } else { d - 1 })
+                    .and_then(|partner| (0..s.pins.len()).find(|&j| crate::sizing::designation_number(s, j) == Some(partner)))
+                    .into_iter()
+                    .collect()
+            } else if switches_through(s) {
+                (0..s.pins.len()).filter(|&j| j != pr.pin).collect()
+            } else {
+                Vec::new()
+            };
+            todo.extend(through.into_iter().filter_map(|j| nl.pin_net.get(&(s.id, j)).copied()));
+        }
+    }
+    let mut tags: Vec<(String, (usize, usize))> = found.into_iter().collect();
+    tags.sort_by(|a, b| a.1.cmp(&b.1).then(a.0.cmp(&b.0)));
+    tags.into_iter().map(|t| t.0).collect()
+}
+
+/// What a device of the schematic is for the installation, with its part: by its parts
+/// (one for walls or ceilings), or, without parts, by its symbols (socket outlets,
+/// heating elements, lamps, installation symbols, switches and contacts of an `S`
+/// device). `None` for devices with other parts (devices of cabinets).
+fn device_kind(prj: &Project, tag: &str) -> Option<(Kind, Option<String>)> {
+    use crate::parts::FnKind as F;
+    let refs = prj.devices.get(tag).map(|d| d.parts.clone()).unwrap_or_default();
+    if !refs.is_empty() {
+        return refs.iter().find_map(|r| panel::part_by_number(prj, &r.number).and_then(kind_of).map(|k| (k, Some(r.number.clone()))));
+    }
+    let letters = tag.rsplit('-').next().unwrap_or("");
+    let kinds: Vec<Kind> = prj
+        .pages
+        .iter()
+        .filter(|pg| pg.kind == crate::model::PageKind::Schematic)
+        .flat_map(|pg| pg.symbols.iter())
+        .filter(|s| s.tag == tag)
+        .filter_map(|s| match (s.sym.as_str(), crate::parts::kind_of_symbol(&s.sym)) {
+            ("inst_socket2", _) | (_, Some(F::SocketOutlet)) => Some(Kind::Socket),
+            (_, Some(F::Heater)) => Some(Kind::Heater),
+            ("lamp" | "inst_lamp" | "inst_luminaire", _) => Some(Kind::Light),
+            ("inst_switch" | "inst_switch2" | "inst_dimmer" | "inst_push", _) => Some(Kind::Switch),
+            (_, Some(F::No | F::Nc | F::Changeover | F::PushbuttonNo | F::SwitchNo)) if letters.starts_with('S') => Some(Kind::Switch),
+            _ => None,
+        })
+        .collect();
+    // A load before the switches that feed it.
+    Kind::ALL.into_iter().filter(|k| *k != Kind::Switch).chain([Kind::Switch]).find(|k| kinds.contains(k)).map(|k| (k, None))
+}
+
+/// Where a device is placed in a room (room index, item id); `None` when it is not
+/// placed or placed in a cabinet.
+fn placed_in_room(prj: &Project, tag: &str) -> Option<(usize, u64)> {
+    prj.layout.find_device(tag).filter(|(ei, _)| prj.layout.enclosures[*ei].is_room()).map(|(ei, it)| (ei, it.id))
+}
+
+/// The final circuits of the schematic with socket outlets, switches, lights or heating
+/// elements behind them (see [`SchematicCircuit`]), in schematic order.
+pub fn schematic_circuits(prj: &Project, nl: &Netlist) -> Vec<SchematicCircuit> {
+    let text_of = |tag: &str| prj.pages.iter().flat_map(|pg| pg.symbols.iter()).find(|s| s.tag == tag && !s.function_text.is_empty()).map(|s| s.function_text.clone()).unwrap_or_default();
+    electrical::circuits(prj, nl)
+        .into_iter()
+        .filter(|c| c.is_final())
+        .filter_map(|c| {
+            let devices: Vec<SchematicDevice> = devices_behind(prj, nl, &c)
+                .into_iter()
+                .filter(|tag| prj.layout.find_device(tag).is_none_or(|(ei, _)| prj.layout.enclosures[ei].is_room()))
+                .filter_map(|tag| {
+                    let (kind, part) = device_kind(prj, &tag)?;
+                    Some(SchematicDevice { text: text_of(&tag), kind, part, placed: placed_in_room(prj, &tag), tag })
+                })
+                .collect();
+            if devices.is_empty() {
+                return None;
+            }
+            Some(SchematicCircuit {
+                text: text_of(&c.device),
+                rated: c.protection.rated,
+                characteristic: c.protection.characteristic.title().to_string(),
+                three_phase: c.phases.len() >= 3,
+                circuit: prj.layout.circuits.iter().find(|f| f.breaker == c.device).map(|f| f.id),
+                breaker: c.device,
+                devices,
+            })
+        })
+        .collect()
+}
+
+/// The schematic circuit device `tag` is in.
+pub fn schematic_circuit_of<'a>(list: &'a [SchematicCircuit], tag: &str) -> Option<&'a SchematicCircuit> {
+    list.iter().find(|c| c.device(tag).is_some())
+}
+
+/// The final circuit of the installation for schematic circuit `sc` (its index): the
+/// one using its protective device, or a new one named after the protective device's
+/// function text (or its tag).
+pub fn circuit_for(prj: &mut Project, sc: &SchematicCircuit) -> Result<usize, String> {
+    if let Some(ci) = prj.layout.circuits.iter().position(|c| c.breaker == sc.breaker) {
+        return Ok(ci);
+    }
+    let name = [sc.text.trim(), sc.breaker.as_str()].into_iter().find(|n| !n.is_empty() && !prj.layout.circuits.iter().any(|c| c.name == *n)).unwrap_or("").to_string();
+    let id = add_circuit(prj, &name, &sc.breaker, sc.three_phase)?;
+    Ok(prj.layout.circuits.iter().position(|c| c.id == id).unwrap_or(0))
+}
+
+/// Device `tag` of circuit `sc` became item `id`: the device gets the item's part when
+/// it has none, an earlier place of it goes (its place in a circuit taken by the new
+/// one) and the item is in the final circuit of the protective device. Gives the index
+/// of that circuit.
+fn adopt(prj: &mut Project, sc: &SchematicCircuit, tag: &str, id: u64, old: Option<(usize, u64)>) -> Result<usize, String> {
+    let ri = prj.layout.enclosures.iter().position(|e| e.item(id).is_some()).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", id))?;
+    let part = prj.layout.enclosures[ri].item(id).map(|it| it.part.clone()).unwrap_or_default();
+    if let Some(it) = prj.layout.enclosures[ri].items.iter_mut().find(|i| i.id == id) {
+        it.kind = ItemKind::Device;
+        it.tag = tag.to_string();
+    }
+    if prj.devices.get(tag).is_none_or(|d| d.parts.is_empty()) {
+        let description = panel::part_by_number(prj, &part).map(|x| x.description.clone()).unwrap_or_default();
+        let data = prj.devices.entry(tag.to_string()).or_default();
+        data.parts.push(crate::parts::PartRef { number: part, ..Default::default() });
+        if data.description.is_empty() {
+            data.description = description;
+        }
+    }
+    if let Some((oi, old_id)) = old.filter(|o| o.1 != id) {
+        prj.layout.enclosures[oi].items.retain(|i| i.id != old_id);
+        for c in &mut prj.layout.circuits {
+            for i in &mut c.items {
+                if *i == old_id {
+                    *i = id;
+                }
+            }
+        }
+    }
+    let ci = circuit_for(prj, sc)?;
+    if !prj.layout.circuits[ci].items.contains(&id) {
+        for c in &mut prj.layout.circuits {
+            c.items.retain(|&i| i != id);
+        }
+        prj.layout.circuits[ci].items.push(id);
+    }
+    Ok(ci)
+}
+
+/// Places device `tag` of schematic circuit `sc` into room `ri` at point `at` of the
+/// plant like [`place`]: with its own part, or `part` (empty: the generic one of its
+/// kind), which then becomes its part. A device placed before moves there. The item
+/// goes into the final circuit of the circuit's protective device ([`circuit_for`]).
+/// Gives the item's id and the index of the circuit.
+pub fn place_device(prj: &mut Project, sc: &SchematicCircuit, tag: &str, ri: usize, part: &str, at: [f32; 2]) -> Result<(u64, usize), String> {
+    let d = sc.device(tag).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element of circuit {}", tag, sc.breaker))?;
+    let number = match &d.part {
+        Some(p) => p.clone(),
+        None if !part.trim().is_empty() => {
+            let pd = panel::part_by_number(prj, part.trim()).or_else(|| bundled_parts().iter().find(|p| p.number == part.trim())).ok_or_else(|| tr_fmt!("Unknown device or part: {}", part))?;
+            if kind_of(pd) != Some(d.kind) {
+                return Err(tr_fmt!("{} does not fit {}: choose a part of its kind", part, tag));
+            }
+            part.trim().to_string()
+        }
+        None => d.kind.default_part().to_string(),
+    };
+    let old = placed_in_room(prj, tag);
+    let id = place(prj, ri, &number, at)?;
+    let ci = adopt(prj, sc, tag, id, old)?;
+    Ok((id, ci))
+}
+
+/// Makes item `item` (a socket outlet, switch, light or heating element placed
+/// without a device tag, of the same kind) device `tag` of schematic circuit `sc`:
+/// what was placed before becomes the device of the schematic. Gives the index of the
+/// circuit it is in.
+pub fn link_device(prj: &mut Project, sc: &SchematicCircuit, tag: &str, item: u64) -> Result<usize, String> {
+    let d = sc.device(tag).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element of circuit {}", tag, sc.breaker))?;
+    let poses = panel::site_poses(prj);
+    let p = items(prj, &poses).into_iter().find(|p| p.item == item).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", item))?;
+    let it = prj.layout.enclosures[p.room].item(item).cloned().unwrap_or_default();
+    if !it.tag.is_empty() && it.tag != tag {
+        return Err(tr_fmt!("{} is device {} already", item, it.tag));
+    }
+    if p.kind != d.kind || d.part.as_ref().is_some_and(|own| *own != it.part) {
+        return Err(tr_fmt!("{} does not fit {}: choose a part of its kind", it.part, tag));
+    }
+    adopt(prj, sc, tag, item, placed_in_room(prj, tag))
+}
+
 /// Writes each circuit's cable into the cable list: its type, cross-section and length
 /// (rounded up to the half metre); a circuit without a cable tag gets a new cable
 /// `-W<n>`. Gives how many cables were written.
@@ -543,6 +857,7 @@ pub fn code(kind: Kind) -> &'static str {
         Kind::Socket => "XD",
         Kind::Switch => "SF",
         Kind::Light => "EA",
+        Kind::Heater => "EB",
     }
 }
 
@@ -553,7 +868,8 @@ fn free_tag(prj: &Project, prefix: &str) -> String {
 }
 
 /// Gives the items of the circuits without a device tag one (`<room>-XD1` for socket
-/// outlets, `-SF1` for switches, `-EA1` for lights) with their part. Gives how many.
+/// outlets, `-SF1` for switches, `-EA1` for lights, `-EB1` for heating elements) with
+/// their part. Gives how many.
 pub fn link_devices(prj: &mut Project) -> usize {
     let poses = panel::site_poses(prj);
     let all = items(prj, &poses);
@@ -611,6 +927,7 @@ fn symbol_of(kind: Kind) -> &'static str {
         Kind::Socket => "inst_socket2",
         Kind::Switch => "inst_switch",
         Kind::Light => "inst_lamp",
+        Kind::Heater => "heater",
     }
 }
 

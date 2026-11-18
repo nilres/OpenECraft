@@ -308,6 +308,7 @@ Choose the building.	Válassza ki az épületet.
 Chooses the pages whose structure starts with this	Kiválasztja azokat az oldalakat, amelyek struktúrája ezzel kezdődik
 Circle	Kör
 Circuits of a generic manifold	Általános osztó körei
+Circuits of the schematic	A kapcsolási rajz áramkörei
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	A villámvédelem osztálya: a levezetők távolsága, a lapostetők hálója és a védőszög
 Class {}	{}. osztály
 Clear	Törlés
@@ -317,6 +318,7 @@ Click	Kattintás
 Click a text: open its link	Kattintás egy szövegre: hivatkozásának megnyitása
 Click an element in the drawing to edit it.	Kattintson a rajz egy elemére a szerkesztéséhez.
 Click centre, then a point on the circle	Kattintson a középpontra, majd a kör egy pontjára
+Click in a room to place {}	Kattintson egy helyiségbe {} elhelyezéséhez
 Click in the panel layout: a single item of an assembly	Kattintás a szekrényelrendezésben: egy szerelvény egyetlen eleme
 Click into the page to place the image	Kattintson az oldalra a kép elhelyezéséhez
 Click into the page to place {}	Kattintson az oldalra a(z) {} elhelyezéséhez
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Minden pont-pont összek�
 Earth electrodes	Földelők
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Egy épület földelői (alap- és körföldelő, a helyszínrajzra kattintott rúdföldelők) és villámvédelme a tetőkre kattintott felfogórudakkal
 Earth rod placed at building {}; click for the next one · Esc: stop	Rúdföldelő elhelyezve a(z) {} épületnél; kattintson a következőért · Esc: vége
+Earthing	Földelés
 Earthing and lightning protection	Földelés és villámvédelem
 Earthing busbar	Földelősín
 Earthing conductor	Földelővezető
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Fejegység (CPU / csatoló)
 Header row	Fejlécsor
 Heat map	Hőtérkép
 Heating	Fűtés
-Heating circuit manifolds and control boxes	Fűtőköri osztók és szabályozódobozok
+Heating elements, heating circuit manifolds and control boxes	Fűtőelemek, fűtőköri osztók és szabályozódobozok
 Height (mm)	Magasság (mm)
 Height above sea level	Tengerszint feletti magasság
 Height above the floor	Padló feletti magasság
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nem módosult:
 Not found: {}	Nem található: {}
 Not in the project parts – synchronize in parts management	Nincs a projekt alkatrészei között – szinkronizálja az alkatrészkezelésben
 Not on a wire	Nincs vezetéken
+Not placed	Nincs elhelyezve
 Not saved yet	Még nincs mentve
 Not saved, locked or changed by another user	Nincs mentve, egy másik felhasználó zárolta vagy módosította
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nincs átvéve: a bal gomb önmagában kijelöl, rajzol és mozgat; tartson nyomva egy módosítóbillentyűt, vagy használjon másik gombot.
@@ -1490,6 +1494,7 @@ Pitch	Hajlásszög
 Pitch X / Y	Osztás X / Y
 Place a comment on the page	Megjegyzés elhelyezése az oldalon
 Place again at all symbols using it	Újbóli elhelyezés minden azt használó szimbólumon
+Place all	Összes elhelyezése
 Place an enclosure, device or machine location at this node	Szekrény, készülék vagy géphely elhelyezése ezen a csomóponton
 Place connection definition point	Összeköttetés-definíciós pont elhelyezése
 Place connection points	Csatlakozási pontok elhelyezése
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – {}. revízió, {}
 {} – {} ({} pages)	{} – {} ({} oldal)
 {} – {} here (Esc cancels)	{} – {} itt (Esc megszakítja)
+{} – {} of {} placed	{} – {}/{} elhelyezve
 {}, freestanding	{}, szabadföldi
 {}, {} (copy of {}, revision {})	{}, {} ({} másolata, {}. revízió)
 {}: click to show its floor plan	{}: kattintson az alaprajz megjelenítéséhez

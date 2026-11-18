@@ -5,6 +5,23 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Circuits of the schematic on the floor plan:** the final circuits drawn in the
+  schematic are listed in the *Buildings* pane with the socket outlets, switches,
+  lights and heating elements behind their protective devices (through switches,
+  contacts and terminals). A click places each in a room of the floor plan, or makes an
+  outlet, switch or light placed before that device, and it goes into the final circuit
+  of its protective device, made when there is none. Heating elements (panel heaters,
+  towel radiators, infrared ceiling panels) are placed, wired and drawn like the other
+  items. Commands `list_schematic_circuits`, `place_circuit_device`
+  ([circuits of the schematic](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
+- **Lights and heaters in 3D:** ceiling lights, downlights, wall, panel and emergency
+  lights, panel heaters, towel radiators and infrared heating panels get generated 3D
+  models instead of plain boxes.
+- **Floor plan on paper in the room's floor plan:** the scan or drawing under a level
+  is drawn under the floor plan of each of its rooms too (*Show › Floor plan on
+  paper*).
+- **Buildings pane in tabs:** *Site*, *Building*, *Roofs*, *Earthing*, *Floor plan on
+  paper* and *Electrical installation*, each with the site plan.
 - **Installation plans with circuits:** socket outlets, switches and lights (new
   generic ceiling lights, downlights and wall lights) are put into the rooms with a
   click on the floor plan of a level (*Buildings* pane) and drawn there with the

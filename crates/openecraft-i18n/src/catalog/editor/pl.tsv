@@ -308,6 +308,7 @@ Choose the building.	Wybierz budynek.
 Chooses the pages whose structure starts with this	Wybiera strony, których struktura zaczyna się od tego
 Circle	Okrąg
 Circuits of a generic manifold	Obiegi rozdzielacza ogólnego
+Circuits of the schematic	Obwody schematu
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Klasa ochrony odgromowej: odstęp przewodów odprowadzających, oczko dachów płaskich i kąt ochronny
 Class {}	Klasa {}
 Clear	Wyczyść
@@ -317,6 +318,7 @@ Click	Kliknięcie
 Click a text: open its link	Kliknięcie tekstu: otwarcie jego łącza
 Click an element in the drawing to edit it.	Kliknij element na rysunku, aby go edytować.
 Click centre, then a point on the circle	Kliknij środek, a następnie punkt na okręgu
+Click in a room to place {}	Kliknij w pomieszczeniu, aby umieścić {}
 Click in the panel layout: a single item of an assembly	Kliknięcie w zabudowie szafy: pojedynczy element zespołu
 Click into the page to place the image	Kliknij na stronie, aby umieścić obraz
 Click into the page to place {}	Kliknij na stronie, aby umieścić {}
@@ -664,6 +666,7 @@ Each point-to-point connection can belong to a harness	Każde połączenie punkt
 Earth electrodes	Uziomy
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Uziomy budynku (fundamentowy i otokowy, uziomy pionowe klikane na planie sytuacyjnym) i jego ochrona odgromowa z iglicami klikanymi na dachach
 Earth rod placed at building {}; click for the next one · Esc: stop	Uziom pionowy umieszczony przy budynku {}; kliknij dla następnego · Esc: zakończ
+Earthing	Uziemienie
 Earthing and lightning protection	Uziemienie i ochrona odgromowa
 Earthing busbar	Szyna uziemiająca
 Earthing conductor	Przewód uziemiający
@@ -857,7 +860,7 @@ Head (CPU / coupler)	Głowica (CPU / sprzęgło)
 Header row	Wiersz nagłówka
 Heat map	Mapa cieplna
 Heating	Ogrzewanie
-Heating circuit manifolds and control boxes	Rozdzielacze ogrzewania i skrzynki regulacyjne
+Heating elements, heating circuit manifolds and control boxes	Elementy grzejne, rozdzielacze ogrzewania i skrzynki regulacyjne
 Height (mm)	Wysokość (mm)
 Height above sea level	Wysokość nad poziomem morza
 Height above the floor	Wysokość nad podłogą
@@ -1308,6 +1311,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nie zmieniono:
 Not found: {}	Nie znaleziono: {}
 Not in the project parts – synchronize in parts management	Brak wśród artykułów projektu – zsynchronizuj w zarządzaniu artykułami
 Not on a wire	Nie na przewodzie
+Not placed	Nie umieszczono
 Not saved yet	Jeszcze nie zapisano
 Not saved, locked or changed by another user	Nie zapisano, zablokowane lub zmienione przez innego użytkownika
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nie przyjęto: sam lewy przycisk zaznacza, rysuje i przesuwa; przytrzymaj klawisz modyfikujący lub użyj innego przycisku.
@@ -1490,6 +1494,7 @@ Pitch	Nachylenie
 Pitch X / Y	Rozstaw X / Y
 Place a comment on the page	Umieść komentarz na stronie
 Place again at all symbols using it	Umieść ponownie przy wszystkich symbolach, które go używają
+Place all	Umieść wszystkie
 Place an enclosure, device or machine location at this node	Umieść obudowę, urządzenie lub lokalizację maszyny w tym węźle
 Place connection definition point	Umieść punkt definicji połączenia
 Place connection points	Umieść punkty przyłączeniowe
@@ -2595,6 +2600,7 @@ x y	x y
 {} – revision {}, {}	{} – rewizja {}, {}
 {} – {} ({} pages)	{} – {} (strony: {})
 {} – {} here (Esc cancels)	{} – {} tutaj (Esc anuluje)
+{} – {} of {} placed	{} – umieszczono {} z {}
 {}, freestanding	{}, naziemne
 {}, {} (copy of {}, revision {})	{}, {} (kopia {}, rewizja {})
 {}: click to show its floor plan	{}: kliknij, aby pokazać jego rzut
