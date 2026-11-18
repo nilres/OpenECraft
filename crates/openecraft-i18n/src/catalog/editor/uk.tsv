@@ -950,6 +950,7 @@ In the structure of the current page	У структурі поточної ст
 Include manually set numbers	Враховувати вручну задані номери
 Index	Індекс
 Indices	Індекси
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	Первинна перевірка (IEC 60364-6, DIN VDE 0100-600): заповнена за схемою, результати вводяться тут
 Inner walls	Внутрішні стіни
 Input bytes	Байти входів
 Inputs	Входи
@@ -1048,7 +1049,6 @@ Library	Бібліотека
 Lightning protection	Блискавкозахист
 Lightning protection of building {}	Блискавкозахист будівлі {}
 Like two fingers	Як два пальці
-Limits	Граничні значення
 Limits in effect	Чинні граничні значення
 Line to PE at the supply point; 0 = from the highest short-circuit current	Фаза – PE у точці живлення; 0 = з найбільшого струму короткого замикання
 Line up on the rail	Вишикувати на рейці
@@ -1191,6 +1191,7 @@ NC data of this face (DXF)	Дані ЧПК цієї грані (DXF)
 Nailboard (SVG)…	Шаблон джгута (SVG)…
 Name and cross reference	Ім'я та перехресне посилання
 Name on the server	Назва на сервері
+Name the inspector in the report data first.	Спочатку вкажіть перевіряльника в даних протоколу.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Ім’я; тип даних; логічна адреса; коментар – для засобів програмування ПЛК
 Named copy of this form, for report blocks	Іменована копія цієї форми для блоків звітів
 Navigators	Навігатори
@@ -1818,7 +1819,6 @@ Save to project server: {}	Зберегти на сервері проєктів
 Save to project server: {} – the connection is lost, saving tries again	Зберегти на сервері проєктів: {} – з'єднання втрачено, збереження спробує знову
 Save workspace	Зберегти робочий простір
 Save workspace…	Зберегти робочий простір…
-Saved	Збережено
 Saved the properties of {} (revision {})	Властивості {} збережено (ревізія {})
 Saved to	Збережено в
 Saved to the project server (revision {})	Збережено на сервері проєктів (ревізія {})
@@ -2133,6 +2133,7 @@ The properties of the selection in a window beside the page	Властивост
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Тим часом властивості було змінено на сервері проєктів. Перезавантаження покаже їх; введене вами буде замінено.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Рейка або монтажна основа; її приладдя — гаки, затискачі та баласт
 The recalculation keeps frozen routes as long as they are still possible	Під час перерахунку зафіксовані траси зберігаються, доки це можливо
+The report as tables and report pages	Протокол у вигляді таблиць і сторінок звітів
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Стрічка з вкладкою Файл замінює меню; Ctrl+Shift+P знаходить будь-яку команду.
 The rooms of the level side by side; click the level again for all of the plant	Приміщення поверху поруч; клацніть поверх ще раз, щоб побачити всю установку
 The second fault is checked at the line-to-earth voltage	Подвійне замикання перевіряється при напрузі між фазою та землею
@@ -2166,6 +2167,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	Основні написи
 Title blocks, plot frames and page templates	Основні написи, рамки аркушів і шаблони сторінок
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	Основні написи, схеми звітів і рамки, спільні для всіх проєктів на сервері виробів (Вироби › Сервер виробів)
+Title or standard, e.g. VDE 0100-600	Назва або стандарт, наприклад VDE 0100-600
 To do	До виконання
 Toggle corner direction while drawing wires	Перемикати напрямок кута під час малювання проводів
 Toggle routing around symbols (wire tool)	Увімкнути / вимкнути обхід символів (інструмент «Провід»)
@@ -2213,7 +2215,6 @@ Used on {} of {} pages	Використовується на {} з {} сторі
 User / group	Користувач / група
 User defined property	Користувацька властивість
 User names, separated by commas	Імена користувачів через кому
-Value	Значення
 Value set	Набір значень
 Value sets	Набори значень
 Values	Значення
@@ -2381,7 +2382,6 @@ male	штир
 manual	вручну
 max. {} °C	макс. {} °C
 may overlap	можуть перекриватися
-missing	відсутній
 model	модель
 name	назва
 no	ні

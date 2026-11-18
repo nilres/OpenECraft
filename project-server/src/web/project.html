@@ -38,10 +38,57 @@ main { padding: 16px; max-width: 1700px; margin: 0 auto; }
 .paper.dragging { cursor: grabbing; }
 .paper img { display: block; margin: 0 auto; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.35); user-select: none; -webkit-user-drag: none; }
 .paper .status { color: #fff; }
+.modes { margin-bottom: 10px; padding-bottom: 6px; }
+.inspection .summary { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.inspection .filter { display: flex; gap: 8px; align-items: center; flex: 1 1 260px; max-width: 460px; }
+.inspection .filter input { flex: 1; min-width: 0; }
+.badge.passed { color: var(--ok); }
+.badge.failed { color: var(--bad); }
+.badge.incomplete { color: var(--warn); }
+.badge.not_tested { color: var(--muted); }
+.missing { color: var(--warn); font-weight: 600; }
+.circuit { border: 1px solid var(--line); border-radius: 8px; margin: 0 0 8px; background: var(--panel); }
+.circuit > summary { display: flex; gap: 8px; align-items: center; padding: 10px 12px; min-height: 48px; cursor: pointer; list-style: none; }
+.circuit > summary::-webkit-details-marker { display: none; }
+.circuit > summary::before { content: "▸"; color: var(--muted); }
+.circuit[open] > summary::before { content: "▾"; }
+.circuit > summary .desc { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
+.circuit[open] > summary { border-bottom: 1px solid var(--line); }
+.circuit .body { padding: 10px 12px 12px; }
+.measure { border: 0; padding: 0; margin: 14px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.measure label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.measure .limit { white-space: nowrap; }
+.measure input, .measure select, .measure textarea { width: 100%; font-size: 16px; padding: 10px; min-height: 44px; }
+.measure .wide { grid-column: 1 / -1; }
+.measure .bad input, .measure .bad select { border-color: var(--bad); outline: 1px solid var(--bad); }
+.measure .bad > span { color: var(--bad); }
+.measure .note input { border-color: var(--warn); outline: 1px solid var(--warn); }
+.measure .note > span, .warn { color: var(--warn); }
+.own-items { display: grid; gap: 8px; }
+.own-item { display: grid; grid-template-columns: minmax(0, 1fr) 160px; gap: 8px; }
+.own-item.bad input, .own-item.bad select { border-color: var(--bad); }
+.measure details.limits summary { cursor: pointer; color: var(--text); font-weight: 600; padding: 6px 0; }
+.limit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.limit-item .limit { display: block; white-space: normal; overflow-wrap: anywhere; }
+.measure details.limits { min-width: 0; }
+.circuit .buttons button { min-height: 44px; padding: 8px 18px; }
+.circuit.report { border-color: var(--accent); margin-bottom: 14px; }
+.inspection .group-title { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 16px 2px 8px; }
+.measure h4 { margin: 8px 0 0; font-size: 14px; color: var(--text); border-top: 1px solid var(--line); padding-top: 10px; }
+.measure .check-item { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) 160px; align-items: center; gap: 4px 12px; color: var(--text); font-size: 14px; }
 @media (max-width: 800px) {
   main { padding: 12px 16px; }
   .viewer { grid-template-columns: 1fr; }
   .nav { max-height: 40vh; }
+  .project .info { display: none; }
+  .measure { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  header { position: static; }
+  main { padding: 8px; }
+  section.panel { padding: 8px; }
+  .measure { grid-template-columns: 1fr; }
+  .measure .check-item, .own-item { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -62,6 +109,7 @@ main { padding: 16px; max-width: 1700px; margin: 0 auto; }
 <script src="/common.js"></script>
 <script src="/access.js"></script>
 <script src="/admin.js"></script>
+<script src="/inspection.js"></script>
 <script src="/project.js"></script>
 </body>
 </html>

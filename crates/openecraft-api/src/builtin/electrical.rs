@@ -1,5 +1,6 @@
 //! Electrical calculations and verification: supply and installation conditions,
-//! short circuit and selectivity, loads, EMC, safety functions and rule sets.
+//! short circuit and selectivity, loads, EMC, safety functions, rule sets and the
+//! inspection and test report of the installation.
 
 use crate::builtin::common::{int_in, num_in, NO_MAX};
 use crate::params::{optional, Args, Kind};
@@ -11,8 +12,9 @@ use openecraft_core::shortcircuit::Basis;
 use openecraft_core::model::Project;
 use openecraft_core::rules::{self, RuleSet};
 use openecraft_core::safety::{self, SafetyFunction};
+use openecraft_core::inspection::{self, Field};
 use openecraft_core::{emc, loads, shortcircuit};
-use openecraft_i18n::{tr_const, tr_fmt};
+use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 
 pub struct Electrical;
@@ -102,6 +104,18 @@ pub static COMMANDS: &[Spec] = &[
             optional("remove", Kind::Str, tr_const!("Name of the customer rule set to remove")),
         ],
         run: rule_sets,
+    },
+    Spec {
+        name: "inspection_report",
+        help: tr_const!("Inspection and test report of the installation (IEC 60364-6): the data of the report, the visual inspection, the sources of SELV, PELV and separated circuits, every circuit of the mains with what the schematic gives (description, cables, protective device, residual current device, limits; null: missing in the project), the results measured and the verdicts; sets the data of the report and the results of a circuit or a source"),
+        params: &[
+            optional("circuit", Kind::Str, tr_const!("Device tag of the protective device whose results to set")),
+            optional("results", Kind::Object, tr_const!("Results of the circuit to set: continuity (Ω), insulation_voltage (V), insulation, insulation_n_pe and insulation_l_n (MΩ), loop_impedance (Ω), voltage_drop (%), rcd_current (mA), rcd_time (ms), rcd_time_5 (ms), rcd_voltage (V), polarity, phase_sequence and function (ok or failed), tester, date, instrument, remark; an empty text clears")),
+            optional("source", Kind::Str, tr_const!("Device tag of the power supply or transformer whose results to set")),
+            optional("source_results", Kind::Object, tr_const!("Results of the source to set: measure (selv, pelv, separation or n/a), insulation_voltage (V), insulation (MΩ), remark; an empty text clears")),
+            optional("header", Kind::Object, tr_const!("Data of the report to set: client, site, installer, reason, inspector, instruments, ze (Ω), ik (kA), earth_electrode (Ω), bonding (Ω), floor_insulation (kΩ), imd (ok, failed or n/a), first_fault (A), next_inspection, signed_by, signed_on, the visual inspection as check.<item> and own items as own.<n> (ok, failed or n/a) with their text as own.<n>.title, other limits as limit.<name>; an empty text clears")),
+        ],
+        run: inspection_report,
     },
     Spec {
         name: "verify_project",
@@ -195,6 +209,52 @@ fn finite(v: f32) -> Value {
     } else {
         Value::Null
     }
+}
+
+/// A value of an object parameter as text (numbers too; null clears).
+fn value_text(key: &str, value: &Value) -> Result<String, String> {
+    match value {
+        Value::String(s) => Ok(s.clone()),
+        Value::Number(n) => Ok(n.to_string()),
+        Value::Null => Ok(String::new()),
+        _ => Err(tr_fmt!("Unknown field: {}", key)),
+    }
+}
+
+fn inspection_report(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    // All values or none.
+    let mut changed = prj.clone();
+    if let Some(results) = a.value("results") {
+        let circuit = a.str("circuit").ok_or_else(|| tr("Name the circuit whose results to set").to_string())?;
+        let results = results.as_object().ok_or_else(|| tr("The results are an object of fields and values").to_string())?;
+        let an = Analysis::build(prj);
+        if !inspection::circuits(prj, &an.netlist, &an.connections).iter().any(|c| c.circuit == circuit) {
+            return Err(tr_fmt!("No circuit {}", circuit));
+        }
+        for (key, value) in results {
+            let field = Field::from_key(key).ok_or_else(|| tr_fmt!("Unknown field: {}", key))?;
+            inspection::set(&mut changed, circuit, field, &value_text(key, value)?)?;
+        }
+    }
+    if let Some(results) = a.value("source_results") {
+        let device = a.str("source").ok_or_else(|| tr("Name the source whose results to set").to_string())?;
+        let results = results.as_object().ok_or_else(|| tr("The results are an object of fields and values").to_string())?;
+        if !inspection::sources(prj).iter().any(|s| s.device == device) {
+            return Err(tr_fmt!("No source {}", device));
+        }
+        for (key, value) in results {
+            let field = inspection::SourceField::from_key(key).ok_or_else(|| tr_fmt!("Unknown field: {}", key))?;
+            inspection::set_source(&mut changed, device, field, &value_text(key, value)?)?;
+        }
+    }
+    if let Some(header) = a.value("header") {
+        let header = header.as_object().ok_or_else(|| tr("The results are an object of fields and values").to_string())?;
+        let values = header.iter().map(|(k, v)| value_text(k, v).map(|v| (k.as_str(), v))).collect::<Result<Vec<_>, _>>()?;
+        inspection::set_header_all(&mut changed, values.iter().map(|(k, v)| (*k, v.as_str())))?;
+    }
+    prj.inspection = changed.inspection;
+    let an = Analysis::build(prj);
+    serde_json::to_value(inspection::Report::of(prj, &an.netlist, &an.connections)).map_err(|e| e.to_string())
 }
 
 fn short_circuit(prj: &mut Project, _: &Args) -> Result<Value, String> {

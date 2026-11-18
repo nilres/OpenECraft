@@ -944,6 +944,7 @@ In the structure of the current page	在当前页的结构中
 Include manually set numbers	包括手动设置的编号
 Index	索引
 Indices	索引
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	初始检验（IEC 60364-6、DIN VDE 0100-600）：根据原理图填写，结果在此输入
 Inner walls	内墙
 Input bytes	输入字节
 Inputs	输入
@@ -1039,7 +1040,6 @@ Library	库
 Lightning protection	防雷
 Lightning protection of building {}	建筑物 {} 的防雷
 Like two fingers	与双指相同
-Limits	限值
 Limits in effect	生效的限值
 Line to PE at the supply point; 0 = from the highest short-circuit current	电源进线点的相对 PE 故障电流；0 = 根据最大短路电流计算
 Line up on the rail	在导轨上排列
@@ -1181,6 +1181,7 @@ NC data of this face (DXF)	此面的 NC 数据 (DXF)
 Nailboard (SVG)…	钉板图 (SVG)…
 Name and cross reference	名称和交叉引用
 Name on the server	服务器上的名称
+Name the inspector in the report data first.	请先在报告数据中填写检验员。
 Name; Data Type; Logical Address; Comment – for PLC programming tools	名称; 数据类型; 逻辑地址; 注释 – 用于 PLC 编程工具
 Named copy of this form, for report blocks	此表单的命名副本，用于报表块
 Navigators	导航器
@@ -1802,7 +1803,6 @@ Save to project server: {}	保存到项目服务器：{}
 Save to project server: {} – the connection is lost, saving tries again	保存到项目服务器：{} – 连接已断开，保存将重试
 Save workspace	保存工作区
 Save workspace…	保存工作区…
-Saved	已保存
 Saved the properties of {} (revision {})	已保存 {} 的属性（修订 {}）
 Saved to	保存位置
 Saved to the project server (revision {})	已保存到项目服务器（修订 {}）
@@ -2113,6 +2113,7 @@ The properties of the selection in a window beside the page	在页面旁的窗�
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	属性已在项目服务器上被更改。重新加载会显示它们；您输入的内容将被替换。
 The rail or mounting base; its accessories are the hooks, clamps and ballast	导轨或安装底座；其附件为挂钩、压块和压载
 The recalculation keeps frozen routes as long as they are still possible	只要仍然可行，重新计算会保留冻结的布线
+The report as tables and report pages	以表格和报表页显示报告
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	带“文件”选项卡的功能区取代了菜单；Ctrl+Shift+P 可查找任意命令。
 The rooms of the level side by side; click the level again for all of the plant	楼层的房间并排显示；再次单击楼层可显示整个设施
 The second fault is checked at the line-to-earth voltage	二次故障按相对地电压进行检查
@@ -2146,6 +2147,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	标题栏
 Title blocks, plot frames and page templates	标题栏、图框和页模板
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	零件服务器上所有项目共享的标题栏、报表方案和图框（零件 › 零件服务器）
+Title or standard, e.g. VDE 0100-600	标题或标准，例如 VDE 0100-600
 To do	待完成
 Toggle corner direction while drawing wires	绘制导线时切换拐角方向
 Toggle routing around symbols (wire tool)	切换绕开符号布线（导线工具）
@@ -2192,7 +2194,6 @@ Used on {} of {} pages	在 {} / {} 页上使用
 User / group	用户 / 组
 User defined property	用户定义属性
 User names, separated by commas	用户名，以逗号分隔
-Value	值
 Value set	值集
 Value sets	值集
 Values	值
@@ -2358,7 +2359,6 @@ male	插针
 manual	手动
 max. {} °C	最高 {} °C
 may overlap	允许重叠
-missing	缺失
 model	模型
 name	名称
 no	否

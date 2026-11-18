@@ -22,8 +22,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   paper*).
 - **Buildings pane in tabs:** *Site*, *Building*, *Roofs*, *Earthing*, *Floor plan on
   paper* and *Electrical installation*, each with the site plan.
+- **Reports found by their standards:** the filter of the *Reports* pane (and of the
+  website, `list_reports` with `search`) also finds a report by the standards it
+  follows, ignoring spaces and dashes: `VDE 0100 600` or `IEC 60364-6` find the
+  inspection and test report, `ISO 13849` the safety functions. Plugins give their
+  reports search terms with `keywords`.
 - **Installation plans with circuits:** socket outlets, switches and lights (new
-  generic ceiling lights, downlights and wall lights) are put into the rooms with a
+  generic ceiling lights, downlights and wall lights, in the schematic with the new
+  symbol *Luminaire*: L, N and PE) are put into the rooms with a
   click on the floor plan of a level (*Buildings* pane) and drawn there with the
   symbols of installation plans; final circuits feed them from a protective device of
   the distribution board (spare ones marked) through a cable wired item by item. The
@@ -42,6 +48,34 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   doors and windows. Commands `import_floor_plan`, `set_floor_plan`,
   `calibrate_floor_plan`, `detect_floor_plan`, `trace_floor_plan`
   ([floor plans on paper](docs/features/panel-layout.md#floor-plans-on-paper)).
+- **Inspection and test report (IEC 60364-6 / DIN VDE 0100-600):** a report of the
+  initial verification of the installation, filled in from the schematic: every
+  protective device fed from the mains is a circuit, with its description, cables,
+  cross-section, tripping characteristic and rated current, the residual current
+  device protecting it (type, selective or not, rated residual current) and the
+  highest loop impedance that passes (TN: U0 / Ia or U0 / IΔn; TT: 50 V / IΔn; IT:
+  the second fault). What the project does not give is marked *missing*, not
+  assumed. The results measured on site (protective conductor, insulation with its
+  test voltage, loop impedance, voltage drop, RCD tripping current, tripping times at
+  IΔn and 5 × IΔn, contact voltage, polarity, phase sequence, function test, tester,
+  date, instrument, remark) are checked against the limits. The power supplies and
+  transformers are the sources of SELV, PELV and separated circuits, with their
+  insulation and the highest voltage of SELV and PELV. The report adds its data
+  (client, site, installer, reason, inspector, instruments, Ze, prospective fault
+  current, earth electrode resistance, main bonding, insulating floors and walls, in
+  IT systems the insulation monitoring device and the first fault current, next
+  inspection), the visual inspection of 6.4.2 with own items, an overall verdict
+  (*Passed*, *Not passed*, *Incomplete*, *Not tested*) and a signature that any later
+  change takes away. Insulation is recorded L–PE, N–PE and L–N; the protective
+  conductor is shown against its resistance calculated from the cables; the fault
+  current measured at the origin is checked against the breaking capacities. Every
+  limit is a setting of the report with its default and source, for the edition the
+  installation is verified against. Entered in the editor's pane *Tools › Inspection
+  and test report* (without a project server), in *Edit in table*, with the command
+  `inspection_report` and **on a
+  tablet or a phone** on the web page of the project server, where reviewers and
+  editors save each card without opening the project and without a lock. The report
+  exports as an Excel workbook ([#215](https://github.com/nilres/OpenECraft/issues/215)).
 - **Website and public servers:** the website [openecraft.org](https://openecraft.org)
   with its live demos, the web editor at
   [editor.openecraft.org](https://editor.openecraft.org), a public parts server at

@@ -296,7 +296,7 @@ impl App {
 
     fn report_form_tab(&mut self, ui: &mut egui::Ui) -> Option<Action> {
         let mut action = None;
-        let reports = self.report_list();
+        let reports = self.report_list("");
         let fu = &mut self.forms_ui;
         let kind = *fu.report.get_or_insert(ReportKind::DeviceList.into());
         let kind_title = reports.iter().find(|(k, _)| *k == kind).map(|(_, t)| t.clone()).unwrap_or_else(|| kind.title());

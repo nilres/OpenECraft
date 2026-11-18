@@ -236,24 +236,54 @@ impl Circuit {
     }
 }
 
-/// Rated residual current of a residual current device (mA): `Rated residual current`
-/// of the tech data or a value in mA in the description; 30 mA otherwise.
-fn residual_current(prj: &Project, tag: &str) -> f32 {
-    crate::sizing::device_parts(prj, tag)
-        .iter()
-        .find_map(|p| {
-            let text = p.tech_value("Rated residual current").map(String::from).unwrap_or_else(|| p.description.clone());
-            let i = text.find("mA")?;
-            let num: String = text[..i].trim_end().chars().rev().take_while(|c| c.is_ascii_digit() || *c == '.').collect::<Vec<_>>().into_iter().rev().collect();
-            num.parse().ok()
-        })
-        .unwrap_or(30.0)
+/// A protective device fed from the mains, whether its parts give protection data or
+/// not.
+#[derive(Clone, Debug)]
+pub struct Feed {
+    pub device: String,
+    pub page: usize,
+    /// Id of the protective symbol.
+    pub symbol: u64,
+    /// Nets on the line side of the device.
+    pub line: BTreeSet<usize>,
+    /// Nets behind the device ([`protected_nets`]).
+    pub nets: BTreeSet<usize>,
+    /// Phases the device is fed from.
+    pub phases: BTreeSet<String>,
+    /// Index of the device upstream (among the devices of the same list).
+    pub parent: Option<usize>,
+    /// Device tag of the residual current device protecting it, its own or that of a
+    /// device upstream.
+    pub rcd: Option<String>,
 }
 
-/// The protective devices fed from the mains with their circuits, in schematic order.
-pub fn circuits(prj: &Project, nl: &Netlist) -> Vec<Circuit> {
+/// Rated residual current of a residual current device (mA) as its data states it:
+/// the property, `Rated residual current` of the tech data or a value in mA in the
+/// description of its parts.
+pub fn stated_residual_current(prj: &Project, tag: &str) -> Option<f32> {
+    let stored = crate::properties::stored(prj, &crate::properties::Object::Device(tag.into()), "device.residual_current");
+    if let Some(v) = stored.and_then(|v| v.replace(',', ".").trim().trim_end_matches("mA").trim().parse::<f32>().ok()) {
+        return Some(v);
+    }
+    crate::sizing::device_parts(prj, tag).iter().find_map(|p| {
+        let text = p.tech_value("Rated residual current").map(String::from).unwrap_or_else(|| p.description.clone());
+        let i = text.find("mA")?;
+        let num: String = text[..i].trim_end().chars().rev().take_while(|c| c.is_ascii_digit() || *c == '.').collect::<Vec<_>>().into_iter().rev().collect();
+        num.parse().ok()
+    })
+}
+
+/// Rated residual current of a residual current device (mA) for the calculations:
+/// as stated ([`stated_residual_current`]), 30 mA otherwise.
+fn residual_current(prj: &Project, tag: &str) -> f32 {
+    stated_residual_current(prj, tag).unwrap_or(30.0)
+}
+
+/// The protective devices fed from the mains in schematic order, without the device
+/// upstream and the residual current device ([`link`]).
+fn gather(prj: &Project, nl: &Netlist) -> Vec<Feed> {
     let mains = mains(prj, nl);
-    let mut out: Vec<Circuit> = Vec::new();
+    let mut out: Vec<Feed> = Vec::new();
     for (pi, pg) in prj.pages.iter().enumerate().filter(|(_, p)| p.kind == PageKind::Schematic) {
         for (si, s) in pg.symbols.iter().enumerate() {
             if !is_protective(&s.sym) || s.tag.is_empty() {
@@ -272,10 +302,14 @@ pub fn circuits(prj: &Project, nl: &Netlist) -> Vec<Circuit> {
                 c.phases.extend(phases);
                 continue;
             }
-            let Some(protection) = crate::protection::of_device(prj, &s.tag) else { continue };
-            out.push(Circuit { device: s.tag.clone(), page: pi, symbol: s.id, protection, line, nets, phases, parent: None, residual: None });
+            out.push(Feed { device: s.tag.clone(), page: pi, symbol: s.id, line, nets, phases, parent: None, rcd: None });
         }
     }
+    out
+}
+
+/// Sets the device upstream of each feed and the residual current device protecting it.
+fn link(prj: &Project, nl: &Netlist, feeds: &mut [Feed]) {
     let rcds: Vec<(String, BTreeSet<usize>)> = prj
         .pages
         .iter()
@@ -287,22 +321,55 @@ pub fn circuits(prj: &Project, nl: &Netlist) -> Vec<Circuit> {
             (s.tag.clone(), load.filter_map(|i| nl.pin_net.get(&(s.id, i)).copied()).collect())
         })
         .collect();
-    for i in 0..out.len() {
-        out[i].parent = (0..out.len()).find(|&j| j != i && !out[j].nets.is_disjoint(&out[i].line));
-        let c = &out[i];
-        out[i].residual = rcds.iter().find(|(_, nets)| !nets.is_disjoint(&c.line) || !nets.is_disjoint(&c.nets)).map(|(tag, _)| residual_current(prj, tag));
+    for i in 0..feeds.len() {
+        feeds[i].parent = (0..feeds.len()).find(|&j| j != i && !feeds[j].nets.is_disjoint(&feeds[i].line));
+        let c = &feeds[i];
+        feeds[i].rcd = rcds.iter().find(|(_, nets)| !nets.is_disjoint(&c.line) || !nets.is_disjoint(&c.nets)).map(|(tag, _)| tag.clone());
     }
-    // A residual current device upstream protects the circuits below it.
-    for i in 0..out.len() {
-        let mut p = out[i].parent;
+    // A residual current device upstream protects the devices below it.
+    for i in 0..feeds.len() {
+        let mut p = feeds[i].parent;
         let mut depth = 0;
-        while let (Some(j), None, true) = (p, out[i].residual, depth < out.len()) {
-            out[i].residual = out[j].residual;
-            p = out[j].parent;
+        while let (Some(j), None, true) = (p, &feeds[i].rcd, depth < feeds.len()) {
+            feeds[i].rcd = feeds[j].rcd.clone();
+            p = feeds[j].parent;
             depth += 1;
         }
     }
+}
+
+/// Every protective device fed from the mains, also those whose parts give no
+/// protection data, with the device upstream and the residual current device.
+pub fn feeds(prj: &Project, nl: &Netlist) -> Vec<Feed> {
+    let mut out = gather(prj, nl);
+    link(prj, nl, &mut out);
     out
+}
+
+/// The protective devices fed from the mains with their circuits, in schematic order.
+pub fn circuits(prj: &Project, nl: &Netlist) -> Vec<Circuit> {
+    let (mut kept, mut protections) = (Vec::new(), Vec::new());
+    for f in gather(prj, nl) {
+        if let Some(p) = crate::protection::of_device(prj, &f.device) {
+            kept.push(f);
+            protections.push(p);
+        }
+    }
+    link(prj, nl, &mut kept);
+    kept.into_iter()
+        .zip(protections)
+        .map(|(f, protection)| Circuit {
+            residual: f.rcd.as_deref().map(|tag| residual_current(prj, tag)),
+            device: f.device,
+            page: f.page,
+            symbol: f.symbol,
+            protection,
+            line: f.line,
+            nets: f.nets,
+            phases: f.phases,
+            parent: f.parent,
+        })
+        .collect()
 }
 
 /// Value with a unit from a text: the number before `unit` ("0.75 kW" → 0.75 for "kW").

@@ -308,6 +308,7 @@ impl App {
             T::SingleLine => self.singleline_pane(ui),
             T::Process => self.process_pane(ui),
             T::Electrical => self.electrical_pane(ui),
+            T::Inspection => self.inspection_pane(ui),
             T::Integration => self.integration_pane(ui),
             T::Languages => self.languages_pane(ui),
             T::Configurator => self.config_pane(ui),

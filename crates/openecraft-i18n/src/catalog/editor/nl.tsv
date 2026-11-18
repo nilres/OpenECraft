@@ -951,6 +951,7 @@ In the structure of the current page	In de structuur van de huidige pagina
 Include manually set numbers	Handmatig ingestelde nummers meenemen
 Index	Index
 Indices	Indices
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	Eerste inspectie (IEC 60364-6, DIN VDE 0100-600): ingevuld uit het schema, de resultaten hier ingevoerd
 Inner walls	Binnenwanden
 Input bytes	Ingangsbytes
 Inputs	Ingangen
@@ -1049,7 +1050,6 @@ Library	Bibliotheek
 Lightning protection	Bliksembeveiliging
 Lightning protection of building {}	Bliksembeveiliging van gebouw {}
 Like two fingers	Zoals twee vingers
-Limits	Grenswaarden
 Limits in effect	Geldende grenswaarden
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fase naar PE op het voedingspunt; 0 = uit de hoogste kortsluitstroom
 Line up on the rail	Op de rail uitlijnen
@@ -1192,6 +1192,7 @@ NC data of this face (DXF)	NC-gegevens van dit vlak (DXF)
 Nailboard (SVG)…	Spijkerbord (SVG)…
 Name and cross reference	Naam en kruisverwijzing
 Name on the server	Naam op de server
+Name the inspector in the report data first.	Vul eerst de inspecteur in bij de rapportgegevens.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Naam; gegevenstype; logisch adres; commentaar – voor PLC-programmeertools
 Named copy of this form, for report blocks	Benoemde kopie van dit formulier, voor rapportblokken
 Navigators	Navigators
@@ -1819,7 +1820,6 @@ Save to project server: {}	Opslaan op projectserver: {}
 Save to project server: {} – the connection is lost, saving tries again	Opslaan op projectserver: {} – de verbinding is verbroken, opslaan probeert het opnieuw
 Save workspace	Werkruimte opslaan
 Save workspace…	Werkruimte opslaan…
-Saved	Opgeslagen
 Saved the properties of {} (revision {})	Eigenschappen van {} opgeslagen (revisie {})
 Saved to	Opgeslagen in
 Saved to the project server (revision {})	Opgeslagen op de projectserver (revisie {})
@@ -2134,6 +2134,7 @@ The properties of the selection in a window beside the page	De eigenschappen van
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	De eigenschappen zijn intussen op de projectserver gewijzigd. Opnieuw laden toont ze; je invoer wordt vervangen.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	De rail of montagevoet; zijn toebehoren zijn de haken, klemmen en ballast
 The recalculation keeps frozen routes as long as they are still possible	De herberekening behoudt bevroren routes zolang deze nog mogelijk zijn
+The report as tables and report pages	Het rapport als tabellen en rapportpagina's
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Het lint met het tabblad Bestand vervangt de menu's; Ctrl+Shift+P vindt elke opdracht.
 The rooms of the level side by side; click the level again for all of the plant	De ruimtes van de verdieping naast elkaar; klik opnieuw op de verdieping voor de hele installatie
 The second fault is checked at the line-to-earth voltage	De dubbele fout wordt gecontroleerd met de spanning fase–aarde
@@ -2167,6 +2168,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	Titelblokken
 Title blocks, plot frames and page templates	Titelblokken, plotkaders en paginasjablonen
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	Titelblokken, rapportschema's en plotkaders die alle projecten op de onderdelenserver delen (Onderdelen › Onderdelenserver)
+Title or standard, e.g. VDE 0100-600	Titel of norm, bijv. VDE 0100-600
 To do	Te doen
 Toggle corner direction while drawing wires	Hoekrichting wisselen bij het tekenen van draden
 Toggle routing around symbols (wire tool)	Routering om symbolen aan / uit (draadgereedschap)
@@ -2214,7 +2216,6 @@ Used on {} of {} pages	Gebruikt op {} van {} pagina's
 User / group	Gebruiker / groep
 User defined property	Door de gebruiker gedefinieerde eigenschap
 User names, separated by commas	Gebruikersnamen, gescheiden door komma's
-Value	Waarde
 Value set	Waardenset
 Value sets	Waardensets
 Values	Waarden
@@ -2382,7 +2383,6 @@ male	pen
 manual	handmatig
 max. {} °C	max. {} °C
 may overlap	mogen overlappen
-missing	ontbreekt
 model	model
 name	naam
 no	nee

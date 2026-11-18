@@ -941,6 +941,7 @@ In the structure of the current page	현재 페이지의 구조로
 Include manually set numbers	수동으로 설정한 번호 포함
 Index	인덱스
 Indices	인덱스
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	최초 검사 (IEC 60364-6, DIN VDE 0100-600): 회로도에서 채워지고 결과는 여기에 입력합니다
 Inner walls	내벽
 Input bytes	입력 바이트
 Inputs	입력
@@ -1036,7 +1037,6 @@ Library	라이브러리
 Lightning protection	피뢰
 Lightning protection of building {}	건물 {}의 피뢰
 Like two fingers	두 손가락과 같게
-Limits	한계값
 Limits in effect	적용되는 한계값
 Line to PE at the supply point; 0 = from the highest short-circuit current	전원 공급점의 선-PE 간. 0 = 최대 단락 전류에서
 Line up on the rail	레일에 정렬 배치
@@ -1178,6 +1178,7 @@ NC data of this face (DXF)	이 면의 NC 데이터(DXF)
 Nailboard (SVG)…	네일보드(SVG)…
 Name and cross reference	이름 및 상호 참조
 Name on the server	서버의 이름
+Name the inspector in the report data first.	먼저 보고서 데이터에 검사자를 입력하십시오.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	이름; 데이터 유형; 논리 주소; 주석 – PLC 프로그래밍 도구용
 Named copy of this form, for report blocks	보고서 블록용으로 이 양식에 이름을 지정한 복사본
 Navigators	탐색기
@@ -1798,7 +1799,6 @@ Save to project server: {}	프로젝트 서버에 저장: {}
 Save to project server: {} – the connection is lost, saving tries again	프로젝트 서버에 저장: {} – 연결이 손실되었습니다. 저장을 다시 시도합니다
 Save workspace	작업 공간 저장
 Save workspace…	작업 공간 저장…
-Saved	저장됨
 Saved the properties of {} (revision {})	{}의 속성을 저장했습니다(개정 {})
 Saved to	저장 위치
 Saved to the project server (revision {})	프로젝트 서버에 저장됨(개정 {})
@@ -2110,6 +2110,7 @@ The properties of the selection in a window beside the page	페이지 옆 창에
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	그동안 프로젝트 서버에서 속성이 변경되었습니다. 다시 불러오면 표시되며 입력한 내용은 바뀝니다.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	레일 또는 설치 받침대; 부속품은 후크, 클램프, 밸러스트
 The recalculation keeps frozen routes as long as they are still possible	다시 계산할 때 가능한 한 고정된 경로가 유지됩니다
+The report as tables and report pages	표와 보고서 페이지로 보는 보고서
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	파일 탭이 있는 리본이 메뉴를 대신합니다. Ctrl+Shift+P로 모든 명령을 찾을 수 있습니다.
 The rooms of the level side by side; click the level again for all of the plant	층의 실을 나란히 표시. 층을 다시 클릭하면 설비 전체
 The second fault is checked at the line-to-earth voltage	이중 고장은 대지 전압으로 검사됩니다
@@ -2142,6 +2143,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	표제란
 Title blocks, plot frames and page templates	표제란, 플롯 프레임 및 페이지 템플릿
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	부품 서버에서 모든 프로젝트가 공유하는 표제란, 보고서 체계, 플롯 프레임(부품 › 부품 서버)
+Title or standard, e.g. VDE 0100-600	제목 또는 표준 (예: VDE 0100-600)
 To do	할 일
 Toggle corner direction while drawing wires	전선을 그리는 동안 꺾임 방향 전환
 Toggle routing around symbols (wire tool)	심볼 우회 경로 설정 켜기/끄기(전선 도구)
@@ -2188,7 +2190,6 @@ Used on {} of {} pages	{1}개 페이지 중 {0}개에서 사용됨
 User / group	사용자 / 그룹
 User defined property	사용자 정의 속성
 User names, separated by commas	쉼표로 구분된 사용자 이름
-Value	값
 Value set	값 세트
 Value sets	값 세트
 Values	값
@@ -2355,7 +2356,6 @@ male	수
 manual	수동
 max. {} °C	최대 {} °C
 may overlap	겹침 허용
-missing	누락됨
 model	모델
 name	이름
 no	아니요

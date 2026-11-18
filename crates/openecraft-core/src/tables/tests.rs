@@ -175,3 +175,63 @@ fn fill_and_find_replace_on_filtered_rows() {
     assert!(n >= 2);
     assert!(prj.devices.values().any(|d| d.description == "Door device"));
 }
+
+/// The demo's breaker -F1 (C6) is a circuit of the mains: its results are entered in
+/// the table, measurements must be numbers and other circuits are refused.
+#[test]
+fn inspection_results_are_entered_in_the_table() {
+    let mut prj = demo_project();
+    let col = |name: &str| TableKind::Inspection.column(name).unwrap();
+    let rows = table(&prj, TableKind::Inspection);
+    let f1 = rows.iter().find(|r| r.key == "-F1").unwrap();
+    assert_eq!(f1.cells[2], "C 6 A");
+    assert_eq!(f1.cells[col("Result")], crate::inspection::Verdict::NotTested.title());
+    let (_, open) = nets(&prj);
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Insulation L–PE (MΩ)"), "> 500").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Function test"), "OK").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Loop impedance Zs (Ω)"), "lots").is_err());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-F1", col("Result"), "fine").is_err());
+    assert!(set_cell(&mut prj, &open, TableKind::Inspection, "-K1", col("Remark"), "x").unwrap_err().contains("-K1"));
+    let f1 = table(&prj, TableKind::Inspection).into_iter().find(|r| r.key == "-F1").unwrap();
+    assert_eq!((f1.cells[col("Insulation L–PE (MΩ)")].as_str(), f1.cells[col("Function test")].as_str()), ("> 500", openecraft_i18n::tr("OK")));
+    assert_eq!(f1.cells[col("Result")], crate::inspection::Verdict::Incomplete.title());
+    // The CSV round trip.
+    let csv = to_csv(TableKind::Inspection, &table(&prj, TableKind::Inspection)).replace("> 500", "320");
+    let (nl, open) = nets(&prj);
+    assert_eq!(apply_csv(&mut prj, &nl, &open, TableKind::Inspection, &csv).unwrap(), (1, vec![]));
+    assert_eq!(prj.inspection.result("-F1").unwrap().insulation, "320");
+}
+
+/// The data of the report and the visual inspection: one editable value per row.
+#[test]
+fn inspection_data_is_entered_in_the_table() {
+    let mut prj = demo_project();
+    let (nl, open) = nets(&prj);
+    let rows = rows(&prj, &nl, &open, TableKind::InspectionData);
+    // The demo is a TN system: no IT tests; its power supply is a source of 4 values;
+    // a row adds an own item; the limits.
+    let expected = crate::inspection::HeaderField::ALL.len() - 2 + crate::inspection::CHECKS.len() + 1 + 4 * crate::inspection::sources(&prj).len() + crate::inspection::LIMITS.len();
+    assert_eq!(rows.len(), expected);
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "own.1.title", 1, "Emergency lighting").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "limit.loop_factor", 1, "0.8").unwrap());
+    let rows = table(&prj, TableKind::InspectionData);
+    assert!(rows.iter().any(|r| r.key == "own.1" && r.cells[0] == "Emergency lighting"));
+    assert!(rows.iter().any(|r| r.key == "own.2.title"));
+    assert_eq!(rows.iter().find(|r| r.key == "limit.loop_factor").unwrap().cells[1], "0.8");
+    let source = crate::inspection::sources(&prj)[0].device.clone();
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, &format!("source.{source}.measure"), 1, "PELV").unwrap());
+    assert_eq!(prj.inspection.source(&source).unwrap().measure, "pelv");
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "source.-X9.measure", 1, "PELV").is_err());
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "client", 1, "ACME").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "check.fire", 1, "OK").unwrap());
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "check.fire", 2, "x").is_err(), "the note is not editable");
+    assert!(set_cell(&mut prj, &open, TableKind::InspectionData, "ze", 1, "low").is_err());
+    let rows = table(&prj, TableKind::InspectionData);
+    let row = |key: &str| rows.iter().find(|r| r.key == key).unwrap().cells[1].clone();
+    assert_eq!((row("client"), row("check.fire")), ("ACME".to_string(), openecraft_i18n::tr("OK").to_string()));
+    // The CSV round trip.
+    let csv = to_csv(TableKind::InspectionData, &rows).replace("ACME", "ACME Ltd");
+    let (nl, open) = nets(&prj);
+    assert_eq!(apply_csv(&mut prj, &nl, &open, TableKind::InspectionData, &csv).unwrap(), (1, vec![]));
+    assert_eq!(prj.inspection.header.client, "ACME Ltd");
+}

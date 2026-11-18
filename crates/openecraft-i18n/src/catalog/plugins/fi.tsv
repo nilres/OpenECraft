@@ -526,6 +526,7 @@ No rule for {} and {}	Ei sääntöä luokille {} ja {}
 No rule library or rule set {}	Ei sääntökirjastoa tai sääntökokoelmaa {}
 No rule {}	Ei sääntöä {}
 No safety function {}	Ei turvatoimintoa {}
+No source {}	Ei lähdettä {}
 No standard size of {} holds the layout of {}	Mikään kohteen {} vakiokoko ei riitä kohteen {} asennukselle
 No terminal strip {}	Riviliitinrimaa {} ei ole
 No terminal {} on strip {}	Riviliitintä {} ei ole rimassa {}
@@ -937,7 +938,6 @@ Unknown earthing system: {}	Tuntematon maadoitusjärjestelmä: {}
 Unknown face {}	Tuntematon pinta {}
 Unknown fastening: {}	Tuntematon kiinnitys: {}
 Unknown field object: {}	Tuntematon kenttäobjekti: {}
-Unknown field: {}	Tuntematon kenttä: {}
 Unknown group kind: {}	Tuntematon ryhmän laji: {}
 Unknown installation: {}	Tuntematon sijoitus: {}
 Unknown insulation: {}	Tuntematon eristys: {}
@@ -1020,7 +1020,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi tai other
 copper or aluminium	copper tai aluminium
 device (default), position, cross_section or number	device (oletus), position, cross_section tai number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages tai parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection tai inspection_data
 error, warning, info, off, or default to take the change back	error, warning, info, off tai default muutoksen perumiseksi
 false takes the acceptance back (default true)	false peruu hyväksynnän (oletus true)
 foundation, ring or rod	foundation, ring tai rod

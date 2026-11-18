@@ -12,11 +12,13 @@ A page needs a name	Stránka musí mít název
 A routing path needs {} points at least	Trasa vedení potřebuje alespoň {} bodů
 A section cannot be moved into itself	Oddíl nelze přesunout sám do sebe
 Above	Nad
+Above {} V: no SELV or PELV	Nad {} V: ani SELV, ani PELV
 Access token	Přístupový token
 Accessories	Příslušenství
 Accessory	Příslušenství
 Add	Přidat
 Add a PDF of all pages	Přidat PDF všech stránek
+Add an item	Přidat bod
 Add to favorites	Přidat k oblíbeným
 Address	Adresa
 Administrator	Správce
@@ -33,6 +35,7 @@ Bold	Tučné
 Bottom	Dno
 Bottom with removable gland plate	Dno s odnímatelnou přírubovou deskou
 Breaking capacity	Vypínací schopnost
+Breaking capacity of {} below the fault current at the origin	Vypínací schopnost {} pod poruchovým proudem v předávacím místě
 Bridge	Most
 Building	Budova
 Buildings	Budovy
@@ -56,16 +59,19 @@ Category	Kategorie
 Centred	Na střed
 Certificates	Certifikáty
 Change	Změna
+Changing the data or the results afterwards takes the signature away.	Pozdější změna údajů nebo výsledků odstraní podpis.
 Channel	Kanál
 Characteristic	Charakteristika
 Check settings	Nastavení kontroly
 Checks	Kontroly
+Circuits	Obvody
 Class	Třída
 Classes	Třídy
 Clear filters	Vymazat filtry
 Clearance bottom	Odstup dole
 Clearance top	Odstup nahoře
 Clearances	Odstupy
+Client	Objednatel
 Close	Zavřít
 Coding: {}	Kódování: {}
 Coil voltage	Napětí cívky
@@ -85,6 +91,7 @@ Connection point	Přípojný bod
 Connection points	Přípojné body
 Connections	Spojení
 Connector	Konektor
+Contact voltage UB (V)	Dotykové napětí UB (V)
 Controller	Řídicí systém
 Cooling	Chlazení
 Core	Žíla
@@ -131,14 +138,19 @@ Done	Hotovo
 Door	Dveře
 Door cutout	Výřez ve dveřích
 Download	Stáhnout
+Download the report as an Excel workbook	Stáhnout protokol jako sešit Excel
 Downloading {}…	Stahování {}…
 Drag to turn the model	Tažením model otočíte
+Drawings	Výkresy
 EMC clearance	Odstup EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal a další názvy jsou ochranné známky svých vlastníků. OpenECraft je nezávislý projekt.
+Earth electrode resistance RA (Ω)	Odpor uzemnění RA (Ω)
 Edit	Úpravy
 Editor	Editor
+Electrical separation	Elektrické oddělení
 Electro-fluid cross reference	Elektro-tekutinové křížové odkazy
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Prázdné: výchozí hodnota. Nastavte jiné hodnoty tam, kde se vydání normy, podle které se instalace ověřuje, liší.
 Enclosure	Skříň
 Enclosures	Skříně
 Enterprise integration	Podniková integrace
@@ -149,6 +161,7 @@ Export as CSV…	Exportovat jako CSV…
 Export as JSON…	Exportovat jako JSON…
 Export failed: {}	Export se nezdařil: {}
 External (top)	Externí (nahoře)
+External loop impedance Ze (Ω)	Vnější impedance smyčky Ze (Ω)
 Face	Plocha
 Failed	Selhalo
 Fastening	Upevnění
@@ -157,7 +170,9 @@ Field wiring	Polní kabeláž
 File	Soubor
 Files	Soubory
 Filter	Filtr
+Filter circuits…	Filtrovat obvody…
 Filter devices…	Filtrovat přístroje…
+First fault current Id (A)	Proud první poruchy Id (A)
 Fit	Přizpůsobit
 Fits	Hodí se k
 Fitting at the end	Šroubení na konci
@@ -172,6 +187,7 @@ Function	Funkce
 Function (=)	Funkce (=)
 Function definition	Definice funkce
 Function template	Šablona funkce
+Function test	Zkouška funkce
 Function text	Text funkce
 Functional safety	Funkční bezpečnost
 Functions	Funkce
@@ -192,12 +208,25 @@ Height	Výška
 Height above floor	Výška nad podlahou
 History	Historie
 Hose no.	Č. hadice
+IT system	Soustava IT
 Identifier	Identifikátor
 Identifying letter	Kódové písmeno
 Image	Obrázek
 Import	Import
+Incomplete	Neúplné
 Input	Vstup
+Inspection and test report	Revizní zpráva
+Inspector	Revizní technik
 Installation	Instalace
+Installation site	Místo instalace
+Installer	Montážní firma
+Insulating floors and walls (kΩ)	Izolující podlahy a stěny (kΩ)
+Insulation L–N (MΩ)	Izolace L–N (MΩ)
+Insulation L–PE (MΩ)	Izolace L–PE (MΩ)
+Insulation N–PE (MΩ)	Izolace N–PE (MΩ)
+Insulation monitoring device	Hlídač izolačního stavu
+Insulation resistance (MΩ)	Izolační odpor (MΩ)
+Insulation test voltage (V)	Zkušební napětí izolace (V)
 Integration	Integrace
 Internal (bottom)	Interní (dole)
 Interruption point	Bod přerušení
@@ -225,6 +254,7 @@ Length	Délka
 Level	Hladina
 Lifecycle	Životní cyklus
 Light	Světlý
+Limits	Mezní hodnoty
 Line	Čára
 Link	Odkaz
 Linked	Propojeno
@@ -236,11 +266,13 @@ Location (+)	Umístění (+)
 Locked	Uzamčená
 Locked by {}	Uzamčeno uživatelem {}
 Logo	Logo
+Loop impedance Zs (Ω)	Impedance smyčky Zs (Ω)
 MTTFd (years)	MTTFd (roky)
 Machine	Stroj
 Main	Hlavní
 Main earthing busbar (device) it is connected to; empty: none	Hlavní uzemňovací přípojnice (zařízení), ke které je připojen; prázdné: žádná
 Main earthing terminal	Hlavní uzemňovací svorka
+Main equipotential bonding (Ω)	Hlavní ochranné pospojování (Ω)
 Main switch	Hlavní vypínač
 Manufacturer	Výrobce
 Manufacturers	Výrobci
@@ -248,6 +280,7 @@ Manufacturing	Výroba
 Marking	Značení
 Match case	Rozlišovat malá a velká písmena
 Material	Materiál
+Measured at the origin	Měřeno v předávacím místě
 Medium	Médium
 Metal carriers meeting at a node are connected	Kovové nosné konstrukce, které se setkávají v uzlu, jsou propojeny
 Minimum digits of the counter (leading zeros)	Minimální počet číslic čítače (úvodní nuly)
@@ -275,11 +308,15 @@ Name of the scheme	Název schématu
 Net	Síť
 Never	Nikdy
 New group	Nová skupina
+New installation	Nová instalace
 New name	Nový název
+Next inspection	Příští revize
 Next page	Další stránka
 No	Ne
 No Vault item matches a part of the project	Žádná položka Vault neodpovídá artiklu projektu
 No cable {}	Žádný kabel {}
+No circuit {}	Žádný obvod {}
+No circuits found	Nenalezeny žádné obvody
 No connection point {}	Žádný připojovací bod {}
 No device {}	Přístroj {} neexistuje
 No enclosure {}	Žádná skříň {}
@@ -293,6 +330,7 @@ No part {} in the project	Žádný díl {} v projektu
 No parts found	Nebyly nalezeny žádné artikly
 No plot frame named {}	Žádný rámeček výkresu s názvem {}
 No plug {}	Žádný konektor {}
+No protective measure of its own	Žádné vlastní ochranné opatření
 No report block named {}	Žádný blok výkazů s názvem {}
 No segment {}	Žádný segment {}
 No station {}	Žádná stanice {}
@@ -302,18 +340,24 @@ No such section	Takový oddíl neexistuje
 No symbol with id {}	Žádný symbol s ID {}
 No title block of the project named {}	Žádné rohové razítko projektu s názvem {}
 Nominal size	Jmenovitá světlost
+Not OK	Nevyhovuje
 Not a language code: {}	Nejde o kód jazyka: {}
 Not a macro file: {}	Nejde o soubor maker: {}
 Not a symbol id: {}	Není ID symbolu: {}
 Not a title block file: {}	Nejde o soubor rohových razítek: {}
 Not a valid rule set file: {}	Neplatný soubor sady pravidel: {}
+Not applicable	Nehodí se
 Not in the schematic	Není ve schématu
+Not passed	Nevyhovuje
+Not signed	Nepodepsáno
+Not tested	Nezkoušeno
 Note	Poznámka
 Notes	Poznámky
 Number	Číslo
 Number of down conductors (0: as many as the class needs for the walls)	Počet svodů (0: tolik, kolik třída vyžaduje pro zdi)
 Number the sections 1, 2, 3 … on every level first	Nejprve očíslovat oddíly 1, 2, 3 … na každé úrovni
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Očísluje označení přístrojů podle struktury a identifikačního písmene v pořadí schématu (stránka, sloupec, shora dolů)
+OK	OK
 Only rows containing this text	Jen řádky s tímto textem
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft je poskytován bez záruky. Jeho výpočty a kontroly podporují projektování; výsledky musí kvalifikovaná osoba ověřit podle platných norem a předpisů.
@@ -323,9 +367,12 @@ Order number	Objednací číslo
 Other	Ostatní
 Outer diameter	Vnější průměr
 Output	Výstup
+Output voltage (V)	Výstupní napětí (V)
 Overview	Přehled
+Own item of the visual inspection	Vlastní bod prohlídky
 PCT loop	Smyčka MaR
 PCT loop overview	Přehled smyček MaR
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	Karta PLC
@@ -351,7 +398,10 @@ Part {}	Artikl {}
 Parts	Artikly
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artikly (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Import artiklů se nezdařil: {}
+Passed	Vyhovuje
 Password	Heslo
+Phase sequence	Sled fází
+Phases	Fáze
 Phone	Telefon
 Picture	Obrázek
 Pieces	Kusy
@@ -367,6 +417,7 @@ Plug	Konektor
 Plug diagram	Schéma konektoru
 Plugins	Pluginy
 Plugs	Konektory
+Polarity	Polarita
 Poles	Póly
 Ports	Porty
 Position	Poloha
@@ -377,6 +428,7 @@ Potentials	Potenciály
 Power	Výkon
 Power (kW)	Výkon (kW)
 Power loss	Ztrátový výkon
+Power supply unit	Napájecí zdroj
 Pre-planning	Předběžné plánování
 Press	Lis
 Previous page	Předchozí stránka
@@ -398,17 +450,25 @@ Project name	Název projektu
 Project properties	Vlastnosti projektu
 Properties	Vlastnosti
 Property	Vlastnost
+Prospective fault current at the origin (kA)	Předpokládaný poruchový proud v předávacím místě (kA)
 Protection	Ochrana
+Protective conductor (Ω)	Ochranný vodič (Ω)
 Protective device	Ochranný přístroj
+Protective measure	Ochranné opatření
 Quantity	Množství
 Quantity (default 1)	Množství (výchozí 1)
 Quantity unit	Jednotka množství
+RCD	Proudový chránič
+RCD trip current (mA)	Vybavovací proud chrániče (mA)
+RCD trip time (ms)	Vybavovací doba chrániče (ms)
+RCD trip time at 5 × IΔn (ms)	Vybavovací doba chrániče při 5 × IΔn (ms)
 Rack	Nosný rám
 Rail	Lišta
 Range	Rozsah
 Rated current	Jmenovitý proud
 Rated power	Jmenovitý výkon
 Rear wall	Zadní stěna
+Reason for the test	Důvod revize
 Rectangle	Obdélník
 Rectangular	Obdélníkový
 Redo	Znovu
@@ -419,13 +479,16 @@ Relative humidity	Relativní vlhkost vzduchu
 Relay	Relé
 Released	Uvolněno
 Released pages cannot be moved	Uvolněné stránky nelze přesouvat
+Remark	Poznámka
 Remove	Odebrat
 Remove from favorites	Odebrat z oblíbených
 Remove the boundary	Odstranit hranici
 Remove the lightning protection system	Odstranit ochranu před bleskem
 Remove the reference point	Odstranit referenční bod
+Repair	Oprava
 Report	Výkaz
 Report blocks	Bloky výkazů
+Report data and visual inspection	Údaje zprávy a prohlídka
 Report: {}	Výkaz: {}
 Reports	Výkazy
 Represented by	Zastoupen
@@ -448,8 +511,11 @@ Routing	Vedení
 Rows of modules (east-west: rows of pairs)	Řady modulů (východ-západ: řady dvojic)
 Rule	Pravidlo
 Rule set	Sada pravidel
+SELV	SELV
+SELV, PELV and separation	SELV, PELV a oddělení
 Safety function	Bezpečnostní funkce
 Save	Uložit
+Saved	Uloženo
 Saved catalog {}	Katalog {} uložen
 Saved user {}	Uživatel {} uložen
 Saved {}	Uloženo: {}
@@ -476,6 +542,9 @@ Show the row after the column	Zobrazit řádek za sloupcem
 Side	Strana
 Sign in	Přihlásit se
 Sign out	Odhlásit se
+Sign the report	Podepsat zprávu
+Signed	Podepsáno
+Signed by {} on {}	Podepsal {} dne {}
 Signed in as {}	Přihlášen jako {}
 Signed in as {} ({})	Přihlášen jako {} ({})
 Signed out	Odhlášeno
@@ -497,8 +566,10 @@ Structure	Struktura
 Subproject name	Název podprojektu
 Subsystem	Subsystém
 Successor	Nástupce
+Summary	Shrnutí
 Supplier	Dodavatel
 Supply	Zásobování
+Supply system	Napájecí síť
 Symbol	Symbol
 Symbol key	Klíč symbolu
 Symbolic address	Symbolická adresa
@@ -513,18 +584,23 @@ Terminal strip	Svorkovnice
 Terminal strips	Svorkovnice
 Terminal type	Typ svorky
 Terminals	Svorky
+Test instrument	Měřicí přístroj
+Test instruments (IEC 61557)	Měřicí přístroje (IEC 61557)
+Tested by	Zkoušel
 Text	Text
 Text to find	Hledaný text
 The freestanding PV array {} stands outside the plot boundary	Pozemní FV pole {} stojí mimo hranice pozemku
 The identifier must not be empty	Identifikátor nesmí být prázdný
 The long side of the modules along the rows	Delší strana modulů podél řad
 The page is released	Stránka je uvolněna
+The project has no circuits fed from the mains	Projekt nemá žádné obvody napájené ze sítě
 There is a connection symbol at this point already	V tomto bodě už symbol spojení je
 Thermal	Tepelné poměry
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Tato stránka neukládá žádné soubory cookie, nepoužívá sledování a nenačítá nic z jiných serverů.
 Time	Čas
 Title block	Rohové razítko
 To	Do
+To check	Zkontrolovat
 Tools	Nástroje
 Top	Nahoře
 Total	Celkem
@@ -540,6 +616,7 @@ Unknown column: {}	Neznámý sloupec: {}
 Unknown connector: {}	Neznámý konektor: {}
 Unknown enclosure system: {}	Neznámý systém skříní: {}
 Unknown face: {}	Neznámá plocha: {}
+Unknown field: {}	Neznámé pole: {}
 Unknown format: {}	Neznámý formát: {}
 Unknown function definition: {}	Neznámá definice funkce: {}
 Unknown language: {}	Neznámý jazyk: {}
@@ -558,9 +635,12 @@ User	Uživatel
 User name	Uživatelské jméno
 Users	Uživatelé
 VAT ID	DIČ
+Value	Hodnota
 Version	Verze
 Viewer	Prohlížející
+Visual inspection	Prohlídka
 Voltage	Napětí
+Voltage drop (%)	Úbytek napětí (%)
 Warning	Upozornění
 Warnings	Upozornění
 Weight	Hmotnost
@@ -575,12 +655,14 @@ Wired	Zapojeno
 Wires	Vodiče
 Wiring	Zapojování
 Yes	Ano
+Zs max (Ω)	Zs max (Ω)
 access denied	přístup odepřen
 approved	schváleno
 bonded	pospojeno
 file or folder not found	soubor nebo složka nenalezeny
 landscape	na šířku
 left	doleva
+missing	chybí
 mm	mm
 none	žádná
 normal	normální
@@ -598,6 +680,7 @@ the file exists already	soubor již existuje
 this is a folder	toto je složka
 yes	ano
 {} ({})	{} ({})
+{} circuits	Obvody: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} nestojí na podlaze: zvolte artikl označený pro montáž na podlahu
 {} exists already	{} již existuje
 {} is not a PNG or JPEG image	{} není obrázek PNG ani JPEG

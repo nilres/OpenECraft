@@ -610,7 +610,7 @@ impl App {
                     }
                 });
                 ui.menu_button(tr("New report page"), |ui| {
-                    for (k, title) in self.report_list() {
+                    for (k, title) in self.report_list("") {
                         if ui.button(title).clicked() {
                             self.add_page(PageKind::Report(k));
                             ui.close();

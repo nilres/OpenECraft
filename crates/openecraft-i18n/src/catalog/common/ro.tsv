@@ -12,11 +12,13 @@ A page needs a name	O pagină are nevoie de un nume
 A routing path needs {} points at least	O cale de pozare necesită cel puțin {} puncte
 A section cannot be moved into itself	O secțiune nu poate fi mutată în ea însăși
 Above	Deasupra
+Above {} V: no SELV or PELV	Peste {} V: nici SELV, nici PELV
 Access token	Token de acces
 Accessories	Accesorii
 Accessory	Accesoriu
 Add	Adăugare
 Add a PDF of all pages	Adăugare PDF cu toate paginile
+Add an item	Adaugă un punct
 Add to favorites	Adăugare la favorite
 Address	Adresă
 Administrator	Administrator
@@ -33,6 +35,7 @@ Bold	Aldin
 Bottom	Bază
 Bottom with removable gland plate	Bază cu placă pentru presetupe detașabilă
 Breaking capacity	Capacitate de rupere
+Breaking capacity of {} below the fault current at the origin	Capacitatea de rupere a {} sub curentul de defect la origine
 Bridge	Punte
 Building	Clădire
 Buildings	Clădiri
@@ -56,16 +59,19 @@ Category	Categorie
 Centred	Centrat
 Certificates	Certificate
 Change	Modificare
+Changing the data or the results afterwards takes the signature away.	Modificarea ulterioară a datelor sau rezultatelor anulează semnătura.
 Channel	Canal
 Characteristic	Caracteristică
 Check settings	Setări de verificare
 Checks	Verificări
+Circuits	Circuite
 Class	Clasă
 Classes	Clase
 Clear filters	Ștergere filtre
 Clearance bottom	Distanță jos
 Clearance top	Distanță sus
 Clearances	Distanțe
+Client	Beneficiar
 Close	Închidere
 Coding: {}	Codificare: {}
 Coil voltage	Tensiunea bobinei
@@ -85,6 +91,7 @@ Connection point	Punct de conexiune
 Connection points	Puncte de conexiune
 Connections	Conexiuni
 Connector	Conector
+Contact voltage UB (V)	Tensiune de atingere UB (V)
 Controller	Controler
 Cooling	Răcire
 Core	Fir
@@ -131,14 +138,19 @@ Done	Terminat
 Door	Ușă
 Door cutout	Decupaj în ușă
 Download	Descărcare
+Download the report as an Excel workbook	Descarcă raportul ca registru Excel
 Downloading {}…	Se descarcă {}…
 Drag to turn the model	Trageți pentru a roti modelul
+Drawings	Desene
 EMC clearance	Distanță CEM
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal și alte denumiri sunt mărci ale proprietarilor lor. OpenECraft este un proiect independent.
+Earth electrode resistance RA (Ω)	Rezistența prizei de pământ RA (Ω)
 Edit	Editare
 Editor	Editor
+Electrical separation	Separare electrică
 Electro-fluid cross reference	Referințe încrucișate electro-fluid
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Gol: valoarea implicită. Setați alte valori unde ediția standardului după care se verifică instalația diferă.
 Enclosure	Carcasă
 Enclosures	Carcase
 Enterprise integration	Integrare în întreprindere
@@ -149,6 +161,7 @@ Export as CSV…	Export ca CSV…
 Export as JSON…	Export ca JSON…
 Export failed: {}	Exportul nu a reușit: {}
 External (top)	Extern (sus)
+External loop impedance Ze (Ω)	Impedanța buclei externe Ze (Ω)
 Face	Față
 Failed	Eșuat
 Fastening	Fixare
@@ -157,7 +170,9 @@ Field wiring	Cablare de câmp
 File	Fișier
 Files	Fișiere
 Filter	Filtru
+Filter circuits…	Filtrează circuitele…
 Filter devices…	Filtrare dispozitive…
+First fault current Id (A)	Curentul primului defect Id (A)
 Fit	Încadrare
 Fits	Compatibil cu
 Fitting at the end	Racord la sfârșit
@@ -172,6 +187,7 @@ Function	Funcție
 Function (=)	Funcție (=)
 Function definition	Definiție de funcție
 Function template	Șablon de funcție
+Function test	Probă de funcționare
 Function text	Text de funcție
 Functional safety	Siguranță funcțională
 Functions	Funcții
@@ -192,12 +208,25 @@ Height	Înălțime
 Height above floor	Înălțime deasupra podelei
 History	Istoric
 Hose no.	Nr. furtun
+IT system	Schemă IT
 Identifier	Identificator
 Identifying letter	Literă de identificare
 Image	Imagine
 Import	Import
+Incomplete	Incomplet
 Input	Intrare
+Inspection and test report	Raport de verificare
+Inspector	Verificator
 Installation	Instalare
+Installation site	Amplasament
+Installer	Instalator
+Insulating floors and walls (kΩ)	Pardoseli și pereți izolanți (kΩ)
+Insulation L–N (MΩ)	Izolație L–N (MΩ)
+Insulation L–PE (MΩ)	Izolație L–PE (MΩ)
+Insulation N–PE (MΩ)	Izolație N–PE (MΩ)
+Insulation monitoring device	Dispozitiv de supraveghere a izolației
+Insulation resistance (MΩ)	Rezistența de izolație (MΩ)
+Insulation test voltage (V)	Tensiune de încercare a izolației (V)
 Integration	Integrare
 Internal (bottom)	Intern (jos)
 Interruption point	Punct de întrerupere
@@ -225,6 +254,7 @@ Length	Lungime
 Level	Nivel
 Lifecycle	Ciclu de viață
 Light	Luminos
+Limits	Limite
 Line	Linie
 Link	Legătură
 Linked	Legat
@@ -236,11 +266,13 @@ Location (+)	Loc de montare (+)
 Locked	Blocat
 Locked by {}	Blocat de {}
 Logo	Siglă
+Loop impedance Zs (Ω)	Impedanța buclei Zs (Ω)
 MTTFd (years)	MTTFd (ani)
 Machine	Mașină
 Main	Principal
 Main earthing busbar (device) it is connected to; empty: none	Bara principală de împământare (aparat) la care este conectată; gol: niciuna
 Main earthing terminal	Bornă principală de împământare
+Main equipotential bonding (Ω)	Legătură de echipotențializare principală (Ω)
 Main switch	Întrerupător principal
 Manufacturer	Producător
 Manufacturers	Producători
@@ -248,6 +280,7 @@ Manufacturing	Fabricație
 Marking	Marcare
 Match case	Potrivire litere mari și mici
 Material	Material
+Measured at the origin	Măsurat la origine
 Medium	Mediu
 Metal carriers meeting at a node are connected	Suporturile metalice de cabluri care se întâlnesc într-un nod sunt conectate
 Minimum digits of the counter (leading zeros)	Numărul minim de cifre al contorului (zerouri la început)
@@ -275,11 +308,15 @@ Name of the scheme	Numele schemei
 Net	Rețea
 Never	Niciodată
 New group	Grup nou
+New installation	Instalație nouă
 New name	Nume nou
+Next inspection	Următoarea inspecție
 Next page	Pagina următoare
 No	Nu
 No Vault item matches a part of the project	Niciun element Vault nu corespunde unui articol al proiectului
 No cable {}	Niciun cablu {}
+No circuit {}	Niciun circuit {}
+No circuits found	Nu s-au găsit circuite
 No connection point {}	Niciun punct de conectare {}
 No device {}	Niciun dispozitiv {}
 No enclosure {}	Nicio carcasă {}
@@ -293,6 +330,7 @@ No part {} in the project	Nicio piesă {} în proiect
 No parts found	Nu s-au găsit articole
 No plot frame named {}	Niciun chenar cu numele {}
 No plug {}	Niciun conector {}
+No protective measure of its own	Fără măsură de protecție proprie
 No report block named {}	Niciun bloc de raport cu numele {}
 No segment {}	Nu există segmentul {}
 No station {}	Nicio stație {}
@@ -302,18 +340,24 @@ No such section	Secțiunea nu există
 No symbol with id {}	Niciun simbol cu ID-ul {}
 No title block of the project named {}	Niciun cartuș al proiectului numit {}
 Nominal size	Diametru nominal
+Not OK	Nu este OK
 Not a language code: {}	Nu este un cod de limbă: {}
 Not a macro file: {}	Nu este un fișier de macro-uri: {}
 Not a symbol id: {}	Nu este un ID de simbol: {}
 Not a title block file: {}	Nu este un fișier de cartușe: {}
 Not a valid rule set file: {}	Nu este un fișier valid de set de reguli: {}
+Not applicable	Nu se aplică
 Not in the schematic	Nu este în schemă
+Not passed	Respins
+Not signed	Nesemnat
+Not tested	Neverificat
 Note	Notă
 Notes	Note
 Number	Număr
 Number of down conductors (0: as many as the class needs for the walls)	Numărul conductoarelor de coborâre (0: câte cere clasa pentru pereți)
 Number the sections 1, 2, 3 … on every level first	Numerotează mai întâi secțiunile 1, 2, 3 … pe fiecare nivel
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numerotează identificatorii de dispozitiv pe structură și literă de identificare, în ordinea schemei (pagină, coloană, de sus în jos)
+OK	OK
 Only rows containing this text	Doar rândurile care conțin acest text
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft este oferit fără garanție. Calculele și verificările sale sprijină proiectarea; o persoană calificată trebuie să verifice rezultatele în raport cu standardele și reglementările aplicabile.
@@ -323,9 +367,12 @@ Order number	Număr de comandă
 Other	Altele
 Outer diameter	Diametru exterior
 Output	Ieșire
+Output voltage (V)	Tensiune de ieșire (V)
 Overview	Prezentare generală
+Own item of the visual inspection	Punct propriu al examinării vizuale
 PCT loop	Buclă AMC
 PCT loop overview	Prezentare bucle AMC
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	Card PLC
@@ -351,7 +398,10 @@ Part {}	Articolul {}
 Parts	Articole
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Articole (CSV, JSON, BMEcat, XML EPLAN, EDZ, ZIP)
 Parts import failed: {}	Importul articolelor nu a reușit: {}
+Passed	Admis
 Password	Parolă
+Phase sequence	Succesiunea fazelor
+Phases	Faze
 Phone	Telefon
 Picture	Imagine
 Pieces	Bucăți
@@ -367,6 +417,7 @@ Plug	Conector
 Plug diagram	Schemă de conector
 Plugins	Pluginuri
 Plugs	Conectori
+Polarity	Polaritate
 Poles	Poli
 Ports	Porturi
 Position	Poziție
@@ -377,6 +428,7 @@ Potentials	Potențiale
 Power	Putere
 Power (kW)	Putere (kW)
 Power loss	Putere disipată
+Power supply unit	Sursă de alimentare
 Pre-planning	Preplanificare
 Press	Presă
 Previous page	Pagina anterioară
@@ -398,17 +450,25 @@ Project name	Nume proiect
 Project properties	Proprietăți proiect
 Properties	Proprietăți
 Property	Proprietate
+Prospective fault current at the origin (kA)	Curent de defect prezumat la origine (kA)
 Protection	Protecție
+Protective conductor (Ω)	Conductor de protecție (Ω)
 Protective device	Dispozitiv de protecție
+Protective measure	Măsură de protecție
 Quantity	Cantitate
 Quantity (default 1)	Cantitate (implicit 1)
 Quantity unit	Unitate de cantitate
+RCD	DDR
+RCD trip current (mA)	Curent de declanșare DDR (mA)
+RCD trip time (ms)	Timp de declanșare DDR (ms)
+RCD trip time at 5 × IΔn (ms)	Timp de declanșare DDR la 5 × IΔn (ms)
 Rack	Rack
 Rail	Șină
 Range	Domeniu
 Rated current	Curent nominal
 Rated power	Putere nominală
 Rear wall	Perete din spate
+Reason for the test	Motivul verificării
 Rectangle	Dreptunghi
 Rectangular	Dreptunghiular
 Redo	Refacere
@@ -419,13 +479,16 @@ Relative humidity	Umiditate relativă
 Relay	Releu
 Released	Aprobat
 Released pages cannot be moved	Paginile aprobate nu pot fi mutate
+Remark	Observație
 Remove	Eliminare
 Remove from favorites	Eliminare din favorite
 Remove the boundary	Eliminați limita
 Remove the lightning protection system	Elimină protecția contra trăsnetului
 Remove the reference point	Eliminați punctul de referință
+Repair	Reparație
 Report	Raport
 Report blocks	Blocuri de raport
+Report data and visual inspection	Datele raportului și examinare vizuală
 Report: {}	Raport: {}
 Reports	Rapoarte
 Represented by	Reprezentat de
@@ -448,8 +511,11 @@ Routing	Pozare
 Rows of modules (east-west: rows of pairs)	Rânduri de module (est-vest: rânduri de perechi)
 Rule	Regulă
 Rule set	Set de reguli
+SELV	SELV
+SELV, PELV and separation	SELV, PELV și separare
 Safety function	Funcție de siguranță
 Save	Salvare
+Saved	Salvat
 Saved catalog {}	Catalogul {} a fost salvat
 Saved user {}	Utilizatorul {} a fost salvat
 Saved {}	S-a salvat {}
@@ -476,6 +542,9 @@ Show the row after the column	Afișare rând după coloană
 Side	Parte
 Sign in	Conectare
 Sign out	Deconectare
+Sign the report	Semnează raportul
+Signed	Semnat
+Signed by {} on {}	Semnat de {} la {}
 Signed in as {}	Conectat ca {}
 Signed in as {} ({})	Conectat ca {} ({})
 Signed out	Deconectat
@@ -497,8 +566,10 @@ Structure	Structură
 Subproject name	Nume subproiect
 Subsystem	Subsistem
 Successor	Succesor
+Summary	Rezumat
 Supplier	Furnizor
 Supply	Alimentare
+Supply system	Rețea de alimentare
 Symbol	Simbol
 Symbol key	Cheie simbol
 Symbolic address	Adresă simbolică
@@ -513,18 +584,23 @@ Terminal strip	Șir de borne
 Terminal strips	Șiruri de borne
 Terminal type	Tip de bornă
 Terminals	Borne
+Test instrument	Aparat de măsură
+Test instruments (IEC 61557)	Aparate de măsură (IEC 61557)
+Tested by	Verificat de
 Text	Text
 Text to find	Text de căutat
 The freestanding PV array {} stands outside the plot boundary	Câmpul PV la sol {} se află în afara limitei terenului
 The identifier must not be empty	Identificatorul nu poate fi gol
 The long side of the modules along the rows	Latura lungă a modulelor de-a lungul rândurilor
 The page is released	Pagina este aprobată
+The project has no circuits fed from the mains	Proiectul nu are circuite alimentate din rețea
 There is a connection symbol at this point already	Există deja un simbol de conexiune în acest punct
 Thermal	Termic
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Această pagină nu setează cookie-uri, nu folosește urmărire și nu încarcă nimic de pe alte servere.
 Time	Timp
 Title block	Cartuș
 To	Către
+To check	De verificat
 Tools	Scule
 Top	Sus
 Total	Total
@@ -540,6 +616,7 @@ Unknown column: {}	Coloană necunoscută: {}
 Unknown connector: {}	Conector necunoscut: {}
 Unknown enclosure system: {}	Sistem de carcase necunoscut: {}
 Unknown face: {}	Față necunoscută: {}
+Unknown field: {}	Câmp necunoscut: {}
 Unknown format: {}	Format necunoscut: {}
 Unknown function definition: {}	Definiție de funcție necunoscută: {}
 Unknown language: {}	Limbă necunoscută: {}
@@ -558,9 +635,12 @@ User	Utilizator
 User name	Nume de utilizator
 Users	Utilizatori
 VAT ID	Cod de TVA
+Value	Valoare
 Version	Versiune
 Viewer	Vizualizator
+Visual inspection	Examinare vizuală
 Voltage	Tensiune
+Voltage drop (%)	Cădere de tensiune (%)
 Warning	Avertisment
 Warnings	Avertismente
 Weight	Greutate
@@ -575,12 +655,14 @@ Wired	Cablat
 Wires	Conductoare
 Wiring	Cablare
 Yes	Da
+Zs max (Ω)	Zs max (Ω)
 access denied	acces refuzat
 approved	avizat
 bonded	legat
 file or folder not found	fișierul sau folderul nu a fost găsit
 landscape	vedere
 left	spre stânga
+missing	lipsește
 mm	mm
 none	niciuna
 normal	normală
@@ -598,6 +680,7 @@ the file exists already	fișierul există deja
 this is a folder	acesta este un folder
 yes	da
 {} ({})	{} ({})
+{} circuits	{} circuite
 {} does not stand on the floor: choose a part marked for floor mounting	{} nu stă pe pardoseală: alegeți un articol marcat pentru montaj pe pardoseală
 {} exists already	{} există deja
 {} is not a PNG or JPEG image	{} nu este o imagine PNG sau JPEG

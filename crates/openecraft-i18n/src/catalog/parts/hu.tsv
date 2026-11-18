@@ -170,6 +170,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Adja meg egy 
 Environment variable with the password of the service account	Környezeti változó a szolgáltatásfiók jelszavával
 Evaporator	Elpárologtató
 Everybody who may read the parts sees it.	Mindenki látja, aki olvashatja az alkatrészeket.
+Excel	Excel
 Exhaust valves	Légtelenítő szelepek
 Expired	Lejárt
 Export (CSV)	Exportálás (CSV)
@@ -283,6 +284,7 @@ New role	Új szerepkör
 New user	Új felhasználó
 Newer version	Újabb verzió
 Next	Következő
+Next circuit	Következő áramkör
 No devices found	Nem található készülék
 No ended sessions	Nincsenek befejezett munkamenetek
 No grants: the rights by manufacturer apply	Nincsenek hozzárendelések: a gyártó szerinti jogok érvényesek
@@ -296,6 +298,8 @@ Nobody works on a project	Senki sem dolgozik projekten
 Non-return valves	Visszacsapó szelepek
 None (only grants)	Nincs (csak hozzárendelések)
 Not mounted	Nincs felszerelve
+Not saved	Nincs mentve
+Nothing to save	Nincs mit menteni
 Nut	Anya
 On the front	Elöl
 On the left side	A bal oldalon
@@ -452,6 +456,7 @@ Sifter	Osztályozó
 Sight glass	Kémlelőüveg
 Sign in as an administrator to manage the server	Jelentkezzen be rendszergazdaként a szerver kezeléséhez
 Sign in or connect with the access token to change parts	Jelentkezzen be, vagy csatlakozzon a hozzáférési tokennel az alkatrészek módosításához
+Sign in or name the inspector in the report data first.	Jelentkezzen be, vagy először adja meg az ellenőrt a jegyzőkönyvadatokban.
 Sign in to keep favorites	Jelentkezzen be a kedvencek megőrzéséhez
 Sign in to see the projects	Jelentkezzen be a projektek megtekintéséhez
 Sign in with a user account	Bejelentkezés felhasználói fiókkal
@@ -464,6 +469,7 @@ Signal device	Jelzőkészülék
 Signal device, acoustic	Jelzőkészülék, akusztikus
 Signal device, optical	Jelzőkészülék, optikai
 Signal lamp	Jelzőlámpa
+Signature	Aláírás
 Signed in	Bejelentkezve
 Silencers	Hangtompítók
 Silo	Siló
@@ -472,6 +478,7 @@ Single-stage filters	Egyfokozatú szűrők
 Siphon	Szifon
 Size of the files	A fájlok mérete
 Solenoid valve	Mágnesszelep
+Someone saved this meanwhile. Check the values and save again.	Valaki közben elmentette ezt. Ellenőrizze az értékeket, és mentse újra.
 Sorter	Válogató
 Start a server with:  openecraft-parts-server --token <secret>	Szerver indítása ezzel:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	A módosítások engedélyezéséhez indítsa az openecraft-parts-server programot a --token kapcsolóval

@@ -381,7 +381,13 @@ impl Studio {
                 self.panel.show_wires = !self.panel.show_wires;
                 Ok(Value::Null)
             }
-            "reports" => Ok(self.plugins.reports().map(|r| json!({ "name": r.name, "title": params::text(&r.title) })).collect()),
+            "reports" => Ok(self
+                .plugins
+                .reports()
+                .map(|r| (r, params::text(&r.title).to_string()))
+                .filter(|(r, t)| r.matches(t, arg))
+                .map(|(r, t)| json!({ "name": r.name, "title": t }))
+                .collect()),
             "report" => self.report(arg),
             "commands" => Ok(self.plugins.commands().map(command_help).collect()),
             "run" => self.run(arg).map(Value::String),

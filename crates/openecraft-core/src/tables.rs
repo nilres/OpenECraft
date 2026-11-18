@@ -1,5 +1,5 @@
 //! Editing in tables: devices, connections, terminals, cables, plug pins, PLC points,
-//! pages and the project parts as rows with editable columns, for changing many at once (filter, fill, find and replace) and for the
+//! pages, the project parts and the results of the inspection as rows with editable columns, for changing many at once (filter, fill, find and replace) and for the
 //! round trip through a spreadsheet (CSV with the row key in the first column).
 
 use openecraft_i18n::{tr, tr_const, tr_fmt};
@@ -19,6 +19,10 @@ pub enum TableKind {
     Plc,
     Pages,
     Parts,
+    /// The circuits of the inspection and test report with their results.
+    Inspection,
+    /// The data, visual inspection and verdict of the inspection and test report.
+    InspectionData,
 }
 
 /// A column: English name (CSV header, translated where shown) and whether it can be changed.
@@ -86,10 +90,49 @@ const PARTS: [Column; 7] = [
     col(tr_const!("Price"), true),
     col(tr_const!("Devices"), false),
 ];
+/// The editable columns are the fields of the results (`inspection::Field` by title).
+const INSPECTION: [Column; 24] = [
+    col(tr_const!("Circuit"), false),
+    col(tr_const!("Description"), false),
+    col(tr_const!("Protective device"), false),
+    col(tr_const!("RCD"), false),
+    col(tr_const!("Zs max (Ω)"), false),
+    col(tr_const!("Protective conductor (Ω)"), true),
+    col(tr_const!("Insulation test voltage (V)"), true),
+    col(tr_const!("Insulation L–PE (MΩ)"), true),
+    col(tr_const!("Insulation N–PE (MΩ)"), true),
+    col(tr_const!("Insulation L–N (MΩ)"), true),
+    col(tr_const!("Loop impedance Zs (Ω)"), true),
+    col(tr_const!("Voltage drop (%)"), true),
+    col(tr_const!("RCD trip current (mA)"), true),
+    col(tr_const!("RCD trip time (ms)"), true),
+    col(tr_const!("RCD trip time at 5 × IΔn (ms)"), true),
+    col(tr_const!("Contact voltage UB (V)"), true),
+    col(tr_const!("Polarity"), true),
+    col(tr_const!("Phase sequence"), true),
+    col(tr_const!("Function test"), true),
+    col(tr_const!("Result"), false),
+    col(tr_const!("Tested by"), true),
+    col(tr_const!("Date"), true),
+    col(tr_const!("Test instrument"), true),
+    col(tr_const!("Remark"), true),
+];
+/// The data of the inspection and test report and its visual inspection, one row each.
+const INSPECTION_DATA: [Column; 3] = [col(tr_const!("Item"), false), col(tr_const!("Value"), true), col(tr_const!("Note"), false)];
 
 impl TableKind {
-    pub const ALL: [TableKind; 8] =
-        [TableKind::Devices, TableKind::Connections, TableKind::Terminals, TableKind::Cables, TableKind::Plugs, TableKind::Plc, TableKind::Pages, TableKind::Parts];
+    pub const ALL: [TableKind; 10] = [
+        TableKind::Devices,
+        TableKind::Connections,
+        TableKind::Terminals,
+        TableKind::Cables,
+        TableKind::Plugs,
+        TableKind::Plc,
+        TableKind::Pages,
+        TableKind::Parts,
+        TableKind::Inspection,
+        TableKind::InspectionData,
+    ];
 
     pub fn title(self) -> &'static str {
         match self {
@@ -101,6 +144,8 @@ impl TableKind {
             TableKind::Plc => tr("PLC"),
             TableKind::Pages => tr("Pages"),
             TableKind::Parts => tr("Parts"),
+            TableKind::Inspection => tr("Inspection and test report"),
+            TableKind::InspectionData => tr("Inspection and test report: data"),
         }
     }
 
@@ -115,6 +160,8 @@ impl TableKind {
             TableKind::Plc => "plc",
             TableKind::Pages => "pages",
             TableKind::Parts => "parts",
+            TableKind::Inspection => "inspection",
+            TableKind::InspectionData => "inspection_data",
         }
     }
 
@@ -132,6 +179,8 @@ impl TableKind {
             TableKind::Plc => &PLC,
             TableKind::Pages => &PAGES,
             TableKind::Parts => &PARTS,
+            TableKind::Inspection => &INSPECTION,
+            TableKind::InspectionData => &INSPECTION_DATA,
         }
     }
 
@@ -324,6 +373,66 @@ pub fn rows(prj: &Project, nl: &Netlist, open: &Netlist, kind: TableKind) -> Vec
                 });
             }
         }
+        TableKind::Inspection => out = inspection_rows(prj, nl, open),
+        TableKind::InspectionData => out = inspection_data_rows(prj, nl, open),
+    }
+    out
+}
+
+/// The circuits of the inspection and test report with their results.
+fn inspection_rows(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Row> {
+    use crate::inspection::Field;
+    let mut out = Vec::new();
+    for c in crate::inspection::circuits(prj, nl, &crate::netlist::connections(prj, nl, open)) {
+        let mut cells = vec![c.circuit.clone(), c.description.clone().unwrap_or_default(), c.device_text(), c.rcd_text(), c.zs_max.map(|v| format!("{v:.2}")).unwrap_or_default()];
+        cells.extend(Field::ALL.iter().filter(|f| f.is_test()).map(|f| c.cell(*f)));
+        cells.push(c.verdict.title().into());
+        cells.extend(Field::ALL.iter().filter(|f| !f.is_test()).map(|f| c.cell(*f)));
+        out.push(Row { key: c.circuit.clone(), cells, target: Some(c.target), locked: false });
+    }
+    out
+}
+
+/// The data of the report (key: the field), the items of the visual inspection (key:
+/// `check.<item>`, own items `own.<n>` with their text as `own.<n>.title`; the last row
+/// adds one), the values of the sources of SELV, PELV and separated circuits (key:
+/// `source.<device>.<field>`) and the limits (key: `limit.<name>`).
+fn inspection_data_rows(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Row> {
+    use crate::inspection::{answer_text, Report, SourceField, CHECKS};
+    let report = Report::of(prj, nl, &crate::netlist::connections(prj, nl, open));
+    let h = &report.header;
+    let row = |key: String, cells: Vec<String>, target| Row { key, cells, target, locked: false };
+    let answers = || tr("OK, Not OK or Not applicable").to_string();
+    let mut out: Vec<Row> = report
+        .header_fields()
+        .into_iter()
+        .map(|f| {
+            let note = if f.is_answer() { answers() } else { report.limit(f.key()).map(|l| l.text()).unwrap_or_default() };
+            row(f.key().into(), vec![f.title().into(), f.display(h), note], None)
+        })
+        .collect();
+    for (key, title) in CHECKS {
+        let a = h.checks.get(key).map(|a| answer_text(a)).unwrap_or_default();
+        out.push(row(format!("check.{key}"), vec![tr(title).into(), a, answers()], None));
+    }
+    for (i, c) in h.own_checks.iter().enumerate() {
+        out.push(row(format!("own.{}.title", i + 1), vec![tr_fmt!("Own item {}", i + 1), c.title.clone(), tr("Empty: removes the item").into()], None));
+        out.push(row(format!("own.{}", i + 1), vec![c.title.clone(), answer_text(&c.answer), answers()], None));
+    }
+    out.push(row(format!("own.{}.title", h.own_checks.len() + 1), vec![tr("New own item of the visual inspection").into(), String::new(), String::new()], None));
+    for s in &report.sources {
+        for f in SourceField::ALL {
+            let note = match f {
+                SourceField::Measure => tr("SELV, PELV, Electrical separation or none").to_string(),
+                _ => s.limits.get(&s.result.measure).and_then(|l| l.iter().find(|l| l.key == f.key())).map(|l| l.text()).unwrap_or_default(),
+            };
+            out.push(row(format!("source.{}.{}", s.device, f.key()), vec![format!("{}: {}", s.device, f.title()), f.display(&s.result), note], Some(s.target)));
+        }
+    }
+    for l in &report.settings {
+        let title = crate::inspection::LIMITS.iter().find(|x| x.0 == l.key).map_or("", |x| x.1);
+        let note = tr_fmt!("Default {} ({})", crate::inspection::limit_text(l.default), l.source);
+        out.push(row(format!("limit.{}", l.key), vec![tr(title).into(), crate::inspection::limit_text(l.value), note], None));
     }
     out
 }
@@ -525,6 +634,20 @@ fn set(prj: &mut Project, open: &Netlist, kind: TableKind, key: &str, column: us
                     changed
                 }
             });
+        }
+        TableKind::Inspection => {
+            let nl = Netlist::build(prj, true);
+            if !crate::electrical::feeds(prj, &nl).iter().any(|f| f.device == key) {
+                return Err(tr_fmt!("No circuit {}", key));
+            }
+            let Some(field) = crate::inspection::Field::from_key(c.name) else { return Err(tr_fmt!("Unknown column: {}", column)) };
+            return crate::inspection::set(prj, key, field, value);
+        }
+        TableKind::InspectionData => {
+            let Some(rest) = key.strip_prefix("source.") else { return crate::inspection::set_header(prj, key, value) };
+            let field = rest.rsplit_once('.').and_then(|(d, f)| crate::inspection::SourceField::from_key(f).map(|f| (d, f)));
+            let Some((device, field)) = field.filter(|(d, _)| crate::inspection::sources(prj).iter().any(|s| s.device == *d)) else { return Err(tr_fmt!("Row {} not found", key)) };
+            return crate::inspection::set_source(prj, device, field, value);
         }
     }
     Ok(true)

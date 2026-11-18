@@ -175,22 +175,35 @@ fn letter_in(text: &str) -> Option<Characteristic> {
     })
 }
 
+/// The characteristic a part states (tech data, type of device, letter in its type
+/// number), `None` where only the default C remains.
+fn stated(part: &Part, kind: FnKind, electronic: bool) -> Option<Characteristic> {
+    part.tech_value("Characteristic").or_else(|| part.tech_value("Utilisation category")).and_then(Characteristic::parse).or_else(|| match kind {
+        FnKind::MotorProtection => Some(Characteristic::Motor),
+        FnKind::Fuse | FnKind::Fuse3 if part.description.contains(" aM") => Some(Characteristic::Am),
+        FnKind::Fuse | FnKind::Fuse3 => Some(Characteristic::Gg),
+        _ if electronic => Some(Characteristic::Electronic),
+        _ => letter_in(&part.type_number).or_else(|| letter_in(&part.number)).or_else(|| letter_in(&part.description)),
+    })
+}
+
+/// The tripping characteristic of the device `tag` as its parts state it; `None` where
+/// the calculations assume C ([`of_device`]).
+pub fn stated_characteristic(prj: &Project, tag: &str) -> Option<Characteristic> {
+    crate::sizing::device_parts(prj, tag).into_iter().find_map(|p| {
+        let f = p.functions.iter().find(|f| crate::sizing::PROTECTIVE.contains(&f.kind))?;
+        let part = crate::sizing::fuse_link(prj, tag).unwrap_or(p);
+        crate::sizing::parse_current(&part.current)?;
+        stated(part, f.kind, part.tech_value("Short-time pickup").and_then(first_number).is_some())
+    })
+}
+
 impl Protection {
     /// Protection data of a part with a protective function of this kind.
     pub fn of_part(part: &Part, kind: FnKind) -> Option<Protection> {
         let rated = crate::sizing::parse_current(&part.current)?;
         let short_pickup = part.tech_value("Short-time pickup").and_then(first_number);
-        let characteristic = part
-            .tech_value("Characteristic")
-            .or_else(|| part.tech_value("Utilisation category"))
-            .and_then(Characteristic::parse)
-            .unwrap_or_else(|| match kind {
-                FnKind::MotorProtection => Characteristic::Motor,
-                FnKind::Fuse | FnKind::Fuse3 if part.description.contains(" aM") => Characteristic::Am,
-                FnKind::Fuse | FnKind::Fuse3 => Characteristic::Gg,
-                _ if short_pickup.is_some() => Characteristic::Electronic,
-                _ => letter_in(&part.type_number).or_else(|| letter_in(&part.number)).or_else(|| letter_in(&part.description)).unwrap_or(Characteristic::C),
-            });
+        let characteristic = stated(part, kind, short_pickup.is_some()).unwrap_or(Characteristic::C);
         let ka = |keys: &[&str]| keys.iter().find_map(|k| part.tech_value(k)).and_then(|v| value_with_unit(v, "kA").or_else(|| first_number(v)));
         let breaking = ka(&["Breaking capacity", "Icu", "Icn"]);
         let making = ka(&["Making capacity", "Icm"]);

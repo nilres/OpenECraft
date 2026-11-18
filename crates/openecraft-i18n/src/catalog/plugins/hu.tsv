@@ -526,6 +526,7 @@ No rule for {} and {}	Nincs szabály ehhez: {} és {}
 No rule library or rule set {}	Nincs {} szabálykönyvtár vagy szabálykészlet
 No rule {}	Nincs {} szabály
 No safety function {}	Nincs {} biztonsági funkció
+No source {}	Nincs {} forrás
 No standard size of {} holds the layout of {}	A(z) {} egyik szabványos mérete sem fogadja be a(z) {} elrendezését
 No terminal strip {}	Nincs ilyen sorkapocsléc: {}
 No terminal {} on strip {}	Nincs {} sorkapocs a(z) {} lécen
@@ -937,7 +938,6 @@ Unknown earthing system: {}	Ismeretlen földelési rendszer: {}
 Unknown face {}	Ismeretlen felület: {}
 Unknown fastening: {}	Ismeretlen rögzítés: {}
 Unknown field object: {}	Ismeretlen terepi objektum: {}
-Unknown field: {}	Ismeretlen mező: {}
 Unknown group kind: {}	Ismeretlen csoportfajta: {}
 Unknown installation: {}	Ismeretlen felállítás: {}
 Unknown insulation: {}	Ismeretlen szigetelés: {}
@@ -1020,7 +1020,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi vagy other
 copper or aluminium	copper vagy aluminium
 device (default), position, cross_section or number	device (alapértelmezés), position, cross_section vagy number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages vagy parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection vagy inspection_data
 error, warning, info, off, or default to take the change back	error, warning, info, off, vagy default a módosítás visszavonásához
 false takes the acceptance back (default true)	false visszavonja az elfogadást (alapértelmezés: true)
 foundation, ring or rod	foundation, ring vagy rod

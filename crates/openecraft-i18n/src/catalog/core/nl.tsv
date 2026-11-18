@@ -43,6 +43,7 @@ Actuated by	Bediend door
 Actuation	Bediening
 Actuator type	Type bedieningselement
 Additional page description	Aanvullende paginabeschrijving
+Additional protection by RCDs of at most 30 mA where required	Aanvullende bescherming door aardlekschakelaars van ten hoogste 30 mA waar vereist
 Address ranges of {} and {} overlap	Adresbereiken van {} en {} overlappen
 Address {} is used by {} and {}	Adres {} wordt gebruikt door {} en {}
 Adhesive	Lijm
@@ -203,6 +204,7 @@ Check valve	Terugslagklep
 Checked	Gecontroleerd
 Checked by	Gecontroleerd door
 Choose the pages of the subproject	Kies de pagina's van het deelproject
+Circuit	Stroomkring
 Circuit breaker (single-line)	Vermogensschakelaar (eenlijnig)
 Circuit breaker 1-pole	Installatieautomaat 1-polig
 Circuit breaker 1-pole (NFPA)	Installatieautomaat 1-polig (NFPA)
@@ -219,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Vermogensschakelaar 3-polig QF (GB)
 Circuit breaker 3-pole QF (GOST)	Vermogensschakelaar 3-polig QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Vermogensschakelaar 3-polig, thermisch-magnetisch
 Circuit breaker 4-pole	Vermogensschakelaar 4-polig
+Circuits, protective devices, switches and terminals labelled	Stroomkringen, beveiligingen, schakelaars en klemmen gemarkeerd
 Circular milling	Circulair frezen
 Clip / snap-on	Klem / klik
 Cloud	Wolk
@@ -240,6 +243,7 @@ Compressed air supply	Persluchtvoorziening
 Compressor	Compressor
 Condition '{}' needs OPTION=value	Voorwaarde '{}' heeft OPTION=waarde nodig
 Conductor class	Geleiderklasse
+Conductors selected for current-carrying capacity and voltage drop	Geleiders gekozen op stroombelastbaarheid en spanningsval
 Conduit	Installatiebuis
 Connected	Aangesloten
 Connection definition point on page {} is not applied to its connection	Verbindingsdefinitiepunt op pagina {} is niet toegepast op zijn verbinding
@@ -253,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Verbindingssymbolen
 Connection type	Aansluittype
 Connection {} has contradicting connection definition points	Verbinding {} heeft tegenstrijdige verbindingsdefinitiepunten
+Connections of the conductors	Verbindingen van de geleiders
 Connector pin-outs and flat cables	Pinbezettingen van connectoren en platte kabels
 Connector pin-outs: mating faces and pin tables (SVG)	Pinbezettingen: steekzijden en pintabellen (SVG)
 Contact material	Contactmateriaal
@@ -278,6 +283,7 @@ Control transformer TC (GB)	Stuurtransformator TC (GB)
 Control valve	Regelafsluiter
 Control voltage	Stuurspanning
 Control voltage type	Type stuurspanning
+Conventional touch voltage limit UL (V)	Conventionele aanraakspanningsgrens UL (V)
 Converted from file format {} to {}: {}	Geconverteerd van bestandsindeling {} naar {}: {}
 Coolant	Koelmiddel
 Cooler	Koeler
@@ -341,6 +347,7 @@ DWG export failed: {}	DWG-export mislukt: {}
 Data sheet	Gegevensblad
 Date of the approval of the last revision	Datum van de goedkeuring van de laatste revisie
 Date of the last revision	Datum van de laatste revisie
+Default {} ({})	Standaard {} ({})
 Degree of protection	Beschermingsgraad
 Delete projects	Projecten verwijderen
 Delivery date	Leverdatum
@@ -373,6 +380,7 @@ Devices without power loss	Apparaten zonder vermogensverlies
 Dew point (°C)	Dauwpunt (°C)
 Diagnostic coverage (DC)	Diagnosedekkingsgraad (DC)
 Diagnostics	Diagnose
+Diagrams, warning notices and similar information present	Schema's, waarschuwingen en soortgelijke informatie aanwezig
 Diameter (mm)	Diameter (mm)
 Different wire numbers in one connection: {}	Verschillende draadnummers in één verbinding: {}
 Digital input / output module	Digitale in-/uitgangsmodule
@@ -463,6 +471,7 @@ Emergency stop SB (GOST)	Noodstop SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Noodstopapparaten hebben een B10d-waarde nodig (ISO 13849-1, bijlage C)
 Emergency stop, mushroom head (NFPA)	Noodstop, paddenstoelknop (NFPA)
 Empty (IEC 60204-1)	Leeg (IEC 60204-1)
+Empty: removes the item	Leeg: verwijdert het punt
 Enclosure body	Behuizingslichaam
 Enclosure climate	Klimaatbeheersing van de behuizing
 Enclosure light	Kastverlichting
@@ -480,6 +489,8 @@ Energy limitation class	Energiebegrenzingsklasse
 Engineered	Ge-engineerd
 Engineering unit	Fysische eenheid
 Environment	Omgeving
+Equipment accessible for operation, inspection and maintenance	Materieel toegankelijk voor bediening, inspectie en onderhoud
+Equipment and protective measures suit the external influences	Materieel en beschermingsmaatregelen passen bij de uitwendige invloeden
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Beschermingsleidingen van apparatuur moeten groen zijn (NFPA 79, 13.2.2)
 Excel workbook	Excel-werkmap
 Exhaust {} open to the atmosphere (no silencer)	Ontluchting {} open naar de atmosfeer (geen geluiddemper)
@@ -515,6 +526,7 @@ File name written into the file header	Bestandsnaam die in de bestandskop wordt 
 Fill level (%)	Vullingsgraad (%)
 Filter fan with outlet filter	Filterventilator met uitblaasfilter
 Filter rating	Filterfijnheid
+Fire barriers and protection against thermal effects	Brandscheidingen en bescherming tegen thermische effecten
 Firmware version	Firmwareversie
 First end only	Alleen eerste uiteinde
 Fitting	Fitting
@@ -706,12 +718,14 @@ Input voltage	Ingangsspanning
 Inputs from	Ingangen van
 Inrush current	Inschakelstroom
 Inside (°C)	Binnen (°C)
+Inspection and test report: SELV, PELV and separation	Inspectie- en testrapport: SELV, PELV en scheiding
+Inspection and test report: data	Inspectie- en testrapport: gegevens
+Inspection and test report: summary	Inspectie- en testrapport: samenvatting
 Installation altitude	Opstellingshoogte
 Installation date	Installatiedatum
 Installation devices	Installatieapparaten
 Installation method	Installatiemethode
 Installation plan (IEC 60617-11)	Installatieschema (IEC 60617-11)
-Installation site	Installatieplaats
 Installation site (++)	Installatie (++)
 Installation site and location	Installatieplaats en locatie
 Installation site of the page	Installatieplaats van de pagina
@@ -734,6 +748,7 @@ Invalid length {}	Ongeldige lengte {}
 Invalid property key: {}	Ongeldige eigenschapssleutel: {}
 Inverter / charger	Omvormer / lader
 Inverter DC/AC	Omvormer DC/AC
+Isolating and switching devices in the right places	Scheidings- en schakelapparaten op de juiste plaatsen
 Item	Element
 Item ID	Item-ID
 JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -777,7 +792,10 @@ Load calculation	Belastingberekening
 Loads and power supplies	Verbruikers en voedingen
 Loads behind it: {}	Belastingen erachter: {}
 Location of the page	Locatie van de pagina
+Longest RCD trip time at 5 × IΔn (ms)	Langste aanspreektijd aardlekschakelaar bij 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Langste aanspreektijd aardlekschakelaar bij IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Laagspanningsschakel- en verdeelinrichtingen: nominale gelijktijdigheidsfactor, temperatuurstijging, documentatie
+Lowest insulation resistance of the mains (MΩ)	Laagste isolatieweerstand van het net (MΩ)
 Lubricant	Smeermiddel
 Luminaire	Armatuur
 Luminaire, fluorescent	Armatuur, fluorescentie
@@ -828,6 +846,7 @@ Maximum installation altitude	Maximale opstellingshoogte
 Maximum operating temperature	Maximale bedrijfstemperatuur
 Maximum pressure	Maximale druk
 Measured variable	Meetgrootheid
+Measures against electromagnetic disturbances	Maatregelen tegen elektromagnetische storingen
 Measuring instrument	Meetinstrument
 Measuring instruments	Meetinstrumenten
 Measuring point	Meetpunt
@@ -920,8 +939,9 @@ NO contact, timed closing (NFPA)	Maakcontact, vertraagd sluitend (NFPA)
 Nailboard {}	Spijkerbord {}
 Network (m)	Net (m)
 Neutral (N)	Neutrale geleider (N)
+Neutral and protective conductors identified	Nul- en beschermingsleidingen gemarkeerd
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutrale geleiders moeten lichtblauw zijn (IEC 60204-1, 13.2.3)
-Next inspection	Volgende keuring
+New own item of the visual inspection	Nieuw eigen punt van de visuele inspectie
 Nibbling	Nibbelen
 No connection {}	Geen verbinding {}
 No devices to add to the single-line diagram	Geen apparaten om aan het eenlijnschema toe te voegen
@@ -942,7 +962,6 @@ No user defined property {}	Geen door de gebruiker gedefinieerde eigenschap {}
 No wires at the pins of {}	Geen draden aan de pinnen van {}
 Nominal discharge current	Nominale ontladingsstroom
 Non-return valve	Terugslagventiel
-Not OK	Niet OK
 Not a DWG file	Geen DWG-bestand
 Not a DXF file	Geen DXF-bestand
 Not a DXF file (binary DXF is not supported)	Geen DXF-bestand (binaire DXF wordt niet ondersteund)
@@ -977,7 +996,7 @@ Number of sheets	Aantal bladen
 Number of switch positions	Aantal schakelstanden
 Number of symbols	Aantal symbolen
 Numbers (1, 2, 3)	Cijfers (1, 2, 3)
-OK	OK
+OK, Not OK or Not applicable	OK, Niet OK of Niet van toepassing
 Ohmmeter	Ohmmeter
 Oil resistant	Oliebestendig
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Eén schemapagina met de potentialen +24V / 0V, drukknoppen, een keuzeschakelaar, signaallampen en een zekering; artikelen en stuklijst.
@@ -1029,6 +1048,7 @@ Overview (not evaluated)	Overzicht (niet geëvalueerd)
 Overview / single-line	Overzicht / eenlijnig
 Overvoltage category	Overspanningscategorie
 Overvoltage relay	Overspanningsrelais
+Own item {}	Eigen punt {}
 P&ID / process (ISO 10628)	P&ID / proces (ISO 10628)
 P&ID number	P&ID-nummer
 PCT loop {} has no instrument in the P&ID	PCT-lus {} heeft geen instrument in het P&ID
@@ -1114,7 +1134,6 @@ Phase (L)	Fasegeleider (L)
 Phase meter	Fasehoekmeter
 Phase unbalance {} % above {} %	Fase-onbalans {} % boven {} %
 Phase {}	Fase {}
-Phases	Fasen
 Photodiode	Fotodiode
 Photoelectric sensor, diffuse, 3-wire	Foto-elektrische sensor, diffuus, 3-draads
 Photoelectric sensor, diffuse, 4-wire	Foto-elektrische sensor, diffuus, 4-draads
@@ -1225,14 +1244,17 @@ Project revision	Projectrevisie
 Project symbols	Projectsymbolen
 Proof test interval	Interval proeftest
 Prospective short-circuit current	Prospectieve kortsluitstroom
+Protection against electric shock: the measures and their components	Bescherming tegen elektrische schok: de maatregelen en hun onderdelen
 Protection class	Beschermingsklasse
 Protection setting	Beveiligingsinstelling
+Protective and monitoring devices selected and set correctly	Beveiligings- en bewakingstoestellen juist gekozen en ingesteld
 Protective conductor {} with wire colour {} (must be GNYE)	Beschermingsleiding {} met draadkleur {} (moet GNYE zijn)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Beschermingsleidingen moeten groen-geel zijn (IEC 60204-1, 13.2.2)
 Protective devices	Beveiligingsapparaten
 Protective earth	Beschermingsaarde
 Protective earth (PE)	Beschermingsaarde (PE)
 Protective hose	Beschermslang
+Protective, earthing and bonding conductors present and adequate	Beschermings-, aardings- en vereffeningsleidingen aanwezig en toereikend
 Proximity sensor	Naderingsschakelaar
 Proximity sensor NO	Naderingsschakelaar maakcontact
 Proximity switch NO (NFPA)	Naderingsschakelaar maakcontact (NFPA)
@@ -1353,6 +1375,7 @@ Rule {}: no macro {}	Regel {}: geen macro {}
 Rule {}: {}	Regel {}: {}
 Rule {}: {} has no variant {}	Regel {}: {} heeft geen variant {}
 Rule {}: {} is no page macro	Regel {}: {} is geen paginamacro
+SELV, PELV, Electrical separation or none	SELV, PELV, Elektrische scheiding of geen
 SVG image (one page)	SVG-afbeelding (één pagina)
 Saddle jumper	Zadelbrug
 Safe torque off (STO)	Safe torque off (STO)
@@ -1440,11 +1463,14 @@ Signal devices	Meldapparaten
 Signal name	Signaalnaam
 Signal range	Signaalbereik
 Signal type	Signaaltype
+Signed by	Ondertekend door
+Signed on	Ondertekend op
 Silencer	Geluiddemper
 Single, free-standing	Enkel, vrijstaand
 Single, wall mounted	Enkel, wandmontage
 Single-line / overview	Eenlijnig / overzicht
 Single-line diagram	Eenlijnschema
+Single-pole switching devices in the line conductors	Eenpolige schakelaars in de fasegeleiders
 Siren	Sirene
 Site address	Adres van de opstellingsplaats
 Size (mm)	Grootte (mm)
@@ -1463,6 +1489,7 @@ Solenoid valve coil YA (GOST)	Magneetventielspoel YA (GOST)
 Solenoid valve coil YV (GB)	Magneetventielspoel YV (GB)
 Sort code	Sorteercode
 Sound level	Geluidsniveau
+Source {}	Bron {}
 Source {}, first target {}, second target {}	Bron {}, eerste doel {}, tweede doel {}
 Source {}, targets {}, {} and {}	Bron {}, doelen {}, {} en {}
 Spare	Reserve
@@ -1519,6 +1546,7 @@ Supply voltage	Voedingsspanning
 Surface (m²)	Oppervlak (m²)
 Surface-mounted	Opbouw
 Surge protection type	Type overspanningsbeveiliging
+Surge protection where required	Overspanningsbeveiliging waar vereist
 Surge protective device	Overspanningsbeveiliging
 Surge suppressor	Overspanningsbegrenzer
 Switch, 1-pole (installation)	Schakelaar, enkelpolig (installatie)
@@ -1569,6 +1597,7 @@ Termination (to)	Afwerking (naar)
 Text file	Tekstbestand
 The DXF file contains nothing that can be imported	Het DXF-bestand bevat niets wat kan worden geïmporteerd
 The PDF has no pages that can be read	De PDF heeft geen leesbare pagina's
+The answer is OK, Not OK or Not applicable, not {}	Het antwoord is OK, Niet OK of Niet van toepassing, niet {}
 The archive contains no project	Het archief bevat geen project
 The archive has no manifest	Het archief heeft geen manifest
 The archive is damaged	Het archief is beschadigd
@@ -1604,6 +1633,7 @@ The project file {} is missing	Het projectbestand {} ontbreekt
 The project has no panel layout	Het project heeft geen kastlay-out
 The project was written by a newer version (file layout {})	Het project is geschreven door een nieuwere versie (bestandsindeling {})
 The property needs a name	De eigenschap heeft een naam nodig
+The protective measure is SELV, PELV, electrical separation or none, not {}	De beschermingsmaatregel is SELV, PELV, elektrische scheiding of geen, niet {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Het pompstation ingebouwd in twee aaneengeschakelde vloerkasten: railsysteem, montagerails en kabelgoten, deurapparaten en grepen, filterventilator, verlichting, aardrail, kabelwartels, een kabeldoorvoer, klimaatberekening, gootvulling en 3D-routing.
 The revision is already released	De revisie is al vrijgegeven
 The revision is not approved	De revisie is niet goedgekeurd
@@ -1745,7 +1775,6 @@ Vibration resistance	Trillingsbestendigheid
 View projects	Projecten bekijken
 Violations	Overtredingen
 Voltage (V)	Spanning (V)
-Voltage drop (%)	Spanningsval (%)
 Voltage drop (V)	Spanningsval (V)
 Voltage protection level	Beschermingsniveau
 Voltage range	Spanningsbereik
@@ -1850,6 +1879,7 @@ in work	in bewerking
 in {}	in {}
 in-line	doorgang
 incl.	incl.
+instead of {}	in plaats van {}
 ip (kA)	ip (kA)
 is	is
 is at least	is minstens
@@ -1938,6 +1968,7 @@ yellow	geel
 {} lies outside page {}	{} ligt buiten pagina {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} montagemarkeringen horen bij elementen die niet meer bestaan
+{} of {} passed	{} van {} goedgekeurd
 {} option assignments of deleted objects removed	{} optietoewijzingen van verwijderde objecten verwijderd
 {} placed properties converted to property keys	{} geplaatste eigenschappen omgezet in eigenschapssleutels
 {} planned devices are not in the schematic yet	{} geplande apparaten staan nog niet in het schema

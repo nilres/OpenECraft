@@ -43,6 +43,7 @@ Actuated by	Ovládáno
 Actuation	Ovládání
 Actuator type	Typ ovladače
 Additional page description	Doplňující popis stránky
+Additional protection by RCDs of at most 30 mA where required	Doplňková ochrana proudovými chrániči nejvýše 30 mA, kde je požadována
 Address ranges of {} and {} overlap	Rozsahy adres {} a {} se překrývají
 Address {} is used by {} and {}	Adresu {} používají {} a {}
 Adhesive	Lepení
@@ -203,6 +204,7 @@ Check valve	Zpětný ventil
 Checked	Zkontrolováno
 Checked by	Zkontroloval
 Choose the pages of the subproject	Vyberte stránky podprojektu
+Circuit	Obvod
 Circuit breaker (single-line)	Jistič (jednopólové zobrazení)
 Circuit breaker 1-pole	Jistič 1pólový
 Circuit breaker 1-pole (NFPA)	Jistič 1pólový (NFPA)
@@ -219,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Jistič 3pólový QF (GB)
 Circuit breaker 3-pole QF (GOST)	Jistič 3pólový QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Jistič 3pólový, tepelně-magnetický
 Circuit breaker 4-pole	Jistič 4pólový
+Circuits, protective devices, switches and terminals labelled	Obvody, jisticí přístroje, spínače a svorky označeny
 Circular milling	Kruhové frézování
 Clip / snap-on	Svorka / nacvaknutí
 Cloud	Oblak
@@ -240,6 +243,7 @@ Compressed air supply	Přívod stlačeného vzduchu
 Compressor	Kompresor
 Condition '{}' needs OPTION=value	Podmínka '{}' vyžaduje OPTION=hodnota
 Conductor class	Třída vodiče
+Conductors selected for current-carrying capacity and voltage drop	Vodiče zvoleny podle proudové zatížitelnosti a úbytku napětí
 Conduit	Elektroinstalační trubka
 Connected	Obsazeno
 Connection definition point on page {} is not applied to its connection	Bod definice spojení na stránce {} není použit na své spojení
@@ -253,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Symboly spojení
 Connection type	Typ připojení
 Connection {} has contradicting connection definition points	Spojení {} má protichůdné body definice spojení
+Connections of the conductors	Spoje vodičů
 Connector pin-outs and flat cables	Zapojení konektorů a ploché kabely
 Connector pin-outs: mating faces and pin tables (SVG)	Zapojení konektorů: čelní strany a tabulky pinů (SVG)
 Contact material	Materiál kontaktů
@@ -278,6 +283,7 @@ Control transformer TC (GB)	Ovládací transformátor TC (GB)
 Control valve	Regulační ventil
 Control voltage	Řídicí napětí
 Control voltage type	Druh řídicího napětí
+Conventional touch voltage limit UL (V)	Dohodnutá mez dotykového napětí UL (V)
 Converted from file format {} to {}: {}	Převedeno z formátu souboru {} na {}: {}
 Coolant	Chladicí kapalina
 Cooler	Chladič
@@ -341,6 +347,7 @@ DWG export failed: {}	Export DWG selhal: {}
 Data sheet	Katalogový list
 Date of the approval of the last revision	Datum schválení poslední revize
 Date of the last revision	Datum poslední revize
+Default {} ({})	Výchozí {} ({})
 Degree of protection	Stupeň krytí
 Delete projects	Odstraňovat projekty
 Delivery date	Termín dodání
@@ -373,6 +380,7 @@ Devices without power loss	Přístroje bez ztrátového výkonu
 Dew point (°C)	Rosný bod (°C)
 Diagnostic coverage (DC)	Diagnostické pokrytí (DC)
 Diagnostics	Diagnostika
+Diagrams, warning notices and similar information present	Schémata, výstražné pokyny a podobné informace k dispozici
 Diameter (mm)	Průměr (mm)
 Different wire numbers in one connection: {}	Různá čísla vodičů v jednom spojení: {}
 Digital input / output module	Modul digitálních vstupů / výstupů
@@ -463,6 +471,7 @@ Emergency stop SB (GOST)	Nouzové zastavení SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Přístroje nouzového zastavení potřebují hodnotu B10d (ISO 13849-1, příloha C)
 Emergency stop, mushroom head (NFPA)	Nouzové zastavení, hřibové tlačítko (NFPA)
 Empty (IEC 60204-1)	Prázdný (IEC 60204-1)
+Empty: removes the item	Prázdné: odstraní bod
 Enclosure body	Tělo skříně
 Enclosure climate	Klimatizace skříně
 Enclosure light	Svítidlo rozváděče
@@ -480,6 +489,8 @@ Energy limitation class	Třída omezení energie
 Engineered	Projektováno
 Engineering unit	Fyzikální jednotka
 Environment	Prostředí
+Equipment accessible for operation, inspection and maintenance	Zařízení přístupná pro obsluhu, kontrolu a údržbu
+Equipment and protective measures suit the external influences	Zařízení a ochranná opatření odpovídají vnějším vlivům
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Ochranné vodiče zařízení musí být zelené (NFPA 79, 13.2.2)
 Excel workbook	Sešit Excel
 Exhaust {} open to the atmosphere (no silencer)	Odfuk {} otevřený do atmosféry (bez tlumiče hluku)
@@ -515,6 +526,7 @@ File name written into the file header	Název souboru zapsaný do záhlaví soub
 Fill level (%)	Zaplnění (%)
 Filter fan with outlet filter	Filtrační ventilátor s výstupním filtrem
 Filter rating	Jemnost filtrace
+Fire barriers and protection against thermal effects	Protipožární přepážky a ochrana před tepelnými účinky
 Firmware version	Verze firmwaru
 First end only	Jen první konec
 Fitting	Šroubení
@@ -706,12 +718,14 @@ Input voltage	Vstupní napětí
 Inputs from	Vstupy z
 Inrush current	Zapínací proud
 Inside (°C)	Uvnitř (°C)
+Inspection and test report: SELV, PELV and separation	Revizní zpráva: SELV, PELV a oddělení
+Inspection and test report: data	Revizní zpráva: údaje
+Inspection and test report: summary	Revizní zpráva: souhrn
 Installation altitude	Nadmořská výška instalace
 Installation date	Datum instalace
 Installation devices	Instalační přístroje
 Installation method	Způsob uložení
 Installation plan (IEC 60617-11)	Instalační plán (IEC 60617-11)
-Installation site	Místo instalace
 Installation site (++)	Místo instalace (++)
 Installation site and location	Místo instalace a umístění
 Installation site of the page	Místo instalace stránky
@@ -734,6 +748,7 @@ Invalid length {}	Neplatná délka {}
 Invalid property key: {}	Neplatný klíč vlastnosti: {}
 Inverter / charger	Střídač / nabíječka
 Inverter DC/AC	Střídač DC/AC
+Isolating and switching devices in the right places	Odpojovací a spínací přístroje na správných místech
 Item	Prvek
 Item ID	ID položky
 JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -777,7 +792,10 @@ Load calculation	Výpočet zatížení
 Loads and power supplies	Spotřebiče a napájecí zdroje
 Loads behind it: {}	Následné spotřebiče: {}
 Location of the page	Umístění stránky
+Longest RCD trip time at 5 × IΔn (ms)	Nejdelší vybavovací doba chrániče při 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Nejdelší vybavovací doba chrániče při IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Rozváděče nízkého napětí: jmenovitý součinitel soudobosti, oteplení, dokumentace
+Lowest insulation resistance of the mains (MΩ)	Nejmenší izolační odpor sítě (MΩ)
 Lubricant	Mazivo
 Luminaire	Svítidlo
 Luminaire, fluorescent	Svítidlo, zářivkové
@@ -828,6 +846,7 @@ Maximum installation altitude	Maximální nadmořská výška instalace
 Maximum operating temperature	Maximální provozní teplota
 Maximum pressure	Maximální tlak
 Measured variable	Měřená veličina
+Measures against electromagnetic disturbances	Opatření proti elektromagnetickému rušení
 Measuring instrument	Měřicí přístroj
 Measuring instruments	Měřicí přístroje
 Measuring point	Měřicí místo
@@ -920,8 +939,9 @@ NO contact, timed closing (NFPA)	Spínací kontakt, zpožděné sepnutí (NFPA)
 Nailboard {}	Formovací deska {}
 Network (m)	Síť (m)
 Neutral (N)	Střední vodič (N)
+Neutral and protective conductors identified	Nulové a ochranné vodiče označeny
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Střední vodiče musí být světle modré (IEC 60204-1, 13.2.3)
-Next inspection	Příští revize
+New own item of the visual inspection	Nový vlastní bod prohlídky
 Nibbling	Prostřihování
 No connection {}	Žádné spojení {}
 No devices to add to the single-line diagram	Žádné přístroje k přidání do jednopólového schématu
@@ -942,7 +962,6 @@ No user defined property {}	Žádná uživatelsky definovaná vlastnost {}
 No wires at the pins of {}	Žádné vodiče na pinech {}
 Nominal discharge current	Jmenovitý výbojový proud
 Non-return valve	Zpětný ventil
-Not OK	Nevyhovuje
 Not a DWG file	Není soubor DWG
 Not a DXF file	Nejde o soubor DXF
 Not a DXF file (binary DXF is not supported)	Nejde o soubor DXF (binární DXF není podporováno)
@@ -977,7 +996,7 @@ Number of sheets	Počet listů
 Number of switch positions	Počet spínacích poloh
 Number of symbols	Počet symbolů
 Numbers (1, 2, 3)	Čísla (1, 2, 3)
-OK	OK
+OK, Not OK or Not applicable	OK, Nevyhovuje nebo Nehodí se
 Ohmmeter	Ohmmetr
 Oil resistant	Odolný proti oleji
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Jedna stránka schématu s potenciály +24V / 0V, tlačítky, přepínačem, kontrolkami a pojistkou; díly a kusovník.
@@ -1029,6 +1048,7 @@ Overview (not evaluated)	Přehled (nevyhodnocuje se)
 Overview / single-line	Přehled / jednopólové
 Overvoltage category	Kategorie přepětí
 Overvoltage relay	Přepěťové relé
+Own item {}	Vlastní bod {}
 P&ID / process (ISO 10628)	P&ID / procesní technika (ISO 10628)
 P&ID number	Číslo P&ID
 PCT loop {} has no instrument in the P&ID	Smyčka MaR {} nemá v P&ID žádný přístroj
@@ -1114,7 +1134,6 @@ Phase (L)	Fázový vodič (L)
 Phase meter	Fázoměr
 Phase unbalance {} % above {} %	Nesymetrie fází {} % nad {} %
 Phase {}	Fáze {}
-Phases	Fáze
 Photodiode	Fotodioda
 Photoelectric sensor, diffuse, 3-wire	Optický senzor, difuzní, 3vodičový
 Photoelectric sensor, diffuse, 4-wire	Optický senzor, difuzní, 4vodičový
@@ -1225,14 +1244,17 @@ Project revision	Revize projektu
 Project symbols	Symboly projektu
 Proof test interval	Interval kontrolních zkoušek
 Prospective short-circuit current	Předpokládaný zkratový proud
+Protection against electric shock: the measures and their components	Ochrana před úrazem elektrickým proudem: opatření a jejich části
 Protection class	Třída ochrany
 Protection setting	Nastavení ochrany
+Protective and monitoring devices selected and set correctly	Ochranné a monitorovací přístroje správně zvoleny a nastaveny
 Protective conductor {} with wire colour {} (must be GNYE)	Ochranný vodič {} s barvou vodiče {} (musí být GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Ochranné vodiče musí být zelenožluté (IEC 60204-1, 13.2.2)
 Protective devices	Ochranné přístroje
 Protective earth	Ochranné uzemnění
 Protective earth (PE)	Ochranný vodič (PE)
 Protective hose	Ochranná hadice
+Protective, earthing and bonding conductors present and adequate	Ochranné, uzemňovací a pospojovací vodiče přítomny a vyhovující
 Proximity sensor	Přibližovací spínač
 Proximity sensor NO	Přibližovací snímač spínací
 Proximity switch NO (NFPA)	Přibližovací spínač, spínací (NFPA)
@@ -1353,6 +1375,7 @@ Rule {}: no macro {}	Pravidlo {}: žádné makro {}
 Rule {}: {}	Pravidlo {}: {}
 Rule {}: {} has no variant {}	Pravidlo {}: {} nemá variantu {}
 Rule {}: {} is no page macro	Pravidlo {}: {} není makro stránky
+SELV, PELV, Electrical separation or none	SELV, PELV, Elektrické oddělení nebo žádné
 SVG image (one page)	Obrázek SVG (jedna stránka)
 Saddle jumper	Zásuvná propojka
 Safe torque off (STO)	Bezpečně vypnutý moment (STO)
@@ -1440,11 +1463,14 @@ Signal devices	Signalizační přístroje
 Signal name	Název signálu
 Signal range	Rozsah signálu
 Signal type	Druh signálu
+Signed by	Podepsal
+Signed on	Podepsáno dne
 Silencer	Tlumič hluku
 Single, free-standing	Samostatně, volně stojící
 Single, wall mounted	Samostatně, montáž na stěnu
 Single-line / overview	Jednopólové / přehled
 Single-line diagram	Jednopólové schéma
+Single-pole switching devices in the line conductors	Jednopólové spínače ve fázových vodičích
 Siren	Siréna
 Site address	Adresa místa instalace
 Size (mm)	Velikost (mm)
@@ -1463,6 +1489,7 @@ Solenoid valve coil YA (GOST)	Cívka elektromagnetického ventilu YA (GOST)
 Solenoid valve coil YV (GB)	Cívka elektromagnetického ventilu YV (GB)
 Sort code	Třídicí kód
 Sound level	Hladina hluku
+Source {}	Zdroj {}
 Source {}, first target {}, second target {}	Zdroj {}, první cíl {}, druhý cíl {}
 Source {}, targets {}, {} and {}	Zdroj {}, cíle {}, {} a {}
 Spare	Rezerva
@@ -1519,6 +1546,7 @@ Supply voltage	Napájecí napětí
 Surface (m²)	Plocha (m²)
 Surface-mounted	Na omítce
 Surge protection type	Typ přepěťové ochrany
+Surge protection where required	Přepěťová ochrana, kde je požadována
 Surge protective device	Přepěťová ochrana
 Surge suppressor	Omezovač přepětí
 Switch, 1-pole (installation)	Vypínač, jednopólový (instalace)
@@ -1569,6 +1597,7 @@ Termination (to)	Zakončení (do)
 Text file	Textový soubor
 The DXF file contains nothing that can be imported	Soubor DXF neobsahuje nic, co by bylo možné importovat
 The PDF has no pages that can be read	PDF nemá žádné čitelné stránky
+The answer is OK, Not OK or Not applicable, not {}	Odpověď je OK, Nevyhovuje nebo Nehodí se, ne {}
 The archive contains no project	Archiv neobsahuje žádný projekt
 The archive has no manifest	Archiv nemá manifest
 The archive is damaged	Archiv je poškozen
@@ -1604,6 +1633,7 @@ The project file {} is missing	Soubor projektu {} chybí
 The project has no panel layout	Projekt nemá rozvržení rozváděče
 The project was written by a newer version (file layout {})	Projekt byl zapsán novější verzí (rozložení souborů {})
 The property needs a name	Vlastnost potřebuje název
+The protective measure is SELV, PELV, electrical separation or none, not {}	Ochranné opatření je SELV, PELV, elektrické oddělení nebo žádné, ne {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Čerpací stanice vestavěná do dvou řazených stojanových skříní: přípojnicový systém, lišty a kabelové žlaby, přístroje ve dveřích a rukojeti, ventilátor s filtrem, osvětlení, přípojnice PE, kabelové vývodky, kabelová průchodka, výpočet klimatizace, zaplnění žlabů a 3D trasování.
 The revision is already released	Revize je již uvolněna
 The revision is not approved	Revize není schválena
@@ -1745,7 +1775,6 @@ Vibration resistance	Odolnost proti vibracím
 View projects	Prohlížet projekty
 Violations	Porušení
 Voltage (V)	Napětí (V)
-Voltage drop (%)	Úbytek napětí (%)
 Voltage drop (V)	Úbytek napětí (V)
 Voltage protection level	Ochranná napěťová hladina
 Voltage range	Rozsah napětí
@@ -1850,6 +1879,7 @@ in work	ve zpracování
 in {}	v {}
 in-line	průchozí
 incl.	vč.
+instead of {}	místo {}
 ip (kA)	ip (kA)
 is	je
 is at least	je alespoň
@@ -1938,6 +1968,7 @@ yellow	žlutá
 {} lies outside page {}	{} leží mimo stránku {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} značek montáže patří k prvkům, které již neexistují
+{} of {} passed	{} z {} vyhovuje
 {} option assignments of deleted objects removed	Odebráno {} přiřazení voleb odstraněných objektů
 {} placed properties converted to property keys	{} umístěných vlastností převedeno na klíče vlastností
 {} planned devices are not in the schematic yet	{} plánovaných přístrojů ještě není ve schématu

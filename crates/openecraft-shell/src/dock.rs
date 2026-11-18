@@ -93,6 +93,7 @@ pub enum ToolPane {
     SingleLine,
     Process,
     Electrical,
+    Inspection,
     Integration,
     Languages,
     Configurator,
@@ -112,7 +113,7 @@ pub enum ToolPane {
 
 impl ToolPane {
     #[cfg(test)]
-    pub const ALL: [ToolPane; 37] = [
+    pub const ALL: [ToolPane; 38] = [
         ToolPane::Start,
         ToolPane::Help,
         ToolPane::Reports,
@@ -135,6 +136,7 @@ impl ToolPane {
         ToolPane::SingleLine,
         ToolPane::Process,
         ToolPane::Electrical,
+        ToolPane::Inspection,
         ToolPane::Integration,
         ToolPane::Languages,
         ToolPane::Configurator,
@@ -168,7 +170,7 @@ impl ToolPane {
     pub fn window_size(self) -> [f32; 2] {
         use ToolPane as T;
         match self {
-            T::Reports | T::Tables | T::PlcHardware | T::Harnesses | T::FieldWiring | T::Buildings | T::Compare | T::Preplanning | T::SingleLine | T::Process | T::Electrical | T::Integration | T::Projects | T::SymbolEditor | T::Forms | T::Parts | T::DataPortal => [960.0, 640.0],
+            T::Reports | T::Tables | T::PlcHardware | T::Harnesses | T::FieldWiring | T::Buildings | T::Compare | T::Preplanning | T::SingleLine | T::Process | T::Electrical | T::Inspection | T::Integration | T::Projects | T::SymbolEditor | T::Forms | T::Parts | T::DataPortal => [960.0, 640.0],
             T::Help | T::Potentials | T::Plugs | T::ProjectServer | T::Vault | T::Plugins => [480.0, 560.0],
             _ => [720.0, 500.0],
         }
@@ -262,7 +264,7 @@ pub fn menu_groups() -> Vec<(&'static str, Vec<Pane>)> {
             tr_const!("Project data"),
             tools(&[T::Reports, T::ReportBlocks, T::Tables, T::Revisions, T::Compare, T::ChangeRequests, T::Languages, T::Configurator, T::Projects]),
         ),
-        (tr_const!("Tools"), tools(&[T::Electrical, T::Process, T::Integration, T::ProjectServer, T::Vault])),
+        (tr_const!("Tools"), tools(&[T::Electrical, T::Inspection, T::Process, T::Integration, T::ProjectServer, T::Vault])),
         (tr_const!("Master data"), tools(&[T::SymbolEditor, T::Forms, T::Macros, T::Parts, T::DataPortal, T::PropertyDatabase])),
         (tr_const!("Plugins"), tools(&[T::PluginCommands, T::Plugins])),
         (tr_const!("Help"), tools(&[T::Start, T::Help])),
