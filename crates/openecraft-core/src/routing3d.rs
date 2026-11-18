@@ -495,6 +495,11 @@ impl Routing {
         self.items.iter().find(|i| i.key == key)
     }
 
+    /// The length of the route of item `key` (mm) where it is routed.
+    pub fn routed_length(&self, key: &str) -> Option<f32> {
+        self.item(key).filter(|i| i.routed()).map(|i| i.length)
+    }
+
     /// Bundles an item runs in.
     pub fn bundles_of(&self, item: usize) -> Vec<usize> {
         (0..self.bundles.len()).filter(|&b| self.bundles[b].items.contains(&item)).collect()
@@ -930,18 +935,22 @@ const NOZZLE_OUT: f32 = 30.0;
 const PIPE_ELBOW: f32 = 1.5;
 
 /// The two end tags of a cable: the device most of its cores start at, and the one
-/// most of them end at.
-fn cable_ends(prj: &Project, conns: &[&Connection]) -> Option<(String, String)> {
+/// most of them end at; of as many, the one of the core first in the cable's list of
+/// cores (`cores`), then the first by name.
+fn cable_ends(prj: &Project, cores: &[String], conns: &[&Connection]) -> Option<(String, String)> {
     let tag = |p: crate::netlist::PinRef| prj.pages[p.page].symbols[p.sym].tag.clone();
-    let most = |tags: Vec<String>| {
-        let mut count: BTreeMap<String, usize> = BTreeMap::new();
-        for t in tags {
-            *count.entry(t).or_default() += 1;
+    let rank = |c: &Connection| cores.iter().position(|k| *k == c.core).unwrap_or(usize::MAX);
+    let most = |tags: Vec<(String, usize)>| {
+        let mut count: BTreeMap<String, (usize, usize)> = BTreeMap::new();
+        for (t, r) in tags {
+            let e = count.entry(t).or_insert((0, usize::MAX));
+            e.0 += 1;
+            e.1 = e.1.min(r);
         }
-        count.into_iter().max_by(|a, b| a.1.cmp(&b.1).then(b.0.cmp(&a.0))).map(|x| x.0)
+        count.into_iter().max_by(|a, b| a.1 .0.cmp(&b.1 .0).then(b.1 .1.cmp(&a.1 .1)).then(b.0.cmp(&a.0))).map(|x| x.0)
     };
-    let a = most(conns.iter().map(|c| tag(c.a)).collect())?;
-    let b = most(conns.iter().map(|c| tag(c.b)).filter(|t| *t != a).collect())?;
+    let a = most(conns.iter().map(|c| (tag(c.a), rank(c))).collect())?;
+    let b = most(conns.iter().map(|c| (tag(c.b), rank(c))).filter(|t| t.0 != a).collect())?;
     Some((a, b))
 }
 
@@ -953,7 +962,7 @@ pub fn cable_end_tags(prj: &Project, c: &Cable, cores: &[&Connection]) -> Option
         let tag = |s: &str| prj.plc.station(s).map(|s| s.tag.clone()).filter(|t| !t.is_empty());
         Some((tag(&link.a.station)?, tag(&link.b.station)?))
     };
-    cable_ends(prj, cores).or_else(bus)
+    cable_ends(prj, &c.core_list(), cores).or_else(bus)
 }
 
 /// Where a cable or tube from outside the building comes into room `ri`: the building

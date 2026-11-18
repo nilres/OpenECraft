@@ -5,15 +5,22 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
-- **Circuits of the schematic on the floor plan:** the final circuits drawn in the
-  schematic are listed in the *Buildings* pane with the socket outlets, switches,
-  lights and heating elements behind their protective devices (through switches,
-  contacts and terminals). A click places each in a room of the floor plan, or makes an
-  outlet, switch or light placed before that device, and it goes into the final circuit
-  of its protective device, made when there is none. Heating elements (panel heaters,
-  towel radiators, infrared ceiling panels) are placed, wired and drawn like the other
-  items. Commands `list_schematic_circuits`, `place_circuit_device`
-  ([circuits of the schematic](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
+- **The installation in the schematic:** a socket outlet, switch, light or heating
+  element put into a room of the floor plan for a protective device goes into the
+  schematic: a device with its part on the installation page of the circuit, drawn
+  with a cable from the device before it. The circuits in the *Buildings* pane are read
+  from the schematic, with the devices behind each protective device (through switches,
+  contacts and terminals), their connections and cables; the lengths are those of the
+  3D routing (estimated until routed). Devices drawn in the schematic by hand are placed
+  with a click, or take an outlet, switch or light placed before. Heating elements
+  (panel heaters, towel radiators, infrared ceiling panels) are put in like the other
+  devices. They are also placed with a click on a wall or the ceiling in the 3D view
+  (*Insert › Outlets, switches, heating*, with the protective device chosen at the top
+  of the menu, whose list now fills its height). In a net with several cables each
+  connection now takes the cable of the
+  wires at its connection points. Commands `place_installation`, `list_circuits`,
+  `place_circuit_device`, `write_circuit_cables`
+  ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
 - **Lights and heaters in 3D:** ceiling lights, downlights, wall, panel and emergency
   lights, panel heaters, towel radiators and infrared heating panels get generated 3D
   models instead of plain boxes.
@@ -27,20 +34,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   follows, ignoring spaces and dashes: `VDE 0100 600` or `IEC 60364-6` find the
   inspection and test report, `ISO 13849` the safety functions. Plugins give their
   reports search terms with `keywords`.
-- **Installation plans with circuits:** socket outlets, switches and lights (new
-  generic ceiling lights, downlights and wall lights, in the schematic with the new
-  symbol *Luminaire*: L, N and PE) are put into the rooms with a
-  click on the floor plan of a level (*Buildings* pane) and drawn there with the
-  symbols of installation plans; final circuits feed them from a protective device of
-  the distribution board (spare ones marked) through a cable wired item by item. The
-  cable length along the installation zones and the voltage drop from the supply
-  (feeder cables to the board, cable reactance) are worked out, checked against the
-  rule sets and written into the cable list. The items become devices with tags, a
-  generated single-line page shows the circuits, and a circuit without a protective
-  device gets a planned one for the single-line diagram. Report *Installation
-  circuits*, check *Installation circuits*, plugin `installation` (`place_installation`,
-  `list_breakers`, `add_circuit`, `set_circuit`, `list_circuits`, `new_circuit_breaker`,
-  `installation_overview`, `write_circuit_cables`) ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
+- **Installation plans:** socket outlets, switches and lights (new generic ceiling
+  lights, downlights and wall lights, in the schematic with the new symbol *Luminaire*:
+  L, N and PE) are put into the rooms with a click on the floor plan of a level
+  (*Buildings* pane) and drawn there with the symbols of installation plans. The cable
+  lengths and the voltage drop from the supply (feeder cables to the board, cable
+  reactance) of the final circuits are worked out, checked against the rule sets and
+  written into the cable list. Report *Installation circuits*, check *Installation
+  circuits*, plugin `installation` (`list_breakers`)
+  ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
 - **Floor plans on paper under the levels of a building:** a scan or drawing (PDF,
   PNG, JPEG, TIFF, …) goes under a level in the *Buildings* pane, to scale (measured on
   a dimension of the drawing) and in place; *Find rooms* finds the walls, doors,

@@ -191,6 +191,7 @@ Cable entry 5 x M25	Kabeleinführung 5 x M25	Entrée de câbles 5 x M25	Entrada 
 Cable gland	Kabelverschraubung	Presse-étoupe	Prensaestopas
 Cable ladder	Kabelleiter	Échelle à câbles	Escalera portacables
 Cable marker	Kabelmarkierer	Repère de câble	Marcador de cable
+Cable of each connection at its connection points	Kabel jeder Verbindung an ihren Anschlüssen	Câble de chaque connexion à ses points de connexion	Cable de cada conexión en sus puntos de conexión
 Cable route	Kabelweg	Cheminement du câble	Recorrido del cable
 Cable sizing	Kabeldimensionierung	Dimensionnement des câbles	Dimensionado de cables
 Cable sizing (voltage drop)	Kabelbemessung (Spannungsfall)	Dimensionnement des câbles (chute de tension)	Dimensionado de cables (caída de tensión)
@@ -241,7 +242,6 @@ Checked	Geprüft	Vérifiés	Comprobados
 Checked by	Geprüft von	Vérifié par	Revisado por
 Checking the project	Projekt wird geprüft	Vérification du projet	Comprobando el proyecto
 Choose the pages of the subproject	Wählen Sie die Seiten des Teilprojekts	Choisissez les pages du sous-projet	Elija las páginas del subproyecto
-Circuit	Stromkreis	Circuit	Circuito
 Circuit breaker (single-line)	Leistungsschalter (einpolig dargestellt)	Disjoncteur (unifilaire)	Interruptor automático (unifilar)
 Circuit breaker 1-pole	Leitungsschutzschalter 1-polig	Disjoncteur 1 pôle	Interruptor automático 1 polo
 Circuit breaker 1-pole (NFPA)	Leitungsschutzschalter 1-polig (NFPA)	Disjoncteur unipolaire (NFPA)	Interruptor automático unipolar (NFPA)
@@ -258,15 +258,10 @@ Circuit breaker 3-pole QF (GB)	Leistungsschalter 3-polig QF (GB)	Disjoncteur 3 p
 Circuit breaker 3-pole QF (GOST)	Leistungsschalter 3-polig QF (GOST)	Disjoncteur 3 pôles QF (GOST)	Interruptor automático 3 polos QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Leistungsschalter 3-polig, thermisch-magnetisch	Disjoncteur 3 pôles, magnétothermique	Interruptor automático 3 polos, magnetotérmico
 Circuit breaker 4-pole	Leistungsschalter 4-polig	Disjoncteur 4 pôles	Interruptor automático 4 polos
-Circuit {}	Stromkreis {}	Circuit {}	Circuito {}
-Circuit {} has no protective device	Stromkreis {} hat kein Schutzorgan	Le circuit {} n'a pas de dispositif de protection	El circuito {} no tiene dispositivo de protección
-Circuit {}: no protective device {} in the schematic	Stromkreis {}: kein Schutzorgan {} im Schaltplan	Circuit {} : aucun dispositif de protection {} dans le schéma	Circuito {}: no hay dispositivo de protección {} en el esquema
-Circuit {}: protective device {} feeds other circuits too	Stromkreis {}: Schutzorgan {} speist auch andere Stromkreise	Circuit {} : le dispositif de protection {} alimente aussi d'autres circuits	Circuito {}: el dispositivo de protección {} alimenta también otros circuitos
 Circuit {}: protective device {} is in no distribution board of the layout	Stromkreis {}: Schutzorgan {} ist in keinem Verteiler des Aufbaus	Circuit {} : le dispositif de protection {} n'est dans aucun tableau de l'implantation	Circuito {}: el dispositivo de protección {} no está en ningún cuadro de la disposición
-Circuit {}: protective device {} is planned only: generate it into the schematic from the single-line diagram and connect it to the supply	Stromkreis {}: Schutzorgan {} ist nur geplant: aus dem Übersichtsschaltplan in den Stromlaufplan erzeugen und an die Einspeisung anschließen	Circuit {} : le dispositif de protection {} est seulement prévu : générez-le dans le schéma depuis l'unifilaire et raccordez-le à l'alimentation	Circuito {}: el dispositivo de protección {} solo está previsto: genérelo en el esquema desde el unifilar y conéctelo a la alimentación
 Circuit {}: voltage drop {} % over the limit of {} % ({} m)	Stromkreis {}: Spannungsfall {} % über der Grenze von {} % ({} m)	Circuit {} : chute de tension de {} % au-dessus de la limite de {} % ({} m)	Circuito {}: caída de tensión de {} % por encima del límite de {} % ({} m)
 Circuit {}: {} mm² carry {} A, less than the {} A of its protective device	Stromkreis {}: {} mm² tragen {} A, weniger als die {} A seines Schutzorgans	Circuit {} : {} mm² supportent {} A, moins que les {} A de son dispositif de protection	Circuito {}: {} mm² soportan {} A, menos que los {} A de su dispositivo de protección
-Circuit {}: {} of its items are gone	Stromkreis {}: {} seiner Betriebsmittel fehlen	Circuit {} : {} de ses éléments ont disparu	Circuito {}: faltan {} de sus elementos
+Circuit {}: {} of its devices are placed in no room	Stromkreis {}: {} seiner Betriebsmittel sind in keinem Raum platziert	Circuit {} : {} de ses appareils ne sont placés dans aucune pièce	Circuito {}: {} de sus dispositivos no están colocados en ninguna sala
 Circuits, protective devices, switches and terminals labelled	Stromkreise, Schutzeinrichtungen, Schalter und Klemmen gekennzeichnet	Circuits, appareils de protection, interrupteurs et bornes repérés	Circuitos, dispositivos de protección, interruptores y bornes identificados
 Circular milling	Zirkularfräsen	Fraisage circulaire	Fresado circular
 Clip	Clip	Clip	Clip
@@ -814,6 +809,7 @@ Installation circuits (cable lengths, voltage drop)	Installationsstromkreise (Ka
 Installation date	Einbaudatum	Date d'installation	Fecha de instalación
 Installation devices	Installationsgeräte	Appareils d'installation	Aparatos de instalación
 Installation method	Verlegeart	Mode de pose	Método de instalación
+Installation of {}	Installation von {}	Installation de {}	Instalación de {}
 Installation plan (IEC 60617-11)	Installationsplan (IEC 60617-11)	Plan d'installation (IEC 60617-11)	Plano de instalación (IEC 60617-11)
 Installation site (++)	Anlage (++)	Site d'installation (++)	Emplazamiento (++)
 Installation site and location	Aufstellungsort und Ort	Lieu d'installation et emplacement	Lugar de instalación y ubicación
@@ -842,6 +838,7 @@ Inverter DC/AC	Wechselrichter DC/AC	Onduleur DC/AC	Inversor DC/AC
 Isolating and switching devices in the right places	Trenn- und Schaltgeräte an den richtigen Stellen	Dispositifs de sectionnement et de commande aux bons endroits	Dispositivos de seccionamiento y maniobra en los lugares correctos
 Item	Element	Élément	Elemento
 Item ID	Teile-ID	ID d'article	ID de artículo
+Items	Elemente	Éléments	Elementos
 JIS (JIS C 0617)	JIS (JIS C 0617)	JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Brücken	Ponts	Puentes
 Junction	Verbindungsknoten	Jonction	Nodo de conexión
@@ -1051,8 +1048,6 @@ Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutralleiter müsse
 New own item of the visual inspection	Neuer eigener Punkt der Besichtigung	Nouveau point propre de l'examen visuel	Nuevo punto propio de la inspección visual
 Next page number in section	Nächste Seitennummer im Abschnitt	Numéro de page suivant dans la section	Número de página siguiente en la sección
 Nibbling	Nibbeln	Grignotage	Roedura
-No circuit breaker of {} A	Kein Leitungsschutzschalter mit {} A	Aucun disjoncteur de {} A	Ningún interruptor automático de {} A
-No circuit yet	Noch kein Stromkreis	Pas encore de circuit	Todavía no hay circuito
 No connection {}	Keine Verbindung {}	Aucune liaison {}	No hay conexión {}
 No device box with this id on the page	Keine Gerätebox mit dieser ID auf der Seite	Aucune boîte d'appareil avec cet ID sur la page	No hay ninguna caja de dispositivo con este ID en la página
 No device connection point with this id on the page	Kein Geräteanschlusspunkt mit dieser ID auf der Seite	Aucun point de connexion d'appareil avec cet ID sur la page	No hay ningún punto de conexión del dispositivo con este ID en la página
@@ -1070,7 +1065,6 @@ No rooms found in the floor plan	Keine Räume im Grundriss erkannt	Aucune pièce
 No segment template named {}	Keine Segmentvorlage namens {}	Aucun modèle de segment nommé {}	No hay ninguna plantilla de segmento llamada {}
 No subproject {}	Kein Teilprojekt {}	Aucun sous-projet {}	No hay ningún subproyecto {}
 No such building	Kein solches Gebäude	Bâtiment introuvable	No existe ese edificio
-No such circuit	Kein solcher Stromkreis	Circuit inexistant	No existe ese circuito
 No such inner wall	Keine solche Innenwand	Aucun mur intérieur de ce type	No existe esa pared interior
 No such object: {}	Kein solches Objekt: {}	Objet inexistant : {}	No existe el objeto: {}
 No such roof	Kein solches Dach	Toit introuvable	No existe esa cubierta
@@ -1783,6 +1777,7 @@ The function test is OK or Not OK, not {}	Die Funktionsprüfung ist OK oder Nich
 The image is too large ({} × {} pixels)	Das Bild ist zu groß ({} × {} Pixel)	L'image est trop grande ({} × {} pixels)	La imagen es demasiado grande ({} × {} píxeles)
 The index of the project names no file layout: it was not written by OpenECraft	Der Index des Projekts nennt kein Dateilayout: er wurde nicht von OpenECraft geschrieben	L'index du projet n'indique aucune structure de fichiers : il n'a pas été écrit par OpenECraft	El índice del proyecto no indica ninguna estructura de archivos: no fue escrito por OpenECraft
 The inner wall leaves the room	Die Innenwand verlässt den Raum	Le mur intérieur sort de la salle	La pared interior sale de la sala
+The installation page of {} is full	Die Installationsseite von {} ist voll	La page d'installation de {} est pleine	La página de instalación de {} está llena
 The last page cannot be deleted	Die letzte Seite kann nicht gelöscht werden	La dernière page ne peut pas être supprimée	La última página no se puede eliminar
 The level has no floor plan	Die Ebene hat keinen Grundriss	Le niveau n'a pas de plan	El nivel no tiene plano
 The level would overlap level {}	Die Ebene würde Ebene {} überlappen	Le niveau chevaucherait le niveau {}	El nivel se solaparía con el nivel {}
@@ -2151,6 +2146,8 @@ yellow	gelb	jaune	amarillo
 {} is device {} already	{} ist schon das Betriebsmittel {}	{} est déjà l'appareil {}	{} ya es el dispositivo {}
 {} is inside the structure box {} but has another structure	{} liegt im Strukturkasten {}, hat aber eine andere Struktur	{} se trouve dans le cadre de structure {} mais a une autre structure	{} está dentro del recuadro de estructura {} pero tiene otra estructura
 {} is no 19-inch part ({} mm wide)	{} ist kein 19-Zoll-Teil ({} mm breit)	{} n'est pas une pièce 19 pouces ({} mm de large)	{} no es una pieza de 19 pulgadas ({} mm de ancho)
+{} is no protective device of a final circuit in the schematic	{} ist kein Schutzorgan eines Endstromkreises im Schaltplan	{} n'est pas un appareil de protection d'un circuit terminal du schéma	{} no es un dispositivo de protección de un circuito final del esquema
+{} is no socket outlet, switch, light or heating element	{} ist weder Steckdose noch Schalter, Leuchte oder Heizelement	{} n'est ni une prise, ni un interrupteur, ni un luminaire, ni un élément chauffant	{} no es una toma de corriente, un interruptor, una luminaria ni un elemento calefactor
 {} is no socket outlet, switch, light or heating element of circuit {}	{} ist keine Steckdose, kein Schalter, keine Leuchte und kein Heizelement des Stromkreises {}	{} n'est ni une prise, ni un interrupteur, ni un luminaire, ni un élément chauffant du circuit {}	{} no es una toma de corriente, un interruptor, una luminaria ni un elemento calefactor del circuito {}
 {} is not a busbar machine	{} ist keine Schienenbearbeitungsmaschine	{} n'est pas une machine à barres	{} no es una máquina de pletinas
 {} is not a picture or PDF file: {}	{} ist keine Bild- oder PDF-Datei: {}	{} n'est pas un fichier image ou PDF : {}	{} no es un archivo de imagen ni PDF: {}
@@ -2177,7 +2174,7 @@ yellow	gelb	jaune	amarillo
 {} report references converted to report names	{} Auswertungsverweise in Auswertungsnamen umgewandelt	{} références de rapport converties en noms de rapport	{} referencias de informe convertidas en nombres de informe
 {} s	{} s	{} s	{} s
 {} single part assignments converted to part lists	{} einzelne Artikelzuordnungen in Artikellisten umgewandelt	{} affectations d'article unique converties en listes d'articles	{} asignaciones de artículo único convertidas en listas de artículos
-{} socket outlets, lights and heating elements are in no circuit	{} Steckdosen, Leuchten und Heizelemente sind in keinem Stromkreis	{} prises, luminaires et éléments chauffants ne sont dans aucun circuit	{} tomas de corriente, luminarias y elementos calefactores no están en ningún circuito
+{} socket outlets, switches, lights and heating elements are not in the schematic	{} Steckdosen, Schalter, Leuchten und Heizelemente sind nicht im Schaltplan	{} prises, interrupteurs, luminaires et éléments chauffants ne sont pas dans le schéma	{} tomas de corriente, interruptores, luminarias y elementos calefactores no están en el esquema
 {} stands outside the plot boundary	{} steht außerhalb der Grundstücksgrenze	{} se trouve hors de la limite du terrain	{} está fuera del límite de la parcela
 {} symbols, {} wires, {} texts / graphics	{} Symbole, {} Leitungen, {} Texte / Grafiken	{} symboles, {} fils, {} textes / graphiques	{} símbolos, {} hilos, {} textos / gráficos
 {} texts are not translated into {}	{} Texte sind nicht in {} übersetzt	{} textes ne sont pas traduits en {}	{} textos no están traducidos al {}

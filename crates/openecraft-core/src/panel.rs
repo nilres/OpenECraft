@@ -630,7 +630,6 @@ impl Default for Layout {
             buildings: Vec::new(),
             site_links: Vec::new(),
             plot: Default::default(),
-            circuits: Vec::new(),
             installation_pages: Vec::new(),
         }
     }

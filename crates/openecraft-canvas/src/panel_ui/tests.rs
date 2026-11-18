@@ -2310,7 +2310,7 @@ fn the_installation_menu_keeps_its_size_on_every_tab() {
             sizes.push(size);
         }
         let last = sizes[sizes.len() - 1];
-        assert!(last.x > 700.0 && last.x < 800.0 && last.y < 700.0, "tab {tab}: {sizes:?}");
+        assert!(last.x > 700.0 && last.x < 800.0 && last.y < 1000.0, "tab {tab}: {sizes:?}");
         assert!(sizes[3..].iter().all(|s| (s.x - last.x).abs() < 1.0 && (s.y - last.y).abs() < 1.0), "tab {tab}: {sizes:?}");
     }
 }
@@ -2333,4 +2333,30 @@ fn freestanding_arrays_and_the_roofs_to_pick_are_in_the_site_view() {
     assert_eq!(prj.layout.plot.solar.len(), 2);
     assert_eq!((prj.layout.plot.solar[1].x, prj.layout.plot.solar[1].z), (0.0, -30_000.0));
     assert_eq!(ui.selected_array, Some(prj.layout.plot.solar[1].id));
+}
+
+#[test]
+fn parts_placed_in_a_room_go_into_the_schematic_for_the_protective_device_chosen() {
+    let mut prj = openecraft_core::sample::example("electrical_room").unwrap();
+    let ri = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let mut ui = PanelUi { in_room: true, enclosure: ri, ..Default::default() };
+    // The menu chooses the first protective device of a final circuit.
+    let ctx = egui::Context::default();
+    ctx.run_ui(egui::RawInput::default(), |u| ui.breaker_choice(u, &prj)).textures_delta.clear();
+    let breaker = ui.installation.breaker.clone().unwrap();
+    assert!(!breaker.is_empty());
+    // A click on the rear wall in the 3D view.
+    let e = &prj.layout.enclosures[ri];
+    let w = panel::side(e, Face::Wall(0)).unwrap();
+    let mid = [(w.a[0] + w.b[0]) / 2.0 + w.normal[0] * 20.0, (w.a[1] + w.b[1]) / 2.0 + w.normal[1] * 20.0];
+    let q = panel::site_poses(&prj)[ri].apply([mid[0], 1000.0, mid[1]]);
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]]);
+    let it = prj.layout.enclosures[ri].items.last().unwrap().clone();
+    assert_eq!((it.part.as_str(), it.face), ("GEN.SOCKET-F-UP", Face::Wall(0)));
+    assert!(!it.tag.is_empty(), "{}", ui.status);
+    assert!(ui.status.contains(&it.tag), "{}", ui.status);
+    // Without a protective device it stays out of the schematic.
+    ui.installation.breaker = Some(String::new());
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]]);
+    assert!(prj.layout.enclosures[ri].items.last().unwrap().tag.is_empty());
 }

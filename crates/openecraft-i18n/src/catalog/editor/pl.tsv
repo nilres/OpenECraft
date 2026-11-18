@@ -564,6 +564,7 @@ Devices go back to the devices to place	Urządzenia wracają do urządzeń do um
 Devices in the box: {}	Urządzenia w ramce: {}
 Devices of a channel	Urządzenia kanału
 Devices of the second channel; empty = like the first	Urządzenia drugiego kanału; puste = jak w pierwszym
+Devices of {}	Urządzenia {}
 Devices placed on the page get its structure; their tags are shown without it.	Urządzenia umieszczone na stronie otrzymują jej strukturę; ich oznaczenia są wyświetlane bez niej.
 Devices to place	Urządzenia do umieszczenia
 Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Urządzenia, których funkcja główna leży w ramce, otrzymują ustawione tu identyfikatory; puste aspekty są dziedziczone ze strony lub z otaczającej ramki.
@@ -806,6 +807,7 @@ Frequency	Częstotliwość
 From / to	Od / do
 From a template file…	Z pliku szablonu…
 From row to row; 0: free of shade in winter	Od rzędu do rzędu; 0: bez zacienienia zimą
+From the 3D routing	Z trasowania 3D
 From the function definition	Z definicji funkcji
 From the left end	Od lewego końca
 From the top left corner of the drawing area	Od lewego górnego rogu obszaru rysunku
@@ -968,6 +970,7 @@ Inserted {}	Wstawiono {}
 Inside temperature	Temperatura wewnętrzna
 Inside without cooling	Wewnątrz bez chłodzenia
 Installation conditions of the conductors	Warunki ułożenia przewodów
+Installation page {}	Strona instalacji {}
 Installation zones	Strefy instalacyjne
 Installed plugins	Zainstalowane wtyczki
 Instead of user name and password	Zamiast nazwy użytkownika i hasła
@@ -1505,7 +1508,6 @@ Place in the building	Miejsce w budynku
 Place in the plant	Miejsce w instalacji
 Place in the room	Miejsce w pomieszczeniu
 Place in the site plan	Umieść na planie sytuacyjnym
-Place on the wall	Umieść na ścianie
 Place text	Umieść tekst
 Place the georeferenced point everything is measured from	Umieść punkt georeferencyjny, od którego wszystko jest mierzone
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Umieść punkt georeferencyjny instalacji na planie sytuacyjnym; jego współrzędne wpisz w panelu Budynki, każdy punkt jest od niego mierzony
@@ -1604,6 +1606,7 @@ Property placement	Umieszczanie właściwości
 Property removed with {} values	Usunięto właściwość z {} wartościami
 Publish	Opublikuj
 Put a room here	Umieść tu pomieszczenie
+Put in	Wstaw
 Put into the vault	Umieść w magazynie Vault
 Put the pane back into the workspace	Przywróć panel do obszaru roboczego
 Puts the project into the folder it was opened from	Umieszcza projekt w folderze, z którego został otwarty
@@ -2508,6 +2511,7 @@ x y	x y
 {} has unsaved changes. Discard them?	{} ma niezapisane zmiany. Odrzucić je?
 {} imported into the parts database and placed as {}	{} zaimportowano do bazy danych artykułów i umieszczono jako {}
 {} in {}	{} w {}
+{} is in the schematic	{} jest na schemacie
 {} is neither in the parts database nor on the parts server	{} nie ma ani w bazie danych artykułów, ani na serwerze artykułów
 {} is not in the disk image	{} nie ma w obrazie dysku
 {} is not made for wall mounting: place it on a mounting rail	{} nie jest przeznaczony do montażu naściennego: umieść go na szynie

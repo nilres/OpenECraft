@@ -564,6 +564,7 @@ Devices go back to the devices to place	Apparaten gaan terug naar de te plaatsen
 Devices in the box: {}	Apparaten in het kader: {}
 Devices of a channel	Apparaten van een kanaal
 Devices of the second channel; empty = like the first	Apparaten van het tweede kanaal; leeg = zoals het eerste
+Devices of {}	Apparaten van {}
 Devices placed on the page get its structure; their tags are shown without it.	Apparaten die op de pagina worden geplaatst, krijgen de structuur ervan; hun aanduidingen worden zonder die structuur getoond.
 Devices to place	Te plaatsen apparaten
 Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Apparaten waarvan de hoofdfunctie in het kader ligt, krijgen de hier ingestelde aanduidingen; lege aspecten worden geërfd van de pagina of een omsluitend kader.
@@ -806,6 +807,7 @@ Frequency	Frequentie
 From / to	Van / naar
 From a template file…	Uit een sjabloonbestand…
 From row to row; 0: free of shade in winter	Van rij tot rij; 0: schaduwvrij in de winter
+From the 3D routing	Uit de 3D-routering
 From the function definition	Uit de functiedefinitie
 From the left end	Vanaf het linkeruiteinde
 From the top left corner of the drawing area	Vanaf de linkerbovenhoek van het tekengebied
@@ -968,6 +970,7 @@ Inserted {}	Ingevoegd {}
 Inside temperature	Binnentemperatuur
 Inside without cooling	Binnen zonder koeling
 Installation conditions of the conductors	Installatieomstandigheden van de geleiders
+Installation page {}	Installatiepagina {}
 Installation zones	Installatiezones
 Installed plugins	Geïnstalleerde plugins
 Instead of user name and password	In plaats van gebruikersnaam en wachtwoord
@@ -1505,7 +1508,6 @@ Place in the building	Plaats in het gebouw
 Place in the plant	Plaats in de installatie
 Place in the room	Plaats in de ruimte
 Place in the site plan	In de situatietekening plaatsen
-Place on the wall	Op de wand plaatsen
 Place text	Tekst plaatsen
 Place the georeferenced point everything is measured from	Het gegeorefereerde punt plaatsen van waaruit alles wordt gemeten
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Het gegeorefereerde punt van de installatie in de situatietekening plaatsen; de coördinaten komen in het venster Gebouwen, elk punt wordt ervandaan gemeten
@@ -1604,6 +1606,7 @@ Property placement	Plaatsing van eigenschappen
 Property removed with {} values	Eigenschap met {} waarden verwijderd
 Publish	Publiceren
 Put a room here	Ruimte hier plaatsen
+Put in	Plaatsen
 Put into the vault	In de vault plaatsen
 Put the pane back into the workspace	Het paneel terugzetten in de werkruimte
 Puts the project into the folder it was opened from	Plaatst het project in de map waaruit het is geopend
@@ -2508,6 +2511,7 @@ x y	x y
 {} has unsaved changes. Discard them?	{} heeft niet-opgeslagen wijzigingen. Verwerpen?
 {} imported into the parts database and placed as {}	{} in de artikeldatabase geïmporteerd en geplaatst als {}
 {} in {}	{} in {}
+{} is in the schematic	{} staat in het schema
 {} is neither in the parts database nor on the parts server	{} staat niet in de artikeldatabase en niet op de artikelserver
 {} is not in the disk image	{} staat niet in de schijfkopie
 {} is not made for wall mounting: place it on a mounting rail	{} is niet bedoeld voor wandmontage: plaats het op een rail

@@ -650,7 +650,9 @@ const INSTALLATION_PART: f32 = 250.0;
 const INSTALLATION_LIST: f32 = INSTALLATION_WIDTH - INSTALLATION_PART - 20.0;
 
 /// What the installation menu shows: its tab, the search, the maker and the type
-/// chosen, and the part picked (its number).
+/// chosen, the part picked (its number), the protective device the socket outlets,
+/// switches, lights and heating elements placed go into the schematic for (empty:
+/// none; `None`: the first one) and the height of the part picked as shown last.
 #[derive(Clone, Debug, Default)]
 struct InstallationPick {
     tab: usize,
@@ -658,6 +660,8 @@ struct InstallationPick {
     maker: String,
     subgroup: String,
     focus: String,
+    breaker: Option<String>,
+    part_height: f32,
 }
 
 /// The parts of the catalogs shipped with OpenECraft, read once.
@@ -3279,11 +3283,15 @@ impl PanelUi {
         let chosen = ui
             .allocate_ui_with_layout(vec2(INSTALLATION_WIDTH, 0.0), egui::Layout::top_down(egui::Align::Min), |ui| {
                 ui.set_width(INSTALLATION_WIDTH);
+                self.breaker_choice(ui, prj);
                 self.installation_picker(ui, prj, db)
             })
             .inner;
         let Some(p) = chosen else { return };
         ui.close();
+        if db.get(&p.number).is_some() {
+            parts::ensure_in_project(prj, db, &p.number);
+        }
         let known = |prj: &Project, n: &str| prj.parts.iter().any(|x| x.number == n) || db.get(n).is_some() || parts::catalog().iter().any(|x| x.number == n);
         if !known(prj, &p.number) {
             // From a shipped catalog: into the project with its accessories.
@@ -3296,9 +3304,70 @@ impl PanelUi {
             }
             prj.parts.push(p.clone());
         }
-        self.view = View::Front;
         self.set_tool(Tool::Accessory(p.number));
-        self.status = tr("Click on the wall: the part goes there at its mounting height").to_string();
+        self.status = if self.view == View::ThreeD {
+            tr("Click on a wall or the ceiling of the room in the 3D view: the part goes there (on a wall at its mounting height) · Esc: stop").to_string()
+        } else {
+            self.view = View::Front;
+            tr("Click on the wall: the part goes there at its mounting height").to_string()
+        };
+    }
+
+    /// The protective device of the schematic the socket outlets, switches, lights and
+    /// heating elements placed go into the schematic for (see
+    /// `openecraft_core::installation::into_schematic`), or none.
+    fn breaker_choice(&mut self, ui: &mut egui::Ui, prj: &Project) {
+        use openecraft_core::installation as inst;
+        let breakers = inst::breakers(prj, &openecraft_core::netlist::Netlist::build(prj, true));
+        let pick = &mut self.installation;
+        if pick.breaker.as_ref().is_none_or(|b| !b.is_empty() && !breakers.iter().any(|x| &x.tag == b)) {
+            pick.breaker = Some(breakers.first().map(|b| b.tag.clone()).unwrap_or_default());
+        }
+        // Buttons, not a list that opens: that would close the menu.
+        let tip = tr("Socket outlets, switches, lights and heating elements placed go into the schematic: on the installation page of this protective device, with a cable from the device before it");
+        ui.horizontal_wrapped(|ui| {
+            ui.label(RichText::new(tr("Protective device")).weak()).on_hover_text(tip);
+            for b in &breakers {
+                let on = pick.breaker.as_deref() == Some(b.tag.as_str());
+                let short = b.tag.rsplit_once('+').map_or(b.tag.as_str(), |(_, t)| t);
+                let text = format!("{} {:.0} A", short, b.rated);
+                if ui.add(egui::Button::selectable(on, text)).on_hover_text(format!("{}\n{} {:.0} A", b.title(), b.characteristic, b.rated)).clicked() {
+                    pick.breaker = Some(b.tag.clone());
+                }
+            }
+            if ui.add(egui::Button::selectable(pick.breaker.as_deref() == Some(""), tr("None: not into the schematic"))).clicked() {
+                pick.breaker = Some(String::new());
+            }
+        });
+        ui.separator();
+    }
+
+    /// Puts item `id` of part `part`, a socket outlet, switch, light or heating element
+    /// just placed, into the schematic for the protective device chosen in the
+    /// installation menu; the status tells.
+    fn put_into_schematic(&mut self, prj: &mut Project, part: &str, id: u64) {
+        use openecraft_core::installation as inst;
+        let Some(breaker) = self.installation.breaker.clone().filter(|b| !b.is_empty()) else { return };
+        if inst::find_part(prj, part).and_then(inst::kind_of).is_none() {
+            return;
+        }
+        self.status = match inst::into_schematic(prj, &breaker, id) {
+            Ok(tag) => tr_fmt!("{} is in the schematic", tag),
+            Err(e) => e,
+        };
+    }
+
+    /// Places part `part` (from the installation menu) in room `ri` at point `at` of the
+    /// plant clicked in the 3D view, into the schematic like [`Self::put_into_schematic`].
+    pub(super) fn place_in_room(&mut self, prj: &mut Project, ri: usize, part: &str, at: [f32; 2]) {
+        match openecraft_core::installation::place(prj, ri, part, at) {
+            Ok(id) => {
+                self.status = tr("Placed").to_string();
+                self.put_into_schematic(prj, part, id);
+                self.select_item(id);
+            }
+            Err(e) => self.status = e,
+        }
     }
 
     /// The tabs, filters, list and part of the installation menu; the part chosen.
@@ -3377,12 +3446,19 @@ impl PanelUi {
             pick.focus = shown.first().map(|p| p.number.clone()).unwrap_or_default();
         }
         ui.separator();
+        // The list: as tall as its parts, at least as the part picked beside it, at most
+        // more than half the window.
+        let row = 22.0 + ui.spacing().item_spacing.y;
+        let limit = (ui.ctx().content_rect().height() * 0.55).max(320.0);
+        let beside = (pick.part_height - row).max(0.0);
+        let height = (shown.len().max(1) as f32 * row).max(beside).min(limit);
+        let mut part_height = pick.part_height;
         ui.horizontal_top(|ui| {
             // The list: the number and the description of each part over the whole width
-            // the part picked leaves, as tall as its parts (at most 320 points).
+            // the part picked leaves.
             ui.vertical(|ui| {
                 ui.set_width(INSTALLATION_LIST);
-                egui::ScrollArea::vertical().id_salt("installation_list").max_height(320.0).auto_shrink([false, true]).show(ui, |ui| {
+                egui::ScrollArea::vertical().id_salt("installation_list").min_scrolled_height(height).max_height(height).auto_shrink([false, false]).show(ui, |ui| {
                     if shown.is_empty() {
                         ui.weak(tr("No part matches."));
                     }
@@ -3410,7 +3486,7 @@ impl PanelUi {
             });
             ui.separator();
             // The part picked: its model (drag to turn it) and its data.
-            ui.vertical(|ui| {
+            let shown_part = ui.vertical(|ui| {
                 ui.set_width(INSTALLATION_PART);
                 let Some(p) = shown.iter().find(|p| p.number == pick.focus) else {
                     ui.weak(tr("Pick a part in the list."));
@@ -3431,11 +3507,13 @@ impl PanelUi {
                     ui.label(tr_fmt!("Mounting height: {}", h.trim()));
                 }
                 ui.add_space(4.0);
-                if ui.add(egui::Button::new(RichText::new(tr("Place on the wall")).strong()).min_size(vec2(INSTALLATION_PART, 26.0))).clicked() {
+                if ui.add(egui::Button::new(RichText::new(tr("Place the part")).strong()).min_size(vec2(INSTALLATION_PART, 26.0))).clicked() {
                     chosen = Some((*p).clone());
                 }
             });
+            part_height = shown_part.response.rect.height();
         });
+        pick.part_height = part_height;
         // Heating: a generic manifold of any number of circuits.
         if INSTALLATION[pick.tab].2.contains(&"Heating circuit manifold") {
             ui.separator();
@@ -3872,6 +3950,9 @@ impl PanelUi {
                     let probe = panel::new_accessory(prj, &part, self.face, p(0.0, 0.0));
                     let h = if self.in_room && self.face == Face::Bottom { probe.d } else { probe.h };
                     if let Some(id) = panel::place_accessory(prj, ei, &part, self.face, p(q.x - probe.w / 2.0, q.y - h / 2.0)) {
+                        if self.in_room {
+                            self.put_into_schematic(prj, &part, id);
+                        }
                         self.select_item(id);
                     }
                 }

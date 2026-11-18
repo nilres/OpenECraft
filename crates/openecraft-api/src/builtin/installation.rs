@@ -1,23 +1,25 @@
-//! Installation commands: socket outlets, switches and lights placed in the rooms by a
-//! point of the floor plan, the final circuits feeding them from the protective
-//! devices of a distribution board, their cable lengths and voltage drops, spare
-//! protective devices ([`openecraft_core::installation`]).
+//! Installation commands: socket outlets, switches, lights and heating elements put
+//! into the rooms for a protective device of the schematic (they go into the schematic
+//! with a cable), devices of the schematic placed in the rooms, and the final circuits
+//! read from the schematic with their cable lengths (3D routing) and voltage drops
+//! ([`openecraft_core::installation`]).
 
 use crate::params::{optional, param, Args, Kind};
 use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
+use openecraft_core::analysis::Analysis;
 use openecraft_core::installation as inst;
 use openecraft_core::model::Project;
 use openecraft_core::netlist::Netlist;
 use openecraft_core::panel;
-use openecraft_i18n::{tr, tr_const, tr_fmt};
+use openecraft_i18n::{tr_const, tr_fmt};
 use serde_json::{json, Value};
 
 pub struct Installation;
 
 impl Plugin for Installation {
     fn info(&self) -> Info {
-        info("installation", tr_const!("Installation"), tr_const!("Socket outlets, switches and lights in the rooms, the final circuits from the protective devices of the distribution boards with their cable lengths and voltage drops"))
+        info("installation", tr_const!("Installation"), tr_const!("Socket outlets, switches, lights and heating elements in the rooms and in the schematic, the final circuits of the schematic with their cable lengths and voltage drops"))
     }
 
     fn register(&self, reg: &mut Registry) -> Result<(), String> {
@@ -25,36 +27,32 @@ impl Plugin for Installation {
     }
 }
 
-const CIRCUIT: &str = tr_const!("Circuit: its name");
 const BREAKER: &str = tr_const!("Device tag of its protective device (circuit breaker, RCBO, fuse) in the schematic");
+const ROOM: &str = tr_const!("Room (location, e.g. +ROOM1)");
+const X: &str = tr_const!("x in the plant in mm");
+const Z: &str = tr_const!("z in the plant (towards the front) in mm");
 
 pub static COMMANDS: &[Spec] = &[
     Spec {
         name: "place_installation",
-        help: tr_const!("Puts a socket outlet, switch or light into a room at a point of the plant: a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height"),
+        help: tr_const!("Puts a socket outlet, switch, light or heating element for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it"),
         params: &[
-            param("room", Kind::Str, tr_const!("Room (location, e.g. +ROOM1)")),
+            param("breaker", Kind::Str, BREAKER),
+            param("room", Kind::Str, ROOM),
             param("part", Kind::Str, tr_const!("Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED")),
-            param("x", Kind::Num, tr_const!("x in the plant in mm")),
-            param("z", Kind::Num, tr_const!("z in the plant (towards the front) in mm")),
-            optional("circuit", Kind::Str, tr_const!("Circuit to add it to (its name)")),
+            param("x", Kind::Num, X),
+            param("z", Kind::Num, Z),
         ],
         run: place_installation,
     },
     Spec {
-        name: "list_schematic_circuits",
-        help: tr_const!("Lists the final circuits of the schematic with the socket outlets, switches, lights and heating elements drawn behind their protective devices: kind, part, room they are placed in, and the final circuit of the installation using the protective device"),
-        params: &[optional("breaker", Kind::Str, tr_const!("Only the circuit of this protective device")), optional("unplaced", Kind::Bool, tr_const!("Only the devices not placed yet"))],
-        run: list_schematic_circuits,
-    },
-    Spec {
         name: "place_circuit_device",
-        help: tr_const!("Places a socket outlet, switch, light or heating element of a circuit of the schematic in a room at a point of the plant like place_installation (one placed before moves), or makes an item placed without a device tag that device; it goes into the final circuit of its protective device, made when there is none"),
+        help: tr_const!("Places a socket outlet, switch, light or heating element of a circuit of the schematic in a room at a point of the plant like place_installation (one placed before moves), or makes an item placed without a device tag that device"),
         params: &[
             param("device", Kind::Str, tr_const!("Device tag in the schematic, e.g. +ROOM1-XD1")),
-            optional("room", Kind::Str, tr_const!("Room (location, e.g. +ROOM1)")),
-            optional("x", Kind::Num, tr_const!("x in the plant in mm")),
-            optional("z", Kind::Num, tr_const!("z in the plant (towards the front) in mm")),
+            optional("room", Kind::Str, ROOM),
+            optional("x", Kind::Num, X),
+            optional("z", Kind::Num, Z),
             optional("part", Kind::Str, tr_const!("Part for a device without one (default: the generic part of its kind)")),
             optional("item", Kind::Int, tr_const!("Id of a socket outlet, switch, light or heating element placed without a device tag to become the device (instead of room, x and z)")),
         ],
@@ -62,124 +60,43 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "list_breakers",
-        help: tr_const!("Lists the protective devices of the mains for final circuits (up to 32 A): rated current, characteristic, phases, residual current protection, whether spare and the circuit using them"),
+        help: tr_const!("Lists the protective devices of the mains for final circuits (up to 32 A): rated current, characteristic, phases, residual current protection and whether spare"),
         params: &[optional("spare", Kind::Bool, tr_const!("Only the spare ones (feeding nothing yet)"))],
         run: list_breakers,
     },
     Spec {
-        name: "add_circuit",
-        help: tr_const!("Adds a final circuit: a protective device and the socket outlets, switches and lights its cable runs to"),
-        params: &[
-            optional("name", Kind::Str, tr_const!("Name (default Circuit 1, Circuit 2, …)")),
-            optional("breaker", Kind::Str, BREAKER),
-            optional("three_phase", Kind::Bool, tr_const!("Fed from three phases (five-core cable, 2.5 mm²)")),
-            optional("items", Kind::Ids, tr_const!("Ids of its socket outlets, switches and lights in the order the cable runs to them")),
-        ],
-        run: add_circuit,
-    },
-    Spec {
-        name: "set_circuit",
-        help: tr_const!("Changes a final circuit: its name, protective device, distribution board, cable, load, items (added at its end or removed), or removes it"),
-        params: &[
-            param("circuit", Kind::Str, CIRCUIT),
-            optional("name", Kind::Str, tr_const!("New name")),
-            optional("breaker", Kind::Str, BREAKER),
-            optional("board", Kind::Str, tr_const!("Distribution board its cable starts at (enclosure location; empty: where its protective device is placed)")),
-            optional("cable_type", Kind::Str, tr_const!("Type of its cable, e.g. NYM-J 3x1.5")),
-            optional("cross_section", Kind::Num, tr_const!("Cross-section of its conductors in mm²")),
-            optional("cable", Kind::Str, tr_const!("Tag of its cable in the cable list")),
-            optional("three_phase", Kind::Bool, tr_const!("Fed from three phases")),
-            optional("load", Kind::Num, tr_const!("Load for the voltage drop in W (0: the rated current of its protective device)")),
-            optional("cos_phi", Kind::Num, tr_const!("Power factor of the load")),
-            optional("add", Kind::Ids, tr_const!("Ids of items to add at its end")),
-            optional("remove", Kind::Ids, tr_const!("Ids of items to take out")),
-            optional("remove_circuit", Kind::Bool, tr_const!("Remove the circuit (its items stay)")),
-        ],
-        run: set_circuit,
-    },
-    Spec {
         name: "list_circuits",
-        help: tr_const!("Lists the final circuits with their items, cable lengths (along the installation zones), currents and voltage drops"),
-        params: &[optional("circuit", Kind::Str, CIRCUIT)],
+        help: tr_const!("Lists the final circuits of the schematic with the socket outlets, switches, lights and heating elements behind their protective devices (kind, part, room), their connections and cables with the lengths of their 3D routes (estimated where not routed), currents and voltage drops"),
+        params: &[
+            optional("breaker", Kind::Str, tr_const!("Only the circuit of this protective device")),
+            optional("unplaced", Kind::Bool, tr_const!("Only the devices not placed yet")),
+            optional("estimate", Kind::Bool, tr_const!("Estimate the lengths along the installation zones instead of routing in 3D (faster)")),
+        ],
         run: list_circuits,
     },
     Spec {
-        name: "new_circuit_breaker",
-        help: tr_const!("Gives a circuit a new planned protective device: a miniature circuit breaker (single- or three-phase like the circuit) in the board of the other circuits, drawn in the single-line diagram of the installation; single_line_to_schematic then puts it into the schematic"),
-        params: &[param("circuit", Kind::Str, CIRCUIT), optional("rated", Kind::Num, tr_const!("Rated current in A: 10, 16 or 32 (default 16)"))],
-        run: new_circuit_breaker,
-    },
-    Spec {
-        name: "installation_overview",
-        help: tr_const!("Gives the socket outlets, switches and lights of the circuits device tags and draws the circuits as single-line diagrams on overview pages (protective device, cable, items; made again each time)"),
-        params: &[],
-        run: installation_overview,
-    },
-    Spec {
         name: "write_circuit_cables",
-        help: tr_const!("Writes the cable of every final circuit into the cable list: type, cross-section and length (a new cable for a circuit without one)"),
+        help: tr_const!("Writes the lengths of the cables of the final circuits (of their 3D routes, estimated where not routed) into the cable list"),
         params: &[],
         run: write_circuit_cables,
     },
 ];
 
-fn circuit_arg(prj: &Project, name: &str) -> Result<usize, String> {
-    prj.layout.circuits.iter().position(|c| c.name == name.trim()).ok_or_else(|| tr_fmt!("No circuit named {}", name))
-}
-
-fn circuit_json(prj: &Project, ci: usize, run: &inst::Run, all: &[inst::Placed]) -> Value {
-    let c = &prj.layout.circuits[ci];
-    let r2 = |v: f32| (v * 100.0).round() / 100.0;
-    let items: Vec<Value> = c
-        .items
-        .iter()
-        .map(|id| match all.iter().find(|p| p.item == *id) {
-            Some(p) => json!({ "id": id, "room": prj.layout.enclosures[p.room].name, "part": p.part, "kind": format!("{:?}", p.kind).to_lowercase() }),
-            None => json!({ "id": id, "gone": true }),
-        })
-        .collect();
-    let board = inst::board_of(prj, c).map(|ei| prj.layout.enclosures[ei].name.clone());
-    json!({
-        "name": c.name, "breaker": c.breaker, "board": board, "cable": c.cable, "cable_type": c.cable_type, "cross_section": inst::cross_section(c),
-        "three_phase": c.three_phase, "load": c.load, "items": items,
-        "length": r2(run.length), "rated": run.rated, "current": run.current.map(r2), "voltage": r2(run.voltage),
-        "drop_v": run.drop.map(|d| r2(d.0)), "drop_percent": run.drop.map(|d| r2(d.1)), "feeder_drop_percent": run.upstream.map(r2),
-        "total_drop_percent": run.total().map(r2), "ampacity": run.ampacity,
-    })
-}
-
-fn circuits_json(prj: &Project, only: Option<usize>) -> Value {
-    let poses = panel::site_poses(prj);
-    let all = inst::items(prj, &poses);
-    let runs = inst::runs(prj, &inst::Supply::build(prj));
-    Value::Array(runs.iter().enumerate().filter(|(ci, _)| only.is_none_or(|o| o == *ci)).map(|(ci, r)| circuit_json(prj, ci, r, &all)).collect())
-}
-
-fn place_installation(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let room = a.req("room").trim();
-    let ri = prj.layout.enclosures.iter().position(|e| e.is_room() && e.name == room).ok_or_else(|| tr_fmt!("No room named {}", room))?;
-    let ci = a.str("circuit").map(|c| circuit_arg(prj, c)).transpose()?;
-    let id = inst::place(prj, ri, a.req("part"), [a.num("x").unwrap_or(0.0), a.num("z").unwrap_or(0.0)])?;
-    if let Some(ci) = ci {
-        inst::connect(prj, ci, id)?;
+/// The circuits of the schematic: with the 3D routing, or estimated.
+fn circuits(prj: &Project, estimate: bool) -> Vec<inst::Circuit> {
+    if estimate {
+        let (nl, open) = (Netlist::build(prj, true), Netlist::build(prj, false));
+        let conns = openecraft_core::netlist::connections(prj, &nl, &open);
+        return inst::circuits(prj, &nl, &conns, None);
     }
-    let it = prj.layout.enclosures[ri].item(id).cloned().unwrap_or_default();
-    Ok(json!({ "id": id, "room": room, "face": panel::room_face_key(&prj.layout.enclosures[ri], it.face), "x": it.x, "y": it.y }))
+    let an = Analysis::build(prj);
+    inst::circuits(prj, &an.netlist, &an.connections, Some(&|k: &str| an.routing.routed_length(k)))
 }
 
-fn list_breakers(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let nl = Netlist::build(prj, false);
-    let list = inst::breakers(prj, &nl);
-    Ok(Value::Array(
-        list.into_iter()
-            .filter(|b| !a.flag("spare") || b.spare)
-            .map(|b| json!({ "breaker": b.tag, "rated": b.rated, "characteristic": b.characteristic, "phases": b.phases, "residual_ma": b.residual, "spare": b.spare, "circuit": b.circuit }))
-            .collect(),
-    ))
-}
-
-fn schematic_json(prj: &Project, sc: &inst::SchematicCircuit, unplaced: bool) -> Value {
-    let devices: Vec<Value> = sc
+fn circuit_json(prj: &Project, supply: &inst::Supply, c: &inst::Circuit, unplaced: bool) -> Value {
+    let r2 = |v: f32| (v * 100.0).round() / 100.0;
+    let run = inst::run(prj, supply, c);
+    let devices: Vec<Value> = c
         .devices
         .iter()
         .filter(|d| !unplaced || d.placed.is_none())
@@ -190,125 +107,88 @@ fn schematic_json(prj: &Project, sc: &inst::SchematicCircuit, unplaced: bool) ->
             })
         })
         .collect();
-    let circuit = sc.circuit.and_then(|id| prj.layout.circuits.iter().find(|c| c.id == id)).map(|c| c.name.clone());
-    json!({ "breaker": sc.breaker, "text": sc.text, "rated": sc.rated, "characteristic": sc.characteristic, "three_phase": sc.three_phase, "placed": sc.placed(), "devices": devices, "circuit": circuit })
+    let legs: Vec<Value> = c
+        .legs
+        .iter()
+        .map(|l| json!({ "from": l.from, "to": l.to, "cable": l.cable, "cable_type": l.cable_type, "cross_section": l.mm2, "length": l.length.map(r2), "routed": l.routed }))
+        .collect();
+    json!({
+        "breaker": c.breaker, "text": c.text, "rated": c.rated, "characteristic": c.characteristic, "three_phase": c.three_phase,
+        "board": c.board.map(|ei| prj.layout.enclosures[ei].name.clone()), "page": c.page.map(|k| prj.pages[k].name.clone()),
+        "placed": c.placed(), "devices": devices, "connections": legs,
+        "length": r2(run.length), "routed": run.routed, "current": run.current.map(r2), "voltage": r2(run.voltage),
+        "drop_v": run.drop.map(|d| r2(d.0)), "drop_percent": run.drop.map(|d| r2(d.1)), "feeder_drop_percent": run.upstream.map(r2),
+        "total_drop_percent": run.total().map(r2), "ampacity": run.ampacity,
+    })
 }
 
-fn list_schematic_circuits(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let nl = Netlist::build(prj, false);
+fn room_arg(prj: &Project, a: &Args) -> Result<usize, String> {
+    let room = a.str("room").map(str::trim).unwrap_or("");
+    prj.layout.enclosures.iter().position(|e| e.is_room() && e.name == room).ok_or_else(|| tr_fmt!("No room named {}", room))
+}
+
+/// Where device `tag` is placed: its item.
+fn placed_json(prj: &Project, tag: &str) -> Result<Value, String> {
+    let (ri, it) = prj.layout.find_device(tag).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", tag))?;
+    let e = &prj.layout.enclosures[ri];
+    Ok(json!({ "id": it.id, "device": tag, "part": it.part, "room": e.name, "face": panel::room_face_key(e, it.face), "x": it.x, "y": it.y }))
+}
+
+fn place_installation(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let ri = room_arg(prj, a)?;
+    let tag = inst::add_device(prj, a.req("breaker").trim(), a.req("part").trim(), ri, [a.num("x").unwrap_or(0.0), a.num("z").unwrap_or(0.0)])?;
+    let mut out = placed_json(prj, &tag)?;
+    let page = prj.pages.iter().find(|pg| prj.layout.installation_pages.contains(&pg.id) && pg.symbols.iter().any(|s| s.tag == tag)).map(|pg| pg.name.clone());
+    let cable = prj.cables.last().map(|c| c.tag.clone());
+    out["page"] = json!(page);
+    out["cable"] = json!(cable);
+    Ok(out)
+}
+
+fn list_breakers(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let nl = Netlist::build(prj, true);
+    let list = inst::breakers(prj, &nl);
+    Ok(Value::Array(
+        list.into_iter()
+            .filter(|b| !a.flag("spare") || b.spare)
+            .map(|b| json!({ "breaker": b.tag, "text": b.text, "rated": b.rated, "characteristic": b.characteristic, "phases": b.phases, "residual_ma": b.residual, "spare": b.spare }))
+            .collect(),
+    ))
+}
+
+fn list_circuits(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let only = a.str("breaker").map(str::trim);
-    let list: Vec<Value> = inst::schematic_circuits(prj, &nl).iter().filter(|c| only.is_none_or(|b| c.breaker == b)).map(|c| schematic_json(prj, c, a.flag("unplaced"))).collect();
-    if let (Some(b), true) = (only, list.is_empty()) {
+    let list = circuits(prj, a.flag("estimate"));
+    let (nl, open) = (Netlist::build(prj, true), Netlist::build(prj, false));
+    let supply = inst::Supply::of(prj, &nl, &openecraft_core::netlist::connections(prj, &nl, &open));
+    let out: Vec<Value> = list.iter().filter(|c| only.is_none_or(|b| c.breaker == b)).map(|c| circuit_json(prj, &supply, c, a.flag("unplaced"))).collect();
+    if let (Some(b), true) = (only, out.is_empty()) {
         return Err(tr_fmt!("No socket outlet, switch, light or heating element behind {} in the schematic", b));
     }
-    Ok(Value::Array(list))
+    Ok(Value::Array(out))
 }
 
 fn place_circuit_device(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let tag = a.req("device").trim().to_string();
-    let nl = Netlist::build(prj, false);
-    let list = inst::schematic_circuits(prj, &nl);
-    let sc = inst::schematic_circuit_of(&list, &tag).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element of a circuit of the schematic", tag))?.clone();
-    let ci = match a.int("item").and_then(|v| u64::try_from(v).ok()) {
+    let list = circuits(prj, true);
+    let sc = inst::circuit_of(&list, &tag).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element of a circuit of the schematic", tag))?.clone();
+    match a.int("item").and_then(|v| u64::try_from(v).ok()) {
         Some(item) => inst::link_device(prj, &sc, &tag, item)?,
         None => {
-            let room = a.str("room").map(str::trim).unwrap_or("");
-            let ri = prj.layout.enclosures.iter().position(|e| e.is_room() && e.name == room).ok_or_else(|| tr_fmt!("No room named {}", room))?;
-            inst::place_device(prj, &sc, &tag, ri, a.str("part").unwrap_or(""), [a.num("x").unwrap_or(0.0), a.num("z").unwrap_or(0.0)])?.1
-        }
-    };
-    let (ri, it) = prj.layout.find_device(&tag).map(|(ri, it)| (ri, it.clone())).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", tag))?;
-    let e = &prj.layout.enclosures[ri];
-    Ok(json!({ "id": it.id, "device": tag, "part": it.part, "room": e.name, "face": panel::room_face_key(e, it.face), "x": it.x, "y": it.y, "circuit": prj.layout.circuits[ci].name }))
-}
-
-fn add_items(prj: &mut Project, ci: usize, ids: &[u64]) -> Result<(), String> {
-    for id in ids {
-        inst::connect(prj, ci, *id)?;
-    }
-    Ok(())
-}
-
-fn add_circuit(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let id = inst::add_circuit(prj, a.str("name").unwrap_or(""), a.str("breaker").unwrap_or(""), a.flag("three_phase"))?;
-    let ci = prj.layout.circuits.iter().position(|c| c.id == id).unwrap_or(0);
-    add_items(prj, ci, &a.ids("items"))?;
-    Ok(circuits_json(prj, Some(ci)))
-}
-
-fn set_circuit(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let ci = circuit_arg(prj, a.req("circuit"))?;
-    if a.flag("remove_circuit") {
-        prj.layout.circuits.remove(ci);
-        return Ok(circuits_json(prj, None));
-    }
-    if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
-        if prj.layout.circuits.iter().enumerate().any(|(k, c)| k != ci && c.name == n) {
-            return Err(tr_fmt!("Circuit {} exists already", n));
-        }
-        prj.layout.circuits[ci].name = n.into();
-    }
-    let board = match a.str("board").map(str::trim) {
-        Some("") => Some(0),
-        Some(b) => Some(prj.layout.enclosures.iter().find(|e| !e.is_room() && e.name == b).map(|e| e.id).ok_or_else(|| tr_fmt!("No enclosure named {}", b))?),
-        None => None,
-    };
-    if let Some(v) = a.num("cross_section") {
-        if v <= 0.0 {
-            return Err(tr("The cross-section must be greater than 0").to_string());
+            let ri = room_arg(prj, a)?;
+            inst::place_device(prj, &sc, &tag, ri, a.str("part").unwrap_or(""), [a.num("x").unwrap_or(0.0), a.num("z").unwrap_or(0.0)])?;
         }
     }
-    let c = &mut prj.layout.circuits[ci];
-    if let Some(v) = a.str("breaker") {
-        c.breaker = v.trim().into();
-    }
-    if let Some(v) = board {
-        c.board = v;
-    }
-    if let Some(v) = a.str("cable_type") {
-        c.cable_type = v.trim().into();
-    }
-    if let Some(v) = a.num("cross_section") {
-        c.cross_section = v;
-    }
-    if let Some(v) = a.str("cable") {
-        c.cable = v.trim().into();
-    }
-    if a.value("three_phase").is_some() {
-        c.three_phase = a.flag("three_phase");
-    }
-    if let Some(v) = a.num("load") {
-        c.load = v.max(0.0);
-    }
-    if let Some(v) = a.num("cos_phi") {
-        c.cos_phi = v.clamp(0.1, 1.0);
-    }
-    let remove = a.ids("remove");
-    c.items.retain(|i| !remove.contains(i));
-    add_items(prj, ci, &a.ids("add"))?;
-    Ok(circuits_json(prj, Some(ci)))
-}
-
-fn list_circuits(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let only = a.str("circuit").map(|c| circuit_arg(prj, c)).transpose()?;
-    Ok(circuits_json(prj, only))
-}
-
-fn new_circuit_breaker(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let ci = circuit_arg(prj, a.req("circuit"))?;
-    inst::new_breaker(prj, ci, a.num("rated").unwrap_or(16.0))?;
-    Ok(circuits_json(prj, Some(ci)))
-}
-
-fn installation_overview(prj: &mut Project, _: &Args) -> Result<Value, String> {
-    let pages = inst::overview(prj)?;
-    let names: Vec<&str> = pages.iter().map(|&k| prj.pages[k].name.as_str()).collect();
-    Ok(json!({ "pages": names }))
+    let mut out = placed_json(prj, &tag)?;
+    out["breaker"] = json!(sc.breaker);
+    Ok(out)
 }
 
 fn write_circuit_cables(prj: &mut Project, _: &Args) -> Result<Value, String> {
-    let n = inst::write_cables(prj);
-    Ok(json!({ "cables": n, "circuits": circuits_json(prj, None) }))
+    let list = circuits(prj, false);
+    let n = inst::write_cables(prj, &list);
+    let cables: Vec<Value> = list.iter().flat_map(|c| &c.legs).filter(|l| !l.cable.is_empty()).filter_map(|l| prj.cables.iter().find(|x| x.tag == l.cable)).map(|c| json!({ "cable": c.tag, "length": c.length, "cable_type": c.cable_type })).collect();
+    Ok(json!({ "cables": n, "list": cables }))
 }
 
 #[cfg(test)]

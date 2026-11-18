@@ -136,6 +136,7 @@ pub(super) const ROWS: &[Row] = &[
     r("page.note", tr_const!("Note"), Page, General, MultiLine, ""),
     r("page.use_drawn_wire_targets", tr_const!("Use drawn wire targets"), Page, General, Bool, ""),
     r("page.explicit_wire_junctions", tr_const!("Require explicit wire junctions"), Page, General, Bool, ""),
+    r("page.cable_per_connection", tr_const!("Cable of each connection at its connection points"), Page, General, Bool, ""),
     r("page.scale", tr_const!("Scale"), Page, General, Text, ""),
     r("page.drawing_number", tr_const!("Drawing number"), Page, Documentation, Text, ""),
     r("page.created_by", tr_const!("Created by"), Page, Documentation, Text, ""),

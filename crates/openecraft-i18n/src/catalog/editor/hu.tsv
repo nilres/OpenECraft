@@ -564,6 +564,7 @@ Devices go back to the devices to place	A készülékek visszakerülnek az elhel
 Devices in the box: {}	Készülékek a keretben: {}
 Devices of a channel	Egy csatorna készülékei
 Devices of the second channel; empty = like the first	A második csatorna készülékei; üres = mint az első
+Devices of {}	{} eszközei
 Devices placed on the page get its structure; their tags are shown without it.	Az oldalon elhelyezett készülékek megkapják annak struktúráját; azonosítóik nélküle jelennek meg.
 Devices to place	Elhelyezendő készülékek
 Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Azok a készülékek, amelyek főfunkciója a keretben van, az itt megadott azonosítókat kapják; az üres aspektusok az oldaltól vagy egy befoglaló kerettől öröklődnek.
@@ -806,6 +807,7 @@ Frequency	Frekvencia
 From / to	Forrás / cél
 From a template file…	Sablonfájlból…
 From row to row; 0: free of shade in winter	Sortól sorig; 0: télen árnyékmentes
+From the 3D routing	A 3D-nyomvonalból
 From the function definition	A funkciódefinícióból
 From the left end	A bal végtől
 From the top left corner of the drawing area	A rajzterület bal felső sarkától
@@ -968,6 +970,7 @@ Inserted {}	Beillesztve: {}
 Inside temperature	Belső hőmérséklet
 Inside without cooling	Belül hűtés nélkül
 Installation conditions of the conductors	A vezetők fektetési feltételei
+Installation page {}	Szerelési oldal {}
 Installation zones	Szerelési zónák
 Installed plugins	Telepített bővítmények
 Instead of user name and password	Felhasználónév és jelszó helyett
@@ -1505,7 +1508,6 @@ Place in the building	Hely az épületben
 Place in the plant	Hely a létesítményben
 Place in the room	Hely a helyiségben
 Place in the site plan	Elhelyezés a helyszínrajzon
-Place on the wall	Elhelyezés a falon
 Place text	Szöveg elhelyezése
 Place the georeferenced point everything is measured from	A georeferált pont elhelyezése, amelytől minden mérés indul
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	A létesítmény georeferált pontjának elhelyezése a helyszínrajzon; koordinátái az Épületek panelre kerülnek, minden pontot tőle mérnek
@@ -1604,6 +1606,7 @@ Property placement	Tulajdonságok elhelyezése
 Property removed with {} values	Tulajdonság eltávolítva {} értékkel
 Publish	Közzététel
 Put a room here	Helyiség ide
+Put in	Beillesztés
 Put into the vault	Elhelyezés a vaultban
 Put the pane back into the workspace	A panel visszahelyezése a munkaterületre
 Puts the project into the folder it was opened from	A projektet abba a mappába helyezi, amelyből megnyitották
@@ -2508,6 +2511,7 @@ x y	x y
 {} has unsaved changes. Discard them?	A(z) {} nem mentett módosításokat tartalmaz. Elveti őket?
 {} imported into the parts database and placed as {}	{} bekerült az alkatrész-adatbázisba, elhelyezve: {}
 {} in {}	{} itt: {}
+{} is in the schematic	{} a kapcsolási rajzon van
 {} is neither in the parts database nor on the parts server	{} sem az alkatrész-adatbázisban, sem az alkatrészkiszolgálón nem található
 {} is not in the disk image	A(z) {} nincs a lemezképben
 {} is not made for wall mounting: place it on a mounting rail	{} nem falra szerelésre készült: helyezze szerelősínre

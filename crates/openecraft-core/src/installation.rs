@@ -1,54 +1,51 @@
 //! The electrical installation of a building: socket outlets, switches, lights and
-//! heating elements in the rooms ([`kind_of`]), placed on the floor plan ([`place`]),
-//! and the final circuits that feed them ([`FinalCircuit`]): a protective device of a
-//! distribution board in the schematic, a cable and the items it runs to one after the
-//! other.
+//! heating elements in the rooms ([`kind_of`]) and the final circuits that feed them,
+//! all of it from the schematic.
 //!
-//! **Circuits of the schematic** ([`schematic_circuits`]): the devices drawn behind a
-//! protective device of the mains (through switches, contacts and terminals) that are
-//! socket outlets, switches, lights or heating elements are placed on the floor plan
-//! ([`place_device`]) or taken from what was placed there ([`link_device`]); each goes
-//! into the final circuit of its protective device, made when there is none.
+//! **Circuits** ([`circuits`]): each protective device of the mains up to 32 A with the
+//! socket outlets, switches, lights and heating elements drawn behind it (through
+//! switches, contacts and terminals), its connections and cables. A device of the
+//! schematic is placed in a room of the floor plan ([`place_device`]) or taken from what
+//! was placed there ([`link_device`]); a device placed in a room for a protective
+//! device goes into the schematic ([`add_device`]): onto the installation page of its
+//! circuit, a schematic page drawn for it, with a cable from the device before it (from
+//! the distribution board for the first one). The list of the circuits is read only:
+//! what it shows comes from the schematic.
 //!
-//! **Cable length** ([`runs`]): the cable leaves the distribution board at its top and
-//! runs to each item in turn in the horizontal installation zone under the ceiling
-//! (DIN 18015-3: [`ZONE`] below it), straight along x and z of the plant (along the
-//! walls, not across rooms), up and down in the vertical zones above and below the
-//! items, up or down between levels; each item adds [`BOX_RESERVE`] for its box. An
-//! estimate for planning before the cable is laid.
+//! **Cable length** ([`Leg`]): each connection of the phase conductors of a circuit
+//! between two devices, as a cable (one cable once) or a single wire, has the length of
+//! its 3D route ([`crate::routing3d`]). Until it is routed it is estimated: the cable
+//! leaves the distribution board at its top and runs to the device in the horizontal
+//! installation zone under the ceiling (DIN 18015-3: [`ZONE`] below it), straight along
+//! x and z of the plant (along the walls, not across rooms), up and down in the vertical
+//! zones above and below the devices, up or down between levels; each device adds
+//! [`BOX_RESERVE`] for its box.
 //!
-//! **Voltage drop** from the supply to the last item: ΔU = k · I · L · (ρ / A · cos φ +
-//! X' · sin φ) per cable with k = 2 (single-phase) or √3 (three-phase), ρ of copper at
-//! its operating temperature ([`crate::electrical::Conditions`]), X' the reactance per
-//! metre ([`crate::shortcircuit::CABLE_REACTANCE`]). The final circuit's cable carries
-//! the rated current of its protective device (the highest current it lets the cable
-//! carry) or the load given; the feeder cables from the supply to the distribution
-//! board ([`crate::shortcircuit::feeder_cables`]) the design current of the protective
-//! device upstream (load calculation, [`crate::loads`]) or its rated current. The sum
+//! **Voltage drop** from the supply to the farthest device: ΔU = k · I · L · (ρ / A ·
+//! cos φ + X' · sin φ) per cable with k = 2 (single-phase) or √3 (three-phase), ρ of
+//! copper at its operating temperature ([`crate::electrical::Conditions`]), X' the
+//! reactance per metre ([`crate::shortcircuit::CABLE_REACTANCE`]), cos φ
+//! [`DEFAULT_COS_PHI`]. The circuit's cables carry the design current of its protective
+//! device (load calculation, [`crate::loads`]) or its rated current; the feeder cables
+//! from the supply to the distribution board ([`crate::shortcircuit::feeder_cables`])
+//! the design current of the protective device upstream or its rated current. The sum
 //! is checked against the limit of the rule sets ([`crate::rules::limits`]).
-//!
-//! **Devices** ([`link_devices`], [`overview`]): the items of the circuits get device
-//! tags (socket outlets `XD`, switches `SF`, lights `EA` in their room) and a generated
-//! overview page shows each circuit as a single-line diagram: its protective device,
-//! its cable and its items with their installation plan symbols. A circuit without a
-//! protective device gets a planned one ([`new_breaker`]), which the single-line
-//! diagram turns into the schematic ([`crate::singleline::to_multiline`]).
 //!
 //! **Protective devices** ([`breakers`]): those of the mains in the schematic
 //! ([`crate::electrical::circuits`]); a spare one feeds nothing yet: no other device on
-//! the nets behind it and no final circuit.
+//! the nets behind it.
 
 use crate::electrical;
 use crate::geom::{p, P, GRID};
-use crate::shortcircuit::FeederCable;
-use std::collections::HashMap;
 use crate::issue::{Issue, Severity};
-use crate::model::panel::FinalCircuit;
-use crate::model::Project;
-use crate::netlist::Netlist;
+use crate::model::{Page, PageKind, Project, SymbolInst, Wire};
+use crate::netlist::{Connection, Netlist, PinRef};
 use crate::panel::{self, Face, ItemKind, PanelItem, SitePose};
 use crate::parts::Part;
+use crate::shortcircuit::FeederCable;
+use crate::symbols::SymbolRef;
 use openecraft_i18n::{tr, tr_fmt};
+use std::collections::{BTreeSet, HashMap};
 
 /// Distance of the horizontal installation zone below the ceiling, mm (DIN 18015-3:
 /// 150 … 450 mm).
@@ -57,11 +54,17 @@ pub const ZONE: f32 = 300.0;
 pub const BOX_RESERVE: f32 = 0.3;
 /// Farthest a click may lie from a wall to put a wall item on it, mm.
 pub const WALL_REACH: f32 = 800.0;
-/// Cable of a new circuit.
-pub const DEFAULT_CABLE: &str = "NYM-J 3x1.5";
-pub const DEFAULT_CABLE_3P: &str = "NYM-J 5x2.5";
-/// Power factor of a new circuit.
+/// Type of the cables of new devices, with the cross-section in mm².
+pub const CABLE_TYPE: &str = "NYM-J 3x";
+/// Power factor of the loads for the voltage drop.
 pub const DEFAULT_COS_PHI: f32 = 0.95;
+/// The length of the 3D route of a cable (by its tag) or of a single wire (by `from|to`,
+/// the designations of its connection points), mm, where it is routed (see
+/// `crate::routing3d::Routing::routed_length`).
+pub type Routes<'a> = Option<&'a dyn Fn(&str) -> Option<f32>>;
+
+/// Cores of a new cable: phase, neutral and protective conductor.
+const CORES: [&str; 3] = ["BN", "BU", "GNYE"];
 
 /// What an item of a room is for the installation.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -147,6 +150,8 @@ pub struct Placed {
     pub room: usize,
     pub item: u64,
     pub part: String,
+    /// Its device tag (empty: not in the schematic).
+    pub tag: String,
     pub kind: Kind,
     pub at: [f32; 2],
     pub height: f32,
@@ -161,6 +166,16 @@ fn floor_of(prj: &Project, ri: usize) -> f32 {
     panel::buildings::level_by_id(&prj.layout, e.level).map_or(0.0, |l| l.elevation)
 }
 
+/// Where an item of room `ri` is: x, z of the plant and its height above the floor.
+fn spot(prj: &Project, poses: &[SitePose], ri: usize, it: &PanelItem) -> Option<([f32; 2], f32)> {
+    let e = &prj.layout.enclosures[ri];
+    let (lo, hi) = panel::item_box(e, it);
+    let c = [(lo[0] + hi[0]) / 2.0, (lo[1] + hi[1]) / 2.0, (lo[2] + hi[2]) / 2.0];
+    let q = poses.get(ri)?.apply([c[0], 0.0, c[2]]);
+    // Room coordinates: y down from the ceiling.
+    Some(([q[0], q[2]], (e.height - c[1]).clamp(0.0, e.height)))
+}
+
 /// Where an item of a room is (see [`Placed`]); `None` for items that are no part of
 /// the installation.
 pub fn placed(prj: &Project, poses: &[SitePose], ri: usize, it: &PanelItem) -> Option<Placed> {
@@ -169,12 +184,8 @@ pub fn placed(prj: &Project, poses: &[SitePose], ri: usize, it: &PanelItem) -> O
     }
     let kind = panel::part_by_number(prj, &it.part).and_then(kind_of)?;
     let e = &prj.layout.enclosures[ri];
-    let (lo, hi) = panel::item_box(e, it);
-    let c = [(lo[0] + hi[0]) / 2.0, (lo[1] + hi[1]) / 2.0, (lo[2] + hi[2]) / 2.0];
-    let q = poses.get(ri)?.apply([c[0], 0.0, c[2]]);
-    // Room coordinates: y down from the ceiling.
-    let height = (e.height - c[1]).clamp(0.0, e.height);
-    Some(Placed { room: ri, item: it.id, part: it.part.clone(), kind, at: [q[0], q[2]], height, floor: floor_of(prj, ri), ceiling: e.height, level: e.level })
+    let (at, height) = spot(prj, poses, ri, it)?;
+    Some(Placed { room: ri, item: it.id, part: it.part.clone(), tag: it.tag.clone(), kind, at, height, floor: floor_of(prj, ri), ceiling: e.height, level: e.level })
 }
 
 /// Every item of the installation in the rooms.
@@ -187,6 +198,11 @@ pub fn items(prj: &Project, poses: &[SitePose]) -> Vec<Placed> {
 pub fn bundled_parts() -> &'static [Part] {
     static PARTS: std::sync::OnceLock<Vec<Part>> = std::sync::OnceLock::new();
     PARTS.get_or_init(|| crate::parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).filter(|p| kind_of(p).is_some()).collect())
+}
+
+/// Part `number` of the project, the generic catalog or a bundled manufacturer catalog.
+pub fn find_part<'a>(prj: &'a Project, number: &str) -> Option<&'a Part> {
+    panel::part_by_number(prj, number).or_else(|| bundled_parts().iter().find(|p| p.number == number))
 }
 
 /// Part `number` of the project or the generic catalog, or of a bundled manufacturer
@@ -267,17 +283,11 @@ pub fn leg(a: &RunPoint, b: &RunPoint) -> f32 {
     plan + (a.zone - a.height).abs() + (b.zone - b.height).abs() + ((a.floor + a.zone) - (b.floor + b.zone)).abs()
 }
 
-/// The enclosure a circuit's cable starts at: its board, or the one its protective
-/// device is placed in.
-pub fn board_of(prj: &Project, c: &FinalCircuit) -> Option<usize> {
+/// The enclosure (distribution board) protective device `tag` is placed in; `None` when
+/// it is placed nowhere or in a room.
+pub fn board_of(prj: &Project, tag: &str) -> Option<usize> {
     let layout = &prj.layout;
-    if c.board != 0 {
-        return layout.enclosures.iter().position(|e| e.id == c.board);
-    }
-    if c.breaker.is_empty() {
-        return None;
-    }
-    layout.find_device(&c.breaker).map(|(ei, _)| ei).filter(|&ei| !layout.enclosures[ei].is_room())
+    layout.find_device(tag).map(|(ei, _)| ei).filter(|&ei| !layout.enclosures[ei].is_room())
 }
 
 /// The start of a cable at a distribution board: the middle of its top.
@@ -291,32 +301,22 @@ fn board_point(prj: &Project, poses: &[SitePose], ei: usize) -> RunPoint {
     RunPoint { at: [q[0], q[2]], height, floor, zone: (ceiling - ZONE).max(height) }
 }
 
-/// A final circuit worked out: its cable run (from the board through its items), its
-/// length (m), current (A), voltage (V), voltage drop (V, %) and the protective device's
-/// rated current and the cable's current-carrying capacity (A).
-#[derive(Clone, Debug, PartialEq)]
-pub struct Run {
-    pub circuit: u64,
-    pub points: Vec<RunPoint>,
-    /// The items found (ids), in order.
-    pub items: Vec<u64>,
-    /// Whether the run starts at a distribution board.
-    pub from_board: bool,
-    pub length: f32,
-    pub rated: Option<f32>,
-    pub current: Option<f32>,
-    pub voltage: f32,
-    pub drop: Option<(f32, f32)>,
-    /// Voltage drop from the supply to the distribution board, %.
-    pub upstream: Option<f32>,
-    pub ampacity: Option<f32>,
+/// Where device `tag` is placed, as a point of a cable run, and the cabinet it is in
+/// (`None` in a room).
+fn point_of(prj: &Project, poses: &[SitePose], tag: &str) -> Option<(RunPoint, Option<usize>)> {
+    let (ei, it) = prj.layout.find_device(tag)?;
+    let e = &prj.layout.enclosures[ei];
+    if !e.is_room() {
+        return Some((board_point(prj, poses, ei), Some(ei)));
+    }
+    let (at, height) = spot(prj, poses, ei, it)?;
+    Some((RunPoint { at, height, floor: floor_of(prj, ei), zone: (e.height - ZONE).max(0.0) }, None))
 }
 
-impl Run {
-    /// Voltage drop from the supply to the last item, %.
-    pub fn total(&self) -> Option<f32> {
-        self.drop.map(|d| d.1 + self.upstream.unwrap_or(0.0))
-    }
+/// Where device `tag` is placed, x and z of the plant (the middle of the top of its
+/// cabinet for a device in a cabinet).
+pub fn plan_point(prj: &Project, poses: &[SitePose], tag: &str) -> Option<[f32; 2]> {
+    point_of(prj, poses, tag).map(|p| p.0.at)
 }
 
 /// What the voltage drops upstream of the distribution boards come from: the feeder
@@ -329,16 +329,9 @@ pub struct Supply {
 }
 
 impl Supply {
-    pub fn of(prj: &Project, nl: &Netlist, conns: &[crate::netlist::Connection]) -> Supply {
+    pub fn of(prj: &Project, nl: &Netlist, conns: &[Connection]) -> Supply {
         let currents = crate::loads::calculate(prj, nl).feeders.into_iter().filter(|f| f.current > 0.0).map(|f| (f.device, f.current)).collect();
         Supply { feeders: crate::shortcircuit::feeder_cables(prj, nl, conns), currents }
-    }
-
-    /// Of the project as it is (netlist and connections built).
-    pub fn build(prj: &Project) -> Supply {
-        let (nl, open) = (Netlist::build(prj, true), Netlist::build(prj, false));
-        let conns = crate::netlist::connections(prj, &nl, &open);
-        Supply::of(prj, &nl, &conns)
     }
 }
 
@@ -364,8 +357,8 @@ pub fn drop(prj: &Project, current: f32, length_m: f32, mm2: f32, cos_phi: f32, 
 
 /// The feeder cables from the supply to the board of a circuit: those of its protective
 /// device, or of another one placed in the same board.
-fn feeder_of<'a>(prj: &Project, supply: &'a Supply, c: &FinalCircuit, board: Option<usize>) -> Option<&'a Vec<FeederCable>> {
-    supply.feeders.get(&c.breaker).filter(|f| !f.is_empty()).or_else(|| {
+fn feeder_of<'a>(prj: &Project, supply: &'a Supply, breaker: &str, board: Option<usize>) -> Option<&'a Vec<FeederCable>> {
+    supply.feeders.get(breaker).filter(|f| !f.is_empty()).or_else(|| {
         let board = board?;
         let mut tags: Vec<&String> = supply.feeders.keys().collect();
         tags.sort();
@@ -374,70 +367,41 @@ fn feeder_of<'a>(prj: &Project, supply: &'a Supply, c: &FinalCircuit, board: Opt
 }
 
 /// Voltage drop of the feeder cables up to a circuit's board, %.
-fn upstream(prj: &Project, supply: &Supply, c: &FinalCircuit, board: Option<usize>, cos_phi: f32) -> Option<f32> {
-    let chain = feeder_of(prj, supply, c, board)?;
+fn upstream(prj: &Project, supply: &Supply, breaker: &str, board: Option<usize>) -> Option<f32> {
+    let chain = feeder_of(prj, supply, breaker, board)?;
     let mut total = 0.0;
     for cable in chain {
         let i = supply.currents.get(&cable.device).copied().or_else(|| crate::protection::of_device(prj, &cable.device).map(|p| p.rated))?;
         let three = cable.phases >= 3;
-        total += drop(prj, i, cable.length, cable.mm2, cos_phi, voltage(prj, three), three).1;
+        total += drop(prj, i, cable.length, cable.mm2, DEFAULT_COS_PHI, voltage(prj, three), three).1;
     }
     Some(total)
 }
 
-/// The run of one circuit.
-pub fn run(prj: &Project, poses: &[SitePose], all: &[Placed], supply: &Supply, c: &FinalCircuit) -> Run {
-    let mut points = Vec::new();
-    let board = board_of(prj, c);
-    if let Some(ei) = board {
-        points.push(board_point(prj, poses, ei));
-    }
-    let mut found = Vec::new();
-    for id in &c.items {
-        if let Some(p) = all.iter().find(|p| p.item == *id) {
-            points.push(RunPoint { at: p.at, height: p.height, floor: p.floor, zone: (p.ceiling - ZONE).max(0.0) });
-            found.push(*id);
-        }
-    }
-    let length = points.windows(2).map(|w| leg(&w[0], &w[1])).sum::<f32>() / 1000.0 + BOX_RESERVE * found.len() as f32;
-    let rated = crate::protection::of_device(prj, &c.breaker).map(|p| p.rated).filter(|_| !c.breaker.is_empty());
-    let u = voltage(prj, c.three_phase);
-    let cos_phi = if c.cos_phi > 0.0 { c.cos_phi.min(1.0) } else { 1.0 };
-    let current = if c.load > 0.0 { Some(c.load / (u * cos_phi * if c.three_phase { 3f32.sqrt() } else { 1.0 })) } else { rated };
-    let mm2 = cross_section(c);
-    let drop = current.filter(|_| board.is_some() && !found.is_empty()).map(|i| drop(prj, i, length, mm2, cos_phi, u, c.three_phase));
-    let upstream = upstream(prj, supply, c, board, cos_phi);
-    Run { circuit: c.id, points, items: found, from_board: board.is_some(), length, rated, current, voltage: u, drop, upstream, ampacity: crate::sizing::capacity(prj, mm2) }
-}
-
-/// Cross-section of a circuit's conductors: given, or 1.5 mm².
-pub fn cross_section(c: &FinalCircuit) -> f32 {
-    if c.cross_section > 0.0 {
-        c.cross_section
-    } else {
-        1.5
-    }
-}
-
-/// The runs of all circuits.
-pub fn runs(prj: &Project, supply: &Supply) -> Vec<Run> {
-    let poses = panel::site_poses(prj);
-    let all = items(prj, &poses);
-    prj.layout.circuits.iter().map(|c| run(prj, &poses, &all, supply, c)).collect()
-}
-
-/// A protective device of the mains for final circuits: its tag, rated current,
-/// characteristic, phases, the residual current device protecting it (mA), whether it
-/// is spare, and the final circuit using it.
+/// A protective device of the mains for final circuits: its tag, function text, rated
+/// current, characteristic, phases, the residual current device protecting it (mA) and
+/// whether it is spare.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Breaker {
     pub tag: String,
+    pub text: String,
     pub rated: f32,
     pub characteristic: String,
     pub phases: usize,
     pub residual: Option<f32>,
     pub spare: bool,
-    pub circuit: Option<String>,
+}
+
+impl Breaker {
+    /// Its tag and function text.
+    pub fn title(&self) -> String {
+        format!("{} {}", self.tag, self.text).trim().to_string()
+    }
+}
+
+/// The function text of device `tag` (of the first of its symbols with one).
+fn text_of(prj: &Project, tag: &str) -> String {
+    prj.pages.iter().flat_map(|pg| pg.symbols.iter()).find(|s| s.tag == tag && !s.function_text.is_empty()).map(|s| s.function_text.clone()).unwrap_or_default()
 }
 
 /// The protective devices of the mains (in schematic order) for final circuits (up to
@@ -447,122 +411,26 @@ pub fn breakers(prj: &Project, nl: &Netlist) -> Vec<Breaker> {
         .into_iter()
         .filter(|c| c.is_final())
         .map(|c| {
-            let circuit = prj.layout.circuits.iter().find(|f| f.breaker == c.device).map(|f| f.name.clone());
             // Spare: no other device on the nets behind it.
             let fed = c.nets.iter().any(|&n| {
                 nl.nets.get(n).is_some_and(|net| net.pins.iter().any(|pr| prj.pages.get(pr.page).and_then(|pg| pg.symbols.get(pr.sym)).is_some_and(|s| !s.tag.is_empty() && s.tag != c.device)))
             });
             Breaker {
-                spare: circuit.is_none() && !fed,
+                spare: !fed,
+                text: text_of(prj, &c.device),
                 characteristic: c.protection.characteristic.title().to_string(),
-                tag: c.device,
                 rated: c.protection.rated,
                 phases: c.phases.len(),
                 residual: c.residual,
-                circuit,
+                tag: c.device,
             }
         })
         .collect()
 }
 
-/// The check: circuits without protective device or board, unknown or shared
-/// protective devices, cables thinner than their protective device asks, voltage
-/// drops above the limit, items gone; items of the installation in no circuit (info).
-pub fn problems(prj: &Project, nl: &Netlist, conns: &[crate::netlist::Connection]) -> Vec<Issue> {
-    let mut out = Vec::new();
-    if prj.layout.circuits.is_empty() {
-        return out;
-    }
-    let known: Vec<Breaker> = breakers(prj, nl);
-    let limit = crate::rules::limits(prj).voltage_drop;
-    let runs = runs(prj, &Supply::of(prj, nl, conns));
-    for (c, r) in prj.layout.circuits.iter().zip(&runs) {
-        let name = &c.name;
-        if c.breaker.is_empty() {
-            out.push(crate::issue!(Severity::Warning, None, "Circuit {} has no protective device", name));
-        } else if !known.iter().any(|b| b.tag == c.breaker) && crate::protection::of_device(prj, &c.breaker).is_none() {
-            out.push(crate::issue!(Severity::Error, None, "Circuit {}: no protective device {} in the schematic", name, c.breaker));
-        } else if prj.layout.circuits.iter().filter(|o| o.breaker == c.breaker).count() > 1 {
-            out.push(crate::issue!(Severity::Warning, None, "Circuit {}: protective device {} feeds other circuits too", name, c.breaker));
-        }
-        if !c.breaker.is_empty() && !r.from_board {
-            out.push(crate::issue!(Severity::Warning, None, "Circuit {}: protective device {} is in no distribution board of the layout", name, c.breaker));
-        }
-        if r.items.len() < c.items.len() {
-            out.push(crate::issue!(Severity::Warning, None, "Circuit {}: {} of its items are gone", name, c.items.len() - r.items.len()));
-        }
-        if let (Some(rated), Some(cap)) = (r.rated, r.ampacity) {
-            if cap < rated {
-                out.push(crate::issue!(Severity::Error, None, "Circuit {}: {} mm² carry {} A, less than the {} A of its protective device", name, cross_section(c), format!("{cap:.0}"), format!("{rated:.0}")));
-            }
-        }
-        if let Some(pct) = r.total() {
-            if pct > limit {
-                out.push(crate::issue!(Severity::Warning, None, "Circuit {}: voltage drop {} % over the limit of {} % ({} m)", name, format!("{pct:.2}"), format!("{limit:.1}"), format!("{:.1}", r.length)));
-            }
-        }
-        if !c.breaker.is_empty() && !known.iter().any(|b| b.tag == c.breaker) && crate::protection::of_device(prj, &c.breaker).is_some() {
-            out.push(crate::issue!(Severity::Info, None, "Circuit {}: protective device {} is planned only: generate it into the schematic from the single-line diagram and connect it to the supply", name, c.breaker));
-        }
-    }
-    let poses = panel::site_poses(prj);
-    let used: std::collections::HashSet<u64> = prj.layout.circuits.iter().flat_map(|c| c.items.iter().copied()).collect();
-    let free: Vec<Placed> = items(prj, &poses).into_iter().filter(|p| p.kind != Kind::Switch && !used.contains(&p.item)).collect();
-    if !free.is_empty() {
-        out.push(crate::issue!(Severity::Info, None, "{} socket outlets, lights and heating elements are in no circuit", free.len()));
-    }
-    out
-}
-
-/// Adds a final circuit (single-phase, 1.5 mm² unless three-phase) and gives its id.
-pub fn add_circuit(prj: &mut Project, name: &str, breaker: &str, three_phase: bool) -> Result<u64, String> {
-    let name = if name.trim().is_empty() { free_name(prj) } else { name.trim().to_string() };
-    if prj.layout.circuits.iter().any(|c| c.name == name) {
-        return Err(tr_fmt!("Circuit {} exists already", name));
-    }
-    let id = prj.new_id();
-    prj.layout.circuits.push(FinalCircuit {
-        id,
-        name,
-        breaker: breaker.trim().to_string(),
-        cable_type: if three_phase { DEFAULT_CABLE_3P } else { DEFAULT_CABLE }.into(),
-        cross_section: if three_phase { 2.5 } else { 1.5 },
-        three_phase,
-        cos_phi: DEFAULT_COS_PHI,
-        ..Default::default()
-    });
-    Ok(id)
-}
-
-/// A name for a new circuit: "Circuit n".
-pub fn free_name(prj: &Project) -> String {
-    (1..).map(|n| tr_fmt!("Circuit {}", n)).find(|n| !prj.layout.circuits.iter().any(|c| &c.name == n)).unwrap_or_default()
-}
-
-/// The circuit of an item (its index), if it is in one.
-pub fn circuit_of(prj: &Project, item: u64) -> Option<usize> {
-    prj.layout.circuits.iter().position(|c| c.items.contains(&item))
-}
-
-/// Puts item `item` into circuit `ci` at its end (out of the circuit it was in).
-pub fn connect(prj: &mut Project, ci: usize, item: u64) -> Result<(), String> {
-    let poses = panel::site_poses(prj);
-    if !items(prj, &poses).iter().any(|p| p.item == item) {
-        return Err(tr_fmt!("No socket outlet, switch or light {}", item));
-    }
-    if ci >= prj.layout.circuits.len() {
-        return Err(tr("No such circuit").to_string());
-    }
-    for c in &mut prj.layout.circuits {
-        c.items.retain(|&i| i != item);
-    }
-    prj.layout.circuits[ci].items.push(item);
-    Ok(())
-}
-
-/// A socket outlet, switch, light or heating element of a circuit of the schematic: its
-/// tag, kind, function text, its own part for walls or ceilings (none: placed with the
-/// part of its kind, [`Kind::default_part`]) and where it is placed (room, item).
+/// A socket outlet, switch, light or heating element of a circuit: its tag, kind,
+/// function text, its own part for walls or ceilings (none: placed with the part of its
+/// kind, [`Kind::default_part`]) and where it is placed (room, item).
 #[derive(Clone, Debug, PartialEq)]
 pub struct SchematicDevice {
     pub tag: String,
@@ -572,21 +440,44 @@ pub struct SchematicDevice {
     pub placed: Option<(usize, u64)>,
 }
 
+/// A connection of the phase conductors of a circuit between two devices (tags): its
+/// cable (empty: a single wire), the cable's type, the cross-section (mm²) and the
+/// length (m) of its 3D route (`routed`) or estimated along the installation zones;
+/// `None` while one of its devices is not placed.
+#[derive(Clone, Debug, PartialEq)]
+pub struct Leg {
+    pub from: String,
+    pub to: String,
+    pub cable: String,
+    pub cable_type: String,
+    pub mm2: f32,
+    pub length: Option<f32>,
+    pub routed: bool,
+}
+
 /// A final circuit of the schematic (a protective device of the mains up to 32 A) with
 /// the socket outlets, switches, lights and heating elements behind it, in schematic
-/// order, and the final circuit of the installation using its protective device.
+/// order, the distribution board its protective device is placed in, the connections
+/// between them and its installation page (index).
 #[derive(Clone, Debug, PartialEq)]
-pub struct SchematicCircuit {
+pub struct Circuit {
     pub breaker: String,
     pub text: String,
     pub rated: f32,
     pub characteristic: String,
     pub three_phase: bool,
+    pub board: Option<usize>,
     pub devices: Vec<SchematicDevice>,
-    pub circuit: Option<u64>,
+    pub legs: Vec<Leg>,
+    pub page: Option<usize>,
 }
 
-impl SchematicCircuit {
+impl Circuit {
+    /// Its protective device and function text.
+    pub fn title(&self) -> String {
+        format!("{} {}", self.breaker, self.text).trim().to_string()
+    }
+
     pub fn placed(&self) -> usize {
         self.devices.iter().filter(|d| d.placed.is_some()).count()
     }
@@ -594,11 +485,21 @@ impl SchematicCircuit {
     pub fn device(&self, tag: &str) -> Option<&SchematicDevice> {
         self.devices.iter().find(|d| d.tag == tag)
     }
+
+    /// The device placed as item `id`.
+    pub fn has_item(&self, id: u64) -> bool {
+        self.devices.iter().any(|d| d.placed.is_some_and(|p| p.1 == id))
+    }
+
+    /// The cables of its connections, in order.
+    pub fn cables(&self) -> Vec<&str> {
+        self.legs.iter().map(|l| l.cable.as_str()).filter(|c| !c.is_empty()).collect()
+    }
 }
 
 /// The symbol passes the circuit on to the devices behind it: a switch, push button,
 /// contact, terminal or junction box (all its pins one circuit).
-fn switches_through(s: &crate::model::SymbolInst) -> bool {
+fn switches_through(s: &SymbolInst) -> bool {
     use crate::parts::FnKind as F;
     matches!(
         crate::parts::kind_of_symbol(&s.sym),
@@ -609,17 +510,18 @@ fn switches_through(s: &crate::model::SymbolInst) -> bool {
 /// The devices on the nets behind protective device `c` of the schematic: through
 /// pass-through devices (contacts of contactors, residual current devices),
 /// switches, contacts and terminals, not through further protective devices or loads
-/// and never into a potential of the supply. Tags in schematic order.
-fn devices_behind(prj: &Project, nl: &Netlist, c: &electrical::Circuit) -> Vec<String> {
-    use crate::model::PageKind;
+/// and never into a potential of the supply. Tags in schematic order, and the nets.
+fn behind(prj: &Project, nl: &Netlist, c: &electrical::Circuit) -> (Vec<String>, BTreeSet<usize>) {
     let mut todo: Vec<usize> = c.nets.iter().copied().collect();
-    let mut seen = std::collections::BTreeSet::new();
+    let mut seen = BTreeSet::new();
+    let mut nets = BTreeSet::new();
     let mut found: HashMap<String, (usize, usize)> = HashMap::new();
     while let Some(n) = todo.pop() {
         let Some(net) = nl.nets.get(n) else { continue };
         if !seen.insert(n) || (net.named && !c.nets.contains(&n) && electrical::is_supply_potential(prj, &net.name)) {
             continue;
         }
+        nets.insert(n);
         for pr in &net.pins {
             let Some(pg) = prj.pages.get(pr.page).filter(|pg| pg.kind == PageKind::Schematic) else { continue };
             let Some(s) = pg.symbols.get(pr.sym) else { continue };
@@ -647,7 +549,7 @@ fn devices_behind(prj: &Project, nl: &Netlist, c: &electrical::Circuit) -> Vec<S
     }
     let mut tags: Vec<(String, (usize, usize))> = found.into_iter().collect();
     tags.sort_by(|a, b| a.1.cmp(&b.1).then(a.0.cmp(&b.0)));
-    tags.into_iter().map(|t| t.0).collect()
+    (tags.into_iter().map(|t| t.0).collect(), nets)
 }
 
 /// What a device of the schematic is for the installation, with its part: by its parts
@@ -658,19 +560,19 @@ fn device_kind(prj: &Project, tag: &str) -> Option<(Kind, Option<String>)> {
     use crate::parts::FnKind as F;
     let refs = prj.devices.get(tag).map(|d| d.parts.clone()).unwrap_or_default();
     if !refs.is_empty() {
-        return refs.iter().find_map(|r| panel::part_by_number(prj, &r.number).and_then(kind_of).map(|k| (k, Some(r.number.clone()))));
+        return refs.iter().find_map(|r| find_part(prj, &r.number).and_then(kind_of).map(|k| (k, Some(r.number.clone()))));
     }
     let letters = tag.rsplit('-').next().unwrap_or("");
     let kinds: Vec<Kind> = prj
         .pages
         .iter()
-        .filter(|pg| pg.kind == crate::model::PageKind::Schematic)
+        .filter(|pg| pg.kind == PageKind::Schematic)
         .flat_map(|pg| pg.symbols.iter())
         .filter(|s| s.tag == tag)
         .filter_map(|s| match (s.sym.as_str(), crate::parts::kind_of_symbol(&s.sym)) {
             ("inst_socket2", _) | (_, Some(F::SocketOutlet)) => Some(Kind::Socket),
             (_, Some(F::Heater)) => Some(Kind::Heater),
-            ("lamp" | "inst_lamp" | "inst_luminaire", _) => Some(Kind::Light),
+            ("lamp" | "luminaire" | "inst_lamp" | "inst_luminaire", _) => Some(Kind::Light),
             ("inst_switch" | "inst_switch2" | "inst_dimmer" | "inst_push", _) => Some(Kind::Switch),
             (_, Some(F::No | F::Nc | F::Changeover | F::PushbuttonNo | F::SwitchNo)) if letters.starts_with('S') => Some(Kind::Switch),
             _ => None,
@@ -686,31 +588,117 @@ fn placed_in_room(prj: &Project, tag: &str) -> Option<(usize, u64)> {
     prj.layout.find_device(tag).filter(|(ei, _)| prj.layout.enclosures[*ei].is_room()).map(|(ei, it)| (ei, it.id))
 }
 
+/// A cross-section in mm² from a text such as "1.5 mm²".
+fn mm2_of(text: &str) -> Option<f32> {
+    let num: String = text.trim().chars().take_while(|c| c.is_ascii_digit() || *c == '.' || *c == ',').collect();
+    num.replace(',', ".").parse::<f32>().ok().filter(|v| *v > 0.0)
+}
+
+/// The connections of the phase conductors on the nets `nets` of the circuit of
+/// `breaker` between two devices (a cable once), with their lengths: from `routing`
+/// where routed, estimated otherwise.
+fn legs(prj: &Project, nl: &Netlist, conns: &[Connection], routes: Routes, poses: &[SitePose], breaker: &str, nets: &BTreeSet<usize>) -> Vec<Leg> {
+    let sym = |p: PinRef| &prj.pages[p.page].symbols[p.sym];
+    let mut out: Vec<Leg> = Vec::new();
+    for c in conns {
+        if !nl.pin_net.get(&(sym(c.a).id, c.a.pin)).is_some_and(|n| nets.contains(n)) {
+            continue;
+        }
+        let (from, to) = (sym(c.a).tag.clone(), sym(c.b).tag.clone());
+        if from.is_empty() || to.is_empty() || from == to {
+            continue;
+        }
+        let known = if c.cable.is_empty() {
+            out.iter().any(|l| l.cable.is_empty() && ((l.from == from && l.to == to) || (l.from == to && l.to == from)))
+        } else {
+            out.iter().any(|l| l.cable == c.cable)
+        };
+        if known {
+            continue;
+        }
+        let cable = prj.cables.iter().find(|x| !c.cable.is_empty() && x.tag == c.cable);
+        let mm2 = cable.and_then(|x| mm2_of(&x.cross_section)).or_else(|| mm2_of(&c.cross_section)).unwrap_or(1.5);
+        let routed = routes
+            .and_then(|r| {
+                if c.cable.is_empty() {
+                    let (a, b) = (crate::netlist::pin_designation(prj, c.a), crate::netlist::pin_designation(prj, c.b));
+                    r(&format!("{a}|{b}")).or_else(|| r(&format!("{b}|{a}")))
+                } else {
+                    r(&c.cable)
+                }
+            })
+            .map(|mm| mm / 1000.0);
+        let estimate = || {
+            let ((pa, ea), (pb, eb)) = (point_of(prj, poses, &from)?, point_of(prj, poses, &to)?);
+            // Wired inside the distribution board.
+            if ea.is_some() && ea == eb {
+                return Some(0.0);
+            }
+            Some(leg(&pa, &pb) / 1000.0 + BOX_RESERVE)
+        };
+        let length = routed.or_else(estimate);
+        out.push(Leg { cable_type: cable.map(|x| x.cable_type.clone()).unwrap_or_default(), cable: c.cable.clone(), mm2, length, routed: routed.is_some(), from, to });
+    }
+    orient(&mut out, breaker);
+    out
+}
+
+/// Turns the connections to run away from protective device `from`.
+fn orient(legs: &mut [Leg], from: &str) {
+    let mut reached: BTreeSet<String> = BTreeSet::from([from.to_string()]);
+    loop {
+        let mut grew = false;
+        for l in legs.iter_mut() {
+            match (reached.contains(&l.from), reached.contains(&l.to)) {
+                (false, true) => std::mem::swap(&mut l.from, &mut l.to),
+                (true, false) => {}
+                _ => continue,
+            }
+            reached.insert(l.to.clone());
+            grew = true;
+        }
+        if !grew {
+            break;
+        }
+    }
+}
+
+/// The cross-section for a current of `need` A: the thinnest of the usual ones that
+/// carries it (1.5 mm² while the capacity is not known).
+fn size_for(prj: &Project, need: f32) -> f32 {
+    [1.5, 2.5, 4.0, 6.0, 10.0, 16.0].into_iter().find(|a| crate::sizing::capacity(prj, *a).is_none_or(|c| c + 0.01 >= need)).unwrap_or(16.0)
+}
+
 /// The final circuits of the schematic with socket outlets, switches, lights or heating
-/// elements behind them (see [`SchematicCircuit`]), in schematic order.
-pub fn schematic_circuits(prj: &Project, nl: &Netlist) -> Vec<SchematicCircuit> {
-    let text_of = |tag: &str| prj.pages.iter().flat_map(|pg| pg.symbols.iter()).find(|s| s.tag == tag && !s.function_text.is_empty()).map(|s| s.function_text.clone()).unwrap_or_default();
+/// elements behind them (see [`Circuit`]), in schematic order; the lengths of their
+/// connections from `routes` where they are routed.
+pub fn circuits(prj: &Project, nl: &Netlist, conns: &[Connection], routes: Routes) -> Vec<Circuit> {
+    let poses = panel::site_poses(prj);
+    let finals = finals(prj, nl);
     electrical::circuits(prj, nl)
         .into_iter()
         .filter(|c| c.is_final())
         .filter_map(|c| {
-            let devices: Vec<SchematicDevice> = devices_behind(prj, nl, &c)
+            let (tags, nets) = behind(prj, nl, &c);
+            let devices: Vec<SchematicDevice> = tags
                 .into_iter()
                 .filter(|tag| prj.layout.find_device(tag).is_none_or(|(ei, _)| prj.layout.enclosures[ei].is_room()))
                 .filter_map(|tag| {
                     let (kind, part) = device_kind(prj, &tag)?;
-                    Some(SchematicDevice { text: text_of(&tag), kind, part, placed: placed_in_room(prj, &tag), tag })
+                    Some(SchematicDevice { text: text_of(prj, &tag), kind, part, placed: placed_in_room(prj, &tag), tag })
                 })
                 .collect();
             if devices.is_empty() {
                 return None;
             }
-            Some(SchematicCircuit {
-                text: text_of(&c.device),
+            Some(Circuit {
+                text: text_of(prj, &c.device),
                 rated: c.protection.rated,
                 characteristic: c.protection.characteristic.title().to_string(),
                 three_phase: c.phases.len() >= 3,
-                circuit: prj.layout.circuits.iter().find(|f| f.breaker == c.device).map(|f| f.id),
+                board: board_of(prj, &c.device),
+                legs: legs(prj, nl, conns, routes, &poses, &c.device, &nets),
+                page: page_of(prj, &labels(&finals, &c.device)[0]),
                 breaker: c.device,
                 devices,
             })
@@ -718,36 +706,145 @@ pub fn schematic_circuits(prj: &Project, nl: &Netlist) -> Vec<SchematicCircuit> 
         .collect()
 }
 
-/// The schematic circuit device `tag` is in.
-pub fn schematic_circuit_of<'a>(list: &'a [SchematicCircuit], tag: &str) -> Option<&'a SchematicCircuit> {
+/// The circuit device `tag` is in.
+pub fn circuit_of<'a>(list: &'a [Circuit], tag: &str) -> Option<&'a Circuit> {
     list.iter().find(|c| c.device(tag).is_some())
 }
 
-/// The final circuit of the installation for schematic circuit `sc` (its index): the
-/// one using its protective device, or a new one named after the protective device's
-/// function text (or its tag).
-pub fn circuit_for(prj: &mut Project, sc: &SchematicCircuit) -> Result<usize, String> {
-    if let Some(ci) = prj.layout.circuits.iter().position(|c| c.breaker == sc.breaker) {
-        return Ok(ci);
-    }
-    let name = [sc.text.trim(), sc.breaker.as_str()].into_iter().find(|n| !n.is_empty() && !prj.layout.circuits.iter().any(|c| c.name == *n)).unwrap_or("").to_string();
-    let id = add_circuit(prj, &name, &sc.breaker, sc.three_phase)?;
-    Ok(prj.layout.circuits.iter().position(|c| c.id == id).unwrap_or(0))
+/// A final circuit worked out: the length of its connections (m), whether all of them
+/// are routed, the current (A), voltage (V), voltage drop to its farthest device (V, %)
+/// and from the supply to the distribution board (%), the protective device's rated
+/// current, the thinnest cross-section (mm²) and its current-carrying capacity (A).
+#[derive(Clone, Debug, PartialEq)]
+pub struct Run {
+    pub length: f32,
+    pub routed: bool,
+    pub rated: Option<f32>,
+    pub current: Option<f32>,
+    pub voltage: f32,
+    pub drop: Option<(f32, f32)>,
+    pub upstream: Option<f32>,
+    pub mm2: Option<f32>,
+    pub ampacity: Option<f32>,
 }
 
-/// Device `tag` of circuit `sc` became item `id`: the device gets the item's part when
-/// it has none, an earlier place of it goes (its place in a circuit taken by the new
-/// one) and the item is in the final circuit of the protective device. Gives the index
-/// of that circuit.
-fn adopt(prj: &mut Project, sc: &SchematicCircuit, tag: &str, id: u64, old: Option<(usize, u64)>) -> Result<usize, String> {
+impl Run {
+    /// Voltage drop from the supply to the farthest device, %.
+    pub fn total(&self) -> Option<f32> {
+        self.drop.map(|d| d.1 + self.upstream.unwrap_or(0.0))
+    }
+}
+
+/// Circuit `c` worked out (see [`Run`]).
+pub fn run(prj: &Project, supply: &Supply, c: &Circuit) -> Run {
+    let u = voltage(prj, c.three_phase);
+    let rated = Some(c.rated).filter(|r| *r > 0.0);
+    let current = supply.currents.get(&c.breaker).copied().or(rated);
+    let length = c.legs.iter().filter_map(|l| l.length).sum();
+    // The drop at each device: along the connections from the protective device.
+    let worst = current.filter(|_| c.board.is_some()).and_then(|i| {
+        let mut at: HashMap<&str, f32> = HashMap::from([(c.breaker.as_str(), 0.0)]);
+        loop {
+            let mut grew = false;
+            for l in &c.legs {
+                let Some(len) = l.length else { continue };
+                let du = drop(prj, i, len, l.mm2, DEFAULT_COS_PHI, u, c.three_phase).0;
+                for (x, y) in [(&l.from, &l.to), (&l.to, &l.from)] {
+                    let v = at.get(x.as_str()).copied();
+                    if let (Some(v), false) = (v, at.contains_key(y.as_str())) {
+                        at.insert(y.as_str(), v + du);
+                        grew = true;
+                    }
+                }
+            }
+            if !grew {
+                break;
+            }
+        }
+        c.devices.iter().filter_map(|d| at.get(d.tag.as_str()).copied()).reduce(f32::max)
+    });
+    let mm2 = c.legs.iter().map(|l| l.mm2).reduce(f32::min);
+    Run {
+        length,
+        routed: !c.legs.is_empty() && c.legs.iter().all(|l| l.routed),
+        rated,
+        current,
+        voltage: u,
+        drop: worst.map(|du| (du, du / u.max(1.0) * 100.0)),
+        upstream: upstream(prj, supply, &c.breaker, c.board),
+        ampacity: mm2.and_then(|a| crate::sizing::capacity(prj, a)),
+        mm2,
+    }
+}
+
+/// The check: circuits whose protective device is in no distribution board of the
+/// layout, cables thinner than their protective device asks, voltage drops above the
+/// limit, devices not placed in a room (info); items of the installation that are not
+/// in the schematic (info).
+pub fn problems(prj: &Project, nl: &Netlist, conns: &[Connection], routes: Routes) -> Vec<Issue> {
+    let mut out = Vec::new();
+    let list = circuits(prj, nl, conns, routes);
+    let limit = crate::rules::limits(prj).voltage_drop;
+    let supply = if list.iter().any(|c| c.placed() > 0) { Supply::of(prj, nl, conns) } else { Supply::default() };
+    for c in list.iter().filter(|c| c.placed() > 0) {
+        let r = run(prj, &supply, c);
+        let name = c.title();
+        if c.board.is_none() {
+            out.push(crate::issue!(Severity::Warning, None, "Circuit {}: protective device {} is in no distribution board of the layout", name, c.breaker));
+        }
+        if let (Some(rated), Some(cap), Some(mm2)) = (r.rated, r.ampacity, r.mm2) {
+            if cap < rated {
+                out.push(crate::issue!(Severity::Error, None, "Circuit {}: {} mm² carry {} A, less than the {} A of its protective device", name, mm2, format!("{cap:.0}"), format!("{rated:.0}")));
+            }
+        }
+        if let Some(pct) = r.total() {
+            if pct > limit {
+                out.push(crate::issue!(Severity::Warning, None, "Circuit {}: voltage drop {} % over the limit of {} % ({} m)", name, format!("{pct:.2}"), format!("{limit:.1}"), format!("{:.1}", r.length)));
+            }
+        }
+        let missing = c.devices.len() - c.placed();
+        if missing > 0 {
+            out.push(crate::issue!(Severity::Info, None, "Circuit {}: {} of its devices are placed in no room", name, missing));
+        }
+    }
+    let poses = panel::site_poses(prj);
+    let free = items(prj, &poses).into_iter().filter(|p| p.tag.is_empty()).count();
+    if free > 0 {
+        out.push(crate::issue!(Severity::Info, None, "{} socket outlets, switches, lights and heating elements are not in the schematic", free));
+    }
+    out
+}
+
+/// Writes the lengths of the cables of the circuits into the cable list (rounded up to
+/// the half metre). Gives how many cables were written.
+pub fn write_cables(prj: &mut Project, list: &[Circuit]) -> usize {
+    let mut n = 0;
+    for l in list.iter().flat_map(|c| &c.legs) {
+        let (Some(length), false) = (l.length, l.cable.is_empty()) else { continue };
+        if let Some(cable) = prj.cables.iter_mut().find(|x| x.tag == l.cable) {
+            cable.length = (length * 2.0).ceil() / 2.0;
+            n += 1;
+        }
+    }
+    n
+}
+
+/// Device `tag` became item `id`: the device gets the item's part when it has none and
+/// an earlier place of it goes.
+fn adopt(prj: &mut Project, tag: &str, id: u64, old: Option<(usize, u64)>) -> Result<(), String> {
     let ri = prj.layout.enclosures.iter().position(|e| e.item(id).is_some()).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", id))?;
     let part = prj.layout.enclosures[ri].item(id).map(|it| it.part.clone()).unwrap_or_default();
     if let Some(it) = prj.layout.enclosures[ri].items.iter_mut().find(|i| i.id == id) {
         it.kind = ItemKind::Device;
         it.tag = tag.to_string();
     }
+    if !prj.parts.iter().any(|x| x.number == part) {
+        if let Some(x) = find_part(prj, &part).cloned() {
+            prj.parts.push(x);
+        }
+    }
     if prj.devices.get(tag).is_none_or(|d| d.parts.is_empty()) {
-        let description = panel::part_by_number(prj, &part).map(|x| x.description.clone()).unwrap_or_default();
+        let description = find_part(prj, &part).map(|x| x.description.clone()).unwrap_or_default();
         let data = prj.devices.entry(tag.to_string()).or_default();
         data.parts.push(crate::parts::PartRef { number: part, ..Default::default() });
         if data.description.is_empty() {
@@ -756,35 +853,19 @@ fn adopt(prj: &mut Project, sc: &SchematicCircuit, tag: &str, id: u64, old: Opti
     }
     if let Some((oi, old_id)) = old.filter(|o| o.1 != id) {
         prj.layout.enclosures[oi].items.retain(|i| i.id != old_id);
-        for c in &mut prj.layout.circuits {
-            for i in &mut c.items {
-                if *i == old_id {
-                    *i = id;
-                }
-            }
-        }
     }
-    let ci = circuit_for(prj, sc)?;
-    if !prj.layout.circuits[ci].items.contains(&id) {
-        for c in &mut prj.layout.circuits {
-            c.items.retain(|&i| i != id);
-        }
-        prj.layout.circuits[ci].items.push(id);
-    }
-    Ok(ci)
+    Ok(())
 }
 
-/// Places device `tag` of schematic circuit `sc` into room `ri` at point `at` of the
-/// plant like [`place`]: with its own part, or `part` (empty: the generic one of its
-/// kind), which then becomes its part. A device placed before moves there. The item
-/// goes into the final circuit of the circuit's protective device ([`circuit_for`]).
-/// Gives the item's id and the index of the circuit.
-pub fn place_device(prj: &mut Project, sc: &SchematicCircuit, tag: &str, ri: usize, part: &str, at: [f32; 2]) -> Result<(u64, usize), String> {
+/// Places device `tag` of circuit `sc` into room `ri` at point `at` of the plant like
+/// [`place`]: with its own part, or `part` (empty: the generic one of its kind), which
+/// then becomes its part. A device placed before moves there. Gives the item's id.
+pub fn place_device(prj: &mut Project, sc: &Circuit, tag: &str, ri: usize, part: &str, at: [f32; 2]) -> Result<u64, String> {
     let d = sc.device(tag).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element of circuit {}", tag, sc.breaker))?;
     let number = match &d.part {
         Some(p) => p.clone(),
         None if !part.trim().is_empty() => {
-            let pd = panel::part_by_number(prj, part.trim()).or_else(|| bundled_parts().iter().find(|p| p.number == part.trim())).ok_or_else(|| tr_fmt!("Unknown device or part: {}", part))?;
+            let pd = find_part(prj, part.trim()).ok_or_else(|| tr_fmt!("Unknown device or part: {}", part))?;
             if kind_of(pd) != Some(d.kind) {
                 return Err(tr_fmt!("{} does not fit {}: choose a part of its kind", part, tag));
             }
@@ -794,61 +875,24 @@ pub fn place_device(prj: &mut Project, sc: &SchematicCircuit, tag: &str, ri: usi
     };
     let old = placed_in_room(prj, tag);
     let id = place(prj, ri, &number, at)?;
-    let ci = adopt(prj, sc, tag, id, old)?;
-    Ok((id, ci))
+    adopt(prj, tag, id, old)?;
+    Ok(id)
 }
 
 /// Makes item `item` (a socket outlet, switch, light or heating element placed
-/// without a device tag, of the same kind) device `tag` of schematic circuit `sc`:
-/// what was placed before becomes the device of the schematic. Gives the index of the
-/// circuit it is in.
-pub fn link_device(prj: &mut Project, sc: &SchematicCircuit, tag: &str, item: u64) -> Result<usize, String> {
+/// without a device tag, of the same kind) device `tag` of circuit `sc`: what was
+/// placed before becomes the device of the schematic.
+pub fn link_device(prj: &mut Project, sc: &Circuit, tag: &str, item: u64) -> Result<(), String> {
     let d = sc.device(tag).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element of circuit {}", tag, sc.breaker))?;
     let poses = panel::site_poses(prj);
     let p = items(prj, &poses).into_iter().find(|p| p.item == item).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", item))?;
-    let it = prj.layout.enclosures[p.room].item(item).cloned().unwrap_or_default();
-    if !it.tag.is_empty() && it.tag != tag {
-        return Err(tr_fmt!("{} is device {} already", item, it.tag));
+    if !p.tag.is_empty() && p.tag != tag {
+        return Err(tr_fmt!("{} is device {} already", item, p.tag));
     }
-    if p.kind != d.kind || d.part.as_ref().is_some_and(|own| *own != it.part) {
-        return Err(tr_fmt!("{} does not fit {}: choose a part of its kind", it.part, tag));
+    if p.kind != d.kind || d.part.as_ref().is_some_and(|own| *own != p.part) {
+        return Err(tr_fmt!("{} does not fit {}: choose a part of its kind", p.part, tag));
     }
-    adopt(prj, sc, tag, item, placed_in_room(prj, tag))
-}
-
-/// Writes each circuit's cable into the cable list: its type, cross-section and length
-/// (rounded up to the half metre); a circuit without a cable tag gets a new cable
-/// `-W<n>`. Gives how many cables were written.
-pub fn write_cables(prj: &mut Project) -> usize {
-    let runs = runs(prj, &Supply::default());
-    let mut n = 0;
-    for (ci, r) in runs.iter().enumerate() {
-        if r.items.is_empty() {
-            continue;
-        }
-        let c = prj.layout.circuits[ci].clone();
-        let tag = if c.cable.is_empty() {
-            let tag = (1..).map(|k| format!("-W{k}")).find(|t| !prj.cables.iter().any(|x| &x.tag == t) && !prj.layout.circuits.iter().any(|x| &x.cable == t)).unwrap_or_default();
-            prj.layout.circuits[ci].cable = tag.clone();
-            tag
-        } else {
-            c.cable.clone()
-        };
-        let pos = match prj.cables.iter().position(|x| x.tag == tag) {
-            Some(k) => k,
-            None => {
-                prj.cables.push(crate::model::Cable { tag: tag.clone(), ..Default::default() });
-                prj.cables.len() - 1
-            }
-        };
-        let cable = &mut prj.cables[pos];
-        cable.length = (r.length * 2.0).ceil() / 2.0;
-        cable.cable_type = c.cable_type.clone();
-        cable.cross_section = format!("{} mm²", cross_section(&c));
-        cable.cores = if c.three_phase { "5".into() } else { "3".into() };
-        n += 1;
-    }
-    n
+    adopt(prj, tag, item, placed_in_room(prj, tag))
 }
 
 /// Letter code of the device tags of a kind of item (IEC 81346-2).
@@ -867,147 +911,370 @@ fn free_tag(prj: &Project, prefix: &str) -> String {
     (1..).map(|n| format!("{prefix}{n}")).find(|t| !used(t)).unwrap_or_default()
 }
 
-/// Gives the items of the circuits without a device tag one (`<room>-XD1` for socket
-/// outlets, `-SF1` for switches, `-EA1` for lights, `-EB1` for heating elements) with
-/// their part. Gives how many.
-pub fn link_devices(prj: &mut Project) -> usize {
-    let poses = panel::site_poses(prj);
-    let all = items(prj, &poses);
-    let ids: Vec<u64> = prj.layout.circuits.iter().flat_map(|c| c.items.iter().copied()).collect();
-    let mut n = 0;
-    for id in ids {
-        let Some(p) = all.iter().find(|p| p.item == id) else { continue };
-        let e = &prj.layout.enclosures[p.room];
-        if e.item(id).is_none_or(|it| !it.tag.is_empty()) {
-            continue;
-        }
-        let tag = free_tag(prj, &format!("{}-{}", e.name, code(p.kind)));
-        let description = panel::part_by_number(prj, &p.part).map(|x| x.description.clone()).unwrap_or_default();
-        prj.devices.insert(tag.clone(), crate::model::DeviceData { parts: vec![crate::parts::PartRef { number: p.part.clone(), ..Default::default() }], description, ..Default::default() });
-        if let Some(it) = prj.layout.enclosures[p.room].items.iter_mut().find(|i| i.id == id) {
-            it.kind = ItemKind::Device;
-            it.tag = tag;
-        }
-        n += 1;
-    }
-    n
+/// A cable tag not used yet: `-W` and the first free number.
+fn free_cable(prj: &Project) -> String {
+    let used = |t: &str| prj.cables.iter().any(|c| c.tag == t) || prj.pages.iter().any(|pg| pg.wires.iter().any(|w| w.cable == t));
+    (1..).map(|n| format!("-W{n}")).find(|t| !used(t)).unwrap_or_default()
 }
 
-/// Parts of planned protective devices: (part, rated current, three-phase).
-pub const BREAKER_PARTS: [(&str, f32, bool); 4] = [("GEN.MCB-1P-B10", 10.0, false), ("GEN.MCB-1P-B16", 16.0, false), ("GEN.MCB-3P-B16", 16.0, true), ("GEN.MCB-4P-C32", 32.0, true)];
+// ------------------------------------------------------------- installation pages
 
-/// Gives circuit `ci` a new planned protective device: a miniature circuit breaker of
-/// `rated` A (single- or three-phase like the circuit, [`BREAKER_PARTS`]), tag `-F<n>`,
-/// starting in the board most other circuits start at; it is drawn in the single-line
-/// diagram of the installation ([`overview`]). Gives its tag.
-pub fn new_breaker(prj: &mut Project, ci: usize, rated: f32) -> Result<String, String> {
-    let c = prj.layout.circuits.get(ci).ok_or_else(|| tr("No such circuit").to_string())?;
-    let (part, _, _) = BREAKER_PARTS.iter().find(|b| b.1 == rated && b.2 == c.three_phase).ok_or_else(|| tr_fmt!("No circuit breaker of {} A", rated))?;
-    let tag = free_tag(prj, "-F");
-    let description = panel::part_by_number(prj, part).map(|x| x.description.clone()).unwrap_or_default();
-    prj.devices.insert(tag.clone(), crate::model::DeviceData { parts: vec![crate::parts::PartRef { number: (*part).into(), ..Default::default() }], description, ..Default::default() });
-    let mut boards: HashMap<usize, usize> = HashMap::new();
-    for o in &prj.layout.circuits {
-        if let Some(b) = board_of(prj, o) {
-            *boards.entry(b).or_default() += 1;
-        }
+/// Width of a column of the installation page: one device, mm.
+const COLUMN: f32 = 8.0 * GRID;
+
+/// The labels of the circuit of protective device `breaker` on its installation page:
+/// the interruption point of its phase conductor (also at the protective device) and
+/// the potentials of its neutral and protective conductors, named after the short tag
+/// of the protective device unless another one of `finals` (the protective devices of
+/// the final circuits) has it too.
+fn labels(finals: &[String], breaker: &str) -> [String; 3] {
+    let short = format!("-{}", breaker.rsplit('-').next().unwrap_or(breaker));
+    let unique = !finals.iter().any(|t| t != breaker && t.ends_with(&short));
+    let name = if unique { short } else { breaker.to_string() };
+    [format!("L{name}"), format!("N{name}"), format!("PE{name}")]
+}
+
+/// The protective devices of the final circuits.
+fn finals(prj: &Project, nl: &Netlist) -> Vec<String> {
+    electrical::circuits(prj, nl).into_iter().filter(|c| c.is_final()).map(|c| c.device).collect()
+}
+
+/// The installation page of the circuit whose phase conductor is interruption point
+/// `l` (index).
+fn page_of(prj: &Project, l: &str) -> Option<usize> {
+    prj.pages.iter().position(|pg| prj.layout.installation_pages.contains(&pg.id) && pg.symbols.iter().any(|s| s.sym == "intr" && s.label == l))
+}
+
+/// A device of an installation page: its tag, symbol, connection point designations,
+/// function text and cable (from the device before it).
+#[derive(Clone, Debug)]
+struct Drawn {
+    tag: String,
+    sym: String,
+    pins: Vec<String>,
+    text: String,
+    kind: Kind,
+    cable: String,
+}
+
+/// The symbol of a new device of kind `kind` with part `part`: one of the symbols of the
+/// kind of the part's function with as many connection points, a symbol of the
+/// installation's kind otherwise; and the designations of its connection points (the
+/// part's where they fit).
+fn symbol_for(prj: &Project, kind: Kind, part: Option<&Part>) -> Option<(SymbolRef, Vec<String>)> {
+    let prefs: &[&str] = match kind {
+        Kind::Socket => &["socket"],
+        Kind::Light => &["luminaire", "lamp"],
+        Kind::Heater => &["heater"],
+        Kind::Switch => &["sel", "co", "pb_no"],
+    };
+    let f = part.and_then(|p| p.functions.iter().find(|f| f.kind != crate::parts::FnKind::Terminal));
+    let pins = f.map(|f| f.pin_list()).unwrap_or_default();
+    let fits = |d: &SymbolRef, own: bool| (pins.is_empty() || d.pins.len() == pins.len()) && (!own || f.is_none_or(|f| crate::parts::kind_of_symbol(d.key) == Some(f.kind)));
+    let defs: Vec<SymbolRef> = prefs.iter().filter_map(|k| prj.symbol(k)).collect();
+    let def = defs.iter().find(|d| fits(d, true)).or_else(|| defs.iter().find(|d| fits(d, false))).or(defs.first())?.clone();
+    let labels = if pins.len() == def.pins.len() { pins.iter().map(|s| s.to_string()).collect() } else { def.pins.iter().map(|x| x.label.to_string()).collect() };
+    Some((def, labels))
+}
+
+/// The kind of a device drawn on an installation page, by its symbol.
+fn drawn_kind(sym: &str) -> Kind {
+    match sym {
+        "socket" => Kind::Socket,
+        "luminaire" | "lamp" => Kind::Light,
+        "heater" => Kind::Heater,
+        _ => Kind::Switch,
     }
-    let board = boards.into_iter().max_by_key(|b| (b.1, std::cmp::Reverse(b.0))).map(|b| prj.layout.enclosures[b.0].id);
-    let c = &mut prj.layout.circuits[ci];
-    c.breaker = tag.clone();
-    if c.board == 0 {
-        c.board = board.unwrap_or(0);
+}
+
+/// Puts a socket outlet, switch, light or heating element (part `part`) for protective
+/// device `breaker` into room `ri` at point `at` of the plant like [`place`] and into
+/// the schematic ([`into_schematic`]). Gives the device tag; nothing is placed when it
+/// cannot go into the schematic.
+pub fn add_device(prj: &mut Project, breaker: &str, part: &str, ri: usize, at: [f32; 2]) -> Result<String, String> {
+    if find_part(prj, part).and_then(kind_of).is_none() {
+        return Err(tr_fmt!("{} is no socket outlet, switch, light or heating element", part));
+    }
+    let id = place(prj, ri, part, at)?;
+    into_schematic(prj, breaker, id).inspect_err(|_| {
+        prj.layout.enclosures[ri].items.retain(|i| i.id != id);
+    })
+}
+
+/// Puts item `item` (a socket outlet, switch, light or heating element placed in a room
+/// without a device tag) for protective device `breaker` into the schematic: a new
+/// device `<room>-XD1` (`-SF`, `-EA`, `-EB`) with its part, drawn on the installation
+/// page of the circuit (made with the first device, after the page of the protective
+/// device, which gets an interruption point to it) with a new cable from the device
+/// before it, or from the protective device. Gives the device tag.
+pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64) -> Result<String, String> {
+    let nl = Netlist::build(prj, true);
+    let b = electrical::circuits(prj, &nl).into_iter().find(|c| c.is_final() && c.device == breaker).ok_or_else(|| tr_fmt!("{} is no protective device of a final circuit in the schematic", breaker))?;
+    let ri = prj.layout.enclosures.iter().position(|e| e.is_room() && e.item(item).is_some()).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", item))?;
+    let it = prj.layout.enclosures[ri].item(item).cloned().unwrap_or_default();
+    if !it.tag.is_empty() {
+        return Err(tr_fmt!("{} is device {} already", item, it.tag));
+    }
+    let part = it.part;
+    let kind = find_part(prj, &part).and_then(kind_of).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element", part))?;
+    let room = prj.layout.enclosures[ri].name.clone();
+    let [l, n, pe] = labels(&finals(prj, &nl), breaker);
+    let page = match page_of(prj, &l) {
+        Some(k) => k,
+        None => new_page(prj, &b, &l)?,
+    };
+    let (def, pins) = symbol_for(prj, kind, find_part(prj, &part)).ok_or_else(|| tr("Unknown symbol").to_string())?;
+    let mut drawn = drawn_on(prj, page);
+    if page_columns(prj, page) < drawn.len() + 1 {
+        return Err(tr_fmt!("The installation page of {} is full", breaker));
+    }
+    let tag = free_tag(prj, &format!("{}-{}", room, code(kind)));
+    adopt(prj, &tag, item, None)?;
+    let cable = free_cable(prj);
+    let id = prj.new_id();
+    prj.cables.push(crate::model::Cable { id, tag: cable.clone(), cores: CORES.join(" "), ..Default::default() });
+    drawn.push(Drawn { tag: tag.clone(), sym: def.key.to_string(), pins, text: String::new(), kind, cable });
+    draw(prj, page, &drawn, [&l, &n, &pe]);
+    // The cables carry the protective device's rated current and the highest rated
+    // current of the devices of the circuit.
+    let need = behind(prj, &nl, &b)
+        .0
+        .iter()
+        .chain(std::iter::once(&tag))
+        .filter_map(|t| prj.devices.get(t))
+        .flat_map(|d| d.parts.iter())
+        .filter_map(|r| find_part(prj, &r.number))
+        .filter_map(|x| crate::sizing::parse_current(&x.current))
+        .fold(b.protection.rated, f32::max);
+    let mm2 = size_for(prj, need);
+    let ours: Vec<&str> = drawn.iter().map(|d| d.cable.as_str()).collect();
+    for c in prj.cables.iter_mut().filter(|c| ours.contains(&c.tag.as_str())) {
+        if mm2_of(&c.cross_section).is_none_or(|a| a < mm2) {
+            c.cross_section = format!("{mm2} mm²");
+            c.cable_type = format!("{CABLE_TYPE}{mm2}");
+        }
     }
     Ok(tag)
 }
 
-/// Symbol of an item on the overview page.
-fn symbol_of(kind: Kind) -> &'static str {
+/// Makes the installation page of circuit `c` (after the page of its protective device)
+/// and puts the interruption point `l` at the outgoing connection point of the
+/// protective device. Gives the page's index.
+fn new_page(prj: &mut Project, c: &electrical::Circuit, l: &str) -> Result<usize, String> {
+    let at = prj.pages.get(c.page).ok_or_else(|| tr("No such page").to_string())?;
+    let si = at.symbols.iter().position(|s| s.id == c.symbol).ok_or_else(|| tr("Unknown symbol").to_string())?;
+    let s = at.symbols[si].clone();
+    let def = prj.symbol(&s.sym).ok_or_else(|| tr("Unknown symbol").to_string())?;
+    // The outgoing connection point: the leftmost of the lowest ones.
+    let low = def.pins.iter().map(|q| q.pos.transform(s.rot, s.mirror).y).fold(f32::MIN, f32::max);
+    let out = (0..def.pins.len()).filter(|&i| (def.pins[i].pos.transform(s.rot, s.mirror).y - low).abs() < 0.01).min_by(|a, b| def.pins[*a].pos.transform(s.rot, s.mirror).x.total_cmp(&def.pins[*b].pos.transform(s.rot, s.mirror).x)).unwrap_or(0);
+    let q = def.pin_world(out, s.pos, s.rot, s.mirror);
+    let intr = prj.symbol("intr").ok_or_else(|| tr("Unknown symbol").to_string())?;
+    // Beside a wire leaving the connection point, below it otherwise.
+    let wired = prj.pages[c.page].wires.iter().any(|w| w.a.same(q) || w.b.same(q));
+    let (end, rot) = if wired { (p(q.x + 3.0 * GRID, q.y), 3) } else { (p(q.x, q.y + 3.0 * GRID), 0) };
+    push_wire(prj, c.page, q, end, "", "", false);
+    let mut point = new_symbol(prj, &intr, end, "", "");
+    point.rot = rot;
+    point.label = l.to_string();
+    prj.pages[c.page].symbols.push(point);
+    let src = prj.pages[c.page].clone();
+    let id = prj.new_id();
+    let text = format!("{} {}", c.device, text_of(prj, &c.device)).trim().to_string();
+    let mut page = Page::new(id, &crate::ops::next_page_name(prj, c.page + 1), &tr_fmt!("Installation of {}", text), PageKind::Schematic);
+    // The structure of the page of the protective device.
+    page.function = src.function.clone();
+    page.installation = src.installation.clone();
+    page.location = src.location.clone();
+    page.product = src.product.clone();
+    // Each device its own cable from the one before it.
+    page.values.insert("page.cable_per_connection".into(), "true".into());
+    let k = crate::ops::insert_page(prj, c.page + 1, page);
+    prj.layout.installation_pages.push(id);
+    Ok(k)
+}
+
+/// The devices drawn on installation page `page`, in their order.
+fn drawn_on(prj: &Project, page: usize) -> Vec<Drawn> {
+    let pg = &prj.pages[page];
+    let mut out: Vec<(f32, Drawn)> = Vec::new();
+    for s in &pg.symbols {
+        let Some(def) = prj.symbol(&s.sym).filter(|d| d.func.has_tag() && !s.tag.is_empty()) else { continue };
+        let at: Vec<P> = (0..def.pins.len()).map(|i| def.pin_world(i, s.pos, s.rot, s.mirror)).collect();
+        let cable = at.iter().find_map(|q| pg.wires.iter().find(|w| !w.cable.is_empty() && (w.a.same(*q) || w.b.same(*q)))).map(|w| w.cable.clone()).unwrap_or_default();
+        out.push((s.pos.x, Drawn { tag: s.tag.clone(), sym: s.sym.clone(), pins: s.pins.clone(), text: s.function_text.clone(), kind: drawn_kind(&s.sym), cable }));
+    }
+    out.sort_by(|a, b| a.0.total_cmp(&b.0));
+    out.into_iter().map(|d| d.1).collect()
+}
+
+/// A column of an installation page: a device on the phase conductor, and the lights
+/// behind it when it is a switch.
+type Column = (Drawn, Vec<Drawn>);
+
+/// The columns of the devices of an installation page: by room in the order of the
+/// rooms (the order the connections run in), in a room the devices on the phase
+/// conductor, the lights of a room with a switch behind its first switch.
+fn columns(prj: &Project, drawn: &[Drawn]) -> Vec<Column> {
+    let room = |tag: &str| prj.layout.find_device(tag).map(|(ei, _)| ei).filter(|&ei| prj.layout.enclosures[ei].is_room()).unwrap_or(usize::MAX);
+    let mut rooms: Vec<usize> = drawn.iter().map(|d| room(&d.tag)).collect();
+    rooms.sort();
+    rooms.dedup();
+    let mut out = Vec::new();
+    for r in rooms {
+        let here: Vec<&Drawn> = drawn.iter().filter(|d| room(&d.tag) == r).collect();
+        let switch = here.iter().position(|d| d.kind == Kind::Switch);
+        for d in &here {
+            if d.kind == Kind::Light && switch.is_some() || d.kind == Kind::Switch {
+                continue;
+            }
+            out.push(((*d).clone(), Vec::new()));
+        }
+        for (k, d) in here.iter().enumerate().filter(|(_, d)| d.kind == Kind::Switch) {
+            let lights = if Some(k) == switch { here.iter().filter(|x| x.kind == Kind::Light).map(|x| (*x).clone()).collect() } else { Vec::new() };
+            out.push(((*d).clone(), lights));
+        }
+    }
+    out
+}
+
+/// How many device columns fit on page `page`.
+fn page_columns(prj: &Project, page: usize) -> usize {
+    let border = crate::frame::of_page(prj, page).border();
+    (((border.max.x - border.min.x) - 10.0 * GRID) / COLUMN).floor().max(0.0) as usize
+}
+
+/// The connection points of a device symbol placed with its first upper one at `at`:
+/// the symbol's position and rotation, and (phase, neutral, protective conductor,
+/// switched output) connection points.
+fn pins_of(def: &SymbolRef, kind: Kind, at: P) -> (P, u8, [Option<P>; 4]) {
+    // A switch with more upper than lower connection points stands on its head.
+    let rot = if kind == Kind::Switch && def.pins.iter().filter(|q| q.pos.y < 0.0).count() > 1 { 2 } else { 0 };
+    let pos_of = |i: usize| def.pins[i].pos.transform(rot, false);
+    let top = def.pins.iter().enumerate().map(|(i, _)| pos_of(i).y).fold(f32::MAX, f32::min);
+    let first = (0..def.pins.len()).filter(|&i| (pos_of(i).y - top).abs() < 0.01).min_by(|a, b| pos_of(*a).x.total_cmp(&pos_of(*b).x)).unwrap_or(0);
+    let pos = p(at.x - pos_of(first).x, at.y - pos_of(first).y);
+    let world = |i: usize| pos + pos_of(i);
+    let label = |l: &str| (0..def.pins.len()).find(|&i| def.pins[i].label.eq_ignore_ascii_case(l)).map(world);
+    let lower: Vec<usize> = (0..def.pins.len()).filter(|&i| pos_of(i).y > top + 0.01).collect();
+    let below = lower.iter().copied().min_by(|a, b| (pos_of(*a).x - pos_of(first).x).abs().total_cmp(&(pos_of(*b).x - pos_of(first).x).abs())).map(world);
     match kind {
-        Kind::Socket => "inst_socket2",
-        Kind::Switch => "inst_switch",
-        Kind::Light => "inst_lamp",
-        Kind::Heater => "heater",
+        Kind::Switch => (pos, rot, [Some(world(first)), None, None, below]),
+        _ => (pos, rot, [Some(world(first)), label("N").or(below), label("PE"), None]),
     }
 }
 
-/// Draws the circuits as single-line diagrams on overview pages, made again each time
-/// (those made before are replaced): a column per circuit, its protective device at
-/// the top (single-line circuit breaker), its cable down to its items (installation
-/// plan symbols with their device tags and rooms). The items get their device tags
-/// first ([`link_devices`]). Gives the indices of the pages.
-pub fn overview(prj: &mut Project) -> Result<Vec<usize>, String> {
-    if prj.layout.circuits.is_empty() {
-        return Err(tr("No circuit yet").to_string());
+/// Draws installation page `page` again with the devices `drawn` (see [`columns`]): the
+/// interruption point of the phase conductor and the potentials of the neutral and
+/// protective conductors at the left, the conductors as lines along the top, each
+/// device below them in its column; the lights behind a switch below its output. The
+/// wires to each device are the cores of its cable.
+fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], [l, n, pe]: [&str; 3]) {
+    let cols = columns(prj, drawn);
+    prj.pages[page].symbols.clear();
+    prj.pages[page].wires.clear();
+    let border = crate::frame::of_page(prj, page).border();
+    let x0 = ((border.min.x + 4.0 * GRID) / GRID).round() * GRID;
+    let y0 = ((border.min.y + 8.0 * GRID) / GRID).round() * GRID;
+    let ys = [y0, y0 + 2.0 * GRID, y0 + 4.0 * GRID];
+    let row = y0 + 12.0 * GRID;
+    // The starts: the interruption point and the potentials point to the left.
+    for (k, (key, label)) in [("intr", l), ("pot", n), ("pot", pe)].into_iter().enumerate() {
+        let Some(def) = prj.symbol(key) else { continue };
+        let at = p(x0, ys[k]);
+        let rot = if key == "intr" { 1 } else { 3 };
+        let pin = def.pins.first().map_or(p(0.0, 0.0), |q| q.pos.transform(rot, false));
+        let mut s = new_symbol(prj, &def, p(at.x - pin.x, at.y - pin.y), "", "");
+        s.rot = rot;
+        s.label = label.to_string();
+        prj.pages[page].symbols.push(s);
     }
-    link_devices(prj);
-    let poses = panel::site_poses(prj);
-    let all = items(prj, &poses);
-    // The pages made before go; the new ones take the place of the first.
-    let old = std::mem::take(&mut prj.layout.installation_pages);
-    let mut at = prj.pages.len();
-    for id in old {
-        if let Some(k) = prj.pages.iter().position(|pg| pg.id == id) {
-            at = at.min(k);
-            prj.pages.remove(k);
+    // The lines of the conductors and their last points.
+    let mut lines = Lines { page, ys, ends: [p(x0, ys[0]), p(x0, ys[1]), p(x0, ys[2])] };
+    let mut x = x0 + 4.0 * GRID;
+    for (dev, lights) in &cols {
+        let Some(def) = prj.symbol(&dev.sym) else { continue };
+        let (pos, rot, [ph, ne, pr, out]) = pins_of(&def, dev.kind, p(x, row));
+        let mut s = new_symbol(prj, &def, pos, &dev.tag, &dev.text);
+        s.rot = rot;
+        s.pins = dev.pins.clone();
+        prj.pages[page].symbols.push(s);
+        if let Some(q) = ph {
+            lines.join(prj, 0, q, &dev.cable);
+        }
+        lines.neutral_and_pe(prj, ne, pr, x, &dev.cable);
+        x += COLUMN;
+        // The lights behind the switch: from its output along a line below it.
+        let Some(o) = out else { continue };
+        let line = ((o.y + 2.0 * GRID) / GRID).round() * GRID;
+        let low = line + 3.0 * GRID;
+        let mut last = o;
+        let mut first = true;
+        for d in lights {
+            let Some(ld) = prj.symbol(&d.sym) else { continue };
+            let (lpos, lrot, [lph, lne, lpr, _]) = pins_of(&ld, d.kind, p(x, low));
+            let mut s = new_symbol(prj, &ld, lpos, &d.tag, &d.text);
+            s.rot = lrot;
+            s.pins = d.pins.clone();
+            prj.pages[page].symbols.push(s);
+            if let Some(q) = lph {
+                let j = p(q.x, line);
+                if first {
+                    push_wire(prj, page, last, p(last.x, line), &d.cable, CORES[0], true);
+                    last = p(last.x, line);
+                    first = false;
+                }
+                push_wire(prj, page, last, j, &d.cable, CORES[0], true);
+                push_wire(prj, page, j, q, &d.cable, CORES[0], false);
+                last = j;
+            }
+            lines.neutral_and_pe(prj, lne, lpr, x, &d.cable);
+            x += COLUMN;
         }
     }
-    let at = at.min(prj.pages.len());
-    let breaker = prj.symbol("sl_cb").ok_or_else(|| tr("Unknown symbol").to_string())?;
-    let lower = (0..breaker.pins.len()).max_by(|a, b| breaker.pins[*a].pos.y.total_cmp(&breaker.pins[*b].pos.y)).unwrap_or(0);
-    let (col_w, step, branch) = (9.0 * GRID, 5.0 * GRID, 3.0 * GRID);
-    let mut pages = Vec::new();
-    let mut page = usize::MAX;
-    let mut x = f32::MAX;
-    let mut border = crate::geom::R { min: p(0.0, 0.0), max: p(0.0, 0.0) };
-    let circuits = prj.layout.circuits.clone();
-    for c in &circuits {
-        if page == usize::MAX || x + col_w > border.max.x - 2.0 * GRID {
-            let id = prj.new_id();
-            let k = at + pages.len();
-            let mut pg = crate::model::Page::new(id, &crate::ops::next_page_name(prj, k), tr("Installation circuits"), crate::model::PageKind::Overview);
-            pg.generated = true;
-            page = crate::ops::insert_page(prj, k, pg);
-            prj.layout.installation_pages.push(id);
-            pages.push(page);
-            border = crate::frame::of_page(prj, page).border();
-            x = border.min.x + 4.0 * GRID;
-        }
-        let pos = p(x, border.min.y + 6.0 * GRID).snap(GRID);
-        let bottom = border.max.y - 4.0 * GRID;
-        // The protective device, or the start of the cable without one.
-        let mut from = pos;
-        if !c.breaker.is_empty() {
-            let inst = new_symbol(prj, &breaker, pos, &c.breaker, &c.name);
-            prj.pages[page].symbols.push(inst);
-            from = breaker.pin_world(lower, pos, 0, false);
-        }
-        let count = c.items.len().max(1) as f32;
-        let step = (((bottom - from.y) / count / GRID).floor() * GRID).clamp(2.0 * GRID, step);
-        let mut last = from;
-        for id in &c.items {
-            let Some(item) = all.iter().find(|q| q.item == *id) else { continue };
-            let Some(def) = prj.symbol(symbol_of(item.kind)) else { continue };
-            let joint = p(from.x, last.y + step);
-            let tag = prj.layout.enclosures[item.room].item(*id).map(|it| it.tag.clone()).unwrap_or_default();
-            let room = prj.layout.enclosures[item.room].name.clone();
-            // The symbol's connection point at the end of a branch to the right.
-            let pin = def.pins.first().map_or(p(0.0, 0.0), |q| q.pos);
-            let end = p(from.x + branch, joint.y);
-            let inst = new_symbol(prj, &def, p(end.x - pin.x, end.y - pin.y), &tag, &room);
-            prj.pages[page].symbols.push(inst);
-            let cable = if last.same(from) { c.cable.clone() } else { String::new() };
-            push_wire(prj, page, last, joint, &cable);
-            push_wire(prj, page, joint, end, "");
-            last = joint;
-        }
-        x += col_w;
-    }
-    Ok(pages)
 }
 
-fn new_symbol(prj: &mut Project, def: &crate::symbols::SymbolDef, pos: P, tag: &str, text: &str) -> crate::model::SymbolInst {
-    crate::model::SymbolInst {
+/// The lines of the phase, neutral and protective conductors along the top of an
+/// installation page: their heights and last points.
+struct Lines {
+    page: usize,
+    ys: [f32; 3],
+    ends: [P; 3],
+}
+
+impl Lines {
+    /// Joins connection point `q` to the line of conductor `k`: along the line, then
+    /// down to it, as a core of `cable`.
+    fn join(&mut self, prj: &mut Project, k: usize, q: P, cable: &str) {
+        let j = p(q.x, self.ys[k]);
+        push_wire(prj, self.page, self.ends[k], j, cable, CORES[k], true);
+        push_wire(prj, self.page, j, q, cable, CORES[k], false);
+        self.ends[k] = j;
+    }
+
+    /// Joins the neutral and protective conductor connection points of a device in the
+    /// column at `x` to their lines: from above when they are upper connection points,
+    /// a neutral at the bottom along a step to the right of the device.
+    fn neutral_and_pe(&mut self, prj: &mut Project, ne: Option<P>, pr: Option<P>, x: f32, cable: &str) {
+        if let Some(q) = ne {
+            if q.x > x + 0.01 {
+                self.join(prj, 1, q, cable);
+            } else {
+                // At the bottom: down, to the right and up to the neutral line.
+                let (down, side) = (p(q.x, q.y + 2.0 * GRID), p(x + 3.0 * GRID, q.y + 2.0 * GRID));
+                push_wire(prj, self.page, q, down, cable, CORES[1], true);
+                push_wire(prj, self.page, down, side, cable, CORES[1], true);
+                self.join(prj, 1, side, cable);
+            }
+        }
+        if let Some(q) = pr {
+            self.join(prj, 2, q, cable);
+        }
+    }
+}
+
+fn new_symbol(prj: &mut Project, def: &crate::symbols::SymbolDef, pos: P, tag: &str, text: &str) -> SymbolInst {
+    SymbolInst {
         id: prj.new_id(),
         sym: def.key.to_string(),
         pos,
@@ -1018,14 +1285,16 @@ fn new_symbol(prj: &mut Project, def: &crate::symbols::SymbolDef, pos: P, tag: &
     }
 }
 
-fn push_wire(prj: &mut Project, page: usize, a: P, b: P, cable: &str) {
+/// A wire from `a` to `b`, a core of `cable`; its labels hidden (`quiet`) on the lines
+/// along the page, shown on the wire down to a device.
+fn push_wire(prj: &mut Project, page: usize, a: P, b: P, cable: &str, core: &str, quiet: bool) {
     if a.same(b) {
         return;
     }
     let id = prj.new_id();
-    prj.pages[page].wires.push(crate::model::Wire { id, a, b, cable: cable.to_string(), ..Default::default() });
+    let core = if cable.is_empty() { "" } else { core };
+    prj.pages[page].wires.push(Wire { id, a, b, cable: cable.to_string(), core: core.to_string(), hide_labels: quiet, ..Default::default() });
 }
 
 #[cfg(test)]
 mod tests;
-

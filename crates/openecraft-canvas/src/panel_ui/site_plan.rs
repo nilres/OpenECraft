@@ -351,30 +351,31 @@ pub fn installation_at(prj: &Project, plan: &SitePlan, frame: &Frame, p: Pos2) -
     installation_items(prj, plan).into_iter().map(|q| (q.item, frame.at(q.at).distance(p))).filter(|q| q.1 <= 8.0).min_by(|a, b| a.1.total_cmp(&b.1)).map(|q| q.0)
 }
 
-/// Draws the installation of the level shown: the runs of the final circuits (from
-/// their board through their items; the one highlighted thicker) and the socket
-/// outlets, switches and lights as symbols of installation plans (IEC 60617-11) in the
-/// colour of their circuit.
-pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, highlight: Option<u64>) {
+/// Draws the installation of the level shown: the connections of the circuits of the
+/// schematic `circuits` (from their distribution board from device to device; those of
+/// the protective device `highlight` thicker) and the socket outlets, switches and
+/// lights as symbols of installation plans (IEC 60617-11) in the colour of their
+/// circuit.
+pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, circuits: &[openecraft_core::installation::Circuit], highlight: Option<&str>) {
     use openecraft_core::installation::{self as inst, Kind};
     let painter = ui.painter_at(size);
     let frame = frame(size, prj, plan);
     let items = installation_items(prj, plan);
     let weak = ui.visuals().text_color();
-    for (k, (c, r)) in prj.layout.circuits.iter().zip(inst::runs(prj, &inst::Supply::default())).enumerate() {
-        if !r.items.iter().any(|id| items.iter().any(|p| p.item == *id)) {
-            continue;
-        }
-        let pts: Vec<Pos2> = r.points.iter().map(|q| frame.at(q.at)).collect();
-        let width = if highlight == Some(c.id) { 3.0 } else { 1.3 };
-        for w in pts.windows(2) {
+    let poses = panel::site_poses(prj);
+    let shown = |tag: &str| items.iter().any(|p| p.tag == tag);
+    for (k, c) in circuits.iter().enumerate() {
+        let width = if highlight == Some(c.breaker.as_str()) { 3.0 } else { 1.3 };
+        for l in c.legs.iter().filter(|l| shown(&l.from) || shown(&l.to)) {
+            let (Some(a), Some(b)) = (inst::plan_point(prj, &poses, &l.from), inst::plan_point(prj, &poses, &l.to)) else { continue };
             // Along the walls: first along x, then along z.
-            let corner = pos2(w[1].x, w[0].y);
-            painter.extend(egui::Shape::dashed_line(&[w[0], corner, w[1]], Stroke::new(width, circuit_color(k)), 5.0, 3.0));
+            let (a, b) = (frame.at(a), frame.at(b));
+            let corner = pos2(b.x, a.y);
+            painter.extend(egui::Shape::dashed_line(&[a, corner, b], Stroke::new(width, circuit_color(k)), 5.0, 3.0));
         }
     }
     for p in &items {
-        let color = inst::circuit_of(prj, p.item).map_or(weak, circuit_color);
+        let color = circuits.iter().position(|c| c.has_item(p.item)).map_or(weak, circuit_color);
         let c = frame.at(p.at);
         let s = Stroke::new(1.5, color);
         match p.kind {

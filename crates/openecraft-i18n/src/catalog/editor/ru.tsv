@@ -563,6 +563,7 @@ Devices go back to the devices to place	Устройства возвращаю�
 Devices in the box: {}	Устройства в рамке: {}
 Devices of a channel	Устройства канала
 Devices of the second channel; empty = like the first	Устройства второго канала; пусто = как у первого
+Devices of {}	Устройства {}
 Devices placed on the page get its structure; their tags are shown without it.	Устройства, размещённые на листе, получают его структуру; их обозначения показываются без неё.
 Devices to place	Устройства для размещения
 Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Устройства, главная функция которых находится в рамке, получают заданные здесь идентификаторы; пустые аспекты наследуются от листа или охватывающей рамки.
@@ -805,6 +806,7 @@ Frequency	Частота
 From / to	От / к
 From a template file…	Из файла шаблона…
 From row to row; 0: free of shade in winter	От ряда к ряду; 0: без затенения зимой
+From the 3D routing	Из 3D-трассировки
 From the function definition	Из определения функции
 From the left end	От левого конца
 From the top left corner of the drawing area	От левого верхнего угла области чертежа
@@ -967,6 +969,7 @@ Inserted {}	Вставлен {}
 Inside temperature	Внутренняя температура
 Inside without cooling	Внутри без охлаждения
 Installation conditions of the conductors	Условия прокладки проводников
+Installation page {}	Страница электроустановки {}
 Installation zones	Монтажные зоны
 Installed plugins	Установленные плагины
 Instead of user name and password	Вместо имени пользователя и пароля
@@ -1504,7 +1507,6 @@ Place in the building	Место в здании
 Place in the plant	Место на объекте
 Place in the room	Место в помещении
 Place in the site plan	Разместить на генплане
-Place on the wall	Разместить на стене
 Place text	Разместить текст
 Place the georeferenced point everything is measured from	Разместить геопривязанную точку, от которой всё измеряется
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Разместить геопривязанную точку установки на генплане; её координаты вводятся на панели Здания, каждая точка измеряется от неё
@@ -1603,6 +1605,7 @@ Property placement	Размещение свойств
 Property removed with {} values	Свойство удалено, значений: {}
 Publish	Опубликовать
 Put a room here	Поставить сюда помещение
+Put in	Вставить
 Put into the vault	Поместить в хранилище
 Put the pane back into the workspace	Вернуть панель в рабочее пространство
 Puts the project into the folder it was opened from	Помещает проект в папку, из которой он был открыт
@@ -2507,6 +2510,7 @@ x y	x y
 {} has unsaved changes. Discard them?	В {} есть несохранённые изменения. Отменить их?
 {} imported into the parts database and placed as {}	{} импортировано в базу данных изделий и размещено как {}
 {} in {}	{} в {}
+{} is in the schematic	{} есть на схеме
 {} is neither in the parts database nor on the parts server	{} нет ни в базе данных изделий, ни на сервере изделий
 {} is not in the disk image	{} нет в образе диска
 {} is not made for wall mounting: place it on a mounting rail	{} не предназначен для настенного монтажа: установите его на рейку

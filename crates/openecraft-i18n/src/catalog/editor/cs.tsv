@@ -564,6 +564,7 @@ Devices go back to the devices to place	Přístroje se vrátí mezi přístroje 
 Devices in the box: {}	Přístroje v rámečku: {}
 Devices of a channel	Přístroje kanálu
 Devices of the second channel; empty = like the first	Přístroje druhého kanálu; prázdné = jako první
+Devices of {}	Zařízení {}
 Devices placed on the page get its structure; their tags are shown without it.	Přístroje umístěné na stránce převezmou její strukturu; jejich označení se zobrazují bez ní.
 Devices to place	Přístroje k umístění
 Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Přístroje, jejichž hlavní funkce leží v rámečku, dostanou zde nastavené identifikátory; prázdné aspekty se dědí ze stránky nebo z obklopujícího rámečku.
@@ -806,6 +807,7 @@ Frequency	Kmitočet
 From / to	Od / do
 From a template file…	Ze souboru šablony…
 From row to row; 0: free of shade in winter	Od řady k řadě; 0: bez zastínění v zimě
+From the 3D routing	Z 3D trasování
 From the function definition	Z definice funkce
 From the left end	Od levého konce
 From the top left corner of the drawing area	Od levého horního rohu kreslicí plochy
@@ -968,6 +970,7 @@ Inserted {}	Vloženo {}
 Inside temperature	Vnitřní teplota
 Inside without cooling	Uvnitř bez chlazení
 Installation conditions of the conductors	Podmínky uložení vodičů
+Installation page {}	Instalační strana {}
 Installation zones	Instalační zóny
 Installed plugins	Nainstalované pluginy
 Instead of user name and password	Místo uživatelského jména a hesla
@@ -1505,7 +1508,6 @@ Place in the building	Umístění v budově
 Place in the plant	Umístění v zařízení
 Place in the room	Místo v místnosti
 Place in the site plan	Umístit v situačním plánu
-Place on the wall	Umístit na stěnu
 Place text	Umístit text
 Place the georeferenced point everything is measured from	Umístit georeferencovaný bod, od kterého se vše měří
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Umístěte georeferencovaný bod zařízení do situačního plánu; jeho souřadnice se zadávají v panelu Budovy, každý bod se pak měří od něj
@@ -1604,6 +1606,7 @@ Property placement	Umístění vlastností
 Property removed with {} values	Vlastnost odebrána s {} hodnotami
 Publish	Publikovat
 Put a room here	Umístit sem místnost
+Put in	Vložit
 Put into the vault	Uložit do trezoru Vault
 Put the pane back into the workspace	Vrátit panel do pracovního prostoru
 Puts the project into the folder it was opened from	Uloží projekt do složky, ze které byl otevřen
@@ -2508,6 +2511,7 @@ x y	x y
 {} has unsaved changes. Discard them?	{} obsahuje neuložené změny. Zahodit je?
 {} imported into the parts database and placed as {}	{} importován do databáze artiklů a umístěn jako {}
 {} in {}	{} v {}
+{} is in the schematic	{} je ve schématu
 {} is neither in the parts database nor on the parts server	{} není v databázi artiklů ani na serveru artiklů
 {} is not in the disk image	{} není v obrazu disku
 {} is not made for wall mounting: place it on a mounting rail	{} není určen pro montáž na stěnu: umístěte jej na lištu

@@ -640,88 +640,94 @@ without a drawn door are one room, and stairs or chimneys are walls.
 ## Installation: outlets, switches, lights and their circuits
 
 The installation plan of a level is drawn in the *Buildings* pane (tab *Electrical
-installation*, choose the level of the site plan) on its floor plan; plugin `installation`, `openecraft_core::installation`.
+installation*, choose the level of the site plan) on its floor plan; plugin
+`installation`, `openecraft_core::installation`. Everything of it is in the schematic:
+the devices, their connections and cables; the circuits are read from there, and the
+lengths of their cables are those of the 3D routing.
 
-- **Placing** (*Place* with a part chosen; command `place_installation`): a click in a
-  room of the site plan puts a socket outlet, switch or light there: a ceiling light
-  (`GEN.LAMP-CEILING-LED`, `GEN.LAMP-DOWNLIGHT-LED`, parts with *Ceiling mounting: yes*)
-  on the ceiling where clicked, anything else on the wall nearest to the click (within
-  0.8 m) at its mounting height (outlets 300 mm, switches 1050 mm, wall lights
-  2000 mm). The site plan draws them with the symbols of installation plans (IEC
-  60617-11) in the colour of their circuit; in 3D they are the parts' models
-  (generated ones for the generic parts and parts without a model of their own:
-  outlets and switches in their frames, round ceiling lights with their domed diffuser,
-  recessed downlights with flange and diffuser, rectangular wall, panel and batten
-  lights, emergency lights with their sign, panel heaters with grille and thermostat,
-  towel radiators with their bars, infrared heating panels). The 3D
+- **Putting devices in** (*Put in* with a protective device and a part chosen; command
+  `place_installation`): a click in a room of the site plan puts a socket outlet,
+  switch, light or heating element there for the protective device (a circuit breaker,
+  RCBO or fuse of the mains up to 32 A in the schematic; the list marks the spare ones,
+  command `list_breakers`): a ceiling light (`GEN.LAMP-CEILING-LED`,
+  `GEN.LAMP-DOWNLIGHT-LED`, parts with *Ceiling mounting: yes*) on the ceiling where
+  clicked, anything else on the wall nearest to the click (within 0.8 m) at its
+  mounting height (outlets 300 mm, switches 1050 mm, wall lights 2000 mm). It becomes a
+  device of the schematic in its room (`+ROOM1-XD1` socket outlets, `-SF1` switches,
+  `-EA1` lights, `-EB1` heating elements) with the part, drawn on the **installation
+  page** of the protective device: a schematic page after the page of the protective
+  device, made with its first device, whose outgoing connection point gets the
+  interruption point `L-F5` to it. The page draws the phase conductor from that
+  interruption point and the neutral and protective conductors from the potentials
+  `N-F5` and `PE-F5` as lines along its top, each device in a column below them, by room
+  in the order of the rooms, the lights of a room with a switch behind its first switch.
+  Each device gets a cable `-W<n>` from the device before it (the first from the
+  protective device), its wires the cores (BN, BU, GNYE) of `NYM-J 3x1.5`, or thicker
+  where the protective device or a device of the circuit asks for more (current-carrying
+  capacity under the installation conditions). In a net whose wires belong to several
+  cables each connection takes the cable of the wires at its own connection points.
+- **In the 3D view and the wall views** (*Insert › Outlets, switches, heating*): the
+  menu chooses the protective device at its top (or *None: not into the schematic*);
+  the part picked is placed with a click on a wall or the ceiling of the room in the 3D
+  view (on a wall at its mounting height; Esc stops), or on the wall in a wall view,
+  and goes into the schematic like *Put in*. The list of the menu is as tall as its
+  parts, at least as the part shown beside it, at most a little more than half the
+  window.
+- **The site plan** draws the devices with the symbols of installation plans (IEC
+  60617-11) in the colour of their circuit and the connections of the circuits; in 3D
+  they are the parts' models (generated ones for the generic parts and parts without a
+  model of their own: outlets and switches in their frames, round ceiling lights with
+  their domed diffuser, recessed downlights with flange and diffuser, rectangular wall,
+  panel and batten lights, emergency lights with their sign, panel heaters with grille
+  and thermostat, towel radiators with their bars, infrared heating panels). The 3D
   menu *Insert › Outlets, switches, heating* has a tab *Lights* too.
-- **Heating elements** are placed the same way: panel heaters (`GEN.HEATER-PANEL-1000`,
+- **Heating elements** are put in the same way: panel heaters (`GEN.HEATER-PANEL-1000`,
   `GEN.HEATER-PANEL-2000`, 400 mm) and towel radiators (`GEN.HEATER-TOWEL-500`,
   900 mm) on the wall, infrared heating panels (`GEN.HEATER-IR-600`) on the ceiling;
   parts of the subgroups *Room heater*, *Towel radiator*, *Infrared heating panel* or
   with a heating element function for walls or ceilings (enclosure heaters of cabinets
-  are none). Their tags are `-EB1`, … (*Insert › Outlets, switches, heating*, tab
-  *Heating*).
-- **Circuits of the schematic** (*Circuits of the schematic*; commands
-  `list_schematic_circuits`, `place_circuit_device`): the final circuits drawn in the
-  schematic (a protective device of the mains up to 32 A) with the socket outlets,
-  switches, lights and heating elements behind them: on the nets behind the protective
-  device, through switches, contacts, terminals and the main contacts of contactors,
-  not through further protective devices or loads. A device counts by its part (one for
-  walls or ceilings) or, without parts, by its symbol (socket outlets, heating elements,
-  lamps, installation symbols; contacts of a device whose letter code starts with `S`);
-  devices placed in a cabinet are left out. Choose a circuit and click a device (or
-  *Place all*), then click in a room of the site plan: it is placed there like a part
-  (with its own part, the part chosen if of its kind, or the generic one of its kind,
-  which becomes its part), a click on a socket outlet, switch, light or heating
-  element placed before without a device tag makes that one the device. A device placed
-  again moves. Each goes into the final circuit of its protective device, made when
-  there is none (named after the protective device's function text), in the order they
-  are placed; the next device not placed yet follows.
-- **Final circuits** (*New circuit*, commands `add_circuit`, `set_circuit`): a
-  protective device of the distribution board (a circuit breaker, RCBO or fuse of the
-  mains in the schematic or single-line diagram, chosen from a list that marks the
-  spare ones: nothing behind them yet; command `list_breakers`), a cable (type,
-  cross-section; 3 × 1.5 mm² unless three-phase) and its items in the order the cable
-  runs to them: *Wire*, then click them in the site plan (a click on one of the circuit
-  takes it out). The cable starts at the distribution board the protective device is
-  placed in (or one chosen).
-- **Cable length** (*Length*, `list_circuits`, report *Installation circuits*): from the
-  top of the board to each item in turn in the horizontal installation zone 300 mm
-  under the ceiling (DIN 18015-3), along x and z of the plant (along the walls, not
-  across rooms), up and down in the vertical zones of the items, up or down between
-  levels, 0.3 m for each box: an estimate for planning. *Write cable lengths*
-  (`write_circuit_cables`) writes type, cross-section and length (to the half metre up)
-  into the cable list, a new cable `-W<n>` for a circuit without one.
+  are none) (*Insert › Outlets, switches, heating*, tab *Heating*).
+- **Circuits of the schematic** (read only; command `list_circuits`, report
+  *Installation circuits*): each protective device of the mains up to 32 A with the
+  socket outlets, switches, lights and heating elements behind it: on the nets behind
+  the protective device, through switches, contacts, terminals and the main contacts of
+  contactors, not through further protective devices or loads. A device counts by its
+  part (one for walls or ceilings) or, without parts, by its symbol (socket outlets,
+  heating elements, lamps, luminaires, installation symbols; contacts of a device whose
+  letter code starts with `S`); devices placed in a cabinet are left out. The list
+  shows the devices placed of each, its cables, the length and the voltage drops; a
+  click on a circuit chooses its protective device.
+- **Devices of the schematic placed** (*Place all* or a click on a device of the
+  circuit chosen; command `place_circuit_device`): devices drawn in the schematic by
+  hand are placed with a click in a room like a part (with their own part, the part
+  chosen if of their kind, or the generic one of their kind, which becomes their part);
+  a click on a socket outlet, switch, light or heating element placed before without a
+  device tag makes that one the device. A device placed again moves; the next device
+  not placed yet follows.
+- **Cable length**: each connection of the phase conductors of a circuit between two
+  devices, a cable (once) or a single wire, has the length of its 3D route (routing in
+  the rooms, through walls and between levels, `crate::routing3d`). Until it is routed
+  it is estimated (shown with `~`): from the top of the board to the device in the
+  horizontal installation zone 300 mm under the ceiling (DIN 18015-3), along x and z of
+  the plant, up and down in the vertical zones of the devices, up or down between
+  levels, 0.3 m for each box. *Write cable lengths* (`write_circuit_cables`) writes the
+  lengths (to the half metre up) into the cable list.
 - **Voltage drop from the supply** (*From the supply*; `total_drop_percent` of
-  `list_circuits`): per cable ΔU = k · I · L · (ρ / A · cos φ + X' · sin φ) (k = 2
+  `list_circuits`): per connection ΔU = k · I · L · (ρ / A · cos φ + X' · sin φ) (k = 2
   single-phase, √3 three-phase, ρ of copper at its operating temperature of the
-  electrical settings, X' = 0.08 mΩ/m, cos φ 0.95 unless set). The circuit's cable
-  carries the rated current of its protective device, or the load given; the feeder
-  cables from the supply to the distribution board (those the short-circuit
-  calculation follows, with their lengths in the cable list) the design current of the
-  protective device upstream (load calculation) or its rated current; a planned
-  protective device takes the feeder of another one in the same board. The sum is
-  checked against the limit of the rule sets (*Voltage drop*); the tooltip tells the
-  feeder's share.
-- **Devices and single-line diagram** (*Single-line page*, `installation_overview`):
-  the socket outlets, switches and lights of the circuits get device tags in their room
-  (`+ROOM1-XD1` socket outlets, `-SF1` switches, `-EA1` lights) with their parts, and
-  generated overview pages show each circuit as a single-line diagram: its protective
-  device (single-line circuit breaker, the same device as in the schematic), its cable
-  and its items with their installation plan symbols, rooms beside them. The pages are
-  made again each time.
-- **New protective device** (*+* beside the protective device, `new_circuit_breaker`):
-  a planned miniature circuit breaker of 16 A (10 or 32 A by command), single- or
-  three-phase like the circuit, `-F<n>`, starting in the board most circuits start at.
-  It is drawn in the single-line page; *single-line → schematic* makes it a 1-pole
-  (or 3-, 4-pole by its part) breaker of the schematic, to connect to the supply. A
-  single-line circuit breaker stands for 1-, 2-, 3- and 4-pole breakers.
-- **Check** *Installation circuits*: circuits without protective device or board,
-  protective devices not in the schematic or feeding several circuits, cables thinner
-  than their protective device asks (current-carrying capacity under the installation
-  conditions), voltage drops above the limit, items gone; socket outlets, lights and
-  heating elements in no circuit (information).
+  electrical settings, X' = 0.08 mΩ/m, cos φ 0.95), summed along the connections from
+  the protective device to the farthest device. The circuit's cables carry the design
+  current of its protective device (load calculation) or its rated current; the feeder
+  cables from the supply to the distribution board (those the short-circuit calculation
+  follows, with their lengths in the cable list) the design current of the protective
+  device upstream or its rated current. The sum is checked against the limit of the
+  rule sets (*Voltage drop*); the tooltip tells the feeder's share.
+- **Check** *Installation circuits*: circuits whose protective device is in no
+  distribution board of the layout, cables thinner than their protective device asks
+  (current-carrying capacity under the installation conditions), voltage drops above
+  the limit, devices of a circuit placed in no room (information); socket outlets,
+  switches, lights and heating elements in the rooms that are not in the schematic
+  (information).
 
 ## House connection boxes
 

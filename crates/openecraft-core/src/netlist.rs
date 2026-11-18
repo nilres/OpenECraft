@@ -620,6 +620,7 @@ pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connectio
             .get(&(prj.pages[first.page].symbols[first.sym].id, first.pin))
             .map(|&n| nl.nets[n].name.clone())
             .unwrap_or_else(|| net.name.clone());
+        let own = if traced.is_none() { pair_cables(prj, net, &crate::wirenum::wires_of(prj, net), &pairs) } else { None };
         for (i,pair) in pairs.iter().enumerate() {
             // A pair joined without a wire of its own keeps the properties of its net.
             let route = traced.as_ref().map(|t| &t.wire_routes[i]);
@@ -633,7 +634,7 @@ pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connectio
                 let q = prj.symbol(&s.sym)?.pin_world(p.pin, s.pos, s.rot, s.mirror);
                 prj.pages[p.page].wires.iter().find(|w| !w.cross_section.is_empty() && (w.a.same(q) || w.b.same(q)) && physical.wires.contains(&(p.page, w.id))).map(|w| w.cross_section.clone())
             };
-            let core_wire=wires.iter().find(|w|!w.cable.is_empty()).filter(|_|route.is_none_or(|r|!r.is_empty()));
+            let core_wire=own.as_ref().map_or_else(||wires.iter().copied().find(|w|!w.cable.is_empty()),|v|v[i]).filter(|_|route.is_none_or(|r|!r.is_empty()));
             let (cable,core) = core_wire.map(|w| (w.cable.clone(),w.core.clone())).unwrap_or_default();
             let color=core_wire.filter(|w|!w.color.is_empty()).map(|w|w.color.clone()).unwrap_or(color);
             let number = core_wire.filter(|w|!w.number.is_empty()).map(|w|w.number.clone()).unwrap_or_else(||crate::wirenum::number_of(prj,physical));
@@ -644,7 +645,7 @@ pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connectio
                 b: pair[1],
                 color: color.clone(),
                 cross_section: [pair[0], pair[1]].into_iter().filter_map(at_pin).min_by(|a, b| crate::harness::outer_diameter(a).total_cmp(&crate::harness::outer_diameter(b))).unwrap_or_else(|| cross_section.clone()),
-                wire_type: core_wire.filter(|w|!w.wire_type.is_empty()).or_else(||wires.iter().find(|w|!w.wire_type.is_empty())).map(|w|w.wire_type.clone()).unwrap_or_default(),
+                wire_type: core_wire.filter(|w|!w.wire_type.is_empty()).or_else(||wires.iter().copied().find(|w|!w.wire_type.is_empty())).map(|w|w.wire_type.clone()).unwrap_or_default(),
                 number: number.clone(),
                 cable: cable.clone(),
                 core: core.clone(),
@@ -655,6 +656,37 @@ pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connectio
         }
     }
     out
+}
+
+/// The cable wire of each connection `pairs` of a net whose wires belong to several
+/// cables, or that runs over a page with *Cable of each connection at its connection
+/// points* (`page.cable_per_connection`; a circuit looped from device to device, a cable
+/// from one to the next): a wire of a cable at both its connection points, else at its
+/// later one, else at its first, none if neither has one. `None` for other nets, nets of
+/// one connection and nets whose cable wires end at none of its connection points: all
+/// their connections take the first cable of the net.
+fn pair_cables<'a>(prj: &Project, net: &Net, wires: &[&'a crate::model::Wire], pairs: &[[PinRef; 2]]) -> Option<Vec<Option<&'a crate::model::Wire>>> {
+    let mut cables = wires.iter().filter(|w| !w.cable.is_empty()).map(|w| w.cable.as_str());
+    let first = cables.next()?;
+    let several = cables.any(|c| c != first);
+    let per_page = || net.wires.iter().any(|(pg, _)| prj.pages[*pg].values.get("page.cable_per_connection").is_some_and(|v| v == "true"));
+    if pairs.len() < 2 || !(several || per_page()) {
+        return None;
+    }
+    let at = |p: PinRef| -> Vec<&'a crate::model::Wire> {
+        let s = &prj.pages[p.page].symbols[p.sym];
+        let Some(q) = prj.symbol(&s.sym).map(|d| d.pin_world(p.pin, s.pos, s.rot, s.mirror)) else { return Vec::new() };
+        let on_page: Vec<u64> = net.wires.iter().filter(|(pg, _)| *pg == p.page).map(|(_, id)| *id).collect();
+        wires.iter().copied().filter(|w| !w.cable.is_empty() && on_page.contains(&w.id) && (w.a.same(q) || w.b.same(q))).collect()
+    };
+    let own: Vec<Option<&'a crate::model::Wire>> = pairs
+        .iter()
+        .map(|pair| {
+            let (a, b) = (at(pair[0]), at(pair[1]));
+            b.iter().copied().find(|w| a.iter().any(|x| x.cable == w.cable)).or(b.first().copied()).or(a.first().copied())
+        })
+        .collect();
+    own.iter().any(Option::is_some).then_some(own)
 }
 
 /// The device connection points of a net in the order they are chained: schematic

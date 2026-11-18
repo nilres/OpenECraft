@@ -11,7 +11,7 @@ use crate::commands::Cmd;
 use crate::gestures::{MouseAction, Role};
 use super::routing_ui::RouteRef;
 use super::scene3d::{Scene3d, EQUIPMENT, ON_TOP};
-use super::{PanelUi, RoofTarget, DOOR_OPEN_ANGLE, OUTER_WALLS};
+use super::{PanelUi, RoofTarget, Tool, DOOR_OPEN_ANGLE, OUTER_WALLS};
 use openecraft_core::geom::p;
 use openecraft_core::model::Project;
 use openecraft_core::panel::{self, ItemKind, SitePose};
@@ -232,20 +232,31 @@ impl PanelUi {
             self.cam_goal = Some((view, cam));
             ui.ctx().request_repaint();
         }
+        // A part of the installation menu goes where a wall or the ceiling of the room is
+        // clicked.
+        let placing = match &self.tool {
+            Tool::Accessory(part) if prj.layout.enclosures[ei].is_room() => Some(part.clone()),
+            _ => None,
+        };
+        if let (Some(part), Some(ptr)) = (&placing, resp.interact_pointer_pos().filter(|_| picking)) {
+            self.place_at(prj, ei, part, solid_depth_under(&prims, ptr).map(|z| camera.unproject(ptr - rect.center(), z)));
+            return;
+        }
         // Picking: items of a neighbour in the line-up make it the current enclosure.
         if let Some(ptr) = resp.interact_pointer_pos().filter(|_| picking) {
             if self.pick_3d(prj, an, &scene, &prims, &project_view, ptr) {
                 return;
             }
         }
+        let help = self.help_3d(ui, &resp, placing.is_some());
         painter.text(
             rect.left_bottom() + vec2(10.0, -10.0),
             egui::Align2::LEFT_BOTTOM,
-            tr("Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select"),
+            help,
             egui::FontId::proportional(12.0),
             if dark { Color32::GRAY } else { Color32::DARK_GRAY },
         );
-        if self.selected_wire.is_none() {
+        if self.selected_wire.is_none() && placing.is_none() {
             let e = &prj.layout.enclosures[self.enclosure.min(prj.layout.enclosures.len() - 1)];
             // A room as in the list: width × depth × height; an enclosure width × height × depth.
             self.status = if e.is_room() {
@@ -254,6 +265,29 @@ impl PanelUi {
                 format!("{}  {:.0} × {:.0} × {:.0} mm", e.name, e.width, e.height, e.depth)
             };
         }
+    }
+
+    /// The help line of the 3D view; Esc stops placing a part.
+    fn help_3d(&mut self, ui: &egui::Ui, resp: &egui::Response, placing: bool) -> &'static str {
+        if !placing {
+            return tr("Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select");
+        }
+        if resp.hovered() && ui.input(|i| i.key_pressed(egui::Key::Escape)) {
+            self.set_tool(Tool::Select);
+            self.status.clear();
+        }
+        tr("Click on a wall or the ceiling: place the part · Esc: stop · drag: orbit · wheel: zoom")
+    }
+
+    /// Places `part` in room `ei` where a wall or the ceiling was clicked: at `v` of the
+    /// view (none: nothing solid was clicked).
+    fn place_at(&mut self, prj: &mut Project, ei: usize, part: &str, v: Option<V3>) {
+        let Some(v) = v else {
+            self.status = tr("Click on a wall or the ceiling of the room").to_string();
+            return;
+        };
+        let q = self.view_frame(prj, ei).map_or(v, |pose| pose.apply(v));
+        self.place_in_room(prj, ei, part, [q[0], q[2]]);
     }
 
     /// The view cube in the top right corner of `rect`: looking from a side, an edge or a
@@ -624,6 +658,19 @@ fn depth_under(prims: &[Prim], q: Pos2, items_first: bool) -> Option<f32> {
         })
     };
     faces().find(|f| f.0 && items_first).or_else(|| faces().next()).map(|f| f.1)
+}
+
+/// Depth of the nearest solid face at `q` (not one seen through: the outer walls in
+/// front, glass), or of the nearest face.
+fn solid_depth_under(prims: &[Prim], q: Pos2) -> Option<f32> {
+    let faces = || {
+        prims.iter().filter_map(|prim| match prim {
+            Prim::Face { pts, z, n, color, .. } if point_in_convex(q, &pts[..*n as usize]) => Some((color.a() == 255, depth_at(q, &pts[..*n as usize], z))),
+            _ => None,
+        })
+    };
+    let nearest = |solid: bool| faces().filter(|f| f.0 || !solid).map(|f| f.1).reduce(f32::min);
+    nearest(true).or_else(|| nearest(false))
 }
 
 /// Depth at `q` of a convex face with the corners `pts` at the depths `z`.

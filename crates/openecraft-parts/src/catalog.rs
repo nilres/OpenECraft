@@ -126,7 +126,7 @@ fn room_installation(c: &mut C) {
         ("GEN.LAMP-DOWNLIGHT-LED", "Downlight LED 7 W, 600 lm, 3000 K, IP44, round 90 mm, for recessed mounting in ceilings", (90.0, 90.0, 60.0, 0.2), "7 W", true),
         ("GEN.LAMP-WALL-LED", "Wall light LED 10 W, 900 lm, 3000 K, IP44, 250 x 120 mm, surface-mounted", (250.0, 120.0, 90.0, 0.6), "10 W", false),
     ] {
-        let p = c.add(number, desc, inst, "Luminaire", "EA", if ceiling { 39.0 } else { 45.0 }, size, &[(Signal, "L N")]);
+        let p = c.add(number, desc, inst, "Luminaire", "EA", if ceiling { 39.0 } else { 45.0 }, size, &[(Signal, "L N PE")]);
         p.voltage = "230 V AC".into();
         p.power = power.into();
         if ceiling {
