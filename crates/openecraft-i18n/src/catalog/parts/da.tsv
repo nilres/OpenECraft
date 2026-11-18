@@ -11,7 +11,6 @@ A project names who changed it last.	Et projekt angiver, hvem der sidst har ænd
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En rolle er et sæt rettigheder. Tildelinger giver en bruger eller gruppe en rolle for projekter (* og ? som jokertegn, * for alle); en afvisende tildeling fjerner rollens rettigheder, uanset hvad andre tildelinger giver.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En rolle er et sæt rettigheder. Tildelinger giver en bruger eller gruppe en rolle for en producents artikler (* og ? som jokertegn, * for alle); en afvisende tildeling fjerner rollens rettigheder, uanset hvad andre tildelinger giver.
 A user name must not be empty or contain blanks	Et brugernavn må ikke være tomt eller indeholde mellemrum
-Above {} V: no SELV or PELV	Over {} V: hverken SELV eller PELV
 Accept any certificate (test installations only)	Accepter ethvert certifikat (kun testinstallationer)
 Access rights	Adgangsrettigheder
 Access settings saved	Adgangsindstillingerne er gemt
@@ -20,7 +19,6 @@ Accumulators	Akkumulatorer
 Actuators, general	Aktuatorer, generelt
 Adapter	Adapter
 Adapter plates	Adapterplader
-Add an item	Tilføj et punkt
 Add grant	Tilføj tildeling
 Adds new parts and replaces existing ones on the server	Tilføjer nye artikler og erstatter eksisterende på serveren
 Administration	Administration
@@ -76,7 +74,6 @@ Certificate	Certifikat
 Changed	Ændret
 Changed last	Senest ændret
 Changes allowed	Ændringer tilladt
-Changing the data or the results afterwards takes the signature away.	Ændres data eller resultater bagefter, fjernes underskriften.
 Check control valve	Kontraventil
 Check flap	Kontraspjæld
 Chimney	Skorsten
@@ -142,7 +139,6 @@ Discontinued	Udgået
 Display device	Visningsenhed
 Document holder	Dokumentlomme
 Door handle	Dørhåndtag
-Download the report as an Excel workbook	Download rapporten som Excel-projektmappe
 Drawings box	Tegningslomme
 Dryer	Tørrer
 Dummy plate	Blindskive
@@ -159,7 +155,6 @@ Edit user {}	Redigér brugeren {}
 Electrical engineering - special items	Elektroteknik – specialkomponenter
 Electrically-operated mechanical devices	Elektrisk betjente mekaniske enheder
 Electrolysis cell	Elektrolysecelle
-Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tom: standardværdien. Angiv andre værdier, hvor udgaven af standarden, som installationen kontrolleres efter, afviger.
 Empty: the memberOf attribute of the user	Tomt: brugerens attribut memberOf
 Empty: the search base	Tomt: søgebasen
 Empty: the usual filter of the type	Tomt: typens sædvanlige filter
@@ -187,7 +182,6 @@ Feed-through terminal	Gennemgangsklemme
 Female insert	Bøsningsindsats
 Field distribution device	Feltfordeler
 Files and history ({} files)	Filer og historik ({} filer)
-Filter circuits…	Filtrer kredse…
 Filter fan	Filterventilator
 Filter projects…	Filtrer projekter…
 Filter sessions…	Filtrer sessioner…
@@ -228,7 +222,6 @@ Housing accessories, external extension	Kapslingstilbehør, udvendig montering
 Housing accessories, internal extension	Kapslingstilbehør, indvendig montering
 Hydraulic motors	Hydraulikmotorer
 Hydraulic tanks	Hydrauliktanke
-IT system	IT-system
 Images (PNG, JPEG, GIF, WebP, SVG)	Billeder (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / eksport
 Import parts	Importér artikler
@@ -266,7 +259,6 @@ Logos	Logoer
 Looks the users up; empty: users bind with their own name (below)	Slår brugerne op; tomt: brugerne binder med deres eget navn (nedenfor)
 Male insert	Stiftindsats
 Managers of a project give rights on it themselves (Permissions on the project).	Projektledere giver selv rettigheder til deres projekt (Tilladelser for projektet).
-Measured at the origin	Målt ved forsyningspunktet
 Measurement system	Målesystem
 Measuring connection points	Måletilslutninger
 Measuring couplings	Målekoblinger
@@ -285,7 +277,6 @@ Name attribute	Navneattribut
 New accounts need the approval of an administrator	Nye konti skal godkendes af en administrator
 New catalog	Nyt katalog
 New directory	Ny katalogtjeneste
-New installation	Ny installation
 New part	Ny artikel
 New part based on the open one	Ny artikel baseret på den åbne
 New password	Ny adgangskode
@@ -294,7 +285,6 @@ New user	Ny bruger
 Newer version	Nyere version
 Next	Næste
 Next circuit	Næste kreds
-No circuits found	Ingen kredse fundet
 No devices found	Ingen enheder fundet
 No ended sessions	Ingen afsluttede sessioner
 No grants: the rights by manufacturer apply	Ingen tildelinger: rettighederne pr. producent gælder
@@ -309,7 +299,6 @@ Non-return valves	Kontraventiler
 None (only grants)	Ingen (kun tildelinger)
 Not mounted	Ikke monteret
 Not saved	Ikke gemt
-Not signed	Ikke underskrevet
 Nothing to save	Intet at gemme
 Nut	Møtrik
 On the front	På forsiden
@@ -334,7 +323,6 @@ Others	Andre
 Outlet	Udløb
 Outlet filter	Udgangsfilter
 Overload	Beskyttelsesrelæ
-Own item of the visual inspection	Eget punkt i den visuelle kontrol
 PE busbar	PE-skinne
 PLC input	PLC-indgang
 PLC input card analog	PLC-indgangskort, analogt
@@ -376,7 +364,6 @@ Plug pin	Stikben
 Position switch	Positionsafbryder
 Power cable	Effektkabel
 Power contactor	Effektkontaktor
-Power supply unit	Strømforsyning
 Power switchgear	Stærkstrømskoblingsudstyr
 Power units and plants	Aggregater og anlæg
 Prefabricated	Præfabrikeret
@@ -418,11 +405,9 @@ Remove logo	Fjern logo
 Remove the file from the part	Fjern filen fra artiklen
 Remove the logo	Fjern logoet
 Removed from the server	Fjernet fra serveren
-Repair	Reparation
 Repeat password	Gentag adgangskoden
 Replace the roles and grants with those of the file?	Vil du erstatte rollerne og tildelingerne med dem fra filen?
 Replaced by {}	Erstattet af {}
-Report data and visual inspection	Rapportdata og visuel kontrol
 Resistors	Modstande
 Restore from a file	Gendan fra en fil
 Return flushing filters, all-autom.	Returskyllefiltre, fuldautomatiske
@@ -433,7 +418,6 @@ Roof hook	Tagkrog
 Routing accessories	Føringstilbehør
 Routing path (topology)	Føringsstrækning (topologi)
 Routing point (topology)	Føringspunkt (topologi)
-SELV, PELV and separation	SELV, PELV og adskillelse
 Safety accumulators	Sikkerhedsakkumulatorer
 Safety devices	Beskyttelsesudstyr
 Safety fuse	Smeltesikring
@@ -479,7 +463,6 @@ Sign in with a user account	Log på med en brugerkonto
 Sign in with the access token of the server	Log på med serverens adgangstoken
 Sign out everywhere	Log af overalt
 Sign out {} on all devices?	Log {} af på alle enheder?
-Sign the report	Underskriv rapporten
 Sign-in needed to read	Login kræves for at læse
 Sign-in needed to view	Login kræves for at se
 Signal device	Signalenhed
@@ -487,8 +470,6 @@ Signal device, acoustic	Signalenhed, akustisk
 Signal device, optical	Signalenhed, optisk
 Signal lamp	Signallampe
 Signature	Underskrift
-Signed	Underskrevet
-Signed by {} on {}	Underskrevet af {} den {}
 Signed in	Logget på
 Silencers	Lyddæmpere
 Silo	Silo
@@ -542,7 +523,6 @@ The last administrator cannot lose the right to manage users	Den sidste administ
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Virksomhedens logo: PNG, JPEG, GIF, WebP eller SVG, højst 512 kB
 The password needs at least {} characters	Adgangskoden skal have mindst {} tegn
 The passwords do not match	Adgangskoderne er ikke ens
-The project has no circuits fed from the mains	Projektet har ingen kredse forsynet fra nettet
 The project has no devices	Projektet har ingen enheder
 The project has no pages	Projektet har ingen sider
 The project has no parts	Projektet har ingen artikler
@@ -605,7 +585,6 @@ Vault did not continue the upload	Vault fortsatte ikke uploaden
 Ventilation filters	Ventilationsfiltre
 Ventilator	Ventilator
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Fremvisere åbner projekter skrivebeskyttet, korrekturlæsere gemmer også gennemsyn, redaktører ændrer og opretter projekter, projektledere sletter dem også og giver rettigheder til dem, administratorer administrerer serveren.
-Visual inspection	Visuel kontrol
 Voltage source	Spændingskilde
 Voltage source and generator	Spændingskilde og generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Ventende konti kan ikke logge på; godkend eller afvis dem under Brugere.
@@ -644,7 +623,6 @@ unchanged if empty	uændret, hvis tom
 unexpected answer: {}	uventet svar: {}
 you	dig
 {} ({}, {})	{} ({}, {})
-{} circuits	{} kredse
 {} has no checksum in SHA256SUMS	{} har ingen kontrolsum i SHA256SUMS
 {} parts in {} catalogs, revision {}	{} artikler i {} kataloger, revision {}
 {} parts, {} catalogs, {}	{} artikler, {} kataloger, {}

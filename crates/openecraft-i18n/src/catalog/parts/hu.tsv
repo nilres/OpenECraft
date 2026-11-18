@@ -11,7 +11,6 @@ A project names who changed it last.	A projekt megnevezi, hogy ki módosította 
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	A szerepkör jogok halmaza. A hozzárendelések egy felhasználónak vagy csoportnak szerepkört adnak projektekre (* és ? helyettesítő karakterként, * mindegyikre); a megtagadó hozzárendelés elveszi a szerepkör jogait, bármit adnak is más hozzárendelések.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	A szerepkör jogok halmaza. A hozzárendelések egy felhasználónak vagy csoportnak szerepkört adnak egy gyártó alkatrészeire (* és ? helyettesítő karakterként, * mindegyikre); a megtagadó hozzárendelés elveszi a szerepkör jogait, bármit adnak is más hozzárendelések.
 A user name must not be empty or contain blanks	A felhasználónév nem lehet üres, és nem tartalmazhat szóközt
-Above {} V: no SELV or PELV	{} V felett: sem SELV, sem PELV
 Accept any certificate (test installations only)	Bármely tanúsítvány elfogadása (csak teszttelepítések)
 Access rights	Hozzáférési jogok
 Access settings saved	Hozzáférési beállítások mentve
@@ -20,7 +19,6 @@ Accumulators	Tárolók
 Actuators, general	Beavatkozók, általános
 Adapter	Adapter
 Adapter plates	Adapterlapok
-Add an item	Pont hozzáadása
 Add grant	Hozzárendelés hozzáadása
 Adds new parts and replaces existing ones on the server	Új alkatrészeket ad hozzá, és lecseréli a meglévőket a szerveren
 Administration	Adminisztráció
@@ -76,7 +74,6 @@ Certificate	Tanúsítvány
 Changed	Módosítva
 Changed last	Legutóbb módosítva
 Changes allowed	Módosítás engedélyezett
-Changing the data or the results afterwards takes the signature away.	Az adatok vagy eredmények utólagos módosítása törli az aláírást.
 Check control valve	Visszacsapó szerelvény
 Check flap	Visszacsapó csappantyú
 Chimney	Kémény
@@ -142,7 +139,6 @@ Discontinued	Megszűnt
 Display device	Kijelzőkészülék
 Document holder	Dokumentumtartó
 Door handle	Ajtófogantyú
-Download the report as an Excel workbook	A jegyzőkönyv letöltése Excel-munkafüzetként
 Drawings box	Rajztartó
 Dryer	Szárító
 Dummy plate	Vakkarima
@@ -159,7 +155,6 @@ Edit user {}	{} felhasználó szerkesztése
 Electrical engineering - special items	Villamosmérnöki terület – különleges elemek
 Electrically-operated mechanical devices	Villamos működtetésű mechanikus készülékek
 Electrolysis cell	Elektrolizáló cella
-Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Üres: az alapértelmezés. Adjon meg más értékeket, ahol a szabványnak az a kiadása, amely szerint a létesítményt ellenőrzik, eltér.
 Empty: the memberOf attribute of the user	Üres: a felhasználó memberOf attribútuma
 Empty: the search base	Üres: a keresési alap
 Empty: the usual filter of the type	Üres: a típus szokásos szűrője
@@ -187,7 +182,6 @@ Feed-through terminal	Átmenő sorkapocs
 Female insert	Hüvelyes betét
 Field distribution device	Terepi elosztó
 Files and history ({} files)	Fájlok és előzmények ({} fájl)
-Filter circuits…	Áramkörök szűrése…
 Filter fan	Szűrős ventilátor
 Filter projects…	Projektek szűrése…
 Filter sessions…	Munkamenetek szűrése…
@@ -228,7 +222,6 @@ Housing accessories, external extension	Háztartozékok, külső bővítés
 Housing accessories, internal extension	Háztartozékok, belső bővítés
 Hydraulic motors	Hidromotorok
 Hydraulic tanks	Hidraulikatartályok
-IT system	IT-rendszer
 Images (PNG, JPEG, GIF, WebP, SVG)	Képek (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Importálás / exportálás
 Import parts	Alkatrészek importálása
@@ -266,7 +259,6 @@ Logos	Logók
 Looks the users up; empty: users bind with their own name (below)	Megkeresi a felhasználókat; üres: a felhasználók saját nevükkel kötődnek (lent)
 Male insert	Dugós betét
 Managers of a project give rights on it themselves (Permissions on the project).	A projektvezetők maguk adnak jogokat a projektjükre (A projekt engedélyei).
-Measured at the origin	A betáplálási ponton mérve
 Measurement system	Mérőberendezés
 Measuring connection points	Mérőcsatlakozások
 Measuring couplings	Mérőcsatlakozók
@@ -285,7 +277,6 @@ Name attribute	Névattribútum
 New accounts need the approval of an administrator	Az új fiókokhoz rendszergazdai jóváhagyás szükséges
 New catalog	Új katalógus
 New directory	Új címtár
-New installation	Új létesítés
 New part	Új alkatrész
 New part based on the open one	Új alkatrész a megnyitott alapján
 New password	Új jelszó
@@ -294,7 +285,6 @@ New user	Új felhasználó
 Newer version	Újabb verzió
 Next	Következő
 Next circuit	Következő áramkör
-No circuits found	Nem található áramkör
 No devices found	Nem található készülék
 No ended sessions	Nincsenek befejezett munkamenetek
 No grants: the rights by manufacturer apply	Nincsenek hozzárendelések: a gyártó szerinti jogok érvényesek
@@ -309,7 +299,6 @@ Non-return valves	Visszacsapó szelepek
 None (only grants)	Nincs (csak hozzárendelések)
 Not mounted	Nincs felszerelve
 Not saved	Nincs mentve
-Not signed	Nincs aláírva
 Nothing to save	Nincs mit menteni
 Nut	Anya
 On the front	Elöl
@@ -334,7 +323,6 @@ Others	Egyéb
 Outlet	Kifolyó
 Outlet filter	Kilépő szűrő
 Overload	Védőrelé
-Own item of the visual inspection	A szemrevételezés saját pontja
 PE busbar	PE-sín
 PLC input	PLC-bemenet
 PLC input card analog	Analóg PLC-bemeneti kártya
@@ -376,7 +364,6 @@ Plug pin	Csatlakozódugó-tű
 Position switch	Helyzetkapcsoló
 Power cable	Erősáramú kábel
 Power contactor	Teljesítmény-mágneskapcsoló
-Power supply unit	Tápegység
 Power switchgear	Erősáramú kapcsolókészülékek
 Power units and plants	Aggregátok és berendezések
 Prefabricated	Előre szerelt
@@ -418,11 +405,9 @@ Remove logo	Logó eltávolítása
 Remove the file from the part	A fájl eltávolítása az alkatrészből
 Remove the logo	Logó eltávolítása
 Removed from the server	Eltávolítva a szerverről
-Repair	Javítás
 Repeat password	Jelszó ismét
 Replace the roles and grants with those of the file?	Lecseréli a szerepköröket és a hozzárendeléseket a fájlban lévőkre?
 Replaced by {}	Helyettesítője: {}
-Report data and visual inspection	Jegyzőkönyvadatok és szemrevételezés
 Resistors	Ellenállások
 Restore from a file	Visszaállítás fájlból
 Return flushing filters, all-autom.	Visszaöblítő szűrők, teljesen automatikus
@@ -433,7 +418,6 @@ Roof hook	Tetőkampó
 Routing accessories	Fektetési tartozékok
 Routing path (topology)	Nyomvonalszakasz (topológia)
 Routing point (topology)	Fektetési pont (topológia)
-SELV, PELV and separation	SELV, PELV és elválasztás
 Safety accumulators	Biztonsági tárolók
 Safety devices	Védőberendezések
 Safety fuse	Olvadóbiztosító
@@ -479,7 +463,6 @@ Sign in with a user account	Bejelentkezés felhasználói fiókkal
 Sign in with the access token of the server	Bejelentkezés a szerver hozzáférési tokenjével
 Sign out everywhere	Kijelentkeztetés mindenhol
 Sign out {} on all devices?	Kijelentkezteti a(z) {} felhasználót minden eszközön?
-Sign the report	Jegyzőkönyv aláírása
 Sign-in needed to read	Az olvasáshoz bejelentkezés szükséges
 Sign-in needed to view	A megtekintéshez bejelentkezés szükséges
 Signal device	Jelzőkészülék
@@ -487,8 +470,6 @@ Signal device, acoustic	Jelzőkészülék, akusztikus
 Signal device, optical	Jelzőkészülék, optikai
 Signal lamp	Jelzőlámpa
 Signature	Aláírás
-Signed	Aláírva
-Signed by {} on {}	Aláírta: {}, {}
 Signed in	Bejelentkezve
 Silencers	Hangtompítók
 Silo	Siló
@@ -542,7 +523,6 @@ The last administrator cannot lose the right to manage users	Az utolsó rendszer
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	A cég logója: PNG, JPEG, GIF, WebP vagy SVG, legfeljebb 512 kB
 The password needs at least {} characters	A jelszónak legalább {} karakterből kell állnia
 The passwords do not match	A jelszavak nem egyeznek
-The project has no circuits fed from the mains	A projektben nincs hálózatról táplált áramkör
 The project has no devices	A projektben nincsenek készülékek
 The project has no pages	A projektben nincsenek oldalak
 The project has no parts	A projektnek nincsenek alkatrészei
@@ -605,7 +585,6 @@ Vault did not continue the upload	A Vault nem folytatta a feltöltést
 Ventilation filters	Szellőzőszűrők
 Ventilator	Ventilátor
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	A megtekintők csak olvasásra nyitják meg a projekteket, a véleményezők véleményezéseket is mentenek, a szerkesztők módosítják és létrehozzák a projekteket, a projektvezetők törölhetik is őket és jogokat adnak rájuk, a rendszergazdák kezelik a szervert.
-Visual inspection	Szemrevételezés
 Voltage source	Feszültségforrás
 Voltage source and generator	Feszültségforrás és generátor
 Waiting accounts cannot sign in; approve or reject them in Users.	A várakozó fiókok nem tudnak bejelentkezni; a Felhasználók részben hagyhatja jóvá vagy utasíthatja el őket.
@@ -644,7 +623,6 @@ unchanged if empty	változatlan, ha üres
 unexpected answer: {}	váratlan válasz: {}
 you	Ön
 {} ({}, {})	{} ({}, {})
-{} circuits	{} áramkör
 {} has no checksum in SHA256SUMS	A(z) {} fájlnak nincs ellenőrzőösszege az SHA256SUMS fájlban
 {} parts in {} catalogs, revision {}	{} alkatrész {} katalógusban, {}. revízió
 {} parts, {} catalogs, {}	{} alkatrész, {} katalógus, {}

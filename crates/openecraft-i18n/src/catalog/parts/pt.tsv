@@ -11,7 +11,6 @@ A project names who changed it last.	Um projeto indica quem o alterou por últim
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Uma função é um conjunto de direitos. As concessões dão a um usuário ou grupo uma função sobre projetos (* e ? como curingas, * para todos); uma concessão de negação retira os direitos da função, independentemente do que outras concessões concedam.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Uma função é um conjunto de direitos. As concessões dão a um usuário ou grupo uma função sobre as peças de um fabricante (* e ? como curingas, * para todos); uma concessão de negação retira os direitos da função, independentemente do que outras concessões concedam.
 A user name must not be empty or contain blanks	Um nome de usuário não pode estar vazio nem conter espaços
-Above {} V: no SELV or PELV	Acima de {} V: nem SELV nem PELV
 Accept any certificate (test installations only)	Aceitar qualquer certificado (somente instalações de teste)
 Access rights	Direitos de acesso
 Access settings saved	Configurações de acesso salvas
@@ -20,7 +19,6 @@ Accumulators	Acumuladores
 Actuators, general	Atuadores, geral
 Adapter	Adaptador
 Adapter plates	Placas adaptadoras
-Add an item	Adicionar um item
 Add grant	Adicionar concessão
 Adds new parts and replaces existing ones on the server	Adiciona novas peças e substitui as existentes no servidor
 Administration	Administração
@@ -76,7 +74,6 @@ Certificate	Certificado
 Changed	Alterado
 Changed last	Alteradas por último
 Changes allowed	Alterações permitidas
-Changing the data or the results afterwards takes the signature away.	Alterar depois os dados ou os resultados remove a assinatura.
 Check control valve	Válvula de retenção
 Check flap	Válvula de retenção tipo portinhola
 Chimney	Chaminé
@@ -142,7 +139,6 @@ Discontinued	Descontinuado
 Display device	Dispositivo de exibição
 Document holder	Porta-documentos
 Door handle	Maçaneta
-Download the report as an Excel workbook	Baixar o relatório como pasta de trabalho do Excel
 Drawings box	Porta-documentos
 Dryer	Secador
 Dummy plate	Flange cega
@@ -159,7 +155,6 @@ Edit user {}	Editar o usuário {}
 Electrical engineering - special items	Engenharia elétrica - itens especiais
 Electrically-operated mechanical devices	Dispositivos mecânicos acionados eletricamente
 Electrolysis cell	Célula eletrolítica
-Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Vazio: o padrão. Defina outros valores onde a edição da norma pela qual a instalação é verificada for diferente.
 Empty: the memberOf attribute of the user	Vazio: o atributo memberOf do usuário
 Empty: the search base	Vazio: a base de pesquisa
 Empty: the usual filter of the type	Vazio: o filtro habitual do tipo
@@ -187,7 +182,6 @@ Feed-through terminal	Borne de passagem
 Female insert	Inserto fêmea
 Field distribution device	Distribuidor de campo
 Files and history ({} files)	Arquivos e histórico ({} arquivos)
-Filter circuits…	Filtrar circuitos…
 Filter fan	Ventilador com filtro
 Filter projects…	Filtrar projetos…
 Filter sessions…	Filtrar sessões…
@@ -228,7 +222,6 @@ Housing accessories, external extension	Acessórios de invólucro, montagem exte
 Housing accessories, internal extension	Acessórios de invólucro, montagem interna
 Hydraulic motors	Motores hidráulicos
 Hydraulic tanks	Tanques hidráulicos
-IT system	Esquema IT
 Images (PNG, JPEG, GIF, WebP, SVG)	Imagens (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Importação / exportação
 Import parts	Importar peças
@@ -266,7 +259,6 @@ Logos	Logotipos
 Looks the users up; empty: users bind with their own name (below)	Procura os usuários; vazio: os usuários se vinculam com o próprio nome (abaixo)
 Male insert	Inserto macho
 Managers of a project give rights on it themselves (Permissions on the project).	Os gerentes de um projeto concedem eles mesmos direitos sobre ele (Permissões do projeto).
-Measured at the origin	Medido na origem
 Measurement system	Sistema de medição
 Measuring connection points	Pontos de conexão de medição
 Measuring couplings	Acoplamentos de medição
@@ -285,7 +277,6 @@ Name attribute	Atributo do nome
 New accounts need the approval of an administrator	Novas contas precisam da aprovação de um administrador
 New catalog	Novo catálogo
 New directory	Novo serviço de diretório
-New installation	Instalação nova
 New part	Nova peça
 New part based on the open one	Nova peça com base na aberta
 New password	Nova senha
@@ -294,7 +285,6 @@ New user	Novo usuário
 Newer version	Versão mais recente
 Next	Próximo
 Next circuit	Próximo circuito
-No circuits found	Nenhum circuito encontrado
 No devices found	Nenhum dispositivo encontrado
 No ended sessions	Nenhuma sessão encerrada
 No grants: the rights by manufacturer apply	Nenhuma concessão: valem os direitos por fabricante
@@ -309,7 +299,6 @@ Non-return valves	Válvulas de retenção
 None (only grants)	Nenhuma (somente concessões)
 Not mounted	Não montado
 Not saved	Não salvo
-Not signed	Não assinado
 Nothing to save	Nada a salvar
 Nut	Porca
 On the front	Na frente
@@ -334,7 +323,6 @@ Others	Outros
 Outlet	Saída
 Outlet filter	Filtro de saída
 Overload	Relé de proteção
-Own item of the visual inspection	Item próprio da inspeção visual
 PE busbar	Barramento PE
 PLC input	Entrada de CLP
 PLC input card analog	Cartão de entrada analógica de CLP
@@ -376,7 +364,6 @@ Plug pin	Pino de plugue
 Position switch	Chave de posição
 Power cable	Cabo de potência
 Power contactor	Contator de potência
-Power supply unit	Fonte de alimentação
 Power switchgear	Equipamentos de manobra de potência
 Power units and plants	Unidades de potência e instalações
 Prefabricated	Pré-fabricado
@@ -418,11 +405,9 @@ Remove logo	Remover logotipo
 Remove the file from the part	Remover o arquivo da peça
 Remove the logo	Remover o logotipo
 Removed from the server	Removido do servidor
-Repair	Reparo
 Repeat password	Repetir a senha
 Replace the roles and grants with those of the file?	Substituir as funções e as concessões pelas do arquivo?
 Replaced by {}	Substituído por {}
-Report data and visual inspection	Dados do relatório e inspeção visual
 Resistors	Resistores
 Restore from a file	Restaurar de um arquivo
 Return flushing filters, all-autom.	Filtros de retrolavagem totalmente automáticos
@@ -433,7 +418,6 @@ Roof hook	Gancho de telhado
 Routing accessories	Acessórios de roteamento
 Routing path (topology)	Percurso de roteamento (topologia)
 Routing point (topology)	Ponto de roteamento (topologia)
-SELV, PELV and separation	SELV, PELV e separação
 Safety accumulators	Acumuladores de segurança
 Safety devices	Dispositivos de segurança
 Safety fuse	Fusível
@@ -479,7 +463,6 @@ Sign in with a user account	Entrar com uma conta de usuário
 Sign in with the access token of the server	Entrar com o token de acesso do servidor
 Sign out everywhere	Sair de todos os dispositivos
 Sign out {} on all devices?	Desconectar {} em todos os dispositivos?
-Sign the report	Assinar o relatório
 Sign-in needed to read	É preciso entrar para ler
 Sign-in needed to view	É preciso entrar para visualizar
 Signal device	Dispositivo de sinalização
@@ -487,8 +470,6 @@ Signal device, acoustic	Dispositivo de sinalização acústica
 Signal device, optical	Dispositivo de sinalização óptica
 Signal lamp	Sinaleiro
 Signature	Assinatura
-Signed	Assinado
-Signed by {} on {}	Assinado por {} em {}
 Signed in	Conectados
 Silencers	Silenciadores
 Silo	Silo
@@ -542,7 +523,6 @@ The last administrator cannot lose the right to manage users	O último administr
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	O logotipo da empresa: PNG, JPEG, GIF, WebP ou SVG, no máximo 512 kB
 The password needs at least {} characters	A senha precisa de pelo menos {} caracteres
 The passwords do not match	As senhas não coincidem
-The project has no circuits fed from the mains	O projeto não tem circuitos alimentados pela rede
 The project has no devices	O projeto não tem dispositivos
 The project has no pages	O projeto não tem páginas
 The project has no parts	O projeto não tem peças
@@ -605,7 +585,6 @@ Vault did not continue the upload	O Vault não continuou o envio
 Ventilation filters	Filtros de ventilação
 Ventilator	Ventilador
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Visualizadores abrem projetos somente para leitura, revisores também salvam comentários, editores alteram e criam projetos, gerentes também os excluem e concedem direitos sobre eles, administradores gerenciam o servidor.
-Visual inspection	Inspeção visual
 Voltage source	Fonte de tensão
 Voltage source and generator	Fonte de tensão e gerador
 Waiting accounts cannot sign in; approve or reject them in Users.	Contas pendentes não podem entrar; aprove-as ou recuse-as em Usuários.
@@ -644,7 +623,6 @@ unchanged if empty	inalterado se vazio
 unexpected answer: {}	resposta inesperada: {}
 you	você
 {} ({}, {})	{} ({}, {})
-{} circuits	{} circuitos
 {} has no checksum in SHA256SUMS	{} não tem soma de verificação em SHA256SUMS
 {} parts in {} catalogs, revision {}	{} peças em {} catálogos, revisão {}
 {} parts, {} catalogs, {}	{} peças, {} catálogos, {}

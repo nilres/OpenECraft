@@ -11,7 +11,6 @@ A project names who changed it last.	Un proiect indică cine l-a modificat ultim
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Un rol este un set de drepturi. Atribuirile dau unui utilizator sau unui grup un rol pentru proiecte (* și ? ca metacaractere, * pentru toți); o atribuire de refuz retrage drepturile rolului, indiferent ce dau alte atribuiri.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Un rol este un set de drepturi. Atribuirile dau unui utilizator sau unui grup un rol pentru articolele unui producător (* și ? ca metacaractere, * pentru toți); o atribuire de refuz retrage drepturile rolului, indiferent ce dau alte atribuiri.
 A user name must not be empty or contain blanks	Un nume de utilizator nu poate fi gol sau conține spații
-Above {} V: no SELV or PELV	Peste {} V: nici SELV, nici PELV
 Accept any certificate (test installations only)	Acceptare orice certificat (doar instalări de test)
 Access rights	Drepturi de acces
 Access settings saved	Setările de acces au fost salvate
@@ -20,7 +19,6 @@ Accumulators	Acumulatoare
 Actuators, general	Actuatoare, generalități
 Adapter	Adaptor
 Adapter plates	Plăci adaptoare
-Add an item	Adaugă un punct
 Add grant	Adăugare atribuire
 Adds new parts and replaces existing ones on the server	Adaugă articole noi și le înlocuiește pe cele existente pe server
 Administration	Administrare
@@ -76,7 +74,6 @@ Certificate	Certificat
 Changed	Modificat
 Changed last	Modificate ultimele
 Changes allowed	Modificări permise
-Changing the data or the results afterwards takes the signature away.	Modificarea ulterioară a datelor sau rezultatelor anulează semnătura.
 Check control valve	Armătură de reținere
 Check flap	Clapetă de reținere
 Chimney	Coș de fum
@@ -142,7 +139,6 @@ Discontinued	Scos din fabricație
 Display device	Aparat de afișare
 Document holder	Suport pentru documente
 Door handle	Mâner de ușă
-Download the report as an Excel workbook	Descarcă raportul ca registru Excel
 Drawings box	Suport pentru desene
 Dryer	Uscător
 Dummy plate	Flanșă oarbă
@@ -159,7 +155,6 @@ Edit user {}	Editare utilizator {}
 Electrical engineering - special items	Electrotehnică - componente speciale
 Electrically-operated mechanical devices	Dispozitive mecanice acționate electric
 Electrolysis cell	Celulă de electroliză
-Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Gol: valoarea implicită. Setați alte valori unde ediția standardului după care se verifică instalația diferă.
 Empty: the memberOf attribute of the user	Gol: atributul memberOf al utilizatorului
 Empty: the search base	Gol: baza de căutare
 Empty: the usual filter of the type	Gol: filtrul obișnuit al tipului
@@ -187,7 +182,6 @@ Feed-through terminal	Bornă de trecere
 Female insert	Inserție mamă
 Field distribution device	Distribuitor de câmp
 Files and history ({} files)	Fișiere și istoric ({} fișiere)
-Filter circuits…	Filtrează circuitele…
 Filter fan	Ventilator cu filtru
 Filter projects…	Filtrare proiecte…
 Filter sessions…	Filtrare sesiuni…
@@ -228,7 +222,6 @@ Housing accessories, external extension	Accesorii de carcasă, montaj exterior
 Housing accessories, internal extension	Accesorii de carcasă, montaj interior
 Hydraulic motors	Motoare hidraulice
 Hydraulic tanks	Rezervoare hidraulice
-IT system	Schemă IT
 Images (PNG, JPEG, GIF, WebP, SVG)	Imagini (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / export
 Import parts	Importare articole
@@ -266,7 +259,6 @@ Logos	Logouri
 Looks the users up; empty: users bind with their own name (below)	Caută utilizatorii; gol: utilizatorii se leagă cu propriul nume (mai jos)
 Male insert	Inserție tată
 Managers of a project give rights on it themselves (Permissions on the project).	Managerii unui proiect acordă ei înșiși drepturi asupra lui (Permisiunile proiectului).
-Measured at the origin	Măsurat la origine
 Measurement system	Sistem de măsurare
 Measuring connection points	Puncte de conexiune pentru măsurare
 Measuring couplings	Cuplaje de măsurare
@@ -285,7 +277,6 @@ Name attribute	Atributul numelui
 New accounts need the approval of an administrator	Conturile noi necesită aprobarea unui administrator
 New catalog	Catalog nou
 New directory	Serviciu de director nou
-New installation	Instalație nouă
 New part	Articol nou
 New part based on the open one	Articol nou pe baza celui deschis
 New password	Parolă nouă
@@ -294,7 +285,6 @@ New user	Utilizator nou
 Newer version	Versiune mai nouă
 Next	Următorul
 Next circuit	Circuitul următor
-No circuits found	Nu s-au găsit circuite
 No devices found	Nu s-au găsit dispozitive
 No ended sessions	Nicio sesiune încheiată
 No grants: the rights by manufacturer apply	Nicio atribuire: se aplică drepturile pe producător
@@ -309,7 +299,6 @@ Non-return valves	Supape de reținere
 None (only grants)	Niciunul (doar atribuiri)
 Not mounted	Nemontat
 Not saved	Nesalvat
-Not signed	Nesemnat
 Nothing to save	Nimic de salvat
 Nut	Piuliță
 On the front	Pe față
@@ -334,7 +323,6 @@ Others	Altele
 Outlet	Evacuare
 Outlet filter	Filtru de ieșire
 Overload	Releu de protecție
-Own item of the visual inspection	Punct propriu al examinării vizuale
 PE busbar	Bară PE
 PLC input	Intrare PLC
 PLC input card analog	Card de intrări analogice PLC
@@ -376,7 +364,6 @@ Plug pin	Pin de conector
 Position switch	Limitator de cursă
 Power cable	Cablu de putere
 Power contactor	Contactor de putere
-Power supply unit	Sursă de alimentare
 Power switchgear	Aparataj de comutație de putere
 Power units and plants	Agregate și instalații
 Prefabricated	Preconfecționat
@@ -418,11 +405,9 @@ Remove logo	Eliminare logo
 Remove the file from the part	Eliminarea fișierului din articol
 Remove the logo	Eliminare logo
 Removed from the server	Eliminat de pe server
-Repair	Reparație
 Repeat password	Repetați parola
 Replace the roles and grants with those of the file?	Înlocuiți rolurile și atribuirile cu cele din fișier?
 Replaced by {}	Înlocuit de {}
-Report data and visual inspection	Datele raportului și examinare vizuală
 Resistors	Rezistoare
 Restore from a file	Restaurare dintr-un fișier
 Return flushing filters, all-autom.	Filtre cu spălare inversă, complet automate
@@ -433,7 +418,6 @@ Roof hook	Cârlig de acoperiș
 Routing accessories	Accesorii de pozare
 Routing path (topology)	Traseu (topologie)
 Routing point (topology)	Punct de pozare (topologie)
-SELV, PELV and separation	SELV, PELV și separare
 Safety accumulators	Acumulatoare de siguranță
 Safety devices	Dispozitive de protecție
 Safety fuse	Siguranță fuzibilă
@@ -479,7 +463,6 @@ Sign in with a user account	Conectare cu un cont de utilizator
 Sign in with the access token of the server	Conectare cu tokenul de acces al serverului
 Sign out everywhere	Deconectare peste tot
 Sign out {} on all devices?	Deconectați {} pe toate dispozitivele?
-Sign the report	Semnează raportul
 Sign-in needed to read	Citirea necesită conectare
 Sign-in needed to view	Vizualizarea necesită conectare
 Signal device	Dispozitiv de semnalizare
@@ -487,8 +470,6 @@ Signal device, acoustic	Dispozitiv de semnalizare, acustic
 Signal device, optical	Dispozitiv de semnalizare, optic
 Signal lamp	Lampă de semnalizare
 Signature	Semnătură
-Signed	Semnat
-Signed by {} on {}	Semnat de {} la {}
 Signed in	Conectați
 Silencers	Amortizoare de zgomot
 Silo	Siloz
@@ -542,7 +523,6 @@ The last administrator cannot lose the right to manage users	Ultimul administrat
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Logoul companiei: PNG, JPEG, GIF, WebP sau SVG, cel mult 512 kB
 The password needs at least {} characters	Parola trebuie să aibă cel puțin {} caractere
 The passwords do not match	Parolele nu se potrivesc
-The project has no circuits fed from the mains	Proiectul nu are circuite alimentate din rețea
 The project has no devices	Proiectul nu are dispozitive
 The project has no pages	Proiectul nu are pagini
 The project has no parts	Proiectul nu are articole
@@ -605,7 +585,6 @@ Vault did not continue the upload	Vault nu a continuat încărcarea
 Ventilation filters	Filtre de aerisire
 Ventilator	Ventilator
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Vizualizatorii deschid proiectele doar în citire, examinatorii salvează și comentarii, editorii modifică și creează proiecte, managerii le și șterg și acordă drepturi asupra lor, administratorii gestionează serverul.
-Visual inspection	Examinare vizuală
 Voltage source	Sursă de tensiune
 Voltage source and generator	Sursă de tensiune și generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Conturile în așteptare nu se pot conecta; aprobați-le sau respingeți-le în Utilizatori.
@@ -644,7 +623,6 @@ unchanged if empty	neschimbat dacă este gol
 unexpected answer: {}	răspuns neașteptat: {}
 you	tu
 {} ({}, {})	{} ({}, {})
-{} circuits	{} circuite
 {} has no checksum in SHA256SUMS	{} nu are sumă de control în SHA256SUMS
 {} parts in {} catalogs, revision {}	{} articole în {} cataloage, revizia {}
 {} parts, {} catalogs, {}	{} articole, {} cataloage, {}

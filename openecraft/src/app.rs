@@ -70,6 +70,7 @@ mod languages_ui;
 mod config_ui;
 mod drawing_ui;
 mod electrical_ui;
+mod inspection_ui;
 mod plc_ui;
 mod plugins_ui;
 mod plugs_ui;
@@ -348,6 +349,7 @@ pub struct App {
     process_ui: process_ui::ProcessUi,
     preplanning_ui: preplanning_ui::PreplanningUi,
     electrical_ui: electrical_ui::ElectricalUi,
+    inspection_ui: inspection_ui::InspectionUi,
     singleline_ui: singleline_ui::SingleLineUi,
     languages_ui: languages_ui::LanguagesUi,
     tables_ui: tables_ui::TablesUi,
@@ -624,6 +626,7 @@ impl App {
             process_ui: Default::default(),
             preplanning_ui: Default::default(),
             electrical_ui: Default::default(),
+            inspection_ui: Default::default(),
             singleline_ui: Default::default(),
             languages_ui: Default::default(),
             tables_ui: Default::default(),

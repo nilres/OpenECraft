@@ -12,11 +12,13 @@ A page needs a name	Een pagina heeft een naam nodig
 A routing path needs {} points at least	Een routeringspad heeft minstens {} punten nodig
 A section cannot be moved into itself	Een sectie kan niet in zichzelf worden verplaatst
 Above	Boven
+Above {} V: no SELV or PELV	Boven {} V: geen SELV of PELV
 Access token	Toegangstoken
 Accessories	Toebehoren
 Accessory	Toebehoren
 Add	Toevoegen
 Add a PDF of all pages	Een PDF van alle pagina's toevoegen
+Add an item	Punt toevoegen
 Add to favorites	Toevoegen aan favorieten
 Address	Adres
 Administrator	Beheerder
@@ -57,6 +59,7 @@ Category	Categorie
 Centred	Gecentreerd
 Certificates	Certificaten
 Change	Wijziging
+Changing the data or the results afterwards takes the signature away.	Wijzigen van de gegevens of resultaten achteraf trekt de handtekening in.
 Channel	Kanaal
 Characteristic	Karakteristiek
 Check settings	Controle-instellingen
@@ -135,6 +138,7 @@ Done	Gereed
 Door	Deur
 Door cutout	Deuruitsparing
 Download	Downloaden
+Download the report as an Excel workbook	Het rapport als Excel-werkmap downloaden
 Downloading {}…	{} downloaden…
 Drag to turn the model	Sleep om het model te draaien
 Drawings	Tekeningen
@@ -146,6 +150,7 @@ Editor	Bewerker
 Electrical separation	Elektrische scheiding
 Electro-fluid cross reference	Elektro-fluïdum-kruisverwijzingen
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Leeg: de standaard. Stel andere waarden in waar de editie van de norm waartegen de installatie wordt geverifieerd afwijkt.
 Enclosure	Behuizing
 Enclosures	Behuizingen
 Enterprise integration	Bedrijfsintegratie
@@ -165,6 +170,7 @@ Field wiring	Veldbedrading
 File	Bestand
 Files	Bestanden
 Filter	Filter
+Filter circuits…	Stroomkringen filteren…
 Filter devices…	Apparaten filteren…
 First fault current Id (A)	Foutstroom bij de eerste fout Id (A)
 Fit	Passend maken
@@ -202,6 +208,7 @@ Height	Hoogte
 Height above floor	Hoogte boven vloer
 History	Geschiedenis
 Hose no.	Slangnr.
+IT system	IT-stelsel
 Identifier	Identificatie
 Identifying letter	Kenletter
 Image	Afbeelding
@@ -273,6 +280,7 @@ Manufacturing	Productie
 Marking	Markering
 Match case	Hoofdlettergevoelig
 Material	Materiaal
+Measured at the origin	Gemeten bij de oorsprong
 Medium	Medium
 Metal carriers meeting at a node are connected	Metalen kabeldragers die bij een knooppunt samenkomen, zijn verbonden
 Minimum digits of the counter (leading zeros)	Minimumaantal cijfers van de teller (voorloopnullen)
@@ -300,6 +308,7 @@ Name of the scheme	Naam van het schema
 Net	Net
 Never	Nooit
 New group	Nieuwe groep
+New installation	Nieuwe installatie
 New name	Nieuwe naam
 Next inspection	Volgende keuring
 Next page	Volgende pagina
@@ -307,6 +316,7 @@ No	Nee
 No Vault item matches a part of the project	Geen Vault-item komt overeen met een artikel van het project
 No cable {}	Geen kabel {}
 No circuit {}	Geen stroomkring {}
+No circuits found	Geen stroomkringen gevonden
 No connection point {}	Geen aansluitpunt {}
 No device {}	Geen apparaat {}
 No enclosure {}	Geen behuizing {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Geen geldig regelsetbestand: {}
 Not applicable	Niet van toepassing
 Not in the schematic	Niet in het schema
 Not passed	Afgekeurd
+Not signed	Niet ondertekend
 Not tested	Niet getest
 Note	Opmerking
 Notes	Notities
@@ -358,6 +369,7 @@ Outer diameter	Buitendiameter
 Output	Uitgang
 Output voltage (V)	Uitgangsspanning (V)
 Overview	Overzicht
+Own item of the visual inspection	Eigen punt van de visuele inspectie
 PCT loop	PCT-lus
 PCT loop overview	Overzicht PCT-lussen
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potentialen
 Power	Vermogen
 Power (kW)	Vermogen (kW)
 Power loss	Vermogensverlies
+Power supply unit	Voeding
 Pre-planning	Voorplanning
 Press	Pers
 Previous page	Vorige pagina
@@ -472,8 +485,10 @@ Remove from favorites	Verwijderen uit favorieten
 Remove the boundary	Grens verwijderen
 Remove the lightning protection system	De bliksembeveiliging verwijderen
 Remove the reference point	Referentiepunt verwijderen
+Repair	Reparatie
 Report	Rapport
 Report blocks	Rapportblokken
+Report data and visual inspection	Rapportgegevens en visuele inspectie
 Report: {}	Rapport: {}
 Reports	Rapporten
 Represented by	Vertegenwoordigd door
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Rijen modules (oost-west: rijen van p
 Rule	Regel
 Rule set	Regelset
 SELV	SELV
+SELV, PELV and separation	SELV, PELV en scheiding
 Safety function	Veiligheidsfunctie
 Save	Opslaan
 Saved	Opgeslagen
@@ -526,6 +542,9 @@ Show the row after the column	De rij na de kolom weergeven
 Side	Zijde
 Sign in	Aanmelden
 Sign out	Afmelden
+Sign the report	Rapport ondertekenen
+Signed	Ondertekend
+Signed by {} on {}	Ondertekend door {} op {}
 Signed in as {}	Aangemeld als {}
 Signed in as {} ({})	Aangemeld als {} ({})
 Signed out	Afgemeld
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Het vrijstaande PV
 The identifier must not be empty	De aanduiding mag niet leeg zijn
 The long side of the modules along the rows	De lange zijde van de modules langs de rijen
 The page is released	De pagina is vrijgegeven
+The project has no circuits fed from the mains	Het project heeft geen stroomkringen die door het net worden gevoed
 There is a connection symbol at this point already	Op dit punt is al een verbindingssymbool
 Thermal	Thermisch
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Deze pagina plaatst geen cookies, gebruikt geen tracking en laadt niets van andere servers.
@@ -618,6 +638,7 @@ VAT ID	Btw-nummer
 Value	Waarde
 Version	Versie
 Viewer	Kijker
+Visual inspection	Visuele inspectie
 Voltage	Spanning
 Voltage drop (%)	Spanningsval (%)
 Warning	Waarschuwing
@@ -659,6 +680,7 @@ the file exists already	het bestand bestaat al
 this is a folder	dit is een map
 yes	ja
 {} ({})	{} ({})
+{} circuits	{} stroomkringen
 {} does not stand on the floor: choose a part marked for floor mounting	{} staat niet op de vloer: kies een artikel dat voor vloermontage is gemarkeerd
 {} exists already	{} bestaat al
 {} is not a PNG or JPEG image	{} is geen PNG- of JPEG-afbeelding

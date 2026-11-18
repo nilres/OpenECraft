@@ -12,11 +12,13 @@ A page needs a name	Uma página precisa de um nome
 A routing path needs {} points at least	Um caminho de roteamento requer pelo menos {} pontos
 A section cannot be moved into itself	Uma seção não pode ser movida para dentro de si mesma
 Above	Acima
+Above {} V: no SELV or PELV	Acima de {} V: nem SELV nem PELV
 Access token	Token de acesso
 Accessories	Acessórios
 Accessory	Acessório
 Add	Adicionar
 Add a PDF of all pages	Adicionar um PDF de todas as páginas
+Add an item	Adicionar um item
 Add to favorites	Adicionar aos favoritos
 Address	Endereço
 Administrator	Administrador
@@ -57,6 +59,7 @@ Category	Categoria
 Centred	Centralizado
 Certificates	Certificados
 Change	Alteração
+Changing the data or the results afterwards takes the signature away.	Alterar depois os dados ou os resultados remove a assinatura.
 Channel	Canal
 Characteristic	Característica
 Check settings	Configurações de verificação
@@ -135,6 +138,7 @@ Done	Concluído
 Door	Porta
 Door cutout	Recorte da porta
 Download	Baixar
+Download the report as an Excel workbook	Baixar o relatório como pasta de trabalho do Excel
 Downloading {}…	Baixando {}…
 Drag to turn the model	Arraste para girar o modelo
 Drawings	Desenhos
@@ -146,6 +150,7 @@ Editor	Editor
 Electrical separation	Separação elétrica
 Electro-fluid cross reference	Referência cruzada eletrofluídica
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Vazio: o padrão. Defina outros valores onde a edição da norma pela qual a instalação é verificada for diferente.
 Enclosure	Gabinete
 Enclosures	Gabinetes
 Enterprise integration	Integração empresarial
@@ -165,6 +170,7 @@ Field wiring	Fiação de campo
 File	Arquivo
 Files	Arquivos
 Filter	Filtro
+Filter circuits…	Filtrar circuitos…
 Filter devices…	Filtrar dispositivos…
 First fault current Id (A)	Corrente da primeira falta Id (A)
 Fit	Ajustar
@@ -202,6 +208,7 @@ Height	Altura
 Height above floor	Altura acima do piso
 History	Histórico
 Hose no.	Nº da mangueira
+IT system	Esquema IT
 Identifier	Identificador
 Identifying letter	Letra de identificação
 Image	Imagem
@@ -273,6 +280,7 @@ Manufacturing	Fabricação
 Marking	Marcação
 Match case	Diferenciar maiúsculas e minúsculas
 Material	Material
+Measured at the origin	Medido na origem
 Medium	Meio
 Metal carriers meeting at a node are connected	Os suportes metálicos que se encontram em um nó estão conectados
 Minimum digits of the counter (leading zeros)	Mínimo de dígitos do contador (zeros à esquerda)
@@ -300,6 +308,7 @@ Name of the scheme	Nome do esquema
 Net	Rede
 Never	Nunca
 New group	Novo grupo
+New installation	Instalação nova
 New name	Novo nome
 Next inspection	Próxima inspeção
 Next page	Próxima página
@@ -307,6 +316,7 @@ No	Não
 No Vault item matches a part of the project	Nenhum item do Vault corresponde a uma peça do projeto
 No cable {}	Nenhum cabo {}
 No circuit {}	Nenhum circuito {}
+No circuits found	Nenhum circuito encontrado
 No connection point {}	Nenhum ponto de conexão {}
 No device {}	Nenhum dispositivo {}
 No enclosure {}	Nenhum gabinete {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Não é um arquivo de conjunto de regras válido: 
 Not applicable	Não aplicável
 Not in the schematic	Não está no esquema elétrico
 Not passed	Reprovado
+Not signed	Não assinado
 Not tested	Não verificado
 Note	Nota
 Notes	Notas
@@ -358,6 +369,7 @@ Outer diameter	Diâmetro externo
 Output	Saída
 Output voltage (V)	Tensão de saída (V)
 Overview	Visão geral
+Own item of the visual inspection	Item próprio da inspeção visual
 PCT loop	Malha de instrumentação
 PCT loop overview	Visão geral das malhas de instrumentação
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potenciais
 Power	Potência
 Power (kW)	Potência (kW)
 Power loss	Perda de potência
+Power supply unit	Fonte de alimentação
 Pre-planning	Pré-planejamento
 Press	Prensa
 Previous page	Página anterior
@@ -472,8 +485,10 @@ Remove from favorites	Remover dos favoritos
 Remove the boundary	Remover o limite
 Remove the lightning protection system	Remover o SPDA
 Remove the reference point	Remover o ponto de referência
+Repair	Reparo
 Report	Relatório
 Report blocks	Blocos de relatório
+Report data and visual inspection	Dados do relatório e inspeção visual
 Report: {}	Relatório: {}
 Reports	Relatórios
 Represented by	Representado por
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Fileiras de módulos (leste-oeste: fi
 Rule	Regra
 Rule set	Conjunto de regras
 SELV	SELV
+SELV, PELV and separation	SELV, PELV e separação
 Safety function	Função de segurança
 Save	Salvar
 Saved	Salvo
@@ -526,6 +542,9 @@ Show the row after the column	Mostrar a linha após a coluna
 Side	Lado
 Sign in	Entrar
 Sign out	Sair
+Sign the report	Assinar o relatório
+Signed	Assinado
+Signed by {} on {}	Assinado por {} em {}
 Signed in as {}	Conectado como {}
 Signed in as {} ({})	Conectado como {} ({})
 Signed out	Desconectado
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	O arranjo FV no so
 The identifier must not be empty	O identificador não pode ficar vazio
 The long side of the modules along the rows	O lado longo dos módulos ao longo das fileiras
 The page is released	A página está liberada
+The project has no circuits fed from the mains	O projeto não tem circuitos alimentados pela rede
 There is a connection symbol at this point already	Já existe um símbolo de conexão neste ponto
 Thermal	Térmica
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Esta página não define cookies, não usa rastreamento e não carrega nada de outros servidores.
@@ -618,6 +638,7 @@ VAT ID	Número de IVA
 Value	Valor
 Version	Versão
 Viewer	Visualizador
+Visual inspection	Inspeção visual
 Voltage	Tensão
 Voltage drop (%)	Queda de tensão (%)
 Warning	Aviso
@@ -659,6 +680,7 @@ the file exists already	o arquivo já existe
 this is a folder	isto é uma pasta
 yes	sim
 {} ({})	{} ({})
+{} circuits	{} circuitos
 {} does not stand on the floor: choose a part marked for floor mounting	{} não fica no piso: escolha uma peça marcada para montagem no piso
 {} exists already	{} já existe
 {} is not a PNG or JPEG image	{} não é uma imagem PNG ou JPEG

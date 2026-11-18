@@ -79,7 +79,9 @@ The **inspection and test report** (initial verification, IEC 60364-6 / DIN VDE
 sources of SELV, PELV and separated circuits, the circuits with their results, and the
 verdict with the signature. It is shown in the reports *Inspection and test report*
 (the circuits), *Inspection and test report: SELV, PELV and separation* and
-*Inspection and test report: summary*, edited in *Project data › Edit in table*
+*Inspection and test report: summary*, edited in the pane *Tools › Inspection and test report* of the editor (the same
+sections as the web page: report data and visual inspection, limits, signature, a
+section per source and per circuit, *Export Excel*), in *Project data › Edit in table*
 (*Inspection and test report*, one row per circuit, and *Inspection and test report:
 data*, one row per value of the report and of the sources), with the command
 `inspection_report` and on the web page of the project server.

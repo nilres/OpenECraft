@@ -12,11 +12,13 @@ A page needs a name	En side skal have et navn
 A routing path needs {} points at least	En føringsvej kræver mindst {} punkter
 A section cannot be moved into itself	Et afsnit kan ikke flyttes ind i sig selv
 Above	Over
+Above {} V: no SELV or PELV	Over {} V: hverken SELV eller PELV
 Access token	Adgangstoken
 Accessories	Tilbehør
 Accessory	Tilbehør
 Add	Tilføj
 Add a PDF of all pages	Tilføj en PDF med alle sider
+Add an item	Tilføj et punkt
 Add to favorites	Føj til favoritter
 Address	Adresse
 Administrator	Administrator
@@ -57,6 +59,7 @@ Category	Kategori
 Centred	Centreret
 Certificates	Certifikater
 Change	Ændring
+Changing the data or the results afterwards takes the signature away.	Ændres data eller resultater bagefter, fjernes underskriften.
 Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrolindstillinger
@@ -135,6 +138,7 @@ Done	Udført
 Door	Dør
 Door cutout	Dørudskæring
 Download	Download
+Download the report as an Excel workbook	Download rapporten som Excel-projektmappe
 Downloading {}…	Downloader {}…
 Drag to turn the model	Træk for at dreje modellen
 Drawings	Tegninger
@@ -146,6 +150,7 @@ Editor	Redaktør
 Electrical separation	Elektrisk adskillelse
 Electro-fluid cross reference	Elektro-fluid-krydsreference
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tom: standardværdien. Angiv andre værdier, hvor udgaven af standarden, som installationen kontrolleres efter, afviger.
 Enclosure	Kapsling
 Enclosures	Kapslinger
 Enterprise integration	Virksomhedsintegration
@@ -165,6 +170,7 @@ Field wiring	Feltledningsføring
 File	Filer
 Files	Filer
 Filter	Filter
+Filter circuits…	Filtrer kredse…
 Filter devices…	Filtrer enheder…
 First fault current Id (A)	Fejlstrøm ved første fejl Id (A)
 Fit	Tilpas
@@ -202,6 +208,7 @@ Height	Højde
 Height above floor	Højde over gulv
 History	Historik
 Hose no.	Slangenr.
+IT system	IT-system
 Identifier	Id
 Identifying letter	Kendebogstav
 Image	Billede
@@ -273,6 +280,7 @@ Manufacturing	Produktion
 Marking	Mærkater
 Match case	Forskel på store og små bogstaver
 Material	Materiale
+Measured at the origin	Målt ved forsyningspunktet
 Medium	Medie
 Metal carriers meeting at a node are connected	Metalliske kabelbærere, der mødes ved en knude, er forbundet
 Minimum digits of the counter (leading zeros)	Mindste antal cifre i tælleren (foranstillede nuller)
@@ -300,6 +308,7 @@ Name of the scheme	Skemaets navn
 Net	Net
 Never	Aldrig
 New group	Ny gruppe
+New installation	Ny installation
 New name	Nyt navn
 Next inspection	Næste inspektion
 Next page	Næste side
@@ -307,6 +316,7 @@ No	Nej
 No Vault item matches a part of the project	Intet Vault-element passer til en artikel i projektet
 No cable {}	Intet kabel {}
 No circuit {}	Ingen kreds {}
+No circuits found	Ingen kredse fundet
 No connection point {}	Intet tilslutningspunkt {}
 No device {}	Ingen enhed {}
 No enclosure {}	Ingen kapsling {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Ikke en gyldig regelsætfil: {}
 Not applicable	Ikke relevant
 Not in the schematic	Ikke i diagrammet
 Not passed	Ikke godkendt
+Not signed	Ikke underskrevet
 Not tested	Ikke afprøvet
 Note	Bemærkning
 Notes	Noter
@@ -358,6 +369,7 @@ Outer diameter	Udvendig diameter
 Output	Udgang
 Output voltage (V)	Udgangsspænding (V)
 Overview	Oversigt
+Own item of the visual inspection	Eget punkt i den visuelle kontrol
 PCT loop	PCT-sløjfe
 PCT loop overview	Oversigt over PCT-sløjfer
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potentialer
 Power	Effekt
 Power (kW)	Effekt (kW)
 Power loss	Effekttab
+Power supply unit	Strømforsyning
 Pre-planning	Forprojektering
 Press	Presse
 Previous page	Forrige side
@@ -472,8 +485,10 @@ Remove from favorites	Fjern fra favoritter
 Remove the boundary	Fjern grænsen
 Remove the lightning protection system	Fjern lynbeskyttelsen
 Remove the reference point	Fjern referencepunktet
+Repair	Reparation
 Report	Rapport
 Report blocks	Rapportblokke
+Report data and visual inspection	Rapportdata og visuel kontrol
 Report: {}	Rapport: {}
 Reports	Rapporter
 Represented by	Repræsenteret ved
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Modulrækker (øst-vest: rækker af p
 Rule	Regel
 Rule set	Regelsæt
 SELV	SELV
+SELV, PELV and separation	SELV, PELV og adskillelse
 Safety function	Sikkerhedsfunktion
 Save	Gem
 Saved	Gemt
@@ -526,6 +542,9 @@ Show the row after the column	Vis rækken efter kolonnen
 Side	Side
 Sign in	Log på
 Sign out	Log af
+Sign the report	Underskriv rapporten
+Signed	Underskrevet
+Signed by {} on {}	Underskrevet af {} den {}
 Signed in as {}	Logget på som {}
 Signed in as {} ({})	Logget på som {} ({})
 Signed out	Logget af
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Det jordmonterede 
 The identifier must not be empty	Betegnelsen må ikke være tom
 The long side of the modules along the rows	Modulernes lange side langs rækkerne
 The page is released	Siden er frigivet
+The project has no circuits fed from the mains	Projektet har ingen kredse forsynet fra nettet
 There is a connection symbol at this point already	Der er allerede et forbindelsessymbol i dette punkt
 Thermal	Termik
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Denne side sætter ingen cookies, bruger ingen sporing og indlæser intet fra andre servere.
@@ -618,6 +638,7 @@ VAT ID	Momsnummer
 Value	Værdi
 Version	Version
 Viewer	Fremviser
+Visual inspection	Visuel kontrol
 Voltage	Spænding
 Voltage drop (%)	Spændingsfald (%)
 Warning	Advarsel
@@ -659,6 +680,7 @@ the file exists already	filen findes allerede
 this is a folder	dette er en mappe
 yes	ja
 {} ({})	{} ({})
+{} circuits	{} kredse
 {} does not stand on the floor: choose a part marked for floor mounting	{} står ikke på gulvet: vælg en artikel, der er markeret til gulvmontage
 {} exists already	{} findes allerede
 {} is not a PNG or JPEG image	{} er ikke et PNG- eller JPEG-billede

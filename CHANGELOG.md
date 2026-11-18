@@ -53,7 +53,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   conductor is shown against its resistance calculated from the cables; the fault
   current measured at the origin is checked against the breaking capacities. Every
   limit is a setting of the report with its default and source, for the edition the
-  installation is verified against. Entered in *Edit in table*, with the command `inspection_report` and **on a
+  installation is verified against. Entered in the editor's pane *Tools › Inspection
+  and test report* (without a project server), in *Edit in table*, with the command
+  `inspection_report` and **on a
   tablet or a phone** on the web page of the project server, where reviewers and
   editors save each card without opening the project and without a lock. The report
   exports as an Excel workbook ([#215](https://github.com/nilres/OpenECraft/issues/215)).

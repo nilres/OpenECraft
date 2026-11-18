@@ -11,7 +11,6 @@ A project names who changed it last.	Een project vermeldt wie het als laatste he
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Een rol is een set rechten. Toekenningen geven een gebruiker of groep een rol op projecten (* en ? als jokertekens, * voor alle); een weigerende toekenning neemt de rechten van de rol weer weg, wat andere toekenningen ook geven.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Een rol is een set rechten. Toekenningen geven een gebruiker of groep een rol op de artikelen van een fabrikant (* en ? als jokertekens, * voor alle); een weigerende toekenning neemt de rechten van de rol weer weg, wat andere toekenningen ook geven.
 A user name must not be empty or contain blanks	Een gebruikersnaam mag niet leeg zijn of spaties bevatten
-Above {} V: no SELV or PELV	Boven {} V: geen SELV of PELV
 Accept any certificate (test installations only)	Elk certificaat accepteren (alleen testinstallaties)
 Access rights	Toegangsrechten
 Access settings saved	Toegangsinstellingen opgeslagen
@@ -20,7 +19,6 @@ Accumulators	Accumulatoren
 Actuators, general	Actuatoren, algemeen
 Adapter	Adapter
 Adapter plates	Adapterplaten
-Add an item	Punt toevoegen
 Add grant	Toekenning toevoegen
 Adds new parts and replaces existing ones on the server	Voegt nieuwe artikelen toe en vervangt bestaande op de server
 Administration	Beheer
@@ -76,7 +74,6 @@ Certificate	Certificaat
 Changed	Gewijzigd
 Changed last	Laatst gewijzigd
 Changes allowed	Wijzigingen toegestaan
-Changing the data or the results afterwards takes the signature away.	Wijzigen van de gegevens of resultaten achteraf trekt de handtekening in.
 Check control valve	Terugslagarmatuur
 Check flap	Terugslagklep
 Chimney	Schoorsteen
@@ -142,7 +139,6 @@ Discontinued	Niet meer leverbaar
 Display device	Weergaveapparaat
 Document holder	Documentenhouder
 Door handle	Deurgreep
-Download the report as an Excel workbook	Het rapport als Excel-werkmap downloaden
 Drawings box	Tekeningenhouder
 Dryer	Droger
 Dummy plate	Blindschijf
@@ -159,7 +155,6 @@ Edit user {}	Gebruiker {} bewerken
 Electrical engineering - special items	Elektrotechniek - speciale onderdelen
 Electrically-operated mechanical devices	Elektrisch bediende mechanische apparaten
 Electrolysis cell	Elektrolysecel
-Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Leeg: de standaard. Stel andere waarden in waar de editie van de norm waartegen de installatie wordt geverifieerd afwijkt.
 Empty: the memberOf attribute of the user	Leeg: het attribuut memberOf van de gebruiker
 Empty: the search base	Leeg: de zoekbasis
 Empty: the usual filter of the type	Leeg: het gebruikelijke filter van het type
@@ -187,7 +182,6 @@ Feed-through terminal	Doorgangsklem
 Female insert	Bussen-insert
 Field distribution device	Veldverdeler
 Files and history ({} files)	Bestanden en geschiedenis ({} bestanden)
-Filter circuits…	Stroomkringen filteren…
 Filter fan	Filterventilator
 Filter projects…	Projecten filteren…
 Filter sessions…	Sessies filteren…
@@ -228,7 +222,6 @@ Housing accessories, external extension	Behuizingtoebehoren, externe opbouw
 Housing accessories, internal extension	Behuizingtoebehoren, interne opbouw
 Hydraulic motors	Hydromotoren
 Hydraulic tanks	Hydraulische tanks
-IT system	IT-stelsel
 Images (PNG, JPEG, GIF, WebP, SVG)	Afbeeldingen (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Importeren / exporteren
 Import parts	Artikelen importeren
@@ -266,7 +259,6 @@ Logos	Logo's
 Looks the users up; empty: users bind with their own name (below)	Zoekt de gebruikers op; leeg: gebruikers binden met hun eigen naam (hieronder)
 Male insert	Pennen-insert
 Managers of a project give rights on it themselves (Permissions on the project).	Projectleiders kennen zelf rechten op hun project toe (Machtigingen van het project).
-Measured at the origin	Gemeten bij de oorsprong
 Measurement system	Meetsysteem
 Measuring connection points	Meetaansluitpunten
 Measuring couplings	Meetkoppelingen
@@ -285,7 +277,6 @@ Name attribute	Naamattribuut
 New accounts need the approval of an administrator	Nieuwe accounts hebben de goedkeuring van een beheerder nodig
 New catalog	Nieuwe catalogus
 New directory	Nieuwe directoryservice
-New installation	Nieuwe installatie
 New part	Nieuw artikel
 New part based on the open one	Nieuw artikel op basis van het geopende
 New password	Nieuw wachtwoord
@@ -294,7 +285,6 @@ New user	Nieuwe gebruiker
 Newer version	Nieuwere versie
 Next	Volgende
 Next circuit	Volgende stroomkring
-No circuits found	Geen stroomkringen gevonden
 No devices found	Geen apparaten gevonden
 No ended sessions	Geen beëindigde sessies
 No grants: the rights by manufacturer apply	Geen toekenningen: de rechten per fabrikant gelden
@@ -309,7 +299,6 @@ Non-return valves	Terugslagkleppen
 None (only grants)	Geen (alleen toekenningen)
 Not mounted	Niet gemonteerd
 Not saved	Niet opgeslagen
-Not signed	Niet ondertekend
 Nothing to save	Niets op te slaan
 Nut	Moer
 On the front	Aan de voorkant
@@ -334,7 +323,6 @@ Others	Overige
 Outlet	Uitlaat
 Outlet filter	Uitlaatfilter
 Overload	Beveiligingsrelais
-Own item of the visual inspection	Eigen punt van de visuele inspectie
 PE busbar	PE-rail
 PLC input	PLC-ingang
 PLC input card analog	PLC-ingangskaart analoog
@@ -376,7 +364,6 @@ Plug pin	Stekkerpen
 Position switch	Positieschakelaar
 Power cable	Vermogenskabel
 Power contactor	Vermogensmagneetschakelaar
-Power supply unit	Voeding
 Power switchgear	Sterkstroomschakelapparaten
 Power units and plants	Aggregaten en installaties
 Prefabricated	Voorgeconfectioneerd
@@ -418,11 +405,9 @@ Remove logo	Logo verwijderen
 Remove the file from the part	Het bestand uit het artikel verwijderen
 Remove the logo	Logo verwijderen
 Removed from the server	Verwijderd van de server
-Repair	Reparatie
 Repeat password	Wachtwoord herhalen
 Replace the roles and grants with those of the file?	De rollen en toekenningen vervangen door die van het bestand?
 Replaced by {}	Vervangen door {}
-Report data and visual inspection	Rapportgegevens en visuele inspectie
 Resistors	Weerstanden
 Restore from a file	Herstellen uit een bestand
 Return flushing filters, all-autom.	Terugspoelfilters, volautomatisch
@@ -433,7 +418,6 @@ Roof hook	Dakhaak
 Routing accessories	Routeringstoebehoren
 Routing path (topology)	Traject (topologie)
 Routing point (topology)	Routeringspunt (topologie)
-SELV, PELV and separation	SELV, PELV en scheiding
 Safety accumulators	Veiligheidsaccumulatoren
 Safety devices	Beveiligingsapparaten
 Safety fuse	Smeltzekering
@@ -479,7 +463,6 @@ Sign in with a user account	Aanmelden met een gebruikersaccount
 Sign in with the access token of the server	Aanmelden met het toegangstoken van de server
 Sign out everywhere	Overal afmelden
 Sign out {} on all devices?	{} op alle apparaten afmelden?
-Sign the report	Rapport ondertekenen
 Sign-in needed to read	Aanmelden vereist om te lezen
 Sign-in needed to view	Aanmelden vereist om te bekijken
 Signal device	Signaleringsapparaat
@@ -487,8 +470,6 @@ Signal device, acoustic	Signaalapparaat, akoestisch
 Signal device, optical	Signaalapparaat, optisch
 Signal lamp	Signaallamp
 Signature	Handtekening
-Signed	Ondertekend
-Signed by {} on {}	Ondertekend door {} op {}
 Signed in	Aangemeld
 Silencers	Geluiddempers
 Silo	Silo
@@ -542,7 +523,6 @@ The last administrator cannot lose the right to manage users	De laatste beheerde
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Het logo van het bedrijf: PNG, JPEG, GIF, WebP of SVG, hoogstens 512 kB
 The password needs at least {} characters	Het wachtwoord moet minstens {} tekens hebben
 The passwords do not match	De wachtwoorden komen niet overeen
-The project has no circuits fed from the mains	Het project heeft geen stroomkringen die door het net worden gevoed
 The project has no devices	Het project heeft geen apparaten
 The project has no pages	Het project heeft geen pagina's
 The project has no parts	Het project heeft geen artikelen
@@ -605,7 +585,6 @@ Vault did not continue the upload	Vault heeft het uploaden niet voortgezet
 Ventilation filters	Beluchtingsfilters
 Ventilator	Ventilator
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Kijkers openen projecten alleen-lezen, reviewers slaan ook reviews op, bewerkers wijzigen en maken projecten, projectleiders verwijderen ze ook en kennen er rechten op toe, beheerders beheren de server.
-Visual inspection	Visuele inspectie
 Voltage source	Spanningsbron
 Voltage source and generator	Spanningsbron en generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Wachtende accounts kunnen zich niet aanmelden; keur ze goed of wijs ze af onder Gebruikers.
@@ -644,7 +623,6 @@ unchanged if empty	ongewijzigd als leeg
 unexpected answer: {}	onverwacht antwoord: {}
 you	u
 {} ({}, {})	{} ({}, {})
-{} circuits	{} stroomkringen
 {} has no checksum in SHA256SUMS	{} heeft geen controlesom in SHA256SUMS
 {} parts in {} catalogs, revision {}	{} artikelen in {} catalogi, revisie {}
 {} parts, {} catalogs, {}	{} artikelen, {} catalogi, {}

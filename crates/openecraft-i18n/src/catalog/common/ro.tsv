@@ -12,11 +12,13 @@ A page needs a name	O pagină are nevoie de un nume
 A routing path needs {} points at least	O cale de pozare necesită cel puțin {} puncte
 A section cannot be moved into itself	O secțiune nu poate fi mutată în ea însăși
 Above	Deasupra
+Above {} V: no SELV or PELV	Peste {} V: nici SELV, nici PELV
 Access token	Token de acces
 Accessories	Accesorii
 Accessory	Accesoriu
 Add	Adăugare
 Add a PDF of all pages	Adăugare PDF cu toate paginile
+Add an item	Adaugă un punct
 Add to favorites	Adăugare la favorite
 Address	Adresă
 Administrator	Administrator
@@ -57,6 +59,7 @@ Category	Categorie
 Centred	Centrat
 Certificates	Certificate
 Change	Modificare
+Changing the data or the results afterwards takes the signature away.	Modificarea ulterioară a datelor sau rezultatelor anulează semnătura.
 Channel	Canal
 Characteristic	Caracteristică
 Check settings	Setări de verificare
@@ -135,6 +138,7 @@ Done	Terminat
 Door	Ușă
 Door cutout	Decupaj în ușă
 Download	Descărcare
+Download the report as an Excel workbook	Descarcă raportul ca registru Excel
 Downloading {}…	Se descarcă {}…
 Drag to turn the model	Trageți pentru a roti modelul
 Drawings	Desene
@@ -146,6 +150,7 @@ Editor	Editor
 Electrical separation	Separare electrică
 Electro-fluid cross reference	Referințe încrucișate electro-fluid
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Gol: valoarea implicită. Setați alte valori unde ediția standardului după care se verifică instalația diferă.
 Enclosure	Carcasă
 Enclosures	Carcase
 Enterprise integration	Integrare în întreprindere
@@ -165,6 +170,7 @@ Field wiring	Cablare de câmp
 File	Fișier
 Files	Fișiere
 Filter	Filtru
+Filter circuits…	Filtrează circuitele…
 Filter devices…	Filtrare dispozitive…
 First fault current Id (A)	Curentul primului defect Id (A)
 Fit	Încadrare
@@ -202,6 +208,7 @@ Height	Înălțime
 Height above floor	Înălțime deasupra podelei
 History	Istoric
 Hose no.	Nr. furtun
+IT system	Schemă IT
 Identifier	Identificator
 Identifying letter	Literă de identificare
 Image	Imagine
@@ -273,6 +280,7 @@ Manufacturing	Fabricație
 Marking	Marcare
 Match case	Potrivire litere mari și mici
 Material	Material
+Measured at the origin	Măsurat la origine
 Medium	Mediu
 Metal carriers meeting at a node are connected	Suporturile metalice de cabluri care se întâlnesc într-un nod sunt conectate
 Minimum digits of the counter (leading zeros)	Numărul minim de cifre al contorului (zerouri la început)
@@ -300,6 +308,7 @@ Name of the scheme	Numele schemei
 Net	Rețea
 Never	Niciodată
 New group	Grup nou
+New installation	Instalație nouă
 New name	Nume nou
 Next inspection	Următoarea inspecție
 Next page	Pagina următoare
@@ -307,6 +316,7 @@ No	Nu
 No Vault item matches a part of the project	Niciun element Vault nu corespunde unui articol al proiectului
 No cable {}	Niciun cablu {}
 No circuit {}	Niciun circuit {}
+No circuits found	Nu s-au găsit circuite
 No connection point {}	Niciun punct de conectare {}
 No device {}	Niciun dispozitiv {}
 No enclosure {}	Nicio carcasă {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Nu este un fișier valid de set de reguli: {}
 Not applicable	Nu se aplică
 Not in the schematic	Nu este în schemă
 Not passed	Respins
+Not signed	Nesemnat
 Not tested	Neverificat
 Note	Notă
 Notes	Note
@@ -358,6 +369,7 @@ Outer diameter	Diametru exterior
 Output	Ieșire
 Output voltage (V)	Tensiune de ieșire (V)
 Overview	Prezentare generală
+Own item of the visual inspection	Punct propriu al examinării vizuale
 PCT loop	Buclă AMC
 PCT loop overview	Prezentare bucle AMC
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potențiale
 Power	Putere
 Power (kW)	Putere (kW)
 Power loss	Putere disipată
+Power supply unit	Sursă de alimentare
 Pre-planning	Preplanificare
 Press	Presă
 Previous page	Pagina anterioară
@@ -472,8 +485,10 @@ Remove from favorites	Eliminare din favorite
 Remove the boundary	Eliminați limita
 Remove the lightning protection system	Elimină protecția contra trăsnetului
 Remove the reference point	Eliminați punctul de referință
+Repair	Reparație
 Report	Raport
 Report blocks	Blocuri de raport
+Report data and visual inspection	Datele raportului și examinare vizuală
 Report: {}	Raport: {}
 Reports	Rapoarte
 Represented by	Reprezentat de
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Rânduri de module (est-vest: rândur
 Rule	Regulă
 Rule set	Set de reguli
 SELV	SELV
+SELV, PELV and separation	SELV, PELV și separare
 Safety function	Funcție de siguranță
 Save	Salvare
 Saved	Salvat
@@ -526,6 +542,9 @@ Show the row after the column	Afișare rând după coloană
 Side	Parte
 Sign in	Conectare
 Sign out	Deconectare
+Sign the report	Semnează raportul
+Signed	Semnat
+Signed by {} on {}	Semnat de {} la {}
 Signed in as {}	Conectat ca {}
 Signed in as {} ({})	Conectat ca {} ({})
 Signed out	Deconectat
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Câmpul PV la sol 
 The identifier must not be empty	Identificatorul nu poate fi gol
 The long side of the modules along the rows	Latura lungă a modulelor de-a lungul rândurilor
 The page is released	Pagina este aprobată
+The project has no circuits fed from the mains	Proiectul nu are circuite alimentate din rețea
 There is a connection symbol at this point already	Există deja un simbol de conexiune în acest punct
 Thermal	Termic
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Această pagină nu setează cookie-uri, nu folosește urmărire și nu încarcă nimic de pe alte servere.
@@ -618,6 +638,7 @@ VAT ID	Cod de TVA
 Value	Valoare
 Version	Versiune
 Viewer	Vizualizator
+Visual inspection	Examinare vizuală
 Voltage	Tensiune
 Voltage drop (%)	Cădere de tensiune (%)
 Warning	Avertisment
@@ -659,6 +680,7 @@ the file exists already	fișierul există deja
 this is a folder	acesta este un folder
 yes	da
 {} ({})	{} ({})
+{} circuits	{} circuite
 {} does not stand on the floor: choose a part marked for floor mounting	{} nu stă pe pardoseală: alegeți un articol marcat pentru montaj pe pardoseală
 {} exists already	{} există deja
 {} is not a PNG or JPEG image	{} nu este o imagine PNG sau JPEG

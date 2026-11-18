@@ -12,11 +12,13 @@ A page needs a name	En sida behöver ett namn
 A routing path needs {} points at least	En dragningsväg kräver minst {} punkter
 A section cannot be moved into itself	Ett avsnitt kan inte flyttas in i sig självt
 Above	Ovanför
+Above {} V: no SELV or PELV	Över {} V: varken SELV eller PELV
 Access token	Åtkomsttoken
 Accessories	Tillbehör
 Accessory	Tillbehör
 Add	Lägg till
 Add a PDF of all pages	Lägg till en PDF med alla sidor
+Add an item	Lägg till en punkt
 Add to favorites	Lägg till i favoriter
 Address	Adress
 Administrator	Administratör
@@ -57,6 +59,7 @@ Category	Kategori
 Centred	Centrerad
 Certificates	Certifikat
 Change	Ändring
+Changing the data or the results afterwards takes the signature away.	Ändras data eller resultat i efterhand tas signaturen bort.
 Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrollinställningar
@@ -135,6 +138,7 @@ Done	Klar
 Door	Dörr
 Door cutout	Dörrurtag
 Download	Ladda ned
+Download the report as an Excel workbook	Ladda ned protokollet som Excel-arbetsbok
 Downloading {}…	Laddar ned {}…
 Drag to turn the model	Dra för att vrida modellen
 Drawings	Ritningar
@@ -146,6 +150,7 @@ Editor	Redigerare
 Electrical separation	Elektrisk separation
 Electro-fluid cross reference	Elektro-fluid-korsreferens
 Email	E-post
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tom: standardvärdet. Ange andra värden där utgåvan av standarden som installationen kontrolleras mot avviker.
 Enclosure	Kapsling
 Enclosures	Kapslingar
 Enterprise integration	Företagsintegration
@@ -165,6 +170,7 @@ Field wiring	Fältkablage
 File	Arkiv
 Files	Filer
 Filter	Filter
+Filter circuits…	Filtrera kretsar…
 Filter devices…	Filtrera apparater…
 First fault current Id (A)	Felström vid första fel Id (A)
 Fit	Anpassa
@@ -202,6 +208,7 @@ Height	Höjd
 Height above floor	Höjd över golv
 History	Historik
 Hose no.	Slangnr
+IT system	IT-system
 Identifier	Identifierare
 Identifying letter	Kodbokstav
 Image	Bild
@@ -273,6 +280,7 @@ Manufacturing	Tillverkning
 Marking	Märkning
 Match case	Matcha versaler/gemener
 Material	Material
+Measured at the origin	Uppmätt vid matningspunkten
 Medium	Medium
 Metal carriers meeting at a node are connected	Metalliska kabelbärare som möts vid en nod är förbundna
 Minimum digits of the counter (leading zeros)	Minsta antal siffror i räknaren (inledande nollor)
@@ -300,6 +308,7 @@ Name of the scheme	Schemats namn
 Net	Nät
 Never	Aldrig
 New group	Ny grupp
+New installation	Ny installation
 New name	Nytt namn
 Next inspection	Nästa besiktning
 Next page	Nästa sida
@@ -307,6 +316,7 @@ No	Nej
 No Vault item matches a part of the project	Inget Vault-objekt matchar någon artikel i projektet
 No cable {}	Ingen kabel {}
 No circuit {}	Ingen krets {}
+No circuits found	Inga kretsar hittades
 No connection point {}	Ingen anslutningspunkt {}
 No device {}	Ingen apparat {}
 No enclosure {}	Ingen kapsling {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Inte en giltig regelverksfil: {}
 Not applicable	Ej tillämplig
 Not in the schematic	Inte i schemat
 Not passed	Underkänd
+Not signed	Inte signerad
 Not tested	Inte provad
 Note	Obs!
 Notes	Anteckningar
@@ -358,6 +369,7 @@ Outer diameter	Ytterdiameter
 Output	Utgång
 Output voltage (V)	Utspänning (V)
 Overview	Översikt
+Own item of the visual inspection	Egen punkt i den okulära besiktningen
 PCT loop	Instrumentslinga
 PCT loop overview	Översikt över instrumentslingor
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potentialer
 Power	Effekt
 Power (kW)	Effekt (kW)
 Power loss	Effektförlust
+Power supply unit	Nätaggregat
 Pre-planning	Förplanering
 Press	Press
 Previous page	Föregående sida
@@ -472,8 +485,10 @@ Remove from favorites	Ta bort från favoriter
 Remove the boundary	Ta bort gränsen
 Remove the lightning protection system	Ta bort åskskyddet
 Remove the reference point	Ta bort referenspunkten
+Repair	Reparation
 Report	Rapport
 Report blocks	Rapportblock
+Report data and visual inspection	Protokolldata och okulär besiktning
 Report: {}	Rapport: {}
 Reports	Rapporter
 Represented by	Företrädd av
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Modulrader (öst-väst: rader av par)
 Rule	Regel
 Rule set	Regelverk
 SELV	SELV
+SELV, PELV and separation	SELV, PELV och separation
 Safety function	Säkerhetsfunktion
 Save	Spara
 Saved	Sparat
@@ -526,6 +542,9 @@ Show the row after the column	Visa raden efter kolumnen
 Side	Sida
 Sign in	Logga in
 Sign out	Logga ut
+Sign the report	Signera protokollet
+Signed	Signerad
+Signed by {} on {}	Signerad av {} den {}
 Signed in as {}	Inloggad som {}
 Signed in as {} ({})	Inloggad som {} ({})
 Signed out	Utloggad
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Det markmonterade 
 The identifier must not be empty	Beteckningen får inte vara tom
 The long side of the modules along the rows	Modulernas långsida längs raderna
 The page is released	Sidan är frisläppt
+The project has no circuits fed from the mains	Projektet har inga kretsar som matas från nätet
 There is a connection symbol at this point already	Det finns redan en förbindelsesymbol i den här punkten
 Thermal	Termik
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Den här sidan sätter inga kakor, använder ingen spårning och läser inte in något från andra servrar.
@@ -618,6 +638,7 @@ VAT ID	Momsregistreringsnummer
 Value	Värde
 Version	Version
 Viewer	Visare
+Visual inspection	Okulär besiktning
 Voltage	Spänning
 Voltage drop (%)	Spänningsfall (%)
 Warning	Varning
@@ -659,6 +680,7 @@ the file exists already	filen finns redan
 this is a folder	detta är en mapp
 yes	ja
 {} ({})	{} ({})
+{} circuits	{} kretsar
 {} does not stand on the floor: choose a part marked for floor mounting	{} står inte på golvet: välj en artikel som är märkt för golvmontage
 {} exists already	{} finns redan
 {} is not a PNG or JPEG image	{} är inte en PNG- eller JPEG-bild

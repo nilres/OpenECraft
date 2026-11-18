@@ -12,11 +12,13 @@ A page needs a name	Strona musi mieć nazwę
 A routing path needs {} points at least	Ścieżka prowadzenia wymaga co najmniej {} punktów
 A section cannot be moved into itself	Sekcji nie można przenieść do niej samej
 Above	Powyżej
+Above {} V: no SELV or PELV	Powyżej {} V: ani SELV, ani PELV
 Access token	Token dostępu
 Accessories	Akcesoria
 Accessory	Akcesorium
 Add	Dodaj
 Add a PDF of all pages	Dodaj PDF wszystkich stron
+Add an item	Dodaj punkt
 Add to favorites	Dodaj do ulubionych
 Address	Adres
 Administrator	Administrator
@@ -57,6 +59,7 @@ Category	Kategoria
 Centred	Wyśrodkowane
 Certificates	Certyfikaty
 Change	Zmiana
+Changing the data or the results afterwards takes the signature away.	Późniejsza zmiana danych lub wyników usuwa podpis.
 Channel	Kanał
 Characteristic	Charakterystyka
 Check settings	Ustawienia kontroli
@@ -135,6 +138,7 @@ Done	Wykonano
 Door	Drzwi
 Door cutout	Wycięcie w drzwiach
 Download	Pobierz
+Download the report as an Excel workbook	Pobierz protokół jako skoroszyt Excel
 Downloading {}…	Pobieranie {}…
 Drag to turn the model	Przeciągnij, aby obrócić model
 Drawings	Rysunki
@@ -146,6 +150,7 @@ Editor	Redaktor
 Electrical separation	Separacja elektryczna
 Electro-fluid cross reference	Odsyłacze elektryczno-płynowe
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Puste: wartość domyślna. Ustaw inne wartości tam, gdzie wydanie normy, według której sprawdza się instalację, się różni.
 Enclosure	Obudowa
 Enclosures	Obudowy
 Enterprise integration	Integracja przedsiębiorstwa
@@ -165,6 +170,7 @@ Field wiring	Okablowanie obiektowe
 File	Plik
 Files	Pliki
 Filter	Filtr
+Filter circuits…	Filtruj obwody…
 Filter devices…	Filtruj urządzenia…
 First fault current Id (A)	Prąd pierwszego zwarcia Id (A)
 Fit	Dopasuj
@@ -202,6 +208,7 @@ Height	Wysokość
 Height above floor	Wysokość nad podłogą
 History	Historia
 Hose no.	Nr węża
+IT system	Układ IT
 Identifier	Identyfikator
 Identifying letter	Litera kodu
 Image	Obraz
@@ -273,6 +280,7 @@ Manufacturing	Produkcja
 Marking	Oznaczanie
 Match case	Uwzględniaj wielkość liter
 Material	Materiał
+Measured at the origin	Zmierzone w złączu
 Medium	Medium
 Metal carriers meeting at a node are connected	Metalowe nośniki kabli stykające się w węźle są połączone
 Minimum digits of the counter (leading zeros)	Minimalna liczba cyfr licznika (zera wiodące)
@@ -300,6 +308,7 @@ Name of the scheme	Nazwa wzorca
 Net	Sieć
 Never	Nigdy
 New group	Nowa grupa
+New installation	Nowa instalacja
 New name	Nowa nazwa
 Next inspection	Następna kontrola
 Next page	Następna strona
@@ -307,6 +316,7 @@ No	Nie
 No Vault item matches a part of the project	Żaden element Vault nie pasuje do artykułu projektu
 No cable {}	Brak kabla {}
 No circuit {}	Brak obwodu {}
+No circuits found	Nie znaleziono obwodów
 No connection point {}	Brak punktu przyłączeniowego {}
 No device {}	Brak urządzenia {}
 No enclosure {}	Brak obudowy {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	To nie jest prawidłowy plik zestawu reguł: {}
 Not applicable	Nie dotyczy
 Not in the schematic	Nie na schemacie
 Not passed	Negatywny
+Not signed	Niepodpisany
 Not tested	Nie badano
 Note	Uwaga
 Notes	Notatki
@@ -358,6 +369,7 @@ Outer diameter	Średnica zewnętrzna
 Output	Wyjście
 Output voltage (V)	Napięcie wyjściowe (V)
 Overview	Przegląd
+Own item of the visual inspection	Własny punkt oględzin
 PCT loop	Pętla AKPiA
 PCT loop overview	Przegląd pętli AKPiA
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potencjały
 Power	Moc
 Power (kW)	Moc (kW)
 Power loss	Straty mocy
+Power supply unit	Zasilacz
 Pre-planning	Planowanie wstępne
 Press	Prasa
 Previous page	Poprzednia strona
@@ -472,8 +485,10 @@ Remove from favorites	Usuń z ulubionych
 Remove the boundary	Usuń granicę
 Remove the lightning protection system	Usuń ochronę odgromową
 Remove the reference point	Usuń punkt odniesienia
+Repair	Naprawa
 Report	Raport
 Report blocks	Bloki raportów
+Report data and visual inspection	Dane protokołu i oględziny
 Report: {}	Raport: {}
 Reports	Raporty
 Represented by	Reprezentowany przez
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Rzędy modułów (wschód-zachód: rz
 Rule	Reguła
 Rule set	Zestaw reguł
 SELV	SELV
+SELV, PELV and separation	SELV, PELV i separacja
 Safety function	Funkcja bezpieczeństwa
 Save	Zapisz
 Saved	Zapisano
@@ -526,6 +542,9 @@ Show the row after the column	Pokaż wiersz po kolumnie
 Side	Strona
 Sign in	Zaloguj się
 Sign out	Wyloguj się
+Sign the report	Podpisz protokół
+Signed	Podpisany
+Signed by {} on {}	Podpisał {} dnia {}
 Signed in as {}	Zalogowano jako {}
 Signed in as {} ({})	Zalogowano jako {} ({})
 Signed out	Wylogowano
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Naziemne pole PV {
 The identifier must not be empty	Identyfikator nie może być pusty
 The long side of the modules along the rows	Dłuższy bok modułów wzdłuż rzędów
 The page is released	Strona jest wydana
+The project has no circuits fed from the mains	Projekt nie ma obwodów zasilanych z sieci
 There is a connection symbol at this point already	W tym punkcie jest już symbol połączenia
 Thermal	Termika
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Ta strona nie zapisuje plików cookie, nie stosuje śledzenia i nie ładuje niczego z innych serwerów.
@@ -618,6 +638,7 @@ VAT ID	NIP UE
 Value	Wartość
 Version	Wersja
 Viewer	Przeglądający
+Visual inspection	Oględziny
 Voltage	Napięcie
 Voltage drop (%)	Spadek napięcia (%)
 Warning	Ostrzeżenie
@@ -659,6 +680,7 @@ the file exists already	plik już istnieje
 this is a folder	to jest folder
 yes	tak
 {} ({})	{} ({})
+{} circuits	Obwody: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} nie stoi na podłodze: wybierz artykuł oznaczony do montażu na podłodze
 {} exists already	{} już istnieje
 {} is not a PNG or JPEG image	{} nie jest obrazem PNG ani JPEG

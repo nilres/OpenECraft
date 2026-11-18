@@ -11,7 +11,6 @@ A project names who changed it last.	プロジェクトには、最後に変更�
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	ロールは権限のセットです。付与により、ユーザーまたはグループにプロジェクトに対するロールが与えられます (* と ? はワイルドカード、* はすべて)。拒否の付与は、ほかの付与に関係なくロールの権限を取り消します。
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	ロールは権限のセットです。付与により、ユーザーまたはグループにメーカーの部品に対するロールが与えられます (* と ? はワイルドカード、* はすべて)。拒否の付与は、ほかの付与に関係なくロールの権限を取り消します。
 A user name must not be empty or contain blanks	ユーザー名は空にできず、空白を含めることもできません
-Above {} V: no SELV or PELV	{} V を超える：SELV でも PELV でもない
 Accept any certificate (test installations only)	すべての証明書を受け入れる（テスト環境のみ）
 Access rights	アクセス権
 Access settings saved	アクセス設定を保存しました
@@ -20,7 +19,6 @@ Accumulators	アキュムレーター
 Actuators, general	アクチュエーター (一般)
 Adapter	アダプター
 Adapter plates	アダプタープレート
-Add an item	項目を追加
 Add grant	付与を追加
 Adds new parts and replaces existing ones on the server	新しい部品を追加し、サーバー上の既存の部品を置換します
 Administration	管理
@@ -75,7 +73,6 @@ Certificate	証明書
 Changed	変更
 Changed last	最近変更された部品
 Changes allowed	変更可能
-Changing the data or the results afterwards takes the signature away.	後からデータや結果を変更するとサインは取り消されます。
 Check control valve	逆止弁
 Check flap	逆止ダンパー
 Chimney	煙突
@@ -141,7 +138,6 @@ Discontinued	生産終了
 Display device	表示器
 Document holder	図面ポケット
 Door handle	ドアハンドル
-Download the report as an Excel workbook	レポートを Excel ブックとしてダウンロード
 Drawings box	図面ポケット
 Dryer	乾燥機
 Dummy plate	閉止板
@@ -158,7 +154,6 @@ Edit user {}	ユーザー {} の編集
 Electrical engineering - special items	電気工学 - 特殊品
 Electrically-operated mechanical devices	電気操作式機械装置
 Electrolysis cell	電解槽
-Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	空：既定値。設備の検証に用いる規格の版が異なる場合は、別の値を設定してください。
 Empty: the memberOf attribute of the user	空の場合：ユーザーの memberOf 属性
 Empty: the search base	空の場合：検索ベース
 Empty: the usual filter of the type	空の場合：種類の標準フィルター
@@ -186,7 +181,6 @@ Feed-through terminal	中継端子
 Female insert	メスインサート
 Field distribution device	フィールド分配器
 Files and history ({} files)	ファイルと履歴 ({} 個のファイル)
-Filter circuits…	回路を絞り込む…
 Filter fan	フィルターファン
 Filter projects…	プロジェクトをフィルター…
 Filter sessions…	セッションをフィルター…
@@ -227,7 +221,6 @@ Housing accessories, external extension	筐体付属品 (外部増設)
 Housing accessories, internal extension	筐体付属品 (内部増設)
 Hydraulic motors	油圧モーター
 Hydraulic tanks	油圧タンク
-IT system	IT 系統
 Images (PNG, JPEG, GIF, WebP, SVG)	画像（PNG、JPEG、GIF、WebP、SVG）
 Import / export	インポート / エクスポート
 Import parts	部品のインポート
@@ -265,7 +258,6 @@ Logos	ロゴ
 Looks the users up; empty: users bind with their own name (below)	ユーザーを検索します。空の場合：ユーザーが自分の名前でバインドします（下記）
 Male insert	オスインサート
 Managers of a project give rights on it themselves (Permissions on the project).	プロジェクトのマネージャーは、自分でプロジェクトに権限を付与します (プロジェクトの権限)。
-Measured at the origin	引込口で測定
 Measurement system	計測システム
 Measuring connection points	測定用接続ポイント
 Measuring couplings	測定用カップリング
@@ -284,7 +276,6 @@ Name attribute	名前属性
 New accounts need the approval of an administrator	新しいアカウントには管理者の承認が必要です
 New catalog	新しいカタログ
 New directory	新しいディレクトリ
-New installation	新設
 New part	新しい部品
 New part based on the open one	開いている部品に基づく新しい部品
 New password	新しいパスワード
@@ -293,7 +284,6 @@ New user	新しいユーザー
 Newer version	新しいバージョン
 Next	次へ
 Next circuit	次の回路
-No circuits found	回路が見つかりません
 No devices found	デバイスが見つかりません
 No ended sessions	終了したセッションはありません
 No grants: the rights by manufacturer apply	付与がありません：メーカー別の権限が適用されます
@@ -308,7 +298,6 @@ Non-return valves	チェック弁
 None (only grants)	なし (付与のみ)
 Not mounted	取り付けなし
 Not saved	未保存
-Not signed	未サイン
 Nothing to save	保存するものはありません
 Nut	ナット
 On the front	前面
@@ -333,7 +322,6 @@ Others	その他
 Outlet	排出口
 Outlet filter	排気フィルター
 Overload	保護継電器
-Own item of the visual inspection	目視点検の独自項目
 PE busbar	PE バー
 PLC input	PLC 入力
 PLC input card analog	PLC 入力カード (アナログ)
@@ -375,7 +363,6 @@ Plug pin	プラグピン
 Position switch	位置スイッチ
 Power cable	電力ケーブル
 Power contactor	電力用電磁接触器
-Power supply unit	電源装置
 Power switchgear	電力用開閉装置
 Power units and plants	動力ユニットと設備
 Prefabricated	既製品
@@ -417,11 +404,9 @@ Remove logo	ロゴを削除
 Remove the file from the part	ファイルを部品から削除
 Remove the logo	ロゴを削除
 Removed from the server	サーバーから削除済み
-Repair	修理
 Repeat password	パスワードの再入力
 Replace the roles and grants with those of the file?	ロールと付与をファイルの内容で置き換えますか?
 Replaced by {}	{} に置き換え済み
-Report data and visual inspection	報告書データと目視点検
 Resistors	抵抗器
 Restore from a file	ファイルから復元
 Return flushing filters, all-autom.	全自動逆洗フィルター
@@ -432,7 +417,6 @@ Roof hook	屋根フック
 Routing accessories	配線付属品
 Routing path (topology)	配線経路 (トポロジー)
 Routing point (topology)	配線ポイント (トポロジー)
-SELV, PELV and separation	SELV、PELV、分離
 Safety accumulators	安全アキュムレーター
 Safety devices	保護装置
 Safety fuse	ヒューズ
@@ -478,7 +462,6 @@ Sign in with a user account	ユーザーアカウントでサインイン
 Sign in with the access token of the server	サーバーのアクセストークンでサインイン
 Sign out everywhere	すべてサインアウト
 Sign out {} on all devices?	すべてのデバイスで {} をサインアウトしますか?
-Sign the report	報告書にサイン
 Sign-in needed to read	閲覧にはサインインが必要
 Sign-in needed to view	表示にはサインインが必要
 Signal device	表示機器
@@ -486,8 +469,6 @@ Signal device, acoustic	信号装置 (音響)
 Signal device, optical	信号装置 (光学)
 Signal lamp	表示灯
 Signature	サイン
-Signed	サイン済み
-Signed by {} on {}	{} が {} にサイン
 Signed in	サインイン中
 Silencers	サイレンサー
 Silo	サイロ
@@ -541,7 +522,6 @@ The last administrator cannot lose the right to manage users	最後の管理者�
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	会社のロゴ：PNG、JPEG、GIF、WebP または SVG、512 kB まで
 The password needs at least {} characters	パスワードは {} 文字以上必要です
 The passwords do not match	パスワードが一致しません
-The project has no circuits fed from the mains	プロジェクトに電源から給電される回路がありません
 The project has no devices	プロジェクトにデバイスがありません
 The project has no pages	プロジェクトにページがありません
 The project has no parts	プロジェクトに部品がありません
@@ -603,7 +583,6 @@ Vault did not continue the upload	Vault がアップロードを続行しませ�
 Ventilation filters	エアブリーザー
 Ventilator	送風機
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	ビューアーはプロジェクトを読み取り専用で開き、レビュー担当者はレビューも保存し、編集者はプロジェクトを変更・作成し、マネージャーはさらにプロジェクトを削除して権限を付与し、管理者はサーバーを管理します。
-Visual inspection	目視点検
 Voltage source	電圧源
 Voltage source and generator	電圧源と発電機
 Waiting accounts cannot sign in; approve or reject them in Users.	承認待ちのアカウントはサインインできません。「ユーザー」で承認または却下してください。
@@ -642,7 +621,6 @@ unchanged if empty	空欄の場合は変更なし
 unexpected answer: {}	予期しない応答: {}
 you	あなた
 {} ({}, {})	{} ({}, {})
-{} circuits	{} 回路
 {} has no checksum in SHA256SUMS	SHA256SUMS に {} のチェックサムがありません
 {} parts in {} catalogs, revision {}	部品 {} 個 (カタログ {} 個)、リビジョン {}
 {} parts, {} catalogs, {}	部品 {} 個、カタログ {} 個、{}

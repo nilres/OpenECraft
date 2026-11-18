@@ -187,6 +187,7 @@ pub enum Cmd {
     SingleLine,
     Process,
     Electrical,
+    Inspection,
     Integration,
     ProjectLanguages,
     Configurator,
@@ -629,6 +630,9 @@ pub static ALL: &[Def] = &[
     d(C::Electrical, "electrical_calculations", tr_const!("Electrical calculations"), I::Calculator)
         .tool(ToolPane::Electrical)
         .tip(tr_const!("Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets")),
+    d(C::Inspection, "inspection_pane", tr_const!("Inspection and test report"), I::Check)
+        .tool(ToolPane::Inspection)
+        .tip(tr_const!("Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here")),
     d(C::Integration, "enterprise_integration", tr_const!("Enterprise integration"), I::Integration)
         .tool(ToolPane::Integration)
         .tip(tr_const!("Exchange with ERP, PDM, PLM, ECAD, MCAD, procurement and wiring machines")),

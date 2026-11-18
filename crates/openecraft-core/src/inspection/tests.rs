@@ -469,3 +469,26 @@ fn own_items_change_together() {
     let own: Vec<(&str, &str)> = prj.inspection.header.own_checks.iter().map(|c| (c.title.as_str(), c.answer.as_str())).collect();
     assert_eq!(own, [("B", FUNCTION_FAILED), ("C", NOT_APPLICABLE)]);
 }
+
+#[test]
+fn the_forms_show_each_field_of_the_report_data_once() {
+    // The editor and the web page show these groups; the signature is set by signing.
+    let shown: Vec<HeaderField> = REPORT_FIELDS.into_iter().chain(ORIGIN_FIELDS).chain(IT_FIELDS).collect();
+    for f in HeaderField::ALL {
+        let signature = matches!(f, HeaderField::SignedBy | HeaderField::SignedOn);
+        assert_eq!(shown.iter().filter(|x| **x == f).count(), usize::from(!signature), "{f:?}");
+    }
+    assert!(IT_FIELDS.iter().all(|f| f.is_it()) && !REPORT_FIELDS.iter().chain(&ORIGIN_FIELDS).any(|f| f.is_it()));
+    assert!(ORIGIN_FIELDS.iter().all(|f| f.is_measurement()));
+}
+
+#[test]
+fn the_workbook_has_the_summary_the_circuits_and_the_sources() {
+    let k = installation();
+    let r = report_of(&k.prj);
+    let sheets = crate::xlsx::read(&workbook(&r)).unwrap();
+    let names: Vec<&str> = sheets.iter().map(|s| s.0.as_str()).collect();
+    assert_eq!(names, ["Summary", "Circuits", "SELV, PELV and separation"]);
+    // A header row and a row per circuit.
+    assert_eq!(sheets[1].1.len(), r.circuits.len() + 1);
+}

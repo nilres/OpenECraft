@@ -12,11 +12,13 @@ A page needs a name	Sivulla on oltava nimi
 A routing path needs {} points at least	Reitityspolku tarvitsee vähintään {} pistettä
 A section cannot be moved into itself	Osiota ei voi siirtää itsensä sisään
 Above	Yläpuolella
+Above {} V: no SELV or PELV	Yli {} V: ei SELV eikä PELV
 Access token	Käyttöoikeustokeni
 Accessories	Tarvikkeet
 Accessory	Tarvike
 Add	Lisää
 Add a PDF of all pages	Lisää kaikista sivuista PDF
+Add an item	Lisää kohta
 Add to favorites	Lisää suosikkeihin
 Address	Osoite
 Administrator	Järjestelmänvalvoja
@@ -57,6 +59,7 @@ Category	Luokka
 Centred	Keskitetty
 Certificates	Sertifikaatit
 Change	Muutos
+Changing the data or the results afterwards takes the signature away.	Tietojen tai tulosten muuttaminen jälkikäteen poistaa allekirjoituksen.
 Channel	Kanava
 Characteristic	Ominaiskäyrä
 Check settings	Tarkistusasetukset
@@ -135,6 +138,7 @@ Done	Valmis
 Door	Ovi
 Door cutout	Oven aukko
 Download	Lataa
+Download the report as an Excel workbook	Lataa pöytäkirja Excel-työkirjana
 Downloading {}…	Ladataan {}…
 Drag to turn the model	Käännä mallia vetämällä
 Drawings	Piirustukset
@@ -146,6 +150,7 @@ Editor	Muokkaaja
 Electrical separation	Sähköinen erotus
 Electro-fluid cross reference	Sähkö-fluidi-ristiviittaukset
 Email	Sähköposti
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tyhjä: oletus. Anna muut arvot, jos standardin painos, jonka mukaan asennus tarkastetaan, poikkeaa.
 Enclosure	Kotelo
 Enclosures	Kotelot
 Enterprise integration	Yritysintegraatio
@@ -165,6 +170,7 @@ Field wiring	Kenttäjohdotus
 File	Tiedosto
 Files	Tiedostot
 Filter	Suodatin
+Filter circuits…	Suodata virtapiirejä…
 Filter devices…	Suodata laitteita…
 First fault current Id (A)	Ensimmäisen vian virta Id (A)
 Fit	Sovita
@@ -202,6 +208,7 @@ Height	Korkeus
 Height above floor	Korkeus lattiasta
 History	Historia
 Hose no.	Letkunro
+IT system	IT-järjestelmä
 Identifier	Tunniste
 Identifying letter	Tunnuskirjain
 Image	Kuva
@@ -273,6 +280,7 @@ Manufacturing	Valmistus
 Marking	Merkinnät
 Match case	Sama kirjainkoko
 Material	Materiaali
+Measured at the origin	Mitattu liittymiskohdassa
 Medium	Väliaine
 Metal carriers meeting at a node are connected	Solmussa kohtaavat metalliset kannattimet on yhdistetty
 Minimum digits of the counter (leading zeros)	Laskurin vähimmäisnumeromäärä (etunollat)
@@ -300,6 +308,7 @@ Name of the scheme	Mallin nimi
 Net	Verkko
 Never	Ei koskaan
 New group	Uusi ryhmä
+New installation	Uusi asennus
 New name	Uusi nimi
 Next inspection	Seuraava tarkastus
 Next page	Seuraava sivu
@@ -307,6 +316,7 @@ No	Ei
 No Vault item matches a part of the project	Mikään Vault-nimike ei vastaa projektin osaa
 No cable {}	Ei kaapelia {}
 No circuit {}	Ei virtapiiriä {}
+No circuits found	Virtapiirejä ei löytynyt
 No connection point {}	Ei liitäntäpistettä {}
 No device {}	Ei laitetta {}
 No enclosure {}	Ei koteloa {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Ei kelvollinen sääntökokoelmatiedosto: {}
 Not applicable	Ei sovellu
 Not in the schematic	Ei piirikaaviossa
 Not passed	Hylätty
+Not signed	Ei allekirjoitettu
 Not tested	Ei testattu
 Note	Huomautus
 Notes	Huomautukset
@@ -358,6 +369,7 @@ Outer diameter	Ulkohalkaisija
 Output	Lähtö
 Output voltage (V)	Lähtöjännite (V)
 Overview	Yleiskatsaus
+Own item of the visual inspection	Oma silmämääräisen tarkastuksen kohta
 PCT loop	Instrumentointipiiri
 PCT loop overview	Instrumentointipiirien yleiskatsaus
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potentiaalit
 Power	Teho
 Power (kW)	Teho (kW)
 Power loss	Häviöteho
+Power supply unit	Virtalähde
 Pre-planning	Esisuunnittelu
 Press	Puristin
 Previous page	Edellinen sivu
@@ -472,8 +485,10 @@ Remove from favorites	Poista suosikeista
 Remove the boundary	Poista raja
 Remove the lightning protection system	Poista ukkossuojaus
 Remove the reference point	Poista vertailupiste
+Repair	Korjaus
 Report	Raportti
 Report blocks	Raporttilohkot
+Report data and visual inspection	Pöytäkirjan tiedot ja silmämääräinen tarkastus
 Report: {}	Raportti: {}
 Reports	Raportit
 Represented by	Edustaja
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Moduulirivit (itä-länsi: paririvit)
 Rule	Sääntö
 Rule set	Sääntökokoelma
 SELV	SELV
+SELV, PELV and separation	SELV, PELV ja erotus
 Safety function	Turvatoiminto
 Save	Tallenna
 Saved	Tallennettu
@@ -526,6 +542,9 @@ Show the row after the column	Näytä rivi sarakkeen jälkeen
 Side	Puoli
 Sign in	Kirjaudu sisään
 Sign out	Kirjaudu ulos
+Sign the report	Allekirjoita pöytäkirja
+Signed	Allekirjoitettu
+Signed by {} on {}	Allekirjoittanut {} {}
 Signed in as {}	Kirjautunut käyttäjänä {}
 Signed in as {} ({})	Kirjautunut käyttäjänä {} ({})
 Signed out	Kirjauduttu ulos
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Maa-asennettu auri
 The identifier must not be empty	Tunnus ei saa olla tyhjä
 The long side of the modules along the rows	Moduulien pitkä sivu rivien suuntaisesti
 The page is released	Sivu on vapautettu
+The project has no circuits fed from the mains	Projektissa ei ole verkosta syötettyjä virtapiirejä
 There is a connection symbol at this point already	Tässä pisteessä on jo liitossymboli
 Thermal	Lämpö
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Tämä sivu ei aseta evästeitä, ei käytä seurantaa eikä lataa mitään muilta palvelimilta.
@@ -618,6 +638,7 @@ VAT ID	ALV-tunniste
 Value	Arvo
 Version	Versio
 Viewer	Katselija
+Visual inspection	Silmämääräinen tarkastus
 Voltage	Jännite
 Voltage drop (%)	Jännitteenalenema (%)
 Warning	Varoitus
@@ -659,6 +680,7 @@ the file exists already	tiedosto on jo olemassa
 this is a folder	tämä on kansio
 yes	kyllä
 {} ({})	{} ({})
+{} circuits	Virtapiirejä: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} ei seiso lattialla: valitse lattia-asennukseen merkitty osa
 {} exists already	{} on jo olemassa
 {} is not a PNG or JPEG image	{} ei ole PNG- tai JPEG-kuva

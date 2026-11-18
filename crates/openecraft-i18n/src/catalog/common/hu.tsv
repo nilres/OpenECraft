@@ -12,11 +12,13 @@ A page needs a name	Az oldalnak nevet kell adni
 A routing path needs {} points at least	A fektetési úthoz legalább {} pont szükséges
 A section cannot be moved into itself	Egy szakasz nem helyezhető át önmagába
 Above	Felül
+Above {} V: no SELV or PELV	{} V felett: sem SELV, sem PELV
 Access token	Hozzáférési token
 Accessories	Tartozékok
 Accessory	Tartozék
 Add	Hozzáadás
 Add a PDF of all pages	PDF hozzáadása az összes oldalról
+Add an item	Pont hozzáadása
 Add to favorites	Hozzáadás a kedvencekhez
 Address	Cím
 Administrator	Rendszergazda
@@ -57,6 +59,7 @@ Category	Kategória
 Centred	Középre igazítva
 Certificates	Tanúsítványok
 Change	Változás
+Changing the data or the results afterwards takes the signature away.	Az adatok vagy eredmények utólagos módosítása törli az aláírást.
 Channel	Csatorna
 Characteristic	Jelleggörbe
 Check settings	Ellenőrzési beállítások
@@ -135,6 +138,7 @@ Done	Kész
 Door	Ajtó
 Door cutout	Ajtókivágás
 Download	Letöltés
+Download the report as an Excel workbook	A jegyzőkönyv letöltése Excel-munkafüzetként
 Downloading {}…	{} letöltése…
 Drag to turn the model	Húzással forgathatja a modellt
 Drawings	Rajzok
@@ -146,6 +150,7 @@ Editor	Szerkesztő
 Electrical separation	Villamos elválasztás
 Electro-fluid cross reference	Elektro-fluid kereszthivatkozások
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Üres: az alapértelmezés. Adjon meg más értékeket, ahol a szabványnak az a kiadása, amely szerint a létesítményt ellenőrzik, eltér.
 Enclosure	Szekrény
 Enclosures	Szekrények
 Enterprise integration	Vállalati integráció
@@ -165,6 +170,7 @@ Field wiring	Terepi huzalozás
 File	Fájl
 Files	Fájlok
 Filter	Szűrő
+Filter circuits…	Áramkörök szűrése…
 Filter devices…	Készülékek szűrése…
 First fault current Id (A)	Első hiba árama Id (A)
 Fit	Illesztés
@@ -202,6 +208,7 @@ Height	Magasság
 Height above floor	Padló feletti magasság
 History	Előzmények
 Hose no.	Tömlőszám
+IT system	IT-rendszer
 Identifier	Azonosító
 Identifying letter	Kódbetű
 Image	Kép
@@ -273,6 +280,7 @@ Manufacturing	Gyártás
 Marking	Jelölés
 Match case	Kis- és nagybetűk megkülönböztetése
 Material	Anyag
+Measured at the origin	A betáplálási ponton mérve
 Medium	Közeg
 Metal carriers meeting at a node are connected	Az egy csomópontban találkozó fém kábeltartók össze vannak kötve
 Minimum digits of the counter (leading zeros)	A számláló minimális számjegyszáma (vezető nullák)
@@ -300,6 +308,7 @@ Name of the scheme	A séma neve
 Net	Hálózat
 Never	Soha
 New group	Új csoport
+New installation	Új létesítés
 New name	Új név
 Next inspection	Következő felülvizsgálat
 Next page	Következő oldal
@@ -307,6 +316,7 @@ No	Nem
 No Vault item matches a part of the project	Egyik Vault-elem sem felel meg a projekt egyik alkatrészének sem
 No cable {}	Nincs {} kábel
 No circuit {}	Nincs {} áramkör
+No circuits found	Nem található áramkör
 No connection point {}	Nincs {} csatlakozási pont
 No device {}	Nincs {} készülék
 No enclosure {}	Nincs {} szekrény
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Nem érvényes szabálykészletfájl: {}
 Not applicable	Nem alkalmazható
 Not in the schematic	Nincs a kapcsolási rajzon
 Not passed	Nem felelt meg
+Not signed	Nincs aláírva
 Not tested	Nincs vizsgálva
 Note	Megjegyzés
 Notes	Megjegyzések
@@ -358,6 +369,7 @@ Outer diameter	Külső átmérő
 Output	Kimenet
 Output voltage (V)	Kimeneti feszültség (V)
 Overview	Áttekintés
+Own item of the visual inspection	A szemrevételezés saját pontja
 PCT loop	PCT-kör
 PCT loop overview	PCT-kör-áttekintés
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potenciálok
 Power	Teljesítmény
 Power (kW)	Teljesítmény (kW)
 Power loss	Veszteségi teljesítmény
+Power supply unit	Tápegység
 Pre-planning	Előtervezés
 Press	Prés
 Previous page	Előző oldal
@@ -472,8 +485,10 @@ Remove from favorites	Eltávolítás a kedvencek közül
 Remove the boundary	Határ eltávolítása
 Remove the lightning protection system	Villámvédelem eltávolítása
 Remove the reference point	Referenciapont eltávolítása
+Repair	Javítás
 Report	Kimutatás
 Report blocks	Kimutatásblokkok
+Report data and visual inspection	Jegyzőkönyvadatok és szemrevételezés
 Report: {}	Kimutatás: {}
 Reports	Kimutatások
 Represented by	Képviseli
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Modulsorok (kelet-nyugat: párok sora
 Rule	Szabály
 Rule set	Szabálykészlet
 SELV	SELV
+SELV, PELV and separation	SELV, PELV és elválasztás
 Safety function	Biztonsági funkció
 Save	Mentés
 Saved	Mentve
@@ -526,6 +542,9 @@ Show the row after the column	A sor megjelenítése az oszlop után
 Side	Oldal
 Sign in	Bejelentkezés
 Sign out	Kijelentkezés
+Sign the report	Jegyzőkönyv aláírása
+Signed	Aláírva
+Signed by {} on {}	Aláírta: {}, {}
 Signed in as {}	Bejelentkezve mint {}
 Signed in as {} ({})	Bejelentkezve mint {} ({})
 Signed out	Kijelentkezve
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	A(z) {} szabadföl
 The identifier must not be empty	Az azonosító nem lehet üres
 The long side of the modules along the rows	A modulok hosszabb oldala a sorok mentén
 The page is released	Az oldal kiadva
+The project has no circuits fed from the mains	A projektben nincs hálózatról táplált áramkör
 There is a connection symbol at this point already	Ezen a ponton már van kapcsolati szimbólum
 Thermal	Hőtechnika
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Ez az oldal nem használ sütiket, nem alkalmaz nyomkövetést, és semmit sem tölt be más szerverekről.
@@ -618,6 +638,7 @@ VAT ID	Közösségi adószám
 Value	Érték
 Version	Verzió
 Viewer	Megtekintő
+Visual inspection	Szemrevételezés
 Voltage	Feszültség
 Voltage drop (%)	Feszültségesés (%)
 Warning	Figyelmeztetés
@@ -659,6 +680,7 @@ the file exists already	a fájl már létezik
 this is a folder	ez egy mappa
 yes	igen
 {} ({})	{} ({})
+{} circuits	{} áramkör
 {} does not stand on the floor: choose a part marked for floor mounting	{} nem a padlón áll: válasszon padlóra szerelésre jelölt alkatrészt
 {} exists already	{} már létezik
 {} is not a PNG or JPEG image	{} nem PNG- vagy JPEG-kép

@@ -12,11 +12,13 @@ A page needs a name	Странице нужно имя
 A routing path needs {} points at least	Пути прокладки нужно не менее {} точек
 A section cannot be moved into itself	Раздел нельзя переместить в самого себя
 Above	Сверху
+Above {} V: no SELV or PELV	Выше {} В: не БСНН и не ЗСНН
 Access token	Маркер доступа
 Accessories	Принадлежности
 Accessory	Принадлежность
 Add	Добавить
 Add a PDF of all pages	Добавить PDF всех листов
+Add an item	Добавить пункт
 Add to favorites	Добавить в избранное
 Address	Адрес
 Administrator	Администратор
@@ -57,6 +59,7 @@ Category	Категория
 Centred	По центру
 Certificates	Сертификаты
 Change	Изменение
+Changing the data or the results afterwards takes the signature away.	Последующее изменение данных или результатов снимает подпись.
 Channel	Канал
 Characteristic	Характеристика
 Check settings	Настройки проверки
@@ -135,6 +138,7 @@ Done	Выполнено
 Door	Дверь
 Door cutout	Вырез в двери
 Download	Скачать
+Download the report as an Excel workbook	Скачать протокол как книгу Excel
 Downloading {}…	Скачивание {}…
 Drag to turn the model	Перетащите, чтобы повернуть модель
 Drawings	Чертежи
@@ -146,6 +150,7 @@ Editor	Редактор
 Electrical separation	Электрическое разделение
 Electro-fluid cross reference	Перекрёстные ссылки электрика – гидропневматика
 Email	Эл. почта
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Пусто: значение по умолчанию. Задайте другие значения там, где издание стандарта, по которому проверяется установка, отличается.
 Enclosure	Корпус
 Enclosures	Корпуса
 Enterprise integration	Интеграция с корпоративными системами
@@ -165,6 +170,7 @@ Field wiring	Полевой монтаж
 File	Файл
 Files	Файлы
 Filter	Фильтр
+Filter circuits…	Фильтр цепей…
 Filter devices…	Фильтр устройств…
 First fault current Id (A)	Ток первого замыкания Id (А)
 Fit	Вписать
@@ -202,6 +208,7 @@ Height	Высота
 Height above floor	Высота над полом
 History	История
 Hose no.	№ шланга
+IT system	Система IT
 Identifier	Идентификатор
 Identifying letter	Буквенный код
 Image	Изображение
@@ -273,6 +280,7 @@ Manufacturing	Изготовление
 Marking	Маркировка
 Match case	С учётом регистра
 Material	Материал
+Measured at the origin	Измерено на вводе
 Medium	Среда
 Metal carriers meeting at a node are connected	Металлические кабельные конструкции, сходящиеся в узле, соединены
 Minimum digits of the counter (leading zeros)	Минимальное число разрядов счётчика (ведущие нули)
@@ -300,6 +308,7 @@ Name of the scheme	Имя схемы
 Net	Цепь
 Never	Никогда
 New group	Новая группа
+New installation	Новая установка
 New name	Новое имя
 Next inspection	Следующая проверка
 Next page	Следующий лист
@@ -307,6 +316,7 @@ No	Нет
 No Vault item matches a part of the project	Ни один элемент Vault не соответствует изделию проекта
 No cable {}	Нет кабеля {}
 No circuit {}	Нет цепи {}
+No circuits found	Цепи не найдены
 No connection point {}	Нет точки подключения {}
 No device {}	Нет устройства {}
 No enclosure {}	Нет корпуса {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Недопустимый файл набора п�
 Not applicable	Не применимо
 Not in the schematic	Нет на схеме
 Not passed	Не пройдено
+Not signed	Не подписано
 Not tested	Не проверено
 Note	Примечание
 Notes	Примечания
@@ -358,6 +369,7 @@ Outer diameter	Наружный диаметр
 Output	Выход
 Output voltage (V)	Выходное напряжение (В)
 Overview	Обзор
+Own item of the visual inspection	Собственный пункт осмотра
 PCT loop	Контур КИПиА
 PCT loop overview	Обзор контуров КИПиА
 PELV	ЗСНН
@@ -416,6 +428,7 @@ Potentials	Потенциалы
 Power	Мощность
 Power (kW)	Мощность (kW)
 Power loss	Потери мощности
+Power supply unit	Блок питания
 Pre-planning	Предварительное планирование
 Press	Пресс
 Previous page	Предыдущий лист
@@ -472,8 +485,10 @@ Remove from favorites	Удалить из избранного
 Remove the boundary	Удалить границу
 Remove the lightning protection system	Удалить молниезащиту
 Remove the reference point	Удалить опорную точку
+Repair	Ремонт
 Report	Отчёт
 Report blocks	Блоки отчётов
+Report data and visual inspection	Данные протокола и визуальный осмотр
 Report: {}	Отчёт: {}
 Reports	Отчёты
 Represented by	Представитель
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Ряды модулей (восток
 Rule	Правило
 Rule set	Набор правил
 SELV	БСНН
+SELV, PELV and separation	БСНН, ЗСНН и разделение
 Safety function	Функция безопасности
 Save	Сохранить
 Saved	Сохранено
@@ -526,6 +542,9 @@ Show the row after the column	Показывать строку после ст�
 Side	Сторона
 Sign in	Войти
 Sign out	Выйти
+Sign the report	Подписать протокол
+Signed	Подписано
+Signed by {} on {}	Подписал {} {}
 Signed in as {}	Вход выполнен как {}
 Signed in as {} ({})	Вход выполнен как {} ({})
 Signed out	Выход выполнен
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Наземное �
 The identifier must not be empty	Идентификатор не может быть пустым
 The long side of the modules along the rows	Длинная сторона модулей вдоль рядов
 The page is released	Лист выпущен
+The project has no circuits fed from the mains	В проекте нет цепей, питаемых от сети
 There is a connection symbol at this point already	В этой точке уже есть символ соединения
 Thermal	Тепловой режим
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Эта страница не устанавливает файлы cookie, не использует отслеживание и ничего не загружает с других серверов.
@@ -618,6 +638,7 @@ VAT ID	Номер плательщика НДС
 Value	Значение
 Version	Версия
 Viewer	Наблюдатель
+Visual inspection	Визуальный осмотр
 Voltage	Напряжение
 Voltage drop (%)	Падение напряжения (%)
 Warning	Предупреждение
@@ -659,6 +680,7 @@ the file exists already	файл уже существует
 this is a folder	это папка
 yes	да
 {} ({})	{} ({})
+{} circuits	Цепей: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} не устанавливается на пол: выберите изделие с отметкой напольного монтажа
 {} exists already	{} уже существует
 {} is not a PNG or JPEG image	{} не является изображением PNG или JPEG

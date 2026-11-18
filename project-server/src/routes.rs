@@ -796,15 +796,7 @@ async fn inspection_xlsx(State(state): State<AppState>, headers: HeaderMap, Path
     let (viewed, answer) = viewed(&state, &headers, name).await?;
     let lang = q.lang();
     let bytes = blocking(move || {
-        openecraft_i18n::with_lang(lang, || {
-            let report = viewed.inspection();
-            let tr = openecraft_i18n::tr;
-            openecraft_core::xlsx::write(&[
-                (tr("Summary").to_string(), inspection::summary_table(&report).sheet_rows()),
-                (tr("Circuits").to_string(), inspection::circuit_table(&report.circuits).sheet_rows()),
-                (tr("SELV, PELV and separation").to_string(), inspection::source_table(&report.sources).sheet_rows()),
-            ])
-        })
+        openecraft_i18n::with_lang(lang, || inspection::workbook(&viewed.inspection()))
     })
     .await?;
     let file: String = answer.name.chars().map(|c| if c.is_ascii_alphanumeric() || c == '-' || c == '_' { c } else { '_' }).collect();

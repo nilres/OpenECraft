@@ -12,11 +12,13 @@ A page needs a name	Bir sayfanın adı olmalı
 A routing path needs {} points at least	Bir yönlendirme yolu en az {} nokta gerektirir
 A section cannot be moved into itself	Bir bölüm kendi içine taşınamaz
 Above	Üstte
+Above {} V: no SELV or PELV	{} V üzerinde: SELV veya PELV değil
 Access token	Erişim belirteci
 Accessories	Aksesuarlar
 Accessory	Aksesuar
 Add	Ekle
 Add a PDF of all pages	Tüm sayfaların PDF'ini ekle
+Add an item	Madde ekle
 Add to favorites	Sık kullanılanlara ekle
 Address	Adres
 Administrator	Yönetici
@@ -57,6 +59,7 @@ Category	Kategori
 Centred	Ortalanmış
 Certificates	Sertifikalar
 Change	Değişiklik
+Changing the data or the results afterwards takes the signature away.	Verileri veya sonuçları sonradan değiştirmek imzayı kaldırır.
 Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrol ayarları
@@ -135,6 +138,7 @@ Done	Tamamlandı
 Door	Kapı
 Door cutout	Kapı kesimi
 Download	İndir
+Download the report as an Excel workbook	Raporu Excel çalışma kitabı olarak indir
 Downloading {}…	{} indiriliyor…
 Drag to turn the model	Modeli döndürmek için sürükleyin
 Drawings	Çizimler
@@ -146,6 +150,7 @@ Editor	Düzenleyici
 Electrical separation	Elektriksel ayırma
 Electro-fluid cross reference	Elektro-akışkan çapraz referansı
 Email	E-posta
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Boş: varsayılan değer. Tesisatın doğrulandığı standart baskısı farklıysa başka değerler girin.
 Enclosure	Pano
 Enclosures	Panolar
 Enterprise integration	Kurumsal entegrasyon
@@ -165,6 +170,7 @@ Field wiring	Saha kablolaması
 File	Dosya
 Files	Dosyalar
 Filter	Filtre
+Filter circuits…	Devreleri filtrele…
 Filter devices…	Cihazları filtrele…
 First fault current Id (A)	İlk arıza akımı Id (A)
 Fit	Sığdır
@@ -202,6 +208,7 @@ Height	Yükseklik
 Height above floor	Zeminden yükseklik
 History	Geçmiş
 Hose no.	Hortum no.
+IT system	IT sistemi
 Identifier	Tanımlayıcı
 Identifying letter	Tanıtıcı harf
 Image	Görüntü
@@ -273,6 +280,7 @@ Manufacturing	Üretim
 Marking	İşaretleme
 Match case	Büyük/küçük harf eşleştir
 Material	Malzeme
+Measured at the origin	Besleme noktasında ölçüldü
 Medium	Ortam
 Metal carriers meeting at a node are connected	Bir düğümde birleşen metal taşıyıcılar birbirine bağlıdır
 Minimum digits of the counter (leading zeros)	Sayacın en az basamak sayısı (baştaki sıfırlar)
@@ -300,6 +308,7 @@ Name of the scheme	Düzenin adı
 Net	Ağ
 Never	Hiçbir zaman
 New group	Yeni grup
+New installation	Yeni tesisat
 New name	Yeni ad
 Next inspection	Sonraki muayene
 Next page	Sonraki sayfa
@@ -307,6 +316,7 @@ No	Hayır
 No Vault item matches a part of the project	Hiçbir Vault öğesi projenin bir parçasıyla eşleşmiyor
 No cable {}	{} kablosu yok
 No circuit {}	{} devresi yok
+No circuits found	Devre bulunamadı
 No connection point {}	{} bağlantı noktası yok
 No device {}	{} cihazı yok
 No enclosure {}	{} panosu yok
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Geçerli bir kural seti dosyası değil: {}
 Not applicable	Uygulanamaz
 Not in the schematic	Şemada değil
 Not passed	Geçmedi
+Not signed	İmzalanmadı
 Not tested	Test edilmedi
 Note	Not
 Notes	Notlar
@@ -358,6 +369,7 @@ Outer diameter	Dış çap
 Output	Çıkış
 Output voltage (V)	Çıkış gerilimi (V)
 Overview	Genel bakış
+Own item of the visual inspection	Gözle muayenenin kendi maddesi
 PCT loop	PCT döngüsü
 PCT loop overview	PCT döngüsü genel bakışı
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potansiyeller
 Power	Güç
 Power (kW)	Güç (kW)
 Power loss	Güç kaybı
+Power supply unit	Güç kaynağı
 Pre-planning	Ön planlama
 Press	Pres
 Previous page	Önceki sayfa
@@ -472,8 +485,10 @@ Remove from favorites	Sık kullanılanlardan kaldır
 Remove the boundary	Sınırı kaldır
 Remove the lightning protection system	Yıldırımdan korunma sistemini kaldır
 Remove the reference point	Referans noktasını kaldır
+Repair	Onarım
 Report	Rapor
 Report blocks	Rapor blokları
+Report data and visual inspection	Rapor verileri ve gözle muayene
 Report: {}	Rapor: {}
 Reports	Raporlar
 Represented by	Temsilci
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Modül sıraları (doğu-batı: çift
 Rule	Kural
 Rule set	Kural seti
 SELV	SELV
+SELV, PELV and separation	SELV, PELV ve ayırma
 Safety function	Güvenlik fonksiyonu
 Save	Kaydet
 Saved	Kaydedildi
@@ -526,6 +542,9 @@ Show the row after the column	Satırı sütundan sonra göster
 Side	Taraf
 Sign in	Oturum aç
 Sign out	Oturumu kapat
+Sign the report	Raporu imzala
+Signed	İmzalandı
+Signed by {} on {}	{} tarafından {} tarihinde imzalandı
 Signed in as {}	{} olarak oturum açıldı
 Signed in as {} ({})	{} ({}) olarak oturum açıldı
 Signed out	Oturum kapatıldı
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Arazi tipi PV dizi
 The identifier must not be empty	Tanımlayıcı boş olamaz
 The long side of the modules along the rows	Modüllerin uzun kenarı sıralar boyunca
 The page is released	Sayfa yayımlanmış
+The project has no circuits fed from the mains	Projede şebekeden beslenen devre yok
 There is a connection symbol at this point already	Bu noktada zaten bir bağlantı sembolü var
 Thermal	Termik
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Bu sayfa çerez kullanmaz, izleme yapmaz ve başka sunuculardan hiçbir şey yüklemez.
@@ -618,6 +638,7 @@ VAT ID	KDV numarası
 Value	Değer
 Version	Sürüm
 Viewer	Görüntüleyici
+Visual inspection	Gözle muayene
 Voltage	Gerilim
 Voltage drop (%)	Gerilim düşümü (%)
 Warning	Uyarı
@@ -659,6 +680,7 @@ the file exists already	dosya zaten var
 this is a folder	bu bir klasör
 yes	evet
 {} ({})	{} ({})
+{} circuits	{} devre
 {} does not stand on the floor: choose a part marked for floor mounting	{} zemine konmaz: zemine montaj için işaretlenmiş bir parça seçin
 {} exists already	{} zaten var
 {} is not a PNG or JPEG image	{} bir PNG veya JPEG görüntüsü değil

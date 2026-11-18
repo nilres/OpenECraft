@@ -11,7 +11,6 @@ A project names who changed it last.	Projekti kertoo, kuka muutti sitä viimeksi
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rooli on joukko oikeuksia. Myönnöt antavat käyttäjälle tai ryhmälle roolin projekteihin (* ja ? jokerimerkkeinä, * kaikille); estävä myöntö poistaa roolin oikeudet riippumatta muista myönnöistä.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rooli on joukko oikeuksia. Myönnöt antavat käyttäjälle tai ryhmälle roolin valmistajan osiin (* ja ? jokerimerkkeinä, * kaikille); estävä myöntö poistaa roolin oikeudet riippumatta muista myönnöistä.
 A user name must not be empty or contain blanks	Käyttäjänimi ei saa olla tyhjä eikä sisältää välilyöntejä
-Above {} V: no SELV or PELV	Yli {} V: ei SELV eikä PELV
 Accept any certificate (test installations only)	Hyväksy mikä tahansa varmenne (vain testiasennukset)
 Access rights	Käyttöoikeudet
 Access settings saved	Käyttöoikeusasetukset tallennettu
@@ -20,7 +19,6 @@ Accumulators	Akut
 Actuators, general	Toimilaitteet, yleiset
 Adapter	Sovitin
 Adapter plates	Sovitinlevyt
-Add an item	Lisää kohta
 Add grant	Lisää myöntö
 Adds new parts and replaces existing ones on the server	Lisää uudet osat ja korvaa olemassa olevat palvelimella
 Administration	Hallinta
@@ -76,7 +74,6 @@ Certificate	Sertifikaatti
 Changed	Muutettu
 Changed last	Viimeksi muutetut
 Changes allowed	Muutokset sallittu
-Changing the data or the results afterwards takes the signature away.	Tietojen tai tulosten muuttaminen jälkikäteen poistaa allekirjoituksen.
 Check control valve	Takaiskuventtiili
 Check flap	Takaiskuläppä
 Chimney	Savupiippu
@@ -145,7 +142,6 @@ Discontinued	Poistunut valikoimasta
 Display device	Näyttölaite
 Document holder	Asiakirjatasku
 Door handle	Ovenkahva
-Download the report as an Excel workbook	Lataa pöytäkirja Excel-työkirjana
 Drawings box	Piirustustasku
 Dryer	Kuivain
 Dummy plate	Sokkolaippa
@@ -162,7 +158,6 @@ Edit user {}	Muokkaa käyttäjää {}
 Electrical engineering - special items	Sähkötekniikka – erikoisosat
 Electrically-operated mechanical devices	Sähköisesti ohjatut mekaaniset laitteet
 Electrolysis cell	Elektrolyysikenno
-Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tyhjä: oletus. Anna muut arvot, jos standardin painos, jonka mukaan asennus tarkastetaan, poikkeaa.
 Empty: the memberOf attribute of the user	Tyhjä: käyttäjän määrite memberOf
 Empty: the search base	Tyhjä: hakukanta
 Empty: the usual filter of the type	Tyhjä: tyypin tavallinen suodatin
@@ -190,7 +185,6 @@ Feed-through terminal	Läpivientiriviliitin
 Female insert	Holkkiosa
 Field distribution device	Kenttäjakolaite
 Files and history ({} files)	Tiedostot ja historia ({} tiedostoa)
-Filter circuits…	Suodata virtapiirejä…
 Filter fan	Suodatintuuletin
 Filter projects…	Suodata projekteja…
 Filter sessions…	Suodata istuntoja…
@@ -231,7 +225,6 @@ Housing accessories, external extension	Kotelotarvikkeet, ulkoinen asennus
 Housing accessories, internal extension	Kotelotarvikkeet, sisäinen asennus
 Hydraulic motors	Hydraulimoottorit
 Hydraulic tanks	Hydraulisäiliöt
-IT system	IT-järjestelmä
 Images (PNG, JPEG, GIF, WebP, SVG)	Kuvat (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Tuonti / vienti
 Import parts	Tuo osia
@@ -269,7 +262,6 @@ Logos	Logot
 Looks the users up; empty: users bind with their own name (below)	Hakee käyttäjät; tyhjä: käyttäjät sitoutuvat omalla nimellään (alla)
 Male insert	Nastaosa
 Managers of a project give rights on it themselves (Permissions on the project).	Projektipäälliköt antavat itse oikeuksia projektiinsa (Projektin oikeudet).
-Measured at the origin	Mitattu liittymiskohdassa
 Measurement system	Mittausjärjestelmä
 Measuring connection points	Mittausliitännät
 Measuring couplings	Mittausliittimet
@@ -288,7 +280,6 @@ Name attribute	Nimimäärite
 New accounts need the approval of an administrator	Uudet tilit tarvitsevat järjestelmänvalvojan hyväksynnän
 New catalog	Uusi luettelo
 New directory	Uusi hakemistopalvelu
-New installation	Uusi asennus
 New part	Uusi osa
 New part based on the open one	Uusi osa avoinna olevan pohjalta
 New password	Uusi salasana
@@ -297,7 +288,6 @@ New user	Uusi käyttäjä
 Newer version	Uudempi versio
 Next	Seuraava
 Next circuit	Seuraava virtapiiri
-No circuits found	Virtapiirejä ei löytynyt
 No devices found	Laitteita ei löytynyt
 No ended sessions	Ei päättyneitä istuntoja
 No grants: the rights by manufacturer apply	Ei myöntöjä: valmistajakohtaiset oikeudet ovat voimassa
@@ -312,7 +302,6 @@ Non-return valves	Takaiskuventtiilit
 None (only grants)	Ei mitään (vain myönnöt)
 Not mounted	Ei asennettu
 Not saved	Ei tallennettu
-Not signed	Ei allekirjoitettu
 Nothing to save	Ei tallennettavaa
 Nut	Mutteri
 On the front	Edessä
@@ -337,7 +326,6 @@ Others	Muut
 Outlet	Poistoaukko
 Outlet filter	Poistosuodatin
 Overload	Suojarele
-Own item of the visual inspection	Oma silmämääräisen tarkastuksen kohta
 PE busbar	PE-kisko
 PLC input	PLC-tulo
 PLC input card analog	PLC-tulokortti, analoginen
@@ -379,7 +367,6 @@ Plug pin	Pistoliittimen nasta
 Position switch	Asentokytkin
 Power cable	Tehokaapeli
 Power contactor	Tehokontaktori
-Power supply unit	Virtalähde
 Power switchgear	Vahvavirtakytkinlaitteet
 Power units and plants	Koneikot ja laitokset
 Prefabricated	Esivalmistettu
@@ -421,11 +408,9 @@ Remove logo	Poista logo
 Remove the file from the part	Poista tiedosto osasta
 Remove the logo	Poista logo
 Removed from the server	Poistettu palvelimelta
-Repair	Korjaus
 Repeat password	Toista salasana
 Replace the roles and grants with those of the file?	Korvataanko roolit ja myönnöt tiedoston rooleilla ja myönnöillä?
 Replaced by {}	Korvattu osalla {}
-Report data and visual inspection	Pöytäkirjan tiedot ja silmämääräinen tarkastus
 Resistors	Vastukset
 Restore from a file	Palauta tiedostosta
 Return flushing filters, all-autom.	Huuhtelusuodattimet, täysautomaattiset
@@ -436,7 +421,6 @@ Roof hook	Kattokoukku
 Routing accessories	Reititystarvikkeet
 Routing path (topology)	Reittiosuus (topologia)
 Routing point (topology)	Reittipiste (topologia)
-SELV, PELV and separation	SELV, PELV ja erotus
 Safety accumulators	Turva-akut
 Safety devices	Suojalaitteet
 Safety fuse	Sulake
@@ -482,7 +466,6 @@ Sign in with a user account	Kirjaudu käyttäjätilillä
 Sign in with the access token of the server	Kirjaudu palvelimen käyttöoikeustokenilla
 Sign out everywhere	Kirjaa ulos kaikkialta
 Sign out {} on all devices?	Kirjataanko {} ulos kaikilla laitteilla?
-Sign the report	Allekirjoita pöytäkirja
 Sign-in needed to read	Lukeminen vaatii kirjautumisen
 Sign-in needed to view	Katselu vaatii kirjautumisen
 Signal device	Merkinantolaite
@@ -490,8 +473,6 @@ Signal device, acoustic	Merkinantolaite, akustinen
 Signal device, optical	Merkinantolaite, optinen
 Signal lamp	Merkkivalo
 Signature	Allekirjoitus
-Signed	Allekirjoitettu
-Signed by {} on {}	Allekirjoittanut {} {}
 Signed in	Kirjautuneet
 Silencers	Äänenvaimentimet
 Silo	Siilo
@@ -545,7 +526,6 @@ The last administrator cannot lose the right to manage users	Viimeinen järjeste
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Yrityksen logo: PNG, JPEG, GIF, WebP tai SVG, enintään 512 kt
 The password needs at least {} characters	Salasanassa on oltava vähintään {} merkkiä
 The passwords do not match	Salasanat eivät täsmää
-The project has no circuits fed from the mains	Projektissa ei ole verkosta syötettyjä virtapiirejä
 The project has no devices	Projektissa ei ole laitteita
 The project has no pages	Projektissa ei ole sivuja
 The project has no parts	Projektissa ei ole osia
@@ -609,7 +589,6 @@ Vault did not continue the upload	Vault ei jatkanut latausta palvelimelle
 Ventilation filters	Tuuletussuodattimet
 Ventilator	Puhallin
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Katselijat avaavat projektit vain luku -tilassa, tarkastajat tallentavat myös kommentteja, muokkaajat muuttavat ja luovat projekteja, projektipäälliköt myös poistavat niitä ja antavat niihin oikeuksia, järjestelmänvalvojat hallitsevat palvelinta.
-Visual inspection	Silmämääräinen tarkastus
 Voltage source	Jännitelähde
 Voltage source and generator	Jännitelähde ja generaattori
 Waiting accounts cannot sign in; approve or reject them in Users.	Odottavat tilit eivät voi kirjautua; hyväksy tai hylkää ne kohdassa Käyttäjät.
@@ -648,7 +627,6 @@ unchanged if empty	ennallaan, jos tyhjä
 unexpected answer: {}	odottamaton vastaus: {}
 you	sinä
 {} ({}, {})	{} ({}, {})
-{} circuits	Virtapiirejä: {}
 {} has no checksum in SHA256SUMS	Tiedostolla {} ei ole tarkistussummaa SHA256SUMS-tiedostossa
 {} parts in {} catalogs, revision {}	{} osaa {} luettelossa, revisio {}
 {} parts, {} catalogs, {}	{} osaa, {} luetteloa, {}

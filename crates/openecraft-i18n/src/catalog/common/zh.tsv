@@ -12,11 +12,13 @@ A page needs a name	页面需要名称
 A routing path needs {} points at least	布线路径至少需要 {} 个点
 A section cannot be moved into itself	分节不能移到其自身中
 Above	上方
+Above {} V: no SELV or PELV	超过 {} V：不是 SELV 或 PELV
 Access token	访问令牌
 Accessories	附件
 Accessory	附件
 Add	添加
 Add a PDF of all pages	添加所有页的 PDF
+Add an item	添加项目
 Add to favorites	添加到收藏夹
 Address	地址
 Administrator	管理员
@@ -55,6 +57,7 @@ Category	类别
 Centred	居中
 Certificates	证书
 Change	更改
+Changing the data or the results afterwards takes the signature away.	之后修改数据或结果会撤销签名。
 Channel	通道
 Characteristic	特性
 Check settings	检查设置
@@ -133,6 +136,7 @@ Done	完成
 Door	柜门
 Door cutout	柜门开孔
 Download	下载
+Download the report as an Excel workbook	将报告下载为 Excel 工作簿
 Downloading {}…	正在下载 {}…
 Drag to turn the model	拖动以旋转模型
 Drawings	图纸
@@ -144,6 +148,7 @@ Editor	编辑者
 Electrical separation	电气隔离
 Electro-fluid cross reference	电气-流体交叉引用
 Email	电子邮件
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	空：默认值。若验证安装所依据的标准版本不同，请设置其他值。
 Enclosure	机柜
 Enclosures	机柜
 Enterprise integration	企业集成
@@ -163,6 +168,7 @@ Field wiring	现场接线
 File	文件
 Files	文件
 Filter	筛选
+Filter circuits…	筛选回路…
 Filter devices…	筛选设备…
 First fault current Id (A)	第一次故障电流 Id (A)
 Fit	适合窗口
@@ -200,6 +206,7 @@ Height	高度
 Height above floor	离地高度
 History	历史记录
 Hose no.	软管编号
+IT system	IT 系统
 Identifier	标识
 Identifying letter	标识字母
 Image	图像
@@ -271,6 +278,7 @@ Manufacturing	制造
 Marking	标记
 Match case	区分大小写
 Material	材料
+Measured at the origin	在电源进线处测量
 Medium	介质
 Metal carriers meeting at a node are connected	在节点处相交的金属电缆桥架相互连接
 Minimum digits of the counter (leading zeros)	计数器最小位数（前导零）
@@ -298,6 +306,7 @@ Name of the scheme	方案名称
 Net	网络
 Never	从不
 New group	新建组
+New installation	新安装
 New name	新名称
 Next inspection	下次检验
 Next page	下一页
@@ -305,6 +314,7 @@ No	否
 No Vault item matches a part of the project	没有与项目部件匹配的 Vault 项
 No cable {}	没有电缆 {}
 No circuit {}	没有回路 {}
+No circuits found	未找到回路
 No connection point {}	没有连接点 {}
 No device {}	没有设备 {}
 No enclosure {}	没有机柜 {}
@@ -337,6 +347,7 @@ Not a valid rule set file: {}	不是有效的规则集文件：{}
 Not applicable	不适用
 Not in the schematic	不在原理图中
 Not passed	未通过
+Not signed	未签名
 Not tested	未测试
 Note	注释
 Notes	备注
@@ -356,6 +367,7 @@ Outer diameter	外径
 Output	输出
 Output voltage (V)	输出电压 (V)
 Overview	概览
+Own item of the visual inspection	目视检查的自定义项目
 PCT loop	PCT 回路
 PCT loop overview	PCT 回路概览
 PELV	PELV
@@ -414,6 +426,7 @@ Potentials	电位
 Power	功率
 Power (kW)	功率 (kW)
 Power loss	功率损耗
+Power supply unit	电源
 Pre-planning	预规划
 Press	压力机
 Previous page	上一页
@@ -470,8 +483,10 @@ Remove from favorites	从收藏夹中删除
 Remove the boundary	删除边界
 Remove the lightning protection system	删除防雷系统
 Remove the reference point	删除参考点
+Repair	维修
 Report	报表
 Report blocks	报表块
+Report data and visual inspection	报告数据和目视检查
 Report: {}	报表：{}
 Reports	报表
 Represented by	代表人
@@ -495,6 +510,7 @@ Rows of modules (east-west: rows of pairs)	组件行数（东西向：成对的�
 Rule	规则
 Rule set	规则集
 SELV	SELV
+SELV, PELV and separation	SELV、PELV 和隔离
 Safety function	安全功能
 Save	保存
 Saved	已保存
@@ -524,6 +540,9 @@ Show the row after the column	在列后显示行
 Side	侧
 Sign in	登录
 Sign out	注销
+Sign the report	在报告上签名
+Signed	已签名
+Signed by {} on {}	由 {} 于 {} 签名
 Signed in as {}	已作为 {} 登录
 Signed in as {} ({})	已作为 {} ({}) 登录
 Signed out	已注销
@@ -572,6 +591,7 @@ The freestanding PV array {} stands outside the plot boundary	地面光伏阵列
 The identifier must not be empty	标识符不能为空
 The long side of the modules along the rows	组件长边沿行方向
 The page is released	该页已发布
+The project has no circuits fed from the mains	项目中没有由电网供电的回路
 There is a connection symbol at this point already	此处已有连接符号
 Thermal	热
 This page sets no cookies, uses no tracking and loads nothing from other servers.	本页面不设置 Cookie，不使用跟踪，也不从其他服务器加载任何内容。
@@ -616,6 +636,7 @@ VAT ID	增值税号
 Value	值
 Version	版本
 Viewer	查看者
+Visual inspection	目视检查
 Voltage	电压
 Voltage drop (%)	电压降 (%)
 Warning	警告
@@ -656,6 +677,7 @@ the file exists already	文件已存在
 this is a folder	这是一个文件夹
 yes	是
 {} ({})	{} ({})
+{} circuits	{} 个回路
 {} does not stand on the floor: choose a part marked for floor mounting	{} 不是落地式：请选择标记为落地安装的部件
 {} exists already	{} 已存在
 {} is not a PNG or JPEG image	{} 不是 PNG 或 JPEG 图像

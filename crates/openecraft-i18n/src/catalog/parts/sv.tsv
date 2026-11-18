@@ -11,7 +11,6 @@ A project names who changed it last.	Ett projekt anger vem som senast ändrade d
 A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En roll är en uppsättning rättigheter. Tilldelningar ger en användare eller grupp en roll för projekt (* och ? som jokertecken, * för alla); en nekande tilldelning tar bort rollens rättigheter, oavsett vad andra tilldelningar ger.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En roll är en uppsättning rättigheter. Tilldelningar ger en användare eller grupp en roll för en tillverkares artiklar (* och ? som jokertecken, * för alla); en nekande tilldelning tar bort rollens rättigheter, oavsett vad andra tilldelningar ger.
 A user name must not be empty or contain blanks	Ett användarnamn får inte vara tomt eller innehålla blanksteg
-Above {} V: no SELV or PELV	Över {} V: varken SELV eller PELV
 Accept any certificate (test installations only)	Acceptera alla certifikat (endast testinstallationer)
 Access rights	Åtkomsträttigheter
 Access settings saved	Åtkomstinställningarna har sparats
@@ -20,7 +19,6 @@ Accumulators	Ackumulatorer
 Actuators, general	Ställdon, allmänt
 Adapter	Adapter
 Adapter plates	Adapterplattor
-Add an item	Lägg till en punkt
 Add grant	Lägg till tilldelning
 Adds new parts and replaces existing ones on the server	Lägger till nya artiklar och ersätter befintliga på servern
 Administration	Administration
@@ -76,7 +74,6 @@ Certificate	Certifikat
 Changed	Ändrad
 Changed last	Senast ändrade
 Changes allowed	Ändringar tillåtna
-Changing the data or the results afterwards takes the signature away.	Ändras data eller resultat i efterhand tas signaturen bort.
 Check control valve	Backventil
 Check flap	Backspjäll
 Chimney	Skorsten
@@ -142,7 +139,6 @@ Discontinued	Utgått
 Display device	Indikeringsenhet
 Document holder	Dokumentficka
 Door handle	Dörrhandtag
-Download the report as an Excel workbook	Ladda ned protokollet som Excel-arbetsbok
 Drawings box	Ritningsfack
 Dryer	Tork
 Dummy plate	Blindbricka
@@ -159,7 +155,6 @@ Edit user {}	Redigera användaren {}
 Electrical engineering - special items	Elektroteknik – specialkomponenter
 Electrically-operated mechanical devices	Elektriskt manövrerade mekaniska anordningar
 Electrolysis cell	Elektrolyscell
-Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tom: standardvärdet. Ange andra värden där utgåvan av standarden som installationen kontrolleras mot avviker.
 Empty: the memberOf attribute of the user	Tomt: användarens attribut memberOf
 Empty: the search base	Tomt: sökbasen
 Empty: the usual filter of the type	Tomt: typens vanliga filter
@@ -187,7 +182,6 @@ Feed-through terminal	Genomgångsplint
 Female insert	Hylsinsats
 Field distribution device	Fältfördelare
 Files and history ({} files)	Filer och historik ({} filer)
-Filter circuits…	Filtrera kretsar…
 Filter fan	Filterfläkt
 Filter projects…	Filtrera projekt…
 Filter sessions…	Filtrera sessioner…
@@ -228,7 +222,6 @@ Housing accessories, external extension	Kapslingstillbehör, utvändig montering
 Housing accessories, internal extension	Kapslingstillbehör, invändig montering
 Hydraulic motors	Hydraulmotorer
 Hydraulic tanks	Hydraultankar
-IT system	IT-system
 Images (PNG, JPEG, GIF, WebP, SVG)	Bilder (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / export
 Import parts	Importera artiklar
@@ -266,7 +259,6 @@ Logos	Logotyper
 Looks the users up; empty: users bind with their own name (below)	Söker upp användarna; tomt: användarna binder med sitt eget namn (nedan)
 Male insert	Stiftinsats
 Managers of a project give rights on it themselves (Permissions on the project).	Projektledare ger själva rättigheter till sitt projekt (Behörigheter för projektet).
-Measured at the origin	Uppmätt vid matningspunkten
 Measurement system	Mätanordning
 Measuring connection points	Mätanslutningar
 Measuring couplings	Mätkopplingar
@@ -285,7 +277,6 @@ Name attribute	Namnattribut
 New accounts need the approval of an administrator	Nya konton behöver godkännas av en administratör
 New catalog	Ny katalog
 New directory	Ny katalogtjänst
-New installation	Ny installation
 New part	Ny artikel
 New part based on the open one	Ny artikel baserad på den öppna
 New password	Nytt lösenord
@@ -294,7 +285,6 @@ New user	Ny användare
 Newer version	Nyare version
 Next	Nästa
 Next circuit	Nästa krets
-No circuits found	Inga kretsar hittades
 No devices found	Inga apparater hittades
 No ended sessions	Inga avslutade sessioner
 No grants: the rights by manufacturer apply	Inga tilldelningar: rättigheterna per tillverkare gäller
@@ -309,7 +299,6 @@ Non-return valves	Backventiler
 None (only grants)	Ingen (endast tilldelningar)
 Not mounted	Inte monterat
 Not saved	Inte sparad
-Not signed	Inte signerad
 Nothing to save	Inget att spara
 Nut	Mutter
 On the front	På framsidan
@@ -334,7 +323,6 @@ Others	Övriga
 Outlet	Utlopp
 Outlet filter	Utloppsfilter
 Overload	Skyddsrelä
-Own item of the visual inspection	Egen punkt i den okulära besiktningen
 PE busbar	PE-skena
 PLC input	PLC-ingång
 PLC input card analog	PLC-ingångskort analogt
@@ -376,7 +364,6 @@ Plug pin	Kontaktdonsstift
 Position switch	Lägesbrytare
 Power cable	Kraftkabel
 Power contactor	Kraftkontaktor
-Power supply unit	Nätaggregat
 Power switchgear	Kraftkopplingsutrustning
 Power units and plants	Aggregat och anläggningar
 Prefabricated	Förmonterad
@@ -418,11 +405,9 @@ Remove logo	Ta bort logotyp
 Remove the file from the part	Ta bort filen från artikeln
 Remove the logo	Ta bort logotypen
 Removed from the server	Borttagen från servern
-Repair	Reparation
 Repeat password	Upprepa lösenordet
 Replace the roles and grants with those of the file?	Vill du ersätta rollerna och tilldelningarna med dem i filen?
 Replaced by {}	Ersatt av {}
-Report data and visual inspection	Protokolldata och okulär besiktning
 Resistors	Resistorer
 Restore from a file	Återställ från en fil
 Return flushing filters, all-autom.	Backspolningsfilter, helautomatiska
@@ -433,7 +418,6 @@ Roof hook	Takkrok
 Routing accessories	Förläggningstillbehör
 Routing path (topology)	Förläggningssträcka (topologi)
 Routing point (topology)	Förläggningspunkt (topologi)
-SELV, PELV and separation	SELV, PELV och separation
 Safety accumulators	Säkerhetsackumulatorer
 Safety devices	Skyddsanordningar
 Safety fuse	Smältsäkring
@@ -479,7 +463,6 @@ Sign in with a user account	Logga in med ett användarkonto
 Sign in with the access token of the server	Logga in med serverns åtkomsttoken
 Sign out everywhere	Logga ut överallt
 Sign out {} on all devices?	Logga ut {} på alla enheter?
-Sign the report	Signera protokollet
 Sign-in needed to read	Inloggning krävs för att läsa
 Sign-in needed to view	Inloggning krävs för att visa
 Signal device	Signalapparat
@@ -487,8 +470,6 @@ Signal device, acoustic	Signaldon, akustiskt
 Signal device, optical	Signaldon, optiskt
 Signal lamp	Signallampa
 Signature	Signatur
-Signed	Signerad
-Signed by {} on {}	Signerad av {} den {}
 Signed in	Inloggade
 Silencers	Ljuddämpare
 Silo	Silo
@@ -542,7 +523,6 @@ The last administrator cannot lose the right to manage users	Den sista administr
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Företagets logotyp: PNG, JPEG, GIF, WebP eller SVG, högst 512 kB
 The password needs at least {} characters	Lösenordet måste ha minst {} tecken
 The passwords do not match	Lösenorden matchar inte
-The project has no circuits fed from the mains	Projektet har inga kretsar som matas från nätet
 The project has no devices	Projektet har inga apparater
 The project has no pages	Projektet har inga sidor
 The project has no parts	Projektet har inga artiklar
@@ -605,7 +585,6 @@ Vault did not continue the upload	Vault fortsatte inte uppladdningen
 Ventilation filters	Ventilationsfilter
 Ventilator	Fläkt
 Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Visare öppnar projekt skrivskyddat, granskare sparar även granskningar, redigerare ändrar och skapar projekt, projektledare tar även bort dem och ger rättigheter till dem, administratörer hanterar servern.
-Visual inspection	Okulär besiktning
 Voltage source	Spänningskälla
 Voltage source and generator	Spänningskälla och generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Väntande konton kan inte logga in; godkänn eller avvisa dem under Användare.
@@ -644,7 +623,6 @@ unchanged if empty	oförändrat om tomt
 unexpected answer: {}	oväntat svar: {}
 you	du
 {} ({}, {})	{} ({}, {})
-{} circuits	{} kretsar
 {} has no checksum in SHA256SUMS	{} har ingen kontrollsumma i SHA256SUMS
 {} parts in {} catalogs, revision {}	{} artiklar i {} kataloger, revision {}
 {} parts, {} catalogs, {}	{} artiklar, {} kataloger, {}

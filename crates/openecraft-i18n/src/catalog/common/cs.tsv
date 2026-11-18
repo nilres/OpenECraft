@@ -12,11 +12,13 @@ A page needs a name	Stránka musí mít název
 A routing path needs {} points at least	Trasa vedení potřebuje alespoň {} bodů
 A section cannot be moved into itself	Oddíl nelze přesunout sám do sebe
 Above	Nad
+Above {} V: no SELV or PELV	Nad {} V: ani SELV, ani PELV
 Access token	Přístupový token
 Accessories	Příslušenství
 Accessory	Příslušenství
 Add	Přidat
 Add a PDF of all pages	Přidat PDF všech stránek
+Add an item	Přidat bod
 Add to favorites	Přidat k oblíbeným
 Address	Adresa
 Administrator	Správce
@@ -57,6 +59,7 @@ Category	Kategorie
 Centred	Na střed
 Certificates	Certifikáty
 Change	Změna
+Changing the data or the results afterwards takes the signature away.	Pozdější změna údajů nebo výsledků odstraní podpis.
 Channel	Kanál
 Characteristic	Charakteristika
 Check settings	Nastavení kontroly
@@ -135,6 +138,7 @@ Done	Hotovo
 Door	Dveře
 Door cutout	Výřez ve dveřích
 Download	Stáhnout
+Download the report as an Excel workbook	Stáhnout protokol jako sešit Excel
 Downloading {}…	Stahování {}…
 Drag to turn the model	Tažením model otočíte
 Drawings	Výkresy
@@ -146,6 +150,7 @@ Editor	Editor
 Electrical separation	Elektrické oddělení
 Electro-fluid cross reference	Elektro-tekutinové křížové odkazy
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Prázdné: výchozí hodnota. Nastavte jiné hodnoty tam, kde se vydání normy, podle které se instalace ověřuje, liší.
 Enclosure	Skříň
 Enclosures	Skříně
 Enterprise integration	Podniková integrace
@@ -165,6 +170,7 @@ Field wiring	Polní kabeláž
 File	Soubor
 Files	Soubory
 Filter	Filtr
+Filter circuits…	Filtrovat obvody…
 Filter devices…	Filtrovat přístroje…
 First fault current Id (A)	Proud první poruchy Id (A)
 Fit	Přizpůsobit
@@ -202,6 +208,7 @@ Height	Výška
 Height above floor	Výška nad podlahou
 History	Historie
 Hose no.	Č. hadice
+IT system	Soustava IT
 Identifier	Identifikátor
 Identifying letter	Kódové písmeno
 Image	Obrázek
@@ -273,6 +280,7 @@ Manufacturing	Výroba
 Marking	Značení
 Match case	Rozlišovat malá a velká písmena
 Material	Materiál
+Measured at the origin	Měřeno v předávacím místě
 Medium	Médium
 Metal carriers meeting at a node are connected	Kovové nosné konstrukce, které se setkávají v uzlu, jsou propojeny
 Minimum digits of the counter (leading zeros)	Minimální počet číslic čítače (úvodní nuly)
@@ -300,6 +308,7 @@ Name of the scheme	Název schématu
 Net	Síť
 Never	Nikdy
 New group	Nová skupina
+New installation	Nová instalace
 New name	Nový název
 Next inspection	Příští revize
 Next page	Další stránka
@@ -307,6 +316,7 @@ No	Ne
 No Vault item matches a part of the project	Žádná položka Vault neodpovídá artiklu projektu
 No cable {}	Žádný kabel {}
 No circuit {}	Žádný obvod {}
+No circuits found	Nenalezeny žádné obvody
 No connection point {}	Žádný připojovací bod {}
 No device {}	Přístroj {} neexistuje
 No enclosure {}	Žádná skříň {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Neplatný soubor sady pravidel: {}
 Not applicable	Nehodí se
 Not in the schematic	Není ve schématu
 Not passed	Nevyhovuje
+Not signed	Nepodepsáno
 Not tested	Nezkoušeno
 Note	Poznámka
 Notes	Poznámky
@@ -358,6 +369,7 @@ Outer diameter	Vnější průměr
 Output	Výstup
 Output voltage (V)	Výstupní napětí (V)
 Overview	Přehled
+Own item of the visual inspection	Vlastní bod prohlídky
 PCT loop	Smyčka MaR
 PCT loop overview	Přehled smyček MaR
 PELV	PELV
@@ -416,6 +428,7 @@ Potentials	Potenciály
 Power	Výkon
 Power (kW)	Výkon (kW)
 Power loss	Ztrátový výkon
+Power supply unit	Napájecí zdroj
 Pre-planning	Předběžné plánování
 Press	Lis
 Previous page	Předchozí stránka
@@ -472,8 +485,10 @@ Remove from favorites	Odebrat z oblíbených
 Remove the boundary	Odstranit hranici
 Remove the lightning protection system	Odstranit ochranu před bleskem
 Remove the reference point	Odstranit referenční bod
+Repair	Oprava
 Report	Výkaz
 Report blocks	Bloky výkazů
+Report data and visual inspection	Údaje zprávy a prohlídka
 Report: {}	Výkaz: {}
 Reports	Výkazy
 Represented by	Zastoupen
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Řady modulů (východ-západ: řady 
 Rule	Pravidlo
 Rule set	Sada pravidel
 SELV	SELV
+SELV, PELV and separation	SELV, PELV a oddělení
 Safety function	Bezpečnostní funkce
 Save	Uložit
 Saved	Uloženo
@@ -526,6 +542,9 @@ Show the row after the column	Zobrazit řádek za sloupcem
 Side	Strana
 Sign in	Přihlásit se
 Sign out	Odhlásit se
+Sign the report	Podepsat zprávu
+Signed	Podepsáno
+Signed by {} on {}	Podepsal {} dne {}
 Signed in as {}	Přihlášen jako {}
 Signed in as {} ({})	Přihlášen jako {} ({})
 Signed out	Odhlášeno
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Pozemní FV pole {
 The identifier must not be empty	Identifikátor nesmí být prázdný
 The long side of the modules along the rows	Delší strana modulů podél řad
 The page is released	Stránka je uvolněna
+The project has no circuits fed from the mains	Projekt nemá žádné obvody napájené ze sítě
 There is a connection symbol at this point already	V tomto bodě už symbol spojení je
 Thermal	Tepelné poměry
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Tato stránka neukládá žádné soubory cookie, nepoužívá sledování a nenačítá nic z jiných serverů.
@@ -618,6 +638,7 @@ VAT ID	DIČ
 Value	Hodnota
 Version	Verze
 Viewer	Prohlížející
+Visual inspection	Prohlídka
 Voltage	Napětí
 Voltage drop (%)	Úbytek napětí (%)
 Warning	Upozornění
@@ -659,6 +680,7 @@ the file exists already	soubor již existuje
 this is a folder	toto je složka
 yes	ano
 {} ({})	{} ({})
+{} circuits	Obvody: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} nestojí na podlaze: zvolte artikl označený pro montáž na podlahu
 {} exists already	{} již existuje
 {} is not a PNG or JPEG image	{} není obrázek PNG ani JPEG

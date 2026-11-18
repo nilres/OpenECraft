@@ -12,11 +12,13 @@ A page needs a name	ページには名前が必要です
 A routing path needs {} points at least	配線経路には少なくとも {} 個の点が必要です
 A section cannot be moved into itself	セクションをそれ自身の中に移動することはできません
 Above	上
+Above {} V: no SELV or PELV	{} V を超える：SELV でも PELV でもない
 Access token	アクセストークン
 Accessories	付属品
 Accessory	付属品
 Add	追加
 Add a PDF of all pages	全ページの PDF を追加
+Add an item	項目を追加
 Add to favorites	お気に入りに追加
 Address	アドレス
 Administrator	管理者
@@ -55,6 +57,7 @@ Category	カテゴリ
 Centred	中央
 Certificates	証明書
 Change	変更
+Changing the data or the results afterwards takes the signature away.	後からデータや結果を変更するとサインは取り消されます。
 Channel	チャンネル
 Characteristic	特性
 Check settings	チェックの設定
@@ -133,6 +136,7 @@ Done	完了
 Door	扉
 Door cutout	扉の切り欠き
 Download	ダウンロード
+Download the report as an Excel workbook	レポートを Excel ブックとしてダウンロード
 Downloading {}…	{} をダウンロードしています…
 Drag to turn the model	ドラッグしてモデルを回転
 Drawings	図面
@@ -144,6 +148,7 @@ Editor	編集者
 Electrical separation	電気的分離
 Electro-fluid cross reference	電気-流体相互参照
 Email	メール
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	空：既定値。設備の検証に用いる規格の版が異なる場合は、別の値を設定してください。
 Enclosure	エンクロージャー
 Enclosures	エンクロージャー
 Enterprise integration	エンタープライズ統合
@@ -163,6 +168,7 @@ Field wiring	フィールド配線
 File	ファイル
 Files	ファイル
 Filter	フィルター
+Filter circuits…	回路を絞り込む…
 Filter devices…	デバイスをフィルター…
 First fault current Id (A)	一線地絡電流 Id (A)
 Fit	全体表示
@@ -200,6 +206,7 @@ Height	高さ
 Height above floor	床面からの高さ
 History	履歴
 Hose no.	ホース番号
+IT system	IT 系統
 Identifier	識別子
 Identifying letter	識別文字
 Image	画像
@@ -271,6 +278,7 @@ Manufacturing	製造
 Marking	マーキング
 Match case	大文字と小文字を区別する
 Material	材質
+Measured at the origin	引込口で測定
 Medium	媒体
 Metal carriers meeting at a node are connected	ノードで接する金属製支持材は接続されているとみなす
 Minimum digits of the counter (leading zeros)	カウンターの最小桁数 (先頭のゼロ)
@@ -298,6 +306,7 @@ Name of the scheme	スキームの名前
 Net	ネット
 Never	表示しない
 New group	新しいグループ
+New installation	新設
 New name	新しい名前
 Next inspection	次回の点検
 Next page	次のページ
@@ -305,6 +314,7 @@ No	いいえ
 No Vault item matches a part of the project	プロジェクトの部品に一致する Vault アイテムはありません
 No cable {}	ケーブル {} はありません
 No circuit {}	回路 {} がありません
+No circuits found	回路が見つかりません
 No connection point {}	接続点 {} がありません
 No device {}	デバイス {} はありません
 No enclosure {}	エンクロージャー {} はありません
@@ -337,6 +347,7 @@ Not a valid rule set file: {}	有効なルールセットファイルではあ�
 Not applicable	該当なし
 Not in the schematic	回路図にありません
 Not passed	不合格
+Not signed	未サイン
 Not tested	未試験
 Note	注記
 Notes	メモ
@@ -356,6 +367,7 @@ Outer diameter	外径
 Output	出力
 Output voltage (V)	出力電圧 (V)
 Overview	概要
+Own item of the visual inspection	目視点検の独自項目
 PCT loop	計装ループ
 PCT loop overview	計装ループ概要
 PELV	PELV
@@ -414,6 +426,7 @@ Potentials	電位
 Power	電力
 Power (kW)	電力 (kW)
 Power loss	損失電力
+Power supply unit	電源装置
 Pre-planning	事前計画
 Press	プレス
 Previous page	前のページ
@@ -470,8 +483,10 @@ Remove from favorites	お気に入りから削除
 Remove the boundary	境界を削除
 Remove the lightning protection system	雷保護システムを削除
 Remove the reference point	基準点を削除
+Repair	修理
 Report	レポート
 Report blocks	レポートブロック
+Report data and visual inspection	報告書データと目視点検
 Report: {}	レポート: {}
 Reports	レポート
 Represented by	代表者
@@ -495,6 +510,7 @@ Rows of modules (east-west: rows of pairs)	モジュールの列（東西向き�
 Rule	ルール
 Rule set	ルールセット
 SELV	SELV
+SELV, PELV and separation	SELV、PELV、分離
 Safety function	安全機能
 Save	保存
 Saved	保存済み
@@ -524,6 +540,9 @@ Show the row after the column	列の後に行を表示
 Side	側
 Sign in	サインイン
 Sign out	サインアウト
+Sign the report	報告書にサイン
+Signed	サイン済み
+Signed by {} on {}	{} が {} にサイン
 Signed in as {}	{} としてサインイン中
 Signed in as {} ({})	{} ({}) としてサインイン中
 Signed out	サインアウトしました
@@ -572,6 +591,7 @@ The freestanding PV array {} stands outside the plot boundary	野立てPVアレ�
 The identifier must not be empty	識別子は空にできません
 The long side of the modules along the rows	モジュールの長辺を列に沿わせる
 The page is released	ページはリリース済みです
+The project has no circuits fed from the mains	プロジェクトに電源から給電される回路がありません
 There is a connection symbol at this point already	この点にはすでに接続シンボルがあります
 Thermal	熱
 This page sets no cookies, uses no tracking and loads nothing from other servers.	このページは Cookie を設定せず、トラッキングを使わず、他のサーバーから何も読み込みません。
@@ -616,6 +636,7 @@ VAT ID	付加価値税番号
 Value	値
 Version	バージョン
 Viewer	ビューアー
+Visual inspection	目視点検
 Voltage	電圧
 Voltage drop (%)	電圧降下 (%)
 Warning	警告
@@ -655,6 +676,7 @@ the file exists already	ファイルは既に存在します
 this is a folder	これはフォルダーです
 yes	はい
 {} ({})	{} ({})
+{} circuits	{} 回路
 {} does not stand on the floor: choose a part marked for floor mounting	{} は床置きではありません: 床置きとしてマークされた部品を選択してください
 {} exists already	{} は既に存在します
 {} is not a PNG or JPEG image	{} は PNG または JPEG 画像ではありません

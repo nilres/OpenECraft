@@ -507,6 +507,17 @@ impl SourceField {
     }
 }
 
+/// The fields of the report data in the order of the forms (editor, web page): the
+/// report, the values measured at the origin and, in IT systems, the tests of the IT
+/// system. The signature is set by signing.
+pub const REPORT_FIELDS: [HeaderField; 7] =
+    [HeaderField::Client, HeaderField::Site, HeaderField::Installer, HeaderField::Reason, HeaderField::Inspector, HeaderField::NextInspection, HeaderField::Instruments];
+pub const ORIGIN_FIELDS: [HeaderField; 5] = [HeaderField::Ze, HeaderField::Ik, HeaderField::EarthElectrode, HeaderField::Bonding, HeaderField::FloorInsulation];
+pub const IT_FIELDS: [HeaderField; 2] = [HeaderField::Imd, HeaderField::FirstFault];
+
+/// The usual reasons for the test (English, translated where shown).
+pub const REASONS: [&str; 4] = [tr_const!("New installation"), tr_const!("Extension"), tr_const!("Change"), tr_const!("Repair")];
+
 /// The protective measures of a source: stored key and English title.
 pub const MEASURES: [(&str, &str); 4] =
     [("selv", tr_const!("SELV")), ("pelv", tr_const!("PELV")), ("separation", tr_const!("Electrical separation")), (NOT_APPLICABLE, tr_const!("No protective measure of its own"))];
@@ -1397,6 +1408,15 @@ impl Report {
     pub fn header_fields(&self) -> Vec<HeaderField> {
         HeaderField::ALL.into_iter().filter(|f| self.it || !f.is_it()).collect()
     }
+}
+
+/// The report as an Excel workbook: the summary, the circuits and the sources.
+pub fn workbook(r: &Report) -> Vec<u8> {
+    crate::xlsx::write(&[
+        (tr("Summary").to_string(), summary_table(r).sheet_rows()),
+        (tr("Circuits").to_string(), circuit_table(&r.circuits).sheet_rows()),
+        (tr("SELV, PELV and separation").to_string(), source_table(&r.sources).sheet_rows()),
+    ])
 }
 
 /// The circuits of the inspection and test report: one row per circuit, the missing

@@ -12,11 +12,13 @@ A page needs a name	Сторінці потрібна назва
 A routing path needs {} points at least	Траса прокладання потребує щонайменше {} точок
 A section cannot be moved into itself	Розділ не можна перемістити в самого себе
 Above	Зверху
+Above {} V: no SELV or PELV	Понад {} В: не БННН і не ЗННН
 Access token	Токен доступу
 Accessories	Аксесуари
 Accessory	Аксесуар
 Add	Додати
 Add a PDF of all pages	Додати PDF усіх сторінок
+Add an item	Додати пункт
 Add to favorites	Додати до вибраного
 Address	Адреса
 Administrator	Адміністратор
@@ -57,6 +59,7 @@ Category	Категорія
 Centred	По центру
 Certificates	Сертифікати
 Change	Зміна
+Changing the data or the results afterwards takes the signature away.	Подальша зміна даних або результатів знімає підпис.
 Channel	Канал
 Characteristic	Характеристика
 Check settings	Параметри перевірки
@@ -135,6 +138,7 @@ Done	Виконано
 Door	Двері
 Door cutout	Виріз у дверцятах
 Download	Завантажити
+Download the report as an Excel workbook	Завантажити протокол як книгу Excel
 Downloading {}…	Завантаження {}…
 Drag to turn the model	Перетягніть, щоб повернути модель
 Drawings	Креслення
@@ -146,6 +150,7 @@ Editor	Редактор
 Electrical separation	Електричне розділення
 Electro-fluid cross reference	Електро-гідропневматичні перехресні посилання
 Email	Ел. пошта
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Порожньо: типове значення. Задайте інші значення там, де видання стандарту, за яким перевіряють установку, відрізняється.
 Enclosure	Корпус
 Enclosures	Корпуси
 Enterprise integration	Інтеграція з корпоративними системами
@@ -165,6 +170,7 @@ Field wiring	Польовий монтаж
 File	Файл
 Files	Файли
 Filter	Фільтр
+Filter circuits…	Фільтр кіл…
 Filter devices…	Фільтрувати пристрої…
 First fault current Id (A)	Струм першого замикання Id (А)
 Fit	Умістити
@@ -202,6 +208,7 @@ Height	Висота
 Height above floor	Висота над підлогою
 History	Журнал
 Hose no.	№ шланга
+IT system	Система IT
 Identifier	Ідентифікатор
 Identifying letter	Літерний код
 Image	Зображення
@@ -273,6 +280,7 @@ Manufacturing	Виготовлення
 Marking	Маркування
 Match case	Враховувати регістр
 Material	Матеріал
+Measured at the origin	Виміряно на вводі
 Medium	Середовище
 Metal carriers meeting at a node are connected	Металеві кабельні конструкції, що сходяться у вузлі, з’єднані
 Minimum digits of the counter (leading zeros)	Мінімальна кількість цифр лічильника (нулі на початку)
@@ -300,6 +308,7 @@ Name of the scheme	Назва схеми
 Net	Мережа
 Never	Ніколи
 New group	Нова група
+New installation	Нова установка
 New name	Нова назва
 Next inspection	Наступна перевірка
 Next page	Наступна сторінка
@@ -307,6 +316,7 @@ No	Ні
 No Vault item matches a part of the project	Жоден елемент Vault не відповідає виробу проєкту
 No cable {}	Немає кабелю {}
 No circuit {}	Немає кола {}
+No circuits found	Кола не знайдено
 No connection point {}	Немає точки підключення {}
 No device {}	Немає пристрою {}
 No enclosure {}	Немає корпусу {}
@@ -339,6 +349,7 @@ Not a valid rule set file: {}	Недійсний файл набору прав�
 Not applicable	Не застосовується
 Not in the schematic	Немає на схемі
 Not passed	Не пройдено
+Not signed	Не підписано
 Not tested	Не перевірено
 Note	Примітка
 Notes	Примітки
@@ -358,6 +369,7 @@ Outer diameter	Зовнішній діаметр
 Output	Вихід
 Output voltage (V)	Вихідна напруга (В)
 Overview	Огляд
+Own item of the visual inspection	Власний пункт огляду
 PCT loop	Контур КВПіА
 PCT loop overview	Огляд контурів КВПіА
 PELV	ЗННН
@@ -416,6 +428,7 @@ Potentials	Потенціали
 Power	Потужність
 Power (kW)	Потужність (kW)
 Power loss	Втрати потужності
+Power supply unit	Блок живлення
 Pre-planning	Попереднє планування
 Press	Прес
 Previous page	Попередня сторінка
@@ -472,8 +485,10 @@ Remove from favorites	Вилучити з вибраного
 Remove the boundary	Видалити межу
 Remove the lightning protection system	Видалити блискавкозахист
 Remove the reference point	Видалити опорну точку
+Repair	Ремонт
 Report	Звіт
 Report blocks	Блоки звітів
+Report data and visual inspection	Дані протоколу та візуальний огляд
 Report: {}	Звіт: {}
 Reports	Звіти
 Represented by	Представник
@@ -497,6 +512,7 @@ Rows of modules (east-west: rows of pairs)	Ряди модулів (схід-з�
 Rule	Правило
 Rule set	Набір правил
 SELV	БННН
+SELV, PELV and separation	БННН, ЗННН і розділення
 Safety function	Функція безпеки
 Save	Зберегти
 Saved	Збережено
@@ -526,6 +542,9 @@ Show the row after the column	Показувати рядок після сто�
 Side	Сторона
 Sign in	Увійти
 Sign out	Вийти
+Sign the report	Підписати протокол
+Signed	Підписано
+Signed by {} on {}	Підписав {} {}
 Signed in as {}	Ви ввійшли як {}
 Signed in as {} ({})	Ви ввійшли як {} ({})
 Signed out	Ви вийшли
@@ -574,6 +593,7 @@ The freestanding PV array {} stands outside the plot boundary	Наземне ф�
 The identifier must not be empty	Позначення не може бути порожнім
 The long side of the modules along the rows	Довга сторона модулів уздовж рядів
 The page is released	Сторінку затверджено
+The project has no circuits fed from the mains	У проєкті немає кіл, що живляться від мережі
 There is a connection symbol at this point already	У цій точці вже є символ з'єднання
 Thermal	Тепловий режим
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Ця сторінка не встановлює файли cookie, не використовує відстеження й нічого не завантажує з інших серверів.
@@ -618,6 +638,7 @@ VAT ID	Номер платника ПДВ
 Value	Значення
 Version	Версія
 Viewer	Переглядач
+Visual inspection	Візуальний огляд
 Voltage	Напруга
 Voltage drop (%)	Спад напруги (%)
 Warning	Попередження
@@ -659,6 +680,7 @@ the file exists already	файл уже існує
 this is a folder	це папка
 yes	так
 {} ({})	{} ({})
+{} circuits	Кіл: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} не встановлюється на підлогу: виберіть виріб із позначкою монтажу на підлогу
 {} exists already	{} вже існує
 {} is not a PNG or JPEG image	{} не є зображенням PNG або JPEG
