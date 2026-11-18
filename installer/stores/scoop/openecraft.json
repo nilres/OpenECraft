@@ -1,0 +1,36 @@
+{
+    "version": "0.1.2",
+    "description": "Open source electrical CAE editor for schematics, reports and panel layout in 3D",
+    "homepage": "https://openecraft.org/",
+    "license": "MIT|Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/nilres/OpenECraft/releases/download/v0.1.2/OpenECraft-0.1.2-setup.exe",
+            "hash": "f254bba47ff33af744b78003948f18e7c6ef8fec88fab3b02179efbb35e76346"
+        }
+    },
+    "innosetup": true,
+    "bin": [
+        "openecraft-cli.exe",
+        "openecraft-parts-server.exe",
+        "openecraft-project-server.exe"
+    ],
+    "shortcuts": [
+        [
+            "openecraft.exe",
+            "OpenECraft"
+        ],
+        [
+            "openecraft-parts-manager.exe",
+            "OpenECraft parts manager"
+        ]
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/nilres/OpenECraft/releases/download/v$version/OpenECraft-$version-setup.exe"
+            }
+        }
+    }
+}

@@ -1,75 +1,173 @@
 # English<TAB>Magyar – the website (website/): the page and its demos (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+20 languages, switched while working: menus, generated reports and check messages follow at once.	20 nyelv, munka közben váltható: a menük, a létrehozott kimutatások és az ellenőrzési üzenetek azonnal követik.
 3D	3D
 3D models	3D-modellek
+A click in a room puts them on the nearest wall at their mounting height or on the ceiling, drawn with the symbols of installation plans after IEC 60617-11.	Egy kattintás a helyiségben a legközelebbi falra helyezi őket a szerelési magasságukban vagy a mennyezetre, az IEC 60617-11 szerinti installációs tervek szimbólumaival rajzolva.
 A command line, an MCP server for AI agents and plugins in any language add checks, reports, exports and commands.	Parancssor, MCP-szerver MI-ügynököknek és bármilyen nyelven írt bővítmények adnak hozzá ellenőrzéseket, kimutatásokat, exportokat és parancsokat.
+A community project for many years	Évek óta közösségi projekt
 A look inside	Pillantás a belsejébe
 A parts database with mounting data and 3D models, imports from EDZ, BMEcat and STEP, shared through the parts server.	Alkatrész-adatbázis szerelési adatokkal és 3D-modellekkel, importálás EDZ, BMEcat és STEP formátumból, megosztva az alkatrészszerveren keresztül.
+A scan or PDF of the drawing goes under a level, to scale by measuring one dimension. Find rooms detects the walls, doors and windows, Make rooms turns them into rooms.	A rajz szkennelt képe vagy PDF-je egy szint alá kerül, egy méret lemérésével méretarányosan. A Helyiségek felismerése megtalálja a falakat, ajtókat és ablakokat, a Helyiségek létrehozása helyiségeket készít belőlük.
 A schematic page of the demo project, drawn by OpenECraft	A bemutató projekt egy kapcsolási rajz oldala, az OpenECraft rajzolásában
+A tutorial from the first page	Oktatóanyag az első oldaltól
 About 330 IEC 60617 symbols, NFPA, GB, GOST and JIS sets, fluid power, P&ID and installation plans, and an editor for your own symbols.	Mintegy 330 IEC 60617 szimbólum, NFPA, GB, GOST és JIS készletek, fluidtechnika, P&ID és telepítési tervek, valamint szerkesztő a saját szimbólumokhoz.
+All of it is in the current release and described in the documentation.	Mindez megtalálható a jelenlegi kiadásban, és le van írva a dokumentációban.
+At a glance	Áttekintés
+Before you switch	Mielőtt váltana
 Bill of materials, terminal, cable and plug diagrams as live pages, own drawn forms and a project check that follows every change.	Anyagjegyzék, sorkapocs-, kábel- és csatlakozótervek naprakészen tartott oldalakként, saját rajzolt űrlapok és minden változást követő projektellenőrzés.
+Building installation	Épületinstalláció
 Built for scripts and AI agents	Szkriptekhez és MI-ügynökökhöz készült
+Cable length and voltage drop	Kábelhossz és feszültségesés
+Circuits as a single-line diagram	Áramkörök egyvonalas rajzként
 Click to explore the panel	Kattintson a szekrény felfedezéséhez
 Click to work in the editor	Kattintson a szerkesztőben való munkához
+Climate of the enclosure	Szekrényklíma
 Coil	Tekercs
 Coils and contacts form one device with live cross references and contact images, structure identifiers after IEC 81346, macros with variants.	A tekercsek és az érintkezők egyetlen készüléket alkotnak naprakész kereszthivatkozásokkal és érintkezőképekkel, struktúraazonosítók az IEC 81346 szerint, makrók változatokkal.
+Coming from EPLAN or AutoCAD Electrical	Váltás EPLAN-ról vagy AutoCAD Electricalról
 Command line and MCP	Parancssor és MCP
+Commercial, proprietary	Kereskedelmi, zárt forráskódú
+Comparison	Összehasonlítás
+Concepts: devices with tags, structure identifiers after IEC 81346, cross references, macros and generated report pages, as in other device-oriented tools.	Fogalmak: készülékek azonosítókkal, struktúraazonosítók az IEC 81346 szerint, kereszthivatkozások, makrók és létrehozott kimutatásoldalak, ahogy más készülékközpontú eszközökben is.
 Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.	Vezetékméretezés, rövidzárlat és szelektivitás, terhelésszámítás, EMC és biztonsági funkciók az ISO 13849-1 szerint.
+Cost of use	Használati költség
 Data exchange	Adatcsere
+Device-oriented electrical engineering; panel layout in 3D, fluid power and more as further products of the EPLAN platform	Készülékközpontú villamos tervezés; 3D-s szekrényelrendezés, fluidtechnika és más az EPLAN platform további termékeiként
 Device-oriented schematics	Készülékközpontú kapcsolási rajzok
 Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings.	Készülékek valós méretben síneken és lapokon, virtuális huzalozás a csatornák telítettségével, fúrási adatok, szekrényklíma, helyiségek és épületek.
+Distribution boards	Elosztók
 Download the latest release	A legújabb kiadás letöltése
 Drag to turn, pinch with two fingers to zoom.	Húzással forgatható, két ujjal csippentve nagyítható.
 Drag to turn, scroll to zoom.	Húzással forgatható, görgetéssel nagyítható.
+Drawing electrical schematics with a collection of symbols	Villamos kapcsolási rajzok rajzolása szimbólumgyűjteménnyel
 Drawings	Rajzok
+Drawings: DXF and DWG files are imported as graphics on a schematic page, and every page can be exported as DXF or DWG.	Rajzok: a DXF- és DWG-fájlok grafikaként kerülnek importálásra egy kapcsolási rajz oldalra, és minden oldal exportálható DXF vagy DWG formátumban.
+EPLAN and EPLAN Electric P8 are trademarks of EPLAN GmbH & Co. KG. Autodesk, AutoCAD and AutoCAD Electrical are trademarks of Autodesk, Inc. QElectroTech is the name of an independent open source project.	Az EPLAN és az EPLAN Electric P8 az EPLAN GmbH & Co. KG védjegyei. Az Autodesk, az AutoCAD és az AutoCAD Electrical az Autodesk, Inc. védjegyei. A QElectroTech egy független nyílt forráskódú projekt neve.
+Each example builds on the one before: from push buttons and lamps through a self-holding relay and a star-delta starter to PLC, panel layout and whole buildings.	Minden példa az előzőre épül: nyomógomboktól és jelzőlámpáktól egy öntartó relén és egy csillag-delta indítón át a PLC-ig, a szekrényelrendezésig és teljes épületekig.
+Electrical controls design as a toolset of AutoCAD	Vezérlések villamos tervezése az AutoCAD eszközkészleteként
+Electricians	Villanyszerelők
 Enclosure climate with a heat map of the mounting plate	Szekrényklíma a szerelőlap hőtérképével
 Engineering calculations	Mérnöki számítások
+Established for many years, widely used by AutoCAD users	Évek óta bevált, széles körben használják az AutoCAD-felhasználók
+Established for many years, widely used in control panel engineering	Évek óta bevált, széles körben használják a kapcsolószekrény-tervezésben
+Every circuit starts at a protective device of the distribution board, the spare ones marked, and runs through its cable from item to item.	Minden áramkör az elosztó egy védőkészülékénél kezdődik, a tartalékok jelölve vannak, és a kábelén halad végig elemről elemre.
 Every operation on a project is a command: on the command line, for AI agents through the MCP server, and for plugins. Try some on the project above.	A projekten végzett minden művelet parancs: a parancssorban, az MI-ügynököknek az MCP-szerveren keresztül és a bővítményeknek. Próbáljon ki néhányat a fenti projekten.
+Every step is a command as well, so a plan can also be drawn by a script or an AI agent.	Minden lépés egyben parancs is, így egy tervet szkript vagy MI-ügynök is megrajzolhat.
 Every table is generated from the project and stays current: change the schematic above and the lists below follow. Plugins add their own.	Minden táblázat a projektből készül, és naprakész marad: módosítsa a fenti kapcsolási rajzot, és az alábbi listák követik. A bővítmények a sajátjaikat adják hozzá.
 Everything an electrical project needs	Minden, amire egy villamos projektnek szüksége van
+Example projects, simplest first	Példaprojektek, a legegyszerűbbek elöl
 Export the project you just edited	Exportálja az imént szerkesztett projektet
 Features	Funkciók
+Feedback while drawing	Visszajelzés rajzolás közben
+Final circuits	Végáramkörök
+Find rooms works on walls drawn filled or hatched at right angles; on other drawings the rooms are drawn by hand. Cable lengths are estimates for planning, and a qualified electrician verifies the results against the regulations that apply.	A Helyiségek felismerése derékszögben, kitöltve vagy vonalkázva rajzolt falakkal működik; más rajzokon a helyiségeket kézzel kell megrajzolni. A kábelhosszak tervezési becslések, és egy szakképzett villanyszerelő ellenőrzi az eredményeket az érvényes előírások szerint.
+Floor plans on paper	Alaprajzok papíron
 Fluid power and harnesses	Fluidtechnika és kábelkötegek
 Fluid power linked to the electrical schematic	A villamos kapcsolási rajzhoz kapcsolt fluidtechnika
+Focus	Fókusz
+For a team, the parts server, the project server and the web editor run in your own network from Docker images, so the shop keeps its data.	Csapatoknál az alkatrészszerver, a projektszerver és a webes szerkesztő Docker-képfájlokból fut a saját hálózatában, így az adatok a cégnél maradnak.
+For electricians	Villanyszerelőknek
+For panel builders	Kapcsolószekrény-gyártóknak
+For schools and training	Iskoláknak és képzéshez
+For the whole class	Az egész osztálynak
 For your team	A csapatának
+Free electrical CAD for schools and training – OpenECraft	Ingyenes villamos CAD iskoláknak és képzéshez – OpenECraft
+Free for every student	Ingyenes minden tanulónak
+Free for every student and in the browser, with a tutorial and example projects from the simplest circuit up.	Ingyenes minden tanuló számára és a böngészőben, oktatóanyaggal és példaprojektekkel a legegyszerűbb áramkörtől kezdve.
+Free of charge	Ingyenes
+Free software for building installation: floor plans under the levels, outlets, switches and lights, final circuits with cable lengths and voltage drop.	Ingyenes szoftver épületinstallációhoz: alaprajzok a szintek alatt, aljzatok, kapcsolók és lámpák, végáramkörök kábelhosszakkal és feszültségeséssel.
 Free to use, free to change. Pick what fits you.	Szabadon használható, szabadon módosítható. Válassza azt, ami megfelel.
+Free, open source software for control panel builders: schematics, panel layout in 3D, wire lists with ferrules, a wiring assistant on the tablet and NC data.	Ingyenes, nyílt forráskódú szoftver kapcsolószekrény-gyártóknak: kapcsolási rajzok, 3D-s szekrényelrendezés, vezetéklisták érvéghüvelyekkel, huzalozási asszisztens táblagépen és NC-adatok.
 From source	Forráskódból
 From the first schematic page to the panel in 3D.	Az első kapcsolási rajz oldaltól a 3D-s szekrényig.
+From the floor plan to the distribution board	Az alaprajztól az elosztóig
+From the schematic through the panel layout in 3D to the wiring in the workshop, with production data for the machines.	A kapcsolási rajztól a 3D-s szekrényelrendezésen át a műhelyi huzalozásig, gyártási adatokkal a gépek számára.
+From the schematic to the wired control cabinet	A kapcsolási rajztól a huzalozott kapcsolószekrényig
+General facts, no prices: the makers of the other products describe them in detail on their websites.	Általános tények, árak nélkül: a többi termék gyártói részletesen bemutatják azokat a weboldalukon.
 Get OpenECraft	Az OpenECraft beszerzése
 Get it	Beszerzés
 Graphical terminal diagram	Grafikus sorkapocsterv
+Heat loss after IEC/TR 60890 from the power loss of the devices, with filter fans, heat exchangers or cooling units, and a heat map of the mounting plate.	Hőmérleg az IEC/TR 60890 szerint a készülékek veszteségi teljesítményéből, szűrős ventilátorokkal, hőcserélőkkel vagy hűtőegységekkel, valamint a szerelőlap hőtérképe.
+Help comes from the documentation and from the issue tracker of the project.	Segítséget a dokumentáció és a projekt hibakövetője nyújt.
+House connection boxes, distribution cabinets with component modules, metering with current transformers and PV feeders, in 3D with their busbars.	Csatlakozószekrények, elosztószekrények komponensmodulokkal, mérés áramváltókkal és napelemes leágazások, 3D-ben a gyűjtősínjeikkel.
+IEC 60617 symbols, structure identifiers after IEC 81346 and reports as in industry, so what is learned carries over to other tools.	IEC 60617 szimbólumok, struktúraazonosítók az IEC 81346 szerint és kimutatások, mint az iparban, így a tanultak más eszközökben is hasznosíthatók.
 In the browser	A böngészőben
+In the student's language	A tanuló nyelvén
 Installation guide	Telepítési útmutató
+Installation plans on the architect's floor plan	Installációs tervek az építész alaprajzán
+Installation plans on the floor plan of the building, final circuits with cable lengths and voltage drop, the distribution board in 3D.	Installációs tervek az épület alaprajzán, végáramkörök kábelhosszakkal és feszültségeséssel, az elosztó 3D-ben.
 Installers for Windows, Linux packages and a macOS disk image, with automatic updates.	Telepítők Windowshoz, Linux-csomagok és macOS-lemezkép, automatikus frissítésekkel.
+It comes with a small set of manufacturer catalogs, far from the large data portals of the commercial vendors; parts from EDZ, BMEcat and STEP files fill the gap.	Kisebb gyártói katalógusválasztékkal érkezik, messze a kereskedelmi szállítók nagy adatportáljaitól; az EDZ-, BMEcat- és STEP-fájlokból származó alkatrészek töltik ki a hiányt.
+It is a new project and has not been proven in years of production use the way the established tools have. Try it on a real project of yours before you rely on it.	Ez egy új projekt, és még nem bizonyított évekig tartó éles használatban, mint a bevált eszközök. Próbálja ki egy saját, valódi projektjén, mielőtt megbízna benne.
+Its symbol libraries and editing tools grow with every release, but users of the established tools will still miss functions they are used to.	Szimbólumkönyvtárai és szerkesztőeszközei minden kiadással bővülnek, de a bevált eszközök felhasználói még hiányolni fognak olyan funkciókat, amelyekhez hozzászoktak.
 Lamp	Jelzőlámpa
+Learn electrical planning on real software, for free	Tanuljon villamos tervezést valódi szoftverrel, ingyen
+Lengths along the installation zones after DIN 18015-3 and the voltage drop from the supply are worked out, checked against the rule sets and written into the cable list.	Az OpenECraft kiszámítja a DIN 18015-3 szerinti szerelési zónák menti hosszakat és a betáplálástól számított feszültségesést, ellenőrzi őket a szabálykészletek alapján, és beírja a kábellistába.
+License	Licenc
 Licenses	Licencek
 Live demo	Élő bemutató
+Looking for a free alternative to EPLAN Electric P8 or AutoCAD Electrical, or for more than drawing schematics? Here is how OpenECraft compares: what it does, what the others are known for, and where OpenECraft is still young.	Ingyenes alternatívát keres az EPLAN Electric P8 vagy az AutoCAD Electrical helyett, vagy többet, mint kapcsolási rajzok rajzolása? Így viszonyul hozzájuk az OpenECraft: mit tud, miről ismertek a többiek, és hol fiatal még az OpenECraft.
+Looking for an open source alternative to EPLAN or AutoCAD Electrical? How OpenECraft compares in license, platforms and features, and where it is still young.	Nyílt forráskódú alternatívát keres az EPLAN vagy az AutoCAD Electrical helyett? Hogyan viszonyul az OpenECraft licenc, platformok és funkciók tekintetében, és hol fiatal még.
+Made for your work	Az Ön munkájához készült
+Maturity	Érettség
 Menu	Menü
 Multi-level terminals, plugs and PLC cards with tag tables for TIA Portal, Studio 5000, TwinCAT, CODESYS and more.	Többszintes sorkapcsok, csatlakozódugók és PLC-kártyák változótáblákkal TIA Portalhoz, Studio 5000-hez, TwinCAT-hez, CODESYS-hez és másokhoz.
+New: first release in November 2026	Új: első kiadás 2026 novemberében
 No messages. The project passes the check.	Nincs üzenet. A projekt megfelel az ellenőrzésen.
 No screenshots: this is the page editor of OpenECraft. Select and move symbols, draw wires, place a contact and watch cross references, checks and reports follow.	Nem képernyőképek: ez az OpenECraft oldalszerkesztője. Jelöljön ki és mozgasson szimbólumokat, rajzoljon vezetékeket, helyezzen el egy érintkezőt, és figyelje, ahogy a kereszthivatkozások, az ellenőrzések és a kimutatások követik.
+Not public	Nem nyilvános
 On a touch screen one finger works like the left mouse button; two fingers move and zoom the view.	Érintőképernyőn egy ujj a bal egérgombként működik; két ujj mozgatja és nagyítja a nézetet.
 On the desktop	Asztali gépen
 One project file holds the schematics, the parts, the panel and the documents. Every function is also a command, so scripts and AI agents can do what you can.	Egyetlen projektfájl tartalmazza a kapcsolási rajzokat, az alkatrészeket, a szekrényt és a dokumentumokat. Minden funkció parancs is, így a szkriptek és az MI-ügynökök ugyanazt megtehetik, amit Ön.
+One project holds the schematic, the parts, the panel and the documents, so a change shows everywhere at once.	Egyetlen projekt tartalmazza a kapcsolási rajzot, az alkatrészeket, a szekrényt és a dokumentumokat, így egy változás egyszerre mindenhol megjelenik.
 Open and extensible	Nyitott és bővíthető
 Open source electrical CAE	Nyílt forráskódú villamos CAE
 Open source under the MIT and Apache-2.0 licenses.	Nyílt forráskód az MIT és az Apache-2.0 licenc alatt.
+Open source under the MIT and Apache-2.0 licenses: no licenses to count, no accounts, no expiry. Install it on every school computer or use it in the browser.	Nyílt forráskód az MIT és az Apache-2.0 licenc alatt: nincsenek számolandó licencek, nincsenek fiókok, nincs lejárat. Telepítse minden iskolai számítógépre, vagy használja a böngészőben.
+Open source: GNU GPL	Nyílt forráskód: GNU GPL
+Open source: MIT or Apache-2.0	Nyílt forráskód: MIT vagy Apache-2.0
 Open the web editor	A webes szerkesztő megnyitása
+OpenECraft beside EPLAN Electric P8, AutoCAD Electrical and QElectroTech: what each is known for, and where OpenECraft is still young.	Az OpenECraft az EPLAN Electric P8, az AutoCAD Electrical és a QElectroTech mellett: miről ismert mindegyik, és hol fiatal még az OpenECraft.
+OpenECraft beside the tools you know	Az OpenECraft az Ön által ismert eszközök mellett
+OpenECraft carries a control cabinet from the device-oriented schematic through the panel layout in 3D into the workshop: mounting, wiring and the documentation for the customer, from one project file.	Az OpenECraft a kapcsolószekrényt a készülékközpontú kapcsolási rajztól a 3D-s szekrényelrendezésen át a műhelyig viszi: szerelés, huzalozás és az ügyfélnek szóló dokumentáció, egyetlen projektfájlból.
+OpenECraft costs nothing, needs no license server and runs in the browser, so every student works with the same program at school and at home. The project check points out mistakes while they draw.	Az OpenECraft semmibe sem kerül, nem igényel licencszervert, és a böngészőben fut, így minden tanuló ugyanazzal a programmal dolgozik az iskolában és otthon. A projektellenőrzés már rajzolás közben jelzi a hibákat.
+OpenECraft for electricians	OpenECraft villanyszerelőknek
+OpenECraft for electricians: installation plans and circuits	OpenECraft villanyszerelőknek: installációs tervek és áramkörök
+OpenECraft for panel builders	OpenECraft kapcsolószekrény-gyártóknak
+OpenECraft for panel builders and control cabinet shops	OpenECraft kapcsolószekrény-gyártóknak és szekrényépítő műhelyeknek
+OpenECraft for schools	OpenECraft iskoláknak
+OpenECraft is not affiliated with, endorsed by or sponsored by any of them. The names are used only to compare, and what this page says about the other products is general public information as of November 2026.	Az OpenECraft egyikükkel sem áll kapcsolatban, és egyikük sem támogatja vagy szponzorálja. A nevek csak az összehasonlítást szolgálják, és amit ez az oldal a többi termékről mond, az 2026 novemberi állapot szerinti általános, nyilvános információ.
 OpenECraft is open source under the MIT license or the Apache License 2.0, at your choice. It contains fonts and libraries of others under their own licenses.	Az OpenECraft nyílt forráskódú, választása szerint az MIT licenc vagy az Apache License 2.0 alatt. Mások betűkészleteit és könyvtárait tartalmazza azok saját licencei alatt.
+OpenECraft is young. Plan one real cabinet with it beside the tool you use today, and see what it does well and what you miss.	Az OpenECraft fiatal. Tervezzen vele egy valódi szekrényt a ma használt eszköze mellett, és nézze meg, miben jó és mi hiányzik Önnek.
 OpenECraft plans electrical systems: device-oriented schematics, live reports, panel layout with routed wiring and the documentation for the customer. One code base for Windows, Linux, macOS and the browser.	Az OpenECraft villamos berendezéseket tervez: készülékközpontú kapcsolási rajzok, naprakész kimutatások, szekrényelrendezés nyomvonalon vezetett huzalozással és a dokumentáció az ügyfélnek. Egyetlen kódbázis Windowsra, Linuxra, macOS-re és a böngészőbe.
+OpenECraft plans the electrical installation of a building: the floor plan as a scan or PDF under each level, socket outlets, switches and lights in the rooms, final circuits from the distribution board, and the board itself in 3D.	Az OpenECraft egy épület villamos installációját tervezi: az alaprajz szkennelt képként vagy PDF-ként minden szint alatt, dugaszolóaljzatok, kapcsolók és lámpák a helyiségekben, végáramkörök az elosztóból, és maga az elosztó 3D-ben.
+OpenECraft vs. EPLAN, AutoCAD Electrical and QElectroTech	OpenECraft kontra EPLAN, AutoCAD Electrical és QElectroTech
 OpenECraft – open source electrical CAE	OpenECraft – nyílt forráskódú villamos CAE
+Outlets, switches and lights on the floor plan of a level, final circuits from the distribution board with cable lengths and voltage drop.	Aljzatok, kapcsolók és lámpák egy szint alaprajzán, végáramkörök az elosztóból kábelhosszakkal és feszültségeséssel.
+Outlets, switches, lights	Aljzatok, kapcsolók, lámpák
 PDF, DXF, DWG and SVG; the panel as glTF, STEP, IGES, IFC and JT; connectors for ERP, PDM and PLM systems.	PDF, DXF, DWG és SVG; a szekrény glTF, STEP, IGES, IFC és JT formátumban; csatolók ERP-, PDM- és PLM-rendszerekhez.
 PLC and automation	PLC és automatizálás
+Paid license	Fizetős licenc
+Panel builders	Kapcsolószekrény-gyártók
 Panel layout in 3D	Szekrényelrendezés 3D-ben
 Parts and data portal	Alkatrészek és adatportál
 Parts server, project server and the web editor as Docker images for your own network.	Alkatrészszerver, projektszerver és a webes szerkesztő Docker-képfájlokként a saját hálózatához.
+Parts: EDZ files of the EPLAN Data Portal and EPLAN XML part files are imported with their data; the 2D window macros of EDZ files become symbols and their 3D macros the 3D model of the part.	Alkatrészek: az EPLAN Data Portal EDZ-fájljai és az EPLAN XML alkatrészfájlok az adataikkal együtt importálhatók; az EDZ-fájlok 2D ablakmakróiból szimbólumok, 3D makróiból pedig az alkatrész 3D modellje lesz.
 Planning	Tervezés
+Platforms	Platformok
 Pneumatic and hydraulic circuits linked to the electrics, wire harnesses with KBL export and nailboards.	A villamos részhez kapcsolt pneumatikus és hidraulikus körök, kábelkötegek KBL-exporttal és szerelőtáblák.
 Potentials with colours and cross-sections, cables with cores, automatic wire, device and page numbering.	Potenciálok színekkel és keresztmetszetekkel, kábelek erekkel, a vezetékek, készülékek és oldalak automatikus számozása.
+Production data	Gyártási adatok
 Project check	Projektellenőrzés
+Projects: projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported yet; a project is drawn anew in OpenECraft.	Projektek: az EPLAN Electric P8 és az AutoCAD Electrical projektjei még nem importálhatók; a projektet újra kell rajzolni az OpenECraftban.
+Public	Nyilvános
 Push button	Nyomógomb
 Report a problem	Hiba bejelentése
 Reports and checks	Kimutatások és ellenőrzések
 Reports that write themselves	Kimutatások, amelyek megírják önmagukat
+Schematics, reports, panel layout in 3D, the workshop and building installation in one program	Kapcsolási rajzok, kimutatások, 3D-s szekrényelrendezés, a műhely és az épületinstalláció egyetlen programban
+Schools	Iskolák
+Schools and training	Iskolák és képzés
 Screenshot of a graphical terminal diagram	Képernyőkép egy grafikus sorkapocstervről
 Screenshot of a pneumatic circuit linked to the schematic	Képernyőkép a kapcsolási rajzhoz kapcsolt pneumatikus körről
 Screenshot of the heat map of a mounting plate	Képernyőkép egy szerelőlap hőtérképéről
@@ -78,30 +176,45 @@ Screenshot of the wiring assistant in the 3D view	Képernyőkép a huzalozási s
 Screenshot of two bayed enclosures in the 3D panel layout	Képernyőkép két sorolt szekrényről a 3D-s szekrényelrendezésben
 Search commands	Parancsok keresése
 Search reports	Kimutatások keresése
+See for yourself	Győződjön meg róla saját maga
+See the comparison	Az összehasonlítás megtekintése
 Shared projects with page locks and roles, released pages, approval workflow, comments and redlining.	Megosztott projektek oldalzárakkal és szerepkörökkel, kiadott oldalak, jóváhagyási folyamat, megjegyzések és korrektúra.
 Source code	Forráskód
 Speaks 20 languages	20 nyelven beszél
+Standards from the start	Szabványok a kezdetektől
+Start with an example	Kezdje egy példával
 Switch the language while you work: menus, generated reports and check messages follow at once. Try it, this page and the demos switch too.	Váltson nyelvet munka közben: a menük, a létrehozott kimutatások és az ellenőrzési üzenetek azonnal követik. Próbálja ki, ez az oldal és a bemutatók is váltanak.
 Symbol libraries	Szimbólumkönyvtárak
 Tap to explore the panel	Koppintson a szekrény felfedezéséhez
 Tap to work in the editor	Koppintson a szerkesztőben való munkához
+Teach electrical planning with free, open source CAE software that runs in the browser: a tutorial, example projects from the first circuit up and 20 languages.	Tanítson villamos tervezést ingyenes, nyílt forráskódú CAE-szoftverrel, amely a böngészőben fut: oktatóanyag, példaprojektek az első áramkörtől kezdve és 20 nyelv.
 Teams and revisions	Csapatok és revíziók
 Terminals, plugs, PLC	Sorkapcsok, csatlakozódugók, PLC
 The demo could not start in this browser. It needs WebGL and WebAssembly.	A bemutató nem indult el ebben a böngészőben. WebGL és WebAssembly szükséges hozzá.
+The example projects include a conveyor with PLC and control cabinet, a pump station with structure identifiers, two bayed floor-standing enclosures with busbars and climate, and the main low-voltage distribution of an industrial plant. Open them in the live demo or in the web editor.	A példaprojektek között van egy szállítószalag PLC-vel és kapcsolószekrénnyel, egy szivattyútelep struktúraazonosítókkal, két sorolt, padlón álló szekrény gyűjtősínekkel és klímával, valamint egy ipari üzem kisfeszültségű főelosztója. Nyissa meg őket az élő bemutatóban vagy a webes szerkesztőben.
+The examples include building services with water supply and PV storage, transformer-rated metering with PV and grid protection, and an office building with roof, stair and installation.	A példák között van épületgépészet vízellátással és napelemes tárolóval, áramváltós mérés napelemmel és hálózatvédelemmel, valamint egy irodaépület tetővel, lépcsővel és szereléssel.
 The exports run in your browser as well. Nothing is uploaded.	Az exportok is az Ön böngészőjében futnak. Semmi sem kerül feltöltésre.
+The first examples are a lamp circuit, a self-holding relay and a star-delta motor starter; later ones add a PLC, electro-pneumatics, structure identifiers, revisions, control cabinets, rooms and buildings.	Az első példák egy jelzőlámpás áramkör, egy öntartó relé és egy csillag-delta motorindító; a későbbiek PLC-vel, elektropneumatikával, struktúraazonosítókkal, revíziókkal, kapcsolószekrényekkel, helyiségekkel és épületekkel bővülnek.
 The first {} of {} rows	Az első {} sor a(z) {} sorból
 The full editor as a web application. Nothing to install, your projects stay on your computer.	A teljes szerkesztő webalkalmazásként. Nincs mit telepíteni, a projektjei a számítógépén maradnak.
+The items become devices with tags in their rooms, and a generated single-line page shows every circuit with its protective device and cable.	Az elemekből azonosítóval ellátott készülékek lesznek a helyiségeikben, és egy létrehozott egyvonalas oldal minden áramkört megmutat a védőkészülékével és a kábelével.
 The links to the source code, the downloads and the documentation lead to other sites, which have privacy notices of their own.	A forráskódra, a letöltésekre és a dokumentációra mutató hivatkozások más webhelyekre vezetnek, amelyeknek saját adatvédelmi tájékoztatójuk van.
+The live demo runs the editor's own code in your browser; the web editor is the whole program, nothing to install.	Az élő bemutató a szerkesztő saját kódját futtatja az Ön böngészőjében; a webes szerkesztő a teljes program, nincs mit telepíteni.
 The live demos, the console and the exports run in your browser. The project you edit here is not sent anywhere.	Az élő bemutatók, a konzol és az exportok az Ön böngészőjében futnak. Az itt szerkesztett projektet a rendszer sehová sem küldi el.
 The panel in 3D	A szekrény 3D-ben
+The project check follows every change and leads to the place of each message, so students see their mistakes at once.	A projektellenőrzés minden változást követ, és minden üzenet helyére elvezet, így a tanulók azonnal látják a hibáikat.
+The routed wires as a checklist for the workshop, with the current wire in 3D, its colour, length and ferrule: a tablet with the web editor becomes a wiring station.	A nyomvonalon vezetett vezetékek ellenőrzőlistaként a műhely számára, az aktuális vezetékkel 3D-ben, a színével, hosszával és érvéghüvelyével: egy táblagép a webes szerkesztővel huzalozási munkahellyé válik.
 The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example.	Ugyanaz a projekt a műhelyből nézve: szekrény, sínek, csatornák és készülékek valós méretben, a vezetékek a csatornákon át vezetve. Váltson egy példa szekrényei, helyiségei és telke között.
 The schematic editor with ribbon and page navigator	A kapcsolásirajz-szerkesztő menüszalaggal és oldalnavigátorral
+The tutorial walks from the first schematic page to the bill of materials: pages, symbols, wires, parts, terminals, PLC, the project check, reports and the panel layout.	Az oktatóanyag az első kapcsolási rajz oldaltól az anyagjegyzékig vezet: oldalak, szimbólumok, vezetékek, alkatrészek, sorkapcsok, PLC, a projektellenőrzés, kimutatások és a szekrényelrendezés.
+The web editor and a project server for shared projects run in the school's own network from Docker images.	A webes szerkesztő és egy projektszerver a megosztott projektekhez Docker-képfájlokból fut az iskola saját hálózatában.
 The wiring assistant shows the next wire in 3D	A huzalozási segéd 3D-ben mutatja a következő vezetéket
 These are the commands of the command line and the MCP server, run on the project of the demo above.	Ezek a parancssor és az MCP-szerver parancsai, a fenti bemutató projektjén futtatva.
 Third-party licenses	Harmadik felek licencei
 This page is drawn right now by the editor's own code, running in your browser.	Ezt az oldalt éppen most rajzolja a szerkesztő saját kódja, amely az Ön böngészőjében fut.
 Tip: delete a wire and see the check react. Undo brings it back.	Tipp: töröljön egy vezetéket, és figyelje az ellenőrzés reakcióját. A Visszavonás visszahozza.
 To show an example faster the next time, your browser keeps the wiring it calculated for it in its cache. Nothing else is stored; clearing the site data of the browser removes it.	Hogy egy példa legközelebb gyorsabban megjelenjen, a böngésző a gyorsítótárában őrzi a hozzá kiszámított huzalozást. Semmi mást nem tárol; a webhely adatainak törlése a böngészőben eltávolítja.
+Trademarks	Védjegyek
 Try it: the schematic editor, live	Próbálja ki: a kapcsolásirajz-szerkesztő, élőben
 Try the live demo	Az élő bemutató kipróbálása
 Try these	Próbálja ki ezeket
@@ -109,8 +222,23 @@ Two bayed enclosures with rails, ducts and busbars	Két sorolt szekrény sínekk
 Type a command, or help	Írjon be egy parancsot, vagy: help
 Type help for the commands, or pick one on the right.	A parancsokhoz írja be: help, vagy válasszon egyet jobbra.
 Unknown command: {}	Ismeretlen parancs: {}
+Uses	Felhasználási területek
+What OpenECraft does today	Amit az OpenECraft ma tud
+What comes across, and what does not yet.	Mi vihető át, és mi még nem.
+What your shop gets	Amit a cége kap
+When you want a free, long-standing open source program for drawing electrical schematics.	Ha ingyenes, régóta létező nyílt forráskódú programot szeretne villamos kapcsolási rajzok rajzolására.
+When you want schematics, reports, panel layout in 3D and the workshop in one free program, on any operating system or in the browser and open to scripts and AI agents, and a young project suits you.	Ha kapcsolási rajzokat, kimutatásokat, 3D-s szekrényelrendezést és a műhelyt szeretné egyetlen ingyenes programban, bármely operációs rendszeren vagy a böngészőben, szkriptek és MI-ügynökök számára nyitottan, és egy fiatal projekt megfelel Önnek.
+When your customers ask for their project files, your company has standardised on one of them, or you need the support and the part data of a large vendor.	Ha az ügyfelei ezekben az eszközökben készült projektfájlokat kérnek, a cége valamelyikükre szabványosított, vagy egy nagy szállító támogatására és alkatrészadataira van szüksége.
+Where OpenECraft is still young	Ahol az OpenECraft még fiatal
+Whether you build control cabinets, plan buildings or teach: see what OpenECraft does for you, and how it compares with the tools you know.	Akár kapcsolószekrényeket épít, akár épületeket tervez vagy tanít: nézze meg, mit tesz Önért az OpenECraft, és hogyan viszonyul az Ön által ismert eszközökhöz.
+Which one fits?	Melyik illik Önhöz?
+Why it suits a classroom	Miért illik a tanórákhoz
+Windows, Linux and macOS	Windows, Linux és macOS
+Windows, Linux, macOS and the web browser	Windows, Linux, macOS és a webböngésző
+Wire lists with routed lengths, stripping lengths and ferrules after DIN 46228-4, wires sorted for wire processing machines, drilling patterns and NC data of the mounting plates.	Vezetéklisták nyomvonal szerinti hosszakkal, csupaszítási hosszakkal és DIN 46228-4 szerinti érvéghüvelyekkel, a vezetékek vezetékmegmunkáló gépek számára rendezve, furatképek és a szerelőlapok NC-adatai.
 Wires, cables, potentials	Vezetékek, kábelek, potenciálok
 Wiring and harnesses	Huzalozás és kábelkötegek
+Wiring and mounting assistants	Huzalozási és szerelési asszisztensek
 Written in Rust. Clone the repository and run it.	Rust nyelven íródott. Klónozza a tárolót, és futtassa.
 commands for scripts and AI agents	parancs szkriptekhez és MI-ügynökökhöz
 example projects	példaprojekt

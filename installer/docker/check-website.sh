@@ -42,6 +42,13 @@ curl -fsS "$url/de.html" -o de.html
 grep -qF '<html lang="de">' de.html
 grep -qF '<link rel="canonical" href="https://site.example/openecraft/de.html" />' de.html
 curl -fsS "$url/sitemap.xml" | grep -qF '<loc>https://site.example/openecraft/ja.html</loc>'
+# The pages beside it, with their tags and in the sitemap.
+curl -fsS "$url/compare/" -o compare.html
+grep -qF '<link rel="canonical" href="https://site.example/openecraft/compare/" />' compare.html
+grep -qF '<link rel="alternate" hreflang="de" href="https://site.example/openecraft/compare/de.html" />' compare.html
+curl -fsS "$url/compare/de.html" | grep -qF '<link rel="canonical" href="https://site.example/openecraft/compare/de.html" />'
+curl -fsS "$url/sitemap.xml" | grep -qF '<loc>https://site.example/openecraft/education/fr.html</loc>'
+test "$(curl -s -o /dev/null -w '%{http_code}' "$url/compare")" = 301
 # The module is named in the page and loaded by its script; the first sheet is a picture.
 grep -q 'window.OPENECRAFT_MODULE = \["./openecraft-website-[0-9a-f]*\.js", "./openecraft-website-[0-9a-f]*_bg\.wasm"\]' site.html
 if grep -q 'rel="modulepreload"' site.html; then exit 1; fi

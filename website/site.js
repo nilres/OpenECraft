@@ -85,6 +85,37 @@
         }
     }
 
+    // The links to the pages of the site (data-page) lead to the page in the language of
+    // this one: compare/ from de.html is compare/de.html, ../#get is ../de.html#get.
+    function pages(lang) {
+        const file = lang === "en" ? "" : lang + ".html";
+        for (const a of $$("a[data-page]")) {
+            a.dataset.page ||= a.getAttribute("href");
+            const [folder, section] = a.dataset.page.split("#");
+            a.href = folder + file + (section === undefined ? "" : "#" + section);
+        }
+        for (const a of $$(".languages a")) {
+            if (a.hreflang === lang) a.setAttribute("aria-current", "page");
+            else a.removeAttribute("aria-current");
+        }
+    }
+
+    // The pages beside the main one have no module: each is written in every language
+    // (a file of its own), and the menu of the languages leads to the file chosen.
+    function languagePages() {
+        const links = $$(".languages a");
+        const select = $("#language");
+        if (moduleUrl || !links.length || !select) return;
+        select.replaceChildren(...links.map(a => {
+            const o = element("option", "", a.textContent);
+            o.value = a.href;
+            o.selected = a.hreflang === pageLang;
+            return o;
+        }));
+        select.hidden = false;
+        select.addEventListener("change", () => location.href = select.value);
+    }
+
     // The links of the bar as a menu on a narrow screen (site.css shows the button there).
     function menu() {
         const bar = $(".nav");
@@ -123,6 +154,11 @@
         for (const name of ["licenses", "privacy", "legal"]) {
             const dialog = $("#" + name);
             const open = $(`#${name}-open`);
+            // The pages beside the main one link to its dialogs (../#privacy).
+            if (!dialog) {
+                if (open) open.hidden = name === "legal" && !field("name");
+                continue;
+            }
             if (!dialog.showModal || (name === "legal" && !field("name"))) {
                 open.hidden = true;
                 continue;
@@ -593,6 +629,7 @@
         texts = call("texts");
         document.documentElement.lang = code;
         $("#language").value = code;
+        pages(code);
         for (const b of $$("[data-language]")) b.classList.toggle("on", b.dataset.language === code);
         translate();
         loadExamples();
@@ -718,7 +755,9 @@
             load();
         };
         for (const use of uses) addEventListener(use, start, { passive: true });
-        if (location.hash) return start();
+        // A section of the demos asked for at once; a dialog (#privacy) needs no module.
+        const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (location.hash && !(target && target.tagName === "DIALOG")) return start();
         if (saving) return;
         const idle = () => window.requestIdleCallback ? requestIdleCallback(start, { timeout: 3000 }) : setTimeout(start, 1500);
         if (document.readyState === "complete") idle();
@@ -748,6 +787,8 @@
     }
 
     links();
+    pages(pageLang);
+    languagePages();
     menu();
     legal();
     reveal();

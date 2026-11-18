@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- A page beside the main one (src/pages.rs): plain HTML, written in every language
+         by the build (pages.sh). It loads nothing beyond its own address. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <title data-t>OpenECraft for electricians: installation plans and circuits</title>
+    <meta name="description" content="Free software for building installation: floor plans under the levels, outlets, switches and lights, final circuits with cable lengths and voltage drop." />
+    <meta name="theme-color" content="#070b14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenECraft" />
+    <meta property="og:title" content="OpenECraft for electricians: installation plans and circuits" />
+    <meta property="og:description" content="Free software for building installation: floor plans under the levels, outlets, switches and lights, final circuits with cable lengths and voltage drop." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- site address (installer/docker/website-site.sh) -->
+    <!-- /site address -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "OpenECraft for electricians: installation plans and circuits",
+        "description": "Free software for building installation: floor plans under the levels, outlets, switches and lights, final circuits with cable lengths and voltage drop.",
+        "about": {
+            "@type": "SoftwareApplication",
+            "name": "OpenECraft",
+            "applicationCategory": "DesignApplication",
+            "applicationSubCategory": "Electrical CAE",
+            "operatingSystem": "Windows, Linux, macOS, web browser",
+            "isAccessibleForFree": true,
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR"
+            }
+        },
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Electricians and planners of building installations"
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="../site.css" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <script src="../config.js"></script>
+    <script src="../site.js" defer></script>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="nav">
+    <a class="brand" data-page href="../"><img src="../icon.svg" alt="" width="30" height="30" /><span>OpenECraft</span></a>
+    <!-- On a narrow screen the links are a menu this button opens (site.js). -->
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" hidden><span class="bars" aria-hidden="true"></span><span class="sr" data-t>Menu</span></button>
+    <nav id="nav-links">
+        <a data-page href="../#features" data-t>Features</a>
+        <a data-page href="../#studio" data-t>Live demo</a>
+        <a data-page href="../panel-builders/" data-t>Panel builders</a>
+        <a data-page href="../electricians/" aria-current="page" data-t>Electricians</a>
+        <a data-page href="../education/" data-t>Schools</a>
+        <a data-page href="../compare/" data-t>Comparison</a>
+        <a data-page href="../#get" data-t>Get it</a>
+        <a class="menu-only" data-link="repository" href="#" data-t>Source code</a>
+    </nav>
+    <div class="nav-right">
+        <select id="language" aria-label="Language" hidden></select>
+        <a class="button ghost" data-link="repository" href="#" data-t>Source code</a>
+    </div>
+</header>
+
+<main id="top">
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>For electricians</p>
+        <h1 data-t>Installation plans on the architect's floor plan</h1>
+        <p class="lead" data-t>OpenECraft plans the electrical installation of a building: the floor plan as a scan or PDF under each level, socket outlets, switches and lights in the rooms, final circuits from the distribution board, and the board itself in 3D.</p>
+        <div class="actions">
+            <a class="button primary" data-page href="../#studio" data-t>Try the live demo</a>
+            <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
+        </div>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>From the floor plan to the distribution board</h2>
+    <p class="sub" data-t>Every step is a command as well, so a plan can also be drawn by a script or an AI agent.</p>
+    <div class="cards">
+        <article class="card"><h3 data-t>Floor plans on paper</h3><p data-t>A scan or PDF of the drawing goes under a level, to scale by measuring one dimension. Find rooms detects the walls, doors and windows, Make rooms turns them into rooms.</p></article>
+        <article class="card"><h3 data-t>Outlets, switches, lights</h3><p data-t>A click in a room puts them on the nearest wall at their mounting height or on the ceiling, drawn with the symbols of installation plans after IEC 60617-11.</p></article>
+        <article class="card"><h3 data-t>Final circuits</h3><p data-t>Every circuit starts at a protective device of the distribution board, the spare ones marked, and runs through its cable from item to item.</p></article>
+        <article class="card"><h3 data-t>Cable length and voltage drop</h3><p data-t>Lengths along the installation zones after DIN 18015-3 and the voltage drop from the supply are worked out, checked against the rule sets and written into the cable list.</p></article>
+        <article class="card"><h3 data-t>Circuits as a single-line diagram</h3><p data-t>The items become devices with tags in their rooms, and a generated single-line page shows every circuit with its protective device and cable.</p></article>
+        <article class="card"><h3 data-t>Distribution boards</h3><p data-t>House connection boxes, distribution cabinets with component modules, metering with current transformers and PV feeders, in 3D with their busbars.</p></article>
+        <article class="card"><h3 data-t>Engineering calculations</h3><p data-t>Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.</p></article>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>Start with an example</h2>
+    <p class="text" data-t>The examples include building services with water supply and PV storage, transformer-rated metering with PV and grid protection, and an office building with roof, stair and installation.</p>
+</section>
+
+<section class="band">
+    <h2 data-t>Before you switch</h2>
+    <p class="text" data-t>Find rooms works on walls drawn filled or hatched at right angles; on other drawings the rooms are drawn by hand. Cable lengths are estimates for planning, and a qualified electrician verifies the results against the regulations that apply.</p>
+    <div class="actions"><a class="button ghost" data-page href="../compare/" data-t>See the comparison</a></div>
+</section>
+
+<section id="try" class="band">
+    <h2 data-t>See for yourself</h2>
+    <p class="sub" data-t>The live demo runs the editor's own code in your browser; the web editor is the whole program, nothing to install.</p>
+    <div class="actions">
+        <a class="button primary" data-page href="../#studio" data-t>Try the live demo</a>
+        <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
+        <a class="button ghost" data-link="downloads" href="#" data-t>Download the latest release</a>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div><img src="../icon.svg" alt="" width="22" height="22" /> <b>OpenECraft</b> · <span data-t>Open source under the MIT and Apache-2.0 licenses.</span></div>
+    <div class="links">
+        <a data-link="documentation" data-path="/tutorial.md" href="#" data-t>Tutorial</a>
+        <a data-link="documentation" data-path="/plugins.md" href="#" data-t>Plugins</a>
+        <a data-link="documentation" data-path="/command-line.md" href="#" data-t>Command line and MCP</a>
+        <a data-link="issues" href="#" data-t>Report a problem</a>
+        <a id="licenses-open" data-page href="../#licenses" data-t>Licenses</a>
+        <a id="privacy-open" data-page href="../#privacy" data-t>Privacy</a>
+        <a id="legal-open" data-page href="../#legal" hidden data-t>Legal notice</a>
+    </div>
+    <div class="links">
+        <a data-page href="../panel-builders/" data-t>Panel builders</a>
+        <a data-page href="../electricians/" data-t>Electricians</a>
+        <a data-page href="../education/" data-t>Schools</a>
+        <a data-page href="../compare/" data-t>Comparison</a>
+    </div>
+    <!-- This page in every language (de.html, …), written by the build (pages.sh). -->
+    <nav class="languages" aria-label="Language">
+        <a href="./" hreflang="en" lang="en">English</a>
+        <a href="de.html" hreflang="de" lang="de">Deutsch</a>
+        <a href="fr.html" hreflang="fr" lang="fr">Français</a>
+        <a href="es.html" hreflang="es" lang="es">Español</a>
+        <a href="pt.html" hreflang="pt" lang="pt">Português</a>
+        <a href="it.html" hreflang="it" lang="it">Italiano</a>
+        <a href="nl.html" hreflang="nl" lang="nl">Nederlands</a>
+        <a href="pl.html" hreflang="pl" lang="pl">Polski</a>
+        <a href="cs.html" hreflang="cs" lang="cs">Čeština</a>
+        <a href="ru.html" hreflang="ru" lang="ru">Русский</a>
+        <a href="uk.html" hreflang="uk" lang="uk">Українська</a>
+        <a href="tr.html" hreflang="tr" lang="tr">Türkçe</a>
+        <a href="sv.html" hreflang="sv" lang="sv">Svenska</a>
+        <a href="da.html" hreflang="da" lang="da">Dansk</a>
+        <a href="fi.html" hreflang="fi" lang="fi">Suomi</a>
+        <a href="hu.html" hreflang="hu" lang="hu">Magyar</a>
+        <a href="ro.html" hreflang="ro" lang="ro">Română</a>
+        <a href="zh.html" hreflang="zh" lang="zh">简体中文</a>
+        <a href="ja.html" hreflang="ja" lang="ja">日本語</a>
+        <a href="ko.html" hreflang="ko" lang="ko">한국어</a>
+    </nav>
+    <p class="fine"><span data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</span> <span data-t>It is not affiliated with, endorsed by or sponsored by the owners of these names.</span></p>
+    <p class="fine" data-t>OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.</p>
+</footer>
+</body>
+</html>

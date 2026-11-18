@@ -35,3 +35,13 @@ command_arguments = ["run", "--release", "-p", "openecraft-core", "--example", "
 stage = "post_build"
 command = "cargo"
 command_arguments = ["run", "--release", "-p", "openecraft-i18n", "--example", "pages"]
+
+# The pages beside it (compare/, panel-builders/, …) in every language as well.
+[[hooks]]
+stage = "post_build"
+command = "sh"
+command_arguments = ["pages.sh"]
+
+[hooks.windows]
+command = "powershell"
+command_arguments = ["-ExecutionPolicy", "Bypass", "-File", "pages.ps1"]

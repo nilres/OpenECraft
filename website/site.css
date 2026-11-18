@@ -277,6 +277,28 @@ footer b { color: var(--text); }
     .legal dl div { grid-template-columns: 1fr; gap: 0; }
 }
 .noscript { text-align: center; padding: 20px; color: var(--amber); }
+.languages { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; }
+.languages a { color: var(--muted); }
+.languages a[aria-current] { color: var(--text); font-weight: 600; }
+
+/* The pages beside the main one (compare/, panel-builders/, …): text, lists and a table. */
+.page-hero { grid-template-columns: minmax(0, 1fr); padding-bottom: 16px; }
+.page-hero .lead { max-width: 46em; }
+.band .text { color: var(--muted); font-size: 17px; max-width: 54em; margin: 14px 0 0; }
+.band .actions { margin-top: 24px; }
+.nav nav a[aria-current] { color: var(--text); }
+.points { margin: 22px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; max-width: 60em; }
+.points li { position: relative; padding: 14px 18px 14px 46px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); color: var(--muted); }
+.points li::before { content: ""; position: absolute; left: 18px; top: 22px; width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px rgba(58, 214, 255, .6); }
+.points.caveats li::before { background: var(--amber); box-shadow: 0 0 10px rgba(245, 184, 46, .5); }
+.compare-scroll { overflow-x: auto; margin-top: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+table.compare { font-size: 15px; min-width: 760px; }
+table.compare th, table.compare td { padding: 12px 14px; vertical-align: top; white-space: normal; }
+table.compare thead th { position: static; background: #14203a; font-size: 16px; }
+table.compare tbody th { color: var(--text); background: rgba(255, 255, 255, .03); width: 16%; }
+table.compare td { color: var(--muted); width: 21%; }
+table.compare td:first-of-type { color: var(--text); }
+table.compare tr:last-child > * { border-bottom: 0; }
 
 /* Sections fade in when they come into view (set by site.js). */
 .reveal { opacity: 0; translate: 0 24px; transition: opacity .7s, translate .7s; }

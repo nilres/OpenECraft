@@ -118,27 +118,45 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   `output`, `folder`, `database`, `target` and template files); default the working
   folder of the server, `*` allows every folder. An agent misled by text it reads (a
   project, a part, a web page) cannot read or overwrite files elsewhere, such as other
-  projects or plugin folders.
+  projects or plugin folders. Relative paths are resolved against the working folder,
+  not against `OPENECRAFT_MCP_ROOT`: with a client that starts the server in a folder of
+  its own (Claude Desktop), the agent has to use absolute paths in the root folder.
 - `OPENECRAFT_MCP_TOOLS` limits the tools the MCP server offers, for clients that take
   only a limited number: names separated by commas, `parts_*` for all tools starting
   with `parts_` (e.g. `new_project,open_project,save_project,place_symbol,connect,check,export`).
+  All tools together describe themselves in about 270 kB; drawing schematics needs
+  about 40 of them ([list](launch/ai/README.md#fewer-tools-for-clients-with-a-limit)).
 - `new_project --path` does not replace an existing file unless `overwrite` is given.
   `search_projects` searches the current folder unless a database or folder is given.
 
-Register the MCP server with an agent, e.g. Claude Code:
+The MCP server is `openecraft-cli` of the packages: on Windows the setup component
+*Command line and MCP server* (installation type *Full*, not part of *Editor*), in
+`%LOCALAPPDATA%\Programs\OpenECraft\` (or `C:\Program Files\OpenECraft\` for all
+users); on macOS `/Applications/OpenECraft.app/Contents/MacOS/openecraft-cli`; on Linux
+`/usr/bin/openecraft-cli` (deb, rpm), `~/.local/bin` (tar.gz), `<AppImage> cli`,
+`flatpak run --command=openecraft-cli io.github.nilres.OpenECraft` or `openecraft.cli`
+(snap). Register it with an agent, e.g. Claude Code (started in the folder of the
+projects):
 
 ```bash
 claude mcp add openecraft -- /path/to/openecraft-cli mcp
+claude mcp add --scope user -e OPENECRAFT_MCP_ROOT=/home/me/projects openecraft -- openecraft-cli mcp
 ```
 
-or in the `mcpServers` configuration of other clients:
+or in the `mcpServers` configuration of other clients (Claude Desktop:
+`claude_desktop_config.json` in `%APPDATA%\Claude\`, `~/Library/Application Support/Claude/`
+or `~/.config/Claude/`; Cursor: `~/.cursor/mcp.json`; VS Code: `.vscode/mcp.json` with
+`servers` instead of `mcpServers`):
 
 ```json
-{ "mcpServers": { "openecraft": { "command": "openecraft-cli", "args": ["mcp"] } } }
+{ "mcpServers": { "openecraft": { "command": "openecraft-cli", "args": ["mcp"],
+    "env": { "OPENECRAFT_MCP_ROOT": "/home/me/projects" } } } }
 ```
 
 The agent can read and write any file the server process can access; start it in a
 working directory (and with a parts server token) you are fine with the agent using.
+[Let an AI agent draw your schematic](launch/ai/README.md) has a worked example with
+its transcript, example prompts and the setup of more clients.
 
 ## Plugins
 

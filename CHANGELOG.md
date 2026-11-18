@@ -32,6 +32,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   manufacturer catalogs, readable without an account) and a public project server at
   [project-server.openecraft.org](https://project-server.openecraft.org) (with an
   account). The packages name the website as their homepage.
+- **Pages of the website for comparing and for each kind of work:** OpenECraft beside
+  EPLAN Electric P8, AutoCAD Electrical and QElectroTech (`/compare/`), and pages for
+  panel builders, electricians and schools (`/panel-builders/`, `/electricians/`,
+  `/education/`), readable without WebAssembly and in the languages of the website.
+- **Contributing and AI agents:** a contributing guide, issue forms for bugs, features
+  and parts, and a guide with a reproducible demo for using the MCP server with Claude
+  Code, Claude Desktop, Cursor or VS Code ([AI agents](docs/launch/ai/README.md)); the
+  store listing of the Linux packages has screenshots.
 - **Legal notice, disclaimer and privacy notice in the editor and on the servers:**
   *Help › Legal and privacy* of the editor and *Legal and privacy* of the parts manager
   show the disclaimer of OpenECraft and a privacy notice (what the application stores
