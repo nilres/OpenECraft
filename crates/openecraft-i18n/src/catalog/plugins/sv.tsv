@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	Rita T-stycket som en f
 Draw wires in their colour	Rita ledningar i deras färg
 Draw wires to the connection points facing its free arms	Rita ledare till anslutningspunkterna som är vända mot dess fria armar
 Drawing	Ritning
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Ritar en kabeldefinitionslinje; ledningarna den korsar blir ledare i kabeln (en ny kabel om ingen anges)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Ritar en ledning mellan två anslutningspunkter, t.ex. -K1:A1 till -S1:14 (#id:pin för tvetydiga, namnet för potentialer, 1, 2… för punkter utan beteckning)
 Draws a wire through two or more points	Ritar en ledning genom två eller fler punkter
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Ritar ledningarna i deras färg på schemasidorna och i PDF- / SVG-exporten, eller i svart
@@ -526,6 +525,7 @@ No rule for {} and {}	Ingen regel för {} och {}
 No rule library or rule set {}	Inget regelbibliotek eller regelverk {}
 No rule {}	Ingen regel {}
 No safety function {}	Ingen säkerhetsfunktion {}
+No source {}	Ingen källa {}
 No standard size of {} holds the layout of {}	Ingen standardstorlek av {} rymmer layouten för {}
 No terminal strip {}	Ingen plintrad {}
 No terminal {} on strip {}	Ingen plint {} på plintraden {}
@@ -937,7 +937,6 @@ Unknown earthing system: {}	Okänt jordningssystem: {}
 Unknown face {}	Okänd yta {}
 Unknown fastening: {}	Okänd fastsättning: {}
 Unknown field object: {}	Okänt fältobjekt: {}
-Unknown field: {}	Okänt fält: {}
 Unknown group kind: {}	Okänd grupptyp: {}
 Unknown installation: {}	Okänd uppställning: {}
 Unknown insulation: {}	Okänd isolering: {}
@@ -1020,7 +1019,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi eller other
 copper or aluminium	copper eller aluminium
 device (default), position, cross_section or number	device (standard), position, cross_section eller number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages eller parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection eller inspection_data
 error, warning, info, off, or default to take the change back	error, warning, info, off eller default för att ta tillbaka ändringen
 false takes the acceptance back (default true)	false tar tillbaka godkännandet (standard true)
 foundation, ring or rod	foundation, ring eller rod

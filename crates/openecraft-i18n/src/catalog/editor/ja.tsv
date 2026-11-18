@@ -940,6 +940,7 @@ In the structure of the current page	現在のページの構造内
 Include manually set numbers	手動で設定した番号を含める
 Index	インデックス
 Indices	インデックス
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	初回点検 (IEC 60364-6、DIN VDE 0100-600): 回路図から入力され、結果はここに入力します
 Inner walls	内壁
 Input bytes	入力バイト
 Inputs	入力
@@ -1035,7 +1036,6 @@ Library	ライブラリ
 Lightning protection	雷保護
 Lightning protection of building {}	建物 {} の雷保護
 Like two fingers	2 本指と同じ
-Limits	制限値
 Limits in effect	適用中の制限値
 Line to PE at the supply point; 0 = from the highest short-circuit current	電源供給点での線-PE 間。0 = 最大短絡電流から算出
 Line up on the rail	レール上に整列
@@ -1177,6 +1177,7 @@ NC data of this face (DXF)	この面の NC データ (DXF)
 Nailboard (SVG)…	布線板 (SVG)…
 Name and cross reference	名前と相互参照
 Name on the server	サーバー上の名前
+Name the inspector in the report data first.	先にレポートのデータに点検者を入力してください。
 Name; Data Type; Logical Address; Comment – for PLC programming tools	名前; データ型; 論理アドレス; コメント – PLC プログラミングツール用
 Named copy of this form, for report blocks	このフォームの名前付きコピー (レポートブロック用)
 Navigators	ナビゲーター
@@ -1796,7 +1797,6 @@ Save to project server: {}	プロジェクトサーバーに保存：{}
 Save to project server: {} – the connection is lost, saving tries again	プロジェクトサーバーに保存：{} – 接続が切れています。保存は再試行します
 Save workspace	ワークスペースを保存
 Save workspace…	ワークスペースを保存…
-Saved	保存済み
 Saved the properties of {} (revision {})	{} のプロパティを保存しました (リビジョン {})
 Saved to	保存先
 Saved to the project server (revision {})	プロジェクトサーバーに保存しました (リビジョン {})
@@ -2108,6 +2108,7 @@ The properties of the selection in a window beside the page	ページの横の�
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	その間にプロジェクトサーバーでプロパティが変更されました。再読み込みすると表示されます。入力した内容は置き換えられます。
 The rail or mounting base; its accessories are the hooks, clamps and ballast	レールまたは架台。付属品はフック、クランプ、バラスト
 The recalculation keeps frozen routes as long as they are still possible	再計算では、可能な限り固定されたルートが維持されます
+The report as tables and report pages	表とレポートページとしてのレポート
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	ファイルタブ付きのリボンがメニューに代わります。Ctrl+Shift+P で任意のコマンドを検索できます。
 The rooms of the level side by side; click the level again for all of the plant	階の部屋を並べて表示。もう一度階をクリックすると設備全体
 The second fault is checked at the line-to-earth voltage	二重地絡は対地電圧でチェックされます
@@ -2141,6 +2142,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	表題欄
 Title blocks, plot frames and page templates	表題欄、図枠、ページテンプレート
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	部品サーバー上ですべてのプロジェクトが共有する表題欄、レポートスキーム、図枠（部品 › 部品サーバー）
+Title or standard, e.g. VDE 0100-600	タイトルまたは規格 (例: VDE 0100-600)
 To do	未完了
 Toggle corner direction while drawing wires	電線描画中にコーナーの向きを切り替え
 Toggle routing around symbols (wire tool)	シンボル回避ルーティングの切り替え (電線ツール)
@@ -2187,7 +2189,6 @@ Used on {} of {} pages	{} / {} ページで使用
 User / group	ユーザー / グループ
 User defined property	ユーザー定義プロパティ
 User names, separated by commas	ユーザー名 (カンマ区切り)
-Value	値
 Value set	値セット
 Value sets	値セット
 Values	値
@@ -2354,7 +2355,6 @@ male	オス
 manual	手動
 max. {} °C	最大 {} °C
 may overlap	重なり可
-missing	なし
 model	モデル
 name	名前
 no	いいえ

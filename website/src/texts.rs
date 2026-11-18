@@ -159,6 +159,23 @@ pub const TEXTS: &[&str] = &[
     tr_const!("example projects"),
     tr_const!("languages"),
     tr_const!("{} commands. Type help and a name for its parameters, for example: help rename_device"),
+    // The pages beside this one (src/pages.rs).
+    tr_const!("Comparison"),
+    tr_const!("Electricians"),
+    tr_const!("Free for every student and in the browser, with a tutorial and example projects from the simplest circuit up."),
+    tr_const!("From the schematic through the panel layout in 3D to the wiring in the workshop, with production data for the machines."),
+    tr_const!("Installation plans on the floor plan of the building, final circuits with cable lengths and voltage drop, the distribution board in 3D."),
+    tr_const!("Made for your work"),
+    tr_const!("OpenECraft beside EPLAN Electric P8, AutoCAD Electrical and QElectroTech: what each is known for, and where OpenECraft is still young."),
+    tr_const!("OpenECraft for electricians"),
+    tr_const!("OpenECraft for panel builders"),
+    tr_const!("OpenECraft for schools"),
+    tr_const!("Panel builders"),
+    tr_const!("Schools"),
+    tr_const!("Schools and training"),
+    tr_const!("See the comparison"),
+    tr_const!("Uses"),
+    tr_const!("Whether you build control cabinets, plan buildings or teach: see what OpenECraft does for you, and how it compares with the tools you know."),
 ];
 
 /// The texts of the page in a language: English text to translation.

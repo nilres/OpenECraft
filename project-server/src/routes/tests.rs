@@ -1151,3 +1151,76 @@ fn summaries_of_older_servers_have_no_metadata() {
     assert_eq!((json["created_by"].as_str(), json["changed_at"].as_u64()), (Some("anna"), Some(5)));
     assert!(serde_json::to_value(ProjectSummary::default()).unwrap().get("created_by").is_none());
 }
+
+/// Results of the inspection entered on site (the web page on a tablet): reviewers
+/// enter them without opening the project, viewers only read them, and an editor
+/// saving meanwhile keeps them.
+#[tokio::test]
+async fn inspection_results_are_entered_without_opening_the_project() {
+    let app = app(Some(TOKEN));
+    let t = sign_in(&app, &[("kim", Some(ProjectRole::Reviewer), &[]), ("vic", Some(ProjectRole::Viewer), &[])]).await;
+    let (kim, vic) = (&t[0], &t[1]);
+    let req = CreateRequest { name: "Demo".into(), user: "admin".into(), project: openecraft_core::sample::demo_project() };
+    let (s, text) = with(&app, "POST", "/api/v1/projects", TOKEN, &req).await;
+    assert!(s.is_success(), "{text}");
+    let opened: Opened = serde_json::from_str(&text).unwrap();
+    let path = "/api/v1/projects/Demo/inspection";
+
+    let (s, _, text) = get(&app, path, Some(vic)).await;
+    assert_eq!(s, StatusCode::OK, "{text}");
+    let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
+    let f1 = sheet.report.circuits.iter().find(|c| c.circuit == "-F1").unwrap();
+    assert_eq!((f1.characteristic.as_deref(), f1.rated, f1.result.rev), (Some("C"), Some(6.0), 0));
+    assert_eq!(sheet.rights, [ProjectRight::View]);
+    let values = |pairs: &[(&str, &str)]| pairs.iter().map(|(k, v)| (k.to_string(), v.to_string())).collect();
+    let update = InspectionUpdate { circuit: "-F1".into(), values: values(&[("insulation", "> 500"), ("function", "ok")]), ..Default::default() };
+    assert_eq!(with(&app, "PUT", path, vic, &update).await.0, StatusCode::FORBIDDEN);
+
+    let (s, text) = with(&app, "PUT", path, kim, &update).await;
+    assert!(s.is_success(), "{text}");
+    let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
+    let f1 = sheet.report.circuits.iter().find(|c| c.circuit == "-F1").unwrap();
+    assert_eq!((f1.result.insulation.as_str(), f1.result.tester.as_str(), f1.result.rev), ("> 500", "kim", 3));
+    assert_eq!(f1.verdict, inspection::Verdict::Incomplete);
+    assert_eq!(sheet.revision, opened.snapshot.revision + 1);
+    // Loaded before: refused. Unknown circuits, fields and bad values: refused.
+    assert_eq!(with(&app, "PUT", path, kim, &update).await.0, StatusCode::CONFLICT);
+    let wrong = |circuit: &str, pairs: &[(&str, &str)]| InspectionUpdate { circuit: circuit.into(), rev: 3, values: values(pairs), ..Default::default() };
+    assert_eq!(with(&app, "PUT", path, kim, &wrong("-K1", &[("remark", "x")])).await.0, StatusCode::NOT_FOUND);
+    assert_eq!(with(&app, "PUT", path, kim, &wrong("-F1", &[("colour", "red")])).await.0, StatusCode::BAD_REQUEST);
+    assert_eq!(with(&app, "PUT", path, kim, &wrong("-F1", &[("rcd_time", "fast")])).await.0, StatusCode::BAD_REQUEST);
+
+    // The editor, who opened the project before, saves a change of their own.
+    let mut changed = opened.snapshot.project.clone();
+    changed.pages[1].description = "Changed in the editor".into();
+    let save = SaveRequest { session: opened.session.clone(), project: changed, base_revision: opened.snapshot.revision, ..Default::default() };
+    let (s, text) = with(&app, "PUT", "/api/v1/projects/Demo", TOKEN, &save).await;
+    assert!(s.is_success(), "{text}");
+    let saved: Snapshot = serde_json::from_str(&text).unwrap();
+    assert_eq!(saved.project.inspection.result("-F1").unwrap().insulation, "> 500");
+    assert_eq!(saved.project.pages[1].description, "Changed in the editor");
+
+    // The data of the report and the visual inspection: no circuit, the header's rev.
+    let data = InspectionUpdate { values: values(&[("inspector", "Kim"), ("check.fire", "ok")]), ..Default::default() };
+    let (s, text) = with(&app, "PUT", path, kim, &data).await;
+    assert!(s.is_success(), "{text}");
+    let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
+    assert_eq!((sheet.report.header.inspector.as_str(), sheet.report.header.rev), ("Kim", 2));
+    assert_eq!(sheet.report.checks.iter().find(|c| c.key == "check.fire").unwrap().answer, "ok");
+    assert_eq!(with(&app, "PUT", path, kim, &data).await.0, StatusCode::CONFLICT);
+    let bad_answer = InspectionUpdate { rev: 2, values: values(&[("check.fire", "maybe")]), ..Default::default() };
+    assert_eq!(with(&app, "PUT", path, kim, &bad_answer).await.0, StatusCode::BAD_REQUEST);
+    // A source of SELV or PELV circuits.
+    let source = sheet.report.sources[0].device.clone();
+    let pelv = InspectionUpdate { source: source.clone(), values: values(&[("measure", "pelv"), ("insulation", "2")]), ..Default::default() };
+    let (s, text) = with(&app, "PUT", path, kim, &pelv).await;
+    assert!(s.is_success(), "{text}");
+    let sheet: InspectionSheet = serde_json::from_str(&text).unwrap();
+    assert_eq!(sheet.report.sources[0].result.measure, "pelv");
+    let unknown = InspectionUpdate { source: "-X9".into(), values: values(&[("measure", "pelv")]), ..Default::default() };
+    assert_eq!(with(&app, "PUT", path, kim, &unknown).await.0, StatusCode::NOT_FOUND);
+
+    let (s, headers, _) = get(&app, &format!("{path}.xlsx?lang=de"), Some(vic)).await;
+    assert_eq!(s, StatusCode::OK);
+    assert!(headers[header::CONTENT_DISPOSITION].to_str().unwrap().contains("Demo-inspection.xlsx"));
+}

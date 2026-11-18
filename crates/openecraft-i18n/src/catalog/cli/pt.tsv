@@ -223,13 +223,11 @@ Saves the project to its file or to a new path	Salva o projeto em seu arquivo ou
 Scale drawings down that do not fit on the page (default: true)	Reduzir os desenhos que não cabem na página (padrão: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Termos de pesquisa, por exemplo, company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Pesquisa os itens do vault (número, título, revisão, estado do ciclo de vida, número de peça)
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Pesquisa as peças no servidor de peças (portal de dados) por texto, grupos, catálogo, ciclo de vida e dados técnicos
 Segment path (default: all segments)	Caminho do segmento (padrão: todos os segmentos)
 Server URL, e.g. http://127.0.0.1:8090	URL do servidor, por exemplo, http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	Define o servidor de peças (URL e token de acesso, ou usuário e senha) e mostra seu estado
 Settings scheme file (JSON)	Arquivo de esquema de configurações (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Mostra uma tabela (dispositivos, conexões, bornes, cabos, plugues, CLP, páginas ou peças) com suas linhas; a chave de uma linha serve para alterá-la
-Shows all data of a part	Mostra todos os dados de uma peça
 Shows the changes of a part on the parts server, or the part as of one change	Mostra as alterações de uma peça no servidor de peças ou a peça no estado de uma alteração
 Shows the favorites of the signed in user, optionally adding or removing a part	Mostra os favoritos do usuário conectado, opcionalmente adicionando ou removendo uma peça
 Shows the manifest of a project archive	Mostra o manifesto de um arquivo compactado de projeto
@@ -284,6 +282,7 @@ Values to set (name: value; an empty value removes a property)	Valores a definir
 Vault user name (signs in)	Nome de usuário do Vault (entra)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	O que é gravado: oec (arquivo de projeto), oecp (projeto dividido em uma pasta própria) ou oecz (arquivo compactado); padrão: pela extensão da saída
 Width and height must be greater than 0	Largura e altura devem ser maiores que 0
+Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Palavras a procurar nos títulos, nomes e termos de pesquisa (normas como VDE 0100-600) dos relatórios
 Write the table as CSV to this file	Gravar a tabela como CSV neste arquivo
 Writes the check scheme of the project (checks switched off, message levels) to a file	Grava o esquema de verificação do projeto (verificações desativadas, níveis de mensagem) em um arquivo
 Writes the embedded file of a document page	Grava o arquivo incorporado de uma página de documento
@@ -295,7 +294,6 @@ csv (default) or eplan_xml	csv (padrão) ou eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement ou wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine ou exchange
 json (default), csv or xlsx (Excel, needs path)	json (padrão), csv ou xlsx (Excel, precisa de path)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nInicia um servidor Model Context Protocol em stdin / stdout: as ferramentas desta lista para agentes de IA, com o projeto mantido na memória (save_project o grava, undo / redo revertem chamadas individuais). OPENECRAFT_MCP_TOOLS limita as ferramentas oferecidas.\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nMostra a versão da linha de comando (também --version ou -V)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover ou um relatório: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo e redo só funcionam em uma sessão MCP: a linha de comando abre o projeto de novo a cada comando

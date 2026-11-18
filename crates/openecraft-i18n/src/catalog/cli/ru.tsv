@@ -223,13 +223,11 @@ Saves the project to its file or to a new path	Сохраняет проект �
 Scale drawings down that do not fit on the page (default: true)	Уменьшать чертежи, которые не помещаются на лист (по умолчанию: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Условия поиска, например company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Ищет элементы хранилища (номер, название, ревизия, состояние жизненного цикла, номер изделия)
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Ищет изделия на сервере изделий (портал данных) по тексту, группам, каталогу, жизненному циклу и техническим данным
 Segment path (default: all segments)	Путь сегмента (по умолчанию: все сегменты)
 Server URL, e.g. http://127.0.0.1:8090	URL сервера, например http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	Задаёт сервер изделий (URL и маркер доступа или пользователь и пароль) и показывает его состояние
 Settings scheme file (JSON)	Файл схемы настроек (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Показывает таблицу (устройства, соединения, клеммы, кабели, штекеры, ПЛК, листы или изделия) с её строками; ключ строки служит для её изменения
-Shows all data of a part	Показывает все данные изделия
 Shows the changes of a part on the parts server, or the part as of one change	Показывает изменения изделия на сервере изделий или изделие в состоянии на момент изменения
 Shows the favorites of the signed in user, optionally adding or removing a part	Показывает избранное вошедшего пользователя и при необходимости добавляет или удаляет изделие
 Shows the manifest of a project archive	Показывает манифест архива проекта
@@ -284,6 +282,7 @@ Values to set (name: value; an empty value removes a property)	Задаваем�
 Vault user name (signs in)	Имя пользователя Vault (выполняет вход)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Что записывается: oec (файл проекта), oecp (разделённый проект в собственной папке) или oecz (архив); по умолчанию: по расширению выходного файла
 Width and height must be greater than 0	Ширина и высота должны быть больше 0
+Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Слова для поиска в названиях, именах и ключевых словах (стандартах, например VDE 0100-600) отчётов
 Write the table as CSV to this file	Записать таблицу в этот файл в формате CSV
 Writes the check scheme of the project (checks switched off, message levels) to a file	Записывает схему проверки проекта (отключённые проверки, уровни сообщений) в файл
 Writes the embedded file of a document page	Записывает встроенный файл листа документа
@@ -295,7 +294,6 @@ csv (default) or eplan_xml	csv (по умолчанию) или eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement или wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine или exchange
 json (default), csv or xlsx (Excel, needs path)	json (по умолчанию), csv или xlsx (Excel, требуется path)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nЗапускает сервер Model Context Protocol на stdin / stdout: инструменты этого списка для ИИ-агентов, проект хранится в памяти (save_project записывает его, undo / redo отменяют отдельные вызовы). OPENECRAFT_MCP_TOOLS ограничивает предлагаемые инструменты.\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nПоказывает версию командной строки (также --version или -V)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover или отчёт: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo и redo работают только в сеансе MCP: командная строка открывает проект заново для каждой команды

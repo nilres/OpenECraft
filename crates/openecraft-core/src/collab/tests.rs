@@ -271,6 +271,22 @@ fn review_records_need_no_lock() {
     assert_eq!(out.review.live_comments().count(), 2);
 }
 
+/// Results of the inspection entered elsewhere (the web page on a tablet) meanwhile
+/// stay when an editor saves, and the editor's own results need no lock.
+#[test]
+fn inspection_results_need_no_lock() {
+    use crate::inspection::{set, Field};
+    let (sh, mut prj) = shared(Vec::new());
+    set(&mut prj, "-F1", Field::Insulation, "250").unwrap();
+    assert!(sh.unlocked_changes(&prj).is_empty());
+    assert!(sh.has_changes(&prj) && !sh.in_sync(&prj));
+    let mut theirs = sh.base.clone();
+    set(&mut theirs, "-F2", Field::LoopImpedance, "0.4").unwrap();
+    let out = merge(&theirs, &prj, &Owned::default());
+    assert_eq!(out.inspection.results.len(), 2);
+    assert_eq!(out.inspection.result("-F1").unwrap().insulation, "250");
+}
+
 #[test]
 fn roles_and_projects_of_users() {
     let rights = |u: &ProjectUser, project: &str| Policy::<ProjectRight>::default().access(&u.identity(), &u.grants()).rights(project);
@@ -378,18 +394,20 @@ fn a_copy_starts_without_the_records_of_the_source() {
     source.revisions.push(crate::model::revision::Revision { name: "A".into(), ..Default::default() });
     source.baselines.push(Default::default());
     source.review.comments.push(crate::model::review::Comment { id: 9, text: "check".into(), ..Default::default() });
+    crate::inspection::set(&mut source, "-F1", crate::inspection::Field::Insulation, "250").unwrap();
 
     let mut info = source.info.clone();
     info.name = "Copy".into();
     let copy = copy_of(&source, Some(info), false);
     assert_eq!(copy.info.name, "Copy");
     assert_eq!(copy.pages, source.pages);
-    assert!(copy.review.is_empty() && copy.revisions.is_empty() && copy.baselines.is_empty());
+    assert!(copy.review.is_empty() && copy.inspection.is_empty() && copy.revisions.is_empty() && copy.baselines.is_empty());
     assert_eq!(copy.workflow, source.workflow, "settings stay");
     // The same but for the info and the records.
     let mut same = copy.clone();
     same.info = source.info.clone();
     same.review = source.review.clone();
+    same.inspection = source.inspection.clone();
     same.revisions = source.revisions.clone();
     same.baselines = source.baselines.clone();
     assert_eq!(same, source);

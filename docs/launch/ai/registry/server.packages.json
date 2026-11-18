@@ -1,0 +1,70 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.nilres/openecraft",
+  "title": "OpenECraft",
+  "description": "Electrical CAE: draw schematics, assign parts, run checks, export reports, PDF, SVG and DXF",
+  "version": "0.1.3",
+  "websiteUrl": "https://github.com/nilres/OpenECraft/blob/master/docs/launch/ai/README.md",
+  "repository": {
+    "url": "https://github.com/nilres/OpenECraft",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/nilres/OpenECraft/master/assets/icon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": ["any"]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/nilres/OpenECraft/releases/download/v0.1.3/openecraft-mcp-0.1.3-windows-x64.mcpb",
+      "version": "0.1.3",
+      "fileSha256": "<sha256 of the Windows bundle>",
+      "transport": { "type": "stdio" }
+    },
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/nilres/OpenECraft/releases/download/v0.1.3/openecraft-mcp-0.1.3-macos.mcpb",
+      "version": "0.1.3",
+      "fileSha256": "<sha256 of the macOS bundle>",
+      "transport": { "type": "stdio" }
+    },
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/nilres/OpenECraft/releases/download/v0.1.3/openecraft-mcp-0.1.3-linux-x64.mcpb",
+      "version": "0.1.3",
+      "fileSha256": "<sha256 of the Linux bundle>",
+      "transport": { "type": "stdio" }
+    },
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/nilres/openecraft-mcp:0.1.3",
+      "transport": { "type": "stdio" },
+      "runtimeArguments": [
+        {
+          "type": "named",
+          "name": "--mount",
+          "description": "The folder of your projects, mounted at /projects in the container",
+          "value": "type=bind,src={projects},dst=/projects",
+          "isRequired": true,
+          "variables": {
+            "projects": {
+              "description": "Folder of the OpenECraft projects on this computer",
+              "format": "filepath",
+              "isRequired": true
+            }
+          }
+        }
+      ],
+      "environmentVariables": [
+        {
+          "name": "OPENECRAFT_MCP_TOOLS",
+          "description": "Comma separated tool names to offer (default: the tools for schematics, the others through find_tools and call_tool; * for all, over 440); e.g. core,panel*,parts_*",
+          "isRequired": false
+        }
+      ]
+    }
+  ]
+}

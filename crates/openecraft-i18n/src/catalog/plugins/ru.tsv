@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	Рисовать узе
 Draw wires in their colour	Рисовать провода их цветом
 Draw wires to the connection points facing its free arms	Провести провода к точкам подключения напротив его свободных плеч
 Drawing	Чертёж
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Рисует линию определения кабеля; пересекаемые ею провода становятся жилами кабеля (новый кабель, если кабель не указан)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Рисует провод между двумя точками подключения, например от -K1:A1 к -S1:14 (#id:pin для неоднозначных, имя для потенциалов, 1, 2… для точек без обозначения)
 Draws a wire through two or more points	Рисует провод через две или более точек
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Рисует провода на листах схем и при экспорте в PDF / SVG их цветом или чёрным
@@ -526,6 +525,7 @@ No rule for {} and {}	Нет правила для {} и {}
 No rule library or rule set {}	Нет библиотеки правил или набора правил {}
 No rule {}	Нет правила {}
 No safety function {}	Нет функции безопасности {}
+No source {}	Нет источника {}
 No standard size of {} holds the layout of {}	Ни один стандартный размер {} не вмещает компоновку {}
 No terminal strip {}	Нет клеммной колодки {}
 No terminal {} on strip {}	Нет клеммы {} на колодке {}
@@ -937,7 +937,6 @@ Unknown earthing system: {}	Неизвестный тип системы заз�
 Unknown face {}	Неизвестная поверхность {}
 Unknown fastening: {}	Неизвестное крепление: {}
 Unknown field object: {}	Неизвестный полевой объект: {}
-Unknown field: {}	Неизвестное поле: {}
 Unknown group kind: {}	Неизвестный вид группы: {}
 Unknown installation: {}	Неизвестный способ установки: {}
 Unknown insulation: {}	Неизвестная изоляция: {}
@@ -1020,7 +1019,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi или other
 copper or aluminium	copper или aluminium
 device (default), position, cross_section or number	device (по умолчанию), position, cross_section или number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages или parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection или inspection_data
 error, warning, info, off, or default to take the change back	error, warning, info, off или default, чтобы отменить изменение
 false takes the acceptance back (default true)	false отменяет принятие (по умолчанию true)
 foundation, ring or rod	foundation, ring или rod

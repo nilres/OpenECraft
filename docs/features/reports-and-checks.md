@@ -9,6 +9,12 @@ terminal diagram, connection list, PLC assignment list, potential overview, cabl
 overview, cable diagram — in a window,
 as CSV export, or inserted as live report pages.
 
+The filter of the *Reports* pane finds a report by its title, its name or the
+standards it follows, ignoring case, spaces and dashes: `VDE 0100 600`, `0100-600` or
+`IEC 60364-6` find the three inspection and test reports, `ISO 13849` the safety
+functions, `60909` the short circuit report (`list_reports` with `search` on the
+command line).
+
 Cable sold by metre needs a positive length for its material quantity. A missing
 length is shown as `?`; if other cables of that article have lengths, the row
 shows the known quantity plus `?`. Prices and the report sum also indicate the

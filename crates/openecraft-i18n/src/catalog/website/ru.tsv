@@ -1,75 +1,172 @@
 # English<TAB>Русский – the website (website/): the page and its demos (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+20 languages, switched while working: menus, generated reports and check messages follow at once.	20 языков, переключаемых во время работы: меню, создаваемые отчёты и сообщения проверок меняются сразу.
 3D	3D
 3D models	3D-модели
+A click in a room puts them on the nearest wall at their mounting height or on the ceiling, drawn with the symbols of installation plans after IEC 60617-11.	Щелчок в помещении ставит их на ближайшую стену на их высоте монтажа или на потолок, а рисуются они символами планов электроустановки по IEC 60617-11.
 A command line, an MCP server for AI agents and plugins in any language add checks, reports, exports and commands.	Командная строка, сервер MCP для ИИ-агентов и плагины на любом языке добавляют проверки, отчёты, экспорт и команды.
+A community project for many years	Проект сообщества уже много лет
 A look inside	Взгляд изнутри
 A parts database with mounting data and 3D models, imports from EDZ, BMEcat and STEP, shared through the parts server.	База изделий с монтажными данными и 3D-моделями, импорт из EDZ, BMEcat и STEP, общий доступ через сервер изделий.
+A scan or PDF of the drawing goes under a level, to scale by measuring one dimension. Find rooms detects the walls, doors and windows, Make rooms turns them into rooms.	Скан или PDF чертежа помещается под уровень и масштабируется измерением одного размера. Найти помещения распознаёт стены, двери и окна, Создать помещения превращает их в помещения.
 A schematic page of the demo project, drawn by OpenECraft	Страница схемы демонстрационного проекта, нарисованная OpenECraft
+A tutorial from the first page	Учебник с первой страницы
 About 330 IEC 60617 symbols, NFPA, GB, GOST and JIS sets, fluid power, P&ID and installation plans, and an editor for your own symbols.	Около 330 символов IEC 60617, наборы NFPA, GB, ГОСТ и JIS, гидропневматика, P&ID и планы установки, а также редактор собственных символов.
+All of it is in the current release and described in the documentation.	Всё это есть в текущей версии и описано в документации.
+At a glance	Коротко
+Before you switch	Прежде чем перейти
 Bill of materials, terminal, cable and plug diagrams as live pages, own drawn forms and a project check that follows every change.	Спецификация, схемы клемм, кабелей и штекеров в виде обновляемых страниц, собственные нарисованные формы и проверка проекта, которая следит за каждым изменением.
+Building installation	Электроустановки зданий
 Built for scripts and AI agents	Создан для скриптов и ИИ-агентов
+Cable length and voltage drop	Длина кабеля и падение напряжения
+Circuits as a single-line diagram	Цепи в виде однолинейной схемы
 Click to explore the panel	Щёлкните, чтобы осмотреть шкаф
 Click to work in the editor	Щёлкните, чтобы работать в редакторе
+Climate of the enclosure	Климат шкафа
 Coil	Катушка
 Coils and contacts form one device with live cross references and contact images, structure identifiers after IEC 81346, macros with variants.	Катушки и контакты образуют одно устройство с обновляемыми перекрёстными ссылками и изображениями контактов, идентификаторы структуры по IEC 81346, макросы с вариантами.
+Coming from EPLAN or AutoCAD Electrical	Переход с EPLAN или AutoCAD Electrical
 Command line and MCP	Командная строка и MCP
+Commercial, proprietary	Коммерческая, проприетарная
+Comparison	Сравнение
+Concepts: devices with tags, structure identifiers after IEC 81346, cross references, macros and generated report pages, as in other device-oriented tools.	Принципы: устройства с обозначениями, идентификаторы структуры по IEC 81346, перекрёстные ссылки, макросы и создаваемые страницы отчётов, как в других инструментах, ориентированных на устройства.
 Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.	Выбор сечений проводников, короткое замыкание и селективность, расчёт нагрузок, ЭМС и функции безопасности по ISO 13849-1.
+Cost of use	Стоимость использования
 Data exchange	Обмен данными
+Device-oriented electrical engineering; panel layout in 3D, fluid power and more as further products of the EPLAN platform	Электропроектирование, ориентированное на устройства; компоновка шкафа в 3D, гидропневматика и другое как отдельные продукты платформы EPLAN
 Device-oriented schematics	Схемы, ориентированные на устройства
 Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings.	Устройства в натуральную величину на рейках и панелях, виртуальный монтаж проводов с заполнением каналов, данные сверления, климат шкафа, помещения и здания.
+Distribution boards	Распределительные щиты
 Download the latest release	Скачать последнюю версию
 Drag to turn, pinch with two fingers to zoom.	Перетаскивание поворачивает, сведение двух пальцев масштабирует.
 Drag to turn, scroll to zoom.	Перетаскивание поворачивает, прокрутка масштабирует.
-Drawings	Чертежи
+Drawing electrical schematics with a collection of symbols	Рисование электрических схем с набором символов
+Drawings: DXF and DWG files are imported as graphics on a schematic page, and every page can be exported as DXF or DWG.	Чертежи: файлы DXF и DWG импортируются как графика на страницу схемы, и каждую страницу можно экспортировать в DXF или DWG.
+EPLAN and EPLAN Electric P8 are trademarks of EPLAN GmbH & Co. KG. Autodesk, AutoCAD and AutoCAD Electrical are trademarks of Autodesk, Inc. QElectroTech is the name of an independent open source project.	EPLAN и EPLAN Electric P8 являются товарными знаками EPLAN GmbH & Co. KG. Autodesk, AutoCAD и AutoCAD Electrical являются товарными знаками Autodesk, Inc. QElectroTech является названием независимого проекта с открытым исходным кодом.
+Each example builds on the one before: from push buttons and lamps through a self-holding relay and a star-delta starter to PLC, panel layout and whole buildings.	Каждый пример опирается на предыдущий: от кнопок и ламп через реле с самоподхватом и пуск звезда-треугольник до ПЛК, компоновки шкафа и целых зданий.
+Electrical controls design as a toolset of AutoCAD	Проектирование электрических систем управления как набор инструментов AutoCAD
+Electricians	Электромонтажники
 Enclosure climate with a heat map of the mounting plate	Климат шкафа с тепловой картой монтажной панели
 Engineering calculations	Инженерные расчёты
+Established for many years, widely used by AutoCAD users	Применяется много лет, широко распространён среди пользователей AutoCAD
+Established for many years, widely used in control panel engineering	Применяется много лет, широко распространён в проектировании шкафов управления
+Every circuit starts at a protective device of the distribution board, the spare ones marked, and runs through its cable from item to item.	Каждая цепь начинается от защитного устройства распределительного щита, резервные отмечены, и проходит по своему кабелю от элемента к элементу.
 Every operation on a project is a command: on the command line, for AI agents through the MCP server, and for plugins. Try some on the project above.	Каждая операция над проектом — это команда: в командной строке, для ИИ-агентов через сервер MCP и для плагинов. Попробуйте несколько на проекте выше.
+Every step is a command as well, so a plan can also be drawn by a script or an AI agent.	Каждый шаг также является командой, поэтому план может нарисовать и скрипт или ИИ-агент.
 Every table is generated from the project and stays current: change the schematic above and the lists below follow. Plugins add their own.	Каждая таблица создаётся из проекта и остаётся актуальной: измените схему выше, и списки ниже изменятся вслед за ней. Плагины добавляют свои.
 Everything an electrical project needs	Всё, что нужно электротехническому проекту
+Example projects, simplest first	Примеры проектов, от простых к сложным
 Export the project you just edited	Экспортируйте проект, который вы только что изменили
 Features	Возможности
+Feedback while drawing	Обратная связь во время рисования
+Final circuits	Конечные цепи
+Find rooms works on walls drawn filled or hatched at right angles; on other drawings the rooms are drawn by hand. Cable lengths are estimates for planning, and a qualified electrician verifies the results against the regulations that apply.	Найти помещения работает со стенами, нарисованными с заливкой или штриховкой под прямыми углами; на других чертежах помещения рисуются вручную. Длины кабелей являются оценками для планирования, а квалифицированный электрик проверяет результаты на соответствие действующим нормам.
+Floor plans on paper	Планы на бумаге
 Fluid power and harnesses	Гидропневматика и жгуты
 Fluid power linked to the electrical schematic	Гидропневматика, связанная с электрической схемой
+Focus	Специализация
+For a team, the parts server, the project server and the web editor run in your own network from Docker images, so the shop keeps its data.	Для команды сервер изделий, сервер проектов и веб-редактор работают в вашей собственной сети из образов Docker, поэтому данные остаются на предприятии.
+For electricians	Для электромонтажников
+For panel builders	Для производителей электрошкафов
+For schools and training	Для школ и профессионального обучения
+For the whole class	Для всего класса
 For your team	Для вашей команды
+Free electrical CAD for schools and training – OpenECraft	Бесплатный электротехнический CAD для школ и профессионального обучения – OpenECraft
+Free for every student	Бесплатно для каждого учащегося
+Free for every student and in the browser, with a tutorial and example projects from the simplest circuit up.	Бесплатно для каждого учащегося и в браузере, с учебником и примерами проектов, начиная с простейшей цепи.
+Free of charge	Бесплатно
+Free software for building installation: floor plans under the levels, outlets, switches and lights, final circuits with cable lengths and voltage drop.	Бесплатная программа для электроустановок зданий: планы под уровнями, розетки, выключатели и светильники, конечные цепи с длинами кабелей и падением напряжения.
 Free to use, free to change. Pick what fits you.	Свободно использовать, свободно изменять. Выберите то, что вам подходит.
+Free, open source software for control panel builders: schematics, panel layout in 3D, wire lists with ferrules, a wiring assistant on the tablet and NC data.	Бесплатная программа с открытым исходным кодом для производителей электрошкафов: схемы, компоновка шкафа в 3D, списки проводов с наконечниками, помощник по монтажу на планшете и данные ЧПУ.
 From source	Из исходного кода
 From the first schematic page to the panel in 3D.	От первой страницы схемы до шкафа в 3D.
+From the floor plan to the distribution board	От плана до распределительного щита
+From the schematic through the panel layout in 3D to the wiring in the workshop, with production data for the machines.	От схемы через компоновку шкафа в 3D до монтажа проводов в цеху, с производственными данными для станков.
+From the schematic to the wired control cabinet	От схемы до смонтированного шкафа управления
+General facts, no prices: the makers of the other products describe them in detail on their websites.	Общие факты, без цен: производители других продуктов подробно описывают их на своих сайтах.
 Get OpenECraft	Получить OpenECraft
 Get it	Получить
 Graphical terminal diagram	Графическая схема клемм
+Heat loss after IEC/TR 60890 from the power loss of the devices, with filter fans, heat exchangers or cooling units, and a heat map of the mounting plate.	Тепловой баланс по IEC/TR 60890 по потерям мощности устройств, с фильтрующими вентиляторами, теплообменниками или холодильными агрегатами, и тепловая карта монтажной панели.
+Help comes from the documentation and from the issue tracker of the project.	Помощь можно найти в документации и в системе отслеживания ошибок проекта.
+House connection boxes, distribution cabinets with component modules, metering with current transformers and PV feeders, in 3D with their busbars.	Вводные щиты, распределительные шкафы с модулями компонентов, учёт с трансформаторами тока и отходящие линии СЭС, в 3D со сборными шинами.
+IEC 60617 symbols, structure identifiers after IEC 81346 and reports as in industry, so what is learned carries over to other tools.	Символы IEC 60617, идентификаторы структуры по IEC 81346 и отчёты как в промышленности, поэтому полученные знания применимы и в других инструментах.
 In the browser	В браузере
+In the student's language	На языке учащегося
 Installation guide	Руководство по установке
+Installation plans on the architect's floor plan	Планы электроустановки на плане архитектора
+Installation plans on the floor plan of the building, final circuits with cable lengths and voltage drop, the distribution board in 3D.	Планы электроустановки на плане здания, конечные цепи с длинами кабелей и падением напряжения, распределительный щит в 3D.
 Installers for Windows, Linux packages and a macOS disk image, with automatic updates.	Установщики для Windows, пакеты для Linux и образ диска для macOS, с автоматическими обновлениями.
+It comes with a small set of manufacturer catalogs, far from the large data portals of the commercial vendors; parts from EDZ, BMEcat and STEP files fill the gap.	Он поставляется с небольшим набором каталогов производителей, далёким от крупных порталов данных коммерческих поставщиков; пробел восполняют изделия из файлов EDZ, BMEcat и STEP.
+It is a new project and has not been proven in years of production use the way the established tools have. Try it on a real project of yours before you rely on it.	Это новый проект, который ещё не проверен годами производственного использования, как устоявшиеся инструменты. Попробуйте его на реальном собственном проекте, прежде чем полагаться на него.
+Its symbol libraries and editing tools grow with every release, but users of the established tools will still miss functions they are used to.	Его библиотеки символов и инструменты редактирования растут с каждой версией, но пользователям устоявшихся инструментов всё ещё будет не хватать привычных функций.
 Lamp	Лампа
+Learn electrical planning on real software, for free	Изучайте электропроектирование на настоящей программе, бесплатно
+Lengths along the installation zones after DIN 18015-3 and the voltage drop from the supply are worked out, checked against the rule sets and written into the cable list.	Длины вдоль монтажных зон по DIN 18015-3 и падение напряжения от ввода рассчитываются, проверяются по наборам правил и записываются в кабельный журнал.
+License	Лицензия
 Licenses	Лицензии
 Live demo	Живая демонстрация
+Looking for a free alternative to EPLAN Electric P8 or AutoCAD Electrical, or for more than drawing schematics? Here is how OpenECraft compares: what it does, what the others are known for, and where OpenECraft is still young.	Ищете бесплатную альтернативу EPLAN Electric P8 или AutoCAD Electrical или нечто большее, чем рисование схем? Вот как выглядит OpenECraft в сравнении: что он умеет, чем известны другие и в чём OpenECraft ещё молод.
+Looking for an open source alternative to EPLAN or AutoCAD Electrical? How OpenECraft compares in license, platforms and features, and where it is still young.	Ищете альтернативу EPLAN или AutoCAD Electrical с открытым исходным кодом? Как OpenECraft выглядит по лицензии, платформам и возможностям и в чём он ещё молод.
+Made for your work	Создан для вашей работы
+Maturity	Зрелость
 Menu	Меню
 Multi-level terminals, plugs and PLC cards with tag tables for TIA Portal, Studio 5000, TwinCAT, CODESYS and more.	Многоуровневые клеммы, штекеры и модули ПЛК с таблицами переменных для TIA Portal, Studio 5000, TwinCAT, CODESYS и других.
+New: first release in November 2026	Новинка: первая версия в ноябре 2026 года
 No messages. The project passes the check.	Сообщений нет. Проект проходит проверку.
 No screenshots: this is the page editor of OpenECraft. Select and move symbols, draw wires, place a contact and watch cross references, checks and reports follow.	Никаких скриншотов: это редактор страниц OpenECraft. Выделяйте и перемещайте символы, рисуйте провода, вставьте контакт и смотрите, как за этим следуют перекрёстные ссылки, проверки и отчёты.
+Not public	Закрытый
 On a touch screen one finger works like the left mouse button; two fingers move and zoom the view.	На сенсорном экране один палец работает как левая кнопка мыши; два пальца сдвигают и масштабируют вид.
 On the desktop	На компьютере
 One project file holds the schematics, the parts, the panel and the documents. Every function is also a command, so scripts and AI agents can do what you can.	Один файл проекта содержит схемы, изделия, шкаф и документы. Каждая функция — это ещё и команда, поэтому скрипты и ИИ-агенты могут делать то же, что и вы.
+One project holds the schematic, the parts, the panel and the documents, so a change shows everywhere at once.	Один проект содержит схему, изделия, шкаф и документы, поэтому изменение сразу видно везде.
 Open and extensible	Открытый и расширяемый
 Open source electrical CAE	Электротехническая CAE с открытым исходным кодом
 Open source under the MIT and Apache-2.0 licenses.	Открытый исходный код под лицензиями MIT и Apache-2.0.
+Open source under the MIT and Apache-2.0 licenses: no licenses to count, no accounts, no expiry. Install it on every school computer or use it in the browser.	Открытый исходный код под лицензиями MIT и Apache-2.0: никакого учёта лицензий, никаких учётных записей, никакого срока действия. Установите его на каждый школьный компьютер или пользуйтесь им в браузере.
+Open source: GNU GPL	Открытый исходный код: GNU GPL
+Open source: MIT or Apache-2.0	Открытый исходный код: MIT или Apache-2.0
 Open the web editor	Открыть веб-редактор
+OpenECraft beside EPLAN Electric P8, AutoCAD Electrical and QElectroTech: what each is known for, and where OpenECraft is still young.	OpenECraft рядом с EPLAN Electric P8, AutoCAD Electrical и QElectroTech: чем известен каждый из них и в чём OpenECraft ещё молод.
+OpenECraft beside the tools you know	OpenECraft рядом со знакомыми вам инструментами
+OpenECraft carries a control cabinet from the device-oriented schematic through the panel layout in 3D into the workshop: mounting, wiring and the documentation for the customer, from one project file.	OpenECraft ведёт шкаф управления от схемы, ориентированной на устройства, через компоновку в 3D до цеха: монтаж, проводка и документация для заказчика из одного файла проекта.
+OpenECraft costs nothing, needs no license server and runs in the browser, so every student works with the same program at school and at home. The project check points out mistakes while they draw.	OpenECraft ничего не стоит, не требует сервера лицензий и работает в браузере, поэтому каждый учащийся работает с одной и той же программой в школе и дома. Проверка проекта указывает на ошибки прямо во время рисования.
+OpenECraft for electricians	OpenECraft для электромонтажников
+OpenECraft for electricians: installation plans and circuits	OpenECraft для электромонтажников: планы электроустановки и цепи
+OpenECraft for panel builders	OpenECraft для производителей электрошкафов
+OpenECraft for panel builders and control cabinet shops	OpenECraft для производителей электрошкафов и цехов сборки шкафов управления
+OpenECraft for schools	OpenECraft для школ
+OpenECraft is not affiliated with, endorsed by or sponsored by any of them. The names are used only to compare, and what this page says about the other products is general public information as of November 2026.	OpenECraft не связан ни с одним из них, не одобряется и не спонсируется ни одним из них. Названия используются только для сравнения, а то, что эта страница говорит о других продуктах, является общедоступной информацией по состоянию на ноябрь 2026 года.
 OpenECraft is open source under the MIT license or the Apache License 2.0, at your choice. It contains fonts and libraries of others under their own licenses.	OpenECraft — программа с открытым исходным кодом под лицензией MIT или Apache License 2.0, на ваш выбор. Она содержит шрифты и библиотеки других авторов под их собственными лицензиями.
+OpenECraft is young. Plan one real cabinet with it beside the tool you use today, and see what it does well and what you miss.	OpenECraft молод. Спроектируйте в нём один реальный шкаф параллельно с инструментом, которым пользуетесь сегодня, и посмотрите, что он делает хорошо и чего вам не хватает.
 OpenECraft plans electrical systems: device-oriented schematics, live reports, panel layout with routed wiring and the documentation for the customer. One code base for Windows, Linux, macOS and the browser.	OpenECraft проектирует электроустановки: схемы, ориентированные на устройства, обновляемые отчёты, компоновка шкафа с проложенной проводкой и документация для заказчика. Единая кодовая база для Windows, Linux, macOS и браузера.
+OpenECraft plans the electrical installation of a building: the floor plan as a scan or PDF under each level, socket outlets, switches and lights in the rooms, final circuits from the distribution board, and the board itself in 3D.	OpenECraft проектирует электроустановку здания: план в виде скана или PDF под каждым уровнем, розетки, выключатели и светильники в помещениях, конечные цепи от распределительного щита и сам щит в 3D.
+OpenECraft vs. EPLAN, AutoCAD Electrical and QElectroTech	OpenECraft в сравнении с EPLAN, AutoCAD Electrical и QElectroTech
 OpenECraft – open source electrical CAE	OpenECraft – электротехническая CAE с открытым исходным кодом
+Outlets, switches and lights on the floor plan of a level, final circuits from the distribution board with cable lengths and voltage drop.	Розетки, выключатели и светильники на плане уровня, конечные цепи от распределительного щита с длинами кабелей и падением напряжения.
+Outlets, switches, lights	Розетки, выключатели, светильники
 PDF, DXF, DWG and SVG; the panel as glTF, STEP, IGES, IFC and JT; connectors for ERP, PDM and PLM systems.	PDF, DXF, DWG и SVG; шкаф в форматах glTF, STEP, IGES, IFC и JT; коннекторы для систем ERP, PDM и PLM.
 PLC and automation	ПЛК и автоматизация
+Paid license	Платная лицензия
+Panel builders	Производители электрошкафов
 Panel layout in 3D	Компоновка шкафа в 3D
 Parts and data portal	Изделия и портал данных
 Parts server, project server and the web editor as Docker images for your own network.	Сервер изделий, сервер проектов и веб-редактор в виде образов Docker для вашей сети.
+Parts: EDZ files of the EPLAN Data Portal and EPLAN XML part files are imported with their data; the 2D window macros of EDZ files become symbols and their 3D macros the 3D model of the part.	Изделия: файлы EDZ из EPLAN Data Portal и файлы изделий EPLAN XML импортируются со своими данными; 2D-макросы окон из файлов EDZ становятся символами, а их 3D-макросы 3D-моделью изделия.
 Planning	Планирование
+Platforms	Платформы
 Pneumatic and hydraulic circuits linked to the electrics, wire harnesses with KBL export and nailboards.	Пневматические и гидравлические схемы, связанные с электрической частью, жгуты с экспортом KBL и сборочные плазы.
 Potentials with colours and cross-sections, cables with cores, automatic wire, device and page numbering.	Потенциалы с цветами и сечениями, кабели с жилами, автоматическая нумерация проводов, устройств и страниц.
+Production data	Производственные данные
 Project check	Проверка проекта
+Projects: projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported yet; a project is drawn anew in OpenECraft.	Проекты: проекты EPLAN Electric P8 и AutoCAD Electrical пока нельзя импортировать; проект рисуется в OpenECraft заново.
+Public	Открытый
 Push button	Кнопка
 Report a problem	Сообщить о проблеме
 Reports and checks	Отчёты и проверки
 Reports that write themselves	Отчёты, которые пишут себя сами
+Schematics, reports, panel layout in 3D, the workshop and building installation in one program	Схемы, отчёты, компоновка шкафа в 3D, цех и электроустановки зданий в одной программе
+Schools	Школы
+Schools and training	Школы и профессиональное обучение
 Screenshot of a graphical terminal diagram	Скриншот графической схемы клемм
 Screenshot of a pneumatic circuit linked to the schematic	Скриншот пневматической схемы, связанной со схемой
 Screenshot of the heat map of a mounting plate	Скриншот тепловой карты монтажной панели
@@ -78,30 +175,45 @@ Screenshot of the wiring assistant in the 3D view	Скриншот помощн�
 Screenshot of two bayed enclosures in the 3D panel layout	Скриншот двух состыкованных корпусов в 3D-компоновке шкафа
 Search commands	Поиск команд
 Search reports	Поиск отчётов
+See for yourself	Убедитесь сами
+See the comparison	Посмотреть сравнение
 Shared projects with page locks and roles, released pages, approval workflow, comments and redlining.	Общие проекты с блокировкой страниц и ролями, выпущенные страницы, процесс согласования, комментарии и пометки.
 Source code	Исходный код
 Speaks 20 languages	Говорит на 20 языках
+Standards from the start	Стандарты с самого начала
+Start with an example	Начните с примера
 Switch the language while you work: menus, generated reports and check messages follow at once. Try it, this page and the demos switch too.	Переключайте язык во время работы: меню, создаваемые отчёты и сообщения проверок меняются сразу. Попробуйте, эта страница и демонстрации тоже переключаются.
 Symbol libraries	Библиотеки символов
 Tap to explore the panel	Коснитесь, чтобы осмотреть шкаф
 Tap to work in the editor	Коснитесь, чтобы работать в редакторе
+Teach electrical planning with free, open source CAE software that runs in the browser: a tutorial, example projects from the first circuit up and 20 languages.	Преподавайте электропроектирование с бесплатной CAE-программой с открытым исходным кодом, работающей в браузере: учебник, примеры проектов начиная с первой цепи и 20 языков.
 Teams and revisions	Команды и ревизии
 Terminals, plugs, PLC	Клеммы, штекеры, ПЛК
 The demo could not start in this browser. It needs WebGL and WebAssembly.	Не удалось запустить демонстрацию в этом браузере. Нужны WebGL и WebAssembly.
+The example projects include a conveyor with PLC and control cabinet, a pump station with structure identifiers, two bayed floor-standing enclosures with busbars and climate, and the main low-voltage distribution of an industrial plant. Open them in the live demo or in the web editor.	Среди примеров проектов есть конвейер с ПЛК и шкафом управления, насосная станция с идентификаторами структуры, два состыкованных напольных шкафа со сборными шинами и климатом и главный распределительный щит НН промышленного предприятия. Откройте их в живой демонстрации или в веб-редакторе.
+The examples include building services with water supply and PV storage, transformer-rated metering with PV and grid protection, and an office building with roof, stair and installation.	Среди примеров есть инженерные системы здания с водоснабжением и накопителем СЭС, трансформаторный учёт с СЭС и защитой сети и офисное здание с крышей, лестницей и электроустановкой.
 The exports run in your browser as well. Nothing is uploaded.	Экспорт тоже выполняется в вашем браузере. Ничего не загружается на сервер.
+The first examples are a lamp circuit, a self-holding relay and a star-delta motor starter; later ones add a PLC, electro-pneumatics, structure identifiers, revisions, control cabinets, rooms and buildings.	Первые примеры: цепь ламп, реле с самоподхватом и пуск двигателя звезда-треугольник; последующие добавляют ПЛК, электропневматику, идентификаторы структуры, ревизии, шкафы управления, помещения и здания.
 The first {} of {} rows	Первые {} из {} строк
 The full editor as a web application. Nothing to install, your projects stay on your computer.	Полный редактор как веб-приложение. Ничего не нужно устанавливать, ваши проекты остаются на вашем компьютере.
+The items become devices with tags in their rooms, and a generated single-line page shows every circuit with its protective device and cable.	Элементы становятся устройствами с обозначениями в своих помещениях, а создаваемая однолинейная страница показывает каждую цепь с её защитным устройством и кабелем.
 The links to the source code, the downloads and the documentation lead to other sites, which have privacy notices of their own.	Ссылки на исходный код, загрузки и документацию ведут на другие сайты, у которых свои уведомления о конфиденциальности.
+The live demo runs the editor's own code in your browser; the web editor is the whole program, nothing to install.	Живая демонстрация выполняет собственный код редактора в вашем браузере; веб-редактор является полной программой, ничего не нужно устанавливать.
 The live demos, the console and the exports run in your browser. The project you edit here is not sent anywhere.	Живые демонстрации, консоль и экспорт работают в вашем браузере. Проект, который вы здесь редактируете, никуда не отправляется.
 The panel in 3D	Шкаф в 3D
+The project check follows every change and leads to the place of each message, so students see their mistakes at once.	Проверка проекта следит за каждым изменением и ведёт к месту каждого сообщения, поэтому учащиеся сразу видят свои ошибки.
+The routed wires as a checklist for the workshop, with the current wire in 3D, its colour, length and ferrule: a tablet with the web editor becomes a wiring station.	Проложенные провода как контрольный список для цеха, с текущим проводом в 3D, его цветом, длиной и наконечником: планшет с веб-редактором становится рабочим местом монтажа.
 The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example.	Тот же проект, каким его видят в цеху: корпус, рейки, каналы и устройства в натуральную величину, с проводами, проложенными по каналам. Переключайтесь между корпусами, помещениями и участком примера.
 The schematic editor with ribbon and page navigator	Редактор схем с лентой и навигатором страниц
+The tutorial walks from the first schematic page to the bill of materials: pages, symbols, wires, parts, terminals, PLC, the project check, reports and the panel layout.	Учебник ведёт от первой страницы схемы до спецификации: страницы, символы, провода, изделия, клеммы, ПЛК, проверка проекта, отчёты и компоновка шкафа.
+The web editor and a project server for shared projects run in the school's own network from Docker images.	Веб-редактор и сервер проектов для общих проектов работают в собственной сети школы из образов Docker.
 The wiring assistant shows the next wire in 3D	Помощник по монтажу показывает следующий провод в 3D
 These are the commands of the command line and the MCP server, run on the project of the demo above.	Это команды командной строки и сервера MCP, выполняемые над проектом демонстрации выше.
 Third-party licenses	Лицензии третьих сторон
 This page is drawn right now by the editor's own code, running in your browser.	Эту страницу прямо сейчас рисует собственный код редактора, работающий в вашем браузере.
 Tip: delete a wire and see the check react. Undo brings it back.	Совет: удалите провод и посмотрите, как отреагирует проверка. Отмена вернёт его.
 To show an example faster the next time, your browser keeps the wiring it calculated for it in its cache. Nothing else is stored; clearing the site data of the browser removes it.	Чтобы в следующий раз показать пример быстрее, браузер хранит в кэше рассчитанную для него проводку. Больше ничего не сохраняется; очистка данных сайта в браузере удаляет её.
+Trademarks	Товарные знаки
 Try it: the schematic editor, live	Попробуйте: редактор схем, вживую
 Try the live demo	Попробовать живую демонстрацию
 Try these	Попробуйте эти
@@ -109,8 +221,23 @@ Two bayed enclosures with rails, ducts and busbars	Два состыкованн
 Type a command, or help	Введите команду или help
 Type help for the commands, or pick one on the right.	Введите help, чтобы увидеть команды, или выберите одну справа.
 Unknown command: {}	Неизвестная команда: {}
+Uses	Применение
+What OpenECraft does today	Что OpenECraft умеет сегодня
+What comes across, and what does not yet.	Что можно перенести, а что пока нет.
+What your shop gets	Что получает ваше предприятие
+When you want a free, long-standing open source program for drawing electrical schematics.	Если вам нужна бесплатная, давно существующая программа с открытым исходным кодом для рисования электрических схем.
+When you want schematics, reports, panel layout in 3D and the workshop in one free program, on any operating system or in the browser and open to scripts and AI agents, and a young project suits you.	Если вам нужны схемы, отчёты, компоновка шкафа в 3D и цех в одной бесплатной программе, в любой операционной системе или в браузере и открытой для скриптов и ИИ-агентов, и вас устраивает молодой проект.
+When your customers ask for their project files, your company has standardised on one of them, or you need the support and the part data of a large vendor.	Если ваши заказчики требуют файлы проектов этих инструментов, ваша компания стандартизировалась на одном из них или вам нужны поддержка и данные изделий крупного поставщика.
+Where OpenECraft is still young	В чём OpenECraft ещё молод
+Whether you build control cabinets, plan buildings or teach: see what OpenECraft does for you, and how it compares with the tools you know.	Собираете ли вы шкафы управления, проектируете здания или преподаёте: посмотрите, что OpenECraft делает для вас и как он выглядит на фоне знакомых вам инструментов.
+Which one fits?	Какой вам подходит?
+Why it suits a classroom	Почему он подходит для занятий
+Windows, Linux and macOS	Windows, Linux и macOS
+Windows, Linux, macOS and the web browser	Windows, Linux, macOS и веб-браузер
+Wire lists with routed lengths, stripping lengths and ferrules after DIN 46228-4, wires sorted for wire processing machines, drilling patterns and NC data of the mounting plates.	Списки проводов с длинами прокладки, длинами зачистки и наконечниками по DIN 46228-4, провода, отсортированные для автоматов обработки проводов, схемы сверления и данные ЧПУ монтажных панелей.
 Wires, cables, potentials	Провода, кабели, потенциалы
 Wiring and harnesses	Монтаж и жгуты
+Wiring and mounting assistants	Помощники по монтажу проводов и установке
 Written in Rust. Clone the repository and run it.	Написан на Rust. Клонируйте репозиторий и запустите.
 commands for scripts and AI agents	команд для скриптов и ИИ-агентов
 example projects	примеров проектов

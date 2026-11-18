@@ -23,6 +23,7 @@ pub fn stored_copy(prj: &Project) -> Project {
     copy.revisions.clear();
     copy.baselines.clear();
     copy.review = Default::default();
+    copy.inspection = Default::default();
     copy
 }
 

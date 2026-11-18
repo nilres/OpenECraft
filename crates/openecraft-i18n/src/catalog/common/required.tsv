@@ -13,12 +13,14 @@ A page needs a name	Eine Seite braucht einen Namen	Une page doit avoir un nom	Un
 A routing path needs {} points at least	Ein Verlegeweg braucht mindestens {} Punkte	Un chemin de routage nécessite au moins {} points	Una ruta de tendido necesita al menos {} puntos
 A section cannot be moved into itself	Ein Abschnitt kann nicht in sich selbst verschoben werden	Une section ne peut pas être déplacée dans elle-même	Una sección no puede moverse dentro de sí misma
 Above	Oberhalb	Au-dessus	Arriba
+Above {} V: no SELV or PELV	Über {} V: keine SELV oder PELV	Au-delà de {} V : ni TBTS ni TBTP	Por encima de {} V: ni MBTS ni MBTP
 Access token	Zugriffstoken	Jeton d'accès	Token de acceso
 Accessories	Zubehör	Accessoires	Accesorios
 Accessory	Zubehör	Accessoire	Accesorio
 Actuator	Stellantrieb	Actionneur	Actuador
 Add	Hinzufügen	Ajouter	Añadir
 Add a PDF of all pages	Ein PDF aller Seiten hinzufügen	Ajouter un PDF de toutes les pages	Añadir un PDF de todas las páginas
+Add an item	Punkt hinzufügen	Ajouter un point	Añadir un punto
 Add to favorites	Zu Favoriten hinzufügen	Ajouter aux favoris	Añadir a favoritos
 Address	Adresse	Adresse	Dirección
 Administrator	Administrator	Administrateur	Administrador
@@ -35,6 +37,7 @@ Bold	Fett	Gras	Negrita
 Bottom	Boden	Fond	Fondo
 Bottom with removable gland plate	Boden mit abnehmbarer Flanschplatte	Fond avec plaque passe-câbles amovible	Fondo con placa pasacables desmontable
 Breaking capacity	Schaltvermögen	Pouvoir de coupure	Poder de corte
+Breaking capacity of {} below the fault current at the origin	Schaltvermögen von {} unter dem Kurzschlussstrom am Speisepunkt	Pouvoir de coupure de {} inférieur au courant de défaut à l'origine	Poder de corte de {} inferior a la corriente de defecto en el origen
 Bridge	Brücke	Pont	Puente
 Building	Gebäude	Bâtiment	Edificio
 Building (location, e.g. +B1)	Gebäude (Ort, z. B. +B1)	Bâtiment (emplacement, p. ex. +B1)	Edificio (ubicación, p. ej. +B1)
@@ -60,17 +63,20 @@ Category	Kategorie	Catégorie	Categoría
 Centred	Zentriert	Centré	Centrado
 Certificates	Zertifikate	Certificats	Certificados
 Change	Änderung	Modification	Cambio
+Changing the data or the results afterwards takes the signature away.	Werden Daten oder Ergebnisse danach geändert, entfällt die Unterschrift.	Modifier ensuite les données ou les résultats retire la signature.	Cambiar después los datos o los resultados retira la firma.
 Channel	Kanal	Canal	Canal
 Characteristic	Charakteristik	Caractéristique	Característica
 Check settings	Prüfeinstellungen	Réglages de vérification	Ajustes de comprobación
 Checks	Prüfungen	Vérifications	Comprobaciones
 Circuit {} exists already	Stromkreis {} existiert bereits	Le circuit {} existe déjà	El circuito {} ya existe
+Circuits	Stromkreise	Circuits	Circuitos
 Class	Klasse	Classe	Clase
 Classes	Klassen	Classes	Clases
 Clear filters	Filter zurücksetzen	Effacer les filtres	Borrar filtros
 Clearance bottom	Abstand unten	Dégagement en bas	Distancia inferior
 Clearance top	Abstand oben	Dégagement en haut	Distancia superior
 Clearances	Abstände	Distances	Distancias
+Client	Auftraggeber	Client	Cliente
 Close	Schließen	Fermer	Cerrar
 Coding: {}	Kodierung: {}	Codage : {}	Codificación: {}
 Coil voltage	Spulenspannung	Tension de bobine	Tensión de bobina
@@ -90,6 +96,7 @@ Connection point	Anschluss	Point de raccordement	Punto de conexión
 Connection points	Anschlusspunkte	Points de connexion	Puntos de conexión
 Connections	Verbindungen	Liaisons	Conexiones
 Connector	Steckverbinder	Connecteur	Conector
+Contact voltage UB (V)	Berührungsspannung UB (V)	Tension de contact UB (V)	Tensión de contacto UB (V)
 Controller	Steuerung	Contrôleur	Controlador
 Cooling	Kühlung	Refroidissement	Refrigeración
 Core	Ader	Âme	Núcleo
@@ -137,14 +144,19 @@ Done	Erledigt	Terminé	Hecho
 Door	Tür	Porte	Puerta
 Door cutout	Türausschnitt	Découpe de porte	Recorte de puerta
 Download	Herunterladen	Télécharger	Descargar
+Download the report as an Excel workbook	Das Protokoll als Excel-Arbeitsmappe herunterladen	Télécharger le rapport comme classeur Excel	Descargar el informe como libro de Excel
 Downloading {}…	{} wird heruntergeladen…	Téléchargement de {}…	Descargando {}…
 Drag to turn the model	Ziehen, um das Modell zu drehen	Faites glisser pour tourner le modèle	Arrastre para girar el modelo
+Drawings	Zeichnungen	Dessins	Dibujos
 EMC clearance	EMV-Abstand	Distance CEM	Distancia CEM
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal und andere Namen sind Marken ihrer Inhaber. OpenECraft ist ein unabhängiges Projekt.	EPLAN, TIA Portal et les autres noms sont des marques de leurs propriétaires. OpenECraft est un projet indépendant.	EPLAN, TIA Portal y otros nombres son marcas de sus propietarios. OpenECraft es un proyecto independiente.
+Earth electrode resistance RA (Ω)	Erdungswiderstand RA (Ω)	Résistance de la prise de terre RA (Ω)	Resistencia del electrodo de tierra RA (Ω)
 Edit	Bearbeiten	Édition	Edición
 Editor	Bearbeiter	Éditeur	Editor
+Electrical separation	Schutztrennung	Séparation électrique	Separación eléctrica
 Electro-fluid cross reference	Elektro-Fluid-Querverweise	Renvois électro-fluidiques	Referencias cruzadas electro-fluidos
 Email	E-Mail	E-mail	Correo electrónico
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Leer: die Vorgabe. Andere Werte setzen, wo die Ausgabe der Norm, nach der die Anlage geprüft wird, abweicht.	Vide : la valeur par défaut. Indiquez d'autres valeurs là où l'édition de la norme selon laquelle l'installation est vérifiée diffère.	Vacío: el valor por defecto. Indique otros valores donde difiera la edición de la norma con la que se verifica la instalación.
 Enclosure	Gehäuse	Enveloppe	Envolvente
 Enclosures	Gehäuse	Enveloppes	Envolventes
 Enterprise integration	Unternehmensintegration	Intégration d'entreprise	Integración empresarial
@@ -155,7 +167,9 @@ Exclude from bill of materials	Von der Stückliste ausschließen	Exclure de la n
 Export as CSV…	Als CSV exportieren…	Exporter en CSV…	Exportar como CSV…
 Export as JSON…	Als JSON exportieren…	Exporter en JSON…	Exportar como JSON…
 Export failed: {}	Export fehlgeschlagen: {}	Échec de l'export : {}	Error al exportar: {}
+Extension	Erweiterung	Extension	Extensión
 External (top)	Extern (oben)	Externe (haut)	Externo (arriba)
+External loop impedance Ze (Ω)	Externe Schleifenimpedanz Ze (Ω)	Impédance de boucle externe Ze (Ω)	Impedancia de bucle externa Ze (Ω)
 Face	Fläche	Face	Cara
 Failed	Fehlgeschlagen	Échoué	Fallido
 Fastening	Befestigung	Fixation	Fijación
@@ -164,7 +178,9 @@ Field wiring	Feldverdrahtung	Câblage de terrain	Cableado de campo
 File	Datei	Fichier	Archivo
 Files	Dateien	Fichiers	Archivos
 Filter	Filter	Filtre	Filtro
+Filter circuits…	Stromkreise filtern…	Filtrer les circuits…	Filtrar circuitos…
 Filter devices…	Betriebsmittel filtern …	Filtrer les appareils…	Filtrar dispositivos…
+First fault current Id (A)	Fehlerstrom beim ersten Fehler Id (A)	Courant de premier défaut Id (A)	Corriente del primer defecto Id (A)
 Fit	Einpassen	Ajuster	Ajustar
 Fits	Passt zu	Compatible avec	Compatible con
 Fitting at the end	Verschraubung am Ende	Raccord à la fin	Racor al final
@@ -180,6 +196,7 @@ Function	Funktion	Fonction	Función
 Function (=)	Funktion (=)	Fonction (=)	Función (=)
 Function definition	Funktionsdefinition	Définition de fonction	Definición de función
 Function template	Funktionsvorlage	Modèle de fonction	Plantilla de función
+Function test	Funktionsprüfung	Essai de fonctionnement	Prueba de funcionamiento
 Function text	Funktionstext	Texte de fonction	Texto de función
 Functional safety	Funktionale Sicherheit	Sécurité fonctionnelle	Seguridad funcional
 Functions	Funktionen	Fonctions	Funciones
@@ -202,13 +219,26 @@ Height above floor	Höhe über Boden	Hauteur au-dessus du sol	Altura sobre el su
 Hide automatic wire and cable labels	Automatische Draht- und Kabelbeschriftungen ausblenden	Masquer les étiquettes automatiques des fils et câbles	Ocultar las etiquetas automáticas de hilos y cables
 History	Verlauf	Historique	Historial
 Hose no.	Schlauch-Nr.	N° flexible	N.º manguera
+IT system	IT-System	Schéma IT	Esquema IT
 Identifier	Kennung	Identifiant	Identificador
 Identifying letter	Kennbuchstabe	Lettre d'identification	Letra identificativa
 Image	Bild	Image	Imagen
 Import	Import	Import	Importación
+Incomplete	Unvollständig	Incomplet	Incompleto
 Infer panel rotation from part dimensions	Drehung aus Artikelabmessungen ableiten	Déduire la rotation des dimensions de l’article	Deducir la rotación de las dimensiones del artículo
 Input	Eingang	Entrée	Entrada
+Inspection and test report	Prüfprotokoll	Rapport de vérification	Informe de inspección y ensayo
+Inspector	Prüfer	Vérificateur	Inspector
 Installation	Aufstellung	Installation	Instalación
+Installation site	Aufstellungsort	Lieu d'installation	Lugar de instalación
+Installer	Errichter	Installateur	Instalador
+Insulating floors and walls (kΩ)	Isolierende Fußböden und Wände (kΩ)	Sols et parois isolants (kΩ)	Suelos y paredes aislantes (kΩ)
+Insulation L–N (MΩ)	Isolation L–N (MΩ)	Isolement L–N (MΩ)	Aislamiento L–N (MΩ)
+Insulation L–PE (MΩ)	Isolation L–PE (MΩ)	Isolement L–PE (MΩ)	Aislamiento L–PE (MΩ)
+Insulation N–PE (MΩ)	Isolation N–PE (MΩ)	Isolement N–PE (MΩ)	Aislamiento N–PE (MΩ)
+Insulation monitoring device	Isolationsüberwachungseinrichtung	Contrôleur permanent d'isolement	Vigilante de aislamiento
+Insulation resistance (MΩ)	Isolationswiderstand (MΩ)	Résistance d'isolement (MΩ)	Resistencia de aislamiento (MΩ)
+Insulation test voltage (V)	Messspannung Isolation (V)	Tension d'essai d'isolement (V)	Tensión de ensayo de aislamiento (V)
 Integration	Integration	Intégration	Integración
 Internal (bottom)	Intern (unten)	Interne (bas)	Interno (abajo)
 Interruption point	Unterbrechungspunkt	Point d'interruption	Punto de interrupción
@@ -239,6 +269,7 @@ Level {} has no floor plan	Ebene {} hat keinen Grundriss	Le niveau {} n'a pas de
 Level: its name or number (1 = the lowest)	Ebene: ihr Name oder ihre Nummer (1 = die unterste)	Niveau : son nom ou son numéro (1 = le plus bas)	Nivel: su nombre o número (1 = el más bajo)
 Lifecycle	Lebenszyklus	Cycle de vie	Ciclo de vida
 Light	Hell	Clair	Claro
+Limits	Grenzwerte	Limites	Límites
 Line	Linie	Ligne	Línea
 Lines run in the zone	Leitungen verlaufen in der Zone	Les lignes passent dans la zone	Las líneas van por la zona
 Link	Verknüpfung	Lien	Enlace
@@ -252,11 +283,13 @@ Location along the segment, 0 … 1	Position entlang des Segments, 0 … 1	Posit
 Locked	Gesperrt	Verrouillé	Bloqueada
 Locked by {}	Gesperrt von {}	Verrouillé par {}	Bloqueado por {}
 Logo	Logo	Logo	Logotipo
+Loop impedance Zs (Ω)	Schleifenimpedanz Zs (Ω)	Impédance de boucle Zs (Ω)	Impedancia de bucle Zs (Ω)
 MTTFd (years)	MTTFd (Jahre)	MTTFd (ans)	MTTFd (años)
 Machine	Maschine	Machine	Máquina
 Main	Haupt	Principal	Principal
 Main earthing busbar (device) it is connected to; empty: none	Haupterdungsschiene (Gerät), an die er angeschlossen ist; leer: keine	Borne principale de terre (appareil) à laquelle elle est raccordée ; vide : aucune	Barra principal de tierra (equipo) a la que está conectado; vacío: ninguna
 Main earthing terminal	Haupterdungsschiene	Borne principale de terre	Borne principal de tierra
+Main equipotential bonding (Ω)	Schutzpotentialausgleich (Ω)	Liaison équipotentielle principale (Ω)	Conexión equipotencial principal (Ω)
 Main switch	Hauptschalter	Interrupteur principal	Interruptor principal
 Manufacturer	Hersteller	Fabricant	Fabricante
 Manufacturers	Hersteller	Fabricants	Fabricantes
@@ -265,6 +298,7 @@ Marking	Beschriftung	Marquage	Marcado
 Match case	Groß-/Kleinschreibung beachten	Respecter la casse	Distinguir mayúsculas
 Material	Material	Matériel	Material
 Material owner device tag	Betriebsmittelkennzeichen des Materialbesitzers	Repère de l’appareil propriétaire du matériel	Etiqueta del dispositivo propietario del material
+Measured at the origin	Am Speisepunkt gemessen	Mesuré à l'origine	Medido en el origen
 Medium	Medium	Fluide	Medio
 Metal carriers meeting at a node are connected	Metallische Kabelträger, die sich an einem Knoten treffen, sind verbunden	Les supports métalliques qui se rejoignent à un nœud sont reliés	Los soportes metálicos que se unen en un nodo están conectados
 Minimum digits of the counter (leading zeros)	Mindestanzahl Stellen des Zählers (führende Nullen)	Nombre minimal de chiffres du compteur (zéros en tête)	Número mínimo de dígitos del contador (ceros a la izquierda)
@@ -292,12 +326,16 @@ Name of the scheme	Name des Schemas	Nom du schéma	Nombre del esquema
 Net	Netz	Réseau	Red
 Never	Nie	Jamais	Nunca
 New group	Neue Gruppe	Nouveau groupe	Nuevo grupo
+New installation	Neuanlage	Installation neuve	Instalación nueva
 New name	Neuer Name	Nouveau nom	Nuevo nombre
+Next inspection	Nächste Prüfung	Prochaine inspection	Próxima inspección
 Next page	Nächste Seite	Page suivante	Página siguiente
 No	Nein	Non	No
 No Vault item matches a part of the project	Kein Vault-Element passt zu einem Artikel des Projekts	Aucun élément Vault ne correspond à un article du projet	Ningún elemento de Vault coincide con un artículo del proyecto
 No building named {}	Kein Gebäude namens {}	Aucun bâtiment nommé {}	Ningún edificio llamado {}
 No cable {}	Kein Kabel {}	Aucun câble {}	No hay manguera {}
+No circuit {}	Kein Stromkreis {}	Aucun circuit {}	Ningún circuito {}
+No circuits found	Keine Stromkreise gefunden	Aucun circuit trouvé	No se encontraron circuitos
 No connection point {}	Kein Anschlusspunkt {}	Pas de point de connexion {}	No hay punto de conexión {}
 No device {}	Kein Betriebsmittel {}	Aucun appareil {}	No existe el equipo {}
 No enclosure {}	Kein Gehäuse {}	Aucune armoire {}	No hay armario {}
@@ -313,6 +351,7 @@ No part {} in the project	Kein Artikel {} im Projekt	Pas d'article {} dans le pr
 No parts found	Keine Artikel gefunden	Aucun article trouvé	No se encontraron artículos
 No plot frame named {}	Kein Plotrahmen namens {}	Aucun cadre nommé {}	Ningún marco llamado {}
 No plug {}	Kein Stecker {}	Aucun connecteur {}	No hay conector {}
+No protective measure of its own	Keine eigene Schutzmaßnahme	Pas de mesure de protection propre	Sin medida de protección propia
 No report block named {}	Kein Auswertungsblock namens {}	Aucun bloc de rapports nommé {}	Ningún bloque de informes llamado {}
 No segment {}	Kein Segment {}	Aucun segment {}	No hay ningún segmento {}
 No station {}	Keine Station {}	Pas de station {}	No hay estación {}
@@ -323,18 +362,24 @@ No such section	Abschnitt nicht vorhanden	Section introuvable	No existe esa secc
 No symbol with id {}	Kein Symbol mit der ID {}	Aucun symbole avec l'ID {}	Ningún símbolo con el ID {}
 No title block of the project named {}	Kein Schriftfeld des Projekts namens {}	Aucun cartouche du projet nommé {}	No hay ningún cajetín del proyecto llamado {}
 Nominal size	Nennweite	Diamètre nominal	Diámetro nominal
+Not OK	Nicht OK	Non conforme	No conforme
 Not a language code: {}	Kein Sprachcode: {}	Pas un code de langue : {}	No es un código de idioma: {}
 Not a macro file: {}	Keine Makrodatei: {}	Ce n'est pas un fichier de macros : {}	No es un archivo de macros: {}
 Not a symbol id: {}	Keine Symbol-ID: {}	Pas un identifiant de symbole : {}	No es un id de símbolo: {}
 Not a title block file: {}	Keine Schriftfelddatei: {}	Ce n'est pas un fichier de cartouches : {}	No es un archivo de cajetines: {}
 Not a valid rule set file: {}	Keine gültige Regelwerksdatei: {}	Fichier de règles non valide : {}	Archivo de reglas no válido: {}
+Not applicable	Entfällt	Sans objet	No aplicable
 Not in the schematic	Nicht im Schaltplan	Pas dans le schéma	No está en el esquema
+Not passed	Nicht bestanden	Non conforme	No aprobado
+Not signed	Nicht unterschrieben	Non signé	Sin firmar
+Not tested	Nicht geprüft	Non vérifié	No verificado
 Note	Hinweis	Remarque	Nota
 Notes	Notizen	Notes	Notas
 Number	Nummer	Numéro	Número
 Number of down conductors (0: as many as the class needs for the walls)	Zahl der Ableitungen (0: so viele, wie die Klasse für die Wände braucht)	Nombre de conducteurs de descente (0 : autant que la classe en exige pour les murs)	Número de bajantes (0: tantas como la clase necesita para los muros)
 Number the sections 1, 2, 3 … on every level first	Zuerst die Abschnitte auf jeder Ebene mit 1, 2, 3 … nummerieren	Numéroter d'abord les sections 1, 2, 3 … à chaque niveau	Numerar primero las secciones 1, 2, 3 … en cada nivel
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Nummeriert die Betriebsmittelkennzeichen je Struktur und Kennbuchstabe in Schaltplanreihenfolge (Seite, Spalte, von oben nach unten)	Numérote les repères d'appareils par structure et lettre repère dans l'ordre du schéma (page, colonne, de haut en bas)	Numera las identificaciones de dispositivos por estructura y letra de código en el orden del esquema (página, columna, de arriba abajo)
+OK	OK	OK	OK
 Only rows containing this text	Nur Zeilen mit diesem Text	Seulement les lignes contenant ce texte	Solo filas que contienen este texto
 OpenECraft	OpenECraft	OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft wird ohne Gewährleistung bereitgestellt. Seine Berechnungen und Prüfungen unterstützen die Planung; eine Fachkraft muss die Ergebnisse anhand der geltenden Normen und Vorschriften prüfen.	OpenECraft est fourni sans garantie. Ses calculs et ses contrôles assistent l'étude ; une personne qualifiée doit vérifier les résultats au regard des normes et des règlements applicables.	OpenECraft se ofrece sin garantía. Sus cálculos y comprobaciones ayudan en el diseño; una persona cualificada debe verificar los resultados conforme a las normas y los reglamentos aplicables.
@@ -344,9 +389,12 @@ Order number	Bestellnummer	Référence de commande	Número de pedido
 Other	Sonstiges	Autre	Otro
 Outer diameter	Außendurchmesser	Diamètre extérieur	Diámetro exterior
 Output	Ausgang	Sortie	Salida
+Output voltage (V)	Ausgangsspannung (V)	Tension de sortie (V)	Tensión de salida (V)
 Overview	Übersicht	Vue d'ensemble	Vista general
+Own item of the visual inspection	Eigener Punkt der Besichtigung	Point propre de l'examen visuel	Punto propio de la inspección visual
 PCT loop	PLT-Stelle	Boucle CCP	Lazo PCT
 PCT loop overview	PLT-Stellenübersicht	Vue d'ensemble des boucles CCP	Resumen de lazos PCT
+PELV	PELV	TBTP	MBTP
 PL	PL	PL	PL
 PLC	SPS	API	PLC
 PLC card	SPS-Karte	Carte API	Tarjeta PLC
@@ -372,7 +420,10 @@ Part {}	Artikel {}	Article {}	Artículo {}
 Parts	Artikel	Articles	Artículos
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artikel (CSV, JSON, BMEcat, EPLAN-XML, EDZ, ZIP)	Articles (CSV, JSON, BMEcat, XML EPLAN, EDZ, ZIP)	Artículos (CSV, JSON, BMEcat, XML de EPLAN, EDZ, ZIP)
 Parts import failed: {}	Artikelimport fehlgeschlagen: {}	Échec de l'import des articles : {}	Error al importar artículos: {}
+Passed	Bestanden	Conforme	Aprobado
 Password	Passwort	Mot de passe	Contraseña
+Phase sequence	Drehfeld	Ordre des phases	Secuencia de fases
+Phases	Phasen	Phases	Fases
 Phone	Telefon	Téléphone	Teléfono
 Picture	Bild	Image	Imagen
 Pieces	Stück	Pièces	Piezas
@@ -389,6 +440,7 @@ Plug	Stecker	Connecteur	Conector
 Plug diagram	Steckerplan	Plan des connecteurs	Esquema de conectores
 Plugins	Plugins	Plugins	Plugins
 Plugs	Stecker	Connecteurs	Conectores
+Polarity	Polarität	Polarité	Polaridad
 Poles	Pole	Pôles	Polos
 Ports	Ports	Ports	Puertos
 Position	Position	Position	Posición
@@ -399,6 +451,7 @@ Potentials	Potenziale	Potentiels	Potenciales
 Power	Leistung	Puissance	Potencia
 Power (kW)	Leistung (kW)	Puissance (kW)	Potencia (kW)
 Power loss	Verlustleistung	Puissance dissipée	Potencia disipada
+Power supply unit	Netzteil	Bloc d'alimentation	Fuente de alimentación
 Pre-planning	Vorplanung	Préplanification	Preplanificación
 Press	Presse	Presse	Prensa
 Previous page	Vorherige Seite	Page précédente	Página anterior
@@ -420,17 +473,25 @@ Project name	Projektname	Nom du projet	Nombre del proyecto
 Project properties	Projekteigenschaften	Propriétés du projet	Propiedades del proyecto
 Properties	Eigenschaften	Propriétés	Propiedades
 Property	Eigenschaft	Propriété	Propiedad
+Prospective fault current at the origin (kA)	Kurzschlussstrom am Speisepunkt (kA)	Courant de défaut présumé à l'origine (kA)	Corriente de defecto presunta en el origen (kA)
 Protection	Schutz	Protection	Protección
+Protective conductor (Ω)	Schutzleiter (Ω)	Conducteur de protection (Ω)	Conductor de protección (Ω)
 Protective device	Schutzorgan	Appareil de protection	Dispositivo de protección
+Protective measure	Schutzmaßnahme	Mesure de protection	Medida de protección
 Quantity	Menge	Quantité	Cantidad
 Quantity (default 1)	Menge (Standard 1)	Quantité (1 par défaut)	Cantidad (1 por defecto)
 Quantity unit	Mengeneinheit	Unité de quantité	Unidad de cantidad
+RCD	RCD	DDR	Diferencial
+RCD trip current (mA)	RCD-Auslösestrom (mA)	Courant de déclenchement DDR (mA)	Corriente de disparo del diferencial (mA)
+RCD trip time (ms)	RCD-Auslösezeit (ms)	Temps de déclenchement DDR (ms)	Tiempo de disparo del diferencial (ms)
+RCD trip time at 5 × IΔn (ms)	RCD-Auslösezeit bei 5 × IΔn (ms)	Temps de déclenchement DDR à 5 × IΔn (ms)	Tiempo de disparo del diferencial a 5 × IΔn (ms)
 Rack	Baugruppenträger	Châssis	Bastidor
 Rail	Schiene	Rail	Carril
 Range	Bereich	Plage	Rango
 Rated current	Bemessungsstrom	Courant assigné	Corriente nominal
 Rated power	Bemessungsleistung	Puissance assignée	Potencia nominal
 Rear wall	Rückwand	Paroi arrière	Pared trasera
+Reason for the test	Anlass der Prüfung	Motif de la vérification	Motivo del ensayo
 Rectangle	Rechteck	Rectangle	Rectángulo
 Rectangular	Rechteckig	Rectangulaire	Rectangular
 Redo	Wiederholen	Rétablir	Rehacer
@@ -441,13 +502,16 @@ Relative humidity	Relative Luftfeuchte	Humidité relative	Humedad relativa
 Relay	Relais	Relais	Relé
 Released	Freigegeben	Validé	Liberado
 Released pages cannot be moved	Freigegebene Seiten können nicht verschoben werden	Les pages validées ne peuvent pas être déplacées	Las páginas liberadas no se pueden mover
+Remark	Bemerkung	Remarque	Observación
 Remove	Entfernen	Retirer	Quitar
 Remove from favorites	Aus Favoriten entfernen	Retirer des favoris	Quitar de favoritos
 Remove the boundary	Grenze entfernen	Supprimer la limite	Eliminar el límite
 Remove the lightning protection system	Blitzschutzsystem entfernen	Supprimer le système de protection contre la foudre	Eliminar el sistema de protección contra el rayo
 Remove the reference point	Bezugspunkt entfernen	Supprimer le point de référence	Eliminar el punto de referencia
+Repair	Instandsetzung	Réparation	Reparación
 Report	Bericht	Rapport	Informe
 Report blocks	Auswertungsblöcke	Blocs de rapports	Bloques de informes
+Report data and visual inspection	Protokolldaten und Besichtigung	Données du rapport et examen visuel	Datos del informe e inspección visual
 Report: {}	Bericht: {}	Rapport : {}	Informe: {}
 Reports	Berichte	Rapports	Informes
 Represented by	Vertreten durch	Représenté par	Representado por
@@ -471,8 +535,11 @@ Routing	Verlegung	Cheminement	Tendido
 Rows of modules (east-west: rows of pairs)	Modulreihen (Ost-West: Reihen von Paaren)	Rangées de modules (est-ouest : rangées de paires)	Filas de módulos (este-oeste: filas de pares)
 Rule	Regel	Règle	Regla
 Rule set	Regelwerk	Jeu de règles	Conjunto de reglas
+SELV	SELV	TBTS	MBTS
+SELV, PELV and separation	SELV, PELV und Schutztrennung	TBTS, TBTP et séparation	MBTS, MBTP y separación
 Safety function	Sicherheitsfunktion	Fonction de sécurité	Función de seguridad
 Save	Speichern	Enregistrer	Guardar
+Saved	Gespeichert	Enregistré	Guardado
 Saved catalog {}	Katalog {} gespeichert	Catalogue {} enregistré	Catálogo {} guardado
 Saved user {}	Benutzer {} gespeichert	Utilisateur {} enregistré	Usuario {} guardado
 Saved {}	{} gespeichert	{} enregistré	{} guardado
@@ -500,6 +567,9 @@ Show the row after the column	Zeile nach der Spalte anzeigen	Afficher la ligne a
 Side	Seite	Côté	Lado
 Sign in	Anmelden	Se connecter	Iniciar sesión
 Sign out	Abmelden	Se déconnecter	Cerrar sesión
+Sign the report	Protokoll unterschreiben	Signer le rapport	Firmar el informe
+Signed	Unterschrieben	Signé	Firmado
+Signed by {} on {}	Unterschrieben von {} am {}	Signé par {} le {}	Firmado por {} el {}
 Signed in as {}	Angemeldet als {}	Connecté en tant que {}	Sesión iniciada como {}
 Signed in as {} ({})	Angemeldet als {} ({})	Connecté en tant que {} ({})	Sesión iniciada como {} ({})
 Signed out	Abgemeldet	Déconnecté	Sesión cerrada
@@ -521,8 +591,10 @@ Structure	Struktur	Structure	Estructura
 Subproject name	Name des Teilprojekts	Nom du sous-projet	Nombre del subproyecto
 Subsystem	Teilsystem	Sous-système	Subsistema
 Successor	Nachfolger	Successeur	Sucesor
+Summary	Zusammenfassung	Résumé	Resumen
 Supplier	Lieferant	Fournisseur	Proveedor
 Supply	Versorgung	Approvisionnement	Suministro
+Supply system	Netz	Réseau d'alimentation	Red de alimentación
 Symbol	Symbol	Symbole	Símbolo
 Symbol key	Symbolschlüssel	Clé du symbole	Clave del símbolo
 Symbolic address	Symbolische Adresse	Adresse symbolique	Dirección simbólica
@@ -537,12 +609,16 @@ Terminal strip	Klemmenleiste	Bornier	Regleta de bornes
 Terminal strips	Klemmenleisten	Borniers	Regletas de bornes
 Terminal type	Klemmentyp	Type de borne	Tipo de borne
 Terminals	Klemmen	Bornes	Bornes
+Test instrument	Messgerät	Appareil de mesure	Instrumento de medida
+Test instruments (IEC 61557)	Messgeräte (IEC 61557)	Appareils de mesure (CEI 61557)	Instrumentos de medida (IEC 61557)
+Tested by	Geprüft von	Vérifié par	Verificado por
 Text	Text	Texte	Texto
 Text to find	Zu suchender Text	Texte à rechercher	Texto a buscar
 The freestanding PV array {} stands outside the plot boundary	Die Freiflächenanlage {} steht außerhalb der Grundstücksgrenze	Le champ au sol {} se trouve hors de la limite du terrain	El campo sobre suelo {} está fuera del límite de la parcela
 The identifier must not be empty	Das Kennzeichen darf nicht leer sein	L'identificateur ne doit pas être vide	El identificador no debe estar vacío
 The long side of the modules along the rows	Die lange Seite der Module entlang der Reihen	Le grand côté des modules le long des rangées	El lado largo de los módulos a lo largo de las filas
 The page is released	Die Seite ist freigegeben	La page est validée	La página está liberada
+The project has no circuits fed from the mains	Das Projekt hat keine aus dem Netz gespeisten Stromkreise	Le projet n'a aucun circuit alimenté par le réseau	El proyecto no tiene circuitos alimentados desde la red
 The ridge (or the slope of a shed roof) runs along z instead of x	Der First (oder die Neigung eines Pultdachs) verläuft entlang z statt x	Le faîtage (ou la pente d'un toit en appentis) suit z au lieu de x	La cumbrera (o la pendiente de una cubierta a un agua) va a lo largo de z en lugar de x
 There is a connection symbol at this point already	An diesem Punkt gibt es schon ein Verbindungssymbol	Il y a déjà un symbole de liaison à ce point	Ya hay un símbolo de conexión en este punto
 Thermal	Thermik	Thermique	Térmica
@@ -550,6 +626,7 @@ This page sets no cookies, uses no tracking and loads nothing from other servers
 Time	Zeit	Temps	Tiempo
 Title block	Schriftfeld	Cartouche	Cajetín
 To	Nach	Vers	A
+To check	Zu prüfen	À vérifier	A comprobar
 Tools	Werkzeuge	Outils	Herramientas
 Top	Oben	Haut	Arriba
 Total	Gesamt	Total	Total
@@ -566,6 +643,7 @@ Unknown column: {}	Unbekannte Spalte: {}	Colonne inconnue : {}	Columna desconoci
 Unknown connector: {}	Unbekannter Konnektor: {}	Connecteur inconnu : {}	Conector desconocido: {}
 Unknown enclosure system: {}	Unbekanntes Gehäusesystem: {}	Système d'armoire inconnu : {}	Sistema de armario desconocido: {}
 Unknown face: {}	Unbekannte Fläche: {}	Face inconnue : {}	Cara desconocida: {}
+Unknown field: {}	Unbekanntes Feld: {}	Champ inconnu : {}	Campo desconocido: {}
 Unknown format: {}	Unbekanntes Format: {}	Format inconnu : {}	Formato desconocido: {}
 Unknown function definition: {}	Unbekannte Funktionsdefinition: {}	Définition de fonction inconnue : {}	Definición de función desconocida: {}
 Unknown language: {}	Unbekannte Sprache: {}	Langue inconnue : {}	Idioma desconocido: {}
@@ -584,9 +662,12 @@ User	Benutzer	Utilisateur	Usuario
 User name	Benutzername	Nom d'utilisateur	Nombre de usuario
 Users	Benutzer	Utilisateurs	Usuarios
 VAT ID	Umsatzsteuer-ID	Numéro de TVA	NIF-IVA
+Value	Wert	Valeur	Valor
 Version	Version	Version	Versión
 Viewer	Betrachter	Lecteur	Lector
+Visual inspection	Besichtigung	Examen visuel	Inspección visual
 Voltage	Spannung	Tension	Tensión
+Voltage drop (%)	Spannungsfall (%)	Chute de tension (%)	Caída de tensión (%)
 Wall penetration	Wanddurchbruch	Traversée de mur	Pasamuros
 Warning	Warnung	Avertissement	Advertencia
 Warnings	Warnungen	Avertissements	Advertencias
@@ -605,12 +686,14 @@ Wiring	Verdrahtung	Câblage	Cableado
 Yes	Ja	Oui	Sí
 Zoom in	Vergrößern	Zoom avant	Acercar
 Zoom out	Verkleinern	Zoom arrière	Alejar
+Zs max (Ω)	Zs max (Ω)	Zs max (Ω)	Zs máx (Ω)
 access denied	Zugriff verweigert	accès refusé	acceso denegado
 approved	genehmigt	approuvé	aprobado
 bonded	angeschlossen	relié	conectado
 file or folder not found	Datei oder Ordner nicht gefunden	fichier ou dossier introuvable	archivo o carpeta no encontrado
 landscape	quer	paysage	horizontal
 left	nach links	vers la gauche	hacia la izquierda
+missing	fehlt	manquant	falta
 mm	mm	mm	mm
 none	keins	aucun	ninguno
 normal	normal	normale	normal
@@ -628,6 +711,7 @@ the file exists already	die Datei existiert bereits	le fichier existe déjà	el 
 this is a folder	dies ist ein Ordner	c'est un dossier	es una carpeta
 yes	ja	oui	sí
 {} ({})	{} ({})	{} ({})	{} ({})
+{} circuits	{} Stromkreise	{} circuits	{} circuitos
 {} does not stand on the floor: choose a part marked for floor mounting	{} steht nicht auf dem Boden: einen für Bodenmontage gekennzeichneten Artikel wählen	{} ne se pose pas au sol : choisissez un article marqué pour le montage au sol	{} no se apoya en el suelo: elija un artículo marcado para montaje en suelo
 {} exists already	{} existiert bereits	{} existe déjà	{} ya existe
 {} is no 19-inch rack	{} ist kein 19-Zoll-Rack	{} n'est pas une baie 19 pouces	{} no es un rack de 19 pulgadas

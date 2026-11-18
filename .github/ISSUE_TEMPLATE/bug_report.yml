@@ -1,0 +1,79 @@
+name: Bug report
+description: Something does not work as described, crashes or draws wrong.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please search the [open issues](https://github.com/nilres/OpenECraft/issues) first; one problem per issue.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What did you do, what did you expect, and what happened instead? Error messages and screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the example project `star_delta_starter`
+        2. …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "*Help › About OpenECraft* in the editor, or `openecraft-cli --version`. For a build from source, the commit."
+      placeholder: "0.1.2"
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where does it happen?
+      options:
+        - Desktop app
+        - Web editor (editor.openecraft.org)
+        - Web editor (self-hosted)
+        - Command line or MCP server
+        - Parts manager
+        - Parts server
+        - Project server
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: Platform and installation
+      options:
+        - Windows (setup)
+        - Linux (deb or rpm)
+        - Linux (AppImage)
+        - Linux (Flatpak)
+        - Linux (snap)
+        - Linux (tar.gz)
+        - macOS (disk image)
+        - Docker image
+        - Built from source
+        - Web browser
+        - Other (please describe below)
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Operating system and browser
+      description: For example Windows 11, Ubuntu 24.04 (Wayland), macOS 15, or Firefox 140 for the web editor.
+  - type: input
+    id: language
+    attributes:
+      label: Language of the user interface
+      placeholder: English
+  - type: textarea
+    id: project
+    attributes:
+      label: Project file or log
+      description: Drag a small project file (`.oec`, `.oecz`; zip it first) that shows the problem here, or paste the output of the command line. Leave out anything confidential.

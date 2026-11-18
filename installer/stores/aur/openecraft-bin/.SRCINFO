@@ -1,0 +1,31 @@
+pkgbase = openecraft-bin
+	pkgdesc = Electrical CAE editor: schematics, panel layouts and reports
+	pkgver = 0.1.2
+	pkgrel = 1
+	url = https://openecraft.org/
+	arch = x86_64
+	license = MIT OR Apache-2.0
+	license = OFL-1.1
+	license = Ubuntu-font-1.0
+	license = Bitstream-Vera
+	license = MPL-2.0
+	depends = gcc-libs
+	depends = glibc
+	depends = hicolor-icon-theme
+	depends = libglvnd
+	depends = libxkbcommon
+	optdepends = libx11: X11 sessions
+	optdepends = libxcursor: X11 sessions
+	optdepends = libxi: X11 sessions
+	optdepends = libxkbcommon-x11: X11 sessions
+	optdepends = libxrandr: X11 sessions
+	optdepends = wayland: Wayland sessions
+	optdepends = xdg-desktop-portal: file dialogs
+	provides = openecraft=0.1.2
+	conflicts = openecraft
+	options = !strip
+	options = !debug
+	source = https://github.com/nilres/OpenECraft/releases/download/v0.1.2/OpenECraft-0.1.2-linux-x86_64.tar.gz
+	sha256sums = 22a2c9f750d627535231ff0e1ae82c5f16825a39a4410e2efc28b07b72612c5b
+
+pkgname = openecraft-bin

@@ -12,11 +12,13 @@ A page needs a name	Bir sayfanın adı olmalı
 A routing path needs {} points at least	Bir yönlendirme yolu en az {} nokta gerektirir
 A section cannot be moved into itself	Bir bölüm kendi içine taşınamaz
 Above	Üstte
+Above {} V: no SELV or PELV	{} V üzerinde: SELV veya PELV değil
 Access token	Erişim belirteci
 Accessories	Aksesuarlar
 Accessory	Aksesuar
 Add	Ekle
 Add a PDF of all pages	Tüm sayfaların PDF'ini ekle
+Add an item	Madde ekle
 Add to favorites	Sık kullanılanlara ekle
 Address	Adres
 Administrator	Yönetici
@@ -33,6 +35,7 @@ Bold	Kalın
 Bottom	Taban
 Bottom with removable gland plate	Sökülebilir rakor plakalı taban
 Breaking capacity	Kesme kapasitesi
+Breaking capacity of {} below the fault current at the origin	{} kesme kapasitesi besleme noktasındaki arıza akımının altında
 Bridge	Köprü
 Building	Bina
 Buildings	Binalar
@@ -56,16 +59,19 @@ Category	Kategori
 Centred	Ortalanmış
 Certificates	Sertifikalar
 Change	Değişiklik
+Changing the data or the results afterwards takes the signature away.	Verileri veya sonuçları sonradan değiştirmek imzayı kaldırır.
 Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrol ayarları
 Checks	Kontroller
+Circuits	Devreler
 Class	Sınıf
 Classes	Sınıflar
 Clear filters	Filtreleri temizle
 Clearance bottom	Alt mesafe
 Clearance top	Üst mesafe
 Clearances	Mesafeler
+Client	Müşteri
 Close	Kapat
 Coding: {}	Kodlama: {}
 Coil voltage	Bobin gerilimi
@@ -85,6 +91,7 @@ Connection point	Bağlantı noktası
 Connection points	Bağlantı noktaları
 Connections	Bağlantılar
 Connector	Konnektör
+Contact voltage UB (V)	Dokunma gerilimi UB (V)
 Controller	Kontrolör
 Cooling	Soğutma
 Core	Damar
@@ -131,14 +138,19 @@ Done	Tamamlandı
 Door	Kapı
 Door cutout	Kapı kesimi
 Download	İndir
+Download the report as an Excel workbook	Raporu Excel çalışma kitabı olarak indir
 Downloading {}…	{} indiriliyor…
 Drag to turn the model	Modeli döndürmek için sürükleyin
+Drawings	Çizimler
 EMC clearance	EMC mesafesi
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal ve diğer adlar sahiplerinin ticari markalarıdır. OpenECraft bağımsız bir projedir.
+Earth electrode resistance RA (Ω)	Topraklama elektrodu direnci RA (Ω)
 Edit	Düzen
 Editor	Düzenleyici
+Electrical separation	Elektriksel ayırma
 Electro-fluid cross reference	Elektro-akışkan çapraz referansı
 Email	E-posta
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Boş: varsayılan değer. Tesisatın doğrulandığı standart baskısı farklıysa başka değerler girin.
 Enclosure	Pano
 Enclosures	Panolar
 Enterprise integration	Kurumsal entegrasyon
@@ -149,6 +161,7 @@ Export as CSV…	CSV olarak dışa aktar…
 Export as JSON…	JSON olarak dışa aktar…
 Export failed: {}	Dışa aktarma başarısız oldu: {}
 External (top)	Harici (üst)
+External loop impedance Ze (Ω)	Harici çevrim empedansı Ze (Ω)
 Face	Yüzey
 Failed	Başarısız
 Fastening	Sabitleme
@@ -157,7 +170,9 @@ Field wiring	Saha kablolaması
 File	Dosya
 Files	Dosyalar
 Filter	Filtre
+Filter circuits…	Devreleri filtrele…
 Filter devices…	Cihazları filtrele…
+First fault current Id (A)	İlk arıza akımı Id (A)
 Fit	Sığdır
 Fits	Uyumlu
 Fitting at the end	Sondaki rakor
@@ -172,6 +187,7 @@ Function	Fonksiyon
 Function (=)	Fonksiyon (=)
 Function definition	Fonksiyon tanımı
 Function template	Fonksiyon şablonu
+Function test	Fonksiyon testi
 Function text	Fonksiyon metni
 Functional safety	Fonksiyonel güvenlik
 Functions	Fonksiyonlar
@@ -192,12 +208,25 @@ Height	Yükseklik
 Height above floor	Zeminden yükseklik
 History	Geçmiş
 Hose no.	Hortum no.
+IT system	IT sistemi
 Identifier	Tanımlayıcı
 Identifying letter	Tanıtıcı harf
 Image	Görüntü
 Import	İçe aktar
+Incomplete	Eksik
 Input	Giriş
+Inspection and test report	Muayene ve test raporu
+Inspector	Muayene eden
 Installation	Kurulum tipi
+Installation site	Kurulum yeri
+Installer	Tesisatçı
+Insulating floors and walls (kΩ)	Yalıtkan zemin ve duvarlar (kΩ)
+Insulation L–N (MΩ)	Yalıtım L–N (MΩ)
+Insulation L–PE (MΩ)	Yalıtım L–PE (MΩ)
+Insulation N–PE (MΩ)	Yalıtım N–PE (MΩ)
+Insulation monitoring device	Yalıtım izleme cihazı
+Insulation resistance (MΩ)	Yalıtım direnci (MΩ)
+Insulation test voltage (V)	Yalıtım test gerilimi (V)
 Integration	Entegrasyon
 Internal (bottom)	Dahili (alt)
 Interruption point	Kesinti noktası
@@ -225,6 +254,7 @@ Length	Uzunluk
 Level	Seviye
 Lifecycle	Yaşam döngüsü
 Light	Açık
+Limits	Sınırlar
 Line	Çizgi
 Link	Bağlantı
 Linked	İlişkilendirilmiş
@@ -236,11 +266,13 @@ Location (+)	Konum (+)
 Locked	Kilitli
 Locked by {}	{} tarafından kilitlendi
 Logo	Logo
+Loop impedance Zs (Ω)	Çevrim empedansı Zs (Ω)
 MTTFd (years)	MTTFd (yıl)
 Machine	Makine
 Main	Ana
 Main earthing busbar (device) it is connected to; empty: none	Bağlı olduğu ana topraklama barası (cihaz); boş: yok
 Main earthing terminal	Ana topraklama barası
+Main equipotential bonding (Ω)	Ana eş potansiyel kuşaklama (Ω)
 Main switch	Ana şalter
 Manufacturer	Üretici
 Manufacturers	Üreticiler
@@ -248,6 +280,7 @@ Manufacturing	Üretim
 Marking	İşaretleme
 Match case	Büyük/küçük harf eşleştir
 Material	Malzeme
+Measured at the origin	Besleme noktasında ölçüldü
 Medium	Ortam
 Metal carriers meeting at a node are connected	Bir düğümde birleşen metal taşıyıcılar birbirine bağlıdır
 Minimum digits of the counter (leading zeros)	Sayacın en az basamak sayısı (baştaki sıfırlar)
@@ -275,11 +308,15 @@ Name of the scheme	Düzenin adı
 Net	Ağ
 Never	Hiçbir zaman
 New group	Yeni grup
+New installation	Yeni tesisat
 New name	Yeni ad
+Next inspection	Sonraki muayene
 Next page	Sonraki sayfa
 No	Hayır
 No Vault item matches a part of the project	Hiçbir Vault öğesi projenin bir parçasıyla eşleşmiyor
 No cable {}	{} kablosu yok
+No circuit {}	{} devresi yok
+No circuits found	Devre bulunamadı
 No connection point {}	{} bağlantı noktası yok
 No device {}	{} cihazı yok
 No enclosure {}	{} panosu yok
@@ -293,6 +330,7 @@ No part {} in the project	Projede {} parçası yok
 No parts found	Parça bulunamadı
 No plot frame named {}	{} adlı çizim çerçevesi yok
 No plug {}	{} fişi yok
+No protective measure of its own	Kendi koruma önlemi yok
 No report block named {}	{} adlı rapor bloğu yok
 No segment {}	{} segmenti yok
 No station {}	{} istasyonu yok
@@ -302,18 +340,24 @@ No such section	Böyle bir bölüm yok
 No symbol with id {}	{} kimlikli sembol yok
 No title block of the project named {}	Projede {} adında antet yok
 Nominal size	Nominal çap
+Not OK	Tamam değil
 Not a language code: {}	Dil kodu değil: {}
 Not a macro file: {}	Makro dosyası değil: {}
 Not a symbol id: {}	Sembol kimliği değil: {}
 Not a title block file: {}	Antet dosyası değil: {}
 Not a valid rule set file: {}	Geçerli bir kural seti dosyası değil: {}
+Not applicable	Uygulanamaz
 Not in the schematic	Şemada değil
+Not passed	Geçmedi
+Not signed	İmzalanmadı
+Not tested	Test edilmedi
 Note	Not
 Notes	Notlar
 Number	Numara
 Number of down conductors (0: as many as the class needs for the walls)	İniş iletkeni sayısı (0: sınıfın duvarlar için gerektirdiği kadar)
 Number the sections 1, 2, 3 … on every level first	Önce bölümleri her düzeyde 1, 2, 3 … olarak numaralandır
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Cihaz etiketlerini yapı ve tanıtıcı harf başına şema sırasına göre (sayfa, sütun, yukarıdan aşağıya) numaralandırır
+OK	Tamam
 Only rows containing this text	Yalnızca bu metni içeren satırlar
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft garantisiz sunulur. Hesapları ve kontrolleri planlamayı destekler; sonuçları geçerli standartlara ve yönetmeliklere göre yetkin bir kişinin doğrulaması gerekir.
@@ -323,9 +367,12 @@ Order number	Sipariş numarası
 Other	Diğer
 Outer diameter	Dış çap
 Output	Çıkış
+Output voltage (V)	Çıkış gerilimi (V)
 Overview	Genel bakış
+Own item of the visual inspection	Gözle muayenenin kendi maddesi
 PCT loop	PCT döngüsü
 PCT loop overview	PCT döngüsü genel bakışı
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC kartı
@@ -351,7 +398,10 @@ Part {}	Parça {}
 Parts	Parçalar
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Parçalar (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Parça içe aktarma başarısız oldu: {}
+Passed	Geçti
 Password	Parola
+Phase sequence	Faz sırası
+Phases	Fazlar
 Phone	Telefon
 Picture	Resim
 Pieces	Adet
@@ -367,6 +417,7 @@ Plug	Fiş
 Plug diagram	Fiş şeması
 Plugins	Eklentiler
 Plugs	Fişler
+Polarity	Polarite
 Poles	Kutuplar
 Ports	Portlar
 Position	Konum
@@ -377,6 +428,7 @@ Potentials	Potansiyeller
 Power	Güç
 Power (kW)	Güç (kW)
 Power loss	Güç kaybı
+Power supply unit	Güç kaynağı
 Pre-planning	Ön planlama
 Press	Pres
 Previous page	Önceki sayfa
@@ -398,17 +450,25 @@ Project name	Proje adı
 Project properties	Proje özellikleri
 Properties	Özellikler
 Property	Özellik
+Prospective fault current at the origin (kA)	Besleme noktasında beklenen arıza akımı (kA)
 Protection	Koruma
+Protective conductor (Ω)	Koruma iletkeni (Ω)
 Protective device	Koruma cihazı
+Protective measure	Koruma önlemi
 Quantity	Miktar
 Quantity (default 1)	Miktar (varsayılan 1)
 Quantity unit	Miktar birimi
+RCD	Kaçak akım rölesi
+RCD trip current (mA)	Kaçak akım rölesi açma akımı (mA)
+RCD trip time (ms)	Kaçak akım rölesi açma süresi (ms)
+RCD trip time at 5 × IΔn (ms)	5 × IΔn'de kaçak akım rölesi açma süresi (ms)
 Rack	Modül rafı
 Rail	Ray
 Range	Aralık
 Rated current	Anma akımı
 Rated power	Anma gücü
 Rear wall	Arka duvar
+Reason for the test	Test nedeni
 Rectangle	Dikdörtgen
 Rectangular	Dikdörtgen
 Redo	Yinele
@@ -419,13 +479,16 @@ Relative humidity	Bağıl nem
 Relay	Röle
 Released	Yayımlanmış
 Released pages cannot be moved	Yayımlanmış sayfalar taşınamaz
+Remark	Not
 Remove	Kaldır
 Remove from favorites	Sık kullanılanlardan kaldır
 Remove the boundary	Sınırı kaldır
 Remove the lightning protection system	Yıldırımdan korunma sistemini kaldır
 Remove the reference point	Referans noktasını kaldır
+Repair	Onarım
 Report	Rapor
 Report blocks	Rapor blokları
+Report data and visual inspection	Rapor verileri ve gözle muayene
 Report: {}	Rapor: {}
 Reports	Raporlar
 Represented by	Temsilci
@@ -448,8 +511,11 @@ Routing	Yönlendirme
 Rows of modules (east-west: rows of pairs)	Modül sıraları (doğu-batı: çift sıraları)
 Rule	Kural
 Rule set	Kural seti
+SELV	SELV
+SELV, PELV and separation	SELV, PELV ve ayırma
 Safety function	Güvenlik fonksiyonu
 Save	Kaydet
+Saved	Kaydedildi
 Saved catalog {}	{} kataloğu kaydedildi
 Saved user {}	{} kullanıcısı kaydedildi
 Saved {}	{} kaydedildi
@@ -476,6 +542,9 @@ Show the row after the column	Satırı sütundan sonra göster
 Side	Taraf
 Sign in	Oturum aç
 Sign out	Oturumu kapat
+Sign the report	Raporu imzala
+Signed	İmzalandı
+Signed by {} on {}	{} tarafından {} tarihinde imzalandı
 Signed in as {}	{} olarak oturum açıldı
 Signed in as {} ({})	{} ({}) olarak oturum açıldı
 Signed out	Oturum kapatıldı
@@ -497,8 +566,10 @@ Structure	Yapı
 Subproject name	Alt proje adı
 Subsystem	Alt sistem
 Successor	Halef
+Summary	Özet
 Supplier	Tedarikçi
 Supply	Besleme
+Supply system	Besleme şebekesi
 Symbol	Sembol
 Symbol key	Sembol anahtarı
 Symbolic address	Sembolik adres
@@ -513,18 +584,23 @@ Terminal strip	Klemens şeridi
 Terminal strips	Klemens şeritleri
 Terminal type	Klemens tipi
 Terminals	Klemensler
+Test instrument	Ölçü aleti
+Test instruments (IEC 61557)	Ölçü aletleri (IEC 61557)
+Tested by	Test eden
 Text	Metin
 Text to find	Aranacak metin
 The freestanding PV array {} stands outside the plot boundary	Arazi tipi PV dizisi {} arsa sınırının dışında duruyor
 The identifier must not be empty	Tanımlayıcı boş olamaz
 The long side of the modules along the rows	Modüllerin uzun kenarı sıralar boyunca
 The page is released	Sayfa yayımlanmış
+The project has no circuits fed from the mains	Projede şebekeden beslenen devre yok
 There is a connection symbol at this point already	Bu noktada zaten bir bağlantı sembolü var
 Thermal	Termik
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Bu sayfa çerez kullanmaz, izleme yapmaz ve başka sunuculardan hiçbir şey yüklemez.
 Time	Zaman
 Title block	Antet
 To	Hedef
+To check	Kontrol edilecek
 Tools	Takımlar
 Top	Üst
 Total	Genel toplam
@@ -540,6 +616,7 @@ Unknown column: {}	Bilinmeyen sütun: {}
 Unknown connector: {}	Bilinmeyen bağlayıcı: {}
 Unknown enclosure system: {}	Bilinmeyen pano sistemi: {}
 Unknown face: {}	Bilinmeyen yüzey: {}
+Unknown field: {}	Bilinmeyen alan: {}
 Unknown format: {}	Bilinmeyen biçim: {}
 Unknown function definition: {}	Bilinmeyen fonksiyon tanımı: {}
 Unknown language: {}	Bilinmeyen dil: {}
@@ -558,9 +635,12 @@ User	Kullanıcı
 User name	Kullanıcı adı
 Users	Kullanıcılar
 VAT ID	KDV numarası
+Value	Değer
 Version	Sürüm
 Viewer	Görüntüleyici
+Visual inspection	Gözle muayene
 Voltage	Gerilim
+Voltage drop (%)	Gerilim düşümü (%)
 Warning	Uyarı
 Warnings	Uyarılar
 Weight	Ağırlık
@@ -575,12 +655,14 @@ Wired	Kablolandı
 Wires	Teller
 Wiring	Kablolama
 Yes	Evet
+Zs max (Ω)	Zs maks. (Ω)
 access denied	erişim reddedildi
 approved	onaylandı
 bonded	kuşaklandı
 file or folder not found	dosya veya klasör bulunamadı
 landscape	yatay
 left	sola
+missing	eksik
 mm	mm
 none	yok
 normal	normal
@@ -598,6 +680,7 @@ the file exists already	dosya zaten var
 this is a folder	bu bir klasör
 yes	evet
 {} ({})	{} ({})
+{} circuits	{} devre
 {} does not stand on the floor: choose a part marked for floor mounting	{} zemine konmaz: zemine montaj için işaretlenmiş bir parça seçin
 {} exists already	{} zaten var
 {} is not a PNG or JPEG image	{} bir PNG veya JPEG görüntüsü değil

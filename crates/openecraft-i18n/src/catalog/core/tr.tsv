@@ -43,6 +43,7 @@ Actuated by	Tahrik eden
 Actuation	Tahrik
 Actuator type	Tahrik elemanı tipi
 Additional page description	Ek sayfa açıklaması
+Additional protection by RCDs of at most 30 mA where required	Gerekli yerlerde en fazla 30 mA kaçak akım rölesiyle ek koruma
 Address ranges of {} and {} overlap	{} ve {} adres aralıkları çakışıyor
 Address {} is used by {} and {}	Adres {}, {} ve {} tarafından kullanılıyor
 Adhesive	Yapıştırma
@@ -203,6 +204,7 @@ Check valve	Çek valf
 Checked	Kontrol edilen
 Checked by	Kontrol eden
 Choose the pages of the subproject	Alt projenin sayfalarını seçin
+Circuit	Devre
 Circuit breaker (single-line)	Devre kesici (tek hat)
 Circuit breaker 1-pole	Devre kesici 1 kutuplu
 Circuit breaker 1-pole (NFPA)	Devre kesici 1 kutuplu (NFPA)
@@ -219,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Devre kesici 3 kutuplu QF (GB)
 Circuit breaker 3-pole QF (GOST)	Devre kesici 3 kutuplu QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Devre kesici 3 kutuplu, termik-manyetik
 Circuit breaker 4-pole	Devre kesici 4 kutuplu
+Circuits, protective devices, switches and terminals labelled	Devreler, koruma cihazları, anahtarlar ve klemensler etiketli
 Circular milling	Dairesel frezeleme
 Clip / snap-on	Klips / geçmeli
 Cloud	Bulut
@@ -240,6 +243,7 @@ Compressed air supply	Basınçlı hava beslemesi
 Compressor	Kompresör
 Condition '{}' needs OPTION=value	'{}' koşulu SEÇENEK=değer gerektirir
 Conductor class	İletken sınıfı
+Conductors selected for current-carrying capacity and voltage drop	İletkenler akım taşıma kapasitesi ve gerilim düşümüne göre seçilmiş
 Conduit	Tesisat borusu
 Connected	Bağlı
 Connection definition point on page {} is not applied to its connection	{} sayfasındaki bağlantı tanım noktası bağlantısına uygulanmamış
@@ -253,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Bağlantı sembolleri
 Connection type	Bağlantı tipi
 Connection {} has contradicting connection definition points	{} bağlantısında çelişen bağlantı tanım noktaları var
+Connections of the conductors	İletken bağlantıları
 Connector pin-outs and flat cables	Konnektör pin dizilimleri ve yassı kablolar
 Connector pin-outs: mating faces and pin tables (SVG)	Konnektör pin dizilimleri: eşleşme yüzleri ve pin tabloları (SVG)
 Contact material	Kontak malzemesi
@@ -278,6 +283,7 @@ Control transformer TC (GB)	Kumanda transformatörü TC (GB)
 Control valve	Kontrol vanası
 Control voltage	Kumanda gerilimi
 Control voltage type	Kumanda gerilimi tipi
+Conventional touch voltage limit UL (V)	Geleneksel dokunma gerilimi sınırı UL (V)
 Converted from file format {} to {}: {}	{} dosya formatından {} formatına dönüştürüldü: {}
 Coolant	Soğutucu
 Cooler	Soğutucu
@@ -341,6 +347,7 @@ DWG export failed: {}	DWG dışa aktarımı başarısız oldu: {}
 Data sheet	Veri sayfası
 Date of the approval of the last revision	Son revizyonun onay tarihi
 Date of the last revision	Son revizyonun tarihi
+Default {} ({})	Varsayılan {} ({})
 Degree of protection	Koruma derecesi
 Delete projects	Projeleri sil
 Delivery date	Teslim tarihi
@@ -373,6 +380,7 @@ Devices without power loss	Güç kaybı olmayan cihazlar
 Dew point (°C)	Çiğ noktası (°C)
 Diagnostic coverage (DC)	Teşhis kapsamı (DC)
 Diagnostics	Teşhis
+Diagrams, warning notices and similar information present	Şemalar, uyarı notları ve benzeri bilgiler mevcut
 Diameter (mm)	Çap (mm)
 Different wire numbers in one connection: {}	Bir bağlantıda farklı tel numaraları: {}
 Digital input / output module	Dijital giriş / çıkış modülü
@@ -463,6 +471,7 @@ Emergency stop SB (GOST)	Acil durdurma SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Acil durdurma cihazları bir B10d değerine ihtiyaç duyar (ISO 13849-1, Ek C)
 Emergency stop, mushroom head (NFPA)	Acil durdurma, mantar başlı (NFPA)
 Empty (IEC 60204-1)	Boş (IEC 60204-1)
+Empty: removes the item	Boş: maddeyi kaldırır
 Enclosure body	Pano gövdesi
 Enclosure climate	Pano iklimlendirmesi
 Enclosure light	Pano aydınlatması
@@ -480,6 +489,8 @@ Energy limitation class	Enerji sınırlama sınıfı
 Engineered	Projelendirildi
 Engineering unit	Fiziksel birim
 Environment	Ortam
+Equipment accessible for operation, inspection and maintenance	Ekipman işletme, muayene ve bakım için erişilebilir
+Equipment and protective measures suit the external influences	Ekipman ve koruma önlemleri dış etkilere uygun
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Ekipman topraklama iletkenleri yeşil olmalıdır (NFPA 79, 13.2.2)
 Excel workbook	Excel çalışma kitabı
 Exhaust {} open to the atmosphere (no silencer)	Egzoz {} atmosfere açık (susturucu yok)
@@ -515,6 +526,7 @@ File name written into the file header	Dosya başlığına yazılan dosya adı
 Fill level (%)	Doluluk oranı (%)
 Filter fan with outlet filter	Çıkış filtreli filtreli fan
 Filter rating	Filtre inceliği
+Fire barriers and protection against thermal effects	Yangın bariyerleri ve termal etkilere karşı koruma
 Firmware version	Donanım yazılımı sürümü
 First end only	Yalnızca ilk uç
 Fitting	Rakor
@@ -706,12 +718,14 @@ Input voltage	Giriş gerilimi
 Inputs from	Girişler şuradan
 Inrush current	Kalkış akımı
 Inside (°C)	İç (°C)
+Inspection and test report: SELV, PELV and separation	Muayene ve test raporu: SELV, PELV ve ayırma
+Inspection and test report: data	Muayene ve test raporu: veriler
+Inspection and test report: summary	Muayene ve test raporu: özet
 Installation altitude	Kurulum yüksekliği
 Installation date	Montaj tarihi
 Installation devices	Tesisat cihazları
 Installation method	Döşeme yöntemi
 Installation plan (IEC 60617-11)	Tesisat planı (IEC 60617-11)
-Installation site	Kurulum yeri
 Installation site (++)	Kurulum yeri (++)
 Installation site and location	Kurulum yeri ve konum
 Installation site of the page	Sayfanın kurulum yeri
@@ -734,6 +748,7 @@ Invalid length {}	Geçersiz uzunluk {}
 Invalid property key: {}	Geçersiz özellik anahtarı: {}
 Inverter / charger	İnvertör / şarj cihazı
 Inverter DC/AC	İnvertör DC/AC
+Isolating and switching devices in the right places	Ayırma ve anahtarlama cihazları doğru yerlerde
 Item	Öğe
 Item ID	Öğe kimliği
 JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -777,8 +792,12 @@ Load calculation	Yük hesabı
 Loads and power supplies	Yükler ve güç kaynakları
 Loads behind it: {}	Arkasındaki yükler: {}
 Location of the page	Sayfanın konumu
+Longest RCD trip time at 5 × IΔn (ms)	5 × IΔn'de en uzun kaçak akım rölesi açma süresi (ms)
+Longest RCD trip time at IΔn (ms)	IΔn'de en uzun kaçak akım rölesi açma süresi (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Alçak gerilim anahtarlama düzenleri: anma çeşitlilik faktörü, sıcaklık artışı, dokümantasyon
+Lowest insulation resistance of the mains (MΩ)	Şebekenin en düşük yalıtım direnci (MΩ)
 Lubricant	Yağlayıcı
+Luminaire	Armatür
 Luminaire, fluorescent	Floresan armatür
 MAC address	MAC adresi
 MCAD	MCAD
@@ -827,6 +846,7 @@ Maximum installation altitude	Maksimum kurulum yüksekliği
 Maximum operating temperature	Maksimum çalışma sıcaklığı
 Maximum pressure	Maksimum basınç
 Measured variable	Ölçülen büyüklük
+Measures against electromagnetic disturbances	Elektromanyetik bozulmalara karşı önlemler
 Measuring instrument	Ölçü aleti
 Measuring instruments	Ölçü aletleri
 Measuring point	Ölçüm noktası
@@ -919,8 +939,9 @@ NO contact, timed closing (NFPA)	NA kontak, gecikmeli kapanan (NFPA)
 Nailboard {}	Çivili tahta {}
 Network (m)	Ağ (m)
 Neutral (N)	Nötr (N)
+Neutral and protective conductors identified	Nötr ve koruma iletkenleri işaretli
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Nötr iletkenler açık mavi olmalıdır (IEC 60204-1, 13.2.3)
-Next inspection	Sonraki muayene
+New own item of the visual inspection	Gözle muayenenin yeni kendi maddesi
 Nibbling	Nibbling
 No connection {}	{} bağlantısı yok
 No devices to add to the single-line diagram	Tek hat şemasına eklenecek cihaz yok
@@ -941,7 +962,6 @@ No user defined property {}	{} kullanıcı tanımlı özelliği yok
 No wires at the pins of {}	{} pinlerinde tel yok
 Nominal discharge current	Nominal deşarj akımı
 Non-return valve	Çek valf
-Not OK	Tamam değil
 Not a DWG file	DWG dosyası değil
 Not a DXF file	DXF dosyası değil
 Not a DXF file (binary DXF is not supported)	DXF dosyası değil (ikili DXF desteklenmez)
@@ -976,7 +996,7 @@ Number of sheets	Pafta sayısı
 Number of switch positions	Şalter konumu sayısı
 Number of symbols	Sembol sayısı
 Numbers (1, 2, 3)	Sayılar (1, 2, 3)
-OK	Tamam
+OK, Not OK or Not applicable	OK, Not OK veya Uygulanamaz
 Ohmmeter	Ohmmetre
 Oil resistant	Yağa dayanıklı
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V potansiyelleri, butonlar, bir seçici anahtar, lambalar ve bir sigorta içeren tek şema sayfası; parçalar ve malzeme listesi.
@@ -1028,6 +1048,7 @@ Overview (not evaluated)	Genel bakış (değerlendirilmez)
 Overview / single-line	Genel bakış / tek hat
 Overvoltage category	Aşırı gerilim kategorisi
 Overvoltage relay	Aşırı gerilim rölesi
+Own item {}	Kendi madde {}
 P&ID / process (ISO 10628)	P&ID / proses (ISO 10628)
 P&ID number	P&ID numarası
 PCT loop {} has no instrument in the P&ID	PCT döngüsü {} için P&ID'de enstrüman yok
@@ -1113,7 +1134,6 @@ Phase (L)	Faz (L)
 Phase meter	Fazmetre
 Phase unbalance {} % above {} %	Faz dengesizliği %{}, %{} değerinin üzerinde
 Phase {}	Faz {}
-Phases	Fazlar
 Photodiode	Fotodiyot
 Photoelectric sensor, diffuse, 3-wire	Fotoelektrik sensör, cisimden yansımalı, 3 telli
 Photoelectric sensor, diffuse, 4-wire	Fotoelektrik sensör, cisimden yansımalı, 4 telli
@@ -1224,14 +1244,17 @@ Project revision	Proje revizyonu
 Project symbols	Proje sembolleri
 Proof test interval	Periyodik test aralığı
 Prospective short-circuit current	Beklenen kısa devre akımı
+Protection against electric shock: the measures and their components	Elektrik çarpmasına karşı koruma: önlemler ve bileşenleri
 Protection class	Koruma sınıfı
 Protection setting	Koruma ayarı
+Protective and monitoring devices selected and set correctly	Koruma ve izleme cihazları doğru seçilmiş ve ayarlanmış
 Protective conductor {} with wire colour {} (must be GNYE)	{} koruma iletkeninin tel rengi {} (GNYE olmalıdır)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Koruma iletkenleri yeşil-sarı olmalıdır (IEC 60204-1, 13.2.2)
 Protective devices	Koruma cihazları
 Protective earth	Koruma topraklaması
 Protective earth (PE)	Koruma iletkeni (PE)
 Protective hose	Koruma hortumu
+Protective, earthing and bonding conductors present and adequate	Koruma, topraklama ve kuşaklama iletkenleri mevcut ve yeterli
 Proximity sensor	Yaklaşım sensörü
 Proximity sensor NO	Yaklaşım sensörü NA
 Proximity switch NO (NFPA)	Yaklaşım şalteri NA (NFPA)
@@ -1352,6 +1375,7 @@ Rule {}: no macro {}	Kural {}: {} makrosu yok
 Rule {}: {}	Kural {}: {}
 Rule {}: {} has no variant {}	Kural {}: {} makrosunun {} varyantı yok
 Rule {}: {} is no page macro	Kural {}: {} bir sayfa makrosu değil
+SELV, PELV, Electrical separation or none	SELV, PELV, Elektriksel ayırma veya yok
 SVG image (one page)	SVG görüntüsü (tek sayfa)
 Saddle jumper	Eyer tipi köprü
 Safe torque off (STO)	Güvenli tork kapatma (STO)
@@ -1439,11 +1463,14 @@ Signal devices	Sinyal cihazları
 Signal name	Sinyal adı
 Signal range	Sinyal aralığı
 Signal type	Sinyal türü
+Signed by	İmzalayan
+Signed on	İmza tarihi
 Silencer	Susturucu
 Single, free-standing	Tekli, serbest duran
 Single, wall mounted	Tekli, duvara monte
 Single-line / overview	Tek hat / genel bakış
 Single-line diagram	Tek hat şeması
+Single-pole switching devices in the line conductors	Faz iletkenlerinde tek kutuplu anahtarlama cihazları
 Siren	Siren
 Site address	Kurulum yeri adresi
 Size (mm)	Boyut (mm)
@@ -1462,6 +1489,7 @@ Solenoid valve coil YA (GOST)	Solenoid valf bobini YA (GOST)
 Solenoid valve coil YV (GB)	Solenoid valf bobini YV (GB)
 Sort code	Sıralama kodu
 Sound level	Ses seviyesi
+Source {}	Kaynak {}
 Source {}, first target {}, second target {}	Kaynak {}, birinci hedef {}, ikinci hedef {}
 Source {}, targets {}, {} and {}	Kaynak {}, hedefler {}, {} ve {}
 Spare	Yedek
@@ -1518,6 +1546,7 @@ Supply voltage	Besleme gerilimi
 Surface (m²)	Yüzey (m²)
 Surface-mounted	Sıva üstü
 Surge protection type	Aşırı gerilim koruma tipi
+Surge protection where required	Gerekli yerlerde aşırı gerilim koruması
 Surge protective device	Aşırı gerilim koruma cihazı
 Surge suppressor	Aşırı gerilim sınırlayıcı
 Switch, 1-pole (installation)	Anahtar, tek kutuplu (tesisat)
@@ -1568,6 +1597,7 @@ Termination (to)	Sonlandırma (bitiş)
 Text file	Metin dosyası
 The DXF file contains nothing that can be imported	DXF dosyası içe aktarılabilecek bir şey içermiyor
 The PDF has no pages that can be read	PDF'te okunabilir sayfa yok
+The answer is OK, Not OK or Not applicable, not {}	Yanıt OK, Not OK veya Uygulanamaz olmalı, {} değil
 The archive contains no project	Arşiv proje içermiyor
 The archive has no manifest	Arşivin manifestosu yok
 The archive is damaged	Arşiv hasarlı
@@ -1603,6 +1633,7 @@ The project file {} is missing	Proje dosyası {} eksik
 The project has no panel layout	Projede pano yerleşimi yok
 The project was written by a newer version (file layout {})	Proje daha yeni bir sürümle yazılmış (dosya düzeni {})
 The property needs a name	Özellik için bir ad gerekli
+The protective measure is SELV, PELV, electrical separation or none, not {}	Koruma önlemi SELV, PELV, elektriksel ayırma veya yok olmalı, {} değil
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	İki yan yana zemin panosuna kurulmuş pompa istasyonu: bara sistemi, raylar ve kablo kanalları, kapı cihazları ve kollar, filtreli fan, aydınlatma, PE barası, kablo rakorları, bir kablo geçişi, iklimlendirme hesabı, kanal doluluğu ve 3D yönlendirme.
 The revision is already released	Revizyon zaten yayımlandı
 The revision is not approved	Revizyon onaylanmadı
@@ -1744,7 +1775,6 @@ Vibration resistance	Titreşim dayanımı
 View projects	Projeleri görüntüle
 Violations	İhlaller
 Voltage (V)	Gerilim (V)
-Voltage drop (%)	Gerilim düşümü (%)
 Voltage drop (V)	Gerilim düşümü (V)
 Voltage protection level	Gerilim koruma seviyesi
 Voltage range	Gerilim aralığı
@@ -1849,6 +1879,7 @@ in work	üzerinde çalışılıyor
 in {}	{} içinde
 in-line	geçiş
 incl.	dahil
+instead of {}	{} yerine
 ip (kA)	ip (kA)
 is	eşittir
 is at least	en az
@@ -1937,6 +1968,7 @@ yellow	sarı
 {} lies outside page {}	{} sayfa {} dışında
 {} min {} s	{} dk {} sn
 {} mounting marks belong to items that no longer exist	{} montaj işareti artık mevcut olmayan öğelere ait
+{} of {} passed	{} / {} geçti
 {} option assignments of deleted objects removed	Silinmiş nesnelere ait {} seçenek ataması kaldırıldı
 {} placed properties converted to property keys	{} yerleştirilmiş özellik, özellik anahtarlarına dönüştürüldü
 {} planned devices are not in the schematic yet	{} planlanmış cihaz henüz şemada değil

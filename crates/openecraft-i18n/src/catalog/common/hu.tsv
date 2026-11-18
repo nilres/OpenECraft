@@ -12,11 +12,13 @@ A page needs a name	Az oldalnak nevet kell adni
 A routing path needs {} points at least	A fektetési úthoz legalább {} pont szükséges
 A section cannot be moved into itself	Egy szakasz nem helyezhető át önmagába
 Above	Felül
+Above {} V: no SELV or PELV	{} V felett: sem SELV, sem PELV
 Access token	Hozzáférési token
 Accessories	Tartozékok
 Accessory	Tartozék
 Add	Hozzáadás
 Add a PDF of all pages	PDF hozzáadása az összes oldalról
+Add an item	Pont hozzáadása
 Add to favorites	Hozzáadás a kedvencekhez
 Address	Cím
 Administrator	Rendszergazda
@@ -33,6 +35,7 @@ Bold	Félkövér
 Bottom	Fenék
 Bottom with removable gland plate	Fenék levehető kábelbevezető lemezzel
 Breaking capacity	Megszakítóképesség
+Breaking capacity of {} below the fault current at the origin	{} megszakítóképessége a betáplálási pont zárlati árama alatt
 Bridge	Híd
 Building	Épület
 Buildings	Épületek
@@ -56,16 +59,19 @@ Category	Kategória
 Centred	Középre igazítva
 Certificates	Tanúsítványok
 Change	Változás
+Changing the data or the results afterwards takes the signature away.	Az adatok vagy eredmények utólagos módosítása törli az aláírást.
 Channel	Csatorna
 Characteristic	Jelleggörbe
 Check settings	Ellenőrzési beállítások
 Checks	Ellenőrzések
+Circuits	Áramkörök
 Class	Osztály
 Classes	Osztályok
 Clear filters	Szűrők törlése
 Clearance bottom	Szabad tér alul
 Clearance top	Szabad tér felül
 Clearances	Szabad terek
+Client	Megrendelő
 Close	Bezárás
 Coding: {}	Kódolás: {}
 Coil voltage	Tekercsfeszültség
@@ -85,6 +91,7 @@ Connection point	Csatlakozási pont
 Connection points	Csatlakozási pontok
 Connections	Összeköttetések
 Connector	Csatlakozó
+Contact voltage UB (V)	Érintési feszültség UB (V)
 Controller	Vezérlő
 Cooling	Hűtés
 Core	Ér
@@ -131,14 +138,19 @@ Done	Kész
 Door	Ajtó
 Door cutout	Ajtókivágás
 Download	Letöltés
+Download the report as an Excel workbook	A jegyzőkönyv letöltése Excel-munkafüzetként
 Downloading {}…	{} letöltése…
 Drag to turn the model	Húzással forgathatja a modellt
+Drawings	Rajzok
 EMC clearance	EMC-távolság
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	Az EPLAN, a TIA Portal és más nevek a tulajdonosaik védjegyei. Az OpenECraft független projekt.
+Earth electrode resistance RA (Ω)	Földelési ellenállás RA (Ω)
 Edit	Szerkesztés
 Editor	Szerkesztő
+Electrical separation	Villamos elválasztás
 Electro-fluid cross reference	Elektro-fluid kereszthivatkozások
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Üres: az alapértelmezés. Adjon meg más értékeket, ahol a szabványnak az a kiadása, amely szerint a létesítményt ellenőrzik, eltér.
 Enclosure	Szekrény
 Enclosures	Szekrények
 Enterprise integration	Vállalati integráció
@@ -149,6 +161,7 @@ Export as CSV…	Exportálás CSV-ként…
 Export as JSON…	Exportálás JSON-ként…
 Export failed: {}	Sikertelen exportálás: {}
 External (top)	Külső (felül)
+External loop impedance Ze (Ω)	Külső hurokimpedancia Ze (Ω)
 Face	Felület
 Failed	Sikertelen
 Fastening	Rögzítés
@@ -157,7 +170,9 @@ Field wiring	Terepi huzalozás
 File	Fájl
 Files	Fájlok
 Filter	Szűrő
+Filter circuits…	Áramkörök szűrése…
 Filter devices…	Készülékek szűrése…
+First fault current Id (A)	Első hiba árama Id (A)
 Fit	Illesztés
 Fits	Illeszkedik
 Fitting at the end	Csatlakozószerelvény a végén
@@ -172,6 +187,7 @@ Function	Funkció
 Function (=)	Funkció (=)
 Function definition	Funkciódefiníció
 Function template	Funkciósablon
+Function test	Működéspróba
 Function text	Funkciószöveg
 Functional safety	Funkcionális biztonság
 Functions	Funkciók
@@ -192,12 +208,25 @@ Height	Magasság
 Height above floor	Padló feletti magasság
 History	Előzmények
 Hose no.	Tömlőszám
+IT system	IT-rendszer
 Identifier	Azonosító
 Identifying letter	Kódbetű
 Image	Kép
 Import	Importálás
+Incomplete	Hiányos
 Input	Bemenet
+Inspection and test report	Ellenőrzési és vizsgálati jegyzőkönyv
+Inspector	Ellenőr
 Installation	Felállítás
+Installation site	Telepítési hely
+Installer	Kivitelező
+Insulating floors and walls (kΩ)	Szigetelő padlók és falak (kΩ)
+Insulation L–N (MΩ)	Szigetelés L–N (MΩ)
+Insulation L–PE (MΩ)	Szigetelés L–PE (MΩ)
+Insulation N–PE (MΩ)	Szigetelés N–PE (MΩ)
+Insulation monitoring device	Szigetelésfelügyeleti készülék
+Insulation resistance (MΩ)	Szigetelési ellenállás (MΩ)
+Insulation test voltage (V)	Szigetelésvizsgálati feszültség (V)
 Integration	Integráció
 Internal (bottom)	Belső (alul)
 Interruption point	Megszakítási pont
@@ -225,6 +254,7 @@ Length	Hossz
 Level	Szint
 Lifecycle	Életciklus
 Light	Világos
+Limits	Határértékek
 Line	Vonal
 Link	Hivatkozás
 Linked	Kapcsolva
@@ -236,11 +266,13 @@ Location (+)	Szerelési hely (+)
 Locked	Zárolt
 Locked by {}	Zárolta: {}
 Logo	Logó
+Loop impedance Zs (Ω)	Hurokimpedancia Zs (Ω)
 MTTFd (years)	MTTFd (év)
 Machine	Gép
 Main	Fő
 Main earthing busbar (device) it is connected to; empty: none	Fő földelősín (eszköz), amelyhez csatlakozik; üres: nincs
 Main earthing terminal	Fő földelősín
+Main equipotential bonding (Ω)	Fő egyenpotenciálú összekötés (Ω)
 Main switch	Főkapcsoló
 Manufacturer	Gyártó
 Manufacturers	Gyártók
@@ -248,6 +280,7 @@ Manufacturing	Gyártás
 Marking	Jelölés
 Match case	Kis- és nagybetűk megkülönböztetése
 Material	Anyag
+Measured at the origin	A betáplálási ponton mérve
 Medium	Közeg
 Metal carriers meeting at a node are connected	Az egy csomópontban találkozó fém kábeltartók össze vannak kötve
 Minimum digits of the counter (leading zeros)	A számláló minimális számjegyszáma (vezető nullák)
@@ -275,11 +308,15 @@ Name of the scheme	A séma neve
 Net	Hálózat
 Never	Soha
 New group	Új csoport
+New installation	Új létesítés
 New name	Új név
+Next inspection	Következő felülvizsgálat
 Next page	Következő oldal
 No	Nem
 No Vault item matches a part of the project	Egyik Vault-elem sem felel meg a projekt egyik alkatrészének sem
 No cable {}	Nincs {} kábel
+No circuit {}	Nincs {} áramkör
+No circuits found	Nem található áramkör
 No connection point {}	Nincs {} csatlakozási pont
 No device {}	Nincs {} készülék
 No enclosure {}	Nincs {} szekrény
@@ -293,6 +330,7 @@ No part {} in the project	Nincs {} alkatrész a projektben
 No parts found	Nem található alkatrész
 No plot frame named {}	Nincs {} nevű rajzkeret
 No plug {}	Nincs {} csatlakozódugó
+No protective measure of its own	Nincs saját védelmi intézkedés
 No report block named {}	Nincs {} nevű kimutatásblokk
 No segment {}	Nincs ilyen szegmens: {}
 No station {}	Nincs {} állomás
@@ -302,18 +340,24 @@ No such section	Nincs ilyen szakasz
 No symbol with id {}	Nincs {} azonosítójú szimbólum
 No title block of the project named {}	A projektben nincs {} nevű szövegmező
 Nominal size	Névleges méret
+Not OK	Nem OK
 Not a language code: {}	Nem nyelvkód: {}
 Not a macro file: {}	Nem makrófájl: {}
 Not a symbol id: {}	Nem szimbólumazonosító: {}
 Not a title block file: {}	Nem szövegmezőfájl: {}
 Not a valid rule set file: {}	Nem érvényes szabálykészletfájl: {}
+Not applicable	Nem alkalmazható
 Not in the schematic	Nincs a kapcsolási rajzon
+Not passed	Nem felelt meg
+Not signed	Nincs aláírva
+Not tested	Nincs vizsgálva
 Note	Megjegyzés
 Notes	Megjegyzések
 Number	Szám
 Number of down conductors (0: as many as the class needs for the walls)	A levezetők száma (0: annyi, amennyit az osztály a falakhoz megkövetel)
 Number the sections 1, 2, 3 … on every level first	Először a szakaszok számozása 1, 2, 3 … minden szinten
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Számozza a készülékazonosítókat struktúránként és kódbetűnként, a kapcsolási rajz sorrendjében (oldal, oszlop, fentről lefelé)
+OK	OK
 Only rows containing this text	Csak az ezt a szöveget tartalmazó sorok
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	Az OpenECraft garancia nélkül érhető el. Számításai és ellenőrzései a tervezést segítik; az eredményeket szakképzett személynek kell ellenőriznie a vonatkozó szabványok és előírások szerint.
@@ -323,9 +367,12 @@ Order number	Rendelési szám
 Other	Egyéb
 Outer diameter	Külső átmérő
 Output	Kimenet
+Output voltage (V)	Kimeneti feszültség (V)
 Overview	Áttekintés
+Own item of the visual inspection	A szemrevételezés saját pontja
 PCT loop	PCT-kör
 PCT loop overview	PCT-kör-áttekintés
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC-kártya
@@ -351,7 +398,10 @@ Part {}	Alkatrész {}
 Parts	Alkatrészek
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Alkatrészek (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Sikertelen alkatrészimportálás: {}
+Passed	Megfelelt
 Password	Jelszó
+Phase sequence	Fázissorrend
+Phases	Fázisok
 Phone	Telefon
 Picture	Kép
 Pieces	Darab
@@ -367,6 +417,7 @@ Plug	Csatlakozódugó
 Plug diagram	Csatlakozódugó-terv
 Plugins	Bővítmények
 Plugs	Csatlakozódugók
+Polarity	Polaritás
 Poles	Pólusok
 Ports	Portok
 Position	Pozíció
@@ -377,6 +428,7 @@ Potentials	Potenciálok
 Power	Teljesítmény
 Power (kW)	Teljesítmény (kW)
 Power loss	Veszteségi teljesítmény
+Power supply unit	Tápegység
 Pre-planning	Előtervezés
 Press	Prés
 Previous page	Előző oldal
@@ -398,17 +450,25 @@ Project name	Projektnév
 Project properties	Projekttulajdonságok
 Properties	Tulajdonságok
 Property	Tulajdonság
+Prospective fault current at the origin (kA)	Várható zárlati áram a betáplálási ponton (kA)
 Protection	Védelem
+Protective conductor (Ω)	Védővezető (Ω)
 Protective device	Védőkészülék
+Protective measure	Védelmi intézkedés
 Quantity	Mennyiség
 Quantity (default 1)	Mennyiség (alapértelmezés: 1)
 Quantity unit	Mennyiségi egység
+RCD	Áram-védőkapcsoló
+RCD trip current (mA)	Áram-védőkapcsoló kioldóárama (mA)
+RCD trip time (ms)	Áram-védőkapcsoló kioldási ideje (ms)
+RCD trip time at 5 × IΔn (ms)	Áram-védőkapcsoló kioldási ideje 5 × IΔn-nél (ms)
 Rack	Modultartó
 Rail	Sín
 Range	Tartomány
 Rated current	Névleges áram
 Rated power	Névleges teljesítmény
 Rear wall	Hátfal
+Reason for the test	A vizsgálat oka
 Rectangle	Téglalap
 Rectangular	Téglalap alakú
 Redo	Mégis
@@ -419,13 +479,16 @@ Relative humidity	Relatív páratartalom
 Relay	Relé
 Released	Kiadva
 Released pages cannot be moved	A kiadott oldalak nem helyezhetők át
+Remark	Megjegyzés
 Remove	Eltávolítás
 Remove from favorites	Eltávolítás a kedvencek közül
 Remove the boundary	Határ eltávolítása
 Remove the lightning protection system	Villámvédelem eltávolítása
 Remove the reference point	Referenciapont eltávolítása
+Repair	Javítás
 Report	Kimutatás
 Report blocks	Kimutatásblokkok
+Report data and visual inspection	Jegyzőkönyvadatok és szemrevételezés
 Report: {}	Kimutatás: {}
 Reports	Kimutatások
 Represented by	Képviseli
@@ -448,8 +511,11 @@ Routing	Nyomvonalvezetés
 Rows of modules (east-west: rows of pairs)	Modulsorok (kelet-nyugat: párok sorai)
 Rule	Szabály
 Rule set	Szabálykészlet
+SELV	SELV
+SELV, PELV and separation	SELV, PELV és elválasztás
 Safety function	Biztonsági funkció
 Save	Mentés
+Saved	Mentve
 Saved catalog {}	A(z) {} katalógus mentve
 Saved user {}	A(z) {} felhasználó mentve
 Saved {}	{} mentve
@@ -476,6 +542,9 @@ Show the row after the column	A sor megjelenítése az oszlop után
 Side	Oldal
 Sign in	Bejelentkezés
 Sign out	Kijelentkezés
+Sign the report	Jegyzőkönyv aláírása
+Signed	Aláírva
+Signed by {} on {}	Aláírta: {}, {}
 Signed in as {}	Bejelentkezve mint {}
 Signed in as {} ({})	Bejelentkezve mint {} ({})
 Signed out	Kijelentkezve
@@ -497,8 +566,10 @@ Structure	Struktúra
 Subproject name	Alprojekt neve
 Subsystem	Alrendszer
 Successor	Utód
+Summary	Összefoglalás
 Supplier	Szállító
 Supply	Ellátás
+Supply system	Tápláló hálózat
 Symbol	Szimbólum
 Symbol key	Szimbólumkulcs
 Symbolic address	Szimbolikus cím
@@ -513,18 +584,23 @@ Terminal strip	Sorkapocsléc
 Terminal strips	Sorkapocslécek
 Terminal type	Sorkapocstípus
 Terminals	Sorkapcsok
+Test instrument	Mérőműszer
+Test instruments (IEC 61557)	Mérőműszerek (IEC 61557)
+Tested by	Vizsgálta
 Text	Szöveg
 Text to find	Keresendő szöveg
 The freestanding PV array {} stands outside the plot boundary	A(z) {} szabadföldi PV-mező a telekhatáron kívül áll
 The identifier must not be empty	Az azonosító nem lehet üres
 The long side of the modules along the rows	A modulok hosszabb oldala a sorok mentén
 The page is released	Az oldal kiadva
+The project has no circuits fed from the mains	A projektben nincs hálózatról táplált áramkör
 There is a connection symbol at this point already	Ezen a ponton már van kapcsolati szimbólum
 Thermal	Hőtechnika
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Ez az oldal nem használ sütiket, nem alkalmaz nyomkövetést, és semmit sem tölt be más szerverekről.
 Time	Idő
 Title block	Szövegmező
 To	Cél
+To check	Ellenőrizendő
 Tools	Szerszámok
 Top	Fent
 Total	Összesen
@@ -540,6 +616,7 @@ Unknown column: {}	Ismeretlen oszlop: {}
 Unknown connector: {}	Ismeretlen összekötő: {}
 Unknown enclosure system: {}	Ismeretlen szekrényrendszer: {}
 Unknown face: {}	Ismeretlen felület: {}
+Unknown field: {}	Ismeretlen mező: {}
 Unknown format: {}	Ismeretlen formátum: {}
 Unknown function definition: {}	Ismeretlen funkciódefiníció: {}
 Unknown language: {}	Ismeretlen nyelv: {}
@@ -558,9 +635,12 @@ User	Felhasználó
 User name	Felhasználónév
 Users	Felhasználók
 VAT ID	Közösségi adószám
+Value	Érték
 Version	Verzió
 Viewer	Megtekintő
+Visual inspection	Szemrevételezés
 Voltage	Feszültség
+Voltage drop (%)	Feszültségesés (%)
 Warning	Figyelmeztetés
 Warnings	Figyelmeztetések
 Weight	Tömeg
@@ -575,12 +655,14 @@ Wired	Bekötve
 Wires	Vezetékek
 Wiring	Huzalozás
 Yes	Igen
+Zs max (Ω)	Zs max. (Ω)
 access denied	hozzáférés megtagadva
 approved	jóváhagyva
 bonded	bekötve
 file or folder not found	a fájl vagy mappa nem található
 landscape	fekvő
 left	balra
+missing	hiányzik
 mm	mm
 none	nincs
 normal	normál
@@ -598,6 +680,7 @@ the file exists already	a fájl már létezik
 this is a folder	ez egy mappa
 yes	igen
 {} ({})	{} ({})
+{} circuits	{} áramkör
 {} does not stand on the floor: choose a part marked for floor mounting	{} nem a padlón áll: válasszon padlóra szerelésre jelölt alkatrészt
 {} exists already	{} már létezik
 {} is not a PNG or JPEG image	{} nem PNG- vagy JPEG-kép

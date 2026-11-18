@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	将节点绘制为连�
 Draw wires in their colour	按导线颜色绘制导线
 Draw wires to the connection points facing its free arms	向正对其空闲分支的连接点绘制连接线
 Drawing	图纸
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	绘制电缆定义线；其穿过的导线成为电缆的芯线（未指定电缆时新建电缆）
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	在两个连接点之间绘制导线，例如从 -K1:A1 到 -S1:14（不明确的使用 #id:pin，电位使用名称，无标识的连接点使用 1、2…）
 Draws a wire through two or more points	绘制经过两个或多个点的导线
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	在原理图页和 PDF / SVG 导出中按导线颜色绘制导线，或以黑色绘制
@@ -526,6 +525,7 @@ No rule for {} and {}	没有 {} 和 {} 的规则
 No rule library or rule set {}	没有规则库或规则集 {}
 No rule {}	没有规则 {}
 No safety function {}	没有安全功能 {}
+No source {}	没有电源 {}
 No standard size of {} holds the layout of {}	{} 的任何标准尺寸都无法容纳 {} 的布局
 No terminal strip {}	端子排 {} 不存在
 No terminal {} on strip {}	端子排 {1} 上不存在端子 {0}
@@ -937,7 +937,6 @@ Unknown earthing system: {}	未知接地系统：{}
 Unknown face {}	未知面 {}
 Unknown fastening: {}	未知紧固方式：{}
 Unknown field object: {}	未知现场对象：{}
-Unknown field: {}	未知字段：{}
 Unknown group kind: {}	未知组类型：{}
 Unknown installation: {}	未知安装方式：{}
 Unknown insulation: {}	未知绝缘：{}
@@ -1020,7 +1019,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller、io_device、drive、hmi 或 other
 copper or aluminium	copper 或 aluminium
 device (default), position, cross_section or number	device（默认）、position、cross_section 或 number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages 或 parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection 或 inspection_data
 error, warning, info, off, or default to take the change back	error, warning, info, off，或 default 以撤销更改
 false takes the acceptance back (default true)	false 撤销接受（默认 true）
 foundation, ring or rod	foundation、ring 或 rod

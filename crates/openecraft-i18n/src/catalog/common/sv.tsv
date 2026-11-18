@@ -12,11 +12,13 @@ A page needs a name	En sida behöver ett namn
 A routing path needs {} points at least	En dragningsväg kräver minst {} punkter
 A section cannot be moved into itself	Ett avsnitt kan inte flyttas in i sig självt
 Above	Ovanför
+Above {} V: no SELV or PELV	Över {} V: varken SELV eller PELV
 Access token	Åtkomsttoken
 Accessories	Tillbehör
 Accessory	Tillbehör
 Add	Lägg till
 Add a PDF of all pages	Lägg till en PDF med alla sidor
+Add an item	Lägg till en punkt
 Add to favorites	Lägg till i favoriter
 Address	Adress
 Administrator	Administratör
@@ -33,6 +35,7 @@ Bold	Fet
 Bottom	Botten
 Bottom with removable gland plate	Botten med avtagbar genomföringsplåt
 Breaking capacity	Brytförmåga
+Breaking capacity of {} below the fault current at the origin	Brytförmåga för {} under felströmmen vid matningspunkten
 Bridge	Brygga
 Building	Byggnad
 Buildings	Byggnader
@@ -56,16 +59,19 @@ Category	Kategori
 Centred	Centrerad
 Certificates	Certifikat
 Change	Ändring
+Changing the data or the results afterwards takes the signature away.	Ändras data eller resultat i efterhand tas signaturen bort.
 Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrollinställningar
 Checks	Kontroller
+Circuits	Kretsar
 Class	Klass
 Classes	Klasser
 Clear filters	Rensa filter
 Clearance bottom	Avstånd nedåt
 Clearance top	Avstånd uppåt
 Clearances	Avstånd
+Client	Beställare
 Close	Stäng
 Coding: {}	Kodning: {}
 Coil voltage	Spolspänning
@@ -85,6 +91,7 @@ Connection point	Anslutningspunkt
 Connection points	Anslutningspunkter
 Connections	Förbindelser
 Connector	Kontaktdon
+Contact voltage UB (V)	Beröringsspänning UB (V)
 Controller	Styrenhet
 Cooling	Kylning
 Core	Ledare
@@ -131,14 +138,19 @@ Done	Klar
 Door	Dörr
 Door cutout	Dörrurtag
 Download	Ladda ned
+Download the report as an Excel workbook	Ladda ned protokollet som Excel-arbetsbok
 Downloading {}…	Laddar ned {}…
 Drag to turn the model	Dra för att vrida modellen
+Drawings	Ritningar
 EMC clearance	EMC-avstånd
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal och andra namn är varumärken som tillhör sina ägare. OpenECraft är ett fristående projekt.
+Earth electrode resistance RA (Ω)	Jordtagsresistans RA (Ω)
 Edit	Redigera
 Editor	Redigerare
+Electrical separation	Elektrisk separation
 Electro-fluid cross reference	Elektro-fluid-korsreferens
 Email	E-post
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tom: standardvärdet. Ange andra värden där utgåvan av standarden som installationen kontrolleras mot avviker.
 Enclosure	Kapsling
 Enclosures	Kapslingar
 Enterprise integration	Företagsintegration
@@ -149,6 +161,7 @@ Export as CSV…	Exportera som CSV…
 Export as JSON…	Exportera som JSON…
 Export failed: {}	Exporten misslyckades: {}
 External (top)	Extern (ovan)
+External loop impedance Ze (Ω)	Extern slingimpedans Ze (Ω)
 Face	Yta
 Failed	Misslyckad
 Fastening	Fastsättning
@@ -157,7 +170,9 @@ Field wiring	Fältkablage
 File	Arkiv
 Files	Filer
 Filter	Filter
+Filter circuits…	Filtrera kretsar…
 Filter devices…	Filtrera apparater…
+First fault current Id (A)	Felström vid första fel Id (A)
 Fit	Anpassa
 Fits	Passar till
 Fitting at the end	Koppling i slutet
@@ -172,6 +187,7 @@ Function	Funktion
 Function (=)	Funktion (=)
 Function definition	Funktionsdefinition
 Function template	Funktionsmall
+Function test	Funktionsprov
 Function text	Funktionstext
 Functional safety	Funktionssäkerhet
 Functions	Funktioner
@@ -192,12 +208,25 @@ Height	Höjd
 Height above floor	Höjd över golv
 History	Historik
 Hose no.	Slangnr
+IT system	IT-system
 Identifier	Identifierare
 Identifying letter	Kodbokstav
 Image	Bild
 Import	Import
+Incomplete	Ofullständig
 Input	Ingång
+Inspection and test report	Besiktnings- och provningsprotokoll
+Inspector	Besiktningsman
 Installation	Uppställning
+Installation site	Uppställningsplats
+Installer	Installatör
+Insulating floors and walls (kΩ)	Isolerande golv och väggar (kΩ)
+Insulation L–N (MΩ)	Isolation L–N (MΩ)
+Insulation L–PE (MΩ)	Isolation L–PE (MΩ)
+Insulation N–PE (MΩ)	Isolation N–PE (MΩ)
+Insulation monitoring device	Isolationsövervakningsdon
+Insulation resistance (MΩ)	Isolationsresistans (MΩ)
+Insulation test voltage (V)	Provspänning isolation (V)
 Integration	Integration
 Internal (bottom)	Intern (nedan)
 Interruption point	Avbrottspunkt
@@ -225,6 +254,7 @@ Length	Längd
 Level	Nivå
 Lifecycle	Livscykel
 Light	Ljust
+Limits	Gränsvärden
 Line	Linje
 Link	Länk
 Linked	Länkad
@@ -236,11 +266,13 @@ Location (+)	Placering (+)
 Locked	Låst
 Locked by {}	Låst av {}
 Logo	Logotyp
+Loop impedance Zs (Ω)	Slingimpedans Zs (Ω)
 MTTFd (years)	MTTFd (år)
 Machine	Maskin
 Main	Huvud
 Main earthing busbar (device) it is connected to; empty: none	Huvudjordningsskena (apparat) som det är anslutet till; tom: ingen
 Main earthing terminal	Huvudjordningsskena
+Main equipotential bonding (Ω)	Huvudpotentialutjämning (Ω)
 Main switch	Huvudbrytare
 Manufacturer	Tillverkare
 Manufacturers	Tillverkare
@@ -248,6 +280,7 @@ Manufacturing	Tillverkning
 Marking	Märkning
 Match case	Matcha versaler/gemener
 Material	Material
+Measured at the origin	Uppmätt vid matningspunkten
 Medium	Medium
 Metal carriers meeting at a node are connected	Metalliska kabelbärare som möts vid en nod är förbundna
 Minimum digits of the counter (leading zeros)	Minsta antal siffror i räknaren (inledande nollor)
@@ -275,11 +308,15 @@ Name of the scheme	Schemats namn
 Net	Nät
 Never	Aldrig
 New group	Ny grupp
+New installation	Ny installation
 New name	Nytt namn
+Next inspection	Nästa besiktning
 Next page	Nästa sida
 No	Nej
 No Vault item matches a part of the project	Inget Vault-objekt matchar någon artikel i projektet
 No cable {}	Ingen kabel {}
+No circuit {}	Ingen krets {}
+No circuits found	Inga kretsar hittades
 No connection point {}	Ingen anslutningspunkt {}
 No device {}	Ingen apparat {}
 No enclosure {}	Ingen kapsling {}
@@ -293,6 +330,7 @@ No part {} in the project	Ingen artikel {} i projektet
 No parts found	Inga artiklar hittades
 No plot frame named {}	Ingen ritningsram med namnet {}
 No plug {}	Inget kontaktdon {}
+No protective measure of its own	Ingen egen skyddsåtgärd
 No report block named {}	Inget rapportblock med namnet {}
 No segment {}	Inget segment {}
 No station {}	Ingen station {}
@@ -302,18 +340,24 @@ No such section	Avsnittet finns inte
 No symbol with id {}	Ingen symbol med ID {}
 No title block of the project named {}	Ingen namnruta i projektet med namnet {}
 Nominal size	Nominell storlek
+Not OK	Inte OK
 Not a language code: {}	Inte en språkkod: {}
 Not a macro file: {}	Inte en makrofil: {}
 Not a symbol id: {}	Inget symbol-ID: {}
 Not a title block file: {}	Inte en namnrutefil: {}
 Not a valid rule set file: {}	Inte en giltig regelverksfil: {}
+Not applicable	Ej tillämplig
 Not in the schematic	Inte i schemat
+Not passed	Underkänd
+Not signed	Inte signerad
+Not tested	Inte provad
 Note	Obs!
 Notes	Anteckningar
 Number	Nummer
 Number of down conductors (0: as many as the class needs for the walls)	Antal nedledare (0: så många som klassen kräver för väggarna)
 Number the sections 1, 2, 3 … on every level first	Numrera först avsnitten 1, 2, 3 … på varje nivå
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numrerar apparatbeteckningarna per struktur och kodbokstav i schemaordning (sida, kolumn, uppifrån och ned)
+OK	OK
 Only rows containing this text	Endast rader som innehåller den här texten
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft levereras utan garanti. Dess beräkningar och kontroller stöder projekteringen; en kvalificerad person måste kontrollera resultaten mot gällande standarder och föreskrifter.
@@ -323,9 +367,12 @@ Order number	Beställningsnummer
 Other	Övrigt
 Outer diameter	Ytterdiameter
 Output	Utgång
+Output voltage (V)	Utspänning (V)
 Overview	Översikt
+Own item of the visual inspection	Egen punkt i den okulära besiktningen
 PCT loop	Instrumentslinga
 PCT loop overview	Översikt över instrumentslingor
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC-kort
@@ -351,7 +398,10 @@ Part {}	Artikel {}
 Parts	Artiklar
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artiklar (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Artikelimporten misslyckades: {}
+Passed	Godkänd
 Password	Lösenord
+Phase sequence	Fasföljd
+Phases	Faser
 Phone	Telefon
 Picture	Bild
 Pieces	Antal
@@ -367,6 +417,7 @@ Plug	Kontaktdon
 Plug diagram	Kontaktdonsschema
 Plugins	Plugins
 Plugs	Kontaktdon
+Polarity	Polaritet
 Poles	Poler
 Ports	Portar
 Position	Position
@@ -377,6 +428,7 @@ Potentials	Potentialer
 Power	Effekt
 Power (kW)	Effekt (kW)
 Power loss	Effektförlust
+Power supply unit	Nätaggregat
 Pre-planning	Förplanering
 Press	Press
 Previous page	Föregående sida
@@ -398,17 +450,25 @@ Project name	Projektnamn
 Project properties	Projektegenskaper
 Properties	Egenskaper
 Property	Egenskap
+Prospective fault current at the origin (kA)	Förväntad felström vid matningspunkten (kA)
 Protection	Skydd
+Protective conductor (Ω)	Skyddsledare (Ω)
 Protective device	Skyddsdon
+Protective measure	Skyddsåtgärd
 Quantity	Mängd
 Quantity (default 1)	Antal (standard 1)
 Quantity unit	Mängdenhet
+RCD	Jordfelsbrytare
+RCD trip current (mA)	Jordfelsbrytarens utlösningsström (mA)
+RCD trip time (ms)	Jordfelsbrytarens utlösningstid (ms)
+RCD trip time at 5 × IΔn (ms)	Jordfelsbrytarens utlösningstid vid 5 × IΔn (ms)
 Rack	Rack
 Rail	Skena
 Range	Område
 Rated current	Märkström
 Rated power	Märkeffekt
 Rear wall	Bakvägg
+Reason for the test	Anledning till provningen
 Rectangle	Rektangel
 Rectangular	Rektangulär
 Redo	Gör om
@@ -419,13 +479,16 @@ Relative humidity	Relativ luftfuktighet
 Relay	Relä
 Released	Frisläppt
 Released pages cannot be moved	Frisläppta sidor kan inte flyttas
+Remark	Anmärkning
 Remove	Ta bort
 Remove from favorites	Ta bort från favoriter
 Remove the boundary	Ta bort gränsen
 Remove the lightning protection system	Ta bort åskskyddet
 Remove the reference point	Ta bort referenspunkten
+Repair	Reparation
 Report	Rapport
 Report blocks	Rapportblock
+Report data and visual inspection	Protokolldata och okulär besiktning
 Report: {}	Rapport: {}
 Reports	Rapporter
 Represented by	Företrädd av
@@ -448,8 +511,11 @@ Routing	Dragning
 Rows of modules (east-west: rows of pairs)	Modulrader (öst-väst: rader av par)
 Rule	Regel
 Rule set	Regelverk
+SELV	SELV
+SELV, PELV and separation	SELV, PELV och separation
 Safety function	Säkerhetsfunktion
 Save	Spara
+Saved	Sparat
 Saved catalog {}	Katalog {} sparad
 Saved user {}	Användare {} sparad
 Saved {}	{} sparad
@@ -476,6 +542,9 @@ Show the row after the column	Visa raden efter kolumnen
 Side	Sida
 Sign in	Logga in
 Sign out	Logga ut
+Sign the report	Signera protokollet
+Signed	Signerad
+Signed by {} on {}	Signerad av {} den {}
 Signed in as {}	Inloggad som {}
 Signed in as {} ({})	Inloggad som {} ({})
 Signed out	Utloggad
@@ -497,8 +566,10 @@ Structure	Struktur
 Subproject name	Delprojektets namn
 Subsystem	Delsystem
 Successor	Efterföljare
+Summary	Sammanfattning
 Supplier	Leverantör
 Supply	Försörjning
+Supply system	Matningsnät
 Symbol	Symbol
 Symbol key	Symbolnyckel
 Symbolic address	Symbolisk adress
@@ -513,18 +584,23 @@ Terminal strip	Plintrad
 Terminal strips	Plintrader
 Terminal type	Plinttyp
 Terminals	Plintar
+Test instrument	Mätinstrument
+Test instruments (IEC 61557)	Mätinstrument (IEC 61557)
+Tested by	Provad av
 Text	Text
 Text to find	Text att söka efter
 The freestanding PV array {} stands outside the plot boundary	Det markmonterade solcellsfältet {} står utanför tomtgränsen
 The identifier must not be empty	Beteckningen får inte vara tom
 The long side of the modules along the rows	Modulernas långsida längs raderna
 The page is released	Sidan är frisläppt
+The project has no circuits fed from the mains	Projektet har inga kretsar som matas från nätet
 There is a connection symbol at this point already	Det finns redan en förbindelsesymbol i den här punkten
 Thermal	Termik
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Den här sidan sätter inga kakor, använder ingen spårning och läser inte in något från andra servrar.
 Time	Tid
 Title block	Namnruta
 To	Till
+To check	Att kontrollera
 Tools	Verktyg
 Top	Överkant
 Total	Totalt
@@ -540,6 +616,7 @@ Unknown column: {}	Okänd kolumn: {}
 Unknown connector: {}	Okänd anslutning: {}
 Unknown enclosure system: {}	Okänt kapslingssystem: {}
 Unknown face: {}	Okänd yta: {}
+Unknown field: {}	Okänt fält: {}
 Unknown format: {}	Okänt format: {}
 Unknown function definition: {}	Okänd funktionsdefinition: {}
 Unknown language: {}	Okänt språk: {}
@@ -558,9 +635,12 @@ User	Användare
 User name	Användarnamn
 Users	Användare
 VAT ID	Momsregistreringsnummer
+Value	Värde
 Version	Version
 Viewer	Visare
+Visual inspection	Okulär besiktning
 Voltage	Spänning
+Voltage drop (%)	Spänningsfall (%)
 Warning	Varning
 Warnings	Varningar
 Weight	Vikt
@@ -575,12 +655,14 @@ Wired	Inkopplad
 Wires	Ledningar
 Wiring	Inkoppling
 Yes	Ja
+Zs max (Ω)	Zs max (Ω)
 access denied	åtkomst nekad
 approved	godkänd
 bonded	ansluten
 file or folder not found	filen eller mappen hittades inte
 landscape	liggande
 left	vänster
+missing	saknas
 mm	mm
 none	inget
 normal	normal
@@ -598,6 +680,7 @@ the file exists already	filen finns redan
 this is a folder	detta är en mapp
 yes	ja
 {} ({})	{} ({})
+{} circuits	{} kretsar
 {} does not stand on the floor: choose a part marked for floor mounting	{} står inte på golvet: välj en artikel som är märkt för golvmontage
 {} exists already	{} finns redan
 {} is not a PNG or JPEG image	{} är inte en PNG- eller JPEG-bild

@@ -109,6 +109,7 @@ pub fn restore(current: &Project, kept: &Project, targets: &[Target]) -> Project
         }
     }
     out.review = current.review.clone();
+    out.inspection = current.inspection.clone();
     out.next_id = current.next_id.max(kept.next_id);
     out
 }

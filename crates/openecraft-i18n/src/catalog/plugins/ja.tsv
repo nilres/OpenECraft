@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	分岐を接続点と�
 Draw wires in their colour	電線を色付きで描画
 Draw wires to the connection points facing its free arms	空いている側に向き合う接続点へ接続線を描きます
 Drawing	図面
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	ケーブル定義線を描画します。横切った電線はケーブルの心線になります (ケーブルを指定しない場合は新しいケーブル)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	2 つの接続ポイント間に電線を描画します。例: -K1:A1 から -S1:14 へ (あいまいな場合は #id:pin、電位の場合は名前、名称のない点の場合は 1、2…)
 Draws a wire through two or more points	2 つ以上の点を通る電線を描画します
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	回路図ページと PDF / SVG エクスポートで電線を色付きまたは黒で描画します
@@ -526,6 +525,7 @@ No rule for {} and {}	{} と {} のルールがありません
 No rule library or rule set {}	ルールライブラリまたはルールセット {} はありません
 No rule {}	ルール {} はありません
 No safety function {}	安全機能 {} はありません
+No source {}	電源 {} がありません
 No standard size of {} holds the layout of {}	{} の標準サイズには {} のレイアウトが収まりません
 No terminal strip {}	端子台 {} がありません
 No terminal {} on strip {}	端子台 {1} に端子 {0} がありません
@@ -937,7 +937,6 @@ Unknown earthing system: {}	不明な系統接地方式: {}
 Unknown face {}	不明な面 {}
 Unknown fastening: {}	不明な固定方法: {}
 Unknown field object: {}	不明なフィールドオブジェクト: {}
-Unknown field: {}	不明なフィールド: {}
 Unknown group kind: {}	不明なグループの種類: {}
 Unknown installation: {}	不明な設置方法: {}
 Unknown insulation: {}	不明な絶縁: {}
@@ -1020,7 +1019,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller、io_device、drive、hmi、または other
 copper or aluminium	copper または aluminium
 device (default), position, cross_section or number	device (既定)、position、cross_section、または number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages または parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection または inspection_data
 error, warning, info, off, or default to take the change back	error、warning、info、off、または変更を取り消す場合は default
 false takes the acceptance back (default true)	false で承認を取り消します (既定 true)
 foundation, ring or rod	foundation、ring または rod

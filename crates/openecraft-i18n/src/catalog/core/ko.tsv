@@ -40,6 +40,7 @@ Actuated by	작동 장치
 Actuation	조작
 Actuator type	조작부 유형
 Additional page description	추가 페이지 설명
+Additional protection by RCDs of at most 30 mA where required	필요한 곳에 30 mA 이하 RCD에 의한 추가 보호
 Address ranges of {} and {} overlap	{0}와(과) {1}의 주소 범위가 겹칩니다
 Address {} is used by {} and {}	주소 {0}을(를) {1}와(과) {2}이(가) 사용합니다
 Adhesive	접착
@@ -195,6 +196,7 @@ Check valve	체크 밸브
 Checked	검사됨
 Checked by	검사자
 Choose the pages of the subproject	하위 프로젝트의 페이지를 선택하세요
+Circuit	회로
 Circuit breaker (single-line)	차단기(단선)
 Circuit breaker 1-pole	차단기 1극
 Circuit breaker 1-pole (NFPA)	차단기 1극(NFPA)
@@ -211,6 +213,7 @@ Circuit breaker 3-pole QF (GB)	차단기 3극 QF(GB)
 Circuit breaker 3-pole QF (GOST)	차단기 3극 QF(GOST)
 Circuit breaker 3-pole, thermal-magnetic	차단기 3극, 열동-전자식
 Circuit breaker 4-pole	차단기 4극
+Circuits, protective devices, switches and terminals labelled	회로, 보호 장치, 스위치 및 단자 표시됨
 Circular milling	원형 밀링
 Clip / snap-on	클립 / 스냅 장착
 Cloud	구름
@@ -232,6 +235,7 @@ Compressed air supply	압축 공기 공급
 Compressor	압축기
 Condition '{}' needs OPTION=value	조건 '{}'에는 OPTION=값이 필요합니다
 Conductor class	도체 등급
+Conductors selected for current-carrying capacity and voltage drop	허용 전류와 전압 강하에 따라 도체 선정
 Conduit	전선관
 Connected	연결됨
 Connection definition point on page {} is not applied to its connection	페이지 {}의 연결 정의점이 해당 연결에 적용되지 않았습니다
@@ -245,6 +249,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	연결 기호
 Connection type	연결 유형
 Connection {} has contradicting connection definition points	연결 {}에 서로 모순되는 연결 정의점이 있습니다
+Connections of the conductors	도체의 접속
 Connector pin-outs and flat cables	커넥터 핀 배치와 리본 케이블
 Connector pin-outs: mating faces and pin tables (SVG)	커넥터 핀 배치: 결합면과 핀 표 (SVG)
 Contact material	접점 재질
@@ -270,6 +275,7 @@ Control transformer TC (GB)	제어용 변압기 TC(GB)
 Control valve	제어 밸브
 Control voltage	제어 전압
 Control voltage type	제어 전압 유형
+Conventional touch voltage limit UL (V)	약정 접촉 전압 한계 UL (V)
 Converted from file format {} to {}: {}	파일 형식 {}에서 {}(으)로 변환됨: {}
 Coolant	냉각수
 Cooler	냉각기
@@ -333,6 +339,7 @@ DWG export failed: {}	DWG 내보내기 실패: {}
 Data sheet	데이터시트
 Date of the approval of the last revision	마지막 개정의 승인 날짜
 Date of the last revision	마지막 개정 날짜
+Default {} ({})	기본값 {} ({})
 Degree of protection	보호 등급
 Delete projects	프로젝트 삭제
 Delivery date	납품일
@@ -365,6 +372,7 @@ Devices without power loss	전력 손실 없는 장치
 Dew point (°C)	이슬점(°C)
 Diagnostic coverage (DC)	진단 범위(DC)
 Diagnostics	진단
+Diagrams, warning notices and similar information present	도면, 경고 표지 및 유사한 정보 있음
 Diameter (mm)	직경(mm)
 Different wire numbers in one connection: {}	한 연결에 서로 다른 전선 번호: {}
 Digital input / output module	디지털 입력 / 출력 모듈
@@ -455,6 +463,7 @@ Emergency stop SB (GOST)	비상 정지 SB(GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	비상 정지 장치에는 B10d 값이 필요합니다(ISO 13849-1, 부속서 C)
 Emergency stop, mushroom head (NFPA)	비상 정지, 버섯형 헤드(NFPA)
 Empty (IEC 60204-1)	빈 프로젝트(IEC 60204-1)
+Empty: removes the item	비어 있음: 항목 삭제
 Enclosure body	외함 본체
 Enclosure climate	외함 온도 관리
 Enclosure light	외함 조명
@@ -472,6 +481,8 @@ Energy limitation class	에너지 제한 등급
 Engineered	설계 완료
 Engineering unit	공학 단위
 Environment	환경
+Equipment accessible for operation, inspection and maintenance	조작, 점검 및 유지보수를 위해 기기에 접근 가능
+Equipment and protective measures suit the external influences	기기와 보호 조치가 외부 영향에 적합
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	장비 접지 도체는 녹색이어야 합니다(NFPA 79, 13.2.2)
 Excel workbook	Excel 통합 문서
 Exhaust {} open to the atmosphere (no silencer)	배기 {}이(가) 대기에 개방됨(소음기 없음)
@@ -507,6 +518,7 @@ File name written into the file header	파일 헤더에 기록되는 파일 이�
 Fill level (%)	충전율(%)
 Filter fan with outlet filter	배출 필터가 있는 필터 팬
 Filter rating	여과 등급
+Fire barriers and protection against thermal effects	방화 구획 및 열적 영향에 대한 보호
 Firmware version	펌웨어 버전
 First end only	첫 번째 끝만
 Fitting	피팅
@@ -697,12 +709,14 @@ Input voltage	입력 전압
 Inputs from	입력 출처
 Inrush current	돌입 전류
 Inside (°C)	내부(°C)
+Inspection and test report: SELV, PELV and separation	검사 및 시험 보고서: SELV, PELV 및 분리
+Inspection and test report: data	검사 및 시험 보고서: 데이터
+Inspection and test report: summary	검사 및 시험 보고서: 요약
 Installation altitude	설치 고도
 Installation date	설치일
 Installation devices	설치 장치
 Installation method	포설 방법
 Installation plan (IEC 60617-11)	옥내 배선도(IEC 60617-11)
-Installation site	설치 장소
 Installation site (++)	설치 장소 (++)
 Installation site and location	설치 장소 및 위치
 Installation site of the page	페이지의 설치 장소
@@ -725,6 +739,7 @@ Invalid length {}	잘못된 길이 {}
 Invalid property key: {}	잘못된 속성 키: {}
 Inverter / charger	인버터 / 충전기
 Inverter DC/AC	인버터 DC/AC
+Isolating and switching devices in the right places	분리 및 개폐 장치가 올바른 위치에 있음
 Item	항목
 Item ID	품목 ID
 JIS (JIS C 0617)	JIS(JIS C 0617)
@@ -768,8 +783,12 @@ Load calculation	부하 계산
 Loads and power supplies	부하 및 전원 공급 장치
 Loads behind it: {}	하위 부하: {}
 Location of the page	페이지 위치
+Longest RCD trip time at 5 × IΔn (ms)	5 × IΔn에서 RCD 최장 동작 시간 (ms)
+Longest RCD trip time at IΔn (ms)	IΔn에서 RCD 최장 동작 시간 (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	저압 개폐 장치 조립품: 정격 부등률, 온도 상승, 문서
+Lowest insulation resistance of the mains (MΩ)	전원 계통의 최소 절연 저항 (MΩ)
 Lubricant	윤활유
+Luminaire	조명 기구
 Luminaire, fluorescent	형광등 기구
 MAC address	MAC 주소
 MCAD	MCAD
@@ -818,6 +837,7 @@ Maximum installation altitude	최대 설치 고도
 Maximum operating temperature	최대 작동 온도
 Maximum pressure	최대 압력
 Measured variable	측정 변수
+Measures against electromagnetic disturbances	전자기 장해 대책
 Measuring instrument	측정 기기
 Measuring instruments	계측기
 Measuring point	측정점
@@ -909,8 +929,9 @@ NO contact, timed closing (NFPA)	a접점, 지연 닫힘(NFPA)
 Nailboard {}	네일보드 {}
 Network (m)	네트워크(m)
 Neutral (N)	중성선(N)
+Neutral and protective conductors identified	중성선과 보호 도체 표시됨
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	중성선은 하늘색이어야 합니다(IEC 60204-1, 13.2.3)
-Next inspection	다음 점검
+New own item of the visual inspection	외관 검사의 새 자체 항목
 Nibbling	니블링
 No connection {}	연결 {} 없음
 No devices to add to the single-line diagram	단선도에 추가할 장치가 없습니다
@@ -931,7 +952,6 @@ No user defined property {}	사용자 정의 속성 {}이(가) 없습니다
 No wires at the pins of {}	{}의 핀에 전선이 없습니다
 Nominal discharge current	공칭 방전 전류
 Non-return valve	논리턴 밸브
-Not OK	OK 아님
 Not a DWG file	DWG 파일이 아닙니다
 Not a DXF file	DXF 파일이 아님
 Not a DXF file (binary DXF is not supported)	DXF 파일이 아님(바이너리 DXF는 지원되지 않음)
@@ -966,7 +986,7 @@ Number of sheets	시트 수
 Number of switch positions	스위치 위치 수
 Number of symbols	심볼 수
 Numbers (1, 2, 3)	숫자(1, 2, 3)
-OK	OK
+OK, Not OK or Not applicable	OK, 불합격 또는 해당 없음
 Ohmmeter	저항계
 Oil resistant	내유성
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V 전위, 푸시 버튼, 선택 스위치, 표시등, 퓨즈가 있는 회로도 한 페이지; 부품과 자재 명세서.
@@ -1016,6 +1036,7 @@ Overview (not evaluated)	개요(평가되지 않음)
 Overview / single-line	개요 / 단선
 Overvoltage category	과전압 범주
 Overvoltage relay	과전압 릴레이
+Own item {}	자체 항목 {}
 P&ID / process (ISO 10628)	P&ID / 공정(ISO 10628)
 P&ID number	P&ID 번호
 PCT loop {} has no instrument in the P&ID	PCT 루프 {}에 P&ID의 계기가 없습니다
@@ -1101,7 +1122,6 @@ Phase (L)	선도체(L)
 Phase meter	위상계
 Phase unbalance {} % above {} %	상 불평형 {} %가 {} %를 초과함
 Phase {}	상 {}
-Phases	상
 Photodiode	포토다이오드
 Photoelectric sensor, diffuse, 3-wire	광전 센서, 확산 반사형, 3선식
 Photoelectric sensor, diffuse, 4-wire	광전 센서, 확산 반사형, 4선식
@@ -1212,14 +1232,17 @@ Project revision	프로젝트 개정
 Project symbols	프로젝트 심볼
 Proof test interval	보증 시험 주기
 Prospective short-circuit current	추정 단락 전류
+Protection against electric shock: the measures and their components	감전 보호: 조치와 그 구성 요소
 Protection class	보호 클래스
 Protection setting	보호 설정
+Protective and monitoring devices selected and set correctly	보호 및 감시 장치가 올바르게 선정 및 설정됨
 Protective conductor {} with wire colour {} (must be GNYE)	전선 색상이 {1}인 보호 도체 {0}(GNYE여야 함)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	보호 도체는 녹황색이어야 합니다(IEC 60204-1, 13.2.2)
 Protective devices	보호 장치
 Protective earth	보호 접지
 Protective earth (PE)	보호 도체(PE)
 Protective hose	보호 호스
+Protective, earthing and bonding conductors present and adequate	보호, 접지 및 본딩 도체가 있고 적절함
 Proximity sensor	근접 센서
 Proximity sensor NO	근접 센서 a접점
 Proximity switch NO (NFPA)	근접 스위치 a접점(NFPA)
@@ -1339,6 +1362,7 @@ Rule {}: no macro {}	규칙 {}: 매크로 {} 없음
 Rule {}: {}	규칙 {}: {}
 Rule {}: {} has no variant {}	규칙 {0}: {1}에 변형 {2}이(가) 없습니다
 Rule {}: {} is no page macro	규칙 {}: {}은(는) 페이지 매크로가 아닙니다
+SELV, PELV, Electrical separation or none	SELV, PELV, 전기적 분리 또는 없음
 SVG image (one page)	SVG 이미지(한 페이지)
 Saddle jumper	새들 점퍼
 Safe torque off (STO)	안전 토크 차단(STO)
@@ -1426,11 +1450,14 @@ Signal devices	신호 장치
 Signal name	신호 이름
 Signal range	신호 범위
 Signal type	신호 유형
+Signed by	서명자
+Signed on	서명일
 Silencer	소음기
 Single, free-standing	단독, 독립형
 Single, wall mounted	단독, 벽면 장착
 Single-line / overview	단선 / 개요
 Single-line diagram	단선도
+Single-pole switching devices in the line conductors	상도체의 단극 개폐 장치
 Siren	사이렌
 Site address	설치 장소 주소
 Size (mm)	크기(mm)
@@ -1449,6 +1476,7 @@ Solenoid valve coil YA (GOST)	솔레노이드 밸브 코일 YA(GOST)
 Solenoid valve coil YV (GB)	솔레노이드 밸브 코일 YV(GB)
 Sort code	정렬 코드
 Sound level	소음 레벨
+Source {}	전원 {}
 Source {}, first target {}, second target {}	원점 {}, 첫째 대상 {}, 둘째 대상 {}
 Source {}, targets {}, {} and {}	원점 {}, 대상 {}, {} 및 {}
 Spare	예비
@@ -1505,6 +1533,7 @@ Supply voltage	공급 전압
 Surface (m²)	표면적(m²)
 Surface-mounted	노출 배선
 Surge protection type	서지 보호 유형
+Surge protection where required	필요한 곳의 서지 보호
 Surge protective device	서지 보호 장치
 Surge suppressor	서지 억제기
 Switch, 1-pole (installation)	스위치, 단극(옥내 배선)
@@ -1555,6 +1584,7 @@ Termination (to)	마감(끝)
 Text file	텍스트 파일
 The DXF file contains nothing that can be imported	DXF 파일에 가져올 수 있는 내용이 없습니다
 The PDF has no pages that can be read	PDF에 읽을 수 있는 페이지가 없습니다
+The answer is OK, Not OK or Not applicable, not {}	답은 OK, 불합격 또는 해당 없음이어야 합니다. {}은(는) 아닙니다
 The archive contains no project	아카이브에 프로젝트가 없습니다
 The archive has no manifest	아카이브에 매니페스트가 없습니다
 The archive is damaged	아카이브가 손상되었습니다
@@ -1585,6 +1615,7 @@ The plot boundary encloses no area	부지 경계가 면적을 둘러싸지 않�
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	부지 경계가 다각형이 아닙니다: 자기 교차하거나 꼭짓점이 3개 미만입니다
 The project has no panel layout	프로젝트에 패널 레이아웃이 없습니다
 The property needs a name	속성에는 이름이 필요합니다
+The protective measure is SELV, PELV, electrical separation or none, not {}	보호 조치는 SELV, PELV, 전기적 분리 또는 없음이어야 합니다. {}은(는) 아닙니다
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	나란히 연결된 두 개의 자립형 외함에 설치된 펌프장: 부스바 시스템, 레일과 덕트, 도어 장치와 손잡이, 필터 팬, 조명, PE 바, 케이블 글랜드, 케이블 통로, 외함 기후 계산, 덕트 충전율 및 3D 라우팅.
 The revision is already released	개정이 이미 릴리스되었습니다
 The revision is not approved	개정이 승인되지 않았습니다
@@ -1726,7 +1757,6 @@ Vibration resistance	내진동성
 View projects	프로젝트 보기
 Violations	위반
 Voltage (V)	전압(V)
-Voltage drop (%)	전압 강하(%)
 Voltage drop (V)	전압 강하(V)
 Voltage protection level	전압 보호 레벨
 Voltage range	전압 범위
@@ -1831,6 +1861,7 @@ in work	작업 중
 in {}	{} 내
 in-line	인라인
 incl.	포함
+instead of {}	{} 대신
 ip (kA)	ip(kA)
 is	같음
 is at least	이상
@@ -1917,6 +1948,7 @@ yellow	노랑
 {} lies outside page {}	{}이(가) 페이지 {} 밖에 있습니다
 {} min {} s	{}분 {}초
 {} mounting marks belong to items that no longer exist	장착 표시 {}개가 더 이상 존재하지 않는 항목에 속합니다
+{} of {} passed	{} / {} 합격
 {} option assignments of deleted objects removed	삭제된 개체의 옵션 할당 {}개를 제거했습니다
 {} placed properties converted to property keys	배치된 속성 {}개를 속성 키로 변환했습니다
 {} planned devices are not in the schematic yet	계획된 장치 {}개가 아직 회로도에 없습니다

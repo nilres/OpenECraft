@@ -1,0 +1,48 @@
+name: Parts or catalog request
+description: Parts of a manufacturer for the bundled catalogs and the public parts server.
+title: "[Parts]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The bundled catalogs (`crates/openecraft-parts/catalogs/`) are compiled from **public** data sheets. Parts can also be imported yourself from BMEcat, EPLAN XML, EDZ or CSV files ([parts](https://github.com/nilres/OpenECraft/blob/master/docs/features/parts.md)).
+  - type: input
+    id: manufacturer
+    attributes:
+      label: Manufacturer
+      placeholder: Phoenix Contact
+    validations:
+      required: true
+  - type: textarea
+    id: parts
+    attributes:
+      label: Parts
+      description: Order numbers or type designations, one per line; or a product series.
+      placeholder: |
+        3044103 UT 4
+        2904601 QUINT4-PS/1AC/24DC/10
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public data sheets
+      description: Links to the manufacturer's data sheets, dimension drawings or download pages.
+    validations:
+      required: true
+  - type: checkboxes
+    id: data
+    attributes:
+      label: What do you need?
+      options:
+        - label: Part data (description, technical data, accessories)
+        - label: Functions and connection points for the schematic
+        - label: Dimensions and mounting data for the panel layout
+        - label: 3D model
+        - label: Symbols or macros
+  - type: textarea
+    id: context
+    attributes:
+      label: What for?
+      description: The kind of project, and whether you could provide or check the data.

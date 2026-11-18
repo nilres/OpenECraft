@@ -21,3 +21,13 @@ fn devices_are_renamed_and_get_parts() {
     assert!(s.project().unwrap().parts.iter().any(|p| p.number == number));
     assert!(run(&mut s, "assign_part", json!({ "tag": "-K99", "number": number })).is_err());
 }
+
+#[test]
+fn an_unknown_part_gets_suggestions() {
+    let mut s = new_session();
+    run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": 100, "y": 100, "tag": "-K1" })).unwrap();
+    let err = run(&mut s, "assign_part", json!({ "tag": "-K1", "number": "CBL-4G1.5" })).unwrap_err();
+    assert!(err.contains("similar parts") && err.contains("GEN.CBL-4G1.5"), "{err}");
+    let err = run(&mut s, "assign_part", json!({ "tag": "-K1", "number": "zzz" })).unwrap_err();
+    assert!(!err.contains("similar"), "{err}");
+}

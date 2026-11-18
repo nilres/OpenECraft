@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- A page beside the main one (src/pages.rs): plain HTML, written in every language
+         by the build (pages.sh). It loads nothing beyond its own address. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <title data-t>Free electrical CAD for schools and training – OpenECraft</title>
+    <meta name="description" content="Teach electrical planning with free, open source CAE software that runs in the browser: a tutorial, example projects from the first circuit up and 20 languages." />
+    <meta name="theme-color" content="#070b14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenECraft" />
+    <meta property="og:title" content="Free electrical CAD for schools and training – OpenECraft" />
+    <meta property="og:description" content="Teach electrical planning with free, open source CAE software that runs in the browser: a tutorial, example projects from the first circuit up and 20 languages." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- site address (installer/docker/website-site.sh) -->
+    <!-- /site address -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Free electrical CAD for schools and training – OpenECraft",
+        "description": "Teach electrical planning with free, open source CAE software that runs in the browser: a tutorial, example projects from the first circuit up and 20 languages.",
+        "about": {
+            "@type": "SoftwareApplication",
+            "name": "OpenECraft",
+            "applicationCategory": "DesignApplication",
+            "applicationSubCategory": "Electrical CAE",
+            "operatingSystem": "Windows, Linux, macOS, web browser",
+            "isAccessibleForFree": true,
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR"
+            }
+        },
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Schools, vocational training and universities"
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="../site.css" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <script src="../config.js"></script>
+    <script src="../site.js" defer></script>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="nav">
+    <a class="brand" data-page href="../"><img src="../icon.svg" alt="" width="30" height="30" /><span>OpenECraft</span></a>
+    <!-- On a narrow screen the links are a menu this button opens (site.js). -->
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" hidden><span class="bars" aria-hidden="true"></span><span class="sr" data-t>Menu</span></button>
+    <nav id="nav-links">
+        <a data-page href="../#features" data-t>Features</a>
+        <a data-page href="../#studio" data-t>Live demo</a>
+        <a data-page href="../panel-builders/" data-t>Panel builders</a>
+        <a data-page href="../electricians/" data-t>Electricians</a>
+        <a data-page href="../education/" aria-current="page" data-t>Schools</a>
+        <a data-page href="../compare/" data-t>Comparison</a>
+        <a data-page href="../#get" data-t>Get it</a>
+        <a class="menu-only" data-link="repository" href="#" data-t>Source code</a>
+    </nav>
+    <div class="nav-right">
+        <select id="language" aria-label="Language" hidden></select>
+        <a class="button ghost" data-link="repository" href="#" data-t>Source code</a>
+    </div>
+</header>
+
+<main id="top">
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>For schools and training</p>
+        <h1 data-t>Learn electrical planning on real software, for free</h1>
+        <p class="lead" data-t>OpenECraft costs nothing, needs no license server and runs in the browser, so every student works with the same program at school and at home. The project check points out mistakes while they draw.</p>
+        <div class="actions">
+            <a class="button primary" data-page href="../#studio" data-t>Try the live demo</a>
+            <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
+        </div>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>Why it suits a classroom</h2>
+    <div class="cards">
+        <article class="card"><h3 data-t>Free for every student</h3><p data-t>Open source under the MIT and Apache-2.0 licenses: no licenses to count, no accounts, no expiry. Install it on every school computer or use it in the browser.</p></article>
+        <article class="card"><h3 data-t>In the browser</h3><p data-t>The full editor as a web application. Nothing to install, your projects stay on your computer.</p></article>
+        <article class="card"><h3 data-t>Example projects, simplest first</h3><p data-t>Each example builds on the one before: from push buttons and lamps through a self-holding relay and a star-delta starter to PLC, panel layout and whole buildings.</p></article>
+        <article class="card"><h3 data-t>A tutorial from the first page</h3><p data-t>The tutorial walks from the first schematic page to the bill of materials: pages, symbols, wires, parts, terminals, PLC, the project check, reports and the panel layout.</p><a class="button ghost" data-link="documentation" data-path="/tutorial.md" href="#" data-t>Tutorial</a></article>
+        <article class="card"><h3 data-t>Feedback while drawing</h3><p data-t>The project check follows every change and leads to the place of each message, so students see their mistakes at once.</p></article>
+        <article class="card"><h3 data-t>In the student's language</h3><p data-t>20 languages, switched while working: menus, generated reports and check messages follow at once.</p></article>
+        <article class="card"><h3 data-t>Standards from the start</h3><p data-t>IEC 60617 symbols, structure identifiers after IEC 81346 and reports as in industry, so what is learned carries over to other tools.</p></article>
+        <article class="card"><h3 data-t>For the whole class</h3><p data-t>The web editor and a project server for shared projects run in the school's own network from Docker images.</p><a class="button ghost" data-link="documentation" data-path="/installation.md" href="#" data-t>Installation guide</a></article>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>Start with an example</h2>
+    <p class="text" data-t>The first examples are a lamp circuit, a self-holding relay and a star-delta motor starter; later ones add a PLC, electro-pneumatics, structure identifiers, revisions, control cabinets, rooms and buildings.</p>
+    <div class="actions"><a class="button ghost" data-page href="../compare/" data-t>See the comparison</a></div>
+</section>
+
+<section id="try" class="band">
+    <h2 data-t>See for yourself</h2>
+    <p class="sub" data-t>The live demo runs the editor's own code in your browser; the web editor is the whole program, nothing to install.</p>
+    <div class="actions">
+        <a class="button primary" data-page href="../#studio" data-t>Try the live demo</a>
+        <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
+        <a class="button ghost" data-link="downloads" href="#" data-t>Download the latest release</a>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div><img src="../icon.svg" alt="" width="22" height="22" /> <b>OpenECraft</b> · <span data-t>Open source under the MIT and Apache-2.0 licenses.</span></div>
+    <div class="links">
+        <a data-link="documentation" data-path="/tutorial.md" href="#" data-t>Tutorial</a>
+        <a data-link="documentation" data-path="/plugins.md" href="#" data-t>Plugins</a>
+        <a data-link="documentation" data-path="/command-line.md" href="#" data-t>Command line and MCP</a>
+        <a data-link="issues" href="#" data-t>Report a problem</a>
+        <a id="licenses-open" data-page href="../#licenses" data-t>Licenses</a>
+        <a id="privacy-open" data-page href="../#privacy" data-t>Privacy</a>
+        <a id="legal-open" data-page href="../#legal" hidden data-t>Legal notice</a>
+    </div>
+    <div class="links">
+        <a data-page href="../panel-builders/" data-t>Panel builders</a>
+        <a data-page href="../electricians/" data-t>Electricians</a>
+        <a data-page href="../education/" data-t>Schools</a>
+        <a data-page href="../compare/" data-t>Comparison</a>
+    </div>
+    <!-- This page in every language (de.html, …), written by the build (pages.sh). -->
+    <nav class="languages" aria-label="Language">
+        <a href="./" hreflang="en" lang="en">English</a>
+        <a href="de.html" hreflang="de" lang="de">Deutsch</a>
+        <a href="fr.html" hreflang="fr" lang="fr">Français</a>
+        <a href="es.html" hreflang="es" lang="es">Español</a>
+        <a href="pt.html" hreflang="pt" lang="pt">Português</a>
+        <a href="it.html" hreflang="it" lang="it">Italiano</a>
+        <a href="nl.html" hreflang="nl" lang="nl">Nederlands</a>
+        <a href="pl.html" hreflang="pl" lang="pl">Polski</a>
+        <a href="cs.html" hreflang="cs" lang="cs">Čeština</a>
+        <a href="ru.html" hreflang="ru" lang="ru">Русский</a>
+        <a href="uk.html" hreflang="uk" lang="uk">Українська</a>
+        <a href="tr.html" hreflang="tr" lang="tr">Türkçe</a>
+        <a href="sv.html" hreflang="sv" lang="sv">Svenska</a>
+        <a href="da.html" hreflang="da" lang="da">Dansk</a>
+        <a href="fi.html" hreflang="fi" lang="fi">Suomi</a>
+        <a href="hu.html" hreflang="hu" lang="hu">Magyar</a>
+        <a href="ro.html" hreflang="ro" lang="ro">Română</a>
+        <a href="zh.html" hreflang="zh" lang="zh">简体中文</a>
+        <a href="ja.html" hreflang="ja" lang="ja">日本語</a>
+        <a href="ko.html" hreflang="ko" lang="ko">한국어</a>
+    </nav>
+    <p class="fine"><span data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</span> <span data-t>It is not affiliated with, endorsed by or sponsored by the owners of these names.</span></p>
+    <p class="fine" data-t>OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.</p>
+</footer>
+</body>
+</html>

@@ -790,3 +790,42 @@ fn cleanup_ignores_automatic_numbers_but_keeps_fixed_ones() {
     cleanup_wires(&mut prj.pages[0]);
     assert_eq!(prj.pages[0].wires.iter().map(|w|w.id).collect::<Vec<_>>(),[1,3]);
 }
+
+#[test]
+fn renamed_cable_cores_keep_their_wires() {
+    let mut prj = Project::default();
+    prj.cables.push(Cable { id: 1, tag: "-W1".into(), cores: "1 2 3 4".into(), ..Default::default() });
+    for (id, core) in [(1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "2")] {
+        prj.pages[0].wires.push(Wire { id, cable: "-W1".into(), core: core.into(), ..Default::default() });
+    }
+    prj.pages[0].wires.push(Wire { id: 6, cable: "-W2".into(), core: "1".into(), ..Default::default() });
+    let old = prj.cables[0].core_list();
+    prj.cables[0].cores = "BN BK GY GNYE".into();
+    assert_eq!(remap_cable_cores(&mut prj, "-W1", &old), 5);
+    let cores: Vec<&str> = prj.pages[0].wires.iter().map(|w| w.core.as_str()).collect();
+    assert_eq!(cores, ["BN", "BK", "GY", "GNYE", "BK", "1"], "wires of one core share the new one, other cables stay");
+    // Cores the cable still has keep their wires, the others take the free ones in order.
+    let old = prj.cables[0].core_list();
+    prj.cables[0].cores = "1 2 3 GNYE".into();
+    assert_eq!(remap_cable_cores(&mut prj, "-W1", &old), 4);
+    let cores: Vec<&str> = prj.pages[0].wires.iter().take(5).map(|w| w.core.as_str()).collect();
+    assert_eq!(cores, ["1", "2", "3", "GNYE", "2"]);
+    // Fewer cores: a core without a free one keeps its name for the check to report.
+    let old = prj.cables[0].core_list();
+    prj.cables[0].cores = "BN BU".into();
+    remap_cable_cores(&mut prj, "-W1", &old);
+    let cores: Vec<&str> = prj.pages[0].wires.iter().take(4).map(|w| w.core.as_str()).collect();
+    assert_eq!(cores, ["BN", "BU", "3", "GNYE"]);
+    assert_eq!(remap_cable_cores(&mut prj, "-W9", &old), 0);
+}
+
+#[test]
+fn a_new_cable_needs_a_free_valid_tag() {
+    let mut prj = Project::default();
+    prj.cables.push(Cable { id: 1, tag: "-W1".into(), ..Default::default() });
+    prj.pages[0].symbols.push(SymbolInst { id: 2, sym: "coil".into(), tag: "-K1".into(), ..Default::default() });
+    assert!(new_cable_problem(&prj, "-W2").is_none());
+    assert!(new_cable_problem(&prj, "-W1").unwrap().contains("already exists"));
+    assert!(new_cable_problem(&prj, "-K1").unwrap().contains("already exists"));
+    assert!(new_cable_problem(&prj, "W 2").is_some());
+}

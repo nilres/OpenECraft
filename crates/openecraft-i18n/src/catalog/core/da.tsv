@@ -43,6 +43,7 @@ Actuated by	Aktiveret af
 Actuation	Aktivering
 Actuator type	Aktuatortype
 Additional page description	Yderligere sidebeskrivelse
+Additional protection by RCDs of at most 30 mA where required	Supplerende beskyttelse med HPFI på højst 30 mA, hvor det kræves
 Address ranges of {} and {} overlap	Adresseområderne for {} og {} overlapper
 Address {} is used by {} and {}	Adressen {} bruges af {} og {}
 Adhesive	Lim
@@ -203,6 +204,7 @@ Check valve	Kontraventil
 Checked	Kontrolleret
 Checked by	Kontrolleret af
 Choose the pages of the subproject	Vælg delprojektets sider
+Circuit	Kreds
 Circuit breaker (single-line)	Effektafbryder (enstreget)
 Circuit breaker 1-pole	Automatsikring 1-polet
 Circuit breaker 1-pole (NFPA)	Automatsikring 1-polet (NFPA)
@@ -219,6 +221,7 @@ Circuit breaker 3-pole QF (GB)	Maksimalafbryder 3-polet QF (GB)
 Circuit breaker 3-pole QF (GOST)	Maksimalafbryder 3-polet QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Maksimalafbryder 3-polet, termisk-magnetisk
 Circuit breaker 4-pole	Effektafbryder 4-polet
+Circuits, protective devices, switches and terminals labelled	Kredse, beskyttelsesudstyr, afbrydere og klemmer mærket
 Circular milling	Cirkulær fræsning
 Clip / snap-on	Clips / snap-on
 Cloud	Sky
@@ -240,6 +243,7 @@ Compressed air supply	Trykluftforsyning
 Compressor	Kompressor
 Condition '{}' needs OPTION=value	Betingelsen '{}' kræver OPTION=værdi
 Conductor class	Lederklasse
+Conductors selected for current-carrying capacity and voltage drop	Ledere valgt efter strømværdi og spændingsfald
 Conduit	Installationsrør
 Connected	Tilsluttet
 Connection definition point on page {} is not applied to its connection	Forbindelsesdefinitionspunktet på side {} er ikke anvendt på dets forbindelse
@@ -253,6 +257,7 @@ Connection symbol on page {} wires its connection in a loop: the symbols of the 
 Connection symbols	Forbindelsessymboler
 Connection type	Tilslutningstype
 Connection {} has contradicting connection definition points	Forbindelsen {} har modstridende forbindelsesdefinitionspunkter
+Connections of the conductors	Ledernes forbindelser
 Connector pin-outs and flat cables	Stikforbindelsers benforbindelse og fladkabler
 Connector pin-outs: mating faces and pin tables (SVG)	Stikforbindelsers benforbindelse: stiksider og bentabeller (SVG)
 Contact material	Kontaktmateriale
@@ -278,6 +283,7 @@ Control transformer TC (GB)	Styretransformer TC (GB)
 Control valve	Reguleringsventil
 Control voltage	Styrespænding
 Control voltage type	Styrespændingstype
+Conventional touch voltage limit UL (V)	Konventionel grænse for berøringsspænding UL (V)
 Converted from file format {} to {}: {}	Konverteret fra filformat {} til {}: {}
 Coolant	Kølemiddel
 Cooler	Køler
@@ -341,6 +347,7 @@ DWG export failed: {}	DWG-eksport mislykkedes: {}
 Data sheet	Datablad
 Date of the approval of the last revision	Dato for godkendelsen af den seneste revision
 Date of the last revision	Dato for den seneste revision
+Default {} ({})	Standard {} ({})
 Degree of protection	Kapslingsklasse
 Delete projects	Slet projekter
 Delivery date	Leveringsdato
@@ -373,6 +380,7 @@ Devices without power loss	Enheder uden effekttab
 Dew point (°C)	Dugpunkt (°C)
 Diagnostic coverage (DC)	Diagnosedækning (DC)
 Diagnostics	Diagnose
+Diagrams, warning notices and similar information present	Diagrammer, advarsler og lignende oplysninger til stede
 Diameter (mm)	Diameter (mm)
 Different wire numbers in one connection: {}	Forskellige ledningsnumre i én forbindelse: {}
 Digital input / output module	Digitalt ind-/udgangsmodul
@@ -463,6 +471,7 @@ Emergency stop SB (GOST)	Nødstop SB (GOST)
 Emergency stop devices need a B10d value (ISO 13849-1, annex C)	Nødstopenheder kræver en B10d-værdi (ISO 13849-1, bilag C)
 Emergency stop, mushroom head (NFPA)	Nødstop, svampehoved (NFPA)
 Empty (IEC 60204-1)	Tom (IEC 60204-1)
+Empty: removes the item	Tom: fjerner punktet
 Enclosure body	Kapslingskrop
 Enclosure climate	Kapslingsklimatisering
 Enclosure light	Tavlelampe
@@ -480,6 +489,8 @@ Energy limitation class	Energibegrænsningsklasse
 Engineered	Projekteret
 Engineering unit	Fysisk enhed
 Environment	Miljø
+Equipment accessible for operation, inspection and maintenance	Materiel tilgængeligt for betjening, eftersyn og vedligeholdelse
+Equipment and protective measures suit the external influences	Materiel og beskyttelsesforanstaltninger passer til de ydre påvirkninger
 Equipment grounding conductors must be green (NFPA 79, 13.2.2)	Beskyttelsesledere skal være grønne (NFPA 79, 13.2.2)
 Excel workbook	Excel-projektmappe
 Exhaust {} open to the atmosphere (no silencer)	Udluftningen {} er åben mod atmosfæren (ingen lyddæmper)
@@ -515,6 +526,7 @@ File name written into the file header	Filnavn, der skrives i filhovedet
 Fill level (%)	Fyldningsgrad (%)
 Filter fan with outlet filter	Filterventilator med udgangsfilter
 Filter rating	Filterfinhed
+Fire barriers and protection against thermal effects	Brandadskillelser og beskyttelse mod termiske påvirkninger
 Firmware version	Firmwareversion
 First end only	Kun første ende
 Fitting	Fitting
@@ -706,12 +718,14 @@ Input voltage	Indgangsspænding
 Inputs from	Indgange fra
 Inrush current	Indkoblingsstrøm
 Inside (°C)	Indvendig (°C)
+Inspection and test report: SELV, PELV and separation	Eftersyns- og afprøvningsrapport: SELV, PELV og adskillelse
+Inspection and test report: data	Eftersyns- og afprøvningsrapport: data
+Inspection and test report: summary	Eftersyns- og afprøvningsrapport: oversigt
 Installation altitude	Opstillingshøjde
 Installation date	Installationsdato
 Installation devices	Installationsmateriel
 Installation method	Installationsmetode
 Installation plan (IEC 60617-11)	Installationsplan (IEC 60617-11)
-Installation site	Opstillingssted
 Installation site (++)	Anlæg (++)
 Installation site and location	Opstillingssted og placering
 Installation site of the page	Sidens opstillingssted
@@ -734,6 +748,7 @@ Invalid length {}	Ugyldig længde {}
 Invalid property key: {}	Ugyldig egenskabsnøgle: {}
 Inverter / charger	Inverter / lader
 Inverter DC/AC	Vekselretter DC/AC
+Isolating and switching devices in the right places	Adskillelses- og koblingsudstyr de rigtige steder
 Item	Element
 Item ID	Vare-id
 JIS (JIS C 0617)	JIS (JIS C 0617)
@@ -777,8 +792,12 @@ Load calculation	Belastningsberegning
 Loads and power supplies	Belastninger og strømforsyninger
 Loads behind it: {}	Efterfølgende belastninger: {}
 Location of the page	Sidens placering
+Longest RCD trip time at 5 × IΔn (ms)	Længste HPFI-udløsetid ved 5 × IΔn (ms)
+Longest RCD trip time at IΔn (ms)	Længste HPFI-udløsetid ved IΔn (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Lavspændingstavler: mærkesamtidighedsfaktor, temperaturstigning, dokumentation
+Lowest insulation resistance of the mains (MΩ)	Laveste isolationsmodstand for nettet (MΩ)
 Lubricant	Smøremiddel
+Luminaire	Armatur
 Luminaire, fluorescent	Armatur, lysstof
 MAC address	MAC-adresse
 MCAD	MCAD
@@ -827,6 +846,7 @@ Maximum installation altitude	Maksimal opstillingshøjde
 Maximum operating temperature	Maksimal driftstemperatur
 Maximum pressure	Maksimalt tryk
 Measured variable	Målt størrelse
+Measures against electromagnetic disturbances	Foranstaltninger mod elektromagnetiske forstyrrelser
 Measuring instrument	Måleinstrument
 Measuring instruments	Måleinstrumenter
 Measuring point	Målested
@@ -919,8 +939,9 @@ NO contact, timed closing (NFPA)	Sluttekontakt, forsinket lukning (NFPA)
 Nailboard {}	Sømbræt {}
 Network (m)	Net (m)
 Neutral (N)	Nulleder (N)
+Neutral and protective conductors identified	Nul- og beskyttelsesledere mærket
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Nulledere skal være lyseblå (IEC 60204-1, 13.2.3)
-Next inspection	Næste inspektion
+New own item of the visual inspection	Nyt eget punkt i den visuelle kontrol
 Nibbling	Nibling
 No connection {}	Ingen forbindelse {}
 No devices to add to the single-line diagram	Ingen enheder at føje til enstregsdiagrammet
@@ -941,7 +962,6 @@ No user defined property {}	Ingen brugerdefineret egenskab {}
 No wires at the pins of {}	Ingen ledere ved benene på {}
 Nominal discharge current	Nominel afledningsstrøm
 Non-return valve	Kontraventil
-Not OK	Ikke OK
 Not a DWG file	Ikke en DWG-fil
 Not a DXF file	Ikke en DXF-fil
 Not a DXF file (binary DXF is not supported)	Ikke en DXF-fil (binær DXF understøttes ikke)
@@ -976,7 +996,7 @@ Number of sheets	Antal ark
 Number of switch positions	Antal koblingsstillinger
 Number of symbols	Antal symboler
 Numbers (1, 2, 3)	Tal (1, 2, 3)
-OK	OK
+OK, Not OK or Not applicable	OK, Ikke OK eller Ikke relevant
 Ohmmeter	Ohmmeter
 Oil resistant	Oliebestandig
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Én diagramside med potentialerne +24V / 0V, trykknapper, en vælger, lamper og en sikring; artikler og styklisten.
@@ -1028,6 +1048,7 @@ Overview (not evaluated)	Oversigt (evalueres ikke)
 Overview / single-line	Oversigt / enstreget
 Overvoltage category	Overspændingskategori
 Overvoltage relay	Overspændingsrelæ
+Own item {}	Eget punkt {}
 P&ID / process (ISO 10628)	P&ID / proces (ISO 10628)
 P&ID number	P&ID-nummer
 PCT loop {} has no instrument in the P&ID	PCT-sløjfen {} har intet instrument i P&ID'et
@@ -1113,7 +1134,6 @@ Phase (L)	Faseleder (L)
 Phase meter	Fasevinkelmåler
 Phase unbalance {} % above {} %	Faseubalance {} % over {} %
 Phase {}	Fase {}
-Phases	Faser
 Photodiode	Fotodiode
 Photoelectric sensor, diffuse, 3-wire	Fotoelektrisk sensor, diffus, 3-leder
 Photoelectric sensor, diffuse, 4-wire	Fotoelektrisk sensor, diffus, 4-leder
@@ -1224,14 +1244,17 @@ Project revision	Projektrevision
 Project symbols	Projektsymboler
 Proof test interval	Prøvningsinterval
 Prospective short-circuit current	Prospektiv kortslutningsstrøm
+Protection against electric shock: the measures and their components	Beskyttelse mod elektrisk stød: foranstaltningerne og deres dele
 Protection class	Beskyttelsesklasse
 Protection setting	Beskyttelsesindstilling
+Protective and monitoring devices selected and set correctly	Beskyttelses- og overvågningsudstyr korrekt valgt og indstillet
 Protective conductor {} with wire colour {} (must be GNYE)	Beskyttelseslederen {} med ledningsfarven {} (skal være GNYE)
 Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Beskyttelsesledere skal være grøn-gule (IEC 60204-1, 13.2.2)
 Protective devices	Beskyttelsesudstyr
 Protective earth	Beskyttelsesjord
 Protective earth (PE)	Beskyttelsesleder (PE)
 Protective hose	Beskyttelsesslange
+Protective, earthing and bonding conductors present and adequate	Beskyttelses-, jordings- og udligningsledere til stede og tilstrækkelige
 Proximity sensor	Nærhedsføler
 Proximity sensor NO	Nærhedsføler sluttekontakt
 Proximity switch NO (NFPA)	Nærhedsafbryder, slutte (NFPA)
@@ -1352,6 +1375,7 @@ Rule {}: no macro {}	Regel {}: ingen makro {}
 Rule {}: {}	Regel {}: {}
 Rule {}: {} has no variant {}	Regel {}: {} har ingen variant {}
 Rule {}: {} is no page macro	Regel {}: {} er ikke en sidemakro
+SELV, PELV, Electrical separation or none	SELV, PELV, Elektrisk adskillelse eller ingen
 SVG image (one page)	SVG-billede (én side)
 Saddle jumper	Stikbro
 Safe torque off (STO)	Sikker momentfrakobling (STO)
@@ -1439,11 +1463,14 @@ Signal devices	Signalenheder
 Signal name	Signalnavn
 Signal range	Signalområde
 Signal type	Signaltype
+Signed by	Underskrevet af
+Signed on	Underskrevet den
 Silencer	Lyddæmper
 Single, free-standing	Enkelt, fritstående
 Single, wall mounted	Enkelt, vægmonteret
 Single-line / overview	Enstreget / oversigt
 Single-line diagram	Enstregsdiagram
+Single-pole switching devices in the line conductors	Enpolede koblingsudstyr i faselederne
 Siren	Sirene
 Site address	Opstillingsstedets adresse
 Size (mm)	Størrelse (mm)
@@ -1462,6 +1489,7 @@ Solenoid valve coil YA (GOST)	Magnetventilspole YA (GOST)
 Solenoid valve coil YV (GB)	Magnetventilspole YV (GB)
 Sort code	Sorteringskode
 Sound level	Lydniveau
+Source {}	Kilde {}
 Source {}, first target {}, second target {}	Kilde {}, første mål {}, andet mål {}
 Source {}, targets {}, {} and {}	Kilde {}, mål {}, {} og {}
 Spare	Reserve
@@ -1518,6 +1546,7 @@ Supply voltage	Forsyningsspænding
 Surface (m²)	Overflade (m²)
 Surface-mounted	Udvendig
 Surge protection type	Type af overspændingsbeskyttelse
+Surge protection where required	Overspændingsbeskyttelse, hvor det kræves
 Surge protective device	Overspændingsbeskyttelse
 Surge suppressor	Overspændingsafleder
 Switch, 1-pole (installation)	Afbryder, 1-polet (installation)
@@ -1568,6 +1597,7 @@ Termination (to)	Afslutning (til)
 Text file	Tekstfil
 The DXF file contains nothing that can be imported	DXF-filen indeholder intet, der kan importeres
 The PDF has no pages that can be read	PDF'en har ingen sider, der kan læses
+The answer is OK, Not OK or Not applicable, not {}	Svaret er OK, Ikke OK eller Ikke relevant, ikke {}
 The archive contains no project	Arkivet indeholder intet projekt
 The archive has no manifest	Arkivet har intet manifest
 The archive is damaged	Arkivet er beskadiget
@@ -1603,6 +1633,7 @@ The project file {} is missing	Projektfilen {} mangler
 The project has no panel layout	Projektet har intet tavlelayout
 The project was written by a newer version (file layout {})	Projektet er skrevet af en nyere version (fillayout {})
 The property needs a name	Egenskaben skal have et navn
+The protective measure is SELV, PELV, electrical separation or none, not {}	Beskyttelsesforanstaltningen er SELV, PELV, elektrisk adskillelse eller ingen, ikke {}
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Pumpestationen bygget ind i to sammenbyggede gulvskabe: skinnesystem, skinner og kabelkanaler, dørkomponenter og greb, filterventilator, lys, PE-skinne, kabelforskruninger, en kabelgennemføring, klimaberegning, kanalfyldning og 3D-føring.
 The revision is already released	Revisionen er allerede frigivet
 The revision is not approved	Revisionen er ikke godkendt
@@ -1744,7 +1775,6 @@ Vibration resistance	Vibrationsbestandighed
 View projects	Se projekter
 Violations	Overtrædelser
 Voltage (V)	Spænding (V)
-Voltage drop (%)	Spændingsfald (%)
 Voltage drop (V)	Spændingsfald (V)
 Voltage protection level	Beskyttelsesniveau
 Voltage range	Spændingsområde
@@ -1849,6 +1879,7 @@ in work	under arbejde
 in {}	i {}
 in-line	gennemgang
 incl.	inkl.
+instead of {}	i stedet for {}
 ip (kA)	ip (kA)
 is	er
 is at least	er mindst
@@ -1937,6 +1968,7 @@ yellow	gul
 {} lies outside page {}	{} ligger uden for side {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} monteringsmarkeringer tilhører elementer, der ikke længere findes
+{} of {} passed	{} af {} godkendt
 {} option assignments of deleted objects removed	{} optionstildelinger for slettede objekter fjernet
 {} placed properties converted to property keys	{} placerede egenskaber konverteret til egenskabsnøgler
 {} planned devices are not in the schematic yet	{} planlagte enheder er endnu ikke i diagrammet

@@ -10,8 +10,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   [parts-server.openecraft.org](https://parts-server.openecraft.org) until another
   server is entered (before: `http://127.0.0.1:8090`); the privacy notices name it
   ([public parts server](docs/parts-server.md#public-parts-server)).
+- **Reports found by their standards:** the filter of the *Reports* pane (and of the
+  website, `list_reports` with `search`) also finds a report by the standards it
+  follows, ignoring spaces and dashes: `VDE 0100 600` or `IEC 60364-6` find the
+  inspection and test report, `ISO 13849` the safety functions. Plugins give their
+  reports search terms with `keywords`.
 - **Installation plans with circuits:** socket outlets, switches and lights (new
-  generic ceiling lights, downlights and wall lights) are put into the rooms with a
+  generic ceiling lights, downlights and wall lights, in the schematic with the new
+  symbol *Luminaire*: L, N and PE) are put into the rooms with a
   click on the floor plan of a level (*Buildings* pane) and drawn there with the
   symbols of installation plans; final circuits feed them from a protective device of
   the distribution board (spare ones marked) through a cable wired item by item. The
@@ -30,6 +36,34 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   doors and windows. Commands `import_floor_plan`, `set_floor_plan`,
   `calibrate_floor_plan`, `detect_floor_plan`, `trace_floor_plan`
   ([floor plans on paper](docs/features/panel-layout.md#floor-plans-on-paper)).
+- **Inspection and test report (IEC 60364-6 / DIN VDE 0100-600):** a report of the
+  initial verification of the installation, filled in from the schematic: every
+  protective device fed from the mains is a circuit, with its description, cables,
+  cross-section, tripping characteristic and rated current, the residual current
+  device protecting it (type, selective or not, rated residual current) and the
+  highest loop impedance that passes (TN: U0 / Ia or U0 / IΔn; TT: 50 V / IΔn; IT:
+  the second fault). What the project does not give is marked *missing*, not
+  assumed. The results measured on site (protective conductor, insulation with its
+  test voltage, loop impedance, voltage drop, RCD tripping current, tripping times at
+  IΔn and 5 × IΔn, contact voltage, polarity, phase sequence, function test, tester,
+  date, instrument, remark) are checked against the limits. The power supplies and
+  transformers are the sources of SELV, PELV and separated circuits, with their
+  insulation and the highest voltage of SELV and PELV. The report adds its data
+  (client, site, installer, reason, inspector, instruments, Ze, prospective fault
+  current, earth electrode resistance, main bonding, insulating floors and walls, in
+  IT systems the insulation monitoring device and the first fault current, next
+  inspection), the visual inspection of 6.4.2 with own items, an overall verdict
+  (*Passed*, *Not passed*, *Incomplete*, *Not tested*) and a signature that any later
+  change takes away. Insulation is recorded L–PE, N–PE and L–N; the protective
+  conductor is shown against its resistance calculated from the cables; the fault
+  current measured at the origin is checked against the breaking capacities. Every
+  limit is a setting of the report with its default and source, for the edition the
+  installation is verified against. Entered in the editor's pane *Tools › Inspection
+  and test report* (without a project server), in *Edit in table*, with the command
+  `inspection_report` and **on a
+  tablet or a phone** on the web page of the project server, where reviewers and
+  editors save each card without opening the project and without a lock. The report
+  exports as an Excel workbook ([#215](https://github.com/nilres/OpenECraft/issues/215)).
 - **Website and public servers:** the website [openecraft.org](https://openecraft.org)
   with its live demos, the web editor at
   [editor.openecraft.org](https://editor.openecraft.org), a public parts server at
@@ -37,6 +71,26 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   manufacturer catalogs, readable without an account) and a public project server at
   [project-server.openecraft.org](https://project-server.openecraft.org) (with an
   account). The packages name the website as their homepage.
+- **Pages of the website for comparing and for each kind of work:** OpenECraft beside
+  EPLAN Electric P8, AutoCAD Electrical and QElectroTech (`/compare/`), and pages for
+  panel builders, electricians and schools (`/panel-builders/`, `/electricians/`,
+  `/education/`), readable without WebAssembly and in the languages of the website.
+- **MCP server for agents:** it lists the about 50 tools for schematics (about 30 kB
+  instead of 260 kB for all 446) and reaches the others through `find_tools`,
+  `describe_tool` and `call_tool` (`OPENECRAFT_MCP_TOOLS=*` lists all of them as
+  before). Relative paths are in `OPENECRAFT_MCP_ROOT`, also when a client such as
+  Claude Desktop starts the server in a folder of its own; the instructions name the
+  folder, and messages show Windows paths without `\\?\`. Cables: commands
+  `add_cable`, `set_cable` (type, cores, cross-section, length, description) and
+  `list_cables`; `add_cable_definition` creates the cable it names; a cable part with
+  other core designations (`apply_cable_part`, also in the editor's *Cables* pane)
+  moves the wires to the new cores instead of leaving "core 1 is not a core of the
+  cable". Without a parts server `parts_search` and `parts_get` use the project and the
+  built-in catalog, and `assign_part` names similar parts for an unknown number.
+- **Contributing and AI agents:** a contributing guide, issue forms for bugs, features
+  and parts, and a guide with a reproducible demo for using the MCP server with Claude
+  Code, Claude Desktop, Cursor or VS Code ([AI agents](docs/launch/ai/README.md)); the
+  store listing of the Linux packages has screenshots.
 - **Legal notice, disclaimer and privacy notice in the editor and on the servers:**
   *Help › Legal and privacy* of the editor and *Legal and privacy* of the parts manager
   show the disclaimer of OpenECraft and a privacy notice (what the application stores

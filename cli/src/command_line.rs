@@ -36,7 +36,7 @@ pub fn run(argv: &[String]) -> Result<String, String> {
     match command {
         "help" => match inv.words.first().map(String::as_str) {
             None | Some("help") => Ok(usage(&session)),
-            Some("mcp") => Ok(tr("openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n").to_string()),
+            Some("mcp") => Ok(tr("openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). It offers the tools for schematics and reaches the others through find_tools, describe_tool and call_tool; OPENECRAFT_MCP_TOOLS chooses the tools offered (* for all), OPENECRAFT_MCP_ROOT the folder of the files.\n").to_string()),
             Some("version") => Ok(tr("openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n").to_string()),
             Some(name) => Ok(tools::help(tools::lookup(&session, name).ok_or_else(|| unknown(name))?)),
         },

@@ -22,6 +22,7 @@ pub fn as_template(prj: &Project) -> Project {
     t.revisions.clear();
     t.baselines.clear();
     t.review = Default::default();
+    t.inspection = Default::default();
     t.wiring_marks.clear();
     t.mounting_marks.clear();
     t.preplanning.segments.clear();

@@ -223,7 +223,7 @@ pub static TABS: &[Tab] = &[
         key_tip: 'T',
         context: false,
         groups: &[
-            g("calculations", tr_const!("Calculations"), &[L(C::Electrical)]),
+            g("calculations", tr_const!("Calculations"), &[L(C::Electrical), L(C::Inspection)]),
             g("fluid", tr_const!("Fluid and process"), &[L(C::Process)]),
             g("integration", tr_const!("Integration"), &[L(C::Integration)]),
             g("collaboration", tr_const!("Collaboration"), &[L(C::ProjectServer), S(C::Vault), S(C::CheckInVault)]),

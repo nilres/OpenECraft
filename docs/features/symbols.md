@@ -12,7 +12,7 @@ key reset, cam / roller / pressure / flow / level / bimetal switches, inductive,
 capacitive, magnetic and photoelectric sensors, fuses (LV HBC), fuse switches and
 disconnectors, disconnectors and switch-disconnectors, circuit breakers, RCDs, motor
 protection switches, overload relays, AC / DC / EC motors and fans, signal lamps,
-beacons, sirens, indicating, recording and integrating meters, current transformers,
+luminaires (L, N, PE), beacons, sirens, indicating, recording and integrating meters, current transformers,
 1- and 3-phase transformers (vector groups) and autotransformers, rectifiers and
 converters, terminals, PLC inputs/outputs, potentials, interruption points, and
 electronics: resistors, capacitors (also polarized), diodes, Zener and photodiodes, LEDs,

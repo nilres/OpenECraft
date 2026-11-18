@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	분기점을 연결점�
 Draw wires in their colour	전선을 해당 색상으로 그리기
 Draw wires to the connection points facing its free arms	비어 있는 가지를 마주하는 접속점까지 연결선을 그립니다
 Drawing	도면
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	케이블 정의선을 그립니다. 교차하는 전선이 케이블의 심선이 됩니다(지정하지 않으면 새 케이블)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	두 연결 지점 사이에 전선을 그립니다(예: -K1:A1에서 -S1:14로). 모호한 경우 #id:pin, 전위는 이름, 명칭 없는 지점은 1, 2…
 Draws a wire through two or more points	두 개 이상의 점을 지나는 전선을 그립니다
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	회로도 페이지와 PDF / SVG 내보내기에서 전선을 해당 색상 또는 검정으로 그립니다
@@ -526,6 +525,7 @@ No rule for {} and {}	{}과(와) {}에 대한 규칙이 없습니다
 No rule library or rule set {}	규칙 라이브러리 또는 규칙 세트 {} 없음
 No rule {}	규칙 {} 없음
 No safety function {}	안전 기능 {} 없음
+No source {}	전원 {} 없음
 No standard size of {} holds the layout of {}	{}의 표준 크기 중 {}의 레이아웃을 수용하는 크기가 없습니다
 No terminal strip {}	단자대 {}이(가) 없습니다
 No terminal {} on strip {}	단자대 {1}에 단자 {0}이(가) 없습니다
@@ -937,7 +937,6 @@ Unknown earthing system: {}	알 수 없는 접지 계통: {}
 Unknown face {}	알 수 없는 면 {}
 Unknown fastening: {}	알 수 없는 고정 방식: {}
 Unknown field object: {}	알 수 없는 필드 개체: {}
-Unknown field: {}	알 수 없는 필드: {}
 Unknown group kind: {}	알 수 없는 그룹 종류: {}
 Unknown installation: {}	알 수 없는 설치 방식: {}
 Unknown insulation: {}	알 수 없는 절연: {}
@@ -1020,7 +1019,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi 또는 other
 copper or aluminium	copper 또는 aluminium
 device (default), position, cross_section or number	device(기본값), position, cross_section 또는 number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages 또는 parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection 또는 inspection_data
 error, warning, info, off, or default to take the change back	error, warning, info, off 또는 변경을 되돌리려면 default
 false takes the acceptance back (default true)	false이면 승인을 취소합니다(기본값 true)
 foundation, ring or rod	foundation, ring 또는 rod

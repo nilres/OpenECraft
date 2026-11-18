@@ -12,11 +12,13 @@ A page needs a name	ページには名前が必要です
 A routing path needs {} points at least	配線経路には少なくとも {} 個の点が必要です
 A section cannot be moved into itself	セクションをそれ自身の中に移動することはできません
 Above	上
+Above {} V: no SELV or PELV	{} V を超える：SELV でも PELV でもない
 Access token	アクセストークン
 Accessories	付属品
 Accessory	付属品
 Add	追加
 Add a PDF of all pages	全ページの PDF を追加
+Add an item	項目を追加
 Add to favorites	お気に入りに追加
 Address	アドレス
 Administrator	管理者
@@ -33,6 +35,7 @@ Bold	太字
 Bottom	底板
 Bottom with removable gland plate	取り外し可能なグランドプレート付きの底板
 Breaking capacity	遮断容量
+Breaking capacity of {} below the fault current at the origin	{} の遮断容量が引込口の故障電流を下回る
 Bridge	ブリッジ
 Bundles	束
 Busbar	ブスバー
@@ -54,16 +57,19 @@ Category	カテゴリ
 Centred	中央
 Certificates	証明書
 Change	変更
+Changing the data or the results afterwards takes the signature away.	後からデータや結果を変更するとサインは取り消されます。
 Channel	チャンネル
 Characteristic	特性
 Check settings	チェックの設定
 Checks	チェック
+Circuits	回路
 Class	クラス
 Classes	クラス
 Clear filters	フィルターをクリア
 Clearance bottom	下のクリアランス
 Clearance top	上のクリアランス
 Clearances	クリアランス
+Client	依頼者
 Close	閉じる
 Coding: {}	コーディング: {}
 Coil voltage	コイル電圧
@@ -83,6 +89,7 @@ Connection point	接続ポイント
 Connection points	接続ポイント
 Connections	接続
 Connector	コネクター
+Contact voltage UB (V)	接触電圧 UB (V)
 Controller	コントローラー
 Cooling	冷却
 Core	心線
@@ -129,14 +136,19 @@ Done	完了
 Door	扉
 Door cutout	扉の切り欠き
 Download	ダウンロード
+Download the report as an Excel workbook	レポートを Excel ブックとしてダウンロード
 Downloading {}…	{} をダウンロードしています…
 Drag to turn the model	ドラッグしてモデルを回転
+Drawings	図面
 EMC clearance	EMC クリアランス
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN、TIA Portal、その他の名称は各所有者の商標です。OpenECraft は独立したプロジェクトです。
+Earth electrode resistance RA (Ω)	接地極抵抗 RA (Ω)
 Edit	編集
 Editor	編集者
+Electrical separation	電気的分離
 Electro-fluid cross reference	電気-流体相互参照
 Email	メール
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	空：既定値。設備の検証に用いる規格の版が異なる場合は、別の値を設定してください。
 Enclosure	エンクロージャー
 Enclosures	エンクロージャー
 Enterprise integration	エンタープライズ統合
@@ -147,6 +159,7 @@ Export as CSV…	CSV としてエクスポート…
 Export as JSON…	JSON としてエクスポート…
 Export failed: {}	エクスポートに失敗しました: {}
 External (top)	外部 (上)
+External loop impedance Ze (Ω)	外部ループインピーダンス Ze (Ω)
 Face	面
 Failed	失敗
 Fastening	固定方法
@@ -155,7 +168,9 @@ Field wiring	フィールド配線
 File	ファイル
 Files	ファイル
 Filter	フィルター
+Filter circuits…	回路を絞り込む…
 Filter devices…	デバイスをフィルター…
+First fault current Id (A)	一線地絡電流 Id (A)
 Fit	全体表示
 Fits	適合先
 Fitting at the end	終端の継手
@@ -170,6 +185,7 @@ Function	機能
 Function (=)	機能 (=)
 Function definition	機能定義
 Function template	機能テンプレート
+Function test	動作試験
 Function text	機能テキスト
 Functional safety	機能安全
 Functions	機能
@@ -190,12 +206,25 @@ Height	高さ
 Height above floor	床面からの高さ
 History	履歴
 Hose no.	ホース番号
+IT system	IT 系統
 Identifier	識別子
 Identifying letter	識別文字
 Image	画像
 Import	インポート
+Incomplete	未完了
 Input	入力
+Inspection and test report	点検・試験報告書
+Inspector	点検者
 Installation	設置方法
+Installation site	設置場所
+Installer	施工者
+Insulating floors and walls (kΩ)	絶縁性の床と壁 (kΩ)
+Insulation L–N (MΩ)	絶縁 L–N (MΩ)
+Insulation L–PE (MΩ)	絶縁 L–PE (MΩ)
+Insulation N–PE (MΩ)	絶縁 N–PE (MΩ)
+Insulation monitoring device	絶縁監視装置
+Insulation resistance (MΩ)	絶縁抵抗 (MΩ)
+Insulation test voltage (V)	絶縁試験電圧 (V)
 Integration	統合
 Internal (bottom)	内部 (下)
 Interruption point	中断ポイント
@@ -223,6 +252,7 @@ Length	長さ
 Level	レベル
 Lifecycle	ライフサイクル
 Light	ライト
+Limits	制限値
 Line	線
 Link	リンク
 Linked	リンク済み
@@ -234,11 +264,13 @@ Location (+)	取付場所 (+)
 Locked	ロック
 Locked by {}	{} がロック中
 Logo	ロゴ
+Loop impedance Zs (Ω)	ループインピーダンス Zs (Ω)
 MTTFd (years)	MTTFd (年)
 Machine	機械
 Main	メイン
 Main earthing busbar (device) it is connected to; empty: none	接続先の主接地ブスバー (デバイス)。空欄: なし
 Main earthing terminal	主接地端子
+Main equipotential bonding (Ω)	主等電位ボンディング (Ω)
 Main switch	主開閉器
 Manufacturer	メーカー
 Manufacturers	メーカー
@@ -246,6 +278,7 @@ Manufacturing	製造
 Marking	マーキング
 Match case	大文字と小文字を区別する
 Material	材質
+Measured at the origin	引込口で測定
 Medium	媒体
 Metal carriers meeting at a node are connected	ノードで接する金属製支持材は接続されているとみなす
 Minimum digits of the counter (leading zeros)	カウンターの最小桁数 (先頭のゼロ)
@@ -273,11 +306,15 @@ Name of the scheme	スキームの名前
 Net	ネット
 Never	表示しない
 New group	新しいグループ
+New installation	新設
 New name	新しい名前
+Next inspection	次回の点検
 Next page	次のページ
 No	いいえ
 No Vault item matches a part of the project	プロジェクトの部品に一致する Vault アイテムはありません
 No cable {}	ケーブル {} はありません
+No circuit {}	回路 {} がありません
+No circuits found	回路が見つかりません
 No connection point {}	接続点 {} がありません
 No device {}	デバイス {} はありません
 No enclosure {}	エンクロージャー {} はありません
@@ -291,6 +328,7 @@ No part {} in the project	プロジェクトに部品 {} がありません
 No parts found	部品が見つかりません
 No plot frame named {}	{} という名前の図枠はありません
 No plug {}	プラグ {} はありません
+No protective measure of its own	独自の保護方式なし
 No report block named {}	{} という名前のレポートブロックはありません
 No segment {}	セグメント {} がありません
 No station {}	ステーション {} はありません
@@ -300,18 +338,24 @@ No such section	そのセクションはありません
 No symbol with id {}	ID {} のシンボルはありません
 No title block of the project named {}	プロジェクトに {} という名前の表題欄はありません
 Nominal size	呼び径
+Not OK	NG
 Not a language code: {}	言語コードではありません: {}
 Not a macro file: {}	マクロファイルではありません: {}
 Not a symbol id: {}	シンボル ID ではありません: {}
 Not a title block file: {}	表題欄ファイルではありません: {}
 Not a valid rule set file: {}	有効なルールセットファイルではありません: {}
+Not applicable	該当なし
 Not in the schematic	回路図にありません
+Not passed	不合格
+Not signed	未サイン
+Not tested	未試験
 Note	注記
 Notes	メモ
 Number	番号
 Number of down conductors (0: as many as the class needs for the walls)	引下げ導線の数 (0: クラスが壁に必要とする数)
 Number the sections 1, 2, 3 … on every level first	最初に各レベルのセクションを 1, 2, 3 … と番号付けする
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	デバイスタグを構造と識別文字ごとに回路図の順序 (ページ、列、上から下) で番号付けします
+OK	OK
 Only rows containing this text	このテキストを含む行のみ
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft は無保証で提供されます。計算とチェックは設計を支援するものであり、結果は有資格者が適用される規格と規制に照らして確認する必要があります。
@@ -321,9 +365,12 @@ Order number	注文番号
 Other	その他
 Outer diameter	外径
 Output	出力
+Output voltage (V)	出力電圧 (V)
 Overview	概要
+Own item of the visual inspection	目視点検の独自項目
 PCT loop	計装ループ
 PCT loop overview	計装ループ概要
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	PLC カード
@@ -349,7 +396,10 @@ Part {}	部品 {}
 Parts	部品
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	部品 (CSV、JSON、BMEcat、EPLAN XML、EDZ、ZIP)
 Parts import failed: {}	部品のインポートに失敗しました: {}
+Passed	合格
 Password	パスワード
+Phase sequence	相順
+Phases	相
 Phone	電話
 Picture	画像
 Pieces	個数
@@ -365,6 +415,7 @@ Plug	プラグ
 Plug diagram	プラグ図
 Plugins	プラグイン
 Plugs	プラグ
+Polarity	極性
 Poles	極数
 Ports	ポート
 Position	位置
@@ -375,6 +426,7 @@ Potentials	電位
 Power	電力
 Power (kW)	電力 (kW)
 Power loss	損失電力
+Power supply unit	電源装置
 Pre-planning	事前計画
 Press	プレス
 Previous page	前のページ
@@ -396,17 +448,25 @@ Project name	プロジェクト名
 Project properties	プロジェクトプロパティ
 Properties	プロパティ
 Property	プロパティ
+Prospective fault current at the origin (kA)	引込口の推定故障電流 (kA)
 Protection	保護
+Protective conductor (Ω)	保護導体 (Ω)
 Protective device	保護機器
+Protective measure	保護方式
 Quantity	量
 Quantity (default 1)	数量 (既定値 1)
 Quantity unit	数量単位
+RCD	RCD
+RCD trip current (mA)	RCD 動作電流 (mA)
+RCD trip time (ms)	RCD 動作時間 (ms)
+RCD trip time at 5 × IΔn (ms)	5 × IΔn での RCD 動作時間 (ms)
 Rack	ラック
 Rail	レール
 Range	範囲
 Rated current	定格電流
 Rated power	定格出力
 Rear wall	背板
+Reason for the test	試験の理由
 Rectangle	四角形
 Rectangular	四角形
 Redo	やり直し
@@ -417,13 +477,16 @@ Relative humidity	相対湿度
 Relay	リレー
 Released	リリース済み
 Released pages cannot be moved	リリース済みのページは移動できません
+Remark	備考
 Remove	削除
 Remove from favorites	お気に入りから削除
 Remove the boundary	境界を削除
 Remove the lightning protection system	雷保護システムを削除
 Remove the reference point	基準点を削除
+Repair	修理
 Report	レポート
 Report blocks	レポートブロック
+Report data and visual inspection	報告書データと目視点検
 Report: {}	レポート: {}
 Reports	レポート
 Represented by	代表者
@@ -446,8 +509,11 @@ Routing	配線ルート
 Rows of modules (east-west: rows of pairs)	モジュールの列（東西向き：ペアの列）
 Rule	ルール
 Rule set	ルールセット
+SELV	SELV
+SELV, PELV and separation	SELV、PELV、分離
 Safety function	安全機能
 Save	保存
+Saved	保存済み
 Saved catalog {}	カタログ {} を保存しました
 Saved user {}	ユーザー {} を保存しました
 Saved {}	{} を保存しました
@@ -474,6 +540,9 @@ Show the row after the column	列の後に行を表示
 Side	側
 Sign in	サインイン
 Sign out	サインアウト
+Sign the report	報告書にサイン
+Signed	サイン済み
+Signed by {} on {}	{} が {} にサイン
 Signed in as {}	{} としてサインイン中
 Signed in as {} ({})	{} ({}) としてサインイン中
 Signed out	サインアウトしました
@@ -495,8 +564,10 @@ Structure	構造
 Subproject name	サブプロジェクト名
 Subsystem	サブシステム
 Successor	後継品
+Summary	概要
 Supplier	仕入先
 Supply	供給
+Supply system	電源系統
 Symbol	シンボル
 Symbol key	シンボルキー
 Symbolic address	シンボリックアドレス
@@ -511,18 +582,23 @@ Terminal strip	端子台
 Terminal strips	端子台
 Terminal type	端子タイプ
 Terminals	端子
+Test instrument	測定器
+Test instruments (IEC 61557)	測定器 (IEC 61557)
+Tested by	試験者
 Text	テキスト
 Text to find	検索するテキスト
 The freestanding PV array {} stands outside the plot boundary	野立てPVアレイ {} は敷地境界の外にあります
 The identifier must not be empty	識別子は空にできません
 The long side of the modules along the rows	モジュールの長辺を列に沿わせる
 The page is released	ページはリリース済みです
+The project has no circuits fed from the mains	プロジェクトに電源から給電される回路がありません
 There is a connection symbol at this point already	この点にはすでに接続シンボルがあります
 Thermal	熱
 This page sets no cookies, uses no tracking and loads nothing from other servers.	このページは Cookie を設定せず、トラッキングを使わず、他のサーバーから何も読み込みません。
 Time	時間
 Title block	表題欄
 To	接続先
+To check	要確認
 Tools	工具
 Top	上
 Total	合計
@@ -538,6 +614,7 @@ Unknown column: {}	不明な列: {}
 Unknown connector: {}	不明なコネクター: {}
 Unknown enclosure system: {}	不明なエンクロージャーシステム: {}
 Unknown face: {}	不明な面: {}
+Unknown field: {}	不明なフィールド: {}
 Unknown format: {}	不明な形式: {}
 Unknown function definition: {}	不明な機能定義: {}
 Unknown language: {}	不明な言語: {}
@@ -556,9 +633,12 @@ User	ユーザー
 User name	ユーザー名
 Users	ユーザー
 VAT ID	付加価値税番号
+Value	値
 Version	バージョン
 Viewer	ビューアー
+Visual inspection	目視点検
 Voltage	電圧
+Voltage drop (%)	電圧降下 (%)
 Warning	警告
 Warnings	警告
 Weight	重量
@@ -572,12 +652,14 @@ Wired	配線済み
 Wires	電線
 Wiring	配線作業
 Yes	はい
+Zs max (Ω)	Zs 最大 (Ω)
 access denied	アクセスが拒否されました
 approved	承認済み
 bonded	ボンディング済み
 file or folder not found	ファイルまたはフォルダーが見つかりません
 landscape	横
 left	左
+missing	なし
 mm	mm
 normal	標準
 not bonded	未ボンディング
@@ -594,6 +676,7 @@ the file exists already	ファイルは既に存在します
 this is a folder	これはフォルダーです
 yes	はい
 {} ({})	{} ({})
+{} circuits	{} 回路
 {} does not stand on the floor: choose a part marked for floor mounting	{} は床置きではありません: 床置きとしてマークされた部品を選択してください
 {} exists already	{} は既に存在します
 {} is not a PNG or JPEG image	{} は PNG または JPEG 画像ではありません

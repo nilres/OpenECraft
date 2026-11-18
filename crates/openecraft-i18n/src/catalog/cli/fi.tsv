@@ -223,13 +223,11 @@ Saves the project to its file or to a new path	Tallentaa projektin sen tiedostoo
 Scale drawings down that do not fit on the page (default: true)	Pienennä piirustukset, jotka eivät mahdu sivulle (oletus: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Hakuehdot, esim. company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Hakee Vaultin nimikkeitä (numero, otsikko, revisio, elinkaaren tila, osanumero)
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Hakee osia osapalvelimelta (dataportaali) tekstin, ryhmien, luettelon, elinkaaren ja teknisten tietojen mukaan
 Segment path (default: all segments)	Segmentin polku (oletus: kaikki segmentit)
 Server URL, e.g. http://127.0.0.1:8090	Palvelimen URL, esim. http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	Asettaa osapalvelimen (URL ja käyttöoikeustokeni tai käyttäjä ja salasana) ja näyttää sen tilan
 Settings scheme file (JSON)	Asetusskeematiedosto (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Näyttää taulukon (laitteet, yhteydet, riviliittimet, kaapelit, pistoliittimet, PLC, sivut tai osat) riveineen; rivin avainta käytetään sen muuttamiseen
-Shows all data of a part	Näyttää osan kaikki tiedot
 Shows the changes of a part on the parts server, or the part as of one change	Näyttää osan muutokset osapalvelimella tai osan tietyn muutoksen mukaisena
 Shows the favorites of the signed in user, optionally adding or removing a part	Näyttää kirjautuneen käyttäjän suosikit ja valinnaisesti lisää tai poistaa osan
 Shows the manifest of a project archive	Näyttää projektiarkiston manifestin
@@ -284,6 +282,7 @@ Values to set (name: value; an empty value removes a property)	Asetettavat arvot
 Vault user name (signs in)	Vault-käyttäjänimi (kirjautuu sisään)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Mitä kirjoitetaan: oec (projektitiedosto), oecp (jaettu projekti omassa kansiossaan) tai oecz (arkisto); oletus: tulosteen tiedostopäätteen mukaan
 Width and height must be greater than 0	Leveyden ja korkeuden on oltava suurempia kuin 0
+Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Raporttien otsikoista, nimistä ja hakusanoista (standardeista kuten VDE 0100-600) haettavat sanat
 Write the table as CSV to this file	Kirjoita taulukko CSV-muodossa tähän tiedostoon
 Writes the check scheme of the project (checks switched off, message levels) to a file	Kirjoittaa projektin tarkistusskeeman (käytöstä poistetut tarkistukset, ilmoitustasot) tiedostoon
 Writes the embedded file of a document page	Kirjoittaa dokumenttisivun upotetun tiedoston
@@ -295,7 +294,6 @@ csv (default) or eplan_xml	csv (oletus) tai eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement tai wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine tai exchange
 json (default), csv or xlsx (Excel, needs path)	json (oletus), csv tai xlsx (Excel, vaatii arvon path)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nKäynnistää Model Context Protocol -palvelimen stdin / stdout -virroissa: tämän luettelon työkalut tekoälyagenteille, projekti muistissa (save_project tallentaa sen, undo / redo perua yksittäisiä kutsuja). OPENECRAFT_MCP_TOOLS rajaa tarjotut työkalut.\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nNäyttää komentorivin version (myös --version tai -V)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover tai raportti: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo ja redo toimivat vain MCP-istunnossa: komentorivi avaa projektin uudelleen jokaista komentoa varten

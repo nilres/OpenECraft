@@ -218,13 +218,11 @@ Saves the project to its file or to a new path	プロジェクトを既存のフ
 Scale drawings down that do not fit on the page (default: true)	ページに収まらない図面を縮小する (既定: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	検索条件 (例: company=ACME; customer~plant; conveyor)
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Vault のアイテム (番号、タイトル、リビジョン、ライフサイクル状態、部品番号) を検索します
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	テキスト、グループ、カタログ、ライフサイクル、技術データで部品サーバー (データポータル) の部品を検索します
 Segment path (default: all segments)	セグメントパス (既定: すべてのセグメント)
 Server URL, e.g. http://127.0.0.1:8090	サーバー URL (例: http://127.0.0.1:8090)
 Sets the parts server (URL and access token, or user and password) and shows its state	部品サーバー (URL とアクセストークン、またはユーザーとパスワード) を設定し、その状態を表示します
 Settings scheme file (JSON)	設定スキームファイル (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	表 (デバイス、接続、端子、ケーブル、プラグ、PLC、ページ、部品) を行とともに表示します。行のキーで変更します
-Shows all data of a part	部品のすべてのデータを表示します
 Shows the changes of a part on the parts server, or the part as of one change	部品サーバー上の部品の変更履歴、またはある変更時点の部品を表示します
 Shows the favorites of the signed in user, optionally adding or removing a part	サインインしているユーザーのお気に入りを表示し、必要に応じて部品を追加または削除します
 Shows the manifest of a project archive	プロジェクトアーカイブのマニフェストを表示します
@@ -279,6 +277,7 @@ Values to set (name: value; an empty value removes a property)	設定する値 (
 Vault user name (signs in)	Vault のユーザー名 (サインイン)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	書き込む形式: oec（プロジェクトファイル）、oecp（専用フォルダー内の分割プロジェクト）、oecz（アーカイブ）。既定: 出力の拡張子による
 Width and height must be greater than 0	幅と高さは 0 より大きくなければなりません
+Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	レポートのタイトル、名前、検索語 (VDE 0100-600 などの規格) で検索する語
 Write the table as CSV to this file	表を CSV としてこのファイルに書き込む
 Writes the check scheme of the project (checks switched off, message levels) to a file	プロジェクトのチェックスキーム (オフにしたチェック、メッセージレベル) をファイルに書き込みます
 Writes the embedded file of a document page	ドキュメントページの埋め込みファイルを書き出します
@@ -290,7 +289,6 @@ csv (default) or eplan_xml	csv (既定) または eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp、pdm、plm、ecad、mcad、procurement または wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp、pdm、plm、ecad、mcad、procurement、wiring_machine または exchange
 json (default), csv or xlsx (Excel, needs path)	json (既定)、csv または xlsx (Excel、path が必要)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nstdin / stdout で Model Context Protocol サーバーを実行します: AI エージェント向けにこの一覧のツールを提供し、プロジェクトはメモリーに保持されます (save_project で書き込み、undo / redo で個々の呼び出しを元に戻します)。OPENECRAFT_MCP_TOOLS で提供するツールを制限します。\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nコマンドラインのバージョンを表示します (--version または -V でも可)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic、overview、graphic、cover、またはレポート: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo と redo は MCP セッションでのみ機能します: コマンドラインはコマンドごとにプロジェクトを開き直します

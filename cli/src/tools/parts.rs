@@ -37,7 +37,7 @@ pub static TOOLS: &[Tool] = &[
     },
     Tool {
         name: "parts_search",
-        help: tr_const!("Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data"),
+        help: tr_const!("Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data; without a parts server, the parts of the project and the built-in catalog"),
         params: &[
             optional("query", Kind::Str, tr_const!("Text in number, type, manufacturer, description, groups or catalog; every word must occur")),
             optional("top_group", Kind::Str, tr_const!("Product top group: Electrical, Fluid, Mechanics or Process")),
@@ -53,6 +53,7 @@ pub static TOOLS: &[Tool] = &[
             optional("limit", Kind::Int, tr_const!("Maximum number of hits (default 50)")),
             optional("full", Kind::Bool, tr_const!("Return all part data instead of a summary")),
             optional("facets", Kind::Bool, tr_const!("Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts")),
+            optional("local", Kind::Bool, tr_const!("Search only the parts of the project and the built-in catalog")),
         ],
         needs_project: false,
         run: search,
@@ -214,7 +215,7 @@ pub static TOOLS: &[Tool] = &[
     },
     Tool {
         name: "parts_get",
-        help: tr_const!("Shows all data of a part"),
+        help: tr_const!("Shows all data of a part of the parts server, the project or the built-in catalog"),
         params: &[NUMBER],
         needs_project: false,
         run: get,
@@ -311,7 +312,19 @@ fn search(s: &mut Session, a: &Args) -> Result<Value, String> {
         limit: Some(a.int("limit").unwrap_or(50).max(0) as usize),
         ..Default::default()
     };
-    let r = s.server.search(&query)?;
+    // Without a parts server: the parts of the project and the built-in catalog.
+    let local = |query: &PartQuery| {
+        let parts: Vec<Part> = openecraft_core::parts::local_parts(s.project().ok()).into_iter().cloned().collect();
+        query.search(&parts, 0)
+    };
+    let (r, source, unreachable) = if a.flag("local") {
+        (local(&query), "local", None)
+    } else {
+        match s.server.search(&query) {
+            Ok(r) => (r, "server", None),
+            Err(e) => (local(&query), "local", Some(e)),
+        }
+    };
     let parts: Vec<Value> = if a.flag("full") {
         r.parts.iter().map(|p| serde_json::to_value(p).unwrap_or_default()).collect()
     } else {
@@ -336,7 +349,10 @@ fn search(s: &mut Session, a: &Args) -> Result<Value, String> {
             })
             .collect()
     };
-    let mut out = json!({ "total": r.total, "offset": r.offset, "parts": parts });
+    let mut out = json!({ "total": r.total, "offset": r.offset, "parts": parts, "source": source });
+    if let Some(e) = unreachable {
+        out["server_error"] = json!(e);
+    }
     if a.flag("facets") {
         let facets = |list: &[Facet]| -> Value {
             list.iter().map(|f| (f.name.clone(), f.values.iter().map(|v| json!([v.value, v.count])).collect::<Value>())).collect::<serde_json::Map<_, _>>().into()
@@ -561,7 +577,14 @@ fn existing(s: &Session, number: &str) -> Result<Part, String> {
 }
 
 fn get(s: &mut Session, a: &Args) -> Result<Value, String> {
-    Ok(serde_json::to_value(existing(s, a.req("number"))?).unwrap_or_default())
+    let number = a.req("number");
+    let local = || openecraft_core::parts::local_parts(s.project().ok()).into_iter().find(|p| p.number == number).cloned();
+    let part = match s.server.get(number) {
+        Ok(Some(part)) => part,
+        Ok(None) => local().ok_or_else(|| tr_fmt!("Unknown part: {}", number))?,
+        Err(e) => local().ok_or(e)?,
+    };
+    Ok(serde_json::to_value(part).unwrap_or_default())
 }
 
 fn save(s: &mut Session, a: &Args) -> Result<Value, String> {

@@ -948,6 +948,7 @@ In the structure of the current page	Nella struttura della pagina corrente
 Include manually set numbers	Includi i numeri impostati manualmente
 Index	Indice
 Indices	Indici
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	Verifica iniziale (IEC 60364-6, DIN VDE 0100-600): compilata dallo schema, i risultati inseriti qui
 Inner walls	Pareti interne
 Input bytes	Byte di ingresso
 Inputs	Ingressi
@@ -1046,7 +1047,6 @@ Library	Libreria
 Lightning protection	Protezione contro i fulmini
 Lightning protection of building {}	Protezione contro i fulmini dell'edificio {}
 Like two fingers	Come due dita
-Limits	Limiti
 Limits in effect	Limiti in vigore
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fase-PE nel punto di alimentazione; 0 = dalla corrente di cortocircuito massima
 Line up on the rail	Allinea sulla guida
@@ -1189,6 +1189,7 @@ NC data of this face (DXF)	Dati NC di questa faccia (DXF)
 Nailboard (SVG)…	Tavola chiodata (SVG)…
 Name and cross reference	Nome e riferimento incrociato
 Name on the server	Nome sul server
+Name the inspector in the report data first.	Indicare prima l'ispettore nei dati del rapporto.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nome; Tipo di dati; Indirizzo logico; Commento – per strumenti di programmazione PLC
 Named copy of this form, for report blocks	Copia con nome di questo modulo, per i blocchi di report
 Navigators	Navigatori
@@ -1814,7 +1815,6 @@ Save to project server: {}	Salva sul server dei progetti: {}
 Save to project server: {} – the connection is lost, saving tries again	Salva sul server dei progetti: {} – la connessione è persa, il salvataggio riprova
 Save workspace	Salva area di lavoro
 Save workspace…	Salva area di lavoro…
-Saved	Salvato
 Saved the properties of {} (revision {})	Proprietà di {} salvate (revisione {})
 Saved to	Salvato in
 Saved to the project server (revision {})	Salvato sul server di progetto (revisione {})
@@ -2129,6 +2129,7 @@ The properties of the selection in a window beside the page	Le proprietà della 
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Nel frattempo le proprietà sono state modificate sul server di progetto. Ricarica le mostra; i tuoi inserimenti vengono sostituiti.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	La guida o la base di montaggio; i suoi accessori sono ganci, morsetti e zavorra
 The recalculation keeps frozen routes as long as they are still possible	Il ricalcolo mantiene i percorsi congelati finché sono ancora possibili
+The report as tables and report pages	Il rapporto come tabelle e pagine di report
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	La barra multifunzione con la scheda File sostituisce i menu; Ctrl+Shift+P trova qualsiasi comando.
 The rooms of the level side by side; click the level again for all of the plant	I locali del piano affiancati; clicca di nuovo sul piano per tutto l'impianto
 The second fault is checked at the line-to-earth voltage	Il secondo guasto viene verificato alla tensione fase-terra
@@ -2162,6 +2163,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	Cartigli
 Title blocks, plot frames and page templates	Cartigli, cornici di stampa e modelli di pagina
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	Cartigli, schemi di report e cornici condivisi da tutti i progetti sul server articoli (Articoli › Server articoli)
+Title or standard, e.g. VDE 0100-600	Titolo o norma, ad es. VDE 0100-600
 To do	Da fare
 Toggle corner direction while drawing wires	Cambia la direzione dell'angolo durante il disegno dei conduttori
 Toggle routing around symbols (wire tool)	Attiva/disattiva instradamento attorno ai simboli (strumento conduttore)
@@ -2209,7 +2211,6 @@ Used on {} of {} pages	Utilizzato in {} di {} pagine
 User / group	Utente / gruppo
 User defined property	Proprietà definita dall'utente
 User names, separated by commas	Nomi utente, separati da virgole
-Value	Valore
 Value set	Set di valori
 Value sets	Set di valori
 Values	Valori
@@ -2377,7 +2378,6 @@ male	maschio
 manual	manuale
 max. {} °C	max. {} °C
 may overlap	possono sovrapporsi
-missing	mancante
 model	modello
 name	nome
 no	no

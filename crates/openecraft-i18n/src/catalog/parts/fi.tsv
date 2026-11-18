@@ -173,6 +173,7 @@ Enter the address of an openecraft-parts-server and click Connect.	Kirjoita open
 Environment variable with the password of the service account	Ympäristömuuttuja, jossa on palvelutilin salasana
 Evaporator	Höyrystin
 Everybody who may read the parts sees it.	Sen näkevät kaikki, jotka saavat lukea osia.
+Excel	Excel
 Exhaust valves	Ilmanpoistoventtiilit
 Expired	Vanhentunut
 Export (CSV)	Vienti (CSV)
@@ -286,6 +287,7 @@ New role	Uusi rooli
 New user	Uusi käyttäjä
 Newer version	Uudempi versio
 Next	Seuraava
+Next circuit	Seuraava virtapiiri
 No devices found	Laitteita ei löytynyt
 No ended sessions	Ei päättyneitä istuntoja
 No grants: the rights by manufacturer apply	Ei myöntöjä: valmistajakohtaiset oikeudet ovat voimassa
@@ -299,6 +301,8 @@ Nobody works on a project	Kukaan ei työskentele minkään projektin parissa
 Non-return valves	Takaiskuventtiilit
 None (only grants)	Ei mitään (vain myönnöt)
 Not mounted	Ei asennettu
+Not saved	Ei tallennettu
+Nothing to save	Ei tallennettavaa
 Nut	Mutteri
 On the front	Edessä
 On the left side	Vasemmalla puolella
@@ -455,6 +459,7 @@ Sifter	Seulain
 Sight glass	Näkölasi
 Sign in as an administrator to manage the server	Kirjaudu sisään järjestelmänvalvojana hallitaksesi palvelinta
 Sign in or connect with the access token to change parts	Kirjaudu sisään tai yhdistä käyttöoikeustunnuksella muuttaaksesi osia
+Sign in or name the inspector in the report data first.	Kirjaudu sisään tai anna ensin tarkastaja pöytäkirjan tiedoissa.
 Sign in to keep favorites	Kirjaudu sisään, jotta voit tallentaa suosikkeja
 Sign in to see the projects	Kirjaudu sisään nähdäksesi projektit
 Sign in with a user account	Kirjaudu käyttäjätilillä
@@ -467,6 +472,7 @@ Signal device	Merkinantolaite
 Signal device, acoustic	Merkinantolaite, akustinen
 Signal device, optical	Merkinantolaite, optinen
 Signal lamp	Merkkivalo
+Signature	Allekirjoitus
 Signed in	Kirjautuneet
 Silencers	Äänenvaimentimet
 Silo	Siilo
@@ -475,6 +481,7 @@ Single-stage filters	Yksivaiheiset suodattimet
 Siphon	Vesilukko
 Size of the files	Tiedostojen koko
 Solenoid valve	Magneettiventtiili
+Someone saved this meanwhile. Check the values and save again.	Joku tallensi tämän sillä välin. Tarkista arvot ja tallenna uudelleen.
 Sorter	Lajittelija
 Start a server with:  openecraft-parts-server --token <secret>	Käynnistä palvelin komennolla:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	Käynnistä openecraft-parts-server valitsimella --token salliaksesi muutokset

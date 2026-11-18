@@ -223,13 +223,11 @@ Saves the project to its file or to a new path	A projektet a saját fájljába v
 Scale drawings down that do not fit on the page (default: true)	Az oldalra el nem férő rajzok kicsinyítése (alapértelmezés: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Keresési kifejezések, pl. company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Keres a vault elemei között (szám, cím, revízió, életciklus-állapot, cikkszám)
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Alkatrészeket keres az alkatrészszerveren (adatportál) szöveg, csoportok, katalógus, életciklus és műszaki adatok szerint
 Segment path (default: all segments)	Szegmens elérési útja (alapértelmezés: minden szegmens)
 Server URL, e.g. http://127.0.0.1:8090	Szerver URL-címe, pl. http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	Beállítja az alkatrészszervert (URL és hozzáférési token, vagy felhasználó és jelszó), és megjeleníti az állapotát
 Settings scheme file (JSON)	Beállításséma-fájl (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Megjelenít egy táblázatot (készülékek, összeköttetések, sorkapcsok, kábelek, dugók, PLC, oldalak vagy alkatrészek) a soraival; egy sor a kulcsa alapján módosítható
-Shows all data of a part	Megjeleníti egy alkatrész összes adatát
 Shows the changes of a part on the parts server, or the part as of one change	Megjeleníti egy alkatrész módosításait az alkatrészszerveren, vagy az alkatrészt egy adott módosításkori állapotában
 Shows the favorites of the signed in user, optionally adding or removing a part	Megjeleníti a bejelentkezett felhasználó kedvenceit, és igény szerint hozzáad vagy eltávolít egy alkatrészt
 Shows the manifest of a project archive	Megjeleníti egy projektarchívum manifestjét
@@ -284,6 +282,7 @@ Values to set (name: value; an empty value removes a property)	Beállítandó é
 Vault user name (signs in)	Vault-felhasználónév (bejelentkezik)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Mi kerül kiírásra: oec (projektfájl), oecp (felosztott projekt saját mappában) vagy oecz (archívum); alapértelmezés: a kimenet kiterjesztése szerint
 Width and height must be greater than 0	A szélességnek és a magasságnak 0-nál nagyobbnak kell lennie
+Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	A kimutatások címében, nevében és keresőszavaiban (például VDE 0100-600 szabvány) keresendő szavak
 Write the table as CSV to this file	A táblázat írása CSV-ként ebbe a fájlba
 Writes the check scheme of the project (checks switched off, message levels) to a file	Fájlba írja a projekt ellenőrzési sémáját (kikapcsolt ellenőrzések, üzenetszintek)
 Writes the embedded file of a document page	Kiírja egy dokumentumoldal beágyazott fájlját
@@ -295,7 +294,6 @@ csv (default) or eplan_xml	csv (alapértelmezett) vagy eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement vagy wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine vagy exchange
 json (default), csv or xlsx (Excel, needs path)	json (alapértelmezett), csv vagy xlsx (Excel, path szükséges)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nModel Context Protocol-kiszolgálót futtat a stdin / stdout csatornán: a lista eszközei MI-ügynököknek, a projekt a memóriában marad (a save_project kiírja, az undo / redo egyes hívásokat von vissza). Az OPENECRAFT_MCP_TOOLS korlátozza a felkínált eszközöket.\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nMegjeleníti a parancssor verzióját (--version vagy -V is)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover vagy egy kimutatás: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	Az undo és a redo csak MCP-munkamenetben működik: a parancssor minden parancshoz újra megnyitja a projektet

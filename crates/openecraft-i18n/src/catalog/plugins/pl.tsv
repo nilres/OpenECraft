@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	Rysować trójnik jako 
 Draw wires in their colour	Rysuj przewody w ich kolorze
 Draw wires to the connection points facing its free arms	Narysować przewody do punktów przyłączenia naprzeciw jego wolnych ramion
 Drawing	Rysunek
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Rysuje linię definicji kabla; przecinane przez nią przewody stają się żyłami kabla (nowego kabla, jeśli nie podano żadnego)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Rysuje przewód między dwoma punktami połączeń, np. -K1:A1 do -S1:14 (#id:pin dla niejednoznacznych, nazwa dla potencjałów, 1, 2… dla punktów bez oznaczenia)
 Draws a wire through two or more points	Rysuje przewód przez dwa lub więcej punktów
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Rysuje przewody w ich kolorze na stronach schematu i w eksporcie PDF / SVG lub na czarno
@@ -526,6 +525,7 @@ No rule for {} and {}	Brak reguły dla {} i {}
 No rule library or rule set {}	Brak biblioteki reguł lub zestawu reguł {}
 No rule {}	Brak reguły {}
 No safety function {}	Brak funkcji bezpieczeństwa {}
+No source {}	Brak źródła {}
 No standard size of {} holds the layout of {}	Żaden rozmiar standardowy {} nie mieści zabudowy {}
 No terminal strip {}	Brak listwy zaciskowej {}
 No terminal {} on strip {}	Brak zacisku {} na listwie {}
@@ -937,7 +937,6 @@ Unknown earthing system: {}	Nieznany układ sieci: {}
 Unknown face {}	Nieznana powierzchnia {}
 Unknown fastening: {}	Nieznane mocowanie: {}
 Unknown field object: {}	Nieznany obiekt obiektowy: {}
-Unknown field: {}	Nieznane pole: {}
 Unknown group kind: {}	Nieznany rodzaj grupy: {}
 Unknown installation: {}	Nieznane ustawienie: {}
 Unknown insulation: {}	Nieznana izolacja: {}
@@ -1020,7 +1019,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi lub other
 copper or aluminium	copper lub aluminium
 device (default), position, cross_section or number	device (domyślnie), position, cross_section lub number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages lub parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection lub inspection_data
 error, warning, info, off, or default to take the change back	error, warning, info, off lub default, aby cofnąć zmianę
 false takes the acceptance back (default true)	false cofa akceptację (domyślnie true)
 foundation, ring or rod	foundation, ring lub rod

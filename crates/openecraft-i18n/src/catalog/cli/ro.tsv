@@ -223,13 +223,11 @@ Saves the project to its file or to a new path	Salvează proiectul în fișierul
 Scale drawings down that do not fit on the page (default: true)	Micșorează desenele care nu încap pe pagină (implicit: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Termeni de căutare, de ex. company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Caută elementele din vault (număr, titlu, revizie, stare ciclu de viață, număr de articol)
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Caută articole pe serverul de articole (portal de date) după text, grupe, catalog, ciclu de viață și date tehnice
 Segment path (default: all segments)	Calea segmentului (implicit: toate segmentele)
 Server URL, e.g. http://127.0.0.1:8090	URL server, de ex. http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	Setează serverul de articole (URL și token de acces sau utilizator și parolă) și afișează starea acestuia
 Settings scheme file (JSON)	Fișier de schemă de setări (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Afișează un tabel (dispozitive, conexiuni, borne, cabluri, conectori, PLC, pagini sau articole) cu rândurile lui; cheia unui rând servește la modificarea lui
-Shows all data of a part	Afișează toate datele unui articol
 Shows the changes of a part on the parts server, or the part as of one change	Afișează modificările unui articol pe serverul de articole sau articolul în starea de la o modificare
 Shows the favorites of the signed in user, optionally adding or removing a part	Afișează favoritele utilizatorului conectat, cu opțiunea de a adăuga sau elimina un articol
 Shows the manifest of a project archive	Afișează manifestul unei arhive de proiect
@@ -284,6 +282,7 @@ Values to set (name: value; an empty value removes a property)	Valori de setat (
 Vault user name (signs in)	Nume de utilizator Vault (pentru conectare)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Ce se scrie: oec (fișier de proiect), oecp (proiect divizat într-un dosar propriu) sau oecz (arhivă); implicit: după extensia ieșirii
 Width and height must be greater than 0	Lățimea și înălțimea trebuie să fie mai mari decât 0
+Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Cuvinte de căutat în titlurile, numele și termenii de căutare (standarde precum VDE 0100-600) ale rapoartelor
 Write the table as CSV to this file	Scriere tabel ca CSV în acest fișier
 Writes the check scheme of the project (checks switched off, message levels) to a file	Scrie schema de verificare a proiectului (verificări dezactivate, niveluri de mesaj) într-un fișier
 Writes the embedded file of a document page	Scrie fișierul încorporat al unei pagini de document
@@ -295,7 +294,6 @@ csv (default) or eplan_xml	csv (implicit) sau eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement sau wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine sau exchange
 json (default), csv or xlsx (Excel, needs path)	json (implicit), csv sau xlsx (Excel, necesită path)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nPornește un server Model Context Protocol pe stdin / stdout: instrumentele acestei liste pentru agenți AI, cu proiectul păstrat în memorie (save_project îl scrie, undo / redo anulează apeluri individuale). OPENECRAFT_MCP_TOOLS limitează instrumentele oferite.\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nAfișează versiunea liniei de comandă (și --version sau -V)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover sau un raport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo și redo funcționează doar într-o sesiune MCP: linia de comandă redeschide proiectul pentru fiecare comandă

@@ -58,7 +58,7 @@ pub fn kind_of_symbol(key: &str) -> Option<FnKind> {
         "softstarter" => FnKind::SoftStarter,
         "heater" => FnKind::Heater,
         "socket" => FnKind::SocketOutlet,
-        "lamp" | "horn" | "nfpa_lamp" => FnKind::Signal,
+        "lamp" | "horn" | "nfpa_lamp" | "luminaire" => FnKind::Signal,
         "ammeter" | "voltmeter" => FnKind::Meter,
         "psu" => FnKind::PowerSupply,
         "trafo" => FnKind::Transformer,
@@ -250,6 +250,32 @@ pub fn link_unassigned_plc_parts(prj: &mut Project, db: &PartsDb, only_tag: Opti
 /// Resolves a part: project parts first, then the database.
 pub fn lookup<'a>(prj: &'a Project, db: Option<&'a PartsDb>, number: &str) -> Option<&'a Part> {
     prj.parts.iter().find(|p| p.number == number).or_else(|| db.and_then(|d| d.get(number)))
+}
+
+/// The parts of the project followed by those of the built-in catalog it does not have.
+pub fn local_parts(prj: Option<&Project>) -> Vec<&Part> {
+    let own = prj.map_or(&[][..], |p| p.parts.as_slice());
+    own.iter().chain(catalog().iter().filter(|c| !own.iter().any(|p| p.number == c.number))).collect()
+}
+
+/// Up to `n` parts of the project and the built-in catalog whose number, type or
+/// description is like `text` (an unknown part number), best first.
+pub fn similar<'a>(prj: Option<&'a Project>, text: &str, n: usize) -> Vec<&'a Part> {
+    let squash = |s: &str| s.chars().filter(|c| c.is_alphanumeric()).collect::<String>().to_lowercase();
+    let whole = squash(text);
+    let words: Vec<String> = text.split(|c: char| !c.is_alphanumeric()).filter(|w| w.len() > 1).map(str::to_lowercase).collect();
+    let mut scored: Vec<(usize, &Part)> = local_parts(prj)
+        .into_iter()
+        .filter_map(|p| {
+            let hay = format!("{} {} {}", p.number, p.type_number, p.description).to_lowercase();
+            let number = squash(&p.number);
+            let close = !whole.is_empty() && (number.contains(&whole) || whole.contains(&number));
+            let score = words.iter().filter(|w| hay.contains(w.as_str())).count() + if close { 2 } else { 0 };
+            (score > 0).then_some((score, p))
+        })
+        .collect();
+    scored.sort_by(|a, b| b.0.cmp(&a.0).then_with(|| a.1.number.cmp(&b.1.number)));
+    scored.into_iter().take(n).map(|(_, p)| p).collect()
 }
 
 /// Group choices with project entries taking precedence over the supplied database,

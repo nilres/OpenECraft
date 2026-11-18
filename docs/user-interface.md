@@ -29,7 +29,7 @@ zoom, language, check results and the messages of the session.
 | Wire numbers | *Connections › Wire numbering…*; single wire: type a number (kept by automatic numbering) |
 | Macros | select items, right click › *Save selection as macro…*; place them from the Insert center or *Insert › Macro…* |
 | Configurator | *Project data › Configurator*: options, rules with page macros, *Generate pages* |
-| Bulk changes | *Project data › Edit in table* (or the table button of a navigator): devices, connections, terminals, cables, plug pins, PLC points, pages and parts; filter, edit, fill, find and replace, CSV |
+| Bulk changes | *Project data › Edit in table* (or the table button of a navigator): devices, connections, terminals, cables, plug pins, PLC points, pages, parts and the results of the inspection; filter, edit, fill, find and replace, CSV |
 | Project check | *Messages* pane (`F4`): sortable table of the messages; click shows the object, right click accepts, changes the level or switches the check off |
 | Enclosure climate | panel layout: select the enclosure › *Climate (IEC 60890)* |
 | Terminal strips / PLC | *Devices › Terminal strips* / *Devices › PLC overview* |
@@ -52,6 +52,7 @@ zoom, language, check results and the messages of the session.
 | Door devices | *Layout space › Door (front)* for door devices and cutouts, *Door (inside)* (mirrored) for cable ducts and the door wiring; 3D: *Open door* / *Close door* |
 | Wiring the panel | *Wiring* workspace: pick a wire in the list or in 3D, *Wired* / *Problem*; *Wiring › Tablet mode* for touch screens; `--wiring` (web: `#wiring`) starts in the Wiring workspace with tablet mode for that session |
 | Project texts in several languages | *Project data › Project languages*: target languages, *Collect texts from the project*, translate (or CSV for translators); *Project data › Export as PDF in language* |
+| Inspection and test report | *Tools › Inspection and test report* (IEC 60364-6 / DIN VDE 0100-600, without a project server): the report data, origin values and visual inspection with own items, the limits, *Sign the report*, a section per SELV / PELV source and per circuit (filled in from the schematic, *missing* marked, *Show in the schematic*); values are taken over when a field is left; *Export Excel*; the web page of the project server shows the same report on a tablet |
 | Hoses / PCT loops | draw wires between fluid / P&ID ports; hose properties and configuration in the wire properties; *Tools › Fluid and process* (hoses, device groups, electro-fluid links and *Synchronize*, PCT loops) |
 | Harnesses | *Connections › Harnesses*; select the wires between two devices › *Assign to harness*, or per connection in the wire properties; 3D topology, protections, fixings, end treatment, KBL, harness interface and 3D export in the pane |
 | Help | `F1` opens the tutorial chapter of the pane in use; the Help pane has the quick guide (the first hour, with links into the tutorial), the tutorial, keyboard shortcuts; *Help › Tutorial*, *Help › Start page* (all 13 chapters), *Help › About OpenECraft*, *Help › Legal and privacy* (the disclaimer, the privacy notice and, in a hosted web editor, the legal notice of its operator) |

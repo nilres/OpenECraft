@@ -948,6 +948,7 @@ In the structure of the current page	Az aktuális oldal struktúrájában
 Include manually set numbers	Kézzel megadott számok bevonása
 Index	Index
 Indices	Indexek
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	Első ellenőrzés (IEC 60364-6, DIN VDE 0100-600): a kapcsolási rajzból kitöltve, az eredmények itt rögzítve
 Inner walls	Belső falak
 Input bytes	Bemeneti bájtok
 Inputs	Bemenetek
@@ -1046,7 +1047,6 @@ Library	Könyvtár
 Lightning protection	Villámvédelem
 Lightning protection of building {}	A(z) {} épület villámvédelme
 Like two fingers	Mint két ujj
-Limits	Határértékek
 Limits in effect	Érvényes határértékek
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fázis–PE a betáplálási pontnál; 0 = a legnagyobb zárlati áramból
 Line up on the rail	Felsorakoztatás a sínen
@@ -1189,6 +1189,7 @@ NC data of this face (DXF)	A felület NC-adatai (DXF)
 Nailboard (SVG)…	Szögestábla (SVG)…
 Name and cross reference	Név és kereszthivatkozás
 Name on the server	Név a szerveren
+Name the inspector in the report data first.	Először adja meg az ellenőrt a jegyzőkönyv adataiban.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Név; Adattípus; Logikai cím; Megjegyzés – PLC-programozó eszközökhöz
 Named copy of this form, for report blocks	Az űrlap elnevezett másolata kimutatásblokkokhoz
 Navigators	Navigátorok
@@ -1814,7 +1815,6 @@ Save to project server: {}	Mentés a projektkiszolgálóra: {}
 Save to project server: {} – the connection is lost, saving tries again	Mentés a projektkiszolgálóra: {} – a kapcsolat megszakadt, a mentés újrapróbálkozik
 Save workspace	Munkaterület mentése
 Save workspace…	Munkaterület mentése…
-Saved	Mentve
 Saved the properties of {} (revision {})	{} tulajdonságai mentve ({}. revízió)
 Saved to	Mentés helye
 Saved to the project server (revision {})	Mentve a projektszerverre ({}. revízió)
@@ -2129,6 +2129,7 @@ The properties of the selection in a window beside the page	A kijelölés tulajd
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	A tulajdonságokat időközben módosították a projektszerveren. Az újratöltés megmutatja őket; a beírt adatok lecserélődnek.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	A sín vagy szerelőtalp; tartozékai a kampók, szorítók és ballaszt
 The recalculation keeps frozen routes as long as they are still possible	Az újraszámítás megtartja a rögzített nyomvonalakat, amíg lehetséges
+The report as tables and report pages	A jegyzőkönyv táblázatként és kimutatásoldalakként
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	A Fájl lappal rendelkező menüszalag felváltja a menüket; a Ctrl+Shift+P bármely parancsot megtalál.
 The rooms of the level side by side; click the level again for all of the plant	A szint helyiségei egymás mellett; kattintson ismét a szintre a teljes létesítményhez
 The second fault is checked at the line-to-earth voltage	A második hibát a fázis–föld feszültséggel ellenőrzi
@@ -2162,6 +2163,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	Szövegmezők
 Title blocks, plot frames and page templates	Szövegmezők, rajzkeretek és oldalsablonok
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	Az összes projekt által megosztott szövegmezők, jelentéssémák és rajzkeretek az alkatrészkiszolgálón (Alkatrészek › Alkatrészkiszolgáló)
+Title or standard, e.g. VDE 0100-600	Cím vagy szabvány, pl. VDE 0100-600
 To do	Teendő
 Toggle corner direction while drawing wires	Sarokirány váltása vezetékrajzolás közben
 Toggle routing around symbols (wire tool)	Szimbólumok kikerülésének be- és kikapcsolása (vezetékeszköz)
@@ -2209,7 +2211,6 @@ Used on {} of {} pages	{} / {} oldalon használatban
 User / group	Felhasználó / csoport
 User defined property	Felhasználó által definiált tulajdonság
 User names, separated by commas	Felhasználónevek vesszővel elválasztva
-Value	Érték
 Value set	Értékkészlet
 Value sets	Értékkészletek
 Values	Értékek
@@ -2377,7 +2378,6 @@ male	tű
 manual	kézi
 max. {} °C	max. {} °C
 may overlap	átfedhetik egymást
-missing	hiányzik
 model	modell
 name	név
 no	nem

@@ -1,0 +1,33 @@
+# DRAFT – the MCP server in a container, for Glama's build check, the OCI package of
+# the MCP registry and the Docker MCP catalog. Not wired into CI; the images of the
+# servers are built by installer/docker/Dockerfile.
+#
+#   docker build -f docs/launch/ai/registry/Dockerfile.mcp -t openecraft-mcp .
+#   docker run -i --rm --mount type=bind,src="$PWD",dst=/projects openecraft-mcp
+#
+# The server talks JSON-RPC on stdin / stdout (`-i`, no port). It may only use files
+# in /projects (its working folder): mount the folder of your projects there.
+#
+# For CI, this belongs into installer/docker/Dockerfile as a target `mcp-server` next to
+# the parts server (same Rust version, THIRD-PARTY-LICENSES.html, check script).
+
+ARG RUST_VERSION=1.97.0
+
+FROM rust:${RUST_VERSION}-bookworm AS build
+WORKDIR /src
+COPY . .
+RUN cargo build --release --locked -p openecraft-cli
+
+FROM debian:bookworm-slim
+LABEL org.opencontainers.image.title="OpenECraft MCP server" \
+      org.opencontainers.image.source="https://github.com/nilres/OpenECraft" \
+      org.opencontainers.image.licenses="MIT OR Apache-2.0" \
+      io.modelcontextprotocol.server.name="io.github.nilres/openecraft"
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --create-home --uid 1000 openecraft
+COPY LICENSE-MIT LICENSE-APACHE /usr/share/doc/openecraft/
+COPY --from=build /src/target/release/openecraft-cli /usr/local/bin/openecraft-cli
+USER openecraft
+WORKDIR /projects
+ENTRYPOINT ["openecraft-cli", "mcp"]

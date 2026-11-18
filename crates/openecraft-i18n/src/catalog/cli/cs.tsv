@@ -223,13 +223,11 @@ Saves the project to its file or to a new path	Uloží projekt do jeho souboru n
 Scale drawings down that do not fit on the page (default: true)	Zmenšit výkresy, které se nevejdou na stránku (výchozí: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Hledané výrazy, např. company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Prohledá položky trezoru (číslo, název, revize, stav životního cyklu, číslo artiklu)
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Vyhledá artikly na serveru artiklů (datový portál) podle textu, skupin, katalogu, životního cyklu a technických údajů
 Segment path (default: all segments)	Cesta segmentu (výchozí: všechny segmenty)
 Server URL, e.g. http://127.0.0.1:8090	Adresa URL serveru, např. http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	Nastaví server artiklů (URL a přístupový token nebo uživatele a heslo) a zobrazí jeho stav
 Settings scheme file (JSON)	Soubor schématu nastavení (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Zobrazí tabulku (přístroje, spojení, svorky, kabely, konektory, PLC, stránky nebo artikly) s jejími řádky; řádek se mění pomocí jeho klíče
-Shows all data of a part	Zobrazí všechna data artiklu
 Shows the changes of a part on the parts server, or the part as of one change	Zobrazí změny artiklu na serveru artiklů nebo artikl ve stavu jedné změny
 Shows the favorites of the signed in user, optionally adding or removing a part	Zobrazí oblíbené položky přihlášeného uživatele, volitelně přidá nebo odebere artikl
 Shows the manifest of a project archive	Zobrazí manifest archivu projektu
@@ -284,6 +282,7 @@ Values to set (name: value; an empty value removes a property)	Hodnoty k nastave
 Vault user name (signs in)	Uživatelské jméno Vault (přihlásí se)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Co se zapisuje: oec (soubor projektu), oecp (rozdělený projekt ve vlastní složce) nebo oecz (archiv); výchozí: podle přípony výstupu
 Width and height must be greater than 0	Šířka a výška musí být větší než 0
+Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Slova hledaná v názvech, jménech a hledaných výrazech (normách jako VDE 0100-600) výkazů
 Write the table as CSV to this file	Zapsat tabulku jako CSV do tohoto souboru
 Writes the check scheme of the project (checks switched off, message levels) to a file	Zapíše schéma kontroly projektu (vypnuté kontroly, úrovně hlášení) do souboru
 Writes the embedded file of a document page	Zapíše vložený soubor stránky dokumentu
@@ -295,7 +294,6 @@ csv (default) or eplan_xml	csv (výchozí) nebo eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement nebo wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine nebo exchange
 json (default), csv or xlsx (Excel, needs path)	json (výchozí), csv nebo xlsx (Excel, vyžaduje path)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nSpustí server Model Context Protocol na stdin / stdout: nástroje tohoto seznamu pro agenty AI, s projektem v paměti (save_project jej zapíše, undo / redo vrátí jednotlivá volání). OPENECRAFT_MCP_TOOLS omezuje nabízené nástroje.\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nZobrazí verzi příkazového řádku (také --version nebo -V)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover nebo výkaz: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo a redo fungují jen v relaci MCP: příkazový řádek otevírá projekt pro každý příkaz znovu

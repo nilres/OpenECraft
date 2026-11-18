@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	Kreslit T-kus jako spoj
 Draw wires in their colour	Kreslit vodiče v jejich barvě
 Draw wires to the connection points facing its free arms	Nakreslit vodiče k připojovacím bodům naproti jeho volným ramenům
 Drawing	Výkres
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Nakreslí čáru definice kabelu; překřížené vodiče se stanou žílami kabelu (bez zadání nového kabelu)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Nakreslí vodič mezi dvěma přípojnými body, např. -K1:A1 do -S1:14 (#id:pin u nejednoznačných, název u potenciálů, 1, 2… u bodů bez označení)
 Draws a wire through two or more points	Nakreslí vodič přes dva nebo více bodů
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Kreslí vodiče na stránkách schématu a v exportu PDF / SVG v jejich barvě, nebo černě
@@ -526,6 +525,7 @@ No rule for {} and {}	Žádné pravidlo pro {} a {}
 No rule library or rule set {}	Žádná knihovna pravidel ani sada pravidel {}
 No rule {}	Žádné pravidlo {}
 No safety function {}	Žádná bezpečnostní funkce {}
+No source {}	Žádný zdroj {}
 No standard size of {} holds the layout of {}	Žádná standardní velikost {} nepojme rozvržení {}
 No terminal strip {}	Žádná svorkovnice {}
 No terminal {} on strip {}	Žádná svorka {} na svorkovnici {}
@@ -937,7 +937,6 @@ Unknown earthing system: {}	Neznámá soustava uzemnění: {}
 Unknown face {}	Neznámá plocha {}
 Unknown fastening: {}	Neznámé upevnění: {}
 Unknown field object: {}	Neznámý objekt v poli: {}
-Unknown field: {}	Neznámé pole: {}
 Unknown group kind: {}	Neznámý druh skupiny: {}
 Unknown installation: {}	Neznámá instalace: {}
 Unknown insulation: {}	Neznámá izolace: {}
@@ -1020,7 +1019,7 @@ compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or 
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi nebo other
 copper or aluminium	copper nebo aluminium
 device (default), position, cross_section or number	device (výchozí), position, cross_section nebo number
-devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages nebo parts
+devices, connections, terminals, cables, plugs, plc, pages, parts, inspection or inspection_data	devices, connections, terminals, cables, plugs, plc, pages, parts, inspection nebo inspection_data
 error, warning, info, off, or default to take the change back	error, warning, info, off nebo default pro vrácení změny
 false takes the acceptance back (default true)	false vrátí přijetí zpět (výchozí true)
 foundation, ring or rod	foundation, ring nebo rod

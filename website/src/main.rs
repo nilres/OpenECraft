@@ -13,6 +13,8 @@
 #[cfg(test)]
 mod links;
 #[cfg(test)]
+mod pages;
+#[cfg(test)]
 mod seo;
 mod studio;
 mod texts;

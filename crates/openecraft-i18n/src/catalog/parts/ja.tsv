@@ -169,6 +169,7 @@ Enter the address of an openecraft-parts-server and click Connect.	openecraft-pa
 Environment variable with the password of the service account	サービスアカウントのパスワードを含む環境変数
 Evaporator	蒸発器
 Everybody who may read the parts sees it.	部品を閲覧できるすべてのユーザーに表示されます。
+Excel	Excel
 Exhaust valves	排気弁
 Expired	期限切れ
 Export (CSV)	エクスポート (CSV)
@@ -282,6 +283,7 @@ New role	新しいロール
 New user	新しいユーザー
 Newer version	新しいバージョン
 Next	次へ
+Next circuit	次の回路
 No devices found	デバイスが見つかりません
 No ended sessions	終了したセッションはありません
 No grants: the rights by manufacturer apply	付与がありません：メーカー別の権限が適用されます
@@ -295,6 +297,8 @@ Nobody works on a project	プロジェクトで作業しているユーザーは
 Non-return valves	チェック弁
 None (only grants)	なし (付与のみ)
 Not mounted	取り付けなし
+Not saved	未保存
+Nothing to save	保存するものはありません
 Nut	ナット
 On the front	前面
 On the left side	左側
@@ -451,6 +455,7 @@ Sifter	分級機
 Sight glass	サイトグラス
 Sign in as an administrator to manage the server	サーバーを管理するには管理者としてサインインしてください
 Sign in or connect with the access token to change parts	部品を変更するには、サインインするかアクセストークンで接続してください
+Sign in or name the inspector in the report data first.	サインインするか、先に報告書データに点検者を入力してください。
 Sign in to keep favorites	お気に入りを保存するにはサインインしてください
 Sign in to see the projects	プロジェクトを表示するにはサインインしてください
 Sign in with a user account	ユーザーアカウントでサインイン
@@ -463,6 +468,7 @@ Signal device	表示機器
 Signal device, acoustic	信号装置 (音響)
 Signal device, optical	信号装置 (光学)
 Signal lamp	表示灯
+Signature	サイン
 Signed in	サインイン中
 Silencers	サイレンサー
 Silo	サイロ
@@ -471,6 +477,7 @@ Single-stage filters	単式フィルター
 Siphon	サイフォン
 Size of the files	ファイルのサイズ
 Solenoid valve	電磁弁
+Someone saved this meanwhile. Check the values and save again.	その間に他の人が保存しました。値を確認して再度保存してください。
 Sorter	選別機
 Start a server with:  openecraft-parts-server --token <secret>	サーバーの起動方法:  openecraft-parts-server --token <secret>
 Start openecraft-parts-server with --token to allow changes	変更を許可するには openecraft-parts-server を --token 付きで起動してください

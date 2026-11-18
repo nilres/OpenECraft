@@ -948,6 +948,7 @@ In the structure of the current page	Nykyisen sivun rakenteessa
 Include manually set numbers	Sisällytä manuaalisesti asetetut numerot
 Index	Indeksi
 Indices	Indeksit
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	Käyttöönottotarkastus (IEC 60364-6, DIN VDE 0100-600): täytetty kaaviosta, tulokset syötetään tähän
 Inner walls	Väliseinät
 Input bytes	Tulotavut
 Inputs	Tulot
@@ -1046,7 +1047,6 @@ Library	Kirjasto
 Lightning protection	Ukkossuojaus
 Lightning protection of building {}	Rakennuksen {} ukkossuojaus
 Like two fingers	Kuten kaksi sormea
-Limits	Raja-arvot
 Limits in effect	Voimassa olevat raja-arvot
 Line to PE at the supply point; 0 = from the highest short-circuit current	Vaihe–PE syöttöpisteessä; 0 = suurimmasta oikosulkuvirrasta
 Line up on the rail	Rivitä kiskolle
@@ -1189,6 +1189,7 @@ NC data of this face (DXF)	Tämän pinnan NC-tiedot (DXF)
 Nailboard (SVG)…	Naulalauta (SVG)…
 Name and cross reference	Nimi ja ristiviittaus
 Name on the server	Nimi palvelimella
+Name the inspector in the report data first.	Anna ensin tarkastaja raportin tiedoissa.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nimi; tietotyyppi; looginen osoite; kommentti – PLC-ohjelmointityökaluille
 Named copy of this form, for report blocks	Tämän lomakkeen nimetty kopio raporttilohkoja varten
 Navigators	Navigaattorit
@@ -1814,7 +1815,6 @@ Save to project server: {}	Tallenna projektipalvelimelle: {}
 Save to project server: {} – the connection is lost, saving tries again	Tallenna projektipalvelimelle: {} – yhteys on katkennut, tallennus yrittää uudelleen
 Save workspace	Tallenna työtila
 Save workspace…	Tallenna työtila…
-Saved	Tallennettu
 Saved the properties of {} (revision {})	Projektin {} ominaisuudet tallennettu (revisio {})
 Saved to	Tallennettu kohteeseen
 Saved to the project server (revision {})	Tallennettu projektipalvelimelle (revisio {})
@@ -2129,6 +2129,7 @@ The properties of the selection in a window beside the page	Valinnan ominaisuude
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Ominaisuuksia on sillä välin muutettu projektipalvelimella. Lataa uudelleen näyttää ne; syöttämäsi tiedot korvataan.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Kisko tai kiinnitysjalka; sen lisävarusteita ovat koukut, puristimet ja painolasti
 The recalculation keeps frozen routes as long as they are still possible	Uudelleenlaskenta säilyttää lukitut reitit niin kauan kuin ne ovat mahdollisia
+The report as tables and report pages	Raportti taulukkoina ja raporttisivuina
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Valintanauha Tiedosto-välilehtineen korvaa valikot; Ctrl+Shift+P löytää minkä tahansa komennon.
 The rooms of the level side by side; click the level again for all of the plant	Kerroksen tilat vierekkäin; napsauta kerrosta uudelleen koko laitokselle
 The second fault is checked at the line-to-earth voltage	Toinen vika tarkistetaan vaihe–maa-jännitteellä
@@ -2162,6 +2163,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	Nimiöt
 Title blocks, plot frames and page templates	Nimiöt, piirustuskehykset ja sivumallit
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	Kaikkien projektien jakamat nimiöt, raporttimallit ja piirustuskehykset osapalvelimella (Osat › Osapalvelin)
+Title or standard, e.g. VDE 0100-600	Otsikko tai standardi, esim. VDE 0100-600
 To do	Tekemättä
 Toggle corner direction while drawing wires	Vaihda kulman suuntaa johtoja piirrettäessä
 Toggle routing around symbols (wire tool)	Symbolien kiertävä reititys päälle / pois (johtotyökalu)
@@ -2209,7 +2211,6 @@ Used on {} of {} pages	Käytössä {} sivulla {} sivusta
 User / group	Käyttäjä / ryhmä
 User defined property	Käyttäjän määrittämä ominaisuus
 User names, separated by commas	Käyttäjänimet pilkuin erotettuina
-Value	Arvo
 Value set	Arvojoukko
 Value sets	Arvojoukot
 Values	Arvot
@@ -2377,7 +2378,6 @@ male	uros
 manual	manuaalinen
 max. {} °C	enint. {} °C
 may overlap	saavat olla päällekkäin
-missing	puuttuu
 model	malli
 name	nimi
 no	ei

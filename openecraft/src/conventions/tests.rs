@@ -199,9 +199,10 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("plc_hw", &["devdesc", "issue", "model", "ops", "parts", "plc"]),
     ("devdesc", &["model", "parts", "xml"]),
     ("installation", &["electrical", "frame", "geom", "issue", "loads", "model", "netlist", "ops", "panel", "parts", "protection", "rules", "shortcircuit", "sizing", "symbols"]),
-    ("electrical", &["model", "netlist", "parts", "potentials", "protection", "sizing"]),
+    ("electrical", &["model", "netlist", "parts", "potentials", "properties", "protection", "sizing"]),
     ("protection", &["electrical", "model", "parts", "sizing"]),
     ("sizing", &["issue", "model", "netlist", "parts", "potentials", "production", "rules", "symbols", "wirenum"]),
+    ("inspection", &["electrical", "model", "netlist", "parts", "production", "properties", "protection", "rules", "shortcircuit", "sizing", "table", "xlsx"]),
     ("shortcircuit", &["electrical", "issue", "loads", "model", "netlist", "parts", "production", "protection", "rules", "sizing"]),
     ("loads", &["electrical", "issue", "model", "netlist", "parts", "potentials", "rules", "sizing", "symbols"]),
     ("emc", &["electrical", "issue", "model", "netlist", "parts", "potentials", "routing3d", "rules"]),
@@ -215,7 +216,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("wiring", &["model", "panel", "production"]),
     ("production", &["dxf", "geom", "model", "netlist", "panel", "parts"]),
     ("parts", &["model", "symbols"]),
-    ("tables", &["index", "model", "netlist", "ops", "parts", "plc", "plugs", "strips", "symbols", "wirenum"]),
+    ("tables", &["electrical", "index", "inspection", "model", "netlist", "ops", "parts", "plc", "plugs", "strips", "symbols", "wirenum"]),
     ("revision", &["compare", "geom", "model", "review", "structure"]),
     ("review", &["geom", "model", "render", "structure", "symbols"]),
     ("compare", &["model", "panel", "revision", "structure"]),
@@ -231,7 +232,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     // 6 derived data, checks, reports, registry
     ("analysis", &["ext", "field", "index", "issue", "model", "netlist", "panel", "parallel", "production", "revision", "routing3d", "table"]),
     ("checks", &["analysis", "cabledef", "climate", "conndef", "device_boxes", "electrofluid", "emc", "ext", "fluid", "frame", "harness", "index", "installation", "integration", "issue", "loads", "model", "mounting", "netlist", "panel", "parts", "pinout", "plc", "plc_hw", "plugs", "potentials", "preplanning", "process", "production", "reports", "routing3d", "rules", "safety", "shortcircuit", "singleline", "sizing", "strips", "structure", "structure_boxes", "symbols", "translation", "wirenum", "wiring"]),
-    ("reports", &["analysis", "checks", "climate", "electrofluid", "ext", "field", "fluid", "frame", "geom", "harness", "index", "installation", "issue", "loads", "marking", "model", "netlist", "panel", "params", "parts", "plc", "plc_hw", "plugs", "process", "production", "revision", "routing3d", "rules", "safety", "shortcircuit", "sizing", "strips", "symbols", "table", "text"]),
+    ("reports", &["analysis", "checks", "climate", "electrofluid", "ext", "field", "fluid", "frame", "geom", "harness", "index", "inspection", "installation", "issue", "loads", "marking", "model", "netlist", "panel", "params", "parts", "plc", "plc_hw", "plugs", "process", "production", "revision", "routing3d", "rules", "safety", "shortcircuit", "sizing", "strips", "symbols", "table", "text"]),
     ("ext", &["analysis", "issue", "model", "params", "table"]),
     ("exporters", &["aml", "analysis", "dwg", "dxf", "export3d", "ext", "harness", "harness_export", "kbl", "marking", "model", "nailboard", "page_select", "params", "pdf", "pinout", "plc", "plugs", "reports", "svg", "translation", "xlsx"]),
     // 7 output and exchange formats
@@ -253,7 +254,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("aml", &["devdesc", "model", "netlist", "parts", "plc", "plc_hw", "xml"]),
     ("integration", &["analysis", "issue", "model", "netlist", "panel", "parts", "wiring"]),
     // 8 project files, sharing, verification
-    ("collab", &["model", "review", "report_blocks"]),
+    ("collab", &["inspection", "model", "report_blocks", "review"]),
     ("archive", &["document", "model", "pdf", "storage", "zip"]),
     ("storage", &["archive", "document", "model", "parallel"]),
     ("projects", &["archive", "index", "issue", "model", "properties", "storage", "verify"]),

@@ -948,6 +948,7 @@ In the structure of the current page	W strukturze bieżącej strony
 Include manually set numbers	Uwzględnij numery ustawione ręcznie
 Index	Indeks
 Indices	Indeksy
+Initial verification (IEC 60364-6, DIN VDE 0100-600): filled in from the schematic, the results entered here	Sprawdzenie odbiorcze (IEC 60364-6, DIN VDE 0100-600): wypełnione ze schematu, wyniki wpisywane tutaj
 Inner walls	Ściany wewnętrzne
 Input bytes	Bajty wejściowe
 Inputs	Wejścia
@@ -1046,7 +1047,6 @@ Library	Biblioteka
 Lightning protection	Ochrona odgromowa
 Lightning protection of building {}	Ochrona odgromowa budynku {}
 Like two fingers	Jak dwa palce
-Limits	Wartości graniczne
 Limits in effect	Obowiązujące wartości graniczne
 Line to PE at the supply point; 0 = from the highest short-circuit current	Faza–PE w punkcie zasilania; 0 = z największego prądu zwarciowego
 Line up on the rail	Ustaw w rzędzie na szynie
@@ -1189,6 +1189,7 @@ NC data of this face (DXF)	Dane NC tej ściany (DXF)
 Nailboard (SVG)…	Deska montażowa (SVG)…
 Name and cross reference	Nazwa i odsyłacz
 Name on the server	Nazwa na serwerze
+Name the inspector in the report data first.	Najpierw podaj sprawdzającego w danych protokołu.
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nazwa; typ danych; adres logiczny; komentarz – dla narzędzi programowania PLC
 Named copy of this form, for report blocks	Nazwana kopia tego formularza, dla bloków raportów
 Navigators	Nawigatory
@@ -1814,7 +1815,6 @@ Save to project server: {}	Zapisz na serwerze projektów: {}
 Save to project server: {} – the connection is lost, saving tries again	Zapisz na serwerze projektów: {} – połączenie zostało utracone, zapis spróbuje ponownie
 Save workspace	Zapisz obszar roboczy
 Save workspace…	Zapisz obszar roboczy…
-Saved	Zapisano
 Saved the properties of {} (revision {})	Zapisano właściwości {} (rewizja {})
 Saved to	Zapisano w
 Saved to the project server (revision {})	Zapisano na serwerze projektów (rewizja {})
@@ -2129,6 +2129,7 @@ The properties of the selection in a window beside the page	Właściwości zazna
 The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	W międzyczasie właściwości zostały zmienione na serwerze projektów. Wczytaj ponownie pokazuje je; Twoje wpisy zostaną zastąpione.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Szyna lub podstawa montażowa; jej akcesoria to haki, zaciski i balast
 The recalculation keeps frozen routes as long as they are still possible	Ponowne obliczanie zachowuje zamrożone trasy, dopóki są one możliwe
+The report as tables and report pages	Protokół jako tabele i strony raportów
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Wstążka z kartą Plik zastępuje menu; Ctrl+Shift+P znajduje dowolne polecenie.
 The rooms of the level side by side; click the level again for all of the plant	Pomieszczenia kondygnacji obok siebie; kliknij kondygnację ponownie, aby zobaczyć całą instalację
 The second fault is checked at the line-to-earth voltage	Podwójne zwarcie jest sprawdzane przy napięciu przewód–ziemia
@@ -2162,6 +2163,7 @@ Title block of the pages with this frame that choose none, e.g. a narrower one f
 Title blocks	Tabliczki rysunkowe
 Title blocks, plot frames and page templates	Tabliczki rysunkowe, ramki rysunku i szablony stron
 Title blocks, report schemes and plot frames shared by all projects on the parts server (Parts › Parts server)	Tabliczki, schematy raportów i ramki wspólne dla wszystkich projektów na serwerze części (Części › Serwer części)
+Title or standard, e.g. VDE 0100-600	Tytuł lub norma, np. VDE 0100-600
 To do	Do zrobienia
 Toggle corner direction while drawing wires	Przełącz kierunek narożnika podczas rysowania przewodów
 Toggle routing around symbols (wire tool)	Włącz / wyłącz prowadzenie wokół symboli (narzędzie przewodu)
@@ -2209,7 +2211,6 @@ Used on {} of {} pages	Użyte na {} z {} stron
 User / group	Użytkownik / grupa
 User defined property	Właściwość zdefiniowana przez użytkownika
 User names, separated by commas	Nazwy użytkowników oddzielone przecinkami
-Value	Wartość
 Value set	Zestaw wartości
 Value sets	Zestawy wartości
 Values	Wartości
@@ -2377,7 +2378,6 @@ male	męski
 manual	ręcznie
 max. {} °C	maks. {} °C
 may overlap	mogą się nakładać
-missing	brak
 model	model
 name	nazwa
 no	nie

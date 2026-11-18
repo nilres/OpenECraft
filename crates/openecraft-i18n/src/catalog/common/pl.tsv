@@ -12,11 +12,13 @@ A page needs a name	Strona musi mieć nazwę
 A routing path needs {} points at least	Ścieżka prowadzenia wymaga co najmniej {} punktów
 A section cannot be moved into itself	Sekcji nie można przenieść do niej samej
 Above	Powyżej
+Above {} V: no SELV or PELV	Powyżej {} V: ani SELV, ani PELV
 Access token	Token dostępu
 Accessories	Akcesoria
 Accessory	Akcesorium
 Add	Dodaj
 Add a PDF of all pages	Dodaj PDF wszystkich stron
+Add an item	Dodaj punkt
 Add to favorites	Dodaj do ulubionych
 Address	Adres
 Administrator	Administrator
@@ -33,6 +35,7 @@ Bold	Pogrubienie
 Bottom	Dno
 Bottom with removable gland plate	Dno ze zdejmowaną płytą dławicową
 Breaking capacity	Zdolność wyłączania
+Breaking capacity of {} below the fault current at the origin	Zdolność wyłączalna {} poniżej prądu zwarciowego w złączu
 Bridge	Mostek
 Building	Budynek
 Buildings	Budynki
@@ -56,16 +59,19 @@ Category	Kategoria
 Centred	Wyśrodkowane
 Certificates	Certyfikaty
 Change	Zmiana
+Changing the data or the results afterwards takes the signature away.	Późniejsza zmiana danych lub wyników usuwa podpis.
 Channel	Kanał
 Characteristic	Charakterystyka
 Check settings	Ustawienia kontroli
 Checks	Kontrole
+Circuits	Obwody
 Class	Klasa
 Classes	Klasy
 Clear filters	Wyczyść filtry
 Clearance bottom	Odstęp dolny
 Clearance top	Odstęp górny
 Clearances	Odstępy
+Client	Zleceniodawca
 Close	Zamknij
 Coding: {}	Kodowanie: {}
 Coil voltage	Napięcie cewki
@@ -85,6 +91,7 @@ Connection point	Punkt połączenia
 Connection points	Punkty połączeń
 Connections	Połączenia
 Connector	Złącze
+Contact voltage UB (V)	Napięcie dotykowe UB (V)
 Controller	Sterownik
 Cooling	Chłodzenie
 Core	Żyła
@@ -131,14 +138,19 @@ Done	Wykonano
 Door	Drzwi
 Door cutout	Wycięcie w drzwiach
 Download	Pobierz
+Download the report as an Excel workbook	Pobierz protokół jako skoroszyt Excel
 Downloading {}…	Pobieranie {}…
 Drag to turn the model	Przeciągnij, aby obrócić model
+Drawings	Rysunki
 EMC clearance	Odstęp EMC
 EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.	EPLAN, TIA Portal i inne nazwy są znakami towarowymi ich właścicieli. OpenECraft jest niezależnym projektem.
+Earth electrode resistance RA (Ω)	Rezystancja uziemienia RA (Ω)
 Edit	Edycja
 Editor	Redaktor
+Electrical separation	Separacja elektryczna
 Electro-fluid cross reference	Odsyłacze elektryczno-płynowe
 Email	E-mail
+Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Puste: wartość domyślna. Ustaw inne wartości tam, gdzie wydanie normy, według której sprawdza się instalację, się różni.
 Enclosure	Obudowa
 Enclosures	Obudowy
 Enterprise integration	Integracja przedsiębiorstwa
@@ -149,6 +161,7 @@ Export as CSV…	Eksportuj jako CSV…
 Export as JSON…	Eksportuj jako JSON…
 Export failed: {}	Eksport nie powiódł się: {}
 External (top)	Zewnętrzny (góra)
+External loop impedance Ze (Ω)	Zewnętrzna impedancja pętli Ze (Ω)
 Face	Powierzchnia
 Failed	Niepowodzenie
 Fastening	Mocowanie
@@ -157,7 +170,9 @@ Field wiring	Okablowanie obiektowe
 File	Plik
 Files	Pliki
 Filter	Filtr
+Filter circuits…	Filtruj obwody…
 Filter devices…	Filtruj urządzenia…
+First fault current Id (A)	Prąd pierwszego zwarcia Id (A)
 Fit	Dopasuj
 Fits	Pasuje do
 Fitting at the end	Złączka na końcu
@@ -172,6 +187,7 @@ Function	Funkcja
 Function (=)	Funkcja (=)
 Function definition	Definicja funkcji
 Function template	Szablon funkcji
+Function test	Próba działania
 Function text	Tekst funkcji
 Functional safety	Bezpieczeństwo funkcjonalne
 Functions	Funkcje
@@ -192,12 +208,25 @@ Height	Wysokość
 Height above floor	Wysokość nad podłogą
 History	Historia
 Hose no.	Nr węża
+IT system	Układ IT
 Identifier	Identyfikator
 Identifying letter	Litera kodu
 Image	Obraz
 Import	Import
+Incomplete	Niekompletne
 Input	Wejście
+Inspection and test report	Protokół z badań odbiorczych
+Inspector	Sprawdzający
 Installation	Ustawienie
+Installation site	Miejsce instalacji
+Installer	Instalator
+Insulating floors and walls (kΩ)	Izolujące podłogi i ściany (kΩ)
+Insulation L–N (MΩ)	Izolacja L–N (MΩ)
+Insulation L–PE (MΩ)	Izolacja L–PE (MΩ)
+Insulation N–PE (MΩ)	Izolacja N–PE (MΩ)
+Insulation monitoring device	Urządzenie do monitorowania stanu izolacji
+Insulation resistance (MΩ)	Rezystancja izolacji (MΩ)
+Insulation test voltage (V)	Napięcie probiercze izolacji (V)
 Integration	Integracja
 Internal (bottom)	Wewnętrzny (dół)
 Interruption point	Punkt przerwania
@@ -225,6 +254,7 @@ Length	Długość
 Level	Poziom
 Lifecycle	Cykl życia
 Light	Jasny
+Limits	Wartości graniczne
 Line	Linia
 Link	Łącze
 Linked	Powiązane
@@ -236,11 +266,13 @@ Location (+)	Miejsce montażu (+)
 Locked	Zablokowana
 Locked by {}	Zablokowane przez {}
 Logo	Logo
+Loop impedance Zs (Ω)	Impedancja pętli zwarcia Zs (Ω)
 MTTFd (years)	MTTFd (lata)
 Machine	Maszyna
 Main	Główny
 Main earthing busbar (device) it is connected to; empty: none	Główna szyna uziemiająca (urządzenie), do której jest podłączony; puste: brak
 Main earthing terminal	Główna szyna uziemiająca
+Main equipotential bonding (Ω)	Połączenia wyrównawcze główne (Ω)
 Main switch	Wyłącznik główny
 Manufacturer	Producent
 Manufacturers	Producenci
@@ -248,6 +280,7 @@ Manufacturing	Produkcja
 Marking	Oznaczanie
 Match case	Uwzględniaj wielkość liter
 Material	Materiał
+Measured at the origin	Zmierzone w złączu
 Medium	Medium
 Metal carriers meeting at a node are connected	Metalowe nośniki kabli stykające się w węźle są połączone
 Minimum digits of the counter (leading zeros)	Minimalna liczba cyfr licznika (zera wiodące)
@@ -275,11 +308,15 @@ Name of the scheme	Nazwa wzorca
 Net	Sieć
 Never	Nigdy
 New group	Nowa grupa
+New installation	Nowa instalacja
 New name	Nowa nazwa
+Next inspection	Następna kontrola
 Next page	Następna strona
 No	Nie
 No Vault item matches a part of the project	Żaden element Vault nie pasuje do artykułu projektu
 No cable {}	Brak kabla {}
+No circuit {}	Brak obwodu {}
+No circuits found	Nie znaleziono obwodów
 No connection point {}	Brak punktu przyłączeniowego {}
 No device {}	Brak urządzenia {}
 No enclosure {}	Brak obudowy {}
@@ -293,6 +330,7 @@ No part {} in the project	Brak części {} w projekcie
 No parts found	Nie znaleziono artykułów
 No plot frame named {}	Brak ramki rysunku o nazwie {}
 No plug {}	Brak wtyku {}
+No protective measure of its own	Brak własnego środka ochrony
 No report block named {}	Brak bloku raportu o nazwie {}
 No segment {}	Brak segmentu {}
 No station {}	Brak stacji {}
@@ -302,18 +340,24 @@ No such section	Nie ma takiej sekcji
 No symbol with id {}	Brak symbolu o identyfikatorze {}
 No title block of the project named {}	Brak tabliczki rysunkowej projektu o nazwie {}
 Nominal size	Średnica nominalna
+Not OK	Nie OK
 Not a language code: {}	To nie jest kod języka: {}
 Not a macro file: {}	To nie jest plik makr: {}
 Not a symbol id: {}	To nie jest identyfikator symbolu: {}
 Not a title block file: {}	To nie jest plik tabliczek rysunkowych: {}
 Not a valid rule set file: {}	To nie jest prawidłowy plik zestawu reguł: {}
+Not applicable	Nie dotyczy
 Not in the schematic	Nie na schemacie
+Not passed	Negatywny
+Not signed	Niepodpisany
+Not tested	Nie badano
 Note	Uwaga
 Notes	Notatki
 Number	Numer
 Number of down conductors (0: as many as the class needs for the walls)	Liczba przewodów odprowadzających (0: tyle, ile klasa wymaga dla ścian)
 Number the sections 1, 2, 3 … on every level first	Najpierw numeruj sekcje 1, 2, 3 … na każdym poziomie
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numeruje oznaczenia urządzeń według struktury i litery kodu w kolejności schematu (strona, kolumna, od góry do dołu)
+OK	OK
 Only rows containing this text	Tylko wiersze zawierające ten tekst
 OpenECraft	OpenECraft
 OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.	OpenECraft jest dostarczany bez gwarancji. Jego obliczenia i kontrole wspomagają projektowanie; wykwalifikowana osoba musi sprawdzić wyniki pod kątem obowiązujących norm i przepisów.
@@ -323,9 +367,12 @@ Order number	Numer zamówieniowy
 Other	Inne
 Outer diameter	Średnica zewnętrzna
 Output	Wyjście
+Output voltage (V)	Napięcie wyjściowe (V)
 Overview	Przegląd
+Own item of the visual inspection	Własny punkt oględzin
 PCT loop	Pętla AKPiA
 PCT loop overview	Przegląd pętli AKPiA
+PELV	PELV
 PL	PL
 PLC	PLC
 PLC card	Karta PLC
@@ -351,7 +398,10 @@ Part {}	Artykuł {}
 Parts	Artykuły
 Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)	Artykuły (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)
 Parts import failed: {}	Import artykułów nie powiódł się: {}
+Passed	Pozytywny
 Password	Hasło
+Phase sequence	Kolejność faz
+Phases	Fazy
 Phone	Telefon
 Picture	Obraz
 Pieces	Sztuki
@@ -367,6 +417,7 @@ Plug	Wtyk
 Plug diagram	Schemat wtyku
 Plugins	Wtyczki
 Plugs	Wtyki
+Polarity	Biegunowość
 Poles	Bieguny
 Ports	Porty
 Position	Pozycja
@@ -377,6 +428,7 @@ Potentials	Potencjały
 Power	Moc
 Power (kW)	Moc (kW)
 Power loss	Straty mocy
+Power supply unit	Zasilacz
 Pre-planning	Planowanie wstępne
 Press	Prasa
 Previous page	Poprzednia strona
@@ -398,17 +450,25 @@ Project name	Nazwa projektu
 Project properties	Właściwości projektu
 Properties	Właściwości
 Property	Właściwość
+Prospective fault current at the origin (kA)	Spodziewany prąd zwarciowy w złączu (kA)
 Protection	Ochrona
+Protective conductor (Ω)	Przewód ochronny (Ω)
 Protective device	Urządzenie zabezpieczające
+Protective measure	Środek ochrony
 Quantity	Ilość
 Quantity (default 1)	Ilość (domyślnie 1)
 Quantity unit	Jednostka ilości
+RCD	RCD
+RCD trip current (mA)	Prąd zadziałania RCD (mA)
+RCD trip time (ms)	Czas zadziałania RCD (ms)
+RCD trip time at 5 × IΔn (ms)	Czas zadziałania RCD przy 5 × IΔn (ms)
 Rack	Kaseta
 Rail	Szyna
 Range	Zakres
 Rated current	Prąd znamionowy
 Rated power	Moc znamionowa
 Rear wall	Ściana tylna
+Reason for the test	Powód badania
 Rectangle	Prostokąt
 Rectangular	Prostokątny
 Redo	Ponów
@@ -419,13 +479,16 @@ Relative humidity	Wilgotność względna
 Relay	Przekaźnik
 Released	Wydane
 Released pages cannot be moved	Nie można przenosić wydanych stron
+Remark	Uwaga
 Remove	Usuń
 Remove from favorites	Usuń z ulubionych
 Remove the boundary	Usuń granicę
 Remove the lightning protection system	Usuń ochronę odgromową
 Remove the reference point	Usuń punkt odniesienia
+Repair	Naprawa
 Report	Raport
 Report blocks	Bloki raportów
+Report data and visual inspection	Dane protokołu i oględziny
 Report: {}	Raport: {}
 Reports	Raporty
 Represented by	Reprezentowany przez
@@ -448,8 +511,11 @@ Routing	Prowadzenie
 Rows of modules (east-west: rows of pairs)	Rzędy modułów (wschód-zachód: rzędy par)
 Rule	Reguła
 Rule set	Zestaw reguł
+SELV	SELV
+SELV, PELV and separation	SELV, PELV i separacja
 Safety function	Funkcja bezpieczeństwa
 Save	Zapisz
+Saved	Zapisano
 Saved catalog {}	Zapisano katalog {}
 Saved user {}	Zapisano użytkownika {}
 Saved {}	Zapisano {}
@@ -476,6 +542,9 @@ Show the row after the column	Pokaż wiersz po kolumnie
 Side	Strona
 Sign in	Zaloguj się
 Sign out	Wyloguj się
+Sign the report	Podpisz protokół
+Signed	Podpisany
+Signed by {} on {}	Podpisał {} dnia {}
 Signed in as {}	Zalogowano jako {}
 Signed in as {} ({})	Zalogowano jako {} ({})
 Signed out	Wylogowano
@@ -497,8 +566,10 @@ Structure	Struktura
 Subproject name	Nazwa podprojektu
 Subsystem	Podsystem
 Successor	Następca
+Summary	Podsumowanie
 Supplier	Dostawca
 Supply	Zasilanie mediami
+Supply system	Sieć zasilająca
 Symbol	Symbol
 Symbol key	Klucz symbolu
 Symbolic address	Adres symboliczny
@@ -513,18 +584,23 @@ Terminal strip	Listwa zaciskowa
 Terminal strips	Listwy zaciskowe
 Terminal type	Typ zacisku
 Terminals	Zaciski
+Test instrument	Przyrząd pomiarowy
+Test instruments (IEC 61557)	Przyrządy pomiarowe (IEC 61557)
+Tested by	Badał
 Text	Tekst
 Text to find	Tekst do znalezienia
 The freestanding PV array {} stands outside the plot boundary	Naziemne pole PV {} stoi poza granicą działki
 The identifier must not be empty	Identyfikator nie może być pusty
 The long side of the modules along the rows	Dłuższy bok modułów wzdłuż rzędów
 The page is released	Strona jest wydana
+The project has no circuits fed from the mains	Projekt nie ma obwodów zasilanych z sieci
 There is a connection symbol at this point already	W tym punkcie jest już symbol połączenia
 Thermal	Termika
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Ta strona nie zapisuje plików cookie, nie stosuje śledzenia i nie ładuje niczego z innych serwerów.
 Time	Czas
 Title block	Tabliczka rysunkowa
 To	Do
+To check	Do sprawdzenia
 Tools	Narzędzia
 Top	Góra
 Total	Razem
@@ -540,6 +616,7 @@ Unknown column: {}	Nieznana kolumna: {}
 Unknown connector: {}	Nieznany konektor: {}
 Unknown enclosure system: {}	Nieznany system obudów: {}
 Unknown face: {}	Nieznana ściana: {}
+Unknown field: {}	Nieznane pole: {}
 Unknown format: {}	Nieznany format: {}
 Unknown function definition: {}	Nieznana definicja funkcji: {}
 Unknown language: {}	Nieznany język: {}
@@ -558,9 +635,12 @@ User	Użytkownik
 User name	Nazwa użytkownika
 Users	Użytkownicy
 VAT ID	NIP UE
+Value	Wartość
 Version	Wersja
 Viewer	Przeglądający
+Visual inspection	Oględziny
 Voltage	Napięcie
+Voltage drop (%)	Spadek napięcia (%)
 Warning	Ostrzeżenie
 Warnings	Ostrzeżenia
 Weight	Masa
@@ -575,12 +655,14 @@ Wired	Podłączone
 Wires	Przewody
 Wiring	Okablowanie
 Yes	Tak
+Zs max (Ω)	Zs maks. (Ω)
 access denied	odmowa dostępu
 approved	zatwierdzona
 bonded	przyłączone
 file or folder not found	nie znaleziono pliku ani folderu
 landscape	poziomo
 left	w lewo
+missing	brak
 mm	mm
 none	brak
 normal	normalny
@@ -598,6 +680,7 @@ the file exists already	plik już istnieje
 this is a folder	to jest folder
 yes	tak
 {} ({})	{} ({})
+{} circuits	Obwody: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} nie stoi na podłodze: wybierz artykuł oznaczony do montażu na podłodze
 {} exists already	{} już istnieje
 {} is not a PNG or JPEG image	{} nie jest obrazem PNG ani JPEG

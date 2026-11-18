@@ -29,7 +29,7 @@ pub static TOOLS: &[Tool] = &[
     Tool {
         name: "list_reports",
         help: tr_const!("Lists the reports (built-in and of plugins): name for report and title"),
-        params: &[],
+        params: &[optional("search", Kind::Str, tr_const!("Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports"))],
         needs_project: false,
         run: list_reports,
     },
@@ -105,8 +105,16 @@ fn list_checks(s: &mut Session, _: &Args) -> Result<Value, String> {
     Ok(Value::Array(list))
 }
 
-fn list_reports(s: &mut Session, _: &Args) -> Result<Value, String> {
-    Ok(Value::Array(s.plugins.reports().map(|r| json!({ "name": r.name, "title": text(&r.title) })).collect()))
+fn list_reports(s: &mut Session, a: &Args) -> Result<Value, String> {
+    let query = a.str("search").unwrap_or("");
+    Ok(Value::Array(
+        s.plugins
+            .reports()
+            .map(|r| (r, text(&r.title).to_string()))
+            .filter(|(r, t)| r.matches(t, query))
+            .map(|(r, t)| json!({ "name": r.name, "title": t, "keywords": r.keywords }))
+            .collect(),
+    ))
 }
 
 fn report(s: &mut Session, a: &Args) -> Result<Value, String> {

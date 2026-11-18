@@ -968,6 +968,13 @@ fn build_library() -> Vec<SymbolDef> {
     b.pin(0.0, -4.0, "X1").pin(0.0, 4.0, "X2");
     v.push(def("lamp", "Indicator lamp", C::Loads, "P", MAIN).build(&mut b));
 
+    // Luminaire on the mains, with protective conductor (class I).
+    let d = 3.0 * std::f32::consts::FRAC_1_SQRT_2;
+    b.l(0.0, -4.0, 0.0, 4.0).l(0.0, 4.0, 5.0, 4.0).l(8.0, -4.0, 8.0, 1.0).l(16.0, -4.0, 16.0, 4.0).l(16.0, 4.0, 11.0, 4.0);
+    b.circle(8.0, 4.0, 3.0, false).l(8.0 - d, 4.0 - d, 8.0 + d, 4.0 + d).l(8.0 - d, 4.0 + d, 8.0 + d, 4.0 - d);
+    b.pin(0.0, -4.0, "L").pin(8.0, -4.0, "N").pin(16.0, -4.0, "PE");
+    v.push(def("luminaire", "Luminaire", C::Loads, "E", MAIN).build(&mut b));
+
     b.l(0.0, -4.0, 0.0, -2.0).poly(&[(-2.5, -2.0), (2.5, -2.0), (2.5, 0.5), (-2.5, 0.5)], true, false);
     b.arc(0.0, 0.5, 2.5, 0.0, 180.0).l(0.0, 3.0, 0.0, 4.0);
     b.pin(0.0, -4.0, "1").pin(0.0, 4.0, "2");
