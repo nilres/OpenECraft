@@ -104,7 +104,8 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   (now `find` / `replace`).
 - Parts server: `--server` / `--token`, the `OPENECRAFT_SERVER` / `OPENECRAFT_TOKEN`
   environment variables or the `parts_connect` tool (also with `user` / `password`);
-  default `http://127.0.0.1:8090`. `parts_connect` with `kind: Eplan` reads the EPLAN
+  default the public parts server `https://parts-server.openecraft.org`
+  ([public parts server](parts-server.md#public-parts-server)). `parts_connect` with `kind: Eplan` reads the EPLAN
   Data Portal instead (the token is the personal access token; searching, `parts_get`,
   `parts_file` and `parts_check_updates` only). The data portal tools search with facets
   (`parts_search`), manage catalogs, files, favorites and users (`parts_catalog_save`,

@@ -220,10 +220,12 @@ The project runs a public parts server at
 [parts-server.openecraft.org](https://parts-server.openecraft.org) with the example
 catalog and the bundled manufacturer catalogs. Everybody reads it without an account:
 on its web page (search, catalogs, dashboard, the details of a part with its front view
-and 3D model), in the editor (*Master data › Data portal*, server URL
-`https://parts-server.openecraft.org`) and on the command line or by AI agents
-(`--server https://parts-server.openecraft.org`, or `parts_connect` with this `url`).
-It is a place to try the
+and 3D model), in the editor (*Master data › Data portal*), in the parts manager and on
+the command line or by AI agents. It is the preset server of all of them
+(`openecraft_parts::api::PUBLIC_URL`): the editor and the parts manager start with its
+address, the command line uses it without `--server` / `OPENECRAFT_SERVER`. A server of
+your own is entered as the server URL instead (`--server`, or `parts_connect` with its
+`url`); the address entered last is kept. It is a place to try the
 data portal and to take parts into your own database; a company keeps its own parts on
 a server of its own (above), where it decides who may change them. The data of the
 catalogs is compiled from public data sheets: check the parts against the

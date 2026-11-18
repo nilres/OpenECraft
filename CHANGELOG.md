@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **The public parts server is preset:** the editor's data portal, the parts manager
+  and the command line connect to
+  [parts-server.openecraft.org](https://parts-server.openecraft.org) until another
+  server is entered (before: `http://127.0.0.1:8090`); the privacy notices name it
+  ([public parts server](docs/parts-server.md#public-parts-server)).
 - **Installation plans with circuits:** socket outlets, switches and lights (new
   generic ceiling lights, downlights and wall lights) are put into the rooms with a
   click on the floor plan of a level (*Buildings* pane) and drawn there with the

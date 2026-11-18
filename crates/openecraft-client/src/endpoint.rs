@@ -1,6 +1,6 @@
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_parts::access::Policy;
-use openecraft_parts::api::{self, PartQuery, API_PREFIX, DEFAULT_PORT};
+use openecraft_parts::api::{self, PartQuery, API_PREFIX, PUBLIC_URL};
 use openecraft_parts::portal::{AttachmentKind, Catalog, PartsRight};
 use openecraft_parts::Part;
 use serde::de::DeserializeOwned;
@@ -15,7 +15,7 @@ pub struct Endpoint {
 
 impl Default for Endpoint {
     fn default() -> Self {
-        Endpoint { url: format!("http://127.0.0.1:{DEFAULT_PORT}"), token: String::new() }
+        Endpoint { url: PUBLIC_URL.into(), token: String::new() }
     }
 }
 
