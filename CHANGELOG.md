@@ -6,7 +6,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 ## [0.1.3] - unreleased
 
 - **Installation plans with circuits:** socket outlets, switches and lights (new
-  generic ceiling lights, downlights and wall lights) are put into the rooms with a
+  generic ceiling lights, downlights and wall lights, in the schematic with the new
+  symbol *Luminaire*: L, N and PE) are put into the rooms with a
   click on the floor plan of a level (*Buildings* pane) and drawn there with the
   symbols of installation plans; final circuits feed them from a protective device of
   the distribution board (spare ones marked) through a cable wired item by item. The

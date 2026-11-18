@@ -167,6 +167,7 @@ const ROWS: &[Row] = {
         ("fn.inverter", tr_const!("Inverter"), C::PowerSupply, K::PowerSupply, "T", &["psu_dcac", "hybrid_inverter", "inverter_charger", "sl_inverter"]),
         ("fn.solar_charger", tr_const!("Solar charge controller"), C::PowerSupply, K::PowerSupply, "T", &["mppt"]),
         ("fn.heater", tr_const!("Heating element"), C::Installation, K::Heater, "E", &["heater"]),
+        ("fn.luminaire", tr_const!("Luminaire"), C::Installation, K::Signal, "E", &["luminaire"]),
         ("fn.socket", tr_const!("Socket outlet"), C::Installation, K::SocketOutlet, "X", &["socket"]),
         ("fn.installation_switch", tr_const!("Installation switch"), C::Installation, K::Generic, "S", &["inst_switch", "inst_switch2", "inst_dimmer", "inst_push"]),
         ("fn.lighting_outlet", tr_const!("Lighting outlet"), C::Installation, K::Generic, "E", &["inst_lamp", "inst_luminaire"]),
