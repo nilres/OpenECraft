@@ -231,3 +231,17 @@ fn a_part_imported_again_refreshes_the_projects_copy() {
     assert!(p.model_3d.is_some(), "a missing model leaves the old one");
     assert!(!refresh_in_project(&mut prj, &Part { number: "OTHER".into(), ..Default::default() }));
 }
+
+#[test]
+fn similar_parts_for_an_unknown_number() {
+    let mut prj = Project::default();
+    prj.parts.push(Part { number: "OWN.CBL-4G1.5".into(), group: "Cables".into(), description: "Own cable".into(), ..Default::default() });
+    let numbers = |text: &str| similar(Some(&prj), text, 5).into_iter().map(|p| p.number.clone()).collect::<Vec<_>>();
+    let hits = numbers("CBL-4G1.5");
+    assert!(hits.contains(&"OWN.CBL-4G1.5".to_string()) && hits.contains(&"GEN.CBL-4G1.5".to_string()), "{hits:?}");
+    assert!(numbers("zzz-nothing").is_empty());
+    assert!(similar(None, "CBL-4G1.5", 5).iter().all(|p| p.number != "OWN.CBL-4G1.5"), "without a project only the catalog");
+    let local = local_parts(Some(&prj));
+    assert_eq!(local[0].number, "OWN.CBL-4G1.5");
+    assert_eq!(local.len(), catalog().len() + 1);
+}

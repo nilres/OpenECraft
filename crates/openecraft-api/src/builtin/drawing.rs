@@ -363,7 +363,7 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "add_cable_definition",
-        help: tr_const!("Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)"),
+        help: tr_const!("Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given or the tag is not one of a cable yet)"),
         params: &[
             PAGE,
             param("points", Kind::Points, tr_const!("Start and end point of the line")),
@@ -1289,7 +1289,9 @@ fn cable_definition_input(prj: &Project, a: &Args) -> Result<(usize, P, P), Stri
     }
     let cable = a.str("cable").unwrap_or_default();
     if !cable.is_empty() && prj.cable(cable).is_none() {
-        return Err(tr_fmt!("No cable {}", cable));
+        if let Some(problem) = openecraft_core::ops::new_cable_problem(prj, cable) {
+            return Err(problem);
+        }
     }
     Ok((i, from, to))
 }

@@ -451,7 +451,7 @@ fn routing_autoconnect_and_definitions() {
 
     let cable = run(&mut s, "add_cable_definition", json!({ "page": "1", "points": [[30, 60], [50, 60]] })).unwrap();
     assert_eq!(cable["cores"].as_array().unwrap().len(), 1);
-    assert!(run(&mut s, "add_cable_definition", json!({ "page": "1", "points": [[30, 60], [50, 60]], "cable": "-W99" })).is_err());
+    assert!(run(&mut s, "add_cable_definition", json!({ "page": "1", "points": [[30, 60], [50, 60]], "cable": "W 99" })).is_err());
 }
 
 #[test]
@@ -863,4 +863,17 @@ fn built_in_symbols_take_their_own_scale_and_refuse_others_unchanged() {
     // Another scale is refused before anything changes.
     assert!(run(&mut s, "update_symbol", json!({"page":"1","id":placed["id"],"x":200,"scale":2})).is_err());
     assert_eq!(s.project().unwrap().pages[0].symbols[0].pos.x, 160.0);
+}
+
+#[test]
+fn a_cable_definition_names_the_new_cable() {
+    let mut s = new_session();
+    run(&mut s, "add_wire", json!({ "page": "1", "points": [[40, 40], [40, 120]] })).unwrap();
+    run(&mut s, "add_wire", json!({ "page": "1", "points": [[48, 40], [48, 120]] })).unwrap();
+    let cable = run(&mut s, "add_cable_definition", json!({ "page": "1", "points": [[32, 80], [56, 80]], "cable": "-W7" })).unwrap();
+    assert_eq!(cable["cable"], "-W7");
+    assert_eq!(cable["cores"].as_array().unwrap().len(), 2);
+    let prj = s.project().unwrap();
+    assert_eq!(prj.cable("-W7").unwrap().cores, "1 2");
+    assert_eq!(prj.cables.len(), 1);
 }

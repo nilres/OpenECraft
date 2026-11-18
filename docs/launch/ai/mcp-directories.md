@@ -116,9 +116,9 @@ One bundle per system keeps them small. A bundle with all three programs would b
    `mcp-publisher login github-oidc` with `permissions: id-token: write`.
 
 The manifest asks the user for a **projects folder**. It becomes `OPENECRAFT_MCP_ROOT`,
-because Claude Desktop starts the server in a folder of its own: relative paths do not
-work there, and the agent has to use absolute paths in that folder. It also takes an
-optional **tool list** (`OPENECRAFT_MCP_TOOLS`).
+because Claude Desktop starts the server in a folder of its own; relative paths are
+in that folder. It also takes an optional **tool list** (`OPENECRAFT_MCP_TOOLS`; by
+default the tools for schematics and `find_tools` / `call_tool` for the others).
 
 On macOS, a binary that is not notarized may be stopped by Gatekeeper when Claude
 Desktop starts it. Bundle only the signed binary of a notarized build.
@@ -222,7 +222,7 @@ config:
   description: Mount the folder of your projects at /projects
   env:
     - name: OPENECRAFT_MCP_TOOLS
-      example: new_project,open_project,save_project,place_symbol,connect,check,export
+      example: core,panel*,parts_*
       value: '{{openecraft.tools}}'
 ```
 

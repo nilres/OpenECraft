@@ -4,11 +4,12 @@
 //! installation zones).
 
 use crate::builtin::common::{enclosure_index, num_in, NO_MAX};
-use crate::params::{optional, param, Args, Kind};
+use crate::params::{optional, param, Args, Kind, Param};
 use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
 use openecraft_core::analysis::Analysis;
-use openecraft_core::model::Project;
+use openecraft_core::model::{Cable, Project};
+use openecraft_core::parts::Part;
 use openecraft_core::panel::{PLATE_MARGIN, PLATE_Z};
 use openecraft_core::routing3d::{self, Class, InstallationZone, Laying, PathKind, ReserveMode, Reservation, RoutingPath, ShieldEnds, ZoneKind};
 use openecraft_i18n::{tr_const, tr_fmt};
@@ -151,7 +152,40 @@ pub static COMMANDS: &[Spec] = &[
         ],
         run: set_cable_shield,
     },
+    Spec {
+        name: "list_cables",
+        help: tr_const!("Lists the cables of the project with type, cores, cross-section, length, part and the number of wires assigned to them"),
+        params: &[],
+        run: list_cables,
+    },
+    Spec {
+        name: "add_cable",
+        help: tr_const!("Adds a cable to the project; assign wires to it with add_cable_definition"),
+        params: &[
+            optional("tag", Kind::Str, tr_const!("Cable tag, e.g. -W1; the next free one when not given")),
+            optional("structure", Kind::Str, tr_const!("Structure of the next free tag, e.g. =A1+CAB1")),
+            optional("part", Kind::Str, tr_const!("Part number of a cable part, which gives type, cores and cross-section")),
+            CABLE_TYPE,
+            CORES,
+            CROSS_SECTION,
+            LENGTH,
+            DESCRIPTION,
+        ],
+        run: add_cable,
+    },
+    Spec {
+        name: "set_cable",
+        help: tr_const!("Changes type, cores, cross-section, length or description of a cable; wires keep their place when the cores are renamed"),
+        params: &[param("cable", Kind::Str, tr_const!("Cable tag")), CABLE_TYPE, CORES, CROSS_SECTION, LENGTH, DESCRIPTION],
+        run: set_cable,
+    },
 ];
+
+const CABLE_TYPE: Param = optional("cable_type", Kind::Str, tr_const!("Cable type, e.g. H07RN-F"));
+const CORES: Param = optional("cores", Kind::Str, tr_const!("Core designations separated by blanks, e.g. BN BK GY GNYE"));
+const CROSS_SECTION: Param = optional("cross_section", Kind::Str, tr_const!("Cross-section, e.g. 1.5 mm²"));
+const LENGTH: Param = optional("length", Kind::Num, tr_const!("Length in m"));
+const DESCRIPTION: Param = optional("description", Kind::Str, tr_const!("Description"));
 
 const ENCLOSURE: &str = tr_const!("Enclosure (location, e.g. +CAB1)");
 const LAYING: &str = tr_const!("How lines are laid in rooms: surface, wall (flush-mounted in the walls) or floor");
@@ -389,14 +423,79 @@ fn set_cable_shield(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }))
 }
 
-fn apply_cable_part(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let tag=a.req("cable");
-    let index=prj.cables.iter().position(|c|c.tag==tag).ok_or_else(||tr_fmt!("No cable {}",tag))?;
-    let number=a.req("part");
+/// The cable part `number` of the project or the built-in catalog, taken into the project.
+fn cable_part(prj: &mut Project, number: &str) -> Result<Part, String> {
     let catalog=openecraft_core::parts::catalog();
     let part=prj.parts.iter().chain(catalog.iter()).find(|p|p.number==number).cloned().ok_or_else(||tr_fmt!("No part {}",number))?;
     if part.group!="Cables" {return Err(tr_fmt!("Part {} is not a cable",number));}
     if !prj.parts.iter().any(|p|p.number==number) {prj.parts.push(part.clone());}
+    Ok(part)
+}
+
+fn cable_json(prj: &Project, c: &Cable) -> Value {
+    let wires = prj.pages.iter().flat_map(|page| &page.wires).filter(|w| w.cable == c.tag).count();
+    json!({ "cable": c.tag, "cable_type": c.cable_type, "cores": c.cores, "cross_section": c.cross_section, "length_m": c.length,
+            "part": c.part, "description": c.description, "wires": wires })
+}
+
+fn list_cables(prj: &mut Project, _a: &Args) -> Result<Value, String> {
+    Ok(prj.cables.iter().map(|c| cable_json(prj, c)).collect())
+}
+
+/// Takes the cable data of `a` into cable `index`; renamed cores keep their wires.
+fn edit_cable(prj: &mut Project, index: usize, a: &Args) -> Result<(), String> {
+    let length = num_in(a, "length", 0.0, NO_MAX)?;
+    let old = prj.cables[index].core_list();
+    let c = &mut prj.cables[index];
+    if let Some(v) = a.str("cable_type") {
+        c.cable_type = v.trim().into();
+    }
+    if let Some(v) = a.str("cores") {
+        c.cores = v.split_whitespace().collect::<Vec<_>>().join(" ");
+    }
+    if let Some(v) = a.str("cross_section") {
+        c.cross_section = v.trim().into();
+    }
+    if let Some(v) = length {
+        c.length = v;
+    }
+    if let Some(v) = a.str("description") {
+        c.description = v.into();
+    }
+    let tag = c.tag.clone();
+    openecraft_core::ops::remap_cable_cores(prj, &tag, &old);
+    Ok(())
+}
+
+fn add_cable(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let tag = a.str("tag").map(str::trim).unwrap_or_default();
+    if let Some(problem) = (!tag.is_empty()).then(|| openecraft_core::ops::new_cable_problem(prj, tag)).flatten() {
+        return Err(problem);
+    }
+    let auto = openecraft_core::ops::add_cable(prj, a.str("structure").map(str::trim).unwrap_or_default());
+    let index = prj.cables.iter().position(|c| c.tag == auto).ok_or_else(|| tr_fmt!("No cable {}", auto))?;
+    if !tag.is_empty() {
+        prj.cables[index].tag = tag.into();
+    }
+    if let Some(number) = a.str("part") {
+        let part = cable_part(prj, number)?;
+        openecraft_core::ops::apply_project_cable_part(prj, index, &part);
+    }
+    edit_cable(prj, index, a)?;
+    Ok(cable_json(prj, &prj.cables[index]))
+}
+
+fn set_cable(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let tag = a.req("cable");
+    let index = prj.cables.iter().position(|c| c.tag == tag).ok_or_else(|| tr_fmt!("No cable {}", tag))?;
+    edit_cable(prj, index, a)?;
+    Ok(cable_json(prj, &prj.cables[index]))
+}
+
+fn apply_cable_part(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let tag=a.req("cable");
+    let index=prj.cables.iter().position(|c|c.tag==tag).ok_or_else(||tr_fmt!("No cable {}",tag))?;
+    let part=cable_part(prj,a.req("part"))?;
     openecraft_core::ops::apply_project_cable_part(prj,index,&part);
     let cable=&prj.cables[index];
     Ok(json!({"cable":cable.tag,"part":cable.part,"cable_type":cable.cable_type,"cores":cable.cores,

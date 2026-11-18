@@ -22,7 +22,7 @@ story, so the video also works muted in a feed.
     tool calls; read both from the transcript, Claude Code's `/cost` or the tool counter.
   - If a run needs a second prompt to fix the layout, show that prompt too, or record
     another run. Never cut it out.
-  - Rehearsing on your own model account costs tokens: about 135 tool calls with answers
+  - Rehearsing on your own model account costs tokens: about 130 tool calls with answers
     of a few kB each.
 - **Fallback.** If no live run is clean, record the replay
   (`python docs/launch/ai/mcp_demo.py`) in a terminal instead. The captions must then say

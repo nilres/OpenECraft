@@ -223,13 +223,11 @@ Saves the project to its file or to a new path	Зберігає проєкт у 
 Scale drawings down that do not fit on the page (default: true)	Зменшувати креслення, які не вміщуються на сторінці (за замовчуванням: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Умови пошуку, напр. company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Шукає елементи сховища (номер, назва, ревізія, стан життєвого циклу, номер виробу)
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Шукає вироби на сервері виробів (портал даних) за текстом, групами, каталогом, життєвим циклом і технічними даними
 Segment path (default: all segments)	Шлях сегмента (за замовчуванням: усі сегменти)
 Server URL, e.g. http://127.0.0.1:8090	URL-адреса сервера, напр. http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	Задає сервер виробів (URL і маркер доступу або користувача й пароль) і показує його стан
 Settings scheme file (JSON)	Файл схеми параметрів (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Показує таблицю (пристрої, з’єднання, клеми, кабелі, штекери, ПЛК, сторінки або вироби) з її рядками; ключ рядка слугує для його зміни
-Shows all data of a part	Показує всі дані виробу
 Shows the changes of a part on the parts server, or the part as of one change	Показує зміни виробу на сервері виробів або виріб у стані певної зміни
 Shows the favorites of the signed in user, optionally adding or removing a part	Показує вибране користувача, що ввійшов, і за потреби додає або вилучає виріб
 Shows the manifest of a project archive	Показує маніфест архіву проєкту
@@ -296,7 +294,6 @@ csv (default) or eplan_xml	csv (за замовчуванням) або eplan_xm
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement або wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine або exchange
 json (default), csv or xlsx (Excel, needs path)	json (за замовчуванням), csv або xlsx (Excel, потрібен path)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nЗапускає сервер Model Context Protocol на stdin / stdout: інструменти цього списку для ШІ-агентів, проєкт зберігається в пам’яті (save_project записує його, undo / redo скасовують окремі виклики). OPENECRAFT_MCP_TOOLS обмежує запропоновані інструменти.\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nПоказує версію командного рядка (також --version або -V)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover або звіт: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo і redo працюють лише в сеансі MCP: командний рядок відкриває проєкт заново для кожної команди

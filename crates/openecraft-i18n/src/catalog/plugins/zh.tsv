@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	将节点绘制为连�
 Draw wires in their colour	按导线颜色绘制导线
 Draw wires to the connection points facing its free arms	向正对其空闲分支的连接点绘制连接线
 Drawing	图纸
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	绘制电缆定义线；其穿过的导线成为电缆的芯线（未指定电缆时新建电缆）
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	在两个连接点之间绘制导线，例如从 -K1:A1 到 -S1:14（不明确的使用 #id:pin，电位使用名称，无标识的连接点使用 1、2…）
 Draws a wire through two or more points	绘制经过两个或多个点的导线
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	在原理图页和 PDF / SVG 导出中按导线颜色绘制导线，或以黑色绘制

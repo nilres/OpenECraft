@@ -218,13 +218,11 @@ Saves the project to its file or to a new path	将项目保存到其文件或新
 Scale drawings down that do not fit on the page (default: true)	缩小不适合页面的图纸（默认：true）
 Search terms, e.g. company=ACME; customer~plant; conveyor	搜索条件，例如 company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	搜索 Vault 中的项（编号、标题、修订、生命周期状态、部件编号）
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	按文本、组、目录、生命周期和技术数据搜索部件服务器（数据门户）上的部件
 Segment path (default: all segments)	规划段路径（默认：所有规划段）
 Server URL, e.g. http://127.0.0.1:8090	服务器 URL，例如 http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	设置部件服务器（URL 和访问令牌，或用户和密码）并显示其状态
 Settings scheme file (JSON)	设置方案文件 (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	显示表格（设备、连接、端子、电缆、插头、PLC、页或部件）及其各行；通过行的键对其进行更改
-Shows all data of a part	显示部件的所有数据
 Shows the changes of a part on the parts server, or the part as of one change	显示部件服务器上部件的更改，或某次更改时的部件
 Shows the favorites of the signed in user, optionally adding or removing a part	显示已登录用户的收藏夹，可选择添加或删除部件
 Shows the manifest of a project archive	显示项目归档的清单
@@ -291,7 +289,6 @@ csv (default) or eplan_xml	csv（默认）或 eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement 或 wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine 或 exchange
 json (default), csv or xlsx (Excel, needs path)	json（默认）、csv 或 xlsx（Excel，需要 path）
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\n在 stdin / stdout 上运行 Model Context Protocol 服务器：为 AI 代理提供此列表中的工具，项目保留在内存中（save_project 写入项目，undo / redo 撤销单个调用）。OPENECRAFT_MCP_TOOLS 限制提供的工具。\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\n显示命令行的版本（也可用 --version 或 -V）\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic、overview、graphic、cover 或报表：table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo 和 redo 仅在 MCP 会话中有效：命令行会为每个命令重新打开项目

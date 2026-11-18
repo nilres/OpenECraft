@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	분기점을 연결점�
 Draw wires in their colour	전선을 해당 색상으로 그리기
 Draw wires to the connection points facing its free arms	비어 있는 가지를 마주하는 접속점까지 연결선을 그립니다
 Drawing	도면
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	케이블 정의선을 그립니다. 교차하는 전선이 케이블의 심선이 됩니다(지정하지 않으면 새 케이블)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	두 연결 지점 사이에 전선을 그립니다(예: -K1:A1에서 -S1:14로). 모호한 경우 #id:pin, 전위는 이름, 명칭 없는 지점은 1, 2…
 Draws a wire through two or more points	두 개 이상의 점을 지나는 전선을 그립니다
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	회로도 페이지와 PDF / SVG 내보내기에서 전선을 해당 색상 또는 검정으로 그립니다

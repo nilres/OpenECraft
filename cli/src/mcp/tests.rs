@@ -96,7 +96,8 @@ fn the_offered_tools_can_be_limited() {
     let r = handle(&mut s, &request(1, "tools/list", json!({}))).unwrap();
     let names: Vec<&str> = r["result"]["tools"].as_array().unwrap().iter().map(|t| t["name"].as_str().unwrap()).collect();
     assert!(names.contains(&"new_project") && names.contains(&"parts_search"));
-    assert!(names.iter().all(|n| *n == "new_project" || n.starts_with("parts_")), "{names:?}");
+    let meta = |n: &str| META.iter().any(|(m, _, _)| *m == n);
+    assert!(names.iter().all(|n| *n == "new_project" || n.starts_with("parts_") || meta(n)), "{names:?}");
     let r = handle(&mut s, &request(2, "tools/call", json!({ "name": "check", "arguments": {} }))).unwrap();
     assert_eq!(r["error"]["code"], -32602);
 }
@@ -164,4 +165,83 @@ fn every_file_parameter_is_confined() {
             assert!(PATH_PARAMS.contains(&name) || PATH_LIST_PARAMS.contains(&name), "{} --{name} ({}) names a file the MCP server does not confine", tool.name(), p.help);
         }
     }
+}
+
+fn names(s: &mut Session) -> Vec<String> {
+    let r = handle(s, &request(1, "tools/list", json!({}))).unwrap();
+    r["result"]["tools"].as_array().unwrap().iter().map(|t| t["name"].as_str().unwrap().to_string()).collect()
+}
+
+fn text(result: &Value) -> Value {
+    serde_json::from_str(result["content"][0]["text"].as_str().unwrap()).unwrap_or_else(|_| result["content"][0]["text"].clone())
+}
+
+#[test]
+fn the_core_tools_are_offered_and_the_others_reached_through_meta_tools() {
+    let mut s = session();
+    s.mcp_tools = vec!["core".into()];
+    let all: Vec<String> = tools::entries(&s).iter().map(|t| t.name().to_string()).collect();
+    for name in CORE {
+        assert!(all.iter().any(|n| n == name), "core tool {name} does not exist");
+    }
+    let offered = names(&mut s);
+    assert_eq!(offered.len(), CORE.len() + META.len());
+    let r = handle(&mut s, &request(1, "tools/list", json!({}))).unwrap();
+    assert!(r.to_string().len() < 80_000, "the list fits the context of an agent: {} bytes", r.to_string().len());
+    let init = handle(&mut s, &request(2, "initialize", json!({}))).unwrap();
+    assert!(init["result"]["instructions"].as_str().unwrap().contains(&format!("reach all {} tools", all.len())));
+
+    let found = text(&call_tool(&mut s, "find_tools", json!({ "query": "cable shield" })));
+    let hit = found["tools"].as_array().unwrap().iter().find(|t| t["name"] == "set_cable_shield").unwrap();
+    assert_eq!(hit["offered"], false);
+    assert_eq!(text(&call_tool(&mut s, "find_tools", json!({})))["total"], all.len());
+    let described = text(&call_tool(&mut s, "describe_tool", json!({ "name": "set_cable_shield" })));
+    assert_eq!(described["inputSchema"]["required"], json!(["cable"]));
+    assert_eq!(call_tool(&mut s, "describe_tool", json!({ "name": "nope" }))["isError"], true);
+
+    // A tool not offered: refused when called directly, run through call_tool.
+    call_tool(&mut s, "new_project", json!({}));
+    let r = handle(&mut s, &request(3, "tools/call", json!({ "name": "routing_rules", "arguments": {} }))).unwrap();
+    assert_eq!(r["error"]["code"], -32602);
+    let r = call_tool(&mut s, "call_tool", json!({ "name": "routing_rules", "arguments": {} }));
+    assert_eq!(r["isError"], false, "{r}");
+    assert!(text(&r).is_object());
+    assert_eq!(call_tool(&mut s, "call_tool", json!({ "name": "call_tool", "arguments": {} }))["isError"], true, "no meta tool through call_tool");
+    assert_eq!(call_tool(&mut s, "call_tool", json!({ "name": "nope" }))["isError"], true);
+
+    // All tools: no meta tools.
+    s.mcp_tools = vec!["*".into()];
+    assert_eq!(names(&mut s).len(), all.len());
+}
+
+#[test]
+fn relative_paths_are_in_the_root_folder() {
+    let root = crate::testing::temp_dir("mcp-relative");
+    let mut s = session();
+    s.mcp_root = Some(root.clone());
+    s.mcp_tools = vec!["core".into()];
+    let init = handle(&mut s, &request(1, "initialize", json!({}))).unwrap();
+    assert!(init["result"]["instructions"].as_str().unwrap().contains("Files: relative paths are in "));
+    call_tool(&mut s, "new_project", json!({}));
+    let r = call_tool(&mut s, "save_project", json!({ "path": "pump.oec" }));
+    assert_eq!(r["isError"], false, "{r}");
+    assert!(root.join("pump.oec").exists());
+    let r = call_tool(&mut s, "open_project", json!({ "path": "pump.oec" }));
+    assert_eq!(r["isError"], false, "{r}");
+    let r = call_tool(&mut s, "save_project", json!({ "path": "../escaped.oec" }));
+    assert_eq!(r["isError"], true);
+    let message = r["content"][0]["text"].as_str().unwrap();
+    assert!(message.contains("OPENECRAFT_MCP_ROOT") && !message.contains(r"\\?\"), "{message}");
+    // Through call_tool as well.
+    let r = call_tool(&mut s, "call_tool", json!({ "name": "save_project", "arguments": { "path": "../escaped.oec" } }));
+    assert_eq!(r["isError"], true);
+    assert!(!root.join("..").join("escaped.oec").exists());
+    let _ = std::fs::remove_dir_all(&root);
+}
+
+#[test]
+fn paths_are_shown_without_the_prefix_of_windows() {
+    assert_eq!(shown(Path::new(r"\\?\C:\Projects\plan.oec")), r"C:\Projects\plan.oec");
+    assert_eq!(shown(Path::new(r"\\?\UNC\server\share\plan.oec")), r"\\server\share\plan.oec");
+    assert_eq!(shown(Path::new("plans/pump.oec")), "plans/pump.oec");
 }

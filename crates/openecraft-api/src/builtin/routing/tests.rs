@@ -128,3 +128,36 @@ fn failed_search_reuse_is_optional_preserved_and_can_be_disabled() {
     run(&mut s,"routing_rules",json!({"reuse_failed_searches":false})).unwrap();
     assert!(!s.project().unwrap().layout.routing.reuse_failed_searches);
 }
+
+#[test]
+fn cables_are_added_changed_listed_and_keep_their_wires_with_a_part() {
+    let mut s = new_session();
+    let added = run(&mut s, "add_cable", json!({ "tag": "-W5", "length": 15, "description": "Pump P1" })).unwrap();
+    assert_eq!((added["cable"].as_str(), added["length_m"].as_f64(), added["wires"].as_u64()), (Some("-W5"), Some(15.0), Some(0)));
+    assert!(run(&mut s, "add_cable", json!({ "tag": "-W5" })).unwrap_err().contains("already exists"));
+    let next = run(&mut s, "add_cable", json!({ "part": "GEN.CBL-4G1.5" })).unwrap();
+    assert_eq!(next["part"], "GEN.CBL-4G1.5");
+    assert_ne!(next["cable"], "-W5");
+    assert!(run(&mut s, "add_cable", json!({ "part": "NOPE" })).is_err());
+    assert_eq!(s.project().unwrap().cables.len(), 2, "a failed command adds nothing");
+
+    // A cable definition numbers the cores; the part names them, the wires follow.
+    for x in [40, 48, 56, 64] {
+        run(&mut s, "add_wire", json!({ "page": "1", "points": [[x, 40], [x, 120]] })).unwrap();
+    }
+    run(&mut s, "add_cable_definition", json!({ "page": "1", "points": [[32, 80], [72, 80]], "cable": "-W9" })).unwrap();
+    run(&mut s, "apply_cable_part", json!({ "cable": "-W9", "part": "GEN.CBL-4G1.5" })).unwrap();
+    let prj = s.project().unwrap();
+    let cores: Vec<&str> = prj.pages[0].wires.iter().filter(|w| w.cable == "-W9").map(|w| w.core.as_str()).collect();
+    assert_eq!(cores.join(" "), prj.cable("-W9").unwrap().cores);
+
+    let set = run(&mut s, "set_cable", json!({ "cable": "-W9", "cores": "1 2 3 GNYE", "length": 7.5, "cross_section": "2.5 mm²" })).unwrap();
+    assert_eq!((set["length_m"].as_f64(), set["cross_section"].as_str(), set["wires"].as_u64()), (Some(7.5), Some("2.5 mm²"), Some(4)));
+    let prj = s.project().unwrap();
+    let cores: Vec<&str> = prj.pages[0].wires.iter().filter(|w| w.cable == "-W9").map(|w| w.core.as_str()).collect();
+    assert_eq!(cores, ["1", "2", "3", "GNYE"]);
+    assert!(run(&mut s, "set_cable", json!({ "cable": "-W99" })).is_err());
+    assert!(run(&mut s, "set_cable", json!({ "cable": "-W9", "length": -1 })).is_err());
+    let list = run(&mut s, "list_cables", json!({})).unwrap();
+    assert_eq!(list.as_array().unwrap().len(), 3);
+}

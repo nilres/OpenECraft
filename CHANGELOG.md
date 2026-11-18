@@ -70,6 +70,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   EPLAN Electric P8, AutoCAD Electrical and QElectroTech (`/compare/`), and pages for
   panel builders, electricians and schools (`/panel-builders/`, `/electricians/`,
   `/education/`), readable without WebAssembly and in the languages of the website.
+- **MCP server for agents:** it lists the about 50 tools for schematics (about 30 kB
+  instead of 260 kB for all 446) and reaches the others through `find_tools`,
+  `describe_tool` and `call_tool` (`OPENECRAFT_MCP_TOOLS=*` lists all of them as
+  before). Relative paths are in `OPENECRAFT_MCP_ROOT`, also when a client such as
+  Claude Desktop starts the server in a folder of its own; the instructions name the
+  folder, and messages show Windows paths without `\\?\`. Cables: commands
+  `add_cable`, `set_cable` (type, cores, cross-section, length, description) and
+  `list_cables`; `add_cable_definition` creates the cable it names; a cable part with
+  other core designations (`apply_cable_part`, also in the editor's *Cables* pane)
+  moves the wires to the new cores instead of leaving "core 1 is not a core of the
+  cable". Without a parts server `parts_search` and `parts_get` use the project and the
+  built-in catalog, and `assign_part` names similar parts for an unknown number.
 - **Contributing and AI agents:** a contributing guide, issue forms for bugs, features
   and parts, and a guide with a reproducible demo for using the MCP server with Claude
   Code, Claude Desktop, Cursor or VS Code ([AI agents](docs/launch/ai/README.md)); the

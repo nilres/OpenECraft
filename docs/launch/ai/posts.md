@@ -8,7 +8,7 @@ DRAFT – not posted. These point to the MCP demo ([README](README.md), the
 - **Links** resolve only after `docs/launch/ai/` is on `master`:
   - demo: https://github.com/nilres/OpenECraft/blob/master/docs/launch/ai/README.md
   - transcript: https://github.com/nilres/OpenECraft/blob/master/docs/launch/ai/demo/transcript.md
-- **Numbers:** the claims below are from the scripted demo (135 tool calls; check 0
+- **Numbers:** the claims below are from the scripted demo (129 tool calls; check 0
   errors / 0 warnings; 7-page PDF; over 400 tools). If you post the video of a live
   model run, use that run's numbers: tool calls, minutes, how many prompts.
 - **Be clear what the demo is.**
@@ -29,7 +29,7 @@ DRAFT – not posted. These point to the MCP demo ([README](README.md), the
 One post with the video (or `demo/power.png`) attached, the link in the post: 295
 characters as written (Bluesky's limit is 300); X counts the link as 23, so 245 there:
 
-> An MCP server for electrical schematics: 135 tool calls draw a direct-on-line motor
+> An MCP server for electrical schematics: 129 tool calls draw a direct-on-line motor
 > starter in OpenECraft, assign parts, run the project check (0 errors) and export a
 > 7-page PDF. Open source, offline, Windows/macOS/Linux.
 > https://github.com/nilres/OpenECraft/blob/master/docs/launch/ai/README.md
@@ -53,7 +53,7 @@ With the video uploaded natively; links in the text.
 >
 > OpenECraft, the open source electrical CAE I'm building, has an MCP server: the
 > protocol Claude, Cursor, VS Code and other AI tools use to call software. In the demo,
-> 135 tool calls draw a direct-on-line starter for a 2.2 kW pump: main switch, motor protection,
+> 129 tool calls draw a direct-on-line starter for a 2.2 kW pump: main switch, motor protection,
 > contactor, terminals, motor cable, a 24 V control circuit with self-holding contact,
 > parts from the catalog, terminal diagram and bill of materials. The project check ended
 > with 0 errors and 0 warnings, and the result is an ordinary project you open in the
@@ -86,7 +86,7 @@ motor starter, from prompt to checked PDF
 > agent makes]): a DOL motor starter – power circuit from the L1/L2/L3 rails
 > through main switch, motor protection switch and contactor to terminals, cable and
 > motor; a 24 V control circuit with stop/start, self-holding contact and a lamp; parts,
-> terminal diagram, BOM. 135 tool calls, project check 0 errors / 0 warnings, 7-page
+> terminal diagram, BOM. 129 tool calls, project check 0 errors / 0 warnings, 7-page
 > PDF. Pictures and the full transcript:
 > https://github.com/nilres/OpenECraft/blob/master/docs/launch/ai/README.md
 >
@@ -99,8 +99,8 @@ motor starter, from prompt to checked PDF
 >   to call `get_page` again.
 > - The check is the agent's feedback loop: "core 1 is not a core of the cable" is
 >   something it can fix by itself.
-> - 400+ tools are too many for some clients. `OPENECRAFT_MCP_TOOLS` cuts the list to
->   the ~40 a schematic needs.
+> - 440+ tools are too many for the context of an agent. The server lists the ~50 a
+>   schematic needs and reaches the rest through `find_tools` / `call_tool`.
 >
 > Setup: `claude mcp add openecraft -- openecraft-cli mcp`. Happy to hear where it falls
 > over.
@@ -122,12 +122,12 @@ native binary, stdio, offline
 > - **File sandbox:** every path parameter must lie in `OPENECRAFT_MCP_ROOT` (default:
 >   the working folder). Text an agent reads in a project can't make it overwrite files
 >   elsewhere.
-> - **Tool filter:** `OPENECRAFT_MCP_TOOLS=new_project,place_symbol,connect,check,export,parts_*`
->   for clients with a tool limit. All 443 tools describe themselves in ~270 kB; the
->   schematic subset is ~25 kB.
+> - **Tool list:** all 446 tools would describe themselves in ~260 kB, so the server
+>   lists the ~50 for schematics (~30 kB) plus `find_tools`, `describe_tool` and
+>   `call_tool` for the rest; `OPENECRAFT_MCP_TOOLS` chooses others (`*` for all).
 > - The session keeps the project in memory, with `undo` / `redo` per tool call.
 >
-> Reproducible demo: a stdlib-only Python client replays 135 calls that draw a motor
+> Reproducible demo: a stdlib-only Python client replays 129 calls that draw a motor
 > starter; the check ends clean. Transcript, PDF and setup for Claude Code / Desktop,
 > Cursor and VS Code: https://github.com/nilres/OpenECraft/blob/master/docs/launch/ai/README.md
 >
@@ -147,7 +147,7 @@ of OpenECraft. **Rewrite it in your own words before posting.**
 > The project check is the feedback loop – the agent reads "core 1 is not a core of the
 > cable" and fixes it.
 >
-> A scripted demo (135 calls, a DOL motor starter, check clean) with the transcript is
+> A scripted demo (129 calls, a DOL motor starter, check clean) with the transcript is
 > here: https://github.com/nilres/OpenECraft/blob/master/docs/launch/ai/README.md
 >
 > Limits: the agent can't see the page, so layouts need a pattern to follow; without a
