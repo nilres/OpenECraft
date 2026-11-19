@@ -4,13 +4,16 @@
 //! size of the cable is added ([`Layout::auto_glands`], on by default): for a device in
 //! the room of a cabinet standing there into its roof (a cabinet hanging on the wall:
 //! into its bottom), the way the routing leaves it into the room; for a device in the
-//! field into its bottom.
+//! field into its bottom. Where that face is full, into the next face the cable can
+//! leave through (roof or bottom, then the sides and the rear); a cable that finds no
+//! free place on any of them is reported ([`Glands::unplaced`]).
 //!
 //! [`Layout::auto_glands`]: crate::panel::Layout::auto_glands
 
 use super::{accessories, cable_diameter, cable_end_tags};
 use crate::geom::p;
 use crate::model::Project;
+use openecraft_i18n::tr;
 use crate::netlist::{self, Netlist};
 use crate::panel::{self, Face};
 use std::collections::BTreeMap;
@@ -18,10 +21,34 @@ use std::collections::BTreeMap;
 /// A cable that needs a way into an enclosure: its diameter, and whether it leaves into
 /// the room the enclosure stands in (only through its room sides, see
 /// [`super::room::room_side`]).
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 struct Need {
+    cable: String,
     diameter: f32,
     room: bool,
+}
+
+/// The cable glands added for the cables of a project, and the cables that got none.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct Glands {
+    /// The ids of the glands added.
+    pub added: Vec<u64>,
+    pub unplaced: Vec<Unplaced>,
+}
+
+/// A cable that needs a way into an enclosure and found no free place for a cable gland
+/// on the faces it can leave through.
+#[derive(Clone, Debug, PartialEq)]
+pub struct Unplaced {
+    pub cable: String,
+    pub enclosure: String,
+}
+
+impl Unplaced {
+    /// Why it got none and what to do.
+    pub fn reason() -> String {
+        tr("No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange").to_string()
+    }
 }
 
 /// The cables that need a way into each enclosure, those into the room first, thickest
@@ -48,7 +75,7 @@ fn needed(prj: &Project) -> BTreeMap<usize, Vec<Need>> {
             // A device placed elsewhere is reached through the room (where the cabinet
             // stands in one); one placed nowhere is in the field.
             let room = other.is_some() && panel::room_of(layout, k).is_some();
-            need.entry(k).or_default().push(Need { diameter: cable_diameter(c), room });
+            need.entry(k).or_default().push(Need { cable: c.tag.clone(), diameter: cable_diameter(c), room });
         }
     }
     for ds in need.values_mut() {
@@ -67,14 +94,14 @@ fn without_gland(prj: &Project, k: usize, need: &[Need]) -> Vec<Need> {
     let mut free: Vec<(Face, Option<(f32, f32)>)> = accessories(prj, k, "Cable gland").iter().map(|g| (g.face, panel::clamping_range(prj, &g.part))).collect();
     let passes = |n: &Need, face: Face| !n.room || super::room::room_side(prj, k, face);
     let mut unfit = Vec::new();
-    for &n in need {
+    for n in need {
         let fits = |r: &Option<(f32, f32)>| r.is_none_or(|(lo, hi)| n.diameter >= lo && n.diameter <= hi);
         let span = |r: &Option<(f32, f32)>| r.map_or(f32::INFINITY, |(lo, hi)| hi - lo);
-        match free.iter().enumerate().filter(|(_, g)| passes(&n, g.0) && fits(&g.1)).min_by(|a, b| span(&a.1 .1).total_cmp(&span(&b.1 .1))).map(|(i, _)| i) {
+        match free.iter().enumerate().filter(|(_, g)| passes(n, g.0) && fits(&g.1)).min_by(|a, b| span(&a.1 .1).total_cmp(&span(&b.1 .1))).map(|(i, _)| i) {
             Some(i) => {
                 free.remove(i);
             }
-            None => unfit.push(n),
+            None => unfit.push(n.clone()),
         }
     }
     let mut left = Vec::new();
@@ -101,9 +128,9 @@ pub fn gland_for(prj: &Project, diameter: f32) -> Option<String> {
     fitting.or_else(|| glands.iter().max_by(|a, b| a.1 .1.total_cmp(&b.1 .1))).map(|(n, _)| n.to_string())
 }
 
-/// Puts a cable gland `part` into `face` (bottom or roof) of enclosure `k`, in the first
-/// free place of rows across its depth from the middle, clear of what is on that face;
-/// `None` where it is full.
+/// Puts a cable gland `part` into `face` of enclosure `k`, in the first free place of
+/// rows across its depth from the middle, clear of what is on that face; `None` where it
+/// is full.
 fn put_into(prj: &mut Project, k: usize, part: &str, face: Face) -> Option<u64> {
     let size = panel::part_by_number(prj, part).and_then(|p| p.size()).map_or(30.0, |s| s[0].max(s[1]));
     let e = &prj.layout.enclosures[k];
@@ -135,37 +162,47 @@ fn put_into(prj: &mut Project, k: usize, part: &str, face: Face) -> Option<u64> 
 /// After a change of the cables or of the schematic since `before` (with
 /// [`crate::panel::Layout::auto_glands`]): a cable gland for every cable that needs a
 /// way into an enclosure and finds none ([`add_missing`]). A change of the layout alone
-/// adds none (a gland deleted by hand stays deleted). Gives the ids of the glands.
-pub fn follow(prj: &mut Project, before: &Project) -> Vec<u64> {
+/// adds none (a gland deleted by hand stays deleted). Gives the glands added and the
+/// cables that found no place for one.
+pub fn follow(prj: &mut Project, before: &Project) -> Glands {
     // Called after every edit in the editor: without cables there is nothing to do.
     if !prj.layout.auto_glands || prj.cables.is_empty() || (prj.cables == before.cables && prj.pages == before.pages) {
-        return Vec::new();
+        return Glands::default();
     }
     add_missing(prj)
 }
 
 /// Adds a cable gland for every cable that needs a way into an enclosure and finds no
 /// free fitting gland there (whether or not glands are added automatically). Gives the
-/// ids of the glands.
-pub fn add_missing(prj: &mut Project) -> Vec<u64> {
-    let mut added = Vec::new();
+/// glands added and the cables that found no place for one.
+pub fn add_missing(prj: &mut Project) -> Glands {
+    let mut out = Glands::default();
     for (k, ds) in needed(prj) {
         let missing = without_gland(prj, k, &ds);
-        added.extend(add(prj, k, &missing));
+        add(prj, k, &missing, &mut out);
     }
-    added
+    out
 }
 
-/// Glands of the catalog for the cables of `need` in enclosure `k`: into the roof for a
-/// cable into the room of a cabinet standing there, otherwise into the bottom.
-fn add(prj: &mut Project, k: usize, need: &[Need]) -> Vec<u64> {
-    let mut ids = Vec::new();
+/// The faces of enclosure `k` a cable gland for cable `n` goes into, in this order: for
+/// a cable into the room of a cabinet standing there the roof (hanging on the wall: the
+/// bottom, then the roof), otherwise the bottom, then the roof; then the sides and the
+/// rear, where the cable can leave through them.
+fn faces_for(prj: &Project, k: usize, n: &Need) -> Vec<Face> {
+    let first = if n.room && !super::room::hangs(prj, k) { [Face::Roof, Face::Bottom] } else { [Face::Bottom, Face::Roof] };
+    first.into_iter().chain([Face::Left, Face::Right, Face::Rear]).filter(|&f| !n.room || super::room::room_side(prj, k, f)).collect()
+}
+
+/// Glands of the catalog for the cables of `need` in enclosure `k`, each into the first
+/// of its faces ([`faces_for`]) with a free place.
+fn add(prj: &mut Project, k: usize, need: &[Need], out: &mut Glands) {
     for n in need {
-        let Some(part) = gland_for(prj, n.diameter) else { continue };
-        let face = if n.room && !super::room::hangs(prj, k) { Face::Roof } else { Face::Bottom };
-        ids.extend(put_into(prj, k, &part, face));
+        let placed = gland_for(prj, n.diameter).and_then(|part| faces_for(prj, k, n).into_iter().find_map(|f| put_into(prj, k, &part, f)));
+        match placed {
+            Some(id) => out.added.push(id),
+            None => out.unplaced.push(Unplaced { cable: n.cable.clone(), enclosure: prj.layout.enclosures[k].name.clone() }),
+        }
     }
-    ids
 }
 
 #[cfg(test)]

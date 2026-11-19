@@ -588,7 +588,7 @@ fn cables_into_the_room_get_glands_in_the_roof_of_the_cabinet() {
         let q = before_wall(&prj, ri, k, 200.0);
         add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap();
     }
-    let added = crate::routing3d::glands::follow(&mut prj, &before);
+    let added = crate::routing3d::glands::follow(&mut prj, &before).added;
     assert!(!added.is_empty());
     // On a face a route into the room leaves through: the roof of a standing cabinet.
     for id in &added {

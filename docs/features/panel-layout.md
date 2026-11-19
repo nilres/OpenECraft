@@ -946,9 +946,14 @@ gets one: of polyamide, the smallest whose clamping range takes the cable, in th
 free place from the middle of the face. A cable to a device in the room the cabinet
 stands in gets it in the roof (it can only leave through the roof, the sides and the
 rear, see below; a cabinet hanging on a wall in the bottom), a cable into the field in
-the bottom. A gland deleted by hand stays deleted until the cables change; *Add the missing ones*
-(`add_cable_glands`) adds a gland for every cable that has none, also with the option
-off. A cabinet with a cable entry flange gets none. A
+the bottom. Where that face is full, the gland goes into the next face the cable can
+leave through: the bottom or the roof, then the left and right sides and the rear. A
+cable that finds no free place on any of them gets none and is reported (by *Add the missing ones* in the status
+line, as `glands_missing` of a command and `missing` of `add_cable_glands`, each with
+the cabinet and why): make room or add a cable entry flange. A gland deleted by hand
+stays deleted until the cables change; *Add the missing ones* (`add_cable_glands`)
+adds a gland for every cable that has none, also with the option off. A cabinet with a
+cable entry flange gets none. A
 cabinet hanging on a wall (its bottom above the floor) is also left through a gland in
 its bottom: below each such gland a shaft down to the floor and out to the front of the
 cabinet stays free for the routes. Frozen, such a route keeps its legs.

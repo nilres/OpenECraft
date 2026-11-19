@@ -1929,8 +1929,13 @@ impl PanelUi {
             ui.checkbox(&mut prj.layout.auto_glands, tr("Add cable glands for new cables"))
                 .on_hover_text(tr("A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall"));
             if ui.small_button(tr("Add the missing ones")).on_hover_text(tr("A cable gland for every cable that leaves an enclosure and finds no free gland that takes it")).clicked() {
-                let n = openecraft_core::routing3d::glands::add_missing(prj).len();
-                self.status = tr_fmt!("{} cable glands added", n);
+                let out = openecraft_core::routing3d::glands::add_missing(prj);
+                self.status = if out.unplaced.is_empty() {
+                    tr_fmt!("{} cable glands added", out.added.len())
+                } else {
+                    let cables: Vec<&str> = out.unplaced.iter().map(|u| u.cable.as_str()).collect();
+                    tr_fmt!("{} cable glands added; no free place for {}: make room or add a cable entry flange", out.added.len(), cables.join(", "))
+                };
             }
         });
         climate_section(ui, prj, ei);

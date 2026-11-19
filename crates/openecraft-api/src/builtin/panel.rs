@@ -565,12 +565,19 @@ fn set_auto_glands(prj: &mut Project, a: &Args) -> Result<Value, String> {
 }
 
 fn add_cable_glands(prj: &mut Project, _: &Args) -> Result<Value, String> {
-    let ids = openecraft_core::routing3d::glands::add_missing(prj);
-    let glands: Vec<Value> = ids
+    let out = openecraft_core::routing3d::glands::add_missing(prj);
+    let glands: Vec<Value> = out
+        .added
         .iter()
-        .filter_map(|id| prj.layout.enclosures.iter().find_map(|e| e.item(*id).map(|it| json!({ "id": id, "enclosure": e.name, "part": it.part, "x": it.x, "y": it.y }))))
+        .filter_map(|id| prj.layout.enclosures.iter().find_map(|e| e.item(*id).map(|it| json!({ "id": id, "enclosure": e.name, "face": e.face_key(it.face), "part": it.part, "x": it.x, "y": it.y }))))
         .collect();
-    Ok(json!({ "added": glands }))
+    Ok(json!({ "added": glands, "missing": unplaced_json(&out.unplaced) }))
+}
+
+/// The cables that found no place for a cable gland: cable, enclosure and why.
+pub fn unplaced_json(list: &[openecraft_core::routing3d::glands::Unplaced]) -> Value {
+    let reason = openecraft_core::routing3d::glands::Unplaced::reason();
+    Value::from(list.iter().map(|u| json!({ "cable": u.cable, "enclosure": u.enclosure, "reason": reason })).collect::<Vec<_>>())
 }
 
 fn place_cabinet_device(prj:&mut Project,a:&Args)->Result<Value,String> {

@@ -19,7 +19,7 @@ fn a_new_cable_out_of_an_enclosure_gets_a_gland_of_its_size() {
     assert!(before.layout.auto_glands, "on by default");
     let mut prj = before.clone();
     split(&mut prj);
-    let added = follow(&mut prj, &before);
+    let added = follow(&mut prj, &before).added;
     assert_eq!(added.len(), 1);
     let e = &prj.layout.enclosures[0];
     let g = e.item(added[0]).unwrap();
@@ -36,13 +36,13 @@ fn a_new_cable_out_of_an_enclosure_gets_a_gland_of_its_size() {
     // Nothing more without a change; a gland removed by hand stays removed while only
     // the layout changes, and comes back with the next change of the cables.
     let same = prj.clone();
-    assert!(follow(&mut prj, &same).is_empty());
+    assert!(follow(&mut prj, &same).added.is_empty());
     let mut removed = prj.clone();
     removed.layout.enclosures[0].items.retain(|i| i.id != added[0]);
-    assert!(follow(&mut removed, &prj).is_empty());
+    assert!(follow(&mut removed, &prj).added.is_empty());
     let kept = removed.clone();
     removed.cables[0].length += 1.0;
-    assert_eq!(follow(&mut removed, &kept).len(), 1);
+    assert_eq!(follow(&mut removed, &kept).added.len(), 1);
 }
 
 #[test]
@@ -51,9 +51,9 @@ fn without_the_option_glands_are_added_only_on_request() {
     before.layout.auto_glands = false;
     let mut prj = before.clone();
     split(&mut prj);
-    assert!(follow(&mut prj, &before).is_empty());
-    assert_eq!(add_missing(&mut prj).len(), 1);
-    assert!(add_missing(&mut prj).is_empty());
+    assert!(follow(&mut prj, &before).added.is_empty());
+    assert_eq!(add_missing(&mut prj).added.len(), 1);
+    assert!(add_missing(&mut prj).added.is_empty());
     // Stored only where it is off.
     let text = serde_json::to_string(&before.layout).unwrap();
     assert!(text.contains("\"auto_glands\":false"));
@@ -70,3 +70,27 @@ fn glands_by_the_size_of_the_cable() {
     assert_eq!(gland_for(&prj, 70.0).as_deref(), Some("GEN.GLAND-M63"));
 }
 
+#[test]
+fn a_full_face_sends_the_gland_to_the_next_and_a_cable_without_place_is_reported() {
+    let mut prj = crate::sample::demo_project();
+    let fill = |prj: &mut Project, face: Face| while put_into(prj, 0, "GEN.GLAND-M63", face).is_some() {};
+    let need = [Need { cable: "-W9".into(), diameter: 10.0, room: false }];
+    // The bottom full: into the roof.
+    fill(&mut prj, Face::Bottom);
+    let mut out = Glands::default();
+    add(&mut prj, 0, &need, &mut out);
+    assert_eq!(out.added.len(), 1);
+    assert_eq!(prj.layout.enclosures[0].item(out.added[0]).unwrap().face, Face::Roof);
+    // Every face full: reported, with the enclosure.
+    for f in [Face::Roof, Face::Left, Face::Right, Face::Rear] {
+        fill(&mut prj, f);
+    }
+    let mut out = Glands::default();
+    add(&mut prj, 0, &need, &mut out);
+    assert!(out.added.is_empty());
+    assert_eq!(out.unplaced, [Unplaced { cable: "-W9".into(), enclosure: prj.layout.enclosures[0].name.clone() }]);
+    // A cable into the room of a standing cabinet leaves through its roof, sides and rear.
+    let room = Need { cable: "-W9".into(), diameter: 10.0, room: true };
+    assert_eq!(faces_for(&prj, 0, &room), [Face::Roof, Face::Left, Face::Right, Face::Rear]);
+    assert_eq!(faces_for(&prj, 0, &need[0]), [Face::Bottom, Face::Roof, Face::Left, Face::Right, Face::Rear]);
+}

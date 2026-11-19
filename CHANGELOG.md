@@ -66,8 +66,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   cable gland gets one of its size (*Add cable glands for new cables* in the enclosure
   properties, `set_auto_glands`; on by default): in the roof for a device in the room
   the cabinet stands in, in the bottom for one in the field or of a cabinet hanging on
-  the wall. *Add the
-  missing ones* (`add_cable_glands`) adds them for all cables at once.
+  the wall; where that face is full, in the next face the cable can leave through
+  (bottom or roof, then the sides and the rear). A cable that finds no free place is
+  reported with its cabinet and why (`glands_missing`, `missing`). *Add the missing
+  ones* (`add_cable_glands`) adds them for all cables at once.
 - **Smaller rooms from floor plans on paper:** *Smallest room* (`min_room`) sets the
   smallest room kept by the detection (1 m² before: a WC or a closet was lost).
 - **Narrow lettering:** texts have a width factor, drawn so on screen and in the SVG,
