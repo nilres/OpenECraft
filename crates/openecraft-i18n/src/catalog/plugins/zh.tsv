@@ -15,6 +15,7 @@ Additional power loss in W	附加功率损耗 (W)
 Address scheme: siemens, iec or rockwell	地址方案：siemens、iec 或 rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	向屋顶添加光伏阵列：组件行安装在导轨和屋面挂钩上并与坡面平行，或在平屋顶上倾斜或东西向安装在配重式安装底座上；未给出 x 和 z 时位于前坡面或右坡面的中间。未给出建筑物和屋顶时为场地上的地面阵列：打入式立柱上的倾斜支架排，未给出 x 和 z 时位于设施中已有对象的前方。组件和安装材料计入物料清单
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	添加折弯并钻孔的铜排（或替换机柜中同名的铜排）
+Adds a cable gland of its size to the bottom of an enclosure for every cable that leaves it and finds no free gland that takes it	为每根离开机柜且找不到可容纳它的空闲密封接头的电缆，在机柜底部添加一个尺寸相符的电缆密封接头
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	添加到右侧相邻机柜的电缆过孔：两侧板上相对的圆形开孔；机柜之间的导线从中穿过
 Adds a configurator rule: insert a page macro when the condition holds	添加配置器规则：在条件成立时插入页宏
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	添加布线网络的节点（分支点、穿墙点、到达机柜或设备的点）
@@ -790,6 +791,7 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	设置所有未选择标题栏的页或某一类型页的标题栏
 Sets the translation of a line of the project texts (empty removes it)	设置项目文本某一行的翻译（空则将其移除）
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	设置没有定义电位的网络的导线颜色和截面积（空 = 无）
+Sets whether a new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it (on by default)	设置离开机柜的新电缆在没有空闲密封接头可容纳时，是否在底部获得一个与其尺寸相符的电缆密封接头（默认开启）
 Share of the capacity kept free in percent	保留的容量比例（百分比）
 Sheets	图纸
 Shield connected at: both, first, second or none	屏蔽连接位置：both、first、second 或 none

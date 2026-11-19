@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = endnu ikke i diagrammet
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baseline gemmer hele projektet (sider, enheder, artikler, indstillinger). Når en revision frigives, gemmes en.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	En kabelforskruning til hvert kabel, der forlader et skab og ikke finder nogen ledig forskruning, der tager det
 A cable of the bus type for every connection without cable	Et kabel af bustypen til hver forbindelse uden kabel
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	En udskæring af samme størrelse på samme sted i naboens sidevæg: Sammen udgør de en kabelgennemføring
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samme navn i mappen får en ny version (tjekket ud og ind), ellers tilføjes filen
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	En etage over den øverste
 A local file opens locally, a server project is opened on the project server again	En lokal fil åbnes lokalt, et serverprojekt åbnes igen på projektserveren
 A local file or a project on the project server	En lokal fil eller et projekt på projektserveren
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Et nyt kabel, der forlader et skab, får en kabelforskruning i sin størrelse i bunden, hvor ingen ledig forskruning tager det
 A new project	Et nyt projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	En ny version hentes i baggrunden og installeres, når du lukker OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	En ny version hentes i baggrunden og erstatter denne installation; den bruges fra næste start.
@@ -89,6 +91,7 @@ Add profile for this connector	Tilføj profil til denne connector
 Add rule	Tilføj regel
 Add sort key	Tilføj sorteringsnøgle
 Add the facing cutout in {}	Tilføj den modstående udskæring i {}
+Add the missing ones	Tilføj de manglende
 Add to device	Føj til enhed
 Add to the pre-planning	Føj til forplanlægningen
 Add user	Tilføj bruger
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	Ikke et symbolbibliotek: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Ikke ændret, låsen blev afvist: {}. Din version gemmes i ruden Projektserver.
 Not changed: {}	Ikke ændret: {}
 Not changed: {}. Your version is kept in the Project server pane.	Ikke ændret: {}. Din version gemmes i ruden Projektserver.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ikke tilsluttet endnu: ingen enhed, intet kabel. Vælg beskyttelsesenheden for dens gruppe.
 Not found: {}	Ikke fundet: {}
 Not in the project parts – synchronize in parts management	Ikke i projektets artikler – synkroniser i artikelstyringen
 Not on a wire	Ikke på en ledning
@@ -1519,6 +1523,9 @@ Placed by hand	Placeret manuelt
 Placed by hand; choosing a side places them anew.	Placeret manuelt; valg af en side placerer dem igen.
 Placed here: {}	Placeret her: {}
 Placed {}× in the project	Placeret {}× i projektet
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Placeret, ikke i diagrammet: ingen beskyttelsesenhed valgt (markér den og brug Sæt i diagrammet)
+Placed, not in the schematic: {}	Placeret, ikke i diagrammet: {}
+Placed: not connected to the mains, so not into the schematic	Placeret: tilsluttes ikke nettet, derfor ikke i diagrammet
 Placeholders	Pladsholdere
 Placeholders are filled, e.g. a link with {project} and {page}	Pladsholdere udfyldes, f.eks. et link med {project} og {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Pladsholdere som {MOTOR} i mærkninger, tekster og funktionstekster udfyldes ved indsættelse.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Egenskab fjernet med {} værdier
 Publish	Udgiv
 Put a room here	Placer et rum her
 Put in	Indsæt
+Put into the schematic	Sæt i diagrammet
 Put into the vault	Læg i vaulten
 Put the pane back into the workspace	Sæt panelet tilbage i arbejdsområdet
 Puts the project into the folder it was opened from	Lægger projektet i den mappe, det blev åbnet fra
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	{} buskabler oprettet
 {} bus connections	{} busforbindelser
 {} cable ducts	{} kabelkanaler
+{} cable glands added	{} kabelforskruninger tilføjet
 {} cable lengths taken over	{} kabellængder overtaget
 {} cable passages to {}	{} kabelgennemføringer til {}
 {} cables	{} kabler
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} importeret til artikeldatabasen og placeret som {}
 {} in {}	{} i {}
 {} is in the schematic	{} er i diagrammet
+{} is in the schematic: cable {} from {}	{} er i diagrammet: kabel {} fra {}
 {} is neither in the parts database nor on the parts server	{} findes hverken i artikeldatabasen eller på artikelserveren
 {} is not in the disk image	{} er ikke i diskbilledet
 {} is not made for wall mounting: place it on a mounting rail	{} er ikke beregnet til vægmontage: placer den på en skinne

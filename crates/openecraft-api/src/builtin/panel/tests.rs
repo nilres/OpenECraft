@@ -195,3 +195,20 @@ fn copying_items() {
     assert!(run(&mut s, "copy_panel_items", json!({ "enclosure": "+CAB1", "ids": [device], "x": 0, "y": 0 })).unwrap_err().contains("Nothing to copy"));
     assert!(run(&mut s, "copy_panel_items", json!({ "enclosure": "+CAB1", "ids": [rail], "x": 0, "y": 0, "to": "+NONE" })).is_err());
 }
+
+#[test]
+fn cable_glands_are_added_automatically_or_on_request() {
+    let mut s = demo();
+    assert_eq!(run(&mut s, "set_auto_glands", json!({ "on": false })).unwrap()["auto_glands"], false);
+    assert!(!s.project().unwrap().layout.auto_glands);
+    // Without its gland the demo's motor cable leaves +CAB1 through none: one is added.
+    let prj = s.project_mut().unwrap();
+    prj.layout.enclosures[0].items.retain(|i| !i.part.starts_with("GEN.GLAND"));
+    let added = run(&mut s, "add_cable_glands", json!({})).unwrap();
+    let list = added["added"].as_array().unwrap();
+    assert_eq!(list.len(), 1, "{added}");
+    assert_eq!(list[0]["enclosure"], "+CAB1");
+    assert!(list[0]["part"].as_str().unwrap().starts_with("GEN.GLAND-M"));
+    assert!(run(&mut s, "add_cable_glands", json!({})).unwrap()["added"].as_array().unwrap().is_empty());
+    assert_eq!(run(&mut s, "set_auto_glands", json!({ "on": true })).unwrap()["auto_glands"], true);
+}

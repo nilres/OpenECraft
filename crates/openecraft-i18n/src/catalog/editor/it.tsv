@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = non ancora nello schema
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Una baseline salva l'intero progetto (pagine, dispositivi, articoli, impostazioni). Il rilascio di una revisione ne salva una.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Un pressacavo per ogni cavo che esce da un armadio e non trova un pressacavo libero che lo accolga
 A cable of the bus type for every connection without cable	Un cavo del tipo di bus per ogni collegamento senza cavo
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Un'apertura delle stesse dimensioni nello stesso punto della parete laterale del vicino: insieme formano un passaggio cavi
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Un file con lo stesso nome nella cartella riceve una nuova versione (check-out e check-in), altrimenti il file viene aggiunto
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Un piano sopra il più alto
 A local file opens locally, a server project is opened on the project server again	Un file locale si apre in locale, un progetto del server viene riaperto sul server dei progetti
 A local file or a project on the project server	Un file locale o un progetto sul server dei progetti
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Un cavo nuovo che esce da un armadio riceve un pressacavo della sua misura sul fondo dove nessun pressacavo libero lo accoglie
 A new project	Un nuovo progetto
 A new release is downloaded in the background and installed when you close OpenECraft.	Una nuova versione viene scaricata in background e installata alla chiusura di OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Una nuova versione viene scaricata in background e sostituisce questa installazione; viene usata dal prossimo avvio.
@@ -89,6 +91,7 @@ Add profile for this connector	Aggiungi profilo per questo connettore
 Add rule	Aggiungi regola
 Add sort key	Aggiungi criterio di ordinamento
 Add the facing cutout in {}	Aggiungi l'apertura affacciata in {}
+Add the missing ones	Aggiungi quelli mancanti
 Add to device	Aggiungi al dispositivo
 Add to the pre-planning	Aggiungi alla preprogettazione
 Add user	Aggiungi utente
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	Non è una libreria di simboli: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Non modificato, il blocco è stato rifiutato: {}. La tua versione resta nel pannello Server di progetto.
 Not changed: {}	Non modificato: {}
 Not changed: {}. Your version is kept in the Project server pane.	Non modificato: {}. La tua versione resta nel pannello Server di progetto.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Non ancora collegato: nessun apparecchio, nessun cavo. Scegliere il dispositivo di protezione del suo circuito.
 Not found: {}	Non trovato: {}
 Not in the project parts – synchronize in parts management	Non presente negli articoli del progetto – sincronizza in Gestione articoli
 Not on a wire	Non su un conduttore
@@ -1519,6 +1523,9 @@ Placed by hand	Posizionato a mano
 Placed by hand; choosing a side places them anew.	Posizionati manualmente; scegliere un lato li posiziona di nuovo.
 Placed here: {}	Posizionato qui: {}
 Placed {}× in the project	Posizionato {}× nel progetto
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Posizionato, non nello schema: nessun dispositivo di protezione scelto (selezionarlo e usare Metti nello schema)
+Placed, not in the schematic: {}	Posizionato, non nello schema: {}
+Placed: not connected to the mains, so not into the schematic	Posizionato: non collegato alla rete, quindi non nello schema
 Placeholders	Segnaposto
 Placeholders are filled, e.g. a link with {project} and {page}	I segnaposto vengono compilati, ad es. un link con {project} e {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	I segnaposto come {MOTOR} in sigle, testi e testi funzione vengono compilati durante l'inserimento.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Proprietà rimossa con {} valori
 Publish	Pubblica
 Put a room here	Metti qui un locale
 Put in	Inserisci
+Put into the schematic	Metti nello schema
 Put into the vault	Inserisci nel vault
 Put the pane back into the workspace	Riporta il riquadro nell'area di lavoro
 Puts the project into the folder it was opened from	Inserisce il progetto nella cartella da cui è stato aperto
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	{} cavi bus creati
 {} bus connections	{} collegamenti bus
 {} cable ducts	{} canaline
+{} cable glands added	{} pressacavi aggiunti
 {} cable lengths taken over	{} lunghezze dei cavi applicate
 {} cable passages to {}	{} passaggi cavi verso {}
 {} cables	{} cavi
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} importato nel database articoli e posizionato come {}
 {} in {}	{} in {}
 {} is in the schematic	{} è nello schema
+{} is in the schematic: cable {} from {}	{} è nello schema: cavo {} da {}
 {} is neither in the parts database nor on the parts server	{} non è né nel database articoli né sul server articoli
 {} is not in the disk image	{} non è nell'immagine disco
 {} is not made for wall mounting: place it on a mounting rail	{} non è previsto per il montaggio a parete: posizionarlo su una guida

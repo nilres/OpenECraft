@@ -57,6 +57,18 @@ pub static COMMANDS: &[Spec] = &[
         run:place_cabinet_device,
     },
     Spec {
+        name: "set_auto_glands",
+        help: tr_const!("Sets whether a new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it (on by default)"),
+        params: &[param("on", Kind::Bool, tr_const!("Add cable glands for new cables"))],
+        run: set_auto_glands,
+    },
+    Spec {
+        name: "add_cable_glands",
+        help: tr_const!("Adds a cable gland of its size to the bottom of an enclosure for every cable that leaves it and finds no free gland that takes it"),
+        params: &[],
+        run: add_cable_glands,
+    },
+    Spec {
         name:"get_panel_points",
         help:tr_const!("Lists physical device connection points, including separately placed terminals"),
         params:&[optional("enclosure",Kind::Str,ENCLOSURE),optional("id",Kind::Int,tr_const!("Item id"))],
@@ -545,6 +557,20 @@ fn place_panel_device(prj:&mut Project,a:&Args)->Result<Value,String> {
         mounting_explicit:true,single_part:a.flag("single_part"),..Default::default()};
     prj.layout.enclosures[ei].items.push(item);
     Ok(item_json(prj,prj.layout.enclosures[ei].items.last().unwrap()))
+}
+
+fn set_auto_glands(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    prj.layout.auto_glands = a.value("on").and_then(Value::as_bool).unwrap_or(true);
+    Ok(json!({ "auto_glands": prj.layout.auto_glands }))
+}
+
+fn add_cable_glands(prj: &mut Project, _: &Args) -> Result<Value, String> {
+    let ids = openecraft_core::routing3d::glands::add_missing(prj);
+    let glands: Vec<Value> = ids
+        .iter()
+        .filter_map(|id| prj.layout.enclosures.iter().find_map(|e| e.item(*id).map(|it| json!({ "id": id, "enclosure": e.name, "part": it.part, "x": it.x, "y": it.y }))))
+        .collect();
+    Ok(json!({ "added": glands }))
 }
 
 fn place_cabinet_device(prj:&mut Project,a:&Args)->Result<Value,String> {

@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = nog niet in het schema
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Een baseline slaat het hele project op (pagina's, apparaten, artikelen, instellingen). Bij het vrijgeven van een revisie wordt er een opgeslagen.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Een kabelwartel voor elke kabel die een kast verlaat en geen vrije wartel vindt die hem opneemt
 A cable of the bus type for every connection without cable	Een kabel van het bustype voor elke verbinding zonder kabel
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Een uitsparing van dezelfde grootte op dezelfde plaats in de zijwand van de buur: samen vormen ze een kabeldoorvoer
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Een bestand met dezelfde naam in de map krijgt een nieuwe versie (uit- en ingecheckt), anders wordt het bestand toegevoegd
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Een verdieping boven de hoogste
 A local file opens locally, a server project is opened on the project server again	Een lokaal bestand opent lokaal, een serverproject wordt opnieuw op de projectserver geopend
 A local file or a project on the project server	Een lokaal bestand of een project op de projectserver
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Een nieuwe kabel die een kast verlaat krijgt een kabelwartel van zijn maat in de bodem waar geen vrije wartel hem opneemt
 A new project	Een nieuw project
 A new release is downloaded in the background and installed when you close OpenECraft.	Een nieuwe versie wordt op de achtergrond gedownload en geïnstalleerd wanneer u OpenECraft sluit.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Een nieuwe versie wordt op de achtergrond gedownload en vervangt deze installatie; ze wordt vanaf de volgende start gebruikt.
@@ -89,6 +91,7 @@ Add profile for this connector	Profiel voor deze connector toevoegen
 Add rule	Regel toevoegen
 Add sort key	Sorteersleutel toevoegen
 Add the facing cutout in {}	De tegenoverliggende uitsparing in {} toevoegen
+Add the missing ones	Ontbrekende toevoegen
 Add to device	Aan apparaat toevoegen
 Add to the pre-planning	Aan de voorplanning toevoegen
 Add user	Gebruiker toevoegen
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	Geen symboolbibliotheek: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Niet gewijzigd, de vergrendeling is geweigerd: {}. Je versie blijft bewaard in het deelvenster Projectserver.
 Not changed: {}	Niet gewijzigd: {}
 Not changed: {}. Your version is kept in the Project server pane.	Niet gewijzigd: {}. Je versie blijft bewaard in het deelvenster Projectserver.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Nog niet aangesloten: geen apparaat, geen kabel. Kies het beveiligingsapparaat van zijn groep.
 Not found: {}	Niet gevonden: {}
 Not in the project parts – synchronize in parts management	Niet in de projectartikelen – synchroniseer in het artikelbeheer
 Not on a wire	Niet op een draad
@@ -1519,6 +1523,9 @@ Placed by hand	Handmatig geplaatst
 Placed by hand; choosing a side places them anew.	Handmatig geplaatst; een kant kiezen plaatst ze opnieuw.
 Placed here: {}	Hier geplaatst: {}
 Placed {}× in the project	{}× in het project geplaatst
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Geplaatst, niet in het schema: geen beveiligingsapparaat gekozen (selecteer het en gebruik In het schema zetten)
+Placed, not in the schematic: {}	Geplaatst, niet in het schema: {}
+Placed: not connected to the mains, so not into the schematic	Geplaatst: niet op het net aangesloten, dus niet in het schema
 Placeholders	Tijdelijke aanduidingen
 Placeholders are filled, e.g. a link with {project} and {page}	Plaatshouders worden ingevuld, bijv. een link met {project} en {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Tijdelijke aanduidingen zoals {MOTOR} in aanduidingen, teksten en functieteksten worden bij het invoegen ingevuld.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Eigenschap met {} waarden verwijderd
 Publish	Publiceren
 Put a room here	Ruimte hier plaatsen
 Put in	Plaatsen
+Put into the schematic	In het schema zetten
 Put into the vault	In de vault plaatsen
 Put the pane back into the workspace	Het paneel terugzetten in de werkruimte
 Puts the project into the folder it was opened from	Plaatst het project in de map waaruit het is geopend
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	{} buskabels gemaakt
 {} bus connections	{} busverbindingen
 {} cable ducts	{} kabelgoten
+{} cable glands added	{} kabelwartels toegevoegd
 {} cable lengths taken over	{} kabellengten overgenomen
 {} cable passages to {}	{} kabeldoorvoeren naar {}
 {} cables	{} kabels
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} in de artikeldatabase geïmporteerd en geplaatst als {}
 {} in {}	{} in {}
 {} is in the schematic	{} staat in het schema
+{} is in the schematic: cable {} from {}	{} staat in het schema: kabel {} van {}
 {} is neither in the parts database nor on the parts server	{} staat niet in de artikeldatabase en niet op de artikelserver
 {} is not in the disk image	{} staat niet in de schijfkopie
 {} is not made for wall mounting: place it on a mounting rail	{} is niet bedoeld voor wandmontage: plaats het op een rail

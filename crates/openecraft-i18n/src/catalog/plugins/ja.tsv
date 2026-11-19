@@ -15,6 +15,7 @@ Additional power loss in W	追加の損失電力 (W)
 Address scheme: siemens, iec or rockwell	アドレス方式: siemens、iec、または rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	屋根にPVアレイを追加します。勾配屋根では屋根面に平行にレールと屋根フックの上にモジュールの列を、陸屋根では傾斜または東西向きにバラスト式架台の上に設置します。x と z がなければ前面または右側の屋根面の中央に置きます。建物と屋根がなければ敷地上の野立てアレイになります。打込み杭の上に傾斜した架台を列に並べ、x と z がなければ施設内にあるものの手前に置きます。モジュールと取付材料は部品表に入ります
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	曲げと穴あけを施した銅バーを追加します (またはエンクロージャー内の同名の銅バーを置き換えます)
+Adds a cable gland of its size to the bottom of an enclosure for every cable that leaves it and finds no free gland that takes it	盤から出て、収まる空きグランドが見つからないケーブルごとに、盤の底面にそのサイズのケーブルグランドを追加します
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	右隣へのケーブル貫通口を追加します: 両側板に向かい合う円形の切り欠き。エンクロージャー間の電線はここを通ります
 Adds a configurator rule: insert a page macro when the condition holds	コンフィギュレータールールを追加します: 条件が満たされたときにページマクロを挿入
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	フィールドルートネットワークのノード (分岐点、貫通部、エンクロージャーまたはデバイスへの到達点) を追加します
@@ -790,6 +791,7 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	表題欄を選んでいないすべてのページ、またはある種類のページの表題欄を設定します
 Sets the translation of a line of the project texts (empty removes it)	プロジェクトテキストの行の翻訳を設定します (空の場合は削除)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	電位が定義されていないネットの電線色と断面積を設定します (空 = なし)
+Sets whether a new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it (on by default)	盤から出る新しいケーブルが、空いているグランドで収まらない場合に、底面にそのサイズのケーブルグランドを得るかどうかを設定します（既定でオン）
 Share of the capacity kept free in percent	空けておく容量の割合 (%)
 Sheets	シート
 Shield connected at: both, first, second or none	シールドの接続先: both、first、second、または none

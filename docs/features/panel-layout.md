@@ -920,7 +920,14 @@ one through the middle of the roof, which is reported), then through the room. A
 gland takes one cable: the free one whose clamping range fits the cable, nearest to
 where it heads; a cable entry flange takes as many as have places along its membrane.
 A cable that finds every gland of its cabinet taken is not routed and reported as an
-error (*… every cable gland of … is taken by another cable. Add a cable gland for it*). A
+error (*… every cable gland of … is taken by another cable. Add a cable gland for it*).
+With *Add cable glands for new cables* (enclosure properties, `set_auto_glands`; on by
+default) a new cable that leaves a cabinet for a device outside it and its line-up and
+finds no free gland there gets one in the bottom of the cabinet: of polyamide, the
+smallest whose clamping range takes the cable, in the first free place from the middle
+of the bottom. Glands removed by hand stay removed; *Add the missing ones*
+(`add_cable_glands`) adds a gland for every cable that has none, also with the option
+off. A cabinet with a cable entry flange gets none. A
 cabinet hanging on a wall (its bottom above the floor) is also left through a gland in
 its bottom: below each such gland a shaft down to the floor and out to the front of the
 cabinet stays free for the routes. Frozen, such a route keeps its legs.

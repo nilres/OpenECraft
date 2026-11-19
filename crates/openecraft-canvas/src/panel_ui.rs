@@ -1771,6 +1771,7 @@ impl PanelUi {
             if !self.selection.is_empty() {
                 self.selection_tools(ui, prj, ei, &sel);
                 self.passage_tools(ui, prj, ei, id);
+                self.schematic_tools(ui, prj, ei, id);
             }
             // Wires at this device
             if let Some(it) = prj.layout.enclosures[ei].items.iter().find(|i| i.id == id) {
@@ -1916,6 +1917,14 @@ impl PanelUi {
         ui.add_enabled(prj.layout.ferrules, egui::Checkbox::new(&mut prj.layout.twin_ferrules, tr("Twin ferrules where two wires share a connection point")))
             .on_hover_text(tr("Where neither wire has a termination chosen for it"));
         ui.checkbox(&mut prj.layout.hardware, tr("Fastening hardware in the bill of materials")).on_hover_text(tr("Screws, nuts, washers and rivet nuts of the fixing points"));
+        ui.horizontal(|ui| {
+            ui.checkbox(&mut prj.layout.auto_glands, tr("Add cable glands for new cables"))
+                .on_hover_text(tr("A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it"));
+            if ui.small_button(tr("Add the missing ones")).on_hover_text(tr("A cable gland for every cable that leaves an enclosure and finds no free gland that takes it")).clicked() {
+                let n = openecraft_core::routing3d::glands::add_missing(prj).len();
+                self.status = tr_fmt!("{} cable glands added", n);
+            }
+        });
         climate_section(ui, prj, ei);
         let findings = self.findings(prj, an, ei);
         checks_section(ui, prj, ei, &findings);
@@ -3348,15 +3357,42 @@ impl PanelUi {
     /// installation menu; the status tells.
     fn put_into_schematic(&mut self, prj: &mut Project, part: &str, id: u64) {
         use openecraft_core::installation as inst;
-        let Some(breaker) = self.installation.breaker.clone().filter(|b| !b.is_empty()) else { return };
         // Data and antenna outlets and smoke alarms have no circuit.
         if !inst::find_part(prj, part).and_then(inst::kind_of).is_some_and(inst::Kind::mains) {
+            self.status = tr("Placed: not connected to the mains, so not into the schematic").to_string();
             return;
         }
-        self.status = match inst::into_schematic(prj, &breaker, id, &inst::Options::default()) {
-            Ok(tag) => tr_fmt!("{} is in the schematic", tag),
-            Err(e) => e,
+        let Some(breaker) = self.installation.breaker.clone().filter(|b| !b.is_empty()) else {
+            self.status = tr("Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)").to_string();
+            return;
         };
+        self.status = match inst::into_schematic(prj, &breaker, id, &inst::Options::default()) {
+            Ok(tag) => match inst::feed_of(prj, &tag) {
+                Some((cable, from)) => tr_fmt!("{} is in the schematic: cable {} from {}", tag, cable, from),
+                None => tr_fmt!("{} is in the schematic", tag),
+            },
+            Err(e) => tr_fmt!("Placed, not in the schematic: {}", e),
+        };
+    }
+
+    /// For a socket outlet, switch, light, heating element or box of a room not in the
+    /// schematic yet: the protective device to connect it to and the button that puts it
+    /// into the schematic (on the installation page of the circuit, with its cable).
+    fn schematic_tools(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize, id: u64) {
+        use openecraft_core::installation as inst;
+        let e = &prj.layout.enclosures[ei];
+        let Some(it) = e.item(id).filter(|it| e.is_room() && it.tag.is_empty() && it.kind == ItemKind::Accessory) else { return };
+        let part = it.part.clone();
+        if !inst::find_part(prj, &part).and_then(inst::kind_of).is_some_and(inst::Kind::mains) {
+            return;
+        }
+        ui.separator();
+        ui.label(RichText::new(tr("Not in the schematic")).strong()).on_hover_text(tr("Not connected yet: no device, no cable. Choose the protective device of its circuit."));
+        self.breaker_choice(ui, prj);
+        let chosen = self.installation.breaker.clone().filter(|b| !b.is_empty());
+        if ui.add_enabled(chosen.is_some(), egui::Button::new(tr("Put into the schematic"))).clicked() {
+            self.put_into_schematic(prj, &part, id);
+        }
     }
 
     /// Places part `part` (from the installation menu) in room `ri` at point `at` of the

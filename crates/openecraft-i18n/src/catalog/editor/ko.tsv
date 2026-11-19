@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = 아직 회로도에 없음
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	기준선은 전체 프로젝트(페이지, 장치, 부품, 설정)를 저장합니다. 개정을 릴리스하면 기준선이 하나 저장됩니다.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	외함을 나가면서 받을 수 있는 빈 글랜드를 찾지 못한 케이블마다 케이블 글랜드 추가
 A cable of the bus type for every connection without cable	케이블이 없는 모든 연결에 버스 유형의 케이블
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	인접 외함 측벽의 같은 위치에 있는 같은 크기의 컷아웃: 함께 케이블 통로를 이룹니다
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	폴더에 같은 이름의 파일이 있으면 새 버전이 생성되고(체크 아웃 후 체크 인), 그렇지 않으면 파일이 추가됩니다
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	가장 높은 층 위의 층
 A local file opens locally, a server project is opened on the project server again	로컬 파일은 로컬에서 열리고, 서버 프로젝트는 프로젝트 서버에서 다시 열립니다
 A local file or a project on the project server	로컬 파일 또는 프로젝트 서버의 프로젝트
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	외함을 나가는 새 케이블은 비어 있는 글랜드가 받지 못하면 바닥에 크기에 맞는 케이블 글랜드를 받습니다
 A new project	새 프로젝트
 A new release is downloaded in the background and installed when you close OpenECraft.	새 릴리스는 백그라운드에서 다운로드되며 OpenECraft를 닫으면 설치됩니다.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	새 릴리스는 백그라운드에서 다운로드되어 이 설치를 대체하며, 다음 실행부터 사용됩니다.
@@ -89,6 +91,7 @@ Add profile for this connector	이 커넥터에 대한 프로필 추가
 Add rule	규칙 추가
 Add sort key	정렬 키 추가
 Add the facing cutout in {}	{}에 마주 보는 컷아웃 추가
+Add the missing ones	누락된 것 추가
 Add to device	장치에 추가
 Add to the pre-planning	사전 계획에 추가
 Add user	사용자 추가
@@ -1296,6 +1299,7 @@ Not a symbol library: {}	심볼 라이브러리가 아님: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	잠금이 거부되어 변경되지 않음: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
 Not changed: {}	변경되지 않음: {}
 Not changed: {}. Your version is kept in the Project server pane.	변경되지 않음: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	아직 연결되지 않음: 장치도 케이블도 없습니다. 회로의 보호 장치를 선택하십시오.
 Not found: {}	찾을 수 없음: {}
 Not in the project parts – synchronize in parts management	프로젝트 부품에 없음 – 부품 관리에서 동기화하세요
 Not on a wire	전선 위에 없음
@@ -1498,6 +1502,9 @@ Placed by hand	수동 배치
 Placed by hand; choosing a side places them anew.	수동으로 배치됨. 방향을 선택하면 다시 배치됩니다.
 Placed here: {}	여기에 배치됨: {}
 Placed {}× in the project	프로젝트에 {}× 배치됨
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	배치됨, 회로도에 없음: 보호 장치를 선택하지 않음(선택한 후 회로도에 넣기를 사용하십시오)
+Placed, not in the schematic: {}	배치됨, 회로도에 없음: {}
+Placed: not connected to the mains, so not into the schematic	배치됨: 전원에 연결되지 않으므로 회로도에 넣지 않음
 Placeholders	자리 표시자
 Placeholders are filled, e.g. a link with {project} and {page}	자리 표시자가 채워집니다(예: {project}와 {page}가 포함된 링크)
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	태그, 텍스트 및 기능 텍스트의 {MOTOR}와 같은 자리 표시자는 삽입 시 채워집니다.
@@ -1587,6 +1594,7 @@ Property groups	속성 그룹
 Property placement	속성 배치
 Property removed with {} values	값 {}개와 함께 속성을 제거했습니다
 Publish	게시
+Put into the schematic	회로도에 넣기
 Put into the vault	Vault에 넣기
 Put the pane back into the workspace	창을 작업 공간으로 되돌리기
 Puts the project into the folder it was opened from	프로젝트를 연 폴더에 프로젝트를 넣습니다
@@ -2436,6 +2444,7 @@ x y	x y
 {} bus cables created	버스 케이블 {}개 만들어짐
 {} bus connections	버스 연결 {}개
 {} cable ducts	케이블 덕트 {}개
+{} cable glands added	케이블 글랜드 {}개 추가됨
 {} cable lengths taken over	케이블 길이 {}개를 적용했습니다
 {} cable passages to {}	{1}(으)로의 케이블 통로 {0}개
 {} cables	케이블 {}개
@@ -2485,6 +2494,7 @@ x y	x y
 {} has unsaved changes. Discard them?	{}에 저장되지 않은 변경 내용이 있습니다. 취소할까요?
 {} imported into the parts database and placed as {}	{}을(를) 부품 데이터베이스로 가져와 {}(으)로 배치했습니다
 {} in {}	{1}의 {0}
+{} is in the schematic: cable {} from {}	{}은(는) 회로도에 있습니다: 케이블 {}, 시작점 {}
 {} is neither in the parts database nor on the parts server	{}은(는) 부품 데이터베이스와 부품 서버 어디에도 없습니다
 {} is not in the disk image	디스크 이미지에 {}이(가) 없습니다
 {} is used by: {}	{}을(를) 사용하는 항목: {}

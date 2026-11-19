@@ -274,12 +274,9 @@ pub fn place_at(prj: &mut Project, ri: usize, part: &str, at: [f32; 2], height: 
     let local = poses[ri].local([at[0], 0.0, at[1]]);
     let q = [local[0], local[2]];
     let [w, h, _] = pd.size().unwrap_or([80.0, 80.0, 20.0]);
-    let outside = !panel::inside_outline(&panel::outline(e), q);
+    let outside = beyond_walls(e, q);
     let (face, point) = if on_ceiling(&pd) && !outside {
         let (lo, hi) = panel::bounds(&panel::outline(e));
-        if !panel::inside_outline(&panel::outline(e), q) {
-            return Err(tr("The point is not inside the room").to_string());
-        }
         let x = (q[0] - lo[0] - w / 2.0).clamp(0.0, (hi[0] - lo[0] - w).max(0.0));
         let z = (q[1] - lo[1] - h / 2.0).clamp(0.0, (hi[1] - lo[1] - h).max(0.0));
         (Face::Roof, p(x, z))
@@ -309,6 +306,33 @@ pub fn place_at(prj: &mut Project, ri: usize, part: &str, at: [f32; 2], height: 
         }
     }
     Ok(id)
+}
+
+/// Whether point `q` of room `e` (its coordinates) lies outside it beyond half the
+/// thickness of its walls: a point on a wall (clicked on its surface in the 3D view)
+/// belongs to the room.
+fn beyond_walls(e: &panel::Enclosure, q: [f32; 2]) -> bool {
+    let pts = panel::outline(e);
+    if panel::inside_outline(&pts, q) {
+        return false;
+    }
+    let dist = |a: [f32; 2], b: [f32; 2]| {
+        let (d, v) = ([b[0] - a[0], b[1] - a[1]], [q[0] - a[0], q[1] - a[1]]);
+        let len = d[0] * d[0] + d[1] * d[1];
+        let t = if len > 0.0 { ((v[0] * d[0] + v[1] * d[1]) / len).clamp(0.0, 1.0) } else { 0.0 };
+        ((v[0] - t * d[0]).powi(2) + (v[1] - t * d[1]).powi(2)).sqrt()
+    };
+    let near = (0..pts.len()).map(|k| dist(pts[k], pts[(k + 1) % pts.len()])).fold(f32::INFINITY, f32::min);
+    near > (e.wall() / 2.0).max(20.0)
+}
+
+/// The cable that feeds device `tag` of an installation and the device it comes from
+/// (`cable.source`, `cable.target`).
+pub fn feed_of(prj: &Project, tag: &str) -> Option<(String, String)> {
+    prj.cables
+        .iter()
+        .find(|c| c.values.get("cable.target").is_some_and(|t| t == tag))
+        .map(|c| (c.tag.clone(), c.values.get("cable.source").cloned().unwrap_or_default()))
 }
 
 /// A point of a cable run: x, z of the plant, height above its floor, its floor above

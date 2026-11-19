@@ -2355,8 +2355,29 @@ fn parts_placed_in_a_room_go_into_the_schematic_for_the_protective_device_chosen
     assert_eq!((it.part.as_str(), it.face), ("GEN.SOCKET-F-UP", Face::Wall(0)));
     assert!(!it.tag.is_empty(), "{}", ui.status);
     assert!(ui.status.contains(&it.tag), "{}", ui.status);
-    // Without a protective device it stays out of the schematic.
+    // The status names the cable and where it comes from.
+    let (cable, from) = openecraft_core::installation::feed_of(&prj, &it.tag).unwrap();
+    assert!(ui.status.contains(&cable) && ui.status.contains(&from), "{}", ui.status);
+    // Without a protective device it stays out of the schematic, and the status says so.
     ui.installation.breaker = Some(String::new());
     ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]]);
-    assert!(prj.layout.enclosures[ri].items.last().unwrap().tag.is_empty());
+    let later = prj.layout.enclosures[ri].items.last().unwrap().clone();
+    assert!(later.tag.is_empty());
+    assert!(ui.status.contains("not in the schematic"), "{}", ui.status);
+    // Put into the schematic afterwards, for the protective device then chosen.
+    ui.installation.breaker = Some(breaker);
+    ui.put_into_schematic(&mut prj, &later.part, later.id);
+    let tag = prj.layout.enclosures[ri].item(later.id).unwrap().tag.clone();
+    assert!(!tag.is_empty() && openecraft_core::installation::feed_of(&prj, &tag).is_some(), "{}", ui.status);
+    // A click on the surface of the wall itself, a hair outside the room: on the wall
+    // inside, seen in the 3D view.
+    let edge = [(w.a[0] + w.b[0]) / 2.0 - w.normal[0] * 1.0, (w.a[1] + w.b[1]) / 2.0 - w.normal[1] * 1.0];
+    let q = panel::site_poses(&prj)[ri].apply([edge[0], 1000.0, edge[1]]);
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]]);
+    let on_wall = prj.layout.enclosures[ri].items.last().unwrap().clone();
+    assert_eq!(on_wall.face, Face::Wall(0), "{}", ui.status);
+    let an = Analysis::build(&prj);
+    let shown = ui.shown_3d(&prj, ri);
+    let s = ui.scene_3d(&egui::Context::default(), &prj, &an, ri, &shown);
+    assert!(s.faces.iter().any(|f| f.item == Some((ri, on_wall.id))), "the socket is drawn");
 }

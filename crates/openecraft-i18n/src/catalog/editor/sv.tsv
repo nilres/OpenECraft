@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = inte i schemat ännu
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baslinje lagrar hela projektet (sidor, apparater, artiklar, inställningar). När en revision frisläpps lagras en.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	En kabelförskruvning för varje kabel som lämnar ett skåp och inte hittar någon ledig förskruvning som tar den
 A cable of the bus type for every connection without cable	En kabel av busstypen för varje anslutning utan kabel
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Ett urtag av samma storlek på samma ställe i grannens sidovägg: tillsammans bildar de en kabelgenomföring
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samma namn i mappen får en ny version (utcheckad och incheckad), annars läggs filen till
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	En våning ovanför den högsta
 A local file opens locally, a server project is opened on the project server again	En lokal fil öppnas lokalt, ett serverprojekt öppnas igen på projektservern
 A local file or a project on the project server	En lokal fil eller ett projekt på projektservern
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	En ny kabel som lämnar ett skåp får en kabelförskruvning i sin storlek i botten där ingen ledig förskruvning tar den
 A new project	Ett nytt projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	En ny version laddas ned i bakgrunden och installeras när du stänger OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	En ny version laddas ned i bakgrunden och ersätter den här installationen; den används från nästa start.
@@ -89,6 +91,7 @@ Add profile for this connector	Lägg till profil för den här anslutningen
 Add rule	Lägg till regel
 Add sort key	Lägg till sorteringsnyckel
 Add the facing cutout in {}	Lägg till motstående urtag i {}
+Add the missing ones	Lägg till de som saknas
 Add to device	Lägg till i apparat
 Add to the pre-planning	Lägg till i förprojekteringen
 Add user	Lägg till användare
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	Inte ett symbolbibliotek: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Inte ändrad, låset nekades: {}. Din version sparas i fönstret Projektserver.
 Not changed: {}	Inte ändrad: {}
 Not changed: {}. Your version is kept in the Project server pane.	Inte ändrad: {}. Din version sparas i fönstret Projektserver.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Inte ansluten ännu: ingen apparat, ingen kabel. Välj skyddsdonet för dess grupp.
 Not found: {}	Hittades inte: {}
 Not in the project parts – synchronize in parts management	Inte bland projektets artiklar – synkronisera i artikelhanteringen
 Not on a wire	Inte på en ledning
@@ -1519,6 +1523,9 @@ Placed by hand	Placerad manuellt
 Placed by hand; choosing a side places them anew.	Placerade manuellt; att välja en sida placerar dem på nytt.
 Placed here: {}	Placerat här: {}
 Placed {}× in the project	Placerad {}× i projektet
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Placerad, inte i schemat: inget skyddsdon valt (markera den och använd Lägg i schemat)
+Placed, not in the schematic: {}	Placerad, inte i schemat: {}
+Placed: not connected to the mains, so not into the schematic	Placerad: ansluts inte till nätet, därför inte i schemat
 Placeholders	Platshållare
 Placeholders are filled, e.g. a link with {project} and {page}	Platshållare fylls i, t.ex. en länk med {project} och {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Platshållare som {MOTOR} i beteckningar, texter och funktionstexter fylls i vid infogning.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Egenskapen med {} värden borttagen
 Publish	Publicera
 Put a room here	Placera ett rum här
 Put in	Infoga
+Put into the schematic	Lägg i schemat
 Put into the vault	Lägg i valvet
 Put the pane back into the workspace	Lägg tillbaka panelen i arbetsytan
 Puts the project into the folder it was opened from	Lägger projektet i mappen som det öppnades från
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	{} busskablar skapade
 {} bus connections	{} bussanslutningar
 {} cable ducts	{} kabelkanaler
+{} cable glands added	{} kabelförskruvningar tillagda
 {} cable lengths taken over	{} kabellängder överförda
 {} cable passages to {}	{} kabelgenomföringar till {}
 {} cables	{} kablar
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} importerad till artikeldatabasen och placerad som {}
 {} in {}	{} i {}
 {} is in the schematic	{} finns i schemat
+{} is in the schematic: cable {} from {}	{} finns i schemat: kabel {} från {}
 {} is neither in the parts database nor on the parts server	{} finns varken i artikeldatabasen eller på artikelservern
 {} is not in the disk image	{} finns inte i skivavbilden
 {} is not made for wall mounting: place it on a mounting rail	{} är inte avsedd för väggmontage: placera den på en skena

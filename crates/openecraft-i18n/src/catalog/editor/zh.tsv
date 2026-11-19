@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = 尚未在原理图中
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	基线存储整个项目（页、设备、部件、设置）。发布修订时会存储一个基线。
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	为每根离开机柜且找不到可容纳它的空闲密封接头的电缆添加一个电缆密封接头
 A cable of the bus type for every connection without cable	为每个没有电缆的连接创建一根总线类型的电缆
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	在相邻机柜侧板的相同位置开一个相同大小的孔：两者共同构成电缆过孔
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	文件夹中的同名文件将获得新版本（签出后签入），否则添加该文件
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	在最高楼层之上添加一层
 A local file opens locally, a server project is opened on the project server again	本地文件在本地打开，服务器项目在项目服务器上重新打开
 A local file or a project on the project server	本地文件或项目服务器上的项目
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	离开机柜的新电缆，如没有空闲的密封接头可容纳，就在底部获得一个与其尺寸相符的电缆密封接头
 A new project	新项目
 A new release is downloaded in the background and installed when you close OpenECraft.	新版本会在后台下载，并在关闭 OpenECraft 时安装。
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	新版本会在后台下载并替换此安装；从下次启动起生效。
@@ -89,6 +91,7 @@ Add profile for this connector	为此接口添加配置文件
 Add rule	添加规则
 Add sort key	添加排序键
 Add the facing cutout in {}	在 {} 中添加相对的开孔
+Add the missing ones	添加缺少的
 Add to device	添加到设备
 Add to the pre-planning	添加到预规划
 Add user	添加用户
@@ -1299,6 +1302,7 @@ Not a symbol library: {}	不是符号库：{}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	未更改，锁定被拒绝：{}。你的版本保留在项目服务器窗格中。
 Not changed: {}	未更改：{}
 Not changed: {}. Your version is kept in the Project server pane.	未更改：{}。你的版本保留在项目服务器窗格中。
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	尚未连接：没有设备，没有电缆。请选择其回路的保护设备。
 Not found: {}	未找到：{}
 Not in the project parts – synchronize in parts management	不在项目部件中 – 请在部件管理中同步
 Not on a wire	不在导线上
@@ -1502,6 +1506,9 @@ Placed by hand	手动放置
 Placed by hand; choosing a side places them anew.	已手动放置；选择一侧会重新放置它们。
 Placed here: {}	放置在此处：{}
 Placed {}× in the project	在项目中已放置 {}×
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	已放置，未加入原理图：未选择保护设备（选中它并使用“加入原理图”）
+Placed, not in the schematic: {}	已放置，未加入原理图：{}
+Placed: not connected to the mains, so not into the schematic	已放置：不接入电网，因此不加入原理图
 Placeholders	占位符
 Placeholders are filled, e.g. a link with {project} and {page}	会填入占位符，例如含 {project} 和 {page} 的链接
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	标识符、文本和功能文本中的占位符（如 {MOTOR}）将在插入时填充。
@@ -1591,6 +1598,7 @@ Property groups	属性组
 Property placement	属性放置
 Property removed with {} values	已删除属性及其 {} 个值
 Publish	发布
+Put into the schematic	加入原理图
 Put into the vault	放入 Vault
 Put the pane back into the workspace	将窗格放回工作区
 Puts the project into the folder it was opened from	将项目放入打开时所在的文件夹
@@ -2439,6 +2447,7 @@ x y	x y
 {} bus cables created	已创建 {} 根总线电缆
 {} bus connections	{} 个总线连接
 {} cable ducts	{} 条线槽
+{} cable glands added	已添加 {} 个电缆密封接头
 {} cable lengths taken over	已采用 {} 个电缆长度
 {} cable passages to {}	{} 个到 {} 的电缆过孔
 {} cables	{} 根电缆
@@ -2488,6 +2497,7 @@ x y	x y
 {} has unsaved changes. Discard them?	{} 有未保存的更改。是否放弃？
 {} imported into the parts database and placed as {}	{} 已导入部件数据库并放置为 {}
 {} in {}	{1} 中的 {0}
+{} is in the schematic: cable {} from {}	{} 已在原理图中：电缆 {} 来自 {}
 {} is neither in the parts database nor on the parts server	{} 不在部件数据库中，也不在部件服务器上
 {} is not in the disk image	磁盘映像中没有 {}
 {} is not made for wall mounting: place it on a mounting rail	{} 不适合墙面安装：请将其放在安装导轨上

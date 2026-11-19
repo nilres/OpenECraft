@@ -15,6 +15,7 @@ Additional power loss in W	Dodatečný ztrátový výkon ve W
 Address scheme: siemens, iec or rockwell	Schéma adresování: siemens, iec nebo rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Přidá FV pole na střechu: řady modulů na lištách a střešních hácích rovnoběžně se střešní plochou, nebo na ploché střeše skloněně nebo východ-západ na zatížených montážních podstavcích; bez x a z uprostřed přední nebo pravé střešní plochy. Bez budovy a střechy pozemní pole na pozemku: řady skloněných stolů na beraněných sloupcích, bez x a z před tím, co stojí v zařízení. Moduly a montážní materiál jdou do kusovníku
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Přidá ohnutou a vrtanou měděnou přípojnici (nebo nahradí stejnojmennou ve skříni)
+Adds a cable gland of its size to the bottom of an enclosure for every cable that leaves it and finds no free gland that takes it	Přidá do dna skříně kabelovou vývodku vhodné velikosti pro každý kabel, který ji opouští a nenajde volnou vývodku, která jej pojme
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Přidá kabelovou průchodku k pravému sousedovi: kruhové výřezy proti sobě v obou bočních stěnách; vodiče mezi skříněmi jí procházejí
 Adds a configurator rule: insert a page macro when the condition holds	Přidá pravidlo konfigurátoru: vložit makro stránky, je-li splněna podmínka
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Přidá uzel sítě tras v poli (odbočení, průchodka, místo, kde trasa dosáhne skříně nebo přístroje)
@@ -790,6 +791,7 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	Nastaví razítko všech stránek, které žádné nevybírají, nebo stránek jednoho typu
 Sets the translation of a line of the project texts (empty removes it)	Nastaví překlad řádku textů projektu (prázdný jej odebere)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Nastaví barvu a průřez vodičů pro sítě bez definovaného potenciálu (prázdné = žádné)
+Sets whether a new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it (on by default)	Nastaví, zda nový kabel, který opouští skříň, dostane ve dně kabelovou vývodku své velikosti, kde jej žádná volná vývodka nepojme (výchozí zapnuto)
 Share of the capacity kept free in percent	Podíl kapacity ponechaný volný v procentech
 Sheets	Listy
 Shield connected at: both, first, second or none	Stínění připojeno na: both, first, second nebo none

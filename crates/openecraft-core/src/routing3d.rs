@@ -22,6 +22,7 @@ use std::collections::{BTreeMap, HashMap};
 
 pub mod bundles;
 pub mod flush;
+pub mod glands;
 pub mod grid;
 pub mod room;
 pub mod shield;

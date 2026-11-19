@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = zatím není ve schématu
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Základní verze uchovává celý projekt (stránky, přístroje, artikly, nastavení). Uvolnění revize jednu vytvoří.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Kabelová vývodka pro každý kabel, který opouští skříň a nenajde volnou vývodku, která jej pojme
 A cable of the bus type for every connection without cable	Kabel typu sběrnice pro každé spojení bez kabelu
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Výřez stejné velikosti na stejném místě v boční stěně souseda: společně tvoří kabelovou průchodku
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Soubor se stejným názvem ve složce dostane novou verzi (rezervace a vrácení se změnami), jinak se soubor přidá
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Podlaží nad nejvyšším
 A local file opens locally, a server project is opened on the project server again	Místní soubor se otevře místně, projekt ze serveru se znovu otevře na serveru projektů
 A local file or a project on the project server	Místní soubor nebo projekt na serveru projektů
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Nový kabel, který opouští skříň, dostane ve dně kabelovou vývodku své velikosti, kde jej žádná volná vývodka nepojme
 A new project	Nový projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Nová verze se stáhne na pozadí a nainstaluje se po zavření OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Nová verze se stáhne na pozadí a nahradí tuto instalaci; použije se od příštího spuštění.
@@ -89,6 +91,7 @@ Add profile for this connector	Přidat profil pro tento konektor
 Add rule	Přidat pravidlo
 Add sort key	Přidat klíč řazení
 Add the facing cutout in {}	Přidat protilehlý výřez v {}
+Add the missing ones	Přidat chybějící
 Add to device	Přidat k přístroji
 Add to the pre-planning	Převzít do předběžného návrhu
 Add user	Přidat uživatele
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	Nejde o knihovnu symbolů: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nezměněno, zámek byl odmítnut: {}. Vaše verze zůstává v podokně Projektový server.
 Not changed: {}	Nezměněno: {}
 Not changed: {}. Your version is kept in the Project server pane.	Nezměněno: {}. Vaše verze zůstává v podokně Projektový server.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Zatím nepřipojeno: žádný přístroj, žádný kabel. Zvolte ochranný přístroj jeho obvodu.
 Not found: {}	Nenalezeno: {}
 Not in the project parts – synchronize in parts management	Není mezi artikly projektu – synchronizujte ve správě artiklů
 Not on a wire	Neleží na vodiči
@@ -1519,6 +1523,9 @@ Placed by hand	Umístěno ručně
 Placed by hand; choosing a side places them anew.	Umístěno ručně; volba strany je umístí znovu.
 Placed here: {}	Zde umístěno: {}
 Placed {}× in the project	V projektu umístěno {}×
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Umístěno, není ve schématu: nebyl zvolen ochranný přístroj (vyberte jej a použijte Vložit do schématu)
+Placed, not in the schematic: {}	Umístěno, není ve schématu: {}
+Placed: not connected to the mains, so not into the schematic	Umístěno: nepřipojuje se k síti, proto ne do schématu
 Placeholders	Zástupné symboly
 Placeholders are filled, e.g. a link with {project} and {page}	Zástupné symboly se vyplní, např. odkaz s {project} a {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Zástupné symboly jako {MOTOR} v označeních, textech a textech funkcí se vyplní při vkládání.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Vlastnost odebrána s {} hodnotami
 Publish	Publikovat
 Put a room here	Umístit sem místnost
 Put in	Vložit
+Put into the schematic	Vložit do schématu
 Put into the vault	Uložit do trezoru Vault
 Put the pane back into the workspace	Vrátit panel do pracovního prostoru
 Puts the project into the folder it was opened from	Uloží projekt do složky, ze které byl otevřen
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	Vytvořeno sběrnicových kabelů: {}
 {} bus connections	Sběrnicová spojení: {}
 {} cable ducts	Kabelové kanály: {}
+{} cable glands added	Přidáno kabelových vývodek: {}
 {} cable lengths taken over	Převzato {} délek kabelů
 {} cable passages to {}	Kabelové průchodky do {1}: {0}
 {} cables	{} kabelů
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} importován do databáze artiklů a umístěn jako {}
 {} in {}	{} v {}
 {} is in the schematic	{} je ve schématu
+{} is in the schematic: cable {} from {}	{} je ve schématu: kabel {} od {}
 {} is neither in the parts database nor on the parts server	{} není v databázi artiklů ani na serveru artiklů
 {} is not in the disk image	{} není v obrazu disku
 {} is not made for wall mounting: place it on a mounting rail	{} není určen pro montáž na stěnu: umístěte jej na lištu

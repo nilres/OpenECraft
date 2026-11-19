@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = ei vielä piirikaaviossa
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Lähtötaso tallentaa koko projektin (sivut, laitteet, osat, asetukset). Revision vapauttaminen tallentaa lähtötason.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Kaapeliläpivienti jokaiselle kaapelille, joka lähtee kotelosta eikä löydä sopivaa vapaata läpivientiä
 A cable of the bus type for every connection without cable	Väylätyypin kaapeli jokaiselle yhteydelle, jolla ei ole kaapelia
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Samankokoinen aukko samassa kohdassa naapurin sivuseinässä: yhdessä ne muodostavat kaapelin läpivientiaukon
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Kerros ylimmän päälle
 A local file opens locally, a server project is opened on the project server again	Paikallinen tiedosto avautuu paikallisesti, palvelinprojekti avataan uudelleen projektipalvelimella
 A local file or a project on the project server	Paikallinen tiedosto tai projektipalvelimen projekti
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Kotelosta lähtevä uusi kaapeli saa pohjaan kokoisensa kaapeliläpiviennin, jos mikään vapaa läpivienti ei sovi sille
 A new project	Uusi projekti
 A new release is downloaded in the background and installed when you close OpenECraft.	Uusi versio ladataan taustalla ja asennetaan, kun suljet OpenECraftin.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Uusi versio ladataan taustalla ja se korvaa tämän asennuksen; sitä käytetään seuraavasta käynnistyksestä alkaen.
@@ -89,6 +91,7 @@ Add profile for this connector	Lisää profiili tälle konnektorille
 Add rule	Lisää sääntö
 Add sort key	Lisää lajitteluavain
 Add the facing cutout in {}	Lisää vastakkainen aukko kohteeseen {}
+Add the missing ones	Lisää puuttuvat
 Add to device	Lisää laitteeseen
 Add to the pre-planning	Lisää esisuunnitteluun
 Add user	Lisää käyttäjä
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	Ei symbolikirjasto: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Ei muutettu, lukitus evättiin: {}. Versiosi säilyy Projektipalvelin-ruudussa.
 Not changed: {}	Ei muutettu: {}
 Not changed: {}. Your version is kept in the Project server pane.	Ei muutettu: {}. Versiosi säilyy Projektipalvelin-ruudussa.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ei vielä liitetty: ei laitetta, ei kaapelia. Valitse sen ryhmän suojalaite.
 Not found: {}	Ei löytynyt: {}
 Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
 Not on a wire	Ei johdolla
@@ -1519,6 +1523,9 @@ Placed by hand	Sijoitettu käsin
 Placed by hand; choosing a side places them anew.	Sijoitettu käsin; puolen valinta sijoittaa ne uudelleen.
 Placed here: {}	Sijoitettu tähän: {}
 Placed {}× in the project	Sijoitettu {}× projektissa
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Sijoitettu, ei kaaviossa: suojalaitetta ei ole valittu (valitse se ja käytä Lisää kaavioon)
+Placed, not in the schematic: {}	Sijoitettu, ei kaaviossa: {}
+Placed: not connected to the mains, so not into the schematic	Sijoitettu: ei liity verkkoon, joten ei kaavioon
 Placeholders	Paikkamerkit
 Placeholders are filled, e.g. a link with {project} and {page}	Paikkamerkit täytetään, esim. linkki, jossa on {project} ja {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Paikkamerkit, kuten {MOTOR}, tunnuksissa, teksteissä ja toimintoteksteissä täytetään lisättäessä.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Ominaisuus ja sen {} arvoa poistettiin
 Publish	Julkaise
 Put a room here	Sijoita tila tähän
 Put in	Lisää
+Put into the schematic	Lisää kaavioon
 Put into the vault	Tallenna Vaultiin
 Put the pane back into the workspace	Palauta ruutu työtilaan
 Puts the project into the folder it was opened from	Tallentaa projektin kansioon, josta se avattiin
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	{} väyläkaapelia luotu
 {} bus connections	{} väyläyhteyttä
 {} cable ducts	{} johtokourua
+{} cable glands added	Kaapeliläpivientejä lisätty: {}
 {} cable lengths taken over	{} kaapelin pituutta otettiin käyttöön
 {} cable passages to {}	{} kaapelin läpivientiaukkoa kohteeseen {}
 {} cables	{} kaapelia
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} tuotiin osatietokantaan ja sijoitettiin nimellä {}
 {} in {}	{} ({})
 {} is in the schematic	{} on kaaviossa
+{} is in the schematic: cable {} from {}	{} on kaaviossa: kaapeli {} kohteesta {}
 {} is neither in the parts database nor on the parts server	{} ei ole osatietokannassa eikä osapalvelimella
 {} is not in the disk image	{} ei ole levykuvassa
 {} is not made for wall mounting: place it on a mounting rail	{} ei ole tarkoitettu seinäasennukseen: aseta se asennuskiskoon

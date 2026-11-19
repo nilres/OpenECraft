@@ -30,9 +30,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   tag, mounting height and the cable's tag, type, part, cores, cross-section and a known
   length. `place_cabinet_device` puts a device into a distribution board with the size of
   its part. CEE socket outlets, junction box lids, device connection boxes, smoke
-  alarms and sauna heaters have their own 3D models. Fixed: with two or more devices on a breaker the first cable was missing
+  alarms and sauna heaters have their own 3D models. After placing, the status says
+  whether the device went into the schematic and with which cable; one placed without a
+  protective device goes in later with *Put into the schematic* in its properties. Fixed: with two or more devices on a breaker the first cable was missing
   from the circuit and its cores were counted on the next one; a residual current
   device behind a feeder counted as protecting the feeder and all its other circuits.
+- **Cable glands for new cables:** a new cable that leaves a cabinet and finds no free
+  cable gland gets one of its size in the bottom of the cabinet (*Add cable glands for
+  new cables* in the enclosure properties, `set_auto_glands`; on by default). *Add the
+  missing ones* (`add_cable_glands`) adds them for all cables at once.
 - **Smaller rooms from floor plans on paper:** *Smallest room* (`min_room`) sets the
   smallest room kept by the detection (1 m² before: a WC or a closet was lost).
 - **Narrow lettering:** texts have a width factor, drawn so on screen and in the SVG,

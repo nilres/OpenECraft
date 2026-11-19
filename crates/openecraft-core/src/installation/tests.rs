@@ -358,6 +358,23 @@ fn items_go_on_the_nearest_wall_or_the_ceiling() {
 }
 
 #[test]
+fn a_point_on_the_wall_belongs_to_the_room() {
+    // Clicked on the surface of a wall in the 3D view, a hair outside the outline: on the
+    // wall in the room; beyond the wall: on its outside.
+    let (mut prj, ri) = room();
+    let t = prj.layout.enclosures[ri].wall();
+    for off in [0.0, -2.0, -0.4 * t] {
+        let id = { let q = before_wall(&prj, ri, 0, off); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
+        assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().face, Face::Wall(0), "{off}");
+    }
+    let id = { let q = before_wall(&prj, ri, 0, -t - 30.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().face, Face::Outside(0));
+    // A ceiling light clicked at the edge of the ceiling stays on the ceiling.
+    let id = { let q = before_wall(&prj, ri, 0, -1.0); place(&mut prj, ri, "GEN.LAMP-CEILING-LED", q) }.unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().face, Face::Roof);
+}
+
+#[test]
 fn legs_run_in_the_installation_zones() {
     let a = RunPoint { at: [0.0, 0.0], height: 300.0, floor: 0.0, zone: 2200.0 };
     let b = RunPoint { at: [3000.0, 1000.0], height: 300.0, floor: 0.0, zone: 2200.0 };

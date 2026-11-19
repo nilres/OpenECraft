@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = még nincs a kapcsolási rajzon
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Az alapállapot a teljes projektet tárolja (oldalak, készülékek, alkatrészek, beállítások). Egy revízió kiadása létrehoz egyet.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Tömszelence minden kábelhez, amely kilép egy szekrényből, és nem talál őt fogadó szabad tömszelencét
 A cable of the bus type for every connection without cable	Bustípusú kábel minden kábel nélküli kapcsolathoz
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Azonos méretű kivágás ugyanott a szomszéd oldalfalában: együtt kábelátvezetést alkotnak
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	A mappában lévő azonos nevű fájl új verziót kap (kivétel és beadás), különben a fájl hozzáadódik
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Egy szint a legfelső fölé
 A local file opens locally, a server project is opened on the project server again	A helyi fájl helyben nyílik meg, a kiszolgálóprojekt újra a projektkiszolgálón nyílik meg
 A local file or a project on the project server	Helyi fájl vagy projekt a projektkiszolgálón
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	A szekrényből kilépő új kábel a fenéken a méretének megfelelő tömszelencét kap, ha egyik szabad tömszelence sem fogadja
 A new project	Új projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Az új verzió a háttérben töltődik le, és az OpenECraft bezárásakor települ.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Az új verzió a háttérben töltődik le, és lecseréli ezt a telepítést; a következő indítástól használatos.
@@ -89,6 +91,7 @@ Add profile for this connector	Profil hozzáadása ehhez az összekötőhöz
 Add rule	Szabály hozzáadása
 Add sort key	Rendezési kulcs hozzáadása
 Add the facing cutout in {}	A szemközti kivágás hozzáadása ehhez: {}
+Add the missing ones	A hiányzók hozzáadása
 Add to device	Hozzáadás a készülékhez
 Add to the pre-planning	Hozzáadás az előtervezéshez
 Add user	Felhasználó hozzáadása
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	Nem szimbólumkönyvtár: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nem módosult, a zárolást elutasították: {}. Az Ön változata megmarad a Projektszerver panelen.
 Not changed: {}	Nem módosult: {}
 Not changed: {}. Your version is kept in the Project server pane.	Nem módosult: {}. Az Ön változata megmarad a Projektszerver panelen.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Még nincs bekötve: nincs készülék, nincs kábel. Válassza ki az áramköre védőkészülékét.
 Not found: {}	Nem található: {}
 Not in the project parts – synchronize in parts management	Nincs a projekt alkatrészei között – szinkronizálja az alkatrészkezelésben
 Not on a wire	Nincs vezetéken
@@ -1519,6 +1523,9 @@ Placed by hand	Kézzel elhelyezve
 Placed by hand; choosing a side places them anew.	Kézzel elhelyezve; egy oldal választása újra elhelyezi őket.
 Placed here: {}	Itt elhelyezve: {}
 Placed {}× in the project	{}× elhelyezve a projektben
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Elhelyezve, nincs a kapcsolási rajzon: nincs kiválasztott védőkészülék (jelölje ki, és használja a Kapcsolási rajzra parancsot)
+Placed, not in the schematic: {}	Elhelyezve, nincs a kapcsolási rajzon: {}
+Placed: not connected to the mains, so not into the schematic	Elhelyezve: nem csatlakozik a hálózatra, ezért nem kerül a kapcsolási rajzra
 Placeholders	Helyőrzők
 Placeholders are filled, e.g. a link with {project} and {page}	A helyőrzők kitöltődnek, pl. egy hivatkozás {project} és {page} értékkel
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Az azonosítókban, szövegekben és funkciószövegekben lévő helyőrzők, például {MOTOR}, beszúráskor töltődnek ki.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Tulajdonság eltávolítva {} értékkel
 Publish	Közzététel
 Put a room here	Helyiség ide
 Put in	Beillesztés
+Put into the schematic	Kapcsolási rajzra
 Put into the vault	Elhelyezés a vaultban
 Put the pane back into the workspace	A panel visszahelyezése a munkaterületre
 Puts the project into the folder it was opened from	A projektet abba a mappába helyezi, amelyből megnyitották
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	{} buszkábel létrehozva
 {} bus connections	{} buszkapcsolat
 {} cable ducts	{} kábelcsatorna
+{} cable glands added	{} kábeltömszelence hozzáadva
 {} cable lengths taken over	{} kábelhossz átvéve
 {} cable passages to {}	{0} kábelátvezetés ehhez: {1}
 {} cables	{} kábel
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} bekerült az alkatrész-adatbázisba, elhelyezve: {}
 {} in {}	{} itt: {}
 {} is in the schematic	{} a kapcsolási rajzon van
+{} is in the schematic: cable {} from {}	A(z) {} a kapcsolási rajzon van: {} kábel innen: {}
 {} is neither in the parts database nor on the parts server	{} sem az alkatrész-adatbázisban, sem az alkatrészkiszolgálón nem található
 {} is not in the disk image	A(z) {} nincs a lemezképben
 {} is not made for wall mounting: place it on a mounting rail	{} nem falra szerelésre készült: helyezze szerelősínre

@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = пока нет на схеме
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Базовая версия хранит весь проект (листы, устройства, изделия, настройки). При выпуске ревизии она создаётся автоматически.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Кабельный ввод для каждого кабеля, который выходит из шкафа и не находит свободного подходящего ввода
 A cable of the bus type for every connection without cable	Кабель шинного типа для каждого соединения без кабеля
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Вырез того же размера в том же месте боковой стенки соседа: вместе они образуют кабельный проход
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Одноимённый файл в папке получает новую версию (извлекается и возвращается), иначе файл добавляется
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Этаж над самым верхним
 A local file opens locally, a server project is opened on the project server again	Локальный файл открывается локально, проект с сервера снова открывается на сервере проектов
 A local file or a project on the project server	Локальный файл или проект на сервере проектов
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Новый кабель, выходящий из шкафа, получает в днище кабельный ввод своего размера, если ни один свободный ввод его не принимает
 A new project	Новый проект
 A new release is downloaded in the background and installed when you close OpenECraft.	Новая версия загружается в фоновом режиме и устанавливается при закрытии OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Новая версия загружается в фоновом режиме и заменяет эту установку; она используется со следующего запуска.
@@ -89,6 +91,7 @@ Add profile for this connector	Добавить профиль для этого
 Add rule	Добавить правило
 Add sort key	Добавить ключ сортировки
 Add the facing cutout in {}	Добавить ответный вырез в {}
+Add the missing ones	Добавить недостающие
 Add to device	Добавить к устройству
 Add to the pre-planning	Добавить в предварительное проектирование
 Add user	Добавить пользователя
@@ -1314,6 +1317,7 @@ Not a symbol library: {}	Не библиотека символов: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Не изменено, блокировка отклонена: {}. Ваша версия сохранена на панели «Сервер проектов».
 Not changed: {}	Не изменено: {}
 Not changed: {}. Your version is kept in the Project server pane.	Не изменено: {}. Ваша версия сохранена на панели «Сервер проектов».
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ещё не подключено: нет устройства, нет кабеля. Выберите защитное устройство его цепи.
 Not found: {}	Не найдено: {}
 Not in the project parts – synchronize in parts management	Нет в изделиях проекта – синхронизируйте в управлении изделиями
 Not on a wire	Не на проводе
@@ -1518,6 +1522,9 @@ Placed by hand	Размещено вручную
 Placed by hand; choosing a side places them anew.	Размещены вручную; выбор стороны размещает их заново.
 Placed here: {}	Размещено здесь: {}
 Placed {}× in the project	Размещено в проекте: {}×
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Размещено, не на схеме: защитное устройство не выбрано (выделите его и используйте «Добавить на схему»)
+Placed, not in the schematic: {}	Размещено, не на схеме: {}
+Placed: not connected to the mains, so not into the schematic	Размещено: не подключается к сети, поэтому не на схеме
 Placeholders	Заполнители
 Placeholders are filled, e.g. a link with {project} and {page}	Заполнители заполняются, например ссылка с {project} и {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Заполнители, например {MOTOR}, в обозначениях, текстах и текстах функций заполняются при вставке.
@@ -1609,6 +1616,7 @@ Property removed with {} values	Свойство удалено, значени�
 Publish	Опубликовать
 Put a room here	Поставить сюда помещение
 Put in	Вставить
+Put into the schematic	Добавить на схему
 Put into the vault	Поместить в хранилище
 Put the pane back into the workspace	Вернуть панель в рабочее пространство
 Puts the project into the folder it was opened from	Помещает проект в папку, из которой он был открыт
@@ -2470,6 +2478,7 @@ x y	x y
 {} bus cables created	Создано шинных кабелей: {}
 {} bus connections	Шинных соединений: {}
 {} cable ducts	Кабельные каналы: {}
+{} cable glands added	Добавлено кабельных вводов: {}
 {} cable lengths taken over	Принято длин кабелей: {}
 {} cable passages to {}	Кабельных проходов к {1}: {0}
 {} cables	Кабелей: {}
@@ -2520,6 +2529,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} импортировано в базу данных изделий и размещено как {}
 {} in {}	{} в {}
 {} is in the schematic	{} есть на схеме
+{} is in the schematic: cable {} from {}	{} на схеме: кабель {} от {}
 {} is neither in the parts database nor on the parts server	{} нет ни в базе данных изделий, ни на сервере изделий
 {} is not in the disk image	{} нет в образе диска
 {} is not made for wall mounting: place it on a mounting rail	{} не предназначен для настенного монтажа: установите его на рейку

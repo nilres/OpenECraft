@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = încă nu este în schemă
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	O versiune de referință stochează întregul proiect (pagini, dispozitive, articole, setări). Aprobarea unei revizii stochează una.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	O presetupă pentru fiecare cablu care iese dintr-o carcasă și nu găsește nicio presetupă liberă care să îl preia
 A cable of the bus type for every connection without cable	Un cablu de tipul magistralei pentru fiecare conexiune fără cablu
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Un decupaj de aceeași dimensiune în același loc în peretele lateral al vecinului: împreună formează o trecere de cabluri
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Un fișier cu același nume din folder primește o versiune nouă (check-out și check-in), altfel fișierul este adăugat
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Un nivel deasupra celui mai înalt
 A local file opens locally, a server project is opened on the project server again	Un fișier local se deschide local, un proiect de pe server este redeschis pe serverul de proiecte
 A local file or a project on the project server	Un fișier local sau un proiect de pe serverul de proiecte
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Un cablu nou care iese dintr-o carcasă primește în fund o presetupă de mărimea lui, acolo unde nicio presetupă liberă nu îl preia
 A new project	Un proiect nou
 A new release is downloaded in the background and installed when you close OpenECraft.	O versiune nouă se descarcă în fundal și se instalează când închideți OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	O versiune nouă se descarcă în fundal și înlocuiește această instalare; este folosită de la următoarea pornire.
@@ -89,6 +91,7 @@ Add profile for this connector	Adăugare profil pentru acest conector
 Add rule	Adăugare regulă
 Add sort key	Adăugare cheie de sortare
 Add the facing cutout in {}	Adăugare decupaj corespondent în {}
+Add the missing ones	Adaugă-le pe cele lipsă
 Add to device	Adăugare la dispozitiv
 Add to the pre-planning	Adăugare la preplanificare
 Add user	Adăugare utilizator
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	Nu este o bibliotecă de simboluri: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nemodificat, blocarea a fost refuzată: {}. Versiunea dvs. este păstrată în panoul Server de proiecte.
 Not changed: {}	Nemodificat: {}
 Not changed: {}. Your version is kept in the Project server pane.	Nemodificat: {}. Versiunea dvs. este păstrată în panoul Server de proiecte.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Încă neconectat: niciun aparat, niciun cablu. Alegeți dispozitivul de protecție al circuitului său.
 Not found: {}	Negăsit: {}
 Not in the project parts – synchronize in parts management	Nu se află în articolele proiectului – sincronizați în gestionarea articolelor
 Not on a wire	Nu se află pe un conductor
@@ -1519,6 +1523,9 @@ Placed by hand	Plasat manual
 Placed by hand; choosing a side places them anew.	Plasate manual; alegerea unei laturi le plasează din nou.
 Placed here: {}	Plasat aici: {}
 Placed {}× in the project	Plasat {}× în proiect
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Plasat, nu este în schemă: niciun dispozitiv de protecție ales (selectați-l și folosiți Pune în schemă)
+Placed, not in the schematic: {}	Plasat, nu este în schemă: {}
+Placed: not connected to the mains, so not into the schematic	Plasat: nu se conectează la rețea, deci nu intră în schemă
 Placeholders	Substituenți
 Placeholders are filled, e.g. a link with {project} and {page}	Substituenții sunt completați, de ex. un link cu {project} și {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Substituenții precum {MOTOR} din identificatori, texte și texte de funcție se completează la inserare.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Proprietate eliminată împreună cu {} valori
 Publish	Publică
 Put a room here	Pune o încăpere aici
 Put in	Inserare
+Put into the schematic	Pune în schemă
 Put into the vault	Plasare în vault
 Put the pane back into the workspace	Readucerea panoului în spațiul de lucru
 Puts the project into the folder it was opened from	Plasează proiectul în folderul din care a fost deschis
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	{} cabluri de magistrală create
 {} bus connections	{} conexiuni de magistrală
 {} cable ducts	{} canale de cablu
+{} cable glands added	Presetupe adăugate: {}
 {} cable lengths taken over	{} lungimi de cablu preluate
 {} cable passages to {}	{} treceri de cabluri spre {}
 {} cables	{} cabluri
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} importat în baza de date de articole și plasat ca {}
 {} in {}	{} în {}
 {} is in the schematic	{} este în schemă
+{} is in the schematic: cable {} from {}	{} este în schemă: cablul {} de la {}
 {} is neither in the parts database nor on the parts server	{} nu se află nici în baza de date de articole, nici pe serverul de articole
 {} is not in the disk image	{} nu este în imaginea de disc
 {} is not made for wall mounting: place it on a mounting rail	{} nu este destinat montajului pe perete: așezați-l pe o șină

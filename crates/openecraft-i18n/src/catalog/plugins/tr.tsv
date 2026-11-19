@@ -15,6 +15,7 @@ Additional power loss in W	W cinsinden ek güç kaybı
 Address scheme: siemens, iec or rockwell	Adres şeması: siemens, iec veya rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Bir çatıya PV dizisi ekler: bir çatı yüzeyine paralel olarak raylar ve çatı kancaları üzerinde modül sıraları ya da düz çatıda balastlı montaj ayakları üzerinde eğimli veya doğu-batı; x ve z olmadan ön veya sağ çatı yüzeyinin ortasında. Bina ve çatı olmadan arsada arazi tipi bir dizi: çakma direkler üzerinde eğimli masa sıraları, x ve z olmadan tesiste duranların önünde. Modüller ve montaj malzemesi malzeme listesine girer
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Bükülmüş ve delinmiş bir bakır bara ekler (veya panodaki aynı adlı barayı değiştirir)
+Adds a cable gland of its size to the bottom of an enclosure for every cable that leaves it and finds no free gland that takes it	Bir panodan çıkan ve onu alacak boş rakor bulamayan her kablo için panonun tabanına uygun boyutta bir kablo rakoru ekler
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Sağ komşuya bir kablo geçişi ekler: her iki yan duvarda karşılıklı yuvarlak kesimler; panolar arasındaki teller buradan geçer
 Adds a configurator rule: insert a page macro when the condition holds	Bir yapılandırıcı kuralı ekler: koşul sağlandığında bir sayfa makrosu ekle
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Saha güzergâh ağına bir düğüm ekler (kavşak, geçiş, bir panoya veya cihaza ulaşılan nokta)
@@ -790,6 +791,7 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	Kendi antedini seçmeyen tüm sayfaların veya bir türdeki sayfaların antedini ayarlar
 Sets the translation of a line of the project texts (empty removes it)	Proje metinlerinin bir satırının çevirisini ayarlar (boş değer çeviriyi kaldırır)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Tanımlı potansiyeli olmayan ağların tel rengini ve kesitini ayarlar (boş = yok)
+Sets whether a new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it (on by default)	Bir panodan çıkan yeni kablonun, hiçbir boş rakor onu almıyorsa tabanda kendi boyutunda bir kablo rakoru alıp almayacağını ayarlar (varsayılan olarak açık)
 Share of the capacity kept free in percent	Yüzde olarak boş tutulan kapasite oranı
 Sheets	Paftalar
 Shield connected at: both, first, second or none	Ekranın bağlandığı yer: both, first, second veya none

@@ -620,6 +620,7 @@ impl Default for Layout {
             terminations: Vec::new(),
             duct_fill_limit: 70.0,
             hardware: true,
+            auto_glands: true,
             macros: Vec::new(),
             routing: Default::default(),
             frozen: Vec::new(),

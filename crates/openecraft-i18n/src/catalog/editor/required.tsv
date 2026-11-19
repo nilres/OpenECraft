@@ -73,6 +73,7 @@
 ? = not in the schematic yet	? = noch nicht im Schaltplan	? = pas encore dans le schéma	? = aún no está en el esquema
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Eine Baseline speichert das ganze Projekt (Seiten, Geräte, Artikel, Einstellungen). Die Freigabe einer Revision speichert eine.	Une référence enregistre tout le projet (pages, appareils, articles, paramètres). La diffusion d'une révision en enregistre une.	Una línea base guarda todo el proyecto (páginas, dispositivos, artículos, ajustes). Liberar una revisión guarda una.
 A building with one level at ground level, beside what stands in the plant	Ein Gebäude mit einer Ebene auf Geländehöhe, neben dem, was in der Anlage steht	Un bâtiment avec un niveau au niveau du sol, à côté de ce qui se trouve déjà dans l'installation	Un edificio con un nivel a cota de terreno, junto a lo que ya está en la instalación
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Eine Kabelverschraubung für jedes Kabel, das ein Gehäuse verlässt und keine freie Verschraubung findet, die es aufnimmt	Un presse-étoupe pour chaque câble qui sort d'une armoire et ne trouve aucun presse-étoupe libre qui le prenne	Un prensaestopas para cada cable que sale de un armario y no encuentra ningún prensaestopas libre que lo admita
 A cable of the bus type for every connection without cable	Ein Kabel des Bustyps für jede Verbindung ohne Kabel	Un câble du type de bus pour chaque liaison sans câble	Un cable del tipo de bus para cada conexión sin cable
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Ein gleich großer Ausschnitt an derselben Stelle in der Seitenwand des Nachbarn: zusammen bilden sie eine Kabeldurchführung	Une découpe de même taille au même endroit dans la paroi latérale de la voisine : ensemble elles forment un passage de câbles	Un recorte del mismo tamaño en el mismo lugar de la pared lateral del vecino: juntos forman un paso de cables
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Eine gleichnamige Datei im Ordner erhält eine neue Version (aus- und eingecheckt), sonst wird die Datei hinzugefügt	Un fichier du même nom dans le dossier reçoit une nouvelle version (extrait puis archivé), sinon le fichier est ajouté	Un archivo con el mismo nombre en la carpeta recibe una nueva versión (desprotegido y protegido), si no el archivo se añade
@@ -84,6 +85,7 @@ A level on top of the highest one	Eine Ebene über der höchsten	Un niveau au-de
 A link joins two building entries: add building entries to the outer walls of rooms in different buildings (Layout space › Building entry).	Eine Verbindung verbindet zwei Gebäudeeinführungen: Gebäudeeinführungen in Außenwände von Räumen verschiedener Gebäude setzen (Layoutraum › Gebäudeeinführung).	Une liaison relie deux entrées de bâtiment : ajoutez des entrées de bâtiment aux murs extérieurs de pièces de bâtiments différents (Espace de montage › Entrée de bâtiment).	Un enlace une dos entradas de edificio: añada entradas de edificio a los muros exteriores de salas de distintos edificios (Espacio de montaje › Entrada de edificio).
 A local file opens locally, a server project is opened on the project server again	Eine lokale Datei wird lokal geöffnet, ein Serverprojekt wieder auf dem Projektserver	Un fichier local s'ouvre en local, un projet du serveur est rouvert sur le serveur de projets	Un archivo local se abre localmente, un proyecto del servidor se vuelve a abrir en el servidor de proyectos
 A local file or a project on the project server	Eine lokale Datei oder ein Projekt auf dem Projektserver	Un fichier local ou un projet du serveur de projets	Un archivo local o un proyecto del servidor de proyectos
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Ein neues Kabel, das ein Gehäuse verlässt, bekommt eine Kabelverschraubung seiner Größe im Boden, wo keine freie Verschraubung es aufnimmt	Un nouveau câble qui sort d'une armoire reçoit un presse-étoupe à sa taille dans le fond là où aucun presse-étoupe libre ne le prend	Un cable nuevo que sale de un armario recibe un prensaestopas de su tamaño en el fondo donde ningún prensaestopas libre lo admite
 A new project	Ein neues Projekt	Un nouveau projet	Un proyecto nuevo
 A new release is downloaded in the background and installed when you close OpenECraft.	Eine neue Version wird im Hintergrund heruntergeladen und beim Schließen von OpenECraft installiert.	Une nouvelle version est téléchargée en arrière-plan et installée à la fermeture d'OpenECraft.	Una nueva versión se descarga en segundo plano y se instala al cerrar OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Eine neue Version wird im Hintergrund heruntergeladen und ersetzt diese Installation; sie gilt ab dem nächsten Start.	Une nouvelle version est téléchargée en arrière-plan et remplace cette installation ; elle est utilisée dès le prochain démarrage.	Una nueva versión se descarga en segundo plano y sustituye esta instalación; se usa a partir del próximo inicio.
@@ -131,6 +133,7 @@ Add row	Zeile hinzufügen	Ajouter une ligne	Añadir fila
 Add rule	Regel hinzufügen	Ajouter une règle	Añadir regla
 Add sort key	Sortierung hinzufügen	Ajouter un critère de tri	Añadir criterio de orden
 Add the facing cutout in {}	Gegenüberliegenden Ausschnitt in {} hinzufügen	Ajouter la découpe en face dans {}	Añadir el recorte enfrentado en {}
+Add the missing ones	Fehlende hinzufügen	Ajouter ceux qui manquent	Añadir los que faltan
 Add to device	Zum Betriebsmittel hinzufügen	Ajouter à l'appareil	Añadir al dispositivo
 Add to the pre-planning	In die Vorplanung übernehmen	Ajouter à la pré-étude	Añadir a la preplanificación
 Add user	Benutzer hinzufügen	Ajouter un utilisateur	Añadir usuario
@@ -1553,6 +1556,7 @@ Not a symbol library: {}	Keine Symbolbibliothek: {}	Ce n'est pas une bibliothèq
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nicht geändert, die Sperre wurde abgelehnt: {}. Ihre Fassung bleibt im Bereich Projektserver erhalten.	Non modifié, le verrou a été refusé : {}. Votre version est conservée dans le volet Serveur de projets.	No modificado, el bloqueo fue rechazado: {}. Su versión se conserva en el panel Servidor de proyectos.
 Not changed: {}	Nicht geändert: {}	Non modifié : {}	No modificado: {}
 Not changed: {}. Your version is kept in the Project server pane.	Nicht geändert: {}. Ihre Fassung bleibt im Bereich Projektserver erhalten.	Non modifié : {}. Votre version est conservée dans le volet Serveur de projets.	No modificado: {}. Su versión se conserva en el panel Servidor de proyectos.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Noch nicht angeschlossen: kein Betriebsmittel, kein Kabel. Das Schutzorgan seines Stromkreises wählen.	Pas encore raccordé : aucun appareil, aucun câble. Choisissez l'appareil de protection de son circuit.	Aún no conectado: ningún equipo, ningún cable. Elija el dispositivo de protección de su circuito.
 Not found: {}	Nicht gefunden: {}	Introuvable : {}	No encontrado: {}
 Not in the project parts – synchronize in parts management	Nicht in den Projektartikeln – in der Artikelverwaltung synchronisieren	Absent des articles du projet – synchroniser dans la gestion des articles	No está en los artículos del proyecto – sincroniza en la gestión de artículos
 Not on a page	Nicht auf einer Seite	Pas sur une page	No está en una página
@@ -1780,6 +1784,9 @@ Placed by hand	Von Hand platziert	Placé à la main	Colocado a mano
 Placed by hand; choosing a side places them anew.	Von Hand platziert; die Wahl einer Lage platziert sie neu.	Placés manuellement ; choisir un côté les replace.	Colocados a mano; elegir un lado los vuelve a colocar.
 Placed here: {}	Hier platziert: {}	Placé ici : {}	Colocado aquí: {}
 Placed {}× in the project	{}× im Projekt platziert	Placé {}× dans le projet	Colocado {}× en el proyecto
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Platziert, nicht im Schaltplan: kein Schutzorgan gewählt (auswählen und In den Schaltplan verwenden)	Placé, pas dans le schéma : aucun appareil de protection choisi (sélectionnez-le et utilisez Mettre dans le schéma)	Colocado, no está en el esquema: no se eligió ningún dispositivo de protección (selecciónelo y use Poner en el esquema)
+Placed, not in the schematic: {}	Platziert, nicht im Schaltplan: {}	Placé, pas dans le schéma : {}	Colocado, no está en el esquema: {}
+Placed: not connected to the mains, so not into the schematic	Platziert: nicht am Netz, daher nicht in den Schaltplan	Placé : non raccordé au réseau, donc pas dans le schéma	Colocado: no se conecta a la red, por eso no va al esquema
 Placeholders	Platzhalter	Variables	Marcadores
 Placeholders are filled, e.g. a link with {project} and {page}	Platzhalter werden gefüllt, z. B. ein Link mit {project} und {page}	Les variables sont remplies, p. ex. un lien avec {project} et {page}	Los marcadores se rellenan, p. ej. un enlace con {project} y {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Platzhalter wie {MOTOR} in Kennzeichen, Texten und Funktionstexten werden beim Einfügen gefüllt.	Les variables comme {MOTOR} dans les repères, textes et textes de fonction sont remplies à l'insertion.	Los marcadores como {MOTOR} en designaciones, textos y textos de función se rellenan al insertar.
@@ -1885,6 +1892,7 @@ Publish	Veröffentlichen	Publier	Publicar
 Put a room here	Raum hierher stellen	Placer une pièce ici	Colocar una sala aquí
 Put another file under the level (scale and place stay)	Eine andere Datei unter die Ebene legen (Maßstab und Lage bleiben)	Placer un autre fichier sous le niveau (échelle et position conservées)	Colocar otro archivo bajo el nivel (se mantienen escala y posición)
 Put in	Einsetzen	Insérer	Insertar
+Put into the schematic	In den Schaltplan	Mettre dans le schéma	Poner en el esquema
 Put into the vault	Im Vault ablegen	Placer dans le Vault	Colocar en el Vault
 Put the pane back into the workspace	Das Fenster wieder im Arbeitsbereich andocken	Remettre le panneau dans l'espace de travail	Volver a acoplar el panel en el espacio de trabajo
 Put under the level	Unter die Ebene legen	Placer sous le niveau	Colocar bajo el nivel
@@ -2881,6 +2889,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} bus cables created	{} Buskabel angelegt	{} câbles de bus créés	{} cables de bus creados
 {} bus connections	{} Busverbindungen	{} liaisons bus	{} conexiones de bus
 {} cable ducts	{} Kabelkanäle	{} goulottes	{} canaletas
+{} cable glands added	{} Kabelverschraubungen hinzugefügt	{} presse-étoupes ajoutés	{} prensaestopas añadidos
 {} cable lengths taken over	{} Kabellängen übernommen	{} longueurs de câble reprises	{} longitudes de cable adoptadas
 {} cable passages to {}	{} Kabeldurchführungen zu {}	{} passages de câbles vers {}	{} pasos de cables hacia {}
 {} cables	{} Kabel	{} câbles	{} cables
@@ -2936,6 +2945,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} imported into the parts database and placed as {}	{} in die Artikeldatenbank übernommen und als {} platziert	{} importé dans la base d'articles et placé comme {}	{} importado a la base de datos de artículos y colocado como {}
 {} in {}	{} in {}	{} dans {}	{} en {}
 {} is in the schematic	{} ist im Schaltplan	{} est dans le schéma	{} está en el esquema
+{} is in the schematic: cable {} from {}	{} ist im Schaltplan: Kabel {} von {}	{} est dans le schéma : câble {} depuis {}	{} está en el esquema: cable {} desde {}
 {} is neither in the parts database nor on the parts server	{} ist weder in der Artikeldatenbank noch auf dem Artikelserver	{} n'est ni dans la base d'articles ni sur le serveur d'articles	{} no está ni en la base de datos de artículos ni en el servidor de artículos
 {} is not an OpenECraft project template.	{} ist keine OpenECraft-Projektvorlage.	{} n'est pas un modèle de projet OpenECraft.	{} no es una plantilla de proyecto de OpenECraft.
 {} is not in the disk image	{} ist nicht im Disk-Image	{} n'est pas dans l'image disque	{} no está en la imagen de disco

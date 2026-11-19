@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = jeszcze nie na schemacie
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Wersja bazowa zapisuje cały projekt (strony, urządzenia, artykuły, ustawienia). Wydanie rewizji zapisuje wersję bazową.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Dławnica dla każdego kabla, który wychodzi z obudowy i nie znajduje wolnej dławnicy, która go przyjmie
 A cable of the bus type for every connection without cable	Kabel typu magistrali dla każdego połączenia bez kabla
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Wycięcie tej samej wielkości w tym samym miejscu ściany bocznej sąsiada: razem tworzą przepust kablowy
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Plik o tej samej nazwie w folderze otrzymuje nową wersję (wyewidencjonowanie i zaewidencjonowanie), w przeciwnym razie plik jest dodawany
@@ -52,6 +53,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Kondygnacja nad najwyższą
 A local file opens locally, a server project is opened on the project server again	Plik lokalny otwiera się lokalnie, projekt z serwera jest ponownie otwierany na serwerze projektów
 A local file or a project on the project server	Plik lokalny lub projekt na serwerze projektów
+A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Nowy kabel wychodzący z obudowy dostaje w dnie dławnicę swojego rozmiaru, gdy żadna wolna dławnica go nie przyjmuje
 A new project	Nowy projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Nowa wersja jest pobierana w tle i instalowana po zamknięciu OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Nowa wersja jest pobierana w tle i zastępuje tę instalację; jest używana od następnego uruchomienia.
@@ -89,6 +91,7 @@ Add profile for this connector	Dodaj profil dla tego konektora
 Add rule	Dodaj regułę
 Add sort key	Dodaj klucz sortowania
 Add the facing cutout in {}	Dodaj przeciwległe wycięcie w {}
+Add the missing ones	Dodaj brakujące
 Add to device	Dodaj do urządzenia
 Add to the pre-planning	Dodaj do planowania wstępnego
 Add user	Dodaj użytkownika
@@ -1315,6 +1318,7 @@ Not a symbol library: {}	To nie jest biblioteka symboli: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nie zmieniono, blokada została odrzucona: {}. Twoja wersja jest przechowywana w panelu Serwer projektów.
 Not changed: {}	Nie zmieniono: {}
 Not changed: {}. Your version is kept in the Project server pane.	Nie zmieniono: {}. Twoja wersja jest przechowywana w panelu Serwer projektów.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Jeszcze nie podłączone: brak urządzenia, brak kabla. Wybierz urządzenie zabezpieczające jego obwodu.
 Not found: {}	Nie znaleziono: {}
 Not in the project parts – synchronize in parts management	Brak wśród artykułów projektu – zsynchronizuj w zarządzaniu artykułami
 Not on a wire	Nie na przewodzie
@@ -1519,6 +1523,9 @@ Placed by hand	Umieszczone ręcznie
 Placed by hand; choosing a side places them anew.	Umieszczone ręcznie; wybór strony umieszcza je na nowo.
 Placed here: {}	Umieszczone tutaj: {}
 Placed {}× in the project	Umieszczono {}× w projekcie
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Umieszczono, nie na schemacie: nie wybrano urządzenia zabezpieczającego (zaznacz je i użyj Dodaj do schematu)
+Placed, not in the schematic: {}	Umieszczono, nie na schemacie: {}
+Placed: not connected to the mains, so not into the schematic	Umieszczono: nie podłączone do sieci, więc nie na schemacie
 Placeholders	Symbole zastępcze
 Placeholders are filled, e.g. a link with {project} and {page}	Symbole zastępcze są wypełniane, np. link z {project} i {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Symbole zastępcze, takie jak {MOTOR}, w oznaczeniach, tekstach i tekstach funkcji są wypełniane podczas wstawiania.
@@ -1610,6 +1617,7 @@ Property removed with {} values	Usunięto właściwość z {} wartościami
 Publish	Opublikuj
 Put a room here	Umieść tu pomieszczenie
 Put in	Wstaw
+Put into the schematic	Dodaj do schematu
 Put into the vault	Umieść w magazynie Vault
 Put the pane back into the workspace	Przywróć panel do obszaru roboczego
 Puts the project into the folder it was opened from	Umieszcza projekt w folderze, z którego został otwarty
@@ -2471,6 +2479,7 @@ x y	x y
 {} bus cables created	Utworzone kable magistrali: {}
 {} bus connections	Połączenia magistrali: {}
 {} cable ducts	Korytka kablowe: {}
+{} cable glands added	Dodano dławnice: {}
 {} cable lengths taken over	Przejęto długości kabli: {}
 {} cable passages to {}	Przepusty kablowe do {1}: {0}
 {} cables	Kable: {}
@@ -2521,6 +2530,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} zaimportowano do bazy danych artykułów i umieszczono jako {}
 {} in {}	{} w {}
 {} is in the schematic	{} jest na schemacie
+{} is in the schematic: cable {} from {}	{} jest na schemacie: kabel {} od {}
 {} is neither in the parts database nor on the parts server	{} nie ma ani w bazie danych artykułów, ani na serwerze artykułów
 {} is not in the disk image	{} nie ma w obrazie dysku
 {} is not made for wall mounting: place it on a mounting rail	{} nie jest przeznaczony do montażu naściennego: umieść go na szynie

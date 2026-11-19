@@ -2,6 +2,10 @@
 
 
 use super::is_zero;
+
+fn is_on(b: &bool) -> bool {
+    *b
+}
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -25,6 +29,10 @@ pub struct Layout {
     pub duct_fill_limit: f32,
     /// Screws, nuts and rivet nuts of the fastening systems in the bill of materials.
     pub hardware: bool,
+    /// A new cable that leaves an enclosure gets a cable gland of its size in the
+    /// bottom where no free gland takes it (`crate::routing3d::glands`); on by default.
+    #[serde(skip_serializing_if = "is_on")]
+    pub auto_glands: bool,
     /// 3D macros of the project (groups of items to insert again).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub macros: Vec<PanelMacro>,
