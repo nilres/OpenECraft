@@ -46,6 +46,7 @@
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	기준선은 전체 프로젝트(페이지, 장치, 부품, 설정)를 저장합니다. 개정을 릴리스하면 기준선이 하나 저장됩니다.
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	외함을 나가면서 받을 수 있는 빈 글랜드를 찾지 못한 케이블마다 케이블 글랜드 추가
 A cable of the bus type for every connection without cable	케이블이 없는 모든 연결에 버스 유형의 케이블
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	외함을 나가면서 빈 글랜드를 찾지 못한 케이블은 크기에 맞는 글랜드를 받습니다: 실내 기기는 천장면, 필드 또는 벽걸이 외함은 바닥면
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	인접 외함 측벽의 같은 위치에 있는 같은 크기의 컷아웃: 함께 케이블 통로를 이룹니다
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	폴더에 같은 이름의 파일이 있으면 새 버전이 생성되고(체크 아웃 후 체크 인), 그렇지 않으면 파일이 추가됩니다
 A folder with one small file per page, device and part instead of one project file, for version control such as git	하나의 프로젝트 파일 대신 페이지, 장치 및 부품마다 작은 파일이 하나 있는 폴더, git과 같은 버전 관리용
@@ -53,7 +54,6 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	가장 높은 층 위의 층
 A local file opens locally, a server project is opened on the project server again	로컬 파일은 로컬에서 열리고, 서버 프로젝트는 프로젝트 서버에서 다시 열립니다
 A local file or a project on the project server	로컬 파일 또는 프로젝트 서버의 프로젝트
-A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	외함을 나가는 새 케이블은 비어 있는 글랜드가 받지 못하면 바닥에 크기에 맞는 케이블 글랜드를 받습니다
 A new project	새 프로젝트
 A new release is downloaded in the background and installed when you close OpenECraft.	새 릴리스는 백그라운드에서 다운로드되며 OpenECraft를 닫으면 설치됩니다.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	새 릴리스는 백그라운드에서 다운로드되어 이 설치를 대체하며, 다음 실행부터 사용됩니다.

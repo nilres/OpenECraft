@@ -46,6 +46,7 @@
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	ベースラインはプロジェクト全体 (ページ、デバイス、部品、設定) を保存します。リビジョンをリリースするとベースラインが 1 つ保存されます。
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	盤から出て、収まる空きグランドが見つからないケーブルごとにケーブルグランドを追加
 A cable of the bus type for every connection without cable	ケーブルのない接続ごとにバスタイプのケーブルを作成
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	盤から出て空いているグランドが見つからないケーブルは、そのサイズのグランドを得ます：室内の機器には天井面、フィールドまたは壁掛けの盤には底面
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	隣のエンクロージャーの側板の同じ位置に同じサイズの切り欠きを追加します。両方でケーブル貫通口になります
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	フォルダー内に同名のファイルがある場合は新しいバージョンになり (チェックアウトとチェックイン)、ない場合はファイルが追加されます
 A folder with one small file per page, device and part instead of one project file, for version control such as git	1 つのプロジェクトファイルの代わりに、ページ、機器、部品ごとに小さなファイルを持つフォルダー。git などのバージョン管理用
@@ -53,7 +54,6 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	最上階の上の階
 A local file opens locally, a server project is opened on the project server again	ローカルファイルはローカルで開き、サーバープロジェクトはプロジェクトサーバーで再度開きます
 A local file or a project on the project server	ローカルファイルまたはプロジェクトサーバー上のプロジェクト
-A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	盤から出る新しいケーブルは、空いているグランドで収まらない場合、底面にそのサイズのケーブルグランドを得ます
 A new project	新しいプロジェクト
 A new release is downloaded in the background and installed when you close OpenECraft.	新しいリリースはバックグラウンドでダウンロードされ、OpenECraft を閉じるとインストールされます。
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	新しいリリースはバックグラウンドでダウンロードされ、このインストールを置き換えます。次回の起動から使われます。

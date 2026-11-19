@@ -46,6 +46,7 @@
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	基线存储整个项目（页、设备、部件、设置）。发布修订时会存储一个基线。
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	为每根离开机柜且找不到可容纳它的空闲密封接头的电缆添加一个电缆密封接头
 A cable of the bus type for every connection without cable	为每个没有电缆的连接创建一根总线类型的电缆
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	离开机柜且找不到空闲密封接头的电缆会获得一个与其尺寸相符的密封接头：房间内的设备装在顶部，现场设备或挂墙机柜装在底部
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	在相邻机柜侧板的相同位置开一个相同大小的孔：两者共同构成电缆过孔
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	文件夹中的同名文件将获得新版本（签出后签入），否则添加该文件
 A folder with one small file per page, device and part instead of one project file, for version control such as git	一个文件夹，每个页面、设备和部件各有一个小文件，而不是单个项目文件，用于 git 等版本控制
@@ -53,7 +54,6 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	在最高楼层之上添加一层
 A local file opens locally, a server project is opened on the project server again	本地文件在本地打开，服务器项目在项目服务器上重新打开
 A local file or a project on the project server	本地文件或项目服务器上的项目
-A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	离开机柜的新电缆，如没有空闲的密封接头可容纳，就在底部获得一个与其尺寸相符的电缆密封接头
 A new project	新项目
 A new release is downloaded in the background and installed when you close OpenECraft.	新版本会在后台下载，并在关闭 OpenECraft 时安装。
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	新版本会在后台下载并替换此安装；从下次启动起生效。

@@ -46,6 +46,7 @@
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Lähtötaso tallentaa koko projektin (sivut, laitteet, osat, asetukset). Revision vapauttaminen tallentaa lähtötason.
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Kaapeliläpivienti jokaiselle kaapelille, joka lähtee kotelosta eikä löydä sopivaa vapaata läpivientiä
 A cable of the bus type for every connection without cable	Väylätyypin kaapeli jokaiselle yhteydelle, jolla ei ole kaapelia
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Kotelosta lähtevä kaapeli, joka ei löydä vapaata läpivientiä, saa kokoisensa läpiviennin: kattoon huoneessa olevalle laitteelle, pohjaan kentälle tai seinällä riippuvalle kotelolle
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Samankokoinen aukko samassa kohdassa naapurin sivuseinässä: yhdessä ne muodostavat kaapelin läpivientiaukon
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Kansio, jossa on pieni tiedosto jokaista sivua, laitetta ja nimikettä kohti yhden projektitiedoston sijaan, versionhallintaa kuten gitiä varten
@@ -53,7 +54,6 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Kerros ylimmän päälle
 A local file opens locally, a server project is opened on the project server again	Paikallinen tiedosto avautuu paikallisesti, palvelinprojekti avataan uudelleen projektipalvelimella
 A local file or a project on the project server	Paikallinen tiedosto tai projektipalvelimen projekti
-A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Kotelosta lähtevä uusi kaapeli saa pohjaan kokoisensa kaapeliläpiviennin, jos mikään vapaa läpivienti ei sovi sille
 A new project	Uusi projekti
 A new release is downloaded in the background and installed when you close OpenECraft.	Uusi versio ladataan taustalla ja asennetaan, kun suljet OpenECraftin.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Uusi versio ladataan taustalla ja se korvaa tämän asennuksen; sitä käytetään seuraavasta käynnistyksestä alkaen.

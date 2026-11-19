@@ -46,6 +46,7 @@
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Az alapállapot a teljes projektet tárolja (oldalak, készülékek, alkatrészek, beállítások). Egy revízió kiadása létrehoz egyet.
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Tömszelence minden kábelhez, amely kilép egy szekrényből, és nem talál őt fogadó szabad tömszelencét
 A cable of the bus type for every connection without cable	Bustípusú kábel minden kábel nélküli kapcsolathoz
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	A szekrényből kilépő kábel, amely nem talál szabad tömszelencét, a méretének megfelelőt kap: a tetőbe a helyiségben lévő készülékhez, a fenékbe a terephez vagy a falon függő szekrénynél
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Azonos méretű kivágás ugyanott a szomszéd oldalfalában: együtt kábelátvezetést alkotnak
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	A mappában lévő azonos nevű fájl új verziót kap (kivétel és beadás), különben a fájl hozzáadódik
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Mappa oldalanként, készülékenként és cikkenként egy kis fájllal egyetlen projektfájl helyett, verziókezeléshez, például githez
@@ -53,7 +54,6 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Egy szint a legfelső fölé
 A local file opens locally, a server project is opened on the project server again	A helyi fájl helyben nyílik meg, a kiszolgálóprojekt újra a projektkiszolgálón nyílik meg
 A local file or a project on the project server	Helyi fájl vagy projekt a projektkiszolgálón
-A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	A szekrényből kilépő új kábel a fenéken a méretének megfelelő tömszelencét kap, ha egyik szabad tömszelence sem fogadja
 A new project	Új projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Az új verzió a háttérben töltődik le, és az OpenECraft bezárásakor települ.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Az új verzió a háttérben töltődik le, és lecseréli ezt a telepítést; a következő indítástól használatos.

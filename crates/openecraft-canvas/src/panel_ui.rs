@@ -1927,7 +1927,7 @@ impl PanelUi {
         ui.checkbox(&mut prj.layout.hardware, tr("Fastening hardware in the bill of materials")).on_hover_text(tr("Screws, nuts, washers and rivet nuts of the fixing points"));
         ui.horizontal(|ui| {
             ui.checkbox(&mut prj.layout.auto_glands, tr("Add cable glands for new cables"))
-                .on_hover_text(tr("A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it"));
+                .on_hover_text(tr("A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall"));
             if ui.small_button(tr("Add the missing ones")).on_hover_text(tr("A cable gland for every cable that leaves an enclosure and finds no free gland that takes it")).clicked() {
                 let n = openecraft_core::routing3d::glands::add_missing(prj).len();
                 self.status = tr_fmt!("{} cable glands added", n);

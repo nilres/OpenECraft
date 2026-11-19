@@ -46,6 +46,7 @@
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Referans sürüm tüm projeyi (sayfalar, cihazlar, parçalar, ayarlar) saklar. Bir revizyonun yayımlanması bir referans sürüm saklar.
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Bir panodan çıkan ve onu alacak boş rakor bulamayan her kablo için bir kablo rakoru
 A cable of the bus type for every connection without cable	Kablosu olmayan her bağlantı için bus tipinde bir kablo
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Bir panodan çıkan ve boş rakor bulamayan kablo kendi boyutunda bir rakor alır: odadaki bir cihaz için tavana, saha veya duvara asılı bir pano için tabana
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Komşunun yan duvarında aynı yerde aynı boyutta bir kesim: birlikte bir kablo geçişi oluştururlar
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Klasörde aynı adlı bir dosya varsa yeni bir sürüm alır (kullanıma alınıp iade edilir), aksi halde dosya eklenir
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Tek bir proje dosyası yerine her sayfa, cihaz ve parça başına küçük bir dosya içeren klasör, git gibi sürüm denetimi için
@@ -53,7 +54,6 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	En üsttekinin üzerine bir kat
 A local file opens locally, a server project is opened on the project server again	Yerel bir dosya yerel olarak açılır, sunucu projesi proje sunucusunda yeniden açılır
 A local file or a project on the project server	Yerel bir dosya veya proje sunucusundaki bir proje
-A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Bir panodan çıkan yeni kablo, hiçbir boş rakor onu almıyorsa tabana kendi boyutunda bir kablo rakoru alır
 A new project	Yeni bir proje
 A new release is downloaded in the background and installed when you close OpenECraft.	Yeni bir sürüm arka planda indirilir ve OpenECraft'ı kapattığınızda yüklenir.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Yeni bir sürüm arka planda indirilir ve bu kurulumun yerini alır; bir sonraki başlatmadan itibaren kullanılır.

@@ -58,13 +58,13 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "set_auto_glands",
-        help: tr_const!("Sets whether a new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it (on by default)"),
+        help: tr_const!("Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)"),
         params: &[param("on", Kind::Bool, tr_const!("Add cable glands for new cables"))],
         run: set_auto_glands,
     },
     Spec {
         name: "add_cable_glands",
-        help: tr_const!("Adds a cable gland of its size to the bottom of an enclosure for every cable that leaves it and finds no free gland that takes it"),
+        help: tr_const!("Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall"),
         params: &[],
         run: add_cable_glands,
     },

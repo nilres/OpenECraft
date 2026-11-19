@@ -46,6 +46,7 @@
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Базовая версия хранит весь проект (листы, устройства, изделия, настройки). При выпуске ревизии она создаётся автоматически.
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Кабельный ввод для каждого кабеля, который выходит из шкафа и не находит свободного подходящего ввода
 A cable of the bus type for every connection without cable	Кабель шинного типа для каждого соединения без кабеля
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Кабель, выходящий из шкафа и не находящий свободного ввода, получает ввод своего размера: в крыше для устройства в помещении, в днище для поля или шкафа, висящего на стене
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Вырез того же размера в том же месте боковой стенки соседа: вместе они образуют кабельный проход
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Одноимённый файл в папке получает новую версию (извлекается и возвращается), иначе файл добавляется
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Папка с одним небольшим файлом на каждую страницу, устройство и изделие вместо одного файла проекта, для систем контроля версий, таких как git
@@ -53,7 +54,6 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Этаж над самым верхним
 A local file opens locally, a server project is opened on the project server again	Локальный файл открывается локально, проект с сервера снова открывается на сервере проектов
 A local file or a project on the project server	Локальный файл или проект на сервере проектов
-A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Новый кабель, выходящий из шкафа, получает в днище кабельный ввод своего размера, если ни один свободный ввод его не принимает
 A new project	Новый проект
 A new release is downloaded in the background and installed when you close OpenECraft.	Новая версия загружается в фоновом режиме и устанавливается при закрытии OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Новая версия загружается в фоновом режиме и заменяет эту установку; она используется со следующего запуска.

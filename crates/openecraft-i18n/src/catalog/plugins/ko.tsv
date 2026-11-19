@@ -15,7 +15,7 @@ Additional power loss in W	추가 전력 손실(W)
 Address scheme: siemens, iec or rockwell	주소 체계: siemens, iec 또는 rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	지붕에 태양광 어레이를 추가합니다: 경사 지붕면과 평행하게 레일과 지붕 후크 위에 모듈 열을 놓거나, 평지붕에는 기울여 또는 동서 방향으로 밸러스트 가대 위에 놓습니다. x와 z가 없으면 앞쪽 또는 오른쪽 지붕면의 가운데에 놓습니다. 건물과 지붕이 없으면 부지에 지상형 어레이를 만듭니다: 항타 말뚝 위에 기울어진 가대를 열로 놓으며, x와 z가 없으면 설비에 있는 것의 앞에 놓습니다. 모듈과 설치 자재는 자재 명세서에 들어갑니다
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	굽힘 및 드릴 가공된 동바를 추가합니다(또는 외함에서 같은 이름의 동바를 대체합니다)
-Adds a cable gland of its size to the bottom of an enclosure for every cable that leaves it and finds no free gland that takes it	외함을 나가면서 받을 수 있는 빈 글랜드를 찾지 못한 케이블마다 외함 바닥에 크기에 맞는 케이블 글랜드를 추가합니다
+Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	외함을 나가면서 빈 글랜드를 찾지 못한 각 케이블에 크기에 맞는 케이블 글랜드를 추가합니다: 실내 기기는 천장면, 필드 또는 벽걸이 외함은 바닥면
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	오른쪽 인접 외함으로의 케이블 통로를 추가합니다: 양쪽 측벽에 서로 마주 보는 원형 컷아웃. 외함 사이의 전선이 이를 통과합니다
 Adds a configurator rule: insert a page macro when the condition holds	컨피규레이터 규칙을 추가합니다: 조건이 충족되면 페이지 매크로 삽입
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	필드 경로 네트워크의 노드(분기점, 관통부, 외함 또는 장치 도달 지점)를 추가합니다
@@ -791,7 +791,7 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	표제란을 선택하지 않은 모든 페이지 또는 한 유형의 페이지 표제란을 설정합니다
 Sets the translation of a line of the project texts (empty removes it)	프로젝트 텍스트 줄의 번역을 설정합니다(비우면 제거)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	정의된 전위가 없는 네트의 전선 색상과 단면적을 설정합니다(비우면 없음)
-Sets whether a new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it (on by default)	외함을 나가는 새 케이블이 받을 수 있는 빈 글랜드가 없을 때 바닥에 크기에 맞는 케이블 글랜드를 받을지 설정합니다(기본값: 켜짐)
+Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)	외함을 나가면서 빈 글랜드를 찾지 못한 케이블이 크기에 맞는 글랜드를 받을지 설정합니다: 실내 기기는 천장면, 필드 또는 벽걸이 외함은 바닥면(기본값: 켜짐)
 Share of the capacity kept free in percent	비워 두는 용량 비율(%)
 Sheets	시트
 Shield connected at: both, first, second or none	차폐 연결 위치: both, first, second 또는 none

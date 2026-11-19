@@ -46,6 +46,7 @@
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Základní verze uchovává celý projekt (stránky, přístroje, artikly, nastavení). Uvolnění revize jednu vytvoří.
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Kabelová vývodka pro každý kabel, který opouští skříň a nenajde volnou vývodku, která jej pojme
 A cable of the bus type for every connection without cable	Kabel typu sběrnice pro každé spojení bez kabelu
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Kabel, který opouští skříň a nenajde volnou vývodku, dostane vývodku své velikosti: ve stropě pro přístroj v místnosti, ve dně pro pole nebo skříň zavěšenou na stěně
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Výřez stejné velikosti na stejném místě v boční stěně souseda: společně tvoří kabelovou průchodku
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Soubor se stejným názvem ve složce dostane novou verzi (rezervace a vrácení se změnami), jinak se soubor přidá
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Složka s jedním malým souborem pro každou stránku, přístroj a artikl místo jednoho souboru projektu, pro správu verzí jako git
@@ -53,7 +54,6 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Podlaží nad nejvyšším
 A local file opens locally, a server project is opened on the project server again	Místní soubor se otevře místně, projekt ze serveru se znovu otevře na serveru projektů
 A local file or a project on the project server	Místní soubor nebo projekt na serveru projektů
-A new cable that leaves an enclosure gets a cable gland of its size in the bottom where no free gland takes it	Nový kabel, který opouští skříň, dostane ve dně kabelovou vývodku své velikosti, kde jej žádná volná vývodka nepojme
 A new project	Nový projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Nová verze se stáhne na pozadí a nainstaluje se po zavření OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Nová verze se stáhne na pozadí a nahradí tuto instalaci; použije se od příštího spuštění.
