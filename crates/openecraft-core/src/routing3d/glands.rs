@@ -5,8 +5,8 @@
 //! the room of a cabinet standing there into its roof (a cabinet hanging on the wall:
 //! into its bottom), the way the routing leaves it into the room; for a device in the
 //! field into its bottom. Where that face is full, into the next face the cable can
-//! leave through (roof or bottom, then the sides and the rear); a cable that finds no
-//! free place on any of them is reported ([`Glands::unplaced`]).
+//! leave through (roof or bottom, then the sides and the rear, see [`faces_for`]); a
+//! cable that finds no free place on any of them is reported ([`Glands::unplaced`]).
 //!
 //! [`Layout::auto_glands`]: crate::panel::Layout::auto_glands
 
@@ -18,14 +18,21 @@ use crate::netlist::{self, Netlist};
 use crate::panel::{self, Face};
 use std::collections::BTreeMap;
 
-/// A cable that needs a way into an enclosure: its diameter, and whether it leaves into
-/// the room the enclosure stands in (only through its room sides, see
-/// [`super::room::room_side`]).
+/// Side walls of enclosures shallower than this take no cable glands: the wires inside
+/// would find no way to them past the mounting plate, mm.
+const MIN_SIDE_DEPTH: f32 = 150.0;
+
+/// A cable that needs a way into an enclosure: its diameter, whether it leaves into the
+/// room the enclosure stands in (only through its room sides, see
+/// [`super::room::room_side`]) and whether its other end there is below the bottom of
+/// the enclosure (the routing leaves a cabinet hanging on the wall through its bottom
+/// only towards such a place).
 #[derive(Clone, Debug, PartialEq)]
 struct Need {
     cable: String,
     diameter: f32,
     room: bool,
+    below: bool,
 }
 
 /// The cable glands added for the cables of a project, and the cables that got none.
@@ -66,7 +73,7 @@ fn needed(prj: &Project) -> BTreeMap<usize, Vec<Need>> {
         let Some((a, b)) = cable_end_tags(prj, c, &cores) else { continue };
         let at = |t: &str| panel::locate(prj, t).map(|(ei, _)| ei);
         let (ea, eb) = (at(&a), at(&b));
-        for (k, other) in [(ea, eb), (eb, ea)] {
+        for (k, other, far) in [(ea, eb, &b), (eb, ea, &a)] {
             let Some(k) = k.filter(|&k| !layout.enclosures[k].is_room()) else { continue };
             let lineup = panel::lineup_of(layout, k);
             if other.is_some_and(|o| o == k || lineup.contains(&o)) {
@@ -75,13 +82,33 @@ fn needed(prj: &Project) -> BTreeMap<usize, Vec<Need>> {
             // A device placed elsewhere is reached through the room (where the cabinet
             // stands in one); one placed nowhere is in the field.
             let room = other.is_some() && panel::room_of(layout, k).is_some();
-            need.entry(k).or_default().push(Need { cable: c.tag.clone(), diameter: cable_diameter(c), room });
+            let bottom = panel::lineup_of(layout, k).first().and_then(|&i| layout.enclosures[i].elevation).unwrap_or(0.0);
+            let below = height_of(prj, far).is_some_and(|h| h < bottom);
+            need.entry(k).or_default().push(Need { cable: c.tag.clone(), diameter: cable_diameter(c), room, below });
         }
     }
     for ds in need.values_mut() {
         ds.sort_by(|a, b| b.room.cmp(&a.room).then(b.diameter.total_cmp(&a.diameter)));
     }
     need
+}
+
+/// How high above the floor of its room device `tag` is placed (on the ceiling: the
+/// height of the room); `None` where it is in no room.
+fn height_of(prj: &Project, tag: &str) -> Option<f32> {
+    let (ei, it) = panel::locate(prj, tag)?;
+    let e = &prj.layout.enclosures[ei];
+    e.is_room().then(|| match it.face {
+        Face::Roof => e.height,
+        Face::Bottom => 0.0,
+        _ => e.height - (it.y + it.h / 2.0),
+    })
+}
+
+/// Cable `n` can leave enclosure `k` through `face`: a cable into the room only through
+/// its room sides, through the bottom of a hanging cabinet only towards a place below it.
+fn can_leave(prj: &Project, k: usize, n: &Need, face: Face) -> bool {
+    !n.room || (super::room::room_side(prj, k, face) && (face != Face::Bottom || n.below))
 }
 
 /// The cables of `need` in enclosure `k` no free cable gland they can pass takes: each
@@ -92,7 +119,7 @@ fn without_gland(prj: &Project, k: usize, need: &[Need]) -> Vec<Need> {
         return Vec::new();
     }
     let mut free: Vec<(Face, Option<(f32, f32)>)> = accessories(prj, k, "Cable gland").iter().map(|g| (g.face, panel::clamping_range(prj, &g.part))).collect();
-    let passes = |n: &Need, face: Face| !n.room || super::room::room_side(prj, k, face);
+    let passes = |n: &Need, face: Face| can_leave(prj, k, n, face);
     let mut unfit = Vec::new();
     for n in need {
         let fits = |r: &Option<(f32, f32)>| r.is_none_or(|(lo, hi)| n.diameter >= lo && n.diameter <= hi);
@@ -185,12 +212,24 @@ pub fn add_missing(prj: &mut Project) -> Glands {
 }
 
 /// The faces of enclosure `k` a cable gland for cable `n` goes into, in this order: for
-/// a cable into the room of a cabinet standing there the roof (hanging on the wall: the
-/// bottom, then the roof), otherwise the bottom, then the roof; then the sides and the
-/// rear, where the cable can leave through them.
+/// a cable into the room the roof (of a cabinet hanging on the wall towards a place below
+/// it: the bottom, then the roof), otherwise the bottom, then the roof; then the sides
+/// and the rear, where the cable can leave through them ([`can_leave`]). Not a side
+/// against the next enclosure of the line-up, nor the sides of an enclosure shallower
+/// than [`MIN_SIDE_DEPTH`], nor the rear of one hanging on the wall.
 fn faces_for(prj: &Project, k: usize, n: &Need) -> Vec<Face> {
-    let first = if n.room && !super::room::hangs(prj, k) { [Face::Roof, Face::Bottom] } else { [Face::Bottom, Face::Roof] };
-    first.into_iter().chain([Face::Left, Face::Right, Face::Rear]).filter(|&f| !n.room || super::room::room_side(prj, k, f)).collect()
+    let hangs = super::room::hangs(prj, k);
+    let first = if n.room && !(hangs && n.below) { [Face::Roof, Face::Bottom] } else { [Face::Bottom, Face::Roof] };
+    let lineup = panel::lineup_of(&prj.layout, k);
+    let at = lineup.iter().position(|&i| i == k);
+    let deep = prj.layout.enclosures[k].depth >= MIN_SIDE_DEPTH;
+    let side = |f: Face| match f {
+        Face::Left => deep && !at.is_some_and(|i| i > 0),
+        Face::Right => deep && !at.is_some_and(|i| i + 1 < lineup.len()),
+        Face::Rear => !hangs,
+        _ => true,
+    };
+    first.into_iter().chain([Face::Left, Face::Right, Face::Rear]).filter(|&f| side(f) && can_leave(prj, k, n, f)).collect()
 }
 
 /// Glands of the catalog for the cables of `need` in enclosure `k`, each into the first

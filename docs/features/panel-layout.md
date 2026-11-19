@@ -680,15 +680,22 @@ lengths of their cables are those of the 3D routing.
 - **Junction boxes and device connection boxes** (`GEN.JBOX-UP`, `GEN.JBOX-5-UP`,
   `GEN.CONN-BOX-UP`; tab *Boxes*): a junction box is a device of the circuit the cables
   of others come from; a device connection box feeds fixed equipment. A junction box is
-  no load in the cable sizing: the cable to it carries the largest load of the cables
-  leaving it.
+  no load in the cable sizing: a cable ending at it carries the largest load of the
+  cables starting there (by their source and target, which `place_installation`
+  stores; a cable drawn by hand passes on none), computed single-phase for a
+  single-phase load behind a five-core feeder.
 - **Two-way circuits**: a two-way switch (`GEN.SW-2WAY-UP`) placed `from` another one
   is drawn upright in the column after it, the two travellers of their cable from the
   one to the other; for more switching points intermediate switches
-  (`GEN.SW-INTER-UP`) go between them, each `from` the switch before. A light without
-  `from` hangs on the last switch. A two-way switch working alone has its spare
+  (`GEN.SW-INTER-UP`) go between them, each `from` the switch before, drawn on its page
+  (refused where that page is full). A light without `from` hangs on the last switch,
+  which also takes the lights placed on the switches before it. The cables between the
+  switches have four cores: the two travellers, and the neutral and protective
+  conductor carried on to the lights. A two-way switch working alone has its spare
   traveller in *Unused connection points* (`function.unused_pins`): a connection point
-  named there is not reported as open.
+  named there is not reported as open. The travellers of an intermediate switch without
+  a last switch stay open. A blind switch (`GEN.SW-BLIND-UP`) has two real outputs and
+  is no two-way switch.
 - **Without a circuit**: data and antenna outlets (`GEN.DATA-RJ45-2X-UP`,
   `GEN.TV-SAT-UP`) and smoke alarms (`GEN.SMOKE-ALARM`, on the ceiling) are placed in
   the rooms only (`place_installation` without `breaker`; with `tag` as that device),
@@ -947,7 +954,11 @@ free place from the middle of the face. A cable to a device in the room the cabi
 stands in gets it in the roof (it can only leave through the roof, the sides and the
 rear, see below; a cabinet hanging on a wall in the bottom), a cable into the field in
 the bottom. Where that face is full, the gland goes into the next face the cable can
-leave through: the bottom or the roof, then the left and right sides and the rear. A
+leave through: the bottom or the roof, then the left and right sides and the rear
+(not a side against the next enclosure of the line-up, nor the sides of an enclosure
+less than 150 mm deep, whose wires would find no way to them; not the rear of one
+hanging on the wall, and its bottom for a cable into the room only towards a place
+below it, as the routing leaves it). A
 cable that finds no free place on any of them gets none and is reported (by *Add the missing ones* in the status
 line, as `glands_missing` of a command and `missing` of `add_cable_glands`, each with
 the cabinet and why): make room or add a cable entry flange. A gland deleted by hand

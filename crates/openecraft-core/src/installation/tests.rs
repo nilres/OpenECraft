@@ -721,3 +721,80 @@ fn an_intermediate_switch_sits_between_two_two_way_switches() {
     let mine: Vec<String> = an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| [&a, &k, &b].iter().any(|t| m.contains(t.as_str()))).collect();
     assert!(mine.is_empty(), "{mine:?}");
 }
+
+/// The device `t` is placed at: the source of the cable ending at it.
+fn source_of(prj: &Project, t: &str) -> String {
+    prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| x == t)).and_then(|c| c.values.get("cable.source")).cloned().unwrap_or_default()
+}
+
+/// The problems (not infos) of the check that name one of `tags`.
+fn problems_of(prj: &Project, tags: &[&String]) -> Vec<String> {
+    let an = crate::reports::Analysis::checked(prj);
+    an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| tags.iter().any(|t| m.contains(t.as_str()))).collect()
+}
+
+#[test]
+fn the_closing_two_way_switch_takes_the_lights_placed_before_it() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    assert_eq!(source_of(&prj, &l), a);
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    assert_eq!(source_of(&prj, &b), a);
+    assert_eq!(source_of(&prj, &l), b);
+    // The cable between the switches has the two travellers, the neutral and the
+    // protective conductor for the light; it carries the neutral on.
+    let w = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| *x == b)).unwrap().clone();
+    assert_eq!(w.core_list().len(), 4);
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    assert!(prj.pages.iter().flat_map(|pg| &pg.wires).any(|x| x.cable == w.tag && x.core == "BU"));
+    assert!(conns.iter().filter(|c| c.cable == w.tag).count() >= 2);
+    let mine = problems_of(&prj, &[&a, &b, &l]);
+    assert!(mine.is_empty(), "{mine:?}");
+}
+
+#[test]
+fn a_blind_switch_keeps_both_outputs() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let t = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-BLIND-UP", ri, q, &Options::default()) }.unwrap();
+    let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == t).unwrap();
+    assert!(!s.values.contains_key(crate::netlist::UNUSED_PINS));
+    // A two-way switch after it is no partner: no travellers to it.
+    let opts = Options { from: Some(t.clone()), ..Default::default() };
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &opts) }.unwrap();
+    let w = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| *x == b)).unwrap();
+    assert_eq!(w.core_list().len(), 3);
+}
+
+#[test]
+fn an_intermediate_switch_at_the_end_keeps_its_travellers_open() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let opts = Options { from: Some(a.clone()), ..Default::default() };
+    let k = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-INTER-UP", ri, q, &opts) }.unwrap();
+    let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == k).unwrap();
+    assert!(!s.values.contains_key(crate::netlist::UNUSED_PINS));
+    assert!(problems_of(&prj, &[&k]).iter().any(|m| m.contains("Open connection point")));
+}
+
+#[test]
+fn loads_pass_a_junction_box_only_downstream() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let j = { let q = before_wall(&prj, ri, 0, 200.0); add_device(&mut prj, &f2, "GEN.JBOX-UP", ri, q, &Options::default()) }.unwrap();
+    let from = |t: &String| Options { from: Some(t.clone()), ..Default::default() };
+    let sw = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-ONOFF-UP", ri, q, &from(&j)) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &from(&sw)) }.unwrap();
+    let x = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &from(&j)) }.unwrap();
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    let drops = crate::sizing::cable_drops(&prj, &conns);
+    let to = |t: &String| prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|v| v == t)).unwrap().tag.clone();
+    // The light's cable carries no load of the socket; the box's feeder does.
+    assert_ne!(drops.iter().find(|d| d.cable == to(&l)).unwrap().load, x);
+    assert_eq!(drops.iter().find(|d| d.cable == to(&j)).unwrap().load, x);
+}

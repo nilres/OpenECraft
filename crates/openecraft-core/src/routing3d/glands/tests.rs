@@ -74,7 +74,7 @@ fn glands_by_the_size_of_the_cable() {
 fn a_full_face_sends_the_gland_to_the_next_and_a_cable_without_place_is_reported() {
     let mut prj = crate::sample::demo_project();
     let fill = |prj: &mut Project, face: Face| while put_into(prj, 0, "GEN.GLAND-M63", face).is_some() {};
-    let need = [Need { cable: "-W9".into(), diameter: 10.0, room: false }];
+    let need = [Need { cable: "-W9".into(), diameter: 10.0, room: false, below: false }];
     // The bottom full: into the roof.
     fill(&mut prj, Face::Bottom);
     let mut out = Glands::default();
@@ -82,15 +82,27 @@ fn a_full_face_sends_the_gland_to_the_next_and_a_cable_without_place_is_reported
     assert_eq!(out.added.len(), 1);
     assert_eq!(prj.layout.enclosures[0].item(out.added[0]).unwrap().face, Face::Roof);
     // Every face full: reported, with the enclosure.
-    for f in [Face::Roof, Face::Left, Face::Right, Face::Rear] {
+    for f in faces_for(&prj, 0, &need[0]) {
         fill(&mut prj, f);
     }
     let mut out = Glands::default();
     add(&mut prj, 0, &need, &mut out);
     assert!(out.added.is_empty());
     assert_eq!(out.unplaced, [Unplaced { cable: "-W9".into(), enclosure: prj.layout.enclosures[0].name.clone() }]);
-    // A cable into the room of a standing cabinet leaves through its roof, sides and rear.
-    let room = Need { cable: "-W9".into(), diameter: 10.0, room: true };
-    assert_eq!(faces_for(&prj, 0, &room), [Face::Roof, Face::Left, Face::Right, Face::Rear]);
-    assert_eq!(faces_for(&prj, 0, &need[0]), [Face::Bottom, Face::Roof, Face::Left, Face::Right, Face::Rear]);
+    // A cable into the room of a standing cabinet leaves through its roof first, never
+    // through its bottom; one into the field through its bottom first.
+    let room = Need { cable: "-W9".into(), diameter: 10.0, room: true, below: false };
+    let faces = faces_for(&prj, 0, &room);
+    assert_eq!(faces[0], Face::Roof);
+    assert!(!faces.contains(&Face::Bottom));
+    assert_eq!(faces_for(&prj, 0, &need[0])[..2], [Face::Bottom, Face::Roof]);
+    // No side glands in a shallow enclosure, no rear ones in one hanging on the wall; there
+    // into the room through the bottom only towards a place below it.
+    prj.layout.enclosures[0].depth = 95.0;
+    for i in panel::lineup_of(&prj.layout, 0).into_iter().chain([0]) {
+        prj.layout.enclosures[i].elevation = Some(1000.0);
+    }
+    assert_eq!(faces_for(&prj, 0, &room), [Face::Roof]);
+    assert_eq!(faces_for(&prj, 0, &Need { below: true, ..room.clone() }), [Face::Bottom, Face::Roof]);
+    assert_eq!(faces_for(&prj, 0, &need[0]), [Face::Bottom, Face::Roof]);
 }

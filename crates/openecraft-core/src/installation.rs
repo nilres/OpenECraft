@@ -1253,6 +1253,8 @@ struct Drawn {
     kind: Kind,
     cable: String,
     from: String,
+    /// A switch of a two-way circuit ([`travel_of`]).
+    travel: bool,
 }
 
 /// The device has three phase conductors: connection points L2 or L3.
@@ -1293,10 +1295,31 @@ const TWO_WAY: &str = "co_man";
 /// The symbol of an intermediate switch.
 const INTERMEDIATE: &str = "co_inter";
 
-/// The symbol is a switch of a two-way circuit (two-way or intermediate), whose
-/// travellers run to the next one.
-fn travels(sym: &str) -> bool {
-    sym == TWO_WAY || sym == INTERMEDIATE
+/// A device drawn with symbol `sym` and part `part` is a switch of a two-way circuit
+/// (two-way or intermediate), whose travellers run to the next one: not a blind switch,
+/// whose two outputs are the two directions of its motor.
+fn travel_of(sym: &str, part: Option<&Part>) -> bool {
+    sym == INTERMEDIATE || (sym == TWO_WAY && part.is_none_or(|p| !p.subgroup.to_ascii_lowercase().contains("blind")))
+}
+
+/// The part of device `tag`.
+fn part_of_device<'a>(prj: &'a Project, tag: &str) -> Option<&'a Part> {
+    prj.devices.get(tag).and_then(|d| d.parts.first()).and_then(|r| find_part(prj, &r.number))
+}
+
+/// The switches of the two-way circuit before `tag` (itself first, back to the one fed
+/// from the conductors), as far as they are among `drawn` with their sources `from`.
+fn chain_before(drawn: &[Drawn], from: &[String], tag: &str) -> Vec<String> {
+    let mut out = Vec::new();
+    let mut cur = tag.to_string();
+    while let Some(i) = drawn.iter().position(|d| d.tag == cur && d.travel) {
+        if out.contains(&cur) {
+            break;
+        }
+        out.push(cur.clone());
+        cur = from[i].clone();
+    }
+    out
 }
 
 /// The kind of a device drawn on an installation page, by its symbol.
@@ -1394,15 +1417,23 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Option
     // new one after it.
     let pages = if pages.is_empty() { vec![first] } else { pages };
     let everyone: Vec<Drawn> = pages.iter().flat_map(|&k| drawn_on(prj, k)).collect();
-    let last = *pages.last().unwrap_or(&first);
-    let page = if page_columns(prj, last, n > 3) < drawn_on(prj, last).len() + 1 { continuation(prj, last) } else { last };
-    let mut drawn = drawn_on(prj, page);
     let from_all = sources(prj, &everyone, breaker);
     let from = match opts.from.as_deref().map(str::trim).filter(|f| !f.is_empty()) {
         Some(f) if f == breaker || everyone.iter().any(|d| d.tag == f) => f.to_string(),
         Some(f) => return Err(tr_fmt!("{} is neither the protective device nor a device of the circuit of {}", f, breaker)),
         None => default_source(prj, &everyone, &from_all, breaker, kind, ri),
     };
+    // A switch joined by travellers to the one it comes from goes onto that one's page.
+    let travel = travel_of(def.key, find_part(prj, &part));
+    let joins = travel && everyone.iter().any(|d| d.tag == from && d.travel);
+    let last = *pages.last().unwrap_or(&first);
+    let page = match pages.iter().copied().find(|&k| joins && drawn_on(prj, k).iter().any(|d| d.tag == from)) {
+        Some(k) if page_columns(prj, k, n > 3) < drawn_on(prj, k).len() + 1 => return Err(tr_fmt!("The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page", from)),
+        Some(k) => k,
+        None if page_columns(prj, last, n > 3) < drawn_on(prj, last).len() + 1 => continuation(prj, last),
+        None => last,
+    };
+    let mut drawn = drawn_on(prj, page);
     let tag = match opts.tag.as_deref().map(str::trim).filter(|t| !t.is_empty()) {
         Some(t) if tag_used(prj, t) => return Err(tr_fmt!("{} is used already", t)),
         Some(t) => t.to_string(),
@@ -1413,9 +1444,12 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Option
         Some(c) => c.to_string(),
         None => free_cable(prj),
     };
-    let count = opts.cores.unwrap_or(n);
-    if count < n {
-        return Err(tr_fmt!("The cable of {} needs at least {} cores", tag, n));
+    // Between the switches of a two-way circuit: the two travellers, the neutral and the
+    // protective conductor for the lights behind the last one.
+    let least = if joins { n.max(4) } else { n };
+    let count = opts.cores.unwrap_or(least);
+    if count < least {
+        return Err(tr_fmt!("The cable of {} needs at least {} cores", tag, least));
     }
     adopt(prj, &tag, item, None)?;
     // In a junction box hanging in the room: a wire connector per conductor.
@@ -1441,8 +1475,23 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Option
         c.values.insert(FIXED_LENGTH.into(), "true".into());
     }
     let sized = opts.mm2.is_some() || opts.cable_type.is_some();
+    // The closing two-way switch of a circuit takes the lights hung on the switches
+    // before it (whose outputs are travellers now).
+    if joins && def.key == TWO_WAY {
+        let chain = chain_before(&everyone, &from_all, &from);
+        let switches: Vec<&str> = everyone.iter().filter(|d| d.travel).map(|d| d.tag.as_str()).collect();
+        for d in drawn.iter_mut().filter(|d| chain.contains(&d.from) && !d.travel) {
+            d.from = tag.clone();
+        }
+        for x in prj.cables.iter_mut() {
+            let moves = x.values.get("cable.source").is_some_and(|s| chain.contains(s)) && x.values.get("cable.target").is_some_and(|t| !switches.contains(&t.as_str()));
+            if moves {
+                x.values.insert("cable.source".into(), tag.clone());
+            }
+        }
+    }
     prj.cables.push(c);
-    drawn.push(Drawn { tag: tag.clone(), sym: def.key.to_string(), pins, text: String::new(), kind, cable, from });
+    drawn.push(Drawn { tag: tag.clone(), sym: def.key.to_string(), pins, text: String::new(), kind, cable, from, travel });
     draw(prj, page, &drawn, breaker, &ls);
     // The cables carry the protective device's rated current and the highest rated
     // current of the devices of the circuit (those whose size was given keep it).
@@ -1553,9 +1602,13 @@ fn drawn_on(prj: &Project, page: usize) -> Vec<Drawn> {
     for s in &pg.symbols {
         let Some(def) = prj.symbol(&s.sym).filter(|d| d.func.has_tag() && !s.tag.is_empty()) else { continue };
         let at: Vec<P> = (0..def.pins.len()).map(|i| def.pin_world(i, s.pos, s.rot, s.mirror)).collect();
-        let cable = at.iter().find_map(|q| pg.wires.iter().find(|w| !w.cable.is_empty() && (w.a.same(*q) || w.b.same(*q)))).map(|w| w.cable.clone()).unwrap_or_default();
+        // Its cable: the one ending at it, else the first at its connection points (the
+        // lights behind a switch hang on one of them with their own cables).
+        let own = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|t| *t == s.tag)).map(|c| c.tag.clone());
+        let cable = own.or_else(|| at.iter().find_map(|q| pg.wires.iter().find(|w| !w.cable.is_empty() && (w.a.same(*q) || w.b.same(*q)))).map(|w| w.cable.clone())).unwrap_or_default();
         let from = prj.cables.iter().find(|c| !cable.is_empty() && c.tag == cable).and_then(|c| c.values.get("cable.source")).cloned().unwrap_or_default();
-        out.push((s.pos.x, Drawn { tag: s.tag.clone(), sym: s.sym.clone(), pins: s.pins.clone(), text: s.function_text.clone(), kind: drawn_kind(&s.sym), cable, from }));
+        let travel = travel_of(&s.sym, part_of_device(prj, &s.tag));
+        out.push((s.pos.x, Drawn { tag: s.tag.clone(), sym: s.sym.clone(), pins: s.pins.clone(), text: s.function_text.clone(), kind: drawn_kind(&s.sym), cable, from, travel }));
     }
     out.sort_by(|a, b| a.0.total_cmp(&b.0));
     out.into_iter().map(|d| d.1).collect()
@@ -1674,8 +1727,8 @@ impl Tree<'_> {
     /// between their columns).
     fn walk(&self, tag: &str, seen: &mut [bool], out: &mut Vec<Column>) {
         let mut order: Vec<usize> = (0..self.drawn.len()).collect();
-        if self.drawn.iter().any(|d| d.tag == tag && travels(&d.sym)) {
-            order.sort_by_key(|&i| !travels(&self.drawn[i].sym));
+        if self.drawn.iter().any(|d| d.tag == tag && d.travel) {
+            order.sort_by_key(|&i| !self.drawn[i].travel);
         }
         for i in order {
             if seen[i] || self.from[i] != tag || self.behind[i] {
@@ -1718,7 +1771,7 @@ fn default_source(prj: &Project, drawn: &[Drawn], from: &[String], breaker: &str
             let source = |t: &str| drawn.iter().position(|d| d.tag == t).map(|i| from[i].as_str());
             let (mut sw, mut lights) = (sw, lights);
             for _ in 0..cols.len() {
-                match cols.iter().find(|(d, _)| travels(&sw.sym) && travels(&d.sym) && source(&d.tag) == Some(sw.tag.as_str())) {
+                match cols.iter().find(|(d, _)| sw.travel && d.travel && source(&d.tag) == Some(sw.tag.as_str())) {
                     Some((next, l)) => (sw, lights) = (next, l),
                     None => break,
                 }
@@ -1812,13 +1865,16 @@ fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], breaker: &str, labels: 
     // and of the intermediate switches, for the next switch of the circuit.
     let mut travellers: Vec<Travellers> = Vec::new();
     let source = |tag: &str| drawn.iter().position(|d| d.tag == tag).map(|i| from[i].clone()).unwrap_or_default();
+    // The switches of a two-way circuit with lights behind its last one: their cables
+    // carry the neutral and the protective conductor on to the lights.
+    let carries: Vec<String> = cols.iter().filter(|(d, l)| d.travel && !l.is_empty()).flat_map(|(d, _)| chain_before(drawn, &from, &d.tag)).collect();
     for (dev, lights) in &cols {
         let Some(def) = prj.symbol(&dev.sym) else { continue };
         // A switch fed from the travellers of another one stands upright: the travellers
         // from that one at the top; at the bottom the common connection point of a two-way
         // switch, which the lights hang on, or the travellers of an intermediate switch.
         let f = source(&dev.tag);
-        let fed = travels(&dev.sym).then(|| travellers.iter().position(|t| !t.used && t.tag == f)).flatten();
+        let fed = dev.travel.then(|| travellers.iter().position(|t| !t.used && t.tag == f)).flatten();
         let (pos, rot, at, out) = match fed {
             Some(_) => upright(&def, p(x, row), n),
             None => pins_of(&def, dev.kind, p(x, row), n),
@@ -1841,7 +1897,12 @@ fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], breaker: &str, labels: 
             }
             None => lines.conductors(prj, &at, x, &dev.cable, &cores),
         }
-        if dev.sym == TWO_WAY && fed.is_none() || dev.sym == INTERMEDIATE {
+        if carries.contains(&dev.tag) && n >= 3 {
+            for k in [n - 2, n - 1] {
+                lines.reach(prj, k, x + GRID, &dev.cable, &core_of(&cores, n, k));
+            }
+        }
+        if dev.travel && (dev.sym == INTERMEDIATE || fed.is_none()) {
             let hop = fed.map_or(0, |k| travellers[k].hop + 1);
             travellers.push(Travellers { tag: dev.tag.clone(), ends: lower.iter().map(|w| w.1).collect(), pins: lower.iter().map(|w| w.0).collect(), out: out.filter(|_| dev.sym == TWO_WAY), sym, hop, used: false });
         }
@@ -1879,8 +1940,9 @@ fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], breaker: &str, labels: 
         }
     }
     // The travellers no further switch takes stay free on purpose: the spare one of a
-    // two-way switch working alone (its output the lights hang on).
-    for t in travellers.iter().filter(|t| !t.used) {
+    // two-way switch working alone (its output the lights hang on). Those of an
+    // intermediate switch at the end of the circuit stay open: its last switch is missing.
+    for t in travellers.iter().filter(|t| !t.used && t.out.is_some()) {
         let s = &mut prj.pages[page].symbols[t.sym];
         let free: Vec<String> = t.ends.iter().zip(&t.pins).filter(|(e, _)| !t.out.is_some_and(|o| o.same(**e))).filter_map(|(_, &i)| s.pins.get(i).cloned()).collect();
         if !free.is_empty() {
@@ -1959,6 +2021,14 @@ impl Lines {
         let j = p(q.x, self.ys[k]);
         push_wire(prj, self.page, self.ends[k], j, cable, core, true);
         push_wire(prj, self.page, j, q, cable, core, false);
+        self.ends[k] = j;
+    }
+
+    /// Runs the line of conductor `k` on to `x` as core `core` of `cable`: the conductor
+    /// passed on through a device without a connection point for it.
+    fn reach(&mut self, prj: &mut Project, k: usize, x: f32, cable: &str, core: &str) {
+        let j = p(x, self.ys[k]);
+        push_wire(prj, self.page, self.ends[k], j, cable, core, true);
         self.ends[k] = j;
     }
 

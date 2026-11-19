@@ -42,9 +42,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   it). A two-way switch fed from another one makes a two-way circuit, with intermediate
   switches (`GEN.SW-INTER-UP`, symbol `co_inter`) between them for more switching
   points: the installation page joins their travellers, and a light without `from`
-  hangs on the last switch. The spare traveller of a two-way switch working alone is
-  left free on purpose: connection points named in the new function property *Unused
-  connection points* (`function.unused_pins`) are not reported as open.
+  hangs on the last switch, which also takes the lights placed before it. The cables
+  between the switches have four cores and carry the neutral and the protective
+  conductor on to the lights; the next switch is drawn on the page of the one before.
+  A blind switch is no two-way switch. The spare traveller of a two-way switch working
+  alone is left free on purpose: connection points named in the new function property
+  *Unused connection points* (`function.unused_pins`) are not reported as open; those of
+  an intermediate switch without a last switch stay open. A junction box passes on only
+  the loads behind it (cables starting there, known by their source); a single-phase
+  load behind a box on a five-core feeder is computed single-phase.
 - **Placing in the 3D view:** a click on a wall or the ceiling of a room places the
   part there, also outside the installation zones: near its mounting height it goes at
   that height, farther off at the height clicked. While placing, the part is shown
@@ -67,7 +73,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   properties, `set_auto_glands`; on by default): in the roof for a device in the room
   the cabinet stands in, in the bottom for one in the field or of a cabinet hanging on
   the wall; where that face is full, in the next face the cable can leave through
-  (bottom or roof, then the sides and the rear). A cable that finds no free place is
+  (bottom or roof, then the sides and the rear; not a side against the next cabinet of
+  the line-up nor the sides of one less than 150 mm deep, not the rear of one hanging
+  on the wall, its bottom only for a place below it). A cable that finds no free place is
   reported with its cabinet and why (`glands_missing`, `missing`). *Add the missing
   ones* (`add_cable_glands`) adds them for all cables at once.
 - **Smaller rooms from floor plans on paper:** *Smallest room* (`min_room`) sets the
