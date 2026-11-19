@@ -679,7 +679,12 @@ lengths of their cables are those of the 3D routing.
   refused on a single-phase circuit.
 - **Junction boxes and device connection boxes** (`GEN.JBOX-UP`, `GEN.JBOX-5-UP`,
   `GEN.CONN-BOX-UP`; tab *Boxes*): a junction box is a device of the circuit the cables
-  of others come from; a device connection box feeds fixed equipment.
+  of others come from; a device connection box feeds fixed equipment. A junction box is
+  no load in the cable sizing: the cable to it carries the largest load of the cables
+  leaving it.
+- **Two-way circuits**: a two-way switch (`GEN.SW-2WAY-UP`) placed `from` another one
+  is drawn upright in the column after it, the two travellers of their cable from the
+  one to the other; a light without `from` hangs on the second switch.
 - **Without a circuit**: data and antenna outlets (`GEN.DATA-RJ45-2X-UP`,
   `GEN.TV-SAT-UP`) and smoke alarms (`GEN.SMOKE-ALARM`, on the ceiling) are placed in
   the rooms only (`place_installation` without `breaker`; with `tag` as that device),

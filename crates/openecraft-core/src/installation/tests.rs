@@ -652,3 +652,41 @@ fn a_junction_box_is_no_load_of_its_cable() {
     assert_ne!(d.load, tag);
     assert!(crate::sizing::problems(&prj, &nl, &open, &conns).iter().all(|i| !i.message().contains(&tag)));
 }
+
+#[test]
+fn two_two_way_switches_are_joined_by_their_travellers() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let opts = Options { from: Some(a.clone()), ..Default::default() };
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &opts) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    let cable = |t: &str| prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| x == t)).unwrap().clone();
+    // The light hangs on the second switch.
+    assert_eq!(cable(&l).values["cable.source"], b);
+    // The cable between the switches carries the two travellers.
+    let w = cable(&b).tag;
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    let between: Vec<&crate::netlist::Connection> = conns.iter().filter(|c| c.cable == w).collect();
+    assert_eq!(between.len(), 2, "{between:?}");
+    // No open connection point, no other problem of the switches.
+    let an = crate::reports::Analysis::checked(&prj);
+    let mine: Vec<String> = an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| m.contains(&a) || m.contains(&b)).collect();
+    assert!(mine.is_empty(), "{mine:?}");
+}
+
+#[test]
+fn a_junction_box_passes_on_the_loads_behind_it() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let j = { let q = before_wall(&prj, ri, 0, 200.0); add_device(&mut prj, &f2, "GEN.JBOX-UP", ri, q, &Options::default()) }.unwrap();
+    let opts = Options { from: Some(j.clone()), ..Default::default() };
+    let s = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &opts) }.unwrap();
+    let to_box = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|t| *t == j)).unwrap().tag.clone();
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    let d = crate::sizing::cable_drops(&prj, &conns).into_iter().find(|d| d.cable == to_box).unwrap();
+    assert_eq!(d.load, s);
+    assert_eq!(d.current, Some(16.0));
+}

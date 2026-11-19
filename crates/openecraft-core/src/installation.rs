@@ -1274,7 +1274,7 @@ fn symbol_for(prj: &Project, kind: Kind, part: Option<&Part>) -> Option<(SymbolR
         (Kind::Light, _) => &["luminaire", "lamp"],
         (Kind::Heater, false) => &["heater"],
         (Kind::Heater, true) => &["heater3"],
-        (Kind::Switch, _) => &["sel", "co_man", "pb_no"],
+        (Kind::Switch, _) => &["sel", TWO_WAY, "pb_no"],
         (Kind::Junction, false) => &["jbox"],
         (Kind::Junction, true) => &["jbox3"],
         (Kind::Connection, false) => &["conn_box"],
@@ -1287,6 +1287,9 @@ fn symbol_for(prj: &Project, kind: Kind, part: Option<&Part>) -> Option<(SymbolR
     let labels = if pins.len() == def.pins.len() { pins.iter().map(|s| s.to_string()).collect() } else { def.pins.iter().map(|x| x.label.to_string()).collect() };
     Some((def, labels))
 }
+
+/// The symbol of a two-way switch: a manually operated changeover switch.
+const TWO_WAY: &str = "co_man";
 
 /// The kind of a device drawn on an installation page, by its symbol.
 fn drawn_kind(sym: &str) -> Kind {
@@ -1658,9 +1661,14 @@ struct Tree<'a> {
 }
 
 impl Tree<'_> {
-    /// The columns of the devices fed from `tag`, depth first.
+    /// The columns of the devices fed from `tag`, depth first; behind a two-way switch
+    /// the two-way switch it feeds first (the travellers run between their columns).
     fn walk(&self, tag: &str, seen: &mut [bool], out: &mut Vec<Column>) {
-        for i in 0..self.drawn.len() {
+        let mut order: Vec<usize> = (0..self.drawn.len()).collect();
+        if self.drawn.iter().any(|d| d.tag == tag && d.sym == TWO_WAY) {
+            order.sort_by_key(|&i| self.drawn[i].sym != TWO_WAY);
+        }
+        for i in order {
             if seen[i] || self.from[i] != tag || self.behind[i] {
                 continue;
             }
@@ -1697,6 +1705,12 @@ fn default_source(prj: &Project, drawn: &[Drawn], from: &[String], breaker: &str
     if kind == Kind::Light {
         let room = |t: &str| prj.layout.find_device(t).map(|(ei, _)| ei);
         if let Some((sw, lights)) = cols.iter().find(|(d, _)| d.kind == Kind::Switch && room(&d.tag) == Some(ri)) {
+            // Of two two-way switches the second, which the lights hang on.
+            let source = |t: &str| drawn.iter().position(|d| d.tag == t).map(|i| from[i].as_str());
+            let (sw, lights) = match cols.iter().find(|(d, _)| sw.sym == TWO_WAY && d.sym == TWO_WAY && source(&d.tag) == Some(sw.tag.as_str())) {
+                Some((second, l)) => (second, l),
+                None => (sw, lights),
+            };
             return lights.last().map_or_else(|| sw.tag.clone(), |l| l.tag.clone());
         }
     }
@@ -1782,15 +1796,38 @@ fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], breaker: &str, labels: 
     // The lines of the conductors and their last points.
     let mut lines = Lines { page, ends: ys.iter().map(|y| p(x0, *y)).collect(), ys };
     let mut x = x0 + 4.0 * GRID;
+    // The lower connection points (travellers) of each two-way switch fed from the
+    // lines, by connection point.
+    let mut travellers: Vec<(String, Vec<(usize, P)>)> = Vec::new();
+    let source = |tag: &str| drawn.iter().position(|d| d.tag == tag).map(|i| from[i].clone()).unwrap_or_default();
     for (dev, lights) in &cols {
         let Some(def) = prj.symbol(&dev.sym) else { continue };
-        let (pos, rot, at, out) = pins_of(&def, dev.kind, p(x, row), n);
+        // A two-way switch fed from another one stands upright: the travellers from that
+        // one at the top, the lights at its common connection point at the bottom.
+        let fed = (dev.sym == TWO_WAY).then(|| source(&dev.tag)).and_then(|f| travellers.iter().find(|(t, _)| *t == f)).map(|(_, ends)| ends.clone());
+        let (pos, rot, at, out) = match &fed {
+            Some(_) => upright(&def, p(x, row), n),
+            None => pins_of(&def, dev.kind, p(x, row), n),
+        };
         let mut s = new_symbol(prj, &def, pos, &dev.tag, &dev.text);
         s.rot = rot;
         s.pins = dev.pins.clone();
         prj.pages[page].symbols.push(s);
         let cores = cores_of(prj, &dev.cable);
-        lines.conductors(prj, &at, x, &dev.cable, &cores);
+        match &fed {
+            Some(ends) => {
+                let to: Vec<(usize, P)> = ends.iter().map(|&(i, _)| (i, def.pin_world(i, pos, rot, false))).collect();
+                draw_travellers(prj, page, ends, &to, &dev.cable, &cores);
+            }
+            None => {
+                lines.conductors(prj, &at, x, &dev.cable, &cores);
+                if dev.sym == TWO_WAY {
+                    let world: Vec<(usize, P)> = (0..def.pins.len()).map(|i| (i, def.pin_world(i, pos, rot, false))).collect();
+                    let top = world.iter().map(|w| w.1.y).fold(f32::MAX, f32::min);
+                    travellers.push((dev.tag.clone(), world.into_iter().filter(|w| w.1.y > top + 0.01).collect()));
+                }
+            }
+        }
         x += col;
         // The lights behind the switch: from its output along a line below it.
         let Some(o) = out else { continue };
@@ -1822,6 +1859,39 @@ fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], breaker: &str, labels: 
             rest[0] = None;
             lines.conductors(prj, &rest, x, &d.cable, &cores);
             x += col;
+        }
+    }
+}
+
+/// The connection points of a two-way switch placed upright with its first upper one at
+/// `at` (the travellers at the top, its common connection point at the bottom): like
+/// [`pins_of`], none of them on the conductors; the common one the output.
+fn upright(def: &SymbolRef, at: P, n: usize) -> (P, u8, Vec<Option<P>>, Option<P>) {
+    let top = def.pins.iter().map(|q| q.pos.y).fold(f32::MAX, f32::min);
+    let first = (0..def.pins.len()).filter(|&i| (def.pins[i].pos.y - top).abs() < 0.01).min_by(|a, b| def.pins[*a].pos.x.total_cmp(&def.pins[*b].pos.x)).unwrap_or(0);
+    let pos = p(at.x - def.pins[first].pos.x, at.y - def.pins[first].pos.y);
+    let out = def.pins.iter().find(|q| q.pos.y > top + 0.01).map(|q| pos + q.pos);
+    (pos, 0, vec![None; n], out)
+}
+
+/// The travellers of a two-way circuit as cores of `cable`: from the lower connection
+/// points `from` of the first switch to the same connection points `to` of the second,
+/// in the column after it; down, across below the first switch, up beside the second and
+/// down onto it, each at its own heights, so that they neither meet nor touch the other
+/// wires.
+fn draw_travellers(prj: &mut Project, page: usize, from: &[(usize, P)], to: &[(usize, P)], cable: &str, cores: &[String]) {
+    let live: Vec<&String> = cores.iter().filter(|c| *c != "GNYE").collect();
+    let mut pairs: Vec<(P, P)> = from.iter().filter_map(|&(i, a)| to.iter().find(|t| t.0 == i).map(|t| (a, t.1))).collect();
+    // The one starting farthest right turns first.
+    pairs.sort_by(|a, b| b.0.x.total_cmp(&a.0.x));
+    for (r, (a, b)) in pairs.into_iter().enumerate() {
+        let core = live.get(r).or(live.last()).map_or_else(String::new, |c| c.to_string());
+        let r = r as f32;
+        let (low, high) = (a.y + (1.0 + 2.0 * r) * GRID, b.y - (2.0 + 2.0 * r) * GRID);
+        let side = if r == 0.0 { b.x - 2.0 * GRID } else { b.x + (2.0 + 2.0 * r) * GRID };
+        let path = [a, p(a.x, low), p(side, low), p(side, high), p(b.x, high), b];
+        for (k, w) in path.windows(2).enumerate() {
+            push_wire(prj, page, w[0], w[1], cable, &core, k != 0);
         }
     }
 }
