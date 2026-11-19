@@ -67,6 +67,9 @@ pub use crate::portal::{Catalog, HistoryEntry, SearchResult};
 
 pub const API_PREFIX: &str = "/api/v1";
 pub const DEFAULT_PORT: u16 = 8090;
+/// The public parts server of the project: the server the editor, the parts manager
+/// and the command line connect to until another one is set.
+pub const PUBLIC_URL: &str = "https://parts-server.openecraft.org";
 
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(default)]

@@ -11,6 +11,7 @@ fn the_legal_texts_name_the_operator_only_when_there_is_one() {
     assert_eq!(titles(&desktop), [tr("Disclaimer"), tr("Privacy")]);
     assert!(desktop[0].1[0].contains("without warranty"));
     assert!(desktop[1].1.iter().any(|p| p.contains("GitHub for the latest release")));
+    assert!(desktop[1].1[2].contains(openecraft_parts::api::PUBLIC_URL));
     assert!(!desktop[1].1.iter().any(|p| p.contains("browser; clearing")));
     // A web editor with an operator: the legal notice first, their privacy text last.
     let notice = LegalNotice {
@@ -36,9 +37,10 @@ fn the_parts_manager_has_a_privacy_notice_of_its_own() {
         assert_eq!(titles(&texts), [tr("Disclaimer"), tr("Privacy")]);
         let privacy = &texts[1].1;
         assert!(privacy[1].contains("only to the parts server"));
+        assert!(privacy[2].contains(openecraft_parts::api::PUBLIC_URL), "the preset server is named");
         // It has no projects, no updates and no bug reports to tell about.
         assert!(!privacy.iter().any(|p| p.contains("projects") || p.contains("GitHub")), "{privacy:?}");
         assert!(privacy.iter().any(|p| p.contains("are not stored")));
-        assert_eq!(privacy.iter().any(|p| p.contains("IP address")), !desktop);
+        assert_eq!(privacy.iter().any(|p| p.contains("As with every website")), !desktop);
     }
 }

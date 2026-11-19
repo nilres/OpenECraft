@@ -213,6 +213,19 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      # The stars and the contributors of the repository the image of the website starts
+      # with; it asks GitHub itself while it runs (installer/docker/website-numbers.sh).
+      # Without an answer the image is built without them.
+      - name: Stars and contributors of the repository
+        id: numbers
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          stars=$(gh api "repos/$REPOSITORY" --jq .stargazers_count) || stars=0
+          contributors=$(gh api --paginate "repos/$REPOSITORY/contributors?per_page=100&anon=true" --jq '.[].contributions' | wc -l) || contributors=0
+          echo "stars=$((stars))" >> "$GITHUB_OUTPUT"
+          echo "contributors=$((contributors))" >> "$GITHUB_OUTPUT"
       - uses: docker/metadata-action@v5
         id: parts-server
         with:
@@ -284,6 +297,9 @@ jobs:
           target: website
           load: true
           tags: openecraft-website:ci
+          build-args: |
+            OPENECRAFT_STARS=${{ steps.numbers.outputs.stars }}
+            OPENECRAFT_CONTRIBUTORS=${{ steps.numbers.outputs.contributors }}
           cache-from: |
             type=gha,scope=editor-web
             type=gha,scope=website
@@ -337,6 +353,9 @@ jobs:
           push: true
           tags: ${{ steps.website.outputs.tags }}
           labels: ${{ steps.website.outputs.labels }}
+          build-args: |
+            OPENECRAFT_STARS=${{ steps.numbers.outputs.stars }}
+            OPENECRAFT_CONTRIBUTORS=${{ steps.numbers.outputs.contributors }}
           cache-from: |
             type=gha,scope=editor-web
             type=gha,scope=website
@@ -357,6 +376,8 @@ jobs:
         working-directory: openecraft
       - run: trunk build --release
         working-directory: parts-manager
+      # The screen recording of the website: an asset of the release website-media.
+      - run: sh installer/web/tour.sh
       - run: trunk build --release
         working-directory: website
       - uses: actions/upload-artifact@v4

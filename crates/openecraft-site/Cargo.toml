@@ -1,0 +1,13 @@
+[package]
+name = "openecraft-site"
+version.workspace = true
+edition = "2021"
+description = "The generated pages of the OpenECraft website: the symbol library, the example projects, the documentation, the release notes with their feed and the pages written as content files, each in the frame of the site and in its languages"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+openecraft-api = { path = "../openecraft-api" }
+openecraft-core = { path = "../openecraft-core" }
+openecraft-i18n = { path = "../openecraft-i18n" }
+pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+serde_json = "1"

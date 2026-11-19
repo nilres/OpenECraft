@@ -73,6 +73,7 @@ pub fn sections(notice: &LegalNotice, desktop: bool, program: Program) -> Vec<(&
             tr("As with every website, the server that delivers this page receives the IP address of your device in order to answer."),
         ],
     };
+    privacy.insert(2, tr("The one exception is the preset parts server: the public parts server of the OpenECraft project, https://parts-server.openecraft.org, receives your requests and the IP address of your device when the program connects to it. Enter the address of another parts server to use that one instead."));
     if program == Program::Editor {
         privacy.push(tr("Reporting a bug opens GitHub in your browser with the details the form shows; nothing is sent before."));
     }

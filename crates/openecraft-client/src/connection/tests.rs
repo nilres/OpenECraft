@@ -36,6 +36,7 @@ fn both_kinds_answer_in_the_parts_server_types() {
 fn the_portal_only_reads() {
     assert!(PortalKind::Eplan.read_only() && !PortalKind::OpenECraft.read_only());
     assert_eq!(PortalKind::Eplan.default_url(), eplan::EPLAN_URL);
+    assert_eq!(PortalKind::OpenECraft.default_url(), openecraft_parts::api::PUBLIC_URL);
     assert!(Connection::new(PortalKind::Eplan, eplan::EPLAN_URL, "").parts_server().is_err());
     assert!(Connection::new(PortalKind::OpenECraft, "http://host", "").parts_server().is_ok());
     // Files of the portal need the token, pictures can be opened in the browser.

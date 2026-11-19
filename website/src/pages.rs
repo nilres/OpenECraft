@@ -2,12 +2,18 @@
 //! with other tools (`<folder>/index.html`). They are plain HTML without the module,
 //! read whole by visitors and search engines; the build writes each in every language
 //! beside it (`pages.sh`, [`openecraft_i18n::page`]) from the texts listed here. The
-//! tests keep the pages, this table, the main page and the build together.
+//! tests keep the pages, this table, the main page, the build and the frame of the
+//! pages the build writes (`openecraft_site::frame`) together.
 
 use openecraft_i18n::tr_const;
 
 /// The folders of the pages, in the order the bars and the main page list them.
 pub const PAGES: [&str; 4] = ["panel-builders", "electricians", "education", "compare"];
+
+/// The folders of the pages the build writes beside them (`crates/openecraft-site`,
+/// `docs/website.md`): the symbol library, the examples, the tools, the guides, the
+/// documentation, the news and the questions. Every footer links them.
+pub const WRITTEN: [&str; 7] = ["symbols", "examples", "tools", "how-to", "docs", "news", "faq"];
 
 /// The English texts of the pages: `data-t`, their titles and descriptions.
 pub const TEXTS: &[&str] = &[
@@ -40,6 +46,7 @@ pub const TEXTS: &[&str] = &[
     tr_const!("Device-oriented schematics"),
     tr_const!("Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings."),
     tr_const!("Distribution boards"),
+    tr_const!("Documentation"),
     tr_const!("Download the latest release"),
     tr_const!("Drawing electrical schematics with a collection of symbols"),
     tr_const!("Drawings: DXF and DWG files are imported as graphics on a schematic page, and every page can be exported as DXF or DWG."),
@@ -54,6 +61,8 @@ pub const TEXTS: &[&str] = &[
     tr_const!("Every circuit starts at a protective device of the distribution board, the spare ones marked, and runs through its cable from item to item."),
     tr_const!("Every step is a command as well, so a plan can also be drawn by a script or an AI agent."),
     tr_const!("Example projects, simplest first"),
+    tr_const!("Examples"),
+    tr_const!("FAQ"),
     tr_const!("Features"),
     tr_const!("Feedback while drawing"),
     tr_const!("Final circuits"),
@@ -77,6 +86,7 @@ pub const TEXTS: &[&str] = &[
     tr_const!("Heat loss after IEC/TR 60890 from the power loss of the devices, with filter fans, heat exchangers or cooling units, and a heat map of the mounting plate."),
     tr_const!("Help comes from the documentation and from the issue tracker of the project."),
     tr_const!("House connection boxes, distribution cabinets with component modules, metering with current transformers and PV feeders, in 3D with their busbars."),
+    tr_const!("How-to"),
     tr_const!("IEC 60617 symbols, structure identifiers after IEC 81346 and reports as in industry, so what is learned carries over to other tools."),
     tr_const!("In the browser"),
     tr_const!("In the student's language"),
@@ -98,7 +108,9 @@ pub const TEXTS: &[&str] = &[
     tr_const!("Menu"),
     tr_const!("Multi-level terminals, plugs and PLC cards with tag tables for TIA Portal, Studio 5000, TwinCAT, CODESYS and more."),
     tr_const!("New: first release in November 2026"),
+    tr_const!("News"),
     tr_const!("Not public"),
+    tr_const!("One product at a time"),
     tr_const!("One project holds the schematic, the parts, the panel and the documents, so a change shows everywhere at once."),
     tr_const!("Open and extensible"),
     tr_const!("Open source under the MIT and Apache-2.0 licenses."),
@@ -141,6 +153,7 @@ pub const TEXTS: &[&str] = &[
     tr_const!("Standards from the start"),
     tr_const!("Start with an example"),
     tr_const!("Symbol libraries"),
+    tr_const!("Symbols"),
     tr_const!("Teach electrical planning with free, open source CAE software that runs in the browser: a tutorial, example projects from the first circuit up and 20 languages."),
     tr_const!("Teams and revisions"),
     tr_const!("Terminals, plugs, PLC"),
@@ -154,6 +167,7 @@ pub const TEXTS: &[&str] = &[
     tr_const!("The routed wires as a checklist for the workshop, with the current wire in 3D, its colour, length and ferrule: a tablet with the web editor becomes a wiring station."),
     tr_const!("The tutorial walks from the first schematic page to the bill of materials: pages, symbols, wires, parts, terminals, PLC, the project check, reports and the panel layout."),
     tr_const!("The web editor and a project server for shared projects run in the school's own network from Docker images."),
+    tr_const!("Tools"),
     tr_const!("Trademarks"),
     tr_const!("Try the live demo"),
     tr_const!("Tutorial"),

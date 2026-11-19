@@ -45,3 +45,11 @@ command_arguments = ["pages.sh"]
 [hooks.windows]
 command = "powershell"
 command_arguments = ["-ExecutionPolicy", "Bypass", "-File", "pages.ps1"]
+
+# The pages the build writes (crates/openecraft-site, docs/website.md): the symbol
+# library, the example projects, the documentation, the news with their feed and the
+# pages of content/, each in its languages, and build.js.
+[[hooks]]
+stage = "post_build"
+command = "cargo"
+command_arguments = ["run", "--release", "-p", "openecraft-site", "--example", "site"]

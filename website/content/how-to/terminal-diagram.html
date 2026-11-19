@@ -1,0 +1,31 @@
+title: How to create a terminal diagram – OpenECraft
+description: Create a terminal diagram from a schematic with OpenECraft, the free electrical CAE: place terminals, order the strip and insert the diagram as a page.
+kind: page
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>How-to</p>
+        <h1 data-t>How to create a terminal diagram</h1>
+        <p class="lead" data-t>In OpenECraft the terminal diagram is a report: it is written from the terminals of the schematic and follows every change. You draw the circuit, not the list.</p>
+        <div class="actions">
+            <a class="button primary" href="@/?example=self_holding_relay&amp;report=terminal_diagram#reports" data-t>See it in the live demo</a>
+            <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
+        </div>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>Step by step</h2>
+    <ol class="points steps">
+        <li data-t>Place terminals from the Terminals library of the Insert center and wire them. Terminals with the same tag, for example -X1, form one strip.</li>
+        <li data-t>Open Devices › Terminal strips to order the strip and to add spare terminals, jumpers, end brackets and multi-level blocks.</li>
+        <li data-t>Open Project data › Reports and pick Terminal diagram.</li>
+        <li data-t>Choose Insert as report page to put the diagram into the project. The pages update when the schematic changes.</li>
+        <li data-t>In Master data › Forms, switch the terminal diagram to its graphical form or choose its columns.</li>
+    </ol>
+    <p class="text" data-t>The Strips / plugs navigator shows each strip in rail order; a click shows a placed terminal in the schematic.</p>
+    <div class="actions">
+        <a class="button" href="~/docs/terminals-plugs-plc/" data-t>Terminals, plugs and PLC in the documentation</a>
+        <a class="button ghost" href="@/how-to/" data-t>More guides</a>
+    </div>
+</section>

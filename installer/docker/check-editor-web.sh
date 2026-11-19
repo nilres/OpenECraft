@@ -13,11 +13,23 @@ name=openecraft-web-check
 work=$(mktemp -d)
 trap 'docker rm -f "$name" > /dev/null 2>&1 || true; rm -rf "$work"' EXIT
 
+# A page or file has a line: grep's options and the text follow the address. The answer
+# is saved before it is searched. Never pipe curl (or docker logs) into grep -q or head:
+# they stop reading at what they looked for, the sender fails at writing the rest
+# ("curl: (23) Failure writing output") and, with pipefail, the check fails although
+# the text is there; the larger the answer, the likelier (website/src/pages/tests.rs).
+has() {
+    local address=$1
+    shift
+    curl -fsS "$address" -o "$work/body" || { echo "no answer from $address" >&2; return 1; }
+    grep -q "$@" "$work/body" || { echo "$address lacks: ${*: -1}" >&2; return 1; }
+}
+
 docker run -d --name "$name" -p "$port:8080" -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' "$image" > /dev/null
 for _ in $(seq 30); do curl -fs "http://127.0.0.1:$port/" > /dev/null && break; sleep 1; done
 curl -fsS "http://127.0.0.1:$port/" -o "$work/index.html" || { docker logs "$name"; exit 1; }
 grep -q openecraft_canvas "$work/index.html"
-wasm=$(grep -o '[^"/]*_bg\.wasm' "$work/index.html" | head -n 1)
+wasm=$(grep -o '[^"/]*_bg\.wasm' "$work/index.html" | awk 'NR == 1')
 test -n "$wasm"
 type=$(curl -fsS -o /dev/null -w '%{content_type}' "http://127.0.0.1:$port/$wasm")
 echo "$wasm: $type"
@@ -44,7 +56,7 @@ grep -qi '^vary: accept-encoding' "$work/headers.txt"
 grep -qi '^cache-control: .*immutable' "$work/headers.txt"
 test "$(wc -c < "$work/wasm.br")" -lt "$(wc -c < "$work/wasm.gz")"
 # trunk names the script after its own hash, not after the one of the WebAssembly.
-script=$(grep -o 'openecraft-[0-9a-f]*\.js' "$work/index.html" | head -n 1)
+script=$(grep -o 'openecraft-[0-9a-f]*\.js' "$work/index.html" | awk 'NR == 1')
 test -n "$script"
 curl -fsS -o /dev/null -D "$work/headers.txt" -H 'Accept-Encoding: br' "http://127.0.0.1:$port/$script"
 grep -qi '^content-encoding: br' "$work/headers.txt"
@@ -53,6 +65,6 @@ curl -fsS -o /dev/null -D "$work/headers.txt" -H 'Accept-Encoding: br' "http://1
 grep -qi '^cache-control: no-cache' "$work/headers.txt"
 if grep -qi '^content-encoding: br' "$work/headers.txt"; then exit 1; fi
 grep -q 'src="config.js"' "$work/index.html"
-curl -fsS "http://127.0.0.1:$port/config.js" | grep -qF 'name: "ACME \"Tools\" GmbH",'
+has "http://127.0.0.1:$port/config.js" -F 'name: "ACME \"Tools\" GmbH",'
 docker logs "$name"
 echo "$image serves the web editor"

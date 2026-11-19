@@ -2,73 +2,234 @@
 3D	3D
 3D models	3D モデル
 A command line, an MCP server for AI agents and plugins in any language add checks, reports, exports and commands.	コマンドライン、AI エージェント向けの MCP サーバー、任意の言語で書けるプラグインにより、チェック、レポート、エクスポート、コマンドを追加できます。
+A free, open source alternative to AutoCAD Electrical	AutoCAD Electrical に代わる無料のオープンソースソフトウェア
+A free, open source alternative to EPLAN Electric P8	EPLAN Electric P8 に代わる無料のオープンソースソフトウェア
+A free, open source alternative to SEE Electrical	SEE Electrical に代わる無料のオープンソースソフトウェア
+A free, open source alternative to WSCAD	WSCAD に代わる無料のオープンソースソフトウェア
+A link that opens this example at this place. Your changes are not part of it.	このサンプルをこの場所で開くリンクです。行った変更は含まれません。
 A look inside	中をのぞく
+A minute with OpenECraft: from the schematic to the panel in 3D	OpenECraft の 1 分間: 回路図から 3D の制御盤まで
 A parts database with mounting data and 3D models, imports from EDZ, BMEcat and STEP, shared through the parts server.	取付データと 3D モデルを備えた部品データベース。EDZ、BMEcat、STEP からインポートでき、部品サーバーで共有できます。
 A schematic page of the demo project, drawn by OpenECraft	OpenECraft が描画したデモプロジェクトの回路図ページ
 About 330 IEC 60617 symbols, NFPA, GB, GOST and JIS sets, fluid power, P&ID and installation plans, and an editor for your own symbols.	約 330 個の IEC 60617 シンボル、NFPA、GB、GOST、JIS のセット、流体技術、P&ID、設備図、独自シンボル用のエディター。
+All documents in the repository	リポジトリ内のすべてのドキュメント
+Answers about OpenECraft: is it free, where does it run, can it read EPLAN and DWG data, does it work offline, and is it ready for real projects?	OpenECraft についての回答: 無料か、どこで動作するか、EPLAN や DWG のデータを読めるか、オフラインで使えるか、現実のプロジェクトに使えるか。
+AutoCAD Electrical adds electrical controls design to AutoCAD. OpenECraft is a program of its own for the same work: device-oriented schematics, reports and the panel in 3D, free and on any operating system. It is young, and this page says where.	AutoCAD Electrical は AutoCAD に電気制御設計を追加するものです。OpenECraft は同じ作業のための独立したプログラムです: デバイス指向の回路図、レポート、3D の制御盤を、無料で、どのオペレーティングシステムでも使えます。まだ新しいソフトウェアで、どこが未完成かはこのページで説明します。
+Autodesk, AutoCAD and DWG are trademarks of Autodesk, Inc. OpenECraft is not affiliated with Autodesk.	Autodesk、AutoCAD、DWG は Autodesk, Inc. の商標です。OpenECraft は Autodesk とは関係ありません。
 Bill of materials, terminal, cable and plug diagrams as live pages, own drawn forms and a project check that follows every change.	部品表、端子図、ケーブル図、プラグ図を常に最新のページとして作成。独自に描いた帳票と、すべての変更に追従するプロジェクトチェック。
+Both are free and open source. QElectroTech is a long-standing program for drawing electrical schematics. OpenECraft is younger and device-oriented: the schematic is a model that writes the reports, checks itself and carries on into the panel layout.	どちらも無料のオープンソースです。QElectroTech は電気回路図を描くための長い実績のあるプログラムです。OpenECraft はより新しく、デバイス指向です: 回路図はモデルであり、そこからレポートが作成され、自らをチェックし、盤レイアウトへとつながります。
+Browse the symbols	シンボルを見る
 Built for scripts and AI agents	スクリプトと AI エージェントのために
+Calculate	計算
+Calculate the voltage drop	電圧降下を計算
+Can OpenECraft open EPLAN projects?	OpenECraft は EPLAN のプロジェクトを開けますか？
+Can scripts and AI agents work with OpenECraft?	スクリプトや AI エージェントは OpenECraft を操作できますか？
+Categories	カテゴリ
+Choose Insert as report page to put the diagram into the project. The pages update when the schematic changes.	「レポートページとして挿入」を選ぶと、図がプロジェクトに追加されます。回路図が変わるとページも更新されます。
+Choose a file first	先にファイルを選択してください
 Click to explore the panel	クリックして盤を見る
 Click to work in the editor	クリックしてエディターで作業
 Coil	コイル
 Coils and contacts form one device with live cross references and contact images, structure identifiers after IEC 81346, macros with variants.	コイルと接点は 1 つのデバイスとなり、常に最新の相互参照と接点イメージを持ちます。IEC 81346 に基づく構造識別子、バリアント付きマクロ。
 Command line and MCP	コマンドラインと MCP
 Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.	導体サイズの選定、短絡と選択性、負荷計算、EMC、ISO 13849-1 に基づく安全機能。
+Copy link	リンクをコピー
+Copy this link:	このリンクをコピーしてください:
+Cost and license	費用とライセンス
+Create a bill of materials	部品表を作成
+Create a terminal diagram	端子図を作成
+Create a terminal diagram from a schematic with OpenECraft, the free electrical CAE: place terminals, order the strip and insert the diagram as a page.	無料の電気 CAE、OpenECraft で回路図から端子図を作成: 端子を配置し、端子台を並べ、図をページとして挿入します。
+Create the bill of materials of a control cabinet with OpenECraft: assign parts to the devices and the list sums them, with terminals, cables and panel material.	OpenECraft で制御盤の部品表を作成: デバイスに部品を割り当てると、端子、ケーブル、盤の資材も含めてリストに集計されます。
+Cross-section (mm²)	断面積 (mm²)
+Customers and mechanical designers often ask for drawings in their CAD format. OpenECraft writes its pages as DXF or DWG, and reads such drawings as well.	顧客や機械設計者から、それぞれの CAD 形式の図面を求められることがよくあります。OpenECraft はページを DXF または DWG として書き出し、そうした図面を読み込むこともできます。
+DXF and DWG export	DXF と DWG のエクスポート
+DXF and DWG viewer	DXF と DWG のビューアー
+DXF and DWG viewer and converter	DXF と DWG のビューアーとコンバーター
+DXF and DWG viewer and converter online – OpenECraft	DXF と DWG のオンラインビューアーとコンバーター – OpenECraft
 Data exchange	データ交換
+Data exchange in the documentation	データ交換についてのドキュメント
 Device-oriented schematics	デバイス指向の回路図
 Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings.	レールや取付板上の実寸のデバイス、ダクト占有率付きの仮想配線、穴あけデータ、盤内気候、部屋と建物。
+Does OpenECraft work offline?	OpenECraft はオフラインで使えますか？
+Download the PDF	PDF をダウンロード
 Download the latest release	最新リリースをダウンロード
 Drag to turn, pinch with two fingers to zoom.	ドラッグで回転、2 本指のピンチでズーム。
 Drag to turn, scroll to zoom.	ドラッグで回転、スクロールでズーム。
+Draw the schematic and give the potentials their wire colour and cross-section in Connections › Potentials.	回路図を描き、「接続 › 電位」で電位に電線の色と断面積を設定します。
+Drawing (DXF or DWG)	図面 (DXF または DWG)
+Drawn by the SVG export of OpenECraft, as the project comes.	プロジェクトをそのまま、OpenECraft の SVG エクスポートで描画しています。
+EDZ and parts file viewer	EDZ と部品ファイルのビューアー
+EDZ archives as manufacturers offer them for download, with the data of their parts.	メーカーがダウンロード用に提供している、部品データ入りの EDZ アーカイブ。
+EDZ viewer: open EDZ and parts files online – OpenECraft	EDZ ビューアー: EDZ と部品ファイルをオンラインで開く – OpenECraft
+EPLAN Electric P8 is the established tool of control panel engineering. OpenECraft works in the same device-oriented way, costs nothing and runs on any operating system and in the browser. It is young, and this page says where.	EPLAN Electric P8 は制御盤エンジニアリングの定番ツールです。OpenECraft は同じデバイス指向の方法で動作し、費用はかからず、どのオペレーティングシステムでもブラウザーでも動きます。まだ新しいソフトウェアで、どこが未完成かはこのページで説明します。
+EPLAN is a trademark of EPLAN GmbH & Co. KG. OpenECraft is not affiliated with EPLAN.	EPLAN は EPLAN GmbH & Co. KG の商標です。OpenECraft は EPLAN とは関係ありません。
+EPLAN parts XML, BMEcat catalogs and the CSV and JSON parts files of OpenECraft.	EPLAN の部品 XML、BMEcat カタログ、OpenECraft の CSV と JSON の部品ファイル。
+Electrical CAD for schematics, cabinet layouts and building installation	回路図、盤レイアウト、建物の電気設備のための電気 CAD
+Electrical CAD with disciplines for control cabinets, building automation and electrical installation	制御盤、ビルオートメーション、電気設備の各分野に対応した電気 CAD
+Electrical symbols for schematics	回路図用の電気シンボル
+Electrical symbols for schematics – OpenECraft	回路図用の電気シンボル – OpenECraft
 Enclosure climate with a heat map of the mounting plate	取付板のヒートマップ付きの盤内気候
 Engineering calculations	エンジニアリング計算
+Established for many years	長年の実績
+Every function is a command of the command line and of the MCP server, so scripts and AI agents can do what you can.	すべての機能がコマンドラインと MCP サーバーのコマンドになっているため、スクリプトや AI エージェントもユーザーと同じ操作ができます。
 Every operation on a project is a command: on the command line, for AI agents through the MCP server, and for plugins. Try some on the project above.	プロジェクトに対するすべての操作はコマンドです。コマンドラインで、AI エージェントは MCP サーバー経由で、そしてプラグインから使えます。上のプロジェクトでいくつか試してください。
+Every symbol of the libraries with its drawing: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&ID and installation plans.	ライブラリのすべてのシンボルを図付きで: IEC 60617、NFPA、GB、GOST、JIS、流体技術、P&ID、屋内配線図。
 Every table is generated from the project and stays current: change the schematic above and the lists below follow. Plugins add their own.	すべての表はプロジェクトから生成され、常に最新です。上の回路図を変更すると、下のリストが追従します。プラグインは独自の表を追加します。
+Every wire with its colour, cross-section, routed length and end treatment, in order for the workshop.	すべての電線を、色、断面積、配線長、端末処理とともに、製造現場向けの順序で。
 Everything an electrical project needs	電気プロジェクトに必要なすべて
+Example electrical projects with schematics – OpenECraft	回路図付きの電気サンプルプロジェクト – OpenECraft
+Example project, level {}	サンプルプロジェクト、レベル {}
+Example projects of OpenECraft, the free electrical CAE: motor starters, PLC, control cabinets and buildings, with their schematics as pictures and PDF.	無料の電気 CAE、OpenECraft のサンプルプロジェクト: モーター始動器、PLC、制御盤、建物を、回路図の画像と PDF 付きで。
+Example projects to open, read and change	開いて、読んで、変更できるサンプルプロジェクト
+Examples	サンプル
+Export a schematic to DXF or DWG	回路図を DXF または DWG にエクスポート
+Export electrical schematics as DXF or DWG with OpenECraft, the free electrical CAE, and bring drawings of other CAD programs into a project.	無料の電気 CAE、OpenECraft で電気回路図を DXF または DWG としてエクスポートし、他の CAD プログラムの図面をプロジェクトに取り込みます。
+Export the production wire list with File › Export, or wire from a tablet with the Wiring workspace.	「ファイル › エクスポート」で製造用電線リストをエクスポートするか、「配線作業」ワークスペースを使ってタブレットから配線します。
 Export the project you just edited	編集したプロジェクトをエクスポート
+Export the table as CSV or Excel, or choose Insert as report page to make it part of the documents.	表を CSV または Excel としてエクスポートするか、「レポートページとして挿入」を選んでドキュメントの一部にします。
+FAQ	よくある質問
 Features	機能
 Fluid power and harnesses	流体技術とハーネス
 Fluid power linked to the electrical schematic	電気回路図とリンクした流体技術
 For your team	チーム向け
+Free online DXF and DWG viewer: open a drawing in your browser and save it as SVG, PDF, DXF or DWG. The file is not uploaded; nothing to install.	無料のオンライン DXF・DWG ビューアー: ブラウザーで図面を開き、SVG、PDF、DXF、DWG として保存できます。ファイルはアップロードされず、インストールも不要です。
+Free online EDZ viewer: see the parts of an EDZ, EPLAN parts XML, BMEcat or CSV file as a table in your browser and save them as CSV or JSON.	無料のオンライン EDZ ビューアー: EDZ、EPLAN 部品 XML、BMEcat、CSV ファイルの部品をブラウザーで表として表示し、CSV または JSON として保存できます。
+Free online tools for electrical engineering – OpenECraft	電気エンジニアリング向け無料オンラインツール – OpenECraft
+Free open source alternative to AutoCAD Electrical – OpenECraft	AutoCAD Electrical に代わる無料オープンソースソフトウェア – OpenECraft
+Free open source alternative to EPLAN Electric P8 – OpenECraft	EPLAN Electric P8 に代わる無料オープンソースソフトウェア – OpenECraft
+Free open source alternative to SEE Electrical – OpenECraft	SEE Electrical に代わる無料オープンソースソフトウェア – OpenECraft
+Free open source alternative to WSCAD – OpenECraft	WSCAD に代わる無料オープンソースソフトウェア – OpenECraft
 Free to use, free to change. Pick what fits you.	自由に使え、自由に変更できます。合うものを選んでください。
+Free tools that run in your browser	ブラウザーで動作する無料ツール
+Free tools that run in your browser with the code of OpenECraft: voltage drop calculator, DXF and DWG viewer and converter, EDZ and parts file viewer.	OpenECraft のコードを使い、ブラウザーで動作する無料ツール: 電圧降下計算ツール、DXF と DWG のビューアーとコンバーター、EDZ と部品ファイルのビューアー。
+Free voltage drop calculator: current, length, cross-section, copper or aluminium, single or three-phase. It shows the smallest cross-section within your limit.	無料の電圧降下計算ツール: 電流、長さ、断面積、銅またはアルミニウム、単相または三相。上限内に収まる最小の断面積を表示します。
 From source	ソースから
+From the documentation on this site and from the issue tracker of the project, where problems and wishes are reported.	このサイトのドキュメントと、問題やリクエストを報告するプロジェクトの Issue トラッカーで得られます。
 From the first schematic page to the panel in 3D.	最初の回路図ページから 3D の盤まで。
+Generate a wire list	電線リストを生成
+Generate a wire list for the workshop with OpenECraft: every wire with colour, cross-section, routed length and end treatment, from schematic and panel layout.	OpenECraft で製造現場向けの電線リストを生成: 回路図と盤レイアウトから、すべての電線を色、断面積、配線長、端末処理付きで。
 Get OpenECraft	OpenECraft を入手
 Get it	入手
+Give the devices of the schematic their parts and the bill of materials is there: one list of everything to order, kept current by the project.	回路図のデバイスに部品を割り当てれば、部品表ができあがります: 発注するものすべてを 1 つにまとめたリストで、プロジェクトが常に最新の状態に保ちます。
 Graphical terminal diagram	グラフィカルな端子図
+Guides	ガイド
+How it is calculated	計算方法
+How many volts a cable loses on its way, and which cross-section keeps the limit. The calculation is the one OpenECraft uses for the final circuits of an installation.	ケーブルが経路上で何ボルト失うか、どの断面積なら上限を守れるかを計算します。OpenECraft が電気設備の最終回路に使っているのと同じ計算です。
+How to create a bill of materials	部品表の作成方法
+How to create a bill of materials from a schematic – OpenECraft	回路図から部品表を作成する方法 – OpenECraft
+How to create a terminal diagram	端子図の作成方法
+How to create a terminal diagram – OpenECraft	端子図の作成方法 – OpenECraft
+How to draw electrical documents with OpenECraft	OpenECraft で電気ドキュメントを作成する方法
+How to export a schematic to DXF or DWG	回路図を DXF または DWG にエクスポートする方法
+How to export a schematic to DXF or DWG – OpenECraft	回路図を DXF または DWG にエクスポートする方法 – OpenECraft
+How to generate a wire list	電線リストの生成方法
+How to generate a wire list from a schematic – OpenECraft	回路図から電線リストを生成する方法 – OpenECraft
+How to get common documents out of a schematic	回路図から一般的なドキュメントを作成する方法
+How-to	使い方
+IEC 60617 for schematics, with NFPA, GB, GOST and JIS sets, ISO 1219 for fluid power, ISO 10628 for P&ID and IEC 60617-11 for installation plans. Structure identifiers follow IEC 81346.	回路図には IEC 60617、さらに NFPA、GB、GOST、JIS のセット、流体技術には ISO 1219、P&ID には ISO 10628、屋内配線図には IEC 60617-11 を使用します。構造識別子は IEC 81346 に従います。
+Import parts into Devices › Parts management from CSV, BMEcat, EPLAN parts XML or EDZ files, or use the example catalog.	「デバイス › 部品管理」に CSV、BMEcat、EPLAN 部品 XML、EDZ ファイルから部品をインポートするか、サンプルカタログを使用します。
+In Master data › Forms, switch the terminal diagram to its graphical form or choose its columns.	「マスターデータ › フォーム」で、端子図をグラフィカルな形式に切り替えるか、列を選択します。
+In OpenECraft an imported drawing becomes the graphics of a schematic page, and every page of a project is exported as DXF or DWG.	OpenECraft では、インポートした図面は回路図ページの図形になり、プロジェクトのすべてのページを DXF または DWG としてエクスポートできます。
+In OpenECraft the terminal diagram is a report: it is written from the terminals of the schematic and follows every change. You draw the circuit, not the list.	OpenECraft では端子図はレポートです: 回路図の端子から作成され、すべての変更に追従します。描くのは回路であり、リストではありません。
+In a project file on your computer. Nothing is uploaded. A team can run the project server in its own network to work on shared projects.	お使いのコンピューター上のプロジェクトファイルに保存されます。何もアップロードされません。チームは自分たちのネットワーク内でプロジェクトサーバーを動かし、共有プロジェクトで作業できます。
+In a project, OpenECraft measures the cable lengths along the installation zones of the rooms and checks every final circuit this way, feeder cables included.	プロジェクトでは、OpenECraft が部屋の設置ゾーンに沿ってケーブル長を測定し、給電ケーブルも含めてすべての最終回路をこの方法でチェックします。
+In the Panel layout workspace, place the devices on rails and the wiring ducts between them. The wires are routed through the ducts.	「盤レイアウト」ワークスペースで、デバイスをレールに、その間に配線ダクトを配置します。電線はダクトを通して配線されます。
 In the browser	ブラウザーで
 Installation guide	インストールガイド
 Installers for Windows, Linux packages and a macOS disk image, with automatic updates.	Windows 用インストーラー、Linux パッケージ、macOS ディスクイメージ。自動更新付き。
+Is OpenECraft free?	OpenECraft は無料ですか？
+Is OpenECraft ready for real projects?	OpenECraft は現実のプロジェクトに使えますか？
+Is it free? Does it read EPLAN data? Does it work offline? The answers.	無料ですか？EPLAN のデータを読めますか？オフラインで使えますか？その答えです。
+Is there a paid version with more functions?	機能の多い有料版はありますか？
+It is a young project: the first release was in November 2026. Plan one real project with it beside the tool you use today before you rely on it, and have a qualified person verify the results.	まだ新しいプロジェクトです: 最初のリリースは 2026-11 でした。頼りにする前に、現在お使いのツールと並行して現実のプロジェクトを 1 つ設計し、結果を有資格者に確認してもらってください。
+It is free for everyone: no licenses to count, no accounts, and the source code is public.	誰でも無料で使えます: ライセンス数の管理もアカウントも不要で、ソースコードは公開されています。
+It runs on Windows, Linux and macOS and in the browser, built from the same code.	Windows、Linux、macOS、そしてブラウザーで動作し、すべて同じコードからビルドされています。
 Lamp	ランプ
+Length, one way (m)	長さ、片方向 (m)
 Licenses	ライセンス
+Limit	上限
+Lines	線
+Lines, polylines, circles, arcs, ellipses, splines, texts and blocks of DXF and DWG drawings.	DXF と DWG の図面の線、ポリライン、円、円弧、楕円、スプライン、テキスト、ブロック。
+Link copied	リンクをコピーしました
 Live demo	ライブデモ
+Loading the tool. It is the code of the editor, about 10 MB, loaded once.	ツールを読み込んでいます。エディターのコードで、約 10 MB、読み込みは 1 回だけです。
+Look at a DXF or DWG drawing and save it as SVG, PDF or the other of the two formats.	DXF または DWG の図面を表示し、SVG、PDF、またはもう一方の形式で保存します。
 Menu	メニュー
+More examples	その他のサンプル
+More guides	その他のガイド
+More symbols	その他のシンボル
+More to explore	さらに見る
+More tools	その他のツール
 Multi-level terminals, plugs and PLC cards with tag tables for TIA Portal, Studio 5000, TwinCAT, CODESYS and more.	多段端子、プラグ、PLC カード。TIA Portal、Studio 5000、TwinCAT、CODESYS などに対応するタグテーブル付き。
+News	ニュース
 No messages. The project passes the check.	メッセージはありません。プロジェクトはチェックに合格です。
 No screenshots: this is the page editor of OpenECraft. Select and move symbols, draw wires, place a contact and watch cross references, checks and reports follow.	スクリーンショットではありません。これは OpenECraft のページエディターです。シンボルを選択して移動し、電線を描き、接点を配置して、相互参照、チェック、レポートが追従する様子をご覧ください。
+No. There is one OpenECraft, and everything this site describes is in it.	いいえ。OpenECraft は 1 つだけで、このサイトで説明しているものはすべてそこに含まれています。
+Not imported	未インポート
+Not yet. Projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported. Parts from EDZ files and EPLAN parts XML are imported with their data, symbols and 3D models, and DXF and DWG drawings as graphics.	まだできません。EPLAN Electric P8 と AutoCAD Electrical のプロジェクトはインポートできません。EDZ ファイルと EPLAN 部品 XML の部品はデータ、シンボル、3D モデルとともに、DXF と DWG の図面は図形としてインポートされます。
+Number the connections with Connections › Wire numbering.	「接続 › 電線番号付け」で接続に番号を付けます。
+On Windows, Linux and macOS as a desktop program, and in the browser as a web editor with nothing to install. All of them are built from the same code.	Windows、Linux、macOS ではデスクトッププログラムとして、ブラウザーではインストール不要のウェブエディターとして動作します。すべて同じコードからビルドされています。
 On a touch screen one finger works like the left mouse button; two fingers move and zoom the view.	タッチスクリーンでは、1 本指はマウスの左ボタンと同じです。2 本指でビューを移動およびズームします。
 On the desktop	デスクトップで
+One product at a time	製品を 1 つずつ
+One program and one project file for the schematic, the reports, the panel layout in 3D and the workshop.	回路図、レポート、3D の盤レイアウト、製造現場のための、1 つのプログラムと 1 つのプロジェクトファイル。
 One project file holds the schematics, the parts, the panel and the documents. Every function is also a command, so scripts and AI agents can do what you can.	1 つのプロジェクトファイルに回路図、部品、盤、ドキュメントが入ります。すべての機能はコマンドでもあるため、スクリプトや AI エージェントはあなたと同じことができます。
+Open Devices › Terminal strips to order the strip and to add spare terminals, jumpers, end brackets and multi-level blocks.	「デバイス › 端子台」を開いて、端子台を並べ替え、予備端子、ジャンパー、エンドクランプ、多段端子を追加します。
+Open File › Export: it lists all exports of the project.	「ファイル › エクスポート」を開きます: プロジェクトのすべてのエクスポートが一覧表示されます。
+Open Project data › Reports and pick Bill of materials.	「プロジェクトデータ › レポート」を開き、「部品表」を選びます。
+Open Project data › Reports and pick Terminal diagram.	「プロジェクトデータ › レポート」を開き、「端子図」を選びます。
+Open Project data › Reports and pick Wire list (panel routing).	「プロジェクトデータ › レポート」を開き、「電線リスト (盤内配線ルート)」を選びます。
+Open a DXF or DWG drawing without a CAD program and save it as SVG, PDF or the other of the two formats. The file is read in your browser and is not uploaded.	CAD プログラムなしで DXF または DWG の図面を開き、SVG、PDF、またはもう一方の形式で保存します。ファイルはお使いのブラウザーで読み込まれ、アップロードされません。
 Open and extensible	オープンで拡張可能
+Open in the live demo	ライブデモで開く
 Open source electrical CAE	オープンソースの電気 CAE
 Open source under the MIT and Apache-2.0 licenses.	MIT および Apache-2.0 ライセンスのオープンソース。
+Open the DXF and DWG viewer	DXF と DWG のビューアーを開く
+Open the parts file viewer	部品ファイルのビューアーを開く
 Open the web editor	ウェブエディターを開く
+OpenECraft FAQ: free electrical CAE, platforms, EPLAN data	OpenECraft のよくある質問: 無料の電気 CAE、プラットフォーム、EPLAN データ
+OpenECraft and QElectroTech: open source electrical CAD compared	OpenECraft と QElectroTech: オープンソース電気 CAD の比較
+OpenECraft as a free, open source alternative to AutoCAD Electrical: schematics, reports and panel layout in one program, DXF and DWG in and out.	AutoCAD Electrical に代わる無料のオープンソースソフトウェア OpenECraft: 回路図、レポート、盤レイアウトを 1 つのプログラムで。DXF と DWG の入出力に対応。
+OpenECraft as a free, open source alternative to EPLAN Electric P8: what it does, which EPLAN data it reads, where it is still young and whom it fits.	EPLAN Electric P8 に代わる無料のオープンソースソフトウェア OpenECraft: できること、読める EPLAN データ、まだ未完成な点、向いているユーザー。
+OpenECraft as a free, open source alternative to SEE Electrical: schematics, reports, panel layout in 3D and installation plans, on any operating system.	SEE Electrical に代わる無料のオープンソースソフトウェア OpenECraft: 回路図、レポート、3D の盤レイアウト、屋内配線図を、どのオペレーティングシステムでも。
+OpenECraft as a free, open source alternative to WSCAD: schematics, control cabinets and building installation in one program, on any operating system.	WSCAD に代わる無料のオープンソースソフトウェア OpenECraft: 回路図、制御盤、建物の電気設備を 1 つのプログラムで、どのオペレーティングシステムでも。
+OpenECraft beside QElectroTech	OpenECraft と QElectroTech を並べて
+OpenECraft imports the same files into its parts database, with the symbols and the 3D models of EDZ archives, and assigns the parts to the devices of the schematic.	OpenECraft は同じファイルを、EDZ アーカイブのシンボルと 3D モデルとともに部品データベースにインポートし、部品を回路図のデバイスに割り当てます。
 OpenECraft is open source under the MIT license or the Apache License 2.0, at your choice. It contains fonts and libraries of others under their own licenses.	OpenECraft は MIT ライセンスまたは Apache License 2.0 のいずれかを選べるオープンソースです。他者のフォントとライブラリを、それぞれのライセンスのもとで含みます。
 OpenECraft plans electrical systems: device-oriented schematics, live reports, panel layout with routed wiring and the documentation for the customer. One code base for Windows, Linux, macOS and the browser.	OpenECraft は電気設備を設計します。デバイス指向の回路図、常に最新のレポート、配線ルート付きの盤レイアウト、顧客向けドキュメント。Windows、Linux、macOS、ブラウザーを 1 つのコードベースで。
 OpenECraft – open source electrical CAE	OpenECraft – オープンソースの電気 CAE
+PDF, DXF, DWG and SVG for the pages, the panel as glTF, STEP, IGES, IFC and JT, wire lists, marking data, PLC symbol tables and more. The exports of the live demo on this site run in your browser.	ページには PDF、DXF、DWG、SVG、制御盤には glTF、STEP、IGES、IFC、JT、さらに電線リスト、マーキングデータ、PLC シンボルテーブルなど。このサイトのライブデモのエクスポートはお使いのブラウザーで動作します。
 PDF, DXF, DWG and SVG; the panel as glTF, STEP, IGES, IFC and JT; connectors for ERP, PDM and PLM systems.	PDF、DXF、DWG、SVG。盤は glTF、STEP、IGES、IFC、JT で出力。ERP、PDM、PLM システム用コネクター。
 PLC and automation	PLC と自動化
 Panel layout in 3D	3D の盤レイアウト
 Parts and data portal	部品とデータポータル
+Parts come in from CSV, BMEcat, EPLAN parts XML and EDZ files, with STEP models for the panel.	部品は CSV、BMEcat、EPLAN 部品 XML、EDZ ファイルから、制御盤用の STEP モデルとともに取り込めます。
+Parts file (EDZ, XML, CSV, JSON)	部品ファイル (EDZ、XML、CSV、JSON)
+Parts in the documentation	部品についてのドキュメント
 Parts server, project server and the web editor as Docker images for your own network.	部品サーバー、プロジェクトサーバー、ウェブエディターを、自社ネットワーク用の Docker イメージとして。
+Pick DXF or DWG. The drawing has the pages with their frames, symbols, wires and texts.	DXF または DWG を選びます。図面には、枠、シンボル、電線、テキストを含むページが入ります。
+Place terminals from the Terminals library of the Insert center and wire them. Terminals with the same tag, for example -X1, form one strip.	挿入センターの「端子」ライブラリから端子を配置し、配線します。同じタグ (例: -X1) の端子が 1 つの端子台になります。
 Planning	計画
+Platforms and data	プラットフォームとデータ
 Pneumatic and hydraulic circuits linked to the electrics, wire harnesses with KBL export and nailboards.	電気とリンクした空気圧回路と油圧回路、KBL エクスポート付きのハーネスと布線板。
 Potentials with colours and cross-sections, cables with cores, automatic wire, device and page numbering.	色と断面積を持つ電位、芯線を持つケーブル、電線、デバイス、ページの自動番号付け。
 Project check	プロジェクトチェック
+Projects of other electrical CAD programs cannot be imported yet; a project is drawn anew in OpenECraft.	他の電気 CAD プログラムのプロジェクトはまだインポートできません。プロジェクトは OpenECraft で新たに描き直します。
 Push button	押しボタン
+QElectroTech is the name of an independent open source project. OpenECraft is not affiliated with it.	QElectroTech は独立したオープンソースプロジェクトの名称です。OpenECraft はそれとは関係ありません。
+Questions and answers about OpenECraft	OpenECraft についての質問と回答
+Read the answers	回答を読む
+Read the documentation	ドキュメントを読む
+Read the guides	ガイドを読む
+Read the news	ニュースを読む
 Report a problem	問題を報告
 Reports and checks	レポートとチェック
 Reports that write themselves	自動で書かれるレポート
+SEE Electrical is a trademark of IGE+XAO. OpenECraft is not affiliated with IGE+XAO.	SEE Electrical は IGE+XAO の商標です。OpenECraft は IGE+XAO とは関係ありません。
+SEE Electrical is an established electrical CAD for schematics, cabinets and installations. OpenECraft does this work in one free program for any operating system and the browser. It is young, and this page says where.	SEE Electrical は回路図、盤、電気設備のための実績ある電気 CAD です。OpenECraft はこの作業を、どのオペレーティングシステムでもブラウザーでも使える 1 つの無料プログラムで行います。まだ新しいソフトウェアで、どこが未完成かはこのページで説明します。
+Save as	保存形式
+Scale on the page	ページ上の尺度
+Schematic pages as DXF or DWG drawings for customers and other CAD programs.	顧客や他の CAD プログラム向けに、回路図ページを DXF または DWG の図面として。
 Screenshot of a graphical terminal diagram	グラフィカルな端子図のスクリーンショット
 Screenshot of a pneumatic circuit linked to the schematic	回路図とリンクした空気圧回路のスクリーンショット
 Screenshot of the heat map of a mounting plate	取付板のヒートマップのスクリーンショット
@@ -77,41 +238,128 @@ Screenshot of the wiring assistant in the 3D view	3D ビューの配線アシス
 Screenshot of two bayed enclosures in the 3D panel layout	3D 盤レイアウトで連結された 2 台のエンクロージャーのスクリーンショット
 Search commands	コマンドを検索
 Search reports	レポートを検索
+See it in the live demo	ライブデモで見る
+See the example	サンプルを見る
+See the examples	サンプルを見る
+See the parts of an EDZ, EPLAN XML, BMEcat or CSV file as a table and save them as CSV or JSON.	EDZ、EPLAN XML、BMEcat、CSV ファイルの部品を表として表示し、CSV または JSON として保存します。
+See what a parts file holds without the program it was made for: part numbers, manufacturers, descriptions and sizes as a table, to save as CSV or JSON. The file is read in your browser and is not uploaded.	部品ファイルの内容を、そのファイルが作られた対象のプログラムなしで確認できます: 部品番号、メーカー、説明、寸法を表として表示し、CSV または JSON として保存できます。ファイルはお使いのブラウザーで読み込まれ、アップロードされません。
+Select a device and add its parts in the Parts tab of the Properties pane. The device selection offers the parts that provide its function.	デバイスを選択し、「プロパティ」ペインの「部品」タブで部品を追加します。デバイスの選択では、その機能を備えた部品が提示されます。
 Shared projects with page locks and roles, released pages, approval workflow, comments and redlining.	ページロックとロールを備えた共有プロジェクト、リリース済みページ、承認ワークフロー、コメント、朱書き。
+Sheet {} of the example: {}	サンプルのシート {}: {}
+Short guides for common tasks in OpenECraft: terminal diagram, wire list, bill of materials and DXF or DWG export, each with a live demo to try.	OpenECraft でよくある作業の短いガイド: 端子図、電線リスト、部品表、DXF または DWG のエクスポート。それぞれライブデモで試せます。
+Short guides for the documents a control cabinet needs. Each opens the live demo at the step it describes, so you can try it before you install anything.	制御盤に必要なドキュメントのための短いガイドです。それぞれ、説明している手順の場所でライブデモが開くので、何もインストールせずに試せます。
+Short guides: terminal diagram, wire list, bill of materials, DXF and DWG export.	短いガイド: 端子図、電線リスト、部品表、DXF と DWG のエクスポート。
+Single functions of OpenECraft for a value or a file of your own. They run in your browser with the code of the editor: nothing is uploaded, and nothing needs an account.	自分の値やファイルに使える OpenECraft の個別機能です。エディターのコードを使ってお使いのブラウザーで動作します: 何もアップロードされず、アカウントも不要です。
+Single-phase or DC	単相または DC
+Size of the drawing	図面のサイズ
+Smallest cross-section within the limit	上限内の最小断面積
 Source code	ソースコード
 Speaks 20 languages	20 言語に対応
+Step by step	手順
 Switch the language while you work: menus, generated reports and check messages follow at once. Try it, this page and the demos switch too.	作業中に言語を切り替えられます。メニュー、生成されたレポート、チェックメッセージがすぐに追従します。お試しください。このページとデモも切り替わります。
 Symbol libraries	シンボルライブラリ
+Symbol library	シンボルライブラリ
+Symbol: {}	シンボル: {}
 Tap to explore the panel	タップして盤を見る
 Tap to work in the editor	タップしてエディターで作業
 Teams and revisions	チームとリビジョン
+Terminals with the same tag form a strip; the terminal diagram lists every terminal with both of its sides.	同じタグの端子が端子台になります。端子図には、すべての端子がその両側とともに一覧表示されます。
+Terminals, plugs and PLC in the documentation	端子、プラグ、PLC についてのドキュメント
 Terminals, plugs, PLC	端子、プラグ、PLC
+The Connection list shows the connections of a schematic that has no panel layout yet.	「接続リスト」は、まだ盤レイアウトのない回路図の接続を表示します。
+The Strips / plugs navigator shows each strip in rail order; a click shows a placed terminal in the schematic.	「端子台 / プラグ」ナビゲーターは、各端子台をレール上の順序で表示します。クリックすると、配置済みの端子が回路図に表示されます。
+The bill of materials sums the parts of the devices, terminals, cables, harnesses, panel layout material, ferrules and marker material.	部品表は、デバイス、端子、ケーブル、ハーネス、盤レイアウトの資材、フェルール、マーカー資材の部品を集計します。
+The calculations in the documentation	計算についてのドキュメント
 The demo could not start in this browser. It needs WebGL and WebAssembly.	このブラウザーではデモを開始できませんでした。WebGL と WebAssembly が必要です。
+The drawing is put on a page as OpenECraft imports it into a project: a drawing larger than the sheet is scaled to fit.	図面は、OpenECraft がプロジェクトにインポートするときと同じようにページに配置されます: シートより大きい図面は収まるように縮小されます。
+The example projects with their sheets as pictures, their PDF and a link that opens them in the live demo.	サンプルプロジェクトを、シートの画像、PDF、ライブデモで開くリンクとともに。
 The exports run in your browser as well. Nothing is uploaded.	エクスポートもお使いのブラウザーで動作します。何もアップロードされません。
+The first {} of {} parts	最初の {} 個 (全 {} 個の部品)
 The first {} of {} rows	最初の {} 行（全 {} 行）
 The full editor as a web application. Nothing to install, your projects stay on your computer.	完全なエディターをウェブアプリケーションとして。インストール不要で、プロジェクトはお使いのコンピューターに残ります。
+The limit is yours to set: 3 % is common for lighting and 5 % for other loads, and the regulations of your country decide.	上限はご自身で設定します: 照明には 3 %、その他の負荷には 5 % が一般的ですが、お使いの国の規制に従ってください。
 The links to the source code, the downloads and the documentation lead to other sites, which have privacy notices of their own.	ソースコード、ダウンロード、ドキュメントへのリンクは他のサイトに移動します。それらのサイトには独自のプライバシー通知があります。
 The live demos, the console and the exports run in your browser. The project you edit here is not sent anywhere.	ライブデモ、コンソール、エクスポートはお使いのブラウザーで動作します。ここで編集するプロジェクトはどこにも送信されません。
+The name is used only to compare, and what this page says about the other product is general public information as of November 2026.	名称は比較のためにのみ使用しており、このページの他製品に関する記述は 2026-11 時点の一般的な公開情報です。
 The panel in 3D	3D の盤
+The parts of all devices, terminals, cables and the panel, summed into one list.	すべてのデバイス、端子、ケーブル、制御盤の部品を 1 つのリストに集計。
+The reactance of the cable is taken as 0.08 mΩ per metre. It matters for large cross-sections and a low power factor.	ケーブルのリアクタンスは 1 メートルあたり 0.08 mΩ とします。断面積が大きく力率が低い場合に影響します。
+The resistivity is the one of the conductor in operation, 1.25 times its value at 20 °C (IEC 60364-5-52): 0.0225 Ω·mm²/m for copper and 0.036 Ω·mm²/m for aluminium.	抵抗率は使用中の導体の値で、20 °C での値の 1.25 倍です (IEC 60364-5-52): 銅は 0.0225 Ω·mm²/m、アルミニウムは 0.036 Ω·mm²/m。
+The result supports the planning. A qualified person has to verify it against the standards and regulations that apply.	結果は設計を支援するものです。有資格者が、適用される規格や規制に照らして確認する必要があります。
+The same export is a command of the command line and the MCP server, so a script can write the drawings of every project.	同じエクスポートはコマンドラインと MCP サーバーのコマンドでもあるため、スクリプトですべてのプロジェクトの図面を書き出せます。
 The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example.	同じプロジェクトを工場で見た姿です。エンクロージャー、レール、ダクト、実寸のデバイスがあり、電線はダクトを通して配線されています。例のエンクロージャー、部屋、敷地を切り替えられます。
 The schematic editor with ribbon and page navigator	リボンとページナビゲーターを備えた回路図エディター
+The symbol library of OpenECraft, the free open source electrical CAE: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&ID and installation plan symbols.	無料のオープンソース電気 CAE、OpenECraft のシンボルライブラリ: IEC 60617、NFPA、GB、GOST、JIS、流体技術、P&ID、屋内配線図のシンボル。
+The symbol library, the example projects, tools for your own files, guides, the documentation and the news.	シンボルライブラリ、サンプルプロジェクト、自分のファイルに使えるツール、ガイド、ドキュメント、ニュース。
+The table shows the main data of at most 500 parts; the CSV and JSON files have all parts with all their data.	表には最大 500 個の部品の主なデータが表示されます。CSV と JSON のファイルには、すべての部品のすべてのデータが含まれます。
+The tool could not start in this browser. It needs WebAssembly.	このブラウザーではツールを起動できませんでした。WebAssembly が必要です。
+The tutorial walks through a whole project, from the first page to the panel layout.	チュートリアルでは、最初のページから盤レイアウトまで、プロジェクト全体を順に進めます。
+The tutorial, the installation guide and every feature in detail.	チュートリアル、インストールガイド、すべての機能の詳細。
+The voltage drop of a cable from current, length and cross-section, with the smallest cross-section that keeps your limit.	電流、長さ、断面積からケーブルの電圧降下を計算し、上限を守れる最小の断面積も表示します。
+The whole editor does much more with the same code: try it in the live demo or open the web editor.	エディター全体では、同じコードでさらに多くのことができます: ライブデモで試すか、ウェブエディターを開いてください。
+The wire list comes from two things you have already drawn: the connections of the schematic and the places of the devices in the panel. OpenECraft routes the wires through the ducts and measures them.	電線リストは、すでに描いた 2 つのものから作られます: 回路図の接続と、盤内のデバイスの位置です。OpenECraft が電線をダクトに通して配線し、長さを測定します。
 The wiring assistant shows the next wire in 3D	配線アシスタントが次の電線を 3D で表示
+The workshop in the documentation	製造現場についてのドキュメント
+The {} symbols that come with OpenECraft: IEC 60617 for schematics, NFPA, GB, GOST and JIS sets, fluid power after ISO 1219, P&ID and installation plans. Pick a category to see every symbol.	OpenECraft に付属する {} 個のシンボル: 回路図用の IEC 60617、NFPA、GB、GOST、JIS のセット、ISO 1219 による流体技術、P&ID、屋内配線図。カテゴリを選ぶと、すべてのシンボルが表示されます。
 These are the commands of the command line and the MCP server, run on the project of the demo above.	これらはコマンドラインと MCP サーバーのコマンドで、上のデモのプロジェクトに対して実行されます。
 Third-party licenses	サードパーティライセンス
 This page is drawn right now by the editor's own code, running in your browser.	このページは今、お使いのブラウザーで動作するエディター自身のコードによって描画されています。
+Three-phase	三相
 Tip: delete a wire and see the check react. Undo brings it back.	ヒント：電線を削除して、チェックの反応を見てください。元に戻すと復元されます。
+To bring a drawing in, import a DXF or DWG file: it becomes the graphics of a new schematic page.	図面を取り込むには、DXF または DWG ファイルをインポートします: 新しい回路図ページの図形になります。
 To show an example faster the next time, your browser keeps the wiring it calculated for it in its cache. Nothing else is stored; clearing the site data of the browser removes it.	次回、例をより速く表示するため、ブラウザーは計算した配線をキャッシュに保持します。ほかには何も保存されません。ブラウザーでサイトデータを消去すると削除されます。
 Try it: the schematic editor, live	お試しください：回路図エディター、ライブ
+Try the exports in the live demo	ライブデモでエクスポートを試す
 Try the live demo	ライブデモを試す
 Try these	これらをお試しください
 Two bayed enclosures with rails, ducts and busbars	レール、ダクト、ブスバーを備えた連結された 2 台のエンクロージャー
+Two free, open source programs for electrical schematics: what QElectroTech is known for and what OpenECraft adds with reports, panel layout in 3D and checks.	電気回路図のための 2 つの無料オープンソースプログラム: QElectroTech が知られている点と、OpenECraft がレポート、3D の盤レイアウト、チェックで追加するもの。
 Type a command, or help	コマンドまたは help を入力
 Type help for the commands, or pick one on the right.	help と入力するとコマンドが表示されます。右から選ぶこともできます。
 Unknown command: {}	不明なコマンド：{}
+Use the tools	ツールを使う
+Voltage drop calculator	電圧降下計算ツール
+Voltage drop calculator for cables – OpenECraft	ケーブルの電圧降下計算ツール – OpenECraft
+Voltage drop calculator, DXF and DWG viewer, EDZ and parts file viewer: in your browser, nothing is uploaded.	電圧降下計算ツール、DXF と DWG のビューアー、EDZ と部品ファイルのビューアー: お使いのブラウザーで動作し、何もアップロードされません。
+Voltage drop in percent	電圧降下 (%)
+WSCAD is a trademark of WSCAD GmbH. OpenECraft is not affiliated with WSCAD.	WSCAD は WSCAD GmbH の商標です。OpenECraft は WSCAD とは関係ありません。
+WSCAD is an established electrical CAD for control cabinets, building automation and installation. OpenECraft covers schematics, the panel in 3D and installation plans in one free program for any operating system. It is young, and this page says where.	WSCAD は制御盤、ビルオートメーション、電気設備のための実績ある電気 CAD です。OpenECraft は回路図、3D の制御盤、屋内配線図を、どのオペレーティングシステムでも使える 1 つの無料プログラムでカバーします。まだ新しいソフトウェアで、どこが未完成かはこのページで説明します。
+What comes across	引き継げるもの
+What is new in every release, with a feed for your feed reader.	各リリースの新機能。フィードリーダー用のフィードもあります。
+What it does not read, such as hatches and pictures, is listed below the drawing.	ハッチングや画像など、読み込まれないものは図面の下に一覧表示されます。
+What it reads	読み込めるもの
+What people ask before they try it: the cost, the platforms, the data of other tools and how far the project is.	試す前によくある質問: 費用、プラットフォーム、他のツールのデータ、プロジェクトの進み具合。
+When your customers ask for its project files, your company has standardised on it, or you need the support and the part data of its vendor.	顧客がその製品のプロジェクトファイルを求める場合、会社がそれを標準としている場合、またはそのベンダーのサポートや部品データが必要な場合。
+Where are my projects stored?	プロジェクトはどこに保存されますか？
+Where do I get help?	ヘルプはどこで得られますか？
+Which formats can it export?	どの形式にエクスポートできますか？
+Which operating systems does OpenECraft run on?	OpenECraft はどのオペレーティングシステムで動作しますか？
+Which standards do the symbols follow?	シンボルはどの規格に従っていますか？
+Why people look at OpenECraft	OpenECraft が注目される理由
+Width × height × depth (mm)	幅 × 高さ × 奥行き (mm)
+Wire list	電線リスト
 Wires, cables, potentials	電線、ケーブル、電位
 Wiring and harnesses	配線とハーネス
 Written in Rust. Clone the repository and run it.	Rust で書かれています。リポジトリをクローンして実行してください。
+Yes. Every operation on a project is a command of the command line and of the MCP server for AI agents, and plugins in any language add checks, reports, exports and commands.	はい。プロジェクトに対するすべての操作は、コマンドラインと AI エージェント向け MCP サーバーのコマンドです。また、任意の言語で書いたプラグインでチェック、レポート、エクスポート、コマンドを追加できます。
+Yes. OpenECraft is open source under the MIT and Apache-2.0 licenses: no price, no licenses to count, no account and no expiry, also for commercial work.	はい。OpenECraft は MIT と Apache-2.0 ライセンスのオープンソースです: 価格なし、ライセンス数の管理なし、アカウントなし、有効期限なしで、商用の作業にも使えます。
+Yes. The desktop program needs no internet connection. The web editor runs in your browser once it is loaded, and your projects stay on your computer.	はい。デスクトッププログラムにインターネット接続は不要です。ウェブエディターは一度読み込めばお使いのブラウザーで動作し、プロジェクトはお使いのコンピューターに残ります。
 commands for scripts and AI agents	個のスクリプトと AI エージェント向けコマンド
+contributors	人のコントリビューター
 example projects	個のサンプルプロジェクト
+k is 2 for a single-phase or DC circuit, where the current flows there and back, and 1.732, the square root of 3, for a three-phase circuit with the voltage between the lines.	k は、電流が行って戻る単相または DC 回路では 2、線間電圧を用いる三相回路では 1.732 (3 の平方根) です。
 languages	言語
+none up to 240 mm²	240 mm² までに該当なし
+over the limit	上限超過
+stars on GitHub	GitHub スター
+within the limit	上限内
+{} % is over the limit of {} %.	{} % は上限の {} % を超えています。
+{} % is within the limit of {} %.	{} % は上限の {} % 以内です。
 {} commands. Type help and a name for its parameters, for example: help rename_device	{} 個のコマンド。help と名前を入力するとパラメーターが表示されます。例：help rename_device
+{} electrical symbols of the category {}, drawn by OpenECraft, the free open source electrical CAE: {}	{} 個の電気シンボル (カテゴリ {})。無料のオープンソース電気 CAE、OpenECraft が描画: {}
+{} pages	{} ページ
+{} projects that come with OpenECraft, from a lamp circuit to a whole building. Each has its sheets, its PDF and a link that opens it in the live demo.	OpenECraft に付属する {} 個のプロジェクト。ランプ回路から建物全体まであります。それぞれにシート、PDF、ライブデモで開くリンクがあります。
+{} symbols of the category {} with their drawings, identifying letters and connection points. They come with OpenECraft, free to use in your schematics.	{} 個のシンボル (カテゴリ {}) を、図、識別文字、接続ポイントとともに。OpenECraft に付属し、回路図で自由に使えます。
+{} – example project | OpenECraft	{} – サンプルプロジェクト | OpenECraft
+{} – schematic symbols | OpenECraft	{} – 回路図シンボル | OpenECraft
+{}: a number above 0 is needed	{}: 0 より大きい数値が必要です
