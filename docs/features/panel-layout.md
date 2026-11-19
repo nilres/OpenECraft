@@ -684,7 +684,11 @@ lengths of their cables are those of the 3D routing.
   leaving it.
 - **Two-way circuits**: a two-way switch (`GEN.SW-2WAY-UP`) placed `from` another one
   is drawn upright in the column after it, the two travellers of their cable from the
-  one to the other; a light without `from` hangs on the second switch.
+  one to the other; for more switching points intermediate switches
+  (`GEN.SW-INTER-UP`) go between them, each `from` the switch before. A light without
+  `from` hangs on the last switch. A two-way switch working alone has its spare
+  traveller in *Unused connection points* (`function.unused_pins`): a connection point
+  named there is not reported as open.
 - **Without a circuit**: data and antenna outlets (`GEN.DATA-RJ45-2X-UP`,
   `GEN.TV-SAT-UP`) and smoke alarms (`GEN.SMOKE-ALARM`, on the ceiling) are placed in
   the rooms only (`place_installation` without `breaker`; with `tag` as that device),

@@ -127,6 +127,7 @@ fn room_installation(c: &mut C) {
     for (number, desc, subgroup, function, extra) in [
         ("GEN.SW-ONOFF-UP", "Light switch on / off 10 AX 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Switch", (SwitchNo, "L 1"), "Rockers: 1"),
         ("GEN.SW-2WAY-UP", "Two-way switch 10 AX 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Switch", (Changeover, "L 1 2"), "Rockers: 1"),
+        ("GEN.SW-INTER-UP", "Intermediate switch 10 AX 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Switch", (Changeover, "1 2 3 4"), "Rockers: 1"),
         ("GEN.SW-SERIES-UP", "Series switch (two circuits) 10 AX 250 V, flush-mounted, with two rockers and frame 80 x 80 mm", "Switch", (SwitchNo, "L 1"), "Rockers: 2"),
         ("GEN.PB-NO-UP", "Push button NO 10 A 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Push button", (PushbuttonNo, "L 1"), "Rockers: 1"),
         ("GEN.SW-BLIND-UP", "Blind switch up / down 10 A 250 V, interlocked, flush-mounted, with rockers and frame 80 x 80 mm", "Blind switch", (Changeover, "L 1 2"), "Rockers: 2"),

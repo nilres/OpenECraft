@@ -39,8 +39,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   manually operated changeover switch, symbol `co_man`); `tag` was ignored without
   `breaker` and the mounting height on the outside of a wall; a junction box counted as
   a load of 16 A in the cable sizing (now it passes on the loads of the cables leaving
-  it). A two-way switch fed from another one makes a two-way circuit: the installation
-  page joins their travellers, and a light without `from` hangs on the second switch.
+  it). A two-way switch fed from another one makes a two-way circuit, with intermediate
+  switches (`GEN.SW-INTER-UP`, symbol `co_inter`) between them for more switching
+  points: the installation page joins their travellers, and a light without `from`
+  hangs on the last switch. The spare traveller of a two-way switch working alone is
+  left free on purpose: connection points named in the new function property *Unused
+  connection points* (`function.unused_pins`) are not reported as open.
 - **Placing in the 3D view:** a click on a wall or the ceiling of a room places the
   part there, also outside the installation zones: near its mounting height it goes at
   that height, farther off at the height clicked. While placing, the part is shown

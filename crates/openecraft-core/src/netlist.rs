@@ -16,6 +16,10 @@ use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
 use std::sync::Arc;
 
+/// The function property naming the connection points of a symbol left free on purpose
+/// (designations separated by spaces): they are not reported as open.
+pub const UNUSED_PINS: &str = "function.unused_pins";
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct PinRef {
     pub page: usize,
@@ -489,7 +493,10 @@ impl Netlist {
                 }
                 nl.pin_net.insert((sym_id, pin), ni);
                 let s = &prj.pages[*pi].symbols[si];
-                if unconnected && !s.pins.get(pin).is_some_and(|d| wired_views.contains(&(s.tag.as_str(), d.as_str()))) {
+                // Connection points left free on purpose (`function.unused_pins`, the
+                // spare traveller of a two-way switch) are not open.
+                let unused = s.pins.get(pin).is_some_and(|d| s.values.get(UNUSED_PINS).is_some_and(|v| v.split_whitespace().any(|u| u == d)));
+                if unconnected && !unused && !s.pins.get(pin).is_some_and(|d| wired_views.contains(&(s.tag.as_str(), d.as_str()))) {
                     nl.unconnected.push((*pi, sym_id, pin));
                 }
             }

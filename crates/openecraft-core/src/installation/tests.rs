@@ -608,9 +608,11 @@ fn a_two_way_switch_is_a_main_function() {
     let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == tag).unwrap();
     assert_eq!(s.sym, "co_man");
     assert_eq!(s.pins, ["L", "1", "2"]);
+    // Working alone, its spare traveller is left free on purpose: no open connection point.
+    assert_eq!(s.values.get(crate::netlist::UNUSED_PINS).map(|v| v.split_whitespace().count()), Some(1));
     let an = crate::reports::Analysis::checked(&prj);
-    let mine: Vec<String> = an.issues.iter().map(|i| i.message()).filter(|m| m.contains(&tag)).collect();
-    assert!(mine.iter().all(|m| !m.contains("auxiliary function")), "{mine:?}");
+    let mine: Vec<String> = an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| m.contains(&tag)).collect();
+    assert!(mine.is_empty(), "{mine:?}");
 }
 
 #[test]
@@ -689,4 +691,33 @@ fn a_junction_box_passes_on_the_loads_behind_it() {
     let d = crate::sizing::cable_drops(&prj, &conns).into_iter().find(|d| d.cable == to_box).unwrap();
     assert_eq!(d.load, s);
     assert_eq!(d.current, Some(16.0));
+}
+
+#[test]
+fn an_intermediate_switch_sits_between_two_two_way_switches() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let opts = Options { from: Some(a.clone()), ..Default::default() };
+    let k = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-INTER-UP", ri, q, &opts) }.unwrap();
+    let opts = Options { from: Some(k.clone()), ..Default::default() };
+    let b = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &opts) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    let syms: Vec<&SymbolInst> = prj.pages.iter().flat_map(|pg| &pg.symbols).collect();
+    assert_eq!(syms.iter().find(|s| s.tag == k).unwrap().sym, "co_inter");
+    // No connection point is left free.
+    assert!(syms.iter().filter(|s| [&a, &k, &b].contains(&&s.tag)).all(|s| !s.values.contains_key(crate::netlist::UNUSED_PINS)));
+    let cable = |t: &str| prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| x == t)).unwrap().clone();
+    // The light hangs on the last switch; each cable between the switches carries two
+    // travellers.
+    assert_eq!(cable(&l).values["cable.source"], b);
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    for t in [&k, &b] {
+        let w = cable(t).tag;
+        assert_eq!(conns.iter().filter(|c| c.cable == w).count(), 2, "{t}");
+    }
+    let an = crate::reports::Analysis::checked(&prj);
+    let mine: Vec<String> = an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| [&a, &k, &b].iter().any(|t| m.contains(t.as_str()))).collect();
+    assert!(mine.is_empty(), "{mine:?}");
 }

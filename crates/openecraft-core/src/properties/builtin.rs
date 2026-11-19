@@ -446,6 +446,7 @@ pub(super) const ROWS: &[Row] = &[
     r("function.signal", tr_const!("Signal name"), Function, General, Text, ""),
     r("function.connection_scope", tr_const!("Connection scope"), Function, Electrical, Text, ""),
     r("function.pin_descriptions", tr_const!("Connection point descriptions"), Function, General, Text, ""),
+    r("function.unused_pins", tr_const!("Unused connection points"), Function, Electrical, Text, ""),
     r("function.supplementary", tr_const!("Supplementary field"), Function, Supplementary, Text, "").idx(50),
     r("function.plc_address",tr_const!("PLC channel address"),Function,Plc,Text,"").idx(1024),
     r("function.plc_symbol",tr_const!("PLC channel symbol"),Function,Plc,Text,"").idx(1024),
