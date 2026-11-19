@@ -32,7 +32,7 @@ pub struct Server {
 
 impl Server {
     /// Server from `--server` / `--token`, otherwise from the environment
-    /// (`OPENECRAFT_SERVER`, `OPENECRAFT_TOKEN`), otherwise the local default.
+    /// (`OPENECRAFT_SERVER`, `OPENECRAFT_TOKEN`), otherwise the public parts server.
     pub fn from_options(o: &Options) -> Server {
         let env = |k: &str| std::env::var(k).ok().filter(|v| !v.trim().is_empty());
         let default = Endpoint::default();
