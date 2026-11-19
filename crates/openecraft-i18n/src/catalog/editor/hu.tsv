@@ -221,6 +221,7 @@ Bottom left	Bal alsó
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	A szekrény alsó éle (lábazat nélkül) a padló felett; a magasságokat akkor ellenőrzi, ha ez ismert, vagy ha a szekrény lábazaton áll
 Bottom right	Jobb alsó
 Boundary	Határ
+Boxes	Dobozok
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Megszakítóképesség a zárlati árammal szemben a hálózat minden védőkészülékénél, lekapcsolás a legkisebb hibaáramnál az áramkör végén, a kábelek zárlati szilárdsága és szelektivitás az előtte kapcsolt készülékkel.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Híd: négy vezeték; a kapcsolat egy oldalon érkezik, és a három másikhoz megy, először a szemköztihez
 Building {} added with a level at ground level	A(z) {} épület hozzáadva egy talajszinti szinttel
@@ -246,6 +247,7 @@ Cable definition on page {}	Kábeldefiníció a(z) {}. oldalon
 Cable definition: draw a line across the wires that are cores of a cable	Kábeldefiníció: húzzon egy vonalat egy kábel ereit alkotó vezetékeken keresztül
 Cable end reserve	Kábelvégtartalék
 Cable ends	Kábelvégek
+Cable from	Kábel innen
 Cable markers	Kábeljelölők
 Cable passage to {}	Kábelátvezetés ehhez: {}
 Cable {}: {} cores assigned	{} kábel: {} ér hozzárendelve
@@ -997,6 +999,7 @@ Joins	Összeköt
 Joins wire pieces in a line where nothing else connects (current page)	Egyesíti az egy vonalba eső vezetékdarabokat ott, ahol semmi más nem csatlakozik (aktuális oldal)
 Jumper {}	{} áthidalás
 Jumps over the other:	Átugorja a másikat:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Kötődobozok, csatlakozódobozok fixen bekötött készülékekhez és füstérzékelők
 K, Q, MM …	K, Q, MM …
 Keep connections	Kapcsolatok megtartása
 Keep sub-pages (3.a, 3.1) with the page before	Az aloldalak (3.a, 3.1) az előző oldalnál maradnak
@@ -1757,6 +1760,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Helyiség hozzáadva: húzza a falait, vagy rajzoljon újakat az alaprajzon, a szekrényeket azok tulajdonságaiban helyezze bele
 Room {} now stands on level {}	A(z) {} helyiség most a(z) {} szinten áll
 Room {} taken out of the building; it stays where it stands	A(z) {} helyiség kivéve az épületből; ott marad, ahol áll
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Az ennél kisebb talált helyiségek kimaradnak (egy WC vagy egy kamra kisebb lehet 1 m²-nél)
 Rooms under sloped ceilings (lowest – highest ceiling)	Ferde mennyezetű helyiségek (legalacsonyabb – legmagasabb mennyezet)
 Rotate	Elforgatás
 Rotate (selection or symbol being placed)	Elforgatás (kijelölés vagy az elhelyezés alatt álló szimbólum)
@@ -1963,6 +1967,7 @@ Slot depth	Horonymélység
 Slots	Slotok
 Smallest cross-section of control circuits	Vezérlőáramkörök legkisebb keresztmetszete
 Smallest cross-section of power circuits	Erősáramú áramkörök legkisebb keresztmetszete
+Smallest room	Legkisebb helyiség
 Socket outlets, data and antenna outlets	Dugaszolóaljzatok, adat- és antennaaljzatok
 Solid	Folytonos
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	A projektszerver nem vette át néhány módosítását. Az Ön változata a Projektszerver panelen marad, elvetés után is.
@@ -2093,6 +2098,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	A másolat a projektszerveren mentett állapotból készül. Azok a módosítások, amelyeket más felhasználók még nem mentettek, nem részei. A munkamenetek, zárolások és hozzáférési jogok nem másolódnak; az eredeti változatlan marad.
 The crossed wires get free cores of the cable in order	A keresztezett vezetékek sorban megkapják a kábel szabad ereit
 The current page belongs to option {}.	Az aktuális oldal a(z) {} opcióhoz tartozik.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Az áramkör készüléke vagy kötődoboza, ahonnan a következő készülék kábele jön: ott ágazik el az áramkör
 The devices do not fit onto the rail	A készülékek nem férnek el a sínen
 The dictionary is empty: collect the texts from the project.	A szótár üres: gyűjtse össze a szövegeket a projektből.
 The door seen from the front: door devices and cutouts	Az ajtó elölről nézve: ajtókészülékek és kivágások
@@ -2278,6 +2284,8 @@ Whole building	Egész épület
 Whole words	Csak teljes szavak
 Width / going	Szélesség / fellépő
 Width / height (mm)	Szélesség / magasság (mm)
+Width factor	Szélességi tényező
+Width of the letters to their usual width (0.8: narrow lettering)	A betűk szélessége a szokásos szélességükhöz képest (0,8: keskeny írás)
 Width × depth	Szélesség × mélység
 Width × height	Szélesség × magasság
 Width × height (mm)	Szélesség × magasság (mm)
@@ -2415,6 +2423,7 @@ set on the device	a készüléken megadva
 sloped ceiling from {} m	ferde mennyezet {} m-től
 some	néhány
 taken over	átvéve
+the device before it	az előző készülék
 the project data (page list, devices, settings)	a projektadatok (oldallista, készülékek, beállítások)
 then	akkor
 unknown	ismeretlen

@@ -250,6 +250,10 @@ fn text_properties(ui: &mut egui::Ui, t: &mut TextItem, names: &[String]) {
         ui.label(tr("Wrap width (mm)"));
         ui.add(egui::DragValue::new(&mut t.width).range(0.0..=400.0).speed(1.0)).on_hover_text(tr("0: no wrapping"));
         ui.end_row();
+        ui.label(tr("Width factor"));
+        ui.add(egui::DragValue::new(&mut t.width_factor).range(openecraft_core::model::WIDTH_FACTOR).speed(0.01).max_decimals(2))
+            .on_hover_text(tr("Width of the letters to their usual width (0.8: narrow lettering)"));
+        ui.end_row();
         ui.label(tr("Style"));
         ui.horizontal(|ui| {
             ui.checkbox(&mut t.bold, tr("Bold"));

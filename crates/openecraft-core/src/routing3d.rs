@@ -954,9 +954,17 @@ fn cable_ends(prj: &Project, cores: &[String], conns: &[&Connection]) -> Option<
     Some((a, b))
 }
 
-/// The two end tags of a cable: from its cores, bus cables between the stations of
-/// their bus connection.
+/// The two end tags of a cable: its source and target when it names them (`cable.source`,
+/// `cable.target`, devices its cores connect; the cables of the installation), else from
+/// its cores, bus cables between the stations of their bus connection.
 pub fn cable_end_tags(prj: &Project, c: &Cable, cores: &[&Connection]) -> Option<(String, String)> {
+    let named = |k: &str| c.values.get(k).filter(|t| !t.is_empty()).cloned();
+    if let (Some(a), Some(b)) = (named("cable.source"), named("cable.target")) {
+        let on = |t: &str| cores.iter().any(|x| [x.a, x.b].iter().any(|p| prj.pages[p.page].symbols[p.sym].tag == t));
+        if a != b && on(&a) && on(&b) {
+            return Some((a, b));
+        }
+    }
     let bus = || {
         let link = crate::plc_hw::cable_links(prj, &c.tag).into_iter().next()?;
         let tag = |s: &str| prj.plc.station(s).map(|s| s.tag.clone()).filter(|t| !t.is_empty());

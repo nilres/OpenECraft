@@ -405,6 +405,28 @@ pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SiteP
                     painter.line_segment([c + vec2(x - 2.0, h), c + vec2(x + 2.0, -h)], s);
                 }
             }
+            Kind::Junction => {
+                painter.circle_stroke(c, 4.0, s);
+                painter.circle_filled(c, 1.5, color);
+            }
+            Kind::Connection => {
+                // A box with the cable of the fixed equipment leaving it.
+                painter.rect_stroke(Rect::from_center_size(c, vec2(10.0, 8.0)), 0.0, s, egui::StrokeKind::Middle);
+                painter.arrow(c, vec2(0.0, 9.0), s);
+            }
+            Kind::Data | Kind::Aerial => {
+                // A triangle (data) or a circle with a stem (antenna).
+                if p.kind == Kind::Data {
+                    painter.add(egui::Shape::closed_line(vec![c + vec2(-5.0, 4.0), c + vec2(5.0, 4.0), c + vec2(0.0, -5.0)], s));
+                } else {
+                    painter.circle_stroke(c + vec2(0.0, -2.0), 3.0, s);
+                    painter.line_segment([c + vec2(0.0, 1.0), c + vec2(0.0, 5.0)], s);
+                }
+            }
+            Kind::Smoke => {
+                painter.circle_stroke(c, 5.0, s);
+                painter.text(c, egui::Align2::CENTER_CENTER, "S", egui::FontId::proportional(8.0), color);
+            }
         }
     }
 }

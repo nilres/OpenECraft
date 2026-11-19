@@ -221,6 +221,7 @@ Bottom left	Linksonder
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Onderkant van de behuizing (zonder sokkel) boven de vloer; de hoogten worden gecontroleerd als deze bekend is of de behuizing op een sokkel staat
 Bottom right	Rechtsonder
 Boundary	Grens
+Boxes	Dozen
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Uitschakelvermogen ten opzichte van de kortsluitstroom bij elk beveiligingsapparaat van het net, uitschakeling bij de laagste foutstroom aan het einde van de stroomkring, kortsluitvastheid van de kabels en selectiviteit met het voorgeschakelde apparaat.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brug: vier draden; de verbinding komt aan één zijde binnen en gaat naar de drie andere, eerst de tegenoverliggende
 Building {} added with a level at ground level	Gebouw {} toegevoegd met een verdieping op maaiveldhoogte
@@ -246,6 +247,7 @@ Cable definition on page {}	Kabeldefinitie op pagina {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinitie: trek een lijn over de draden die aders van een kabel zijn
 Cable end reserve	Reserve per kabeleinde
 Cable ends	Kabeleinden
+Cable from	Kabel van
 Cable markers	Kabelmarkeringen
 Cable passage to {}	Kabeldoorvoer naar {}
 Cable {}: {} cores assigned	Kabel {}: {} aders toegewezen
@@ -997,6 +999,7 @@ Joins	Verbindt
 Joins wire pieces in a line where nothing else connects (current page)	Voegt draadstukken op één lijn samen waar verder niets op aansluit (huidige pagina)
 Jumper {}	Brug {}
 Jumps over the other:	Springt over de andere:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Aftakdozen, aansluitdozen voor vast aangesloten apparaten en rookmelders
 K, Q, MM …	K, Q, MM …
 Keep connections	Verbindingen behouden
 Keep sub-pages (3.a, 3.1) with the page before	Subpagina's (3.a, 3.1) bij de vorige pagina houden
@@ -1757,6 +1760,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Ruimte toegevoegd: sleep de wanden of teken nieuwe in de plattegrond, plaats kasten erin via hun eigenschappen
 Room {} now stands on level {}	Ruimte {} staat nu op verdieping {}
 Room {} taken out of the building; it stays where it stands	Ruimte {} uit het gebouw gehaald; ze blijft staan waar ze staat
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Gevonden ruimten die kleiner zijn worden weggelaten (een wc of een kast kan kleiner zijn dan 1 m²)
 Rooms under sloped ceilings (lowest – highest ceiling)	Ruimtes onder schuine plafonds (laagste – hoogste plafond)
 Rotate	Draaien
 Rotate (selection or symbol being placed)	Draaien (selectie of symbool dat wordt geplaatst)
@@ -1963,6 +1967,7 @@ Slot depth	Sleufdiepte
 Slots	Slots
 Smallest cross-section of control circuits	Kleinste doorsnede van stuurstroomkringen
 Smallest cross-section of power circuits	Kleinste doorsnede van hoofdstroomkringen
+Smallest room	Kleinste ruimte
 Socket outlets, data and antenna outlets	Wandcontactdozen, data- en antennedozen
 Solid	Doorgetrokken
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Sommige van je wijzigingen zijn niet door de projectserver overgenomen. Je versie blijft in het deelvenster Projectserver, ook na verwerpen.
@@ -2093,6 +2098,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	De kopie wordt gemaakt van de toestand die op de projectserver is opgeslagen. Wijzigingen die andere gebruikers nog niet hebben opgeslagen, horen er niet bij. Sessies, vergrendelingen en toegangsrechten worden niet gekopieerd; het origineel blijft zoals het is.
 The crossed wires get free cores of the cable in order	De gekruiste draden krijgen op volgorde vrije aders van de kabel
 The current page belongs to option {}.	De huidige pagina hoort bij optie {}.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Het apparaat of de aftakdoos van de groep waar de kabel van het volgende apparaat vandaan komt: daar vertakt de groep
 The devices do not fit onto the rail	De apparaten passen niet op de rail
 The dictionary is empty: collect the texts from the project.	Het woordenboek is leeg: verzamel de teksten uit het project.
 The door seen from the front: door devices and cutouts	De deur gezien van voren: deurapparaten en uitsparingen
@@ -2278,6 +2284,8 @@ Whole building	Heel gebouw
 Whole words	Hele woorden
 Width / going	Breedte / aantrede
 Width / height (mm)	Breedte / hoogte (mm)
+Width factor	Breedtefactor
+Width of the letters to their usual width (0.8: narrow lettering)	Breedte van de letters ten opzichte van hun gewone breedte (0,8: smalle letters)
 Width × depth	Breedte × diepte
 Width × height	Breedte × hoogte
 Width × height (mm)	Breedte × hoogte (mm)
@@ -2415,6 +2423,7 @@ set on the device	ingesteld op het apparaat
 sloped ceiling from {} m	schuin plafond vanaf {} m
 some	enkele
 taken over	overgenomen
+the device before it	het apparaat ervoor
 the project data (page list, devices, settings)	de projectgegevens (paginalijst, apparaten, instellingen)
 then	dan
 unknown	onbekend

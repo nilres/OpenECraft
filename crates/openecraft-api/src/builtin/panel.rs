@@ -45,6 +45,18 @@ pub static COMMANDS: &[Spec] = &[
         run:place_panel_device,
     },
     Spec {
+        name:"place_cabinet_device",
+        help:tr_const!("Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves"),
+        params:&[
+            param("enclosure",Kind::Str,ENCLOSURE),
+            param("tag",Kind::Str,tr_const!("Device tag")),
+            optional("face",Kind::Str,FACE),
+            optional("x",Kind::Num,tr_const!("Left edge on the face in mm")),
+            optional("y",Kind::Num,tr_const!("Top edge on the face in mm")),
+        ],
+        run:place_cabinet_device,
+    },
+    Spec {
         name:"get_panel_points",
         help:tr_const!("Lists physical device connection points, including separately placed terminals"),
         params:&[optional("enclosure",Kind::Str,ENCLOSURE),optional("id",Kind::Int,tr_const!("Item id"))],
@@ -533,6 +545,22 @@ fn place_panel_device(prj:&mut Project,a:&Args)->Result<Value,String> {
         mounting_explicit:true,single_part:a.flag("single_part"),..Default::default()};
     prj.layout.enclosures[ei].items.push(item);
     Ok(item_json(prj,prj.layout.enclosures[ei].items.last().unwrap()))
+}
+
+fn place_cabinet_device(prj:&mut Project,a:&Args)->Result<Value,String> {
+    let ei=enclosure_index(prj,a.req("enclosure"))?;
+    if prj.layout.enclosures[ei].is_room() {return Err(tr_fmt!("{} is a room: use mount_on_wall",prj.layout.enclosures[ei].name));}
+    let tag=a.req("tag").trim().to_string();
+    let known=prj.devices.contains_key(&tag)||prj.pages.iter().any(|pg|pg.symbols.iter().any(|s|s.tag==tag));
+    if !known {return Err(tr_fmt!("Unknown device or part: {}",tag));}
+    let face=face_arg(a,"face")?.unwrap_or_default();
+    if !prj.layout.enclosures[ei].faces().contains(&face) {return Err(tr("Open assemblies support only the mounting face").into());}
+    let old=prj.layout.find_device(&tag).map(|(e,it)|(e,it.id));
+    let at=openecraft_core::geom::p(a.num("x").unwrap_or(0.),a.num("y").unwrap_or(0.));
+    let id=panel::place_device_on(prj,ei,&tag,at,face).ok_or_else(||tr_fmt!("No enclosure {}",a.req("enclosure")))?;
+    if let Some((oe,oid))=old {prj.layout.enclosures[oe].items.retain(|i|i.id!=oid);}
+    let it=prj.layout.enclosures[ei].item(id).ok_or_else(||tr_fmt!("No enclosure {}",a.req("enclosure")))?;
+    Ok(item_json(prj,it))
 }
 
 fn get_panel_points(prj:&mut Project,a:&Args)->Result<Value,String> {

@@ -81,7 +81,9 @@ Bus system name, e.g. PN/IE_1	Buszrendszer neve, pl. PN/IE_1
 Busbar machine program (CSV)	Sínmegmunkáló gép programja (CSV)
 CNC operations	CNC-műveletek
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	CNC-programok fúró-, maró- és lyukasztógépekhez, rézsínhajlítás, szekrénykonfigurátor, átadás a gyártásnak és gyártási visszajelzés
+Cable tag (default: the next free -W)	Kábeljel (alapértelmezett: a következő szabad -W)
 Cable tag, e.g. -W1	Kábelazonosító, pl. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Kábeltípus (alapértelmezett: NYM-J az ereihez és keresztmetszetéhez)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Kalibrálja a gépek időbecslését a gyártási visszajelzés tényleges idői alapján
 Cannot read the plugin folder {}	A(z) {} bővítménymappa nem olvasható
 Cannot start {}: {}	{} nem indítható: {}
@@ -156,6 +158,7 @@ Cross section, e.g. 0.75 mm²	Keresztmetszet, pl. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Keresztmetszet, pl. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Keresztmetszet, pl. 1.5 mm² (üres = a potenciáldefinícióból)
 Cross-section in mm²	Keresztmetszet mm²-ben
+Cross-section of the cable in mm² (default: for the protective device)	A kábel keresztmetszete mm²-ben (alapértelmezett: a védőkészülékhez)
 Cross-section, e.g. 1.5 mm²	Keresztmetszet, pl. 1.5 mm²
 Current device tag	Jelenlegi készülékazonosító
 Customer rule set to add or replace (by name), as exported	Hozzáadandó vagy lecserélendő ügyfél-szabálykészlet (név szerint), exportált formában
@@ -193,6 +196,8 @@ Device description id of the head (list_device_descriptions)	A fejegység eszkö
 Device group {} already exists	A(z) {} készülékcsoport már létezik
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Készüléklista, anyagjegyzék, sorkapocs-, csatlakozódugó-, kábel- és bekötési tervek, PLC, potenciálok, szekrény, fluid, villamos és terepi kimutatások
 Device number on the bus	Eszközszám a buszon
+Device or junction box of the circuit the cable comes from (default: the device before it)	Az áramkör készüléke vagy kötődoboza, ahonnan a kábel jön (alapértelmezett: az előző készülék)
+Device tag (default: the room, the letter code of the kind and the next number)	Készülékjel (alapértelmezett: a helyiség, a fajta betűkódja és a következő szám)
 Device tag of the CPU / bus coupler, e.g. -A0	A CPU / buszcsatoló készülékazonosítója, pl. -A0
 Device tag of the end (both ends if missing)	A kábelvég készülékazonosítója (ha hiányzik, mindkét vég)
 Device tag of the fluid device, e.g. -QM1	A fluidkészülék készülékazonosítója, pl. -QM1
@@ -357,6 +362,7 @@ Key, e.g. user.coupling_relay	Kulcs, pl. user.coupling_relay
 Key, e.g. user.customer_code	Kulcs, pl. user.customer_code
 Keys of the routes, comma separated (all if missing)	A nyomvonalak kulcsai vesszővel elválasztva (ha hiányzik: az összes)
 Kind: machining, punching or busbar	Típus: machining, punching vagy busbar
+Known length of the cable in m (taken instead of the 3D route)	A kábel ismert hossza m-ben (a 3D nyomvonal helyett ezt használja)
 Label: terminal number, PLC address or potential name	Felirat: sorkapocsszám, PLC-cím vagy potenciálnév
 Landscape (true) or portrait (false)	Fekvő (true) vagy álló (false)
 Language the project texts are written in, e.g. en	A projektszövegek nyelve, pl. en
@@ -462,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	A PV-mező közepe az épület alaprajzán (szabadföldi: a létesítményben), z mm-ben
 Milling feed, mm/min	Marási előtolás, mm/min
 Mirror the symbol	Szimbólum tükrözése
+Mounting height above the floor in mm (default: that of the part)	Szerelési magasság a padló felett mm-ben (alapértelmezett: a cikké)
 Mounting plate size as width and height; empty object restores the centred plate	A szerelőlap mérete szélességként és magasságként; üres objektum visszaállítja a középre helyezett lapot
 Mounting size must contain a positive width and height	A szerelési méretnek pozitív szélességet és magasságot kell tartalmaznia
 Moves an air-termination rod, changes its height, renames or removes it	Áthelyez egy felfogórudat, módosítja a magasságát, átnevezi vagy eltávolítja
@@ -549,6 +556,7 @@ Nothing to copy: devices are placed once	Nincs mit másolni: a készülékeket c
 Nothing to remove: {} {}	Nincs mit eltávolítani: {} {}
 Number of columns	Oszlopok száma
 Number of copies (default 1)	Másolatok száma (alapértelmezés: 1)
+Number of cores of the cable (default: 3, three-phase 5)	A kábel ereinek száma (alapértelmezett: 3, háromfázisú 5)
 Number of equal bars	Azonos sínek száma
 Number of indexed values (0 = a single value)	Indexelt értékek száma (0 = egyetlen érték)
 Number of rows	Sorok száma
@@ -604,12 +612,14 @@ Paper width in mm (custom paper)	Papírszélesség mm-ben (egyéni papír)
 Part lifecycle	Alkatrész életciklusa
 Part number of the accessory	A tartozék cikkszáma
 Part number of the base	Az alaplap cikkszáma
+Part number of the cable	A kábel cikkszáma
 Part number of the carrier (per metre)	A kábeltartó cikkszáma (méterenként)
 Part number of the conductor (per metre)	A vezető cikkszáma (méterenként)
 Part number of the downstream device	Az utána kapcsolt készülék cikkszáma
 Part number of the hose / tube / pipe	A tömlő / cső / csővezeték cikkszáma
 Part number of the upstream device	Az előtét készülék cikkszáma
 Part number, e.g. GEN.LMP-GN-24	Cikkszám, pl. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Cikkszám, pl. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	A szalag, huzal vagy rúd alkatrésze (üres: általános)
 Part of the conductor holders on the roof (empty: generic)	A tetőn lévő vezetőtartók alkatrésze (üres: általános)
 Part of the conductor holders on the walls (empty: generic)	A falakon lévő vezetőtartók alkatrésze (üres: általános)
@@ -683,6 +693,8 @@ Property and function definitions, property values and placement schemes	Tulajdo
 Property key	Tulajdonságkulcs
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Tulajdonságkulcsok és értékek, pl. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	A számok elé kerül, pl. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	A kapcsolási rajz egy készülékét egy szekrénybe helyezi (a szerelőlapra, az ott lévő sínre vagy az ajtóra): mérete a cikkéből, egy illeszkedő sínre pattintva; ha korábban máshol volt, áthelyeződik
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Egy védőkészülékhez csatlakozóaljzatot, kapcsolót, lámpát, fűtőelemet, kötődobozt vagy készülékcsatlakozó dobozt helyez el egy helyiségben a létesítmény egy pontján (mennyezeti lámpát ott a mennyezetre, minden mást a legközelebbi falra a szerelési magasságában; a helyiségen kívül a legközelebbi fal külső oldalára) és a kapcsolási rajzon: új készülék az áramkör szerelési oldalán, kábellel az előző készüléktől vagy a megadott készüléktől; védőkészülék nélkül csak a helyiségben (adat- és antennaaljzatok, füstérzékelők)
 Quantity per end (default 1)	Mennyiség végenként (alapértelmezés: 1)
 R/X ratio of the supply impedance	A betáplálás impedanciájának R/X aránya
 Rack number	Modultartó száma
@@ -817,6 +829,7 @@ Smallest bend radius in mm	Legkisebb hajlítási sugár mm-ben
 Smallest distance in mm	Legkisebb távolság mm-ben
 Smallest distance of holes from the sheet edge	Furatok legkisebb távolsága a lemezszéltől
 Smallest inner radius as a multiple of the thickness	Legkisebb belső sugár a vastagság többszöröseként
+Smallest room kept, m² (default 1; kept with the floor plan)	Legkisebb megtartott helyiség, m² (alapértelmezett 1; az alaprajzzal együtt tárolódik)
 Smallest web at cutouts	Legkisebb anyaghíd a kivágásoknál
 Smallest web between holes	Legkisebb anyaghíd a furatok között
 Spare terminals at the end of the strip	Tartalék sorkapcsok a léc végén
@@ -888,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	A kereszteződés vonal
 The message text, kept for the list of accepted messages	Az üzenet szövege, az elfogadott üzenetek listájához megőrizve
 The name must not be empty	A név nem lehet üres
 The number of copies must be between 1 and 100	A másolatok száma 1 és 100 között legyen
+The number of cores must be from 1 to 60	Az erek száma 1 és 60 között legyen
 The plinth height must not be negative	A lábazat magassága nem lehet negatív
 The plot frame {} is in use	A(z) {} rajzkeret használatban van
 The plugin program did not answer within {} s and was stopped	A bővítményprogram nem válaszolt {} mp alatt, ezért leállt
@@ -896,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Az elforgatás csak 0, 90, 180 vagy 270 l
 The straight line of a crossing: vertical or horizontal (default vertical)	A kereszteződés egyenes vonala: vertical vagy horizontal (alapértelmezés vertical)
 The text height must be at least 0.5 mm	A szövegmagasságnak legalább 0,5 mm-nek kell lennie
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	A sarok két karja, függőleges és vízszintes, pl. down left (alapértelmezés: az ottani vezetékek szerint, különben down right)
+The width factor must be from 0.1 to 10	A szélességi tényező 0,1 és 10 között legyen
 The wire has no length	A kapcsolatnak nincs hossza
 The wire that jumps: vertical or horizontal	Az átugró vezeték: vertical vagy horizontal
 The wrap width must not be negative	A tördelési szélesség nem lehet negatív
@@ -994,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Melyik sor v
 Who accepted it	Ki fogadta el
 Whole words only	Csak teljes szavak
 Why the message is accepted	Miért fogadták el az üzenetet
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	A betűk szélessége a szokásos szélességükhöz képest, 0,1 … 10 (0,8: keskeny írás; alapértelmezett 1)
 Width of the path in mm (default 50)	Az út szélessége mm-ben (alapértelmezés: 50)
 Width, depth and height of a room are at least {} mm	A helyiség szélessége, mélysége és magassága legalább {} mm
 Width, height and depth of an enclosure are at least {} mm	A szekrény szélessége, magassága és mélysége legalább {} mm
@@ -1066,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	A rúd talppontj�
 {} is a built-in frame; give the frame a new name	{} beépített keret; adjon a keretnek új nevet
 {} is a built-in title block; give the title block a new name	{} beépített szövegmező; adjon új nevet a szövegmezőnek
 {} is a room already	A(z) {} már helyiség
+{} is a room: use mount_on_wall	A(z) {} egy helyiség: használja a mount_on_wall parancsot
 {} is ambiguous: use #id:pin	{} nem egyértelmű: használja a #id:pin formát
 {} is an enclosure already	A(z) {} már szekrény
 {} is not a connection point (TAG:PIN)	{} nem csatlakozási pont (AZONOSÍTÓ:TŰ)

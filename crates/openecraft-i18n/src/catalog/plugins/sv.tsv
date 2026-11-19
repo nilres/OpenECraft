@@ -81,7 +81,9 @@ Bus system name, e.g. PN/IE_1	Bussystemets namn, t.ex. PN/IE_1
 Busbar machine program (CSV)	Program för skenbearbetningsmaskin (CSV)
 CNC operations	CNC-operationer
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	CNC-program för borr-, fräs- och stansmaskiner, bockning av kopparskenor, kapslingskonfigurator, överlämning till produktionen och återkoppling från produktionen
+Cable tag (default: the next free -W)	Kabelbeteckning (standard: nästa lediga -W)
 Cable tag, e.g. -W1	Kabelbeteckning, t.ex. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Kabeltyp (standard: NYM-J för dess ledare och tvärsnitt)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Kalibrerar maskinernas tidsuppskattning utifrån de faktiska tiderna i produktionens återkoppling
 Cannot read the plugin folder {}	Det går inte att läsa plugin-mappen {}
 Cannot start {}: {}	Det går inte att starta {}: {}
@@ -156,6 +158,7 @@ Cross section, e.g. 0.75 mm²	Tvärsnitt, t.ex. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Tvärsnitt, t.ex. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Tvärsnitt, t.ex. 1.5 mm² (tomt = från potentialdefinitionen)
 Cross-section in mm²	Area i mm²
+Cross-section of the cable in mm² (default: for the protective device)	Kabelns tvärsnitt i mm² (standard: för skyddsdonet)
 Cross-section, e.g. 1.5 mm²	Tvärsnitt, t.ex. 1.5 mm²
 Current device tag	Aktuell apparatbeteckning
 Customer rule set to add or replace (by name), as exported	Kundregelverk att lägga till eller ersätta (efter namn), som exporterat
@@ -193,6 +196,8 @@ Device description id of the head (list_device_descriptions)	ID för huvudenhete
 Device group {} already exists	Apparatgrupp {} finns redan
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Apparatlista, stycklista, plint-, kontaktdons-, kabel- och förbindelsescheman, PLC, potentialer, skåp, fluid, elektriska rapporter och fältrapporter
 Device number on the bus	Enhetsnummer på bussen
+Device or junction box of the circuit the cable comes from (default: the device before it)	Apparat eller kopplingsdosa i gruppen som kabeln kommer från (standard: apparaten före)
+Device tag (default: the room, the letter code of the kind and the next number)	Apparatbeteckning (standard: rummet, typens bokstavskod och nästa nummer)
 Device tag of the CPU / bus coupler, e.g. -A0	Apparatbeteckning för CPU / busskopplare, t.ex. -A0
 Device tag of the end (both ends if missing)	Apparatbeteckning för änden (båda ändarna om den saknas)
 Device tag of the fluid device, e.g. -QM1	Fluidapparatens apparatbeteckning, t.ex. -QM1
@@ -357,6 +362,7 @@ Key, e.g. user.coupling_relay	Nyckel, t.ex. user.coupling_relay
 Key, e.g. user.customer_code	Nyckel, t.ex. user.customer_code
 Keys of the routes, comma separated (all if missing)	Nycklar för dragningarna, kommaseparerade (alla om de saknas)
 Kind: machining, punching or busbar	Typ: machining, punching eller busbar
+Known length of the cable in m (taken instead of the 3D route)	Känd längd på kabeln i m (används i stället för 3D-dragningen)
 Label: terminal number, PLC address or potential name	Etikett: plintnummer, PLC-adress eller potentialnamn
 Landscape (true) or portrait (false)	Liggande (true) eller stående (false)
 Language the project texts are written in, e.g. en	Språk som projekttexterna är skrivna på, t.ex. en
@@ -462,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Mitten av solcellsfältet i byggnadens planritning (markmonterat: i anläggningen), z i mm
 Milling feed, mm/min	Fräsmatning, mm/min
 Mirror the symbol	Spegelvänd symbolen
+Mounting height above the floor in mm (default: that of the part)	Monteringshöjd över golvet i mm (standard: artikelns)
 Mounting plate size as width and height; empty object restores the centred plate	Monteringsplåtens storlek som bredd och höjd; ett tomt objekt återställer den centrerade plåten
 Mounting size must contain a positive width and height	Monteringsstorleken måste innehålla en positiv bredd och höjd
 Moves an air-termination rod, changes its height, renames or removes it	Flyttar en spetsledare, ändrar dess höjd, byter namn på den eller tar bort den
@@ -549,6 +556,7 @@ Nothing to copy: devices are placed once	Inget att kopiera: apparater placeras b
 Nothing to remove: {} {}	Inget att ta bort: {} {}
 Number of columns	Antal kolumner
 Number of copies (default 1)	Antal kopior (standard 1)
+Number of cores of the cable (default: 3, three-phase 5)	Antal ledare i kabeln (standard: 3, trefas 5)
 Number of equal bars	Antal likadana skenor
 Number of indexed values (0 = a single value)	Antal indexerade värden (0 = ett enda värde)
 Number of rows	Antal rader
@@ -604,12 +612,14 @@ Paper width in mm (custom paper)	Papperets bredd i mm (anpassat papper)
 Part lifecycle	Artikelns livscykel
 Part number of the accessory	Tillbehörets artikelnummer
 Part number of the base	Bottenplattans artikelnummer
+Part number of the cable	Kabelns artikelnummer
 Part number of the carrier (per metre)	Kabelbärarens artikelnummer (per meter)
 Part number of the conductor (per metre)	Ledarens artikelnummer (per meter)
 Part number of the downstream device	Artikelnummer för den underordnade apparaten
 Part number of the hose / tube / pipe	Artikelnummer för slangen / röret / rörledningen
 Part number of the upstream device	Artikelnummer för den överordnade apparaten
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, t.ex. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Artikelnummer, t.ex. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Artikel för dess band, tråd eller spett (tom: generisk)
 Part of the conductor holders on the roof (empty: generic)	Artikel för ledarhållarna på taket (tom: generisk)
 Part of the conductor holders on the walls (empty: generic)	Artikel för ledarhållarna på väggarna (tom: generisk)
@@ -683,6 +693,8 @@ Property and function definitions, property values and placement schemes	Egenska
 Property key	Egenskapsnyckel
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Egenskapsnycklar och värden, t.ex. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Placeras före numren, t.ex. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Placerar en apparat från schemat i ett skåp (på montageplattan, på en skena där eller på dörren): dess storlek från dess artikel, fastsnäppt på en skena den passar på; placerad på annat ställe tidigare flyttas den
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Placerar ett vägguttag, en strömbrytare, en armatur, ett värmeelement, en kopplingsdosa eller en apparatanslutningsdosa för ett skyddsdon i ett rum vid en punkt i anläggningen (en takarmatur i taket där, allt annat på närmaste vägg på dess monteringshöjd; utanför rummet på utsidan av dess närmaste vägg) och i schemat: en ny apparat på gruppens installationssida med en kabel från apparaten före eller från den angivna apparaten; utan skyddsdon bara i rummet (data- och antennuttag, brandvarnare)
 Quantity per end (default 1)	Antal per ände (standard 1)
 R/X ratio of the supply impedance	R/X-förhållande för nätimpedansen
 Rack number	Racknummer
@@ -817,6 +829,7 @@ Smallest bend radius in mm	Minsta böjradie i mm
 Smallest distance in mm	Minsta avstånd i mm
 Smallest distance of holes from the sheet edge	Minsta avstånd från hål till plåtkanten
 Smallest inner radius as a multiple of the thickness	Minsta innerradie som en multipel av tjockleken
+Smallest room kept, m² (default 1; kept with the floor plan)	Minsta rum som behålls, m² (standard 1; sparas med planritningen)
 Smallest web at cutouts	Minsta material vid urtag
 Smallest web between holes	Minsta material mellan hål
 Spare terminals at the end of the strip	Reservplintar i slutet av plintraden
@@ -888,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	En korsnings linje är 
 The message text, kept for the list of accepted messages	Meddelandetexten, som sparas för listan över godkända meddelanden
 The name must not be empty	Namnet får inte vara tomt
 The number of copies must be between 1 and 100	Antalet kopior måste ligga mellan 1 och 100
+The number of cores must be from 1 to 60	Antalet ledare måste vara från 1 till 60
 The plinth height must not be negative	Sockelhöjden får inte vara negativ
 The plot frame {} is in use	Ritningsramen {} används
 The plugin program did not answer within {} s and was stopped	Plugin-programmet svarade inte inom {} s och stoppades
@@ -896,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Rotationen måste vara 0, 90, 180 eller 2
 The straight line of a crossing: vertical or horizontal (default vertical)	En korsnings raka linje: vertical eller horizontal (standard vertical)
 The text height must be at least 0.5 mm	Texthöjden måste vara minst 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Ett hörns två armar, lodrät och vågrät, t.ex. down left (standard: efter ledarna där, annars down right)
+The width factor must be from 0.1 to 10	Breddfaktorn måste vara från 0,1 till 10
 The wire has no length	Förbindningen har ingen längd
 The wire that jumps: vertical or horizontal	Ledningen som hoppar: vertical eller horizontal
 The wrap width must not be negative	Radbrytningsbredden får inte vara negativ
@@ -994,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Vilken rad p
 Who accepted it	Vem som godkände det
 Whole words only	Endast hela ord
 Why the message is accepted	Varför meddelandet godkänns
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Bokstävernas bredd i förhållande till deras vanliga bredd, 0,1 … 10 (0,8: smal text; standard 1)
 Width of the path in mm (default 50)	Vägens bredd i mm (standard 50)
 Width, depth and height of a room are at least {} mm	Bredd, djup och höjd för ett rum är minst {} mm
 Width, height and depth of an enclosure are at least {} mm	Bredd, höjd och djup för en kapsling är minst {} mm
@@ -1066,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	z för stavens fo
 {} is a built-in frame; give the frame a new name	{} är en inbyggd ram; ge ramen ett nytt namn
 {} is a built-in title block; give the title block a new name	{} är en inbyggd namnruta; ge namnrutan ett nytt namn
 {} is a room already	{} är redan ett rum
+{} is a room: use mount_on_wall	{} är ett rum: använd mount_on_wall
 {} is ambiguous: use #id:pin	{} är tvetydig: använd #id:pin
 {} is an enclosure already	{} är redan en kapsling
 {} is not a connection point (TAG:PIN)	{} är inte en anslutningspunkt (TAG:PIN)

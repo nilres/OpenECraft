@@ -219,6 +219,7 @@ Bottom left	左下
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	机柜底部（不含底座）离地高度；当该值已知或机柜立于底座上时检查高度
 Bottom right	右下
 Boundary	边界
+Boxes	接线盒
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	电网中每个保护设备的分断能力与短路电流的对比、其电路末端最小故障电流时的切断、电缆的短路耐受能力以及与上级设备的选择性。
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	桥接：四条连接线；连接从一侧进入并通往另外三侧，先到对侧
 Building {} added with a level at ground level	已添加建筑物 {}，含一个地面层
@@ -244,6 +245,7 @@ Cable definition on page {}	页 {} 上的电缆定义
 Cable definition: draw a line across the wires that are cores of a cable	电缆定义：画一条线穿过作为电缆芯线的导线
 Cable end reserve	电缆端余量
 Cable ends	电缆端头
+Cable from	电缆来自
 Cable markers	电缆标记
 Cable passage to {}	到 {} 的电缆过孔
 Cable {}: {} cores assigned	电缆 {}：已分配 {} 根芯线
@@ -986,6 +988,7 @@ Join collinear wires	合并共线导线
 Joins wire pieces in a line where nothing else connects (current page)	合并一条直线上没有其他连接的导线段（当前页）
 Jumper {}	跳线 {}
 Jumps over the other:	跳过另一条：
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	接线盒、固定设备接线盒和烟雾报警器
 K, Q, MM …	K、Q、MM …
 Keep connections	保持连接
 Keep sub-pages (3.a, 3.1) with the page before	子页 (3.a, 3.1) 保持在前一页之下
@@ -1736,6 +1739,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	已添加房间：在平面图中拖动其墙壁或绘制新墙，在机柜属性中将机柜放入其中
 Room {} now stands on level {}	房间 {} 现在位于楼层 {}
 Room {} taken out of the building; it stays where it stands	房间 {} 已移出建筑物，位置不变
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	小于此值的房间将不会保留（WC 或储藏室可能小于 1 m²）
 Rooms under sloped ceilings (lowest – highest ceiling)	斜顶下的房间（最低 – 最高顶棚）
 Rotate	旋转
 Rotate (selection or symbol being placed)	旋转（所选内容或正在放置的符号）
@@ -1938,6 +1942,7 @@ Slot depth	开槽深度
 Slots	插槽
 Smallest cross-section of control circuits	控制电路的最小截面积
 Smallest cross-section of power circuits	主电路的最小截面积
+Smallest room	最小房间
 Socket outlets, data and antenna outlets	电源插座、数据和天线插座
 Solid	实线
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	项目服务器未接受你的部分更改。即使丢弃后，你的版本仍保留在项目服务器窗格中。
@@ -2068,6 +2073,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	副本根据项目服务器上保存的状态创建。其他用户尚未保存的更改不包含在内。会话、锁定和访问权限不会被复制；原项目保持不变。
 The crossed wires get free cores of the cable in order	穿过的导线按顺序获得电缆的空闲芯线
 The current page belongs to option {}.	当前页属于选项 {}。
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	下一个设备的电缆所来自的回路设备或接线盒：回路在此分支
 The devices do not fit onto the rail	设备无法放入导轨
 The dictionary is empty: collect the texts from the project.	词典为空：请从项目中收集文本。
 The door seen from the front: door devices and cutouts	从正面看柜门：柜门设备和开孔
@@ -2251,6 +2257,8 @@ Whole building	整个建筑
 Whole words	全字匹配
 Width / going	宽度 / 踏步
 Width / height (mm)	宽度 / 高度 (mm)
+Width factor	宽度系数
+Width of the letters to their usual width (0.8: narrow lettering)	字母宽度与常规宽度之比（0.8：紧凑字体）
 Width × depth	宽度 × 深度
 Width × height	宽 × 高
 Width × height (mm)	宽 × 高 (mm)
@@ -2386,6 +2394,7 @@ set on the device	在设备上设置
 sloped ceiling from {} m	斜顶自 {} m
 some	部分
 taken over	已采用
+the device before it	前一个设备
 the project data (page list, devices, settings)	项目数据（页列表、设备、设置）
 then	则
 unsaved	未保存

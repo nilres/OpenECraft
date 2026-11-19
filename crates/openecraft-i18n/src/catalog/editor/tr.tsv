@@ -221,6 +221,7 @@ Bottom left	Sol alt
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Panonun (kaide hariç) alt kenarının zeminden yüksekliği; bu değer biliniyorsa veya pano bir kaide üzerinde duruyorsa yükseklikler kontrol edilir
 Bottom right	Sağ alt
 Boundary	Sınır
+Boxes	Kutular
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Şebekenin her koruma cihazında kısa devre akımına karşı kesme kapasitesi, devresinin sonundaki en düşük arıza akımında açma, kabloların kısa devre dayanımı ve üst kademedeki cihazla seçicilik.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Köprü: dört tel; bağlantı bir taraftan gelir ve diğer üçüne gider, önce karşı tarafa
 Building {} added with a level at ground level	{} binası zemin seviyesinde bir katla eklendi
@@ -246,6 +247,7 @@ Cable definition on page {}	{} sayfasında kablo tanımı
 Cable definition: draw a line across the wires that are cores of a cable	Kablo tanımı: bir kablonun damarları olan tellerin üzerinden bir çizgi çizin
 Cable end reserve	Kablo ucu payı
 Cable ends	Kablo uçları
+Cable from	Kablo kaynağı
 Cable markers	Kablo işaretleri
 Cable passage to {}	{} ile kablo geçişi
 Cable {}: {} cores assigned	Kablo {}: {} damar atandı
@@ -997,6 +999,7 @@ Joins	Bağlar
 Joins wire pieces in a line where nothing else connects (current page)	Başka hiçbir şeyin bağlanmadığı yerlerde bir hat üzerindeki tel parçalarını birleştirir (geçerli sayfa)
 Jumper {}	Köprü {}
 Jumps over the other:	Diğerinin üzerinden atlar:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Buatlar, sabit cihazlar için bağlantı kutuları ve duman dedektörleri
 K, Q, MM …	K, Q, MM …
 Keep connections	Bağlantıları koru
 Keep sub-pages (3.a, 3.1) with the page before	Alt sayfaları (3.a, 3.1) önceki sayfayla birlikte tut
@@ -1757,6 +1760,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Oda eklendi: duvarlarını sürükleyin veya kat planında yenilerini çizin, panoları özelliklerinden içine yerleştirin
 Room {} now stands on level {}	{} odası artık {} katında
 Room {} taken out of the building; it stays where it stands	{} odası binadan çıkarıldı; olduğu yerde kalır
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Bundan küçük bulunan odalar atlanır (bir WC veya bir dolap 1 m² altında olabilir)
 Rooms under sloped ceilings (lowest – highest ceiling)	Eğimli tavan altındaki odalar (en alçak – en yüksek tavan)
 Rotate	Döndür
 Rotate (selection or symbol being placed)	Döndür (seçim veya yerleştirilen sembol)
@@ -1963,6 +1967,7 @@ Slot depth	Kanal derinliği
 Slots	Slotlar
 Smallest cross-section of control circuits	Kumanda devrelerinin en küçük kesiti
 Smallest cross-section of power circuits	Güç devrelerinin en küçük kesiti
+Smallest room	En küçük oda
 Socket outlets, data and antenna outlets	Prizler, veri ve anten prizleri
 Solid	Düz
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Değişikliklerinizin bir kısmı proje sunucusu tarafından alınmadı. Sürümünüz, attıktan sonra da Proje sunucusu bölmesinde kalır.
@@ -2093,6 +2098,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopya, proje sunucusunda kayıtlı durumdan oluşturulur. Diğer kullanıcıların henüz kaydetmediği değişiklikler kopyaya dahil değildir. Oturumlar, kilitler ve erişim hakları kopyalanmaz; aslı olduğu gibi kalır.
 The crossed wires get free cores of the cable in order	Kesişen teller kablonun boş damarlarını sırayla alır
 The current page belongs to option {}.	Geçerli sayfa {} seçeneğine ait.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Bir sonraki cihazın kablosunun geldiği devrenin cihazı veya buatı: devre orada dallanır
 The devices do not fit onto the rail	Cihazlar raya sığmıyor
 The dictionary is empty: collect the texts from the project.	Sözlük boş: metinleri projeden toplayın.
 The door seen from the front: door devices and cutouts	Önden görülen kapı: kapı cihazları ve kesimler
@@ -2278,6 +2284,8 @@ Whole building	Tüm bina
 Whole words	Tam sözcükler
 Width / going	Genişlik / basamak
 Width / height (mm)	Genişlik / yükseklik (mm)
+Width factor	Genişlik faktörü
+Width of the letters to their usual width (0.8: narrow lettering)	Harflerin olağan genişliklerine göre genişliği (0,8: dar yazı)
 Width × depth	Genişlik × derinlik
 Width × height	Genişlik × yükseklik
 Width × height (mm)	Genişlik × yükseklik (mm)
@@ -2415,6 +2423,7 @@ set on the device	cihazda belirlendi
 sloped ceiling from {} m	{} m'den itibaren eğimli tavan
 some	bazıları
 taken over	aktarıldı
+the device before it	önceki cihaz
 the project data (page list, devices, settings)	proje verileri (sayfa listesi, cihazlar, ayarlar)
 then	ise
 unknown	bilinmiyor

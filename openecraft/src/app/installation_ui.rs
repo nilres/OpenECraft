@@ -19,6 +19,9 @@ pub struct InstallationUi {
     /// The protective device the devices are put in for and whose circuit is shown
     /// (its tag).
     breaker: String,
+    /// The device of the circuit the cable of the next device comes from (empty: the
+    /// one before it).
+    from: String,
     /// Clicks in the site plan put the part in.
     placing: bool,
     /// The device of the schematic clicks place (its tag).
@@ -95,6 +98,23 @@ impl InstallationUi {
                         ui.selectable_value(&mut self.part, number.clone(), format!("{} – {}", kind.title(), number)).on_hover_text(desc.as_str());
                     }
                 });
+                // Where the cable comes from: a device of the circuit (a junction box) or the
+                // one before it.
+                let devices: Vec<String> = self.circuit().map(|c| c.devices.iter().map(|d| d.tag.clone()).collect()).unwrap_or_default();
+                if !self.from.is_empty() && self.from != self.breaker && !devices.contains(&self.from) {
+                    self.from.clear();
+                }
+                let before = tr("the device before it");
+                let shown = if self.from.is_empty() { before.to_string() } else { self.from.clone() };
+                ui.label(tr("Cable from"));
+                egui::ComboBox::from_id_salt("instfrom").selected_text(shown).width(150.0).show_ui(ui, |ui| {
+                    ui.selectable_value(&mut self.from, String::new(), before);
+                    for t in std::iter::once(&self.breaker).chain(&devices) {
+                        ui.selectable_value(&mut self.from, t.clone(), t.as_str());
+                    }
+                })
+                .response
+                .on_hover_text(tr("The device or junction box of the circuit the cable of the next device comes from: a circuit branches there"));
                 let tip = tr("Click in the rooms of the site plan below: the part goes into the room (a ceiling light where clicked, anything else on the nearest wall) and into the schematic, on the installation page of the protective device with a cable from the device before it");
                 if ui.selectable_label(self.placing, tr("Put in")).on_hover_text(tip).clicked() {
                     self.placing = !self.placing;
@@ -260,7 +280,16 @@ impl InstallationUi {
                 self.status = tr("Click in a room").to_string();
                 return;
             };
-            self.status = match inst::add_device(prj, &self.breaker, &self.part, ri, frame.plant(p)) {
+            // Data and antenna outlets and smoke alarms only into the room.
+            if !inst::find_part(prj, &self.part).and_then(inst::kind_of).is_none_or(inst::Kind::mains) {
+                self.status = match inst::place(prj, ri, &self.part, frame.plant(p)) {
+                    Ok(_) => tr("Placed").to_string(),
+                    Err(e) => e,
+                };
+                return;
+            }
+            let opts = inst::Options { from: Some(self.from.clone()).filter(|f| !f.is_empty()), ..Default::default() };
+            self.status = match inst::add_device(prj, &self.breaker, &self.part, ri, frame.plant(p), &opts) {
                 Ok(tag) => tr_fmt!("{} is in the schematic", tag),
                 Err(e) => e,
             };

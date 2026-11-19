@@ -65,6 +65,7 @@ Analog input module	アナログ入力モジュール
 Analog output module	アナログ出力モジュール
 Analysis	分析
 Another section here has this number	ここにある別のセクションがこの番号を使っています
+Antenna outlet	アンテナコンセント
 Apparent power (kVA)	皮相電力 (kVA)
 Applied directives	適用指令
 Approval date	承認日
@@ -335,6 +336,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC 制御回路は青�
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC 制御回路は青にしてください (NFPA 79、13.2.4)
 DC/DC converter	DC/DC コンバーター
 DWG export failed: {}	DWG のエクスポートに失敗しました: {}
+Data outlet	情報コンセント
 Data sheet	データシート
 Date of the approval of the last revision	最終リビジョンの承認日
 Date of the last revision	最終リビジョンの日付
@@ -351,6 +353,7 @@ Description of the last revision	最終リビジョンの説明
 Description of the page's function (structure management)	ページの機能の説明 (構造管理)
 Description of the page's location (structure management)	ページの取付場所の説明 (構造管理)
 Designer	設計者
+Device connection box	機器接続ボックス
 Device connection diagram	デバイス接続図
 Device data of {} without symbol or panel item	シンボルまたは盤アイテムのない {} のデバイスデータ
 Device description file	デバイス記述ファイル
@@ -637,6 +640,7 @@ Hazardous area zone	危険区域
 Heat exchanger	熱交換器
 Heating (W)	ヒーター (W)
 Heating element	ヒーター素子
+Heating element three-phase	三相ヒーター素子
 Higher-level product (-)	上位製品 (-)
 Higher-level product of the page	ページの上位製品
 Highest (°C)	最高 (°C)
@@ -766,6 +770,7 @@ Left side panel	左側板
 Legend plate text	銘板テキスト
 Length (m)	長さ (m)
 Length (mm)	長さ (mm)
+Length known (not calculated)	既知の長さ（計算しない）
 Letter landscape	Letter 横
 Letters (A, B, C)	文字 (A、B、C)
 Level switch	レベルスイッチ
@@ -1463,7 +1468,9 @@ Size (mm)	サイズ (mm)
 Skipped	スキップ
 Sliding to the left	左引き（引き戸）
 Sliding to the right	右引き（引き戸）
+Smoke alarm	煙感知器
 Socket outlet	コンセント
+Socket outlet three-phase	三相コンセント
 Socket side (female)	ソケット側 (メス)
 Soft starter	ソフトスターター
 Solar charge controller	ソーラー充電コントローラ
@@ -1591,6 +1598,7 @@ The archive unpacks to more than {} MB	アーカイブの展開後のサイズ�
 The archive was written by a newer version (archive version {})	このアーカイブは新しいバージョンで書き込まれています（アーカイブのバージョン {}）
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	アセンブリの製造者を明記する必要があります (IEC 61439-1、6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	部屋に設置した列盤：L 字形の平面図、内壁、扉とウィンドウ、所定の位置の列盤、壁のコンセント付きレール、壁付けの非常灯、天井下のケーブルラック。
+The cable of {} needs at least {} cores	{} のケーブルには少なくとも {} 本の心線が必要です
 The configuration is not a JSON object	構成が JSON オブジェクトではありません
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	最初のリリース後のコンベヤ：リリース済みでロックされたリビジョン、その後にマークされた変更、赤線入りのレビューコメント、変更要求、承認ワークフロー中のリビジョン B、比較用のベースライン。
 The coordinates of the reference point must be numbers	基準点の座標は数値でなければなりません
@@ -1930,18 +1938,22 @@ yellow	黄
 {} has no MTTFd, B10d, PL or PFHd	{} には MTTFd、B10d、PL、PFHd のいずれもありません
 {} has no door or window {}	{0} にドアまたは窓 {1} はありません
 {} has nothing to manufacture	{} には製造するものがありません
+{} has three phases: it needs a three-phase protective device	{} は三相です：三相の保護機器が必要です
 {} is a built-in function definition	{} は組み込みの機能定義です
 {} is a built-in property	{} は組み込みのプロパティです
 {} is a built-in scheme	{} は組み込みのスキームです
 {} is a busbar machine and makes no sheets	{} はブスバー加工機のため、板金は加工できません
+{} is neither the protective device nor a device of the circuit of {}	{} は保護機器でも {} の回路の機器でもありません
 {} is not a busbar machine	{} はブスバー加工機ではありません
 {} is not a property of {}	{} は {} のプロパティではありません
 {} is not an approver of this project	{} はこのプロジェクトの承認者ではありません
+{} is not connected to the mains: place it without a protective device	{} は電源に接続されません：保護機器なしで配置してください
 {} is not placed in the plant layout	{} はプラントレイアウトに配置されていません
 {} is on page {}, which is released: renaming it would change the page	{} はリリース済みのページ {} にあります: 名前を変更するとページが変わります
 {} is placed at the missing node {}	{} は存在しないノード {} に配置されています
 {} is planned twice ({} and {})	{} が二重に計画されています ({} と {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} は {} に対して {} A までしか選択遮断されません (短絡電流 {} A)
+{} is used already	{} は既に使用されています
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} は構造を保持します: 主機能が異なる構造ボックスにあります ({})
 {} keeps its structure: {} exists already	{} は構造を保持します: {} は既に存在します
 {} lies outside page {}	{} はページ {} の外にあります

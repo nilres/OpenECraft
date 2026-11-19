@@ -495,6 +495,7 @@ pub(super) const ROWS: &[Row] = &[
     r("cable.core_count", tr_const!("Number of cores"), Cable, General, Integer, "").ro(),
     r("cable.cross_section", tr_const!("Cross-section"), Cable, General, Text, "").field(),
     r("cable.length", tr_const!("Length"), Cable, General, Real, "m").field(),
+    r("cable.fixed_length", tr_const!("Length known (not calculated)"), Cable, General, Bool, ""),
     r("cable.part", tr_const!("Part number"), Cable, Commercial, Text, "").field(),
     r("cable.diameter", tr_const!("Outer diameter"), Cable, Mechanical, Real, "mm").field(),
     r("cable.sheath_colour", tr_const!("Sheath colour"), Cable, Mechanical, Text, ""),

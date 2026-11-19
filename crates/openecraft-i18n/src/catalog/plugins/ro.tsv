@@ -81,7 +81,9 @@ Bus system name, e.g. PN/IE_1	Nume sistem de magistrală, de ex. PN/IE_1
 Busbar machine program (CSV)	Programul mașinii de prelucrare a barelor (CSV)
 CNC operations	Operații CNC
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Programe CNC pentru mașini de găurit, frezat și poansonat, îndoirea barelor de cupru, configurator de carcase, predarea către producție și confirmarea producției
+Cable tag (default: the next free -W)	Marcajul cablului (implicit: următorul -W liber)
 Cable tag, e.g. -W1	Identificator cablu, de ex. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Tipul cablului (implicit: NYM-J pentru firele și secțiunea sa)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Calibrează estimarea de timp a mașinilor pe baza timpilor reali din confirmările producției
 Cannot read the plugin folder {}	Folderul de pluginuri {} nu poate fi citit
 Cannot start {}: {}	{} nu poate fi pornit: {}
@@ -156,6 +158,7 @@ Cross section, e.g. 0.75 mm²	Secțiune, de ex. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Secțiune, de ex. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Secțiune, de ex. 1.5 mm² (gol = din definiția potențialului)
 Cross-section in mm²	Secțiune în mm²
+Cross-section of the cable in mm² (default: for the protective device)	Secțiunea cablului în mm² (implicit: pentru dispozitivul de protecție)
 Cross-section, e.g. 1.5 mm²	Secțiune, de ex. 1.5 mm²
 Current device tag	Identificator de dispozitiv actual
 Customer rule set to add or replace (by name), as exported	Setul de reguli al clientului de adăugat sau înlocuit (după nume), așa cum a fost exportat
@@ -193,6 +196,8 @@ Device description id of the head (list_device_descriptions)	ID-ul descrierii de
 Device group {} already exists	Grupul de dispozitive {} există deja
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Listă de dispozitive, listă de materiale, scheme de borne, de conectori, de cabluri și de conexiuni, PLC, potențiale, tablou, tehnică fluidică, rapoarte electrice și de câmp
 Device number on the bus	Număr dispozitiv pe magistrală
+Device or junction box of the circuit the cable comes from (default: the device before it)	Aparat sau doză de derivație a circuitului de la care vine cablul (implicit: aparatul dinainte)
+Device tag (default: the room, the letter code of the kind and the next number)	Marcajul aparatului (implicit: încăperea, codul de litere al tipului și următorul număr)
 Device tag of the CPU / bus coupler, e.g. -A0	Identificatorul de dispozitiv al CPU-ului / cuplorului de magistrală, de ex. -A0
 Device tag of the end (both ends if missing)	Identificatorul de dispozitiv al capătului (ambele capete dacă lipsește)
 Device tag of the fluid device, e.g. -QM1	Identificatorul de dispozitiv al dispozitivului de fluid, de ex. -QM1
@@ -357,6 +362,7 @@ Key, e.g. user.coupling_relay	Cheie, de ex. user.coupling_relay
 Key, e.g. user.customer_code	Cheie, de ex. user.customer_code
 Keys of the routes, comma separated (all if missing)	Cheile traseelor, separate prin virgulă (toate, dacă lipsesc)
 Kind: machining, punching or busbar	Tip: machining, punching sau busbar
+Known length of the cable in m (taken instead of the 3D route)	Lungimea cunoscută a cablului în m (folosită în locul traseului 3D)
 Label: terminal number, PLC address or potential name	Etichetă: număr de bornă, adresă PLC sau nume de potențial
 Landscape (true) or portrait (false)	Vedere (true) sau portret (false)
 Language the project texts are written in, e.g. en	Limba în care sunt scrise textele proiectului, de ex. en
@@ -462,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Mijlocul câmpului PV în planul clădirii (la sol: în instalație), z în mm
 Milling feed, mm/min	Avans de frezare, mm/min
 Mirror the symbol	Oglindire simbol
+Mounting height above the floor in mm (default: that of the part)	Înălțimea de montaj deasupra pardoselii în mm (implicit: cea a articolului)
 Mounting plate size as width and height; empty object restores the centred plate	Dimensiunea plăcii de montaj ca lățime și înălțime; un obiect gol restabilește placa centrată
 Mounting size must contain a positive width and height	Dimensiunea de montaj trebuie să conțină o lățime și o înălțime pozitive
 Moves an air-termination rod, changes its height, renames or removes it	Mută o tijă de captare, îi modifică înălțimea, o redenumește sau o elimină
@@ -549,6 +556,7 @@ Nothing to copy: devices are placed once	Nimic de copiat: dispozitivele se plase
 Nothing to remove: {} {}	Nimic de eliminat: {} {}
 Number of columns	Număr de coloane
 Number of copies (default 1)	Număr de copii (implicit 1)
+Number of cores of the cable (default: 3, three-phase 5)	Numărul de fire al cablului (implicit: 3, trifazat 5)
 Number of equal bars	Număr de bare identice
 Number of indexed values (0 = a single value)	Număr de valori indexate (0 = o singură valoare)
 Number of rows	Număr de rânduri
@@ -604,12 +612,14 @@ Paper width in mm (custom paper)	Lățimea hârtiei în mm (format personalizat)
 Part lifecycle	Ciclul de viață al articolului
 Part number of the accessory	Numărul de articol al accesoriului
 Part number of the base	Numărul de articol al bazei
+Part number of the cable	Numărul de articol al cablului
 Part number of the carrier (per metre)	Numărul de articol al suportului de cabluri (pe metru)
 Part number of the conductor (per metre)	Numărul de articol al conductorului (pe metru)
 Part number of the downstream device	Numărul de articol al dispozitivului din aval
 Part number of the hose / tube / pipe	Numărul de articol al furtunului / tubului / conductei
 Part number of the upstream device	Numărul de articol al dispozitivului din amonte
 Part number, e.g. GEN.LMP-GN-24	Număr articol, de ex. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Număr de articol, de ex. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Articolul platbandei, sârmei sau electrodului (gol: generic)
 Part of the conductor holders on the roof (empty: generic)	Articolul suporturilor de conductor pe acoperiș (gol: generic)
 Part of the conductor holders on the walls (empty: generic)	Articolul suporturilor de conductor pe pereți (gol: generic)
@@ -683,6 +693,8 @@ Property and function definitions, property values and placement schemes	Defini�
 Property key	Cheie de proprietate
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Chei și valori de proprietăți, de ex. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Plasat în fața numerelor, de ex. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Pune un aparat din schemă într-o carcasă (pe placa de montaj, pe o șină de pe ea sau pe ușă): dimensiunea sa din articolul său, fixat pe o șină pe care încape; plasat anterior în altă parte, este mutat
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Pune o priză, un întrerupător, un corp de iluminat, un element de încălzire, o doză de derivație sau o doză de conectare a aparatului pentru un dispozitiv de protecție într-o încăpere într-un punct al instalației (un corp de iluminat de tavan pe tavan acolo, orice altceva pe cel mai apropiat perete la înălțimea sa de montaj; în afara încăperii pe exteriorul celui mai apropiat perete) și în schemă: un aparat nou pe pagina de instalație a circuitului cu un cablu de la aparatul dinainte sau de la aparatul indicat; fără dispozitiv de protecție doar în încăpere (prize de date și de antenă, detectoare de fum)
 Quantity per end (default 1)	Cantitate pe capăt (implicit 1)
 R/X ratio of the supply impedance	Raportul R/X al impedanței rețelei de alimentare
 Rack number	Număr rack
@@ -817,6 +829,7 @@ Smallest bend radius in mm	Raza de curbură minimă în mm
 Smallest distance in mm	Cea mai mică distanță în mm
 Smallest distance of holes from the sheet edge	Cea mai mică distanță a găurilor față de marginea tablei
 Smallest inner radius as a multiple of the thickness	Cea mai mică rază interioară ca multiplu al grosimii
+Smallest room kept, m² (default 1; kept with the floor plan)	Cea mai mică încăpere păstrată, m² (implicit 1; salvată cu planul)
 Smallest web at cutouts	Cea mai mică punte de material la decupaje
 Smallest web between holes	Cea mai mică punte de material între găuri
 Spare terminals at the end of the strip	Borne de rezervă la capătul șirului
@@ -888,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	Linia unei încrucișă
 The message text, kept for the list of accepted messages	Textul mesajului, păstrat pentru lista mesajelor acceptate
 The name must not be empty	Numele nu poate fi gol
 The number of copies must be between 1 and 100	Numărul de copii trebuie să fie între 1 și 100
+The number of cores must be from 1 to 60	Numărul de fire trebuie să fie între 1 și 60
 The plinth height must not be negative	Înălțimea soclului nu trebuie să fie negativă
 The plot frame {} is in use	Chenarul {} este în uz
 The plugin program did not answer within {} s and was stopped	Programul pluginului nu a răspuns în {} s și a fost oprit
@@ -896,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Rotația trebuie să fie 0, 90, 180 sau 2
 The straight line of a crossing: vertical or horizontal (default vertical)	Linia dreaptă a unei încrucișări: vertical sau horizontal (implicit vertical)
 The text height must be at least 0.5 mm	Înălțimea textului trebuie să fie de cel puțin 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Cele două brațe ale unui colț, vertical și orizontal, de ex. down left (implicit: după firele de acolo, altfel down right)
+The width factor must be from 0.1 to 10	Factorul de lățime trebuie să fie între 0,1 și 10
 The wire has no length	Conexiunea nu are lungime
 The wire that jumps: vertical or horizontal	Firul care sare: vertical sau horizontal
 The wrap width must not be negative	Lățimea de încadrare nu trebuie să fie negativă
@@ -994,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Rândul pe c
 Who accepted it	Cine l-a acceptat
 Whole words only	Numai cuvinte întregi
 Why the message is accepted	De ce este acceptat mesajul
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Lățimea literelor față de lățimea lor obișnuită, 0,1 … 10 (0,8: scris îngust; implicit 1)
 Width of the path in mm (default 50)	Lățimea căii în mm (implicit 50)
 Width, depth and height of a room are at least {} mm	Lățimea, adâncimea și înălțimea unei încăperi sunt de cel puțin {} mm
 Width, height and depth of an enclosure are at least {} mm	Lățimea, înălțimea și adâncimea unei carcase sunt de cel puțin {} mm
@@ -1066,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	z al bazei tijei 
 {} is a built-in frame; give the frame a new name	{} este un chenar integrat; dați chenarului un nume nou
 {} is a built-in title block; give the title block a new name	{} este un cartuș încorporat; dați cartușului un nume nou
 {} is a room already	{} este deja o încăpere
+{} is a room: use mount_on_wall	{} este o încăpere: folosiți mount_on_wall
 {} is ambiguous: use #id:pin	{} este ambiguu: folosiți #id:pin
 {} is an enclosure already	{} este deja o carcasă
 {} is not a connection point (TAG:PIN)	{} nu este un punct de conexiune (IDENTIFICATOR:PIN)

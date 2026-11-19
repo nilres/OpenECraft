@@ -599,10 +599,13 @@ fn field_text(s: &SymbolInst, kind: FieldKind) -> String {
     }
 }
 
-/// Symbol graphics, with or without the label fields (`labels`).
+/// Symbol graphics, with or without the label fields (`labels`). Graphics with a colour
+/// of their own keep it in the line and frame inks (a coloured logo in the artwork of a
+/// plot frame), not when highlighted or greyed.
 fn draw_prims_resolved(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: Ink, property: &dyn Fn(&str) -> String, refs: &[references::Reference], labels: bool) {
     let tf = |q: P| s.pos + q.transform(s.rot, s.mirror);
     let text_ink = if ink == Ink::Line { Ink::Text } else { ink };
+    let own = |color: &Option<[u8; 3]>, base: Ink| if matches!(ink, Ink::Line | Ink::Frame) { color.map(Ink::Color).unwrap_or(base) } else { base };
     for prim in prims {
         match prim {
             Prim::PropertyBlock(block) => draw_property_block(d, block, s, ink, property, refs),
@@ -611,7 +614,7 @@ fn draw_prims_resolved(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: In
                 let v: Vec<P> = pts.iter().map(|q| tf(*q)).collect();
                 d.poly(&v, *closed, SYMBOL_W, ink, *fill);
             }
-            Prim::Circle { c, r, fill, color } => d.circle(tf(*c), *r, SYMBOL_W, if ink == Ink::Line {color.map(Ink::Color).unwrap_or(ink)} else {ink}, *fill),
+            Prim::Circle { c, r, fill, color } => d.circle(tf(*c), *r, SYMBOL_W, own(color, ink), *fill),
             Prim::Image { name, data, corners } => {
                 let world = corners.map(tf);
                 let image = ImageItem {
@@ -622,7 +625,7 @@ fn draw_prims_resolved(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: In
                 d.image_quad(&image, &world);
             }
             Prim::Path { pts, closed, fill, width, color, dashed } => {
-                let pen = if ink==Ink::Line {color.map(Ink::Color).unwrap_or(ink)} else {ink};
+                let pen = own(color, ink);
                 let points: Vec<_> = pts.iter().map(|q| tf(*q)).collect();
                 if *dashed && !*fill {
                     for pair in points.windows(2) { d.line(pair[0],pair[1],*width,pen,true); }
@@ -632,7 +635,7 @@ fn draw_prims_resolved(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: In
                 }
             }
             Prim::Text { pos, text, size, anchor, angle, color } => {
-                let text_ink = if ink==Ink::Line {color.map(Ink::Color).unwrap_or(text_ink)} else {text_ink};
+                let text_ink = own(color, text_ink);
                 draw_symbol_text(d, s, *pos, text, &TextStyle::plain(*size, *anchor, VAnchor::Middle), *angle, text_ink);
             }
             Prim::Field { kind, pos, size, anchor, angle } => {
@@ -689,7 +692,7 @@ fn draw_property_block(d: &mut dyn Draw, block: &crate::symbols::PropertyBlock, 
         if !value.is_empty() { lines.extend(value.split('\n').map(|line| (line.trim_end_matches('\r').to_owned(), None))); }
     }
     let text_ink = if ink == Ink::Line { Ink::Text } else { ink };
-    let pen = if ink == Ink::Line { block.color.map(Ink::Color).unwrap_or(text_ink) } else { ink };
+    let pen = if matches!(ink, Ink::Line | Ink::Frame) { block.color.map(Ink::Color).unwrap_or(text_ink) } else { ink };
     let style = TextStyle::plain(block.size, block.anchor, VAnchor::Middle);
     for (i, (line, target)) in lines.iter().enumerate() {
         let pos = block.row_pos(i, lines.len());

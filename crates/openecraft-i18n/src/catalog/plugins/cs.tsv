@@ -81,7 +81,9 @@ Bus system name, e.g. PN/IE_1	Název sběrnicového systému, např. PN/IE_1
 Busbar machine program (CSV)	Program stroje na zpracování přípojnic (CSV)
 CNC operations	Operace CNC
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Programy CNC pro vrtací, frézovací a děrovací stroje, ohýbání měděných přípojnic, konfigurátor skříní, předání do výroby a zpětné hlášení z výroby
+Cable tag (default: the next free -W)	Označení kabelu (výchozí: další volné -W)
 Cable tag, e.g. -W1	Označení kabelu, např. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Typ kabelu (výchozí: NYM-J pro jeho žíly a průřez)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Zkalibruje odhad času strojů podle skutečných časů ze zpětného hlášení výroby
 Cannot read the plugin folder {}	Nelze přečíst složku pluginů {}
 Cannot start {}: {}	Nelze spustit {}: {}
@@ -156,6 +158,7 @@ Cross section, e.g. 0.75 mm²	Průřez, např. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Průřez, např. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Průřez, např. 1.5 mm² (prázdné = z definice potenciálu)
 Cross-section in mm²	Průřez v mm²
+Cross-section of the cable in mm² (default: for the protective device)	Průřez kabelu v mm² (výchozí: pro ochranný přístroj)
 Cross-section, e.g. 1.5 mm²	Průřez, např. 1.5 mm²
 Current device tag	Aktuální označení přístroje
 Customer rule set to add or replace (by name), as exported	Zákaznická sada pravidel k přidání nebo nahrazení (podle názvu), ve tvaru exportu
@@ -193,6 +196,8 @@ Device description id of the head (list_device_descriptions)	ID popisu zařízen
 Device group {} already exists	Skupina přístrojů {} již existuje
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Seznam přístrojů, kusovník, schémata svorek, konektorů, kabelů a spojení, PLC, potenciály, rozváděč, tekutiny, elektrické výkazy a výkazy pole
 Device number on the bus	Číslo zařízení na sběrnici
+Device or junction box of the circuit the cable comes from (default: the device before it)	Přístroj nebo odbočná krabice obvodu, ze které kabel vede (výchozí: předchozí přístroj)
+Device tag (default: the room, the letter code of the kind and the next number)	Označení přístroje (výchozí: místnost, písmenný kód druhu a další číslo)
 Device tag of the CPU / bus coupler, e.g. -A0	Označení přístroje CPU / sběrnicového modulu, např. -A0
 Device tag of the end (both ends if missing)	Označení přístroje na konci (pokud chybí, oba konce)
 Device tag of the fluid device, e.g. -QM1	Označení tekutinového přístroje, např. -QM1
@@ -357,6 +362,7 @@ Key, e.g. user.coupling_relay	Klíč, např. user.coupling_relay
 Key, e.g. user.customer_code	Klíč, např. user.customer_code
 Keys of the routes, comma separated (all if missing)	Klíče tras oddělené čárkou (všechny, pokud chybí)
 Kind: machining, punching or busbar	Druh: machining, punching nebo busbar
+Known length of the cable in m (taken instead of the 3D route)	Známá délka kabelu v m (použije se místo 3D trasy)
 Label: terminal number, PLC address or potential name	Popisek: číslo svorky, adresa PLC nebo název potenciálu
 Landscape (true) or portrait (false)	Na šířku (true) nebo na výšku (false)
 Language the project texts are written in, e.g. en	Jazyk, ve kterém jsou texty projektu napsány, např. en
@@ -462,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Střed FV pole v půdorysu budovy (pozemní pole: v zařízení), z v mm
 Milling feed, mm/min	Posuv frézování, mm/min
 Mirror the symbol	Zrcadlit symbol
+Mounting height above the floor in mm (default: that of the part)	Montážní výška nad podlahou v mm (výchozí: ta z dílu)
 Mounting plate size as width and height; empty object restores the centred plate	Velikost montážní desky jako šířka a výška; prázdný objekt obnoví vystředěnou desku
 Mounting size must contain a positive width and height	Montážní velikost musí obsahovat kladnou šířku a výšku
 Moves an air-termination rod, changes its height, renames or removes it	Přesune jímací tyč, změní její výšku, přejmenuje ji nebo odstraní
@@ -549,6 +556,7 @@ Nothing to copy: devices are placed once	Nic ke kopírování: přístroje se um
 Nothing to remove: {} {}	Není co odebrat: {} {}
 Number of columns	Počet sloupců
 Number of copies (default 1)	Počet kopií (výchozí 1)
+Number of cores of the cable (default: 3, three-phase 5)	Počet žil kabelu (výchozí: 3, třífázový 5)
 Number of equal bars	Počet stejných přípojnic
 Number of indexed values (0 = a single value)	Počet indexovaných hodnot (0 = jedna hodnota)
 Number of rows	Počet řádků
@@ -604,12 +612,14 @@ Paper width in mm (custom paper)	Šířka papíru v mm (vlastní formát)
 Part lifecycle	Životní cyklus artiklu
 Part number of the accessory	Číslo dílu příslušenství
 Part number of the base	Číslo artiklu základní desky
+Part number of the cable	Číslo dílu kabelu
 Part number of the carrier (per metre)	Číslo artiklu nosné konstrukce (na metr)
 Part number of the conductor (per metre)	Číslo artiklu vodiče (na metr)
 Part number of the downstream device	Číslo artiklu následného přístroje
 Part number of the hose / tube / pipe	Číslo artiklu hadice / trubky / potrubí
 Part number of the upstream device	Číslo artiklu předřazeného přístroje
 Part number, e.g. GEN.LMP-GN-24	Číslo artiklu, např. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Číslo dílu, např. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Díl jeho pásku, drátu nebo tyče (prázdné: obecný)
 Part of the conductor holders on the roof (empty: generic)	Díl podpěr vedení na střeše (prázdné: obecný)
 Part of the conductor holders on the walls (empty: generic)	Díl podpěr vedení na stěnách (prázdné: obecný)
@@ -683,6 +693,8 @@ Property and function definitions, property values and placement schemes	Definic
 Property key	Klíč vlastnosti
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Klíče a hodnoty vlastností, např. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Předřazeno před čísla, např. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Umístí přístroj ze schématu do skříně (na montážní desku, na lištu na ní nebo na dveře): jeho velikost podle jeho dílu, nacvaknutý na lištu, na kterou se vejde; dříve umístěný jinde se přesune
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Umístí zásuvku, spínač, svítidlo, topné těleso, odbočnou krabici nebo přípojnou krabici spotřebiče pro ochranný přístroj do místnosti v bodě zařízení (stropní svítidlo tam na strop, vše ostatní na nejbližší stěnu v jeho montážní výšce; mimo místnost na vnější stranu její nejbližší stěny) a do schématu: nový přístroj na stránce instalace obvodu s kabelem od předchozího přístroje nebo od zadaného přístroje; bez ochranného přístroje jen do místnosti (datové a anténní zásuvky, hlásiče kouře)
 Quantity per end (default 1)	Množství na konec (výchozí 1)
 R/X ratio of the supply impedance	Poměr R/X impedance napájení
 Rack number	Číslo nosného rámu
@@ -817,6 +829,7 @@ Smallest bend radius in mm	Nejmenší poloměr ohybu v mm
 Smallest distance in mm	Nejmenší vzdálenost v mm
 Smallest distance of holes from the sheet edge	Nejmenší vzdálenost otvorů od okraje plechu
 Smallest inner radius as a multiple of the thickness	Nejmenší vnitřní poloměr jako násobek tloušťky
+Smallest room kept, m² (default 1; kept with the floor plan)	Nejmenší ponechaná místnost, m² (výchozí 1; ukládá se s půdorysem)
 Smallest web at cutouts	Nejmenší můstek u výřezů
 Smallest web between holes	Nejmenší můstek mezi otvory
 Spare terminals at the end of the strip	Rezervní svorky na konci svorkovnice
@@ -888,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	Čára křížení je v
 The message text, kept for the list of accepted messages	Text hlášení, uchovaný pro seznam přijatých hlášení
 The name must not be empty	Název nesmí být prázdný
 The number of copies must be between 1 and 100	Počet kopií musí být mezi 1 a 100
+The number of cores must be from 1 to 60	Počet žil musí být od 1 do 60
 The plinth height must not be negative	Výška soklu nesmí být záporná
 The plot frame {} is in use	Rámeček výkresu {} se používá
 The plugin program did not answer within {} s and was stopped	Program pluginu neodpověděl do {} s a byl ukončen
@@ -896,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Otočení musí být 0, 90, 180 nebo 270
 The straight line of a crossing: vertical or horizontal (default vertical)	Přímá čára křížení: vertical nebo horizontal (výchozí vertical)
 The text height must be at least 0.5 mm	Výška textu musí být alespoň 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Dvě ramena rohu, svislé a vodorovné, např. down left (výchozí: podle vodičů v místě, jinak down right)
+The width factor must be from 0.1 to 10	Šířkový faktor musí být od 0,1 do 10
 The wire has no length	Spoj nemá délku
 The wire that jumps: vertical or horizontal	Vodič, který přeskakuje: vertical nebo horizontal
 The wrap width must not be negative	Šířka zalomení nesmí být záporná
@@ -994,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Na kterém �
 Who accepted it	Kdo jej přijal
 Whole words only	Pouze celá slova
 Why the message is accepted	Proč je hlášení přijato
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Šířka písmen vůči jejich obvyklé šířce, 0,1 … 10 (0,8: úzké písmo; výchozí 1)
 Width of the path in mm (default 50)	Šířka trasy v mm (výchozí 50)
 Width, depth and height of a room are at least {} mm	Šířka, hloubka a výška místnosti jsou alespoň {} mm
 Width, height and depth of an enclosure are at least {} mm	Šířka, výška a hloubka skříně jsou alespoň {} mm
@@ -1066,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	z paty tyče v p�
 {} is a built-in frame; give the frame a new name	{} je vestavěný rámeček; dejte rámečku nový název
 {} is a built-in title block; give the title block a new name	{} je vestavěné rohové razítko; dejte razítku nový název
 {} is a room already	{} je již místnost
+{} is a room: use mount_on_wall	{} je místnost: použijte mount_on_wall
 {} is ambiguous: use #id:pin	{} je nejednoznačné: použijte #id:pin
 {} is an enclosure already	{} je již skříň
 {} is not a connection point (TAG:PIN)	{} není přípojný bod (TAG:PIN)

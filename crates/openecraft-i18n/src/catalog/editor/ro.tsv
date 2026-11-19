@@ -221,6 +221,7 @@ Bottom left	Stânga jos
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Partea inferioară a carcasei (fără soclu) deasupra podelei; înălțimile sunt verificate dacă aceasta este cunoscută sau dacă carcasa stă pe un soclu
 Bottom right	Dreapta jos
 Boundary	Limită
+Boxes	Doze
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacitatea de rupere față de curentul de scurtcircuit la fiecare dispozitiv de protecție al rețelei, deconectarea la cel mai mic curent de defect la capătul circuitului său, rezistența la scurtcircuit a cablurilor și selectivitatea față de dispozitivul din amonte.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Punte: patru fire; conexiunea intră pe o latură și merge spre celelalte trei, întâi spre latura opusă
 Building {} added with a level at ground level	Clădirea {} adăugată cu un nivel la nivelul solului
@@ -246,6 +247,7 @@ Cable definition on page {}	Definire cablu pe pagina {}
 Cable definition: draw a line across the wires that are cores of a cable	Definire cablu: trasați o linie peste conductoarele care sunt fire ale unui cablu
 Cable end reserve	Rezervă la capăt de cablu
 Cable ends	Capetele cablului
+Cable from	Cablu de la
 Cable markers	Marcaje de cablu
 Cable passage to {}	Trecere de cabluri spre {}
 Cable {}: {} cores assigned	Cablul {}: {} fire atribuite
@@ -997,6 +999,7 @@ Joins	Leagă
 Joins wire pieces in a line where nothing else connects (current page)	Unește segmentele de conductor aflate pe o linie unde nu se conectează nimic altceva (pagina curentă)
 Jumper {}	Puntea {}
 Jumps over the other:	Sare peste celălalt:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Doze de derivație, doze de conectare pentru aparate fixe și detectoare de fum
 K, Q, MM …	K, Q, MM …
 Keep connections	Păstrează conexiunile
 Keep sub-pages (3.a, 3.1) with the page before	Păstrarea subpaginilor (3.a, 3.1) cu pagina anterioară
@@ -1757,6 +1760,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Încăpere adăugată: trageți pereții sau desenați alții noi în plan, așezați dulapuri în ea din proprietățile lor
 Room {} now stands on level {}	Încăperea {} se află acum la nivelul {}
 Room {} taken out of the building; it stays where it stands	Încăperea {} a fost scoasă din clădire; rămâne unde se află
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Încăperile găsite mai mici decât aceasta sunt omise (un WC sau o debara pot fi mai mici de 1 m²)
 Rooms under sloped ceilings (lowest – highest ceiling)	Încăperi sub tavane înclinate (cel mai jos – cel mai înalt tavan)
 Rotate	Rotire
 Rotate (selection or symbol being placed)	Rotire (selecția sau simbolul care se plasează)
@@ -1963,6 +1967,7 @@ Slot depth	Adâncimea șlițului
 Slots	Sloturi
 Smallest cross-section of control circuits	Cea mai mică secțiune a circuitelor de comandă
 Smallest cross-section of power circuits	Cea mai mică secțiune a circuitelor de putere
+Smallest room	Cea mai mică încăpere
 Socket outlets, data and antenna outlets	Prize, prize de date și de antenă
 Solid	Continuu
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Unele modificări ale dvs. nu au fost preluate de serverul de proiecte. Versiunea dvs. rămâne în panoul Server de proiecte, și după eliminare.
@@ -2093,6 +2098,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Copia este creată din starea salvată pe serverul de proiecte. Modificările pe care alți utilizatori nu le-au salvat încă nu fac parte din ea. Sesiunile, blocările și drepturile de acces nu se copiază; originalul rămâne așa cum este.
 The crossed wires get free cores of the cable in order	Conductoarele intersectate primesc pe rând fire libere ale cablului
 The current page belongs to option {}.	Pagina curentă aparține opțiunii {}.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Aparatul sau doza de derivație a circuitului de la care vine cablul următorului aparat: acolo circuitul se ramifică
 The devices do not fit onto the rail	Dispozitivele nu încap pe șină
 The dictionary is empty: collect the texts from the project.	Dicționarul este gol: colectați textele din proiect.
 The door seen from the front: door devices and cutouts	Ușa văzută din față: dispozitive de ușă și decupaje
@@ -2278,6 +2284,8 @@ Whole building	Întreaga clădire
 Whole words	Cuvinte întregi
 Width / going	Lățime / treaptă
 Width / height (mm)	Lățime / înălțime (mm)
+Width factor	Factor de lățime
+Width of the letters to their usual width (0.8: narrow lettering)	Lățimea literelor față de lățimea lor obișnuită (0,8: scris îngust)
 Width × depth	Lățime × adâncime
 Width × height	Lățime × înălțime
 Width × height (mm)	Lățime × înălțime (mm)
@@ -2415,6 +2423,7 @@ set on the device	stabilit pe dispozitiv
 sloped ceiling from {} m	tavan înclinat de la {} m
 some	unele
 taken over	preluat
+the device before it	aparatul dinainte
 the project data (page list, devices, settings)	datele proiectului (lista de pagini, dispozitive, setări)
 then	atunci
 unknown	necunoscută

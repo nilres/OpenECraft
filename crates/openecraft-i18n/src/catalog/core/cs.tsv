@@ -68,6 +68,7 @@ Analog input module	Modul analogových vstupů
 Analog output module	Modul analogových výstupů
 Analysis	Analýza
 Another section here has this number	Jiný oddíl zde už má toto číslo
+Antenna outlet	Anténní zásuvka
 Apparent power (kVA)	Zdánlivý výkon (kVA)
 Applied directives	Použité směrnice
 Approval date	Datum schválení
@@ -343,6 +344,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	Stejnosměrné řídic�
 DC control circuits should be blue (NFPA 79, 13.2.4)	Stejnosměrné řídicí obvody by měly být modré (NFPA 79, 13.2.4)
 DC/DC converter	Měnič DC/DC
 DWG export failed: {}	Export DWG selhal: {}
+Data outlet	Datová zásuvka
 Data sheet	Katalogový list
 Date of the approval of the last revision	Datum schválení poslední revize
 Date of the last revision	Datum poslední revize
@@ -359,6 +361,7 @@ Description of the last revision	Popis poslední revize
 Description of the page's function (structure management)	Popis funkce stránky (správa struktury)
 Description of the page's location (structure management)	Popis umístění stránky (správa struktury)
 Designer	Konstruktér
+Device connection box	Přípojná krabice spotřebiče
 Device connection diagram	Schéma připojení přístroje
 Device data of {} without symbol or panel item	Data přístroje {} bez symbolu nebo prvku rozváděče
 Device description file	Soubor popisu přístroje
@@ -647,6 +650,7 @@ Hazardous area zone	Zóna s nebezpečím výbuchu
 Heat exchanger	Výměník tepla
 Heating (W)	Topení (W)
 Heating element	Topné těleso
+Heating element three-phase	Topné těleso třífázové
 Higher-level product (-)	Nadřazený produkt (-)
 Higher-level product of the page	Nadřazený produkt stránky
 Highest (°C)	Nejvýše (°C)
@@ -777,6 +781,7 @@ Left side panel	Levá boční stěna
 Legend plate text	Text štítku
 Length (m)	Délka (m)
 Length (mm)	Délka (mm)
+Length known (not calculated)	Délka známá (nepočítaná)
 Letter landscape	Letter na šířku
 Letters (A, B, C)	Písmena (A, B, C)
 Level switch	Hladinový spínač
@@ -1478,7 +1483,9 @@ Size (mm)	Velikost (mm)
 Skipped	Přeskočeno
 Sliding to the left	Posuvné doleva
 Sliding to the right	Posuvné doprava
+Smoke alarm	Hlásič kouře
 Socket outlet	Zásuvka
+Socket outlet three-phase	Zásuvka třífázová
 Socket side (female)	Strana zdířek (samice)
 Soft starter	Softstartér
 Solar charge controller	Solární regulátor nabíjení
@@ -1606,6 +1613,7 @@ The archive unpacks to more than {} MB	Archiv se rozbalí na více než {} MB
 The archive was written by a newer version (archive version {})	Archiv byl zapsán novější verzí (verze archivu {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Výrobce rozváděče musí být uveden (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Řada rozvaděčů ve své místnosti: půdorys ve tvaru L, vnitřní stěna, dveře a okno, řada na svém místě, lišta se zásuvkou na stěně, nouzové svítidlo na stěně a kabelový žlab pod stropem.
+The cable of {} needs at least {} cores	Kabel {} potřebuje alespoň {} žil
 The configuration is not a JSON object	Konfigurace není objekt JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Dopravník po prvním uvolnění: uvolněná a uzamčená revize, od té doby označené změny, komentáře z kontroly s červenými značkami, žádost o změnu, revize B ve schvalovacím procesu a základní stav k porovnání.
 The coordinates of the reference point must be numbers	Souřadnice referenčního bodu musí být čísla
@@ -1951,19 +1959,23 @@ yellow	žlutá
 {} has no MTTFd, B10d, PL or PFHd	{} nemá MTTFd, B10d, PL ani PFHd
 {} has no door or window {}	{} nemá dveře ani okno {}
 {} has nothing to manufacture	{} nemá nic k výrobě
+{} has three phases: it needs a three-phase protective device	{} má tři fáze: potřebuje třípólový ochranný přístroj
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} obsahuje nevyřešený konflikt slučování gitu: soubor byl sloučen jako text. Převezměte jednu verzi souboru (git checkout --ours nebo --theirs) a poté před dalším slučováním nastavte slučovací ovladač pro rozdělené projekty (merge_project_file)
 {} is a built-in function definition	{} je vestavěná definice funkce
 {} is a built-in property	{} je vestavěná vlastnost
 {} is a built-in scheme	{} je vestavěné schéma
 {} is a busbar machine and makes no sheets	{} je stroj na zpracování přípojnic a nevyrábí plechy
+{} is neither the protective device nor a device of the circuit of {}	{} není ani ochranný přístroj, ani přístroj obvodu {}
 {} is not a busbar machine	{} není stroj na zpracování přípojnic
 {} is not a property of {}	{} není vlastností {}
 {} is not an approver of this project	{} není schvalovatelem tohoto projektu
+{} is not connected to the mains: place it without a protective device	{} se nepřipojuje k síti: umístěte jej bez ochranného přístroje
 {} is not placed in the plant layout	{} není umístěno v dispozici zařízení
 {} is on page {}, which is released: renaming it would change the page	{} je na stránce {}, která je uvolněná: přejmenování by stránku změnilo
 {} is placed at the missing node {}	{} je umístěno v chybějícím uzlu {}
 {} is planned twice ({} and {})	{} je plánováno dvakrát ({} a {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} je selektivní vůči {} jen do {} A (zkratový proud {} A)
+{} is used already	{} je již použito
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} si ponechává svou strukturu: jeho hlavní funkce leží v různých rámečcích struktury ({})
 {} keeps its structure: {} exists already	{} si ponechává svou strukturu: {} již existuje
 {} lies outside page {}	{} leží mimo stránku {}

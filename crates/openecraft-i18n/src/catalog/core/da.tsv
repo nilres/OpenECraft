@@ -68,6 +68,7 @@ Analog input module	Analogt indgangsmodul
 Analog output module	Analogt udgangsmodul
 Analysis	Analyse
 Another section here has this number	Et andet afsnit her har allerede dette nummer
+Antenna outlet	Antennestik
 Apparent power (kVA)	Tilsyneladende effekt (kVA)
 Applied directives	Anvendte direktiver
 Approval date	Godkendelsesdato
@@ -343,6 +344,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC-styrekredse bør væ
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC-styrekredse bør være blå (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC-konverter
 DWG export failed: {}	DWG-eksport mislykkedes: {}
+Data outlet	Datastik
 Data sheet	Datablad
 Date of the approval of the last revision	Dato for godkendelsen af den seneste revision
 Date of the last revision	Dato for den seneste revision
@@ -359,6 +361,7 @@ Description of the last revision	Beskrivelse af den seneste revision
 Description of the page's function (structure management)	Beskrivelse af sidens funktion (strukturstyring)
 Description of the page's location (structure management)	Beskrivelse af sidens placering (strukturstyring)
 Designer	Konstruktør
+Device connection box	Apparattilslutningsdåse
 Device connection diagram	Enhedstilslutningsdiagram
 Device data of {} without symbol or panel item	Enhedsdata for {} uden symbol eller layoutelement
 Device description file	Enhedsbeskrivelsesfil
@@ -647,6 +650,7 @@ Hazardous area zone	Ex-zone
 Heat exchanger	Varmeveksler
 Heating (W)	Opvarmning (W)
 Heating element	Varmelegeme
+Heating element three-phase	Varmelegeme trefaset
 Higher-level product (-)	Overordnet produkt (-)
 Higher-level product of the page	Sidens overordnede produkt
 Highest (°C)	Højst (°C)
@@ -777,6 +781,7 @@ Left side panel	Venstre sideplade
 Legend plate text	Skilttekst
 Length (m)	Længde (m)
 Length (mm)	Længde (mm)
+Length known (not calculated)	Længde kendt (ikke beregnet)
 Letter landscape	Letter liggende
 Letters (A, B, C)	Bogstaver (A, B, C)
 Level switch	Niveauafbryder
@@ -1478,7 +1483,9 @@ Size (mm)	Størrelse (mm)
 Skipped	Sprunget over
 Sliding to the left	Skydes til venstre
 Sliding to the right	Skydes til højre
+Smoke alarm	Røgalarm
 Socket outlet	Stikkontakt
+Socket outlet three-phase	Stikkontakt trefaset
 Socket side (female)	Bøsningsside (hun)
 Soft starter	Softstarter
 Solar charge controller	Solcelleladeregulator
@@ -1606,6 +1613,7 @@ The archive unpacks to more than {} MB	Arkivet udpakkes til mere end {} MB
 The archive was written by a newer version (archive version {})	Arkivet er skrevet af en nyere version (arkivversion {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Tavlefabrikanten skal være angivet (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Tavlerækken i sit rum: L-formet plan, indervæg, dør og vindue, tavlerækken på sin plads, en skinne med en stikkontakt på en væg, en vægmonteret nødbelysning og en kabelbakke under loftet.
+The cable of {} needs at least {} cores	Kablet til {} skal have mindst {} ledere
 The configuration is not a JSON object	Konfigurationen er ikke et JSON-objekt
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Transportbåndet efter den første frigivelse: en frigivet og låst revision, ændringer markeret siden, gennemgangskommentarer med rødmarkering, en ændringsanmodning, revision B i godkendelsesforløbet og en baseline at sammenligne med.
 The coordinates of the reference point must be numbers	Referencepunktets koordinater skal være tal
@@ -1951,19 +1959,23 @@ yellow	gul
 {} has no MTTFd, B10d, PL or PFHd	{} har hverken MTTFd, B10d, PL eller PFHd
 {} has no door or window {}	{} har ingen dør eller vindue {}
 {} has nothing to manufacture	{} har intet at producere
+{} has three phases: it needs a three-phase protective device	{} har tre faser: det skal have en trefaset beskyttelsesenhed
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} indeholder en uløst flettekonflikt fra git: filen blev flettet som tekst. Tag én version af filen (git checkout --ours eller --theirs), og sæt derefter flettedriveren til opdelte projekter op (merge_project_file), før du fletter igen
 {} is a built-in function definition	{} er en indbygget funktionsdefinition
 {} is a built-in property	{} er en indbygget egenskab
 {} is a built-in scheme	{} er et indbygget skema
 {} is a busbar machine and makes no sheets	{} er en skinnebearbejdningsmaskine og fremstiller ingen plader
+{} is neither the protective device nor a device of the circuit of {}	{} er hverken beskyttelsesenheden eller en enhed i gruppen for {}
 {} is not a busbar machine	{} er ikke en skinnebearbejdningsmaskine
 {} is not a property of {}	{} er ikke en egenskab for {}
 {} is not an approver of this project	{} er ikke godkender af dette projekt
+{} is not connected to the mains: place it without a protective device	{} tilsluttes ikke nettet: placer den uden beskyttelsesenhed
 {} is not placed in the plant layout	{} er ikke placeret i anlægslayoutet
 {} is on page {}, which is released: renaming it would change the page	{} står på side {}, som er frigivet: omdøbning ville ændre siden
 {} is placed at the missing node {}	{} er placeret ved den manglende knude {}
 {} is planned twice ({} and {})	{} er planlagt to gange ({} og {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} er kun selektiv over for {} op til {} A (kortslutningsstrøm {} A)
+{} is used already	{} er allerede i brug
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} beholder sin struktur: dens hovedfunktioner ligger i forskellige strukturbokse ({})
 {} keeps its structure: {} exists already	{} beholder sin struktur: {} findes allerede
 {} lies outside page {}	{} ligger uden for side {}

@@ -81,7 +81,9 @@ Bus system name, e.g. PN/IE_1	Naam van het bussysteem, bijv. PN/IE_1
 Busbar machine program (CSV)	Programma van de railbewerkingsmachine (CSV)
 CNC operations	CNC-bewerkingen
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	CNC-programma's voor boor-, frees- en ponsmachines, koperrail buigen, behuizingsconfigurator, overdracht aan de productie en productieterugmelding
+Cable tag (default: the next free -W)	Kabelcode (standaard: de volgende vrije -W)
 Cable tag, e.g. -W1	Kabelaanduiding, bijv. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Kabeltype (standaard: NYM-J voor zijn aders en doorsnede)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Kalibreert de tijdschatting van de machines met de werkelijke tijden uit de productieterugmelding
 Cannot read the plugin folder {}	Kan de pluginmap {} niet lezen
 Cannot start {}: {}	Kan {} niet starten: {}
@@ -156,6 +158,7 @@ Cross section, e.g. 0.75 mm²	Doorsnede, bijv. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Doorsnede, bijv. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Doorsnede, bijv. 1.5 mm² (leeg = uit de potentiaaldefinitie)
 Cross-section in mm²	Doorsnede in mm²
+Cross-section of the cable in mm² (default: for the protective device)	Doorsnede van de kabel in mm² (standaard: voor het beveiligingsapparaat)
 Cross-section, e.g. 1.5 mm²	Doorsnede, bijv. 1.5 mm²
 Current device tag	Huidige apparaataanduiding
 Customer rule set to add or replace (by name), as exported	Toe te voegen of te vervangen klantspecifieke regelset (op naam), zoals geëxporteerd
@@ -193,6 +196,8 @@ Device description id of the head (list_device_descriptions)	Id van de apparaatb
 Device group {} already exists	Apparaatgroep {} bestaat al
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Apparatenlijst, stuklijst, klem-, stekker-, kabel- en aansluitschema's, PLC, potentialen, kast, fluïdtechniek, elektrische rapporten en veldrapporten
 Device number on the bus	Apparaatnummer op de bus
+Device or junction box of the circuit the cable comes from (default: the device before it)	Apparaat of aftakdoos van de groep waar de kabel vandaan komt (standaard: het apparaat ervoor)
+Device tag (default: the room, the letter code of the kind and the next number)	Apparaatcode (standaard: de ruimte, de lettercode van de soort en het volgende nummer)
 Device tag of the CPU / bus coupler, e.g. -A0	Apparaataanduiding van de CPU / buskoppelaar, bijv. -A0
 Device tag of the end (both ends if missing)	Apparaataanduiding van het einde (zonder opgave beide einden)
 Device tag of the fluid device, e.g. -QM1	Apparaataanduiding van het vloeistoftechnische apparaat, bijv. -QM1
@@ -357,6 +362,7 @@ Key, e.g. user.coupling_relay	Sleutel, bijv. user.coupling_relay
 Key, e.g. user.customer_code	Sleutel, bijv. user.customer_code
 Keys of the routes, comma separated (all if missing)	Sleutels van de routes, gescheiden door komma's (alle als deze ontbreken)
 Kind: machining, punching or busbar	Type: machining, punching of busbar
+Known length of the cable in m (taken instead of the 3D route)	Bekende lengte van de kabel in m (gebruikt in plaats van de 3D-route)
 Label: terminal number, PLC address or potential name	Label: klemnummer, PLC-adres of potentiaalnaam
 Landscape (true) or portrait (false)	Liggend (true) of staand (false)
 Language the project texts are written in, e.g. en	Taal waarin de projectteksten zijn geschreven, bijv. en
@@ -462,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Midden van het PV-veld in de plattegrond van het gebouw (vrijstaand: in de installatie), z in mm
 Milling feed, mm/min	Freesvoeding, mm/min
 Mirror the symbol	Het symbool spiegelen
+Mounting height above the floor in mm (default: that of the part)	Montagehoogte boven de vloer in mm (standaard: die van het artikel)
 Mounting plate size as width and height; empty object restores the centred plate	Grootte van de montageplaat als breedte en hoogte; een leeg object herstelt de gecentreerde plaat
 Mounting size must contain a positive width and height	De montagegrootte moet een positieve breedte en hoogte bevatten
 Moves an air-termination rod, changes its height, renames or removes it	Verplaatst een opvangstaaf, wijzigt de hoogte, hernoemt of verwijdert hem
@@ -549,6 +556,7 @@ Nothing to copy: devices are placed once	Niets te kopiëren: apparaten worden ma
 Nothing to remove: {} {}	Niets te verwijderen: {} {}
 Number of columns	Aantal kolommen
 Number of copies (default 1)	Aantal kopieën (standaard 1)
+Number of cores of the cable (default: 3, three-phase 5)	Aantal aders van de kabel (standaard: 3, driefasig 5)
 Number of equal bars	Aantal gelijke rails
 Number of indexed values (0 = a single value)	Aantal geïndexeerde waarden (0 = één enkele waarde)
 Number of rows	Aantal rijen
@@ -604,12 +612,14 @@ Paper width in mm (custom paper)	Papierbreedte in mm (aangepast papier)
 Part lifecycle	Levenscyclus van artikelen
 Part number of the accessory	Artikelnummer van het toebehoren
 Part number of the base	Artikelnummer van de basis
+Part number of the cable	Artikelnummer van de kabel
 Part number of the carrier (per metre)	Artikelnummer van de kabeldrager (per meter)
 Part number of the conductor (per metre)	Artikelnummer van de geleider (per meter)
 Part number of the downstream device	Artikelnummer van het nageschakelde apparaat
 Part number of the hose / tube / pipe	Artikelnummer van de slang / buis / pijpleiding
 Part number of the upstream device	Artikelnummer van het voorgeschakelde apparaat
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, bijv. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Artikelnummer, bijv. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Artikel van de strip, draad of pen (leeg: generiek)
 Part of the conductor holders on the roof (empty: generic)	Artikel van de geleiderhouders op het dak (leeg: generiek)
 Part of the conductor holders on the walls (empty: generic)	Artikel van de geleiderhouders aan de muren (leeg: generiek)
@@ -683,6 +693,8 @@ Property and function definitions, property values and placement schemes	Eigensc
 Property key	Eigenschapssleutel
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Eigenschapssleutels en waarden, bijv. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Voor de nummers geplaatst, bijv. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Zet een apparaat van het schema in een kast (op de montageplaat, op een rail daarop of op de deur): zijn grootte uit zijn artikel, op een passende rail geklikt; eerder elders geplaatst, wordt het verplaatst
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Zet een wandcontactdoos, een schakelaar, een lamp, een verwarmingselement, een aftakdoos of een apparaataansluitdoos voor een beveiligingsapparaat in een ruimte op een punt van de installatie (een plafondlamp daar aan het plafond, al het andere aan de dichtstbijzijnde wand op zijn montagehoogte; buiten de ruimte aan de buitenkant van zijn dichtstbijzijnde wand) en in het schema: een nieuw apparaat op de installatiepagina van de groep met een kabel van het apparaat ervoor of van het opgegeven apparaat; zonder beveiligingsapparaat alleen in de ruimte (data- en antennecontactdozen, rookmelders)
 Quantity per end (default 1)	Aantal per einde (standaard 1)
 R/X ratio of the supply impedance	R/X-verhouding van de netimpedantie
 Rack number	Racknummer
@@ -817,6 +829,7 @@ Smallest bend radius in mm	Kleinste buigradius in mm
 Smallest distance in mm	Kleinste afstand in mm
 Smallest distance of holes from the sheet edge	Kleinste afstand van boringen tot de plaatrand
 Smallest inner radius as a multiple of the thickness	Kleinste binnenradius als veelvoud van de dikte
+Smallest room kept, m² (default 1; kept with the floor plan)	Kleinste ruimte die blijft, m² (standaard 1; opgeslagen met de plattegrond)
 Smallest web at cutouts	Kleinste brug bij uitsparingen
 Smallest web between holes	Kleinste brug tussen boringen
 Spare terminals at the end of the strip	Reserveklemmen aan het einde van de strook
@@ -888,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	De lijn van een kruisin
 The message text, kept for the list of accepted messages	De meldingstekst, bewaard voor de lijst met geaccepteerde meldingen
 The name must not be empty	De naam mag niet leeg zijn
 The number of copies must be between 1 and 100	Het aantal kopieën moet tussen 1 en 100 liggen
+The number of cores must be from 1 to 60	Het aantal aders moet tussen 1 en 60 liggen
 The plinth height must not be negative	De sokkelhoogte mag niet negatief zijn
 The plot frame {} is in use	Het plotkader {} is in gebruik
 The plugin program did not answer within {} s and was stopped	Het pluginprogramma heeft niet binnen {} s geantwoord en is gestopt
@@ -896,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	De draaiing moet 0, 90, 180 of 270 zijn
 The straight line of a crossing: vertical or horizontal (default vertical)	De rechte lijn van een kruising: vertical of horizontal (standaard vertical)
 The text height must be at least 0.5 mm	De teksthoogte moet minstens 0,5 mm zijn
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	De twee armen van een hoek, verticaal en horizontaal, bv. down left (standaard: volgens de draden daar, anders down right)
+The width factor must be from 0.1 to 10	De breedtefactor moet tussen 0,1 en 10 liggen
 The wire has no length	De verbinding heeft geen lengte
 The wire that jumps: vertical or horizontal	De draad die springt: vertical of horizontal
 The wrap width must not be negative	De terugloopbreedte mag niet negatief zijn
@@ -994,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Op welke reg
 Who accepted it	Wie de melding heeft geaccepteerd
 Whole words only	Alleen hele woorden
 Why the message is accepted	Waarom de melding is geaccepteerd
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Breedte van de letters ten opzichte van hun gewone breedte, 0,1 … 10 (0,8: smalle letters; standaard 1)
 Width of the path in mm (default 50)	Breedte van het pad in mm (standaard 50)
 Width, depth and height of a room are at least {} mm	Breedte, diepte en hoogte van een ruimte zijn minstens {} mm
 Width, height and depth of an enclosure are at least {} mm	Breedte, hoogte en diepte van een behuizing zijn minstens {} mm
@@ -1066,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	z van de voet van
 {} is a built-in frame; give the frame a new name	{} is een ingebouwd kader; geef het kader een nieuwe naam
 {} is a built-in title block; give the title block a new name	{} is een ingebouwd titelblok; geef het titelblok een nieuwe naam
 {} is a room already	{} is al een ruimte
+{} is a room: use mount_on_wall	{} is een ruimte: gebruik mount_on_wall
 {} is ambiguous: use #id:pin	{} is dubbelzinnig: gebruik #id:pin
 {} is an enclosure already	{} is al een behuizing
 {} is not a connection point (TAG:PIN)	{} is geen aansluitpunt (AANDUIDING:PIN)

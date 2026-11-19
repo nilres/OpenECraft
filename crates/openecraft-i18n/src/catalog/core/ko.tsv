@@ -65,6 +65,7 @@ Analog input module	아날로그 입력 모듈
 Analog output module	아날로그 출력 모듈
 Analysis	분석
 Another section here has this number	여기에 있는 다른 구역이 이미 이 번호를 사용합니다
+Antenna outlet	안테나 콘센트
 Apparent power (kVA)	피상 전력(kVA)
 Applied directives	적용된 지침
 Approval date	승인 날짜
@@ -335,6 +336,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC 제어 회로는 파
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC 제어 회로는 파란색이어야 합니다(NFPA 79, 13.2.4)
 DC/DC converter	DC/DC 컨버터
 DWG export failed: {}	DWG 내보내기 실패: {}
+Data outlet	데이터 콘센트
 Data sheet	데이터시트
 Date of the approval of the last revision	마지막 개정의 승인 날짜
 Date of the last revision	마지막 개정 날짜
@@ -351,6 +353,7 @@ Description of the last revision	마지막 개정 설명
 Description of the page's function (structure management)	페이지 기능의 설명(구조 관리)
 Description of the page's location (structure management)	페이지 위치의 설명(구조 관리)
 Designer	설계자
+Device connection box	기기 연결 박스
 Device connection diagram	장치 연결 다이어그램
 Device data of {} without symbol or panel item	심볼 또는 패널 항목이 없는 {}의 장치 데이터
 Device description file	장치 설명 파일
@@ -638,6 +641,7 @@ Hazardous area zone	위험 지역 구역
 Heat exchanger	열교환기
 Heating (W)	히터(W)
 Heating element	발열체
+Heating element three-phase	3상 발열체
 Higher-level product (-)	상위 제품 (-)
 Higher-level product of the page	페이지의 상위 제품
 Highest (°C)	최고(°C)
@@ -767,6 +771,7 @@ Left side panel	왼쪽 측면 패널
 Legend plate text	명판 텍스트
 Length (m)	길이(m)
 Length (mm)	길이(mm)
+Length known (not calculated)	알려진 길이(계산하지 않음)
 Letter landscape	Letter 가로
 Letters (A, B, C)	문자(A, B, C)
 Level switch	레벨 스위치
@@ -1464,7 +1469,9 @@ Size (mm)	크기(mm)
 Skipped	건너뜀
 Sliding to the left	왼쪽으로 미닫이
 Sliding to the right	오른쪽으로 미닫이
+Smoke alarm	연기 감지기
 Socket outlet	콘센트
+Socket outlet three-phase	3상 콘센트
 Socket side (female)	소켓 측 (암)
 Soft starter	소프트 스타터
 Solar charge controller	태양광 충전 컨트롤러
@@ -1592,6 +1599,7 @@ The archive unpacks to more than {} MB	압축을 풀면 {} MB보다 큰 압축 �
 The archive was written by a newer version (archive version {})	이 아카이브는 더 새로운 버전으로 기록되었습니다(아카이브 버전 {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	조립품 제조업체를 명시해야 합니다(IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	방 안의 외함 열: L자형 평면도, 내벽, 문과 창문, 제자리에 놓인 외함 열, 벽의 콘센트가 있는 레일, 벽에 설치된 비상등 및 천장 아래의 케이블 트레이.
+The cable of {} needs at least {} cores	{}의 케이블에는 최소 {}개의 심선이 필요합니다
 The configuration is not a JSON object	구성이 JSON 개체가 아닙니다
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	첫 릴리스 이후의 컨베이어: 릴리스되어 잠긴 개정, 그 이후 표시된 변경 사항, 레드라인이 있는 검토 의견, 변경 요청, 승인 워크플로 중인 개정 B 및 비교할 기준선.
 The coordinates of the reference point must be numbers	기준점의 좌표는 숫자여야 합니다
@@ -1931,18 +1939,22 @@ yellow	노랑
 {} has no MTTFd, B10d, PL or PFHd	{}에 MTTFd, B10d, PL 또는 PFHd가 없습니다
 {} has no door or window {}	{0}에 문 또는 창 {1}이(가) 없습니다
 {} has nothing to manufacture	{}에는 제작할 항목이 없습니다
+{} has three phases: it needs a three-phase protective device	{}은(는) 3상입니다: 3상 보호 장치가 필요합니다
 {} is a built-in function definition	{}은(는) 기본 제공 기능 정의입니다
 {} is a built-in property	{}은(는) 기본 제공 속성입니다
 {} is a built-in scheme	{}은(는) 기본 제공 스키마입니다
 {} is a busbar machine and makes no sheets	{}은(는) 부스바 가공기이므로 판금을 가공하지 않습니다
+{} is neither the protective device nor a device of the circuit of {}	{}은(는) 보호 장치도 아니고 {} 회로의 장치도 아닙니다
 {} is not a busbar machine	{}은(는) 부스바 가공기가 아닙니다
 {} is not a property of {}	{}은(는) {}의 속성이 아닙니다
 {} is not an approver of this project	{}은(는) 이 프로젝트의 승인자가 아닙니다
+{} is not connected to the mains: place it without a protective device	{}은(는) 전원에 연결되지 않습니다: 보호 장치 없이 배치하십시오
 {} is not placed in the plant layout	{}이(가) 플랜트 레이아웃에 배치되지 않았습니다
 {} is on page {}, which is released: renaming it would change the page	{}은(는) 릴리스된 페이지 {}에 있습니다: 이름을 바꾸면 페이지가 변경됩니다
 {} is placed at the missing node {}	{}이(가) 누락된 노드 {}에 배치되어 있습니다
 {} is planned twice ({} and {})	{}이(가) 두 번 계획되었습니다({} 및 {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{0}은(는) {1}에 대해 {2} A까지만 선택 차단됩니다(단락 전류 {3} A)
+{} is used already	{}은(는) 이미 사용 중입니다
 {} keeps its structure: its main functions lie in different structure boxes ({})	{}의 구조가 유지됩니다: 주 기능이 서로 다른 구조 박스에 있습니다({})
 {} keeps its structure: {} exists already	{}의 구조가 유지됩니다: {}이(가) 이미 있습니다
 {} lies outside page {}	{}이(가) 페이지 {} 밖에 있습니다

@@ -221,6 +221,7 @@ Bottom left	Слева снизу
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Нижний край корпуса (без цоколя) над полом; высоты проверяются, если он известен или корпус стоит на цоколе
 Bottom right	Справа снизу
 Boundary	Граница
+Boxes	Коробки
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Отключающая способность по отношению к току короткого замыкания на каждом защитном устройстве сети, отключение при наименьшем токе замыкания в конце его цепи, стойкость кабелей к короткому замыканию и селективность с вышестоящим устройством.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Мост: четыре провода; соединение приходит с одной стороны и идёт к трём другим, сначала к противоположной
 Building {} added with a level at ground level	Здание {} добавлено с этажом на уровне земли
@@ -246,6 +247,7 @@ Cable definition on page {}	Определение кабеля на листе 
 Cable definition: draw a line across the wires that are cores of a cable	Определение кабеля: проведите линию через провода, которые являются жилами кабеля
 Cable end reserve	Запас на конец кабеля
 Cable ends	Концы кабеля
+Cable from	Кабель от
 Cable markers	Маркировка кабелей
 Cable passage to {}	Кабельный проход к {}
 Cable {}: {} cores assigned	Кабель {}: назначено жил – {}
@@ -996,6 +998,7 @@ Joins	Соединяет
 Joins wire pieces in a line where nothing else connects (current page)	Объединяет отрезки проводов на одной линии, к которым больше ничего не подключено (текущий лист)
 Jumper {}	Перемычка {}
 Jumps over the other:	Перескакивает через другой:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Распределительные коробки, коробки для подключения стационарных приборов и дымовые извещатели
 K, Q, MM …	K, Q, MM …
 Keep connections	Сохранять соединения
 Keep sub-pages (3.a, 3.1) with the page before	Оставлять подлисты (3.a, 3.1) при предыдущем листе
@@ -1756,6 +1759,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Помещение добавлено: перетащите его стены или нарисуйте новые на плане, поставьте в него шкафы в их свойствах
 Room {} now stands on level {}	Помещение {} теперь находится на уровне {}
 Room {} taken out of the building; it stays where it stands	Помещение {} выведено из здания; оно остаётся на своём месте
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Найденные помещения меньше этого пропускаются (туалет или кладовая могут быть меньше 1 m²)
 Rooms under sloped ceilings (lowest – highest ceiling)	Помещения под скошенными потолками (самый низкий – самый высокий потолок)
 Rotate	Повернуть
 Rotate (selection or symbol being placed)	Повернуть (выделенное или размещаемый символ)
@@ -1962,6 +1966,7 @@ Slot depth	Глубина штробы
 Slots	Слоты
 Smallest cross-section of control circuits	Наименьшее сечение цепей управления
 Smallest cross-section of power circuits	Наименьшее сечение силовых цепей
+Smallest room	Наименьшее помещение
 Socket outlets, data and antenna outlets	Розетки, информационные и антенные розетки
 Solid	Сплошная
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Сервер проектов принял не все ваши изменения. Ваша версия остаётся на панели «Сервер проектов», даже после отказа.
@@ -2092,6 +2097,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Копия создаётся из состояния, сохранённого на сервере проектов. Изменения, которые другие пользователи ещё не сохранили, в неё не входят. Сеансы, блокировки и права доступа не копируются; оригинал остаётся как есть.
 The crossed wires get free cores of the cable in order	Пересекаемые провода по порядку получают свободные жилы кабеля
 The current page belongs to option {}.	Текущий лист относится к опции {}.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Устройство или распределительная коробка цепи, от которой идёт кабель следующего устройства: там цепь разветвляется
 The devices do not fit onto the rail	Устройства не помещаются на рейку
 The dictionary is empty: collect the texts from the project.	Словарь пуст: соберите тексты из проекта.
 The door seen from the front: door devices and cutouts	Дверь спереди: устройства на двери и вырезы
@@ -2277,6 +2283,8 @@ Whole building	Всё здание
 Whole words	Слова целиком
 Width / going	Ширина / проступь
 Width / height (mm)	Ширина / высота (мм)
+Width factor	Коэффициент ширины
+Width of the letters to their usual width (0.8: narrow lettering)	Ширина букв относительно их обычной ширины (0,8: узкий шрифт)
 Width × depth	Ширина × глубина
 Width × height	Ширина × высота
 Width × height (mm)	Ширина × высота (мм)
@@ -2414,6 +2422,7 @@ set on the device	задано у устройства
 sloped ceiling from {} m	скошенный потолок от {} м
 some	некоторые
 taken over	перенесено
+the device before it	предыдущее устройство
 the project data (page list, devices, settings)	данные проекта (список листов, устройства, настройки)
 then	то
 unknown	неизвестна

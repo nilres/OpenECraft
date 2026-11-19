@@ -81,7 +81,9 @@ Bus system name, e.g. PN/IE_1	Имя шинной системы, наприме
 Busbar machine program (CSV)	Программа станка для обработки шин (CSV)
 CNC operations	Операции ЧПУ
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Программы ЧПУ для сверлильных, фрезерных и пробивных станков, гибка медных шин, конфигуратор корпусов, передача в производство и обратная связь от производства
+Cable tag (default: the next free -W)	Обозначение кабеля (по умолчанию: следующее свободное -W)
 Cable tag, e.g. -W1	Обозначение кабеля, например -W1
+Cable type (default: NYM-J for its cores and cross-section)	Тип кабеля (по умолчанию: NYM-J для его жил и сечения)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Калибрует оценку времени станков по фактическому времени из обратной связи производства
 Cannot read the plugin folder {}	Не удаётся прочитать папку плагинов {}
 Cannot start {}: {}	Не удаётся запустить {}: {}
@@ -156,6 +158,7 @@ Cross section, e.g. 0.75 mm²	Сечение, например 0.75 mm²
 Cross section, e.g. 1.5 mm²	Сечение, например 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Сечение, например 1.5 mm² (пусто = из определения потенциала)
 Cross-section in mm²	Сечение в мм²
+Cross-section of the cable in mm² (default: for the protective device)	Сечение кабеля в mm² (по умолчанию: для защитного устройства)
 Cross-section, e.g. 1.5 mm²	Сечение, например 1.5 mm²
 Current device tag	Текущее обозначение устройства
 Customer rule set to add or replace (by name), as exported	Добавляемый или заменяемый набор правил заказчика (по имени), в экспортированном виде
@@ -193,6 +196,8 @@ Device description id of the head (list_device_descriptions)	ID описания
 Device group {} already exists	Группа устройств {} уже существует
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Список устройств, спецификация, схемы клемм, штекеров, кабелей и соединений, ПЛК, потенциалы, шкаф, гидропневматика, электрические и полевые отчёты
 Device number on the bus	Номер устройства на шине
+Device or junction box of the circuit the cable comes from (default: the device before it)	Устройство или распределительная коробка цепи, от которой идёт кабель (по умолчанию: предыдущее устройство)
+Device tag (default: the room, the letter code of the kind and the next number)	Обозначение устройства (по умолчанию: помещение, буквенный код вида и следующий номер)
 Device tag of the CPU / bus coupler, e.g. -A0	Обозначение устройства CPU / шинного соединителя, например -A0
 Device tag of the end (both ends if missing)	Обозначение устройства на конце (если не указано, оба конца)
 Device tag of the fluid device, e.g. -QM1	Обозначение устройства гидропневматики, например -QM1
@@ -357,6 +362,7 @@ Key, e.g. user.coupling_relay	Ключ, например user.coupling_relay
 Key, e.g. user.customer_code	Ключ, например user.customer_code
 Keys of the routes, comma separated (all if missing)	Ключи трасс через запятую (если не указаны – все)
 Kind: machining, punching or busbar	Тип: machining, punching или busbar
+Known length of the cable in m (taken instead of the 3D route)	Известная длина кабеля в m (берётся вместо 3D-трассы)
 Label: terminal number, PLC address or potential name	Надпись: номер клеммы, адрес ПЛК или имя потенциала
 Landscape (true) or portrait (false)	Альбомная (true) или книжная (false)
 Language the project texts are written in, e.g. en	Язык, на котором написаны тексты проекта, например en
@@ -462,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Середина фотоэлектрического поля на плане здания (наземное поле: в установке), z в мм
 Milling feed, mm/min	Подача при фрезеровании, мм/мин
 Mirror the symbol	Отразить символ
+Mounting height above the floor in mm (default: that of the part)	Высота монтажа над полом в mm (по умолчанию: из изделия)
 Mounting plate size as width and height; empty object restores the centred plate	Размер монтажной панели как ширина и высота; пустой объект восстанавливает панель по центру
 Mounting size must contain a positive width and height	Монтажный размер должен содержать положительные ширину и высоту
 Moves an air-termination rod, changes its height, renames or removes it	Перемещает молниеприёмный стержень, изменяет его высоту, переименовывает или удаляет его
@@ -549,6 +556,7 @@ Nothing to copy: devices are placed once	Нечего копировать: ус
 Nothing to remove: {} {}	Нечего удалять: {} {}
 Number of columns	Число столбцов
 Number of copies (default 1)	Число копий (по умолчанию 1)
+Number of cores of the cable (default: 3, three-phase 5)	Число жил кабеля (по умолчанию: 3, трёхфазный 5)
 Number of equal bars	Число одинаковых шин
 Number of indexed values (0 = a single value)	Число индексированных значений (0 = одно значение)
 Number of rows	Число строк
@@ -604,12 +612,14 @@ Paper width in mm (custom paper)	Ширина бумаги в мм (пользо
 Part lifecycle	Жизненный цикл изделия
 Part number of the accessory	Номер изделия принадлежности
 Part number of the base	Номер изделия основания
+Part number of the cable	Номер изделия кабеля
 Part number of the carrier (per metre)	Номер изделия кабельной конструкции (на метр)
 Part number of the conductor (per metre)	Номер изделия проводника (на метр)
 Part number of the downstream device	Номер изделия нижестоящего устройства
 Part number of the hose / tube / pipe	Номер изделия шланга / трубки / трубы
 Part number of the upstream device	Номер изделия вышестоящего устройства
 Part number, e.g. GEN.LMP-GN-24	Номер изделия, например GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Номер изделия, напр. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Изделие его полосы, проволоки или стержня (пусто: типовое)
 Part of the conductor holders on the roof (empty: generic)	Изделие держателей проводника на крыше (пусто: типовое)
 Part of the conductor holders on the walls (empty: generic)	Изделие держателей проводника на стенах (пусто: типовое)
@@ -683,6 +693,8 @@ Property and function definitions, property values and placement schemes	Опр�
 Property key	Ключ свойства
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Ключи и значения свойств, например {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Ставится перед номерами, например W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Помещает устройство схемы в шкаф (на монтажную панель, на рейку на ней или на дверь): его размер по изделию, защёлкнуто на подходящую рейку; размещённое ранее в другом месте перемещается
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Помещает розетку, выключатель, светильник, нагревательный элемент, распределительную коробку или коробку для подключения прибора для защитного устройства в помещение в точке установки (потолочный светильник там на потолок, всё остальное на ближайшую стену на его высоте монтажа; вне помещения на внешнюю сторону его ближайшей стены) и в схему: новое устройство на странице электроустановки цепи с кабелем от предыдущего устройства или от указанного устройства; без защитного устройства только в помещение (розетки передачи данных и антенные, дымовые извещатели)
 Quantity per end (default 1)	Количество на конец (по умолчанию 1)
 R/X ratio of the supply impedance	Отношение R/X полного сопротивления сети
 Rack number	Номер стойки
@@ -817,6 +829,7 @@ Smallest bend radius in mm	Наименьший радиус изгиба в м�
 Smallest distance in mm	Минимальное расстояние в мм
 Smallest distance of holes from the sheet edge	Минимальное расстояние от отверстий до края листа
 Smallest inner radius as a multiple of the thickness	Минимальный внутренний радиус как кратное толщины
+Smallest room kept, m² (default 1; kept with the floor plan)	Наименьшее сохраняемое помещение, m² (по умолчанию 1; хранится с планом)
 Smallest web at cutouts	Минимальная перемычка у вырезов
 Smallest web between holes	Минимальная перемычка между отверстиями
 Spare terminals at the end of the strip	Резервные клеммы в конце колодки
@@ -888,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	Линия пересе
 The message text, kept for the list of accepted messages	Текст сообщения, сохраняемый для списка принятых сообщений
 The name must not be empty	Имя не может быть пустым
 The number of copies must be between 1 and 100	Число копий должно быть от 1 до 100
+The number of cores must be from 1 to 60	Число жил должно быть от 1 до 60
 The plinth height must not be negative	Высота цоколя не может быть отрицательной
 The plot frame {} is in use	Рамка листа {} используется
 The plugin program did not answer within {} s and was stopped	Программа плагина не ответила за {} с и была остановлена
@@ -896,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Поворот должен быть 0, 9
 The straight line of a crossing: vertical or horizontal (default vertical)	Прямая линия пересечения: vertical или horizontal (по умолчанию vertical)
 The text height must be at least 0.5 mm	Высота текста должна быть не меньше 0,5 мм
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Два плеча угла, вертикальное и горизонтальное, например down left (по умолчанию: по проводам в этой точке, иначе down right)
+The width factor must be from 0.1 to 10	Коэффициент ширины должен быть от 0,1 до 10
 The wire has no length	У соединения нет длины
 The wire that jumps: vertical or horizontal	Провод, который перескакивает: vertical или horizontal
 The wrap width must not be negative	Ширина переноса не может быть отрицательной
@@ -994,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	На как�
 Who accepted it	Кто принял сообщение
 Whole words only	Только слова целиком
 Why the message is accepted	Причина принятия сообщения
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Ширина букв относительно их обычной ширины, 0,1 … 10 (0,8: узкий шрифт; по умолчанию 1)
 Width of the path in mm (default 50)	Ширина пути в мм (по умолчанию 50)
 Width, depth and height of a room are at least {} mm	Ширина, глубина и высота помещения — не менее {} мм
 Width, height and depth of an enclosure are at least {} mm	Ширина, высота и глубина корпуса — не менее {} мм
@@ -1066,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	z основан�
 {} is a built-in frame; give the frame a new name	{} – встроенная рамка; задайте рамке новое имя
 {} is a built-in title block; give the title block a new name	{} — встроенная основная надпись; дайте надписи новое имя
 {} is a room already	{} уже является помещением
+{} is a room: use mount_on_wall	{} — помещение: используйте mount_on_wall
 {} is ambiguous: use #id:pin	{} неоднозначно: используйте #id:pin
 {} is an enclosure already	{} уже является корпусом
 {} is not a connection point (TAG:PIN)	{} не является точкой подключения (TAG:PIN)

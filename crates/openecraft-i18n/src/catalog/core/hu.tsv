@@ -68,6 +68,7 @@ Analog input module	Analóg bemeneti modul
 Analog output module	Analóg kimeneti modul
 Analysis	Analízis
 Another section here has this number	Egy másik szakasznak itt már ez a száma
+Antenna outlet	Antennaaljzat
 Apparent power (kVA)	Látszólagos teljesítmény (kVA)
 Applied directives	Alkalmazott irányelvek
 Approval date	Jóváhagyás dátuma
@@ -343,6 +344,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	A DC vezérlőáramkör
 DC control circuits should be blue (NFPA 79, 13.2.4)	A DC vezérlőáramköröknek kéknek kell lenniük (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC átalakító
 DWG export failed: {}	A DWG-exportálás sikertelen: {}
+Data outlet	Adataljzat
 Data sheet	Adatlap
 Date of the approval of the last revision	Az utolsó revízió jóváhagyásának dátuma
 Date of the last revision	Az utolsó revízió dátuma
@@ -359,6 +361,7 @@ Description of the last revision	Az utolsó revízió leírása
 Description of the page's function (structure management)	Az oldal funkciójának leírása (struktúrakezelés)
 Description of the page's location (structure management)	Az oldal szerelési helyének leírása (struktúrakezelés)
 Designer	Tervező
+Device connection box	Készülékcsatlakozó doboz
 Device connection diagram	Készülékbekötési terv
 Device data of {} without symbol or panel item	{} készülékadatai szimbólum vagy elrendezési elem nélkül
 Device description file	Eszközleíró fájl
@@ -647,6 +650,7 @@ Hazardous area zone	Robbanásveszélyes zóna
 Heat exchanger	Hőcserélő
 Heating (W)	Fűtés (W)
 Heating element	Fűtőelem
+Heating element three-phase	Háromfázisú fűtőelem
 Higher-level product (-)	Felettes termék (-)
 Higher-level product of the page	Az oldal felettes terméke
 Highest (°C)	Legfeljebb (°C)
@@ -777,6 +781,7 @@ Left side panel	Bal oldalfal
 Legend plate text	Jelölőtábla szövege
 Length (m)	Hossz (m)
 Length (mm)	Hossz (mm)
+Length known (not calculated)	Hossz ismert (nem számított)
 Letter landscape	Letter fekvő
 Letters (A, B, C)	Betűk (A, B, C)
 Level switch	Szintkapcsoló
@@ -1478,7 +1483,9 @@ Size (mm)	Méret (mm)
 Skipped	Kihagyva
 Sliding to the left	Balra toló
 Sliding to the right	Jobbra toló
+Smoke alarm	Füstérzékelő
 Socket outlet	Csatlakozóaljzat
+Socket outlet three-phase	Háromfázisú csatlakozóaljzat
 Socket side (female)	Hüvely oldal (anya)
 Soft starter	Lágyindító
 Solar charge controller	Napelemes töltésszabályozó
@@ -1606,6 +1613,7 @@ The archive unpacks to more than {} MB	Az archívum kicsomagolva több mint {} M
 The archive was written by a newer version (archive version {})	Az archívumot egy újabb verzió írta (archívumverzió: {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	A berendezés gyártóját meg kell nevezni (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	A szekrénysor a helyiségében: L alakú alaprajz, belső fal, ajtó és ablak, a szekrénysor a helyén, egy sín dugaszolóaljzattal a falon, falra szerelt vészvilágító lámpa és kábeltálca a mennyezet alatt.
+The cable of {} needs at least {} cores	A(z) {} kábelének legalább {} érre van szüksége
 The configuration is not a JSON object	A konfiguráció nem JSON-objektum
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	A szállítószalag az első kiadás után: kiadott és zárolt revízió, az azóta jelölt változások, ellenőrzési megjegyzések piros jelölésekkel, egy módosítási kérelem, a B revízió a jóváhagyási folyamatban és egy összehasonlítási alapállapot.
 The coordinates of the reference point must be numbers	A referenciapont koordinátáinak számoknak kell lenniük
@@ -1951,19 +1959,23 @@ yellow	sárga
 {} has no MTTFd, B10d, PL or PFHd	{} esetén nincs MTTFd, B10d, PL vagy PFHd
 {} has no door or window {}	{0} nem tartalmaz {1} ajtót vagy ablakot
 {} has nothing to manufacture	{} esetén nincs mit gyártani
+{} has three phases: it needs a three-phase protective device	A(z) {} háromfázisú: háromfázisú védőkészülékre van szüksége
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	A(z) {} feloldatlan git egyesítési ütközést tartalmaz: a fájl szövegként lett egyesítve. Vegye át a fájl egyik verzióját (git checkout --ours vagy --theirs), majd az újabb egyesítés előtt állítsa be a felosztott projektek egyesítő illesztőjét (merge_project_file)
 {} is a built-in function definition	{} beépített funkciódefiníció
 {} is a built-in property	{} beépített tulajdonság
 {} is a built-in scheme	{} beépített séma
 {} is a busbar machine and makes no sheets	{} sínmegmunkáló gép, lemezeket nem gyárt
+{} is neither the protective device nor a device of the circuit of {}	A(z) {} se nem védőkészülék, se nem a(z) {} áramkörének készüléke
 {} is not a busbar machine	{} nem sínmegmunkáló gép
 {} is not a property of {}	{} nem tulajdonsága ennek: {}
 {} is not an approver of this project	{} nem jóváhagyója ennek a projektnek
+{} is not connected to the mains: place it without a protective device	A(z) {} nem csatlakozik a hálózatra: helyezze el védőkészülék nélkül
 {} is not placed in the plant layout	{} nincs elhelyezve a létesítmény-elrendezésben
 {} is on page {}, which is released: renaming it would change the page	A(z) {} a kiadott {} oldalon van: az átnevezés megváltoztatná az oldalt
 {} is placed at the missing node {}	{} a hiányzó {} csomóponton van elhelyezve
 {} is planned twice ({} and {})	{} kétszer van tervezve ({} és {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{0} csak {2} A-ig szelektív ehhez képest: {1} (zárlati áram {3} A)
+{} is used already	A(z) {} már használatban van
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} megtartja a struktúráját: főfunkciói különböző struktúrakeretekben vannak ({})
 {} keeps its structure: {} exists already	{} megtartja a struktúráját: {} már létezik
 {} lies outside page {}	{} a(z) {} oldalon kívül esik

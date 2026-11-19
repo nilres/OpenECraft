@@ -98,6 +98,32 @@ fn room_installation(c: &mut C) {
     wall(p, 300.0, "Category: 6A (10 Gbit Ethernet)");
     let p = c.add("GEN.TV-SAT-UP", "Antenna outlet TV / radio / SAT, end outlet, flush-mounted, with central plate and frame 80 x 80 mm", inst, "Antenna outlet", "XF", 14.0, (80.0, 80.0, 14.0, 0.07), &[(Generic, "TV R SAT")]);
     wall(p, 300.0, "Frequency range: 5 - 2400 MHz");
+    // Three-phase socket outlets (CEE, 6 h), junction boxes and device connection boxes
+    // for fixed equipment (a cooker on five terminals).
+    for (number, desc, current, price) in [
+        ("GEN.SOCKET-CEE-16-5P", "CEE socket outlet 16 A 400 V 3P+N+PE, 6 h, IP44, surface-mounted, with hinged lid", "16 A", 24.0),
+        ("GEN.SOCKET-CEE-32-5P", "CEE socket outlet 32 A 400 V 3P+N+PE, 6 h, IP44, surface-mounted, with hinged lid", "32 A", 39.0),
+    ] {
+        let p = c.add(number, desc, inst, "Socket outlet", "XD", price, (85.0, 120.0, 95.0, 0.3), &[(SocketOutlet, "L1 L2 L3 N PE")]);
+        p.voltage = "400 V AC".into();
+        p.current = current.into();
+        wall(p, 1050.0, "Protection: IP44");
+    }
+    for (number, desc, subgroup, pins, height, price) in [
+        ("GEN.JBOX-UP", "Junction box flush-mounted 68 mm, with push-in terminals for 3 conductors 0.5 - 2.5 mm², with lid", "Junction box", "L N PE", 2300.0, 3.5),
+        ("GEN.JBOX-5-UP", "Junction box flush-mounted 68 mm, with push-in terminals for 5 conductors 0.5 - 4 mm², with lid", "Junction box", "L1 L2 L3 N PE", 2300.0, 4.5),
+        ("GEN.CONN-BOX-UP", "Device connection box flush-mounted for fixed equipment 16 A 250 V, with terminals 3 x 2.5 mm², strain relief and cover plate 80 x 80 mm", "Device connection box", "L N PE", 600.0, 9.0),
+        ("GEN.CONN-BOX-COOKER-UP", "Cooker connection box flush-mounted 400 V 3N AC, with terminals 5 x 4 mm², strain relief and cover plate 80 x 80 mm", "Device connection box", "L1 L2 L3 N PE", 600.0, 12.0),
+    ] {
+        let p = c.add(number, desc, inst, subgroup, "XD", price, (80.0, 80.0, 15.0, 0.05), &[(Generic, pins)]);
+        p.voltage = if pins.contains("L2") { "400 V AC" } else { "250 V AC" }.into();
+        p.current = if number == "GEN.CONN-BOX-COOKER-UP" { "20 A" } else { "16 A" }.into();
+        wall(p, height, "");
+    }
+    let p = c.add("GEN.SMOKE-ALARM", "Smoke alarm, photoelectric, 10-year battery, EN 14604, round 100 mm, for ceiling mounting", inst, "Smoke alarm", "BF", 19.0, (100.0, 100.0, 40.0, 0.15), &[]);
+    p.mounting = "Ceiling".into();
+    p.mounting_data.wall_mount = true;
+    p.tech_data = "Ceiling mounting: yes\nSupply: battery 10 years".into();
     for (number, desc, subgroup, function, extra) in [
         ("GEN.SW-ONOFF-UP", "Light switch on / off 10 AX 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Switch", (SwitchNo, "L 1"), "Rockers: 1"),
         ("GEN.SW-2WAY-UP", "Two-way switch 10 AX 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Switch", (Changeover, "L 1 2"), "Rockers: 1"),
@@ -144,9 +170,11 @@ fn room_installation(c: &mut C) {
         ("GEN.HEATER-PANEL-2000", "Electric panel heater 2000 W, 230 V AC, with electronic thermostat, IP24, 1000 x 450 mm, for wall mounting", "Room heater", 199.0, (1000.0, 450.0, 90.0, 11.5), "2000 W", 400.0),
         ("GEN.HEATER-TOWEL-500", "Electric towel radiator 500 W, 230 V AC, with heating element and thermostat, IP44, 500 x 1200 mm, for wall mounting", "Towel radiator", 189.0, (500.0, 1200.0, 110.0, 12.0), "500 W", 900.0),
         ("GEN.HEATER-IR-600", "Infrared heating panel 600 W, 230 V AC, IP44, 1000 x 600 mm, for ceiling mounting", "Infrared heating panel", 249.0, (1000.0, 600.0, 30.0, 9.0), "600 W", 0.0),
+        ("GEN.HEATER-SAUNA-9000", "Sauna heater 9 kW, 400 V 3N AC, for rooms of 8 - 14 m³, 450 x 600 mm, for wall mounting", "Sauna heater", 690.0, (450.0, 600.0, 280.0, 14.0), "9000 W", 150.0),
     ] {
-        let p = c.add(number, desc, inst, subgroup, "EB", price, size, &[(Heater, "1 2")]);
-        p.voltage = "230 V AC".into();
+        let three = number == "GEN.HEATER-SAUNA-9000";
+        let p = c.add(number, desc, inst, subgroup, "EB", price, size, &[(Heater, if three { "L1 L2 L3 N PE" } else { "1 2" })]);
+        p.voltage = if three { "400 V AC" } else { "230 V AC" }.into();
         p.power = power.into();
         if height > 0.0 {
             wall(p, height, "");

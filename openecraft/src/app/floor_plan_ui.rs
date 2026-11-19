@@ -173,6 +173,12 @@ impl FloorPlanUi {
                 }
             });
             ui.end_row();
+            ui.label(tr("Smallest room"));
+            let mut least = plan.min_room.unwrap_or(floorplan::MIN_ROOM);
+            if ui.add(egui::DragValue::new(&mut least).range(0.1..=100.0).speed(0.05).max_decimals(2).suffix(" m²")).on_hover_text(tr("Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)")).changed() {
+                plan.min_room = Some(least);
+            }
+            ui.end_row();
         });
         if self.pick == Pick::Calibrate && self.points.len() == 2 {
             ui.horizontal(|ui| {

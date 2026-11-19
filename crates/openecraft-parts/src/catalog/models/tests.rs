@@ -65,6 +65,34 @@ fn lights_and_heating_elements_get_their_models() {
 }
 
 #[test]
+fn boxes_alarms_and_three_phase_devices_of_rooms_get_their_models() {
+    let parts = default_catalog();
+    let get = |n: &str| parts.iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));
+    for (n, kind) in [
+        ("GEN.SOCKET-CEE-16-5P", Kind::Cee),
+        ("GEN.SOCKET-CEE-32-5P", Kind::Cee),
+        ("GEN.JBOX-UP", Kind::FlushLid),
+        ("GEN.JBOX-5-UP", Kind::FlushLid),
+        ("GEN.CONN-BOX-UP", Kind::Outlet(Outlet::Cover)),
+        ("GEN.CONN-BOX-COOKER-UP", Kind::Outlet(Outlet::Cover)),
+        ("GEN.SMOKE-ALARM", Kind::Smoke),
+        ("GEN.HEATER-SAUNA-9000", Kind::Heater(Heater::Sauna)),
+    ] {
+        let p = get(n);
+        assert_eq!(kind_of(p), Some(kind), "{n}");
+        let (_, mesh) = model(p).unwrap();
+        assert_eq!(mesh.colors.len(), mesh.triangles.len(), "{n}");
+        assert_eq!(mesh.bounds(), ([0.0; 3], [p.width, p.height, p.depth]), "{n} fills its box");
+        assert!(p.model_3d.is_some(), "{n}");
+    }
+    // A CEE socket outlet of 400 V is red, the smoke alarm shows its red light; a
+    // house connection box stays a housing on the wall.
+    assert!(model(get("GEN.SOCKET-CEE-16-5P")).unwrap().1.colors.contains(&RED));
+    assert!(model(get("GEN.SMOKE-ALARM")).unwrap().1.colors.contains(&RED));
+    assert!(parts.iter().filter(|p| p.subgroup == "House connection box").all(|p| kind_of(p) == Some(Kind::Housing)));
+}
+
+#[test]
 fn round_bodies_face_outwards() {
     let mut m = Mesh3d::default();
     m.add_cylinder([0.0, 0.0, 0.0], 2, 10.0, 20.0, 12, BODY);

@@ -370,7 +370,9 @@ impl Draw for PdfDraw {
                     / K
             }
             None => text_width(text, fs) / K,
-        };
+        } * st.width;
+        // Narrow or wide letters: the horizontal scaling of the text state.
+        let tz = if st.width != 1.0 { format!("{:.1} Tz ", st.width * 100.0) } else { String::new() };
         let dx = match st.h {
             Anchor::Left => 0.0,
             Anchor::Center => -w / 2.0,
@@ -416,7 +418,7 @@ impl Draw for PdfDraw {
             let bold = if st.bold { format!("{r:.3} {g:.3} {b:.3} RG {:.3} w 2 Tr ", fs * 0.03) } else { String::new() };
             let _ = writeln!(
                 self.ops,
-                "BT {bold}{c:.4} {s:.4} {:.4} {:.4} {:.2} {:.2} Tm {gids}{}ET",
+                "BT {tz}{bold}{c:.4} {s:.4} {:.4} {:.4} {:.2} {:.2} Tm {gids}{}ET",
                 k * c - s,
                 k * s + c,
                 x(start.x),
@@ -424,10 +426,10 @@ impl Draw for PdfDraw {
                 if st.bold { "0 Tr " } else { "" }
             );
         } else if st.angle == 0.0 {
-            let _ = writeln!(self.ops, "BT /F{face} {fs:.2} Tf {:.2} {:.2} Td ({}) Tj ET", x(start.x), self.y(start.y), pdf_string(text));
+            let _ = writeln!(self.ops, "BT {tz}/F{face} {fs:.2} Tf {:.2} {:.2} Td ({}) Tj ET", x(start.x), self.y(start.y), pdf_string(text));
         } else {
             let (s, c) = st.angle.to_radians().sin_cos();
-            let _ = writeln!(self.ops, "BT /F{face} {fs:.2} Tf {c:.4} {s:.4} {:.4} {c:.4} {:.2} {:.2} Tm ({}) Tj ET", -s, x(start.x), self.y(start.y), pdf_string(text));
+            let _ = writeln!(self.ops, "BT {tz}/F{face} {fs:.2} Tf {c:.4} {s:.4} {:.4} {c:.4} {:.2} {:.2} Tm ({}) Tj ET", -s, x(start.x), self.y(start.y), pdf_string(text));
         }
         if st.underline {
             let a = start + crate::text::rotate(p(0.0, st.size * 0.15), st.angle);

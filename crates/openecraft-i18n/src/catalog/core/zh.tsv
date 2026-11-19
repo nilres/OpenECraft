@@ -64,6 +64,7 @@ Analog input module	模拟量输入模块
 Analog output module	模拟量输出模块
 Analysis	分析
 Another section here has this number	此处另一个分节已使用此编号
+Antenna outlet	天线插座
 Apparent power (kVA)	视在功率 (kVA)
 Applied directives	适用的指令
 Approval date	批准日期
@@ -333,6 +334,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	直流控制电路应�
 DC control circuits should be blue (NFPA 79, 13.2.4)	直流控制电路应为蓝色 (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC 变换器
 DWG export failed: {}	DWG 导出失败：{}
+Data outlet	数据插座
 Data sheet	数据表
 Date of the approval of the last revision	最新修订的批准日期
 Date of the last revision	最新修订的日期
@@ -349,6 +351,7 @@ Description of the last revision	最新修订的描述
 Description of the page's function (structure management)	页的功能描述（结构标识符管理）
 Description of the page's location (structure management)	页的位置描述（结构标识符管理）
 Designer	设计者
+Device connection box	设备接线盒
 Device connection diagram	设备连接图
 Device data of {} without symbol or panel item	{} 的设备数据没有符号或布局元件
 Device description file	设备描述文件
@@ -635,6 +638,7 @@ Hazardous area zone	危险区域
 Heat exchanger	换热器
 Heating (W)	加热 (W)
 Heating element	加热元件
+Heating element three-phase	三相加热元件
 Higher-level product (-)	上级产品 (-)
 Higher-level product of the page	页的上级产品
 Highest (°C)	最高 (°C)
@@ -764,6 +768,7 @@ Left side panel	左侧板
 Legend plate text	标牌文本
 Length (m)	长度 (m)
 Length (mm)	长度 (mm)
+Length known (not calculated)	已知长度（不计算）
 Letter landscape	Letter 横向
 Letters (A, B, C)	字母（A、B、C）
 Level switch	液位开关
@@ -1461,7 +1466,9 @@ Size (mm)	大小 (mm)
 Skipped	已跳过
 Sliding to the left	向左推拉
 Sliding to the right	向右推拉
+Smoke alarm	烟雾报警器
 Socket outlet	插座
+Socket outlet three-phase	三相插座
 Socket side (female)	插孔侧（母）
 Soft starter	软启动器
 Solar charge controller	太阳能充电控制器
@@ -1589,6 +1596,7 @@ The archive unpacks to more than {} MB	压缩包解压后超过 {} MB
 The archive was written by a newer version (archive version {})	该归档由更新的版本写入（归档版本 {}）
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	必须指明成套设备制造商 (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	并柜后的控制柜在其房间中：L 形平面图、内墙、门和窗、放置到位的并柜、墙上带插座的导轨、墙装应急灯以及顶部下方的电缆桥架。
+The cable of {} needs at least {} cores	{} 的电缆至少需要 {} 芯
 The configuration is not a JSON object	配置不是 JSON 对象
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	第一次发布后的输送机：已发布并锁定的修订、此后标记的更改、带红线标注的审查注释、一个变更请求、处于审批流程中的修订 B 以及用于比较的基线。
 The coordinates of the reference point must be numbers	参考点的坐标必须是数字
@@ -1928,18 +1936,22 @@ yellow	黄色
 {} has no MTTFd, B10d, PL or PFHd	{} 没有 MTTFd、B10d、PL 或 PFHd
 {} has no door or window {}	{0} 没有门或窗 {1}
 {} has nothing to manufacture	{} 没有要制造的内容
+{} has three phases: it needs a three-phase protective device	{} 为三相：需要三相保护设备
 {} is a built-in function definition	{} 是内置功能定义
 {} is a built-in property	{} 是内置属性
 {} is a built-in scheme	{} 是内置方案
 {} is a busbar machine and makes no sheets	{} 是母线加工机，不加工板材
+{} is neither the protective device nor a device of the circuit of {}	{} 既不是保护设备，也不是 {} 回路中的设备
 {} is not a busbar machine	{} 不是母线加工机
 {} is not a property of {}	{} 不是 {} 的属性
 {} is not an approver of this project	{} 不是此项目的审批人
+{} is not connected to the mains: place it without a protective device	{} 不接入电网：请在不指定保护设备的情况下放置
 {} is not placed in the plant layout	{} 未放置在工厂布局中
 {} is on page {}, which is released: renaming it would change the page	{} 位于已发布页 {} 上：重命名会更改该页
 {} is placed at the missing node {}	{} 放置在不存在的节点 {} 上
 {} is planned twice ({} and {})	{} 被规划了两次（{} 和 {}）
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} 对 {} 的选择性仅达到 {} A（短路电流 {} A）
+{} is used already	{} 已被使用
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} 保留其结构：其主功能位于不同的结构框中 ({})
 {} keeps its structure: {} exists already	{} 保留其结构：{} 已存在
 {} lies outside page {}	{} 位于页面 {} 之外

@@ -221,6 +221,7 @@ Bottom left	Nedre vänster
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kapslingens underkant (utan sockel) över golvet; höjderna kontrolleras när den är känd eller när kapslingen står på en sockel
 Bottom right	Nedre höger
 Boundary	Gräns
+Boxes	Dosor
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brytförmåga mot kortslutningsströmmen vid varje skyddsdon i nätet, frånkoppling vid den lägsta felströmmen i slutet av dess krets, kablarnas kortslutningshållfasthet och selektivitet mot skyddsdonet före.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brygga: fyra ledare; förbindelsen kommer in på en sida och går till de tre andra, den motsatta sidan först
 Building {} added with a level at ground level	Byggnad {} tillagd med en våning i marknivå
@@ -246,6 +247,7 @@ Cable definition on page {}	Kabeldefinition på sida {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: rita en linje tvärs över de ledningar som är ledare i en kabel
 Cable end reserve	Reserv per kabelände
 Cable ends	Kabeländar
+Cable from	Kabel från
 Cable markers	Kabelmärkningar
 Cable passage to {}	Kabelgenomföring till {}
 Cable {}: {} cores assigned	Kabel {}: {} ledare tilldelade
@@ -997,6 +999,7 @@ Joins	Förbinder
 Joins wire pieces in a line where nothing else connects (current page)	Slår ihop ledningsdelar i en linje där inget annat ansluter (aktuell sida)
 Jumper {}	Bygel {}
 Jumps over the other:	Hoppar över den andra:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Kopplingsdosor, anslutningsdosor för fast anslutna apparater och brandvarnare
 K, Q, MM …	K, Q, MM …
 Keep connections	Behåll anslutningar
 Keep sub-pages (3.a, 3.1) with the page before	Behåll undersidor (3.a, 3.1) med föregående sida
@@ -1757,6 +1760,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tillagt: dra dess väggar eller rita nya i planritningen, placera skåp i det via deras egenskaper
 Room {} now stands on level {}	Rum {} står nu på våning {}
 Room {} taken out of the building; it stays where it stands	Rum {} har tagits ut ur byggnaden; det står kvar där det står
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Funna rum som är mindre än detta utelämnas (en toalett eller ett förråd kan vara mindre än 1 m²)
 Rooms under sloped ceilings (lowest – highest ceiling)	Rum under snedtak (lägsta – högsta tak)
 Rotate	Rotera
 Rotate (selection or symbol being placed)	Rotera (markering eller symbol som placeras)
@@ -1963,6 +1967,7 @@ Slot depth	Spårdjup
 Slots	Kortplatser
 Smallest cross-section of control circuits	Minsta tvärsnitt för styrkretsar
 Smallest cross-section of power circuits	Minsta tvärsnitt för kraftkretsar
+Smallest room	Minsta rum
 Socket outlets, data and antenna outlets	Vägguttag, data- och antennuttag
 Solid	Heldragen
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Några av dina ändringar togs inte emot av projektservern. Din version finns kvar i fönstret Projektserver, även efter kassering.
@@ -2093,6 +2098,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopian skapas från det läge som är sparat på projektservern. Ändringar som andra användare ännu inte har sparat ingår inte. Sessioner, lås och åtkomsträttigheter kopieras inte; originalet förblir som det är.
 The crossed wires get free cores of the cable in order	De korsade ledningarna får kabelns lediga ledare i ordning
 The current page belongs to option {}.	Den aktuella sidan hör till alternativ {}.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Apparaten eller kopplingsdosan i gruppen som nästa apparats kabel kommer från: gruppen förgrenas där
 The devices do not fit onto the rail	Apparaterna får inte plats på skenan
 The dictionary is empty: collect the texts from the project.	Ordlistan är tom: samla in texterna från projektet.
 The door seen from the front: door devices and cutouts	Dörren sedd framifrån: dörrapparater och urtag
@@ -2278,6 +2284,8 @@ Whole building	Hela byggnaden
 Whole words	Hela ord
 Width / going	Bredd / steg
 Width / height (mm)	Bredd / höjd (mm)
+Width factor	Breddfaktor
+Width of the letters to their usual width (0.8: narrow lettering)	Bokstävernas bredd i förhållande till deras vanliga bredd (0,8: smal text)
 Width × depth	Bredd × djup
 Width × height	Bredd × höjd
 Width × height (mm)	Bredd × höjd (mm)
@@ -2415,6 +2423,7 @@ set on the device	angivet på apparaten
 sloped ceiling from {} m	snedtak från {} m
 some	några
 taken over	överförd
+the device before it	apparaten före
 the project data (page list, devices, settings)	projektdata (sidlista, apparater, inställningar)
 then	så
 unknown	okänd

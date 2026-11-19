@@ -637,11 +637,12 @@ pub struct PanelUi {
 
 /// The tabs of the installation menu: title, what it holds and the subgroups of their
 /// parts.
-const INSTALLATION: [(&str, &str, &[&str]); 4] = [
+const INSTALLATION: [(&str, &str, &[&str]); 5] = [
     (tr_const!("Outlets"), tr_const!("Socket outlets, data and antenna outlets"), &["Socket outlet", "Data outlet", "Antenna outlet"]),
     (tr_const!("Switches"), tr_const!("Switches, push buttons and room thermostats"), &["Switch", "Push button", "Blind switch", "Dimmer", "Glass push button", "Room thermostat"]),
     (tr_const!("Lights"), tr_const!("Ceiling lights, downlights and wall lights"), &["Luminaire", "Downlight", "Panel light", "Batten luminaire", "Wall light", "Emergency light"]),
-    (tr_const!("Heating"), tr_const!("Heating elements, heating circuit manifolds and control boxes"), &["Room heater", "Towel radiator", "Infrared heating panel", "Heating circuit manifold", "Control box"]),
+    (tr_const!("Heating"), tr_const!("Heating elements, heating circuit manifolds and control boxes"), &["Room heater", "Towel radiator", "Infrared heating panel", "Sauna heater", "Heating circuit manifold", "Control box"]),
+    (tr_const!("Boxes"), tr_const!("Junction boxes, device connection boxes for fixed equipment and smoke alarms"), &["Junction box", "Device connection box", "Smoke alarm"]),
 ];
 
 /// Width of the installation menu, of its list and of the part picked beside it, points.
@@ -3348,10 +3349,11 @@ impl PanelUi {
     fn put_into_schematic(&mut self, prj: &mut Project, part: &str, id: u64) {
         use openecraft_core::installation as inst;
         let Some(breaker) = self.installation.breaker.clone().filter(|b| !b.is_empty()) else { return };
-        if inst::find_part(prj, part).and_then(inst::kind_of).is_none() {
+        // Data and antenna outlets and smoke alarms have no circuit.
+        if !inst::find_part(prj, part).and_then(inst::kind_of).is_some_and(inst::Kind::mains) {
             return;
         }
-        self.status = match inst::into_schematic(prj, &breaker, id) {
+        self.status = match inst::into_schematic(prj, &breaker, id, &inst::Options::default()) {
             Ok(tag) => tr_fmt!("{} is in the schematic", tag),
             Err(e) => e,
         };

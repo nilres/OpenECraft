@@ -81,7 +81,9 @@ Bus system name, e.g. PN/IE_1	Bus sistemi adı, ör. PN/IE_1
 Busbar machine program (CSV)	Bara işleme makinesi programı (CSV)
 CNC operations	CNC işlemleri
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Delme, frezeleme ve zımbalama makineleri için CNC programları, bakır bara bükme, pano yapılandırıcısı, üretime teslim ve üretim geri bildirimi
+Cable tag (default: the next free -W)	Kablo kodu (varsayılan: bir sonraki boş -W)
 Cable tag, e.g. -W1	Kablo etiketi, ör. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Kablo tipi (varsayılan: damarları ve kesiti için NYM-J)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Makinelerin süre tahminini üretim geri bildirimindeki gerçek sürelerle kalibre eder
 Cannot read the plugin folder {}	{} eklenti klasörü okunamıyor
 Cannot start {}: {}	{} başlatılamıyor: {}
@@ -156,6 +158,7 @@ Cross section, e.g. 0.75 mm²	Kesit, ör. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Kesit, ör. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Kesit, ör. 1.5 mm² (boş = potansiyel tanımından)
 Cross-section in mm²	mm² cinsinden kesit
+Cross-section of the cable in mm² (default: for the protective device)	Kablonun mm² cinsinden kesiti (varsayılan: koruma cihazı için)
 Cross-section, e.g. 1.5 mm²	Kesit, ör. 1.5 mm²
 Current device tag	Geçerli cihaz etiketi
 Customer rule set to add or replace (by name), as exported	Eklenecek veya değiştirilecek müşteri kural seti (ada göre), dışa aktarıldığı biçimde
@@ -193,6 +196,8 @@ Device description id of the head (list_device_descriptions)	Kafa modülünün c
 Device group {} already exists	Cihaz grubu {} zaten var
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Cihaz listesi, malzeme listesi, klemens, fiş, kablo ve bağlantı şemaları, PLC, potansiyeller, pano, akışkan, elektriksel ve saha raporları
 Device number on the bus	Bus üzerindeki cihaz numarası
+Device or junction box of the circuit the cable comes from (default: the device before it)	Kablonun geldiği devrenin cihazı veya buatı (varsayılan: önceki cihaz)
+Device tag (default: the room, the letter code of the kind and the next number)	Cihaz kodu (varsayılan: oda, türün harf kodu ve bir sonraki numara)
 Device tag of the CPU / bus coupler, e.g. -A0	CPU'nun / bus kuplörünün cihaz etiketi, ör. -A0
 Device tag of the end (both ends if missing)	Ucun cihaz etiketi (belirtilmezse her iki uç)
 Device tag of the fluid device, e.g. -QM1	Akışkan cihazının cihaz etiketi, ör. -QM1
@@ -357,6 +362,7 @@ Key, e.g. user.coupling_relay	Anahtar, ör. user.coupling_relay
 Key, e.g. user.customer_code	Anahtar, ör. user.customer_code
 Keys of the routes, comma separated (all if missing)	Güzergâhların anahtarları, virgülle ayrılmış (verilmezse tümü)
 Kind: machining, punching or busbar	Tür: machining, punching veya busbar
+Known length of the cable in m (taken instead of the 3D route)	Kablonun m cinsinden bilinen uzunluğu (3D güzergah yerine kullanılır)
 Label: terminal number, PLC address or potential name	Yazı: klemens numarası, PLC adresi veya potansiyel adı
 Landscape (true) or portrait (false)	Yatay (true) veya dikey (false)
 Language the project texts are written in, e.g. en	Proje metinlerinin yazıldığı dil, ör. en
@@ -462,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	PV dizisinin bina planındaki ortası (arazi tipi: tesisteki), z, mm
 Milling feed, mm/min	Frezeleme ilerlemesi, mm/dk
 Mirror the symbol	Sembolü yansıt
+Mounting height above the floor in mm (default: that of the part)	Zeminden mm cinsinden montaj yüksekliği (varsayılan: parçanınki)
 Mounting plate size as width and height; empty object restores the centred plate	Montaj plakası boyutu genişlik ve yükseklik olarak; boş nesne ortalanmış plakayı geri getirir
 Mounting size must contain a positive width and height	Montaj boyutu pozitif bir genişlik ve yükseklik içermelidir
 Moves an air-termination rod, changes its height, renames or removes it	Bir paratoner çubuğunu taşır, yüksekliğini değiştirir, yeniden adlandırır veya kaldırır
@@ -549,6 +556,7 @@ Nothing to copy: devices are placed once	Kopyalanacak bir şey yok: cihazlar yal
 Nothing to remove: {} {}	Kaldırılacak bir şey yok: {} {}
 Number of columns	Sütun sayısı
 Number of copies (default 1)	Kopya sayısı (varsayılan 1)
+Number of cores of the cable (default: 3, three-phase 5)	Kablonun damar sayısı (varsayılan: 3, üç fazlı 5)
 Number of equal bars	Aynı baraların sayısı
 Number of indexed values (0 = a single value)	İndeksli değer sayısı (0 = tek bir değer)
 Number of rows	Satır sayısı
@@ -604,12 +612,14 @@ Paper width in mm (custom paper)	mm cinsinden kâğıt genişliği (özel kâğ�
 Part lifecycle	Parça yaşam döngüsü
 Part number of the accessory	Aksesuarın parça numarası
 Part number of the base	Taban plakasının parça numarası
+Part number of the cable	Kablonun parça numarası
 Part number of the carrier (per metre)	Taşıyıcının parça numarası (metre başına)
 Part number of the conductor (per metre)	İletkenin parça numarası (metre başına)
 Part number of the downstream device	Alt taraftaki cihazın parça numarası
 Part number of the hose / tube / pipe	Hortumun / tüpün / borunun parça numarası
 Part number of the upstream device	Üst taraftaki cihazın parça numarası
 Part number, e.g. GEN.LMP-GN-24	Parça numarası, ör. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Parça numarası, örn. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Şeridinin, telinin veya kazığının parçası (boş: genel)
 Part of the conductor holders on the roof (empty: generic)	Çatıdaki iletken tutucularının parçası (boş: genel)
 Part of the conductor holders on the walls (empty: generic)	Duvarlardaki iletken tutucularının parçası (boş: genel)
@@ -683,6 +693,8 @@ Property and function definitions, property values and placement schemes	Özelli
 Property key	Özellik anahtarı
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Özellik anahtarları ve değerleri, ör. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Numaraların önüne konur, ör. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Şemadaki bir cihazı bir pano içine yerleştirir (montaj plakasına, oradaki bir raya veya kapıya): boyutu parçasından alınır, sığdığı bir raya oturtulur; daha önce başka yere yerleştirilmişse taşınır
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Bir koruma cihazı için bir prizi, anahtarı, armatürü, ısıtıcı elemanı, buatı veya cihaz bağlantı kutusunu tesisin bir noktasında bir odaya (tavan armatürü oradaki tavana, diğer her şey montaj yüksekliğinde en yakın duvara; odanın dışında en yakın duvarının dış yüzüne) ve şemaya yerleştirir: devrenin tesisat sayfasında önceki cihazdan veya belirtilen cihazdan gelen bir kabloyla yeni bir cihaz; koruma cihazı olmadan yalnızca odaya (veri ve anten prizleri, duman dedektörleri)
 Quantity per end (default 1)	Uç başına miktar (varsayılan 1)
 R/X ratio of the supply impedance	Besleme empedansının R/X oranı
 Rack number	Raf numarası
@@ -817,6 +829,7 @@ Smallest bend radius in mm	mm cinsinden en küçük bükme yarıçapı
 Smallest distance in mm	mm cinsinden en küçük mesafe
 Smallest distance of holes from the sheet edge	Deliklerin sac kenarına en küçük mesafesi
 Smallest inner radius as a multiple of the thickness	Kalınlığın katı olarak en küçük iç yarıçap
+Smallest room kept, m² (default 1; kept with the floor plan)	Korunan en küçük oda, m² (varsayılan 1; kat planıyla saklanır)
 Smallest web at cutouts	Kesimlerdeki en küçük ara
 Smallest web between holes	Delikler arası en küçük ara
 Spare terminals at the end of the strip	Şeridin sonundaki yedek klemensler
@@ -888,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	Bir kesişmenin çizgis
 The message text, kept for the list of accepted messages	Kabul edilen mesajlar listesi için saklanan mesaj metni
 The name must not be empty	Ad boş olamaz
 The number of copies must be between 1 and 100	Kopya sayısı 1 ile 100 arasında olmalıdır
+The number of cores must be from 1 to 60	Damar sayısı 1 ile 60 arasında olmalıdır
 The plinth height must not be negative	Kaide yüksekliği negatif olamaz
 The plot frame {} is in use	Çizim çerçevesi {} kullanımda
 The plugin program did not answer within {} s and was stopped	Eklenti programı {} sn içinde yanıt vermedi ve durduruldu
@@ -896,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Döndürme 0, 90, 180 veya 270 olmalıdı
 The straight line of a crossing: vertical or horizontal (default vertical)	Bir kesişmenin düz çizgisi: vertical veya horizontal (varsayılan vertical)
 The text height must be at least 0.5 mm	Metin yüksekliği en az 0,5 mm olmalıdır
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Bir köşenin dikey ve yatay iki kolu, örn. down left (varsayılan: oradaki tellere göre, yoksa down right)
+The width factor must be from 0.1 to 10	Genişlik faktörü 0,1 ile 10 arasında olmalıdır
 The wire has no length	Bağlantının uzunluğu yok
 The wire that jumps: vertical or horizontal	Atlayan tel: vertical veya horizontal
 The wrap width must not be negative	Kaydırma genişliği negatif olamaz
@@ -994,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Konumun hang
 Who accepted it	Kabul eden kişi
 Whole words only	Yalnızca tam sözcükler
 Why the message is accepted	Mesajın neden kabul edildiği
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Harflerin olağan genişliklerine göre genişliği, 0,1 … 10 (0,8: dar yazı; varsayılan 1)
 Width of the path in mm (default 50)	mm cinsinden yolun genişliği (varsayılan 50)
 Width, depth and height of a room are at least {} mm	Bir odanın genişliği, derinliği ve yüksekliği en az {} mm'dir
 Width, height and depth of an enclosure are at least {} mm	Bir panonun genişliği, yüksekliği ve derinliği en az {} mm'dir
@@ -1066,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	Çubuğun ayağı
 {} is a built-in frame; give the frame a new name	{} yerleşik bir çerçevedir; çerçeveye yeni bir ad verin
 {} is a built-in title block; give the title block a new name	{} yerleşik bir antettir; antede yeni bir ad verin
 {} is a room already	{} zaten bir oda
+{} is a room: use mount_on_wall	{} bir odadır: mount_on_wall kullanın
 {} is ambiguous: use #id:pin	{} belirsiz: #id:pin kullanın
 {} is an enclosure already	{} zaten bir pano
 {} is not a connection point (TAG:PIN)	{} bir bağlantı noktası değil (ETİKET:PIN)

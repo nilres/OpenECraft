@@ -206,7 +206,7 @@ fn with_devices() -> (Project, usize, String, Vec<String>) {
         ("GEN.LAMP-CEILING-LED", inside(&prj, ri, 0.5, 0.3)),
         ("GEN.HEATER-PANEL-1000", before_wall(&prj, ri, 5, 200.0)),
     ] {
-        tags.push(add_device(&mut prj, &f2, part, ri, q).unwrap_or_else(|e| panic!("{part}: {e}")));
+        tags.push(add_device(&mut prj, &f2, part, ri, q, &Options::default()).unwrap_or_else(|e| panic!("{part}: {e}")));
     }
     (prj, ri, f2, tags)
 }
@@ -239,9 +239,9 @@ fn devices_put_in_for_a_protective_device_go_into_the_schematic() {
     assert_eq!(c.placed(), 5);
     // A cable for each, from the protective device to the first, then from device to
     // device; the light behind the switch.
-    // (The service socket drawn behind -F2 before comes first.)
+    // (The service socket drawn behind -F2 before has a wire of its own from it.)
     let legs: Vec<(&str, &str)> = c.legs.iter().map(|l| (l.from.as_str(), l.to.as_str())).collect();
-    assert!(legs.contains(&(f2.as_str(), "=SUP+ER1-X2")) && legs.contains(&("=SUP+ER1-X2", tags[0].as_str())), "{legs:?}");
+    assert!(legs.contains(&(f2.as_str(), "=SUP+ER1-X2")) && legs.contains(&(f2.as_str(), tags[0].as_str())), "{legs:?}");
     assert!(legs.contains(&(tags[0].as_str(), tags[1].as_str())) && legs.contains(&(tags[2].as_str(), tags[3].as_str())), "{legs:?}");
     let cables = c.cables();
     assert_eq!(cables.len(), 5, "{:?}", c.legs);
@@ -268,7 +268,7 @@ fn devices_put_in_again_keep_their_cables() {
     let (mut prj, ri, f2, tags) = with_devices();
     let before = schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap();
     let q = before_wall(&prj, ri, 0, 200.0);
-    let t = add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q).unwrap();
+    let t = add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap();
     let room = prj.layout.enclosures[ri].name.clone();
     assert_eq!(t, format!("{room}-XD3"));
     let after = schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap();
@@ -283,8 +283,8 @@ fn devices_put_in_again_keep_their_cables() {
     // Not for a device that is no protective device of a final circuit, nor a part of
     // the installation.
     let q = before_wall(&prj, ri, 0, 200.0);
-    assert!(add_device(&mut prj, "-NOPE", "GEN.SOCKET-F-UP", ri, q).is_err());
-    assert!(add_device(&mut prj, &f2, "GEN.MCB-1P-B10", ri, q).is_err());
+    assert!(add_device(&mut prj, "-NOPE", "GEN.SOCKET-F-UP", ri, q, &Options::default()).is_err());
+    assert!(add_device(&mut prj, &f2, "GEN.MCB-1P-B10", ri, q, &Options::default()).is_err());
     assert!(tags.iter().all(|t| prj.layout.find_device(t).is_some()));
 }
 
@@ -437,7 +437,7 @@ fn the_drop_counts_from_the_supply() {
     let fed = breakers(&prj, &nl).into_iter().find(|b| supply.feeders.get(&b.tag).is_some_and(|f| !f.is_empty()) && board_of(&prj, &b.tag).is_some()).expect("a breaker behind a feeder cable");
     let ri = panel::rooms(&prj.layout)[0];
     let q = before_wall(&prj, ri, 0, 200.0);
-    add_device(&mut prj, &fed.tag, "GEN.SOCKET-F-UP", ri, q).unwrap();
+    add_device(&mut prj, &fed.tag, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap();
     let c = schematic(&prj).into_iter().find(|c| c.breaker == fed.tag).unwrap();
     let r = run(&prj, &supply, &c);
     assert!(r.drop.is_some(), "{:?} {:?}", c.legs, c.board);
@@ -454,13 +454,13 @@ fn what_was_placed_goes_into_the_schematic() {
     let f2 = f2(&prj);
     let q = before_wall(&prj, ri, 0, 200.0);
     let id = place(&mut prj, ri, "GEN.SOCKET-F-UP", q).unwrap();
-    let tag = into_schematic(&mut prj, &f2, id).unwrap();
+    let tag = into_schematic(&mut prj, &f2, id, &Options::default()).unwrap();
     assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().tag, tag);
     assert!(schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap().has_item(id));
     // Once only.
-    assert!(into_schematic(&mut prj, &f2, id).is_err());
+    assert!(into_schematic(&mut prj, &f2, id, &Options::default()).is_err());
     // Not for a protective device that is none, and then nothing stays placed.
     let items = prj.layout.enclosures[ri].items.len();
-    assert!(add_device(&mut prj, "-NOPE", "GEN.SOCKET-F-UP", ri, q).is_err());
+    assert!(add_device(&mut prj, "-NOPE", "GEN.SOCKET-F-UP", ri, q, &Options::default()).is_err());
     assert_eq!(prj.layout.enclosures[ri].items.len(), items);
 }

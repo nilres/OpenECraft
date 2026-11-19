@@ -68,6 +68,7 @@ Analog input module	Modulo di ingressi analogici
 Analog output module	Modulo di uscite analogiche
 Analysis	Analisi
 Another section here has this number	Un'altra sezione qui ha già questo numero
+Antenna outlet	Presa d'antenna
 Apparent power (kVA)	Potenza apparente (kVA)
 Applied directives	Direttive applicate
 Approval date	Data di approvazione
@@ -343,6 +344,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	I circuiti di comando i
 DC control circuits should be blue (NFPA 79, 13.2.4)	I circuiti di comando in DC dovrebbero essere blu (NFPA 79, 13.2.4)
 DC/DC converter	Convertitore DC/DC
 DWG export failed: {}	Esportazione DWG non riuscita: {}
+Data outlet	Presa dati
 Data sheet	Scheda tecnica
 Date of the approval of the last revision	Data dell'approvazione dell'ultima revisione
 Date of the last revision	Data dell'ultima revisione
@@ -359,6 +361,7 @@ Description of the last revision	Descrizione dell'ultima revisione
 Description of the page's function (structure management)	Descrizione della funzione della pagina (gestione strutture)
 Description of the page's location (structure management)	Descrizione del luogo della pagina (gestione strutture)
 Designer	Progettista
+Device connection box	Scatola di collegamento apparecchio
 Device connection diagram	Schema di collegamento dispositivi
 Device data of {} without symbol or panel item	Dati del dispositivo di {} senza simbolo o elemento di montaggio
 Device description file	File di descrizione del dispositivo
@@ -647,6 +650,7 @@ Hazardous area zone	Zona Ex
 Heat exchanger	Scambiatore di calore
 Heating (W)	Riscaldamento (W)
 Heating element	Elemento riscaldante
+Heating element three-phase	Elemento riscaldante trifase
 Higher-level product (-)	Prodotto di livello superiore (-)
 Higher-level product of the page	Prodotto di livello superiore della pagina
 Highest (°C)	Massima (°C)
@@ -777,6 +781,7 @@ Left side panel	Parete laterale sinistra
 Legend plate text	Testo della targhetta
 Length (m)	Lunghezza (m)
 Length (mm)	Lunghezza (mm)
+Length known (not calculated)	Lunghezza nota (non calcolata)
 Letter landscape	Letter orizzontale
 Letters (A, B, C)	Lettere (A, B, C)
 Level switch	Interruttore di livello
@@ -1478,7 +1483,9 @@ Size (mm)	Dimensione (mm)
 Skipped	Ignorato
 Sliding to the left	Scorrevole verso sinistra
 Sliding to the right	Scorrevole verso destra
+Smoke alarm	Rilevatore di fumo
 Socket outlet	Presa
+Socket outlet three-phase	Presa trifase
 Socket side (female)	Lato prese (femmina)
 Soft starter	Avviatore statico
 Solar charge controller	Regolatore di carica solare
@@ -1606,6 +1613,7 @@ The archive unpacks to more than {} MB	L'archivio si decomprime in più di {} MB
 The archive was written by a newer version (archive version {})	L'archivio è stato scritto da una versione più recente (versione dell'archivio {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Il costruttore del quadro deve essere indicato (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Gli armadi affiancati nel loro locale: pianta a L, parete interna, porta e finestra, gli armadi al loro posto, una guida con una presa su una parete, una lampada di emergenza a parete e una passerella portacavi sotto il soffitto.
+The cable of {} needs at least {} cores	Il cavo di {} richiede almeno {} anime
 The configuration is not a JSON object	La configurazione non è un oggetto JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Il nastro trasportatore dopo il primo rilascio: una revisione rilasciata e bloccata, le modifiche marcate da allora, commenti di verifica con annotazioni in rosso, una richiesta di modifica, la revisione B nel flusso di approvazione e una baseline da confrontare.
 The coordinates of the reference point must be numbers	Le coordinate del punto di riferimento devono essere numeri
@@ -1951,19 +1959,23 @@ yellow	giallo
 {} has no MTTFd, B10d, PL or PFHd	{} non ha né MTTFd, né B10d, né PL, né PFHd
 {} has no door or window {}	{} non ha porta né finestra {}
 {} has nothing to manufacture	{} non ha nulla da produrre
+{} has three phases: it needs a three-phase protective device	{} ha tre fasi: richiede un dispositivo di protezione tripolare
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} contiene un conflitto di merge di git non risolto: il file è stato unito come testo. Prendere una versione del file (git checkout --ours o --theirs), quindi configurare il driver di merge per i progetti suddivisi (merge_project_file) prima di unire di nuovo
 {} is a built-in function definition	{} è una definizione di funzione predefinita
 {} is a built-in property	{} è una proprietà predefinita
 {} is a built-in scheme	{} è uno schema predefinito
 {} is a busbar machine and makes no sheets	{} è una macchina per la lavorazione delle barre e non produce lamiere
+{} is neither the protective device nor a device of the circuit of {}	{} non è né il dispositivo di protezione né un apparecchio del circuito di {}
 {} is not a busbar machine	{} non è una macchina per la lavorazione delle barre
 {} is not a property of {}	{} non è una proprietà di {}
 {} is not an approver of this project	{} non è un approvatore di questo progetto
+{} is not connected to the mains: place it without a protective device	{} non è collegato alla rete: posizionarlo senza dispositivo di protezione
 {} is not placed in the plant layout	{} non è posizionato nel layout dell'impianto
 {} is on page {}, which is released: renaming it would change the page	{} si trova sulla pagina {}, che è rilasciata: rinominarlo modificherebbe la pagina
 {} is placed at the missing node {}	{} è posizionato sul nodo mancante {}
 {} is planned twice ({} and {})	{} è pianificato due volte ({} e {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} è selettivo rispetto a {} solo fino a {} A (corrente di cortocircuito {} A)
+{} is used already	{} è già in uso
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} mantiene la sua struttura: le sue funzioni principali si trovano in riquadri di struttura diversi ({})
 {} keeps its structure: {} exists already	{} mantiene la sua struttura: {} esiste già
 {} lies outside page {}	{} si trova fuori dalla pagina {}

@@ -221,6 +221,7 @@ Bottom left	Vasen alakulma
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kotelon alareuna (ilman sokkelia) lattiasta; korkeudet tarkistetaan, kun se tiedetään tai kotelo on sokkelin päällä
 Bottom right	Oikea alakulma
 Boundary	Raja
+Boxes	Rasiat
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Katkaisukyky oikosulkuvirtaa vastaan verkon jokaisessa suojalaitteessa, poiskytkentä pienimmällä vikavirralla piirin lopussa, kaapelien oikosulkukestoisuus ja selektiivisyys edeltävään laitteeseen.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Silta: neljä johdinta; liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle
 Building {} added with a level at ground level	Rakennus {} lisätty, kerros maan tasolla
@@ -246,6 +247,7 @@ Cable definition on page {}	Kaapelimääritys sivulla {}
 Cable definition: draw a line across the wires that are cores of a cable	Kaapelimääritys: piirrä viiva niiden johtojen poikki, jotka ovat kaapelin johtimia
 Cable end reserve	Kaapelin päävara
 Cable ends	Kaapelin päät
+Cable from	Kaapeli kohteesta
 Cable markers	Kaapelimerkit
 Cable passage to {}	Kaapelin läpivientiaukko kohteeseen {}
 Cable {}: {} cores assigned	Kaapeli {}: {} johdinta määritetty
@@ -997,6 +999,7 @@ Joins	Yhdistää
 Joins wire pieces in a line where nothing else connects (current page)	Yhdistää johdonpalat linjassa, jossa mitään muuta ei liity (nykyinen sivu)
 Jumper {}	Silta {}
 Jumps over the other:	Hyppää toisen yli:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Jakorasiat, kiinteästi liitettyjen laitteiden liitäntärasiat ja palovaroittimet
 K, Q, MM …	K, Q, MM …
 Keep connections	Säilytä liitännät
 Keep sub-pages (3.a, 3.1) with the page before	Pidä alasivut (3.a, 3.1) edellisen sivun yhteydessä
@@ -1757,6 +1760,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Tila lisätty: vedä sen seiniä tai piirrä uusia pohjapiirrokseen, sijoita kaapit siihen niiden ominaisuuksissa
 Room {} now stands on level {}	Tila {} on nyt kerroksessa {}
 Room {} taken out of the building; it stays where it stands	Tila {} poistettu rakennuksesta; se jää paikalleen
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Tätä pienemmät löydetyt tilat jätetään pois (WC tai komero voi olla alle 1 m²)
 Rooms under sloped ceilings (lowest – highest ceiling)	Tilat vinon katon alla (matalin – korkein katto)
 Rotate	Kierrä
 Rotate (selection or symbol being placed)	Kierrä (valinta tai sijoitettava symboli)
@@ -1963,6 +1967,7 @@ Slot depth	Uran syvyys
 Slots	Korttipaikat
 Smallest cross-section of control circuits	Ohjauspiirien pienin poikkipinta-ala
 Smallest cross-section of power circuits	Tehopiirien pienin poikkipinta-ala
+Smallest room	Pienin tila
 Socket outlets, data and antenna outlets	Pistorasiat, data- ja antennirasiat
 Solid	Yhtenäinen
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Projektipalvelin ei ottanut kaikkia muutoksiasi. Versiosi säilyy Projektipalvelin-ruudussa myös hylkäämisen jälkeen.
@@ -2093,6 +2098,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopio luodaan projektipalvelimelle tallennetusta tilasta. Muutokset, joita muut käyttäjät eivät ole vielä tallentaneet, eivät kuulu siihen. Istuntoja, lukituksia ja käyttöoikeuksia ei kopioida; alkuperäinen säilyy ennallaan.
 The crossed wires get free cores of the cable in order	Ristityt johdot saavat kaapelin vapaat johtimet järjestyksessä
 The current page belongs to option {}.	Nykyinen sivu kuuluu vaihtoehtoon {}.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Ryhmän laite tai jakorasia, josta seuraavan laitteen kaapeli tulee: ryhmä haarautuu siinä
 The devices do not fit onto the rail	Laitteet eivät mahdu kiskolle
 The dictionary is empty: collect the texts from the project.	Sanakirja on tyhjä: kerää tekstit projektista.
 The door seen from the front: door devices and cutouts	Ovi edestä katsottuna: ovilaitteet ja aukot
@@ -2278,6 +2284,8 @@ Whole building	Koko rakennus
 Whole words	Kokonaiset sanat
 Width / going	Leveys / etenemä
 Width / height (mm)	Leveys / korkeus (mm)
+Width factor	Leveyskerroin
+Width of the letters to their usual width (0.8: narrow lettering)	Kirjainten leveys suhteessa niiden tavalliseen leveyteen (0,8: kapea teksti)
 Width × depth	Leveys × syvyys
 Width × height	Leveys × korkeus
 Width × height (mm)	Leveys × korkeus (mm)
@@ -2415,6 +2423,7 @@ set on the device	asetettu laitteelle
 sloped ceiling from {} m	vino katto alkaen {} m
 some	jotkin
 taken over	otettu käyttöön
+the device before it	edellinen laite
 the project data (page list, devices, settings)	projektin tiedot (sivuluettelo, laitteet, asetukset)
 then	niin
 unknown	tuntematon

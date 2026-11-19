@@ -691,6 +691,10 @@ pub struct FloorPlan {
     pub area: Option<[u32; 4]>,
     /// How strongly it is shown, 0 … 1 (0: hidden).
     pub opacity: f32,
+    /// The smallest room the detection keeps, m² (`None`: 1 m²; a WC or a closet is
+    /// smaller).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub min_room: Option<f32>,
 }
 
 impl FloorPlan {

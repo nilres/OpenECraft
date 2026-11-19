@@ -63,20 +63,25 @@ pub const DEFAULT_COS_PHI: f32 = 0.95;
 /// `crate::routing3d::Routing::routed_length`).
 pub type Routes<'a> = Option<&'a dyn Fn(&str) -> Option<f32>>;
 
-/// Cores of a new cable: phase, neutral and protective conductor.
-const CORES: [&str; 3] = ["BN", "BU", "GNYE"];
-
-/// What an item of a room is for the installation.
+/// What an item of a room is for the installation: a device of the mains (socket
+/// outlets, switches, lights, heating elements, junction boxes, device connection boxes
+/// for fixed equipment) or one without a circuit (data and antenna outlets, smoke
+/// alarms).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Kind {
     Socket,
     Switch,
     Light,
     Heater,
+    Junction,
+    Connection,
+    Data,
+    Aerial,
+    Smoke,
 }
 
 impl Kind {
-    pub const ALL: [Kind; 4] = [Kind::Socket, Kind::Switch, Kind::Light, Kind::Heater];
+    pub const ALL: [Kind; 9] = [Kind::Socket, Kind::Switch, Kind::Light, Kind::Heater, Kind::Junction, Kind::Connection, Kind::Data, Kind::Aerial, Kind::Smoke];
 
     pub fn title(self) -> &'static str {
         match self {
@@ -84,6 +89,11 @@ impl Kind {
             Kind::Switch => tr("Switch"),
             Kind::Light => tr("Luminaire"),
             Kind::Heater => tr("Heating element"),
+            Kind::Junction => tr("Junction box"),
+            Kind::Connection => tr("Device connection box"),
+            Kind::Data => tr("Data outlet"),
+            Kind::Aerial => tr("Antenna outlet"),
+            Kind::Smoke => tr("Smoke alarm"),
         }
     }
 
@@ -94,6 +104,11 @@ impl Kind {
             Kind::Switch => "switch",
             Kind::Light => "light",
             Kind::Heater => "heater",
+            Kind::Junction => "junction",
+            Kind::Connection => "connection",
+            Kind::Data => "data",
+            Kind::Aerial => "aerial",
+            Kind::Smoke => "smoke",
         }
     }
 
@@ -104,7 +119,18 @@ impl Kind {
             Kind::Switch => "GEN.SW-ONOFF-UP",
             Kind::Light => "GEN.LAMP-CEILING-LED",
             Kind::Heater => "GEN.HEATER-PANEL-1000",
+            Kind::Junction => "GEN.JBOX-UP",
+            Kind::Connection => "GEN.CONN-BOX-UP",
+            Kind::Data => "GEN.DATA-RJ45-2X-UP",
+            Kind::Aerial => "GEN.TV-SAT-UP",
+            Kind::Smoke => "GEN.SMOKE-ALARM",
         }
+    }
+
+    /// A device of the mains, in a circuit of the schematic (not a data or antenna
+    /// outlet or a smoke alarm).
+    pub fn mains(self) -> bool {
+        !matches!(self, Kind::Data | Kind::Aerial | Kind::Smoke)
     }
 }
 
@@ -117,6 +143,17 @@ pub fn kind_of(part: &Part) -> Option<Kind> {
         return None;
     }
     let sub = part.subgroup.trim().to_lowercase();
+    for (name, kind) in [
+        ("junction box", Kind::Junction),
+        ("device connection box", Kind::Connection),
+        ("data outlet", Kind::Data),
+        ("antenna outlet", Kind::Aerial),
+        ("smoke alarm", Kind::Smoke),
+    ] {
+        if sub == name {
+            return Some(kind);
+        }
+    }
     if sub.contains("socket outlet") {
         return Some(Kind::Socket);
     }
@@ -219,8 +256,14 @@ pub fn take_part(prj: &mut Project, number: &str) -> Option<Part> {
 /// Puts a socket outlet, switch or light (part `part`) into room `ri` at point `at` of
 /// the plant (x, z, mm): a light made for the ceiling on the ceiling there, anything
 /// else on the wall nearest to the point (within [`WALL_REACH`]) at its mounting
-/// height. Gives the item's id.
+/// height; a point outside the room on the outside of its nearest wall (devices outside
+/// the building: an outdoor socket, a light on the facade). Gives the item's id.
 pub fn place(prj: &mut Project, ri: usize, part: &str, at: [f32; 2]) -> Result<u64, String> {
+    place_at(prj, ri, part, at, None)
+}
+
+/// [`place`] at mounting height `height` (mm above the floor; `None`: that of the part).
+pub fn place_at(prj: &mut Project, ri: usize, part: &str, at: [f32; 2], height: Option<f32>) -> Result<u64, String> {
     let e = prj.layout.enclosures.get(ri).ok_or_else(|| tr_fmt!("No enclosure {}", ri))?;
     if !e.is_room() {
         return Err(tr_fmt!("{} is not a room", e.name));
@@ -231,7 +274,8 @@ pub fn place(prj: &mut Project, ri: usize, part: &str, at: [f32; 2]) -> Result<u
     let local = poses[ri].local([at[0], 0.0, at[1]]);
     let q = [local[0], local[2]];
     let [w, h, _] = pd.size().unwrap_or([80.0, 80.0, 20.0]);
-    let (face, point) = if on_ceiling(&pd) {
+    let outside = !panel::inside_outline(&panel::outline(e), q);
+    let (face, point) = if on_ceiling(&pd) && !outside {
         let (lo, hi) = panel::bounds(&panel::outline(e));
         if !panel::inside_outline(&panel::outline(e), q) {
             return Err(tr("The point is not inside the room").to_string());
@@ -241,7 +285,7 @@ pub fn place(prj: &mut Project, ri: usize, part: &str, at: [f32; 2]) -> Result<u
         (Face::Roof, p(x, z))
     } else {
         // The nearest wall (or side of an inner wall) and the place along it.
-        let faces: Vec<Face> = panel::room_faces(e).into_iter().filter(|f| matches!(f, Face::Wall(_) | Face::Inner(..))).collect();
+        let faces: Vec<Face> = panel::room_faces(e).into_iter().filter(|f| if outside { matches!(f, Face::Outside(_)) } else { matches!(f, Face::Wall(_) | Face::Inner(..)) }).collect();
         let near = faces
             .into_iter()
             .filter_map(|f| {
@@ -258,7 +302,7 @@ pub fn place(prj: &mut Project, ri: usize, part: &str, at: [f32; 2]) -> Result<u
         (face, p((along - w / 2.0).clamp(0.0, (len - w).max(0.0)), 0.0))
     };
     let id = panel::mount_on_wall(prj, ri, part, face, point)?;
-    if let Some(height) = panel::tech_number(&pd, "Mounting height") {
+    if let Some(height) = height.or_else(|| panel::tech_number(&pd, "Mounting height")).filter(|_| face != Face::Roof) {
         let e = prj.layout.enclosures[ri].clone();
         if let Some(it) = prj.layout.enclosures[ri].items.iter_mut().find(|i| i.id == id) {
             panel::at_mounting_height(&e, it, height);
@@ -570,8 +614,10 @@ fn device_kind(prj: &Project, tag: &str) -> Option<(Kind, Option<String>)> {
         .flat_map(|pg| pg.symbols.iter())
         .filter(|s| s.tag == tag)
         .filter_map(|s| match (s.sym.as_str(), crate::parts::kind_of_symbol(&s.sym)) {
-            ("inst_socket2", _) | (_, Some(F::SocketOutlet)) => Some(Kind::Socket),
-            (_, Some(F::Heater)) => Some(Kind::Heater),
+            ("inst_socket2" | "socket3", _) | (_, Some(F::SocketOutlet)) => Some(Kind::Socket),
+            ("jbox" | "jbox3" | "inst_junction", _) => Some(Kind::Junction),
+            ("conn_box" | "conn_box3", _) => Some(Kind::Connection),
+            ("heater3", _) | (_, Some(F::Heater)) => Some(Kind::Heater),
             ("lamp" | "luminaire" | "inst_lamp" | "inst_luminaire", _) => Some(Kind::Light),
             ("inst_switch" | "inst_switch2" | "inst_dimmer" | "inst_push", _) => Some(Kind::Switch),
             (_, Some(F::No | F::Nc | F::Changeover | F::PushbuttonNo | F::SwitchNo)) if letters.starts_with('S') => Some(Kind::Switch),
@@ -636,7 +682,8 @@ fn legs(prj: &Project, nl: &Netlist, conns: &[Connection], routes: Routes, poses
             }
             Some(leg(&pa, &pb) / 1000.0 + BOX_RESERVE)
         };
-        let length = routed.or_else(estimate);
+        let known = cable.filter(|x| x.length > 0.0 && x.values.get(FIXED_LENGTH).is_some_and(|v| v == "true")).map(|x| x.length);
+        let length = known.or(routed).or_else(estimate);
         out.push(Leg { cable_type: cable.map(|x| x.cable_type.clone()).unwrap_or_default(), cable: c.cable.clone(), mm2, length, routed: routed.is_some(), from, to });
     }
     orient(&mut out, breaker);
@@ -698,7 +745,7 @@ pub fn circuits(prj: &Project, nl: &Netlist, conns: &[Connection], routes: Route
                 three_phase: c.phases.len() >= 3,
                 board: board_of(prj, &c.device),
                 legs: legs(prj, nl, conns, routes, &poses, &c.device, &nets),
-                page: page_of(prj, &labels(&finals, &c.device)[0]),
+                page: page_of(prj, &finals, &c.device),
                 breaker: c.device,
                 devices,
             })
@@ -821,7 +868,7 @@ pub fn write_cables(prj: &mut Project, list: &[Circuit]) -> usize {
     let mut n = 0;
     for l in list.iter().flat_map(|c| &c.legs) {
         let (Some(length), false) = (l.length, l.cable.is_empty()) else { continue };
-        if let Some(cable) = prj.cables.iter_mut().find(|x| x.tag == l.cable) {
+        if let Some(cable) = prj.cables.iter_mut().find(|x| x.tag == l.cable && x.values.get(FIXED_LENGTH).is_none_or(|v| v != "true")) {
             cable.length = (length * 2.0).ceil() / 2.0;
             n += 1;
         }
@@ -902,36 +949,51 @@ pub fn code(kind: Kind) -> &'static str {
         Kind::Switch => "SF",
         Kind::Light => "EA",
         Kind::Heater => "EB",
+        Kind::Junction | Kind::Connection => "XD",
+        Kind::Data | Kind::Aerial => "XF",
+        Kind::Smoke => "BF",
     }
+}
+
+/// Device tag `t` is used: a device, a symbol or an item of the layout has it.
+fn tag_used(prj: &Project, t: &str) -> bool {
+    prj.devices.contains_key(t) || prj.pages.iter().any(|pg| pg.symbols.iter().any(|s| s.tag == t)) || prj.layout.find_device(t).is_some()
+}
+
+/// Cable tag `t` is used.
+fn cable_used(prj: &Project, t: &str) -> bool {
+    prj.cables.iter().any(|c| c.tag == t) || prj.pages.iter().any(|pg| pg.wires.iter().any(|w| w.cable == t))
 }
 
 /// A device tag not used yet: `prefix` and the first free number.
 fn free_tag(prj: &Project, prefix: &str) -> String {
-    let used = |t: &str| prj.devices.contains_key(t) || prj.pages.iter().any(|pg| pg.symbols.iter().any(|s| s.tag == t)) || prj.layout.find_device(t).is_some();
-    (1..).map(|n| format!("{prefix}{n}")).find(|t| !used(t)).unwrap_or_default()
+    (1..).map(|n| format!("{prefix}{n}")).find(|t| !tag_used(prj, t)).unwrap_or_default()
 }
 
 /// A cable tag not used yet: `-W` and the first free number.
 fn free_cable(prj: &Project) -> String {
-    let used = |t: &str| prj.cables.iter().any(|c| c.tag == t) || prj.pages.iter().any(|pg| pg.wires.iter().any(|w| w.cable == t));
-    (1..).map(|n| format!("-W{n}")).find(|t| !used(t)).unwrap_or_default()
+    (1..).map(|n| format!("-W{n}")).find(|t| !cable_used(prj, t)).unwrap_or_default()
 }
 
 // ------------------------------------------------------------- installation pages
 
-/// Width of a column of the installation page: one device, mm.
-const COLUMN: f32 = 8.0 * GRID;
+/// Width of a column of the installation page: one device, mm (of a page with the
+/// five conductors of a three-phase circuit, `wide`).
+fn column(wide: bool) -> f32 {
+    if wide { 12.0 * GRID } else { 8.0 * GRID }
+}
 
 /// The labels of the circuit of protective device `breaker` on its installation page:
-/// the interruption point of its phase conductor (also at the protective device) and
-/// the potentials of its neutral and protective conductors, named after the short tag
-/// of the protective device unless another one of `finals` (the protective devices of
-/// the final circuits) has it too.
-fn labels(finals: &[String], breaker: &str) -> [String; 3] {
+/// the interruption points of its phase conductors (also at the protective device; `L`,
+/// or `L1` … `L3` of a three-phase circuit) and the potentials of its neutral and
+/// protective conductors, named after the short tag of the protective device unless
+/// another one of `finals` (the protective devices of the final circuits) has it too.
+fn labels(finals: &[String], breaker: &str, three: bool) -> Vec<String> {
     let short = format!("-{}", breaker.rsplit('-').next().unwrap_or(breaker));
     let unique = !finals.iter().any(|t| t != breaker && t.ends_with(&short));
     let name = if unique { short } else { breaker.to_string() };
-    [format!("L{name}"), format!("N{name}"), format!("PE{name}")]
+    let phases: &[&str] = if three { &["L1", "L2", "L3"] } else { &["L"] };
+    phases.iter().chain(&["N", "PE"]).map(|c| format!("{c}{name}")).collect()
 }
 
 /// The protective devices of the final circuits.
@@ -939,14 +1001,33 @@ fn finals(prj: &Project, nl: &Netlist) -> Vec<String> {
     electrical::circuits(prj, nl).into_iter().filter(|c| c.is_final()).map(|c| c.device).collect()
 }
 
-/// The installation page of the circuit whose phase conductor is interruption point
-/// `l` (index).
-fn page_of(prj: &Project, l: &str) -> Option<usize> {
-    prj.pages.iter().position(|pg| prj.layout.installation_pages.contains(&pg.id) && pg.symbols.iter().any(|s| s.sym == "intr" && s.label == l))
+/// The installation page of the circuit of protective device `breaker` (index).
+fn page_of(prj: &Project, finals: &[String], breaker: &str) -> Option<usize> {
+    let ls = [labels(finals, breaker, false), labels(finals, breaker, true)];
+    prj.pages.iter().position(|pg| prj.layout.installation_pages.contains(&pg.id) && pg.symbols.iter().any(|s| s.sym == "intr" && ls.iter().any(|l| s.label == l[0])))
+}
+
+/// How a device goes into the schematic: the device or junction box its cable comes
+/// from (default: the one before it, see [`into_schematic`]), its device tag, the tag,
+/// type, part, number of cores, cross-section (mm²) and known length (m) of its cable
+/// and the mounting height of a wall item (mm above the floor); what is not given is
+/// chosen.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct Options {
+    pub from: Option<String>,
+    pub tag: Option<String>,
+    pub cable: Option<String>,
+    pub cable_type: Option<String>,
+    pub cable_part: Option<String>,
+    pub cores: Option<usize>,
+    pub mm2: Option<f32>,
+    pub length: Option<f32>,
+    pub height: Option<f32>,
 }
 
 /// A device of an installation page: its tag, symbol, connection point designations,
-/// function text and cable (from the device before it).
+/// function text, cable (from the device before it) and the device that cable comes
+/// from (empty: not stored, a page drawn before).
 #[derive(Clone, Debug)]
 struct Drawn {
     tag: String,
@@ -955,6 +1036,12 @@ struct Drawn {
     text: String,
     kind: Kind,
     cable: String,
+    from: String,
+}
+
+/// The device has three phase conductors: connection points L2 or L3.
+fn three_phase(pins: &[String]) -> bool {
+    pins.iter().any(|l| l.eq_ignore_ascii_case("L2") || l.eq_ignore_ascii_case("L3"))
 }
 
 /// The symbol of a new device of kind `kind` with part `part`: one of the symbols of the
@@ -962,14 +1049,22 @@ struct Drawn {
 /// installation's kind otherwise; and the designations of its connection points (the
 /// part's where they fit).
 fn symbol_for(prj: &Project, kind: Kind, part: Option<&Part>) -> Option<(SymbolRef, Vec<String>)> {
-    let prefs: &[&str] = match kind {
-        Kind::Socket => &["socket"],
-        Kind::Light => &["luminaire", "lamp"],
-        Kind::Heater => &["heater"],
-        Kind::Switch => &["sel", "co", "pb_no"],
-    };
     let f = part.and_then(|p| p.functions.iter().find(|f| f.kind != crate::parts::FnKind::Terminal));
     let pins = f.map(|f| f.pin_list()).unwrap_or_default();
+    let three = three_phase(&pins.iter().map(|s| s.to_string()).collect::<Vec<_>>());
+    let prefs: &[&str] = match (kind, three) {
+        (Kind::Socket, false) => &["socket"],
+        (Kind::Socket, true) => &["socket3"],
+        (Kind::Light, _) => &["luminaire", "lamp"],
+        (Kind::Heater, false) => &["heater"],
+        (Kind::Heater, true) => &["heater3"],
+        (Kind::Switch, _) => &["sel", "co", "pb_no"],
+        (Kind::Junction, false) => &["jbox"],
+        (Kind::Junction, true) => &["jbox3"],
+        (Kind::Connection, false) => &["conn_box"],
+        (Kind::Connection, true) => &["conn_box3"],
+        (Kind::Data | Kind::Aerial | Kind::Smoke, _) => &[],
+    };
     let fits = |d: &SymbolRef, own: bool| (pins.is_empty() || d.pins.len() == pins.len()) && (!own || f.is_none_or(|f| crate::parts::kind_of_symbol(d.key) == Some(f.kind)));
     let defs: Vec<SymbolRef> = prefs.iter().filter_map(|k| prj.symbol(k)).collect();
     let def = defs.iter().find(|d| fits(d, true)).or_else(|| defs.iter().find(|d| fits(d, false))).or(defs.first())?.clone();
@@ -980,34 +1075,71 @@ fn symbol_for(prj: &Project, kind: Kind, part: Option<&Part>) -> Option<(SymbolR
 /// The kind of a device drawn on an installation page, by its symbol.
 fn drawn_kind(sym: &str) -> Kind {
     match sym {
-        "socket" => Kind::Socket,
+        "socket" | "socket3" => Kind::Socket,
         "luminaire" | "lamp" => Kind::Light,
-        "heater" => Kind::Heater,
+        "heater" | "heater3" => Kind::Heater,
+        "jbox" | "jbox3" => Kind::Junction,
+        "conn_box" | "conn_box3" => Kind::Connection,
         _ => Kind::Switch,
     }
 }
 
-/// Puts a socket outlet, switch, light or heating element (part `part`) for protective
-/// device `breaker` into room `ri` at point `at` of the plant like [`place`] and into
-/// the schematic ([`into_schematic`]). Gives the device tag; nothing is placed when it
+/// Puts a socket outlet, switch, light, heating element, junction box or device
+/// connection box (part `part`) for protective device `breaker` into room `ri` at point
+/// `at` of the plant like [`place`] (at the mounting height of `opts`) and into the
+/// schematic ([`into_schematic`]). Gives the device tag; nothing is placed when it
 /// cannot go into the schematic.
-pub fn add_device(prj: &mut Project, breaker: &str, part: &str, ri: usize, at: [f32; 2]) -> Result<String, String> {
-    if find_part(prj, part).and_then(kind_of).is_none() {
-        return Err(tr_fmt!("{} is no socket outlet, switch, light or heating element", part));
+pub fn add_device(prj: &mut Project, breaker: &str, part: &str, ri: usize, at: [f32; 2], opts: &Options) -> Result<String, String> {
+    match find_part(prj, part).and_then(kind_of) {
+        None => return Err(tr_fmt!("{} is no socket outlet, switch, light or heating element", part)),
+        Some(k) if !k.mains() => return Err(tr_fmt!("{} is not connected to the mains: place it without a protective device", part)),
+        Some(_) => {}
     }
-    let id = place(prj, ri, part, at)?;
-    into_schematic(prj, breaker, id).inspect_err(|_| {
+    let id = place_at(prj, ri, part, at, opts.height)?;
+    into_schematic(prj, breaker, id, opts).inspect_err(|_| {
         prj.layout.enclosures[ri].items.retain(|i| i.id != id);
     })
 }
 
-/// Puts item `item` (a socket outlet, switch, light or heating element placed in a room
-/// without a device tag) for protective device `breaker` into the schematic: a new
-/// device `<room>-XD1` (`-SF`, `-EA`, `-EB`) with its part, drawn on the installation
-/// page of the circuit (made with the first device, after the page of the protective
-/// device, which gets an interruption point to it) with a new cable from the device
-/// before it, or from the protective device. Gives the device tag.
-pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64) -> Result<String, String> {
+/// The cores of a new cable of `n` cores: brown, black, grey, blue and green-yellow as
+/// many as it has (2: brown and blue), numbered with green-yellow from six.
+fn core_names(n: usize) -> Vec<String> {
+    let colours: &[&str] = match n {
+        0 | 1 => &["BN"],
+        2 => &["BN", "BU"],
+        3 => &["BN", "BU", "GNYE"],
+        4 => &["BN", "BK", "BU", "GNYE"],
+        5 => &["BN", "BK", "GY", "BU", "GNYE"],
+        _ => return (1..n).map(|k| k.to_string()).chain(["GNYE".to_string()]).collect(),
+    };
+    colours.iter().map(|c| c.to_string()).collect()
+}
+
+/// The core of a cable with the cores `cores` for conductor `k` of an installation page
+/// with `n` conductors (the phases, then the neutral and the protective conductor).
+fn core_of(cores: &[String], n: usize, k: usize) -> String {
+    let has = |c: &str| cores.iter().any(|x| x == c).then(|| c.to_string());
+    let at = |i: usize| cores.get(i).or(cores.last()).cloned().unwrap_or_default();
+    if k + 1 == n {
+        return has("GNYE").unwrap_or_else(|| at(k));
+    }
+    if k + 2 == n {
+        return has("BU").unwrap_or_else(|| at(k));
+    }
+    ["BN", "BK", "GY"].get(k).and_then(|c| has(c)).unwrap_or_else(|| at(k))
+}
+
+/// Puts item `item` (a socket outlet, switch, light, heating element, junction box or
+/// device connection box placed in a room without a device tag) for protective device
+/// `breaker` into the schematic: a new device `<room>-XD1` (`-SF`, `-EA`, `-EB`, or the
+/// tag of `opts`) with its part, drawn on the installation page of the circuit (made with
+/// the first device, after the page of the protective device, which gets interruption
+/// points to it) with a new cable from the device `opts` names, or from the device before
+/// it (a light from the first switch of its room, after the lights behind it), or from
+/// the protective device; the cable's source and target stored with it (`cable.source`,
+/// `cable.target`), which the connections follow. A three-phase device needs a
+/// three-phase circuit. Gives the device tag.
+pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Options) -> Result<String, String> {
     let nl = Netlist::build(prj, true);
     let b = electrical::circuits(prj, &nl).into_iter().find(|c| c.is_final() && c.device == breaker).ok_or_else(|| tr_fmt!("{} is no protective device of a final circuit in the schematic", breaker))?;
     let ri = prj.layout.enclosures.iter().position(|e| e.is_room() && e.item(item).is_some()).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", item))?;
@@ -1017,26 +1149,66 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64) -> Result<Str
     }
     let part = it.part;
     let kind = find_part(prj, &part).and_then(kind_of).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element", part))?;
+    if !kind.mains() {
+        return Err(tr_fmt!("{} is not connected to the mains: place it without a protective device", part));
+    }
     let room = prj.layout.enclosures[ri].name.clone();
-    let [l, n, pe] = labels(&finals(prj, &nl), breaker);
-    let page = match page_of(prj, &l) {
-        Some(k) => k,
-        None => new_page(prj, &b, &l)?,
-    };
+    let finals = finals(prj, &nl);
     let (def, pins) = symbol_for(prj, kind, find_part(prj, &part)).ok_or_else(|| tr("Unknown symbol").to_string())?;
+    let page = match page_of(prj, &finals, breaker) {
+        Some(k) => k,
+        None => new_page(prj, &b, &labels(&finals, breaker, b.phases.len() >= 3))?,
+    };
+    let ls = page_labels(prj, page);
+    let n = ls.len();
+    if three_phase(&pins) && n < 5 {
+        return Err(tr_fmt!("{} has three phases: it needs a three-phase protective device", part));
+    }
     let mut drawn = drawn_on(prj, page);
-    if page_columns(prj, page) < drawn.len() + 1 {
+    if page_columns(prj, page, n > 3) < drawn.len() + 1 {
         return Err(tr_fmt!("The installation page of {} is full", breaker));
     }
-    let tag = free_tag(prj, &format!("{}-{}", room, code(kind)));
+    let from_all = sources(prj, &drawn, breaker);
+    let from = match opts.from.as_deref().map(str::trim).filter(|f| !f.is_empty()) {
+        Some(f) if f == breaker || drawn.iter().any(|d| d.tag == f) => f.to_string(),
+        Some(f) => return Err(tr_fmt!("{} is neither the protective device nor a device of the circuit of {}", f, breaker)),
+        None => default_source(prj, &drawn, &from_all, breaker, kind, ri),
+    };
+    let tag = match opts.tag.as_deref().map(str::trim).filter(|t| !t.is_empty()) {
+        Some(t) if tag_used(prj, t) => return Err(tr_fmt!("{} is used already", t)),
+        Some(t) => t.to_string(),
+        None => free_tag(prj, &format!("{}-{}", room, code(kind))),
+    };
+    let cable = match opts.cable.as_deref().map(str::trim).filter(|t| !t.is_empty()) {
+        Some(c) if cable_used(prj, c) => return Err(tr_fmt!("{} is used already", c)),
+        Some(c) => c.to_string(),
+        None => free_cable(prj),
+    };
+    let count = opts.cores.unwrap_or(n);
+    if count < n {
+        return Err(tr_fmt!("The cable of {} needs at least {} cores", tag, n));
+    }
     adopt(prj, &tag, item, None)?;
-    let cable = free_cable(prj);
+    let cores = core_names(count);
     let id = prj.new_id();
-    prj.cables.push(crate::model::Cable { id, tag: cable.clone(), cores: CORES.join(" "), ..Default::default() });
-    drawn.push(Drawn { tag: tag.clone(), sym: def.key.to_string(), pins, text: String::new(), kind, cable });
-    draw(prj, page, &drawn, [&l, &n, &pe]);
+    let mut c = crate::model::Cable { id, tag: cable.clone(), cores: cores.join(" "), part: opts.cable_part.clone().unwrap_or_default(), ..Default::default() };
+    if let Some(mm2) = opts.mm2 {
+        c.cross_section = format!("{mm2} mm²");
+        c.cable_type = format!("NYM-J {count}x{mm2}");
+    }
+    if let Some(t) = opts.cable_type.as_deref().map(str::trim).filter(|t| !t.is_empty()) {
+        c.cable_type = t.to_string();
+    }
+    if let Some(l) = opts.length.filter(|l| *l > 0.0) {
+        c.length = l;
+        c.values.insert(FIXED_LENGTH.into(), "true".into());
+    }
+    let sized = opts.mm2.is_some() || opts.cable_type.is_some();
+    prj.cables.push(c);
+    drawn.push(Drawn { tag: tag.clone(), sym: def.key.to_string(), pins, text: String::new(), kind, cable, from });
+    draw(prj, page, &drawn, breaker, &ls);
     // The cables carry the protective device's rated current and the highest rated
-    // current of the devices of the circuit.
+    // current of the devices of the circuit (those whose size was given keep it).
     let need = behind(prj, &nl, &b)
         .0
         .iter()
@@ -1047,37 +1219,62 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64) -> Result<Str
         .filter_map(|x| crate::sizing::parse_current(&x.current))
         .fold(b.protection.rated, f32::max);
     let mm2 = size_for(prj, need);
-    let ours: Vec<&str> = drawn.iter().map(|d| d.cable.as_str()).collect();
+    let last = drawn.last().map(|d| d.cable.clone()).unwrap_or_default();
+    let ours: Vec<&str> = drawn.iter().map(|d| d.cable.as_str()).filter(|c| !(sized && *c == last)).collect();
     for c in prj.cables.iter_mut().filter(|c| ours.contains(&c.tag.as_str())) {
-        if mm2_of(&c.cross_section).is_none_or(|a| a < mm2) {
+        let generated = c.cable_type.is_empty() || c.cable_type.starts_with("NYM-J ");
+        if generated && mm2_of(&c.cross_section).is_none_or(|a| a < mm2) {
             c.cross_section = format!("{mm2} mm²");
-            c.cable_type = format!("{CABLE_TYPE}{mm2}");
+            c.cable_type = format!("NYM-J {}x{mm2}", c.core_list().len());
         }
     }
     Ok(tag)
 }
 
+/// Property of a cable whose length is known (measured or given): it is taken instead
+/// of the 3D route or the estimate and not written over.
+pub const FIXED_LENGTH: &str = "cable.fixed_length";
+
 /// Makes the installation page of circuit `c` (after the page of its protective device)
-/// and puts the interruption point `l` at the outgoing connection point of the
-/// protective device. Gives the page's index.
-fn new_page(prj: &mut Project, c: &electrical::Circuit, l: &str) -> Result<usize, String> {
+/// and puts the interruption points of the phase conductors (the first of `labels`) at
+/// the outgoing connection points of the protective device, from the left. Gives the
+/// page's index.
+fn new_page(prj: &mut Project, c: &electrical::Circuit, labels: &[String]) -> Result<usize, String> {
     let at = prj.pages.get(c.page).ok_or_else(|| tr("No such page").to_string())?;
     let si = at.symbols.iter().position(|s| s.id == c.symbol).ok_or_else(|| tr("Unknown symbol").to_string())?;
     let s = at.symbols[si].clone();
     let def = prj.symbol(&s.sym).ok_or_else(|| tr("Unknown symbol").to_string())?;
-    // The outgoing connection point: the leftmost of the lowest ones.
-    let low = def.pins.iter().map(|q| q.pos.transform(s.rot, s.mirror).y).fold(f32::MIN, f32::max);
-    let out = (0..def.pins.len()).filter(|&i| (def.pins[i].pos.transform(s.rot, s.mirror).y - low).abs() < 0.01).min_by(|a, b| def.pins[*a].pos.transform(s.rot, s.mirror).x.total_cmp(&def.pins[*b].pos.transform(s.rot, s.mirror).x)).unwrap_or(0);
-    let q = def.pin_world(out, s.pos, s.rot, s.mirror);
+    // The outgoing connection points: the lowest ones, from the left.
+    let y = |i: usize| def.pins[i].pos.transform(s.rot, s.mirror).y;
+    let low = (0..def.pins.len()).map(y).fold(f32::MIN, f32::max);
+    let mut outs: Vec<usize> = (0..def.pins.len()).filter(|&i| (y(i) - low).abs() < 0.01).collect();
+    outs.sort_by(|a, b| def.pins[*a].pos.transform(s.rot, s.mirror).x.total_cmp(&def.pins[*b].pos.transform(s.rot, s.mirror).x));
     let intr = prj.symbol("intr").ok_or_else(|| tr("Unknown symbol").to_string())?;
-    // Beside a wire leaving the connection point, below it otherwise.
-    let wired = prj.pages[c.page].wires.iter().any(|w| w.a.same(q) || w.b.same(q));
-    let (end, rot) = if wired { (p(q.x + 3.0 * GRID, q.y), 3) } else { (p(q.x, q.y + 3.0 * GRID), 0) };
-    push_wire(prj, c.page, q, end, "", "", false);
-    let mut point = new_symbol(prj, &intr, end, "", "");
-    point.rot = rot;
-    point.label = l.to_string();
-    prj.pages[c.page].symbols.push(point);
+    let phases = labels.len().saturating_sub(2).max(1);
+    let right = outs.iter().take(phases).map(|&o| def.pin_world(o, s.pos, s.rot, s.mirror).x).fold(f32::MIN, f32::max) + 3.0 * GRID;
+    for (k, &out) in outs.iter().take(phases).enumerate() {
+        let q = def.pin_world(out, s.pos, s.rot, s.mirror);
+        // Below the connection point; beside a wire leaving it (several: each a step
+        // lower, to the right of the device).
+        let wired = prj.pages[c.page].wires.iter().any(|w| w.a.same(q) || w.b.same(q));
+        let (end, rot) = if !wired {
+            (p(q.x, q.y + 3.0 * GRID), 0)
+        } else if phases == 1 {
+            (p(q.x + 3.0 * GRID, q.y), 3)
+        } else {
+            (p(right, q.y + (k as f32 + 1.0) * GRID), 3)
+        };
+        if wired && phases > 1 {
+            push_wire(prj, c.page, q, p(q.x, end.y), "", "", false);
+            push_wire(prj, c.page, p(q.x, end.y), end, "", "", false);
+        } else {
+            push_wire(prj, c.page, q, end, "", "", false);
+        }
+        let mut point = new_symbol(prj, &intr, end, "", "");
+        point.rot = rot;
+        point.label = labels[k].clone();
+        prj.pages[c.page].symbols.push(point);
+    }
     let src = prj.pages[c.page].clone();
     let id = prj.new_id();
     let text = format!("{} {}", c.device, text_of(prj, &c.device)).trim().to_string();
@@ -1089,12 +1286,30 @@ fn new_page(prj: &mut Project, c: &electrical::Circuit, l: &str) -> Result<usize
     page.product = src.product.clone();
     // Each device its own cable from the one before it.
     page.values.insert("page.cable_per_connection".into(), "true".into());
+    // The labels the page is drawn with.
+    page.values.insert(LABELS.into(), labels.join(" "));
     let k = crate::ops::insert_page(prj, c.page + 1, page);
     prj.layout.installation_pages.push(id);
     Ok(k)
 }
 
-/// The devices drawn on installation page `page`, in their order.
+/// Page value with the labels of the conductors of an installation page.
+const LABELS: &str = "installation.labels";
+
+/// The labels of the conductors of installation page `page` (see [`labels`]): stored
+/// with it, or those of its interruption point and potentials (a page drawn before).
+fn page_labels(prj: &Project, page: usize) -> Vec<String> {
+    let pg = &prj.pages[page];
+    if let Some(v) = pg.values.get(LABELS).filter(|v| !v.trim().is_empty()) {
+        return v.split_whitespace().map(String::from).collect();
+    }
+    let intr: Vec<String> = pg.symbols.iter().filter(|s| s.sym == "intr").map(|s| s.label.clone()).collect();
+    let pots: Vec<String> = pg.symbols.iter().filter(|s| s.sym == "pot").map(|s| s.label.clone()).collect();
+    intr.into_iter().chain(pots).collect()
+}
+
+/// The devices drawn on installation page `page`, in their order, with the device each
+/// one's cable comes from.
 fn drawn_on(prj: &Project, page: usize) -> Vec<Drawn> {
     let pg = &prj.pages[page];
     let mut out: Vec<(f32, Drawn)> = Vec::new();
@@ -1102,20 +1317,47 @@ fn drawn_on(prj: &Project, page: usize) -> Vec<Drawn> {
         let Some(def) = prj.symbol(&s.sym).filter(|d| d.func.has_tag() && !s.tag.is_empty()) else { continue };
         let at: Vec<P> = (0..def.pins.len()).map(|i| def.pin_world(i, s.pos, s.rot, s.mirror)).collect();
         let cable = at.iter().find_map(|q| pg.wires.iter().find(|w| !w.cable.is_empty() && (w.a.same(*q) || w.b.same(*q)))).map(|w| w.cable.clone()).unwrap_or_default();
-        out.push((s.pos.x, Drawn { tag: s.tag.clone(), sym: s.sym.clone(), pins: s.pins.clone(), text: s.function_text.clone(), kind: drawn_kind(&s.sym), cable }));
+        let from = prj.cables.iter().find(|c| !cable.is_empty() && c.tag == cable).and_then(|c| c.values.get("cable.source")).cloned().unwrap_or_default();
+        out.push((s.pos.x, Drawn { tag: s.tag.clone(), sym: s.sym.clone(), pins: s.pins.clone(), text: s.function_text.clone(), kind: drawn_kind(&s.sym), cable, from }));
     }
     out.sort_by(|a, b| a.0.total_cmp(&b.0));
     out.into_iter().map(|d| d.1).collect()
+}
+
+/// The device the cable of each device of `drawn` comes from: as stored, for a page
+/// drawn before the sources were stored as it was drawn (the device before it in its
+/// row; the lights of a room behind its first switch, one after the other).
+fn sources(prj: &Project, drawn: &[Drawn], breaker: &str) -> Vec<String> {
+    let mut out: Vec<String> = drawn.iter().map(|d| d.from.clone()).collect();
+    if out.iter().any(String::is_empty) {
+        let idx = |t: &str| drawn.iter().position(|d| d.tag == t);
+        let mut prev = breaker.to_string();
+        for (dev, lights) in by_rooms(prj, drawn) {
+            let Some(i) = idx(&dev.tag) else { continue };
+            if out[i].is_empty() {
+                out[i] = prev.clone();
+            }
+            let mut before = dev.tag.clone();
+            for l in &lights {
+                if let Some(j) = idx(&l.tag).filter(|&j| out[j].is_empty()) {
+                    out[j] = before.clone();
+                }
+                before = l.tag.clone();
+            }
+            prev = dev.tag.clone();
+        }
+    }
+    out.into_iter().map(|s| if s.is_empty() { breaker.to_string() } else { s }).collect()
 }
 
 /// A column of an installation page: a device on the phase conductor, and the lights
 /// behind it when it is a switch.
 type Column = (Drawn, Vec<Drawn>);
 
-/// The columns of the devices of an installation page: by room in the order of the
-/// rooms (the order the connections run in), in a room the devices on the phase
+/// The columns of the devices of an installation page drawn before their sources were
+/// stored: by room in the order of the rooms, in a room the devices on the phase
 /// conductor, the lights of a room with a switch behind its first switch.
-fn columns(prj: &Project, drawn: &[Drawn]) -> Vec<Column> {
+fn by_rooms(prj: &Project, drawn: &[Drawn]) -> Vec<Column> {
     let room = |tag: &str| prj.layout.find_device(tag).map(|(ei, _)| ei).filter(|&ei| prj.layout.enclosures[ei].is_room()).unwrap_or(usize::MAX);
     let mut rooms: Vec<usize> = drawn.iter().map(|d| room(&d.tag)).collect();
     rooms.sort();
@@ -1138,16 +1380,114 @@ fn columns(prj: &Project, drawn: &[Drawn]) -> Vec<Column> {
     out
 }
 
-/// How many device columns fit on page `page`.
-fn page_columns(prj: &Project, page: usize) -> usize {
-    let border = crate::frame::of_page(prj, page).border();
-    (((border.max.x - border.min.x) - 10.0 * GRID) / COLUMN).floor().max(0.0) as usize
+/// The columns of the devices of an installation page (`from`: the device the cable of
+/// each comes from): the tree of the cables from the protective device, each device
+/// after the one its cable comes from (the devices fed from one device in the order they
+/// were put in); the lights fed from a switch, or from a light behind one, behind the
+/// switch.
+fn columns(drawn: &[Drawn], from: &[String], breaker: &str) -> Vec<Column> {
+    let idx = |t: &str| drawn.iter().position(|d| d.tag == t);
+    let behind: Vec<bool> = (0..drawn.len())
+        .map(|i| {
+            let mut k = i;
+            for _ in 0..drawn.len() {
+                if drawn[k].kind != Kind::Light {
+                    return false;
+                }
+                match idx(&from[k]) {
+                    Some(j) if drawn[j].kind == Kind::Switch => return true,
+                    Some(j) => k = j,
+                    None => return false,
+                }
+            }
+            false
+        })
+        .collect();
+    let tree = Tree { drawn, from, behind: &behind };
+    let mut seen = vec![false; drawn.len()];
+    let mut out = Vec::new();
+    tree.walk(breaker, &mut seen, &mut out);
+    // Devices whose cable comes from nowhere on the page.
+    for i in 0..drawn.len() {
+        if !seen[i] && !behind[i] {
+            seen[i] = true;
+            out.push((drawn[i].clone(), Vec::new()));
+            tree.walk(&drawn[i].tag, &mut seen, &mut out);
+        }
+    }
+    for i in 0..drawn.len() {
+        if !seen[i] {
+            out.push((drawn[i].clone(), Vec::new()));
+        }
+    }
+    out
 }
 
-/// The connection points of a device symbol placed with its first upper one at `at`:
-/// the symbol's position and rotation, and (phase, neutral, protective conductor,
-/// switched output) connection points.
-fn pins_of(def: &SymbolRef, kind: Kind, at: P) -> (P, u8, [Option<P>; 4]) {
+/// The devices of an installation page with the devices their cables come from, and
+/// which are lights behind a switch.
+struct Tree<'a> {
+    drawn: &'a [Drawn],
+    from: &'a [String],
+    behind: &'a [bool],
+}
+
+impl Tree<'_> {
+    /// The columns of the devices fed from `tag`, depth first.
+    fn walk(&self, tag: &str, seen: &mut [bool], out: &mut Vec<Column>) {
+        for i in 0..self.drawn.len() {
+            if seen[i] || self.from[i] != tag || self.behind[i] {
+                continue;
+            }
+            seen[i] = true;
+            let mut lights = Vec::new();
+            if self.drawn[i].kind == Kind::Switch {
+                self.lights(&self.drawn[i].tag, seen, &mut lights);
+            }
+            out.push((self.drawn[i].clone(), lights.iter().map(|&j| self.drawn[j].clone()).collect()));
+            self.walk(&self.drawn[i].tag, seen, out);
+            for j in lights {
+                self.walk(&self.drawn[j].tag, seen, out);
+            }
+        }
+    }
+
+    /// The lights behind a switch fed from `tag`, depth first.
+    fn lights(&self, tag: &str, seen: &mut [bool], out: &mut Vec<usize>) {
+        for i in 0..self.drawn.len() {
+            if !seen[i] && self.behind[i] && self.from[i] == tag {
+                seen[i] = true;
+                out.push(i);
+                self.lights(&self.drawn[i].tag, seen, out);
+            }
+        }
+    }
+}
+
+/// The device the cable of a new device of kind `kind` in room `ri` comes from: a light
+/// from the first switch of its room (after the lights behind it), anything else from
+/// the last device of the page, or from the protective device.
+fn default_source(prj: &Project, drawn: &[Drawn], from: &[String], breaker: &str, kind: Kind, ri: usize) -> String {
+    let cols = columns(drawn, from, breaker);
+    if kind == Kind::Light {
+        let room = |t: &str| prj.layout.find_device(t).map(|(ei, _)| ei);
+        if let Some((sw, lights)) = cols.iter().find(|(d, _)| d.kind == Kind::Switch && room(&d.tag) == Some(ri)) {
+            return lights.last().map_or_else(|| sw.tag.clone(), |l| l.tag.clone());
+        }
+    }
+    cols.last().map_or_else(|| breaker.to_string(), |(d, _)| d.tag.clone())
+}
+
+/// How many device columns fit on page `page` (`wide`: of a three-phase circuit).
+fn page_columns(prj: &Project, page: usize, wide: bool) -> usize {
+    let border = crate::frame::of_page(prj, page).border();
+    (((border.max.x - border.min.x) - 10.0 * GRID) / column(wide)).floor().max(0.0) as usize
+}
+
+/// The connection points of a device symbol placed with its first upper one at `at`
+/// on a page with `n` conductors: the symbol's position and rotation, the connection
+/// point of each conductor (phases, neutral, protective conductor; a single-phase
+/// device on the first phase) and the switched output of a switch.
+fn pins_of(def: &SymbolRef, kind: Kind, at: P, n: usize) -> (P, u8, Vec<Option<P>>, Option<P>) {
     // A switch with more upper than lower connection points stands on its head.
     let rot = if kind == Kind::Switch && def.pins.iter().filter(|q| q.pos.y < 0.0).count() > 1 { 2 } else { 0 };
     let pos_of = |i: usize| def.pins[i].pos.transform(rot, false);
@@ -1158,28 +1498,52 @@ fn pins_of(def: &SymbolRef, kind: Kind, at: P) -> (P, u8, [Option<P>; 4]) {
     let label = |l: &str| (0..def.pins.len()).find(|&i| def.pins[i].label.eq_ignore_ascii_case(l)).map(world);
     let lower: Vec<usize> = (0..def.pins.len()).filter(|&i| pos_of(i).y > top + 0.01).collect();
     let below = lower.iter().copied().min_by(|a, b| (pos_of(*a).x - pos_of(first).x).abs().total_cmp(&(pos_of(*b).x - pos_of(first).x).abs())).map(world);
-    match kind {
-        Kind::Switch => (pos, rot, [Some(world(first)), None, None, below]),
-        _ => (pos, rot, [Some(world(first)), label("N").or(below), label("PE"), None]),
+    let mut at = vec![None; n];
+    if kind == Kind::Switch {
+        at[0] = Some(world(first));
+        return (pos, rot, at, below);
     }
+    at[0] = label("L1").or_else(|| label("L")).or(Some(world(first)));
+    for (k, l) in ["L2", "L3"].iter().enumerate().take(n.saturating_sub(3)) {
+        at[k + 1] = label(l);
+    }
+    if n >= 2 {
+        at[n - 2] = label("N").or(below);
+    }
+    if n >= 3 {
+        at[n - 1] = label("PE");
+    }
+    (pos, rot, at, None)
 }
 
-/// Draws installation page `page` again with the devices `drawn` (see [`columns`]): the
-/// interruption point of the phase conductor and the potentials of the neutral and
-/// protective conductors at the left, the conductors as lines along the top, each
-/// device below them in its column; the lights behind a switch below its output. The
-/// wires to each device are the cores of its cable.
-fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], [l, n, pe]: [&str; 3]) {
-    let cols = columns(prj, drawn);
+/// Draws installation page `page` again with the devices `drawn` (see [`columns`]) of
+/// the circuit of `breaker` and the conductors `labels`: the interruption points of the
+/// phase conductors and the potentials of the neutral and protective conductors at the
+/// left, the conductors as lines along the top, each device below them in its column;
+/// the lights behind a switch below its output. The wires to each device are the cores
+/// of its cable, whose source and target are stored with it.
+fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], breaker: &str, labels: &[String]) {
+    let from = sources(prj, drawn, breaker);
+    for (d, f) in drawn.iter().zip(&from) {
+        if let Some(c) = prj.cables.iter_mut().find(|c| !d.cable.is_empty() && c.tag == d.cable) {
+            c.values.insert("cable.source".into(), f.clone());
+            c.values.insert("cable.target".into(), d.tag.clone());
+        }
+    }
+    let n = labels.len().max(3);
+    let col = column(n > 3);
+    let cols = columns(drawn, &from, breaker);
     prj.pages[page].symbols.clear();
     prj.pages[page].wires.clear();
+    prj.pages[page].values.insert(LABELS.into(), labels.join(" "));
     let border = crate::frame::of_page(prj, page).border();
     let x0 = ((border.min.x + 4.0 * GRID) / GRID).round() * GRID;
     let y0 = ((border.min.y + 8.0 * GRID) / GRID).round() * GRID;
-    let ys = [y0, y0 + 2.0 * GRID, y0 + 4.0 * GRID];
-    let row = y0 + 12.0 * GRID;
-    // The starts: the interruption point and the potentials point to the left.
-    for (k, (key, label)) in [("intr", l), ("pot", n), ("pot", pe)].into_iter().enumerate() {
+    let ys: Vec<f32> = (0..n).map(|k| y0 + 2.0 * GRID * k as f32).collect();
+    let row = y0 + (2.0 * (n as f32 - 1.0) + 8.0) * GRID;
+    // The starts: the interruption points and the potentials point to the left.
+    for (k, label) in labels.iter().enumerate() {
+        let key = if k + 2 < n { "intr" } else { "pot" };
         let Some(def) = prj.symbol(key) else { continue };
         let at = p(x0, ys[k]);
         let rot = if key == "intr" { 1 } else { 3 };
@@ -1190,20 +1554,18 @@ fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], [l, n, pe]: [&str; 3]) 
         prj.pages[page].symbols.push(s);
     }
     // The lines of the conductors and their last points.
-    let mut lines = Lines { page, ys, ends: [p(x0, ys[0]), p(x0, ys[1]), p(x0, ys[2])] };
+    let mut lines = Lines { page, ends: ys.iter().map(|y| p(x0, *y)).collect(), ys };
     let mut x = x0 + 4.0 * GRID;
     for (dev, lights) in &cols {
         let Some(def) = prj.symbol(&dev.sym) else { continue };
-        let (pos, rot, [ph, ne, pr, out]) = pins_of(&def, dev.kind, p(x, row));
+        let (pos, rot, at, out) = pins_of(&def, dev.kind, p(x, row), n);
         let mut s = new_symbol(prj, &def, pos, &dev.tag, &dev.text);
         s.rot = rot;
         s.pins = dev.pins.clone();
         prj.pages[page].symbols.push(s);
-        if let Some(q) = ph {
-            lines.join(prj, 0, q, &dev.cable);
-        }
-        lines.neutral_and_pe(prj, ne, pr, x, &dev.cable);
-        x += COLUMN;
+        let cores = cores_of(prj, &dev.cable);
+        lines.conductors(prj, &at, x, &dev.cable, &cores);
+        x += col;
         // The lights behind the switch: from its output along a line below it.
         let Some(o) = out else { continue };
         let line = ((o.y + 2.0 * GRID) / GRID).round() * GRID;
@@ -1212,63 +1574,72 @@ fn draw(prj: &mut Project, page: usize, drawn: &[Drawn], [l, n, pe]: [&str; 3]) 
         let mut first = true;
         for d in lights {
             let Some(ld) = prj.symbol(&d.sym) else { continue };
-            let (lpos, lrot, [lph, lne, lpr, _]) = pins_of(&ld, d.kind, p(x, low));
+            let (lpos, lrot, lat, _) = pins_of(&ld, d.kind, p(x, low), n);
             let mut s = new_symbol(prj, &ld, lpos, &d.tag, &d.text);
             s.rot = lrot;
             s.pins = d.pins.clone();
             prj.pages[page].symbols.push(s);
-            if let Some(q) = lph {
+            let cores = cores_of(prj, &d.cable);
+            let phase = core_of(&cores, n, 0);
+            if let Some(q) = lat[0] {
                 let j = p(q.x, line);
                 if first {
-                    push_wire(prj, page, last, p(last.x, line), &d.cable, CORES[0], true);
+                    push_wire(prj, page, last, p(last.x, line), &d.cable, &phase, true);
                     last = p(last.x, line);
                     first = false;
                 }
-                push_wire(prj, page, last, j, &d.cable, CORES[0], true);
-                push_wire(prj, page, j, q, &d.cable, CORES[0], false);
+                push_wire(prj, page, last, j, &d.cable, &phase, true);
+                push_wire(prj, page, j, q, &d.cable, &phase, false);
                 last = j;
             }
-            lines.neutral_and_pe(prj, lne, lpr, x, &d.cable);
-            x += COLUMN;
+            let mut rest = lat.clone();
+            rest[0] = None;
+            lines.conductors(prj, &rest, x, &d.cable, &cores);
+            x += col;
         }
     }
 }
 
-/// The lines of the phase, neutral and protective conductors along the top of an
-/// installation page: their heights and last points.
+/// The cores of cable `tag` (those of a new single-phase cable when it has none).
+fn cores_of(prj: &Project, tag: &str) -> Vec<String> {
+    prj.cables.iter().find(|c| c.tag == tag).map(|c| c.core_list()).filter(|c| !c.is_empty()).unwrap_or_else(|| core_names(3))
+}
+
+/// The lines of the conductors along the top of an installation page: their heights
+/// and last points.
 struct Lines {
     page: usize,
-    ys: [f32; 3],
-    ends: [P; 3],
+    ys: Vec<f32>,
+    ends: Vec<P>,
 }
 
 impl Lines {
     /// Joins connection point `q` to the line of conductor `k`: along the line, then
-    /// down to it, as a core of `cable`.
-    fn join(&mut self, prj: &mut Project, k: usize, q: P, cable: &str) {
+    /// down to it, as core `core` of `cable`.
+    fn join(&mut self, prj: &mut Project, k: usize, q: P, cable: &str, core: &str) {
         let j = p(q.x, self.ys[k]);
-        push_wire(prj, self.page, self.ends[k], j, cable, CORES[k], true);
-        push_wire(prj, self.page, j, q, cable, CORES[k], false);
+        push_wire(prj, self.page, self.ends[k], j, cable, core, true);
+        push_wire(prj, self.page, j, q, cable, core, false);
         self.ends[k] = j;
     }
 
-    /// Joins the neutral and protective conductor connection points of a device in the
-    /// column at `x` to their lines: from above when they are upper connection points,
-    /// a neutral at the bottom along a step to the right of the device.
-    fn neutral_and_pe(&mut self, prj: &mut Project, ne: Option<P>, pr: Option<P>, x: f32, cable: &str) {
-        if let Some(q) = ne {
-            if q.x > x + 0.01 {
-                self.join(prj, 1, q, cable);
+    /// Joins the connection points `at` of a device in the column at `x` to the lines of
+    /// their conductors: from above when they are upper connection points, one at the
+    /// bottom (a neutral) along a step to the right of the device.
+    fn conductors(&mut self, prj: &mut Project, at: &[Option<P>], x: f32, cable: &str, cores: &[String]) {
+        let n = self.ys.len();
+        for (k, q) in at.iter().enumerate() {
+            let Some(q) = *q else { continue };
+            let core = core_of(cores, n, k);
+            if k == 0 || q.x > x + 0.01 {
+                self.join(prj, k, q, cable, &core);
             } else {
-                // At the bottom: down, to the right and up to the neutral line.
+                // At the bottom: down, to the right and up to the line.
                 let (down, side) = (p(q.x, q.y + 2.0 * GRID), p(x + 3.0 * GRID, q.y + 2.0 * GRID));
-                push_wire(prj, self.page, q, down, cable, CORES[1], true);
-                push_wire(prj, self.page, down, side, cable, CORES[1], true);
-                self.join(prj, 1, side, cable);
+                push_wire(prj, self.page, q, down, cable, &core, true);
+                push_wire(prj, self.page, down, side, cable, &core, true);
+                self.join(prj, k, side, cable, &core);
             }
-        }
-        if let Some(q) = pr {
-            self.join(prj, 2, q, cable);
         }
     }
 }

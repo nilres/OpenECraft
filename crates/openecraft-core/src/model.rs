@@ -1593,6 +1593,10 @@ pub struct TextItem {
     /// Lines are wrapped at this width in mm; 0 = no wrapping.
     #[serde(skip_serializing_if = "is_zero")]
     pub width: f32,
+    /// Width of the letters to their usual width (0.8: narrow lettering); see
+    /// [`TextItem::factor`].
+    #[serde(skip_serializing_if = "is_unit", default = "unit")]
+    pub width_factor: f32,
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub bold: bool,
     #[serde(skip_serializing_if = "std::ops::Not::not")]
@@ -1627,6 +1631,7 @@ impl Default for TextItem {
             align: crate::symbols::Anchor::Left,
             valign: VAnchor::Top,
             width: 0.0,
+            width_factor: 1.0,
             bold: false,
             italic: false,
             underline: false,
@@ -1636,6 +1641,25 @@ impl Default for TextItem {
             path_function: false,
         }
     }
+}
+
+impl TextItem {
+    /// The width factor of its letters, 1 when it is not one a text can have (see
+    /// [`WIDTH_FACTOR`]).
+    pub fn factor(&self) -> f32 {
+        Some(self.width_factor).filter(|f| WIDTH_FACTOR.contains(f)).unwrap_or(1.0)
+    }
+}
+
+/// The width factors a text can have.
+pub const WIDTH_FACTOR: std::ops::RangeInclusive<f32> = 0.1..=10.0;
+
+fn is_unit(v: &f32) -> bool {
+    *v == 1.0
+}
+
+fn unit() -> f32 {
+    1.0
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, Default)]

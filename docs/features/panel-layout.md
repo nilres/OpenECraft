@@ -623,7 +623,8 @@ angles to the edges of the sheet.
    two pieces). An opening whose two sides are joined anyway (a blot in a room) is
    none.
 5. *Rooms*: the free areas enclosed by the walls with the openings closed (those
-   reaching the edge of the sheet are outside), at least 1 m². Their outline: cut along
+   reaching the edge of the sheet are outside), at least 1 m² (*Smallest room*, command
+   parameter `min_room`, kept with the floor plan: a WC or a closet is smaller). Their outline: cut along
    the lines where the border runs for at least 150 mm, the cells of these cuts mostly
    inside the room make up the floor plan (walls at right angles, no step shorter than
    75 mm).
@@ -657,15 +658,42 @@ lengths of their cables are those of the 3D routing.
   `-EA1` lights, `-EB1` heating elements) with the part, drawn on the **installation
   page** of the protective device: a schematic page after the page of the protective
   device, made with its first device, whose outgoing connection point gets the
-  interruption point `L-F5` to it. The page draws the phase conductor from that
-  interruption point and the neutral and protective conductors from the potentials
-  `N-F5` and `PE-F5` as lines along its top, each device in a column below them, by room
-  in the order of the rooms, the lights of a room with a switch behind its first switch.
+  interruption point `L-F5` to it (a three-pole one `L1-F5` … `L3-F5` at its three
+  outgoing connection points). The page draws the phase conductors from those
+  interruption points and the neutral and protective conductors from the potentials
+  `N-F5` and `PE-F5` as lines along its top, each device in a column below them.
   Each device gets a cable `-W<n>` from the device before it (the first from the
-  protective device), its wires the cores (BN, BU, GNYE) of `NYM-J 3x1.5`, or thicker
-  where the protective device or a device of the circuit asks for more (current-carrying
-  capacity under the installation conditions). In a net whose wires belong to several
-  cables each connection takes the cable of the wires at its own connection points.
+  protective device, a light from the first switch of its room or the last light behind
+  it), or from the device or junction box chosen (*Cable from*; parameter `from`): a
+  circuit branches there. Its wires are the cores (BN, BU, GNYE; three-phase BN, BK, GY,
+  BU, GNYE) of `NYM-J 3x1.5` (`5x`), or thicker where the protective device or a device
+  of the circuit asks for more (current-carrying capacity under the installation
+  conditions). The cable keeps its source and target (`cable.source`, `cable.target`):
+  the connections of the circuit, the legs of the list and the ends of the 3D routes
+  follow them, the columns of the page the tree of the cables. In a net whose wires
+  belong to several cables each connection takes the cable of the wires at its own
+  connection points.
+- **Three-phase circuits**: a three-pole protective device feeds CEE socket outlets
+  (`GEN.SOCKET-CEE-16-5P`, `-32-5P`), cooker connection boxes (`GEN.CONN-BOX-COOKER-UP`)
+  and three-phase heating elements (`GEN.HEATER-SAUNA-9000`); a device with L2 or L3 is
+  refused on a single-phase circuit.
+- **Junction boxes and device connection boxes** (`GEN.JBOX-UP`, `GEN.JBOX-5-UP`,
+  `GEN.CONN-BOX-UP`; tab *Boxes*): a junction box is a device of the circuit the cables
+  of others come from; a device connection box feeds fixed equipment.
+- **Without a circuit**: data and antenna outlets (`GEN.DATA-RJ45-2X-UP`,
+  `GEN.TV-SAT-UP`) and smoke alarms (`GEN.SMOKE-ALARM`, on the ceiling) are placed in
+  the rooms only (`place_installation` without `breaker`), shown in the site plan and
+  listed with the items of the rooms.
+- **Outside the building**: a point outside the room puts the part on the outside of
+  its nearest wall (an outdoor socket, a facade light); devices in the garden go into
+  an outdoor area, a room placed outside the building (`place_on_level` without a
+  building).
+- **What `place_installation` takes besides**: the device tag (`tag`), the mounting
+  height (`height`, mm), the cable's tag, type, part, number of cores, cross-section
+  and a known length (`cable`, `cable_type`, `cable_part`, `cores`, `cross_section`,
+  `length`); a known length is kept (*Length known*, `cable.fixed_length`) and taken
+  instead of the 3D route. `place_cabinet_device` puts the protective devices into the
+  distribution board, which the circuits need for their lengths.
 - **In the 3D view and the wall views** (*Insert › Outlets, switches, heating*): the
   menu chooses the protective device at its top (or *None: not into the schematic*);
   the part picked is placed with a click on a wall or the ceiling of the room in the 3D

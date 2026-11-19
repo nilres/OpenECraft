@@ -4,6 +4,7 @@
 //! read from the schematic with their cable lengths (3D routing) and voltage drops
 //! ([`openecraft_core::installation`]).
 
+use crate::builtin::common::num_in;
 use crate::params::{optional, param, Args, Kind};
 use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
@@ -12,7 +13,7 @@ use openecraft_core::installation as inst;
 use openecraft_core::model::Project;
 use openecraft_core::netlist::Netlist;
 use openecraft_core::panel;
-use openecraft_i18n::{tr_const, tr_fmt};
+use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 
 pub struct Installation;
@@ -35,13 +36,22 @@ const Z: &str = tr_const!("z in the plant (towards the front) in mm");
 pub static COMMANDS: &[Spec] = &[
     Spec {
         name: "place_installation",
-        help: tr_const!("Puts a socket outlet, switch, light or heating element for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it"),
+        help: tr_const!("Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)"),
         params: &[
-            param("breaker", Kind::Str, BREAKER),
+            optional("breaker", Kind::Str, BREAKER),
             param("room", Kind::Str, ROOM),
-            param("part", Kind::Str, tr_const!("Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED")),
+            param("part", Kind::Str, tr_const!("Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P")),
             param("x", Kind::Num, X),
             param("z", Kind::Num, Z),
+            optional("from", Kind::Str, tr_const!("Device or junction box of the circuit the cable comes from (default: the device before it)")),
+            optional("tag", Kind::Str, tr_const!("Device tag (default: the room, the letter code of the kind and the next number)")),
+            optional("height", Kind::Num, tr_const!("Mounting height above the floor in mm (default: that of the part)")),
+            optional("cable", Kind::Str, tr_const!("Cable tag (default: the next free -W)")),
+            optional("cable_type", Kind::Str, tr_const!("Cable type (default: NYM-J for its cores and cross-section)")),
+            optional("cable_part", Kind::Str, tr_const!("Part number of the cable")),
+            optional("cores", Kind::Int, tr_const!("Number of cores of the cable (default: 3, three-phase 5)")),
+            optional("cross_section", Kind::Num, tr_const!("Cross-section of the cable in mm² (default: for the protective device)")),
+            optional("length", Kind::Num, tr_const!("Known length of the cable in m (taken instead of the 3D route)")),
         ],
         run: place_installation,
     },
@@ -136,12 +146,38 @@ fn placed_json(prj: &Project, tag: &str) -> Result<Value, String> {
 
 fn place_installation(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let ri = room_arg(prj, a)?;
-    let tag = inst::add_device(prj, a.req("breaker").trim(), a.req("part").trim(), ri, [a.num("x").unwrap_or(0.0), a.num("z").unwrap_or(0.0)])?;
+    let at = [a.num("x").unwrap_or(0.0), a.num("z").unwrap_or(0.0)];
+    let text = |k: &str| a.str(k).map(str::trim).filter(|v| !v.is_empty()).map(String::from);
+    let cores = match a.int("cores") {
+        Some(n) if !(1..=60).contains(&n) => return Err(tr("The number of cores must be from 1 to 60").to_string()),
+        n => n.map(|n| n as usize),
+    };
+    let opts = inst::Options {
+        from: text("from"),
+        tag: text("tag"),
+        cable: text("cable"),
+        cable_type: text("cable_type"),
+        cable_part: text("cable_part"),
+        cores,
+        mm2: num_in(a, "cross_section", 0.1, 1000.0)?,
+        length: num_in(a, "length", 0.0, 100_000.0)?,
+        height: num_in(a, "height", 0.0, 100_000.0)?,
+    };
+    let part = a.req("part").trim();
+    let Some(breaker) = text("breaker") else {
+        // Only into the room.
+        let id = inst::place_at(prj, ri, part, at, opts.height)?;
+        let e = &prj.layout.enclosures[ri];
+        let it = e.item(id).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", id))?;
+        return Ok(json!({ "id": id, "device": Value::Null, "part": it.part, "room": e.name, "face": panel::room_face_key(e, it.face), "x": it.x, "y": it.y }));
+    };
+    let tag = inst::add_device(prj, &breaker, part, ri, at, &opts)?;
     let mut out = placed_json(prj, &tag)?;
     let page = prj.pages.iter().find(|pg| prj.layout.installation_pages.contains(&pg.id) && pg.symbols.iter().any(|s| s.tag == tag)).map(|pg| pg.name.clone());
-    let cable = prj.cables.last().map(|c| c.tag.clone());
+    let cable = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|t| *t == tag));
     out["page"] = json!(page);
-    out["cable"] = json!(cable);
+    out["cable"] = json!(cable.map(|c| c.tag.clone()));
+    out["from"] = json!(cable.and_then(|c| c.values.get("cable.source").cloned()));
     Ok(out)
 }
 

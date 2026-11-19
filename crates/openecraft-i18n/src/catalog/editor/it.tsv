@@ -221,6 +221,7 @@ Bottom left	In basso a sinistra
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Bordo inferiore dell'armadio (senza zoccolo) dal pavimento; le altezze vengono verificate se è noto o se l'armadio poggia su uno zoccolo
 Bottom right	In basso a destra
 Boundary	Confine
+Boxes	Scatole
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Potere di interruzione rispetto alla corrente di cortocircuito di ogni dispositivo di protezione della rete, interruzione alla corrente di guasto minima alla fine del suo circuito, tenuta al cortocircuito dei cavi e selettività con il dispositivo a monte.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Ponte: quattro conduttori; il collegamento entra da un lato e va agli altri tre, prima al lato opposto
 Building {} added with a level at ground level	Edificio {} aggiunto con un piano al livello del suolo
@@ -246,6 +247,7 @@ Cable definition on page {}	Definizione cavo a pagina {}
 Cable definition: draw a line across the wires that are cores of a cable	Definizione cavo: traccia una linea attraverso i conduttori che sono anime di un cavo
 Cable end reserve	Riserva per estremità cavo
 Cable ends	Estremità del cavo
+Cable from	Cavo da
 Cable markers	Marcatori cavo
 Cable passage to {}	Passaggio cavi verso {}
 Cable {}: {} cores assigned	Cavo {}: {} anime assegnate
@@ -997,6 +999,7 @@ Joins	Collega
 Joins wire pieces in a line where nothing else connects (current page)	Unisce i tratti di conduttore in linea dove non è collegato nient'altro (pagina corrente)
 Jumper {}	Ponticello {}
 Jumps over the other:	Salta sopra l'altro:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Scatole di derivazione, scatole di collegamento per apparecchi fissi e rilevatori di fumo
 K, Q, MM …	K, Q, MM …
 Keep connections	Mantieni collegamenti
 Keep sub-pages (3.a, 3.1) with the page before	Mantieni le sottopagine (3.a, 3.1) con la pagina precedente
@@ -1757,6 +1760,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Locale aggiunto: trascina le sue pareti o disegnane di nuove nella pianta, inserisci gli armadi nelle loro proprietà
 Room {} now stands on level {}	Il locale {} ora si trova al piano {}
 Room {} taken out of the building; it stays where it stands	Locale {} tolto dall'edificio; resta dove si trova
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	I locali trovati più piccoli vengono omessi (un WC o un ripostiglio può essere più piccolo di 1 m²)
 Rooms under sloped ceilings (lowest – highest ceiling)	Locali sotto soffitti inclinati (soffitto più basso – più alto)
 Rotate	Ruota
 Rotate (selection or symbol being placed)	Ruota (selezione o simbolo in fase di posizionamento)
@@ -1963,6 +1967,7 @@ Slot depth	Profondità della traccia
 Slots	Slot
 Smallest cross-section of control circuits	Sezione minima dei circuiti di comando
 Smallest cross-section of power circuits	Sezione minima dei circuiti di potenza
+Smallest room	Locale più piccolo
 Socket outlets, data and antenna outlets	Prese di corrente, dati e antenna
 Solid	Continuo
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Alcune tue modifiche non sono state accettate dal server di progetto. La tua versione resta nel pannello Server di progetto, anche dopo averle scartate.
@@ -2093,6 +2098,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	La copia viene creata dallo stato salvato sul server di progetto. Le modifiche che altri utenti non hanno ancora salvato non ne fanno parte. Sessioni, blocchi e diritti di accesso non vengono copiati; l'originale resta com'è.
 The crossed wires get free cores of the cable in order	I conduttori attraversati ricevono in ordine le anime libere del cavo
 The current page belongs to option {}.	La pagina corrente appartiene all'opzione {}.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	L'apparecchio o la scatola di derivazione del circuito da cui parte il cavo del prossimo apparecchio: lì il circuito si dirama
 The devices do not fit onto the rail	I dispositivi non entrano sulla guida
 The dictionary is empty: collect the texts from the project.	Il dizionario è vuoto: raccogli i testi dal progetto.
 The door seen from the front: door devices and cutouts	La porta vista dal fronte: dispositivi sulla porta e aperture
@@ -2278,6 +2284,8 @@ Whole building	Edificio intero
 Whole words	Parole intere
 Width / going	Larghezza / pedata
 Width / height (mm)	Larghezza / altezza (mm)
+Width factor	Fattore di larghezza
+Width of the letters to their usual width (0.8: narrow lettering)	Larghezza delle lettere rispetto alla loro larghezza abituale (0,8: scrittura stretta)
 Width × depth	Larghezza × profondità
 Width × height	Larghezza × altezza
 Width × height (mm)	Larghezza × altezza (mm)
@@ -2415,6 +2423,7 @@ set on the device	impostato sul dispositivo
 sloped ceiling from {} m	soffitto inclinato da {} m
 some	alcuni
 taken over	acquisito
+the device before it	l'apparecchio precedente
 the project data (page list, devices, settings)	i dati del progetto (elenco pagine, dispositivi, impostazioni)
 then	allora
 unknown	sconosciuta

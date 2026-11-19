@@ -21,6 +21,24 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   wires at its connection points. Commands `place_installation`, `list_circuits`,
   `place_circuit_device`, `write_circuit_cables`
   ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
+- **Installation of a house:** circuits branch at junction boxes (each device's cable
+  comes from the device chosen, *Cable from*, `from`; the cable keeps its source and
+  target, which its connections and 3D route follow), three-pole protective devices
+  feed CEE socket outlets, cooker connection boxes and three-phase heaters, data and
+  antenna outlets and smoke alarms are placed without a circuit, a point outside a room
+  puts the device on the outside of its wall, and `place_installation` takes the device
+  tag, mounting height and the cable's tag, type, part, cores, cross-section and a known
+  length. `place_cabinet_device` puts a device into a distribution board with the size of
+  its part. CEE socket outlets, junction box lids, device connection boxes, smoke
+  alarms and sauna heaters have their own 3D models. Fixed: with two or more devices on a breaker the first cable was missing
+  from the circuit and its cores were counted on the next one; a residual current
+  device behind a feeder counted as protecting the feeder and all its other circuits.
+- **Smaller rooms from floor plans on paper:** *Smallest room* (`min_room`) sets the
+  smallest room kept by the detection (1 m² before: a WC or a closet was lost).
+- **Narrow lettering:** texts have a width factor, drawn so on screen and in the SVG,
+  PDF and DXF / DWG exports (`add_text`, `update_text` with `width_factor`).
+- **Coloured frame artwork:** a coloured logo in the artwork of a plot frame keeps its
+  colours.
 - **Lights and heaters in 3D:** ceiling lights, downlights, wall, panel and emergency
   lights, panel heaters, towel radiators and infrared heating panels get generated 3D
   models instead of plain boxes.

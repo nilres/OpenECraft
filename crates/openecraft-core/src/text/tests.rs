@@ -107,3 +107,26 @@ fn path_function_text_applies_to_the_functions_of_its_column() {
     assert_eq!(row("-K1"), "Pump 1");
     assert_eq!(row("-K2"), "own");
 }
+
+/// Narrow lettering: the text covers less width and wraps later; the exports draw it
+/// narrow (SVG scale, PDF horizontal scaling, DXF width factor).
+#[test]
+fn narrow_lettering_with_a_width_factor() {
+    let t = TextItem { pos: p(20.0, 20.0), text: "Narrow lettering".into(), size: 3.0, ..Default::default() };
+    let narrow = TextItem { width_factor: 0.5, ..t.clone() };
+    let (w, wn) = (bounds(&t, &t.text).width(), bounds(&narrow, &narrow.text).width());
+    assert!((wn - w / 2.0).abs() < 0.01, "{w} {wn}");
+    let wrapped = TextItem { width: est_width("Narrow", 3.0) + 1.0, ..t.clone() };
+    assert_eq!(lines(&wrapped, &wrapped.text).len(), 2);
+    assert_eq!(lines(&TextItem { width_factor: 0.4, ..wrapped }, &t.text).len(), 1);
+    assert_eq!(TextItem { width_factor: 0.0, ..t.clone() }.factor(), 1.0, "not a width factor");
+    // Stored only when not 1.
+    assert!(!serde_json::to_string(&t).unwrap().contains("width_factor"));
+    let back: TextItem = serde_json::from_str(&serde_json::to_string(&narrow).unwrap()).unwrap();
+    assert_eq!(back.width_factor, 0.5);
+    let mut prj = Project::default();
+    prj.pages[0].texts.push(narrow);
+    assert!(crate::svg::page_svg(&prj, 0).contains("scale(0.500 1)"));
+    assert!(crate::dxf::pages_dxf(&prj, &[0]).contains("\n41\n0.500\n"));
+    assert!(crate::pdf::document(&prj).contains("50.0 Tz"));
+}

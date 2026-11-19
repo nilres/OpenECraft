@@ -68,6 +68,7 @@ Analog input module	Модуль аналогових входів
 Analog output module	Модуль аналогових виходів
 Analysis	Аналіз
 Another section here has this number	Інший розділ тут уже має цей номер
+Antenna outlet	Антенна розетка
 Apparent power (kVA)	Повна потужність (kVA)
 Applied directives	Застосовані директиви
 Approval date	Дата затвердження
@@ -343,6 +344,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	Кола керуван
 DC control circuits should be blue (NFPA 79, 13.2.4)	Кола керування постійного струму мають бути синіми (NFPA 79, 13.2.4)
 DC/DC converter	Перетворювач DC/DC
 DWG export failed: {}	Помилка експорту DWG: {}
+Data outlet	Розетка передачі даних
 Data sheet	Технічний паспорт
 Date of the approval of the last revision	Дата затвердження останньої зміни
 Date of the last revision	Дата останньої ревізії
@@ -359,6 +361,7 @@ Description of the last revision	Опис останньої ревізії
 Description of the page's function (structure management)	Опис функції сторінки (керування структурою)
 Description of the page's location (structure management)	Опис розташування сторінки (керування структурою)
 Designer	Конструктор
+Device connection box	Приєднувальна коробка приладу
 Device connection diagram	Схема підключення пристроїв
 Device data of {} without symbol or panel item	Дані пристрою {} без символу чи елемента компонування
 Device description file	Файл опису пристрою
@@ -647,6 +650,7 @@ Hazardous area zone	Вибухонебезпечна зона
 Heat exchanger	Теплообмінник
 Heating (W)	Обігрів (W)
 Heating element	Нагрівальний елемент
+Heating element three-phase	Нагрівальний елемент трифазний
 Higher-level product (-)	Виріб вищого рівня (-)
 Higher-level product of the page	Виріб вищого рівня сторінки
 Highest (°C)	Максимум (°C)
@@ -777,6 +781,7 @@ Left side panel	Ліва бічна стінка
 Legend plate text	Текст таблички
 Length (m)	Довжина (м)
 Length (mm)	Довжина (мм)
+Length known (not calculated)	Довжина відома (не розрахована)
 Letter landscape	Letter альбомна
 Letters (A, B, C)	Літери (A, B, C)
 Level switch	Сигналізатор рівня
@@ -1478,7 +1483,9 @@ Size (mm)	Розмір (мм)
 Skipped	Пропущено
 Sliding to the left	Розсувна вліво
 Sliding to the right	Розсувна вправо
+Smoke alarm	Димовий сповіщувач
 Socket outlet	Штепсельна розетка
+Socket outlet three-phase	Штепсельна розетка трифазна
 Socket side (female)	Бік гнізд (розетка)
 Soft starter	Пристрій плавного пуску
 Solar charge controller	Сонячний контролер заряду
@@ -1606,6 +1613,7 @@ The archive unpacks to more than {} MB	Архів розпаковується �
 The archive was written by a newer version (archive version {})	Архів записано новішою версією (версія архіву {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Слід вказати виробника комплектного пристрою (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Ряд шаф у своєму приміщенні: Г-подібний план, внутрішня стіна, двері та вікно, ряд шаф на своєму місці, рейка з розеткою на стіні, настінний аварійний світильник і кабельний лоток під стелею.
+The cable of {} needs at least {} cores	Кабелю {} потрібно щонайменше {} жил
 The configuration is not a JSON object	Конфігурація не є об’єктом JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Конвеєр після першого випуску: випущена та заблокована ревізія, позначені відтоді зміни, коментарі перевірки з червоними позначками, запит на зміну, ревізія B у процесі погодження та базова версія для порівняння.
 The coordinates of the reference point must be numbers	Координати опорної точки мають бути числами
@@ -1951,19 +1959,23 @@ yellow	жовтий
 {} has no MTTFd, B10d, PL or PFHd	{} не має MTTFd, B10d, PL або PFHd
 {} has no door or window {}	{} не має дверей чи вікна {}
 {} has nothing to manufacture	{} не має що виготовляти
+{} has three phases: it needs a three-phase protective device	{} має три фази: йому потрібен трифазний захисний пристрій
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} містить нерозв'язаний конфлікт злиття git: файл було об'єднано як текст. Візьміть одну версію файлу (git checkout --ours або --theirs), потім налаштуйте драйвер злиття для розділених проєктів (merge_project_file) перед повторним злиттям
 {} is a built-in function definition	{} – вбудоване визначення функції
 {} is a built-in property	{} – вбудована властивість
 {} is a built-in scheme	{} – вбудована схема
 {} is a busbar machine and makes no sheets	{} – верстат для обробки шин і не виготовляє листові деталі
+{} is neither the protective device nor a device of the circuit of {}	{} не є ні захисним пристроєм, ні пристроєм кола {}
 {} is not a busbar machine	{} не є верстатом для обробки шин
 {} is not a property of {}	{} не є властивістю {}
 {} is not an approver of this project	{} не є погоджувачем цього проєкту
+{} is not connected to the mains: place it without a protective device	{} не підключається до мережі: розмістіть його без захисного пристрою
 {} is not placed in the plant layout	{} не розміщено на плані установки
 {} is on page {}, which is released: renaming it would change the page	{} розташовано на сторінці {}, яку затверджено: перейменування змінило б сторінку
 {} is placed at the missing node {}	{} розміщено у відсутньому вузлі {}
 {} is planned twice ({} and {})	{} заплановано двічі ({} і {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} селективний щодо {} лише до {} A (струм короткого замикання {} A)
+{} is used already	{} уже використовується
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} зберігає свою структуру: його головні функції знаходяться в різних рамках структури ({})
 {} keeps its structure: {} exists already	{} зберігає свою структуру: {} вже існує
 {} lies outside page {}	{} знаходиться поза сторінкою {}

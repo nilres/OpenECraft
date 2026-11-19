@@ -219,6 +219,7 @@ Bottom left	左下
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	床面からのエンクロージャー下端の高さ (台座を除く)。この値が既知の場合、またはエンクロージャーが台座に設置されている場合に高さがチェックされます
 Bottom right	右下
 Boundary	境界
+Boxes	ボックス
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	電源系統の各保護機器における短絡電流に対する遮断容量、回路末端の最小故障電流での遮断、ケーブルの短絡耐量、上位機器との選択遮断。
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	ブリッジ：4本の接続線。接続は一方の側から入り、他の3方向へ、まず反対側へ向かいます
 Building {} added with a level at ground level	地上階 1 つで建物 {} を追加しました
@@ -244,6 +245,7 @@ Cable definition on page {}	ページ {} のケーブル定義
 Cable definition: draw a line across the wires that are cores of a cable	ケーブル定義: ケーブルの心線となる電線を横切る線を描画します
 Cable end reserve	ケーブル端の余長
 Cable ends	ケーブル端末
+Cable from	ケーブルの接続元
 Cable markers	ケーブルマーカー
 Cable passage to {}	{} へのケーブル貫通口
 Cable {}: {} cores assigned	ケーブル {}: {} 本の心線を割り当てました
@@ -985,6 +987,7 @@ Join collinear wires	一直線上の電線を結合
 Joins wire pieces in a line where nothing else connects (current page)	他に何も接続されていない一直線上の電線部分を結合します (現在のページ)
 Jumper {}	ジャンパー {}
 Jumps over the other:	もう一方を越える:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	ジャンクションボックス、固定機器用の接続ボックスと煙感知器
 K, Q, MM …	K、Q、MM …
 Keep connections	接続を保持
 Keep sub-pages (3.a, 3.1) with the page before	サブページ (3.a、3.1) を前のページと一緒に維持
@@ -1735,6 +1738,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	部屋を追加しました: 平面図で壁をドラッグするか新しい壁を描き、キャビネットはそのプロパティで部屋に入れます
 Room {} now stands on level {}	部屋 {} はフロア {} にあります
 Room {} taken out of the building; it stays where it stands	部屋 {} を建物から外しました。位置はそのままです
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	これより小さい部屋は除外されます（トイレや物置は 1 m² 未満の場合があります）
 Rooms under sloped ceilings (lowest – highest ceiling)	傾斜天井の下の部屋 (最低 – 最高の天井)
 Rotate	回転
 Rotate (selection or symbol being placed)	回転 (選択内容または配置中のシンボル)
@@ -1938,6 +1942,7 @@ Slot depth	溝の深さ
 Slots	スロット
 Smallest cross-section of control circuits	制御回路の最小断面積
 Smallest cross-section of power circuits	動力回路の最小断面積
+Smallest room	最小の部屋
 Socket outlets, data and antenna outlets	コンセント、データおよびアンテナコンセント
 Solid	実線
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	一部の変更はプロジェクトサーバーに取り込まれませんでした。破棄した後も、あなたの版はプロジェクトサーバーのペインに残ります。
@@ -2068,6 +2073,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	コピーはプロジェクトサーバーに保存されている状態から作成されます。他のユーザーがまだ保存していない変更は含まれません。セッション、ロック、アクセス権はコピーされません。元のプロジェクトはそのままです。
 The crossed wires get free cores of the cable in order	横切った電線にケーブルの空き心線が順番に割り当てられます
 The current page belongs to option {}.	現在のページはオプション {} に属しています。
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	次の機器のケーブルの接続元となる回路の機器またはジャンクションボックス：回路はそこで分岐します
 The devices do not fit onto the rail	デバイスがレールに収まりません
 The dictionary is empty: collect the texts from the project.	辞書が空です: プロジェクトからテキストを収集してください。
 The door seen from the front: door devices and cutouts	前面から見た扉: 扉取付機器と切り欠き
@@ -2252,6 +2258,8 @@ Whole building	建物全体
 Whole words	単語単位
 Width / going	幅 / 踏面
 Width / height (mm)	幅 / 高さ (mm)
+Width factor	幅係数
+Width of the letters to their usual width (0.8: narrow lettering)	通常の幅に対する文字の幅（0.8：細い文字）
 Width × depth	幅 × 奥行
 Width × height	幅 × 高さ
 Width × height (mm)	幅 × 高さ (mm)
@@ -2387,6 +2395,7 @@ set on the device	デバイスで設定
 sloped ceiling from {} m	{} m からの傾斜天井
 some	一部
 taken over	反映済み
+the device before it	前の機器
 the project data (page list, devices, settings)	プロジェクトデータ (ページリスト、デバイス、設定)
 then	結果
 unsaved	未保存
