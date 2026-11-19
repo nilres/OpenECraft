@@ -175,6 +175,25 @@
         }
     }
 
+    // What the build of the site knows (build.js): the screen recording of the first
+    // screen and the numbers of the project, each shown only when there is one.
+    function extras() {
+        const build = window.OPENECRAFT_BUILD || {};
+        const tour = $("#tour");
+        if (tour && build.tour) {
+            const video = $("video", tour);
+            video.src = build.tour;
+            if (build.poster) video.poster = build.poster;
+            tour.hidden = false;
+        }
+        for (const name of ["stars", "contributors"]) {
+            const fact = $("#fact-" + name);
+            if (!fact || !(build[name] > 0)) continue;
+            $("b", fact).textContent = build[name];
+            fact.hidden = false;
+        }
+    }
+
     function translate() {
         for (const e of $$("[data-t]")) {
             e.dataset.t ||= e.textContent.trim();
@@ -507,6 +526,47 @@
         setTimeout(go, 250);
     }
 
+    // ---- links into the demos ------------------------------------------------------------
+
+    // A link says what the demos show: ?example=conveyor&page=3#studio opens the
+    // example at its third page, &place=1&view=front#layout a mounting plate,
+    // &report=terminal_diagram#reports a report. "Copy link" writes such links.
+    function linked() {
+        const wish = new URLSearchParams(location.search);
+        const quiet = (method, arg) => {
+            try {
+                call(method, arg);
+            } catch (e) { /* a link to something this build does not have */ }
+        };
+        if (wish.get("example")) quiet("open", wish.get("example"));
+        if (wish.get("page") > 0) quiet("page", wish.get("page") - 1);
+        if (wish.get("place")) quiet("place", wish.get("place"));
+        if (wish.get("view")) quiet("view", wish.get("view"));
+        if (wish.get("report")) report = wish.get("report");
+    }
+
+    // The link to what a demo shows now, into the clipboard. It opens the example as
+    // it comes: what the visitor changed is not part of it.
+    function share(button) {
+        if (!state) return;
+        const section = button.dataset.share;
+        const wish = new URLSearchParams({ example: state.example });
+        if (section === "studio") wish.set("page", state.page + 1);
+        if (section === "layout") {
+            wish.set("place", state.place);
+            wish.set("view", state.view);
+        }
+        if (section === "reports" && report) wish.set("report", report);
+        const link = `${location.origin}${location.pathname}?${wish}#${section}`;
+        const done = () => {
+            button.textContent = t("Link copied");
+            setTimeout(() => button.textContent = t(button.dataset.t), 2000);
+        };
+        const ask = () => prompt(t("Copy this link:"), link);
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(done, ask);
+        else ask();
+    }
+
     // ---- examples, reports, exports, languages ---------------------------------------
 
     function loadExamples() {
@@ -631,6 +691,7 @@
         pages(code);
         for (const b of $$("[data-language]")) b.classList.toggle("on", b.dataset.language === code);
         translate();
+        for (const b of $$("[data-share]")) b.title = t("A link that opens this example at this place. Your changes are not part of it.");
         loadExamples();
         loadReports();
         loadExports();
@@ -709,6 +770,7 @@
         for (const b of $$("[data-view-mode]")) b.addEventListener("click", () => act("view", b.dataset.viewMode));
         for (const b of $$("[data-call]")) b.addEventListener("click", () => act(b.dataset.call));
         for (const b of $$("[data-line]")) b.addEventListener("click", () => run(b.dataset.line));
+        for (const b of $$("[data-share]")) b.addEventListener("click", () => share(b));
         $("#language").addEventListener("change", e => setLanguage(e.target.value));
         $("#place").addEventListener("change", e => {
             act("place", e.target.value);
@@ -754,6 +816,8 @@
             load();
         };
         for (const use of uses) addEventListener(use, start, { passive: true });
+        // A link into the demos (?example=…) wants them at once.
+        if (location.search.length > 1) return start();
         // A section of the demos asked for at once; a dialog (#privacy) needs no module.
         const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
         if (location.hash && !(target && target.tagName === "DIALOG")) return start();
@@ -777,6 +841,7 @@
                 lang = pageLang;
             } catch (e) { /* a language the module does not have */ }
         }
+        linked();
         localized(lang);
         if (wanted) activate(wanted);
         print(t("These are the commands of the command line and the MCP server, run on the project of the demo above."), "dim");
@@ -790,6 +855,7 @@
     languagePages();
     menu();
     legal();
+    extras();
     reveal();
     whenNeeded();
 })();

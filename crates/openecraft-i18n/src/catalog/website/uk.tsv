@@ -5,19 +5,38 @@
 A click in a room puts them on the nearest wall at their mounting height or on the ceiling, drawn with the symbols of installation plans after IEC 60617-11.	Клацання в приміщенні ставить їх на найближчу стіну на їхній висоті монтажу або на стелю, і вони малюються символами планів електроустановки за IEC 60617-11.
 A command line, an MCP server for AI agents and plugins in any language add checks, reports, exports and commands.	Командний рядок, сервер MCP для ШІ-агентів і плагіни будь-якою мовою додають перевірки, звіти, експорт і команди.
 A community project for many years	Проєкт спільноти вже багато років
+A free, open source alternative to AutoCAD Electrical	Безкоштовна альтернатива AutoCAD Electrical з відкритим вихідним кодом
+A free, open source alternative to EPLAN Electric P8	Безкоштовна альтернатива EPLAN Electric P8 з відкритим вихідним кодом
+A free, open source alternative to SEE Electrical	Безкоштовна альтернатива SEE Electrical з відкритим вихідним кодом
+A free, open source alternative to WSCAD	Безкоштовна альтернатива WSCAD з відкритим вихідним кодом
+A link that opens this example at this place. Your changes are not part of it.	Посилання, яке відкриває цей приклад у цьому місці. Ваші зміни до нього не входять.
 A look inside	Погляд зсередини
+A minute with OpenECraft: from the schematic to the panel in 3D	Хвилина з OpenECraft: від схеми до шафи в 3D
 A parts database with mounting data and 3D models, imports from EDZ, BMEcat and STEP, shared through the parts server.	База виробів із монтажними даними та 3D-моделями, імпорт з EDZ, BMEcat і STEP, спільний доступ через сервер виробів.
 A scan or PDF of the drawing goes under a level, to scale by measuring one dimension. Find rooms detects the walls, doors and windows, Make rooms turns them into rooms.	Скан або PDF креслення розміщується під поверхом і масштабується вимірюванням одного розміру. Знайти приміщення розпізнає стіни, двері та вікна, Створити приміщення перетворює їх на приміщення.
 A schematic page of the demo project, drawn by OpenECraft	Сторінка схеми демонстраційного проєкту, намальована OpenECraft
 A tutorial from the first page	Навчальний посібник з першої сторінки
 About 330 IEC 60617 symbols, NFPA, GB, GOST and JIS sets, fluid power, P&ID and installation plans, and an editor for your own symbols.	Близько 330 символів IEC 60617, набори NFPA, GB, ГОСТ і JIS, гідропневматика, P&ID і плани встановлення, а також редактор власних символів.
+All documents in the repository	Усі документи в репозиторії
 All of it is in the current release and described in the documentation.	Усе це є в поточній версії та описано в документації.
+Answers about OpenECraft: is it free, where does it run, can it read EPLAN and DWG data, does it work offline, and is it ready for real projects?	Відповіді про OpenECraft: чи він безкоштовний, де працює, чи читає дані EPLAN і DWG, чи працює офлайн і чи готовий до реальних проєктів?
 At a glance	Коротко
+AutoCAD Electrical adds electrical controls design to AutoCAD. OpenECraft is a program of its own for the same work: device-oriented schematics, reports and the panel in 3D, free and on any operating system. It is young, and this page says where.	AutoCAD Electrical додає до AutoCAD проєктування електричних систем керування. OpenECraft – окрема програма для тієї самої роботи: схеми, орієнтовані на пристрої, звіти та шафа в 3D, безкоштовно й у будь-якій операційній системі. Він молодий, і ця сторінка каже, у чому саме.
+Autodesk, AutoCAD and DWG are trademarks of Autodesk, Inc. OpenECraft is not affiliated with Autodesk.	Autodesk, AutoCAD і DWG є торговельними марками Autodesk, Inc. OpenECraft не пов’язаний з Autodesk.
 Before you switch	Перш ніж перейти
 Bill of materials, terminal, cable and plug diagrams as live pages, own drawn forms and a project check that follows every change.	Специфікація, схеми клем, кабелів і штекерів у вигляді оновлюваних сторінок, власні намальовані форми та перевірка проєкту, яка стежить за кожною зміною.
+Both are free and open source. QElectroTech is a long-standing program for drawing electrical schematics. OpenECraft is younger and device-oriented: the schematic is a model that writes the reports, checks itself and carries on into the panel layout.	Обидві програми безкоштовні й мають відкритий вихідний код. QElectroTech – давно відома програма для креслення електричних схем. OpenECraft молодший і орієнтований на пристрої: схема є моделлю, яка формує звіти, перевіряє себе та продовжується в компонуванні шафи.
+Browse the symbols	Переглянути символи
 Building installation	Електроустановки будівель
 Built for scripts and AI agents	Створено для скриптів і ШІ-агентів
 Cable length and voltage drop	Довжина кабелю та спад напруги
+Calculate	Обчислити
+Calculate the voltage drop	Обчислити спад напруги
+Can OpenECraft open EPLAN projects?	Чи може OpenECraft відкривати проєкти EPLAN?
+Can scripts and AI agents work with OpenECraft?	Чи можуть скрипти та ШІ-агенти працювати з OpenECraft?
+Categories	Категорії
+Choose Insert as report page to put the diagram into the project. The pages update when the schematic changes.	Виберіть «Вставити як сторінку звіту», щоб додати схему клем до проєкту. Сторінки оновлюються, коли змінюється схема.
+Choose a file first	Спочатку виберіть файл
 Circuits as a single-line diagram	Кола у вигляді однолінійної схеми
 Click to explore the panel	Клацніть, щоб оглянути шафу
 Click to work in the editor	Клацніть, щоб працювати в редакторі
@@ -30,32 +49,75 @@ Commercial, proprietary	Комерційна, пропрієтарна
 Comparison	Порівняння
 Concepts: devices with tags, structure identifiers after IEC 81346, cross references, macros and generated report pages, as in other device-oriented tools.	Принципи: пристрої з позначеннями, структурні позначення за IEC 81346, перехресні посилання, макроси та створювані сторінки звітів, як в інших інструментах, орієнтованих на пристрої.
 Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.	Вибір перерізів провідників, коротке замикання та селективність, розрахунок навантажень, ЕМС і функції безпеки за ISO 13849-1.
+Copy link	Копіювати посилання
+Copy this link:	Скопіюйте це посилання:
+Cost and license	Вартість і ліцензія
 Cost of use	Вартість використання
+Create a bill of materials	Створити специфікацію
+Create a terminal diagram	Створити схему клем
+Create a terminal diagram from a schematic with OpenECraft, the free electrical CAE: place terminals, order the strip and insert the diagram as a page.	Створіть схему клем зі схеми в OpenECraft, безкоштовній електротехнічній CAE: розмістіть клеми, впорядкуйте колодку та вставте схему клем як сторінку.
+Create the bill of materials of a control cabinet with OpenECraft: assign parts to the devices and the list sums them, with terminals, cables and panel material.	Створіть специфікацію шафи керування в OpenECraft: призначте вироби пристроям, і перелік підсумує їх разом із клемами, кабелями та матеріалами шафи.
+Cross-section (mm²)	Переріз (мм²)
+Customers and mechanical designers often ask for drawings in their CAD format. OpenECraft writes its pages as DXF or DWG, and reads such drawings as well.	Замовники та інженери-механіки часто просять креслення у форматі своєї CAD-системи. OpenECraft записує свої сторінки як DXF або DWG, а також читає такі креслення.
+DXF and DWG export	Експорт DXF і DWG
+DXF and DWG viewer	Переглядач DXF і DWG
+DXF and DWG viewer and converter	Переглядач і конвертер DXF і DWG
+DXF and DWG viewer and converter online – OpenECraft	Переглядач і конвертер DXF і DWG онлайн – OpenECraft
 Data exchange	Обмін даними
+Data exchange in the documentation	Обмін даними в документації
 Device-oriented electrical engineering; panel layout in 3D, fluid power and more as further products of the EPLAN platform	Електропроєктування, орієнтоване на пристрої; компонування шафи в 3D, гідропневматика та інше як окремі продукти платформи EPLAN
 Device-oriented schematics	Схеми, орієнтовані на пристрої
 Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings.	Пристрої в натуральну величину на рейках і панелях, віртуальний монтаж проводів із заповненням каналів, дані свердління, клімат шафи, приміщення та будівлі.
 Distribution boards	Розподільчі щити
+Does OpenECraft work offline?	Чи працює OpenECraft офлайн?
+Download the PDF	Завантажити PDF
 Download the latest release	Завантажити останню версію
 Drag to turn, pinch with two fingers to zoom.	Перетягування обертає, зведення двох пальців масштабує.
 Drag to turn, scroll to zoom.	Перетягування обертає, прокручування масштабує.
+Draw the schematic and give the potentials their wire colour and cross-section in Connections › Potentials.	Накресліть схему та задайте потенціалам колір проводу й переріз у З’єднання › Потенціали.
+Drawing (DXF or DWG)	Креслення (DXF або DWG)
 Drawing electrical schematics with a collection of symbols	Креслення електричних схем із набором символів
 Drawings: DXF and DWG files are imported as graphics on a schematic page, and every page can be exported as DXF or DWG.	Креслення: файли DXF і DWG імпортуються як графіка на сторінку схеми, і кожну сторінку можна експортувати у DXF або DWG.
+Drawn by the SVG export of OpenECraft, as the project comes.	Накреслено SVG-експортом OpenECraft, у тому вигляді, в якому проєкт постачається.
+EDZ and parts file viewer	Переглядач файлів EDZ і файлів виробів
+EDZ archives as manufacturers offer them for download, with the data of their parts.	Архіви EDZ, які виробники пропонують для завантаження, з даними їхніх виробів.
+EDZ viewer: open EDZ and parts files online – OpenECraft	Переглядач EDZ: відкрити файли EDZ і виробів онлайн – OpenECraft
+EPLAN Electric P8 is the established tool of control panel engineering. OpenECraft works in the same device-oriented way, costs nothing and runs on any operating system and in the browser. It is young, and this page says where.	EPLAN Electric P8 – визнаний інструмент проєктування шаф керування. OpenECraft працює так само, з орієнтацією на пристрої, нічого не коштує та працює в будь-якій операційній системі й у браузері. Він молодий, і ця сторінка каже, у чому саме.
 EPLAN and EPLAN Electric P8 are trademarks of EPLAN GmbH & Co. KG. Autodesk, AutoCAD and AutoCAD Electrical are trademarks of Autodesk, Inc. QElectroTech is the name of an independent open source project.	EPLAN і EPLAN Electric P8 є торговельними марками EPLAN GmbH & Co. KG. Autodesk, AutoCAD і AutoCAD Electrical є торговельними марками Autodesk, Inc. QElectroTech є назвою незалежного проєкту з відкритим вихідним кодом.
+EPLAN is a trademark of EPLAN GmbH & Co. KG. OpenECraft is not affiliated with EPLAN.	EPLAN є торговельною маркою EPLAN GmbH & Co. KG. OpenECraft не пов’язаний з EPLAN.
+EPLAN parts XML, BMEcat catalogs and the CSV and JSON parts files of OpenECraft.	XML виробів EPLAN, каталоги BMEcat і файли виробів OpenECraft у форматах CSV та JSON.
 Each example builds on the one before: from push buttons and lamps through a self-holding relay and a star-delta starter to PLC, panel layout and whole buildings.	Кожен приклад спирається на попередній: від кнопок і ламп через реле із самоутриманням і пуск зірка-трикутник до ПЛК, компонування шафи та цілих будівель.
+Electrical CAD for schematics, cabinet layouts and building installation	Електротехнічна CAD для схем, компонування шаф та електроустановок будівель
+Electrical CAD with disciplines for control cabinets, building automation and electrical installation	Електротехнічна CAD з дисциплінами для шаф керування, автоматизації будівель та електромонтажу
 Electrical controls design as a toolset of AutoCAD	Проєктування електричних систем керування як набір інструментів AutoCAD
+Electrical symbols for schematics	Електричні символи для схем
+Electrical symbols for schematics – OpenECraft	Електричні символи для схем – OpenECraft
 Electricians	Електромонтажники
 Enclosure climate with a heat map of the mounting plate	Клімат шафи з тепловою картою монтажної панелі
 Engineering calculations	Інженерні розрахунки
+Established for many years	Застосовується багато років
 Established for many years, widely used by AutoCAD users	Застосовується багато років, широко поширений серед користувачів AutoCAD
 Established for many years, widely used in control panel engineering	Застосовується багато років, широко поширений у проєктуванні шаф керування
 Every circuit starts at a protective device of the distribution board, the spare ones marked, and runs through its cable from item to item.	Кожне коло починається від захисного пристрою розподільчого щита, резервні позначено, і проходить своїм кабелем від елемента до елемента.
+Every function is a command of the command line and of the MCP server, so scripts and AI agents can do what you can.	Кожна функція є командою командного рядка та сервера MCP, тож скрипти й ШІ-агенти можуть робити те саме, що й ви.
 Every operation on a project is a command: on the command line, for AI agents through the MCP server, and for plugins. Try some on the project above.	Кожна операція над проєктом — це команда: у командному рядку, для ШІ-агентів через сервер MCP і для плагінів. Спробуйте кілька на проєкті вище.
 Every step is a command as well, so a plan can also be drawn by a script or an AI agent.	Кожен крок також є командою, тож план може намалювати й скрипт або ШІ-агент.
+Every symbol of the libraries with its drawing: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&ID and installation plans.	Кожен символ бібліотек із його кресленням: IEC 60617, NFPA, GB, ГОСТ, JIS, гідропневматика, P&ID і плани електроустановки.
 Every table is generated from the project and stays current: change the schematic above and the lists below follow. Plugins add their own.	Кожна таблиця створюється з проєкту й залишається актуальною: змініть схему вище, і списки нижче зміняться слідом. Плагіни додають свої.
+Every wire with its colour, cross-section, routed length and end treatment, in order for the workshop.	Кожен провід із кольором, перерізом, довжиною прокладання та обробкою кінців, у порядку для цеху.
 Everything an electrical project needs	Усе, що потрібно електротехнічному проєкту
+Example electrical projects with schematics – OpenECraft	Приклади електричних проєктів зі схемами – OpenECraft
+Example project, level {}	Приклад проєкту, рівень {}
+Example projects of OpenECraft, the free electrical CAE: motor starters, PLC, control cabinets and buildings, with their schematics as pictures and PDF.	Приклади проєктів OpenECraft, безкоштовної електротехнічної CAE: пускачі двигунів, ПЛК, шафи керування та будівлі, зі схемами у вигляді зображень і PDF.
+Example projects to open, read and change	Приклади проєктів, які можна відкрити, прочитати та змінити
 Example projects, simplest first	Приклади проєктів, від простих до складних
+Examples	Приклади
+Export a schematic to DXF or DWG	Експортувати схему в DXF або DWG
+Export electrical schematics as DXF or DWG with OpenECraft, the free electrical CAE, and bring drawings of other CAD programs into a project.	Експортуйте електричні схеми як DXF або DWG за допомогою OpenECraft, безкоштовної електротехнічної CAE, і переносьте креслення з інших CAD-програм у проєкт.
+Export the production wire list with File › Export, or wire from a tablet with the Wiring workspace.	Експортуйте виробничий перелік проводів через Файл › Експорт або виконуйте монтаж із планшета в робочому просторі Монтаж проводів.
 Export the project you just edited	Експортуйте проєкт, який ви щойно змінили
+Export the table as CSV or Excel, or choose Insert as report page to make it part of the documents.	Експортуйте таблицю як CSV або Excel чи виберіть «Вставити як сторінку звіту», щоб вона стала частиною документації.
+FAQ	Поширені запитання
 Features	Можливості
 Feedback while drawing	Зворотний зв'язок під час креслення
 Final circuits	Кінцеві кола
@@ -74,59 +136,138 @@ Free electrical CAD for schools and training – OpenECraft	Безкоштовн
 Free for every student	Безкоштовно для кожного учня
 Free for every student and in the browser, with a tutorial and example projects from the simplest circuit up.	Безкоштовно для кожного учня та в браузері, з навчальним посібником і прикладами проєктів, починаючи з найпростішого кола.
 Free of charge	Безкоштовно
+Free online DXF and DWG viewer: open a drawing in your browser and save it as SVG, PDF, DXF or DWG. The file is not uploaded; nothing to install.	Безкоштовний онлайн-переглядач DXF і DWG: відкрийте креслення в браузері та збережіть його як SVG, PDF, DXF або DWG. Файл нікуди не надсилається; нічого не потрібно встановлювати.
+Free online EDZ viewer: see the parts of an EDZ, EPLAN parts XML, BMEcat or CSV file as a table in your browser and save them as CSV or JSON.	Безкоштовний онлайн-переглядач EDZ: перегляньте вироби з файлу EDZ, XML виробів EPLAN, BMEcat або CSV як таблицю в браузері та збережіть їх як CSV або JSON.
+Free online tools for electrical engineering – OpenECraft	Безкоштовні онлайн-інструменти для електротехніки – OpenECraft
+Free open source alternative to AutoCAD Electrical – OpenECraft	Безкоштовна відкрита альтернатива AutoCAD Electrical – OpenECraft
+Free open source alternative to EPLAN Electric P8 – OpenECraft	Безкоштовна відкрита альтернатива EPLAN Electric P8 – OpenECraft
+Free open source alternative to SEE Electrical – OpenECraft	Безкоштовна відкрита альтернатива SEE Electrical – OpenECraft
+Free open source alternative to WSCAD – OpenECraft	Безкоштовна відкрита альтернатива WSCAD – OpenECraft
 Free software for building installation: floor plans under the levels, outlets, switches and lights, final circuits with cable lengths and voltage drop.	Безкоштовна програма для електроустановок будівель: плани під поверхами, розетки, вимикачі та світильники, кінцеві кола з довжинами кабелів і спадом напруги.
 Free to use, free to change. Pick what fits you.	Вільно використовувати, вільно змінювати. Виберіть те, що вам підходить.
+Free tools that run in your browser	Безкоштовні інструменти, що працюють у вашому браузері
+Free tools that run in your browser with the code of OpenECraft: voltage drop calculator, DXF and DWG viewer and converter, EDZ and parts file viewer.	Безкоштовні інструменти, що працюють у вашому браузері на коді OpenECraft: калькулятор спаду напруги, переглядач і конвертер DXF і DWG, переглядач файлів EDZ і файлів виробів.
+Free voltage drop calculator: current, length, cross-section, copper or aluminium, single or three-phase. It shows the smallest cross-section within your limit.	Безкоштовний калькулятор спаду напруги: струм, довжина, переріз, мідь або алюміній, однофазне або трифазне коло. Показує найменший переріз, що вкладається у вашу межу.
 Free, open source software for control panel builders: schematics, panel layout in 3D, wire lists with ferrules, a wiring assistant on the tablet and NC data.	Безкоштовна програма з відкритим вихідним кодом для виробників електрошаф: схеми, компонування шафи в 3D, переліки проводів із наконечниками, помічник з монтажу на планшеті та дані ЧПК.
 From source	З вихідного коду
+From the documentation on this site and from the issue tracker of the project, where problems and wishes are reported.	У документації на цьому сайті та в системі відстеження помилок проєкту, де повідомляють про проблеми й побажання.
 From the first schematic page to the panel in 3D.	Від першої сторінки схеми до шафи в 3D.
 From the floor plan to the distribution board	Від плану до розподільчого щита
 From the schematic through the panel layout in 3D to the wiring in the workshop, with production data for the machines.	Від схеми через компонування шафи в 3D до монтажу проводів у цеху, з виробничими даними для верстатів.
 From the schematic to the wired control cabinet	Від схеми до змонтованої шафи керування
 General facts, no prices: the makers of the other products describe them in detail on their websites.	Загальні факти, без цін: виробники інших продуктів докладно описують їх на своїх сайтах.
+Generate a wire list	Сформувати перелік проводів
+Generate a wire list for the workshop with OpenECraft: every wire with colour, cross-section, routed length and end treatment, from schematic and panel layout.	Сформуйте перелік проводів для цеху в OpenECraft: кожен провід із кольором, перерізом, довжиною прокладання та обробкою кінців, зі схеми та компонування шафи.
 Get OpenECraft	Отримати OpenECraft
 Get it	Отримати
+Give the devices of the schematic their parts and the bill of materials is there: one list of everything to order, kept current by the project.	Призначте пристроям схеми їхні вироби – і специфікація готова: один перелік усього, що треба замовити, який проєкт підтримує в актуальному стані.
 Graphical terminal diagram	Графічна схема клем
+Guides	Посібники
 Heat loss after IEC/TR 60890 from the power loss of the devices, with filter fans, heat exchangers or cooling units, and a heat map of the mounting plate.	Тепловий баланс за IEC/TR 60890 за втратами потужності пристроїв, з фільтрувальними вентиляторами, теплообмінниками або холодильними агрегатами, і теплова карта монтажної панелі.
 Help comes from the documentation and from the issue tracker of the project.	Допомогу можна знайти в документації та в системі відстеження помилок проєкту.
 House connection boxes, distribution cabinets with component modules, metering with current transformers and PV feeders, in 3D with their busbars.	Вступні щити, розподільчі шафи з модулями компонентів, облік із трансформаторами струму та відхідні лінії СЕС, у 3D зі збірними шинами.
+How it is calculated	Як виконується розрахунок
+How many volts a cable loses on its way, and which cross-section keeps the limit. The calculation is the one OpenECraft uses for the final circuits of an installation.	Скільки вольт втрачає кабель на своєму шляху і який переріз дотримується межі. Саме цей розрахунок OpenECraft використовує для кінцевих кіл електроустановки.
+How to create a bill of materials	Як створити специфікацію
+How to create a bill of materials from a schematic – OpenECraft	Як створити специфікацію зі схеми – OpenECraft
+How to create a terminal diagram	Як створити схему клем
+How to create a terminal diagram – OpenECraft	Як створити схему клем – OpenECraft
+How to draw electrical documents with OpenECraft	Як створювати електротехнічну документацію в OpenECraft
+How to export a schematic to DXF or DWG	Як експортувати схему в DXF або DWG
+How to export a schematic to DXF or DWG – OpenECraft	Як експортувати схему в DXF або DWG – OpenECraft
+How to generate a wire list	Як сформувати перелік проводів
+How to generate a wire list from a schematic – OpenECraft	Як сформувати перелік проводів зі схеми – OpenECraft
+How to get common documents out of a schematic	Як отримати типові документи зі схеми
+How-to	Практичні посібники
+IEC 60617 for schematics, with NFPA, GB, GOST and JIS sets, ISO 1219 for fluid power, ISO 10628 for P&ID and IEC 60617-11 for installation plans. Structure identifiers follow IEC 81346.	IEC 60617 для схем, а також набори NFPA, GB, ГОСТ і JIS, ISO 1219 для гідропневматики, ISO 10628 для P&ID та IEC 60617-11 для планів електроустановки. Структурні позначення відповідають IEC 81346.
 IEC 60617 symbols, structure identifiers after IEC 81346 and reports as in industry, so what is learned carries over to other tools.	Символи IEC 60617, структурні позначення за IEC 81346 і звіти як у промисловості, тож здобуті знання знадобляться і в інших інструментах.
+Import parts into Devices › Parts management from CSV, BMEcat, EPLAN parts XML or EDZ files, or use the example catalog.	Імпортуйте вироби в Пристрої › Керування виробами з файлів CSV, BMEcat, XML виробів EPLAN або EDZ чи скористайтеся прикладом каталогу.
+In Master data › Forms, switch the terminal diagram to its graphical form or choose its columns.	В Основні дані › Форми перемкніть схему клем на графічну форму або виберіть її стовпці.
+In OpenECraft an imported drawing becomes the graphics of a schematic page, and every page of a project is exported as DXF or DWG.	В OpenECraft імпортоване креслення стає графікою сторінки схеми, а кожна сторінка проєкту експортується як DXF або DWG.
+In OpenECraft the terminal diagram is a report: it is written from the terminals of the schematic and follows every change. You draw the circuit, not the list.	В OpenECraft схема клем є звітом: вона формується з клем схеми та відстежує кожну зміну. Ви креслите коло, а не перелік.
+In a project file on your computer. Nothing is uploaded. A team can run the project server in its own network to work on shared projects.	У файлі проєкту на вашому комп’ютері. Нічого нікуди не надсилається. Команда може запустити сервер проєктів у власній мережі, щоб працювати над спільними проєктами.
+In a project, OpenECraft measures the cable lengths along the installation zones of the rooms and checks every final circuit this way, feeder cables included.	У проєкті OpenECraft вимірює довжини кабелів уздовж монтажних зон приміщень і так перевіряє кожне кінцеве коло, включно з живильними кабелями.
+In the Panel layout workspace, place the devices on rails and the wiring ducts between them. The wires are routed through the ducts.	У робочому просторі Компонування шафи розмістіть пристрої на рейках, а між ними – кабельні канали. Проводи прокладаються каналами.
 In the browser	У браузері
 In the student's language	Мовою учня
 Installation guide	Посібник зі встановлення
 Installation plans on the architect's floor plan	Плани електроустановки на плані архітектора
 Installation plans on the floor plan of the building, final circuits with cable lengths and voltage drop, the distribution board in 3D.	Плани електроустановки на плані будівлі, кінцеві кола з довжинами кабелів і спадом напруги, розподільчий щит у 3D.
 Installers for Windows, Linux packages and a macOS disk image, with automatic updates.	Інсталятори для Windows, пакунки для Linux і образ диска для macOS, з автоматичними оновленнями.
+Is OpenECraft free?	Чи є OpenECraft безкоштовним?
+Is OpenECraft ready for real projects?	Чи готовий OpenECraft до реальних проєктів?
+Is it free? Does it read EPLAN data? Does it work offline? The answers.	Чи він безкоштовний? Чи читає дані EPLAN? Чи працює офлайн? Відповіді.
+Is there a paid version with more functions?	Чи є платна версія з більшою кількістю функцій?
 It comes with a small set of manufacturer catalogs, far from the large data portals of the commercial vendors; parts from EDZ, BMEcat and STEP files fill the gap.	Він постачається з невеликим набором каталогів виробників, далеким від великих порталів даних комерційних постачальників; прогалину заповнюють вироби з файлів EDZ, BMEcat і STEP.
 It is a new project and has not been proven in years of production use the way the established tools have. Try it on a real project of yours before you rely on it.	Це новий проєкт, який ще не перевірено роками виробничого використання, як усталені інструменти. Спробуйте його на реальному власному проєкті, перш ніж покладатися на нього.
+It is a young project: the first release was in November 2026. Plan one real project with it beside the tool you use today before you rely on it, and have a qualified person verify the results.	Це молодий проєкт: перший випуск вийшов у листопаді 2026 року. Перш ніж покладатися на нього, виконайте в ньому один реальний проєкт паралельно з інструментом, яким користуєтеся сьогодні, і доручіть кваліфікованому фахівцеві перевірити результати.
+It is free for everyone: no licenses to count, no accounts, and the source code is public.	Він безкоштовний для всіх: не треба рахувати ліцензії, немає облікових записів, а вихідний код відкритий.
+It runs on Windows, Linux and macOS and in the browser, built from the same code.	Він працює у Windows, Linux і macOS та в браузері, зібраний з одного й того самого коду.
 Its symbol libraries and editing tools grow with every release, but users of the established tools will still miss functions they are used to.	Його бібліотеки символів та інструменти редагування зростають з кожною версією, але користувачам усталених інструментів ще бракуватиме звичних функцій.
 Lamp	Лампа
 Learn electrical planning on real software, for free	Вивчайте електропроєктування на справжній програмі, безкоштовно
+Length, one way (m)	Довжина в один бік (м)
 Lengths along the installation zones after DIN 18015-3 and the voltage drop from the supply are worked out, checked against the rule sets and written into the cable list.	Довжини вздовж монтажних зон за DIN 18015-3 і спад напруги від живлення розраховуються, перевіряються за наборами правил і записуються в кабельний журнал.
 License	Ліцензія
 Licenses	Ліцензії
+Limit	Межа
+Lines	Лінії
+Lines, polylines, circles, arcs, ellipses, splines, texts and blocks of DXF and DWG drawings.	Лінії, полілінії, кола, дуги, еліпси, сплайни, тексти та блоки креслень DXF і DWG.
+Link copied	Посилання скопійовано
 Live demo	Жива демонстрація
+Loading the tool. It is the code of the editor, about 10 MB, loaded once.	Завантаження інструмента. Це код редактора, близько 10 МБ, завантажується один раз.
+Look at a DXF or DWG drawing and save it as SVG, PDF or the other of the two formats.	Перегляньте креслення DXF або DWG і збережіть його як SVG, PDF або в іншому з двох форматів.
 Looking for a free alternative to EPLAN Electric P8 or AutoCAD Electrical, or for more than drawing schematics? Here is how OpenECraft compares: what it does, what the others are known for, and where OpenECraft is still young.	Шукаєте безкоштовну альтернативу EPLAN Electric P8 або AutoCAD Electrical чи щось більше, ніж креслення схем? Ось який вигляд має OpenECraft у порівнянні: що він уміє, чим відомі інші та в чому OpenECraft ще молодий.
 Looking for an open source alternative to EPLAN or AutoCAD Electrical? How OpenECraft compares in license, platforms and features, and where it is still young.	Шукаєте альтернативу EPLAN або AutoCAD Electrical з відкритим вихідним кодом? Який вигляд має OpenECraft за ліцензією, платформами та можливостями і в чому він ще молодий.
 Made for your work	Створено для вашої роботи
 Maturity	Зрілість
 Menu	Меню
+More examples	Більше прикладів
+More guides	Більше посібників
+More symbols	Більше символів
+More to explore	Що ще переглянути
+More tools	Більше інструментів
 Multi-level terminals, plugs and PLC cards with tag tables for TIA Portal, Studio 5000, TwinCAT, CODESYS and more.	Багаторівневі клеми, штекери та модулі ПЛК з таблицями змінних для TIA Portal, Studio 5000, TwinCAT, CODESYS та інших.
 New: first release in November 2026	Новинка: перша версія в листопаді 2026 року
+News	Новини
 No messages. The project passes the check.	Повідомлень немає. Проєкт проходить перевірку.
 No screenshots: this is the page editor of OpenECraft. Select and move symbols, draw wires, place a contact and watch cross references, checks and reports follow.	Жодних знімків екрана: це редактор сторінок OpenECraft. Виділяйте й переміщуйте символи, малюйте проводи, вставте контакт і дивіться, як за цим змінюються перехресні посилання, перевірки та звіти.
+No. There is one OpenECraft, and everything this site describes is in it.	Ні. OpenECraft лише один, і все, що описано на цьому сайті, у ньому є.
+Not imported	Не імпортовано
 Not public	Закритий
+Not yet. Projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported. Parts from EDZ files and EPLAN parts XML are imported with their data, symbols and 3D models, and DXF and DWG drawings as graphics.	Поки що ні. Проєкти EPLAN Electric P8 та AutoCAD Electrical імпортувати не можна. Вироби з файлів EDZ і XML виробів EPLAN імпортуються з їхніми даними, символами та 3D-моделями, а креслення DXF і DWG – як графіка.
+Number the connections with Connections › Wire numbering.	Пронумеруйте з’єднання через З’єднання › Нумерація проводів.
+On Windows, Linux and macOS as a desktop program, and in the browser as a web editor with nothing to install. All of them are built from the same code.	У Windows, Linux і macOS як настільна програма та в браузері як вебредактор, який не потрібно встановлювати. Усі вони зібрані з одного й того самого коду.
 On a touch screen one finger works like the left mouse button; two fingers move and zoom the view.	На сенсорному екрані один палець працює як ліва кнопка миші; два пальці зсувають і масштабують вигляд.
 On the desktop	На комп'ютері
+One product at a time	Один продукт за раз
+One program and one project file for the schematic, the reports, the panel layout in 3D and the workshop.	Одна програма й один файл проєкту для схеми, звітів, компонування шафи в 3D і цеху.
 One project file holds the schematics, the parts, the panel and the documents. Every function is also a command, so scripts and AI agents can do what you can.	Один файл проєкту містить схеми, вироби, шафу та документи. Кожна функція — це ще й команда, тож скрипти та ШІ-агенти можуть робити те саме, що й ви.
 One project holds the schematic, the parts, the panel and the documents, so a change shows everywhere at once.	Один проєкт містить схему, вироби, шафу та документи, тож зміна одразу видна всюди.
+Open Devices › Terminal strips to order the strip and to add spare terminals, jumpers, end brackets and multi-level blocks.	Відкрийте Пристрої › Клемні колодки, щоб упорядкувати колодку й додати резервні клеми, перемички, кінцеві фіксатори та багаторівневі клеми.
+Open File › Export: it lists all exports of the project.	Відкрийте Файл › Експорт: там перелічено всі експорти проєкту.
+Open Project data › Reports and pick Bill of materials.	Відкрийте Дані проєкту › Звіти й виберіть Специфікація.
+Open Project data › Reports and pick Terminal diagram.	Відкрийте Дані проєкту › Звіти й виберіть Схема клем.
+Open Project data › Reports and pick Wire list (panel routing).	Відкрийте Дані проєкту › Звіти й виберіть Перелік проводів (прокладання в шафі).
+Open a DXF or DWG drawing without a CAD program and save it as SVG, PDF or the other of the two formats. The file is read in your browser and is not uploaded.	Відкрийте креслення DXF або DWG без CAD-програми та збережіть його як SVG, PDF або в іншому з двох форматів. Файл читається у вашому браузері й нікуди не надсилається.
 Open and extensible	Відкритий і розширюваний
+Open in the live demo	Відкрити в живій демонстрації
 Open source electrical CAE	Електротехнічна CAE з відкритим вихідним кодом
 Open source under the MIT and Apache-2.0 licenses.	Відкритий вихідний код за ліцензіями MIT і Apache-2.0.
 Open source under the MIT and Apache-2.0 licenses: no licenses to count, no accounts, no expiry. Install it on every school computer or use it in the browser.	Відкритий вихідний код за ліцензіями MIT і Apache-2.0: жодного обліку ліцензій, жодних облікових записів, жодного терміну дії. Установіть його на кожен шкільний комп'ютер або користуйтеся ним у браузері.
 Open source: GNU GPL	Відкритий вихідний код: GNU GPL
 Open source: MIT or Apache-2.0	Відкритий вихідний код: MIT або Apache-2.0
+Open the DXF and DWG viewer	Відкрити переглядач DXF і DWG
+Open the parts file viewer	Відкрити переглядач файлів виробів
 Open the web editor	Відкрити вебредактор
+OpenECraft FAQ: free electrical CAE, platforms, EPLAN data	Запитання про OpenECraft: безкоштовна CAE, платформи, дані EPLAN
+OpenECraft and QElectroTech: open source electrical CAD compared	OpenECraft і QElectroTech: порівняння відкритих електротехнічних CAD
+OpenECraft as a free, open source alternative to AutoCAD Electrical: schematics, reports and panel layout in one program, DXF and DWG in and out.	OpenECraft як безкоштовна альтернатива AutoCAD Electrical з відкритим вихідним кодом: схеми, звіти та компонування шафи в одній програмі, імпорт і експорт DXF та DWG.
+OpenECraft as a free, open source alternative to EPLAN Electric P8: what it does, which EPLAN data it reads, where it is still young and whom it fits.	OpenECraft як безкоштовна альтернатива EPLAN Electric P8 з відкритим вихідним кодом: що він уміє, які дані EPLAN читає, у чому ще молодий і кому підходить.
+OpenECraft as a free, open source alternative to SEE Electrical: schematics, reports, panel layout in 3D and installation plans, on any operating system.	OpenECraft як безкоштовна альтернатива SEE Electrical з відкритим вихідним кодом: схеми, звіти, компонування шафи в 3D і плани електроустановки, у будь-якій операційній системі.
+OpenECraft as a free, open source alternative to WSCAD: schematics, control cabinets and building installation in one program, on any operating system.	OpenECraft як безкоштовна альтернатива WSCAD з відкритим вихідним кодом: схеми, шафи керування та електроустановки будівель в одній програмі, у будь-якій операційній системі.
 OpenECraft beside EPLAN Electric P8, AutoCAD Electrical and QElectroTech: what each is known for, and where OpenECraft is still young.	OpenECraft поруч з EPLAN Electric P8, AutoCAD Electrical і QElectroTech: чим відомий кожен із них і в чому OpenECraft ще молодий.
+OpenECraft beside QElectroTech	OpenECraft поруч із QElectroTech
 OpenECraft beside the tools you know	OpenECraft поруч зі знайомими вам інструментами
 OpenECraft carries a control cabinet from the device-oriented schematic through the panel layout in 3D into the workshop: mounting, wiring and the documentation for the customer, from one project file.	OpenECraft веде шафу керування від схеми, орієнтованої на пристрої, через компонування в 3D до цеху: монтаж, проводка та документація для замовника з одного файлу проєкту.
 OpenECraft costs nothing, needs no license server and runs in the browser, so every student works with the same program at school and at home. The project check points out mistakes while they draw.	OpenECraft нічого не коштує, не потребує сервера ліцензій і працює в браузері, тож кожен учень працює з тією самою програмою в школі та вдома. Перевірка проєкту вказує на помилки просто під час креслення.
@@ -135,6 +276,7 @@ OpenECraft for electricians: installation plans and circuits	OpenECraft для �
 OpenECraft for panel builders	OpenECraft для виробників електрошаф
 OpenECraft for panel builders and control cabinet shops	OpenECraft для виробників електрошаф і цехів складання шаф керування
 OpenECraft for schools	OpenECraft для шкіл
+OpenECraft imports the same files into its parts database, with the symbols and the 3D models of EDZ archives, and assigns the parts to the devices of the schematic.	OpenECraft імпортує ті самі файли до своєї бази даних виробів, разом із символами та 3D-моделями архівів EDZ, і призначає вироби пристроям схеми.
 OpenECraft is not affiliated with, endorsed by or sponsored by any of them. The names are used only to compare, and what this page says about the other products is general public information as of November 2026.	OpenECraft не пов'язаний із жодним із них, не схвалюється та не спонсорується жодним із них. Назви використовуються лише для порівняння, а те, що ця сторінка говорить про інші продукти, є загальнодоступною інформацією станом на листопад 2026 року.
 OpenECraft is open source under the MIT license or the Apache License 2.0, at your choice. It contains fonts and libraries of others under their own licenses.	OpenECraft — програма з відкритим вихідним кодом за ліцензією MIT або Apache License 2.0, на ваш вибір. Вона містить шрифти та бібліотеки інших авторів за їхніми власними ліцензіями.
 OpenECraft is young. Plan one real cabinet with it beside the tool you use today, and see what it does well and what you miss.	OpenECraft молодий. Спроєктуйте в ньому одну реальну шафу паралельно з інструментом, яким користуєтеся сьогодні, і подивіться, що він робить добре і чого вам бракує.
@@ -144,26 +286,45 @@ OpenECraft vs. EPLAN, AutoCAD Electrical and QElectroTech	OpenECraft у порі
 OpenECraft – open source electrical CAE	OpenECraft – електротехнічна CAE з відкритим вихідним кодом
 Outlets, switches and lights on the floor plan of a level, final circuits from the distribution board with cable lengths and voltage drop.	Розетки, вимикачі та світильники на плані поверху, кінцеві кола від розподільчого щита з довжинами кабелів і спадом напруги.
 Outlets, switches, lights	Розетки, вимикачі, світильники
+PDF, DXF, DWG and SVG for the pages, the panel as glTF, STEP, IGES, IFC and JT, wire lists, marking data, PLC symbol tables and more. The exports of the live demo on this site run in your browser.	PDF, DXF, DWG і SVG для сторінок, шафа як glTF, STEP, IGES, IFC і JT, переліки проводів, дані маркування, таблиці символів ПЛК тощо. Експорти живої демонстрації на цьому сайті виконуються у вашому браузері.
 PDF, DXF, DWG and SVG; the panel as glTF, STEP, IGES, IFC and JT; connectors for ERP, PDM and PLM systems.	PDF, DXF, DWG і SVG; шафа у форматах glTF, STEP, IGES, IFC і JT; конектори для систем ERP, PDM і PLM.
 PLC and automation	ПЛК та автоматизація
 Paid license	Платна ліцензія
 Panel builders	Виробники електрошаф
 Panel layout in 3D	Компонування шафи в 3D
 Parts and data portal	Вироби та портал даних
+Parts come in from CSV, BMEcat, EPLAN parts XML and EDZ files, with STEP models for the panel.	Вироби надходять із файлів CSV, BMEcat, XML виробів EPLAN та EDZ, з моделями STEP для шафи.
+Parts file (EDZ, XML, CSV, JSON)	Файл виробів (EDZ, XML, CSV, JSON)
+Parts in the documentation	Вироби в документації
 Parts server, project server and the web editor as Docker images for your own network.	Сервер виробів, сервер проєктів і вебредактор у вигляді образів Docker для вашої мережі.
 Parts: EDZ files of the EPLAN Data Portal and EPLAN XML part files are imported with their data; the 2D window macros of EDZ files become symbols and their 3D macros the 3D model of the part.	Вироби: файли EDZ з EPLAN Data Portal і файли виробів EPLAN XML імпортуються зі своїми даними; 2D-макроси вікон із файлів EDZ стають символами, а їхні 3D-макроси 3D-моделлю виробу.
+Pick DXF or DWG. The drawing has the pages with their frames, symbols, wires and texts.	Виберіть DXF або DWG. Креслення містить сторінки з їхніми рамками, символами, проводами та текстами.
+Place terminals from the Terminals library of the Insert center and wire them. Terminals with the same tag, for example -X1, form one strip.	Розмістіть клеми з бібліотеки Клеми в Центрі вставлення та з’єднайте їх проводами. Клеми з однаковим позначенням, наприклад -X1, утворюють одну колодку.
 Planning	Планування
 Platforms	Платформи
+Platforms and data	Платформи та дані
 Pneumatic and hydraulic circuits linked to the electrics, wire harnesses with KBL export and nailboards.	Пневматичні та гідравлічні схеми, пов'язані з електричною частиною, джгути з експортом KBL і складальні плази.
 Potentials with colours and cross-sections, cables with cores, automatic wire, device and page numbering.	Потенціали з кольорами та перерізами, кабелі з жилами, автоматична нумерація проводів, пристроїв і сторінок.
 Production data	Виробничі дані
 Project check	Перевірка проєкту
+Projects of other electrical CAD programs cannot be imported yet; a project is drawn anew in OpenECraft.	Проєкти інших електротехнічних CAD-програм поки що імпортувати не можна; проєкт креслиться в OpenECraft заново.
 Projects: projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported yet; a project is drawn anew in OpenECraft.	Проєкти: проєкти EPLAN Electric P8 і AutoCAD Electrical поки не можна імпортувати; проєкт малюється в OpenECraft заново.
 Public	Відкритий
 Push button	Кнопка
+QElectroTech is the name of an independent open source project. OpenECraft is not affiliated with it.	QElectroTech – назва незалежного проєкту з відкритим вихідним кодом. OpenECraft з ним не пов’язаний.
+Questions and answers about OpenECraft	Запитання та відповіді про OpenECraft
+Read the answers	Читати відповіді
+Read the documentation	Читати документацію
+Read the guides	Читати посібники
+Read the news	Читати новини
 Report a problem	Повідомити про проблему
 Reports and checks	Звіти та перевірки
 Reports that write themselves	Звіти, які пишуть себе самі
+SEE Electrical is a trademark of IGE+XAO. OpenECraft is not affiliated with IGE+XAO.	SEE Electrical є торговельною маркою IGE+XAO. OpenECraft не пов’язаний з IGE+XAO.
+SEE Electrical is an established electrical CAD for schematics, cabinets and installations. OpenECraft does this work in one free program for any operating system and the browser. It is young, and this page says where.	SEE Electrical – визнана електротехнічна CAD для схем, шаф та електроустановок. OpenECraft виконує цю роботу в одній безкоштовній програмі для будь-якої операційної системи та браузера. Він молодий, і ця сторінка каже, у чому саме.
+Save as	Зберегти як
+Scale on the page	Масштаб на сторінці
+Schematic pages as DXF or DWG drawings for customers and other CAD programs.	Сторінки схеми як креслення DXF або DWG для замовників та інших CAD-програм.
 Schematics, reports, panel layout in 3D, the workshop and building installation in one program	Схеми, звіти, компонування шафи в 3D, цех і електроустановки будівель в одній програмі
 Schools	Школи
 Schools and training	Школи та професійне навчання
@@ -176,70 +337,157 @@ Screenshot of two bayed enclosures in the 3D panel layout	Знімок екра�
 Search commands	Пошук команд
 Search reports	Пошук звітів
 See for yourself	Переконайтеся самі
+See it in the live demo	Переглянути в живій демонстрації
 See the comparison	Переглянути порівняння
+See the example	Переглянути приклад
+See the examples	Переглянути приклади
+See the parts of an EDZ, EPLAN XML, BMEcat or CSV file as a table and save them as CSV or JSON.	Перегляньте вироби з файлу EDZ, EPLAN XML, BMEcat або CSV як таблицю та збережіть їх як CSV або JSON.
+See what a parts file holds without the program it was made for: part numbers, manufacturers, descriptions and sizes as a table, to save as CSV or JSON. The file is read in your browser and is not uploaded.	Подивіться, що містить файл виробів, без програми, для якої його створено: номери виробів, виробники, описи та розміри у вигляді таблиці, яку можна зберегти як CSV або JSON. Файл читається у вашому браузері й нікуди не надсилається.
+Select a device and add its parts in the Parts tab of the Properties pane. The device selection offers the parts that provide its function.	Виберіть пристрій і додайте його вироби на вкладці Вироби панелі Властивості. Вибір пристрою пропонує вироби, які забезпечують його функцію.
 Shared projects with page locks and roles, released pages, approval workflow, comments and redlining.	Спільні проєкти з блокуванням сторінок і ролями, випущені сторінки, процес погодження, коментарі та позначки.
+Sheet {} of the example: {}	Аркуш {} прикладу: {}
+Short guides for common tasks in OpenECraft: terminal diagram, wire list, bill of materials and DXF or DWG export, each with a live demo to try.	Короткі посібники для типових завдань в OpenECraft: схема клем, перелік проводів, специфікація та експорт DXF або DWG, кожен із живою демонстрацією, яку можна спробувати.
+Short guides for the documents a control cabinet needs. Each opens the live demo at the step it describes, so you can try it before you install anything.	Короткі посібники з документів, потрібних для шафи керування. Кожен відкриває живу демонстрацію на кроці, який він описує, тож ви можете спробувати, перш ніж щось установлювати.
+Short guides: terminal diagram, wire list, bill of materials, DXF and DWG export.	Короткі посібники: схема клем, перелік проводів, специфікація, експорт DXF і DWG.
+Single functions of OpenECraft for a value or a file of your own. They run in your browser with the code of the editor: nothing is uploaded, and nothing needs an account.	Окремі функції OpenECraft для вашого власного значення або файлу. Вони працюють у вашому браузері на коді редактора: нічого нікуди не надсилається, і обліковий запис не потрібен.
+Single-phase or DC	Однофазне або постійний струм
+Size of the drawing	Розмір креслення
+Smallest cross-section within the limit	Найменший переріз у допустимих межах
 Source code	Вихідний код
 Speaks 20 languages	Розмовляє 20 мовами
 Standards from the start	Стандарти з самого початку
 Start with an example	Почніть із прикладу
+Step by step	Крок за кроком
 Switch the language while you work: menus, generated reports and check messages follow at once. Try it, this page and the demos switch too.	Перемикайте мову під час роботи: меню, створювані звіти та повідомлення перевірок змінюються одразу. Спробуйте, ця сторінка й демонстрації теж перемикаються.
 Symbol libraries	Бібліотеки символів
+Symbol library	Бібліотека символів
+Symbol: {}	Символ: {}
 Tap to explore the panel	Торкніться, щоб оглянути шафу
 Tap to work in the editor	Торкніться, щоб працювати в редакторі
 Teach electrical planning with free, open source CAE software that runs in the browser: a tutorial, example projects from the first circuit up and 20 languages.	Викладайте електропроєктування з безкоштовною CAE-програмою з відкритим вихідним кодом, що працює в браузері: навчальний посібник, приклади проєктів починаючи з першого кола та 20 мов.
 Teams and revisions	Команди та ревізії
+Terminals with the same tag form a strip; the terminal diagram lists every terminal with both of its sides.	Клеми з однаковим позначенням утворюють колодку; схема клем перелічує кожну клему з обома її сторонами.
+Terminals, plugs and PLC in the documentation	Клеми, штекери та ПЛК у документації
 Terminals, plugs, PLC	Клеми, штекери, ПЛК
+The Connection list shows the connections of a schematic that has no panel layout yet.	Перелік з’єднань показує з’єднання схеми, яка ще не має компонування шафи.
+The Strips / plugs navigator shows each strip in rail order; a click shows a placed terminal in the schematic.	Навігатор Колодки / штекери показує кожну колодку в порядку розташування на рейці; клацання показує розміщену клему на схемі.
+The bill of materials sums the parts of the devices, terminals, cables, harnesses, panel layout material, ferrules and marker material.	Специфікація підсумовує вироби пристроїв, клем, кабелів, джгутів, матеріали компонування шафи, наконечники та матеріали маркування.
+The calculations in the documentation	Розрахунки в документації
 The demo could not start in this browser. It needs WebGL and WebAssembly.	Не вдалося запустити демонстрацію в цьому браузері. Потрібні WebGL і WebAssembly.
+The drawing is put on a page as OpenECraft imports it into a project: a drawing larger than the sheet is scaled to fit.	Креслення розміщується на сторінці так, як OpenECraft імпортує його в проєкт: креслення, більше за аркуш, масштабується, щоб уміститися.
 The example projects include a conveyor with PLC and control cabinet, a pump station with structure identifiers, two bayed floor-standing enclosures with busbars and climate, and the main low-voltage distribution of an industrial plant. Open them in the live demo or in the web editor.	Серед прикладів проєктів є конвеєр з ПЛК і шафою керування, насосна станція зі структурними позначеннями, дві зістиковані підлогові шафи зі збірними шинами та кліматом і головний розподільний щит НН промислового підприємства. Відкрийте їх у живій демонстрації або у вебредакторі.
+The example projects with their sheets as pictures, their PDF and a link that opens them in the live demo.	Приклади проєктів з аркушами у вигляді зображень, PDF і посиланням, яке відкриває їх у живій демонстрації.
 The examples include building services with water supply and PV storage, transformer-rated metering with PV and grid protection, and an office building with roof, stair and installation.	Серед прикладів є інженерні системи будівлі з водопостачанням і накопичувачем СЕС, трансформаторний облік із СЕС і захистом мережі та офісна будівля з дахом, сходами та електроустановкою.
 The exports run in your browser as well. Nothing is uploaded.	Експорт теж виконується у вашому браузері. Нічого не вивантажується на сервер.
 The first examples are a lamp circuit, a self-holding relay and a star-delta motor starter; later ones add a PLC, electro-pneumatics, structure identifiers, revisions, control cabinets, rooms and buildings.	Перші приклади: коло ламп, реле із самоутриманням і пуск двигуна зірка-трикутник; наступні додають ПЛК, електропневматику, структурні позначення, ревізії, шафи керування, приміщення та будівлі.
+The first {} of {} parts	Перші {} з {} виробів
 The first {} of {} rows	Перші {} з {} рядків
 The full editor as a web application. Nothing to install, your projects stay on your computer.	Повний редактор як вебзастосунок. Нічого не потрібно встановлювати, ваші проєкти залишаються на вашому комп'ютері.
 The items become devices with tags in their rooms, and a generated single-line page shows every circuit with its protective device and cable.	Елементи стають пристроями з позначеннями у своїх приміщеннях, а створювана однолінійна сторінка показує кожне коло з його захисним пристроєм і кабелем.
+The limit is yours to set: 3 % is common for lighting and 5 % for other loads, and the regulations of your country decide.	Межу встановлюєте ви: зазвичай 3 % для освітлення та 5 % для інших навантажень, а вирішальними є норми вашої країни.
 The links to the source code, the downloads and the documentation lead to other sites, which have privacy notices of their own.	Посилання на вихідний код, завантаження та документацію ведуть на інші сайти, які мають власні повідомлення про конфіденційність.
 The live demo runs the editor's own code in your browser; the web editor is the whole program, nothing to install.	Жива демонстрація виконує власний код редактора у вашому браузері; вебредактор є повною програмою, нічого не потрібно встановлювати.
 The live demos, the console and the exports run in your browser. The project you edit here is not sent anywhere.	Живі демонстрації, консоль та експорт працюють у вашому браузері. Проєкт, який ви тут редагуєте, нікуди не надсилається.
+The name is used only to compare, and what this page says about the other product is general public information as of November 2026.	Назва використовується лише для порівняння, а те, що ця сторінка каже про інший продукт, є загальною публічною інформацією станом на листопад 2026 року.
 The panel in 3D	Шафа в 3D
+The parts of all devices, terminals, cables and the panel, summed into one list.	Вироби всіх пристроїв, клем, кабелів і шафи, підсумовані в одному переліку.
 The project check follows every change and leads to the place of each message, so students see their mistakes at once.	Перевірка проєкту стежить за кожною зміною й веде до місця кожного повідомлення, тож учні одразу бачать свої помилки.
+The reactance of the cable is taken as 0.08 mΩ per metre. It matters for large cross-sections and a low power factor.	Реактивний опір кабелю приймається рівним 0,08 мОм на метр. Він має значення для великих перерізів і низького коефіцієнта потужності.
+The resistivity is the one of the conductor in operation, 1.25 times its value at 20 °C (IEC 60364-5-52): 0.0225 Ω·mm²/m for copper and 0.036 Ω·mm²/m for aluminium.	Питомий опір береться для провідника в робочому режимі, у 1,25 раза більший за значення при 20 °C (IEC 60364-5-52): 0,0225 Ом·мм²/м для міді та 0,036 Ом·мм²/м для алюмінію.
+The result supports the planning. A qualified person has to verify it against the standards and regulations that apply.	Результат допомагає в проєктуванні. Кваліфікований фахівець має перевірити його на відповідність чинним стандартам і нормам.
 The routed wires as a checklist for the workshop, with the current wire in 3D, its colour, length and ferrule: a tablet with the web editor becomes a wiring station.	Прокладені проводи як контрольний список для цеху, з поточним проводом у 3D, його кольором, довжиною і наконечником: планшет із вебредактором стає робочим місцем монтажу.
+The same export is a command of the command line and the MCP server, so a script can write the drawings of every project.	Той самий експорт є командою командного рядка та сервера MCP, тож скрипт може записати креслення кожного проєкту.
 The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example.	Той самий проєкт, яким його бачать у цеху: корпус, рейки, канали та пристрої в натуральну величину, з проводами, прокладеними каналами. Перемикайтеся між корпусами, приміщеннями та ділянкою прикладу.
 The schematic editor with ribbon and page navigator	Редактор схем зі стрічкою та навігатором сторінок
+The symbol library of OpenECraft, the free open source electrical CAE: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&ID and installation plan symbols.	Бібліотека символів OpenECraft, безкоштовної електротехнічної CAE з відкритим вихідним кодом: символи IEC 60617, NFPA, GB, ГОСТ, JIS, гідропневматики, P&ID і планів електроустановки.
+The symbol library, the example projects, tools for your own files, guides, the documentation and the news.	Бібліотека символів, приклади проєктів, інструменти для ваших власних файлів, посібники, документація та новини.
+The table shows the main data of at most 500 parts; the CSV and JSON files have all parts with all their data.	Таблиця показує основні дані щонайбільше 500 виробів; файли CSV і JSON містять усі вироби з усіма їхніми даними.
+The tool could not start in this browser. It needs WebAssembly.	Інструмент не вдалося запустити в цьому браузері. Йому потрібен WebAssembly.
 The tutorial walks from the first schematic page to the bill of materials: pages, symbols, wires, parts, terminals, PLC, the project check, reports and the panel layout.	Навчальний посібник веде від першої сторінки схеми до специфікації: сторінки, символи, проводи, вироби, клеми, ПЛК, перевірка проєкту, звіти та компонування шафи.
+The tutorial walks through a whole project, from the first page to the panel layout.	Навчальний посібник проводить через увесь проєкт, від першої сторінки до компонування шафи.
+The tutorial, the installation guide and every feature in detail.	Навчальний посібник, інструкція зі встановлення та кожна функція в подробицях.
+The voltage drop of a cable from current, length and cross-section, with the smallest cross-section that keeps your limit.	Спад напруги кабелю за струмом, довжиною та перерізом, із найменшим перерізом, що дотримується вашої межі.
 The web editor and a project server for shared projects run in the school's own network from Docker images.	Вебредактор і сервер проєктів для спільних проєктів працюють у власній мережі школи з образів Docker.
+The whole editor does much more with the same code: try it in the live demo or open the web editor.	Повний редактор уміє значно більше на тому самому коді: спробуйте його в живій демонстрації або відкрийте вебредактор.
+The wire list comes from two things you have already drawn: the connections of the schematic and the places of the devices in the panel. OpenECraft routes the wires through the ducts and measures them.	Перелік проводів виникає з двох речей, які ви вже накреслили: з’єднань схеми та місць пристроїв у шафі. OpenECraft прокладає проводи каналами та вимірює їх.
 The wiring assistant shows the next wire in 3D	Помічник з монтажу показує наступний провід у 3D
+The workshop in the documentation	Цех у документації
+The {} symbols that come with OpenECraft: IEC 60617 for schematics, NFPA, GB, GOST and JIS sets, fluid power after ISO 1219, P&ID and installation plans. Pick a category to see every symbol.	{} символів, що постачаються з OpenECraft: IEC 60617 для схем, набори NFPA, GB, ГОСТ і JIS, гідропневматика за ISO 1219, P&ID і плани електроустановки. Виберіть категорію, щоб побачити кожен символ.
 These are the commands of the command line and the MCP server, run on the project of the demo above.	Це команди командного рядка та сервера MCP, які виконуються над проєктом демонстрації вище.
 Third-party licenses	Ліцензії третіх сторін
 This page is drawn right now by the editor's own code, running in your browser.	Цю сторінку просто зараз малює власний код редактора, що працює у вашому браузері.
+Three-phase	Трифазне
 Tip: delete a wire and see the check react. Undo brings it back.	Порада: видаліть провід і подивіться, як відреагує перевірка. Скасування поверне його.
+To bring a drawing in, import a DXF or DWG file: it becomes the graphics of a new schematic page.	Щоб перенести креслення, імпортуйте файл DXF або DWG: він стає графікою нової сторінки схеми.
 To show an example faster the next time, your browser keeps the wiring it calculated for it in its cache. Nothing else is stored; clearing the site data of the browser removes it.	Щоб наступного разу показати приклад швидше, браузер зберігає в кеші розраховану для нього проводку. Більше нічого не зберігається; очищення даних сайту в браузері видаляє її.
 Trademarks	Торговельні марки
 Try it: the schematic editor, live	Спробуйте: редактор схем, наживо
+Try the exports in the live demo	Спробувати експорти в живій демонстрації
 Try the live demo	Спробувати живу демонстрацію
 Try these	Спробуйте ці
 Two bayed enclosures with rails, ducts and busbars	Два зістиковані корпуси з рейками, каналами та шинами
+Two free, open source programs for electrical schematics: what QElectroTech is known for and what OpenECraft adds with reports, panel layout in 3D and checks.	Дві безкоштовні програми з відкритим вихідним кодом для електричних схем: чим відомий QElectroTech і що додає OpenECraft – звіти, компонування шафи в 3D і перевірки.
 Type a command, or help	Введіть команду або help
 Type help for the commands, or pick one on the right.	Введіть help, щоб побачити команди, або виберіть одну праворуч.
 Unknown command: {}	Невідома команда: {}
+Use the tools	Скористатися інструментами
 Uses	Застосування
+Voltage drop calculator	Калькулятор спаду напруги
+Voltage drop calculator for cables – OpenECraft	Калькулятор спаду напруги для кабелів – OpenECraft
+Voltage drop calculator, DXF and DWG viewer, EDZ and parts file viewer: in your browser, nothing is uploaded.	Калькулятор спаду напруги, переглядач DXF і DWG, переглядач файлів EDZ і файлів виробів: у вашому браузері, нічого нікуди не надсилається.
+Voltage drop in percent	Спад напруги у відсотках
+WSCAD is a trademark of WSCAD GmbH. OpenECraft is not affiliated with WSCAD.	WSCAD є торговельною маркою WSCAD GmbH. OpenECraft не пов’язаний з WSCAD.
+WSCAD is an established electrical CAD for control cabinets, building automation and installation. OpenECraft covers schematics, the panel in 3D and installation plans in one free program for any operating system. It is young, and this page says where.	WSCAD – визнана електротехнічна CAD для шаф керування, автоматизації будівель та електромонтажу. OpenECraft охоплює схеми, шафу в 3D і плани електроустановки в одній безкоштовній програмі для будь-якої операційної системи. Він молодий, і ця сторінка каже, у чому саме.
 What OpenECraft does today	Що OpenECraft уміє сьогодні
+What comes across	Що можна перенести
 What comes across, and what does not yet.	Що можна перенести, а що поки ні.
+What is new in every release, with a feed for your feed reader.	Що нового в кожному випуску, зі стрічкою для вашого читача стрічок.
+What it does not read, such as hatches and pictures, is listed below the drawing.	Те, чого він не читає, наприклад штрихування та зображення, перелічено під кресленням.
+What it reads	Що він читає
+What people ask before they try it: the cost, the platforms, the data of other tools and how far the project is.	Про що запитують, перш ніж спробувати: вартість, платформи, дані інших інструментів і наскільки просунувся проєкт.
 What your shop gets	Що отримує ваше підприємство
 When you want a free, long-standing open source program for drawing electrical schematics.	Якщо вам потрібна безкоштовна, давно відома програма з відкритим вихідним кодом для креслення електричних схем.
 When you want schematics, reports, panel layout in 3D and the workshop in one free program, on any operating system or in the browser and open to scripts and AI agents, and a young project suits you.	Якщо вам потрібні схеми, звіти, компонування шафи в 3D і цех в одній безкоштовній програмі, у будь-якій операційній системі або в браузері та відкритій для скриптів і ШІ-агентів, і вас влаштовує молодий проєкт.
+When your customers ask for its project files, your company has standardised on it, or you need the support and the part data of its vendor.	Коли ваші замовники вимагають його файли проєктів, ваша компанія зробила його стандартом або вам потрібні підтримка та дані виробів від його постачальника.
 When your customers ask for their project files, your company has standardised on one of them, or you need the support and the part data of a large vendor.	Якщо ваші замовники вимагають файли проєктів цих інструментів, ваша компанія стандартизувалася на одному з них або вам потрібні підтримка та дані виробів великого постачальника.
 Where OpenECraft is still young	У чому OpenECraft ще молодий
+Where are my projects stored?	Де зберігаються мої проєкти?
+Where do I get help?	Де отримати допомогу?
 Whether you build control cabinets, plan buildings or teach: see what OpenECraft does for you, and how it compares with the tools you know.	Чи збираєте ви шафи керування, проєктуєте будівлі чи викладаєте: подивіться, що OpenECraft робить для вас і який він порівняно зі знайомими вам інструментами.
+Which formats can it export?	У які формати він може експортувати?
 Which one fits?	Який вам підходить?
+Which operating systems does OpenECraft run on?	У яких операційних системах працює OpenECraft?
+Which standards do the symbols follow?	Яким стандартам відповідають символи?
 Why it suits a classroom	Чому він підходить для занять
+Why people look at OpenECraft	Чому звертають увагу на OpenECraft
+Width × height × depth (mm)	Ширина × висота × глибина (мм)
 Windows, Linux and macOS	Windows, Linux і macOS
 Windows, Linux, macOS and the web browser	Windows, Linux, macOS і веббраузер
+Wire list	Перелік проводів
 Wire lists with routed lengths, stripping lengths and ferrules after DIN 46228-4, wires sorted for wire processing machines, drilling patterns and NC data of the mounting plates.	Переліки проводів з довжинами прокладання, довжинами зачищення та наконечниками за DIN 46228-4, проводи, відсортовані для автоматів обробки проводів, схеми свердління та дані ЧПК монтажних панелей.
 Wires, cables, potentials	Проводи, кабелі, потенціали
 Wiring and harnesses	Монтаж і джгути
 Wiring and mounting assistants	Помічники з монтажу проводів і встановлення
 Written in Rust. Clone the repository and run it.	Написано на Rust. Клонуйте репозиторій і запустіть.
+Yes. Every operation on a project is a command of the command line and of the MCP server for AI agents, and plugins in any language add checks, reports, exports and commands.	Так. Кожна операція над проєктом є командою командного рядка та сервера MCP для ШІ-агентів, а плагіни будь-якою мовою додають перевірки, звіти, експорти та команди.
+Yes. OpenECraft is open source under the MIT and Apache-2.0 licenses: no price, no licenses to count, no account and no expiry, also for commercial work.	Так. OpenECraft має відкритий вихідний код за ліцензіями MIT і Apache-2.0: без ціни, без підрахунку ліцензій, без облікового запису й без терміну дії, також для комерційної роботи.
+Yes. The desktop program needs no internet connection. The web editor runs in your browser once it is loaded, and your projects stay on your computer.	Так. Настільній програмі не потрібне підключення до інтернету. Вебредактор після завантаження працює у вашому браузері, а ваші проєкти залишаються на вашому комп’ютері.
 commands for scripts and AI agents	команд для скриптів і ШІ-агентів
+contributors	учасників
 example projects	прикладів проєктів
+k is 2 for a single-phase or DC circuit, where the current flows there and back, and 1.732, the square root of 3, for a three-phase circuit with the voltage between the lines.	k дорівнює 2 для однофазного кола або кола постійного струму, де струм тече туди й назад, і 1,732, квадратному кореню з 3, для трифазного кола з напругою між лініями.
 languages	мов
+none up to 240 mm²	немає до 240 мм²
+over the limit	понад межу
+stars on GitHub	зірок на GitHub
+within the limit	у допустимих межах
+{} % is over the limit of {} %.	{} % перевищує межу {} %.
+{} % is within the limit of {} %.	{} % не перевищує межі {} %.
 {} commands. Type help and a name for its parameters, for example: help rename_device	Команд: {}. Введіть help та ім'я команди, щоб побачити її параметри, наприклад: help rename_device
+{} electrical symbols of the category {}, drawn by OpenECraft, the free open source electrical CAE: {}	{} електричних символів категорії {}, накреслених OpenECraft, безкоштовною електротехнічною CAE з відкритим вихідним кодом: {}
+{} pages	Сторінок: {}
+{} projects that come with OpenECraft, from a lamp circuit to a whole building. Each has its sheets, its PDF and a link that opens it in the live demo.	{} проєктів, що постачаються з OpenECraft, від схеми з лампою до цілої будівлі. Кожен має свої аркуші, PDF і посилання, яке відкриває його в живій демонстрації.
+{} symbols of the category {} with their drawings, identifying letters and connection points. They come with OpenECraft, free to use in your schematics.	{} символів категорії {} з їхніми кресленнями, літерними позначеннями та точками підключення. Вони постачаються з OpenECraft і вільні для використання у ваших схемах.
+{} – example project | OpenECraft	{} – приклад проєкту | OpenECraft
+{} – schematic symbols | OpenECraft	{} – символи для схем | OpenECraft
+{}: a number above 0 is needed	{}: потрібне число більше за 0

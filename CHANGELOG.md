@@ -5,6 +5,20 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **A website with more to find:** the build of the website now writes a page for
+  every category of the symbol library with the drawings of its symbols, a page for
+  every example project with its sheets, its PDF and a link into the live demo, the
+  documentation (tutorial, installation, features, command line, plugins, servers)
+  and the release notes with an Atom feed (`news/feed.xml`), beside new pages with
+  questions and answers, guides (terminal diagram, wire list, bill of materials, DXF
+  and DWG export) and comparisons with single products. Three tools run in the
+  browser with the code of the editor, nothing is uploaded: a voltage drop
+  calculator, a DXF and DWG viewer and converter (SVG, PDF, DXF, DWG) and a viewer
+  for EDZ and other parts files (CSV, JSON). *Copy link* in the demos writes an
+  address that opens an example at a page, a place of the panel or a report
+  (`?example=conveyor&page=3#studio`), and the first screen shows a screen recording of the
+  demos when the build is given one. New crate `openecraft-site`
+  ([website](docs/website.md#pages-the-build-writes)).
 - **Reports found by their standards:** the filter of the *Reports* pane (and of the
   website, `list_reports` with `search`) also finds a report by the standards it
   follows, ignoring spaces and dashes: `VDE 0100 600` or `IEC 60364-6` find the

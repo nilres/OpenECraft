@@ -17,6 +17,8 @@ WebAssembly, not copies of it:
 | Sheet of the first screen | `openecraft_core::svg`, the SVG export of the page being edited |
 | Languages | `openecraft_i18n`: the canvases, the generated texts and the page itself |
 | Examples | `openecraft_core::sample::EXAMPLES` |
+| Tools (`tools/…`) | `src/tools.rs`: the voltage drop of the installation circuits, the DXF and DWG import with the SVG and PDF exports, the import of parts files |
+| Symbol library, example pages, documentation, news | Written by the build: `crates/openecraft-site` ([below](#pages-the-build-writes)) |
 
 All of it works on one project in the browser (`src/studio.rs`, the `Studio`): a wire
 deleted in the schematic shows in the check, in the reports and in the next export.
@@ -60,11 +62,15 @@ deleted in the schematic shows in the check, in the reports and in the next expo
 - `apple-touch-icon.png`: the icon of the page on the home screen of an iPhone or
   iPad, which takes no SVG: the drawing of `assets/icon.svg` (the icon of the page
   everywhere else) as an opaque square, drawn by `apple-touch-icon.py`.
-- `src/main.rs`: the exports for the page (`call`, `export_file`, `start`, and
-  `search_routing` for the worker). The native build
+- `content/`: the pages written as content files, which the build puts into the
+  frame of the site ([below](#pages-the-build-writes)).
+- `tools.js`, `src/tools.rs`: the tools ([below](#tools)).
+- `src/main.rs`: the exports for the page (`call`, `export_file`, `start`,
+  `search_routing` for the worker, `tool` and `tool_file` for the tools). The native build
   is a tool for working on the demos: `cargo run -p openecraft-website` shows both
   canvases in a window, `cargo run -p openecraft-website -- call state` prints an
-  answer as the page gets it, `… -- export pdf` writes the file of an exporter.
+  answer as the page gets it, `… -- export pdf` writes the file of an exporter,
+  `… -- tool voltage_drop '{"current":"16",…}'` prints the answer of a tool.
 
 The module is 28 MB (10 MB compressed; a release build is optimised for size, profile `web`), so the page is shown first: trunk only names
 the module in the page (`pattern_script` of `Trunk.toml`) and `site.js` loads it when
@@ -87,7 +93,7 @@ loads first; the Docker image takes the same settings from environment variables
 | `editor` | `OPENECRAFT_EDITOR_URL` | The web editor: a folder beside the page (`editor/`, the default) or any address | Hides the links |
 | `repository` | `OPENECRAFT_REPOSITORY_URL` | The source repository | Hides the links |
 | `downloads` | `OPENECRAFT_DOWNLOADS_URL` | The downloads | The latest release of the repository |
-| `documentation` | `OPENECRAFT_DOCUMENTATION_URL` | The folder with `tutorial.md`, `plugins.md`, `command-line.md` and `installation.md` | The `docs` folder of the repository |
+| `documentation` | `OPENECRAFT_DOCUMENTATION_URL` | The folder with all documents (*All documents in the repository*; the site itself has the tutorial, the installation guide and the feature documents as pages, [below](#pages-the-build-writes)) | The `docs` folder of the repository |
 | `issues` | `OPENECRAFT_ISSUES_URL` | Where problems are reported | The issues of the repository |
 
 ### Legal notice
@@ -163,7 +169,8 @@ own. The tags that need the public address of the site (the canonical address, t
 address and preview image of a link, `robots.txt` with the sitemap and `sitemap.xml`)
 are written by `installer/docker/website-site.sh` from the variable
 `OPENECRAFT_SITE_URL` (`https://…/`, the folder of the page), between the markers
-`site address` of `index.html`; without it they are left out, as an address in the
+`site address` of `index.html` and of every other page; the feed of the news gets
+the address its links start from (`xml:base`); without it they are left out, as an address in the
 wrong place does more harm than none. The Docker image runs the script at every
 start. For a page deployed by hand, run it once on the build:
 
@@ -215,9 +222,95 @@ documentation describes; a new page is a folder, an entry of `PAGES` in
 from the bars of the pages (the tests check all of it).
 
 `website-site.sh` gives these pages the tags of the public address as well (every
-folder whose `index.html` has the markers `site address`): each language of a page
-names itself as canonical and the page's other languages as alternates, and the
-sitemap lists them; nginx answers them from `/tmp/openecraft/<folder>/`.
+folder, one or two deep, whose `index.html` has the markers `site address`): each
+language of a page names itself as canonical and the page's other languages as
+alternates, and the sitemap lists them; nginx answers them from
+`/tmp/openecraft/<folder>/`.
+
+### Pages the build writes
+
+Most pages of the site are not written by hand. After trunk built the main page, a
+hook of `Trunk.toml` runs `cargo run --release -p openecraft-site --example site`
+(`crates/openecraft-site`, no UI, unit tested), which writes into the page:
+
+| Folder | Pages | From |
+| --- | --- | --- |
+| `symbols/` | The symbol library: an overview and a page for every category, each symbol with its drawing (`symbols/art/<key>.svg`, drawn by the SVG export), its name, key, identifying letter and connection points | `openecraft_core::symbols::library` |
+| `examples/` | An overview and a page for every example project: what it shows, its first sheets as SVG, the list of its pages, its PDF and a link that opens it in the live demo | `openecraft_core::sample::EXAMPLES`, the SVG and PDF exports |
+| `docs/` | The documentation: the tutorial, the installation guide, the feature documents, the command line, the plugins and the servers (`DOCUMENTS` of `docs.rs`) | The Markdown files of `docs/` |
+| `news/` | A page for every released version, an overview and the feed `news/feed.xml` (Atom) | `CHANGELOG.md` |
+| `faq/`, `how-to/…`, `tools/…`, `compare/<product>-alternative/` | Questions and answers, guides for single tasks, the tools and the comparison with one product | The content files of `website/content/` |
+| `build.js` | What the build knows: the module of the site for the tools, the screen recording and the numbers of the project ([below](#screen-recording-and-numbers-of-the-project)) | The built page, `website/tour.webm`, the environment |
+
+Every page gets the frame of the site (`frame.rs`: head with title, description, link
+preview, structured data and the markers of the public address; bar; footer), the
+same as the pages written by hand, which a test of the website compares. The symbol,
+example and content pages are written in every language (`index.html`, `de.html`, …)
+with their links leading to the pages of the same language; their texts are in the
+catalog area `website`. The documentation and the news are in English, as their
+sources are. Links between the documents lead to their pages, links to other files
+of the repository to the repository (`data-link="repository"`).
+
+A **content file** is `website/content/<folder>.html` (a folder of pages has its own
+page as `index.html`). It starts with the lines `title: …`, `description: …` and
+`kind: page`, `faq` or `tool`, then an empty line and the content of `<main>`, written
+in English with its texts marked `data-t`. Links to the site start with `@/` for a
+page that exists in every language (`@/compare/`, `@/#studio`,
+`@/?example=conveyor#studio`) and with `~/` for a file or a page in English only
+(`~/docs/tutorial/`). A page of the kind `faq` names its questions to search engines
+as structured data (`FAQPage`): `<details><summary data-t>…</summary><p data-t>…</p></details>`.
+Its texts are listed in `crates/openecraft-site/src/texts.rs` for the catalog (the
+tests compare). A new top-level folder is also an entry of `WRITTEN` in
+`website/src/pages.rs`, of `SECTIONS` in `frame.rs` (the footers), of the locations
+of `website.conf` and of `check-website.sh`.
+
+What a page says stays true to the program: the guides name the commands as the
+tutorial does, and the comparisons say about other products only what is general and
+public, with a trademark note.
+
+To write the pages into a folder without trunk (for a look at them, with any static
+web server): `cargo run --release -p openecraft-site --example site -- <folder>`.
+
+### Links into the demos
+
+An address can say what the demos of the main page show: `?example=conveyor` opens
+an example, `&page=3` its third page, `&place=1&view=front` a place of the panel
+layout (`site` or the number of an enclosure or room; `3d` or `front`) and
+`&report=terminal_diagram` a report; `#studio`, `#layout` or `#reports` scrolls
+there. The module is then loaded at once. *Copy link* in the toolbars of the demos
+and beside the title of a report writes such an address into the clipboard; it opens
+the example as it comes, without what the visitor changed. The guides and the example
+pages link the demos this way.
+
+### Tools
+
+`tools/voltage-drop-calculator/`, `tools/dxf-dwg-viewer/` and `tools/edz-viewer/` are
+content files of the kind `tool`: a form with values or a file of the visitor, and
+places for the answer. `tools.js` loads the module of the site when the tool is used
+(its address is in `build.js`; such a page allows WebAssembly in its policy, no other
+page beside the main one does), hands the values and the file to `tool` of the module
+(`src/tools.rs`, `tools::call`) in the language of the page and shows the JSON
+answer: a summary, facts, a table, a drawing, and buttons for the files `tool_file`
+writes from the file given (SVG, PDF, DXF, DWG, CSV, JSON). Nothing the visitor
+enters or opens leaves the browser. A new tool is a function of `tools.rs` (`TOOLS`,
+`FILES`), a content file with `data-tool="<name>"` and a card on `tools/index.html`.
+
+### Screen recording and numbers of the project
+
+Both are shown only when the build has them, so the page never promises what is
+not there:
+
+- A screen recording for the first screen: `website/tour.webm` (and `tour.jpg` as
+  its still picture). The build copies them and names them in `build.js`; the main
+  page shows the video below the sheet. It is loaded only when the visitor starts it
+  (`preload="none"`). Both files are not kept in the repository (`.gitignore`): put
+  them into `website/` before the build. `website/tour.mjs` records them from the
+  live demos of the built site (headless Edge and Node, no other tool): record them
+  again when the page or the demos changed visibly.
+- The stars and the contributors of the repository: the variables `OPENECRAFT_STARS`
+  and `OPENECRAFT_CONTRIBUTORS` of the build (numbers; for example from `gh api
+  repos/<owner>/<name> --jq .stargazers_count`). With a number above 0 the facts of
+  the first screen show it. The page itself asks no other server for them.
 
 ## Development
 

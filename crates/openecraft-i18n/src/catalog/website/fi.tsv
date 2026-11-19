@@ -5,19 +5,38 @@
 A click in a room puts them on the nearest wall at their mounting height or on the ceiling, drawn with the symbols of installation plans after IEC 60617-11.	Napsautus tilassa sijoittaa ne lähimmälle seinälle asennuskorkeuteensa tai kattoon, piirrettyinä IEC 60617-11:n mukaisilla asennuskaavioiden symboleilla.
 A command line, an MCP server for AI agents and plugins in any language add checks, reports, exports and commands.	Komentorivi, MCP-palvelin tekoälyagenteille ja millä tahansa kielellä tehdyt laajennukset lisäävät tarkistuksia, raportteja, vientejä ja komentoja.
 A community project for many years	Yhteisöprojekti jo vuosien ajan
+A free, open source alternative to AutoCAD Electrical	Ilmainen avoimen lähdekoodin vaihtoehto AutoCAD Electricalille
+A free, open source alternative to EPLAN Electric P8	Ilmainen avoimen lähdekoodin vaihtoehto EPLAN Electric P8:lle
+A free, open source alternative to SEE Electrical	Ilmainen avoimen lähdekoodin vaihtoehto SEE Electricalille
+A free, open source alternative to WSCAD	Ilmainen avoimen lähdekoodin vaihtoehto WSCADille
+A link that opens this example at this place. Your changes are not part of it.	Linkki, joka avaa tämän esimerkin tästä kohdasta. Tekemäsi muutokset eivät sisälly siihen.
 A look inside	Kurkistus sisään
+A minute with OpenECraft: from the schematic to the panel in 3D	Minuutti OpenECraftin parissa: piirikaaviosta kaappiin 3D:nä
 A parts database with mounting data and 3D models, imports from EDZ, BMEcat and STEP, shared through the parts server.	Osatietokanta asennustietoineen ja 3D-malleineen, tuonti EDZ-, BMEcat- ja STEP-muodoista, jaettuna osapalvelimen kautta.
 A scan or PDF of the drawing goes under a level, to scale by measuring one dimension. Find rooms detects the walls, doors and windows, Make rooms turns them into rooms.	Piirustuksen skannaus tai PDF sijoitetaan kerroksen alle ja skaalataan mittaamalla yksi mitta. Etsi tilat tunnistaa seinät, ovet ja ikkunat, Luo tilat tekee niistä tiloja.
 A schematic page of the demo project, drawn by OpenECraft	Esimerkkiprojektin piirikaaviosivu OpenECraftin piirtämänä
 A tutorial from the first page	Opetusohjelma ensimmäisestä sivusta alkaen
 About 330 IEC 60617 symbols, NFPA, GB, GOST and JIS sets, fluid power, P&ID and installation plans, and an editor for your own symbols.	Noin 330 IEC 60617 -symbolia, NFPA-, GB-, GOST- ja JIS-sarjat, fluiditekniikka, P&ID ja asennuspiirustukset sekä editori omille symboleille.
+All documents in the repository	Kaikki dokumentit repositoriossa
 All of it is in the current release and described in the documentation.	Kaikki tämä sisältyy nykyiseen versioon ja on kuvattu dokumentaatiossa.
+Answers about OpenECraft: is it free, where does it run, can it read EPLAN and DWG data, does it work offline, and is it ready for real projects?	Vastauksia OpenECraftista: onko se ilmainen, missä se toimii, lukeeko se EPLAN- ja DWG-tietoja, toimiiko se ilman verkkoyhteyttä ja onko se valmis todellisiin projekteihin?
 At a glance	Yhdellä silmäyksellä
+AutoCAD Electrical adds electrical controls design to AutoCAD. OpenECraft is a program of its own for the same work: device-oriented schematics, reports and the panel in 3D, free and on any operating system. It is young, and this page says where.	AutoCAD Electrical lisää AutoCADiin sähköisten ohjausten suunnittelun. OpenECraft on oma ohjelmansa samaan työhön: laitelähtöiset piirikaaviot, raportit ja kaappi 3D:nä, ilmaiseksi ja kaikilla käyttöjärjestelmillä. Se on nuori, ja tämä sivu kertoo, missä kohdin.
+Autodesk, AutoCAD and DWG are trademarks of Autodesk, Inc. OpenECraft is not affiliated with Autodesk.	Autodesk, AutoCAD ja DWG ovat Autodesk, Inc:n tavaramerkkejä. OpenECraft ei ole sidoksissa Autodeskiin.
 Before you switch	Ennen kuin vaihdat
 Bill of materials, terminal, cable and plug diagrams as live pages, own drawn forms and a project check that follows every change.	Osaluettelo sekä riviliitin-, kaapeli- ja pistoliitinkaaviot ajan tasalla pysyvinä sivuina, itse piirretyt lomakkeet ja projektin tarkistus, joka seuraa jokaista muutosta.
+Both are free and open source. QElectroTech is a long-standing program for drawing electrical schematics. OpenECraft is younger and device-oriented: the schematic is a model that writes the reports, checks itself and carries on into the panel layout.	Molemmat ovat ilmaisia ja avointa lähdekoodia. QElectroTech on pitkään käytössä ollut ohjelma sähköpiirikaavioiden piirtämiseen. OpenECraft on nuorempi ja laitelähtöinen: piirikaavio on malli, joka kirjoittaa raportit, tarkistaa itsensä ja jatkuu kaappiasennukseen.
+Browse the symbols	Selaa symboleja
 Building installation	Rakennusten sähköasennus
 Built for scripts and AI agents	Tehty skripteille ja tekoälyagenteille
 Cable length and voltage drop	Kaapelipituus ja jännitteenalenema
+Calculate	Laske
+Calculate the voltage drop	Laske jännitteenalenema
+Can OpenECraft open EPLAN projects?	Voiko OpenECraft avata EPLAN-projekteja?
+Can scripts and AI agents work with OpenECraft?	Voivatko skriptit ja tekoälyagentit työskennellä OpenECraftin kanssa?
+Categories	Luokat
+Choose Insert as report page to put the diagram into the project. The pages update when the schematic changes.	Valitse Lisää raporttisivuna, niin kaavio tulee projektiin. Sivut päivittyvät, kun piirikaavio muuttuu.
+Choose a file first	Valitse ensin tiedosto
 Circuits as a single-line diagram	Piirit yksinapaisena kaaviona
 Click to explore the panel	Tutki kaappia napsauttamalla
 Click to work in the editor	Työskentele editorissa napsauttamalla
@@ -30,32 +49,75 @@ Commercial, proprietary	Kaupallinen, suljettu
 Comparison	Vertailu
 Concepts: devices with tags, structure identifiers after IEC 81346, cross references, macros and generated report pages, as in other device-oriented tools.	Käsitteet: laitteet tunnuksineen, rakennetunnukset IEC 81346:n mukaan, ristiviittaukset, makrot ja luodut raporttisivut, kuten muissakin laitekeskeisissä työkaluissa.
 Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.	Johtimien mitoitus, oikosulku ja selektiivisyys, kuormituslaskenta, EMC ja turvatoiminnot ISO 13849-1:n mukaan.
+Copy link	Kopioi linkki
+Copy this link:	Kopioi tämä linkki:
+Cost and license	Hinta ja lisenssi
 Cost of use	Käytön kustannukset
+Create a bill of materials	Luo osaluettelo
+Create a terminal diagram	Luo riviliitinkaavio
+Create a terminal diagram from a schematic with OpenECraft, the free electrical CAE: place terminals, order the strip and insert the diagram as a page.	Luo riviliitinkaavio piirikaaviosta OpenECraftilla, ilmaisella sähkö-CAE:lla: sijoita riviliittimet, järjestä rima ja lisää kaavio sivuna.
+Create the bill of materials of a control cabinet with OpenECraft: assign parts to the devices and the list sums them, with terminals, cables and panel material.	Luo ohjauskaapin osaluettelo OpenECraftilla: määritä laitteille osat, ja luettelo laskee ne yhteen riviliittimien, kaapelien ja kaappimateriaalin kanssa.
+Cross-section (mm²)	Poikkipinta-ala (mm²)
+Customers and mechanical designers often ask for drawings in their CAD format. OpenECraft writes its pages as DXF or DWG, and reads such drawings as well.	Asiakkaat ja mekaniikkasuunnittelijat pyytävät usein piirustuksia omassa CAD-muodossaan. OpenECraft kirjoittaa sivunsa DXF- tai DWG-muotoon ja myös lukee tällaisia piirustuksia.
+DXF and DWG export	DXF- ja DWG-vienti
+DXF and DWG viewer	DXF- ja DWG-katseluohjelma
+DXF and DWG viewer and converter	DXF- ja DWG-katseluohjelma ja -muunnin
+DXF and DWG viewer and converter online – OpenECraft	DXF- ja DWG-katselu ja -muunnin verkossa – OpenECraft
 Data exchange	Tiedonsiirto
+Data exchange in the documentation	Tiedonsiirto dokumentaatiossa
 Device-oriented electrical engineering; panel layout in 3D, fluid power and more as further products of the EPLAN platform	Laitekeskeinen sähkösuunnittelu; kaappiasennus 3D:nä, fluiditekniikka ja muuta EPLAN-alustan muina tuotteina
 Device-oriented schematics	Laitekeskeiset piirikaaviot
 Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings.	Laitteet todellisessa koossa kiskoilla ja levyillä, virtuaalinen johdotus kourujen täyttöasteineen, poraustiedot, kotelon ilmasto, tilat ja rakennukset.
 Distribution boards	Jakokeskukset
+Does OpenECraft work offline?	Toimiiko OpenECraft ilman verkkoyhteyttä?
+Download the PDF	Lataa PDF
 Download the latest release	Lataa uusin versio
 Drag to turn, pinch with two fingers to zoom.	Käännä vetämällä, zoomaa nipistämällä kahdella sormella.
 Drag to turn, scroll to zoom.	Käännä vetämällä, zoomaa vierittämällä.
+Draw the schematic and give the potentials their wire colour and cross-section in Connections › Potentials.	Piirrä piirikaavio ja anna potentiaaleille johdon väri ja poikkipinta-ala kohdassa Yhteydet › Potentiaalit.
+Drawing (DXF or DWG)	Piirustus (DXF tai DWG)
 Drawing electrical schematics with a collection of symbols	Sähköpiirikaavioiden piirtäminen symbolikokoelman avulla
 Drawings: DXF and DWG files are imported as graphics on a schematic page, and every page can be exported as DXF or DWG.	Piirustukset: DXF- ja DWG-tiedostot tuodaan grafiikkana piirikaaviosivulle, ja jokaisen sivun voi viedä DXF- tai DWG-muodossa.
+Drawn by the SVG export of OpenECraft, as the project comes.	Piirretty OpenECraftin SVG-viennillä, sellaisena kuin projekti toimitetaan.
+EDZ and parts file viewer	EDZ- ja osatiedostojen katseluohjelma
+EDZ archives as manufacturers offer them for download, with the data of their parts.	EDZ-arkistot sellaisina kuin valmistajat tarjoavat niitä ladattaviksi, osiensa tietoineen.
+EDZ viewer: open EDZ and parts files online – OpenECraft	EDZ-katselu: avaa EDZ- ja osatiedostoja verkossa – OpenECraft
+EPLAN Electric P8 is the established tool of control panel engineering. OpenECraft works in the same device-oriented way, costs nothing and runs on any operating system and in the browser. It is young, and this page says where.	EPLAN Electric P8 on ohjauskeskusten suunnittelun vakiintunut työkalu. OpenECraft toimii samalla laitelähtöisellä tavalla, ei maksa mitään ja toimii kaikilla käyttöjärjestelmillä ja selaimessa. Se on nuori, ja tämä sivu kertoo, missä kohdin.
 EPLAN and EPLAN Electric P8 are trademarks of EPLAN GmbH & Co. KG. Autodesk, AutoCAD and AutoCAD Electrical are trademarks of Autodesk, Inc. QElectroTech is the name of an independent open source project.	EPLAN ja EPLAN Electric P8 ovat EPLAN GmbH & Co. KG:n tavaramerkkejä. Autodesk, AutoCAD ja AutoCAD Electrical ovat Autodesk, Inc.:n tavaramerkkejä. QElectroTech on itsenäisen avoimen lähdekoodin projektin nimi.
+EPLAN is a trademark of EPLAN GmbH & Co. KG. OpenECraft is not affiliated with EPLAN.	EPLAN on EPLAN GmbH & Co. KG:n tavaramerkki. OpenECraft ei ole sidoksissa EPLANiin.
+EPLAN parts XML, BMEcat catalogs and the CSV and JSON parts files of OpenECraft.	EPLAN-osa-XML, BMEcat-luettelot sekä OpenECraftin CSV- ja JSON-osatiedostot.
 Each example builds on the one before: from push buttons and lamps through a self-holding relay and a star-delta starter to PLC, panel layout and whole buildings.	Jokainen esimerkki rakentuu edellisen varaan: painikkeista ja merkkivaloista itsepitävän releen ja tähti-kolmiokäynnistimen kautta PLC:hen, kaappiasennukseen ja kokonaisiin rakennuksiin.
+Electrical CAD for schematics, cabinet layouts and building installation	Sähkö-CAD piirikaavioihin, kaappiasennuksiin ja rakennusten sähköasennuksiin
+Electrical CAD with disciplines for control cabinets, building automation and electrical installation	Sähkö-CAD, jossa on osa-alueet ohjauskaapeille, rakennusautomaatiolle ja sähköasennuksille
 Electrical controls design as a toolset of AutoCAD	Ohjausjärjestelmien sähkösuunnittelu AutoCADin työkalusarjana
+Electrical symbols for schematics	Sähkösymbolit piirikaavioihin
+Electrical symbols for schematics – OpenECraft	Sähkösymbolit piirikaavioihin – OpenECraft
 Electricians	Sähköasentajat
 Enclosure climate with a heat map of the mounting plate	Kotelon ilmasto ja asennuslevyn lämpökartta
 Engineering calculations	Tekniset laskelmat
+Established for many years	Vakiintunut jo monen vuoden ajan
 Established for many years, widely used by AutoCAD users	Vakiintunut jo vuosia, laajalti käytössä AutoCAD-käyttäjien keskuudessa
 Established for many years, widely used in control panel engineering	Vakiintunut jo vuosia, laajalti käytössä ohjauskaappien suunnittelussa
 Every circuit starts at a protective device of the distribution board, the spare ones marked, and runs through its cable from item to item.	Jokainen piiri alkaa jakokeskuksen suojalaitteesta, vapaat suojalaitteet on merkitty, ja kulkee kaapelinsa mukana kohteesta toiseen.
+Every function is a command of the command line and of the MCP server, so scripts and AI agents can do what you can.	Jokainen toiminto on komentorivin ja MCP-palvelimen komento, joten skriptit ja tekoälyagentit voivat tehdä saman kuin sinä.
 Every operation on a project is a command: on the command line, for AI agents through the MCP server, and for plugins. Try some on the project above.	Jokainen projektiin kohdistuva toiminto on komento: komentorivillä, tekoälyagenteille MCP-palvelimen kautta ja laajennuksille. Kokeile muutamaa yllä olevaan projektiin.
 Every step is a command as well, so a plan can also be drawn by a script or an AI agent.	Jokainen vaihe on myös komento, joten kaavion voi piirtää myös skripti tai tekoälyagentti.
+Every symbol of the libraries with its drawing: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&ID and installation plans.	Kirjastojen jokainen symboli piirroksineen: IEC 60617, NFPA, GB, GOST, JIS, fluiditekniikka, PI-kaaviot ja asennuspiirustukset.
 Every table is generated from the project and stays current: change the schematic above and the lists below follow. Plugins add their own.	Jokainen taulukko luodaan projektista ja pysyy ajan tasalla: muuta yllä olevaa piirikaaviota, niin alla olevat luettelot seuraavat. Laajennukset lisäävät omansa.
+Every wire with its colour, cross-section, routed length and end treatment, in order for the workshop.	Jokainen johto: väri, poikkipinta-ala, reititetty pituus ja päiden käsittely, verstaan työjärjestyksessä.
 Everything an electrical project needs	Kaikki, mitä sähköprojekti tarvitsee
+Example electrical projects with schematics – OpenECraft	Sähköalan esimerkkiprojekteja piirikaavioineen – OpenECraft
+Example project, level {}	Esimerkkiprojekti, taso {}
+Example projects of OpenECraft, the free electrical CAE: motor starters, PLC, control cabinets and buildings, with their schematics as pictures and PDF.	OpenECraftin, ilmaisen sähkö-CAE:n, esimerkkiprojektit: moottorikäynnistimet, PLC, ohjauskaapit ja rakennukset, piirikaaviot kuvina ja PDF:nä.
+Example projects to open, read and change	Esimerkkiprojekteja avattavaksi, luettavaksi ja muutettavaksi
 Example projects, simplest first	Esimerkkiprojektit, yksinkertaisimmat ensin
+Examples	Esimerkit
+Export a schematic to DXF or DWG	Vie piirikaavio DXF- tai DWG-muotoon
+Export electrical schematics as DXF or DWG with OpenECraft, the free electrical CAE, and bring drawings of other CAD programs into a project.	Vie sähköpiirikaaviot DXF- tai DWG-muotoon OpenECraftilla, ilmaisella sähkö-CAE:lla, ja tuo muiden CAD-ohjelmien piirustukset projektiin.
+Export the production wire list with File › Export, or wire from a tablet with the Wiring workspace.	Vie tuotannon johtoluettelo valitsemalla Tiedosto › Vienti tai johdota tabletilta Johdotus-työtilassa.
 Export the project you just edited	Vie juuri muokkaamasi projekti
+Export the table as CSV or Excel, or choose Insert as report page to make it part of the documents.	Vie taulukko CSV- tai Excel-muotoon tai valitse Lisää raporttisivuna, jolloin siitä tulee osa dokumentteja.
+FAQ	UKK
 Features	Ominaisuudet
 Feedback while drawing	Palautetta piirtäessä
 Final circuits	Ryhmäjohdot
@@ -74,59 +136,138 @@ Free electrical CAD for schools and training – OpenECraft	Ilmainen sähkö-CAD
 Free for every student	Ilmainen jokaiselle opiskelijalle
 Free for every student and in the browser, with a tutorial and example projects from the simplest circuit up.	Ilmainen jokaiselle opiskelijalle ja selaimessa, mukana opetusohjelma ja esimerkkiprojekteja yksinkertaisimmasta piiristä alkaen.
 Free of charge	Maksuton
+Free online DXF and DWG viewer: open a drawing in your browser and save it as SVG, PDF, DXF or DWG. The file is not uploaded; nothing to install.	Ilmainen DXF- ja DWG-katseluohjelma verkossa: avaa piirustus selaimessa ja tallenna se SVG-, PDF-, DXF- tai DWG-muodossa. Tiedostoa ei lähetetä minnekään; ei asennettavaa.
+Free online EDZ viewer: see the parts of an EDZ, EPLAN parts XML, BMEcat or CSV file as a table in your browser and save them as CSV or JSON.	Ilmainen EDZ-katseluohjelma verkossa: katso EDZ-, EPLAN-osa-XML-, BMEcat- tai CSV-tiedoston osat taulukkona selaimessa ja tallenna ne CSV- tai JSON-muodossa.
+Free online tools for electrical engineering – OpenECraft	Ilmaisia verkkotyökaluja sähkötekniikkaan – OpenECraft
+Free open source alternative to AutoCAD Electrical – OpenECraft	Ilmainen ja avoin vaihtoehto AutoCAD Electricalille – OpenECraft
+Free open source alternative to EPLAN Electric P8 – OpenECraft	Ilmainen ja avoin vaihtoehto EPLAN Electric P8:lle – OpenECraft
+Free open source alternative to SEE Electrical – OpenECraft	Ilmainen ja avoin vaihtoehto SEE Electricalille – OpenECraft
+Free open source alternative to WSCAD – OpenECraft	Ilmainen ja avoin vaihtoehto WSCADille – OpenECraft
 Free software for building installation: floor plans under the levels, outlets, switches and lights, final circuits with cable lengths and voltage drop.	Ilmainen ohjelmisto rakennusten sähköasennuksiin: pohjapiirrokset kerrosten alla, pistorasiat, kytkimet ja valaisimet, ryhmäjohdot kaapelipituuksineen ja jännitteenalenemineen.
 Free to use, free to change. Pick what fits you.	Vapaasti käytettävissä, vapaasti muokattavissa. Valitse itsellesi sopiva.
+Free tools that run in your browser	Ilmaisia työkaluja, jotka toimivat selaimessasi
+Free tools that run in your browser with the code of OpenECraft: voltage drop calculator, DXF and DWG viewer and converter, EDZ and parts file viewer.	Ilmaisia työkaluja, jotka toimivat selaimessa OpenECraftin koodilla: jännitteenaleneman laskin, DXF- ja DWG-katseluohjelma ja -muunnin, EDZ- ja osatiedostojen katseluohjelma.
+Free voltage drop calculator: current, length, cross-section, copper or aluminium, single or three-phase. It shows the smallest cross-section within your limit.	Ilmainen jännitteenaleneman laskin: virta, pituus, poikkipinta-ala, kupari tai alumiini, yksi- tai kolmivaiheinen. Se näyttää pienimmän poikkipinta-alan, joka pysyy raja-arvossasi.
 Free, open source software for control panel builders: schematics, panel layout in 3D, wire lists with ferrules, a wiring assistant on the tablet and NC data.	Ilmainen avoimen lähdekoodin ohjelmisto keskusvalmistajille: piirikaaviot, kaappiasennus 3D:nä, johtoluettelot pääteholkkeineen, johdotusavustaja tabletilla ja NC-tiedot.
 From source	Lähdekoodista
+From the documentation on this site and from the issue tracker of the project, where problems and wishes are reported.	Tämän sivuston dokumentaatiosta ja projektin issue-seurannasta, jossa ongelmat ja toiveet ilmoitetaan.
 From the first schematic page to the panel in 3D.	Ensimmäisestä piirikaaviosivusta kaappiin 3D:nä.
 From the floor plan to the distribution board	Pohjapiirroksesta jakokeskukseen
 From the schematic through the panel layout in 3D to the wiring in the workshop, with production data for the machines.	Piirikaaviosta 3D-kaappiasennuksen kautta johdotukseen verstaalla, tuotantotiedot koneille mukaan lukien.
 From the schematic to the wired control cabinet	Piirikaaviosta johdotettuun ohjauskaappiin
 General facts, no prices: the makers of the other products describe them in detail on their websites.	Yleisiä tietoja, ei hintoja: muiden tuotteiden valmistajat kuvaavat ne tarkemmin verkkosivuillaan.
+Generate a wire list	Luo johtoluettelo
+Generate a wire list for the workshop with OpenECraft: every wire with colour, cross-section, routed length and end treatment, from schematic and panel layout.	Luo johtoluettelo verstaalle OpenECraftilla: jokaisen johdon väri, poikkipinta-ala, reititetty pituus ja päiden käsittely piirikaaviosta ja kaappiasennuksesta.
 Get OpenECraft	Hanki OpenECraft
 Get it	Hanki
+Give the devices of the schematic their parts and the bill of materials is there: one list of everything to order, kept current by the project.	Anna piirikaavion laitteille osat, ja osaluettelo on valmis: yksi luettelo kaikesta tilattavasta, ja projekti pitää sen ajan tasalla.
 Graphical terminal diagram	Graafinen riviliitinkaavio
+Guides	Oppaat
 Heat loss after IEC/TR 60890 from the power loss of the devices, with filter fans, heat exchangers or cooling units, and a heat map of the mounting plate.	Lämpötase IEC/TR 60890:n mukaan laitteiden häviötehosta, suodatintuulettimilla, lämmönvaihtimilla tai jäähdytyslaitteilla, sekä asennuslevyn lämpökartta.
 Help comes from the documentation and from the issue tracker of the project.	Apua saa dokumentaatiosta ja projektin vikaseurannasta.
 House connection boxes, distribution cabinets with component modules, metering with current transformers and PV feeders, in 3D with their busbars.	Liittymiskaapit, jakokeskuskaapit komponenttimoduuleineen, mittaus virtamuuntajilla ja aurinkosähkölähdöt, 3D:nä kokoojakiskoineen.
+How it is calculated	Näin lasketaan
+How many volts a cable loses on its way, and which cross-section keeps the limit. The calculation is the one OpenECraft uses for the final circuits of an installation.	Kuinka monta volttia kaapeli menettää matkalla ja mikä poikkipinta-ala pysyy raja-arvossa. Laskenta on sama, jota OpenECraft käyttää asennuksen ryhmäjohdoille.
+How to create a bill of materials	Näin luot osaluettelon
+How to create a bill of materials from a schematic – OpenECraft	Osaluettelon luominen piirikaaviosta – OpenECraft
+How to create a terminal diagram	Näin luot riviliitinkaavion
+How to create a terminal diagram – OpenECraft	Riviliitinkaavion luominen – OpenECraft
+How to draw electrical documents with OpenECraft	Sähködokumenttien laatiminen OpenECraftilla
+How to export a schematic to DXF or DWG	Näin viet piirikaavion DXF- tai DWG-muotoon
+How to export a schematic to DXF or DWG – OpenECraft	Piirikaavion vienti DXF- tai DWG-muotoon – OpenECraft
+How to generate a wire list	Näin luot johtoluettelon
+How to generate a wire list from a schematic – OpenECraft	Johtoluettelon luominen piirikaaviosta – OpenECraft
+How to get common documents out of a schematic	Näin saat tavalliset dokumentit piirikaaviosta
+How-to	Ohjeet
+IEC 60617 for schematics, with NFPA, GB, GOST and JIS sets, ISO 1219 for fluid power, ISO 10628 for P&ID and IEC 60617-11 for installation plans. Structure identifiers follow IEC 81346.	IEC 60617 piirikaavioille sekä NFPA-, GB-, GOST- ja JIS-sarjat, ISO 1219 fluiditekniikalle, ISO 10628 PI-kaavioille ja IEC 60617-11 asennuspiirustuksille. Rakennetunnukset noudattavat standardia IEC 81346.
 IEC 60617 symbols, structure identifiers after IEC 81346 and reports as in industry, so what is learned carries over to other tools.	IEC 60617 -symbolit, rakennetunnukset IEC 81346:n mukaan ja raportit kuten teollisuudessa, joten opittu siirtyy muihin työkaluihin.
+Import parts into Devices › Parts management from CSV, BMEcat, EPLAN parts XML or EDZ files, or use the example catalog.	Tuo osia kohtaan Laitteet › Osien hallinta CSV-, BMEcat-, EPLAN-osa-XML- tai EDZ-tiedostoista tai käytä esimerkkiluetteloa.
+In Master data › Forms, switch the terminal diagram to its graphical form or choose its columns.	Vaihda kohdassa Perustiedot › Lomakkeet riviliitinkaavio graafiseen muotoonsa tai valitse sen sarakkeet.
+In OpenECraft an imported drawing becomes the graphics of a schematic page, and every page of a project is exported as DXF or DWG.	OpenECraftissa tuodusta piirustuksesta tulee piirikaaviosivun grafiikka, ja projektin jokainen sivu viedään DXF- tai DWG-muotoon.
+In OpenECraft the terminal diagram is a report: it is written from the terminals of the schematic and follows every change. You draw the circuit, not the list.	OpenECraftissa riviliitinkaavio on raportti: se kirjoitetaan piirikaavion riviliittimistä ja se seuraa jokaista muutosta. Piirrät piirin, et luetteloa.
+In a project file on your computer. Nothing is uploaded. A team can run the project server in its own network to work on shared projects.	Projektitiedostossa omalla tietokoneellasi. Mitään ei lähetetä verkkoon. Tiimi voi käyttää projektipalvelinta omassa verkossaan työskennelläkseen yhteisten projektien parissa.
+In a project, OpenECraft measures the cable lengths along the installation zones of the rooms and checks every final circuit this way, feeder cables included.	Projektissa OpenECraft mittaa kaapelien pituudet huoneiden asennusvyöhykkeitä pitkin ja tarkistaa näin jokaisen ryhmäjohdon, syöttökaapelit mukaan lukien.
+In the Panel layout workspace, place the devices on rails and the wiring ducts between them. The wires are routed through the ducts.	Sijoita Kaappiasennus-työtilassa laitteet kiskoille ja johtokourut niiden väliin. Johdot reititetään kourujen kautta.
 In the browser	Selaimessa
 In the student's language	Opiskelijan omalla kielellä
 Installation guide	Asennusopas
 Installation plans on the architect's floor plan	Asennuskaaviot arkkitehdin pohjapiirroksessa
 Installation plans on the floor plan of the building, final circuits with cable lengths and voltage drop, the distribution board in 3D.	Asennuskaaviot rakennuksen pohjapiirroksessa, ryhmäjohdot kaapelipituuksineen ja jännitteenalenemineen, jakokeskus 3D:nä.
 Installers for Windows, Linux packages and a macOS disk image, with automatic updates.	Asennusohjelmat Windowsille, Linux-paketit ja macOS-levykuva, automaattisin päivityksin.
+Is OpenECraft free?	Onko OpenECraft ilmainen?
+Is OpenECraft ready for real projects?	Onko OpenECraft valmis todellisiin projekteihin?
+Is it free? Does it read EPLAN data? Does it work offline? The answers.	Onko se ilmainen? Lukeeko se EPLAN-tietoja? Toimiiko se ilman verkkoyhteyttä? Vastaukset.
+Is there a paid version with more functions?	Onko olemassa maksullinen versio, jossa on enemmän toimintoja?
 It comes with a small set of manufacturer catalogs, far from the large data portals of the commercial vendors; parts from EDZ, BMEcat and STEP files fill the gap.	Mukana on pieni valikoima valmistajien luetteloita, kaukana kaupallisten toimittajien suurista dataportaaleista; EDZ-, BMEcat- ja STEP-tiedostoista tuodut osat paikkaavat aukkoa.
 It is a new project and has not been proven in years of production use the way the established tools have. Try it on a real project of yours before you rely on it.	Se on uusi projekti, eikä se ole osoittanut toimivuuttaan vuosien tuotantokäytössä kuten vakiintuneet työkalut. Kokeile sitä omassa todellisessa projektissasi, ennen kuin luotat siihen.
+It is a young project: the first release was in November 2026. Plan one real project with it beside the tool you use today before you rely on it, and have a qualified person verify the results.	Se on nuori projekti: ensimmäinen versio julkaistiin marraskuussa 2026. Suunnittele sillä yksi todellinen projekti nykyisen työkalusi rinnalla ennen kuin luotat siihen, ja anna pätevän henkilön tarkistaa tulokset.
+It is free for everyone: no licenses to count, no accounts, and the source code is public.	Se on ilmainen kaikille: ei laskettavia lisenssejä, ei käyttäjätilejä, ja lähdekoodi on julkinen.
+It runs on Windows, Linux and macOS and in the browser, built from the same code.	Se toimii Windowsissa, Linuxissa ja macOS:ssä sekä selaimessa, samasta koodista rakennettuna.
 Its symbol libraries and editing tools grow with every release, but users of the established tools will still miss functions they are used to.	Sen symbolikirjastot ja muokkaustyökalut kasvavat jokaisen version myötä, mutta vakiintuneiden työkalujen käyttäjät kaipaavat yhä toimintoja, joihin he ovat tottuneet.
 Lamp	Merkkivalo
 Learn electrical planning on real software, for free	Opi sähkösuunnittelua oikealla ohjelmistolla, ilmaiseksi
+Length, one way (m)	Pituus, yhteen suuntaan (m)
 Lengths along the installation zones after DIN 18015-3 and the voltage drop from the supply are worked out, checked against the rule sets and written into the cable list.	Pituudet DIN 18015-3:n mukaisia asennusvyöhykkeitä pitkin ja jännitteenalenema syötöstä lasketaan, tarkistetaan sääntöjoukkoja vasten ja kirjataan kaapeliluetteloon.
 License	Lisenssi
 Licenses	Lisenssit
+Limit	Raja-arvo
+Lines	Viivat
+Lines, polylines, circles, arcs, ellipses, splines, texts and blocks of DXF and DWG drawings.	DXF- ja DWG-piirustusten viivat, murtoviivat, ympyrät, kaaret, ellipsit, splinit, tekstit ja blokit.
+Link copied	Linkki kopioitu
 Live demo	Live-demo
+Loading the tool. It is the code of the editor, about 10 MB, loaded once.	Työkalua ladataan. Se on editorin koodi, noin 10 MB, ja se ladataan kerran.
+Look at a DXF or DWG drawing and save it as SVG, PDF or the other of the two formats.	Katso DXF- tai DWG-piirustusta ja tallenna se SVG- tai PDF-muodossa tai toisessa näistä kahdesta muodosta.
 Looking for a free alternative to EPLAN Electric P8 or AutoCAD Electrical, or for more than drawing schematics? Here is how OpenECraft compares: what it does, what the others are known for, and where OpenECraft is still young.	Etsitkö ilmaista vaihtoehtoa EPLAN Electric P8:lle tai AutoCAD Electricalille tai jotain enemmän kuin piirikaavioiden piirtämistä? Näin OpenECraft vertautuu: mitä se tekee, mistä muut tunnetaan ja missä OpenECraft on vielä nuori.
 Looking for an open source alternative to EPLAN or AutoCAD Electrical? How OpenECraft compares in license, platforms and features, and where it is still young.	Etsitkö avoimen lähdekoodin vaihtoehtoa EPLANille tai AutoCAD Electricalille? Miten OpenECraft vertautuu lisenssin, alustojen ja ominaisuuksien osalta ja missä se on vielä nuori.
 Made for your work	Tehty sinun työhösi
 Maturity	Kypsyys
 Menu	Valikko
+More examples	Lisää esimerkkejä
+More guides	Lisää oppaita
+More symbols	Lisää symboleja
+More to explore	Lisää tutkittavaa
+More tools	Lisää työkaluja
 Multi-level terminals, plugs and PLC cards with tag tables for TIA Portal, Studio 5000, TwinCAT, CODESYS and more.	Monikerrosliittimet, pistoliittimet ja PLC-kortit muuttujataulukoineen TIA Portalille, Studio 5000:lle, TwinCATille, CODESYSille ja muille.
 New: first release in November 2026	Uutta: ensimmäinen versio marraskuussa 2026
+News	Uutiset
 No messages. The project passes the check.	Ei ilmoituksia. Projekti läpäisee tarkistuksen.
 No screenshots: this is the page editor of OpenECraft. Select and move symbols, draw wires, place a contact and watch cross references, checks and reports follow.	Ei kuvakaappauksia: tämä on OpenECraftin sivueditori. Valitse ja siirrä symboleja, piirrä johtoja, lisää kosketin ja katso, kuinka ristiviittaukset, tarkistukset ja raportit seuraavat.
+No. There is one OpenECraft, and everything this site describes is in it.	Ei. On vain yksi OpenECraft, ja kaikki, mitä tämä sivusto kuvaa, sisältyy siihen.
+Not imported	Ei tuotu
 Not public	Ei julkinen
+Not yet. Projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported. Parts from EDZ files and EPLAN parts XML are imported with their data, symbols and 3D models, and DXF and DWG drawings as graphics.	Ei vielä. EPLAN Electric P8:n ja AutoCAD Electricalin projekteja ei voi tuoda. EDZ-tiedostojen ja EPLAN-osa-XML:n osat tuodaan tietoineen, symboleineen ja 3D-malleineen, ja DXF- ja DWG-piirustukset grafiikkana.
+Number the connections with Connections › Wire numbering.	Numeroi yhteydet valitsemalla Yhteydet › Johtojen numerointi.
+On Windows, Linux and macOS as a desktop program, and in the browser as a web editor with nothing to install. All of them are built from the same code.	Windowsissa, Linuxissa ja macOS:ssä työpöytäohjelmana ja selaimessa verkkoeditorina ilman asennusta. Kaikki on rakennettu samasta koodista.
 On a touch screen one finger works like the left mouse button; two fingers move and zoom the view.	Kosketusnäytöllä yksi sormi toimii kuin hiiren vasen painike; kaksi sormea siirtää ja zoomaa näkymää.
 On the desktop	Työpöydällä
+One product at a time	Yksi tuote kerrallaan
+One program and one project file for the schematic, the reports, the panel layout in 3D and the workshop.	Yksi ohjelma ja yksi projektitiedosto piirikaaviolle, raporteille, kaappiasennukselle 3D:nä ja verstaalle.
 One project file holds the schematics, the parts, the panel and the documents. Every function is also a command, so scripts and AI agents can do what you can.	Yksi projektitiedosto sisältää piirikaaviot, osat, kaapin ja asiakirjat. Jokainen toiminto on myös komento, joten skriptit ja tekoälyagentit voivat tehdä saman kuin sinä.
 One project holds the schematic, the parts, the panel and the documents, so a change shows everywhere at once.	Yksi projekti sisältää piirikaavion, osat, kaapin ja asiakirjat, joten muutos näkyy kaikkialla kerralla.
+Open Devices › Terminal strips to order the strip and to add spare terminals, jumpers, end brackets and multi-level blocks.	Avaa Laitteet › Riviliitinrimat, niin voit järjestää riman ja lisätä varaliittimiä, silloituksia, päätytukia ja monikerrosliittimiä.
+Open File › Export: it lists all exports of the project.	Avaa Tiedosto › Vienti: siinä luetellaan projektin kaikki viennit.
+Open Project data › Reports and pick Bill of materials.	Avaa Projektitiedot › Raportit ja valitse Osaluettelo.
+Open Project data › Reports and pick Terminal diagram.	Avaa Projektitiedot › Raportit ja valitse Riviliitinkaavio.
+Open Project data › Reports and pick Wire list (panel routing).	Avaa Projektitiedot › Raportit ja valitse Johtoluettelo (kaapin reititys).
+Open a DXF or DWG drawing without a CAD program and save it as SVG, PDF or the other of the two formats. The file is read in your browser and is not uploaded.	Avaa DXF- tai DWG-piirustus ilman CAD-ohjelmaa ja tallenna se SVG- tai PDF-muodossa tai toisessa näistä kahdesta muodosta. Tiedosto luetaan selaimessasi, eikä sitä lähetetä minnekään.
 Open and extensible	Avoin ja laajennettava
+Open in the live demo	Avaa live-demossa
 Open source electrical CAE	Avoimen lähdekoodin sähkö-CAE
 Open source under the MIT and Apache-2.0 licenses.	Avointa lähdekoodia MIT- ja Apache-2.0-lisensseillä.
 Open source under the MIT and Apache-2.0 licenses: no licenses to count, no accounts, no expiry. Install it on every school computer or use it in the browser.	Avointa lähdekoodia MIT- ja Apache-2.0-lisensseillä: ei laskettavia lisenssejä, ei tilejä, ei vanhenemista. Asenna se jokaiselle koulun tietokoneelle tai käytä sitä selaimessa.
 Open source: GNU GPL	Avoin lähdekoodi: GNU GPL
 Open source: MIT or Apache-2.0	Avoin lähdekoodi: MIT tai Apache-2.0
+Open the DXF and DWG viewer	Avaa DXF- ja DWG-katseluohjelma
+Open the parts file viewer	Avaa osatiedostojen katseluohjelma
 Open the web editor	Avaa verkkoeditori
+OpenECraft FAQ: free electrical CAE, platforms, EPLAN data	OpenECraft-UKK: ilmainen sähkö-CAE, alustat, EPLAN-tiedot
+OpenECraft and QElectroTech: open source electrical CAD compared	OpenECraft ja QElectroTech: avoimen lähdekoodin sähkö-CAD vertailussa
+OpenECraft as a free, open source alternative to AutoCAD Electrical: schematics, reports and panel layout in one program, DXF and DWG in and out.	OpenECraft ilmaisena avoimen lähdekoodin vaihtoehtona AutoCAD Electricalille: piirikaaviot, raportit ja kaappiasennus yhdessä ohjelmassa, DXF ja DWG sisään ja ulos.
+OpenECraft as a free, open source alternative to EPLAN Electric P8: what it does, which EPLAN data it reads, where it is still young and whom it fits.	OpenECraft ilmaisena avoimen lähdekoodin vaihtoehtona EPLAN Electric P8:lle: mitä se tekee, mitä EPLAN-tietoja se lukee, missä se on vielä nuori ja kenelle se sopii.
+OpenECraft as a free, open source alternative to SEE Electrical: schematics, reports, panel layout in 3D and installation plans, on any operating system.	OpenECraft ilmaisena avoimen lähdekoodin vaihtoehtona SEE Electricalille: piirikaaviot, raportit, kaappiasennus 3D:nä ja asennuspiirustukset, kaikilla käyttöjärjestelmillä.
+OpenECraft as a free, open source alternative to WSCAD: schematics, control cabinets and building installation in one program, on any operating system.	OpenECraft ilmaisena avoimen lähdekoodin vaihtoehtona WSCADille: piirikaaviot, ohjauskaapit ja rakennusten sähköasennukset yhdessä ohjelmassa, kaikilla käyttöjärjestelmillä.
 OpenECraft beside EPLAN Electric P8, AutoCAD Electrical and QElectroTech: what each is known for, and where OpenECraft is still young.	OpenECraft rinnakkain EPLAN Electric P8:n, AutoCAD Electricalin ja QElectroTechin kanssa: mistä kukin tunnetaan ja missä OpenECraft on vielä nuori.
+OpenECraft beside QElectroTech	OpenECraft QElectroTechin rinnalla
 OpenECraft beside the tools you know	OpenECraft tuntemiesi työkalujen rinnalla
 OpenECraft carries a control cabinet from the device-oriented schematic through the panel layout in 3D into the workshop: mounting, wiring and the documentation for the customer, from one project file.	OpenECraft vie ohjauskaapin laitekeskeisestä piirikaaviosta 3D-kaappiasennuksen kautta verstaalle: asennus, johdotus ja dokumentaatio asiakkaalle, kaikki yhdestä projektitiedostosta.
 OpenECraft costs nothing, needs no license server and runs in the browser, so every student works with the same program at school and at home. The project check points out mistakes while they draw.	OpenECraft ei maksa mitään, ei tarvitse lisenssipalvelinta ja toimii selaimessa, joten jokainen opiskelija työskentelee samalla ohjelmalla koulussa ja kotona. Projektin tarkistus osoittaa virheet jo piirtäessä.
@@ -135,6 +276,7 @@ OpenECraft for electricians: installation plans and circuits	OpenECraft sähköa
 OpenECraft for panel builders	OpenECraft keskusvalmistajille
 OpenECraft for panel builders and control cabinet shops	OpenECraft keskusvalmistajille ja ohjauskaappiverstaille
 OpenECraft for schools	OpenECraft oppilaitoksille
+OpenECraft imports the same files into its parts database, with the symbols and the 3D models of EDZ archives, and assigns the parts to the devices of the schematic.	OpenECraft tuo samat tiedostot osatietokantaansa EDZ-arkistojen symboleineen ja 3D-malleineen ja määrittää osat piirikaavion laitteille.
 OpenECraft is not affiliated with, endorsed by or sponsored by any of them. The names are used only to compare, and what this page says about the other products is general public information as of November 2026.	OpenECraft ei ole sidoksissa mihinkään niistä, eikä mikään niistä tue tai sponsoroi sitä. Nimiä käytetään vain vertailuun, ja mitä tämä sivu kertoo muista tuotteista, on yleistä julkista tietoa marraskuun 2026 tilanteen mukaan.
 OpenECraft is open source under the MIT license or the Apache License 2.0, at your choice. It contains fonts and libraries of others under their own licenses.	OpenECraft on avointa lähdekoodia MIT-lisenssillä tai Apache License 2.0 -lisenssillä valintasi mukaan. Se sisältää muiden fontteja ja kirjastoja niiden omilla lisensseillä.
 OpenECraft is young. Plan one real cabinet with it beside the tool you use today, and see what it does well and what you miss.	OpenECraft on nuori. Suunnittele sillä yksi todellinen ohjauskaappi nykyisen työkalusi rinnalla ja katso, missä se on hyvä ja mitä jäät kaipaamaan.
@@ -144,26 +286,45 @@ OpenECraft vs. EPLAN, AutoCAD Electrical and QElectroTech	OpenECraft vs. EPLAN, 
 OpenECraft – open source electrical CAE	OpenECraft – avoimen lähdekoodin sähkö-CAE
 Outlets, switches and lights on the floor plan of a level, final circuits from the distribution board with cable lengths and voltage drop.	Pistorasiat, kytkimet ja valaisimet kerroksen pohjapiirroksessa, ryhmäjohdot jakokeskuksesta kaapelipituuksineen ja jännitteenalenemineen.
 Outlets, switches, lights	Pistorasiat, kytkimet, valaisimet
+PDF, DXF, DWG and SVG for the pages, the panel as glTF, STEP, IGES, IFC and JT, wire lists, marking data, PLC symbol tables and more. The exports of the live demo on this site run in your browser.	PDF, DXF, DWG ja SVG sivuille, kaappi glTF-, STEP-, IGES-, IFC- ja JT-muodossa, johtoluettelot, merkintätiedot, PLC-symbolitaulukot ja paljon muuta. Tämän sivuston live-demon viennit toimivat selaimessasi.
 PDF, DXF, DWG and SVG; the panel as glTF, STEP, IGES, IFC and JT; connectors for ERP, PDM and PLM systems.	PDF, DXF, DWG ja SVG; kaappi muodoissa glTF, STEP, IGES, IFC ja JT; liitännät ERP-, PDM- ja PLM-järjestelmiin.
 PLC and automation	PLC ja automaatio
 Paid license	Maksullinen lisenssi
 Panel builders	Keskusvalmistajat
 Panel layout in 3D	Kaappiasennus 3D:nä
 Parts and data portal	Osat ja dataportaali
+Parts come in from CSV, BMEcat, EPLAN parts XML and EDZ files, with STEP models for the panel.	Osat tuodaan CSV-, BMEcat-, EPLAN-osa-XML- ja EDZ-tiedostoista, STEP-mallit kaappia varten mukana.
+Parts file (EDZ, XML, CSV, JSON)	Osatiedosto (EDZ, XML, CSV, JSON)
+Parts in the documentation	Osat dokumentaatiossa
 Parts server, project server and the web editor as Docker images for your own network.	Osapalvelin, projektipalvelin ja verkkoeditori Docker-levykuvina omaan verkkoosi.
 Parts: EDZ files of the EPLAN Data Portal and EPLAN XML part files are imported with their data; the 2D window macros of EDZ files become symbols and their 3D macros the 3D model of the part.	Osat: EPLAN Data Portalin EDZ-tiedostot ja EPLAN XML -osatiedostot tuodaan tietoineen; EDZ-tiedostojen 2D-ikkunamakroista tulee symboleja ja niiden 3D-makroista osan 3D-malli.
+Pick DXF or DWG. The drawing has the pages with their frames, symbols, wires and texts.	Valitse DXF tai DWG. Piirustuksessa ovat sivut kehyksineen, symboleineen, johtoineen ja teksteineen.
+Place terminals from the Terminals library of the Insert center and wire them. Terminals with the same tag, for example -X1, form one strip.	Sijoita riviliittimiä Lisäyskeskuksen Riviliittimet-kirjastosta ja johdota ne. Riviliittimet, joilla on sama tunnus, esimerkiksi -X1, muodostavat yhden riman.
 Planning	Suunnittelu
 Platforms	Alustat
+Platforms and data	Alustat ja tiedot
 Pneumatic and hydraulic circuits linked to the electrics, wire harnesses with KBL export and nailboards.	Sähköihin linkitetyt pneumaattiset ja hydrauliset piirit, johtosarjat KBL-vienteineen ja kokoonpanolaudat.
 Potentials with colours and cross-sections, cables with cores, automatic wire, device and page numbering.	Potentiaalit väreineen ja poikkipintoineen, kaapelit johtimineen, johtojen, laitteiden ja sivujen automaattinen numerointi.
 Production data	Tuotantotiedot
 Project check	Projektin tarkistus
+Projects of other electrical CAD programs cannot be imported yet; a project is drawn anew in OpenECraft.	Muiden sähkö-CAD-ohjelmien projekteja ei voi vielä tuoda; projekti piirretään OpenECraftissa uudelleen.
 Projects: projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported yet; a project is drawn anew in OpenECraft.	Projektit: EPLAN Electric P8:n ja AutoCAD Electricalin projekteja ei voi vielä tuoda; projekti piirretään OpenECraftissa uudelleen.
 Public	Julkinen
 Push button	Painike
+QElectroTech is the name of an independent open source project. OpenECraft is not affiliated with it.	QElectroTech on itsenäisen avoimen lähdekoodin projektin nimi. OpenECraft ei ole sidoksissa siihen.
+Questions and answers about OpenECraft	Kysymyksiä ja vastauksia OpenECraftista
+Read the answers	Lue vastaukset
+Read the documentation	Lue dokumentaatio
+Read the guides	Lue oppaat
+Read the news	Lue uutiset
 Report a problem	Ilmoita ongelmasta
 Reports and checks	Raportit ja tarkistukset
 Reports that write themselves	Raportit, jotka kirjoittavat itsensä
+SEE Electrical is a trademark of IGE+XAO. OpenECraft is not affiliated with IGE+XAO.	SEE Electrical on IGE+XAO:n tavaramerkki. OpenECraft ei ole sidoksissa IGE+XAO:hon.
+SEE Electrical is an established electrical CAD for schematics, cabinets and installations. OpenECraft does this work in one free program for any operating system and the browser. It is young, and this page says where.	SEE Electrical on vakiintunut sähkö-CAD piirikaavioihin, kaappeihin ja asennuksiin. OpenECraft tekee tämän työn yhdessä ilmaisessa ohjelmassa, joka toimii kaikilla käyttöjärjestelmillä ja selaimessa. Se on nuori, ja tämä sivu kertoo, missä kohdin.
+Save as	Tallenna muodossa
+Scale on the page	Mittakaava sivulla
+Schematic pages as DXF or DWG drawings for customers and other CAD programs.	Piirikaaviosivut DXF- tai DWG-piirustuksina asiakkaille ja muille CAD-ohjelmille.
 Schematics, reports, panel layout in 3D, the workshop and building installation in one program	Piirikaaviot, raportit, kaappiasennus 3D:nä, verstas ja rakennusten sähköasennus yhdessä ohjelmassa
 Schools	Oppilaitokset
 Schools and training	Oppilaitokset ja koulutus
@@ -176,70 +337,157 @@ Screenshot of two bayed enclosures in the 3D panel layout	Kuvakaappaus kahdesta 
 Search commands	Hae komentoja
 Search reports	Hae raportteja
 See for yourself	Katso itse
+See it in the live demo	Katso live-demossa
 See the comparison	Katso vertailu
+See the example	Katso esimerkki
+See the examples	Katso esimerkit
+See the parts of an EDZ, EPLAN XML, BMEcat or CSV file as a table and save them as CSV or JSON.	Katso EDZ-, EPLAN-XML-, BMEcat- tai CSV-tiedoston osat taulukkona ja tallenna ne CSV- tai JSON-muodossa.
+See what a parts file holds without the program it was made for: part numbers, manufacturers, descriptions and sizes as a table, to save as CSV or JSON. The file is read in your browser and is not uploaded.	Katso, mitä osatiedosto sisältää, ilman ohjelmaa, jota varten se on tehty: osanumerot, valmistajat, kuvaukset ja mitat taulukkona, tallennettavissa CSV- tai JSON-muodossa. Tiedosto luetaan selaimessasi, eikä sitä lähetetä minnekään.
+Select a device and add its parts in the Parts tab of the Properties pane. The device selection offers the parts that provide its function.	Valitse laite ja lisää sen osat Ominaisuudet-paneelin Osat-välilehdellä. Laitevalinta tarjoaa osat, jotka toteuttavat sen toiminnon.
 Shared projects with page locks and roles, released pages, approval workflow, comments and redlining.	Jaetut projektit sivulukituksineen ja rooleineen, julkaistut sivut, hyväksyntäprosessi, kommentit ja korjausmerkinnät.
+Sheet {} of the example: {}	Esimerkin lehti {}: {}
+Short guides for common tasks in OpenECraft: terminal diagram, wire list, bill of materials and DXF or DWG export, each with a live demo to try.	Lyhyitä oppaita OpenECraftin yleisiin tehtäviin: riviliitinkaavio, johtoluettelo, osaluettelo ja DXF- tai DWG-vienti, jokaisessa kokeiltava live-demo.
+Short guides for the documents a control cabinet needs. Each opens the live demo at the step it describes, so you can try it before you install anything.	Lyhyitä oppaita dokumentteihin, joita ohjauskaappi tarvitsee. Jokainen avaa live-demon kuvaamansa vaiheen kohdalta, joten voit kokeilla ennen kuin asennat mitään.
+Short guides: terminal diagram, wire list, bill of materials, DXF and DWG export.	Lyhyitä oppaita: riviliitinkaavio, johtoluettelo, osaluettelo, DXF- ja DWG-vienti.
+Single functions of OpenECraft for a value or a file of your own. They run in your browser with the code of the editor: nothing is uploaded, and nothing needs an account.	OpenECraftin yksittäisiä toimintoja omalle arvollesi tai tiedostollesi. Ne toimivat selaimessasi editorin koodilla: mitään ei lähetetä verkkoon, eikä mikään vaadi käyttäjätiliä.
+Single-phase or DC	Yksivaiheinen tai DC
+Size of the drawing	Piirustuksen koko
+Smallest cross-section within the limit	Pienin poikkipinta-ala raja-arvon sisällä
 Source code	Lähdekoodi
 Speaks 20 languages	Puhuu 20 kieltä
 Standards from the start	Standardit alusta alkaen
 Start with an example	Aloita esimerkillä
+Step by step	Vaihe vaiheelta
 Switch the language while you work: menus, generated reports and check messages follow at once. Try it, this page and the demos switch too.	Vaihda kieltä kesken työn: valikot, luodut raportit ja tarkistusten ilmoitukset vaihtuvat heti. Kokeile, myös tämä sivu ja demot vaihtuvat.
 Symbol libraries	Symbolikirjastot
+Symbol library	Symbolikirjasto
+Symbol: {}	Symboli: {}
 Tap to explore the panel	Tutki kaappia napauttamalla
 Tap to work in the editor	Työskentele editorissa napauttamalla
 Teach electrical planning with free, open source CAE software that runs in the browser: a tutorial, example projects from the first circuit up and 20 languages.	Opeta sähkösuunnittelua ilmaisella avoimen lähdekoodin CAE-ohjelmistolla, joka toimii selaimessa: opetusohjelma, esimerkkiprojekteja ensimmäisestä piiristä alkaen ja 20 kieltä.
 Teams and revisions	Tiimit ja revisiot
+Terminals with the same tag form a strip; the terminal diagram lists every terminal with both of its sides.	Riviliittimet, joilla on sama tunnus, muodostavat riman; riviliitinkaavio luettelee jokaisen riviliittimen molempine puolineen.
+Terminals, plugs and PLC in the documentation	Riviliittimet, pistoliittimet ja PLC dokumentaatiossa
 Terminals, plugs, PLC	Riviliittimet, pistoliittimet, PLC
+The Connection list shows the connections of a schematic that has no panel layout yet.	Yhteysluettelo näyttää sellaisen piirikaavion yhteydet, jolla ei vielä ole kaappiasennusta.
+The Strips / plugs navigator shows each strip in rail order; a click shows a placed terminal in the schematic.	Rimat / pistoliittimet -navigaattori näyttää jokaisen riman kiskon järjestyksessä; napsautus näyttää sijoitetun riviliittimen piirikaaviossa.
+The bill of materials sums the parts of the devices, terminals, cables, harnesses, panel layout material, ferrules and marker material.	Osaluettelo laskee yhteen laitteiden, riviliittimien, kaapelien, johtosarjojen, kaappiasennusmateriaalin, pääteholkkien ja merkintämateriaalin osat.
+The calculations in the documentation	Laskelmat dokumentaatiossa
 The demo could not start in this browser. It needs WebGL and WebAssembly.	Demoa ei voitu käynnistää tässä selaimessa. Se tarvitsee WebGL:n ja WebAssemblyn.
+The drawing is put on a page as OpenECraft imports it into a project: a drawing larger than the sheet is scaled to fit.	Piirustus sijoitetaan sivulle samalla tavalla kuin OpenECraft tuo sen projektiin: arkkia suurempi piirustus skaalataan sopivaksi.
 The example projects include a conveyor with PLC and control cabinet, a pump station with structure identifiers, two bayed floor-standing enclosures with busbars and climate, and the main low-voltage distribution of an industrial plant. Open them in the live demo or in the web editor.	Esimerkkiprojekteihin kuuluvat kuljetin PLC:llä ja ohjauskaapilla, pumppaamo rakennetunnuksin, kaksi rinnakkain asennettua lattiakaappia kokoojakiskoineen ja ilmastointeineen sekä teollisuuslaitoksen pienjännitepääkeskus. Avaa ne live-demossa tai verkkoeditorissa.
+The example projects with their sheets as pictures, their PDF and a link that opens them in the live demo.	Esimerkkiprojektit, niiden lehdet kuvina, PDF ja linkki, joka avaa ne live-demossa.
 The examples include building services with water supply and PV storage, transformer-rated metering with PV and grid protection, and an office building with roof, stair and installation.	Esimerkkeihin kuuluvat rakennuksen talotekniikka vesihuoltoineen ja aurinkosähkövarastoineen, virtamuuntajamittaus aurinkovoimalla ja verkkosuojalla sekä toimistorakennus katolla, portailla ja asennuksilla.
 The exports run in your browser as well. Nothing is uploaded.	Myös viennit toimivat selaimessasi. Mitään ei lähetetä palvelimelle.
 The first examples are a lamp circuit, a self-holding relay and a star-delta motor starter; later ones add a PLC, electro-pneumatics, structure identifiers, revisions, control cabinets, rooms and buildings.	Ensimmäiset esimerkit ovat merkkivalopiiri, itsepitävä rele ja tähti-kolmiokäynnistin; myöhemmät lisäävät PLC:n, sähköpneumatiikan, rakennetunnukset, revisiot, ohjauskaapit, tilat ja rakennukset.
+The first {} of {} parts	Ensimmäiset {} yhteensä {} osasta
 The first {} of {} rows	Ensimmäiset {} riviä {} rivistä
 The full editor as a web application. Nothing to install, your projects stay on your computer.	Koko editori verkkosovelluksena. Ei asennusta, projektisi pysyvät omalla tietokoneellasi.
 The items become devices with tags in their rooms, and a generated single-line page shows every circuit with its protective device and cable.	Kohteista tulee laitteita tunnuksineen tiloissaan, ja luotu yksinapainen sivu näyttää jokaisen piirin suojalaitteineen ja kaapeleineen.
+The limit is yours to set: 3 % is common for lighting and 5 % for other loads, and the regulations of your country decide.	Raja-arvon asetat itse: 3 % on tavallinen valaistukselle ja 5 % muille kuormille, ja maasi määräykset ratkaisevat.
 The links to the source code, the downloads and the documentation lead to other sites, which have privacy notices of their own.	Linkit lähdekoodiin, latauksiin ja dokumentaatioon vievät muille sivustoille, joilla on omat tietosuojailmoituksensa.
 The live demo runs the editor's own code in your browser; the web editor is the whole program, nothing to install.	Live-demo suorittaa editorin omaa koodia selaimessasi; verkkoeditori on koko ohjelma, eikä mitään tarvitse asentaa.
 The live demos, the console and the exports run in your browser. The project you edit here is not sent anywhere.	Live-demot, konsoli ja viennit toimivat selaimessasi. Täällä muokkaamaasi projektia ei lähetetä minnekään.
+The name is used only to compare, and what this page says about the other product is general public information as of November 2026.	Nimeä käytetään vain vertailuun, ja se, mitä tämä sivu kertoo toisesta tuotteesta, on yleistä julkista tietoa marraskuulta 2026.
 The panel in 3D	Kaappi 3D:nä
+The parts of all devices, terminals, cables and the panel, summed into one list.	Kaikkien laitteiden, riviliittimien, kaapelien ja kaapin osat yhdeksi luetteloksi laskettuina.
 The project check follows every change and leads to the place of each message, so students see their mistakes at once.	Projektin tarkistus seuraa jokaista muutosta ja vie kunkin ilmoituksen kohtaan, joten opiskelijat näkevät virheensä heti.
+The reactance of the cable is taken as 0.08 mΩ per metre. It matters for large cross-sections and a low power factor.	Kaapelin reaktanssiksi oletetaan 0,08 mΩ metriä kohti. Sillä on merkitystä suurilla poikkipinta-aloilla ja pienellä tehokertoimella.
+The resistivity is the one of the conductor in operation, 1.25 times its value at 20 °C (IEC 60364-5-52): 0.0225 Ω·mm²/m for copper and 0.036 Ω·mm²/m for aluminium.	Resistiivisyys on käytössä olevan johtimen arvo, 1,25 kertaa sen arvo 20 °C:ssa (IEC 60364-5-52): 0,0225 Ω·mm²/m kuparille ja 0,036 Ω·mm²/m alumiinille.
+The result supports the planning. A qualified person has to verify it against the standards and regulations that apply.	Tulos tukee suunnittelua. Pätevän henkilön on tarkistettava se sovellettavien standardien ja määräysten mukaan.
 The routed wires as a checklist for the workshop, with the current wire in 3D, its colour, length and ferrule: a tablet with the web editor becomes a wiring station.	Reititetyt johdot verstaan tarkistuslistana, nykyinen johto 3D:nä, sen väri, pituus ja pääteholkki: tabletista verkkoeditorin kanssa tulee johdotuspiste.
+The same export is a command of the command line and the MCP server, so a script can write the drawings of every project.	Sama vienti on komentorivin ja MCP-palvelimen komento, joten skripti voi kirjoittaa jokaisen projektin piirustukset.
 The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example.	Sama projekti verstaalla nähtynä: kotelo, kiskot, johtokourut ja laitteet todellisessa koossa, johdot reititettyinä kourujen kautta. Vaihda esimerkin koteloiden, tilojen ja tontin välillä.
 The schematic editor with ribbon and page navigator	Piirikaavioeditori valintanauhoineen ja sivunavigaattoreineen
+The symbol library of OpenECraft, the free open source electrical CAE: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&ID and installation plan symbols.	OpenECraftin, ilmaisen avoimen lähdekoodin sähkö-CAE:n, symbolikirjasto: IEC 60617-, NFPA-, GB-, GOST- ja JIS-symbolit sekä fluiditekniikan, PI-kaavioiden ja asennuspiirustusten symbolit.
+The symbol library, the example projects, tools for your own files, guides, the documentation and the news.	Symbolikirjasto, esimerkkiprojektit, työkalut omille tiedostoillesi, oppaat, dokumentaatio ja uutiset.
+The table shows the main data of at most 500 parts; the CSV and JSON files have all parts with all their data.	Taulukko näyttää enintään 500 osan päätiedot; CSV- ja JSON-tiedostoissa ovat kaikki osat kaikkine tietoineen.
+The tool could not start in this browser. It needs WebAssembly.	Työkalu ei käynnistynyt tässä selaimessa. Se tarvitsee WebAssemblyn.
 The tutorial walks from the first schematic page to the bill of materials: pages, symbols, wires, parts, terminals, PLC, the project check, reports and the panel layout.	Opetusohjelma etenee ensimmäisestä piirikaaviosivusta osaluetteloon: sivut, symbolit, johdot, osat, riviliittimet, PLC, projektin tarkistus, raportit ja kaappiasennus.
+The tutorial walks through a whole project, from the first page to the panel layout.	Opetusohjelma käy läpi kokonaisen projektin ensimmäisestä sivusta kaappiasennukseen.
+The tutorial, the installation guide and every feature in detail.	Opetusohjelma, asennusopas ja jokainen ominaisuus yksityiskohtaisesti.
+The voltage drop of a cable from current, length and cross-section, with the smallest cross-section that keeps your limit.	Kaapelin jännitteenalenema virrasta, pituudesta ja poikkipinta-alasta sekä pienin poikkipinta-ala, joka pysyy raja-arvossasi.
 The web editor and a project server for shared projects run in the school's own network from Docker images.	Verkkoeditori ja projektipalvelin jaetuille projekteille toimivat koulun omassa verkossa Docker-levykuvista.
+The whole editor does much more with the same code: try it in the live demo or open the web editor.	Koko editori tekee samalla koodilla paljon enemmän: kokeile sitä live-demossa tai avaa verkkoeditori.
+The wire list comes from two things you have already drawn: the connections of the schematic and the places of the devices in the panel. OpenECraft routes the wires through the ducts and measures them.	Johtoluettelo syntyy kahdesta asiasta, jotka olet jo piirtänyt: piirikaavion yhteyksistä ja laitteiden paikoista kaapissa. OpenECraft reitittää johdot kourujen kautta ja mittaa ne.
 The wiring assistant shows the next wire in 3D	Johdotusavustaja näyttää seuraavan johdon 3D:nä
+The workshop in the documentation	Verstas dokumentaatiossa
+The {} symbols that come with OpenECraft: IEC 60617 for schematics, NFPA, GB, GOST and JIS sets, fluid power after ISO 1219, P&ID and installation plans. Pick a category to see every symbol.	OpenECraftin mukana tulevat {} symbolia: IEC 60617 piirikaavioille, NFPA-, GB-, GOST- ja JIS-sarjat, fluiditekniikka standardin ISO 1219 mukaan, PI-kaaviot ja asennuspiirustukset. Valitse luokka nähdäksesi jokaisen symbolin.
 These are the commands of the command line and the MCP server, run on the project of the demo above.	Nämä ovat komentorivin ja MCP-palvelimen komennot, jotka suoritetaan yllä olevan demon projektiin.
 Third-party licenses	Kolmansien osapuolten lisenssit
 This page is drawn right now by the editor's own code, running in your browser.	Tämän sivun piirtää juuri nyt editorin oma koodi, joka toimii selaimessasi.
+Three-phase	Kolmivaiheinen
 Tip: delete a wire and see the check react. Undo brings it back.	Vinkki: poista johto ja katso tarkistuksen reaktio. Kumoa palauttaa sen.
+To bring a drawing in, import a DXF or DWG file: it becomes the graphics of a new schematic page.	Piirustuksen tuomiseksi tuo DXF- tai DWG-tiedosto: siitä tulee uuden piirikaaviosivun grafiikka.
 To show an example faster the next time, your browser keeps the wiring it calculated for it in its cache. Nothing else is stored; clearing the site data of the browser removes it.	Jotta esimerkki näkyisi seuraavalla kerralla nopeammin, selain säilyttää sille laskemansa johdotuksen välimuistissaan. Mitään muuta ei tallenneta; sivuston tietojen tyhjentäminen selaimessa poistaa sen.
 Trademarks	Tavaramerkit
 Try it: the schematic editor, live	Kokeile: piirikaavioeditori, livenä
+Try the exports in the live demo	Kokeile vientejä live-demossa
 Try the live demo	Kokeile live-demoa
 Try these	Kokeile näitä
 Two bayed enclosures with rails, ducts and busbars	Kaksi rinnakkain asennettua koteloa kiskoineen, johtokouruineen ja kokoojakiskoineen
+Two free, open source programs for electrical schematics: what QElectroTech is known for and what OpenECraft adds with reports, panel layout in 3D and checks.	Kaksi ilmaista avoimen lähdekoodin ohjelmaa sähköpiirikaavioihin: mistä QElectroTech tunnetaan ja mitä OpenECraft lisää raporteilla, kaappiasennuksella 3D:nä ja tarkistuksilla.
 Type a command, or help	Kirjoita komento tai help
 Type help for the commands, or pick one on the right.	Kirjoita help nähdäksesi komennot tai valitse jokin oikealta.
 Unknown command: {}	Tuntematon komento: {}
+Use the tools	Käytä työkaluja
 Uses	Käyttökohteet
+Voltage drop calculator	Jännitteenaleneman laskin
+Voltage drop calculator for cables – OpenECraft	Kaapelien jännitteenaleneman laskin – OpenECraft
+Voltage drop calculator, DXF and DWG viewer, EDZ and parts file viewer: in your browser, nothing is uploaded.	Jännitteenaleneman laskin, DXF- ja DWG-katseluohjelma, EDZ- ja osatiedostojen katseluohjelma: selaimessasi, mitään ei lähetetä verkkoon.
+Voltage drop in percent	Jännitteenalenema prosentteina
+WSCAD is a trademark of WSCAD GmbH. OpenECraft is not affiliated with WSCAD.	WSCAD on WSCAD GmbH:n tavaramerkki. OpenECraft ei ole sidoksissa WSCADiin.
+WSCAD is an established electrical CAD for control cabinets, building automation and installation. OpenECraft covers schematics, the panel in 3D and installation plans in one free program for any operating system. It is young, and this page says where.	WSCAD on vakiintunut sähkö-CAD ohjauskaappeihin, rakennusautomaatioon ja asennuksiin. OpenECraft kattaa piirikaaviot, kaapin 3D:nä ja asennuspiirustukset yhdessä ilmaisessa ohjelmassa, joka toimii kaikilla käyttöjärjestelmillä. Se on nuori, ja tämä sivu kertoo, missä kohdin.
 What OpenECraft does today	Mitä OpenECraft tekee nyt
+What comes across	Mitä voi tuoda mukana
 What comes across, and what does not yet.	Mitä voi siirtää ja mitä ei vielä.
+What is new in every release, with a feed for your feed reader.	Mitä uutta kussakin versiossa on, sekä syöte syötteenlukijaasi varten.
+What it does not read, such as hatches and pictures, is listed below the drawing.	Se, mitä se ei lue, kuten viivoitukset ja kuvat, luetellaan piirustuksen alla.
+What it reads	Mitä se lukee
+What people ask before they try it: the cost, the platforms, the data of other tools and how far the project is.	Mitä ihmiset kysyvät ennen kuin kokeilevat: hinta, alustat, muiden työkalujen tiedot ja kuinka pitkällä projekti on.
 What your shop gets	Mitä yrityksesi saa
 When you want a free, long-standing open source program for drawing electrical schematics.	Kun haluat ilmaisen, pitkään olemassa olleen avoimen lähdekoodin ohjelman sähköpiirikaavioiden piirtämiseen.
 When you want schematics, reports, panel layout in 3D and the workshop in one free program, on any operating system or in the browser and open to scripts and AI agents, and a young project suits you.	Kun haluat piirikaaviot, raportit, kaappiasennuksen 3D:nä ja verstaan yhteen ilmaiseen ohjelmaan, millä tahansa käyttöjärjestelmällä tai selaimessa ja avoimena skripteille ja tekoälyagenteille, ja nuori projekti sopii sinulle.
+When your customers ask for its project files, your company has standardised on it, or you need the support and the part data of its vendor.	Kun asiakkaasi pyytävät sen projektitiedostoja, yrityksesi on vakioinut sen käytön tai tarvitset sen toimittajan tukea ja osatietoja.
 When your customers ask for their project files, your company has standardised on one of them, or you need the support and the part data of a large vendor.	Kun asiakkaasi vaativat projektitiedostoja näiden työkalujen muodossa, yrityksesi on standardoinut jonkin niistä tai tarvitset suuren toimittajan tukea ja osatietoja.
 Where OpenECraft is still young	Missä OpenECraft on vielä nuori
+Where are my projects stored?	Mihin projektini tallennetaan?
+Where do I get help?	Mistä saan apua?
 Whether you build control cabinets, plan buildings or teach: see what OpenECraft does for you, and how it compares with the tools you know.	Olipa työsi ohjauskaappien rakentamista, rakennusten suunnittelua tai opettamista: katso, mitä OpenECraft tekee puolestasi ja miten se vertautuu tuntemiisi työkaluihin.
+Which formats can it export?	Mihin muotoihin se voi viedä?
 Which one fits?	Mikä sopii sinulle?
+Which operating systems does OpenECraft run on?	Missä käyttöjärjestelmissä OpenECraft toimii?
+Which standards do the symbols follow?	Mitä standardeja symbolit noudattavat?
 Why it suits a classroom	Miksi se sopii luokkahuoneeseen
+Why people look at OpenECraft	Miksi OpenECraftiin tutustutaan
+Width × height × depth (mm)	Leveys × korkeus × syvyys (mm)
 Windows, Linux and macOS	Windows, Linux ja macOS
 Windows, Linux, macOS and the web browser	Windows, Linux, macOS ja verkkoselain
+Wire list	Johtoluettelo
 Wire lists with routed lengths, stripping lengths and ferrules after DIN 46228-4, wires sorted for wire processing machines, drilling patterns and NC data of the mounting plates.	Johtoluettelot reititettyine pituuksineen, kuorintapituuksineen ja DIN 46228-4:n mukaisine pääteholkkeineen, johdot lajiteltuina johdinkäsittelykoneille, porauskuviot ja asennuslevyjen NC-tiedot.
 Wires, cables, potentials	Johdot, kaapelit, potentiaalit
 Wiring and harnesses	Johdotus ja johtosarjat
 Wiring and mounting assistants	Johdotus- ja asennusavustajat
 Written in Rust. Clone the repository and run it.	Kirjoitettu Rustilla. Kloonaa tietovarasto ja suorita se.
+Yes. Every operation on a project is a command of the command line and of the MCP server for AI agents, and plugins in any language add checks, reports, exports and commands.	Kyllä. Jokainen projektiin kohdistuva toimenpide on komentorivin ja tekoälyagenteille tarkoitetun MCP-palvelimen komento, ja millä tahansa kielellä kirjoitetut laajennukset lisäävät tarkistuksia, raportteja, vientejä ja komentoja.
+Yes. OpenECraft is open source under the MIT and Apache-2.0 licenses: no price, no licenses to count, no account and no expiry, also for commercial work.	Kyllä. OpenECraft on avointa lähdekoodia MIT- ja Apache-2.0-lisensseillä: ei hintaa, ei laskettavia lisenssejä, ei käyttäjätiliä eikä vanhenemista, myös kaupallisessa työssä.
+Yes. The desktop program needs no internet connection. The web editor runs in your browser once it is loaded, and your projects stay on your computer.	Kyllä. Työpöytäohjelma ei tarvitse internetyhteyttä. Verkkoeditori toimii selaimessasi, kun se on ladattu, ja projektisi pysyvät tietokoneellasi.
 commands for scripts and AI agents	komentoa skripteille ja tekoälyagenteille
+contributors	osallistujaa
 example projects	esimerkkiprojektia
+k is 2 for a single-phase or DC circuit, where the current flows there and back, and 1.732, the square root of 3, for a three-phase circuit with the voltage between the lines.	k on 2 yksivaiheisessa tai tasavirtapiirissä, jossa virta kulkee sinne ja takaisin, ja 1,732 eli kolmen neliöjuuri kolmivaihepiirissä, jossa jännite on vaiheiden välinen.
 languages	kieltä
+none up to 240 mm²	ei mikään 240 mm²:iin asti
+over the limit	yli raja-arvon
+stars on GitHub	tähteä GitHubissa
+within the limit	raja-arvon sisällä
+{} % is over the limit of {} %.	{} % ylittää raja-arvon {} %.
+{} % is within the limit of {} %.	{} % on raja-arvon {} % sisällä.
 {} commands. Type help and a name for its parameters, for example: help rename_device	{} komentoa. Kirjoita help ja nimi nähdäksesi sen parametrit, esimerkiksi: help rename_device
+{} electrical symbols of the category {}, drawn by OpenECraft, the free open source electrical CAE: {}	{} sähkösymbolia luokasta {}, piirtänyt OpenECraft, ilmainen avoimen lähdekoodin sähkö-CAE: {}
+{} pages	{} sivua
+{} projects that come with OpenECraft, from a lamp circuit to a whole building. Each has its sheets, its PDF and a link that opens it in the live demo.	{} OpenECraftin mukana tulevaa projektia lamppupiiristä kokonaiseen rakennukseen. Jokaisella on lehtensä, PDF ja linkki, joka avaa sen live-demossa.
+{} symbols of the category {} with their drawings, identifying letters and connection points. They come with OpenECraft, free to use in your schematics.	{} symbolia luokasta {} piirroksineen, tunnuskirjaimineen ja liitäntäpisteineen. Ne tulevat OpenECraftin mukana ja ovat vapaasti käytettävissä piirikaavioissasi.
+{} – example project | OpenECraft	{} – esimerkkiprojekti | OpenECraft
+{} – schematic symbols | OpenECraft	{} – piirikaaviosymbolit | OpenECraft
+{}: a number above 0 is needed	{}: tarvitaan lukua, joka on suurempi kuin 0

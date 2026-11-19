@@ -23,7 +23,7 @@ pub fn area_of_member(member: &str) -> &'static str {
         "cli" => "cli",
         "crates/openecraft-ui" => "ui",
         "crates/openecraft-i18n" => "common",
-        "website" => "website",
+        "website" | "crates/openecraft-site" => "website",
         _ => "parts",
     }
 }

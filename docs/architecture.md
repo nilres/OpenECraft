@@ -19,6 +19,7 @@ openecraft-api ─► openecraft-session (project, undo, analysis) ────�
 openecraft-shell, openecraft-core, openecraft-ui ─► openecraft-canvas (page editor, panel views) ─┘
 openecraft-auth (parts) ─► parts-server (parts, i18n), project-server (core, parts)
 openecraft-web (parts, i18n; the servers' web pages) ─► parts-server, project-server
+openecraft-api, openecraft-i18n ─► openecraft-site (the pages the build of the website writes) ─► website (its build and tests)
 ```
 
 - Library crates live under `crates/`; executables are `openecraft/` (editor),
@@ -41,6 +42,11 @@ openecraft-web (parts, i18n; the servers' web pages) ─► parts-server, projec
   ([website.md](website.md)) builds its live demos from them, with the plugins of
   `openecraft-api` for checks, reports, commands and exports; the editor binary adds
   the windows, files, servers and settings around them.
+- `openecraft-site` writes the pages of the website that come from the library crates
+  and the repository instead of from a hand: the symbol library, the example
+  projects, the documentation, the release notes and the content files of
+  `website/content`. No UI and no browser code; a hook of the website's `Trunk.toml`
+  runs it (`docs/website.md`).
 - `openecraft-view` holds the read-only views of a project that the editor and the
   project server's web page both show: the pages grouped by structure, the devices
   grouped by structure with their places, the icons of the page kinds and the

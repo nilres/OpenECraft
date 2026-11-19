@@ -22,6 +22,7 @@ Add an item	Добавить пункт
 Add to favorites	Добавить в избранное
 Address	Адрес
 Administrator	Администратор
+Aluminium	Алюминий
 Angle	Угол
 Apply	Применить
 Approve	Утвердить
@@ -31,6 +32,7 @@ Automatic	Автоматически
 Automation	Автоматизация
 Aux	Вспом.
 Below	Снизу
+Bill of materials	Спецификация
 Bold	Полужирный
 Bottom	Дно
 Bottom with removable gland plate	Дно со съёмной фланцевой панелью
@@ -82,6 +84,7 @@ Commercial data	Коммерческие данные
 Company	Организация
 Component	Деталь
 Components (assembly)	Компоненты (сборка)
+Conductor	Проводник
 Conductor material	Материал проводника
 Configurator	Конфигуратор
 Connect	Подключиться
@@ -94,6 +97,7 @@ Connector	Разъём
 Contact voltage UB (V)	Напряжение прикосновения UB (В)
 Controller	Контроллер
 Cooling	Охлаждение
+Copper	Медь
 Core	Жила
 Cores	Жилы
 Corner	Угол
@@ -105,6 +109,7 @@ Cross-section	Сечение
 Crossing	Пересечение
 Currency	Валюта
 Current	Ток
+Current (A)	Ток (A)
 Cutout	Вырез
 Cutouts	Вырезы
 DCavg (%)	DCavg (%)
@@ -133,6 +138,7 @@ Direction	Направление
 Discard	Отменить
 Discard changes	Отменить изменения
 Display	Отображение
+Documentation	Документация
 Documents	Документы
 Done	Выполнено
 Door	Дверь
@@ -153,6 +159,7 @@ Email	Эл. почта
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Пусто: значение по умолчанию. Задайте другие значения там, где издание стандарта, по которому проверяется установка, отличается.
 Enclosure	Корпус
 Enclosures	Корпуса
+Engineering	Проектирование
 Enterprise integration	Интеграция с корпоративными системами
 Equipotential bonding	Уравнивание потенциалов
 Error	Ошибка
@@ -182,6 +189,7 @@ Floor plan	План помещения
 Fluid device	Устройство гидропневматики
 Fluid device groups	Группы устройств гидропневматики
 Fluid netlist	Список цепей гидропневматики
+Format	Формат
 From	От
 Function	Функция
 Function (=)	Функциональное назначение (=)
@@ -254,6 +262,7 @@ Length	Длина
 Level	Уровень
 Lifecycle	Жизненный цикл
 Light	Светлая
+Limit (%)	Предел (%)
 Limits	Пределы
 Line	Линия
 Link	Связь
@@ -496,6 +505,7 @@ Required	Требуется
 Reserve	Резерв
 Resolution	Разрешение
 Responsible for the content	Ответственный за содержание
+Result	Результат
 Reviewer	Рецензент
 Revision	Ревизия
 Revision {}	Ревизия {}
@@ -535,6 +545,7 @@ Server	Сервер
 Service space	Зона обслуживания
 Settings	Настройки
 Shape	Форма
+Sheets	Оформление листов
 Short-circuit voltage	Напряжение короткого замыкания
 Show history	Показать историю
 Show the logos of the catalogs	Показывать логотипы каталогов
@@ -579,6 +590,7 @@ T-junction	Т-образный узел
 Tables	Таблицы
 Technical data	Технические данные
 Terminal	Клемма
+Terminal diagram	Схема клемм
 Terminal number	Номер клеммы
 Terminal strip	Клеммная колодка
 Terminal strips	Клеммные колодки
@@ -589,6 +601,7 @@ Test instruments (IEC 61557)	Измерительные приборы (IEC 6155
 Tested by	Проверил
 Text	Текст
 Text to find	Искомый текст
+Texts	Тексты
 The freestanding PV array {} stands outside the plot boundary	Наземное фотоэлектрическое поле {} стоит за границей участка
 The identifier must not be empty	Идентификатор не может быть пустым
 The long side of the modules along the rows	Длинная сторона модулей вдоль рядов
@@ -640,6 +653,8 @@ Version	Версия
 Viewer	Наблюдатель
 Visual inspection	Визуальный осмотр
 Voltage	Напряжение
+Voltage (V)	Напряжение (V)
+Voltage drop	Падение напряжения
 Voltage drop (%)	Падение напряжения (%)
 Warning	Предупреждение
 Warnings	Предупреждения
@@ -685,6 +700,7 @@ yes	да
 {} exists already	{} уже существует
 {} is not a PNG or JPEG image	{} не является изображением PNG или JPEG
 {} parts	Изделий: {}
+{} symbols	Символов: {}
 {} users	Пользователей: {}
 {} wires	Проводов: {}
 {}, together with the wire to {}	{}, вместе с проводом к {}

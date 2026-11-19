@@ -2,10 +2,11 @@
 # The parts of the OpenECraft website that need its public address (docs/website.md):
 # the canonical address, the addresses of the page in the other languages and the
 # preview image of index.html, of the pages of the languages (de.html, …) and of the
-# pages beside it (compare/index.html, compare/de.html, …; between their markers "site
-# address"), robots.txt with the sitemap, and sitemap.xml. The
-# address is taken from OPENECRAFT_SITE_URL; without one the pages stay as built,
-# robots.txt names no sitemap and there is no sitemap.xml.
+# pages beside it (compare/index.html, compare/de.html, symbols/contacts/index.html, …;
+# between their markers "site address"), robots.txt with the sitemap, sitemap.xml and
+# the feed of the news (news/feed.xml), which names the address its links start from. The
+# address is taken from OPENECRAFT_SITE_URL; without one the pages and the feed stay as
+# built, robots.txt names no sitemap and there is no sitemap.xml.
 #
 #   website-site.sh [<folder of the built page> [<output folder>]]
 #
@@ -32,19 +33,22 @@ for file in "$page"/[a-z][a-z].html; do
     if [ -f "$file" ]; then langs="$langs $(basename "$file" .html)"; fi
 done
 
-# The pages beside it (compare/, …; website/src/pages.rs): folders whose index.html has
-# the markers, each in the same languages.
+# The pages beside it (compare/, symbols/contacts/, …; website/src/pages.rs and the
+# pages written by the build, crates/openecraft-site): folders one or two deep whose
+# index.html has the markers, each in the languages it was written in.
 pages=
-for file in "$page"/*/index.html; do
+for file in "$page"/*/index.html "$page"/*/*/index.html; do
     if [ -f "$file" ] && grep -q '<!-- site address ' "$file"; then
-        pages="$pages $(basename "$(dirname "$file")")"
+        dir=${file#"$page"/}
+        pages="$pages ${dir%/index.html}"
     fi
 done
 
 # One page with its tags: $1 the file, $2 its address below the site ("" or de.html),
-# $3 the folder of its languages ("" or compare/).
+# $3 the folder of its languages ("" or compare/), $4 the languages it has beside
+# English (those of the main page if left out).
 tags() {
-    SITE_URL=$esc SITE_PATH=$2 SITE_BASE=${3:-} SITE_LANGS=$langs awk '
+    SITE_URL=$esc SITE_PATH=$2 SITE_BASE=${3:-} SITE_LANGS=${4-$langs} awk '
 BEGIN { url = ENVIRON["SITE_URL"]; own = url ENVIRON["SITE_PATH"]; base = url ENVIRON["SITE_BASE"]; count = split(ENVIRON["SITE_LANGS"], langs, " ") }
 /<!-- \/site address -->/ { skip = 0 }
 skip { next }
@@ -73,11 +77,25 @@ tags index.html ""
 for lang in $langs; do tags "$lang.html" "$lang.html"; done
 for dir in $pages; do
     mkdir -p "$out/$dir"
-    tags "$dir/index.html" "$dir/" "$dir/"
+    # The documentation and the news are in English only.
+    own=
     for lang in $langs; do
-        if [ -f "$page/$dir/$lang.html" ]; then tags "$dir/$lang.html" "$dir/$lang.html" "$dir/"; fi
+        if [ -f "$page/$dir/$lang.html" ]; then own="$own $lang"; fi
     done
+    tags "$dir/index.html" "$dir/" "$dir/" "$own"
+    for lang in $own; do tags "$dir/$lang.html" "$dir/$lang.html" "$dir/" "$own"; done
 done
+
+# The feed: its links are relative to the folder of the news, named with the address
+# (its first element, on a line of its own; run again, the address is replaced).
+if [ -f "$page/news/feed.xml" ]; then
+    mkdir -p "$out/news"
+    SITE_URL=$esc awk '
+BEGIN { url = ENVIRON["SITE_URL"] }
+/^<feed / { $0 = "<feed" (url == "" ? "" : " xml:base=\"" url "news/\"") " xmlns=\"http://www.w3.org/2005/Atom\">" }
+{ print }' "$page/news/feed.xml" > "$out/news/feed.xml.new"
+    mv "$out/news/feed.xml.new" "$out/news/feed.xml"
+fi
 
 {
     printf 'User-agent: *\nAllow: /\n'

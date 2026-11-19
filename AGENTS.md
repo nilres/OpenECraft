@@ -75,6 +75,7 @@ cargo clippy -p openecraft -p openecraft-parts-manager -p openecraft-website --t
 | `openecraft-shell` | `crates/openecraft-shell` | The shell of the editor as tables without UI code: commands, ribbon, panes (`dock`), workspaces, keys, mouse gestures, state colours; read by the editor and by the views of `openecraft-canvas` |
 | `openecraft-session` | `crates/openecraft-session` | The open project of an application (`Session`): undo history, analysis with the checks and reports of the plugins, device index, saved state; no UI |
 | `openecraft-canvas` | `crates/openecraft-canvas` | The drawing views of the editor: page editor (`editor`), panel layout in 2D and 3D (`panel_ui`), background jobs; shared by the editor and the website |
+| `openecraft-site` | `crates/openecraft-site` | The pages of the website its build writes: symbol library, example projects with their sheets, documentation (Markdown of `docs/`), release notes with their feed, the content files of `website/content` (questions, guides, tools, comparisons), each in the frame of the site and in its languages; no UI (`docs/website.md`) |
 | `openecraft-view` | `crates/openecraft-view` | Read-only views of a project shared by the editor's navigator and the project server's web page (pages by structure, devices and their places, page icons, `ProjectView`); no UI |
 | `openecraft-web` | `crates/openecraft-web` | What the web pages of both servers share: `common.js` (texts, requests, sign-in, rights), `access.js` (roles, grants, directories), `web.css`, logo, `WebTexts` |
 | `openecraft-parts-server` | `parts-server/` | Data portal server (axum; SQLite or JSON storage, users and roles, catalogs, files, history, web page) |
@@ -261,7 +262,10 @@ violations. Do not weaken or delete that test to make a change pass.
   or a pane without a command. Icons are vector paths in `openecraft_ui::icons`
   (no new glyphs); state colours come from `crates/openecraft-shell/src/style.rs`.
 - **Website:** the demos of `website/` run the code of the library crates; never copy
-  a view, a check or an export into it. Texts of the page are written in English in
+  a view, a check or an export into it. Pages beside the main one are written by its
+  build (`crates/openecraft-site`: symbols, examples, documentation, news) or are
+  content files of `website/content/` with their texts in `openecraft-site`'s
+  `texts.rs`; a tool of the site is a function of `website/src/tools.rs`. Texts of the page are written in English in
   `index.html` / `site.js` and listed in `website/src/texts.rs` (the tests compare
   both); what the page shows of the project comes from `Studio::call`
   (`website/src/studio.rs`, no UI code, unit tested).

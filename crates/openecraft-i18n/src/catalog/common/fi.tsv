@@ -22,6 +22,7 @@ Add an item	Lisää kohta
 Add to favorites	Lisää suosikkeihin
 Address	Osoite
 Administrator	Järjestelmänvalvoja
+Aluminium	Alumiini
 Angle	Kulma
 Apply	Käytä
 Approve	Hyväksy
@@ -31,6 +32,7 @@ Automatic	Automaattinen
 Automation	Automaatio
 Aux	Apu
 Below	Alapuolella
+Bill of materials	Osaluettelo
 Bold	Lihavointi
 Bottom	Pohja
 Bottom with removable gland plate	Pohja irrotettavalla läpivientilevyllä
@@ -82,6 +84,7 @@ Commercial data	Kaupalliset tiedot
 Company	Yritys
 Component	Yksittäisosa
 Components (assembly)	Komponentit (kokoonpano)
+Conductor	Johdin
 Conductor material	Johdinmateriaali
 Configurator	Konfiguraattori
 Connect	Yhdistä
@@ -94,6 +97,7 @@ Connector	Liitin
 Contact voltage UB (V)	Kosketusjännite UB (V)
 Controller	Ohjain
 Cooling	Jäähdytys
+Copper	Kupari
 Core	Johdin
 Cores	Johtimet
 Corner	Kulma
@@ -105,6 +109,7 @@ Cross-section	Poikkipinta-ala
 Crossing	Risteys
 Currency	Valuutta
 Current	Virta
+Current (A)	Virta (A)
 Cutout	Aukko
 Cutouts	Aukot
 DCavg (%)	DCavg (%)
@@ -133,6 +138,7 @@ Direction	Suunta
 Discard	Hylkää
 Discard changes	Hylkää muutokset
 Display	Esitys
+Documentation	Dokumentaatio
 Documents	Dokumentit
 Done	Valmis
 Door	Ovi
@@ -153,6 +159,7 @@ Email	Sähköposti
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tyhjä: oletus. Anna muut arvot, jos standardin painos, jonka mukaan asennus tarkastetaan, poikkeaa.
 Enclosure	Kotelo
 Enclosures	Kotelot
+Engineering	Suunnittelu
 Enterprise integration	Yritysintegraatio
 Equipotential bonding	Potentiaalintasaus
 Error	Virhe
@@ -182,6 +189,7 @@ Floor plan	Pohjapiirros
 Fluid device	Fluidilaite
 Fluid device groups	Fluidilaiteryhmät
 Fluid netlist	Fluidiverkkoluettelo
+Format	Muoto
 From	Mistä
 Function	Toiminto
 Function (=)	Toiminto (=)
@@ -254,6 +262,7 @@ Length	Pituus
 Level	Pinnankorkeus
 Lifecycle	Elinkaari
 Light	Vaalea
+Limit (%)	Raja (%)
 Limits	Raja-arvot
 Line	Viiva
 Link	Linkki
@@ -496,6 +505,7 @@ Required	Vaadittu
 Reserve	Varaus
 Resolution	Erottelukyky
 Responsible for the content	Sisällöstä vastaa
+Result	Tulos
 Reviewer	Tarkastaja
 Revision	Revisio
 Revision {}	Revisio {}
@@ -535,6 +545,7 @@ Server	Palvelin
 Service space	Huoltotila
 Settings	Asetukset
 Shape	Muoto
+Sheets	Arkit
 Short-circuit voltage	Oikosulkujännite
 Show history	Näytä historia
 Show the logos of the catalogs	Näytä luetteloiden logot
@@ -579,6 +590,7 @@ T-junction	T-haara
 Tables	Taulukot
 Technical data	Tekniset tiedot
 Terminal	Riviliitin
+Terminal diagram	Riviliitinkaavio
 Terminal number	Riviliittimen numero
 Terminal strip	Riviliitinrima
 Terminal strips	Riviliitinrimat
@@ -589,6 +601,7 @@ Test instruments (IEC 61557)	Mittalaitteet (IEC 61557)
 Tested by	Testaaja
 Text	Teksti
 Text to find	Etsittävä teksti
+Texts	Tekstit
 The freestanding PV array {} stands outside the plot boundary	Maa-asennettu aurinkopaneelikenttä {} on tontin rajan ulkopuolella
 The identifier must not be empty	Tunnus ei saa olla tyhjä
 The long side of the modules along the rows	Moduulien pitkä sivu rivien suuntaisesti
@@ -640,6 +653,8 @@ Version	Versio
 Viewer	Katselija
 Visual inspection	Silmämääräinen tarkastus
 Voltage	Jännite
+Voltage (V)	Jännite (V)
+Voltage drop	Jännitteenalenema
 Voltage drop (%)	Jännitteenalenema (%)
 Warning	Varoitus
 Warnings	Varoitukset
@@ -685,6 +700,7 @@ yes	kyllä
 {} exists already	{} on jo olemassa
 {} is not a PNG or JPEG image	{} ei ole PNG- tai JPEG-kuva
 {} parts	{} osaa
+{} symbols	Symboleja: {}
 {} users	{} käyttäjää
 {} wires	{} johtoa
 {}, together with the wire to {}	{}, yhdessä johtimen {} kanssa

@@ -187,6 +187,71 @@ fn the_build_writes_every_page_in_every_language() {
         }
     }
     // A folder without its slash is sent to it: the links of a page are relative to it.
+    // The pages the build writes are folders too, one or two deep.
     let nginx = read("../installer/docker/website.conf");
-    assert!(nginx.contains(&format!("location ~ ^/({})$ {{\n        absolute_redirect off;\n        return 301 $uri/;", PAGES.join("|"))));
+    let folders = PAGES.iter().chain(&WRITTEN).copied().collect::<Vec<_>>().join("|");
+    assert!(nginx.contains(&format!("location ~ ^/({folders})(/[a-z0-9_-]+)?$ {{\n        absolute_redirect off;\n        return 301 $uri/;")));
+    assert!(nginx.contains(&format!("location ~ ^/({folders})/([a-z0-9_-]+/)?$ {{\n        rewrite ^ ${{uri}}index.html last;")));
+    assert!(nginx.contains(&format!("location ~ ^/(({folders})/([a-z0-9_-]+/)?(index|[a-z][a-z])\\.html)$ {{\n        alias /tmp/openecraft/$1;")));
+}
+
+#[test]
+fn every_footer_links_the_pages_the_build_writes() {
+    use openecraft_site::frame::{DOCUMENTS, SECTIONS};
+    assert_eq!(SECTIONS.map(|s| s.0.trim_end_matches('/')), WRITTEN);
+    for (name, root, html) in PAGES.iter().map(|p| (*p, "../", page(p))).chain([("index.html", "", read("index.html"))]) {
+        for (folder, text, translated) in SECTIONS {
+            // A page in every language is reached in the language of this one (site.js).
+            let mark = if translated { "data-page " } else { "" };
+            assert!(html.contains(&format!("<a {mark}href=\"{root}{folder}\" data-t>{text}</a>")), "{name}: {folder}");
+        }
+        for (document, text) in DOCUMENTS {
+            assert!(html.contains(&format!("<a href=\"{root}{document}\" data-t>{text}</a>")), "{name}: {document}");
+        }
+    }
+    // The script of the address and the build know them.
+    let script = read("../installer/docker/website-site.sh");
+    assert!(script.contains("\"$page\"/*/index.html \"$page\"/*/*/index.html") && script.contains("SITE_LANGS=${4-$langs}"));
+    assert!(script.contains("\"$page/news/feed.xml\"") && script.contains("xml:base="));
+    let nginx = read("../installer/docker/website.conf");
+    assert!(nginx.contains("location = /news/feed.xml {\n        alias /tmp/openecraft/news/feed.xml;"));
+    assert!(read("Trunk.toml").contains("command_arguments = [\"run\", \"--release\", \"-p\", \"openecraft-site\", \"--example\", \"site\"]"));
+    let check = read("../installer/docker/check-website.sh");
+    for folder in WRITTEN {
+        assert!(check.contains(&format!("\"$url/{folder}/")), "check-website.sh: {folder}");
+    }
+}
+
+#[test]
+fn the_pages_the_build_writes_have_the_frame_of_these() {
+    use openecraft_site::frame::{html, Kind, Langs, Page};
+    let written = html(&Page { folder: "faq".into(), title: "T".into(), description: "D".into(), main: String::new(), kind: Kind::Plain, langs: Langs::All }, Lang::En);
+    let hand = page("compare");
+    // The same bar, without the marks of the texts and of the links (written in the
+    // language of the page, they need no script).
+    let plain = |html: &str| {
+        let lines: Vec<&str> = html.lines().filter(|line| !line.trim_start().starts_with("<!--")).collect();
+        lines.join("\n").replace(" data-page", "").replace(" data-t", "").replace(" aria-current=\"page\"", "")
+    };
+    let bar = |html: &str| plain(html.split("<header class=\"nav\">").nth(1).and_then(|rest| rest.split("</header>").next()).unwrap());
+    assert_eq!(bar(&written), bar(&hand));
+    // The same footer: the documents, the dialogs of the main page, the pages, the
+    // sections, the languages and the notes.
+    let footer = |html: &str| plain(html.split("<footer>").nth(1).and_then(|rest| rest.split("</footer>").next()).unwrap());
+    assert_eq!(footer(&written), footer(&hand));
+    for part in ["<link rel=\"stylesheet\" href=\"../site.css\" />", "<script src=\"../config.js\"></script>", "<script src=\"../site.js\" defer></script>", "<div class=\"backdrop\" aria-hidden=\"true\"></div>", "<main id=\"top\">"] {
+        assert!(written.contains(part) && hand.contains(part), "{part}");
+    }
+}
+
+#[test]
+fn the_comparison_links_the_pages_of_the_single_products() {
+    let html = page("compare");
+    let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("content/compare");
+    let mut products: Vec<String> = std::fs::read_dir(dir).unwrap().map(|e| e.unwrap().path().file_stem().unwrap().to_string_lossy().into_owned()).collect();
+    products.sort();
+    assert!(products.len() >= 5);
+    for product in products {
+        assert!(html.contains(&format!("<a class=\"button\" data-page href=\"{product}/\">")), "compare links {product}");
+    }
 }

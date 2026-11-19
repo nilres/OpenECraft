@@ -8,7 +8,9 @@
 //! for working on the demos: it shows the canvases in a window (`schematic` or
 //! `layout` as argument: only that one), `call <function> [argument]` prints an answer
 //! of the studio as the page gets it, `export <exporter>` writes the file of an export,
-//! `sheet` prints the still picture of the first screen (`sheet.svg`).
+//! `sheet` prints the still picture of the first screen (`sheet.svg`), `tool <name>
+//! <values as JSON> [file]` the answer of a tool of the site (`tools`), `tool-file
+//! <name> <file>` writes the file a tool makes of one (`drawing_pdf drawing.dxf`).
 
 #[cfg(test)]
 mod links;
@@ -18,6 +20,7 @@ mod pages;
 mod seo;
 mod studio;
 mod texts;
+mod tools;
 mod views;
 
 /// The page the demo opens with as SVG, in English: the still picture the page shows
@@ -69,6 +72,20 @@ fn main() -> eframe::Result {
             studio.settle();
             match studio.export(name).and_then(|(file, bytes)| std::fs::write(&file, bytes).map(|()| file).map_err(|e| openecraft_i18n::io_error(&e))) {
                 Ok(file) => println!("{file}"),
+                Err(e) => eprintln!("{e}"),
+            }
+            return Ok(());
+        }
+        ["tool", name, values, ref rest @ ..] => {
+            let bytes = rest.first().map(|file| std::fs::read(file).unwrap_or_default()).unwrap_or_default();
+            println!("{:#}", tools::call(name, values, &bytes));
+            return Ok(());
+        }
+        ["tool-file", name, file] => {
+            let ending = tools::FILES.iter().find(|f| f.0 == name).map_or("out", |f| f.1);
+            let out = format!("{file}.{ending}");
+            match tools::file(name, &std::fs::read(file).unwrap_or_default()).and_then(|bytes| std::fs::write(&out, bytes).map_err(|e| openecraft_i18n::io_error(&e))) {
+                Ok(()) => println!("{out}"),
                 Err(e) => eprintln!("{e}"),
             }
             return Ok(());
@@ -155,6 +172,20 @@ mod web {
     #[wasm_bindgen]
     pub fn search_routing(project: &str, lang: &str, prebuilt: &str) -> Result<String, JsValue> {
         openecraft_session::session::search_routing(project, lang, prebuilt).map_err(|e| JsValue::from_str(&e))
+    }
+
+    /// A tool of the site (`tools::call`) in the language of the page that asks; the
+    /// answer is JSON. The project of the demos is not touched.
+    #[wasm_bindgen]
+    pub fn tool(name: &str, values: &str, bytes: &[u8], lang: &str) -> String {
+        let lang = openecraft_i18n::Lang::from_code(lang).unwrap_or(openecraft_i18n::Lang::En);
+        openecraft_i18n::with_lang(lang, || crate::tools::call(name, values, bytes)).to_string()
+    }
+
+    /// A file a tool writes from the file it was given (`tools::file`).
+    #[wasm_bindgen]
+    pub fn tool_file(name: &str, bytes: &[u8]) -> Result<Vec<u8>, JsValue> {
+        crate::tools::file(name, bytes).map_err(|e| JsValue::from_str(&e))
     }
 
     /// Starts a view (`schematic`, `layout`) in the canvas with the id.

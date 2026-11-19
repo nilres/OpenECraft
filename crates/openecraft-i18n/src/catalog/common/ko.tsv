@@ -22,6 +22,7 @@ Add an item	항목 추가
 Add to favorites	즐겨찾기에 추가
 Address	주소
 Administrator	관리자
+Aluminium	알루미늄
 Angle	각도
 Apply	적용
 Approve	승인
@@ -31,6 +32,7 @@ Automatic	자동
 Automation	자동화
 Aux	보조
 Below	아래
+Bill of materials	자재 명세서
 Bold	굵게
 Bottom	바닥
 Bottom with removable gland plate	분리형 글랜드 플레이트가 있는 바닥
@@ -80,6 +82,7 @@ Commercial data	상업 데이터
 Company	회사
 Component	구성품
 Components (assembly)	구성 요소(어셈블리)
+Conductor	도체
 Conductor material	도체 재질
 Configurator	컨피규레이터
 Connect	연결
@@ -92,6 +95,7 @@ Connector	커넥터
 Contact voltage UB (V)	접촉 전압 UB (V)
 Controller	컨트롤러
 Cooling	냉각
+Copper	구리
 Core	심선
 Cores	심선
 Corner	모서리
@@ -103,6 +107,7 @@ Cross-section	단면적
 Crossing	교차
 Currency	통화
 Current	전류
+Current (A)	전류(A)
 Cutout	컷아웃
 Cutouts	컷아웃
 DCavg (%)	DCavg (%)
@@ -131,6 +136,7 @@ Direction	방향
 Discard	폐기
 Discard changes	변경 내용 취소
 Display	표시
+Documentation	문서
 Documents	문서
 Done	완료
 Door	도어
@@ -151,6 +157,7 @@ Email	이메일
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	비어 있음: 기본값. 설비를 검증하는 규격의 판이 다르면 다른 값을 설정하세요.
 Enclosure	외함
 Enclosures	외함
+Engineering	엔지니어링
 Enterprise integration	엔터프라이즈 통합
 Equipotential bonding	등전위 본딩
 Error	오류
@@ -180,6 +187,7 @@ Floor plan	평면도
 Fluid device	유체 장치
 Fluid device groups	유체 장치 그룹
 Fluid netlist	유체 네트 목록
+Format	형식
 From	시작
 Function	기능
 Function (=)	기능 (=)
@@ -252,6 +260,7 @@ Length	길이
 Level	레벨
 Lifecycle	수명 주기
 Light	밝게
+Limit (%)	한계(%)
 Limits	한계값
 Line	선
 Link	링크
@@ -494,6 +503,7 @@ Required	필요
 Reserve	예비
 Resolution	분해능
 Responsible for the content	내용 책임자
+Result	결과
 Reviewer	검토자
 Revision	개정
 Revision {}	개정 {}
@@ -533,6 +543,7 @@ Server	서버
 Service space	서비스 공간
 Settings	설정
 Shape	모양
+Sheets	시트
 Short-circuit voltage	단락 전압
 Show history	기록 표시
 Show the logos of the catalogs	카탈로그 로고 표시
@@ -577,6 +588,7 @@ T-junction	T분기점
 Tables	테이블
 Technical data	기술 데이터
 Terminal	단자
+Terminal diagram	단자 다이어그램
 Terminal number	단자 번호
 Terminal strip	단자대
 Terminal strips	단자대
@@ -587,6 +599,7 @@ Test instruments (IEC 61557)	측정기 (IEC 61557)
 Tested by	시험자
 Text	텍스트
 Text to find	찾을 텍스트
+Texts	텍스트
 The freestanding PV array {} stands outside the plot boundary	지상형 태양광 어레이 {}이(가) 부지 경계 밖에 있습니다
 The identifier must not be empty	식별자는 비워 둘 수 없습니다
 The long side of the modules along the rows	모듈의 긴 변을 열 방향으로
@@ -638,6 +651,8 @@ Version	버전
 Viewer	뷰어
 Visual inspection	외관 검사
 Voltage	전압
+Voltage (V)	전압(V)
+Voltage drop	전압 강하
 Voltage drop (%)	전압 강하(%)
 Warning	경고
 Warnings	경고
@@ -682,6 +697,7 @@ yes	예
 {} exists already	{}이(가) 이미 있습니다
 {} is not a PNG or JPEG image	{}은(는) PNG 또는 JPEG 이미지가 아닙니다
 {} parts	부품 {}개
+{} symbols	심볼 {}개
 {} users	사용자 {}개
 {} wires	전선 {}개
 {}, together with the wire to {}	{}, {}(으)로 가는 전선과 함께

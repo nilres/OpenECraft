@@ -49,6 +49,31 @@ grep -qF '<link rel="alternate" hreflang="de" href="https://site.example/openecr
 curl -fsS "$url/compare/de.html" | grep -qF '<link rel="canonical" href="https://site.example/openecraft/compare/de.html" />'
 curl -fsS "$url/sitemap.xml" | grep -qF '<loc>https://site.example/openecraft/education/fr.html</loc>'
 test "$(curl -s -o /dev/null -w '%{http_code}' "$url/compare")" = 301
+# The pages the build writes: two folders deep, in their languages, with their tags.
+curl -fsS "$url/symbols/contacts/" -o symbols.html
+grep -qF '<link rel="canonical" href="https://site.example/openecraft/symbols/contacts/" />' symbols.html
+grep -qF '<link rel="alternate" hreflang="de" href="https://site.example/openecraft/symbols/contacts/de.html" />' symbols.html
+curl -fsS "$url/symbols/contacts/de.html" | grep -qF '<html lang="de">'
+test "$(curl -s -o /dev/null -w '%{http_code}' "$url/symbols/contacts")" = 301
+curl -fsS -o /dev/null "$url/symbols/art/no.svg"
+curl -fsS "$url/examples/conveyor/" | grep -qF 'page-1.svg'
+curl -fsS -o /dev/null "$url/examples/conveyor/page-1.svg"
+curl -fsS "$url/examples/conveyor/conveyor.pdf" | head -c 4 | grep -q '%PDF'
+curl -fsS "$url/faq/" | grep -qF '"@type": "FAQPage"'
+curl -fsS "$url/how-to/wire-list/fr.html" | grep -qF '<html lang="fr">'
+curl -fsS "$url/compare/eplan-alternative/" | grep -qF '<link rel="canonical" href="https://site.example/openecraft/compare/eplan-alternative/" />'
+curl -fsS "$url/sitemap.xml" | grep -qF '<loc>https://site.example/openecraft/symbols/contacts/ko.html</loc>'
+# The documentation and the news are in English only: no other languages named.
+curl -fsS "$url/docs/tutorial/" -o tutorial.html
+grep -qF '<link rel="canonical" href="https://site.example/openecraft/docs/tutorial/" />' tutorial.html
+if grep -q 'hreflang=' tutorial.html; then exit 1; fi
+curl -fsS "$url/sitemap.xml" | grep -qF '<loc>https://site.example/openecraft/docs/tutorial/</loc>'
+curl -fsS "$url/news/" | grep -qF 'feed.xml'
+curl -fsS "$url/news/feed.xml" | grep -qF '<feed xml:base="https://site.example/openecraft/news/" xmlns="http://www.w3.org/2005/Atom">'
+# The tools get the module from the script of the build.
+curl -fsS "$url/tools/voltage-drop-calculator/" | grep -qF 'data-tool="voltage_drop"'
+curl -fsS "$url/build.js" | grep -q '"module":\["openecraft-website-[0-9a-f]*\.js","openecraft-website-[0-9a-f]*_bg\.wasm"\]'
+curl -fsS -o /dev/null "$url/tools.js"
 # The module is named in the page and loaded by its script; the first sheet is a picture.
 grep -q 'window.OPENECRAFT_MODULE = \["./openecraft-website-[0-9a-f]*\.js", "./openecraft-website-[0-9a-f]*_bg\.wasm"\]' site.html
 if grep -q 'rel="modulepreload"' site.html; then exit 1; fi
