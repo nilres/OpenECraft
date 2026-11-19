@@ -165,11 +165,15 @@ fn place_installation(prj: &mut Project, a: &Args) -> Result<Value, String> {
     };
     let part = a.req("part").trim();
     let Some(breaker) = text("breaker") else {
-        // Only into the room.
+        // Only into the room, with the device tag given.
         let id = inst::place_at(prj, ri, part, at, opts.height)?;
+        if let Some(tag) = &opts.tag {
+            inst::name_item(prj, id, tag).inspect_err(|_| prj.layout.enclosures[ri].items.retain(|i| i.id != id))?;
+        }
         let e = &prj.layout.enclosures[ri];
         let it = e.item(id).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", id))?;
-        return Ok(json!({ "id": id, "device": Value::Null, "part": it.part, "room": e.name, "face": panel::room_face_key(e, it.face), "x": it.x, "y": it.y }));
+        let device = if it.tag.is_empty() { Value::Null } else { json!(it.tag) };
+        return Ok(json!({ "id": id, "device": device, "part": it.part, "room": e.name, "face": panel::room_face_key(e, it.face), "x": it.x, "y": it.y }));
     };
     let tag = inst::add_device(prj, &breaker, part, ri, at, &opts)?;
     let mut out = placed_json(prj, &tag)?;

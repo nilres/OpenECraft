@@ -598,3 +598,57 @@ fn cables_into_the_room_get_glands_in_the_roof_of_the_cabinet() {
     assert!(an.routing.problems.iter().all(|p| !p.message.contains("every cable gland")), "{:?}", an.routing.problems.iter().map(|p| &p.message).collect::<Vec<_>>());
     assert!(an.routing.item("-W1").is_some_and(|i| i.routed()));
 }
+
+#[test]
+fn a_two_way_switch_is_a_main_function() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let q = before_wall(&prj, ri, 2, 200.0);
+    let tag = add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()).unwrap();
+    let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == tag).unwrap();
+    assert_eq!(s.sym, "co_man");
+    assert_eq!(s.pins, ["L", "1", "2"]);
+    let an = crate::reports::Analysis::checked(&prj);
+    let mine: Vec<String> = an.issues.iter().map(|i| i.message()).filter(|m| m.contains(&tag)).collect();
+    assert!(mine.iter().all(|m| !m.contains("auxiliary function")), "{mine:?}");
+}
+
+#[test]
+fn a_device_without_a_protective_device_takes_its_tag() {
+    let (mut prj, ri) = room();
+    let q = inside(&prj, ri, 0.5, 0.5);
+    let id = place_at(&mut prj, ri, "GEN.SMOKE-ALARM", q, None).unwrap();
+    let tag = format!("{}-BF7", prj.layout.enclosures[ri].name);
+    name_item(&mut prj, id, &tag).unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().tag, tag);
+    assert_eq!(prj.devices[&tag].parts[0].number, "GEN.SMOKE-ALARM");
+    // A tag used already is refused.
+    let id = { let q = inside(&prj, ri, 0.3, 0.3); place_at(&mut prj, ri, "GEN.SMOKE-ALARM", q, None) }.unwrap();
+    assert!(name_item(&mut prj, id, &tag).is_err());
+}
+
+#[test]
+fn the_mounting_height_holds_on_the_outside_of_a_wall_too() {
+    let (mut prj, ri) = room();
+    let t = prj.layout.enclosures[ri].wall();
+    let q = before_wall(&prj, ri, 0, -t - 30.0);
+    let id = place_at(&mut prj, ri, "GEN.SOCKET-F-UP", q, Some(200.0)).unwrap();
+    let e = &prj.layout.enclosures[ri];
+    let it = e.item(id).unwrap();
+    assert_eq!(it.face, Face::Outside(0));
+    assert_eq!(it.y, panel::snap(e.height - 200.0 - it.h / 2.0));
+}
+
+#[test]
+fn a_junction_box_is_no_load_of_its_cable() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let q = before_wall(&prj, ri, 0, 200.0);
+    let tag = add_device(&mut prj, &f2, "GEN.JBOX-UP", ri, q, &Options::default()).unwrap();
+    let cable = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|t| *t == tag)).unwrap().tag.clone();
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    let d = crate::sizing::cable_drops(&prj, &conns).into_iter().find(|d| d.cable == cable).unwrap();
+    assert_ne!(d.load, tag);
+    assert!(crate::sizing::problems(&prj, &nl, &open, &conns).iter().all(|i| !i.message().contains(&tag)));
+}

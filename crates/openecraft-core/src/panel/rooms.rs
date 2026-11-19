@@ -610,10 +610,10 @@ pub fn stand_on_floor(e: &Enclosure, it: &mut PanelItem) {
     }
 }
 
-/// An item on a wall of a room with its middle `height` above the floor (the mounting
-/// height of socket outlets, switches and thermostats).
+/// An item on a wall of a room (inside or outside) with its middle `height` above the
+/// floor (the mounting height of socket outlets, switches and thermostats).
 pub fn at_mounting_height(e: &Enclosure, it: &mut PanelItem, height: f32) {
-    if e.is_room() && matches!(it.face, Face::Wall(_) | Face::Inner(..)) {
+    if e.is_room() && matches!(it.face, Face::Wall(_) | Face::Inner(..) | Face::Outside(_)) {
         it.y = super::snap(e.height - height - it.h / 2.0);
     }
 }

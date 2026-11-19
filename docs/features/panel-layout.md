@@ -682,10 +682,11 @@ lengths of their cables are those of the 3D routing.
   of others come from; a device connection box feeds fixed equipment.
 - **Without a circuit**: data and antenna outlets (`GEN.DATA-RJ45-2X-UP`,
   `GEN.TV-SAT-UP`) and smoke alarms (`GEN.SMOKE-ALARM`, on the ceiling) are placed in
-  the rooms only (`place_installation` without `breaker`), shown in the site plan and
-  listed with the items of the rooms.
+  the rooms only (`place_installation` without `breaker`; with `tag` as that device),
+  shown in the site plan and listed with the items of the rooms.
 - **Outside the building**: a point outside the room puts the part on the outside of
-  its nearest wall (an outdoor socket, a facade light); devices in the garden go into
+  its nearest wall at its mounting height (an outdoor socket, a facade light); devices
+  in the garden go into
   an outdoor area, a room placed outside the building (`place_on_level` without a
   building).
 - **What `place_installation` takes besides**: the device tag (`tag`), the mounting

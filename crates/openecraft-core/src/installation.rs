@@ -1133,6 +1133,17 @@ pub fn code(kind: Kind) -> &'static str {
     }
 }
 
+/// Item `item` (placed in a room without a device tag, see [`place_at`]) becomes device
+/// `tag` with its part, without a place in the schematic (a data or antenna outlet, a
+/// smoke alarm).
+pub fn name_item(prj: &mut Project, item: u64, tag: &str) -> Result<(), String> {
+    let tag = tag.trim();
+    if tag_used(prj, tag) {
+        return Err(tr_fmt!("{} is used already", tag));
+    }
+    adopt(prj, tag, item, None)
+}
+
 /// Device tag `t` is used: a device, a symbol or an item of the layout has it.
 fn tag_used(prj: &Project, t: &str) -> bool {
     prj.devices.contains_key(t) || prj.pages.iter().any(|pg| pg.symbols.iter().any(|s| s.tag == t)) || prj.layout.find_device(t).is_some()
@@ -1263,7 +1274,7 @@ fn symbol_for(prj: &Project, kind: Kind, part: Option<&Part>) -> Option<(SymbolR
         (Kind::Light, _) => &["luminaire", "lamp"],
         (Kind::Heater, false) => &["heater"],
         (Kind::Heater, true) => &["heater3"],
-        (Kind::Switch, _) => &["sel", "co", "pb_no"],
+        (Kind::Switch, _) => &["sel", "co_man", "pb_no"],
         (Kind::Junction, false) => &["jbox"],
         (Kind::Junction, true) => &["jbox3"],
         (Kind::Connection, false) => &["conn_box"],

@@ -34,7 +34,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   whether the device went into the schematic and with which cable; one placed without a
   protective device goes in later with *Put into the schematic* in its properties. Fixed: with two or more devices on a breaker the first cable was missing
   from the circuit and its cores were counted on the next one; a residual current
-  device behind a feeder counted as protecting the feeder and all its other circuits.
+  device behind a feeder counted as protecting the feeder and all its other circuits;
+  a two-way switch was drawn as an auxiliary contact without a main function (now a
+  manually operated changeover switch, symbol `co_man`); `tag` was ignored without
+  `breaker` and the mounting height on the outside of a wall; a junction box counted as
+  a load of 16 A in the cable sizing.
 - **Placing in the 3D view:** a click on a wall or the ceiling of a room places the
   part there, also outside the installation zones: near its mounting height it goes at
   that height, farther off at the height clicked. While placing, the part is shown

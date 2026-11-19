@@ -731,6 +731,11 @@ fn switches(lib: &mut Lib) {
         lib.b.pin(0.0, 4.0, "11").pin(4.0, -4.0, "12").pin(0.0, -4.0, "14");
         lib.push(def(key, name, C::Switches, "B", MAIN), Some(K::Sensor));
     }
+    // A manually operated changeover switch: the two-way switch of an installation.
+    let bx = lib.b.changeover();
+    lib.b.op(bx, Op::Manual, false);
+    lib.b.pin(0.0, 4.0, "11").pin(4.0, -4.0, "12").pin(0.0, -4.0, "14");
+    lib.push(def("co_man", "Changeover switch, manually operated", C::Switches, "S", MAIN), Some(K::Changeover));
 
     // Disconnectors (IEC 60617-07-13-06), switch-disconnectors (07-13-08) and main
     // switches, 1 to 3 poles.

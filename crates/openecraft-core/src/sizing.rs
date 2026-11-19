@@ -287,8 +287,9 @@ pub fn cable_drops(prj: &Project, conns: &[Connection]) -> Vec<CableDrop> {
     for cable in &prj.cables {
         let on: Vec<&Connection> = conns.iter().filter(|c| c.cable == cable.tag).collect();
         // The load: the device at the cable's ends with the highest rated current
-        // (terminals, plugs, protective devices, meters and current transformers are
-        // no loads).
+        // (terminals, plugs, junction boxes, protective devices, meters and current
+        // transformers are no loads: the rating of a junction box is that of its
+        // terminals).
         let mut load: Option<(String, f32, Option<f32>)> = None;
         let mut tags: Vec<&str> = Vec::new();
         for c in &on {
@@ -296,7 +297,8 @@ pub fn cable_drops(prj: &Project, conns: &[Connection]) -> Vec<CableDrop> {
                 let s = &prj.pages[p.page].symbols[p.sym];
                 let func = prj.symbol(&s.sym).map(|d| d.func);
                 let measuring = matches!(kind_of_symbol(&s.sym), Some(FnKind::Meter | FnKind::CurrentTransformer));
-                if func.is_some_and(|f| f.is_feedthrough()) || is_protective(&s.sym) || measuring || tags.contains(&s.tag.as_str()) {
+                let junction = matches!(s.sym.as_str(), "jbox" | "jbox3" | "inst_junction");
+                if func.is_some_and(|f| f.is_feedthrough()) || is_protective(&s.sym) || measuring || junction || tags.contains(&s.tag.as_str()) {
                     continue;
                 }
                 tags.push(&s.tag);
