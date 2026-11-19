@@ -357,6 +357,8 @@ jobs:
         working-directory: openecraft
       - run: trunk build --release
         working-directory: parts-manager
+      # The screen recording of the website: an asset of the release website-media.
+      - run: sh installer/web/tour.sh
       - run: trunk build --release
         working-directory: website
       - uses: actions/upload-artifact@v4

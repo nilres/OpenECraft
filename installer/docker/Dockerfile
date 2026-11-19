@@ -111,8 +111,12 @@ EXPOSE 8080
 # The WebAssembly, the scripts and the other big texts get compressed copies beside
 # them (compress.sh), which nginx sends as they are (website.conf) instead of
 # compressing 40 MB for every visitor; config.js is written at every start.
+# The screen recording of the first screen is an asset of the release `website-media`
+# (installer/web/tour.sh; an empty OPENECRAFT_TOUR_URL builds the site without it).
 FROM web-build AS website-build
-RUN cd website \
+ARG OPENECRAFT_TOUR_URL=https://github.com/nilres/OpenECraft/releases/download/website-media
+RUN OPENECRAFT_TOUR_URL="$OPENECRAFT_TOUR_URL" sh installer/web/tour.sh \
+    && cd website \
     && trunk build --release \
     && cd ../openecraft \
     && trunk build --release --public-url ./ --dist /src/target/website-editor \

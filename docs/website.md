@@ -303,10 +303,14 @@ not there:
 - A screen recording for the first screen: `website/tour.webm` (and `tour.jpg` as
   its still picture). The build copies them and names them in `build.js`; the main
   page shows the video below the sheet. It is loaded only when the visitor starts it
-  (`preload="none"`). Both files are not kept in the repository (`.gitignore`): put
-  them into `website/` before the build. `website/tour.mjs` records them from the
-  live demos of the built site (headless Edge and Node, no other tool): record them
-  again when the page or the demos changed visibly.
+  (`preload="none"`). Both files are not kept in the repository (`.gitignore`) but
+  are assets of the release `website-media` on GitHub: `installer/web/tour.sh`
+  fetches them into `website/` before the build, as CI and the Docker image of the
+  website do (`OPENECRAFT_TOUR_URL` names another folder, empty builds without a
+  recording). `website/tour.mjs` records them from the live demos of the built site
+  (headless Edge and Node, no other tool): record them again when the page or the
+  demos changed visibly, and replace the assets with
+  `gh release upload website-media website/tour.webm website/tour.jpg --clobber`.
 - The stars and the contributors of the repository: the variables `OPENECRAFT_STARS`
   and `OPENECRAFT_CONTRIBUTORS` of the build (numbers; for example from `gh api
   repos/<owner>/<name> --jq .stargazers_count`). With a number above 0 the facts of
