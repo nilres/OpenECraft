@@ -20,6 +20,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   demos when the build is given one, and the stars and contributors of the repository,
   which the Docker image of the website asks GitHub for every hour. New crate `openecraft-site`
   ([website](docs/website.md#pages-the-build-writes)).
+- **Less for a search engine to complain about:** the Docker images of the website
+  and the web editor send the license files with `X-Robots-Tag: noindex`, the page of
+  the web editor has a description, and the documentation says how the reverse proxy
+  redirects `www.` to the address of the site
+  ([website](docs/website.md#docker-image)).
 - **The public parts server is preset:** the editor's data portal, the parts manager
   and the command line connect to
   [parts-server.openecraft.org](https://parts-server.openecraft.org) until another

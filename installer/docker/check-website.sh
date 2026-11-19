@@ -112,6 +112,16 @@ test "$type" = application/wasm
 for file in site.js icon.svg apple-touch-icon.png images/schematic.webp social.jpg LICENSE-MIT THIRD-PARTY-LICENSES.html; do
   curl -fsS -o /dev/null "$url/$file"
 done
+# The license files are kept out of the index of a search engine, the page is not.
+for file in LICENSE-MIT OFL-NotoSans.txt THIRD-PARTY-LICENSES.html editor/LICENSE-MIT; do
+  curl -fsS -o /dev/null -D headers.txt "$url/$file"
+  grep -qi '^x-robots-tag: noindex' headers.txt
+  grep -qi '^x-content-type-options: nosniff' headers.txt
+done
+curl -fsS -o /dev/null -D headers.txt "$url/LICENSE-MIT"
+grep -qi '^content-type: text/plain' headers.txt
+curl -fsS -o /dev/null -D headers.txt "$url/"
+if grep -qi '^x-robots-tag' headers.txt; then exit 1; fi
 # The WebAssembly is sent as the build of the image compressed it.
 curl -fsS -o wasm.gz -D headers.txt -H 'Accept-Encoding: gzip' "$url/$wasm"
 grep -qi '^content-encoding: gzip' headers.txt
@@ -125,6 +135,7 @@ grep -qi '^cache-control: .*immutable' headers.txt
 test "$(wc -c < wasm.br)" -lt "$(wc -c < wasm.gz)"
 curl -fsS "$url/editor/" -o editor.html
 grep -q openecraft_canvas editor.html
+grep -qF '<meta name="description"' editor.html
 editor=$(grep -o '[^"/]*_bg\.wasm' editor.html | awk 'NR == 1')
 test -n "$editor"
 curl -fsS -o /dev/null -D headers.txt -H 'Accept-Encoding: br' "$url/editor/$editor"

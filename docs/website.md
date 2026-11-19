@@ -402,7 +402,13 @@ of the public address, `robots.txt` and `sitemap.xml` (`website-site.sh`) and it
 site from `installer/docker/website.conf` (mount your own at
 `/etc/nginx/templates/default.conf.template`; it answers `/config.js`, `/index.html`,
 `/robots.txt` and `/sitemap.xml` with the files of `/tmp/openecraft/`);
-put a TLS reverse proxy in front of it for a public site. The WebAssembly (28 MB,
+put a TLS reverse proxy in front of it for a public site. A host that is not the one
+of `OPENECRAFT_SITE_URL` (`www.` beside the bare domain, plain `http://`) should be
+redirected there by that proxy (`return 301 https://openecraft.example.com$request_uri;`)
+instead of answering with the page: the pages name their canonical address, but a
+search engine then still reports every page of the other host as a copy, and files
+without tags (the license files) as copies without a canonical address. The license
+files are sent with `X-Robots-Tag: noindex`, by the image of the web editor as well. The WebAssembly (28 MB,
 10 MB compressed), the scripts and the routings have a compressed copy from the
 build of the image (`installer/docker/compress.sh`), which nginx sends as it is
 (`gzip_static`), also to a reverse

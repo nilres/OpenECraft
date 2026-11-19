@@ -34,9 +34,14 @@ test -n "$wasm"
 type=$(curl -fsS -o /dev/null -w '%{content_type}' "http://127.0.0.1:$port/$wasm")
 echo "$wasm: $type"
 test "$type" = application/wasm
+# The license files are kept out of the index of a search engine, the page is not.
 for file in LICENSE-MIT LICENSE-APACHE OFL-NotoSans.txt THIRD-PARTY-LICENSES.html; do
-  curl -fsS -o /dev/null "http://127.0.0.1:$port/$file"
+  curl -fsS -o /dev/null -D "$work/headers.txt" "http://127.0.0.1:$port/$file"
+  grep -qi '^x-robots-tag: noindex' "$work/headers.txt"
 done
+curl -fsS -o /dev/null -D "$work/headers.txt" "http://127.0.0.1:$port/"
+if grep -qi '^x-robots-tag' "$work/headers.txt"; then exit 1; fi
+grep -qF '<meta name="description"' "$work/index.html"
 # The worker that searches the 3D routing of an opened project, the routings of the
 # examples from the build and the catalog of a language the page fetches when it is
 # used.
