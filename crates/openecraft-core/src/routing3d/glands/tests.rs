@@ -33,14 +33,16 @@ fn a_new_cable_out_of_an_enclosure_gets_a_gland_of_its_size() {
     // Both cables are routed, each through a gland.
     let an = Analysis::checked(&prj);
     assert!(["-W1", "-W2"].iter().all(|k| an.routing.item(k).unwrap().routed()), "{:?}", an.routing.problems);
-    // Nothing more without a change; a gland removed by hand stays removed.
+    // Nothing more without a change; a gland removed by hand stays removed while only
+    // the layout changes, and comes back with the next change of the cables.
     let same = prj.clone();
     assert!(follow(&mut prj, &same).is_empty());
     let mut removed = prj.clone();
     removed.layout.enclosures[0].items.retain(|i| i.id != added[0]);
+    assert!(follow(&mut removed, &prj).is_empty());
     let kept = removed.clone();
-    removed.pages[0].name.push('x');
-    assert!(follow(&mut removed, &kept).is_empty());
+    removed.cables[0].length += 1.0;
+    assert_eq!(follow(&mut removed, &kept).len(), 1);
 }
 
 #[test]

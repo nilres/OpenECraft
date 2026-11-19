@@ -1179,10 +1179,37 @@ fn finals(prj: &Project, nl: &Netlist) -> Vec<String> {
     electrical::circuits(prj, nl).into_iter().filter(|c| c.is_final()).map(|c| c.device).collect()
 }
 
-/// The installation page of the circuit of protective device `breaker` (index).
+/// The installation page of the circuit of protective device `breaker` (index): the
+/// first one where it has several.
 fn page_of(prj: &Project, finals: &[String], breaker: &str) -> Option<usize> {
+    pages_of(prj, finals, breaker).first().copied()
+}
+
+/// The installation pages of the circuit of protective device `breaker` (indexes, in
+/// their order): the first and those that continue it.
+fn pages_of(prj: &Project, finals: &[String], breaker: &str) -> Vec<usize> {
     let ls = [labels(finals, breaker, false), labels(finals, breaker, true)];
-    prj.pages.iter().position(|pg| prj.layout.installation_pages.contains(&pg.id) && pg.symbols.iter().any(|s| s.sym == "intr" && ls.iter().any(|l| s.label == l[0])))
+    (0..prj.pages.len()).filter(|&k| {
+        let pg = &prj.pages[k];
+        prj.layout.installation_pages.contains(&pg.id) && pg.symbols.iter().any(|s| s.sym == "intr" && ls.iter().any(|l| s.label == l[0]))
+    }).collect()
+}
+
+/// A page after installation page `k` that continues it (a full one): its structure,
+/// labels and title. Gives its index.
+fn continuation(prj: &mut Project, k: usize) -> usize {
+    let src = prj.pages[k].clone();
+    let id = prj.new_id();
+    let mut page = Page::new(id, &crate::ops::next_page_name(prj, k + 1), &src.description, PageKind::Schematic);
+    page.section = src.section;
+    page.function = src.function.clone();
+    page.installation = src.installation.clone();
+    page.location = src.location.clone();
+    page.product = src.product.clone();
+    page.values = src.values.clone();
+    let at = crate::ops::insert_page(prj, k + 1, page);
+    prj.layout.installation_pages.push(id);
+    at
 }
 
 /// How a device goes into the schematic: the device or junction box its cable comes
@@ -1331,24 +1358,28 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Option
     let room = prj.layout.enclosures[ri].name.clone();
     let finals = finals(prj, &nl);
     let (def, pins) = symbol_for(prj, kind, find_part(prj, &part)).ok_or_else(|| tr("Unknown symbol").to_string())?;
-    let page = match page_of(prj, &finals, breaker) {
-        Some(k) => k,
+    let pages = pages_of(prj, &finals, breaker);
+    let first = match pages.first() {
+        Some(&k) => k,
         None => new_page(prj, &b, &labels(&finals, breaker, b.phases.len() >= 3))?,
     };
-    let ls = page_labels(prj, page);
+    let ls = page_labels(prj, first);
     let n = ls.len();
     if three_phase(&pins) && n < 5 {
         return Err(tr_fmt!("{} has three phases: it needs a three-phase protective device", part));
     }
+    // The devices of the circuit on all its pages; a full last page is continued on a
+    // new one after it.
+    let pages = if pages.is_empty() { vec![first] } else { pages };
+    let everyone: Vec<Drawn> = pages.iter().flat_map(|&k| drawn_on(prj, k)).collect();
+    let last = *pages.last().unwrap_or(&first);
+    let page = if page_columns(prj, last, n > 3) < drawn_on(prj, last).len() + 1 { continuation(prj, last) } else { last };
     let mut drawn = drawn_on(prj, page);
-    if page_columns(prj, page, n > 3) < drawn.len() + 1 {
-        return Err(tr_fmt!("The installation page of {} is full", breaker));
-    }
-    let from_all = sources(prj, &drawn, breaker);
+    let from_all = sources(prj, &everyone, breaker);
     let from = match opts.from.as_deref().map(str::trim).filter(|f| !f.is_empty()) {
-        Some(f) if f == breaker || drawn.iter().any(|d| d.tag == f) => f.to_string(),
+        Some(f) if f == breaker || everyone.iter().any(|d| d.tag == f) => f.to_string(),
         Some(f) => return Err(tr_fmt!("{} is neither the protective device nor a device of the circuit of {}", f, breaker)),
-        None => default_source(prj, &drawn, &from_all, breaker, kind, ri),
+        None => default_source(prj, &everyone, &from_all, breaker, kind, ri),
     };
     let tag = match opts.tag.as_deref().map(str::trim).filter(|t| !t.is_empty()) {
         Some(t) if tag_used(prj, t) => return Err(tr_fmt!("{} is used already", t)),

@@ -548,3 +548,53 @@ fn a_click_meets_the_inside_of_a_wall_and_goes_there_off_the_zones() {
     assert_eq!((ghost.face, ghost.y), (it.face, it.y));
     assert_eq!(prj, before);
 }
+
+
+
+#[test]
+fn a_full_installation_page_is_continued_on_the_next_one() {
+    // More socket outlets on one protective device than one page has columns for: all
+    // go into the schematic, the later ones on a page after the first.
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let mut tags = Vec::new();
+    for k in 0..20 {
+        let q = before_wall(&prj, ri, (k % 4) as u16, 200.0);
+        tags.push(add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap_or_else(|e| panic!("{k}: {e}")));
+    }
+    let nl = Netlist::build(&prj, true);
+    let pages = pages_of(&prj, &finals(&prj, &nl), &f2);
+    assert_eq!(pages.len(), 2, "{pages:?}");
+    assert_eq!(pages[1], pages[0] + 1);
+    let on = |k: usize| drawn_on(&prj, k).len();
+    assert_eq!(on(pages[0]) + on(pages[1]), 20);
+    // The chain goes on from the last device of the first page.
+    let first_next = drawn_on(&prj, pages[1])[0].tag.clone();
+    let before = tags[tags.iter().position(|t| *t == first_next).unwrap() - 1].clone();
+    assert_eq!(feed_of(&prj, &first_next).map(|f| f.1), Some(before));
+    // Every device is in a circuit of the protective device.
+    let c = schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap();
+    assert!(tags.iter().all(|t| c.devices.iter().any(|d| &d.tag == t)), "{:?}", c.devices.iter().map(|d| &d.tag).collect::<Vec<_>>());
+}
+
+#[test]
+fn cables_into_the_room_get_glands_in_the_roof_of_the_cabinet() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let cab = crate::panel::locate(&prj, &f2).unwrap().0;
+    assert_eq!(crate::panel::room_of(&prj.layout, cab), Some(ri), "the board stands in the room");
+    let before = prj.clone();
+    for k in 0..2u16 {
+        let q = before_wall(&prj, ri, k, 200.0);
+        add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap();
+    }
+    let added = crate::routing3d::glands::follow(&mut prj, &before);
+    assert!(!added.is_empty());
+    // On a face a route into the room leaves through: the roof of a standing cabinet.
+    for id in &added {
+        assert_eq!(prj.layout.enclosures[cab].item(*id).unwrap().face, Face::Roof);
+    }
+    let an = crate::analysis::Analysis::build(&prj);
+    assert!(an.routing.problems.iter().all(|p| !p.message.contains("every cable gland")), "{:?}", an.routing.problems.iter().map(|p| &p.message).collect::<Vec<_>>());
+    assert!(an.routing.item("-W1").is_some_and(|i| i.routed()));
+}

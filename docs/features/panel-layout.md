@@ -930,10 +930,13 @@ a part there: within 200 mm of its mounting height at that height (its installat
 zone), farther off at the height clicked; the part is shown see-through where it would
 go while the pointer moves.
 With *Add cable glands for new cables* (enclosure properties, `set_auto_glands`; on by
-default) a new cable that leaves a cabinet for a device outside it and its line-up and
-finds no free gland there gets one in the bottom of the cabinet: of polyamide, the
-smallest whose clamping range takes the cable, in the first free place from the middle
-of the bottom. Glands removed by hand stay removed; *Add the missing ones*
+default), after every change of the cables or the schematic, a cable that leaves a
+cabinet for a device outside it and its line-up and finds no free gland it can pass
+gets one: of polyamide, the smallest whose clamping range takes the cable, in the first
+free place from the middle of the face. A cable to a device in the room the cabinet
+stands in gets it in the roof (it can only leave through the roof, the sides and the
+rear, see below; a cabinet hanging on a wall in the bottom), a cable into the field in
+the bottom. A gland deleted by hand stays deleted until the cables change; *Add the missing ones*
 (`add_cable_glands`) adds a gland for every cable that has none, also with the option
 off. A cabinet with a cable entry flange gets none. A
 cabinet hanging on a wall (its bottom above the floor) is also left through a gland in

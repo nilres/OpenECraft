@@ -224,6 +224,13 @@ impl PanelUi {
         for q in scene.branches.iter().filter_map(|q| project_view(*q)) {
             painter.circle(q.0, 3.5, Color32::WHITE, Stroke::new(1.5, Color32::from_rgb(60, 60, 60)));
         }
+        // While the 3D routing is searched again after a change, the routes shown are
+        // those from before it.
+        if an.routes_pending {
+            let text = tr("Routing the cables and wires again… the routes shown are from before the last change");
+            painter.text(rect.left_top() + vec2(10.0, 10.0), egui::Align2::LEFT_TOP, text, egui::FontId::proportional(13.0), crate::style::warning());
+            ui.ctx().request_repaint_after(std::time::Duration::from_millis(250));
+        }
         // While the wires, cables and tubes are laid out on another thread: how far it is.
         if let Some(done) = self.layouts.progress() {
             let width = 300.0;
@@ -543,13 +550,41 @@ fn draw_ghost(painter: &egui::Painter, prj: &Project, k: usize, it: &panel::Pane
             [[0, 1, 3, 2], [4, 5, 7, 6], [0, 1, 5, 4], [2, 3, 7, 6], [0, 2, 6, 4], [1, 3, 7, 5]].iter().flat_map(|f| [[c(f[0]), c(f[1]), c(f[2])], [c(f[0]), c(f[2]), c(f[3])]]).collect()
         }
     };
-    let fill = Color32::from_rgba_unmultiplied(70, 150, 255, 60);
+    // One mesh without feathered edges (no seams between its triangles), only the faces
+    // turned to the eye (no layers of it over each other).
+    let fill = Color32::from_rgba_unmultiplied(70, 150, 255, 90);
+    let mut mesh = egui::Mesh::default();
     for t in tris {
-        let pts: Option<Vec<Pos2>> = t.iter().map(|q| project_view(pose.apply([q[0], e.height - q[1], q[2]])).map(|p| p.0)).collect();
-        if let Some(pts) = pts {
-            painter.add(egui::Shape::convex_polygon(pts, fill, Stroke::NONE));
+        let Some(pts) = t.iter().map(|q| project_view(pose.apply([q[0], e.height - q[1], q[2]])).map(|p| p.0)).collect::<Option<Vec<Pos2>>>() else { continue };
+        let area = (pts[1] - pts[0]).x * (pts[2] - pts[0]).y - (pts[1] - pts[0]).y * (pts[2] - pts[0]).x;
+        if area.abs() < 0.01 {
+            continue;
         }
+        let i = mesh.vertices.len() as u32;
+        for q in pts {
+            mesh.colored_vertex(q, fill);
+        }
+        mesh.add_triangle(i, i + 1, i + 2);
     }
+    // Drawn twice over, the faces of both windings: keep those of the winding with the
+    // larger area seen (the front of a closed model).
+    let (mut front, mut back) = (egui::Mesh::default(), egui::Mesh::default());
+    for t in mesh.indices.chunks(3) {
+        let v = |k: usize| mesh.vertices[t[k] as usize].pos;
+        let area = (v(1) - v(0)).x * (v(2) - v(0)).y - (v(1) - v(0)).y * (v(2) - v(0)).x;
+        let m = if area > 0.0 { &mut front } else { &mut back };
+        let i = m.vertices.len() as u32;
+        for k in 0..3 {
+            m.colored_vertex(v(k), fill);
+        }
+        m.add_triangle(i, i + 1, i + 2);
+    }
+    let area = |m: &egui::Mesh| m.indices.chunks(3).map(|t| {
+        let v = |k: usize| m.vertices[t[k] as usize].pos;
+        ((v(1) - v(0)).x * (v(2) - v(0)).y - (v(1) - v(0)).y * (v(2) - v(0)).x).abs()
+    }).sum::<f32>();
+    let shown = if area(&front) >= area(&back) { front } else { back };
+    painter.add(egui::Shape::mesh(shown));
 }
 
 /// A projected face or line of one frame.

@@ -27,12 +27,12 @@ const SHAFT_MARGIN: f32 = 50.0;
 
 /// Whether a route leaves cabinet `ci` into the room through `face`: its roof, sides and
 /// rear, and the bottom of a cabinet hanging on the wall above the floor.
-fn room_side(prj: &Project, ci: usize, face: Face) -> bool {
+pub(super) fn room_side(prj: &Project, ci: usize, face: Face) -> bool {
     ROOM_SIDES.contains(&face) || (face == Face::Bottom && hangs(prj, ci))
 }
 
 /// The line-up of cabinet `ci` hangs on the wall: its bottom is above the floor.
-fn hangs(prj: &Project, ci: usize) -> bool {
+pub(super) fn hangs(prj: &Project, ci: usize) -> bool {
     let l = &prj.layout;
     panel::lineup_of(l, ci).first().and_then(|&i| l.enclosures[i].elevation).is_some_and(|h| h > 0.0)
 }

@@ -39,7 +39,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   part there, also outside the installation zones: near its mounting height it goes at
   that height, farther off at the height clicked. While placing, the part is shown
   see-through where it would go. Delete removes what is selected in the 3D view; a right
-  click opens a menu with *Delete* and *Properties*.
+  click opens a menu with *Delete* and *Properties*. While the 3D routing is searched
+  again after a change, the 3D view says so. A full installation page is continued on
+  a new page after it (from the twelfth single-phase device of a circuit the devices
+  were left out of the schematic before).
 - **CEE sockets of Mennekes and a cooker connection box of Merten:** the catalogs
   `mennekes` (CEE wall sockets 27005, 5515 and 7233 with circuit breaker and RCD; 16 A
   and 32 A, 5 poles) and `merten` (cooker connection box 520427 for flush mounting), in
@@ -49,9 +52,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Spelsberg box placed on a wall hangs there as an enclosure of the room, opened and
   routed into like any enclosure, with a WAGO 221-415 inside that is its device (a
   connector per conductor in its parts).
-- **Cable glands for new cables:** a new cable that leaves a cabinet and finds no free
-  cable gland gets one of its size in the bottom of the cabinet (*Add cable glands for
-  new cables* in the enclosure properties, `set_auto_glands`; on by default). *Add the
+- **Cable glands for new cables:** a cable that leaves a cabinet and finds no free
+  cable gland gets one of its size (*Add cable glands for new cables* in the enclosure
+  properties, `set_auto_glands`; on by default): in the roof for a device in the room
+  the cabinet stands in, in the bottom for one in the field or of a cabinet hanging on
+  the wall. *Add the
   missing ones* (`add_cable_glands`) adds them for all cables at once.
 - **Smaller rooms from floor plans on paper:** *Smallest room* (`min_room`) sets the
   smallest room kept by the detection (1 m² before: a WC or a closet was lost).
