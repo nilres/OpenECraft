@@ -404,9 +404,12 @@ site from `installer/docker/website.conf` (mount your own at
 `/robots.txt` and `/sitemap.xml` with the files of `/tmp/openecraft/`);
 put a TLS reverse proxy in front of it for a public site. A host that is not the one
 of `OPENECRAFT_SITE_URL` (`www.` beside the bare domain, plain `http://`) should be
-redirected there by that proxy (`return 301 https://openecraft.example.com$request_uri;`)
-instead of answering with the page: the pages name their canonical address, but a
-search engine then still reports every page of the other host as a copy, and files
+redirected there by that proxy instead of answering with the page, only for that other
+host: in a `server` block that also answers the address of the site the line would
+redirect the site to itself without end, so there it needs the condition
+(`if ($host = www.openecraft.example.com) { return 301 https://openecraft.example.com$request_uri; }`).
+Without the redirect the pages name their canonical address, but a
+search engine still reports every page of the other host as a copy, and files
 without tags (the license files) as copies without a canonical address. The license
 files are sent with `X-Robots-Tag: noindex`, by the image of the web editor as well. The WebAssembly (28 MB,
 10 MB compressed), the scripts and the routings have a compressed copy from the
