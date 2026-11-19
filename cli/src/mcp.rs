@@ -1,10 +1,13 @@
 //! Model Context Protocol server: JSON-RPC 2.0, one message per line on stdin /
-//! stdout. Offers every tool of [`crate::tools`]; the session (open project, undo
-//! history, parts server) lives as long as the connection. Texts for the agent are
-//! English like the rest of the protocol.
+//! stdout. Offers the core tools of [`crate::tools`] for schematics and reaches the
+//! others through `find_tools`, `describe_tool` and `call_tool` (all of them with
+//! `OPENECRAFT_MCP_TOOLS=*`); the session (open project, undo history, parts server)
+//! lives as long as the connection. Texts for the agent are English like the rest of
+//! the protocol.
 
 use crate::session::Session;
 use crate::tools;
+use openecraft_api::params::{optional, param, Kind, Param};
 use serde_json::{json, Map, Value};
 use std::io::{BufRead, Write};
 use std::path::{Component, Path, PathBuf};
@@ -17,14 +20,47 @@ const INSTRUCTIONS: &str = "OpenECraft is an electrical CAE (schematic) editor. 
 tool calls. Pages are A3 (420 x 297 mm, y downwards, 10 columns, 6 rows); positions snap to a 4 mm grid. Use \
 list_symbols for symbol keys and connection points, get_page for positions and item ids, connect to draw wires \
 between connection points (TAG:PIN, e.g. -K1:A1), check to find errors and report / export for the results. Device \
-tags follow IEC 81346 (-K1 contactor, -S1 switch, -X1 terminal strip). Parts come from the project, the built-in \
-catalog or the parts server (parts_* tools).";
+tags follow IEC 81346 (-K1 contactor, -S1 switch, -X1 terminal strip). Cables: add_cable_definition draws a line \
+across wires, which become cores of the cable it names (created when new); apply_cable_part takes type and cores \
+from a cable part, set_cable sets length and description. Parts come from the project, the built-in catalog or the \
+parts server (parts_search, parts_get; without a server they search the project and the built-in catalog).";
+
+/// The tools offered by default (`OPENECRAFT_MCP_TOOLS` not set or `core`): what an
+/// agent needs to draw, check and export schematics. The others stay reachable
+/// through the meta tools.
+pub const CORE: &[&str] = &[
+    "new_project", "open_project", "save_project", "convert_project", "list_examples", "project_info", "set_project_info", "undo", "redo",
+    "list_pages", "get_page", "add_page", "set_page", "renumber_pages",
+    "list_symbols", "place_symbol", "place_part", "update_symbol", "move_items", "delete_items",
+    "add_wire", "connect", "route", "update_wire", "add_text", "list_potentials", "set_wire_colors", "set_wire_numbering", "renumber_wires",
+    "list_devices", "assign_part", "parts_search", "parts_get",
+    "list_cables", "add_cable", "set_cable", "rename_cable", "list_cable_parts", "add_cable_definition", "apply_cable_part",
+    "table_get", "table_set", "check", "list_reports", "report", "list_exports", "export",
+];
+
+/// Tools of the MCP server itself that reach the tools not offered.
+const META: [(&str, &str, &[Param]); 3] = [
+    (
+        "find_tools",
+        "Finds the tools beyond those offered (panel layout in 3D, PLC, terminals, harnesses, fluid power, buildings, \
+parts server, imports, revisions and more): without a query the names of all tools, with one the tools whose name or \
+description has every word, with their description",
+        &[optional("query", Kind::Str, "Words in the name or description of the tool")],
+    ),
+    ("describe_tool", "Shows the description and the parameters (JSON schema) of any tool", &[param("name", Kind::Str, "Name of the tool")]),
+    (
+        "call_tool",
+        "Calls any tool by its name, also one not offered in the list of tools; the result is that of the tool",
+        &[param("name", Kind::Str, "Name of the tool"), optional("arguments", Kind::Object, "Parameters of the tool")],
+    ),
+];
 
 /// Names of the tools to offer, from `OPENECRAFT_MCP_TOOLS` (comma separated; `parts_*`
-/// for all tools starting with `parts_`). Some clients take only a limited number
-/// of tools.
+/// for all tools starting with `parts_`, `core` for [`CORE`], `*` for all). Without it
+/// the core tools: the list of all of them is too long for the context of an agent.
 pub fn tools_from_env() -> Vec<String> {
-    std::env::var("OPENECRAFT_MCP_TOOLS").unwrap_or_default().split(',').map(|s| s.trim().to_string()).filter(|s| !s.is_empty()).collect()
+    let names: Vec<String> = std::env::var("OPENECRAFT_MCP_TOOLS").unwrap_or_default().split(',').map(|s| s.trim().to_string()).filter(|s| !s.is_empty()).collect();
+    if names.is_empty() { vec!["core".into()] } else { names }
 }
 
 /// Folder the files of the MCP tools must be in, from `OPENECRAFT_MCP_ROOT` (`*`:
@@ -46,6 +82,46 @@ const PATH_LIST_PARAMS: [&str; 1] = ["files"];
 
 /// Parameters that are ids of the vault or a format, not files (tool, parameter).
 const NOT_PATHS: [(&str, &str); 3] = [("vault_browse", "folder"), ("vault_upload", "folder"), ("convert_project", "format")];
+
+/// A path as people write it: without the `\\?\` prefix of a canonical Windows path.
+fn shown(path: &Path) -> String {
+    let text = path.display().to_string();
+    match text.strip_prefix(r"\\?\") {
+        Some(rest) => rest.strip_prefix(r"UNC\").map_or_else(|| rest.to_string(), |unc| format!(r"\\{unc}")),
+        None => text,
+    }
+}
+
+/// The values of the file and folder parameters of a call of the tool `tool`, each
+/// with its parameter name.
+fn path_values<'a>(tool: &str, args: &'a Map<String, Value>) -> Vec<(&'a str, &'a str)> {
+    let named = args.iter().filter(|(name, _)| !NOT_PATHS.contains(&(tool, name.as_str())));
+    named
+        .filter_map(|(name, value)| Some((name.as_str(), value.as_str()?)))
+        .flat_map(|(name, value)| {
+            let list = PATH_LIST_PARAMS.contains(&name);
+            let values: Vec<&str> = if list { value.split(';').collect() } else if PATH_PARAMS.contains(&name) { vec![value] } else { Vec::new() };
+            values.into_iter().map(move |v| (name, v.trim()))
+        })
+        // Built-in templates are names, not files.
+        .filter(|(name, path)| !path.is_empty() && (*name != "template" || path.contains(['/', '\\']) || [".oec", ".oecp", ".oecz"].iter().any(|e| path.to_lowercase().ends_with(e))))
+        .collect()
+}
+
+/// Relative file and folder parameters of a call are relative to `root`, not to the
+/// folder the client started the server in (Claude Desktop and others choose it).
+fn anchor(root: &Path, tool: &str, args: &mut Map<String, Value>) {
+    let relative: Vec<(String, String)> = path_values(tool, args).into_iter().filter(|(_, p)| Path::new(p).is_relative()).map(|(n, p)| (n.to_string(), p.to_string())).collect();
+    for (name, path) in relative {
+        let Some(Value::String(value)) = args.get_mut(&name) else { continue };
+        let full = root.join(&path).display().to_string();
+        *value = if PATH_LIST_PARAMS.contains(&name.as_str()) {
+            value.split(';').map(|v| if v.trim() == path { full.clone() } else { v.trim().to_string() }).collect::<Vec<_>>().join("; ")
+        } else {
+            full
+        };
+    }
+}
 
 /// The absolute path without `.` and `..`, its existing part with symbolic links
 /// resolved.
@@ -76,24 +152,9 @@ fn resolve(path: &Path) -> PathBuf {
 /// The file and folder parameters of a call of the tool `tool` lie in `root`.
 fn confine(root: &Path, tool: &str, args: &Map<String, Value>) -> Result<(), String> {
     let root = resolve(root);
-    let named = args.iter().filter(|(name, _)| !NOT_PATHS.contains(&(tool, name.as_str())));
-    let paths = named.filter_map(|(name, value)| Some((name.as_str(), value.as_str()?))).flat_map(|(name, value)| {
-        let list = PATH_LIST_PARAMS.contains(&name);
-        let values: Vec<&str> = if list { value.split(';').collect() } else if PATH_PARAMS.contains(&name) { vec![value] } else { Vec::new() };
-        values.into_iter().map(move |v| (name, v))
-    });
-    for (name, path) in paths {
-        let path = path.trim();
-        if path.is_empty() {
-            continue;
-        }
-        // Built-in templates are names, not files.
-        let file = path.contains(['/', '\\']) || [".oec", ".oecp", ".oecz"].iter().any(|e| path.to_lowercase().ends_with(e));
-        if name == "template" && !file {
-            continue;
-        }
+    for (_, path) in path_values(tool, args) {
         if !resolve(Path::new(path)).starts_with(&root) {
-            return Err(format!("{path} is outside {}, the folder this MCP server may use (OPENECRAFT_MCP_ROOT)", root.display()));
+            return Err(format!("{} is outside {}, the folder this MCP server may use (OPENECRAFT_MCP_ROOT)", shown(Path::new(path)), shown(&root)));
         }
     }
     Ok(())
@@ -104,8 +165,14 @@ fn offered(session: &Session, name: &str) -> bool {
     session.mcp_tools.is_empty()
         || session.mcp_tools.iter().any(|p| match p.strip_suffix('*') {
             Some(prefix) => name.starts_with(prefix),
+            None if p == "core" => CORE.contains(&name),
             None => p == name,
         })
+}
+
+/// True if the MCP server offers every tool, so that it needs no meta tools.
+fn offers_all(session: &Session) -> bool {
+    session.mcp_tools.is_empty() || session.mcp_tools.iter().any(|p| p == "*")
 }
 
 pub fn serve(session: &mut Session, input: impl BufRead, mut output: impl Write) -> Result<(), String> {
@@ -140,10 +207,10 @@ pub fn handle(session: &mut Session, msg: &Value) -> Option<Value> {
     let id = id?;
     let params = msg.get("params").cloned().unwrap_or_else(|| json!({}));
     let result = match method {
-        "initialize" => Ok(initialize(&params)),
+        "initialize" => Ok(initialize(session, &params)),
         "ping" => Ok(json!({})),
-        "tools/list" => Ok(json!({ "tools": tools::entries(session).iter().filter(|t| offered(session, t.name())).map(describe).collect::<Vec<_>>() })),
-        "tools/call" => call(session, &params),
+        "tools/list" => Ok(json!({ "tools": list(session) })),
+        "tools/call" => call(session, &params, false),
         _ => Err((-32601, format!("method not found: {method}"))),
     };
     Some(match result {
@@ -152,14 +219,22 @@ pub fn handle(session: &mut Session, msg: &Value) -> Option<Value> {
     })
 }
 
-fn initialize(params: &Value) -> Value {
+fn initialize(session: &Session, params: &Value) -> Value {
     let asked = params.get("protocolVersion").and_then(Value::as_str).unwrap_or_default();
     let version = SUPPORTED.into_iter().find(|v| *v == asked).unwrap_or(PROTOCOL_VERSION);
+    let mut instructions = INSTRUCTIONS.to_string();
+    if let Some(root) = &session.mcp_root {
+        instructions += &format!(" Files: relative paths are in {}; paths outside this folder are refused.", shown(&resolve(root)));
+    }
+    if !offers_all(session) {
+        let all = tools::entries(session).len();
+        instructions += &format!(" The list offers the tools for schematics; find_tools, describe_tool and call_tool reach all {all} tools.");
+    }
     json!({
         "protocolVersion": version,
         "capabilities": { "tools": { "listChanged": false } },
         "serverInfo": { "name": "openecraft", "title": "OpenECraft", "version": env!("CARGO_PKG_VERSION") },
-        "instructions": INSTRUCTIONS,
+        "instructions": instructions,
     })
 }
 
@@ -167,14 +242,67 @@ fn describe(tool: &tools::Entry) -> Value {
     json!({ "name": tool.name(), "description": tool.help(), "inputSchema": tools::schema(tool.clone()) })
 }
 
-fn call(session: &mut Session, params: &Value) -> Result<Value, (i64, String)> {
+/// The offered tools, followed by the meta tools when not all of them are offered.
+fn list(session: &Session) -> Vec<Value> {
+    let mut list: Vec<Value> = tools::entries(session).iter().filter(|t| offered(session, t.name())).map(describe).collect();
+    if !offers_all(session) {
+        list.extend(META.iter().map(|(name, help, params)| json!({ "name": name, "description": help, "inputSchema": openecraft_api::params::schema(params) })));
+    }
+    list
+}
+
+/// The meta tools: other tools found, described or called.
+fn meta(session: &mut Session, name: &str, args: &Map<String, Value>) -> Result<Value, String> {
+    let text = |key: &str| args.get(key).and_then(Value::as_str).unwrap_or_default().trim().to_string();
+    match name {
+        "find_tools" => {
+            let words: Vec<String> = text("query").split_whitespace().map(|w| w.to_lowercase().replace('_', " ")).collect();
+            let entries = tools::entries(session);
+            if words.is_empty() {
+                let names: Vec<&str> = entries.iter().map(|t| t.name()).collect();
+                return Ok(json!({ "total": names.len(), "tools": names }));
+            }
+            let hits: Vec<Value> = entries
+                .iter()
+                .filter(|t| {
+                    let hay = format!("{} {}", t.name(), t.help()).to_lowercase().replace('_', " ");
+                    words.iter().all(|w| hay.contains(w.as_str()))
+                })
+                .map(|t| json!({ "name": t.name(), "description": t.help(), "offered": offered(session, t.name()) }))
+                .collect();
+            Ok(json!({ "total": hits.len(), "tools": hits }))
+        }
+        "describe_tool" => {
+            let tool = text("name");
+            tools::lookup(session, &tool).map(|t| describe(&t)).ok_or_else(|| format!("unknown tool: {tool}"))
+        }
+        _ => {
+            let params = json!({ "name": text("name"), "arguments": args.get("arguments").cloned().unwrap_or(Value::Null) });
+            call(session, &params, true).map_err(|(_, message)| message)
+        }
+    }
+}
+
+/// A call of a tool; `any`: also of one not offered (`call_tool`).
+fn call(session: &mut Session, params: &Value, any: bool) -> Result<Value, (i64, String)> {
     let name = params.get("name").and_then(Value::as_str).ok_or((-32602, "missing tool name".to_string()))?;
-    let tool = tools::lookup(session, name).filter(|_| offered(session, name)).ok_or_else(|| (-32602, format!("unknown tool: {name}")))?;
-    let args = match params.get("arguments") {
+    let mut args = match params.get("arguments") {
         None | Some(Value::Null) => Map::new(),
         Some(Value::Object(map)) => map.clone(),
         Some(_) => return Err((-32602, "arguments must be an object".into())),
     };
+    if !any && !offers_all(session) && META.iter().any(|(m, _, _)| *m == name) {
+        return Ok(match meta(session, name, &args) {
+            // call_tool answers with the result of the tool it called.
+            Ok(result) if name == "call_tool" => result,
+            Ok(value) => json!({ "content": [{ "type": "text", "text": serde_json::to_string_pretty(&value).unwrap_or_default() }], "isError": false }),
+            Err(e) => json!({ "content": [{ "type": "text", "text": e }], "isError": true }),
+        });
+    }
+    let tool = tools::lookup(session, name).filter(|_| any || offered(session, name)).ok_or_else(|| (-32602, format!("unknown tool: {name}")))?;
+    if let Some(root) = session.mcp_root.clone() {
+        anchor(&root, name, &mut args);
+    }
     // Tool errors are results the agent can react to, not protocol errors.
     let allowed = session.mcp_root.as_deref().map_or(Ok(()), |root| confine(root, name, &args));
     let (text, is_error) = match allowed.and_then(|_| tools::call(session, tool, &args)) {

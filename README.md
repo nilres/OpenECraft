@@ -53,7 +53,7 @@ step.
 
 ## Example projects
 
-The start page and *File › New* list fourteen example projects; each builds on the one
+The start page and *File › New* list sixteen example projects; each builds on the one
 before and shows more of the features (command line: `list_examples`,
 `new_project --example <name>`). All of them pass the project check without errors or
 warnings.

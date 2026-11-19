@@ -180,7 +180,44 @@ texts, its title and its description from the catalog, so that a search engine r
 them without running the demos. Such a page opens in its language; the English one
 follows the language of the browser, and the visitor switches on either. With the
 public address every page names itself as canonical and all of them as its
-alternates (`hreflang`), and the sitemap lists them.
+alternates (`hreflang`), and the sitemap lists them. The footer of every page links
+the page in all languages, so a search engine finds them without the sitemap too.
+
+### Pages beside the main page
+
+Four plain pages say for whom OpenECraft is made and how it compares, for visitors
+and for searches such as an open source alternative to EPLAN:
+
+| Folder | Page |
+| --- | --- |
+| `panel-builders/` | Panel builders and control cabinet shops: schematic, panel layout, production data, wiring assistant |
+| `electricians/` | Building installation: floor plans on paper, outlets, switches and lights, final circuits, distribution boards |
+| `education/` | Schools and training: free, in the browser, tutorial and examples simplest first |
+| `compare/` | OpenECraft beside EPLAN Electric P8, AutoCAD Electrical and QElectroTech, with what OpenECraft lacks yet and a trademark note |
+
+Each is `<folder>/index.html`, plain HTML without the module, with a title,
+description, Open Graph tags and structured data (`WebPage` about the
+`SoftwareApplication`) of its own; it uses the style sheet, `config.js` and `site.js`
+of the main page (`../site.css`, copied by trunk as it is), whose dialogs it links
+(`../#privacy`). Its texts are listed in `src/pages.rs` for the catalog (area
+`website`), and the build writes the page in every language beside it, `de.html`, …
+(`pages.sh`, on Windows `pages.ps1`, a hook of `Trunk.toml` that runs the example
+`pages` of `openecraft-i18n` on each folder). The menu of the languages on such a page
+leads to the file of the language chosen; links marked `data-page` lead to the pages
+in the language of the page they are on (`site.js`). The main page links them from
+the section *Made for your work* (`#uses`) and its footer. nginx sends `/compare` to
+`/compare/` (`website.conf`), as the links of a page are relative to its folder.
+
+What is said about other products stays general and public (license, platforms,
+what they are known for) and what is said about OpenECraft is what the
+documentation describes; a new page is a folder, an entry of `PAGES` in
+`src/pages.rs`, of both hook scripts and of the locations of `website.conf`, and a link
+from the bars of the pages (the tests check all of it).
+
+`website-site.sh` gives these pages the tags of the public address as well (every
+folder whose `index.html` has the markers `site address`): each language of a page
+names itself as canonical and the page's other languages as alternates, and the
+sitemap lists them; nginx answers them from `/tmp/openecraft/<folder>/`.
 
 ## Development
 

@@ -1,8 +1,9 @@
 #!/bin/sh
 # The parts of the OpenECraft website that need its public address (docs/website.md):
 # the canonical address, the addresses of the page in the other languages and the
-# preview image of index.html and of the pages of the languages (de.html, …; between
-# their markers "site address"), robots.txt with the sitemap, and sitemap.xml. The
+# preview image of index.html, of the pages of the languages (de.html, …) and of the
+# pages beside it (compare/index.html, compare/de.html, …; between their markers "site
+# address"), robots.txt with the sitemap, and sitemap.xml. The
 # address is taken from OPENECRAFT_SITE_URL; without one the pages stay as built,
 # robots.txt names no sitemap and there is no sitemap.xml.
 #
@@ -31,10 +32,20 @@ for file in "$page"/[a-z][a-z].html; do
     if [ -f "$file" ]; then langs="$langs $(basename "$file" .html)"; fi
 done
 
-# One page with its tags: $1 the file, $2 its address below the site ("" or de.html).
+# The pages beside it (compare/, …; website/src/pages.rs): folders whose index.html has
+# the markers, each in the same languages.
+pages=
+for file in "$page"/*/index.html; do
+    if [ -f "$file" ] && grep -q '<!-- site address ' "$file"; then
+        pages="$pages $(basename "$(dirname "$file")")"
+    fi
+done
+
+# One page with its tags: $1 the file, $2 its address below the site ("" or de.html),
+# $3 the folder of its languages ("" or compare/).
 tags() {
-    SITE_URL=$esc SITE_PATH=$2 SITE_LANGS=$langs awk '
-BEGIN { url = ENVIRON["SITE_URL"]; own = url ENVIRON["SITE_PATH"]; count = split(ENVIRON["SITE_LANGS"], langs, " ") }
+    SITE_URL=$esc SITE_PATH=$2 SITE_BASE=${3:-} SITE_LANGS=$langs awk '
+BEGIN { url = ENVIRON["SITE_URL"]; own = url ENVIRON["SITE_PATH"]; base = url ENVIRON["SITE_BASE"]; count = split(ENVIRON["SITE_LANGS"], langs, " ") }
 /<!-- \/site address -->/ { skip = 0 }
 skip { next }
 { print }
@@ -45,9 +56,9 @@ skip { next }
     indent = substr($0, 1, RLENGTH)
     print indent "<link rel=\"canonical\" href=\"" own "\" />"
     if (count > 0) {
-        print indent "<link rel=\"alternate\" hreflang=\"x-default\" href=\"" url "\" />"
-        print indent "<link rel=\"alternate\" hreflang=\"en\" href=\"" url "\" />"
-        for (i = 1; i <= count; i++) print indent "<link rel=\"alternate\" hreflang=\"" langs[i] "\" href=\"" url langs[i] ".html\" />"
+        print indent "<link rel=\"alternate\" hreflang=\"x-default\" href=\"" base "\" />"
+        print indent "<link rel=\"alternate\" hreflang=\"en\" href=\"" base "\" />"
+        for (i = 1; i <= count; i++) print indent "<link rel=\"alternate\" hreflang=\"" langs[i] "\" href=\"" base langs[i] ".html\" />"
     }
     print indent "<meta property=\"og:url\" content=\"" own "\" />"
     print indent "<meta property=\"og:image\" content=\"" url "social.jpg\" />"
@@ -60,6 +71,13 @@ skip { next }
 
 tags index.html ""
 for lang in $langs; do tags "$lang.html" "$lang.html"; done
+for dir in $pages; do
+    mkdir -p "$out/$dir"
+    tags "$dir/index.html" "$dir/" "$dir/"
+    for lang in $langs; do
+        if [ -f "$page/$dir/$lang.html" ]; then tags "$dir/$lang.html" "$dir/$lang.html" "$dir/"; fi
+    done
+done
 
 {
     printf 'User-agent: *\nAllow: /\n'
@@ -72,6 +90,12 @@ if [ -n "$url" ]; then
         printf '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         printf '  <url><loc>%s</loc></url>\n' "$esc"
         for lang in $langs; do printf '  <url><loc>%s%s.html</loc></url>\n' "$esc" "$lang"; done
+        for dir in $pages; do
+            printf '  <url><loc>%s%s/</loc></url>\n' "$esc" "$dir"
+            for lang in $langs; do
+                if [ -f "$page/$dir/$lang.html" ]; then printf '  <url><loc>%s%s/%s.html</loc></url>\n' "$esc" "$dir" "$lang"; fi
+            done
+        done
         printf '</urlset>\n'
     } > "$out/sitemap.xml"
 else

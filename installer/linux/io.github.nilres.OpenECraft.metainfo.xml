@@ -4,10 +4,10 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>(MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0 AND Bitstream-Vera AND MPL-2.0</project_license>
   <name>OpenECraft</name>
-  <summary>Electrical CAE: schematics, panel layouts and reports</summary>
-  <summary xml:lang="de">Elektro-CAE: Stromlaufpläne, Schaltschrankaufbauten und Auswertungen</summary>
-  <summary xml:lang="fr">CAO électrique : schémas, implantations d'armoires et rapports</summary>
-  <summary xml:lang="es">CAE eléctrico: esquemas, montajes de armarios e informes</summary>
+  <summary>Draw schematics and control panels</summary>
+  <summary xml:lang="de">Schaltpläne und Schaltschränke planen</summary>
+  <summary xml:lang="fr">Concevoir schémas et armoires</summary>
+  <summary xml:lang="es">Diseñar esquemas y armarios</summary>
   <developer id="io.github.nilres">
     <name>OpenECraft</name>
   </developer>
@@ -43,6 +43,54 @@
   <url type="homepage">https://openecraft.org/</url>
   <url type="bugtracker">https://github.com/nilres/OpenECraft/issues</url>
   <url type="vcs-browser">https://github.com/nilres/OpenECraft</url>
+  <url type="help">https://github.com/nilres/OpenECraft/blob/master/docs/tutorial.md</url>
+  <url type="contribute">https://github.com/nilres/OpenECraft/blob/master/CONTRIBUTING.md</url>
+  <!-- Pinned to a tag: the stores mirror the images, a later change of docs/images
+       must not alter the screenshots of a published version. -->
+  <screenshots>
+    <screenshot type="default">
+      <caption>Schematic editor with the page navigator and a star-delta starter</caption>
+      <caption xml:lang="de">Stromlaufplan-Editor mit Seitennavigator und einem Stern-Dreieck-Anlauf</caption>
+      <caption xml:lang="fr">Éditeur de schémas avec le navigateur de pages et un démarreur étoile-triangle</caption>
+      <caption xml:lang="es">Editor de esquemas con el navegador de páginas y un arranque estrella-triángulo</caption>
+      <image type="source" width="2160" height="1215">https://raw.githubusercontent.com/nilres/OpenECraft/v0.1.2/docs/images/schematic.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Panel layout in 3D with two bayed enclosures</caption>
+      <caption xml:lang="de">Schaltschrankaufbau in 3D mit zwei angereihten Schränken</caption>
+      <caption xml:lang="fr">Implantation d'armoire en 3D avec deux armoires juxtaposées</caption>
+      <caption xml:lang="es">Montaje de armario en 3D con dos armarios acoplados</caption>
+      <image type="source" width="2160" height="1215">https://raw.githubusercontent.com/nilres/OpenECraft/v0.1.2/docs/images/panel-3d.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Wiring assistant with the next wire highlighted in 3D</caption>
+      <caption xml:lang="de">Verdrahtungsassistent mit dem nächsten Draht in 3D hervorgehoben</caption>
+      <caption xml:lang="fr">Assistant de câblage avec le fil suivant mis en évidence en 3D</caption>
+      <caption xml:lang="es">Asistente de cableado con el siguiente cable resaltado en 3D</caption>
+      <image type="source" width="2160" height="1215">https://raw.githubusercontent.com/nilres/OpenECraft/v0.1.2/docs/images/wiring-assistant.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Graphical terminal diagram generated from the project</caption>
+      <caption xml:lang="de">Grafischer Klemmenplan, aus dem Projekt erzeugt</caption>
+      <caption xml:lang="fr">Plan de bornes graphique généré à partir du projet</caption>
+      <caption xml:lang="es">Diagrama de bornes gráfico generado a partir del proyecto</caption>
+      <image type="source" width="2160" height="1215">https://raw.githubusercontent.com/nilres/OpenECraft/v0.1.2/docs/images/terminal-diagram.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Electro-pneumatic schematic with valves, cylinders and solenoid coils</caption>
+      <caption xml:lang="de">Elektropneumatischer Schaltplan mit Ventilen, Zylindern und Magnetspulen</caption>
+      <caption xml:lang="fr">Schéma électropneumatique avec distributeurs, vérins et bobines</caption>
+      <caption xml:lang="es">Esquema electroneumático con válvulas, cilindros y bobinas</caption>
+      <image type="source" width="2160" height="1215">https://raw.githubusercontent.com/nilres/OpenECraft/v0.1.2/docs/images/pneumatics.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Enclosure climate with a heat map of the mounting plate</caption>
+      <caption xml:lang="de">Schaltschrankklimatisierung mit Wärmebild der Montageplatte</caption>
+      <caption xml:lang="fr">Climatisation d'armoire avec carte thermique de la plaque de montage</caption>
+      <caption xml:lang="es">Climatización del armario con mapa de calor de la placa de montaje</caption>
+      <image type="source" width="2160" height="1215">https://raw.githubusercontent.com/nilres/OpenECraft/v0.1.2/docs/images/heat-map.png</image>
+    </screenshot>
+  </screenshots>
   <categories>
     <category>Graphics</category>
     <category>Engineering</category>

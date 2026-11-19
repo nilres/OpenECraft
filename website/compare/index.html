@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- A page beside the main one (src/pages.rs): plain HTML, written in every language
+         by the build (pages.sh). It loads nothing beyond its own address. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <title data-t>OpenECraft vs. EPLAN, AutoCAD Electrical and QElectroTech</title>
+    <meta name="description" content="Looking for an open source alternative to EPLAN or AutoCAD Electrical? How OpenECraft compares in license, platforms and features, and where it is still young." />
+    <meta name="theme-color" content="#070b14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenECraft" />
+    <meta property="og:title" content="OpenECraft vs. EPLAN, AutoCAD Electrical and QElectroTech" />
+    <meta property="og:description" content="Looking for an open source alternative to EPLAN or AutoCAD Electrical? How OpenECraft compares in license, platforms and features, and where it is still young." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- site address (installer/docker/website-site.sh) -->
+    <!-- /site address -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "OpenECraft vs. EPLAN, AutoCAD Electrical and QElectroTech",
+        "description": "Looking for an open source alternative to EPLAN or AutoCAD Electrical? How OpenECraft compares in license, platforms and features, and where it is still young.",
+        "about": {
+            "@type": "SoftwareApplication",
+            "name": "OpenECraft",
+            "applicationCategory": "DesignApplication",
+            "applicationSubCategory": "Electrical CAE",
+            "operatingSystem": "Windows, Linux, macOS, web browser",
+            "isAccessibleForFree": true,
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR"
+            }
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="../site.css" />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <script src="../config.js"></script>
+    <script src="../site.js" defer></script>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="nav">
+    <a class="brand" data-page href="../"><img src="../icon.svg" alt="" width="30" height="30" /><span>OpenECraft</span></a>
+    <!-- On a narrow screen the links are a menu this button opens (site.js). -->
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" hidden><span class="bars" aria-hidden="true"></span><span class="sr" data-t>Menu</span></button>
+    <nav id="nav-links">
+        <a data-page href="../#features" data-t>Features</a>
+        <a data-page href="../#studio" data-t>Live demo</a>
+        <a data-page href="../panel-builders/" data-t>Panel builders</a>
+        <a data-page href="../electricians/" data-t>Electricians</a>
+        <a data-page href="../education/" data-t>Schools</a>
+        <a data-page href="../compare/" aria-current="page" data-t>Comparison</a>
+        <a data-page href="../#get" data-t>Get it</a>
+        <a class="menu-only" data-link="repository" href="#" data-t>Source code</a>
+    </nav>
+    <div class="nav-right">
+        <select id="language" aria-label="Language" hidden></select>
+        <a class="button ghost" data-link="repository" href="#" data-t>Source code</a>
+    </div>
+</header>
+
+<main id="top">
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Comparison</p>
+        <h1 data-t>OpenECraft beside the tools you know</h1>
+        <p class="lead" data-t>Looking for a free alternative to EPLAN Electric P8 or AutoCAD Electrical, or for more than drawing schematics? Here is how OpenECraft compares: what it does, what the others are known for, and where OpenECraft is still young.</p>
+        <div class="actions">
+            <a class="button primary" data-page href="../#studio" data-t>Try the live demo</a>
+            <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
+        </div>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>At a glance</h2>
+    <p class="sub" data-t>General facts, no prices: the makers of the other products describe them in detail on their websites.</p>
+    <div class="compare-scroll">
+    <table class="compare">
+        <thead><tr><td></td><th scope="col">OpenECraft</th><th scope="col">EPLAN Electric P8</th><th scope="col">AutoCAD Electrical</th><th scope="col">QElectroTech</th></tr></thead>
+        <tbody>
+            <tr><th scope="row" data-t>License</th><td data-t>Open source: MIT or Apache-2.0</td><td data-t>Commercial, proprietary</td><td data-t>Commercial, proprietary</td><td data-t>Open source: GNU GPL</td></tr>
+            <tr><th scope="row" data-t>Cost of use</th><td data-t>Free of charge</td><td data-t>Paid license</td><td data-t>Paid license</td><td data-t>Free of charge</td></tr>
+            <tr><th scope="row" data-t>Source code</th><td data-t>Public</td><td data-t>Not public</td><td data-t>Not public</td><td data-t>Public</td></tr>
+            <tr><th scope="row" data-t>Platforms</th><td data-t>Windows, Linux, macOS and the web browser</td><td>Windows</td><td>Windows</td><td data-t>Windows, Linux and macOS</td></tr>
+            <tr><th scope="row" data-t>Focus</th><td data-t>Schematics, reports, panel layout in 3D, the workshop and building installation in one program</td><td data-t>Device-oriented electrical engineering; panel layout in 3D, fluid power and more as further products of the EPLAN platform</td><td data-t>Electrical controls design as a toolset of AutoCAD</td><td data-t>Drawing electrical schematics with a collection of symbols</td></tr>
+            <tr><th scope="row" data-t>Maturity</th><td data-t>New: first release in November 2026</td><td data-t>Established for many years, widely used in control panel engineering</td><td data-t>Established for many years, widely used by AutoCAD users</td><td data-t>A community project for many years</td></tr>
+        </tbody>
+    </table>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>What OpenECraft does today</h2>
+    <p class="sub" data-t>All of it is in the current release and described in the documentation.</p>
+    <div class="cards">
+        <article class="card"><h3 data-t>Device-oriented schematics</h3><p data-t>Coils and contacts form one device with live cross references and contact images, structure identifiers after IEC 81346, macros with variants.</p></article>
+        <article class="card"><h3 data-t>Symbol libraries</h3><p data-t>About 330 IEC 60617 symbols, NFPA, GB, GOST and JIS sets, fluid power, P&amp;ID and installation plans, and an editor for your own symbols.</p></article>
+        <article class="card"><h3 data-t>Reports and checks</h3><p data-t>Bill of materials, terminal, cable and plug diagrams as live pages, own drawn forms and a project check that follows every change.</p></article>
+        <article class="card"><h3 data-t>Panel layout in 3D</h3><p data-t>Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings.</p></article>
+        <article class="card"><h3 data-t>Wiring and mounting assistants</h3><p data-t>The routed wires as a checklist for the workshop, with the current wire in 3D, its colour, length and ferrule: a tablet with the web editor becomes a wiring station.</p></article>
+        <article class="card"><h3 data-t>Building installation</h3><p data-t>Outlets, switches and lights on the floor plan of a level, final circuits from the distribution board with cable lengths and voltage drop.</p></article>
+        <article class="card"><h3 data-t>Engineering calculations</h3><p data-t>Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.</p></article>
+        <article class="card"><h3 data-t>Data exchange</h3><p data-t>PDF, DXF, DWG and SVG; the panel as glTF, STEP, IGES, IFC and JT; connectors for ERP, PDM and PLM systems.</p></article>
+        <article class="card"><h3 data-t>Open and extensible</h3><p data-t>A command line, an MCP server for AI agents and plugins in any language add checks, reports, exports and commands.</p></article>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>Coming from EPLAN or AutoCAD Electrical</h2>
+    <p class="sub" data-t>What comes across, and what does not yet.</p>
+    <ul class="points">
+        <li data-t>Parts: EDZ files of the EPLAN Data Portal and EPLAN XML part files are imported with their data; the 2D window macros of EDZ files become symbols and their 3D macros the 3D model of the part.</li>
+        <li data-t>Drawings: DXF and DWG files are imported as graphics on a schematic page, and every page can be exported as DXF or DWG.</li>
+        <li data-t>Projects: projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported yet; a project is drawn anew in OpenECraft.</li>
+        <li data-t>Concepts: devices with tags, structure identifiers after IEC 81346, cross references, macros and generated report pages, as in other device-oriented tools.</li>
+    </ul>
+</section>
+
+<section class="band">
+    <h2 data-t>Where OpenECraft is still young</h2>
+    <ul class="points caveats">
+        <li data-t>It is a new project and has not been proven in years of production use the way the established tools have. Try it on a real project of yours before you rely on it.</li>
+        <li data-t>It comes with a small set of manufacturer catalogs, far from the large data portals of the commercial vendors; parts from EDZ, BMEcat and STEP files fill the gap.</li>
+        <li data-t>Its symbol libraries and editing tools grow with every release, but users of the established tools will still miss functions they are used to.</li>
+        <li data-t>Help comes from the documentation and from the issue tracker of the project.</li>
+    </ul>
+</section>
+
+<section class="band">
+    <h2 data-t>Which one fits?</h2>
+    <div class="cards">
+        <article class="card"><h3>EPLAN Electric P8 · AutoCAD Electrical</h3><p data-t>When your customers ask for their project files, your company has standardised on one of them, or you need the support and the part data of a large vendor.</p></article>
+        <article class="card"><h3>QElectroTech</h3><p data-t>When you want a free, long-standing open source program for drawing electrical schematics.</p></article>
+        <article class="card"><h3>OpenECraft</h3><p data-t>When you want schematics, reports, panel layout in 3D and the workshop in one free program, on any operating system or in the browser and open to scripts and AI agents, and a young project suits you.</p></article>
+    </div>
+</section>
+
+<section id="trademarks" class="band">
+    <h2 data-t>Trademarks</h2>
+    <p class="text" data-t>EPLAN and EPLAN Electric P8 are trademarks of EPLAN GmbH &amp; Co. KG. Autodesk, AutoCAD and AutoCAD Electrical are trademarks of Autodesk, Inc. QElectroTech is the name of an independent open source project.</p>
+    <p class="text" data-t>OpenECraft is not affiliated with, endorsed by or sponsored by any of them. The names are used only to compare, and what this page says about the other products is general public information as of November 2026.</p>
+</section>
+
+<section id="try" class="band">
+    <h2 data-t>See for yourself</h2>
+    <p class="sub" data-t>The live demo runs the editor's own code in your browser; the web editor is the whole program, nothing to install.</p>
+    <div class="actions">
+        <a class="button primary" data-page href="../#studio" data-t>Try the live demo</a>
+        <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
+        <a class="button ghost" data-link="downloads" href="#" data-t>Download the latest release</a>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div><img src="../icon.svg" alt="" width="22" height="22" /> <b>OpenECraft</b> · <span data-t>Open source under the MIT and Apache-2.0 licenses.</span></div>
+    <div class="links">
+        <a data-link="documentation" data-path="/tutorial.md" href="#" data-t>Tutorial</a>
+        <a data-link="documentation" data-path="/plugins.md" href="#" data-t>Plugins</a>
+        <a data-link="documentation" data-path="/command-line.md" href="#" data-t>Command line and MCP</a>
+        <a data-link="issues" href="#" data-t>Report a problem</a>
+        <a id="licenses-open" data-page href="../#licenses" data-t>Licenses</a>
+        <a id="privacy-open" data-page href="../#privacy" data-t>Privacy</a>
+        <a id="legal-open" data-page href="../#legal" hidden data-t>Legal notice</a>
+    </div>
+    <div class="links">
+        <a data-page href="../panel-builders/" data-t>Panel builders</a>
+        <a data-page href="../electricians/" data-t>Electricians</a>
+        <a data-page href="../education/" data-t>Schools</a>
+        <a data-page href="../compare/" data-t>Comparison</a>
+    </div>
+    <!-- This page in every language (de.html, …), written by the build (pages.sh). -->
+    <nav class="languages" aria-label="Language">
+        <a href="./" hreflang="en" lang="en">English</a>
+        <a href="de.html" hreflang="de" lang="de">Deutsch</a>
+        <a href="fr.html" hreflang="fr" lang="fr">Français</a>
+        <a href="es.html" hreflang="es" lang="es">Español</a>
+        <a href="pt.html" hreflang="pt" lang="pt">Português</a>
+        <a href="it.html" hreflang="it" lang="it">Italiano</a>
+        <a href="nl.html" hreflang="nl" lang="nl">Nederlands</a>
+        <a href="pl.html" hreflang="pl" lang="pl">Polski</a>
+        <a href="cs.html" hreflang="cs" lang="cs">Čeština</a>
+        <a href="ru.html" hreflang="ru" lang="ru">Русский</a>
+        <a href="uk.html" hreflang="uk" lang="uk">Українська</a>
+        <a href="tr.html" hreflang="tr" lang="tr">Türkçe</a>
+        <a href="sv.html" hreflang="sv" lang="sv">Svenska</a>
+        <a href="da.html" hreflang="da" lang="da">Dansk</a>
+        <a href="fi.html" hreflang="fi" lang="fi">Suomi</a>
+        <a href="hu.html" hreflang="hu" lang="hu">Magyar</a>
+        <a href="ro.html" hreflang="ro" lang="ro">Română</a>
+        <a href="zh.html" hreflang="zh" lang="zh">简体中文</a>
+        <a href="ja.html" hreflang="ja" lang="ja">日本語</a>
+        <a href="ko.html" hreflang="ko" lang="ko">한국어</a>
+    </nav>
+    <p class="fine"><span data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</span> <span data-t>It is not affiliated with, endorsed by or sponsored by the owners of these names.</span></p>
+    <p class="fine" data-t>OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.</p>
+</footer>
+</body>
+</html>

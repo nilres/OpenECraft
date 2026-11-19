@@ -32,6 +32,7 @@ impl App {
         let mut renamed: Vec<(u64, String)> = Vec::new();
         let mut remove = None;
         let mut picked: Vec<String> = Vec::new();
+        let mut recored: Vec<(String, Vec<String>)> = Vec::new();
         let mut article_changes=Vec::new();
         let mut overview = false;
         let mut used: std::collections::HashMap<String, std::collections::BTreeSet<String>> = Default::default();
@@ -80,6 +81,7 @@ impl App {
                             ui.menu_button("…", |ui| {
                                 for p in &cable_parts {
                                     if ui.button(format!("{}  {}", p.number, p.description)).clicked() {
+                                        recored.push((c.tag.clone(), c.core_list()));
                                         ops::apply_cable_part(c, p);
                                         picked.push(p.number.clone());
                                     }
@@ -109,6 +111,9 @@ impl App {
                 }
             });
         });
+        for (tag, cores) in recored {
+            ops::remap_cable_cores(&mut self.session.prj, &tag, &cores);
+        }
         for (tag,old,new) in article_changes {
             ops::retarget_cable_part_references(&mut self.session.prj,&tag,&old,&new);
         }

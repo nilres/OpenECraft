@@ -34,7 +34,8 @@ on a new schematic page – lines, polylines, circles, arcs, ellipses, splines, 
 MTEXT, block references and dimensions, in their units, scaled down to the drawing
 area when they are larger. DWG files of AutoCAD R12 … 2018 are read (and written)
 with the pure Rust [acadrust](https://crates.io/crates/acadrust) crate, also in the
-browser. EDZ files of the EPLAN Data Portal are read as parts (see [parts management](parts.md)); their macros are kept but not drawn.
+browser. EDZ files of the EPLAN Data Portal are read as parts (see [parts management](parts.md)); their 2D window macros become symbols and their 3D macros the 3D
+models of the parts.
 
 ## Enterprise integration
 

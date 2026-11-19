@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>openecraft</id>
+    <version>0.1.2</version>
+    <packageSourceUrl>https://github.com/nilres/OpenECraft/tree/master/installer/stores/chocolatey</packageSourceUrl>
+    <!-- The Chocolatey account that maintains the package. -->
+    <owners>CHOCOLATEY-USER</owners>
+    <title>OpenECraft</title>
+    <authors>OpenECraft contributors</authors>
+    <projectUrl>https://openecraft.org/</projectUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/nilres/OpenECraft@v0.1.2/assets/icon.png</iconUrl>
+    <licenseUrl>https://github.com/nilres/OpenECraft#license</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/nilres/OpenECraft</projectSourceUrl>
+    <docsUrl>https://github.com/nilres/OpenECraft/tree/master/docs</docsUrl>
+    <bugTrackerUrl>https://github.com/nilres/OpenECraft/issues</bugTrackerUrl>
+    <tags>openecraft electrical cae ecad cad schematic wiring control-panel panel-layout plc mcp foss cross-platform</tags>
+    <summary>Open source electrical CAE editor for schematics, reports and panel layout in 3D</summary>
+    <description><![CDATA[OpenECraft is an open source electrical CAE editor: device-oriented schematics with live cross references, live reports and panel layout in 3D with wiring and mounting assistants. Projects export to PDF, DXF / DWG and SVG, the panel to STEP, IGES, JT and glTF.
+
+The package installs the editor for all users. The setup's other components – the parts manager, the command line and MCP server for scripts and AI agents and the parts and project servers – are selected with install arguments for the setup:
+
+    choco install openecraft --install-arguments="'/COMPONENTS=main,partsmanager,cli,servers /TASKS=fileassoc,addtopath'"
+
+Available in English, German, French, Spanish and 16 further languages. The editor looks for newer releases on GitHub when it starts and installs them itself; *Settings › Updates* switches this off.]]></description>
+    <releaseNotes>https://github.com/nilres/OpenECraft/releases/tag/v0.1.2</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

@@ -29,7 +29,7 @@
         "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
         "inLanguage": ["en", "de", "fr", "es", "pt-BR", "it", "nl", "pl", "cs", "ru", "uk", "tr", "sv", "da", "fi", "hu", "ro", "zh-CN", "ja", "ko"],
-        "keywords": "electrical CAE, schematic editor, panel layout, IEC 81346, terminal diagram, open source"
+        "keywords": "electrical CAE, electrical CAD, schematic editor, wiring diagram, control panel design, panel layout in 3D, installation plan, IEC 81346, terminal diagram, open source, free"
     }
     </script>
     <!-- The module: trunk names it here (pattern_script of Trunk.toml), site.js loads
@@ -45,6 +45,13 @@
     <link data-trunk rel="copy-dir" href="images" />
     <link data-trunk rel="copy-file" href="social.jpg" />
     <link data-trunk rel="copy-file" href="robots.txt" />
+    <!-- The pages beside this one (src/pages.rs), plain HTML with the style sheet as
+         it is; the build writes them in every language (pages.sh). -->
+    <link data-trunk rel="copy-file" href="site.css" />
+    <link data-trunk rel="copy-dir" href="panel-builders" />
+    <link data-trunk rel="copy-dir" href="electricians" />
+    <link data-trunk rel="copy-dir" href="education" />
+    <link data-trunk rel="copy-dir" href="compare" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <script src="config.js"></script>
@@ -63,6 +70,7 @@
         <a href="#layout" data-t>3D</a>
         <a href="#reports" data-t>Reports</a>
         <a href="#automation" data-t>Automation</a>
+        <a href="#uses" data-t>Uses</a>
         <a href="#get" data-t>Get it</a>
         <a class="menu-only" data-link="repository" href="#" data-t>Source code</a>
     </nav>
@@ -244,6 +252,19 @@
     </div>
 </section>
 
+<!-- The pages beside this one (src/pages.rs): for whom OpenECraft is made and how it
+     compares, plain pages search engines read whole. -->
+<section id="uses" class="band">
+    <h2 data-t>Made for your work</h2>
+    <p class="sub" data-t>Whether you build control cabinets, plan buildings or teach: see what OpenECraft does for you, and how it compares with the tools you know.</p>
+    <div class="cards">
+        <article class="card"><h3 data-t>Panel builders</h3><p data-t>From the schematic through the panel layout in 3D to the wiring in the workshop, with production data for the machines.</p><a class="button" data-page href="panel-builders/" data-t>OpenECraft for panel builders</a></article>
+        <article class="card"><h3 data-t>Electricians</h3><p data-t>Installation plans on the floor plan of the building, final circuits with cable lengths and voltage drop, the distribution board in 3D.</p><a class="button" data-page href="electricians/" data-t>OpenECraft for electricians</a></article>
+        <article class="card"><h3 data-t>Schools and training</h3><p data-t>Free for every student and in the browser, with a tutorial and example projects from the simplest circuit up.</p><a class="button" data-page href="education/" data-t>OpenECraft for schools</a></article>
+        <article class="card"><h3 data-t>Comparison</h3><p data-t>OpenECraft beside EPLAN Electric P8, AutoCAD Electrical and QElectroTech: what each is known for, and where OpenECraft is still young.</p><a class="button" data-page href="compare/" data-t>See the comparison</a></article>
+    </div>
+</section>
+
 <section id="get" class="band">
     <h2 data-t>Get OpenECraft</h2>
     <p class="sub" data-t>Free to use, free to change. Pick what fits you.</p>
@@ -268,6 +289,35 @@
         <a id="privacy-open" href="#privacy" data-t>Privacy</a>
         <a id="legal-open" href="#legal" hidden data-t>Legal notice</a>
     </div>
+    <div class="links">
+        <a data-page href="panel-builders/" data-t>Panel builders</a>
+        <a data-page href="electricians/" data-t>Electricians</a>
+        <a data-page href="education/" data-t>Schools</a>
+        <a data-page href="compare/" data-t>Comparison</a>
+    </div>
+    <!-- The page in every language (de.html, …; src/pages.rs). -->
+    <nav class="languages" aria-label="Language">
+        <a href="./" hreflang="en" lang="en">English</a>
+        <a href="de.html" hreflang="de" lang="de">Deutsch</a>
+        <a href="fr.html" hreflang="fr" lang="fr">Français</a>
+        <a href="es.html" hreflang="es" lang="es">Español</a>
+        <a href="pt.html" hreflang="pt" lang="pt">Português</a>
+        <a href="it.html" hreflang="it" lang="it">Italiano</a>
+        <a href="nl.html" hreflang="nl" lang="nl">Nederlands</a>
+        <a href="pl.html" hreflang="pl" lang="pl">Polski</a>
+        <a href="cs.html" hreflang="cs" lang="cs">Čeština</a>
+        <a href="ru.html" hreflang="ru" lang="ru">Русский</a>
+        <a href="uk.html" hreflang="uk" lang="uk">Українська</a>
+        <a href="tr.html" hreflang="tr" lang="tr">Türkçe</a>
+        <a href="sv.html" hreflang="sv" lang="sv">Svenska</a>
+        <a href="da.html" hreflang="da" lang="da">Dansk</a>
+        <a href="fi.html" hreflang="fi" lang="fi">Suomi</a>
+        <a href="hu.html" hreflang="hu" lang="hu">Magyar</a>
+        <a href="ro.html" hreflang="ro" lang="ro">Română</a>
+        <a href="zh.html" hreflang="zh" lang="zh">简体中文</a>
+        <a href="ja.html" hreflang="ja" lang="ja">日本語</a>
+        <a href="ko.html" hreflang="ko" lang="ko">한국어</a>
+    </nav>
     <p class="fine"><span data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</span> <span data-t>It is not affiliated with, endorsed by or sponsored by the owners of these names.</span></p>
     <p class="fine" data-t>OpenECraft comes without warranty. Its calculations and checks support the planning; a qualified person has to verify the results against the standards and regulations that apply.</p>
 </footer>

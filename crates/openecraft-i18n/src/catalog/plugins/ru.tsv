@@ -227,7 +227,6 @@ Draw the junction as a connection dot; its routing stays	Рисовать узе
 Draw wires in their colour	Рисовать провода их цветом
 Draw wires to the connection points facing its free arms	Провести провода к точкам подключения напротив его свободных плеч
 Drawing	Чертёж
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Рисует линию определения кабеля; пересекаемые ею провода становятся жилами кабеля (новый кабель, если кабель не указан)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Рисует провод между двумя точками подключения, например от -K1:A1 к -S1:14 (#id:pin для неоднозначных, имя для потенциалов, 1, 2… для точек без обозначения)
 Draws a wire through two or more points	Рисует провод через две или более точек
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Рисует провода на листах схем и при экспорте в PDF / SVG их цветом или чёрным

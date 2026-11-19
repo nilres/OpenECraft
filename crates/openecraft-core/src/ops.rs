@@ -1167,6 +1167,18 @@ pub fn add_cable(prj: &mut Project, structure: &str) -> String {
     tag
 }
 
+/// Why a new cable cannot get the tag `tag` (None: it can): an invalid tag, or one of
+/// a cable or device that exists.
+pub fn new_cable_problem(prj: &Project, tag: &str) -> Option<String> {
+    if let Err(problem) = check_tag(tag) {
+        return Some(problem);
+    }
+    if prj.cable(tag).is_some() {
+        return Some(tr_fmt!("Cable {} already exists", tag));
+    }
+    prj.all_tags().iter().any(|t| t == tag).then(|| tr_fmt!("Device {} already exists", tag))
+}
+
 /// Moves cable references after renaming the inventory entry.
 pub fn rename_cable(prj: &mut Project, old: &str, new: &str) {
     if old.is_empty() || old==new {return}
@@ -1334,10 +1346,35 @@ pub fn retarget_cable_part_references(prj:&mut Project,tag:&str,old:&str,new:&st
 /// Applies catalog cable data and keeps its placed function article references live.
 pub fn apply_project_cable_part(prj:&mut Project,index:usize,part:&Part)->bool {
     let Some(cable)=prj.cables.get_mut(index) else {return false};
-    let (tag,old)=(cable.tag.clone(),cable.part.clone());
+    let (tag,old,cores)=(cable.tag.clone(),cable.part.clone(),cable.core_list());
     apply_cable_part(cable,part);
     retarget_cable_part_references(prj,&tag,&old,&part.number);
+    remap_cable_cores(prj,&tag,&cores);
     true
+}
+
+/// After the cores of cable `tag` were renamed (a part with other core designations,
+/// `old` the designations before): its wires with a core the cable no longer has take
+/// the free core at the same place of the list, else the next free one, so that
+/// "1 2 3 4" becomes "BN BK GY GNYE". All wires of one core keep sharing it. Returns
+/// the number of wires changed.
+pub fn remap_cable_cores(prj:&mut Project,tag:&str,old:&[String])->usize {
+    let Some(new)=prj.cable(tag).map(Cable::core_list) else {return 0};
+    let cores:BTreeSet<String>=prj.pages.iter().flat_map(|page|&page.wires).filter(|w|w.cable==tag && !w.core.is_empty()).map(|w|w.core.clone()).collect();
+    let mut free:Vec<&String>=new.iter().filter(|c|!cores.contains(*c)).collect();
+    let mut gone:Vec<&String>=cores.iter().filter(|c|!new.contains(c)).collect();
+    gone.sort_by_key(|c|old.iter().position(|o|o==*c).unwrap_or(usize::MAX));
+    let mut map=HashMap::new();
+    for core in gone {
+        let place=old.iter().position(|o|o==core).and_then(|i|new.get(i)).and_then(|c|free.iter().position(|f|*f==c));
+        let Some(i)=place.or((!free.is_empty()).then_some(0)) else {break};
+        map.insert(core.clone(),free.remove(i).clone());
+    }
+    let mut changed=0;
+    for w in prj.pages.iter_mut().flat_map(|page|&mut page.wires).filter(|w|w.cable==tag) {
+        if let Some(core)=map.get(&w.core) {w.core=core.clone();changed+=1;}
+    }
+    changed
 }
 
 /// Assigns wires of a page to the free cores of a cable in order (left to right,

@@ -1,0 +1,35 @@
+# Maintainer: <name> <email>
+# Packages the Linux archive of the GitHub release (built on Debian 12, glibc 2.36).
+pkgname=openecraft-bin
+pkgver=0.1.2
+pkgrel=1
+pkgdesc="Electrical CAE editor: schematics, panel layouts and reports"
+arch=('x86_64')
+url="https://openecraft.org/"
+license=('MIT OR Apache-2.0' 'OFL-1.1' 'Ubuntu-font-1.0' 'Bitstream-Vera' 'MPL-2.0')
+# The window system and OpenGL libraries are loaded at run time.
+depends=('gcc-libs' 'glibc' 'hicolor-icon-theme' 'libglvnd' 'libxkbcommon')
+optdepends=('libx11: X11 sessions'
+            'libxcursor: X11 sessions'
+            'libxi: X11 sessions'
+            'libxkbcommon-x11: X11 sessions'
+            'libxrandr: X11 sessions'
+            'wayland: Wayland sessions'
+            'xdg-desktop-portal: file dialogs')
+provides=("openecraft=${pkgver}")
+conflicts=('openecraft')
+# The programs are stripped already.
+options=('!strip' '!debug')
+source=("https://github.com/nilres/OpenECraft/releases/download/v${pkgver}/OpenECraft-${pkgver}-linux-x86_64.tar.gz")
+sha256sums=('22a2c9f750d627535231ff0e1ae82c5f16825a39a4410e2efc28b07b72612c5b')
+
+package() {
+  cd "openecraft-${pkgver}-linux-x86_64"
+  install -d "${pkgdir}/usr"
+  cp -r --no-preserve=ownership bin share "${pkgdir}/usr/"
+  install -Dm644 -t "${pkgdir}/usr/share/licenses/${pkgname}" \
+    share/doc/openecraft/LICENSE-MIT \
+    share/doc/openecraft/LICENSE-APACHE \
+    share/doc/openecraft/OFL-NotoSans.txt \
+    share/doc/openecraft/THIRD-PARTY-LICENSES.html
+}
