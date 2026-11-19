@@ -17,7 +17,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   for EDZ and other parts files (CSV, JSON). *Copy link* in the demos writes an
   address that opens an example at a page, a place of the panel or a report
   (`?example=conveyor&page=3#studio`), and the first screen shows a screen recording of the
-  demos when the build is given one. New crate `openecraft-site`
+  demos when the build is given one, and the stars and contributors of the repository,
+  which the Docker image of the website asks GitHub for every hour. New crate `openecraft-site`
   ([website](docs/website.md#pages-the-build-writes)).
 - **The public parts server is preset:** the editor's data portal, the parts manager
   and the command line connect to

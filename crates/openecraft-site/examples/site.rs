@@ -36,7 +36,8 @@ fn main() {
     let [tour, poster] = build::TOUR.map(|name| std::fs::read(website.join(name)).ok().map(|bytes| File { path: name.to_string(), bytes }));
     let index = std::fs::read_to_string(dir.join("index.html")).unwrap_or_default();
     let [stars, contributors] = build::NUMBERS.map(|name| build::number(std::env::var(name).ok().as_deref()));
-    files.push(File::text(build::FILE, build::script(build::module(&index).as_ref(), tour.is_some(), poster.is_some(), stars, contributors)));
+    files.push(File::text(build::FILE, build::script(build::module(&index).as_ref(), tour.is_some(), poster.is_some())));
+    files.push(File::text(build::NUMBERS_FILE, build::numbers(stars, contributors)));
     files.extend(tour.into_iter().chain(poster.filter(|_| files.iter().any(|f| f.path == build::TOUR[0]))));
 
     for file in &files {

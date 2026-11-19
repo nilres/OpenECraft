@@ -176,7 +176,8 @@
     }
 
     // What the build of the site knows (build.js): the screen recording of the first
-    // screen and the numbers of the project, each shown only when there is one.
+    // screen. The numbers of the project (numbers.js) come from the build or, in the
+    // Docker image of the site, from its server. Each is shown only when there is one.
     function extras() {
         const build = window.OPENECRAFT_BUILD || {};
         const tour = $("#tour");
@@ -186,10 +187,11 @@
             if (build.poster) video.poster = build.poster;
             tour.hidden = false;
         }
+        const numbers = window.OPENECRAFT_NUMBERS || {};
         for (const name of ["stars", "contributors"]) {
             const fact = $("#fact-" + name);
-            if (!fact || !(build[name] > 0)) continue;
-            $("b", fact).textContent = build[name];
+            if (!fact || !(numbers[name] > 0)) continue;
+            $("b", fact).textContent = numbers[name];
             fact.hidden = false;
         }
     }

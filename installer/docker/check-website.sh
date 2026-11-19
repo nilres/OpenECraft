@@ -18,6 +18,7 @@ cd "$work"
 
 docker run -d --name "$name" -p "$port:8080" -e OPENECRAFT_EDITOR_URL=https://editor.example/ \
   -e OPENECRAFT_SITE_URL=https://site.example/openecraft \
+  -e OPENECRAFT_STARS=1234 -e OPENECRAFT_CONTRIBUTORS=56 -e OPENECRAFT_NUMBERS_INTERVAL=0 \
   -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' -e OPENECRAFT_LEGAL_ADDRESS='Street 1 | 12345 City' "$image" > /dev/null
 for _ in $(seq 30); do curl -fs "$url/" > /dev/null && break; sleep 1; done
 curl -fsS "$url/" -o site.html || { docker logs "$name"; exit 1; }
@@ -30,6 +31,10 @@ grep -q 'repository: "https://github.com/' config.js
 grep -qF 'name: "ACME \"Tools\" GmbH",' config.js
 grep -qF 'address: "Street 1 | 12345 City",' config.js
 if command -v node > /dev/null; then node --check config.js; fi
+# The numbers of the project the image starts with; it can ask GitHub for newer ones.
+curl -fsS "$url/numbers.js" | grep -qxF 'window.OPENECRAFT_NUMBERS = { stars: 1234, contributors: 56 };'
+grep -qF '<script src="numbers.js"></script>' site.html
+docker exec "$name" sh -c 'command -v curl' > /dev/null
 # The tags of the public address, robots.txt and the sitemap.
 grep -qF '<link rel="canonical" href="https://site.example/openecraft/" />' site.html
 grep -qF '<meta property="og:image" content="https://site.example/openecraft/social.jpg" />' site.html

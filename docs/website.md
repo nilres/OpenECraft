@@ -240,7 +240,8 @@ hook of `Trunk.toml` runs `cargo run --release -p openecraft-site --example site
 | `docs/` | The documentation: the tutorial, the installation guide, the feature documents, the command line, the plugins and the servers (`DOCUMENTS` of `docs.rs`) | The Markdown files of `docs/` |
 | `news/` | A page for every released version, an overview and the feed `news/feed.xml` (Atom) | `CHANGELOG.md` |
 | `faq/`, `how-to/…`, `tools/…`, `compare/<product>-alternative/` | Questions and answers, guides for single tasks, the tools and the comparison with one product | The content files of `website/content/` |
-| `build.js` | What the build knows: the module of the site for the tools, the screen recording and the numbers of the project ([below](#screen-recording-and-numbers-of-the-project)) | The built page, `website/tour.webm`, the environment |
+| `build.js` | What the build knows: the module of the site for the tools and the screen recording ([below](#screen-recording-and-numbers-of-the-project)) | The built page, `website/tour.webm` |
+| `numbers.js` | The stars and the contributors of the repository ([below](#screen-recording-and-numbers-of-the-project)) | The environment; in the Docker image its server |
 
 Every page gets the frame of the site (`frame.rs`: head with title, description, link
 preview, structured data and the markers of the public address; bar; footer), the
@@ -311,10 +312,17 @@ not there:
   (headless Edge and Node, no other tool): record them again when the page or the
   demos changed visibly, and replace the assets with
   `gh release upload website-media website/tour.webm website/tour.jpg --clobber`.
-- The stars and the contributors of the repository: the variables `OPENECRAFT_STARS`
-  and `OPENECRAFT_CONTRIBUTORS` of the build (numbers; for example from `gh api
-  repos/<owner>/<name> --jq .stargazers_count`). With a number above 0 the facts of
-  the first screen show it. The page itself asks no other server for them.
+- The stars and the contributors of the repository, in `numbers.js` beside the page
+  (`window.OPENECRAFT_NUMBERS = { stars: 31, contributors: 7 };`). With a number above
+  0 the facts of the first screen show it. The build writes the file from the
+  variables `OPENECRAFT_STARS` and `OPENECRAFT_CONTRIBUTORS` (numbers; for example
+  from `gh api repos/<owner>/<name> --jq .stargazers_count`). The Docker image keeps
+  it current: it starts with the numbers it was built with (build arguments of the
+  same names, which CI asks GitHub for) and asks GitHub for those of the repository
+  of `OPENECRAFT_REPOSITORY_URL` at every start and then every hour
+  (`installer/docker/website-numbers.sh`; `OPENECRAFT_NUMBERS_INTERVAL` in seconds,
+  `0`: never). A number GitHub does not give stays as it was. It is the server that
+  asks; the browser of a visitor asks no other server for them.
 
 ## Development
 
