@@ -106,6 +106,7 @@ impl PanelUi {
         panel::buildings::building_of(&prj.layout, ei).filter(|_| self.show_building).into_iter().collect()
     }
 
+    #[allow(clippy::too_many_lines)]
     pub(super) fn view_3d(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize, an: &Analysis) {
         let shown = self.shown_3d(prj, ei);
         let dark = ui.visuals().dark_mode;
@@ -142,9 +143,11 @@ impl PanelUi {
         moved |= nav3d::gesture(cam, &gesture, rect.center(), f);
         // Keyboard: moving through the view, Home fits it.
         let mut fit = false;
+        let mut delete = false;
         if (self.keys_active || resp.hovered()) && !ui.ctx().egui_wants_keyboard_input() {
             let sc = crate::shortcuts::get(ui.ctx());
-            let ((dir, fast), home) = ui.input(|i| (nav3d::held(i, &sc, gestures.modifier(Role::Faster3d)), sc.cmd_pressed(i, Cmd::FitPage)));
+            let ((dir, fast), home, del) = ui.input(|i| (nav3d::held(i, &sc, gestures.modifier(Role::Faster3d)), sc.cmd_pressed(i, Cmd::FitPage), sc.cmd_pressed(i, Cmd::Delete)));
+            delete = del;
             if dir.iter().any(|d| *d != 0.0) {
                 nav3d::keys(cam, dir, fast, dt);
                 moved = true;
@@ -165,6 +168,9 @@ impl PanelUi {
         }
         let cam = *cam;
         self.cam_goal = goal.map(|g| (g, cam));
+        if delete && !self.selection.is_empty() {
+            self.delete_selected_3d(prj);
+        }
         let (eye, right, up, fwd) = cam.basis();
         let camera = Camera { eye, right, up, fwd, f };
         let project_view = |q: V3| camera.project(rect.center(), q);
@@ -175,11 +181,21 @@ impl PanelUi {
         let opacity = self.wall_opacity.clamp(0.0, 1.0);
         let hide_front = self.hide_front_walls;
         let picking = resp.clicked_by(PointerButton::Primary);
+        let menu_pick = resp.secondary_clicked();
         let focusing = gestures.double_clicked(MouseAction::Focus3d, &resp, mods);
+        // A part of the installation menu goes where a wall or the ceiling of a room shown
+        // is clicked.
+        let rooms: Vec<usize> = shown.iter().map(|s| s.0).filter(|&k| prj.layout.enclosures[k].is_room()).collect();
+        let placing = match &self.tool {
+            Tool::Accessory(part) if !rooms.is_empty() => Some(part.clone()),
+            _ => None,
+        };
+        let hover = resp.hover_pos().filter(|_| placing.is_some());
         let prims = if self.gpu_3d && !self.gpu.failed() {
             painter.add(self.gpu.shape(ui.ctx(), rect, scene.clone(), Frame { camera, opacity, hide_front, background }));
-            // The faces under the pointer are only needed for a click.
-            if picking || focusing { project(&scene, &camera, rect, opacity, hide_front) } else { Vec::new() }
+            // The faces under the pointer are only needed for a click, or for the part
+            // shown where it would go.
+            if picking || focusing || menu_pick || hover.is_some() { project(&scene, &camera, rect, opacity, hide_front) } else { Vec::new() }
         } else {
             let prims = project(&scene, &camera, rect, opacity, hide_front);
             paint(&painter, &prims);
@@ -232,15 +248,57 @@ impl PanelUi {
             self.cam_goal = Some((view, cam));
             ui.ctx().request_repaint();
         }
-        // A part of the installation menu goes where a wall or the ceiling of the room is
-        // clicked.
-        let placing = match &self.tool {
-            Tool::Accessory(part) if prj.layout.enclosures[ei].is_room() => Some(part.clone()),
-            _ => None,
+        // Where the pointer meets the inside of a wall or the ceiling of a room shown
+        // (seen through or not), otherwise the nearest solid face under it.
+        let frame = self.view_frame(prj, ei);
+        let target = |prj: &Project, ptr: Pos2| -> Option<Target> {
+            let far = camera.unproject(ptr - rect.center(), 1000.0);
+            let dir = vec3::norm(sub(far, eye));
+            let plant = panel::site_poses(prj);
+            let mut best: Option<(f32, Target)> = None;
+            for &(k, pose) in shown.iter().filter(|s| rooms.contains(&s.0)) {
+                let (le, lf) = (pose.local(eye), pose.local(vec3::add(eye, dir)));
+                let ld = sub(lf, le);
+                if let Some((q, t)) = openecraft_core::installation::inside_hit(&prj.layout.enclosures[k], le, ld) {
+                    if best.as_ref().is_none_or(|b| t < b.0) {
+                        let w = plant[k].apply([q[0], 0.0, q[2]]);
+                        best = Some((t, Target { room: Some(k), at: [w[0], w[2]], height: Some(q[1]) }));
+                    }
+                }
+            }
+            best.map(|b| b.1).or_else(|| {
+                let v = camera.unproject(ptr - rect.center(), solid_depth_under(&prims, ptr)?);
+                let q = frame.map_or(v, |pose| pose.apply(v));
+                Some(Target { room: None, at: [q[0], q[2]], height: None })
+            })
         };
         if let (Some(part), Some(ptr)) = (&placing, resp.interact_pointer_pos().filter(|_| picking)) {
-            self.place_at(prj, ei, part, solid_depth_under(&prims, ptr).map(|z| camera.unproject(ptr - rect.center(), z)));
+            let t = target(prj, ptr);
+            self.place_at(prj, ei, &rooms, part, t);
+            self.ghost = None;
             return;
+        }
+        // The part where it would go, see-through.
+        if let (Some(part), Some(ptr)) = (&placing, hover) {
+            if let Some(t) = target(prj, ptr) {
+                match self.ghost_3d(prj, ei, &rooms, part, &t) {
+                    Ok((k, it)) => {
+                        if let Some(pose) = shown.iter().find(|s| s.0 == k).map(|s| s.1) {
+                            draw_ghost(&painter, prj, k, &it, &pose, &project_view);
+                        }
+                    }
+                    Err(e) => {
+                        painter.text(ptr + vec2(14.0, 14.0), egui::Align2::LEFT_TOP, e, egui::FontId::proportional(12.0), crate::style::error());
+                    }
+                }
+            }
+        }
+        // A right click selects what is under the pointer for the context menu.
+        if let Some(ptr) = resp.interact_pointer_pos().filter(|_| menu_pick && placing.is_none()) {
+            self.pick_3d(prj, an, &scene, &prims, &project_view, ptr);
+        }
+        if placing.is_none() {
+            egui::Popup::context_menu(&resp).show(|ui| self.menu_3d(ui, prj));
         }
         // Picking: items of a neighbour in the line-up make it the current enclosure.
         if let Some(ptr) = resp.interact_pointer_pos().filter(|_| picking) {
@@ -279,15 +337,62 @@ impl PanelUi {
         tr("Click on a wall or the ceiling: place the part · Esc: stop · drag: orbit · wheel: zoom")
     }
 
-    /// Places `part` in room `ei` where a wall or the ceiling was clicked: at `v` of the
-    /// view (none: nothing solid was clicked).
-    fn place_at(&mut self, prj: &mut Project, ei: usize, part: &str, v: Option<V3>) {
-        let Some(v) = v else {
+    /// Places `part` where a wall or the ceiling was clicked: at `v` of the view (none:
+    /// nothing solid was clicked), in the room of `rooms` there (the current one, `ei`,
+    /// where none takes the point).
+    pub(super) fn place_at(&mut self, prj: &mut Project, ei: usize, rooms: &[usize], part: &str, t: Option<Target>) {
+        let Some(t) = t else {
             self.status = tr("Click on a wall or the ceiling of the room").to_string();
             return;
         };
-        let q = self.view_frame(prj, ei).map_or(v, |pose| pose.apply(v));
-        self.place_in_room(prj, ei, part, [q[0], q[2]]);
+        let Some(room) = t.room.or_else(|| openecraft_core::installation::room_at(prj, rooms, t.at)).or_else(|| rooms.contains(&ei).then_some(ei)) else {
+            self.status = tr("Click on a wall or the ceiling of the room").to_string();
+            return;
+        };
+        let height = t.height.and_then(|h| openecraft_core::installation::height_for(prj, part, h));
+        self.place_in_room(prj, room, part, t.at, height);
+    }
+
+    /// Where `part` would go for point `at` of the plant (see [`Self::place_at`]): the
+    /// room and the item, or why it cannot go there; kept while the pointer stays.
+    fn ghost_3d(&mut self, prj: &Project, ei: usize, rooms: &[usize], part: &str, t: &Target) -> Result<(usize, panel::PanelItem), String> {
+        let at = t.at;
+        let height = t.height.and_then(|h| openecraft_core::installation::height_for(prj, part, h));
+        let key = (part.to_string(), [(at[0] / 5.0).round() as i64, (at[1] / 5.0).round() as i64, height.map_or(-1, |h| (h / 5.0).round() as i64)]);
+        if let Some((_, r)) = self.ghost.as_ref().filter(|(k, _)| *k == key) {
+            return r.clone();
+        }
+        let r = match t.room.or_else(|| openecraft_core::installation::room_at(prj, rooms, at)).or_else(|| rooms.contains(&ei).then_some(ei)) {
+            Some(room) => openecraft_core::installation::preview(prj, room, part, at, height).map(|it| (room, it)),
+            None => Err(tr("Click on a wall or the ceiling of the room").to_string()),
+        };
+        self.ghost = Some((key, r.clone()));
+        r
+    }
+
+    /// The context menu of the 3D view: what was right-clicked.
+    fn menu_3d(&mut self, ui: &mut egui::Ui, prj: &mut Project) {
+        let any = !self.selection.is_empty();
+        if ui.add_enabled(any, egui::Button::new(tr("Properties"))).clicked() {
+            self.open_properties = true;
+            ui.close();
+        }
+        let delete = ui.add_enabled(any, egui::Button::new(tr("Delete")).shortcut_text("Del")).on_hover_text(tr("Devices go back to the devices to place"));
+        if delete.clicked() {
+            self.delete_selected_3d(prj);
+            ui.close();
+        }
+    }
+
+    /// Deletes the items selected in the 3D view (of the current enclosure).
+    pub(super) fn delete_selected_3d(&mut self, prj: &mut Project) {
+        // Taken first: finding the current enclosure may switch the face and clear it.
+        let ids: Vec<u64> = self.selection.iter().copied().collect();
+        if let Some(k) = self.enclosure_index(prj) {
+            let n = panel::remove_items(&mut prj.layout.enclosures[k], &ids);
+            self.selection.clear();
+            self.status = tr_fmt!("{} items deleted", n);
+        }
     }
 
     /// The view cube in the top right corner of `rect`: looking from a side, an edge or a
@@ -413,6 +518,37 @@ impl PanelUi {
             },
         }
         false
+    }
+}
+
+/// Where a click in the 3D view puts a part: the room whose wall or ceiling it met (none:
+/// the room the point lies in), the point of the plant (x, z) and its height above the
+/// room's floor (none: not on a wall or ceiling).
+pub(super) struct Target {
+    pub(super) room: Option<usize>,
+    pub(super) at: [f32; 2],
+    pub(super) height: Option<f32>,
+}
+
+/// Part `it` of enclosure `k` (shown at `pose`) drawn see-through on top: its model, or
+/// its box where its part has none.
+fn draw_ghost(painter: &egui::Painter, prj: &Project, k: usize, it: &panel::PanelItem, pose: &SitePose, project_view: &dyn Fn(V3) -> Option<(Pos2, f32)>) {
+    let e = &prj.layout.enclosures[k];
+    let model = openecraft_core::installation::find_part(prj, &it.part).and_then(|p| p.model_3d.clone());
+    let tris = match model {
+        Some(m) => panel::place_triangles(e, it, panel::place_mesh(&m, it)),
+        None => {
+            let (a, b) = panel::item_box(e, it);
+            let c = |i: usize| [if i & 1 == 0 { a[0] } else { b[0] }, if i & 2 == 0 { a[1] } else { b[1] }, if i & 4 == 0 { a[2] } else { b[2] }];
+            [[0, 1, 3, 2], [4, 5, 7, 6], [0, 1, 5, 4], [2, 3, 7, 6], [0, 2, 6, 4], [1, 3, 7, 5]].iter().flat_map(|f| [[c(f[0]), c(f[1]), c(f[2])], [c(f[0]), c(f[2]), c(f[3])]]).collect()
+        }
+    };
+    let fill = Color32::from_rgba_unmultiplied(70, 150, 255, 60);
+    for t in tris {
+        let pts: Option<Vec<Pos2>> = t.iter().map(|q| project_view(pose.apply([q[0], e.height - q[1], q[2]])).map(|p| p.0)).collect();
+        if let Some(pts) = pts {
+            painter.add(egui::Shape::convex_polygon(pts, fill, Stroke::NONE));
+        }
     }
 }
 

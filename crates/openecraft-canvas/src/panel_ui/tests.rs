@@ -2350,7 +2350,7 @@ fn parts_placed_in_a_room_go_into_the_schematic_for_the_protective_device_chosen
     let w = panel::side(e, Face::Wall(0)).unwrap();
     let mid = [(w.a[0] + w.b[0]) / 2.0 + w.normal[0] * 20.0, (w.a[1] + w.b[1]) / 2.0 + w.normal[1] * 20.0];
     let q = panel::site_poses(&prj)[ri].apply([mid[0], 1000.0, mid[1]]);
-    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]]);
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]], None);
     let it = prj.layout.enclosures[ri].items.last().unwrap().clone();
     assert_eq!((it.part.as_str(), it.face), ("GEN.SOCKET-F-UP", Face::Wall(0)));
     assert!(!it.tag.is_empty(), "{}", ui.status);
@@ -2360,7 +2360,7 @@ fn parts_placed_in_a_room_go_into_the_schematic_for_the_protective_device_chosen
     assert!(ui.status.contains(&cable) && ui.status.contains(&from), "{}", ui.status);
     // Without a protective device it stays out of the schematic, and the status says so.
     ui.installation.breaker = Some(String::new());
-    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]]);
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]], None);
     let later = prj.layout.enclosures[ri].items.last().unwrap().clone();
     assert!(later.tag.is_empty());
     assert!(ui.status.contains("not in the schematic"), "{}", ui.status);
@@ -2373,11 +2373,35 @@ fn parts_placed_in_a_room_go_into_the_schematic_for_the_protective_device_chosen
     // inside, seen in the 3D view.
     let edge = [(w.a[0] + w.b[0]) / 2.0 - w.normal[0] * 1.0, (w.a[1] + w.b[1]) / 2.0 - w.normal[1] * 1.0];
     let q = panel::site_poses(&prj)[ri].apply([edge[0], 1000.0, edge[1]]);
-    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]]);
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]], None);
     let on_wall = prj.layout.enclosures[ri].items.last().unwrap().clone();
     assert_eq!(on_wall.face, Face::Wall(0), "{}", ui.status);
     let an = Analysis::build(&prj);
     let shown = ui.shown_3d(&prj, ri);
     let s = ui.scene_3d(&egui::Context::default(), &prj, &an, ri, &shown);
     assert!(s.faces.iter().any(|f| f.item == Some((ri, on_wall.id))), "the socket is drawn");
+}
+
+#[test]
+fn a_part_goes_where_the_wall_is_clicked_and_is_deleted_with_the_delete_key() {
+    let mut prj = openecraft_core::sample::example("electrical_room").unwrap();
+    let ri = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let mut ui = PanelUi { in_room: true, enclosure: ri, ..Default::default() };
+    ui.installation.breaker = Some(String::new());
+    let w = panel::side(&prj.layout.enclosures[ri], Face::Wall(0)).unwrap();
+    let mid = [(w.a[0] + w.b[0]) / 2.0, (w.a[1] + w.b[1]) / 2.0];
+    let q = panel::site_poses(&prj)[ri].apply([mid[0], 0.0, mid[1]]);
+    // Clicked on the wall at 1.6 m, far from the zones of a socket outlet: there.
+    let target = view3d::Target { room: Some(ri), at: [q[0], q[2]], height: Some(1600.0) };
+    ui.place_at(&mut prj, ri, &[ri], "GEN.SOCKET-F-UP", Some(target));
+    let it = prj.layout.enclosures[ri].items.last().unwrap().clone();
+    assert_eq!((it.part.as_str(), it.face), ("GEN.SOCKET-F-UP", Face::Wall(0)), "{}", ui.status);
+    let poses = panel::site_poses(&prj);
+    let pl = openecraft_core::installation::placed(&prj, &poses, ri, &it).unwrap();
+    assert!((pl.height - 1600.0).abs() < 5.0, "{}", pl.height);
+    // Selected and deleted.
+    ui.select_item(it.id);
+    ui.delete_selected_3d(&mut prj);
+    assert!(prj.layout.enclosures[ri].item(it.id).is_none());
+    assert!(ui.selection.is_empty());
 }

@@ -35,6 +35,20 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   protective device goes in later with *Put into the schematic* in its properties. Fixed: with two or more devices on a breaker the first cable was missing
   from the circuit and its cores were counted on the next one; a residual current
   device behind a feeder counted as protecting the feeder and all its other circuits.
+- **Placing in the 3D view:** a click on a wall or the ceiling of a room places the
+  part there, also outside the installation zones: near its mounting height it goes at
+  that height, farther off at the height clicked. While placing, the part is shown
+  see-through where it would go. Delete removes what is selected in the 3D view; a right
+  click opens a menu with *Delete* and *Properties*.
+- **CEE sockets of Mennekes and a cooker connection box of Merten:** the catalogs
+  `mennekes` (CEE wall sockets 27005, 5515 and 7233 with circuit breaker and RCD; 16 A
+  and 32 A, 5 poles) and `merten` (cooker connection box 520427 for flush mounting), in
+  the installation menu for three-phase circuits.
+- **Junction boxes of Spelsberg with WAGO connectors:** the catalogs `spelsberg`
+  (junction boxes Abox 025-L to 350-L) and `wago` (splicing connectors 221 and 2273). A
+  Spelsberg box placed on a wall hangs there as an enclosure of the room, opened and
+  routed into like any enclosure, with a WAGO 221-415 inside that is its device (a
+  connector per conductor in its parts).
 - **Cable glands for new cables:** a new cable that leaves a cabinet and finds no free
   cable gland gets one of its size in the bottom of the cabinet (*Add cable glands for
   new cables* in the enclosure properties, `set_auto_glands`; on by default). *Add the

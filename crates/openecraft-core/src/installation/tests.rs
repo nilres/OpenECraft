@@ -481,3 +481,70 @@ fn what_was_placed_goes_into_the_schematic() {
     assert!(add_device(&mut prj, "-NOPE", "GEN.SOCKET-F-UP", ri, q, &Options::default()).is_err());
     assert_eq!(prj.layout.enclosures[ri].items.len(), items);
 }
+
+#[test]
+fn a_junction_box_of_a_maker_hangs_on_the_wall_as_an_enclosure_with_a_connector() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let q = before_wall(&prj, ri, 0, 100.0);
+    let tag = add_device(&mut prj, &f2, "SPE.80440001", ri, q, &Options::default()).unwrap();
+    // No item in the room: an enclosure of the room, on the wall at 2.3 m, its front
+    // into the room, with the WAGO connector inside that is the device.
+    assert!(prj.layout.enclosures[ri].items.iter().all(|i| i.part != "SPE.80440001"));
+    let k = prj.layout.enclosures.iter().position(|e| e.part == "SPE.80440001").expect("the box");
+    let b = &prj.layout.enclosures[k];
+    assert_eq!((b.width, b.height, b.depth), (102.0, 102.0, 57.0));
+    assert_eq!(crate::panel::room_of(&prj.layout, k), Some(ri));
+    let bottom = b.elevation.unwrap();
+    assert!((bottom + 51.0 - 2300.0).abs() < 5.0, "{bottom}");
+    let it = b.items.iter().find(|i| i.part == BOX_CONNECTOR).expect("connector");
+    assert_eq!(it.tag, tag);
+    assert_eq!(crate::panel::locate(&prj, &tag).map(|l| l.0), Some(k));
+    // A connector per conductor; drawn as a junction box on the installation page.
+    assert_eq!(prj.devices[&tag].parts.iter().find(|r| r.number == BOX_CONNECTOR).map(|r| r.count), Some(3));
+    assert!(prj.pages.iter().any(|pg| pg.symbols.iter().any(|s| s.tag == tag && s.sym == "jbox")));
+    // Its rear stands against the wall it was put on.
+    let wall = panel::side(&prj.layout.enclosures[ri], Face::Wall(0)).unwrap();
+    let place = crate::panel::room_place(&prj, k).unwrap();
+    let off = (place.x - wall.a[0]) * wall.normal[0] + (place.z - wall.a[1]) * wall.normal[1];
+    assert!(off.abs() < 1.0, "{off}");
+    // A socket outlet behind it takes its cable from the box.
+    let q = before_wall(&prj, ri, 1, 200.0);
+    let socket = add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options { from: Some(tag.clone()), ..Default::default() }).unwrap();
+    assert_eq!(feed_of(&prj, &socket).map(|f| f.1), Some(tag));
+}
+
+#[test]
+fn a_click_meets_the_inside_of_a_wall_and_goes_there_off_the_zones() {
+    let (prj, ri) = room();
+    let e = &prj.layout.enclosures[ri];
+    let w = panel::side(e, Face::Wall(0)).unwrap();
+    let mid = [(w.a[0] + w.b[0]) / 2.0, (w.a[1] + w.b[1]) / 2.0];
+    // From the middle of the room at 1.6 m towards the middle of wall 0.
+    let eye = [mid[0] + w.normal[0] * 1500.0, 1600.0, mid[1] + w.normal[1] * 1500.0];
+    let dir = [-w.normal[0], 0.0, -w.normal[1]];
+    let (q, t) = inside_hit(e, eye, dir).unwrap();
+    assert!((t - 1500.0).abs() < 1.0 && (q[1] - 1600.0).abs() < 1.0, "{q:?} {t}");
+    // Seen from outside the wall is not met from behind; upwards the ceiling is.
+    let behind = [mid[0] - w.normal[0] * 500.0, 1600.0, mid[1] - w.normal[1] * 500.0];
+    assert!(inside_hit(e, behind, [w.normal[0], 0.0, w.normal[1]]).is_some_and(|(_, t)| t > 600.0));
+    let (up, _) = inside_hit(e, eye, [0.0, 1.0, 0.0]).unwrap();
+    assert_eq!(up[1], e.height);
+    // Near its mounting height a socket outlet goes there, farther off where clicked.
+    assert_eq!(height_for(&prj, "GEN.SOCKET-F-UP", 350.0), None);
+    assert_eq!(height_for(&prj, "GEN.SOCKET-F-UP", 1600.0), Some(1600.0));
+    assert_eq!(height_for(&prj, "GEN.LAMP-CEILING-LED", 1600.0), None);
+    // Placed at the height clicked: its middle there.
+    let mut prj = prj;
+    let at = before_wall(&prj, ri, 0, 0.0);
+    let id = place_at(&mut prj, ri, "GEN.SOCKET-F-UP", at, Some(1600.0)).unwrap();
+    let poses = panel::site_poses(&prj);
+    let it = prj.layout.enclosures[ri].item(id).unwrap().clone();
+    let pl = placed(&prj, &poses, ri, &it).unwrap();
+    assert!((pl.height - 1600.0).abs() < 5.0, "{}", pl.height);
+    // The preview shows that place without changing the project.
+    let before = prj.clone();
+    let ghost = preview(&prj, ri, "GEN.SOCKET-F-UP", at, Some(1600.0)).unwrap();
+    assert_eq!((ghost.face, ghost.y), (it.face, it.y));
+    assert_eq!(prj, before);
+}

@@ -263,7 +263,85 @@ pub fn place(prj: &mut Project, ri: usize, part: &str, at: [f32; 2]) -> Result<u
 }
 
 /// [`place`] at mounting height `height` (mm above the floor; `None`: that of the part).
+/// A junction box of a maker that is an enclosure ([`is_box_enclosure`]) hangs on the
+/// wall as an enclosure of the room with a wire connector inside; the connector's id is
+/// given then.
 pub fn place_at(prj: &mut Project, ri: usize, part: &str, at: [f32; 2], height: Option<f32>) -> Result<u64, String> {
+    let id = mount(prj, ri, part, at, height)?;
+    if find_part(prj, part).is_some_and(is_box_enclosure) {
+        return into_box(prj, ri, id);
+    }
+    Ok(id)
+}
+
+/// Whether part `p` is a junction box with room for wire connectors inside, placed as an
+/// enclosure (part data `Junction box enclosure: yes`).
+pub fn is_box_enclosure(p: &Part) -> bool {
+    p.tech_value("Junction box enclosure").is_some_and(|v| v.trim() == "yes")
+}
+
+/// The wire connector put into a junction box placed as an enclosure.
+pub const BOX_CONNECTOR: &str = "WAGO.221-415";
+
+/// Part `number` of a bundled manufacturer catalog (any part, read once).
+fn vendor_part(number: &str) -> Option<Part> {
+    static PARTS: std::sync::OnceLock<Vec<Part>> = std::sync::OnceLock::new();
+    PARTS.get_or_init(|| crate::parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).collect()).iter().find(|p| p.number == number).cloned()
+}
+
+/// Turns item `id` of room `ri` (a junction box on a wall) into an enclosure of the room
+/// hanging there, its front into the room, with a wire connector inside; gives the
+/// connector's id.
+fn into_box(prj: &mut Project, ri: usize, id: u64) -> Result<u64, String> {
+    let e = prj.layout.enclosures[ri].clone();
+    let it = e.item(id).cloned().ok_or_else(|| tr_fmt!("No enclosure {}", ri))?;
+    let wall = panel::side(&e, it.face).ok_or_else(|| tr("No wall near the point").to_string())?;
+    prj.layout.enclosures[ri].items.retain(|i| i.id != id);
+    let (start, right, n) = (wall.start(), wall.right(), wall.normal);
+    let along = it.x + it.w / 2.0;
+    let centre = [start[0] + right[0] * along, start[1] + right[1] * along];
+    // Its front faces the room: at angle 0 the front faces +z, at 90 +x; its x axis
+    // runs to the right of one looking at its front.
+    let angle = n[0].atan2(n[1]);
+    let x_axis = [angle.cos(), -angle.sin()];
+    let room_id = if e.id == 0 { let id = prj.new_id(); prj.layout.enclosures[ri].id = id; id } else { e.id };
+    let name = panel::free_name(&prj.layout, "+JB");
+    let mut b = panel::new_enclosure(prj, &it.part, &name);
+    let rear_left = [centre[0] - x_axis[0] * b.width / 2.0, centre[1] - x_axis[1] * b.width / 2.0];
+    let middle = e.height - (it.y + it.h / 2.0);
+    b.room = room_id;
+    b.site = Some(panel::SitePlace { x: rear_left[0], z: rear_left[1], angle: angle.to_degrees() });
+    b.elevation = Some((middle - b.height / 2.0).max(0.0));
+    prj.layout.enclosures.push(b);
+    let k = prj.layout.enclosures.len() - 1;
+    if !prj.parts.iter().any(|p| p.number == BOX_CONNECTOR) {
+        if let Some(c) = vendor_part(BOX_CONNECTOR) {
+            prj.parts.push(c);
+        }
+    }
+    let (pw, ph) = prj.layout.enclosures[k].face_size(Face::Plate);
+    let [cw, ch, _] = panel::part_by_number(prj, BOX_CONNECTOR).and_then(|p| p.size()).unwrap_or([30.0, 19.0, 9.0]);
+    panel::place_accessory(prj, k, BOX_CONNECTOR, Face::Plate, p(((pw - cw) / 2.0).max(0.0), ((ph - ch) / 2.0).max(0.0))).ok_or_else(|| tr_fmt!("No enclosure {}", k))
+}
+
+/// The room, the item and the part of an item of the installation: an item of a room,
+/// or the wire connector in a junction box hanging in a room (the box's part then).
+fn installed(prj: &Project, item: u64) -> Option<(usize, PanelItem, String)> {
+    let layout = &prj.layout;
+    let k = layout.enclosures.iter().position(|e| e.item(item).is_some())?;
+    let it = layout.enclosures[k].item(item)?.clone();
+    if layout.enclosures[k].is_room() {
+        let part = it.part.clone();
+        return Some((k, it, part));
+    }
+    let e = &layout.enclosures[k];
+    let ri = panel::room_of(layout, k)?;
+    find_part(prj, &e.part).filter(|p| is_box_enclosure(p))?;
+    Some((ri, it, e.part.clone()))
+}
+
+/// [`place_at`] for an item of the room itself.
+fn mount(prj: &mut Project, ri: usize, part: &str, at: [f32; 2], height: Option<f32>) -> Result<u64, String> {
     let e = prj.layout.enclosures.get(ri).ok_or_else(|| tr_fmt!("No enclosure {}", ri))?;
     if !e.is_room() {
         return Err(tr_fmt!("{} is not a room", e.name));
@@ -306,6 +384,82 @@ pub fn place_at(prj: &mut Project, ri: usize, part: &str, at: [f32; 2], height: 
         }
     }
     Ok(id)
+}
+
+/// The room among `rooms` that point `at` of the plant (x, z, mm) lies in, its walls
+/// included (a click on a wall in the 3D view); the first one that takes it.
+pub fn room_at(prj: &Project, rooms: &[usize], at: [f32; 2]) -> Option<usize> {
+    let poses = panel::site_poses(prj);
+    rooms.iter().copied().filter(|&r| prj.layout.enclosures.get(r).is_some_and(|e| e.is_room())).find(|&r| {
+        let q = poses[r].local([at[0], 0.0, at[1]]);
+        !beyond_walls(&prj.layout.enclosures[r], [q[0], q[2]])
+    })
+}
+
+/// Where [`place`] would put part `part` in room `ri` for point `at` of the plant,
+/// without changing the project: the item it would add (id 0).
+/// `height`: mm above the floor (`None`: the part's mounting height).
+pub fn preview(prj: &Project, ri: usize, part: &str, at: [f32; 2], height: Option<f32>) -> Result<PanelItem, String> {
+    let mut scratch = Project { layout: prj.layout.clone(), parts: prj.parts.clone(), next_id: prj.next_id, ..Default::default() };
+    let id = mount(&mut scratch, ri, part, at, height)?;
+    let it = scratch.layout.enclosures[ri].item(id).cloned().ok_or_else(|| tr_fmt!("No enclosure {}", ri))?;
+    Ok(PanelItem { id: 0, ..it })
+}
+
+/// How far from its mounting height a point clicked on a wall may be for a part to go at
+/// that height (in its installation zone); farther off it goes where it was clicked, mm.
+pub const SNAP_HEIGHT: f32 = 200.0;
+
+/// The height part `part` goes at for a point clicked `clicked` mm above the floor of a
+/// room: its mounting height near it ([`SNAP_HEIGHT`]), otherwise the point's (`None`:
+/// its mounting height).
+pub fn height_for(prj: &Project, part: &str, clicked: f32) -> Option<f32> {
+    let pd = find_part(prj, part)?;
+    if on_ceiling(pd) {
+        return None;
+    }
+    match panel::tech_number(pd, "Mounting height") {
+        Some(h) if (clicked - h).abs() <= SNAP_HEIGHT => None,
+        _ => Some(clicked.max(0.0)),
+    }
+}
+
+/// Where the ray from `eye` along `dir` (room coordinates: x, z of its floor plan, y up
+/// from its floor) first meets the inside of a wall or the ceiling of room `e`: the
+/// point and how far along the ray.
+pub fn inside_hit(e: &panel::Enclosure, eye: [f32; 3], dir: [f32; 3]) -> Option<([f32; 3], f32)> {
+    let mut best: Option<([f32; 3], f32)> = None;
+    let mut take = |q: [f32; 3], t: f32| {
+        if t > 1.0 && best.is_none_or(|b| t < b.1) {
+            best = Some((q, t));
+        }
+    };
+    for f in panel::room_faces(e) {
+        if !matches!(f, Face::Wall(_) | Face::Inner(..)) {
+            continue;
+        }
+        let Some(w) = panel::side(e, f) else { continue };
+        let n = w.normal;
+        let facing = dir[0] * n[0] + dir[2] * n[1];
+        if facing >= -1e-6 {
+            continue; // seen from behind
+        }
+        let t = -((eye[0] - w.a[0]) * n[0] + (eye[2] - w.a[1]) * n[1]) / facing;
+        let q = [eye[0] + dir[0] * t, eye[1] + dir[1] * t, eye[2] + dir[2] * t];
+        let (start, right) = (w.start(), w.right());
+        let along = (q[0] - start[0]) * right[0] + (q[2] - start[1]) * right[1];
+        if along >= 0.0 && along <= w.length() && q[1] >= 0.0 && q[1] <= e.height {
+            take(q, t);
+        }
+    }
+    if dir[1] > 1e-6 {
+        let t = (e.height - eye[1]) / dir[1];
+        let q = [eye[0] + dir[0] * t, e.height, eye[2] + dir[2] * t];
+        if panel::inside_outline(&panel::outline(e), [q[0], q[2]]) {
+            take(q, t);
+        }
+    }
+    best
 }
 
 /// Whether point `q` of room `e` (its coordinates) lies outside it beyond half the
@@ -1166,12 +1320,10 @@ fn core_of(cores: &[String], n: usize, k: usize) -> String {
 pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Options) -> Result<String, String> {
     let nl = Netlist::build(prj, true);
     let b = electrical::circuits(prj, &nl).into_iter().find(|c| c.is_final() && c.device == breaker).ok_or_else(|| tr_fmt!("{} is no protective device of a final circuit in the schematic", breaker))?;
-    let ri = prj.layout.enclosures.iter().position(|e| e.is_room() && e.item(item).is_some()).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", item))?;
-    let it = prj.layout.enclosures[ri].item(item).cloned().unwrap_or_default();
+    let (ri, it, part) = installed(prj, item).ok_or_else(|| tr_fmt!("No socket outlet, switch or light {}", item))?;
     if !it.tag.is_empty() {
         return Err(tr_fmt!("{} is device {} already", item, it.tag));
     }
-    let part = it.part;
     let kind = find_part(prj, &part).and_then(kind_of).ok_or_else(|| tr_fmt!("{} is no socket outlet, switch, light or heating element", part))?;
     if !kind.mains() {
         return Err(tr_fmt!("{} is not connected to the mains: place it without a protective device", part));
@@ -1213,6 +1365,14 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Option
         return Err(tr_fmt!("The cable of {} needs at least {} cores", tag, n));
     }
     adopt(prj, &tag, item, None)?;
+    // In a junction box hanging in the room: a wire connector per conductor.
+    if prj.layout.enclosures[ri].item(item).is_none() {
+        if let Some(d) = prj.devices.get_mut(&tag) {
+            for r in d.parts.iter_mut().filter(|r| r.number == BOX_CONNECTOR) {
+                r.count = pins.len().max(1) as u32;
+            }
+        }
+    }
     let cores = core_names(count);
     let id = prj.new_id();
     let mut c = crate::model::Cable { id, tag: cable.clone(), cores: cores.join(" "), part: opts.cable_part.clone().unwrap_or_default(), ..Default::default() };

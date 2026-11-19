@@ -186,3 +186,25 @@ fn luminaires_go_on_ceilings_and_walls_with_their_data() {
     assert_eq!((downlight.width, downlight.depth, downlight.tech_value("Cut-out")), (169.0, 30.0, Some("155 mm")));
     assert!(ledvance.parts.iter().any(|p| p.subgroup == "Emergency light"));
 }
+
+#[test]
+fn cee_sockets_cooker_boxes_junction_boxes_and_connectors_for_the_installation() {
+    let get = |id: &str, n: &str| load(id).unwrap().parts.into_iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));
+    // CEE sockets of Mennekes: five poles on the wall at 1.05 m, modelled as CEE sockets.
+    for n in ["MEN.27005", "MEN.5515", "MEN.7233"] {
+        let p = get("mennekes", n);
+        assert!(p.wall_mountable() && p.subgroup == "Socket outlet" && p.model_3d.is_some(), "{n}");
+        assert_eq!(p.functions[0].pin_list().len(), 5, "{n}");
+        assert_eq!(p.tech_value("Mounting height"), Some("1050 mm"));
+    }
+    assert_eq!(get("mennekes", "MEN.7233").current, "32 A");
+    // The cooker connection box of Merten, flush-mounted.
+    let herd = get("merten", "MER.520427");
+    assert_eq!((herd.subgroup.as_str(), herd.width, herd.depth), ("Device connection box", 86.0, 42.0));
+    // Spelsberg junction boxes are enclosures for the WAGO connectors inside.
+    let abox = get("spelsberg", "SPE.81040001");
+    assert_eq!((abox.width, abox.height, abox.depth), (152.0, 152.0, 80.0));
+    assert_eq!(abox.tech_value("Junction box enclosure"), Some("yes"));
+    let wago = get("wago", "WAGO.221-415");
+    assert_eq!((wago.subgroup.as_str(), wago.tech_value("Conductors")), ("Splicing connector", Some("5")));
+}

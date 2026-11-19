@@ -105,6 +105,9 @@ enum Kind {
     /// Smoke alarm on the ceiling: its base, the ring of smoke inlets, the dome with the
     /// test button and its light.
     Smoke,
+    /// Splicing connector of a junction box: its clear housing with a lever (or a
+    /// push-in opening) per conductor.
+    Splice { conductors: usize, lever: bool },
 }
 
 /// The shape of an electric heating element.
@@ -199,6 +202,10 @@ fn kind_of(p: &Part) -> Option<Kind> {
         "Socket outlet" if has("cee") => Kind::Cee,
         "Device connection box" => Kind::Outlet(Outlet::Cover),
         "Smoke alarm" => Kind::Smoke,
+        "Splicing connector" => Kind::Splice {
+            conductors: p.tech_value("Conductors").and_then(|v| v.trim().parse().ok()).unwrap_or(2usize).clamp(1, 8),
+            lever: has("lever"),
+        },
         "Socket outlet" if p.wall_mountable() => Kind::Outlet(Outlet::Socket { gangs: ((p.width / 75.0).round() as usize).max(1), lid: has("lid"), usb: has("usb") }),
         "Data outlet" => Kind::Outlet(Outlet::Data(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
         "Antenna outlet" => Kind::Outlet(Outlet::Antenna(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
@@ -890,6 +897,22 @@ fn build(p: &Part) -> Option<(Model2d, Mesh3d, Option<Shaft>, Vec<Nozzle>)> {
             m.add_cylinder([cx, cy, 0.7 * d], 2, 0.9 * r, 0.3 * d, ROUND + 8, WHITE);
             m.add_painted_box([cx - 0.15 * r, cy - 0.02 * r, 0.98 * d], [cx + 0.15 * r, cy + 0.02 * r, d], DARK);
             circle(&mut prims, [cx, cy], r);
+        }
+        Kind::Splice { conductors, lever } => {
+            // The clear housing with the conductor entries at its front end, per
+            // conductor an orange lever (or the grey top of a push-in clamp).
+            m.add_painted_box([0.0, 0.0, 0.0], [w, 0.85 * h, 0.7 * d], [214, 222, 226]);
+            let pitch = w / conductors as f32;
+            for k in 0..conductors {
+                let x = pitch * k as f32;
+                m.add_cylinder([x + pitch / 2.0, 0.0, 0.35 * d], 1, 0.25 * pitch.min(d), 0.05 * h, 10, [120, 126, 132]);
+                if lever {
+                    m.add_painted_box([x + 0.12 * pitch, 0.3 * h, 0.7 * d], [x + 0.88 * pitch, h, d], [236, 118, 26]);
+                } else {
+                    m.add_painted_box([x + 0.15 * pitch, 0.5 * h, 0.7 * d], [x + 0.85 * pitch, 0.85 * h, 0.85 * d], [150, 156, 162]);
+                }
+                prims.push(Prim2d::Rect { min: [x + 0.12 * pitch, 0.0], max: [x + 0.88 * pitch, 0.7 * h], fill: false });
+            }
         }
         Kind::Smoke => {
             // Base on the ceiling, the grey ring of the smoke inlets, the dome with the

@@ -631,12 +631,19 @@ pub struct PanelUi {
     /// Circuits of the generic heating circuit manifold chosen in the installation menu.
     manifold_circuits: usize,
     installation: InstallationPick,
+    /// The part of the installation menu where it would go in the 3D view, for the
+    /// pointer's place (part and place in 5 mm): its room and item, or why not.
+    ghost: Option<Ghost>,
     /// The building chosen in the earthing menu (index).
     earthing_target: Option<usize>,
 }
 
 /// The tabs of the installation menu: title, what it holds and the subgroups of their
 /// parts.
+/// A part of the installation menu where it would go in the 3D view: the part and the
+/// place (5 mm steps, height or -1), and the room and item there, or why not.
+type Ghost = ((String, [i64; 3]), Result<(usize, PanelItem), String>);
+
 const INSTALLATION: [(&str, &str, &[&str]); 5] = [
     (tr_const!("Outlets"), tr_const!("Socket outlets, data and antenna outlets"), &["Socket outlet", "Data outlet", "Antenna outlet"]),
     (tr_const!("Switches"), tr_const!("Switches, push buttons and room thermostats"), &["Switch", "Push button", "Blind switch", "Dimmer", "Glass push button", "Room thermostat"]),
@@ -786,6 +793,7 @@ impl Default for PanelUi {
             nav_level: None,
             manifold_circuits: 6,
             installation: InstallationPick::default(),
+            ghost: None,
             earthing_target: None,
         }
     }
@@ -3397,8 +3405,9 @@ impl PanelUi {
 
     /// Places part `part` (from the installation menu) in room `ri` at point `at` of the
     /// plant clicked in the 3D view, into the schematic like [`Self::put_into_schematic`].
-    pub(super) fn place_in_room(&mut self, prj: &mut Project, ri: usize, part: &str, at: [f32; 2]) {
-        match openecraft_core::installation::place(prj, ri, part, at) {
+    /// `height`: mm above the floor (`None`: the part's mounting height).
+    pub(super) fn place_in_room(&mut self, prj: &mut Project, ri: usize, part: &str, at: [f32; 2], height: Option<f32>) {
+        match openecraft_core::installation::place_at(prj, ri, part, at, height) {
             Ok(id) => {
                 self.status = tr("Placed").to_string();
                 self.put_into_schematic(prj, part, id);

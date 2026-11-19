@@ -921,6 +921,14 @@ gland takes one cable: the free one whose clamping range fits the cable, nearest
 where it heads; a cable entry flange takes as many as have places along its membrane.
 A cable that finds every gland of its cabinet taken is not routed and reported as an
 error (*… every cable gland of … is taken by another cable. Add a cable gland for it*).
+A junction box of a maker marked as an enclosure (part data `Junction box enclosure:
+yes`, the Spelsberg Abox) is placed on a wall as an enclosure of the room, its rear on
+the wall, its middle at the mounting height, with a WAGO 221-415 splicing connector
+inside that becomes the device of the schematic (the cables of its circuit run into
+the box). In the 3D view a click on the inside of a wall or the ceiling of a room places
+a part there: within 200 mm of its mounting height at that height (its installation
+zone), farther off at the height clicked; the part is shown see-through where it would
+go while the pointer moves.
 With *Add cable glands for new cables* (enclosure properties, `set_auto_glands`; on by
 default) a new cable that leaves a cabinet for a device outside it and its line-up and
 finds no free gland there gets one in the bottom of the cabinet: of polyamide, the

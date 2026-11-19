@@ -1,0 +1,38 @@
+{
+  "catalog": {
+    "id": "merten",
+    "name": "Merten",
+    "manufacturer": "Merten",
+    "version": "2026.1",
+    "description": "Cooker connection boxes (Herdanschlussdosen) for flush mounting of Merten (Schneider Electric). From public data sheets; check against the manufacturer data before ordering."
+  },
+  "parts": [
+    {
+      "number": "MER.520427",
+      "type_number": "520427",
+      "order_number": "520427",
+      "manufacturer": "Merten",
+      "description": "Cooker connection box, flush-mounted, flat, five double terminals 2.5 mm², for 70 mm flush boxes with extension claws, polar white, 86 x 86 x 42 mm",
+      "group": "Installation devices",
+      "subgroup": "Device connection box",
+      "identifier": "XD",
+      "functions": [
+        {
+          "kind": "Generic",
+          "pins": "L1 L2 L3 N PE"
+        }
+      ],
+      "voltage": "400 V AC",
+      "current": "16 A",
+      "width": 86.0,
+      "height": 86.0,
+      "depth": 42.0,
+      "weight": 0.09,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 600 mm\nTerminals: 5 double terminals 2.5 mm²\nColour: polar white\nFlush box: 70 mm with extension claws"
+    }
+  ]
+}

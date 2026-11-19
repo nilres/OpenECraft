@@ -21,11 +21,15 @@ const FILES: &[(&str, &str)] = &[
     ("longi", include_str!("../catalogs/longi.json")),
     ("loxone", include_str!("../catalogs/loxone.json")),
     ("mdt", include_str!("../catalogs/mdt.json")),
+    ("mennekes", include_str!("../catalogs/mennekes.json")),
+    ("merten", include_str!("../catalogs/merten.json")),
     ("phoenix_contact", include_str!("../catalogs/phoenix_contact.json")),
     ("pylontech", include_str!("../catalogs/pylontech.json")),
     ("siemens", include_str!("../catalogs/siemens.json")),
     ("signify", include_str!("../catalogs/signify.json")),
+    ("spelsberg", include_str!("../catalogs/spelsberg.json")),
     ("victron", include_str!("../catalogs/victron.json")),
+    ("wago", include_str!("../catalogs/wago.json")),
     ("weidmueller", include_str!("../catalogs/weidmueller.json")),
 ];
 
@@ -45,11 +49,15 @@ const LOGOS: &[(&str, &str)] = &[
     ("longi", include_str!("../catalogs/logos/longi.svg")),
     ("loxone", include_str!("../catalogs/logos/loxone.svg")),
     ("mdt", include_str!("../catalogs/logos/mdt.svg")),
+    ("mennekes", include_str!("../catalogs/logos/mennekes.svg")),
+    ("merten", include_str!("../catalogs/logos/merten.svg")),
     ("phoenix_contact", include_str!("../catalogs/logos/phoenix_contact.svg")),
     ("pylontech", include_str!("../catalogs/logos/pylontech.svg")),
     ("siemens", include_str!("../catalogs/logos/siemens.svg")),
     ("signify", include_str!("../catalogs/logos/signify.svg")),
+    ("spelsberg", include_str!("../catalogs/logos/spelsberg.svg")),
     ("victron", include_str!("../catalogs/logos/victron.svg")),
+    ("wago", include_str!("../catalogs/logos/wago.svg")),
     ("weidmueller", include_str!("../catalogs/logos/weidmueller.svg")),
 ];
 

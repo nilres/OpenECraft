@@ -1,0 +1,92 @@
+{
+  "catalog": {
+    "id": "mennekes",
+    "name": "Mennekes",
+    "manufacturer": "Mennekes",
+    "version": "2026.1",
+    "description": "CEE wall sockets 16 A and 32 A, 5 poles, 400 V, 6 h, for three-phase circuits. From the product information sheets of Mennekes; check against the manufacturer data before ordering."
+  },
+  "parts": [
+    {
+      "number": "MEN.27005",
+      "type_number": "27005",
+      "order_number": "27005",
+      "manufacturer": "Mennekes",
+      "description": "CEE wall socket 16 A 5-pole 400 V 6 h, IP44, screw terminals, cable entry at the top",
+      "group": "Installation devices",
+      "subgroup": "Socket outlet",
+      "identifier": "XD",
+      "functions": [
+        {
+          "kind": "SocketOutlet",
+          "pins": "L1 L2 L3 N PE"
+        }
+      ],
+      "voltage": "400 V AC",
+      "current": "16 A",
+      "width": 87.5,
+      "height": 136.5,
+      "depth": 110.0,
+      "weight": 0.335,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1050 mm\nProtection: IP44\nPoles: 5\nClock position: 6 h\nConnection: screw terminals"
+    },
+    {
+      "number": "MEN.5515",
+      "type_number": "5515",
+      "order_number": "5515",
+      "manufacturer": "Mennekes",
+      "description": "CEE wall socket 16 A 5-pole 400 V 6 h, IP67, screw terminals, large connection space for looping through",
+      "group": "Installation devices",
+      "subgroup": "Socket outlet",
+      "identifier": "XD",
+      "functions": [
+        {
+          "kind": "SocketOutlet",
+          "pins": "L1 L2 L3 N PE"
+        }
+      ],
+      "voltage": "400 V AC",
+      "current": "16 A",
+      "width": 118.0,
+      "height": 253.0,
+      "depth": 152.0,
+      "weight": 0.74,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1050 mm\nProtection: IP67\nPoles: 5\nClock position: 6 h\nConnection: screw terminals"
+    },
+    {
+      "number": "MEN.7233",
+      "type_number": "7233",
+      "order_number": "7233",
+      "manufacturer": "Mennekes",
+      "description": "CEE wall socket 32 A 5-pole 400 V 6 h, IP44, switched, with circuit breaker K and residual current device 30 mA, lockable",
+      "group": "Installation devices",
+      "subgroup": "Socket outlet",
+      "identifier": "XD",
+      "functions": [
+        {
+          "kind": "SocketOutlet",
+          "pins": "L1 L2 L3 N PE"
+        }
+      ],
+      "voltage": "400 V AC",
+      "current": "32 A",
+      "width": 134.0,
+      "height": 411.0,
+      "depth": 168.0,
+      "weight": 2.812,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1050 mm\nProtection: IP44\nPoles: 5\nClock position: 6 h\nConnection: screw terminals\nProtection devices: circuit breaker K, RCD 30 mA"
+    }
+  ]
+}

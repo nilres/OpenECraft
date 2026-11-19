@@ -90,6 +90,13 @@ fn boxes_alarms_and_three_phase_devices_of_rooms_get_their_models() {
     assert!(model(get("GEN.SOCKET-CEE-16-5P")).unwrap().1.colors.contains(&RED));
     assert!(model(get("GEN.SMOKE-ALARM")).unwrap().1.colors.contains(&RED));
     assert!(parts.iter().filter(|p| p.subgroup == "House connection box").all(|p| kind_of(p) == Some(Kind::Housing)));
+    // The splicing connectors of WAGO: a lever per conductor.
+    let wago = crate::bundled::load("wago").unwrap();
+    let c = wago.parts.iter().find(|p| p.number == "WAGO.221-415").unwrap();
+    assert_eq!(kind_of(c), Some(Kind::Splice { conductors: 5, lever: true }));
+    let (_, mesh) = model(c).unwrap();
+    assert_eq!(mesh.bounds(), ([0.0; 3], [c.width, c.height, c.depth]));
+    assert!(c.model_3d.as_ref().is_some_and(|m| !m.colors.is_empty()));
 }
 
 #[test]
