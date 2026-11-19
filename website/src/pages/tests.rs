@@ -255,3 +255,21 @@ fn the_comparison_links_the_pages_of_the_single_products() {
         assert!(html.contains(&format!("<a class=\"button\" data-page href=\"{product}/\">")), "compare links {product}");
     }
 }
+
+/// A check that pipes an answer into a reader that stops early (`grep -q`, `head`,
+/// `tee` of a closed reader) fails at random with "curl: (23) Failure writing output":
+/// the reader is gone before the sender wrote everything, and `pipefail` makes that
+/// an error. The sitemap of some thousand pages made it fail every time.
+#[test]
+fn the_checks_of_the_images_search_saved_answers() {
+    for name in ["check-website.sh", "check-editor-web.sh", "check-server.sh"] {
+        let script = read(&format!("../installer/docker/{name}"));
+        for (number, line) in script.lines().enumerate().filter(|(_, line)| !line.trim_start().starts_with('#')) {
+            let pipes: Vec<&str> = line.split(" | ").collect();
+            let (senders, readers) = (&pipes[..pipes.len() - 1], &pipes[1..]);
+            let stops = |reader: &&str| reader.starts_with("head") || reader.starts_with("tee") || reader.split_whitespace().take_while(|word| *word == "grep" || word.starts_with('-')).any(|word| word.starts_with('-') && !word.starts_with("--") && word.contains('q'));
+            assert!(!readers.iter().any(stops), "{name}:{}: save the answer, then search the file (has): {line}", number + 1);
+            assert!(!senders.iter().any(|sender| sender.contains("curl ") || sender.contains("docker logs")), "{name}:{}: save the answer, then read the file: {line}", number + 1);
+        }
+    }
+}
