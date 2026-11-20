@@ -82,6 +82,7 @@ Active	有効
 Actuators on the door	扉の操作部
 Add a command	コマンドを追加
 Add a target language to translate the project texts.	プロジェクトテキストを翻訳するには、ターゲット言語を追加してください。
+Add control point	経由点を追加
 Add filter	フィルターを追加
 Add folder…	フォルダーを追加…
 Add group	グループを追加
@@ -426,6 +427,9 @@ Consecutive addresses from the start byte, in schematic order	開始バイトか
 Contact image below coils	コイルの下に接点イメージ
 Content	内容
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	無効なオプションの内容は非表示になり、描画、評価、レポート、エクスポートの対象外になります。
+Control point {} added: drag it to route {} again	経由点 {} を追加しました: ドラッグすると {} を再配線します
+Control point {} of {} moved	経由点 {}（{}）を移動しました
+Control points: {}	経由点: {}
 Coordinate reference system	座標参照系
 Copies	コピー数
 Copies function texts between both representations where one is empty	一方が空の場合、両方の表現の間で機能テキストをコピーします
@@ -1021,6 +1025,7 @@ Layout checks	レイアウトチェック
 Layout properties	レイアウトのプロパティ
 Layout space	レイアウト空間
 Layout spaces	レイアウト空間
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	ここの点を経由してルートを通します: ドラッグすると、曲げ半径を保ち、何にも触れずに電線、ケーブル、チューブを再配線します
 Leave out the ceilings of the rooms and the roofs in the 3D view	3D ビューで部屋の天井と屋根を省略
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	3D ビューですべての配線ダクトのふたを省略します：中の電線が見えます
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	3D ビューで PVアレイのモジュールを非表示にします。レール、屋根フック、架台、接地、配線が見えます
@@ -1302,6 +1307,7 @@ Not changed: {}. Your version is kept in the Project server pane.	変更され�
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	まだ接続されていません：機器もケーブルもありません。回路の保護機器を選んでください。
 Not found: {}	見つかりません: {}
 Not in the project parts – synchronize in parts management	プロジェクト部品にありません – 部品管理で同期してください
+Not led through its control points: see the messages	経由点を通っていません: メッセージを確認してください
 Not on a wire	電線上にありません
 Not placed	未配置
 Not saved yet	未保存
@@ -1634,6 +1640,8 @@ Released pages keep their name.	リリース済みのページは名前を維持
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	元のプロジェクトのリリース済みリビジョン、ベースライン、コメント、マークアップ、承認、変更依頼。これらがない場合、コピーは新しいプロジェクトとして始まります。
 Releases all locks; the project stays open as a local copy	すべてのロックを解放します。プロジェクトはローカルコピーとして開いたままになります
 Releasing…	解放しています…
+Remove all control points	すべての経由点を削除
+Remove control point	経由点を削除
 Remove from cable	ケーブルから削除
 Remove from harness	ハーネスから削除
 Remove from the group	グループから削除
@@ -1730,6 +1738,7 @@ Right button	右ボタン
 Right click for more	右クリックでその他の操作
 Right edges	右端
 Right neighbour	右隣
+Right-click the route to add a control point, then drag it	ルートを右クリックして経由点を追加し、ドラッグします
 Rights	権限
 Risers	蹴上げ数
 Rod holder	突針支持金具

@@ -82,6 +82,7 @@ Active	Aktivní
 Actuators on the door	Ovládací prvky na dveřích
 Add a command	Přidat příkaz
 Add a target language to translate the project texts.	Chcete-li přeložit texty projektu, přidejte cílový jazyk.
+Add control point	Přidat průchozí bod
 Add filter	Přidat filtr
 Add folder…	Přidat složku…
 Add group	Přidat skupinu
@@ -429,6 +430,9 @@ Consecutive addresses from the start byte, in schematic order	Po sobě jdoucí a
 Contact image below coils	Zrcadlo kontaktů pod cívkami
 Content	Obsah
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Obsah neaktivní volby je skrytý: nekreslí se, nevyhodnocuje, nevykazuje ani neexportuje.
+Control point {} added: drag it to route {} again	Průchozí bod {} přidán: přetáhněte jej a {} se povede znovu
+Control point {} of {} moved	Průchozí bod {} prvku {} přesunut
+Control points: {}	Průchozí body: {}
 Coordinate reference system	Souřadnicový referenční systém
 Copies	Kopie
 Copies function texts between both representations where one is empty	Zkopíruje texty funkcí mezi oběma zobrazeními tam, kde je jedno prázdné
@@ -1033,6 +1037,7 @@ Layout checks	Kontroly rozvržení
 Layout properties	Vlastnosti rozvržení
 Layout space	Montážní prostor
 Layout spaces	Montážní prostory
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Vést trasu bodem zde: přetáhněte jej a vodič, kabel nebo trubka se povede znovu, s poloměrem ohybu a mimo vše ostatní
 Leave out the ceilings of the rooms and the roofs in the 3D view	Vynechat stropy místností a střechy ve 3D zobrazení
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Ve 3D zobrazení vynechá víka všech kabelových kanálů: vodiče v nich jsou vidět
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Vynechat moduly FV polí ve 3D pohledu: jsou vidět lišty, střešní háky, podpěry, uzemnění a kabeláž
@@ -1319,6 +1324,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nezměněno: {
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Zatím nepřipojeno: žádný přístroj, žádný kabel. Zvolte ochranný přístroj jeho obvodu.
 Not found: {}	Nenalezeno: {}
 Not in the project parts – synchronize in parts management	Není mezi artikly projektu – synchronizujte ve správě artiklů
+Not led through its control points: see the messages	Nevede přes své průchozí body: viz zprávy
 Not on a wire	Neleží na vodiči
 Not placed	Neumístěno
 Not saved yet	Ještě neuloženo
@@ -1656,6 +1662,8 @@ Released pages keep their name.	Uvolněné stránky si ponechají název.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Uvolněné revize, základní verze, komentáře, značky, schválení a požadavky na změnu originálu. Bez nich kopie začíná jako nový projekt.
 Releases all locks; the project stays open as a local copy	Uvolní všechny zámky; projekt zůstane otevřený jako místní kopie
 Releasing…	Uvolňování…
+Remove all control points	Odstranit všechny průchozí body
+Remove control point	Odstranit průchozí bod
 Remove from cable	Odebrat z kabelu
 Remove from harness	Odebrat ze svazku
 Remove from the group	Odebrat ze skupiny
@@ -1752,6 +1760,7 @@ Right button	Pravé tlačítko
 Right click for more	Kliknutím pravým tlačítkem další možnosti
 Right edges	Pravé hrany
 Right neighbour	Pravý soused
+Right-click the route to add a control point, then drag it	Klepněte pravým tlačítkem na trasu, přidejte průchozí bod a pak jej přetáhněte
 Rights	Práva
 Risers	Podstupnice
 Rod holder	Držák tyče

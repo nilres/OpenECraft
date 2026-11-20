@@ -124,6 +124,7 @@ impl PanelUi {
             self.cam_goal = None;
         }
         let fitted = default_cam(prj, &shown);
+        let control_key = self.control_key(an);
         let cam = self.cam.get_or_insert(fitted);
         let f = rect.height() * 1.3;
         let mut moved = false;
@@ -133,12 +134,12 @@ impl PanelUi {
         let mods = ui.input(|i| i.modifiers);
         let gestures = crate::gestures::get(ui.ctx());
         let gesture = openecraft_ui::nav::read(ui, &resp);
-        // A control point of the selected cable or tube dragged (where it was drawn in the
+        // A control point of the selected wire, cable or tube dragged (where it was drawn in the
         // last frame) moves instead of the camera.
         if resp.drag_started_by(PointerButton::Primary) && self.control_drag.is_none() {
             let origin = ui.input(|i| i.pointer.press_origin());
             let near = origin.and_then(|o| self.handles_3d.iter().filter(|(s, ..)| s.distance(o) <= PICK).min_by(|a, b| a.0.distance(o).total_cmp(&b.0.distance(o))));
-            if let (Some((_, h, v, z)), Some(key)) = (near.cloned(), self.selected_route.clone()) {
+            if let (Some((_, h, v, z)), Some(key)) = (near.cloned(), control_key) {
                 self.control_drag = Some(ControlDrag { key, index: h.index, at: h.at, from: h.at, view: Some((v, z)) });
             }
         }
@@ -309,7 +310,7 @@ impl PanelUi {
                 }
             }
         }
-        // The control points of the selected cable or tube; one dragged follows the pointer
+        // The control points of the selected wire, cable or tube; one dragged follows the pointer
         // at the depth it had, the route is searched through it where it is dropped.
         let pos = panel::positions(&prj.layout);
         let to_view = |room: Option<usize>, q: V3| super::scene3d::layout_to_view(prj, &shown, &pos, ei, room, q);
@@ -342,16 +343,16 @@ impl PanelUi {
             }
         }
         // A right click selects what is under the pointer for the context menu: a control
-        // point of the selected cable or tube, or a cable or tube to add one to.
+        // point of the selected wire, cable or tube, or a wire, cable or tube to add one to.
         if let Some(ptr) = resp.interact_pointer_pos().filter(|_| menu_pick && placing.is_none()) {
             self.route_menu = None;
             let shown: Vec<(Pos2, super::routing_ui::Handle)> = self.handles_3d.iter().map(|(s, h, ..)| (*s, h.clone())).collect();
             let near = super::routing_ui::handle_near(&shown, ptr);
-            match (near, self.selected_route.clone()) {
+            match (near, self.control_key(an)) {
                 (Some(h), Some(key)) => self.route_menu = Some(RouteMenu { key, at: h.at, handle: Some(h.index) }),
                 _ => {
                     self.pick_3d(prj, an, &scene, &prims, &project_view, ptr);
-                    if let Some(key) = self.selected_route.clone() {
+                    if let Some(key) = self.control_key(an) {
                         let flat = |leg: Option<usize>, v: V3| project_view(to_view(leg, v)).map(|s| p(s.0.x, s.0.y));
                         let near = an.routing.item(&key).and_then(|it| super::routing_ui::nearest_on(it.stretches().into_iter().flat_map(|(leg, pts)| pts.windows(2).map(move |s| (leg, s[0], s[1]))), flat, p(ptr.x, ptr.y)));
                         self.route_menu = near.filter(|n| n.1 <= PICK).map(|n| RouteMenu { key, at: n.0, handle: None });

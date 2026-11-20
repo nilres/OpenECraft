@@ -541,9 +541,11 @@ pub fn wire_key(w: &RoutedWire) -> String {
 
 /// The wire is routed in 3D (instead of along the cable ducts of the mounting plate):
 /// every wire with [`RoutingRules::wires_3d`], the wires of a room and of a cabinet
-/// without cable ducts always ([`between_points`]), never a wire to the door.
+/// without cable ducts always ([`between_points`]) and a wire with control points
+/// (it is led through them), never a wire to the door.
 pub fn wire_in_3d(layout: &Layout, w: &RoutedWire) -> bool {
-    (layout.routing.wires_3d || between_points(layout, w)) && w.door == (None, None)
+    let controlled = || !layout.controls.is_empty() && layout.controls.iter().any(|c| c.key == wire_key(w));
+    (layout.routing.wires_3d || between_points(layout, w) || controlled()) && w.door == (None, None)
 }
 
 /// The wire runs from connection point to connection point through the space (not
@@ -1390,7 +1392,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
         .into_iter()
         .map(|(key, points)| (key, points.into_iter().enumerate().map(|(n, (lu, q))| (n, lu, q)).collect()))
         .collect();
-    let controlled = |job: &Job| job.kind != RouteKind::Wire && job.fixed.is_none() && controls.contains_key(job.key.as_str());
+    let controlled = |job: &Job| job.fixed.is_none() && controls.contains_key(job.key.as_str());
     // The control points of a job on a leg (in the line-up or room of the leg).
     let vias = |job: &Job, leg: &room::LegPlan| -> Vec<(usize, V3)> {
         if !controlled(job) {
@@ -1681,8 +1683,12 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
             let radii = grid::corner_radii(&points, radius);
             ways.push((leg.lineup, points, free, radii));
         }
-        // Control points in no line-up or room the route is searched through.
+        // Control points in no line-up or room the route is searched through; a wire to
+        // the door keeps its way along the door.
         let count = if controlled(job) { controls[job.key.as_str()].len() } else { 0 };
+        if known && controls.contains_key(job.key.as_str()) {
+            problems.push(Problem { level: Level::Error, message: tr_fmt!("{} {} runs to the door: it cannot be led through its control points. Remove them.", job.kind.title(), job.label), target: job.target });
+        }
         for n in (0..count).filter(|n| !on_legs.contains(n)) {
             problems.push(Problem { level: Level::Error, message: tr_fmt!("Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.", n + 1, job.kind.title(), job.label), target: job.target });
         }

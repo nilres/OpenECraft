@@ -82,6 +82,7 @@ Active	Aktiivinen
 Actuators on the door	Oven käyttöelimet
 Add a command	Lisää komento
 Add a target language to translate the project texts.	Lisää kohdekieli kääntääksesi projektin tekstit.
+Add control point	Lisää ohjauspiste
 Add filter	Lisää suodatin
 Add folder…	Lisää kansio…
 Add group	Lisää ryhmä
@@ -429,6 +430,9 @@ Consecutive addresses from the start byte, in schematic order	Peräkkäiset osoi
 Contact image below coils	Kosketinkuvio kelojen alla
 Content	Sisältö
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Ei-aktiivisen vaihtoehdon sisältö on piilotettu: sitä ei piirretä, arvioida, raportoida eikä viedä.
+Control point {} added: drag it to route {} again	Ohjauspiste {} lisätty: vedä sitä reitittääksesi kohteen {} uudelleen
+Control point {} of {} moved	Ohjauspiste {} kohteelle {} siirretty
+Control points: {}	Ohjauspisteet: {}
 Coordinate reference system	Koordinaattijärjestelmä
 Copies	Kopiot
 Copies function texts between both representations where one is empty	Kopioi toimintotekstit esitystapojen välillä, kun toinen on tyhjä
@@ -1033,6 +1037,7 @@ Layout checks	Asennustarkistukset
 Layout properties	Asennuskuvan ominaisuudet
 Layout space	Asennustila
 Layout spaces	Asennustilat
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Ohjaa reitti tässä olevan pisteen kautta: vedä sitä reitittääksesi johdon, kaapelin tai putken uudelleen sen taivutussäteellä ja vapaana kaikesta
 Leave out the ceilings of the rooms and the roofs in the 3D view	Jätä tilojen katot ja yläpohjat pois 3D-näkymästä
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Jätä kaikkien johtokanavien kannet pois 3D-näkymästä: niissä olevat johtimet näkyvät
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Jätä aurinkopaneelikenttien moduulit pois 3D-näkymästä: kiskot, kattokoukut, telineet, maadoitus ja kaapelointi näkyvät
@@ -1319,6 +1324,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Ei muutettu: {
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ei vielä liitetty: ei laitetta, ei kaapelia. Valitse sen ryhmän suojalaite.
 Not found: {}	Ei löytynyt: {}
 Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
+Not led through its control points: see the messages	Ei kulje ohjauspisteidensä kautta: katso viestit
 Not on a wire	Ei johdolla
 Not placed	Ei sijoitettu
 Not saved yet	Ei vielä tallennettu
@@ -1656,6 +1662,8 @@ Released pages keep their name.	Vapautetut sivut säilyttävät nimensä.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Alkuperäisen vapautetut revisiot, lähtötasot, kommentit, merkinnät, hyväksynnät ja muutospyynnöt. Ilman niitä kopio alkaa uutena projektina.
 Releases all locks; the project stays open as a local copy	Vapauttaa kaikki lukitukset; projekti pysyy avoinna paikallisena kopiona
 Releasing…	Vapautetaan…
+Remove all control points	Poista kaikki ohjauspisteet
+Remove control point	Poista ohjauspiste
 Remove from cable	Poista kaapelista
 Remove from harness	Poista johtosarjasta
 Remove from the group	Poista ryhmästä
@@ -1752,6 +1760,7 @@ Right button	Oikea painike
 Right click for more	Lisää toimintoja hiiren oikealla painikkeella
 Right edges	Oikeat reunat
 Right neighbour	Oikea naapuri
+Right-click the route to add a control point, then drag it	Lisää ohjauspiste napsauttamalla reittiä hiiren oikealla painikkeella ja vedä sitä sitten
 Rights	Oikeudet
 Risers	Nousut
 Rod holder	Tangon pidike

@@ -2476,3 +2476,37 @@ fn a_control_point_is_added_on_a_cable_and_dragged_in_the_front_view() {
     assert!((now[0] - from[0]).abs() < 5.0 && (now[1] - (from[1] - 60.0)).abs() < 5.0 && (now[2] - from[2]).abs() < 1e-3, "{now:?} {from:?} {}", ui.status);
     assert!(prj.layout.enclosures[0].items.iter().all(|i| i.x == openecraft_core::sample::demo_project().layout.enclosures[0].item(i.id).map_or(i.x, |o| o.x)), "no item moved");
 }
+
+#[test]
+fn a_control_point_is_added_on_a_wire_in_the_front_view() {
+    let mut prj = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { offset: egui::Vec2::ZERO, zoom: 1.0, fit_pending: false, show_wires: true, ..Default::default() };
+    let ctx = egui::Context::default();
+    let input = |time: f64, events| egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(900.0, 1000.0))), time: Some(time), events, ..Default::default() };
+    let button = |pos, pressed| egui::Event::PointerButton { pos, button: egui::PointerButton::Secondary, pressed, modifiers: Default::default() };
+    // The middle of the longest stretch of a wire along the ducts, right-clicked.
+    let wi = an.wiring.iter().position(|w| w.door == (None, None) && !routing3d::wire_in_3d(&prj.layout, w) && an.routing.item(&routing3d::wire_key(w)).is_some_and(|i| i.routed())).unwrap();
+    let path = an.wiring[wi].paths_in(0, Face::Plate)[0].to_vec();
+    let s = path.windows(2).max_by(|a, b| a[0].dist(a[1]).total_cmp(&b[0].dist(b[1]))).unwrap();
+    let fm = prj.layout.enclosures[0].face_offset(Face::Plate);
+    let at = egui::pos2((s[0].x + s[1].x) / 2.0 + fm.x, (s[0].y + s[1].y) / 2.0 + fm.y);
+    for (time, events) in [(0.0, vec![egui::Event::PointerMoved(at)]), (0.1, vec![button(at, true)]), (0.2, vec![button(at, false)])] {
+        ctx.run_ui(input(time, events), |ui_| ui.front_view(ui_, &mut prj, 0, &an, &PartsDb::default())).textures_delta.clear();
+    }
+    // The wire under the pointer is selected and kept for the menu.
+    let menu = ui.route_menu.clone().expect("a wire right-clicked");
+    let picked = ui.wire_index(&an).expect("a wire selected");
+    assert_eq!((menu.key.clone(), menu.handle, ui.selected_route.clone()), (routing3d::wire_key(&an.wiring[picked]), None, None));
+    // Added there, it is routed in 3D through it and shown where it passes.
+    routing3d::add_control(&mut prj, &an.routing, &menu.key, menu.at).unwrap();
+    let an = Analysis::build(&prj);
+    let handles = ui.control_handles(&prj, &an);
+    assert_eq!(handles.len(), 1);
+    assert!(handles[0].ok, "{:?}", an.issues.iter().map(|i| i.message()).collect::<Vec<_>>());
+    assert_eq!(an.routing.item(&menu.key).unwrap().controls.len(), 1);
+    // A wire to the door takes none.
+    let door = an.wiring.iter().find(|w| w.door != (None, None)).unwrap().key();
+    ui.select_wire(door);
+    assert!(ui.control_key(&an).is_none() && ui.control_handles(&prj, &an).is_empty());
+}

@@ -162,9 +162,9 @@ fn enclosure_at(prj: &Project, pos: &[V3], k: usize, q: V3) -> usize {
     lineup.into_iter().find(|&i| q[0] >= pos[i][0] - 0.5 && q[0] <= pos[i][0] + prj.layout.enclosures[i].width + 0.5).unwrap_or(k)
 }
 
-/// The routed cable or tube `key` of `routing`.
+/// The routed wire, cable or tube `key` of `routing`.
 fn routed<'a>(routing: &'a Routing, key: &str) -> Result<&'a super::RoutedItem, String> {
-    routing.item(key).filter(|i| i.kind != RouteKind::Wire && i.routed()).ok_or_else(|| tr_fmt!("No routed cable or tube {}", key))
+    routing.item(key).filter(|i| i.routed()).ok_or_else(|| tr_fmt!("No routed wire, cable or tube {}", key))
 }
 
 /// Adds a control point to the route `key` of `routing` where the route runs nearest
@@ -173,9 +173,9 @@ fn routed<'a>(routing: &'a Routing, key: &str) -> Result<&'a super::RoutedItem, 
 pub fn add_control(prj: &mut Project, routing: &Routing, key: &str, at: V3) -> Result<usize, String> {
     let it = routed(routing, key)?;
     let pos = panel::positions(&prj.layout);
-    let first = it.enclosures.first().copied().ok_or_else(|| tr_fmt!("No routed cable or tube {}", key))?;
+    let first = it.enclosures.first().copied().ok_or_else(|| tr_fmt!("No routed wire, cable or tube {}", key))?;
     let stretches: Vec<(usize, &[V3])> = it.stretches().into_iter().map(|(leg, pts)| (leg.unwrap_or(first), pts)).collect();
-    let (s, q, k, _) = along(&stretches, at).ok_or_else(|| tr_fmt!("No routed cable or tube {}", key))?;
+    let (s, q, k, _) = along(&stretches, at).ok_or_else(|| tr_fmt!("No routed wire, cable or tube {}", key))?;
     let k = enclosure_at(prj, &pos, k, q);
     // Where the points it has lie along the route (where it passes them).
     let before = control_points(prj, key);

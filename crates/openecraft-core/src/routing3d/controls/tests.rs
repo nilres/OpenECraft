@@ -130,6 +130,62 @@ fn editing_control_points_checks_the_route_and_numbers() {
     assert_eq!(control_points(&prj, "-W1").len(), 1);
 }
 
+/// A wire of the demo laid along the cable ducts (not to the door) and the middle of
+/// the longest stretch of its route there.
+fn duct_wire(an: &Analysis) -> (String, V3) {
+    let it = an
+        .routing
+        .items
+        .iter()
+        .filter(|i| i.kind == RouteKind::Wire && i.routed())
+        .filter(|i| i.wire.is_some_and(|wi| an.wiring[wi].door == (None, None) && !crate::routing3d::wire_in_3d(&demo_project().layout, &an.wiring[wi])))
+        .max_by(|a, b| a.length.total_cmp(&b.length))
+        .expect("a wire in the ducts");
+    let s = it.points.windows(2).max_by(|a, b| dist(a[0], a[1]).total_cmp(&dist(b[0], b[1]))).unwrap();
+    (it.key.clone(), [(s[0][0] + s[1][0]) / 2.0, (s[0][1] + s[1][1]) / 2.0, (s[0][2] + s[1][2]) / 2.0])
+}
+
+#[test]
+fn a_wire_with_control_points_is_led_through_them_in_3d() {
+    let mut prj = demo_project();
+    let an = Analysis::checked(&prj);
+    let (key, mid) = duct_wire(&an);
+    assert_eq!(add_control(&mut prj, &an.routing, &key, mid).unwrap(), 0);
+    let wire = |an: &Analysis| an.wiring.iter().find(|w| crate::routing3d::wire_key(w) == key).unwrap().clone();
+    // Routed in 3D from its connection points through the control point.
+    let an = Analysis::checked(&prj);
+    assert!(crate::routing3d::wire_in_3d(&prj.layout, &wire(&an)));
+    let it = an.routing.item(&key).unwrap();
+    assert!(control_errors(&an).is_empty(), "{:?}", control_errors(&an));
+    assert_eq!(it.controls.len(), 1, "{key}");
+    assert!(dist(it.controls[0], mid) <= prj.layout.routing.grid, "{:?} {:?}", it.controls, mid);
+    assert!(it.points.windows(2).any(|s| grid::dist_to_segment(it.controls[0], s[0], s[1]) < 0.01));
+    // Moved into a device it is an error, the wire is laid without it.
+    let t1 = prj.layout.enclosures[0].items.iter().find(|i| i.tag == "-T1").unwrap().clone();
+    let (lo, hi) = crate::panel::item_box(&prj.layout.enclosures[0], &t1);
+    move_control(&mut prj, &key, 0, [(lo[0] + hi[0]) / 2.0, (lo[1] + hi[1]) / 2.0, (lo[2] + hi[2]) / 2.0]).unwrap();
+    let an = Analysis::checked(&prj);
+    assert!(control_errors(&an).iter().any(|m| m.contains("Control point 1 of Wire") && m.contains("lies inside something")), "{:?}", control_errors(&an));
+    let it = an.routing.item(&key).unwrap();
+    assert!(it.routed() && it.controls.is_empty());
+    // Without control points it is laid along the ducts again.
+    remove_control(&mut prj, &key, None).unwrap();
+    assert!(!crate::routing3d::wire_in_3d(&prj.layout, &wire(&Analysis::checked(&prj))));
+}
+
+#[test]
+fn a_wire_to_the_door_cannot_take_control_points() {
+    let mut prj = demo_project();
+    let an = Analysis::checked(&prj);
+    let w = an.wiring.iter().find(|w| w.door != (None, None)).expect("a wire to the door");
+    let key = crate::routing3d::wire_key(w);
+    assert!(!crate::routing3d::wire_in_3d(&prj.layout, w));
+    prj.layout.controls.push(RouteControl { key: key.clone(), points: vec![ControlPoint { enclosure: prj.layout.enclosures[0].id, at: [100.0, 100.0, 100.0] }] });
+    let an = Analysis::checked(&prj);
+    let errors: Vec<String> = an.issues.iter().filter(|i| i.severity == Severity::Error).map(|i| i.message()).collect();
+    assert!(errors.iter().any(|m| m.contains("runs to the door: it cannot be led through its control points")), "{:?}", errors);
+}
+
 #[test]
 fn every_failure_has_a_message() {
     for f in [Failure::Blocked(0), Failure::NoWay(1), Failure::Tight, Failure::Itself] {

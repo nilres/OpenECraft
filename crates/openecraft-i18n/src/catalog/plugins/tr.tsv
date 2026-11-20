@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Bir panodan çıkan ve boş rakor bulamayan her kablo için kendi boyutunda bir kablo rakoru ekler: odadaki bir cihaz için tavana, saha veya duvara asılı bir pano için tabana
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Sağ komşuya bir kablo geçişi ekler: her iki yan duvarda karşılıklı yuvarlak kesimler; panolar arasındaki teller buradan geçer
 Adds a configurator rule: insert a page macro when the condition holds	Bir yapılandırıcı kuralı ekler: koşul sağlandığında bir sayfa makrosu ekle
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Bir telin, kablonun veya tüpün güzergâhına, verilen noktaya en yakın geçtiği yerde bir ara nokta ekler: güzergâh ara noktalarından geçer, bükme yarıçapını korur ve her şeyden uzak kalır
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Saha güzergâh ağına bir düğüm ekler (kavşak, geçiş, bir panoya veya cihaza ulaşılan nokta)
 Adds a planned device to a segment or changes it	Bir segmente planlanmış bir cihaz ekler veya değiştirir
 Adds a project option or changes its description and condition	Bir proje seçeneği ekler veya açıklamasını ve koşulunu değiştirir
@@ -358,6 +359,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Koruma derecesini koru: filtreli fanlar yerine ısı eşanjörü veya soğutma ünitesi
 Key figures of the project and a list of its device tags	Projenin temel göstergeleri ve cihaz etiketlerinin listesi
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projenin temel göstergeleri: sayfalar, semboller, teller, cihazlar, parçalar, kablolar ve kontrol sonuçları
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Döşenen öğenin anahtarı: kablo etiketi, tüp için hose:nereden|nereye, tel için nereden|nereye
 Key, e.g. user.coupling_relay	Anahtar, ör. user.coupling_relay
 Key, e.g. user.customer_code	Anahtar, ör. user.customer_code
 Keys of the routes, comma separated (all if missing)	Güzergâhların anahtarları, virgülle ayrılmış (verilmezse tümü)
@@ -471,6 +473,7 @@ Mirror the symbol	Sembolü yansıt
 Mounting height above the floor in mm (default: that of the part)	Zeminden mm cinsinden montaj yüksekliği (varsayılan: parçanınki)
 Mounting plate size as width and height; empty object restores the centred plate	Montaj plakası boyutu genişlik ve yükseklik olarak; boş nesne ortalanmış plakayı geri getirir
 Mounting size must contain a positive width and height	Montaj boyutu pozitif bir genişlik ve yükseklik içermelidir
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Bir telin, kablonun veya tüpün güzergâhındaki bir ara noktayı taşır; güzergâh ondan geçirilemiyorsa yönlendirme hata bildirir
 Moves an air-termination rod, changes its height, renames or removes it	Bir paratoner çubuğunu taşır, yüksekliğini değiştirir, yeniden adlandırır veya kaldırır
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Bir telin bir ucunu taşır: bağlı olduğu yerden ayrılır ve karşılaştığı şeye bağlanır; tel dik açılı kalır
 Moves symbols, wires and texts; connected wire ends follow	Sembolleri, telleri ve metinleri taşır; bağlı tel uçları onları izler
@@ -508,6 +511,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	{} bus sistemi yok
 No connection point {} on this page	Bu sayfada {} bağlantı noktası yok
 No connection symbol with id {}	{} kimlikli bağlantı sembolü yok
+No control point {}	Ara nokta yok: {}
 No copper bar {}	{} bakır barası yok
 No device description {}	{} cihaz tanımı yok
 No device group {}	{} cihaz grubu yok
@@ -560,6 +564,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Kablonun damar sayısı
 Number of equal bars	Aynı baraların sayısı
 Number of indexed values (0 = a single value)	İndeksli değer sayısı (0 = tek bir değer)
 Number of rows	Satır sayısı
+Number of the control point along the route, from 1	Güzergâh boyunca ara noktanın numarası, 1'den başlar
+Number of the control point along the route, from 1 (all if missing)	Güzergâh boyunca ara noktanın numarası, 1'den başlar (yoksa tümü)
 Numbers the pages with a start value and step; released pages keep their name	Sayfaları başlangıç değeri ve adımla numaralandırır; yayımlanmış sayfalar adlarını korur
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Bir şeridin klemenslerini şerit sırasına göre 1 … n olarak numaralandırır; PE gibi sayısal olmayan tanımlar kalır
 Numbers the wires by the numbering scheme of the project	Telleri projenin numaralandırma şemasına göre numaralandırır
@@ -714,6 +720,7 @@ Remove the entry of upstream and downstream	upstream ve downstream girişini kal
 Remove the profile	Profili kaldır
 Remove the scheme from the project	Şemayı projeden kaldır
 Remove unused definitions (default: false)	Kullanılmayan tanımları kaldır (varsayılan: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Bir telin, kablonun veya tüpün güzergâhındaki bir ara noktayı ya da tümünü kaldırır
 Removes a copper bar	Bir bakır barayı kaldırır
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Bir düğümü (segmentleri ve yerleşimleriyle birlikte), segmenti, yerleşimi, dış hattı, kuşaklama iletkenini veya aksesuarı kaldırır
 Removes a planned device from a segment	Bir segmentten planlanmış bir cihazı kaldırır
@@ -1025,8 +1032,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	x yönünde çalışma alanı, mm
 Working area in y, mm	y yönünde çalışma alanı, mm
 Wrap width in mm (0: no wrapping)	mm cinsinden kaydırma genişliği (0: kaydırma yok)
+X of the point in mm from the left of the enclosure	Noktanın panonun solundan mm cinsinden X değeri
 X position in mm	mm cinsinden X konumu
+Y of the point in mm from the top of the enclosure	Noktanın panonun üstünden mm cinsinden Y değeri
 Y position in mm (downwards)	mm cinsinden Y konumu (aşağı doğru)
+Z of the point in mm from the rear wall of the enclosure	Noktanın panonun arka duvarından mm cinsinden Z değeri
 any, wires, cables or tubes	any, wires, cables veya tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left veya right; elle yerleştirilen metinleri bırakır
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip veya adhesive

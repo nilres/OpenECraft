@@ -143,7 +143,7 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "add_control_point",
-        help: tr_const!("Adds a control point to the route of a cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything"),
+        help: tr_const!("Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything"),
         params: &[
             param("key", Kind::Str, ROUTE_KEY),
             param("enclosure", Kind::Str, ENCLOSURE),
@@ -155,7 +155,7 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "move_control_point",
-        help: tr_const!("Moves a control point of the route of a cable or tube; the routing reports an error where the route cannot be led through it"),
+        help: tr_const!("Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it"),
         params: &[
             param("key", Kind::Str, ROUTE_KEY),
             param("index", Kind::Int, tr_const!("Number of the control point along the route, from 1")),
@@ -168,7 +168,7 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "remove_control_point",
-        help: tr_const!("Removes a control point of the route of a cable or tube, or all of them"),
+        help: tr_const!("Removes a control point of the route of a wire, cable or tube, or all of them"),
         params: &[
             param("key", Kind::Str, ROUTE_KEY),
             optional("index", Kind::Int, tr_const!("Number of the control point along the route, from 1 (all if missing)")),
@@ -222,7 +222,7 @@ const LENGTH: Param = optional("length", Kind::Num, tr_const!("Length in m"));
 const DESCRIPTION: Param = optional("description", Kind::Str, tr_const!("Description"));
 
 const ENCLOSURE: &str = tr_const!("Enclosure (location, e.g. +CAB1)");
-const ROUTE_KEY: &str = tr_const!("Key of the route: the cable tag, or hose:from|to of a tube");
+const ROUTE_KEY: &str = tr_const!("Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire");
 const CONTROL_X: &str = tr_const!("X of the point in mm from the left of the enclosure");
 const CONTROL_Y: &str = tr_const!("Y of the point in mm from the top of the enclosure");
 const CONTROL_Z: &str = tr_const!("Z of the point in mm from the rear wall of the enclosure");

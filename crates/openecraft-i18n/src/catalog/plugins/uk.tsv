@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Додає кабельний ввід потрібного розміру для кожного кабелю, що виходить із шафи й не знаходить вільного вводу: у даху для пристрою в приміщенні, у днищі для поля або шафи, що висить на стіні
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Додає кабельний прохід до сусіда праворуч: круглі вирізи один навпроти одного в обох бічних стінках; проводи між корпусами проходять крізь нього
 Adds a configurator rule: insert a page macro when the condition holds	Додає правило конфігуратора: вставити макрос сторінки, коли умова виконується
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Додає опорну точку до траси проводу, кабелю або трубки там, де вона проходить найближче до заданої точки: траса проходить через опорні точки, зберігає радіус згину й оминає все
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Додає вузол мережі трас (відгалуження, прохід, точка підходу до шафи чи пристрою)
 Adds a planned device to a segment or changes it	Додає запланований пристрій до сегмента або змінює його
 Adds a project option or changes its description and condition	Додає опцію проєкту або змінює її опис і умову
@@ -358,6 +359,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Зберігати ступінь захисту: теплообмінник або холодильний агрегат замість фільтрувальних вентиляторів
 Key figures of the project and a list of its device tags	Ключові показники проєкту та список позначень його пристроїв
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Ключові показники проєкту: сторінки, символи, проводи, пристрої, вироби, кабелі та результати перевірок
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Ключ прокладеного елемента: позначення кабелю, hose:від|до для трубки, від|до для проводу
 Key, e.g. user.coupling_relay	Ключ, напр. user.coupling_relay
 Key, e.g. user.customer_code	Ключ, напр. user.customer_code
 Keys of the routes, comma separated (all if missing)	Ключі трас через кому (усі, якщо не вказано)
@@ -471,6 +473,7 @@ Mirror the symbol	Віддзеркалити символ
 Mounting height above the floor in mm (default: that of the part)	Висота монтажу над підлогою в mm (за замовчуванням: з виробу)
 Mounting plate size as width and height; empty object restores the centred plate	Розмір монтажної панелі як ширина й висота; порожній об'єкт відновлює панель по центру
 Mounting size must contain a positive width and height	Монтажний розмір має містити додатні ширину й висоту
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Переміщує опорну точку траси проводу, кабелю або трубки; прокладання повідомляє про помилку, якщо трасу не можна провести через неї
 Moves an air-termination rod, changes its height, renames or removes it	Переміщує блискавкоприймальний стрижень, змінює його висоту, перейменовує чи видаляє його
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Переміщує один кінець проводу: він від'єднується від того, до чого підключений, і підключається до того, чого торкається; провід залишається прямокутним
 Moves symbols, wires and texts; connected wire ends follow	Переміщує символи, проводи й тексти; кінці підключених проводів слідують за ними
@@ -508,6 +511,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Немає шинної системи {}
 No connection point {} on this page	На цій сторінці немає точки підключення {}
 No connection symbol with id {}	Немає символу з'єднання з id {}
+No control point {}	Немає опорної точки {}
 No copper bar {}	Немає мідної шини {}
 No device description {}	Немає опису пристрою {}
 No device group {}	Немає групи пристроїв {}
@@ -560,6 +564,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Кількість жи
 Number of equal bars	Кількість однакових шин
 Number of indexed values (0 = a single value)	Кількість індексованих значень (0 = одне значення)
 Number of rows	Кількість рядків
+Number of the control point along the route, from 1	Номер опорної точки вздовж траси, починаючи з 1
+Number of the control point along the route, from 1 (all if missing)	Номер опорної точки вздовж траси, починаючи з 1 (усі, якщо не вказано)
 Numbers the pages with a start value and step; released pages keep their name	Нумерує сторінки з початковим значенням і кроком; затверджені сторінки зберігають назву
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Нумерує клеми колодки 1 … n у порядку колодки; нечислові позначення, як-от PE, зберігаються
 Numbers the wires by the numbering scheme of the project	Нумерує проводи за схемою нумерації проєкту
@@ -714,6 +720,7 @@ Remove the entry of upstream and downstream	Вилучити запис для u
 Remove the profile	Вилучити профіль
 Remove the scheme from the project	Вилучити схему з проєкту
 Remove unused definitions (default: false)	Вилучити невикористані визначення (за замовчуванням: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Видаляє опорну точку траси проводу, кабелю або трубки або всі
 Removes a copper bar	Вилучає мідну шину
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Вилучає вузол (з його ділянками та розміщеннями), ділянку, розміщення, контур, провідник вирівнювання потенціалів або аксесуар
 Removes a planned device from a segment	Вилучає запланований пристрій із сегмента
@@ -1025,8 +1032,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Робоча зона за x, мм
 Working area in y, mm	Робоча зона за y, мм
 Wrap width in mm (0: no wrapping)	Ширина перенесення в мм (0: без перенесення)
+X of the point in mm from the left of the enclosure	X точки в мм від лівого краю корпусу
 X position in mm	Положення X у мм
+Y of the point in mm from the top of the enclosure	Y точки в мм від верхнього краю корпусу
 Y position in mm (downwards)	Положення Y у мм (донизу)
+Z of the point in mm from the rear wall of the enclosure	Z точки в мм від задньої стінки корпусу
 any, wires, cables or tubes	any, wires, cables або tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left або right; відкидає тексти, розміщені вручну
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip або adhesive

@@ -274,6 +274,8 @@ Contractor	Urakoitsija
 Control	Ohjaus
 Control cabinet	Ohjauskaappi
 Control mode	Ohjaustapa
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Ohjauspiste {} kohteelle {} {} on jonkin sisällä tai kotelon ulkopuolella: se reititetään ilman ohjauspisteitään. Siirrä ohjauspiste vapaaseen tilaan.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Ohjauspiste {} kohteelle {} {} on reittinsä ulkopuolella: ei missään kaapissa tai tilassa, jonka läpi se reititetään. Siirrä ohjauspiste reitille.
 Control transformer	Ohjausmuuntaja
 Control transformer (NFPA)	Ohjausmuuntaja (NFPA)
 Control transformer T (GOST)	Ohjausmuuntaja T (GOST)
@@ -956,6 +958,7 @@ No page or page item with id {}	Sivua tai sivun kohdetta tunnuksella {} ei ole
 No page with id {}	Sivua tunnuksella {} ei ole
 No plugs	Ei liittimiä
 No report block {}	Ei raporttilohkoa {}
+No routed wire, cable or tube {}	Ei reititettyä johtoa, kaapelia tai putkea {}
 No segment template named {}	Segmenttimallia nimeltä {} ei ole
 No subproject {}	Aliprojektia {} ei ole
 No such object: {}	Objektia ei ole: {}
@@ -1368,6 +1371,7 @@ Room floor	Huoneen lattia
 Room {} stands outside the plot boundary	Tila {} on tontin rajan ulkopuolella
 Rotation	Kierto
 Round punch	Pyöreä lävistin
+Route {} has no control point {}	Reitillä {} ei ole ohjauspistettä {}
 Routing list (3D)	Reititysluettelo (3D)
 Row {} not found	Riviä {} ei löytynyt
 Row {}: no job	Rivi {}: ei työtä
@@ -1992,12 +1996,16 @@ yellow	keltainen
 {} unused device data records removed	{} käyttämätöntä laitetietuetta poistettiin
 {} wiring marks belong to wires that no longer exist	{} johdotusmerkintää kuuluu johtoihin, joita ei enää ole
 {} without device tag on page {}	{} ilman laitetunnusta sivulla {}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} ei voi reitittää ohjauspisteensä {} kautta: ei reittiä, joka pitää puolet paksuudesta vapaana kaikesta ja taipuu säteellä {} mm. Se reititetään ilman ohjauspisteitään; siirrä ohjauspistettä.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} ei voida reitittää: jokainen kaapeliläpivienti kohteessa {} on toisen kaapelin käytössä. Lisää sille kaapeliläpivienti.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} ei voi reitittää: ei reittiä, joka pitää puolet paksuudesta vapaana kaikesta ja taipuu säteellä {} mm. Siirrä päitä tai tee tilaa.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} tulee sisään pohjan kautta: kotelossa ei ole kaapeliläpivientiä
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} tulee sisään katon kautta: katossa, sivuissa tai takaseinässä ei ole kaapeliläpivientiä
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} on reititetty koteloidensa kaapeliläpivienteihin: ne eivät ole samassa huoneessa, niiden välinen reitti ei kuulu sijoitteluun
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} leikkaa itsensä ohjauspisteidensä kautta. Se reititetään ilman ohjauspisteitään; siirrä niitä.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} kulkee oveen: sitä ei voi reitittää ohjauspisteidensä kautta. Poista ne.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: taivutukset tiukempia kuin taivutussäde ({} mm)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: ohjauspisteet eivät jätä tilaa taipua säteellä {} mm. Se reititetään ilman ohjauspisteitään; siirrä niitä kauemmas toisistaan.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: yhdistetty yksinapaisessa kaaviossa mutta ei piirikaaviossa
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-seurain {}: sen merkkijonojen jännitteet eroavat ({} V ja {} V)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-seurain {}: merkkijonot antavat {} A, enemmän kuin sen käyttämät {} A (teho rajoittuu)

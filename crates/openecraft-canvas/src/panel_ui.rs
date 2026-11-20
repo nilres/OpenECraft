@@ -2502,6 +2502,9 @@ impl PanelUi {
             ))
             .weak(),
         );
+        if let Some(it) = an.routing.items.iter().find(|i| i.wire == Some(wi) && i.routed()).filter(|_| w.door == (None, None)) {
+            routing_ui::control_summary(ui, prj, an, it);
+        }
         ui.separator();
         self.wire_ends(ui, prj, an, &w.from, &w.to, &w.cross_section);
         ui.separator();
@@ -4283,9 +4286,9 @@ impl PanelUi {
         }
     }
 
-    /// The control points of the selected cable or tube on the face shown: a right click
-    /// on one or on a cable or tube keeps it for the context menu, a drag moves one. True
-    /// where that took the input.
+    /// The control points of the selected wire, cable or tube on the face shown: a right
+    /// click on one or on a wire, cable or tube keeps it for the context menu, a drag
+    /// moves one. True where that took the input.
     fn control_points_2d(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, ei: usize, rect: Rect, an: &Analysis) -> bool {
         let (face, offset, zoom, tol) = (self.face, self.offset, self.zoom, 6.0 / self.zoom);
         let fm = prj.layout.enclosures[ei].face_offset(face);
@@ -4310,18 +4313,16 @@ impl PanelUi {
         if resp.secondary_clicked() && self.drag.is_none() {
             self.route_menu = None;
             if let Some(s) = resp.interact_pointer_pos() {
-                if let (Some(h), Some(key)) = (handle_at(s), self.selected_route.clone()) {
+                if let (Some(h), Some(key)) = (handle_at(s), self.control_key(an)) {
                     self.route_menu = Some(routing_ui::RouteMenu { key, at: h.at, handle: Some(h.index) });
-                } else if let Some(&i) = if routes_here { self.cables_at(prj, an, ei, to_plate(s), tol) } else { Vec::new() }.first() {
-                    let key = an.routing.items[i].key.clone();
-                    self.select_route(an, &key);
+                } else if let Some(key) = if routes_here { self.pick_route_2d(prj, an, ei, to_plate(s), tol) } else { None } {
                     self.route_menu = self.route_point_2d(prj, an, ei, &key, to_plate(s)).map(|at| routing_ui::RouteMenu { key, at, handle: None });
                 }
             }
         }
         if resp.drag_started_by(PointerButton::Primary) && self.drag.is_none() {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
-            if let (Some(h), Some(key)) = (handle_at(origin), self.selected_route.clone()) {
+            if let (Some(h), Some(key)) = (handle_at(origin), self.control_key(an)) {
                 self.control_drag = Some(routing_ui::ControlDrag { key, index: h.index, at: h.at, from: h.at, view: None });
             }
         }

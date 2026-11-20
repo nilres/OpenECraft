@@ -264,6 +264,8 @@ Contractor	承包商
 Control	控制
 Control cabinet	控制柜
 Control mode	控制方式
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	控制点 {}（{} {}）位于某物内部或机柜之外：将不经过其控制点布线。请将控制点移到空闲空间。
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	控制点 {}（{} {}）偏离其路径：不在其布线经过的任何机柜或房间内。请将控制点移到其路径上。
 Control transformer	控制变压器
 Control transformer (NFPA)	控制变压器 (NFPA)
 Control transformer T (GOST)	控制变压器 T (GOST)
@@ -942,6 +944,7 @@ No page or page item with id {}	不存在 ID 为 {} 的页或页元素
 No page with id {}	不存在 ID 为 {} 的页
 No plugs	没有插头
 No report block {}	没有报表块 {}
+No routed wire, cable or tube {}	没有已布线的导线、电缆或管子 {}
 No segment template named {}	没有名为 {} 的规划段模板
 No subproject {}	子项目 {} 不存在
 No such object: {}	对象不存在：{}
@@ -1351,6 +1354,7 @@ Room floor	房间地面
 Room {} stands outside the plot boundary	房间 {} 位于场地边界之外
 Rotation	旋转
 Round punch	圆形冲头
+Route {} has no control point {}	布线 {} 没有控制点 {}
 Routing list (3D)	布线列表 (3D)
 Row {} not found	未找到行 {}
 Row {}: no job	第 {} 行：无作业
@@ -1968,11 +1972,15 @@ yellow	黄色
 {} unused device data records removed	已删除 {} 条未使用的设备数据记录
 {} wiring marks belong to wires that no longer exist	{} 个接线标记属于已不存在的导线
 {} without device tag on page {}	页 {1} 上没有设备标识符的 {0}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} 无法经过其控制点 {} 布线：没有与一切保持半个厚度间距并以 {} mm 半径弯曲的路径。将不经过其控制点布线；请移动控制点。
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} 无法布线：没有与一切保持半个厚度间距并以 {} mm 半径弯曲的路径。请移动其端点或留出空间。
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} 从底部进入：机柜中没有电缆密封接头
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} 从柜顶进入：柜顶、侧面或背面没有电缆密封接头
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} 敷设到其机柜的电缆入口：它们不在同一房间内，其间的路径不属于布局
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} 经过其控制点后与自身相交。将不经过其控制点布线；请移动它们。
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} 通往柜门：无法经过其控制点。请删除它们。
 {} {}: bends closer than the bend radius ({} mm)	{} {}：弯曲小于弯曲半径（{} mm）
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}：其控制点没有留出以 {} mm 半径弯曲的空间。将不经过其控制点布线；请增大它们的间距。
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}：在单线图中已连接，但在原理图中未连接
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}，MPP 跟踪器 {}：其组串电压不同（{} V 和 {} V）
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}，MPP 跟踪器 {}：组串输出 {} A，超过其可用的 {} A（功率受限）

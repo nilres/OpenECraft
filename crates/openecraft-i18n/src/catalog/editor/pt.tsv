@@ -82,6 +82,7 @@ Active	Ativa
 Actuators on the door	Atuadores na porta
 Add a command	Adicionar um comando
 Add a target language to translate the project texts.	Adicione um idioma de destino para traduzir os textos do projeto.
+Add control point	Adicionar ponto de passagem
 Add filter	Adicionar filtro
 Add folder…	Adicionar pasta…
 Add group	Adicionar grupo
@@ -429,6 +430,9 @@ Consecutive addresses from the start byte, in schematic order	Endereços consecu
 Contact image below coils	Espelho de contatos abaixo das bobinas
 Content	Conteúdo
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	O conteúdo de uma opção inativa fica oculto: ele não é desenhado, avaliado, relatado nem exportado.
+Control point {} added: drag it to route {} again	Ponto de passagem {} adicionado: arraste-o para rotear {} novamente
+Control point {} of {} moved	Ponto de passagem {} de {} movido
+Control points: {}	Pontos de passagem: {}
 Coordinate reference system	Sistema de referência de coordenadas
 Copies	Cópias
 Copies function texts between both representations where one is empty	Copia textos de função entre as duas representações onde uma está vazia
@@ -1033,6 +1037,7 @@ Layout checks	Verificações de layout
 Layout properties	Propriedades do layout
 Layout space	Espaço de montagem
 Layout spaces	Espaços de montagem
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Levar a rota por um ponto aqui: arraste-o para rotear o fio, cabo ou tubo novamente, mantendo o seu raio de curvatura e livre de tudo
 Leave out the ceilings of the rooms and the roofs in the 3D view	Omitir os tetos das salas e os telhados na vista 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Na vista 3D, omitir as tampas de todas as canaletas: os fios nelas ficam visíveis
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Omitir os módulos dos arranjos FV na vista 3D: veem-se os trilhos, ganchos de telhado, suportes, o aterramento e o cabeamento
@@ -1319,6 +1324,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Não alterado:
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ainda não ligado: nenhum equipamento, nenhum cabo. Escolha o dispositivo de proteção do seu circuito.
 Not found: {}	Não encontrado: {}
 Not in the project parts – synchronize in parts management	Não está nas peças do projeto – sincronize no gerenciamento de peças
+Not led through its control points: see the messages	Não passa pelos seus pontos de passagem: veja as mensagens
 Not on a wire	Não está em um fio
 Not placed	Não posicionado
 Not saved yet	Ainda não salvo
@@ -1656,6 +1662,8 @@ Released pages keep their name.	Páginas liberadas mantêm seu nome.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Revisões liberadas, linhas de base, comentários, marcações, aprovações e solicitações de alteração do original. Sem eles, a cópia começa como um projeto novo.
 Releases all locks; the project stays open as a local copy	Libera todos os bloqueios; o projeto permanece aberto como cópia local
 Releasing…	Liberando…
+Remove all control points	Remover todos os pontos de passagem
+Remove control point	Remover ponto de passagem
 Remove from cable	Remover do cabo
 Remove from harness	Remover do chicote
 Remove from the group	Remover do grupo
@@ -1752,6 +1760,7 @@ Right button	Botão direito
 Right click for more	Clique com o botão direito para mais opções
 Right edges	Bordas direitas
 Right neighbour	Vizinho à direita
+Right-click the route to add a control point, then drag it	Clique com o botão direito na rota para adicionar um ponto de passagem e depois arraste-o
 Rights	Direitos
 Risers	Espelhos
 Rod holder	Suporte de haste

@@ -274,6 +274,8 @@ Contractor	Contractant
 Control	Comandă
 Control cabinet	Tablou de comandă
 Control mode	Mod de reglare
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Punctul de trecere {} al {} {} se află în interiorul a ceva sau în afara carcasei: este pozat fără punctele sale de trecere. Mutați punctul de trecere într-un spațiu liber.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Punctul de trecere {} al {} {} se află în afara drumului său: în niciun dulap sau încăpere prin care este pozat. Mutați punctul de trecere pe drumul său.
 Control transformer	Transformator de comandă
 Control transformer (NFPA)	Transformator de comandă (NFPA)
 Control transformer T (GOST)	Transformator de comandă T (GOST)
@@ -956,6 +958,7 @@ No page or page item with id {}	Nu există nicio pagină sau element de pagină 
 No page with id {}	Nu există nicio pagină cu ID-ul {}
 No plugs	Niciun conector
 No report block {}	Niciun bloc de raport {}
+No routed wire, cable or tube {}	Niciun conductor, cablu sau tub pozat {}
 No segment template named {}	Niciun șablon de segment cu numele {}
 No subproject {}	Nu există subproiectul {}
 No such object: {}	Nu există obiectul: {}
@@ -1368,6 +1371,7 @@ Room floor	Pardoseala încăperii
 Room {} stands outside the plot boundary	Încăperea {} se află în afara limitei terenului
 Rotation	Rotire
 Round punch	Poanson rotund
+Route {} has no control point {}	Traseul {} nu are punctul de trecere {}
 Routing list (3D)	Listă de pozare (3D)
 Row {} not found	Rândul {} nu a fost găsit
 Row {}: no job	Rândul {}: nicio comandă de lucru
@@ -1992,12 +1996,16 @@ yellow	galben
 {} unused device data records removed	{} înregistrări neutilizate de date de dispozitiv eliminate
 {} wiring marks belong to wires that no longer exist	{} marcaje de cablare aparțin unor conductoare care nu mai există
 {} without device tag on page {}	{} fără identificator de dispozitiv pe pagina {}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} nu poate fi pozat prin punctul său de trecere {}: nicio cale care păstrează jumătate din grosime liberă de tot și se curbează cu raza de {} mm. Este pozat fără punctele de trecere; mutați punctul de trecere.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} nu poate fi trasat: fiecare presetupă din {} este ocupată de alt cablu. Adăugați o presetupă pentru el.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nu poate fi pozat: nicio cale care păstrează jumătate din grosime liberă de tot și se curbează cu raza de {} mm. Mutați capetele sau faceți loc.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} intră prin bază: nicio presetupă în carcasă
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} intră prin acoperiș: nicio presetupă pe acoperiș, laterale sau spate
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} este pozat până la intrările de cabluri ale carcaselor sale: acestea nu se află într-o încăpere comună, traseul dintre ele nu face parte din amplasare
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} se intersectează cu sine prin punctele sale de trecere. Este pozat fără punctele de trecere; mutați-le.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} merge la ușă: nu poate fi condus prin punctele sale de trecere. Eliminați-le.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: curburi mai strânse decât raza de curbură ({} mm)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: punctele sale de trecere nu lasă loc pentru curbare cu raza de {} mm. Este pozat fără punctele de trecere; depărtați-le.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: conectat în schema monofilară, dar nu și în schemă
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, urmăritor MPP {}: șirurile sale diferă ca tensiune ({} V și {} V)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, urmăritor MPP {}: șirurile furnizează {} A, mai mult decât cei {} A pe care îi folosește (puterea este limitată)
