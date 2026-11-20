@@ -59,7 +59,6 @@ Align right	Igazítás jobbra
 Align top	Igazítás felülre
 All aspects (with product)	Minden aspektus (termékkel)
 All devices of page {} are in the schematic already	A(z) {} oldal összes készüléke már szerepel a kapcsolási rajzon
-Aluminium	Alumínium
 Ammeter	Árammérő
 Ammeter, reactive current	Árammérő, meddő áram
 Ampere-hour meter	Amperóra-számláló
@@ -68,6 +67,7 @@ Analog input module	Analóg bemeneti modul
 Analog output module	Analóg kimeneti modul
 Analysis	Analízis
 Another section here has this number	Egy másik szakasznak itt már ez a száma
+Antenna outlet	Antennaaljzat
 Apparent power (kVA)	Látszólagos teljesítmény (kVA)
 Applied directives	Alkalmazott irányelvek
 Approval date	Jóváhagyás dátuma
@@ -101,7 +101,6 @@ Baying kit	Sorolókészlet
 Beacon, rotating	Forgófényes jelzőlámpa
 Belongs to	Hozzátartozik
 Bends	Hajlítások
-Bill of materials	Anyagjegyzék
 Bimetal switch NC	Bimetál kapcsoló, nyitóérintkező
 Bimetal switch NO	Bimetál kapcsoló, záróérintkező
 Black box	Fekete doboz
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Váltóérintkező, meghúzáskésleltetett
 Changeover contact, passing make	Váltóérintkező impulzuszárással
 Changeover switch, cam operated	Átkapcsoló, bütyökműködtetésű
 Changeover switch, cam profile operated	Átkapcsoló, vezérlőpálya-működtetésű
+Changeover switch, manually operated	Átkapcsoló, kézi működtetésű
 Changeover switch, roller operated	Átkapcsoló, görgőműködtetésű
 Check valve	Visszacsapószelep
 Checked	Ellenőrizve
 Checked by	Ellenőrizte
 Choose the pages of the subproject	Válassza ki az alprojekt oldalait
-Circuit	Áramkör
 Circuit breaker (single-line)	Megszakító (egyvonalas)
 Circuit breaker 1-pole	Kismegszakító, 1 pólusú
 Circuit breaker 1-pole (NFPA)	Kismegszakító, 1 pólusú (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Átalakítva a(z) {} fájlformátumról 
 Coolant	Hűtőközeg
 Cooler	Hűtő
 Cooling method	Hűtési mód
-Copper	Réz
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	{} rézsín: a(z) {} hajlítás sugara {} mm, legalább {} mm szükséges
 Copper bar {}: hole Ø{} at {} mm is outside the bar	{0} rézsín: a(z) {2} mm-nél lévő Ø{1} furat kívül esik a sínen
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	{0} rézsín: a(z) {2} mm-nél lévő Ø{1} furat túl közel van a(z) {3} hajlításhoz
@@ -316,7 +314,6 @@ Create projects	Projektek létrehozása
 Creation date	Létrehozás dátuma
 Cross-section {} carries {} A, less than the {} A of {}	A(z) {} keresztmetszet {} A-t visel el, kevesebbet, mint a(z) {} A ({})
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	A(z) {}. lapon lévő kereszteződés nem illik a vezetékeihez: mind a négy irányban vezeték kell, és nem lehet ott csatlakozási pont
-Current (A)	Áram (A)
 Current capacity (A)	Áramterhelhetőség (A)
 Current consumption	Áramfelvétel
 Current range	Áramtartomány
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	A DC vezérlőáramkör
 DC control circuits should be blue (NFPA 79, 13.2.4)	A DC vezérlőáramköröknek kéknek kell lenniük (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC átalakító
 DWG export failed: {}	A DWG-exportálás sikertelen: {}
+Data outlet	Adataljzat
 Data sheet	Adatlap
 Date of the approval of the last revision	Az utolsó revízió jóváhagyásának dátuma
 Date of the last revision	Az utolsó revízió dátuma
@@ -360,6 +358,7 @@ Description of the last revision	Az utolsó revízió leírása
 Description of the page's function (structure management)	Az oldal funkciójának leírása (struktúrakezelés)
 Description of the page's location (structure management)	Az oldal szerelési helyének leírása (struktúrakezelés)
 Designer	Tervező
+Device connection box	Készülékcsatlakozó doboz
 Device connection diagram	Készülékbekötési terv
 Device data of {} without symbol or panel item	{} készülékadatai szimbólum vagy elrendezési elem nélkül
 Device description file	Eszközleíró fájl
@@ -409,7 +408,6 @@ Document (embedded file)	Dokumentum (beágyazott fájl)
 Document A4 portrait	Dokumentum, A4 álló
 Document number	Dokumentumszám
 Document reference	Dokumentumhivatkozás
-Documentation	Dokumentáció
 Documentation language	Dokumentáció nyelve
 Does not match	Nem egyezik
 Door (front view)	Ajtó (elölnézet)
@@ -648,6 +646,7 @@ Hazardous area zone	Robbanásveszélyes zóna
 Heat exchanger	Hőcserélő
 Heating (W)	Fűtés (W)
 Heating element	Fűtőelem
+Heating element three-phase	Háromfázisú fűtőelem
 Higher-level product (-)	Felettes termék (-)
 Higher-level product of the page	Az oldal felettes terméke
 Highest (°C)	Legfeljebb (°C)
@@ -725,6 +724,7 @@ Installation altitude	Telepítési magasság
 Installation date	Beépítés dátuma
 Installation devices	Installációs készülékek
 Installation method	Fektetési mód
+Installation of {}	{} szerelése
 Installation plan (IEC 60617-11)	Installációs terv (IEC 60617-11)
 Installation site (++)	Telepítési hely (++)
 Installation site and location	Telepítési hely és szerelési hely
@@ -737,6 +737,7 @@ Insulation class	Szigetelési osztály
 Integer	Egész szám
 Integrated EMC filter	Beépített EMC-szűrő
 Intermediate relay coil KA (GB)	Segédrelé tekercse KA (GB)
+Intermediate switch, manually operated	Keresztkapcsoló, kézi működtetésű
 Internal	Belső
 Internal target	Belső cél
 Interruption point '{}' has no counterpart	A(z) '{}' megszakítási pontnak nincs párja
@@ -751,6 +752,7 @@ Inverter DC/AC	Inverter DC/AC
 Isolating and switching devices in the right places	Leválasztó és kapcsolókészülékek a megfelelő helyen
 Item	Elem
 Item ID	Tételazonosító
+Items	Elemek
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Áthidalások
 Junction box	Kötődoboz
@@ -776,13 +778,13 @@ Left side panel	Bal oldalfal
 Legend plate text	Jelölőtábla szövege
 Length (m)	Hossz (m)
 Length (mm)	Hossz (mm)
+Length known (not calculated)	Hossz ismert (nem számított)
 Letter landscape	Letter fekvő
 Letters (A, B, C)	Betűk (A, B, C)
 Level switch	Szintkapcsoló
 Lifecycle state	Életciklus-állapot
 Light source	Fényforrás
 Lighting outlet	Lámpakivezetés
-Limit (%)	Határérték (%)
 Limit switch NC (NFPA)	Végálláskapcsoló, nyitóérintkező (NFPA)
 Limit switch NO (NFPA)	Végálláskapcsoló, záróérintkező (NFPA)
 Line reactor	Hálózati fojtó
@@ -946,6 +948,7 @@ Nibbling	Nibbelés
 No connection {}	Nincs {} összeköttetés
 No devices to add to the single-line diagram	Nincs az egyvonalas rajzhoz hozzáadandó készülék
 No document embedded - choose a file in the page properties	Nincs beágyazott dokumentum – válasszon fájlt az oldaltulajdonságokban
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Nincs szabad hely tömszelencének azokon az oldalakon, amelyeken a kábel kiléphet: csináljon helyet, vagy adjon hozzá kábelbevezető karimát
 No identifying letter for the device tag.	Nincs kódbetű a készülékazonosítóhoz.
 No known column in the header row	A fejlécsorban nincs ismert oszlop
 No option {}	Nincs ilyen opció: {}
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Áram-védőkapcsoló, 4 pólusú
 Residual current type	Hibaáram-típus
 Resistor	Ellenállás
 Response time	Reakcióidő
-Result	Eredmény
 Return / exhaust line	Visszafolyó / kipufogó vezeték
 Revision overview (changes)	Revízió-áttekintés (változások)
 Revision table: author of the last revision (2: the one before …)	Revíziós táblázat: az utolsó revízió szerzője (2: az azt megelőzőé …)
@@ -1477,7 +1479,9 @@ Size (mm)	Méret (mm)
 Skipped	Kihagyva
 Sliding to the left	Balra toló
 Sliding to the right	Jobbra toló
+Smoke alarm	Füstérzékelő
 Socket outlet	Csatlakozóaljzat
+Socket outlet three-phase	Háromfázisú csatlakozóaljzat
 Socket side (female)	Hüvely oldal (anya)
 Soft starter	Lágyindító
 Solar charge controller	Napelemes töltésszabályozó
@@ -1585,7 +1589,6 @@ Terminal box	Kapocsdoboz
 Terminal connection diagram	Sorkapocs-bekötési terv
 Terminal data	Sorkapocsadatok
 Terminal description	Sorkapocsleírás
-Terminal diagram	Sorkapocsterv
 Terminal line-up	Sorkapocs-sorrend
 Terminal marker	Sorkapocsjelölő
 Terminal parts	Végződések cikkszámai
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Az archívum kicsomagolva több mint {} M
 The archive was written by a newer version (archive version {})	Az archívumot egy újabb verzió írta (archívumverzió: {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	A berendezés gyártóját meg kell nevezni (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	A szekrénysor a helyiségében: L alakú alaprajz, belső fal, ajtó és ablak, a szekrénysor a helyén, egy sín dugaszolóaljzattal a falon, falra szerelt vészvilágító lámpa és kábeltálca a mennyezet alatt.
+The cable of {} needs at least {} cores	A(z) {} kábelének legalább {} érre van szüksége
 The configuration is not a JSON object	A konfiguráció nem JSON-objektum
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	A szállítószalag az első kiadás után: kiadott és zárolt revízió, az azóta jelölt változások, ellenőrzési megjegyzések piros jelölésekkel, egy módosítási kérelem, a B revízió a jóváhagyási folyamatban és egy összehasonlítási alapállapot.
 The coordinates of the reference point must be numbers	A referenciapont koordinátáinak számoknak kell lenniük
@@ -1624,6 +1628,7 @@ The macro box has no items left	A makródoboznak nem maradt eleme
 The next free id is already in use	A következő szabad azonosító már foglalt
 The option needs a name	Az opcióhoz név szükséges
 The page needs a number	Az oldalhoz szám szükséges
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	{} oldala megtelt: a váltókapcsolás következő kapcsolóját ugyanarra az oldalra kell rajzolni
 The pages were changed after the submission; submit the revision again	Az oldalak a beküldés után módosultak; küldje be újra a revíziót
 The plot boundary crosses itself	A telekhatár önmagát metszi
 The plot boundary encloses no area	A telekhatár nem zár körül területet
@@ -1753,6 +1758,7 @@ Unknown object: {}	Ismeretlen objektum: {}
 Unknown revision	Ismeretlen revízió
 Unknown symbol '{}'	Ismeretlen szimbólum: '{}'
 Unknown tool {}	Ismeretlen szerszám: {}
+Unused connection points	Nem használt csatlakozási pontok
 Upstream	Előtte kapcsolt
 User defined	Felhasználó által definiált
 User symbols	Felhasználói szimbólumok
@@ -1774,7 +1780,6 @@ Vibration	Rezgés
 Vibration resistance	Rezgésállóság
 View projects	Projektek megtekintése
 Violations	Megsértések
-Voltage (V)	Feszültség (V)
 Voltage drop (V)	Feszültségesés (V)
 Voltage protection level	Feszültségvédelmi szint
 Voltage range	Feszültségtartomány
@@ -1950,19 +1955,23 @@ yellow	sárga
 {} has no MTTFd, B10d, PL or PFHd	{} esetén nincs MTTFd, B10d, PL vagy PFHd
 {} has no door or window {}	{0} nem tartalmaz {1} ajtót vagy ablakot
 {} has nothing to manufacture	{} esetén nincs mit gyártani
+{} has three phases: it needs a three-phase protective device	A(z) {} háromfázisú: háromfázisú védőkészülékre van szüksége
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	A(z) {} feloldatlan git egyesítési ütközést tartalmaz: a fájl szövegként lett egyesítve. Vegye át a fájl egyik verzióját (git checkout --ours vagy --theirs), majd az újabb egyesítés előtt állítsa be a felosztott projektek egyesítő illesztőjét (merge_project_file)
 {} is a built-in function definition	{} beépített funkciódefiníció
 {} is a built-in property	{} beépített tulajdonság
 {} is a built-in scheme	{} beépített séma
 {} is a busbar machine and makes no sheets	{} sínmegmunkáló gép, lemezeket nem gyárt
+{} is neither the protective device nor a device of the circuit of {}	A(z) {} se nem védőkészülék, se nem a(z) {} áramkörének készüléke
 {} is not a busbar machine	{} nem sínmegmunkáló gép
 {} is not a property of {}	{} nem tulajdonsága ennek: {}
 {} is not an approver of this project	{} nem jóváhagyója ennek a projektnek
+{} is not connected to the mains: place it without a protective device	A(z) {} nem csatlakozik a hálózatra: helyezze el védőkészülék nélkül
 {} is not placed in the plant layout	{} nincs elhelyezve a létesítmény-elrendezésben
 {} is on page {}, which is released: renaming it would change the page	A(z) {} a kiadott {} oldalon van: az átnevezés megváltoztatná az oldalt
 {} is placed at the missing node {}	{} a hiányzó {} csomóponton van elhelyezve
 {} is planned twice ({} and {})	{} kétszer van tervezve ({} és {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{0} csak {2} A-ig szelektív ehhez képest: {1} (zárlati áram {3} A)
+{} is used already	A(z) {} már használatban van
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} megtartja a struktúráját: főfunkciói különböző struktúrakeretekben vannak ({})
 {} keeps its structure: {} exists already	{} megtartja a struktúráját: {} már létezik
 {} lies outside page {}	{} a(z) {} oldalon kívül esik

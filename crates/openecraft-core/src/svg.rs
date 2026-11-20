@@ -84,15 +84,22 @@ impl Draw for SvgDraw {
         if st.underline {
             attrs.push_str(" text-decoration=\"underline\"");
         }
-        if st.angle != 0.0 {
+        // Narrow or wide letters: drawn at the origin, stretched, turned and moved there.
+        let at = if st.width != 1.0 {
             // SVG rotates clockwise (y down); the text's angle is counter-clockwise.
-            let _ = write!(attrs, " transform=\"rotate({:.2} {:.2} {:.2})\"", -st.angle, pos.x, pos.y);
-        }
+            let _ = write!(attrs, " transform=\"translate({:.2} {:.2}) rotate({:.2}) scale({:.3} 1)\"", pos.x, pos.y, -st.angle, st.width);
+            P::default()
+        } else {
+            if st.angle != 0.0 {
+                let _ = write!(attrs, " transform=\"rotate({:.2} {:.2} {:.2})\"", -st.angle, pos.x, pos.y);
+            }
+            pos
+        };
         let _ = writeln!(
             self.out,
             "<text x=\"{:.2}\" y=\"{:.2}\" font-size=\"{:.2}\" text-anchor=\"{anchor}\" fill=\"{}\"{attrs}>{}</text>",
-            pos.x,
-            pos.y + dy,
+            at.x,
+            at.y + dy,
             st.size * 1.25,
             color(ink),
             esc(text)

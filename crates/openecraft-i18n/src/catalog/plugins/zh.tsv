@@ -15,6 +15,7 @@ Additional power loss in W	附加功率损耗 (W)
 Address scheme: siemens, iec or rockwell	地址方案：siemens、iec 或 rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	向屋顶添加光伏阵列：组件行安装在导轨和屋面挂钩上并与坡面平行，或在平屋顶上倾斜或东西向安装在配重式安装底座上；未给出 x 和 z 时位于前坡面或右坡面的中间。未给出建筑物和屋顶时为场地上的地面阵列：打入式立柱上的倾斜支架排，未给出 x 和 z 时位于设施中已有对象的前方。组件和安装材料计入物料清单
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	添加折弯并钻孔的铜排（或替换机柜中同名的铜排）
+Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	为每根离开机柜且找不到空闲密封接头的电缆添加一个与其尺寸相符的电缆密封接头：房间内的设备装在顶部，现场设备或挂墙机柜装在底部
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	添加到右侧相邻机柜的电缆过孔：两侧板上相对的圆形开孔；机柜之间的导线从中穿过
 Adds a configurator rule: insert a page macro when the condition holds	添加配置器规则：在条件成立时插入页宏
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	添加布线网络的节点（分支点、穿墙点、到达机柜或设备的点）
@@ -81,7 +82,9 @@ Bus system name, e.g. PN/IE_1	总线系统名称，例如 PN/IE_1
 Busbar machine program (CSV)	母线加工机程序 (CSV)
 CNC operations	CNC 工序
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	用于钻孔、铣削和冲压机的 CNC 程序、铜排折弯、机柜配置器、移交生产以及生产反馈
+Cable tag (default: the next free -W)	电缆标识（默认：下一个空闲的 -W）
 Cable tag, e.g. -W1	电缆标识符，例如 -W1
+Cable type (default: NYM-J for its cores and cross-section)	电缆类型（默认：按芯数和截面积选用 NYM-J）
 Calibrates the time estimate of the machines from the actual times of the production feedback	根据生产反馈的实际时间校准机器的时间估算
 Cannot read the plugin folder {}	无法读取插件文件夹 {}
 Cannot start {}: {}	无法启动 {}：{}
@@ -156,6 +159,7 @@ Cross section, e.g. 0.75 mm²	截面积，例如 0.75 mm²
 Cross section, e.g. 1.5 mm²	截面积，例如 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	截面积，例如 1.5 mm²（空 = 取自电位定义）
 Cross-section in mm²	截面积，单位 mm²
+Cross-section of the cable in mm² (default: for the protective device)	电缆截面积，单位 mm²（默认：按保护设备）
 Cross-section, e.g. 1.5 mm²	截面积，例如 1.5 mm²
 Current device tag	当前设备标识符
 Customer rule set to add or replace (by name), as exported	要添加或替换的客户规则集（按名称），格式与导出时相同
@@ -193,6 +197,8 @@ Device description id of the head (list_device_descriptions)	头模块的设备�
 Device group {} already exists	设备组 {} 已存在
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	设备列表、物料清单、端子图、插头图、电缆图和连接图、PLC、电位、机柜、流体、电气和现场报表
 Device number on the bus	总线上的设备编号
+Device or junction box of the circuit the cable comes from (default: the device before it)	电缆所来自的回路设备或接线盒（默认：前一个设备）
+Device tag (default: the room, the letter code of the kind and the next number)	设备标识（默认：房间、类型字母代码和下一个编号）
 Device tag of the CPU / bus coupler, e.g. -A0	CPU / 总线耦合器的设备标识符，例如 -A0
 Device tag of the end (both ends if missing)	端部的设备标识符（缺省时为两端）
 Device tag of the fluid device, e.g. -QM1	流体设备的设备标识符，例如 -QM1
@@ -227,7 +233,6 @@ Draw the junction as a connection dot; its routing stays	将节点绘制为连�
 Draw wires in their colour	按导线颜色绘制导线
 Draw wires to the connection points facing its free arms	向正对其空闲分支的连接点绘制连接线
 Drawing	图纸
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	绘制电缆定义线；其穿过的导线成为电缆的芯线（未指定电缆时新建电缆）
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	在两个连接点之间绘制导线，例如从 -K1:A1 到 -S1:14（不明确的使用 #id:pin，电位使用名称，无标识的连接点使用 1、2…）
 Draws a wire through two or more points	绘制经过两个或多个点的导线
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	在原理图页和 PDF / SVG 导出中按导线颜色绘制导线，或以黑色绘制
@@ -255,7 +260,6 @@ Enclosures, panel items, accessories and panel macros	机柜、布局元件、�
 End brackets and end plates from the tech data of the terminal parts	根据端子部件的技术数据添加终端固定件和终端盖板
 End holes from the bar end as a multiple of the width	端孔距铜排端部的距离，为宽度的倍数
 End: device tag and connection point, e.g. -S1:14	终点：设备标识符和连接点，例如 -S1:14
-Engineering	工程
 Face: plate, door, left, right, rear, roof or bottom	面：plate, door, left, right, rear, roof 或 bottom
 Field plan: nodes, segments, outlines, routes, bonds and accessories	现场规划：节点、布线段、轮廓、路径、等电位联结和附件
 Figure	指标
@@ -358,6 +362,7 @@ Key, e.g. user.coupling_relay	键，例如 user.coupling_relay
 Key, e.g. user.customer_code	键，例如 user.customer_code
 Keys of the routes, comma separated (all if missing)	布线的键，以逗号分隔（未指定时为全部）
 Kind: machining, punching or busbar	类型：machining, punching 或 busbar
+Known length of the cable in m (taken instead of the 3D route)	电缆的已知长度，单位 m（代替 3D 路径）
 Label: terminal number, PLC address or potential name	标签：端子号、PLC 地址或电位名称
 Landscape (true) or portrait (false)	横向 (true) 或纵向 (false)
 Language the project texts are written in, e.g. en	编写项目文本所用的语言，例如 en
@@ -463,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	光伏阵列在建筑物平面图中的中心（地面安装：在设施中），z，单位 mm
 Milling feed, mm/min	铣削进给，mm/min
 Mirror the symbol	镜像符号
+Mounting height above the floor in mm (default: that of the part)	距地面的安装高度，单位 mm（默认：部件的高度）
 Mounting plate size as width and height; empty object restores the centred plate	安装板尺寸（宽度和高度）；空对象恢复居中的安装板
 Mounting size must contain a positive width and height	安装尺寸必须包含正的宽度和高度
 Moves an air-termination rod, changes its height, renames or removes it	移动接闪杆，更改其高度，重命名或删除
@@ -550,6 +556,7 @@ Nothing to copy: devices are placed once	没有可复制的内容：设备只放
 Nothing to remove: {} {}	没有可删除的内容：{} {}
 Number of columns	列数
 Number of copies (default 1)	副本数（默认 1）
+Number of cores of the cable (default: 3, three-phase 5)	电缆芯数（默认：3，三相 5）
 Number of equal bars	相同铜排的数量
 Number of indexed values (0 = a single value)	索引值数量（0 = 单个值）
 Number of rows	行数
@@ -605,12 +612,14 @@ Paper width in mm (custom paper)	纸张宽度 (mm)（自定义纸张）
 Part lifecycle	部件生命周期
 Part number of the accessory	附件的部件号
 Part number of the base	底板的部件编号
+Part number of the cable	电缆的部件编号
 Part number of the carrier (per metre)	电缆桥架的部件编号（每米）
 Part number of the conductor (per metre)	导体的部件编号（每米）
 Part number of the downstream device	下级设备的部件编号
 Part number of the hose / tube / pipe	软管 / 管子 / 管道的部件编号
 Part number of the upstream device	上级设备的部件编号
 Part number, e.g. GEN.LMP-GN-24	部件编号，例如 GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	部件编号，例如 GEN.SOCKET-F-UP、GEN.SW-ONOFF-UP、GEN.LAMP-CEILING-LED、GEN.JBOX-UP、GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	其扁钢、导线或接地极的部件（空：通用）
 Part of the conductor holders on the roof (empty: generic)	屋顶导体支架的部件（空：通用）
 Part of the conductor holders on the walls (empty: generic)	墙上导体支架的部件（空：通用）
@@ -684,6 +693,8 @@ Property and function definitions, property values and placement schemes	属性�
 Property key	属性键
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	属性键和值，例如 {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	放在编号前面，例如 W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	将原理图中的设备放入机柜（安装板上、其导轨上或柜门上）：尺寸取自其部件，卡装到合适的导轨上；若之前放在别处，则会被移动
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	为保护设备在设施某点的房间中放置插座、开关、灯具、加热元件、接线盒或设备接线盒（吸顶灯放在该处顶部，其他放在最近墙面的安装高度处；在房间外则放在最近墙面的外侧），并加入原理图：在回路的安装页上新增设备，电缆来自前一个设备或指定设备；不指定保护设备时只放入房间（数据和天线插座、烟雾报警器）
 Quantity per end (default 1)	每端数量（默认 1）
 R/X ratio of the supply impedance	电源阻抗的 R/X 比
 Rack number	机架编号
@@ -779,8 +790,8 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	设置所有未选择标题栏的页或某一类型页的标题栏
 Sets the translation of a line of the project texts (empty removes it)	设置项目文本某一行的翻译（空则将其移除）
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	设置没有定义电位的网络的导线颜色和截面积（空 = 无）
+Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)	设置离开机柜且找不到空闲密封接头的电缆是否获得一个与其尺寸相符的密封接头：房间内的设备装在顶部，现场设备或挂墙机柜装在底部（默认开启）
 Share of the capacity kept free in percent	保留的容量比例（百分比）
-Sheets	图纸
 Shield connected at: both, first, second or none	屏蔽连接位置：both、first、second 或 none
 Shift downwards in mm	向下偏移 (mm)
 Shift to the right in mm	向右偏移 (mm)
@@ -818,6 +829,7 @@ Smallest bend radius in mm	最小弯曲半径 (mm)
 Smallest distance in mm	最小距离，单位 mm
 Smallest distance of holes from the sheet edge	孔到板边的最小距离
 Smallest inner radius as a multiple of the thickness	最小内半径为厚度的倍数
+Smallest room kept, m² (default 1; kept with the floor plan)	保留的最小房间，m²（默认 1；随平面图保存）
 Smallest web at cutouts	开孔处最小筋宽
 Smallest web between holes	孔间最小筋宽
 Spare terminals at the end of the strip	端子排末端的备用端子
@@ -889,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	交叉的直线为 vert
 The message text, kept for the list of accepted messages	消息文本，保留用于已接受消息列表
 The name must not be empty	名称不能为空
 The number of copies must be between 1 and 100	副本数必须介于 1 和 100 之间
+The number of cores must be from 1 to 60	芯数必须在 1 到 60 之间
 The plinth height must not be negative	底座高度不能为负数
 The plot frame {} is in use	图框 {} 正在使用中
 The plugin program did not answer within {} s and was stopped	插件程序在 {} 秒内没有响应，已被停止
@@ -897,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	旋转角度必须为 0、90、180 或 27
 The straight line of a crossing: vertical or horizontal (default vertical)	交叉的直线：vertical 或 horizontal（默认 vertical）
 The text height must be at least 0.5 mm	文字高度必须至少为 0.5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	拐角的两个分支，垂直和水平，例如 down left（默认：按该处的连接线，否则 down right）
+The width factor must be from 0.1 to 10	宽度系数必须在 0.1 到 10 之间
 The wire has no length	连接没有长度
 The wire that jumps: vertical or horizontal	跳线的导线：vertical 或 horizontal
 The wrap width must not be negative	换行宽度不能为负数
@@ -995,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	位置所在
 Who accepted it	接受者
 Whole words only	仅全字匹配
 Why the message is accepted	接受该消息的原因
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	字母宽度与常规宽度之比，0.1 … 10（0.8：紧凑字体；默认 1）
 Width of the path in mm (default 50)	路径宽度 (mm)（默认 50）
 Width, depth and height of a room are at least {} mm	房间的宽度、深度和高度至少为 {} mm
 Width, height and depth of an enclosure are at least {} mm	机柜的宽度、高度和深度至少为 {} mm
@@ -1067,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	接闪杆底部�
 {} is a built-in frame; give the frame a new name	{} 是内置图框；请为图框指定新名称
 {} is a built-in title block; give the title block a new name	{} 是内置标题栏；请为标题栏指定新名称
 {} is a room already	{} 已经是房间
+{} is a room: use mount_on_wall	{} 是房间：请使用 mount_on_wall
 {} is ambiguous: use #id:pin	{} 不明确：请使用 #id:pin
 {} is an enclosure already	{} 已经是机柜
 {} is not a connection point (TAG:PIN)	{} 不是连接点 (TAG:PIN)

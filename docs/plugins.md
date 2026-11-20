@@ -563,7 +563,7 @@ Hosts advertising `plot_frame_artwork` accept `forms.frames[].artwork`, an array
 of symbol drawing primitives in paper millimetres. Nonempty artwork replaces the
 generated border and title block; `visible` controls the complete frame drawing.
 Property blocks resolve live project and page properties for each page using it.
-Artwork belongs to the reusable frame and is not selectable circuit content.
+Artwork belongs to the reusable frame and is not selectable circuit content. Primitives with a `color` (paths, circles, texts, property blocks: a coloured logo) keep it; the others are drawn in the frame colour.
 The shared `set_frame` command accepts optional JSON `artwork: {"items": [...]}`; an empty items array
 restores the generated frame. `list_frames` includes the artwork. Canvas, frame
 preview and exports use the same renderer. Older project files keep generated frames.

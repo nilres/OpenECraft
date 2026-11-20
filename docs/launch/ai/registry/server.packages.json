@@ -61,7 +61,7 @@
       "environmentVariables": [
         {
           "name": "OPENECRAFT_MCP_TOOLS",
-          "description": "Comma separated tool names to offer (default: all, over 400); e.g. new_project,open_project,save_project,place_symbol,connect,check,export",
+          "description": "Comma separated tool names to offer (default: the tools for schematics, the others through find_tools and call_tool; * for all, over 440); e.g. core,panel*,parts_*",
           "isRequired": false
         }
       ]

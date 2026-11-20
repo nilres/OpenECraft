@@ -19,9 +19,11 @@ Accessory	Tillbehör
 Add	Lägg till
 Add a PDF of all pages	Lägg till en PDF med alla sidor
 Add an item	Lägg till en punkt
+Add cable glands for new cables	Lägg till kabelförskruvningar för nya kablar
 Add to favorites	Lägg till i favoriter
 Address	Adress
 Administrator	Administratör
+Aluminium	Aluminium
 Angle	Vinkel
 Apply	Verkställ
 Approve	Godkänn
@@ -31,6 +33,7 @@ Automatic	Automatisk
 Automation	Automatisering
 Aux	Hjälp
 Below	Nedanför
+Bill of materials	Stycklista
 Bold	Fet
 Bottom	Botten
 Bottom with removable gland plate	Botten med avtagbar genomföringsplåt
@@ -64,6 +67,7 @@ Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrollinställningar
 Checks	Kontroller
+Circuit	Krets
 Circuits	Kretsar
 Class	Klass
 Classes	Klasser
@@ -82,6 +86,7 @@ Commercial data	Kommersiella data
 Company	Företag
 Component	Enskild del
 Components (assembly)	Komponenter (byggrupp)
+Conductor	Ledare
 Conductor material	Ledarmaterial
 Configurator	Konfigurator
 Connect	Anslut
@@ -94,6 +99,7 @@ Connector	Kontaktdon
 Contact voltage UB (V)	Beröringsspänning UB (V)
 Controller	Styrenhet
 Cooling	Kylning
+Copper	Koppar
 Core	Ledare
 Cores	Ledare
 Corner	Hörn
@@ -105,6 +111,7 @@ Cross-section	Tvärsnitt
 Crossing	Korsning
 Currency	Valuta
 Current	Ström
+Current (A)	Ström (A)
 Cutout	Urtag
 Cutouts	Urtag
 DCavg (%)	DCavg (%)
@@ -122,6 +129,7 @@ Description	Beskrivning
 Designation	Beteckning
 Device	Apparat
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Enhet (solcellsgenerator) som modulerna tillhör; dess artiklar räknar dem då i materiallistan
+Device connection box three-phase	Apparatanslutningsdosa trefas
 Device connection point	Apparatanslutningspunkt
 Device description	Enhetsbeskrivning
 Device tag	Apparatbeteckning
@@ -133,6 +141,7 @@ Direction	Riktning
 Discard	Ignorera
 Discard changes	Släng ändringarna
 Display	Visning
+Documentation	Dokumentation
 Documents	Dokument
 Done	Klar
 Door	Dörr
@@ -153,6 +162,7 @@ Email	E-post
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tom: standardvärdet. Ange andra värden där utgåvan av standarden som installationen kontrolleras mot avviker.
 Enclosure	Kapsling
 Enclosures	Kapslingar
+Engineering	Teknik
 Enterprise integration	Företagsintegration
 Equipotential bonding	Potentialutjämning
 Error	Fel
@@ -182,6 +192,7 @@ Floor plan	Planritning
 Fluid device	Fluidapparat
 Fluid device groups	Fluidapparatgrupper
 Fluid netlist	Fluidnätlista
+Format	Format
 From	Från
 Function	Funktion
 Function (=)	Funktion (=)
@@ -232,10 +243,11 @@ Internal (bottom)	Intern (nedan)
 Interruption point	Avbrottspunkt
 It is not affiliated with, endorsed by or sponsored by the owners of these names.	Det är inte anslutet till, godkänt av eller sponsrat av ägarna till dessa namn.
 Italic	Kursiv
-Items	Objekt
 Its MPP tracker (input), from 1	Dess MPP-spårare (ingång), från 1
 Job	Order
 Jumper	Bygel
+Junction box with terminals	Kopplingsdosa med plintar
+Junction box with terminals three-phase	Kopplingsdosa med plintar trefas
 Key	Nyckel
 Kind	Typ
 Language	Språk
@@ -254,6 +266,7 @@ Length	Längd
 Level	Nivå
 Lifecycle	Livscykel
 Light	Ljust
+Limit (%)	Gräns (%)
 Limits	Gränsvärden
 Line	Linje
 Link	Länk
@@ -496,6 +509,7 @@ Required	Krävs
 Reserve	Reserv
 Resolution	Upplösning
 Responsible for the content	Ansvarig för innehållet
+Result	Resultat
 Reviewer	Granskare
 Revision	Revision
 Revision {}	Revision {}
@@ -535,6 +549,7 @@ Server	Server
 Service space	Serviceutrymme
 Settings	Inställningar
 Shape	Form
+Sheets	Blad
 Short-circuit voltage	Kortslutningsspänning
 Show history	Visa historik
 Show the logos of the catalogs	Visa katalogernas logotyper
@@ -579,6 +594,7 @@ T-junction	T-stycke
 Tables	Tabeller
 Technical data	Tekniska data
 Terminal	Plint
+Terminal diagram	Plintschema
 Terminal number	Plintnummer
 Terminal strip	Plintrad
 Terminal strips	Plintrader
@@ -589,6 +605,7 @@ Test instruments (IEC 61557)	Mätinstrument (IEC 61557)
 Tested by	Provad av
 Text	Text
 Text to find	Text att söka efter
+Texts	Texter
 The freestanding PV array {} stands outside the plot boundary	Det markmonterade solcellsfältet {} står utanför tomtgränsen
 The identifier must not be empty	Beteckningen får inte vara tom
 The long side of the modules along the rows	Modulernas långsida längs raderna
@@ -640,6 +657,8 @@ Version	Version
 Viewer	Visare
 Visual inspection	Okulär besiktning
 Voltage	Spänning
+Voltage (V)	Spänning (V)
+Voltage drop	Spänningsfall
 Voltage drop (%)	Spänningsfall (%)
 Warning	Varning
 Warnings	Varningar
@@ -685,6 +704,7 @@ yes	ja
 {} exists already	{} finns redan
 {} is not a PNG or JPEG image	{} är inte en PNG- eller JPEG-bild
 {} parts	{} artiklar
+{} symbols	{} symboler
 {} users	{} användare
 {} wires	{} ledningar
 {}, together with the wire to {}	{}, tillsammans med ledaren till {}

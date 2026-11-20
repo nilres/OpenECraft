@@ -59,7 +59,6 @@ Align right	Højrejuster
 Align top	Juster øverst
 All aspects (with product)	Alle aspekter (med produkt)
 All devices of page {} are in the schematic already	Alle enheder på side {} er allerede i diagrammet
-Aluminium	Aluminium
 Ammeter	Amperemeter
 Ammeter, reactive current	Amperemeter, reaktiv strøm
 Ampere-hour meter	Amperetimetæller
@@ -68,6 +67,7 @@ Analog input module	Analogt indgangsmodul
 Analog output module	Analogt udgangsmodul
 Analysis	Analyse
 Another section here has this number	Et andet afsnit her har allerede dette nummer
+Antenna outlet	Antennestik
 Apparent power (kVA)	Tilsyneladende effekt (kVA)
 Applied directives	Anvendte direktiver
 Approval date	Godkendelsesdato
@@ -101,7 +101,6 @@ Baying kit	Sammenbygningssæt
 Beacon, rotating	Roterende advarselslys
 Belongs to	Hører til
 Bends	Bøjninger
-Bill of materials	Stykliste
 Bimetal switch NC	Bimetalafbryder, bryde
 Bimetal switch NO	Bimetalafbryder, slutte
 Black box	Black box
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Skiftekontakt, tiltrækningsforsinket
 Changeover contact, passing make	Skiftekontakt med impulsslutning
 Changeover switch, cam operated	Omskifter, kamaktiveret
 Changeover switch, cam profile operated	Omskifter, kurveaktiveret
+Changeover switch, manually operated	Omskifter, manuelt aktiveret
 Changeover switch, roller operated	Omskifter, rulleaktiveret
 Check valve	Kontraventil
 Checked	Kontrolleret
 Checked by	Kontrolleret af
 Choose the pages of the subproject	Vælg delprojektets sider
-Circuit	Kreds
 Circuit breaker (single-line)	Effektafbryder (enstreget)
 Circuit breaker 1-pole	Automatsikring 1-polet
 Circuit breaker 1-pole (NFPA)	Automatsikring 1-polet (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Konverteret fra filformat {} til {}: {}
 Coolant	Kølemiddel
 Cooler	Køler
 Cooling method	Kølemetode
-Copper	Kobber
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Kobberskinne {}: bukning {} har en radius på {} mm, mindst {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Kobberskinne {}: hul Ø{} ved {} mm ligger uden for skinnen
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Kobberskinne {}: hul Ø{} ved {} mm er for tæt på bukning {}
@@ -316,7 +314,6 @@ Create projects	Opret projekter
 Creation date	Oprettelsesdato
 Cross-section {} carries {} A, less than the {} A of {}	Tværsnittet {} kan bære {} A, mindre end de {} A for {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Krydsningen på side {} passer ikke til sine ledere: den kræver en leder i alle fire retninger og intet tilslutningspunkt der
-Current (A)	Strøm (A)
 Current capacity (A)	Strømbelastningsevne (A)
 Current consumption	Strømforbrug
 Current range	Strømområde
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC-styrekredse bør væ
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC-styrekredse bør være blå (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC-konverter
 DWG export failed: {}	DWG-eksport mislykkedes: {}
+Data outlet	Datastik
 Data sheet	Datablad
 Date of the approval of the last revision	Dato for godkendelsen af den seneste revision
 Date of the last revision	Dato for den seneste revision
@@ -360,6 +358,7 @@ Description of the last revision	Beskrivelse af den seneste revision
 Description of the page's function (structure management)	Beskrivelse af sidens funktion (strukturstyring)
 Description of the page's location (structure management)	Beskrivelse af sidens placering (strukturstyring)
 Designer	Konstruktør
+Device connection box	Apparattilslutningsdåse
 Device connection diagram	Enhedstilslutningsdiagram
 Device data of {} without symbol or panel item	Enhedsdata for {} uden symbol eller layoutelement
 Device description file	Enhedsbeskrivelsesfil
@@ -409,7 +408,6 @@ Document (embedded file)	Dokument (integreret fil)
 Document A4 portrait	Dokument A4 stående
 Document number	Dokumentnummer
 Document reference	Dokumenthenvisning
-Documentation	Dokumentation
 Documentation language	Dokumentationssprog
 Does not match	Passer ikke
 Door (front view)	Dør (frontvisning)
@@ -648,6 +646,7 @@ Hazardous area zone	Ex-zone
 Heat exchanger	Varmeveksler
 Heating (W)	Opvarmning (W)
 Heating element	Varmelegeme
+Heating element three-phase	Varmelegeme trefaset
 Higher-level product (-)	Overordnet produkt (-)
 Higher-level product of the page	Sidens overordnede produkt
 Highest (°C)	Højst (°C)
@@ -725,6 +724,7 @@ Installation altitude	Opstillingshøjde
 Installation date	Installationsdato
 Installation devices	Installationsmateriel
 Installation method	Installationsmetode
+Installation of {}	Installation af {}
 Installation plan (IEC 60617-11)	Installationsplan (IEC 60617-11)
 Installation site (++)	Anlæg (++)
 Installation site and location	Opstillingssted og placering
@@ -737,6 +737,7 @@ Insulation class	Isolationsklasse
 Integer	Heltal
 Integrated EMC filter	Integreret EMC-filter
 Intermediate relay coil KA (GB)	Hjælperelæspole KA (GB)
+Intermediate switch, manually operated	Krydsomskifter, manuelt aktiveret
 Internal	Intern
 Internal target	Internt mål
 Interruption point '{}' has no counterpart	Afbrydelsespunktet '{}' har ingen modpart
@@ -751,6 +752,7 @@ Inverter DC/AC	Vekselretter DC/AC
 Isolating and switching devices in the right places	Adskillelses- og koblingsudstyr de rigtige steder
 Item	Element
 Item ID	Vare-id
+Items	Elementer
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Broer
 Junction box	Samledåse
@@ -776,13 +778,13 @@ Left side panel	Venstre sideplade
 Legend plate text	Skilttekst
 Length (m)	Længde (m)
 Length (mm)	Længde (mm)
+Length known (not calculated)	Længde kendt (ikke beregnet)
 Letter landscape	Letter liggende
 Letters (A, B, C)	Bogstaver (A, B, C)
 Level switch	Niveauafbryder
 Lifecycle state	Livscyklusstatus
 Light source	Lyskilde
 Lighting outlet	Lampeudtag
-Limit (%)	Grænse (%)
 Limit switch NC (NFPA)	Endestopkontakt brydekontakt (NFPA)
 Limit switch NO (NFPA)	Endestopkontakt sluttekontakt (NFPA)
 Line reactor	Netdrossel
@@ -946,6 +948,7 @@ Nibbling	Nibling
 No connection {}	Ingen forbindelse {}
 No devices to add to the single-line diagram	Ingen enheder at føje til enstregsdiagrammet
 No document embedded - choose a file in the page properties	Intet dokument integreret - vælg en fil i sideegenskaberne
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Ingen ledig plads til en kabelforskruning på de flader, kablet kan gå ud gennem: skab plads eller tilføj en kabelindføringsflange
 No identifying letter for the device tag.	Intet kendebogstav til enhedsmærkningen.
 No known column in the header row	Ingen kendt kolonne i overskriftsrækken
 No option {}	Ingen option {}
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Fejlstrømsafbryder 4-polet
 Residual current type	Fejlstrømstype
 Resistor	Modstand
 Response time	Reaktionstid
-Result	Resultat
 Return / exhaust line	Retur- / udluftningsledning
 Revision overview (changes)	Revisionsoversigt (ændringer)
 Revision table: author of the last revision (2: the one before …)	Revisionstabel: forfatter af den seneste revision (2: den før …)
@@ -1477,7 +1479,9 @@ Size (mm)	Størrelse (mm)
 Skipped	Sprunget over
 Sliding to the left	Skydes til venstre
 Sliding to the right	Skydes til højre
+Smoke alarm	Røgalarm
 Socket outlet	Stikkontakt
+Socket outlet three-phase	Stikkontakt trefaset
 Socket side (female)	Bøsningsside (hun)
 Soft starter	Softstarter
 Solar charge controller	Solcelleladeregulator
@@ -1585,7 +1589,6 @@ Terminal box	Klemkasse
 Terminal connection diagram	Klemtilslutningsdiagram
 Terminal data	Klemmedata
 Terminal description	Klemmebeskrivelse
-Terminal diagram	Klemdiagram
 Terminal line-up	Klemopstilling
 Terminal marker	Klemmærkat
 Terminal parts	Artikler til ender
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Arkivet udpakkes til mere end {} MB
 The archive was written by a newer version (archive version {})	Arkivet er skrevet af en nyere version (arkivversion {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Tavlefabrikanten skal være angivet (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Tavlerækken i sit rum: L-formet plan, indervæg, dør og vindue, tavlerækken på sin plads, en skinne med en stikkontakt på en væg, en vægmonteret nødbelysning og en kabelbakke under loftet.
+The cable of {} needs at least {} cores	Kablet til {} skal have mindst {} ledere
 The configuration is not a JSON object	Konfigurationen er ikke et JSON-objekt
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Transportbåndet efter den første frigivelse: en frigivet og låst revision, ændringer markeret siden, gennemgangskommentarer med rødmarkering, en ændringsanmodning, revision B i godkendelsesforløbet og en baseline at sammenligne med.
 The coordinates of the reference point must be numbers	Referencepunktets koordinater skal være tal
@@ -1624,6 +1628,7 @@ The macro box has no items left	Makroboksen har ikke flere elementer
 The next free id is already in use	Det næste ledige id er allerede i brug
 The option needs a name	Optionen skal have et navn
 The page needs a number	Siden skal have et nummer
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	Siden for {} er fuld: den næste afbryder i dens korrespondanceafbrydning skal tegnes på samme side
 The pages were changed after the submission; submit the revision again	Siderne blev ændret efter indsendelsen; send revisionen igen
 The plot boundary crosses itself	Grundgrænsen krydser sig selv
 The plot boundary encloses no area	Grundgrænsen omslutter intet areal
@@ -1753,6 +1758,7 @@ Unknown object: {}	Ukendt objekt: {}
 Unknown revision	Ukendt revision
 Unknown symbol '{}'	Ukendt symbol '{}'
 Unknown tool {}	Ukendt værktøj {}
+Unused connection points	Ubenyttede tilslutningspunkter
 Upstream	Foranliggende
 User defined	Brugerdefineret
 User symbols	Brugersymboler
@@ -1774,7 +1780,6 @@ Vibration	Vibration
 Vibration resistance	Vibrationsbestandighed
 View projects	Se projekter
 Violations	Overtrædelser
-Voltage (V)	Spænding (V)
 Voltage drop (V)	Spændingsfald (V)
 Voltage protection level	Beskyttelsesniveau
 Voltage range	Spændingsområde
@@ -1950,19 +1955,23 @@ yellow	gul
 {} has no MTTFd, B10d, PL or PFHd	{} har hverken MTTFd, B10d, PL eller PFHd
 {} has no door or window {}	{} har ingen dør eller vindue {}
 {} has nothing to manufacture	{} har intet at producere
+{} has three phases: it needs a three-phase protective device	{} har tre faser: det skal have en trefaset beskyttelsesenhed
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} indeholder en uløst flettekonflikt fra git: filen blev flettet som tekst. Tag én version af filen (git checkout --ours eller --theirs), og sæt derefter flettedriveren til opdelte projekter op (merge_project_file), før du fletter igen
 {} is a built-in function definition	{} er en indbygget funktionsdefinition
 {} is a built-in property	{} er en indbygget egenskab
 {} is a built-in scheme	{} er et indbygget skema
 {} is a busbar machine and makes no sheets	{} er en skinnebearbejdningsmaskine og fremstiller ingen plader
+{} is neither the protective device nor a device of the circuit of {}	{} er hverken beskyttelsesenheden eller en enhed i gruppen for {}
 {} is not a busbar machine	{} er ikke en skinnebearbejdningsmaskine
 {} is not a property of {}	{} er ikke en egenskab for {}
 {} is not an approver of this project	{} er ikke godkender af dette projekt
+{} is not connected to the mains: place it without a protective device	{} tilsluttes ikke nettet: placer den uden beskyttelsesenhed
 {} is not placed in the plant layout	{} er ikke placeret i anlægslayoutet
 {} is on page {}, which is released: renaming it would change the page	{} står på side {}, som er frigivet: omdøbning ville ændre siden
 {} is placed at the missing node {}	{} er placeret ved den manglende knude {}
 {} is planned twice ({} and {})	{} er planlagt to gange ({} og {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} er kun selektiv over for {} op til {} A (kortslutningsstrøm {} A)
+{} is used already	{} er allerede i brug
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} beholder sin struktur: dens hovedfunktioner ligger i forskellige strukturbokse ({})
 {} keeps its structure: {} exists already	{} beholder sin struktur: {} findes allerede
 {} lies outside page {}	{} ligger uden for side {}

@@ -59,7 +59,6 @@ Align right	Högerjustera
 Align top	Justera överkant
 All aspects (with product)	Alla aspekter (med produkt)
 All devices of page {} are in the schematic already	Alla apparater på sidan {} finns redan i kretsschemat
-Aluminium	Aluminium
 Ammeter	Amperemeter
 Ammeter, reactive current	Amperemeter, reaktiv ström
 Ampere-hour meter	Amperetimmätare
@@ -68,6 +67,7 @@ Analog input module	Analog ingångsmodul
 Analog output module	Analog utgångsmodul
 Analysis	Analys
 Another section here has this number	Ett annat avsnitt här har redan detta nummer
+Antenna outlet	Antennuttag
 Apparent power (kVA)	Skenbar effekt (kVA)
 Applied directives	Tillämpade direktiv
 Approval date	Godkännandedatum
@@ -101,7 +101,6 @@ Baying kit	Sammanbyggnadssats
 Beacon, rotating	Roterande varningsljus
 Belongs to	Tillhör
 Bends	Böjar
-Bill of materials	Stycklista
 Bimetal switch NC	Bimetallbrytare, brytande
 Bimetal switch NO	Bimetallbrytare, slutande
 Black box	Black box
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Växlande kontakt, tillslagsfördröjd
 Changeover contact, passing make	Växlande kontakt med impulsslutning
 Changeover switch, cam operated	Omkopplare, kammanövrerad
 Changeover switch, cam profile operated	Omkopplare, kurvmanövrerad
+Changeover switch, manually operated	Omkopplare, handmanövrerad
 Changeover switch, roller operated	Omkopplare, rullmanövrerad
 Check valve	Backventil
 Checked	Kontrollerad
 Checked by	Kontrollerad av
 Choose the pages of the subproject	Välj sidorna för delprojektet
-Circuit	Krets
 Circuit breaker (single-line)	Effektbrytare (enlinje)
 Circuit breaker 1-pole	Dvärgbrytare 1-polig
 Circuit breaker 1-pole (NFPA)	Dvärgbrytare 1-polig (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Konverterad från filformat {} till {}: 
 Coolant	Kylmedel
 Cooler	Kylare
 Cooling method	Kylmetod
-Copper	Koppar
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Kopparskena {}: bockning {} har en radie på {} mm, minst {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Kopparskena {}: hålet Ø{} vid {} mm ligger utanför skenan
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Kopparskena {}: hålet Ø{} vid {} mm ligger för nära bockning {}
@@ -316,7 +314,6 @@ Create projects	Skapa projekt
 Creation date	Skapandedatum
 Cross-section {} carries {} A, less than the {} A of {}	Tvärsnitt {} klarar {} A, mindre än {} A för {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Korsningen på sida {} passar inte sina ledare: den behöver en ledare i alla fyra riktningar och ingen anslutningspunkt där
-Current (A)	Ström (A)
 Current capacity (A)	Strömbelastningsförmåga (A)
 Current consumption	Strömförbrukning
 Current range	Strömområde
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC-styrkretsar bör var
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC-styrkretsar bör vara blå (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC-omvandlare
 DWG export failed: {}	DWG-exporten misslyckades: {}
+Data outlet	Datauttag
 Data sheet	Datablad
 Date of the approval of the last revision	Datum för godkännandet av den senaste revisionen
 Date of the last revision	Datum för den senaste revisionen
@@ -360,6 +358,7 @@ Description of the last revision	Beskrivning av den senaste revisionen
 Description of the page's function (structure management)	Beskrivning av sidans funktion (strukturhantering)
 Description of the page's location (structure management)	Beskrivning av sidans placering (strukturhantering)
 Designer	Konstruktör
+Device connection box	Apparatanslutningsdosa
 Device connection diagram	Apparatanslutningsschema
 Device data of {} without symbol or panel item	Apparatdata för {} utan symbol eller layoutobjekt
 Device description file	Enhetsbeskrivningsfil
@@ -409,7 +408,6 @@ Document (embedded file)	Dokument (inbäddad fil)
 Document A4 portrait	Dokument A4 stående
 Document number	Dokumentnummer
 Document reference	Dokumentreferens
-Documentation	Dokumentation
 Documentation language	Dokumentationsspråk
 Does not match	Matchar inte
 Door (front view)	Dörr (frontvy)
@@ -648,6 +646,7 @@ Hazardous area zone	Ex-zon
 Heat exchanger	Värmeväxlare
 Heating (W)	Värme (W)
 Heating element	Värmeelement
+Heating element three-phase	Värmeelement trefas
 Higher-level product (-)	Överordnad produkt (-)
 Higher-level product of the page	Sidans överordnade produkt
 Highest (°C)	Högst (°C)
@@ -725,6 +724,7 @@ Installation altitude	Installationshöjd
 Installation date	Installationsdatum
 Installation devices	Installationsapparater
 Installation method	Förläggningssätt
+Installation of {}	Installation av {}
 Installation plan (IEC 60617-11)	Installationsritning (IEC 60617-11)
 Installation site (++)	Uppställningsplats (++)
 Installation site and location	Uppställningsplats och placering
@@ -737,6 +737,7 @@ Insulation class	Isolationsklass
 Integer	Heltal
 Integrated EMC filter	Integrerat EMC-filter
 Intermediate relay coil KA (GB)	Hjälpreläspole KA (GB)
+Intermediate switch, manually operated	Korskopplare, handmanövrerad
 Internal	Intern
 Internal target	Internt mål
 Interruption point '{}' has no counterpart	Avbrottspunkt '{}' saknar motsvarighet
@@ -751,6 +752,7 @@ Inverter DC/AC	Växelriktare DC/AC
 Isolating and switching devices in the right places	Frånskiljande och manöverdon på rätt platser
 Item	Objekt
 Item ID	Artikel-ID
+Items	Objekt
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Byglar
 Junction box	Kopplingsdosa
@@ -776,13 +778,13 @@ Left side panel	Vänster sidovägg
 Legend plate text	Skylttext
 Length (m)	Längd (m)
 Length (mm)	Längd (mm)
+Length known (not calculated)	Längd känd (inte beräknad)
 Letter landscape	Letter liggande
 Letters (A, B, C)	Bokstäver (A, B, C)
 Level switch	Nivåvakt
 Lifecycle state	Livscykelstatus
 Light source	Ljuskälla
 Lighting outlet	Belysningsuttag
-Limit (%)	Gräns (%)
 Limit switch NC (NFPA)	Gränslägesbrytare brytande (NFPA)
 Limit switch NO (NFPA)	Gränslägesbrytare slutande (NFPA)
 Line reactor	Nätreaktor
@@ -946,6 +948,7 @@ Nibbling	Nibbling
 No connection {}	Ingen förbindelse {}
 No devices to add to the single-line diagram	Inga apparater att lägga till i enlinjeschemat
 No document embedded - choose a file in the page properties	Inget dokument inbäddat - välj en fil i sidegenskaperna
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Ingen ledig plats för en kabelförskruvning på de sidor kabeln kan gå ut genom: gör plats eller lägg till en kabelinföringsfläns
 No identifying letter for the device tag.	Ingen kodbokstav för apparatbeteckningen.
 No known column in the header row	Ingen känd kolumn i rubrikraden
 No option {}	Inget alternativ {}
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Jordfelsbrytare 4-polig
 Residual current type	Jordfelsbrytartyp
 Resistor	Motstånd
 Response time	Reaktionstid
-Result	Resultat
 Return / exhaust line	Retur- / avluftsledning
 Revision overview (changes)	Revisionsöversikt (ändringar)
 Revision table: author of the last revision (2: the one before …)	Revisionstabell: författare till den senaste revisionen (2: den före …)
@@ -1477,7 +1479,9 @@ Size (mm)	Storlek (mm)
 Skipped	Överhoppad
 Sliding to the left	Skjutbar åt vänster
 Sliding to the right	Skjutbar åt höger
+Smoke alarm	Brandvarnare
 Socket outlet	Vägguttag
+Socket outlet three-phase	Vägguttag trefas
 Socket side (female)	Hylssida (hona)
 Soft starter	Mjukstartare
 Solar charge controller	Solladdningsregulator
@@ -1585,7 +1589,6 @@ Terminal box	Kopplingslåda
 Terminal connection diagram	Plintanslutningsschema
 Terminal data	Plintdata
 Terminal description	Plintbeskrivning
-Terminal diagram	Plintschema
 Terminal line-up	Plintuppställning
 Terminal marker	Plintmärkning
 Terminal parts	Artiklar för ändar
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Arkivet packas upp till mer än {} MB
 The archive was written by a newer version (archive version {})	Arkivet har skrivits av en nyare version (arkivversion {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Tillverkaren av kopplingsutrustningen måste anges (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Skåpraden i sitt rum: L-format planritning, innervägg, dörr och fönster, skåpraden på sin plats, en skena med ett vägguttag, en väggmonterad nödbelysning och en kabelstege under taket.
+The cable of {} needs at least {} cores	Kabeln för {} behöver minst {} ledare
 The configuration is not a JSON object	Konfigurationen är inte ett JSON-objekt
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Transportören efter första frisläppningen: en frisläppt och låst revision, ändringar markerade sedan dess, granskningskommentarer med rödmarkering, en ändringsbegäran, revision B i godkännandeflödet och en baslinje att jämföra med.
 The coordinates of the reference point must be numbers	Referenspunktens koordinater måste vara tal
@@ -1624,6 +1628,7 @@ The macro box has no items left	Makrorutan har inga objekt kvar
 The next free id is already in use	Nästa lediga ID används redan
 The option needs a name	Alternativet behöver ett namn
 The page needs a number	Sidan behöver ett nummer
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	Sidan för {} är full: nästa brytare i dess trappkoppling måste ritas på samma sida
 The pages were changed after the submission; submit the revision again	Sidorna ändrades efter att de skickades; skicka revisionen igen
 The plot boundary crosses itself	Tomtgränsen korsar sig själv
 The plot boundary encloses no area	Tomtgränsen omsluter ingen yta
@@ -1753,6 +1758,7 @@ Unknown object: {}	Okänt objekt: {}
 Unknown revision	Okänd revision
 Unknown symbol '{}'	Okänd symbol '{}'
 Unknown tool {}	Okänt verktyg {}
+Unused connection points	Oanvända anslutningspunkter
 Upstream	Före
 User defined	Användardefinierad
 User symbols	Användarsymboler
@@ -1774,7 +1780,6 @@ Vibration	Vibration
 Vibration resistance	Vibrationstålighet
 View projects	Visa projekt
 Violations	Överträdelser
-Voltage (V)	Spänning (V)
 Voltage drop (V)	Spänningsfall (V)
 Voltage protection level	Skyddsnivå
 Voltage range	Spänningsområde
@@ -1950,19 +1955,23 @@ yellow	gul
 {} has no MTTFd, B10d, PL or PFHd	{} har varken MTTFd, B10d, PL eller PFHd
 {} has no door or window {}	{} har ingen dörr eller fönster {}
 {} has nothing to manufacture	{} har inget att tillverka
+{} has three phases: it needs a three-phase protective device	{} har tre faser: det behöver ett trefasigt skyddsdon
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} innehåller en olöst sammanslagningskonflikt från git: filen slogs ihop som text. Ta en version av filen (git checkout --ours eller --theirs) och ställ sedan in sammanslagningsdrivrutinen för delade projekt (merge_project_file) innan du slår ihop igen
 {} is a built-in function definition	{} är en inbyggd funktionsdefinition
 {} is a built-in property	{} är en inbyggd egenskap
 {} is a built-in scheme	{} är ett inbyggt schema
 {} is a busbar machine and makes no sheets	{} är en skenbearbetningsmaskin och tillverkar inga plåtar
+{} is neither the protective device nor a device of the circuit of {}	{} är varken skyddsdonet eller en apparat i gruppen för {}
 {} is not a busbar machine	{} är inte en skenbearbetningsmaskin
 {} is not a property of {}	{} är inte en egenskap för {}
 {} is not an approver of this project	{} är inte godkännare för det här projektet
+{} is not connected to the mains: place it without a protective device	{} ansluts inte till nätet: placera den utan skyddsdon
 {} is not placed in the plant layout	{} är inte placerad i anläggningslayouten
 {} is on page {}, which is released: renaming it would change the page	{} finns på sidan {}, som är frisläppt: att byta namn skulle ändra sidan
 {} is placed at the missing node {}	{} är placerad vid den saknade noden {}
 {} is planned twice ({} and {})	{} är planerad två gånger ({} och {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} är selektiv mot {} endast upp till {} A (kortslutningsström {} A)
+{} is used already	{} används redan
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} behåller sin struktur: dess huvudfunktioner ligger i olika strukturrutor ({})
 {} keeps its structure: {} exists already	{} behåller sin struktur: {} finns redan
 {} lies outside page {}	{} ligger utanför sida {}

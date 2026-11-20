@@ -172,14 +172,10 @@ def draw(c):
     motor_wires = []
     for t, pin in zip(terminals + [pe], ("U1", "V1", "W1", "PE")):
         motor_wires += c.tool("connect", page="2", **{"from": f"#{t}:2", "to": f"-M1:{pin}"})["ids"]
-    cable = c.tool("add_cable_definition", "the four wires to the motor become cores of a new cable", page="2", points=[[52, 180], [92, 180]])["cable"]
-    c.tool("apply_cable_part", cable=cable, part="GEN.CBL-4G1.5")
-    # The cable definition numbered the cores 1-4 before the part named them.
-    for wire, core in zip(motor_wires, ("BN", "BK", "GY", "GNYE")):
-        c.tool("update_wire", page="2", id=wire, core=core, color=core)
-    key = c.tool("table_get", "the cable list, for the row key", table="cables")["rows"][0]["key"]
-    c.tool("table_set", table="cables", key=key, column="Length", value="15")
-    c.tool("table_set", table="cables", key=key, column="Description", value="Pump P1")
+    c.tool("add_cable_definition", "the four wires to the motor become cores of the new cable -W1", page="2",
+           points=[[52, 180], [92, 180]], cable="-W1")
+    c.tool("apply_cable_part", "type and cores from the catalog; the wires take the new core names", cable="-W1", part="GEN.CBL-4G1.5")
+    c.tool("set_cable", cable="-W1", length=15, description="Pump P1")
 
     c.md.write("\n## 24 V DC supply (page 2)\n\n")
     c.tool("place_symbol", page="2", symbol="cb1", tag="-F1", x=300, y=64, function_text="Control voltage")

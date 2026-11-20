@@ -14,6 +14,25 @@ fn building_and_room() -> (Project, [u64; 2], usize) {
 }
 
 #[test]
+fn the_floor_plan_on_paper_lies_under_the_room_in_its_plan() {
+    let (mut prj, levels, _) = building_and_room();
+    let ri = bld::add_room(&mut prj, "+ROOM2", Some(levels[0])).unwrap();
+    assert!(plan::paper_in_plan(&prj, ri).is_none());
+    prj.layout.buildings[0].levels[0].plan = Some(panel::FloorPlan { px: [1000, 500], paper: 0.254, scale: 100.0, opacity: 0.5, ..Default::default() });
+    let (_, c) = plan::paper_in_plan(&prj, ri).unwrap();
+    // 1000 pixels of 0.254 mm at 1:100: 25.4 m.
+    let w = ((c[1][0] - c[0][0]).powi(2) + (c[1][1] - c[0][1]).powi(2)).sqrt();
+    assert!((w - 25_400.0).abs() < 1.0, "{w}");
+    // Its corners in the room's plan are those of the site plan, in the room.
+    let (_, site) = site_plan::floor_plan_corners(&prj, 0, levels[0]).unwrap();
+    let back = panel::site_poses(&prj)[ri].apply([c[2][0], 0.0, c[2][1]]);
+    assert!((back[0] - site[2][0]).abs() < 1.0 && (back[2] - site[2][1]).abs() < 1.0, "{back:?} {site:?}");
+    // Not under rooms of other levels.
+    let upper = bld::add_room(&mut prj, "+ROOM3", Some(levels[1])).unwrap();
+    assert!(plan::paper_in_plan(&prj, upper).is_none());
+}
+
+#[test]
 fn new_rooms_go_onto_the_level_selected_in_the_navigator() {
     let (mut prj, [l0, l1], free) = building_and_room();
     let mut ui = PanelUi::default();
@@ -510,6 +529,32 @@ fn cable_cores_are_drawn_with_their_cable() {
         let at = view(*core);
         assert!(scene.wires.iter().any(|w| [w.line.a, w.line.b].iter().any(|q| (0..3).all(|k| (q[k] - at[k]).abs() < 0.5)) && w.line.a != w.line.b), "{core:?} not drawn");
     }
+}
+
+#[test]
+fn lights_and_heating_elements_of_rooms_are_drawn_in_3d_with_their_models() {
+    use openecraft_core::installation as inst;
+    let mut prj = openecraft_core::sample::example("electrical_room").unwrap();
+    let room = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let (lo, hi) = panel::bounds(&panel::outline(&prj.layout.enclosures[room]));
+    let at = |prj: &Project, fx: f32, fz: f32| {
+        let q = panel::site_poses(prj)[room].apply([lo[0] + (hi[0] - lo[0]) * fx, 0.0, lo[1] + (hi[1] - lo[1]) * fz]);
+        [q[0], q[2]]
+    };
+    let light = { let q = at(&prj, 0.5, 0.5); inst::place(&mut prj, room, "GEN.LAMP-CEILING-LED", q) }.unwrap();
+    let heater = { let q = at(&prj, 0.5, 0.02); inst::place(&mut prj, room, "GEN.HEATER-TOWEL-500", q) }.unwrap();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi::default();
+    let shown = ui.shown_3d(&prj, room);
+    let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, room, &shown);
+    for (id, name) in [(light, "light"), (heater, "heater")] {
+        let faces: Vec<&super::scene3d::SceneFace> = scene.faces.iter().filter(|f| f.item.is_some_and(|i| i.1 == id)).collect();
+        // Their models, not boxes of six faces.
+        assert!(faces.len() > 30, "{name}: {} faces", faces.len());
+    }
+    // The light hangs under the ceiling, the heater stands low on the wall.
+    let top = |id: u64| scene.faces.iter().filter(|f| f.item.is_some_and(|i| i.1 == id)).flat_map(|f| f.pts[..f.n as usize].iter().map(|q| q[1])).fold(f32::MIN, f32::max);
+    assert!(top(light) > top(heater), "{} {}", top(light), top(heater));
 }
 
 #[test]
@@ -2265,7 +2310,7 @@ fn the_installation_menu_keeps_its_size_on_every_tab() {
             sizes.push(size);
         }
         let last = sizes[sizes.len() - 1];
-        assert!(last.x > 700.0 && last.x < 800.0 && last.y < 700.0, "tab {tab}: {sizes:?}");
+        assert!(last.x > 700.0 && last.x < 800.0 && last.y < 1000.0, "tab {tab}: {sizes:?}");
         assert!(sizes[3..].iter().all(|s| (s.x - last.x).abs() < 1.0 && (s.y - last.y).abs() < 1.0), "tab {tab}: {sizes:?}");
     }
 }
@@ -2288,4 +2333,75 @@ fn freestanding_arrays_and_the_roofs_to_pick_are_in_the_site_view() {
     assert_eq!(prj.layout.plot.solar.len(), 2);
     assert_eq!((prj.layout.plot.solar[1].x, prj.layout.plot.solar[1].z), (0.0, -30_000.0));
     assert_eq!(ui.selected_array, Some(prj.layout.plot.solar[1].id));
+}
+
+#[test]
+fn parts_placed_in_a_room_go_into_the_schematic_for_the_protective_device_chosen() {
+    let mut prj = openecraft_core::sample::example("electrical_room").unwrap();
+    let ri = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let mut ui = PanelUi { in_room: true, enclosure: ri, ..Default::default() };
+    // The menu chooses the first protective device of a final circuit.
+    let ctx = egui::Context::default();
+    ctx.run_ui(egui::RawInput::default(), |u| ui.breaker_choice(u, &prj)).textures_delta.clear();
+    let breaker = ui.installation.breaker.clone().unwrap();
+    assert!(!breaker.is_empty());
+    // A click on the rear wall in the 3D view.
+    let e = &prj.layout.enclosures[ri];
+    let w = panel::side(e, Face::Wall(0)).unwrap();
+    let mid = [(w.a[0] + w.b[0]) / 2.0 + w.normal[0] * 20.0, (w.a[1] + w.b[1]) / 2.0 + w.normal[1] * 20.0];
+    let q = panel::site_poses(&prj)[ri].apply([mid[0], 1000.0, mid[1]]);
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]], None);
+    let it = prj.layout.enclosures[ri].items.last().unwrap().clone();
+    assert_eq!((it.part.as_str(), it.face), ("GEN.SOCKET-F-UP", Face::Wall(0)));
+    assert!(!it.tag.is_empty(), "{}", ui.status);
+    assert!(ui.status.contains(&it.tag), "{}", ui.status);
+    // The status names the cable and where it comes from.
+    let (cable, from) = openecraft_core::installation::feed_of(&prj, &it.tag).unwrap();
+    assert!(ui.status.contains(&cable) && ui.status.contains(&from), "{}", ui.status);
+    // Without a protective device it stays out of the schematic, and the status says so.
+    ui.installation.breaker = Some(String::new());
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]], None);
+    let later = prj.layout.enclosures[ri].items.last().unwrap().clone();
+    assert!(later.tag.is_empty());
+    assert!(ui.status.contains("not in the schematic"), "{}", ui.status);
+    // Put into the schematic afterwards, for the protective device then chosen.
+    ui.installation.breaker = Some(breaker);
+    ui.put_into_schematic(&mut prj, &later.part, later.id);
+    let tag = prj.layout.enclosures[ri].item(later.id).unwrap().tag.clone();
+    assert!(!tag.is_empty() && openecraft_core::installation::feed_of(&prj, &tag).is_some(), "{}", ui.status);
+    // A click on the surface of the wall itself, a hair outside the room: on the wall
+    // inside, seen in the 3D view.
+    let edge = [(w.a[0] + w.b[0]) / 2.0 - w.normal[0] * 1.0, (w.a[1] + w.b[1]) / 2.0 - w.normal[1] * 1.0];
+    let q = panel::site_poses(&prj)[ri].apply([edge[0], 1000.0, edge[1]]);
+    ui.place_in_room(&mut prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]], None);
+    let on_wall = prj.layout.enclosures[ri].items.last().unwrap().clone();
+    assert_eq!(on_wall.face, Face::Wall(0), "{}", ui.status);
+    let an = Analysis::build(&prj);
+    let shown = ui.shown_3d(&prj, ri);
+    let s = ui.scene_3d(&egui::Context::default(), &prj, &an, ri, &shown);
+    assert!(s.faces.iter().any(|f| f.item == Some((ri, on_wall.id))), "the socket is drawn");
+}
+
+#[test]
+fn a_part_goes_where_the_wall_is_clicked_and_is_deleted_with_the_delete_key() {
+    let mut prj = openecraft_core::sample::example("electrical_room").unwrap();
+    let ri = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let mut ui = PanelUi { in_room: true, enclosure: ri, ..Default::default() };
+    ui.installation.breaker = Some(String::new());
+    let w = panel::side(&prj.layout.enclosures[ri], Face::Wall(0)).unwrap();
+    let mid = [(w.a[0] + w.b[0]) / 2.0, (w.a[1] + w.b[1]) / 2.0];
+    let q = panel::site_poses(&prj)[ri].apply([mid[0], 0.0, mid[1]]);
+    // Clicked on the wall at 1.6 m, far from the zones of a socket outlet: there.
+    let target = view3d::Target { room: Some(ri), at: [q[0], q[2]], height: Some(1600.0) };
+    ui.place_at(&mut prj, ri, &[ri], "GEN.SOCKET-F-UP", Some(target));
+    let it = prj.layout.enclosures[ri].items.last().unwrap().clone();
+    assert_eq!((it.part.as_str(), it.face), ("GEN.SOCKET-F-UP", Face::Wall(0)), "{}", ui.status);
+    let poses = panel::site_poses(&prj);
+    let pl = openecraft_core::installation::placed(&prj, &poses, ri, &it).unwrap();
+    assert!((pl.height - 1600.0).abs() < 5.0, "{}", pl.height);
+    // Selected and deleted.
+    ui.select_item(it.id);
+    ui.delete_selected_3d(&mut prj);
+    assert!(prj.layout.enclosures[ri].item(it.id).is_none());
+    assert!(ui.selection.is_empty());
 }

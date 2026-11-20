@@ -355,9 +355,11 @@ the Buildings pane; plugin `buildings`) is the parcel of land the plant stands o
 
 ## Buildings, levels and shafts
 
-*Layout space › Buildings* (plugin `buildings`) manages the buildings of the plant;
-the pane lists them with their levels, shafts, stairs, roofs and the links between
-buildings, and draws a site plan of all rooms (one level highlighted), shafts, the
+*Layout space › Buildings* (plugin `buildings`) manages the buildings of the plant in
+tabs: *Site* (the plot, freestanding PV arrays, the links between buildings),
+*Building* (the building chosen with its levels, shafts and stairs), *Roofs*,
+*Earthing*, *Floor plan on paper* and *Electrical installation* (both for one level).
+Every tab draws a site plan of all rooms (one level highlighted), shafts, the
 stairs reaching the level shown (steps and walking line), the roofs (eaves, ridges and
 hips dashed) with their roof windows, and the links.
 
@@ -567,13 +569,16 @@ plant in 3D draws the plot boundary on the ground and the reference point as a p
 ## Floor plans on paper
 
 Electrical floor plans are drawn on the architect's drawing of the building. A
-**floor plan on paper** goes under a level (*Buildings* pane, choose the level of the
-site plan, *Floor plan…*; command line `import_floor_plan`): a picture (PNG, JPEG,
+**floor plan on paper** goes under a level (*Buildings* pane, tab *Floor plan on
+paper*, choose the level of the site plan, *Floor plan…*; command line
+`import_floor_plan`): a picture (PNG, JPEG,
 TIFF, GIF, WebP, BMP) or a page of a PDF file, a scan (also those of office scanners,
 which split a page into a background picture and black and white fax masks) or a
 drawing (its lines and filled areas; texts are not drawn). Of a PDF file with several
-pages the page is chosen in the pane. The site plan shows it under the level's rooms;
-the picture is kept in the project as a grey PNG (crate `openecraft-scan` reads the
+pages the page is chosen in the pane. The site plan shows it under the level's rooms,
+and the floor plan of each room of the level shows it under the room at its place
+(*Show › Floor plan on paper* in the ribbon of the layout space, on by default; the
+room's floor is then drawn see-through); the picture is kept in the project as a grey PNG (crate `openecraft-scan` reads the
 files, `openecraft_core::panel::floorplan` holds the rest).
 
 - **Scale and place** (*Scale*, *Resolution*, *Top left corner*, *Turn*, *Shown*;
@@ -618,7 +623,8 @@ angles to the edges of the sheet.
    two pieces). An opening whose two sides are joined anyway (a blot in a room) is
    none.
 5. *Rooms*: the free areas enclosed by the walls with the openings closed (those
-   reaching the edge of the sheet are outside), at least 1 m². Their outline: cut along
+   reaching the edge of the sheet are outside), at least 1 m² (*Smallest room*, command
+   parameter `min_room`, kept with the floor plan: a WC or a closet is smaller). Their outline: cut along
    the lines where the border runs for at least 150 mm, the cells of these cuts mostly
    inside the room make up the floor plan (walls at right angles, no step shorter than
    75 mm).
@@ -634,61 +640,141 @@ without a drawn door are one room, and stairs or chimneys are walls.
 
 ## Installation: outlets, switches, lights and their circuits
 
-The installation plan of a level is drawn in the *Buildings* pane (choose the level of
-the site plan) on its floor plan; plugin `installation`, `openecraft_core::installation`.
+The installation plan of a level is drawn in the *Buildings* pane (tab *Electrical
+installation*, choose the level of the site plan) on its floor plan; plugin
+`installation`, `openecraft_core::installation`. Everything of it is in the schematic:
+the devices, their connections and cables; the circuits are read from there, and the
+lengths of their cables are those of the 3D routing.
 
-- **Placing** (*Place* with a part chosen; command `place_installation`): a click in a
-  room of the site plan puts a socket outlet, switch or light there: a ceiling light
-  (`GEN.LAMP-CEILING-LED`, `GEN.LAMP-DOWNLIGHT-LED`, parts with *Ceiling mounting: yes*)
-  on the ceiling where clicked, anything else on the wall nearest to the click (within
-  0.8 m) at its mounting height (outlets 300 mm, switches 1050 mm, wall lights
-  2000 mm). The site plan draws them with the symbols of installation plans (IEC
-  60617-11) in the colour of their circuit; in 3D they are the parts' models. The 3D
+- **Putting devices in** (*Put in* with a protective device and a part chosen; command
+  `place_installation`): a click in a room of the site plan puts a socket outlet,
+  switch, light or heating element there for the protective device (a circuit breaker,
+  RCBO or fuse of the mains up to 32 A in the schematic; the list marks the spare ones,
+  command `list_breakers`): a ceiling light (`GEN.LAMP-CEILING-LED`,
+  `GEN.LAMP-DOWNLIGHT-LED`, parts with *Ceiling mounting: yes*) on the ceiling where
+  clicked, anything else on the wall nearest to the click (within 0.8 m) at its
+  mounting height (outlets 300 mm, switches 1050 mm, wall lights 2000 mm). It becomes a
+  device of the schematic in its room (`+ROOM1-XD1` socket outlets, `-SF1` switches,
+  `-EA1` lights, `-EB1` heating elements) with the part, drawn on the **installation
+  page** of the protective device: a schematic page after the page of the protective
+  device, made with its first device, whose outgoing connection point gets the
+  interruption point `L-F5` to it (a three-pole one `L1-F5` … `L3-F5` at its three
+  outgoing connection points). The page draws the phase conductors from those
+  interruption points and the neutral and protective conductors from the potentials
+  `N-F5` and `PE-F5` as lines along its top, each device in a column below them.
+  Each device gets a cable `-W<n>` from the device before it (the first from the
+  protective device, a light from the first switch of its room or the last light behind
+  it), or from the device or junction box chosen (*Cable from*; parameter `from`): a
+  circuit branches there. Its wires are the cores (BN, BU, GNYE; three-phase BN, BK, GY,
+  BU, GNYE) of `NYM-J 3x1.5` (`5x`), or thicker where the protective device or a device
+  of the circuit asks for more (current-carrying capacity under the installation
+  conditions). The cable keeps its source and target (`cable.source`, `cable.target`):
+  the connections of the circuit, the legs of the list and the ends of the 3D routes
+  follow them, the columns of the page the tree of the cables. In a net whose wires
+  belong to several cables each connection takes the cable of the wires at its own
+  connection points.
+- **Three-phase circuits**: a three-pole protective device feeds CEE socket outlets
+  (`GEN.SOCKET-CEE-16-5P`, `-32-5P`), cooker connection boxes (`GEN.CONN-BOX-COOKER-UP`)
+  and three-phase heating elements (`GEN.HEATER-SAUNA-9000`); a device with L2 or L3 is
+  refused on a single-phase circuit.
+- **Junction boxes and device connection boxes** (`GEN.JBOX-UP`, `GEN.JBOX-5-UP`,
+  `GEN.CONN-BOX-UP`; tab *Boxes*): a junction box is a device of the circuit the cables
+  of others come from; a device connection box feeds fixed equipment. A junction box is
+  no load in the cable sizing: a cable ending at it carries the largest load of the
+  cables starting there (by their source and target, which `place_installation`
+  stores; a cable drawn by hand passes on none), computed single-phase for a
+  single-phase load behind a five-core feeder.
+- **Two-way circuits**: a two-way switch (`GEN.SW-2WAY-UP`) placed `from` another one
+  is drawn upright in the column after it, the two travellers of their cable from the
+  one to the other; for more switching points intermediate switches
+  (`GEN.SW-INTER-UP`) go between them, each `from` the switch before, drawn on its page
+  (refused where that page is full). A light without `from` hangs on the last switch,
+  which also takes the lights placed on the switches before it; other devices fed from
+  them stay. A two-way switch after a closed pair (two two-way switches) starts a circuit
+  of its own, also with `from` one of the pair. The cables between the
+  switches have four cores: the two travellers, and the neutral and protective
+  conductor carried on to the lights. A two-way switch working alone has its spare
+  traveller in *Unused connection points* (`function.unused_pins`): a connection point
+  named there is not reported as open. The travellers of an intermediate switch without
+  a last switch stay open. A blind switch (`GEN.SW-BLIND-UP`) has two real outputs and
+  is no two-way switch.
+- **Without a circuit**: data and antenna outlets (`GEN.DATA-RJ45-2X-UP`,
+  `GEN.TV-SAT-UP`) and smoke alarms (`GEN.SMOKE-ALARM`, on the ceiling) are placed in
+  the rooms only (`place_installation` without `breaker`; with `tag` as that device),
+  shown in the site plan and listed with the items of the rooms.
+- **Outside the building**: a point outside the room puts the part on the outside of
+  its nearest wall at its mounting height (an outdoor socket, a facade light); devices
+  in the garden go into
+  an outdoor area, a room placed outside the building (`place_on_level` without a
+  building).
+- **What `place_installation` takes besides**: the device tag (`tag`), the mounting
+  height (`height`, mm), the cable's tag, type, part, number of cores, cross-section
+  and a known length (`cable`, `cable_type`, `cable_part`, `cores`, `cross_section`,
+  `length`); a known length is kept (*Length known*, `cable.fixed_length`) and taken
+  instead of the 3D route. `place_cabinet_device` puts the protective devices into the
+  distribution board, which the circuits need for their lengths.
+- **In the 3D view and the wall views** (*Insert › Outlets, switches, heating*): the
+  menu chooses the protective device at its top (or *None: not into the schematic*);
+  the part picked is placed with a click on a wall or the ceiling of the room in the 3D
+  view (on a wall at its mounting height; Esc stops), or on the wall in a wall view,
+  and goes into the schematic like *Put in*. The list of the menu is as tall as its
+  parts, at least as the part shown beside it, at most a little more than half the
+  window.
+- **The site plan** draws the devices with the symbols of installation plans (IEC
+  60617-11) in the colour of their circuit and the connections of the circuits; in 3D
+  they are the parts' models (generated ones for the generic parts and parts without a
+  model of their own: outlets and switches in their frames, round ceiling lights with
+  their domed diffuser, recessed downlights with flange and diffuser, rectangular wall,
+  panel and batten lights, emergency lights with their sign, panel heaters with grille
+  and thermostat, towel radiators with their bars, infrared heating panels). The 3D
   menu *Insert › Outlets, switches, heating* has a tab *Lights* too.
-- **Final circuits** (*New circuit*, commands `add_circuit`, `set_circuit`): a
-  protective device of the distribution board (a circuit breaker, RCBO or fuse of the
-  mains in the schematic or single-line diagram, chosen from a list that marks the
-  spare ones: nothing behind them yet; command `list_breakers`), a cable (type,
-  cross-section; 3 × 1.5 mm² unless three-phase) and its items in the order the cable
-  runs to them: *Wire*, then click them in the site plan (a click on one of the circuit
-  takes it out). The cable starts at the distribution board the protective device is
-  placed in (or one chosen).
-- **Cable length** (*Length*, `list_circuits`, report *Installation circuits*): from the
-  top of the board to each item in turn in the horizontal installation zone 300 mm
-  under the ceiling (DIN 18015-3), along x and z of the plant (along the walls, not
-  across rooms), up and down in the vertical zones of the items, up or down between
-  levels, 0.3 m for each box: an estimate for planning. *Write cable lengths*
-  (`write_circuit_cables`) writes type, cross-section and length (to the half metre up)
-  into the cable list, a new cable `-W<n>` for a circuit without one.
+- **Heating elements** are put in the same way: panel heaters (`GEN.HEATER-PANEL-1000`,
+  `GEN.HEATER-PANEL-2000`, 400 mm) and towel radiators (`GEN.HEATER-TOWEL-500`,
+  900 mm) on the wall, infrared heating panels (`GEN.HEATER-IR-600`) on the ceiling;
+  parts of the subgroups *Room heater*, *Towel radiator*, *Infrared heating panel* or
+  with a heating element function for walls or ceilings (enclosure heaters of cabinets
+  are none) (*Insert › Outlets, switches, heating*, tab *Heating*).
+- **Circuits of the schematic** (read only; command `list_circuits`, report
+  *Installation circuits*): each protective device of the mains up to 32 A with the
+  socket outlets, switches, lights and heating elements behind it: on the nets behind
+  the protective device, through switches, contacts, terminals and the main contacts of
+  contactors, not through further protective devices or loads. A device counts by its
+  part (one for walls or ceilings) or, without parts, by its symbol (socket outlets,
+  heating elements, lamps, luminaires, installation symbols; contacts of a device whose
+  letter code starts with `S`); devices placed in a cabinet are left out. The list
+  shows the devices placed of each, its cables, the length and the voltage drops; a
+  click on a circuit chooses its protective device.
+- **Devices of the schematic placed** (*Place all* or a click on a device of the
+  circuit chosen; command `place_circuit_device`): devices drawn in the schematic by
+  hand are placed with a click in a room like a part (with their own part, the part
+  chosen if of their kind, or the generic one of their kind, which becomes their part);
+  a click on a socket outlet, switch, light or heating element placed before without a
+  device tag makes that one the device. A device placed again moves; the next device
+  not placed yet follows.
+- **Cable length**: each connection of the phase conductors of a circuit between two
+  devices, a cable (once) or a single wire, has the length of its 3D route (routing in
+  the rooms, through walls and between levels, `crate::routing3d`). Until it is routed
+  it is estimated (shown with `~`): from the top of the board to the device in the
+  horizontal installation zone 300 mm under the ceiling (DIN 18015-3), along x and z of
+  the plant, up and down in the vertical zones of the devices, up or down between
+  levels, 0.3 m for each box. *Write cable lengths* (`write_circuit_cables`) writes the
+  lengths (to the half metre up) into the cable list.
 - **Voltage drop from the supply** (*From the supply*; `total_drop_percent` of
-  `list_circuits`): per cable ΔU = k · I · L · (ρ / A · cos φ + X' · sin φ) (k = 2
+  `list_circuits`): per connection ΔU = k · I · L · (ρ / A · cos φ + X' · sin φ) (k = 2
   single-phase, √3 three-phase, ρ of copper at its operating temperature of the
-  electrical settings, X' = 0.08 mΩ/m, cos φ 0.95 unless set). The circuit's cable
-  carries the rated current of its protective device, or the load given; the feeder
-  cables from the supply to the distribution board (those the short-circuit
-  calculation follows, with their lengths in the cable list) the design current of the
-  protective device upstream (load calculation) or its rated current; a planned
-  protective device takes the feeder of another one in the same board. The sum is
-  checked against the limit of the rule sets (*Voltage drop*); the tooltip tells the
-  feeder's share.
-- **Devices and single-line diagram** (*Single-line page*, `installation_overview`):
-  the socket outlets, switches and lights of the circuits get device tags in their room
-  (`+ROOM1-XD1` socket outlets, `-SF1` switches, `-EA1` lights) with their parts, and
-  generated overview pages show each circuit as a single-line diagram: its protective
-  device (single-line circuit breaker, the same device as in the schematic), its cable
-  and its items with their installation plan symbols, rooms beside them. The pages are
-  made again each time.
-- **New protective device** (*+* beside the protective device, `new_circuit_breaker`):
-  a planned miniature circuit breaker of 16 A (10 or 32 A by command), single- or
-  three-phase like the circuit, `-F<n>`, starting in the board most circuits start at.
-  It is drawn in the single-line page; *single-line → schematic* makes it a 1-pole
-  (or 3-, 4-pole by its part) breaker of the schematic, to connect to the supply. A
-  single-line circuit breaker stands for 1-, 2-, 3- and 4-pole breakers.
-- **Check** *Installation circuits*: circuits without protective device or board,
-  protective devices not in the schematic or feeding several circuits, cables thinner
-  than their protective device asks (current-carrying capacity under the installation
-  conditions), voltage drops above the limit, items gone; socket outlets and lights in
-  no circuit (information).
+  electrical settings, X' = 0.08 mΩ/m, cos φ 0.95), summed along the connections from
+  the protective device to the farthest device. The circuit's cables carry the design
+  current of its protective device (load calculation) or its rated current; the feeder
+  cables from the supply to the distribution board (those the short-circuit calculation
+  follows, with their lengths in the cable list) the design current of the protective
+  device upstream or its rated current. The sum is checked against the limit of the
+  rule sets (*Voltage drop*); the tooltip tells the feeder's share.
+- **Check** *Installation circuits*: circuits whose protective device is in no
+  distribution board of the layout, cables thinner than their protective device asks
+  (current-carrying capacity under the installation conditions), voltage drops above
+  the limit, devices of a circuit placed in no room (information); socket outlets,
+  switches, lights and heating elements in the rooms that are not in the schematic
+  (information).
 
 ## House connection boxes
 
@@ -853,7 +939,36 @@ one through the middle of the roof, which is reported), then through the room. A
 gland takes one cable: the free one whose clamping range fits the cable, nearest to
 where it heads; a cable entry flange takes as many as have places along its membrane.
 A cable that finds every gland of its cabinet taken is not routed and reported as an
-error (*… every cable gland of … is taken by another cable. Add a cable gland for it*). A
+error (*… every cable gland of … is taken by another cable. Add a cable gland for it*).
+A junction box of a maker marked as an enclosure (part data `Junction box enclosure:
+yes`, the Spelsberg Abox) is placed on a wall as an enclosure of the room, its rear on
+the wall, its middle at the mounting height, with a WAGO 221-415 splicing connector
+inside that becomes the device of the schematic (the cables of its circuit run into
+the box). In the 3D view a click on the inside of a wall or the ceiling of a room places
+a part there: within 200 mm of its mounting height at that height (its installation
+zone), farther off at the height clicked; the part is shown see-through where it would
+go while the pointer moves.
+With *Add cable glands for new cables* (enclosure properties, `set_auto_glands`; on by
+default), after every change of the cables or the schematic, a cable that leaves a
+cabinet for a device outside it and its line-up and finds no free gland it can pass
+gets one: of polyamide, the smallest whose clamping range takes the cable, in the first
+free place from the middle of the face. A cable to a device in the room the cabinet
+stands in gets it in the roof (it can only leave through the roof, the sides and the
+rear, see below; a cabinet hanging on a wall in the bottom), a cable into the field in
+the bottom. Where that face is full, the gland goes into the next face the cable can
+leave through: the bottom or the roof, then the left and right sides and the rear
+(not a side against the next enclosure of the line-up, nor the sides of an enclosure
+less than 150 mm deep, whose wires would find no way to them; not the rear of one
+hanging on the wall or standing against a wall of its room, and its bottom for a cable
+into the room only towards a place below the cabinet's bottom with its plinth, as the
+routing leaves it: the device in the room or in a cabinet standing there, else the
+first wall penetration on the way to its room; a device on the roof is above). A
+cable that finds no free place on any of them gets none and is reported (by *Add the missing ones* in the status
+line, as `glands_missing` of a command and `missing` of `add_cable_glands`, each with
+the cabinet and why): make room or add a cable entry flange. A gland deleted by hand
+stays deleted until the cables change; *Add the missing ones* (`add_cable_glands`)
+adds a gland for every cable that has none, also with the option off. A cabinet with a
+cable entry flange gets none. A
 cabinet hanging on a wall (its bottom above the floor) is also left through a gland in
 its bottom: below each such gland a shaft down to the floor and out to the front of the
 cabinet stays free for the routes. Frozen, such a route keeps its legs.

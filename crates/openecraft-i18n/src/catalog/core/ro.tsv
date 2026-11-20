@@ -59,7 +59,6 @@ Align right	Aliniere la dreapta
 Align top	Aliniere sus
 All aspects (with product)	Toate aspectele (cu produs)
 All devices of page {} are in the schematic already	Toate dispozitivele paginii {} sunt deja în schemă
-Aluminium	Aluminiu
 Ammeter	Ampermetru
 Ammeter, reactive current	Ampermetru, curent reactiv
 Ampere-hour meter	Contor de amperi-oră
@@ -68,6 +67,7 @@ Analog input module	Modul de intrări analogice
 Analog output module	Modul de ieșiri analogice
 Analysis	Analiză
 Another section here has this number	O altă secțiune de aici are deja acest număr
+Antenna outlet	Priză de antenă
 Apparent power (kVA)	Putere aparentă (kVA)
 Applied directives	Directive aplicate
 Approval date	Data aprobării
@@ -101,7 +101,6 @@ Baying kit	Set de alăturare
 Beacon, rotating	Girofar
 Belongs to	Aparține de
 Bends	Curburi
-Bill of materials	Listă de materiale
 Bimetal switch NC	Comutator bimetalic NÎ
 Bimetal switch NO	Comutator bimetalic ND
 Black box	Cutie neagră
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Contact comutator, temporizare la anclanșare
 Changeover contact, passing make	Contact comutator, cu contact de trecere
 Changeover switch, cam operated	Comutator inversor, acționat cu camă
 Changeover switch, cam profile operated	Comutator inversor, acționat cu profil de camă
+Changeover switch, manually operated	Comutator inversor, acționat manual
 Changeover switch, roller operated	Comutator inversor, acționat cu rolă
 Check valve	Supapă de reținere
 Checked	Verificat
 Checked by	Verificat de
 Choose the pages of the subproject	Alegeți paginile subproiectului
-Circuit	Circuit
 Circuit breaker (single-line)	Întrerupător automat (monofilar)
 Circuit breaker 1-pole	Întrerupător automat monopolar
 Circuit breaker 1-pole (NFPA)	Întrerupător automat monopolar (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Convertit din formatul de fișier {} în
 Coolant	Agent de răcire
 Cooler	Răcitor
 Cooling method	Metodă de răcire
-Copper	Cupru
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Bara de cupru {}: îndoirea {} are o rază de {} mm, cel puțin {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Bara de cupru {}: gaura Ø{} la {} mm se află în afara barei
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Bara de cupru {}: gaura Ø{} la {} mm este prea aproape de îndoirea {}
@@ -316,7 +314,6 @@ Create projects	Creare proiecte
 Creation date	Data creării
 Cross-section {} carries {} A, less than the {} A of {}	Secțiunea {} suportă {} A, mai puțin decât cei {} A ai lui {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Încrucișarea de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în toate cele patru direcții și niciun punct de conexiune acolo
-Current (A)	Curent (A)
 Current capacity (A)	Capacitate de curent (A)
 Current consumption	Consum de curent
 Current range	Domeniu de curent
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	Circuitele de comandă 
 DC control circuits should be blue (NFPA 79, 13.2.4)	Circuitele de comandă în c.c. ar trebui să fie albastre (NFPA 79, 13.2.4)
 DC/DC converter	Convertor c.c./c.c.
 DWG export failed: {}	Exportul DWG nu a reușit: {}
+Data outlet	Priză de date
 Data sheet	Fișă tehnică
 Date of the approval of the last revision	Data aprobării ultimei revizii
 Date of the last revision	Data ultimei revizii
@@ -360,6 +358,7 @@ Description of the last revision	Descrierea ultimei revizii
 Description of the page's function (structure management)	Descrierea funcției paginii (gestionare structură)
 Description of the page's location (structure management)	Descrierea locului de montare al paginii (gestionare structură)
 Designer	Proiectant
+Device connection box	Doză de conectare a aparatului
 Device connection diagram	Schemă de conectare a dispozitivelor
 Device data of {} without symbol or panel item	Date de dispozitiv pentru {} fără simbol sau element de tablou
 Device description file	Fișier de descriere a dispozitivului
@@ -409,7 +408,6 @@ Document (embedded file)	Document (fișier încorporat)
 Document A4 portrait	Document A4 portret
 Document number	Număr document
 Document reference	Referință document
-Documentation	Documentație
 Documentation language	Limba documentației
 Does not match	Nu corespunde
 Door (front view)	Ușă (vedere frontală)
@@ -648,6 +646,7 @@ Hazardous area zone	Zonă cu pericol de explozie
 Heat exchanger	Schimbător de căldură
 Heating (W)	Încălzire (W)
 Heating element	Element de încălzire
+Heating element three-phase	Element de încălzire trifazat
 Higher-level product (-)	Produs de nivel superior (-)
 Higher-level product of the page	Produsul de nivel superior al paginii
 Highest (°C)	Maxim (°C)
@@ -725,6 +724,7 @@ Installation altitude	Altitudine de instalare
 Installation date	Data instalării
 Installation devices	Aparataj de instalații
 Installation method	Mod de pozare
+Installation of {}	Instalația {}
 Installation plan (IEC 60617-11)	Plan de instalații (IEC 60617-11)
 Installation site (++)	Amplasament (++)
 Installation site and location	Amplasament și loc de montare
@@ -737,6 +737,7 @@ Insulation class	Clasă de izolație
 Integer	Număr întreg
 Integrated EMC filter	Filtru CEM integrat
 Intermediate relay coil KA (GB)	Bobină de releu intermediar KA (GB)
+Intermediate switch, manually operated	Comutator cruce, acționat manual
 Internal	Intern
 Internal target	Țintă internă
 Interruption point '{}' has no counterpart	Punctul de întrerupere '{}' nu are corespondent
@@ -751,6 +752,7 @@ Inverter DC/AC	Invertor c.c./c.a.
 Isolating and switching devices in the right places	Dispozitive de separare și comutare în locurile potrivite
 Item	Element
 Item ID	ID articol
+Items	Elemente
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Punți
 Junction box	Doză de derivație
@@ -776,13 +778,13 @@ Left side panel	Perete lateral stânga
 Legend plate text	Text plăcuță de marcare
 Length (m)	Lungime (m)
 Length (mm)	Lungime (mm)
+Length known (not calculated)	Lungime cunoscută (necalculată)
 Letter landscape	Letter vedere
 Letters (A, B, C)	Litere (A, B, C)
 Level switch	Comutator de nivel
 Lifecycle state	Stare ciclu de viață
 Light source	Sursă de lumină
 Lighting outlet	Punct de iluminat
-Limit (%)	Limită (%)
 Limit switch NC (NFPA)	Limitator de cursă NÎ (NFPA)
 Limit switch NO (NFPA)	Limitator de cursă ND (NFPA)
 Line reactor	Bobină de rețea
@@ -946,6 +948,7 @@ Nibbling	Nibelare
 No connection {}	Nicio conexiune {}
 No devices to add to the single-line diagram	Niciun dispozitiv de adăugat în schema monofilară
 No document embedded - choose a file in the page properties	Niciun document încorporat - alegeți un fișier în proprietățile paginii
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Nu există loc liber pentru o presetupă pe fețele prin care poate ieși cablul: faceți loc sau adăugați o flanșă de intrare a cablurilor
 No identifying letter for the device tag.	Nicio literă de identificare pentru identificatorul de dispozitiv.
 No known column in the header row	Nicio coloană cunoscută în rândul de antet
 No option {}	Nu există opțiunea {}
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Dispozitiv diferențial rezidual tetrapolar
 Residual current type	Tip de curent rezidual
 Resistor	Rezistor
 Response time	Timp de răspuns
-Result	Rezultat
 Return / exhaust line	Conductă de retur / evacuare
 Revision overview (changes)	Prezentare revizii (modificări)
 Revision table: author of the last revision (2: the one before …)	Tabel de revizii: autorul ultimei revizii (2: a celei dinainte …)
@@ -1477,7 +1479,9 @@ Size (mm)	Dimensiune (mm)
 Skipped	Omis
 Sliding to the left	Glisant spre stânga
 Sliding to the right	Glisant spre dreapta
+Smoke alarm	Detector de fum
 Socket outlet	Priză
+Socket outlet three-phase	Priză trifazată
 Socket side (female)	Partea mufelor (mamă)
 Soft starter	Demaror progresiv
 Solar charge controller	Regulator de încărcare solară
@@ -1585,7 +1589,6 @@ Terminal box	Cutie de borne
 Terminal connection diagram	Schemă de conectare a bornelor
 Terminal data	Date bornă
 Terminal description	Descriere bornă
-Terminal diagram	Schemă de borne
 Terminal line-up	Dispunere borne
 Terminal marker	Marcaj de bornă
 Terminal parts	Articole capete
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Arhiva se dezarhivează la mai mult de {}
 The archive was written by a newer version (archive version {})	Arhiva a fost scrisă de o versiune mai nouă (versiunea arhivei {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Producătorul ansamblului trebuie să fie indicat (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Șirul de dulapuri în camera sa: plan în formă de L, perete interior, ușă și fereastră, șirul de dulapuri la locul său, o șină cu o priză pe un perete, un corp de iluminat de siguranță montat pe perete și un jgheab de cabluri sub tavan.
+The cable of {} needs at least {} cores	Cablul lui {} are nevoie de cel puțin {} fire
 The configuration is not a JSON object	Configurația nu este un obiect JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Transportorul după prima lansare: o revizie lansată și blocată, modificările marcate de atunci, comentarii de verificare cu marcaje roșii, o cerere de modificare, revizia B în fluxul de aprobare și o linie de bază pentru comparare.
 The coordinates of the reference point must be numbers	Coordonatele punctului de referință trebuie să fie numere
@@ -1624,6 +1628,7 @@ The macro box has no items left	Caseta macro nu mai are elemente
 The next free id is already in use	Următorul ID liber este deja utilizat
 The option needs a name	Opțiunea necesită un nume
 The page needs a number	Pagina necesită un număr
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	Pagina lui {} este plină: următorul întrerupător al circuitului său cap-scară trebuie desenat pe aceeași pagină
 The pages were changed after the submission; submit the revision again	Paginile au fost modificate după trimitere; trimiteți din nou revizia
 The plot boundary crosses itself	Limita terenului se intersectează cu ea însăși
 The plot boundary encloses no area	Limita terenului nu înconjoară nicio suprafață
@@ -1753,6 +1758,7 @@ Unknown object: {}	Obiect necunoscut: {}
 Unknown revision	Revizie necunoscută
 Unknown symbol '{}'	Simbol necunoscut '{}'
 Unknown tool {}	Sculă necunoscută {}
+Unused connection points	Puncte de conexiune neutilizate
 Upstream	Amonte
 User defined	Definit de utilizator
 User symbols	Simboluri ale utilizatorului
@@ -1774,7 +1780,6 @@ Vibration	Vibrație
 Vibration resistance	Rezistență la vibrații
 View projects	Vizualizare proiecte
 Violations	Încălcări
-Voltage (V)	Tensiune (V)
 Voltage drop (V)	Cădere de tensiune (V)
 Voltage protection level	Nivel de protecție la tensiune
 Voltage range	Domeniu de tensiune
@@ -1950,19 +1955,23 @@ yellow	galben
 {} has no MTTFd, B10d, PL or PFHd	{} nu are MTTFd, B10d, PL sau PFHd
 {} has no door or window {}	{} nu are ușa sau fereastra {}
 {} has nothing to manufacture	{} nu are nimic de fabricat
+{} has three phases: it needs a three-phase protective device	{} are trei faze: are nevoie de un dispozitiv de protecție trifazat
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} conține un conflict de îmbinare git nerezolvat: fișierul a fost îmbinat ca text. Luați o versiune a fișierului (git checkout --ours sau --theirs), apoi configurați driverul de îmbinare pentru proiecte divizate (merge_project_file) înainte de a îmbina din nou
 {} is a built-in function definition	{} este o definiție de funcție integrată
 {} is a built-in property	{} este o proprietate integrată
 {} is a built-in scheme	{} este o schemă integrată
 {} is a busbar machine and makes no sheets	{} este o mașină de prelucrare a barelor și nu prelucrează table
+{} is neither the protective device nor a device of the circuit of {}	{} nu este nici dispozitivul de protecție, nici un aparat al circuitului lui {}
 {} is not a busbar machine	{} nu este o mașină de prelucrare a barelor
 {} is not a property of {}	{} nu este o proprietate a {}
 {} is not an approver of this project	{} nu este avizator al acestui proiect
+{} is not connected to the mains: place it without a protective device	{} nu se conectează la rețea: plasați-l fără dispozitiv de protecție
 {} is not placed in the plant layout	{} nu este plasat în planul de amplasare a instalației
 {} is on page {}, which is released: renaming it would change the page	{} se află pe pagina {}, care este aprobată: redenumirea ar modifica pagina
 {} is placed at the missing node {}	{} este plasat la nodul lipsă {}
 {} is planned twice ({} and {})	{} este planificat de două ori ({} și {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} este selectiv față de {} doar până la {} A (curent de scurtcircuit {} A)
+{} is used already	{} este deja folosit
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} își păstrează structura: funcțiile sale principale se află în casete de structură diferite ({})
 {} keeps its structure: {} exists already	{} își păstrează structura: {} există deja
 {} lies outside page {}	{} se află în afara paginii {}

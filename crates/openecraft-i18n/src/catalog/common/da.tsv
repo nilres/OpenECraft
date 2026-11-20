@@ -19,9 +19,11 @@ Accessory	Tilbehør
 Add	Tilføj
 Add a PDF of all pages	Tilføj en PDF med alle sider
 Add an item	Tilføj et punkt
+Add cable glands for new cables	Tilføj kabelforskruninger til nye kabler
 Add to favorites	Føj til favoritter
 Address	Adresse
 Administrator	Administrator
+Aluminium	Aluminium
 Angle	Vinkel
 Apply	Anvend
 Approve	Godkend
@@ -31,6 +33,7 @@ Automatic	Automatisk
 Automation	Automatisering
 Aux	Hjælpe
 Below	Under
+Bill of materials	Stykliste
 Bold	Fed
 Bottom	Bund
 Bottom with removable gland plate	Bund med aftagelig flangeplade
@@ -64,6 +67,7 @@ Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrolindstillinger
 Checks	Kontroller
+Circuit	Kreds
 Circuits	Kredse
 Class	Klasse
 Classes	Klasser
@@ -82,6 +86,7 @@ Commercial data	Kommercielle data
 Company	Firma
 Component	Enkeltdel
 Components (assembly)	Komponenter (samling)
+Conductor	Leder
 Conductor material	Ledermateriale
 Configurator	Konfigurator
 Connect	Forbind
@@ -94,6 +99,7 @@ Connector	Stikforbinder
 Contact voltage UB (V)	Berøringsspænding UB (V)
 Controller	Controller
 Cooling	Køling
+Copper	Kobber
 Core	Leder
 Cores	Ledere
 Corner	Hjørne
@@ -105,6 +111,7 @@ Cross-section	Tværsnit
 Crossing	Krydsning
 Currency	Valuta
 Current	Strøm
+Current (A)	Strøm (A)
 Cutout	Udskæring
 Cutouts	Udskæringer
 DCavg (%)	DCavg (%)
@@ -122,6 +129,7 @@ Description	Beskrivelse
 Designation	Betegnelse
 Device	Enhed
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Enhed (solcellegenerator), som modulerne hører til; dens dele tæller dem så i styklisten
+Device connection box three-phase	Apparattilslutningsdåse trefaset
 Device connection point	Enhedstilslutningspunkt
 Device description	Enhedsbeskrivelse
 Device tag	Enhedsmærkning
@@ -133,6 +141,7 @@ Direction	Retning
 Discard	Kassér
 Discard changes	Kassér ændringerne
 Display	Visning
+Documentation	Dokumentation
 Documents	Dokumenter
 Done	Udført
 Door	Dør
@@ -153,6 +162,7 @@ Email	E-mail
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Tom: standardværdien. Angiv andre værdier, hvor udgaven af standarden, som installationen kontrolleres efter, afviger.
 Enclosure	Kapsling
 Enclosures	Kapslinger
+Engineering	Engineering
 Enterprise integration	Virksomhedsintegration
 Equipotential bonding	Potentialudligning
 Error	Fejl
@@ -182,6 +192,7 @@ Floor plan	Plantegning
 Fluid device	Fluidenhed
 Fluid device groups	Fluidenhedsgrupper
 Fluid netlist	Fluidnetliste
+Format	Format
 From	Fra
 Function	Funktion
 Function (=)	Funktion (=)
@@ -232,10 +243,11 @@ Internal (bottom)	Intern (nederst)
 Interruption point	Afbrydelsespunkt
 It is not affiliated with, endorsed by or sponsored by the owners of these names.	Det er ikke tilknyttet, godkendt af eller sponsoreret af ejerne af disse navne.
 Italic	Kursiv
-Items	Elementer
 Its MPP tracker (input), from 1	Dens MPP-tracker (indgang), fra 1
 Job	Ordre
 Jumper	Bro
+Junction box with terminals	Samledåse med klemmer
+Junction box with terminals three-phase	Samledåse med klemmer trefaset
 Key	Nøgle
 Kind	Type
 Language	Sprog
@@ -254,6 +266,7 @@ Length	Længde
 Level	Niveau
 Lifecycle	Livscyklus
 Light	Lys
+Limit (%)	Grænse (%)
 Limits	Grænser
 Line	Linje
 Link	Link
@@ -496,6 +509,7 @@ Required	Påkrævet
 Reserve	Reserve
 Resolution	Opløsning
 Responsible for the content	Ansvarlig for indholdet
+Result	Resultat
 Reviewer	Korrekturlæser
 Revision	Revision
 Revision {}	Revision {}
@@ -535,6 +549,7 @@ Server	Server
 Service space	Serviceområde
 Settings	Indstillinger
 Shape	Form
+Sheets	Ark
 Short-circuit voltage	Kortslutningsspænding
 Show history	Vis historik
 Show the logos of the catalogs	Vis katalogernes logoer
@@ -579,6 +594,7 @@ T-junction	T-stykke
 Tables	Tabeller
 Technical data	Tekniske data
 Terminal	Klemme
+Terminal diagram	Klemdiagram
 Terminal number	Klemnummer
 Terminal strip	Klemrække
 Terminal strips	Klemrækker
@@ -589,6 +605,7 @@ Test instruments (IEC 61557)	Måleinstrumenter (IEC 61557)
 Tested by	Afprøvet af
 Text	Tekst
 Text to find	Tekst, der skal søges efter
+Texts	Tekster
 The freestanding PV array {} stands outside the plot boundary	Det jordmonterede solcellefelt {} står uden for grundgrænsen
 The identifier must not be empty	Betegnelsen må ikke være tom
 The long side of the modules along the rows	Modulernes lange side langs rækkerne
@@ -640,6 +657,8 @@ Version	Version
 Viewer	Fremviser
 Visual inspection	Visuel kontrol
 Voltage	Spænding
+Voltage (V)	Spænding (V)
+Voltage drop	Spændingsfald
 Voltage drop (%)	Spændingsfald (%)
 Warning	Advarsel
 Warnings	Advarsler
@@ -685,6 +704,7 @@ yes	ja
 {} exists already	{} findes allerede
 {} is not a PNG or JPEG image	{} er ikke et PNG- eller JPEG-billede
 {} parts	{} artikler
+{} symbols	{} symboler
 {} users	{} brugere
 {} wires	{} ledninger
 {}, together with the wire to {}	{}, sammen med lederen til {}

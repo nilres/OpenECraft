@@ -1,0 +1,51 @@
+title: Voltage drop calculator for cables – OpenECraft
+description: Free voltage drop calculator: current, length, cross-section, copper or aluminium, single or three-phase. It shows the smallest cross-section within your limit.
+kind: tool
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Tools</p>
+        <h1 data-t>Voltage drop calculator</h1>
+        <p class="lead" data-t>How many volts a cable loses on its way, and which cross-section keeps the limit. The calculation is the one OpenECraft uses for the final circuits of an installation.</p>
+    </div>
+</section>
+
+<section class="band tool" data-tool="voltage_drop" data-live>
+    <form class="tool-form">
+        <label><span data-t>Current (A)</span><input name="current" inputmode="decimal" value="16" required /></label>
+        <label><span data-t>Length, one way (m)</span><input name="length" inputmode="decimal" value="25" required /></label>
+        <label><span data-t>Cross-section (mm²)</span><input name="section" inputmode="decimal" value="2.5" required /></label>
+        <label><span data-t>Voltage (V)</span><input name="voltage" inputmode="decimal" value="230" required /></label>
+        <label><span data-t>System</span><select name="phases"><option value="1" data-t>Single-phase or DC</option><option value="3" data-t>Three-phase</option></select></label>
+        <label><span>cos φ</span><input name="cos_phi" inputmode="decimal" value="1" required /></label>
+        <label><span data-t>Conductor</span><select name="material"><option value="copper" data-t>Copper</option><option value="aluminium" data-t>Aluminium</option></select></label>
+        <label><span data-t>Limit (%)</span><input name="limit" inputmode="decimal" value="3" required /></label>
+        <button class="button primary" data-t>Calculate</button>
+    </form>
+    <p class="tool-wait" hidden data-t>Loading the tool. It is the code of the editor, about 10 MB, loaded once.</p>
+    <p class="tool-failed" hidden data-t>The tool could not start in this browser. It needs WebAssembly.</p>
+    <p class="tool-error" hidden></p>
+    <div class="tool-out" hidden>
+        <p class="tool-summary"></p>
+        <dl class="tool-facts"></dl>
+        <div class="table-scroll"><table class="tool-table"></table></div>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>How it is calculated</h2>
+    <p class="text"><code>ΔU = k · I · L · (ρ / A · cos φ + x · sin φ)</code></p>
+    <ul class="points">
+        <li data-t>k is 2 for a single-phase or DC circuit, where the current flows there and back, and 1.732, the square root of 3, for a three-phase circuit with the voltage between the lines.</li>
+        <li data-t>The resistivity is the one of the conductor in operation, 1.25 times its value at 20 °C (IEC 60364-5-52): 0.0225 Ω·mm²/m for copper and 0.036 Ω·mm²/m for aluminium.</li>
+        <li data-t>The reactance of the cable is taken as 0.08 mΩ per metre. It matters for large cross-sections and a low power factor.</li>
+        <li data-t>The limit is yours to set: 3 % is common for lighting and 5 % for other loads, and the regulations of your country decide.</li>
+    </ul>
+    <p class="text" data-t>In a project, OpenECraft measures the cable lengths along the installation zones of the rooms and checks every final circuit this way, feeder cables included.</p>
+    <div class="actions">
+        <a class="button" href="@/electricians/" data-t>OpenECraft for electricians</a>
+        <a class="button ghost" href="~/docs/calculations/" data-t>The calculations in the documentation</a>
+        <a class="button ghost" href="@/tools/" data-t>More tools</a>
+    </div>
+    <p class="fine" data-t>The result supports the planning. A qualified person has to verify it against the standards and regulations that apply.</p>
+</section>

@@ -132,9 +132,14 @@ pub fn calibrated(plan: &FloorPlan, a: [f32; 2], b: [f32; 2], mm: f32) -> Result
     Ok(mm / (px * plan.paper))
 }
 
-/// What the detection takes for walls and rooms in this floor plan.
+/// The smallest room the detection keeps when the floor plan does not say, m².
+pub const MIN_ROOM: f32 = 1.0;
+
+/// What the detection takes for walls and rooms in this floor plan (its smallest room).
 pub fn settings(plan: &FloorPlan) -> Settings {
-    Settings::new(plan.mm_per_px())
+    let mut s = Settings::new(plan.mm_per_px());
+    s.min_room = plan.min_room.filter(|a| a.is_finite() && *a > 0.0).unwrap_or(MIN_ROOM) * 1.0e6;
+    s
 }
 
 /// Finds the walls, doors, windows and rooms in the floor plan (in its area; pixels of

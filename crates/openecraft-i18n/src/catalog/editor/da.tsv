@@ -44,7 +44,9 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = endnu ikke i diagrammet
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baseline gemmer hele projektet (sider, enheder, artikler, indstillinger). Når en revision frigives, gemmes en.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	En kabelforskruning til hvert kabel, der forlader et skab og ikke finder nogen ledig forskruning, der tager det
 A cable of the bus type for every connection without cable	Et kabel af bustypen til hver forbindelse uden kabel
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Et kabel, der forlader et skab og ikke finder nogen ledig forskruning, får en i sin størrelse: i taget for en enhed i rummet, i bunden for feltet eller et skab, der hænger på væggen
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	En udskæring af samme størrelse på samme sted i naboens sidevæg: Sammen udgør de en kabelgennemføring
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samme navn i mappen får en ny version (tjekket ud og ind), ellers tilføjes filen
 A folder with one small file per page, device and part instead of one project file, for version control such as git	En mappe med en lille fil pr. side, komponent og artikel i stedet for en projektfil, til versionsstyring som git
@@ -89,6 +91,7 @@ Add profile for this connector	Tilføj profil til denne connector
 Add rule	Tilføj regel
 Add sort key	Tilføj sorteringsnøgle
 Add the facing cutout in {}	Tilføj den modstående udskæring i {}
+Add the missing ones	Tilføj de manglende
 Add to device	Føj til enhed
 Add to the pre-planning	Føj til forplanlægningen
 Add user	Tilføj bruger
@@ -221,6 +224,7 @@ Bottom left	Nederst til venstre
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kapslingens underkant (uden sokkel) over gulvet; højderne kontrolleres, når den er kendt, eller kapslingen står på en sokkel
 Bottom right	Nederst til højre
 Boundary	Grænse
+Boxes	Dåser
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brydeevne mod kortslutningsstrømmen ved hver beskyttelsesenhed i forsyningsnettet, udkobling ved den laveste fejlstrøm i slutningen af dens kreds, kablernes kortslutningsstyrke og selektivitet med den foranliggende enhed.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Bro: fire ledere; forbindelsen kommer ind på én side og går til de tre andre, den modsatte side først
 Building {} added with a level at ground level	Bygning {} tilføjet med en etage i terrænniveau
@@ -246,6 +250,7 @@ Cable definition on page {}	Kabeldefinition på side {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: Tegn en linje hen over de ledninger, der er ledere i et kabel
 Cable end reserve	Reserve pr. kabelende
 Cable ends	Kabelender
+Cable from	Kabel fra
 Cable markers	Kabelmærkater
 Cable passage to {}	Kabelgennemføring til {}
 Cable {}: {} cores assigned	Kabel {}: {} ledere tildelt
@@ -308,6 +313,7 @@ Choose the building.	Vælg bygningen.
 Chooses the pages whose structure starts with this	Vælger de sider, hvis struktur begynder med dette
 Circle	Cirkel
 Circuits of a generic manifold	Kredse i en generisk fordeler
+Circuits of the schematic	Kredse i diagrammet
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Lynbeskyttelsens klasse: afstanden mellem nedlederne, masken på flade tage og beskyttelsesvinklen
 Class {}	Klasse {}
 Clear	Ryd
@@ -317,6 +323,7 @@ Click	Klik
 Click a text: open its link	Klik på en tekst: åbn dens link
 Click an element in the drawing to edit it.	Klik på et element i tegningen for at redigere det.
 Click centre, then a point on the circle	Klik på centrum og derefter på et punkt på cirklen
+Click in a room to place {}	Klik i et rum for at placere {}
 Click in the panel layout: a single item of an assembly	Klik i tavlelayoutet: et enkelt element i en samling
 Click into the page to place the image	Klik på siden for at placere billedet
 Click into the page to place {}	Klik på siden for at placere {}
@@ -401,7 +408,6 @@ Concrete base	Betonfod
 Condition	Betingelse
 Condition (OPTION=value & …)	Betingelse (OPTION=værdi & …)
 Conductive frame	Ledende ramme
-Conductor	Leder
 Conflicts	Konflikter
 Connected devices	Tilsluttede enheder
 Connected to:	Forbundet med:
@@ -562,6 +568,7 @@ Devices go back to the devices to place	Enhederne går tilbage til enheder, der 
 Devices in the box: {}	Enheder i boksen: {}
 Devices of a channel	Enheder i en kanal
 Devices of the second channel; empty = like the first	Enheder i den anden kanal; tom = som den første
+Devices of {}	Enheder for {}
 Devices placed on the page get its structure; their tags are shown without it.	Enheder, der placeres på siden, får dens struktur; deres mærkninger vises uden den.
 Devices to place	Enheder, der skal placeres
 Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Enheder, hvis hovedfunktion ligger i boksen, får de betegnelser, der angives her; tomme aspekter arves fra siden eller en omgivende boks.
@@ -664,6 +671,7 @@ Each point-to-point connection can belong to a harness	Hver punkt-til-punkt-forb
 Earth electrodes	Jordelektroder
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	En bygnings jordelektroder (fundament- og ringjord, jordspyd klikket ind i situationsplanen) og dens lynbeskyttelse med fangstængerne klikket på tagene
 Earth rod placed at building {}; click for the next one · Esc: stop	Jordspyd placeret ved bygning {}; klik for det næste · Esc: stop
+Earthing	Jording
 Earthing and lightning protection	Jording og lynbeskyttelse
 Earthing busbar	Jordskinne
 Earthing conductor	Jordleder
@@ -781,7 +789,6 @@ For pages that choose none; before the plot frame's title block and the project 
 For parts without Stock length; longer profiles have to be joined	For artikler uden Stock length; længere profiler skal samles
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	For artikler uden temperaturdata (Max temperature, Operating temperature); 0: kontrolleres ikke
 For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_US)	Til import i EPLAN-artikelstyringen (P_ARTICLE_*-attributter, tekster i en_US)
-Format	Format
 Format of cross references, structure of the target page, interruption points, contact images	Format for krydsreferencer, målsidens struktur, afbrydelsespunkter, kontaktspejle
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Sømbrætstegning af ledningsnettet i målestok med grenlængder og stikkenes bentabeller
 Forms	Formularer
@@ -803,6 +810,7 @@ Frequency	Frekvens
 From / to	Fra / til
 From a template file…	Fra en skabelonfil…
 From row to row; 0: free of shade in winter	Fra række til række; 0: skyggefrit om vinteren
+From the 3D routing	Fra 3D-føringen
 From the function definition	Fra funktionsdefinitionen
 From the left end	Fra venstre ende
 From the top left corner of the drawing area	Fra tegneområdets øverste venstre hjørne
@@ -857,7 +865,7 @@ Head (CPU / coupler)	Hoved (CPU / kobler)
 Header row	Overskriftsrække
 Heat map	Varmekort
 Heating	Opvarmning
-Heating circuit manifolds and control boxes	Gulvvarmefordelere og reguleringsbokse
+Heating elements, heating circuit manifolds and control boxes	Varmelegemer, gulvvarmefordelere og reguleringsbokse
 Height (mm)	Højde (mm)
 Height above sea level	Højde over havet
 Height above the floor	Højde over gulvet
@@ -965,6 +973,7 @@ Inserted {}	Indsat {}
 Inside temperature	Indvendig temperatur
 Inside without cooling	Indvendig uden køling
 Installation conditions of the conductors	Installationsforhold for lederne
+Installation page {}	Installationsside {}
 Installation zones	Installationszoner
 Installed plugins	Installerede plugins
 Instead of user name and password	I stedet for brugernavn og adgangskode
@@ -991,6 +1000,7 @@ Joins	Forbinder
 Joins wire pieces in a line where nothing else connects (current page)	Sammenføjer ledningsstykker på en linje, hvor intet andet er tilsluttet (aktuel side)
 Jumper {}	Bro {}
 Jumps over the other:	Springer over den anden:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Samledåser, tilslutningsdåser til fast tilsluttede apparater og røgalarmer
 K, Q, MM …	K, Q, MM …
 Keep connections	Bevar forbindelser
 Keep sub-pages (3.a, 3.1) with the page before	Hold undersider (3.a, 3.1) sammen med den forrige side
@@ -1306,9 +1316,11 @@ Not a symbol library: {}	Ikke et symbolbibliotek: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Ikke ændret, låsen blev afvist: {}. Din version gemmes i ruden Projektserver.
 Not changed: {}	Ikke ændret: {}
 Not changed: {}. Your version is kept in the Project server pane.	Ikke ændret: {}. Din version gemmes i ruden Projektserver.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ikke tilsluttet endnu: ingen enhed, intet kabel. Vælg beskyttelsesenheden for dens gruppe.
 Not found: {}	Ikke fundet: {}
 Not in the project parts – synchronize in parts management	Ikke i projektets artikler – synkroniser i artikelstyringen
 Not on a wire	Ikke på en ledning
+Not placed	Ikke placeret
 Not saved yet	Ikke gemt endnu
 Not saved, locked or changed by another user	Ikke gemt, låst eller ændret af en anden bruger
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ikke taget: venstre knap alene markerer, tegner og flytter; hold en modifikatortast nede eller brug en anden knap.
@@ -1491,6 +1503,7 @@ Pitch	Taghældning
 Pitch X / Y	Afstand X / Y
 Place a comment on the page	Placer en kommentar på siden
 Place again at all symbols using it	Placer igen ved alle symboler, der bruger det
+Place all	Placer alle
 Place an enclosure, device or machine location at this node	Placer en kapsling, en enhed eller en maskinplacering ved denne knude
 Place connection definition point	Placer forbindelsesdefinitionspunkt
 Place connection points	Placer tilslutningspunkter
@@ -1500,7 +1513,6 @@ Place in the building	Placering i bygningen
 Place in the plant	Placering i anlægget
 Place in the room	Plads i rummet
 Place in the site plan	Placér i situationsplanen
-Place on the wall	Placer på væggen
 Place text	Placer tekst
 Place the georeferenced point everything is measured from	Placér det georefererede punkt, som alt måles fra
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Placér anlæggets georefererede punkt i situationsplanen; dets koordinater indtastes i ruden Bygninger, hvert punkt måles derefter fra det
@@ -1509,6 +1521,9 @@ Placed by hand	Placeret manuelt
 Placed by hand; choosing a side places them anew.	Placeret manuelt; valg af en side placerer dem igen.
 Placed here: {}	Placeret her: {}
 Placed {}× in the project	Placeret {}× i projektet
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Placeret, ikke i diagrammet: ingen beskyttelsesenhed valgt (markér den og brug Sæt i diagrammet)
+Placed, not in the schematic: {}	Placeret, ikke i diagrammet: {}
+Placed: not connected to the mains, so not into the schematic	Placeret: tilsluttes ikke nettet, derfor ikke i diagrammet
 Placeholders	Pladsholdere
 Placeholders are filled, e.g. a link with {project} and {page}	Pladsholdere udfyldes, f.eks. et link med {project} og {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Pladsholdere som {MOTOR} i mærkninger, tekster og funktionstekster udfyldes ved indsættelse.
@@ -1599,6 +1614,8 @@ Property placement	Placering af egenskaber
 Property removed with {} values	Egenskab fjernet med {} værdier
 Publish	Udgiv
 Put a room here	Placer et rum her
+Put in	Indsæt
+Put into the schematic	Sæt i diagrammet
 Put into the vault	Læg i vaulten
 Put the pane back into the workspace	Sæt panelet tilbage i arbejdsområdet
 Puts the project into the folder it was opened from	Lægger projektet i den mappe, det blev åbnet fra
@@ -1749,6 +1766,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tilføjet: træk dets vægge eller tegn nye i plantegningen, placer skabe i det via deres egenskaber
 Room {} now stands on level {}	Rum {} står nu på etage {}
 Room {} taken out of the building; it stays where it stands	Rum {} er taget ud af bygningen; det bliver stående, hvor det står
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Fundne rum, der er mindre end dette, udelades (et toilet eller et skab kan være mindre end 1 m²)
 Rooms under sloped ceilings (lowest – highest ceiling)	Rum under skråloft (laveste – højeste loft)
 Rotate	Rotér
 Rotate (selection or symbol being placed)	Rotér (markering eller symbol, der placeres)
@@ -1765,6 +1783,7 @@ Routing path	Føringsvej
 Routing path {} mm – double-click or Enter to finish	Føringsvej {} mm – dobbeltklik eller tryk på Enter for at afslutte
 Routing paths	Føringsveje
 Routing rules	Føringsregler
+Routing the cables and wires again… the routes shown are from before the last change	Kabler og ledninger føres igen… de viste føringer er fra før den seneste ændring
 Row	Række
 Row distance	Rækkeafstand
 Row drawing	Rækketegning
@@ -1955,6 +1974,7 @@ Slot depth	Rilledybde
 Slots	Slots
 Smallest cross-section of control circuits	Mindste tværsnit for styrekredse
 Smallest cross-section of power circuits	Mindste tværsnit for kraftkredse
+Smallest room	Mindste rum
 Socket outlets, data and antenna outlets	Stikkontakter, data- og antennestik
 Solid	Fuldt optrukket
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Nogle af dine ændringer blev ikke overtaget af projektserveren. Din version bliver i ruden Projektserver, også efter kassering.
@@ -2074,7 +2094,6 @@ Test connection	Test forbindelse
 Test joints	Målesamlinger
 Text offset	Tekstforskydning
 Text size	Tekststørrelse
-Texts	Tekster
 The EPLAN Data Portal only offers searching and reading parts: open the data portal window to add its parts.	EPLAN Data Portal giver kun mulighed for at søge efter og læse artikler: åbn dataportalvinduet for at tilføje dets artikler.
 The Insert center finds symbols, macros, devices and unplaced functions; favorites and recently used ones come first.	Indsætningscentret finder symboler, makroer, enheder og ikke-placerede funktioner; favoritter og senest brugte kommer først.
 The accessory fits none of the device's parts	Tilbehøret passer ikke til nogen af enhedens artikler
@@ -2085,6 +2104,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopien oprettes ud fra den tilstand, der er gemt på projektserveren. Ændringer, som andre brugere endnu ikke har gemt, er ikke med. Sessioner, låse og adgangsrettigheder kopieres ikke; originalen forbliver, som den er.
 The crossed wires get free cores of the cable in order	De krydsede ledninger får kablets ledige ledere i rækkefølge
 The current page belongs to option {}.	Den aktuelle side tilhører option {}.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Enheden eller samledåsen i gruppen, som den næste enheds kabel kommer fra: gruppen forgrener sig der
 The devices do not fit onto the rail	Enhederne passer ikke på skinnen
 The dictionary is empty: collect the texts from the project.	Ordbogen er tom: Indsaml teksterne fra projektet.
 The door seen from the front: door devices and cutouts	Døren set forfra: dørenheder og udskæringer
@@ -2241,7 +2261,6 @@ View	Vis
 Visible	Synlig
 Voltage (line to line)	Spænding (mellem faser)
 Voltage at maximum power	Spænding ved maksimal effekt
-Voltage drop	Spændingsfald
 WGS 84, written into the site of IFC exports	WGS 84, skrives ind i grunden ved IFC-eksport
 Waiting for the server	Venter på serveren
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Væg {}, {} m: træk for at flytte, dobbeltklik viser den, så den kan udstyres
@@ -2270,6 +2289,8 @@ Whole building	Hele bygningen
 Whole words	Hele ord
 Width / going	Bredde / grund
 Width / height (mm)	Bredde / højde (mm)
+Width factor	Breddefaktor
+Width of the letters to their usual width (0.8: narrow lettering)	Bogstavernes bredde i forhold til deres sædvanlige bredde (0,8: smal skrift)
 Width × depth	Bredde × dybde
 Width × height	Bredde × højde
 Width × height (mm)	Bredde × højde (mm)
@@ -2407,6 +2428,7 @@ set on the device	angivet på enheden
 sloped ceiling from {} m	skråloft fra {} m
 some	nogle
 taken over	overtaget
+the device before it	enheden før
 the project data (page list, devices, settings)	projektdataene (sideliste, enheder, indstillinger)
 then	så
 unknown	ukendt
@@ -2454,6 +2476,8 @@ x y	x y
 {} bus cables created	{} buskabler oprettet
 {} bus connections	{} busforbindelser
 {} cable ducts	{} kabelkanaler
+{} cable glands added	{} kabelforskruninger tilføjet
+{} cable glands added; no free place for {}: make room or add a cable entry flange	{} kabelforskruninger tilføjet; ingen ledig plads til {}: skab plads eller tilføj en kabelindføringsflange
 {} cable lengths taken over	{} kabellængder overtaget
 {} cable passages to {}	{} kabelgennemføringer til {}
 {} cables	{} kabler
@@ -2503,11 +2527,14 @@ x y	x y
 {} has unsaved changes. Discard them?	{} har ikke-gemte ændringer. Kassér dem?
 {} imported into the parts database and placed as {}	{} importeret til artikeldatabasen og placeret som {}
 {} in {}	{} i {}
+{} is in the schematic	{} er i diagrammet
+{} is in the schematic: cable {} from {}	{} er i diagrammet: kabel {} fra {}
 {} is neither in the parts database nor on the parts server	{} findes hverken i artikeldatabasen eller på artikelserveren
 {} is not in the disk image	{} er ikke i diskbilledet
 {} is not made for wall mounting: place it on a mounting rail	{} er ikke beregnet til vægmontage: placer den på en skinne
 {} is used by: {}	{} bruges af: {}
 {} items copied	{} elementer kopieret
+{} items deleted	{} elementer slettet
 {} items selected	{} elementer markeret
 {} items, {} %	{} elementer, {} %
 {} links created, {} function texts copied	{} tilknytninger oprettet, {} funktionstekster kopieret
@@ -2569,7 +2596,6 @@ x y	x y
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} stationer, {} bussystemer, {} kort tildelt, {} adresser ændret, {} forbindelser, {} kabler
 {} stopped with an error: {}	{} stoppede med en fejl: {}
 {} structure identifiers added	{} strukturbetegnelser tilføjet
-{} symbols	{} symboler
 {} symbols added, {} replaced	{} symboler tilføjet, {} erstattet
 {} symbols and {} wires generated on page {}	{} symboler og {} forbindelser genereret på side {}
 {} texts changed	{} tekster ændret
@@ -2595,6 +2621,7 @@ x y	x y
 {} – revision {}, {}	{} – revision {}, {}
 {} – {} ({} pages)	{} – {} ({} sider)
 {} – {} here (Esc cancels)	{} – {} her (Esc annullerer)
+{} – {} of {} placed	{} – {} af {} placeret
 {}, freestanding	{}, jordmonteret
 {}, {} (copy of {}, revision {})	{}, {} (kopi af {}, revision {})
 {}: click to show its floor plan	{}: klik for at vise plantegningen

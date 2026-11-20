@@ -26,11 +26,16 @@ log = "0.4"
 openecraft-api = { path = "../crates/openecraft-api" }
 openecraft-canvas = { path = "../crates/openecraft-canvas" }
 openecraft-core = { path = "../crates/openecraft-core" }
+openecraft-edz = { path = "../crates/openecraft-edz" }
 openecraft-i18n = { path = "../crates/openecraft-i18n" }
+openecraft-parts = { path = "../crates/openecraft-parts" }
 openecraft-session = { path = "../crates/openecraft-session" }
 openecraft-shell = { path = "../crates/openecraft-shell" }
 openecraft-ui = { path = "../crates/openecraft-ui" }
 openecraft-view = { path = "../crates/openecraft-view" }
+
+[dev-dependencies]
+openecraft-site = { path = "../crates/openecraft-site" }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 env_logger = "0.11"

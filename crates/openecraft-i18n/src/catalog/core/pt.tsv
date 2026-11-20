@@ -59,7 +59,6 @@ Align right	Alinhar à direita
 Align top	Alinhar acima
 All aspects (with product)	Todos os aspectos (com produto)
 All devices of page {} are in the schematic already	Todos os dispositivos da página {} já estão no esquema elétrico
-Aluminium	Alumínio
 Ammeter	Amperímetro
 Ammeter, reactive current	Amperímetro, corrente reativa
 Ampere-hour meter	Medidor de ampère-hora
@@ -68,6 +67,7 @@ Analog input module	Módulo de entrada analógica
 Analog output module	Módulo de saída analógica
 Analysis	Análise
 Another section here has this number	Outra seção aqui já tem este número
+Antenna outlet	Tomada de antena
 Apparent power (kVA)	Potência aparente (kVA)
 Applied directives	Diretivas aplicadas
 Approval date	Data de liberação
@@ -101,7 +101,6 @@ Baying kit	Kit de acoplamento
 Beacon, rotating	Sinalizador rotativo
 Belongs to	Pertence a
 Bends	Curvas
-Bill of materials	Lista de materiais
 Bimetal switch NC	Chave bimetálica NF
 Bimetal switch NO	Chave bimetálica NA
 Black box	Black box
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Contato reversor, retardo na energização
 Changeover contact, passing make	Contato reversor, com contato de passagem
 Changeover switch, cam operated	Comutador, acionado por came
 Changeover switch, cam profile operated	Comutador, acionado por came de perfil
+Changeover switch, manually operated	Comutador, acionado manualmente
 Changeover switch, roller operated	Comutador, acionado por rolete
 Check valve	Válvula de retenção
 Checked	Verificado
 Checked by	Verificado por
 Choose the pages of the subproject	Escolha as páginas do subprojeto
-Circuit	Circuito
 Circuit breaker (single-line)	Disjuntor (unifilar)
 Circuit breaker 1-pole	Minidisjuntor 1 polo
 Circuit breaker 1-pole (NFPA)	Disjuntor unipolar (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Convertido do formato de arquivo {} para
 Coolant	Líquido de arrefecimento
 Cooler	Resfriador
 Cooling method	Método de refrigeração
-Copper	Cobre
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Barra de cobre {}: a dobra {} tem um raio de {} mm, no mínimo {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Barra de cobre {}: o furo Ø{} em {} mm está fora da barra
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Barra de cobre {}: o furo Ø{} em {} mm está muito próximo da dobra {}
@@ -316,7 +314,6 @@ Create projects	Criar projetos
 Creation date	Data de criação
 Cross-section {} carries {} A, less than the {} A of {}	A seção transversal {} conduz {} A, menos que os {} A de {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	O cruzamento na página {} não corresponde aos seus fios: precisa de um fio nas quatro direções e nenhum ponto de conexão ali
-Current (A)	Corrente (A)
 Current capacity (A)	Capacidade de corrente (A)
 Current consumption	Consumo de corrente
 Current range	Faixa de corrente
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	Os circuitos de comando
 DC control circuits should be blue (NFPA 79, 13.2.4)	Os circuitos de comando CC devem ser azuis (NFPA 79, 13.2.4)
 DC/DC converter	Conversor CC/CC
 DWG export failed: {}	Falha na exportação DWG: {}
+Data outlet	Tomada de dados
 Data sheet	Folha de dados
 Date of the approval of the last revision	Data da aprovação da última revisão
 Date of the last revision	Data da última revisão
@@ -360,6 +358,7 @@ Description of the last revision	Descrição da última revisão
 Description of the page's function (structure management)	Descrição da função da página (gerenciamento de estruturas)
 Description of the page's location (structure management)	Descrição da localização da página (gerenciamento de estruturas)
 Designer	Projetista
+Device connection box	Caixa de ligação de aparelho
 Device connection diagram	Diagrama de conexões de dispositivos
 Device data of {} without symbol or panel item	Dados de dispositivo de {} sem símbolo ou item do painel
 Device description file	Arquivo de descrição do dispositivo
@@ -409,7 +408,6 @@ Document (embedded file)	Documento (arquivo incorporado)
 Document A4 portrait	Documento A4 retrato
 Document number	Número do documento
 Document reference	Referência do documento
-Documentation	Documentação
 Documentation language	Idioma da documentação
 Does not match	Não corresponde
 Door (front view)	Porta (vista frontal)
@@ -648,6 +646,7 @@ Hazardous area zone	Zona de área classificada
 Heat exchanger	Trocador de calor
 Heating (W)	Aquecimento (W)
 Heating element	Elemento de aquecimento
+Heating element three-phase	Elemento de aquecimento trifásico
 Higher-level product (-)	Produto de nível superior (-)
 Higher-level product of the page	Produto de nível superior da página
 Highest (°C)	Máximo (°C)
@@ -725,6 +724,7 @@ Installation altitude	Altitude de instalação
 Installation date	Data de instalação
 Installation devices	Dispositivos de instalação
 Installation method	Método de instalação
+Installation of {}	Instalação de {}
 Installation plan (IEC 60617-11)	Planta de instalação (IEC 60617-11)
 Installation site (++)	Local de instalação (++)
 Installation site and location	Local de instalação e localização
@@ -737,6 +737,7 @@ Insulation class	Classe de isolamento
 Integer	Inteiro
 Integrated EMC filter	Filtro EMC integrado
 Intermediate relay coil KA (GB)	Bobina de relé auxiliar KA (GB)
+Intermediate switch, manually operated	Interruptor intermediário, acionado manualmente
 Internal	Interno
 Internal target	Destino interno
 Interruption point '{}' has no counterpart	O ponto de interrupção '{}' não tem contraparte
@@ -751,6 +752,7 @@ Inverter DC/AC	Inversor CC/CA
 Isolating and switching devices in the right places	Dispositivos de seccionamento e manobra nos lugares certos
 Item	Item
 Item ID	ID do item
+Items	Itens
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Pontes
 Junction box	Caixa de derivação
@@ -776,13 +778,13 @@ Left side panel	Painel lateral esquerdo
 Legend plate text	Texto da placa de identificação
 Length (m)	Comprimento (m)
 Length (mm)	Comprimento (mm)
+Length known (not calculated)	Comprimento conhecido (não calculado)
 Letter landscape	Letter paisagem
 Letters (A, B, C)	Letras (A, B, C)
 Level switch	Chave de nível
 Lifecycle state	Estado do ciclo de vida
 Light source	Fonte de luz
 Lighting outlet	Ponto de luz
-Limit (%)	Limite (%)
 Limit switch NC (NFPA)	Chave fim de curso NF (NFPA)
 Limit switch NO (NFPA)	Chave fim de curso NA (NFPA)
 Line reactor	Reator de linha
@@ -946,6 +948,7 @@ Nibbling	Roedura
 No connection {}	Nenhuma conexão {}
 No devices to add to the single-line diagram	Nenhum dispositivo a adicionar ao diagrama unifilar
 No document embedded - choose a file in the page properties	Nenhum documento incorporado - escolha um arquivo nas propriedades da página
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Não há lugar livre para um prensa-cabo nas faces por onde o cabo pode sair: abra espaço ou adicione uma flange de entrada de cabos
 No identifying letter for the device tag.	Nenhuma letra de identificação para o identificador de dispositivo.
 No known column in the header row	Nenhuma coluna conhecida na linha de cabeçalho
 No option {}	Nenhuma opção {}
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Dispositivo DR 4 polos
 Residual current type	Tipo de corrente residual
 Resistor	Resistor
 Response time	Tempo de resposta
-Result	Resultado
 Return / exhaust line	Linha de retorno / escape
 Revision overview (changes)	Visão geral de revisões (alterações)
 Revision table: author of the last revision (2: the one before …)	Tabela de revisões: autor da última revisão (2: a anterior …)
@@ -1477,7 +1479,9 @@ Size (mm)	Tamanho (mm)
 Skipped	Ignorado
 Sliding to the left	De correr para a esquerda
 Sliding to the right	De correr para a direita
+Smoke alarm	Detector de fumaça
 Socket outlet	Tomada
+Socket outlet three-phase	Tomada trifásica
 Socket side (female)	Lado dos soquetes (fêmea)
 Soft starter	Soft-starter
 Solar charge controller	Controlador de carga solar
@@ -1585,7 +1589,6 @@ Terminal box	Caixa de bornes
 Terminal connection diagram	Diagrama de conexões de bornes
 Terminal data	Dados do borne
 Terminal description	Descrição do borne
-Terminal diagram	Diagrama de bornes
 Terminal line-up	Alinhamento de bornes
 Terminal marker	Marcador de borne
 Terminal parts	Peças das pontas
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	O arquivo compactado se descompacta em ma
 The archive was written by a newer version (archive version {})	O arquivo compactado foi gravado por uma versão mais recente (versão do arquivo compactado {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	O fabricante do conjunto deve ser indicado (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Os painéis em linha em sua sala: planta em L, parede interna, porta e janela, a linha de painéis em seu lugar, um trilho com uma tomada em uma parede, uma luminária de emergência montada na parede e uma eletrocalha sob o teto.
+The cable of {} needs at least {} cores	O cabo de {} precisa de pelo menos {} veias
 The configuration is not a JSON object	A configuração não é um objeto JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	O transportador após a primeira liberação: uma revisão liberada e bloqueada, alterações marcadas desde então, comentários de análise com marcações em vermelho, uma solicitação de alteração, a revisão B no fluxo de aprovação e uma linha de base para comparar.
 The coordinates of the reference point must be numbers	As coordenadas do ponto de referência devem ser números
@@ -1624,6 +1628,7 @@ The macro box has no items left	A caixa de macro não tem mais itens
 The next free id is already in use	O próximo ID livre já está em uso
 The option needs a name	A opção precisa de um nome
 The page needs a number	A página precisa de um número
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	A página de {} está cheia: o próximo interruptor do seu circuito paralelo tem de ser desenhado na mesma página
 The pages were changed after the submission; submit the revision again	As páginas foram alteradas após o envio; envie a revisão novamente
 The plot boundary crosses itself	O limite do terreno cruza-se a si mesmo
 The plot boundary encloses no area	O limite do terreno não delimita nenhuma área
@@ -1753,6 +1758,7 @@ Unknown object: {}	Objeto desconhecido: {}
 Unknown revision	Revisão desconhecida
 Unknown symbol '{}'	Símbolo desconhecido '{}'
 Unknown tool {}	Ferramenta desconhecida {}
+Unused connection points	Pontos de conexão não utilizados
 Upstream	A montante
 User defined	Definido pelo usuário
 User symbols	Símbolos do usuário
@@ -1774,7 +1780,6 @@ Vibration	Vibração
 Vibration resistance	Resistência a vibrações
 View projects	Visualizar projetos
 Violations	Violações
-Voltage (V)	Tensão (V)
 Voltage drop (V)	Queda de tensão (V)
 Voltage protection level	Nível de proteção de tensão
 Voltage range	Faixa de tensão
@@ -1950,19 +1955,23 @@ yellow	amarelo
 {} has no MTTFd, B10d, PL or PFHd	{} não tem MTTFd, B10d, PL nem PFHd
 {} has no door or window {}	{} não tem porta nem janela {}
 {} has nothing to manufacture	{} não tem nada a fabricar
+{} has three phases: it needs a three-phase protective device	{} tem três fases: precisa de um dispositivo de proteção trifásico
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} contém um conflito de mesclagem do git não resolvido: o arquivo foi mesclado como texto. Use uma versão do arquivo (git checkout --ours ou --theirs) e depois configure o driver de mesclagem para projetos divididos (merge_project_file) antes de mesclar novamente
 {} is a built-in function definition	{} é uma definição de função integrada
 {} is a built-in property	{} é uma propriedade integrada
 {} is a built-in scheme	{} é um esquema integrado
 {} is a busbar machine and makes no sheets	{} é uma máquina de processamento de barramentos e não fabrica chapas
+{} is neither the protective device nor a device of the circuit of {}	{} não é nem o dispositivo de proteção nem um equipamento do circuito de {}
 {} is not a busbar machine	{} não é uma máquina de processamento de barramentos
 {} is not a property of {}	{} não é uma propriedade de {}
 {} is not an approver of this project	{} não é um aprovador deste projeto
+{} is not connected to the mains: place it without a protective device	{} não é ligado à rede: coloque-o sem dispositivo de proteção
 {} is not placed in the plant layout	{} não está posicionado no layout da planta
 {} is on page {}, which is released: renaming it would change the page	{} está na página {}, que está liberada: renomeá-lo alteraria a página
 {} is placed at the missing node {}	{} está posicionado no nó ausente {}
 {} is planned twice ({} and {})	{} está planejado duas vezes ({} e {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} é seletivo em relação a {} apenas até {} A (corrente de curto-circuito {} A)
+{} is used already	{} já está em uso
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} mantém sua estrutura: suas funções principais estão em caixas de estrutura diferentes ({})
 {} keeps its structure: {} exists already	{} mantém sua estrutura: {} já existe
 {} lies outside page {}	{} está fora da página {}

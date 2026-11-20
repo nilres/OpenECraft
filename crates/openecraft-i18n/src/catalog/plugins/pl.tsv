@@ -15,6 +15,7 @@ Additional power loss in W	Dodatkowe straty mocy w W
 Address scheme: siemens, iec or rockwell	Schemat adresowania: siemens, iec lub rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Dodaje pole PV do dachu: rzędy modułów na szynach i hakach dachowych równolegle do połaci albo na dachu płaskim pochylone lub wschód-zachód na balastowanych podstawach montażowych; bez x i z na środku przedniej lub prawej połaci. Bez budynku i dachu naziemne pole na działce: rzędy pochylonych stołów na wbijanych słupach, bez x i z przed tym, co stoi w instalacji. Moduły i materiał montażowy trafiają do zestawienia materiałów
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Dodaje giętą i wierconą szynę miedzianą (lub zastępuje szynę o tej samej nazwie w obudowie)
+Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Dodaje dławnicę odpowiedniego rozmiaru dla każdego kabla, który wychodzi z obudowy i nie znajduje wolnej dławnicy: w dachu dla urządzenia w pomieszczeniu, w dnie dla pola lub obudowy wiszącej na ścianie
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Dodaje przepust kablowy do prawego sąsiada: okrągłe wycięcia naprzeciw siebie w obu ścianach bocznych; przewody między obudowami przechodzą przez niego
 Adds a configurator rule: insert a page macro when the condition holds	Dodaje regułę konfiguratora: wstaw makro strony, gdy warunek jest spełniony
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Dodaje węzeł sieci tras (rozgałęzienie, przepust, miejsce dojścia do obudowy lub urządzenia)
@@ -81,7 +82,9 @@ Bus system name, e.g. PN/IE_1	Nazwa systemu magistrali, np. PN/IE_1
 Busbar machine program (CSV)	Program maszyny do obróbki szyn (CSV)
 CNC operations	Operacje CNC
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Programy CNC dla wiertarek, frezarek i wykrawarek, gięcie szyn miedzianych, konfigurator obudów, przekazanie do produkcji i informacja zwrotna z produkcji
+Cable tag (default: the next free -W)	Oznaczenie kabla (domyślnie: następne wolne -W)
 Cable tag, e.g. -W1	Oznaczenie kabla, np. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Typ kabla (domyślnie: NYM-J dla jego żył i przekroju)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Kalibruje szacowanie czasu maszyn na podstawie rzeczywistych czasów z informacji zwrotnej z produkcji
 Cannot read the plugin folder {}	Nie można odczytać folderu wtyczek {}
 Cannot start {}: {}	Nie można uruchomić {}: {}
@@ -156,6 +159,7 @@ Cross section, e.g. 0.75 mm²	Przekrój, np. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Przekrój, np. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Przekrój, np. 1.5 mm² (pusty = z definicji potencjału)
 Cross-section in mm²	Przekrój w mm²
+Cross-section of the cable in mm² (default: for the protective device)	Przekrój kabla w mm² (domyślnie: dla urządzenia zabezpieczającego)
 Cross-section, e.g. 1.5 mm²	Przekrój, np. 1.5 mm²
 Current device tag	Bieżące oznaczenie urządzenia
 Customer rule set to add or replace (by name), as exported	Zestaw reguł klienta do dodania lub zastąpienia (według nazwy), w postaci wyeksportowanej
@@ -193,6 +197,8 @@ Device description id of the head (list_device_descriptions)	Identyfikator opisu
 Device group {} already exists	Grupa urządzeń {} już istnieje
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Lista urządzeń, zestawienie materiałów, schematy zacisków, wtyków, kabli i połączeń, PLC, potencjały, zabudowa szafy, technika płynowa, raporty elektryczne i obiektowe
 Device number on the bus	Numer urządzenia na magistrali
+Device or junction box of the circuit the cable comes from (default: the device before it)	Urządzenie lub puszka rozgałęźna obwodu, z której wychodzi kabel (domyślnie: poprzednie urządzenie)
+Device tag (default: the room, the letter code of the kind and the next number)	Oznaczenie urządzenia (domyślnie: pomieszczenie, kod literowy rodzaju i następny numer)
 Device tag of the CPU / bus coupler, e.g. -A0	Oznaczenie urządzenia CPU / sprzęgła magistrali, np. -A0
 Device tag of the end (both ends if missing)	Oznaczenie urządzenia na końcu (bez podania: oba końce)
 Device tag of the fluid device, e.g. -QM1	Oznaczenie urządzenia płynowego, np. -QM1
@@ -227,7 +233,6 @@ Draw the junction as a connection dot; its routing stays	Rysować trójnik jako 
 Draw wires in their colour	Rysuj przewody w ich kolorze
 Draw wires to the connection points facing its free arms	Narysować przewody do punktów przyłączenia naprzeciw jego wolnych ramion
 Drawing	Rysunek
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Rysuje linię definicji kabla; przecinane przez nią przewody stają się żyłami kabla (nowego kabla, jeśli nie podano żadnego)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Rysuje przewód między dwoma punktami połączeń, np. -K1:A1 do -S1:14 (#id:pin dla niejednoznacznych, nazwa dla potencjałów, 1, 2… dla punktów bez oznaczenia)
 Draws a wire through two or more points	Rysuje przewód przez dwa lub więcej punktów
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Rysuje przewody w ich kolorze na stronach schematu i w eksporcie PDF / SVG lub na czarno
@@ -255,7 +260,6 @@ Enclosures, panel items, accessories and panel macros	Obudowy, elementy zabudowy
 End brackets and end plates from the tech data of the terminal parts	Uchwyty końcowe i pokrywy końcowe z danych technicznych artykułów zacisków
 End holes from the bar end as a multiple of the width	Otwory końcowe od końca szyny jako wielokrotność szerokości
 End: device tag and connection point, e.g. -S1:14	Koniec: oznaczenie urządzenia i punkt połączenia, np. -S1:14
-Engineering	Inżynieria
 Face: plate, door, left, right, rear, roof or bottom	Powierzchnia: plate, door, left, right, rear, roof lub bottom
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Plan obiektowy: węzły, odcinki, obrysy, trasy, połączenia wyrównawcze i akcesoria
 Figure	Wskaźnik
@@ -358,6 +362,7 @@ Key, e.g. user.coupling_relay	Klucz, np. user.coupling_relay
 Key, e.g. user.customer_code	Klucz, np. user.customer_code
 Keys of the routes, comma separated (all if missing)	Klucze tras, oddzielone przecinkami (wszystkie, jeśli nie podano)
 Kind: machining, punching or busbar	Rodzaj: machining, punching lub busbar
+Known length of the cable in m (taken instead of the 3D route)	Znana długość kabla w m (używana zamiast trasy 3D)
 Label: terminal number, PLC address or potential name	Etykieta: numer zacisku, adres PLC lub nazwa potencjału
 Landscape (true) or portrait (false)	Poziomo (true) lub pionowo (false)
 Language the project texts are written in, e.g. en	Język, w którym są pisane teksty projektu, np. en
@@ -463,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Środek pola PV w rzucie budynku (pole naziemne: w instalacji), z w mm
 Milling feed, mm/min	Posuw frezowania, mm/min
 Mirror the symbol	Odbij symbol
+Mounting height above the floor in mm (default: that of the part)	Wysokość montażu nad podłogą w mm (domyślnie: ta z artykułu)
 Mounting plate size as width and height; empty object restores the centred plate	Rozmiar płyty montażowej jako szerokość i wysokość; pusty obiekt przywraca wyśrodkowaną płytę
 Mounting size must contain a positive width and height	Rozmiar montażowy musi zawierać dodatnią szerokość i wysokość
 Moves an air-termination rod, changes its height, renames or removes it	Przesuwa iglicę odgromową, zmienia jej wysokość, nazwę lub ją usuwa
@@ -550,6 +556,7 @@ Nothing to copy: devices are placed once	Nic do skopiowania: urządzenia umieszc
 Nothing to remove: {} {}	Nic do usunięcia: {} {}
 Number of columns	Liczba kolumn
 Number of copies (default 1)	Liczba kopii (domyślnie 1)
+Number of cores of the cable (default: 3, three-phase 5)	Liczba żył kabla (domyślnie: 3, trójfazowy 5)
 Number of equal bars	Liczba jednakowych szyn
 Number of indexed values (0 = a single value)	Liczba wartości indeksowanych (0 = pojedyncza wartość)
 Number of rows	Liczba wierszy
@@ -605,12 +612,14 @@ Paper width in mm (custom paper)	Szerokość papieru w mm (format niestandardowy
 Part lifecycle	Cykl życia artykułu
 Part number of the accessory	Numer części akcesorium
 Part number of the base	Numer artykułu płyty bazowej
+Part number of the cable	Numer artykułu kabla
 Part number of the carrier (per metre)	Numer artykułu nośnika kabli (na metr)
 Part number of the conductor (per metre)	Numer artykułu przewodu (na metr)
 Part number of the downstream device	Numer artykułu urządzenia podrzędnego
 Part number of the hose / tube / pipe	Numer artykułu węża / przewodu rurowego / rurociągu
 Part number of the upstream device	Numer artykułu urządzenia nadrzędnego
 Part number, e.g. GEN.LMP-GN-24	Numer artykułu, np. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Numer artykułu, np. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Część jego bednarki, drutu lub pręta (puste: ogólna)
 Part of the conductor holders on the roof (empty: generic)	Część uchwytów przewodu na dachu (puste: ogólna)
 Part of the conductor holders on the walls (empty: generic)	Część uchwytów przewodu na ścianach (puste: ogólna)
@@ -684,6 +693,8 @@ Property and function definitions, property values and placement schemes	Definic
 Property key	Klucz właściwości
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Klucze i wartości właściwości, np. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Umieszczane przed numerami, np. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Umieszcza urządzenie ze schematu w obudowie (na płycie montażowej, na szynie na niej lub na drzwiach): jego rozmiar z jego artykułu, zatrzaśnięte na pasującej szynie; wcześniej umieszczone gdzie indziej, zostaje przesunięte
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Umieszcza gniazdo wtyczkowe, łącznik, oprawę, element grzejny, puszkę rozgałęźną lub puszkę przyłączeniową urządzenia dla urządzenia zabezpieczającego w pomieszczeniu w punkcie instalacji (oprawę sufitową tam na suficie, wszystko inne na najbliższej ścianie na jego wysokości montażu; poza pomieszczeniem na zewnętrznej stronie jego najbliższej ściany) oraz na schemacie: nowe urządzenie na stronie instalacji obwodu z kablem od poprzedniego urządzenia lub od podanego urządzenia; bez urządzenia zabezpieczającego tylko w pomieszczeniu (gniazda danych i antenowe, czujki dymu)
 Quantity per end (default 1)	Ilość na koniec (domyślnie 1)
 R/X ratio of the supply impedance	Stosunek R/X impedancji sieci zasilającej
 Rack number	Numer kasety
@@ -779,8 +790,8 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	Ustawia tabliczkę wszystkich stron, które jej nie wybierają, lub stron jednego typu
 Sets the translation of a line of the project texts (empty removes it)	Ustawia tłumaczenie wiersza tekstów projektu (puste je usuwa)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Ustawia kolor i przekrój przewodów sieci bez zdefiniowanego potencjału (pusty = brak)
+Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)	Ustawia, czy kabel wychodzący z obudowy, który nie znajduje wolnej dławnicy, dostaje dławnicę swojego rozmiaru: w dachu dla urządzenia w pomieszczeniu, w dnie dla pola lub obudowy wiszącej na ścianie (domyślnie włączone)
 Share of the capacity kept free in percent	Część pojemności pozostawiona wolna w procentach
-Sheets	Arkusze
 Shield connected at: both, first, second or none	Ekran podłączony na: both, first, second lub none
 Shift downwards in mm	Przesunięcie w dół w mm
 Shift to the right in mm	Przesunięcie w prawo w mm
@@ -818,6 +829,7 @@ Smallest bend radius in mm	Najmniejszy promień gięcia w mm
 Smallest distance in mm	Najmniejszy odstęp w mm
 Smallest distance of holes from the sheet edge	Najmniejszy odstęp otworów od krawędzi blachy
 Smallest inner radius as a multiple of the thickness	Najmniejszy promień wewnętrzny jako wielokrotność grubości
+Smallest room kept, m² (default 1; kept with the floor plan)	Najmniejsze zachowane pomieszczenie, m² (domyślnie 1; zapisywane z rzutem)
 Smallest web at cutouts	Najmniejszy mostek przy wycięciach
 Smallest web between holes	Najmniejszy mostek między otworami
 Spare terminals at the end of the strip	Zaciski rezerwowe na końcu listwy
@@ -889,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	Linia skrzyżowania to 
 The message text, kept for the list of accepted messages	Tekst komunikatu, zachowywany na liście zaakceptowanych komunikatów
 The name must not be empty	Nazwa nie może być pusta
 The number of copies must be between 1 and 100	Liczba kopii musi wynosić od 1 do 100
+The number of cores must be from 1 to 60	Liczba żył musi wynosić od 1 do 60
 The plinth height must not be negative	Wysokość cokołu nie może być ujemna
 The plot frame {} is in use	Ramka rysunku {} jest używana
 The plugin program did not answer within {} s and was stopped	Program wtyczki nie odpowiedział w ciągu {} s i został zatrzymany
@@ -897,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Obrót musi wynosić 0, 90, 180 lub 270
 The straight line of a crossing: vertical or horizontal (default vertical)	Linia prosta skrzyżowania: vertical lub horizontal (domyślnie vertical)
 The text height must be at least 0.5 mm	Wysokość tekstu musi wynosić co najmniej 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Dwa ramiona narożnika, pionowe i poziome, np. down left (domyślnie: według przewodów w tym miejscu, inaczej down right)
+The width factor must be from 0.1 to 10	Współczynnik szerokości musi wynosić od 0,1 do 10
 The wire has no length	Połączenie nie ma długości
 The wire that jumps: vertical or horizontal	Przewód, który przeskakuje: vertical lub horizontal
 The wrap width must not be negative	Szerokość zawijania nie może być ujemna
@@ -995,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Wiersz, w kt
 Who accepted it	Kto go zaakceptował
 Whole words only	Tylko całe wyrazy
 Why the message is accepted	Dlaczego komunikat został zaakceptowany
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Szerokość liter względem ich zwykłej szerokości, 0,1 … 10 (0,8: wąskie pismo; domyślnie 1)
 Width of the path in mm (default 50)	Szerokość ścieżki w mm (domyślnie 50)
 Width, depth and height of a room are at least {} mm	Szerokość, głębokość i wysokość pomieszczenia wynoszą co najmniej {} mm
 Width, height and depth of an enclosure are at least {} mm	Szerokość, wysokość i głębokość obudowy wynoszą co najmniej {} mm
@@ -1067,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	z podstawy iglicy
 {} is a built-in frame; give the frame a new name	{} jest ramką wbudowaną; nadaj ramce nową nazwę
 {} is a built-in title block; give the title block a new name	{} jest wbudowaną tabliczką rysunkową; nadaj tabliczce nową nazwę
 {} is a room already	{} jest już pomieszczeniem
+{} is a room: use mount_on_wall	{} jest pomieszczeniem: użyj mount_on_wall
 {} is ambiguous: use #id:pin	{} jest niejednoznaczny: użyj #id:pin
 {} is an enclosure already	{} jest już obudową
 {} is not a connection point (TAG:PIN)	{} nie jest punktem połączenia (OZNACZENIE:PIN)

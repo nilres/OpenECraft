@@ -44,7 +44,9 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = henüz şemada değil
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Referans sürüm tüm projeyi (sayfalar, cihazlar, parçalar, ayarlar) saklar. Bir revizyonun yayımlanması bir referans sürüm saklar.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Bir panodan çıkan ve onu alacak boş rakor bulamayan her kablo için bir kablo rakoru
 A cable of the bus type for every connection without cable	Kablosu olmayan her bağlantı için bus tipinde bir kablo
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Bir panodan çıkan ve boş rakor bulamayan kablo kendi boyutunda bir rakor alır: odadaki bir cihaz için tavana, saha veya duvara asılı bir pano için tabana
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Komşunun yan duvarında aynı yerde aynı boyutta bir kesim: birlikte bir kablo geçişi oluştururlar
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Klasörde aynı adlı bir dosya varsa yeni bir sürüm alır (kullanıma alınıp iade edilir), aksi halde dosya eklenir
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Tek bir proje dosyası yerine her sayfa, cihaz ve parça başına küçük bir dosya içeren klasör, git gibi sürüm denetimi için
@@ -89,6 +91,7 @@ Add profile for this connector	Bu bağlayıcı için profil ekle
 Add rule	Kural ekle
 Add sort key	Sıralama ölçütü ekle
 Add the facing cutout in {}	{} içine karşılıklı kesimi ekle
+Add the missing ones	Eksikleri ekle
 Add to device	Cihaza ekle
 Add to the pre-planning	Ön planlamaya ekle
 Add user	Kullanıcı ekle
@@ -221,6 +224,7 @@ Bottom left	Sol alt
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Panonun (kaide hariç) alt kenarının zeminden yüksekliği; bu değer biliniyorsa veya pano bir kaide üzerinde duruyorsa yükseklikler kontrol edilir
 Bottom right	Sağ alt
 Boundary	Sınır
+Boxes	Kutular
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Şebekenin her koruma cihazında kısa devre akımına karşı kesme kapasitesi, devresinin sonundaki en düşük arıza akımında açma, kabloların kısa devre dayanımı ve üst kademedeki cihazla seçicilik.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Köprü: dört tel; bağlantı bir taraftan gelir ve diğer üçüne gider, önce karşı tarafa
 Building {} added with a level at ground level	{} binası zemin seviyesinde bir katla eklendi
@@ -246,6 +250,7 @@ Cable definition on page {}	{} sayfasında kablo tanımı
 Cable definition: draw a line across the wires that are cores of a cable	Kablo tanımı: bir kablonun damarları olan tellerin üzerinden bir çizgi çizin
 Cable end reserve	Kablo ucu payı
 Cable ends	Kablo uçları
+Cable from	Kablo kaynağı
 Cable markers	Kablo işaretleri
 Cable passage to {}	{} ile kablo geçişi
 Cable {}: {} cores assigned	Kablo {}: {} damar atandı
@@ -308,6 +313,7 @@ Choose the building.	Binayı seçin.
 Chooses the pages whose structure starts with this	Yapısı bununla başlayan sayfaları seçer
 Circle	Daire
 Circuits of a generic manifold	Genel bir kollektörün devreleri
+Circuits of the schematic	Şemanın devreleri
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Yıldırımdan korunma sisteminin sınıfı: iniş iletkenlerinin aralığı, düz çatıların gözü ve koruma açısı
 Class {}	Sınıf {}
 Clear	Temizle
@@ -317,6 +323,7 @@ Click	Tıklama
 Click a text: open its link	Bir metne tıklama: bağlantısını aç
 Click an element in the drawing to edit it.	Düzenlemek için çizimdeki bir öğeye tıklayın.
 Click centre, then a point on the circle	Merkeze, ardından dairenin üzerindeki bir noktaya tıklayın
+Click in a room to place {}	{} yerleştirmek için bir odaya tıklayın
 Click in the panel layout: a single item of an assembly	Pano yerleşiminde tıklama: bir montajın tek öğesi
 Click into the page to place the image	Görüntüyü yerleştirmek için sayfaya tıklayın
 Click into the page to place {}	{} öğesini yerleştirmek için sayfaya tıklayın
@@ -401,7 +408,6 @@ Concrete base	Beton taban
 Condition	Koşul
 Condition (OPTION=value & …)	Koşul (SEÇENEK=değer & …)
 Conductive frame	İletken şasi
-Conductor	İletken
 Conflicts	Çakışmalar
 Connected devices	Bağlı cihazlar
 Connected to:	Şuna bağlı:
@@ -562,6 +568,7 @@ Devices go back to the devices to place	Cihazlar yerleştirilecek cihazlara geri
 Devices in the box: {}	Kutudaki cihazlar: {}
 Devices of a channel	Bir kanalın cihazları
 Devices of the second channel; empty = like the first	İkinci kanalın cihazları; boş = birinci gibi
+Devices of {}	{} cihazları
 Devices placed on the page get its structure; their tags are shown without it.	Sayfaya yerleştirilen cihazlar sayfanın yapısını alır; etiketleri bu yapı olmadan gösterilir.
 Devices to place	Yerleştirilecek cihazlar
 Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Ana fonksiyonu kutuda bulunan cihazlar burada belirlenen tanımlayıcıları alır; boş yönler sayfadan veya çevreleyen bir kutudan devralınır.
@@ -664,6 +671,7 @@ Each point-to-point connection can belong to a harness	Her noktadan noktaya bağ
 Earth electrodes	Topraklama elektrotları
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Bir binanın topraklama elektrotları (temel ve halka topraklama, vaziyet planına tıklanan kazıklar) ve çatılarına tıklanarak yerleştirilen paratoner çubuklarıyla yıldırımdan korunması
 Earth rod placed at building {}; click for the next one · Esc: stop	{} binasına topraklama kazığı yerleştirildi; sonraki için tıklayın · Esc: dur
+Earthing	Topraklama
 Earthing and lightning protection	Topraklama ve yıldırımdan korunma
 Earthing busbar	Topraklama barası
 Earthing conductor	Topraklama iletkeni
@@ -781,7 +789,6 @@ For pages that choose none; before the plot frame's title block and the project 
 For parts without Stock length; longer profiles have to be joined	Stock length değeri olmayan parçalar için; daha uzun profillerin eklenmesi gerekir
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Sıcaklık verisi olmayan parçalar için (Max temperature, Operating temperature); 0: kontrol edilmez
 For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_US)	EPLAN parça yönetimine içe aktarma için (P_ARTICLE_* öznitelikleri, en_US metinler)
-Format	Format
 Format of cross references, structure of the target page, interruption points, contact images	Çapraz referansların formatı, hedef sayfanın yapısı, kesme noktaları, kontak görüntüleri
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Kablo demetinin dal uzunlukları ve konnektörlerin pin tablolarıyla birlikte ölçekli çivili tahta çizimi
 Forms	Formlar
@@ -803,6 +810,7 @@ Frequency	Frekans
 From / to	Başlangıç / hedef
 From a template file…	Bir şablon dosyasından…
 From row to row; 0: free of shade in winter	Sıradan sıraya; 0: kışın gölgesiz
+From the 3D routing	3D güzergâhtan
 From the function definition	Fonksiyon tanımından
 From the left end	Sol uçtan
 From the top left corner of the drawing area	Çizim alanının sol üst köşesinden
@@ -857,7 +865,7 @@ Head (CPU / coupler)	Kafa modülü (CPU / kuplör)
 Header row	Başlık satırı
 Heat map	Isı haritası
 Heating	Isıtma
-Heating circuit manifolds and control boxes	Isıtma devresi kollektörleri ve kontrol kutuları
+Heating elements, heating circuit manifolds and control boxes	Isıtıcı elemanlar, ısıtma devresi kollektörleri ve kontrol kutuları
 Height (mm)	Yükseklik (mm)
 Height above sea level	Deniz seviyesinden yükseklik
 Height above the floor	Zeminden yükseklik
@@ -965,6 +973,7 @@ Inserted {}	Eklendi {}
 Inside temperature	İç sıcaklık
 Inside without cooling	Soğutmasız iç sıcaklık
 Installation conditions of the conductors	İletkenlerin kurulum koşulları
+Installation page {}	Tesisat sayfası {}
 Installation zones	Tesisat bölgeleri
 Installed plugins	Yüklü eklentiler
 Instead of user name and password	Kullanıcı adı ve parola yerine
@@ -991,6 +1000,7 @@ Joins	Bağlar
 Joins wire pieces in a line where nothing else connects (current page)	Başka hiçbir şeyin bağlanmadığı yerlerde bir hat üzerindeki tel parçalarını birleştirir (geçerli sayfa)
 Jumper {}	Köprü {}
 Jumps over the other:	Diğerinin üzerinden atlar:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Buatlar, sabit cihazlar için bağlantı kutuları ve duman dedektörleri
 K, Q, MM …	K, Q, MM …
 Keep connections	Bağlantıları koru
 Keep sub-pages (3.a, 3.1) with the page before	Alt sayfaları (3.a, 3.1) önceki sayfayla birlikte tut
@@ -1306,9 +1316,11 @@ Not a symbol library: {}	Sembol kütüphanesi değil: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Değiştirilmedi, kilit reddedildi: {}. Sizin sürümünüz Proje sunucusu bölmesinde saklanır.
 Not changed: {}	Değiştirilmedi: {}
 Not changed: {}. Your version is kept in the Project server pane.	Değiştirilmedi: {}. Sizin sürümünüz Proje sunucusu bölmesinde saklanır.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Henüz bağlı değil: cihaz yok, kablo yok. Devresinin koruma cihazını seçin.
 Not found: {}	Bulunamadı: {}
 Not in the project parts – synchronize in parts management	Proje parçalarında yok – parça yönetiminde eşitleyin
 Not on a wire	Bir tel üzerinde değil
+Not placed	Yerleştirilmedi
 Not saved yet	Henüz kaydedilmedi
 Not saved, locked or changed by another user	Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Alınmadı: tek başına sol düğme seçer, çizer ve taşır; bir değiştirici tuşu basılı tutun veya başka bir düğme kullanın.
@@ -1491,6 +1503,7 @@ Pitch	Eğim
 Pitch X / Y	Aralık X / Y
 Place a comment on the page	Sayfaya bir yorum yerleştir
 Place again at all symbols using it	Bunu kullanan tüm sembollere yeniden yerleştir
+Place all	Tümünü yerleştir
 Place an enclosure, device or machine location at this node	Bu düğüme bir pano, cihaz veya makine konumu yerleştirin
 Place connection definition point	Bağlantı tanım noktası yerleştir
 Place connection points	Bağlantı noktalarını yerleştir
@@ -1500,7 +1513,6 @@ Place in the building	Binadaki yeri
 Place in the plant	Tesisteki yer
 Place in the room	Odadaki yer
 Place in the site plan	Vaziyet planına yerleştir
-Place on the wall	Duvara yerleştir
 Place text	Metin yerleştir
 Place the georeferenced point everything is measured from	Her şeyin ölçüldüğü coğrafi referanslı noktayı yerleştirin
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Tesisin coğrafi referanslı noktasını vaziyet planına yerleştirin; koordinatları Binalar paneline girilir, her nokta ondan ölçülür
@@ -1509,6 +1521,9 @@ Placed by hand	Elle yerleştirildi
 Placed by hand; choosing a side places them anew.	Elle yerleştirildi; bir taraf seçmek onları yeniden yerleştirir.
 Placed here: {}	Buraya yerleştirildi: {}
 Placed {}× in the project	Projede {}× yerleştirildi
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Yerleştirildi, şemada değil: koruma cihazı seçilmedi (seçip Şemaya ekle'yi kullanın)
+Placed, not in the schematic: {}	Yerleştirildi, şemada değil: {}
+Placed: not connected to the mains, so not into the schematic	Yerleştirildi: şebekeye bağlanmaz, bu yüzden şemaya eklenmedi
 Placeholders	Yer tutucular
 Placeholders are filled, e.g. a link with {project} and {page}	Yer tutucular doldurulur, ör. {project} ve {page} içeren bir bağlantı
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Etiketlerdeki, metinlerdeki ve fonksiyon metinlerindeki {MOTOR} gibi yer tutucular ekleme sırasında doldurulur.
@@ -1599,6 +1614,8 @@ Property placement	Özellik yerleşimi
 Property removed with {} values	Özellik {} değeriyle birlikte kaldırıldı
 Publish	Yayımla
 Put a room here	Buraya oda koy
+Put in	Ekle
+Put into the schematic	Şemaya ekle
 Put into the vault	Kasaya koy
 Put the pane back into the workspace	Paneli çalışma alanına geri koy
 Puts the project into the folder it was opened from	Projeyi açıldığı klasöre koyar
@@ -1749,6 +1766,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Oda eklendi: duvarlarını sürükleyin veya kat planında yenilerini çizin, panoları özelliklerinden içine yerleştirin
 Room {} now stands on level {}	{} odası artık {} katında
 Room {} taken out of the building; it stays where it stands	{} odası binadan çıkarıldı; olduğu yerde kalır
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Bundan küçük bulunan odalar atlanır (bir WC veya bir dolap 1 m² altında olabilir)
 Rooms under sloped ceilings (lowest – highest ceiling)	Eğimli tavan altındaki odalar (en alçak – en yüksek tavan)
 Rotate	Döndür
 Rotate (selection or symbol being placed)	Döndür (seçim veya yerleştirilen sembol)
@@ -1765,6 +1783,7 @@ Routing path	Yönlendirme yolu
 Routing path {} mm – double-click or Enter to finish	Yönlendirme yolu {} mm – bitirmek için çift tıklayın veya Enter'a basın
 Routing paths	Yönlendirme yolları
 Routing rules	Yönlendirme kuralları
+Routing the cables and wires again… the routes shown are from before the last change	Kablolar ve teller yeniden güzergahlanıyor… gösterilen güzergahlar son değişiklikten öncesine ait
 Row	Satır
 Row distance	Sıra aralığı
 Row drawing	Satır çizimi
@@ -1955,6 +1974,7 @@ Slot depth	Kanal derinliği
 Slots	Slotlar
 Smallest cross-section of control circuits	Kumanda devrelerinin en küçük kesiti
 Smallest cross-section of power circuits	Güç devrelerinin en küçük kesiti
+Smallest room	En küçük oda
 Socket outlets, data and antenna outlets	Prizler, veri ve anten prizleri
 Solid	Düz
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Değişikliklerinizin bir kısmı proje sunucusu tarafından alınmadı. Sürümünüz, attıktan sonra da Proje sunucusu bölmesinde kalır.
@@ -2074,7 +2094,6 @@ Test connection	Bağlantıyı test et
 Test joints	Ölçü klemensleri
 Text offset	Metin kaydırması
 Text size	Metin boyutu
-Texts	Metinler
 The EPLAN Data Portal only offers searching and reading parts: open the data portal window to add its parts.	EPLAN Data Portal yalnızca parça arama ve okuma sunar: parçalarını eklemek için veri portalı penceresini açın.
 The Insert center finds symbols, macros, devices and unplaced functions; favorites and recently used ones come first.	Ekleme merkezi sembolleri, makroları, cihazları ve yerleştirilmemiş fonksiyonları bulur; favoriler ve son kullanılanlar önce gelir.
 The accessory fits none of the device's parts	Aksesuar cihazın hiçbir parçasına uymuyor
@@ -2085,6 +2104,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopya, proje sunucusunda kayıtlı durumdan oluşturulur. Diğer kullanıcıların henüz kaydetmediği değişiklikler kopyaya dahil değildir. Oturumlar, kilitler ve erişim hakları kopyalanmaz; aslı olduğu gibi kalır.
 The crossed wires get free cores of the cable in order	Kesişen teller kablonun boş damarlarını sırayla alır
 The current page belongs to option {}.	Geçerli sayfa {} seçeneğine ait.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Bir sonraki cihazın kablosunun geldiği devrenin cihazı veya buatı: devre orada dallanır
 The devices do not fit onto the rail	Cihazlar raya sığmıyor
 The dictionary is empty: collect the texts from the project.	Sözlük boş: metinleri projeden toplayın.
 The door seen from the front: door devices and cutouts	Önden görülen kapı: kapı cihazları ve kesimler
@@ -2241,7 +2261,6 @@ View	Görünüm
 Visible	Görünür
 Voltage (line to line)	Gerilim (fazlar arası)
 Voltage at maximum power	Maksimum güçteki gerilim
-Voltage drop	Gerilim düşümü
 WGS 84, written into the site of IFC exports	WGS 84, IFC dışa aktarımlarının arsasına yazılır
 Waiting for the server	Sunucu bekleniyor
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Duvar {}, {} m: taşımak için sürükleyin, donatmak için çift tıklayarak gösterin
@@ -2270,6 +2289,8 @@ Whole building	Tüm bina
 Whole words	Tam sözcükler
 Width / going	Genişlik / basamak
 Width / height (mm)	Genişlik / yükseklik (mm)
+Width factor	Genişlik faktörü
+Width of the letters to their usual width (0.8: narrow lettering)	Harflerin olağan genişliklerine göre genişliği (0,8: dar yazı)
 Width × depth	Genişlik × derinlik
 Width × height	Genişlik × yükseklik
 Width × height (mm)	Genişlik × yükseklik (mm)
@@ -2407,6 +2428,7 @@ set on the device	cihazda belirlendi
 sloped ceiling from {} m	{} m'den itibaren eğimli tavan
 some	bazıları
 taken over	aktarıldı
+the device before it	önceki cihaz
 the project data (page list, devices, settings)	proje verileri (sayfa listesi, cihazlar, ayarlar)
 then	ise
 unknown	bilinmiyor
@@ -2454,6 +2476,8 @@ x y	x y
 {} bus cables created	{} bus kablosu oluşturuldu
 {} bus connections	{} bus bağlantısı
 {} cable ducts	{} kablo kanalı
+{} cable glands added	{} kablo rakoru eklendi
+{} cable glands added; no free place for {}: make room or add a cable entry flange	{} kablo rakoru eklendi; {} için boş yer yok: yer açın veya bir kablo giriş flanşı ekleyin
 {} cable lengths taken over	{} kablo uzunluğu devralındı
 {} cable passages to {}	{} ile {} kablo geçişi
 {} cables	{} kablo
@@ -2503,11 +2527,14 @@ x y	x y
 {} has unsaved changes. Discard them?	{} kaydedilmemiş değişiklikler içeriyor. Atılsın mı?
 {} imported into the parts database and placed as {}	{} parça veritabanına aktarıldı ve {} olarak yerleştirildi
 {} in {}	{} ({})
+{} is in the schematic	{} şemada
+{} is in the schematic: cable {} from {}	{} şemada: {} kablosu, {} kaynağından
 {} is neither in the parts database nor on the parts server	{} ne parça veritabanında ne de parça sunucusunda var
 {} is not in the disk image	{} disk görüntüsünde yok
 {} is not made for wall mounting: place it on a mounting rail	{} duvara montaj için uygun değil: bir montaj rayına yerleştirin
 {} is used by: {}	{} şunlar tarafından kullanılıyor: {}
 {} items copied	{} öğe kopyalandı
+{} items deleted	{} öğe silindi
 {} items selected	{} öğe seçildi
 {} items, {} %	{} öğe, %{}
 {} links created, {} function texts copied	{} ilişki oluşturuldu, {} fonksiyon metni kopyalandı
@@ -2569,7 +2596,6 @@ x y	x y
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} istasyon, {} bus sistemi, {} kart atandı, {} adres değiştirildi, {} bağlantı, {} kablo
 {} stopped with an error: {}	{} bir hatayla durdu: {}
 {} structure identifiers added	{} yapı tanımlayıcısı eklendi
-{} symbols	{} sembol
 {} symbols added, {} replaced	{} sembol eklendi, {} değiştirildi
 {} symbols and {} wires generated on page {}	{2} sayfasında {0} sembol ve {1} tel oluşturuldu
 {} texts changed	{} metin değiştirildi
@@ -2595,6 +2621,7 @@ x y	x y
 {} – revision {}, {}	{} – revizyon {}, {}
 {} – {} ({} pages)	{} – {} ({} sayfa)
 {} – {} here (Esc cancels)	{} – burada {} (Esc iptal eder)
+{} – {} of {} placed	{} – {}/{} yerleştirildi
 {}, freestanding	{}, arazi tipi
 {}, {} (copy of {}, revision {})	{}, {} ({} kopyası, revizyon {})
 {}: click to show its floor plan	{}: kat planını göstermek için tıklayın

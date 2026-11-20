@@ -44,7 +44,9 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = 아직 회로도에 없음
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	기준선은 전체 프로젝트(페이지, 장치, 부품, 설정)를 저장합니다. 개정을 릴리스하면 기준선이 하나 저장됩니다.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	외함을 나가면서 받을 수 있는 빈 글랜드를 찾지 못한 케이블마다 케이블 글랜드 추가
 A cable of the bus type for every connection without cable	케이블이 없는 모든 연결에 버스 유형의 케이블
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	외함을 나가면서 빈 글랜드를 찾지 못한 케이블은 크기에 맞는 글랜드를 받습니다: 실내 기기는 천장면, 필드 또는 벽걸이 외함은 바닥면
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	인접 외함 측벽의 같은 위치에 있는 같은 크기의 컷아웃: 함께 케이블 통로를 이룹니다
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	폴더에 같은 이름의 파일이 있으면 새 버전이 생성되고(체크 아웃 후 체크 인), 그렇지 않으면 파일이 추가됩니다
 A folder with one small file per page, device and part instead of one project file, for version control such as git	하나의 프로젝트 파일 대신 페이지, 장치 및 부품마다 작은 파일이 하나 있는 폴더, git과 같은 버전 관리용
@@ -89,6 +91,7 @@ Add profile for this connector	이 커넥터에 대한 프로필 추가
 Add rule	규칙 추가
 Add sort key	정렬 키 추가
 Add the facing cutout in {}	{}에 마주 보는 컷아웃 추가
+Add the missing ones	누락된 것 추가
 Add to device	장치에 추가
 Add to the pre-planning	사전 계획에 추가
 Add user	사용자 추가
@@ -219,6 +222,7 @@ Bottom left	왼쪽 아래
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	바닥으로부터 외함 하단(받침대 제외)까지의 높이. 이 값을 알거나 외함이 받침대 위에 있으면 높이를 검사합니다
 Bottom right	오른쪽 아래
 Boundary	경계
+Boxes	박스
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	전원의 각 보호 장치에서 단락 전류 대비 차단 용량, 회로 끝의 최소 고장 전류에서의 차단, 케이블의 단락 내량 및 상위 장치와의 선택 차단.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	브리지: 네 연결선. 연결은 한쪽에서 들어와 다른 세 쪽으로, 먼저 반대쪽으로 갑니다
 Building {} added with a level at ground level	지상층 하나로 건물 {}을(를) 추가했습니다
@@ -243,6 +247,7 @@ Cable definition on page {}	페이지 {}의 케이블 정의
 Cable definition: draw a line across the wires that are cores of a cable	케이블 정의: 케이블의 심선인 전선을 가로질러 선을 그립니다
 Cable end reserve	케이블 끝 여유 길이
 Cable ends	케이블 끝단
+Cable from	케이블 시작점
 Cable markers	케이블 마커
 Cable passage to {}	{}(으)로의 케이블 통로
 Cable {}: {} cores assigned	케이블 {}: 심선 {}개 지정됨
@@ -304,6 +309,7 @@ Choose the building.	건물을 선택하세요.
 Chooses the pages whose structure starts with this	구조가 이 값으로 시작하는 페이지를 선택합니다
 Circle	원
 Circuits of a generic manifold	일반 분배기의 회로 수
+Circuits of the schematic	회로도의 회로
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	피뢰 시스템 등급: 인하 도선 간격, 평지붕 메시 및 보호각
 Class {}	등급 {}
 Clear	지우기
@@ -313,6 +319,7 @@ Click	클릭
 Click a text: open its link	텍스트 클릭: 링크 열기
 Click an element in the drawing to edit it.	도면의 요소를 클릭하여 편집하세요.
 Click centre, then a point on the circle	중심을 클릭한 후 원 위의 점을 클릭하세요
+Click in a room to place {}	방을 클릭하여 {} 배치
 Click in the panel layout: a single item of an assembly	패널 레이아웃에서 클릭: 어셈블리의 단일 항목
 Click into the page to place the image	페이지를 클릭하여 이미지를 배치하세요
 Click into the page to place {}	페이지를 클릭하여 {}을(를) 배치하세요
@@ -396,7 +403,6 @@ Concrete base	콘크리트 받침
 Condition	조건
 Condition (OPTION=value & …)	조건(OPTION=값 & …)
 Conductive frame	도전성 프레임
-Conductor	도체
 Conflicts	충돌
 Connected devices	연결된 장치
 Connected to:	연결 대상:
@@ -656,6 +662,7 @@ Each point-to-point connection can belong to a harness	각 점대점 연결은 �
 Earth electrodes	접지극
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	건물의 접지극 (기초 및 환상 접지극, 배치도에서 클릭해 놓는 접지봉)과 지붕에 클릭해 놓는 피뢰침을 포함한 피뢰
 Earth rod placed at building {}; click for the next one · Esc: stop	건물 {}에 접지봉을 배치했습니다. 다음 것은 클릭 · Esc: 종료
+Earthing	접지
 Earthing and lightning protection	접지 및 피뢰
 Earthing busbar	접지 부스바
 Earthing conductor	접지 도체
@@ -771,7 +778,6 @@ For pages that choose none; before the plot frame's title block and the project 
 For parts without Stock length; longer profiles have to be joined	Stock length가 없는 부품용. 이보다 긴 프로파일은 이어 붙여야 합니다
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	온도 데이터(Max temperature, Operating temperature)가 없는 부품용. 0: 검사 안 함
 For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_US)	EPLAN 부품 관리로 가져오기용(P_ARTICLE_* 특성, en_US 텍스트)
-Format	형식
 Format of cross references, structure of the target page, interruption points, contact images	상호 참조 형식, 대상 페이지의 구조, 중단점, 접점 이미지
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	분기 길이와 커넥터의 핀 표가 포함된 하네스의 실척 폼보드 도면
 Forms	양식
@@ -847,7 +853,7 @@ Head (CPU / coupler)	헤드(CPU / 커플러)
 Header row	머리글 행
 Heat map	열 지도
 Heating	히터
-Heating circuit manifolds and control boxes	난방 분배기 및 제어 박스
+Heating elements, heating circuit manifolds and control boxes	발열체, 난방 분배기 및 제어 박스
 Height (mm)	높이(mm)
 Height above sea level	해발 고도
 Height above the floor	바닥으로부터의 높이
@@ -980,6 +986,7 @@ Join collinear wires	동일 선상의 전선 결합
 Joins wire pieces in a line where nothing else connects (current page)	다른 연결이 없는 곳에서 일직선상의 전선 조각을 결합합니다(현재 페이지)
 Jumper {}	점퍼 {}
 Jumps over the other:	다른 전선을 넘음:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	정션 박스, 고정 기기용 연결 박스 및 연기 감지기
 K, Q, MM …	K, Q, MM …
 Keep connections	연결 유지
 Keep sub-pages (3.a, 3.1) with the page before	하위 페이지(3.a, 3.1)를 이전 페이지와 함께 유지
@@ -1290,9 +1297,11 @@ Not a symbol library: {}	심볼 라이브러리가 아님: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	잠금이 거부되어 변경되지 않음: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
 Not changed: {}	변경되지 않음: {}
 Not changed: {}. Your version is kept in the Project server pane.	변경되지 않음: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	아직 연결되지 않음: 장치도 케이블도 없습니다. 회로의 보호 장치를 선택하십시오.
 Not found: {}	찾을 수 없음: {}
 Not in the project parts – synchronize in parts management	프로젝트 부품에 없음 – 부품 관리에서 동기화하세요
 Not on a wire	전선 위에 없음
+Not placed	배치 안 됨
 Not saved yet	아직 저장되지 않음
 Not saved, locked or changed by another user	다른 사용자가 잠그거나 변경하여 저장되지 않음
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	적용 안 됨: 왼쪽 단추만으로는 선택, 그리기, 이동을 합니다. 보조키를 누르거나 다른 단추를 사용하세요.
@@ -1475,6 +1484,7 @@ Pitch	경사
 Pitch X / Y	간격 X / Y
 Place a comment on the page	페이지에 주석 배치
 Place again at all symbols using it	이를 사용하는 모든 심볼에 다시 배치
+Place all	모두 배치
 Place an enclosure, device or machine location at this node	이 노드에 외함, 장치 또는 기계 위치 배치
 Place connection definition point	연결 정의점 배치
 Place connection points	연결 지점 배치
@@ -1483,7 +1493,6 @@ Place in schematic	회로도에 배치
 Place in the plant	플랜트 내 위치
 Place in the room	공간 내 위치
 Place in the site plan	배치도에 배치
-Place on the wall	벽에 배치
 Place the georeferenced point everything is measured from	모든 측정의 기준이 되는 지리 참조점을 배치합니다
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	설비의 지리 참조점을 배치도에 배치합니다. 좌표는 건물 창에 입력하며 모든 점은 이 점에서 측정됩니다
 Placed	배치됨
@@ -1491,6 +1500,9 @@ Placed by hand	수동 배치
 Placed by hand; choosing a side places them anew.	수동으로 배치됨. 방향을 선택하면 다시 배치됩니다.
 Placed here: {}	여기에 배치됨: {}
 Placed {}× in the project	프로젝트에 {}× 배치됨
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	배치됨, 회로도에 없음: 보호 장치를 선택하지 않음(선택한 후 회로도에 넣기를 사용하십시오)
+Placed, not in the schematic: {}	배치됨, 회로도에 없음: {}
+Placed: not connected to the mains, so not into the schematic	배치됨: 전원에 연결되지 않으므로 회로도에 넣지 않음
 Placeholders	자리 표시자
 Placeholders are filled, e.g. a link with {project} and {page}	자리 표시자가 채워집니다(예: {project}와 {page}가 포함된 링크)
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	태그, 텍스트 및 기능 텍스트의 {MOTOR}와 같은 자리 표시자는 삽입 시 채워집니다.
@@ -1580,6 +1592,7 @@ Property groups	속성 그룹
 Property placement	속성 배치
 Property removed with {} values	값 {}개와 함께 속성을 제거했습니다
 Publish	게시
+Put into the schematic	회로도에 넣기
 Put into the vault	Vault에 넣기
 Put the pane back into the workspace	창을 작업 공간으로 되돌리기
 Puts the project into the folder it was opened from	프로젝트를 연 폴더에 프로젝트를 넣습니다
@@ -1728,6 +1741,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	방을 추가했습니다: 평면도에서 벽을 끌거나 새 벽을 그리고, 외함은 해당 속성에서 방에 넣으십시오
 Room {} now stands on level {}	방 {} 이(가) 이제 {} 층에 있습니다
 Room {} taken out of the building; it stays where it stands	방 {} 을(를) 건물에서 제외했습니다. 위치는 그대로입니다
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	이보다 작은 방은 제외됩니다(화장실이나 창고는 1 m²보다 작을 수 있음)
 Rooms under sloped ceilings (lowest – highest ceiling)	경사 천장 아래의 방 (가장 낮은 – 가장 높은 천장)
 Rotate	회전
 Rotate (selection or symbol being placed)	회전(선택 항목 또는 배치 중인 심볼)
@@ -1744,6 +1758,7 @@ Routing path	배선 경로
 Routing path {} mm – double-click or Enter to finish	배선 경로 {} mm – 두 번 클릭하거나 Enter로 완료
 Routing paths	배선 경로
 Routing rules	배선 경로 규칙
+Routing the cables and wires again… the routes shown are from before the last change	케이블과 전선을 다시 배선하는 중… 표시된 경로는 마지막 변경 이전의 것입니다
 Row	행
 Row distance	열 간격
 Row drawing	행 도면
@@ -1931,6 +1946,7 @@ Slot depth	홈 깊이
 Slots	슬롯
 Smallest cross-section of control circuits	제어 회로의 최소 단면적
 Smallest cross-section of power circuits	전력 회로의 최소 단면적
+Smallest room	가장 작은 방
 Socket outlets, data and antenna outlets	전원 콘센트, 데이터 및 안테나 콘센트
 Solid	실선
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	일부 변경 내용이 프로젝트 서버에 반영되지 않았습니다. 버린 후에도 내 버전은 프로젝트 서버 창에 남습니다.
@@ -2050,7 +2066,6 @@ Test connection	연결 테스트
 Test joints	시험 단자
 Text offset	텍스트 오프셋
 Text size	텍스트 크기
-Texts	텍스트
 The EPLAN Data Portal only offers searching and reading parts: open the data portal window to add its parts.	EPLAN Data Portal은 부품 검색 및 읽기만 제공합니다. 부품을 추가하려면 데이터 포털 창을 여세요.
 The Insert center finds symbols, macros, devices and unplaced functions; favorites and recently used ones come first.	삽입 센터는 심볼, 매크로, 장치, 배치되지 않은 기능을 찾습니다. 즐겨찾기와 최근 사용한 항목이 먼저 표시됩니다.
 The accessory fits none of the device's parts	이 액세서리는 장치의 어떤 부품에도 맞지 않습니다
@@ -2061,6 +2076,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	사본은 프로젝트 서버에 저장된 상태로 만들어집니다. 다른 사용자가 아직 저장하지 않은 변경 내용은 포함되지 않습니다. 세션, 잠금 및 액세스 권한은 복사되지 않으며 원본은 그대로 유지됩니다.
 The crossed wires get free cores of the cable in order	교차된 전선이 케이블의 빈 심선을 순서대로 받습니다
 The current page belongs to option {}.	현재 페이지는 옵션 {}에 속합니다.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	다음 장치의 케이블이 시작되는 회로의 장치 또는 정션 박스: 회로가 그곳에서 분기됩니다
 The devices do not fit onto the rail	장치가 레일에 맞지 않습니다
 The dictionary is empty: collect the texts from the project.	사전이 비어 있습니다. 프로젝트에서 텍스트를 수집하세요.
 The door seen from the front: door devices and cutouts	앞에서 본 도어: 도어 장치 및 컷아웃
@@ -2215,7 +2231,6 @@ View	보기
 Visible	표시
 Voltage (line to line)	전압(선간)
 Voltage at maximum power	최대 전력 시 전압
-Voltage drop	전압 강하
 WGS 84, written into the site of IFC exports	WGS 84, IFC 내보내기의 부지에 기록됩니다
 Waiting for the server	서버 대기 중
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	벽 {}, {} m: 드래그하여 이동, 두 번 클릭하면 장착할 수 있도록 표시
@@ -2244,6 +2259,8 @@ Whole building	건물 전체
 Whole words	단어 단위로
 Width / going	폭 / 발판
 Width / height (mm)	너비 / 높이(mm)
+Width factor	폭 계수
+Width of the letters to their usual width (0.8: narrow lettering)	평소 폭에 대한 글자의 폭(0.8: 좁은 글자)
 Width × depth	너비 × 깊이
 Width × height	너비 × 높이
 Width × height (mm)	폭 × 높이(mm)
@@ -2379,6 +2396,7 @@ set on the device	장치에서 설정됨
 sloped ceiling from {} m	{} m부터 경사 천장
 some	일부
 taken over	반영됨
+the device before it	앞의 장치
 the project data (page list, devices, settings)	프로젝트 데이터(페이지 목록, 장치, 설정)
 then	그러면
 unsaved	저장되지 않음
@@ -2423,6 +2441,8 @@ x y	x y
 {} bus cables created	버스 케이블 {}개 만들어짐
 {} bus connections	버스 연결 {}개
 {} cable ducts	케이블 덕트 {}개
+{} cable glands added	케이블 글랜드 {}개 추가됨
+{} cable glands added; no free place for {}: make room or add a cable entry flange	케이블 글랜드 {}개를 추가했습니다. {}의 빈 자리가 없습니다: 자리를 만들거나 케이블 인입 플랜지를 추가하십시오
 {} cable lengths taken over	케이블 길이 {}개를 적용했습니다
 {} cable passages to {}	{1}(으)로의 케이블 통로 {0}개
 {} cables	케이블 {}개
@@ -2472,10 +2492,12 @@ x y	x y
 {} has unsaved changes. Discard them?	{}에 저장되지 않은 변경 내용이 있습니다. 취소할까요?
 {} imported into the parts database and placed as {}	{}을(를) 부품 데이터베이스로 가져와 {}(으)로 배치했습니다
 {} in {}	{1}의 {0}
+{} is in the schematic: cable {} from {}	{}은(는) 회로도에 있습니다: 케이블 {}, 시작점 {}
 {} is neither in the parts database nor on the parts server	{}은(는) 부품 데이터베이스와 부품 서버 어디에도 없습니다
 {} is not in the disk image	디스크 이미지에 {}이(가) 없습니다
 {} is used by: {}	{}을(를) 사용하는 항목: {}
 {} items copied	항목 {}개를 복사했습니다
+{} items deleted	항목 {}개 삭제됨
 {} items selected	항목 {}개 선택됨
 {} items, {} %	항목 {}개, {} %
 {} links created, {} function texts copied	연결 {}개 생성됨, 기능 텍스트 {}개 복사됨
@@ -2535,7 +2557,6 @@ x y	x y
 {} segments created, {} devices added, {} updated	세그먼트 {}개 생성, 장치 {}개 추가, {}개 업데이트
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	스테이션 {}개, 버스 시스템 {}개, 카드 {}개 지정됨, 주소 {}개 변경됨, 연결 {}개, 케이블 {}개
 {} structure identifiers added	구조 식별자 {}개 추가됨
-{} symbols	심볼 {}개
 {} symbols added, {} replaced	심볼 {}개 추가됨, {}개 교체됨
 {} symbols and {} wires generated on page {}	심볼 {}개와 전선 {}개를 {} 페이지에 생성했습니다
 {} texts changed	텍스트 {}개를 변경했습니다
@@ -2561,6 +2582,7 @@ x y	x y
 {} – revision {}, {}	{} – 개정 {}, {}
 {} – {} ({} pages)	{} – {}(페이지 {}개)
 {} – {} here (Esc cancels)	{} – 여기에서 {}(Esc는 취소)
+{} – {} of {} placed	{} – {}/{} 배치됨
 {}, freestanding	{}, 지상형
 {}, {} (copy of {}, revision {})	{}, {}({}의 사본, 개정 {})
 {}: click to show its floor plan	{}: 클릭하면 평면도를 표시합니다

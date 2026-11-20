@@ -59,7 +59,6 @@ Align right	Rechts uitlijnen
 Align top	Boven uitlijnen
 All aspects (with product)	Alle aspecten (met product)
 All devices of page {} are in the schematic already	Alle apparaten van pagina {} staan al in het schema
-Aluminium	Aluminium
 Ammeter	Ampèremeter
 Ammeter, reactive current	Stroommeter, blindstroom
 Ampere-hour meter	Ampère-uurmeter
@@ -68,6 +67,7 @@ Analog input module	Analoge ingangsmodule
 Analog output module	Analoge uitgangsmodule
 Analysis	Analyse
 Another section here has this number	Een andere sectie hier heeft dit nummer al
+Antenna outlet	Antennecontactdoos
 Apparent power (kVA)	Schijnbaar vermogen (kVA)
 Applied directives	Toegepaste richtlijnen
 Approval date	Goedkeuringsdatum
@@ -101,7 +101,6 @@ Baying kit	Koppelset
 Beacon, rotating	Zwaailamp
 Belongs to	Hoort bij
 Bends	Bochten
-Bill of materials	Stuklijst
 Bimetal switch NC	Bimetaalschakelaar verbreekcontact
 Bimetal switch NO	Bimetaalschakelaar maakcontact
 Black box	Black box
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Wisselcontact, opkomvertraagd
 Changeover contact, passing make	Wisselcontact met impulscontact
 Changeover switch, cam operated	Omschakelaar, nokbediend
 Changeover switch, cam profile operated	Omschakelaar, curvebediend
+Changeover switch, manually operated	Omschakelaar, handbediend
 Changeover switch, roller operated	Omschakelaar, rolbediend
 Check valve	Terugslagklep
 Checked	Gecontroleerd
 Checked by	Gecontroleerd door
 Choose the pages of the subproject	Kies de pagina's van het deelproject
-Circuit	Stroomkring
 Circuit breaker (single-line)	Vermogensschakelaar (eenlijnig)
 Circuit breaker 1-pole	Installatieautomaat 1-polig
 Circuit breaker 1-pole (NFPA)	Installatieautomaat 1-polig (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Geconverteerd van bestandsindeling {} na
 Coolant	Koelmiddel
 Cooler	Koeler
 Cooling method	Koelmethode
-Copper	Koper
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Koperrail {}: buiging {} heeft een radius van {} mm, minimaal {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Koperrail {}: boring Ø{} bij {} mm ligt buiten de rail
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Koperrail {}: boring Ø{} bij {} mm ligt te dicht bij buiging {}
@@ -316,7 +314,6 @@ Create projects	Projecten maken
 Creation date	Aanmaakdatum
 Cross-section {} carries {} A, less than the {} A of {}	Doorsnede {} voert {} A, minder dan de {} A van {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	De kruising op pagina {} past niet bij zijn draden: hij heeft een draad in alle vier richtingen en geen aansluitpunt daar nodig
-Current (A)	Stroom (A)
 Current capacity (A)	Stroombelastbaarheid (A)
 Current consumption	Stroomopname
 Current range	Stroombereik
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC-stuurstroomkringen m
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC-stuurstroomkringen moeten bij voorkeur blauw zijn (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC-omvormer
 DWG export failed: {}	DWG-export mislukt: {}
+Data outlet	Datacontactdoos
 Data sheet	Gegevensblad
 Date of the approval of the last revision	Datum van de goedkeuring van de laatste revisie
 Date of the last revision	Datum van de laatste revisie
@@ -360,6 +358,7 @@ Description of the last revision	Beschrijving van de laatste revisie
 Description of the page's function (structure management)	Beschrijving van de functie van de pagina (structuurbeheer)
 Description of the page's location (structure management)	Beschrijving van de locatie van de pagina (structuurbeheer)
 Designer	Ontwerper
+Device connection box	Apparaataansluitdoos
 Device connection diagram	Apparaataansluitschema
 Device data of {} without symbol or panel item	Apparaatgegevens van {} zonder symbool of montage-element
 Device description file	Apparaatbeschrijvingsbestand
@@ -409,7 +408,6 @@ Document (embedded file)	Document (ingesloten bestand)
 Document A4 portrait	Document A4 staand
 Document number	Documentnummer
 Document reference	Documentverwijzing
-Documentation	Documentatie
 Documentation language	Documentatietaal
 Does not match	Komt niet overeen
 Door (front view)	Deur (vooraanzicht)
@@ -648,6 +646,7 @@ Hazardous area zone	Ex-zone
 Heat exchanger	Warmtewisselaar
 Heating (W)	Verwarming (W)
 Heating element	Verwarmingselement
+Heating element three-phase	Verwarmingselement driefasig
 Higher-level product (-)	Bovenliggend product (-)
 Higher-level product of the page	Bovenliggend product van de pagina
 Highest (°C)	Maximaal (°C)
@@ -725,6 +724,7 @@ Installation altitude	Opstellingshoogte
 Installation date	Installatiedatum
 Installation devices	Installatieapparaten
 Installation method	Installatiemethode
+Installation of {}	Installatie van {}
 Installation plan (IEC 60617-11)	Installatieschema (IEC 60617-11)
 Installation site (++)	Installatie (++)
 Installation site and location	Installatieplaats en locatie
@@ -737,6 +737,7 @@ Insulation class	Isolatieklasse
 Integer	Geheel getal
 Integrated EMC filter	Geïntegreerd EMC-filter
 Intermediate relay coil KA (GB)	Spoel hulprelais KA (GB)
+Intermediate switch, manually operated	Kruisschakelaar, handbediend
 Internal	Intern
 Internal target	Intern doel
 Interruption point '{}' has no counterpart	Onderbrekingspunt '{}' heeft geen tegenhanger
@@ -751,6 +752,7 @@ Inverter DC/AC	Omvormer DC/AC
 Isolating and switching devices in the right places	Scheidings- en schakelapparaten op de juiste plaatsen
 Item	Element
 Item ID	Item-ID
+Items	Elementen
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Bruggen
 Junction box	Aftakdoos
@@ -776,13 +778,13 @@ Left side panel	Linkerzijwand
 Legend plate text	Tekst naamplaatje
 Length (m)	Lengte (m)
 Length (mm)	Lengte (mm)
+Length known (not calculated)	Lengte bekend (niet berekend)
 Letter landscape	Letter liggend
 Letters (A, B, C)	Letters (A, B, C)
 Level switch	Niveauschakelaar
 Lifecycle state	Levenscyclusstatus
 Light source	Lichtbron
 Lighting outlet	Lichtpunt
-Limit (%)	Grenswaarde (%)
 Limit switch NC (NFPA)	Eindschakelaar verbreekcontact (NFPA)
 Limit switch NO (NFPA)	Eindschakelaar maakcontact (NFPA)
 Line reactor	Netsmoorspoel
@@ -946,6 +948,7 @@ Nibbling	Nibbelen
 No connection {}	Geen verbinding {}
 No devices to add to the single-line diagram	Geen apparaten om aan het eenlijnschema toe te voegen
 No document embedded - choose a file in the page properties	Geen document ingesloten - kies een bestand in de pagina-eigenschappen
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Geen vrije plaats voor een kabelwartel op de vlakken waar de kabel uit kan: maak ruimte of voeg een kabelinvoerflens toe
 No identifying letter for the device tag.	Geen kenletter voor de apparaataanduiding.
 No known column in the header row	Geen bekende kolom in de koprij
 No option {}	Geen optie {}
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Aardlekschakelaar 4-polig
 Residual current type	Type aardlekbeveiliging
 Resistor	Weerstand
 Response time	Reactietijd
-Result	Resultaat
 Return / exhaust line	Retour- / ontluchtingsleiding
 Revision overview (changes)	Revisieoverzicht (wijzigingen)
 Revision table: author of the last revision (2: the one before …)	Revisietabel: auteur van de laatste revisie (2: die daarvoor …)
@@ -1477,7 +1479,9 @@ Size (mm)	Grootte (mm)
 Skipped	Overgeslagen
 Sliding to the left	Schuivend naar links
 Sliding to the right	Schuivend naar rechts
+Smoke alarm	Rookmelder
 Socket outlet	Wandcontactdoos
+Socket outlet three-phase	Wandcontactdoos driefasig
 Socket side (female)	Buszijde (vrouwelijk)
 Soft starter	Softstarter
 Solar charge controller	Zonnelaadregelaar
@@ -1585,7 +1589,6 @@ Terminal box	Klemmenkast
 Terminal connection diagram	Klemaansluitschema
 Terminal data	Klemgegevens
 Terminal description	Klembeschrijving
-Terminal diagram	Klemmenplan
 Terminal line-up	Klemmenopstelling
 Terminal marker	Klemmarkering
 Terminal parts	Artikelen draadeinden
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Het archief pakt uit tot meer dan {} MB
 The archive was written by a newer version (archive version {})	Het archief is geschreven door een nieuwere versie (archiefversie {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	De fabrikant van de verdeelinrichting moet worden vermeld (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	De kastenrij in haar ruimte: L-vormige plattegrond, binnenwand, deur en raam, de kastenrij op haar plaats, een montagerail met een wandcontactdoos, een op de wand gemonteerde noodverlichting en een kabelgoot onder het plafond.
+The cable of {} needs at least {} cores	De kabel van {} heeft minstens {} aders nodig
 The configuration is not a JSON object	De configuratie is geen JSON-object
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	De transportband na de eerste vrijgave: een vrijgegeven en vergrendelde revisie, sindsdien gemarkeerde wijzigingen, reviewopmerkingen met redlining, een wijzigingsverzoek, revisie B in de goedkeuringsworkflow en een baseline om mee te vergelijken.
 The coordinates of the reference point must be numbers	De coördinaten van het referentiepunt moeten getallen zijn
@@ -1624,6 +1628,7 @@ The macro box has no items left	Het macrokader heeft geen elementen meer
 The next free id is already in use	De volgende vrije ID is al in gebruik
 The option needs a name	De optie heeft een naam nodig
 The page needs a number	De pagina heeft een nummer nodig
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	De pagina van {} is vol: de volgende schakelaar van zijn wisselschakeling moet op dezelfde pagina worden getekend
 The pages were changed after the submission; submit the revision again	De pagina's zijn na het indienen gewijzigd; dien de revisie opnieuw in
 The plot boundary crosses itself	De perceelgrens snijdt zichzelf
 The plot boundary encloses no area	De perceelgrens omsluit geen oppervlak
@@ -1753,6 +1758,7 @@ Unknown object: {}	Onbekend object: {}
 Unknown revision	Onbekende revisie
 Unknown symbol '{}'	Onbekend symbool '{}'
 Unknown tool {}	Onbekend gereedschap {}
+Unused connection points	Ongebruikte aansluitpunten
 Upstream	Voorgeschakeld
 User defined	Door de gebruiker gedefinieerd
 User symbols	Gebruikerssymbolen
@@ -1774,7 +1780,6 @@ Vibration	Trilling
 Vibration resistance	Trillingsbestendigheid
 View projects	Projecten bekijken
 Violations	Overtredingen
-Voltage (V)	Spanning (V)
 Voltage drop (V)	Spanningsval (V)
 Voltage protection level	Beschermingsniveau
 Voltage range	Spanningsbereik
@@ -1950,19 +1955,23 @@ yellow	geel
 {} has no MTTFd, B10d, PL or PFHd	{} heeft geen MTTFd, B10d, PL of PFHd
 {} has no door or window {}	{} heeft geen deur of raam {}
 {} has nothing to manufacture	{} heeft niets te produceren
+{} has three phases: it needs a three-phase protective device	{} heeft drie fasen: er is een driepolig beveiligingsapparaat nodig
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} bevat een onopgelost merge-conflict van git: het bestand is als tekst samengevoegd. Neem één versie van het bestand (git checkout --ours of --theirs) en stel daarna het merge-stuurprogramma voor gesplitste projecten in (merge_project_file) voordat u opnieuw samenvoegt
 {} is a built-in function definition	{} is een ingebouwde functiedefinitie
 {} is a built-in property	{} is een ingebouwde eigenschap
 {} is a built-in scheme	{} is een ingebouwd schema
 {} is a busbar machine and makes no sheets	{} is een railbewerkingsmachine en maakt geen platen
+{} is neither the protective device nor a device of the circuit of {}	{} is noch het beveiligingsapparaat noch een apparaat van de groep van {}
 {} is not a busbar machine	{} is geen railbewerkingsmachine
 {} is not a property of {}	{} is geen eigenschap van {}
 {} is not an approver of this project	{} is geen goedkeurder van dit project
+{} is not connected to the mains: place it without a protective device	{} wordt niet op het net aangesloten: plaats het zonder beveiligingsapparaat
 {} is not placed in the plant layout	{} is niet geplaatst in de installatielay-out
 {} is on page {}, which is released: renaming it would change the page	{} staat op pagina {}, die is vrijgegeven: hernoemen zou de pagina wijzigen
 {} is placed at the missing node {}	{} is geplaatst bij het ontbrekende knooppunt {}
 {} is planned twice ({} and {})	{} is twee keer gepland ({} en {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} is selectief ten opzichte van {} tot slechts {} A (kortsluitstroom {} A)
+{} is used already	{} is al in gebruik
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} behoudt zijn structuur: zijn hoofdfuncties liggen in verschillende structuurkaders ({})
 {} keeps its structure: {} exists already	{} behoudt zijn structuur: {} bestaat al
 {} lies outside page {}	{} ligt buiten pagina {}

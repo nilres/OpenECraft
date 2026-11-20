@@ -111,8 +111,12 @@ EXPOSE 8080
 # The WebAssembly, the scripts and the other big texts get compressed copies beside
 # them (compress.sh), which nginx sends as they are (website.conf) instead of
 # compressing 40 MB for every visitor; config.js is written at every start.
+# The screen recording of the first screen is an asset of the release `website-media`
+# (installer/web/tour.sh; an empty OPENECRAFT_TOUR_URL builds the site without it).
 FROM web-build AS website-build
-RUN cd website \
+ARG OPENECRAFT_TOUR_URL=https://github.com/nilres/OpenECraft/releases/download/website-media
+RUN OPENECRAFT_TOUR_URL="$OPENECRAFT_TOUR_URL" sh installer/web/tour.sh \
+    && cd website \
     && trunk build --release \
     && cd ../openecraft \
     && trunk build --release --public-url ./ --dist /src/target/website-editor \
@@ -125,7 +129,11 @@ RUN cd website \
 # takes the address named there, an empty OPENECRAFT_LEGAL_NAME hides the notice), the
 # public address of the site for search engines and link previews with
 # OPENECRAFT_SITE_URL: the image writes the settings of the page, the parts that need
-# the address and its nginx site at every start.
+# the address and its nginx site at every start. The stars and the contributors of the
+# repository on the first screen start with the numbers the image was built with
+# (build arguments OPENECRAFT_STARS and OPENECRAFT_CONTRIBUTORS, given by CI; 0: not
+# shown); the image asks GitHub for them at every start and then every
+# OPENECRAFT_NUMBERS_INTERVAL seconds (website-numbers.sh; 0: never).
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS website
 ENV OPENECRAFT_SITE_URL= \
     OPENECRAFT_EDITOR_URL=editor/ \
@@ -146,6 +154,13 @@ ENV OPENECRAFT_SITE_URL= \
 COPY installer/docker/website.conf /etc/nginx/templates/default.conf.template
 COPY --chmod=0755 installer/docker/website-config.sh /docker-entrypoint.d/40-openecraft-website-config.sh
 COPY --chmod=0755 installer/docker/website-site.sh /docker-entrypoint.d/41-openecraft-website-site.sh
+COPY --chmod=0755 installer/docker/website-numbers.sh /docker-entrypoint.d/42-openecraft-website-numbers.sh
 COPY --from=website-build /src/website/dist/ /usr/share/nginx/html/
 COPY --from=website-build /src/target/website-editor/ /usr/share/nginx/html/editor/
+# Last, so that new numbers leave the layers above as they are.
+ARG OPENECRAFT_STARS=0
+ARG OPENECRAFT_CONTRIBUTORS=0
+ENV OPENECRAFT_STARS=${OPENECRAFT_STARS} \
+    OPENECRAFT_CONTRIBUTORS=${OPENECRAFT_CONTRIBUTORS} \
+    OPENECRAFT_NUMBERS_INTERVAL=3600
 EXPOSE 8080

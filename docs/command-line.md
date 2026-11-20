@@ -104,7 +104,8 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   (now `find` / `replace`).
 - Parts server: `--server` / `--token`, the `OPENECRAFT_SERVER` / `OPENECRAFT_TOKEN`
   environment variables or the `parts_connect` tool (also with `user` / `password`);
-  default `http://127.0.0.1:8090`. `parts_connect` with `kind: Eplan` reads the EPLAN
+  default the public parts server `https://parts-server.openecraft.org`
+  ([public parts server](parts-server.md#public-parts-server)). `parts_connect` with `kind: Eplan` reads the EPLAN
   Data Portal instead (the token is the personal access token; searching, `parts_get`,
   `parts_file` and `parts_check_updates` only). The data portal tools search with facets
   (`parts_search`), manage catalogs, files, favorites and users (`parts_catalog_save`,
@@ -118,14 +119,20 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   `output`, `folder`, `database`, `target` and template files); default the working
   folder of the server, `*` allows every folder. An agent misled by text it reads (a
   project, a part, a web page) cannot read or overwrite files elsewhere, such as other
-  projects or plugin folders. Relative paths are resolved against the working folder,
-  not against `OPENECRAFT_MCP_ROOT`: with a client that starts the server in a folder of
-  its own (Claude Desktop), the agent has to use absolute paths in the root folder.
-- `OPENECRAFT_MCP_TOOLS` limits the tools the MCP server offers, for clients that take
-  only a limited number: names separated by commas, `parts_*` for all tools starting
-  with `parts_` (e.g. `new_project,open_project,save_project,place_symbol,connect,check,export`).
-  All tools together describe themselves in about 270 kB; drawing schematics needs
-  about 40 of them ([list](launch/ai/README.md#fewer-tools-for-clients-with-a-limit)).
+  projects or plugin folders. Relative paths are in `OPENECRAFT_MCP_ROOT`, also when the
+  client starts the server in a folder of its own (Claude Desktop); the instructions of
+  the server name the folder to the agent.
+- `OPENECRAFT_MCP_TOOLS` chooses the tools the MCP server offers. By default it offers
+  the core tools for schematics (`core`, about 50: projects, pages, symbols, wires,
+  cables, parts, check, reports, exports; about 30 kB) and reaches the others (all of
+  them together describe themselves in about 260 kB) through three tools of its own:
+  `find_tools` (names, or the tools whose name or description has the words of a
+  query), `describe_tool` (description and parameters) and `call_tool` (calls any tool
+  by its name). Names separated by commas choose other tools, `parts_*` all tools
+  starting with `parts_`, `*` all of them (e.g. `core,panel*,parts_*`).
+- Without a parts server `parts_search` and `parts_get` use the parts of the project and
+  the built-in catalog (`parts_search --local` always), and `assign_part` names similar
+  parts for a number it does not know.
 - `new_project --path` does not replace an existing file unless `overwrite` is given.
   `search_projects` searches the current folder unless a database or folder is given.
 

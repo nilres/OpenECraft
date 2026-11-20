@@ -114,6 +114,19 @@ jobs:
             echo "### $IMAGE of \`$commit\`"
             for tag in "${tags[@]}"; do echo "- \`$image:$tag\`"; done
           } >> "$GITHUB_STEP_SUMMARY"
+      # The stars and the contributors of the repository the image of the website starts
+      # with (the other images do not read them); it asks GitHub itself while it runs (installer/docker/website-numbers.sh).
+      # Without an answer the image is built without them.
+      - name: Stars and contributors of the repository
+        id: numbers
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          stars=$(gh api "repos/$REPOSITORY" --jq .stargazers_count) || stars=0
+          contributors=$(gh api --paginate "repos/$REPOSITORY/contributors?per_page=100&anon=true" --jq '.[].contributions' | wc -l) || contributors=0
+          echo "stars=$((stars))" >> "$GITHUB_OUTPUT"
+          echo "contributors=$((contributors))" >> "$GITHUB_OUTPUT"
       - uses: docker/setup-buildx-action@v3
       - uses: docker/login-action@v3
         if: inputs.push
@@ -128,6 +141,9 @@ jobs:
           target: ${{ inputs.target }}
           load: true
           tags: ${{ inputs.image }}:ci
+          build-args: |
+            OPENECRAFT_STARS=${{ steps.numbers.outputs.stars }}
+            OPENECRAFT_CONTRIBUTORS=${{ steps.numbers.outputs.contributors }}
           no-cache: ${{ inputs.no-cache }}
           cache-from: ${{ inputs.cache-from }}
           cache-to: ${{ inputs.cache-to }}
@@ -145,6 +161,9 @@ jobs:
           target: ${{ inputs.target }}
           push: true
           tags: ${{ steps.tags.outputs.list }}
+          build-args: |
+            OPENECRAFT_STARS=${{ steps.numbers.outputs.stars }}
+            OPENECRAFT_CONTRIBUTORS=${{ steps.numbers.outputs.contributors }}
           labels: |
             org.opencontainers.image.title=${{ inputs.image }}
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}

@@ -59,7 +59,6 @@ Align right	Wyrównaj do prawej
 Align top	Wyrównaj do góry
 All aspects (with product)	Wszystkie aspekty (z produktem)
 All devices of page {} are in the schematic already	Wszystkie urządzenia strony {} są już na schemacie elektrycznym
-Aluminium	Aluminium
 Ammeter	Amperomierz
 Ammeter, reactive current	Amperomierz, prąd bierny
 Ampere-hour meter	Licznik amperogodzin
@@ -68,6 +67,7 @@ Analog input module	Moduł wejść analogowych
 Analog output module	Moduł wyjść analogowych
 Analysis	Analiza
 Another section here has this number	Inna sekcja tutaj ma już ten numer
+Antenna outlet	Gniazdo antenowe
 Apparent power (kVA)	Moc pozorna (kVA)
 Applied directives	Zastosowane dyrektywy
 Approval date	Data zatwierdzenia
@@ -101,7 +101,6 @@ Baying kit	Łącznik szeregowania
 Beacon, rotating	Lampa obrotowa
 Belongs to	Należy do
 Bends	Zagięcia
-Bill of materials	Zestawienie materiałów
 Bimetal switch NC	Łącznik bimetalowy, rozwierny
 Bimetal switch NO	Łącznik bimetalowy, zwierny
 Black box	Black Box
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Styk przełączny, opóźnione zadziałanie
 Changeover contact, passing make	Styk przełączny z zestykiem przelotowym
 Changeover switch, cam operated	Przełącznik, sterowany krzywką
 Changeover switch, cam profile operated	Przełącznik, sterowany krzywką profilową
+Changeover switch, manually operated	Przełącznik, sterowany ręcznie
 Changeover switch, roller operated	Przełącznik, sterowany rolką
 Check valve	Zawór zwrotny
 Checked	Sprawdzone
 Checked by	Sprawdził
 Choose the pages of the subproject	Wybierz strony podprojektu
-Circuit	Obwód
 Circuit breaker (single-line)	Wyłącznik nadprądowy (jednokreskowy)
 Circuit breaker 1-pole	Wyłącznik nadprądowy 1-biegunowy
 Circuit breaker 1-pole (NFPA)	Wyłącznik nadprądowy 1-biegunowy (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Przekonwertowano z formatu pliku {} na {
 Coolant	Chłodziwo
 Cooler	Chłodnica
 Cooling method	Sposób chłodzenia
-Copper	Miedź
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Szyna miedziana {}: gięcie {} ma promień {} mm, co najmniej {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Szyna miedziana {}: otwór Ø{} na {} mm znajduje się poza szyną
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Szyna miedziana {}: otwór Ø{} na {} mm jest zbyt blisko gięcia {}
@@ -316,7 +314,6 @@ Create projects	Tworzenie projektów
 Creation date	Data utworzenia
 Cross-section {} carries {} A, less than the {} A of {}	Przekrój {} przenosi {} A, mniej niż {} A z {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Skrzyżowanie na stronie {} nie pasuje do swoich przewodów: potrzebuje przewodu we wszystkich czterech kierunkach i braku punktu przyłączenia w tym miejscu
-Current (A)	Prąd (A)
 Current capacity (A)	Obciążalność prądowa (A)
 Current consumption	Pobór prądu
 Current range	Zakres prądu
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	Obwody sterowania DC po
 DC control circuits should be blue (NFPA 79, 13.2.4)	Obwody sterowania DC powinny być niebieskie (NFPA 79, 13.2.4)
 DC/DC converter	Przetwornica DC/DC
 DWG export failed: {}	Eksport DWG nie powiódł się: {}
+Data outlet	Gniazdo danych
 Data sheet	Karta katalogowa
 Date of the approval of the last revision	Data zatwierdzenia ostatniej rewizji
 Date of the last revision	Data ostatniej rewizji
@@ -360,6 +358,7 @@ Description of the last revision	Opis ostatniej rewizji
 Description of the page's function (structure management)	Opis funkcji strony (zarządzanie strukturą)
 Description of the page's location (structure management)	Opis miejsca montażu strony (zarządzanie strukturą)
 Designer	Konstruktor
+Device connection box	Puszka przyłączeniowa urządzenia
 Device connection diagram	Schemat podłączeń urządzeń
 Device data of {} without symbol or panel item	Dane urządzenia {} bez symbolu lub elementu zabudowy
 Device description file	Plik opisu urządzenia
@@ -409,7 +408,6 @@ Document (embedded file)	Dokument (plik osadzony)
 Document A4 portrait	Dokument A4 pionowo
 Document number	Numer dokumentu
 Document reference	Odwołanie do dokumentu
-Documentation	Dokumentacja
 Documentation language	Język dokumentacji
 Does not match	Nie pasuje
 Door (front view)	Drzwi (widok z przodu)
@@ -648,6 +646,7 @@ Hazardous area zone	Strefa zagrożenia wybuchem
 Heat exchanger	Wymiennik ciepła
 Heating (W)	Ogrzewanie (W)
 Heating element	Element grzejny
+Heating element three-phase	Element grzejny trójfazowy
 Higher-level product (-)	Produkt nadrzędny (-)
 Higher-level product of the page	Produkt nadrzędny strony
 Highest (°C)	Najwyższa (°C)
@@ -725,6 +724,7 @@ Installation altitude	Wysokość ustawienia
 Installation date	Data montażu
 Installation devices	Aparatura instalacyjna
 Installation method	Sposób ułożenia
+Installation of {}	Instalacja {}
 Installation plan (IEC 60617-11)	Plan instalacji (IEC 60617-11)
 Installation site (++)	Miejsce instalacji (++)
 Installation site and location	Miejsce instalacji i miejsce montażu
@@ -737,6 +737,7 @@ Insulation class	Klasa izolacji
 Integer	Liczba całkowita
 Integrated EMC filter	Zintegrowany filtr EMC
 Intermediate relay coil KA (GB)	Cewka przekaźnika pomocniczego KA (GB)
+Intermediate switch, manually operated	Łącznik krzyżowy, sterowany ręcznie
 Internal	Wewnętrzny
 Internal target	Cel wewnętrzny
 Interruption point '{}' has no counterpart	Punkt przerwania '{}' nie ma odpowiednika
@@ -751,6 +752,7 @@ Inverter DC/AC	Falownik DC/AC
 Isolating and switching devices in the right places	Urządzenia odłączające i łączeniowe we właściwych miejscach
 Item	Element
 Item ID	Identyfikator pozycji
+Items	Elementy
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Mostki
 Junction box	Puszka rozgałęźna
@@ -776,13 +778,13 @@ Left side panel	Lewa ściana boczna
 Legend plate text	Tekst tabliczki opisowej
 Length (m)	Długość (m)
 Length (mm)	Długość (mm)
+Length known (not calculated)	Długość znana (nie obliczona)
 Letter landscape	Letter poziomo
 Letters (A, B, C)	Litery (A, B, C)
 Level switch	Łącznik poziomu
 Lifecycle state	Stan cyklu życia
 Light source	Źródło światła
 Lighting outlet	Wypust oświetleniowy
-Limit (%)	Wartość graniczna (%)
 Limit switch NC (NFPA)	Wyłącznik krańcowy NC (NFPA)
 Limit switch NO (NFPA)	Wyłącznik krańcowy NO (NFPA)
 Line reactor	Dławik sieciowy
@@ -946,6 +948,7 @@ Nibbling	Nadkrawanie
 No connection {}	Brak połączenia {}
 No devices to add to the single-line diagram	Brak urządzeń do dodania do schematu jednokreskowego
 No document embedded - choose a file in the page properties	Brak osadzonego dokumentu - wybierz plik we właściwościach strony
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Brak wolnego miejsca na dławnicę na ścianach, przez które kabel może wyjść: zrób miejsce lub dodaj kołnierz wprowadzenia kabli
 No identifying letter for the device tag.	Brak litery kodu dla oznaczenia urządzenia.
 No known column in the header row	Brak znanej kolumny w wierszu nagłówka
 No option {}	Brak opcji {}
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Wyłącznik różnicowoprądowy 4-biegunowy
 Residual current type	Typ wyłącznika różnicowoprądowego
 Resistor	Rezystor
 Response time	Czas reakcji
-Result	Wynik
 Return / exhaust line	Przewód powrotny / odpowietrzający
 Revision overview (changes)	Przegląd rewizji (zmiany)
 Revision table: author of the last revision (2: the one before …)	Tabela rewizji: autor ostatniej rewizji (2: poprzedniej …)
@@ -1477,7 +1479,9 @@ Size (mm)	Rozmiar (mm)
 Skipped	Pominięto
 Sliding to the left	Przesuwne w lewo
 Sliding to the right	Przesuwne w prawo
+Smoke alarm	Czujka dymu
 Socket outlet	Gniazdo wtyczkowe
+Socket outlet three-phase	Gniazdo wtyczkowe trójfazowe
 Socket side (female)	Strona gniazd (żeńska)
 Soft starter	Układ łagodnego rozruchu
 Solar charge controller	Regulator ładowania solarnego
@@ -1585,7 +1589,6 @@ Terminal box	Skrzynka zaciskowa
 Terminal connection diagram	Schemat podłączeń zacisków
 Terminal data	Dane zacisku
 Terminal description	Opis zacisku
-Terminal diagram	Schemat zacisków
 Terminal line-up	Rozmieszczenie zacisków
 Terminal marker	Oznacznik zacisku
 Terminal parts	Części końcówek
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Archiwum po rozpakowaniu zajmuje ponad {}
 The archive was written by a newer version (archive version {})	Archiwum zostało zapisane przez nowszą wersję (wersja archiwum {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Należy podać producenta zestawu (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Szereg szaf w swoim pomieszczeniu: rzut w kształcie litery L, ściana wewnętrzna, drzwi i okno, szereg szaf na swoim miejscu, szyna z gniazdem na ścianie, oprawa awaryjna montowana na ścianie i korytko kablowe pod sufitem.
+The cable of {} needs at least {} cores	Kabel {} wymaga co najmniej {} żył
 The configuration is not a JSON object	Konfiguracja nie jest obiektem JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Przenośnik po pierwszym wydaniu: wydana i zablokowana rewizja, zmiany oznaczone od tego czasu, komentarze z przeglądu z oznaczeniami na czerwono, wniosek o zmianę, rewizja B w procesie zatwierdzania i stan bazowy do porównania.
 The coordinates of the reference point must be numbers	Współrzędne punktu odniesienia muszą być liczbami
@@ -1624,6 +1628,7 @@ The macro box has no items left	Ramka makra nie zawiera już żadnych elementów
 The next free id is already in use	Następny wolny identyfikator jest już zajęty
 The option needs a name	Opcja wymaga nazwy
 The page needs a number	Strona wymaga numeru
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	Strona {} jest pełna: następny łącznik jego układu schodowego musi być narysowany na tej samej stronie
 The pages were changed after the submission; submit the revision again	Strony zostały zmienione po przesłaniu; prześlij rewizję ponownie
 The plot boundary crosses itself	Granica działki przecina samą siebie
 The plot boundary encloses no area	Granica działki nie obejmuje żadnej powierzchni
@@ -1753,6 +1758,7 @@ Unknown object: {}	Nieznany obiekt: {}
 Unknown revision	Nieznana rewizja
 Unknown symbol '{}'	Nieznany symbol '{}'
 Unknown tool {}	Nieznane narzędzie {}
+Unused connection points	Nieużywane punkty przyłączeniowe
 Upstream	Przed
 User defined	Zdefiniowane przez użytkownika
 User symbols	Symbole użytkownika
@@ -1774,7 +1780,6 @@ Vibration	Drgania
 Vibration resistance	Odporność na wibracje
 View projects	Wyświetlanie projektów
 Violations	Naruszenia
-Voltage (V)	Napięcie (V)
 Voltage drop (V)	Spadek napięcia (V)
 Voltage protection level	Napięciowy poziom ochrony
 Voltage range	Zakres napięcia
@@ -1950,19 +1955,23 @@ yellow	żółty
 {} has no MTTFd, B10d, PL or PFHd	{} nie ma MTTFd, B10d, PL ani PFHd
 {} has no door or window {}	{} nie ma drzwi ani okna {}
 {} has nothing to manufacture	{} nie ma nic do wyprodukowania
+{} has three phases: it needs a three-phase protective device	{} ma trzy fazy: wymaga trójfazowego urządzenia zabezpieczającego
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} zawiera nierozwiązany konflikt scalania git: plik został scalony jako tekst. Wybierz jedną wersję pliku (git checkout --ours lub --theirs), a następnie skonfiguruj sterownik scalania dla projektów podzielonych (merge_project_file) przed ponownym scaleniem
 {} is a built-in function definition	{} jest wbudowaną definicją funkcji
 {} is a built-in property	{} jest wbudowaną właściwością
 {} is a built-in scheme	{} jest wbudowanym schematem
 {} is a busbar machine and makes no sheets	{} jest maszyną do obróbki szyn i nie obrabia blach
+{} is neither the protective device nor a device of the circuit of {}	{} nie jest ani urządzeniem zabezpieczającym, ani urządzeniem obwodu {}
 {} is not a busbar machine	{} nie jest maszyną do obróbki szyn
 {} is not a property of {}	{} nie jest właściwością {}
 {} is not an approver of this project	{} nie jest zatwierdzającym tego projektu
+{} is not connected to the mains: place it without a protective device	{} nie jest podłączone do sieci: umieść je bez urządzenia zabezpieczającego
 {} is not placed in the plant layout	{} nie jest umieszczone na planie instalacji
 {} is on page {}, which is released: renaming it would change the page	{} znajduje się na stronie {}, która jest wydana: zmiana nazwy zmieniłaby stronę
 {} is placed at the missing node {}	{} jest umieszczone w brakującym węźle {}
 {} is planned twice ({} and {})	{} jest zaplanowane dwukrotnie ({} i {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} jest selektywny względem {} tylko do {} A (prąd zwarciowy {} A)
+{} is used already	{} jest już używane
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} zachowuje swoją strukturę: jego funkcje główne leżą w różnych ramkach struktury ({})
 {} keeps its structure: {} exists already	{} zachowuje swoją strukturę: {} już istnieje
 {} lies outside page {}	{} leży poza stroną {}

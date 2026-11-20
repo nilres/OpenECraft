@@ -301,6 +301,8 @@ impl Session {
         if can_commit {
             let kept = openecraft_core::structure_boxes::follow(&mut self.prj, self.history.committed());
             self.structure_kept.extend(kept);
+            // New cables leaving an enclosure get their cable glands.
+            openecraft_core::routing3d::glands::follow(&mut self.prj, self.history.committed());
         }
         self.history.track(&self.prj, can_commit)
     }

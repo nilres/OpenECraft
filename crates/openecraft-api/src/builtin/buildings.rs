@@ -31,6 +31,7 @@ impl Plugin for Buildings {
 
 const BUILDING: &str = tr_const!("Building (location, e.g. +B1)");
 const LEVEL: &str = tr_const!("Level: its name or number (1 = the lowest)");
+const MIN_ROOM: &str = tr_const!("Smallest room kept, m² (default 1; kept with the floor plan)");
 const SHAFT: &str = tr_const!("Shaft: its name");
 const LINK: &str = tr_const!("Link between buildings: its name");
 const KIND: &str = tr_const!("trench, conduit or bridge");
@@ -176,13 +177,13 @@ pub static COMMANDS: &[Spec] = &[
     Spec {
         name: "detect_floor_plan",
         help: tr_const!("Finds the walls, doors, windows and rooms in the floor plan under a level without changing the project: the rooms with their outlines and areas, the openings with their width and the rooms on either side (mm in the floor plan of the building)"),
-        params: &[param("building", Kind::Str, BUILDING), param("level", Kind::Str, LEVEL)],
+        params: &[param("building", Kind::Str, BUILDING), param("level", Kind::Str, LEVEL), optional("min_room", Kind::Num, MIN_ROOM)],
         run: detect_floor_plan,
     },
     Spec {
         name: "trace_floor_plan",
         help: tr_const!("Makes rooms on a level of the rooms found in its floor plan, with their doors and windows"),
-        params: &[param("building", Kind::Str, BUILDING), param("level", Kind::Str, LEVEL)],
+        params: &[param("building", Kind::Str, BUILDING), param("level", Kind::Str, LEVEL), optional("min_room", Kind::Num, MIN_ROOM)],
         run: trace_floor_plan,
     },
     Spec {
@@ -1673,7 +1674,15 @@ fn calibrate_floor_plan(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(floor_plan_json(floorplan::plan_of(&prj.layout, id).unwrap_or(&plan)))
 }
 
+/// The smallest room of the detection given (m², kept with the floor plan of level `id`).
+fn min_room_arg(prj: &mut Project, id: u64, a: &Args) -> Result<(), String> {
+    let Some(v) = num_in(a, "min_room", 0.01, 1000.0)? else { return Ok(()) };
+    floorplan::edit_plan(prj, id, |p| p.min_room = Some(v))
+}
+
 fn detect_floor_plan(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (_, id, _) = floor_plan_arg(prj, a)?;
+    min_room_arg(prj, id, a)?;
     let (_, _, plan) = floor_plan_arg(prj, a)?;
     let found = floorplan::detect(&plan)?;
     let m = plan.mm_per_px();
@@ -1699,6 +1708,7 @@ fn detect_floor_plan(prj: &mut Project, a: &Args) -> Result<Value, String> {
 
 fn trace_floor_plan(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let (_, id, _) = floor_plan_arg(prj, a)?;
+    min_room_arg(prj, id, a)?;
     let t = floorplan::trace(prj, id)?;
     let rooms: Vec<&str> = t.rooms.iter().map(|&ri| prj.layout.enclosures[ri].name.as_str()).collect();
     Ok(json!({ "rooms": rooms, "doors": t.doors, "windows": t.windows, "skipped": t.skipped }))

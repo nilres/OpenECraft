@@ -59,7 +59,6 @@ Align right	Tasaa oikealle
 Align top	Tasaa ylös
 All aspects (with product)	Kaikki aspektit (tuotteen kanssa)
 All devices of page {} are in the schematic already	Kaikki sivun {} laitteet ovat jo piirikaaviossa
-Aluminium	Alumiini
 Ammeter	Virtamittari
 Ammeter, reactive current	Virtamittari, loisvirta
 Ampere-hour meter	Ampeerituntimittari
@@ -68,6 +67,7 @@ Analog input module	Analogiatulomoduuli
 Analog output module	Analogialähtömoduuli
 Analysis	Analyysi
 Another section here has this number	Toisella osiolla tässä on jo tämä numero
+Antenna outlet	Antennirasia
 Apparent power (kVA)	Näennäisteho (kVA)
 Applied directives	Sovelletut direktiivit
 Approval date	Hyväksymispäivä
@@ -101,7 +101,6 @@ Baying kit	Rivitysliitin
 Beacon, rotating	Pyörivä majakkavalo
 Belongs to	Kuuluu kohteeseen
 Bends	Taivutukset
-Bill of materials	Osaluettelo
 Bimetal switch NC	Bimetallikytkin, avautuva
 Bimetal switch NO	Bimetallikytkin, sulkeutuva
 Black box	Musta laatikko
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Vaihtokosketin, vetoviive
 Changeover contact, passing make	Vaihtokosketin, pyyhkäisevä
 Changeover switch, cam operated	Vaihtokytkin, nokkaohjattu
 Changeover switch, cam profile operated	Vaihtokytkin, käyränokkaohjattu
+Changeover switch, manually operated	Vaihtokytkin, käsiohjattu
 Changeover switch, roller operated	Vaihtokytkin, rullaohjattu
 Check valve	Takaiskuventtiili
 Checked	Tarkistettu
 Checked by	Tarkastanut
 Choose the pages of the subproject	Valitse aliprojektin sivut
-Circuit	Virtapiiri
 Circuit breaker (single-line)	Katkaisija (yksinapainen esitys)
 Circuit breaker 1-pole	Johdonsuojakatkaisija 1-napainen
 Circuit breaker 1-pole (NFPA)	Johdonsuojakatkaisija, 1-napainen (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Muunnettu tiedostomuodosta {} muotoon {}
 Coolant	Jäähdytysneste
 Cooler	Jäähdytin
 Cooling method	Jäähdytystapa
-Copper	Kupari
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Kuparikisko {}: taivutuksen {} säde on {} mm, vähintään {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Kuparikisko {}: reikä Ø{} kohdassa {} mm on kiskon ulkopuolella
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Kuparikisko {}: reikä Ø{} kohdassa {} mm on liian lähellä taivutusta {}
@@ -316,7 +314,6 @@ Create projects	Luo projekteja
 Creation date	Luontipäivä
 Cross-section {} carries {} A, less than the {} A of {}	Poikkipinta-ala {0} kestää {1} A, vähemmän kuin kohteen {3} {2} A
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Sivun {} risteys ei sovi johtimiinsa: se tarvitsee johtimen kaikkiin neljään suuntaan eikä liitäntäpistettä siinä
-Current (A)	Virta (A)
 Current capacity (A)	Virrankestoisuus (A)
 Current consumption	Virrankulutus
 Current range	Virta-alue
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC-ohjauspiirien tulisi
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC-ohjauspiirien tulisi olla sinisiä (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC-muuttaja
 DWG export failed: {}	DWG-vienti epäonnistui: {}
+Data outlet	Datarasia
 Data sheet	Tietolehti
 Date of the approval of the last revision	Viimeisimmän revision hyväksymispäivä
 Date of the last revision	Viimeisimmän revision päivämäärä
@@ -360,6 +358,7 @@ Description of the last revision	Viimeisimmän revision kuvaus
 Description of the page's function (structure management)	Sivun toiminnon kuvaus (rakennetunnusten hallinta)
 Description of the page's location (structure management)	Sivun sijainnin kuvaus (rakennetunnusten hallinta)
 Designer	Suunnittelija
+Device connection box	Laitteen liitäntärasia
 Device connection diagram	Laitteen liitäntäkaavio
 Device data of {} without symbol or panel item	Laitteen {} laitetiedot ilman symbolia tai asennusosaa
 Device description file	Laitekuvaustiedosto
@@ -409,7 +408,6 @@ Document (embedded file)	Dokumentti (upotettu tiedosto)
 Document A4 portrait	Dokumentti A4 pysty
 Document number	Asiakirjanumero
 Document reference	Asiakirjaviittaus
-Documentation	Dokumentaatio
 Documentation language	Dokumentaation kieli
 Does not match	Ei vastaa
 Door (front view)	Ovi (etunäkymä)
@@ -648,6 +646,7 @@ Hazardous area zone	Ex-tilaluokka
 Heat exchanger	Lämmönvaihdin
 Heating (W)	Lämmitys (W)
 Heating element	Lämmitysvastus
+Heating element three-phase	Lämmitysvastus kolmivaiheinen
 Higher-level product (-)	Ylemmän tason tuote (-)
 Higher-level product of the page	Sivun ylemmän tason tuote
 Highest (°C)	Enintään (°C)
@@ -725,6 +724,7 @@ Installation altitude	Asennuskorkeus
 Installation date	Asennuspäivä
 Installation devices	Asennuslaitteet
 Installation method	Asennustapa
+Installation of {}	Asennus: {}
 Installation plan (IEC 60617-11)	Asennuskaavio (IEC 60617-11)
 Installation site (++)	Asennuspaikka (++)
 Installation site and location	Asennuspaikka ja sijainti
@@ -737,6 +737,7 @@ Insulation class	Eristysluokka
 Integer	Kokonaisluku
 Integrated EMC filter	Integroitu EMC-suodatin
 Intermediate relay coil KA (GB)	Apureleen kela KA (GB)
+Intermediate switch, manually operated	Ristikytkin, käsiohjattu
 Internal	Sisäinen
 Internal target	Sisäinen kohde
 Interruption point '{}' has no counterpart	Katkospisteellä '{}' ei ole vastinetta
@@ -751,6 +752,7 @@ Inverter DC/AC	Vaihtosuuntaaja DC/AC
 Isolating and switching devices in the right places	Erotus- ja kytkinlaitteet oikeissa paikoissa
 Item	Kohde
 Item ID	Nimikkeen ID
+Items	Kohteet
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Sillat
 Junction box	Jakorasia
@@ -776,13 +778,13 @@ Left side panel	Vasen sivuseinä
 Legend plate text	Kilven teksti
 Length (m)	Pituus (m)
 Length (mm)	Pituus (mm)
+Length known (not calculated)	Pituus tunnettu (ei laskettu)
 Letter landscape	Letter vaaka
 Letters (A, B, C)	Kirjaimet (A, B, C)
 Level switch	Pintakytkin
 Lifecycle state	Elinkaaren tila
 Light source	Valonlähde
 Lighting outlet	Valaisinpiste
-Limit (%)	Raja (%)
 Limit switch NC (NFPA)	Rajakytkin avautuva (NFPA)
 Limit switch NO (NFPA)	Rajakytkin sulkeutuva (NFPA)
 Line reactor	Verkkokuristin
@@ -946,6 +948,7 @@ Nibbling	Nakerrus
 No connection {}	Ei yhteyttä {}
 No devices to add to the single-line diagram	Ei laitteita lisättäväksi yksinapaiseen kaavioon
 No document embedded - choose a file in the page properties	Dokumenttia ei ole upotettu - valitse tiedosto sivun ominaisuuksissa
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Pinnoilla, joiden kautta kaapeli voi lähteä, ei ole vapaata paikkaa läpiviennille: tee tilaa tai lisää kaapelinsisäänvientilaippa
 No identifying letter for the device tag.	Laitetunnukselle ei ole tunnuskirjainta.
 No known column in the header row	Otsikkorivillä ei ole tunnettua saraketta
 No option {}	Vaihtoehtoa {} ei ole
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Vikavirtasuojakytkin 4-napainen
 Residual current type	Vikavirtatyyppi
 Resistor	Vastus
 Response time	Vasteaika
-Result	Tulos
 Return / exhaust line	Paluu- / poistolinja
 Revision overview (changes)	Revisioiden yleiskatsaus (muutokset)
 Revision table: author of the last revision (2: the one before …)	Revisiotaulukko: viimeisimmän revision tekijä (2: sitä edellisen …)
@@ -1477,7 +1479,9 @@ Size (mm)	Koko (mm)
 Skipped	Ohitettu
 Sliding to the left	Liukuva vasemmalle
 Sliding to the right	Liukuva oikealle
+Smoke alarm	Palovaroitin
 Socket outlet	Pistorasia
+Socket outlet three-phase	Pistorasia kolmivaiheinen
 Socket side (female)	Holkkipuoli (naaras)
 Soft starter	Pehmokäynnistin
 Solar charge controller	Aurinkolatausohjain
@@ -1585,7 +1589,6 @@ Terminal box	Riviliitinkotelo
 Terminal connection diagram	Riviliittimen liitäntäkaavio
 Terminal data	Riviliittimen tiedot
 Terminal description	Riviliittimen kuvaus
-Terminal diagram	Riviliitinkaavio
 Terminal line-up	Riviliitinjärjestys
 Terminal marker	Riviliitinmerkki
 Terminal parts	Päätteiden nimikkeet
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Arkisto purkautuu yli {} megatavuksi
 The archive was written by a newer version (archive version {})	Arkiston on kirjoittanut uudempi versio (arkistoversio {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Kojeiston valmistaja on mainittava (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Kaappirivi tilassaan: L-muotoinen pohjapiirros, väliseinä, ovi ja ikkuna, kaappirivi paikallaan, seinällä kisko ja pistorasia, seinään asennettu turvavalaisin ja kaapelihylly katon alla.
+The cable of {} needs at least {} cores	Kohteen {} kaapeli tarvitsee vähintään {} johdinta
 The configuration is not a JSON object	Konfiguraatio ei ole JSON-objekti
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Kuljetin ensimmäisen julkaisun jälkeen: julkaistu ja lukittu revisio, sen jälkeen merkityt muutokset, tarkastuskommentit punamerkintöineen, muutospyyntö, revisio B hyväksyntäprosessissa ja vertailupohja.
 The coordinates of the reference point must be numbers	Vertailupisteen koordinaattien on oltava lukuja
@@ -1624,6 +1628,7 @@ The macro box has no items left	Makrolaatikossa ei ole enää kohteita
 The next free id is already in use	Seuraava vapaa tunnus on jo käytössä
 The option needs a name	Vaihtoehto tarvitsee nimen
 The page needs a number	Sivu tarvitsee numeron
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	Kohteen {} sivu on täynnä: sen vaihtokytkentäpiirin seuraava kytkin on piirrettävä samalle sivulle
 The pages were changed after the submission; submit the revision again	Sivuja muutettiin lähettämisen jälkeen; lähetä revisio uudelleen
 The plot boundary crosses itself	Tontin raja leikkaa itsensä
 The plot boundary encloses no area	Tontin raja ei rajaa pinta-alaa
@@ -1753,6 +1758,7 @@ Unknown object: {}	Tuntematon objekti: {}
 Unknown revision	Tuntematon revisio
 Unknown symbol '{}'	Tuntematon symboli '{}'
 Unknown tool {}	Tuntematon työkalu {}
+Unused connection points	Käyttämättömät liitäntäpisteet
 Upstream	Edeltävä
 User defined	Käyttäjän määrittämä
 User symbols	Käyttäjän symbolit
@@ -1774,7 +1780,6 @@ Vibration	Värähtely
 Vibration resistance	Värähtelynkesto
 View projects	Katsele projekteja
 Violations	Rikkomukset
-Voltage (V)	Jännite (V)
 Voltage drop (V)	Jännitteenalenema (V)
 Voltage protection level	Jännitesuojaustaso
 Voltage range	Jännitealue
@@ -1950,19 +1955,23 @@ yellow	keltainen
 {} has no MTTFd, B10d, PL or PFHd	Kohteella {} ei ole MTTFd-, B10d-, PL- eikä PFHd-arvoa
 {} has no door or window {}	Kohteessa {} ei ole ovea tai ikkunaa {}
 {} has nothing to manufacture	Kohteella {} ei ole mitään valmistettavaa
+{} has three phases: it needs a three-phase protective device	{} on kolmivaiheinen: se tarvitsee kolmivaiheisen suojalaitteen
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} sisältää ratkaisemattoman gitin yhdistämisristiriidan: tiedosto yhdistettiin tekstinä. Ota tiedostosta yksi versio (git checkout --ours tai --theirs) ja määritä sitten jaettujen projektien yhdistämisajuri (merge_project_file) ennen uutta yhdistämistä
 {} is a built-in function definition	{} on sisäinen toimintomäärittely
 {} is a built-in property	{} on sisäinen ominaisuus
 {} is a built-in scheme	{} on sisäinen skeema
 {} is a busbar machine and makes no sheets	{} on kiskontyöstökone eikä valmista levyjä
+{} is neither the protective device nor a device of the circuit of {}	{} ei ole suojalaite eikä kohteen {} ryhmän laite
 {} is not a busbar machine	{} ei ole kiskontyöstökone
 {} is not a property of {}	{} ei ole kohteen {} ominaisuus
 {} is not an approver of this project	{} ei ole tämän projektin hyväksyjä
+{} is not connected to the mains: place it without a protective device	{} ei liity verkkoon: sijoita se ilman suojalaitetta
 {} is not placed in the plant layout	{} ei ole sijoitettu laitoksen sijoituskuvaan
 {} is on page {}, which is released: renaming it would change the page	{} on vapautetulla sivulla {}: uudelleennimeäminen muuttaisi sivua
 {} is placed at the missing node {}	{} on sijoitettu puuttuvaan solmuun {}
 {} is planned twice ({} and {})	{} on suunniteltu kahdesti ({} ja {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} on selektiivinen kohteeseen {} vain {} A:iin asti (oikosulkuvirta {} A)
+{} is used already	{} on jo käytössä
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} säilyttää rakenteensa: sen päätoiminnot ovat eri rakennelaatikoissa ({})
 {} keeps its structure: {} exists already	{} säilyttää rakenteensa: {} on jo olemassa
 {} lies outside page {}	{} on sivun {} ulkopuolella

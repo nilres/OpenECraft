@@ -56,7 +56,6 @@ Align right	右揃え
 Align top	上揃え
 All aspects (with product)	すべてのアスペクト (製品を含む)
 All devices of page {} are in the schematic already	ページ {} のすべてのデバイスはすでに回路図にあります
-Aluminium	アルミニウム
 Ammeter	電流計
 Ammeter, reactive current	電流計 (無効電流)
 Ampere-hour meter	アンペア時計
@@ -65,6 +64,7 @@ Analog input module	アナログ入力モジュール
 Analog output module	アナログ出力モジュール
 Analysis	分析
 Another section here has this number	ここにある別のセクションがこの番号を使っています
+Antenna outlet	アンテナコンセント
 Apparent power (kVA)	皮相電力 (kVA)
 Applied directives	適用指令
 Approval date	承認日
@@ -98,7 +98,6 @@ Baying kit	連結キット
 Beacon, rotating	回転灯
 Belongs to	所属先
 Bends	曲げ
-Bill of materials	部品表
 Bimetal switch NC	バイメタルスイッチ b接点
 Bimetal switch NO	バイメタルスイッチ a接点
 Black box	ブラックボックス
@@ -191,12 +190,12 @@ Changeover contact, on-delay	c接点 (オンディレー)
 Changeover contact, passing make	c接点 (パッシングメーク)
 Changeover switch, cam operated	切替スイッチ (カム操作)
 Changeover switch, cam profile operated	切替スイッチ (カムプロファイル操作)
+Changeover switch, manually operated	切替スイッチ (手動操作)
 Changeover switch, roller operated	切替スイッチ (ローラー操作)
 Check valve	逆止弁
 Checked	チェック済み
 Checked by	チェック者
 Choose the pages of the subproject	サブプロジェクトのページを選択してください
-Circuit	回路
 Circuit breaker (single-line)	遮断器 (単線)
 Circuit breaker 1-pole	遮断器 1 極
 Circuit breaker 1-pole (NFPA)	遮断器 1 極 (NFPA)
@@ -280,7 +279,6 @@ Converted from file format {} to {}: {}	ファイル形式 {} から {} に変�
 Coolant	冷却液
 Cooler	冷却器
 Cooling method	冷却方式
-Copper	銅
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	銅バー {}: 曲げ {} の半径は {} mm です。{} mm 以上必要です
 Copper bar {}: hole Ø{} at {} mm is outside the bar	銅バー {}: Ø{} の穴 ({} mm の位置) がバーの外側にあります
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	銅バー {}: Ø{} の穴 ({} mm の位置) が曲げ {} に近すぎます
@@ -308,7 +306,6 @@ Create projects	プロジェクトの作成
 Creation date	作成日
 Cross-section {} carries {} A, less than the {} A of {}	断面積 {0} の許容電流は {1} A で、{3} の {2} A より小さくなっています
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	ページ {} の交差がその接続線と合いません：4方向すべてに接続線が必要で、その位置に接続点があってはなりません
-Current (A)	電流 (A)
 Current capacity (A)	許容電流 (A)
 Current consumption	消費電流
 Current range	電流範囲
@@ -336,6 +333,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC 制御回路は青�
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC 制御回路は青にしてください (NFPA 79、13.2.4)
 DC/DC converter	DC/DC コンバーター
 DWG export failed: {}	DWG のエクスポートに失敗しました: {}
+Data outlet	情報コンセント
 Data sheet	データシート
 Date of the approval of the last revision	最終リビジョンの承認日
 Date of the last revision	最終リビジョンの日付
@@ -352,6 +350,7 @@ Description of the last revision	最終リビジョンの説明
 Description of the page's function (structure management)	ページの機能の説明 (構造管理)
 Description of the page's location (structure management)	ページの取付場所の説明 (構造管理)
 Designer	設計者
+Device connection box	機器接続ボックス
 Device connection diagram	デバイス接続図
 Device data of {} without symbol or panel item	シンボルまたは盤アイテムのない {} のデバイスデータ
 Device description file	デバイス記述ファイル
@@ -401,7 +400,6 @@ Document (embedded file)	ドキュメント (埋め込みファイル)
 Document A4 portrait	ドキュメント A4 縦
 Document number	ドキュメント番号
 Document reference	ドキュメント参照
-Documentation	ドキュメント
 Documentation language	ドキュメントの言語
 Does not match	一致しません
 Door (front view)	扉 (正面図)
@@ -638,6 +636,7 @@ Hazardous area zone	危険区域
 Heat exchanger	熱交換器
 Heating (W)	ヒーター (W)
 Heating element	ヒーター素子
+Heating element three-phase	三相ヒーター素子
 Higher-level product (-)	上位製品 (-)
 Higher-level product of the page	ページの上位製品
 Highest (°C)	最高 (°C)
@@ -727,6 +726,7 @@ Insulation class	絶縁クラス
 Integer	整数
 Integrated EMC filter	内蔵 EMC フィルター
 Intermediate relay coil KA (GB)	補助リレーコイル KA (GB)
+Intermediate switch, manually operated	中間スイッチ (手動操作)
 Internal	内部
 Internal target	内部ターゲット
 Interruption point '{}' has no counterpart	中断ポイント '{}' に対応する相手がありません
@@ -741,6 +741,7 @@ Inverter DC/AC	インバーター DC/AC
 Isolating and switching devices in the right places	断路器と開閉器の位置が正しい
 Item	アイテム
 Item ID	アイテム ID
+Items	アイテム
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	ジャンパー
 Junction box	ジャンクションボックス
@@ -766,13 +767,13 @@ Left side panel	左側板
 Legend plate text	銘板テキスト
 Length (m)	長さ (m)
 Length (mm)	長さ (mm)
+Length known (not calculated)	既知の長さ（計算しない）
 Letter landscape	Letter 横
 Letters (A, B, C)	文字 (A、B、C)
 Level switch	レベルスイッチ
 Lifecycle state	ライフサイクル状態
 Light source	光源
 Lighting outlet	照明用アウトレット
-Limit (%)	上限 (%)
 Limit switch NC (NFPA)	リミットスイッチ b接点 (NFPA)
 Limit switch NO (NFPA)	リミットスイッチ a接点 (NFPA)
 Line reactor	入力リアクトル
@@ -935,6 +936,7 @@ Nibbling	ニブリング
 No connection {}	接続 {} はありません
 No devices to add to the single-line diagram	単線結線図に追加するデバイスはありません
 No document embedded - choose a file in the page properties	ドキュメントが埋め込まれていません - ページプロパティでファイルを選択してください
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	ケーブルが出られる面にケーブルグランドの空きがありません：場所を空けるか、ケーブル引込みフランジを追加してください
 No identifying letter for the device tag.	デバイスタグの識別文字がありません。
 No known column in the header row	ヘッダー行に既知の列がありません
 No option {}	オプション {} がありません
@@ -1333,7 +1335,6 @@ Residual current device 4-pole	漏電遮断器 4 極
 Residual current type	漏電電流タイプ
 Resistor	抵抗器
 Response time	応答時間
-Result	結果
 Return / exhaust line	戻り / 排気ライン
 Revision overview (changes)	リビジョン概要 (変更)
 Revision table: author of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの作成者（2: その前 …）
@@ -1463,7 +1464,9 @@ Size (mm)	サイズ (mm)
 Skipped	スキップ
 Sliding to the left	左引き（引き戸）
 Sliding to the right	右引き（引き戸）
+Smoke alarm	煙感知器
 Socket outlet	コンセント
+Socket outlet three-phase	三相コンセント
 Socket side (female)	ソケット側 (メス)
 Soft starter	ソフトスターター
 Solar charge controller	ソーラー充電コントローラ
@@ -1571,7 +1574,6 @@ Terminal box	端子箱
 Terminal connection diagram	端子接続図
 Terminal data	端子データ
 Terminal description	端子の説明
-Terminal diagram	端子図
 Terminal line-up	端子配列
 Terminal marker	端子マーカー
 Terminal parts	端末部品
@@ -1591,6 +1593,7 @@ The archive unpacks to more than {} MB	アーカイブの展開後のサイズ�
 The archive was written by a newer version (archive version {})	このアーカイブは新しいバージョンで書き込まれています（アーカイブのバージョン {}）
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	アセンブリの製造者を明記する必要があります (IEC 61439-1、6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	部屋に設置した列盤：L 字形の平面図、内壁、扉とウィンドウ、所定の位置の列盤、壁のコンセント付きレール、壁付けの非常灯、天井下のケーブルラック。
+The cable of {} needs at least {} cores	{} のケーブルには少なくとも {} 本の心線が必要です
 The configuration is not a JSON object	構成が JSON オブジェクトではありません
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	最初のリリース後のコンベヤ：リリース済みでロックされたリビジョン、その後にマークされた変更、赤線入りのレビューコメント、変更要求、承認ワークフロー中のリビジョン B、比較用のベースライン。
 The coordinates of the reference point must be numbers	基準点の座標は数値でなければなりません
@@ -1608,6 +1611,7 @@ The macro box has no items left	マクロボックスにアイテムが残って
 The next free id is already in use	次の空き ID はすでに使用されています
 The option needs a name	オプションには名前が必要です
 The page needs a number	ページには番号が必要です
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	{} のページがいっぱいです：その3路回路の次のスイッチは同じページに描く必要があります
 The pages were changed after the submission; submit the revision again	提出後にページが変更されました。リビジョンを再提出してください
 The plot boundary crosses itself	敷地境界が自己交差しています
 The plot boundary encloses no area	敷地境界が面積を囲んでいません
@@ -1734,6 +1738,7 @@ Unknown object: {}	不明なオブジェクト: {}
 Unknown revision	不明なリビジョン
 Unknown symbol '{}'	不明なシンボル '{}'
 Unknown tool {}	不明な工具 {}
+Unused connection points	未使用の接続ポイント
 Upstream	上位
 User defined	ユーザー定義
 User symbols	ユーザーシンボル
@@ -1755,7 +1760,6 @@ Vibration	振動
 Vibration resistance	耐振動性
 View projects	プロジェクトの閲覧
 Violations	違反
-Voltage (V)	電圧 (V)
 Voltage drop (V)	電圧降下 (V)
 Voltage protection level	電圧防護レベル
 Voltage range	電圧範囲
@@ -1930,18 +1934,22 @@ yellow	黄
 {} has no MTTFd, B10d, PL or PFHd	{} には MTTFd、B10d、PL、PFHd のいずれもありません
 {} has no door or window {}	{0} にドアまたは窓 {1} はありません
 {} has nothing to manufacture	{} には製造するものがありません
+{} has three phases: it needs a three-phase protective device	{} は三相です：三相の保護機器が必要です
 {} is a built-in function definition	{} は組み込みの機能定義です
 {} is a built-in property	{} は組み込みのプロパティです
 {} is a built-in scheme	{} は組み込みのスキームです
 {} is a busbar machine and makes no sheets	{} はブスバー加工機のため、板金は加工できません
+{} is neither the protective device nor a device of the circuit of {}	{} は保護機器でも {} の回路の機器でもありません
 {} is not a busbar machine	{} はブスバー加工機ではありません
 {} is not a property of {}	{} は {} のプロパティではありません
 {} is not an approver of this project	{} はこのプロジェクトの承認者ではありません
+{} is not connected to the mains: place it without a protective device	{} は電源に接続されません：保護機器なしで配置してください
 {} is not placed in the plant layout	{} はプラントレイアウトに配置されていません
 {} is on page {}, which is released: renaming it would change the page	{} はリリース済みのページ {} にあります: 名前を変更するとページが変わります
 {} is placed at the missing node {}	{} は存在しないノード {} に配置されています
 {} is planned twice ({} and {})	{} が二重に計画されています ({} と {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} は {} に対して {} A までしか選択遮断されません (短絡電流 {} A)
+{} is used already	{} は既に使用されています
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} は構造を保持します: 主機能が異なる構造ボックスにあります ({})
 {} keeps its structure: {} exists already	{} は構造を保持します: {} は既に存在します
 {} lies outside page {}	{} はページ {} の外にあります

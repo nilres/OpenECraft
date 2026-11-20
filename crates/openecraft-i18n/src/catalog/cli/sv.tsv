@@ -223,13 +223,11 @@ Saves the project to its file or to a new path	Sparar projektet i dess fil eller
 Scale drawings down that do not fit on the page (default: true)	Skala ned ritningar som inte får plats på sidan (standard: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Söktermer, t.ex. company=ACME; customer~plant; conveyor
 Searches the items of the vault (number, title, revision, lifecycle state, part number)	Söker bland valvets objekt (nummer, titel, revision, livscykelstatus, artikelnummer)
-Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Söker artiklar på artikelservern (dataportalen) efter text, grupper, katalog, livscykel och tekniska data
 Segment path (default: all segments)	Segmentsökväg (standard: alla segment)
 Server URL, e.g. http://127.0.0.1:8090	Server-URL, t.ex. http://127.0.0.1:8090
 Sets the parts server (URL and access token, or user and password) and shows its state	Anger artikelservern (URL och åtkomsttoken, eller användare och lösenord) och visar dess status
 Settings scheme file (JSON)	Inställningsschemafil (JSON)
 Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Visar en tabell (apparater, förbindelser, plintar, kablar, kontaktdon, PLC, sidor eller artiklar) med dess rader; en rads nyckel används för att ändra den
-Shows all data of a part	Visar alla data för en artikel
 Shows the changes of a part on the parts server, or the part as of one change	Visar ändringarna av en artikel på artikelservern, eller artikeln som den var vid en ändring
 Shows the favorites of the signed in user, optionally adding or removing a part	Visar den inloggade användarens favoriter och lägger valfritt till eller tar bort en artikel
 Shows the manifest of a project archive	Visar manifestet för ett projektarkiv
@@ -296,7 +294,6 @@ csv (default) or eplan_xml	csv (standard) eller eplan_xml
 erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement eller wiring_machine
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine eller exchange
 json (default), csv or xlsx (Excel, needs path)	json (standard), csv eller xlsx (Excel, kräver path)
-openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nKör en Model Context Protocol-server på stdin / stdout: verktygen i listan för AI-agenter, med projektet i minnet (save_project skriver det, undo / redo ångrar enskilda anrop). OPENECRAFT_MCP_TOOLS begränsar de erbjudna verktygen.\n
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nVisar kommandoradens version (även --version eller -V)\n
 schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover eller en rapport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo och redo fungerar bara i en MCP-session: kommandoraden öppnar projektet på nytt för varje kommando

@@ -45,7 +45,7 @@
     "tools": {
       "type": "string",
       "title": "Tools (optional)",
-      "description": "Comma separated tool names to offer; empty offers all (over 400). parts_* stands for all tools starting with parts_.",
+      "description": "Comma separated tool names to offer; empty offers the tools for schematics and find_tools / call_tool for the others, * all of them (over 440). parts_* stands for all tools starting with parts_.",
       "required": false,
       "default": ""
     }

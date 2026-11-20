@@ -45,6 +45,30 @@ pub static COMMANDS: &[Spec] = &[
         run:place_panel_device,
     },
     Spec {
+        name:"place_cabinet_device",
+        help:tr_const!("Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves"),
+        params:&[
+            param("enclosure",Kind::Str,ENCLOSURE),
+            param("tag",Kind::Str,tr_const!("Device tag")),
+            optional("face",Kind::Str,FACE),
+            optional("x",Kind::Num,tr_const!("Left edge on the face in mm")),
+            optional("y",Kind::Num,tr_const!("Top edge on the face in mm")),
+        ],
+        run:place_cabinet_device,
+    },
+    Spec {
+        name: "set_auto_glands",
+        help: tr_const!("Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)"),
+        params: &[param("on", Kind::Bool, tr_const!("Add cable glands for new cables"))],
+        run: set_auto_glands,
+    },
+    Spec {
+        name: "add_cable_glands",
+        help: tr_const!("Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall"),
+        params: &[],
+        run: add_cable_glands,
+    },
+    Spec {
         name:"get_panel_points",
         help:tr_const!("Lists physical device connection points, including separately placed terminals"),
         params:&[optional("enclosure",Kind::Str,ENCLOSURE),optional("id",Kind::Int,tr_const!("Item id"))],
@@ -533,6 +557,43 @@ fn place_panel_device(prj:&mut Project,a:&Args)->Result<Value,String> {
         mounting_explicit:true,single_part:a.flag("single_part"),..Default::default()};
     prj.layout.enclosures[ei].items.push(item);
     Ok(item_json(prj,prj.layout.enclosures[ei].items.last().unwrap()))
+}
+
+fn set_auto_glands(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    prj.layout.auto_glands = a.value("on").and_then(Value::as_bool).unwrap_or(true);
+    Ok(json!({ "auto_glands": prj.layout.auto_glands }))
+}
+
+fn add_cable_glands(prj: &mut Project, _: &Args) -> Result<Value, String> {
+    let out = openecraft_core::routing3d::glands::add_missing(prj);
+    let glands: Vec<Value> = out
+        .added
+        .iter()
+        .filter_map(|id| prj.layout.enclosures.iter().find_map(|e| e.item(*id).map(|it| json!({ "id": id, "enclosure": e.name, "face": e.face_key(it.face), "part": it.part, "x": it.x, "y": it.y }))))
+        .collect();
+    Ok(json!({ "added": glands, "missing": unplaced_json(&out.unplaced) }))
+}
+
+/// The cables that found no place for a cable gland: cable, enclosure and why.
+pub fn unplaced_json(list: &[openecraft_core::routing3d::glands::Unplaced]) -> Value {
+    let reason = openecraft_core::routing3d::glands::Unplaced::reason();
+    Value::from(list.iter().map(|u| json!({ "cable": u.cable, "enclosure": u.enclosure, "reason": reason })).collect::<Vec<_>>())
+}
+
+fn place_cabinet_device(prj:&mut Project,a:&Args)->Result<Value,String> {
+    let ei=enclosure_index(prj,a.req("enclosure"))?;
+    if prj.layout.enclosures[ei].is_room() {return Err(tr_fmt!("{} is a room: use mount_on_wall",prj.layout.enclosures[ei].name));}
+    let tag=a.req("tag").trim().to_string();
+    let known=prj.devices.contains_key(&tag)||prj.pages.iter().any(|pg|pg.symbols.iter().any(|s|s.tag==tag));
+    if !known {return Err(tr_fmt!("Unknown device or part: {}",tag));}
+    let face=face_arg(a,"face")?.unwrap_or_default();
+    if !prj.layout.enclosures[ei].faces().contains(&face) {return Err(tr("Open assemblies support only the mounting face").into());}
+    let old=prj.layout.find_device(&tag).map(|(e,it)|(e,it.id));
+    let at=openecraft_core::geom::p(a.num("x").unwrap_or(0.),a.num("y").unwrap_or(0.));
+    let id=panel::place_device_on(prj,ei,&tag,at,face).ok_or_else(||tr_fmt!("No enclosure {}",a.req("enclosure")))?;
+    if let Some((oe,oid))=old {prj.layout.enclosures[oe].items.retain(|i|i.id!=oid);}
+    let it=prj.layout.enclosures[ei].item(id).ok_or_else(||tr_fmt!("No enclosure {}",a.req("enclosure")))?;
+    Ok(item_json(prj,it))
 }
 
 fn get_panel_points(prj:&mut Project,a:&Args)->Result<Value,String> {

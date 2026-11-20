@@ -31,7 +31,17 @@ fn assign_part(s: &mut Session, a: &Args) -> Result<Value, String> {
     let known = parts::lookup(prj, Some(&db), number).cloned();
     let part = match known {
         Some(p) => p,
-        None => s.server.get(number).map_err(|e| tr_fmt!("Unknown part {} (parts server: {})", number, e))?.ok_or_else(|| tr_fmt!("Unknown part: {}", number))?,
+        None => match s.server.get(number) {
+            Ok(Some(p)) => p,
+            found => {
+                let similar: Vec<&str> = parts::similar(s.project().ok(), number, 8).into_iter().map(|p| p.number.as_str()).collect();
+                return Err(match (found, similar.is_empty()) {
+                    (_, false) => tr_fmt!("Unknown part: {}; similar parts of the project and the built-in catalog: {}", number, similar.join(", ")),
+                    (Err(e), true) => tr_fmt!("Unknown part {} (parts server: {})", number, e),
+                    (Ok(_), true) => tr_fmt!("Unknown part: {}", number),
+                });
+            }
+        },
     };
     db.upsert(part);
     let prj = s.project_mut()?;

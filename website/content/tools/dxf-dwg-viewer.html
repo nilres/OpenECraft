@@ -1,0 +1,40 @@
+title: DXF and DWG viewer and converter online – OpenECraft
+description: Free online DXF and DWG viewer: open a drawing in your browser and save it as SVG, PDF, DXF or DWG. The file is not uploaded; nothing to install.
+kind: tool
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Tools</p>
+        <h1 data-t>DXF and DWG viewer and converter</h1>
+        <p class="lead" data-t>Open a DXF or DWG drawing without a CAD program and save it as SVG, PDF or the other of the two formats. The file is read in your browser and is not uploaded.</p>
+    </div>
+</section>
+
+<section class="band tool" data-tool="drawing">
+    <form class="tool-form">
+        <label class="tool-file"><span data-t>Drawing (DXF or DWG)</span><input type="file" name="file" accept=".dxf,.dwg" required /></label>
+    </form>
+    <p class="tool-wait" hidden data-t>Loading the tool. It is the code of the editor, about 10 MB, loaded once.</p>
+    <p class="tool-failed" hidden data-t>The tool could not start in this browser. It needs WebAssembly.</p>
+    <p class="tool-error" hidden></p>
+    <div class="tool-out" hidden>
+        <div class="tool-files"><span data-t>Save as</span></div>
+        <div class="sheet tool-drawing"></div>
+        <dl class="tool-facts"></dl>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>What it reads</h2>
+    <ul class="points">
+        <li data-t>Lines, polylines, circles, arcs, ellipses, splines, texts and blocks of DXF and DWG drawings.</li>
+        <li data-t>What it does not read, such as hatches and pictures, is listed below the drawing.</li>
+        <li data-t>The drawing is put on a page as OpenECraft imports it into a project: a drawing larger than the sheet is scaled to fit.</li>
+    </ul>
+    <p class="text" data-t>In OpenECraft an imported drawing becomes the graphics of a schematic page, and every page of a project is exported as DXF or DWG.</p>
+    <div class="actions">
+        <a class="button" href="@/how-to/dxf-dwg-export/" data-t>Export a schematic to DXF or DWG</a>
+        <a class="button ghost" href="@/tools/" data-t>More tools</a>
+    </div>
+    <p class="fine" data-t>Autodesk, AutoCAD and DWG are trademarks of Autodesk, Inc. OpenECraft is not affiliated with Autodesk.</p>
+</section>

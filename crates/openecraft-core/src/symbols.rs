@@ -1046,6 +1046,57 @@ fn build_library() -> Vec<SymbolDef> {
     b.pin(0.0, -4.0, "L").pin(8.0, -4.0, "N").pin(16.0, -4.0, "PE");
     v.push(def("socket", "Socket outlet", C::Loads, "X", MAIN).build(&mut b));
 
+    // Three-phase socket outlet (CEE): one cup over five contacts.
+    b.arc(16.0, 2.0, 18.0, 0.0, 180.0);
+    for x in [0.0, 8.0, 16.0, 24.0, 32.0] {
+        b.l(x, -4.0, x, if x == 16.0 { 6.0 } else { 4.0 });
+    }
+    b.text(16.0, -1.5, "3~", 2.5, Center);
+    b.pin(0.0, -4.0, "L1").pin(8.0, -4.0, "L2").pin(16.0, -4.0, "L3").pin(24.0, -4.0, "N").pin(32.0, -4.0, "PE");
+    v.push(def("socket3", "Socket outlet three-phase", C::Loads, "X", MAIN).build(&mut b));
+
+    // Three-phase heating element: the resistor across five connections.
+    b.rect(-3.0, 0.0, 35.0, 10.0, false);
+    for x in [6.0, 14.0, 22.0] {
+        b.l(x - 3.0, 10.0, x + 3.0, 0.0);
+    }
+    for x in [0.0, 8.0, 16.0, 24.0, 32.0] {
+        b.l(x, -4.0, x, 0.0);
+    }
+    b.pin(0.0, -4.0, "L1").pin(8.0, -4.0, "L2").pin(16.0, -4.0, "L3").pin(24.0, -4.0, "N").pin(32.0, -4.0, "PE");
+    v.push(def("heater3", "Heating element three-phase", C::Loads, "E", MAIN).build(&mut b));
+
+    // Junction boxes: a box with a terminal for each conductor, the cables of the
+    // circuit branching there.
+    for (key, name, labels) in [
+        ("jbox", "Junction box with terminals", &["L", "N", "PE"][..]),
+        ("jbox3", "Junction box with terminals three-phase", &["L1", "L2", "L3", "N", "PE"][..]),
+    ] {
+        let w = 8.0 * (labels.len() - 1) as f32;
+        b.rect(-3.0, -1.0, w + 3.0, 5.0, false);
+        for (k, l) in labels.iter().enumerate() {
+            let x = 8.0 * k as f32;
+            b.l(x, -4.0, x, 1.2).circle(x, 2.0, 0.8, true).pin(x, -4.0, l);
+        }
+        v.push(def(key, name, C::Installation, "X", MAIN).build(&mut b));
+    }
+
+    // Device connection boxes: a box with terminals, the cable of the fixed equipment
+    // leaving at the bottom.
+    for (key, name, labels) in [
+        ("conn_box", "Device connection box", &["L", "N", "PE"][..]),
+        ("conn_box3", "Device connection box three-phase", &["L1", "L2", "L3", "N", "PE"][..]),
+    ] {
+        let w = 8.0 * (labels.len() - 1) as f32;
+        b.rect(-3.0, -1.0, w + 3.0, 5.0, false);
+        b.l(w / 2.0, 5.0, w / 2.0, 9.0).poly(&[(w / 2.0 - 1.5, 7.0), (w / 2.0, 9.5), (w / 2.0 + 1.5, 7.0)], true, true);
+        for (k, l) in labels.iter().enumerate() {
+            let x = 8.0 * k as f32;
+            b.l(x, -4.0, x, 1.2).circle(x, 2.0, 0.8, false).pin(x, -4.0, l);
+        }
+        v.push(def(key, name, C::Installation, "X", MAIN).build(&mut b));
+    }
+
     b.l(0.0, -4.0, 0.0, -3.0).circle(0.0, 0.0, 3.0, false).text(0.0, 0.0, "A", 2.5, Center).l(0.0, 3.0, 0.0, 4.0);
     b.pin(0.0, -4.0, "1").pin(0.0, 4.0, "2");
     v.push(def("ammeter", "Ammeter", C::Loads, "P", MAIN).build(&mut b));

@@ -19,9 +19,11 @@ Accessory	Akcesorium
 Add	Dodaj
 Add a PDF of all pages	Dodaj PDF wszystkich stron
 Add an item	Dodaj punkt
+Add cable glands for new cables	Dodawaj dławnice dla nowych kabli
 Add to favorites	Dodaj do ulubionych
 Address	Adres
 Administrator	Administrator
+Aluminium	Aluminium
 Angle	Kąt
 Apply	Zastosuj
 Approve	Zatwierdź
@@ -31,6 +33,7 @@ Automatic	Automatycznie
 Automation	Automatyzacja
 Aux	Pomocn.
 Below	Poniżej
+Bill of materials	Zestawienie materiałów
 Bold	Pogrubienie
 Bottom	Dno
 Bottom with removable gland plate	Dno ze zdejmowaną płytą dławicową
@@ -64,6 +67,7 @@ Channel	Kanał
 Characteristic	Charakterystyka
 Check settings	Ustawienia kontroli
 Checks	Kontrole
+Circuit	Obwód
 Circuits	Obwody
 Class	Klasa
 Classes	Klasy
@@ -82,6 +86,7 @@ Commercial data	Dane handlowe
 Company	Firma
 Component	Element pojedynczy
 Components (assembly)	Komponenty (zespół)
+Conductor	Przewód
 Conductor material	Materiał żyły
 Configurator	Konfigurator
 Connect	Połącz
@@ -94,6 +99,7 @@ Connector	Złącze
 Contact voltage UB (V)	Napięcie dotykowe UB (V)
 Controller	Sterownik
 Cooling	Chłodzenie
+Copper	Miedź
 Core	Żyła
 Cores	Żyły
 Corner	Narożnik
@@ -105,6 +111,7 @@ Cross-section	Przekrój
 Crossing	Skrzyżowanie
 Currency	Waluta
 Current	Prąd
+Current (A)	Prąd (A)
 Cutout	Wycięcie
 Cutouts	Wycięcia
 DCavg (%)	DCavg (%)
@@ -122,6 +129,7 @@ Description	Opis
 Designation	Oznaczenie
 Device	Urządzenie
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Urządzenie (generator PV), do którego należą moduły; jego części liczą je wtedy w zestawieniu materiałów
+Device connection box three-phase	Puszka przyłączeniowa urządzenia trójfazowa
 Device connection point	Punkt przyłączeniowy urządzenia
 Device description	Opis urządzenia
 Device tag	Oznaczenie urządzenia
@@ -133,6 +141,7 @@ Direction	Kierunek
 Discard	Odrzuć
 Discard changes	Odrzuć zmiany
 Display	Wyświetlanie
+Documentation	Dokumentacja
 Documents	Dokumenty
 Done	Wykonano
 Door	Drzwi
@@ -153,6 +162,7 @@ Email	E-mail
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Puste: wartość domyślna. Ustaw inne wartości tam, gdzie wydanie normy, według której sprawdza się instalację, się różni.
 Enclosure	Obudowa
 Enclosures	Obudowy
+Engineering	Inżynieria
 Enterprise integration	Integracja przedsiębiorstwa
 Equipotential bonding	Połączenia wyrównawcze
 Error	Błąd
@@ -182,6 +192,7 @@ Floor plan	Rzut
 Fluid device	Urządzenie płynowe
 Fluid device groups	Grupy urządzeń płynowych
 Fluid netlist	Lista sieci płynowych
+Format	Format
 From	Od
 Function	Funkcja
 Function (=)	Funkcja (=)
@@ -232,10 +243,11 @@ Internal (bottom)	Wewnętrzny (dół)
 Interruption point	Punkt przerwania
 It is not affiliated with, endorsed by or sponsored by the owners of these names.	Nie jest powiązany z właścicielami tych nazw ani przez nich zatwierdzony lub sponsorowany.
 Italic	Kursywa
-Items	Elementy
 Its MPP tracker (input), from 1	Jego tracker MPP (wejście), od 1
 Job	Zlecenie
 Jumper	Mostek
+Junction box with terminals	Puszka rozgałęźna z zaciskami
+Junction box with terminals three-phase	Puszka rozgałęźna z zaciskami trójfazowa
 Key	Klucz
 Kind	Rodzaj
 Language	Język
@@ -254,6 +266,7 @@ Length	Długość
 Level	Poziom
 Lifecycle	Cykl życia
 Light	Jasny
+Limit (%)	Wartość graniczna (%)
 Limits	Wartości graniczne
 Line	Linia
 Link	Łącze
@@ -496,6 +509,7 @@ Required	Wymagany
 Reserve	Rezerwa
 Resolution	Rozdzielczość
 Responsible for the content	Odpowiedzialny za treść
+Result	Wynik
 Reviewer	Recenzent
 Revision	Rewizja
 Revision {}	Rewizja {}
@@ -535,6 +549,7 @@ Server	Serwer
 Service space	Przestrzeń serwisowa
 Settings	Ustawienia
 Shape	Kształt
+Sheets	Arkusze
 Short-circuit voltage	Napięcie zwarcia
 Show history	Pokaż historię
 Show the logos of the catalogs	Pokaż loga katalogów
@@ -579,6 +594,7 @@ T-junction	Trójnik
 Tables	Tabele
 Technical data	Dane techniczne
 Terminal	Zacisk
+Terminal diagram	Schemat zacisków
 Terminal number	Numer zacisku
 Terminal strip	Listwa zaciskowa
 Terminal strips	Listwy zaciskowe
@@ -589,6 +605,7 @@ Test instruments (IEC 61557)	Przyrządy pomiarowe (IEC 61557)
 Tested by	Badał
 Text	Tekst
 Text to find	Tekst do znalezienia
+Texts	Teksty
 The freestanding PV array {} stands outside the plot boundary	Naziemne pole PV {} stoi poza granicą działki
 The identifier must not be empty	Identyfikator nie może być pusty
 The long side of the modules along the rows	Dłuższy bok modułów wzdłuż rzędów
@@ -640,6 +657,8 @@ Version	Wersja
 Viewer	Przeglądający
 Visual inspection	Oględziny
 Voltage	Napięcie
+Voltage (V)	Napięcie (V)
+Voltage drop	Spadek napięcia
 Voltage drop (%)	Spadek napięcia (%)
 Warning	Ostrzeżenie
 Warnings	Ostrzeżenia
@@ -685,6 +704,7 @@ yes	tak
 {} exists already	{} już istnieje
 {} is not a PNG or JPEG image	{} nie jest obrazem PNG ani JPEG
 {} parts	Artykuły: {}
+{} symbols	Symbole: {}
 {} users	Użytkownicy: {}
 {} wires	Przewody: {}
 {}, together with the wire to {}	{}, razem z przewodem do {}

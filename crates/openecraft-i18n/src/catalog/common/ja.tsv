@@ -19,9 +19,11 @@ Accessory	付属品
 Add	追加
 Add a PDF of all pages	全ページの PDF を追加
 Add an item	項目を追加
+Add cable glands for new cables	新しいケーブルにケーブルグランドを追加
 Add to favorites	お気に入りに追加
 Address	アドレス
 Administrator	管理者
+Aluminium	アルミニウム
 Angle	角度
 Apply	適用
 Approve	承認
@@ -31,6 +33,7 @@ Automatic	自動
 Automation	自動化
 Aux	補助
 Below	下
+Bill of materials	部品表
 Bold	太字
 Bottom	底板
 Bottom with removable gland plate	取り外し可能なグランドプレート付きの底板
@@ -62,6 +65,7 @@ Channel	チャンネル
 Characteristic	特性
 Check settings	チェックの設定
 Checks	チェック
+Circuit	回路
 Circuits	回路
 Class	クラス
 Classes	クラス
@@ -80,6 +84,7 @@ Commercial data	商用データ
 Company	会社
 Component	単品部品
 Components (assembly)	構成部品 (アセンブリ)
+Conductor	導体
 Conductor material	導体材質
 Configurator	コンフィギュレーター
 Connect	接続
@@ -92,6 +97,7 @@ Connector	コネクター
 Contact voltage UB (V)	接触電圧 UB (V)
 Controller	コントローラー
 Cooling	冷却
+Copper	銅
 Core	心線
 Cores	心線
 Corner	コーナー
@@ -103,6 +109,7 @@ Cross-section	断面積
 Crossing	交差
 Currency	通貨
 Current	電流
+Current (A)	電流 (A)
 Cutout	切り欠き
 Cutouts	切り欠き
 DCavg (%)	DCavg (%)
@@ -120,6 +127,7 @@ Description	説明
 Designation	名称
 Device	デバイス
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	モジュールが属する機器（PV発電機）。その部品が部品表でモジュールを数えます
+Device connection box three-phase	三相機器接続ボックス
 Device connection point	機器接続ポイント
 Device description	デバイス記述
 Device tag	デバイスタグ
@@ -131,6 +139,7 @@ Direction	方向
 Discard	破棄
 Discard changes	変更を破棄
 Display	表示
+Documentation	ドキュメント
 Documents	ドキュメント
 Done	完了
 Door	扉
@@ -151,6 +160,7 @@ Email	メール
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	空：既定値。設備の検証に用いる規格の版が異なる場合は、別の値を設定してください。
 Enclosure	エンクロージャー
 Enclosures	エンクロージャー
+Engineering	エンジニアリング
 Enterprise integration	エンタープライズ統合
 Equipotential bonding	等電位ボンディング
 Error	エラー
@@ -180,6 +190,7 @@ Floor plan	平面図
 Fluid device	流体デバイス
 Fluid device groups	流体デバイスグループ
 Fluid netlist	流体ネットリスト
+Format	書式
 From	接続元
 Function	機能
 Function (=)	機能 (=)
@@ -230,10 +241,11 @@ Internal (bottom)	内部 (下)
 Interruption point	中断ポイント
 It is not affiliated with, endorsed by or sponsored by the owners of these names.	これらの名称の所有者と提携しておらず、承認や後援も受けていません。
 Italic	斜体
-Items	アイテム
 Its MPP tracker (input), from 1	そのMPPトラッカー（入力）、1から
 Job	ジョブ
 Jumper	ジャンパー
+Junction box with terminals	端子付きジャンクションボックス
+Junction box with terminals three-phase	端子付き三相ジャンクションボックス
 Key	キー
 Kind	種類
 Language	言語
@@ -252,6 +264,7 @@ Length	長さ
 Level	レベル
 Lifecycle	ライフサイクル
 Light	ライト
+Limit (%)	上限 (%)
 Limits	制限値
 Line	線
 Link	リンク
@@ -494,6 +507,7 @@ Required	必要
 Reserve	予備
 Resolution	分解能
 Responsible for the content	コンテンツ担当者
+Result	結果
 Reviewer	レビュー担当者
 Revision	リビジョン
 Revision {}	リビジョン {}
@@ -533,6 +547,7 @@ Server	サーバー
 Service space	サービススペース
 Settings	設定
 Shape	形状
+Sheets	シート
 Short-circuit voltage	短絡インピーダンス電圧
 Show history	履歴を表示
 Show the logos of the catalogs	カタログのロゴを表示
@@ -577,6 +592,7 @@ T-junction	T分岐
 Tables	テーブル
 Technical data	技術データ
 Terminal	端子
+Terminal diagram	端子図
 Terminal number	端子番号
 Terminal strip	端子台
 Terminal strips	端子台
@@ -587,6 +603,7 @@ Test instruments (IEC 61557)	測定器 (IEC 61557)
 Tested by	試験者
 Text	テキスト
 Text to find	検索するテキスト
+Texts	テキスト
 The freestanding PV array {} stands outside the plot boundary	野立てPVアレイ {} は敷地境界の外にあります
 The identifier must not be empty	識別子は空にできません
 The long side of the modules along the rows	モジュールの長辺を列に沿わせる
@@ -638,6 +655,8 @@ Version	バージョン
 Viewer	ビューアー
 Visual inspection	目視点検
 Voltage	電圧
+Voltage (V)	電圧 (V)
+Voltage drop	電圧降下
 Voltage drop (%)	電圧降下 (%)
 Warning	警告
 Warnings	警告
@@ -681,6 +700,7 @@ yes	はい
 {} exists already	{} は既に存在します
 {} is not a PNG or JPEG image	{} は PNG または JPEG 画像ではありません
 {} parts	{} 個の部品
+{} symbols	{} 個のシンボル
 {} users	ユーザー {} 人
 {} wires	{} 本の電線
 {}, together with the wire to {}	{}、{} への電線と共用

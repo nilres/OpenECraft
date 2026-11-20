@@ -45,6 +45,12 @@ fn signing_in_and_out_changes_the_token() {
 }
 
 #[test]
+fn the_public_parts_server_is_preconfigured() {
+    let client = ServerClient::default();
+    assert_eq!((client.kind, client.url.as_str(), client.token.as_str()), (PortalKind::OpenECraft, openecraft_parts::api::PUBLIC_URL, ""));
+}
+
+#[test]
 fn each_kind_keeps_its_address_and_token() {
     let mut client = ServerClient { token: "admin".into(), info: Some(ServerInfo::default()), ..Default::default() };
     client.set_kind(PortalKind::Eplan);

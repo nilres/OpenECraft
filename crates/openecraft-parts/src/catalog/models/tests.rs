@@ -43,6 +43,63 @@ fn models_are_painted_and_fill_the_part() {
 }
 
 #[test]
+fn lights_and_heating_elements_get_their_models() {
+    let parts = default_catalog();
+    let get = |n: &str| parts.iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));
+    for n in ["GEN.LAMP-CEILING-LED", "GEN.LAMP-DOWNLIGHT-LED", "GEN.LAMP-WALL-LED", "GEN.LIGHT-EM-3W", "GEN.HEATER-PANEL-1000", "GEN.HEATER-PANEL-2000", "GEN.HEATER-TOWEL-500", "GEN.HEATER-IR-600"] {
+        let p = get(n);
+        let (_, mesh) = model(p).unwrap_or_else(|| panic!("{n}"));
+        assert_eq!(mesh.colors.len(), mesh.triangles.len(), "{n}");
+        let (lo, hi) = mesh.bounds();
+        assert_eq!((lo, hi), ([0.0; 3], [p.width, p.height, p.depth]), "{n} fills its box");
+        assert!(p.model_3d.is_some(), "{n}");
+    }
+    // A round ceiling light and a recessed downlight show their diffuser; the
+    // emergency light its green sign; the enclosure heater of cabinets stays a box.
+    assert_eq!(kind_of(get("GEN.LAMP-CEILING-LED")), Some(Kind::Light { round: true, recessed: false, emergency: false }));
+    assert_eq!(kind_of(get("GEN.LAMP-DOWNLIGHT-LED")), Some(Kind::Light { round: true, recessed: true, emergency: false }));
+    assert!(model(get("GEN.LIGHT-EM-3W")).unwrap().1.colors.contains(&LED));
+    assert!(model(get("GEN.LAMP-CEILING-LED")).unwrap().1.colors.contains(&OPAL));
+    assert_eq!(kind_of(get("GEN.HEATER-TOWEL-500")), Some(Kind::Heater(Heater::Towel)));
+    assert!(kind_of(get("GEN.HEATER-100W")).is_none());
+}
+
+#[test]
+fn boxes_alarms_and_three_phase_devices_of_rooms_get_their_models() {
+    let parts = default_catalog();
+    let get = |n: &str| parts.iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));
+    for (n, kind) in [
+        ("GEN.SOCKET-CEE-16-5P", Kind::Cee),
+        ("GEN.SOCKET-CEE-32-5P", Kind::Cee),
+        ("GEN.JBOX-UP", Kind::FlushLid),
+        ("GEN.JBOX-5-UP", Kind::FlushLid),
+        ("GEN.CONN-BOX-UP", Kind::Outlet(Outlet::Cover)),
+        ("GEN.CONN-BOX-COOKER-UP", Kind::Outlet(Outlet::Cover)),
+        ("GEN.SMOKE-ALARM", Kind::Smoke),
+        ("GEN.HEATER-SAUNA-9000", Kind::Heater(Heater::Sauna)),
+    ] {
+        let p = get(n);
+        assert_eq!(kind_of(p), Some(kind), "{n}");
+        let (_, mesh) = model(p).unwrap();
+        assert_eq!(mesh.colors.len(), mesh.triangles.len(), "{n}");
+        assert_eq!(mesh.bounds(), ([0.0; 3], [p.width, p.height, p.depth]), "{n} fills its box");
+        assert!(p.model_3d.is_some(), "{n}");
+    }
+    // A CEE socket outlet of 400 V is red, the smoke alarm shows its red light; a
+    // house connection box stays a housing on the wall.
+    assert!(model(get("GEN.SOCKET-CEE-16-5P")).unwrap().1.colors.contains(&RED));
+    assert!(model(get("GEN.SMOKE-ALARM")).unwrap().1.colors.contains(&RED));
+    assert!(parts.iter().filter(|p| p.subgroup == "House connection box").all(|p| kind_of(p) == Some(Kind::Housing)));
+    // The splicing connectors of WAGO: a lever per conductor.
+    let wago = crate::bundled::load("wago").unwrap();
+    let c = wago.parts.iter().find(|p| p.number == "WAGO.221-415").unwrap();
+    assert_eq!(kind_of(c), Some(Kind::Splice { conductors: 5, lever: true }));
+    let (_, mesh) = model(c).unwrap();
+    assert_eq!(mesh.bounds(), ([0.0; 3], [c.width, c.height, c.depth]));
+    assert!(c.model_3d.as_ref().is_some_and(|m| !m.colors.is_empty()));
+}
+
+#[test]
 fn round_bodies_face_outwards() {
     let mut m = Mesh3d::default();
     m.add_cylinder([0.0, 0.0, 0.0], 2, 10.0, 20.0, 12, BODY);

@@ -136,6 +136,16 @@ pub fn call(session: &mut Session, entry: impl Into<Entry>, values: &Map<String,
             if let (false, Some(map)) = (kept.is_empty(), value.as_object_mut()) {
                 map.insert("structure_kept".into(), Value::from(kept));
             }
+            // New cables leaving an enclosure get their cable glands.
+            let glands = openecraft_core::routing3d::glands::follow(session.project_mut()?, &before);
+            if let Some(map) = value.as_object_mut() {
+                if !glands.added.is_empty() {
+                    map.insert("glands_added".into(), Value::from(glands.added));
+                }
+                if !glands.unplaced.is_empty() {
+                    map.insert("glands_missing".into(), openecraft_api::builtin::panel::unplaced_json(&glands.unplaced));
+                }
+            }
         }
         _ => {}
     }

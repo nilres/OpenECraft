@@ -360,7 +360,7 @@ impl Draw for EguiDraw<'_> {
         }
         let color = self.color(ink);
         let galley = self.painter.layout_no_wrap(text.to_string(), FontId::proportional(px), color);
-        let size = galley.size();
+        let size = vec2(galley.size().x * st.width, galley.size().y);
         // Top left corner of the text relative to its anchor, before the rotation.
         let off = vec2(
             match st.h {
@@ -383,8 +383,8 @@ impl Draw for EguiDraw<'_> {
         let copies: &[f32] = if st.bold { &[0.0, px * 0.05] } else { &[0.0] };
         for dx in copies {
             let shape = TextShape::new(anchor + rot * (off + vec2(*dx, 0.0)), galley.clone(), color).with_angle(angle).with_underline(underline);
-            if st.italic {
-                self.painter.add(EShape::mesh(skewed(self.painter, &shape, 0.2)));
+            if st.italic || st.width != 1.0 {
+                self.painter.add(EShape::mesh(skewed(self.painter, &shape, if st.italic { 0.2 } else { 0.0 }, st.width)));
             } else {
                 self.painter.add(EShape::Text(shape));
             }
@@ -426,8 +426,9 @@ impl Draw for EguiDraw<'_> {
 }
 
 /// Tessellates a text shape with its glyphs leaning by `k` (italic): a shear along
-/// the baseline, applied before the shape's rotation.
-fn skewed(painter: &Painter, shape: &TextShape, k: f32) -> Mesh {
+/// the baseline, and stretched along it by `wide` (the width factor of the letters),
+/// applied before the shape's rotation.
+fn skewed(painter: &Painter, shape: &TextShape, k: f32, wide: f32) -> Mesh {
     let tex = painter.fonts(|f| f.font_image_size());
     let options = painter.ctx().tessellation_options(|o| *o);
     let local = TextShape::new(Pos2::ZERO, shape.galley.clone(), shape.fallback_color).with_underline(shape.underline);
@@ -436,7 +437,7 @@ fn skewed(painter: &Painter, shape: &TextShape, k: f32) -> Mesh {
     let h = shape.galley.size().y;
     let rot = Rot2::from_angle(shape.angle);
     for v in &mut mesh.vertices {
-        v.pos = shape.pos + rot * vec2(v.pos.x + (h - v.pos.y) * k, v.pos.y);
+        v.pos = shape.pos + rot * vec2((v.pos.x + (h - v.pos.y) * k) * wide, v.pos.y);
     }
     mesh
 }

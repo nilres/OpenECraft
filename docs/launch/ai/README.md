@@ -8,7 +8,7 @@ check it and change it by hand.
 
 ![Power circuit of a direct-on-line starter, drawn through MCP](demo/power.png)
 
-The picture above is page 2 of [`demo/`](demo). Over **135 MCP tool calls** an agent
+The picture above is page 2 of [`demo/`](demo). Over **129 MCP tool calls** an agent
 built a direct-on-line starter for a 2.2 kW pump:
 
 - **Power circuit:** main switch `-Q1`, motor protection switch `-Q2`, contactor `-K1`,
@@ -68,33 +68,29 @@ unsigned build needs *System Settings › Privacy & Security › Open Anyway*.
 
 The server confines every file a tool reads or writes to one folder. That folder is
 `OPENECRAFT_MCP_ROOT`, by default the working folder of the server process, and `*`
-allows every folder. **Relative paths are resolved against the working folder, not
-against `OPENECRAFT_MCP_ROOT`.**
+allows every folder. Relative paths are in that folder, and the server tells the agent
+which folder it is when the connection starts.
 
-- Claude Code starts the server in your project folder, so relative paths just work.
+- Claude Code starts the server in your project folder, so that is the folder.
 - Claude Desktop and some other clients start it in a folder you do not choose. With
-  those, set `OPENECRAFT_MCP_ROOT` to your projects folder and name that folder in your
-  prompt, so the agent uses absolute paths. A call outside the folder is refused with a
-  message that names the allowed folder, and agents usually retry with a correct path.
+  those, set `OPENECRAFT_MCP_ROOT` to your projects folder; `pump.oec` is then a file
+  in it. A call outside the folder is refused with a message that names the allowed
+  folder.
 
-### Fewer tools for clients with a limit
+### Which tools the agent sees
 
-The server offers over 400 tools, and their descriptions take about 270 kB (roughly
-70 000 tokens). Recent versions of Claude Code load tool schemas on demand when there
-are many, so all of them are fine there. Clients that put every tool into the context,
-or that cap the number of tools, work
-better with a subset. Cursor and VS Code are among them; VS Code allows 128 tools per
-request.
+The server has over 440 tools; their descriptions would take about 260 kB (roughly
+65 000 tokens). So it offers the about 50 tools for schematics (projects, pages,
+symbols, wires, cables, parts, check, reports, exports: about 30 kB) and three of its
+own that reach all the others: `find_tools` searches them by words ("panel enclosure",
+"terminal accessories"), `describe_tool` shows the parameters of one, and `call_tool`
+calls it. This fits clients that cap the number of tools, such as VS Code (128 per
+request).
 
-The demo above runs unchanged with these 41 tools, about 25 kB:
-
-```text
-OPENECRAFT_MCP_TOOLS=new_project,open_project,save_project,convert_project,list_examples,project_info,set_project_info,undo,redo,list_pages,get_page,add_page,set_page,renumber_pages,list_symbols,place_symbol,place_part,update_symbol,move_items,delete_items,add_wire,connect,route,update_wire,add_text,list_potentials,set_wire_colors,set_wire_numbering,renumber_wires,list_devices,assign_part,list_cable_parts,add_cable_definition,apply_cable_part,table_get,table_set,check,list_reports,report,list_exports,export
-```
-
-You can add a whole group with a prefix: `parts_*` for the parts server, `panel*` and
-`place_panel_device` for the panel layout, and so on. `openecraft-cli help` lists every
-tool.
+`OPENECRAFT_MCP_TOOLS` chooses other tools: names separated by commas, a group by its
+prefix (`parts_*` for the parts server, `panel*` for the panel layout), `core` for the
+tools for schematics and `*` for all of them, e.g. `core,panel*`. `openecraft-cli help`
+lists every tool.
 
 ## Claude Code
 
@@ -151,8 +147,8 @@ macOS:
 ```
 
 Create the folder first. Restart Claude Desktop afterwards: the tools appear under the
-tools button of the chat box. In your prompts, name the folder, for example
-"…save it as C:\Users\me\Documents\OpenECraft\pump.oec".
+tools button of the chat box. File names in your prompts, such as `pump.oec`, are then
+files in that folder.
 
 ## Cursor, VS Code and other MCP clients
 
@@ -162,8 +158,7 @@ argument `mcp`, and optionally the environment variables.
 - **Cursor:** `~/.cursor/mcp.json` (all projects) or `.cursor/mcp.json` (one project):
 
   ```json
-  { "mcpServers": { "openecraft": { "type": "stdio", "command": "openecraft-cli", "args": ["mcp"],
-      "env": { "OPENECRAFT_MCP_TOOLS": "new_project,open_project,save_project,…" } } } }
+  { "mcpServers": { "openecraft": { "type": "stdio", "command": "openecraft-cli", "args": ["mcp"] } } }
   ```
 
 - **VS Code** (Copilot agent mode): `.vscode/mcp.json` in the workspace, or *MCP: Open
@@ -171,7 +166,7 @@ argument `mcp`, and optionally the environment variables.
 
   ```json
   { "servers": { "openecraft": { "type": "stdio", "command": "openecraft-cli", "args": ["mcp"],
-      "cwd": "${workspaceFolder}", "env": { "OPENECRAFT_MCP_TOOLS": "new_project,open_project,…" } } } }
+      "cwd": "${workspaceFolder}" } } }
   ```
 
   Alternatively, from a terminal: `code --add-mcp '{"name":"openecraft","command":"openecraft-cli","args":["mcp"]}'`.
@@ -186,8 +181,9 @@ These prompts fit the tools of the server. The demo script replays the calls for
 1; how many rounds a model needs for it, and how tidy its layout is, depends on the
 model. Most agents first call `list_symbols` and `get_page` to find connection points
 and free space. The answers are JSON with positions in mm, so they need a few rounds;
-plan on a few minutes for a whole circuit. Without a parts server the agent cannot look
-up part numbers, so the first prompt names them.
+plan on a few minutes for a whole circuit. Without a parts server the agent finds the
+generic parts of the built-in catalog with `parts_search`; the first prompt names them
+anyway, so that the result is the same every time.
 
 1. **The demo circuit in one prompt:**
 
@@ -231,7 +227,7 @@ It can:
 - run the check, produce every report (JSON, CSV, Excel), and export PDF, SVG, DXF,
   DWG, PLC tag tables and production wire lists
 - work on PLC, panel layout in 3D, harnesses, buildings and the parts server: the same
-  commands as the editor, more than 400 of them
+  commands as the editor, more than 400 of them (through `find_tools` and `call_tool`)
 - take back its own changes with `undo` / `redo`, call by call
 
 It cannot, or not well:
@@ -244,10 +240,10 @@ It cannot, or not well:
   memory and writes it with `save_project`. Open the saved file in the editor (*File ›
   Open project*, or double-click the `.oec`). For a split project (`.oecp`), the editor
   merges such changes into the open project the next time it saves.
-- **Find manufacturer parts without a parts server.** Offline, it knows the parts that
-  are already in the project and the generic `GEN.*` parts of the built-in catalog, but
-  it has no tool to search them. `parts_connect` to a parts server
-  (e.g. `https://parts-server.openecraft.org`) adds `parts_search`.
+- **Find manufacturer parts without a parts server.** Offline, `parts_search` finds
+  the parts that are already in the project and the generic `GEN.*` parts of the
+  built-in catalog. `parts_connect` to a parts server
+  (e.g. `https://parts-server.openecraft.org`) adds the manufacturer catalogs.
 - **Take responsibility.** A clean check means the project is consistent, not that the
   machine is safe. Sizing, selectivity and the safety functions remain the job of a
   qualified person.

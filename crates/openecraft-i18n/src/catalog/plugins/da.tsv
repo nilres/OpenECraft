@@ -15,6 +15,7 @@ Additional power loss in W	Yderligere effekttab i W
 Address scheme: siemens, iec or rockwell	Adresseskema: siemens, iec eller rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Tilføjer et solcellefelt til et tag: rækker af moduler på skinner og tagkroge parallelt med en tagflade, eller på et fladt tag skråt eller øst-vest på ballasterede monteringsfødder; uden x og z midt på den forreste eller højre tagflade. Uden bygning og tag et jordmonteret felt på grunden: rækker af skrå borde på rammede stolper, uden x og z foran det, der står i anlægget. Modulerne og monteringsmaterialet kommer i styklisten
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Tilføjer en bukket og boret kobberskinne (eller erstatter den med samme navn i kapslingen)
+Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Tilføjer en kabelforskruning i passende størrelse for hvert kabel, der forlader et skab og ikke finder nogen ledig forskruning: i taget for en enhed i rummet, i bunden for feltet eller et skab, der hænger på væggen
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Tilføjer en kabelgennemføring til højre nabo: runde udskæringer over for hinanden i begge sidevægge; ledninger mellem kapslingerne føres igennem den
 Adds a configurator rule: insert a page macro when the condition holds	Tilføjer en konfiguratorregel: Indsæt en sidemakro, når betingelsen er opfyldt
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Tilføjer en knude i føringsnettet (forgrening, gennemføring, hvor en kapsling eller en enhed nås)
@@ -81,7 +82,9 @@ Bus system name, e.g. PN/IE_1	Bussystemets navn, f.eks. PN/IE_1
 Busbar machine program (CSV)	Program til skinnebearbejdningsmaskine (CSV)
 CNC operations	CNC-operationer
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	CNC-programmer til bore-, fræse- og stansemaskiner, bukning af kobberskinner, kapslingskonfigurator, overdragelse til produktionen og tilbagemelding fra produktionen
+Cable tag (default: the next free -W)	Kabelbetegnelse (standard: den næste ledige -W)
 Cable tag, e.g. -W1	Kabelmærkning, f.eks. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Kabeltype (standard: NYM-J til dets ledere og tværsnit)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Kalibrerer maskinernes tidsestimat ud fra de faktiske tider i tilbagemeldingen fra produktionen
 Cannot read the plugin folder {}	Kan ikke læse plugin-mappen {}
 Cannot start {}: {}	Kan ikke starte {}: {}
@@ -156,6 +159,7 @@ Cross section, e.g. 0.75 mm²	Tværsnit, f.eks. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Tværsnit, f.eks. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Tværsnit, f.eks. 1.5 mm² (tom = fra potentialedefinitionen)
 Cross-section in mm²	Tværsnit i mm²
+Cross-section of the cable in mm² (default: for the protective device)	Kablets tværsnit i mm² (standard: til beskyttelsesenheden)
 Cross-section, e.g. 1.5 mm²	Tværsnit, f.eks. 1.5 mm²
 Current device tag	Aktuel enhedsmærkning
 Customer rule set to add or replace (by name), as exported	Kunderegelsæt, der skal tilføjes eller erstattes (efter navn), som eksporteret
@@ -193,6 +197,8 @@ Device description id of the head (list_device_descriptions)	Id for hovedets enh
 Device group {} already exists	Enhedsgruppen {} findes allerede
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Enhedsliste, stykliste, klemme-, stik-, kabel- og forbindelsesdiagrammer, PLC, potentialer, tavle, fluid, elektriske rapporter og feltrapporter
 Device number on the bus	Enhedsnummer på bussen
+Device or junction box of the circuit the cable comes from (default: the device before it)	Enhed eller samledåse i gruppen, som kablet kommer fra (standard: enheden før)
+Device tag (default: the room, the letter code of the kind and the next number)	Enhedsbetegnelse (standard: rummet, artens bogstavkode og det næste nummer)
 Device tag of the CPU / bus coupler, e.g. -A0	Enhedsmærkning for CPU'en / buskobleren, f.eks. -A0
 Device tag of the end (both ends if missing)	Endens enhedsmærkning (begge ender, hvis den mangler)
 Device tag of the fluid device, e.g. -QM1	Fluidenhedens enhedsmærkning, f.eks. -QM1
@@ -227,7 +233,6 @@ Draw the junction as a connection dot; its routing stays	Tegn T-stykket som et f
 Draw wires in their colour	Tegn ledninger i deres farve
 Draw wires to the connection points facing its free arms	Tegn ledere til tilslutningspunkterne over for dets frie arme
 Drawing	Tegning
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Tegner en kabeldefinitionslinje; de ledninger, den krydser, bliver ledere i kablet (et nyt kabel, når der ikke er angivet et)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Tegner en ledning mellem to tilslutningspunkter, f.eks. -K1:A1 til -S1:14 (#id:pin for tvetydige, navnet for potentialer, 1, 2… for punkter uden betegnelse)
 Draws a wire through two or more points	Tegner en ledning gennem to eller flere punkter
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Tegner ledningerne i deres farve på diagramsiderne og i PDF- / SVG-eksport eller i sort
@@ -255,7 +260,6 @@ Enclosures, panel items, accessories and panel macros	Kapslinger, layoutelemente
 End brackets and end plates from the tech data of the terminal parts	Endestop og endeplader ud fra klemmeartiklernes tekniske data
 End holes from the bar end as a multiple of the width	Endehuller fra skinneenden som et multiplum af bredden
 End: device tag and connection point, e.g. -S1:14	Slut: enhedsmærkning og tilslutningspunkt, f.eks. -S1:14
-Engineering	Engineering
 Face: plate, door, left, right, rear, roof or bottom	Flade: plate, door, left, right, rear, roof eller bottom
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Feltplan: knuder, afsnit, omrids, føringer, udligning og tilbehør
 Figure	Nøgletal
@@ -358,6 +362,7 @@ Key, e.g. user.coupling_relay	Nøgle, f.eks. user.coupling_relay
 Key, e.g. user.customer_code	Nøgle, f.eks. user.customer_code
 Keys of the routes, comma separated (all if missing)	Nøgler for føringerne, kommasepareret (alle, hvis de mangler)
 Kind: machining, punching or busbar	Type: machining, punching eller busbar
+Known length of the cable in m (taken instead of the 3D route)	Kendt længde af kablet i m (bruges i stedet for 3D-føringen)
 Label: terminal number, PLC address or potential name	Etiket: klemnummer, PLC-adresse eller potentialenavn
 Landscape (true) or portrait (false)	Liggende (true) eller stående (false)
 Language the project texts are written in, e.g. en	Sprog, som projektteksterne er skrevet på, f.eks. en
@@ -463,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Midten af solcellefeltet i bygningens plantegning (jordmonteret: i anlægget), z i mm
 Milling feed, mm/min	Fræsetilspænding, mm/min
 Mirror the symbol	Spejl symbolet
+Mounting height above the floor in mm (default: that of the part)	Monteringshøjde over gulvet i mm (standard: delens)
 Mounting plate size as width and height; empty object restores the centred plate	Monteringspladens størrelse som bredde og højde; et tomt objekt gendanner den centrerede plade
 Mounting size must contain a positive width and height	Monteringsstørrelsen skal indeholde en positiv bredde og højde
 Moves an air-termination rod, changes its height, renames or removes it	Flytter en fangstang, ændrer dens højde, omdøber eller fjerner den
@@ -550,6 +556,7 @@ Nothing to copy: devices are placed once	Intet at kopiere: enheder placeres kun 
 Nothing to remove: {} {}	Intet at fjerne: {} {}
 Number of columns	Antal kolonner
 Number of copies (default 1)	Antal kopier (standard 1)
+Number of cores of the cable (default: 3, three-phase 5)	Antal ledere i kablet (standard: 3, trefaset 5)
 Number of equal bars	Antal ens skinner
 Number of indexed values (0 = a single value)	Antal indekserede værdier (0 = én enkelt værdi)
 Number of rows	Antal rækker
@@ -605,12 +612,14 @@ Paper width in mm (custom paper)	Papirbredde i mm (brugerdefineret papir)
 Part lifecycle	Artiklens livscyklus
 Part number of the accessory	Tilbehørets artikelnummer
 Part number of the base	Artikelnummer for basen
+Part number of the cable	Kablets varenummer
 Part number of the carrier (per metre)	Kabelbærerens artikelnummer (pr. meter)
 Part number of the conductor (per metre)	Lederens artikelnummer (pr. meter)
 Part number of the downstream device	Artikelnummer for den efterkoblede enhed
 Part number of the hose / tube / pipe	Artikelnummer for slangen / røret / rørledningen
 Part number of the upstream device	Artikelnummer for den forankoblede enhed
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, f.eks. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Varenummer, f.eks. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Del til dens bånd, tråd eller spyd (tom: generisk)
 Part of the conductor holders on the roof (empty: generic)	Del til lederholderne på taget (tom: generisk)
 Part of the conductor holders on the walls (empty: generic)	Del til lederholderne på væggene (tom: generisk)
@@ -684,6 +693,8 @@ Property and function definitions, property values and placement schemes	Egenska
 Property key	Egenskabsnøgle
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Egenskabsnøgler og værdier, f.eks. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Sættes foran numrene, f.eks. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Sætter en enhed fra diagrammet i et skab (på monteringspladen, på en skinne der eller på døren): dens størrelse fra dens del, klikket på en skinne den passer på; placeret et andet sted før, flyttes den
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Sætter en stikkontakt, en afbryder, en lampe, et varmelegeme, en samledåse eller en apparattilslutningsdåse til en beskyttelsesenhed i et rum ved et punkt i anlægget (en loftslampe i loftet der, alt andet på den nærmeste væg i dens monteringshøjde; uden for rummet på ydersiden af dens nærmeste væg) og i diagrammet: en ny enhed på gruppens installationsside med et kabel fra enheden før eller fra den angivne enhed; uden beskyttelsesenhed kun i rummet (data- og antennestik, røgalarmer)
 Quantity per end (default 1)	Antal pr. ende (standard 1)
 R/X ratio of the supply impedance	R/X-forhold for netimpedansen
 Rack number	Racknummer
@@ -779,8 +790,8 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	Angiver tegningshovedet for alle sider, der ikke vælger et, eller for siderne af én type
 Sets the translation of a line of the project texts (empty removes it)	Angiver oversættelsen af en linje i projektteksterne (tom fjerner den)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Angiver ledningsfarve og tværsnit for net uden defineret potentiale (tom = ingen)
+Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)	Angiver, om et kabel, der forlader et skab og ikke finder nogen ledig forskruning, får en i sin størrelse: i taget for en enhed i rummet, i bunden for feltet eller et skab, der hænger på væggen (slået til som standard)
 Share of the capacity kept free in percent	Andel af kapaciteten, der holdes fri, i procent
-Sheets	Ark
 Shield connected at: both, first, second or none	Skærm tilsluttet ved: both, first, second eller none
 Shift downwards in mm	Forskydning nedad i mm
 Shift to the right in mm	Forskydning mod højre i mm
@@ -818,6 +829,7 @@ Smallest bend radius in mm	Mindste bøjningsradius i mm
 Smallest distance in mm	Mindste afstand i mm
 Smallest distance of holes from the sheet edge	Mindste afstand fra huller til pladekanten
 Smallest inner radius as a multiple of the thickness	Mindste indvendige radius som et multiplum af tykkelsen
+Smallest room kept, m² (default 1; kept with the floor plan)	Mindste rum der beholdes, m² (standard 1; gemmes med plantegningen)
 Smallest web at cutouts	Mindste materiale ved udskæringer
 Smallest web between holes	Mindste materiale mellem huller
 Spare terminals at the end of the strip	Reserveklemmer i enden af klemrækken
@@ -889,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	En krydsnings linje er 
 The message text, kept for the list of accepted messages	Meddelelsesteksten, der gemmes til listen over accepterede meddelelser
 The name must not be empty	Navnet må ikke være tomt
 The number of copies must be between 1 and 100	Antallet af kopier skal ligge mellem 1 og 100
+The number of cores must be from 1 to 60	Antallet af ledere skal være fra 1 til 60
 The plinth height must not be negative	Sokkelhøjden må ikke være negativ
 The plot frame {} is in use	Plotrammen {} er i brug
 The plugin program did not answer within {} s and was stopped	Plugin-programmet svarede ikke inden for {} s og blev stoppet
@@ -897,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Rotationen skal være 0, 90, 180 eller 27
 The straight line of a crossing: vertical or horizontal (default vertical)	En krydsnings lige linje: vertical eller horizontal (standard vertical)
 The text height must be at least 0.5 mm	Teksthøjden skal være mindst 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Et hjørnes to arme, lodret og vandret, f.eks. down left (standard: efter lederne der, ellers down right)
+The width factor must be from 0.1 to 10	Breddefaktoren skal være fra 0,1 til 10
 The wire has no length	Forbindelsen har ingen længde
 The wire that jumps: vertical or horizontal	Ledningen, der springer: vertical eller horizontal
 The wrap width must not be negative	Ombrydningsbredden må ikke være negativ
@@ -995,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Hvilken linj
 Who accepted it	Hvem der har accepteret den
 Whole words only	Kun hele ord
 Why the message is accepted	Hvorfor meddelelsen er accepteret
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Bogstavernes bredde i forhold til deres sædvanlige bredde, 0,1 … 10 (0,8: smal skrift; standard 1)
 Width of the path in mm (default 50)	Vejens bredde i mm (standard 50)
 Width, depth and height of a room are at least {} mm	Bredde, dybde og højde for et rum er mindst {} mm
 Width, height and depth of an enclosure are at least {} mm	Bredde, højde og dybde for en kapsling er mindst {} mm
@@ -1067,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	z for stangens fo
 {} is a built-in frame; give the frame a new name	{} er en indbygget ramme; giv rammen et nyt navn
 {} is a built-in title block; give the title block a new name	{} er et indbygget tegningshoved; giv tegningshovedet et nyt navn
 {} is a room already	{} er allerede et rum
+{} is a room: use mount_on_wall	{} er et rum: brug mount_on_wall
 {} is ambiguous: use #id:pin	{} er tvetydig: Brug #id:pin
 {} is an enclosure already	{} er allerede en kapsling
 {} is not a connection point (TAG:PIN)	{} er ikke et tilslutningspunkt (TAG:PIN)

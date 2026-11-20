@@ -44,20 +44,22 @@ pub struct TextStyle {
     pub bold: bool,
     pub italic: bool,
     pub underline: bool,
+    /// Width of the letters to their usual width.
+    pub width: f32,
 }
 
 impl TextStyle {
     pub fn plain(size: f32, h: Anchor, v: VAnchor) -> TextStyle {
-        TextStyle { size, h, v, angle: 0.0, bold: false, italic: false, underline: false }
+        TextStyle { size, h, v, angle: 0.0, bold: false, italic: false, underline: false, width: 1.0 }
     }
 
     /// The style of a text item; its lines are anchored at their middle.
     pub fn of(t: &TextItem) -> TextStyle {
-        TextStyle { size: t.size, h: t.align, v: VAnchor::Middle, angle: t.angle, bold: t.bold, italic: t.italic, underline: t.underline }
+        TextStyle { size: t.size, h: t.align, v: VAnchor::Middle, angle: t.angle, bold: t.bold, italic: t.italic, underline: t.underline, width: t.factor() }
     }
 
     pub fn is_plain(&self) -> bool {
-        self.angle == 0.0 && !self.bold && !self.italic && !self.underline
+        self.angle == 0.0 && !self.bold && !self.italic && !self.underline && self.width == 1.0
     }
 }
 
@@ -110,7 +112,7 @@ fn first_line(t: &TextItem, n: usize) -> f32 {
 /// The lines of a text as shown (`shown`: its text with the placeholders filled in)
 /// with the anchor point of each line.
 pub fn lines(t: &TextItem, shown: &str) -> Vec<(P, String)> {
-    let ls = wrap(shown, t.size, t.width);
+    let ls = wrap(shown, t.size, t.width / t.factor());
     let y0 = first_line(t, ls.len());
     ls.into_iter().enumerate().map(|(i, l)| (t.pos + rotate(p(0.0, y0 + i as f32 * LINE * t.size), t.angle), l)).collect()
 }
@@ -118,8 +120,8 @@ pub fn lines(t: &TextItem, shown: &str) -> Vec<(P, String)> {
 /// Corners of the area the text covers, rotated with the text, with a margin of
 /// `pad` text heights (background and frame).
 pub fn corners(t: &TextItem, shown: &str, pad: f32) -> [P; 4] {
-    let ls = wrap(shown, t.size, t.width);
-    let w = ls.iter().map(|l| est_width(l, t.size)).fold(0.0, f32::max).max(t.size * 0.62);
+    let ls = wrap(shown, t.size, t.width / t.factor());
+    let w = ls.iter().map(|l| est_width(l, t.size) * t.factor()).fold(0.0, f32::max).max(t.size * 0.62);
     let (x0, x1) = match t.align {
         Anchor::Left => (0.0, w),
         Anchor::Center => (-w / 2.0, w / 2.0),

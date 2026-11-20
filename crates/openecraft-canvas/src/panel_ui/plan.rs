@@ -186,7 +186,35 @@ fn segment_distance(q: P, a: [f32; 2], b: [f32; 2]) -> f32 {
     (x * x + z * z).sqrt()
 }
 
+/// The corners of the floor plan on paper under the level of room `ei` (top left, top
+/// right, bottom right, bottom left) in plan coordinates of the room, with the plan.
+pub(super) fn paper_in_plan(prj: &Project, ei: usize) -> Option<(&panel::FloorPlan, [[f32; 2]; 4])> {
+    let e = prj.layout.enclosures.get(ei)?;
+    let bi = panel::buildings::building_of(&prj.layout, ei)?;
+    let (fp, corners) = super::site_plan::floor_plan_corners(prj, bi, e.level)?;
+    let here = panel::site_poses(prj)[ei];
+    Some((fp, corners.map(|q| {
+        let l = here.local([q[0], 0.0, q[1]]);
+        [l[0], l[2]]
+    })))
+}
+
 impl PanelUi {
+    /// Draws the floor plan on paper of room `ei`'s level under the room's floor plan;
+    /// gives whether there is one shown.
+    fn paint_paper(&self, ui: &egui::Ui, painter: &egui::Painter, prj: &Project, ei: usize, to_screen: &dyn Fn(f32, f32) -> Pos2) -> bool {
+        let Some((fp, corners)) = paper_in_plan(prj, ei).filter(|(fp, _)| fp.opacity > 0.0) else { return false };
+        let Some(texture) = super::site_plan::floor_texture(ui.ctx(), fp) else { return false };
+        let tint = egui::Color32::from_white_alpha((fp.opacity.clamp(0.0, 1.0) * 255.0) as u8);
+        let mut mesh = egui::Mesh::with_texture(texture.id());
+        for (q, uv) in corners.iter().zip([egui::pos2(0.0, 0.0), egui::pos2(1.0, 0.0), egui::pos2(1.0, 1.0), egui::pos2(0.0, 1.0)]) {
+            mesh.vertices.push(egui::epaint::Vertex { pos: to_screen(q[0], q[1]), uv, color: tint });
+        }
+        mesh.indices.extend_from_slice(&[0, 1, 2, 0, 2, 3]);
+        painter.add(Shape::mesh(mesh));
+        true
+    }
+
     /// Finishes the walls being drawn: the room gets them as its outline.
     pub(super) fn finish_walls(&mut self, prj: &mut Project, ei: usize) {
         match closed_outline(&self.wall_points).and_then(|o| panel::set_outline(&mut prj.layout.enclosures[ei], &o)) {
@@ -514,6 +542,8 @@ impl PanelUi {
             painter.line_segment([to_screen(a.x, z), to_screen(b.x, z)], grid);
             z += step;
         }
+        // The floor plan on paper under the room's level, at its place.
+        let paper = self.show_paper && self.paint_paper(ui, &painter, prj, ei, &to_screen);
         // The other rooms around it, faint, with their names and cabinets.
         for n in &others {
             let hovered = hit_room == Some(n.room);
@@ -535,8 +565,9 @@ impl PanelUi {
             resp.clone().on_hover_text_at_pointer(tr_fmt!("{}: a double-click opens its floor plan", prj.layout.enclosures[k].name));
         }
         // Floor, walls and their numbers and lengths.
+        let floor = if paper { pal.paper.gamma_multiply(0.35) } else { pal.paper };
         for (a, b) in panel::floor_cells(e) {
-            painter.rect_filled(Rect::from_two_pos(to_screen(a[0], a[2]), to_screen(b[0], b[2])), 0.0, pal.paper);
+            painter.rect_filled(Rect::from_two_pos(to_screen(a[0], a[2]), to_screen(b[0], b[2])), 0.0, floor);
         }
         let dragged_wall = match &self.plan_drag {
             Some(PlanDrag::Wall { wall, .. }) => Some(*wall),

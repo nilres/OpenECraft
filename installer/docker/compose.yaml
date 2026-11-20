@@ -79,6 +79,9 @@ services:
       # The public address of the site (https://…/) for search engines and link
       # previews: canonical address, preview image, sitemap.
       OPENECRAFT_SITE_URL: ${OPENECRAFT_SITE_URL:-}
+      # The stars and contributors of the repository are asked from GitHub every hour;
+      # seconds, 0: never.
+      OPENECRAFT_NUMBERS_INTERVAL: ${OPENECRAFT_NUMBERS_INTERVAL:-3600}
       OPENECRAFT_EDITOR_URL: ${OPENECRAFT_EDITOR_URL:-editor/}
       OPENECRAFT_REPOSITORY_URL: ${OPENECRAFT_REPOSITORY_URL:-https://github.com/nilres/OpenECraft}
       OPENECRAFT_DOWNLOADS_URL: ${OPENECRAFT_DOWNLOADS_URL:-}

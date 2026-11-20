@@ -19,9 +19,11 @@ Accessory	Tartozék
 Add	Hozzáadás
 Add a PDF of all pages	PDF hozzáadása az összes oldalról
 Add an item	Pont hozzáadása
+Add cable glands for new cables	Kábeltömszelencék hozzáadása az új kábelekhez
 Add to favorites	Hozzáadás a kedvencekhez
 Address	Cím
 Administrator	Rendszergazda
+Aluminium	Alumínium
 Angle	Szög
 Apply	Alkalmaz
 Approve	Jóváhagyás
@@ -31,6 +33,7 @@ Automatic	Automatikus
 Automation	Automatizálás
 Aux	Segéd
 Below	Alul
+Bill of materials	Anyagjegyzék
 Bold	Félkövér
 Bottom	Fenék
 Bottom with removable gland plate	Fenék levehető kábelbevezető lemezzel
@@ -64,6 +67,7 @@ Channel	Csatorna
 Characteristic	Jelleggörbe
 Check settings	Ellenőrzési beállítások
 Checks	Ellenőrzések
+Circuit	Áramkör
 Circuits	Áramkörök
 Class	Osztály
 Classes	Osztályok
@@ -82,6 +86,7 @@ Commercial data	Kereskedelmi adatok
 Company	Cég
 Component	Alkotóelem
 Components (assembly)	Alkotóelemek (szerelvény)
+Conductor	Vezető
 Conductor material	Vezetőanyag
 Configurator	Konfigurátor
 Connect	Csatlakozás
@@ -94,6 +99,7 @@ Connector	Csatlakozó
 Contact voltage UB (V)	Érintési feszültség UB (V)
 Controller	Vezérlő
 Cooling	Hűtés
+Copper	Réz
 Core	Ér
 Cores	Erek
 Corner	Sarok
@@ -105,6 +111,7 @@ Cross-section	Keresztmetszet
 Crossing	Kereszteződés
 Currency	Pénznem
 Current	Áram
+Current (A)	Áram (A)
 Cutout	Kivágás
 Cutouts	Kivágások
 DCavg (%)	DCavg (%)
@@ -122,6 +129,7 @@ Description	Leírás
 Designation	Megnevezés
 Device	Készülék
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Eszköz (PV-generátor), amelyhez a modulok tartoznak; alkatrészei ekkor számolják őket az anyagjegyzékben
+Device connection box three-phase	Háromfázisú készülékcsatlakozó doboz
 Device connection point	Eszköz csatlakozási pontja
 Device description	Eszközleírás
 Device tag	Készülékazonosító
@@ -133,6 +141,7 @@ Direction	Irány
 Discard	Elvetés
 Discard changes	Módosítások elvetése
 Display	Megjelenítés
+Documentation	Dokumentáció
 Documents	Dokumentumok
 Done	Kész
 Door	Ajtó
@@ -153,6 +162,7 @@ Email	E-mail
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Üres: az alapértelmezés. Adjon meg más értékeket, ahol a szabványnak az a kiadása, amely szerint a létesítményt ellenőrzik, eltér.
 Enclosure	Szekrény
 Enclosures	Szekrények
+Engineering	Mérnöki tervezés
 Enterprise integration	Vállalati integráció
 Equipotential bonding	Potenciálkiegyenlítés
 Error	Hiba
@@ -182,6 +192,7 @@ Floor plan	Alaprajz
 Fluid device	Fluidkészülék
 Fluid device groups	Fluid-készülékcsoportok
 Fluid netlist	Fluid-hálózatlista
+Format	Formátum
 From	Forrás
 Function	Funkció
 Function (=)	Funkció (=)
@@ -232,10 +243,11 @@ Internal (bottom)	Belső (alul)
 Interruption point	Megszakítási pont
 It is not affiliated with, endorsed by or sponsored by the owners of these names.	Nem áll kapcsolatban e nevek tulajdonosaival, azok nem hagyták jóvá és nem támogatják.
 Italic	Dőlt
-Items	Elemek
 Its MPP tracker (input), from 1	Az MPP-követője (bemenet), 1-től
 Job	Megbízás
 Jumper	Áthidalás
+Junction box with terminals	Kötődoboz kapcsokkal
+Junction box with terminals three-phase	Háromfázisú kötődoboz kapcsokkal
 Key	Kulcs
 Kind	Fajta
 Language	Nyelv
@@ -254,6 +266,7 @@ Length	Hossz
 Level	Szint
 Lifecycle	Életciklus
 Light	Világos
+Limit (%)	Határérték (%)
 Limits	Határértékek
 Line	Vonal
 Link	Hivatkozás
@@ -496,6 +509,7 @@ Required	Előírt
 Reserve	Tartalék
 Resolution	Felbontás
 Responsible for the content	A tartalomért felelős
+Result	Eredmény
 Reviewer	Véleményező
 Revision	Revízió
 Revision {}	{}. revízió
@@ -535,6 +549,7 @@ Server	Szerver
 Service space	Szervizterület
 Settings	Beállítások
 Shape	Alak
+Sheets	Rajzlapok
 Short-circuit voltage	Rövidzárási feszültség
 Show history	Előzmények megjelenítése
 Show the logos of the catalogs	A katalógusok logóinak megjelenítése
@@ -579,6 +594,7 @@ T-junction	T-elem
 Tables	Táblázatok
 Technical data	Műszaki adatok
 Terminal	Sorkapocs
+Terminal diagram	Sorkapocsterv
 Terminal number	Sorkapocsszám
 Terminal strip	Sorkapocsléc
 Terminal strips	Sorkapocslécek
@@ -589,6 +605,7 @@ Test instruments (IEC 61557)	Mérőműszerek (IEC 61557)
 Tested by	Vizsgálta
 Text	Szöveg
 Text to find	Keresendő szöveg
+Texts	Szövegek
 The freestanding PV array {} stands outside the plot boundary	A(z) {} szabadföldi PV-mező a telekhatáron kívül áll
 The identifier must not be empty	Az azonosító nem lehet üres
 The long side of the modules along the rows	A modulok hosszabb oldala a sorok mentén
@@ -640,6 +657,8 @@ Version	Verzió
 Viewer	Megtekintő
 Visual inspection	Szemrevételezés
 Voltage	Feszültség
+Voltage (V)	Feszültség (V)
+Voltage drop	Feszültségesés
 Voltage drop (%)	Feszültségesés (%)
 Warning	Figyelmeztetés
 Warnings	Figyelmeztetések
@@ -685,6 +704,7 @@ yes	igen
 {} exists already	{} már létezik
 {} is not a PNG or JPEG image	{} nem PNG- vagy JPEG-kép
 {} parts	{} alkatrész
+{} symbols	Szimbólumok: {}
 {} users	{} felhasználó
 {} wires	{} vezeték
 {}, together with the wire to {}	{}, a(z) {} felé menő vezetékkel együtt

@@ -15,6 +15,7 @@ Additional power loss in W	Perda de potência adicional em W
 Address scheme: siemens, iec or rockwell	Esquema de endereçamento: siemens, iec ou rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Adiciona um arranjo FV a um telhado: fileiras de módulos sobre trilhos e ganchos de telhado paralelas a uma água, ou num telhado plano inclinadas ou leste-oeste sobre bases de montagem lastreadas; sem x e z no meio da água frontal ou direita. Sem edifício e telhado, um arranjo no solo no terreno: fileiras de mesas inclinadas sobre estacas cravadas, sem x e z à frente do que existe na instalação. Os módulos e o material de montagem entram na lista de materiais
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Adiciona uma barra de cobre dobrada e furada (ou substitui a de mesmo nome no gabinete)
+Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Adiciona um prensa-cabo do seu tamanho para cada cabo que sai de um invólucro e não encontra prensa-cabo livre: no teto para um dispositivo na sala, no fundo para o campo ou um invólucro pendurado na parede
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Adiciona uma passagem de cabos para o vizinho à direita: recortes redondos frente a frente nas duas paredes laterais; os fios entre os gabinetes passam por ela
 Adds a configurator rule: insert a page macro when the condition holds	Adiciona uma regra do configurador: inserir uma macro de página quando a condição for atendida
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Adiciona um nó da rede de rotas de campo (derivação, passagem, ponto onde um gabinete ou dispositivo é alcançado)
@@ -81,7 +82,9 @@ Bus system name, e.g. PN/IE_1	Nome do sistema de barramento, por exemplo, PN/IE_
 Busbar machine program (CSV)	Programa da máquina de processamento de barramentos (CSV)
 CNC operations	Operações CNC
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Programas CNC para máquinas de furação, fresamento e puncionamento, dobra de barras de cobre, configurador de gabinetes, entrega à produção e retorno da produção
+Cable tag (default: the next free -W)	Identificação do cabo (padrão: o próximo -W livre)
 Cable tag, e.g. -W1	Identificador do cabo, por exemplo, -W1
+Cable type (default: NYM-J for its cores and cross-section)	Tipo de cabo (padrão: NYM-J para suas veias e sua seção)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Calibra a estimativa de tempo das máquinas com os tempos reais do retorno da produção
 Cannot read the plugin folder {}	Não é possível ler a pasta de plug-ins {}
 Cannot start {}: {}	Não é possível iniciar {}: {}
@@ -156,6 +159,7 @@ Cross section, e.g. 0.75 mm²	Seção transversal, por exemplo, 0.75 mm²
 Cross section, e.g. 1.5 mm²	Seção transversal, por exemplo, 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Seção transversal, por exemplo, 1.5 mm² (vazio = da definição do potencial)
 Cross-section in mm²	Seção transversal em mm²
+Cross-section of the cable in mm² (default: for the protective device)	Seção do cabo em mm² (padrão: para o dispositivo de proteção)
 Cross-section, e.g. 1.5 mm²	Seção transversal, por exemplo, 1.5 mm²
 Current device tag	Identificador de dispositivo atual
 Customer rule set to add or replace (by name), as exported	Conjunto de regras do cliente a adicionar ou substituir (por nome), conforme exportado
@@ -193,6 +197,8 @@ Device description id of the head (list_device_descriptions)	ID da descrição d
 Device group {} already exists	O grupo de dispositivos {} já existe
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Lista de dispositivos, lista de materiais, diagramas de bornes, plugues, cabos e conexões, CLP, potenciais, painel, fluidos, relatórios elétricos e de campo
 Device number on the bus	Número do dispositivo no barramento
+Device or junction box of the circuit the cable comes from (default: the device before it)	Equipamento ou caixa de derivação do circuito de onde vem o cabo (padrão: o equipamento anterior)
+Device tag (default: the room, the letter code of the kind and the next number)	Identificação do equipamento (padrão: a sala, o código de letras do tipo e o próximo número)
 Device tag of the CPU / bus coupler, e.g. -A0	Identificador de dispositivo da CPU / do acoplador de barramento, por exemplo, -A0
 Device tag of the end (both ends if missing)	Identificador de dispositivo da extremidade (ambas as extremidades se ausente)
 Device tag of the fluid device, e.g. -QM1	Identificador de dispositivo do dispositivo de fluido, por exemplo, -QM1
@@ -227,7 +233,6 @@ Draw the junction as a connection dot; its routing stays	Desenhar a peça em T c
 Draw wires in their colour	Desenhar os fios em sua cor
 Draw wires to the connection points facing its free arms	Desenhar fios até os pontos de conexão voltados para os seus braços livres
 Drawing	Desenho
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Desenha uma linha de definição de cabo; os fios que ela atravessa tornam-se veias do cabo (um novo cabo quando nenhum é informado)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Desenha um fio entre dois pontos de conexão, por exemplo, -K1:A1 até -S1:14 (#id:pin para os ambíguos, o nome para potenciais, 1, 2… para pontos sem designação)
 Draws a wire through two or more points	Desenha um fio por dois ou mais pontos
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Desenha os fios em sua cor nas páginas de esquema elétrico e na exportação PDF / SVG, ou em preto
@@ -255,7 +260,6 @@ Enclosures, panel items, accessories and panel macros	Gabinetes, itens do painel
 End brackets and end plates from the tech data of the terminal parts	Batentes finais e placas de fechamento a partir dos dados técnicos das peças de borne
 End holes from the bar end as a multiple of the width	Furos de extremidade a partir do fim da barra como múltiplo da largura
 End: device tag and connection point, e.g. -S1:14	Fim: identificador de dispositivo e ponto de conexão, por exemplo, -S1:14
-Engineering	Engenharia
 Face: plate, door, left, right, rear, roof or bottom	Face: plate, door, left, right, rear, roof ou bottom
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Plano de campo: nós, trechos, contornos, rotas, equipotencializações e acessórios
 Figure	Indicador
@@ -358,6 +362,7 @@ Key, e.g. user.coupling_relay	Chave, por exemplo, user.coupling_relay
 Key, e.g. user.customer_code	Chave, por exemplo, user.customer_code
 Keys of the routes, comma separated (all if missing)	Chaves das rotas, separadas por vírgula (todas, se ausente)
 Kind: machining, punching or busbar	Tipo: machining, punching ou busbar
+Known length of the cable in m (taken instead of the 3D route)	Comprimento conhecido do cabo em m (usado em vez da rota 3D)
 Label: terminal number, PLC address or potential name	Rótulo: número do borne, endereço de CLP ou nome do potencial
 Landscape (true) or portrait (false)	Paisagem (true) ou retrato (false)
 Language the project texts are written in, e.g. en	Idioma em que os textos do projeto são escritos, por exemplo, en
@@ -463,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Centro do arranjo FV na planta do edifício (no solo: na instalação), z em mm
 Milling feed, mm/min	Avanço de fresamento, mm/min
 Mirror the symbol	Espelhar o símbolo
+Mounting height above the floor in mm (default: that of the part)	Altura de montagem acima do piso em mm (padrão: a da peça)
 Mounting plate size as width and height; empty object restores the centred plate	Tamanho da placa de montagem como largura e altura; um objeto vazio restaura a placa centralizada
 Mounting size must contain a positive width and height	O tamanho de montagem deve conter largura e altura positivas
 Moves an air-termination rod, changes its height, renames or removes it	Move um captor tipo haste, altera a sua altura, renomeia-o ou remove-o
@@ -550,6 +556,7 @@ Nothing to copy: devices are placed once	Nada para copiar: os dispositivos são 
 Nothing to remove: {} {}	Nada a remover: {} {}
 Number of columns	Número de colunas
 Number of copies (default 1)	Número de cópias (padrão 1)
+Number of cores of the cable (default: 3, three-phase 5)	Número de veias do cabo (padrão: 3, trifásico 5)
 Number of equal bars	Número de barras iguais
 Number of indexed values (0 = a single value)	Número de valores indexados (0 = um único valor)
 Number of rows	Número de linhas
@@ -605,12 +612,14 @@ Paper width in mm (custom paper)	Largura do papel em mm (papel personalizado)
 Part lifecycle	Ciclo de vida da peça
 Part number of the accessory	Número da peça do acessório
 Part number of the base	Número da peça da base
+Part number of the cable	Número de peça do cabo
 Part number of the carrier (per metre)	Número de peça do suporte (por metro)
 Part number of the conductor (per metre)	Número de peça do condutor (por metro)
 Part number of the downstream device	Número de peça do dispositivo a jusante
 Part number of the hose / tube / pipe	Número da peça da mangueira / do tubo / da tubulação
 Part number of the upstream device	Número de peça do dispositivo a montante
 Part number, e.g. GEN.LMP-GN-24	Número da peça, p. ex. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Número de peça, p. ex. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Peça da sua fita, fio ou haste (vazio: genérica)
 Part of the conductor holders on the roof (empty: generic)	Peça dos suportes de condutor no telhado (vazio: genérica)
 Part of the conductor holders on the walls (empty: generic)	Peça dos suportes de condutor nas paredes (vazio: genérica)
@@ -684,6 +693,8 @@ Property and function definitions, property values and placement schemes	Defini�
 Property key	Chave da propriedade
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Chaves e valores de propriedades, por exemplo, {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Colocado antes dos números, por exemplo, W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Coloca um equipamento do esquema em um invólucro (na placa de montagem, em um trilho dela ou na porta): seu tamanho a partir de sua peça, encaixado em um trilho em que cabe; colocado antes em outro lugar, ele é movido
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Coloca uma tomada, um interruptor, uma luminária, um elemento de aquecimento, uma caixa de derivação ou uma caixa de ligação de aparelho para um dispositivo de proteção em uma sala em um ponto da instalação (uma luminária de teto no teto ali, todo o resto na parede mais próxima na sua altura de montagem; fora da sala no lado externo da sua parede mais próxima) e no esquema: um novo equipamento na página de instalação do circuito com um cabo do equipamento anterior ou do equipamento indicado; sem dispositivo de proteção apenas na sala (tomadas de dados e de antena, detectores de fumaça)
 Quantity per end (default 1)	Quantidade por extremidade (padrão 1)
 R/X ratio of the supply impedance	Relação R/X da impedância da alimentação
 Rack number	Número do rack
@@ -779,8 +790,8 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	Define o selo de todas as páginas que não escolhem um, ou das páginas de um tipo
 Sets the translation of a line of the project texts (empty removes it)	Define a tradução de uma linha dos textos do projeto (vazio a remove)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Define a cor do fio e a seção transversal das redes sem potencial definido (vazio = nenhuma)
+Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)	Define se um cabo que sai de um invólucro e não encontra prensa-cabo livre recebe um do seu tamanho: no teto para um dispositivo na sala, no fundo para o campo ou um invólucro pendurado na parede (ligado por padrão)
 Share of the capacity kept free in percent	Parcela da capacidade mantida livre em porcentagem
-Sheets	Folhas
 Shield connected at: both, first, second or none	Blindagem conectada em: both, first, second ou none
 Shift downwards in mm	Deslocamento para baixo em mm
 Shift to the right in mm	Deslocamento para a direita em mm
@@ -818,6 +829,7 @@ Smallest bend radius in mm	Menor raio de curvatura em mm
 Smallest distance in mm	Menor distância em mm
 Smallest distance of holes from the sheet edge	Menor distância dos furos à borda da chapa
 Smallest inner radius as a multiple of the thickness	Menor raio interno como múltiplo da espessura
+Smallest room kept, m² (default 1; kept with the floor plan)	Menor sala mantida, m² (padrão 1; guardado com a planta baixa)
 Smallest web at cutouts	Menor nervura em recortes
 Smallest web between holes	Menor nervura entre furos
 Spare terminals at the end of the strip	Bornes de reserva no fim da régua
@@ -889,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	A linha de um cruzament
 The message text, kept for the list of accepted messages	O texto da mensagem, mantido para a lista de mensagens aceitas
 The name must not be empty	O nome não pode ficar vazio
 The number of copies must be between 1 and 100	O número de cópias deve estar entre 1 e 100
+The number of cores must be from 1 to 60	O número de veias deve estar entre 1 e 60
 The plinth height must not be negative	A altura da base não pode ser negativa
 The plot frame {} is in use	A moldura de plotagem {} está em uso
 The plugin program did not answer within {} s and was stopped	O programa do plug-in não respondeu em {} s e foi interrompido
@@ -897,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	A rotação deve ser 0, 90, 180 ou 270
 The straight line of a crossing: vertical or horizontal (default vertical)	A linha reta de um cruzamento: vertical ou horizontal (padrão vertical)
 The text height must be at least 0.5 mm	A altura do texto deve ser de pelo menos 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Os dois braços de um canto, vertical e horizontal, p. ex. down left (padrão: conforme os fios no local, senão down right)
+The width factor must be from 0.1 to 10	O fator de largura deve estar entre 0,1 e 10
 The wire has no length	A ligação não tem comprimento
 The wire that jumps: vertical or horizontal	O fio que salta: vertical ou horizontal
 The wrap width must not be negative	A largura de quebra não pode ser negativa
@@ -995,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Em qual linh
 Who accepted it	Quem a aceitou
 Whole words only	Somente palavras inteiras
 Why the message is accepted	Por que a mensagem foi aceita
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Largura das letras em relação à sua largura habitual, 0,1 … 10 (0,8: letras estreitas; padrão 1)
 Width of the path in mm (default 50)	Largura do caminho em mm (padrão 50)
 Width, depth and height of a room are at least {} mm	Largura, profundidade e altura de uma sala são de pelo menos {} mm
 Width, height and depth of an enclosure are at least {} mm	Largura, altura e profundidade de um gabinete são de pelo menos {} mm
@@ -1067,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	z do pé da haste
 {} is a built-in frame; give the frame a new name	{} é uma moldura integrada; dê um novo nome à moldura
 {} is a built-in title block; give the title block a new name	{} é um selo integrado; dê um novo nome ao selo
 {} is a room already	{} já é uma sala
+{} is a room: use mount_on_wall	{} é uma sala: use mount_on_wall
 {} is ambiguous: use #id:pin	{} é ambíguo: use #id:pin
 {} is an enclosure already	{} já é um gabinete
 {} is not a connection point (TAG:PIN)	{} não é um ponto de conexão (TAG:PIN)

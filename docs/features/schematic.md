@@ -150,7 +150,9 @@ attached wire ends follow. Commands: `align_items`, `distribute_items`, `copy_it
 
 Free texts with rotation (0 … 359°, e.g. reading upwards along a terminal
 strip), left / centred / right alignment, a vertical anchor, word wrap at a set
-width, bold / italic / underline, a border and an opaque background, and a hyperlink
+width, a width factor of the letters (0.8: narrow lettering; drawn so on screen and in
+the SVG, PDF and DXF / DWG exports), bold / italic / underline, a border and an opaque
+background, and a hyperlink
 (Ctrl + click opens it; clickable in the PDF and SVG export). **Special texts** show
 project and page properties anywhere on a page: placeholders such as `{page}`,
 `{project}` or `{prop:Name}` (the same as in title blocks, Insert › Special text) are

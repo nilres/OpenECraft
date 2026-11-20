@@ -123,7 +123,9 @@ pub fn apply(prj: &mut Project, page: usize, id: u64) -> usize {
 }
 
 /// Adds a correctable definition line. A new cable is created only when the crossed
-/// wires have no conflicting assignments; its cores are numbered for the crossings.
+/// wires have no conflicting assignments, with the tag `cable` (the next free one when
+/// empty; the caller checks it with `ops::new_cable_problem`); its cores are numbered
+/// for the crossings.
 pub fn add(prj: &mut Project, page: usize, a: P, b: P, cable: &str) -> u64 {
     let preview = plan(prj, page, a, b, cable);
     let tag = if prj.cable(cable).is_some() || !preview.conflicts.is_empty() {
@@ -131,10 +133,12 @@ pub fn add(prj: &mut Project, page: usize, a: P, b: P, cable: &str) -> u64 {
     } else {
         let st = crate::structure::Dt::of_page(&prj.pages[page]).structure();
         let tag = crate::ops::add_cable(prj, &st);
+        let named = if cable.is_empty() { tag.clone() } else { cable.to_string() };
         if let Some(c) = prj.cables.iter_mut().find(|c| c.tag == tag) {
             c.cores = numbered_cores(preview.crossed.len().max(1), false);
+            c.tag = named.clone();
         }
-        tag
+        named
     };
     let id = prj.new_id();
     prj.pages[page].cable_defs.push(CableDef { id, a, b, cable: tag, shield: false });

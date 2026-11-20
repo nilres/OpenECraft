@@ -15,6 +15,7 @@ Additional power loss in W	Lisähäviöteho W:na
 Address scheme: siemens, iec or rockwell	Osoitemalli: siemens, iec tai rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Lisää aurinkopaneelikentän katolle: moduulirivejä kiskoilla ja kattokoukuilla lappeen suuntaisesti tai tasakatolla kallistettuna tai itä-länsi-suuntaisesti painotetuilla asennusjaloilla; ilman x:ää ja z:aa etu- tai oikean lappeen keskelle. Ilman rakennusta ja kattoa maa-asennettu kenttä tontille: kallistettujen pöytien rivejä lyöntipaaluilla, ilman x:ää ja z:aa laitoksessa olevien kohteiden eteen. Moduulit ja asennustarvikkeet menevät osaluetteloon
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Lisää taivutetun ja poratun kuparikiskon (tai korvaa samannimisen kiskon kotelossa)
+Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Lisää sopivan kokoisen kaapeliläpiviennin jokaiselle kotelosta lähtevälle kaapelille, joka ei löydä vapaata läpivientiä: kattoon huoneessa olevalle laitteelle, pohjaan kentälle tai seinällä riippuvalle kotelolle
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Lisää kaapelin läpivientiaukon oikeaan naapuriin: pyöreät aukot vastakkain molemmissa sivuseinissä; kotelojen väliset johdot kulkevat sen läpi
 Adds a configurator rule: insert a page macro when the condition holds	Lisää konfiguraattorin säännön: lisää sivumakro, kun ehto täyttyy
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Lisää reittiverkon solmun (haaroitus, läpivienti, kohta jossa saavutetaan kotelo tai laite)
@@ -81,7 +82,9 @@ Bus system name, e.g. PN/IE_1	Väyläjärjestelmän nimi, esim. PN/IE_1
 Busbar machine program (CSV)	Kiskontyöstökoneen ohjelma (CSV)
 CNC operations	CNC-työvaiheet
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	CNC-ohjelmat pora-, jyrsin- ja lävistyskoneille, kuparikiskojen taivutus, kotelokonfiguraattori, luovutus tuotantoon ja tuotannon palaute
+Cable tag (default: the next free -W)	Kaapelin tunnus (oletus: seuraava vapaa -W)
 Cable tag, e.g. -W1	Kaapelin tunnus, esim. -W1
+Cable type (default: NYM-J for its cores and cross-section)	Kaapelityyppi (oletus: NYM-J sen johtimille ja poikkipinta-alalle)
 Calibrates the time estimate of the machines from the actual times of the production feedback	Kalibroi koneiden aika-arvion tuotannon palautteen toteutuneista ajoista
 Cannot read the plugin folder {}	Laajennuskansiota {} ei voi lukea
 Cannot start {}: {}	Kohdetta {} ei voi käynnistää: {}
@@ -156,6 +159,7 @@ Cross section, e.g. 0.75 mm²	Poikkipinta-ala, esim. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Poikkipinta-ala, esim. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Poikkipinta-ala, esim. 1.5 mm² (tyhjä = potentiaalin määrityksestä)
 Cross-section in mm²	Poikkipinta-ala mm²
+Cross-section of the cable in mm² (default: for the protective device)	Kaapelin poikkipinta-ala mm² (oletus: suojalaitteen mukaan)
 Cross-section, e.g. 1.5 mm²	Poikkipinta-ala, esim. 1.5 mm²
 Current device tag	Nykyinen laitetunnus
 Customer rule set to add or replace (by name), as exported	Lisättävä tai korvattava asiakkaan sääntökokoelma (nimen mukaan) vietynä
@@ -193,6 +197,8 @@ Device description id of the head (list_device_descriptions)	Pääyksikön laite
 Device group {} already exists	Laiteryhmä {} on jo olemassa
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Laiteluettelo, osaluettelo, riviliitin-, pistoliitin-, kaapeli- ja yhteyskaaviot, PLC, potentiaalit, kaappi, fluidi, sähkö- ja kenttäraportit
 Device number on the bus	Laitenumero väylässä
+Device or junction box of the circuit the cable comes from (default: the device before it)	Ryhmän laite tai jakorasia, josta kaapeli tulee (oletus: edellinen laite)
+Device tag (default: the room, the letter code of the kind and the next number)	Laitteen tunnus (oletus: tila, lajin kirjaintunnus ja seuraava numero)
 Device tag of the CPU / bus coupler, e.g. -A0	CPU:n / väyläliittimen laitetunnus, esim. -A0
 Device tag of the end (both ends if missing)	Pään laitetunnus (puuttuessa molemmat päät)
 Device tag of the fluid device, e.g. -QM1	Fluidilaitteen laitetunnus, esim. -QM1
@@ -227,7 +233,6 @@ Draw the junction as a connection dot; its routing stays	Piirrä T-haara liitosp
 Draw wires in their colour	Piirrä johdot niiden värillä
 Draw wires to the connection points facing its free arms	Piirrä johtimet sen vapaita haaroja vastapäätä oleviin liitäntäpisteisiin
 Drawing	Piirustus
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Piirtää kaapelimääritysviivan; sen ristimistä johdoista tulee kaapelin johtimia (uusi kaapeli, jos kaapelia ei anneta)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Piirtää johdon kahden liitäntäpisteen välille, esim. -K1:A1 kohteeseen -S1:14 (#id:pin moniselitteisille, nimi potentiaaleille, 1, 2… pisteille ilman merkintää)
 Draws a wire through two or more points	Piirtää johdon kahden tai useamman pisteen kautta
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Piirtää johdot piirikaaviosivuilla ja PDF- / SVG-viennissä niiden värillä tai mustana
@@ -255,7 +260,6 @@ Enclosures, panel items, accessories and panel macros	Kotelot, asennusosat, tarv
 End brackets and end plates from the tech data of the terminal parts	Päätytuet ja päätylevyt riviliitinosien teknisistä tiedoista
 End holes from the bar end as a multiple of the width	Päätyreiät kiskon päästä leveyden monikertana
 End: device tag and connection point, e.g. -S1:14	Loppu: laitetunnus ja liitäntäpiste, esim. -S1:14
-Engineering	Suunnittelu
 Face: plate, door, left, right, rear, roof or bottom	Pinta: plate, door, left, right, rear, roof tai bottom
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Kenttäsuunnitelma: solmut, osuudet, ääriviivat, reitit, potentiaalintasaukset ja tarvikkeet
 Figure	Tunnusluku
@@ -358,6 +362,7 @@ Key, e.g. user.coupling_relay	Avain, esim. user.coupling_relay
 Key, e.g. user.customer_code	Avain, esim. user.customer_code
 Keys of the routes, comma separated (all if missing)	Reittien avaimet pilkuin erotettuina (kaikki, jos puuttuu)
 Kind: machining, punching or busbar	Laji: machining, punching tai busbar
+Known length of the cable in m (taken instead of the 3D route)	Kaapelin tunnettu pituus metreinä m (käytetään 3D-reitin sijaan)
 Label: terminal number, PLC address or potential name	Merkintä: riviliittimen numero, PLC-osoite tai potentiaalin nimi
 Landscape (true) or portrait (false)	Vaakasuunta (true) tai pystysuunta (false)
 Language the project texts are written in, e.g. en	Kieli, jolla projektin tekstit on kirjoitettu, esim. en
@@ -463,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Aurinkopaneelikentän keskikohta rakennuksen pohjapiirroksessa (maa-asennus: laitoksessa), z mm
 Milling feed, mm/min	Jyrsintäsyöttö, mm/min
 Mirror the symbol	Peilaa symboli
+Mounting height above the floor in mm (default: that of the part)	Asennuskorkeus lattiasta mm (oletus: osan oma)
 Mounting plate size as width and height; empty object restores the centred plate	Asennuslevyn koko leveytenä ja korkeutena; tyhjä objekti palauttaa keskitetyn levyn
 Mounting size must contain a positive width and height	Asennuskoon on sisällettävä positiivinen leveys ja korkeus
 Moves an air-termination rod, changes its height, renames or removes it	Siirtää ukkosenjohdatintankoa, muuttaa sen korkeutta, nimeää sen uudelleen tai poistaa sen
@@ -550,6 +556,7 @@ Nothing to copy: devices are placed once	Ei kopioitavaa: laitteet sijoitetaan va
 Nothing to remove: {} {}	Ei poistettavaa: {} {}
 Number of columns	Sarakkeiden määrä
 Number of copies (default 1)	Kopioiden määrä (oletus 1)
+Number of cores of the cable (default: 3, three-phase 5)	Kaapelin johdinten määrä (oletus: 3, kolmivaiheinen 5)
 Number of equal bars	Samanlaisten kiskojen määrä
 Number of indexed values (0 = a single value)	Indeksoitujen arvojen määrä (0 = yksi arvo)
 Number of rows	Rivien määrä
@@ -605,12 +612,14 @@ Paper width in mm (custom paper)	Paperin leveys millimetreinä (mukautettu paper
 Part lifecycle	Osan elinkaari
 Part number of the accessory	Lisävarusteen osanumero
 Part number of the base	Pohjalevyn osanumero
+Part number of the cable	Kaapelin osanumero
 Part number of the carrier (per metre)	Kannattimen osanumero (metriä kohden)
 Part number of the conductor (per metre)	Johtimen osanumero (metriä kohden)
 Part number of the downstream device	Jälkimmäisen laitteen osanumero
 Part number of the hose / tube / pipe	Letkun / putken / putkiston osanumero
 Part number of the upstream device	Edeltävän laitteen osanumero
 Part number, e.g. GEN.LMP-GN-24	Osanumero, esim. GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	Osanumero, esim. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	Sen lattaraudan, langan tai sauvan osa (tyhjä: yleinen)
 Part of the conductor holders on the roof (empty: generic)	Katon johdinpidikkeiden osa (tyhjä: yleinen)
 Part of the conductor holders on the walls (empty: generic)	Seinien johdinpidikkeiden osa (tyhjä: yleinen)
@@ -684,6 +693,8 @@ Property and function definitions, property values and placement schemes	Ominais
 Property key	Ominaisuusavain
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Ominaisuusavaimet ja arvot, esim. {\"device.rated_power\": \"5.5\"}
 Put in front of the numbers, e.g. W	Lisätään numeroiden eteen, esim. W
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	Sijoittaa kaavion laitteen koteloon (asennuslevylle, sen kiskolle tai oveen): koko sen osasta, napsautettuna kiskolle, johon se mahtuu; aiemmin muualle sijoitettu siirretään
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	Sijoittaa suojalaitteelle pistorasian, kytkimen, valaisimen, lämmitysvastuksen, jakorasian tai laitteen liitäntärasian tilaan laitoksen pisteeseen (kattovalaisin siellä kattoon, kaikki muu lähimpään seinään asennuskorkeudelleen; tilan ulkopuolella lähimmän seinän ulkopintaan) ja kaavioon: uusi laite ryhmän asennussivulle kaapelilla edellisestä laitteesta tai annetusta laitteesta; ilman suojalaitetta vain tilaan (data- ja antennirasiat, palovaroittimet)
 Quantity per end (default 1)	Määrä päätä kohden (oletus 1)
 R/X ratio of the supply impedance	Syöttöimpedanssin R/X-suhde
 Rack number	Telineen numero
@@ -779,8 +790,8 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	Asettaa nimiön kaikille sivuille, jotka eivät valitse omaa, tai yhden tyypin sivuille
 Sets the translation of a line of the project texts (empty removes it)	Asettaa projektin tekstien rivin käännöksen (tyhjä poistaa sen)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Asettaa johtovärin ja poikkipinta-alan verkoille, joilla ei ole määritettyä potentiaalia (tyhjä = ei mitään)
+Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)	Asettaa, saako kotelosta lähtevä kaapeli, joka ei löydä vapaata läpivientiä, kokoisensa läpiviennin: kattoon huoneessa olevalle laitteelle, pohjaan kentälle tai seinällä riippuvalle kotelolle (oletuksena päällä)
 Share of the capacity kept free in percent	Vapaaksi jätettävä kapasiteetin osuus prosentteina
-Sheets	Arkit
 Shield connected at: both, first, second or none	Suojavaippa kytketty: both, first, second tai none
 Shift downwards in mm	Siirto alas (mm)
 Shift to the right in mm	Siirto oikealle (mm)
@@ -818,6 +829,7 @@ Smallest bend radius in mm	Pienin taivutussäde millimetreinä
 Smallest distance in mm	Pienin etäisyys mm
 Smallest distance of holes from the sheet edge	Reikien pienin etäisyys levyn reunasta
 Smallest inner radius as a multiple of the thickness	Pienin sisäsäde paksuuden monikertana
+Smallest room kept, m² (default 1; kept with the floor plan)	Pienin säilytettävä tila, m² (oletus 1; tallennetaan pohjapiirroksen kanssa)
 Smallest web at cutouts	Pienin kannas aukkojen kohdalla
 Smallest web between holes	Pienin kannas reikien välissä
 Spare terminals at the end of the strip	Varariviliittimet riman lopussa
@@ -889,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	Risteyksen linja on ver
 The message text, kept for the list of accepted messages	Ilmoituksen teksti, säilytetään hyväksyttyjen ilmoitusten luetteloa varten
 The name must not be empty	Nimi ei saa olla tyhjä
 The number of copies must be between 1 and 100	Kopioiden määrän on oltava välillä 1 ja 100
+The number of cores must be from 1 to 60	Johdinten määrän on oltava 1–60
 The plinth height must not be negative	Sokkelin korkeus ei saa olla negatiivinen
 The plot frame {} is in use	Piirustuskehys {} on käytössä
 The plugin program did not answer within {} s and was stopped	Laajennusohjelma ei vastannut {} sekunnissa, ja se pysäytettiin
@@ -897,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	Kierron on oltava 0, 90, 180 tai 270
 The straight line of a crossing: vertical or horizontal (default vertical)	Risteyksen suora linja: vertical tai horizontal (oletus vertical)
 The text height must be at least 0.5 mm	Tekstin korkeuden on oltava vähintään 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Kulman kaksi haaraa, pysty ja vaaka, esim. down left (oletus: paikan johtimien mukaan, muuten down right)
+The width factor must be from 0.1 to 10	Leveyskertoimen on oltava 0,1–10
 The wire has no length	Yhteydellä ei ole pituutta
 The wire that jumps: vertical or horizontal	Hyppäävä johdin: vertical tai horizontal
 The wrap width must not be negative	Rivityksen leveys ei saa olla negatiivinen
@@ -995,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	Millä rivil
 Who accepted it	Kuka sen hyväksyi
 Whole words only	Vain kokonaiset sanat
 Why the message is accepted	Miksi ilmoitus on hyväksytty
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	Kirjainten leveys suhteessa niiden tavalliseen leveyteen, 0,1 … 10 (0,8: kapea teksti; oletus 1)
 Width of the path in mm (default 50)	Polun leveys millimetreinä (oletus 50)
 Width, depth and height of a room are at least {} mm	Tilan leveys, syvyys ja korkeus ovat vähintään {} mm
 Width, height and depth of an enclosure are at least {} mm	Kotelon leveys, korkeus ja syvyys ovat vähintään {} mm
@@ -1067,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	Tangon jalan z ra
 {} is a built-in frame; give the frame a new name	{} on sisäinen kehys; anna kehykselle uusi nimi
 {} is a built-in title block; give the title block a new name	{} on sisäänrakennettu nimiö; anna nimiölle uusi nimi
 {} is a room already	{} on jo tila
+{} is a room: use mount_on_wall	{} on tila: käytä mount_on_wall
 {} is ambiguous: use #id:pin	{} on moniselitteinen: käytä muotoa #id:pin
 {} is an enclosure already	{} on jo kotelo
 {} is not a connection point (TAG:PIN)	{} ei ole liitäntäpiste (TUNNUS:NASTA)

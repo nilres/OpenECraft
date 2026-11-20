@@ -158,6 +158,11 @@ impl Electrical {
     }
 }
 
+/// The net named `name` is a potential of the supply (L, N, PE …), not a net of its own.
+pub fn is_supply_potential(prj: &Project, name: &str) -> bool {
+    net_kind(prj, name) != PotentialKind::Other
+}
+
 /// Kind of the potential of a net: as defined, otherwise from its name (L1, N, PE …).
 pub fn net_kind(prj: &Project, name: &str) -> PotentialKind {
     if let Some(d) = prj.potential(name) {
@@ -303,23 +308,52 @@ fn gather(prj: &Project, nl: &Netlist) -> Vec<Feed> {
     out
 }
 
-/// Sets the device upstream of each feed and the residual current device protecting it.
+/// The nets of the line side (odd designation numbers) and of the load side (even ones)
+/// of the symbols of device `tag` on the schematic pages.
+fn sides(prj: &Project, nl: &Netlist, tag: &str) -> (BTreeSet<usize>, BTreeSet<usize>) {
+    let (mut line, mut load) = (BTreeSet::new(), BTreeSet::new());
+    for s in prj.pages.iter().filter(|p| p.kind == PageKind::Schematic).flat_map(|p| p.symbols.iter()).filter(|s| s.tag == tag) {
+        for i in 0..s.pins.len() {
+            let (Some(d), Some(&n)) = (designation_number(s, i), nl.pin_net.get(&(s.id, i))) else { continue };
+            if d % 2 == 1 { line.insert(n) } else { load.insert(n) };
+        }
+    }
+    (line, load)
+}
+
+/// Sets the device upstream of each feed and the residual current device protecting it:
+/// one right before it (its load side on the line side of the feed), or one right after
+/// it that takes all of its load (nothing else on its outgoing nets); a feed without one
+/// is protected by that of the feed upstream. A residual current device behind a feed
+/// that also feeds other circuits past it protects only the circuits behind it.
 fn link(prj: &Project, nl: &Netlist, feeds: &mut [Feed]) {
-    let rcds: Vec<(String, BTreeSet<usize>)> = prj
+    let mut tags: Vec<String> = prj
         .pages
         .iter()
         .filter(|p| p.kind == PageKind::Schematic)
         .flat_map(|p| p.symbols.iter())
         .filter(|s| kind_of_symbol(&s.sym) == Some(FnKind::ResidualCurrent) && !s.tag.is_empty())
-        .map(|s| {
-            let load = (0..s.pins.len()).filter(|&i| designation_number(s, i).is_some_and(|d| d % 2 == 0));
-            (s.tag.clone(), load.filter_map(|i| nl.pin_net.get(&(s.id, i)).copied()).collect())
-        })
+        .map(|s| s.tag.clone())
         .collect();
+    tags.dedup();
+    let rcds: Vec<(String, BTreeSet<usize>, BTreeSet<usize>)> = tags.into_iter().map(|t| {
+        let (line, load) = sides(prj, nl, &t);
+        (t, line, load)
+    }).collect();
+    // Only the feed itself and `rcd` on the nets.
+    let alone = |nets: &BTreeSet<usize>, own: &str, rcd: &str| {
+        nets.iter().filter_map(|&n| nl.nets.get(n)).flat_map(|net| net.pins.iter()).all(|p| {
+            let s = &prj.pages[p.page].symbols[p.sym];
+            s.tag.is_empty() || s.tag == own || s.tag == rcd
+        })
+    };
     for i in 0..feeds.len() {
         feeds[i].parent = (0..feeds.len()).find(|&j| j != i && !feeds[j].nets.is_disjoint(&feeds[i].line));
         let c = &feeds[i];
-        feeds[i].rcd = rcds.iter().find(|(_, nets)| !nets.is_disjoint(&c.line) || !nets.is_disjoint(&c.nets)).map(|(tag, _)| tag.clone());
+        let out = sides(prj, nl, &c.device).1;
+        let before = rcds.iter().find(|(_, _, load)| !load.is_disjoint(&c.line));
+        let after = || rcds.iter().find(|(tag, line, _)| !line.is_disjoint(&out) && alone(&out, &c.device, tag));
+        feeds[i].rcd = before.or_else(after).map(|r| r.0.clone());
     }
     // A residual current device upstream protects the devices below it.
     for i in 0..feeds.len() {

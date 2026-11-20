@@ -151,6 +151,9 @@ impl Draw for DxfDraw {
         // Cap height of the SVG / screen text (font size 1.25 × size); `%%u` underlines.
         let shown = format!("{}{}", if st.underline { "%%u" } else { "" }, dxf_text(text));
         let _ = write!(self.out, "40\n{:.3}\n1\n{}\n", st.size * 0.9, shown);
+        if st.width != 1.0 {
+            let _ = write!(self.out, "41\n{:.3}\n", st.width);
+        }
         if st.angle != 0.0 {
             let _ = write!(self.out, "50\n{:.3}\n", st.angle);
         }

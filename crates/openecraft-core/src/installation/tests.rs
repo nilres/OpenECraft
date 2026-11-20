@@ -41,6 +41,295 @@ fn parts_are_sockets_switches_or_lights() {
     assert!(cat.iter().filter(|p| p.number.starts_with("GEN.LAMP-")).all(|p| p.wall_mountable()));
     assert!(on_ceiling(cat.iter().find(|p| p.number == "GEN.LAMP-DOWNLIGHT-LED").unwrap()));
     assert!(!on_ceiling(cat.iter().find(|p| p.number == "GEN.LAMP-WALL-LED").unwrap()));
+    // Heating elements of rooms, not of cabinets; every kind has its generic part.
+    assert_eq!(kind("GEN.HEATER-PANEL-1000"), Some(Kind::Heater));
+    assert_eq!(kind("GEN.HEATER-TOWEL-500"), Some(Kind::Heater));
+    assert_eq!(kind("GEN.HEATER-IR-600"), Some(Kind::Heater));
+    assert!(on_ceiling(cat.iter().find(|p| p.number == "GEN.HEATER-IR-600").unwrap()));
+    assert_eq!(kind("GEN.HEATER-100W"), None);
+    for k in Kind::ALL {
+        assert_eq!(kind(k.default_part()), Some(k), "{k:?}");
+    }
+}
+
+/// Puts a symbol on page `page` (its pins as the symbol defines them).
+fn sym(prj: &mut Project, page: usize, key: &str, at: P, tag: &str, text: &str) {
+    let def = prj.symbol(key).unwrap();
+    let id = prj.new_id();
+    let pins = def.pins.iter().map(|x| x.label.to_string()).collect();
+    prj.pages[page].symbols.push(crate::model::SymbolInst { id, sym: key.into(), pos: at, tag: tag.into(), function_text: text.into(), pins, ..Default::default() });
+}
+
+fn wire(prj: &mut Project, page: usize, a: P, b: P) {
+    let id = prj.new_id();
+    prj.pages[page].wires.push(crate::model::Wire { id, a, b, ..Default::default() });
+}
+
+/// A 1-pole breaker `tag` of 10 A at `x` of the infeed page (fed from L1 at the top),
+/// its outgoing wire down to `to`.
+fn breaker(prj: &mut Project, page: usize, x: f32, tag: &str, text: &str, to: f32) {
+    sym(prj, page, "cb1", p(x, 80.0), tag, text);
+    wire(prj, page, p(x, 24.0), p(x, 76.0));
+    wire(prj, page, p(x, 84.0), p(x, to));
+    prj.devices.insert(tag.into(), crate::model::DeviceData { parts: vec![crate::parts::PartRef { number: "GEN.MCB-1P-B10".into(), ..Default::default() }], ..Default::default() });
+}
+
+/// The electrical room with three more circuits in the schematic: -F5 a socket outlet
+/// (no part), -F6 a light behind its switch, -F7 a heating element.
+fn with_schematic() -> (Project, usize) {
+    let (mut prj, ri) = room();
+    let page = prj.pages.iter().position(|p| p.function == "SUP" && p.kind == crate::model::PageKind::Schematic).unwrap();
+    breaker(&mut prj, page, 200.0, "=SUP+CAB1-F5", "Kitchen sockets", 180.0);
+    sym(&mut prj, page, "socket", p(200.0, 184.0), "+ER1-XD7", "Worktop");
+    breaker(&mut prj, page, 260.0, "=SUP+CAB1-F6", "", 116.0);
+    sym(&mut prj, page, "no", p(260.0, 120.0), "+ER1-SF3", "");
+    wire(&mut prj, page, p(260.0, 124.0), p(260.0, 146.0));
+    sym(&mut prj, page, "lamp", p(260.0, 150.0), "+ER1-EA3", "Ceiling");
+    breaker(&mut prj, page, 320.0, "=SUP+CAB1-F7", "Heating", 116.0);
+    sym(&mut prj, page, "heater", p(320.0, 120.0), "+ER1-EB1", "");
+    (prj, ri)
+}
+
+fn schematic(prj: &Project) -> Vec<Circuit> {
+    let (nl, open) = (Netlist::build(prj, true), Netlist::build(prj, false));
+    circuits(prj, &nl, &crate::netlist::connections(prj, &nl, &open), None)
+}
+
+/// The protective device of the service socket of the electrical room.
+fn f2(prj: &Project) -> String {
+    breakers(prj, &Netlist::build(prj, true)).into_iter().find(|b| b.tag.ends_with("-F2")).unwrap().tag
+}
+
+#[test]
+fn devices_of_the_circuits_of_the_schematic() {
+    let (prj, _) = with_schematic();
+    let list = schematic(&prj);
+    let of = |b: &str| list.iter().find(|c| c.breaker.ends_with(b)).unwrap_or_else(|| panic!("{b}: {list:?}"));
+    let f5 = of("-F5");
+    assert_eq!(f5.text, "Kitchen sockets");
+    assert_eq!(f5.devices.iter().map(|d| (d.tag.as_str(), d.kind, d.part.clone(), d.placed)).collect::<Vec<_>>(), vec![("+ER1-XD7", Kind::Socket, None, None)]);
+    // Through the switch to the light.
+    let f6 = of("-F6");
+    assert_eq!(f6.devices.iter().map(|d| (d.tag.as_str(), d.kind)).collect::<Vec<_>>(), vec![("+ER1-SF3", Kind::Switch), ("+ER1-EA3", Kind::Light)]);
+    assert_eq!(of("-F7").devices[0].kind, Kind::Heater);
+    // The rail socket of -F2 has a part for cabinets: no device of the installation.
+    assert!(!list.iter().any(|c| c.breaker.ends_with("-F2")), "{list:?}");
+    assert!(list.iter().all(|c| c.placed() == 0 && c.page.is_none()));
+    // Their protective devices are placed in no distribution board yet.
+    assert!(list.iter().all(|c| c.board.is_none()));
+}
+
+#[test]
+fn devices_of_the_schematic_are_placed() {
+    let (mut prj, ri) = with_schematic();
+    let sc = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F5")).unwrap();
+    let q = before_wall(&prj, ri, 0, 300.0);
+    let id = place_device(&mut prj, &sc, "+ER1-XD7", ri, "", q).unwrap();
+    let it = prj.layout.enclosures[ri].item(id).unwrap().clone();
+    assert_eq!((it.kind, it.tag.as_str(), it.part.as_str(), it.face), (ItemKind::Device, "+ER1-XD7", "GEN.SOCKET-F-UP", Face::Wall(0)));
+    assert_eq!(prj.devices["+ER1-XD7"].parts[0].number, "GEN.SOCKET-F-UP");
+    let sc = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F5")).unwrap();
+    assert_eq!(sc.placed(), 1);
+    assert!(sc.has_item(id));
+    // Placed again: it moves.
+    let q = before_wall(&prj, ri, 1, 300.0);
+    let moved = place_device(&mut prj, &sc, "+ER1-XD7", ri, "", q).unwrap();
+    assert!(prj.layout.enclosures[ri].item(id).is_none());
+    assert_eq!(prj.layout.enclosures[ri].items.iter().filter(|i| i.tag == "+ER1-XD7").count(), 1);
+    assert_eq!(prj.layout.enclosures[ri].item(moved).unwrap().face, Face::Wall(1));
+    // A heating element with the generic part of its kind; a part of another kind is refused.
+    let f7 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F7")).unwrap();
+    let q = before_wall(&prj, ri, 2, 300.0);
+    assert!(place_device(&mut prj, &f7, "+ER1-EB1", ri, "GEN.SOCKET-F-UP", q).unwrap_err().contains("+ER1-EB1"));
+    let h = place_device(&mut prj, &f7, "+ER1-EB1", ri, "", q).unwrap();
+    let poses = panel::site_poses(&prj);
+    let hp = placed(&prj, &poses, ri, prj.layout.enclosures[ri].item(h).unwrap()).unwrap();
+    assert_eq!((hp.kind, hp.part.as_str()), (Kind::Heater, "GEN.HEATER-PANEL-1000"));
+    assert!((hp.height - 400.0).abs() < 5.0, "{}", hp.height);
+    assert!(place_device(&mut prj, &f7, "+ER1-XD7", ri, "", q).is_err(), "not a device of -F7");
+    // The connection of the socket outlet to its protective device: no length while
+    // the protective device is placed in no distribution board.
+    let f5 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F5")).unwrap();
+    let l = &f5.legs[0];
+    assert_eq!((l.from.as_str(), l.to.as_str(), l.cable.as_str(), l.routed, l.length), (f5.breaker.as_str(), "+ER1-XD7", "", false, None));
+}
+
+#[test]
+fn what_was_placed_becomes_the_device_of_the_schematic() {
+    let (mut prj, ri) = with_schematic();
+    let light = { let q = inside(&prj, ri, 0.4, 0.4); place(&mut prj, ri, "GEN.LAMP-CEILING-LED", q) }.unwrap();
+    let sw = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SW-ONOFF-UP", q) }.unwrap();
+    let f6 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F6")).unwrap();
+    assert!(link_device(&mut prj, &f6, "+ER1-SF3", light).is_err(), "a light is no switch");
+    link_device(&mut prj, &f6, "+ER1-EA3", light).unwrap();
+    link_device(&mut prj, &f6, "+ER1-SF3", sw).unwrap();
+    let it = prj.layout.enclosures[ri].item(light).unwrap();
+    assert_eq!((it.kind, it.tag.as_str()), (ItemKind::Device, "+ER1-EA3"));
+    assert_eq!(prj.devices["+ER1-EA3"].parts[0].number, "GEN.LAMP-CEILING-LED");
+    // A device item of another tag stays what it is.
+    assert!(link_device(&mut prj, &f6, "+ER1-SF3", light).is_err());
+    let f6 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F6")).unwrap();
+    assert_eq!(f6.placed(), 2);
+    assert_eq!(f6.devices[1].part.as_deref(), Some("GEN.LAMP-CEILING-LED"));
+    // Through the switch to the light.
+    assert_eq!(f6.legs.iter().map(|l| (l.from.as_str(), l.to.as_str())).collect::<Vec<_>>(), vec![(f6.breaker.as_str(), "+ER1-SF3"), ("+ER1-SF3", "+ER1-EA3")]);
+}
+
+#[test]
+fn lights_of_the_manufacturer_catalogs_are_placed_and_go_into_the_project() {
+    let (mut prj, ri) = with_schematic();
+    assert!(bundled_parts().iter().any(|p| p.number == "SIG.32581100"));
+    assert!(!prj.parts.iter().any(|p| p.number == "SIG.32581100"));
+    let q = inside(&prj, ri, 0.3, 0.6);
+    let id = place(&mut prj, ri, "SIG.32581100", q).unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().face, Face::Roof);
+    assert_eq!(prj.parts.iter().filter(|p| p.number == "SIG.32581100").count(), 1);
+    // A device of the schematic placed with it takes it as its part.
+    let f6 = schematic(&prj).into_iter().find(|c| c.breaker.ends_with("-F6")).unwrap();
+    let q = inside(&prj, ri, 0.6, 0.6);
+    let lamp = place_device(&mut prj, &f6, "+ER1-EA3", ri, "LDV.4058075110144", q).unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(lamp).unwrap().part, "LDV.4058075110144");
+    assert_eq!(prj.devices["+ER1-EA3"].parts[0].number, "LDV.4058075110144");
+    assert!(place_device(&mut prj, &f6, "+ER1-SF3", ri, "LDV.4058075110144", q).is_err(), "a light is no switch");
+}
+
+/// The electrical room with socket outlets on two walls, a switch with a light and a
+/// heating element put in for -F2: they go into the schematic.
+fn with_devices() -> (Project, usize, String, Vec<String>) {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let mut tags = Vec::new();
+    for (part, q) in [
+        ("GEN.SOCKET-F-UP", before_wall(&prj, ri, 0, 200.0)),
+        ("GEN.SOCKET-F-2X-UP", before_wall(&prj, ri, 1, 200.0)),
+        ("GEN.SW-ONOFF-UP", before_wall(&prj, ri, 2, 200.0)),
+        ("GEN.LAMP-CEILING-LED", inside(&prj, ri, 0.5, 0.3)),
+        ("GEN.HEATER-PANEL-1000", before_wall(&prj, ri, 5, 200.0)),
+    ] {
+        tags.push(add_device(&mut prj, &f2, part, ri, q, &Options::default()).unwrap_or_else(|e| panic!("{part}: {e}")));
+    }
+    (prj, ri, f2, tags)
+}
+
+#[test]
+fn devices_put_in_for_a_protective_device_go_into_the_schematic() {
+    let (prj, ri, f2, tags) = with_devices();
+    let room = prj.layout.enclosures[ri].name.clone();
+    assert_eq!(tags, ["XD1", "XD2", "SF1", "EA1", "EB1"].map(|t| format!("{room}-{t}")));
+    // Each is a device with its part, placed in the room.
+    for t in &tags {
+        assert!(placed_in_room(&prj, t).is_some_and(|p| p.0 == ri), "{t}");
+        assert_eq!(prj.devices[t].parts.len(), 1, "{t}");
+    }
+    // Drawn on the installation page of -F2, after the page of -F2, which points to it.
+    let c = schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap();
+    let page = c.page.expect("installation page");
+    let at = prj.pages.iter().position(|pg| pg.symbols.iter().any(|s| s.tag == f2 && crate::sizing::is_protective(&s.sym))).unwrap();
+    assert_eq!(page, at + 1);
+    assert_eq!(prj.pages[page].kind, crate::model::PageKind::Schematic);
+    assert_eq!(prj.pages[at].symbols.iter().filter(|s| s.sym == "intr" && s.label == "L-F2").count(), 1, "one interruption point at -F2");
+    let syms: Vec<(&str, &str)> = prj.pages[page].symbols.iter().filter(|s| !s.tag.is_empty()).map(|s| (s.tag.as_str(), s.sym.as_str())).collect();
+    assert_eq!(syms.len(), 5, "{syms:?}");
+    assert!(syms.contains(&(tags[0].as_str(), "socket")) && syms.contains(&(tags[3].as_str(), "luminaire")) && syms.contains(&(tags[4].as_str(), "heater")), "{syms:?}");
+    // In the circuit of -F2, all placed.
+    let kinds: Vec<(&str, Kind)> = c.devices.iter().map(|d| (d.tag.as_str(), d.kind)).collect();
+    for (t, k) in tags.iter().zip([Kind::Socket, Kind::Socket, Kind::Switch, Kind::Light, Kind::Heater]) {
+        assert!(kinds.contains(&(t.as_str(), k)), "{t}: {kinds:?}");
+    }
+    assert_eq!(c.placed(), 5);
+    // A cable for each, from the protective device to the first, then from device to
+    // device; the light behind the switch.
+    // (The service socket drawn behind -F2 before has a wire of its own from it.)
+    let legs: Vec<(&str, &str)> = c.legs.iter().map(|l| (l.from.as_str(), l.to.as_str())).collect();
+    assert!(legs.contains(&(f2.as_str(), "=SUP+ER1-X2")) && legs.contains(&(f2.as_str(), tags[0].as_str())), "{legs:?}");
+    assert!(legs.contains(&(tags[0].as_str(), tags[1].as_str())) && legs.contains(&(tags[2].as_str(), tags[3].as_str())), "{legs:?}");
+    let cables = c.cables();
+    assert_eq!(cables.len(), 5, "{:?}", c.legs);
+    // Thick enough for the 16 A of the socket outlets.
+    for t in cables {
+        let cable = prj.cables.iter().find(|x| x.tag == t).unwrap();
+        let mm2 = mm2_of(&cable.cross_section).unwrap();
+        assert_eq!(cable.cable_type, format!("{CABLE_TYPE}{mm2}"));
+        assert!(crate::sizing::capacity(&prj, mm2).unwrap() >= 16.0, "{mm2}");
+    }
+    // Each cable runs between the two devices of its leg.
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    for l in c.legs.iter().filter(|l| !l.cable.is_empty()) {
+        let cable = prj.cables.iter().find(|x| x.tag == l.cable).unwrap();
+        let cores: Vec<&crate::netlist::Connection> = conns.iter().filter(|x| x.cable == l.cable).collect();
+        let ends = crate::routing3d::cable_end_tags(&prj, cable, &cores).unwrap();
+        assert!(ends == (l.from.clone(), l.to.clone()) || ends == (l.to.clone(), l.from.clone()), "{}: {ends:?} {l:?}", l.cable);
+    }
+}
+
+#[test]
+fn devices_put_in_again_keep_their_cables() {
+    let (mut prj, ri, f2, tags) = with_devices();
+    let before = schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap();
+    let q = before_wall(&prj, ri, 0, 200.0);
+    let t = add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap();
+    let room = prj.layout.enclosures[ri].name.clone();
+    assert_eq!(t, format!("{room}-XD3"));
+    let after = schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap();
+    assert_eq!(after.page, before.page);
+    assert_eq!(after.devices.len(), 6);
+    for l in &before.legs {
+        assert!(after.legs.iter().any(|a| a.to == l.to && a.cable == l.cable), "{l:?} {:?}", after.legs);
+    }
+    // Still one interruption point at the protective device.
+    let at = prj.pages.iter().position(|pg| pg.symbols.iter().any(|s| s.tag == f2 && crate::sizing::is_protective(&s.sym))).unwrap();
+    assert_eq!(prj.pages[at].symbols.iter().filter(|s| s.sym == "intr" && s.label == "L-F2").count(), 1);
+    // Not for a device that is no protective device of a final circuit, nor a part of
+    // the installation.
+    let q = before_wall(&prj, ri, 0, 200.0);
+    assert!(add_device(&mut prj, "-NOPE", "GEN.SOCKET-F-UP", ri, q, &Options::default()).is_err());
+    assert!(add_device(&mut prj, &f2, "GEN.MCB-1P-B10", ri, q, &Options::default()).is_err());
+    assert!(tags.iter().all(|t| prj.layout.find_device(t).is_some()));
+}
+
+#[test]
+fn the_installation_adds_no_problems() {
+    let (prj, _) = room();
+    let key = |i: &Issue| i.message();
+    let count = |prj: &Project| -> Vec<String> {
+        let an = crate::reports::Analysis::checked(prj);
+        an.issues.iter().filter(|i| i.severity != Severity::Info).map(key).collect()
+    };
+    let before = count(&prj);
+    let (prj, ..) = with_devices();
+    let after = count(&prj);
+    let new: Vec<&String> = after.iter().filter(|m| !before.contains(m)).collect();
+    assert!(new.is_empty(), "{new:?}");
+}
+
+#[test]
+fn lengths_come_from_the_3d_routing() {
+    let (mut prj, _, f2, _) = with_devices();
+    let an = crate::analysis::Analysis::build(&prj);
+    let list = circuits(&prj, &an.netlist, &an.connections, Some(&|k: &str| an.routing.routed_length(k)));
+    let c = list.iter().find(|c| c.breaker == f2).unwrap();
+    let routed: Vec<&Leg> = c.legs.iter().filter(|l| l.routed).collect();
+    assert!(!routed.is_empty(), "{:?} {:?}", c.legs, an.routing.items.iter().map(|i| (i.key.clone(), i.status_text())).collect::<Vec<_>>());
+    for l in &routed {
+        let item = an.routing.item(&l.cable).unwrap();
+        assert!((l.length.unwrap() - item.length / 1000.0).abs() < 1e-4);
+    }
+    // The cable list gets the lengths.
+    assert_eq!(write_cables(&mut prj, &list), c.legs.iter().filter(|l| l.length.is_some() && !l.cable.is_empty()).count());
+    let first = &routed[0];
+    let cable = prj.cables.iter().find(|x| x.tag == first.cable).unwrap();
+    assert_eq!(cable.length, (first.length.unwrap() * 2.0).ceil() / 2.0);
+}
+
+#[test]
+fn heating_elements_in_the_schematic() {
+    let (prj, ri, _, tags) = with_devices();
+    let poses = panel::site_poses(&prj);
+    let all = items(&prj, &poses);
+    let heater = all.iter().find(|p| p.tag == tags[4]).unwrap();
+    assert_eq!((heater.kind, heater.room), (Kind::Heater, ri));
+    assert!(prj.pages.iter().any(|pg| pg.symbols.iter().any(|s| s.sym == "heater" && s.tag == tags[4])));
 }
 
 #[test]
@@ -69,6 +358,23 @@ fn items_go_on_the_nearest_wall_or_the_ceiling() {
 }
 
 #[test]
+fn a_point_on_the_wall_belongs_to_the_room() {
+    // Clicked on the surface of a wall in the 3D view, a hair outside the outline: on the
+    // wall in the room; beyond the wall: on its outside.
+    let (mut prj, ri) = room();
+    let t = prj.layout.enclosures[ri].wall();
+    for off in [0.0, -2.0, -0.4 * t] {
+        let id = { let q = before_wall(&prj, ri, 0, off); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
+        assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().face, Face::Wall(0), "{off}");
+    }
+    let id = { let q = before_wall(&prj, ri, 0, -t - 30.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().face, Face::Outside(0));
+    // A ceiling light clicked at the edge of the ceiling stays on the ceiling.
+    let id = { let q = before_wall(&prj, ri, 0, -1.0); place(&mut prj, ri, "GEN.LAMP-CEILING-LED", q) }.unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().face, Face::Roof);
+}
+
+#[test]
 fn legs_run_in_the_installation_zones() {
     let a = RunPoint { at: [0.0, 0.0], height: 300.0, floor: 0.0, zone: 2200.0 };
     let b = RunPoint { at: [3000.0, 1000.0], height: 300.0, floor: 0.0, zone: 2200.0 };
@@ -80,85 +386,50 @@ fn legs_run_in_the_installation_zones() {
 }
 
 #[test]
-fn circuits_from_a_breaker_to_their_items() {
-    let (mut prj, ri) = room();
-    let nl = Netlist::build(&prj, false);
+fn circuits_from_a_breaker_to_their_devices() {
+    let (prj, _) = room();
+    let nl = Netlist::build(&prj, true);
     let list = breakers(&prj, &nl);
     let f2 = list.iter().find(|b| b.tag.ends_with("-F2")).unwrap_or_else(|| panic!("{list:?}"));
-    assert_eq!(f2.rated, 10.0);
+    assert_eq!((f2.rated, f2.text.as_str()), (10.0, "Service socket"));
     assert!(!f2.spare, "the service socket is behind it");
-    let tag = f2.tag.clone();
-    let s1 = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
-    let s2 = { let q = before_wall(&prj, ri, 1, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-2X-UP", q) }.unwrap();
-    let id = add_circuit(&mut prj, "", &tag, false).unwrap();
-    assert_eq!(prj.layout.circuits[0].name, tr_fmt!("Circuit {}", 1));
-    let first = prj.layout.circuits[0].name.clone();
-    assert!(add_circuit(&mut prj, &first, "", false).is_err());
-    connect(&mut prj, 0, s1).unwrap();
-    connect(&mut prj, 0, s2).unwrap();
-    assert!(connect(&mut prj, 0, 999_999).is_err());
-    prj.layout.circuits[0].cos_phi = 1.0;
-    let r = &runs(&prj, &Supply::default())[0];
-    assert_eq!(r.circuit, id);
-    assert!(r.from_board);
-    assert_eq!(r.items, vec![s1, s2]);
-    assert!(r.length > 2.0 && r.length < 40.0, "{}", r.length);
-    // 10 A over the length of 1.5 mm² copper, single-phase.
-    assert_eq!((r.rated, r.current), (Some(10.0), Some(10.0)));
+    let (prj, _, tag, _) = with_devices();
+    let c = schematic(&prj).into_iter().find(|c| c.breaker == tag).unwrap();
+    let r = run(&prj, &Supply::default(), &c);
+    assert!(r.length > 2.0 && r.length < 80.0, "{}", r.length);
+    assert!(!r.routed, "estimated");
+    // 10 A over the connections of 1.5 mm² copper to the farthest device, single-phase.
+    assert_eq!((r.rated, r.current, r.mm2), (Some(10.0), Some(10.0), Some(1.5)));
     let (du, pct) = r.drop.unwrap();
-    let expect = 2.0 * 10.0 * r.length * prj.electrical.conditions.rho_hot() / 1.5;
-    assert!((du - expect).abs() < 1e-3 && (pct - du / r.voltage * 100.0).abs() < 1e-3);
+    let longest = 2.0 * 10.0 * r.length * prj.electrical.conditions.rho_hot() / 1.5;
+    assert!(du > 0.0 && du <= longest * (DEFAULT_COS_PHI + 0.1), "{du} {longest}");
+    assert!((pct - du / r.voltage * 100.0).abs() < 1e-3);
     assert!((r.voltage - 230.94).abs() < 0.1);
-    // A load given: its current.
-    prj.layout.circuits[0].load = 2300.0;
-    assert!((runs(&prj, &Supply::default())[0].current.unwrap() - 2300.0 / r.voltage).abs() < 1e-3);
-    // The breaker now has a circuit; an item moves to another circuit.
-    let nl = Netlist::build(&prj, false);
-    assert_eq!(breakers(&prj, &nl).iter().find(|b| b.tag == tag).unwrap().circuit.as_deref(), Some(prj.layout.circuits[0].name.as_str()));
-    add_circuit(&mut prj, "Kitchen", "", false).unwrap();
-    connect(&mut prj, 1, s2).unwrap();
-    assert_eq!((circuit_of(&prj, s1), circuit_of(&prj, s2)), (Some(0), Some(1)));
 }
 
 #[test]
-fn checks_and_cables() {
-    let (mut prj, ri) = room();
-    let tag = {
-        let nl = Netlist::build(&prj, false);
-        breakers(&prj, &nl).into_iter().find(|b| b.tag.ends_with("-F2")).unwrap().tag
-    };
-    let s = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
-    let light = { let q = inside(&prj, ri, 0.4, 0.4); place(&mut prj, ri, "GEN.LAMP-CEILING-LED", q) }.unwrap();
-    add_circuit(&mut prj, "Sockets", &tag, false).unwrap();
-    add_circuit(&mut prj, "Lights", "", false).unwrap();
-    connect(&mut prj, 0, s).unwrap();
+fn checks_of_the_circuits() {
+    let (mut prj, ri, tag, _) = with_devices();
     let keys = |prj: &Project| -> Vec<String> {
         let (nl, open) = (Netlist::build(prj, true), Netlist::build(prj, false));
-        problems(prj, &nl, &crate::netlist::connections(prj, &nl, &open)).iter().map(|i| i.message()).collect()
+        problems(prj, &nl, &crate::netlist::connections(prj, &nl, &open), None).iter().map(|i| i.message()).collect()
     };
     let p = keys(&prj);
-    assert!(p.iter().any(|m| m.contains("Lights") && m.contains("no protective device")), "{p:?}");
-    assert!(p.iter().any(|m| m.contains("in no circuit")), "{p:?}");
-    assert!(!p.iter().any(|m| m.contains("Sockets")), "{p:?}");
-    // Too thin for 10 A, and a load far too high for it.
-    prj.layout.circuits[0].cross_section = 0.5;
-    prj.layout.circuits[0].load = 20_000.0;
+    assert!(!p.iter().any(|m| m.contains(&tag)), "{p:?}");
+    // Too thin for 10 A.
+    let c = schematic(&prj).into_iter().find(|c| c.breaker == tag).unwrap();
+    let cable = c.cables()[0].to_string();
+    prj.cables.iter_mut().find(|x| x.tag == cable).unwrap().cross_section = "0.5 mm²".into();
     let p = keys(&prj);
-    assert!(p.iter().any(|m| m.contains("Sockets") && m.contains("mm²")), "{p:?}");
-    assert!(p.iter().any(|m| m.contains("Sockets") && m.contains("voltage drop")), "{p:?}");
-    connect(&mut prj, 1, light).unwrap();
-    prj.layout.circuits[1].breaker = "-NOPE".into();
-    assert!(keys(&prj).iter().any(|m| m.contains("-NOPE")));
-    // The cables get the lengths.
-    assert_eq!(write_cables(&mut prj), 2);
-    let c = &prj.layout.circuits[0];
-    let cable = prj.cables.iter().find(|x| x.tag == c.cable).unwrap();
-    assert_eq!(cable.cable_type, DEFAULT_CABLE);
-    assert_eq!(cable.length, (runs(&prj, &Supply::default())[0].length * 2.0).ceil() / 2.0);
-    assert_ne!(prj.layout.circuits[0].cable, prj.layout.circuits[1].cable);
-    // Gone items are reported.
-    prj.layout.enclosures[ri].items.retain(|i| i.id != s);
-    assert!(keys(&prj).iter().any(|m| m.contains("are gone")));
+    assert!(p.iter().any(|m| m.contains(&tag) && m.contains("mm²")), "{p:?}");
+    // Something placed without the schematic, and a device of the schematic not placed.
+    let q = before_wall(&prj, ri, 0, 300.0);
+    place(&mut prj, ri, "GEN.SOCKET-F-UP", q).unwrap();
+    let p = keys(&prj);
+    assert!(p.iter().any(|m| m.contains("not in the schematic")), "{p:?}");
+    let first = c.devices[0].tag.clone();
+    prj.layout.enclosures[ri].items.retain(|i| i.tag != first);
+    assert!(keys(&prj).iter().any(|m| m.contains(&tag) && m.contains("placed in no room")));
 }
 
 #[test]
@@ -178,80 +449,391 @@ fn reactance_counts_with_the_power_factor() {
 fn the_drop_counts_from_the_supply() {
     // The building example: its distribution has feeder cables with lengths.
     let mut prj = crate::sample::example("building_services").unwrap();
-    let supply = Supply::build(&prj);
-    let nl = Netlist::build(&prj, true);
-    let fed = breakers(&prj, &nl).into_iter().find(|b| supply.feeders.get(&b.tag).is_some_and(|f| !f.is_empty()) && prj.layout.find_device(&b.tag).is_some()).expect("a breaker behind a feeder cable");
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let supply = Supply::of(&prj, &nl, &crate::netlist::connections(&prj, &nl, &open));
+    let fed = breakers(&prj, &nl).into_iter().find(|b| supply.feeders.get(&b.tag).is_some_and(|f| !f.is_empty()) && board_of(&prj, &b.tag).is_some()).expect("a breaker behind a feeder cable");
     let ri = panel::rooms(&prj.layout)[0];
-    let s = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
-    add_circuit(&mut prj, "Sockets", &fed.tag, false).unwrap();
-    connect(&mut prj, 0, s).unwrap();
-    let r = &runs(&prj, &supply)[0];
+    let q = before_wall(&prj, ri, 0, 200.0);
+    add_device(&mut prj, &fed.tag, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap();
+    let c = schematic(&prj).into_iter().find(|c| c.breaker == fed.tag).unwrap();
+    let r = run(&prj, &supply, &c);
+    assert!(r.drop.is_some(), "{:?} {:?}", c.legs, c.board);
     let up = r.upstream.expect("feeder drop");
     assert!(up > 0.0, "{up}");
     assert!((r.total().unwrap() - r.drop.unwrap().1 - up).abs() < 1e-5);
     // Without the supply's cables only the circuit's own.
-    assert_eq!(runs(&prj, &Supply::default())[0].upstream, None);
+    assert_eq!(run(&prj, &Supply::default(), &c).upstream, None);
 }
 
 #[test]
-fn items_become_devices_on_a_single_line_page() {
+fn what_was_placed_goes_into_the_schematic() {
     let (mut prj, ri) = room();
-    let tag = {
-        let nl = Netlist::build(&prj, false);
-        breakers(&prj, &nl).into_iter().find(|b| b.tag.ends_with("-F2")).unwrap().tag
-    };
-    let s = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
-    let l = { let q = inside(&prj, ri, 0.4, 0.4); place(&mut prj, ri, "GEN.LAMP-CEILING-LED", q) }.unwrap();
-    add_circuit(&mut prj, "Room", &tag, false).unwrap();
-    connect(&mut prj, 0, s).unwrap();
-    connect(&mut prj, 0, l).unwrap();
-    let pages = prj.pages.len();
-    let made = overview(&mut prj).unwrap();
-    assert_eq!((made.len(), prj.pages.len()), (1, pages + 1));
-    let room_name = prj.layout.enclosures[ri].name.clone();
-    let socket = prj.layout.enclosures[ri].item(s).unwrap().clone();
-    assert_eq!((socket.kind, socket.tag.clone()), (ItemKind::Device, format!("{room_name}-XD1")));
-    assert_eq!(prj.layout.enclosures[ri].item(l).unwrap().tag, format!("{room_name}-EA1"));
-    assert_eq!(prj.devices[&socket.tag].parts[0].number, "GEN.SOCKET-F-UP");
-    let page = &prj.pages[made[0]];
-    assert_eq!(page.kind, crate::model::PageKind::Overview);
-    let syms: Vec<(&str, &str)> = page.symbols.iter().map(|x| (x.sym.as_str(), x.tag.as_str())).collect();
-    assert!(syms.contains(&("sl_cb", tag.as_str())) && syms.contains(&("inst_socket2", socket.tag.as_str())) && syms.iter().any(|x| x.0 == "inst_lamp"), "{syms:?}");
-    // The breaker drawn single-line is no mismatch with its 1-pole schematic symbol.
-    let idx = crate::index::Index::build(&prj);
-    let dev = crate::singleline::devices(&prj, &idx).into_iter().find(|d| d.tag == tag).unwrap();
-    assert_eq!(dev.status, crate::singleline::Status::Engineered);
-    // Made again: the page is replaced, the tags stay.
-    assert_eq!(link_devices(&mut prj), 0);
-    overview(&mut prj).unwrap();
-    assert_eq!(prj.pages.len(), pages + 1);
+    let f2 = f2(&prj);
+    let q = before_wall(&prj, ri, 0, 200.0);
+    let id = place(&mut prj, ri, "GEN.SOCKET-F-UP", q).unwrap();
+    let tag = into_schematic(&mut prj, &f2, id, &Options::default()).unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().tag, tag);
+    assert!(schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap().has_item(id));
+    // Once only.
+    assert!(into_schematic(&mut prj, &f2, id, &Options::default()).is_err());
+    // Not for a protective device that is none, and then nothing stays placed.
+    let items = prj.layout.enclosures[ri].items.len();
+    assert!(add_device(&mut prj, "-NOPE", "GEN.SOCKET-F-UP", ri, q, &Options::default()).is_err());
+    assert_eq!(prj.layout.enclosures[ri].items.len(), items);
 }
 
 #[test]
-fn planned_breakers_for_new_circuits() {
+fn a_junction_box_of_a_maker_hangs_on_the_wall_as_an_enclosure_with_a_connector() {
     let (mut prj, ri) = room();
-    let s = { let q = before_wall(&prj, ri, 0, 200.0); place(&mut prj, ri, "GEN.SOCKET-F-UP", q) }.unwrap();
-    let f2 = {
-        let nl = Netlist::build(&prj, false);
-        breakers(&prj, &nl).into_iter().find(|b| b.tag.ends_with("-F2")).unwrap().tag
-    };
-    add_circuit(&mut prj, "Old", &f2, false).unwrap();
-    add_circuit(&mut prj, "New", "", false).unwrap();
-    connect(&mut prj, 1, s).unwrap();
-    assert!(new_breaker(&mut prj, 1, 13.0).is_err());
-    let tag = new_breaker(&mut prj, 1, 16.0).unwrap();
-    assert!(tag.starts_with("-F"));
-    assert_eq!(crate::protection::of_device(&prj, &tag).unwrap().rated, 16.0);
-    // It starts at the board of the other circuit.
-    assert_eq!(board_of(&prj, &prj.layout.circuits[1]), board_of(&prj, &prj.layout.circuits[0]));
-    let r = &runs(&prj, &Supply::default())[1];
-    assert_eq!(r.rated, Some(16.0));
-    assert!(r.from_board && r.drop.is_some());
+    let f2 = f2(&prj);
+    let q = before_wall(&prj, ri, 0, 100.0);
+    let tag = add_device(&mut prj, &f2, "SPE.80440001", ri, q, &Options::default()).unwrap();
+    // No item in the room: an enclosure of the room, on the wall at 2.3 m, its front
+    // into the room, with the WAGO connector inside that is the device.
+    assert!(prj.layout.enclosures[ri].items.iter().all(|i| i.part != "SPE.80440001"));
+    let k = prj.layout.enclosures.iter().position(|e| e.part == "SPE.80440001").expect("the box");
+    let b = &prj.layout.enclosures[k];
+    assert_eq!((b.width, b.height, b.depth), (102.0, 102.0, 57.0));
+    assert_eq!(crate::panel::room_of(&prj.layout, k), Some(ri));
+    let bottom = b.elevation.unwrap();
+    assert!((bottom + 51.0 - 2300.0).abs() < 5.0, "{bottom}");
+    let it = b.items.iter().find(|i| i.part == BOX_CONNECTOR).expect("connector");
+    assert_eq!(it.tag, tag);
+    assert_eq!(crate::panel::locate(&prj, &tag).map(|l| l.0), Some(k));
+    // A connector per conductor; drawn as a junction box on the installation page.
+    assert_eq!(prj.devices[&tag].parts.iter().find(|r| r.number == BOX_CONNECTOR).map(|r| r.count), Some(3));
+    assert!(prj.pages.iter().any(|pg| pg.symbols.iter().any(|s| s.tag == tag && s.sym == "jbox")));
+    // Its rear stands against the wall it was put on.
+    let wall = panel::side(&prj.layout.enclosures[ri], Face::Wall(0)).unwrap();
+    let place = crate::panel::room_place(&prj, k).unwrap();
+    let off = (place.x - wall.a[0]) * wall.normal[0] + (place.z - wall.a[1]) * wall.normal[1];
+    assert!(off.abs() < 1.0, "{off}");
+    // A socket outlet behind it takes its cable from the box.
+    let q = before_wall(&prj, ri, 1, 200.0);
+    let socket = add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options { from: Some(tag.clone()), ..Default::default() }).unwrap();
+    assert_eq!(feed_of(&prj, &socket).map(|f| f.1), Some(tag));
+}
+
+#[test]
+fn a_click_meets_the_inside_of_a_wall_and_goes_there_off_the_zones() {
+    let (prj, ri) = room();
+    let e = &prj.layout.enclosures[ri];
+    let w = panel::side(e, Face::Wall(0)).unwrap();
+    let mid = [(w.a[0] + w.b[0]) / 2.0, (w.a[1] + w.b[1]) / 2.0];
+    // From the middle of the room at 1.6 m towards the middle of wall 0.
+    let eye = [mid[0] + w.normal[0] * 1500.0, 1600.0, mid[1] + w.normal[1] * 1500.0];
+    let dir = [-w.normal[0], 0.0, -w.normal[1]];
+    let (q, t) = inside_hit(e, eye, dir).unwrap();
+    assert!((t - 1500.0).abs() < 1.0 && (q[1] - 1600.0).abs() < 1.0, "{q:?} {t}");
+    // Seen from outside the wall is not met from behind; upwards the ceiling is.
+    let behind = [mid[0] - w.normal[0] * 500.0, 1600.0, mid[1] - w.normal[1] * 500.0];
+    assert!(inside_hit(e, behind, [w.normal[0], 0.0, w.normal[1]]).is_some_and(|(_, t)| t > 600.0));
+    let (up, _) = inside_hit(e, eye, [0.0, 1.0, 0.0]).unwrap();
+    assert_eq!(up[1], e.height);
+    // Near its mounting height a socket outlet goes there, farther off where clicked.
+    assert_eq!(height_for(&prj, "GEN.SOCKET-F-UP", 350.0), None);
+    assert_eq!(height_for(&prj, "GEN.SOCKET-F-UP", 1600.0), Some(1600.0));
+    assert_eq!(height_for(&prj, "GEN.LAMP-CEILING-LED", 1600.0), None);
+    // Placed at the height clicked: its middle there.
+    let mut prj = prj;
+    let at = before_wall(&prj, ri, 0, 0.0);
+    let id = place_at(&mut prj, ri, "GEN.SOCKET-F-UP", at, Some(1600.0)).unwrap();
+    let poses = panel::site_poses(&prj);
+    let it = prj.layout.enclosures[ri].item(id).unwrap().clone();
+    let pl = placed(&prj, &poses, ri, &it).unwrap();
+    assert!((pl.height - 1600.0).abs() < 5.0, "{}", pl.height);
+    // The preview shows that place without changing the project.
+    let before = prj.clone();
+    let ghost = preview(&prj, ri, "GEN.SOCKET-F-UP", at, Some(1600.0)).unwrap();
+    assert_eq!((ghost.face, ghost.y), (it.face, it.y));
+    assert_eq!(prj, before);
+}
+
+
+
+#[test]
+fn a_full_installation_page_is_continued_on_the_next_one() {
+    // More socket outlets on one protective device than one page has columns for: all
+    // go into the schematic, the later ones on a page after the first.
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let mut tags = Vec::new();
+    for k in 0..20 {
+        let q = before_wall(&prj, ri, (k % 4) as u16, 200.0);
+        tags.push(add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap_or_else(|e| panic!("{k}: {e}")));
+    }
+    let nl = Netlist::build(&prj, true);
+    let pages = pages_of(&prj, &finals(&prj, &nl), &f2);
+    assert_eq!(pages.len(), 2, "{pages:?}");
+    assert_eq!(pages[1], pages[0] + 1);
+    let on = |k: usize| drawn_on(&prj, k).len();
+    assert_eq!(on(pages[0]) + on(pages[1]), 20);
+    // The chain goes on from the last device of the first page.
+    let first_next = drawn_on(&prj, pages[1])[0].tag.clone();
+    let before = tags[tags.iter().position(|t| *t == first_next).unwrap() - 1].clone();
+    assert_eq!(feed_of(&prj, &first_next).map(|f| f.1), Some(before));
+    // Every device is in a circuit of the protective device.
+    let c = schematic(&prj).into_iter().find(|c| c.breaker == f2).unwrap();
+    assert!(tags.iter().all(|t| c.devices.iter().any(|d| &d.tag == t)), "{:?}", c.devices.iter().map(|d| &d.tag).collect::<Vec<_>>());
+}
+
+#[test]
+fn cables_into_the_room_get_glands_in_the_roof_of_the_cabinet() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let cab = crate::panel::locate(&prj, &f2).unwrap().0;
+    assert_eq!(crate::panel::room_of(&prj.layout, cab), Some(ri), "the board stands in the room");
+    let before = prj.clone();
+    for k in 0..2u16 {
+        let q = before_wall(&prj, ri, k, 200.0);
+        add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &Options::default()).unwrap();
+    }
+    let added = crate::routing3d::glands::follow(&mut prj, &before).added;
+    assert!(!added.is_empty());
+    // On a face a route into the room leaves through: the roof of a standing cabinet.
+    for id in &added {
+        assert_eq!(prj.layout.enclosures[cab].item(*id).unwrap().face, Face::Roof);
+    }
+    let an = crate::analysis::Analysis::build(&prj);
+    assert!(an.routing.problems.iter().all(|p| !p.message.contains("every cable gland")), "{:?}", an.routing.problems.iter().map(|p| &p.message).collect::<Vec<_>>());
+    assert!(an.routing.item("-W1").is_some_and(|i| i.routed()));
+}
+
+#[test]
+fn a_two_way_switch_is_a_main_function() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let q = before_wall(&prj, ri, 2, 200.0);
+    let tag = add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()).unwrap();
+    let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == tag).unwrap();
+    assert_eq!(s.sym, "co_man");
+    assert_eq!(s.pins, ["L", "1", "2"]);
+    // Working alone, its spare traveller is left free on purpose: no open connection point
+    // with a light on its output.
+    let q = inside(&prj, ri, 0.5, 0.5);
+    add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()).unwrap();
+    let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == tag).unwrap();
+    assert_eq!(s.values.get(crate::netlist::UNUSED_PINS).map(|v| v.split_whitespace().count()), Some(1));
+    let an = crate::reports::Analysis::checked(&prj);
+    let mine: Vec<String> = an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| m.contains(&tag)).collect();
+    assert!(mine.is_empty(), "{mine:?}");
+}
+
+#[test]
+fn a_device_without_a_protective_device_takes_its_tag() {
+    let (mut prj, ri) = room();
+    let q = inside(&prj, ri, 0.5, 0.5);
+    let id = place_at(&mut prj, ri, "GEN.SMOKE-ALARM", q, None).unwrap();
+    let tag = format!("{}-BF7", prj.layout.enclosures[ri].name);
+    name_item(&mut prj, id, &tag).unwrap();
+    assert_eq!(prj.layout.enclosures[ri].item(id).unwrap().tag, tag);
+    assert_eq!(prj.devices[&tag].parts[0].number, "GEN.SMOKE-ALARM");
+    // A tag used already is refused.
+    let id = { let q = inside(&prj, ri, 0.3, 0.3); place_at(&mut prj, ri, "GEN.SMOKE-ALARM", q, None) }.unwrap();
+    assert!(name_item(&mut prj, id, &tag).is_err());
+}
+
+#[test]
+fn the_mounting_height_holds_on_the_outside_of_a_wall_too() {
+    let (mut prj, ri) = room();
+    let t = prj.layout.enclosures[ri].wall();
+    let q = before_wall(&prj, ri, 0, -t - 30.0);
+    let id = place_at(&mut prj, ri, "GEN.SOCKET-F-UP", q, Some(200.0)).unwrap();
+    let e = &prj.layout.enclosures[ri];
+    let it = e.item(id).unwrap();
+    assert_eq!(it.face, Face::Outside(0));
+    assert_eq!(it.y, panel::snap(e.height - 200.0 - it.h / 2.0));
+}
+
+#[test]
+fn a_junction_box_is_no_load_of_its_cable() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let q = before_wall(&prj, ri, 0, 200.0);
+    let tag = add_device(&mut prj, &f2, "GEN.JBOX-UP", ri, q, &Options::default()).unwrap();
+    let cable = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|t| *t == tag)).unwrap().tag.clone();
     let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
-    let msgs: Vec<String> = problems(&prj, &nl, &crate::netlist::connections(&prj, &nl, &open)).iter().map(|i| i.message()).collect();
-    assert!(msgs.iter().any(|m| m.contains(&tag) && m.contains("planned")), "{msgs:?}");
-    // The single-line diagram turns it into a 1-pole breaker of the schematic.
-    let page = overview(&mut prj).unwrap()[0];
-    let made = crate::singleline::to_multiline(&mut prj, page).unwrap();
-    assert!(prj.pages[made.page].symbols.iter().any(|x| x.tag == tag && x.sym == "cb1"));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    let d = crate::sizing::cable_drops(&prj, &conns).into_iter().find(|d| d.cable == cable).unwrap();
+    assert_ne!(d.load, tag);
+    assert!(crate::sizing::problems(&prj, &nl, &open, &conns).iter().all(|i| !i.message().contains(&tag)));
+}
+
+#[test]
+fn two_two_way_switches_are_joined_by_their_travellers() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let opts = Options { from: Some(a.clone()), ..Default::default() };
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &opts) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    let cable = |t: &str| prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| x == t)).unwrap().clone();
+    // The light hangs on the second switch.
+    assert_eq!(cable(&l).values["cable.source"], b);
+    // The cable between the switches carries the two travellers.
+    let w = cable(&b).tag;
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    let between: Vec<&crate::netlist::Connection> = conns.iter().filter(|c| c.cable == w).collect();
+    assert_eq!(between.len(), 2, "{between:?}");
+    // No open connection point, no other problem of the switches.
+    let an = crate::reports::Analysis::checked(&prj);
+    let mine: Vec<String> = an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| m.contains(&a) || m.contains(&b)).collect();
+    assert!(mine.is_empty(), "{mine:?}");
+}
+
+#[test]
+fn a_junction_box_passes_on_the_loads_behind_it() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let j = { let q = before_wall(&prj, ri, 0, 200.0); add_device(&mut prj, &f2, "GEN.JBOX-UP", ri, q, &Options::default()) }.unwrap();
+    let opts = Options { from: Some(j.clone()), ..Default::default() };
+    let s = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &opts) }.unwrap();
+    let to_box = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|t| *t == j)).unwrap().tag.clone();
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    let d = crate::sizing::cable_drops(&prj, &conns).into_iter().find(|d| d.cable == to_box).unwrap();
+    assert_eq!(d.load, s);
+    assert_eq!(d.current, Some(16.0));
+}
+
+#[test]
+fn an_intermediate_switch_sits_between_two_two_way_switches() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let opts = Options { from: Some(a.clone()), ..Default::default() };
+    let k = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-INTER-UP", ri, q, &opts) }.unwrap();
+    let opts = Options { from: Some(k.clone()), ..Default::default() };
+    let b = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &opts) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    let syms: Vec<&SymbolInst> = prj.pages.iter().flat_map(|pg| &pg.symbols).collect();
+    assert_eq!(syms.iter().find(|s| s.tag == k).unwrap().sym, "co_inter");
+    // No connection point is left free.
+    assert!(syms.iter().filter(|s| [&a, &k, &b].contains(&&s.tag)).all(|s| !s.values.contains_key(crate::netlist::UNUSED_PINS)));
+    let cable = |t: &str| prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| x == t)).unwrap().clone();
+    // The light hangs on the last switch; each cable between the switches carries two
+    // travellers.
+    assert_eq!(cable(&l).values["cable.source"], b);
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    for t in [&k, &b] {
+        let w = cable(t).tag;
+        assert_eq!(conns.iter().filter(|c| c.cable == w).count(), 2, "{t}");
+    }
+    let an = crate::reports::Analysis::checked(&prj);
+    let mine: Vec<String> = an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| [&a, &k, &b].iter().any(|t| m.contains(t.as_str()))).collect();
+    assert!(mine.is_empty(), "{mine:?}");
+}
+
+/// The device `t` is placed at: the source of the cable ending at it.
+fn source_of(prj: &Project, t: &str) -> String {
+    prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| x == t)).and_then(|c| c.values.get("cable.source")).cloned().unwrap_or_default()
+}
+
+/// The problems (not infos) of the check that name one of `tags`.
+fn problems_of(prj: &Project, tags: &[&String]) -> Vec<String> {
+    let an = crate::reports::Analysis::checked(prj);
+    an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| tags.iter().any(|t| m.contains(t.as_str()))).collect()
+}
+
+#[test]
+fn the_closing_two_way_switch_takes_the_lights_placed_before_it() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    assert_eq!(source_of(&prj, &l), a);
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    assert_eq!(source_of(&prj, &b), a);
+    assert_eq!(source_of(&prj, &l), b);
+    // The cable between the switches has the two travellers, the neutral and the
+    // protective conductor for the light; it carries the neutral on.
+    let w = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| *x == b)).unwrap().clone();
+    assert_eq!(w.core_list().len(), 4);
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    assert!(prj.pages.iter().flat_map(|pg| &pg.wires).any(|x| x.cable == w.tag && x.core == "BU"));
+    assert!(conns.iter().filter(|c| c.cable == w.tag).count() >= 2);
+    let mine = problems_of(&prj, &[&a, &b, &l]);
+    assert!(mine.is_empty(), "{mine:?}");
+}
+
+#[test]
+fn a_blind_switch_keeps_both_outputs() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let t = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-BLIND-UP", ri, q, &Options::default()) }.unwrap();
+    let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == t).unwrap();
+    assert!(!s.values.contains_key(crate::netlist::UNUSED_PINS));
+    // A two-way switch after it is no partner: no travellers to it.
+    let opts = Options { from: Some(t.clone()), ..Default::default() };
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &opts) }.unwrap();
+    let w = prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|x| *x == b)).unwrap();
+    assert_eq!(w.core_list().len(), 3);
+}
+
+#[test]
+fn an_intermediate_switch_at_the_end_keeps_its_travellers_open() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let opts = Options { from: Some(a.clone()), ..Default::default() };
+    let k = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-INTER-UP", ri, q, &opts) }.unwrap();
+    let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == k).unwrap();
+    assert!(!s.values.contains_key(crate::netlist::UNUSED_PINS));
+    assert!(problems_of(&prj, &[&k]).iter().any(|m| m.contains("Open connection point")));
+}
+
+#[test]
+fn loads_pass_a_junction_box_only_downstream() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let j = { let q = before_wall(&prj, ri, 0, 200.0); add_device(&mut prj, &f2, "GEN.JBOX-UP", ri, q, &Options::default()) }.unwrap();
+    let from = |t: &String| Options { from: Some(t.clone()), ..Default::default() };
+    let sw = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-ONOFF-UP", ri, q, &from(&j)) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &from(&sw)) }.unwrap();
+    let x = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &from(&j)) }.unwrap();
+    let (nl, open) = (Netlist::build(&prj, true), Netlist::build(&prj, false));
+    let conns = crate::netlist::connections(&prj, &nl, &open);
+    let drops = crate::sizing::cable_drops(&prj, &conns);
+    let to = |t: &String| prj.cables.iter().find(|c| c.values.get("cable.target").is_some_and(|v| v == t)).unwrap().tag.clone();
+    // The light's cable carries no load of the socket; the box's feeder does.
+    assert_ne!(drops.iter().find(|d| d.cable == to(&l)).unwrap().load, x);
+    assert_eq!(drops.iter().find(|d| d.cable == to(&j)).unwrap().load, x);
+}
+
+#[test]
+fn a_third_two_way_switch_leaves_a_closed_pair_alone() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    assert_eq!(source_of(&prj, &b), a);
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    assert_eq!(source_of(&prj, &l), b);
+    // A third one starts a circuit of its own; with `from` the closed pair it is no
+    // switch joined by travellers either.
+    let c = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    assert_ne!(source_of(&prj, &c), b);
+    let opts = Options { from: Some(b.clone()), ..Default::default() };
+    let d = { let q = before_wall(&prj, ri, 0, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &opts) }.unwrap();
+    assert_eq!(source_of(&prj, &l), b);
+    let w = prj.cables.iter().find(|x| x.values.get("cable.target").is_some_and(|t| *t == d)).unwrap();
+    assert_eq!(w.core_list().len(), 3);
+    let mine = problems_of(&prj, &[&a, &b, &l]);
+    assert!(mine.is_empty(), "{mine:?}");
+}
+
+#[test]
+fn the_closing_two_way_switch_takes_only_the_lights() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    let from_a = Options { from: Some(a.clone()), ..Default::default() };
+    let s = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &from_a) }.unwrap();
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &from_a) }.unwrap();
+    assert_eq!(source_of(&prj, &l), b);
+    assert_eq!(source_of(&prj, &s), a);
 }

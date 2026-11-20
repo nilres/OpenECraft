@@ -15,6 +15,7 @@ Additional power loss in W	追加の損失電力 (W)
 Address scheme: siemens, iec or rockwell	アドレス方式: siemens、iec、または rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	屋根にPVアレイを追加します。勾配屋根では屋根面に平行にレールと屋根フックの上にモジュールの列を、陸屋根では傾斜または東西向きにバラスト式架台の上に設置します。x と z がなければ前面または右側の屋根面の中央に置きます。建物と屋根がなければ敷地上の野立てアレイになります。打込み杭の上に傾斜した架台を列に並べ、x と z がなければ施設内にあるものの手前に置きます。モジュールと取付材料は部品表に入ります
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	曲げと穴あけを施した銅バーを追加します (またはエンクロージャー内の同名の銅バーを置き換えます)
+Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	盤から出て空いているグランドが見つからないケーブルごとに、そのサイズのケーブルグランドを追加します：室内の機器には天井面、フィールドまたは壁掛けの盤には底面
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	右隣へのケーブル貫通口を追加します: 両側板に向かい合う円形の切り欠き。エンクロージャー間の電線はここを通ります
 Adds a configurator rule: insert a page macro when the condition holds	コンフィギュレータールールを追加します: 条件が満たされたときにページマクロを挿入
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	フィールドルートネットワークのノード (分岐点、貫通部、エンクロージャーまたはデバイスへの到達点) を追加します
@@ -81,7 +82,9 @@ Bus system name, e.g. PN/IE_1	バスシステム名 (例: PN/IE_1)
 Busbar machine program (CSV)	ブスバー加工機プログラム (CSV)
 CNC operations	CNC 工程
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	ドリル・フライス・パンチングマシン用 CNC プログラム、銅バーの曲げ加工、エンクロージャーコンフィギュレーター、製造への引き渡し、製造フィードバック
+Cable tag (default: the next free -W)	ケーブル記号（既定：次の空いている -W）
 Cable tag, e.g. -W1	ケーブルタグ (例: -W1)
+Cable type (default: NYM-J for its cores and cross-section)	ケーブルタイプ（既定：心線数と断面積に応じた NYM-J）
 Calibrates the time estimate of the machines from the actual times of the production feedback	製造フィードバックの実績時間から機械の時間見積もりを補正します
 Cannot read the plugin folder {}	プラグインフォルダー {} を読み取れません
 Cannot start {}: {}	{} を起動できません: {}
@@ -156,6 +159,7 @@ Cross section, e.g. 0.75 mm²	断面積 (例: 0.75 mm²)
 Cross section, e.g. 1.5 mm²	断面積 (例: 1.5 mm²)
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	断面積 (例: 1.5 mm²、空 = 電位定義から)
 Cross-section in mm²	断面積 (mm²)
+Cross-section of the cable in mm² (default: for the protective device)	ケーブルの断面積 mm²（既定：保護機器に応じて）
 Cross-section, e.g. 1.5 mm²	断面積 (例: 1.5 mm²)
 Current device tag	現在のデバイスタグ
 Customer rule set to add or replace (by name), as exported	追加または置換する顧客ルールセット (名前で指定、エクスポート形式)
@@ -193,6 +197,8 @@ Device description id of the head (list_device_descriptions)	ヘッドのデバ�
 Device group {} already exists	デバイスグループ {} は既に存在します
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	デバイスリスト、部品表、端子図、プラグ図、ケーブル図、接続図、PLC、電位、盤、流体、電気、フィールドのレポート
 Device number on the bus	バス上のデバイス番号
+Device or junction box of the circuit the cable comes from (default: the device before it)	ケーブルの接続元となる回路の機器またはジャンクションボックス（既定：前の機器）
+Device tag (default: the room, the letter code of the kind and the next number)	機器記号（既定：部屋、種類の文字コードと次の番号）
 Device tag of the CPU / bus coupler, e.g. -A0	CPU / バスカプラーのデバイスタグ (例: -A0)
 Device tag of the end (both ends if missing)	端のデバイスタグ (省略時は両端)
 Device tag of the fluid device, e.g. -QM1	流体デバイスのデバイスタグ (例: -QM1)
@@ -227,7 +233,6 @@ Draw the junction as a connection dot; its routing stays	分岐を接続点と�
 Draw wires in their colour	電線を色付きで描画
 Draw wires to the connection points facing its free arms	空いている側に向き合う接続点へ接続線を描きます
 Drawing	図面
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	ケーブル定義線を描画します。横切った電線はケーブルの心線になります (ケーブルを指定しない場合は新しいケーブル)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	2 つの接続ポイント間に電線を描画します。例: -K1:A1 から -S1:14 へ (あいまいな場合は #id:pin、電位の場合は名前、名称のない点の場合は 1、2…)
 Draws a wire through two or more points	2 つ以上の点を通る電線を描画します
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	回路図ページと PDF / SVG エクスポートで電線を色付きまたは黒で描画します
@@ -255,7 +260,6 @@ Enclosures, panel items, accessories and panel macros	エンクロージャー�
 End brackets and end plates from the tech data of the terminal parts	端子部品の技術データに基づくエンドクランプとエンドカバー
 End holes from the bar end as a multiple of the width	バー端からの端部穴位置 (幅に対する倍率)
 End: device tag and connection point, e.g. -S1:14	終点: デバイスタグと接続ポイント (例: -S1:14)
-Engineering	エンジニアリング
 Face: plate, door, left, right, rear, roof or bottom	面: plate、door、left、right、rear、roof または bottom
 Field plan: nodes, segments, outlines, routes, bonds and accessories	フィールド計画: ノード、区間、輪郭、ルート、ボンディング、付属品
 Figure	指標
@@ -358,6 +362,7 @@ Key, e.g. user.coupling_relay	キー (例: user.coupling_relay)
 Key, e.g. user.customer_code	キー (例: user.customer_code)
 Keys of the routes, comma separated (all if missing)	ルートのキー (カンマ区切り、省略時はすべて)
 Kind: machining, punching or busbar	種類: machining、punching または busbar
+Known length of the cable in m (taken instead of the 3D route)	ケーブルの既知の長さ m（3D ルートの代わりに使用）
 Label: terminal number, PLC address or potential name	ラベル: 端子番号、PLC アドレス、または電位名
 Landscape (true) or portrait (false)	横 (true) または縦 (false)
 Language the project texts are written in, e.g. en	プロジェクトテキストの記述言語 (例: en)
@@ -463,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	建物の平面図におけるPVアレイの中心 (野立て：施設内)、z (mm)
 Milling feed, mm/min	フライス送り速度 (mm/min)
 Mirror the symbol	シンボルを反転
+Mounting height above the floor in mm (default: that of the part)	床からの取付高さ mm（既定：部品の値）
 Mounting plate size as width and height; empty object restores the centred plate	取付板のサイズ（幅と高さ）。空のオブジェクトで中央の取付板に戻します
 Mounting size must contain a positive width and height	取付サイズには正の幅と高さが必要です
 Moves an air-termination rod, changes its height, renames or removes it	突針を移動し、高さを変更し、名前を変更または削除します
@@ -550,6 +556,7 @@ Nothing to copy: devices are placed once	コピーするものがありません
 Nothing to remove: {} {}	削除する対象がありません: {} {}
 Number of columns	列数
 Number of copies (default 1)	コピー数 (既定 1)
+Number of cores of the cable (default: 3, three-phase 5)	ケーブルの心線数（既定：3、三相は 5）
 Number of equal bars	同一バーの数
 Number of indexed values (0 = a single value)	インデックス付きの値の数 (0 = 単一値)
 Number of rows	行数
@@ -605,12 +612,14 @@ Paper width in mm (custom paper)	用紙の幅 (mm、カスタム用紙)
 Part lifecycle	部品のライフサイクル
 Part number of the accessory	アクセサリの部品番号
 Part number of the base	ベースの部品番号
+Part number of the cable	ケーブルの部品番号
 Part number of the carrier (per metre)	支持材の部品番号 (1 m あたり)
 Part number of the conductor (per metre)	導体の部品番号 (1 m あたり)
 Part number of the downstream device	下位デバイスの部品番号
 Part number of the hose / tube / pipe	ホース / チューブ / 配管の部品番号
 Part number of the upstream device	上位デバイスの部品番号
 Part number, e.g. GEN.LMP-GN-24	部品番号 (例: GEN.LMP-GN-24)
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	部品番号、例：GEN.SOCKET-F-UP、GEN.SW-ONOFF-UP、GEN.LAMP-CEILING-LED、GEN.JBOX-UP、GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	帯板、線、または棒の部品 (空欄: 汎用)
 Part of the conductor holders on the roof (empty: generic)	屋根の導体支持金具の部品 (空欄: 汎用)
 Part of the conductor holders on the walls (empty: generic)	壁の導体支持金具の部品 (空欄: 汎用)
@@ -684,6 +693,8 @@ Property and function definitions, property values and placement schemes	プロ�
 Property key	プロパティキー
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	プロパティのキーと値 (例: {\"device.rated_power\": \"5.5\"})
 Put in front of the numbers, e.g. W	番号の前に付ける文字 (例: W)
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	回路図の機器を盤に入れます（取付板、その上のレール、または扉）：サイズは部品から取り、合うレールにはめ込みます。以前に別の場所に配置されていた場合は移動します
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	保護機器用のコンセント、スイッチ、照明、ヒーター素子、ジャンクションボックスまたは機器接続ボックスを設備の一点で部屋に配置し（天井灯はその天井に、その他は取付高さで最も近い壁に。部屋の外では最も近い壁の外側に）、回路図にも追加します：回路の設備ページに新しい機器を作り、前の機器または指定した機器からケーブルを引きます。保護機器なしでは部屋にのみ配置します（情報・アンテナコンセント、煙感知器）
 Quantity per end (default 1)	端ごとの数量 (既定 1)
 R/X ratio of the supply impedance	電源インピーダンスの R/X 比
 Rack number	ラック番号
@@ -779,8 +790,8 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	表題欄を選んでいないすべてのページ、またはある種類のページの表題欄を設定します
 Sets the translation of a line of the project texts (empty removes it)	プロジェクトテキストの行の翻訳を設定します (空の場合は削除)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	電位が定義されていないネットの電線色と断面積を設定します (空 = なし)
+Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)	盤から出て空いているグランドが見つからないケーブルが、そのサイズのグランドを得るかどうかを設定します：室内の機器には天井面、フィールドまたは壁掛けの盤には底面（既定でオン）
 Share of the capacity kept free in percent	空けておく容量の割合 (%)
-Sheets	シート
 Shield connected at: both, first, second or none	シールドの接続先: both、first、second、または none
 Shift downwards in mm	下へのずれ (mm)
 Shift to the right in mm	右へのずれ (mm)
@@ -818,6 +829,7 @@ Smallest bend radius in mm	最小曲げ半径 (mm)
 Smallest distance in mm	最小距離 (mm)
 Smallest distance of holes from the sheet edge	穴から板端までの最小距離
 Smallest inner radius as a multiple of the thickness	板厚に対する最小内側半径の倍率
+Smallest room kept, m² (default 1; kept with the floor plan)	残す最小の部屋、m²（既定 1。平面図と一緒に保存）
 Smallest web at cutouts	切り欠きの最小残し幅
 Smallest web between holes	穴間の最小残し幅
 Spare terminals at the end of the strip	端子台の末尾の予備端子
@@ -889,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	交差の線は vertica
 The message text, kept for the list of accepted messages	承認済みメッセージの一覧用に保持するメッセージテキスト
 The name must not be empty	名前は空にできません
 The number of copies must be between 1 and 100	コピー数は 1 から 100 の範囲である必要があります
+The number of cores must be from 1 to 60	心線数は 1 から 60 の間でなければなりません
 The plinth height must not be negative	台座の高さに負の値は指定できません
 The plot frame {} is in use	図枠 {} は使用中です
 The plugin program did not answer within {} s and was stopped	プラグインプログラムが {} 秒以内に応答しなかったため停止しました
@@ -897,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	回転は 0、90、180、270 のいずれ
 The straight line of a crossing: vertical or horizontal (default vertical)	交差の直線：vertical または horizontal（既定 vertical）
 The text height must be at least 0.5 mm	文字の高さは 0.5 mm 以上である必要があります
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	コーナーの2つの側、縦と横（例：down left。既定：その位置の接続線から、なければ down right）
+The width factor must be from 0.1 to 10	幅係数は 0.1 から 10 の間でなければなりません
 The wire has no length	接続に長さがありません
 The wire that jumps: vertical or horizontal	ジャンプする配線: vertical または horizontal
 The wrap width must not be negative	折り返し幅に負の値は指定できません
@@ -995,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	位置に合
 Who accepted it	承認者
 Whole words only	単語単位のみ
 Why the message is accepted	メッセージを承認する理由
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	通常の幅に対する文字の幅、0.1 … 10（0.8：細い文字。既定 1）
 Width of the path in mm (default 50)	経路の幅 (mm、既定値 50)
 Width, depth and height of a room are at least {} mm	部屋の幅、奥行き、高さは {} mm 以上です
 Width, height and depth of an enclosure are at least {} mm	エンクロージャーの幅、高さ、奥行きは {} mm 以上です
@@ -1067,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	建物の平面�
 {} is a built-in frame; give the frame a new name	{} は組み込みの図枠です。図枠に新しい名前を付けてください
 {} is a built-in title block; give the title block a new name	{} は組み込みの表題欄です。表題欄に新しい名前を付けてください
 {} is a room already	{} は既に部屋です
+{} is a room: use mount_on_wall	{} は部屋です：mount_on_wall を使用してください
 {} is ambiguous: use #id:pin	{} があいまいです: #id:pin を使用してください
 {} is an enclosure already	{} は既にエンクロージャーです
 {} is not a connection point (TAG:PIN)	{} は接続ポイントではありません (TAG:PIN)

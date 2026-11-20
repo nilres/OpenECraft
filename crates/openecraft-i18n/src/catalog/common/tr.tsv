@@ -19,9 +19,11 @@ Accessory	Aksesuar
 Add	Ekle
 Add a PDF of all pages	Tüm sayfaların PDF'ini ekle
 Add an item	Madde ekle
+Add cable glands for new cables	Yeni kablolar için kablo rakorları ekle
 Add to favorites	Sık kullanılanlara ekle
 Address	Adres
 Administrator	Yönetici
+Aluminium	Alüminyum
 Angle	Açı
 Apply	Uygula
 Approve	Onayla
@@ -31,6 +33,7 @@ Automatic	Otomatik
 Automation	Otomasyon
 Aux	Yrd.
 Below	Altta
+Bill of materials	Malzeme listesi
 Bold	Kalın
 Bottom	Taban
 Bottom with removable gland plate	Sökülebilir rakor plakalı taban
@@ -64,6 +67,7 @@ Channel	Kanal
 Characteristic	Karakteristik
 Check settings	Kontrol ayarları
 Checks	Kontroller
+Circuit	Devre
 Circuits	Devreler
 Class	Sınıf
 Classes	Sınıflar
@@ -82,6 +86,7 @@ Commercial data	Ticari veriler
 Company	Şirket
 Component	Tekil parça
 Components (assembly)	Bileşenler (montaj grubu)
+Conductor	İletken
 Conductor material	İletken malzemesi
 Configurator	Yapılandırıcı
 Connect	Bağlan
@@ -94,6 +99,7 @@ Connector	Konnektör
 Contact voltage UB (V)	Dokunma gerilimi UB (V)
 Controller	Kontrolör
 Cooling	Soğutma
+Copper	Bakır
 Core	Damar
 Cores	Damarlar
 Corner	Köşe
@@ -105,6 +111,7 @@ Cross-section	Kesit
 Crossing	Kesişme
 Currency	Para birimi
 Current	Akım
+Current (A)	Akım (A)
 Cutout	Kesim
 Cutouts	Kesimler
 DCavg (%)	DCavg (%)
@@ -122,6 +129,7 @@ Description	Açıklama
 Designation	Tanım
 Device	Cihaz
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Modüllerin ait olduğu cihaz (PV jeneratörü); parçaları onları malzeme listesinde sayar
+Device connection box three-phase	Üç fazlı cihaz bağlantı kutusu
 Device connection point	Cihaz bağlantı noktası
 Device description	Cihaz tanımı
 Device tag	Cihaz etiketi
@@ -133,6 +141,7 @@ Direction	Yön
 Discard	At
 Discard changes	Değişiklikleri at
 Display	Görünüm
+Documentation	Dokümantasyon
 Documents	Belgeler
 Done	Tamamlandı
 Door	Kapı
@@ -153,6 +162,7 @@ Email	E-posta
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Boş: varsayılan değer. Tesisatın doğrulandığı standart baskısı farklıysa başka değerler girin.
 Enclosure	Pano
 Enclosures	Panolar
+Engineering	Mühendislik
 Enterprise integration	Kurumsal entegrasyon
 Equipotential bonding	Eş potansiyel kuşaklama
 Error	Hata
@@ -182,6 +192,7 @@ Floor plan	Kat planı
 Fluid device	Akışkan cihazı
 Fluid device groups	Akışkan cihaz grupları
 Fluid netlist	Akışkan ağ listesi
+Format	Format
 From	Başlangıç
 Function	Fonksiyon
 Function (=)	Fonksiyon (=)
@@ -232,10 +243,11 @@ Internal (bottom)	Dahili (alt)
 Interruption point	Kesinti noktası
 It is not affiliated with, endorsed by or sponsored by the owners of these names.	Bu adların sahipleriyle bağlantılı değildir, onlar tarafından onaylanmamış ve desteklenmemiştir.
 Italic	İtalik
-Items	Öğeler
 Its MPP tracker (input), from 1	MPP izleyicisi (giriş), 1'den itibaren
 Job	İş emri
 Jumper	Köprü
+Junction box with terminals	Klemensli buat
+Junction box with terminals three-phase	Üç fazlı klemensli buat
 Key	Anahtar
 Kind	Tür
 Language	Dil
@@ -254,6 +266,7 @@ Length	Uzunluk
 Level	Seviye
 Lifecycle	Yaşam döngüsü
 Light	Açık
+Limit (%)	Sınır (%)
 Limits	Sınırlar
 Line	Çizgi
 Link	Bağlantı
@@ -496,6 +509,7 @@ Required	Gerekli
 Reserve	Yedek
 Resolution	Çözünürlük
 Responsible for the content	İçerikten sorumlu
+Result	Sonuç
 Reviewer	İncelemeci
 Revision	Revizyon
 Revision {}	Revizyon {}
@@ -535,6 +549,7 @@ Server	Sunucu
 Service space	Servis alanı
 Settings	Ayarlar
 Shape	Şekil
+Sheets	Paftalar
 Short-circuit voltage	Kısa devre gerilimi
 Show history	Geçmişi göster
 Show the logos of the catalogs	Katalogların logolarını göster
@@ -579,6 +594,7 @@ T-junction	T parçası
 Tables	Tablolar
 Technical data	Teknik veriler
 Terminal	Klemens
+Terminal diagram	Klemens şeması
 Terminal number	Klemens numarası
 Terminal strip	Klemens şeridi
 Terminal strips	Klemens şeritleri
@@ -589,6 +605,7 @@ Test instruments (IEC 61557)	Ölçü aletleri (IEC 61557)
 Tested by	Test eden
 Text	Metin
 Text to find	Aranacak metin
+Texts	Metinler
 The freestanding PV array {} stands outside the plot boundary	Arazi tipi PV dizisi {} arsa sınırının dışında duruyor
 The identifier must not be empty	Tanımlayıcı boş olamaz
 The long side of the modules along the rows	Modüllerin uzun kenarı sıralar boyunca
@@ -640,6 +657,8 @@ Version	Sürüm
 Viewer	Görüntüleyici
 Visual inspection	Gözle muayene
 Voltage	Gerilim
+Voltage (V)	Gerilim (V)
+Voltage drop	Gerilim düşümü
 Voltage drop (%)	Gerilim düşümü (%)
 Warning	Uyarı
 Warnings	Uyarılar
@@ -685,6 +704,7 @@ yes	evet
 {} exists already	{} zaten var
 {} is not a PNG or JPEG image	{} bir PNG veya JPEG görüntüsü değil
 {} parts	{} parça
+{} symbols	{} sembol
 {} users	{} kullanıcı
 {} wires	{} tel
 {}, together with the wire to {}	{}, {} yönündeki telle birlikte

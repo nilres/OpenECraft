@@ -50,16 +50,22 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   for 60 mm busbars and fuse switch disconnector strips for 185 mm with clip-in current
   transformers, circuit breakers h3+ with motor operators and releases, the NA
   protection relay EU400, univers cabinets with their component modules, energy
-  meters), `janitza` (power analyser UMG 604-PRO), `jinko` (PV modules Tiger Neo
+  meters), `janitza` (power analyser UMG 604-PRO), `ledvance` (LED ceiling lights SURFACE
+  CIRCULAR, downlight DOWNLIGHT SLIM, PANEL 600, batten DAMP PROOF, bulkhead and
+  emergency bulkhead lights), `jinko` (PV modules Tiger Neo
   54HL4-B all black 405 - 415 Wp), `longi` (PV modules Hi-MO X6 Explorer LR5-54HTH
   425 - 435 Wp), `loxone` (energy meter for
   1 / 5 A current transformers on the Tree bus), `mdt` (KNX actuators, IP
   interface / router, power supply, KNX push buttons, glass push button and room
-  temperature controller for flush mounting), `phoenix_contact` (terminal blocks, relay
+  temperature controller for flush mounting), `mennekes` (CEE wall sockets 16 A and 32 A,
+  5 poles), `merten` (cooker connection box for flush mounting), `phoenix_contact` (terminal blocks, relay
   modules, power supplies), `pylontech` (19-inch LiFePO4 battery modules), `siemens` (SIRIUS contactors, overload relays, motor
-  starter protectors, SENTRON circuit breakers), `victron` (MultiPlus-II inverter /
+  starter protectors, SENTRON circuit breakers), `signify` (Philips CoreLine downlight
+  DN140B, panel RC132V, waterproof batten WT120C, wall light WL120V), `spelsberg` (junction
+  boxes Abox 025-L to 350-L, placed as enclosures of the room), `victron` (MultiPlus-II inverter /
   charger, Inverter RS Smart Solar, SmartSolar MPPT, Orion-Tr, Cerbo GX, SmartShunt, BMV-712, Lynx
-  Distributor; mostly parts for direct wall mounting) and `weidmueller` (terminals,
+  Distributor; mostly parts for direct wall mounting), `wago` (splicing connectors 221 and
+  2273 for junction boxes) and `weidmueller` (terminals,
   relay module, power supplies, CD wiring ducts). `--install-catalogs all` (or ids such as
   `siemens`) installs or updates them in an existing database: new parts are added,
   parts nobody changed are updated, parts changed or deleted by users are kept. Parts
@@ -220,10 +226,12 @@ The project runs a public parts server at
 [parts-server.openecraft.org](https://parts-server.openecraft.org) with the example
 catalog and the bundled manufacturer catalogs. Everybody reads it without an account:
 on its web page (search, catalogs, dashboard, the details of a part with its front view
-and 3D model), in the editor (*Master data › Data portal*, server URL
-`https://parts-server.openecraft.org`) and on the command line or by AI agents
-(`--server https://parts-server.openecraft.org`, or `parts_connect` with this `url`).
-It is a place to try the
+and 3D model), in the editor (*Master data › Data portal*), in the parts manager and on
+the command line or by AI agents. It is the preset server of all of them
+(`openecraft_parts::api::PUBLIC_URL`): the editor and the parts manager start with its
+address, the command line uses it without `--server` / `OPENECRAFT_SERVER`. A server of
+your own is entered as the server URL instead (`--server`, or `parts_connect` with its
+`url`); the address entered last is kept. It is a place to try the
 data portal and to take parts into your own database; a company keeps its own parts on
 a server of its own (above), where it decides who may change them. The data of the
 catalogs is compiled from public data sheets: check the parts against the

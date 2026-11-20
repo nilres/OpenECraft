@@ -1,7 +1,8 @@
-//! Buildings pane: the plot with its boundary and reference point, the buildings of the
-//! plant with their levels, the rooms on them, their shafts, stairs and roofs (with
-//! roof windows and PV arrays), the links between buildings and a site plan of all of
-//! them ([`openecraft_core::panel::plot`], [`openecraft_core::panel::buildings`],
+//! Buildings pane, in tabs: the plot with its boundary and reference point, freestanding
+//! PV arrays and the links between buildings; a building with its levels, the rooms on
+//! them, shafts and stairs; its roofs (with roof windows and PV arrays); its earthing
+//! and lightning protection; the floor plans on paper under its levels; the electrical
+//! installation of a level. Each tab shows the site plan of all of them ([`openecraft_core::panel::plot`], [`openecraft_core::panel::buildings`],
 //! [`openecraft_core::panel::stairs`], [`openecraft_core::panel::roofs`],
 //! [`openecraft_core::panel::solar`]).
 
@@ -16,9 +17,50 @@ use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
 use std::collections::HashMap;
 
+/// The tabs of the Buildings pane.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+enum Tab {
+    #[default]
+    Site,
+    Building,
+    Roofs,
+    Earthing,
+    FloorPlan,
+    Installation,
+}
+
+impl Tab {
+    const ALL: [Tab; 6] = [Tab::Site, Tab::Building, Tab::Roofs, Tab::Earthing, Tab::FloorPlan, Tab::Installation];
+
+    fn title(self) -> &'static str {
+        match self {
+            Tab::Site => tr("Site"),
+            Tab::Building => tr("Building"),
+            Tab::Roofs => tr("Roofs"),
+            Tab::Earthing => tr("Earthing"),
+            Tab::FloorPlan => tr("Floor plan on paper"),
+            Tab::Installation => tr("Electrical installation"),
+        }
+    }
+
+    /// What the tab is about, as its tooltip.
+    fn tip(self) -> &'static str {
+        match self {
+            Tab::Site => tr("The plot with its boundary and reference point, freestanding PV arrays and the links between buildings"),
+            Tab::Building => tr("The building with its levels, shafts and stairs"),
+            Tab::Roofs => tr("The roofs of the building with their windows and PV arrays"),
+            Tab::Earthing => tr("Earthing and lightning protection"),
+            Tab::FloorPlan => tr("A scan or drawing under a level, its scale and the rooms found in it"),
+            Tab::Installation => tr("Socket outlets, switches, lights and heating elements of a level and their circuits"),
+        }
+    }
+}
+
 #[derive(Default)]
 pub struct BuildingsUi {
     pub open: bool,
+    /// The tab shown.
+    tab: Tab,
     /// Index of the building shown.
     sel: usize,
     /// Level shown in the site plan (id), 0 for all levels.
@@ -489,49 +531,63 @@ impl App {
                 }
             });
         }
-        if let Some(tool) = plot_section(ui, prj) {
-            self.panel_ui.choose_site_tool(tool);
-        }
-        if let Some(tool) = ground_section(ui, prj) {
-            self.panel_ui.choose_site_tool(tool);
-        }
-        ui.separator();
-        if prj.layout.buildings.is_empty() {
-            ui.weak(tr("No building yet: create one with New building, then put rooms on its levels."));
-            return;
-        }
-        st.sel = st.sel.min(prj.layout.buildings.len() - 1);
         ui.horizontal_wrapped(|ui| {
-            for (bi, b) in prj.layout.buildings.iter().enumerate() {
-                if ui.selectable_label(st.sel == bi, b.name.as_str()).clicked() {
-                    st.sel = bi;
-                    st.level = 0;
-                }
+            for tab in Tab::ALL {
+                ui.selectable_value(&mut st.tab, tab, tab.title()).on_hover_text(tab.tip());
             }
         });
         ui.separator();
         let mut open_plan = None;
-        egui::ScrollArea::vertical().id_salt("bldscroll").auto_shrink([false, false]).show(ui, |ui| {
-            let bi = st.sel;
-            building_section(ui, prj, st, bi);
-            if st.sel >= prj.layout.buildings.len() {
+        let mut site_tool = None;
+        egui::ScrollArea::vertical().id_salt(("bldscroll", st.tab as u8)).auto_shrink([false, false]).show(ui, |ui| {
+            if st.tab == Tab::Site {
+                site_tool = plot_section(ui, prj).or(ground_section(ui, prj));
+                ui.separator();
+                if !prj.layout.buildings.is_empty() {
+                    links_section(ui, prj, st);
+                    ui.separator();
+                }
+            }
+            if prj.layout.buildings.is_empty() {
+                ui.weak(tr("No building yet: create one with New building, then put rooms on its levels."));
                 return;
             }
-            ui.separator();
-            levels_section(ui, prj, st, bi);
-            ui.separator();
-            shafts_section(ui, prj, bi);
-            ui.separator();
-            stairs_section(ui, prj, st, bi);
-            ui.separator();
-            roofs_section(ui, prj, st, bi);
-            ui.separator();
-            earthing_section(ui, prj, bi);
-            ui.separator();
-            links_section(ui, prj, st);
+            st.sel = st.sel.min(prj.layout.buildings.len() - 1);
+            if st.tab != Tab::Site {
+                ui.horizontal_wrapped(|ui| {
+                    for (bi, b) in prj.layout.buildings.iter().enumerate() {
+                        if ui.selectable_label(st.sel == bi, b.name.as_str()).clicked() {
+                            st.sel = bi;
+                            st.level = 0;
+                        }
+                    }
+                });
+                ui.separator();
+            }
+            let bi = st.sel;
+            match st.tab {
+                Tab::Site | Tab::FloorPlan | Tab::Installation => {}
+                Tab::Building => {
+                    building_section(ui, prj, st, bi);
+                    if st.sel >= prj.layout.buildings.len() {
+                        return;
+                    }
+                    ui.separator();
+                    levels_section(ui, prj, st, bi);
+                    ui.separator();
+                    shafts_section(ui, prj, bi);
+                    ui.separator();
+                    stairs_section(ui, prj, st, bi);
+                }
+                Tab::Roofs => roofs_section(ui, prj, st, bi),
+                Tab::Earthing => earthing_section(ui, prj, bi),
+            }
             ui.separator();
             open_plan = site_plan_section(ui, prj, st, an);
         });
+        if let Some(tool) = site_tool {
+            self.panel_ui.choose_site_tool(tool);
+        }
         if let Some(level) = open_plan {
             self.io.open(ui.ctx(), crate::io::Purpose::FloorPlan(level));
         }
@@ -1152,41 +1208,54 @@ fn links_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi) {
 
 /// The site plan: the rooms of all buildings seen from above (those of the level shown
 /// highlighted), the shafts, the stairs reaching the level shown, the roofs with their
-/// windows and the links between the buildings.
-/// The site plan with a level chosen, the floor plan on paper under that level; gives
-/// the level a floor plan file is to be opened for.
+/// windows and the links between the buildings, the floor plan on paper under the level
+/// shown and its installation. The tab of the floor plans on paper and of the
+/// installation show their settings above it, for a level (the first one when all were
+/// shown); gives the level a floor plan file is to be opened for.
 fn site_plan_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, an: &openecraft_core::analysis::Analysis) -> Option<u64> {
     let layout = &prj.layout;
     let b = layout.buildings.get(st.sel)?;
+    let one_level = matches!(st.tab, Tab::FloorPlan | Tab::Installation);
+    if one_level && !b.levels.iter().any(|l| l.id == st.level) {
+        st.level = b.levels.first().map_or(0, |l| l.id);
+    }
     ui.horizontal(|ui| {
         ui.label(RichText::new(tr("Site plan")).strong());
         let shown = b.levels.iter().find(|l| l.id == st.level).map_or_else(|| tr("All levels").to_string(), |l| l.name.clone());
         egui::ComboBox::from_id_salt("bldplanlevel").selected_text(shown).show_ui(ui, |ui| {
-            ui.selectable_value(&mut st.level, 0, tr("All levels"));
+            if !one_level {
+                ui.selectable_value(&mut st.level, 0, tr("All levels"));
+            }
             for l in &b.levels {
                 ui.selectable_value(&mut st.level, l.id, l.name.as_str());
             }
         });
     });
     let mut open = None;
-    if st.level == 0 {
-        ui.weak(tr("Choose a level to put a floor plan on paper (a scan or drawing) under it."));
-    } else if st.floor.section(ui, prj, st.level) {
-        open = Some(st.level);
+    match st.tab {
+        Tab::FloorPlan if st.level != 0 => {
+            if st.floor.section(ui, prj, st.level) {
+                open = Some(st.level);
+            }
+            ui.separator();
+        }
+        Tab::Installation if st.level != 0 => {
+            st.inst.section(ui, prj, an);
+            ui.separator();
+        }
+        _ => {}
     }
-    if st.level != 0 {
-        ui.separator();
-        st.inst.section(ui, prj, an);
+    // Clicks are for the floor plan's points in its tab, for the installation in its.
+    let installing = st.tab == Tab::Installation && st.level != 0 && st.inst.picking();
+    if st.tab != Tab::FloorPlan {
+        st.floor.stop_picking();
     }
-    // Clicks are for the floor plan's points, otherwise for the installation.
-    let installing = st.level != 0 && st.inst.picking() && !st.floor.picking();
     let (resp, size) = st.floor.site_plan(ui, prj, st.sel, st.level, installing);
     if st.level != 0 {
         if installing {
             st.inst.overlay(ui, prj, &resp, size, st.sel, st.level);
         } else {
-            let plan = crate::panel_ui::site_plan::level_plan(prj, st.sel, st.level);
-            crate::panel_ui::site_plan::paint_installation(ui, size, prj, &plan, None);
+            st.inst.paint(ui, prj, an, size, st.sel, st.level);
         }
     }
     st.floor.take_area(prj, st.level);

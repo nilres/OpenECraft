@@ -1,0 +1,137 @@
+use super::*;
+use crate::analysis::Analysis;
+use crate::model::Cable;
+
+/// Two of the four cores of the demo's motor cable as a cable -W2 of its own: a second
+/// cable out of +CAB1, which has one gland.
+fn split(prj: &mut Project) {
+    let part = prj.parts.iter().find(|p| p.number == "GEN.CBL-4G1.5").unwrap().clone();
+    let id = prj.new_id();
+    prj.cables.push(Cable { id, tag: "-W2".into(), cable_type: part.type_number.clone(), cores: part.tech_value("Cores").unwrap_or_default().into(), cross_section: part.tech_value("Cross-section").unwrap_or_default().into(), length: 15.0, part: part.number.clone(), ..Default::default() });
+    let page = prj.pages.iter().position(|p| p.name == "2").unwrap();
+    let wires: std::collections::BTreeSet<u64> = prj.pages[page].wires.iter().filter(|w| w.cable == "-W1").map(|w| w.id).take(2).collect();
+    assert_eq!(crate::ops::assign_cores(prj, page, &wires, "-W2"), 2);
+}
+
+#[test]
+fn a_new_cable_out_of_an_enclosure_gets_a_gland_of_its_size() {
+    let before = crate::sample::demo_project();
+    assert!(before.layout.auto_glands, "on by default");
+    let mut prj = before.clone();
+    split(&mut prj);
+    let added = follow(&mut prj, &before).added;
+    assert_eq!(added.len(), 1);
+    let e = &prj.layout.enclosures[0];
+    let g = e.item(added[0]).unwrap();
+    assert_eq!(g.face, Face::Bottom);
+    // Of the size of the cable, clear of the gland there was.
+    let d = cable_diameter(prj.cables.iter().find(|c| c.tag == "-W2").unwrap());
+    let (lo, hi) = panel::clamping_range(&prj, &g.part).unwrap();
+    assert!(d >= lo && d <= hi, "{d} in {lo} – {hi}");
+    let other = e.items.iter().find(|i| i.face == Face::Bottom && i.id != g.id).unwrap();
+    assert!(g.x >= other.x + other.w || g.x + g.w <= other.x || g.y >= other.y + other.h || g.y + g.h <= other.y);
+    // Both cables are routed, each through a gland.
+    let an = Analysis::checked(&prj);
+    assert!(["-W1", "-W2"].iter().all(|k| an.routing.item(k).unwrap().routed()), "{:?}", an.routing.problems);
+    // Nothing more without a change; a gland removed by hand stays removed while only
+    // the layout changes, and comes back with the next change of the cables.
+    let same = prj.clone();
+    assert!(follow(&mut prj, &same).added.is_empty());
+    let mut removed = prj.clone();
+    removed.layout.enclosures[0].items.retain(|i| i.id != added[0]);
+    assert!(follow(&mut removed, &prj).added.is_empty());
+    let kept = removed.clone();
+    removed.cables[0].length += 1.0;
+    assert_eq!(follow(&mut removed, &kept).added.len(), 1);
+}
+
+#[test]
+fn without_the_option_glands_are_added_only_on_request() {
+    let mut before = crate::sample::demo_project();
+    before.layout.auto_glands = false;
+    let mut prj = before.clone();
+    split(&mut prj);
+    assert!(follow(&mut prj, &before).added.is_empty());
+    assert_eq!(add_missing(&mut prj).added.len(), 1);
+    assert!(add_missing(&mut prj).added.is_empty());
+    // Stored only where it is off.
+    let text = serde_json::to_string(&before.layout).unwrap();
+    assert!(text.contains("\"auto_glands\":false"));
+    assert!(!serde_json::to_string(&crate::panel::Layout::default()).unwrap().contains("auto_glands"));
+    let back: crate::panel::Layout = serde_json::from_str("{}").unwrap();
+    assert!(back.auto_glands);
+}
+
+#[test]
+fn glands_by_the_size_of_the_cable() {
+    let prj = Project::default();
+    assert_eq!(gland_for(&prj, 7.0).as_deref(), Some("GEN.GLAND-M16"));
+    assert_eq!(gland_for(&prj, 15.0).as_deref(), Some("GEN.GLAND-M25"));
+    assert_eq!(gland_for(&prj, 70.0).as_deref(), Some("GEN.GLAND-M63"));
+}
+
+#[test]
+fn a_full_face_sends_the_gland_to_the_next_and_a_cable_without_place_is_reported() {
+    let mut prj = crate::sample::demo_project();
+    let part = gland_for(&prj, 10.0).unwrap();
+    let fill = |prj: &mut Project, face: Face| while put_into(prj, 0, &part, face).is_some() {};
+    let need = [Need { cable: "-W9".into(), diameter: 10.0, room: false, below: false }];
+    // The bottom full: into the roof.
+    fill(&mut prj, Face::Bottom);
+    let mut out = Glands::default();
+    add(&mut prj, 0, &need, &mut out);
+    assert_eq!(out.added.len(), 1);
+    assert_eq!(prj.layout.enclosures[0].item(out.added[0]).unwrap().face, Face::Roof);
+    // Every face full: reported, with the enclosure.
+    for f in faces_for(&prj, 0, &need[0]) {
+        fill(&mut prj, f);
+    }
+    let mut out = Glands::default();
+    add(&mut prj, 0, &need, &mut out);
+    assert!(out.added.is_empty());
+    assert_eq!(out.unplaced, [Unplaced { cable: "-W9".into(), enclosure: prj.layout.enclosures[0].name.clone() }]);
+    // A cable into the room of a standing cabinet leaves through its roof first, never
+    // through its bottom; one into the field through its bottom first.
+    let room = Need { cable: "-W9".into(), diameter: 10.0, room: true, below: false };
+    let faces = faces_for(&prj, 0, &room);
+    assert_eq!(faces[0], Face::Roof);
+    assert!(!faces.contains(&Face::Bottom));
+    assert_eq!(faces_for(&prj, 0, &need[0])[..2], [Face::Bottom, Face::Roof]);
+    // No side glands in a shallow enclosure, no rear ones in one hanging on the wall; there
+    // into the room through the bottom only towards a place below it.
+    prj.layout.enclosures[0].depth = 95.0;
+    for i in panel::lineup_of(&prj.layout, 0).into_iter().chain([0]) {
+        prj.layout.enclosures[i].elevation = Some(1000.0);
+    }
+    assert_eq!(faces_for(&prj, 0, &room), [Face::Roof]);
+    assert_eq!(faces_for(&prj, 0, &Need { below: true, ..room.clone() }), [Face::Bottom, Face::Roof]);
+    assert_eq!(faces_for(&prj, 0, &need[0]), [Face::Bottom, Face::Roof]);
+}
+
+#[test]
+fn a_cabinet_against_a_wall_of_its_room_takes_no_rear_glands() {
+    let mut prj = crate::sample::example("electrical_room").unwrap();
+    let layout = &prj.layout;
+    let k = (0..layout.enclosures.len()).find(|&i| !layout.enclosures[i].is_room() && panel::room_of(layout, i).is_some() && panel::lineup_of(layout, i).first() == Some(&i)).unwrap();
+    let ri = panel::room_of(layout, k).unwrap();
+    let (lo, hi) = panel::bounds(&panel::outline(&layout.enclosures[ri]));
+    let room = Need { cable: "-W9".into(), diameter: 10.0, room: true, below: false };
+    let x = (lo[0] + hi[0]) / 2.0 - prj.layout.enclosures[k].width / 2.0;
+    prj.layout.enclosures[k].site = Some(panel::SitePlace { x, z: lo[1], angle: 0.0 });
+    assert!(!faces_for(&prj, k, &room).contains(&Face::Rear));
+    prj.layout.enclosures[k].site = Some(panel::SitePlace { x, z: lo[1] + 500.0, angle: 0.0 });
+    assert!(faces_for(&prj, k, &room).contains(&Face::Rear));
+}
+
+#[test]
+fn a_device_on_the_roof_of_the_room_is_above_a_hanging_cabinet() {
+    let mut prj = crate::sample::example("electrical_room").unwrap();
+    let ri = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let it = panel::new_accessory(&mut prj, "GEN.LAMP-CEILING-LED", Face::RoofTop, p(500.0, 500.0));
+    let mut it = it;
+    it.tag = "-X99".into();
+    it.kind = panel::ItemKind::Device;
+    it.y = 9000.0;
+    prj.layout.enclosures[ri].items.push(it);
+    assert_eq!(height_of(&prj, "-X99"), Some(prj.layout.enclosures[ri].height));
+}

@@ -2,6 +2,10 @@
 
 
 use super::is_zero;
+
+fn is_on(b: &bool) -> bool {
+    *b
+}
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -25,6 +29,10 @@ pub struct Layout {
     pub duct_fill_limit: f32,
     /// Screws, nuts and rivet nuts of the fastening systems in the bill of materials.
     pub hardware: bool,
+    /// A new cable that leaves an enclosure gets a cable gland of its size in the
+    /// bottom where no free gland takes it (`crate::routing3d::glands`); on by default.
+    #[serde(skip_serializing_if = "is_on")]
+    pub auto_glands: bool,
     /// 3D macros of the project (groups of items to insert again).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub macros: Vec<PanelMacro>,
@@ -56,13 +64,8 @@ pub struct Layout {
     /// building entry of another.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub site_links: Vec<SiteLink>,
-    /// The final circuits of the installation in the rooms: from a circuit breaker of a
-    /// distribution board to socket outlets, switches and lights (see
-    /// `crate::installation`).
-    #[serde(skip_serializing_if = "Vec::is_empty")]
-    pub circuits: Vec<FinalCircuit>,
-    /// Ids of the overview pages drawn of the circuits (made again each time, see
-    /// `crate::installation::overview`).
+    /// Ids of the schematic pages the installation draws the devices of its final
+    /// circuits on, one per protective device (see `crate::installation::add_device`).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub installation_pages: Vec<u64>,
     /// The plot the plant stands on: its boundary, which the buildings stay inside, and
@@ -673,43 +676,6 @@ pub struct Level {
     pub plan: Option<FloorPlan>,
 }
 
-/// A final circuit of the installation: a protective device of a distribution board
-/// and the socket outlets, switches and lights its cable runs to, one after the other.
-#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
-#[serde(default)]
-pub struct FinalCircuit {
-    pub id: u64,
-    /// Name, e.g. "Kitchen sockets".
-    pub name: String,
-    /// Device tag of its protective device (circuit breaker, RCBO, fuse) in the
-    /// schematic; empty while none is chosen.
-    pub breaker: String,
-    /// Id of the enclosure (distribution board) its cable starts at; 0: the one its
-    /// protective device is placed in.
-    #[serde(skip_serializing_if = "is_zero_u64")]
-    pub board: u64,
-    /// The cable: its type, the cross-section of its conductors (mm²) and its tag in
-    /// the cable list (empty: none), which gets the length.
-    pub cable_type: String,
-    pub cross_section: f32,
-    #[serde(skip_serializing_if = "String::is_empty")]
-    pub cable: String,
-    /// Fed from three phases (a five-core cable) instead of one.
-    #[serde(skip_serializing_if = "std::ops::Not::not")]
-    pub three_phase: bool,
-    /// Ids of its items (in the rooms) in the order the cable runs to them.
-    pub items: Vec<u64>,
-    /// Load for the voltage drop, W, and its power factor; 0: the rated current of the
-    /// protective device.
-    #[serde(skip_serializing_if = "is_zero")]
-    pub load: f32,
-    pub cos_phi: f32,
-}
-
-fn is_zero_u64(v: &u64) -> bool {
-    *v == 0
-}
-
 /// A floor plan on paper put under a level: the rooms are drawn on it or found in it.
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
@@ -733,6 +699,10 @@ pub struct FloorPlan {
     pub area: Option<[u32; 4]>,
     /// How strongly it is shown, 0 … 1 (0: hidden).
     pub opacity: f32,
+    /// The smallest room the detection keeps, m² (`None`: 1 m²; a WC or a closet is
+    /// smaller).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub min_room: Option<f32>,
 }
 
 impl FloorPlan {

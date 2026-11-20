@@ -2,8 +2,8 @@
 //! compressors, valves and pipe fittings, air treatment, wall-mounted electronics,
 //! 19-inch devices and batteries, PV modules, boxes, NH fuse switch disconnectors and
 //! fuse bases, earthing busbars and earth electrode lugs, socket outlets, switches and
-//! the other outlets of a room, heating circuit manifolds and single-room control
-//! boxes, painted in their colours, with x to the right, y up and z towards the front; each
+//! the other outlets of a room, lights, electric heating elements, heating circuit
+//! manifolds and single-room control boxes, painted in their colours, with x to the right, y up and z towards the front; each
 //! model fills the part's box. Floor-standing ones are drawn standing on the floor
 //! (x width, y depth from the front, z height) and turned upright at the end.
 
@@ -92,7 +92,40 @@ enum Kind {
     /// Single-room control box of an underfloor heating: flush box with cover, and a
     /// thermostat knob.
     ControlBox { knob: bool },
+    /// A light on a wall or ceiling (z out of it): round or rectangular, recessed (a
+    /// flange round its diffuser) or surface-mounted, an emergency light with its sign.
+    Light { round: bool, recessed: bool, emergency: bool },
+    /// An electric heating element of a room.
+    Heater(Heater),
+    /// Surface-mounted CEE socket outlet: its box, the red socket under its hinged lid,
+    /// the cable gland at the bottom.
+    Cee,
+    /// The round lid of a flush-mounted box in the wall (junction box).
+    FlushLid,
+    /// Smoke alarm on the ceiling: its base, the ring of smoke inlets, the dome with the
+    /// test button and its light.
+    Smoke,
+    /// Splicing connector of a junction box: its clear housing with a lever (or a
+    /// push-in opening) per conductor.
+    Splice { conductors: usize, lever: bool },
 }
+
+/// The shape of an electric heating element.
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum Heater {
+    /// Panel heater: a flat body with the air grille at the top and its thermostat.
+    Panel,
+    /// Towel radiator: two upright tubes and the bars between them.
+    Towel,
+    /// Infrared heating panel: a thin panel in a frame.
+    Infrared,
+    /// Sauna heater: the steel housing on its wall bracket, the stones on top, the
+    /// control panel at the front.
+    Sauna,
+}
+
+/// Opal diffuser of a light.
+const OPAL: [u8; 3] = [248, 246, 236];
 
 /// What is in the frame of a room outlet.
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -110,6 +143,8 @@ enum Outlet {
     Glass,
     /// Room thermostat with its display.
     Thermostat,
+    /// Cover plate of a device connection box, the cable out at its bottom.
+    Cover,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -151,6 +186,7 @@ fn kind_of(p: &Part) -> Option<Kind> {
         "Pipe connection" if p.functions.len() > 2 => Kind::Manifold(p.functions.len() - 1),
         "Pipe connection" => Kind::Entry,
         "PV module" => Kind::Pv,
+        "Junction box" if has("flush") => Kind::FlushLid,
         "House connection box" | "Junction box" | "Generator junction box" => Kind::Housing,
         "Fuse switch disconnector" => Kind::FuseSwitch,
         "Fuse base" => Kind::FuseBase(p.functions.iter().map(|f| f.pin_list().len() / 2).sum::<usize>().max(1)),
@@ -163,6 +199,13 @@ fn kind_of(p: &Part) -> Option<Kind> {
         "19-inch device" => Kind::Rack(RackKind::Vents),
         _ if p.manufacturer.starts_with("Victron") && !floor => Kind::WallBox { color: VICTRON, display: matches!(p.subgroup.as_str(), "Inverter / charger" | "Inverter" | "System monitoring" | "Battery monitor") },
         "Inverter / charger" | "Inverter" | "Solar charger" | "Charger" => Kind::WallBox { color: BODY, display: true },
+        "Socket outlet" if has("cee") => Kind::Cee,
+        "Device connection box" => Kind::Outlet(Outlet::Cover),
+        "Smoke alarm" => Kind::Smoke,
+        "Splicing connector" => Kind::Splice {
+            conductors: p.tech_value("Conductors").and_then(|v| v.trim().parse().ok()).unwrap_or(2usize).clamp(1, 8),
+            lever: has("lever"),
+        },
         "Socket outlet" if p.wall_mountable() => Kind::Outlet(Outlet::Socket { gangs: ((p.width / 75.0).round() as usize).max(1), lid: has("lid"), usb: has("usb") }),
         "Data outlet" => Kind::Outlet(Outlet::Data(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
         "Antenna outlet" => Kind::Outlet(Outlet::Antenna(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
@@ -175,6 +218,15 @@ fn kind_of(p: &Part) -> Option<Kind> {
         "Room thermostat" => Kind::Outlet(Outlet::Thermostat),
         "Heating circuit manifold" => Kind::HeatingManifold(p.functions.iter().flat_map(|f| f.pin_list()).count().saturating_sub(2) / 2),
         "Control box" => Kind::ControlBox { knob: has("thermostat") },
+        "Luminaire" | "Emergency light" | "Downlight" | "Ceiling light" | "Wall light" | "Panel light" | "Batten luminaire" => Kind::Light {
+            round: has("round") || has("circular") || p.subgroup == "Downlight",
+            recessed: has("recessed") || p.subgroup == "Downlight",
+            emergency: p.subgroup == "Emergency light" || has("emergency"),
+        },
+        "Room heater" => Kind::Heater(Heater::Panel),
+        "Towel radiator" => Kind::Heater(Heater::Towel),
+        "Infrared heating panel" => Kind::Heater(Heater::Infrared),
+        "Sauna heater" => Kind::Heater(Heater::Sauna),
         _ => return None,
     })
 }
@@ -717,6 +769,163 @@ fn build(p: &Part) -> Option<(Model2d, Mesh3d, Option<Shaft>, Vec<Nozzle>)> {
             }
             circle(&mut prims, [w / 2.0, h / 2.0], r);
         }
+        Kind::Light { round, recessed, emergency } => {
+            let (cx, cy) = (w / 2.0, h / 2.0);
+            if round {
+                let r = 0.5 * w.min(h);
+                if recessed {
+                    // The can in the ceiling, the flange on it and the diffuser in the flange.
+                    m.add_cylinder([cx, cy, 0.0], 2, 0.62 * r, 0.82 * d, ROUND, STEEL);
+                    m.add_cylinder([cx, cy, 0.82 * d], 2, r, 0.14 * d, ROUND + 8, WHITE);
+                    m.add_cylinder([cx, cy, 0.96 * d], 2, 0.76 * r, 0.04 * d, ROUND + 8, OPAL);
+                    circle(&mut prims, [cx, h - cy], 0.76 * r);
+                } else {
+                    // The base on the ceiling and the domed diffuser on it.
+                    m.add_cylinder([cx, cy, 0.0], 2, r, 0.3 * d, ROUND + 8, WHITE);
+                    m.add_frustum([cx, cy, 0.3 * d], 2, 0.96 * r, 0.78 * r, 0.6 * d, ROUND + 8, OPAL);
+                    m.add_cylinder([cx, cy, 0.9 * d], 2, 0.78 * r, 0.1 * d, ROUND + 8, OPAL);
+                    circle(&mut prims, [cx, h - cy], 0.78 * r);
+                }
+                if emergency {
+                    // The escape sign on the front of the diffuser.
+                    let s = 0.3 * r;
+                    m.add_painted_box([cx - s, cy - 0.6 * s, 0.995 * d], [cx + s, cy + 0.6 * s, d], LED);
+                }
+                circle(&mut prims, [cx, h - cy], r);
+            } else {
+                // The housing and the diffuser in front of it, a flange when recessed.
+                let (inset, body) = if recessed { (0.03 * w.min(h), 0.2 * d) } else { (0.06 * w.min(h), 0.45 * d) };
+                m.add_painted_box([0.0, 0.0, 0.0], [w, h, body], WHITE);
+                m.add_painted_box([inset, inset, body], [w - inset, h - inset, 0.97 * d], OPAL);
+                prims.push(Prim2d::Rect { min: [inset, inset], max: [w - inset, h - inset], fill: false });
+                if emergency {
+                    // The escape sign in the middle of the diffuser.
+                    let s = 0.35 * w.min(h);
+                    m.add_painted_box([cx - s, cy - 0.6 * s, 0.97 * d], [cx + s, cy + 0.6 * s, d], LED);
+                    prims.push(Prim2d::Rect { min: [cx - s, h - cy - 0.6 * s], max: [cx + s, h - cy + 0.6 * s], fill: true });
+                } else {
+                    m.add_painted_box([inset, inset, 0.97 * d], [w - inset, h - inset, d], OPAL);
+                }
+            }
+        }
+        Kind::Heater(Heater::Panel) => {
+            // The body on its wall brackets, the front panel, the grille of the warm air
+            // at the top and the thermostat at the right.
+            for x in [0.15 * w, 0.8 * w] {
+                m.add_painted_box([x, 0.2 * h, 0.0], [x + 0.05 * w, 0.8 * h, 0.25 * d], DARK);
+            }
+            m.add_painted_box([0.0, 0.0, 0.25 * d], [w, h, 0.9 * d], WHITE);
+            m.add_painted_box([0.01 * w, 0.02 * h, 0.9 * d], [0.99 * w, 0.84 * h, d], [242, 243, 244]);
+            let n = ((w / 25.0) as usize).clamp(6, 60);
+            for k in 0..n {
+                let x = 0.04 * w + k as f32 * 0.92 * w / n as f32;
+                m.add_painted_box([x, 0.88 * h, 0.9 * d], [x + 0.45 * 0.92 * w / n as f32, 0.97 * h, 0.95 * d], DARK);
+            }
+            m.add_painted_box([0.86 * w, 0.62 * h, 0.9 * d], [0.96 * w, 0.78 * h, d], DISPLAY);
+            prims.push(Prim2d::Rect { min: [0.04 * w, 0.03 * h], max: [0.96 * w, 0.12 * h], fill: false });
+            prims.push(Prim2d::Rect { min: [0.86 * w, 0.22 * h], max: [0.96 * w, 0.38 * h], fill: true });
+        }
+        Kind::Heater(Heater::Towel) => {
+            // The two upright tubes on their brackets and the bars between them, in
+            // groups with a gap for the towels.
+            let r = (0.04 * w).min(0.3 * d);
+            for x in [r, w - r] {
+                m.add_cylinder([x, 0.0, d - r], 1, r, h, ROUND, WHITE);
+                for y in [0.15 * h, 0.85 * h] {
+                    m.add_cylinder([x, y, 0.0], 2, 0.5 * r, d - r, 8, STEEL);
+                }
+                prims.push(Prim2d::Rect { min: [x - r, 0.0], max: [x + r, h], fill: false });
+            }
+            let bar = 0.45 * r;
+            let pitch = (8.0 * bar).max(h / 40.0);
+            let mut y = 0.06 * h;
+            let mut k = 0;
+            while y < 0.96 * h {
+                m.add_cylinder([r, y, d - r], 0, bar, w - 2.0 * r, 10, WHITE);
+                prims.push(Prim2d::Line { a: [r, h - y], b: [w - r, h - y] });
+                k += 1;
+                y += if k % 6 == 0 { 2.5 * pitch } else { pitch };
+            }
+        }
+        Kind::Heater(Heater::Infrared) => {
+            // The thin panel in its frame.
+            let f = 0.02 * w.min(h);
+            m.add_painted_box([0.0, 0.0, 0.0], [w, h, 0.7 * d], [210, 212, 216]);
+            m.add_painted_box([f, f, 0.7 * d], [w - f, h - f, d], WHITE);
+            prims.push(Prim2d::Rect { min: [f, f], max: [w - f, h - f], fill: false });
+        }
+        Kind::Heater(Heater::Sauna) => {
+            // The wall bracket, the steel housing with its air slots, the stones heaped
+            // in the basket on top and the control panel at the front.
+            m.add_painted_box([0.15 * w, 0.25 * h, 0.0], [0.85 * w, 0.35 * h, 0.12 * d], DARK);
+            m.add_painted_box([0.0, 0.0, 0.12 * d], [w, 0.78 * h, d], STAINLESS);
+            for k in 0..6 {
+                let y = 0.2 * h + k as f32 * 0.08 * h;
+                m.add_painted_box([0.12 * w, y, 0.99 * d], [0.7 * w, y + 0.03 * h, d], DARK);
+            }
+            m.add_painted_box([0.0, 0.78 * h, 0.12 * d], [w, 0.82 * h, d], STEEL);
+            // Two layers of flat stones, the upper one smaller and fewer.
+            let r = 0.12 * w.min(d);
+            for (k, (x, z, top)) in (0..4).flat_map(|i| (0..3).map(move |j| (0.13 + 0.25 * i as f32, 0.2 + 0.3 * j as f32, 0.92)))
+                .chain([(0.3, 0.35, 1.0), (0.62, 0.4, 0.98), (0.45, 0.72, 0.99)])
+                .enumerate() {
+                let r = if k % 3 == 0 { 1.1 * r } else { r };
+                let y0 = if top > 0.95 { 0.88 * h } else { 0.82 * h };
+                m.add_frustum([x * w, y0, 0.12 * d + z * 0.88 * d], 1, r, 0.55 * r, top * h - y0, 10, if k % 2 == 0 { [92, 90, 86] } else { [122, 118, 112] });
+            }
+            m.add_painted_box([0.76 * w, 0.06 * h, 0.99 * d], [0.94 * w, 0.18 * h, d], DISPLAY);
+            prims.push(Prim2d::Rect { min: [0.0, 0.18 * h], max: [w, h], fill: false });
+            prims.push(Prim2d::Rect { min: [0.76 * w, 0.82 * h], max: [0.94 * w, 0.94 * h], fill: true });
+        }
+        Kind::Cee => {
+            // The grey box, the red socket body in it and the red hinged lid over it,
+            // hinged at the top; the cable gland at the bottom.
+            let (cx, cy) = (w / 2.0, 0.48 * h);
+            m.add_painted_box([0.0, 0.1 * h, 0.0], [w, h, 0.45 * d], [150, 154, 160]);
+            m.add_cylinder([cx, cy, 0.45 * d], 2, 0.4 * w, 0.3 * d, ROUND + 8, RED);
+            m.add_painted_box([0.06 * w, 0.88 * h, 0.45 * d], [0.94 * w, 0.98 * h, d], RED);
+            m.add_painted_box([0.08 * w, 0.14 * h, 0.75 * d], [0.92 * w, 0.88 * h, d], RED);
+            m.add_painted_box([0.3 * w, 0.14 * h, 0.95 * d], [0.7 * w, 0.2 * h, d], [160, 40, 34]);
+            m.add_cylinder([cx, 0.0, 0.22 * d], 1, 0.14 * w, 0.1 * h, ROUND, BLACK);
+            circle(&mut prims, [cx, h - cy], 0.4 * w);
+            prims.push(Prim2d::Rect { min: [0.08 * w, 0.12 * h], max: [0.92 * w, 0.86 * h], fill: false });
+        }
+        Kind::FlushLid => {
+            // Only the lid shows on the plaster, its screw in the middle.
+            let (cx, cy, r) = (w / 2.0, h / 2.0, 0.5 * w.min(h));
+            m.add_cylinder([cx, cy, 0.0], 2, r, 0.7 * d, ROUND + 8, [226, 228, 230]);
+            m.add_cylinder([cx, cy, 0.7 * d], 2, 0.9 * r, 0.3 * d, ROUND + 8, WHITE);
+            m.add_painted_box([cx - 0.15 * r, cy - 0.02 * r, 0.98 * d], [cx + 0.15 * r, cy + 0.02 * r, d], DARK);
+            circle(&mut prims, [cx, cy], r);
+        }
+        Kind::Splice { conductors, lever } => {
+            // The clear housing with the conductor entries at its front end, per
+            // conductor an orange lever (or the grey top of a push-in clamp).
+            m.add_painted_box([0.0, 0.0, 0.0], [w, 0.85 * h, 0.7 * d], [214, 222, 226]);
+            let pitch = w / conductors as f32;
+            for k in 0..conductors {
+                let x = pitch * k as f32;
+                m.add_cylinder([x + pitch / 2.0, 0.0, 0.35 * d], 1, 0.25 * pitch.min(d), 0.05 * h, 10, [120, 126, 132]);
+                if lever {
+                    m.add_painted_box([x + 0.12 * pitch, 0.3 * h, 0.7 * d], [x + 0.88 * pitch, h, d], [236, 118, 26]);
+                } else {
+                    m.add_painted_box([x + 0.15 * pitch, 0.5 * h, 0.7 * d], [x + 0.85 * pitch, 0.85 * h, 0.85 * d], [150, 156, 162]);
+                }
+                prims.push(Prim2d::Rect { min: [x + 0.12 * pitch, 0.0], max: [x + 0.88 * pitch, 0.7 * h], fill: false });
+            }
+        }
+        Kind::Smoke => {
+            // Base on the ceiling, the grey ring of the smoke inlets, the dome with the
+            // test button and the red light beside it.
+            let (cx, cy, r) = (w / 2.0, h / 2.0, 0.5 * w.min(h));
+            m.add_cylinder([cx, cy, 0.0], 2, r, 0.2 * d, ROUND + 8, WHITE);
+            m.add_cylinder([cx, cy, 0.2 * d], 2, 0.94 * r, 0.35 * d, ROUND + 8, [196, 198, 202]);
+            m.add_frustum([cx, cy, 0.55 * d], 2, 0.94 * r, 0.72 * r, 0.37 * d, ROUND + 8, WHITE);
+            m.add_cylinder([cx, cy, 0.92 * d], 2, 0.3 * r, 0.08 * d, ROUND, [224, 226, 228]);
+            m.add_cylinder([cx + 0.5 * r, cy, 0.9 * d], 2, 0.06 * r, 0.04 * d, 8, RED);
+            circle(&mut prims, [cx, cy], r);
+            circle(&mut prims, [cx, cy], 0.3 * r);
+        }
         Kind::EarthLug => {
             // Sealing collar on the wall at the bottom, the round wire straight out of
             // the wall and bent upwards, its green-yellow marking tag.
@@ -862,6 +1071,15 @@ fn outlet(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, kind: Outlet, [w, h, d]: [f32
                     m.add_painted_box([cx + dx - 0.08 * s, cy - 0.3 * s, 0.96 * d], [cx + dx + 0.08 * s, cy - 0.16 * s, 0.99 * d], [214, 216, 220]);
                 }
                 prims.push(Prim2d::Rect { min: [cx - 0.32 * s, h - cy - 0.34 * s], max: [cx + 0.32 * s, h - cy + 0.02 * s], fill: false });
+            }
+            Outlet::Cover => {
+                // The blank plate with its screw cap, the cable out of the grommet at its
+                // bottom edge.
+                inner(m, 0.36 * d, 0.7 * d, [230, 232, 234]);
+                m.add_cylinder([cx, cy, 0.7 * d], 2, 0.09 * s, 0.06 * d, ROUND, [216, 218, 222]);
+                m.add_cylinder([cx, cy - 0.47 * s, 0.6 * d], 2, 0.1 * s, 0.3 * d, ROUND, [214, 216, 218]);
+                m.add_cylinder([cx, cy - 0.47 * s, 0.9 * d], 2, 0.06 * s, 0.1 * d, ROUND, BLACK);
+                prims.push(Prim2d::Circle { c: [cx, h - cy + 0.47 * s], r: 0.1 * s, fill: false });
             }
         }
     }

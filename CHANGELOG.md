@@ -5,25 +5,136 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **The installation in the schematic:** a socket outlet, switch, light or heating
+  element put into a room of the floor plan for a protective device goes into the
+  schematic: a device with its part on the installation page of the circuit, drawn
+  with a cable from the device before it. The circuits in the *Buildings* pane are read
+  from the schematic, with the devices behind each protective device (through switches,
+  contacts and terminals), their connections and cables; the lengths are those of the
+  3D routing (estimated until routed). Devices drawn in the schematic by hand are placed
+  with a click, or take an outlet, switch or light placed before. Heating elements
+  (panel heaters, towel radiators, infrared ceiling panels) are put in like the other
+  devices. They are also placed with a click on a wall or the ceiling in the 3D view
+  (*Insert › Outlets, switches, heating*, with the protective device chosen at the top
+  of the menu, whose list now fills its height). In a net with several cables each
+  connection now takes the cable of the
+  wires at its connection points. Commands `place_installation`, `list_circuits`,
+  `place_circuit_device`, `write_circuit_cables`
+  ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
+- **Installation of a house:** circuits branch at junction boxes (each device's cable
+  comes from the device chosen, *Cable from*, `from`; the cable keeps its source and
+  target, which its connections and 3D route follow), three-pole protective devices
+  feed CEE socket outlets, cooker connection boxes and three-phase heaters, data and
+  antenna outlets and smoke alarms are placed without a circuit, a point outside a room
+  puts the device on the outside of its wall, and `place_installation` takes the device
+  tag, mounting height and the cable's tag, type, part, cores, cross-section and a known
+  length. `place_cabinet_device` puts a device into a distribution board with the size of
+  its part. CEE socket outlets, junction box lids, device connection boxes, smoke
+  alarms and sauna heaters have their own 3D models. After placing, the status says
+  whether the device went into the schematic and with which cable; one placed without a
+  protective device goes in later with *Put into the schematic* in its properties. Fixed: with two or more devices on a breaker the first cable was missing
+  from the circuit and its cores were counted on the next one; a residual current
+  device behind a feeder counted as protecting the feeder and all its other circuits;
+  a two-way switch was drawn as an auxiliary contact without a main function (now a
+  manually operated changeover switch, symbol `co_man`); `tag` was ignored without
+  `breaker` and the mounting height on the outside of a wall; a junction box counted as
+  a load of 16 A in the cable sizing (now it passes on the loads of the cables leaving
+  it). A two-way switch fed from another one makes a two-way circuit, with intermediate
+  switches (`GEN.SW-INTER-UP`, symbol `co_inter`) between them for more switching
+  points: the installation page joins their travellers, and a light without `from`
+  hangs on the last switch, which also takes the lights placed before it (other devices
+  stay where they are fed from; a switch after a closed pair starts a circuit of its
+  own). The cables
+  between the switches have four cores and carry the neutral and the protective
+  conductor on to the lights; the next switch is drawn on the page of the one before.
+  A blind switch is no two-way switch. The spare traveller of a two-way switch working
+  alone is left free on purpose: connection points named in the new function property
+  *Unused connection points* (`function.unused_pins`) are not reported as open; those of
+  an intermediate switch without a last switch stay open. A junction box passes on only
+  the loads behind it (cables starting there, known by their source); a single-phase
+  load behind a box on a five-core feeder is computed single-phase.
+- **Placing in the 3D view:** a click on a wall or the ceiling of a room places the
+  part there, also outside the installation zones: near its mounting height it goes at
+  that height, farther off at the height clicked. While placing, the part is shown
+  see-through where it would go. Delete removes what is selected in the 3D view; a right
+  click opens a menu with *Delete* and *Properties*. While the 3D routing is searched
+  again after a change, the 3D view says so. A full installation page is continued on
+  a new page after it (from the twelfth single-phase device of a circuit the devices
+  were left out of the schematic before).
+- **CEE sockets of Mennekes and a cooker connection box of Merten:** the catalogs
+  `mennekes` (CEE wall sockets 27005, 5515 and 7233 with circuit breaker and RCD; 16 A
+  and 32 A, 5 poles) and `merten` (cooker connection box 520427 for flush mounting), in
+  the installation menu for three-phase circuits.
+- **Junction boxes of Spelsberg with WAGO connectors:** the catalogs `spelsberg`
+  (junction boxes Abox 025-L to 350-L) and `wago` (splicing connectors 221 and 2273). A
+  Spelsberg box placed on a wall hangs there as an enclosure of the room, opened and
+  routed into like any enclosure, with a WAGO 221-415 inside that is its device (a
+  connector per conductor in its parts).
+- **Cable glands for new cables:** a cable that leaves a cabinet and finds no free
+  cable gland gets one of its size (*Add cable glands for new cables* in the enclosure
+  properties, `set_auto_glands`; on by default): in the roof for a device in the room
+  the cabinet stands in, in the bottom for one in the field or of a cabinet hanging on
+  the wall; where that face is full, in the next face the cable can leave through
+  (bottom or roof, then the sides and the rear; not a side against the next cabinet of
+  the line-up nor the sides of one less than 150 mm deep, not the rear of one hanging
+  on the wall or standing against it, its bottom only for a place below it, measured as
+  the routing heads for it: in the room or in a cabinet there, or the wall penetration
+  to another room). A cable that finds no free place is
+  reported with its cabinet and why (`glands_missing`, `missing`). *Add the missing
+  ones* (`add_cable_glands`) adds them for all cables at once.
+- **Smaller rooms from floor plans on paper:** *Smallest room* (`min_room`) sets the
+  smallest room kept by the detection (1 m² before: a WC or a closet was lost).
+- **Narrow lettering:** texts have a width factor, drawn so on screen and in the SVG,
+  PDF and DXF / DWG exports (`add_text`, `update_text` with `width_factor`).
+- **Coloured frame artwork:** a coloured logo in the artwork of a plot frame keeps its
+  colours.
+- **Lights and heaters in 3D:** ceiling lights, downlights, wall, panel and emergency
+  lights, panel heaters, towel radiators and infrared heating panels get generated 3D
+  models instead of plain boxes.
+- **Floor plan on paper in the room's floor plan:** the scan or drawing under a level
+  is drawn under the floor plan of each of its rooms too (*Show › Floor plan on
+  paper*).
+- **Buildings pane in tabs:** *Site*, *Building*, *Roofs*, *Earthing*, *Floor plan on
+  paper* and *Electrical installation*, each with the site plan.
+- **A website with more to find:** the build of the website now writes a page for
+  every category of the symbol library with the drawings of its symbols, a page for
+  every example project with its sheets, its PDF and a link into the live demo, the
+  documentation (tutorial, installation, features, command line, plugins, servers)
+  and the release notes with an Atom feed (`news/feed.xml`), beside new pages with
+  questions and answers, guides (terminal diagram, wire list, bill of materials, DXF
+  and DWG export) and comparisons with single products. Three tools run in the
+  browser with the code of the editor, nothing is uploaded: a voltage drop
+  calculator, a DXF and DWG viewer and converter (SVG, PDF, DXF, DWG) and a viewer
+  for EDZ and other parts files (CSV, JSON). *Copy link* in the demos writes an
+  address that opens an example at a page, a place of the panel or a report
+  (`?example=conveyor&page=3#studio`), and the first screen shows a screen recording of the
+  demos when the build is given one, and the stars and contributors of the repository,
+  which the Docker image of the website asks GitHub for every hour. New crate `openecraft-site`
+  ([website](docs/website.md#pages-the-build-writes)).
+- **Less for a search engine to complain about:** the Docker images of the website
+  and the web editor send the license files with `X-Robots-Tag: noindex`, the page of
+  the web editor has a description, and the documentation says how the reverse proxy
+  redirects `www.` to the address of the site
+  ([website](docs/website.md#docker-image)).
+- **The public parts server is preset:** the editor's data portal, the parts manager
+  and the command line connect to
+  [parts-server.openecraft.org](https://parts-server.openecraft.org) until another
+  server is entered (before: `http://127.0.0.1:8090`); the privacy notices name it
+  ([public parts server](docs/parts-server.md#public-parts-server)).
 - **Reports found by their standards:** the filter of the *Reports* pane (and of the
   website, `list_reports` with `search`) also finds a report by the standards it
   follows, ignoring spaces and dashes: `VDE 0100 600` or `IEC 60364-6` find the
   inspection and test report, `ISO 13849` the safety functions. Plugins give their
   reports search terms with `keywords`.
-- **Installation plans with circuits:** socket outlets, switches and lights (new
-  generic ceiling lights, downlights and wall lights, in the schematic with the new
-  symbol *Luminaire*: L, N and PE) are put into the rooms with a
-  click on the floor plan of a level (*Buildings* pane) and drawn there with the
-  symbols of installation plans; final circuits feed them from a protective device of
-  the distribution board (spare ones marked) through a cable wired item by item. The
-  cable length along the installation zones and the voltage drop from the supply
-  (feeder cables to the board, cable reactance) are worked out, checked against the
-  rule sets and written into the cable list. The items become devices with tags, a
-  generated single-line page shows the circuits, and a circuit without a protective
-  device gets a planned one for the single-line diagram. Report *Installation
-  circuits*, check *Installation circuits*, plugin `installation` (`place_installation`,
-  `list_breakers`, `add_circuit`, `set_circuit`, `list_circuits`, `new_circuit_breaker`,
-  `installation_overview`, `write_circuit_cables`) ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
+- **Installation plans:** socket outlets, switches and lights (new generic ceiling
+  lights, downlights and wall lights, in the schematic with the new symbol *Luminaire*:
+  L, N and PE) are put into the rooms with a click on the floor plan of a level
+  (*Buildings* pane) and drawn there with the symbols of installation plans. The cable
+  lengths and the voltage drop from the supply (feeder cables to the board, cable
+  reactance) of the final circuits are worked out, checked against the rule sets and
+  written into the cable list. Report *Installation circuits*, check *Installation
+  circuits*, plugin `installation` (`list_breakers`)
+  ([installation](docs/features/panel-layout.md#installation-outlets-switches-lights-and-their-circuits)).
 - **Floor plans on paper under the levels of a building:** a scan or drawing (PDF,
   PNG, JPEG, TIFF, …) goes under a level in the *Buildings* pane, to scale (measured on
   a dimension of the drawing) and in place; *Find rooms* finds the walls, doors,
@@ -70,6 +181,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   EPLAN Electric P8, AutoCAD Electrical and QElectroTech (`/compare/`), and pages for
   panel builders, electricians and schools (`/panel-builders/`, `/electricians/`,
   `/education/`), readable without WebAssembly and in the languages of the website.
+- **MCP server for agents:** it lists the about 50 tools for schematics (about 30 kB
+  instead of 260 kB for all 446) and reaches the others through `find_tools`,
+  `describe_tool` and `call_tool` (`OPENECRAFT_MCP_TOOLS=*` lists all of them as
+  before). Relative paths are in `OPENECRAFT_MCP_ROOT`, also when a client such as
+  Claude Desktop starts the server in a folder of its own; the instructions name the
+  folder, and messages show Windows paths without `\\?\`. Cables: commands
+  `add_cable`, `set_cable` (type, cores, cross-section, length, description) and
+  `list_cables`; `add_cable_definition` creates the cable it names; a cable part with
+  other core designations (`apply_cable_part`, also in the editor's *Cables* pane)
+  moves the wires to the new cores instead of leaving "core 1 is not a core of the
+  cable". Without a parts server `parts_search` and `parts_get` use the project and the
+  built-in catalog, and `assign_part` names similar parts for an unknown number.
 - **Contributing and AI agents:** a contributing guide, issue forms for bugs, features
   and parts, and a guide with a reproducible demo for using the MCP server with Claude
   Code, Claude Desktop, Cursor or VS Code ([AI agents](docs/launch/ai/README.md)); the

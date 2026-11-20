@@ -203,6 +203,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("align", Kind::Str, tr_const!("Horizontal alignment: left, center or right")),
             optional("valign", Kind::Str, tr_const!("Which line the position is on: top (first), middle or bottom (last)")),
             optional("width", Kind::Num, tr_const!("Wrap width in mm (0: no wrapping)")),
+            optional("width_factor", Kind::Num, tr_const!("Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)")),
             optional("bold", Kind::Bool, tr_const!("Bold")),
             optional("italic", Kind::Bool, tr_const!("Italic")),
             optional("underline", Kind::Bool, tr_const!("Underline")),
@@ -227,6 +228,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("align", Kind::Str, tr_const!("Horizontal alignment: left, center or right")),
             optional("valign", Kind::Str, tr_const!("Which line the position is on: top (first), middle or bottom (last)")),
             optional("width", Kind::Num, tr_const!("Wrap width in mm (0: no wrapping)")),
+            optional("width_factor", Kind::Num, tr_const!("Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)")),
             optional("bold", Kind::Bool, tr_const!("Bold")),
             optional("italic", Kind::Bool, tr_const!("Italic")),
             optional("underline", Kind::Bool, tr_const!("Underline")),
@@ -363,7 +365,7 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "add_cable_definition",
-        help: tr_const!("Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)"),
+        help: tr_const!("Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given or the tag is not one of a cable yet)"),
         params: &[
             PAGE,
             param("points", Kind::Points, tr_const!("Start and end point of the line")),
@@ -1036,6 +1038,12 @@ fn text_style_args(t: &mut TextItem, a: &Args) -> Result<(), String> {
         }
         t.width = w;
     }
+    if let Some(f) = a.num("width_factor") {
+        if !openecraft_core::model::WIDTH_FACTOR.contains(&f) {
+            return Err(tr("The width factor must be from 0.1 to 10").to_string());
+        }
+        t.width_factor = f;
+    }
     for (name, field) in [
         ("bold", &mut t.bold),
         ("italic", &mut t.italic),
@@ -1071,7 +1079,7 @@ fn text_json(t: &TextItem) -> Value {
     };
     json!({
         "id": t.id, "x": t.pos.x, "y": t.pos.y, "text": t.text, "size": t.size, "angle": t.angle, "align": align, "valign": valign,
-        "width": t.width, "bold": t.bold, "italic": t.italic, "underline": t.underline, "frame": t.frame, "background": t.background,
+        "width": t.width, "width_factor": t.factor(), "bold": t.bold, "italic": t.italic, "underline": t.underline, "frame": t.frame, "background": t.background,
         "link": t.link, "path_function": t.path_function
     })
 }
@@ -1289,7 +1297,9 @@ fn cable_definition_input(prj: &Project, a: &Args) -> Result<(usize, P, P), Stri
     }
     let cable = a.str("cable").unwrap_or_default();
     if !cable.is_empty() && prj.cable(cable).is_none() {
-        return Err(tr_fmt!("No cable {}", cable));
+        if let Some(problem) = openecraft_core::ops::new_cable_problem(prj, cable) {
+            return Err(problem);
+        }
     }
     Ok((i, from, to))
 }

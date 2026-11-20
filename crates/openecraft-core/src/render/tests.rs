@@ -49,6 +49,27 @@ fn frame_artwork_uses_live_page_properties_without_page_objects() {
     assert!(hidden.line_positions.is_empty() && hidden.texts.is_empty());
 }
 
+/// A coloured logo in the artwork of a plot frame keeps its colours; what has none is
+/// drawn in the frame colour.
+#[test]
+fn frame_artwork_keeps_its_own_colours() {
+    let mut project = Project::default();
+    project.pages[0].frame = "Logo frame".into();
+    let red = [200, 30, 40];
+    project.forms.frames.push(crate::frame::PlotFrame {
+        name: "Logo frame".into(),
+        artwork: vec![
+            Prim::Path { pts: vec![p(1., 1.), p(5., 1.), p(5., 5.)], closed: true, fill: true, width: 0.25, color: Some(red), dashed: false },
+            Prim::Path { pts: vec![p(10., 1.), p(20., 1.)], closed: false, fill: false, width: 0.25, color: None, dashed: false },
+        ],
+        ..Default::default()
+    });
+    let mut d = Rec::default();
+    draw_frame(&mut d, &project, 0);
+    let inks: Vec<Ink> = d.polys.iter().map(|x| x.1).collect();
+    assert_eq!(inks, [Ink::Color(red), Ink::Frame]);
+}
+
 #[test]
 fn live_reference_rows_flow_and_keep_page_links_under_every_symbol_transform() {
     use crate::symbols::{BlockAlign,PropertyBlock};

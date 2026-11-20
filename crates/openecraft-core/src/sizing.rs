@@ -7,7 +7,7 @@
 
 use openecraft_i18n::tr_fmt;
 use crate::model::*;
-use crate::netlist::{Connection, Netlist};
+use crate::netlist::{Connection, Netlist, PinRef};
 use crate::parts::{kind_of_symbol, FnKind, Part};
 use crate::potentials::props_of;
 use crate::issue::{Issue, Severity};
@@ -287,35 +287,61 @@ pub fn cable_drops(prj: &Project, conns: &[Connection]) -> Vec<CableDrop> {
     for cable in &prj.cables {
         let on: Vec<&Connection> = conns.iter().filter(|c| c.cable == cable.tag).collect();
         // The load: the device at the cable's ends with the highest rated current
-        // (terminals, plugs, protective devices, meters and current transformers are
-        // no loads).
-        let mut load: Option<(String, f32, Option<f32>)> = None;
+        // (terminals, plugs, protective devices, meters and current transformers are no
+        // loads). A junction box is none either (its rating is that of its terminals): a
+        // cable ending at it carries the loads of the cables starting there, as far as the
+        // cables know their source and target (`place_installation`; a cable drawn in
+        // the schematic passes on none). The load and the cable it was found at.
+        let mut load: Option<(String, f32, Option<f32>, &str)> = None;
         let mut tags: Vec<&str> = Vec::new();
-        for c in &on {
-            for p in [c.a, c.b] {
-                let s = &prj.pages[p.page].symbols[p.sym];
-                let func = prj.symbol(&s.sym).map(|d| d.func);
-                let measuring = matches!(kind_of_symbol(&s.sym), Some(FnKind::Meter | FnKind::CurrentTransformer));
-                if func.is_some_and(|f| f.is_feedthrough()) || is_protective(&s.sym) || measuring || tags.contains(&s.tag.as_str()) {
+        let end = |tag: &str, key: &str| prj.cables.iter().find(|c| c.tag == tag).and_then(|c| c.values.get(key)).map(String::as_str);
+        let mut queue: Vec<(PinRef, &str)> = on.iter().flat_map(|c| [(c.a, cable.tag.as_str()), (c.b, cable.tag.as_str())]).collect();
+        let mut cables: Vec<&str> = vec![cable.tag.as_str()];
+        let mut boxes: Vec<&str> = Vec::new();
+        let mut k = 0;
+        while k < queue.len() {
+            let (p, by) = queue[k];
+            k += 1;
+            let s = &prj.pages[p.page].symbols[p.sym];
+            if matches!(s.sym.as_str(), "jbox" | "jbox3" | "inst_junction") {
+                if s.tag.is_empty() || end(by, "cable.target") != Some(s.tag.as_str()) || boxes.contains(&s.tag.as_str()) {
                     continue;
                 }
-                tags.push(&s.tag);
-                // The parts providing the function at the cable (the motor operator on a
-                // circuit breaker, not the breaker), all parts if none does.
-                let parts = device_parts(prj, &s.tag);
-                let kind = kind_of_symbol(&s.sym);
-                let providing: Vec<&Part> = parts.iter().copied().filter(|p| kind.is_some_and(|k| p.functions.iter().any(|f| f.kind == k))).collect();
-                for part in if providing.is_empty() { parts } else { providing } {
-                    if let Some(i) = parse_current(&part.current) {
-                        if load.as_ref().is_none_or(|l| i > l.1) {
-                            load = Some((s.tag.clone(), i, parse_voltage(&part.voltage)));
-                        }
+                boxes.push(&s.tag);
+                let at_box = |c: &&Connection| [c.a, c.b].iter().any(|q| prj.pages[q.page].symbols[q.sym].tag == s.tag);
+                let leaving: Vec<&str> = conns.iter().filter(at_box).map(|c| c.cable.as_str()).filter(|t| !t.is_empty()).collect();
+                for t in leaving {
+                    if cables.contains(&t) || end(t, "cable.source") != Some(s.tag.as_str()) {
+                        continue;
+                    }
+                    cables.push(t);
+                    queue.extend(conns.iter().filter(|c| c.cable == t).flat_map(|c| [(c.a, t), (c.b, t)]));
+                }
+                continue;
+            }
+            let func = prj.symbol(&s.sym).map(|d| d.func);
+            let measuring = matches!(kind_of_symbol(&s.sym), Some(FnKind::Meter | FnKind::CurrentTransformer));
+            if func.is_some_and(|f| f.is_feedthrough()) || is_protective(&s.sym) || measuring || tags.contains(&s.tag.as_str()) {
+                continue;
+            }
+            tags.push(&s.tag);
+            // The parts providing the function at the cable (the motor operator on a
+            // circuit breaker, not the breaker), all parts if none does.
+            let parts = device_parts(prj, &s.tag);
+            let kind = kind_of_symbol(&s.sym);
+            let providing: Vec<&Part> = parts.iter().copied().filter(|p| kind.is_some_and(|k| p.functions.iter().any(|f| f.kind == k))).collect();
+            for part in if providing.is_empty() { parts } else { providing } {
+                if let Some(i) = parse_current(&part.current) {
+                    if load.as_ref().is_none_or(|l| i > l.1) {
+                        load = Some((s.tag.clone(), i, parse_voltage(&part.voltage), by));
                     }
                 }
             }
         }
-        let live: BTreeSet<&str> = on.iter().filter(|c| !crate::potentials::is_protective(prj, &c.net)).map(|c| c.core.as_str()).collect();
-        let three_phase = live.len() >= 3;
+        // Three-phase where the cable and the cable at its load are (a single-phase load
+        // behind a junction box on a five-core feeder draws on one phase).
+        let phases = |t: &str| conns.iter().filter(|c| c.cable == t && !crate::potentials::is_protective(prj, &c.net)).map(|c| c.core.as_str()).collect::<BTreeSet<&str>>().len();
+        let three_phase = phases(&cable.tag) >= 3 && load.as_ref().is_none_or(|l| phases(l.3) >= 3);
         let voltage = load.as_ref().and_then(|l| l.2).or_else(|| on.iter().find_map(|c| prj.potential(&c.net).and_then(|d| parse_voltage(&d.voltage))));
         let mm2 = crate::production::cross_section_mm2(&cable.cross_section);
         let current = load.as_ref().map(|l| l.1);

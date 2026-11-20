@@ -44,7 +44,9 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = inte i schemat ännu
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baslinje lagrar hela projektet (sidor, apparater, artiklar, inställningar). När en revision frisläpps lagras en.
+A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	En kabelförskruvning för varje kabel som lämnar ett skåp och inte hittar någon ledig förskruvning som tar den
 A cable of the bus type for every connection without cable	En kabel av busstypen för varje anslutning utan kabel
+A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	En kabel som lämnar ett skåp och inte hittar någon ledig förskruvning får en i sin storlek: i taket för en apparat i rummet, i botten för fältet eller ett skåp som hänger på väggen
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Ett urtag av samma storlek på samma ställe i grannens sidovägg: tillsammans bildar de en kabelgenomföring
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samma namn i mappen får en ny version (utcheckad och incheckad), annars läggs filen till
 A folder with one small file per page, device and part instead of one project file, for version control such as git	En mapp med en liten fil per sida, apparat och artikel i stället för en projektfil, för versionshantering som git
@@ -89,6 +91,7 @@ Add profile for this connector	Lägg till profil för den här anslutningen
 Add rule	Lägg till regel
 Add sort key	Lägg till sorteringsnyckel
 Add the facing cutout in {}	Lägg till motstående urtag i {}
+Add the missing ones	Lägg till de som saknas
 Add to device	Lägg till i apparat
 Add to the pre-planning	Lägg till i förprojekteringen
 Add user	Lägg till användare
@@ -221,6 +224,7 @@ Bottom left	Nedre vänster
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kapslingens underkant (utan sockel) över golvet; höjderna kontrolleras när den är känd eller när kapslingen står på en sockel
 Bottom right	Nedre höger
 Boundary	Gräns
+Boxes	Dosor
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brytförmåga mot kortslutningsströmmen vid varje skyddsdon i nätet, frånkoppling vid den lägsta felströmmen i slutet av dess krets, kablarnas kortslutningshållfasthet och selektivitet mot skyddsdonet före.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brygga: fyra ledare; förbindelsen kommer in på en sida och går till de tre andra, den motsatta sidan först
 Building {} added with a level at ground level	Byggnad {} tillagd med en våning i marknivå
@@ -246,6 +250,7 @@ Cable definition on page {}	Kabeldefinition på sida {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: rita en linje tvärs över de ledningar som är ledare i en kabel
 Cable end reserve	Reserv per kabelände
 Cable ends	Kabeländar
+Cable from	Kabel från
 Cable markers	Kabelmärkningar
 Cable passage to {}	Kabelgenomföring till {}
 Cable {}: {} cores assigned	Kabel {}: {} ledare tilldelade
@@ -308,6 +313,7 @@ Choose the building.	Välj byggnaden.
 Chooses the pages whose structure starts with this	Väljer de sidor vars struktur börjar med det här
 Circle	Cirkel
 Circuits of a generic manifold	Kretsar för en generisk fördelare
+Circuits of the schematic	Kretsar i schemat
 Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Åskskyddets klass: avståndet mellan nedledarna, maskan på platta tak och skyddsvinkeln
 Class {}	Klass {}
 Clear	Rensa
@@ -317,6 +323,7 @@ Click	Klick
 Click a text: open its link	Klick på en text: öppna dess länk
 Click an element in the drawing to edit it.	Klicka på ett element i ritningen för att redigera det.
 Click centre, then a point on the circle	Klicka på mittpunkten och sedan på en punkt på cirkeln
+Click in a room to place {}	Klicka i ett rum för att placera {}
 Click in the panel layout: a single item of an assembly	Klick i skåplayouten: en enskild del av en sammansättning
 Click into the page to place the image	Klicka på sidan för att placera bilden
 Click into the page to place {}	Klicka på sidan för att placera {}
@@ -401,7 +408,6 @@ Concrete base	Betongfot
 Condition	Villkor
 Condition (OPTION=value & …)	Villkor (OPTION=värde & …)
 Conductive frame	Ledande stativ
-Conductor	Ledare
 Conflicts	Konflikter
 Connected devices	Anslutna apparater
 Connected to:	Ansluten till:
@@ -562,6 +568,7 @@ Devices go back to the devices to place	Apparaterna går tillbaka till apparater
 Devices in the box: {}	Apparater i rutan: {}
 Devices of a channel	Apparater i en kanal
 Devices of the second channel; empty = like the first	Apparater i den andra kanalen; tomt = som den första
+Devices of {}	Enheter för {}
 Devices placed on the page get its structure; their tags are shown without it.	Apparater som placeras på sidan får dess struktur; deras beteckningar visas utan den.
 Devices to place	Apparater att placera
 Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Apparater vars huvudfunktion ligger i rutan får beteckningarna som anges här; tomma aspekter ärvs från sidan eller en omgivande ruta.
@@ -664,6 +671,7 @@ Each point-to-point connection can belong to a harness	Varje punkt-till-punkt-f�
 Earth electrodes	Jordtag
 Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	En byggnads jordtag (grund- och ringjordtag, jordspett klickade i situationsplanen) och dess åskskydd med spetsledarna klickade på taken
 Earth rod placed at building {}; click for the next one · Esc: stop	Jordspett placerat vid byggnad {}; klicka för nästa · Esc: avsluta
+Earthing	Jordning
 Earthing and lightning protection	Jordning och åskskydd
 Earthing busbar	Jordningsskena
 Earthing conductor	Jordledare
@@ -781,7 +789,6 @@ For pages that choose none; before the plot frame's title block and the project 
 For parts without Stock length; longer profiles have to be joined	För artiklar utan Stock length; längre profiler måste skarvas
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	För artiklar utan temperaturdata (Max temperature, Operating temperature); 0: kontrolleras inte
 For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_US)	För import i EPLAN-artikelhanteringen (P_ARTICLE_*-attribut, texter på en_US)
-Format	Format
 Format of cross references, structure of the target page, interruption points, contact images	Format för korsreferenser, målsidans struktur, avbrottspunkter, kontaktavbildningar
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Spikbräderitning av kabelstammen i skala med grenlängder och stifttabellerna för kontaktdonen
 Forms	Formulär
@@ -803,6 +810,7 @@ Frequency	Frekvens
 From / to	Från / till
 From a template file…	Från en mallfil…
 From row to row; 0: free of shade in winter	Från rad till rad; 0: skuggfritt på vintern
+From the 3D routing	Från 3D-dragningen
 From the function definition	Från funktionsdefinitionen
 From the left end	Från vänster ände
 From the top left corner of the drawing area	Från ritytans övre vänstra hörn
@@ -857,7 +865,7 @@ Head (CPU / coupler)	Huvudenhet (CPU / kopplare)
 Header row	Rubrikrad
 Heat map	Värmekarta
 Heating	Värme
-Heating circuit manifolds and control boxes	Golvvärmefördelare och reglerboxar
+Heating elements, heating circuit manifolds and control boxes	Värmeelement, golvvärmefördelare och reglerboxar
 Height (mm)	Höjd (mm)
 Height above sea level	Höjd över havet
 Height above the floor	Höjd över golvet
@@ -965,6 +973,7 @@ Inserted {}	Infogat {}
 Inside temperature	Innertemperatur
 Inside without cooling	Inne utan kylning
 Installation conditions of the conductors	Förläggningsförhållanden för ledarna
+Installation page {}	Installationssida {}
 Installation zones	Installationszoner
 Installed plugins	Installerade plugins
 Instead of user name and password	I stället för användarnamn och lösenord
@@ -991,6 +1000,7 @@ Joins	Förbinder
 Joins wire pieces in a line where nothing else connects (current page)	Slår ihop ledningsdelar i en linje där inget annat ansluter (aktuell sida)
 Jumper {}	Bygel {}
 Jumps over the other:	Hoppar över den andra:
+Junction boxes, device connection boxes for fixed equipment and smoke alarms	Kopplingsdosor, anslutningsdosor för fast anslutna apparater och brandvarnare
 K, Q, MM …	K, Q, MM …
 Keep connections	Behåll anslutningar
 Keep sub-pages (3.a, 3.1) with the page before	Behåll undersidor (3.a, 3.1) med föregående sida
@@ -1306,9 +1316,11 @@ Not a symbol library: {}	Inte ett symbolbibliotek: {}
 Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Inte ändrad, låset nekades: {}. Din version sparas i fönstret Projektserver.
 Not changed: {}	Inte ändrad: {}
 Not changed: {}. Your version is kept in the Project server pane.	Inte ändrad: {}. Din version sparas i fönstret Projektserver.
+Not connected yet: no device, no cable. Choose the protective device of its circuit.	Inte ansluten ännu: ingen apparat, ingen kabel. Välj skyddsdonet för dess grupp.
 Not found: {}	Hittades inte: {}
 Not in the project parts – synchronize in parts management	Inte bland projektets artiklar – synkronisera i artikelhanteringen
 Not on a wire	Inte på en ledning
+Not placed	Inte placerad
 Not saved yet	Inte sparat ännu
 Not saved, locked or changed by another user	Inte sparat, låst eller ändrat av en annan användare
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Inte tagen: vänster knapp ensam markerar, ritar och flyttar; håll ned en modifieringstangent eller använd en annan knapp.
@@ -1491,6 +1503,7 @@ Pitch	Taklutning
 Pitch X / Y	Delning X / Y
 Place a comment on the page	Placera en kommentar på sidan
 Place again at all symbols using it	Placera igen på alla symboler som använder det
+Place all	Placera alla
 Place an enclosure, device or machine location at this node	Placera en kapsling, apparat eller maskinplacering vid den här noden
 Place connection definition point	Placera förbindelsedefinitionspunkt
 Place connection points	Placera anslutningspunkter
@@ -1500,7 +1513,6 @@ Place in the building	Plats i byggnaden
 Place in the plant	Plats i anläggningen
 Place in the room	Plats i rummet
 Place in the site plan	Placera i situationsplanen
-Place on the wall	Placera på väggen
 Place text	Placera text
 Place the georeferenced point everything is measured from	Placera den georefererade punkten som allt mäts från
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Placera anläggningens georefererade punkt i situationsplanen; dess koordinater anges i panelen Byggnader, varje punkt mäts sedan från den
@@ -1509,6 +1521,9 @@ Placed by hand	Placerad manuellt
 Placed by hand; choosing a side places them anew.	Placerade manuellt; att välja en sida placerar dem på nytt.
 Placed here: {}	Placerat här: {}
 Placed {}× in the project	Placerad {}× i projektet
+Placed, not in the schematic: no protective device chosen (select it and use Put into the schematic)	Placerad, inte i schemat: inget skyddsdon valt (markera den och använd Lägg i schemat)
+Placed, not in the schematic: {}	Placerad, inte i schemat: {}
+Placed: not connected to the mains, so not into the schematic	Placerad: ansluts inte till nätet, därför inte i schemat
 Placeholders	Platshållare
 Placeholders are filled, e.g. a link with {project} and {page}	Platshållare fylls i, t.ex. en länk med {project} och {page}
 Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Platshållare som {MOTOR} i beteckningar, texter och funktionstexter fylls i vid infogning.
@@ -1599,6 +1614,8 @@ Property placement	Egenskapsplacering
 Property removed with {} values	Egenskapen med {} värden borttagen
 Publish	Publicera
 Put a room here	Placera ett rum här
+Put in	Infoga
+Put into the schematic	Lägg i schemat
 Put into the vault	Lägg i valvet
 Put the pane back into the workspace	Lägg tillbaka panelen i arbetsytan
 Puts the project into the folder it was opened from	Lägger projektet i mappen som det öppnades från
@@ -1749,6 +1766,7 @@ Room added on level {}: drag its walls or draw new ones in the floor plan, put c
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tillagt: dra dess väggar eller rita nya i planritningen, placera skåp i det via deras egenskaper
 Room {} now stands on level {}	Rum {} står nu på våning {}
 Room {} taken out of the building; it stays where it stands	Rum {} har tagits ut ur byggnaden; det står kvar där det står
+Rooms found smaller than this are left out (a WC or a closet may be smaller than 1 m²)	Funna rum som är mindre än detta utelämnas (en toalett eller ett förråd kan vara mindre än 1 m²)
 Rooms under sloped ceilings (lowest – highest ceiling)	Rum under snedtak (lägsta – högsta tak)
 Rotate	Rotera
 Rotate (selection or symbol being placed)	Rotera (markering eller symbol som placeras)
@@ -1765,6 +1783,7 @@ Routing path	Dragningsväg
 Routing path {} mm – double-click or Enter to finish	Dragningsväg {} mm – dubbelklicka eller tryck på Enter för att avsluta
 Routing paths	Dragningsvägar
 Routing rules	Dragningsregler
+Routing the cables and wires again… the routes shown are from before the last change	Kablar och ledningar dras om… de visade dragningarna är från före den senaste ändringen
 Row	Rad
 Row distance	Radavstånd
 Row drawing	Radritning
@@ -1955,6 +1974,7 @@ Slot depth	Spårdjup
 Slots	Kortplatser
 Smallest cross-section of control circuits	Minsta tvärsnitt för styrkretsar
 Smallest cross-section of power circuits	Minsta tvärsnitt för kraftkretsar
+Smallest room	Minsta rum
 Socket outlets, data and antenna outlets	Vägguttag, data- och antennuttag
 Solid	Heldragen
 Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Några av dina ändringar togs inte emot av projektservern. Din version finns kvar i fönstret Projektserver, även efter kassering.
@@ -2074,7 +2094,6 @@ Test connection	Testa anslutning
 Test joints	Provklämmor
 Text offset	Textförskjutning
 Text size	Textstorlek
-Texts	Texter
 The EPLAN Data Portal only offers searching and reading parts: open the data portal window to add its parts.	EPLAN Data Portal erbjuder endast sökning och läsning av artiklar: öppna dataportalfönstret för att lägga till dess artiklar.
 The Insert center finds symbols, macros, devices and unplaced functions; favorites and recently used ones come first.	Infogningscentret hittar symboler, makron, apparater och oplacerade funktioner; favoriter och senast använda kommer först.
 The accessory fits none of the device's parts	Tillbehöret passar inte till någon av enhetens artiklar
@@ -2085,6 +2104,7 @@ The commands of all plugins by plugin, with a search; the star pins a command to
 The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopian skapas från det läge som är sparat på projektservern. Ändringar som andra användare ännu inte har sparat ingår inte. Sessioner, lås och åtkomsträttigheter kopieras inte; originalet förblir som det är.
 The crossed wires get free cores of the cable in order	De korsade ledningarna får kabelns lediga ledare i ordning
 The current page belongs to option {}.	Den aktuella sidan hör till alternativ {}.
+The device or junction box of the circuit the cable of the next device comes from: a circuit branches there	Apparaten eller kopplingsdosan i gruppen som nästa apparats kabel kommer från: gruppen förgrenas där
 The devices do not fit onto the rail	Apparaterna får inte plats på skenan
 The dictionary is empty: collect the texts from the project.	Ordlistan är tom: samla in texterna från projektet.
 The door seen from the front: door devices and cutouts	Dörren sedd framifrån: dörrapparater och urtag
@@ -2241,7 +2261,6 @@ View	Visa
 Visible	Synligt
 Voltage (line to line)	Spänning (huvudspänning)
 Voltage at maximum power	Spänning vid maximal effekt
-Voltage drop	Spänningsfall
 WGS 84, written into the site of IFC exports	WGS 84, skrivs in i tomten vid IFC-export
 Waiting for the server	Väntar på servern
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Vägg {}, {} m: dra för att flytta, dubbelklick visar den för att utrusta den
@@ -2270,6 +2289,8 @@ Whole building	Hela byggnaden
 Whole words	Hela ord
 Width / going	Bredd / steg
 Width / height (mm)	Bredd / höjd (mm)
+Width factor	Breddfaktor
+Width of the letters to their usual width (0.8: narrow lettering)	Bokstävernas bredd i förhållande till deras vanliga bredd (0,8: smal text)
 Width × depth	Bredd × djup
 Width × height	Bredd × höjd
 Width × height (mm)	Bredd × höjd (mm)
@@ -2407,6 +2428,7 @@ set on the device	angivet på apparaten
 sloped ceiling from {} m	snedtak från {} m
 some	några
 taken over	överförd
+the device before it	apparaten före
 the project data (page list, devices, settings)	projektdata (sidlista, apparater, inställningar)
 then	så
 unknown	okänd
@@ -2454,6 +2476,8 @@ x y	x y
 {} bus cables created	{} busskablar skapade
 {} bus connections	{} bussanslutningar
 {} cable ducts	{} kabelkanaler
+{} cable glands added	{} kabelförskruvningar tillagda
+{} cable glands added; no free place for {}: make room or add a cable entry flange	{} kabelförskruvningar tillagda; ingen ledig plats för {}: gör plats eller lägg till en kabelinföringsfläns
 {} cable lengths taken over	{} kabellängder överförda
 {} cable passages to {}	{} kabelgenomföringar till {}
 {} cables	{} kablar
@@ -2503,11 +2527,14 @@ x y	x y
 {} has unsaved changes. Discard them?	{} har osparade ändringar. Släng dem?
 {} imported into the parts database and placed as {}	{} importerad till artikeldatabasen och placerad som {}
 {} in {}	{} i {}
+{} is in the schematic	{} finns i schemat
+{} is in the schematic: cable {} from {}	{} finns i schemat: kabel {} från {}
 {} is neither in the parts database nor on the parts server	{} finns varken i artikeldatabasen eller på artikelservern
 {} is not in the disk image	{} finns inte i skivavbilden
 {} is not made for wall mounting: place it on a mounting rail	{} är inte avsedd för väggmontage: placera den på en skena
 {} is used by: {}	{} används av: {}
 {} items copied	{} objekt kopierade
+{} items deleted	{} objekt borttagna
 {} items selected	{} objekt markerade
 {} items, {} %	{} objekt, {} %
 {} links created, {} function texts copied	{} länkar skapade, {} funktionstexter kopierade
@@ -2569,7 +2596,6 @@ x y	x y
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} stationer, {} bussystem, {} kort tilldelade, {} adresser ändrade, {} anslutningar, {} kablar
 {} stopped with an error: {}	{} avbröts med ett fel: {}
 {} structure identifiers added	{} strukturbeteckningar tillagda
-{} symbols	{} symboler
 {} symbols added, {} replaced	{} symboler tillagda, {} ersatta
 {} symbols and {} wires generated on page {}	{} symboler och {} ledningar genererade på sidan {}
 {} texts changed	{} texter ändrade
@@ -2595,6 +2621,7 @@ x y	x y
 {} – revision {}, {}	{} – revision {}, {}
 {} – {} ({} pages)	{} – {} ({} sidor)
 {} – {} here (Esc cancels)	{} – {} här (Esc avbryter)
+{} – {} of {} placed	{} – {} av {} placerade
 {}, freestanding	{}, markmonterat
 {}, {} (copy of {}, revision {})	{}, {} (kopia av {}, revision {})
 {}: click to show its floor plan	{}: klicka för att visa planritningen

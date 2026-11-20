@@ -79,7 +79,6 @@ Align top	Oben ausrichten	Aligner en haut	Alinear arriba
 All aspects (with product)	Alle Aspekte (mit Produkt)	Tous les aspects (avec produit)	Todos los aspectos (con producto)
 All devices of page {} are in the schematic already	Alle Geräte der Seite {} sind bereits im Stromlaufplan	Tous les appareils de la page {} sont déjà dans le schéma développé	Todos los equipos de la página {} ya están en el esquema desarrollado
 All harnesses as KBL files (ZIP)	Alle Kabelbäume als KBL-Dateien (ZIP)	Tous les faisceaux en fichiers KBL (ZIP)	Todos los mazos como archivos KBL (ZIP)
-Aluminium	Aluminium	Aluminium	Aluminio
 Ammeter	Strommesser	Ampèremètre	Amperímetro
 Ammeter, reactive current	Strommesser, Blindstrom	Ampèremètre, courant réactif	Amperímetro, corriente reactiva
 Ampere-hour meter	Amperestundenzähler	Compteur d'ampères-heures	Contador de amperios-hora
@@ -90,6 +89,7 @@ Analog input module	Analogeingabebaugruppe	Module d'entrées analogiques	Módulo
 Analog output module	Analogausgabebaugruppe	Module de sorties analogiques	Módulo de salidas analógicas
 Analysis	Analyse	Analyse	Análisis
 Another section here has this number	Ein anderer Abschnitt hier hat bereits diese Nummer	Une autre section ici porte déjà ce numéro	Otra sección aquí ya tiene este número
+Antenna outlet	Antennendose	Prise d'antenne	Toma de antena
 Apparent power (kVA)	Scheinleistung (kVA)	Puissance apparente (kVA)	Potencia aparente (kVA)
 Applied directives	Angewandte Richtlinien	Directives appliquées	Directivas aplicadas
 Approval date	Freigabedatum	Date d'approbation	Fecha de aprobación
@@ -127,7 +127,6 @@ Baying kit	Anreihverbinder	Kit de juxtaposition	Kit de ensamblaje
 Beacon, rotating	Rundumleuchte	Gyrophare	Baliza giratoria
 Belongs to	Gehört zu	Appartient à	Pertenece a
 Bends	Biegungen	Coudes	Curvas
-Bill of materials	Stückliste	Nomenclature	Lista de materiales
 Bimetal switch NC	Bimetallschalter Öffner	Interrupteur bilame NF	Interruptor bimetálico NC
 Bimetal switch NO	Bimetallschalter Schließer	Interrupteur bilame NO	Interruptor bimetálico NA
 Black box	Black Box	Boîte noire	Caja negra
@@ -191,6 +190,7 @@ Cable entry 5 x M25	Kabeleinführung 5 x M25	Entrée de câbles 5 x M25	Entrada 
 Cable gland	Kabelverschraubung	Presse-étoupe	Prensaestopas
 Cable ladder	Kabelleiter	Échelle à câbles	Escalera portacables
 Cable marker	Kabelmarkierer	Repère de câble	Marcador de cable
+Cable of each connection at its connection points	Kabel jeder Verbindung an ihren Anschlüssen	Câble de chaque connexion à ses points de connexion	Cable de cada conexión en sus puntos de conexión
 Cable route	Kabelweg	Cheminement du câble	Recorrido del cable
 Cable sizing	Kabeldimensionierung	Dimensionnement des câbles	Dimensionado de cables
 Cable sizing (voltage drop)	Kabelbemessung (Spannungsfall)	Dimensionnement des câbles (chute de tension)	Dimensionado de cables (caída de tensión)
@@ -235,13 +235,13 @@ Changeover contact, on-delay	Wechsler, einschaltverzögert	Contact inverseur, te
 Changeover contact, passing make	Wechsler mit Wischkontakt	Contact inverseur avec contact de passage	Contacto conmutado con contacto de paso
 Changeover switch, cam operated	Umschalter, nockenbetätigt	Inverseur, à came	Conmutador, accionado por leva
 Changeover switch, cam profile operated	Umschalter, kurvenbetätigt	Inverseur, à profil de came	Conmutador, accionado por perfil de leva
+Changeover switch, manually operated	Umschalter, handbetätigt	Inverseur, à commande manuelle	Conmutador, accionado manualmente
 Changeover switch, roller operated	Umschalter, rollenbetätigt	Inverseur, à galet	Conmutador, accionado por rodillo
 Check valve	Rückschlagventil	Clapet anti-retour	Válvula antirretorno
 Checked	Geprüft	Vérifiés	Comprobados
 Checked by	Geprüft von	Vérifié par	Revisado por
 Checking the project	Projekt wird geprüft	Vérification du projet	Comprobando el proyecto
 Choose the pages of the subproject	Wählen Sie die Seiten des Teilprojekts	Choisissez les pages du sous-projet	Elija las páginas del subproyecto
-Circuit	Stromkreis	Circuit	Circuito
 Circuit breaker (single-line)	Leistungsschalter (einpolig dargestellt)	Disjoncteur (unifilaire)	Interruptor automático (unifilar)
 Circuit breaker 1-pole	Leitungsschutzschalter 1-polig	Disjoncteur 1 pôle	Interruptor automático 1 polo
 Circuit breaker 1-pole (NFPA)	Leitungsschutzschalter 1-polig (NFPA)	Disjoncteur unipolaire (NFPA)	Interruptor automático unipolar (NFPA)
@@ -258,15 +258,10 @@ Circuit breaker 3-pole QF (GB)	Leistungsschalter 3-polig QF (GB)	Disjoncteur 3 p
 Circuit breaker 3-pole QF (GOST)	Leistungsschalter 3-polig QF (GOST)	Disjoncteur 3 pôles QF (GOST)	Interruptor automático 3 polos QF (GOST)
 Circuit breaker 3-pole, thermal-magnetic	Leistungsschalter 3-polig, thermisch-magnetisch	Disjoncteur 3 pôles, magnétothermique	Interruptor automático 3 polos, magnetotérmico
 Circuit breaker 4-pole	Leistungsschalter 4-polig	Disjoncteur 4 pôles	Interruptor automático 4 polos
-Circuit {}	Stromkreis {}	Circuit {}	Circuito {}
-Circuit {} has no protective device	Stromkreis {} hat kein Schutzorgan	Le circuit {} n'a pas de dispositif de protection	El circuito {} no tiene dispositivo de protección
-Circuit {}: no protective device {} in the schematic	Stromkreis {}: kein Schutzorgan {} im Schaltplan	Circuit {} : aucun dispositif de protection {} dans le schéma	Circuito {}: no hay dispositivo de protección {} en el esquema
-Circuit {}: protective device {} feeds other circuits too	Stromkreis {}: Schutzorgan {} speist auch andere Stromkreise	Circuit {} : le dispositif de protection {} alimente aussi d'autres circuits	Circuito {}: el dispositivo de protección {} alimenta también otros circuitos
 Circuit {}: protective device {} is in no distribution board of the layout	Stromkreis {}: Schutzorgan {} ist in keinem Verteiler des Aufbaus	Circuit {} : le dispositif de protection {} n'est dans aucun tableau de l'implantation	Circuito {}: el dispositivo de protección {} no está en ningún cuadro de la disposición
-Circuit {}: protective device {} is planned only: generate it into the schematic from the single-line diagram and connect it to the supply	Stromkreis {}: Schutzorgan {} ist nur geplant: aus dem Übersichtsschaltplan in den Stromlaufplan erzeugen und an die Einspeisung anschließen	Circuit {} : le dispositif de protection {} est seulement prévu : générez-le dans le schéma depuis l'unifilaire et raccordez-le à l'alimentation	Circuito {}: el dispositivo de protección {} solo está previsto: genérelo en el esquema desde el unifilar y conéctelo a la alimentación
 Circuit {}: voltage drop {} % over the limit of {} % ({} m)	Stromkreis {}: Spannungsfall {} % über der Grenze von {} % ({} m)	Circuit {} : chute de tension de {} % au-dessus de la limite de {} % ({} m)	Circuito {}: caída de tensión de {} % por encima del límite de {} % ({} m)
 Circuit {}: {} mm² carry {} A, less than the {} A of its protective device	Stromkreis {}: {} mm² tragen {} A, weniger als die {} A seines Schutzorgans	Circuit {} : {} mm² supportent {} A, moins que les {} A de son dispositif de protection	Circuito {}: {} mm² soportan {} A, menos que los {} A de su dispositivo de protección
-Circuit {}: {} of its items are gone	Stromkreis {}: {} seiner Betriebsmittel fehlen	Circuit {} : {} de ses éléments ont disparu	Circuito {}: faltan {} de sus elementos
+Circuit {}: {} of its devices are placed in no room	Stromkreis {}: {} seiner Betriebsmittel sind in keinem Raum platziert	Circuit {} : {} de ses appareils ne sont placés dans aucune pièce	Circuito {}: {} de sus dispositivos no están colocados en ninguna sala
 Circuits, protective devices, switches and terminals labelled	Stromkreise, Schutzeinrichtungen, Schalter und Klemmen gekennzeichnet	Circuits, appareils de protection, interrupteurs et bornes repérés	Circuitos, dispositivos de protección, interruptores y bornes identificados
 Circular milling	Zirkularfräsen	Fraisage circulaire	Fresado circular
 Clip	Clip	Clip	Clip
@@ -337,7 +332,6 @@ Converted from file format {} to {}: {}	Von Dateiformat {} nach {} konvertiert: 
 Coolant	Kühlmittel	Liquide de refroidissement	Refrigerante
 Cooler	Kühler	Refroidisseur	Refrigerador
 Cooling method	Kühlart	Mode de refroidissement	Método de refrigeración
-Copper	Kupfer	Cuivre	Cobre
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Kupferschiene {}: Biegung {} hat einen Radius von {} mm, mindestens {} mm	Barre de cuivre {} : le pliage {} a un rayon de {} mm, au moins {} mm	Pletina de cobre {}: el doblez {} tiene un radio de {} mm, al menos {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Kupferschiene {}: Bohrung Ø{} bei {} mm liegt außerhalb der Schiene	Barre de cuivre {} : le trou Ø{} à {} mm est hors de la barre	Pletina de cobre {}: el taladro Ø{} a {} mm está fuera de la pletina
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Kupferschiene {}: Bohrung Ø{} bei {} mm liegt zu nah an Biegung {}	Barre de cuivre {} : le trou Ø{} à {} mm est trop près du pliage {}	Pletina de cobre {}: el taladro Ø{} a {} mm está demasiado cerca del doblez {}
@@ -366,7 +360,6 @@ Create projects	Projekte anlegen	Créer des projets	Crear proyectos
 Creation date	Erstellungsdatum	Date de création	Fecha de creación
 Cross-section {} carries {} A, less than the {} A of {}	Querschnitt {} trägt {} A, weniger als die {} A von {}	La section {} supporte {} A, moins que les {} A de {}	La sección {} soporta {} A, menos que los {} A de {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Kreuzung auf Seite {} passt nicht zu ihren Verbindungslinien: sie braucht eine Linie in alle vier Richtungen und keinen Anschlusspunkt dort	Le croisement en page {} ne correspond pas à ses fils : il lui faut un fil dans les quatre directions et aucun point de connexion à cet endroit	El cruce en la página {} no se ajusta a sus cables: necesita un cable en las cuatro direcciones y ningún punto de conexión allí
-Current (A)	Strom (A)	Courant (A)	Corriente (A)
 Current capacity (A)	Strombelastbarkeit (A)	Courant admissible (A)	Intensidad admisible (A)
 Current consumption	Stromaufnahme	Consommation de courant	Consumo de corriente
 Current range	Strombereich	Plage de courant	Rango de corriente
@@ -395,6 +388,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC-Steuerstromkreise so
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC-Steuerstromkreise sollten blau sein (NFPA 79, 13.2.4)	Les circuits de commande en courant continu devraient être bleus (NFPA 79, 13.2.4)	Los circuitos de mando de CC deberían ser azules (NFPA 79, 13.2.4)
 DC/DC converter	Gleichspannungswandler DC/DC	Convertisseur DC/DC	Convertidor DC/DC
 DWG export failed: {}	DWG-Export fehlgeschlagen: {}	Échec de l'export DWG : {}	Error al exportar el DWG: {}
+Data outlet	Datendose	Prise de données	Toma de datos
 Data sheet	Datenblatt	Fiche technique	Hoja de datos
 Date of the approval of the last revision	Datum der Freigabe der letzten Revision	Date de l'approbation de la dernière révision	Fecha de la aprobación de la última revisión
 Date of the last revision	Datum der letzten Revision	Date de la dernière révision	Fecha de la última revisión
@@ -412,6 +406,7 @@ Description of the last revision	Beschreibung der letzten Revision	Description d
 Description of the page's function (structure management)	Beschreibung der Funktion der Seite (Strukturkennzeichenverwaltung)	Description de la fonction de la page (gestion de structure)	Descripción de la función de la página (gestión de estructura)
 Description of the page's location (structure management)	Beschreibung des Orts der Seite (Strukturkennzeichenverwaltung)	Description de l'emplacement de la page (gestion de structure)	Descripción de la ubicación de la página (gestión de estructura)
 Designer	Konstrukteur	Concepteur	Proyectista
+Device connection box	Geräteanschlussdose	Boîte de raccordement d'appareil	Caja de conexión de aparato
 Device connection diagram	Geräteanschlussplan	Plan de raccordement des appareils	Esquema de conexión de equipos
 Device data of {} without symbol or panel item	Gerätedaten von {} ohne Symbol oder Aufbauelement	Données d'appareil de {} sans symbole ni élément d'implantation	Datos de dispositivo de {} sin símbolo ni elemento de montaje
 Device description file	Gerätebeschreibungsdatei	Fichier de description d'appareil	Archivo de descripción del equipo
@@ -461,7 +456,6 @@ Document (embedded file)	Dokument (eingebettete Datei)	Document (fichier intégr
 Document A4 portrait	Dokument A4 hoch	Document A4 portrait	Documento A4 vertical
 Document number	Dokumentnummer	Numéro de document	Número de documento
 Document reference	Dokumentverweis	Référence de document	Referencia de documento
-Documentation	Dokumentation	Documentation	Documentación
 Documentation language	Dokumentationssprache	Langue de la documentation	Idioma de la documentación
 Does not match	Passt nicht	Ne correspond pas	No coincide
 Door (front view)	Tür (Frontansicht)	Porte (vue de face)	Puerta (vista frontal)
@@ -728,6 +722,7 @@ Heat pump	Wärmepumpe	Pompe à chaleur	Bomba de calor
 Heat shrink tube	Schrumpfschlauch	Gaine thermorétractable	Tubo termorretráctil
 Heating (W)	Heizung (W)	Chauffage (W)	Calefacción (W)
 Heating element	Heizelement	Élément chauffant	Elemento calefactor
+Heating element three-phase	Heizelement dreiphasig	Élément chauffant triphasé	Elemento calefactor trifásico
 Heating water	Heizungswasser	Eau de chauffage	Agua de calefacción
 Higher-level product (-)	Übergeordnetes Produkt (-)	Produit de niveau supérieur (-)	Producto de nivel superior (-)
 Higher-level product of the page	Übergeordnetes Produkt der Seite	Produit de niveau supérieur de la page	Producto de nivel superior de la página
@@ -814,6 +809,7 @@ Installation circuits (cable lengths, voltage drop)	Installationsstromkreise (Ka
 Installation date	Einbaudatum	Date d'installation	Fecha de instalación
 Installation devices	Installationsgeräte	Appareils d'installation	Aparatos de instalación
 Installation method	Verlegeart	Mode de pose	Método de instalación
+Installation of {}	Installation von {}	Installation de {}	Instalación de {}
 Installation plan (IEC 60617-11)	Installationsplan (IEC 60617-11)	Plan d'installation (IEC 60617-11)	Plano de instalación (IEC 60617-11)
 Installation site (++)	Anlage (++)	Site d'installation (++)	Emplazamiento (++)
 Installation site and location	Aufstellungsort und Ort	Lieu d'installation et emplacement	Lugar de instalación y ubicación
@@ -827,6 +823,7 @@ Insulation test voltage of SELV and PELV (V)	Messspannung Isolation SELV und PEL
 Integer	Ganzzahl	Entier	Entero
 Integrated EMC filter	Integrierter EMV-Filter	Filtre CEM intégré	Filtro CEM integrado
 Intermediate relay coil KA (GB)	Spule Hilfsrelais KA (GB)	Bobine de relais auxiliaire KA (GB)	Bobina de relé auxiliar KA (GB)
+Intermediate switch, manually operated	Kreuzschalter, handbetätigt	Permutateur, à commande manuelle	Conmutador de cruce, accionado manualmente
 Internal	Intern	Interne	Interno
 Internal target	Internes Ziel	Cible interne	Destino interno
 Interruption point '{}' has no counterpart	Unterbrechungspunkt '{}' hat keine Gegenstelle	Le point d'interruption '{}' n'a pas de correspondant	El punto de interrupción '{}' no tiene contraparte
@@ -842,6 +839,7 @@ Inverter DC/AC	Wechselrichter DC/AC	Onduleur DC/AC	Inversor DC/AC
 Isolating and switching devices in the right places	Trenn- und Schaltgeräte an den richtigen Stellen	Dispositifs de sectionnement et de commande aux bons endroits	Dispositivos de seccionamiento y maniobra en los lugares correctos
 Item	Element	Élément	Elemento
 Item ID	Teile-ID	ID d'article	ID de artículo
+Items	Elemente	Éléments	Elementos
 JIS (JIS C 0617)	JIS (JIS C 0617)	JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Brücken	Ponts	Puentes
 Junction	Verbindungsknoten	Jonction	Nodo de conexión
@@ -870,13 +868,13 @@ Left side panel	Linke Seitenwand	Paroi latérale gauche	Panel lateral izquierdo
 Legend plate text	Schildtext	Texte de l'étiquette	Texto de la placa
 Length (m)	Länge (m)	Longueur (m)	Longitud (m)
 Length (mm)	Länge (mm)	Longueur (mm)	Longitud (mm)
+Length known (not calculated)	Länge bekannt (nicht berechnet)	Longueur connue (non calculée)	Longitud conocida (no calculada)
 Letter landscape	Letter quer	Letter paysage	Letter horizontal
 Letters (A, B, C)	Buchstaben (A, B, C)	Lettres (A, B, C)	Letras (A, B, C)
 Level switch	Füllstandsschalter	Détecteur de niveau	Interruptor de nivel
 Lifecycle state	Lebenszyklusstatus	État du cycle de vie	Estado del ciclo de vida
 Light source	Leuchtmittel	Source lumineuse	Fuente de luz
 Lighting outlet	Leuchtenauslass	Point d'éclairage	Punto de luz
-Limit (%)	Grenzwert (%)	Limite (%)	Límite (%)
 Limit switch NC (NFPA)	Endschalter Öffner (NFPA)	Fin de course NF (NFPA)	Final de carrera NC (NFPA)
 Limit switch NO (NFPA)	Endschalter Schließer (NFPA)	Fin de course NO (NFPA)	Final de carrera NA (NFPA)
 Line reactor	Netzdrossel	Inductance de ligne	Reactancia de red
@@ -1051,13 +1049,12 @@ Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutralleiter müsse
 New own item of the visual inspection	Neuer eigener Punkt der Besichtigung	Nouveau point propre de l'examen visuel	Nuevo punto propio de la inspección visual
 Next page number in section	Nächste Seitennummer im Abschnitt	Numéro de page suivant dans la section	Número de página siguiente en la sección
 Nibbling	Nibbeln	Grignotage	Roedura
-No circuit breaker of {} A	Kein Leitungsschutzschalter mit {} A	Aucun disjoncteur de {} A	Ningún interruptor automático de {} A
-No circuit yet	Noch kein Stromkreis	Pas encore de circuit	Todavía no hay circuito
 No connection {}	Keine Verbindung {}	Aucune liaison {}	No hay conexión {}
 No device box with this id on the page	Keine Gerätebox mit dieser ID auf der Seite	Aucune boîte d'appareil avec cet ID sur la page	No hay ninguna caja de dispositivo con este ID en la página
 No device connection point with this id on the page	Kein Geräteanschlusspunkt mit dieser ID auf der Seite	Aucun point de connexion d'appareil avec cet ID sur la page	No hay ningún punto de conexión del dispositivo con este ID en la página
 No devices to add to the single-line diagram	Keine Geräte, die in den Übersichtsschaltplan aufzunehmen sind	Aucun appareil à ajouter au schéma unifilaire	No hay equipos que añadir al esquema unifilar
 No document embedded - choose a file in the page properties	Kein Dokument eingebettet - Datei in den Seiteneigenschaften wählen	Aucun document intégré - choisissez un fichier dans les propriétés de la page	Ningún documento incrustado - elija un archivo en las propiedades de la página
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Kein freier Platz für eine Kabelverschraubung auf den Flächen, durch die das Kabel austreten kann: Platz schaffen oder einen Kabeleinführungsflansch ergänzen	Pas de place libre pour un presse-étoupe sur les faces par lesquelles le câble peut sortir : faites de la place ou ajoutez une bride d'entrée de câbles	No hay sitio libre para un prensaestopas en las caras por las que puede salir el cable: haga sitio o añada una brida de entrada de cables
 No identifying letter for the device tag.	Kein Kennbuchstabe für das Betriebsmittelkennzeichen.	Pas de lettre d'identification pour le repère d'appareil.	Falta la letra identificativa de la designación del dispositivo.
 No known column in the header row	Keine bekannte Spalte in der Kopfzeile	Aucune colonne connue dans la ligne d'en-tête	Ninguna columna conocida en la fila de encabezado
 No option {}	Keine Option {}	Aucune option {}	No hay ninguna opción {}
@@ -1068,10 +1065,8 @@ No plugs	Keine Stecker	Aucun connecteur	Sin conectores
 No report block {}	Kein Auswertungsblock {}	Aucun bloc de rapports {}	Ningún bloque de informes {}
 No rooms found in the floor plan	Keine Räume im Grundriss erkannt	Aucune pièce détectée dans le plan	No se detectaron salas en el plano
 No segment template named {}	Keine Segmentvorlage namens {}	Aucun modèle de segment nommé {}	No hay ninguna plantilla de segmento llamada {}
-No socket outlet, switch or light {}	Keine Steckdose, kein Schalter und keine Leuchte {}	Aucune prise, aucun interrupteur ni luminaire {}	Ninguna toma, interruptor ni luminaria {}
 No subproject {}	Kein Teilprojekt {}	Aucun sous-projet {}	No hay ningún subproyecto {}
 No such building	Kein solches Gebäude	Bâtiment introuvable	No existe ese edificio
-No such circuit	Kein solcher Stromkreis	Circuit inexistant	No existe ese circuito
 No such inner wall	Keine solche Innenwand	Aucun mur intérieur de ce type	No existe esa pared interior
 No such object: {}	Kein solches Objekt: {}	Objet inexistant : {}	No existe el objeto: {}
 No such roof	Kein solches Dach	Toit introuvable	No existe esa cubierta
@@ -1487,7 +1482,6 @@ Residual current device 4-pole	Fehlerstromschutzschalter 4-polig	Interrupteur di
 Residual current type	Fehlerstromtyp	Type de courant différentiel	Tipo de corriente diferencial
 Resistor	Widerstand	Résistance	Resistencia
 Response time	Ansprechzeit	Temps de réponse	Tiempo de respuesta
-Result	Ergebnis	Résultat	Resultado
 Return / exhaust line	Rücklauf- / Abluftleitung	Conduite de retour / d'échappement	Línea de retorno / escape
 Revision overview (changes)	Revisionsübersicht (Änderungen)	Vue d'ensemble des révisions (modifications)	Resumen de revisiones (cambios)
 Revision table: author of the last revision (2: the one before …)	Revisionstabelle: Autor der letzten Revision (2: die davor …)	Tableau des révisions : auteur de la dernière révision (2 : la précédente …)	Tabla de revisiones: autor de la última revisión (2: la anterior …)
@@ -1625,7 +1619,9 @@ Size (mm)	Größe (mm)	Taille (mm)	Tamaño (mm)
 Skipped	Übersprungen	Ignoré	Omitido
 Sliding to the left	Schiebend nach links	Coulissant vers la gauche	Corredera hacia la izquierda
 Sliding to the right	Schiebend nach rechts	Coulissant vers la droite	Corredera hacia la derecha
+Smoke alarm	Rauchwarnmelder	Détecteur de fumée	Detector de humo
 Socket outlet	Steckdose	Prise de courant	Toma de corriente
+Socket outlet three-phase	Steckdose dreiphasig	Prise de courant triphasée	Toma de corriente trifásica
 Socket side (female)	Buchsenseite (weiblich)	Côté douilles (femelle)	Lado de casquillos (hembra)
 Soft starter	Sanftanlasser	Démarreur progressif	Arrancador suave
 Solar charge controller	Solarladeregler	Régulateur de charge solaire	Regulador de carga solar
@@ -1740,7 +1736,6 @@ Terminal box	Klemmenkasten	Boîte à bornes	Caja de bornes
 Terminal connection diagram	Klemmenanschlussplan	Plan de raccordement des bornes	Esquema de conexión de bornes
 Terminal data	Klemmendaten	Données de bornes	Datos de bornes
 Terminal description	Klemmenbeschreibung	Description de la borne	Descripción del borne
-Terminal diagram	Klemmenplan	Plan de bornes	Diagrama de bornes
 Terminal line-up	Klemmenaufreihung	Alignement des bornes	Disposición de bornes
 Terminal marker	Klemmenmarkierer	Repère de borne	Marcador de borna
 Terminal parts	Artikel der Leitungsenden	Articles des extrémités	Artículos de los extremos
@@ -1763,6 +1758,7 @@ The archive was written by a newer version (archive version {})	Das Archiv wurde
 The area of the floor plan is empty	Der Bereich des Grundrisses ist leer	La zone du plan est vide	La zona del plano está vacía
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Der Hersteller der Schaltgerätekombination muss angegeben sein (IEC 61439-1, 6.1)	Le constructeur de l'ensemble doit être indiqué (IEC 61439-1, 6.1)	El fabricante del conjunto debe indicarse (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Die Schrankanreihung in ihrem Raum: L-förmiger Grundriss, Innenwand, Tür und Fenster, die Anreihung an ihrem Platz, eine Tragschiene mit Steckdose an einer Wand, eine wandmontierte Notleuchte und eine Kabelrinne unter der Decke.	Les armoires juxtaposées dans leur local : plan en L, cloison, porte et fenêtre, les armoires à leur place, un rail avec une prise murale, un éclairage de secours fixé au mur et un chemin de câbles sous le plafond.	La batería de armarios en su sala: planta en L, tabique, puerta y ventana, la batería en su lugar, un carril con una toma de corriente en una pared, una luz de emergencia montada en la pared y una bandeja de cables bajo el techo.
+The cable of {} needs at least {} cores	Das Kabel von {} braucht mindestens {} Adern	Le câble de {} doit avoir au moins {} conducteurs	El cable de {} necesita al menos {} conductores
 The configuration is not a JSON object	Die Konfiguration ist kein JSON-Objekt	La configuration n'est pas un objet JSON	La configuración no es un objeto JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Das Förderband nach der ersten Freigabe: eine freigegebene und gesperrte Revision, seitdem markierte Änderungen, Prüfkommentare mit Redlining, ein Änderungsantrag, Revision B im Freigabeprozess und ein Basisstand zum Vergleichen.	Le convoyeur après sa première diffusion : une révision diffusée et verrouillée, les modifications marquées depuis, des commentaires de revue avec annotations en rouge, une demande de modification, la révision B dans le circuit d'approbation et une référence pour comparer.	El transportador tras su primera liberación: una revisión liberada y bloqueada, los cambios marcados desde entonces, comentarios de revisión con marcas en rojo, una solicitud de cambio, la revisión B en el flujo de aprobación y una línea base para comparar.
 The coordinates of the reference point must be numbers	Die Koordinaten des Bezugspunkts müssen Zahlen sein	Les coordonnées du point de référence doivent être des nombres	Las coordenadas del punto de referencia deben ser números
@@ -1784,6 +1780,7 @@ The function test is OK or Not OK, not {}	Die Funktionsprüfung ist OK oder Nich
 The image is too large ({} × {} pixels)	Das Bild ist zu groß ({} × {} Pixel)	L'image est trop grande ({} × {} pixels)	La imagen es demasiado grande ({} × {} píxeles)
 The index of the project names no file layout: it was not written by OpenECraft	Der Index des Projekts nennt kein Dateilayout: er wurde nicht von OpenECraft geschrieben	L'index du projet n'indique aucune structure de fichiers : il n'a pas été écrit par OpenECraft	El índice del proyecto no indica ninguna estructura de archivos: no fue escrito por OpenECraft
 The inner wall leaves the room	Die Innenwand verlässt den Raum	Le mur intérieur sort de la salle	La pared interior sale de la sala
+The installation page of {} is full	Die Installationsseite von {} ist voll	La page d'installation de {} est pleine	La página de instalación de {} está llena
 The last page cannot be deleted	Die letzte Seite kann nicht gelöscht werden	La dernière page ne peut pas être supprimée	La última página no se puede eliminar
 The level has no floor plan	Die Ebene hat keinen Grundriss	Le niveau n'a pas de plan	El nivel no tiene plano
 The level would overlap level {}	Die Ebene würde Ebene {} überlappen	Le niveau chevaucherait le niveau {}	El nivel se solaparía con el nivel {}
@@ -1791,12 +1788,12 @@ The macro box has no items left	Der Makrokasten hat keine Elemente mehr	La boît
 The next free id is already in use	Die nächste freie ID ist bereits vergeben	Le prochain ID libre est déjà utilisé	El siguiente ID libre ya está en uso
 The option needs a name	Die Option braucht einen Namen	L'option doit avoir un nom	La opción necesita un nombre
 The page needs a number	Die Seite braucht eine Nummer	La page a besoin d'un numéro	La página necesita un número
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	Die Seite von {} ist voll: der nächste Schalter seiner Wechselschaltung muss auf derselben Seite gezeichnet werden	La page de {} est pleine : l'interrupteur suivant de son circuit va-et-vient doit être dessiné sur la même page	La página de {} está llena: el siguiente interruptor de su circuito conmutado debe dibujarse en la misma página
 The pages were changed after the submission; submit the revision again	Die Seiten wurden nach dem Einreichen geändert; reichen Sie die Revision erneut ein	Les pages ont été modifiées après la soumission ; soumettez à nouveau la révision	Las páginas se cambiaron tras el envío; envíe la revisión de nuevo
 The plant of level 15 with an office building: the office on the ground level and the attic under a gable roof whose slopes cut its ceiling down to the knee wall, a stair turned at a quarter landing, roof windows in the front slope; Gira socket outlets, a network outlet and a switch, an MDT KNX push button and room temperature controller, a TV outlet at their mounting heights, a COSMO heating circuit manifold and a single-room control box.	Die Anlage von Stufe 15 mit einem Bürogebäude: das Büro auf der Erdgeschossebene und das Dachgeschoss unter einem Satteldach, dessen Dachflächen die Decke bis auf den Kniestock herunter schräg machen, eine an einem Viertelpodest gewinkelte Treppe, Dachfenster in der vorderen Dachfläche; Gira-Steckdosen, eine Netzwerkdose und ein Schalter, ein MDT-KNX-Taster und -Raumtemperaturregler, eine TV-Dose auf ihren Montagehöhen, ein COSMO-Heizkreisverteiler und eine Einzelraum-Regelbox.	L'installation du niveau 15 avec un immeuble de bureaux : le bureau au rez-de-chaussée et les combles sous un toit à deux pans dont les versants rendent le plafond rampant jusqu'à la jambette, un escalier tournant sur un palier d'angle, des fenêtres de toit dans le versant avant ; des prises Gira, une prise réseau et un interrupteur, un bouton-poussoir et un régulateur de température ambiante KNX MDT, une prise TV à leurs hauteurs de pose, un collecteur de chauffage COSMO et un boîtier de régulation pièce par pièce.	La instalación del nivel 15 con un edificio de oficinas: la oficina en la planta baja y el ático bajo una cubierta a dos aguas cuyos faldones inclinan su techo hasta el murete, una escalera girada en un descansillo de esquina, ventanas de tejado en el faldón delantero; tomas de corriente Gira, una toma de red y un interruptor, un pulsador y un regulador de temperatura ambiente KNX de MDT, una toma de TV a sus alturas de montaje, un colector de calefacción COSMO y una caja de regulación individual.
 The plot boundary crosses itself	Die Grundstücksgrenze kreuzt sich selbst	La limite du terrain se croise elle-même	El límite de la parcela se cruza consigo mismo
 The plot boundary encloses no area	Die Grundstücksgrenze umschließt keine Fläche	La limite du terrain n'entoure aucune surface	El límite de la parcela no encierra ninguna superficie
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Die Grundstücksgrenze ist kein Polygon: Sie kreuzt sich selbst oder hat weniger als drei Ecken	La limite du terrain n'est pas un polygone : elle se croise ou a moins de trois sommets	El límite de la parcela no es un polígono: se cruza consigo mismo o tiene menos de tres esquinas
-The point is not inside the room	Der Punkt liegt nicht im Raum	Le point n'est pas dans la pièce	El punto no está dentro de la sala
 The project cannot be written as files: {}	Das Projekt kann nicht als Dateien geschrieben werden: {}	Le projet ne peut pas être écrit sous forme de fichiers : {}	El proyecto no se puede escribir como archivos: {}
 The project file {} is missing	Die Projektdatei {} fehlt	Le fichier de projet {} est manquant	Falta el archivo de proyecto {}
 The project has no harnesses	Das Projekt hat keine Kabelbäume	Le projet n'a aucun faisceau	El proyecto no tiene mazos
@@ -1924,7 +1921,6 @@ Units	Einheiten	Unités	Unidades
 Units {} to {} are outside the rack ({} U)	Die Einheiten {} bis {} liegen außerhalb des Racks ({} HE)	Les unités {} à {} sont hors de la baie ({} U)	Las unidades {} a {} están fuera del rack ({} U)
 Units {} to {} are taken by {}	Die Einheiten {} bis {} sind durch {} belegt	Les unités {} à {} sont occupées par {}	Las unidades {} a {} están ocupadas por {}
 Unknown cable {}	Unbekanntes Kabel {}	Câble inconnu {}	Cable desconocido {}
-Unknown device or part: {}	Unbekanntes Gerät oder unbekannter Artikel: {}	Appareil ou article inconnu : {}	Equipo o artículo desconocido: {}
 Unknown device: {}	Unbekanntes Gerät: {}	Appareil inconnu : {}	Equipo desconocido: {}
 Unknown job {}	Unbekannter Auftrag {}	Ordre inconnu {}	Orden desconocida {}
 Unknown macro	Unbekanntes Makro	Macro inconnue	Macro desconocida
@@ -1935,6 +1931,7 @@ Unknown symbol	Unbekanntes Symbol	Symbole inconnu	Símbolo desconocido
 Unknown symbol '{}'	Unbekanntes Symbol '{}'	Symbole inconnu '{}'	Símbolo desconocido '{}'
 Unknown tool {}	Unbekanntes Werkzeug {}	Outil inconnu {}	Herramienta desconocida {}
 Unsupported PDF filter {}	Nicht unterstützter PDF-Filter {}	Filtre PDF non pris en charge {}	Filtro PDF no compatible {}
+Unused connection points	Nicht belegte Anschlusspunkte	Points de connexion non utilisés	Puntos de conexión no utilizados
 Upstream	Vorgeschaltet	Amont	Aguas arriba
 Use drawn wire targets	Gezeichnete Drahtziele verwenden	Utiliser les destinations des fils dessinés	Usar los destinos de los hilos dibujados
 User defined	Benutzerdefiniert	Défini par l'utilisateur	Definido por el usuario
@@ -1959,7 +1956,6 @@ Vibration	Schwingung	Vibration	Vibración
 Vibration resistance	Vibrationsfestigkeit	Résistance aux vibrations	Resistencia a vibraciones
 View projects	Projekte ansehen	Consulter les projets	Ver proyectos
 Violations	Verstöße	Violations	Infracciones
-Voltage (V)	Spannung (V)	Tension (V)	Tensión (V)
 Voltage drop (V)	Spannungsfall (V)	Chute de tension (V)	Caída de tensión (V)
 Voltage protection level	Schutzpegel	Niveau de protection en tension	Nivel de protección de tensión
 Voltage range	Spannungsbereich	Plage de tension	Rango de tensión
@@ -2135,6 +2131,7 @@ yellow	gelb	jaune	amarillo
 {} cannot be removed	{} kann nicht entfernt werden	{} ne peut pas être supprimé	{} no se puede quitar
 {} cannot be renamed	{} kann nicht umbenannt werden	{} ne peut pas être renommé	{} no se puede renombrar
 {} differences taken over	{} Unterschiede übernommen	{} différences reprises	{} diferencias adoptadas
+{} does not fit {}: choose a part of its kind	{} passt nicht zu {}: einen Artikel seiner Art wählen	{} ne convient pas à {} : choisir un article de son type	{} no corresponde a {}: elija un artículo de su tipo
 {} duplicate ids renumbered	{} doppelte IDs neu nummeriert	{} ID en double renumérotés	{} ID duplicados renumerados
 {} fits none of the parts of {}	{} passt zu keinem Artikel von {}	{} ne convient à aucun article de {}	{} no es compatible con ningún artículo de {}
 {} frozen routes changed their length	{} eingefrorene Verlegungen haben ihre Länge geändert	{} tracés figés ont changé de longueur	{} recorridos congelados han cambiado de longitud
@@ -2142,24 +2139,32 @@ yellow	gelb	jaune	amarillo
 {} has no door or window {}	{} hat keine Tür und kein Fenster {}	{} n'a pas de porte ni de fenêtre {}	{} no tiene puerta ni ventana {}
 {} has no {} free rack units	{} hat keine {} freien Höheneinheiten	{} n'a pas {} unités libres	{} no tiene {} unidades libres
 {} has nothing to manufacture	{} hat nichts zu fertigen	{} n'a rien à fabriquer	{} no tiene nada que fabricar
+{} has three phases: it needs a three-phase protective device	{} hat drei Phasen: es braucht ein dreipoliges Schutzorgan	{} a trois phases : il lui faut un appareil de protection triphasé	{} tiene tres fases: necesita un dispositivo de protección trifásico
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} enthält einen ungelösten Merge-Konflikt von git: die Datei wurde als Text zusammengeführt. Übernehmen Sie eine Version der Datei (git checkout --ours oder --theirs) und richten Sie dann den Merge-Treiber für geteilte Projekte ein (merge_project_file), bevor Sie erneut zusammenführen	{} contient un conflit de fusion git non résolu : le fichier a été fusionné comme du texte. Reprenez une version du fichier (git checkout --ours ou --theirs), puis configurez le pilote de fusion des projets fractionnés (merge_project_file) avant de fusionner à nouveau	{} contiene un conflicto de fusión de git sin resolver: el archivo se fusionó como texto. Tome una versión del archivo (git checkout --ours o --theirs) y configure después el controlador de fusión para proyectos divididos (merge_project_file) antes de volver a fusionar
 {} is a built-in function definition	{} ist eine eingebaute Funktionsdefinition	{} est une définition de fonction intégrée	{} es una definición de función integrada
 {} is a built-in property	{} ist eine eingebaute Eigenschaft	{} est une propriété intégrée	{} es una propiedad integrada
 {} is a built-in scheme	{} ist ein eingebautes Schema	{} est un schéma intégré	{} es un esquema integrado
 {} is a busbar machine and makes no sheets	{} ist eine Schienenbearbeitungsmaschine und fertigt keine Bleche	{} est une machine à barres et ne fabrique pas de tôles	{} es una máquina de pletinas y no fabrica chapas
 {} is a room and cannot stand in another room	{} ist ein Raum und kann nicht in einem anderen Raum stehen	{} est une salle et ne peut pas se trouver dans une autre salle	{} es una sala y no puede estar en otra sala
+{} is device {} already	{} ist schon das Betriebsmittel {}	{} est déjà l'appareil {}	{} ya es el dispositivo {}
 {} is inside the structure box {} but has another structure	{} liegt im Strukturkasten {}, hat aber eine andere Struktur	{} se trouve dans le cadre de structure {} mais a une autre structure	{} está dentro del recuadro de estructura {} pero tiene otra estructura
+{} is neither the protective device nor a device of the circuit of {}	{} ist weder das Schutzorgan noch ein Betriebsmittel des Stromkreises von {}	{} n'est ni l'appareil de protection ni un appareil du circuit de {}	{} no es ni el dispositivo de protección ni un equipo del circuito de {}
 {} is no 19-inch part ({} mm wide)	{} ist kein 19-Zoll-Teil ({} mm breit)	{} n'est pas une pièce 19 pouces ({} mm de large)	{} no es una pieza de 19 pulgadas ({} mm de ancho)
+{} is no protective device of a final circuit in the schematic	{} ist kein Schutzorgan eines Endstromkreises im Schaltplan	{} n'est pas un appareil de protection d'un circuit terminal du schéma	{} no es un dispositivo de protección de un circuito final del esquema
+{} is no socket outlet, switch, light or heating element	{} ist weder Steckdose noch Schalter, Leuchte oder Heizelement	{} n'est ni une prise, ni un interrupteur, ni un luminaire, ni un élément chauffant	{} no es una toma de corriente, un interruptor, una luminaria ni un elemento calefactor
+{} is no socket outlet, switch, light or heating element of circuit {}	{} ist keine Steckdose, kein Schalter, keine Leuchte und kein Heizelement des Stromkreises {}	{} n'est ni une prise, ni un interrupteur, ni un luminaire, ni un élément chauffant du circuit {}	{} no es una toma de corriente, un interruptor, una luminaria ni un elemento calefactor del circuito {}
 {} is not a busbar machine	{} ist keine Schienenbearbeitungsmaschine	{} n'est pas une machine à barres	{} no es una máquina de pletinas
 {} is not a picture or PDF file: {}	{} ist keine Bild- oder PDF-Datei: {}	{} n'est pas un fichier image ou PDF : {}	{} no es un archivo de imagen ni PDF: {}
 {} is not a property of {}	{} ist keine Eigenschaft von {}	{} n'est pas une propriété de {}	{} no es una propiedad de {}
 {} is not an approver of this project	{} ist kein Genehmiger dieses Projekts	{} n'est pas approbateur de ce projet	{} no es aprobador de este proyecto
+{} is not connected to the mains: place it without a protective device	{} wird nicht an das Netz angeschlossen: ohne Schutzorgan platzieren	{} n'est pas raccordé au réseau : placez-le sans appareil de protection	{} no se conecta a la red: colóquelo sin dispositivo de protección
 {} is not made for wall mounting: place a mounting rail on the wall first	{} ist nicht für Wandmontage vorgesehen: zuerst eine Tragschiene an die Wand setzen	{} n'est pas prévu pour le montage mural : placez d'abord un rail sur le mur	{} no está previsto para montaje mural: coloque primero un carril en la pared
 {} is not placed in the plant layout	{} ist nicht im Anlagenlayout platziert	{} n'est pas placé dans le plan d'installation	{} no está colocado en el plano de la instalación
 {} is on page {}, which is released: renaming it would change the page	{} liegt auf Seite {}, die freigegeben ist: Umbenennen würde die Seite ändern	{} se trouve sur la page {}, qui est validée : le renommer modifierait la page	{} está en la página {}, que está liberada: renombrarlo cambiaría la página
 {} is placed at the missing node {}	{} ist am fehlenden Knoten {} platziert	{} est placé au nœud manquant {}	{} está colocado en el nodo inexistente {}
 {} is planned twice ({} and {})	{} ist doppelt geplant ({} und {})	{} est planifié deux fois ({} et {})	{} está planificado dos veces ({} y {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} ist zu {} nur bis {} A selektiv (Kurzschlussstrom {} A)	{} n'est sélectif avec {} que jusqu'à {} A (courant de court-circuit {} A)	{} es selectivo con {} solo hasta {} A (corriente de cortocircuito {} A)
+{} is used already	{} ist schon vergeben	{} est déjà utilisé	{} ya está en uso
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} behält seine Struktur: seine Hauptfunktionen liegen in verschiedenen Strukturkästen ({})	{} garde sa structure : ses fonctions principales se trouvent dans des cadres de structure différents ({})	{} conserva su estructura: sus funciones principales están en recuadros de estructura distintos ({})
 {} keeps its structure: {} exists already	{} behält seine Struktur: {} existiert bereits	{} garde sa structure : {} existe déjà	{} conserva su estructura: {} ya existe
 {} lies outside page {}	{} liegt außerhalb von Seite {}	{} se trouve hors de la page {}	{} está fuera de la página {}
@@ -2175,7 +2180,7 @@ yellow	gelb	jaune	amarillo
 {} report references converted to report names	{} Auswertungsverweise in Auswertungsnamen umgewandelt	{} références de rapport converties en noms de rapport	{} referencias de informe convertidas en nombres de informe
 {} s	{} s	{} s	{} s
 {} single part assignments converted to part lists	{} einzelne Artikelzuordnungen in Artikellisten umgewandelt	{} affectations d'article unique converties en listes d'articles	{} asignaciones de artículo único convertidas en listas de artículos
-{} socket outlets and lights are in no circuit	{} Steckdosen und Leuchten sind in keinem Stromkreis	{} prises et luminaires ne sont dans aucun circuit	{} tomas y luminarias no están en ningún circuito
+{} socket outlets, switches, lights and heating elements are not in the schematic	{} Steckdosen, Schalter, Leuchten und Heizelemente sind nicht im Schaltplan	{} prises, interrupteurs, luminaires et éléments chauffants ne sont pas dans le schéma	{} tomas de corriente, interruptores, luminarias y elementos calefactores no están en el esquema
 {} stands outside the plot boundary	{} steht außerhalb der Grundstücksgrenze	{} se trouve hors de la limite du terrain	{} está fuera del límite de la parcela
 {} symbols, {} wires, {} texts / graphics	{} Symbole, {} Leitungen, {} Texte / Grafiken	{} symboles, {} fils, {} textes / graphiques	{} símbolos, {} hilos, {} textos / gráficos
 {} texts are not translated into {}	{} Texte sind nicht in {} übersetzt	{} textes ne sont pas traduits en {}	{} textos no están traducidos al {}

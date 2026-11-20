@@ -56,7 +56,6 @@ Align right	오른쪽 맞춤
 Align top	위쪽 맞춤
 All aspects (with product)	모든 측면(제품 포함)
 All devices of page {} are in the schematic already	{} 페이지의 모든 장치가 이미 회로도에 있습니다
-Aluminium	알루미늄
 Ammeter	전류계
 Ammeter, reactive current	전류계, 무효 전류
 Ampere-hour meter	암페어시 계량기
@@ -65,6 +64,7 @@ Analog input module	아날로그 입력 모듈
 Analog output module	아날로그 출력 모듈
 Analysis	분석
 Another section here has this number	여기에 있는 다른 구역이 이미 이 번호를 사용합니다
+Antenna outlet	안테나 콘센트
 Apparent power (kVA)	피상 전력(kVA)
 Applied directives	적용된 지침
 Approval date	승인 날짜
@@ -98,7 +98,6 @@ Baying kit	결합 키트
 Beacon, rotating	회전 경광등
 Belongs to	소속
 Bends	굽힘
-Bill of materials	자재 명세서
 Bimetal switch NC	바이메탈 스위치 b접점
 Bimetal switch NO	바이메탈 스위치 a접점
 Black box	블랙박스
@@ -191,12 +190,12 @@ Changeover contact, on-delay	c접점, 온 딜레이
 Changeover contact, passing make	c접점, 순간 메이크
 Changeover switch, cam operated	전환 스위치, 캠 작동
 Changeover switch, cam profile operated	전환 스위치, 캠 프로파일 작동
+Changeover switch, manually operated	전환 스위치, 수동 작동
 Changeover switch, roller operated	전환 스위치, 롤러 작동
 Check valve	체크 밸브
 Checked	검사됨
 Checked by	검사자
 Choose the pages of the subproject	하위 프로젝트의 페이지를 선택하세요
-Circuit	회로
 Circuit breaker (single-line)	차단기(단선)
 Circuit breaker 1-pole	차단기 1극
 Circuit breaker 1-pole (NFPA)	차단기 1극(NFPA)
@@ -280,7 +279,6 @@ Converted from file format {} to {}: {}	파일 형식 {}에서 {}(으)로 변환
 Coolant	냉각수
 Cooler	냉각기
 Cooling method	냉각 방식
-Copper	구리
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	동바 {}: 굽힘 {}의 반경은 {} mm이며, 최소 {} mm가 필요합니다
 Copper bar {}: hole Ø{} at {} mm is outside the bar	동바 {0}: {2} mm 위치의 구멍 Ø{1}이(가) 바 바깥에 있습니다
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	동바 {0}: {2} mm 위치의 구멍 Ø{1}이(가) 굽힘 {3}에 너무 가깝습니다
@@ -308,7 +306,6 @@ Create projects	프로젝트 만들기
 Creation date	작성 날짜
 Cross-section {} carries {} A, less than the {} A of {}	단면적 {0}의 허용 전류 {1} A가 {3}의 {2} A보다 작습니다
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	페이지 {}의 교차가 연결선과 맞지 않습니다: 네 방향 모두에 연결선이 필요하며 그 지점에 접속점이 없어야 합니다
-Current (A)	전류(A)
 Current capacity (A)	허용 전류(A)
 Current consumption	소비 전류
 Current range	전류 범위
@@ -336,6 +333,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC 제어 회로는 파
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC 제어 회로는 파란색이어야 합니다(NFPA 79, 13.2.4)
 DC/DC converter	DC/DC 컨버터
 DWG export failed: {}	DWG 내보내기 실패: {}
+Data outlet	데이터 콘센트
 Data sheet	데이터시트
 Date of the approval of the last revision	마지막 개정의 승인 날짜
 Date of the last revision	마지막 개정 날짜
@@ -352,6 +350,7 @@ Description of the last revision	마지막 개정 설명
 Description of the page's function (structure management)	페이지 기능의 설명(구조 관리)
 Description of the page's location (structure management)	페이지 위치의 설명(구조 관리)
 Designer	설계자
+Device connection box	기기 연결 박스
 Device connection diagram	장치 연결 다이어그램
 Device data of {} without symbol or panel item	심볼 또는 패널 항목이 없는 {}의 장치 데이터
 Device description file	장치 설명 파일
@@ -401,7 +400,6 @@ Document (embedded file)	문서(포함된 파일)
 Document A4 portrait	문서 A4 세로
 Document number	문서 번호
 Document reference	문서 참조
-Documentation	문서
 Documentation language	문서 언어
 Does not match	일치하지 않음
 Door (front view)	도어(정면도)
@@ -639,6 +637,7 @@ Hazardous area zone	위험 지역 구역
 Heat exchanger	열교환기
 Heating (W)	히터(W)
 Heating element	발열체
+Heating element three-phase	3상 발열체
 Higher-level product (-)	상위 제품 (-)
 Higher-level product of the page	페이지의 상위 제품
 Highest (°C)	최고(°C)
@@ -728,6 +727,7 @@ Insulation class	절연 등급
 Integer	정수
 Integrated EMC filter	내장 EMC 필터
 Intermediate relay coil KA (GB)	보조 릴레이 코일 KA(GB)
+Intermediate switch, manually operated	중간 스위치, 수동 작동
 Internal	내부
 Internal target	내부 대상
 Interruption point '{}' has no counterpart	중단점 '{}'에 대응 항목이 없습니다
@@ -742,6 +742,7 @@ Inverter DC/AC	인버터 DC/AC
 Isolating and switching devices in the right places	분리 및 개폐 장치가 올바른 위치에 있음
 Item	항목
 Item ID	품목 ID
+Items	항목
 JIS (JIS C 0617)	JIS(JIS C 0617)
 Jumpers	점퍼
 Junction box	정션 박스
@@ -767,13 +768,13 @@ Left side panel	왼쪽 측면 패널
 Legend plate text	명판 텍스트
 Length (m)	길이(m)
 Length (mm)	길이(mm)
+Length known (not calculated)	알려진 길이(계산하지 않음)
 Letter landscape	Letter 가로
 Letters (A, B, C)	문자(A, B, C)
 Level switch	레벨 스위치
 Lifecycle state	수명 주기 상태
 Light source	광원
 Lighting outlet	조명 인출구
-Limit (%)	한계(%)
 Limit switch NC (NFPA)	리밋 스위치 b접점(NFPA)
 Limit switch NO (NFPA)	리밋 스위치 a접점(NFPA)
 Line reactor	라인 리액터
@@ -788,7 +789,7 @@ Longest RCD trip time at IΔn (ms)	IΔn에서 RCD 최장 동작 시간 (ms)
 Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	저압 개폐 장치 조립품: 정격 부등률, 온도 상승, 문서
 Lowest insulation resistance of the mains (MΩ)	전원 계통의 최소 절연 저항 (MΩ)
 Lubricant	윤활유
-Luminaire	조명 기구
+Luminaire	조명기구
 Luminaire, fluorescent	형광등 기구
 MAC address	MAC 주소
 MCAD	MCAD
@@ -936,6 +937,7 @@ Nibbling	니블링
 No connection {}	연결 {} 없음
 No devices to add to the single-line diagram	단선도에 추가할 장치가 없습니다
 No document embedded - choose a file in the page properties	포함된 문서 없음 - 페이지 속성에서 파일을 선택하세요
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	케이블이 나갈 수 있는 면에 케이블 글랜드를 놓을 빈 자리가 없습니다: 자리를 만들거나 케이블 인입 플랜지를 추가하십시오
 No identifying letter for the device tag.	장치 태그의 식별 문자가 없습니다.
 No known column in the header row	머리글 행에 알려진 열이 없습니다
 No option {}	옵션 {}이(가) 없습니다
@@ -1334,7 +1336,6 @@ Residual current device 4-pole	누전 차단기 4극
 Residual current type	누전 유형
 Resistor	저항기
 Response time	응답 시간
-Result	결과
 Return / exhaust line	리턴 / 배기 라인
 Revision overview (changes)	개정 개요(변경 내용)
 Revision table: author of the last revision (2: the one before …)	개정 표: 마지막 개정의 작성자(2: 그 이전 …)
@@ -1464,7 +1465,9 @@ Size (mm)	크기(mm)
 Skipped	건너뜀
 Sliding to the left	왼쪽으로 미닫이
 Sliding to the right	오른쪽으로 미닫이
+Smoke alarm	연기 감지기
 Socket outlet	콘센트
+Socket outlet three-phase	3상 콘센트
 Socket side (female)	소켓 측 (암)
 Soft starter	소프트 스타터
 Solar charge controller	태양광 충전 컨트롤러
@@ -1572,7 +1575,6 @@ Terminal box	단자함
 Terminal connection diagram	단자 연결 다이어그램
 Terminal data	단자 데이터
 Terminal description	단자 설명
-Terminal diagram	단자 다이어그램
 Terminal line-up	단자 배열
 Terminal marker	단자 마커
 Terminal parts	단말 부품
@@ -1592,6 +1594,7 @@ The archive unpacks to more than {} MB	압축을 풀면 {} MB보다 큰 압축 �
 The archive was written by a newer version (archive version {})	이 아카이브는 더 새로운 버전으로 기록되었습니다(아카이브 버전 {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	조립품 제조업체를 명시해야 합니다(IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	방 안의 외함 열: L자형 평면도, 내벽, 문과 창문, 제자리에 놓인 외함 열, 벽의 콘센트가 있는 레일, 벽에 설치된 비상등 및 천장 아래의 케이블 트레이.
+The cable of {} needs at least {} cores	{}의 케이블에는 최소 {}개의 심선이 필요합니다
 The configuration is not a JSON object	구성이 JSON 개체가 아닙니다
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	첫 릴리스 이후의 컨베이어: 릴리스되어 잠긴 개정, 그 이후 표시된 변경 사항, 레드라인이 있는 검토 의견, 변경 요청, 승인 워크플로 중인 개정 B 및 비교할 기준선.
 The coordinates of the reference point must be numbers	기준점의 좌표는 숫자여야 합니다
@@ -1609,6 +1612,7 @@ The macro box has no items left	매크로 박스에 남은 항목이 없습니�
 The next free id is already in use	다음 사용 가능한 ID가 이미 사용 중입니다
 The option needs a name	옵션에는 이름이 필요합니다
 The page needs a number	페이지에는 번호가 필요합니다
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	{}의 페이지가 가득 찼습니다: 3로 회로의 다음 스위치는 같은 페이지에 그려야 합니다
 The pages were changed after the submission; submit the revision again	제출 후 페이지가 변경되었습니다. 개정을 다시 제출하세요
 The plot boundary crosses itself	부지 경계가 자기 자신과 교차합니다
 The plot boundary encloses no area	부지 경계가 면적을 둘러싸지 않습니다
@@ -1735,6 +1739,7 @@ Unknown object: {}	알 수 없는 개체: {}
 Unknown revision	알 수 없는 개정
 Unknown symbol '{}'	알 수 없는 심볼 '{}'
 Unknown tool {}	알 수 없는 공구 {}
+Unused connection points	사용하지 않는 연결 지점
 Upstream	상위
 User defined	사용자 정의
 User symbols	사용자 심볼
@@ -1756,7 +1761,6 @@ Vibration	진동
 Vibration resistance	내진동성
 View projects	프로젝트 보기
 Violations	위반
-Voltage (V)	전압(V)
 Voltage drop (V)	전압 강하(V)
 Voltage protection level	전압 보호 레벨
 Voltage range	전압 범위
@@ -1931,18 +1935,22 @@ yellow	노랑
 {} has no MTTFd, B10d, PL or PFHd	{}에 MTTFd, B10d, PL 또는 PFHd가 없습니다
 {} has no door or window {}	{0}에 문 또는 창 {1}이(가) 없습니다
 {} has nothing to manufacture	{}에는 제작할 항목이 없습니다
+{} has three phases: it needs a three-phase protective device	{}은(는) 3상입니다: 3상 보호 장치가 필요합니다
 {} is a built-in function definition	{}은(는) 기본 제공 기능 정의입니다
 {} is a built-in property	{}은(는) 기본 제공 속성입니다
 {} is a built-in scheme	{}은(는) 기본 제공 스키마입니다
 {} is a busbar machine and makes no sheets	{}은(는) 부스바 가공기이므로 판금을 가공하지 않습니다
+{} is neither the protective device nor a device of the circuit of {}	{}은(는) 보호 장치도 아니고 {} 회로의 장치도 아닙니다
 {} is not a busbar machine	{}은(는) 부스바 가공기가 아닙니다
 {} is not a property of {}	{}은(는) {}의 속성이 아닙니다
 {} is not an approver of this project	{}은(는) 이 프로젝트의 승인자가 아닙니다
+{} is not connected to the mains: place it without a protective device	{}은(는) 전원에 연결되지 않습니다: 보호 장치 없이 배치하십시오
 {} is not placed in the plant layout	{}이(가) 플랜트 레이아웃에 배치되지 않았습니다
 {} is on page {}, which is released: renaming it would change the page	{}은(는) 릴리스된 페이지 {}에 있습니다: 이름을 바꾸면 페이지가 변경됩니다
 {} is placed at the missing node {}	{}이(가) 누락된 노드 {}에 배치되어 있습니다
 {} is planned twice ({} and {})	{}이(가) 두 번 계획되었습니다({} 및 {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{0}은(는) {1}에 대해 {2} A까지만 선택 차단됩니다(단락 전류 {3} A)
+{} is used already	{}은(는) 이미 사용 중입니다
 {} keeps its structure: its main functions lie in different structure boxes ({})	{}의 구조가 유지됩니다: 주 기능이 서로 다른 구조 박스에 있습니다({})
 {} keeps its structure: {} exists already	{}의 구조가 유지됩니다: {}이(가) 이미 있습니다
 {} lies outside page {}	{}이(가) 페이지 {} 밖에 있습니다

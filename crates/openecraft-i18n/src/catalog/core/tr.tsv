@@ -59,7 +59,6 @@ Align right	Sağa hizala
 Align top	Üste hizala
 All aspects (with product)	Tüm yönler (ürünle birlikte)
 All devices of page {} are in the schematic already	{} sayfasının tüm cihazları zaten şemada
-Aluminium	Alüminyum
 Ammeter	Ampermetre
 Ammeter, reactive current	Ampermetre, reaktif akım
 Ampere-hour meter	Amper-saat sayacı
@@ -68,6 +67,7 @@ Analog input module	Analog giriş modülü
 Analog output module	Analog çıkış modülü
 Analysis	Analiz
 Another section here has this number	Buradaki başka bir bölüm bu numaraya sahip
+Antenna outlet	Anten prizi
 Apparent power (kVA)	Görünür güç (kVA)
 Applied directives	Uygulanan direktifler
 Approval date	Onay tarihi
@@ -101,7 +101,6 @@ Baying kit	Yan yana bağlama kiti
 Beacon, rotating	Döner ikaz lambası
 Belongs to	Ait olduğu öğe
 Bends	Bükümler
-Bill of materials	Malzeme listesi
 Bimetal switch NC	Bimetal şalter NK
 Bimetal switch NO	Bimetal şalter NA
 Black box	Kara kutu
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Değiştirici kontak, çekmede gecikmeli
 Changeover contact, passing make	Değiştirici kontak, darbeli kapamalı
 Changeover switch, cam operated	Değiştirici şalter, kam tahrikli
 Changeover switch, cam profile operated	Değiştirici şalter, profil kam tahrikli
+Changeover switch, manually operated	Değiştirici şalter, el ile kumandalı
 Changeover switch, roller operated	Değiştirici şalter, makara tahrikli
 Check valve	Çek valf
 Checked	Kontrol edilen
 Checked by	Kontrol eden
 Choose the pages of the subproject	Alt projenin sayfalarını seçin
-Circuit	Devre
 Circuit breaker (single-line)	Devre kesici (tek hat)
 Circuit breaker 1-pole	Devre kesici 1 kutuplu
 Circuit breaker 1-pole (NFPA)	Devre kesici 1 kutuplu (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	{} dosya formatından {} formatına dön
 Coolant	Soğutucu
 Cooler	Soğutucu
 Cooling method	Soğutma yöntemi
-Copper	Bakır
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Bakır bara {}: {} bükümünün yarıçapı {} mm, en az {} mm
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Bakır bara {0}: {2} mm'deki Ø{1} delik baranın dışında
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Bakır bara {0}: {2} mm'deki Ø{1} delik {3} bükümüne çok yakın
@@ -316,7 +314,6 @@ Create projects	Proje oluştur
 Creation date	Oluşturma tarihi
 Cross-section {} carries {} A, less than the {} A of {}	{} kesiti {} A taşıyor, {} A gerektiren {} için yetersiz
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Sayfa {} üzerindeki kesişme tellerine uymuyor: dört yönde de tel gerekir ve orada bağlantı noktası olmamalı
-Current (A)	Akım (A)
 Current capacity (A)	Akım taşıma kapasitesi (A)
 Current consumption	Akım tüketimi
 Current range	Akım aralığı
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC kumanda devreleri ma
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC kumanda devreleri mavi olmalıdır (NFPA 79, 13.2.4)
 DC/DC converter	DC/DC dönüştürücü
 DWG export failed: {}	DWG dışa aktarımı başarısız oldu: {}
+Data outlet	Veri prizi
 Data sheet	Veri sayfası
 Date of the approval of the last revision	Son revizyonun onay tarihi
 Date of the last revision	Son revizyonun tarihi
@@ -360,6 +358,7 @@ Description of the last revision	Son revizyonun açıklaması
 Description of the page's function (structure management)	Sayfanın fonksiyonunun açıklaması (yapı yönetimi)
 Description of the page's location (structure management)	Sayfanın konumunun açıklaması (yapı yönetimi)
 Designer	Tasarımcı
+Device connection box	Cihaz bağlantı kutusu
 Device connection diagram	Cihaz bağlantı şeması
 Device data of {} without symbol or panel item	Sembolü veya pano öğesi olmayan {} cihaz verileri
 Device description file	Cihaz tanım dosyası
@@ -409,7 +408,6 @@ Document (embedded file)	Belge (gömülü dosya)
 Document A4 portrait	Belge A4 dikey
 Document number	Belge numarası
 Document reference	Doküman referansı
-Documentation	Dokümantasyon
 Documentation language	Dokümantasyon dili
 Does not match	Eşleşmiyor
 Door (front view)	Kapı (ön görünüm)
@@ -648,6 +646,7 @@ Hazardous area zone	Tehlikeli bölge
 Heat exchanger	Isı eşanjörü
 Heating (W)	Isıtma (W)
 Heating element	Isıtıcı eleman
+Heating element three-phase	Üç fazlı ısıtıcı eleman
 Higher-level product (-)	Üst düzey ürün (-)
 Higher-level product of the page	Sayfanın üst düzey ürünü
 Highest (°C)	En yüksek (°C)
@@ -725,6 +724,7 @@ Installation altitude	Kurulum yüksekliği
 Installation date	Montaj tarihi
 Installation devices	Tesisat cihazları
 Installation method	Döşeme yöntemi
+Installation of {}	{} tesisatı
 Installation plan (IEC 60617-11)	Tesisat planı (IEC 60617-11)
 Installation site (++)	Kurulum yeri (++)
 Installation site and location	Kurulum yeri ve konum
@@ -737,6 +737,7 @@ Insulation class	Yalıtım sınıfı
 Integer	Tam sayı
 Integrated EMC filter	Entegre EMC filtresi
 Intermediate relay coil KA (GB)	Ara röle bobini KA (GB)
+Intermediate switch, manually operated	Ara anahtar, el ile kumandalı
 Internal	Dahili
 Internal target	Dahili hedef
 Interruption point '{}' has no counterpart	Kesinti noktası '{}' için karşılık yok
@@ -751,6 +752,7 @@ Inverter DC/AC	İnvertör DC/AC
 Isolating and switching devices in the right places	Ayırma ve anahtarlama cihazları doğru yerlerde
 Item	Öğe
 Item ID	Öğe kimliği
+Items	Öğeler
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Köprüler
 Junction box	Buat
@@ -776,13 +778,13 @@ Left side panel	Sol yan panel
 Legend plate text	Etiket metni
 Length (m)	Uzunluk (m)
 Length (mm)	Uzunluk (mm)
+Length known (not calculated)	Uzunluk biliniyor (hesaplanmadı)
 Letter landscape	Letter yatay
 Letters (A, B, C)	Harfler (A, B, C)
 Level switch	Seviye şalteri
 Lifecycle state	Yaşam döngüsü durumu
 Light source	Işık kaynağı
 Lighting outlet	Aydınlatma çıkışı
-Limit (%)	Sınır (%)
 Limit switch NC (NFPA)	Limit şalteri NK (NFPA)
 Limit switch NO (NFPA)	Limit şalteri NA (NFPA)
 Line reactor	Şebeke reaktörü
@@ -946,6 +948,7 @@ Nibbling	Nibbling
 No connection {}	{} bağlantısı yok
 No devices to add to the single-line diagram	Tek hat şemasına eklenecek cihaz yok
 No document embedded - choose a file in the page properties	Gömülü belge yok - sayfa özelliklerinde bir dosya seçin
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Kablonun çıkabileceği yüzeylerde rakor için boş yer yok: yer açın veya bir kablo giriş flanşı ekleyin
 No identifying letter for the device tag.	Cihaz etiketi için tanıtıcı harf yok.
 No known column in the header row	Başlık satırında bilinen sütun yok
 No option {}	{} seçeneği yok
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Kaçak akım koruma cihazı 4 kutuplu
 Residual current type	Kaçak akım tipi
 Resistor	Direnç
 Response time	Tepki süresi
-Result	Sonuç
 Return / exhaust line	Dönüş / egzoz hattı
 Revision overview (changes)	Revizyon genel bakışı (değişiklikler)
 Revision table: author of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun yazarı (2: bir öncekinin …)
@@ -1477,7 +1479,9 @@ Size (mm)	Boyut (mm)
 Skipped	Atlandı
 Sliding to the left	Sola sürgülü
 Sliding to the right	Sağa sürgülü
+Smoke alarm	Duman dedektörü
 Socket outlet	Priz
+Socket outlet three-phase	Üç fazlı priz
 Socket side (female)	Soket tarafı (dişi)
 Soft starter	Yumuşak yolverici
 Solar charge controller	Güneş şarj kontrol cihazı
@@ -1585,7 +1589,6 @@ Terminal box	Klemens kutusu
 Terminal connection diagram	Klemens bağlantı şeması
 Terminal data	Klemens verileri
 Terminal description	Klemens açıklaması
-Terminal diagram	Klemens şeması
 Terminal line-up	Klemens dizilimi
 Terminal marker	Klemens işareti
 Terminal parts	Uç parçaları
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Arşiv açıldığında {} MB'tan büyük
 The archive was written by a newer version (archive version {})	Arşiv daha yeni bir sürümle yazılmış (arşiv sürümü {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Düzen imalatçısı belirtilmelidir (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Odasındaki yan yana panolar: L biçimli kat planı, iç duvar, kapı ve pencere, yerindeki pano dizisi, bir duvarda prizli bir ray, duvara monte acil durum aydınlatması ve tavan altında bir kablo tavası.
+The cable of {} needs at least {} cores	{} kablosu en az {} damar gerektirir
 The configuration is not a JSON object	Yapılandırma bir JSON nesnesi değil
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	İlk yayından sonra konveyör: yayınlanmış ve kilitlenmiş bir revizyon, o zamandan beri işaretlenen değişiklikler, kırmızı işaretlemeli inceleme yorumları, bir değişiklik talebi, onay sürecindeki B revizyonu ve karşılaştırma için bir temel durum.
 The coordinates of the reference point must be numbers	Referans noktasının koordinatları sayı olmalıdır
@@ -1624,6 +1628,7 @@ The macro box has no items left	Makro kutusunda hiç öğe kalmadı
 The next free id is already in use	Sonraki boş kimlik zaten kullanımda
 The option needs a name	Seçenek için bir ad gerekli
 The page needs a number	Sayfa için bir numara gerekli
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	{} sayfası dolu: vavien devresinin sonraki anahtarı aynı sayfaya çizilmelidir
 The pages were changed after the submission; submit the revision again	Sayfalar gönderimden sonra değiştirildi; revizyonu yeniden gönderin
 The plot boundary crosses itself	Arsa sınırı kendisiyle kesişiyor
 The plot boundary encloses no area	Arsa sınırı bir alan çevrelemiyor
@@ -1753,6 +1758,7 @@ Unknown object: {}	Bilinmeyen nesne: {}
 Unknown revision	Bilinmeyen revizyon
 Unknown symbol '{}'	Bilinmeyen sembol '{}'
 Unknown tool {}	Bilinmeyen takım {}
+Unused connection points	Kullanılmayan bağlantı noktaları
 Upstream	Üst kademe
 User defined	Kullanıcı tanımlı
 User symbols	Kullanıcı sembolleri
@@ -1774,7 +1780,6 @@ Vibration	Titreşim
 Vibration resistance	Titreşim dayanımı
 View projects	Projeleri görüntüle
 Violations	İhlaller
-Voltage (V)	Gerilim (V)
 Voltage drop (V)	Gerilim düşümü (V)
 Voltage protection level	Gerilim koruma seviyesi
 Voltage range	Gerilim aralığı
@@ -1950,19 +1955,23 @@ yellow	sarı
 {} has no MTTFd, B10d, PL or PFHd	{} için MTTFd, B10d, PL veya PFHd yok
 {} has no door or window {}	{0} içinde {1} kapısı veya penceresi yok
 {} has nothing to manufacture	{} için üretilecek bir şey yok
+{} has three phases: it needs a three-phase protective device	{} üç fazlıdır: üç fazlı bir koruma cihazı gerektirir
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} çözülmemiş bir git birleştirme çakışması içeriyor: dosya metin olarak birleştirildi. Dosyanın bir sürümünü alın (git checkout --ours veya --theirs), ardından yeniden birleştirmeden önce bölünmüş projeler için birleştirme sürücüsünü kurun (merge_project_file)
 {} is a built-in function definition	{} yerleşik bir fonksiyon tanımıdır
 {} is a built-in property	{} yerleşik bir özelliktir
 {} is a built-in scheme	{} yerleşik bir şemadır
 {} is a busbar machine and makes no sheets	{} bir bara işleme makinesidir ve sac üretmez
+{} is neither the protective device nor a device of the circuit of {}	{} ne koruma cihazı ne de {} devresinin bir cihazıdır
 {} is not a busbar machine	{} bir bara işleme makinesi değil
 {} is not a property of {}	{0}, {1} öğesinin bir özelliği değil
 {} is not an approver of this project	{} bu projenin onaylayıcısı değil
+{} is not connected to the mains: place it without a protective device	{} şebekeye bağlanmaz: koruma cihazı olmadan yerleştirin
 {} is not placed in the plant layout	{} tesis yerleşiminde yerleştirilmemiş
 {} is on page {}, which is released: renaming it would change the page	{}, yayımlanmış {} sayfasında: yeniden adlandırmak sayfayı değiştirir
 {} is placed at the missing node {}	{}, mevcut olmayan {} düğümüne yerleştirilmiş
 {} is planned twice ({} and {})	{} iki kez planlanmış ({} ve {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{}, {} ile yalnızca {} A'ya kadar seçici (kısa devre akımı {} A)
+{} is used already	{} zaten kullanılıyor
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} yapısını korur: ana fonksiyonları farklı yapı kutularında ({})
 {} keeps its structure: {} exists already	{} yapısını korur: {} zaten var
 {} lies outside page {}	{} sayfa {} dışında

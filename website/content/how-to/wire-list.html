@@ -1,0 +1,31 @@
+title: How to generate a wire list from a schematic – OpenECraft
+description: Generate a wire list for the workshop with OpenECraft: every wire with colour, cross-section, routed length and end treatment, from schematic and panel layout.
+kind: page
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>How-to</p>
+        <h1 data-t>How to generate a wire list</h1>
+        <p class="lead" data-t>The wire list comes from two things you have already drawn: the connections of the schematic and the places of the devices in the panel. OpenECraft routes the wires through the ducts and measures them.</p>
+        <div class="actions">
+            <a class="button primary" href="@/?example=conveyor&amp;report=panel_wiring#reports" data-t>See it in the live demo</a>
+            <a class="button" data-link="editor" href="#" data-t>Open the web editor</a>
+        </div>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>Step by step</h2>
+    <ol class="points steps">
+        <li data-t>Draw the schematic and give the potentials their wire colour and cross-section in Connections › Potentials.</li>
+        <li data-t>Number the connections with Connections › Wire numbering.</li>
+        <li data-t>In the Panel layout workspace, place the devices on rails and the wiring ducts between them. The wires are routed through the ducts.</li>
+        <li data-t>Open Project data › Reports and pick Wire list (panel routing).</li>
+        <li data-t>Export the production wire list with File › Export, or wire from a tablet with the Wiring workspace.</li>
+    </ol>
+    <p class="text" data-t>The Connection list shows the connections of a schematic that has no panel layout yet.</p>
+    <div class="actions">
+        <a class="button" href="~/docs/workshop/" data-t>The workshop in the documentation</a>
+        <a class="button ghost" href="@/how-to/" data-t>More guides</a>
+    </div>
+</section>

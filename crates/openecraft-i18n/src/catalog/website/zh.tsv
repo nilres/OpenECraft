@@ -2,73 +2,234 @@
 3D	3D
 3D models	3D 模型
 A command line, an MCP server for AI agents and plugins in any language add checks, reports, exports and commands.	命令行、面向 AI 智能体的 MCP 服务器以及任意语言编写的插件，可添加检查、报表、导出和命令。
+A free, open source alternative to AutoCAD Electrical	AutoCAD Electrical 的免费开源替代方案
+A free, open source alternative to EPLAN Electric P8	EPLAN Electric P8 的免费开源替代方案
+A free, open source alternative to SEE Electrical	SEE Electrical 的免费开源替代方案
+A free, open source alternative to WSCAD	WSCAD 的免费开源替代方案
+A link that opens this example at this place. Your changes are not part of it.	在此位置打开此示例的链接。其中不包含您的更改。
 A look inside	一探究竟
+A minute with OpenECraft: from the schematic to the panel in 3D	60 秒了解 OpenECraft：从原理图到 3D 机柜
 A parts database with mounting data and 3D models, imports from EDZ, BMEcat and STEP, shared through the parts server.	带安装数据和 3D 模型的部件数据库，可从 EDZ、BMEcat 和 STEP 导入，并通过部件服务器共享。
 A schematic page of the demo project, drawn by OpenECraft	由 OpenECraft 绘制的演示项目原理图页面
 About 330 IEC 60617 symbols, NFPA, GB, GOST and JIS sets, fluid power, P&ID and installation plans, and an editor for your own symbols.	约 330 个 IEC 60617 符号，NFPA、GB、GOST 和 JIS 符号集，流体动力、P&ID 和安装图，以及用于自定义符号的编辑器。
+All documents in the repository	仓库中的所有文档
+Answers about OpenECraft: is it free, where does it run, can it read EPLAN and DWG data, does it work offline, and is it ready for real projects?	关于 OpenECraft 的解答：是否免费、在哪里运行、能否读取 EPLAN 和 DWG 数据、能否离线工作、是否可用于实际项目？
+AutoCAD Electrical adds electrical controls design to AutoCAD. OpenECraft is a program of its own for the same work: device-oriented schematics, reports and the panel in 3D, free and on any operating system. It is young, and this page says where.	AutoCAD Electrical 为 AutoCAD 增加了电气控制设计功能。OpenECraft 是完成同样工作的独立程序：面向设备的原理图、报表和 3D 机柜，免费且可在任何操作系统上运行。它还是个新项目，本页说明它在哪些方面仍有不足。
+Autodesk, AutoCAD and DWG are trademarks of Autodesk, Inc. OpenECraft is not affiliated with Autodesk.	Autodesk、AutoCAD 和 DWG 是 Autodesk, Inc. 的商标。OpenECraft 与 Autodesk 没有关联。
 Bill of materials, terminal, cable and plug diagrams as live pages, own drawn forms and a project check that follows every change.	物料清单、端子图、电缆图和插头图作为实时页面，自绘表格，以及跟随每次更改的项目检查。
+Both are free and open source. QElectroTech is a long-standing program for drawing electrical schematics. OpenECraft is younger and device-oriented: the schematic is a model that writes the reports, checks itself and carries on into the panel layout.	两者都免费且开源。QElectroTech 是一款已有多年历史的电气原理图绘制程序。OpenECraft 是较新的项目，并且面向设备：原理图是一个模型，它生成报表、自行检查，并延续到安装板布局。
+Browse the symbols	浏览符号
 Built for scripts and AI agents	为脚本和 AI 智能体而生
+Calculate	计算
+Calculate the voltage drop	计算电压降
+Can OpenECraft open EPLAN projects?	OpenECraft 能打开 EPLAN 项目吗？
+Can scripts and AI agents work with OpenECraft?	脚本和 AI 智能体能使用 OpenECraft 吗？
+Categories	类别
+Choose Insert as report page to put the diagram into the project. The pages update when the schematic changes.	选择“作为报表页插入”，将端子图放入项目。原理图更改时，这些页会随之更新。
+Choose a file first	请先选择文件
 Click to explore the panel	单击以浏览机柜
 Click to work in the editor	单击以在编辑器中工作
 Coil	线圈
 Coils and contacts form one device with live cross references and contact images, structure identifiers after IEC 81346, macros with variants.	线圈和触点构成一个设备，带实时交叉引用和触点映像，符合 IEC 81346 的结构标识符，带变量的宏。
 Command line and MCP	命令行和 MCP
 Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.	导线选型、短路和选择性、负载计算、EMC 以及符合 ISO 13849-1 的安全功能。
+Copy link	复制链接
+Copy this link:	复制此链接：
+Cost and license	费用和许可证
+Create a bill of materials	创建物料清单
+Create a terminal diagram	创建端子图
+Create a terminal diagram from a schematic with OpenECraft, the free electrical CAE: place terminals, order the strip and insert the diagram as a page.	使用免费电气 CAE OpenECraft 从原理图创建端子图：放置端子、排列端子排，并将端子图作为页插入。
+Create the bill of materials of a control cabinet with OpenECraft: assign parts to the devices and the list sums them, with terminals, cables and panel material.	使用 OpenECraft 创建控制柜的物料清单：为设备分配部件，清单会将其汇总，包括端子、电缆和机柜材料。
+Cross-section (mm²)	截面积 (mm²)
+Customers and mechanical designers often ask for drawings in their CAD format. OpenECraft writes its pages as DXF or DWG, and reads such drawings as well.	客户和机械设计人员常常要求提供其 CAD 格式的图纸。OpenECraft 可将页面写为 DXF 或 DWG，也能读取这类图纸。
+DXF and DWG export	DXF 和 DWG 导出
+DXF and DWG viewer	DXF 和 DWG 查看器
+DXF and DWG viewer and converter	DXF 和 DWG 查看器与转换器
+DXF and DWG viewer and converter online – OpenECraft	在线 DXF 和 DWG 查看器与转换器 – OpenECraft
 Data exchange	数据交换
+Data exchange in the documentation	文档中的数据交换
 Device-oriented schematics	面向设备的原理图
 Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings.	设备以实际尺寸安装在导轨和安装板上，虚拟接线带线槽填充率，钻孔数据、机柜气候、房间和建筑。
+Does OpenECraft work offline?	OpenECraft 能离线工作吗？
+Download the PDF	下载 PDF
 Download the latest release	下载最新版本
 Drag to turn, pinch with two fingers to zoom.	拖动旋转，双指捏合缩放。
 Drag to turn, scroll to zoom.	拖动旋转，滚动缩放。
+Draw the schematic and give the potentials their wire colour and cross-section in Connections › Potentials.	绘制原理图，并在“连接 › 电位”中为电位指定导线颜色和截面积。
+Drawing (DXF or DWG)	图纸 (DXF 或 DWG)
+Drawn by the SVG export of OpenECraft, as the project comes.	由 OpenECraft 的 SVG 导出绘制，与项目随附时的状态一致。
+EDZ and parts file viewer	EDZ 和部件文件查看器
+EDZ archives as manufacturers offer them for download, with the data of their parts.	制造商提供下载的 EDZ 归档，包含其部件的数据。
+EDZ viewer: open EDZ and parts files online – OpenECraft	EDZ 查看器：在线打开 EDZ 和部件文件 – OpenECraft
+EPLAN Electric P8 is the established tool of control panel engineering. OpenECraft works in the same device-oriented way, costs nothing and runs on any operating system and in the browser. It is young, and this page says where.	EPLAN Electric P8 是控制柜工程中业界公认的工具。OpenECraft 以同样面向设备的方式工作，不收取任何费用，可在任何操作系统和浏览器中运行。它还是个新项目，本页说明它在哪些方面仍有不足。
+EPLAN is a trademark of EPLAN GmbH & Co. KG. OpenECraft is not affiliated with EPLAN.	EPLAN 是 EPLAN GmbH & Co. KG 的商标。OpenECraft 与 EPLAN 没有关联。
+EPLAN parts XML, BMEcat catalogs and the CSV and JSON parts files of OpenECraft.	EPLAN 部件 XML、BMEcat 目录以及 OpenECraft 的 CSV 和 JSON 部件文件。
+Electrical CAD for schematics, cabinet layouts and building installation	用于原理图、机柜布局和建筑安装的电气 CAD
+Electrical CAD with disciplines for control cabinets, building automation and electrical installation	电气 CAD，涵盖控制柜、建筑自动化和电气安装等专业
+Electrical symbols for schematics	原理图用电气符号
+Electrical symbols for schematics – OpenECraft	原理图用电气符号 – OpenECraft
 Enclosure climate with a heat map of the mounting plate	机柜气候和安装板的热分布图
 Engineering calculations	工程计算
+Established for many years	多年来久经考验
+Every function is a command of the command line and of the MCP server, so scripts and AI agents can do what you can.	每项功能都是命令行和 MCP 服务器的命令，因此脚本和 AI 智能体能做您能做的一切。
 Every operation on a project is a command: on the command line, for AI agents through the MCP server, and for plugins. Try some on the project above.	对项目的每个操作都是一条命令：可在命令行中使用，AI 智能体可通过 MCP 服务器使用，插件也可使用。在上面的项目中试几条吧。
+Every symbol of the libraries with its drawing: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&ID and installation plans.	库中的每个符号及其图形：IEC 60617、NFPA、GB、GOST、JIS、流体动力、P&ID 和安装平面图。
 Every table is generated from the project and stays current: change the schematic above and the lists below follow. Plugins add their own.	每张表都由项目生成并保持最新：修改上面的原理图，下面的列表随之更新。插件可添加自己的报表。
+Every wire with its colour, cross-section, routed length and end treatment, in order for the workshop.	每根导线及其颜色、截面积、布线长度和线端处理，按车间作业顺序排列。
 Everything an electrical project needs	电气项目所需的一切
+Example electrical projects with schematics – OpenECraft	带原理图的电气示例项目 – OpenECraft
+Example project, level {}	示例项目，第 {} 级
+Example projects of OpenECraft, the free electrical CAE: motor starters, PLC, control cabinets and buildings, with their schematics as pictures and PDF.	免费电气 CAE OpenECraft 的示例项目：电机启动器、PLC、控制柜和建筑，附带图片和 PDF 形式的原理图。
+Example projects to open, read and change	可打开、阅读和修改的示例项目
+Examples	示例
+Export a schematic to DXF or DWG	将原理图导出为 DXF 或 DWG
+Export electrical schematics as DXF or DWG with OpenECraft, the free electrical CAE, and bring drawings of other CAD programs into a project.	使用免费电气 CAE OpenECraft 将电气原理图导出为 DXF 或 DWG，并将其他 CAD 程序的图纸导入项目。
+Export the production wire list with File › Export, or wire from a tablet with the Wiring workspace.	通过“文件 › 导出”导出生产用导线列表，或在平板电脑上使用“接线”工作区进行接线。
 Export the project you just edited	导出您刚刚编辑的项目
+Export the table as CSV or Excel, or choose Insert as report page to make it part of the documents.	将表格导出为 CSV 或 Excel，或选择“作为报表页插入”，使其成为文档的一部分。
+FAQ	常见问题
 Features	功能
 Fluid power and harnesses	流体动力和线束
 Fluid power linked to the electrical schematic	与电气原理图关联的流体动力
 For your team	面向您的团队
+Free online DXF and DWG viewer: open a drawing in your browser and save it as SVG, PDF, DXF or DWG. The file is not uploaded; nothing to install.	免费在线 DXF 和 DWG 查看器：在浏览器中打开图纸，并另存为 SVG、PDF、DXF 或 DWG。文件不会上传，无需安装。
+Free online EDZ viewer: see the parts of an EDZ, EPLAN parts XML, BMEcat or CSV file as a table in your browser and save them as CSV or JSON.	免费在线 EDZ 查看器：在浏览器中以表格形式查看 EDZ、EPLAN 部件 XML、BMEcat 或 CSV 文件中的部件，并保存为 CSV 或 JSON。
+Free online tools for electrical engineering – OpenECraft	免费在线电气工程工具 – OpenECraft
+Free open source alternative to AutoCAD Electrical – OpenECraft	AutoCAD Electrical 的免费开源替代方案 – OpenECraft
+Free open source alternative to EPLAN Electric P8 – OpenECraft	EPLAN Electric P8 的免费开源替代方案 – OpenECraft
+Free open source alternative to SEE Electrical – OpenECraft	SEE Electrical 的免费开源替代方案 – OpenECraft
+Free open source alternative to WSCAD – OpenECraft	WSCAD 的免费开源替代方案 – OpenECraft
 Free to use, free to change. Pick what fits you.	自由使用，自由修改。选择适合您的方式。
+Free tools that run in your browser	在您的浏览器中运行的免费工具
+Free tools that run in your browser with the code of OpenECraft: voltage drop calculator, DXF and DWG viewer and converter, EDZ and parts file viewer.	使用 OpenECraft 代码在浏览器中运行的免费工具：电压降计算器、DXF 和 DWG 查看器与转换器、EDZ 和部件文件查看器。
+Free voltage drop calculator: current, length, cross-section, copper or aluminium, single or three-phase. It shows the smallest cross-section within your limit.	免费电压降计算器：电流、长度、截面积、铜或铝、单相或三相。它会显示满足您限值的最小截面积。
 From source	从源代码
+From the documentation on this site and from the issue tracker of the project, where problems and wishes are reported.	可查阅本网站的文档，也可前往项目的问题跟踪系统，在那里报告问题和提出需求。
 From the first schematic page to the panel in 3D.	从第一页原理图到 3D 机柜。
+Generate a wire list	生成导线列表
+Generate a wire list for the workshop with OpenECraft: every wire with colour, cross-section, routed length and end treatment, from schematic and panel layout.	使用 OpenECraft 生成车间用导线列表：每根导线的颜色、截面积、布线长度和线端处理，均来自原理图和安装板布局。
 Get OpenECraft	获取 OpenECraft
 Get it	获取
+Give the devices of the schematic their parts and the bill of materials is there: one list of everything to order, kept current by the project.	为原理图中的设备指定部件，物料清单即告完成：一份包含所有待订购物品的清单，由项目保持最新。
 Graphical terminal diagram	图形化端子图
+Guides	指南
+How it is calculated	计算方法
+How many volts a cable loses on its way, and which cross-section keeps the limit. The calculation is the one OpenECraft uses for the final circuits of an installation.	电缆在线路上损失多少伏电压，以及哪种截面积能满足限值。这正是 OpenECraft 用于安装工程终端电路的计算方法。
+How to create a bill of materials	如何创建物料清单
+How to create a bill of materials from a schematic – OpenECraft	如何从原理图创建物料清单 – OpenECraft
+How to create a terminal diagram	如何创建端子图
+How to create a terminal diagram – OpenECraft	如何创建端子图 – OpenECraft
+How to draw electrical documents with OpenECraft	如何使用 OpenECraft 绘制电气文档
+How to export a schematic to DXF or DWG	如何将原理图导出为 DXF 或 DWG
+How to export a schematic to DXF or DWG – OpenECraft	如何将原理图导出为 DXF 或 DWG – OpenECraft
+How to generate a wire list	如何生成导线列表
+How to generate a wire list from a schematic – OpenECraft	如何从原理图生成导线列表 – OpenECraft
+How to get common documents out of a schematic	如何从原理图得到常用文档
+How-to	操作指南
+IEC 60617 for schematics, with NFPA, GB, GOST and JIS sets, ISO 1219 for fluid power, ISO 10628 for P&ID and IEC 60617-11 for installation plans. Structure identifiers follow IEC 81346.	原理图采用 IEC 60617，另有 NFPA、GB、GOST 和 JIS 符号集；流体动力采用 ISO 1219，P&ID 采用 ISO 10628，安装平面图采用 IEC 60617-11。结构标识符遵循 IEC 81346。
+Import parts into Devices › Parts management from CSV, BMEcat, EPLAN parts XML or EDZ files, or use the example catalog.	在“设备 › 部件管理”中从 CSV、BMEcat、EPLAN 部件 XML 或 EDZ 文件导入部件，或使用示例目录。
+In Master data › Forms, switch the terminal diagram to its graphical form or choose its columns.	在“主数据 › 表单”中，将端子图切换为图形形式，或选择其列。
+In OpenECraft an imported drawing becomes the graphics of a schematic page, and every page of a project is exported as DXF or DWG.	在 OpenECraft 中，导入的图纸会成为原理图页的图形，项目的每一页都可导出为 DXF 或 DWG。
+In OpenECraft the terminal diagram is a report: it is written from the terminals of the schematic and follows every change. You draw the circuit, not the list.	在 OpenECraft 中，端子图是一份报表：它根据原理图中的端子生成，并随每次更改而更新。您绘制的是电路，而不是列表。
+In a project file on your computer. Nothing is uploaded. A team can run the project server in its own network to work on shared projects.	保存在您计算机上的项目文件中。不会上传任何内容。团队可以在自己的网络中运行项目服务器，以便协作处理共享项目。
+In a project, OpenECraft measures the cable lengths along the installation zones of the rooms and checks every final circuit this way, feeder cables included.	在项目中，OpenECraft 沿房间的安装区测量电缆长度，并以此检查每个终端电路，包括供电电缆。
+In the Panel layout workspace, place the devices on rails and the wiring ducts between them. The wires are routed through the ducts.	在“安装板布局”工作区中，将设备放置在导轨上，并在它们之间放置线槽。导线会穿过线槽布线。
 In the browser	在浏览器中
 Installation guide	安装指南
 Installers for Windows, Linux packages and a macOS disk image, with automatic updates.	适用于 Windows 的安装程序、Linux 软件包和 macOS 磁盘映像，支持自动更新。
+Is OpenECraft free?	OpenECraft 是免费的吗？
+Is OpenECraft ready for real projects?	OpenECraft 可以用于实际项目吗？
+Is it free? Does it read EPLAN data? Does it work offline? The answers.	是否免费？能否读取 EPLAN 数据？能否离线工作？答案在这里。
+Is there a paid version with more functions?	有功能更多的付费版本吗？
+It is a young project: the first release was in November 2026. Plan one real project with it beside the tool you use today before you rely on it, and have a qualified person verify the results.	这是一个新项目：第一个版本发布于 2026-11。在正式采用之前，请先用它与您现在使用的工具并行完成一个实际项目，并请有资质的人员核实结果。
+It is free for everyone: no licenses to count, no accounts, and the source code is public.	对所有人免费：无需清点许可证，无需帐户，源代码公开。
+It runs on Windows, Linux and macOS and in the browser, built from the same code.	可在 Windows、Linux 和 macOS 上以及浏览器中运行，均由同一套代码构建。
 Lamp	指示灯
+Length, one way (m)	单程长度 (m)
 Licenses	许可证
+Limit	限值
+Lines	直线
+Lines, polylines, circles, arcs, ellipses, splines, texts and blocks of DXF and DWG drawings.	DXF 和 DWG 图纸中的直线、多段线、圆、圆弧、椭圆、样条曲线、文本和块。
+Link copied	链接已复制
 Live demo	在线演示
+Loading the tool. It is the code of the editor, about 10 MB, loaded once.	正在加载工具。它是编辑器的代码，约 10 MB，只需加载一次。
+Look at a DXF or DWG drawing and save it as SVG, PDF or the other of the two formats.	查看 DXF 或 DWG 图纸，并另存为 SVG、PDF 或两种格式中的另一种。
 Menu	菜单
+More examples	更多示例
+More guides	更多指南
+More symbols	更多符号
+More to explore	更多内容
+More tools	更多工具
 Multi-level terminals, plugs and PLC cards with tag tables for TIA Portal, Studio 5000, TwinCAT, CODESYS and more.	多层端子、插头和 PLC 卡，带适用于 TIA Portal、Studio 5000、TwinCAT、CODESYS 等的变量表。
+News	最新动态
 No messages. The project passes the check.	没有消息。项目通过检查。
 No screenshots: this is the page editor of OpenECraft. Select and move symbols, draw wires, place a contact and watch cross references, checks and reports follow.	这不是截图：这就是 OpenECraft 的页面编辑器。选择并移动符号、绘制导线、放置触点，观察交叉引用、检查和报表随之更新。
+No. There is one OpenECraft, and everything this site describes is in it.	没有。OpenECraft 只有一个版本，本网站描述的一切都包含在其中。
+Not imported	未导入
+Not yet. Projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported. Parts from EDZ files and EPLAN parts XML are imported with their data, symbols and 3D models, and DXF and DWG drawings as graphics.	目前还不能。EPLAN Electric P8 和 AutoCAD Electrical 的项目无法导入。EDZ 文件和 EPLAN 部件 XML 中的部件会连同其数据、符号和 3D 模型一起导入，DXF 和 DWG 图纸则作为图形导入。
+Number the connections with Connections › Wire numbering.	使用“连接 › 导线编号”为连接编号。
+On Windows, Linux and macOS as a desktop program, and in the browser as a web editor with nothing to install. All of them are built from the same code.	在 Windows、Linux 和 macOS 上作为桌面程序运行，在浏览器中作为网页版编辑器运行，无需安装。它们都由同一套代码构建。
 On a touch screen one finger works like the left mouse button; two fingers move and zoom the view.	在触摸屏上，单指的作用与鼠标左键相同；双指可移动和缩放视图。
 On the desktop	在桌面上
+One product at a time	一次一个产品
+One program and one project file for the schematic, the reports, the panel layout in 3D and the workshop.	一个程序、一个项目文件，涵盖原理图、报表、3D 安装板布局和车间。
 One project file holds the schematics, the parts, the panel and the documents. Every function is also a command, so scripts and AI agents can do what you can.	一个项目文件包含原理图、部件、机柜和文档。每项功能同时也是一条命令，因此脚本和 AI 智能体能做您能做的一切。
+Open Devices › Terminal strips to order the strip and to add spare terminals, jumpers, end brackets and multi-level blocks.	打开“设备 › 端子排”，排列端子排，并添加备用端子、跳线、终端固定件和多层端子。
+Open File › Export: it lists all exports of the project.	打开“文件 › 导出”：其中列出了项目的所有导出。
+Open Project data › Reports and pick Bill of materials.	打开“项目数据 › 报表”，然后选择“物料清单”。
+Open Project data › Reports and pick Terminal diagram.	打开“项目数据 › 报表”，然后选择“端子图”。
+Open Project data › Reports and pick Wire list (panel routing).	打开“项目数据 › 报表”，然后选择“导线列表（机柜布线）”。
+Open a DXF or DWG drawing without a CAD program and save it as SVG, PDF or the other of the two formats. The file is read in your browser and is not uploaded.	无需 CAD 程序即可打开 DXF 或 DWG 图纸，并另存为 SVG、PDF 或两种格式中的另一种。文件在您的浏览器中读取，不会上传。
 Open and extensible	开放且可扩展
+Open in the live demo	在在线演示中打开
 Open source electrical CAE	开源电气 CAE
 Open source under the MIT and Apache-2.0 licenses.	基于 MIT 和 Apache-2.0 许可证开源。
+Open the DXF and DWG viewer	打开 DXF 和 DWG 查看器
+Open the parts file viewer	打开部件文件查看器
 Open the web editor	打开网页版编辑器
+OpenECraft FAQ: free electrical CAE, platforms, EPLAN data	OpenECraft 常见问题：免费电气 CAE、平台、EPLAN 数据
+OpenECraft and QElectroTech: open source electrical CAD compared	OpenECraft 与 QElectroTech：开源电气 CAD 对比
+OpenECraft as a free, open source alternative to AutoCAD Electrical: schematics, reports and panel layout in one program, DXF and DWG in and out.	OpenECraft 是 AutoCAD Electrical 的免费开源替代方案：原理图、报表和安装板布局集于一个程序，可导入和导出 DXF 与 DWG。
+OpenECraft as a free, open source alternative to EPLAN Electric P8: what it does, which EPLAN data it reads, where it is still young and whom it fits.	OpenECraft 是 EPLAN Electric P8 的免费开源替代方案：它能做什么、能读取哪些 EPLAN 数据、哪些方面仍有不足，以及适合哪些用户。
+OpenECraft as a free, open source alternative to SEE Electrical: schematics, reports, panel layout in 3D and installation plans, on any operating system.	OpenECraft 是 SEE Electrical 的免费开源替代方案：原理图、报表、3D 安装板布局和安装平面图，可在任何操作系统上运行。
+OpenECraft as a free, open source alternative to WSCAD: schematics, control cabinets and building installation in one program, on any operating system.	OpenECraft 是 WSCAD 的免费开源替代方案：原理图、控制柜和建筑安装集于一个程序，可在任何操作系统上运行。
+OpenECraft beside QElectroTech	OpenECraft 与 QElectroTech
+OpenECraft imports the same files into its parts database, with the symbols and the 3D models of EDZ archives, and assigns the parts to the devices of the schematic.	OpenECraft 可将同样的文件连同 EDZ 归档中的符号和 3D 模型导入其部件数据库，并将部件分配给原理图中的设备。
 OpenECraft is open source under the MIT license or the Apache License 2.0, at your choice. It contains fonts and libraries of others under their own licenses.	OpenECraft 是开源软件，可任选 MIT 许可证或 Apache License 2.0。它包含他人的字体和库，这些内容适用各自的许可证。
 OpenECraft plans electrical systems: device-oriented schematics, live reports, panel layout with routed wiring and the documentation for the customer. One code base for Windows, Linux, macOS and the browser.	OpenECraft 用于规划电气系统：面向设备的原理图、实时报表、带布线的机柜布局以及交付客户的文档。一套代码适用于 Windows、Linux、macOS 和浏览器。
 OpenECraft – open source electrical CAE	OpenECraft – 开源电气 CAE
+PDF, DXF, DWG and SVG for the pages, the panel as glTF, STEP, IGES, IFC and JT, wire lists, marking data, PLC symbol tables and more. The exports of the live demo on this site run in your browser.	页面可导出为 PDF、DXF、DWG 和 SVG，机柜可导出为 glTF、STEP、IGES、IFC 和 JT，此外还有导线列表、标记数据、PLC 符号表等。本网站在线演示的导出在您的浏览器中运行。
 PDF, DXF, DWG and SVG; the panel as glTF, STEP, IGES, IFC and JT; connectors for ERP, PDM and PLM systems.	PDF、DXF、DWG 和 SVG；机柜可导出为 glTF、STEP、IGES、IFC 和 JT；提供 ERP、PDM 和 PLM 系统的连接器。
 PLC and automation	PLC 与自动化
 Panel layout in 3D	3D 机柜布局
 Parts and data portal	部件和数据门户
+Parts come in from CSV, BMEcat, EPLAN parts XML and EDZ files, with STEP models for the panel.	部件来自 CSV、BMEcat、EPLAN 部件 XML 和 EDZ 文件，并带有用于机柜的 STEP 模型。
+Parts file (EDZ, XML, CSV, JSON)	部件文件 (EDZ、XML、CSV、JSON)
+Parts in the documentation	文档中的部件
 Parts server, project server and the web editor as Docker images for your own network.	部件服务器、项目服务器和网页版编辑器以 Docker 镜像提供，可用于您自己的网络。
+Pick DXF or DWG. The drawing has the pages with their frames, symbols, wires and texts.	选择 DXF 或 DWG。图纸包含各页及其图框、符号、导线和文本。
+Place terminals from the Terminals library of the Insert center and wire them. Terminals with the same tag, for example -X1, form one strip.	从插入中心的“端子”库中放置端子并为其接线。标识符相同的端子（例如 -X1）组成一个端子排。
 Planning	规划
+Platforms and data	平台和数据
 Pneumatic and hydraulic circuits linked to the electrics, wire harnesses with KBL export and nailboards.	与电气部分关联的气动和液压回路，带 KBL 导出的线束和线束装配板。
 Potentials with colours and cross-sections, cables with cores, automatic wire, device and page numbering.	带颜色和截面积的电位，带线芯的电缆，导线、设备和页面的自动编号。
 Project check	项目检查
+Projects of other electrical CAD programs cannot be imported yet; a project is drawn anew in OpenECraft.	其他电气 CAD 程序的项目尚无法导入；项目需要在 OpenECraft 中重新绘制。
 Push button	按钮
+QElectroTech is the name of an independent open source project. OpenECraft is not affiliated with it.	QElectroTech 是一个独立开源项目的名称。OpenECraft 与其没有关联。
+Questions and answers about OpenECraft	关于 OpenECraft 的问题与解答
+Read the answers	阅读解答
+Read the documentation	阅读文档
+Read the guides	阅读指南
+Read the news	阅读最新动态
 Report a problem	报告问题
 Reports and checks	报表和检查
 Reports that write themselves	自动生成的报表
+SEE Electrical is a trademark of IGE+XAO. OpenECraft is not affiliated with IGE+XAO.	SEE Electrical 是 IGE+XAO 的商标。OpenECraft 与 IGE+XAO 没有关联。
+SEE Electrical is an established electrical CAD for schematics, cabinets and installations. OpenECraft does this work in one free program for any operating system and the browser. It is young, and this page says where.	SEE Electrical 是一款久经考验的电气 CAD，用于原理图、机柜和安装工程。OpenECraft 用一个免费程序完成这些工作，适用于任何操作系统和浏览器。它还是个新项目，本页说明它在哪些方面仍有不足。
+Save as	另存为
+Scale on the page	页面上的比例
+Schematic pages as DXF or DWG drawings for customers and other CAD programs.	将原理图页导出为 DXF 或 DWG 图纸，供客户和其他 CAD 程序使用。
 Screenshot of a graphical terminal diagram	图形化端子图的截图
 Screenshot of a pneumatic circuit linked to the schematic	与原理图关联的气动回路的截图
 Screenshot of the heat map of a mounting plate	安装板热分布图的截图
@@ -77,41 +238,128 @@ Screenshot of the wiring assistant in the 3D view	3D 视图中接线助手的截
 Screenshot of two bayed enclosures in the 3D panel layout	3D 机柜布局中两个并柜机柜的截图
 Search commands	搜索命令
 Search reports	搜索报表
+See it in the live demo	在在线演示中查看
+See the example	查看示例
+See the examples	查看全部示例
+See the parts of an EDZ, EPLAN XML, BMEcat or CSV file as a table and save them as CSV or JSON.	以表格形式查看 EDZ、EPLAN XML、BMEcat 或 CSV 文件中的部件，并保存为 CSV 或 JSON。
+See what a parts file holds without the program it was made for: part numbers, manufacturers, descriptions and sizes as a table, to save as CSV or JSON. The file is read in your browser and is not uploaded.	无需原本对应的程序即可查看部件文件的内容：部件编号、制造商、描述和尺寸以表格显示，可保存为 CSV 或 JSON。文件在您的浏览器中读取，不会上传。
+Select a device and add its parts in the Parts tab of the Properties pane. The device selection offers the parts that provide its function.	选择一个设备，在“属性”窗格的“部件”选项卡中添加其部件。设备选择会列出能提供其功能的部件。
 Shared projects with page locks and roles, released pages, approval workflow, comments and redlining.	带页面锁定和角色的共享项目、已发布页面、审批流程、批注和红线标记。
+Sheet {} of the example: {}	示例的第 {} 张图纸：{}
+Short guides for common tasks in OpenECraft: terminal diagram, wire list, bill of materials and DXF or DWG export, each with a live demo to try.	OpenECraft 常见任务的简短指南：端子图、导线列表、物料清单以及 DXF 或 DWG 导出，每个指南都附有可试用的在线演示。
+Short guides for the documents a control cabinet needs. Each opens the live demo at the step it describes, so you can try it before you install anything.	针对控制柜所需文档的简短指南。每个指南都会在其所述步骤处打开在线演示，您可以在安装任何东西之前先行试用。
+Short guides: terminal diagram, wire list, bill of materials, DXF and DWG export.	简短指南：端子图、导线列表、物料清单、DXF 和 DWG 导出。
+Single functions of OpenECraft for a value or a file of your own. They run in your browser with the code of the editor: nothing is uploaded, and nothing needs an account.	OpenECraft 的单项功能，用于处理您自己的数值或文件。它们使用编辑器的代码在您的浏览器中运行：不会上传任何内容，也无需帐户。
+Single-phase or DC	单相或直流
+Size of the drawing	图纸尺寸
+Smallest cross-section within the limit	限值内的最小截面积
 Source code	源代码
 Speaks 20 languages	支持 20 种语言
+Step by step	分步说明
 Switch the language while you work: menus, generated reports and check messages follow at once. Try it, this page and the demos switch too.	工作时切换语言：菜单、生成的报表和检查消息立即跟随。试试看，本页面和演示也会切换。
 Symbol libraries	符号库
+Symbol library	符号库
+Symbol: {}	符号：{}
 Tap to explore the panel	点按以浏览机柜
 Tap to work in the editor	点按以在编辑器中工作
 Teams and revisions	团队和修订
+Terminals with the same tag form a strip; the terminal diagram lists every terminal with both of its sides.	标识符相同的端子组成一个端子排；端子图列出每个端子及其两侧。
+Terminals, plugs and PLC in the documentation	文档中的端子、插头和 PLC
 Terminals, plugs, PLC	端子、插头、PLC
+The Connection list shows the connections of a schematic that has no panel layout yet.	“连接列表”显示尚无安装板布局的原理图中的连接。
+The Strips / plugs navigator shows each strip in rail order; a click shows a placed terminal in the schematic.	“端子排 / 插头”导航器按导轨上的顺序显示每个端子排；单击可在原理图中显示已放置的端子。
+The bill of materials sums the parts of the devices, terminals, cables, harnesses, panel layout material, ferrules and marker material.	物料清单汇总设备、端子、电缆、线束、安装板布局材料、冷压端子和标记材料的部件。
+The calculations in the documentation	文档中的计算
 The demo could not start in this browser. It needs WebGL and WebAssembly.	演示无法在此浏览器中启动。它需要 WebGL 和 WebAssembly。
+The drawing is put on a page as OpenECraft imports it into a project: a drawing larger than the sheet is scaled to fit.	图纸按 OpenECraft 将其导入项目的方式放到页面上：大于页面的图纸会缩放以适应页面。
+The example projects with their sheets as pictures, their PDF and a link that opens them in the live demo.	示例项目及其图纸图片、PDF 和在在线演示中打开它们的链接。
 The exports run in your browser as well. Nothing is uploaded.	导出同样在您的浏览器中运行。不会上传任何内容。
+The first {} of {} parts	前 {} 个部件（共 {} 个）
 The first {} of {} rows	前 {} 行，共 {} 行
 The full editor as a web application. Nothing to install, your projects stay on your computer.	完整的编辑器作为网页应用。无需安装，您的项目保留在您的电脑上。
+The limit is yours to set: 3 % is common for lighting and 5 % for other loads, and the regulations of your country decide.	限值由您设定：照明通常为 3 %，其他负载通常为 5 %，具体以您所在国的法规为准。
 The links to the source code, the downloads and the documentation lead to other sites, which have privacy notices of their own.	指向源代码、下载和文档的链接会转到其他网站，这些网站有各自的隐私声明。
 The live demos, the console and the exports run in your browser. The project you edit here is not sent anywhere.	在线演示、控制台和导出都在您的浏览器中运行。您在此编辑的项目不会发送到任何地方。
+The name is used only to compare, and what this page says about the other product is general public information as of November 2026.	该名称仅用于比较，本页关于另一产品的内容是截至 2026-11 的公开的通用信息。
 The panel in 3D	3D 机柜
+The parts of all devices, terminals, cables and the panel, summed into one list.	所有设备、端子、电缆和机柜的部件，汇总为一份清单。
+The reactance of the cable is taken as 0.08 mΩ per metre. It matters for large cross-sections and a low power factor.	电缆的电抗按每米 0.08 mΩ 计。它在大截面积和低功率因数时影响较大。
+The resistivity is the one of the conductor in operation, 1.25 times its value at 20 °C (IEC 60364-5-52): 0.0225 Ω·mm²/m for copper and 0.036 Ω·mm²/m for aluminium.	电阻率取导体运行时的值，为其 20 °C 时数值的 1.25 倍 (IEC 60364-5-52)：铜为 0.0225 Ω·mm²/m，铝为 0.036 Ω·mm²/m。
+The result supports the planning. A qualified person has to verify it against the standards and regulations that apply.	结果仅为规划提供支持。必须由有资质的人员对照适用的标准和法规进行核实。
+The same export is a command of the command line and the MCP server, so a script can write the drawings of every project.	同一导出也是命令行和 MCP 服务器的命令，因此脚本可以生成每个项目的图纸。
 The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Switch between the enclosures, the rooms and the site of an example.	同一个项目，在车间里的样子：机柜、导轨、线槽和实际尺寸的设备，导线沿线槽布线。可在示例的机柜、房间和场地之间切换。
 The schematic editor with ribbon and page navigator	带功能区和页面导航器的原理图编辑器
+The symbol library of OpenECraft, the free open source electrical CAE: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&ID and installation plan symbols.	免费开源电气 CAE OpenECraft 的符号库：IEC 60617、NFPA、GB、GOST、JIS、流体动力、P&ID 和安装平面图符号。
+The symbol library, the example projects, tools for your own files, guides, the documentation and the news.	符号库、示例项目、处理您自己文件的工具、指南、文档和最新动态。
+The table shows the main data of at most 500 parts; the CSV and JSON files have all parts with all their data.	表格最多显示 500 个部件的主要数据；CSV 和 JSON 文件包含所有部件及其全部数据。
+The tool could not start in this browser. It needs WebAssembly.	该工具无法在此浏览器中启动。它需要 WebAssembly。
+The tutorial walks through a whole project, from the first page to the panel layout.	教程带您完成整个项目，从第一页到安装板布局。
+The tutorial, the installation guide and every feature in detail.	教程、安装指南以及每项功能的详细说明。
+The voltage drop of a cable from current, length and cross-section, with the smallest cross-section that keeps your limit.	根据电流、长度和截面积计算电缆的电压降，并给出满足您限值的最小截面积。
+The whole editor does much more with the same code: try it in the live demo or open the web editor.	完整的编辑器使用同一套代码还能做更多：请在在线演示中试用，或打开网页版编辑器。
+The wire list comes from two things you have already drawn: the connections of the schematic and the places of the devices in the panel. OpenECraft routes the wires through the ducts and measures them.	导线列表来自您已经绘制的两样东西：原理图中的连接和设备在机柜中的位置。OpenECraft 将导线穿过线槽布线并测量其长度。
 The wiring assistant shows the next wire in 3D	接线助手以 3D 显示下一根导线
+The workshop in the documentation	文档中的车间
+The {} symbols that come with OpenECraft: IEC 60617 for schematics, NFPA, GB, GOST and JIS sets, fluid power after ISO 1219, P&ID and installation plans. Pick a category to see every symbol.	OpenECraft 自带的 {} 个符号：原理图用 IEC 60617，NFPA、GB、GOST 和 JIS 符号集，符合 ISO 1219 的流体动力，P&ID 和安装平面图。选择一个类别即可查看其中的每个符号。
 These are the commands of the command line and the MCP server, run on the project of the demo above.	这些是命令行和 MCP 服务器的命令，在上面演示的项目上运行。
 Third-party licenses	第三方许可证
 This page is drawn right now by the editor's own code, running in your browser.	此页面正由编辑器自身的代码在您的浏览器中实时绘制。
+Three-phase	三相
 Tip: delete a wire and see the check react. Undo brings it back.	提示：删除一根导线，看看检查如何反应。撤销可将其恢复。
+To bring a drawing in, import a DXF or DWG file: it becomes the graphics of a new schematic page.	要引入图纸，请导入 DXF 或 DWG 文件：它会成为新原理图页的图形。
 To show an example faster the next time, your browser keeps the wiring it calculated for it in its cache. Nothing else is stored; clearing the site data of the browser removes it.	为了下次更快地显示示例，浏览器会把为它计算出的接线保存在缓存中。不会存储其他任何内容；清除浏览器中的网站数据即可将其删除。
 Try it: the schematic editor, live	试一试：实时原理图编辑器
+Try the exports in the live demo	在在线演示中试用导出
 Try the live demo	试用在线演示
 Try these	试试这些
 Two bayed enclosures with rails, ducts and busbars	两个并柜机柜，带导轨、线槽和母线
+Two free, open source programs for electrical schematics: what QElectroTech is known for and what OpenECraft adds with reports, panel layout in 3D and checks.	两款免费开源的电气原理图程序：QElectroTech 以什么见长，OpenECraft 通过报表、3D 安装板布局和检查增加了什么。
 Type a command, or help	输入命令，或输入 help
 Type help for the commands, or pick one on the right.	输入 help 查看命令，或在右侧选择一条。
 Unknown command: {}	未知命令：{}
+Use the tools	使用工具
+Voltage drop calculator	电压降计算器
+Voltage drop calculator for cables – OpenECraft	电缆电压降计算器 – OpenECraft
+Voltage drop calculator, DXF and DWG viewer, EDZ and parts file viewer: in your browser, nothing is uploaded.	电压降计算器、DXF 和 DWG 查看器、EDZ 和部件文件查看器：在您的浏览器中运行，不会上传任何内容。
+Voltage drop in percent	电压降百分比
+WSCAD is a trademark of WSCAD GmbH. OpenECraft is not affiliated with WSCAD.	WSCAD 是 WSCAD GmbH 的商标。OpenECraft 与 WSCAD 没有关联。
+WSCAD is an established electrical CAD for control cabinets, building automation and installation. OpenECraft covers schematics, the panel in 3D and installation plans in one free program for any operating system. It is young, and this page says where.	WSCAD 是一款久经考验的电气 CAD，用于控制柜、建筑自动化和安装工程。OpenECraft 用一个适用于任何操作系统的免费程序涵盖原理图、3D 机柜和安装平面图。它还是个新项目，本页说明它在哪些方面仍有不足。
+What comes across	可以带过来的内容
+What is new in every release, with a feed for your feed reader.	每个版本的新内容，并提供订阅源，可用于您的阅读器。
+What it does not read, such as hatches and pictures, is listed below the drawing.	它无法读取的内容（例如填充图案和图片）列在图纸下方。
+What it reads	可读取的内容
+What people ask before they try it: the cost, the platforms, the data of other tools and how far the project is.	人们在试用之前会问的问题：费用、平台、其他工具的数据以及项目的进展程度。
+When your customers ask for its project files, your company has standardised on it, or you need the support and the part data of its vendor.	当您的客户要求提供其项目文件、您的公司已将其定为标准，或者您需要其供应商的支持和部件数据时。
+Where are my projects stored?	我的项目保存在哪里？
+Where do I get help?	在哪里可以获得帮助？
+Which formats can it export?	它能导出哪些格式？
+Which operating systems does OpenECraft run on?	OpenECraft 可在哪些操作系统上运行？
+Which standards do the symbols follow?	符号遵循哪些标准？
+Why people look at OpenECraft	人们为何关注 OpenECraft
+Width × height × depth (mm)	宽 × 高 × 深 (mm)
+Wire list	导线列表
 Wires, cables, potentials	导线、电缆、电位
 Wiring and harnesses	接线与线束
 Written in Rust. Clone the repository and run it.	使用 Rust 编写。克隆仓库并运行即可。
+Yes. Every operation on a project is a command of the command line and of the MCP server for AI agents, and plugins in any language add checks, reports, exports and commands.	可以。对项目的每项操作都是命令行和面向 AI 智能体的 MCP 服务器的命令，任意语言编写的插件可添加检查、报表、导出和命令。
+Yes. OpenECraft is open source under the MIT and Apache-2.0 licenses: no price, no licenses to count, no account and no expiry, also for commercial work.	是的。OpenECraft 基于 MIT 和 Apache-2.0 许可证开源：不收费，无需清点许可证，无需帐户，没有期限，也可用于商业工作。
+Yes. The desktop program needs no internet connection. The web editor runs in your browser once it is loaded, and your projects stay on your computer.	可以。桌面程序不需要互联网连接。网页版编辑器加载后即在您的浏览器中运行，您的项目保留在您的计算机上。
 commands for scripts and AI agents	条面向脚本和 AI 智能体的命令
+contributors	参与者
 example projects	个示例项目
+k is 2 for a single-phase or DC circuit, where the current flows there and back, and 1.732, the square root of 3, for a three-phase circuit with the voltage between the lines.	对于电流往返流动的单相或直流电路，k 为 2；对于采用线电压的三相电路，k 为 1.732，即 3 的平方根。
 languages	种语言
+none up to 240 mm²	240 mm² 以内没有
+over the limit	超出限值
+stars on GitHub	GitHub 星标
+within the limit	在限值内
+{} % is over the limit of {} %.	{} % 超出了 {} % 的限值。
+{} % is within the limit of {} %.	{} % 在 {} % 的限值内。
 {} commands. Type help and a name for its parameters, for example: help rename_device	共 {} 条命令。输入 help 和名称查看其参数，例如：help rename_device
+{} electrical symbols of the category {}, drawn by OpenECraft, the free open source electrical CAE: {}	{} 个电气符号，属于类别“{}”，由免费开源电气 CAE OpenECraft 绘制：{}
+{} pages	{} 页
+{} projects that come with OpenECraft, from a lamp circuit to a whole building. Each has its sheets, its PDF and a link that opens it in the live demo.	OpenECraft 自带的 {} 个项目，从照明电路到整座建筑。每个项目都有图纸、PDF 以及在在线演示中打开它的链接。
+{} symbols of the category {} with their drawings, identifying letters and connection points. They come with OpenECraft, free to use in your schematics.	{} 个符号，属于类别“{}”，附带图形、标识字母和连接点。它们随 OpenECraft 提供，可在您的原理图中免费使用。
+{} – example project | OpenECraft	{} – 示例项目 | OpenECraft
+{} – schematic symbols | OpenECraft	{} – 原理图符号 | OpenECraft
+{}: a number above 0 is needed	{}：需要大于 0 的数字

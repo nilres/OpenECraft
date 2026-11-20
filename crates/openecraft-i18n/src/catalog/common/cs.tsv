@@ -19,9 +19,11 @@ Accessory	Příslušenství
 Add	Přidat
 Add a PDF of all pages	Přidat PDF všech stránek
 Add an item	Přidat bod
+Add cable glands for new cables	Přidávat kabelové vývodky pro nové kabely
 Add to favorites	Přidat k oblíbeným
 Address	Adresa
 Administrator	Správce
+Aluminium	Hliník
 Angle	Úhel
 Apply	Použít
 Approve	Schválit
@@ -31,6 +33,7 @@ Automatic	Automaticky
 Automation	Automatizace
 Aux	Pomocné
 Below	Pod
+Bill of materials	Kusovník
 Bold	Tučné
 Bottom	Dno
 Bottom with removable gland plate	Dno s odnímatelnou přírubovou deskou
@@ -64,6 +67,7 @@ Channel	Kanál
 Characteristic	Charakteristika
 Check settings	Nastavení kontroly
 Checks	Kontroly
+Circuit	Obvod
 Circuits	Obvody
 Class	Třída
 Classes	Třídy
@@ -82,6 +86,7 @@ Commercial data	Obchodní údaje
 Company	Firma
 Component	Jednotlivý díl
 Components (assembly)	Komponenty (sestava)
+Conductor	Vodič
 Conductor material	Materiál vodiče
 Configurator	Konfigurátor
 Connect	Připojit
@@ -94,6 +99,7 @@ Connector	Konektor
 Contact voltage UB (V)	Dotykové napětí UB (V)
 Controller	Řídicí systém
 Cooling	Chlazení
+Copper	Měď
 Core	Žíla
 Cores	Žíly
 Corner	Roh
@@ -105,6 +111,7 @@ Cross-section	Průřez
 Crossing	Křížení
 Currency	Měna
 Current	Proud
+Current (A)	Proud (A)
 Cutout	Výřez
 Cutouts	Výřezy
 DCavg (%)	DCavg (%)
@@ -122,6 +129,7 @@ Description	Popis
 Designation	Označení
 Device	Přístroj
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Zařízení (FV generátor), ke kterému moduly patří; jeho díly je pak počítají v kusovníku
+Device connection box three-phase	Přípojná krabice spotřebiče třífázová
 Device connection point	Připojovací bod zařízení
 Device description	Popis zařízení
 Device tag	Označení přístroje
@@ -133,6 +141,7 @@ Direction	Směr
 Discard	Zahodit
 Discard changes	Zahodit změny
 Display	Zobrazení
+Documentation	Dokumentace
 Documents	Dokumenty
 Done	Hotovo
 Door	Dveře
@@ -153,6 +162,7 @@ Email	E-mail
 Empty: the default. Set other values where the edition of the standard the installation is verified against differs.	Prázdné: výchozí hodnota. Nastavte jiné hodnoty tam, kde se vydání normy, podle které se instalace ověřuje, liší.
 Enclosure	Skříň
 Enclosures	Skříně
+Engineering	Inženýring
 Enterprise integration	Podniková integrace
 Equipotential bonding	Ochranné pospojování
 Error	Chyba
@@ -182,6 +192,7 @@ Floor plan	Půdorys
 Fluid device	Tekutinový přístroj
 Fluid device groups	Skupiny tekutinových přístrojů
 Fluid netlist	Seznam sítí tekutin
+Format	Formát
 From	Od
 Function	Funkce
 Function (=)	Funkce (=)
@@ -232,10 +243,11 @@ Internal (bottom)	Interní (dole)
 Interruption point	Bod přerušení
 It is not affiliated with, endorsed by or sponsored by the owners of these names.	Není spojen s vlastníky těchto názvů ani jimi není schválen nebo sponzorován.
 Italic	Kurzíva
-Items	Prvky
 Its MPP tracker (input), from 1	Jeho MPP tracker (vstup), od 1
 Job	Zakázka
 Jumper	Propojka
+Junction box with terminals	Odbočná krabice se svorkami
+Junction box with terminals three-phase	Odbočná krabice se svorkami třífázová
 Key	Klíč
 Kind	Druh
 Language	Jazyk
@@ -254,6 +266,7 @@ Length	Délka
 Level	Hladina
 Lifecycle	Životní cyklus
 Light	Světlý
+Limit (%)	Mezní hodnota (%)
 Limits	Mezní hodnoty
 Line	Čára
 Link	Odkaz
@@ -496,6 +509,7 @@ Required	Požadováno
 Reserve	Rezerva
 Resolution	Rozlišení
 Responsible for the content	Odpovědný za obsah
+Result	Výsledek
 Reviewer	Kontrolor
 Revision	Revize
 Revision {}	Revize {}
@@ -535,6 +549,7 @@ Server	Server
 Service space	Servisní prostor
 Settings	Nastavení
 Shape	Tvar
+Sheets	Listy
 Short-circuit voltage	Napětí nakrátko
 Show history	Zobrazit historii
 Show the logos of the catalogs	Zobrazit loga katalogů
@@ -579,6 +594,7 @@ T-junction	T-kus
 Tables	Tabulky
 Technical data	Technické údaje
 Terminal	Svorka
+Terminal diagram	Schéma svorkovnice
 Terminal number	Číslo svorky
 Terminal strip	Svorkovnice
 Terminal strips	Svorkovnice
@@ -589,6 +605,7 @@ Test instruments (IEC 61557)	Měřicí přístroje (IEC 61557)
 Tested by	Zkoušel
 Text	Text
 Text to find	Hledaný text
+Texts	Texty
 The freestanding PV array {} stands outside the plot boundary	Pozemní FV pole {} stojí mimo hranice pozemku
 The identifier must not be empty	Identifikátor nesmí být prázdný
 The long side of the modules along the rows	Delší strana modulů podél řad
@@ -640,6 +657,8 @@ Version	Verze
 Viewer	Prohlížející
 Visual inspection	Prohlídka
 Voltage	Napětí
+Voltage (V)	Napětí (V)
+Voltage drop	Úbytek napětí
 Voltage drop (%)	Úbytek napětí (%)
 Warning	Upozornění
 Warnings	Upozornění
@@ -685,6 +704,7 @@ yes	ano
 {} exists already	{} již existuje
 {} is not a PNG or JPEG image	{} není obrázek PNG ani JPEG
 {} parts	Artikly: {}
+{} symbols	Symboly: {}
 {} users	Uživatelé: {}
 {} wires	Vodiče: {}
 {}, together with the wire to {}	{}, společně s vodičem do {}

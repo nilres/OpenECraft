@@ -359,6 +359,14 @@ fn floor_plans_under_levels() {
     assert_eq!(kinds.len(), 2);
     assert!(kinds.contains(&"door") && kinds.contains(&"window"));
     assert!(s.project().unwrap().layout.enclosures.is_empty());
+    // Rooms smaller than the smallest room given are left out; it stays with the plan.
+    let big = run(&mut s, "detect_floor_plan", json!({ "building": "+B1", "level": "L0", "min_room": 500 })).unwrap();
+    assert!(big["rooms"].as_array().unwrap().is_empty(), "{big}");
+    let prj = s.project().unwrap();
+    assert_eq!(floorplan::plan_of(&prj.layout, prj.layout.buildings[0].levels[0].id).unwrap().min_room, Some(500.0));
+    assert!(run(&mut s, "detect_floor_plan", json!({ "building": "+B1", "level": "L0", "min_room": 0 })).is_err());
+    let again = run(&mut s, "detect_floor_plan", json!({ "building": "+B1", "level": "L0", "min_room": 0.5 })).unwrap();
+    assert_eq!(again["rooms"].as_array().unwrap().len(), 2);
     let t = run(&mut s, "trace_floor_plan", lvl.clone()).unwrap();
     assert_eq!(t["rooms"], json!(["+ROOM1", "+ROOM2"]));
     assert_eq!((t["doors"].as_u64(), t["windows"].as_u64()), (Some(1), Some(1)));

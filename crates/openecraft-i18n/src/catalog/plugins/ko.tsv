@@ -15,6 +15,7 @@ Additional power loss in W	추가 전력 손실(W)
 Address scheme: siemens, iec or rockwell	주소 체계: siemens, iec 또는 rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	지붕에 태양광 어레이를 추가합니다: 경사 지붕면과 평행하게 레일과 지붕 후크 위에 모듈 열을 놓거나, 평지붕에는 기울여 또는 동서 방향으로 밸러스트 가대 위에 놓습니다. x와 z가 없으면 앞쪽 또는 오른쪽 지붕면의 가운데에 놓습니다. 건물과 지붕이 없으면 부지에 지상형 어레이를 만듭니다: 항타 말뚝 위에 기울어진 가대를 열로 놓으며, x와 z가 없으면 설비에 있는 것의 앞에 놓습니다. 모듈과 설치 자재는 자재 명세서에 들어갑니다
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	굽힘 및 드릴 가공된 동바를 추가합니다(또는 외함에서 같은 이름의 동바를 대체합니다)
+Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	외함을 나가면서 빈 글랜드를 찾지 못한 각 케이블에 크기에 맞는 케이블 글랜드를 추가합니다: 실내 기기는 천장면, 필드 또는 벽걸이 외함은 바닥면
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	오른쪽 인접 외함으로의 케이블 통로를 추가합니다: 양쪽 측벽에 서로 마주 보는 원형 컷아웃. 외함 사이의 전선이 이를 통과합니다
 Adds a configurator rule: insert a page macro when the condition holds	컨피규레이터 규칙을 추가합니다: 조건이 충족되면 페이지 매크로 삽입
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	필드 경로 네트워크의 노드(분기점, 관통부, 외함 또는 장치 도달 지점)를 추가합니다
@@ -81,7 +82,9 @@ Bus system name, e.g. PN/IE_1	버스 시스템 이름(예: PN/IE_1)
 Busbar machine program (CSV)	부스바 가공기 프로그램(CSV)
 CNC operations	CNC 작업
 CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	드릴링, 밀링 및 펀칭기용 CNC 프로그램, 동바 굽힘, 외함 컨피규레이터, 생산 인계 및 생산 피드백
+Cable tag (default: the next free -W)	케이블 기호(기본값: 다음 빈 -W)
 Cable tag, e.g. -W1	케이블 태그(예: -W1)
+Cable type (default: NYM-J for its cores and cross-section)	케이블 유형(기본값: 심선 수와 단면적에 맞는 NYM-J)
 Calibrates the time estimate of the machines from the actual times of the production feedback	생산 피드백의 실제 시간으로 기계의 시간 추정을 보정합니다
 Cannot read the plugin folder {}	플러그인 폴더 {}을(를) 읽을 수 없습니다
 Cannot start {}: {}	{}을(를) 시작할 수 없습니다: {}
@@ -156,6 +159,7 @@ Cross section, e.g. 0.75 mm²	단면적(예: 0.75 mm²)
 Cross section, e.g. 1.5 mm²	단면적(예: 1.5 mm²)
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	단면적(예: 1.5 mm², 비우면 전위 정의에서 가져옴)
 Cross-section in mm²	단면적(mm²)
+Cross-section of the cable in mm² (default: for the protective device)	케이블 단면적 mm²(기본값: 보호 장치에 맞춤)
 Cross-section, e.g. 1.5 mm²	단면적(예: 1.5 mm²)
 Current device tag	현재 장치 태그
 Customer rule set to add or replace (by name), as exported	추가하거나 교체할 고객 규칙 세트(이름 기준, 내보낸 형식)
@@ -193,6 +197,8 @@ Device description id of the head (list_device_descriptions)	헤드의 장치 �
 Device group {} already exists	장치 그룹 {}이(가) 이미 있습니다
 Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	장치 목록, 부품 목록, 단자, 플러그, 케이블 및 연결 다이어그램, PLC, 전위, 패널, 유체, 전기 및 필드 보고서
 Device number on the bus	버스상의 장치 번호
+Device or junction box of the circuit the cable comes from (default: the device before it)	케이블이 시작되는 회로의 장치 또는 정션 박스(기본값: 앞의 장치)
+Device tag (default: the room, the letter code of the kind and the next number)	장치 기호(기본값: 방, 종류의 문자 코드와 다음 번호)
 Device tag of the CPU / bus coupler, e.g. -A0	CPU / 버스 커플러의 장치 태그(예: -A0)
 Device tag of the end (both ends if missing)	끝의 장치 태그(없으면 양쪽 끝)
 Device tag of the fluid device, e.g. -QM1	유체 장치의 장치 태그(예: -QM1)
@@ -227,7 +233,6 @@ Draw the junction as a connection dot; its routing stays	분기점을 연결점�
 Draw wires in their colour	전선을 해당 색상으로 그리기
 Draw wires to the connection points facing its free arms	비어 있는 가지를 마주하는 접속점까지 연결선을 그립니다
 Drawing	도면
-Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	케이블 정의선을 그립니다. 교차하는 전선이 케이블의 심선이 됩니다(지정하지 않으면 새 케이블)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	두 연결 지점 사이에 전선을 그립니다(예: -K1:A1에서 -S1:14로). 모호한 경우 #id:pin, 전위는 이름, 명칭 없는 지점은 1, 2…
 Draws a wire through two or more points	두 개 이상의 점을 지나는 전선을 그립니다
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	회로도 페이지와 PDF / SVG 내보내기에서 전선을 해당 색상 또는 검정으로 그립니다
@@ -255,7 +260,6 @@ Enclosures, panel items, accessories and panel macros	외함, 패널 항목, 부
 End brackets and end plates from the tech data of the terminal parts	단자 부품의 기술 데이터에 따른 엔드 브래킷 및 엔드 플레이트
 End holes from the bar end as a multiple of the width	바 끝에서 끝 구멍까지의 거리(폭의 배수)
 End: device tag and connection point, e.g. -S1:14	끝: 장치 태그 및 연결 지점(예: -S1:14)
-Engineering	엔지니어링
 Face: plate, door, left, right, rear, roof or bottom	면: plate, door, left, right, rear, roof 또는 bottom
 Field plan: nodes, segments, outlines, routes, bonds and accessories	필드 계획: 노드, 구간, 외곽선, 경로, 본딩 및 부속품
 Figure	지표
@@ -358,6 +362,7 @@ Key, e.g. user.coupling_relay	키(예: user.coupling_relay)
 Key, e.g. user.customer_code	키(예: user.customer_code)
 Keys of the routes, comma separated (all if missing)	쉼표로 구분된 경로 키(없으면 모두)
 Kind: machining, punching or busbar	종류: machining, punching 또는 busbar
+Known length of the cable in m (taken instead of the 3D route)	케이블의 알려진 길이 m(3D 경로 대신 사용)
 Label: terminal number, PLC address or potential name	레이블: 단자 번호, PLC 주소 또는 전위 이름
 Landscape (true) or portrait (false)	가로(true) 또는 세로(false)
 Language the project texts are written in, e.g. en	프로젝트 텍스트가 작성된 언어(예: en)
@@ -463,6 +468,7 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	건물 평면도에서 태양광 어레이의 중심 (지상형: 설비 안), z (mm)
 Milling feed, mm/min	밀링 이송(mm/min)
 Mirror the symbol	심볼 대칭
+Mounting height above the floor in mm (default: that of the part)	바닥에서의 설치 높이 mm(기본값: 부품의 높이)
 Mounting plate size as width and height; empty object restores the centred plate	장착 플레이트 크기(너비와 높이). 빈 객체는 가운데 장착 플레이트로 되돌립니다
 Mounting size must contain a positive width and height	장착 크기에는 양수인 너비와 높이가 있어야 합니다
 Moves an air-termination rod, changes its height, renames or removes it	피뢰침을 이동하고 높이를 변경하며 이름을 바꾸거나 삭제합니다
@@ -550,6 +556,7 @@ Nothing to copy: devices are placed once	복사할 항목이 없습니다: 장�
 Nothing to remove: {} {}	제거할 항목이 없습니다: {} {}
 Number of columns	열 수
 Number of copies (default 1)	복사본 수(기본값 1)
+Number of cores of the cable (default: 3, three-phase 5)	케이블의 심선 수(기본값: 3, 3상 5)
 Number of equal bars	동일한 바의 수
 Number of indexed values (0 = a single value)	인덱스 값의 수(0 = 단일 값)
 Number of rows	행 수
@@ -605,12 +612,14 @@ Paper width in mm (custom paper)	용지 너비(mm, 사용자 지정 용지)
 Part lifecycle	부품 수명 주기
 Part number of the accessory	액세서리의 부품 번호
 Part number of the base	베이스의 부품 번호
+Part number of the cable	케이블의 부품 번호
 Part number of the carrier (per metre)	케이블 지지대의 부품 번호(미터당)
 Part number of the conductor (per metre)	도체의 부품 번호(미터당)
 Part number of the downstream device	하위 장치의 부품 번호
 Part number of the hose / tube / pipe	호스 / 튜브 / 배관의 부품 번호
 Part number of the upstream device	상위 장치의 부품 번호
 Part number, e.g. GEN.LMP-GN-24	부품 번호, 예: GEN.LMP-GN-24
+Part number, e.g. GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P	부품 번호, 예: GEN.SOCKET-F-UP, GEN.SW-ONOFF-UP, GEN.LAMP-CEILING-LED, GEN.JBOX-UP, GEN.SOCKET-CEE-16-5P
 Part of its strip, wire or rod (empty: generic)	띠, 선 또는 봉의 부품 (비어 있음: 일반)
 Part of the conductor holders on the roof (empty: generic)	지붕 위 도체 지지대의 부품 (비어 있음: 일반)
 Part of the conductor holders on the walls (empty: generic)	벽의 도체 지지대의 부품 (비어 있음: 일반)
@@ -684,6 +693,8 @@ Property and function definitions, property values and placement schemes	속성 
 Property key	속성 키
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	속성 키와 값(예: {\"device.rated_power\": \"5.5\"})
 Put in front of the numbers, e.g. W	번호 앞에 붙는 문자(예: W)
+Puts a device of the schematic into an enclosure (on the mounting plate, on a rail there, or on the door): its size from its part, snapped onto a rail it fits; placed elsewhere before, it moves	회로도의 장치를 외함에 넣습니다(취부판, 그 위의 레일 또는 문): 크기는 부품에서 가져오고 맞는 레일에 장착합니다. 이전에 다른 곳에 배치된 경우 이동합니다
+Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)	보호 장치용 콘센트, 스위치, 조명, 발열체, 정션 박스 또는 기기 연결 박스를 설비의 한 지점에서 방에 배치하고(천장 조명은 그곳 천장에, 나머지는 설치 높이에서 가장 가까운 벽에, 방 밖에서는 가장 가까운 벽의 바깥쪽에) 회로도에도 추가합니다: 회로의 설비 페이지에 앞의 장치 또는 지정한 장치에서 오는 케이블과 함께 새 장치를 만듭니다. 보호 장치 없이는 방에만 배치합니다(데이터 및 안테나 콘센트, 연기 감지기)
 Quantity per end (default 1)	끝당 수량(기본값 1)
 R/X ratio of the supply impedance	전원 임피던스의 R/X 비
 Rack number	랙 번호
@@ -779,8 +790,8 @@ Sets the stamp drawn across all pages by the state of the revision workflow (e.g
 Sets the title block of all pages that do not choose one, or of the pages of one type	표제란을 선택하지 않은 모든 페이지 또는 한 유형의 페이지 표제란을 설정합니다
 Sets the translation of a line of the project texts (empty removes it)	프로젝트 텍스트 줄의 번역을 설정합니다(비우면 제거)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	정의된 전위가 없는 네트의 전선 색상과 단면적을 설정합니다(비우면 없음)
+Sets whether a cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall (on by default)	외함을 나가면서 빈 글랜드를 찾지 못한 케이블이 크기에 맞는 글랜드를 받을지 설정합니다: 실내 기기는 천장면, 필드 또는 벽걸이 외함은 바닥면(기본값: 켜짐)
 Share of the capacity kept free in percent	비워 두는 용량 비율(%)
-Sheets	시트
 Shield connected at: both, first, second or none	차폐 연결 위치: both, first, second 또는 none
 Shift downwards in mm	아래쪽 이동 (mm)
 Shift to the right in mm	오른쪽 이동 (mm)
@@ -818,6 +829,7 @@ Smallest bend radius in mm	최소 굽힘 반경(mm)
 Smallest distance in mm	최소 거리(mm)
 Smallest distance of holes from the sheet edge	구멍과 판금 가장자리 간 최소 거리
 Smallest inner radius as a multiple of the thickness	두께의 배수로 나타낸 최소 내측 반경
+Smallest room kept, m² (default 1; kept with the floor plan)	유지할 가장 작은 방, m²(기본값 1, 평면도와 함께 저장)
 Smallest web at cutouts	컷아웃의 최소 웹
 Smallest web between holes	구멍 사이 최소 웹
 Spare terminals at the end of the strip	단자대 끝의 예비 단자
@@ -889,6 +901,7 @@ The line of a crossing is vertical or horizontal, not {}	교차의 선은 vertic
 The message text, kept for the list of accepted messages	승인된 메시지 목록에 보관되는 메시지 텍스트
 The name must not be empty	이름은 비워 둘 수 없습니다
 The number of copies must be between 1 and 100	복사본 수는 1에서 100 사이여야 합니다
+The number of cores must be from 1 to 60	심선 수는 1에서 60 사이여야 합니다
 The plinth height must not be negative	받침대 높이는 음수일 수 없습니다
 The plot frame {} is in use	플롯 프레임 {}이(가) 사용 중입니다
 The plugin program did not answer within {} s and was stopped	플러그인 프로그램이 {}초 안에 응답하지 않아 중지되었습니다
@@ -897,6 +910,7 @@ The rotation must be 0, 90, 180 or 270	회전은 0, 90, 180 또는 270이어야 
 The straight line of a crossing: vertical or horizontal (default vertical)	교차의 직선: vertical 또는 horizontal (기본 vertical)
 The text height must be at least 0.5 mm	텍스트 높이는 0.5 mm 이상이어야 합니다
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	모서리의 두 가지, 세로와 가로, 예: down left (기본: 해당 지점의 연결선에 따라, 없으면 down right)
+The width factor must be from 0.1 to 10	폭 계수는 0.1에서 10 사이여야 합니다
 The wire has no length	연결의 길이가 없습니다
 The wire that jumps: vertical or horizontal	점프하는 전선: vertical 또는 horizontal
 The wrap width must not be negative	줄 바꿈 너비는 음수일 수 없습니다
@@ -995,6 +1009,7 @@ Which line the position is on: top (first), middle or bottom (last)	위치가 �
 Who accepted it	승인한 사람
 Whole words only	단어 단위로만
 Why the message is accepted	메시지를 승인한 이유
+Width of the letters to their usual width, 0.1 … 10 (0.8: narrow lettering; default 1)	평소 폭에 대한 글자의 폭, 0.1 … 10(0.8: 좁은 글자, 기본값 1)
 Width of the path in mm (default 50)	경로 너비(mm, 기본값 50)
 Width, depth and height of a room are at least {} mm	방의 너비, 깊이, 높이는 최소 {} mm입니다
 Width, height and depth of an enclosure are at least {} mm	외함의 너비, 높이, 깊이는 최소 {} mm입니다
@@ -1067,6 +1082,7 @@ z of the foot of the rod in the floor plan of the building, mm	건물 평면도�
 {} is a built-in frame; give the frame a new name	{}은(는) 기본 제공 프레임입니다. 프레임에 새 이름을 지정하세요
 {} is a built-in title block; give the title block a new name	{}은(는) 기본 제공 표제란입니다. 표제란에 새 이름을 지정하십시오
 {} is a room already	{}은(는) 이미 방입니다
+{} is a room: use mount_on_wall	{}은(는) 방입니다: mount_on_wall을 사용하십시오
 {} is ambiguous: use #id:pin	{}이(가) 모호합니다. #id:pin을 사용하세요
 {} is an enclosure already	{}은(는) 이미 외함입니다
 {} is not a connection point (TAG:PIN)	{}은(는) 연결 지점(TAG:PIN)이 아닙니다

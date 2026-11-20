@@ -92,3 +92,38 @@ fn residual_current_devices_protect_the_circuits_behind_them() {
     assert_eq!(by("-F1").residual, Some(100.0));
     assert_eq!(by("-F2").residual, None);
 }
+
+/// A fuse feeding a breaker directly and another through a residual current device:
+/// only the one behind the residual current device is protected by it, not the fuse
+/// nor the breaker beside it. An RCD right after a breaker that takes all its load
+/// protects it.
+#[test]
+fn a_residual_current_device_behind_a_feeder_protects_only_what_is_behind_it() {
+    let mut k = Kit::new();
+    let l1 = k.sym("pot_l1", 40.0, 20.0, "", "L1");
+    let f1 = k.sym("fuse", 40.0, 40.0, "-F1", "");
+    let f2 = k.sym("cb1", 40.0, 80.0, "-F2", "");
+    let f3 = k.sym("rcd4", 80.0, 80.0, "-F3", "");
+    let f4 = k.sym("cb1", 80.0, 120.0, "-F4", "");
+    let f5 = k.sym("cb1", 160.0, 40.0, "-F5", "");
+    let f6 = k.sym("rcd4", 160.0, 80.0, "-F6", "");
+    k.wire((l1, ""), (f1, "1"));
+    k.wire((f1, "2"), (f2, "1"));
+    k.wire((f1, "2"), (f3, "1"));
+    k.wire((f3, "2"), (f4, "1"));
+    k.wire((l1, ""), (f5, "1"));
+    k.wire((f5, "2"), (f6, "1"));
+    for t in ["-F3", "-F6"] {
+        k.part(t, FnKind::ResidualCurrent, "1 3 5 N 2 4 6 N'", |p| p.current = "40 A".into());
+    }
+    k.part("-F1", FnKind::Fuse, "1 2", |p| p.current = "35 A".into());
+    for t in ["-F2", "-F4", "-F5"] {
+        k.part(t, FnKind::Breaker1, "1 2", |p| p.current = "16 A".into());
+    }
+    let cs = circuits(&k.prj, &Netlist::build(&k.prj, true));
+    let by = |t: &str| cs.iter().find(|c| c.device == t).unwrap_or_else(|| panic!("{t}"));
+    assert_eq!(by("-F1").residual, None);
+    assert_eq!(by("-F2").residual, None);
+    assert_eq!(by("-F4").residual, Some(30.0));
+    assert_eq!(by("-F5").residual, Some(30.0));
+}

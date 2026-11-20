@@ -39,6 +39,7 @@
     <link data-trunk rel="copy-file" href="site.js" />
     <link data-trunk rel="copy-file" href="config.js" />
     <link data-trunk rel="copy-file" href="worker.js" />
+    <link data-trunk rel="copy-file" href="tools.js" />
     <link data-trunk rel="copy-file" href="../assets/icon.svg" />
     <link data-trunk rel="copy-file" href="apple-touch-icon.png" />
     <link data-trunk rel="copy-file" href="sheet.svg" />
@@ -54,7 +55,12 @@
     <link data-trunk rel="copy-dir" href="compare" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <!-- What the build knows (build.js, written after trunk by crates/openecraft-site):
+         the recording of the first screen, if any. numbers.js: the stars and the
+         contributors of the project, kept current by the Docker image of the site. -->
     <script src="config.js"></script>
+    <script src="build.js"></script>
+    <script src="numbers.js"></script>
     <script src="site.js" defer></script>
 </head>
 <body>
@@ -97,12 +103,16 @@
             <li><b id="fact-examples">16</b> <span data-t>example projects</span></li>
             <li><b id="fact-commands">300+</b> <span data-t>commands for scripts and AI agents</span></li>
             <li><b>MIT / Apache-2.0</b></li>
+            <li id="fact-stars" hidden><b></b> <span data-t>stars on GitHub</span></li>
+            <li id="fact-contributors" hidden><b></b> <span data-t>contributors</span></li>
         </ul>
     </div>
     <div class="hero-art">
         <!-- The first sheet of the demo as a picture (sheet.svg), until the module is loaded and draws it. -->
         <div class="sheet" id="hero-sheet"><img src="sheet.svg" width="420" height="297" alt="A schematic page of the demo project, drawn by OpenECraft" data-t-alt="A schematic page of the demo project, drawn by OpenECraft" /></div>
         <p class="sheet-note" hidden data-t>This page is drawn right now by the editor's own code, running in your browser.</p>
+        <!-- A screen recording of the editor, when the site has one (website/tour.webm). -->
+        <figure class="tour" id="tour" hidden><video controls preload="none" playsinline></video><figcaption data-t>A minute with OpenECraft: from the schematic to the panel in 3D</figcaption></figure>
     </div>
 </section>
 
@@ -148,6 +158,7 @@
                 <button data-call="undo" id="undo" data-t>Undo</button>
                 <button data-call="redo" id="redo" data-t>Redo</button>
                 <button data-call="fit" data-t>Fit</button>
+                <button data-share="studio" data-t>Copy link</button>
             </div>
             <div class="stage" data-view="schematic">
                 <canvas id="canvas-schematic"></canvas>
@@ -181,6 +192,7 @@
             <span class="gap"></span>
             <button data-call="wires" id="wires" data-t>Wiring</button>
             <button data-call="fit" data-t>Fit</button>
+            <button data-share="layout" data-t>Copy link</button>
         </div>
         <div class="stage tall" data-view="layout">
             <canvas id="canvas-layout"></canvas>
@@ -199,7 +211,7 @@
             <ul class="list" id="report-list"></ul>
         </aside>
         <div class="pane table-pane">
-            <h3 id="report-title"></h3>
+            <h3><span id="report-title"></span> <button class="share" data-share="reports" data-t>Copy link</button></h3>
             <div class="table-scroll"><table id="report-table"></table></div>
             <p class="tip" id="report-more"></p>
         </div>
@@ -265,13 +277,29 @@
     </div>
 </section>
 
+<!-- The pages the build writes (crates/openecraft-site): the symbol library, the
+     examples, the tools, the guides, the documentation, the news and the answers. -->
+<section id="more" class="band">
+    <h2 data-t>More to explore</h2>
+    <p class="sub" data-t>The symbol library, the example projects, tools for your own files, guides, the documentation and the news.</p>
+    <div class="cards">
+        <article class="card"><h3 data-t>Symbols</h3><p data-t>Every symbol of the libraries with its drawing: IEC 60617, NFPA, GB, GOST, JIS, fluid power, P&amp;ID and installation plans.</p><a class="button" data-page href="symbols/" data-t>Browse the symbols</a></article>
+        <article class="card"><h3 data-t>Examples</h3><p data-t>The example projects with their sheets as pictures, their PDF and a link that opens them in the live demo.</p><a class="button" data-page href="examples/" data-t>See the examples</a></article>
+        <article class="card"><h3 data-t>Tools</h3><p data-t>Voltage drop calculator, DXF and DWG viewer, EDZ and parts file viewer: in your browser, nothing is uploaded.</p><a class="button" data-page href="tools/" data-t>Use the tools</a></article>
+        <article class="card"><h3 data-t>How-to</h3><p data-t>Short guides: terminal diagram, wire list, bill of materials, DXF and DWG export.</p><a class="button" data-page href="how-to/" data-t>Read the guides</a></article>
+        <article class="card"><h3 data-t>Documentation</h3><p data-t>The tutorial, the installation guide and every feature in detail.</p><a class="button" href="docs/" data-t>Read the documentation</a><a class="button ghost" data-link="documentation" href="#" data-t>All documents in the repository</a></article>
+        <article class="card"><h3 data-t>News</h3><p data-t>What is new in every release, with a feed for your feed reader.</p><a class="button" href="news/" data-t>Read the news</a></article>
+        <article class="card"><h3 data-t>FAQ</h3><p data-t>Is it free? Does it read EPLAN data? Does it work offline? The answers.</p><a class="button" data-page href="faq/" data-t>Read the answers</a></article>
+    </div>
+</section>
+
 <section id="get" class="band">
     <h2 data-t>Get OpenECraft</h2>
     <p class="sub" data-t>Free to use, free to change. Pick what fits you.</p>
     <div class="cards get">
         <article class="card"><h3 data-t>In the browser</h3><p data-t>The full editor as a web application. Nothing to install, your projects stay on your computer.</p><a class="button primary" data-link="editor" href="#" data-t>Open the web editor</a></article>
         <article class="card"><h3 data-t>On the desktop</h3><p data-t>Installers for Windows, Linux packages and a macOS disk image, with automatic updates.</p><a class="button" data-link="downloads" href="#" data-t>Download the latest release</a></article>
-        <article class="card"><h3 data-t>For your team</h3><p data-t>Parts server, project server and the web editor as Docker images for your own network.</p><pre><code>docker run -p 8080:8080 ghcr.io/nilres/openecraft-web</code></pre><a class="button ghost" data-link="documentation" data-path="/installation.md" href="#" data-t>Installation guide</a></article>
+        <article class="card"><h3 data-t>For your team</h3><p data-t>Parts server, project server and the web editor as Docker images for your own network.</p><pre><code>docker run -p 8080:8080 ghcr.io/nilres/openecraft-web</code></pre><a class="button ghost" href="docs/installation/" data-t>Installation guide</a></article>
         <article class="card"><h3 data-t>From source</h3><p data-t>Written in Rust. Clone the repository and run it.</p><pre><code>cargo run --release -p openecraft</code></pre><a class="button ghost" data-link="repository" href="#" data-t>Source code</a></article>
     </div>
 </section>
@@ -281,9 +309,9 @@
 <footer>
     <div><img src="icon.svg" alt="" width="22" height="22" /> <b>OpenECraft</b> · <span data-t>Open source under the MIT and Apache-2.0 licenses.</span></div>
     <div class="links">
-        <a data-link="documentation" data-path="/tutorial.md" href="#" data-t>Tutorial</a>
-        <a data-link="documentation" data-path="/plugins.md" href="#" data-t>Plugins</a>
-        <a data-link="documentation" data-path="/command-line.md" href="#" data-t>Command line and MCP</a>
+        <a href="docs/tutorial/" data-t>Tutorial</a>
+        <a href="docs/plugins/" data-t>Plugins</a>
+        <a href="docs/command-line/" data-t>Command line and MCP</a>
         <a data-link="issues" href="#" data-t>Report a problem</a>
         <a id="licenses-open" href="#licenses" data-t>Licenses</a>
         <a id="privacy-open" href="#privacy" data-t>Privacy</a>
@@ -294,6 +322,15 @@
         <a data-page href="electricians/" data-t>Electricians</a>
         <a data-page href="education/" data-t>Schools</a>
         <a data-page href="compare/" data-t>Comparison</a>
+    </div>
+    <div class="links">
+        <a data-page href="symbols/" data-t>Symbols</a>
+        <a data-page href="examples/" data-t>Examples</a>
+        <a data-page href="tools/" data-t>Tools</a>
+        <a data-page href="how-to/" data-t>How-to</a>
+        <a href="docs/" data-t>Documentation</a>
+        <a href="news/" data-t>News</a>
+        <a data-page href="faq/" data-t>FAQ</a>
     </div>
     <!-- The page in every language (de.html, …; src/pages.rs). -->
     <nav class="languages" aria-label="Language">

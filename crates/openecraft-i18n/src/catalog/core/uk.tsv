@@ -59,7 +59,6 @@ Align right	Вирівняти праворуч
 Align top	Вирівняти вгору
 All aspects (with product)	Усі аспекти (з виробом)
 All devices of page {} are in the schematic already	Усі пристрої сторінки {} уже є на схемі
-Aluminium	Алюміній
 Ammeter	Амперметр
 Ammeter, reactive current	Амперметр, реактивний струм
 Ampere-hour meter	Лічильник ампер-годин
@@ -68,6 +67,7 @@ Analog input module	Модуль аналогових входів
 Analog output module	Модуль аналогових виходів
 Analysis	Аналіз
 Another section here has this number	Інший розділ тут уже має цей номер
+Antenna outlet	Антенна розетка
 Apparent power (kVA)	Повна потужність (kVA)
 Applied directives	Застосовані директиви
 Approval date	Дата затвердження
@@ -101,7 +101,6 @@ Baying kit	Комплект для з’єднання шаф
 Beacon, rotating	Проблисковий маяк
 Belongs to	Належить до
 Bends	Згини
-Bill of materials	Специфікація
 Bimetal switch NC	Біметалевий вимикач, розмикальний
 Bimetal switch NO	Біметалевий вимикач, замикальний
 Black box	Чорний ящик
@@ -199,12 +198,12 @@ Changeover contact, on-delay	Перемикальний контакт, із з�
 Changeover contact, passing make	Перемикальний контакт з імпульсним замиканням
 Changeover switch, cam operated	Перемикач, з кулачковим приводом
 Changeover switch, cam profile operated	Перемикач, з копірним приводом
+Changeover switch, manually operated	Перемикач, з ручним приводом
 Changeover switch, roller operated	Перемикач, з роликовим приводом
 Check valve	Зворотний клапан
 Checked	Перевірено
 Checked by	Перевірив
 Choose the pages of the subproject	Виберіть сторінки підпроєкту
-Circuit	Коло
 Circuit breaker (single-line)	Автоматичний вимикач (однолінійне зображення)
 Circuit breaker 1-pole	Автоматичний вимикач, 1-полюсний
 Circuit breaker 1-pole (NFPA)	Автоматичний вимикач, 1-полюсний (NFPA)
@@ -288,7 +287,6 @@ Converted from file format {} to {}: {}	Перетворено з формату
 Coolant	Охолоджувальна рідина
 Cooler	Охолоджувач
 Cooling method	Спосіб охолодження
-Copper	Мідь
 Copper bar {}: bend {} has a radius of {} mm, at least {} mm	Мідна шина {}: згин {} має радіус {} мм, щонайменше {} мм
 Copper bar {}: hole Ø{} at {} mm is outside the bar	Мідна шина {}: отвір Ø{} на {} мм знаходиться поза шиною
 Copper bar {}: hole Ø{} at {} mm is too close to bend {}	Мідна шина {}: отвір Ø{} на {} мм надто близько до згину {}
@@ -316,7 +314,6 @@ Create projects	Створювати проєкти
 Creation date	Дата створення
 Cross-section {} carries {} A, less than the {} A of {}	Переріз {} витримує {} A, менше ніж {} A для {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Перехрестя на сторінці {} не відповідає своїм проводам: потрібен провід у всіх чотирьох напрямках і жодної точки підключення там
-Current (A)	Струм (A)
 Current capacity (A)	Допустимий струм (A)
 Current consumption	Споживаний струм
 Current range	Діапазон струму
@@ -344,6 +341,7 @@ DC control circuits should be blue (IEC 60204-1, 13.2.4)	Кола керуван
 DC control circuits should be blue (NFPA 79, 13.2.4)	Кола керування постійного струму мають бути синіми (NFPA 79, 13.2.4)
 DC/DC converter	Перетворювач DC/DC
 DWG export failed: {}	Помилка експорту DWG: {}
+Data outlet	Розетка передачі даних
 Data sheet	Технічний паспорт
 Date of the approval of the last revision	Дата затвердження останньої зміни
 Date of the last revision	Дата останньої ревізії
@@ -360,6 +358,7 @@ Description of the last revision	Опис останньої ревізії
 Description of the page's function (structure management)	Опис функції сторінки (керування структурою)
 Description of the page's location (structure management)	Опис розташування сторінки (керування структурою)
 Designer	Конструктор
+Device connection box	Приєднувальна коробка приладу
 Device connection diagram	Схема підключення пристроїв
 Device data of {} without symbol or panel item	Дані пристрою {} без символу чи елемента компонування
 Device description file	Файл опису пристрою
@@ -409,7 +408,6 @@ Document (embedded file)	Документ (вбудований файл)
 Document A4 portrait	Документ A4 книжкова
 Document number	Номер документа
 Document reference	Посилання на документ
-Documentation	Документація
 Documentation language	Мова документації
 Does not match	Не відповідає
 Door (front view)	Двері (фронтальний вигляд)
@@ -648,6 +646,7 @@ Hazardous area zone	Вибухонебезпечна зона
 Heat exchanger	Теплообмінник
 Heating (W)	Обігрів (W)
 Heating element	Нагрівальний елемент
+Heating element three-phase	Нагрівальний елемент трифазний
 Higher-level product (-)	Виріб вищого рівня (-)
 Higher-level product of the page	Виріб вищого рівня сторінки
 Highest (°C)	Максимум (°C)
@@ -725,6 +724,7 @@ Installation altitude	Висота встановлення
 Installation date	Дата встановлення
 Installation devices	Електроустановчі пристрої
 Installation method	Спосіб прокладання
+Installation of {}	Електроустановка {}
 Installation plan (IEC 60617-11)	План електроустановки (IEC 60617-11)
 Installation site (++)	Місце встановлення (++)
 Installation site and location	Місце встановлення та розташування
@@ -737,6 +737,7 @@ Insulation class	Клас ізоляції
 Integer	Ціле число
 Integrated EMC filter	Вбудований фільтр ЕМС
 Intermediate relay coil KA (GB)	Котушка проміжного реле KA (GB)
+Intermediate switch, manually operated	Перехресний перемикач, з ручним приводом
 Internal	Внутрішній
 Internal target	Внутрішня ціль
 Interruption point '{}' has no counterpart	Точка розриву '{}' не має відповідника
@@ -751,6 +752,7 @@ Inverter DC/AC	Інвертор DC/AC
 Isolating and switching devices in the right places	Пристрої відключення та комутації в потрібних місцях
 Item	Елемент
 Item ID	Ідентифікатор позиції
+Items	Елементи
 JIS (JIS C 0617)	JIS (JIS C 0617)
 Jumpers	Перемички
 Junction box	Відгалужувальна коробка
@@ -776,13 +778,13 @@ Left side panel	Ліва бічна стінка
 Legend plate text	Текст таблички
 Length (m)	Довжина (м)
 Length (mm)	Довжина (мм)
+Length known (not calculated)	Довжина відома (не розрахована)
 Letter landscape	Letter альбомна
 Letters (A, B, C)	Літери (A, B, C)
 Level switch	Сигналізатор рівня
 Lifecycle state	Стан життєвого циклу
 Light source	Джерело світла
 Lighting outlet	Вивід для світильника
-Limit (%)	Межа (%)
 Limit switch NC (NFPA)	Кінцевий вимикач, розмикальний (NFPA)
 Limit switch NO (NFPA)	Кінцевий вимикач, замикальний (NFPA)
 Line reactor	Мережевий дросель
@@ -946,6 +948,7 @@ Nibbling	Висічка
 No connection {}	Немає з’єднання {}
 No devices to add to the single-line diagram	Немає пристроїв для додавання до однолінійної схеми
 No document embedded - choose a file in the page properties	Документ не вбудовано – виберіть файл у властивостях сторінки
+No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Немає вільного місця для кабельного вводу на сторонах, через які може вийти кабель: звільніть місце або додайте фланець кабельного вводу
 No identifying letter for the device tag.	Немає літерного коду для позначення пристрою.
 No known column in the header row	У рядку заголовка немає відомих стовпців
 No option {}	Немає опції {}
@@ -1346,7 +1349,6 @@ Residual current device 4-pole	Пристрій захисного вимкне�
 Residual current type	Тип диференційного струму
 Resistor	Резистор
 Response time	Час реагування
-Result	Результат
 Return / exhaust line	Лінія зливу / випуску
 Revision overview (changes)	Огляд ревізій (зміни)
 Revision table: author of the last revision (2: the one before …)	Таблиця змін: автор останньої зміни (2: попередньої …)
@@ -1477,7 +1479,9 @@ Size (mm)	Розмір (мм)
 Skipped	Пропущено
 Sliding to the left	Розсувна вліво
 Sliding to the right	Розсувна вправо
+Smoke alarm	Димовий сповіщувач
 Socket outlet	Штепсельна розетка
+Socket outlet three-phase	Штепсельна розетка трифазна
 Socket side (female)	Бік гнізд (розетка)
 Soft starter	Пристрій плавного пуску
 Solar charge controller	Сонячний контролер заряду
@@ -1585,7 +1589,6 @@ Terminal box	Клемна коробка
 Terminal connection diagram	Схема підключення клем
 Terminal data	Дані клеми
 Terminal description	Опис клеми
-Terminal diagram	Схема клем
 Terminal line-up	Розташування клем
 Terminal marker	Маркер клеми
 Terminal parts	Артикули наконечників
@@ -1605,6 +1608,7 @@ The archive unpacks to more than {} MB	Архів розпаковується �
 The archive was written by a newer version (archive version {})	Архів записано новішою версією (версія архіву {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Слід вказати виробника комплектного пристрою (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Ряд шаф у своєму приміщенні: Г-подібний план, внутрішня стіна, двері та вікно, ряд шаф на своєму місці, рейка з розеткою на стіні, настінний аварійний світильник і кабельний лоток під стелею.
+The cable of {} needs at least {} cores	Кабелю {} потрібно щонайменше {} жил
 The configuration is not a JSON object	Конфігурація не є об’єктом JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Конвеєр після першого випуску: випущена та заблокована ревізія, позначені відтоді зміни, коментарі перевірки з червоними позначками, запит на зміну, ревізія B у процесі погодження та базова версія для порівняння.
 The coordinates of the reference point must be numbers	Координати опорної точки мають бути числами
@@ -1624,6 +1628,7 @@ The macro box has no items left	У рамці макросу не залишил
 The next free id is already in use	Наступний вільний ідентифікатор уже зайнято
 The option needs a name	Опції потрібна назва
 The page needs a number	Сторінці потрібен номер
+The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	Сторінка {} заповнена: наступний вимикач його прохідної схеми має бути накреслений на тій самій сторінці
 The pages were changed after the submission; submit the revision again	Сторінки змінено після подання; подайте ревізію повторно
 The plot boundary crosses itself	Межа ділянки перетинає сама себе
 The plot boundary encloses no area	Межа ділянки не охоплює площі
@@ -1753,6 +1758,7 @@ Unknown object: {}	Невідомий об’єкт: {}
 Unknown revision	Невідома ревізія
 Unknown symbol '{}'	Невідомий символ '{}'
 Unknown tool {}	Невідомий інструмент {}
+Unused connection points	Невикористані точки підключення
 Upstream	Вище за схемою
 User defined	Користувацьке
 User symbols	Символи користувача
@@ -1774,7 +1780,6 @@ Vibration	Вібрація
 Vibration resistance	Вібростійкість
 View projects	Переглядати проєкти
 Violations	Порушення
-Voltage (V)	Напруга (V)
 Voltage drop (V)	Спад напруги (V)
 Voltage protection level	Рівень захисту за напругою
 Voltage range	Діапазон напруги
@@ -1950,19 +1955,23 @@ yellow	жовтий
 {} has no MTTFd, B10d, PL or PFHd	{} не має MTTFd, B10d, PL або PFHd
 {} has no door or window {}	{} не має дверей чи вікна {}
 {} has nothing to manufacture	{} не має що виготовляти
+{} has three phases: it needs a three-phase protective device	{} має три фази: йому потрібен трифазний захисний пристрій
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} містить нерозв'язаний конфлікт злиття git: файл було об'єднано як текст. Візьміть одну версію файлу (git checkout --ours або --theirs), потім налаштуйте драйвер злиття для розділених проєктів (merge_project_file) перед повторним злиттям
 {} is a built-in function definition	{} – вбудоване визначення функції
 {} is a built-in property	{} – вбудована властивість
 {} is a built-in scheme	{} – вбудована схема
 {} is a busbar machine and makes no sheets	{} – верстат для обробки шин і не виготовляє листові деталі
+{} is neither the protective device nor a device of the circuit of {}	{} не є ні захисним пристроєм, ні пристроєм кола {}
 {} is not a busbar machine	{} не є верстатом для обробки шин
 {} is not a property of {}	{} не є властивістю {}
 {} is not an approver of this project	{} не є погоджувачем цього проєкту
+{} is not connected to the mains: place it without a protective device	{} не підключається до мережі: розмістіть його без захисного пристрою
 {} is not placed in the plant layout	{} не розміщено на плані установки
 {} is on page {}, which is released: renaming it would change the page	{} розташовано на сторінці {}, яку затверджено: перейменування змінило б сторінку
 {} is placed at the missing node {}	{} розміщено у відсутньому вузлі {}
 {} is planned twice ({} and {})	{} заплановано двічі ({} і {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} селективний щодо {} лише до {} A (струм короткого замикання {} A)
+{} is used already	{} уже використовується
 {} keeps its structure: its main functions lie in different structure boxes ({})	{} зберігає свою структуру: його головні функції знаходяться в різних рамках структури ({})
 {} keeps its structure: {} exists already	{} зберігає свою структуру: {} вже існує
 {} lies outside page {}	{} знаходиться поза сторінкою {}

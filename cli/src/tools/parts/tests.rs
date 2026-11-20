@@ -54,9 +54,18 @@ fn changes_need_the_token() {
 #[test]
 fn unreachable_server() {
     let mut s = Session::new(Server { endpoint: Endpoint { url: "http://elsewhere".into(), token: String::new() }, kind: PortalKind::OpenECraft, credentials: Box::new(crate::testing::NoCredentials), transport: Box::new(server()) });
-    let err = run(&mut s, "parts_search", json!({})).unwrap_err();
-    assert!(err.starts_with("connection failed"), "{err}");
+    // Without the server the parts of the project and the built-in catalog are searched.
+    let hits = run(&mut s, "parts_search", json!({ "query": "CBL 4G1.5" })).unwrap();
+    assert_eq!(hits["source"], "local");
+    assert!(hits["server_error"].as_str().unwrap().starts_with("connection failed"), "{hits}");
+    assert!(hits["parts"].as_array().unwrap().iter().any(|p| p["number"] == "GEN.CBL-4G1.5"), "{hits}");
+    assert_eq!(run(&mut s, "parts_get", json!({ "number": "GEN.CBL-4G1.5" })).unwrap()["group"], "Cables");
+    assert!(run(&mut s, "parts_get", json!({ "number": "NOPE" })).unwrap_err().starts_with("connection failed"));
     run(&mut s, "parts_connect", json!({ "url": URL })).unwrap();
+    assert_eq!(run(&mut s, "parts_search", json!({ "local": true, "query": "ACME" })).unwrap()["total"], 0, "only the project and the catalog");
+    assert_eq!(run(&mut s, "parts_search", json!({ "query": "ACME" })).unwrap()["source"], "server");
+    // A part the server does not know comes from the built-in catalog.
+    assert_eq!(run(&mut s, "parts_get", json!({ "number": "GEN.CBL-4G1.5" })).unwrap()["group"], "Cables");
 }
 
 #[test]
