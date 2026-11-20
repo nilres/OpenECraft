@@ -2405,3 +2405,74 @@ fn a_part_goes_where_the_wall_is_clicked_and_is_deleted_with_the_delete_key() {
     assert!(prj.layout.enclosures[ri].item(it.id).is_none());
     assert!(ui.selection.is_empty());
 }
+
+#[test]
+fn points_move_on_the_face_they_are_seen_on() {
+    let prj = openecraft_core::sample::demo_project();
+    let pos = panel::positions(&prj.layout);
+    let q = [pos[0][0] + 150.0, pos[0][1] + 300.0, pos[0][2] + 120.0];
+    // Over the plate: the plate point, moved on it at the same depth.
+    let f = routing_ui::face_xy(&prj, &pos, 0, Face::Plate, q);
+    let off = prj.layout.enclosures[0].face_offset(Face::Plate);
+    assert!((f.x - (150.0 - off.x)).abs() < 1e-3 && (f.y - (300.0 - off.y)).abs() < 1e-3, "{f:?}");
+    let moved = routing_ui::moved_on_face(&prj, &pos, 0, Face::Plate, q, p(f.x + 40.0, f.y - 10.0));
+    assert!(vec3::dist(moved, [q[0] + 40.0, q[1] - 10.0, q[2]]) < 1e-3, "{moved:?}");
+    // On a side wall: along it, keeping the distance from it.
+    let side = routing_ui::moved_on_face(&prj, &pos, 0, Face::Left, q, routing_ui::face_xy(&prj, &pos, 0, Face::Left, q));
+    assert!(vec3::dist(side, q) < 1e-3);
+    // The point of a segment drawn nearest, and how far from it.
+    let segments = [((), [0.0, 0.0, 0.0], [100.0, 0.0, 50.0])].into_iter();
+    let (at, d) = routing_ui::nearest_on(segments, |_, v| Some(p(v[0], v[1])), p(40.0, 3.0)).unwrap();
+    assert!(vec3::dist(at, [40.0, 0.0, 20.0]) < 1e-3 && (d - 3.0).abs() < 1e-3, "{at:?} {d}");
+}
+
+#[test]
+fn a_control_point_is_added_on_a_cable_and_dragged_in_the_front_view() {
+    fn frame(ctx: &egui::Context, ui: &mut PanelUi, prj: &mut Project, an: &Analysis, time: f64, events: Vec<egui::Event>) {
+        let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(900.0, 1000.0))), time: Some(time), events, ..Default::default() };
+        ctx.run_ui(input, |ui_| ui.front_view(ui_, prj, 0, an, &PartsDb::default())).textures_delta.clear();
+    }
+    let button = |pos, button, pressed| egui::Event::PointerButton { pos, button, pressed, modifiers: Default::default() };
+    let mut prj = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { offset: egui::Vec2::ZERO, zoom: 1.0, fit_pending: false, ..Default::default() };
+    let pos = panel::positions(&prj.layout);
+    let fm = prj.layout.enclosures[0].face_offset(Face::Plate);
+    let screen = |prj: &Project, q: [f32; 3]| {
+        let f = routing_ui::face_xy(prj, &pos, 0, Face::Plate, q);
+        egui::pos2(f.x + fm.x, f.y + fm.y)
+    };
+    // The middle of the longest stretch of -W1 over the plate, right-clicked.
+    let w1 = an.routing.item("-W1").unwrap();
+    let flat = |s: &[[f32; 3]]| (s[1][0] - s[0][0]).hypot(s[1][1] - s[0][1]);
+    let longest = w1.points.windows(2).max_by(|a, b| flat(a).total_cmp(&flat(b))).unwrap();
+    let on = [(longest[0][0] + longest[1][0]) / 2.0, (longest[0][1] + longest[1][1]) / 2.0, (longest[0][2] + longest[1][2]) / 2.0];
+    let s = screen(&prj, on);
+    let ctx = egui::Context::default();
+    frame(&ctx, &mut ui, &mut prj, &an, 0.0, vec![egui::Event::PointerMoved(s)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 0.1, vec![button(s, egui::PointerButton::Secondary, true)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 0.2, vec![button(s, egui::PointerButton::Secondary, false)]);
+    let menu = ui.route_menu.clone().expect("the cable right-clicked");
+    assert_eq!((menu.key.as_str(), menu.handle, ui.selected_route.as_deref()), ("-W1", None, Some("-W1")));
+    assert!((menu.at[0] - on[0]).abs() < 1.0 && (menu.at[1] - on[1]).abs() < 1.0, "{:?} {on:?}", menu.at);
+    // Added there (the menu entry), the control point is drawn where the route passes it.
+    routing3d::add_control(&mut prj, &an.routing, "-W1", menu.at).unwrap();
+    let an = Analysis::build(&prj);
+    let handles = ui.control_handles(&prj, &an);
+    assert_eq!(handles.len(), 1);
+    assert!(handles[0].ok && !handles[0].moving);
+    // Dragged 60 px up: it moves 60 mm on the plate, as far from it as before.
+    let (from, sh) = (handles[0].at, screen(&prj, handles[0].at));
+    let to = sh + egui::vec2(0.0, -60.0);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.0, vec![egui::Event::PointerMoved(sh)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.1, vec![button(sh, egui::PointerButton::Primary, true)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.2, vec![egui::Event::PointerMoved(to)]);
+    assert!(ui.control_drag.is_some(), "the drag takes the control point, not an item");
+    assert!(ui.control_handles(&prj, &an)[0].moving);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.3, vec![button(to, egui::PointerButton::Primary, false)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.4, Vec::new());
+    assert!(ui.control_drag.is_none());
+    let now = routing3d::control_points(&prj, "-W1")[0];
+    assert!((now[0] - from[0]).abs() < 5.0 && (now[1] - (from[1] - 60.0)).abs() < 5.0 && (now[2] - from[2]).abs() < 1e-3, "{now:?} {from:?} {}", ui.status);
+    assert!(prj.layout.enclosures[0].items.iter().all(|i| i.x == openecraft_core::sample::demo_project().layout.enclosures[0].item(i.id).map_or(i.x, |o| o.x)), "no item moved");
+}

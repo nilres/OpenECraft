@@ -611,6 +611,14 @@ pub struct PanelUi {
     reserve_mode: routing3d::ReserveMode,
     /// Selected routed wire, cable or tube (its key).
     pub selected_route: Option<String>,
+    /// A control point of the selected cable or tube being moved.
+    control_drag: Option<routing_ui::ControlDrag>,
+    /// The cable or tube right-clicked, for the entries of its control points in the
+    /// context menu.
+    route_menu: Option<routing_ui::RouteMenu>,
+    /// The control points of the selected cable or tube in the last frame of the 3D view:
+    /// where on the screen, where in view coordinates and how deep.
+    handles_3d: Vec<(Pos2, routing_ui::Handle, [f32; 3], f32)>,
     /// Selected routing path or reservation (its id).
     selected_object: Option<u64>,
     /// The layout view is the document worked in: it takes the keys.
@@ -782,6 +790,9 @@ impl Default for PanelUi {
             path_kind: routing3d::PathKind::Any,
             reserve_mode: routing3d::ReserveMode::Keepout,
             selected_route: None,
+            control_drag: None,
+            route_menu: None,
+            handles_3d: Vec::new(),
             selected_object: None,
             keys_active: true,
             wall_points: Vec::new(),
@@ -1011,7 +1022,8 @@ impl PanelUi {
     }
 
     /// The context menu of the items in the front view.
-    fn item_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize) {
+    fn item_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize, an: &Analysis) {
+        self.control_menu(ui, prj, an);
         let any = !self.selection.is_empty();
         let cut = ui.add_enabled(any, egui::Button::new(tr("Cut")).shortcut_text("Ctrl+X")).on_hover_text(tr("Devices go back to the devices to place"));
         if cut.clicked() {
@@ -1049,6 +1061,7 @@ impl PanelUi {
         self.selection.clear();
         self.selected_wire = None;
         self.selected_route = None;
+        self.control_drag = None;
         self.selected_array = None;
         self.selected_earthing = None;
         self.selected_roof = None;
@@ -3881,6 +3894,7 @@ impl PanelUi {
         let enter = !ui.ctx().egui_wants_keyboard_input() && ui.input(|i| sc.action_pressed(i, Action::FinishPolyline));
         match self.tool.clone() {
             _ if navigating => {}
+            Tool::Select if self.control_points_2d(ui, &resp, prj, ei, rect, an) => {}
             Tool::Select => self.select_and_move(ui, &resp, prj, ei, rect, an),
             Tool::Rail | Tool::Duct | Tool::Busbar => {
                 if let (true, Some(sn)) = (resp.clicked_by(PointerButton::Primary), snapped) {
@@ -4032,7 +4046,7 @@ impl PanelUi {
             }
         }
         if menu {
-            egui::Popup::context_menu(&resp).show(|ui| self.item_menu(ui, prj, ei));
+            egui::Popup::context_menu(&resp).show(|ui| self.item_menu(ui, prj, ei, an));
         }
 
         // Draw
@@ -4077,9 +4091,12 @@ impl PanelUi {
         // Routing paths, reservations and the routed cables and tubes over the plate; the
         // pipe runs of a room's face.
         if self.face == Face::Plate {
-            self.draw_routing_2d(&painter, prj, an, ei, &to_screen);
+            self.draw_routing_2d(&painter, prj, ei, &to_screen);
         } else if self.in_room {
             self.draw_pipe_runs(&painter, prj, ei, &to_screen);
+        }
+        if self.routes_on_face(prj, ei) {
+            self.draw_routes_2d(&painter, prj, an, ei, &to_screen);
         }
         // Wires on the face shown: the routes on the plate, or on the door from the door
         // devices to the hinge.
@@ -4264,6 +4281,64 @@ impl PanelUi {
                 painter.circle_stroke(point, 4.0, Stroke::new(1.5, pal.line));
             }
         }
+    }
+
+    /// The control points of the selected cable or tube on the face shown: a right click
+    /// on one or on a cable or tube keeps it for the context menu, a drag moves one. True
+    /// where that took the input.
+    fn control_points_2d(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, ei: usize, rect: Rect, an: &Analysis) -> bool {
+        let (face, offset, zoom, tol) = (self.face, self.offset, self.zoom, 6.0 / self.zoom);
+        let fm = prj.layout.enclosures[ei].face_offset(face);
+        let mirror = self.mirror(&prj.layout.enclosures[ei]);
+        let to_plate = move |s: Pos2| {
+            let x = (s.x - rect.min.x - offset.x) / zoom;
+            p(mirror.map(|m| m - x).unwrap_or(x) - fm.x, (s.y - rect.min.y - offset.y) / zoom - fm.y)
+        };
+        let routes_here = self.routes_on_face(prj, ei);
+        let pos = panel::positions(&prj.layout);
+        let to_screen = move |q: P| {
+            let x = q.x + fm.x;
+            Pos2::new(rect.min.x + offset.x + mirror.map(|m| m - x).unwrap_or(x) * zoom, rect.min.y + offset.y + (q.y + fm.y) * zoom)
+        };
+        let lineup = panel::lineup_of(&prj.layout, ei);
+        let handles: Vec<(Pos2, routing_ui::Handle)> = if routes_here { self.control_handles(prj, an) } else { Vec::new() }
+            .into_iter()
+            .filter(|h| lineup.contains(&h.enclosure))
+            .map(|h| (to_screen(routing_ui::face_xy(prj, &pos, ei, face, h.at)), h))
+            .collect();
+        let handle_at = |s: Pos2| routing_ui::handle_near(&handles, s);
+        if resp.secondary_clicked() && self.drag.is_none() {
+            self.route_menu = None;
+            if let Some(s) = resp.interact_pointer_pos() {
+                if let (Some(h), Some(key)) = (handle_at(s), self.selected_route.clone()) {
+                    self.route_menu = Some(routing_ui::RouteMenu { key, at: h.at, handle: Some(h.index) });
+                } else if let Some(&i) = if routes_here { self.cables_at(prj, an, ei, to_plate(s), tol) } else { Vec::new() }.first() {
+                    let key = an.routing.items[i].key.clone();
+                    self.select_route(an, &key);
+                    self.route_menu = self.route_point_2d(prj, an, ei, &key, to_plate(s)).map(|at| routing_ui::RouteMenu { key, at, handle: None });
+                }
+            }
+        }
+        if resp.drag_started_by(PointerButton::Primary) && self.drag.is_none() {
+            let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
+            if let (Some(h), Some(key)) = (handle_at(origin), self.selected_route.clone()) {
+                self.control_drag = Some(routing_ui::ControlDrag { key, index: h.index, at: h.at, from: h.at, view: None });
+            }
+        }
+        if self.control_drag.is_some() {
+            let ptr = ui.input(|i| i.pointer.hover_pos()).or_else(|| resp.interact_pointer_pos());
+            if let (Some(d), Some(ptr)) = (self.control_drag.as_mut(), ptr) {
+                let q = to_plate(ptr);
+                d.at = routing_ui::moved_on_face(prj, &pos, ei, face, d.from, p(panel::snap(q.x), panel::snap(q.y)));
+                let shift = routing_ui::face_xy(prj, &pos, ei, face, d.at) - routing_ui::face_xy(prj, &pos, ei, face, d.from);
+                self.status = format!("ΔX {:.0}  ΔY {:.0} mm", shift.x, shift.y);
+            }
+            if !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+                self.drop_control(prj);
+            }
+            return true;
+        }
+        self.route_menu.is_some() && resp.secondary_clicked()
     }
 
     fn select_and_move(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, ei: usize, rect: Rect, an: &Analysis) {

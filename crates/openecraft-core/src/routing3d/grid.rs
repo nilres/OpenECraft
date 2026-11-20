@@ -154,6 +154,10 @@ struct DuctBox {
     top: f32,
 }
 
+/// An end of a request ([`Request::at`]) that is a control point the route passes
+/// through, not an end of it: none of the allowances near an end apply there.
+pub const PASSED: V3 = [f32::NAN; 3];
+
 /// What is routed.
 #[derive(Clone, Copy, Debug)]
 pub struct Request<'a> {
@@ -2013,6 +2017,13 @@ impl Space {
         before.len() == self.paths.len() + self.sections.len() && now.zip(before).all(|((used, capacity), &old)| full(old, capacity) == full(used, capacity))
     }
 
+    /// Where a route passes its control point `q`: the centre of the cell of `q`, where
+    /// that cell lies in the space and has room for the request (apart from the routes
+    /// before it); `None` where it does not.
+    pub fn control_cell(&self, q: V3, req: &Request) -> Option<V3> {
+        self.cell_of(q).filter(|&i| self.passable(i, req)).map(|i| self.centre(i))
+    }
+
     /// A way that was routed before (frozen) is still possible: its cells are passable
     /// and it does not cross a wall outside the passages.
     pub fn still_free(&self, points: &[V3], req: &Request) -> bool {
@@ -2138,7 +2149,7 @@ fn unit(dir: usize) -> V3 {
     v
 }
 
-fn dist_to_segment(q: V3, a: V3, b: V3) -> f32 {
+pub(super) fn dist_to_segment(q: V3, a: V3, b: V3) -> f32 {
     let ab = sub(b, a);
     let l2 = ab[0] * ab[0] + ab[1] * ab[1] + ab[2] * ab[2];
     let t = if l2 <= f32::EPSILON { 0.0 } else { (((q[0] - a[0]) * ab[0] + (q[1] - a[1]) * ab[1] + (q[2] - a[2]) * ab[2]) / l2).clamp(0.0, 1.0) };
