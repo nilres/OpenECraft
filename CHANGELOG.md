@@ -5,6 +5,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Control points of wires, cables and tubes:** right-click a route over the mounting
+  plate, on a wall of a room or in the 3D view and *Add control point*, then drag the
+  point; the route is searched again through its control points, keeping its bend
+  radius and clear of everything (a wire with control points is routed in 3D instead of
+  in the cable ducts). A point the route cannot be led through (in a device, outside
+  the enclosure, too tight for the bend radius) is an error, drawn in red, and the route
+  is laid without its control points. The front view of a room now shows the routed
+  wires, cables and tubes seen from the face. Commands `add_control_point`,
+  `move_control_point`, `remove_control_point`
+  ([3D routing](docs/features/panel-layout.md#3d-routing)).
 - **The installation in the schematic:** a socket outlet, switch, light or heating
   element put into a room of the floor plan for a protective device goes into the
   schematic: a device with its part on the installation page of the circuit, drawn

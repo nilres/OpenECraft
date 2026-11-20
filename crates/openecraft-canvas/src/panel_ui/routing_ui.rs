@@ -5,7 +5,7 @@
 use super::{PanelUi, PATH_COLOR, RESERVE_COLOR, WIRE_HIGHLIGHT};
 use openecraft_core::geom::{p, P};
 use openecraft_core::model::Project;
-use openecraft_core::panel::{self, PLATE_MARGIN, PLATE_Z};
+use openecraft_core::panel::{self, Face, PLATE_MARGIN, PLATE_Z};
 use openecraft_core::parts::vec3::{add, dist, norm, sub};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::routing3d::{self, Class, Laying, PathKind, ReserveMode, Reservation, RouteKind, RoutingPath, ShieldEnds, ZoneKind};
@@ -320,6 +320,110 @@ const FAN_LEAST: f32 = 30.0;
 /// cable gland).
 const JOIN_STEP: f32 = 30.0;
 
+/// How near (pixels) the pointer picks a control point.
+pub(super) const PICK: f32 = 8.0;
+
+/// A control point of the selected cable or tube as shown ([`PanelUi::control_handles`]).
+#[derive(Clone, Debug)]
+pub(super) struct Handle {
+    /// Its number along the route, from 0.
+    pub index: usize,
+    /// Where it is shown (layout coordinates).
+    pub at: [f32; 3],
+    /// The enclosure it is relative to.
+    pub enclosure: usize,
+    /// The route is led through it (or is being searched again).
+    pub ok: bool,
+    pub moving: bool,
+}
+
+/// A control point being moved: the route, its number, where it is moved to (layout
+/// coordinates), where it was and, in the 3D view, where it was in view coordinates and
+/// its depth there.
+#[derive(Clone, Debug)]
+pub(super) struct ControlDrag {
+    pub key: String,
+    pub index: usize,
+    pub at: [f32; 3],
+    pub from: [f32; 3],
+    pub view: Option<([f32; 3], f32)>,
+}
+
+/// A cable or tube right-clicked: its key, the point of it clicked (layout coordinates)
+/// and the control point clicked.
+#[derive(Clone, Debug)]
+pub(super) struct RouteMenu {
+    pub key: String,
+    pub at: [f32; 3],
+    pub handle: Option<usize>,
+}
+
+/// The face point (face x and y) of layout point `q` seen on `face` of enclosure `ei`.
+pub(super) fn face_xy(prj: &Project, pos: &[[f32; 3]], ei: usize, face: Face, q: [f32; 3]) -> P {
+    let v = panel::point_on_face(&prj.layout.enclosures[ei], face, sub(q, pos[ei]));
+    p(v[0], v[1])
+}
+
+/// Layout point `q` moved on `face` of enclosure `ei` to the face point `to`, as far
+/// from the face as it was.
+pub(super) fn moved_on_face(prj: &Project, pos: &[[f32; 3]], ei: usize, face: Face, q: [f32; 3], to: P) -> [f32; 3] {
+    let e = &prj.layout.enclosures[ei];
+    let v = panel::point_on_face(e, face, sub(q, pos[ei]));
+    add(panel::face_point(e, face, [to.x, to.y, v[2]]), pos[ei])
+}
+
+/// The point of the segments (`a`, `b`, layout coordinates, each with what `flat` needs
+/// to draw it) that `flat` (where a layout point is drawn) draws nearest to `q`, and how
+/// far from `q` it is drawn.
+pub(super) fn nearest_on<K: Copy>(segments: impl Iterator<Item = (K, [f32; 3], [f32; 3])>, flat: impl Fn(K, [f32; 3]) -> Option<P>, q: P) -> Option<([f32; 3], f32)> {
+    let mut best: Option<(f32, [f32; 3])> = None;
+    for (k, a, b) in segments {
+        let (Some(fa), Some(fb)) = (flat(k, a), flat(k, b)) else { continue };
+        let (ab, aq) = (fb - fa, q - fa);
+        let l2 = ab.x * ab.x + ab.y * ab.y;
+        let t = if l2 > 1e-9 { ((aq.x * ab.x + aq.y * ab.y) / l2).clamp(0.0, 1.0) } else { 0.0 };
+        let d = openecraft_core::geom::dist_to_segment(q, fa, fb);
+        if best.is_none_or(|(n, _)| d < n) {
+            best = Some((d, add(a, openecraft_core::parts::vec3::scale(sub(b, a), t))));
+        }
+    }
+    best.map(|(d, at)| (at, d))
+}
+
+/// The control point of `handles` (each where it is on the screen) within [`PICK`]
+/// pixels of screen point `s`, the nearest.
+pub(super) fn handle_near(handles: &[(Pos2, Handle)], s: Pos2) -> Option<Handle> {
+    handles.iter().filter(|(q, _)| q.distance(s) <= PICK).min_by(|a, b| a.0.distance(s).total_cmp(&b.0.distance(s))).map(|(_, h)| h.clone())
+}
+
+/// The control points a wire, cable or tube is led through (added and moved in the
+/// views) in its properties: how many, a button to remove them, whether it passes them.
+pub(super) fn control_summary(ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, it: &routing3d::RoutedItem) {
+    let controls = routing3d::control_points(prj, &it.key).len();
+    if controls == 0 {
+        ui.label(RichText::new(tr("Right-click the route to add a control point, then drag it")).weak());
+        return;
+    }
+    ui.horizontal(|ui| {
+        ui.label(tr_fmt!("Control points: {}", controls));
+        if ui.small_button(tr("Remove all control points")).clicked() {
+            let _ = routing3d::remove_control(prj, &it.key, None);
+        }
+    });
+    if it.controls.is_empty() && !an.routes_pending {
+        ui.colored_label(crate::style::error(), tr("Not led through its control points: see the messages"));
+    }
+}
+
+/// A control point at screen point `s`: a ring (filled while it is moved, red where the
+/// route cannot be led through it) with its number.
+pub(super) fn draw_handle(painter: &egui::Painter, s: Pos2, h: &Handle) {
+    let color = if h.ok { WIRE_HIGHLIGHT } else { crate::style::error() };
+    let fill = if h.moving { color } else { Color32::WHITE };
+    painter.circle(s, 5.5, fill, Stroke::new(2.0, color));
+    painter.text(s + egui::vec2(8.0, -8.0), egui::Align2::LEFT_BOTTOM, (h.index + 1).to_string(), egui::FontId::proportional(11.0), color);
+}
+
 fn mode_choice(ui: &mut egui::Ui, salt: impl egui::AsIdSalt, mode: &mut ReserveMode) {
     egui::ComboBox::from_id_salt(salt).selected_text(mode.title()).show_ui(ui, |ui| {
         ui.selectable_value(mode, ReserveMode::Keepout, ReserveMode::Keepout.title());
@@ -393,7 +497,7 @@ impl PanelUi {
     }
 
     /// Routing paths, reservations and the routed cables and tubes seen on the plate.
-    pub(super) fn draw_routing_2d(&self, painter: &egui::Painter, prj: &Project, an: &Analysis, ei: usize, to_screen: &dyn Fn(P) -> Pos2) {
+    pub(super) fn draw_routing_2d(&self, painter: &egui::Painter, prj: &Project, ei: usize, to_screen: &dyn Fn(P) -> Pos2) {
         let e = &prj.layout.enclosures[ei];
         let plate = |q: [f32; 3]| to_screen(p(q[0] - PLATE_MARGIN, q[1] - PLATE_MARGIN));
         for r in &e.reservations {
@@ -417,22 +521,155 @@ impl PanelUi {
                 painter.text(*first, egui::Align2::LEFT_BOTTOM, &path.name, egui::FontId::proportional(11.0), PATH_COLOR);
             }
         }
-        if !self.show_wires && self.selected_route.is_none() {
+    }
+
+    /// The front view shows the routed cables and tubes on its face: over the mounting
+    /// plate of a cabinet, on every face of a room (seen as from the face).
+    pub(super) fn routes_on_face(&self, prj: &Project, ei: usize) -> bool {
+        self.face == Face::Plate || prj.layout.enclosures.get(ei).is_some_and(|e| e.is_room())
+    }
+
+    /// The routed cables and tubes of enclosure `ei` seen on the face shown (on the faces
+    /// of a room also the wires, which have no plate to be drawn on), with the control
+    /// points of the selected one.
+    pub(super) fn draw_routes_2d(&self, painter: &egui::Painter, prj: &Project, an: &Analysis, ei: usize, to_screen: &dyn Fn(P) -> Pos2) {
+        let pos = panel::positions(&prj.layout);
+        let face = |q: &[f32; 3]| to_screen(face_xy(prj, &pos, ei, self.face, *q));
+        let selected_wire = self.wire_index(an);
+        if self.show_wires || self.selected_route.is_some() || selected_wire.is_some() {
+            for it in an.routing.items.iter().filter(|i| self.drawn_2d(i) && i.enclosures.contains(&ei)) {
+                let wire = it.wire.filter(|_| it.kind == RouteKind::Wire).and_then(|wi| an.wiring.get(wi).map(|w| (wi, w)));
+                let selected = match wire {
+                    Some((wi, _)) => selected_wire == Some(wi),
+                    None => self.selected_route.as_deref() == Some(it.key.as_str()),
+                };
+                if !self.show_wires && !selected {
+                    continue;
+                }
+                let (color, width) = match wire {
+                    Some((_, w)) => {
+                        let (color, _, width) = super::wire_look(&w.color, selected, false, selected_wire.is_some());
+                        (color, width)
+                    }
+                    None if selected => (WIRE_HIGHLIGHT, 3.0),
+                    None => (class_color(it.class), (it.diameter * self.zoom * 0.5).clamp(1.5, 6.0)),
+                };
+                // The legs in this line-up or room, not those through another one.
+                for points in it.stretches_in_lineup(&prj.layout, ei) {
+                    let pts: Vec<Pos2> = points.iter().map(face).collect();
+                    painter.add(Shape::line(pts, Stroke::new(width, color.gamma_multiply(0.8))));
+                }
+            }
+        }
+        let lineup = panel::lineup_of(&prj.layout, ei);
+        for h in self.control_handles(prj, an).into_iter().filter(|h| lineup.contains(&h.enclosure)) {
+            draw_handle(painter, face(&h.at), &h);
+        }
+    }
+
+    /// The routes drawn by [`Self::draw_routes_2d`] on the face shown: cables and tubes,
+    /// wires on the faces of a room (on the plate they are drawn with the wiring).
+    pub(super) fn drawn_2d(&self, it: &routing3d::RoutedItem) -> bool {
+        it.kind != RouteKind::Wire || (self.face != Face::Plate && it.wire.is_some() && it.routed())
+    }
+
+    /// The key of the route whose control points are edited: the selected cable or tube,
+    /// or the selected wire where it can be led through control points (routed, not to
+    /// the door).
+    pub(super) fn control_key(&self, an: &Analysis) -> Option<String> {
+        if let Some(key) = &self.selected_route {
+            return Some(key.clone());
+        }
+        let w = &an.wiring[self.wire_index(an)?];
+        let key = routing3d::wire_key(w);
+        (w.door == (None, None) && an.routing.item(&key).is_some_and(|i| i.routed())).then_some(key)
+    }
+
+    /// Selects the wire, cable or tube drawn on the face shown of enclosure `ei` nearest
+    /// to the face point `q` (wires lie on top) to add a control point to it; its key.
+    pub(super) fn pick_route_2d(&mut self, prj: &Project, an: &Analysis, ei: usize, q: P, tol: f32) -> Option<String> {
+        let current = self.wire_index(an);
+        let on_plate = if self.face == Face::Plate { panel::wires_at(&an.wiring, ei, self.face, q, tol) } else { Vec::new() };
+        let routed = |wi: usize| an.routing.item(&routing3d::wire_key(&an.wiring[wi])).is_some_and(|i| i.routed());
+        if let Some(wi) = on_plate.into_iter().filter(|&wi| self.show_wires || current == Some(wi)).find(|&wi| routed(wi)) {
+            self.pick_wire(an, &[wi]);
+            return self.control_key(an);
+        }
+        let &i = self.cables_at(prj, an, ei, q, tol).first()?;
+        let it = &an.routing.items[i];
+        match it.wire.filter(|_| it.kind == RouteKind::Wire) {
+            Some(wi) => {
+                self.pick_wire(an, &[wi]);
+                self.control_key(an)
+            }
+            None => {
+                self.select_route(an, &it.key);
+                Some(it.key.clone())
+            }
+        }
+    }
+
+    /// The control points of the selected wire, cable or tube as shown: where the route
+    /// passes them (where it was put where it does not), the one being moved where it is
+    /// moved.
+    pub(super) fn control_handles(&self, prj: &Project, an: &Analysis) -> Vec<Handle> {
+        let Some(key) = self.control_key(an) else { return Vec::new() };
+        let key = key.as_str();
+        let Some(c) = prj.layout.controls.iter().find(|c| c.key == key) else { return Vec::new() };
+        let put = routing3d::control_points(prj, key);
+        let passed = an.routing.item(key).map(|i| i.controls.clone()).unwrap_or_default();
+        let shown = passed.len() == put.len();
+        c.points
+            .iter()
+            .enumerate()
+            .filter_map(|(index, p)| {
+                let enclosure = prj.layout.enclosures.iter().position(|e| e.id == p.enclosure)?;
+                let moved = self.control_drag.as_ref().filter(|d| d.key == key && d.index == index).map(|d| d.at);
+                let at = moved.or_else(|| shown.then(|| passed[index])).or_else(|| put.get(index).copied())?;
+                Some(Handle { index, at, enclosure, ok: shown || an.routes_pending, moving: moved.is_some() })
+            })
+            .collect()
+    }
+
+    /// The menu entries of the control points of a wire, cable or tube right-clicked
+    /// ([`RouteMenu`]): add one where it was clicked, remove the one clicked or all.
+    pub(super) fn control_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
+        let Some(menu) = self.route_menu.clone() else { return };
+        if self.control_key(an).as_ref() != Some(&menu.key) {
             return;
         }
-        let pos = openecraft_core::panel::positions(&prj.layout);
-        for it in an.routing.items.iter().filter(|i| i.kind != RouteKind::Wire && i.enclosures.contains(&ei)) {
-            let selected = self.selected_route.as_deref() == Some(it.key.as_str());
-            if !self.show_wires && !selected {
-                continue;
-            }
-            let (color, width) = if selected { (WIRE_HIGHLIGHT, 3.0) } else { (class_color(it.class), (it.diameter * self.zoom * 0.5).clamp(1.5, 6.0)) };
-            // The legs in this line-up, not those through a room or another line-up.
-            for points in it.stretches_in_lineup(&prj.layout, ei) {
-                let pts: Vec<Pos2> = points.iter().map(|q| plate([q[0] - pos[ei][0], q[1] - pos[ei][1], q[2]])).collect();
-                painter.add(Shape::line(pts, Stroke::new(width, color.gamma_multiply(0.8))));
+        let add = ui.button(tr("Add control point")).on_hover_text(tr("Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything"));
+        if add.clicked() {
+            self.status = match routing3d::add_control(prj, &an.routing, &menu.key, menu.at) {
+                Ok(n) => tr_fmt!("Control point {} added: drag it to route {} again", n + 1, menu.key),
+                Err(e) => e,
+            };
+            ui.close();
+        }
+        if let Some(n) = menu.handle {
+            if ui.button(tr("Remove control point")).clicked() {
+                if let Err(e) = routing3d::remove_control(prj, &menu.key, Some(n)) {
+                    self.status = e;
+                }
+                ui.close();
             }
         }
+        let any = prj.layout.controls.iter().any(|c| c.key == menu.key);
+        if ui.add_enabled(any, egui::Button::new(tr("Remove all control points"))).clicked() {
+            let _ = routing3d::remove_control(prj, &menu.key, None);
+            ui.close();
+        }
+        ui.separator();
+    }
+
+    /// Ends moving a control point: it goes where it was dropped, the route is searched
+    /// through it again.
+    pub(super) fn drop_control(&mut self, prj: &mut Project) {
+        let Some(d) = self.control_drag.take() else { return };
+        self.status = match routing3d::move_control(prj, &d.key, d.index, d.at) {
+            Ok(()) => tr_fmt!("Control point {} of {} moved", d.index + 1, d.key),
+            Err(e) => e,
+        };
     }
 
     /// Selects a cable or tube: the properties show it, the status its length.
@@ -443,17 +680,18 @@ impl PanelUi {
         self.selection.clear();
     }
 
-    /// The cables and tubes drawn over the plate of enclosure `ei` within `tol` of the
-    /// plate point `q` (from their outline), nearest first (indices into the routing).
+    /// The cables and tubes (on the faces of a room also the wires) drawn on the face
+    /// shown of enclosure `ei` within `tol` of the face point `q` (from their outline),
+    /// nearest first (indices into the routing).
     pub(super) fn cables_at(&self, prj: &Project, an: &Analysis, ei: usize, q: P, tol: f32) -> Vec<usize> {
         let pos = panel::positions(&prj.layout);
-        let plate = |v: &[f32; 3]| p(v[0] - pos[ei][0] - PLATE_MARGIN, v[1] - pos[ei][1] - PLATE_MARGIN);
+        let plate = |v: &[f32; 3]| face_xy(prj, &pos, ei, self.face, *v);
         let mut near: Vec<(usize, f32)> = an
             .routing
             .items
             .iter()
             .enumerate()
-            .filter(|(_, it)| it.kind != RouteKind::Wire && it.enclosures.contains(&ei))
+            .filter(|(_, it)| self.drawn_2d(it) && it.enclosures.contains(&ei))
             .filter_map(|(i, it)| {
                 let d = it.stretches_in_lineup(&prj.layout, ei).into_iter().map(|pts| panel::route_distance(&pts.iter().map(plate).collect::<Vec<P>>(), q)).fold(f32::INFINITY, f32::min);
                 let d = d - it.diameter / 2.0;
@@ -462,6 +700,15 @@ impl PanelUi {
             .collect();
         near.sort_by(|a, b| a.1.total_cmp(&b.1).then(a.0.cmp(&b.0)));
         near.into_iter().map(|(i, _)| i).collect()
+    }
+
+    /// The point of the route `key` (layout coordinates) drawn nearest to the face point
+    /// `q` of enclosure `ei` on the face shown.
+    pub(super) fn route_point_2d(&self, prj: &Project, an: &Analysis, ei: usize, key: &str, q: P) -> Option<[f32; 3]> {
+        let pos = panel::positions(&prj.layout);
+        let it = an.routing.item(key)?;
+        let segments = it.stretches_in_lineup(&prj.layout, ei).into_iter().flat_map(|pts| pts.windows(2)).map(|s| ((), s[0], s[1]));
+        nearest_on(segments, |_, v| Some(face_xy(prj, &pos, ei, self.face, v)), q).map(|n| n.0)
     }
 
     /// Lines of the 3D routing in view coordinates (`to_view`: layout to view
@@ -781,6 +1028,7 @@ impl PanelUi {
                 self.selected_route = None;
             }
         });
+        control_summary(ui, prj, an, it);
         ui.separator();
         ui.label(RichText::new(tr("Connected devices")).strong());
         let mut select = None;

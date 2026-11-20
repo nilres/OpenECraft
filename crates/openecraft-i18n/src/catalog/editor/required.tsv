@@ -121,6 +121,7 @@ Active	Aktiv	Active	Activa
 Actuators on the door	Bedienteile in der Tür	Organes de commande sur la porte	Actuadores en la puerta
 Add a command	Befehl hinzufügen	Ajouter une commande	Añadir un comando
 Add a target language to translate the project texts.	Fügen Sie eine Zielsprache hinzu, um die Projekttexte zu übersetzen.	Ajoutez une langue cible pour traduire les textes du projet.	Añada un idioma de destino para traducir los textos del proyecto.
+Add control point	Stützpunkt hinzufügen	Ajouter un point de passage	Añadir punto de paso
 Add default property	Standardeigenschaft hinzufügen	Ajouter une propriété par défaut	Añadir propiedad predeterminada
 Add filter	Filter hinzufügen	Ajouter un filtre	Añadir filtro
 Add folder…	Ordner hinzufügen…	Ajouter un dossier…	Añadir carpeta…
@@ -545,6 +546,9 @@ Consecutive addresses from the start byte, in schematic order	Aufeinanderfolgend
 Contact image below coils	Kontaktspiegel unter Spulen	Image de contacts sous les bobines	Imagen de contactos bajo las bobinas
 Content	Inhalt	Contenu	Contenido
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Inhalt einer inaktiven Option ist ausgeblendet: Er wird nicht gezeichnet, ausgewertet, berichtet oder exportiert.	Le contenu d'une option inactive est masqué : il n'est ni dessiné, ni évalué, ni listé dans les rapports, ni exporté.	El contenido de una opción inactiva está oculto: no se dibuja, evalúa, informa ni exporta.
+Control point {} added: drag it to route {} again	Stützpunkt {} hinzugefügt: ziehen, um {} neu zu verlegen	Point de passage {} ajouté : faites-le glisser pour reposer {}	Punto de paso {} añadido: arrástrelo para volver a tender {}
+Control point {} of {} moved	Stützpunkt {} von {} verschoben	Point de passage {} de {} déplacé	Punto de paso {} de {} movido
+Control points: {}	Stützpunkte: {}	Points de passage : {}	Puntos de paso: {}
 Coordinate reference system	Koordinatenreferenzsystem	Système de coordonnées de référence	Sistema de referencia de coordenadas
 Copies	Kopien	Copies	Copias
 Copies function texts between both representations where one is empty	Kopiert Funktionstexte zwischen beiden Darstellungen, wo eine leer ist	Copie les textes de fonction entre les deux représentations lorsque l'une est vide	Copia los textos de función entre ambas representaciones cuando una está vacía
@@ -1236,6 +1240,7 @@ Layout checks	Aufbauprüfungen	Contrôles d'implantation	Comprobaciones de dispo
 Layout properties	Layout-Eigenschaften	Propriétés de l'implantation	Propiedades del montaje
 Layout space	Layoutbereich	Espace de montage	Espacio de montaje
 Layout spaces	Layoutbereiche	Espaces de montage	Espacios de montaje
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Die Verlegung durch einen Punkt hier führen: ziehen, um die Leitung, das Kabel oder den Schlauch neu zu verlegen, mit seinem Biegeradius und frei von allem	Faire passer le tracé par un point ici : faites-le glisser pour reposer le fil, le câble ou le tube, en gardant son rayon de courbure et libre de tout	Llevar el recorrido por un punto aquí: arrástrelo para volver a tender el hilo, cable o tubo, manteniendo su radio de curvatura y libre de todo
 Leave out the ceilings of the rooms and the roofs in the 3D view	Die Decken der Räume und die Dächer in der 3D-Ansicht weglassen	Masquer les plafonds des salles et les toits dans la vue 3D	Omitir los techos de las salas y las cubiertas en la vista 3D
 Leave out the ceilings of the rooms in the 3D view	In der 3D-Ansicht die Decken der Räume weglassen	Dans la vue 3D, omettre les plafonds des salles	En la vista 3D, omitir los techos de las salas
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	In der 3D-Ansicht die Deckel aller Kabelkanäle weglassen: die Verbindungen darin werden sichtbar	Dans la vue 3D, omettre les couvercles de toutes les goulottes : les fils qu'elles contiennent sont visibles	En la vista 3D, omitir las tapas de todas las canaletas: se ven los cables que contienen
@@ -1557,6 +1562,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nicht geänder
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Noch nicht angeschlossen: kein Betriebsmittel, kein Kabel. Das Schutzorgan seines Stromkreises wählen.	Pas encore raccordé : aucun appareil, aucun câble. Choisissez l'appareil de protection de son circuit.	Aún no conectado: ningún equipo, ningún cable. Elija el dispositivo de protección de su circuito.
 Not found: {}	Nicht gefunden: {}	Introuvable : {}	No encontrado: {}
 Not in the project parts – synchronize in parts management	Nicht in den Projektartikeln – in der Artikelverwaltung synchronisieren	Absent des articles du projet – synchroniser dans la gestion des articles	No está en los artículos del proyecto – sincroniza en la gestión de artículos
+Not led through its control points: see the messages	Nicht durch seine Stützpunkte geführt: siehe Meldungen	Ne passe pas par ses points de passage : voir les messages	No pasa por sus puntos de paso: vea los mensajes
 Not on a page	Nicht auf einer Seite	Pas sur une page	No está en una página
 Not on a page: shows it in its pane	Nicht auf einer Seite: zeigt es in seinem Bereich	Pas sur une page : l'affiche dans son volet	No está en una página: lo muestra en su panel
 Not on a wire	Nicht auf einer Verbindung	Pas sur un fil	No está sobre un cable
@@ -1943,6 +1949,8 @@ Releases all locks; the project stays open as a local copy	Gibt alle Sperren fre
 Releasing…	Freigeben…	Libération…	Liberando…
 Reload	Neu laden	Recharger	Recargar
 Remembering this sign-in is not available on this device.	Das Speichern dieser Anmeldung ist auf diesem Gerät nicht verfügbar.	L'enregistrement de cette connexion n'est pas disponible sur cet appareil.	No se puede guardar esta sesión en este dispositivo.
+Remove all control points	Alle Stützpunkte entfernen	Supprimer tous les points de passage	Eliminar todos los puntos de paso
+Remove control point	Stützpunkt entfernen	Supprimer le point de passage	Eliminar punto de paso
 Remove from cable	Aus Kabel entfernen	Retirer du câble	Quitar del cable
 Remove from harness	Aus Kabelbaum entfernen	Retirer du faisceau	Quitar del mazo
 Remove from the group	Aus der Gruppe entfernen	Retirer du groupe	Quitar del grupo
@@ -2047,6 +2055,7 @@ Right click a message in the Messages pane to change its level.	Rechtsklick auf 
 Right click for more	Rechtsklick für mehr	Clic droit pour plus	Clic derecho para más
 Right edges	Rechte Kanten	Bords droits	Bordes derechos
 Right neighbour	Rechter Nachbar	Voisine de droite	Vecino derecho
+Right-click the route to add a control point, then drag it	Rechtsklick auf die Verlegung fügt einen Stützpunkt hinzu, dann ziehen	Clic droit sur le tracé pour ajouter un point de passage, puis faites-le glisser	Clic derecho en el recorrido para añadir un punto de paso y luego arrástrelo
 Rights	Rechte	Droits	Derechos
 Risers	Steigungen	Contremarches	Contrahuellas
 Rod holder	Stangenhalter	Support de tige	Soporte de punta

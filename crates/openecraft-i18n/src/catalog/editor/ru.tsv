@@ -82,6 +82,7 @@ Active	Активна
 Actuators on the door	Органы управления на двери
 Add a command	Добавить команду
 Add a target language to translate the project texts.	Добавьте целевой язык, чтобы переводить тексты проекта.
+Add control point	Добавить опорную точку
 Add filter	Добавить фильтр
 Add folder…	Добавить папку…
 Add group	Добавить группу
@@ -428,6 +429,9 @@ Consecutive addresses from the start byte, in schematic order	Последова
 Contact image below coils	Зеркало контактов под катушками
 Content	Содержимое
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Содержимое неактивной опции скрыто: оно не отображается, не обрабатывается, не включается в отчёты и не экспортируется.
+Control point {} added: drag it to route {} again	Опорная точка {} добавлена: перетащите её, чтобы заново проложить {}
+Control point {} of {} moved	Опорная точка {} для {} перемещена
+Control points: {}	Опорные точки: {}
 Coordinate reference system	Система координат
 Copies	Копии
 Copies function texts between both representations where one is empty	Копирует тексты функций между обоими представлениями, если одно из них пусто
@@ -1032,6 +1036,7 @@ Layout checks	Проверки компоновки
 Layout properties	Свойства компоновки
 Layout space	Монтажное пространство
 Layout spaces	Монтажные пространства
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Провести трассу через точку здесь: перетащите её, чтобы заново проложить провод, кабель или трубку с сохранением радиуса изгиба и в стороне от всего
 Leave out the ceilings of the rooms and the roofs in the 3D view	Скрыть потолки помещений и крыши в 3D-виде
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	В 3D-виде не показывать крышки всех кабельных каналов: провода в них становятся видны
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Не показывать модули фотоэлектрических полей в 3D-виде: видны рейки, кровельные крюки, опоры, заземление и кабели
@@ -1318,6 +1323,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Не изме�
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ещё не подключено: нет устройства, нет кабеля. Выберите защитное устройство его цепи.
 Not found: {}	Не найдено: {}
 Not in the project parts – synchronize in parts management	Нет в изделиях проекта – синхронизируйте в управлении изделиями
+Not led through its control points: see the messages	Не проходит через свои опорные точки: см. сообщения
 Not on a wire	Не на проводе
 Not placed	Не размещено
 Not saved yet	Ещё не сохранено
@@ -1655,6 +1661,8 @@ Released pages keep their name.	Выпущенные листы сохраняю
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Выпущенные ревизии, базовые версии, комментарии, пометки, согласования и запросы на изменение оригинала. Без них копия начинается как новый проект.
 Releases all locks; the project stays open as a local copy	Снимает все блокировки; проект остаётся открытым как локальная копия
 Releasing…	Снятие блокировки…
+Remove all control points	Удалить все опорные точки
+Remove control point	Удалить опорную точку
 Remove from cable	Удалить из кабеля
 Remove from harness	Удалить из жгута
 Remove from the group	Удалить из группы
@@ -1751,6 +1759,7 @@ Right button	Правая кнопка
 Right click for more	Щёлкните правой кнопкой для других действий
 Right edges	По правому краю
 Right neighbour	Сосед справа
+Right-click the route to add a control point, then drag it	Щёлкните трассу правой кнопкой, чтобы добавить опорную точку, затем перетащите её
 Rights	Права
 Risers	Подъёмы
 Rod holder	Держатель стержня

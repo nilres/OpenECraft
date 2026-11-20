@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Lisää sopivan kokoisen kaapeliläpiviennin jokaiselle kotelosta lähtevälle kaapelille, joka ei löydä vapaata läpivientiä: kattoon huoneessa olevalle laitteelle, pohjaan kentälle tai seinällä riippuvalle kotelolle
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Lisää kaapelin läpivientiaukon oikeaan naapuriin: pyöreät aukot vastakkain molemmissa sivuseinissä; kotelojen väliset johdot kulkevat sen läpi
 Adds a configurator rule: insert a page macro when the condition holds	Lisää konfiguraattorin säännön: lisää sivumakro, kun ehto täyttyy
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Lisää ohjauspisteen johdon, kaapelin tai putken reittiin kohtaan, jossa se kulkee lähimpänä annettua pistettä: reitti kulkee ohjauspisteidensä kautta, säilyttää taivutussäteensä ja pysyy vapaana kaikesta
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Lisää reittiverkon solmun (haaroitus, läpivienti, kohta jossa saavutetaan kotelo tai laite)
 Adds a planned device to a segment or changes it	Lisää suunnitellun laitteen segmenttiin tai muuttaa sitä
 Adds a project option or changes its description and condition	Lisää projektivaihtoehdon tai muuttaa sen kuvausta ja ehtoa
@@ -358,6 +359,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Säilytä kotelointiluokka: lämmönsiirrin tai jäähdytyslaite suodatinpuhaltimien sijaan
 Key figures of the project and a list of its device tags	Projektin tunnusluvut ja luettelo sen laitetunnuksista
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projektin tunnusluvut: sivut, symbolit, johdot, laitteet, osat, kaapelit ja tarkistusten tulokset
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Reititetyn kohteen avain: kaapelin tunnus, putken hose:mistä|mihin, johdon mistä|mihin
 Key, e.g. user.coupling_relay	Avain, esim. user.coupling_relay
 Key, e.g. user.customer_code	Avain, esim. user.customer_code
 Keys of the routes, comma separated (all if missing)	Reittien avaimet pilkuin erotettuina (kaikki, jos puuttuu)
@@ -471,6 +473,7 @@ Mirror the symbol	Peilaa symboli
 Mounting height above the floor in mm (default: that of the part)	Asennuskorkeus lattiasta mm (oletus: osan oma)
 Mounting plate size as width and height; empty object restores the centred plate	Asennuslevyn koko leveytenä ja korkeutena; tyhjä objekti palauttaa keskitetyn levyn
 Mounting size must contain a positive width and height	Asennuskoon on sisällettävä positiivinen leveys ja korkeus
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Siirtää johdon, kaapelin tai putken reitin ohjauspistettä; reititys ilmoittaa virheestä, jos reittiä ei voi ohjata sen kautta
 Moves an air-termination rod, changes its height, renames or removes it	Siirtää ukkosenjohdatintankoa, muuttaa sen korkeutta, nimeää sen uudelleen tai poistaa sen
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Siirtää johdon yhtä päätä: se irtoaa siitä, mihin se on liitetty, ja liittyy siihen, mihin se osuu; johto pysyy suorakulmaisena
 Moves symbols, wires and texts; connected wire ends follow	Siirtää symboleja, johtoja ja tekstejä; liitettyjen johtojen päät seuraavat
@@ -508,6 +511,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Ei väyläjärjestelmää {}
 No connection point {} on this page	Tällä sivulla ei ole liitäntäpistettä {}
 No connection symbol with id {}	Ei liitossymbolia tunnuksella {}
+No control point {}	Ei ohjauspistettä {}
 No copper bar {}	Kuparikiskoa {} ei ole
 No device description {}	Ei laitekuvausta {}
 No device group {}	Ei laiteryhmää {}
@@ -560,6 +564,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Kaapelin johdinten mä�
 Number of equal bars	Samanlaisten kiskojen määrä
 Number of indexed values (0 = a single value)	Indeksoitujen arvojen määrä (0 = yksi arvo)
 Number of rows	Rivien määrä
+Number of the control point along the route, from 1	Ohjauspisteen numero reitin varrella, alkaen 1:stä
+Number of the control point along the route, from 1 (all if missing)	Ohjauspisteen numero reitin varrella, alkaen 1:stä (kaikki, jos puuttuu)
 Numbers the pages with a start value and step; released pages keep their name	Numeroi sivut alkuarvolla ja askeleella; vapautetut sivut säilyttävät nimensä
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Numeroi riman riviliittimet 1 … n riman järjestyksessä; muut kuin numeeriset nimitykset, kuten PE, säilyvät
 Numbers the wires by the numbering scheme of the project	Numeroi johdot projektin numerointimallin mukaan
@@ -714,6 +720,7 @@ Remove the entry of upstream and downstream	Poista arvojen upstream ja downstrea
 Remove the profile	Poista profiili
 Remove the scheme from the project	Poista skeema projektista
 Remove unused definitions (default: false)	Poista käyttämättömät määritykset (oletus: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Poistaa johdon, kaapelin tai putken reitin ohjauspisteen tai kaikki
 Removes a copper bar	Poistaa kuparikiskon
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Poistaa solmun (osuuksineen ja sijoituksineen), osuuden, sijoituksen, ääriviivan, potentiaalintasausjohtimen tai tarvikkeen
 Removes a planned device from a segment	Poistaa suunnitellun laitteen segmentistä
@@ -1025,8 +1032,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Työalue x-suunnassa, mm
 Working area in y, mm	Työalue y-suunnassa, mm
 Wrap width in mm (0: no wrapping)	Rivitysleveys mm (0: ei rivitystä)
+X of the point in mm from the left of the enclosure	Pisteen X millimetreinä kotelon vasemmasta reunasta
 X position in mm	X-sijainti millimetreinä
+Y of the point in mm from the top of the enclosure	Pisteen Y millimetreinä kotelon yläreunasta
 Y position in mm (downwards)	Y-sijainti millimetreinä (alaspäin)
+Z of the point in mm from the rear wall of the enclosure	Pisteen Z millimetreinä kotelon takaseinästä
 any, wires, cables or tubes	any, wires, cables tai tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left tai right; hylkää käsin sijoitetut tekstit
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip tai adhesive

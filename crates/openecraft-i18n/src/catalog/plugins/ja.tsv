@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	盤から出て空いているグランドが見つからないケーブルごとに、そのサイズのケーブルグランドを追加します：室内の機器には天井面、フィールドまたは壁掛けの盤には底面
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	右隣へのケーブル貫通口を追加します: 両側板に向かい合う円形の切り欠き。エンクロージャー間の電線はここを通ります
 Adds a configurator rule: insert a page macro when the condition holds	コンフィギュレータールールを追加します: 条件が満たされたときにページマクロを挿入
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	電線、ケーブル、チューブのルートが指定した点に最も近く通る位置に経由点を追加します: ルートは経由点を通り、曲げ半径を保ち、何にも触れません
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	フィールドルートネットワークのノード (分岐点、貫通部、エンクロージャーまたはデバイスへの到達点) を追加します
 Adds a planned device to a segment or changes it	セグメントに計画済みデバイスを追加または変更します
 Adds a project option or changes its description and condition	プロジェクトオプションを追加するか、その説明と条件を変更します
@@ -358,6 +359,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	保護等級を維持: フィルターファンの代わりに熱交換器またはクーラー
 Key figures of the project and a list of its device tags	プロジェクトの主要指標とデバイスタグの一覧
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	プロジェクトの主要指標: ページ、シンボル、電線、デバイス、部品、ケーブル、チェック結果
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	配線済み項目のキー: ケーブルの記号、チューブは hose:始点|終点、電線は 始点|終点
 Key, e.g. user.coupling_relay	キー (例: user.coupling_relay)
 Key, e.g. user.customer_code	キー (例: user.customer_code)
 Keys of the routes, comma separated (all if missing)	ルートのキー (カンマ区切り、省略時はすべて)
@@ -471,6 +473,7 @@ Mirror the symbol	シンボルを反転
 Mounting height above the floor in mm (default: that of the part)	床からの取付高さ mm（既定：部品の値）
 Mounting plate size as width and height; empty object restores the centred plate	取付板のサイズ（幅と高さ）。空のオブジェクトで中央の取付板に戻します
 Mounting size must contain a positive width and height	取付サイズには正の幅と高さが必要です
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	電線、ケーブル、チューブのルートの経由点を移動します: ルートがそこを通せない場合、配線はエラーを報告します
 Moves an air-termination rod, changes its height, renames or removes it	突針を移動し、高さを変更し、名前を変更または削除します
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	電線の一方の端を移動します。端は接続先から離れ、接触したものに接続されます。電線は直角のままです
 Moves symbols, wires and texts; connected wire ends follow	シンボル、電線、テキストを移動します。接続された電線端が追従します
@@ -508,6 +511,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	バスシステム {} はありません
 No connection point {} on this page	このページに接続ポイント {} はありません
 No connection symbol with id {}	id {} の接続シンボルはありません
+No control point {}	経由点 {} はありません
 No copper bar {}	銅バー {} がありません
 No device description {}	デバイス記述 {} はありません
 No device group {}	デバイスグループ {} はありません
@@ -560,6 +564,8 @@ Number of cores of the cable (default: 3, three-phase 5)	ケーブルの心線�
 Number of equal bars	同一バーの数
 Number of indexed values (0 = a single value)	インデックス付きの値の数 (0 = 単一値)
 Number of rows	行数
+Number of the control point along the route, from 1	ルートに沿った経由点の番号 (1 から)
+Number of the control point along the route, from 1 (all if missing)	ルートに沿った経由点の番号 (1 から、省略時はすべて)
 Numbers the pages with a start value and step; released pages keep their name	開始値と増分でページに番号を付けます。リリース済みのページは名前を維持します
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	端子台の端子に端子台の順序で 1 … n の番号を付けます。PE などの数字以外の名称はそのまま残ります
 Numbers the wires by the numbering scheme of the project	プロジェクトの番号付けスキームで電線に番号を付けます
@@ -714,6 +720,7 @@ Remove the entry of upstream and downstream	upstream と downstream のエント
 Remove the profile	プロファイルを削除
 Remove the scheme from the project	スキームをプロジェクトから削除
 Remove unused definitions (default: false)	未使用の定義を削除する (既定: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	電線、ケーブル、チューブのルートの経由点を 1 つまたはすべて削除します
 Removes a copper bar	銅バーを削除します
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	ノード (区間と配置を含む)、区間、配置、輪郭、ボンディング導体、または付属品を削除します
 Removes a planned device from a segment	計画済みデバイスをセグメントから削除します
@@ -1025,8 +1032,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	X 方向の加工範囲 (mm)
 Working area in y, mm	Y 方向の加工範囲 (mm)
 Wrap width in mm (0: no wrapping)	折り返し幅 (mm) (0: 折り返しなし)
+X of the point in mm from the left of the enclosure	エンクロージャー左端からの点の X (mm)
 X position in mm	X 位置 (mm)
+Y of the point in mm from the top of the enclosure	エンクロージャー上端からの点の Y (mm)
 Y position in mm (downwards)	Y 位置 (mm、下向き)
+Z of the point in mm from the rear wall of the enclosure	エンクロージャー背面壁からの点の Z (mm)
 any, wires, cables or tubes	any、wires、cables、または tubes
 auto, above, below, left or right; drops the texts placed by hand	auto、above、below、left または right。手動で配置したテキストを破棄します
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto、tapped、through、rivet_nut、stud、clip、または adhesive

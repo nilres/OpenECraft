@@ -22,6 +22,7 @@ fn item(key: &str, class: Class, diameter: f32, points: Vec<V3>) -> RoutedItem {
         status: Status::Routed,
         wire: None,
         laying: crate::routing3d::Laying::Surface,
+        controls: Vec::new(),
     }
 }
 

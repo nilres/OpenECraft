@@ -82,6 +82,7 @@ Active	激活
 Actuators on the door	柜门上的操作元件
 Add a command	添加命令
 Add a target language to translate the project texts.	添加目标语言以翻译项目文本。
+Add control point	添加控制点
 Add filter	添加筛选
 Add folder…	添加文件夹…
 Add group	添加组
@@ -426,6 +427,9 @@ Consecutive addresses from the start byte, in schematic order	从起始字节开
 Contact image below coils	线圈下方的触点映像
 Content	内容
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	未激活选项的内容将被隐藏：不会被绘制、评估、生成报表或导出。
+Control point {} added: drag it to route {} again	已添加控制点 {}：拖动它以重新布线 {}
+Control point {} of {} moved	已移动控制点 {}（{}）
+Control points: {}	控制点：{}
 Coordinate reference system	坐标参考系
 Copies	副本数
 Copies function texts between both representations where one is empty	在两种表示之间复制功能文本（仅当一方为空时）
@@ -1022,6 +1026,7 @@ Layout checks	布局检查
 Layout properties	布局属性
 Layout space	布局空间
 Layout spaces	布局空间
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	使布线经过此处的一个点：拖动它以重新布线导线、电缆或管子，保持其弯曲半径并避开一切
 Leave out the ceilings of the rooms and the roofs in the 3D view	在三维视图中省略房间顶棚和屋顶
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	在 3D 视图中省略所有线槽的盖板：可以看到其中的导线
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	在 3D 视图中隐藏光伏阵列的组件：可看到导轨、屋顶挂钩、支架底座、接地和电缆
@@ -1303,6 +1308,7 @@ Not changed: {}. Your version is kept in the Project server pane.	未更改：{}
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	尚未连接：没有设备，没有电缆。请选择其回路的保护设备。
 Not found: {}	未找到：{}
 Not in the project parts – synchronize in parts management	不在项目部件中 – 请在部件管理中同步
+Not led through its control points: see the messages	未经过其控制点：请查看消息
 Not on a wire	不在导线上
 Not placed	未放置
 Not saved yet	尚未保存
@@ -1635,6 +1641,8 @@ Released pages keep their name.	已发布页保留其名称。
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	原项目的已发布修订、基线、批注、标记、批准和变更请求。不复制它们时，副本作为新项目开始。
 Releases all locks; the project stays open as a local copy	释放所有锁定；项目作为本地副本保持打开
 Releasing…	正在释放…
+Remove all control points	删除所有控制点
+Remove control point	删除控制点
 Remove from cable	从电缆中移除
 Remove from harness	从线束中移除
 Remove from the group	从组中移除
@@ -1731,6 +1739,7 @@ Right button	右键
 Right click for more	右键单击查看更多
 Right edges	右边缘
 Right neighbour	右侧相邻机柜
+Right-click the route to add a control point, then drag it	右键单击布线以添加控制点，然后拖动它
 Rights	权限
 Risers	踏步数
 Rod holder	接闪杆支架

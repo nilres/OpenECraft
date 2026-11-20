@@ -82,6 +82,7 @@ Active	Activă
 Actuators on the door	Elemente de acționare pe ușă
 Add a command	Adăugare comandă
 Add a target language to translate the project texts.	Adăugați o limbă țintă pentru a traduce textele proiectului.
+Add control point	Adăugare punct de trecere
 Add filter	Adăugare filtru
 Add folder…	Adăugare folder…
 Add group	Adăugare grup
@@ -429,6 +430,9 @@ Consecutive addresses from the start byte, in schematic order	Adrese consecutive
 Contact image below coils	Imaginea contactelor sub bobine
 Content	Conținut
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Conținutul unei opțiuni inactive este ascuns: nu este desenat, evaluat, raportat sau exportat.
+Control point {} added: drag it to route {} again	Punctul de trecere {} a fost adăugat: trageți-l pentru a poza din nou {}
+Control point {} of {} moved	Punctul de trecere {} al {} a fost mutat
+Control points: {}	Puncte de trecere: {}
 Coordinate reference system	Sistem de coordonate de referință
 Copies	Copii
 Copies function texts between both representations where one is empty	Copiază textele de funcție între cele două reprezentări acolo unde una este goală
@@ -1033,6 +1037,7 @@ Layout checks	Verificări de amplasare
 Layout properties	Proprietățile amplasării
 Layout space	Spațiu de montaj
 Layout spaces	Spații de montaj
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Conduceți traseul printr-un punct de aici: trageți-l pentru a poza din nou conductorul, cablul sau tubul, păstrând raza de curbură și liber de orice
 Leave out the ceilings of the rooms and the roofs in the 3D view	Omiteți tavanele încăperilor și acoperișurile în vederea 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	În vizualizarea 3D omite capacele tuturor canalelor de cabluri: firele din ele se văd
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Omite modulele câmpurilor PV în vizualizarea 3D: se văd șinele, cârligele de acoperiș, suporturile, împământarea și cablarea
@@ -1319,6 +1324,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nemodificat: {
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Încă neconectat: niciun aparat, niciun cablu. Alegeți dispozitivul de protecție al circuitului său.
 Not found: {}	Negăsit: {}
 Not in the project parts – synchronize in parts management	Nu se află în articolele proiectului – sincronizați în gestionarea articolelor
+Not led through its control points: see the messages	Nu trece prin punctele sale de trecere: vedeți mesajele
 Not on a wire	Nu se află pe un conductor
 Not placed	Neplasat
 Not saved yet	Încă nesalvat
@@ -1656,6 +1662,8 @@ Released pages keep their name.	Paginile aprobate își păstrează numele.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Reviziile aprobate, versiunile de referință, comentariile, marcajele, aprobările și cererile de modificare ale originalului. Fără ele, copia începe ca proiect nou.
 Releases all locks; the project stays open as a local copy	Eliberează toate blocările; proiectul rămâne deschis ca copie locală
 Releasing…	Se eliberează…
+Remove all control points	Eliminare toate punctele de trecere
+Remove control point	Eliminare punct de trecere
 Remove from cable	Eliminare din cablu
 Remove from harness	Eliminare din cablaj
 Remove from the group	Eliminare din grup
@@ -1752,6 +1760,7 @@ Right button	Butonul drept
 Right click for more	Clic dreapta pentru mai multe
 Right edges	Marginile din dreapta
 Right neighbour	Vecin din dreapta
+Right-click the route to add a control point, then drag it	Faceți clic dreapta pe traseu pentru a adăuga un punct de trecere, apoi trageți-l
 Rights	Drepturi
 Risers	Contratrepte
 Rod holder	Suport de tijă

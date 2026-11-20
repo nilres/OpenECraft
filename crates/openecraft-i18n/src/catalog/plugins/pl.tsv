@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Dodaje dławnicę odpowiedniego rozmiaru dla każdego kabla, który wychodzi z obudowy i nie znajduje wolnej dławnicy: w dachu dla urządzenia w pomieszczeniu, w dnie dla pola lub obudowy wiszącej na ścianie
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Dodaje przepust kablowy do prawego sąsiada: okrągłe wycięcia naprzeciw siebie w obu ścianach bocznych; przewody między obudowami przechodzą przez niego
 Adds a configurator rule: insert a page macro when the condition holds	Dodaje regułę konfiguratora: wstaw makro strony, gdy warunek jest spełniony
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Dodaje punkt pośredni do trasy przewodu, kabla lub węża tam, gdzie przebiega ona najbliżej podanego punktu: trasa przechodzi przez punkty pośrednie, zachowuje promień gięcia i omija wszystko
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Dodaje węzeł sieci tras (rozgałęzienie, przepust, miejsce dojścia do obudowy lub urządzenia)
 Adds a planned device to a segment or changes it	Dodaje zaplanowane urządzenie do segmentu lub je zmienia
 Adds a project option or changes its description and condition	Dodaje opcję projektu lub zmienia jej opis i warunek
@@ -358,6 +359,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Zachowaj stopień ochrony: wymiennik ciepła lub chłodziarka zamiast wentylatorów z filtrem
 Key figures of the project and a list of its device tags	Wskaźniki projektu i lista jego oznaczeń urządzeń
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Wskaźniki projektu: strony, symbole, przewody, urządzenia, artykuły, kable i wyniki kontroli
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Klucz poprowadzonego elementu: oznaczenie kabla, hose:od|do węża, od|do przewodu
 Key, e.g. user.coupling_relay	Klucz, np. user.coupling_relay
 Key, e.g. user.customer_code	Klucz, np. user.customer_code
 Keys of the routes, comma separated (all if missing)	Klucze tras, oddzielone przecinkami (wszystkie, jeśli nie podano)
@@ -471,6 +473,7 @@ Mirror the symbol	Odbij symbol
 Mounting height above the floor in mm (default: that of the part)	Wysokość montażu nad podłogą w mm (domyślnie: ta z artykułu)
 Mounting plate size as width and height; empty object restores the centred plate	Rozmiar płyty montażowej jako szerokość i wysokość; pusty obiekt przywraca wyśrodkowaną płytę
 Mounting size must contain a positive width and height	Rozmiar montażowy musi zawierać dodatnią szerokość i wysokość
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Przesuwa punkt pośredni trasy przewodu, kabla lub węża; prowadzenie zgłasza błąd, gdy trasa nie może przez niego przejść
 Moves an air-termination rod, changes its height, renames or removes it	Przesuwa iglicę odgromową, zmienia jej wysokość, nazwę lub ją usuwa
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Przesuwa jeden koniec przewodu: odłącza się od tego, do czego był podłączony, i łączy z tym, co napotka; przewód pozostaje prostokątny
 Moves symbols, wires and texts; connected wire ends follow	Przesuwa symbole, przewody i teksty; podłączone końce przewodów podążają za nimi
@@ -508,6 +511,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Brak systemu magistrali {}
 No connection point {} on this page	Brak punktu połączenia {} na tej stronie
 No connection symbol with id {}	Brak symbolu połączenia o id {}
+No control point {}	Brak punktu pośredniego {}
 No copper bar {}	Brak szyny miedzianej {}
 No device description {}	Brak opisu urządzenia {}
 No device group {}	Brak grupy urządzeń {}
@@ -560,6 +564,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Liczba żył kabla (dom
 Number of equal bars	Liczba jednakowych szyn
 Number of indexed values (0 = a single value)	Liczba wartości indeksowanych (0 = pojedyncza wartość)
 Number of rows	Liczba wierszy
+Number of the control point along the route, from 1	Numer punktu pośredniego wzdłuż trasy, od 1
+Number of the control point along the route, from 1 (all if missing)	Numer punktu pośredniego wzdłuż trasy, od 1 (wszystkie, jeśli brak)
 Numbers the pages with a start value and step; released pages keep their name	Numeruje strony od wartości początkowej z krokiem; wydane strony zachowują swoją nazwę
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Numeruje zaciski listwy 1 … n w kolejności listwy; oznaczenia nienumeryczne, takie jak PE, pozostają
 Numbers the wires by the numbering scheme of the project	Numeruje przewody według schematu numeracji projektu
@@ -714,6 +720,7 @@ Remove the entry of upstream and downstream	Usuń wpis dla upstream i downstream
 Remove the profile	Usuń profil
 Remove the scheme from the project	Usuń schemat z projektu
 Remove unused definitions (default: false)	Usuń nieużywane definicje (domyślnie: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Usuwa punkt pośredni trasy przewodu, kabla lub węża albo wszystkie
 Removes a copper bar	Usuwa szynę miedzianą
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Usuwa węzeł (z jego odcinkami i umieszczeniami), odcinek, umieszczenie, obrys, przewód wyrównawczy lub akcesorium
 Removes a planned device from a segment	Usuwa zaplanowane urządzenie z segmentu
@@ -1025,8 +1032,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Obszar roboczy w x, mm
 Working area in y, mm	Obszar roboczy w y, mm
 Wrap width in mm (0: no wrapping)	Szerokość zawijania w mm (0: bez zawijania)
+X of the point in mm from the left of the enclosure	X punktu w mm od lewej strony obudowy
 X position in mm	Położenie X w mm
+Y of the point in mm from the top of the enclosure	Y punktu w mm od góry obudowy
 Y position in mm (downwards)	Położenie Y w mm (w dół)
+Z of the point in mm from the rear wall of the enclosure	Z punktu w mm od tylnej ściany obudowy
 any, wires, cables or tubes	any, wires, cables lub tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left lub right; odrzuca teksty umieszczone ręcznie
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip lub adhesive

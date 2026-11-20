@@ -274,6 +274,8 @@ Contractor	Aannemer
 Control	Besturing
 Control cabinet	Schakelkast
 Control mode	Regelmodus
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Steunpunt {} van {} {} ligt in iets of buiten de behuizing: het wordt gelegd zonder zijn steunpunten. Verplaats het steunpunt naar vrije ruimte.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Steunpunt {} van {} {} ligt buiten zijn weg: in geen kast of ruimte waardoor het wordt gelegd. Verplaats het steunpunt naar zijn weg.
 Control transformer	Stuurtransformator
 Control transformer (NFPA)	Stuurtransformator (NFPA)
 Control transformer T (GOST)	Stuurtransformator T (GOST)
@@ -956,6 +958,7 @@ No page or page item with id {}	Geen pagina of pagina-element met de ID {}
 No page with id {}	Geen pagina met de ID {}
 No plugs	Geen connectoren
 No report block {}	Geen rapportblok {}
+No routed wire, cable or tube {}	Geen gelegde draad, kabel of buis {}
 No segment template named {}	Geen segmentsjabloon met de naam {}
 No subproject {}	Geen deelproject {}
 No such object: {}	Object bestaat niet: {}
@@ -1368,6 +1371,7 @@ Room floor	Vloer van de ruimte
 Room {} stands outside the plot boundary	Ruimte {} staat buiten de perceelgrens
 Rotation	Draaiing
 Round punch	Ronde stempel
+Route {} has no control point {}	Route {} heeft geen steunpunt {}
 Routing list (3D)	Routeringslijst (3D)
 Row {} not found	Rij {} niet gevonden
 Row {}: no job	Rij {}: geen opdracht
@@ -1992,12 +1996,16 @@ yellow	geel
 {} unused device data records removed	{} ongebruikte apparaatgegevensrecords verwijderd
 {} wiring marks belong to wires that no longer exist	{} bedradingsmarkeringen horen bij draden die niet meer bestaan
 {} without device tag on page {}	{} zonder apparaataanduiding op pagina {}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} kan niet via zijn steunpunt {} worden gerouteerd: geen weg die de halve dikte vrij houdt van alles en buigt met zijn radius van {} mm. Het wordt gelegd zonder zijn steunpunten; verplaats het steunpunt.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} kan niet worden gerouteerd: elke kabelwartel van {} is bezet door een andere kabel. Voeg er een kabelwartel voor toe.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} kan niet worden gerouteerd: geen weg die de halve dikte vrij houdt van alles en buigt met zijn radius van {} mm. Verplaats de uiteinden of maak ruimte.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} komt binnen via de bodem: geen kabelwartel in de behuizing
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} komt binnen via het dak: geen kabelwartel op dak, zijkanten of achterwand
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} is gelegd tot de kabelinvoeren van zijn behuizingen: ze staan niet in een gemeenschappelijke ruimte, de weg ertussen hoort niet bij de lay-out
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} loopt via zijn steunpunten in zichzelf. Het wordt gelegd zonder zijn steunpunten; verplaats ze.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} loopt naar de deur: het kan niet via zijn steunpunten worden gelegd. Verwijder ze.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: bochten krapper dan de buigradius ({} mm)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: zijn steunpunten laten geen ruimte om met zijn radius van {} mm te buigen. Het wordt gelegd zonder zijn steunpunten; zet ze verder uit elkaar.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: verbonden in het eenlijnschema, maar niet in het schema
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-tracker {}: zijn strings verschillen in spanning ({} V en {} V)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-tracker {}: de strings leveren {} A, meer dan de {} A die hij gebruikt (het vermogen wordt begrensd)

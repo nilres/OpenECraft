@@ -82,6 +82,7 @@ Active	활성
 Actuators on the door	도어의 조작부
 Add a command	명령 추가
 Add a target language to translate the project texts.	프로젝트 텍스트를 번역하려면 대상 언어를 추가하세요.
+Add control point	경유점 추가
 Add filter	필터 추가
 Add folder…	폴더 추가…
 Add group	그룹 추가
@@ -424,6 +425,9 @@ Consecutive addresses from the start byte, in schematic order	시작 바이트�
 Contact image below coils	코일 아래 접점 이미지
 Content	내용
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	비활성 옵션의 내용은 숨겨집니다. 그려지지 않고, 평가, 보고 또는 내보내기에서 제외됩니다.
+Control point {} added: drag it to route {} again	경유점 {} 추가됨: 끌어서 {}을(를) 다시 배선하십시오
+Control point {} of {} moved	경유점 {}({}) 이동됨
+Control points: {}	경유점: {}
 Coordinate reference system	좌표 참조계
 Copies	복사본
 Copies function texts between both representations where one is empty	한쪽이 비어 있는 경우 두 표현 간에 기능 텍스트를 복사합니다
@@ -1019,6 +1023,7 @@ Layout checks	레이아웃 검사
 Layout properties	레이아웃 속성
 Layout space	레이아웃 공간
 Layout spaces	레이아웃 공간
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	여기의 점을 지나도록 경로를 지정: 끌어서 굽힘 반경을 유지하고 모든 것을 피해 전선, 케이블 또는 튜브를 다시 배선하십시오
 Leave out the ceilings of the rooms and the roofs in the 3D view	3D 보기에서 방의 천장과 지붕 생략
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	3D 보기에서 모든 케이블 덕트의 덮개를 생략합니다: 안의 전선이 보입니다
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	3D 보기에서 태양광 어레이의 모듈을 숨깁니다: 레일, 지붕 후크, 가대, 접지 및 케이블이 보입니다
@@ -1300,6 +1305,7 @@ Not changed: {}. Your version is kept in the Project server pane.	변경되지 �
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	아직 연결되지 않음: 장치도 케이블도 없습니다. 회로의 보호 장치를 선택하십시오.
 Not found: {}	찾을 수 없음: {}
 Not in the project parts – synchronize in parts management	프로젝트 부품에 없음 – 부품 관리에서 동기화하세요
+Not led through its control points: see the messages	경유점을 지나지 않음: 메시지를 확인하십시오
 Not on a wire	전선 위에 없음
 Not placed	배치 안 됨
 Not saved yet	아직 저장되지 않음
@@ -1631,6 +1637,8 @@ Released pages keep their name.	릴리스된 페이지는 이름을 유지합니
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	원본의 릴리스된 개정, 기준선, 주석, 마크업, 승인 및 변경 요청입니다. 이것이 없으면 사본은 새 프로젝트로 시작합니다.
 Releases all locks; the project stays open as a local copy	모든 잠금을 해제합니다. 프로젝트는 로컬 복사본으로 열린 상태로 유지됩니다
 Releasing…	잠금 해제 중…
+Remove all control points	모든 경유점 제거
+Remove control point	경유점 제거
 Remove from cable	케이블에서 제거
 Remove from harness	하네스에서 제거
 Remove from the group	그룹에서 제거
@@ -1727,6 +1735,7 @@ Right button	오른쪽 단추
 Right click for more	마우스 오른쪽 단추를 클릭하여 추가 옵션
 Right edges	오른쪽 가장자리
 Right neighbour	오른쪽 인접 외함
+Right-click the route to add a control point, then drag it	경로를 마우스 오른쪽 단추로 클릭하여 경유점을 추가한 다음 끄십시오
 Rights	권한
 Risers	단 수
 Rod holder	피뢰침 지지대

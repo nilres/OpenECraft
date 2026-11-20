@@ -82,6 +82,7 @@ Active	Actief
 Actuators on the door	Bedieningselementen in de deur
 Add a command	Een opdracht toevoegen
 Add a target language to translate the project texts.	Voeg een doeltaal toe om de projectteksten te vertalen.
+Add control point	Steunpunt toevoegen
 Add filter	Filter toevoegen
 Add folder…	Map toevoegen…
 Add group	Groep toevoegen
@@ -429,6 +430,9 @@ Consecutive addresses from the start byte, in schematic order	Opeenvolgende adre
 Contact image below coils	Contactspiegel onder spoelen
 Content	Inhoud
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Inhoud van een inactieve optie is verborgen: deze wordt niet getekend, geëvalueerd, gerapporteerd of geëxporteerd.
+Control point {} added: drag it to route {} again	Steunpunt {} toegevoegd: sleep het om {} opnieuw te routeren
+Control point {} of {} moved	Steunpunt {} van {} verplaatst
+Control points: {}	Steunpunten: {}
 Coordinate reference system	Coördinatenreferentiesysteem
 Copies	Kopieën
 Copies function texts between both representations where one is empty	Kopieert functieteksten tussen beide weergaven waar één leeg is
@@ -1033,6 +1037,7 @@ Layout checks	Lay-outcontroles
 Layout properties	Lay-outeigenschappen
 Layout space	Montageruimte
 Layout spaces	Montageruimten
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	De route hier door een punt leiden: sleep het om de draad, kabel of buis opnieuw te routeren, met zijn buigradius en vrij van alles
 Leave out the ceilings of the rooms and the roofs in the 3D view	De plafonds van de ruimtes en de daken weglaten in de 3D-weergave
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	In de 3D-weergave de deksels van alle kabelgoten weglaten: de draden erin zijn zichtbaar
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	De modules van de PV-velden in de 3D-weergave weglaten: rails, dakhaken, montagevoeten, aarding en bekabeling worden zichtbaar
@@ -1319,6 +1324,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Niet gewijzigd
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Nog niet aangesloten: geen apparaat, geen kabel. Kies het beveiligingsapparaat van zijn groep.
 Not found: {}	Niet gevonden: {}
 Not in the project parts – synchronize in parts management	Niet in de projectartikelen – synchroniseer in het artikelbeheer
+Not led through its control points: see the messages	Niet via zijn steunpunten gelegd: zie de meldingen
 Not on a wire	Niet op een draad
 Not placed	Niet geplaatst
 Not saved yet	Nog niet opgeslagen
@@ -1656,6 +1662,8 @@ Released pages keep their name.	Vrijgegeven pagina's behouden hun naam.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Vrijgegeven revisies, baselines, opmerkingen, markeringen, goedkeuringen en wijzigingsverzoeken van het origineel. Zonder deze begint de kopie als een nieuw project.
 Releases all locks; the project stays open as a local copy	Geeft alle vergrendelingen vrij; het project blijft geopend als lokale kopie
 Releasing…	Vrijgeven…
+Remove all control points	Alle steunpunten verwijderen
+Remove control point	Steunpunt verwijderen
 Remove from cable	Uit kabel verwijderen
 Remove from harness	Uit kabelboom verwijderen
 Remove from the group	Uit de groep verwijderen
@@ -1752,6 +1760,7 @@ Right button	Rechterknop
 Right click for more	Klik met de rechtermuisknop voor meer
 Right edges	Rechterranden
 Right neighbour	Rechterbuur
+Right-click the route to add a control point, then drag it	Klik met rechts op de route om een steunpunt toe te voegen en sleep het dan
 Rights	Rechten
 Risers	Optreden
 Rod holder	Staafhouder

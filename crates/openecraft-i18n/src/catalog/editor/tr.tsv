@@ -82,6 +82,7 @@ Active	Etkin
 Actuators on the door	Kapıdaki kumanda elemanları
 Add a command	Komut ekle
 Add a target language to translate the project texts.	Proje metinlerini çevirmek için bir hedef dil ekleyin.
+Add control point	Ara nokta ekle
 Add filter	Filtre ekle
 Add folder…	Klasör ekle…
 Add group	Grup ekle
@@ -429,6 +430,9 @@ Consecutive addresses from the start byte, in schematic order	Başlangıç bayt�
 Contact image below coils	Bobinlerin altında kontak görüntüsü
 Content	İçerik
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Etkin olmayan bir seçeneğin içeriği gizlidir: çizilmez, değerlendirilmez, raporlanmaz veya dışa aktarılmaz.
+Control point {} added: drag it to route {} again	Ara nokta {} eklendi: {} öğesini yeniden döşemek için sürükleyin
+Control point {} of {} moved	Ara nokta {} ({}) taşındı
+Control points: {}	Ara noktalar: {}
 Coordinate reference system	Koordinat referans sistemi
 Copies	Kopya sayısı
 Copies function texts between both representations where one is empty	Birinin boş olduğu yerlerde fonksiyon metinlerini iki gösterim arasında kopyalar
@@ -1033,6 +1037,7 @@ Layout checks	Yerleşim kontrolleri
 Layout properties	Yerleşim özellikleri
 Layout space	Montaj alanı
 Layout spaces	Montaj alanları
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Güzergâhı buradaki bir noktadan geçir: teli, kabloyu veya tüpü bükme yarıçapını koruyarak ve her şeyden uzak yeniden döşemek için sürükleyin
 Leave out the ceilings of the rooms and the roofs in the 3D view	3D görünümde odaların tavanlarını ve çatıları gösterme
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	3B görünümde tüm kablo kanallarının kapaklarını gösterme: içlerindeki teller görünür
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	3D görünümde PV dizilerinin modüllerini gösterme: raylar, çatı kancaları, montaj ayakları, topraklama ve kablolama görünür
@@ -1319,6 +1324,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Değiştirilme
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Henüz bağlı değil: cihaz yok, kablo yok. Devresinin koruma cihazını seçin.
 Not found: {}	Bulunamadı: {}
 Not in the project parts – synchronize in parts management	Proje parçalarında yok – parça yönetiminde eşitleyin
+Not led through its control points: see the messages	Ara noktalarından geçmiyor: mesajlara bakın
 Not on a wire	Bir tel üzerinde değil
 Not placed	Yerleştirilmedi
 Not saved yet	Henüz kaydedilmedi
@@ -1656,6 +1662,8 @@ Released pages keep their name.	Yayımlanmış sayfalar adlarını korur.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Aslının yayımlanmış revizyonları, referans sürümleri, yorumları, işaretlemeleri, onayları ve değişiklik talepleri. Bunlar olmadan kopya yeni bir proje olarak başlar.
 Releases all locks; the project stays open as a local copy	Tüm kilitleri kaldırır; proje yerel kopya olarak açık kalır
 Releasing…	Kilit kaldırılıyor…
+Remove all control points	Tüm ara noktaları kaldır
+Remove control point	Ara noktayı kaldır
 Remove from cable	Kablodan çıkar
 Remove from harness	Kablo demetinden çıkar
 Remove from the group	Gruptan kaldır
@@ -1752,6 +1760,7 @@ Right button	Sağ düğme
 Right click for more	Daha fazlası için sağ tıklayın
 Right edges	Sağ kenarlar
 Right neighbour	Sağ komşu
+Right-click the route to add a control point, then drag it	Ara nokta eklemek için güzergâha sağ tıklayın, ardından sürükleyin
 Rights	Haklar
 Risers	Rıhtlar
 Rod holder	Çubuk tutucu

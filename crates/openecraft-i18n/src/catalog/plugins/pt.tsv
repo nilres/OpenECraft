@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Adiciona um prensa-cabo do seu tamanho para cada cabo que sai de um invólucro e não encontra prensa-cabo livre: no teto para um dispositivo na sala, no fundo para o campo ou um invólucro pendurado na parede
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Adiciona uma passagem de cabos para o vizinho à direita: recortes redondos frente a frente nas duas paredes laterais; os fios entre os gabinetes passam por ela
 Adds a configurator rule: insert a page macro when the condition holds	Adiciona uma regra do configurador: inserir uma macro de página quando a condição for atendida
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Adiciona um ponto de passagem à rota de um fio, cabo ou tubo onde ela passa mais perto do ponto dado: a rota passa pelos seus pontos de passagem, mantendo o seu raio de curvatura e livre de tudo
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Adiciona um nó da rede de rotas de campo (derivação, passagem, ponto onde um gabinete ou dispositivo é alcançado)
 Adds a planned device to a segment or changes it	Adiciona um dispositivo planejado a um segmento ou o altera
 Adds a project option or changes its description and condition	Adiciona uma opção de projeto ou altera sua descrição e condição
@@ -358,6 +359,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Manter o grau de proteção: trocador de calor ou unidade de resfriamento em vez de ventiladores com filtro
 Key figures of the project and a list of its device tags	Indicadores do projeto e uma lista de seus identificadores de dispositivo
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Indicadores do projeto: páginas, símbolos, fios, dispositivos, peças, cabos e resultados de verificação
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Chave do item roteado: a identificação do cabo, hose:de|para de um tubo, de|para de um fio
 Key, e.g. user.coupling_relay	Chave, por exemplo, user.coupling_relay
 Key, e.g. user.customer_code	Chave, por exemplo, user.customer_code
 Keys of the routes, comma separated (all if missing)	Chaves das rotas, separadas por vírgula (todas, se ausente)
@@ -471,6 +473,7 @@ Mirror the symbol	Espelhar o símbolo
 Mounting height above the floor in mm (default: that of the part)	Altura de montagem acima do piso em mm (padrão: a da peça)
 Mounting plate size as width and height; empty object restores the centred plate	Tamanho da placa de montagem como largura e altura; um objeto vazio restaura a placa centralizada
 Mounting size must contain a positive width and height	O tamanho de montagem deve conter largura e altura positivas
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Move um ponto de passagem da rota de um fio, cabo ou tubo; o roteamento informa um erro onde a rota não pode passar por ele
 Moves an air-termination rod, changes its height, renames or removes it	Move um captor tipo haste, altera a sua altura, renomeia-o ou remove-o
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Move uma extremidade de um fio: ela deixa aquilo a que está conectada e se conecta ao que encontra; o fio continua ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Move símbolos, fios e textos; as extremidades dos fios conectados acompanham
@@ -508,6 +511,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Nenhum sistema de barramento {}
 No connection point {} on this page	Nenhum ponto de conexão {} nesta página
 No connection symbol with id {}	Nenhum símbolo de conexão com id {}
+No control point {}	Nenhum ponto de passagem {}
 No copper bar {}	Nenhuma barra de cobre {}
 No device description {}	Nenhuma descrição de dispositivo {}
 No device group {}	Nenhum grupo de dispositivos {}
@@ -560,6 +564,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Número de veias do cab
 Number of equal bars	Número de barras iguais
 Number of indexed values (0 = a single value)	Número de valores indexados (0 = um único valor)
 Number of rows	Número de linhas
+Number of the control point along the route, from 1	Número do ponto de passagem ao longo da rota, a partir de 1
+Number of the control point along the route, from 1 (all if missing)	Número do ponto de passagem ao longo da rota, a partir de 1 (todos se omitido)
 Numbers the pages with a start value and step; released pages keep their name	Numera as páginas com um valor inicial e um passo; páginas liberadas mantêm seu nome
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Numera os bornes de uma régua de 1 … n na ordem da régua; designações não numéricas, como PE, permanecem
 Numbers the wires by the numbering scheme of the project	Numera os fios conforme o esquema de numeração do projeto
@@ -714,6 +720,7 @@ Remove the entry of upstream and downstream	Remover a entrada de upstream e down
 Remove the profile	Remover o perfil
 Remove the scheme from the project	Remover o esquema do projeto
 Remove unused definitions (default: false)	Remover definições não usadas (padrão: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Remove um ponto de passagem da rota de um fio, cabo ou tubo, ou todos
 Removes a copper bar	Remove uma barra de cobre
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Remove um nó (com seus trechos e posicionamentos), trecho, posicionamento, contorno, condutor de equipotencialização ou acessório
 Removes a planned device from a segment	Remove um dispositivo planejado de um segmento
@@ -1025,8 +1032,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Área de trabalho em x, mm
 Working area in y, mm	Área de trabalho em y, mm
 Wrap width in mm (0: no wrapping)	Largura de quebra em mm (0: sem quebra de linha)
+X of the point in mm from the left of the enclosure	X do ponto em mm a partir da esquerda do gabinete
 X position in mm	Posição X em mm
+Y of the point in mm from the top of the enclosure	Y do ponto em mm a partir do topo do gabinete
 Y position in mm (downwards)	Posição Y em mm (para baixo)
+Z of the point in mm from the rear wall of the enclosure	Z do ponto em mm a partir da parede traseira do gabinete
 any, wires, cables or tubes	any, wires, cables ou tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left ou right; descarta os textos posicionados manualmente
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip ou adhesive
