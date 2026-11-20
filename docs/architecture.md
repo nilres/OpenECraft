@@ -101,7 +101,7 @@ Layers, bottom up (a module may use its own layer and the layers below):
    `potentials`, `functions`, `properties`, `props`, `numbering` (device and page
    renumbering), `text` (free texts: lines,
    wrapping, rotation, path function texts).
-5. Feature logic and page editing: `ops`, `routing` (schematic wires: routes, wires that follow a move), `arrange` (align, distribute, multiple copy), `device_boxes` (freely drawn device boxes and their device connection points; `ops` uses it for new points), `panel`, `electrical`, `installation` (outlets, switches and lights in the rooms and the final circuits feeding them: cable lengths, voltage drops, spare protective devices), `fluid`, `plc`,
+5. Feature logic and page editing: `ops`, `routing` (schematic wires: routes, wires that follow a move), `arrange` (align, distribute, multiple copy), `device_boxes` (freely drawn device boxes and their device connection points; `ops` uses it for new points), `grips` (the grips of a selected shape, image, dimension, structure or device box: what dragging one changes), `panel`, `electrical`, `installation` (outlets, switches and lights in the rooms and the final circuits feeding them: cable lengths, voltage drops, spare protective devices), `fluid`, `plc`,
    `plc_hw`, `field`, `routing3d`, `strips`, `plugs`, `pinout` (connector faces, flat cables), `harness`, `marking`, `forms`,
    `inspection` (the inspection and test report: its data, visual inspection and
    signature, the circuits with their limits and results, the verdicts; shared projects

@@ -19,7 +19,8 @@ place contacts: they are assigned to it and numbered (13/14, 21/22, …).
 
 Power supplies, measuring instruments and control modules without a library symbol:
 *Insert › Device box* draws a dashed box of any size as a new device (`-A1`, with its
-function text and parts like any other device), *Insert › Device connection point*
+function text and parts like any other device; selected, it is resized at the grips of
+its corners and edges, the points on a moved edge go with it), *Insert › Device connection point*
 places its connections one click after the other. A point placed on the outline of a
 box belongs to the box's device, leads away from the edge it is on and is numbered on
 (1, 2, 3 …; `13` is followed by `14`); its designation (`L`, `N`, `PE`, `+24V`, …) is
@@ -60,8 +61,9 @@ changing a page structure can move its devices along. The device navigator group
 structure; the title block shows the full page name (`=A1+CAB1/3`).
 
 **Structure boxes** (*Insert › Structure box*) give an area of a page its own function,
-location (or installation site, product): draw a rectangle and set the aspects it
-overrides in the properties; empty aspects are inherited from the page or an enclosing
+location (or installation site, product): draw a rectangle (resized at the grips of
+its corners and edges when selected) and set the aspects it overrides in the
+properties; empty aspects are inherited from the page or an enclosing
 box, nested boxes resolve to the innermost. A device belongs to the box its main
 function's insertion point lies in: it gets the box's structure (`=SYS+FIELD-S1` on a
 page `=SYS+CAB1`), its tag on the page omits what the box shows, and its full tag is
@@ -168,6 +170,19 @@ Lines, rectangles, circles, ellipses, arcs, polylines and
 polygons (width, colour, dashed, filled), dimensions (aligned / horizontal / vertical,
 scale, unit), PNG / JPEG images (also in the PDF and SVG export). **Layers**
 (navigator › Layers): visible, locked, printed, colour; DXF / DWG export per layer.
+*Export…* and *Import…* of the Layers pane carry the layers with their settings to
+other projects as a settings scheme (the whole scheme carries them too).
+
+A selected item shows **grips** that change its size or shape while dragged, on the
+grid: the corners and edge middles of rectangles, ellipses, structure boxes and device
+boxes, the corners of images (the aspect ratio is kept), the ends and corner points of
+lines, polylines, polygons and dimensions, four points on a circle for its radius and
+both ends of an arc. The properties of a shape show its size: width and height of
+rectangles and ellipses, the length of lines and the radius of circles can be typed,
+the size and outline length of the others is shown. The **scale** of a page (page
+properties, `set_page scale`, 1 : 50 is 50) is the real length per millimetre on the
+page: sizes of shapes are shown in it and new dimensions measure in it, for simple
+equipment layouts and floor plans drawn to scale.
 
 ## Wire crossings and T-connections
 

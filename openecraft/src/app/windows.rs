@@ -534,6 +534,18 @@ impl App {
                         }
                     });
                 });
+                if pg.kind.is_drawing() {
+                    ui.horizontal(|ui| {
+                        ui.label(tr("Scale"));
+                        egui::ComboBox::from_id_salt("pgscale").selected_text(openecraft_core::graphics::scale_text(pg.scale)).show_ui(ui, |ui| {
+                            for s in openecraft_core::graphics::SCALES {
+                                ui.selectable_value(&mut pg.scale, s, openecraft_core::graphics::scale_text(s));
+                            }
+                        });
+                        ui.add(egui::DragValue::new(&mut pg.scale).range(0.001..=100_000.0).speed(0.5).prefix("1 : "))
+                            .on_hover_text(tr("Real length per millimetre on the page: the sizes of shapes are shown in it, new dimensions measure in it"));
+                    });
+                }
                 if pg.kind == PageKind::Document {
                     ui.horizontal(|ui| {
                         match &pg.document {

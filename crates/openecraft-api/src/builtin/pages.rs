@@ -46,6 +46,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("description", Kind::Str, tr_const!("Description")),
             optional("frame", Kind::Str, tr_const!("Plot frame (list_frames); empty = the project default")),
             optional("title_block", Kind::Str, tr_const!("Title block (list_title_blocks); empty = the project default")),
+            optional("scale", Kind::Num, tr_const!("Drawing scale: real length per millimetre on the page, e.g. 50 for 1 : 50 (sizes of shapes, new dimensions)")),
             optional("function", Kind::Str, tr_const!("Function aspect (=) of the page; the devices on the page move along")),
             optional("installation", Kind::Str, tr_const!("Installation site aspect (++) of the page; the devices on the page move along")),
             optional("location", Kind::Str, tr_const!("Location aspect (+) of the page; the devices on the page move along")),
@@ -292,6 +293,9 @@ fn set_page(prj: &mut Project, a: &Args) -> Result<Value, String> {
             return Err(tr_fmt!("No title block named {}", t));
         }
         prj.pages[i].title_block = t.into();
+    }
+    if let Some(s) = num_in(a, "scale", 0.001, 100_000.0)? {
+        prj.pages[i].scale = s;
     }
     if Aspect::ALL.iter().any(|asp| a.str(asp.key()).is_some()) {
         let mut dt = Dt::of_page(&prj.pages[i]);

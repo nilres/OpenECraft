@@ -20,6 +20,9 @@ pub struct PageTemplate {
     pub title_block: String,
     #[serde(skip_serializing_if = "String::is_empty")]
     pub description: String,
+    /// Drawing scale of the page (real length per millimetre).
+    #[serde(skip_serializing_if = "super::is_unit")]
+    pub scale: f32,
     pub structure: Dt,
     /// Initial editable page properties, including fields of imported frames.
     #[serde(skip_serializing_if = "BTreeMap::is_empty")]

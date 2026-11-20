@@ -5,6 +5,19 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Resize on the page:** a selected rectangle, ellipse, image, structure box or device
+  box shows grips at its corners and edges, dragged on the grid to change its size
+  (images keep their aspect ratio, the connection points on a moved edge of a device box
+  go with it); lines, polylines, polygons and dimensions show grips at their points,
+  circles at their radius, arcs at both ends
+  ([schematic graphics](docs/features/schematic.md#schematic-graphics), #217).
+- **Sizes and a drawing scale:** the properties of a shape show its width and height,
+  length or radius, typed to change it; a page has a scale (*Page properties › Scale*,
+  `set_page scale`, 1 : 50), in which the sizes of its shapes are shown and its new
+  dimensions measure.
+- **Layers for other projects:** the Layers pane exports the layers with their settings
+  (visible, locked, printed, colour) and imports them into another project; settings
+  schemes (*Export settings…*, `export_settings`) carry them too.
 - **The installation in the schematic:** a socket outlet, switch, light or heating
   element put into a room of the floor plan for a protective device goes into the
   schematic: a device with its part on the installation page of the circuit, drawn

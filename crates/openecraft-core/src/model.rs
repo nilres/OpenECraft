@@ -697,6 +697,10 @@ pub struct Page {
     /// Plot frame (paper format, columns, rows); empty = the project's default.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub frame: String,
+    /// Drawing scale: real length per millimetre on the page (50 for 1 : 50). The
+    /// sizes of shapes are shown in it, new dimensions measure in it.
+    #[serde(skip_serializing_if = "is_unit")]
+    pub scale: f32,
     /// File of a document page.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub document: Option<document::Document>,
@@ -763,6 +767,7 @@ impl Page {
             generated: false,
             title_block: String::new(),
             frame: String::new(),
+            scale: 1.0,
             document: None,
             kind,
             report: None,

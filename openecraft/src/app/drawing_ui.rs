@@ -74,6 +74,54 @@ fn layer_combo(ui: &mut egui::Ui, salt: &str, layer: &mut String, names: &[Strin
     });
 }
 
+/// Sizes of a shape at the drawing scale `scale` of its page: width and height of
+/// rectangles and ellipses, the length of lines and the radius of circles can be
+/// changed; the outline length of the others is shown.
+fn shape_size_rows(ui: &mut egui::Ui, s: &mut Shape, scale: f32) {
+    use openecraft_core::geom::{p, R};
+    let size = |ui: &mut egui::Ui, v: &mut f32| ui.add(egui::DragValue::new(v).range(0.01..=1_000_000.0).speed(0.5 * scale).suffix(" mm")).changed();
+    let (extent, length) = graphics::shape_size(s);
+    match s.kind {
+        ShapeKind::Rect | ShapeKind::Ellipse => {
+            let r = R::from_points(s.a, s.b);
+            let (mut w, mut h) = (r.width() * scale, r.height() * scale);
+            ui.label(tr("Width"));
+            let cw = size(ui, &mut w);
+            ui.end_row();
+            ui.label(tr("Height"));
+            let ch = size(ui, &mut h);
+            ui.end_row();
+            if cw || ch {
+                (s.a, s.b) = (r.min, r.min + p(w / scale, h / scale));
+            }
+        }
+        ShapeKind::Line => {
+            let mut l = length * scale;
+            ui.label(tr("Length"));
+            if size(ui, &mut l) && length > 0.0 {
+                s.b = s.a + (s.b - s.a) * (l / scale / length);
+            }
+            ui.end_row();
+        }
+        ShapeKind::Circle => {
+            let mut r = s.a.dist(s.b) * scale;
+            ui.label(tr("Radius"));
+            if size(ui, &mut r) {
+                s.b = s.a + p(r / scale, 0.0);
+            }
+            ui.end_row();
+        }
+        ShapeKind::Arc | ShapeKind::Polyline | ShapeKind::Polygon => {
+            ui.label(tr("Size"));
+            ui.label(format!("{:.1} × {:.1} mm", extent.x * scale, extent.y * scale));
+            ui.end_row();
+            ui.label(tr("Length"));
+            ui.label(format!("{:.1} mm", length * scale));
+            ui.end_row();
+        }
+    }
+}
+
 /// Own colour of an item (none: the layer's or the normal colour).
 pub(super) fn color_field(ui: &mut egui::Ui, color: &mut Option<[u8; 3]>) {
     ui.horizontal(|ui| {
@@ -323,6 +371,7 @@ impl App {
         }
         let names = graphics::layer_names(&self.session.prj);
         let cables: Vec<(String, Vec<String>)> = self.session.prj.cables.iter().map(|c| (c.tag.clone(), c.core_list())).collect();
+        let scale = graphics::page_scale(&self.session.prj.pages[pi]);
         let pg = &mut self.session.prj.pages[pi];
         if let Some(t) = pg.texts.iter_mut().find(|t| t.id == id) {
             text_properties(ui, t, &names);
@@ -352,14 +401,7 @@ impl App {
                     ui.add(egui::DragValue::new(&mut s.sweep).range(-360.0..=360.0).suffix(" °"));
                     ui.end_row();
                 }
-                if s.kind == ShapeKind::Circle {
-                    ui.label(tr("Radius"));
-                    let mut r = s.a.dist(s.b);
-                    if ui.add(egui::DragValue::new(&mut r).range(0.5..=500.0).speed(0.5).suffix(" mm")).changed() {
-                        s.b = s.a + openecraft_core::geom::p(r, 0.0);
-                    }
-                    ui.end_row();
-                }
+                shape_size_rows(ui, s, scale);
                 ui.label(tr("Layer"));
                 layer_combo(ui, "slayer", &mut s.layer, &names);
                 ui.end_row();
@@ -367,6 +409,9 @@ impl App {
             color_field(ui, &mut s.color);
             if matches!(s.kind, ShapeKind::Polyline | ShapeKind::Polygon) {
                 ui.weak(tr_fmt!("{} corner points", s.pts.len()));
+            }
+            if scale != 1.0 {
+                ui.weak(tr_fmt!("Sizes at the scale of the page, {}", graphics::scale_text(scale)));
             }
             return true;
         }
@@ -850,6 +895,13 @@ impl App {
                     n += 1;
                 }
                 self.session.prj.layers.push(Layer::new(&tr_fmt!("Layer {}", n)));
+            }
+            if icons::text_button(ui, Icon::FolderOpen, tr("Import…")).on_hover_text(tr("Takes over the layers of a settings scheme, e.g. exported from another project")).clicked() {
+                self.io.open(ui.ctx(), crate::io::Purpose::SettingsScheme);
+            }
+            if ui.add_enabled_ui(!self.session.prj.layers.is_empty(), |ui| icons::text_button(ui, Icon::Save, tr("Export…"))).inner.on_hover_text(tr("Saves the layers with their settings as a settings scheme for other projects")).clicked() {
+                let json = openecraft_core::settings_scheme::export_layers(&self.session.prj);
+                self.export(&ui.ctx().clone(), "layers.json".into(), (tr("Settings scheme (JSON)"), "json"), json);
             }
         });
         ui.add(egui::Label::new(RichText::new(tr("Layers of graphics, texts, dimensions and images")).weak()).wrap());
