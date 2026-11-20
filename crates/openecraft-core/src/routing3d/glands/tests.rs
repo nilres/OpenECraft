@@ -73,7 +73,8 @@ fn glands_by_the_size_of_the_cable() {
 #[test]
 fn a_full_face_sends_the_gland_to_the_next_and_a_cable_without_place_is_reported() {
     let mut prj = crate::sample::demo_project();
-    let fill = |prj: &mut Project, face: Face| while put_into(prj, 0, "GEN.GLAND-M63", face).is_some() {};
+    let part = gland_for(&prj, 10.0).unwrap();
+    let fill = |prj: &mut Project, face: Face| while put_into(prj, 0, &part, face).is_some() {};
     let need = [Need { cable: "-W9".into(), diameter: 10.0, room: false, below: false }];
     // The bottom full: into the roof.
     fill(&mut prj, Face::Bottom);
@@ -105,4 +106,32 @@ fn a_full_face_sends_the_gland_to_the_next_and_a_cable_without_place_is_reported
     assert_eq!(faces_for(&prj, 0, &room), [Face::Roof]);
     assert_eq!(faces_for(&prj, 0, &Need { below: true, ..room.clone() }), [Face::Bottom, Face::Roof]);
     assert_eq!(faces_for(&prj, 0, &need[0]), [Face::Bottom, Face::Roof]);
+}
+
+#[test]
+fn a_cabinet_against_a_wall_of_its_room_takes_no_rear_glands() {
+    let mut prj = crate::sample::example("electrical_room").unwrap();
+    let layout = &prj.layout;
+    let k = (0..layout.enclosures.len()).find(|&i| !layout.enclosures[i].is_room() && panel::room_of(layout, i).is_some() && panel::lineup_of(layout, i).first() == Some(&i)).unwrap();
+    let ri = panel::room_of(layout, k).unwrap();
+    let (lo, hi) = panel::bounds(&panel::outline(&layout.enclosures[ri]));
+    let room = Need { cable: "-W9".into(), diameter: 10.0, room: true, below: false };
+    let x = (lo[0] + hi[0]) / 2.0 - prj.layout.enclosures[k].width / 2.0;
+    prj.layout.enclosures[k].site = Some(panel::SitePlace { x, z: lo[1], angle: 0.0 });
+    assert!(!faces_for(&prj, k, &room).contains(&Face::Rear));
+    prj.layout.enclosures[k].site = Some(panel::SitePlace { x, z: lo[1] + 500.0, angle: 0.0 });
+    assert!(faces_for(&prj, k, &room).contains(&Face::Rear));
+}
+
+#[test]
+fn a_device_on_the_roof_of_the_room_is_above_a_hanging_cabinet() {
+    let mut prj = crate::sample::example("electrical_room").unwrap();
+    let ri = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let it = panel::new_accessory(&mut prj, "GEN.LAMP-CEILING-LED", Face::RoofTop, p(500.0, 500.0));
+    let mut it = it;
+    it.tag = "-X99".into();
+    it.kind = panel::ItemKind::Device;
+    it.y = 9000.0;
+    prj.layout.enclosures[ri].items.push(it);
+    assert_eq!(height_of(&prj, "-X99"), Some(prj.layout.enclosures[ri].height));
 }

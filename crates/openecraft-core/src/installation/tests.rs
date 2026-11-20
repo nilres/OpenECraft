@@ -608,7 +608,11 @@ fn a_two_way_switch_is_a_main_function() {
     let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == tag).unwrap();
     assert_eq!(s.sym, "co_man");
     assert_eq!(s.pins, ["L", "1", "2"]);
-    // Working alone, its spare traveller is left free on purpose: no open connection point.
+    // Working alone, its spare traveller is left free on purpose: no open connection point
+    // with a light on its output.
+    let q = inside(&prj, ri, 0.5, 0.5);
+    add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()).unwrap();
+    let s = prj.pages.iter().flat_map(|pg| &pg.symbols).find(|s| s.tag == tag).unwrap();
     assert_eq!(s.values.get(crate::netlist::UNUSED_PINS).map(|v| v.split_whitespace().count()), Some(1));
     let an = crate::reports::Analysis::checked(&prj);
     let mine: Vec<String> = an.issues.iter().filter(|i| i.severity != Severity::Info).map(|i| i.message()).filter(|m| m.contains(&tag)).collect();
@@ -797,4 +801,39 @@ fn loads_pass_a_junction_box_only_downstream() {
     // The light's cable carries no load of the socket; the box's feeder does.
     assert_ne!(drops.iter().find(|d| d.cable == to(&l)).unwrap().load, x);
     assert_eq!(drops.iter().find(|d| d.cable == to(&j)).unwrap().load, x);
+}
+
+#[test]
+fn a_third_two_way_switch_leaves_a_closed_pair_alone() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    assert_eq!(source_of(&prj, &b), a);
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    assert_eq!(source_of(&prj, &l), b);
+    // A third one starts a circuit of its own; with `from` the closed pair it is no
+    // switch joined by travellers either.
+    let c = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    assert_ne!(source_of(&prj, &c), b);
+    let opts = Options { from: Some(b.clone()), ..Default::default() };
+    let d = { let q = before_wall(&prj, ri, 0, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &opts) }.unwrap();
+    assert_eq!(source_of(&prj, &l), b);
+    let w = prj.cables.iter().find(|x| x.values.get("cable.target").is_some_and(|t| *t == d)).unwrap();
+    assert_eq!(w.core_list().len(), 3);
+    let mine = problems_of(&prj, &[&a, &b, &l]);
+    assert!(mine.is_empty(), "{mine:?}");
+}
+
+#[test]
+fn the_closing_two_way_switch_takes_only_the_lights() {
+    let (mut prj, ri) = room();
+    let f2 = f2(&prj);
+    let a = { let q = before_wall(&prj, ri, 2, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &Options::default()) }.unwrap();
+    let l = { let q = inside(&prj, ri, 0.5, 0.5); add_device(&mut prj, &f2, "GEN.LAMP-CEILING-LED", ri, q, &Options::default()) }.unwrap();
+    let from_a = Options { from: Some(a.clone()), ..Default::default() };
+    let s = { let q = before_wall(&prj, ri, 1, 200.0); add_device(&mut prj, &f2, "GEN.SOCKET-F-UP", ri, q, &from_a) }.unwrap();
+    let b = { let q = before_wall(&prj, ri, 3, 200.0); add_device(&mut prj, &f2, "GEN.SW-2WAY-UP", ri, q, &from_a) }.unwrap();
+    assert_eq!(source_of(&prj, &l), b);
+    assert_eq!(source_of(&prj, &s), a);
 }

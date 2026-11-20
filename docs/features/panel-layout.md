@@ -689,7 +689,9 @@ lengths of their cables are those of the 3D routing.
   one to the other; for more switching points intermediate switches
   (`GEN.SW-INTER-UP`) go between them, each `from` the switch before, drawn on its page
   (refused where that page is full). A light without `from` hangs on the last switch,
-  which also takes the lights placed on the switches before it. The cables between the
+  which also takes the lights placed on the switches before it; other devices fed from
+  them stay. A two-way switch after a closed pair (two two-way switches) starts a circuit
+  of its own, also with `from` one of the pair. The cables between the
   switches have four cores: the two travellers, and the neutral and protective
   conductor carried on to the lights. A two-way switch working alone has its spare
   traveller in *Unused connection points* (`function.unused_pins`): a connection point
@@ -957,8 +959,10 @@ the bottom. Where that face is full, the gland goes into the next face the cable
 leave through: the bottom or the roof, then the left and right sides and the rear
 (not a side against the next enclosure of the line-up, nor the sides of an enclosure
 less than 150 mm deep, whose wires would find no way to them; not the rear of one
-hanging on the wall, and its bottom for a cable into the room only towards a place
-below it, as the routing leaves it). A
+hanging on the wall or standing against a wall of its room, and its bottom for a cable
+into the room only towards a place below the cabinet's bottom with its plinth, as the
+routing leaves it: the device in the room or in a cabinet standing there, else the
+first wall penetration on the way to its room; a device on the roof is above). A
 cable that finds no free place on any of them gets none and is reported (by *Add the missing ones* in the status
 line, as `glands_missing` of a command and `missing` of `add_cable_glands`, each with
 the cabinet and why): make room or add a cable entry flange. A gland deleted by hand

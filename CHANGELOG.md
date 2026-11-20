@@ -42,7 +42,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   it). A two-way switch fed from another one makes a two-way circuit, with intermediate
   switches (`GEN.SW-INTER-UP`, symbol `co_inter`) between them for more switching
   points: the installation page joins their travellers, and a light without `from`
-  hangs on the last switch, which also takes the lights placed before it. The cables
+  hangs on the last switch, which also takes the lights placed before it (other devices
+  stay where they are fed from; a switch after a closed pair starts a circuit of its
+  own). The cables
   between the switches have four cores and carry the neutral and the protective
   conductor on to the lights; the next switch is drawn on the page of the one before.
   A blind switch is no two-way switch. The spare traveller of a two-way switch working
@@ -75,7 +77,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   the wall; where that face is full, in the next face the cable can leave through
   (bottom or roof, then the sides and the rear; not a side against the next cabinet of
   the line-up nor the sides of one less than 150 mm deep, not the rear of one hanging
-  on the wall, its bottom only for a place below it). A cable that finds no free place is
+  on the wall or standing against it, its bottom only for a place below it, measured as
+  the routing heads for it: in the room or in a cabinet there, or the wall penetration
+  to another room). A cable that finds no free place is
   reported with its cabinet and why (`glands_missing`, `missing`). *Add the missing
   ones* (`add_cable_glands`) adds them for all cables at once.
 - **Smaller rooms from floor plans on paper:** *Smallest room* (`min_room`) sets the

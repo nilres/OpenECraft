@@ -15,12 +15,14 @@ use crate::geom::p;
 use crate::model::Project;
 use openecraft_i18n::tr;
 use crate::netlist::{self, Netlist};
-use crate::panel::{self, Face};
+use crate::panel::{self, Face, SitePose, WallLink};
 use std::collections::BTreeMap;
 
 /// Side walls of enclosures shallower than this take no cable glands: the wires inside
 /// would find no way to them past the mounting plate, mm.
 const MIN_SIDE_DEPTH: f32 = 150.0;
+/// Room a cable needs behind the rear of a cabinet to leave through it, mm.
+const REAR_CLEARANCE: f32 = 60.0;
 
 /// A cable that needs a way into an enclosure: its diameter, whether it leaves into the
 /// room the enclosure stands in (only through its room sides, see
@@ -68,6 +70,7 @@ fn needed(prj: &Project) -> BTreeMap<usize, Vec<Need>> {
     let (nl, open) = (Netlist::build(prj, true), Netlist::build(prj, false));
     let conns = netlist::connections(prj, &nl, &open);
     let layout = &prj.layout;
+    let (poses, links) = (panel::site_poses(prj), panel::wall_links(prj));
     for c in &prj.cables {
         let cores: Vec<&netlist::Connection> = conns.iter().filter(|x| x.cable == c.tag).collect();
         let Some((a, b)) = cable_end_tags(prj, c, &cores) else { continue };
@@ -81,9 +84,9 @@ fn needed(prj: &Project) -> BTreeMap<usize, Vec<Need>> {
             }
             // A device placed elsewhere is reached through the room (where the cabinet
             // stands in one); one placed nowhere is in the field.
-            let room = other.is_some() && panel::room_of(layout, k).is_some();
-            let bottom = panel::lineup_of(layout, k).first().and_then(|&i| layout.enclosures[i].elevation).unwrap_or(0.0);
-            let below = height_of(prj, far).is_some_and(|h| h < bottom);
+            let ri = panel::room_of(layout, k).filter(|_| other.is_some());
+            let room = ri.is_some();
+            let below = ri.is_some_and(|ri| far_height(prj, &poses, &links, ri, far).is_some_and(|h| h < poses[k].at[1] - poses[ri].at[1]));
             need.entry(k).or_default().push(Need { cable: c.tag.clone(), diameter: cable_diameter(c), room, below });
         }
     }
@@ -93,16 +96,46 @@ fn needed(prj: &Project) -> BTreeMap<usize, Vec<Need>> {
     need
 }
 
-/// How high above the floor of its room device `tag` is placed (on the ceiling: the
-/// height of the room); `None` where it is in no room.
+/// How high above the floor of its room device `tag` is placed (on the ceiling or on
+/// the roof: the height of the room); `None` where it is in no room.
 fn height_of(prj: &Project, tag: &str) -> Option<f32> {
     let (ei, it) = panel::locate(prj, tag)?;
     let e = &prj.layout.enclosures[ei];
     e.is_room().then(|| match it.face {
-        Face::Roof => e.height,
+        Face::Roof | Face::RoofTop => e.height,
         Face::Bottom => 0.0,
         _ => e.height - (it.y + it.h / 2.0),
     })
+}
+
+/// How high above the floor of room `ri` the route of a cable to device `far` heads for
+/// there, as the routing leaves a cabinet ([`super::room::room_entry`]): the device in
+/// the room or in a cabinet standing there, else the first wall penetration on the way
+/// to its room; `None` where it is in no room or no way leads there.
+fn far_height(prj: &Project, poses: &[SitePose], links: &[WallLink], ri: usize, far: &str) -> Option<f32> {
+    let layout = &prj.layout;
+    let (fe, it) = panel::locate(prj, far)?;
+    let fr = if layout.enclosures[fe].is_room() { fe } else { panel::room_of(layout, fe)? };
+    let h = layout.enclosures[ri].height;
+    if fr != ri {
+        return super::room::room_chain(links, ri, fr)?.first().map(|l| h - l.a[1]);
+    }
+    if fe == ri {
+        return height_of(prj, far);
+    }
+    let (lo, hi) = panel::item_box(&layout.enclosures[fe], it);
+    let mid = [0, 1, 2].map(|i| (lo[i] + hi[i]) / 2.0);
+    Some(h - super::room::cabinet_in_room(prj, poses, ri, fe, mid)[1])
+}
+
+/// The rear of cabinet `k` standing in a room is free: a cable can leave it, it is not
+/// against a wall of the room.
+fn rear_free(prj: &Project, k: usize) -> bool {
+    let Some(ri) = panel::room_of(&prj.layout, k) else { return true };
+    let e = &prj.layout.enclosures[k];
+    let behind = panel::face_point(e, Face::Rear, [e.width / 2.0, e.height / 2.0, -REAR_CLEARANCE]);
+    let q = super::room::cabinet_in_room(prj, &panel::site_poses(prj), ri, k, behind);
+    panel::inside_outline(&panel::outline(&prj.layout.enclosures[ri]), [q[0], q[2]])
 }
 
 /// Cable `n` can leave enclosure `k` through `face`: a cable into the room only through
@@ -216,7 +249,8 @@ pub fn add_missing(prj: &mut Project) -> Glands {
 /// it: the bottom, then the roof), otherwise the bottom, then the roof; then the sides
 /// and the rear, where the cable can leave through them ([`can_leave`]). Not a side
 /// against the next enclosure of the line-up, nor the sides of an enclosure shallower
-/// than [`MIN_SIDE_DEPTH`], nor the rear of one hanging on the wall.
+/// than [`MIN_SIDE_DEPTH`], nor the rear of one hanging on the wall or standing against
+/// it.
 fn faces_for(prj: &Project, k: usize, n: &Need) -> Vec<Face> {
     let hangs = super::room::hangs(prj, k);
     let first = if n.room && !(hangs && n.below) { [Face::Roof, Face::Bottom] } else { [Face::Bottom, Face::Roof] };
@@ -226,7 +260,7 @@ fn faces_for(prj: &Project, k: usize, n: &Need) -> Vec<Face> {
     let side = |f: Face| match f {
         Face::Left => deep && !at.is_some_and(|i| i > 0),
         Face::Right => deep && !at.is_some_and(|i| i + 1 < lineup.len()),
-        Face::Rear => !hangs,
+        Face::Rear => !hangs && rear_free(prj, k),
         _ => true,
     };
     first.into_iter().chain([Face::Left, Face::Right, Face::Rear]).filter(|&f| side(f) && can_leave(prj, k, n, f)).collect()

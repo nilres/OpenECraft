@@ -1322,6 +1322,15 @@ fn chain_before(drawn: &[Drawn], from: &[String], tag: &str) -> Vec<String> {
     out
 }
 
+/// Switch `tag` of a two-way circuit still has travellers free for the next switch: it
+/// has none after it, and it is an intermediate switch or a two-way switch on its own
+/// (a second two-way switch closes the circuit).
+fn travellers_free(drawn: &[Drawn], from: &[String], tag: &str) -> bool {
+    let Some(d) = drawn.iter().find(|d| d.tag == tag && d.travel) else { return false };
+    let next = drawn.iter().zip(from).any(|(x, f)| x.travel && f == tag);
+    !next && (d.sym == INTERMEDIATE || chain_before(drawn, from, tag).len() == 1)
+}
+
 /// The kind of a device drawn on an installation page, by its symbol.
 fn drawn_kind(sym: &str) -> Kind {
     match sym {
@@ -1425,7 +1434,7 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Option
     };
     // A switch joined by travellers to the one it comes from goes onto that one's page.
     let travel = travel_of(def.key, find_part(prj, &part));
-    let joins = travel && everyone.iter().any(|d| d.tag == from && d.travel);
+    let joins = travel && travellers_free(&everyone, &from_all, &from);
     let last = *pages.last().unwrap_or(&first);
     let page = match pages.iter().copied().find(|&k| joins && drawn_on(prj, k).iter().any(|d| d.tag == from)) {
         Some(k) if page_columns(prj, k, n > 3) < drawn_on(prj, k).len() + 1 => return Err(tr_fmt!("The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page", from)),
@@ -1476,15 +1485,15 @@ pub fn into_schematic(prj: &mut Project, breaker: &str, item: u64, opts: &Option
     }
     let sized = opts.mm2.is_some() || opts.cable_type.is_some();
     // The closing two-way switch of a circuit takes the lights hung on the switches
-    // before it (whose outputs are travellers now).
+    // before it (whose outputs are travellers now); other devices fed from them stay.
     if joins && def.key == TWO_WAY {
         let chain = chain_before(&everyone, &from_all, &from);
-        let switches: Vec<&str> = everyone.iter().filter(|d| d.travel).map(|d| d.tag.as_str()).collect();
-        for d in drawn.iter_mut().filter(|d| chain.contains(&d.from) && !d.travel) {
+        let lights: Vec<&str> = everyone.iter().filter(|d| d.kind == Kind::Light).map(|d| d.tag.as_str()).collect();
+        for d in drawn.iter_mut().filter(|d| chain.contains(&d.from) && d.kind == Kind::Light) {
             d.from = tag.clone();
         }
         for x in prj.cables.iter_mut() {
-            let moves = x.values.get("cable.source").is_some_and(|s| chain.contains(s)) && x.values.get("cable.target").is_some_and(|t| !switches.contains(&t.as_str()));
+            let moves = x.values.get("cable.source").is_some_and(|s| chain.contains(s)) && x.values.get("cable.target").is_some_and(|t| lights.contains(&t.as_str()));
             if moves {
                 x.values.insert("cable.source".into(), tag.clone());
             }
@@ -1779,7 +1788,15 @@ fn default_source(prj: &Project, drawn: &[Drawn], from: &[String], breaker: &str
             return lights.last().map_or_else(|| sw.tag.clone(), |l| l.tag.clone());
         }
     }
-    cols.last().map_or_else(|| breaker.to_string(), |(d, _)| d.tag.clone())
+    // Not behind a closed two-way circuit: from where its first switch is fed.
+    match cols.last() {
+        Some((d, _)) if d.travel && !travellers_free(drawn, from, &d.tag) => {
+            let first = chain_before(drawn, from, &d.tag).pop().unwrap_or_default();
+            drawn.iter().position(|x| x.tag == first).map_or_else(|| breaker.to_string(), |i| from[i].clone())
+        }
+        Some((d, _)) => d.tag.clone(),
+        None => breaker.to_string(),
+    }
 }
 
 /// How many device columns fit on page `page` (`wide`: of a three-phase circuit).
