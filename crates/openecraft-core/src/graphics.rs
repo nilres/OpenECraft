@@ -212,6 +212,46 @@ pub fn map_shape(s: &mut Shape, f: impl Fn(P) -> P) {
     }
 }
 
+// ---------------------------------------------------------------- scale
+
+/// A drawing scale (real length per millimetre on the page) as it is written: `1 : 50`,
+/// `2 : 1` for enlargements.
+pub fn scale_text(scale: f32) -> String {
+    let n = |v: f32| {
+        let t = format!("{:.3}", v);
+        t.trim_end_matches('0').trim_end_matches('.').to_string()
+    };
+    match scale {
+        s if s.is_nan() || s <= 0.0 => "1 : 1".to_string(),
+        s if s < 1.0 => format!("{} : 1", n(1.0 / s)),
+        s => format!("1 : {}", n(s)),
+    }
+}
+
+/// Common drawing scales (real length per millimetre): enlargements 10 : 1 to 2 : 1,
+/// 1 : 1 and reductions to 1 : 1000.
+pub const SCALES: [f32; 15] = [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 25.0, 50.0, 100.0, 200.0, 250.0, 500.0, 1000.0];
+
+/// The drawing scale of a page; 1 for a value that is no scale.
+pub fn page_scale(page: &Page) -> f32 {
+    if page.scale.is_finite() && page.scale > 0.0 { page.scale } else { 1.0 }
+}
+
+/// Sizes of a shape in mm on the page: width and height of its outline, the length of
+/// lines and the length of the outline of polylines, polygons, circles and arcs.
+pub fn shape_size(s: &Shape) -> (P, f32) {
+    let r = shape_bounds(s);
+    let (pts, closed) = outline(s);
+    let mut len: f32 = pts.windows(2).map(|w| w[0].dist(w[1])).sum();
+    if closed && pts.len() > 2 {
+        len += pts[pts.len() - 1].dist(pts[0]);
+    }
+    if s.kind == ShapeKind::Circle {
+        len = 2.0 * std::f32::consts::PI * s.a.dist(s.b);
+    }
+    (p(r.width(), r.height()), len)
+}
+
 // ---------------------------------------------------------------- dimensions
 
 /// Measuring direction (unit vector).

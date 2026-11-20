@@ -22,6 +22,7 @@ use openecraft_core::symbols::{Anchor, Func, SymbolDef};
 use openecraft_core::device_boxes;
 use openecraft_core::netlist::junctions;
 use openecraft_core::structure::StructureBox;
+use openecraft_core::grips::{self, Grip};
 use openecraft_core::{cabledef, conndef, graphics, routing, snap_lines, structure_boxes};
 use egui::{pos2, vec2, Align2, Color32, FontId, Key, Painter, PointerButton, Pos2, Rect, Sense, Shape as EShape, Stroke, Vec2};
 use std::collections::{BTreeSet, HashMap, HashSet};
@@ -87,6 +88,17 @@ impl Tool {
     }
 }
 
+/// The pointer over a grip: the arrows of the edges it moves.
+fn grip_cursor(g: Grip) -> egui::CursorIcon {
+    match g {
+        Grip::Frame(0, _) => egui::CursorIcon::ResizeVertical,
+        Grip::Frame(_, 0) => egui::CursorIcon::ResizeHorizontal,
+        Grip::Frame(x, y) if x == y => egui::CursorIcon::ResizeNwSe,
+        Grip::Frame(..) => egui::CursorIcon::ResizeNeSw,
+        Grip::Point(_) | Grip::Radius(_) | Grip::ArcEnd => egui::CursorIcon::Crosshair,
+    }
+}
+
 /// Where the designation of pin `i` of a placed symbol is drawn.
 fn pin_place(prj: &Project, idx: &Index, page_i: usize, s: &SymbolInst, i: usize) -> Option<render::PinLabelPlace> {
     prj.symbol(&s.sym).and_then(|def| render::pin_label_places(prj, idx, page_i, &def, s).into_iter().find(|l| l.pin == i))
@@ -137,6 +149,9 @@ enum Drag {
     Box { start: Pos2 },
     /// `side`: side of a dragged connection point designation (symbol orientation).
     Prop { handle: PropHandle, start: P, orig: P, side: Option<LabelSide> },
+    /// A grip of the single selected item changes its size or shape; `last`: where
+    /// it was put last.
+    Grip { grab: grips::Grab, last: Option<P> },
 }
 
 struct SnapCache {
@@ -921,6 +936,23 @@ impl Editor {
         ends.map(|e| (e.2.dist(q), e)).filter(|(d, _)| *d <= tol).min_by(|x, y| x.0.total_cmp(&y.0)).map(|x| x.1)
     }
 
+    /// The grips of the single selected item that can be dragged: none for several
+    /// selected items or on a page that cannot be changed.
+    fn selected_grips(&self, prj: &Project, page_i: usize) -> (u64, Vec<(Grip, P)>) {
+        let editable = prj.pages[page_i].is_editable() && !self.read_only;
+        match (self.tool == Tool::Select && editable && self.selection.len() == 1).then(|| *self.selection.iter().next().unwrap()) {
+            Some(id) => (id, grips::grips(prj, page_i, id)),
+            None => (0, Vec::new()),
+        }
+    }
+
+    /// The grip of the single selected item under `q` (world).
+    fn grip_hit(&self, prj: &Project, page_i: usize, q: P) -> Option<(u64, Grip)> {
+        let tol = (5.0 / self.zoom).max(0.3);
+        let (id, grips) = self.selected_grips(prj, page_i);
+        grips.into_iter().map(|(g, at)| (at.dist(q), g)).filter(|(d, _)| *d <= tol).min_by(|x, y| x.0.total_cmp(&y.0)).map(|(_, g)| (id, g))
+    }
+
     /// Hit test: returns the id of the item under `q` (world), preferring texts and
     /// electrical symbols. Decorative symbols stay behind wires and their
     /// definitions. Items on hidden or locked layers are skipped.
@@ -1243,7 +1275,8 @@ impl Editor {
             None
         };
         let pointer_end = world.and_then(|w| self.wire_end_hit(prj, page_i, w)).is_some();
-        self.cursor(ui, world, editable, pointer_hit, (pointer_prop.is_some(), pointer_end));
+        let pointer_grip = world.and_then(|w| self.grip_hit(prj, page_i, w)).map(|(_, g)| g);
+        self.cursor(ui, world, editable, pointer_hit, (pointer_prop.is_some(), pointer_end, pointer_grip));
 
         // ------------------------------------------------------------ drawing
         self.update_textures(ui.ctx(), prj, page_i);
@@ -1344,6 +1377,12 @@ impl Editor {
                     painter.rect_stroke(r, 0.0, st, egui::StrokeKind::Inside);
                 }
             }
+        }
+        // Grips of the single selected item: they change its size or shape.
+        for (_, q) in self.selected_grips(prj, page_i).1 {
+            let r = Rect::from_center_size(self.w2s(rect, q), vec2(7.0, 7.0));
+            painter.rect_filled(r, 0.0, pal.canvas);
+            painter.rect_stroke(r, 0.0, Stroke::new(1.5, pal.selected), egui::StrokeKind::Inside);
         }
         // Handles of the ends of the selected wires, dragged alone.
         if self.tool == Tool::Select && editable {
@@ -1494,7 +1533,7 @@ impl Editor {
             Tool::Dimension(kind) => match self.pts.as_slice() {
                 [a] => g.line(*a, sn, render::SYMBOL_W * 0.7, Ink::Ghost, true),
                 [a, b] => {
-                    let mut dm = Dimension { kind, a: *a, b: *b, ..Default::default() };
+                    let mut dm = Dimension { kind, a: *a, b: *b, scale: graphics::page_scale(&prj.pages[page_i]), ..Default::default() };
                     dm.offset = graphics::dim_offset_through(&dm, sn);
                     render::draw_dimension(g, &dm, Ink::Ghost);
                 }
@@ -1729,7 +1768,7 @@ impl Editor {
         let layer = self.active_layer.clone();
         match self.tool.clone() {
             Tool::Dimension(kind) => {
-                let mut dm = Dimension { kind, a: pts[0], b: pts[1], layer, ..Default::default() };
+                let mut dm = Dimension { kind, a: pts[0], b: pts[1], layer, scale: graphics::page_scale(&prj.pages[page_i]), ..Default::default() };
                 dm.offset = graphics::dim_offset_through(&dm, pts[2]);
                 if graphics::dim_length(&dm).abs() > 0.01 {
                     dm.id = prj.new_id();
@@ -2108,6 +2147,7 @@ impl Editor {
         if resp.drag_started_by(PointerButton::Primary) {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
             let ow = self.s2w(rect, origin);
+            let grip = self.grip_hit(prj, page_i, ow).filter(|_| editable).and_then(|(id, g)| grips::grab(prj, page_i, id, g));
             let handle = self.prop_hit(prj, idx, page_i, ow).filter(|_| editable);
             let end = self.wire_end_hit(prj, page_i, ow).filter(|_| editable && !matches!(handle, Some(PropHandle::Wire(..))));
             let handle = handle.filter(|_| end.is_none());
@@ -2115,7 +2155,9 @@ impl Editor {
             // selected, dragging a text moves them all.
             let group = handle.filter(|_| self.selection.len() > 1).map(PropHandle::id);
             let hit = self.hit(prj, page_i, ow).or(group).filter(|_| editable);
-            if let Some(end) = end {
+            if let Some(grab) = grip {
+                self.drag = Drag::Grip { grab, last: None };
+            } else if let Some(end) = end {
                 self.start_end_drag(prj, page_i, ow, end);
             } else if let Some(handle) = handle.filter(|h| matches!(h, PropHandle::Wire(..)) || self.selection.len() == 1) {
                 let page = &prj.pages[page_i];
@@ -2175,44 +2217,16 @@ impl Editor {
                         *applied = total;
                     }
                 }
-                (Drag::Prop { handle, start, orig, side }, Some(w)) => {
-                    let delta = (w - *start).snap(0.5);
-                    let to = *orig + delta;
-                    let symbols = prj.symbol_table();
-                    let anchor = match *handle {
-                        PropHandle::Symbol(id, Handle::OnlyPin) => prj.pages[page_i].symbols.iter().find(|s| s.id == id).and_then(|s| pin_place(prj, idx, page_i, s, 0)).map(|l| l.anchor),
-                        _ => None,
-                    };
-                    let page = &mut prj.pages[page_i];
-                    match *handle {
-                        PropHandle::Symbol(id, part) => {
-                            if let Some(s) = page.symbols.iter_mut().find(|s| s.id == id) {
-                                match part {
-                                    Handle::Prop(i) => s.props[i].offset = to,
-                                    Handle::Tag => s.tag_offset = Some(to),
-                                    Handle::Pin(i) => {
-                                        let offset = *orig + delta.untransform(s.rot, s.mirror);
-                                        s.set_pin_placement(i, PinPlacement { side: *side, offset });
-                                    }
-                                    Handle::OnlyPin => s.pin_label = Some(PinLabel { offset: to, anchor: anchor.unwrap_or(Anchor::Left) }),
-                                    Handle::Intr(t) => {
-                                        if let Some(def) = symbols.get(&s.sym) {
-                                            let place = TextPlace { offset: to, ..intr_place(&def, s, t) };
-                                            match t {
-                                                render::IntrText::Label => s.label_place = Some(place),
-                                                render::IntrText::Xref => s.xref_place = Some(place),
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        PropHandle::Wire(id, which) => {
-                            if let Some(w) = page.wires.iter_mut().find(|w| w.id == id) {
-                                *which.offset_mut(w) = Some(to);
-                            }
-                        }
+                (Drag::Grip { grab, last }, Some(w)) => {
+                    let to = w.snap(self.grid);
+                    if *last != Some(to) {
+                        // A device box too small for its points keeps its last size.
+                        let _ = grips::drag(prj, page_i, grab, to);
+                        *last = Some(to);
                     }
+                }
+                (Drag::Prop { handle, start, orig, side }, Some(w)) => {
+                    Self::drag_prop(prj, idx, page_i, *handle, *orig, (w - *start).snap(0.5), *side);
                 }
                 _ => {}
             }
@@ -2236,7 +2250,7 @@ impl Editor {
                     }
                 }
                 Drag::End { .. } => ops::cleanup_wires(&mut prj.pages[page_i]),
-                Drag::Prop { .. } | Drag::None => {}
+                Drag::Prop { .. } | Drag::Grip { .. } | Drag::None => {}
             }
         }
         if resp.clicked_by(PointerButton::Primary) {
@@ -2281,6 +2295,47 @@ impl Editor {
         }
     }
 
+    /// Moves the text `handle` of a symbol or wire by `delta` from its place `orig`.
+    #[allow(clippy::too_many_arguments)]
+    fn drag_prop(prj: &mut Project, idx: &Index, page_i: usize, handle: PropHandle, orig: P, delta: P, side: Option<LabelSide>) {
+        let to = orig + delta;
+        let symbols = prj.symbol_table();
+        let anchor = match handle {
+            PropHandle::Symbol(id, Handle::OnlyPin) => prj.pages[page_i].symbols.iter().find(|s| s.id == id).and_then(|s| pin_place(prj, idx, page_i, s, 0)).map(|l| l.anchor),
+            _ => None,
+        };
+        let page = &mut prj.pages[page_i];
+        match handle {
+            PropHandle::Symbol(id, part) => {
+                if let Some(s) = page.symbols.iter_mut().find(|s| s.id == id) {
+                    match part {
+                        Handle::Prop(i) => s.props[i].offset = to,
+                        Handle::Tag => s.tag_offset = Some(to),
+                        Handle::Pin(i) => {
+                            let offset = orig + delta.untransform(s.rot, s.mirror);
+                            s.set_pin_placement(i, PinPlacement { side, offset });
+                        }
+                        Handle::OnlyPin => s.pin_label = Some(PinLabel { offset: to, anchor: anchor.unwrap_or(Anchor::Left) }),
+                        Handle::Intr(t) => {
+                            if let Some(def) = symbols.get(&s.sym) {
+                                let place = TextPlace { offset: to, ..intr_place(&def, s, t) };
+                                match t {
+                                    render::IntrText::Label => s.label_place = Some(place),
+                                    render::IntrText::Xref => s.xref_place = Some(place),
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            PropHandle::Wire(id, which) => {
+                if let Some(w) = page.wires.iter_mut().find(|w| w.id == id) {
+                    *which.offset_mut(w) = Some(to);
+                }
+            }
+        }
+    }
+
     /// Starts dragging the end `is_a` at `from` of the selected wire `wire` alone.
     fn start_end_drag(&mut self, prj: &Project, page_i: usize, start: P, (wire, is_a, from): (u64, bool, P)) {
         let moving = Box::new(routing::Moving::wire_end(prj, page_i, wire, is_a));
@@ -2312,14 +2367,16 @@ impl Editor {
     /// of a selected symbol (`prop_hit`) and the ends of selected wires (`end_hit`),
     /// crosshair for the drawing tools.
     #[allow(clippy::too_many_arguments)]
-    fn cursor(&self, ui: &egui::Ui, world: Option<P>, editable: bool, hit: Option<u64>, (prop_hit, end_hit): (bool, bool)) {
+    fn cursor(&self, ui: &egui::Ui, world: Option<P>, editable: bool, hit: Option<u64>, (prop_hit, end_hit, grip): (bool, bool, Option<Grip>)) {
         let Some(_) = world else { return };
         if self.full_crosshair {
             ui.ctx().set_cursor_icon(egui::CursorIcon::None);
             return;
         }
         let icon = match (&self.tool, &self.drag) {
+            (_, Drag::Grip { grab, .. }) => grip_cursor(grab.grip),
             (_, Drag::Prop { .. } | Drag::End { .. }) => egui::CursorIcon::Grabbing,
+            (Tool::Select, Drag::None) if editable && grip.is_some() => grip_cursor(grip.unwrap()),
             (_, Drag::Move { .. }) => egui::CursorIcon::Move,
             (_, Drag::Box { .. }) => egui::CursorIcon::Crosshair,
             (Tool::Select, Drag::None) if editable && end_hit => egui::CursorIcon::Grab,

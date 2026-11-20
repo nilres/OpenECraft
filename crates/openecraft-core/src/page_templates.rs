@@ -18,6 +18,7 @@ impl Default for PageTemplate {
             frame: String::new(),
             title_block: String::new(),
             description: String::new(),
+            scale: 1.0,
             structure: Dt::default(),
             values: Default::default(),
             content: Clip::default(),
@@ -81,6 +82,7 @@ pub fn insert(prj: &mut Project, t: &PageTemplate, at: usize) -> usize {
     let page = &mut prj.pages[at];
     page.frame = t.frame.clone();
     page.title_block = t.title_block.clone();
+    page.scale = t.scale;
     if !t.description.is_empty() {
         page.description = t.description.clone();
     }
@@ -102,6 +104,7 @@ pub fn from_page(prj: &Project, page_i: usize, name: &str) -> PageTemplate {
         frame: page.frame.clone(),
         title_block: page.title_block.clone(),
         description: page.description.clone(),
+        scale: page.scale,
         structure: Dt::of_page(page),
         values: page.values.clone(),
         content: ops::copy(page, &all),

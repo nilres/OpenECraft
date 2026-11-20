@@ -84,6 +84,18 @@ fn stamp_and_title_blocks_by_page_type_and_frame() {
 }
 
 #[test]
+fn a_page_gets_a_drawing_scale() {
+    let p = Plugins::new(Vec::<String>::new());
+    let mut prj = demo_project();
+    let mut run = |name: &str, args: serde_json::Value| p.run(p.command(name).unwrap(), &mut prj, args.as_object().unwrap());
+    assert_eq!(run("set_page", serde_json::json!({ "page": "2", "scale": 50.0 })).unwrap()["scale"], 50.0);
+    assert!(run("set_page", serde_json::json!({ "page": "2", "scale": 0.0 })).is_err());
+    assert_eq!(run("get_page", serde_json::json!({ "page": "2" })).unwrap()["scale"], 50.0);
+    let page = prj.pages.iter().find(|pg| pg.name == "2").unwrap();
+    assert_eq!(openecraft_core::graphics::scale_text(page.scale), "1 : 50");
+}
+
+#[test]
 fn registered_frame_commands_round_trip_artwork_and_can_restore_generated_frames() {
     let plugins=Plugins::new(Vec::<String>::new());let mut project=Project::default();
     let artwork=serde_json::json!([{"Text":{"pos":{"x":10,"y":20},"text":"Company","size":3,"anchor":"Left"}}]);
