@@ -5,6 +5,17 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **More of the website to find:** every symbol of the library has a page of its own
+  (`symbols/no-contact/`, …) with its drawing to download as SVG and DXF, its data and
+  the other symbols of its category, in English, German, French and Spanish. The
+  documentation of the site (tutorial, installation, features, command line, plugins,
+  servers) is translated into German, French and Spanish (`docs/de/`, `docs/fr/`,
+  `docs/es/`). New reference tables: the letter codes of IEC 81346-2, the wire colours
+  of IEC 60204-1 and IEC 60445 and the IP ratings of IEC 60529. New tools that run in
+  the browser with the calculations of the editor: cable size, short-circuit current
+  and the fill of wiring ducts and conduits, and the DXF and DWG viewer as converter
+  pages (DWG to PDF, DXF to SVG, DWG to DXF)
+  ([website](docs/website.md#pages-the-build-writes)).
 - **The installation in the schematic:** a socket outlet, switch, light or heating
   element put into a room of the floor plan for a protective device goes into the
   schematic: a device with its part on the installation page of the circuit, drawn

@@ -190,6 +190,26 @@ pub fn header(out: &mut String, layers: &[(String, u8)]) {
     out.push_str("0\nENDTAB\n0\nENDSEC\n");
 }
 
+/// A free drawing `h` mm high as a DXF drawing (DXF y runs upwards): a symbol alone,
+/// as [`crate::svg::drawing_svg`] draws it as a picture.
+pub fn drawing_dxf(h: f32, f: impl FnOnce(&mut DxfDraw)) -> String {
+    let layers: Vec<(String, u8)> = LAYERS.iter().map(|(n, c)| (n.to_string(), *c)).collect();
+    let mut d = DxfDraw { out: String::new(), dx: 0.0, h, user_layer: None, user_layers: HashMap::new() };
+    header(&mut d.out, &layers);
+    d.out.push_str("0
+SECTION
+2
+ENTITIES
+");
+    f(&mut d);
+    d.out.push_str("0
+ENDSEC
+0
+EOF
+");
+    d.out
+}
+
 /// Pages as one DXF drawing, side by side with 20 mm gap.
 pub fn pages_dxf(prj: &Project, pages: &[usize]) -> String {
     pages_dxf_with(prj, &Analysis::with_builtin(prj), pages)

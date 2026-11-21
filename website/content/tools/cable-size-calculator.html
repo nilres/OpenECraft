@@ -1,0 +1,52 @@
+title: Cable size calculator: cross-section for a current – OpenECraft
+description: Free cable size calculator: the smallest cross-section that carries the current and keeps the voltage drop, with temperature, bunching, copper or aluminium.
+kind: tool
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Tools</p>
+        <h1 data-t>Cable size calculator</h1>
+        <p class="lead" data-t>Which cross-section a conductor needs: it has to carry the current where it is installed and keep the voltage drop on its length. The calculation is the electrical sizing of OpenECraft.</p>
+    </div>
+</section>
+
+<section class="band tool" data-tool="cable_size" data-live>
+    <form class="tool-form">
+        <label><span data-t>Current (A)</span><input name="current" inputmode="decimal" value="16" required /></label>
+        <label><span data-t>Length, one way (m)</span><input name="length" inputmode="decimal" value="25" required /></label>
+        <label><span data-t>Voltage (V)</span><input name="voltage" inputmode="decimal" value="230" required /></label>
+        <label><span data-t>System</span><select name="phases"><option value="1" data-t>Single-phase or DC</option><option value="3" data-t>Three-phase</option></select></label>
+        <label><span>cos φ</span><input name="cos_phi" inputmode="decimal" value="1" required /></label>
+        <label><span data-t>Conductor</span><select name="material"><option value="copper" data-t>Copper</option><option value="aluminium" data-t>Aluminium</option></select></label>
+        <label><span data-t>Insulation</span><select name="insulation"><option value="pvc" data-t>PVC (70 °C)</option><option value="xlpe" data-t>XLPE or EPR (90 °C)</option></select></label>
+        <label><span data-t>Ambient temperature (°C)</span><input name="ambient" inputmode="decimal" value="40" required /></label>
+        <label><span data-t>Loaded circuits bunched together</span><input name="grouped" inputmode="numeric" value="1" required /></label>
+        <label><span data-t>Limit (%)</span><input name="limit" inputmode="decimal" value="3" required /></label>
+        <button class="button primary" data-t>Calculate</button>
+    </form>
+    <p class="tool-wait" hidden data-t>Loading the tool. It is the code of the editor, about 10 MB, loaded once.</p>
+    <p class="tool-failed" hidden data-t>The tool could not start in this browser. It needs WebAssembly.</p>
+    <p class="tool-error" hidden></p>
+    <div class="tool-out" hidden>
+        <p class="tool-summary"></p>
+        <dl class="tool-facts"></dl>
+        <div class="table-scroll"><table class="tool-table"></table></div>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>How it is calculated</h2>
+    <ul class="points">
+        <li data-t>The current-carrying capacity is the one of IEC 60204-1, table 6, for installation method B2: copper conductors with PVC insulation in a duct or conduit at 40 °C, from 0.75 to 120 mm².</li>
+        <li data-t>Another ambient temperature, XLPE insulation, aluminium and circuits bunched together correct it, the bunching after IEC 60364-5-52, table B.52.17.</li>
+        <li data-t>The voltage drop is calculated as in the voltage drop calculator, with the conductor at operating temperature.</li>
+        <li data-t>The larger of the two cross-sections is the one to take. The short-circuit withstand and the protective device can ask for more.</li>
+    </ul>
+    <p class="text" data-t>In a project, OpenECraft sizes the wires behind every protective device this way and reports conductors that are too thin in the project check.</p>
+    <div class="actions">
+        <a class="button" href="@/tools/voltage-drop-calculator/" data-t>Calculate the voltage drop</a>
+        <a class="button ghost" href="~/docs/calculations/" data-t>The calculations in the documentation</a>
+        <a class="button ghost" href="@/tools/" data-t>More tools</a>
+    </div>
+    <p class="fine" data-t>The result supports the planning. A qualified person has to verify it against the standards and regulations that apply.</p>
+</section>

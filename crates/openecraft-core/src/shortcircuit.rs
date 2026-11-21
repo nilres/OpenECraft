@@ -108,6 +108,31 @@ impl Source {
     }
 }
 
+/// The short-circuit currents at a point of the mains, A.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Point {
+    /// Highest three-phase short-circuit current.
+    pub ik_max: f32,
+    /// Its peak (κ from R/X).
+    pub ip: f32,
+    /// Lowest line-to-PE fault current.
+    pub ik_min: f32,
+}
+
+impl Source {
+    /// The currents behind a cable of `length` m and `mm2` from the supply point, its
+    /// protective conductor of the same cross-section (TN and TT systems); at the
+    /// supply point itself without a length. The highest current with the conductors
+    /// at 20 °C, the lowest with them at operating temperature, as [`faults`] has them.
+    pub fn behind(&self, s: &Supply, conditions: &crate::electrical::Conditions, length: f32, mm2: f32) -> Point {
+        let run = Run { per_mm2: length.max(0.0) / mm2.max(1e-3), length: length.max(0.0) };
+        let z = self.z.add(run.z(conditions.material.rho20()));
+        let ik_max = self.ik3 * self.z.abs() / z.abs();
+        let cable_loop = run.z(conditions.rho_hot()).scale(2.0);
+        Point { ik_max, ip: 2f32.sqrt() * z.kappa() * ik_max, ik_min: C_MIN * s.u0() / self.z_loop.add(cable_loop).abs() }
+    }
+}
+
 /// Longest disconnection time of a final circuit (IEC 60364-4-41, table 41.1, AC) by
 /// the line-to-earth voltage.
 pub fn final_disconnection(u0: f32, tt: bool) -> f32 {

@@ -1,0 +1,53 @@
+title: Cable duct and conduit fill calculator – OpenECraft
+description: Free fill calculator for wiring ducts and conduits: wires by cross-section and cables by diameter against the room inside, with your own fill limit.
+kind: tool
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Tools</p>
+        <h1 data-t>Cable duct and conduit fill calculator</h1>
+        <p class="lead" data-t>How full a wiring duct or a conduit gets: the cross sections of the wires with their insulation and of the cables against the room inside. OpenECraft counts the ducts of a panel the same way.</p>
+    </div>
+</section>
+
+<section class="band tool" data-tool="duct_fill" data-live>
+    <form class="tool-form">
+        <label><span data-t>Shape</span><select name="shape"><option value="duct" data-t>Wiring duct (width × depth)</option><option value="conduit" data-t>Conduit (inner diameter)</option></select></label>
+        <label><span data-t>Width inside or inner diameter (mm)</span><input name="width" inputmode="decimal" value="25" required /></label>
+        <label><span data-t>Depth inside (mm)</span><input name="depth" inputmode="decimal" value="40" /></label>
+        <label><span data-t>Limit (%)</span><input name="limit" inputmode="decimal" value="70" required /></label>
+        <label><span data-t>Number of wires</span><input name="count1" inputmode="numeric" value="20" /></label>
+        <label><span data-t>Cross-section (mm²)</span><input name="section1" inputmode="decimal" value="1.5" /></label>
+        <label><span data-t>Number of wires</span><input name="count2" inputmode="numeric" value="0" /></label>
+        <label><span data-t>Cross-section (mm²)</span><input name="section2" inputmode="decimal" value="2.5" /></label>
+        <label><span data-t>Number of wires</span><input name="count3" inputmode="numeric" value="0" /></label>
+        <label><span data-t>Cross-section (mm²)</span><input name="section3" inputmode="decimal" value="6" /></label>
+        <label><span data-t>Number of cables</span><input name="cables" inputmode="numeric" value="0" /></label>
+        <label><span data-t>Outer diameter of a cable (mm)</span><input name="cable_diameter" inputmode="decimal" value="9" /></label>
+        <button class="button primary" data-t>Calculate</button>
+    </form>
+    <p class="tool-wait" hidden data-t>Loading the tool. It is the code of the editor, about 10 MB, loaded once.</p>
+    <p class="tool-failed" hidden data-t>The tool could not start in this browser. It needs WebAssembly.</p>
+    <p class="tool-error" hidden></p>
+    <div class="tool-out" hidden>
+        <p class="tool-summary"></p>
+        <dl class="tool-facts"></dl>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>How it is calculated</h2>
+    <ul class="points">
+        <li data-t>A single-core wire with PVC insulation is taken as 1 + 1.6 × √A millimetres across, A being its cross-section in mm²: about 3 mm for 1.5 mm².</li>
+        <li data-t>The fill level is the sum of the circles of all wires and cables divided by the room inside: width times depth of a duct, the circle of a conduit.</li>
+        <li data-t>Round wires never fill a duct whole. OpenECraft warns at 70 % by default, and many shops plan new panels with less to leave room for changes.</li>
+        <li data-t>For conduits the regulations of many countries set lower limits, often 40 % for three wires and more.</li>
+    </ul>
+    <p class="text" data-t>In the panel layout of OpenECraft the wires are routed through the ducts of the mounting plate, and every duct shows its fill level at its fullest stretch.</p>
+    <div class="actions">
+        <a class="button" href="@/panel-builders/" data-t>OpenECraft for panel builders</a>
+        <a class="button ghost" href="~/docs/panel-layout/" data-t>The panel layout in the documentation</a>
+        <a class="button ghost" href="@/tools/" data-t>More tools</a>
+    </div>
+    <p class="fine" data-t>The result supports the planning. A qualified person has to verify it against the standards and regulations that apply.</p>
+</section>

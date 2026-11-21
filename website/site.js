@@ -86,12 +86,15 @@
     }
 
     // The links to the pages of the site (data-page) lead to the page in the language of
-    // this one: compare/ from de.html is compare/de.html, ../#get is ../de.html#get.
+    // this one: compare/ from de.html is compare/de.html, ../#get is ../de.html#get. A
+    // page that is not written in every language names those it has beside English
+    // (data-langs, the documentation); in another language its link stays the English one.
     function pages(lang) {
-        const file = lang === "en" ? "" : lang + ".html";
         for (const a of $$("a[data-page]")) {
             a.dataset.page ||= a.getAttribute("href");
             const [folder, section] = a.dataset.page.split("#");
+            const written = !a.dataset.langs || a.dataset.langs.split(" ").includes(lang);
+            const file = lang === "en" || !written ? "" : lang + ".html";
             a.href = folder + file + (section === undefined ? "" : "#" + section);
         }
         for (const a of $$(".languages a")) {
