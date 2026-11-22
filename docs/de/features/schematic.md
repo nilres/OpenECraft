@@ -20,8 +20,9 @@ auswählen und Kontakte platzieren: Sie werden ihr zugeordnet und nummeriert (13
 
 Netzteile, Messgeräte und Steuerbaugruppen ohne Bibliothekssymbol:
 *Einfügen › Gerätebox* zeichnet einen gestrichelten Kasten beliebiger Größe als neues
-Betriebsmittel (`-A1`, mit Funktionstext und Artikeln wie jedes andere Betriebsmittel),
-*Einfügen › Geräteanschlusspunkt* platziert seine Anschlüsse Klick für Klick. Ein Punkt,
+Betriebsmittel (`-A1`, mit Funktionstext und Artikeln wie jedes andere Betriebsmittel;
+ausgewählt wird er an den Griffen seiner Ecken und Kanten in der Größe geändert, die Punkte
+auf einer verschobenen Kante gehen mit), *Einfügen › Geräteanschlusspunkt* platziert seine Anschlüsse Klick für Klick. Ein Punkt,
 der auf dem Umriss einer Box platziert wird, gehört zum Betriebsmittel der Box, führt
 von der Kante weg, auf der er liegt, und wird fortlaufend nummeriert (1, 2, 3 …; auf
 `13` folgt `14`); seine Bezeichnung (`L`, `N`, `PE`, `+24V`, …) wird in seinen
@@ -70,7 +71,8 @@ nach Struktur; das Schriftfeld zeigt den vollständigen Seitennamen (`=A1+CAB1/3
 
 **Strukturkästen** (*Einfügen › Strukturkasten*) geben einem Bereich einer Seite eine
 eigene Funktion, einen eigenen Ort (oder Aufstellungsort, Produkt): ein Rechteck zeichnen
-und in den Eigenschaften die Aspekte einstellen, die es überschreibt; leere Aspekte
+(ausgewählt an den Griffen seiner Ecken und Kanten in der Größe geändert) und in den
+Eigenschaften die Aspekte einstellen, die es überschreibt; leere Aspekte
 werden von der Seite oder einem umschließenden Kasten geerbt, verschachtelte Kästen
 lösen zum innersten auf. Ein Betriebsmittel gehört zu dem Kasten, in dem der Einfügepunkt
 seiner Hauptfunktion liegt: Es erhält die Struktur des Kastens (`=SYS+FIELD-S1` auf einer
@@ -197,6 +199,19 @@ Linien, Rechtecke, Kreise, Ellipsen, Bögen, Polylinien und
 Polygone (Breite, Farbe, gestrichelt, gefüllt), Bemaßungen (ausgerichtet / horizontal /
 vertikal, Maßstab, Einheit), PNG- / JPEG-Bilder (auch im PDF- und SVG-Export). **Ebenen**
 (Navigator › Ebenen): sichtbar, gesperrt, gedruckt, Farbe; DXF- / DWG-Export je Ebene.
+*Exportieren…* und *Importieren…* des Ebenen-Bereichs tragen die Ebenen mit ihren
+Einstellungen als Einstellungsschema in andere Projekte (das ganze Schema trägt sie auch).
+
+Ein ausgewähltes Element zeigt **Griffe**, die beim Ziehen seine Größe oder Form ändern,
+im Raster: die Ecken und Kantenmitten von Rechtecken, Ellipsen, Strukturkästen und
+Geräteboxen, die Ecken von Bildern (das Seitenverhältnis bleibt), die Enden und Eckpunkte
+von Linien, Polylinien, Polygonen und Bemaßungen, vier Punkte eines Kreises für seinen
+Radius und beide Enden eines Bogens. Die Eigenschaften einer Form zeigen ihre Größe:
+Breite und Höhe von Rechtecken und Ellipsen, die Länge von Linien und der Radius von
+Kreisen lassen sich eintippen, Größe und Umrisslänge der übrigen werden angezeigt. Der
+**Maßstab** einer Seite (Seiteneigenschaften, `set_page scale`, 1 : 50 ist 50) ist die
+reale Länge je Millimeter auf der Seite: die Größen von Formen werden darin angezeigt und
+neue Bemaßungen messen darin, für einfache maßstäbliche Aufstellungspläne und Grundrisse.
 
 ## Leitungskreuzungen und T-Verbindungen
 

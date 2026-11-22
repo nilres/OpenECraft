@@ -21,7 +21,8 @@ numérotés (13/14, 21/22, …).
 Alimentations, appareils de mesure et modules de commande sans symbole de bibliothèque :
 *Insertion › Boîte d'appareil* dessine une boîte en pointillé de taille quelconque comme
 nouvel appareil (`-A1`, avec son texte de fonction et ses articles comme tout autre
-appareil), *Insertion › Point de connexion d'appareil* place ses connexions un clic après
+appareil ; sélectionnée, elle est redimensionnée aux poignées de ses coins et de ses
+bords, les points d'un bord déplacé la suivent), *Insertion › Point de connexion d'appareil* place ses connexions un clic après
 l'autre. Un point placé sur le contour d'une boîte appartient à l'appareil de la boîte,
 part du bord sur lequel il se trouve et est numéroté à la suite (1, 2, 3 … ; `13` est
 suivi de `14`) ; sa désignation (`L`, `N`, `PE`, `+24V`, …) se modifie dans ses
@@ -69,7 +70,8 @@ complet de la page (`=A1+CAB1/3`).
 
 Les **cadres de structure** (*Insertion › Cadre de structure*) donnent à une zone d'une
 page sa propre fonction, son propre emplacement (ou lieu d'installation, produit) :
-dessinez un rectangle et réglez dans les propriétés les aspects qu'il remplace ; les
+dessinez un rectangle (redimensionné aux poignées de ses coins et de ses bords quand il
+est sélectionné) et réglez dans les propriétés les aspects qu'il remplace ; les
 aspects vides sont hérités de la page ou d'un cadre englobant, les cadres imbriqués se
 résolvent au plus intérieur. Un appareil appartient au cadre dans lequel se trouve le
 point d'insertion de sa fonction principale : il reçoit la structure du cadre
@@ -194,7 +196,21 @@ Lignes, rectangles, cercles, ellipses, arcs, polylignes et
 polygones (épaisseur, couleur, pointillé, rempli), cotations (alignées / horizontales /
 verticales, échelle, unité), images PNG / JPEG (aussi dans l'export PDF et SVG).
 **Calques** (navigateur › Calques) : visible, verrouillé, imprimé, couleur ; export DXF /
-DWG par calque.
+DWG par calque. *Exporter…* et *Importer…* du volet Calques transmettent les calques avec
+leurs paramètres à d'autres projets sous forme de schéma de paramètres (le schéma complet
+les contient aussi).
+
+Un élément sélectionné montre des **poignées** qui changent sa taille ou sa forme quand on
+les fait glisser, sur la grille : les coins et milieux des bords des rectangles, ellipses,
+cadres de structure et boîtes d'appareil, les coins des images (le rapport d'aspect est
+conservé), les extrémités et sommets des lignes, polylignes, polygones et cotations,
+quatre points d'un cercle pour son rayon et les deux extrémités d'un arc. Les propriétés
+d'une forme montrent sa taille : la largeur et la hauteur des rectangles et des ellipses,
+la longueur des lignes et le rayon des cercles se saisissent, la taille et la longueur du
+contour des autres sont affichées. L'**échelle** d'une page (propriétés de la page,
+`set_page scale`, 1 : 50 vaut 50) est la longueur réelle par millimètre sur la page : les
+tailles des formes y sont affichées et les nouvelles cotations y mesurent, pour des plans
+d'implantation et des plans d'étage simples dessinés à l'échelle.
 
 ## Croisements de fils et connexions en T
 
