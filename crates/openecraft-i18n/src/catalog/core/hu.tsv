@@ -274,6 +274,8 @@ Contractor	Vállalkozó
 Control	Vezérlés
 Control cabinet	Kapcsolószekrény
 Control mode	Szabályozási mód
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	A(z) {}. támpont ({} {}) valamin belül vagy a szekrényen kívül van: a támpontjai nélkül lesz fektetve. Helyezze át a támpontot szabad helyre.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	A(z) {}. támpont ({} {}) az útján kívül van: egyik szekrényben vagy helyiségben sem, amelyen át fektetik. Helyezze a támpontot az útjára.
 Control transformer	Vezérlőtranszformátor
 Control transformer (NFPA)	Vezérlőtranszformátor (NFPA)
 Control transformer T (GOST)	Vezérlőtranszformátor T (GOST)
@@ -956,6 +958,7 @@ No page or page item with id {}	Nincs {} azonosítójú oldal vagy oldalelem
 No page with id {}	Nincs {} azonosítójú oldal
 No plugs	Nincsenek csatlakozók
 No report block {}	Nincs {} kimutatásblokk
+No routed wire, cable or tube {}	Nincs fektetett vezeték, kábel vagy cső: {}
 No segment template named {}	Nincs ilyen nevű szegmenssablon: {}
 No subproject {}	Nincs ilyen alprojekt: {}
 No such object: {}	Nincs ilyen objektum: {}
@@ -1365,6 +1368,7 @@ Roof top	Tető
 Room floor	Helyiség padlója
 Room {} stands outside the plot boundary	A(z) {} helyiség a telekhatáron kívül áll
 Round punch	Kerek lyukasztó
+Route {} has no control point {}	A(z) {} nyomvonalnak nincs {}. támpontja
 Routing list (3D)	Nyomvonallista (3D)
 Row {} not found	A(z) {} sor nem található
 Row {}: no job	{}. sor: nincs megbízás
@@ -1989,12 +1993,16 @@ yellow	sárga
 {} unused device data records removed	{} nem használt készülékadatrekord eltávolítva
 {} wiring marks belong to wires that no longer exist	{} huzalozási jelölés már nem létező vezetékekhez tartozik
 {} without device tag on page {}	{0} készülékazonosító nélkül a(z) {1}. oldalon
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} nem fektethető át a(z) {}. támpontján: nincs út, amely fél vastagságnyira marad mindentől és {} mm sugárral hajlik. A támpontjai nélkül lesz fektetve; helyezze át a támpontot.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} nem vezethető: {} minden kábeltömszelencéjét másik kábel foglalja. Adjon hozzá egy kábeltömszelencét.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nem fektethető: nincs út, amely fél vastagságnyira marad mindentől és {} mm sugárral hajlik. Helyezze át a végeket vagy csináljon helyet.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} a fenéken keresztül lép be: nincs kábeltömszelence a szekrényben
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} a tetőn keresztül lép be: nincs kábeltömszelence a tetőn, az oldalakon vagy a hátfalon
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} a szekrényei kábelbevezetéseiig van vezetve: nem állnak közös helyiségben, a köztük lévő út nem része az elrendezésnek
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} a támpontjai miatt önmagába fut. A támpontjai nélkül lesz fektetve; helyezze át őket.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} az ajtóhoz fut: nem vezethető át a támpontjain. Távolítsa el őket.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: a hajlítások szűkebbek a hajlítási sugárnál ({} mm)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: a támpontjai nem hagynak helyet a(z) {} mm sugarú hajlításra. A támpontjai nélkül lesz fektetve; helyezze őket távolabb egymástól.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: az egyvonalas rajzon összekötve, a kapcsolási rajzon nem
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, {}. MPP-követő: stringjei feszültsége eltér ({} V és {} V)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, {}. MPP-követő: a stringek {} A-t adnak, többet az általa hasznosított {} A-nél (a teljesítmény korlátozódik)

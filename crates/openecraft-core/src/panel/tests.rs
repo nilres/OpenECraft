@@ -708,6 +708,16 @@ fn wall_faces_in_enclosure_coordinates() {
 }
 
 #[test]
+fn points_lie_on_faces_as_face_point_puts_them() {
+    let e = Enclosure::default();
+    for face in [Face::Plate, Face::Door, Face::Left, Face::Right, Face::Rear, Face::Roof, Face::Bottom] {
+        let v = [30.0, 40.0, 15.0];
+        let back = point_on_face(&e, face, face_point(&e, face, v));
+        assert!(crate::parts::vec3::dist(back, v) < 1e-3, "{face:?} {back:?}");
+    }
+}
+
+#[test]
 fn models_on_walls_keep_their_outside() {
     let prj = demo_project();
     let part = prj.parts.iter().find(|p| p.number == "GEN.CT-9A-24DC").unwrap();

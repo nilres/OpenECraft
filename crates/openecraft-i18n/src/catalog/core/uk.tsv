@@ -274,6 +274,8 @@ Contractor	Підрядник
 Control	Керування
 Control cabinet	Шафа керування
 Control mode	Спосіб керування
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Опорна точка {} для {} {} знаходиться всередині чогось або поза корпусом: прокладається без своїх опорних точок. Перемістіть опорну точку у вільний простір.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Опорна точка {} для {} {} лежить поза його шляхом: у жодній шафі чи приміщенні, через які він прокладений. Перемістіть опорну точку на його шлях.
 Control transformer	Трансформатор кола керування
 Control transformer (NFPA)	Трансформатор кіл керування (NFPA)
 Control transformer T (GOST)	Трансформатор кіл керування T (ГОСТ)
@@ -956,6 +958,7 @@ No page or page item with id {}	Немає сторінки чи елемент�
 No page with id {}	Немає сторінки з ідентифікатором {}
 No plugs	Немає роз'ємів
 No report block {}	Немає блоку звітів {}
+No routed wire, cable or tube {}	Немає прокладеного проводу, кабелю чи трубки {}
 No segment template named {}	Немає шаблону сегмента з назвою {}
 No subproject {}	Немає підпроєкту {}
 No such object: {}	Немає такого об’єкта: {}
@@ -1365,6 +1368,7 @@ Roof top	Покрівля
 Room floor	Підлога приміщення
 Room {} stands outside the plot boundary	Приміщення {} розташоване за межею ділянки
 Round punch	Круглий пуансон
+Route {} has no control point {}	Траса {} не має опорної точки {}
 Routing list (3D)	Перелік прокладання (3D)
 Row {} not found	Рядок {} не знайдено
 Row {}: no job	Рядок {}: немає завдання
@@ -1989,12 +1993,16 @@ yellow	жовтий
 {} unused device data records removed	Вилучено невикористаних записів даних пристроїв: {}
 {} wiring marks belong to wires that no longer exist	Позначок монтажу проводів, що належать проводам, яких більше не існує: {}
 {} without device tag on page {}	{} без позначення пристрою на сторінці {}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} неможливо прокласти через його опорну точку {}: немає шляху, який тримає половину товщини від усього і згинається з радіусом {} мм. Прокладається без опорних точок; перемістіть опорну точку.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} неможливо прокласти: кожен кабельний ввід {} зайнятий іншим кабелем. Додайте для нього кабельний ввід.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} неможливо прокласти: немає шляху, який тримає половину товщини від усього і згинається з радіусом {} мм. Перемістіть кінці або звільніть місце.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} входить через дно: у корпусі немає кабельного вводу
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} входить через дах: немає кабельного вводу на даху, бічних чи задній стінці
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} прокладено до кабельних вводів своїх корпусів: вони не стоять у спільному приміщенні, шлях між ними не входить до компонування
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} перетинає сам себе через свої опорні точки. Прокладається без опорних точок; перемістіть їх.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} іде до дверей: його не можна провести через його опорні точки. Видаліть їх.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: згини менші за радіус згину ({} мм)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: опорні точки не залишають місця для згину з радіусом {} мм. Прокладається без опорних точок; розсуньте їх.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: з’єднано в однолінійній схемі, але не на схемі
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-трекер {}: його ланцюжки відрізняються напругою ({} В і {} В)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-трекер {}: ланцюжки дають {} А, більше за {} А, які він використовує (потужність обмежується)

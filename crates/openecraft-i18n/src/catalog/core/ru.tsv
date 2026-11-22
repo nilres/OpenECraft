@@ -274,6 +274,8 @@ Contractor	Подрядчик
 Control	Управление
 Control cabinet	Шкаф управления
 Control mode	Способ регулирования
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Опорная точка {} для {} {} находится внутри чего-либо или вне корпуса: прокладывается без своих опорных точек. Переместите опорную точку в свободное пространство.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Опорная точка {} для {} {} лежит вне его пути: ни в одном шкафу или помещении, через которые он проложен. Переместите опорную точку на его путь.
 Control transformer	Трансформатор цепей управления
 Control transformer (NFPA)	Трансформатор цепей управления (NFPA)
 Control transformer T (GOST)	Трансформатор цепей управления T (ГОСТ)
@@ -956,6 +958,7 @@ No page or page item with id {}	Нет листа или элемента лис
 No page with id {}	Нет листа с идентификатором {}
 No plugs	Нет разъёмов
 No report block {}	Нет блока отчёта {}
+No routed wire, cable or tube {}	Нет проложенного провода, кабеля или трубки {}
 No segment template named {}	Нет шаблона сегмента с именем {}
 No subproject {}	Нет подпроекта {}
 No such object: {}	Объект не найден: {}
@@ -1365,6 +1368,7 @@ Roof top	Кровля
 Room floor	Пол помещения
 Room {} stands outside the plot boundary	Помещение {} находится за границей участка
 Round punch	Круглый пуансон
+Route {} has no control point {}	У трассы {} нет опорной точки {}
 Routing list (3D)	Список прокладки (3D)
 Row {} not found	Строка {} не найдена
 Row {}: no job	Строка {}: нет задания
@@ -1989,12 +1993,16 @@ yellow	жёлтый
 {} unused device data records removed	Удалено неиспользуемых записей данных устройств: {}
 {} wiring marks belong to wires that no longer exist	Отметки монтажа ({}) относятся к проводам, которых больше нет
 {} without device tag on page {}	{} без обозначения устройства на листе {}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} невозможно проложить через его опорную точку {}: нет пути, который держит половину толщины от всего и изгибается с радиусом {} мм. Прокладывается без опорных точек; переместите опорную точку.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} невозможно проложить: каждый кабельный ввод {} занят другим кабелем. Добавьте для него кабельный ввод.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} невозможно проложить: нет пути, который держит половину толщины от всего и изгибается с радиусом {} мм. Переместите концы или освободите место.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} вводится через дно: в шкафу нет кабельного ввода
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} вводится через крышу: нет кабельного ввода на крыше, боковых или задней стенке
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} проложен до кабельных вводов своих шкафов: они не стоят в общем помещении, путь между ними не входит в компоновку
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} пересекает сам себя через свои опорные точки. Прокладывается без опорных точек; переместите их.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} идёт к двери: его нельзя провести через его опорные точки. Удалите их.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: изгибы меньше радиуса изгиба ({} мм)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: опорные точки не оставляют места для изгиба с радиусом {} мм. Прокладывается без опорных точек; раздвиньте их.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: соединены на однолинейной схеме, но не на схеме
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-трекер {}: его цепочки различаются по напряжению ({} В и {} В)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-трекер {}: цепочки дают {} А, больше {} А, которые он использует (мощность ограничивается)

@@ -266,6 +266,8 @@ Contractor	請負業者
 Control	制御
 Control cabinet	制御盤
 Control mode	制御方式
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	経由点 {}（{} {}）が何かの内部またはエンクロージャーの外にあります: 経由点なしで配線されます。経由点を空いている空間に移動してください。
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	経由点 {}（{} {}）が経路から外れています: 配線が通るどのキャビネットや部屋にもありません。経由点を経路上に移動してください。
 Control transformer	制御用変圧器
 Control transformer (NFPA)	制御用変圧器 (NFPA)
 Control transformer T (GOST)	制御用変圧器 T (GOST)
@@ -944,6 +946,7 @@ No page or page item with id {}	ID {} のページまたはページアイテム
 No page with id {}	ID {} のページがありません
 No plugs	プラグがありません
 No report block {}	レポートブロック {} はありません
+No routed wire, cable or tube {}	配線済みの電線、ケーブル、チューブ {} はありません
 No segment template named {}	{} という名前のセグメントテンプレートはありません
 No subproject {}	サブプロジェクト {} がありません
 No such object: {}	該当するオブジェクトがありません: {}
@@ -1350,6 +1353,7 @@ Roller switch NO	ローラースイッチ a接点
 Room floor	部屋の床
 Room {} stands outside the plot boundary	部屋 {} が敷地境界の外にあります
 Round punch	丸パンチ
+Route {} has no control point {}	ルート {} に経由点 {} はありません
 Routing list (3D)	配線リスト (3D)
 Row {} not found	行 {} が見つかりません
 Row {}: no job	行 {}: ジョブなし
@@ -1967,11 +1971,15 @@ yellow	黄
 {} unused device data records removed	未使用のデバイスデータレコード {} 件を削除しました
 {} wiring marks belong to wires that no longer exist	{} 個の配線マークが存在しなくなった電線に属しています
 {} without device tag on page {}	ページ {1} にデバイスタグのない {0}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} を経由点 {} を通して配線できません: すべてから厚さの半分の間隔を保ち、半径 {} mm で曲がる経路がありません。経由点なしで配線されます。経由点を移動してください。
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} を配線できません: すべてから厚さの半分の間隔を保ち、半径 {} mm で曲がる経路がありません。端を移動するか、空間を確保してください。
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} が底面から引き込まれていますが、エンクロージャーにケーブルグランドがありません
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} が天板から引き込まれていますが、天板、側面、背面にケーブルグランドがありません
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} は各エンクロージャーのケーブル引込口まで配線されています。共通の部屋にないため、その間の経路はレイアウトに含まれません
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} は経由点によって自分自身と交差します。経由点なしで配線されます。経由点を移動してください。
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} は扉へ配線されます: 経由点を通せません。経由点を削除してください。
 {} {}: bends closer than the bend radius ({} mm)	{} {}: 曲げが曲げ半径 ({} mm) より小さくなっています
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: 経由点の間に半径 {} mm で曲がる余地がありません。経由点なしで配線されます。経由点をもっと離してください。
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: 単線結線図では接続されていますが、回路図では接続されていません
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}、MPPトラッカー {}：ストリングの電圧が異なります（{} V と {} V）
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}、MPPトラッカー {}：ストリングは {} A を供給し、使用できる {} A を超えています（出力が制限されます）

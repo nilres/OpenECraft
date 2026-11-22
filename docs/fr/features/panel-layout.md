@@ -36,8 +36,9 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
   armoire ; `Esc` ou un clic droit annule. La commande `copy_panel_items` fait de même
   depuis la ligne de commande et pour les agents d'IA.
 - Vue de face 2D et vue 3D : faites glisser pour tourner autour, bouton droit / milieu
-  ou Maj+glisser pour déplacer la vue, la molette zoome sur le pointeur et avance
-  jusque dans une salle, un double-clic tourne la vue vers ce qui a été cliqué et s'en
+  ou Maj+glisser pour déplacer la vue, la molette zoome sur le pointeur, toujours plus
+  près de la face pleine qui s'y trouve mais sans la traverser (dans le vide elle avance
+  jusque dans une salle), un double-clic tourne la vue vers ce qui a été cliqué et s'en
   rapproche, `W` `A` `S` `D` / les touches fléchées et `Q` `E` déplacent dans la vue
   (Maj : plus vite), la barre de la vue propose les vues standard et *Ajuster*
   (`Home`) ; cliquez pour sélectionner. Les murs, plafonds et
@@ -1155,6 +1156,42 @@ armoire accrochée à un mur (son fond au-dessus du sol) se quitte aussi par un
 presse-étoupe dans son fond : sous chacun de ces presse-étoupes, un puits descendant
 jusqu'au sol et ressortant vers l'avant de l'armoire reste libre pour les parcours.
 Figé, un tel parcours conserve ses tronçons.
+
+**Points de passage.** Un fil, un câble ou un tube est mené par un autre chemin par
+des points de passage : clic droit sur son parcours au-dessus de la plaque de montage,
+sur un mur d'une salle (la vue de face d'une salle montre les parcours vus depuis la
+face, ses fils aussi) ou dans la vue 3D, puis *Ajouter un point de passage* ; le point
+se place sur le parcours là où l'on a cliqué, numéroté le long de celui-ci. Un
+clic droit garde le fil, le câble ou le tube sélectionné là où il passe : dans une
+goulotte, où les fils se superposent, cliquez d'abord sur le fil (encore pour le
+suivant), puis faites un clic droit. Un fil avec
+des points de passage est routé en 3D d'un point de connexion à l'autre comme un câble
+(un fil dans les goulottes les quitte), sans eux il revient dans les goulottes ; un fil
+vers la porte n'en prend aucun (le routage signale une erreur pour lui). Faites glisser
+un point de passage pour le déplacer : dans la vue de face sur la face affichée (il
+garde sa distance à la face), dans la vue 3D parallèlement à l'écran. Là où il est
+lâché, le parcours est recherché à nouveau depuis son début à travers chaque point de
+passage dans l'ordre jusqu'à sa fin : chaque point est passé au milieu de sa cellule de
+routage, le parcours en ressort comme il y est entré, garde la moitié de son épaisseur
+libre de tout et à l'écart des autres parcours, ne se courbe qu'avec son rayon et ne
+revient pas sur lui-même. Là où ce n'est pas possible (le point est dans un appareil ou
+hors de l'enveloppe, aucun chemin jusqu'à lui ne reste libre en se courbant avec le
+rayon, les points ne laissent pas la place des arcs des courbures entre eux, le chemin
+revient sur lui-même, ou le point n'est dans aucune armoire ni salle que le parcours
+traverse), le routage signale une erreur qui nomme le point de passage, le dessine en
+rouge et pose le parcours sans ses points de passage jusqu'à ce qu'il soit déplacé ; la ligne d'état
+indique si le parcours passe par ses points de passage ou pourquoi pas. Seul le
+parcours dont les points de passage ont changé est recherché tout de suite, parmi les
+autres parcours là où ils sont (un arc tourne autour de son point de passage pendant
+ce temps) ; tout le routage suit en arrière-plan. Un point donné sur un angle du
+parcours recule le long de celui-ci du rayon de courbure, et le chemin de retour
+depuis un point reste à l'écart du chemin aller (dans une goulotte il peut le croiser).
+Un
+clic droit sur un point de passage le supprime, ou tous (aussi dans les propriétés du
+parcours ou du fil). Un parcours avec des points de passage n'est pas figé. Commandes
+`add_control_point`, `move_control_point` et `remove_control_point` (points dans les
+coordonnées d'une enveloppe ; un fil par `from|to`, ses points de connexion) ;
+`list_routing` les liste.
 
 **Encastré dans les salles.** Chaque câble, fil et tube est posé dans les salles *en
 saillie* (comme ci-dessus), *encastré dans le mur* ou *encastré dans le sol* : comme

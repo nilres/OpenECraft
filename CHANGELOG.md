@@ -30,6 +30,22 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   heat sink and the fan behind its grille, the enclosure thermostat its red (heating) or
   blue (cooling) dial with its scale, the socket outlet for mounting rails the round
   type F socket in its front.
+- **Zooming in 3D stops at what is under the pointer:** the wheel, a pinch and the key
+  for closer zoom in on the solid face under the pointer (a device, the mounting plate,
+  the back of the enclosure, a wall of a room), coming ever closer to it but no longer
+  through it; walls seen through and hidden walls in front are zoomed through as before.
+- **Control points of wires, cables and tubes:** right-click a route over the mounting
+  plate, on a wall of a room or in the 3D view and *Add control point*, then drag the
+  point; the route is searched again through its control points, keeping its bend
+  radius and clear of everything (a wire with control points is routed in 3D instead of
+  in the cable ducts). A point the route cannot be led through (in a device, outside
+  the enclosure, too tight for the bend radius) is an error, drawn in red, and the route
+  is laid without its control points; the status line tells the result. Only the
+  route whose control points changed is searched again at once (an arc runs round the
+  point meanwhile), the whole routing follows in the background. The front view of a
+  room now shows the routed wires, cables and tubes seen from the face. Commands `add_control_point`,
+  `move_control_point`, `remove_control_point`
+  ([3D routing](docs/features/panel-layout.md#3d-routing)).
 - **Resize on the page:** a selected rectangle, ellipse, image, structure box or device
   box shows grips at its corners and edges, dragged on the grid to change its size
   (images keep their aspect ratio, the connection points on a moved edge of a device box

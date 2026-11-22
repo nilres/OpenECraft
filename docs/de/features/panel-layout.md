@@ -38,7 +38,8 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
   für KI-Agenten.
 - 2D-Frontansicht und eine 3D-Ansicht: Ziehen dreht die Ansicht, Ziehen mit der
   rechten / mittleren Taste oder mit Umschalt verschiebt sie, das Mausrad zoomt am
-  Mauszeiger und geht weiter in einen Raum hinein, ein Doppelklick dreht zum
+  Mauszeiger, immer näher an die feste Fläche dort, aber nicht durch sie hindurch (im
+  leeren Raum geht es weiter in einen Raum hinein), ein Doppelklick dreht zum
   Angeklickten und geht näher heran, `W` `A` `S` `D` / Pfeiltasten und `Q` `E` bewegen
   durch die Ansicht (Umschalt: schneller), die Leiste in der Ansicht enthält die
   Standardansichten und *Einpassen* (`Pos1`); Klick
@@ -1113,6 +1114,40 @@ an einer Wand hängender Schrank (sein Boden über dem Fußboden) wird auch durc
 Verschraubung in seinem Boden verlassen: Unter jeder solchen Verschraubung bleibt ein
 Schacht hinab zum Fußboden und hinaus zur Vorderseite des Schranks für die Wege frei.
 Eingefroren behält ein solcher Weg seine Abschnitte.
+
+**Stützpunkte.** Eine Leitung, ein Kabel oder ein Schlauch wird durch Stützpunkte
+anders geführt: Rechtsklick auf die Verlegung über der Montageplatte, auf einer Wand
+eines Raums (die Vorderansicht eines Raums zeigt die Wege von der Fläche aus gesehen,
+auch seine Leitungen) oder in der 3D-Ansicht und *Stützpunkt hinzufügen* wählen; der
+Punkt kommt dort auf die Verlegung, wo geklickt wurde, nummeriert entlang ihr. Ein
+Rechtsklick behält die gewählte Leitung, das Kabel oder den Schlauch, wo sie dort
+verlaufen: In einem Kabelkanal, wo Leitungen übereinander liegen, zuerst die Leitung
+anklicken (nochmals für die nächste), dann rechts klicken. Eine
+Leitung mit Stützpunkten wird wie ein Kabel in 3D von Anschlusspunkt zu Anschlusspunkt
+verlegt (eine in den Kabelkanälen verlässt sie), ohne sie kehrt sie in die Kanäle
+zurück; eine Leitung zur Tür nimmt keine (die Verlegung meldet dafür einen Fehler).
+Einen Stützpunkt ziehen, um ihn zu verschieben: in der Vorderansicht auf der gezeigten
+Fläche (er behält seinen Abstand von ihr), in der 3D-Ansicht parallel zum Bildschirm.
+Wo er losgelassen wird, wird der Weg neu gesucht, vom Anfang durch jeden Stützpunkt der
+Reihe nach bis zum Ende: Jeder Punkt wird in der Mitte seiner Verlegezelle passiert, der
+Weg läuft so aus ihm heraus, wie er hineinkam, hält die halbe Dicke Abstand von allem
+und von den anderen Wegen, biegt nur mit seinem Radius und kommt nicht zu sich selbst
+zurück. Wo das nicht geht (der Punkt liegt in einem Gerät oder außerhalb des Gehäuses,
+kein Weg zu ihm bleibt frei und biegt mit dem Radius, die Punkte lassen keinen Platz für
+die Bögen zwischen ihnen, der Weg kommt zu sich selbst zurück, oder der Punkt liegt in
+keinem Schrank und keinem Raum, durch den verlegt wird), meldet die Verlegung einen
+Fehler mit dem Stützpunkt, zeichnet ihn rot und verlegt ohne seine Stützpunkte, bis er
+verschoben wird; die Statuszeile sagt, ob der Weg durch
+seine Stützpunkte geführt wird oder warum nicht. Nur der Weg, dessen Stützpunkte sich
+geändert haben, wird sofort neu gesucht, zwischen den anderen Wegen, wo sie liegen
+(währenddessen läuft ein Bogen um seinen Stützpunkt); die ganze Verlegung folgt im
+Hintergrund. Ein Punkt auf einer Ecke des Wegs rückt um den Biegeradius an ihm zurück,
+und der Weg zurück von einem Punkt hält Abstand vom Weg dorthin (in einem Kabelkanal
+darf er ihn kreuzen). Rechtsklick auf einen Stützpunkt entfernt ihn oder alle (auch in den
+Eigenschaften der Verlegung oder Leitung). Ein Weg mit Stützpunkten ist nicht
+eingefroren. Befehle `add_control_point`, `move_control_point` und
+`remove_control_point` (Punkte in den Koordinaten eines Gehäuses; eine Leitung als
+`from|to`, ihre Anschlusspunkte); `list_routing` listet sie auf.
 
 **Unterputz in Räumen.** Jedes Kabel, jeder Draht und jeder Schlauch wird in Räumen
 *Aufputz* (wie oben), *Unterputz in der Wand* oder *Unterputz im Fußboden* verlegt: wie

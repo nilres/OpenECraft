@@ -274,6 +274,8 @@ Contractor	Zhotovitel
 Control	Řízení
 Control cabinet	Rozváděč
 Control mode	Způsob řízení
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Průchozí bod {} prvku {} {} leží uvnitř něčeho nebo mimo skříň: vede se bez svých průchozích bodů. Přesuňte průchozí bod do volného prostoru.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Průchozí bod {} prvku {} {} leží mimo jeho cestu: v žádné skříni ani místnosti, kterou vede. Přesuňte průchozí bod na jeho cestu.
 Control transformer	Ovládací transformátor
 Control transformer (NFPA)	Ovládací transformátor (NFPA)
 Control transformer T (GOST)	Ovládací transformátor T (GOST)
@@ -956,6 +958,7 @@ No page or page item with id {}	Žádná stránka ani prvek stránky s ID {}
 No page with id {}	Žádná stránka s ID {}
 No plugs	Žádné konektory
 No report block {}	Žádný blok výkazů {}
+No routed wire, cable or tube {}	Žádný vedený vodič, kabel ani trubka {}
 No segment template named {}	Žádná šablona segmentu s názvem {}
 No subproject {}	Žádný podprojekt {}
 No such object: {}	Žádný takový objekt: {}
@@ -1365,6 +1368,7 @@ Roof top	Střecha
 Room floor	Podlaha místnosti
 Room {} stands outside the plot boundary	Místnost {} stojí mimo hranici pozemku
 Round punch	Kruhový razník
+Route {} has no control point {}	Trasa {} nemá průchozí bod {}
 Routing list (3D)	Seznam vedení (3D)
 Row {} not found	Řádek {} nenalezen
 Row {}: no job	Řádek {}: žádná zakázka
@@ -1989,12 +1993,16 @@ yellow	žlutá
 {} unused device data records removed	Odebráno {} nepoužitých záznamů dat přístrojů
 {} wiring marks belong to wires that no longer exist	Značky zapojení ({}) patří k vodičům, které již neexistují
 {} without device tag on page {}	{} bez označení přístroje na stránce {}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} nelze vést přes jeho průchozí bod {}: žádná cesta, která drží polovinu tloušťky od všeho a ohýbá se s poloměrem {} mm. Vede se bez průchozích bodů; přesuňte průchozí bod.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} nelze vést: každá kabelová průchodka v {} je obsazena jiným kabelem. Přidejte pro něj kabelovou průchodku.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nelze vést: žádná cesta, která drží polovinu tloušťky od všeho a ohýbá se s poloměrem {} mm. Přesuňte konce nebo udělejte místo.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} vstupuje dnem: ve skříni není kabelová vývodka
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} vstupuje střechou: na střeše, bocích ani zadní stěně není kabelová vývodka
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} je veden ke kabelovým vstupům svých skříní: nestojí ve společné místnosti, cesta mezi nimi není součástí rozvržení
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} se přes své průchozí body kříží sám se sebou. Vede se bez průchozích bodů; přesuňte je.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} vede ke dveřím: nelze jej vést přes jeho průchozí body. Odstraňte je.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: ohyby těsnější než poloměr ohybu ({} mm)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: průchozí body nenechávají místo pro ohyb s poloměrem {} mm. Vede se bez průchozích bodů; posuňte je dál od sebe.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: propojeno v jednopólovém schématu, ale ne ve schématu zapojení
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP tracker {}: jeho stringy se liší napětím ({} V a {} V)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP tracker {}: stringy dodávají {} A, více než {} A, které využije (výkon je omezen)

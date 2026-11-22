@@ -82,6 +82,7 @@ Active	Aktiv
 Actuators on the door	Manöverdon i dörren
 Add a command	Lägg till ett kommando
 Add a target language to translate the project texts.	Lägg till ett målspråk för att översätta projekttexterna.
+Add control point	Lägg till stödpunkt
 Add filter	Lägg till filter
 Add folder…	Lägg till mapp…
 Add group	Lägg till grupp
@@ -428,6 +429,9 @@ Consecutive addresses from the start byte, in schematic order	Löpande adresser 
 Contact image below coils	Kontaktavbildning under spolar
 Content	Innehåll
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Innehåll i ett inaktivt alternativ är dolt: det ritas inte, utvärderas inte, rapporteras inte och exporteras inte.
+Control point {} added to {}: routing again…	Stödpunkt {} tillagd för {}: dras om…
+Control point {} of {} moved: routing again…	Stödpunkt {} för {} flyttad: dras om…
+Control points: {}	Stödpunkter: {}
 Coordinate reference system	Referenssystem för koordinater
 Copies	Kopior
 Copies function texts between both representations where one is empty	Kopierar funktionstexter mellan de båda representationerna där den ena är tom
@@ -1029,6 +1033,7 @@ Layout checks	Layoutkontroller
 Layout properties	Layoutegenskaper
 Layout space	Monteringsutrymme
 Layout spaces	Monteringsutrymmen
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Led dragningen genom en punkt här: dra den för att dra om ledningen, kabeln eller röret med dess böjradie och fritt från allt
 Leave out the ceilings of the rooms and the roofs in the 3D view	Utelämna rummens tak och yttertaken i 3D-vyn
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Utelämna locken på alla kabelkanaler i 3D-vyn: ledarna i dem syns
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Utelämna solcellsfältens moduler i 3D-vyn: skenor, takkrokar, stativ, jordning och kablage syns
@@ -1315,6 +1320,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Inte ändrad: 
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Inte ansluten ännu: ingen apparat, ingen kabel. Välj skyddsdonet för dess grupp.
 Not found: {}	Hittades inte: {}
 Not in the project parts – synchronize in parts management	Inte bland projektets artiklar – synkronisera i artikelhanteringen
+Not led through its control points: see the messages	Inte dragen genom sina stödpunkter: se meddelandena
 Not on a wire	Inte på en ledning
 Not placed	Inte placerad
 Not saved yet	Inte sparat ännu
@@ -1653,6 +1659,8 @@ Released pages keep their name.	Frisläppta sidor behåller sitt namn.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Originalets frisläppta revisioner, baslinjer, kommentarer, markeringar, godkännanden och ändringsbegäranden. Utan dem börjar kopian som ett nytt projekt.
 Releases all locks; the project stays open as a local copy	Släpper alla lås; projektet förblir öppet som en lokal kopia
 Releasing…	Låser upp…
+Remove all control points	Ta bort alla stödpunkter
+Remove control point	Ta bort stödpunkt
 Remove from cable	Ta bort från kabel
 Remove from harness	Ta bort från kabelstam
 Remove from the group	Ta bort från gruppen
@@ -1749,6 +1757,7 @@ Right button	Höger knapp
 Right click for more	Högerklicka för mer
 Right edges	Högerkanter
 Right neighbour	Granne till höger
+Right-click the route to add a control point, then drag it	Högerklicka på dragningen för att lägga till en stödpunkt och dra den sedan
 Rights	Behörigheter
 Risers	Sättsteg
 Rod holder	Stavhållare
@@ -2612,6 +2621,7 @@ x y	x y
 {} wires changed	{} ledningar ändrade
 {} wires, {} cables and {} tubes routed	{} ledningar, {} kablar och {} slangar dragna
 {} wires, {} – {} mm	{} ledningar, {} – {} mm
+{} {} is led through its control points: {} mm	{} {} dras genom sina stödpunkter: {} mm
 {} {} of building {}	{} {} i byggnad {}
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)

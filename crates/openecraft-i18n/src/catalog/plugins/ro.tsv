@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Adaugă o presetupă de mărimea potrivită pentru fiecare cablu care iese dintr-o carcasă și nu găsește nicio presetupă liberă: în acoperiș pentru un aparat din încăpere, în fund pentru teren sau o carcasă agățată pe perete
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Adaugă o trecere de cabluri spre vecinul din dreapta: decupaje rotunde față în față în ambii pereți laterali; conductoarele dintre carcase trec prin ea
 Adds a configurator rule: insert a page macro when the condition holds	Adaugă o regulă de configurator: inserează un macro de pagină când condiția este îndeplinită
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Adaugă un punct de trecere la traseul unui conductor, cablu sau tub acolo unde trece cel mai aproape de punctul dat: traseul trece prin punctele sale de trecere, își păstrează raza de curbură și rămâne liber de orice
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Adaugă un nod al rețelei de trasee (ramificație, trecere, punctul în care se ajunge la o carcasă sau un dispozitiv)
 Adds a planned device to a segment or changes it	Adaugă un dispozitiv planificat într-un segment sau îl modifică
 Adds a project option or changes its description and condition	Adaugă o opțiune de proiect sau îi modifică descrierea și condiția
@@ -359,6 +360,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Menținerea gradului de protecție: schimbător de căldură sau agregat de răcire în locul ventilatoarelor cu filtru
 Key figures of the project and a list of its device tags	Indicatorii proiectului și o listă a identificatorilor săi de dispozitiv
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Indicatorii proiectului: pagini, simboluri, conductoare, dispozitive, articole, cabluri și rezultatele verificărilor
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Cheia elementului pozat: marcajul cablului, hose:de la|la pentru un tub, de la|la pentru un conductor
 Key, e.g. user.coupling_relay	Cheie, de ex. user.coupling_relay
 Key, e.g. user.customer_code	Cheie, de ex. user.customer_code
 Keys of the routes, comma separated (all if missing)	Cheile traseelor, separate prin virgulă (toate, dacă lipsesc)
@@ -472,6 +474,7 @@ Mirror the symbol	Oglindire simbol
 Mounting height above the floor in mm (default: that of the part)	Înălțimea de montaj deasupra pardoselii în mm (implicit: cea a articolului)
 Mounting plate size as width and height; empty object restores the centred plate	Dimensiunea plăcii de montaj ca lățime și înălțime; un obiect gol restabilește placa centrată
 Mounting size must contain a positive width and height	Dimensiunea de montaj trebuie să conțină o lățime și o înălțime pozitive
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Mută un punct de trecere al traseului unui conductor, cablu sau tub; pozarea raportează o eroare acolo unde traseul nu poate trece prin el
 Moves an air-termination rod, changes its height, renames or removes it	Mută o tijă de captare, îi modifică înălțimea, o redenumește sau o elimină
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Mută un capăt al unui conductor: acesta părăsește ceea ce era conectat și se conectează la ceea ce întâlnește; conductorul rămâne ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Mută simboluri, conductoare și texte; capetele conductoarelor conectate le urmează
@@ -509,6 +512,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Niciun sistem de magistrală {}
 No connection point {} on this page	Niciun punct de conexiune {} pe această pagină
 No connection symbol with id {}	Niciun simbol de conexiune cu id {}
+No control point {}	Niciun punct de trecere {}
 No copper bar {}	Nu există bara de cupru {}
 No device description {}	Nicio descriere de dispozitiv {}
 No device group {}	Niciun grup de dispozitive {}
@@ -561,6 +565,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Numărul de fire al cab
 Number of equal bars	Număr de bare identice
 Number of indexed values (0 = a single value)	Număr de valori indexate (0 = o singură valoare)
 Number of rows	Număr de rânduri
+Number of the control point along the route, from 1	Numărul punctului de trecere de-a lungul traseului, de la 1
+Number of the control point along the route, from 1 (all if missing)	Numărul punctului de trecere de-a lungul traseului, de la 1 (toate dacă lipsește)
 Numbers the pages with a start value and step; released pages keep their name	Numerotează paginile cu o valoare de start și un pas; paginile aprobate își păstrează numele
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Numerotează bornele unui șir 1 … n în ordinea din șir; denumirile nenumerice, precum PE, rămân
 Numbers the wires by the numbering scheme of the project	Numerotează conductoarele după schema de numerotare a proiectului
@@ -715,6 +721,7 @@ Remove the entry of upstream and downstream	Eliminarea intrării pentru upstream
 Remove the profile	Eliminarea profilului
 Remove the scheme from the project	Eliminarea schemei din proiect
 Remove unused definitions (default: false)	Eliminare definiții neutilizate (implicit: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Elimină un punct de trecere al traseului unui conductor, cablu sau tub, sau pe toate
 Removes a copper bar	Elimină o bară de cupru
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Elimină un nod (cu segmentele și plasările sale), un segment, o plasare, un contur, un conductor de legătură echipotențială sau un accesoriu
 Removes a planned device from a segment	Elimină un dispozitiv planificat dintr-un segment
@@ -1026,8 +1033,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Zonă de lucru pe x, mm
 Working area in y, mm	Zonă de lucru pe y, mm
 Wrap width in mm (0: no wrapping)	Lățime de rupere a rândurilor în mm (0: fără rupere a rândurilor)
+X of the point in mm from the left of the enclosure	X al punctului în mm de la stânga carcasei
 X position in mm	Poziția X în mm
+Y of the point in mm from the top of the enclosure	Y al punctului în mm de la partea de sus a carcasei
 Y position in mm (downwards)	Poziția Y în mm (în jos)
+Z of the point in mm from the rear wall of the enclosure	Z al punctului în mm de la peretele din spate al carcasei
 any, wires, cables or tubes	any, wires, cables sau tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left sau right; renunță la textele plasate manual
 auto, tapped, through, rivet_nut, rivet, stud, clip or adhesive (rails: screwed or riveted)	auto, tapped, through, rivet_nut, rivet, stud, clip sau adhesive

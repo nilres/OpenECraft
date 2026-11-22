@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	외함을 나가면서 빈 글랜드를 찾지 못한 각 케이블에 크기에 맞는 케이블 글랜드를 추가합니다: 실내 기기는 천장면, 필드 또는 벽걸이 외함은 바닥면
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	오른쪽 인접 외함으로의 케이블 통로를 추가합니다: 양쪽 측벽에 서로 마주 보는 원형 컷아웃. 외함 사이의 전선이 이를 통과합니다
 Adds a configurator rule: insert a page macro when the condition holds	컨피규레이터 규칙을 추가합니다: 조건이 충족되면 페이지 매크로 삽입
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	전선, 케이블 또는 튜브의 경로가 지정한 점에 가장 가깝게 지나는 곳에 경유점을 추가: 경로는 경유점을 지나며 굽힘 반경을 유지하고 모든 것을 피합니다
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	필드 경로 네트워크의 노드(분기점, 관통부, 외함 또는 장치 도달 지점)를 추가합니다
 Adds a planned device to a segment or changes it	세그먼트에 계획된 장치를 추가하거나 변경합니다
 Adds a project option or changes its description and condition	프로젝트 옵션을 추가하거나 설명과 조건을 변경합니다
@@ -359,6 +360,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	보호 등급 유지: 필터 팬 대신 열교환기 또는 냉각 장치
 Key figures of the project and a list of its device tags	프로젝트의 주요 지표 및 장치 태그 목록
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	프로젝트의 주요 지표: 페이지, 심볼, 전선, 장치, 부품, 케이블 및 검사 결과
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	배선된 항목의 키: 케이블 표시, 튜브는 hose:시작|끝, 전선은 시작|끝
 Key, e.g. user.coupling_relay	키(예: user.coupling_relay)
 Key, e.g. user.customer_code	키(예: user.customer_code)
 Keys of the routes, comma separated (all if missing)	쉼표로 구분된 경로 키(없으면 모두)
@@ -472,6 +474,7 @@ Mirror the symbol	심볼 대칭
 Mounting height above the floor in mm (default: that of the part)	바닥에서의 설치 높이 mm(기본값: 부품의 높이)
 Mounting plate size as width and height; empty object restores the centred plate	장착 플레이트 크기(너비와 높이). 빈 객체는 가운데 장착 플레이트로 되돌립니다
 Mounting size must contain a positive width and height	장착 크기에는 양수인 너비와 높이가 있어야 합니다
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	전선, 케이블 또는 튜브 경로의 경유점을 이동: 경로가 그 점을 지날 수 없으면 배선에서 오류를 보고합니다
 Moves an air-termination rod, changes its height, renames or removes it	피뢰침을 이동하고 높이를 변경하며 이름을 바꾸거나 삭제합니다
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	전선의 한쪽 끝을 이동합니다. 끝은 연결된 대상에서 떨어지고 만나는 대상에 연결됩니다. 전선은 직각을 유지합니다
 Moves symbols, wires and texts; connected wire ends follow	심볼, 전선 및 텍스트를 이동합니다. 연결된 전선 끝이 따라갑니다
@@ -509,6 +512,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	버스 시스템 {} 없음
 No connection point {} on this page	이 페이지에 연결 지점 {}이(가) 없습니다
 No connection symbol with id {}	id {}인 연결 기호가 없습니다
+No control point {}	경유점 {} 없음
 No copper bar {}	동바 {}이(가) 없습니다
 No device description {}	장치 설명 {} 없음
 No device group {}	장치 그룹 {} 없음
@@ -561,6 +565,8 @@ Number of cores of the cable (default: 3, three-phase 5)	케이블의 심선 수
 Number of equal bars	동일한 바의 수
 Number of indexed values (0 = a single value)	인덱스 값의 수(0 = 단일 값)
 Number of rows	행 수
+Number of the control point along the route, from 1	경로를 따른 경유점 번호(1부터)
+Number of the control point along the route, from 1 (all if missing)	경로를 따른 경유점 번호(1부터, 생략 시 전부)
 Numbers the pages with a start value and step; released pages keep their name	시작 값과 간격으로 페이지 번호를 매깁니다. 릴리스된 페이지는 이름을 유지합니다
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	단자대 순서에 따라 단자 번호를 1 … n으로 매깁니다. PE 같은 숫자가 아닌 명칭은 유지됩니다
 Numbers the wires by the numbering scheme of the project	프로젝트의 번호 지정 체계에 따라 전선 번호를 지정합니다
@@ -715,6 +721,7 @@ Remove the entry of upstream and downstream	upstream 및 downstream 항목 제�
 Remove the profile	프로필 제거
 Remove the scheme from the project	프로젝트에서 스키마 제거
 Remove unused definitions (default: false)	사용하지 않는 정의 제거(기본값: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	전선, 케이블 또는 튜브 경로의 경유점 하나 또는 전부를 제거
 Removes a copper bar	동바를 제거합니다
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	노드(해당 구간 및 배치 포함), 구간, 배치, 외곽선, 본딩 도체 또는 부속품을 제거합니다
 Removes a planned device from a segment	세그먼트에서 계획된 장치를 제거합니다
@@ -1026,8 +1033,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	x 방향 작업 영역(mm)
 Working area in y, mm	y 방향 작업 영역(mm)
 Wrap width in mm (0: no wrapping)	줄 바꿈 너비(mm, 0: 줄 바꿈 없음)
+X of the point in mm from the left of the enclosure	외함 왼쪽부터 점의 X(mm)
 X position in mm	X 위치(mm)
+Y of the point in mm from the top of the enclosure	외함 위쪽부터 점의 Y(mm)
 Y position in mm (downwards)	Y 위치(mm, 아래쪽 방향)
+Z of the point in mm from the rear wall of the enclosure	외함 후면 벽부터 점의 Z(mm)
 any, wires, cables or tubes	any, wires, cables 또는 tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left 또는 right. 수동으로 배치된 텍스트를 버립니다
 auto, tapped, through, rivet_nut, rivet, stud, clip or adhesive (rails: screwed or riveted)	auto, tapped, through, rivet_nut, rivet, stud, clip 또는 adhesive

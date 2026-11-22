@@ -212,6 +212,26 @@ pub struct FrozenLeg {
     pub points: Vec<V3>,
 }
 
+/// The control points a cable or tube is led through (added on its route and moved in
+/// the panel layout): it is routed from its start through them, in order, to its end,
+/// keeping its bend radius and clear of everything.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct RouteControl {
+    /// Key of the route (`crate::routing3d::RoutedItem::key`).
+    pub key: String,
+    pub points: Vec<ControlPoint>,
+}
+
+/// A control point of a route (see [`RouteControl`]).
+#[derive(Clone, Copy, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct ControlPoint {
+    /// Id of the enclosure (cabinet or room) the point is relative to.
+    pub enclosure: u64,
+    pub at: V3,
+}
+
 /// What is routed.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum RouteKind {

@@ -274,6 +274,8 @@ Contractor	Appaltatore
 Control	Comando
 Control cabinet	Quadro di comando
 Control mode	Modalità di regolazione
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Il punto di passaggio {} di {} {} si trova dentro qualcosa o fuori dall'armadio: viene posato senza i suoi punti di passaggio. Spostare il punto di passaggio in uno spazio libero.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Il punto di passaggio {} di {} {} è fuori dal suo percorso: in nessun armadio o locale che attraversa. Spostare il punto di passaggio sul suo percorso.
 Control transformer	Trasformatore di comando
 Control transformer (NFPA)	Trasformatore di comando (NFPA)
 Control transformer T (GOST)	Trasformatore di comando T (GOST)
@@ -956,6 +958,7 @@ No page or page item with id {}	Nessuna pagina o elemento di pagina con ID {}
 No page with id {}	Nessuna pagina con ID {}
 No plugs	Nessun connettore
 No report block {}	Nessun blocco di report {}
+No routed wire, cable or tube {}	Nessun conduttore, cavo o tubo posato {}
 No segment template named {}	Nessun modello di segmento denominato {}
 No subproject {}	Nessun sottoprogetto {}
 No such object: {}	Oggetto inesistente: {}
@@ -1365,6 +1368,7 @@ Roof top	Copertura
 Room floor	Pavimento del locale
 Room {} stands outside the plot boundary	Il locale {} si trova fuori dal confine del lotto
 Round punch	Punzone tondo
+Route {} has no control point {}	Il percorso {} non ha il punto di passaggio {}
 Routing list (3D)	Lista di instradamento (3D)
 Row {} not found	Riga {} non trovata
 Row {}: no job	Riga {}: nessuna commessa
@@ -1989,12 +1993,16 @@ yellow	giallo
 {} unused device data records removed	{} record di dati dei dispositivi inutilizzati rimossi
 {} wiring marks belong to wires that no longer exist	{} contrassegni di cablatura appartengono a conduttori che non esistono più
 {} without device tag on page {}	{} senza sigla dispositivo a pagina {}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} non può essere instradato attraverso il suo punto di passaggio {}: nessun percorso che tenga metà del suo spessore libero da tutto e curvi con il suo raggio di {} mm. Viene posato senza i suoi punti di passaggio; spostare il punto di passaggio.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} non può essere instradato: ogni pressacavo di {} è occupato da un altro cavo. Aggiungere un pressacavo per esso.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} non può essere instradato: nessun percorso che tenga metà del suo spessore libero da tutto e curvi con il suo raggio di {} mm. Spostare le estremità o fare spazio.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} entra dal fondo: nessun pressacavo nell'armadio
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} entra dal tetto: nessun pressacavo sul tetto, sui lati o sul retro
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} è posato fino agli ingressi cavi dei suoi armadi: non si trovano in un locale comune, il percorso tra di essi non fa parte del layout
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} si incrocia con se stesso attraverso i suoi punti di passaggio. Viene posato senza i suoi punti di passaggio; spostarli.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} va alla porta: non può passare per i suoi punti di passaggio. Rimuoverli.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: curve più strette del raggio di curvatura ({} mm)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: i suoi punti di passaggio non lasciano spazio per curvare con il suo raggio di {} mm. Viene posato senza i suoi punti di passaggio; allontanarli di più.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: collegati nello schema unifilare ma non nello schema
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, inseguitore MPP {}: le sue stringhe differiscono in tensione ({} V e {} V)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, inseguitore MPP {}: le stringhe forniscono {} A, più dei {} A che usa (la potenza è limitata)

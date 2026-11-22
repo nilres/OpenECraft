@@ -531,6 +531,15 @@ pub fn face_point(e: &Enclosure, face: Face, v: V3) -> V3 {
     in_frame(&face_frame(e, face), v)
 }
 
+/// Where a point in enclosure coordinates lies on a face: face x, face y and the
+/// distance into the enclosure (the inverse of [`face_point`]).
+pub fn point_on_face(e: &Enclosure, face: Face, q: V3) -> V3 {
+    let [o, u, w, n] = face_frame(e, face);
+    let d = [q[0] - o[0], q[1] - o[1], q[2] - o[2]];
+    let dot = |a: V3| d[0] * a[0] + d[1] * a[1] + d[2] * a[2];
+    [dot(u), dot(w), dot(n)]
+}
+
 /// A point of a face in enclosure coordinates, given the face's [`face_frame`]: for
 /// many points of one face (the frame of a room's face takes its outline).
 fn in_frame([o, u, w, n]: &[V3; 4], v: V3) -> V3 {
@@ -624,6 +633,7 @@ impl Default for Layout {
             macros: Vec::new(),
             routing: Default::default(),
             frozen: Vec::new(),
+            controls: Vec::new(),
             laying: Default::default(),
             pv_design: Default::default(),
             checks: PanelRules::default(),
