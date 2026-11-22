@@ -15,6 +15,9 @@ window.OPENECRAFT_SITE = {
     // Where problems are reported (OPENECRAFT_ISSUES_URL); empty: the issues of the
     // repository.
     issues: "",
+    // The channel with the videos of the project (OPENECRAFT_VIDEOS_URL). Empty hides
+    // the links to it.
+    videos: "https://www.youtube.com/@OpenECraft",
     // The legal notice (Impressum) of the operator of the site, shown by the link
     // "Legal notice" of the footer. Without a name there is neither link nor notice.
     // Addresses and texts take several lines, separated by "\n" or "|".

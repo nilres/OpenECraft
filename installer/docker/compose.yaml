@@ -87,6 +87,12 @@ services:
       OPENECRAFT_DOWNLOADS_URL: ${OPENECRAFT_DOWNLOADS_URL:-}
       OPENECRAFT_DOCUMENTATION_URL: ${OPENECRAFT_DOCUMENTATION_URL:-}
       OPENECRAFT_ISSUES_URL: ${OPENECRAFT_ISSUES_URL:-}
+      # The channel with the videos of the project: its address for the links, and its
+      # id for the page /videos/, whose list is fetched four times a day (seconds, 0:
+      # never; an empty id: no videos).
+      OPENECRAFT_VIDEOS_URL: ${OPENECRAFT_VIDEOS_URL:-https://www.youtube.com/@OpenECraft}
+      OPENECRAFT_VIDEOS_CHANNEL: ${OPENECRAFT_VIDEOS_CHANNEL:-UCyqRmnEuKZZSQcZ8HSqmewA}
+      OPENECRAFT_VIDEOS_INTERVAL: ${OPENECRAFT_VIDEOS_INTERVAL:-21600}
 
 volumes:
   parts:

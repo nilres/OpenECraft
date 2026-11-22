@@ -5,6 +5,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Videos on the website:** the new page `videos/` lists the videos of the project's
+  YouTube channel with their pictures, and the start page and every footer link it and
+  the channel. The server of the site fetches the list and the pictures four times a
+  day (`installer/docker/website-videos.sh`, `OPENECRAFT_VIDEOS_CHANNEL`,
+  `OPENECRAFT_VIDEOS_INTERVAL`); a visitor's browser reaches YouTube only by following
+  a link ([website](docs/website.md#videos)).
 - **More of the website to find:** every symbol of the library has a page of its own
   (`symbols/no-contact/`, …) with its drawing to download as SVG and DXF, its data and
   the other symbols of its category, in English, German, French and Spanish. The
