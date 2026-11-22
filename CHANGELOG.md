@@ -23,6 +23,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Layers for other projects:** the Layers pane exports the layers with their settings
   (visible, locked, printed, colour) and imports them into another project; settings
   schemes (*Export settings…*, `export_settings`) carry them too.
+- **Devices that fit their busbar system:** the check *Busbar systems* warns about a
+  device made for another centre distance than the bars it sits on (mounting
+  `Busbar 60 mm`) and about one that does not reach all of them. The 3-pole busbar
+  systems of the catalog are wide enough for their 60 mm centre distance (150 mm), and
+  example 11 has its NH fuse switch disconnectors on a 60 mm system, the supply
+  terminals one on each bar
+  ([panel layout](docs/features/panel-layout.md)).
 - **Videos on the website:** the new page `videos/` lists the videos of the project's
   YouTube channel with their pictures, and the start page and every footer link it and
   the channel. The server of the site fetches the list and the pictures four times a

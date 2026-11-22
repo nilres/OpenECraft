@@ -79,10 +79,15 @@ pub(super) fn cables(prj: &mut Project, db: &PartsDb) {
     }
 }
 
-fn profile(prj: &mut Project, enc: usize, kind: ItemKind, part: &str, a: (f32, f32), b: (f32, f32)) {
+fn profile(prj: &mut Project, enc: usize, kind: ItemKind, part: &str, a: (f32, f32), b: (f32, f32)) -> u64 {
     let item = panel::new_profile(prj, kind, part, p(a.0, a.1), p(b.0, b.1));
+    let id = item.id;
     prj.layout.enclosures[enc].items.push(item);
+    id
 }
+
+/// Height of the middle bar of the busbar system of the main distribution.
+const BARS: f32 = 410.0;
 
 /// Devices side by side from `x` on the rail at height `rail_y`.
 fn on_rail(prj: &mut Project, enc: usize, rail_y: f32, x: f32, tags: &[&str]) {
@@ -212,11 +217,14 @@ fn enclosures(prj: &mut Project, db: &PartsDb) -> [usize; 6] {
         it.part = "GEN.DUCT-100X120".into();
         it.d = deep;
     }
-    // The incoming terminals feed the bars they are mounted on (the main cable comes
-    // straight down to them from its gland), the fuse switch disconnectors sit on them.
-    profile(prj, md, ItemKind::Busbar, "GEN.BB-3X30X10", (120.0, 300.0), (840.0, 300.0));
-    for (tag, x) in [("=MD+MD-X0", 140.0), ("=MD+MD-Q1", 260.0), ("=MD+MD-Q2", 380.0), ("=MD+MD-Q3", 560.0)] {
-        panel::place_device(prj, md, tag, p(x, 255.0));
+    // The incoming terminals feed the bars they are mounted on, one on each bar (the
+    // main cable comes straight down to them from its gland); the fuse switch
+    // disconnectors for 60 mm systems sit on them, their middles on the middle bar.
+    let bars = profile(prj, md, ItemKind::Busbar, "GEN.BB-3X30X10", (120.0, BARS), (840.0, BARS));
+    panel::busbars::place_on_bars(prj, md, "=MD+MD-X0", bars, 30.0);
+    for (tag, x) in [("=MD+MD-Q1", 260.0), ("=MD+MD-Q2", 380.0), ("=MD+MD-Q3", 560.0)] {
+        let h = panel::device_size(prj, tag).map_or(0.0, |s| s.h);
+        panel::place_device(prj, md, tag, p(x, BARS - h / 2.0));
     }
     on_rail(prj, md, 900.0, 240.0, &["=MD+MD-P1", "=MD+MD-P2", "=MD+MD-P3", "=MD+MD-F11", "=MD+MD-F10"]);
     on_rail(prj, md, 900.0, 730.0, &["=MD+MD-X2"]);

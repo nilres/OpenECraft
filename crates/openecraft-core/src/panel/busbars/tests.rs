@@ -162,3 +162,36 @@ fn each_supply_terminal_sits_on_its_bar() {
     let (_, x1) = crate::panel::locate(&prj, "=GRID+HV1-X1").unwrap();
     assert!(terminals_on_bars(&prj, x1).is_none());
 }
+
+#[test]
+fn the_system_size_comes_from_the_mounting() {
+    let size = |m: &str| system_size(&crate::parts::Part { mounting: m.into(), ..Default::default() });
+    assert_eq!((size("Busbar 60 mm"), size("busbar 185mm")), (Some(60.0), Some(185.0)));
+    assert_eq!((size("Busbar 30 x 10"), size("Busbar"), size("Mounting rail 35 mm")), (None, None, None));
+}
+
+#[test]
+fn the_fuse_switch_disconnectors_fit_their_busbar_system() {
+    // Example 11: the NH fuse switch disconnectors for 60 mm systems on bars 60 mm
+    // apart, each across all three; the supply terminals one on each bar.
+    let mut prj = example("building_services").unwrap();
+    let nl = Netlist::build(&prj, true);
+    assert!(problems(&prj, &nl).is_empty(), "{:?}", problems(&prj, &nl).iter().map(|i| i.message()).collect::<Vec<_>>());
+    let (_, x0) = crate::panel::locate(&prj, "=MD+MD-X0").unwrap();
+    assert_eq!(terminals_on_bars(&prj, x0).map(|t| t.len()), Some(3));
+    // Bars 30 mm apart: none of them fits.
+    let (ei, _) = crate::panel::locate(&prj, "=MD+MD-Q1").unwrap();
+    let id = bar_with(&prj, "=MD+MD-Q1");
+    let mut narrow = prj.clone();
+    let bar = narrow.layout.enclosures[ei].items.iter_mut().find(|i| i.id == id).unwrap();
+    (bar.y, bar.h) = (bar.y + 30.0, 90.0);
+    let messages: Vec<String> = problems(&narrow, &nl).iter().map(|i| i.message()).collect();
+    assert_eq!(messages.len(), 4, "{messages:?}");
+    assert!(messages.iter().any(|m| m.contains("=MD+MD-Q3 is made for busbar systems with 60 mm centre distance, the bars it sits on are 30 mm apart")), "{messages:?}");
+    // A fuse switch disconnector moved up off the lowest bar.
+    let q2 = prj.layout.enclosures[ei].items.iter_mut().find(|i| i.tag == "=MD+MD-Q2").unwrap();
+    q2.y -= 100.0;
+    let messages: Vec<String> = problems(&prj, &nl).iter().map(|i| i.message()).collect();
+    assert_eq!(messages.len(), 1, "{messages:?}");
+    assert!(messages[0].ends_with("=MD+MD-Q2 reaches 2 of the 3 bars of its busbar system"), "{messages:?}");
+}

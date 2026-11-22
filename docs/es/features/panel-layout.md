@@ -90,7 +90,10 @@ los muestran.
   común (el mismo artículo a la misma altura, con sus extremos a no más de 100 mm) son un
   solo sistema, unido a través del lateral. Las barras se sitúan a la `Centre distance`
   del artículo (repartidas uniformemente si no hay ninguna) a lo largo del sistema, por
-  corto que sea un tramo de él; la vista 3D dibuja cada barra por separado, sobre
+  corto que sea un tramo de él. Un dispositivo hecho para sistemas de barras de una
+  distancia entre centros (montaje `Busbar 60 mm`) se asienta sobre barras a esa
+  distancia y las alcanza todas; si no, la comprobación *Sistemas de embarrado*
+  avisa. La vista 3D dibuja cada barra por separado, sobre
   soportes aislantes que llegan justo de un lado a otro de ellas, en las posiciones de
   taladrado de la placa pero junto a los dispositivos asentados en las barras (los
   transformadores que las barras atraviesan), nunca a través de ellos

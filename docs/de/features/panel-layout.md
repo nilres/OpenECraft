@@ -94,7 +94,10 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
   sich an ihrer gemeinsamen Seite treffen (derselbe Artikel auf derselben Höhe, ihre
   Enden höchstens 100 mm auseinander), sind ein System, durch die Seite verbunden. Die
   Schienen liegen im `Centre distance` des Artikels (ohne einen gleichmäßig verteilt)
-  entlang des Systems, wie kurz ein Abschnitt davon auch ist; die 3D-Ansicht zeichnet
+  entlang des Systems, wie kurz ein Abschnitt davon auch ist. Ein Betriebsmittel für Sammelschienensysteme
+  eines Mittenabstands (Montage `Busbar 60 mm`) sitzt auf Schienen in diesem Abstand
+  und erreicht sie alle, sonst warnt die Prüfung *Sammelschienensysteme*. Die
+  3D-Ansicht zeichnet
   jede Schiene für sich, auf isolierenden Haltern, die gerade über sie reichen, an den
   Bohrpositionen der Platte, aber neben den Betriebsmitteln, die in den Schienen sitzen
   (die Wandler, durch die die Schienen laufen), niemals durch sie hindurch

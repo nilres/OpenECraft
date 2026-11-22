@@ -78,8 +78,9 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   not by wires. The busbar systems of bayed enclosures that meet at their common side
   (the same part at the same height, their ends no more than 100 mm apart) are one
   system, joined through the side. The bars lie at the part's `Centre distance` (evenly
-  spaced without one) along the system, however short a section of it is; the 3D view
-  draws every bar on its own, on insulating holders reaching just across them, at the
+  spaced without one) along the system, however short a section of it is. A device made for busbar systems of a centre
+  distance (mounting `Busbar 60 mm`) sits on bars that far apart and reaches all of
+  them, otherwise the check *Busbar systems* warns. The 3D view draws every bar on its own, on insulating holders reaching just across them, at the
   drilling positions of the plate but beside the devices that sit in the bars (the
   transformers the bars pass through), never through them
   (`busbars::holder_places`). A busbar terminal strip placed across the bars (`busbars::place_on_bars`)

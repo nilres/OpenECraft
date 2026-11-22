@@ -92,7 +92,9 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
   même hauteur, leurs extrémités distantes de 100 mm au plus) forment un seul jeu,
   relié à travers le côté. Les barres sont disposées à l'entraxe `Centre distance` de
   l'article (régulièrement espacées à défaut) le long du jeu, aussi courte que soit
-  l'une de ses sections ; la vue 3D dessine chaque barre séparément, sur des supports
+  l'une de ses sections. Un appareil conçu pour des jeux de barres d'un entraxe
+  donné (montage `Busbar 60 mm`) repose sur des barres à cet entraxe et les atteint
+  toutes, sinon la vérification *Systèmes de jeux de barres* avertit. La vue 3D dessine chaque barre séparément, sur des supports
   isolants qui les dépassent à peine, aux positions de perçage de la plaque mais à
   côté des appareils insérés dans les barres (les transformateurs que les barres
   traversent), jamais à travers eux

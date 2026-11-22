@@ -271,9 +271,22 @@ fn bars_sit_at_their_centre_distance() {
     // 185 mm apart in the middle of the 400 mm wide system.
     assert_eq!(bar_centres(parts, "GEN.BB-3X30X10-185", 400.0), vec![15.0, 200.0, 385.0]);
     assert_eq!(bar_centres(parts, "GEN.BB-3X30X10-60", 150.0), vec![15.0, 75.0, 135.0]);
-    // Without a centre distance, or one the system is too narrow for: evenly spaced.
-    assert_eq!(bar_centres(parts, "GEN.BB-3X30X10", 90.0), vec![15.0, 45.0, 75.0]);
+    // A centre distance the system is too narrow for: evenly spaced.
     assert_eq!(bar_centres(parts, "GEN.BB-3X30X10-185", 300.0), vec![50.0, 150.0, 250.0]);
+}
+
+#[test]
+fn every_busbar_system_of_the_catalog_fits_its_centre_distance() {
+    // At their own width the bars of each system sit at the centre distance it is sold
+    // for, as the devices made for it expect.
+    let parts = crate::parts::catalog();
+    let systems: Vec<&Part> = parts.iter().filter(|p| p.subgroup == "Busbar system" && bar_count(parts, &p.number) > 1).collect();
+    assert!(systems.len() >= 6);
+    for p in systems {
+        let distance: f32 = p.tech_value("Centre distance").unwrap_or_else(|| panic!("{}: no centre distance", p.number)).trim_end_matches("mm").trim().parse().unwrap();
+        let centres = bar_centres(parts, &p.number, p.height);
+        assert!(centres.windows(2).all(|w| (w[1] - w[0] - distance).abs() < 0.01), "{}: {centres:?} in {} mm", p.number, p.height);
+    }
 }
 
 #[test]

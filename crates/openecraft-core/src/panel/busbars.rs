@@ -286,9 +286,56 @@ pub(crate) fn numbers(text: &str) -> Vec<f32> {
     text.split(|c: char| !(c.is_ascii_digit() || c == '.')).filter_map(|s| s.parse().ok()).collect()
 }
 
-/// Busbar systems joining more conductors than they have bars.
-pub fn problems(prj: &Project, nl: &Netlist) -> Vec<Issue> {
+/// The centre distance of the busbar systems a part is made for: its mounting
+/// `Busbar 60 mm` (not a bar section such as `Busbar 30 x 10`).
+pub fn system_size(part: &crate::parts::Part) -> Option<f32> {
+    let m = part.mounting.trim();
+    let rest = m.get(..6).filter(|s| s.eq_ignore_ascii_case("busbar")).map(|_| m[6..].trim())?;
+    rest.strip_suffix("mm")?.trim().parse().ok().filter(|c: &f32| *c > 0.0)
+}
+
+/// Devices made for busbar systems of another centre distance than the system they sit
+/// on, and devices that do not reach all of its bars (their contacts behind them land
+/// on the bars they cover).
+fn mounting_problems(prj: &Project) -> Vec<Issue> {
     let mut v = Vec::new();
+    let round = |x: f32| (x * 10.0).round() / 10.0;
+    for e in &prj.layout.enclosures {
+        for bar in e.items.iter().filter(|i| i.kind == ItemKind::Busbar) {
+            let horizontal = super::bars_along_x(&prj.parts, bar);
+            let (b0, across) = if horizontal { (bar.y, bar.h) } else { (bar.x, bar.w) };
+            let centres: Vec<f32> = crate::production::bar_centres(&prj.parts, &bar.part, across).into_iter().map(|c| b0 + c).collect();
+            let pitch = (centres.len() > 1).then(|| centres.windows(2).map(|w| w[1] - w[0]).fold(f32::MAX, f32::min));
+            for d in mounted_on(prj, &e.items, bar) {
+                let Some(size) = super::part_by_number(prj, &d.part).and_then(system_size) else { continue };
+                let target = prj.pages.iter().enumerate().find_map(|(pi, pg)| pg.symbols.iter().find(|s| s.tag == d.tag).map(|s| (pi, s.id)));
+                if let Some(pitch) = pitch.filter(|p| (p - size).abs() > 1.0) {
+                    v.push(crate::issue!(
+                        Severity::Warning,
+                        target,
+                        "{}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart",
+                        e.name,
+                        d.tag,
+                        round(size),
+                        round(pitch)
+                    ));
+                    continue;
+                }
+                let (start, len) = if horizontal { (d.y, d.h) } else { (d.x, d.w) };
+                let reached = centres.iter().filter(|c| **c >= start - 0.5 && **c <= start + len + 0.5).count();
+                if reached < centres.len() {
+                    v.push(crate::issue!(Severity::Warning, target, "{}: {} reaches {} of the {} bars of its busbar system", e.name, d.tag, reached, centres.len()));
+                }
+            }
+        }
+    }
+    v
+}
+
+/// Busbar systems joining more conductors than they have bars, devices that do not fit
+/// the system they sit on.
+pub fn problems(prj: &Project, nl: &Netlist) -> Vec<Issue> {
+    let mut v = mounting_problems(prj);
     for u in uses(prj, nl).into_iter().filter(|u| u.nets.len() > u.bars) {
         let e = &prj.layout.enclosures[u.enclosure];
         let names: Vec<String> = u.nets.iter().map(|&n| nl.nets[n].name.clone()).collect();
