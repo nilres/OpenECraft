@@ -4,7 +4,9 @@
 //! (`website/tour.webm`). The numbers of the project on GitHub are a script of their
 //! own, `numbers.js`: the build writes those it was given (`OPENECRAFT_STARS`,
 //! `OPENECRAFT_CONTRIBUTORS`), the Docker image of the site keeps the file current
-//! (`installer/docker/website-numbers.sh`).
+//! (`installer/docker/website-numbers.sh`). The videos of the project are a third,
+//! `videos.js`: empty from the build, filled by the image from the feed of the channel
+//! (`installer/docker/website-videos.sh`).
 
 use serde_json::json;
 
@@ -16,6 +18,9 @@ pub const TOUR: [&str; 2] = ["tour.webm", "tour.jpg"];
 
 /// The file of the numbers below the site.
 pub const NUMBERS_FILE: &str = "numbers.js";
+
+/// The file of the videos below the site: the list the page `videos/` shows.
+pub const VIDEOS_FILE: &str = "videos.js";
 
 /// The variables of the build with the stars and the contributors of the repository.
 pub const NUMBERS: [&str; 2] = ["OPENECRAFT_STARS", "OPENECRAFT_CONTRIBUTORS"];
@@ -49,6 +54,13 @@ pub fn script(module: Option<&[String; 2]>, tour: bool, poster: bool) -> String 
 /// The script of the numbers, as `website-numbers.sh` writes it too: 0 is not shown.
 pub fn numbers(stars: u64, contributors: u64) -> String {
     format!("window.OPENECRAFT_NUMBERS = {{ stars: {stars}, contributors: {contributors} }};\n")
+}
+
+/// The script of the videos as the build writes it: none. The Docker image of the
+/// site fills it from the feed of the channel (`installer/docker/website-videos.sh`),
+/// and the page links the channel as long as the list is empty.
+pub fn videos() -> String {
+    "window.OPENECRAFT_VIDEOS = [];\n".to_string()
 }
 
 #[cfg(test)]

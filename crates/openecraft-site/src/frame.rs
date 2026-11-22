@@ -62,6 +62,9 @@ pub enum Kind {
     Faq(Vec<(String, String)>),
     /// A tool that runs the module of the site (`tools.js`).
     Tool,
+    /// The videos of the project, listed by a script the server of the site keeps
+    /// current (`videos.js`, `installer/docker/website-videos.sh`).
+    Videos,
 }
 
 /// A page in one language, without its frame.
@@ -162,12 +165,13 @@ const BAR: [(&str, &str); 7] = [
 
 /// The sections of the site every footer links: folder and text. The texts are
 /// translated where the footer is written; the languages of each are [`Langs::of`].
-pub const SECTIONS: [(&str, &str); 8] = [
+pub const SECTIONS: [(&str, &str); 9] = [
     ("symbols/", "Symbols"),
     ("examples/", "Examples"),
     ("tools/", "Tools"),
     ("how-to/", "How-to"),
     ("reference/", "Reference"),
+    ("videos/", "Videos"),
     ("docs/", "Documentation"),
     ("news/", "News"),
     ("faq/", "FAQ"),
@@ -197,6 +201,7 @@ pub fn section_text(text: &str) -> &'static str {
         "Tools" => tr("Tools"),
         "How-to" => tr("How-to"),
         "Reference" => tr("Reference"),
+        "Videos" => tr("Videos"),
         "Documentation" => tr("Documentation"),
         "News" => tr("News"),
         "FAQ" => tr("FAQ"),
@@ -259,7 +264,11 @@ pub fn html(page: &Page, lang: Lang) -> String {
     if page.folder.starts_with("news") {
         out.push_str(&format!("    <link rel=\"alternate\" type=\"application/atom+xml\" title=\"OpenECraft\" href=\"{root}news/feed.xml\" />\n"));
     }
-    out.push_str(&format!("    <script src=\"{root}config.js\"></script>\n    <script src=\"{root}site.js\" defer></script>\n"));
+    out.push_str(&format!("    <script src=\"{root}config.js\"></script>\n"));
+    if page.kind == Kind::Videos {
+        out.push_str(&format!("    <script src=\"{root}{}\"></script>\n", crate::build::VIDEOS_FILE));
+    }
+    out.push_str(&format!("    <script src=\"{root}site.js\" defer></script>\n"));
     if page.kind == Kind::Tool {
         out.push_str(&format!("    <script src=\"{root}build.js\"></script>\n    <script src=\"{root}tools.js\" defer></script>\n"));
     }

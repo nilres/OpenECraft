@@ -95,6 +95,7 @@ loads first; the Docker image takes the same settings from environment variables
 | `downloads` | `OPENECRAFT_DOWNLOADS_URL` | The downloads | The latest release of the repository |
 | `documentation` | `OPENECRAFT_DOCUMENTATION_URL` | The folder with all documents (*All documents in the repository*; the site itself has the tutorial, the installation guide and the feature documents as pages, [below](#pages-the-build-writes)) | The `docs` folder of the repository |
 | `issues` | `OPENECRAFT_ISSUES_URL` | Where problems are reported | The issues of the repository |
+| `videos` | `OPENECRAFT_VIDEOS_URL` | The channel with the videos of the project (YouTube) | Hides the links |
 
 ### Legal notice
 
@@ -243,6 +244,7 @@ hook of `Trunk.toml` runs `cargo run --release -p openecraft-site --example site
 | `faq/`, `how-to/…`, `tools/…`, `reference/…`, `compare/<product>-alternative/` | Questions and answers, guides for single tasks, the tools, the reference tables (letter codes of IEC 81346-2, wire colours, IP ratings) and the comparison with one product | The content files of `website/content/` |
 | `build.js` | What the build knows: the module of the site for the tools and the screen recording ([below](#screen-recording-and-numbers-of-the-project)) | The built page, `website/tour.webm` |
 | `numbers.js` | The stars and the contributors of the repository ([below](#screen-recording-and-numbers-of-the-project)) | The environment; in the Docker image its server |
+| `videos.js` | The videos of the page `videos/` ([below](#videos)): none from the build | In the Docker image its server, from the feed of the channel |
 
 Every page gets the frame of the site (`frame.rs`: head with title, description, link
 preview, structured data and the markers of the public address; bar; footer), the
@@ -323,6 +325,33 @@ enters or opens leaves the browser. A new tool is a function of `tools.rs` (`TOO
 What a tool calculates is a function of `openecraft-core` that the editor uses too
 (`sizing::cross_section_for`, `shortcircuit::Source::behind`, `panel::duct_lanes`,
 `harness::outer_diameter`): the tool only reads the form and words the answer.
+
+### Videos
+
+`videos/` (the content file `website/content/videos.html`, kind `videos`) lists the
+videos of the project's YouTube channel: picture, title, day and the first line of
+the description of each, with a link to watch it there. The page loads `videos.js`
+(`window.OPENECRAFT_VIDEOS = [ { id, url, title, day, about }, … ];`) before
+`site.js`, which fills the template of the page with it; with an empty list the page
+says that the videos are on the channel and links it (`videos` of `config.js`).
+
+The build writes an empty list. The Docker image fills it: at every start and then
+four times a day it asks YouTube for the feed of the channel
+`OPENECRAFT_VIDEOS_CHANNEL` (the id of the channel, `UC…`; empty: no videos) and for
+the picture of every video it has none of yet, and writes `videos.js` and
+`videos/<id>.jpg` (`installer/docker/website-videos.sh`;
+`OPENECRAFT_VIDEOS_INTERVAL` in seconds, 21600 by default, `0`: never). A feed that
+does not come leaves the list as it was. It is the server that asks: the browser of
+a visitor gets the list and the pictures from the site and reaches YouTube only by
+following a link to a video, as the page says. For a site deployed by hand, run the
+script on a schedule with the folder of the page:
+
+```bash
+OPENECRAFT_VIDEOS_DIR=website/dist OPENECRAFT_VIDEOS_CHANNEL=UC… sh installer/docker/website-videos.sh fetch
+```
+
+The start page links the page and the channel from its card *Videos*, and every
+footer links the page.
 
 ### Screen recording and numbers of the project
 

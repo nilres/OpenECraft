@@ -133,7 +133,10 @@ RUN OPENECRAFT_TOUR_URL="$OPENECRAFT_TOUR_URL" sh installer/web/tour.sh \
 # repository on the first screen start with the numbers the image was built with
 # (build arguments OPENECRAFT_STARS and OPENECRAFT_CONTRIBUTORS, given by CI; 0: not
 # shown); the image asks GitHub for them at every start and then every
-# OPENECRAFT_NUMBERS_INTERVAL seconds (website-numbers.sh; 0: never).
+# OPENECRAFT_NUMBERS_INTERVAL seconds (website-numbers.sh; 0: never). The videos of the
+# page /videos/ are those of the YouTube channel OPENECRAFT_VIDEOS_CHANNEL (its id;
+# empty: none), whose feed and pictures the image fetches at every start and then every
+# OPENECRAFT_VIDEOS_INTERVAL seconds (website-videos.sh; four times a day, 0: never).
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS website
 ENV OPENECRAFT_SITE_URL= \
     OPENECRAFT_EDITOR_URL=editor/ \
@@ -141,6 +144,9 @@ ENV OPENECRAFT_SITE_URL= \
     OPENECRAFT_DOWNLOADS_URL= \
     OPENECRAFT_DOCUMENTATION_URL= \
     OPENECRAFT_ISSUES_URL= \
+    OPENECRAFT_VIDEOS_URL=https://www.youtube.com/@OpenECraft \
+    OPENECRAFT_VIDEOS_CHANNEL=UCyqRmnEuKZZSQcZ8HSqmewA \
+    OPENECRAFT_VIDEOS_INTERVAL=21600 \
     OPENECRAFT_LEGAL_NAME= \
     OPENECRAFT_LEGAL_ADDRESS= \
     OPENECRAFT_LEGAL_EMAIL= \
@@ -155,6 +161,7 @@ COPY installer/docker/website.conf /etc/nginx/templates/default.conf.template
 COPY --chmod=0755 installer/docker/website-config.sh /docker-entrypoint.d/40-openecraft-website-config.sh
 COPY --chmod=0755 installer/docker/website-site.sh /docker-entrypoint.d/41-openecraft-website-site.sh
 COPY --chmod=0755 installer/docker/website-numbers.sh /docker-entrypoint.d/42-openecraft-website-numbers.sh
+COPY --chmod=0755 installer/docker/website-videos.sh /docker-entrypoint.d/43-openecraft-website-videos.sh
 COPY --from=website-build /src/website/dist/ /usr/share/nginx/html/
 COPY --from=website-build /src/target/website-editor/ /usr/share/nginx/html/editor/
 # Last, so that new numbers leave the layers above as they are.

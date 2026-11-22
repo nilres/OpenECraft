@@ -31,6 +31,7 @@ has() {
 docker run -d --name "$name" -p "$port:8080" -e OPENECRAFT_EDITOR_URL=https://editor.example/ \
   -e OPENECRAFT_SITE_URL=https://site.example/openecraft \
   -e OPENECRAFT_STARS=1234 -e OPENECRAFT_CONTRIBUTORS=56 -e OPENECRAFT_NUMBERS_INTERVAL=0 \
+  -e OPENECRAFT_VIDEOS_INTERVAL=0 \
   -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' -e OPENECRAFT_LEGAL_ADDRESS='Street 1 | 12345 City' "$image" > /dev/null
 for _ in $(seq 30); do curl -fs "$url/" > /dev/null && break; sleep 1; done
 curl -fsS "$url/" -o site.html || { docker logs "$name"; exit 1; }
@@ -47,6 +48,11 @@ if command -v node > /dev/null; then node --check config.js; fi
 # The numbers of the project the image starts with; it can ask GitHub for newer ones.
 has "$url/numbers.js" -xF 'window.OPENECRAFT_NUMBERS = { stars: 1234, contributors: 56 };'
 grep -qF '<script src="numbers.js"></script>' site.html
+# The videos: none until the image asked the channel, and the page that lists them.
+has "$url/videos.js" -xF 'window.OPENECRAFT_VIDEOS = [];'
+has "$url/videos/" -F '<script src="../videos.js"></script>'
+has "$url/videos/de.html" -F 'data-videos'
+grep -q 'videos: "https://www.youtube.com/@OpenECraft"' config.js
 docker exec "$name" sh -c 'command -v curl' > /dev/null
 # The tags of the public address, robots.txt and the sitemap.
 grep -qF '<link rel="canonical" href="https://site.example/openecraft/" />' site.html
