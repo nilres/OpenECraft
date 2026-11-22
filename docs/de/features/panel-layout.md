@@ -1102,6 +1102,31 @@ Verschraubung in seinem Boden verlassen: Unter jeder solchen Verschraubung bleib
 Schacht hinab zum Fußboden und hinaus zur Vorderseite des Schranks für die Wege frei.
 Eingefroren behält ein solcher Weg seine Abschnitte.
 
+**Stützpunkte.** Eine Leitung, ein Kabel oder ein Schlauch wird durch Stützpunkte
+anders geführt: Rechtsklick auf die Verlegung über der Montageplatte, auf einer Wand
+eines Raums (die Vorderansicht eines Raums zeigt die Wege von der Fläche aus gesehen,
+auch seine Leitungen) oder in der 3D-Ansicht und *Stützpunkt hinzufügen* wählen; der
+Punkt kommt dort auf die Verlegung, wo geklickt wurde, nummeriert entlang ihr. Eine
+Leitung mit Stützpunkten wird wie ein Kabel in 3D von Anschlusspunkt zu Anschlusspunkt
+verlegt (eine in den Kabelkanälen verlässt sie), ohne sie kehrt sie in die Kanäle
+zurück; eine Leitung zur Tür nimmt keine (die Verlegung meldet dafür einen Fehler).
+Einen Stützpunkt ziehen, um ihn zu verschieben: in der Vorderansicht auf der gezeigten
+Fläche (er behält seinen Abstand von ihr), in der 3D-Ansicht parallel zum Bildschirm.
+Wo er losgelassen wird, wird der Weg neu gesucht, vom Anfang durch jeden Stützpunkt der
+Reihe nach bis zum Ende: Jeder Punkt wird in der Mitte seiner Verlegezelle passiert, der
+Weg läuft so aus ihm heraus, wie er hineinkam, hält die halbe Dicke Abstand von allem
+und von den anderen Wegen, biegt nur mit seinem Radius und kommt nicht zu sich selbst
+zurück. Wo das nicht geht (der Punkt liegt in einem Gerät oder außerhalb des Gehäuses,
+kein Weg zu ihm bleibt frei und biegt mit dem Radius, die Punkte lassen keinen Platz für
+die Bögen zwischen ihnen, der Weg kommt zu sich selbst zurück, oder der Punkt liegt in
+keinem Schrank und keinem Raum, durch den verlegt wird), meldet die Verlegung einen
+Fehler mit dem Stützpunkt, zeichnet ihn rot und verlegt ohne seine Stützpunkte, bis er
+verschoben wird. Rechtsklick auf einen Stützpunkt entfernt ihn oder alle (auch in den
+Eigenschaften der Verlegung oder Leitung). Ein Weg mit Stützpunkten ist nicht
+eingefroren. Befehle `add_control_point`, `move_control_point` und
+`remove_control_point` (Punkte in den Koordinaten eines Gehäuses; eine Leitung als
+`from|to`, ihre Anschlusspunkte); `list_routing` listet sie auf.
+
 **Unterputz in Räumen.** Jedes Kabel, jeder Draht und jeder Schlauch wird in Räumen
 *Aufputz* (wie oben), *Unterputz in der Wand* oder *Unterputz im Fußboden* verlegt: wie
 es die Verlegeregeln sagen (*Verlegeart in Räumen*, Befehl `routing_rules` mit

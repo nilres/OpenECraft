@@ -1111,6 +1111,30 @@ prensaestopas en su fondo: debajo de cada uno de esos prensaestopas queda libre 
 recorridos un pozo hasta el suelo y hacia el frente del armario. Congelado, un recorrido
 así conserva sus tramos.
 
+**Puntos de paso.** Un hilo, cable o tubo se lleva por otro camino mediante puntos de
+paso: clic derecho en su recorrido sobre la placa de montaje, en una pared de una sala
+(la vista frontal de una sala muestra los recorridos vistos desde la cara, también sus
+hilos) o en la vista 3D y elija *Añadir punto de paso*; el punto se pone en el recorrido
+donde se hizo clic, numerado a lo largo de él. Un hilo con puntos de paso se tiende en
+3D de punto de conexión a punto de conexión como un cable (uno en las canaletas sale de
+ellas), sin ellos vuelve a las canaletas; un hilo a la puerta no admite ninguno (el
+enrutado informa de un error para él). Arrastre un punto de paso para moverlo: en la
+vista frontal sobre la cara mostrada (mantiene su distancia a la cara), en la vista 3D
+paralelo a la pantalla. Donde se suelta, el recorrido se busca de nuevo desde su inicio
+a través de cada punto de paso en orden hasta su final: cada punto se pasa por el centro
+de su celda de enrutado, el recorrido sale de él como entró, mantiene la mitad de su
+grosor libre de todo y apartado de los demás recorridos, solo se curva con su radio y no
+vuelve sobre sí mismo. Donde no es posible (el punto está dentro de un aparato o fuera
+de la envolvente, ningún camino hasta él queda libre curvándose con el radio, los puntos
+no dejan sitio para los arcos de las curvas entre ellos, el camino vuelve sobre sí mismo,
+o el punto no está en ningún armario ni sala por los que pasa el recorrido), el enrutado
+informa de un error que nombra el punto de paso, lo dibuja en rojo y tiende el
+recorrido sin sus puntos de paso hasta que se mueva. Un clic derecho en un punto de paso
+lo elimina, o todos (también en las propiedades del recorrido o del hilo). Un recorrido
+con puntos de paso no está congelado. Comandos `add_control_point`,
+`move_control_point` y `remove_control_point` (puntos en las coordenadas de una
+envolvente; un hilo por `from|to`, sus puntos de conexión); `list_routing` los lista.
+
 **Empotrado en las salas.** Cada cable, hilo y tubo se tiende en las salas *en
 superficie* (como arriba), *empotrado en la pared* o *empotrado en el suelo*: como dicen
 las reglas de tendido (*Tendido en las salas*, comando `routing_rules` con `laying`) o

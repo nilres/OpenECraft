@@ -1144,6 +1144,32 @@ presse-étoupe dans son fond : sous chacun de ces presse-étoupes, un puits desc
 jusqu'au sol et ressortant vers l'avant de l'armoire reste libre pour les parcours.
 Figé, un tel parcours conserve ses tronçons.
 
+**Points de passage.** Un fil, un câble ou un tube est mené par un autre chemin par
+des points de passage : clic droit sur son parcours au-dessus de la plaque de montage,
+sur un mur d'une salle (la vue de face d'une salle montre les parcours vus depuis la
+face, ses fils aussi) ou dans la vue 3D, puis *Ajouter un point de passage* ; le point
+se place sur le parcours là où l'on a cliqué, numéroté le long de celui-ci. Un fil avec
+des points de passage est routé en 3D d'un point de connexion à l'autre comme un câble
+(un fil dans les goulottes les quitte), sans eux il revient dans les goulottes ; un fil
+vers la porte n'en prend aucun (le routage signale une erreur pour lui). Faites glisser
+un point de passage pour le déplacer : dans la vue de face sur la face affichée (il
+garde sa distance à la face), dans la vue 3D parallèlement à l'écran. Là où il est
+lâché, le parcours est recherché à nouveau depuis son début à travers chaque point de
+passage dans l'ordre jusqu'à sa fin : chaque point est passé au milieu de sa cellule de
+routage, le parcours en ressort comme il y est entré, garde la moitié de son épaisseur
+libre de tout et à l'écart des autres parcours, ne se courbe qu'avec son rayon et ne
+revient pas sur lui-même. Là où ce n'est pas possible (le point est dans un appareil ou
+hors de l'enveloppe, aucun chemin jusqu'à lui ne reste libre en se courbant avec le
+rayon, les points ne laissent pas la place des arcs des courbures entre eux, le chemin
+revient sur lui-même, ou le point n'est dans aucune armoire ni salle que le parcours
+traverse), le routage signale une erreur qui nomme le point de passage, le dessine en
+rouge et pose le parcours sans ses points de passage jusqu'à ce qu'il soit déplacé. Un
+clic droit sur un point de passage le supprime, ou tous (aussi dans les propriétés du
+parcours ou du fil). Un parcours avec des points de passage n'est pas figé. Commandes
+`add_control_point`, `move_control_point` et `remove_control_point` (points dans les
+coordonnées d'une enveloppe ; un fil par `from|to`, ses points de connexion) ;
+`list_routing` les liste.
+
 **Encastré dans les salles.** Chaque câble, fil et tube est posé dans les salles *en
 saillie* (comme ci-dessus), *encastré dans le mur* ou *encastré dans le sol* : comme
 le disent les règles de routage (*Pose dans les salles*, commande `routing_rules` avec
