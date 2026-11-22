@@ -977,7 +977,9 @@ cabinet stays free for the routes. Frozen, such a route keeps its legs.
 right-click its route over the mounting plate, on a wall of a room (the front view of a
 room shows the routes seen from the face, its wires too) or in the 3D view and choose
 *Add control point*; the point goes onto the route where it was clicked, numbered along
-it. A wire with control points is routed in 3D from connection point to connection
+it. A right click keeps the wire, cable or tube selected where it runs there: in a
+cable duct, where wires lie on top of each other, click the wire first (again for the
+next one), then right-click it. A wire with control points is routed in 3D from connection point to connection
 point like a cable (one laid in the cable ducts leaves them), without them it goes back
 to the ducts; a wire to the door takes none (the routing reports an error for it).
 Drag a control point to move it:
@@ -991,7 +993,8 @@ lies in a device or outside the enclosure, no way to it keeps clear and bends wi
 radius, the points leave no room for the arcs of the bends between them, the way comes
 back to itself, or the point lies in no cabinet or room the route runs through) the
 routing reports an error naming the control point, draws it in red and lays the route
-without its control points until it is moved. Right-click a control point to remove it
+without its control points until it is moved; once it is routed again the status line
+tells why. Right-click a control point to remove it
 or all of them (also in the properties of the route or wire). A route with control
 points is not frozen. Commands `add_control_point`, `move_control_point` and
 `remove_control_point` (points in the coordinates of an enclosure; a wire by

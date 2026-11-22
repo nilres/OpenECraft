@@ -393,6 +393,10 @@ pub struct RoutedItem {
     /// in order; empty where it has none or was laid without them.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub controls: Vec<V3>,
+    /// Why it was laid without its control points (the first error about them), for
+    /// the views to show where the points are edited.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub control_error: Option<String>,
 }
 
 /// A stretch of a route in one line-up or room.
@@ -544,8 +548,13 @@ pub fn wire_key(w: &RoutedWire) -> String {
 /// without cable ducts always ([`between_points`]) and a wire with control points
 /// (it is led through them), never a wire to the door.
 pub fn wire_in_3d(layout: &Layout, w: &RoutedWire) -> bool {
-    let controlled = || !layout.controls.is_empty() && layout.controls.iter().any(|c| c.key == wire_key(w));
-    (layout.routing.wires_3d || between_points(layout, w) || controlled()) && w.door == (None, None)
+    (layout.routing.wires_3d || between_points(layout, w) || has_controls(layout, w)) && w.door == (None, None)
+}
+
+/// The wire has control points: it is routed in 3D through them from connection point
+/// to connection point.
+pub fn has_controls(layout: &Layout, w: &RoutedWire) -> bool {
+    !layout.controls.is_empty() && layout.controls.iter().any(|c| c.key == wire_key(w))
 }
 
 /// The wire runs from connection point to connection point through the space (not
@@ -1271,7 +1280,7 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
         let free = wire_in_3d(&prj.layout, w) && !w.route.points.is_empty();
         // In a room and in a cabinet without cable ducts from connection point to
         // connection point (there is no plate, or no duct on it, to come down to).
-        let direct = free && between_points(&prj.layout, w);
+        let direct = free && (between_points(&prj.layout, w) || has_controls(&prj.layout, w));
         let ends = match (direct, conn) {
             (true, Some(c)) => [c.a, c.b].map(|p| device_end(prj, &pos, &prj.pages[p.page].symbols[p.sym].tag, std::slice::from_ref(&p))),
             _ => [end(&w.from, w.enclosure, w.items.0, w.route.points.first()), end(&w.to, w.last_enclosure(), w.items.1, last.points.last())],
@@ -1580,6 +1589,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
             wire: job.wire,
             laying: job.laying,
             controls: Vec::new(),
+            control_error: None,
         };
         // Wires through the cable ducts are routed already (also those on the door).
         let known = job.fixed.is_some();
@@ -1647,7 +1657,9 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
                         Some(w)
                     }
                     Err(f) => {
-                        problems.push(Problem { level: Level::Error, message: controls::message(f, job.kind, &job.label, radius), target: job.target });
+                        let message = controls::message(f, job.kind, &job.label, radius);
+                        item.control_error.get_or_insert_with(|| message.clone());
+                        problems.push(Problem { level: Level::Error, message, target: job.target });
                         None
                     }
                 }
@@ -1687,10 +1699,14 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
         // the door keeps its way along the door.
         let count = if controlled(job) { controls[job.key.as_str()].len() } else { 0 };
         if known && controls.contains_key(job.key.as_str()) {
-            problems.push(Problem { level: Level::Error, message: tr_fmt!("{} {} runs to the door: it cannot be led through its control points. Remove them.", job.kind.title(), job.label), target: job.target });
+            let message = tr_fmt!("{} {} runs to the door: it cannot be led through its control points. Remove them.", job.kind.title(), job.label);
+            item.control_error.get_or_insert_with(|| message.clone());
+            problems.push(Problem { level: Level::Error, message, target: job.target });
         }
         for n in (0..count).filter(|n| !on_legs.contains(n)) {
-            problems.push(Problem { level: Level::Error, message: tr_fmt!("Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.", n + 1, job.kind.title(), job.label), target: job.target });
+            let message = tr_fmt!("Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.", n + 1, job.kind.title(), job.label);
+            item.control_error.get_or_insert_with(|| message.clone());
+            problems.push(Problem { level: Level::Error, message, target: job.target });
         }
         if count > 0 && passed.len() == count {
             passed.sort_by_key(|p| p.0);

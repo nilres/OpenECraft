@@ -1115,7 +1115,10 @@ así conserva sus tramos.
 paso: clic derecho en su recorrido sobre la placa de montaje, en una pared de una sala
 (la vista frontal de una sala muestra los recorridos vistos desde la cara, también sus
 hilos) o en la vista 3D y elija *Añadir punto de paso*; el punto se pone en el recorrido
-donde se hizo clic, numerado a lo largo de él. Un hilo con puntos de paso se tiende en
+donde se hizo clic, numerado a lo largo de él. Un clic
+derecho mantiene el hilo, cable o tubo seleccionado donde pasa por ahí: en una
+canaleta, donde los hilos se superponen, haga clic primero en el hilo (otra vez para el
+siguiente) y luego clic derecho. Un hilo con puntos de paso se tiende en
 3D de punto de conexión a punto de conexión como un cable (uno en las canaletas sale de
 ellas), sin ellos vuelve a las canaletas; un hilo a la puerta no admite ninguno (el
 enrutado informa de un error para él). Arrastre un punto de paso para moverlo: en la
@@ -1129,7 +1132,8 @@ de la envolvente, ningún camino hasta él queda libre curvándose con el radio,
 no dejan sitio para los arcos de las curvas entre ellos, el camino vuelve sobre sí mismo,
 o el punto no está en ningún armario ni sala por los que pasa el recorrido), el enrutado
 informa de un error que nombra el punto de paso, lo dibuja en rojo y tiende el
-recorrido sin sus puntos de paso hasta que se mueva. Un clic derecho en un punto de paso
+recorrido sin sus puntos de paso hasta que se mueva; una vez
+enrutado de nuevo, la línea de estado indica el motivo. Un clic derecho en un punto de paso
 lo elimina, o todos (también en las propiedades del recorrido o del hilo). Un recorrido
 con puntos de paso no está congelado. Comandos `add_control_point`,
 `move_control_point` y `remove_control_point` (puntos en las coordenadas de una

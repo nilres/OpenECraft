@@ -1106,7 +1106,10 @@ Eingefroren behält ein solcher Weg seine Abschnitte.
 anders geführt: Rechtsklick auf die Verlegung über der Montageplatte, auf einer Wand
 eines Raums (die Vorderansicht eines Raums zeigt die Wege von der Fläche aus gesehen,
 auch seine Leitungen) oder in der 3D-Ansicht und *Stützpunkt hinzufügen* wählen; der
-Punkt kommt dort auf die Verlegung, wo geklickt wurde, nummeriert entlang ihr. Eine
+Punkt kommt dort auf die Verlegung, wo geklickt wurde, nummeriert entlang ihr. Ein
+Rechtsklick behält die gewählte Leitung, das Kabel oder den Schlauch, wo sie dort
+verlaufen: In einem Kabelkanal, wo Leitungen übereinander liegen, zuerst die Leitung
+anklicken (nochmals für die nächste), dann rechts klicken. Eine
 Leitung mit Stützpunkten wird wie ein Kabel in 3D von Anschlusspunkt zu Anschlusspunkt
 verlegt (eine in den Kabelkanälen verlässt sie), ohne sie kehrt sie in die Kanäle
 zurück; eine Leitung zur Tür nimmt keine (die Verlegung meldet dafür einen Fehler).
@@ -1121,7 +1124,7 @@ kein Weg zu ihm bleibt frei und biegt mit dem Radius, die Punkte lassen keinen P
 die Bögen zwischen ihnen, der Weg kommt zu sich selbst zurück, oder der Punkt liegt in
 keinem Schrank und keinem Raum, durch den verlegt wird), meldet die Verlegung einen
 Fehler mit dem Stützpunkt, zeichnet ihn rot und verlegt ohne seine Stützpunkte, bis er
-verschoben wird. Rechtsklick auf einen Stützpunkt entfernt ihn oder alle (auch in den
+verschoben wird; sobald neu verlegt ist, sagt die Statuszeile warum. Rechtsklick auf einen Stützpunkt entfernt ihn oder alle (auch in den
 Eigenschaften der Verlegung oder Leitung). Ein Weg mit Stützpunkten ist nicht
 eingefroren. Befehle `add_control_point`, `move_control_point` und
 `remove_control_point` (Punkte in den Koordinaten eines Gehäuses; eine Leitung als

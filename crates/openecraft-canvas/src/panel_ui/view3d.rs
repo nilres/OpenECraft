@@ -351,18 +351,37 @@ impl PanelUi {
             match (near, self.control_key(an)) {
                 (Some(h), Some(key)) => self.route_menu = Some(RouteMenu { key, at: h.at, handle: Some(h.index) }),
                 _ => {
-                    self.pick_3d(prj, an, &scene, &prims, &project_view, ptr);
-                    if let Some(key) = self.control_key(an) {
+                    // The route selected stays where it is drawn under the pointer (the
+                    // wires of a duct lie side by side there: the one chosen by clicking);
+                    // otherwise what is under the pointer is picked.
+                    let drawn_here = |ui: &PanelUi| {
+                        let (wire, route) = (ui.wire_index(an), ui.selected_route.as_deref());
+                        scene.picks.iter().any(|(a, b, target)| {
+                            let mine = match target {
+                                RouteRef::Wire(wi) => wire == Some(*wi),
+                                RouteRef::Item(key) => route == Some(key.as_str()),
+                                RouteRef::None => false,
+                            };
+                            let (Some(pa), Some(pb)) = (project_view(*a).filter(|_| mine), project_view(*b)) else { return false };
+                            openecraft_core::geom::dist_to_segment(p(ptr.x, ptr.y), p(pa.0.x, pa.0.y), p(pb.0.x, pb.0.y)) <= PICK
+                        })
+                    };
+                    if !(self.control_key(an).is_some() && drawn_here(self)) {
+                        self.pick_3d(prj, an, &scene, &prims, &project_view, ptr);
+                    }
+                    if let Some(key) = self.control_key(an).filter(|_| drawn_here(self)) {
+                        // Onto the route where it runs nearest to the pointer on the screen.
                         let flat = |leg: Option<usize>, v: V3| project_view(to_view(leg, v)).map(|s| p(s.0.x, s.0.y));
                         let near = an.routing.item(&key).and_then(|it| super::routing_ui::nearest_on(it.stretches().into_iter().flat_map(|(leg, pts)| pts.windows(2).map(move |s| (leg, s[0], s[1]))), flat, p(ptr.x, ptr.y)));
-                        self.route_menu = near.filter(|n| n.1 <= PICK).map(|n| RouteMenu { key, at: n.0, handle: None });
+                        self.route_menu = near.map(|n| RouteMenu { key, at: n.0, handle: None });
                     }
                 }
             }
         }
         if dropped {
-            self.drop_control(prj);
+            self.drop_control(prj, an);
         }
+        self.control_feedback(an);
         if placing.is_none() {
             egui::Popup::context_menu(&resp).show(|ui| self.menu_3d(ui, prj, an));
         }

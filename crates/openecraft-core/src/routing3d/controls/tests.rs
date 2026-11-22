@@ -195,3 +195,55 @@ fn every_failure_has_a_message() {
     assert_eq!(arrival(&[[0.0; 3], [0.0, 10.0, 0.5]]), [0.0, 1.0, 0.0]);
     assert_eq!(arrival(&[[0.0; 3]]), [0.0; 3]);
 }
+
+#[test]
+fn a_control_point_is_passed_or_its_error_is_told_wherever_it_is_moved() {
+    let mut prj = demo_project();
+    let an = Analysis::checked(&prj);
+    let (wire, mid) = duct_wire(&an);
+    add_control(&mut prj, &an.routing, &wire, mid).unwrap();
+    let w1 = an.routing.item("-W1").unwrap().points[2];
+    add_control(&mut prj, &an.routing, "-W1", w1).unwrap();
+    let e = &prj.layout.enclosures[0];
+    let (w, h, d) = (e.width, e.height, e.depth);
+    let mut silent = Vec::new();
+    for (key, at) in [(wire.as_str(), 0usize), ("-W1", 0usize)] {
+        for fx in [0.1, 0.3, 0.5, 0.7, 0.9] {
+            for fy in [0.15, 0.5, 0.85] {
+                for fz in [0.2, 0.5, 0.8] {
+                    let q = [fx * w, fy * h, fz * d];
+                    move_control(&mut prj, key, at, q).unwrap();
+                    let an = Analysis::checked(&prj);
+                    let it = an.routing.item(key).unwrap();
+                    if it.controls.is_empty() && it.control_error.is_none() {
+                        silent.push((key.to_string(), q));
+                    }
+                    if !it.controls.is_empty() {
+                        assert!(it.control_error.is_none(), "{key} {q:?}: {:?}", it.control_error);
+                    }
+                }
+            }
+        }
+    }
+    assert!(silent.is_empty(), "laid without its control point and no error: {silent:?}");
+}
+
+#[test]
+fn a_wire_with_control_points_runs_from_its_connection_points() {
+    let mut prj = demo_project();
+    let an = Analysis::checked(&prj);
+    let (key, mid) = duct_wire(&an);
+    let before = an.routing.item(&key).unwrap().clone();
+    add_control(&mut prj, &an.routing, &key, mid).unwrap();
+    let an = Analysis::checked(&prj);
+    let it = an.routing.item(&key).unwrap();
+    // Not from the plate behind its devices: from their connection points, where a wire
+    // routed between points starts.
+    let plate = crate::panel::positions(&prj.layout)[0][2] + crate::panel::PLATE_Z + 5.0;
+    for (k, end) in it.ends.iter().enumerate() {
+        let q = end.point.unwrap();
+        assert!(q[2] > plate + 1.0, "end {k} of {key} on the plate: {q:?} (before {:?})", before.ends[k].point);
+        let at = if k == 0 { it.points[0] } else { *it.points.last().unwrap() };
+        assert!(dist(at, q) < 30.0, "{at:?} {q:?}");
+    }
+}

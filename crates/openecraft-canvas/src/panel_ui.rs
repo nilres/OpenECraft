@@ -616,6 +616,9 @@ pub struct PanelUi {
     /// The cable or tube right-clicked, for the entries of its control points in the
     /// context menu.
     route_menu: Option<routing_ui::RouteMenu>,
+    /// The route whose control point was added or moved and the analysis then: the
+    /// status tells why it is laid without them once it is routed again.
+    control_watch: Option<(String, u64)>,
     /// The control points of the selected cable or tube in the last frame of the 3D view:
     /// where on the screen, where in view coordinates and how deep.
     handles_3d: Vec<(Pos2, routing_ui::Handle, [f32; 3], f32)>,
@@ -792,6 +795,7 @@ impl Default for PanelUi {
             selected_route: None,
             control_drag: None,
             route_menu: None,
+            control_watch: None,
             handles_3d: Vec::new(),
             selected_object: None,
             keys_active: true,
@@ -3895,6 +3899,7 @@ impl PanelUi {
         let finish = gestures.double_clicked(MouseAction::FinishByDoubleClick, &resp, mods);
         let sc = crate::shortcuts::get(ui.ctx());
         let enter = !ui.ctx().egui_wants_keyboard_input() && ui.input(|i| sc.action_pressed(i, Action::FinishPolyline));
+        self.control_feedback(an);
         match self.tool.clone() {
             _ if navigating => {}
             Tool::Select if self.control_points_2d(ui, &resp, prj, ei, rect, an) => {}
@@ -4316,7 +4321,7 @@ impl PanelUi {
                 if let (Some(h), Some(key)) = (handle_at(s), self.control_key(an)) {
                     self.route_menu = Some(routing_ui::RouteMenu { key, at: h.at, handle: Some(h.index) });
                 } else if let Some(key) = if routes_here { self.pick_route_2d(prj, an, ei, to_plate(s), tol) } else { None } {
-                    self.route_menu = self.route_point_2d(prj, an, ei, &key, to_plate(s)).map(|at| routing_ui::RouteMenu { key, at, handle: None });
+                    self.route_menu = self.route_point_2d(prj, an, ei, &key, to_plate(s)).map(|(at, _)| routing_ui::RouteMenu { key, at, handle: None });
                 }
             }
         }
@@ -4335,7 +4340,7 @@ impl PanelUi {
                 self.status = format!("ΔX {:.0}  ΔY {:.0} mm", shift.x, shift.y);
             }
             if !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
-                self.drop_control(prj);
+                self.drop_control(prj, an);
             }
             return true;
         }

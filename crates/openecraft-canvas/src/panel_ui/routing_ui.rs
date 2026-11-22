@@ -411,7 +411,10 @@ pub(super) fn control_summary(ui: &mut egui::Ui, prj: &mut Project, an: &Analysi
         }
     });
     if it.controls.is_empty() && !an.routes_pending {
-        ui.colored_label(crate::style::error(), tr("Not led through its control points: see the messages"));
+        match &it.control_error {
+            Some(e) => ui.colored_label(crate::style::error(), e),
+            None => ui.colored_label(crate::style::error(), tr("Not led through its control points: see the messages")),
+        };
     }
 }
 
@@ -588,6 +591,14 @@ impl PanelUi {
     /// Selects the wire, cable or tube drawn on the face shown of enclosure `ei` nearest
     /// to the face point `q` (wires lie on top) to add a control point to it; its key.
     pub(super) fn pick_route_2d(&mut self, prj: &Project, an: &Analysis, ei: usize, q: P, tol: f32) -> Option<String> {
+        // The route selected stays where it runs there (in a duct the wires lie on top of
+        // each other: the one chosen by clicking).
+        if let Some(key) = self.control_key(an) {
+            let reach = tol + an.routing.item(&key).map_or(0.0, |i| i.diameter / 2.0);
+            if self.route_point_2d(prj, an, ei, &key, q).is_some_and(|(_, d)| d <= reach) {
+                return Some(key);
+            }
+        }
         let current = self.wire_index(an);
         let on_plate = if self.face == Face::Plate { panel::wires_at(&an.wiring, ei, self.face, q, tol) } else { Vec::new() };
         let routed = |wi: usize| an.routing.item(&routing3d::wire_key(&an.wiring[wi])).is_some_and(|i| i.routed());
@@ -641,7 +652,10 @@ impl PanelUi {
         let add = ui.button(tr("Add control point")).on_hover_text(tr("Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything"));
         if add.clicked() {
             self.status = match routing3d::add_control(prj, &an.routing, &menu.key, menu.at) {
-                Ok(n) => tr_fmt!("Control point {} added: drag it to route {} again", n + 1, menu.key),
+                Ok(n) => {
+                    self.control_watch = Some((menu.key.clone(), an.id));
+                    tr_fmt!("Control point {} added: drag it to route {} again", n + 1, menu.key)
+                }
                 Err(e) => e,
             };
             ui.close();
@@ -664,12 +678,28 @@ impl PanelUi {
 
     /// Ends moving a control point: it goes where it was dropped, the route is searched
     /// through it again.
-    pub(super) fn drop_control(&mut self, prj: &mut Project) {
+    pub(super) fn drop_control(&mut self, prj: &mut Project, an: &Analysis) {
         let Some(d) = self.control_drag.take() else { return };
         self.status = match routing3d::move_control(prj, &d.key, d.index, d.at) {
-            Ok(()) => tr_fmt!("Control point {} of {} moved", d.index + 1, d.key),
+            Ok(()) => {
+                self.control_watch = Some((d.key.clone(), an.id));
+                tr_fmt!("Control point {} of {} moved", d.index + 1, d.key)
+            }
             Err(e) => e,
         };
+    }
+
+    /// Once the routing after a control point was added or moved is done: why the route
+    /// is laid without its control points, in the status line.
+    pub(super) fn control_feedback(&mut self, an: &Analysis) {
+        let Some((key, before)) = self.control_watch.clone() else { return };
+        if an.id == before || an.routes_pending {
+            return;
+        }
+        self.control_watch = None;
+        if let Some(e) = an.routing.item(&key).and_then(|i| i.control_error.clone()) {
+            self.status = e;
+        }
     }
 
     /// Selects a cable or tube: the properties show it, the status its length.
@@ -704,11 +734,11 @@ impl PanelUi {
 
     /// The point of the route `key` (layout coordinates) drawn nearest to the face point
     /// `q` of enclosure `ei` on the face shown.
-    pub(super) fn route_point_2d(&self, prj: &Project, an: &Analysis, ei: usize, key: &str, q: P) -> Option<[f32; 3]> {
+    pub(super) fn route_point_2d(&self, prj: &Project, an: &Analysis, ei: usize, key: &str, q: P) -> Option<([f32; 3], f32)> {
         let pos = panel::positions(&prj.layout);
         let it = an.routing.item(key)?;
         let segments = it.stretches_in_lineup(&prj.layout, ei).into_iter().flat_map(|pts| pts.windows(2)).map(|s| ((), s[0], s[1]));
-        nearest_on(segments, |_, v| Some(face_xy(prj, &pos, ei, self.face, v)), q).map(|n| n.0)
+        nearest_on(segments, |_, v| Some(face_xy(prj, &pos, ei, self.face, v)), q)
     }
 
     /// Lines of the 3D routing in view coordinates (`to_view`: layout to view

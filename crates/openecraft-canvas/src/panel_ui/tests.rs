@@ -2510,3 +2510,65 @@ fn a_control_point_is_added_on_a_wire_in_the_front_view() {
     ui.select_wire(door);
     assert!(ui.control_key(&an).is_none() && ui.control_handles(&prj, &an).is_empty());
 }
+
+
+#[test]
+fn a_control_point_goes_on_the_wire_chosen_in_a_duct_and_its_error_is_told() {
+    let mut prj = openecraft_core::sample::demo_project();
+    let mut an = Analysis::build(&prj);
+    let mut ui = PanelUi { offset: egui::Vec2::ZERO, zoom: 1.0, fit_pending: false, show_wires: true, ..Default::default() };
+    let ctx = egui::Context::default();
+    let mut time = 0.0;
+    let mut frame = |ui: &mut PanelUi, prj: &mut Project, an: &Analysis, events: Vec<egui::Event>| {
+        time += 0.5;
+        let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(900.0, 1000.0))), time: Some(time), events, ..Default::default() };
+        ctx.run_ui(input, |ui_| ui.front_view(ui_, prj, 0, an, &PartsDb::default())).textures_delta.clear();
+    };
+    let button = |pos, b, pressed| egui::Event::PointerButton { pos, button: b, pressed, modifiers: Default::default() };
+    let click = |b| move |at| vec![vec![egui::Event::PointerMoved(at)], vec![button(at, b, true)], vec![button(at, b, false)]];
+    // A point of a duct where several wires lie on top of each other.
+    let fm = prj.layout.enclosures[0].face_offset(Face::Plate);
+    let (at, candidates) = an
+        .wiring
+        .iter()
+        .filter(|w| w.door == (None, None))
+        .flat_map(|w| w.paths_in(0, Face::Plate).into_iter().flat_map(|pts| pts.windows(2).map(|s| p((s[0].x + s[1].x) / 2.0, (s[0].y + s[1].y) / 2.0)).collect::<Vec<_>>()))
+        .map(|q| (q, panel::wires_at(&an.wiring, 0, Face::Plate, q, 6.0)))
+        .find(|(_, c)| c.len() >= 3 && c.iter().all(|&wi| an.routing.item(&routing3d::wire_key(&an.wiring[wi])).is_some_and(|i| i.routed())))
+        .expect("wires on top of each other");
+    let at = egui::pos2(at.x + fm.x, at.y + fm.y);
+    // Clicked twice: the second wire there is chosen; the right click keeps it.
+    for events in click(egui::PointerButton::Primary)(at).into_iter().chain(click(egui::PointerButton::Primary)(at)) {
+        frame(&mut ui, &mut prj, &an, events);
+    }
+    let chosen = ui.wire_index(&an).unwrap();
+    assert_eq!(chosen, candidates[1]);
+    for events in click(egui::PointerButton::Secondary)(at) {
+        frame(&mut ui, &mut prj, &an, events);
+    }
+    frame(&mut ui, &mut prj, &an, vec![]);
+    let key = routing3d::wire_key(&an.wiring[chosen]);
+    assert_eq!((ui.wire_index(&an), ui.route_menu.as_ref().map(|m| m.key.clone())), (Some(chosen), Some(key.clone())));
+    // The first entry of the menu adds the control point to it; it stays selected.
+    let menu = ctx.memory(|m| m.areas().visible_layer_ids().into_iter().filter(|l| l.order == egui::Order::Foreground).find_map(|l| m.area_rect(l.id))).expect("the menu");
+    for events in click(egui::PointerButton::Primary)(egui::pos2(menu.min.x + 30.0, menu.min.y + 14.0)) {
+        frame(&mut ui, &mut prj, &an, events);
+    }
+    assert_eq!(prj.layout.controls.iter().map(|c| c.key.clone()).collect::<Vec<_>>(), vec![key.clone()]);
+    an = Analysis::build(&prj);
+    frame(&mut ui, &mut prj, &an, vec![egui::Event::PointerMoved(egui::pos2(880.0, 990.0))]);
+    assert_eq!(ui.wire_index(&an).map(|wi| an.wiring[wi].key()), Some(an.wiring[chosen].key()));
+    assert_eq!(ui.control_handles(&prj, &an).len(), 1);
+    // Moved into a device: once routed again the status tells why it is not passed.
+    let t1 = prj.layout.enclosures[0].items.iter().find(|i| i.tag == "-T1").unwrap().clone();
+    let (lo, hi) = panel::item_box(&prj.layout.enclosures[0], &t1);
+    let inside = std::array::from_fn(|k| (lo[k] + hi[k]) / 2.0 + panel::positions(&prj.layout)[0][k]);
+    ui.control_drag = Some(routing_ui::ControlDrag { key: key.clone(), index: 0, at: inside, from: inside, view: None });
+    ui.drop_control(&mut prj, &an);
+    ui.control_feedback(&an);
+    assert!(ui.status.contains("moved"), "{}", ui.status);
+    an = Analysis::build(&prj);
+    ui.control_feedback(&an);
+    let error = an.routing.item(&key).unwrap().control_error.clone().expect("an error");
+    assert_eq!(ui.status, error);
+}
