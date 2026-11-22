@@ -1202,6 +1202,9 @@ pub struct Wire {
     pub id: u64,
     pub a: P,
     pub b: P,
+    /// Cubic control offsets from the start and end terminals, in page millimetres.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub bend: Option<[P; 2]>,
     /// Wire colour set manually (e.g. "BK", "BU", "GNYE"); empty = from the
     /// potential definition or the project default.
     pub color: String,
@@ -1250,6 +1253,30 @@ pub struct Wire {
 }
 
 impl Wire {
+    pub fn controls(&self) -> [P; 2] {
+        self.bend.unwrap_or([(self.b - self.a) * (1.0 / 3.0), (self.a - self.b) * (1.0 / 3.0)])
+    }
+
+    pub fn point_at(&self, t: f32) -> P {
+        let [c, d] = self.controls();
+        let s = 1.0 - t;
+        self.a * (s*s*s) + (self.a + c) * (3.0*s*s*t) + (self.b + d) * (3.0*s*t*t) + self.b * (t*t*t)
+    }
+
+    pub fn drawn_points(&self) -> Vec<P> {
+        if self.bend.is_none() { return vec![self.a, self.b]; }
+        (0..=64).map(|i| self.point_at(i as f32 / 64.0)).collect()
+    }
+
+    pub fn distance_to(&self, q: P) -> f32 {
+        if self.bend.is_none() { return crate::geom::dist_to_segment(q, self.a, self.b); }
+        self.drawn_points().windows(2).map(|s| crate::geom::dist_to_segment(q, s[0], s[1])).fold(f32::INFINITY, f32::min)
+    }
+
+    pub fn drag_parameter(&self, q: P) -> f32 {
+        (1..64).map(|i| i as f32 / 64.0).min_by(|a,b| self.point_at(*a).dist(q).total_cmp(&self.point_at(*b).dist(q))).unwrap_or(0.5)
+    }
+
     pub fn requires_explicit_junctions(&self,page:&Page)->bool {
         self.explicit_junctions.unwrap_or_else(||page.values.get("page.explicit_wire_junctions").is_some_and(|v|v=="true"))
     }
@@ -1259,7 +1286,7 @@ impl Wire {
     }
 
     pub fn same_properties(&self,other:&Self)->bool {
-        self.color==other.color && self.cross_section==other.cross_section && self.wire_type==other.wire_type
+        self.bend.is_none() && other.bend.is_none() && self.color==other.color && self.cross_section==other.cross_section && self.wire_type==other.wire_type
             && self.medium==other.medium && self.length==other.length && self.hose==other.hose
             && self.number_fixed==other.number_fixed && (!self.number_fixed || self.number==other.number) && self.hide_labels==other.hide_labels
             && self.cable==other.cable && self.core==other.core && self.explicit_junctions==other.explicit_junctions

@@ -1361,3 +1361,55 @@ fn directions_are_counted_counter_clockwise_on_the_page() {
     assert_eq!(direction(p(0.0, 0.0), p(10.0, 0.0)), 0.0);
     assert_eq!(direction(p(0.0, 0.0), p(0.0, -10.0)), 90.0);
 }
+
+/// Replays a click and drag on a real page copy when supplied, or a small fixture.
+#[test]
+fn concealed_wire_selected_and_bent_as_one_item() {
+    let prj = if let Some(file) = std::env::var_os("OEC_CURVE_TEST_PAGE") {
+        serde_json::from_slice(&std::fs::read(file).unwrap()).unwrap()
+    } else {
+        let mut p = Project::default();
+        p.pages[0].wires.push(Wire { id: 2676, a: super::p(100., 50.), b: super::p(122., 65.),
+            bend: Some([super::p(18., 0.), super::p(0., -16.)]), ..Default::default() });
+        p
+    };
+    let ids: Vec<_> = prj.pages[0].wires.iter().filter(|w| w.bend.is_some()).map(|w| w.id).collect();
+    assert!(!ids.is_empty());
+    for id in ids {
+        check_drag_on_page(prj.clone(), id);
+    }
+}
+
+fn check_drag_on_page(mut prj: Project, id: u64) {
+    let before = prj.pages[0].wires.iter().find(|w| w.id == id).unwrap().clone();
+    let count = prj.pages[0].wires.len();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.zoom = 16.;
+    // Labels and symbols have pick priority at crossings. Grab an exposed part.
+    let t = [0.5, 0.375, 0.625, 0.25, 0.75].into_iter()
+        .find(|&t| ed.hit(&prj, 0, before.point_at(t)) == Some(id))
+        .unwrap_or_else(|| panic!("no exposed point on wire {id}"));
+    let at = before.point_at(t);
+    ed.offset = vec2(600. - at.x * ed.zoom, 400. - at.y * ed.zoom);
+    click(&mut ed, &ctx, &mut prj, 0, at);
+    assert_eq!(ed.selection, BTreeSet::from([before.id]));
+    let target = [p(3., -4.), p(-3., 4.), p(4., 3.), p(-4., -3.), p(2., 1.)]
+        .into_iter().map(|d| at + d)
+        .find(|&q| ed.hit(&prj, 0, q).is_none_or(|hit| hit == id))
+        .unwrap_or(at + p(3., -4.));
+    drag(&mut ed, &ctx, &mut prj, 0, at, target);
+    let after = prj.pages[0].wires.iter().find(|w| w.id == before.id).unwrap();
+    assert_eq!((before.a, before.b), (after.a, after.b));
+    assert_eq!(count, prj.pages[0].wires.len());
+    assert!(after.point_at(t).dist(target) < 0.1, "dragged point {:?}", after.point_at(t));
+    assert_eq!(ed.selection, BTreeSet::from([before.id]));
+    let saved = serde_json::to_vec(&prj).unwrap();
+    let path = std::env::temp_dir().join(format!("oec-bend-roundtrip-{}.oec", std::process::id()));
+    std::fs::write(&path, saved).unwrap();
+    let reopened: Project = serde_json::from_slice(&std::fs::read(&path).unwrap()).unwrap();
+    std::fs::remove_file(path).unwrap();
+    assert_eq!(reopened.pages[0].wires.iter().find(|w| w.id == after.id), Some(after));
+    assert!((4..60).any(|i| ed.hit(&reopened, 0, after.point_at(i as f32 / 64.)) == Some(id)), "reopened wire {id}");
+}

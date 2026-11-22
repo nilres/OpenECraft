@@ -203,7 +203,7 @@ impl PageScan {
             *degree.entry(na).or_default() += 1;
             *degree.entry(nb).or_default() += 1;
             for (q, _) in ends.values() {
-                if on_segment_interior(*q, w.a, w.b) {
+                if w.bend.is_none() && on_segment_interior(*q, w.a, w.b) {
                     let nq = point(&mut uf, *q);
                     uf.union(na, nq);
                     *degree.entry(nq).or_default() += 2;
@@ -382,7 +382,7 @@ fn end_counts(prj: &Project, page: &Page) -> HashMap<(i64, i64), (P, usize)> {
             all.clone()
         };
         for k in candidates {
-            if on_segment_interior(ends[&k].0, w.a, w.b) {
+            if w.bend.is_none() && on_segment_interior(ends[&k].0, w.a, w.b) {
                 count.get_mut(&k).unwrap().1 += 2;
             }
         }

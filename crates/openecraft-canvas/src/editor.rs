@@ -155,6 +155,7 @@ impl PropHandle {
 }
 
 enum Drag {
+    Bend { id: u64, start: P, controls: [P; 2], t: f32 },
     None,
     /// The selection with the connection points of its device boxes (`items`) moves;
     /// its connection points and wire ends (`points`) snap to the invisible grid lines
@@ -1038,7 +1039,7 @@ impl Editor {
             return Some(j.id);
         }
         for w in page.wires.iter().rev() {
-            if dist_to_segment(q, w.a, w.b) <= tol {
+            if w.distance_to(q) <= tol {
                 return Some(w.id);
             }
         }
@@ -1447,6 +1448,7 @@ impl Editor {
         // Handles of the ends of the selected wires, dragged alone.
         if self.tool == Tool::Select && editable {
             for w in prj.pages[page_i].wires.iter().filter(|w| self.selection.contains(&w.id)) {
+                if w.bend.is_some() { painter.circle_stroke(self.w2s(rect, w.point_at(0.5)), 4.0, Stroke::new(1.5, pal.selected)); }
                 for q in [w.a, w.b] {
                     let r = Rect::from_center_size(self.w2s(rect, q), vec2(7.0, 7.0));
                     painter.rect_filled(r, 0.0, pal.canvas);
@@ -2221,6 +2223,10 @@ impl Editor {
                 self.drag = Drag::Turn { turning, start: direction(pivot, ow), deg: 0.0 };
             } else if let Some(grab) = grip {
                 self.drag = Drag::Grip { grab, last: None };
+            } else if let Some(wire) = hit.and_then(|id| prj.pages[page_i].wires.iter().find(|w| w.id == id))
+                .filter(|w| end.is_none() && handle.is_none() && (mods.ctrl || (w.bend.is_some() && self.selection.len() <= 1))) {
+                self.selection = BTreeSet::from([wire.id]);
+                self.drag = Drag::Bend { id: wire.id, start: ow, controls: wire.controls(), t: wire.drag_parameter(ow) };
             } else if let Some(end) = end {
                 self.start_end_drag(prj, page_i, ow, end);
             } else if let Some(handle) = handle.filter(|h| matches!(h, PropHandle::Wire(..)) || self.selection.len() == 1) {
@@ -2265,6 +2271,13 @@ impl Editor {
         }
         if ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
             match (&mut self.drag, world) {
+                (Drag::Bend { id, start, controls, t }, Some(q)) => {
+                    if let Some(w) = prj.pages[page_i].wires.iter_mut().find(|w| w.id == *id) {
+                        // Both inner control points have combined Bernstein weight 3t(1-t).
+                        let delta = (q - *start) * (1.0 / (3.0 * *t * (1.0 - *t)));
+                        w.bend = Some([controls[0] + delta, controls[1] + delta]);
+                    }
+                }
                 (Drag::Move { start, applied, moving, items, points, lines }, Some(w)) => {
                     let total = lines.snap_from(w - *start, points, self.grid);
                     let delta = total - *applied;
@@ -2325,7 +2338,7 @@ impl Editor {
                     }
                 }
                 Drag::End { .. } => ops::cleanup_wires(&mut prj.pages[page_i]),
-                Drag::Prop { .. } | Drag::Grip { .. } | Drag::Turn { .. } | Drag::None => {}
+                Drag::Prop { .. } | Drag::Grip { .. } | Drag::Turn { .. } | Drag::Bend { .. } | Drag::None => {}
             }
         }
         if resp.clicked_by(PointerButton::Primary) {
@@ -2359,7 +2372,7 @@ impl Editor {
             // The whole potential of a wire, as the selection shows it.
             let ids: HashSet<u64> = an.netlist.net_of_wire(id).map(|n| n.wires.iter().map(|x| x.1).collect()).unwrap_or_else(|| HashSet::from([wire.id]));
             for x in page.wires.iter().filter(|x| ids.contains(&x.id)) {
-                painter.line_segment([self.w2s(rect, x.a), self.w2s(rect, x.b)], Stroke::new(4.0, color));
+                for s in x.drawn_points().windows(2) { painter.line_segment([self.w2s(rect, s[0]), self.w2s(rect, s[1])], Stroke::new(4.0, color)); }
             }
             return;
         }
@@ -2462,7 +2475,7 @@ impl Editor {
             return;
         }
         let icon = match (&self.tool, &self.drag) {
-            (_, Drag::Prop { .. } | Drag::End { .. }) => egui::CursorIcon::Grabbing,
+            (_, Drag::Bend { .. } | Drag::Prop { .. } | Drag::End { .. }) => egui::CursorIcon::Grabbing,
             (_, Drag::Move { .. }) => egui::CursorIcon::Move,
             (_, Drag::Box { .. }) => egui::CursorIcon::Crosshair,
             (Tool::Select, Drag::None) if editable && end_hit => egui::CursorIcon::Grab,
