@@ -62,7 +62,8 @@ ghcr.io/nilres/openecraft-parts-server` (siehe [Installation](installation.md)).
   Relaismodule, Stromversorgungen), `pylontech` (19-Zoll-LiFePO4-Batteriemodule), `siemens` (SIRIUS-Schütze, Überlastrelais,
   Motorstarter, SENTRON-Leitungsschutzschalter), `signify` (Philips CoreLine Downlight
   DN140B, Panel RC132V, Feuchtraumleuchte WT120C, Wandleuchte WL120V), `spelsberg` (Abzweigdosen
-  Abox 025-L bis 350-L, als Gehäuse des Raums platziert), `victron` (MultiPlus-II Wechselrichter /
+  Abox 025-L bis 350-L, als Gehäuse des Raums platziert), `striebel_john` (Wandschrank ComfortLine A A37 mit
+  seinen 7-reihigen Feldern, Türen, Verschlüssen, Flanschen und weiterem Zubehör), `victron` (MultiPlus-II Wechselrichter /
   Ladegerät, Inverter RS Smart Solar, SmartSolar MPPT, Orion-Tr, Cerbo GX, SmartShunt, BMV-712, Lynx
   Distributor; überwiegend Artikel für die direkte Wandmontage), `wago` (Verbindungsklemmen 221 und
   2273 für Abzweigdosen) und `weidmueller` (Klemmen,

@@ -5,6 +5,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Wall cabinet of Striebel & John with its accessories:** the catalog `striebel_john`
+  has the ComfortLine A wall cabinet A37 (2CPX052032R9999; 3 field widths, 7 rows,
+  1100 x 800 x 215 mm) and 275 parts that fit it: distribution, media, meter, blind
+  and mounting plate panels of 7 rows, among them the complete, wired meter panels for
+  electronic meters (BKE-I) and for 3-point mounting with 1 to 6 meter places on 1 to
+  3 field widths, conversion kits and combination sets, EDF
+  profile rails, doors, locks and handles, flanges, joining sets, the trim frame for
+  flush mounting, N/PE terminals, busbar connectors and feed-in housings, with their
+  EAN and list prices.
+
 - **Zooming in 3D stops at what is under the pointer:** the wheel, a pinch and the key
   for closer zoom in on the solid face under the pointer (a device, the mounting plate,
   the back of the enclosure, a wall of a room), coming ever closer to it but no longer
