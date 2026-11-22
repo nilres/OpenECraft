@@ -37,6 +37,12 @@ cargo clippy -p openecraft -p openecraft-parts-manager -p openecraft-website --t
   into all four languages; a new version needs a `<release>` in the metainfo)
 - macOS disk image: `bash installer/macos/build.sh` (universal app bundles, output
   `target/installer/`)
+- MCP bundle and registry entry: `python installer/mcp/build.py bundle` (the MCP
+  server of the build machine as `target/installer/OpenECraft-MCP-<version>-<platform>.mcpb`,
+  manifest `installer/mcp/manifest.json`); a published release enters its bundles in
+  the official MCP Registry (`installer/mcp/server.json`, `.github/workflows/mcp-registry.yml`,
+  `docs/releasing.md`); `.github/workflows/mcp-bundles.yml` builds the three bundles
+  alone, started by hand
 - Docker images of the servers and the web editor: `docker build -f
   installer/docker/Dockerfile --target parts-server|project-server|editor-web|website .`
   (the servers' settings in `installer/docker/*.toml`, the nginx sites of the editor and

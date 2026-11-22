@@ -197,6 +197,23 @@ comment `bot, build` for a test build. After the merge Flathub creates
 `flathub/io.github.nilres.OpenECraft`; accept the invitation within a week (2FA
 required).
 
+## MCP registries
+
+The MCP server (`openecraft-cli mcp`) is entered in the official MCP Registry as
+`io.github.nilres/openecraft` by the workflow `mcp-registry.yml` when a release is
+published ([releasing](../../docs/releasing.md#mcp-registry)); the GitHub MCP Registry,
+the gallery of VS Code and PulseMCP read it from there. The other directories take a
+submission by the maintainer, once:
+
+| Directory | How |
+| --- | --- |
+| Glama (`glama.ai/mcp/servers`) | indexes public GitHub repositories; claim the server with the GitHub account |
+| Smithery (`smithery.ai`) | connect the repository on the site |
+| mcp.so, Cline marketplace (`cline/mcp-marketplace`) | an issue or the form of the site |
+| `punkpeye/awesome-mcp-servers` | PR with one line in its list |
+| Claude Desktop extensions | the submission form of Anthropic, with a bundle of the release (`*.mcpb`); it asks for a privacy policy, which the manifest (`installer/mcp/manifest.json`, `privacy_policies`) does not name yet |
+| Docker MCP Catalog (`docker/mcp-registry`) | needs an image of the command line, which is not built |
+
 ## A new release
 
 Every file above names the version, the download URL and the SHA-256 of the asset

@@ -1,0 +1,54 @@
+{
+  "manifest_version": "0.3",
+  "name": "openecraft",
+  "display_name": "OpenECraft",
+  "version": "0.0.0",
+  "description": "Electrical CAE editor: draw, check and export schematics, panel layouts and reports",
+  "long_description": "OpenECraft is an electrical CAE editor in the style of EPLAN. This server lets an agent create and open projects, place symbols and parts, draw wires and cables, run the checks and write reports and exports (PDF, SVG, DXF and more). It offers the about 50 tools for schematics and reaches all others (panel layout in 3D, PLC, terminals, harnesses, fluid power, buildings, parts server) through `find_tools`, `describe_tool` and `call_tool`.\n\nThe server reads and writes project files only in the folder chosen at installation. Parts are searched in the project, the built-in catalog and the public parts server of OpenECraft.",
+  "author": {
+    "name": "OpenECraft contributors",
+    "url": "https://github.com/nilres/OpenECraft"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nilres/OpenECraft"
+  },
+  "homepage": "https://openecraft.org",
+  "documentation": "https://github.com/nilres/OpenECraft/blob/master/docs/command-line.md",
+  "support": "https://github.com/nilres/OpenECraft/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "binary",
+    "entry_point": "server/openecraft-cli",
+    "mcp_config": {
+      "command": "${__dirname}/server/openecraft-cli",
+      "args": ["mcp"],
+      "env": {
+        "OPENECRAFT_MCP_ROOT": "${user_config.project_folder}",
+        "OPENECRAFT_MCP_TOOLS": "${user_config.tools}"
+      }
+    }
+  },
+  "tools": [],
+  "tools_generated": true,
+  "keywords": ["electrical", "cae", "schematic", "eplan", "wiring", "panel layout", "engineering"],
+  "license": "MIT OR Apache-2.0",
+  "compatibility": {
+    "platforms": []
+  },
+  "user_config": {
+    "project_folder": {
+      "type": "directory",
+      "title": "Project folder",
+      "description": "The folder with the projects: the server reads and writes files only in it",
+      "required": true
+    },
+    "tools": {
+      "type": "string",
+      "title": "Tools",
+      "description": "The tools the server offers: core (schematics, the others through find_tools), * (all) or names separated by commas such as core,panel*,parts_*",
+      "required": false,
+      "default": "core"
+    }
+  }
+}

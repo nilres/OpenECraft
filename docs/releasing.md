@@ -56,6 +56,7 @@ date), and the versions of the tools are pinned. Raise them together:
 | `OpenECraft-<version>-x86_64.flatpak`, `openecraft_<version>_amd64.snap` | `installer/linux/build.sh flatpak snap` |
 | `OpenECraft-<version>-macos.dmg` | `installer/macos/build.sh` |
 | `OpenECraft-<version>-web.zip`, `OpenECraft-Parts-Manager-<version>-web.zip` | `trunk build --release` |
+| `OpenECraft-MCP-<version>-windows-x86_64.mcpb`, `-linux-x86_64.mcpb`, `-macos-universal.mcpb`, `mcp-server.json` | `installer/mcp/build.py` ([MCP registry](#mcp-registry)) |
 | `THIRD-PARTY-LICENSES.html`, `SHA256SUMS` | the workflow |
 | `ghcr.io/nilres/openecraft-parts-server:<version>`, `ghcr.io/nilres/openecraft-project-server:<version>`, `ghcr.io/nilres/openecraft-web:<version>`, `ghcr.io/nilres/openecraft-website:<version>` (also `<major>.<minor>` and `latest`) | `installer/docker/Dockerfile`, pushed by the job `docker` ([installation](installation.md)) |
 
@@ -65,6 +66,29 @@ changing the packages (`openecraft_client::update::Package`). AppImageUpdate and
 similar tools do the same with the update information in the AppImage
 (`gh-releases-zsync|<owner>|<repo>|latest|OpenECraft-*-x86_64.AppImage.zsync`, set by
 `build_appimage`), so the AppImage keeps its name pattern and its `.zsync` file.
+
+## MCP registry
+
+The MCP server (`openecraft-cli mcp`) is released as MCP bundles, one per platform:
+ZIP files with `manifest.json` (`installer/mcp/manifest.json` with the version, the
+platform and the tools the program names), the program of the installer of that
+platform and the licenses. `python installer/mcp/build.py bundle` builds the one of the
+build machine into `target/installer/`. Clients tell the bundles apart by the platform
+in the file name, so keep the names. `.github/workflows/mcp-bundles.yml`, started by
+hand, builds only the three bundles as artifacts of its run (the Windows program not
+code signed, the macOS one signed ad hoc), to try them before a release.
+
+`mcp-server.json` of the release is the entry of the
+[official MCP Registry](https://registry.modelcontextprotocol.io)
+(`installer/mcp/server.json` with the version and, per bundle, its address in the
+release and its SHA-256; description at most 100 characters). Publishing the release
+starts `.github/workflows/mcp-registry.yml`, which enters it as
+`io.github.nilres/openecraft` with `mcp-publisher`: the registry asks for the bundles,
+which a draft does not show, and takes the workflow's GitHub token as proof of the
+namespace, so no secret is needed. A version of the registry cannot be changed or
+entered twice; pre-releases are not entered. After a failure start the workflow by hand
+with the tag. The directories that do not read the official registry are listed in
+[`installer/stores/README.md`](../installer/stores/README.md#mcp-registries).
 
 ## Licenses
 

@@ -5,6 +5,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **MCP server without an installation:** every release has the MCP server as an MCP
+  bundle per platform (`OpenECraft-MCP-<version>-windows-x86_64.mcpb`,
+  `-linux-x86_64.mcpb`, `-macos-universal.mcpb`), which Claude Desktop and other clients
+  install with a double click; it asks for the project folder and the tools to offer.
+  A published release enters the bundles in the official MCP Registry as
+  `io.github.nilres/openecraft`, from where other directories and clients list the
+  server ([command line](docs/command-line.md)).
 - **Control points of wires, cables and tubes:** right-click a route over the mounting
   plate, on a wall of a room or in the 3D view and *Add control point*, then drag the
   point; the route is searched again through its control points, keeping its bend

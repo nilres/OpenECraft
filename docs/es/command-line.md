@@ -173,6 +173,13 @@ o `~/.config/Claude/`; Cursor: `~/.cursor/mcp.json`; VS Code: `.vscode/mcp.json`
     "env": { "OPENECRAFT_MCP_ROOT": "/home/me/projects" } } } }
 ```
 
+Sin instalación, el servidor existe como paquete MCP de la versión publicada
+(`OpenECraft-MCP-<version>-windows-x86_64.mcpb`, `-linux-x86_64.mcpb`,
+`-macos-universal.mcpb`): Claude Desktop y otros clientes que conocen el formato lo
+instalan con un doble clic y preguntan por la carpeta de proyectos
+(`OPENECRAFT_MCP_ROOT`) y las herramientas (`OPENECRAFT_MCP_TOOLS`). Cada versión inscribe
+estos paquetes en el MCP Registry oficial como `io.github.nilres/openecraft`.
+
 El agente puede leer y escribir cualquier archivo al que tenga acceso el proceso del
 servidor; inícielo en un directorio de trabajo (y con un token del servidor de artículos)
 que le parezca bien que use el agente.

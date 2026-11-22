@@ -1,0 +1,51 @@
+name: MCP Registry
+
+# Publishing a release (not a pre-release) enters its MCP server in the official MCP
+# Registry (registry.modelcontextprotocol.io): the file mcp-server.json of the release
+# names the MCP bundles (*.mcpb) of the release, which have to be public by then, so a
+# draft cannot be entered (docs/releasing.md). Started by hand for the tag of a release
+# to enter it again after a failure.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag of the published release (v<version>)
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: ${{ !github.event.repository.private && (github.event_name == 'workflow_dispatch' || !github.event.release.prerelease) }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      # The registry takes the GitHub OIDC token as proof of the namespace io.github.<owner>.
+      id-token: write
+    env:
+      MCP_PUBLISHER_VERSION: v1.8.12
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - name: Entry of the release
+        run: gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern mcp-server.json --output server.json
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+      - name: mcp-publisher
+        run: |
+          set -euo pipefail
+          archive=mcp-publisher_linux_amd64.tar.gz
+          base_url="https://github.com/modelcontextprotocol/registry/releases/download/$MCP_PUBLISHER_VERSION"
+          curl --fail --location --silent --show-error --output "$archive" "$base_url/$archive"
+          curl --fail --location --silent --show-error --output "$archive.sigstore.json" "$base_url/$archive.sigstore.json"
+          cosign verify-blob \
+            --bundle "$archive.sigstore.json" \
+            --certificate-identity "https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/$MCP_PUBLISHER_VERSION" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            "$archive"
+          tar xzf "$archive" mcp-publisher
+      - run: ./mcp-publisher login github-oidc
+      - run: ./mcp-publisher publish server.json

@@ -160,6 +160,13 @@ or `~/.config/Claude/`; Cursor: `~/.cursor/mcp.json`; VS Code: `.vscode/mcp.json
     "env": { "OPENECRAFT_MCP_ROOT": "/home/me/projects" } } } }
 ```
 
+Without an installation the server comes as an MCP bundle of the release
+(`OpenECraft-MCP-<version>-windows-x86_64.mcpb`, `-linux-x86_64.mcpb`,
+`-macos-universal.mcpb`): Claude Desktop and other clients that know the format install
+it with a double click and ask for the project folder (`OPENECRAFT_MCP_ROOT`) and the
+tools (`OPENECRAFT_MCP_TOOLS`). Every release enters these bundles in the official MCP
+Registry as `io.github.nilres/openecraft`.
+
 The agent can read and write any file the server process can access; start it in a
 working directory (and with a parts server token) you are fine with the agent using.
 [Let an AI agent draw your schematic](launch/ai/README.md) has a worked example with
