@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Voegt een kabelwartel van zijn maat toe voor elke kabel die een kast verlaat en geen vrije wartel vindt: in het dak voor een apparaat in de ruimte, in de bodem voor het veld of een aan de wand hangende kast
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Voegt een kabeldoorvoer naar de rechterbuur toe: ronde uitsparingen tegenover elkaar in beide zijwanden; draden tussen de behuizingen lopen erdoorheen
 Adds a configurator rule: insert a page macro when the condition holds	Voegt een configuratorregel toe: een paginamacro invoegen als aan de voorwaarde is voldaan
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Voegt een steunpunt toe aan de route van een draad, kabel of buis waar die het dichtst bij het opgegeven punt loopt: de route loopt via zijn steunpunten, houdt zijn buigradius en blijft vrij van alles
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Voegt een knooppunt van het tracénetwerk toe (aftakking, doorvoer, punt waar een behuizing of apparaat wordt bereikt)
 Adds a planned device to a segment or changes it	Voegt een gepland apparaat aan een segment toe of wijzigt het
 Adds a project option or changes its description and condition	Voegt een projectoptie toe of wijzigt de beschrijving en voorwaarde ervan
@@ -359,6 +360,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Beschermingsgraad behouden: warmtewisselaar of koelaggregaat in plaats van filterventilatoren
 Key figures of the project and a list of its device tags	Kengetallen van het project en een lijst van de apparaataanduidingen
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Kengetallen van het project: pagina's, symbolen, draden, apparaten, artikelen, kabels en controleresultaten
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Sleutel van het gerouteerde element: de kabelaanduiding, hose:van|naar van een buis, van|naar van een draad
 Key, e.g. user.coupling_relay	Sleutel, bijv. user.coupling_relay
 Key, e.g. user.customer_code	Sleutel, bijv. user.customer_code
 Keys of the routes, comma separated (all if missing)	Sleutels van de routes, gescheiden door komma's (alle als deze ontbreken)
@@ -472,6 +474,7 @@ Mirror the symbol	Het symbool spiegelen
 Mounting height above the floor in mm (default: that of the part)	Montagehoogte boven de vloer in mm (standaard: die van het artikel)
 Mounting plate size as width and height; empty object restores the centred plate	Grootte van de montageplaat als breedte en hoogte; een leeg object herstelt de gecentreerde plaat
 Mounting size must contain a positive width and height	De montagegrootte moet een positieve breedte en hoogte bevatten
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Verplaatst een steunpunt van de route van een draad, kabel of buis; de routering meldt een fout waar de route er niet doorheen kan
 Moves an air-termination rod, changes its height, renames or removes it	Verplaatst een opvangstaaf, wijzigt de hoogte, hernoemt of verwijdert hem
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Verplaatst één uiteinde van een draad: het laat los waar het op aangesloten is en verbindt met wat het raakt; de draad blijft haaks
 Moves symbols, wires and texts; connected wire ends follow	Verplaatst symbolen, draden en teksten; aangesloten draadeinden volgen
@@ -509,6 +512,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Geen bussysteem {}
 No connection point {} on this page	Geen aansluitpunt {} op deze pagina
 No connection symbol with id {}	Geen verbindingssymbool met id {}
+No control point {}	Geen steunpunt {}
 No copper bar {}	Geen koperrail {}
 No device description {}	Geen apparaatbeschrijving {}
 No device group {}	Geen apparaatgroep {}
@@ -561,6 +565,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Aantal aders van de kab
 Number of equal bars	Aantal gelijke rails
 Number of indexed values (0 = a single value)	Aantal geïndexeerde waarden (0 = één enkele waarde)
 Number of rows	Aantal rijen
+Number of the control point along the route, from 1	Nummer van het steunpunt langs de route, vanaf 1
+Number of the control point along the route, from 1 (all if missing)	Nummer van het steunpunt langs de route, vanaf 1 (alle als het ontbreekt)
 Numbers the pages with a start value and step; released pages keep their name	Nummert de pagina's met een beginwaarde en stap; vrijgegeven pagina's behouden hun naam
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Nummert de klemmen van een strook 1 … n in strookvolgorde; niet-numerieke aanduidingen zoals PE blijven behouden
 Numbers the wires by the numbering scheme of the project	Nummert de draden volgens het nummeringsschema van het project
@@ -715,6 +721,7 @@ Remove the entry of upstream and downstream	Het item van upstream en downstream 
 Remove the profile	Het profiel verwijderen
 Remove the scheme from the project	Het schema uit het project verwijderen
 Remove unused definitions (default: false)	Ongebruikte definities verwijderen (standaard: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Verwijdert een steunpunt van de route van een draad, kabel of buis, of alle
 Removes a copper bar	Verwijdert een koperrail
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Verwijdert een knooppunt (met zijn segmenten en plaatsingen), segment, plaatsing, contour, vereffeningsleider of toebehoren
 Removes a planned device from a segment	Verwijdert een gepland apparaat uit een segment
@@ -1026,8 +1033,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Werkbereik in x, mm
 Working area in y, mm	Werkbereik in y, mm
 Wrap width in mm (0: no wrapping)	Afbreekbreedte in mm (0: geen tekstterugloop)
+X of the point in mm from the left of the enclosure	X van het punt in mm vanaf links in de behuizing
 X position in mm	X-positie in mm
+Y of the point in mm from the top of the enclosure	Y van het punt in mm vanaf boven in de behuizing
 Y position in mm (downwards)	Y-positie in mm (naar beneden)
+Z of the point in mm from the rear wall of the enclosure	Z van het punt in mm vanaf de achterwand van de behuizing
 any, wires, cables or tubes	any, wires, cables of tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left of right; verwerpt handmatig geplaatste teksten
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip of adhesive

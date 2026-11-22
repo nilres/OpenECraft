@@ -82,6 +82,7 @@ Active	Aktiv
 Actuators on the door	Betjeningselementer på døren
 Add a command	Tilføj en kommando
 Add a target language to translate the project texts.	Tilføj et målsprog for at oversætte projektteksterne.
+Add control point	Tilføj støttepunkt
 Add filter	Tilføj filter
 Add folder…	Tilføj mappe…
 Add group	Tilføj gruppe
@@ -428,6 +429,9 @@ Consecutive addresses from the start byte, in schematic order	Fortløbende adres
 Contact image below coils	Kontaktspejl under spoler
 Content	Indhold
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Indhold i en inaktiv option er skjult: det tegnes, evalueres, rapporteres og eksporteres ikke.
+Control point {} added to {}: routing again…	Støttepunkt {} tilføjet til {}: føres igen…
+Control point {} of {} moved: routing again…	Støttepunkt {} for {} flyttet: føres igen…
+Control points: {}	Støttepunkter: {}
 Coordinate reference system	Koordinatreferencesystem
 Copies	Kopier
 Copies function texts between both representations where one is empty	Kopierer funktionstekster mellem begge repræsentationer, hvor den ene er tom
@@ -1029,6 +1033,7 @@ Layout checks	Layoutkontroller
 Layout properties	Layoutegenskaber
 Layout space	Monteringsrum
 Layout spaces	Monteringsrum
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Før føringen gennem et punkt her: træk det for at føre ledningen, kablet eller røret igen med dets bøjningsradius og fri af alt
 Leave out the ceilings of the rooms and the roofs in the 3D view	Udelad rummenes lofter og tagene i 3D-visningen
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Udelad lågene på alle kabelkanaler i 3D-visningen: lederne i dem bliver synlige
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Udelad modulerne i solcelleanlæggene i 3D-visningen: skinner, tagkroge, stativer, jording og kabler ses
@@ -1315,6 +1320,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Ikke ændret: 
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ikke tilsluttet endnu: ingen enhed, intet kabel. Vælg beskyttelsesenheden for dens gruppe.
 Not found: {}	Ikke fundet: {}
 Not in the project parts – synchronize in parts management	Ikke i projektets artikler – synkroniser i artikelstyringen
+Not led through its control points: see the messages	Ikke ført gennem sine støttepunkter: se meddelelserne
 Not on a wire	Ikke på en ledning
 Not placed	Ikke placeret
 Not saved yet	Ikke gemt endnu
@@ -1653,6 +1659,8 @@ Released pages keep their name.	Frigivne sider beholder deres navn.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Originalens frigivne revisioner, baselines, kommentarer, markeringer, godkendelser og ændringsanmodninger. Uden dem begynder kopien som et nyt projekt.
 Releases all locks; the project stays open as a local copy	Frigiver alle låse; projektet forbliver åbent som en lokal kopi
 Releasing…	Frigiver…
+Remove all control points	Fjern alle støttepunkter
+Remove control point	Fjern støttepunkt
 Remove from cable	Fjern fra kabel
 Remove from harness	Fjern fra ledningsnet
 Remove from the group	Fjern fra gruppen
@@ -1749,6 +1757,7 @@ Right button	Højre knap
 Right click for more	Højreklik for flere
 Right edges	Højre kanter
 Right neighbour	Højre nabo
+Right-click the route to add a control point, then drag it	Højreklik på føringen for at tilføje et støttepunkt, og træk det derefter
 Rights	Rettigheder
 Risers	Stigninger
 Rod holder	Stangholder
@@ -2612,6 +2621,7 @@ x y	x y
 {} wires changed	{} ledninger ændret
 {} wires, {} cables and {} tubes routed	{} ledninger, {} kabler og {} slanger ført
 {} wires, {} – {} mm	{} ledninger, {} – {} mm
+{} {} is led through its control points: {} mm	{} {} føres gennem sine støttepunkter: {} mm
 {} {} of building {}	{} {} i bygning {}
 {} °C (max. {} °C)	{} °C (maks. {} °C)
 {} °C (max.)	{} °C (maks.)

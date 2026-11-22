@@ -274,6 +274,8 @@ Contractor	Wykonawca
 Control	Sterowanie
 Control cabinet	Szafa sterownicza
 Control mode	Tryb sterowania
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Punkt pośredni {} elementu {} {} leży wewnątrz czegoś lub poza obudową: jest prowadzony bez swoich punktów pośrednich. Przesuń punkt pośredni w wolną przestrzeń.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Punkt pośredni {} elementu {} {} leży poza jego drogą: w żadnej szafie ani pomieszczeniu, przez które jest prowadzony. Przesuń punkt pośredni na jego drogę.
 Control transformer	Transformator sterowniczy
 Control transformer (NFPA)	Transformator sterowniczy (NFPA)
 Control transformer T (GOST)	Transformator sterowniczy T (GOST)
@@ -956,6 +958,7 @@ No page or page item with id {}	Brak strony lub elementu strony o identyfikatorz
 No page with id {}	Brak strony o identyfikatorze {}
 No plugs	Brak złączy
 No report block {}	Brak bloku raportu {}
+No routed wire, cable or tube {}	Brak poprowadzonego przewodu, kabla lub węża {}
 No segment template named {}	Brak szablonu segmentu o nazwie {}
 No subproject {}	Brak podprojektu {}
 No such object: {}	Brak obiektu: {}
@@ -1365,6 +1368,7 @@ Roof top	Dach
 Room floor	Podłoga pomieszczenia
 Room {} stands outside the plot boundary	Pomieszczenie {} stoi poza granicą działki
 Round punch	Stempel okrągły
+Route {} has no control point {}	Trasa {} nie ma punktu pośredniego {}
 Routing list (3D)	Lista prowadzenia (3D)
 Row {} not found	Nie znaleziono wiersza {}
 Row {}: no job	Wiersz {}: brak zlecenia
@@ -1989,12 +1993,16 @@ yellow	żółty
 {} unused device data records removed	Usunięto nieużywane rekordy danych urządzeń: {}
 {} wiring marks belong to wires that no longer exist	Znaczniki okablowania należące do przewodów, które już nie istnieją: {}
 {} without device tag on page {}	{} bez oznaczenia urządzenia na stronie {}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {} nie może zostać poprowadzony przez swój punkt pośredni {}: brak drogi, która zachowuje połowę grubości od wszystkiego i zagina się z promieniem {} mm. Jest prowadzony bez punktów pośrednich; przesuń punkt pośredni.
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} nie można poprowadzić: każda dławnica kablowa w {} jest zajęta przez inny kabel. Dodaj dla niego dławnicę kablową.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nie może zostać poprowadzony: brak drogi, która zachowuje połowę grubości od wszystkiego i zagina się z promieniem {} mm. Przesuń końce lub zrób miejsce.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} wchodzi przez dno: brak dławika kablowego w obudowie
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} wchodzi przez dach: brak dławika kablowego na dachu, bokach lub tylnej ścianie
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} jest poprowadzony do wejść kablowych swoich obudów: nie stoją we wspólnym pomieszczeniu, droga między nimi nie należy do układu
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {} przecina sam siebie przez swoje punkty pośrednie. Jest prowadzony bez punktów pośrednich; przesuń je.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {} biegnie do drzwi: nie może przechodzić przez swoje punkty pośrednie. Usuń je.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: zagięcia ciaśniejsze niż promień gięcia ({} mm)
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: punkty pośrednie nie zostawiają miejsca na zgięcie z promieniem {} mm. Jest prowadzony bez punktów pośrednich; rozsuń je bardziej.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: połączone na schemacie jednokreskowym, ale nie na schemacie elektrycznym
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, tracker MPP {}: jego łańcuchy różnią się napięciem ({} V i {} V)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, tracker MPP {}: łańcuchy dają {} A, więcej niż {} A, które wykorzystuje (moc jest ograniczona)

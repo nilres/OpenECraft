@@ -974,6 +974,38 @@ cabinet hanging on a wall (its bottom above the floor) is also left through a gl
 its bottom: below each such gland a shaft down to the floor and out to the front of the
 cabinet stays free for the routes. Frozen, such a route keeps its legs.
 
+**Control points.** A wire, cable or tube is led another way by control points:
+right-click its route over the mounting plate, on a wall of a room (the front view of a
+room shows the routes seen from the face, its wires too) or in the 3D view and choose
+*Add control point*; the point goes onto the route where it was clicked, numbered along
+it. A right click keeps the wire, cable or tube selected where it runs there: in a
+cable duct, where wires lie on top of each other, click the wire first (again for the
+next one), then right-click it. A wire with control points is routed in 3D from connection point to connection
+point like a cable (one laid in the cable ducts leaves them), without them it goes back
+to the ducts; a wire to the door takes none (the routing reports an error for it).
+Drag a control point to move it:
+in the front view on the face shown (it keeps its distance from the face), in the 3D
+view parallel to the screen. Where it is dropped the route is searched again from its
+start through every control point in order to its end: each point is passed at the
+middle of its routing cell, the route runs on out of it the way it came in, keeps half
+its thickness clear of everything and apart from the other routes, bends with its
+radius only and does not come back to itself. Where that is not possible (the point
+lies in a device or outside the enclosure, no way to it keeps clear and bends with the
+radius, the points leave no room for the arcs of the bends between them, the way comes
+back to itself, or the point lies in no cabinet or room the route runs through) the
+routing reports an error naming the control point, draws it in red and lays the route
+without its control points until it is moved; the status line tells whether the route
+is led through its control points or why not. Only the route whose control points
+changed is searched again at once, among the other routes where they lie (an arc runs
+round its control point meanwhile); the whole routing follows in the background. A
+point given on a corner of the route goes back along it by the bend radius, and the
+way back from a point keeps clear of the way there (in a cable duct it may cross it).
+Right-click a control point to remove it
+or all of them (also in the properties of the route or wire). A route with control
+points is not frozen. Commands `add_control_point`, `move_control_point` and
+`remove_control_point` (points in the coordinates of an enclosure; a wire by
+`from|to`, its connection points); `list_routing` lists them.
+
 **Flush-mounted in rooms.** Every cable, wire and tube is laid in rooms *surface-mounted*
 (as above), *flush-mounted in the wall* or *flush-mounted in the floor*: as the routing
 rules say (*Laying in rooms*, command `routing_rules` with `laying`) or as set for it

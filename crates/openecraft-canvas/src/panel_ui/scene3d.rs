@@ -1757,12 +1757,7 @@ impl PanelUi {
         // tubes (and the wires routed in 3D), from layout to view coordinates through the
         // enclosure a point lies in (the nearest one along the line-up), points of a room
         // through the room.
-        let to_view = |room: Option<usize>, q: V3| {
-            let gap = |k: usize| (pos[k][0] - q[0]).max(q[0] - pos[k][0] - prj.layout.enclosures[k].width).max(0.0);
-            let in_room = room.filter(|r| prj.layout.enclosures[*r].is_room()).and_then(|r| shown.iter().find(|s| s.0 == r));
-            let (k, pose) = in_room.or_else(|| shown.iter().min_by(|a, b| gap(a.0).total_cmp(&gap(b.0)))).copied().unwrap_or((ei, SitePose::default()));
-            pose.apply([q[0] - pos[k][0], prj.layout.enclosures[k].height - (q[1] - pos[k][1]), q[2] - pos[k][2]])
-        };
+        let to_view = |room: Option<usize>, q: V3| layout_to_view(prj, shown, &pos, ei, room, q);
         let keys: Vec<usize> = shown.iter().map(|s| s.0).collect();
         // What could not be routed is not drawn: a warning at each of its ends says so.
         for it in an.routing.items.iter().filter(|i| !i.routed()) {
@@ -1889,6 +1884,16 @@ impl PanelUi {
         s.bounds = if pts.is_empty() { ([0.0; 3], [0.0; 3]) } else { bounds(&pts) };
         s
     }
+}
+
+/// A point of the 3D routing from layout to view coordinates (`pos`: the positions of
+/// the enclosures in the layout): through the enclosure shown that it lies in (the
+/// nearest one along the line-up), a point of a room (`room`) through the room.
+pub(super) fn layout_to_view(prj: &Project, shown: &[(usize, SitePose)], pos: &[V3], ei: usize, room: Option<usize>, q: V3) -> V3 {
+    let gap = |k: usize| (pos[k][0] - q[0]).max(q[0] - pos[k][0] - prj.layout.enclosures[k].width).max(0.0);
+    let in_room = room.filter(|r| prj.layout.enclosures[*r].is_room()).and_then(|r| shown.iter().find(|s| s.0 == r));
+    let (k, pose) = in_room.or_else(|| shown.iter().min_by(|a, b| gap(a.0).total_cmp(&gap(b.0)))).copied().unwrap_or((ei, SitePose::default()));
+    pose.apply([q[0] - pos[k][0], prj.layout.enclosures[k].height - (q[1] - pos[k][1]), q[2] - pos[k][2]])
 }
 
 #[cfg(test)]

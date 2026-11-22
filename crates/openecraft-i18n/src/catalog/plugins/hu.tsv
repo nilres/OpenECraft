@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Megfelelő méretű tömszelencét ad minden kábelhez, amely kilép a szekrényből és nem talál szabad tömszelencét: a tetőbe a helyiségben lévő készülékhez, a fenékbe a terephez vagy a falon függő szekrénynél
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Kábelátvezetést ad hozzá a jobb oldali szomszédhoz: egymással szemben lévő kerek kivágások mindkét oldalfalban; a szekrények közötti vezetékek ezen át futnak
 Adds a configurator rule: insert a page macro when the condition holds	Konfigurátorszabályt ad hozzá: oldalmakró beszúrása, ha a feltétel teljesül
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Támpontot ad egy vezeték, kábel vagy cső nyomvonalához ott, ahol az a legközelebb halad a megadott ponthoz: a nyomvonal áthalad a támpontjain, megtartja hajlítási sugarát és mindentől távol marad
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Csomópontot ad a terepi nyomvonalhálózathoz (elágazás, átvezetés, szekrény vagy készülék elérési pontja)
 Adds a planned device to a segment or changes it	Tervezett készüléket ad hozzá egy szegmenshez, vagy módosítja
 Adds a project option or changes its description and condition	Projektopciót ad hozzá, vagy módosítja a leírását és a feltételét
@@ -359,6 +360,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	A védettségi fokozat megtartása: hőcserélő vagy hűtőkészülék szűrős ventilátorok helyett
 Key figures of the project and a list of its device tags	A projekt mutatói és készülékazonosítóinak listája
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	A projekt mutatói: oldalak, szimbólumok, vezetékek, készülékek, alkatrészek, kábelek és ellenőrzési eredmények
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	A fektetett elem kulcsa: a kábel jele, cső esetén hose:honnan|hová, vezeték esetén honnan|hová
 Key, e.g. user.coupling_relay	Kulcs, pl. user.coupling_relay
 Key, e.g. user.customer_code	Kulcs, pl. user.customer_code
 Keys of the routes, comma separated (all if missing)	A nyomvonalak kulcsai vesszővel elválasztva (ha hiányzik: az összes)
@@ -472,6 +474,7 @@ Mirror the symbol	Szimbólum tükrözése
 Mounting height above the floor in mm (default: that of the part)	Szerelési magasság a padló felett mm-ben (alapértelmezett: a cikké)
 Mounting plate size as width and height; empty object restores the centred plate	A szerelőlap mérete szélességként és magasságként; üres objektum visszaállítja a középre helyezett lapot
 Mounting size must contain a positive width and height	A szerelési méretnek pozitív szélességet és magasságot kell tartalmaznia
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Áthelyezi egy vezeték, kábel vagy cső nyomvonalának egy támpontját; a fektetés hibát jelez, ahol a nyomvonal nem vezethető át rajta
 Moves an air-termination rod, changes its height, renames or removes it	Áthelyez egy felfogórudat, módosítja a magasságát, átnevezi vagy eltávolítja
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Egy vezeték egyik végét mozgatja: leválik arról, amihez csatlakozik, és csatlakozik ahhoz, amibe ütközik; a vezeték derékszögű marad
 Moves symbols, wires and texts; connected wire ends follow	Szimbólumokat, vezetékeket és szövegeket mozgat; a csatlakozó vezetékvégek követik
@@ -509,6 +512,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Nincs {} buszrendszer
 No connection point {} on this page	Nincs {} csatlakozási pont ezen az oldalon
 No connection symbol with id {}	Nincs {} azonosítójú kapcsolati szimbólum
+No control point {}	Nincs támpont: {}
 No copper bar {}	Nincs ilyen rézsín: {}
 No device description {}	Nincs {} eszközleírás
 No device group {}	Nincs {} készülékcsoport
@@ -561,6 +565,8 @@ Number of cores of the cable (default: 3, three-phase 5)	A kábel ereinek száma
 Number of equal bars	Azonos sínek száma
 Number of indexed values (0 = a single value)	Indexelt értékek száma (0 = egyetlen érték)
 Number of rows	Sorok száma
+Number of the control point along the route, from 1	A támpont sorszáma a nyomvonal mentén, 1-től
+Number of the control point along the route, from 1 (all if missing)	A támpont sorszáma a nyomvonal mentén, 1-től (az összes, ha hiányzik)
 Numbers the pages with a start value and step; released pages keep their name	Számozza az oldalakat kezdőértékkel és lépésközzel; a kiadott oldalak megtartják a nevüket
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Lécsorrendben 1 … n számozza egy léc sorkapcsait; a nem numerikus megnevezések, például PE, megmaradnak
 Numbers the wires by the numbering scheme of the project	A projekt számozási sémája szerint számozza a vezetékeket
@@ -715,6 +721,7 @@ Remove the entry of upstream and downstream	Az upstream és downstream bejegyzé
 Remove the profile	A profil eltávolítása
 Remove the scheme from the project	A séma eltávolítása a projektből
 Remove unused definitions (default: false)	A nem használt definíciók eltávolítása (alapértelmezés: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Eltávolítja egy vezeték, kábel vagy cső nyomvonalának egy vagy összes támpontját
 Removes a copper bar	Eltávolít egy rézsínt
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Eltávolít egy csomópontot (szakaszaival és elhelyezéseivel együtt), szakaszt, elhelyezést, körvonalat, potenciálkiegyenlítő vezetőt vagy tartozékot
 Removes a planned device from a segment	Eltávolít egy tervezett készüléket egy szegmensből
@@ -1026,8 +1033,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Munkaterület x irányban, mm
 Working area in y, mm	Munkaterület y irányban, mm
 Wrap width in mm (0: no wrapping)	Tördelési szélesség mm-ben (0: nincs tördelés)
+X of the point in mm from the left of the enclosure	A pont X koordinátája mm-ben a szekrény bal szélétől
 X position in mm	X pozíció mm-ben
+Y of the point in mm from the top of the enclosure	A pont Y koordinátája mm-ben a szekrény tetejétől
 Y position in mm (downwards)	Y pozíció mm-ben (lefelé)
+Z of the point in mm from the rear wall of the enclosure	A pont Z koordinátája mm-ben a szekrény hátfalától
 any, wires, cables or tubes	any, wires, cables vagy tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left vagy right; elveti a kézzel elhelyezett szövegeket
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip vagy adhesive

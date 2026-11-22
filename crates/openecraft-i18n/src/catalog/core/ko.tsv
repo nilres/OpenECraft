@@ -266,6 +266,8 @@ Contractor	계약자
 Control	제어
 Control cabinet	제어반
 Control mode	제어 방식
+Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	경유점 {}({} {})이(가) 무언가의 내부 또는 외함 밖에 있음: 경유점 없이 배선됩니다. 경유점을 빈 공간으로 이동하십시오.
+Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	경유점 {}({} {})이(가) 경로를 벗어나 있음: 배선이 지나는 어떤 캐비닛이나 방에도 없습니다. 경유점을 경로 위로 이동하십시오.
 Control transformer	제어 변압기
 Control transformer (NFPA)	제어용 변압기(NFPA)
 Control transformer T (GOST)	제어용 변압기 T(GOST)
@@ -945,6 +947,7 @@ No page or page item with id {}	ID가 {}인 페이지 또는 페이지 항목이
 No page with id {}	ID가 {}인 페이지가 없습니다
 No plugs	플러그 없음
 No report block {}	보고서 블록 {} 없음
+No routed wire, cable or tube {}	배선된 전선, 케이블 또는 튜브 {} 없음
 No segment template named {}	이름이 {}인 세그먼트 템플릿이 없습니다
 No subproject {}	하위 프로젝트 {}이(가) 없습니다
 No such object: {}	해당 개체가 없습니다: {}
@@ -1351,6 +1354,7 @@ Roller switch NO	롤러 스위치 a접점
 Room floor	방 바닥
 Room {} stands outside the plot boundary	실 {}이(가) 부지 경계 밖에 있습니다
 Round punch	원형 펀치
+Route {} has no control point {}	경로 {}에 경유점 {}이(가) 없음
 Routing list (3D)	배선 경로 목록(3D)
 Row {} not found	행 {}을(를) 찾을 수 없음
 Row {}: no job	{}행: 작업 없음
@@ -1968,11 +1972,15 @@ yellow	노랑
 {} unused device data records removed	사용하지 않는 장치 데이터 레코드 {}개를 제거했습니다
 {} wiring marks belong to wires that no longer exist	배선 작업 표시 {}개가 더 이상 없는 전선에 속합니다
 {} without device tag on page {}	페이지 {1}에 장치 태그 없는 {0}
+{} {} cannot be routed through its control point {}: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. It is laid without its control points; move the control point.	{} {}을(를) 경유점 {}을(를) 지나 배선할 수 없음: 모든 것에서 두께의 절반 간격을 유지하며 반경 {} mm로 굽는 경로 없음. 경유점 없이 배선됩니다. 경유점을 이동하십시오.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {}의 배선 경로를 지정할 수 없음: 모든 것에서 두께의 절반 간격을 유지하며 반경 {} mm로 굽는 경로 없음. 끝을 이동하거나 공간을 확보하십시오.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {}이(가) 바닥을 통해 인입됨: 외함에 케이블 글랜드 없음
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {}이(가) 지붕을 통해 인입됨: 지붕, 측면 또는 후면에 케이블 글랜드 없음
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {}은(는) 각 외함의 케이블 인입구까지 배선됨: 공통된 방에 있지 않아 그 사이의 경로는 배치에 포함되지 않음
+{} {} runs into itself through its control points. It is laid without its control points; move them.	{} {}이(가) 경유점 때문에 자기 자신과 교차함. 경유점 없이 배선됩니다. 경유점을 이동하십시오.
+{} {} runs to the door: it cannot be led through its control points. Remove them.	{} {}은(는) 도어로 연결됨: 경유점을 지나도록 배선할 수 없습니다. 경유점을 제거하십시오.
 {} {}: bends closer than the bend radius ({} mm)	{} {}: 굽힘이 굽힘 반경({} mm)보다 작음
+{} {}: its control points leave no room to bend with its radius of {} mm. It is laid without its control points; move them further apart.	{} {}: 경유점 사이에 반경 {} mm로 굽을 공간이 없음. 경유점 없이 배선됩니다. 경유점 간격을 더 늘리십시오.
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: 단선도에서는 연결되어 있지만 회로도에서는 연결되어 있지 않습니다
 {}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP 트래커 {}: 스트링 전압이 다릅니다 ({} V 및 {} V)
 {}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP 트래커 {}: 스트링이 {} A를 공급하여 사용 가능한 {} A를 초과합니다 (출력 제한)

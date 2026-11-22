@@ -82,6 +82,7 @@ Active	Aktywna
 Actuators on the door	Elementy sterownicze na drzwiach
 Add a command	Dodaj polecenie
 Add a target language to translate the project texts.	Dodaj język docelowy, aby przetłumaczyć teksty projektu.
+Add control point	Dodaj punkt pośredni
 Add filter	Dodaj filtr
 Add folder…	Dodaj folder…
 Add group	Dodaj grupę
@@ -428,6 +429,9 @@ Consecutive addresses from the start byte, in schematic order	Kolejne adresy od 
 Contact image below coils	Obraz styków pod cewkami
 Content	Zawartość
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Zawartość nieaktywnej opcji jest ukryta: nie jest rysowana, oceniana, raportowana ani eksportowana.
+Control point {} added to {}: routing again…	Dodano punkt pośredni {} do {}: ponowne prowadzenie…
+Control point {} of {} moved: routing again…	Przesunięto punkt pośredni {} elementu {}: ponowne prowadzenie…
+Control points: {}	Punkty pośrednie: {}
 Coordinate reference system	Układ odniesienia współrzędnych
 Copies	Kopie
 Copies function texts between both representations where one is empty	Kopiuje teksty funkcji między obiema reprezentacjami tam, gdzie jedna jest pusta
@@ -1029,6 +1033,7 @@ Layout checks	Kontrole zabudowy
 Layout properties	Właściwości zabudowy
 Layout space	Przestrzeń montażowa
 Layout spaces	Przestrzenie montażowe
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Poprowadź trasę przez punkt w tym miejscu: przeciągnij go, aby ponownie poprowadzić przewód, kabel lub wąż z zachowaniem promienia gięcia i z dala od wszystkiego
 Leave out the ceilings of the rooms and the roofs in the 3D view	Pomiń sufity pomieszczeń i dachy w widoku 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	W widoku 3D pomija pokrywy wszystkich korytek kablowych: przewody w nich są widoczne
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Pomiń moduły pól PV w widoku 3D: widać szyny, haki dachowe, wsporniki, uziemienie i okablowanie
@@ -1315,6 +1320,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nie zmieniono:
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Jeszcze nie podłączone: brak urządzenia, brak kabla. Wybierz urządzenie zabezpieczające jego obwodu.
 Not found: {}	Nie znaleziono: {}
 Not in the project parts – synchronize in parts management	Brak wśród artykułów projektu – zsynchronizuj w zarządzaniu artykułami
+Not led through its control points: see the messages	Nie przechodzi przez swoje punkty pośrednie: zobacz komunikaty
 Not on a wire	Nie na przewodzie
 Not placed	Nie umieszczono
 Not saved yet	Jeszcze nie zapisano
@@ -1653,6 +1659,8 @@ Released pages keep their name.	Wydane strony zachowują swoją nazwę.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Wydane rewizje, wersje bazowe, komentarze, oznaczenia, zatwierdzenia i wnioski o zmianę oryginału. Bez nich kopia zaczyna jako nowy projekt.
 Releases all locks; the project stays open as a local copy	Zwalnia wszystkie blokady; projekt pozostaje otwarty jako kopia lokalna
 Releasing…	Zwalnianie…
+Remove all control points	Usuń wszystkie punkty pośrednie
+Remove control point	Usuń punkt pośredni
 Remove from cable	Usuń z kabla
 Remove from harness	Usuń z wiązki
 Remove from the group	Usuń z grupy
@@ -1749,6 +1757,7 @@ Right button	Prawy przycisk
 Right click for more	Kliknij prawym przyciskiem, aby uzyskać więcej opcji
 Right edges	Prawe krawędzie
 Right neighbour	Prawy sąsiad
+Right-click the route to add a control point, then drag it	Kliknij trasę prawym przyciskiem, aby dodać punkt pośredni, a potem go przeciągnij
 Rights	Uprawnienia
 Risers	Podstopnie
 Rod holder	Uchwyt iglicy
@@ -2612,6 +2621,7 @@ x y	x y
 {} wires changed	Zmienione przewody: {}
 {} wires, {} cables and {} tubes routed	Poprowadzone przewody: {}, kable: {}, węże: {}
 {} wires, {} – {} mm	Przewody: {}, {} – {} mm
+{} {} is led through its control points: {} mm	{} {} przechodzi przez swoje punkty pośrednie: {} mm
 {} {} of building {}	{} {} budynku {}
 {} °C (max. {} °C)	{} °C (maks. {} °C)
 {} °C (max.)	{} °C (maks.)

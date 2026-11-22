@@ -82,6 +82,7 @@ Active	Aktív
 Actuators on the door	Kezelőelemek az ajtón
 Add a command	Parancs hozzáadása
 Add a target language to translate the project texts.	A projektszövegek fordításához adjon hozzá egy célnyelvet.
+Add control point	Támpont hozzáadása
 Add filter	Szűrő hozzáadása
 Add folder…	Mappa hozzáadása…
 Add group	Csoport hozzáadása
@@ -428,6 +429,9 @@ Consecutive addresses from the start byte, in schematic order	Egymást követő 
 Contact image below coils	Érintkezőtükör a tekercsek alatt
 Content	Tartalom
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Az inaktív opció tartalma rejtve van: nem kerül megrajzolásra, kiértékelésre, kimutatásba vagy exportálásra.
+Control point {} added to {}: routing again…	{}. támpont hozzáadva ({}): újrafektetés…
+Control point {} of {} moved: routing again…	{}. támpont ({}) áthelyezve: újrafektetés…
+Control points: {}	Támpontok: {}
 Coordinate reference system	Koordináta-rendszer
 Copies	Másolatok
 Copies function texts between both representations where one is empty	Funkciószövegeket másol a két ábrázolás között, ahol az egyik üres
@@ -1029,6 +1033,7 @@ Layout checks	Elrendezési ellenőrzések
 Layout properties	Elrendezés tulajdonságai
 Layout space	Szerelési tér
 Layout spaces	Szerelési terek
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	A nyomvonal átvezetése egy itteni ponton: húzza el a vezeték, kábel vagy cső újrafektetéséhez a hajlítási sugarával és mindentől távol
 Leave out the ceilings of the rooms and the roofs in the 3D view	A helyiségek mennyezetének és a tetőknek az elhagyása a 3D nézetben
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	A 3D nézetben elhagyja az összes kábelcsatorna fedelét: a bennük lévő vezetékek láthatók
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	A PV mezők moduljainak elhagyása a 3D nézetben: láthatók a sínek, tetőkampók, tartók, a földelés és a kábelezés
@@ -1315,6 +1320,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nem módosult:
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Még nincs bekötve: nincs készülék, nincs kábel. Válassza ki az áramköre védőkészülékét.
 Not found: {}	Nem található: {}
 Not in the project parts – synchronize in parts management	Nincs a projekt alkatrészei között – szinkronizálja az alkatrészkezelésben
+Not led through its control points: see the messages	Nem halad át a támpontjain: lásd az üzeneteket
 Not on a wire	Nincs vezetéken
 Not placed	Nincs elhelyezve
 Not saved yet	Még nincs mentve
@@ -1653,6 +1659,8 @@ Released pages keep their name.	A kiadott oldalak megtartják a nevüket.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Az eredeti kiadott revíziói, alapállapotai, megjegyzései, jelölései, jóváhagyásai és módosítási kérelmei. Nélkülük a másolat új projektként indul.
 Releases all locks; the project stays open as a local copy	Feloldja az összes zárolást; a projekt helyi másolatként nyitva marad
 Releasing…	Zárolás feloldása…
+Remove all control points	Összes támpont eltávolítása
+Remove control point	Támpont eltávolítása
 Remove from cable	Eltávolítás a kábelből
 Remove from harness	Eltávolítás a kábelkötegből
 Remove from the group	Eltávolítás a csoportból
@@ -1749,6 +1757,7 @@ Right button	Jobb gomb
 Right click for more	A jobb gombbal további lehetőségek
 Right edges	Jobb élek
 Right neighbour	Jobb oldali szomszéd
+Right-click the route to add a control point, then drag it	Kattintson jobb gombbal a nyomvonalra támpont hozzáadásához, majd húzza el
 Rights	Jogosultságok
 Risers	Fellépők
 Rod holder	Rúdtartó
@@ -2612,6 +2621,7 @@ x y	x y
 {} wires changed	{} vezeték módosítva
 {} wires, {} cables and {} tubes routed	{} vezeték, {} kábel és {} cső fektetve
 {} wires, {} – {} mm	{} vezeték, {} – {} mm
+{} {} is led through its control points: {} mm	{} {} áthalad a támpontjain: {} mm
 {} {} of building {}	{} {}, {} épület
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)

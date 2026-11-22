@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Přidá kabelovou vývodku příslušné velikosti pro každý kabel, který opouští skříň a nenajde volnou vývodku: ve stropě pro přístroj v místnosti, ve dně pro pole nebo skříň zavěšenou na stěně
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Přidá kabelovou průchodku k pravému sousedovi: kruhové výřezy proti sobě v obou bočních stěnách; vodiče mezi skříněmi jí procházejí
 Adds a configurator rule: insert a page macro when the condition holds	Přidá pravidlo konfigurátoru: vložit makro stránky, je-li splněna podmínka
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Přidá průchozí bod do trasy vodiče, kabelu nebo trubky tam, kde vede nejblíže k zadanému bodu: trasa vede přes průchozí body, drží poloměr ohybu a vyhýbá se všemu
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Přidá uzel sítě tras v poli (odbočení, průchodka, místo, kde trasa dosáhne skříně nebo přístroje)
 Adds a planned device to a segment or changes it	Přidá plánovaný přístroj do segmentu nebo jej změní
 Adds a project option or changes its description and condition	Přidá projektovou volbu nebo změní její popis a podmínku
@@ -359,6 +360,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Zachovat stupeň krytí: výměník tepla nebo chladicí jednotka místo filtračních ventilátorů
 Key figures of the project and a list of its device tags	Klíčové ukazatele projektu a seznam jeho označení přístrojů
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Klíčové ukazatele projektu: stránky, symboly, vodiče, přístroje, artikly, kabely a výsledky kontrol
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Klíč vedeného prvku: označení kabelu, hose:od|do trubky, od|do vodiče
 Key, e.g. user.coupling_relay	Klíč, např. user.coupling_relay
 Key, e.g. user.customer_code	Klíč, např. user.customer_code
 Keys of the routes, comma separated (all if missing)	Klíče tras oddělené čárkou (všechny, pokud chybí)
@@ -472,6 +474,7 @@ Mirror the symbol	Zrcadlit symbol
 Mounting height above the floor in mm (default: that of the part)	Montážní výška nad podlahou v mm (výchozí: ta z dílu)
 Mounting plate size as width and height; empty object restores the centred plate	Velikost montážní desky jako šířka a výška; prázdný objekt obnoví vystředěnou desku
 Mounting size must contain a positive width and height	Montážní velikost musí obsahovat kladnou šířku a výšku
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Přesune průchozí bod trasy vodiče, kabelu nebo trubky; vedení hlásí chybu, kde jím trasa nemůže vést
 Moves an air-termination rod, changes its height, renames or removes it	Přesune jímací tyč, změní její výšku, přejmenuje ji nebo odstraní
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Přesune jeden konec vodiče: odpojí se od toho, k čemu je připojen, a připojí se k tomu, na co narazí; vodič zůstane pravoúhlý
 Moves symbols, wires and texts; connected wire ends follow	Přesune symboly, vodiče a texty; připojené konce vodičů se posunou s nimi
@@ -509,6 +512,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Žádný sběrnicový systém {}
 No connection point {} on this page	Na této stránce není přípojný bod {}
 No connection symbol with id {}	Žádný symbol spojení s id {}
+No control point {}	Žádný průchozí bod {}
 No copper bar {}	Žádná měděná přípojnice {}
 No device description {}	Žádný popis zařízení {}
 No device group {}	Žádná skupina přístrojů {}
@@ -561,6 +565,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Počet žil kabelu (vý
 Number of equal bars	Počet stejných přípojnic
 Number of indexed values (0 = a single value)	Počet indexovaných hodnot (0 = jedna hodnota)
 Number of rows	Počet řádků
+Number of the control point along the route, from 1	Číslo průchozího bodu podél trasy, od 1
+Number of the control point along the route, from 1 (all if missing)	Číslo průchozího bodu podél trasy, od 1 (všechny, pokud chybí)
 Numbers the pages with a start value and step; released pages keep their name	Očísluje stránky s počáteční hodnotou a krokem; uvolněné stránky si ponechají název
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Očísluje svorky svorkovnice 1 … n v pořadí svorkovnice; nečíselná označení jako PE zůstanou
 Numbers the wires by the numbering scheme of the project	Očísluje vodiče podle schématu číslování projektu
@@ -715,6 +721,7 @@ Remove the entry of upstream and downstream	Odebrat položku upstream a downstre
 Remove the profile	Odebrat profil
 Remove the scheme from the project	Odebrat schéma z projektu
 Remove unused definitions (default: false)	Odebrat nepoužívané definice (výchozí: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Odstraní průchozí bod trasy vodiče, kabelu nebo trubky, nebo všechny
 Removes a copper bar	Odebere měděnou přípojnici
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Odebere uzel (s jeho úseky a umístěními), úsek, umístění, obrys, vodič pospojování nebo příslušenství
 Removes a planned device from a segment	Odebere plánovaný přístroj ze segmentu
@@ -1026,8 +1033,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Pracovní prostor v ose x, mm
 Working area in y, mm	Pracovní prostor v ose y, mm
 Wrap width in mm (0: no wrapping)	Šířka zalomení v mm (0: bez zalomení)
+X of the point in mm from the left of the enclosure	X bodu v mm od levé strany skříně
 X position in mm	Poloha X v mm
+Y of the point in mm from the top of the enclosure	Y bodu v mm od horní strany skříně
 Y position in mm (downwards)	Poloha Y v mm (směrem dolů)
+Z of the point in mm from the rear wall of the enclosure	Z bodu v mm od zadní stěny skříně
 any, wires, cables or tubes	any, wires, cables nebo tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left nebo right; zahodí ručně umístěné texty
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip nebo adhesive

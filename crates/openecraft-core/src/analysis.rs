@@ -183,7 +183,9 @@ impl Analysis {
                 None => (crate::routing3d::analyse_cached(prj, &mut wiring, &conns, &open, kept, &|done, total| progress(Progress { step: Step::Routing, done, total })), false),
                 Some(before) => match crate::routing3d::kept(prj, &mut wiring, &conns, &open, kept) {
                     Some(routing) => (routing, false),
-                    None => (before.interim(prj.layout.enclosures.len()), true),
+                    // Only control points changed: the routes they lead searched again now,
+                    // among the others where they lie, until the whole routing is done.
+                    None => (crate::routing3d::rerouted(prj, &mut wiring, &conns, &open, kept).unwrap_or_else(|| before.interim(prj.layout.enclosures.len())), true),
                 },
             },
             || (crate::field::plan(prj, &conns), crate::revision::pending(prj)),

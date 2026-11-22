@@ -82,6 +82,7 @@ Active	Attiva
 Actuators on the door	Attuatori sulla porta
 Add a command	Aggiungi un comando
 Add a target language to translate the project texts.	Aggiungi una lingua di destinazione per tradurre i testi del progetto.
+Add control point	Aggiungi punto di passaggio
 Add filter	Aggiungi filtro
 Add folder…	Aggiungi cartella…
 Add group	Aggiungi gruppo
@@ -428,6 +429,9 @@ Consecutive addresses from the start byte, in schematic order	Indirizzi consecut
 Contact image below coils	Immagine dei contatti sotto le bobine
 Content	Contenuto
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Il contenuto di un'opzione non attiva è nascosto: non viene disegnato, valutato, incluso nei report o esportato.
+Control point {} added to {}: routing again…	Punto di passaggio {} aggiunto a {}: nuovo instradamento…
+Control point {} of {} moved: routing again…	Punto di passaggio {} di {} spostato: nuovo instradamento…
+Control points: {}	Punti di passaggio: {}
 Coordinate reference system	Sistema di riferimento delle coordinate
 Copies	Copie
 Copies function texts between both representations where one is empty	Copia i testi di funzione tra le due rappresentazioni dove una è vuota
@@ -1029,6 +1033,7 @@ Layout checks	Verifiche del layout
 Layout properties	Proprietà del layout
 Layout space	Spazio di montaggio
 Layout spaces	Spazi di montaggio
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Far passare il percorso per un punto qui: trascinarlo per reinstradare il conduttore, il cavo o il tubo, mantenendo il raggio di curvatura e libero da tutto
 Leave out the ceilings of the rooms and the roofs in the 3D view	Ometti i soffitti dei locali e i tetti nella vista 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Nella vista 3D omette i coperchi di tutte le canaline: i fili al loro interno sono visibili
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Omettere i moduli dei campi FV nella vista 3D: si vedono binari, ganci da tetto, supporti, messa a terra e cablaggio
@@ -1315,6 +1320,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Non modificato
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Non ancora collegato: nessun apparecchio, nessun cavo. Scegliere il dispositivo di protezione del suo circuito.
 Not found: {}	Non trovato: {}
 Not in the project parts – synchronize in parts management	Non presente negli articoli del progetto – sincronizza in Gestione articoli
+Not led through its control points: see the messages	Non passa per i suoi punti di passaggio: vedere i messaggi
 Not on a wire	Non su un conduttore
 Not placed	Non posizionato
 Not saved yet	Non ancora salvato
@@ -1653,6 +1659,8 @@ Released pages keep their name.	Le pagine rilasciate mantengono il loro nome.
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Revisioni rilasciate, baseline, commenti, marcature, approvazioni e richieste di modifica dell'originale. Senza di essi la copia inizia come un nuovo progetto.
 Releases all locks; the project stays open as a local copy	Rilascia tutti i blocchi; il progetto resta aperto come copia locale
 Releasing…	Rilascio in corso…
+Remove all control points	Rimuovi tutti i punti di passaggio
+Remove control point	Rimuovi punto di passaggio
 Remove from cable	Rimuovi dal cavo
 Remove from harness	Rimuovi dal cablaggio
 Remove from the group	Rimuovi dal gruppo
@@ -1749,6 +1757,7 @@ Right button	Tasto destro
 Right click for more	Clic destro per altre opzioni
 Right edges	Bordi destri
 Right neighbour	Vicino a destra
+Right-click the route to add a control point, then drag it	Fare clic con il tasto destro sul percorso per aggiungere un punto di passaggio, poi trascinarlo
 Rights	Diritti
 Risers	Alzate
 Rod holder	Supporto per asta
@@ -2612,6 +2621,7 @@ x y	x y
 {} wires changed	{} conduttori modificati
 {} wires, {} cables and {} tubes routed	{} conduttori, {} cavi e {} tubi instradati
 {} wires, {} – {} mm	{} conduttori, {} – {} mm
+{} {} is led through its control points: {} mm	{} {} passa per i suoi punti di passaggio: {} mm
 {} {} of building {}	{} {} dell'edificio {}
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)

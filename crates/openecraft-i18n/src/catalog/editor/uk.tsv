@@ -82,6 +82,7 @@ Active	Активна
 Actuators on the door	Органи керування на дверцятах
 Add a command	Додати команду
 Add a target language to translate the project texts.	Додайте цільову мову, щоб перекладати тексти проєкту.
+Add control point	Додати опорну точку
 Add filter	Додати фільтр
 Add folder…	Додати папку…
 Add group	Додати групу
@@ -427,6 +428,9 @@ Consecutive addresses from the start byte, in schematic order	Послідовн
 Contact image below coils	Відображення контактів під котушками
 Content	Вміст
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Вміст неактивної опції приховано: він не відображається, не обробляється, не потрапляє до звітів і не експортується.
+Control point {} added to {}: routing again…	Опорну точку {} додано до {}: повторне прокладання…
+Control point {} of {} moved: routing again…	Опорну точку {} для {} переміщено: повторне прокладання…
+Control points: {}	Опорні точки: {}
 Coordinate reference system	Система координат
 Copies	Копії
 Copies function texts between both representations where one is empty	Копіює тексти функцій між обома поданнями там, де одне порожнє
@@ -1028,6 +1032,7 @@ Layout checks	Перевірки компонування
 Layout properties	Властивості компонування
 Layout space	Монтажний простір
 Layout spaces	Монтажні простори
+Lead the route through a point here: drag it to route the wire, cable or tube again, keeping its bend radius and clear of everything	Провести трасу через точку тут: перетягніть її, щоб заново прокласти провід, кабель або трубку зі збереженням радіуса згину й осторонь від усього
 Leave out the ceilings of the rooms and the roofs in the 3D view	Не показувати стелі приміщень і дахи у 3D-виді
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	У 3D-вигляді не показувати кришки всіх кабельних каналів: дроти в них стає видно
 Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Не показувати модулі фотоелектричних полів у 3D-виді: видно рейки, покрівельні гаки, опори, заземлення й кабелі
@@ -1314,6 +1319,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Не змін�
 Not connected yet: no device, no cable. Choose the protective device of its circuit.	Ще не підключено: немає пристрою, немає кабелю. Виберіть захисний пристрій його кола.
 Not found: {}	Не знайдено: {}
 Not in the project parts – synchronize in parts management	Немає у виробах проєкту – синхронізуйте в керуванні виробами
+Not led through its control points: see the messages	Не проходить через свої опорні точки: див. повідомлення
 Not on a wire	Не на проводі
 Not placed	Не розміщено
 Not saved yet	Ще не збережено
@@ -1652,6 +1658,8 @@ Released pages keep their name.	Затверджені сторінки збер
 Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Затверджені ревізії, базові версії, коментарі, позначки, погодження та запити на зміни оригіналу. Без них копія починається як новий проєкт.
 Releases all locks; the project stays open as a local copy	Звільняє всі блокування; проєкт залишається відкритим як локальна копія
 Releasing…	Звільнення…
+Remove all control points	Видалити всі опорні точки
+Remove control point	Видалити опорну точку
 Remove from cable	Вилучити з кабелю
 Remove from harness	Вилучити з джгута
 Remove from the group	Вилучити з групи
@@ -1748,6 +1756,7 @@ Right button	Права кнопка
 Right click for more	Клацніть правою кнопкою для інших дій
 Right edges	Праві краї
 Right neighbour	Сусід праворуч
+Right-click the route to add a control point, then drag it	Клацніть трасу правою кнопкою, щоб додати опорну точку, потім перетягніть її
 Rights	Права
 Risers	Підйоми
 Rod holder	Тримач стрижня
@@ -2611,6 +2620,7 @@ x y	x y
 {} wires changed	Змінено проводів: {}
 {} wires, {} cables and {} tubes routed	Прокладено проводів: {}, кабелів: {} і шлангів: {}
 {} wires, {} – {} mm	Проводів: {}, {} – {} мм
+{} {} is led through its control points: {} mm	{} {} проходить через свої опорні точки: {} мм
 {} {} of building {}	{} {} будівлі {}
 {} °C (max. {} °C)	{} °C (макс. {} °C)
 {} °C (max.)	{} °C (макс.)

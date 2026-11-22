@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	为每根离开机柜且找不到空闲密封接头的电缆添加一个与其尺寸相符的电缆密封接头：房间内的设备装在顶部，现场设备或挂墙机柜装在底部
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	添加到右侧相邻机柜的电缆过孔：两侧板上相对的圆形开孔；机柜之间的导线从中穿过
 Adds a configurator rule: insert a page macro when the condition holds	添加配置器规则：在条件成立时插入页宏
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	在导线、电缆或管子的布线最接近给定点处添加一个控制点：布线经过其控制点，保持其弯曲半径并避开一切
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	添加布线网络的节点（分支点、穿墙点、到达机柜或设备的点）
 Adds a planned device to a segment or changes it	向规划段添加或更改已规划设备
 Adds a project option or changes its description and condition	添加项目选项或更改其描述和条件
@@ -359,6 +360,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	保持防护等级：使用换热器或冷却装置代替过滤风扇
 Key figures of the project and a list of its device tags	项目的关键指标及其设备标识符列表
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	项目的关键指标：页、符号、导线、设备、部件、电缆和检查结果
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	已布线项目的键：电缆标识，管子为 hose:起点|终点，导线为 起点|终点
 Key, e.g. user.coupling_relay	键，例如 user.coupling_relay
 Key, e.g. user.customer_code	键，例如 user.customer_code
 Keys of the routes, comma separated (all if missing)	布线的键，以逗号分隔（未指定时为全部）
@@ -472,6 +474,7 @@ Mirror the symbol	镜像符号
 Mounting height above the floor in mm (default: that of the part)	距地面的安装高度，单位 mm（默认：部件的高度）
 Mounting plate size as width and height; empty object restores the centred plate	安装板尺寸（宽度和高度）；空对象恢复居中的安装板
 Mounting size must contain a positive width and height	安装尺寸必须包含正的宽度和高度
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	移动导线、电缆或管子布线的一个控制点；布线无法经过该点时会报告错误
 Moves an air-termination rod, changes its height, renames or removes it	移动接闪杆，更改其高度，重命名或删除
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	移动导线的一端：该端离开原来连接的对象，并连接到所接触的对象；导线保持直角
 Moves symbols, wires and texts; connected wire ends follow	移动符号、导线和文本；所连接的导线端会跟随移动
@@ -509,6 +512,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	没有总线系统 {}
 No connection point {} on this page	此页上没有连接点 {}
 No connection symbol with id {}	没有 id 为 {} 的连接符号
+No control point {}	没有控制点 {}
 No copper bar {}	铜排 {} 不存在
 No device description {}	没有设备描述 {}
 No device group {}	没有设备组 {}
@@ -561,6 +565,8 @@ Number of cores of the cable (default: 3, three-phase 5)	电缆芯数（默认�
 Number of equal bars	相同铜排的数量
 Number of indexed values (0 = a single value)	索引值数量（0 = 单个值）
 Number of rows	行数
+Number of the control point along the route, from 1	控制点沿布线的编号，从 1 开始
+Number of the control point along the route, from 1 (all if missing)	控制点沿布线的编号，从 1 开始（缺省时为全部）
 Numbers the pages with a start value and step; released pages keep their name	以起始值和步长对页编号；已发布页保留其名称
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	按端子排顺序将端子编号为 1 … n；PE 等非数字代号保持不变
 Numbers the wires by the numbering scheme of the project	按项目的编号方案为导线编号
@@ -715,6 +721,7 @@ Remove the entry of upstream and downstream	删除 upstream 和 downstream 的�
 Remove the profile	删除配置文件
 Remove the scheme from the project	从项目中删除该方案
 Remove unused definitions (default: false)	移除未使用的定义（默认：false）
+Removes a control point of the route of a wire, cable or tube, or all of them	删除导线、电缆或管子布线的一个或所有控制点
 Removes a copper bar	删除铜排
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	删除节点（连同其布线段和放置）、布线段、放置、轮廓、等电位联结导体或附件
 Removes a planned device from a segment	从规划段中删除已规划设备
@@ -1026,8 +1033,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	x 方向加工区域，mm
 Working area in y, mm	y 方向加工区域，mm
 Wrap width in mm (0: no wrapping)	换行宽度，单位 mm（0：不换行）
+X of the point in mm from the left of the enclosure	点的 X，单位 mm，从机柜左侧起
 X position in mm	X 位置 (mm)
+Y of the point in mm from the top of the enclosure	点的 Y，单位 mm，从机柜顶部起
 Y position in mm (downwards)	Y 位置 (mm)（向下）
+Z of the point in mm from the rear wall of the enclosure	点的 Z，单位 mm，从机柜后壁起
 any, wires, cables or tubes	any、wires、cables 或 tubes
 auto, above, below, left or right; drops the texts placed by hand	auto、above、below、left 或 right；放弃手动放置的文本
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto、tapped、through、rivet_nut、stud、clip 或 adhesive

@@ -2456,3 +2456,196 @@ fn zooming_in_3d_closes_in_on_the_enclosure_but_never_goes_through_it() {
         }
     }
 }
+
+#[test]
+fn points_move_on_the_face_they_are_seen_on() {
+    let prj = openecraft_core::sample::demo_project();
+    let pos = panel::positions(&prj.layout);
+    let q = [pos[0][0] + 150.0, pos[0][1] + 300.0, pos[0][2] + 120.0];
+    // Over the plate: the plate point, moved on it at the same depth.
+    let f = routing_ui::face_xy(&prj, &pos, 0, Face::Plate, q);
+    let off = prj.layout.enclosures[0].face_offset(Face::Plate);
+    assert!((f.x - (150.0 - off.x)).abs() < 1e-3 && (f.y - (300.0 - off.y)).abs() < 1e-3, "{f:?}");
+    let moved = routing_ui::moved_on_face(&prj, &pos, 0, Face::Plate, q, p(f.x + 40.0, f.y - 10.0));
+    assert!(vec3::dist(moved, [q[0] + 40.0, q[1] - 10.0, q[2]]) < 1e-3, "{moved:?}");
+    // On a side wall: along it, keeping the distance from it.
+    let side = routing_ui::moved_on_face(&prj, &pos, 0, Face::Left, q, routing_ui::face_xy(&prj, &pos, 0, Face::Left, q));
+    assert!(vec3::dist(side, q) < 1e-3);
+    // The point of a segment drawn nearest, and how far from it.
+    let segments = [((), [0.0, 0.0, 0.0], [100.0, 0.0, 50.0])].into_iter();
+    let (at, d) = routing_ui::nearest_on(segments, |_, v| Some(p(v[0], v[1])), p(40.0, 3.0)).unwrap();
+    assert!(vec3::dist(at, [40.0, 0.0, 20.0]) < 1e-3 && (d - 3.0).abs() < 1e-3, "{at:?} {d}");
+}
+
+#[test]
+fn a_control_point_is_added_on_a_cable_and_dragged_in_the_front_view() {
+    fn frame(ctx: &egui::Context, ui: &mut PanelUi, prj: &mut Project, an: &Analysis, time: f64, events: Vec<egui::Event>) {
+        let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(900.0, 1000.0))), time: Some(time), events, ..Default::default() };
+        ctx.run_ui(input, |ui_| ui.front_view(ui_, prj, 0, an, &PartsDb::default())).textures_delta.clear();
+    }
+    let button = |pos, button, pressed| egui::Event::PointerButton { pos, button, pressed, modifiers: Default::default() };
+    let mut prj = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { offset: egui::Vec2::ZERO, zoom: 1.0, fit_pending: false, ..Default::default() };
+    let pos = panel::positions(&prj.layout);
+    let fm = prj.layout.enclosures[0].face_offset(Face::Plate);
+    let screen = |prj: &Project, q: [f32; 3]| {
+        let f = routing_ui::face_xy(prj, &pos, 0, Face::Plate, q);
+        egui::pos2(f.x + fm.x, f.y + fm.y)
+    };
+    // The middle of the longest stretch of -W1 over the plate, right-clicked.
+    let w1 = an.routing.item("-W1").unwrap();
+    let flat = |s: &[[f32; 3]]| (s[1][0] - s[0][0]).hypot(s[1][1] - s[0][1]);
+    let longest = w1.points.windows(2).max_by(|a, b| flat(a).total_cmp(&flat(b))).unwrap();
+    let on = [(longest[0][0] + longest[1][0]) / 2.0, (longest[0][1] + longest[1][1]) / 2.0, (longest[0][2] + longest[1][2]) / 2.0];
+    let s = screen(&prj, on);
+    let ctx = egui::Context::default();
+    frame(&ctx, &mut ui, &mut prj, &an, 0.0, vec![egui::Event::PointerMoved(s)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 0.1, vec![button(s, egui::PointerButton::Secondary, true)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 0.2, vec![button(s, egui::PointerButton::Secondary, false)]);
+    let menu = ui.route_menu.clone().expect("the cable right-clicked");
+    assert_eq!((menu.key.as_str(), menu.handle, ui.selected_route.as_deref()), ("-W1", None, Some("-W1")));
+    assert!((menu.at[0] - on[0]).abs() < 1.0 && (menu.at[1] - on[1]).abs() < 1.0, "{:?} {on:?}", menu.at);
+    // Added there (the menu entry), the control point is drawn where the route passes it.
+    routing3d::add_control(&mut prj, &an.routing, "-W1", menu.at).unwrap();
+    let an = Analysis::build(&prj);
+    let handles = ui.control_handles(&prj, &an);
+    assert_eq!(handles.len(), 1);
+    assert!(handles[0].ok && !handles[0].moving);
+    // Dragged 60 px up: it moves 60 mm on the plate, as far from it as before.
+    let (from, sh) = (handles[0].at, screen(&prj, handles[0].at));
+    let to = sh + egui::vec2(0.0, -60.0);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.0, vec![egui::Event::PointerMoved(sh)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.1, vec![button(sh, egui::PointerButton::Primary, true)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.2, vec![egui::Event::PointerMoved(to)]);
+    assert!(ui.control_drag.is_some(), "the drag takes the control point, not an item");
+    assert!(ui.control_handles(&prj, &an)[0].moving);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.3, vec![button(to, egui::PointerButton::Primary, false)]);
+    frame(&ctx, &mut ui, &mut prj, &an, 1.4, Vec::new());
+    assert!(ui.control_drag.is_none());
+    let now = routing3d::control_points(&prj, "-W1")[0];
+    assert!((now[0] - from[0]).abs() < 5.0 && (now[1] - (from[1] - 60.0)).abs() < 5.0 && (now[2] - from[2]).abs() < 1e-3, "{now:?} {from:?} {}", ui.status);
+    assert!(prj.layout.enclosures[0].items.iter().all(|i| i.x == openecraft_core::sample::demo_project().layout.enclosures[0].item(i.id).map_or(i.x, |o| o.x)), "no item moved");
+}
+
+#[test]
+fn a_control_point_is_added_on_a_wire_in_the_front_view() {
+    let mut prj = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { offset: egui::Vec2::ZERO, zoom: 1.0, fit_pending: false, show_wires: true, ..Default::default() };
+    let ctx = egui::Context::default();
+    let input = |time: f64, events| egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(900.0, 1000.0))), time: Some(time), events, ..Default::default() };
+    let button = |pos, pressed| egui::Event::PointerButton { pos, button: egui::PointerButton::Secondary, pressed, modifiers: Default::default() };
+    // The middle of the longest stretch of a wire along the ducts, right-clicked.
+    let wi = an.wiring.iter().position(|w| w.door == (None, None) && !routing3d::wire_in_3d(&prj.layout, w) && an.routing.item(&routing3d::wire_key(w)).is_some_and(|i| i.routed())).unwrap();
+    let path = an.wiring[wi].paths_in(0, Face::Plate)[0].to_vec();
+    let s = path.windows(2).max_by(|a, b| a[0].dist(a[1]).total_cmp(&b[0].dist(b[1]))).unwrap();
+    let fm = prj.layout.enclosures[0].face_offset(Face::Plate);
+    let at = egui::pos2((s[0].x + s[1].x) / 2.0 + fm.x, (s[0].y + s[1].y) / 2.0 + fm.y);
+    for (time, events) in [(0.0, vec![egui::Event::PointerMoved(at)]), (0.1, vec![button(at, true)]), (0.2, vec![button(at, false)])] {
+        ctx.run_ui(input(time, events), |ui_| ui.front_view(ui_, &mut prj, 0, &an, &PartsDb::default())).textures_delta.clear();
+    }
+    // The wire under the pointer is selected and kept for the menu.
+    let menu = ui.route_menu.clone().expect("a wire right-clicked");
+    let picked = ui.wire_index(&an).expect("a wire selected");
+    assert_eq!((menu.key.clone(), menu.handle, ui.selected_route.clone()), (routing3d::wire_key(&an.wiring[picked]), None, None));
+    // Added there, it is routed in 3D through it and shown where it passes.
+    routing3d::add_control(&mut prj, &an.routing, &menu.key, menu.at).unwrap();
+    let an = Analysis::build(&prj);
+    let handles = ui.control_handles(&prj, &an);
+    assert_eq!(handles.len(), 1);
+    assert!(handles[0].ok, "{:?}", an.issues.iter().map(|i| i.message()).collect::<Vec<_>>());
+    assert_eq!(an.routing.item(&menu.key).unwrap().controls.len(), 1);
+    // A wire to the door takes none.
+    let door = an.wiring.iter().find(|w| w.door != (None, None)).unwrap().key();
+    ui.select_wire(door);
+    assert!(ui.control_key(&an).is_none() && ui.control_handles(&prj, &an).is_empty());
+}
+
+
+#[test]
+fn a_control_point_goes_on_the_wire_chosen_in_a_duct_and_its_error_is_told() {
+    let mut prj = openecraft_core::sample::demo_project();
+    let mut an = Analysis::build(&prj);
+    let mut ui = PanelUi { offset: egui::Vec2::ZERO, zoom: 1.0, fit_pending: false, show_wires: true, ..Default::default() };
+    let ctx = egui::Context::default();
+    let mut time = 0.0;
+    let mut frame = |ui: &mut PanelUi, prj: &mut Project, an: &Analysis, events: Vec<egui::Event>| {
+        time += 0.5;
+        let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(900.0, 1000.0))), time: Some(time), events, ..Default::default() };
+        ctx.run_ui(input, |ui_| ui.front_view(ui_, prj, 0, an, &PartsDb::default())).textures_delta.clear();
+    };
+    let button = |pos, b, pressed| egui::Event::PointerButton { pos, button: b, pressed, modifiers: Default::default() };
+    let click = |b| move |at| vec![vec![egui::Event::PointerMoved(at)], vec![button(at, b, true)], vec![button(at, b, false)]];
+    // A point of a duct where several wires lie on top of each other.
+    let fm = prj.layout.enclosures[0].face_offset(Face::Plate);
+    let (at, candidates) = an
+        .wiring
+        .iter()
+        .filter(|w| w.door == (None, None))
+        .flat_map(|w| w.paths_in(0, Face::Plate).into_iter().flat_map(|pts| pts.windows(2).map(|s| p((s[0].x + s[1].x) / 2.0, (s[0].y + s[1].y) / 2.0)).collect::<Vec<_>>()))
+        .map(|q| (q, panel::wires_at(&an.wiring, 0, Face::Plate, q, 6.0)))
+        .find(|(_, c)| c.len() >= 3 && c.iter().all(|&wi| an.routing.item(&routing3d::wire_key(&an.wiring[wi])).is_some_and(|i| i.routed())))
+        .expect("wires on top of each other");
+    let at = egui::pos2(at.x + fm.x, at.y + fm.y);
+    // Clicked twice: the second wire there is chosen; the right click keeps it.
+    for events in click(egui::PointerButton::Primary)(at).into_iter().chain(click(egui::PointerButton::Primary)(at)) {
+        frame(&mut ui, &mut prj, &an, events);
+    }
+    let chosen = ui.wire_index(&an).unwrap();
+    assert_eq!(chosen, candidates[1]);
+    for events in click(egui::PointerButton::Secondary)(at) {
+        frame(&mut ui, &mut prj, &an, events);
+    }
+    frame(&mut ui, &mut prj, &an, vec![]);
+    let key = routing3d::wire_key(&an.wiring[chosen]);
+    assert_eq!((ui.wire_index(&an), ui.route_menu.as_ref().map(|m| m.key.clone())), (Some(chosen), Some(key.clone())));
+    // The first entry of the menu adds the control point to it; it stays selected.
+    let menu = ctx.memory(|m| m.areas().visible_layer_ids().into_iter().filter(|l| l.order == egui::Order::Foreground).find_map(|l| m.area_rect(l.id))).expect("the menu");
+    for events in click(egui::PointerButton::Primary)(egui::pos2(menu.min.x + 30.0, menu.min.y + 14.0)) {
+        frame(&mut ui, &mut prj, &an, events);
+    }
+    assert_eq!(prj.layout.controls.iter().map(|c| c.key.clone()).collect::<Vec<_>>(), vec![key.clone()]);
+    an = Analysis::build(&prj);
+    frame(&mut ui, &mut prj, &an, vec![egui::Event::PointerMoved(egui::pos2(880.0, 990.0))]);
+    assert_eq!(ui.wire_index(&an).map(|wi| an.wiring[wi].key()), Some(an.wiring[chosen].key()));
+    assert_eq!(ui.control_handles(&prj, &an).len(), 1);
+    // Moved into a device: once routed again the status tells why it is not passed.
+    let t1 = prj.layout.enclosures[0].items.iter().find(|i| i.tag == "-T1").unwrap().clone();
+    let (lo, hi) = panel::item_box(&prj.layout.enclosures[0], &t1);
+    let inside = std::array::from_fn(|k| (lo[k] + hi[k]) / 2.0 + panel::positions(&prj.layout)[0][k]);
+    ui.control_drag = Some(routing_ui::ControlDrag { key: key.clone(), index: 0, at: inside, from: inside, view: None });
+    ui.drop_control(&mut prj, &an);
+    ui.control_feedback(&an);
+    assert!(ui.status.contains("moved"), "{}", ui.status);
+    an = Analysis::build(&prj);
+    ui.control_feedback(&an);
+    let error = an.routing.item(&key).unwrap().control_error.clone().expect("an error");
+    assert_eq!(ui.status, error);
+}
+
+#[test]
+fn a_dropped_control_point_shows_it_is_routed_until_the_routing_has_it() {
+    let mut prj = openecraft_core::sample::demo_project();
+    let mut cache = openecraft_core::analysis::Cache::default();
+    let an = Analysis::build_with(&prj, &mut cache);
+    let mut ui = PanelUi::default();
+    ui.select_route(&an, "-W1");
+    routing3d::add_control(&mut prj, &an.routing, "-W1", an.routing.item("-W1").unwrap().points[2]).unwrap();
+    let an = Analysis::build_with(&prj, &mut cache);
+    let at = routing3d::control_points(&prj, "-W1")[0];
+    let to = [at[0] + 50.0, at[1] - 60.0, at[2]];
+    ui.control_drag = Some(routing_ui::ControlDrag { key: "-W1".into(), index: 0, at: to, from: at, view: None });
+    ui.drop_control(&mut prj, &an);
+    // Dropped: the routing shown does not have it yet.
+    assert!(ui.status.contains("routing again"), "{}", ui.status);
+    assert!(ui.control_handles(&prj, &an).iter().all(|h| h.pending && h.ok));
+    ui.control_feedback(&an);
+    assert!(ui.status.contains("routing again"));
+    // The routing that stands in for the whole one has it: the result in the status line.
+    let quick = Analysis::build_kept(&prj, &mut cache, &an.routing);
+    assert!(quick.routes_pending);
+    assert!(ui.control_handles(&prj, &quick).iter().all(|h| !h.pending));
+    ui.control_feedback(&quick);
+    assert!(ui.status.starts_with("Cable -W1 is led through its control points"), "{}", ui.status);
+}

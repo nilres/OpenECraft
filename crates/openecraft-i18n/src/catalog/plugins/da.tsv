@@ -18,6 +18,7 @@ Adds a bent and drilled copper bar (or replaces the one of the same name in the 
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Tilføjer en kabelforskruning i passende størrelse for hvert kabel, der forlader et skab og ikke finder nogen ledig forskruning: i taget for en enhed i rummet, i bunden for feltet eller et skab, der hænger på væggen
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Tilføjer en kabelgennemføring til højre nabo: runde udskæringer over for hinanden i begge sidevægge; ledninger mellem kapslingerne føres igennem den
 Adds a configurator rule: insert a page macro when the condition holds	Tilføjer en konfiguratorregel: Indsæt en sidemakro, når betingelsen er opfyldt
+Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything	Tilføjer et støttepunkt til føringen af en ledning, et kabel eller et rør, hvor den går nærmest det angivne punkt: føringen går gennem sine støttepunkter, holder sin bøjningsradius og holdes fri af alt
 Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Tilføjer en knude i føringsnettet (forgrening, gennemføring, hvor en kapsling eller en enhed nås)
 Adds a planned device to a segment or changes it	Føjer en planlagt enhed til et segment eller ændrer den
 Adds a project option or changes its description and condition	Tilføjer en projektoption eller ændrer dens beskrivelse og betingelse
@@ -359,6 +360,7 @@ Keep the connections (default): attached wires stretch, moved wires stay on the 
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Bevar kapslingsklassen: varmeveksler eller køleenhed i stedet for filterventilatorer
 Key figures of the project and a list of its device tags	Projektets nøgletal og en liste over dets enhedsmærkninger
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projektets nøgletal: sider, symboler, forbindelser, enheder, artikler, kabler og kontrolresultater
+Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire	Nøgle for det førte element: kablets betegnelse, hose:fra|til for et rør, fra|til for en ledning
 Key, e.g. user.coupling_relay	Nøgle, f.eks. user.coupling_relay
 Key, e.g. user.customer_code	Nøgle, f.eks. user.customer_code
 Keys of the routes, comma separated (all if missing)	Nøgler for føringerne, kommasepareret (alle, hvis de mangler)
@@ -472,6 +474,7 @@ Mirror the symbol	Spejl symbolet
 Mounting height above the floor in mm (default: that of the part)	Monteringshøjde over gulvet i mm (standard: delens)
 Mounting plate size as width and height; empty object restores the centred plate	Monteringspladens størrelse som bredde og højde; et tomt objekt gendanner den centrerede plade
 Mounting size must contain a positive width and height	Monteringsstørrelsen skal indeholde en positiv bredde og højde
+Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Flytter et støttepunkt i føringen af en ledning, et kabel eller et rør; føringen melder en fejl, hvor den ikke kan føres gennem det
 Moves an air-termination rod, changes its height, renames or removes it	Flytter en fangstang, ændrer dens højde, omdøber eller fjerner den
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flytter én ende af en ledning: den forlader det, den er tilsluttet, og forbindes med det, den møder; ledningen forbliver vinkelret
 Moves symbols, wires and texts; connected wire ends follow	Flytter symboler, ledninger og tekster; tilsluttede ledningsender følger med
@@ -509,6 +512,7 @@ No built-in check is named {}: it applies to a check of a plugin of that name (l
 No bus system {}	Intet bussystem {}
 No connection point {} on this page	Intet tilslutningspunkt {} på denne side
 No connection symbol with id {}	Intet forbindelsessymbol med id {}
+No control point {}	Intet støttepunkt {}
 No copper bar {}	Ingen kobberskinne {}
 No device description {}	Ingen enhedsbeskrivelse {}
 No device group {}	Ingen enhedsgruppe {}
@@ -561,6 +565,8 @@ Number of cores of the cable (default: 3, three-phase 5)	Antal ledere i kablet (
 Number of equal bars	Antal ens skinner
 Number of indexed values (0 = a single value)	Antal indekserede værdier (0 = én enkelt værdi)
 Number of rows	Antal rækker
+Number of the control point along the route, from 1	Støttepunktets nummer langs føringen, fra 1
+Number of the control point along the route, from 1 (all if missing)	Støttepunktets nummer langs føringen, fra 1 (alle, hvis det mangler)
 Numbers the pages with a start value and step; released pages keep their name	Nummererer siderne med en startværdi og et trin; frigivne sider beholder deres navn
 Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Nummererer klemmerne i en klemrække 1 … n i rækkefølge; ikke-numeriske betegnelser som PE bevares
 Numbers the wires by the numbering scheme of the project	Nummererer ledningerne efter projektets nummereringsskema
@@ -715,6 +721,7 @@ Remove the entry of upstream and downstream	Fjern posten for upstream og downstr
 Remove the profile	Fjern profilen
 Remove the scheme from the project	Fjern skemaet fra projektet
 Remove unused definitions (default: false)	Fjern ubrugte definitioner (standard: false)
+Removes a control point of the route of a wire, cable or tube, or all of them	Fjerner et støttepunkt i føringen af en ledning, et kabel eller et rør, eller dem alle
 Removes a copper bar	Fjerner en kobberskinne
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Fjerner en knude (med dens afsnit og placeringer), et afsnit, en placering, et omrids, en udligningsleder eller tilbehør
 Removes a planned device from a segment	Fjerner en planlagt enhed fra et segment
@@ -1026,8 +1033,11 @@ Wires too thin for their protective device and the voltage drop of the cables (I
 Working area in x, mm	Arbejdsområde i x, mm
 Working area in y, mm	Arbejdsområde i y, mm
 Wrap width in mm (0: no wrapping)	Ombrydningsbredde i mm (0: ingen ombrydning)
+X of the point in mm from the left of the enclosure	Punktets X i mm fra kapslingens venstre side
 X position in mm	X-position i mm
+Y of the point in mm from the top of the enclosure	Punktets Y i mm fra kapslingens top
 Y position in mm (downwards)	Y-position i mm (nedad)
+Z of the point in mm from the rear wall of the enclosure	Punktets Z i mm fra kapslingens bagvæg
 any, wires, cables or tubes	any, wires, cables eller tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left eller right; kasserer manuelt placerede tekster
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip eller adhesive

@@ -142,6 +142,40 @@ pub static COMMANDS: &[Spec] = &[
         run: freeze_routes,
     },
     Spec {
+        name: "add_control_point",
+        help: tr_const!("Adds a control point to the route of a wire, cable or tube where it runs nearest to the point given: the route is led through its control points, keeping its bend radius and clear of everything"),
+        params: &[
+            param("key", Kind::Str, ROUTE_KEY),
+            param("enclosure", Kind::Str, ENCLOSURE),
+            param("x", Kind::Num, CONTROL_X),
+            param("y", Kind::Num, CONTROL_Y),
+            param("z", Kind::Num, CONTROL_Z),
+        ],
+        run: add_control_point,
+    },
+    Spec {
+        name: "move_control_point",
+        help: tr_const!("Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it"),
+        params: &[
+            param("key", Kind::Str, ROUTE_KEY),
+            param("index", Kind::Int, tr_const!("Number of the control point along the route, from 1")),
+            param("enclosure", Kind::Str, ENCLOSURE),
+            param("x", Kind::Num, CONTROL_X),
+            param("y", Kind::Num, CONTROL_Y),
+            param("z", Kind::Num, CONTROL_Z),
+        ],
+        run: move_control_point,
+    },
+    Spec {
+        name: "remove_control_point",
+        help: tr_const!("Removes a control point of the route of a wire, cable or tube, or all of them"),
+        params: &[
+            param("key", Kind::Str, ROUTE_KEY),
+            optional("index", Kind::Int, tr_const!("Number of the control point along the route, from 1 (all if missing)")),
+        ],
+        run: remove_control_point,
+    },
+    Spec {
         name: "set_cable_shield",
         help: tr_const!("Sets the shield and the outer diameter of a cable"),
         params: &[
@@ -188,6 +222,10 @@ const LENGTH: Param = optional("length", Kind::Num, tr_const!("Length in m"));
 const DESCRIPTION: Param = optional("description", Kind::Str, tr_const!("Description"));
 
 const ENCLOSURE: &str = tr_const!("Enclosure (location, e.g. +CAB1)");
+const ROUTE_KEY: &str = tr_const!("Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire");
+const CONTROL_X: &str = tr_const!("X of the point in mm from the left of the enclosure");
+const CONTROL_Y: &str = tr_const!("Y of the point in mm from the top of the enclosure");
+const CONTROL_Z: &str = tr_const!("Z of the point in mm from the rear wall of the enclosure");
 const LAYING: &str = tr_const!("How lines are laid in rooms: surface, wall (flush-mounted in the walls) or floor");
 
 fn rules_json(r: &routing3d::RoutingRules) -> Value {
@@ -369,6 +407,8 @@ fn list_routing(prj: &mut Project, a: &Args) -> Result<Value, String> {
                 "shielded": i.shielded,
                 "status": i.status_text(),
                 "bundles": r.bundles_of(idx),
+                "control_points": control_list(prj, &i.key),
+                "through_control_points": !i.controls.is_empty(),
             })
         })
         .collect();
@@ -401,6 +441,51 @@ fn freeze_routes(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     let n = routing3d::freeze(prj, &an.routing, &keys);
     Ok(json!({ "frozen": n, "total": prj.layout.frozen.len() }))
+}
+
+/// The control points of route `key`: the enclosure each is relative to and where.
+fn control_list(prj: &Project, key: &str) -> Vec<Value> {
+    let Some(c) = prj.layout.controls.iter().find(|c| c.key == key) else { return Vec::new() };
+    let round = |v: f32| (v * 10.0).round() / 10.0;
+    c.points.iter().map(|p| json!({ "enclosure": prj.layout.enclosures.iter().find(|e| e.id == p.enclosure).map(|e| e.name.clone()).unwrap_or_default(), "at": p.at.map(round) })).collect()
+}
+
+/// The point of `enclosure`, `x`, `y`, `z` in layout coordinates.
+fn control_at(prj: &Project, a: &Args) -> Result<[f32; 3], String> {
+    let ei = enclosure_index(prj, a.req("enclosure"))?;
+    let o = openecraft_core::panel::positions(&prj.layout)[ei];
+    Ok([o[0] + a.num("x").unwrap_or(0.0), o[1] + a.num("y").unwrap_or(0.0), o[2] + a.num("z").unwrap_or(0.0)])
+}
+
+/// The number (from 1) of `index`.
+fn control_index(a: &Args) -> Result<Option<usize>, String> {
+    match a.int("index") {
+        None => Ok(None),
+        Some(i) if i >= 1 => Ok(Some(i as usize - 1)),
+        Some(i) => Err(tr_fmt!("No control point {}", i)),
+    }
+}
+
+fn add_control_point(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let key = a.req("key");
+    let at = control_at(prj, a)?;
+    let an = Analysis::build(prj);
+    let n = routing3d::add_control(prj, &an.routing, key, at)?;
+    Ok(json!({ "key": key, "index": n + 1, "control_points": control_list(prj, key) }))
+}
+
+fn move_control_point(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let key = a.req("key");
+    let index = control_index(a)?.unwrap_or(0);
+    let at = control_at(prj, a)?;
+    routing3d::move_control(prj, key, index, at)?;
+    Ok(json!({ "key": key, "index": index + 1, "control_points": control_list(prj, key) }))
+}
+
+fn remove_control_point(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let key = a.req("key");
+    let n = routing3d::remove_control(prj, key, control_index(a)?)?;
+    Ok(json!({ "key": key, "removed": n, "control_points": control_list(prj, key) }))
 }
 
 fn set_cable_shield(prj: &mut Project, a: &Args) -> Result<Value, String> {

@@ -9,7 +9,7 @@ use super::gpu3d::{Camera, Frame};
 use super::nav3d;
 use crate::commands::Cmd;
 use crate::gestures::{MouseAction, Role};
-use super::routing_ui::RouteRef;
+use super::routing_ui::{ControlDrag, RouteMenu, RouteRef, PICK};
 use super::scene3d::{Scene3d, EQUIPMENT, ON_TOP};
 use super::{PanelUi, RoofTarget, Tool, DOOR_OPEN_ANGLE, OUTER_WALLS};
 use openecraft_core::geom::p;
@@ -124,6 +124,7 @@ impl PanelUi {
             self.cam_goal = None;
         }
         let fitted = default_cam(prj, &shown);
+        let control_key = self.control_key(an);
         let mut scene = self.scene_3d(ui.ctx(), prj, an, ei, &shown);
         let opacity = self.wall_opacity.clamp(0.0, 1.0);
         let hide_front = self.hide_front_walls;
@@ -141,7 +142,16 @@ impl PanelUi {
         let mods = ui.input(|i| i.modifiers);
         let gestures = crate::gestures::get(ui.ctx());
         let gesture = openecraft_ui::nav::read(ui, &resp);
-        let drag = if gesture.touch { None } else { gestures.drag_of(&[MouseAction::Pan3d, MouseAction::Orbit3d], &resp, mods) };
+        // A control point of the selected wire, cable or tube dragged (where it was drawn in the
+        // last frame) moves instead of the camera.
+        if resp.drag_started_by(PointerButton::Primary) && self.control_drag.is_none() {
+            let origin = ui.input(|i| i.pointer.press_origin());
+            let near = origin.and_then(|o| self.handles_3d.iter().filter(|(s, ..)| s.distance(o) <= PICK).min_by(|a, b| a.0.distance(o).total_cmp(&b.0.distance(o))));
+            if let (Some((_, h, v, z)), Some(key)) = (near.cloned(), control_key) {
+                self.control_drag = Some(ControlDrag { key, index: h.index, at: h.at, from: h.at, view: Some((v, z)) });
+            }
+        }
+        let drag = if gesture.touch || self.control_drag.is_some() { None } else { gestures.drag_of(&[MouseAction::Pan3d, MouseAction::Orbit3d], &resp, mods) };
         match drag {
             Some(MouseAction::Pan3d) => nav3d::pan(cam, resp.drag_delta(), f),
             Some(_) => nav3d::orbit(cam, resp.drag_delta()),
@@ -306,12 +316,80 @@ impl PanelUi {
                 }
             }
         }
-        // A right click selects what is under the pointer for the context menu.
-        if let Some(ptr) = resp.interact_pointer_pos().filter(|_| menu_pick && placing.is_none()) {
-            self.pick_3d(prj, an, &scene, &prims, &project_view, ptr);
+        // The control points of the selected wire, cable or tube; one dragged follows the pointer
+        // at the depth it had, the route is searched through it where it is dropped.
+        let pos = panel::positions(&prj.layout);
+        let to_view = |room: Option<usize>, q: V3| super::scene3d::layout_to_view(prj, &shown, &pos, ei, room, q);
+        let room_of = |k: usize| prj.layout.enclosures[k].is_room().then_some(k);
+        if let Some(d) = self.control_drag.as_mut() {
+            let ptr = ui.input(|i| i.pointer.hover_pos()).or_else(|| resp.interact_pointer_pos());
+            let room = prj.layout.controls.iter().find(|c| c.key == d.key).and_then(|c| c.points.get(d.index)).and_then(|p| prj.layout.enclosures.iter().position(|e| e.id == p.enclosure)).and_then(room_of);
+            if let (Some((v0, z)), Some(ptr)) = (d.view, ptr) {
+                let moved = sub(camera.unproject(ptr - rect.center(), z), v0);
+                // Back to layout coordinates along the axes of the view there.
+                let base = to_view(room, d.from);
+                let axis = |k: usize| {
+                    let mut q = d.from;
+                    q[k] += 1.0;
+                    sub(to_view(room, q), base)
+                };
+                d.at = std::array::from_fn(|k| d.from[k] + dot(moved, axis(k)));
+                let shift = sub(d.at, d.from);
+                self.status = format!("ΔX {:.0}  ΔY {:.0}  ΔZ {:.0} mm", shift[0], shift[1], shift[2]);
+                ui.ctx().request_repaint();
+            }
         }
+        let dropped = self.control_drag.is_some() && !ui.input(|i| i.pointer.button_down(PointerButton::Primary));
+        self.handles_3d.clear();
+        for h in self.control_handles(prj, an) {
+            let v = to_view(room_of(h.enclosure), h.at);
+            if let Some((s, z)) = project_view(v) {
+                super::routing_ui::draw_handle(&painter, s, &h);
+                self.handles_3d.push((s, h, v, z));
+            }
+        }
+        // A right click selects what is under the pointer for the context menu: a control
+        // point of the selected wire, cable or tube, or a wire, cable or tube to add one to.
+        if let Some(ptr) = resp.interact_pointer_pos().filter(|_| menu_pick && placing.is_none()) {
+            self.route_menu = None;
+            let shown: Vec<(Pos2, super::routing_ui::Handle)> = self.handles_3d.iter().map(|(s, h, ..)| (*s, h.clone())).collect();
+            let near = super::routing_ui::handle_near(&shown, ptr);
+            match (near, self.control_key(an)) {
+                (Some(h), Some(key)) => self.route_menu = Some(RouteMenu { key, at: h.at, handle: Some(h.index) }),
+                _ => {
+                    // The route selected stays where it is drawn under the pointer (the
+                    // wires of a duct lie side by side there: the one chosen by clicking);
+                    // otherwise what is under the pointer is picked.
+                    let drawn_here = |ui: &PanelUi| {
+                        let (wire, route) = (ui.wire_index(an), ui.selected_route.as_deref());
+                        scene.picks.iter().any(|(a, b, target)| {
+                            let mine = match target {
+                                RouteRef::Wire(wi) => wire == Some(*wi),
+                                RouteRef::Item(key) => route == Some(key.as_str()),
+                                RouteRef::None => false,
+                            };
+                            let (Some(pa), Some(pb)) = (project_view(*a).filter(|_| mine), project_view(*b)) else { return false };
+                            openecraft_core::geom::dist_to_segment(p(ptr.x, ptr.y), p(pa.0.x, pa.0.y), p(pb.0.x, pb.0.y)) <= PICK
+                        })
+                    };
+                    if !(self.control_key(an).is_some() && drawn_here(self)) {
+                        self.pick_3d(prj, an, &scene, &prims, &project_view, ptr);
+                    }
+                    if let Some(key) = self.control_key(an).filter(|_| drawn_here(self)) {
+                        // Onto the route where it runs nearest to the pointer on the screen.
+                        let flat = |leg: Option<usize>, v: V3| project_view(to_view(leg, v)).map(|s| p(s.0.x, s.0.y));
+                        let near = an.routing.item(&key).and_then(|it| super::routing_ui::nearest_on(it.stretches().into_iter().flat_map(|(leg, pts)| pts.windows(2).map(move |s| (leg, s[0], s[1]))), flat, p(ptr.x, ptr.y)));
+                        self.route_menu = near.map(|n| RouteMenu { key, at: n.0, handle: None });
+                    }
+                }
+            }
+        }
+        if dropped {
+            self.drop_control(prj, an);
+        }
+        self.control_feedback(an);
         if placing.is_none() {
-            egui::Popup::context_menu(&resp).show(|ui| self.menu_3d(ui, prj));
+            egui::Popup::context_menu(&resp).show(|ui| self.menu_3d(ui, prj, an));
         }
         // Picking: items of a neighbour in the line-up make it the current enclosure.
         if let Some(ptr) = resp.interact_pointer_pos().filter(|_| picking) {
@@ -384,7 +462,8 @@ impl PanelUi {
     }
 
     /// The context menu of the 3D view: what was right-clicked.
-    fn menu_3d(&mut self, ui: &mut egui::Ui, prj: &mut Project) {
+    fn menu_3d(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
+        self.control_menu(ui, prj, an);
         let any = !self.selection.is_empty();
         if ui.add_enabled(any, egui::Button::new(tr("Properties"))).clicked() {
             self.open_properties = true;
