@@ -1149,6 +1149,24 @@ pub fn duct_boxes(e: &Enclosure, it: &PanelItem, cover: bool) -> Vec<((V3, V3), 
     out
 }
 
+/// A mounting rail in plate coordinates: the profile of its part
+/// ([`crate::parts::mechanics::RailProfile`], a perforated top-hat rail without one)
+/// along the item, its slots where it really has them along its length.
+pub fn rail_mesh(prj: &Project, it: &PanelItem) -> Vec<Tri> {
+    use crate::parts::mechanics::{rail_boxes, RailProfile};
+    let profile = part_by_number(prj, &it.part).map_or(RailProfile::TopHat { perforated: true }, RailProfile::of);
+    let along_x = it.horizontal();
+    let (len, width) = if along_x { (it.w, it.h) } else { (it.h, it.w) };
+    let at = |a: f32, c: f32, z: f32| if along_x { [it.x + a, it.y + c, it.z + z] } else { [it.x + c, it.y + a, it.z + z] };
+    rail_boxes(profile, len, width, it.d)
+        .into_iter()
+        .flat_map(|(lo, hi)| {
+            let (p, q) = (at(lo[0], lo[1], lo[2]), at(hi[0], hi[1], hi[2]));
+            plate_box([p[0].min(q[0]), p[1].min(q[1]), p[2]], [p[0].max(q[0]), p[1].max(q[1]), q[2]])
+        })
+        .collect()
+}
+
 /// The 3D model of a device in plate coordinates: the part's model, for terminal
 /// strips the model of every element in its cell (a box where a part has none).
 /// `None` for items without a model.
@@ -1160,6 +1178,9 @@ pub fn device_mesh(prj: &Project, it: &PanelItem) -> Option<Vec<[[f32; 3]; 3]>> 
 pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Option<[u8; 3]>)>> {
     if it.kind == ItemKind::Busbar {
         return Some(busbars::mesh(prj, it));
+    }
+    if it.kind == ItemKind::Rail {
+        return Some(rail_mesh(prj, it).into_iter().map(|t| (t, None)).collect());
     }
     // A placed model repeats the model's triangles in their order.
     let painted = |mesh: &crate::parts::Mesh3d, tris: Vec<Tri>| -> Vec<(Tri, Option<[u8; 3]>)> {

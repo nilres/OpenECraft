@@ -1433,8 +1433,10 @@ impl PanelUi {
                     exact.push(!on_door && (pose.angle.sin() * pose.angle.cos()).abs() < 1e-4);
                     s.objects.len() - 1
                 });
-                // Devices with a 3D model in their part are drawn with it instead of a box.
+                // Devices with a 3D model in their part are drawn with it instead of a box,
+                // rails with their profile (behind the devices on them).
                 if let Some(painted) = panel::device_mesh_painted(prj, it) {
+                    let layer = if it.kind == ItemKind::Rail { 2 } else { EQUIPMENT };
                     let (tris, colors): (Vec<_>, Vec<_>) = painted.into_iter().unzip();
                     for (tri, own) in panel::place_triangles(e, it, tris).into_iter().zip(colors) {
                         let base = match (highlight, own) {
@@ -1448,7 +1450,7 @@ impl PanelUi {
                         }
                         let normal = pose.turn(n);
                         let w = w.map(|q| pose.apply(q));
-                        s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, it.id)), outline: false, decal: false, pv: None });
+                        s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer, side: None, obj, item: Some((k, it.id)), outline: false, decal: false, pv: None });
                     }
                     openings(&mut s, prj, e, it, &pose, obj, k, &lit);
                     continue;

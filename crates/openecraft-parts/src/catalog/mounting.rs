@@ -85,20 +85,23 @@ pub(super) fn model(p: &Part) -> Option<(Model2d, Mesh3d)> {
     let mut m = Draft::new(w, h);
     match p.subgroup.as_str() {
         "Mounting rail" => {
-            // Top-hat profile: flanges in front, web at the back.
-            let t = (d * 0.15).clamp(0.8, 1.5);
-            let f = (h * 0.15).max(2.0);
-            m.solid([0.0, 0.0, d - t], [w, f, d]);
-            m.solid([0.0, h - f, d - t], [w, h, d]);
-            m.solid([0.0, f - t, 0.0], [w, f, d]);
-            m.solid([0.0, h - f, 0.0], [w, h - f + t, d]);
-            m.solid([0.0, f - t, 0.0], [w, h - f + t, t]);
-            m.line(0.0, f, w, f);
-            m.line(0.0, h - f, w, h - f);
-            if p.description.contains("perforated") {
-                let (sw, sh) = (15.0f32.min(w / 4.0), (h - 2.0 * f) * 0.3);
-                for x in spread(12.5, w - 12.5, ((w - 25.0) / 25.0).max(0.0) as usize + 1) {
-                    m.face(x - sw / 2.0, h / 2.0 - sh / 2.0, x + sw / 2.0, h / 2.0 + sh / 2.0, false);
+            // Its profile along x, as the rails of the panel layout; the front view
+            // shows the edges of the flanges and the slots of the web.
+            let profile = crate::mechanics::RailProfile::of(p);
+            for (lo, hi) in crate::mechanics::rail_boxes(profile, w, h, d) {
+                m.solid(lo, hi);
+                if hi[2] >= d - 0.01 && hi[1] < h - 0.01 {
+                    m.line(0.0, hi[1], w, hi[1]);
+                }
+                if hi[2] >= d - 0.01 && lo[1] > 0.01 {
+                    m.line(0.0, lo[1], w, lo[1]);
+                }
+            }
+            if let crate::mechanics::RailProfile::TopHat { perforated: true } = profile {
+                let (sl, sw, _) = crate::mechanics::RAIL_SLOT;
+                let sw = sw.min(h * 0.3);
+                for x in crate::mechanics::rail_slots(w) {
+                    m.face(x - sl / 2.0, h / 2.0 - sw / 2.0, x + sl / 2.0, h / 2.0 + sw / 2.0, false);
                 }
             }
         }

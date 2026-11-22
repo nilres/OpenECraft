@@ -183,6 +183,102 @@ pub const BAYING_KIT: &str = "GEN.TS-BAY";
 /// Standoff raising a mounting rail above the plate (one per fixing point).
 pub const RAIL_STANDOFF: &str = "GEN.RAIL-STANDOFF";
 
+/// The profile of a mounting rail (EN 60715).
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RailProfile {
+    /// Top-hat rail (TS 35, TS 15), its web slotted where it is perforated.
+    TopHat { perforated: bool },
+    /// G rail (G 32).
+    G,
+}
+
+impl RailProfile {
+    /// The profile of a mounting rail part, by its number and description.
+    pub fn of(p: &crate::Part) -> RailProfile {
+        let text = format!("{} {}", p.number, p.description).to_uppercase();
+        if text.contains("G 32") || text.contains("G32") {
+            RailProfile::G
+        } else {
+            RailProfile::TopHat { perforated: text.contains("PERFORATED") }
+        }
+    }
+}
+
+/// Slots of a perforated top-hat rail: length along the rail, width across it and the
+/// distance between them.
+pub const RAIL_SLOT: (f32, f32, f32) = (15.0, 5.2, 25.0);
+
+/// The middles of the slots of a perforated rail `len` long: one every
+/// [`RAIL_SLOT`] distance from half of it in from the start, as far as they fit.
+pub fn rail_slots(len: f32) -> Vec<f32> {
+    let (slot, _, pitch) = RAIL_SLOT;
+    let mut out = Vec::new();
+    let mut at = pitch / 2.0;
+    while at + slot / 2.0 <= len - 1.0 {
+        out.push(at);
+        at += pitch;
+    }
+    out
+}
+
+/// A mounting rail as boxes `(min, max)` in its own coordinates: along it from 0 to
+/// `len`, across it from 0 to `width`, out of the mounting surface from 0 to `depth`.
+/// A top-hat rail has its web on the mounting surface (slotted when perforated), the
+/// walls up from it and the flanges the devices snap onto in front; a G rail its wide
+/// back, the high side with its lip over the back and the low side with its hook.
+pub fn rail_boxes(profile: RailProfile, len: f32, width: f32, depth: f32) -> Vec<([f32; 3], [f32; 3])> {
+    let mut out = Vec::new();
+    if len <= 0.0 || width <= 0.0 || depth <= 0.0 {
+        return out;
+    }
+    let mut add = |a: (f32, f32), c: (f32, f32), z: (f32, f32)| {
+        if a.1 - a.0 > 1e-3 && c.1 - c.0 > 1e-3 && z.1 - z.0 > 1e-3 {
+            out.push(([a.0, c.0, z.0], [a.1, c.1, z.1]));
+        }
+    };
+    let t = (if depth >= 12.0 { 1.5 } else { 1.0f32 }).min(width / 12.0).min(depth / 4.0);
+    match profile {
+        RailProfile::TopHat { perforated } => {
+            // The flanges 4 mm wide on a 35 mm rail, the web 27 mm.
+            let f = (width * 4.0 / 35.0).max(2.5).min(width / 3.0);
+            let (w0, w1) = (f, width - f);
+            let (_, sw, _) = RAIL_SLOT;
+            let sw = sw.min((w1 - w0) * 0.4);
+            let slots = if perforated { rail_slots(len) } else { Vec::new() };
+            if slots.is_empty() {
+                add((0.0, len), (w0, w1), (0.0, t));
+            } else {
+                // Beside the slots the whole length, between them the bridges.
+                let (s0, s1) = (width / 2.0 - sw / 2.0, width / 2.0 + sw / 2.0);
+                add((0.0, len), (w0, s0), (0.0, t));
+                add((0.0, len), (s1, w1), (0.0, t));
+                let half = RAIL_SLOT.0 / 2.0;
+                let mut from = 0.0;
+                for s in slots {
+                    add((from, s - half), (s0, s1), (0.0, t));
+                    from = s + half;
+                }
+                add((from, len), (s0, s1), (0.0, t));
+            }
+            for (wall, flange) in [((w0, w0 + t), (0.0, w0 + t)), ((w1 - t, w1), (w1 - t, width))] {
+                add((0.0, len), wall, (t, depth - t));
+                add((0.0, len), flange, (depth - t, depth));
+            }
+        }
+        RailProfile::G => {
+            // The back, the high side with its lip over it, the low side with its hook.
+            let low = depth * 0.55;
+            let lip = (width * 0.16).max(2.0 * t);
+            add((0.0, len), (0.0, width), (0.0, t));
+            add((0.0, len), (0.0, t), (t, depth - t));
+            add((0.0, len), (0.0, lip), (depth - t, depth));
+            add((0.0, len), (width - t, width), (t, low - t));
+            add((0.0, len), (width - lip * 0.8, width), (low - t, low));
+        }
+    }
+    out
+}
+
 /// Thread sizes of the fasteners in the catalog: (thread, screw length).
 pub const THREADS: &[(&str, u32)] = &[("M3", 8), ("M4", 10), ("M5", 12), ("M6", 16), ("M8", 20), ("M10", 25)];
 

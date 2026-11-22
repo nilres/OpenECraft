@@ -108,6 +108,15 @@ enum Kind {
     /// Splicing connector of a junction box: its clear housing with a lever (or a
     /// push-in opening) per conductor.
     Splice { conductors: usize, lever: bool },
+    /// Enclosure heater on the mounting rail: its dark housing, the finned aluminium
+    /// heat sink in front and, with a `fan`, the fan behind its grille below it.
+    CabinetHeater { fan: bool },
+    /// Thermostat of an enclosure on the mounting rail: the light grey modular housing
+    /// with its setting dial, red for heating (opening contact), blue for cooling.
+    RailThermostat { cooling: bool },
+    /// Socket outlet on the mounting rail: the modular housing with the round socket in
+    /// its front.
+    RailSocket,
 }
 
 /// The shape of an electric heating element.
@@ -207,6 +216,9 @@ fn kind_of(p: &Part) -> Option<Kind> {
             lever: has("lever"),
         },
         "Socket outlet" if p.wall_mountable() => Kind::Outlet(Outlet::Socket { gangs: ((p.width / 75.0).round() as usize).max(1), lid: has("lid"), usb: has("usb") }),
+        "Socket outlet" => Kind::RailSocket,
+        "Enclosure heater" => Kind::CabinetHeater { fan: has("fan") },
+        "Temperature switch" => Kind::RailThermostat { cooling: !p.functions.iter().any(|f| f.kind == crate::FnKind::SensorNc) },
         "Data outlet" => Kind::Outlet(Outlet::Data(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
         "Antenna outlet" => Kind::Outlet(Outlet::Antenna(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
         "Switch" | "Push button" | "Blind switch" if p.wall_mountable() => {
@@ -890,6 +902,75 @@ fn build(p: &Part) -> Option<(Model2d, Mesh3d, Option<Shaft>, Vec<Nozzle>)> {
             circle(&mut prims, [cx, h - cy], 0.4 * w);
             prims.push(Prim2d::Rect { min: [0.08 * w, 0.12 * h], max: [0.92 * w, 0.86 * h], fill: false });
         }
+        Kind::CabinetHeater { fan } => {
+            // The housing on the rail with the wire entries in its ends, the heat sink
+            // profile with its fins over it, the fan at the bottom.
+            let points = p.connection_points_or_default().0;
+            super::base_with_entries(&mut m, [w, h, 0.5 * d], &points, HEATER_HOUSING);
+            let f0 = if fan { 0.33 * h } else { 0.03 * h };
+            m.add_painted_box([0.03 * w, f0, 0.5 * d], [0.97 * w, 0.97 * h, 0.58 * d], HEAT_SINK);
+            let n = ((w / 9.0).round() as usize).max(3);
+            for k in 0..n {
+                let x = 0.03 * w + 0.94 * w * (k as f32 + 0.5) / n as f32;
+                let t = 0.018 * w;
+                m.add_painted_box([x - t, f0, 0.58 * d], [x + t, 0.97 * h, d], HEAT_SINK);
+                prims.push(Prim2d::Rect { min: [x - t, 0.03 * h], max: [x + t, h - f0], fill: false });
+            }
+            if fan {
+                // The dark opening of the fan, the bars of its grille across it (as long
+                // as the circle is wide there) and the hub in the middle.
+                m.add_painted_box([0.03 * w, 0.03 * h, 0.5 * d], [0.97 * w, 0.3 * h, 0.86 * d], HEATER_HOUSING);
+                let (cx, cy) = (w / 2.0, 0.165 * h);
+                let r = (0.42 * w).min(0.12 * h);
+                m.add_cylinder([cx, cy, 0.86 * d], 2, r, 0.01 * d, ROUND + 8, BLACK);
+                let bars = 6;
+                for k in 0..bars {
+                    let y = cy - r + (k as f32 + 0.5) * 2.0 * r / bars as f32;
+                    let half = (r * r - (y - cy) * (y - cy)).max(0.0).sqrt();
+                    m.add_painted_box([cx - half, y - 0.05 * r, 0.86 * d], [cx + half, y + 0.05 * r, 0.9 * d], GRILLE);
+                }
+                m.add_cylinder([cx, cy, 0.86 * d], 2, 0.22 * r, 0.06 * d, ROUND, GRILLE);
+                circle(&mut prims, [cx, h - cy], r);
+                // The warning sign of the hot surface on the housing beside the fan.
+                m.add_painted_box([0.05 * w, 0.24 * h, 0.86 * d], [0.05 * w + 0.07 * h, 0.29 * h, 0.87 * d], WARNING);
+            }
+        }
+        Kind::RailThermostat { cooling } => {
+            // The modular housing, the dial with its grip and pointer in the upper half
+            // of the front, the scale over it and the label field under it.
+            din_body(&mut m, &mut prims, p, [w, h, d], RAL_7035, 0.86);
+            let (cx, cy) = (w / 2.0, 0.55 * h);
+            let r = (0.46 * w).min(0.17 * h);
+            let dial = if cooling { BLUE_CAP } else { RED };
+            m.add_cylinder([cx, cy, 0.86 * d], 2, r, 0.1 * d, ROUND + 8, dial);
+            m.add_painted_box([cx - 0.18 * r, cy - 0.92 * r, 0.96 * d], [cx + 0.18 * r, cy + 0.92 * r, 0.995 * d], dial);
+            m.add_painted_box([cx - 0.07 * r, cy + 0.4 * r, 0.96 * d], [cx + 0.07 * r, cy + 0.9 * r, d], WHITE);
+            for k in 0..5 {
+                let (x, rise) = (cx + (k as f32 - 2.0) * 0.36 * r, (2.0 - (k as f32 - 2.0).abs()) * 0.06 * r);
+                m.add_painted_box([x - 0.04 * r, cy + 1.08 * r + rise, 0.86 * d], [x + 0.04 * r, cy + 1.2 * r + rise, 0.865 * d], DARK);
+            }
+            m.add_painted_box([0.12 * w, 0.3 * h, 0.86 * d], [0.88 * w, 0.37 * h, 0.865 * d], WHITE);
+            circle(&mut prims, [cx, h - cy], r);
+            prims.push(Prim2d::Rect { min: [0.12 * w, 0.63 * h], max: [0.88 * w, 0.7 * h], fill: false });
+        }
+        Kind::RailSocket => {
+            // The modular housing, the round socket in its front: its rim, the darker
+            // floor with the two contact holes and the earthing clips above and below.
+            din_body(&mut m, &mut prims, p, [w, h, d], LIGHT_GREY, 0.8);
+            let (cx, cy) = (w / 2.0, h / 2.0);
+            let r = (0.42 * w).min(0.21 * h);
+            m.add_cylinder([cx, cy, 0.8 * d], 2, r, 0.14 * d, ROUND + 8, [238, 240, 242]);
+            m.add_cylinder([cx, cy, 0.94 * d], 2, 0.86 * r, 0.015 * d, ROUND + 8, [192, 195, 200]);
+            for dx in [-0.4 * r, 0.4 * r] {
+                m.add_cylinder([cx + dx, cy, 0.955 * d], 2, 0.1 * r, 0.02 * d, 10, BLACK);
+                circle(&mut prims, [cx + dx, h - cy], 0.1 * r);
+            }
+            for sy in [-1.0, 1.0] {
+                let y = cy + sy * 0.76 * r;
+                m.add_painted_box([cx - 0.22 * r, y - 0.07 * r, 0.955 * d], [cx + 0.22 * r, y + 0.07 * r, d], STEEL);
+            }
+            circle(&mut prims, [cx, h - cy], r);
+        }
         Kind::FlushLid => {
             // Only the lid shows on the plaster, its screw in the middle.
             let (cx, cy, r) = (w / 2.0, h / 2.0, 0.5 * w.min(h));
@@ -1081,6 +1162,37 @@ fn outlet(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, kind: Outlet, [w, h, d]: [f32
                 m.add_cylinder([cx, cy - 0.47 * s, 0.9 * d], 2, 0.06 * s, 0.1 * d, ROUND, BLACK);
                 prims.push(Prim2d::Circle { c: [cx, h - cy + 0.47 * s], r: 0.1 * s, fill: false });
             }
+        }
+    }
+}
+
+/// Housing and fins of an enclosure heater, the grille of its fan and the warning sign.
+const HEATER_HOUSING: [u8; 3] = [54, 56, 60];
+const HEAT_SINK: [u8; 3] = [184, 188, 194];
+const GRILLE: [u8; 3] = [84, 88, 94];
+const WARNING: [u8; 3] = [236, 188, 36];
+/// Light grey of enclosure accessories and of the white of modular devices.
+const RAL_7035: [u8; 3] = [203, 208, 204];
+const LIGHT_GREY: [u8; 3] = [226, 228, 230];
+
+/// The stepped body of a DIN rail device: the base with the wire entries in its ends
+/// ([`super::base_with_entries`]), the shoulders and the front in the middle up to
+/// `front` of the depth, a screw on the step above or below the shoulders at each
+/// connection point leaving up or down.
+fn din_body(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, p: &Part, [w, h, d]: [f32; 3], c: [u8; 3], front: f32) {
+    let points = p.connection_points_or_default().0;
+    super::base_with_entries(m, [w, h, 0.6 * d], &points, c);
+    m.add_painted_box([0.0, 0.14 * h, 0.6 * d], [w, 0.86 * h, 0.8 * d], c);
+    m.add_painted_box([0.02 * w, 0.27 * h, 0.8 * d], [0.98 * w, 0.73 * h, front * d], c);
+    prims.push(Prim2d::Rect { min: [0.0, 0.14 * h], max: [w, 0.86 * h], fill: false });
+    prims.push(Prim2d::Rect { min: [0.02 * w, 0.27 * h], max: [0.98 * w, 0.73 * h], fill: false });
+    for (exit, y) in [(crate::Exit::Up, 0.93 * h), (crate::Exit::Down, 0.07 * h)] {
+        let xs: Vec<f32> = points.iter().filter(|c| c.exit == exit).map(|c| c.pos[0]).collect();
+        let r = (w / xs.len().max(1) as f32 * 0.3).min(0.05 * h).min(3.0);
+        for x in xs {
+            m.add_cylinder([x, y, 0.6 * d], 2, r, 0.02 * d, ROUND, STEEL);
+            m.add_painted_box([x - 0.8 * r, y - 0.15 * r, 0.6 * d], [x + 0.8 * r, y + 0.15 * r, 0.625 * d], DARK);
+            prims.push(Prim2d::Circle { c: [x, h - y], r, fill: false });
         }
     }
 }

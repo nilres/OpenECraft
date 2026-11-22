@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Mounting rails in 3D:** a rail of the panel layout shows its real profile instead of
+  a flat box: a top-hat rail its flanges, walls and web, perforated with a slot every
+  25 mm along its whole length; a G rail its high and low side. 3D exports carry the
+  profile too.
+- **Heater, thermostat and rail socket in 3D:** the enclosure heater shows its finned
+  heat sink and the fan behind its grille, the enclosure thermostat its red (heating) or
+  blue (cooling) dial with its scale, the socket outlet for mounting rails the round
+  type F socket in its front.
 - **Resize on the page:** a selected rectangle, ellipse, image, structure box or device
   box shows grips at its corners and edges, dragged on the grid to change its size
   (images keep their aspect ratio, the connection points on a moved edge of a device box

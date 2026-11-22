@@ -872,6 +872,39 @@ fn placed_models_follow_the_frame_of_their_face() {
 }
 
 #[test]
+fn rails_have_their_profile_and_slots_along_their_length() {
+    let prj = demo_project();
+    let mut checked = 0;
+    for it in prj.layout.enclosures.iter().flat_map(|e| &e.items).filter(|i| i.kind == ItemKind::Rail) {
+        let tris = rail_mesh(&prj, it);
+        let painted = device_mesh_painted(&prj, it).expect("a rail is drawn with its profile");
+        assert_eq!(painted.len(), tris.len());
+        let pts: Vec<V3> = tris.iter().flatten().copied().collect();
+        let lo = [0, 1, 2].map(|k| pts.iter().map(|p| p[k]).fold(f32::MAX, f32::min));
+        let hi = [0, 1, 2].map(|k| pts.iter().map(|p| p[k]).fold(f32::MIN, f32::max));
+        assert_eq!((lo, hi), ([it.x, it.y, it.z], [it.x + it.w, it.y + it.h, it.z + it.d]), "{it:?} fills its box");
+        // A perforated top-hat rail: a slot every 25 mm along it (12 triangles per bridge
+        // of the web between them), more triangles the longer it is.
+        let len = it.w.max(it.h);
+        let slots = crate::parts::mechanics::rail_slots(len).len();
+        assert!(slots > 5 && tris.len() == 12 * (slots + 1 + 2 + 4), "{} triangles for {slots} slots", tris.len());
+        // The middle of the web at a slot is open, the flanges in front reach across.
+        let (s, mid) = (crate::parts::mechanics::rail_slots(len)[0], if it.horizontal() { it.y + it.h / 2.0 } else { it.x + it.w / 2.0 });
+        let at = |t: &Tri, along: f32, across: f32| {
+            let (a, c) = if it.horizontal() { (0, 1) } else { (1, 0) };
+            let (a0, a1) = (t.iter().map(|p| p[a]).fold(f32::MAX, f32::min), t.iter().map(|p| p[a]).fold(f32::MIN, f32::max));
+            let (c0, c1) = (t.iter().map(|p| p[c]).fold(f32::MAX, f32::min), t.iter().map(|p| p[c]).fold(f32::MIN, f32::max));
+            a0 < along && along < a1 && c0 < across && across < c1 && t.iter().all(|p| (p[2] - it.z).abs() < 1e-3)
+        };
+        let start = if it.horizontal() { it.x } else { it.y };
+        assert!(!tris.iter().any(|t| at(t, start + s, mid)), "slot at {s}");
+        assert!(tris.iter().any(|t| at(t, start + s + 12.5, mid)), "bridge after the slot");
+        checked += 1;
+    }
+    assert!(checked >= 2, "{checked} rails");
+}
+
+#[test]
 fn cable_ducts_have_slotted_walls_and_a_cover() {
     let prj = demo_project();
     let e = &prj.layout.enclosures[0];

@@ -55,13 +55,13 @@ fn lights_and_heating_elements_get_their_models() {
         assert!(p.model_3d.is_some(), "{n}");
     }
     // A round ceiling light and a recessed downlight show their diffuser; the
-    // emergency light its green sign; the enclosure heater of cabinets stays a box.
+    // emergency light its green sign.
     assert_eq!(kind_of(get("GEN.LAMP-CEILING-LED")), Some(Kind::Light { round: true, recessed: false, emergency: false }));
     assert_eq!(kind_of(get("GEN.LAMP-DOWNLIGHT-LED")), Some(Kind::Light { round: true, recessed: true, emergency: false }));
     assert!(model(get("GEN.LIGHT-EM-3W")).unwrap().1.colors.contains(&LED));
     assert!(model(get("GEN.LAMP-CEILING-LED")).unwrap().1.colors.contains(&OPAL));
     assert_eq!(kind_of(get("GEN.HEATER-TOWEL-500")), Some(Kind::Heater(Heater::Towel)));
-    assert!(kind_of(get("GEN.HEATER-100W")).is_none());
+    assert_eq!(kind_of(get("GEN.HEATER-100W")), Some(Kind::CabinetHeater { fan: true }));
 }
 
 #[test]
@@ -352,4 +352,43 @@ fn fluid_devices_have_a_nozzle_per_connection_point() {
     assert_eq!(pump[0].dir[1], 0.0);
     // Motors have none.
     assert!(nozzles(get("GEN.MOT-2.2KW")).is_empty());
+}
+
+#[test]
+fn enclosure_heater_thermostat_and_rail_socket_get_their_models() {
+    let parts = default_catalog();
+    let get = |n: &str| parts.iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));
+    for (n, kind, detail) in [
+        ("GEN.HEATER-100W", Kind::CabinetHeater { fan: true }, HEAT_SINK),
+        ("GEN.TEMP-SW-60C", Kind::RailThermostat { cooling: false }, RED),
+        ("GEN.SOCKET-DIN-16A", Kind::RailSocket, STEEL),
+    ] {
+        let p = get(n);
+        assert_eq!(kind_of(p), Some(kind), "{n}");
+        let (front, mesh) = model(p).unwrap();
+        assert_eq!(mesh.colors.len(), mesh.triangles.len(), "{n}");
+        assert_eq!(mesh.bounds(), ([0.0; 3], [p.width, p.height, p.depth]), "{n} fills its box");
+        assert!(mesh.colors.contains(&detail), "{n}: {detail:?}");
+        assert!(front.prims.len() > 3, "{n}: its front view");
+        // The catalog part carries this model, with a wire entry at every terminal.
+        assert_eq!(p.model_3d.as_ref().map(|m| m.triangles.len()), Some(mesh.triangles.len()), "{n}");
+        let entries = entries(&mesh);
+        for c in p.connection_points_or_default().0.iter().filter(|c| matches!(c.exit, crate::Exit::Up | crate::Exit::Down)) {
+            assert!(entered(p, &entries, c), "{n}: no wire entry for {} at {:?}", c.pin, c.pos);
+        }
+    }
+    // The fins of the heater stand out of its front; a heater without a fan has no grille.
+    let heater = model(get("GEN.HEATER-100W")).unwrap().1;
+    let front_fins = heater.triangles.iter().zip(&heater.colors).filter(|(t, c)| **c == HEAT_SINK && t.iter().all(|&i| heater.vertices[i as usize][2] == 70.0)).count();
+    assert!(front_fins >= 2 * 6, "{front_fins} fin faces in front");
+    let mut plain = get("GEN.HEATER-100W").clone();
+    plain.description = "Enclosure heater 50 W, 230 V AC".into();
+    assert_eq!(kind_of(&plain), Some(Kind::CabinetHeater { fan: false }));
+    assert!(!model(&plain).unwrap().1.colors.contains(&GRILLE));
+    // A thermostat with a closing contact (cooling, a fan) has a blue dial.
+    let mut cooling = get("GEN.TEMP-SW-60C").clone();
+    cooling.functions = vec![FunctionTemplate::new(FnKind::Sensor, "13 14")];
+    assert!(model(&cooling).unwrap().1.colors.contains(&BLUE_CAP));
+    // Room socket outlets keep their frames.
+    assert_eq!(kind_of(get("GEN.SOCKET-F-UP")), Some(Kind::Outlet(Outlet::Socket { gangs: 1, lid: false, usb: false })));
 }
