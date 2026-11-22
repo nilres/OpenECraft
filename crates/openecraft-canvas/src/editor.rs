@@ -154,6 +154,17 @@ impl PropHandle {
     }
 }
 
+fn bend_wire(w: &mut Wire, pointer: P, start: P, offsets: [P; 2], t: f32, grid: f32) {
+    let displacement = (pointer - start).snap(grid);
+    // Limit amplification near either terminal, where the Bézier weight tends to zero.
+    let delta = displacement * (1.0 / (3.0 * t * (1.0 - t)).max(0.35));
+    w.bend = if dist_to_segment(pointer, w.a, w.b) <= 0.35 && displacement.len() > 0.0 {
+        None
+    } else {
+        Some([offsets[0] + delta, offsets[1] + delta])
+    };
+}
+
 enum Drag {
     Bend { id: u64, start: P, controls: [P; 2], t: f32 },
     None,
@@ -2275,15 +2286,7 @@ impl Editor {
             match (&mut self.drag, world) {
                 (Drag::Bend { id, start, controls, t }, Some(q)) => {
                     if let Some(w) = prj.pages[page_i].wires.iter_mut().find(|w| w.id == *id) {
-                        // Both inner control points have combined Bernstein weight 3t(1-t).
-                        let offset = (q - *start).snap(self.grid);
-                        let weight = (3.0 * *t * (1.0 - *t)).max(0.35);
-                        let delta = offset * (1.0 / weight);
-                        w.bend = if dist_to_segment(q, w.a, w.b) <= 0.35 && offset.len() > 0.0 {
-                            None
-                        } else {
-                            Some([controls[0] + delta, controls[1] + delta])
-                        };
+                        bend_wire(w, q, *start, *controls, *t, self.grid);
                     }
                 }
                 (Drag::Move { start, applied, moving, items, points, lines }, Some(w)) => {
