@@ -62,7 +62,9 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   modules, power supplies), `pylontech` (19-inch LiFePO4 battery modules), `siemens` (SIRIUS contactors, overload relays, motor
   starter protectors, SENTRON circuit breakers), `signify` (Philips CoreLine downlight
   DN140B, panel RC132V, waterproof batten WT120C, wall light WL120V), `spelsberg` (junction
-  boxes Abox 025-L to 350-L, placed as enclosures of the room), `victron` (MultiPlus-II inverter /
+  boxes Abox 025-L to 350-L, placed as enclosures of the room), `striebel_john` (wall cabinets ComfortLine A of 5 to 9 rows
+  and 1 to 5 field widths with the meter, distribution and media panels of their height, doors, locks,
+  flanges and further accessories), `victron` (MultiPlus-II inverter /
   charger, Inverter RS Smart Solar, SmartSolar MPPT, Orion-Tr, Cerbo GX, SmartShunt, BMV-712, Lynx
   Distributor; mostly parts for direct wall mounting), `wago` (splicing connectors 221 and
   2273 for junction boxes) and `weidmueller` (terminals,
