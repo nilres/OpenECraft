@@ -21,7 +21,9 @@ dispositivo. Seleccione una bobina y coloque contactos: se le asignan y se numer
 Fuentes de alimentación, instrumentos de medida y módulos de mando sin símbolo de
 biblioteca: *Insertar › Caja de dispositivo* dibuja una caja discontinua de cualquier
 tamaño como dispositivo nuevo (`-A1`, con su texto de función y sus artículos como
-cualquier otro dispositivo), *Insertar › Punto de conexión del dispositivo* coloca sus
+cualquier otro dispositivo; seleccionada, se redimensiona con los tiradores de sus
+esquinas y bordes, los puntos de un borde movido la acompañan), *Insertar › Punto de
+conexión del dispositivo* coloca sus
 conexiones un clic tras otro. Un punto colocado sobre el contorno de una caja pertenece
 al dispositivo de la caja, sale del borde en el que está y sigue la numeración
 (1, 2, 3 …; a `13` le sigue `14`); su designación (`L`, `N`, `PE`, `+24V`, …) se edita
@@ -69,7 +71,8 @@ completo de la página (`=A1+CAB1/3`).
 
 Los **recuadros de estructura** (*Insertar › Recuadro de estructura*) dan a una zona de
 una página su propia función y su propio lugar (o lugar de instalación, producto):
-dibuje un rectángulo y fije en las propiedades los aspectos que sustituye; los aspectos
+dibuje un rectángulo (se redimensiona con los tiradores de sus esquinas y bordes cuando
+está seleccionado) y fije en las propiedades los aspectos que sustituye; los aspectos
 vacíos se heredan de la página o de un recuadro que lo contiene, los recuadros anidados
 se resuelven hacia el más interior. Un dispositivo pertenece al recuadro en el que está
 el punto de inserción de su función principal: recibe la estructura del recuadro
@@ -193,7 +196,24 @@ Líneas, rectángulos, círculos, elipses, arcos, polilíneas y
 polígonos (grosor, color, discontinuo, relleno), cotas (alineadas / horizontales /
 verticales, escala, unidad), imágenes PNG / JPEG (también en la exportación PDF y SVG).
 **Capas** (navegador › Capas): visible, bloqueada, impresa, color; exportación DXF / DWG
-por capa.
+por capa. *Exportar…* e *Importar…* del panel Capas llevan las capas con sus ajustes a
+otros proyectos como esquema de ajustes (el esquema completo también las incluye).
+
+Un elemento seleccionado muestra **tiradores** que cambian su tamaño o su forma al
+arrastrarlos, sobre la rejilla: las esquinas y los centros de los bordes de rectángulos,
+elipses, recuadros de estructura y cajas de dispositivo, las esquinas de las imágenes (se
+mantiene la relación de aspecto), los extremos y vértices de líneas, polilíneas, polígonos
+y cotas, cuatro puntos de un círculo para su radio y ambos extremos de un arco. Un
+**tirador de giro** redondo sobre una forma, imagen o texto seleccionado lo gira
+alrededor de su centro, en pasos de 15° (1° con Alt pulsada), con el ángulo junto al
+puntero; los rectángulos, elipses e imágenes guardan el ángulo (*Rotación* en sus
+propiedades) y sus tiradores lo siguen, las demás formas giran sus puntos. Las
+propiedades de una forma muestran su tamaño: el ancho y el alto de rectángulos y elipses,
+la longitud de las líneas y el radio de los círculos se escriben, el tamaño y la longitud
+del contorno de las demás se muestran. La **escala** de una página (propiedades de la
+página, `set_page scale`, 1 : 50 es 50) es la longitud real por milímetro en la página:
+los tamaños de las formas se muestran en ella y las cotas nuevas miden en ella, para
+planos de implantación y planos de planta sencillos dibujados a escala.
 
 ## Cruces de hilos y conexiones en T
 

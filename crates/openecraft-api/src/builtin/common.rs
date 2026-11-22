@@ -181,6 +181,7 @@ pub fn page_json(pg: &Page) -> Value {
         "product": pg.product,
         "locked": pg.locked,
         "frame": pg.frame,
+        "scale": pg.scale,
         "document": pg.document.as_ref().map(|d| d.name.clone()),
     })
 }

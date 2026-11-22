@@ -25,6 +25,15 @@ impl P {
         (self - o).len()
     }
 
+    /// Turned by `deg` degrees counter-clockwise as seen on the page (y down).
+    pub fn turned(self, deg: f32) -> P {
+        if deg == 0.0 {
+            return self;
+        }
+        let (s, c) = deg.to_radians().sin_cos();
+        p(self.x * c + self.y * s, self.y * c - self.x * s)
+    }
+
     pub fn snap(self, grid: f32) -> P {
         p((self.x / grid).round() * grid, (self.y / grid).round() * grid)
     }

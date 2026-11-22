@@ -238,6 +238,7 @@ pub fn compare(old: &[Page], new: &[Page]) -> Vec<PageChanges> {
                     (tr_const!("Page type"), o.kind.label(), n.kind.label()),
                     (tr_const!("Title block"), o.title_block.clone(), n.title_block.clone()),
                     (tr_const!("Plot frame"), o.frame.clone(), n.frame.clone()),
+                    (tr_const!("Scale"), crate::graphics::scale_text(o.scale), crate::graphics::scale_text(n.scale)),
                 ]);
                 // Page data without a value to show: named only.
                 for (field, differs) in [

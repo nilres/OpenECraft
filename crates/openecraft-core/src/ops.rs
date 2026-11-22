@@ -308,7 +308,7 @@ pub fn item_bounds(symbols: &Symbols, page: &Page, id: u64) -> Option<R> {
         return Some(crate::graphics::dim_bounds(d));
     }
     if let Some(i) = page.images.iter().find(|i| i.id == id) {
-        return Some(R::from_points(i.a, i.b));
+        return Some(crate::graphics::image_bounds(i));
     }
     if let Some(c) = page.conn_defs.iter().find(|c| c.id == id) {
         return Some(R::from_points(c.pos, c.pos).expand(1.0));
@@ -529,7 +529,17 @@ pub fn rotate(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>) {
     for j in page.junctions.iter_mut().filter(|j| sel.contains(&j.id)) {
         j.turn();
     }
+    // Images keep their size and turn: their middle goes round.
+    let images: Vec<(u64, P, P)> = page.images.iter().filter(|i| sel.contains(&i.id)).map(|i| (i.id, i.a, i.b)).collect();
     map_items(page, sel, rot);
+    for (id, a, b) in images {
+        if let Some(i) = page.images.iter_mut().find(|i| i.id == id) {
+            let half = (b - a) * 0.5;
+            let mid = rot(a + half);
+            (i.a, i.b) = (mid - half, mid + half);
+            i.angle = (i.angle - 90.0).rem_euclid(360.0);
+        }
+    }
     // Attached wire ends follow their connection point.
     for (id, is_a) in attached {
         if let Some(w) = page.wires.iter_mut().find(|w| w.id == id) {

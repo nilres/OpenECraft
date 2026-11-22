@@ -15,6 +15,24 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   wires, cables and tubes seen from the face. Commands `add_control_point`,
   `move_control_point`, `remove_control_point`
   ([3D routing](docs/features/panel-layout.md#3d-routing)).
+- **Resize on the page:** a selected rectangle, ellipse, image, structure box or device
+  box shows grips at its corners and edges, dragged on the grid to change its size
+  (images keep their aspect ratio, the connection points on a moved edge of a device box
+  go with it); lines, polylines, polygons and dimensions show grips at their points,
+  circles at their radius, arcs at both ends
+  ([schematic graphics](docs/features/schematic.md#schematic-graphics), #217).
+- **Turn to any angle:** a selected shape, image or text shows a round handle above it,
+  dragged to turn it about its middle in steps of 15° (1° with Alt), with the angle
+  shown beside the pointer; rectangles, ellipses and images keep an angle (*Rotation*
+  in their properties) and their grips follow it. A quarter turn (*Rotate*) keeps the
+  size of an image instead of stretching it.
+- **Sizes and a drawing scale:** the properties of a shape show its width and height,
+  length or radius, typed to change it; a page has a scale (*Page properties › Scale*,
+  `set_page scale`, 1 : 50), in which the sizes of its shapes are shown and its new
+  dimensions measure.
+- **Layers for other projects:** the Layers pane exports the layers with their settings
+  (visible, locked, printed, colour) and imports them into another project; settings
+  schemes (*Export settings…*, `export_settings`) carry them too.
 - **Videos on the website:** the new page `videos/` lists the videos of the project's
   YouTube channel with their pictures, and the start page and every footer link it and
   the channel. The server of the site fetches the list and the pictures four times a

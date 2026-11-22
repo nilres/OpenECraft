@@ -234,6 +234,7 @@ Draw the junction as a connection dot; its routing stays	分岐を接続点と�
 Draw wires in their colour	電線を色付きで描画
 Draw wires to the connection points facing its free arms	空いている側に向き合う接続点へ接続線を描きます
 Drawing	図面
+Drawing scale: real length per millimetre on the page, e.g. 50 for 1 : 50 (sizes of shapes, new dimensions)	図面の尺度: ページ上の 1 mm あたりの実長 (例: 1 : 50 では 50、図形のサイズと新しい寸法)
 Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	2 つの接続ポイント間に電線を描画します。例: -K1:A1 から -S1:14 へ (あいまいな場合は #id:pin、電位の場合は名前、名称のない点の場合は 1、2…)
 Draws a wire through two or more points	2 つ以上の点を通る電線を描画します
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	回路図ページと PDF / SVG エクスポートで電線を色付きまたは黒で描画します

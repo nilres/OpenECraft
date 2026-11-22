@@ -139,8 +139,23 @@ fn ellipse_pts(c: P, rx: f32, ry: f32, start: f32, sweep: f32, steps: usize) -> 
         .collect()
 }
 
+/// `q` turned by `deg` degrees counter-clockwise about `c`.
+pub fn turn_about(c: P, q: P, deg: f32) -> P {
+    c + (q - c).turned(deg)
+}
+
 /// Outline of a shape as a polyline and whether it is closed.
 pub fn outline(s: &Shape) -> (Vec<P>, bool) {
+    let (pts, closed) = flat_outline(s);
+    if s.angle == 0.0 || !matches!(s.kind, ShapeKind::Rect | ShapeKind::Ellipse) {
+        return (pts, closed);
+    }
+    let c = R::from_points(s.a, s.b).center();
+    (pts.into_iter().map(|q| turn_about(c, q, s.angle)).collect(), closed)
+}
+
+/// Outline of a shape before its angle.
+fn flat_outline(s: &Shape) -> (Vec<P>, bool) {
     let (a, b) = (s.a, s.b);
     match s.kind {
         ShapeKind::Line => (vec![a, b], false),
@@ -210,6 +225,46 @@ pub fn map_shape(s: &mut Shape, f: impl Fn(P) -> P) {
     for q in &mut s.pts {
         *q = f(*q);
     }
+}
+
+// ---------------------------------------------------------------- scale
+
+/// A drawing scale (real length per millimetre on the page) as it is written: `1 : 50`,
+/// `2 : 1` for enlargements.
+pub fn scale_text(scale: f32) -> String {
+    let n = |v: f32| {
+        let t = format!("{:.3}", v);
+        t.trim_end_matches('0').trim_end_matches('.').to_string()
+    };
+    match scale {
+        s if s.is_nan() || s <= 0.0 => "1 : 1".to_string(),
+        s if s < 1.0 => format!("{} : 1", n(1.0 / s)),
+        s => format!("1 : {}", n(s)),
+    }
+}
+
+/// Common drawing scales (real length per millimetre): enlargements 10 : 1 to 2 : 1,
+/// 1 : 1 and reductions to 1 : 1000.
+pub const SCALES: [f32; 15] = [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 25.0, 50.0, 100.0, 200.0, 250.0, 500.0, 1000.0];
+
+/// The drawing scale of a page; 1 for a value that is no scale.
+pub fn page_scale(page: &Page) -> f32 {
+    if page.scale.is_finite() && page.scale > 0.0 { page.scale } else { 1.0 }
+}
+
+/// Sizes of a shape in mm on the page: width and height of its outline, the length of
+/// lines and the length of the outline of polylines, polygons, circles and arcs.
+pub fn shape_size(s: &Shape) -> (P, f32) {
+    let r = shape_bounds(s);
+    let (pts, closed) = outline(s);
+    let mut len: f32 = pts.windows(2).map(|w| w[0].dist(w[1])).sum();
+    if closed && pts.len() > 2 {
+        len += pts[pts.len() - 1].dist(pts[0]);
+    }
+    if s.kind == ShapeKind::Circle {
+        len = 2.0 * std::f32::consts::PI * s.a.dist(s.b);
+    }
+    (p(r.width(), r.height()), len)
 }
 
 // ---------------------------------------------------------------- dimensions
@@ -373,8 +428,31 @@ pub fn add_image(prj: &mut Project, page: usize, at: P, name: &str, bytes: &[u8]
         file: crate::document::Document::new(name, bytes),
         px,
         layer: layer.to_string(),
+        angle: 0.0,
     });
     id
+}
+
+/// Corners of an image on the page (top left, top right, bottom right, bottom left of
+/// the picture), turned by its angle.
+pub fn image_corners(img: &ImageItem) -> [P; 4] {
+    let r = R::from_points(img.a, img.b);
+    [r.min, p(r.max.x, r.min.y), r.max, p(r.min.x, r.max.y)].map(|q| turn_about(r.center(), q, img.angle))
+}
+
+/// What an image covers on the page.
+pub fn image_bounds(img: &ImageItem) -> R {
+    let mut r = R::nothing();
+    for q in image_corners(img) {
+        r.extend(q);
+    }
+    r
+}
+
+/// `q` lies on the (turned) image.
+pub fn image_hit(img: &ImageItem, q: P) -> bool {
+    let r = R::from_points(img.a, img.b);
+    r.contains(turn_about(r.center(), q, -img.angle))
 }
 
 #[cfg(test)]

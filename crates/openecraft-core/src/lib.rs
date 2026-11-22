@@ -32,6 +32,7 @@ pub mod forms;
 pub mod functions;
 pub mod frame;
 pub mod graphics;
+pub mod grips;
 pub mod geom;
 pub mod harness;
 pub mod harness_export;

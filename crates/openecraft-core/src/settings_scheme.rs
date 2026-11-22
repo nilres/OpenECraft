@@ -1,10 +1,11 @@
 //! Settings schemes (in the spirit of EPLAN's settings schemes): the settings of a
 //! project – wire numbering, potentials and wire defaults, wire colours, wire crossings
-//! and connections, marking, hose defaults, cross references and the check scheme – as
-//! one file to start other projects with the same settings. Every part is optional, so
-//! a file may carry only some of them.
+//! and connections, marking, hose defaults, cross references, the check scheme and the
+//! layers – as one file to start other projects with the same settings. Every part is
+//! optional, so a file may carry only some of them.
 
 use crate::model::checks::Level;
+use crate::model::graphics::Layer;
 use crate::model::potentials::{PotentialDef, WireDefaults};
 use crate::model::{CrossRefs, Project, WireNumbering, WireSettings};
 use openecraft_i18n::{tr_const, tr_fmt};
@@ -34,6 +35,9 @@ pub struct SettingsScheme {
     pub checks_off: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_levels: Option<BTreeMap<String, Level>>,
+    /// Layers with their settings (visible, locked, printed, colour).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub layers: Option<Vec<Layer>>,
 }
 
 /// The settings of the project as a scheme file (JSON).
@@ -49,7 +53,14 @@ pub fn export(prj: &Project) -> String {
         cross_references: Some(prj.xref.clone()),
         checks_off: Some(prj.check_settings.disabled.clone()),
         message_levels: Some(prj.check_settings.levels.clone()),
+        layers: Some(prj.layers.clone()),
     };
+    serde_json::to_string_pretty(&s).unwrap_or_default()
+}
+
+/// The layers of the project alone as a scheme file (JSON).
+pub fn export_layers(prj: &Project) -> String {
+    let s = SettingsScheme { layers: Some(prj.layers.clone()), ..Default::default() };
     serde_json::to_string_pretty(&s).unwrap_or_default()
 }
 
@@ -101,6 +112,17 @@ pub fn apply(prj: &mut Project, json: &str) -> Result<Vec<&'static str>, String>
     if let Some(v) = s.message_levels {
         prj.check_settings.levels = v;
         taken.push(tr_const!("Message levels"));
+    }
+    // Layers of the file are added or take its settings; the project's others stay,
+    // its items may be on them.
+    if let Some(v) = s.layers {
+        for l in v.into_iter().filter(|l| !l.name.trim().is_empty()) {
+            match prj.layers.iter_mut().find(|x| x.name == l.name) {
+                Some(x) => *x = l,
+                None => prj.layers.push(l),
+            }
+        }
+        taken.push(tr_const!("Layers"));
     }
     Ok(taken)
 }

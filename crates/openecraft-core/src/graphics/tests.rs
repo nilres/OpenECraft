@@ -105,3 +105,34 @@ fn layer_names_stay_unique_and_not_empty() {
     assert_eq!(layer_rename_problem(&names, "Notes", "Frame"), Some("Name already used"));
     assert_eq!(layer_rename_problem(&names, "Notes", " "), Some("A layer needs a name"));
 }
+
+#[test]
+fn drawing_scales_are_written_as_ratios() {
+    assert_eq!(scale_text(1.0), "1 : 1");
+    assert_eq!(scale_text(50.0), "1 : 50");
+    assert_eq!(scale_text(0.5), "2 : 1");
+    assert_eq!(scale_text(12.5), "1 : 12.5");
+    assert_eq!(scale_text(0.0), "1 : 1");
+    let mut page = Page::default();
+    assert_eq!(page_scale(&page), 1.0);
+    page.scale = -3.0;
+    assert_eq!(page_scale(&page), 1.0);
+    page.scale = 100.0;
+    assert_eq!(page_scale(&page), 100.0);
+    // A page at 1 : 1 keeps no scale in the file.
+    assert!(!serde_json::to_string(&Page::default()).unwrap().contains("scale"));
+    let back: Page = serde_json::from_str(&serde_json::to_string(&page).unwrap()).unwrap();
+    assert_eq!(back.scale, 100.0);
+}
+
+#[test]
+fn shapes_have_a_size_and_a_length() {
+    let rect = Shape { kind: ShapeKind::Rect, a: p(0.0, 0.0), b: p(30.0, 20.0), ..Default::default() };
+    assert_eq!(shape_size(&rect), (p(30.0, 20.0), 100.0));
+    let line = Shape { kind: ShapeKind::Line, a: p(0.0, 0.0), b: p(3.0, 4.0), ..Default::default() };
+    assert_eq!(shape_size(&line).1, 5.0);
+    let circle = Shape { kind: ShapeKind::Circle, a: p(0.0, 0.0), b: p(10.0, 0.0), ..Default::default() };
+    assert!((shape_size(&circle).1 - 62.83).abs() < 0.01);
+    let poly = Shape { kind: ShapeKind::Polyline, pts: vec![p(0.0, 0.0), p(10.0, 0.0), p(10.0, 5.0)], ..Default::default() };
+    assert_eq!(shape_size(&poly), (p(10.0, 5.0), 15.0));
+}
