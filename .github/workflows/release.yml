@@ -58,6 +58,8 @@ jobs:
             artifacts/openecraft-flatpak/* artifacts/openecraft-snap/* artifacts/openecraft-macos-dmg/* release-files/
           (cd artifacts/openecraft-web && zip -qr "$GITHUB_WORKSPACE/release-files/OpenECraft-$version-web.zip" .)
           (cd artifacts/openecraft-parts-manager-web && zip -qr "$GITHUB_WORKSPACE/release-files/OpenECraft-Parts-Manager-$version-web.zip" .)
+          # The entry of the MCP Registry, published by mcp-registry.yml with the release.
+          python3 installer/mcp/build.py server-json release-files/*.mcpb --output release-files/mcp-server.json
           (cd release-files && sha256sum -- * > SHA256SUMS)
           # The section of this version in the changelog, without its heading.
           awk -v v="$version" '/^## \[/ { on = index($0, "## [" v "]") == 1; next } on' CHANGELOG.md > notes.md

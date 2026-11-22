@@ -69,10 +69,14 @@ jobs:
       - run: powershell -ExecutionPolicy Bypass -File installer\windows\build.ps1
         env:
           WINDOWS_SIGN_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+      # The MCP bundle with the program of the setup (installer/mcp/build.py).
+      - run: python installer/mcp/build.py bundle --binary target/x86_64-pc-windows-msvc/release/openecraft-cli.exe --notices target/installer/windows/THIRD-PARTY-LICENSES.html
       - uses: actions/upload-artifact@v4
         with:
           name: openecraft-windows-installer
-          path: target/installer/*.exe
+          path: |
+            target/installer/*.exe
+            target/installer/*.mcpb
 
   # Built on Debian 12, so the binaries run on distributions with glibc 2.36 or newer.
   linux-packages:
@@ -86,17 +90,19 @@ jobs:
           apt-get update
           apt-get install -y --no-install-recommends ca-certificates curl git build-essential pkg-config file dpkg-dev rpm \
             libxkbcommon-dev libgtk-3-dev libwayland-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev \
-            patchelf zsync libxkbcommon-x11-0 libxcursor1 libxi6
+            patchelf zsync libxkbcommon-x11-0 libxcursor1 libxi6 python3
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@1.97.0
       - uses: taiki-e/install-action@v2
         with:
           tool: cargo-about@0.9.3
       - run: bash installer/linux/build.sh tar.gz deb rpm appimage
+      - run: python3 installer/mcp/build.py bundle --binary target/release/openecraft-cli --notices target/installer/THIRD-PARTY-LICENSES.html
       - uses: actions/upload-artifact@v4
         with:
           name: openecraft-linux-packages
           path: |
+            target/installer/*.mcpb
             target/installer/*.tar.gz
             target/installer/*.deb
             target/installer/*.rpm
@@ -187,10 +193,14 @@ jobs:
             echo "MACOS_NOTARY_KEYCHAIN=$keychain" >> "$GITHUB_ENV"
           fi
       - run: bash installer/macos/build.sh
+      # The signed universal program of the app.
+      - run: python3 installer/mcp/build.py bundle --binary target/installer/macos/dmg/OpenECraft.app/Contents/MacOS/openecraft-cli --notices target/installer/macos/THIRD-PARTY-LICENSES.html
       - uses: actions/upload-artifact@v4
         with:
           name: openecraft-macos-dmg
-          path: target/installer/*.dmg
+          path: |
+            target/installer/*.dmg
+            target/installer/*.mcpb
 
   # Images of the parts and project servers, of the web editor and of the website
   # (installer/docker/Dockerfile), started once to see that they answer. Pushed to GitHub

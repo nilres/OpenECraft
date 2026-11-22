@@ -1,0 +1,94 @@
+name: MCP bundles
+
+# Builds only the three MCP bundles of the MCP server (installer/mcp/build.py:
+# OpenECraft-MCP-<version>-windows-x86_64.mcpb, -linux-x86_64.mcpb,
+# -macos-universal.mcpb), started by hand (Actions › MCP bundles › Run workflow): of a
+# branch, a release tag or a commit that has installer/mcp/. The bundles are artifacts of
+# the run; the ones of a release are built by ci.yml with the programs of its installers.
+# Here the Windows program is not code signed and the macOS one is signed ad hoc.
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch, tag (v0.1.3) or commit to build; empty = the branch the workflow runs on
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  # With a static C runtime, as installer/windows/build.ps1 builds the programs.
+  windows:
+    runs-on: windows-2025
+    env:
+      CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_RUSTFLAGS: -C target-feature=+crt-static
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: dtolnay/rust-toolchain@1.97.0
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-about@0.9.3
+      - run: cargo build --release --locked --target x86_64-pc-windows-msvc -p openecraft-cli
+      - run: python installer/mcp/build.py bundle --binary target/x86_64-pc-windows-msvc/release/openecraft-cli.exe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openecraft-mcp-windows
+          path: target/installer/*.mcpb
+          if-no-files-found: error
+
+  # Built on Debian 12, so the program runs on distributions with glibc 2.36 or newer.
+  linux:
+    runs-on: ubuntu-24.04
+    container: debian:bookworm
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Build dependencies
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates curl git build-essential pkg-config python3
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: dtolnay/rust-toolchain@1.97.0
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-about@0.9.3
+      - run: python3 installer/mcp/build.py bundle
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openecraft-mcp-linux
+          path: target/installer/*.mcpb
+          if-no-files-found: error
+
+  # A universal program for Apple silicon and Intel, as installer/macos/build.sh builds it.
+  macos:
+    runs-on: macos-15
+    env:
+      MACOSX_DEPLOYMENT_TARGET: '11.0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: dtolnay/rust-toolchain@1.97.0
+        with:
+          targets: aarch64-apple-darwin, x86_64-apple-darwin
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-about@0.9.3
+      - run: |
+          cargo build --release --locked --target aarch64-apple-darwin -p openecraft-cli
+          cargo build --release --locked --target x86_64-apple-darwin -p openecraft-cli
+          mkdir -p target/universal
+          lipo -create -output target/universal/openecraft-cli \
+            target/aarch64-apple-darwin/release/openecraft-cli target/x86_64-apple-darwin/release/openecraft-cli
+          codesign --force --sign - target/universal/openecraft-cli
+      - run: python3 installer/mcp/build.py bundle --binary target/universal/openecraft-cli
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openecraft-mcp-macos
+          path: target/installer/*.mcpb
+          if-no-files-found: error

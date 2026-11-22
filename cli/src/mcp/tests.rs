@@ -245,3 +245,26 @@ fn paths_are_shown_without_the_prefix_of_windows() {
     assert_eq!(shown(Path::new(r"\\?\UNC\server\share\plan.oec")), r"\\server\share\plan.oec");
     assert_eq!(shown(Path::new("plans/pump.oec")), "plans/pump.oec");
 }
+
+#[test]
+fn the_bundle_and_the_registry_entry_start_this_server() {
+    let manifest: Value = serde_json::from_str(include_str!("../../../installer/mcp/manifest.json")).unwrap();
+    let config = &manifest["server"]["mcp_config"];
+    assert_eq!(config["args"], json!(["mcp"]));
+    assert!(config["command"].as_str().unwrap().ends_with(manifest["server"]["entry_point"].as_str().unwrap()));
+    // What the bundle asks the user for are the variables the server reads.
+    let env = config["env"].as_object().unwrap();
+    assert_eq!(env.keys().collect::<Vec<_>>(), ["OPENECRAFT_MCP_ROOT", "OPENECRAFT_MCP_TOOLS"]);
+    for value in env.values() {
+        let key = value.as_str().unwrap().strip_prefix("${user_config.").and_then(|v| v.strip_suffix('}')).unwrap();
+        assert!(manifest["user_config"][key]["title"].is_string(), "{key}");
+    }
+    assert_eq!(manifest["user_config"]["project_folder"]["required"], true);
+    assert_eq!(manifest["user_config"]["tools"]["default"], "core");
+
+    let entry: Value = serde_json::from_str(include_str!("../../../installer/mcp/server.json")).unwrap();
+    assert_eq!(entry["name"], "io.github.nilres/openecraft");
+    assert_eq!(entry["description"], manifest["description"]);
+    // The registry refuses a longer description.
+    assert!(entry["description"].as_str().unwrap().chars().count() <= 100);
+}

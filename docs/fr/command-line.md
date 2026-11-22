@@ -174,6 +174,13 @@ ou `~/.config/Claude/` ; Cursor : `~/.cursor/mcp.json` ; VS Code : `.vscode/mcp.
     "env": { "OPENECRAFT_MCP_ROOT": "/home/me/projects" } } } }
 ```
 
+Sans installation, le serveur existe sous forme de bundle MCP de la version publiée
+(`OpenECraft-MCP-<version>-windows-x86_64.mcpb`, `-linux-x86_64.mcpb`,
+`-macos-universal.mcpb`) : Claude Desktop et les autres clients qui connaissent le format
+l'installent d'un double-clic et demandent le dossier des projets
+(`OPENECRAFT_MCP_ROOT`) et les outils (`OPENECRAFT_MCP_TOOLS`). Chaque version inscrit ces
+bundles dans le MCP Registry officiel sous `io.github.nilres/openecraft`.
+
 L'agent peut lire et écrire tout fichier auquel le processus du serveur a accès ; démarrez-le
 dans un répertoire de travail (et avec un jeton du serveur d'articles) dont l'utilisation par
 l'agent vous convient.

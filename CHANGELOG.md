@@ -30,6 +30,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   heat sink and the fan behind its grille, the enclosure thermostat its red (heating) or
   blue (cooling) dial with its scale, the socket outlet for mounting rails the round
   type F socket in its front.
+- **MCP server without an installation:** every release has the MCP server as an MCP
+  bundle per platform (`OpenECraft-MCP-<version>-windows-x86_64.mcpb`,
+  `-linux-x86_64.mcpb`, `-macos-universal.mcpb`), which Claude Desktop and other clients
+  install with a double click; it asks for the project folder and the tools to offer.
+  A published release enters the bundles in the official MCP Registry as
+  `io.github.nilres/openecraft`, from where other directories and clients list the
+  server ([command line](docs/command-line.md)).
 - **Wall cabinets of Striebel & John with their panels and accessories:** the catalog
   `striebel_john` has the ComfortLine A wall cabinets of 5 to 9 rows and 1 to 5 field
   widths (A15 to A59, among them the A37, 2CPX052032R9999) and 380 parts that fit them;
