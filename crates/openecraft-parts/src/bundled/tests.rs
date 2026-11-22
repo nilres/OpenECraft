@@ -210,7 +210,7 @@ fn cee_sockets_cooker_boxes_junction_boxes_and_connectors_for_the_installation()
 }
 
 #[test]
-fn fuse_switch_disconnectors_on_busbars_have_their_datasheet_sizes() {
+fn devices_on_busbars_have_their_datasheet_sizes() {
     // Width, height and depth of the Hager product data sheets: what sits on the bars
     // of a busbar system in the examples.
     let parts = default_parts();
@@ -223,6 +223,7 @@ fn fuse_switch_disconnectors_on_busbars_have_their_datasheet_sizes() {
         ("HAG.LVSG1CPX", [100.0, 671.0, 190.0]),
         ("HAG.LVSG2CPX", [100.0, 671.0, 190.0]),
         ("HAG.LVSG3CPX", [100.0, 671.0, 190.0]),
+        ("HAG.KS30C", [41.0, 51.0, 86.0]),
     ] {
         let p = parts.iter().find(|p| p.number == number).unwrap_or_else(|| panic!("{number}"));
         assert_eq!([p.width, p.height, p.depth], size, "{number}");

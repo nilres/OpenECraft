@@ -29,7 +29,7 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   systems of the catalog are wide enough for their 60 mm centre distance (150 mm), and
   example 11 has its NH fuse switch disconnectors on a 60 mm system, the supply
   terminals one on each bar. The Hager NH fuse switch disconnectors (LT) and strips
-  (LVSG) have the sizes of their data sheets
+  (LVSG) and the busbar terminal KS30C have the sizes of their data sheets
   ([panel layout](docs/features/panel-layout.md)).
 - **Videos on the website:** the new page `videos/` lists the videos of the project's
   YouTube channel with their pictures, and the start page and every footer link it and
