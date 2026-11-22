@@ -426,8 +426,8 @@ Consecutive addresses from the start byte, in schematic order	从起始字节开
 Contact image below coils	线圈下方的触点映像
 Content	内容
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	未激活选项的内容将被隐藏：不会被绘制、评估、生成报表或导出。
-Control point {} added: drag it to route {} again	已添加控制点 {}：拖动它以重新布线 {}
-Control point {} of {} moved	已移动控制点 {}（{}）
+Control point {} added to {}: routing again…	已添加控制点 {}（{}）：正在重新布线…
+Control point {} of {} moved: routing again…	已移动控制点 {}（{}）：正在重新布线…
 Control points: {}	控制点：{}
 Coordinate reference system	坐标参考系
 Copies	副本数
@@ -2586,6 +2586,7 @@ x y	x y
 {} wires changed	已更改 {} 条导线
 {} wires, {} cables and {} tubes routed	已布线 {} 条导线、{} 根电缆和 {} 根管子
 {} wires, {} – {} mm	{} 条导线，{} – {} mm
+{} {} is led through its control points: {} mm	{} {} 经过其控制点：{} mm
 {} {} of building {}	建筑物 {2} 的{0} {1}
 {} °C (max. {} °C)	{} °C（最高 {} °C）
 {} °C (max.)	{} °C（最高）

@@ -1124,7 +1124,13 @@ kein Weg zu ihm bleibt frei und biegt mit dem Radius, die Punkte lassen keinen P
 die Bögen zwischen ihnen, der Weg kommt zu sich selbst zurück, oder der Punkt liegt in
 keinem Schrank und keinem Raum, durch den verlegt wird), meldet die Verlegung einen
 Fehler mit dem Stützpunkt, zeichnet ihn rot und verlegt ohne seine Stützpunkte, bis er
-verschoben wird; sobald neu verlegt ist, sagt die Statuszeile warum. Rechtsklick auf einen Stützpunkt entfernt ihn oder alle (auch in den
+verschoben wird; die Statuszeile sagt, ob der Weg durch
+seine Stützpunkte geführt wird oder warum nicht. Nur der Weg, dessen Stützpunkte sich
+geändert haben, wird sofort neu gesucht, zwischen den anderen Wegen, wo sie liegen
+(währenddessen läuft ein Bogen um seinen Stützpunkt); die ganze Verlegung folgt im
+Hintergrund. Ein Punkt auf einer Ecke des Wegs rückt um den Biegeradius an ihm zurück,
+und der Weg zurück von einem Punkt hält Abstand vom Weg dorthin (in einem Kabelkanal
+darf er ihn kreuzen). Rechtsklick auf einen Stützpunkt entfernt ihn oder alle (auch in den
 Eigenschaften der Verlegung oder Leitung). Ein Weg mit Stützpunkten ist nicht
 eingefroren. Befehle `add_control_point`, `move_control_point` und
 `remove_control_point` (Punkte in den Koordinaten eines Gehäuses; eine Leitung als

@@ -335,6 +335,8 @@ pub(super) struct Handle {
     /// The route is led through it (or is being searched again).
     pub ok: bool,
     pub moving: bool,
+    /// The route is being searched again through it.
+    pub pending: bool,
 }
 
 /// A control point being moved: the route, its number, where it is moved to (layout
@@ -419,12 +421,19 @@ pub(super) fn control_summary(ui: &mut egui::Ui, prj: &mut Project, an: &Analysi
 }
 
 /// A control point at screen point `s`: a ring (filled while it is moved, red where the
-/// route cannot be led through it) with its number.
+/// route cannot be led through it) with its number; while the route is searched again
+/// through it an arc runs round it.
 pub(super) fn draw_handle(painter: &egui::Painter, s: Pos2, h: &Handle) {
     let color = if h.ok { WIRE_HIGHLIGHT } else { crate::style::error() };
     let fill = if h.moving { color } else { Color32::WHITE };
     painter.circle(s, 5.5, fill, Stroke::new(2.0, color));
     painter.text(s + egui::vec2(8.0, -8.0), egui::Align2::LEFT_BOTTOM, (h.index + 1).to_string(), egui::FontId::proportional(11.0), color);
+    if h.pending {
+        let start = painter.ctx().input(|i| i.time) as f32 * 6.0;
+        let arc: Vec<Pos2> = (0..=16).map(|k| start + k as f32 * 0.25).map(|a| s + 10.0 * egui::vec2(a.cos(), a.sin())).collect();
+        painter.add(Shape::line(arc, Stroke::new(2.0, WIRE_HIGHLIGHT)));
+        painter.ctx().request_repaint_after(std::time::Duration::from_millis(30));
+    }
 }
 
 fn mode_choice(ui: &mut egui::Ui, salt: impl egui::AsIdSalt, mode: &mut ReserveMode) {
@@ -630,6 +639,7 @@ impl PanelUi {
         let put = routing3d::control_points(prj, key);
         let passed = an.routing.item(key).map(|i| i.controls.clone()).unwrap_or_default();
         let shown = passed.len() == put.len();
+        let pending = self.control_pending(an, key);
         c.points
             .iter()
             .enumerate()
@@ -637,7 +647,7 @@ impl PanelUi {
                 let enclosure = prj.layout.enclosures.iter().position(|e| e.id == p.enclosure)?;
                 let moved = self.control_drag.as_ref().filter(|d| d.key == key && d.index == index).map(|d| d.at);
                 let at = moved.or_else(|| shown.then(|| passed[index])).or_else(|| put.get(index).copied())?;
-                Some(Handle { index, at, enclosure, ok: shown || an.routes_pending, moving: moved.is_some() })
+                Some(Handle { index, at, enclosure, ok: shown || pending, moving: moved.is_some(), pending })
             })
             .collect()
     }
@@ -654,7 +664,7 @@ impl PanelUi {
             self.status = match routing3d::add_control(prj, &an.routing, &menu.key, menu.at) {
                 Ok(n) => {
                     self.control_watch = Some((menu.key.clone(), an.id));
-                    tr_fmt!("Control point {} added: drag it to route {} again", n + 1, menu.key)
+                    tr_fmt!("Control point {} added to {}: routing again…", n + 1, menu.key)
                 }
                 Err(e) => e,
             };
@@ -683,23 +693,35 @@ impl PanelUi {
         self.status = match routing3d::move_control(prj, &d.key, d.index, d.at) {
             Ok(()) => {
                 self.control_watch = Some((d.key.clone(), an.id));
-                tr_fmt!("Control point {} of {} moved", d.index + 1, d.key)
+                tr_fmt!("Control point {} of {} moved: routing again…", d.index + 1, d.key)
             }
             Err(e) => e,
         };
     }
 
-    /// Once the routing after a control point was added or moved is done: why the route
-    /// is laid without its control points, in the status line.
+    /// The route `key` is being searched again through its control points: the
+    /// routing shown does not have it yet (a control point was just added or moved, or
+    /// the routing stands in for one being searched without searching it again).
+    pub(super) fn control_pending(&self, an: &Analysis, key: &str) -> bool {
+        let watched = self.control_watch.as_ref().is_some_and(|(k, before)| k == key && an.id == *before);
+        watched || (an.routes_pending && !an.routing.rerouted.iter().any(|k| k == key))
+    }
+
+    /// Once the route of a control point just added or moved is searched again (the
+    /// routing that stands in for the whole one has it): in the status line whether it is
+    /// led through its control points, or why not.
     pub(super) fn control_feedback(&mut self, an: &Analysis) {
         let Some((key, before)) = self.control_watch.clone() else { return };
-        if an.id == before || an.routes_pending {
+        if an.id == before || (an.routes_pending && !an.routing.rerouted.contains(&key)) {
             return;
         }
         self.control_watch = None;
-        if let Some(e) = an.routing.item(&key).and_then(|i| i.control_error.clone()) {
-            self.status = e;
-        }
+        let Some(it) = an.routing.item(&key) else { return };
+        self.status = match &it.control_error {
+            Some(e) => e.clone(),
+            None if !it.controls.is_empty() => tr_fmt!("{} {} is led through its control points: {} mm", it.kind.title(), it.label, format!("{:.0}", it.length)),
+            None => return,
+        };
     }
 
     /// Selects a cable or tube: the properties show it, the status its length.

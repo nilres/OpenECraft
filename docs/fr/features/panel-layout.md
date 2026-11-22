@@ -1166,8 +1166,14 @@ hors de l'enveloppe, aucun chemin jusqu'à lui ne reste libre en se courbant ave
 rayon, les points ne laissent pas la place des arcs des courbures entre eux, le chemin
 revient sur lui-même, ou le point n'est dans aucune armoire ni salle que le parcours
 traverse), le routage signale une erreur qui nomme le point de passage, le dessine en
-rouge et pose le parcours sans ses points de passage jusqu'à ce qu'il soit déplacé ; une fois
-le routage refait, la ligne d'état en donne la raison. Un
+rouge et pose le parcours sans ses points de passage jusqu'à ce qu'il soit déplacé ; la ligne d'état
+indique si le parcours passe par ses points de passage ou pourquoi pas. Seul le
+parcours dont les points de passage ont changé est recherché tout de suite, parmi les
+autres parcours là où ils sont (un arc tourne autour de son point de passage pendant
+ce temps) ; tout le routage suit en arrière-plan. Un point donné sur un angle du
+parcours recule le long de celui-ci du rayon de courbure, et le chemin de retour
+depuis un point reste à l'écart du chemin aller (dans une goulotte il peut le croiser).
+Un
 clic droit sur un point de passage le supprime, ou tous (aussi dans les propriétés du
 parcours ou du fil). Un parcours avec des points de passage n'est pas figé. Commandes
 `add_control_point`, `move_control_point` et `remove_control_point` (points dans les

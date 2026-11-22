@@ -1,4 +1,4 @@
-//! Control points of cables and tubes ([`RouteControl`]): points added on a route in
+//! Control points of wires, cables and tubes ([`RouteControl`]): points added on a route in
 //! the panel layout and moved there. The route is searched from its start to the
 //! first of them, from one to the next and from the last to its end, so that it
 //! keeps its bend radius and stays clear of everything; where that is not possible
@@ -9,7 +9,7 @@ use super::{Routing, RouteKind, RoutingRules};
 use crate::model::routing3d::{ControlPoint, RouteControl};
 use crate::model::Project;
 use crate::panel;
-use crate::parts::vec3::{add, dist, sub, V3};
+use crate::parts::vec3::{add, dist, scale, sub, V3};
 use openecraft_i18n::tr_fmt;
 use std::collections::HashMap;
 
@@ -51,7 +51,32 @@ pub(super) fn of_routes(prj: &Project, pos: &[V3], lineup_of: &dyn Fn(usize) -> 
 /// in the direction it came in (as far as its bend radius at least), and the whole way
 /// keeps its bends apart and does not come back to itself. With the points it passes
 /// (the centres of their cells).
-pub(super) fn route_through(space: &Space, a: V3, b: V3, vias: &[(usize, V3)], req: &Request, rules: &RoutingRules) -> Result<(Way, Vec<V3>), Failure> {
+pub(super) fn route_through(space: &mut Space, a: V3, b: V3, vias: &[(usize, V3)], req: &Request, rules: &RoutingRules) -> Result<(Way, Vec<V3>), Failure> {
+    // On through each point the way it came in; where that finds no way (a point on a
+    // corner of the route), out of it any way.
+    let mut first = None;
+    for straight_on in [true, false] {
+        let mut held = Vec::new();
+        let found = parts_through(space, a, b, vias, req, rules, straight_on, &mut held);
+        for h in held.into_iter().rev() {
+            space.give_back(h);
+        }
+        match found {
+            Err(f) if straight_on && !matches!(f, Failure::Blocked(_)) => first = Some(f),
+            Err(f) => return Err(first.unwrap_or(f)),
+            ok => return ok,
+        }
+    }
+    Err(first.unwrap_or(Failure::NoWay(0)))
+}
+
+/// The way of [`route_through`], part by part: each part keeps clear of those before it
+/// (their room is taken in `space` for now, `held`; not near the control point the next
+/// part leaves, nor near the ends of the route), so that the way does not come back
+/// along itself.
+#[allow(clippy::too_many_arguments)]
+fn parts_through(space: &mut Space, a: V3, b: V3, vias: &[(usize, V3)], req: &Request, rules: &RoutingRules, straight_on: bool, held: &mut Vec<grid::Held>) -> Result<(Way, Vec<V3>), Failure> {
+    let zone = space.end_zone(req);
     let at_point = Request { at: [PASSED; 2], ..*req };
     let mut stops = vec![a];
     for &(n, q) in vias {
@@ -65,7 +90,7 @@ pub(super) fn route_through(space: &Space, a: V3, b: V3, vias: &[(usize, V3)], r
     for i in 0..=last {
         let part = Request {
             at: [if i == 0 { a } else { PASSED }, if i == last { b } else { PASSED }],
-            leave: [leave, if i == last { req.leave[1] } else { [0.0; 3] }],
+            leave: [if i == 0 || straight_on { leave } else { [0.0; 3] }, if i == last { req.leave[1] } else { [0.0; 3] }],
             out: [if i == 0 { req.out[0] } else { 0.0 }, if i == last { req.out[1] } else { 0.0 }],
             straight: [if i == 0 { req.straight[0] } else { 0.0 }, if i == last { req.straight[1] } else { 0.0 }],
             ..*req
@@ -75,6 +100,12 @@ pub(super) fn route_through(space: &Space, a: V3, b: V3, vias: &[(usize, V3)], r
         let way = way.ok_or(Failure::NoWay(n))?;
         close += grid::close_bends(&way.points, 2.0 * req.turn);
         leave = arrival(&way.points);
+        if i < last {
+            let kept = short_of_end(&way.points, zone);
+            if kept.len() > 1 {
+                held.push(space.hold(&kept, req.half, req.half, &[(a, zone), (b, zone)]));
+            }
+        }
         whole = Some(match whole {
             None => way,
             Some(mut w) => {
@@ -93,10 +124,26 @@ pub(super) fn route_through(space: &Space, a: V3, b: V3, vias: &[(usize, V3)], r
     if grid::close_bends(&way.points, 2.0 * req.turn) > close {
         return Err(Failure::Tight);
     }
-    if grid::meets_itself(&way.points, req.turn, 2.0 * req.half + 0.5, 0).is_some() {
+    // (Across itself in a cable duct is no meeting: wires lie across each other there.)
+    if grid::meets_itself_where(&way.points, req.turn, 2.0 * req.half + 0.5, 0, &|q| !space.in_channel(q, req)).is_some() {
         return Err(Failure::Itself);
     }
     Ok((way, stops[1..stops.len() - 1].to_vec()))
+}
+
+/// The polyline `points` without its last `cut` mm (along it).
+fn short_of_end(points: &[V3], cut: f32) -> Vec<V3> {
+    let mut left = cut;
+    for k in (1..points.len()).rev() {
+        let step = dist(points[k - 1], points[k]);
+        if step > left {
+            let mut kept = points[..k].to_vec();
+            kept.push(add(points[k - 1], scale(sub(points[k], points[k - 1]), (step - left) / step)));
+            return kept;
+        }
+        left -= step;
+    }
+    Vec::new()
 }
 
 /// The direction a way arrives at its last point in, along the axis it runs along most
@@ -132,11 +179,14 @@ pub fn control_points(prj: &Project, key: &str) -> Vec<V3> {
     c.points.iter().filter_map(|p| prj.layout.enclosures.iter().position(|e| e.id == p.enclosure).map(|k| add(p.at, pos[k]))).collect()
 }
 
+/// Where a point comes nearest to a route ([`along`]).
+type Nearest = (f32, V3, usize, f32, (V3, V3));
+
 /// Where along the stretches of a route (each with the enclosure it starts in) a point
 /// comes nearest to it: how far along the whole route, the point on it, the enclosure of
-/// that stretch and the distance.
-fn along(stretches: &[(usize, &[V3])], q: V3) -> Option<(f32, V3, usize, f32)> {
-    let mut best: Option<(f32, V3, usize, f32)> = None;
+/// that stretch, the distance and the stretch's segment.
+fn along(stretches: &[(usize, &[V3])], q: V3) -> Option<Nearest> {
+    let mut best: Option<Nearest> = None;
     let mut s0 = 0.0;
     for &(k, pts) in stretches {
         for seg in pts.windows(2) {
@@ -147,7 +197,7 @@ fn along(stretches: &[(usize, &[V3])], q: V3) -> Option<(f32, V3, usize, f32)> {
             let on = add(a, crate::parts::vec3::scale(ab, t));
             let d = dist(q, on);
             if best.is_none_or(|b| d < b.3) {
-                best = Some((s0 + t * l2.sqrt(), on, k, d));
+                best = Some((s0 + t * l2.sqrt(), on, k, d, (a, b)));
             }
             s0 += l2.sqrt();
         }
@@ -175,7 +225,16 @@ pub fn add_control(prj: &mut Project, routing: &Routing, key: &str, at: V3) -> R
     let pos = panel::positions(&prj.layout);
     let first = it.enclosures.first().copied().ok_or_else(|| tr_fmt!("No routed wire, cable or tube {}", key))?;
     let stretches: Vec<(usize, &[V3])> = it.stretches().into_iter().map(|(leg, pts)| (leg.unwrap_or(first), pts)).collect();
-    let (s, q, k, _) = along(&stretches, at).ok_or_else(|| tr_fmt!("No routed wire, cable or tube {}", key))?;
+    let (s, q, k, _, (a, b)) = along(&stretches, at).ok_or_else(|| tr_fmt!("No routed wire, cable or tube {}", key))?;
+    // Not on a corner of the route (or at its end): there it has no room for the arcs
+    // of its bends; back along the segment by the bend radius, at most to its middle.
+    let length = dist(a, b);
+    let q = if length > 1e-3 {
+        let least = (it.bend_radius.max(1.0) / length).min(0.5);
+        add(a, scale(sub(b, a), (dist(a, q) / length).clamp(least, 1.0 - least)))
+    } else {
+        q
+    };
     let k = enclosure_at(prj, &pos, k, q);
     // Where the points it has lie along the route (where it passes them).
     let before = control_points(prj, key);

@@ -993,8 +993,13 @@ lies in a device or outside the enclosure, no way to it keeps clear and bends wi
 radius, the points leave no room for the arcs of the bends between them, the way comes
 back to itself, or the point lies in no cabinet or room the route runs through) the
 routing reports an error naming the control point, draws it in red and lays the route
-without its control points until it is moved; once it is routed again the status line
-tells why. Right-click a control point to remove it
+without its control points until it is moved; the status line tells whether the route
+is led through its control points or why not. Only the route whose control points
+changed is searched again at once, among the other routes where they lie (an arc runs
+round its control point meanwhile); the whole routing follows in the background. A
+point given on a corner of the route goes back along it by the bend radius, and the
+way back from a point keeps clear of the way there (in a cable duct it may cross it).
+Right-click a control point to remove it
 or all of them (also in the properties of the route or wire). A route with control
 points is not frozen. Commands `add_control_point`, `move_control_point` and
 `remove_control_point` (points in the coordinates of an enclosure; a wire by

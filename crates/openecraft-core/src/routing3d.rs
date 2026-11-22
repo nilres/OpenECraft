@@ -499,6 +499,10 @@ pub struct Routing {
     pub paths: Vec<PathUse>,
     pub changes: Vec<Change>,
     pub problems: Vec<Problem>,
+    /// The routes searched again for a routing that stands in for the whole one until it
+    /// is done ([`rerouted`]: those whose control points changed); empty for a whole one.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub rerouted: Vec<String>,
 }
 
 impl Routing {
@@ -1362,7 +1366,7 @@ fn finish_ahead(space:&grid::Space, req:&grid::Request, area:f32, reuse_failed:b
 fn route_straight_out(prj: &Project, wiring: &mut [RoutedWire], mut jobs: Vec<Job>, progress: &dyn Fn(usize, usize), workers: usize) -> Routing {
     let start = wiring.to_vec();
     loop {
-        let routing = route(prj, wiring, jobs.clone(), Glands::default(), progress, workers);
+        let routing = route(prj, wiring, jobs.clone(), Glands::default(), progress, workers, &[]);
         let stuck: Vec<u64> = routing.items.iter().filter(|i| !i.routed()).flat_map(|i| i.ends.iter().filter_map(|e| e.item)).collect();
         if stuck.is_empty() || jobs.iter().all(|j| j.straight == [0.0; 2]) {
             return routing;
@@ -1377,11 +1381,75 @@ fn route_straight_out(prj: &Project, wiring: &mut [RoutedWire], mut jobs: Vec<Jo
     }
 }
 
+/// While the routing is searched again after control points were added, moved or
+/// removed and nothing else changed since `cache` kept its routing: that routing with
+/// only the routes whose control points changed searched again, among the others where
+/// they lie (`wiring` as routed with it). Far quicker than the whole routing, which it
+/// stands in for until that is done; `None` where more than control points changed.
+pub fn rerouted(prj: &Project, wiring: &mut [RoutedWire], conns: &[Connection], open: &Netlist, cache: &Cache) -> Option<Routing> {
+    let last = cache.last.as_deref().filter(|l| l.lang == openecraft_i18n::lang() && l.wiring.len() == wiring.len())?;
+    let points = |controls: &[RouteControl], key: &str| controls.iter().find(|c| c.key == key).map(|c| c.points.clone());
+    let (now, then) = (&prj.layout.controls, &last.prj.layout.controls);
+    let mut changed: Vec<String> = now.iter().chain(then).map(|c| c.key.clone()).filter(|k| points(now, k) != points(then, k)).collect();
+    changed.sort();
+    changed.dedup();
+    if changed.is_empty() {
+        return None;
+    }
+    let mut layout = prj.layout.clone();
+    layout.controls = then.clone();
+    if (Project { pages: Vec::new(), layout, ..prj.clone() }) != last.prj {
+        return None;
+    }
+    let mine: Vec<Job> = jobs(prj, wiring, conns, open).into_iter().filter(|j| changed.contains(&j.key)).collect();
+    // The other wires as they were routed; those searched again from the wiring now.
+    let fresh = wiring.to_vec();
+    wiring.clone_from_slice(&last.routed);
+    for wi in mine.iter().filter_map(|j| j.wire) {
+        wiring[wi] = fresh[wi].clone();
+    }
+    let around: Vec<RoutedItem> = last.routing.items.iter().filter(|i| i.routed() && !changed.contains(&i.key)).cloned().collect();
+    let targets: Vec<(Option<(usize, u64)>, String)> = mine.iter().map(|j| (j.target, j.label.clone())).collect();
+    let part = route(prj, wiring, mine, Glands::default(), &|_, _| {}, 1, &around);
+    let mut routing = last.routing.clone();
+    routing.items.retain(|i| !changed.contains(&i.key));
+    routing.items.extend(part.items);
+    routing.problems.retain(|p| !targets.iter().any(|(target, label)| p.target == *target && p.message.contains(label.as_str())));
+    routing.problems.extend(part.problems);
+    routing.rerouted = changed;
+    Some(routing)
+}
+
+/// A route of an earlier routing kept where it lies ([`rerouted`]): the routes searched
+/// now keep apart from it in `space` (of the line-up of enclosure `ei`), up to `reach`
+/// beyond its surface, and the cable ducts carry it.
+fn keep_around(space: &mut grid::Space, prj: &Project, wiring: &[RoutedWire], ei: usize, it: &RoutedItem, reach: f32) {
+    // A wire laid in the cable ducts of the plate takes no room (it is laid out with the
+    // others in the 3D view).
+    let along_plate = it.kind == RouteKind::Wire && it.wire.and_then(|wi| wiring.get(wi)).is_some_and(|w| !wire_in_3d(&prj.layout, w));
+    let items: Vec<u64> = it.ends.iter().filter_map(|e| e.item).collect();
+    let area = std::f32::consts::PI / 4.0 * it.diameter * it.diameter;
+    for points in it.stretches_in_lineup(&prj.layout, ei).into_iter().filter(|p| p.len() > 1) {
+        let cells = space.cells_along(points);
+        space.load_ducts(&cells, area);
+        if along_plate {
+            continue;
+        }
+        space.occupy(&cells, it.class, area);
+        let zone = (3.0 * space.cell).max(2.0 * it.bend_radius + space.cell) + it.diameter / 2.0;
+        let ends = [(points[0], zone), (points[points.len() - 1], zone)];
+        space.take(points, it.diameter / 2.0, reach, &ends, &items);
+    }
+}
+
 /// Routes the `jobs` one after the other, the searches of a class on up to `workers`
-/// threads at the same time (with the same routes).
-#[allow(clippy::too_many_lines)]
-fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: Glands, progress: &dyn Fn(usize, usize), workers: usize) -> Routing {
+/// threads at the same time (with the same routes), among the routes `around` of an
+/// earlier routing where they lie ([`rerouted`]).
+#[allow(clippy::too_many_lines, clippy::too_many_arguments)]
+fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: Glands, progress: &dyn Fn(usize, usize), workers: usize, around: &[RoutedItem]) -> Routing {
     let rules = &prj.layout.routing;
+    // The wiring the routes kept around were routed with.
+    let wiring_then: Vec<RoutedWire> = if around.is_empty() { Vec::new() } else { wiring.to_vec() };
     let pos = panel::positions(&prj.layout);
     let lineups = panel::lineups(&prj.layout);
     let lineup_of = |ei: usize| lineups.iter().position(|lu| lu.contains(&ei));
@@ -1425,11 +1493,14 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
                 space.take_cores(q, &e.cores, j.diameter / 4.0);
             }
         }
+        for it in around {
+            keep_around(&mut space, prj, &wiring_then, lineups[lu][0], it, reach.max(it.diameter / 2.0));
+        }
         space
     };
     // The cable entries the ends of the jobs go through are taken: a route that leaves
     // its cabinet looks for another one.
-    for end in jobs.iter().flat_map(|j| &j.ends) {
+    for end in jobs.iter().flat_map(|j| &j.ends).chain(around.iter().flat_map(|i| &i.ends)) {
         if let (Some(ei), Some(id)) = (end.enclosure, end.item) {
             if entries(prj, ei).iter().any(|g| g.id == id) {
                 *glands.taken.entry(id).or_default() += 1;
@@ -1851,7 +1922,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
         }
     }
     grid::release_search();
-    Routing { items, bundles, branches, shields, paths, changes, problems }
+    Routing { items, bundles, branches, shields, paths, changes, problems, rerouted: Vec::new() }
 }
 
 /// Replaces the route of a wire by its 3D route: the stretches per enclosure as

@@ -11,8 +11,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   radius and clear of everything (a wire with control points is routed in 3D instead of
   in the cable ducts). A point the route cannot be led through (in a device, outside
   the enclosure, too tight for the bend radius) is an error, drawn in red, and the route
-  is laid without its control points. The front view of a room now shows the routed
-  wires, cables and tubes seen from the face. Commands `add_control_point`,
+  is laid without its control points; the status line tells the result. Only the
+  route whose control points changed is searched again at once (an arc runs round the
+  point meanwhile), the whole routing follows in the background. The front view of a
+  room now shows the routed wires, cables and tubes seen from the face. Commands `add_control_point`,
   `move_control_point`, `remove_control_point`
   ([3D routing](docs/features/panel-layout.md#3d-routing)).
 - **Resize on the page:** a selected rectangle, ellipse, image, structure box or device

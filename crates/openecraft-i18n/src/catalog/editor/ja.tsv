@@ -426,8 +426,8 @@ Consecutive addresses from the start byte, in schematic order	開始バイトか
 Contact image below coils	コイルの下に接点イメージ
 Content	内容
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	無効なオプションの内容は非表示になり、描画、評価、レポート、エクスポートの対象外になります。
-Control point {} added: drag it to route {} again	経由点 {} を追加しました: ドラッグすると {} を再配線します
-Control point {} of {} moved	経由点 {}（{}）を移動しました
+Control point {} added to {}: routing again…	経由点 {}（{}）を追加しました: 再配線中…
+Control point {} of {} moved: routing again…	経由点 {}（{}）を移動しました: 再配線中…
 Control points: {}	経由点: {}
 Coordinate reference system	座標参照系
 Copies	コピー数
@@ -2587,6 +2587,7 @@ x y	x y
 {} wires changed	{} 本の電線を変更しました
 {} wires, {} cables and {} tubes routed	電線 {} 本、ケーブル {} 本、チューブ {} 本を配線しました
 {} wires, {} – {} mm	電線 {} 本、{} – {} mm
+{} {} is led through its control points: {} mm	{} {} は経由点を通ります: {} mm
 {} {} of building {}	建物 {2} の{0} {1}
 {} °C (max. {} °C)	{} °C (最大 {} °C)
 {} °C (max.)	{} °C (最大)

@@ -298,7 +298,7 @@ fn searches_at_the_same_time_give_the_same_routes() {
     let route_on = |workers: usize| {
         let mut wiring = crate::panel::virtual_wiring(&prj, &an.connections).0;
         let jobs = jobs(&prj, &wiring, &an.connections, &an.open);
-        let routing = route(&prj, &mut wiring, jobs, Glands::default(), &|_, _| {}, workers);
+        let routing = route(&prj, &mut wiring, jobs, Glands::default(), &|_, _| {}, workers, &[]);
         (routing, wiring)
     };
     let (one, four) = (route_on(1), route_on(4));

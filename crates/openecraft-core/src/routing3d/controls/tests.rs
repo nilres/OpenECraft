@@ -121,11 +121,15 @@ fn editing_control_points_checks_the_route_and_numbers() {
     let mid = [(a[0] + b[0]) / 2.0, (a[1] + b[1]) / 2.0, (a[2] + b[2]) / 2.0];
     add_control(&mut prj, &an.routing, "-W1", mid).unwrap();
     assert!(prj.layout.frozen.iter().all(|f| f.key != "-W1"));
-    // A second point before the first along the route goes first.
+    // A second point before the first along the route goes first; given on a corner of
+    // the route it goes back along the stretch by the bend radius (no room for the
+    // arcs on the corner).
     add_control(&mut prj, &an.routing, "-W1", w1.points[1]).unwrap();
     let pts = control_points(&prj, "-W1");
     assert_eq!(pts.len(), 2);
-    assert!(dist(pts[0], w1.points[1]) < 1.0 && dist(pts[1], mid) < 1.0, "{:?}", pts);
+    let off = dist(pts[0], w1.points[1]);
+    assert!(off > w1.bend_radius.min(dist(w1.points[0], w1.points[1]) / 2.0) - 1.0 && dist(pts[1], mid) < 1.0, "{:?} {off}", pts);
+    assert!(w1.points.windows(2).take(2).any(|s| grid::dist_to_segment(pts[0], s[0], s[1]) < 0.5), "on the route: {:?}", pts[0]);
     assert_eq!(remove_control(&mut prj, "-W1", Some(1)).unwrap(), 1);
     assert_eq!(control_points(&prj, "-W1").len(), 1);
 }
@@ -246,4 +250,49 @@ fn a_wire_with_control_points_runs_from_its_connection_points() {
         let at = if k == 0 { it.points[0] } else { *it.points.last().unwrap() };
         assert!(dist(at, q) < 30.0, "{at:?} {q:?}");
     }
+}
+
+#[test]
+fn a_long_detour_through_a_control_point_does_not_run_into_itself() {
+    let mut prj = demo_project();
+    let an = Analysis::checked(&prj);
+    let (key, mid) = duct_wire(&an);
+    add_control(&mut prj, &an.routing, &key, mid).unwrap();
+    let e = &prj.layout.enclosures[0];
+    // To the corners of the cabinet and back: the way back keeps clear of the way there
+    // (it may cross it in a cable duct).
+    for q in [[0.05 * e.width, 0.05 * e.height, 0.8 * e.depth], [0.95 * e.width, 0.95 * e.height, 0.2 * e.depth]] {
+        move_control(&mut prj, &key, 0, q).unwrap();
+        let an = Analysis::checked(&prj);
+        let it = an.routing.item(&key).unwrap();
+        assert!(it.controls.len() == 1 && it.control_error.is_none(), "{q:?}: {:?}", it.control_error);
+    }
+}
+
+#[test]
+fn a_changed_control_point_is_routed_at_once_among_the_other_routes() {
+    let prj = demo_project();
+    let mut cache = crate::analysis::Cache::default();
+    let an = Analysis::build_with(&prj, &mut cache);
+    let mut moved = prj.clone();
+    add_control(&mut moved, &an.routing, "-W1", an.routing.item("-W1").unwrap().points[2]).unwrap();
+    move_control(&mut moved, "-W1", 0, [300.0, 650.0, 150.0]).unwrap();
+    // Until the whole routing is searched again: the route of -W1 searched now, the
+    // others where they were.
+    let quick = Analysis::build_kept(&moved, &mut cache.clone(), &an.routing);
+    assert!(quick.routes_pending);
+    assert_eq!(quick.routing.rerouted, vec!["-W1".to_string()]);
+    let full = Analysis::build_with(&moved, &mut cache.clone());
+    assert!(full.routing.rerouted.is_empty());
+    let (q, f) = (quick.routing.item("-W1").unwrap(), full.routing.item("-W1").unwrap());
+    assert_eq!((q.controls.len(), q.points.clone(), q.control_error.clone()), (f.controls.len(), f.points.clone(), f.control_error.clone()));
+    assert_eq!(quick.routing.items.len(), an.routing.items.len());
+    for it in quick.routing.items.iter().filter(|i| i.key != "-W1") {
+        assert_eq!(Some(&it.points), an.routing.item(&it.key).map(|i| &i.points), "{}", it.key);
+    }
+    // More than control points changed: the routing before stands in for it.
+    let mut other = moved.clone();
+    other.layout.routing.grid += 5.0;
+    let interim = Analysis::build_kept(&other, &mut cache.clone(), &an.routing);
+    assert!(interim.routes_pending && interim.routing.rerouted.is_empty());
 }

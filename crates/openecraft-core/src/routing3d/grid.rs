@@ -186,6 +186,9 @@ pub struct Request<'a> {
     pub half: f32,
 }
 
+/// The room of a route taken for now ([`Space::hold`]): the cells and what they held.
+pub struct Held(Vec<(usize, f32, bool, u8, u64)>);
+
 /// A way through the grid.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Way {
@@ -951,6 +954,21 @@ impl Space {
         }
     }
 
+    /// [`Space::take`] until the room is given back ([`Space::give_back`]): what the
+    /// cells near `points` held before.
+    pub fn hold(&mut self, points: &[V3], half: f32, reach: f32, ends: &[(V3, f32)]) -> Held {
+        let held = self.cells_near(points, half + reach).into_iter().map(|i| (i, self.taken[i], self.taken_end[i], self.taken_along[i], self.taken_item[i])).collect();
+        self.take(points, half, reach, ends, &[]);
+        Held(held)
+    }
+
+    /// Gives back the room taken by [`Space::hold`].
+    pub fn give_back(&mut self, held: Held) {
+        for (i, taken, end, along, item) in held.0.into_iter().rev() {
+            (self.taken[i], self.taken_end[i], self.taken_along[i], self.taken_item[i]) = (taken, end, along, item);
+        }
+    }
+
     /// The cells of a way found before other routes took their room are still apart from
     /// them.
     pub fn still_apart(&self, cells: &[usize], req: &Request) -> bool {
@@ -1282,6 +1300,12 @@ impl Space {
 
     /// The cell is a channel for the request: a cable duct (not for tubes) or one of
     /// its routing paths.
+    /// The point lies in a cell of a cable duct or routing path the request runs along
+    /// with others ([`Space::channel`]).
+    pub fn in_channel(&self, q: V3, req: &Request) -> bool {
+        self.cell_of(q).is_some_and(|i| self.channel(i, req))
+    }
+
     fn channel(&self, idx: usize, req: &Request) -> bool {
         (self.duct[idx] > 0.0 && req.kind != RouteKind::Tube) || self.path_for(idx, req).is_some()
     }
@@ -2176,6 +2200,12 @@ fn segment_gap(a: V3, b: V3, c: V3, d: V3) -> (f32, f32, f32) {
 /// that near to itself, no further along it than that); `None` where it keeps apart
 /// from itself.
 pub fn meets_itself(points: &[V3], radius: f32, apart: f32, from: usize) -> Option<V3> {
+    meets_itself_where(points, radius, apart, from, &|_| true)
+}
+
+/// [`meets_itself`] at a place `counts` says it counts at only (not in a cable duct,
+/// where wires lie across each other).
+pub fn meets_itself_where(points: &[V3], radius: f32, apart: f32, from: usize, counts: &dyn Fn(V3) -> bool) -> Option<V3> {
     let n = points.len();
     if n < 4 {
         return None;
@@ -2229,8 +2259,9 @@ pub fn meets_itself(points: &[V3], radius: f32, apart: f32, from: usize) -> Opti
             let back = [(segment_gap(p.0, p.1, o.0, o.0), 0.0), (segment_gap(p.0, p.1, o.1, o.1), 1.0)];
             let pairs = [(gap, s, t), (ends[0].1 .0, ends[0].0, ends[0].1 .2), (ends[1].1 .0, ends[1].0, ends[1].1 .2), (back[0].0 .0, back[0].0 .1, back[0].1), (back[1].0 .0, back[1].0 .1, back[1].1)];
             for (gap, s, t) in pairs {
-                if gap < apart && (p.2 + (p.3 - p.2) * s) - (o.2 + (o.3 - o.2) * t) > far {
-                    return Some(add(p.0, scale(sub(p.1, p.0), s)));
+                let at = add(p.0, scale(sub(p.1, p.0), s));
+                if gap < apart && (p.2 + (p.3 - p.2) * s) - (o.2 + (o.3 - o.2) * t) > far && counts(at) {
+                    return Some(at);
                 }
             }
         }

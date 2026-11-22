@@ -1132,8 +1132,13 @@ de la envolvente, ningún camino hasta él queda libre curvándose con el radio,
 no dejan sitio para los arcos de las curvas entre ellos, el camino vuelve sobre sí mismo,
 o el punto no está en ningún armario ni sala por los que pasa el recorrido), el enrutado
 informa de un error que nombra el punto de paso, lo dibuja en rojo y tiende el
-recorrido sin sus puntos de paso hasta que se mueva; una vez
-enrutado de nuevo, la línea de estado indica el motivo. Un clic derecho en un punto de paso
+recorrido sin sus puntos de paso hasta que se mueva; la línea de estado
+indica si el recorrido pasa por sus puntos de paso o por qué no. Solo el recorrido
+cuyos puntos de paso cambiaron se busca de nuevo enseguida, entre los demás recorridos
+donde están (mientras tanto un arco gira alrededor de su punto de paso); todo el
+enrutado sigue en segundo plano. Un punto dado en una esquina del recorrido retrocede a
+lo largo de él el radio de curvatura, y el camino de vuelta desde un punto se mantiene
+apartado del de ida (en una canaleta puede cruzarlo). Un clic derecho en un punto de paso
 lo elimina, o todos (también en las propiedades del recorrido o del hilo). Un recorrido
 con puntos de paso no está congelado. Comandos `add_control_point`,
 `move_control_point` y `remove_control_point` (puntos en las coordenadas de una

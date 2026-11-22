@@ -2572,3 +2572,29 @@ fn a_control_point_goes_on_the_wire_chosen_in_a_duct_and_its_error_is_told() {
     let error = an.routing.item(&key).unwrap().control_error.clone().expect("an error");
     assert_eq!(ui.status, error);
 }
+
+#[test]
+fn a_dropped_control_point_shows_it_is_routed_until_the_routing_has_it() {
+    let mut prj = openecraft_core::sample::demo_project();
+    let mut cache = openecraft_core::analysis::Cache::default();
+    let an = Analysis::build_with(&prj, &mut cache);
+    let mut ui = PanelUi::default();
+    ui.select_route(&an, "-W1");
+    routing3d::add_control(&mut prj, &an.routing, "-W1", an.routing.item("-W1").unwrap().points[2]).unwrap();
+    let an = Analysis::build_with(&prj, &mut cache);
+    let at = routing3d::control_points(&prj, "-W1")[0];
+    let to = [at[0] + 50.0, at[1] - 60.0, at[2]];
+    ui.control_drag = Some(routing_ui::ControlDrag { key: "-W1".into(), index: 0, at: to, from: at, view: None });
+    ui.drop_control(&mut prj, &an);
+    // Dropped: the routing shown does not have it yet.
+    assert!(ui.status.contains("routing again"), "{}", ui.status);
+    assert!(ui.control_handles(&prj, &an).iter().all(|h| h.pending && h.ok));
+    ui.control_feedback(&an);
+    assert!(ui.status.contains("routing again"));
+    // The routing that stands in for the whole one has it: the result in the status line.
+    let quick = Analysis::build_kept(&prj, &mut cache, &an.routing);
+    assert!(quick.routes_pending);
+    assert!(ui.control_handles(&prj, &quick).iter().all(|h| !h.pending));
+    ui.control_feedback(&quick);
+    assert!(ui.status.starts_with("Cable -W1 is led through its control points"), "{}", ui.status);
+}
