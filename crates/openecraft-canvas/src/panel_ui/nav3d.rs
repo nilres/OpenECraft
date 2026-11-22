@@ -15,6 +15,9 @@ pub(super) const MAX_DIST: f32 = 200_000.0;
 pub(super) const MAX_PITCH: f32 = 1.5;
 /// Distance walked on per unit of zoom (natural logarithm of the factor) at [`MIN_DIST`].
 const WALK: f32 = 2000.0;
+/// Nearest the camera comes to a solid face zoomed at (depth, mm): well beyond the
+/// nearest depth drawn.
+pub(super) const GAP: f32 = 3.0 * super::gpu3d::NEAR;
 
 /// Turns the camera around its orbit centre by a drag of `dl` points.
 pub(super) fn orbit(cam: &mut Orbit, dl: Vec2) {
@@ -33,30 +36,51 @@ pub(super) fn pan(cam: &mut Orbit, dl: Vec2, f: f32) {
 /// Zooms by `factor` (above 1: closer) at the point `at` points from the centre of the
 /// view: what lies there at the depth of the orbit centre stays under the pointer.
 /// Closer than [`MIN_DIST`] the camera walks on along the ray through the pointer.
-pub(super) fn zoom_at(cam: &mut Orbit, factor: f32, at: Vec2, f: f32) {
+/// `surface`: depth of the solid face under the pointer; zooming in then closes in on it
+/// by the factor, ever closer but never nearer than [`GAP`], and orbits no farther away.
+pub(super) fn zoom_at(cam: &mut Orbit, factor: f32, at: Vec2, f: f32, surface: Option<f32>) {
     if !factor.is_finite() || factor <= 0.0 || factor == 1.0 {
         return;
     }
-    let (eye, right, up, _) = cam.basis();
+    let (eye, right, up, fwd) = cam.basis();
+    if let Some(z) = surface.filter(|_| factor > 1.0) {
+        if z <= GAP {
+            return;
+        }
+        // The point `GAP` short of the surface on the ray through the pointer: the eye
+        // moves towards it by the factor.
+        let k = (z - GAP) / f;
+        let before = add(add(eye, scale(fwd, z - GAP)), add(scale(right, at.x * k), scale(up, -at.y * k)));
+        let new_eye = add(before, scale(sub(eye, before), 1.0 / factor));
+        let seen = GAP + (z - GAP) / factor;
+        cam.dist = (cam.dist / factor).clamp(GAP, seen.min(MAX_DIST));
+        cam.target = add(new_eye, scale(fwd, cam.dist));
+        return;
+    }
     let s = cam.dist / f;
     let under = add(cam.target, add(scale(right, at.x * s), scale(up, -at.y * s)));
     let want = cam.dist / factor;
-    let dist = want.clamp(MIN_DIST, MAX_DIST);
+    // Closer than the nearest distance after closing in on a surface: no step back.
+    let dist = want.clamp(MIN_DIST.min(cam.dist), MAX_DIST);
     cam.target = add(under, scale(sub(cam.target, under), dist / cam.dist));
     cam.dist = dist;
-    if want < MIN_DIST {
+    if want < dist {
         cam.target = add(cam.target, scale(norm(sub(under, eye)), WALK * factor.ln()));
     }
 }
 
+/// Depth of the solid face a camera sees at a point of the view (points from its centre).
+pub(super) type Surface<'a> = dyn Fn(&Orbit, Vec2) -> Option<f32> + 'a;
+
 /// Pans and zooms by the wheel, a trackpad or the fingers (`centre`: middle of the
 /// view); gives whether the camera moved.
-pub(super) fn gesture(cam: &mut Orbit, g: &openecraft_ui::nav::Gesture, centre: egui::Pos2, f: f32) -> bool {
+pub(super) fn gesture(cam: &mut Orbit, g: &openecraft_ui::nav::Gesture, centre: egui::Pos2, f: f32, surface: &Surface) -> bool {
     if g.pans() {
         pan(cam, g.pan, f);
     }
     if g.zooms() {
-        zoom_at(cam, g.zoom, g.at.map_or(Vec2::ZERO, |q| q - centre), f);
+        let at = g.at.map_or(Vec2::ZERO, |q| q - centre);
+        zoom_at(cam, g.zoom, at, f, surface(cam, at));
     }
     g.pans() || g.zooms()
 }
@@ -84,12 +108,14 @@ pub(super) fn held(i: &InputState, sc: &Shortcuts, fast: Option<Mod>) -> ([f32; 
     (dir, fast.is_some())
 }
 
-/// Moves the camera for `dt` seconds with the keys held (see [`held`]).
-pub(super) fn keys(cam: &mut Orbit, [ahead, side, rise, closer]: [f32; 4], fast: bool, dt: f32) {
+/// Moves the camera for `dt` seconds with the keys held (see [`held`]); closer zooms at
+/// the centre of the view.
+pub(super) fn keys(cam: &mut Orbit, [ahead, side, rise, closer]: [f32; 4], fast: bool, dt: f32, surface: &Surface) {
     let speed = cam.dist.clamp(1000.0, 20000.0) * if fast { 2.4 } else { 0.8 } * dt;
     walk(cam, ahead * speed, side * speed, rise * speed);
     if closer != 0.0 {
-        cam.dist = (cam.dist * (-closer * dt * if fast { 3.0 } else { 1.2 }).exp()).clamp(MIN_DIST, MAX_DIST);
+        let factor = (closer * dt * if fast { 3.0 } else { 1.2 }).exp();
+        zoom_at(cam, factor, Vec2::ZERO, 1.0, surface(cam, Vec2::ZERO));
     }
 }
 

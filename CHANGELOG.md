@@ -12,6 +12,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   A published release enters the bundles in the official MCP Registry as
   `io.github.nilres/openecraft`, from where other directories and clients list the
   server ([command line](docs/command-line.md)).
+- **Zooming in 3D stops at what is under the pointer:** the wheel, a pinch and the key
+  for closer zoom in on the solid face under the pointer (a device, the mounting plate,
+  the back of the enclosure, a wall of a room), coming ever closer to it but no longer
+  through it; walls seen through and hidden walls in front are zoomed through as before.
 - **Control points of wires, cables and tubes:** right-click a route over the mounting
   plate, on a wall of a room or in the 3D view and *Add control point*, then drag the
   point; the route is searched again through its control points, keeping its bend

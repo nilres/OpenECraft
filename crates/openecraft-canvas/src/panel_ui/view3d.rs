@@ -125,8 +125,16 @@ impl PanelUi {
         }
         let fitted = default_cam(prj, &shown);
         let control_key = self.control_key(an);
-        let cam = self.cam.get_or_insert(fitted);
+        let mut scene = self.scene_3d(ui.ctx(), prj, an, ei, &shown);
+        let opacity = self.wall_opacity.clamp(0.0, 1.0);
+        let hide_front = self.hide_front_walls;
         let f = rect.height() * 1.3;
+        // Zooming closes in on the solid face under the pointer, never through it.
+        let surface = |o: &Orbit, at: Vec2| {
+            let (eye, right, up, fwd) = o.basis();
+            solid_depth_at(&scene, &Camera { eye, right, up, fwd, f }, at, opacity, hide_front)
+        };
+        let cam = self.cam.get_or_insert(fitted);
         let mut moved = false;
         // Orbit and pan by the gestures chosen (left button; right or middle button or
         // Shift); zoom at the pointer. Two fingers on a touch screen pan and zoom; the
@@ -150,7 +158,7 @@ impl PanelUi {
             None => {}
         }
         moved |= drag.is_some();
-        moved |= nav3d::gesture(cam, &gesture, rect.center(), f);
+        moved |= nav3d::gesture(cam, &gesture, rect.center(), f, &surface);
         // Keyboard: moving through the view, Home fits it.
         let mut fit = false;
         let mut delete = false;
@@ -159,7 +167,7 @@ impl PanelUi {
             let ((dir, fast), home, del) = ui.input(|i| (nav3d::held(i, &sc, gestures.modifier(Role::Faster3d)), sc.cmd_pressed(i, Cmd::FitPage), sc.cmd_pressed(i, Cmd::Delete)));
             delete = del;
             if dir.iter().any(|d| *d != 0.0) {
-                nav3d::keys(cam, dir, fast, dt);
+                nav3d::keys(cam, dir, fast, dt, &surface);
                 moved = true;
                 ui.ctx().request_repaint();
             }
@@ -180,6 +188,7 @@ impl PanelUi {
         self.cam_goal = goal.map(|g| (g, cam));
         if delete && !self.selection.is_empty() {
             self.delete_selected_3d(prj);
+            scene = self.scene_3d(ui.ctx(), prj, an, ei, &shown);
         }
         let (eye, right, up, fwd) = cam.basis();
         let camera = Camera { eye, right, up, fwd, f };
@@ -187,9 +196,6 @@ impl PanelUi {
         let background = if dark { Color32::from_rgb(24, 26, 30) } else { Color32::from_rgb(214, 218, 224) };
         painter.rect_filled(rect, 0.0, background);
 
-        let scene = self.scene_3d(ui.ctx(), prj, an, ei, &shown);
-        let opacity = self.wall_opacity.clamp(0.0, 1.0);
-        let hide_front = self.hide_front_walls;
         let picking = resp.clicked_by(PointerButton::Primary);
         let menu_pick = resp.secondary_clicked();
         let focusing = gestures.double_clicked(MouseAction::Focus3d, &resp, mods);
@@ -921,6 +927,45 @@ fn solid_depth_under(prims: &[Prim], q: Pos2) -> Option<f32> {
     };
     let nearest = |solid: bool| faces().filter(|f| f.0 || !solid).map(|f| f.1).reduce(f32::min);
     nearest(true).or_else(|| nearest(false))
+}
+
+/// Depth of the nearest solid face drawn (as [`solid_depth_under`] counts them: not
+/// glass, not the outer walls seen through) on the ray through `at` points from the
+/// centre of the view.
+pub(super) fn solid_depth_at(scene: &Scene3d, camera: &Camera, at: Vec2, opacity: f32, hide_front: bool) -> Option<f32> {
+    let eye = camera.eye;
+    let dir = camera.ray(at);
+    let mut best: Option<f32> = None;
+    for face in &scene.faces {
+        let layer = match face.side.map(|s| &scene.sides[s]) {
+            Some(side) if side.glass => continue,
+            Some(side) => match side.layer(eye, hide_front) {
+                Some(layer) => layer,
+                None => continue,
+            },
+            None => face.layer,
+        };
+        if face.color.a() < 255 || layer == OUTER_WALLS && opacity < 1.0 {
+            continue;
+        }
+        let a = face.pts[0];
+        let towards = dot(face.normal, dir);
+        if towards >= 0.0 || dot(face.normal, sub(eye, a)) <= 0.0 {
+            continue; // back face
+        }
+        let t = dot(face.normal, sub(a, eye)) / towards;
+        if best.is_some_and(|b| t >= b) {
+            continue;
+        }
+        let hit = vec3::add(eye, vec3::scale(dir, t));
+        let pts = &face.pts[..face.n as usize];
+        let sides = (0..pts.len()).map(|i| dot(vec3::cross(sub(pts[(i + 1) % pts.len()], pts[i]), sub(hit, pts[i])), face.normal));
+        let (lo, hi) = sides.fold((0.0f32, 0.0f32), |(lo, hi), d| (lo.min(d), hi.max(d)));
+        if (lo >= 0.0 || hi <= 0.0) && hi > lo {
+            best = Some(t);
+        }
+    }
+    best
 }
 
 /// Depth at `q` of a convex face with the corners `pts` at the depths `z`.
