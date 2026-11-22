@@ -157,7 +157,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("y", Kind::Num, tr_const!("Top edge on the face in mm")),
             optional("anchor_x", Kind::Str, ANCHOR),
             optional("anchor_y", Kind::Str, ANCHOR),
-            optional("fastening", Kind::Str, tr_const!("auto, tapped, through, rivet_nut, stud, clip or adhesive")),
+            optional("fastening", Kind::Str, tr_const!("auto, tapped, through, rivet_nut, rivet, stud, clip or adhesive (rails: screwed or riveted)")),
         ],
         run: place_accessory,
     },
@@ -194,7 +194,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("infer_rotation",Kind::Bool,tr_const!("Infer panel rotation from part dimensions")),
             optional("anchor_x", Kind::Str, ANCHOR),
             optional("anchor_y", Kind::Str, ANCHOR),
-            optional("fastening", Kind::Str, tr_const!("auto, tapped, through, rivet_nut, stud, clip or adhesive")),
+            optional("fastening", Kind::Str, tr_const!("auto, tapped, through, rivet_nut, rivet, stud, clip or adhesive (rails: screwed or riveted)")),
             optional("mounted_on",Kind::Int,tr_const!("Mounting parent item id; 0 detaches without moving the item")),
             optional("rail_mount_override",Kind::Bool,tr_const!("Keep the instance mounting datum instead of refreshing it from its part")),
             optional("rail_vertical",Kind::Bool,tr_const!("Mounting rail runs vertically")),
@@ -652,6 +652,9 @@ fn set_panel_item(prj: &mut Project, a: &Args) -> Result<Value, String> {
         it.face = f;
     }
     if let Some(f) = fastening {
+        if !panel::Fastening::choices(it.kind).contains(&f) {
+            return Err(tr("A mounting rail is screwed or riveted: auto, tapped, through, rivet_nut, rivet or stud").into());
+        }
         it.fastening = f;
     }
     if moved && ax.is_none() && ay.is_none() {

@@ -392,3 +392,44 @@ fn enclosure_heater_thermostat_and_rail_socket_get_their_models() {
     // Room socket outlets keep their frames.
     assert_eq!(kind_of(get("GEN.SOCKET-F-UP")), Some(Kind::Outlet(Outlet::Socket { gangs: 1, lid: false, usb: false })));
 }
+
+#[test]
+fn door_devices_and_meters_get_their_models() {
+    let parts = default_catalog();
+    let get = |n: &str| parts.iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));
+    for (n, kind, detail) in [
+        ("GEN.LMP-RD-24", Kind::Door22(Door22::Lamp([204, 38, 34])), CHROME),
+        ("GEN.LMP-GN-24", Kind::Door22(Door22::Lamp([36, 160, 70])), CHROME),
+        ("GEN.PB-GN-1NO", Kind::Door22(Door22::Button([36, 160, 70])), CHROME),
+        ("GEN.ESTOP-1NC", Kind::Door22(Door22::Mushroom), [204, 38, 34]),
+        ("GEN.SEL-2POS-1NO", Kind::Door22(Door22::Selector), BLACK),
+        ("GEN.KEY-2POS-1NO", Kind::Door22(Door22::Key), BRASS),
+        ("GEN.HORN-24", Kind::Door22(Door22::Buzzer), BLACK),
+        ("GEN.AMM-100-5A", Kind::Meter { digital: false, volts: false }, [244, 244, 238]),
+        ("GEN.AMM-72-5A", Kind::Meter { digital: false, volts: false }, [244, 244, 238]),
+        ("GEN.VOLT-96-500V", Kind::Meter { digital: false, volts: true }, [244, 244, 238]),
+        ("GEN.DAM-72-5A", Kind::Meter { digital: true, volts: false }, [255, 64, 40]),
+        ("GEN.DVM-72-600V", Kind::Meter { digital: true, volts: true }, [255, 64, 40]),
+    ] {
+        let p = get(n);
+        assert_eq!(kind_of(p), Some(kind), "{n}");
+        let (_, mesh) = model(p).unwrap();
+        assert_eq!(mesh.colors.len(), mesh.triangles.len(), "{n}");
+        assert_eq!(mesh.bounds(), ([0.0; 3], [p.width, p.height, p.depth]), "{n} fills its box");
+        assert!(mesh.colors.contains(&detail), "{n}: {detail:?}");
+        assert!(mesh.triangles.len() <= 2000, "{n}: {} triangles", mesh.triangles.len());
+        // How far it stands out of the door, in its part data; its front (the bezel or
+        // frame) as wide as the part in front of the door.
+        let out = p.dimension_mm("Outside").unwrap_or_else(|| panic!("{n}: Outside"));
+        assert!(out > 0.0 && out < 0.6 * p.depth, "{n}: {out}");
+        let front: Vec<[f32; 3]> = mesh.vertices.iter().copied().filter(|v| v[2] >= p.depth - out - 0.01).collect();
+        let span = front.iter().map(|v| v[0]).fold(f32::MIN, f32::max) - front.iter().map(|v| v[0]).fold(f32::MAX, f32::min);
+        assert!(span > 0.95 * p.width, "{n}: front {span} wide");
+    }
+    // The digital meters show their digits, the voltmeters a V: 230.4 V has more lit
+    // segments than 86.4 A (no first digit).
+    let lit = |n: &str| model(get(n)).unwrap().1.colors.iter().filter(|c| **c == [255, 64, 40]).count();
+    assert!(lit("GEN.DVM-72-600V") > lit("GEN.DAM-72-5A"));
+    // Modular indicator lamps on the rail are no door devices.
+    assert_ne!(kind_of(get("GEN.LMP-DIN-RD-230")).map(|k| matches!(k, Kind::Door22(_))), Some(true));
+}

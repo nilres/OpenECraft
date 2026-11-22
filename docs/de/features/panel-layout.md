@@ -195,6 +195,18 @@ Artikeldaten (`Mounting holes: M5: 9,12; 69,72`) oder zwei Standardbohrungen;
 Bohrungsdurchmesser, Ausschnitte, gedrehte oder gerundete als ihre Kontur) oder CSV
 (mit der Drehung und dem Eckenradius jedes Ausschnitts).
 
+Eine Tragschiene wird immer geschraubt oder genietet (*Befestigung* in ihren
+Eigenschaften: Gewindebohrung, Durchgangsbohrung mit Mutter, Einnietmutter, Blindniet
+oder Schweißbolzen; `set_panel_item fastening=rivet`): ihre Befestigungspunkte liegen in
+den Langlöchern einer gelochten Schiene, die 3D-Ansicht zeigt die Schrauben- oder
+Nietköpfe darin und die Stückliste die Schrauben, Muttern oder Blindniete. Die
+Auswertung *Bohrbild* listet jede Bohrung und jeden Ausschnitt jeder Fläche mit seinem
+Buchstaben, seinen Maßen von der linken unteren Ecke der Fläche (wie die NC-Daten),
+Größe, Gewinde und Bearbeitung. Eine Seite *Bohrbild* eines Gehäuses (*Neue
+Bohrbild-Seite*, `add_page kind=drilling enclosure=+CAB1`) zeichnet seine Flächen mit
+ihren Bohrungen und Ausschnitten in einem Maßstab, bemaßt von dieser Ecke, daneben die
+Arten der Bohrungen und Ausschnitte mit ihrer Anzahl.
+
 ## Virtuelle Verdrahtung und Füllgrade der Kabelkanäle
 
 Jede Schaltplanverbindung zwischen platzierten Betriebsmitteln wird von ihrem

@@ -1,7 +1,8 @@
 //! Level 8: the pump station (level 6) built into a line-up of two floor-standing
 //! enclosures: +CAB1 for the infeed, pump 1 and the PLC, +CAB2 for the frequency
-//! converter of pump 2. Busbar system, mounting rails and cable ducts, door devices and
-//! handles, filter fan and outlet filter, light, PE bar, gland plate with cable glands,
+//! converter of pump 2. Busbar system, mounting rails and cable ducts, door devices
+//! (fault lamps, the analog voltmeter of the supply and ammeter of pump 1, the digital
+//! ammeter of pump 2) and handles, filter fan and outlet filter, light, PE bar, gland plate with cable glands,
 //! a cable passage between the enclosures, the climate calculation and the reports of
 //! the panel layout (duct fill, climate, 3D routing).
 
@@ -19,6 +20,7 @@ pub(super) fn project() -> Project {
     move_pump2_to_cab2(&mut prj);
     let db = PartsDb::default();
     motor_cables(&mut prj, &db);
+    meters(&mut prj, &db);
     for part in [CAB1, CAB2, panel::RAIL_PART, panel::DUCT_PART, panel::DOOR_DUCT_PART, panel::BUSBAR_PART] {
         crate::parts::ensure_in_project(&mut prj, &db, part);
     }
@@ -63,6 +65,27 @@ fn page_in(prj: &mut Project, section: u64, n: &str, desc: &str, kind: PageKind)
 }
 
 /// The devices of pump 2 in the cabinet move to the second enclosure +CAB2.
+/// Meters in the doors: the supply voltage behind its own MCB -F3 on the infeed page
+/// (analog), the currents of the pumps in their L1 before their protective devices
+/// (analog for pump 1, digital for pump 2).
+fn meters(prj: &mut Project, db: &PartsDb) {
+    let page = |prj: &Project, desc: &str| prj.pages.iter().position(|p| p.description == desc).expect(desc);
+    let supply = page(prj, "Infeed and 24 V supply");
+    let mut g = Pg { prj, page: supply };
+    g.sym("cb1", 120.0, 80.0, 0, "-F3", "", "Measuring").w(120.0, 24.0, 120.0, 76.0).w(120.0, 84.0, 120.0, 92.0);
+    g.sym("voltmeter", 120.0, 96.0, 0, "-P1", "", "Supply voltage");
+    g.path(&[(120.0, 100.0), (120.0, 108.0), (132.0, 108.0), (132.0, 48.0)]);
+    for desc in ["Power pump 1", "Power pump 2"] {
+        let pi = page(prj, desc);
+        let feed = |w: &Wire| w.a.x == 60.0 && w.b.x == 60.0 && w.a.y.min(w.b.y) == 24.0 && w.a.y.max(w.b.y) == 76.0;
+        prj.pages[pi].wires.retain(|w| !feed(w));
+        let mut g = Pg { prj, page: pi };
+        g.sym("ammeter", 60.0, 68.0, 0, "-P2", "", "Current").w(60.0, 24.0, 60.0, 64.0).w(60.0, 72.0, 60.0, 76.0);
+    }
+    assign_parts(prj, db, &[("=SUP+CAB1-F3", &["GEN.MCB-1P-C6"][..]), ("=SUP+CAB1-P1", &["GEN.VOLT-96-500V"]), ("=P1+CAB1-P2", &["GEN.AMM-72-5A"]), ("=P2+CAB2-P2", &["GEN.DAM-72-5A"])]);
+    number_wires(prj);
+}
+
 fn move_pump2_to_cab2(prj: &mut Project) {
     prj.structures.define(crate::structure::Aspect::Location, "CAB2", "Control cabinet, converter bay");
     for p in prj.pages.iter_mut().filter(|p| p.function == "P2") {
@@ -150,7 +173,7 @@ fn cab1(prj: &mut Project) {
     ducts_and_rails(prj, e, 750.0, &[380.0, 720.0, 1050.0, 1400.0], &[230.0, 560.0, 900.0, 1230.0, 1580.0]);
     // Busbar system above the first duct (bars and holders in the bill of materials).
     profile(prj, e, ItemKind::Busbar, panel::BUSBAR_PART, (60.0, 120.0), (690.0, 120.0));
-    on_rail(prj, e, 380.0, 60.0, &["=SUP+CAB1-F1", "=SUP+CAB1-T1", "=P1+CAB1-Q1", "=P1+CAB1-K1"]);
+    on_rail(prj, e, 380.0, 60.0, &["=SUP+CAB1-F1", "=SUP+CAB1-F3", "=SUP+CAB1-T1", "=P1+CAB1-Q1", "=P1+CAB1-K1"]);
     on_rail(prj, e, 720.0, 60.0, &["=PLC+CAB1-A1", "=PLC+CAB1-A2", "=PLC+CAB1-A3"]);
     on_rail(prj, e, 1050.0, 60.0, &["=P1+CAB1-X1"]);
     // PE bar and strain relief above the gland plate.
@@ -158,6 +181,8 @@ fn cab1(prj: &mut Project) {
     panel::place_accessory(prj, e, "GEN.CLAMP-RAIL-500", Face::Plate, crate::geom::p(80.0, 1800.0));
     // Door: fault lamp, handle; the filter fan blows in at the bottom of the left side,
     // the outlet filter lets the air out at its top.
+    door_device(prj, e, "=SUP+CAB1-P1", 200.0, 640.0);
+    door_device(prj, e, "=P1+CAB1-P2", 380.0, 652.0);
     door_device(prj, e, "=P1+CAB1-P1", 380.0, 900.0);
     panel::place_accessory(prj, e, "GEN.HANDLE-SWING", Face::Door, crate::geom::p(690.0, 900.0));
     panel::place_accessory(prj, e, "GEN.FAN-FILTER-120", Face::Left, crate::geom::p(160.0, 1600.0));
@@ -174,6 +199,7 @@ fn cab2(prj: &mut Project) {
     on_rail(prj, e, 380.0, 60.0, &["=P2+CAB2-F1"]);
     on_rail(prj, e, 830.0, 60.0, &["=P2+CAB2-T1"]);
     on_rail(prj, e, 1280.0, 60.0, &["=P2+CAB2-X1"]);
+    door_device(prj, e, "=P2+CAB2-P2", 280.0, 652.0);
     door_device(prj, e, "=P2+CAB2-P1", 280.0, 900.0);
     panel::place_accessory(prj, e, "GEN.HANDLE-SWING", Face::Door, crate::geom::p(490.0, 900.0));
     panel::place_accessory(prj, e, "GEN.GLAND-M20", Face::Bottom, crate::geom::p(120.0, 300.0));

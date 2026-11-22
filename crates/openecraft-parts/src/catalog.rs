@@ -725,6 +725,17 @@ Breaking capacity: 100 kA".into();
     p.current = "100 A / 5 A".into();
     c.add("GEN.AMM-100-5A", "Ammeter 0 - 100 A for current transformer x / 5 A, 72 x 72 mm", "Measuring instruments", "Ammeter", "P", 32.0, (72.0, 72.0, 55.0, 0.2), &[(Meter, "1 2")]);
     c.add("GEN.VOLT-500V", "Voltmeter 0 - 500 V AC, 72 x 72 mm", "Measuring instruments", "Voltmeter", "P", 30.0, (72.0, 72.0, 55.0, 0.2), &[(Meter, "1 2")]);
+    // Switchboard meters for doors: analog (moving iron, 90 degree scale) and digital
+    // (LED display) in the DIN sizes 72 x 72 and 96 x 96 mm.
+    for (number, desc, subgroup, price, (w, d)) in [
+        ("GEN.AMM-72-5A", "Ammeter 0 - 5 A, direct, moving iron, 72 x 72 mm", "Ammeter", 29.0, (72.0, 55.0)),
+        ("GEN.AMM-96-400-5A", "Ammeter 0 - 400 A for current transformer x / 5 A, moving iron, 96 x 96 mm", "Ammeter", 39.0, (96.0, 60.0)),
+        ("GEN.VOLT-96-500V", "Voltmeter 0 - 500 V AC, moving iron, 96 x 96 mm", "Voltmeter", 37.0, (96.0, 60.0)),
+        ("GEN.DAM-72-5A", "Digital ammeter for current transformer x / 5 A, LED display, self-powered, 72 x 72 mm", "Ammeter", 64.0, (72.0, 70.0)),
+        ("GEN.DVM-72-600V", "Digital voltmeter 0 - 600 V AC, LED display, self-powered, 72 x 72 mm", "Voltmeter", 58.0, (72.0, 70.0)),
+    ] {
+        c.add(number, desc, "Measuring instruments", subgroup, "P", price, (w, w, d, 0.25), &[(Meter, "1 2")]);
+    }
 
     let p = c.add("GEN.SOCKET-DIN-16A", "Socket outlet type F for mounting rail, 16 A 250 V", "Installation devices", "Socket outlet", "X", 14.0, (45.0, 90.0, 60.0, 0.1), &[(SocketOutlet, "L N PE")]);
     p.current = "16 A".into();
@@ -1032,6 +1043,7 @@ Breaking capacity: 100 kA".into();
         p.tech_data = format!("Cores: {cores}\nCross-section: {cs}\nCable form: Flat\nWidth: {width} mm\nThickness: {thick} mm");
     }
 
+    door_fronts(&mut c);
     let mut parts = c.parts;
     parts.iter_mut().for_each(add_generated_models);
     parts.iter_mut().for_each(|p| {
@@ -1039,6 +1051,26 @@ Breaking capacity: 100 kA".into();
     });
     parts.sort_by(|a, b| natural_cmp(&a.number, &b.number));
     parts
+}
+
+/// How far the devices in the door stand out of it (`Outside`): bezels, lenses and
+/// buttons of the 22 mm devices, the front frames of the meters.
+fn door_fronts(c: &mut C) {
+    for p in c.parts.iter_mut() {
+        let out = match p.subgroup.as_str() {
+            "Indicator lamp" if p.height <= 60.0 => 14.0,
+            "Pushbutton" => 12.0,
+            "Emergency stop" => 32.0,
+            "Selector switch" => 18.0,
+            "Key switch" => 22.0,
+            "Horn" => 14.0,
+            "Ammeter" | "Voltmeter" if p.description.to_lowercase().contains("digital") => 6.0,
+            "Ammeter" | "Voltmeter" => 8.0,
+            _ => continue,
+        };
+        let line = format!("Outside: {out:.0}");
+        p.tech_data = if p.tech_data.is_empty() { line } else { format!("{}\n{line}", p.tech_data) };
+    }
 }
 
 /// Gives a part without models a simple 2D front view and 3D model of its dimensions
@@ -1147,6 +1179,19 @@ fn fasteners(c: &mut C) {
             p.pack_quantity = 100;
             p.mounting.clear();
         }
+    }
+    // Blind rivets (rails riveted to the plate), one size for several threads.
+    let mut rivets: Vec<String> = Vec::new();
+    for &(t, _) in THREADS {
+        let (Some((d, len, _)), Some(number)) = (rivet_size(t), rivet_number(t)) else { continue };
+        if rivets.contains(&number) {
+            continue;
+        }
+        let desc = format!("Blind rivet {d} x {len}, dome head, aluminium with steel mandrel, ISO 15977");
+        let p = c.add(&number, &desc, "Mounting", "Blind rivet", "", (0.02 * d * 100.0).round() / 100.0, (0.0, 0.0, 0.0, 0.0), &[]);
+        p.pack_quantity = 500;
+        p.mounting.clear();
+        rivets.push(number);
     }
 }
 

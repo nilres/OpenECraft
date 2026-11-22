@@ -13,7 +13,7 @@ pub fn page_icon(kind: PageKind) -> &'static str {
         PageKind::Schematic => "🗋",
         PageKind::Cover => "🏷",
         PageKind::Report(_) => "📊",
-        PageKind::Mounting(_) => "🗄",
+        PageKind::Mounting(_) | PageKind::Drilling(_) => "🗄",
         PageKind::Overview => "🗺",
         PageKind::Graphic => "✏",
         PageKind::Document => "📎",

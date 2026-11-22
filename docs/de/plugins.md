@@ -665,7 +665,7 @@ Hosts, die `form_customization` bekannt geben, nehmen diese weiteren Felder von
 - Jedes Element eines Schriftfelds oder gezeichneten Formulars nimmt
   `show: {"filled": "…", "page_types": [...]}` an: Es wird nur gezeichnet, wenn `filled`
   (mit Platzhaltern) nicht leer ist, und nur auf Seiten der angegebenen Typen
-  (`schematic`, `cover`, `report`, `mounting`, `overview`, `graphic`, `document`).
+  (`schematic`, `cover`, `report`, `mounting`, `drilling`, `overview`, `graphic`, `document`).
   `Line`, `Rect` und `Text` nehmen `color: [r, g, b]` an, `Line` und `Rect` `dashed`.
   `{"type": "Qr", "a": {…}, "size": mm, "text": "…"}` zeichnet einen QR-Code
   (Byte-Modus, Stufe M) des gefüllten Texts.

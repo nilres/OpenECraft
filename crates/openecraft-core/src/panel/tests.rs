@@ -876,9 +876,13 @@ fn rails_have_their_profile_and_slots_along_their_length() {
     let prj = demo_project();
     let mut checked = 0;
     for it in prj.layout.enclosures.iter().flat_map(|e| &e.items).filter(|i| i.kind == ItemKind::Rail) {
-        let tris = rail_mesh(&prj, it);
-        let painted = device_mesh_painted(&prj, it).expect("a rail is drawn with its profile");
-        assert_eq!(painted.len(), tris.len());
+        let painted = rail_mesh(&prj, it);
+        assert_eq!(device_mesh_painted(&prj, it).expect("a rail is drawn with its profile"), painted);
+        // The rail in its own colour, the heads of its screws in theirs.
+        let tris: Vec<Tri> = painted.iter().filter(|(_, c)| c.is_none()).map(|(t, _)| *t).collect();
+        let heads: Vec<Tri> = painted.iter().filter(|(_, c)| c.is_some()).map(|(t, _)| *t).collect();
+        let screws = crate::production::rail_fixings(it, &prj.parts).len();
+        assert!(screws >= 2 && heads.len() >= 32 * screws, "{} triangles of {screws} screw heads", heads.len());
         let pts: Vec<V3> = tris.iter().flatten().copied().collect();
         let lo = [0, 1, 2].map(|k| pts.iter().map(|p| p[k]).fold(f32::MAX, f32::min));
         let hi = [0, 1, 2].map(|k| pts.iter().map(|p| p[k]).fold(f32::MIN, f32::max));
@@ -1107,4 +1111,26 @@ fn door_wires_run_over_the_hinge_side() {
     let json = serde_json::to_value(&e).unwrap();
     assert_eq!(json["door_hinge"], "right");
     assert!(serde_json::to_value(Enclosure::default()).unwrap().get("door_hinge").is_none());
+}
+
+#[test]
+fn door_devices_stand_out_of_the_door_by_their_front() {
+    // The lamps of the demo door: their lens and bezel (part data `Outside`) in front of
+    // the outer surface of the door, the rest behind it over the depth of the item.
+    let prj = demo_project();
+    let e = &prj.layout.enclosures[0];
+    let mut checked = 0;
+    for it in e.items.iter().filter(|i| i.face == Face::Door && i.kind == ItemKind::Device) {
+        let Some(out) = part_by_number(&prj, &it.part).and_then(|p| tech_number(p, "Outside")) else { continue };
+        let tris = place_triangles(e, it, device_mesh(&prj, it).unwrap());
+        let zs: Vec<f32> = tris.iter().flatten().map(|v| v[2]).collect();
+        let (lo, hi) = (zs.iter().copied().fold(f32::MAX, f32::min), zs.iter().copied().fold(f32::MIN, f32::max));
+        let (b0, b1) = item_box(e, it);
+        assert!((lo - b0[2]).abs() < 0.01, "{}: from the back of its box", it.tag);
+        assert!((hi - (b1[2] + e.wall() + out)).abs() < 0.01, "{}: {hi} is {out} out of the door at {}", it.tag, b1[2] + e.wall());
+        // Nothing inside the door sheet.
+        assert!(!zs.iter().any(|z| *z > b1[2] + 0.01 && *z < b1[2] + e.wall() - 0.01), "{}", it.tag);
+        checked += 1;
+    }
+    assert!(checked >= 2, "{checked} door devices");
 }

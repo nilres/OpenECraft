@@ -190,6 +190,19 @@ de artículo (`Mounting holes: M5: 9,12; 69,72`) o dos taladros predeterminados;
 de taladro, recortes, los girados o redondeados como su contorno) o CSV (con el giro y el
 radio de esquina de cada recorte).
 
+Un carril de montaje siempre se atornilla o se remacha (*Fijación* en sus propiedades:
+agujero roscado, agujero pasante con tuerca, tuerca remachable, remache ciego o
+espárrago soldado; `set_panel_item fastening=rivet`): sus puntos de fijación están en los
+agujeros alargados de un carril perforado, la vista 3D muestra en ellos las cabezas de
+los tornillos o remaches y la lista de materiales los tornillos, tuercas o remaches
+ciegos. El informe *Patrón de taladrado* lista cada taladro y cada recorte de cada cara
+con su letra, sus cotas desde la esquina inferior izquierda de la cara (como los datos
+NC), su tamaño, su rosca y su operación. Una página *Patrón de taladrado* de una
+envolvente (*Nueva página de patrón de taladrado*,
+`add_page kind=drilling enclosure=+CAB1`) dibuja sus caras con sus taladros y recortes a
+una misma escala, acotados desde esa esquina, y al lado los tipos de taladros y recortes
+con su número.
+
 ## Cableado virtual y grados de llenado de las canaletas
 
 Cada conexión del esquema entre dispositivos colocados se tiende desde su punto de

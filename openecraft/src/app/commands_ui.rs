@@ -515,10 +515,10 @@ impl App {
                 self.report_kind = ReportKind::PanelWiring.into();
                 self.show_pane(Pane::Tool(ToolPane::Reports));
             }
-            Cmd::LayoutMountingPage => {
+            Cmd::LayoutMountingPage | Cmd::LayoutDrillingPage => {
                 if let Some(e) = self.session.prj.layout.enclosures.get(self.panel_ui.enclosure) {
                     let id = e.id;
-                    self.add_page(PageKind::Mounting(id));
+                    self.add_page(if cmd == Cmd::LayoutMountingPage { PageKind::Mounting(id) } else { PageKind::Drilling(id) });
                     self.set_workspace(Workspace::Schematic);
                 }
             }
@@ -617,18 +617,20 @@ impl App {
                         }
                     }
                 });
-                ui.menu_button(tr("New mounting layout page"), |ui| {
-                    let encs: Vec<(u64, String)> = self.session.prj.layout.enclosures.iter().map(|e| (e.id, e.name.clone())).collect();
-                    for (id, name) in encs {
-                        if ui.button(name).clicked() {
-                            self.add_page(PageKind::Mounting(id));
-                            ui.close();
+                for (menu, kind) in [(tr("New mounting layout page"), PageKind::Mounting as fn(u64) -> PageKind), (tr("New drilling pattern page"), PageKind::Drilling)] {
+                    ui.menu_button(menu, |ui| {
+                        let encs: Vec<(u64, String)> = self.session.prj.layout.enclosures.iter().map(|e| (e.id, e.name.clone())).collect();
+                        for (id, name) in encs {
+                            if ui.button(name).clicked() {
+                                self.add_page(kind(id));
+                                ui.close();
+                            }
                         }
-                    }
-                    if self.session.prj.layout.enclosures.is_empty() {
-                        ui.weak(tr("Create an enclosure in the panel layout first."));
-                    }
-                });
+                        if self.session.prj.layout.enclosures.is_empty() {
+                            ui.weak(tr("Create an enclosure in the panel layout first."));
+                        }
+                    });
+                }
             }
             Cmd::Align => {
                 for a in Align::ALL {

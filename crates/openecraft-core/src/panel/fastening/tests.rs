@@ -34,8 +34,42 @@ fn holes_follow_the_fastening() {
     assert!(through.iter().all(|h| h.thread.is_empty() && h.thread_size == "M5" && (h.diameter - 5.5).abs() < 0.01));
     let rivet = item_holes(&rail(Face::Plate, Fastening::RivetNut), &[]);
     assert!(rivet.iter().all(|h| (h.diameter - 7.0).abs() < 0.01));
-    assert!(item_holes(&rail(Face::Plate, Fastening::Adhesive), &[]).is_empty());
-    assert!(item_holes(&rail(Face::Plate, Fastening::Clip), &[]).is_empty());
+    // A rail is always screwed or riveted: glue or a clip chosen for it are left out.
+    assert_eq!(item_holes(&rail(Face::Plate, Fastening::Adhesive), &[]), tapped);
+    assert_eq!(item_holes(&rail(Face::Plate, Fastening::Clip), &[]), tapped);
+    let glued = PanelItem { kind: ItemKind::Duct, ..rail(Face::Plate, Fastening::Adhesive) };
+    assert!(item_holes(&glued, &[]).is_empty());
+    // Riveted: a plain hole for a 4.8 mm blind rivet where the M5 screw would go.
+    let riveted = item_holes(&rail(Face::Plate, Fastening::Rivet), &[]);
+    assert_eq!(riveted.len(), tapped.len());
+    assert!(riveted.iter().all(|h| h.thread.is_empty() && h.fastening == Fastening::Rivet && (h.diameter - 5.0).abs() < 0.01));
+}
+
+#[test]
+fn rails_are_screwed_or_riveted() {
+    assert_eq!(Fastening::choices(ItemKind::Rail), [Fastening::Auto, Fastening::Tapped, Fastening::Through, Fastening::RivetNut, Fastening::Rivet, Fastening::Stud]);
+    assert_eq!(Fastening::choices(ItemKind::Duct).len(), Fastening::ALL.len());
+    let part = crate::parts::Part { tech_data: "Fastening: Clip".into(), ..Default::default() };
+    assert_eq!(Fastening::resolve(&rail(Face::Plate, Fastening::Auto), Some(&part)), Fastening::Tapped);
+    assert_eq!(Fastening::from_key("rivet"), Some(Fastening::Rivet));
+    assert_eq!(Fastening::Rivet.operation(), "Drill + blind rivet");
+    // The fixing points of a perforated rail lie in its slots (25 mm apart from 12.5).
+    let it = rail(Face::Plate, Fastening::Auto);
+    for h in item_holes(&it, &[]) {
+        let t = h.pos.x - it.x;
+        assert!(((t - 12.5) / 25.0 - ((t - 12.5) / 25.0).round()).abs() < 1e-4, "hole at {t} is in a slot");
+    }
+    // The rivets in the bill of materials.
+    let mut prj = demo_project();
+    for it in prj.layout.enclosures[0].items.iter_mut().filter(|i| i.kind == ItemKind::Rail) {
+        it.fastening = Fastening::Rivet;
+    }
+    let material = fastening_material(&prj);
+    let rivets = material.iter().find(|m| m.0 == "GEN.RIVET-4.8X10").map_or(0, |m| m.1);
+    let holes: usize = prj.layout.enclosures[0].items.iter().filter(|i| i.kind == ItemKind::Rail).map(|i| item_holes(i, &prj.parts).len()).sum();
+    assert!(rivets > 0 && rivets as usize == holes, "{material:?}");
+    assert!(crate::parts::catalog().iter().any(|p| p.number == "GEN.RIVET-4.8X10" && p.subgroup == "Blind rivet"));
+    assert!(crate::panel::layout_material(&prj).iter().any(|m| m.0 == "GEN.RIVET-4.8X10"));
 }
 
 #[test]
@@ -45,6 +79,7 @@ fn hardware_per_fixing_point() {
     assert!(through.contains(&("GEN.NUT-M4".to_string(), 1)) && through.contains(&("GEN.WASHER-M4".to_string(), 2)));
     assert!(Fastening::Clip.hardware("M5").is_empty());
     assert!(Fastening::Tapped.hardware("Ø4.5").is_empty());
+    assert_eq!(Fastening::Rivet.hardware("M5"), vec![("GEN.RIVET-4.8X10".to_string(), 1)]);
 }
 
 #[test]

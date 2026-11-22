@@ -260,3 +260,32 @@ fn the_inspection_reports_are_found_by_their_standards() {
     assert!(found("ISO 13849").contains(&"safety_functions".to_string()));
     assert_eq!(found("").len(), ReportKind::ALL.len());
 }
+
+#[test]
+fn the_drilling_pattern_lists_every_hole_and_cutout_from_the_bottom_left() {
+    let mut prj = demo_project();
+    let e = prj.layout.enclosures[0].clone();
+    let at = {
+        let n = prj.pages.len();
+        crate::ops::add_page(&mut prj, PageKind::Drilling(e.id), n)
+    };
+    let an = Analysis::with_builtin(&prj);
+    let t = table(&prj, &an, ReportKind::DrillingPattern);
+    let faces = crate::production::drilling(&e, &prj.parts);
+    let features: usize = faces.iter().map(|f| f.features.len()).sum();
+    let kinds: usize = faces.iter().map(|f| f.kinds.len()).sum();
+    assert_eq!(t.rows.len(), features + kinds, "a row per hole and cutout, one per kind with its count");
+    // The rows jump to the drilling pattern page.
+    assert!(t.targets.iter().flatten().all(|(pg, _)| *pg == at) && t.targets.iter().flatten().count() == features);
+    // The dimensions as the NC data: from the bottom left corner, y up.
+    let csv = crate::production::nc_csv(&prj, 0, crate::panel::Face::Plate);
+    let plate = &faces[0];
+    assert_eq!(plate.face, crate::panel::Face::Plate);
+    let first = &plate.features[0];
+    let row = t.rows.iter().find(|r| r[3] == crate::production::dim(first.x) && r[4] == crate::production::dim(first.y)).expect("the first hole");
+    assert_eq!(row[2], "A");
+    assert!(csv.contains(&format!(";{:.1};{:.1};", first.x, first.y)), "{csv}");
+    // The rails screwed into M5 tapped holes.
+    assert!(t.rows.iter().any(|r| r[5] == "Ø4.2" && r[6] == "M5" && r[7] == crate::panel::Fastening::Tapped.title()));
+    assert!(crate::reports::builtin().iter().any(|r| r.name == "drilling_pattern"));
+}

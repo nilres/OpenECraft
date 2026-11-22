@@ -682,7 +682,7 @@ Los anfitriones que anuncian `form_customization` aceptan estos campos adicional
 - Cada elemento de un cajetín o de un formulario dibujado admite `show: {"filled": "…",
   "page_types": [...]}`: se dibuja solo cuando `filled` (con marcadores de posición) no
   está vacío y solo en las páginas de los tipos indicados (`schematic`, `cover`, `report`,
-  `mounting`, `overview`, `graphic`, `document`). `Line`, `Rect` y `Text` admiten
+  `mounting`, `drilling`, `overview`, `graphic`, `document`). `Line`, `Rect` y `Text` admiten
   `color: [r, g, b]`, `Line` y `Rect` `dashed`. `{"type": "Qr", "a": {…}, "size": mm, "text": "…"}`
   dibuja un código QR (modo byte, nivel M) del texto rellenado.
 - `forms.page_type_title_blocks` asigna tipos de página a nombres de cajetín y

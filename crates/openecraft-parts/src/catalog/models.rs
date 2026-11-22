@@ -117,6 +117,39 @@ enum Kind {
     /// Socket outlet on the mounting rail: the modular housing with the round socket in
     /// its front.
     RailSocket,
+    /// A 22 mm command or signal device in the door: its front out of the door (part
+    /// data `Outside`) and the holder with the contact or lamp block behind the door.
+    Door22(Door22),
+    /// A switchboard meter in the door: its front frame out of the door, the dial with
+    /// the scale and the pointer (analog) or the LED display (digital), the housing with
+    /// its terminals behind the door.
+    Meter { digital: bool, volts: bool },
+}
+
+/// What is in the front of a 22 mm door device.
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum Door22 {
+    /// Indicator lamp: the lens in its colour.
+    Lamp([u8; 3]),
+    /// Pushbutton: the button in its colour.
+    Button([u8; 3]),
+    /// Emergency stop: the red mushroom on its collar.
+    Mushroom,
+    /// Selector switch: the black knob with its lever.
+    Selector,
+    /// Key switch: the lock with the key in it.
+    Key,
+    /// Buzzer: the black dome with its sound holes.
+    Buzzer,
+}
+
+/// The colour a part names in its description (red, green, …), `fallback` without.
+fn named_color(p: &Part, fallback: [u8; 3]) -> [u8; 3] {
+    let d = p.description.to_lowercase();
+    [("red", [204, 38, 34]), ("green", [36, 160, 70]), ("yellow", [242, 196, 28]), ("amber", [240, 150, 30]), ("orange", [240, 130, 30]), ("blue", [36, 96, 204]), ("white", [236, 236, 232]), ("black", BLACK)]
+        .into_iter()
+        .find(|(name, _)| d.contains(name))
+        .map_or(fallback, |(_, c)| c)
 }
 
 /// The shape of an electric heating element.
@@ -219,6 +252,13 @@ fn kind_of(p: &Part) -> Option<Kind> {
         "Socket outlet" => Kind::RailSocket,
         "Enclosure heater" => Kind::CabinetHeater { fan: has("fan") },
         "Temperature switch" => Kind::RailThermostat { cooling: !p.functions.iter().any(|f| f.kind == crate::FnKind::SensorNc) },
+        "Indicator lamp" if p.height <= 60.0 => Kind::Door22(Door22::Lamp(named_color(p, WHITE))),
+        "Pushbutton" => Kind::Door22(Door22::Button(named_color(p, BLACK))),
+        "Emergency stop" => Kind::Door22(Door22::Mushroom),
+        "Selector switch" => Kind::Door22(Door22::Selector),
+        "Key switch" => Kind::Door22(Door22::Key),
+        "Horn" | "Buzzer" => Kind::Door22(Door22::Buzzer),
+        "Ammeter" | "Voltmeter" => Kind::Meter { digital: has("digital"), volts: p.subgroup == "Voltmeter" },
         "Data outlet" => Kind::Outlet(Outlet::Data(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
         "Antenna outlet" => Kind::Outlet(Outlet::Antenna(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
         "Switch" | "Push button" | "Blind switch" if p.wall_mountable() => {
@@ -971,6 +1011,8 @@ fn build(p: &Part) -> Option<(Model2d, Mesh3d, Option<Shaft>, Vec<Nozzle>)> {
             }
             circle(&mut prims, [cx, h - cy], r);
         }
+        Kind::Door22(front) => door22(&mut m, &mut prims, front, [w, h, d], door_front(p, 0.3 * d)),
+        Kind::Meter { digital, volts } => meter(&mut m, &mut prims, digital, volts, [w, h, d], door_front(p, 0.12 * d)),
         Kind::FlushLid => {
             // Only the lid shows on the plaster, its screw in the middle.
             let (cx, cy, r) = (w / 2.0, h / 2.0, 0.5 * w.min(h));
@@ -1193,6 +1235,224 @@ fn din_body(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, p: &Part, [w, h, d]: [f32; 
             m.add_cylinder([x, y, 0.6 * d], 2, r, 0.02 * d, ROUND, STEEL);
             m.add_painted_box([x - 0.8 * r, y - 0.15 * r, 0.6 * d], [x + 0.8 * r, y + 0.15 * r, 0.625 * d], DARK);
             prims.push(Prim2d::Circle { c: [x, h - y], r, fill: false });
+        }
+    }
+}
+
+/// How far a door device stands out of the door (part data `Outside`), `fallback`
+/// without; never all of its depth.
+fn door_front(p: &Part, fallback: f32) -> f32 {
+    p.dimension_mm("Outside").filter(|o| *o > 0.0).unwrap_or(fallback).min(0.8 * p.depth)
+}
+
+/// Chrome of bezels and the black of holders and housings of door devices.
+const CHROME: [u8; 3] = [196, 200, 206];
+const HOLDER: [u8; 3] = [44, 46, 50];
+
+/// A thin bar on a front from `a` to `b` (x, y), `t` wide, from `z0` to `z1`: the ticks
+/// and pointer of a dial, the strokes of letters.
+#[allow(clippy::too_many_arguments)]
+fn bar(m: &mut Mesh3d, a: [f32; 2], b: [f32; 2], t: f32, z0: f32, z1: f32, c: [u8; 3]) {
+    let (dx, dy) = (b[0] - a[0], b[1] - a[1]);
+    let len = (dx * dx + dy * dy).sqrt();
+    if len <= 0.0 {
+        return;
+    }
+    let (nx, ny) = (-dy / len * t / 2.0, dx / len * t / 2.0);
+    let first = m.vertices.len();
+    m.add_painted_box([0.0, 0.0, z0], [1.0, 1.0, z1], c);
+    for v in &mut m.vertices[first..] {
+        let (along, across) = (v[0], 2.0 * v[1] - 1.0);
+        v[0] = a[0] + dx * along + nx * across;
+        v[1] = a[1] + dy * along + ny * across;
+    }
+}
+
+/// The unit of a meter as strokes, `s` high with its middle at `c`: V or A.
+fn unit_letter(m: &mut Mesh3d, volts: bool, c: [f32; 2], s: f32, z: f32, t: f32, color: [u8; 3]) {
+    let (x, y) = (c[0], c[1]);
+    let (bottom, top) = (y - s / 2.0, y + s / 2.0);
+    if volts {
+        bar(m, [x - 0.35 * s, top], [x, bottom], t, z, z + 0.01, color);
+        bar(m, [x, bottom], [x + 0.35 * s, top], t, z, z + 0.01, color);
+    } else {
+        bar(m, [x - 0.35 * s, bottom], [x, top], t, z, z + 0.01, color);
+        bar(m, [x, top], [x + 0.35 * s, bottom], t, z, z + 0.01, color);
+        bar(m, [x - 0.18 * s, y - 0.1 * s], [x + 0.18 * s, y - 0.1 * s], t, z, z + 0.01, color);
+    }
+}
+
+/// A 22 mm door device (x across, y up, z out of the door): behind the door (up to
+/// `d - out`) the contact or lamp block with its screws at the back and the black
+/// holder against the door; in front of it the chrome bezel and what is in it.
+fn door22(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, front: Door22, [w, h, d]: [f32; 3], out: f32) {
+    let b = d - out;
+    let (cx, cy) = (w / 2.0, h / 2.0);
+    let r = 0.5 * w.min(h);
+    // Behind the door: the block with its two terminal screws at the back, the holder.
+    let block = if matches!(front, Door22::Lamp(_) | Door22::Buzzer) { [206, 208, 212] } else { [226, 228, 230] };
+    m.add_painted_box([0.18 * w, 0.12 * h, 0.06 * b], [0.82 * w, 0.88 * h, 0.72 * b], block);
+    for y in [0.25 * h, 0.75 * h] {
+        m.add_cylinder([cx, y, 0.0], 2, 0.1 * w, 0.06 * b, ROUND, STEEL);
+    }
+    m.add_painted_box([0.08 * w, 0.08 * h, 0.72 * b], [0.92 * w, 0.92 * h, b], HOLDER);
+    // In front of the door.
+    let ring = if front == Door22::Buzzer { HOLDER } else { CHROME };
+    match front {
+        Door22::Mushroom => {
+            // The collar, the mushroom over it and its dome.
+            m.add_cylinder([cx, cy, b], 2, 0.36 * w, 0.35 * out, ROUND + 8, [214, 190, 40]);
+            m.add_cylinder([cx, cy, b + 0.35 * out], 2, r, 0.3 * out, ROUND + 8, [204, 38, 34]);
+            m.add_frustum([cx, cy, b + 0.65 * out], 2, r, 0.62 * r, 0.35 * out, ROUND + 8, [204, 38, 34]);
+        }
+        _ => {
+            let k = match front {
+                Door22::Lamp(_) => 0.3,
+                Door22::Selector | Door22::Key => 0.35,
+                _ => 0.45,
+            };
+            m.add_cylinder([cx, cy, b], 2, r, k * out, ROUND + 8, ring);
+            let z = b + k * out;
+            let rest = d - z;
+            match front {
+                Door22::Lamp(c) => {
+                    // The lens, lighter towards its middle.
+                    let light = c.map(|v| (v as f32 + 0.45 * (255.0 - v as f32)) as u8);
+                    m.add_frustum([cx, cy, z], 2, 0.78 * r, 0.7 * r, 0.85 * rest, ROUND + 8, c);
+                    m.add_cylinder([cx, cy, z + 0.85 * rest], 2, 0.45 * r, 0.15 * rest, ROUND + 8, light);
+                }
+                Door22::Button(c) => {
+                    m.add_cylinder([cx, cy, z - 0.2 * out], 2, 0.76 * r, 0.2 * out + rest, ROUND + 8, c);
+                }
+                Door22::Selector => {
+                    // The black knob, its lever across it with the white mark.
+                    m.add_cylinder([cx, cy, z], 2, 0.74 * r, 0.4 * rest, ROUND + 8, BLACK);
+                    m.add_painted_box([cx - 0.16 * r, cy - 0.74 * r, z], [cx + 0.16 * r, cy + 0.74 * r, d], BLACK);
+                    m.add_painted_box([cx - 0.04 * r, cy + 0.3 * r, z], [cx + 0.04 * r, cy + 0.7 * r, d + 0.01], WHITE);
+                }
+                Door22::Key => {
+                    // The lock with its keyway, the key in it.
+                    m.add_cylinder([cx, cy, z], 2, 0.62 * r, 0.35 * rest, ROUND + 8, CHROME);
+                    m.add_painted_box([cx - 0.05 * r, cy - 0.3 * r, z + 0.35 * rest], [cx + 0.05 * r, cy + 0.3 * r, z + 0.36 * rest], DARK);
+                    m.add_painted_box([cx - 0.04 * r, cy - 0.22 * r, z], [cx + 0.04 * r, cy + 0.22 * r, z + 0.6 * rest], BRASS);
+                    m.add_painted_box([cx - 0.05 * r, cy - 0.5 * r, z + 0.6 * rest], [cx + 0.05 * r, cy + 0.5 * r, d], BRASS);
+                }
+                Door22::Buzzer => {
+                    // The dome with the ring of sound holes and the one in its middle.
+                    m.add_frustum([cx, cy, z], 2, 0.86 * r, 0.7 * r, rest, ROUND + 8, BLACK);
+                    for k in 0..8 {
+                        let a = k as f32 / 8.0 * std::f32::consts::TAU;
+                        m.add_cylinder([cx + 0.4 * r * a.cos(), cy + 0.4 * r * a.sin(), d - 0.02 * rest], 2, 0.07 * r, 0.03 * rest, 8, DARK);
+                    }
+                    m.add_cylinder([cx, cy, d - 0.02 * rest], 2, 0.1 * r, 0.03 * rest, 8, DARK);
+                }
+                Door22::Mushroom => {}
+            }
+        }
+    }
+    prims.push(Prim2d::Circle { c: [cx, h - cy], r, fill: false });
+    prims.push(Prim2d::Circle { c: [cx, h - cy], r: 0.75 * r, fill: front == Door22::Mushroom });
+}
+
+/// A switchboard meter (x across, y up, z out of the door): behind the door its black
+/// housing with the stud terminals (analog) or the plug-in terminal block (digital) at
+/// the back; in front of the door the black frame round the window with the dial, its
+/// scale, the red mark and the pointer, or the display with the red digits.
+fn meter(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, digital: bool, volts: bool, [w, h, d]: [f32; 3], out: f32) {
+    let b = d - out;
+    let (cx, cy) = (w / 2.0, h / 2.0);
+    m.add_painted_box([0.05 * w, 0.05 * h, 0.12 * b], [0.95 * w, 0.95 * h, b], HOLDER);
+    if digital {
+        m.add_painted_box([0.15 * w, 0.1 * h, 0.0], [0.85 * w, 0.32 * h, 0.12 * b], [60, 150, 72]);
+        for k in 0..4 {
+            let x = 0.24 * w + k as f32 * 0.173 * w;
+            m.add_cylinder([x, 0.21 * h, 0.0], 2, 0.03 * w, 0.02 * b, 10, STEEL);
+        }
+    } else {
+        for x in [0.3 * w, 0.7 * w] {
+            m.add_cylinder([x, cy, 0.0], 2, 0.03 * w, 0.12 * b, 10, BRASS);
+            m.add_cylinder([x, cy, 0.04 * b], 2, 0.06 * w, 0.04 * b, 6, STEEL);
+        }
+    }
+    // The frame: its plate against the door and the rim round the window.
+    let (z0, z1) = (b, b + 0.4 * out);
+    let i = 0.07 * w.min(h);
+    m.add_painted_box([0.0, 0.0, z0], [w, h, z1], HOLDER);
+    for (lo, hi) in [([0.0, 0.0], [w, i]), ([0.0, h - i], [w, h]), ([0.0, i], [i, h - i]), ([w - i, i], [w, h - i])] {
+        m.add_painted_box([lo[0], lo[1], z1], [hi[0], hi[1], d], HOLDER);
+    }
+    let face = z1 + 0.05 * out;
+    let top = face + 0.02 * out;
+    prims.push(Prim2d::Rect { min: [i, i], max: [w - i, h - i], fill: false });
+    if digital {
+        // The window of the display with four red digits (230.4 V, 86.4 A), the unit
+        // beside them and the buttons under them.
+        m.add_painted_box([i, i, z1], [w - i, h - i, face], [32, 34, 38]);
+        m.add_painted_box([0.12 * w, 0.42 * h, face], [0.88 * w, 0.8 * h, top], [18, 18, 20]);
+        let digits: [u8; 4] = if volts { [2, 3, 0, 4] } else { [10, 8, 6, 4] };
+        let (dw, dh) = (0.13 * w, 0.28 * h);
+        let t = 0.025 * h.min(w);
+        let red = [255, 64, 40];
+        for (k, digit) in digits.into_iter().enumerate() {
+            let x0 = 0.15 * w + k as f32 * 0.155 * w;
+            let y0 = 0.47 * h;
+            seven_segments(m, digit, [x0, y0], [dw, dh], t, top, red);
+            if k == 2 {
+                m.add_painted_box([x0 + dw + 0.25 * t, y0, top], [x0 + dw + 1.25 * t, y0 + t, top + 0.01], red);
+            }
+        }
+        unit_letter(m, volts, [0.8 * w, 0.32 * h], 0.1 * h, face, 0.018 * h, WHITE);
+        for k in 0..3 {
+            let x = 0.2 * w + k as f32 * 0.18 * w;
+            m.add_painted_box([x, 0.14 * h, face], [x + 0.12 * w, 0.22 * h, top + 0.03 * out], [120, 124, 130]);
+        }
+        prims.push(Prim2d::Rect { min: [0.12 * w, 0.2 * h], max: [0.88 * w, 0.58 * h], fill: false });
+    } else {
+        // The white dial, the scale of 90 degrees round the pivot at the bottom with a
+        // long tick at every fifth, the red mark at the rated value, the pointer at three
+        // quarters, the unit under the scale.
+        m.add_painted_box([i, i, z1], [w - i, h - i, face], [244, 244, 238]);
+        let pivot = [cx, 0.2 * h];
+        let radius = 0.6 * h.min(w);
+        let at = |f: f32, r: f32| {
+            let a = (-45.0f32 + 90.0 * f).to_radians();
+            [pivot[0] + r * a.sin(), pivot[1] + r * a.cos()]
+        };
+        let t = 0.012 * w.min(h);
+        for k in 0..=20 {
+            let f = k as f32 / 20.0;
+            let long = if k % 5 == 0 { 0.13 } else { 0.07 };
+            bar(m, at(f, radius * (1.0 - long)), at(f, radius), t, face, face + 0.01, BLACK);
+        }
+        bar(m, at(0.8, radius * 1.02), at(0.8, radius * 1.1), 3.0 * t, face, face + 0.01, [204, 38, 34]);
+        bar(m, pivot, at(0.72, radius * 0.98), 1.4 * t, top, top + 0.02 * out, BLACK);
+        m.add_cylinder([pivot[0], pivot[1], face], 2, 0.05 * w, top + 0.03 * out - face, 12, BLACK);
+        unit_letter(m, volts, [cx, 0.45 * h], 0.1 * h, face, 1.6 * t, BLACK);
+        prims.push(Prim2d::Circle { c: [pivot[0], h - pivot[1]], r: 0.02 * w, fill: true });
+    }
+}
+
+/// Digit `n` (0 - 9; 10 for a blank) of a seven-segment display at `o` (its bottom left),
+/// `size` wide and high, the segments `t` thick.
+fn seven_segments(m: &mut Mesh3d, n: u8, o: [f32; 2], [dw, dh]: [f32; 2], t: f32, z: f32, c: [u8; 3]) {
+    // Segments a - g of the digits (top, top right, bottom right, bottom, bottom left,
+    // top left, middle).
+    const ON: [u8; 10] = [0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f];
+    let Some(&bits) = ON.get(n as usize) else { return };
+    let [x, y] = o;
+    let half = dh / 2.0;
+    let segments = [
+        ([x + t, y + dh - t], [x + dw - t, y + dh]),
+        ([x + dw - t, y + half], [x + dw, y + dh - t]),
+        ([x + dw - t, y + t], [x + dw, y + half]),
+        ([x + t, y], [x + dw - t, y + t]),
+        ([x, y + t], [x + t, y + half]),
+        ([x, y + half], [x + t, y + dh - t]),
+        ([x + t, y + half - t / 2.0], [x + dw - t, y + half + t / 2.0]),
+    ];
+    for (k, (lo, hi)) in segments.into_iter().enumerate() {
+        if bits >> k & 1 == 1 {
+            m.add_painted_box([lo[0], lo[1], z], [hi[0], hi[1], z + 0.01], c);
         }
     }
 }

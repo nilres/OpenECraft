@@ -135,6 +135,7 @@ Black box 2 + 2 connections	Black Box 2 + 2 Anschlüsse	Boîte noire 2 + 2 conne
 Black box 4 + 4 connections	Black Box 4 + 4 Anschlüsse	Boîte noire 4 + 4 connexions	Caja negra 4 + 4 conexiones
 Black boxes	Black Boxes	Boîtes noires	Cajas negras
 Black boxes / PLC boxes	Black Boxes / SPS-Boxen	Boîtes noires / boîtiers API	Cajas negras / cajas PLC
+Blind rivet	Blindniet	Rivet aveugle	Remache ciego
 Bonding conductor {} refers to the unknown bonding point {}	Potentialausgleichsleiter {} verweist auf den unbekannten Anschlusspunkt {}	Le conducteur d'équipotentialité {} fait référence au point inconnu {}	El conductor equipotencial {} hace referencia al punto desconocido {}
 Bonding conductor {} – {} has no cross-section	Potentialausgleichsleiter {} – {} hat keinen Querschnitt	Le conducteur d'équipotentialité {} – {} n'a pas de section	El conductor equipotencial {} – {} no tiene sección
 Bonding conductor {} – {} has {} mm², at least {} mm² are required	Potentialausgleichsleiter {} – {} hat {} mm², mindestens {} mm² sind erforderlich	Le conducteur d'équipotentialité {} – {} a {} mm², au moins {} mm² sont requis	El conductor equipotencial {} – {} tiene {} mm², se requieren al menos {} mm²
@@ -469,6 +470,7 @@ Drawing number	Zeichnungsnummer	Numéro de plan	Número de plano
 Drill	Bohrer	Foret	Broca
 Drilling	Bohren	Perçage	Taladrado
 Drilling and milling centre	Bohr- und Fräszentrum	Centre de perçage et de fraisage	Centro de taladrado y fresado
+Drilling pattern	Bohrbild	Plan de perçage	Patrón de taladrado
 Drive	Antrieb	Variateur	Accionamiento
 Drive type	Antriebsart	Type d'entraînement	Tipo de transmisión
 Driven by	Angetrieben von	Entraîné par	Accionado por
@@ -736,6 +738,7 @@ Hinged right, opens outwards	Anschlag rechts, öffnet nach außen	Paumelles à d
 Hip roof	Walmdach	Toit à quatre pans	Cubierta a cuatro aguas
 Hold-up time	Netzausfallüberbrückung	Temps de maintien	Tiempo de mantenimiento
 Holding power	Halteleistung	Puissance de maintien	Potencia de mantenimiento
+Holes and cutouts {}	Bohrungen und Ausschnitte {}	Perçages et découpes {}	Taladros y recortes {}
 Horizontal, above the floor	Waagerecht, über dem Fußboden	Horizontale, au-dessus du sol	Horizontal, sobre el suelo
 Horizontal, below the ceiling	Waagerecht, unter der Decke	Horizontale, sous le plafond	Horizontal, bajo el techo
 Horn (NFPA)	Hupe (NFPA)	Avertisseur (NFPA)	Bocina (NFPA)
@@ -1055,6 +1058,7 @@ No device connection point with this id on the page	Kein Geräteanschlusspunkt m
 No devices to add to the single-line diagram	Keine Geräte, die in den Übersichtsschaltplan aufzunehmen sind	Aucun appareil à ajouter au schéma unifilaire	No hay equipos que añadir al esquema unifilar
 No document embedded - choose a file in the page properties	Kein Dokument eingebettet - Datei in den Seiteneigenschaften wählen	Aucun document intégré - choisissez un fichier dans les propriétés de la page	Ningún documento incrustado - elija un archivo en las propiedades de la página
 No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Kein freier Platz für eine Kabelverschraubung auf den Flächen, durch die das Kabel austreten kann: Platz schaffen oder einen Kabeleinführungsflansch ergänzen	Pas de place libre pour un presse-étoupe sur les faces par lesquelles le câble peut sortir : faites de la place ou ajoutez une bride d'entrée de câbles	No hay sitio libre para un prensaestopas en las caras por las que puede salir el cable: haga sitio o añada una brida de entrada de cables
+No holes or cutouts in this enclosure	Keine Bohrungen oder Ausschnitte in diesem Gehäuse	Aucun perçage ni découpe dans cette enveloppe	No hay taladros ni recortes en esta envolvente
 No identifying letter for the device tag.	Kein Kennbuchstabe für das Betriebsmittelkennzeichen.	Pas de lettre d'identification pour le repère d'appareil.	Falta la letra identificativa de la designación del dispositivo.
 No known column in the header row	Keine bekannte Spalte in der Kopfzeile	Aucune colonne connue dans la ligne d'en-tête	Ninguna columna conocida en la fila de encabezado
 No option {}	Keine Option {}	Aucune option {}	No hay ninguna opción {}
@@ -1130,6 +1134,7 @@ Open wire ends	Offene Verbindungsenden	Extrémités de connexion ouvertes	Extrem
 OpenDocument file	OpenDocument-Datei	Fichier OpenDocument	Archivo OpenDocument
 Operating hours	Betriebsstunden	Heures de fonctionnement	Horas de funcionamiento
 Operating range of the coil	Arbeitsbereich der Spule	Plage de fonctionnement de la bobine	Rango de funcionamiento de la bobina
+Operation	Bearbeitung	Opération	Operación
 Operator desk	Bedienpult	Pupitre de commande	Pupitre de mando
 Option {} is inactive: its content is hidden	Option {} ist inaktiv: Ihr Inhalt ist ausgeblendet	L'option {} est inactive : son contenu est masqué	La opción {} está inactiva: su contenido está oculto
 Option {}: {}	Option {}: {}	Option {} : {}	Opción {}: {}
@@ -1831,6 +1836,7 @@ Thermometer / pyrometer	Thermometer / Pyrometer	Thermomètre / pyromètre	Termó
 This format needs a page	Dieses Format braucht eine Seite	Ce format nécessite une page	Este formato necesita una página
 This is subproject {} of {}	Dies ist Teilprojekt {} von {}	Ceci est le sous-projet {} de {}	Este es el subproyecto {} de {}
 This project is not a subproject	Dieses Projekt ist kein Teilprojekt	Ce projet n'est pas un sous-projet	Este proyecto no es un subproyecto
+Thread	Gewinde	Filetage	Rosca
 Through hole with nut	Durchgangsbohrung mit Mutter	Trou de passage avec écrou	Agujero pasante con tuerca
 Through-beam receiver, 3-wire	Einweg-Lichtschranke Empfänger, 3-Leiter	Récepteur de barrière photoélectrique, 3 fils	Receptor de barrera fotoeléctrica, 3 hilos
 Through-beam receiver, 4-wire	Einweg-Lichtschranke Empfänger, 4-Leiter	Récepteur de barrière photoélectrique, 4 fils	Receptor de barrera fotoeléctrica, 4 hilos
@@ -2014,7 +2020,9 @@ Within a suite, wall mounted	Innerhalb einer Reihe, Wandmontage	Au milieu d'une 
 Within a suite, wall mounted, roof covered	Innerhalb einer Reihe, Wandmontage, Dach abgedeckt	Au milieu d'une rangée, montage mural, toit couvert	Dentro de una fila, montaje mural, techo cubierto
 Word document	Word-Dokument	Document Word	Documento de Word
 Working line	Arbeitsleitung	Conduite de travail	Línea de trabajo
+X (mm)	X (mm)	X (mm)	X (mm)
 XLPE / EPR (90 °C)	VPE / EPR (90 °C)	PR / EPR (90 °C)	XLPE / EPR (90 °C)
+Y (mm)	Y (mm)	Y (mm)	Y (mm)
 Year of construction	Baujahr	Année de construction	Año de fabricación
 Yes / no	Ja / nein	Oui / non	Sí / no
 Zener diode	Z-Diode	Diode Zener	Diodo Zener
@@ -2138,6 +2146,7 @@ yellow	gelb	jaune	amarillo
 {} has nothing to manufacture	{} hat nichts zu fertigen	{} n'a rien à fabriquer	{} no tiene nada que fabricar
 {} has three phases: it needs a three-phase protective device	{} hat drei Phasen: es braucht ein dreipoliges Schutzorgan	{} a trois phases : il lui faut un appareil de protection triphasé	{} tiene tres fases: necesita un dispositivo de protección trifásico
 {} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} enthält einen ungelösten Merge-Konflikt von git: die Datei wurde als Text zusammengeführt. Übernehmen Sie eine Version der Datei (git checkout --ours oder --theirs) und richten Sie dann den Merge-Treiber für geteilte Projekte ein (merge_project_file), bevor Sie erneut zusammenführen	{} contient un conflit de fusion git non résolu : le fichier a été fusionné comme du texte. Reprenez une version du fichier (git checkout --ours ou --theirs), puis configurez le pilote de fusion des projets fractionnés (merge_project_file) avant de fusionner à nouveau	{} contiene un conflicto de fusión de git sin resolver: el archivo se fusionó como texto. Tome una versión del archivo (git checkout --ours o --theirs) y configure después el controlador de fusión para proyectos divididos (merge_project_file) antes de volver a fusionar
+{} in all	{} insgesamt	{} au total	{} en total
 {} is a built-in function definition	{} ist eine eingebaute Funktionsdefinition	{} est une définition de fonction intégrée	{} es una definición de función integrada
 {} is a built-in property	{} ist eine eingebaute Eigenschaft	{} est une propriété intégrée	{} es una propiedad integrada
 {} is a built-in scheme	{} ist ein eingebautes Schema	{} est un schéma intégré	{} es un esquema integrado
@@ -2185,6 +2194,7 @@ yellow	gelb	jaune	amarillo
 {} wires crossed, {} assigned, {} free cores, {} unassigned	{} Drähte gekreuzt, {} zugeordnet, {} freie Adern, {} ohne Zuordnung	{} fils croisés, {} affectés, {} conducteurs libres, {} non affectés	{} hilos cruzados, {} asignados, {} conductores libres, {} sin asignar
 {} wiring marks belong to wires that no longer exist	{} Verdrahtungsmarkierungen gehören zu Drähten, die es nicht mehr gibt	{} marques de câblage appartiennent à des fils qui n'existent plus	{} marcas de cableado pertenecen a cables que ya no existen
 {} without device tag on page {}	{} ohne Betriebsmittelkennzeichen auf Seite {}	{} sans repère d'appareil sur la page {}	{} sin designación de dispositivo en la página {}
+{} {} - dimensions in mm from the bottom left corner of each face	{} {} - Maße in mm von der linken unteren Ecke jeder Fläche	{} {} - cotes en mm depuis le coin inférieur gauche de chaque face	{} {} - cotas en mm desde la esquina inferior izquierda de cada cara
 {} {} cannot be laid flush-mounted: the installation zones of the room do not join its ends	{} {} kann nicht unter Putz verlegt werden: die Installationszonen des Raums verbinden seine Enden nicht	{} {} ne peut pas être posé encastré : les zones d'installation de la salle ne relient pas ses extrémités	{} {} no se puede tender empotrado: las zonas de instalación de la sala no unen sus extremos
 {} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} kann nicht verlegt werden: jede Kabelverschraubung von {} ist von einem anderen Kabel belegt. Fügen Sie eine Kabelverschraubung dafür hinzu.	{} {} ne peut pas être acheminé : chaque presse-étoupe de {} est occupé par un autre câble. Ajoutez un presse-étoupe pour lui.	{} {} no se puede tender: cada prensaestopas de {} está ocupado por otro cable. Añada un prensaestopas para él.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} kann nicht verlegt werden: kein Weg, der mit der halben Dicke von allem frei bleibt und mit dem Biegeradius von {} mm biegt. Enden verschieben oder Platz schaffen.	{} {} ne peut pas être routé : aucun chemin qui garde la moitié de son épaisseur libre de tout et se courbe avec son rayon de {} mm. Déplacez ses extrémités ou faites-lui de la place.	{} {} no se puede tender: ningún camino que mantenga la mitad de su grosor libre de todo y se curve con su radio de {} mm. Mueva sus extremos o haga sitio.

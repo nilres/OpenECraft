@@ -593,7 +593,7 @@ Hosts advertising `form_customization` accept these further fields of
 - Every element of a title block or drawn form takes `show: {"filled": "…",
   "page_types": [...]}`: it is drawn only when `filled` (with placeholders) is not empty
   and only on pages of the given types (`schematic`, `cover`, `report`, `mounting`,
-  `overview`, `graphic`, `document`). `Line`, `Rect` and `Text` take `color: [r, g, b]`,
+  `drilling`, `overview`, `graphic`, `document`). `Line`, `Rect` and `Text` take `color: [r, g, b]`,
   `Line` and `Rect` `dashed`. `{"type": "Qr", "a": {…}, "size": mm, "text": "…"}` draws a
   QR code (byte mode, level M) of the filled text.
 - `forms.page_type_title_blocks` maps page types to title block names and

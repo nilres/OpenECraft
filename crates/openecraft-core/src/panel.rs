@@ -1152,20 +1152,68 @@ pub fn duct_boxes(e: &Enclosure, it: &PanelItem, cover: bool) -> Vec<((V3, V3), 
 /// A mounting rail in plate coordinates: the profile of its part
 /// ([`crate::parts::mechanics::RailProfile`], a perforated top-hat rail without one)
 /// along the item, its slots where it really has them along its length.
-pub fn rail_mesh(prj: &Project, it: &PanelItem) -> Vec<Tri> {
-    use crate::parts::mechanics::{rail_boxes, RailProfile};
-    let profile = part_by_number(prj, &it.part).map_or(RailProfile::TopHat { perforated: true }, RailProfile::of);
+pub fn rail_mesh(prj: &Project, it: &PanelItem) -> Vec<(Tri, Option<[u8; 3]>)> {
+    use crate::parts::mechanics::{rail_boxes, rail_web, RailProfile};
+    let part = part_by_number(prj, &it.part);
+    let profile = part.map_or(RailProfile::TopHat { perforated: true }, RailProfile::of);
     let along_x = it.horizontal();
     let (len, width) = if along_x { (it.w, it.h) } else { (it.h, it.w) };
-    let at = |a: f32, c: f32, z: f32| if along_x { [it.x + a, it.y + c, it.z + z] } else { [it.x + c, it.y + a, it.z + z] };
-    rail_boxes(profile, len, width, it.d)
-        .into_iter()
-        .flat_map(|(lo, hi)| {
-            let (p, q) = (at(lo[0], lo[1], lo[2]), at(hi[0], hi[1], hi[2]));
-            plate_box([p[0].min(q[0]), p[1].min(q[1]), p[2]], [p[0].max(q[0]), p[1].max(q[1]), q[2]])
+    // Built along the rail (x), across it (y) and out of the plate (z), its own colour
+    // left open; then laid onto the plate.
+    let mut m = crate::parts::Mesh3d::default();
+    for (lo, hi) in rail_boxes(profile, len, width, it.d) {
+        m.add_box(lo, hi);
+    }
+    let plain = m.triangles.len();
+    // The screws or blind rivets at its fixing points, on the web between its walls.
+    let (c0, c1, t) = rail_web(profile, width, it.d);
+    let fastening = Fastening::resolve(it, part);
+    let r = (4.75f32).min((c1 - c0) / 2.0 - 0.2).max(1.0);
+    let room = (it.d - t - 0.3).max(0.5);
+    let c = (c0 + c1) / 2.0;
+    for a in crate::production::rail_fixings(it, &prj.parts) {
+        match fastening {
+            Fastening::Rivet => {
+                // The dome head with the broken mandrel in its middle.
+                let k = (0.35 * r).min(room);
+                m.add_frustum([a, c, t], 2, r, 0.55 * r, k, 16, RIVET);
+                m.add_cylinder([a, c, t + k], 2, 0.28 * r, 0.05 * k, 8, MANDREL);
+            }
+            Fastening::Stud => {
+                // The nut on the welded stud, the end of the stud out of it.
+                let k = (0.8 * r).min(room);
+                m.add_cylinder([a, c, t], 2, 0.95 * r, 0.85 * k, 6, STEEL_ZINC);
+                m.add_cylinder([a, c, t + 0.85 * k], 2, 0.5 * r, 0.15 * k, 12, STEEL_ZINC);
+            }
+            _ => {
+                // The pan head of the combination screw on its washer, the cross recess.
+                let k = (0.75 * r).min(room);
+                m.add_cylinder([a, c, t], 2, r, 0.18 * k, 16, STEEL_ZINC);
+                m.add_frustum([a, c, t + 0.18 * k], 2, 0.85 * r, 0.7 * r, 0.82 * k, 16, STEEL_ZINC);
+                for (da, dc) in [(0.45, 0.08), (0.08, 0.45)] {
+                    m.add_painted_box([a - da * r, c - dc * r, t + 0.95 * k], [a + da * r, c + dc * r, t + k + 0.01], MANDREL);
+                }
+            }
+        }
+    }
+    // Laid along x the axes stay right-handed only with the plate's y down turned
+    // round (as `plate_box`); along y, x and y swapped, they already are.
+    let at = |v: [f32; 3]| if along_x { [it.x + v[0], it.y + v[1], it.z + v[2]] } else { [it.x + v[1], it.y + v[0], it.z + v[2]] };
+    m.triangles
+        .iter()
+        .enumerate()
+        .map(|(i, t)| {
+            let [p, q, s] = t.map(|k| at(m.vertices[k as usize]));
+            ((if along_x { [p, s, q] } else { [p, q, s] }), (i >= plain).then(|| m.color(i)).flatten())
         })
         .collect()
 }
+
+/// Zinc-plated steel of screws and nuts, aluminium of blind rivets and the dark of
+/// their recesses and mandrels.
+const STEEL_ZINC: [u8; 3] = [176, 181, 188];
+const RIVET: [u8; 3] = [196, 200, 204];
+const MANDREL: [u8; 3] = [70, 72, 78];
 
 /// The 3D model of a device in plate coordinates: the part's model, for terminal
 /// strips the model of every element in its cell (a box where a part has none).
@@ -1176,11 +1224,33 @@ pub fn device_mesh(prj: &Project, it: &PanelItem) -> Option<Vec<[[f32; 3]; 3]>> 
 
 /// Like [`device_mesh`], with the colour of each triangle where its model has one.
 pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Option<[u8; 3]>)>> {
+    device_mesh_placed(prj, it).map(|tris| through_door(prj, it, tris))
+}
+
+/// A device in the door whose part says how far it stands out of the door (`Outside`,
+/// mm: the bezel, lens or button of a command or signal device, the front frame of a
+/// meter): that much of its front out of the outer surface of the door, the rest of its
+/// model behind the door over the whole depth of the item. Other items as they are.
+fn through_door(prj: &Project, it: &PanelItem, tris: Vec<(Tri, Option<[u8; 3]>)>) -> Vec<(Tri, Option<[u8; 3]>)> {
+    if it.face != Face::Door || it.kind != ItemKind::Device {
+        return tris;
+    }
+    let Some(out) = part_by_number(prj, &it.part).and_then(|p| tech_number(p, "Outside")).filter(|o| *o > 0.0 && *o < it.d) else { return tris };
+    let door = prj.layout.enclosures.iter().find(|e| e.item(it.id).is_some()).map_or(WALL, Enclosure::wall);
+    let behind = it.d - out;
+    let z = |v: f32| {
+        let local = v - it.z;
+        it.z + if local <= behind + 1e-4 { local * it.d / behind } else { it.d + door + (local - behind) }
+    };
+    tris.into_iter().map(|(t, c)| (t.map(|v| [v[0], v[1], z(v[2])]), c)).collect()
+}
+
+fn device_mesh_placed(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Option<[u8; 3]>)>> {
     if it.kind == ItemKind::Busbar {
         return Some(busbars::mesh(prj, it));
     }
     if it.kind == ItemKind::Rail {
-        return Some(rail_mesh(prj, it).into_iter().map(|t| (t, None)).collect());
+        return Some(rail_mesh(prj, it));
     }
     // A placed model repeats the model's triangles in their order.
     let painted = |mesh: &crate::parts::Mesh3d, tris: Vec<Tri>| -> Vec<(Tri, Option<[u8; 3]>)> {

@@ -511,6 +511,9 @@ impl App {
                         for e in &self.session.prj.layout.enclosures {
                             ui.selectable_value(&mut pg.kind, PageKind::Mounting(e.id), tr_fmt!("Mounting layout {}", e.name));
                         }
+                        for e in &self.session.prj.layout.enclosures {
+                            ui.selectable_value(&mut pg.kind, PageKind::Drilling(e.id), tr_fmt!("Drilling pattern {}", e.name));
+                        }
                     });
                     ui.end_row();
                 });

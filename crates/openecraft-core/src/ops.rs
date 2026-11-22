@@ -152,6 +152,10 @@ pub fn add_page(prj: &mut Project, kind: PageKind, at: usize) -> usize {
             let name = prj.layout.enclosures.iter().find(|e| e.id == id).map(|e| e.name.clone()).unwrap_or_default();
             tr_fmt!("Mounting layout {}", name)
         }
+        PageKind::Drilling(id) => {
+            let name = prj.layout.enclosures.iter().find(|e| e.id == id).map(|e| e.name.clone()).unwrap_or_default();
+            tr_fmt!("Drilling pattern {}", name)
+        }
         PageKind::Overview => tr("Overview").to_string(),
         PageKind::Graphic => tr("Graphics").to_string(),
         PageKind::Document => tr("Document").to_string(),

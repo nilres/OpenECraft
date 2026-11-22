@@ -70,7 +70,7 @@ pub fn extract(prj: &mut Project, name: &str, description: &str, pages: &[u64], 
     }
     for &id in pages {
         let pg = prj.pages.iter().find(|p| p.id == id).ok_or_else(|| tr_fmt!("No page with id {}", id))?;
-        if matches!(pg.kind, PageKind::Mounting(_)) {
+        if pg.kind.enclosure().is_some() {
             return Err(tr_fmt!("Page {}: mounting layout pages stay in the main project", pg.name));
         }
     }

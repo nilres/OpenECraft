@@ -100,7 +100,7 @@ pub fn verify(prj: &Project) -> Verification {
         if names.insert(full.clone(), pi).is_some() {
             push(Severity::Warning, tr_fmt!("Page name {} is used more than once: cross references are ambiguous", full), Some((pi, 0)), false);
         }
-        if let PageKind::Mounting(e) = pg.kind {
+        if let Some(e) = pg.kind.enclosure() {
             if !prj.layout.enclosures.iter().any(|x| x.id == e) {
                 push(Severity::Error, tr_fmt!("Page {} shows an enclosure that no longer exists", pg.name), Some((pi, 0)), false);
             }

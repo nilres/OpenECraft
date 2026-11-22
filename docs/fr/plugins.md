@@ -667,7 +667,7 @@ Les hôtes qui annoncent `form_customization` acceptent ces champs supplémentai
 - Chaque élément d'un cartouche ou d'un formulaire dessiné prend `show: {"filled": "…",
   "page_types": [...]}` : il n'est dessiné que lorsque `filled` (avec des espaces réservés)
   n'est pas vide et seulement sur les pages des types donnés (`schematic`, `cover`,
-  `report`, `mounting`, `overview`, `graphic`, `document`). `Line`, `Rect` et `Text`
+  `report`, `mounting`, `drilling`, `overview`, `graphic`, `document`). `Line`, `Rect` et `Text`
   prennent `color: [r, g, b]`, `Line` et `Rect` `dashed`.
   `{"type": "Qr", "a": {…}, "size": mm, "text": "…"}` dessine un code QR (mode octets,
   niveau M) du texte rempli.

@@ -193,6 +193,18 @@ par armoire et par face en DXF ou DWG (contour, un calque par diamètre de trou,
 découpes, celles qui sont tournées ou arrondies par leur contour) ou CSV (avec la
 rotation et le rayon d'angle de chaque découpe).
 
+Un rail de montage est toujours vissé ou riveté (*Fixation* dans ses propriétés : trou
+taraudé, trou de passage avec écrou, écrou à sertir, rivet aveugle ou goujon soudé ;
+`set_panel_item fastening=rivet`) : ses points de fixation se trouvent dans les trous
+oblongs d'un rail perforé, la vue 3D y montre les têtes des vis ou des rivets et la
+nomenclature les vis, écrous ou rivets aveugles. Le rapport *Plan de perçage* liste
+chaque trou et chaque découpe de chaque face avec sa lettre, ses cotes depuis le coin
+inférieur gauche de la face (comme les données CN), sa taille, son filetage et son
+opération. Une page *Plan de perçage* d'une armoire (*Nouvelle page de plan de
+perçage*, `add_page kind=drilling enclosure=+CAB1`) dessine ses faces avec leurs trous
+et découpes à une même échelle, cotées depuis ce coin, avec à côté les types de trous et
+de découpes et leur nombre.
+
 ## Câblage virtuel et taux de remplissage des goulottes
 
 Chaque liaison du schéma entre appareils placés est routée depuis son point de

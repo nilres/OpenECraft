@@ -340,6 +340,9 @@ pub enum PageKind {
     Report(ReportId),
     /// 2D model view of the mounting plate of an enclosure (enclosure id).
     Mounting(u64),
+    /// Drilling pattern of the faces of an enclosure (enclosure id): the holes and
+    /// cutouts with their dimensions.
+    Drilling(u64),
     /// Overview drawing (single-line, block diagram): symbols and wires are drawn
     /// but not evaluated.
     Overview,
@@ -356,9 +359,18 @@ impl PageKind {
             PageKind::Cover => tr("Cover sheet").into(),
             PageKind::Report(r) => tr_fmt!("Report: {}", r.title()),
             PageKind::Mounting(_) => tr("Mounting layout").into(),
+            PageKind::Drilling(_) => tr("Drilling pattern").into(),
             PageKind::Overview => tr("Overview (not evaluated)").into(),
             PageKind::Graphic => tr("Graphics").into(),
             PageKind::Document => tr("Document (embedded file)").into(),
+        }
+    }
+
+    /// The enclosure a mounting layout or drilling pattern page shows.
+    pub fn enclosure(self) -> Option<u64> {
+        match self {
+            PageKind::Mounting(id) | PageKind::Drilling(id) => Some(id),
+            _ => None,
         }
     }
 
@@ -392,6 +404,8 @@ pub enum ReportKind {
     HarnessData,
     DuctFill,
     PanelLegend,
+    /// Holes and cutouts of the faces of the enclosures with their dimensions.
+    DrillingPattern,
     Climate,
     Marking,
     HoseList,
@@ -423,7 +437,7 @@ pub enum ReportKind {
 }
 
 impl ReportKind {
-    pub const ALL: [ReportKind; 47] = [
+    pub const ALL: [ReportKind; 48] = [
         ReportKind::TableOfContents,
         ReportKind::DeviceList,
         ReportKind::BillOfMaterials,
@@ -446,6 +460,7 @@ impl ReportKind {
         ReportKind::HarnessData,
         ReportKind::DuctFill,
         ReportKind::PanelLegend,
+        ReportKind::DrillingPattern,
         ReportKind::Climate,
         ReportKind::Marking,
         ReportKind::HoseList,
@@ -498,6 +513,7 @@ impl ReportKind {
             ReportKind::RevisionOverview => tr_const!("Revision overview (changes)"),
             ReportKind::HarnessData => tr_const!("Harness data"),
             ReportKind::DuctFill => tr_const!("Duct fill levels"),
+            ReportKind::DrillingPattern => tr_const!("Drilling pattern"),
             ReportKind::Climate => tr_const!("Enclosure climate"),
             ReportKind::Marking => tr_const!("Marking"),
             ReportKind::HoseList => tr_const!("Hose list"),
@@ -556,6 +572,7 @@ impl ReportKind {
             ReportKind::HarnessData => "harness_data",
             ReportKind::DuctFill => "duct_fill",
             ReportKind::PanelLegend => "panel_legend",
+            ReportKind::DrillingPattern => "drilling_pattern",
             ReportKind::Climate => "climate",
             ReportKind::Marking => "marking",
             ReportKind::HoseList => "hose_list",

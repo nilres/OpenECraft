@@ -4,14 +4,14 @@
 
 use super::{Face, ItemKind, PanelItem};
 use crate::model::Project;
-use crate::parts::mechanics::{nut_number, rivet_nut_number, screw_number, thread, washer_number};
+use crate::parts::mechanics::{nut_number, rivet_nut_number, rivet_number, rivet_size, screw_number, thread, washer_number};
 use crate::parts::Part;
 use openecraft_i18n::tr;
 pub use crate::model::panel::Fastening;
 
 impl Fastening {
-    pub const ALL: [Fastening; 7] =
-        [Fastening::Auto, Fastening::Tapped, Fastening::Through, Fastening::RivetNut, Fastening::Stud, Fastening::Clip, Fastening::Adhesive];
+    pub const ALL: [Fastening; 8] =
+        [Fastening::Auto, Fastening::Tapped, Fastening::Through, Fastening::RivetNut, Fastening::Rivet, Fastening::Stud, Fastening::Clip, Fastening::Adhesive];
 
     pub fn title(self) -> &'static str {
         match self {
@@ -19,6 +19,7 @@ impl Fastening {
             Fastening::Tapped => tr("Tapped hole"),
             Fastening::Through => tr("Through hole with nut"),
             Fastening::RivetNut => tr("Rivet nut"),
+            Fastening::Rivet => tr("Blind rivet"),
             Fastening::Stud => tr("Weld stud"),
             Fastening::Clip => tr("Clip / snap-on"),
             Fastening::Adhesive => tr("Adhesive"),
@@ -32,6 +33,7 @@ impl Fastening {
             Fastening::Tapped => "tapped",
             Fastening::Through => "through",
             Fastening::RivetNut => "rivet_nut",
+            Fastening::Rivet => "rivet",
             Fastening::Stud => "stud",
             Fastening::Clip => "clip",
             Fastening::Adhesive => "adhesive",
@@ -50,12 +52,15 @@ impl Fastening {
     /// The fastening actually used: the item's own, the part data `Fastening`, or by
     /// kind and face: devices on rails and on the door clip on, door ducts are glued,
     /// everything else is screwed into tapped holes on the plate and through clearance
-    /// holes in the thin sheet of the walls and the door.
+    /// holes in the thin sheet of the walls and the door. A mounting rail is always
+    /// screwed or riveted ([`Fastening::fixes`]): a clip or glue chosen for it is left
+    /// out.
     pub fn resolve(it: &PanelItem, part: Option<&Part>) -> Fastening {
-        if it.fastening != Fastening::Auto {
+        let fits = |f: Fastening| f != Fastening::Auto && (it.kind != ItemKind::Rail || f.fixes());
+        if fits(it.fastening) {
             return it.fastening;
         }
-        if let Some(f) = part.and_then(|p| p.data_value("Fastening")).and_then(|v| Fastening::from_key(&v)).filter(|f| *f != Fastening::Auto) {
+        if let Some(f) = part.and_then(|p| p.data_value("Fastening")).and_then(|v| Fastening::from_key(&v)).filter(|f| fits(*f)) {
             return f;
         }
         match (it.kind, it.face) {
@@ -70,7 +75,23 @@ impl Fastening {
 
     /// The fixing points need a hole (or a stud) in the face.
     pub fn has_points(self) -> bool {
-        matches!(self, Fastening::Tapped | Fastening::Through | Fastening::RivetNut | Fastening::Stud)
+        matches!(self, Fastening::Tapped | Fastening::Through | Fastening::RivetNut | Fastening::Stud | Fastening::Rivet)
+    }
+
+    /// Screwed or riveted: the fastenings a mounting rail can have.
+    pub fn fixes(self) -> bool {
+        self.has_points()
+    }
+
+    /// The fastenings offered for an item of `kind` (a rail: automatic, screwed or
+    /// riveted).
+    pub fn choices(kind: ItemKind) -> Vec<Fastening> {
+        Fastening::ALL.into_iter().filter(|f| kind != ItemKind::Rail || f.is_auto() || f.fixes()).collect()
+    }
+
+    /// Riveted: no screw, the head of a blind rivet.
+    pub fn is_rivet(self) -> bool {
+        self == Fastening::Rivet
     }
 
     /// Diameter of the hole for a thread ("M5"): tap drill, clearance hole (ISO 273
@@ -95,6 +116,7 @@ impl Fastening {
                 _ => nominal * 1.4,
             },
             Fastening::Stud => nominal,
+            Fastening::Rivet => rivet_size(thread(thread_spec)?)?.2,
             _ => crate::production::drill_diameter(thread_spec)?,
         })
     }
@@ -104,6 +126,7 @@ impl Fastening {
         match self {
             Fastening::Tapped => "Drill + tap",
             Fastening::RivetNut => "Drill + rivet nut",
+            Fastening::Rivet => "Drill + blind rivet",
             Fastening::Stud => "Weld stud",
             _ => "Drill",
         }
@@ -117,6 +140,7 @@ impl Fastening {
             Fastening::Through => vec![(screw_number(t), 1), (nut_number(t), 1), (washer_number(t), 2)],
             Fastening::RivetNut => vec![(rivet_nut_number(t), 1), (screw_number(t), 1)],
             Fastening::Stud => vec![(nut_number(t), 1), (washer_number(t), 1)],
+            Fastening::Rivet => rivet_number(t).map(|r| vec![(r, 1)]).unwrap_or_default(),
             _ => Vec::new(),
         }
     }

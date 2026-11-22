@@ -37,6 +37,7 @@ pub fn kind_name(kind: PageKind) -> String {
         PageKind::Cover => "cover".into(),
         PageKind::Report(r) => r.as_str().into(),
         PageKind::Mounting(_) => "mounting".into(),
+        PageKind::Drilling(_) => "drilling".into(),
         PageKind::Overview => "overview".into(),
         PageKind::Graphic => "graphic".into(),
         PageKind::Document => "document".into(),

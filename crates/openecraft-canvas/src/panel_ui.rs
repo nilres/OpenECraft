@@ -1688,7 +1688,7 @@ impl PanelUi {
                     let resolved = Fastening::resolve(&PanelItem { fastening: Fastening::Auto, ..it.clone() }, part.as_ref());
                     let text = |f: Fastening| if f == Fastening::Auto { format!("{} ({})", f.title(), resolved.title()) } else { f.title().to_string() };
                     egui::ComboBox::from_id_salt("fastening").selected_text(text(it.fastening)).show_ui(ui, |ui| {
-                        for f in Fastening::ALL {
+                        for f in Fastening::choices(it.kind) {
                             ui.selectable_value(&mut it.fastening, f, text(f));
                         }
                     });

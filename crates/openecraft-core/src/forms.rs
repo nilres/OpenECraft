@@ -129,11 +129,12 @@ impl FormItem {
 
 /// Page types of the conditions of elements and of the title blocks by page type:
 /// (key, title).
-pub const PAGE_TYPES: [(&str, &str); 7] = [
+pub const PAGE_TYPES: [(&str, &str); 8] = [
     ("schematic", tr_const!("Schematic")),
     ("cover", tr_const!("Cover")),
     ("report", tr_const!("Report")),
     ("mounting", tr_const!("Mounting")),
+    ("drilling", tr_const!("Drilling pattern")),
     ("overview", tr_const!("Overview")),
     ("graphic", tr_const!("Graphics")),
     ("document", tr_const!("Document")),
@@ -146,6 +147,7 @@ pub fn page_type(kind: PageKind) -> &'static str {
         PageKind::Cover => "cover",
         PageKind::Report(_) => "report",
         PageKind::Mounting(_) => "mounting",
+        PageKind::Drilling(_) => "drilling",
         PageKind::Overview => "overview",
         PageKind::Graphic => "graphic",
         PageKind::Document => "document",
@@ -422,6 +424,7 @@ pub fn placeholder(prj: &Project, page_i: usize, name: &str) -> Option<String> {
             PageKind::Cover => tr("Cover"),
             PageKind::Report(_) => tr("Report"),
             PageKind::Mounting(_) => tr("Mounting"),
+            PageKind::Drilling(_) => tr("Drilling pattern"),
             PageKind::Overview => tr("Overview"),
             PageKind::Graphic => tr("Graphics"),
             PageKind::Document => tr("Document"),

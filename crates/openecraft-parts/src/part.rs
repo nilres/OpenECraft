@@ -64,7 +64,7 @@ pub const PRODUCT_GROUPS: &[(&str, &[&str])] = &[
         &[
             "Mounting rail", "Cable duct", "Enclosure", "Busbar system", "Busbar holder", "PE busbar", "Plinth", "Side panel", "Rear wall", "Baying kit",
             "Gland plate", "Cable gland", "Cable clamp rail", "Rail standoff", "Filter fan", "Outlet filter", "Enclosure light", "Door handle",
-            "Document holder", "Screw", "Nut", "Washer", "Rivet nut", "PV mounting rail", "Roof hook", "PV rail connector", "PV end clamp",
+            "Document holder", "Screw", "Nut", "Washer", "Rivet nut", "Blind rivet", "PV mounting rail", "Roof hook", "PV rail connector", "PV end clamp",
             "PV middle clamp", "PV mounting base", "Ballast", "Wind deflector",
         ],
     ),

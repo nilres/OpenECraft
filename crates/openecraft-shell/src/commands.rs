@@ -267,6 +267,7 @@ pub enum Cmd {
     LayoutNcData,
     LayoutReports,
     LayoutMountingPage,
+    LayoutDrillingPage,
     // Wiring and mounting assistants
     WiringMode,
     MountingMode,
@@ -801,6 +802,7 @@ pub static ALL: &[Def] = &[
     d(C::LayoutNcData, "layout_nc_data", tr_const!("NC data"), I::Drill).menu().tip(tr_const!("Drilling pattern of the face shown as DXF, DWG or CSV")),
     d(C::LayoutReports, "layout_reports", tr_const!("Panel wiring report"), I::Report),
     d(C::LayoutMountingPage, "layout_mounting_page", tr_const!("New mounting layout page"), I::FileNew),
+    d(C::LayoutDrillingPage, "layout_drilling_page", tr_const!("New drilling pattern page"), I::FileNew),
     // ---------------------------------------------------------------- wiring
     d(C::WiringMode, "wiring_mode", tr_const!("Wiring"), I::Wiring).toggle(),
     d(C::MountingMode, "mounting_mode", tr_const!("Mounting"), I::Mounting).toggle(),

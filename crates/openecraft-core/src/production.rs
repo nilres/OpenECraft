@@ -66,6 +66,30 @@ pub fn line_positions(len: f32, end: f32, pitch: f32) -> Vec<f32> {
     (0..=n).map(|i| end + span * i as f32 / n as f32).collect()
 }
 
+/// The fixing points of a mounting rail along it (mm from its start): [`RAIL_HOLES`],
+/// on a perforated rail each in the slot nearest to it, so that the screw or rivet goes
+/// through the slot.
+pub fn rail_fixings(it: &PanelItem, parts: &[Part]) -> Vec<f32> {
+    use crate::parts::mechanics::{rail_slots, RailProfile};
+    let part = parts.iter().chain(crate::parts::catalog()).find(|x| x.number == it.part);
+    let profile = part.map_or(RailProfile::TopHat { perforated: true }, RailProfile::of);
+    let len = it.length();
+    let (end, pitch, _) = RAIL_HOLES;
+    let at = line_positions(len, end, pitch);
+    let slots = if profile == (RailProfile::TopHat { perforated: true }) { rail_slots(len) } else { Vec::new() };
+    if slots.is_empty() {
+        return at;
+    }
+    let mut out: Vec<f32> = Vec::new();
+    for t in at {
+        let s = slots.iter().copied().min_by(|a, b| (a - t).abs().total_cmp(&(b - t).abs())).unwrap_or(t);
+        if !out.contains(&s) {
+            out.push(s);
+        }
+    }
+    out
+}
+
 /// Mounting holes from the part data: `Mounting holes: M4: 5,5; 40,85` (positions
 /// relative to the top left corner of the part, front view).
 pub fn part_holes(part: &Part) -> Option<(String, Vec<P>)> {
@@ -117,7 +141,10 @@ fn pattern_holes(it: &PanelItem, parts: &[Part]) -> Vec<Hole> {
             .collect::<Vec<_>>()
     };
     match it.kind {
-        ItemKind::Rail => along(RAIL_HOLES),
+        ItemKind::Rail => {
+            let (a, _) = it.center_line();
+            rail_fixings(it, parts).into_iter().map(|t| hole(it.id, if it.horizontal() { p(a.x + t, a.y) } else { p(a.x, a.y + t) }, RAIL_HOLES.2)).collect()
+        }
         ItemKind::Duct => along(DUCT_HOLES),
         ItemKind::Busbar => {
             // Holders sit at the two outer bars; one hole each side of the system.
@@ -316,6 +343,140 @@ pub fn openings(e: &Enclosure, parts: &[Part], face: Face) -> Vec<Opening> {
         v.extend(cutouts.iter().map(|c| place_cutout(it, part, c)));
     }
     v
+}
+
+// ---------------------------------------------------------------------- drilling pattern
+
+/// A kind of hole or cutout of a drilling pattern: its letter, size and how it is made.
+#[derive(Clone, Debug, PartialEq)]
+pub struct DrillKind {
+    /// A, B, C, … in the order of the kinds on the face.
+    pub label: String,
+    /// The hole (`None` for a cutout).
+    pub hole: Option<Hole>,
+    /// The cutout (`None` for a hole).
+    pub opening: Option<Opening>,
+    pub count: usize,
+}
+
+impl DrillKind {
+    /// Its size: `Ø4.2`, `Ø22.5`, `92 x 92`, `45 x 92 R2`.
+    pub fn size(&self) -> String {
+        match (&self.hole, &self.opening) {
+            (Some(h), _) => format!("Ø{}", dim(h.diameter)),
+            (_, Some(o)) if o.round => format!("Ø{}", dim(o.w)),
+            (_, Some(o)) if o.radius > 0.0 => format!("{} x {} R{}", dim(o.w), dim(o.h), dim(o.radius)),
+            (_, Some(o)) => format!("{} x {}", dim(o.w), dim(o.h)),
+            _ => String::new(),
+        }
+    }
+
+    /// The thread to cut or the screw it takes (`M5`, `(M5)`), empty for none.
+    pub fn thread(&self) -> String {
+        match &self.hole {
+            Some(h) if !h.thread.is_empty() => h.thread.clone(),
+            Some(h) if !h.thread_size.is_empty() => format!("({})", h.thread_size),
+            _ => String::new(),
+        }
+    }
+
+    /// How it is made, in the current language: the fastening of a hole, `Cutout`.
+    pub fn operation(&self) -> &'static str {
+        match &self.hole {
+            Some(h) => h.fastening.title(),
+            None => tr("Cutout"),
+        }
+    }
+}
+
+/// A hole or cutout of a drilling pattern: the item it is for, its kind (index in
+/// [`FaceDrilling::kinds`]), its place on the face (face coordinates, y down) and its
+/// dimensions from the bottom left corner of the face (as the NC data, y up).
+#[derive(Clone, Debug, PartialEq)]
+pub struct DrillFeature {
+    pub item: u64,
+    pub kind: usize,
+    pub pos: P,
+    pub x: f32,
+    pub y: f32,
+    /// Its outline on the face (cutouts), empty for holes.
+    pub outline: Vec<P>,
+}
+
+/// The drilling pattern of one face: its size, the kinds of holes and cutouts and every
+/// one of them, by kind, then from the bottom left.
+#[derive(Clone, Debug, PartialEq)]
+pub struct FaceDrilling {
+    pub face: Face,
+    pub size: (f32, f32),
+    pub kinds: Vec<DrillKind>,
+    pub features: Vec<DrillFeature>,
+}
+
+/// A dimension in mm: whole millimetres without decimals, otherwise to a tenth.
+pub fn dim(v: f32) -> String {
+    let r = (v * 10.0).round() / 10.0;
+    if (r - r.round()).abs() < 1e-3 {
+        format!("{:.0}", r)
+    } else {
+        format!("{r:.1}")
+    }
+}
+
+/// The letter of kind `i`: A … Z, then AA, AB, ….
+fn kind_label(i: usize) -> String {
+    let letter = |k: usize| char::from(b'A' + (k % 26) as u8);
+    if i < 26 {
+        letter(i).to_string()
+    } else {
+        format!("{}{}", letter(i / 26 - 1), letter(i))
+    }
+}
+
+/// The drilling patterns of the faces of an enclosure that have holes or cutouts (the
+/// mounting plate first): the holes of [`holes_on`] and the openings of [`openings`].
+pub fn drilling(e: &Enclosure, parts: &[Part]) -> Vec<FaceDrilling> {
+    let mut out = Vec::new();
+    for face in Face::ALL {
+        let (fw, fh) = e.face_size(face);
+        let holes = holes_on(e, parts, face);
+        let opens = openings(e, parts, face);
+        if holes.is_empty() && opens.is_empty() {
+            continue;
+        }
+        let mut kinds: Vec<DrillKind> = Vec::new();
+        let mut features = Vec::new();
+        let same_hole = |a: &Hole, b: &Hole| (a.diameter - b.diameter).abs() < 0.01 && a.thread == b.thread && a.thread_size == b.thread_size && a.fastening == b.fastening;
+        let same_opening = |a: &Opening, b: &Opening| a.round == b.round && (a.w - b.w).abs() < 0.01 && (a.h - b.h).abs() < 0.01 && (a.radius - b.radius).abs() < 0.01 && (a.angle - b.angle).abs() < 0.01;
+        for h in holes {
+            let k = match kinds.iter().position(|k| k.hole.as_ref().is_some_and(|o| same_hole(o, &h))) {
+                Some(k) => k,
+                None => {
+                    kinds.push(DrillKind { label: String::new(), hole: Some(h.clone()), opening: None, count: 0 });
+                    kinds.len() - 1
+                }
+            };
+            kinds[k].count += 1;
+            features.push(DrillFeature { item: h.item, kind: k, pos: h.pos, x: h.pos.x, y: fh - h.pos.y, outline: Vec::new() });
+        }
+        for o in opens {
+            let k = match kinds.iter().position(|k| k.opening.as_ref().is_some_and(|x| same_opening(x, &o))) {
+                Some(k) => k,
+                None => {
+                    kinds.push(DrillKind { label: String::new(), hole: None, opening: Some(o.clone()), count: 0 });
+                    kinds.len() - 1
+                }
+            };
+            kinds[k].count += 1;
+            features.push(DrillFeature { item: o.item, kind: k, pos: o.center, x: o.center.x, y: fh - o.center.y, outline: o.outline() });
+        }
+        for (i, k) in kinds.iter_mut().enumerate() {
+            k.label = kind_label(i);
+        }
+        features.sort_by(|a, b| a.kind.cmp(&b.kind).then(a.y.total_cmp(&b.y)).then(a.x.total_cmp(&b.x)));
+        out.push(FaceDrilling { face, size: (fw, fh), kinds, features });
+    }
+    out
 }
 
 // ---------------------------------------------------------------------- NC export

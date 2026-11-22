@@ -168,6 +168,17 @@ default holes; **NC export** per enclosure and face as DXF or DWG (outline, one 
 per hole diameter, cutouts, turned or rounded ones as their outline) or CSV (with the
 turn and corner radius of each cutout).
 
+A mounting rail is always screwed or riveted (*Fastening* in its properties: tapped
+hole, through hole with nut, rivet nut, blind rivet or weld stud;
+`set_panel_item fastening=rivet`): its fixing points lie in the slots of a perforated
+rail, the 3D view shows the screw or rivet heads in them and the bill of materials the
+screws, nuts or blind rivets. The report *Drilling pattern* lists every hole and cutout
+of every face with its letter, its dimensions from the bottom left corner of the face
+(as the NC data), size, thread and operation. A page *Drilling pattern* of an enclosure
+(*New drilling pattern page*, `add_page kind=drilling enclosure=+CAB1`) draws its faces
+with their holes and cutouts at one scale, dimensioned from that corner, with the kinds
+of holes and cutouts and their counts beside them.
+
 ## Virtual wiring and duct fill levels
 
 Every schematic connection between placed devices is routed from its connection point

@@ -412,7 +412,7 @@ impl App {
         });
         egui::ScrollArea::vertical().id_salt("sub_pages").max_height(180.0).show(ui, |ui| {
             for pg in &self.session.prj.pages {
-                if matches!(pg.kind, PageKind::Mounting(_)) {
+                if pg.kind.enclosure().is_some() {
                     continue;
                 }
                 let mut on = st.sub_pages.contains(&pg.id);

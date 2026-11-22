@@ -99,6 +99,7 @@ fn link_text(d: &mut dyn Draw, pos: P, text: &str, size: f32, h: Anchor, page: u
 }
 
 mod cable_labels;
+mod drilling;
 pub use cable_labels::{core_labels, core_labels_with_index, core_text_bounds, preview_core_labels, align_core_labels, CoreLabel};
 
 mod interruption;
@@ -154,6 +155,7 @@ pub fn draw_page_with_core_labels(d: &mut dyn Draw, prj: &Project, idx: &Index, 
             }
         }
         PageKind::Mounting(id) => draw_mounting_page(d, prj, id, &frame),
+        PageKind::Drilling(id) => drilling::draw_page(d, prj, id, &frame),
         PageKind::Document => crate::document::draw(d, &frame, page.document.as_ref()),
         PageKind::Schematic | PageKind::Overview | PageKind::Graphic => {}
     }

@@ -221,6 +221,31 @@ pub fn rail_slots(len: f32) -> Vec<f32> {
     out
 }
 
+/// Sheet thickness of a rail of the size.
+fn rail_thickness(width: f32, depth: f32) -> f32 {
+    (if depth >= 12.0 { 1.5 } else { 1.0f32 }).min(width / 12.0).min(depth / 4.0)
+}
+
+/// The web of a top-hat rail across it: the flanges 4 mm wide on a 35 mm rail, the web
+/// 27 mm.
+fn top_hat_web(width: f32) -> (f32, f32) {
+    let f = (width * 4.0 / 35.0).max(2.5).min(width / 3.0);
+    (f, width - f)
+}
+
+/// Where the heads of the screws or rivets of a rail lie: across it between its walls
+/// (from, to) and the front of its web out of the mounting surface.
+pub fn rail_web(profile: RailProfile, width: f32, depth: f32) -> (f32, f32, f32) {
+    let t = rail_thickness(width, depth);
+    match profile {
+        RailProfile::TopHat { .. } => {
+            let (w0, w1) = top_hat_web(width);
+            (w0 + t, w1 - t, t)
+        }
+        RailProfile::G => (t, width - t, t),
+    }
+}
+
 /// A mounting rail as boxes `(min, max)` in its own coordinates: along it from 0 to
 /// `len`, across it from 0 to `width`, out of the mounting surface from 0 to `depth`.
 /// A top-hat rail has its web on the mounting surface (slotted when perforated), the
@@ -236,12 +261,10 @@ pub fn rail_boxes(profile: RailProfile, len: f32, width: f32, depth: f32) -> Vec
             out.push(([a.0, c.0, z.0], [a.1, c.1, z.1]));
         }
     };
-    let t = (if depth >= 12.0 { 1.5 } else { 1.0f32 }).min(width / 12.0).min(depth / 4.0);
+    let t = rail_thickness(width, depth);
     match profile {
         RailProfile::TopHat { perforated } => {
-            // The flanges 4 mm wide on a 35 mm rail, the web 27 mm.
-            let f = (width * 4.0 / 35.0).max(2.5).min(width / 3.0);
-            let (w0, w1) = (f, width - f);
+            let (w0, w1) = top_hat_web(width);
             let (_, sw, _) = RAIL_SLOT;
             let sw = sw.min((w1 - w0) * 0.4);
             let slots = if perforated { rail_slots(len) } else { Vec::new() };
@@ -303,6 +326,23 @@ pub fn washer_number(thread: &str) -> String {
 
 pub fn rivet_nut_number(thread: &str) -> String {
     format!("GEN.RIVNUT-{thread}")
+}
+
+/// The blind rivet set where a screw of the thread would go (a 4.8 mm rivet for M5):
+/// its diameter and length (mm) and the diameter of its hole.
+pub fn rivet_size(thread: &str) -> Option<(f32, u32, f32)> {
+    Some(match thread {
+        "M3" => (3.2, 8, 3.3),
+        "M4" => (4.0, 10, 4.2),
+        "M5" => (4.8, 10, 5.0),
+        "M6" | "M8" | "M10" => (6.4, 12, 6.6),
+        _ => return None,
+    })
+}
+
+pub fn rivet_number(thread: &str) -> Option<String> {
+    let (d, len, _) = rivet_size(thread)?;
+    Some(format!("GEN.RIVET-{d}X{len}"))
 }
 
 /// Subgroups of the enclosure accessories (placed in the panel layout without a device

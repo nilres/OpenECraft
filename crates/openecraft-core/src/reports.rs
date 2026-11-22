@@ -66,6 +66,7 @@ pub fn table(prj: &Project, an: &Analysis, kind: ReportKind) -> Table {
         ReportKind::HarnessData => harness_data(prj, an),
         ReportKind::DuctFill => duct_fill_report(prj, &an.duct_fill),
         ReportKind::PanelLegend => diagrams::panel_legend(prj, idx),
+        ReportKind::DrillingPattern => drilling_pattern(prj),
         ReportKind::Climate => climate_report(prj),
         ReportKind::Marking => marking_report(&crate::marking::markers(prj, conns)),
         ReportKind::HoseList => hose_list(prj, open),
@@ -130,8 +131,44 @@ pub fn keywords(k: ReportKind) -> &'static [&'static str] {
         K::SafetyFunctions => &["ISO 13849-1", "DIN EN ISO 13849-1", "Performance level", "SIL"],
         K::Verification => &["IEC 60204-1", "IEC 61439-1", "UL 508A", "NFPA 79", "ISO 13849-1"],
         K::BillOfMaterials => &["BOM", "Parts list"],
+        K::DrillingPattern => &["Drilling plan", "Hole pattern", "Bohrbild", "NC"],
         _ => &[],
     }
+}
+
+/// Every hole and cutout of the faces of the enclosures: its kind (the letter of the
+/// drilling pattern page), its dimensions from the bottom left corner of the face (as
+/// the NC data), size, thread and how it is made, and the item it is for; each kind
+/// closed by its count.
+fn drilling_pattern(prj: &Project) -> Table {
+    let mut t = Table::with_widths(&[
+        (tr_const!("Enclosure"), 0.7),
+        (tr_const!("Face"), 0.9),
+        (tr_const!("Kind"), 0.4),
+        (tr_const!("X (mm)"), 0.6),
+        (tr_const!("Y (mm)"), 0.6),
+        (tr_const!("Size"), 0.8),
+        (tr_const!("Thread"), 0.5),
+        (tr_const!("Operation"), 1.3),
+        (tr_const!("Item"), 0.9),
+    ]);
+    for e in &prj.layout.enclosures {
+        // Jumps go to the drilling pattern page of the enclosure, else to its layout.
+        let page = prj.pages.iter().position(|pg| pg.kind == PageKind::Drilling(e.id)).or_else(|| prj.pages.iter().position(|pg| pg.kind == PageKind::Mounting(e.id)));
+        for f in crate::production::drilling(e, &prj.parts) {
+            let face = if f.face == panel::Face::Door { tr("Door (front view)").to_string() } else { f.face.title().to_string() };
+            for (k, kind) in f.kinds.iter().enumerate() {
+                for x in f.features.iter().filter(|x| x.kind == k) {
+                    let item = e.item(x.item).map(|i| if i.tag.is_empty() { i.kind.title().to_string() } else { i.tag.clone() }).unwrap_or_default();
+                    let row = vec![e.name.clone(), face.clone(), kind.label.clone(), crate::production::dim(x.x), crate::production::dim(x.y), kind.size(), kind.thread(), kind.operation().to_string(), item];
+                    t.push(row, page.map(|pg| (pg, x.item)));
+                }
+                let total = vec![e.name.clone(), face.clone(), kind.label.clone(), String::new(), String::new(), kind.size(), kind.thread(), tr_fmt!("{} in all", kind.count), String::new()];
+                t.push(total, None);
+            }
+        }
+    }
+    t
 }
 
 fn hose_list(prj: &Project, open: &Netlist) -> Table {

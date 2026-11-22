@@ -378,7 +378,7 @@ fn poles_of_one_device(prj: &Project, tag: &str, mains: &[crate::index::Loc]) ->
 fn check_layout(prj: &Project) -> Vec<Issue> {
     let mut v = Vec::new();
     for (pi, pg) in prj.pages.iter().enumerate() {
-        if let PageKind::Mounting(id) = pg.kind {
+        if let Some(id) = pg.kind.enclosure() {
             if !prj.layout.enclosures.iter().any(|e| e.id == id) {
                 v.push(crate::issue!(Severity::Warning, Some((pi, 0)), "Page {}: its enclosure no longer exists", pg.name));
             }

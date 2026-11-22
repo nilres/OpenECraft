@@ -281,7 +281,7 @@ pub static TABS: &[Tab] = &[
             ),
             g("show", tr_const!("Show"), &[S(C::LayoutWires), S(C::LayoutDuctFill), S(C::LayoutHeat), S(C::LayoutLineup), S(C::LayoutSite), S(C::LayoutBuilding), S(C::LayoutHideFrontWalls), S(C::LayoutHideCeiling), S(C::LayoutHidePvModules), S(C::LayoutSeeThroughPv), S(C::LayoutOpenDucts), S(C::LayoutZones), S(C::LayoutPaperPlan), S(C::LayoutOpenWalls)]),
             g("site", tr_const!("Site"), &[S(C::LayoutPlotBoundary), S(C::LayoutReferencePoint), S(C::LayoutMeasure), S(C::LayoutMoveBuildings), S(C::LayoutEarthing)]),
-            g("production", tr_const!("Production"), &[L(C::LayoutNcData), S(C::LayoutReports), S(C::LayoutMountingPage)]),
+            g("production", tr_const!("Production"), &[L(C::LayoutNcData), S(C::LayoutReports), S(C::LayoutMountingPage), S(C::LayoutDrillingPage)]),
         ],
     },
     Tab {

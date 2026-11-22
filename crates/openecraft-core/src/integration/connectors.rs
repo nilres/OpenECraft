@@ -68,6 +68,7 @@ fn page_kind(k: PageKind) -> &'static str {
         PageKind::Cover => "cover",
         PageKind::Report(_) => "report",
         PageKind::Mounting(_) => "mounting",
+        PageKind::Drilling(_) => "drilling",
         PageKind::Overview => "overview",
         PageKind::Graphic => "graphic",
         PageKind::Document => "document",

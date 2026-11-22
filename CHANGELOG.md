@@ -9,6 +9,23 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   a flat box: a top-hat rail its flanges, walls and web, perforated with a slot every
   25 mm along its whole length; a G rail its high and low side. 3D exports carry the
   profile too.
+- **Rails screwed or riveted:** a mounting rail is always fixed to its face, chosen in
+  its properties (*Fastening*: tapped hole, through hole with nut, rivet nut, the new
+  *Blind rivet* or weld stud; `set_panel_item fastening=rivet`), never clipped or glued.
+  Its fixing points lie in the slots of a perforated rail, the 3D view shows the screw
+  or rivet heads, and the bill of materials lists the screws or blind rivets.
+- **Drilling pattern:** the report *Drilling pattern* lists every hole and cutout of
+  every face with its letter, its dimensions from the bottom left corner of the face (as
+  the NC data), size, thread and operation. A *Drilling pattern* page of an enclosure
+  (*New drilling pattern page*, `add_page kind=drilling enclosure=+CAB1`, also
+  `kind=mounting`) draws its faces with ordinate dimensions and the legend of the kinds.
+- **Door devices in 3D:** indicator lamps, pushbuttons, the emergency stop, selector and
+  key switches and the buzzer show their bezel, lens, button, mushroom, knob, key or
+  dome in front of the door (part data `Outside`: how far they stand out of it), their
+  holder and contact or lamp block behind it.
+- **Switchboard meters:** analog ammeters and voltmeters (72 and 96 mm, dial with scale
+  and pointer) and digital ones (LED display) with their models; the doors of the pump
+  station cabinets show the supply voltage and the currents of both pumps.
 - **Heater, thermostat and rail socket in 3D:** the enclosure heater shows its finned
   heat sink and the fan behind its grille, the enclosure thermostat its red (heating) or
   blue (cooling) dial with its scale, the socket outlet for mounting rails the round
