@@ -25,7 +25,7 @@
 //! an arm is the first connection point along its wire, or what the next symbol hands
 //! on: the devices of the arms linked with the one the wire comes in at.
 
-use crate::geom::{on_segment_interior, P};
+use crate::geom::P;
 use crate::issue::{Issue, Severity};
 use crate::model::{Junction, JunctionKind, Page, Project, TeeDir, Wire};
 use crate::netlist::{chained_pins, Connection, Net, Netlist, PinRef, Uf};
@@ -118,7 +118,7 @@ fn dir_of(from: P, to: P) -> Option<TeeDir> {
 }
 
 fn touches(w: &Wire, q: P) -> bool {
-    w.a.same(q) || w.b.same(q) || on_segment_interior(q, w.a, w.b)
+    w.a.same(q) || w.b.same(q) || w.contact_inside(q)
 }
 
 /// Directions in which wires of the page leave `q` (a wire passing through counts
@@ -127,12 +127,12 @@ pub fn arms(page: &Page, q: P) -> Option<Vec<TeeDir>> {
     let mut v = Vec::new();
     for w in page.wires.iter().filter(|w| touches(w, q)) {
         if w.a.same(q) {
-            v.push(dir_of(q, w.b)?);
+            v.push(dir_of(q, w.leaving_towards(q, w.b))?);
         } else if w.b.same(q) {
-            v.push(dir_of(q, w.a)?);
+            v.push(dir_of(q, w.leaving_towards(q, w.a))?);
         } else {
-            v.push(dir_of(q, w.a)?);
-            v.push(dir_of(q, w.b)?);
+            v.push(dir_of(q, w.leaving_towards(q, w.a))?);
+            v.push(dir_of(q, w.leaving_towards(q, w.b))?);
         }
     }
     v.sort();
@@ -248,15 +248,15 @@ pub fn trace(prj: &Project, net: &Net, tees: &[(usize, &Junction)]) -> Traced {
         let page = &prj.pages[pi];
         let Some(w) = page.wires.iter().find(|w| w.id == wid) else { continue };
         let mut cuts: Vec<P> = vec![w.a, w.b];
-        cuts.extend(tees.iter().filter(|(p, j)| *p == pi && on_segment_interior(j.pos, w.a, w.b)).map(|(_, j)| j.pos));
-        cuts.extend(page.wires.iter().flat_map(|o| [o.a, o.b]).filter(|&e| on_segment_interior(e, w.a, w.b)));
+        cuts.extend(tees.iter().filter(|(p, j)| *p == pi && w.contact_inside(j.pos)).map(|(_, j)| j.pos));
+        cuts.extend(page.wires.iter().flat_map(|o| [o.a, o.b]).filter(|&e| w.contact_inside(e)));
         let along = |q: P| (q.x - w.a.x) * (w.b.x - w.a.x) + (q.y - w.a.y) * (w.b.y - w.a.y);
         cuts.sort_by(|x, y| along(*x).total_cmp(&along(*y)));
         cuts.dedup_by(|x, y| x.same(*y));
         for seg in cuts.windows(2) {
             let (s, e) = (seg[0], seg[1]);
             let key = |q: P, other: P| match tee_at(pi, q) {
-                Some(k) => match dir_of(q, other).filter(|d| tees[k].1.arms().contains(d)) {
+                Some(k) => match dir_of(q, w.leaving_towards(q, other)).filter(|d| tees[k].1.arms().contains(d)) {
                     Some(d) => Key::Port(k, d),
                     None => Key::Point(pi, q.key()),
                 },

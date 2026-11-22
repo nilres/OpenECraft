@@ -2,14 +2,14 @@
 //! and cross-section of the whole connection and the cable core of that wire. The
 //! wires take the values when a point is placed, changed or applied again.
 
-use crate::geom::{dist_to_segment, P};
+use crate::geom::P;
 use crate::model::*;
 use crate::netlist::{Net, Netlist};
 use crate::issue::{Issue, Severity};
 
 /// Wire of the page the point `q` lies on.
 pub fn wire_at(page: &Page, q: P) -> Option<&Wire> {
-    page.wires.iter().find(|w| dist_to_segment(q, w.a, w.b) < 0.01)
+    page.wires.iter().find(|w| w.distance_to(q) < 0.01)
 }
 
 fn net_of<'a>(page: &Page, open: &'a Netlist, cd: &ConnDef) -> Option<&'a Net> {

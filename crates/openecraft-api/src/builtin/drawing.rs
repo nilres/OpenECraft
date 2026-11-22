@@ -183,6 +183,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("wire_type", Kind::Str, tr_const!("Wire type")),
             optional("cable", Kind::Str, tr_const!("Cable tag")),
             optional("core", Kind::Str, tr_const!("Cable core")),
+            optional("bezier_offsets", Kind::Points, tr_const!("Two Bézier handle offsets from the wire ends in mm; empty to straighten")),
             optional("core_offset", Kind::Points, tr_const!("Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)")),
             optional("cable_offset", Kind::Points, tr_const!("Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)")),
             optional("medium", Kind::Str, tr_const!("Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)")),
@@ -959,7 +960,16 @@ fn update_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
     let policy=a.str("junction_policy").map(wire_policy).transpose()?;
     let id = a.int("id").unwrap_or_default() as u64;
+    let bend = if let Some(value) = a.value("bezier_offsets").filter(|v| !v.is_null()) {
+        let offsets: Vec<[f32; 2]> = serde_json::from_value(value.clone()).map_err(|_| tr("Invalid Bézier offsets").to_string())?;
+        Some(match offsets.as_slice() {
+            [] => None,
+            [a,b] if a.iter().chain(b).all(|v| v.is_finite()) => Some([p(a[0], a[1]), p(b[0], b[1])]),
+            _ => return Err(tr("Invalid Bézier offsets").into()),
+        })
+    } else { None };
     let w = prj.pages[i].wires.iter_mut().find(|w| w.id == id).ok_or_else(|| tr_fmt!("No wire with id {}", id))?;
+    if let Some(bend) = bend { w.bend = bend; }
     if let Some(policy)=policy {w.explicit_junctions=policy;}
     if let Some(n) = a.str("number") {
         w.number = n.into();
@@ -1002,7 +1012,7 @@ fn update_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
         w.length = l;
     }
     let medium = w.medium.map(|m| m.code()).unwrap_or_default();
-    Ok(json!({ "id": w.id, "number": w.number, "hide_labels": w.hide_labels,"labels":w.labels,"junction_policy":w.junction_policy(), "color": w.color, "cross_section": w.cross_section, "wire_type": w.wire_type, "cable": w.cable, "core": w.core, "core_offset": w.core_offset.map(xy), "cable_offset": w.cable_offset.map(xy), "medium": medium, "length": w.length }))
+    Ok(json!({ "id": w.id, "number": w.number, "hide_labels": w.hide_labels,"labels":w.labels,"junction_policy":w.junction_policy(), "color": w.color, "cross_section": w.cross_section, "wire_type": w.wire_type, "cable": w.cable, "core": w.core, "bezier_offsets": w.bend.map(|b| b.map(xy)), "core_offset": w.core_offset.map(xy), "cable_offset": w.cable_offset.map(xy), "medium": medium, "length": w.length }))
 }
 
 /// Takes the style parameters of `add_text` / `update_text` that are given.

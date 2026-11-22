@@ -126,3 +126,18 @@ fn scope_and_junction_edits_invalidate_cached_scans_of_explicit_pages() {
     prj.pages[0].junctions.push(Junction::corner(p(20.,10.),TeeDir::Down,TeeDir::Right));
     let _=Netlist::build_with(&prj,true,&mut scans);assert_eq!(scans.scanned,1,"a corner joins wires on an explicit page");
 }
+
+#[test]
+fn bend_invalidates_cached_sheet_contacts() {
+    let mut prj = Project::default();
+    let wire = |id,a,b| Wire { id, a, b, ..Default::default() };
+    prj.pages[0].wires = vec![wire(1,p(0.,0.),p(40.,0.)), wire(2,p(20.,0.),p(20.,-8.))];
+    let mut scans = Scans::default();
+    let before = Netlist::build_with(&prj,true,&mut scans);
+    assert_eq!(before.wire_net[&1], before.wire_net[&2]);
+    prj.pages[0].wires[0].bend = Some([p(0.,16.),p(0.,16.)]);
+    let after = Netlist::build_with(&prj,true,&mut scans);
+    assert_eq!(scans.scanned, 1);
+    assert_ne!(after.wire_net[&1], after.wire_net[&2]);
+    assert_eq!(after.wire_net, Netlist::build(&prj,true).wire_net);
+}

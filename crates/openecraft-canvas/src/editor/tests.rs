@@ -1361,3 +1361,30 @@ fn directions_are_counted_counter_clockwise_on_the_page() {
     assert_eq!(direction(p(0.0, 0.0), p(10.0, 0.0)), 0.0);
     assert_eq!(direction(p(0.0, 0.0), p(0.0, -10.0)), 90.0);
 }
+
+#[test]
+fn concealed_wire_selected_and_bent_as_one_item() {
+    let mut project = Project::default();
+    let wire = Wire { id: 5, a: p(100., 52.), b: p(140., 52.), ..Default::default() };
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    project.pages[0].wires.push(wire.clone());
+    ready(&mut ed, &ctx, &mut project);
+    let mid = wire.point_at(0.5);
+    let top = mid + p(0., -12.);
+    drag_with(&mut ed, &ctx, &mut project, 0, mid, top, Modifiers::CTRL);
+    assert!(project.pages[0].wires[0].point_at(0.5).dist(top) < 0.01);
+    click(&mut ed, &ctx, &mut project, 0, top);
+    assert_eq!(ed.selection, BTreeSet::from([wire.id]));
+    let next = top + p(4., -4.);
+    drag(&mut ed, &ctx, &mut project, 0, top, next);
+    let saved = serde_json::to_vec(&project).unwrap();
+    let mut reopened: Project = serde_json::from_slice(&saved).unwrap();
+    let after = &reopened.pages[0].wires[0];
+    assert_eq!(reopened.pages[0].wires.len(), 1);
+    assert_eq!((after.a, after.b), (wire.a, wire.b));
+    assert!(after.point_at(0.5).dist(next) < 0.01);
+    assert_eq!(ed.hit(&reopened, 0, next), Some(wire.id));
+    drag(&mut ed, &ctx, &mut reopened, 0, next, mid);
+    assert_eq!(reopened.pages[0].wires[0].bend, None);
+}

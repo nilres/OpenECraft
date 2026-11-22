@@ -48,14 +48,14 @@ pub(super) fn build(prj:&Project,net:&Net,sites:&[Site],attachments:&[Attachment
         let pg=&prj.pages[page];
         let Some(w)=pg.wires.iter().find(|w|w.id==wid) else {continue;};
         let mut cuts=vec![w.a,w.b];
-        cuts.extend(pg.wires.iter().flat_map(|w|[w.a,w.b]).filter(|q|on_segment_interior(*q,w.a,w.b)));
-        cuts.extend(attachments.iter().filter(|a|a.page==page && on_segment_interior(a.point,w.a,w.b)).map(|a|a.point));
-        cuts.extend(pg.junctions.iter().map(|j|j.pos).filter(|q|on_segment_interior(*q,w.a,w.b)));
+        cuts.extend(pg.wires.iter().flat_map(|w|[w.a,w.b]).filter(|q|w.contact_inside(*q)));
+        cuts.extend(attachments.iter().filter(|a|a.page==page && w.contact_inside(a.point)).map(|a|a.point));
+        cuts.extend(pg.junctions.iter().map(|j|j.pos).filter(|q|w.contact_inside(*q)));
         cuts.sort_by(|a,b| ((a.x-w.a.x)*(w.b.x-w.a.x)+(a.y-w.a.y)*(w.b.y-w.a.y)).total_cmp(&((b.x-w.a.x)*(w.b.x-w.a.x)+(b.y-w.a.y)*(w.b.y-w.a.y))));
         cuts.dedup_by(|a,b|a.same(*b));
         for pair in cuts.windows(2) {
-            let a=node(&mut graph.nodes,&mut graph.uf,wire_key(sites,page,wid,pair[0],pair[1]));
-            let b=node(&mut graph.nodes,&mut graph.uf,wire_key(sites,page,wid,pair[1],pair[0]));
+            let a=node(&mut graph.nodes,&mut graph.uf,wire_key(sites,page,wid,pair[0],w.leaving_towards(pair[0],pair[1])));
+            let b=node(&mut graph.nodes,&mut graph.uf,wire_key(sites,page,wid,pair[1],w.leaving_towards(pair[1],pair[0])));
             graph.local(a,b,(((pair[1]-pair[0]).len()*1000.) as u64).max(1),Some((page,wid)));
             for (q,n) in [(pair[0],a),(pair[1],b)] {
                 points.entry((page,q.key())).or_default().push(WirePoint {point:q,node:n,endpoint:q.same(w.a)||q.same(w.b),a:w.a,b:w.b,explicit:w.requires_explicit_junctions(pg)});

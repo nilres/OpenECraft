@@ -91,7 +91,7 @@ fn the_keep_connections_modifier_clashes_only_at_the_start_of_a_move() {
     g.set_modifier(Role::ReverseKeepConnections, Some(Mod::Shift));
     assert_eq!(g.conflicts(), vec![(Clash::Modifier(Mod::Shift), vec!["add_to_selection", "reverse_keep_connections"])]);
     g.set_modifier(Role::ReverseKeepConnections, Some(Mod::Ctrl));
-    assert_eq!(g.conflicts(), Vec::new(), "Ctrl opens links on a click, not at a move");
+    assert_eq!(g.conflicts(), vec![(Clash::Modifier(Mod::Ctrl), vec!["bend_sheet_wire", "reverse_keep_connections"])]);
 }
 
 #[test]

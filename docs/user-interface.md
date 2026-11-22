@@ -63,3 +63,7 @@ zoom, language, check results and the messages of the session.
 | Pages | `Page Up` / `Page Down`, *Pages* navigator (its context menu also adds a schematic page after the page, renumbers and deletes pages), page switch of the quick access row |
 | Undo / redo | `Ctrl+Z` / `Ctrl+Y`; the undo list of the quick access row undoes several steps |
 | Copy / paste | `Ctrl+C` / `Ctrl+X` / `Ctrl+V`, *Home › Cut* / *Copy* / *Paste* |
+
+## Curved wires on a sheet
+
+In Select mode, Ctrl-drag a wire to bend it between its fixed endpoints. Select the curve and drag its middle handle to reshape it on the grid. Drag elsewhere on the body to move it. Drag the handle back onto the straight line between the endpoints to straighten it. The bend modifier is configurable in the mouse gesture settings. Printed and exported pages use the same curve. Physical cable routes are edited separately.

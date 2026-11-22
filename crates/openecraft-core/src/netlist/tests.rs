@@ -1,4 +1,5 @@
 use super::*;
+use crate::geom::on_segment_interior;
 
 #[test]
 fn interruption_scope_separates_equal_names_without_changing_the_label() {

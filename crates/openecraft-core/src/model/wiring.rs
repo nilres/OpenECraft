@@ -38,7 +38,7 @@ impl Default for WireLabel {
 
 impl WireLabel {
     pub fn attachment(&self, wire: &Wire) -> P {
-        wire.a + (wire.b - wire.a) * self.along
+        wire.point_at(self.along)
     }
 
     pub fn position(&self, wire: &Wire) -> P {
