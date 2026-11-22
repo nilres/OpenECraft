@@ -72,9 +72,10 @@ fn meters(prj: &mut Project, db: &PartsDb) {
     let page = |prj: &Project, desc: &str| prj.pages.iter().position(|p| p.description == desc).expect(desc);
     let supply = page(prj, "Infeed and 24 V supply");
     let mut g = Pg { prj, page: supply };
-    g.sym("cb1", 120.0, 80.0, 0, "-F3", "", "Measuring").w(120.0, 24.0, 120.0, 76.0).w(120.0, 84.0, 120.0, 92.0);
-    g.sym("voltmeter", 120.0, 96.0, 0, "-P1", "", "Supply voltage");
-    g.path(&[(120.0, 100.0), (120.0, 108.0), (132.0, 108.0), (132.0, 48.0)]);
+    // Right of the service socket circuit the electrical room adds here (x 110 - 126).
+    g.sym("cb1", 140.0, 80.0, 0, "-F3", "", "Measuring").w(140.0, 24.0, 140.0, 76.0).w(140.0, 84.0, 140.0, 92.0);
+    g.sym("voltmeter", 140.0, 96.0, 0, "-P1", "", "Supply voltage");
+    g.path(&[(140.0, 100.0), (140.0, 108.0), (150.0, 108.0), (150.0, 48.0)]);
     for desc in ["Power pump 1", "Power pump 2"] {
         let pi = page(prj, desc);
         let feed = |w: &Wire| w.a.x == 60.0 && w.b.x == 60.0 && w.a.y.min(w.b.y) == 24.0 && w.a.y.max(w.b.y) == 76.0;

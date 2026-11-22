@@ -18,11 +18,16 @@ fn the_scene_has_walls_door_plate_and_items() {
     // gland in the bottom, standing out of it.
     let standing = standing_out(e);
     assert!(standing > 20.0, "{standing}");
+    // The fronts of the door devices stand out of the door as far as their parts say.
+    let front = |name: &str| {
+        e.items.iter().filter(|i| i.face == crate::panel::Face::Door && i.tag == name).filter_map(|i| crate::panel::part_by_number(&prj, &i.part)).filter_map(|p| crate::panel::tech_number(p, "Outside")).fold(0.0, f32::max)
+    };
     for x in solids {
         let m = if x.name == "Accessory" { standing } else { 0.0 } + 0.01;
+        let out = front(&x.name);
         for v in x.triangles.iter().flatten() {
             assert!(v[0] >= -m && v[0] <= e.width + m && v[1] >= -m && v[1] <= e.height + m, "{} {v:?}", x.name);
-            assert!(v[2] >= -m && v[2] <= e.depth + crate::panel::WALL + m, "{} {v:?}", x.name);
+            assert!(v[2] >= -m && v[2] <= e.depth + crate::panel::WALL + out + m, "{} {v:?}", x.name);
         }
     }
 }

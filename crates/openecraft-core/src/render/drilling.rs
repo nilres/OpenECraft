@@ -43,7 +43,8 @@ pub(super) fn draw_page(d: &mut dyn Draw, prj: &Project, id: u64, frame: &crate:
 
 /// Where the faces go in `area` and their scales (1:n): the first over the whole height
 /// at the largest scale that leaves at least half of the width, the others in the grid
-/// of columns and rows beside it that draws them largest.
+/// of columns and rows beside it that draws the smallest of them largest (then all of
+/// them).
 fn layout(faces: &[FaceDrilling], area: R) -> Vec<(P, f32)> {
     let cell = |(fw, fh): (f32, f32), (w, h): (f32, f32)| drawing_scale((fw, fh), ((w - LEFT - RIGHT).max(10.0), (h - ABOVE - BELOW).max(10.0)));
     let (w, h) = (area.max.x - area.min.x, area.max.y - area.min.y);
@@ -61,9 +62,11 @@ fn layout(faces: &[FaceDrilling], area: R) -> Vec<(P, f32)> {
         let size = (width / cols as f32, h / rows as f32);
         let scales: Vec<f32> = rest.iter().map(|f| cell(f.size, size)).collect();
         let area: f32 = rest.iter().zip(&scales).map(|(f, n)| f.size.0 * f.size.1 / (n * n)).sum();
-        (area, cols, size, scales)
+        let coarsest = scales.iter().copied().fold(0.0, f32::max);
+        ((-coarsest, area), cols, size, scales)
     };
-    let (_, cols, size, scales) = (1..=rest.len()).map(drawn).max_by(|a, b| a.0.total_cmp(&b.0)).unwrap_or_else(|| drawn(1));
+    let better = |a: &(f32, f32), b: &(f32, f32)| a.0.total_cmp(&b.0).then(a.1.total_cmp(&b.1));
+    let (_, cols, size, scales) = (1..=rest.len()).map(drawn).max_by(|a, b| better(&a.0, &b.0)).unwrap_or_else(|| drawn(1));
     for (i, n) in scales.into_iter().enumerate() {
         out.push((origin(p(left + (i % cols) as f32 * size.0, area.min.y + (i / cols) as f32 * size.1)), n));
     }
