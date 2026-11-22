@@ -47,6 +47,11 @@ pub fn ampacity(mm2: f32) -> Option<f32> {
     AMPACITY.iter().rev().find(|(cs, _)| mm2 >= *cs - 0.001).filter(|_| mm2 <= AMPACITY[AMPACITY.len() - 1].0 + 0.001).map(|x| x.1)
 }
 
+/// The cross-sections of the table, mm².
+pub fn sections() -> impl Iterator<Item = f32> {
+    AMPACITY.iter().map(|x| x.0)
+}
+
 /// Current-carrying capacity under the installation conditions of the project.
 pub fn capacity(prj: &Project, mm2: f32) -> Option<f32> {
     ampacity(mm2).map(|i| i * prj.electrical.conditions.factor())

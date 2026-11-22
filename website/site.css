@@ -319,6 +319,37 @@ ol.points li::before { content: counter(step); left: 14px; top: 13px; width: 22p
 .symbol h3 { font-size: 16px; }
 .symbol dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0; font-size: 13px; color: var(--muted); }
 .symbol dd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+.symbol h3 a { color: inherit; text-decoration: none; }
+.symbol h3 a:hover { color: var(--cyan); }
+/* The page of a symbol: its drawing large beside its data, the other symbols as links. */
+.symbol-sheet { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 24px; align-items: start; margin-top: 22px; max-width: 60em; }
+.symbol-sheet .symbol-art { height: 300px; padding: 20px; }
+.symbol-sheet .symbol-art img { max-height: 260px; width: 100%; object-fit: contain; }
+.symbol-sheet dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; margin: 0; }
+.symbol-sheet dt { color: var(--muted); }
+.symbol-sheet dd { margin: 0; overflow-wrap: anywhere; }
+.symbol-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; }
+.symbol-links a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); text-decoration: none; font-size: 14px; }
+.symbol-links a:hover { color: var(--text); border-color: var(--cyan); }
+@media (max-width: 700px) { .symbol-sheet { grid-template-columns: 1fr; } }
+/* The reference tables: read whole, with the colour of a wire beside its name. */
+.table-scroll.reference { max-height: none; max-width: 60em; margin-top: 22px; }
+table.reference { font-size: 15px; }
+table.reference th, table.reference td { padding: 10px 14px; vertical-align: top; white-space: normal; }
+table.reference thead th { position: static; }
+table.reference tbody th { background: rgba(255, 255, 255, .03); white-space: nowrap; }
+table.reference td { color: var(--muted); }
+table.reference tr:last-child > * { border-bottom: 0; }
+.swatch { display: inline-block; width: 28px; height: 12px; margin-right: 10px; border-radius: 3px; border: 1px solid rgba(255, 255, 255, .35); vertical-align: middle; }
+.swatch.black { background: #111; }
+.swatch.red { background: #d22; }
+.swatch.blue { background: #1650c8; }
+.swatch.lightblue { background: #4aa3f0; }
+.swatch.orange { background: #f08a1c; }
+.swatch.brown { background: #7a4a22; }
+.swatch.grey { background: #8a8f98; }
+.swatch.white { background: #fff; }
+.swatch.greenyellow { background: repeating-linear-gradient(90deg, #2aa84a 0 7px, #f2d51c 7px 14px); }
 .sheets img { background: #fff; aspect-ratio: 420 / 297; object-fit: contain; }
 table.pages { min-width: 0; }
 table.pages tbody th { width: 28%; }

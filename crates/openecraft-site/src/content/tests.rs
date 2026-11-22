@@ -26,8 +26,12 @@ fn a_content_file_has_a_head_and_a_body() {
 fn links_lead_to_the_files_of_the_language() {
     let place = Place::of("how-to/page", Lang::De);
     let html = links("<a href=\"@/compare/\">a</a><a href=\"@/#studio\">b</a><a href=\"~/docs/\">c</a><img src=\"~/images/a.webp\" /><a href=\"@/?example=x&amp;page=2#studio\">d</a>", place);
-    assert_eq!(html, "<a href=\"../../compare/de.html\">a</a><a href=\"../../de.html#studio\">b</a><a href=\"../../docs/\">c</a><img src=\"../../images/a.webp\" /><a href=\"../../de.html?example=x&amp;page=2#studio\">d</a>");
+    assert_eq!(html, "<a href=\"../../compare/de.html\">a</a><a href=\"../../de.html#studio\">b</a><a href=\"../../docs/de.html\">c</a><img src=\"../../images/a.webp\" /><a href=\"../../de.html?example=x&amp;page=2#studio\">d</a>");
     assert_eq!(links("<p>a@/b ~/c</p>", place), "<p>a@/b ~/c</p>", "only addresses");
+    // A page that is not written in the language of the content is the English one.
+    let korean = Place::of("how-to/page", Lang::Ko);
+    assert_eq!(links("<a href=\"~/docs/tutorial/#x\">a</a><a href=\"~/news/\">b</a>", korean), "<a href=\"../../docs/tutorial/#x\">a</a><a href=\"../../news/\">b</a>");
+    assert_eq!(links("<a href=\"~/docs/tutorial/#x\">a</a><a href=\"~/news/\">b</a>", place), "<a href=\"../../docs/tutorial/de.html#x\">a</a><a href=\"../../news/\">b</a>");
 }
 
 #[test]
@@ -38,7 +42,8 @@ fn a_page_is_written_in_the_language_with_its_questions() {
     assert!(english.main.contains("href=\"../compare/\"") && english.main.contains("href=\"../docs/tutorial/\""));
     let german = content.page(Lang::De);
     assert!(german.main.contains("href=\"../compare/de.html\" data-t=\"Comparison\">Vergleich</a>"));
-    assert!(german.main.contains("href=\"../docs/tutorial/\""), "the documentation is in English only");
+    assert!(german.main.contains("href=\"../docs/tutorial/de.html\""), "the documentation has a German page");
+    assert!(content.page(Lang::Ja).main.contains("href=\"../docs/tutorial/\""), "and no Japanese one");
     assert_eq!(german.folder, "faq");
 }
 
@@ -81,7 +86,7 @@ fn the_pages_of_the_site_are_complete() {
         }
     }
     // The sections of the footer that are content files.
-    for (folder, _, _) in crate::frame::SECTIONS {
+    for (folder, _) in crate::frame::SECTIONS {
         let generated = ["symbols/", "examples/", "docs/", "news/"].contains(&folder);
         assert!(generated || site.iter().any(|page| page == folder), "{folder}");
     }

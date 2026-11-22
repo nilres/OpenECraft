@@ -6,8 +6,9 @@
 //! written whole). The build puts it into the frame of the site in every language.
 //!
 //! Links to the site start with `@/` for a page that exists in every language
-//! (`@/compare/`, `@/#studio`) and with `~/` for a file or a page in English only
-//! (`~/docs/tutorial/`). A page of the kind `faq` names its questions to search
+//! (`@/compare/`, `@/#studio`) and with `~/` for a file or a page that is not written
+//! in every language (`~/docs/tutorial/`, `~/news/`): such a page is linked in the
+//! language of the content where it has that language. A page of the kind `faq` names its questions to search
 //! engines: `<details><summary data-t>…</summary><p data-t>…</p></details>`.
 
 use crate::frame::{files, File, Kind, Langs, Page, Place};
@@ -126,7 +127,9 @@ pub fn links(html: &str, place: Place) -> String {
         let after = &rest[at + 4..];
         let end = after.find('"').unwrap_or(after.len());
         out.push_str(&rest[..at + 2]);
-        out.push_str(&if translated { place.to(&after[..end]) } else { place.file(&after[..end]) });
+        let target = &after[..end];
+        let page = target[..target.find(['?', '#']).unwrap_or(target.len())].ends_with('/');
+        out.push_str(&if translated || page { place.to(target) } else { place.file(target) });
         rest = &after[end..];
     }
     out.push_str(rest);

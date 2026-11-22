@@ -1,0 +1,51 @@
+title: Short-circuit current calculator (IEC 60909) – OpenECraft
+description: Free short-circuit current calculator: the current at a transformer or supply point and at the end of a cable, with its peak and the lowest fault current.
+kind: tool
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Tools</p>
+        <h1 data-t>Short-circuit current calculator</h1>
+        <p class="lead" data-t>How high the short-circuit current is at the supply and what is left of it at the end of a cable: the highest current for the breaking capacity, the lowest for the tripping of the protective device.</p>
+    </div>
+</section>
+
+<section class="band tool" data-tool="short_circuit" data-live>
+    <form class="tool-form">
+        <label><span data-t>Source</span><select name="source"><option value="transformer" data-t>Transformer</option><option value="current" data-t>Known short-circuit current</option></select></label>
+        <label><span data-t>Rated power of the transformer (kVA)</span><input name="power" inputmode="decimal" value="630" /></label>
+        <label><span data-t>Short-circuit voltage uk (%)</span><input name="uk" inputmode="decimal" value="6" /></label>
+        <label><span data-t>Short-circuit current at the supply point (kA)</span><input name="ik" inputmode="decimal" value="10" /></label>
+        <label><span data-t>Voltage between the lines (V)</span><input name="voltage" inputmode="decimal" value="400" required /></label>
+        <label><span data-t>Length of the cable (m)</span><input name="length" inputmode="decimal" value="30" /></label>
+        <label><span data-t>Cross-section (mm²)</span><input name="section" inputmode="decimal" value="16" required /></label>
+        <label><span data-t>Conductor</span><select name="material"><option value="copper" data-t>Copper</option><option value="aluminium" data-t>Aluminium</option></select></label>
+        <button class="button primary" data-t>Calculate</button>
+    </form>
+    <p class="tool-wait" hidden data-t>Loading the tool. It is the code of the editor, about 10 MB, loaded once.</p>
+    <p class="tool-failed" hidden data-t>The tool could not start in this browser. It needs WebAssembly.</p>
+    <p class="tool-error" hidden></p>
+    <div class="tool-out" hidden>
+        <p class="tool-summary"></p>
+        <div class="table-scroll"><table class="tool-table"></table></div>
+        <dl class="tool-facts"></dl>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>How it is calculated</h2>
+    <ul class="points">
+        <li data-t>After IEC 60909-0 for a radial low-voltage network: the voltage factor is 1.1 for the highest and 0.95 for the lowest current.</li>
+        <li data-t>A transformer gives its impedance from its rated power and its short-circuit voltage, with the correction factor of the standard; the network before it is taken as infinitely strong.</li>
+        <li data-t>The cable adds its resistance, at 20 °C for the highest current and at operating temperature for the lowest, and a reactance of 0.08 mΩ per metre.</li>
+        <li data-t>The lowest fault current is the one between a line and the protective conductor of the same cross-section, in a TN system.</li>
+        <li data-t>The peak current follows from the ratio of resistance and reactance at the place of the fault.</li>
+    </ul>
+    <p class="text" data-t>In a project, OpenECraft calculates these currents for every protective device of the schematic and checks breaking capacity, disconnection time, the withstand of the cables and selectivity.</p>
+    <div class="actions">
+        <a class="button" href="@/tools/cable-size-calculator/" data-t>Size a cable</a>
+        <a class="button ghost" href="~/docs/calculations/" data-t>The calculations in the documentation</a>
+        <a class="button ghost" href="@/tools/" data-t>More tools</a>
+    </div>
+    <p class="fine" data-t>The result supports the planning. A qualified person has to verify it against the standards and regulations that apply.</p>
+</section>

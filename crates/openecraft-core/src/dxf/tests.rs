@@ -100,3 +100,14 @@ fn layers_that_become_equal_stay_apart() {
 fn characters_beyond_the_basic_plane() {
     assert_eq!(dxf_text("Ω \u{1F600}"), "\\U+03A9 ?");
 }
+
+#[test]
+fn a_symbol_alone_as_a_drawing() {
+    let def = crate::symbols::builtin("no").unwrap();
+    let symbol = crate::model::SymbolInst { sym: "no".into(), pos: crate::geom::p(10.0, 10.0), ..Default::default() };
+    let dxf = drawing_dxf(30.0, |d| crate::render::draw_symbol(d, def, &symbol, Ink::Line));
+    assert!(dxf.starts_with("0\nSECTION\n2\nHEADER\n") && dxf.ends_with("0\nENDSEC\n0\nEOF\n"));
+    let p = pairs(&dxf);
+    assert!(p.contains(&(0, "LINE")) && p.contains(&(8, "OEC_LINES")));
+    assert!(!p.iter().any(|(c, v)| *c == 2 && v.starts_with("USER_")));
+}

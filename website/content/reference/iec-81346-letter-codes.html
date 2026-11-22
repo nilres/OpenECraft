@@ -1,0 +1,66 @@
+title: IEC 81346-2 letter codes for device tags – OpenECraft
+description: The letter codes of IEC 81346-2 for reference designations: what the letters A to X stand for, with examples such as -K1, -Q1 and -F1 for each of them.
+kind: page
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Reference</p>
+        <h1 data-t>IEC 81346-2 letter codes</h1>
+        <p class="lead" data-t>The letter of a device tag such as -K1 or -Q1 says what the device is for, not how it is built. This table lists the classes of IEC 81346-2 in the edition of 2009, which most schematics follow.</p>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>The letters and what they stand for</h2>
+    <div class="table-scroll reference"><table class="reference">
+        <thead><tr><th data-t>Letter</th><th data-t>Purpose of the object</th><th data-t>Examples</th></tr></thead>
+        <tbody>
+            <tr><th>A</th><td data-t>Two or more purposes, none of them the main one</td><td data-t>Assemblies, touch panels, control units</td></tr>
+            <tr><th>B</th><td data-t>Converting a physical quantity into a signal</td><td data-t>Sensors, proximity switches, limit switches, measuring transducers</td></tr>
+            <tr><th>C</th><td data-t>Storing energy, information or material</td><td data-t>Capacitors, buffer modules, memories</td></tr>
+            <tr><th>E</th><td data-t>Providing radiant or thermal energy</td><td data-t>Lamps for lighting, heaters, cabinet heaters</td></tr>
+            <tr><th>F</th><td data-t>Protecting directly against dangerous or unwanted conditions</td><td data-t>Fuses, miniature circuit breakers, motor protection switches, surge arresters</td></tr>
+            <tr><th>G</th><td data-t>Starting a flow of energy or material, generating signals</td><td data-t>Generators, power supply units, batteries, fans, pumps</td></tr>
+            <tr><th>H</th><td data-t>Producing a new kind of material or product</td><td data-t>Mixers, crushers, assembly machines</td></tr>
+            <tr><th>K</th><td data-t>Processing signals or information</td><td data-t>Auxiliary relays, timers, PLC modules, safety relays</td></tr>
+            <tr><th>M</th><td data-t>Providing mechanical energy for driving</td><td data-t>Motors, actuators, solenoids</td></tr>
+            <tr><th>P</th><td data-t>Presenting information</td><td data-t>Signal lamps, meters, horns, displays</td></tr>
+            <tr><th>Q</th><td data-t>Switching or varying a flow of energy, signals or material under control</td><td data-t>Contactors, circuit breakers, disconnectors, soft starters, valves</td></tr>
+            <tr><th>R</th><td data-t>Restricting or stabilising a flow or a motion</td><td data-t>Resistors, diodes, chokes, check valves</td></tr>
+            <tr><th>S</th><td data-t>Converting a manual operation into a signal</td><td data-t>Push buttons, selector switches, emergency stop devices</td></tr>
+            <tr><th>T</th><td data-t>Converting energy or a signal while keeping its kind</td><td data-t>Transformers, frequency converters, rectifiers, amplifiers</td></tr>
+            <tr><th>U</th><td data-t>Keeping objects in a defined position</td><td data-t>Enclosures, mounting plates, cable trays, insulators</td></tr>
+            <tr><th>V</th><td data-t>Processing material or products</td><td data-t>Filters, separators</td></tr>
+            <tr><th>W</th><td data-t>Guiding or transporting energy, signals or material from one place to another</td><td data-t>Cables, wires, busbars, hoses</td></tr>
+            <tr><th>X</th><td data-t>Connecting objects</td><td data-t>Terminals, terminal strips, plugs, sockets</td></tr>
+        </tbody>
+    </table></div>
+    <p class="text" data-t>The letters D, J, L, N, Y and Z are reserved and I and O are not used, as they look like digits.</p>
+</section>
+
+<section class="band">
+    <h2 data-t>What changed against older schematics</h2>
+    <ul class="points">
+        <li data-t>A contactor that switches a motor is -Q, not -K as in schematics after the older IEC 61346-2 and DIN 40719: -K is left for relays that process signals.</li>
+        <li data-t>A signal lamp is -P, not -H, and a lamp that lights a room is -E.</li>
+        <li data-t>A sensor is -B and a push button -S: who operates the device decides, not its contact.</li>
+        <li data-t>A motor protection switch is -F when it protects and -Q when it is mainly used for switching.</li>
+        <li data-t>The edition of 2019 arranges some classes anew. Many companies stay with the letters of 2009, and what counts in a project is that everyone uses the same.</li>
+    </ul>
+</section>
+
+<section class="band">
+    <h2 data-t>How a device tag is put together</h2>
+    <ul class="points">
+        <li data-t>The sign before the tag names the aspect: = for the function, + for the location and - for the product, as in =A1+S1-K1.</li>
+        <li data-t>After the sign of the product come the letter of the class and a number: -Q1 is the first switching device of its plant and location.</li>
+        <li data-t>A connection point follows after a colon: -Q1:13 is terminal 13 of -Q1.</li>
+    </ul>
+    <p class="text" data-t>In OpenECraft every symbol brings its letter along, and a new device is numbered when it is placed; the structure identifiers of a page are put before the tag.</p>
+    <div class="actions">
+        <a class="button" href="@/symbols/" data-t>Symbol library</a>
+        <a class="button ghost" href="~/docs/schematic/" data-t>The schematic in the documentation</a>
+        <a class="button ghost" href="@/reference/" data-t>More tables</a>
+    </div>
+    <p class="fine" data-t>The table gives the general content of the standard in our own words. It does not replace the standard, which alone is binding.</p>
+</section>

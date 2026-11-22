@@ -12,8 +12,9 @@ pub const PAGES: [&str; 4] = ["panel-builders", "electricians", "education", "co
 
 /// The folders of the pages the build writes beside them (`crates/openecraft-site`,
 /// `docs/website.md`): the symbol library, the examples, the tools, the guides, the
-/// documentation, the news and the questions. Every footer links them.
-pub const WRITTEN: [&str; 7] = ["symbols", "examples", "tools", "how-to", "docs", "news", "faq"];
+/// reference tables, the documentation, the news and the questions. Every footer
+/// links them.
+pub const WRITTEN: [&str; 8] = ["symbols", "examples", "tools", "how-to", "reference", "docs", "news", "faq"];
 
 /// The English texts of the pages: `data-t`, their titles and descriptions.
 pub const TEXTS: &[&str] = &[
@@ -63,6 +64,7 @@ pub const TEXTS: &[&str] = &[
     tr_const!("Example projects, simplest first"),
     tr_const!("Examples"),
     tr_const!("FAQ"),
+    tr_const!("Reference"),
     tr_const!("Features"),
     tr_const!("Feedback while drawing"),
     tr_const!("Final circuits"),

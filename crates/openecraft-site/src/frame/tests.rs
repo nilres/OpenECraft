@@ -28,9 +28,32 @@ fn links_lead_to_the_page_in_the_language() {
     assert_eq!(german.to("#studio"), "../../de.html#studio");
     assert_eq!(german.to("?example=conveyor#studio"), "../../de.html?example=conveyor#studio");
     assert_eq!(german.to(""), "../../de.html");
-    // A file, or a page in English only, is the same from every language.
-    assert_eq!(german.file("docs/tutorial/"), "../../docs/tutorial/");
+    // A file is the same from every language.
     assert_eq!(Place::of("faq", Lang::Fr).file("site.css"), "../site.css");
+    // A page that is not written in the language of this one is linked in English:
+    // the documentation and the symbols have four languages, the news one.
+    let korean = Place::of("faq", Lang::Ko);
+    assert_eq!(german.to("docs/tutorial/#9-berichte"), "../../docs/tutorial/de.html#9-berichte");
+    assert_eq!(korean.to("docs/tutorial/"), "../docs/tutorial/");
+    assert_eq!(german.to("news/"), "../../news/");
+    assert_eq!(korean.to("symbols/contacts/"), "../symbols/contacts/ko.html");
+    assert_eq!(korean.to("symbols/no-contact/"), "../symbols/no-contact/");
+    assert_eq!(german.to("symbols/no-contact/"), "../../symbols/no-contact/de.html");
+    assert_eq!(korean.to("symbols/"), "../symbols/ko.html");
+}
+
+#[test]
+fn the_languages_of_a_page_follow_its_folder() {
+    assert_eq!(Langs::of(""), Langs::All);
+    assert_eq!(Langs::of("compare/"), Langs::All);
+    assert_eq!(Langs::of("reference/ip-ratings/"), Langs::All);
+    assert_eq!(Langs::of("symbols/"), Langs::All);
+    assert_eq!(Langs::of("symbols/contacts"), Langs::All);
+    assert_eq!(Langs::of("symbols/no-contact/"), Langs::Required);
+    assert_eq!(Langs::of("docs/"), Langs::Required);
+    assert_eq!(Langs::of("docs/tutorial/"), Langs::Required);
+    assert_eq!(Langs::of("news/0-1-0/"), Langs::English);
+    assert_eq!(Langs::Required.list(), Lang::REQUIRED.to_vec());
 }
 
 #[test]
@@ -81,8 +104,9 @@ fn the_frame_is_in_the_language_of_the_page() {
     assert!(german.contains("<a href=\"../../compare/de.html\">Vergleich</a>") && german.contains("<a href=\"../../de.html#studio\">Live-Demo</a>"));
     assert!(german.contains("<a class=\"brand\" href=\"../../de.html\">"));
     assert!(german.contains("<a href=\"../../symbols/de.html\" aria-current=\"page\">") || german.contains("<a href=\"../../symbols/de.html\">Symbole</a>"));
-    // The documentation and the news are in English only.
-    assert!(german.contains("<a href=\"../../docs/\">Dokumentation</a>") && german.contains("<a href=\"../../docs/tutorial/\">Tutorial</a>"));
+    // The documentation has a German page, the news are in English only.
+    assert!(german.contains("<a href=\"../../docs/de.html\">Dokumentation</a>") && german.contains("<a href=\"../../docs/tutorial/de.html\">Tutorial</a>"));
+    assert!(german.contains("<a href=\"../../news/\">Neuigkeiten</a>"));
     assert!(german.contains("<a id=\"privacy-open\" href=\"../../de.html#privacy\">") && german.contains("<a id=\"legal-open\" href=\"../../de.html#legal\" hidden>"));
     assert_eq!(structured(&german)["inLanguage"], "de");
     // Every language of the page, the one shown marked.
@@ -91,9 +115,16 @@ fn the_frame_is_in_the_language_of_the_page() {
     assert_eq!(links.len(), Lang::ALL.len());
     assert_eq!(links[0], "<a href=\"./\" hreflang=\"en\" lang=\"en\">English</a>");
     assert_eq!(links[1], "<a href=\"de.html\" hreflang=\"de\" lang=\"de\" aria-current=\"page\">Deutsch</a>");
-    // A page in English only names no other language.
+    // A page in four languages names those, a page in English only no other language.
+    let four = html(&page(Kind::Plain, Langs::Required), Lang::En);
+    let nav = four.split("<nav class=\"languages\" aria-label=\"Language\">\n").nth(1).and_then(|rest| rest.split("\n    </nav>").next()).unwrap();
+    assert_eq!(nav.lines().count(), Lang::REQUIRED.len());
+    assert!(nav.contains("hreflang=\"es\"") && !nav.contains("hreflang=\"ko\""));
     let english = html(&page(Kind::Plain, Langs::English), Lang::En);
     assert!(!english.contains("class=\"languages\""));
+    // In a language the documentation is not written in, the footer links the English one.
+    let korean = openecraft_i18n::with_lang(Lang::Ko, || html(&page(Kind::Plain, Langs::All), Lang::Ko));
+    assert!(korean.contains("<a href=\"../../docs/\">") && korean.contains("<a href=\"../../symbols/ko.html\""));
 }
 
 #[test]
@@ -137,7 +168,7 @@ fn a_long_text_is_cut_at_a_word() {
 #[test]
 fn the_sections_and_the_bar_have_texts_in_the_required_languages() {
     openecraft_i18n::with_lang(Lang::De, || {
-        for (_, text, _) in SECTIONS {
+        for (_, text) in SECTIONS {
             assert!(section_text(text) != text || text == "FAQ", "{text}");
         }
         for (_, text) in BAR {

@@ -287,7 +287,8 @@
         <article class="card"><h3 data-t>Examples</h3><p data-t>The example projects with their sheets as pictures, their PDF and a link that opens them in the live demo.</p><a class="button" data-page href="examples/" data-t>See the examples</a></article>
         <article class="card"><h3 data-t>Tools</h3><p data-t>Voltage drop calculator, DXF and DWG viewer, EDZ and parts file viewer: in your browser, nothing is uploaded.</p><a class="button" data-page href="tools/" data-t>Use the tools</a></article>
         <article class="card"><h3 data-t>How-to</h3><p data-t>Short guides: terminal diagram, wire list, bill of materials, DXF and DWG export.</p><a class="button" data-page href="how-to/" data-t>Read the guides</a></article>
-        <article class="card"><h3 data-t>Documentation</h3><p data-t>The tutorial, the installation guide and every feature in detail.</p><a class="button" href="docs/" data-t>Read the documentation</a><a class="button ghost" data-link="documentation" href="#" data-t>All documents in the repository</a></article>
+        <article class="card"><h3 data-t>Reference</h3><p data-t>Tables to look up: the letter codes of IEC 81346-2, the wire colours of IEC 60204-1 and the IP ratings of IEC 60529.</p><a class="button" data-page href="reference/" data-t>Open the reference</a></article>
+        <article class="card"><h3 data-t>Documentation</h3><p data-t>The tutorial, the installation guide and every feature in detail.</p><a class="button" data-page data-langs="de fr es" href="docs/" data-t>Read the documentation</a><a class="button ghost" data-link="documentation" href="#" data-t>All documents in the repository</a></article>
         <article class="card"><h3 data-t>News</h3><p data-t>What is new in every release, with a feed for your feed reader.</p><a class="button" href="news/" data-t>Read the news</a></article>
         <article class="card"><h3 data-t>FAQ</h3><p data-t>Is it free? Does it read EPLAN data? Does it work offline? The answers.</p><a class="button" data-page href="faq/" data-t>Read the answers</a></article>
     </div>
@@ -299,7 +300,7 @@
     <div class="cards get">
         <article class="card"><h3 data-t>In the browser</h3><p data-t>The full editor as a web application. Nothing to install, your projects stay on your computer.</p><a class="button primary" data-link="editor" href="#" data-t>Open the web editor</a></article>
         <article class="card"><h3 data-t>On the desktop</h3><p data-t>Installers for Windows, Linux packages and a macOS disk image, with automatic updates.</p><a class="button" data-link="downloads" href="#" data-t>Download the latest release</a></article>
-        <article class="card"><h3 data-t>For your team</h3><p data-t>Parts server, project server and the web editor as Docker images for your own network.</p><pre><code>docker run -p 8080:8080 ghcr.io/nilres/openecraft-web</code></pre><a class="button ghost" href="docs/installation/" data-t>Installation guide</a></article>
+        <article class="card"><h3 data-t>For your team</h3><p data-t>Parts server, project server and the web editor as Docker images for your own network.</p><pre><code>docker run -p 8080:8080 ghcr.io/nilres/openecraft-web</code></pre><a class="button ghost" data-page data-langs="de fr es" href="docs/installation/" data-t>Installation guide</a></article>
         <article class="card"><h3 data-t>From source</h3><p data-t>Written in Rust. Clone the repository and run it.</p><pre><code>cargo run --release -p openecraft</code></pre><a class="button ghost" data-link="repository" href="#" data-t>Source code</a></article>
     </div>
 </section>
@@ -309,9 +310,9 @@
 <footer>
     <div><img src="icon.svg" alt="" width="22" height="22" /> <b>OpenECraft</b> · <span data-t>Open source under the MIT and Apache-2.0 licenses.</span></div>
     <div class="links">
-        <a href="docs/tutorial/" data-t>Tutorial</a>
-        <a href="docs/plugins/" data-t>Plugins</a>
-        <a href="docs/command-line/" data-t>Command line and MCP</a>
+        <a data-page data-langs="de fr es" href="docs/tutorial/" data-t>Tutorial</a>
+        <a data-page data-langs="de fr es" href="docs/plugins/" data-t>Plugins</a>
+        <a data-page data-langs="de fr es" href="docs/command-line/" data-t>Command line and MCP</a>
         <a data-link="issues" href="#" data-t>Report a problem</a>
         <a id="licenses-open" href="#licenses" data-t>Licenses</a>
         <a id="privacy-open" href="#privacy" data-t>Privacy</a>
@@ -328,7 +329,8 @@
         <a data-page href="examples/" data-t>Examples</a>
         <a data-page href="tools/" data-t>Tools</a>
         <a data-page href="how-to/" data-t>How-to</a>
-        <a href="docs/" data-t>Documentation</a>
+        <a data-page href="reference/" data-t>Reference</a>
+        <a data-page data-langs="de fr es" href="docs/" data-t>Documentation</a>
         <a href="news/" data-t>News</a>
         <a data-page href="faq/" data-t>FAQ</a>
     </div>

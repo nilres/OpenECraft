@@ -17,7 +17,7 @@ WebAssembly, not copies of it:
 | Sheet of the first screen | `openecraft_core::svg`, the SVG export of the page being edited |
 | Languages | `openecraft_i18n`: the canvases, the generated texts and the page itself |
 | Examples | `openecraft_core::sample::EXAMPLES` |
-| Tools (`tools/…`) | `src/tools.rs`: the voltage drop of the installation circuits, the DXF and DWG import with the SVG and PDF exports, the import of parts files |
+| Tools (`tools/…`) | `src/tools.rs`: the voltage drop of the installation circuits, the sizing of conductors, the short-circuit currents, the fill of cable ducts, the DXF and DWG import with the SVG and PDF exports, the import of parts files |
 | Symbol library, example pages, documentation, news | Written by the build: `crates/openecraft-site` ([below](#pages-the-build-writes)) |
 
 All of it works on one project in the browser (`src/studio.rs`, the `Studio`): a wire
@@ -223,7 +223,8 @@ from the bars of the pages (the tests check all of it).
 
 `website-site.sh` gives these pages the tags of the public address as well (every
 folder, one or two deep, whose `index.html` has the markers `site address`): each
-language of a page names itself as canonical and the page's other languages as
+language of a page names itself as canonical and the page's other languages (those
+it is written in) as
 alternates, and the sitemap lists them; nginx answers them from
 `/tmp/openecraft/<folder>/`.
 
@@ -235,30 +236,50 @@ hook of `Trunk.toml` runs `cargo run --release -p openecraft-site --example site
 
 | Folder | Pages | From |
 | --- | --- | --- |
-| `symbols/` | The symbol library: an overview and a page for every category, each symbol with its drawing (`symbols/art/<key>.svg`, drawn by the SVG export), its name, key, identifying letter and connection points | `openecraft_core::symbols::library` |
+| `symbols/` | The symbol library: an overview and a page for every category, each symbol with its drawing (`symbols/art/<key>.svg`, drawn by the SVG export), its name, key, identifying letter and connection points; and a page for every symbol (`symbols/<name>/`, the folder is its English name: `symbols/no-contact/`) with its drawing to download as SVG and DXF (`symbols/art/<key>.dxf`, drawn by the DXF export), its data and the other symbols of its category | `openecraft_core::symbols::library` |
 | `examples/` | An overview and a page for every example project: what it shows, its first sheets as SVG, the list of its pages, its PDF and a link that opens it in the live demo | `openecraft_core::sample::EXAMPLES`, the SVG and PDF exports |
-| `docs/` | The documentation: the tutorial, the installation guide, the feature documents, the command line, the plugins and the servers (`DOCUMENTS` of `docs.rs`) | The Markdown files of `docs/` |
+| `docs/` | The documentation: the tutorial, the installation guide, the feature documents, the command line, the plugins and the servers (`DOCUMENTS` of `docs.rs`), in English, German, French and Spanish | The Markdown files of `docs/` and their translations in `docs/de/`, `docs/fr/` and `docs/es/` |
 | `news/` | A page for every released version, an overview and the feed `news/feed.xml` (Atom) | `CHANGELOG.md` |
-| `faq/`, `how-to/…`, `tools/…`, `compare/<product>-alternative/` | Questions and answers, guides for single tasks, the tools and the comparison with one product | The content files of `website/content/` |
+| `faq/`, `how-to/…`, `tools/…`, `reference/…`, `compare/<product>-alternative/` | Questions and answers, guides for single tasks, the tools, the reference tables (letter codes of IEC 81346-2, wire colours, IP ratings) and the comparison with one product | The content files of `website/content/` |
 | `build.js` | What the build knows: the module of the site for the tools and the screen recording ([below](#screen-recording-and-numbers-of-the-project)) | The built page, `website/tour.webm` |
 | `numbers.js` | The stars and the contributors of the repository ([below](#screen-recording-and-numbers-of-the-project)) | The environment; in the Docker image its server |
 
 Every page gets the frame of the site (`frame.rs`: head with title, description, link
 preview, structured data and the markers of the public address; bar; footer), the
-same as the pages written by hand, which a test of the website compares. The symbol,
-example and content pages are written in every language (`index.html`, `de.html`, …)
-with their links leading to the pages of the same language; their texts are in the
-catalog area `website`. The documentation and the news are in English, as their
-sources are. Links between the documents lead to their pages, links to other files
-of the repository to the repository (`data-link="repository"`).
+same as the pages written by hand, which a test of the website compares. The
+overview and the categories of the symbols, the example and the content pages are
+written in every language (`index.html`, `de.html`, …) with their links leading to
+the pages of the same language; their texts are in the catalog area `website`. The
+pages of the single symbols (some 540, too many to write twenty times) and the
+documentation are written in English, German, French and Spanish; the news are in
+English, as the changelog is. Which languages a page has follows from its folder
+(`Langs::of` of `frame.rs`): a link to a page that is not written in the language of
+the page it is on leads to the English one, the footer of a page lists the languages
+it has, and `website-site.sh` names those as its alternates and in the sitemap. On
+the pages written by hand, a link to the documentation is marked `data-page
+data-langs="de fr es"`, which `site.js` follows.
+
+A document is translated by hand: `docs/tutorial.md` in German is
+`docs/de/tutorial.md`, `docs/features/parts.md` is `docs/de/features/parts.md`, the
+same for `fr` and `es`. A translation has the structure of its document (the same
+headings by level, code blocks, table rows, pictures and links; a test compares
+them), names the commands of the program as the catalog of that language does and
+links the other documents as the original does (`plugins.md`, they lie beside it);
+anything else of the repository is one folder further up (`../images/…`,
+`../architecture.md`). A link to a section uses the anchor of the translated
+heading; a test follows every such link of the site. **A change of a document of
+`DOCUMENTS` changes its three translations too.** Links between the documents lead to
+their pages in the language of the document, links to other files of the repository
+to the repository (`data-link="repository"`).
 
 A **content file** is `website/content/<folder>.html` (a folder of pages has its own
 page as `index.html`). It starts with the lines `title: …`, `description: …` and
 `kind: page`, `faq` or `tool`, then an empty line and the content of `<main>`, written
 in English with its texts marked `data-t`. Links to the site start with `@/` for a
 page that exists in every language (`@/compare/`, `@/#studio`,
-`@/?example=conveyor#studio`) and with `~/` for a file or a page in English only
-(`~/docs/tutorial/`). A page of the kind `faq` names its questions to search engines
+`@/?example=conveyor#studio`) and with `~/` for a file or a page that is not written
+in every language (`~/docs/tutorial/`, `~/news/`; such a page is linked in the
+language of the content where it has it). A page of the kind `faq` names its questions to search engines
 as structured data (`FAQPage`): `<details><summary data-t>…</summary><p data-t>…</p></details>`.
 Its texts are listed in `crates/openecraft-site/src/texts.rs` for the catalog (the
 tests compare). A new top-level folder is also an entry of `WRITTEN` in
@@ -285,7 +306,11 @@ pages link the demos this way.
 
 ### Tools
 
-`tools/voltage-drop-calculator/`, `tools/dxf-dwg-viewer/` and `tools/edz-viewer/` are
+`tools/voltage-drop-calculator/`, `tools/cable-size-calculator/`,
+`tools/short-circuit-calculator/`, `tools/duct-fill-calculator/`,
+`tools/dxf-dwg-viewer/`, `tools/edz-viewer/` and the converters `tools/dwg-to-pdf/`,
+`tools/dxf-to-svg/` and `tools/dwg-to-dxf/` (the viewer under the name of what
+people search for) are
 content files of the kind `tool`: a form with values or a file of the visitor, and
 places for the answer. `tools.js` loads the module of the site when the tool is used
 (its address is in `build.js`; such a page allows WebAssembly in its policy, no other
@@ -295,6 +320,9 @@ answer: a summary, facts, a table, a drawing, and buttons for the files `tool_fi
 writes from the file given (SVG, PDF, DXF, DWG, CSV, JSON). Nothing the visitor
 enters or opens leaves the browser. A new tool is a function of `tools.rs` (`TOOLS`,
 `FILES`), a content file with `data-tool="<name>"` and a card on `tools/index.html`.
+What a tool calculates is a function of `openecraft-core` that the editor uses too
+(`sizing::cross_section_for`, `shortcircuit::Source::behind`, `panel::duct_lanes`,
+`harness::outer_diameter`): the tool only reads the form and words the answer.
 
 ### Screen recording and numbers of the project
 

@@ -25,7 +25,11 @@ impl File {
 pub enum Langs {
     /// Every language of the catalog: `index.html`, `de.html`, …
     All,
-    /// English only: the documentation and the release notes are not translated.
+    /// English, German, French and Spanish: the documentation, whose documents are
+    /// translated by hand, and the pages of the single symbols, of which there are
+    /// too many to write them twenty times.
+    Required,
+    /// English only: the release notes are not translated.
     English,
 }
 
@@ -33,7 +37,19 @@ impl Langs {
     pub fn list(self) -> Vec<Lang> {
         match self {
             Langs::All => Lang::ALL.to_vec(),
+            Langs::Required => Lang::REQUIRED.to_vec(),
             Langs::English => vec![Lang::En],
+        }
+    }
+
+    /// The languages of the page in `folder` (`docs/tutorial/`, `symbols/contacts/`).
+    pub fn of(folder: &str) -> Langs {
+        let mut parts = folder.split('/').filter(|part| !part.is_empty());
+        match (parts.next(), parts.next()) {
+            (Some("news"), _) => Langs::English,
+            (Some("docs"), _) => Langs::Required,
+            (Some("symbols"), Some(below)) if !crate::symbols::is_category(below) => Langs::Required,
+            _ => Langs::All,
         }
     }
 }
@@ -79,16 +95,18 @@ impl Place {
         "../".repeat(self.depth)
     }
 
-    /// A page that exists in every language, by its folder below the site with what
-    /// follows it (`compare/`, `#studio`, `?example=conveyor#studio`): the file of
-    /// the language of this page.
+    /// A page of the site, by its folder below the site with what follows it
+    /// (`compare/`, `#studio`, `?example=conveyor#studio`): the file of the language
+    /// of this page, or the English one where the page is not written in it
+    /// ([`Langs::of`]).
     pub fn to(&self, target: &str) -> String {
         let at = target.find(['?', '#']).unwrap_or(target.len());
-        let file = if self.lang == Lang::En { String::new() } else { file_name(self.lang) };
+        let written = self.lang != Lang::En && Langs::of(&target[..at]).list().contains(&self.lang);
+        let file = if written { file_name(self.lang) } else { String::new() };
         format!("{}{}{file}{}", self.root(), &target[..at], &target[at..])
     }
 
-    /// A file of the site, or a page that exists in English only.
+    /// A file of the site.
     pub fn file(&self, target: &str) -> String {
         format!("{}{target}", self.root())
     }
@@ -142,16 +160,17 @@ const BAR: [(&str, &str); 7] = [
     ("#get", "Get it"),
 ];
 
-/// The sections of the site every footer links: folder, text, whether the page exists
-/// in every language. The texts are translated where the footer is written.
-pub const SECTIONS: [(&str, &str, bool); 7] = [
-    ("symbols/", "Symbols", true),
-    ("examples/", "Examples", true),
-    ("tools/", "Tools", true),
-    ("how-to/", "How-to", true),
-    ("docs/", "Documentation", false),
-    ("news/", "News", false),
-    ("faq/", "FAQ", true),
+/// The sections of the site every footer links: folder and text. The texts are
+/// translated where the footer is written; the languages of each are [`Langs::of`].
+pub const SECTIONS: [(&str, &str); 8] = [
+    ("symbols/", "Symbols"),
+    ("examples/", "Examples"),
+    ("tools/", "Tools"),
+    ("how-to/", "How-to"),
+    ("reference/", "Reference"),
+    ("docs/", "Documentation"),
+    ("news/", "News"),
+    ("faq/", "FAQ"),
 ];
 
 /// The documents the footer links, in the site (`docs`).
@@ -177,6 +196,7 @@ pub fn section_text(text: &str) -> &'static str {
         "Examples" => tr("Examples"),
         "Tools" => tr("Tools"),
         "How-to" => tr("How-to"),
+        "Reference" => tr("Reference"),
         "Documentation" => tr("Documentation"),
         "News" => tr("News"),
         "FAQ" => tr("FAQ"),
@@ -271,7 +291,7 @@ fn footer(page: &Page, place: Place) -> String {
         escape(tr("Open source under the MIT and Apache-2.0 licenses."))
     );
     for (target, text) in DOCUMENTS {
-        out.push_str(&format!("        <a href=\"{}\">{}</a>\n", place.file(target), escape(section_text(text))));
+        out.push_str(&format!("        <a href=\"{}\">{}</a>\n", place.to(target), escape(section_text(text))));
     }
     out.push_str(&format!("        <a data-link=\"issues\" href=\"#\">{}</a>\n", escape(tr("Report a problem"))));
     // The dialogs of the main page, in the language of this one.
@@ -282,14 +302,13 @@ fn footer(page: &Page, place: Place) -> String {
         out.push_str(&format!("        <a href=\"{}\">{}</a>\n", place.to(target), escape(bar_text(text))));
     }
     out.push_str("    </div>\n    <div class=\"links\">\n");
-    for (target, text, translated) in SECTIONS {
-        let address = if translated { place.to(target) } else { place.file(target) };
-        out.push_str(&format!("        <a href=\"{address}\">{}</a>\n", escape(section_text(text))));
+    for (target, text) in SECTIONS {
+        out.push_str(&format!("        <a href=\"{}\">{}</a>\n", place.to(target), escape(section_text(text))));
     }
     out.push_str("    </div>\n");
-    if page.langs == Langs::All {
+    if page.langs != Langs::English {
         out.push_str("    <nav class=\"languages\" aria-label=\"Language\">\n");
-        for lang in Lang::ALL {
+        for lang in page.langs.list() {
             let file = if lang == Lang::En { "./".to_string() } else { file_name(lang) };
             let code = lang.code();
             let current = if lang == place.lang { " aria-current=\"page\"" } else { "" };

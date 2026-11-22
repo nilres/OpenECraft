@@ -197,18 +197,27 @@ fn the_build_writes_every_page_in_every_language() {
 
 #[test]
 fn every_footer_links_the_pages_the_build_writes() {
-    use openecraft_site::frame::{DOCUMENTS, SECTIONS};
+    use openecraft_site::frame::{Langs, DOCUMENTS, SECTIONS};
     assert_eq!(SECTIONS.map(|s| s.0.trim_end_matches('/')), WRITTEN);
     for (name, root, html) in PAGES.iter().map(|p| (*p, "../", page(p))).chain([("index.html", "", read("index.html"))]) {
-        for (folder, text, translated) in SECTIONS {
-            // A page in every language is reached in the language of this one (site.js).
-            let mark = if translated { "data-page " } else { "" };
-            assert!(html.contains(&format!("<a {mark}href=\"{root}{folder}\" data-t>{text}</a>")), "{name}: {folder}");
+        // A page is reached in the language of this one where it has that language
+        // (site.js): every one, those of the documentation, or English only.
+        let mark = |folder: &str| match Langs::of(folder) {
+            Langs::All => "data-page ",
+            Langs::Required => "data-page data-langs=\"de fr es\" ",
+            Langs::English => "",
+        };
+        for (folder, text) in SECTIONS {
+            assert!(html.contains(&format!("<a {}href=\"{root}{folder}\" data-t>{text}</a>", mark(folder))), "{name}: {folder}");
         }
         for (document, text) in DOCUMENTS {
-            assert!(html.contains(&format!("<a href=\"{root}{document}\" data-t>{text}</a>")), "{name}: {document}");
+            assert!(html.contains(&format!("<a {}href=\"{root}{document}\" data-t>{text}</a>", mark(document))), "{name}: {document}");
         }
+        assert!(!html.contains(&format!("<a href=\"{root}docs/")), "{name}: a link to the documentation without its languages");
     }
+    let codes: Vec<&str> = Lang::REQUIRED.into_iter().filter(|lang| *lang != Lang::En).map(Lang::code).collect();
+    assert_eq!(codes.join(" "), "de fr es", "data-langs of the pages");
+    assert!(read("site.js").contains("a.dataset.langs.split(\" \").includes(lang)"));
     // The script of the address and the build know them.
     let script = read("../installer/docker/website-site.sh");
     assert!(script.contains("\"$page\"/*/index.html \"$page\"/*/*/index.html") && script.contains("SITE_LANGS=${4-$langs}"));
@@ -231,7 +240,7 @@ fn the_pages_the_build_writes_have_the_frame_of_these() {
     // language of the page, they need no script).
     let plain = |html: &str| {
         let lines: Vec<&str> = html.lines().filter(|line| !line.trim_start().starts_with("<!--")).collect();
-        lines.join("\n").replace(" data-page", "").replace(" data-t", "").replace(" aria-current=\"page\"", "")
+        lines.join("\n").replace(" data-langs=\"de fr es\"", "").replace(" data-page", "").replace(" data-t", "").replace(" aria-current=\"page\"", "")
     };
     let bar = |html: &str| plain(html.split("<header class=\"nav\">").nth(1).and_then(|rest| rest.split("</header>").next()).unwrap());
     assert_eq!(bar(&written), bar(&hand));
