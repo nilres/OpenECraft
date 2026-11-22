@@ -97,25 +97,39 @@ fn hager_breaker_and_fuse_switch_take_their_accessories() {
 }
 
 #[test]
-fn striebel_john_wall_cabinet_takes_its_panels_and_accessories() {
+fn striebel_john_wall_cabinets_take_the_panels_of_their_size() {
     let sj = load("striebel_john").unwrap();
     let get = |n: &str| sj.parts.iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));
     let cabinet = get("SJ.2CPX052032R9999");
     assert_eq!((cabinet.type_number.as_str(), cabinet.width, cabinet.height, cabinet.depth), ("A37", 800.0, 1100.0, 215.0));
     assert_eq!((cabinet.tech_value("Fields"), cabinet.tech_value("Rows"), cabinet.tech_value("EAN")), (Some("3"), Some("7"), Some("4011617520320")));
-    // Everything else of the catalog fits the cabinet.
-    let accessories = crate::accessory::accessories_of(&sj.parts, cabinet);
-    assert_eq!(accessories.len(), sj.parts.len() - 1);
-    // Its panels are 7 rows high and at most its 3 fields wide, 250 mm a field.
+    // The cabinets of 5 to 9 rows and 1 to 5 field widths, 150 mm a row and 250 mm a field.
+    let cabinets: Vec<&Part> = sj.parts.iter().filter(|p| p.subgroup == "Enclosure").collect();
+    assert_eq!(cabinets.len(), 25);
+    let number = |p: &Part, key: &str| -> f32 { p.tech_value(key).unwrap_or_else(|| panic!("{}: {key}", p.number)).parse().unwrap() };
+    for c in &cabinets {
+        assert_eq!((c.width, c.height, c.depth), (250.0 * number(c, "Fields") + 50.0, 150.0 * number(c, "Rows") + 50.0, 215.0), "{}", c.number);
+        assert!(c.wall_mountable() || c.mounting == "Wall", "{}", c.number);
+    }
+    // A panel fits the cabinets of its rows that are at least as wide as it is, and no other.
     let panels: Vec<&Part> = sj.parts.iter().filter(|p| p.subgroup.ends_with(" panel")).collect();
     for p in &panels {
-        assert_eq!(p.tech_value("Rows"), Some("7"), "{}", p.number);
-        let fields: f32 = p.tech_value("Fields").unwrap_or_else(|| panic!("{}", p.number)).parse().unwrap();
-        assert!((1.0..=3.0).contains(&fields), "{}", p.number);
-        assert!(p.width == 0.0 || (p.width, p.height) == (250.0 * fields, 1050.0), "{}", p.number);
+        let (rows, fields) = (number(p, "Rows"), number(p, "Fields"));
+        assert!((5.0..=9.0).contains(&rows) && (1.0..=3.0).contains(&fields), "{}", p.number);
+        assert!(p.width == 0.0 || (p.width, p.height) == (250.0 * fields, 150.0 * rows), "{}", p.number);
+        for c in &cabinets {
+            let fits = number(c, "Rows") == rows && number(c, "Fields") >= fields;
+            assert_eq!(crate::accessory::fits(p, c), fits, "{} in {}", p.type_number, c.type_number);
+        }
     }
+    // Every other part fits a cabinet; the cabinet of 3 fields and 7 rows takes all that is not a panel of another height.
+    let accessories = crate::accessory::accessories_of(&sj.parts, cabinet);
+    let others = panels.iter().filter(|p| p.tech_value("Rows") != Some("7")).count();
+    assert_eq!(accessories.len(), sj.parts.len() - cabinets.len() - others);
+    let panels_of = |t: &str| crate::accessory::accessories_of(&sj.parts, sj.parts.iter().find(|p| p.type_number == t).unwrap()).iter().filter(|p| p.subgroup.ends_with(" panel")).count();
+    assert_eq!((panels_of("A15"), panels_of("A16"), panels_of("A18"), panels_of("A19"), panels_of("A39")), (2, 8, 1, 71, 93));
     // The complete meter panels: wired, for electronic meters or with 3-point mounting.
-    let meters = |fields: &str| panels.iter().filter(|p| p.subgroup == "Meter panel" && p.tech_value("Fields") == Some(fields)).count();
+    let meters = |fields: &str| panels.iter().filter(|p| p.subgroup == "Meter panel" && p.tech_value("Rows") == Some("7") && p.tech_value("Fields") == Some(fields)).count();
     assert_eq!((meters("1"), meters("2"), meters("3")), (46, 46, 14));
     let complete = get("SJ.2CPX054079R9999");
     assert_eq!((complete.type_number.as_str(), complete.width, complete.tech_value("Meter places")), ("BF37B6", 750.0, Some("6 (eHZ, BKE-I)")));

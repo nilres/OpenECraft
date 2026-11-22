@@ -65,8 +65,9 @@ ghcr.io/nilres/openecraft-parts-server` (voir [installation](installation.md)).
   relais, alimentations), `pylontech` (modules de batterie LiFePO4 19 pouces), `siemens` (contacteurs SIRIUS, relais de surcharge,
   disjoncteurs moteurs, disjoncteurs SENTRON), `signify` (Philips CoreLine downlight
   DN140B, dalle RC132V, réglette étanche WT120C, applique WL120V), `spelsberg` (boîtes de
-  dérivation Abox 025-L à 350-L, placées comme enveloppes de la salle), `striebel_john` (armoire murale ComfortLine A A37 avec
-  ses panneaux de 7 rangées, portes, serrures, brides et autres accessoires), `victron` (onduleur /
+  dérivation Abox 025-L à 350-L, placées comme enveloppes de la salle), `striebel_john` (armoires murales ComfortLine A de 5 à 9 rangées
+  et de 1 à 5 largeurs de champ avec les panneaux de comptage, de distribution et multimédia de leur hauteur,
+  portes, serrures, brides et autres accessoires), `victron` (onduleur /
   chargeur MultiPlus-II, Inverter RS Smart Solar, SmartSolar MPPT, Orion-Tr, Cerbo GX, SmartShunt, BMV-712, Lynx
   Distributor ; surtout des articles pour le montage mural direct), `wago` (bornes de
   raccordement 221 et 2273 pour boîtes de dérivation) et `weidmueller` (bornes,
