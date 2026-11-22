@@ -36,8 +36,9 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
   armoire ; `Esc` ou un clic droit annule. La commande `copy_panel_items` fait de même
   depuis la ligne de commande et pour les agents d'IA.
 - Vue de face 2D et vue 3D : faites glisser pour tourner autour, bouton droit / milieu
-  ou Maj+glisser pour déplacer la vue, la molette zoome sur le pointeur et avance
-  jusque dans une salle, un double-clic tourne la vue vers ce qui a été cliqué et s'en
+  ou Maj+glisser pour déplacer la vue, la molette zoome sur le pointeur, toujours plus
+  près de la face pleine qui s'y trouve mais sans la traverser (dans le vide elle avance
+  jusque dans une salle), un double-clic tourne la vue vers ce qui a été cliqué et s'en
   rapproche, `W` `A` `S` `D` / les touches fléchées et `Q` `E` déplacent dans la vue
   (Maj : plus vite), la barre de la vue propose les vues standard et *Ajuster*
   (`Home`) ; cliquez pour sélectionner. Les murs, plafonds et

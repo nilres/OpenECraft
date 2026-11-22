@@ -36,8 +36,9 @@ los muestran.
   cancela. El comando `copy_panel_items` hace lo mismo desde la línea de comandos y para
   los agentes de IA.
 - Vista frontal 2D y una vista 3D: arrastre para orbitar, botón derecho / central o
-  Mayús+arrastrar para desplazar, la rueda amplía en el puntero y sigue avanzando hacia
-  el interior de una sala, un doble clic gira hacia lo que se ha pulsado y se acerca,
+  Mayús+arrastrar para desplazar, la rueda amplía en el puntero, cada vez más cerca de
+  la cara sólida que hay allí pero sin atravesarla (en el vacío sigue avanzando hacia el
+  interior de una sala), un doble clic gira hacia lo que se ha pulsado y se acerca,
   `W` `A` `S` `D` / las teclas de flecha y `Q` `E` mueven por la vista (Mayús: más
   rápido), la barra de la vista tiene las vistas estándar y *Ajustar* (`Home`); haga clic
   para seleccionar. Las paredes, los techos y

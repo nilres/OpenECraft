@@ -2405,3 +2405,54 @@ fn a_part_goes_where_the_wall_is_clicked_and_is_deleted_with_the_delete_key() {
     assert!(prj.layout.enclosures[ri].item(it.id).is_none());
     assert!(ui.selection.is_empty());
 }
+
+#[test]
+fn zooming_in_3d_closes_in_on_the_enclosure_but_never_goes_through_it() {
+    for (example, room) in [("cabinet_lineup", false), ("pump_room", true)] {
+        let mut prj = openecraft_core::sample::example(example).unwrap();
+        let an = openecraft_core::analysis::Analysis::build(&prj);
+        let ei = prj.layout.enclosures.iter().position(|e| e.is_room() == room).unwrap();
+        let mut ui = PanelUi { enclosure: ei, view: View::ThreeD, ..Default::default() };
+        let ctx = egui::Context::default();
+        let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::pos2(0.0, 0.0), egui::vec2(1200.0, 800.0))), ..Default::default() };
+        ctx.run_ui(input, |ui_| ui.view_3d(ui_, &mut prj, ei, &an)).textures_delta.clear();
+        let scene = ui.scene.clone().unwrap();
+        let f = 1000.0;
+        for hide_front_walls in [false, true] {
+            let camera = |o: &Orbit| {
+                let (eye, right, up, fwd) = o.basis();
+                gpu3d::Camera { eye, right, up, fwd, f }
+            };
+            let surface = |o: &Orbit, at: Vec2| view3d::solid_depth_at(&scene, &camera(o), at, ui.wall_opacity, hide_front_walls);
+            let start = ui.cam.unwrap();
+            for at in [Vec2::ZERO, vec2(60.0, -40.0)] {
+                let z0 = surface(&start, at).unwrap_or_else(|| panic!("{example}: something solid under the pointer"));
+                let seen = camera(&start).unproject(at, z0);
+                let mut cam = start;
+                for _ in 0..40 {
+                    let z = surface(&cam, at);
+                    nav3d::zoom_at(&mut cam, 2.0, at, f, z);
+                }
+                let (q, z) = camera(&cam).project(Pos2::ZERO, seen).unwrap_or_else(|| panic!("{example}: zoomed past what was seen"));
+                assert!((q.to_vec2() - at).length() * z / f < 0.05, "{example}: still under the pointer (mm on it): {q:?}");
+                // Grazing a floor, the point seen at the start may lie a little off the
+                // ray; the surface ahead is right in front.
+                assert!(z > nav3d::GAP - 1.0, "{example}: not past it: {z}");
+                let ahead = surface(&cam, at).unwrap();
+                assert!((ahead - nav3d::GAP).abs() < 0.01, "{example}: right in front of it: {ahead}");
+                // Zooming out again moves away.
+                for _ in 0..12 {
+                    let z = surface(&cam, at);
+                    nav3d::zoom_at(&mut cam, 0.5, at, f, z);
+                }
+                assert!(camera(&cam).project(Pos2::ZERO, seen).is_some_and(|(_, z)| z > z0), "{example}: zoomed out again");
+                // Without the surface the camera walks on through it.
+                let mut blind = start;
+                for _ in 0..100 {
+                    nav3d::zoom_at(&mut blind, 1.25, at, f, None);
+                }
+                assert!(camera(&blind).project(Pos2::ZERO, seen).is_none(), "{example}: the old way went through");
+            }
+        }
+    }
+}

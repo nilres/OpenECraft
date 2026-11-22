@@ -18,7 +18,7 @@ use openecraft_core::parts::vec3::{dot, sub, V3};
 use std::sync::{Arc, Mutex};
 
 /// Nearest depth drawn (mm), as by the processor.
-const NEAR: f32 = 10.0;
+pub(super) const NEAR: f32 = 10.0;
 /// Samples per pixel (at most what the graphics card offers).
 const SAMPLES: i32 = 4;
 /// Width of a stripe on a two-colour wire, of the wire's width.
@@ -51,6 +51,12 @@ impl Camera {
     pub fn unproject(&self, at: Vec2, z: f32) -> V3 {
         let k = z / self.f;
         std::array::from_fn(|i| self.eye[i] + self.fwd[i] * z + self.right[i] * at.x * k - self.up[i] * at.y * k)
+    }
+
+    /// Direction of the ray through `at` points from the centre of the view, a step of
+    /// one in depth.
+    pub fn ray(&self, at: Vec2) -> V3 {
+        std::array::from_fn(|i| self.fwd[i] + (self.right[i] * at.x - self.up[i] * at.y) / self.f)
     }
 
     /// Matrix (column major) to the clip space of a view of `size` points that shows the

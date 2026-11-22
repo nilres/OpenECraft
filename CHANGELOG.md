@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.3] - unreleased
 
+- **Zooming in 3D stops at what is under the pointer:** the wheel, a pinch and the key
+  for closer zoom in on the solid face under the pointer (a device, the mounting plate,
+  the back of the enclosure, a wall of a room), coming ever closer to it but no longer
+  through it; walls seen through and hidden walls in front are zoomed through as before.
 - **Resize on the page:** a selected rectangle, ellipse, image, structure box or device
   box shows grips at its corners and edges, dragged on the grid to change its size
   (images keep their aspect ratio, the connection points on a moved edge of a device box

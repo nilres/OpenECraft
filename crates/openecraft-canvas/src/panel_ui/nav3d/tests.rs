@@ -33,11 +33,11 @@ fn zooming_keeps_the_point_under_the_pointer() {
     let mut o = cam();
     let at = vec2(-200.0, 150.0);
     let under = camera(&o).unproject(at, o.dist);
-    zoom_at(&mut o, 1.5, at, F);
+    zoom_at(&mut o, 1.5, at, F, None);
     assert!((o.dist - 4000.0 / 1.5).abs() < 0.1);
     let (q, _) = camera(&o).project(Pos2::ZERO, under).unwrap();
     assert!((q.to_vec2() - at).length() < 0.01, "{q:?}");
-    zoom_at(&mut o, 1.0 / 1.5, at, F);
+    zoom_at(&mut o, 1.0 / 1.5, at, F, None);
     assert!(close(o.target, cam().target, 0.1), "zooming back out returns: {:?}", o.target);
 }
 
@@ -45,7 +45,7 @@ fn zooming_keeps_the_point_under_the_pointer() {
 fn zooming_in_past_the_nearest_distance_walks_on() {
     let mut o = Orbit { dist: MIN_DIST, ..cam() };
     let (eye, _, _, fwd) = o.basis();
-    zoom_at(&mut o, 1.2, Vec2::ZERO, F);
+    zoom_at(&mut o, 1.2, Vec2::ZERO, F, None);
     assert_eq!(o.dist, MIN_DIST);
     let (moved, ..) = o.basis();
     let step = sub(moved, eye);
@@ -53,9 +53,77 @@ fn zooming_in_past_the_nearest_distance_walks_on() {
     assert!(close(norm(step), fwd, 1e-3), "straight ahead at the centre of the view");
     // Off the centre it walks towards the pointer.
     let before = o;
-    zoom_at(&mut o, 1.2, vec2(300.0, 0.0), F);
+    zoom_at(&mut o, 1.2, vec2(300.0, 0.0), F, None);
     let (_, right, ..) = before.basis();
     assert!(dot(sub(o.target, before.target), right) > 0.0);
+}
+
+/// Depth of a wall across the view at `z` along the view direction of `cam()`.
+fn wall(o: &Orbit, at: Vec2, z: f32) -> Option<f32> {
+    let (eye0, _, _, n) = cam().basis();
+    let (eye, ..) = o.basis();
+    let dir = camera(o).ray(at);
+    let (gap, towards) = (z - dot(sub(eye, eye0), n), dot(dir, n));
+    (gap > 0.0 && towards > 0.0).then(|| gap / towards)
+}
+
+#[test]
+fn zooming_at_a_surface_closes_in_on_it_but_never_through_it() {
+    // The wall in front of the orbit centre, the pointer off the centre.
+    let mut o = cam();
+    let at = vec2(150.0, -90.0);
+    let surface = |o: &Orbit| wall(o, at, 1000.0);
+    let z = surface(&o).unwrap();
+    let seen = camera(&o).unproject(at, z);
+    let mut last = z;
+    for _ in 0..200 {
+        let z = surface(&o);
+        zoom_at(&mut o, 1.3, at, F, z);
+        let (q, z) = camera(&o).project(Pos2::ZERO, seen).unwrap();
+        assert!((q.to_vec2() - at).length() * z / F < 0.05, "stays under the pointer (mm on the wall): {q:?}");
+        let z = surface(&o).unwrap();
+        assert!(z <= last + 1e-3 && z >= GAP - 1e-3, "ever closer, never through: {z}");
+        assert!(o.dist <= z + 0.01, "orbits no farther than the wall: {} {z}", o.dist);
+        last = z;
+    }
+    assert!(last - GAP < 0.01, "{last}");
+    // Zooming out from there moves away.
+    let mut back = o;
+    for _ in 0..30 {
+        let z = surface(&back);
+        zoom_at(&mut back, 1.0 / 1.3, at, F, z);
+    }
+    assert!(surface(&back).unwrap() > 1000.0);
+    // Right in front of it zooming in stays.
+    let before = o;
+    zoom_at(&mut o, 1.3, at, F, Some(GAP));
+    assert_eq!(o, before);
+    // A wall behind the orbit centre is reached too.
+    let mut o = cam();
+    for _ in 0..200 {
+        let z = wall(&o, Vec2::ZERO, 6000.0);
+        zoom_at(&mut o, 1.3, Vec2::ZERO, F, z);
+    }
+    assert!((wall(&o, Vec2::ZERO, 6000.0).unwrap() - GAP).abs() < 0.01);
+}
+
+#[test]
+fn zooming_without_a_surface_after_closing_in_on_one_steps_on() {
+    let mut o = Orbit { dist: 40.0, ..cam() };
+    let (eye, _, _, fwd) = o.basis();
+    zoom_at(&mut o, 1.2, Vec2::ZERO, F, None);
+    let step = sub(o.basis().0, eye);
+    assert!(dot(step, fwd) > 0.0, "not back to the nearest distance: {step:?}");
+}
+
+#[test]
+fn the_key_for_closer_stops_in_front_of_a_surface() {
+    let mut o = cam();
+    for _ in 0..500 {
+        keys(&mut o, [0.0, 0.0, 0.0, 1.0], true, 0.1, &|o, at| wall(o, at, 2000.0));
+    }
+    let z = wall(&o, Vec2::ZERO, 2000.0).unwrap();
+    assert!(z >= GAP && z - GAP < 0.01, "{z}");
 }
 
 #[test]
@@ -77,12 +145,12 @@ fn walking_stays_level_and_follows_the_view() {
 #[test]
 fn keys_move_faster_with_shift_and_zoom() {
     let (mut slow, mut fast) = (cam(), cam());
-    keys(&mut slow, [1.0, 0.0, 0.0, 0.0], false, 0.1);
-    keys(&mut fast, [1.0, 0.0, 0.0, 0.0], true, 0.1);
+    keys(&mut slow, [1.0, 0.0, 0.0, 0.0], false, 0.1, &|_, _| None);
+    keys(&mut fast, [1.0, 0.0, 0.0, 0.0], true, 0.1, &|_, _| None);
     let (a, b) = (length(sub(slow.target, cam().target)), length(sub(fast.target, cam().target)));
     assert!(a > 100.0 && b > a * 2.0, "{a} {b}");
     let mut z = cam();
-    keys(&mut z, [0.0, 0.0, 0.0, 1.0], false, 0.1);
+    keys(&mut z, [0.0, 0.0, 0.0, 1.0], false, 0.1, &|_, _| None);
     assert!(z.dist < cam().dist && z.target == cam().target);
 }
 

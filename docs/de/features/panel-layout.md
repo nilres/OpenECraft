@@ -38,7 +38,8 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
   für KI-Agenten.
 - 2D-Frontansicht und eine 3D-Ansicht: Ziehen dreht die Ansicht, Ziehen mit der
   rechten / mittleren Taste oder mit Umschalt verschiebt sie, das Mausrad zoomt am
-  Mauszeiger und geht weiter in einen Raum hinein, ein Doppelklick dreht zum
+  Mauszeiger, immer näher an die feste Fläche dort, aber nicht durch sie hindurch (im
+  leeren Raum geht es weiter in einen Raum hinein), ein Doppelklick dreht zum
   Angeklickten und geht näher heran, `W` `A` `S` `D` / Pfeiltasten und `Q` `E` bewegen
   durch die Ansicht (Umschalt: schneller), die Leiste in der Ansicht enthält die
   Standardansichten und *Einpassen* (`Pos1`); Klick
