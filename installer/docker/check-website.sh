@@ -74,6 +74,14 @@ grep -qF '<link rel="alternate" hreflang="de" href="https://site.example/openecr
 has "$url/symbols/contacts/de.html" -F '<html lang="de">'
 test "$(curl -s -o /dev/null -w '%{http_code}' "$url/symbols/contacts")" = 301
 curl -fsS -o /dev/null "$url/symbols/art/no.svg"
+# The page of a symbol with its DXF drawing, in four languages.
+curl -fsS "$url/symbols/no-contact/" -o symbol.html
+grep -qF '<link rel="canonical" href="https://site.example/openecraft/symbols/no-contact/" />' symbol.html
+grep -qF '<link rel="alternate" hreflang="es" href="https://site.example/openecraft/symbols/no-contact/es.html" />' symbol.html
+if grep -q 'hreflang="ko"' symbol.html; then exit 1; fi
+has "$url/symbols/no-contact/de.html" -F '<html lang="de">'
+has "$url/symbols/art/no.dxf" -F 'ENTITIES'
+has "$url/reference/ip-ratings/" -F 'IEC 60529'
 has "$url/examples/conveyor/" -F 'page-1.svg'
 curl -fsS -o /dev/null "$url/examples/conveyor/page-1.svg"
 has "$url/examples/conveyor/conveyor.pdf" -a '^%PDF'
@@ -81,15 +89,22 @@ has "$url/faq/" -F '"@type": "FAQPage"'
 has "$url/how-to/wire-list/fr.html" -F '<html lang="fr">'
 has "$url/compare/eplan-alternative/" -F '<link rel="canonical" href="https://site.example/openecraft/compare/eplan-alternative/" />'
 has "$url/sitemap.xml" -F '<loc>https://site.example/openecraft/symbols/contacts/ko.html</loc>'
-# The documentation and the news are in English only: no other languages named.
+# The documentation is in four languages, the news in English only: no other
+# languages named.
 curl -fsS "$url/docs/tutorial/" -o tutorial.html
 grep -qF '<link rel="canonical" href="https://site.example/openecraft/docs/tutorial/" />' tutorial.html
-if grep -q 'hreflang=' tutorial.html; then exit 1; fi
+grep -qF '<link rel="alternate" hreflang="fr" href="https://site.example/openecraft/docs/tutorial/fr.html" />' tutorial.html
+if grep -q 'hreflang="ko"' tutorial.html; then exit 1; fi
+has "$url/docs/tutorial/de.html" -F '<html lang="de">'
 has "$url/sitemap.xml" -F '<loc>https://site.example/openecraft/docs/tutorial/</loc>'
-has "$url/news/" -F 'feed.xml'
+has "$url/sitemap.xml" -F '<loc>https://site.example/openecraft/docs/tutorial/es.html</loc>'
+curl -fsS "$url/news/" -o news.html
+grep -qF 'feed.xml' news.html
+if grep -q 'hreflang=' news.html; then exit 1; fi
 has "$url/news/feed.xml" -F '<feed xml:base="https://site.example/openecraft/news/" xmlns="http://www.w3.org/2005/Atom">'
 # The tools get the module from the script of the build.
 has "$url/tools/voltage-drop-calculator/" -F 'data-tool="voltage_drop"'
+has "$url/tools/cable-size-calculator/de.html" -F 'data-tool="cable_size"'
 has "$url/build.js" '"module":\["openecraft-website-[0-9a-f]*\.js","openecraft-website-[0-9a-f]*_bg\.wasm"\]'
 curl -fsS -o /dev/null "$url/tools.js"
 # The module is named in the page and loaded by its script; the first sheet is a picture.

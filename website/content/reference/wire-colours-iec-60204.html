@@ -1,0 +1,55 @@
+title: Wire colours in control cabinets (IEC 60204-1) – OpenECraft
+description: Wire colours in control cabinets after IEC 60204-1 and the colours of conductors after IEC 60445: black, red, blue, orange and green-and-yellow.
+kind: page
+
+<section class="hero page-hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Reference</p>
+        <h1 data-t>Wire colours in control cabinets</h1>
+        <p class="lead" data-t>Which colour a wire of a machine's control cabinet gets after IEC 60204-1, and which colours IEC 60445 gives the conductors of cables and installations.</p>
+    </div>
+</section>
+
+<section class="band">
+    <h2 data-t>Wires inside the control cabinet (IEC 60204-1)</h2>
+    <div class="table-scroll reference"><table class="reference">
+        <thead><tr><th data-t>Colour</th><th data-t>Abbreviation</th><th data-t>Used for</th></tr></thead>
+        <tbody>
+            <tr><td><span class="swatch black"></span><span data-t>Black</span></td><td>BK</td><td data-t>Power circuits, AC and DC</td></tr>
+            <tr><td><span class="swatch red"></span><span data-t>Red</span></td><td>RD</td><td data-t>Control circuits, AC</td></tr>
+            <tr><td><span class="swatch blue"></span><span data-t>Blue</span></td><td>BU</td><td data-t>Control circuits, DC</td></tr>
+            <tr><td><span class="swatch orange"></span><span data-t>Orange</span></td><td>OG</td><td data-t>Circuits that stay live when the supply disconnecting device is off</td></tr>
+            <tr><td><span class="swatch lightblue"></span><span data-t>Light blue</span></td><td>BU</td><td data-t>Neutral conductor, where it is marked by colour alone</td></tr>
+            <tr><td><span class="swatch greenyellow"></span><span data-t>Green-and-yellow</span></td><td>GNYE</td><td data-t>Protective conductor, and nothing else</td></tr>
+        </tbody>
+    </table></div>
+    <ul class="points">
+        <li data-t>Green-and-yellow for the protective conductor is a requirement. The other colours are the recommendation of the standard for wires marked by colour.</li>
+        <li data-t>Where a neutral conductor is marked blue, blue is not used for other wires that could be mistaken for it.</li>
+        <li data-t>Customers and countries have rules of their own: NFPA 79 in North America, for example, uses red for AC and blue for DC control circuits too, but white for the grounded conductor.</li>
+    </ul>
+</section>
+
+<section class="band">
+    <h2 data-t>Conductors of cables and installations (IEC 60445)</h2>
+    <div class="table-scroll reference"><table class="reference">
+        <thead><tr><th data-t>Conductor</th><th data-t>Marking</th><th data-t>Colour</th></tr></thead>
+        <tbody>
+            <tr><td data-t>Line 1, AC</td><td>L1</td><td><span class="swatch brown"></span><span data-t>Brown</span></td></tr>
+            <tr><td data-t>Line 2, AC</td><td>L2</td><td><span class="swatch black"></span><span data-t>Black</span></td></tr>
+            <tr><td data-t>Line 3, AC</td><td>L3</td><td><span class="swatch grey"></span><span data-t>Grey</span></td></tr>
+            <tr><td data-t>Neutral conductor</td><td>N</td><td><span class="swatch blue"></span><span data-t>Blue</span></td></tr>
+            <tr><td data-t>Protective conductor</td><td>PE</td><td><span class="swatch greenyellow"></span><span data-t>Green-and-yellow</span></td></tr>
+            <tr><td data-t>Positive, DC</td><td>L+</td><td><span class="swatch red"></span><span data-t>Red</span></td></tr>
+            <tr><td data-t>Negative, DC</td><td>L-</td><td><span class="swatch white"></span><span data-t>White</span></td></tr>
+        </tbody>
+    </table></div>
+    <p class="text" data-t>The colours of the DC conductors are those of the edition of 2017; older installations and many control cabinets use other colours for them.</p>
+    <p class="text" data-t>In OpenECraft a potential carries the colour and the cross-section of its wires, so the wire list, the labels and the panel in 3D show them without drawing them twice.</p>
+    <div class="actions">
+        <a class="button" href="@/how-to/wire-list/" data-t>Generate a wire list</a>
+        <a class="button ghost" href="~/docs/connections/" data-t>Connections in the documentation</a>
+        <a class="button ghost" href="@/reference/" data-t>More tables</a>
+    </div>
+    <p class="fine" data-t>The table gives the general content of the standards in our own words. It does not replace the standards, which alone are binding.</p>
+</section>

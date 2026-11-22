@@ -316,3 +316,18 @@ fn tt_systems_need_a_residual_current_device() {
     assert!((f.limit.unwrap() - 0.2).abs() < 1e-6);
     assert!(messages(&k).contains(&"-F1: a TT system needs a residual current device".to_string()));
 }
+
+#[test]
+fn the_currents_behind_a_cable_are_those_of_a_circuit() {
+    // The same feeder as a point behind its cable, without a schematic.
+    let k = feeder((FnKind::Breaker1, "16 A", "Characteristic: C\nBreaking capacity: 10 kA"), "2.5 mm²", 30.0);
+    let f = &faults_of(&k)[0];
+    let (s, conditions) = (&k.prj.electrical.supply, &k.prj.electrical.conditions);
+    let source = Source::of(s);
+    let at_supply = source.behind(s, conditions, 0.0, 2.5);
+    assert!((at_supply.ik_max - source.ik3).abs() < 1.0 && (at_supply.ik_min - source.ik1).abs() < 1.0);
+    let end = source.behind(s, conditions, 30.0, 2.5);
+    assert!((end.ik_max - f.ik_max_end).abs() < 1.0, "{} / {}", end.ik_max, f.ik_max_end);
+    assert!((end.ik_min - f.ik_min_end).abs() < 1.0, "{} / {}", end.ik_min, f.ik_min_end);
+    assert!(end.ik_max < at_supply.ik_max && end.ik_min < end.ik_max && end.ip > end.ik_max);
+}
