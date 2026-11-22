@@ -208,3 +208,23 @@ fn cee_sockets_cooker_boxes_junction_boxes_and_connectors_for_the_installation()
     let wago = get("wago", "WAGO.221-415");
     assert_eq!((wago.subgroup.as_str(), wago.tech_value("Conductors")), ("Splicing connector", Some("5")));
 }
+
+#[test]
+fn fuse_switch_disconnectors_on_busbars_have_their_datasheet_sizes() {
+    // Width, height and depth of the Hager product data sheets: what sits on the bars
+    // of a busbar system in the examples.
+    let parts = default_parts();
+    for (number, size) in [
+        ("HAG.LT0057", [53.0, 214.0, 106.0]),
+        ("HAG.LT056", [106.0, 206.0, 104.0]),
+        ("HAG.LT153", [184.0, 306.0, 110.0]),
+        ("HAG.LT253", [210.0, 306.0, 130.0]),
+        ("HAG.LVSG00RPX", [50.0, 671.0, 123.0]),
+        ("HAG.LVSG1CPX", [100.0, 671.0, 190.0]),
+        ("HAG.LVSG2CPX", [100.0, 671.0, 190.0]),
+        ("HAG.LVSG3CPX", [100.0, 671.0, 190.0]),
+    ] {
+        let p = parts.iter().find(|p| p.number == number).unwrap_or_else(|| panic!("{number}"));
+        assert_eq!([p.width, p.height, p.depth], size, "{number}");
+    }
+}

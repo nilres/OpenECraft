@@ -658,7 +658,7 @@ fn enclosures(prj: &mut Project, db: &PartsDb) {
     let rail = |prj: &mut Project, enc: usize, x0: f32, x1: f32, y: f32| profile(prj, enc, ItemKind::Rail, panel::RAIL_PART, (x0, y), (x1, y));
     let bars = |prj: &mut Project, enc: usize, x0: f32, x1: f32| profile(prj, enc, ItemKind::Busbar, "GEN.BB-3X30X10-185", (x0, BARS), (x1, BARS));
     let strip = |prj: &mut Project, enc: usize, tag: &str, x: f32| {
-        let h = panel::device_size(prj, tag).map_or(745.0, |d| d.h);
+        let h = panel::device_size(prj, tag).map_or(671.0, |d| d.h);
         panel::place_device(prj, enc, tag, p(x, BARS - h / 2.0));
     };
     // +HV1, the supply busbar: the terminals of the supply cables (room for a third),
@@ -705,7 +705,7 @@ fn enclosures(prj: &mut Project, db: &PartsDb) {
     // analyser in the bars, the measured feeders, the heat pumps.
     bars(prj, hv2, 10.0, 980.0);
     in_bars(prj, hv2, "=EMS+HV2-T5", 20.0);
-    for (tag, x) in [("=DIST+HV2-Q21", 210.0), ("=DIST+HV2-Q22", 325.0), ("=DIST+HV2-Q23", 440.0), ("=DIST+HV2-Q24", 555.0), ("=DIST+HV2-Q25", 670.0), ("=DIST+HV2-Q26", 735.0)] {
+    for (tag, x) in [("=DIST+HV2-Q21", 205.0), ("=DIST+HV2-Q22", 320.0), ("=DIST+HV2-Q23", 435.0), ("=DIST+HV2-Q24", 550.0), ("=DIST+HV2-Q25", 670.0), ("=DIST+HV2-Q26", 735.0)] {
         strip(prj, hv2, tag, x);
     }
     // Meters and their voltage MCBs at the top (room above them for the leads of the
