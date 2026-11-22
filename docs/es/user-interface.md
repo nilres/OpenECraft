@@ -65,3 +65,7 @@ comprobación y los mensajes de la sesión.
 | Páginas | `Page Up` / `Page Down`, navegador *Páginas* (su menú contextual también añade una página de esquema después de la página, renumera y elimina páginas), cambio de página de la barra de acceso rápido |
 | Deshacer / rehacer | `Ctrl+Z` / `Ctrl+Y`; la lista de deshacer de la barra de acceso rápido deshace varios pasos |
 | Copiar / pegar | `Ctrl+C` / `Ctrl+X` / `Ctrl+V`, *Inicio › Cortar* / *Copiar* / *Pegar* |
+
+## Conductores curvos en la hoja
+
+En el modo de selección, arrastre un conductor con Ctrl para curvarlo entre sus extremos fijos. Arrastre el tirador central de la curva seleccionada para cambiar su forma en la cuadrícula. Para moverla, arrastre por otra parte del conductor. Para enderezarla, lleve el tirador a la recta entre los extremos. La tecla se puede configurar en los gestos del ratón. La impresión y la exportación conservan la curva.

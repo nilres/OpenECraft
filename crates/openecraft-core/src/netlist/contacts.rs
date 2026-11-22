@@ -12,7 +12,7 @@ pub(super) fn scan(prj:&Project,page:&Page,bridge_terminals:bool)->PageScan {
         for (j,b) in page.wires.iter().enumerate().skip(i+1) {
             let ends=[a.a,a.b].iter().any(|p|p.same(b.a)||p.same(b.b));
             let interior=!a.requires_explicit_junctions(page) && !b.requires_explicit_junctions(page)
-                && ([a.a,a.b].iter().any(|p|b.bend.is_none() && on_segment_interior(*p,b.a,b.b)) || [b.a,b.b].iter().any(|p|a.bend.is_none() && on_segment_interior(*p,a.a,a.b)));
+                && ([a.a,a.b].iter().any(|p|b.contact_inside(*p)) || [b.a,b.b].iter().any(|p|a.contact_inside(*p)));
             let junction=page.junctions.iter().any(|p|touches(p.pos,a) && touches(p.pos,b));
             if ends||interior||junction {uf.union(wire_nodes[i],wire_nodes[j]);}
         }
@@ -30,7 +30,7 @@ pub(super) fn scan(prj:&Project,page:&Page,bridge_terminals:bool)->PageScan {
             let side_contact=pin.internal || !def.func.has_tag();
             let n=uf.add();let mut attached=false;
             for (w,&wire) in page.wires.iter().zip(&wire_nodes) {
-                if q.same(w.a) || q.same(w.b) || (side_contact || !w.requires_explicit_junctions(page)) && w.bend.is_none() && on_segment_interior(q,w.a,w.b) && [w.a,w.b].iter().any(|other|accepts(mask,*other-q)) {
+                if q.same(w.a) || q.same(w.b) || (side_contact || !w.requires_explicit_junctions(page)) && w.contact_inside(q) && [w.a,w.b].iter().any(|other|accepts(mask,*other-q)) {
                     uf.union(n,wire);attached=true;
                 }
             }
@@ -82,7 +82,7 @@ pub(super) fn accepts(mask:u8,delta:P)->bool {
     mask & bit !=0
 }
 
-fn touches(q:P,w:&crate::model::Wire)->bool {q.same(w.a)||q.same(w.b)||(w.bend.is_none() && on_segment_interior(q,w.a,w.b))}
+fn touches(q:P,w:&crate::model::Wire)->bool {q.same(w.a)||q.same(w.b)||w.contact_inside(q)}
 
 pub(super) fn compatible(a:u8,b:u8)->bool {
     let opposite=((a<<2)|(a>>2))&15;

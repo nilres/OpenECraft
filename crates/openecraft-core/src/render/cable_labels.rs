@@ -41,7 +41,7 @@ fn obstacles(prj: &Project, idx: &Index, pi: usize) -> Vec<R> {
 fn blocked(page: &Page, r: R, occupied: &[R]) -> bool {
     let r = r.expand(0.25);
     occupied.iter().any(|o| r.overlaps(o))
-        || page.wires.iter().any(|w| r.expand(WIRE_W * 0.5).crosses(w.a, w.b))
+        || page.wires.iter().any(|w| w.sheet_segments().any(|(a,b)| r.expand(WIRE_W * 0.5).crosses(a,b)))
         || page.cable_defs.iter().any(|d| r.expand(SYMBOL_W * 0.5).crosses(d.a, d.b))
 }
 
@@ -73,9 +73,9 @@ fn actual_bounds(mut label: CoreLabel) -> CoreLabel {
 
 #[allow(clippy::too_many_arguments)]
 fn place(page: &Page, w: &Wire, label: CoreLabel, definition: Option<&CableDef>, before: bool, gap: f32, occupied: &[R], alternate: bool, steps: usize) -> CoreLabel {
-    let Some(def) = definition.or_else(|| page.cable_defs.iter().find(|d| d.cable == w.cable && crate::cabledef::crossing(w.a, w.b, d.a, d.b).is_some())) else { return label; };
-    let Some(t) = crate::cabledef::crossing(w.a, w.b, def.a, def.b) else { return label; };
-    let cross = w.a + (w.b - w.a) * t;
+    let Some(def) = definition.or_else(|| page.cable_defs.iter().find(|d| d.cable == w.cable && crate::cabledef::wire_crossing(w, d.a, d.b).is_some())) else { return label; };
+    let Some((_, t)) = crate::cabledef::wire_crossing(w, def.a, def.b) else { return label; };
+    let cross = w.point_at(t);
     let horizontal = (def.b.x - def.a.x).abs() >= (def.b.y - def.a.y).abs();
     let mut fallback = None;
     for side in [before, !before].into_iter().take(if alternate { 2 } else { 1 }) {

@@ -1097,7 +1097,7 @@ impl Editor {
                 .map(|d| (0..d.pins.len()).any(|i| d.pin_world(i, s.pos, s.rot, s.mirror).same(q)))
                 .unwrap_or(false)
         });
-        pin || page.wires.iter().any(|w| dist_to_segment(q, w.a, w.b) < 0.01) || page.junctions.iter().any(|j| j.pos.same(q))
+        pin || page.wires.iter().any(|w| w.a.same(q) || w.b.same(q) || w.contact_inside(q)) || page.junctions.iter().any(|j| j.pos.same(q))
     }
 
     /// The connection symbol the tool would place at `q`: a T-junction with its stem
@@ -1144,7 +1144,8 @@ impl Editor {
             return Some(snapped);
         }
         let tol = (8.0 / self.zoom).max(0.4);
-        let w = page.wires.iter().find(|w| dist_to_segment(world, w.a, w.b) <= tol)?;
+        let w = page.wires.iter().find(|w| w.distance_to(world) <= tol)?;
+        if w.bend.is_some() { return Some(w.point_at(w.drag_parameter(world))); }
         let ab = w.b - w.a;
         let l2 = ab.x * ab.x + ab.y * ab.y;
         let t = if l2 > 0.0 { (((world.x - w.a.x) * ab.x + (world.y - w.a.y) * ab.y) / l2).clamp(0.0, 1.0) } else { 0.0 };
@@ -1608,7 +1609,7 @@ impl Editor {
                     g.text(sn + p(2.0, 3.0), &preview.summary(), render::SMALL_SIZE, Anchor::Left, VAnchor::Top, Ink::Ghost);
                     for id in cabledef::crossed_wires(page, a, sn) {
                         if let Some(w) = page.wires.iter().find(|w| w.id == id) {
-                            g.line(w.a, w.b, render::WIRE_W * 2.0, Ink::Ghost, false);
+                            g.poly(&w.drawn_points(), false, render::WIRE_W * 2.0, Ink::Ghost, false);
                         }
                     }
                 }
@@ -1640,7 +1641,8 @@ impl Editor {
                         }
                     }
                     for w in &clip.wires {
-                        g.line(w.a + d, w.b + d, render::WIRE_W, Ink::Ghost, false);
+                        let path: Vec<_> = w.drawn_points().into_iter().map(|q| q + d).collect();
+                        g.poly(&path, false, render::WIRE_W, Ink::Ghost, false);
                     }
                     for s in &clip.shapes {
                         let mut s = s.clone();
@@ -2224,9 +2226,9 @@ impl Editor {
             } else if let Some(grab) = grip {
                 self.drag = Drag::Grip { grab, last: None };
             } else if let Some(wire) = hit.and_then(|id| prj.pages[page_i].wires.iter().find(|w| w.id == id))
-                .filter(|w| end.is_none() && handle.is_none() && (mods.ctrl || (w.bend.is_some() && self.selection.len() <= 1))) {
+                .filter(|w| end.is_none() && handle.is_none() && (self.gestures.held(Role::BendSheetWire, mods) || (w.bend.is_some() && self.selection.len() == 1 && self.selection.contains(&w.id) && self.w2s(rect, w.point_at(0.5)).distance(origin) <= 6.0))) {
                 self.selection = BTreeSet::from([wire.id]);
-                self.drag = Drag::Bend { id: wire.id, start: ow, controls: wire.controls(), t: wire.drag_parameter(ow) };
+                self.drag = Drag::Bend { id: wire.id, start: ow, controls: wire.bezier_offsets(), t: wire.drag_parameter(ow) };
             } else if let Some(end) = end {
                 self.start_end_drag(prj, page_i, ow, end);
             } else if let Some(handle) = handle.filter(|h| matches!(h, PropHandle::Wire(..)) || self.selection.len() == 1) {
@@ -2274,8 +2276,14 @@ impl Editor {
                 (Drag::Bend { id, start, controls, t }, Some(q)) => {
                     if let Some(w) = prj.pages[page_i].wires.iter_mut().find(|w| w.id == *id) {
                         // Both inner control points have combined Bernstein weight 3t(1-t).
-                        let delta = (q - *start) * (1.0 / (3.0 * *t * (1.0 - *t)));
-                        w.bend = Some([controls[0] + delta, controls[1] + delta]);
+                        let offset = (q - *start).snap(self.grid);
+                        let weight = (3.0 * *t * (1.0 - *t)).max(0.35);
+                        let delta = offset * (1.0 / weight);
+                        w.bend = if dist_to_segment(q, w.a, w.b) <= 0.35 && offset.len() > 0.0 {
+                            None
+                        } else {
+                            Some([controls[0] + delta, controls[1] + delta])
+                        };
                     }
                 }
                 (Drag::Move { start, applied, moving, items, points, lines }, Some(w)) => {

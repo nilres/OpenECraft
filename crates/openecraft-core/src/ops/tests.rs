@@ -829,3 +829,16 @@ fn a_new_cable_needs_a_free_valid_tag() {
     assert!(new_cable_problem(&prj, "-K1").unwrap().contains("already exists"));
     assert!(new_cable_problem(&prj, "W 2").is_some());
 }
+
+#[test]
+fn sheet_wire_bounds_and_rotation_follow_bend() {
+    let mut prj = Project::default();
+    let pg = &mut prj.pages[0];
+    pg.wires.push(Wire {id: 1, a: p(0.,0.), b: p(40.,0.), bend: Some([p(0.,16.), p(0.,16.)]), ..Default::default()});
+    let symbols = Symbols::default();
+    assert!((item_bounds(&symbols, pg, 1).unwrap().max.y - 12.).abs() < 0.01);
+    let direction = pg.wires[0].point_at(0.5) - pg.wires[0].a;
+    rotate(&symbols, pg, &BTreeSet::from([1]));
+    let w = &pg.wires[0];
+    assert!((w.point_at(0.5) - w.a).dist(direction.transform(1, false)) < 0.01);
+}

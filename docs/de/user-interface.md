@@ -65,3 +65,7 @@ Meldungen der Sitzung.
 | Seiten | `Bild auf` / `Bild ab`, Navigator *Seiten* (sein Kontextmenü fügt auch eine Schaltplanseite nach der Seite ein, nummeriert Seiten neu und löscht sie), Seitenwechsel der Schnellzugriffsleiste |
 | Rückgängig / Wiederholen | `Strg+Z` / `Strg+Y`; die Rückgängig-Liste der Schnellzugriffsleiste macht mehrere Schritte rückgängig |
 | Kopieren / Einfügen | `Strg+C` / `Strg+X` / `Strg+V`, *Start › Ausschneiden* / *Kopieren* / *Einfügen* |
+
+## Gebogene Leitungen auf dem Blatt
+
+Im Auswahlmodus eine Leitung mit Strg ziehen, um sie zwischen ihren festen Endpunkten zu biegen. Den mittleren Griff der ausgewählten Kurve ziehen, um die Form am Raster zu ändern. Zum Verschieben an einer anderen Stelle ziehen. Den Griff auf die Gerade zwischen den Endpunkten ziehen, um die Leitung zu begradigen. Die Taste lässt sich in den Mausgesten einstellen. Druck und Export übernehmen die Kurve.

@@ -65,3 +65,7 @@ messages de la session.
 | Pages | `Page Up` / `Page Down`, navigateur *Pages* (son menu contextuel ajoute aussi une page de schéma après la page, renumérote et supprime des pages), changement de page de la barre d'accès rapide |
 | Annuler / rétablir | `Ctrl+Z` / `Ctrl+Y` ; la liste d'annulation de la barre d'accès rapide annule plusieurs étapes |
 | Copier / coller | `Ctrl+C` / `Ctrl+X` / `Ctrl+V`, *Accueil › Couper* / *Copier* / *Coller* |
+
+## Conducteurs courbes sur la feuille
+
+En mode sélection, faire glisser un conducteur avec Ctrl pour le courber entre ses extrémités fixes. Déplacer la poignée centrale de la courbe sélectionnée pour modifier sa forme sur la grille. Faire glisser le corps ailleurs pour le déplacer. Ramener la poignée sur la droite entre les extrémités pour redresser le conducteur. La touche est configurable dans les gestes de la souris. La courbe est conservée à l’impression et à l’exportation.
