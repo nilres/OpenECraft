@@ -877,3 +877,15 @@ fn a_cable_definition_names_the_new_cable() {
     assert_eq!(prj.cable("-W7").unwrap().cores, "1 2");
     assert_eq!(prj.cables.len(), 1);
 }
+
+#[test]
+fn update_sheet_wire_bend_and_straighten() {
+    let mut s = new_session();
+    let added = run(&mut s,"add_wire",json!({"page":"1","points":[[40,40],[80,40]]})).unwrap();
+    let id = added["ids"][0].clone();
+    for offsets in [json!([[4,12],[-4,12]]), json!([])] {
+        let result = run(&mut s,"update_wire",json!({"page":"1","id":id,"bezier_offsets":offsets})).unwrap();
+        if offsets == json!([]) { assert!(result["bezier_offsets"].is_null()); }
+        else { assert_eq!(result["bezier_offsets"],json!([[4.0,12.0],[-4.0,12.0]])); }
+    }
+}

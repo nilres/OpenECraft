@@ -8,7 +8,7 @@ mod paths;
 pub use paths::LocalRoutes;
 mod contacts;
 
-use crate::geom::{on_segment_interior, P};
+use crate::geom::P;
 use crate::device_boxes;
 use crate::model::{Page, PageKind, Project, SymbolInst};
 use crate::symbols::{Func, SymbolDef};
@@ -203,7 +203,7 @@ impl PageScan {
             *degree.entry(na).or_default() += 1;
             *degree.entry(nb).or_default() += 1;
             for (q, _) in ends.values() {
-                if on_segment_interior(*q, w.a, w.b) {
+                if w.contact_inside(*q) {
                     let nq = point(&mut uf, *q);
                     uf.union(na, nq);
                     *degree.entry(nq).or_default() += 2;
@@ -309,7 +309,7 @@ fn page_fingerprint(prj: &Project, page: &Page) -> u64 {
     page.values.get("page.explicit_wire_junctions").hash(&mut h);
     page.wires.len().hash(&mut h);
     for w in &page.wires {
-        (w.id, w.a.key(), w.b.key(),w.explicit_junctions).hash(&mut h);
+        (w.id, w.a.key(), w.b.key(), w.bend.map(|pair| pair.map(|p| (p.x.to_bits(), p.y.to_bits()))), w.explicit_junctions).hash(&mut h);
     }
     page.symbols.len().hash(&mut h);
     for s in &page.symbols {
@@ -382,7 +382,7 @@ fn end_counts(prj: &Project, page: &Page) -> HashMap<(i64, i64), (P, usize)> {
             all.clone()
         };
         for k in candidates {
-            if on_segment_interior(ends[&k].0, w.a, w.b) {
+            if w.contact_inside(ends[&k].0) {
                 count.get_mut(&k).unwrap().1 += 2;
             }
         }

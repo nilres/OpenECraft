@@ -12,6 +12,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   A published release enters the bundles in the official MCP Registry as
   `io.github.nilres/openecraft`, from where other directories and clients list the
   server ([command line](docs/command-line.md)).
+- Sheet wires can be bent between fixed terminals, reshaped with a midpoint handle, printed and straightened again. The CLI and MCP expose the curve through the wire properties.
+
 - **Zooming in 3D stops at what is under the pointer:** the wheel, a pinch and the key
   for closer zoom in on the solid face under the pointer (a device, the mounting plate,
   the back of the enclosure, a wall of a room), coming ever closer to it but no longer

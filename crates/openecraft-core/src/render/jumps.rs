@@ -17,11 +17,11 @@ pub const LARGE_DOT_R: f32 = 1.1;
 const ARC_STEPS: usize = 8;
 
 fn level(w: &Wire) -> bool {
-    (w.a.y - w.b.y).abs() < 0.005 && (w.a.x - w.b.x).abs() >= 0.005
+    w.bend.is_none() && (w.a.y - w.b.y).abs() < 0.005 && (w.a.x - w.b.x).abs() >= 0.005
 }
 
 fn upright(w: &Wire) -> bool {
-    (w.a.x - w.b.x).abs() < 0.005 && (w.a.y - w.b.y).abs() >= 0.005
+    w.bend.is_none() && (w.a.x - w.b.x).abs() < 0.005 && (w.a.y - w.b.y).abs() >= 0.005
 }
 
 /// Points where a horizontal and a vertical wire cross inside both without a
@@ -60,6 +60,7 @@ pub fn jumps(page: &Page, connected: &[P], style: JumpStyle, wire: JumpWire) -> 
 /// the wires at `at`. A horizontal wire jumps upwards, a vertical one to the right;
 /// jumps that overlap become one.
 pub fn strokes(w: &Wire, at: &[P], style: JumpStyle) -> Vec<Vec<P>> {
+    if w.bend.is_some() { return vec![w.drawn_points()]; }
     let len = w.a.dist(w.b);
     if style == JumpStyle::None || at.is_empty() || len <= 0.0 {
         return vec![vec![w.a, w.b]];

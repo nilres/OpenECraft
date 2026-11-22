@@ -811,3 +811,15 @@ fn the_door_shows_its_hinges_on_the_hinge_side() {
     assert_eq!(hinges(panel::DoorHinge::Left), [-3.0, -3.0]);
     assert_eq!(hinges(panel::DoorHinge::Right), [597.0, 597.0]);
 }
+
+#[test]
+fn curve_dash_phase_continues_over_short_segments() {
+    let path: Vec<_> = (0..=16).map(|i| p(i as f32 * 0.25, 0.)).collect();
+    let mut record = Rec::default();
+    dashed_wire_path(&mut record, &path, Ink::Wire);
+    assert_eq!(record.polys.len(), 2);
+    for ((points, _, _), start) in record.polys.iter().zip([0., 2.5]) {
+        assert!(points.first().unwrap().same(p(start, 0.)));
+        assert!(points.last().unwrap().same(p(start + 1.5, 0.)));
+    }
+}

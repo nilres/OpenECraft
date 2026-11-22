@@ -41,9 +41,24 @@ pub(crate) fn crossing(a: P, b: P, c: P, d: P) -> Option<f32> {
     ((0.0..=1.0).contains(&t) && (0.0..=1.0).contains(&u)).then_some(t)
 }
 
+/// First intersection measured along the definition line, with the corresponding
+/// parameter on the sheet wire. A wire can appear only once in a cable definition.
+pub(crate) fn wire_crossing(w: &Wire, a: P, b: P) -> Option<(f32, f32)> {
+    if w.bend.is_none() {
+        return Some((crossing(a,b,w.a,w.b)?, crossing(w.a,w.b,a,b)?));
+    }
+    let points = w.drawn_points();
+    let segments = (points.len() - 1) as f32;
+    points.windows(2).enumerate().filter_map(|(i, s)| {
+        let line_t = crossing(a, b, s[0], s[1])?;
+        let local_t = crossing(s[0], s[1], a, b)?;
+        Some((line_t, (i as f32 + local_t) / segments))
+    }).min_by(|left, right| left.0.total_cmp(&right.0))
+}
+
 /// Wires of the page crossed by the line `a`–`b`, in order from `a`.
 pub fn crossed_wires(page: &Page, a: P, b: P) -> Vec<u64> {
-    let mut v: Vec<(f32, u64)> = page.wires.iter().filter_map(|w| crossing(a, b, w.a, w.b).map(|t| (t, w.id))).collect();
+    let mut v: Vec<(f32, u64)> = page.wires.iter().filter_map(|w| wire_crossing(w, a, b).map(|(t, _)| (t, w.id))).collect();
     v.sort_by(|x, y| x.0.total_cmp(&y.0));
     v.into_iter().map(|(_, id)| id).collect()
 }
@@ -51,7 +66,7 @@ pub fn crossed_wires(page: &Page, a: P, b: P) -> Vec<u64> {
 /// Position along wire `w` (0..1) of its core stroke and designation: where a cable
 /// definition line of its cable crosses it, else at 30 %.
 pub fn core_position(page: &Page, w: &Wire) -> f32 {
-    page.cable_defs.iter().filter(|d| d.cable == w.cable).find_map(|d| crossing(w.a, w.b, d.a, d.b)).unwrap_or(0.3)
+    page.cable_defs.iter().filter(|d| d.cable == w.cable).find_map(|d| wire_crossing(w, d.a, d.b).map(|(_, t)| t)).unwrap_or(0.3)
 }
 
 /// Core designations "1 2 … n", with a protective earth core "GNYE" at the end.
