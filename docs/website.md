@@ -353,6 +353,16 @@ OPENECRAFT_VIDEOS_DIR=website/dist OPENECRAFT_VIDEOS_CHANNEL=UC… sh installer/
 The start page links the page and the channel from its card *Videos*, and every
 footer links the page.
 
+### Recording the videos
+
+The videos of the channel are recorded by scripts in `website/video/`: a headless
+Edge shows the web editor, a script works in it with real mouse and key events and a
+second page encodes the frames with a spoken narration, as `tour.mjs` does for the
+recording of the first screen. `record.mjs` makes a tutorial (16:9), `short.mjs` a
+Short (1080 × 1920) from a scene file that says what is cut out of the window and
+where it goes. [website/video/README.md](../website/video/README.md) has the steps
+for a new video and what to watch out for.
+
 ### Screen recording and numbers of the project
 
 Both are shown only when the build has them, so the page never promises what is

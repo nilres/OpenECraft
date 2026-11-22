@@ -1,0 +1,17 @@
+{
+  "intro": "This video shows how to draw the first example project of Open E Craft: two lamps, switched by a push button and a selector switch. We use the web editor, so there is nothing to install.",
+  "new": "Start with New project. It has one empty schematic page, which you see on the Page tab.",
+  "zoom": "On the View tab, Fit page shows the whole sheet. Zoom in a few steps, and drag with the right mouse button to move the page.",
+  "pot24": "Every symbol comes from the Insert center on the right. Search for 24, click Potential plus 24 volts, and click into the page to place it. Escape ends placing.",
+  "pot0": "The potential 0 volts goes to the bottom in the same way.",
+  "breaker": "The Insert center also places devices from the parts database. Such a device gets its symbol and its part in one step. Search for the miniature circuit breaker and place it. It gets the tag F 1 by itself.",
+  "s1": "Next, the green push button, and its lamp below it. They are in line, so the editor connects them with a wire.",
+  "s2": "The selector switch and the red lamp follow as the second circuit.",
+  "wire1": "The remaining wires are drawn with the wire tool on the Insert tab. Click the start of a wire, its corners and its end, and press Enter. The first wire runs from plus 24 volts to the circuit breaker.",
+  "wire2": "Then from the breaker to the push button, and a branch to the selector switch.",
+  "wire3": "At the bottom, a wire from 0 volts to the second lamp, and one from the first lamp down to it. The wires take the colour of their potential.",
+  "text": "Select a device to edit it in the Properties pane. The push button gets the function text Test lamp, and the selector switch Light on and off.",
+  "check": "The status bar shows the project check, which follows every change: no errors and no warnings.",
+  "bom": "The parts are already in the project. On the Project data tab, open Reports and choose Bill of materials. Insert as report page makes it a page of the project that stays up to date.",
+  "outro": "Back on the schematic page, the first circuit is complete. You find this example and fifteen more on the start page of the editor. Open E Craft is free and open source, at open e craft dot org."
+}
