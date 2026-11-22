@@ -154,7 +154,19 @@ impl PropHandle {
     }
 }
 
+fn bend_wire(w: &mut Wire, pointer: P, start: P, offsets: [P; 2], t: f32, grid: f32) {
+    let displacement = (pointer - start).snap(grid);
+    // Limit amplification near either terminal, where the Bézier weight tends to zero.
+    let delta = displacement * (1.0 / (3.0 * t * (1.0 - t)).max(0.35));
+    w.bend = if dist_to_segment(pointer, w.a, w.b) <= 0.35 && displacement.len() > 0.0 {
+        None
+    } else {
+        Some([offsets[0] + delta, offsets[1] + delta])
+    };
+}
+
 enum Drag {
+    Bend { id: u64, start: P, controls: [P; 2], t: f32 },
     None,
     /// The selection with the connection points of its device boxes (`items`) moves;
     /// its connection points and wire ends (`points`) snap to the invisible grid lines
@@ -1038,7 +1050,7 @@ impl Editor {
             return Some(j.id);
         }
         for w in page.wires.iter().rev() {
-            if dist_to_segment(q, w.a, w.b) <= tol {
+            if w.distance_to(q) <= tol {
                 return Some(w.id);
             }
         }
@@ -1096,7 +1108,7 @@ impl Editor {
                 .map(|d| (0..d.pins.len()).any(|i| d.pin_world(i, s.pos, s.rot, s.mirror).same(q)))
                 .unwrap_or(false)
         });
-        pin || page.wires.iter().any(|w| dist_to_segment(q, w.a, w.b) < 0.01) || page.junctions.iter().any(|j| j.pos.same(q))
+        pin || page.wires.iter().any(|w| w.a.same(q) || w.b.same(q) || w.contact_inside(q)) || page.junctions.iter().any(|j| j.pos.same(q))
     }
 
     /// The connection symbol the tool would place at `q`: a T-junction with its stem
@@ -1143,7 +1155,8 @@ impl Editor {
             return Some(snapped);
         }
         let tol = (8.0 / self.zoom).max(0.4);
-        let w = page.wires.iter().find(|w| dist_to_segment(world, w.a, w.b) <= tol)?;
+        let w = page.wires.iter().find(|w| w.distance_to(world) <= tol)?;
+        if w.bend.is_some() { return Some(w.point_at(w.drag_parameter(world))); }
         let ab = w.b - w.a;
         let l2 = ab.x * ab.x + ab.y * ab.y;
         let t = if l2 > 0.0 { (((world.x - w.a.x) * ab.x + (world.y - w.a.y) * ab.y) / l2).clamp(0.0, 1.0) } else { 0.0 };
@@ -1447,6 +1460,7 @@ impl Editor {
         // Handles of the ends of the selected wires, dragged alone.
         if self.tool == Tool::Select && editable {
             for w in prj.pages[page_i].wires.iter().filter(|w| self.selection.contains(&w.id)) {
+                if w.bend.is_some() { painter.circle_stroke(self.w2s(rect, w.point_at(0.5)), 4.0, Stroke::new(1.5, pal.selected)); }
                 for q in [w.a, w.b] {
                     let r = Rect::from_center_size(self.w2s(rect, q), vec2(7.0, 7.0));
                     painter.rect_filled(r, 0.0, pal.canvas);
@@ -1606,7 +1620,7 @@ impl Editor {
                     g.text(sn + p(2.0, 3.0), &preview.summary(), render::SMALL_SIZE, Anchor::Left, VAnchor::Top, Ink::Ghost);
                     for id in cabledef::crossed_wires(page, a, sn) {
                         if let Some(w) = page.wires.iter().find(|w| w.id == id) {
-                            g.line(w.a, w.b, render::WIRE_W * 2.0, Ink::Ghost, false);
+                            g.poly(&w.drawn_points(), false, render::WIRE_W * 2.0, Ink::Ghost, false);
                         }
                     }
                 }
@@ -1638,7 +1652,8 @@ impl Editor {
                         }
                     }
                     for w in &clip.wires {
-                        g.line(w.a + d, w.b + d, render::WIRE_W, Ink::Ghost, false);
+                        let path: Vec<_> = w.drawn_points().into_iter().map(|q| q + d).collect();
+                        g.poly(&path, false, render::WIRE_W, Ink::Ghost, false);
                     }
                     for s in &clip.shapes {
                         let mut s = s.clone();
@@ -2221,6 +2236,10 @@ impl Editor {
                 self.drag = Drag::Turn { turning, start: direction(pivot, ow), deg: 0.0 };
             } else if let Some(grab) = grip {
                 self.drag = Drag::Grip { grab, last: None };
+            } else if let Some(wire) = hit.and_then(|id| prj.pages[page_i].wires.iter().find(|w| w.id == id))
+                .filter(|w| end.is_none() && handle.is_none() && (self.gestures.held(Role::BendSheetWire, mods) || (w.bend.is_some() && self.selection.len() == 1 && self.selection.contains(&w.id) && self.w2s(rect, w.point_at(0.5)).distance(origin) <= 6.0))) {
+                self.selection = BTreeSet::from([wire.id]);
+                self.drag = Drag::Bend { id: wire.id, start: ow, controls: wire.bezier_offsets(), t: wire.drag_parameter(ow) };
             } else if let Some(end) = end {
                 self.start_end_drag(prj, page_i, ow, end);
             } else if let Some(handle) = handle.filter(|h| matches!(h, PropHandle::Wire(..)) || self.selection.len() == 1) {
@@ -2265,6 +2284,11 @@ impl Editor {
         }
         if ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
             match (&mut self.drag, world) {
+                (Drag::Bend { id, start, controls, t }, Some(q)) => {
+                    if let Some(w) = prj.pages[page_i].wires.iter_mut().find(|w| w.id == *id) {
+                        bend_wire(w, q, *start, *controls, *t, self.grid);
+                    }
+                }
                 (Drag::Move { start, applied, moving, items, points, lines }, Some(w)) => {
                     let total = lines.snap_from(w - *start, points, self.grid);
                     let delta = total - *applied;
@@ -2325,7 +2349,7 @@ impl Editor {
                     }
                 }
                 Drag::End { .. } => ops::cleanup_wires(&mut prj.pages[page_i]),
-                Drag::Prop { .. } | Drag::Grip { .. } | Drag::Turn { .. } | Drag::None => {}
+                Drag::Prop { .. } | Drag::Grip { .. } | Drag::Turn { .. } | Drag::Bend { .. } | Drag::None => {}
             }
         }
         if resp.clicked_by(PointerButton::Primary) {
@@ -2359,7 +2383,7 @@ impl Editor {
             // The whole potential of a wire, as the selection shows it.
             let ids: HashSet<u64> = an.netlist.net_of_wire(id).map(|n| n.wires.iter().map(|x| x.1).collect()).unwrap_or_else(|| HashSet::from([wire.id]));
             for x in page.wires.iter().filter(|x| ids.contains(&x.id)) {
-                painter.line_segment([self.w2s(rect, x.a), self.w2s(rect, x.b)], Stroke::new(4.0, color));
+                for s in x.drawn_points().windows(2) { painter.line_segment([self.w2s(rect, s[0]), self.w2s(rect, s[1])], Stroke::new(4.0, color)); }
             }
             return;
         }
@@ -2462,7 +2486,7 @@ impl Editor {
             return;
         }
         let icon = match (&self.tool, &self.drag) {
-            (_, Drag::Prop { .. } | Drag::End { .. }) => egui::CursorIcon::Grabbing,
+            (_, Drag::Bend { .. } | Drag::Prop { .. } | Drag::End { .. }) => egui::CursorIcon::Grabbing,
             (_, Drag::Move { .. }) => egui::CursorIcon::Move,
             (_, Drag::Box { .. }) => egui::CursorIcon::Crosshair,
             (Tool::Select, Drag::None) if editable && end_hit => egui::CursorIcon::Grab,

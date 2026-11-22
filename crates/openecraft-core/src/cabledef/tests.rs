@@ -239,3 +239,13 @@ fn cores_sit_where_the_cable_definition_line_crosses() {
     let other = Wire { id: 99, a: p(60.0, 20.0), b: p(60.0, 80.0), cable: page.wires[0].cable.clone(), ..Default::default() };
     assert_eq!(core_position(page, &other), 0.3, "not crossed: at 30 %");
 }
+
+#[test]
+fn definition_line_crosses_drawn_bend() {
+    let mut prj = Project::default();
+    let w = Wire {id: 1, a: p(0.,0.), b: p(40.,0.), bend: Some([p(0.,16.),p(0.,16.)]), ..Default::default()};
+    prj.pages[0].wires.push(w);
+    let pg = &prj.pages[0];
+    assert!(crossed_wires(pg,p(20.,-1.),p(20.,1.)).is_empty());
+    assert_eq!(crossed_wires(pg,p(20.,11.),p(20.,13.)), [1]);
+}

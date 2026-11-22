@@ -132,8 +132,8 @@ impl Obstacles {
         let near = bounds.expand(8.0);
         let Some(page) = prj.pages.get(page_i) else { return o };
         for wire in &page.wires {
-            if R::from_points(wire.a, wire.b).expand(0.01).overlaps(&near) {
-                o.segments.push((wire.a, wire.b));
+            for (a,b) in wire.sheet_segments() {
+                if R::from_points(a,b).expand(0.01).overlaps(&near) { o.segments.push((a,b)); }
             }
         }
         let symbols = prj.symbol_table();

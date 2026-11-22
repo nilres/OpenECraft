@@ -30,6 +30,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   heat sink and the fan behind its grille, the enclosure thermostat its red (heating) or
   blue (cooling) dial with its scale, the socket outlet for mounting rails the round
   type F socket in its front.
+- Sheet wires can be bent between fixed terminals, reshaped with a midpoint handle, printed and straightened again. The CLI and MCP expose the curve through the wire properties.
+
 - **Zooming in 3D stops at what is under the pointer:** the wheel, a pinch and the key
   for closer zoom in on the solid face under the pointer (a device, the mounting plate,
   the back of the enclosure, a wall of a room), coming ever closer to it but no longer

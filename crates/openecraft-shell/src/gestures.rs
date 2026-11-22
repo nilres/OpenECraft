@@ -242,6 +242,7 @@ pub enum Role {
     AddToSelection,
     OpenLink,
     SingleItem,
+    BendSheetWire,
     ReverseKeepConnections,
     RotateBack,
     Faster3d,
@@ -250,13 +251,14 @@ pub enum Role {
 }
 
 impl Role {
-    pub const ALL: [Role; 8] = [Role::AddToSelection, Role::OpenLink, Role::SingleItem, Role::ReverseKeepConnections, Role::RotateBack, Role::Faster3d, Role::WheelSideways, Role::WheelZoom];
+    pub const ALL: [Role; 9] = [Role::AddToSelection, Role::OpenLink, Role::SingleItem, Role::BendSheetWire, Role::ReverseKeepConnections, Role::RotateBack, Role::Faster3d, Role::WheelSideways, Role::WheelZoom];
 
     pub fn id(self) -> &'static str {
         match self {
             Role::AddToSelection => "add_to_selection",
             Role::OpenLink => "open_link",
             Role::SingleItem => "single_item",
+            Role::BendSheetWire => "bend_sheet_wire",
             Role::ReverseKeepConnections => "reverse_keep_connections",
             Role::RotateBack => "rotate_back",
             Role::Faster3d => "faster_3d",
@@ -270,6 +272,7 @@ impl Role {
             Role::AddToSelection => tr_const!("Click or window: add to the selection or take out of it"),
             Role::OpenLink => tr_const!("Click a text: open its link"),
             Role::SingleItem => tr_const!("Click in the panel layout: a single item of an assembly"),
+            Role::BendSheetWire => tr_const!("Drag a wire to bend it on the sheet"),
             Role::ReverseKeepConnections => tr_const!("Start of a move: Keep connections the other way round"),
             Role::RotateBack => tr_const!("Rotate what is being moved counter-clockwise"),
             Role::Faster3d => tr_const!("Move faster with the keys of the 3D view"),
@@ -281,7 +284,7 @@ impl Role {
     pub fn default(self) -> Option<Mod> {
         match self {
             Role::AddToSelection | Role::RotateBack | Role::Faster3d | Role::WheelSideways => Some(Mod::Shift),
-            Role::OpenLink | Role::WheelZoom => Some(Mod::Ctrl),
+            Role::OpenLink | Role::WheelZoom | Role::BendSheetWire => Some(Mod::Ctrl),
             Role::SingleItem | Role::ReverseKeepConnections => Some(Mod::Alt),
         }
     }
@@ -294,7 +297,7 @@ impl Role {
             Role::AddToSelection => &[0, 1, 2],
             Role::OpenLink => &[0],
             Role::SingleItem => &[1],
-            Role::ReverseKeepConnections => &[2],
+            Role::ReverseKeepConnections | Role::BendSheetWire => &[2],
             Role::WheelSideways | Role::WheelZoom => &[3],
             Role::RotateBack => &[4],
             Role::Faster3d => &[5],

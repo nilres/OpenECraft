@@ -300,7 +300,9 @@ pub fn item_bounds(symbols: &Symbols, page: &Page, id: u64) -> Option<R> {
         return symbols.get(&s.sym).map(|d| s.bounds(&d));
     }
     if let Some(w) = page.wires.iter().find(|w| w.id == id) {
-        return Some(R::from_points(w.a, w.b));
+        let mut bounds = R::from_points(w.a, w.b);
+        if w.bend.is_some() { for q in w.drawn_points() { bounds.extend(q); } }
+        return Some(bounds);
     }
     if let Some(t) = page.texts.iter().find(|t| t.id == id) {
         return Some(text_bounds(t));
@@ -522,6 +524,7 @@ pub fn rotate(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>) {
     for w in page.wires.iter_mut().filter(|w| sel.contains(&w.id)) {
         w.a = rot(w.a);
         w.b = rot(w.b);
+        if let Some(c) = &mut w.bend { *c = c.map(|v| v.transform(1, false)); }
         for label in &mut w.labels {
             label.offset = label.offset.transform(1, false);
             label.angle = (label.angle - 90.).rem_euclid(360.);
