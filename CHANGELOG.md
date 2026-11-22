@@ -11,6 +11,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   go with it); lines, polylines, polygons and dimensions show grips at their points,
   circles at their radius, arcs at both ends
   ([schematic graphics](docs/features/schematic.md#schematic-graphics), #217).
+- **Turn to any angle:** a selected shape, image or text shows a round handle above it,
+  dragged to turn it about its middle in steps of 15° (1° with Alt), with the angle
+  shown beside the pointer; rectangles, ellipses and images keep an angle (*Rotation*
+  in their properties) and their grips follow it. A quarter turn (*Rotate*) keeps the
+  size of an image instead of stretching it.
 - **Sizes and a drawing scale:** the properties of a shape show its width and height,
   length or radius, typed to change it; a page has a scale (*Page properties › Scale*,
   `set_page scale`, 1 : 50), in which the sizes of its shapes are shown and its new

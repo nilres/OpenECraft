@@ -177,7 +177,11 @@ A selected item shows **grips** that change its size or shape while dragged, on 
 grid: the corners and edge middles of rectangles, ellipses, structure boxes and device
 boxes, the corners of images (the aspect ratio is kept), the ends and corner points of
 lines, polylines, polygons and dimensions, four points on a circle for its radius and
-both ends of an arc. The properties of a shape show its size: width and height of
+both ends of an arc. A round **turning handle** above a selected shape, image or text
+turns it about its middle, in steps of 15° (1° with Alt held) with the angle shown
+beside the pointer; rectangles, ellipses and images keep the angle (*Rotation* in their
+properties) and their grips follow it, the other shapes turn their points. The
+properties of a shape show its size: width and height of
 rectangles and ellipses, the length of lines and the radius of circles can be typed,
 the size and outline length of the others is shown. The **scale** of a page (page
 properties, `set_page scale`, 1 : 50 is 50) is the real length per millimetre on the

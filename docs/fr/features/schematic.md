@@ -204,7 +204,12 @@ Un élément sélectionné montre des **poignées** qui changent sa taille ou sa
 les fait glisser, sur la grille : les coins et milieux des bords des rectangles, ellipses,
 cadres de structure et boîtes d'appareil, les coins des images (le rapport d'aspect est
 conservé), les extrémités et sommets des lignes, polylignes, polygones et cotations,
-quatre points d'un cercle pour son rayon et les deux extrémités d'un arc. Les propriétés
+quatre points d'un cercle pour son rayon et les deux extrémités d'un arc. Une **poignée
+de rotation** ronde au-dessus d'une forme, d'une image ou d'un texte sélectionné le fait
+pivoter autour de son milieu, par pas de 15° (1° avec Alt enfoncé), l'angle s'affichant
+à côté du pointeur ; les rectangles, ellipses et images gardent l'angle (*Rotation* dans
+leurs propriétés) et leurs poignées le suivent, les autres formes font pivoter leurs
+points. Les propriétés
 d'une forme montrent sa taille : la largeur et la hauteur des rectangles et des ellipses,
 la longueur des lignes et le rayon des cercles se saisissent, la taille et la longueur du
 contour des autres sont affichées. L'**échelle** d'une page (propriétés de la page,

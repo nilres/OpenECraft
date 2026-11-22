@@ -678,7 +678,7 @@ pub fn fitted_image(pic: &Picture, a: P, b: P) -> crate::model::ImageItem {
         p(pic.px[0] as f32 * k, pic.px[1] as f32 * k)
     };
     let min = r.center() - size * 0.5;
-    crate::model::ImageItem { id: picture_id(pic), a: min, b: min + size, file: pic.file.clone(), px: pic.px, layer: String::new() }
+    crate::model::ImageItem { id: picture_id(pic), a: min, b: min + size, file: pic.file.clone(), px: pic.px, layer: String::new(), angle: 0.0 }
 }
 
 /// A picture from a PNG or JPEG file; `None` for other files.

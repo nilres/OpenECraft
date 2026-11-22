@@ -92,8 +92,12 @@ fn shape_size_rows(ui: &mut egui::Ui, s: &mut Shape, scale: f32) {
             let ch = size(ui, &mut h);
             ui.end_row();
             if cw || ch {
-                (s.a, s.b) = (r.min, r.min + p(w / scale, h / scale));
+                // A turned shape keeps its middle.
+                let size = p(w / scale, h / scale);
+                let min = if s.angle == 0.0 { r.min } else { r.center() - size * 0.5 };
+                (s.a, s.b) = (min, min + size);
             }
+            angle_row(ui, &mut s.angle);
         }
         ShapeKind::Line => {
             let mut l = length * scale;
@@ -120,6 +124,15 @@ fn shape_size_rows(ui: &mut egui::Ui, s: &mut Shape, scale: f32) {
             ui.end_row();
         }
     }
+}
+
+/// The angle an item is turned by, counter-clockwise.
+fn angle_row(ui: &mut egui::Ui, angle: &mut f32) {
+    ui.label(tr("Rotation"));
+    if ui.add(egui::DragValue::new(angle).range(-360.0..=360.0).speed(1.0).suffix(" °")).changed() {
+        *angle = openecraft_core::grips::normal_angle(*angle);
+    }
+    ui.end_row();
 }
 
 /// Own colour of an item (none: the layer's or the normal colour).
@@ -469,8 +482,11 @@ impl App {
                     w = h * img.px[0] as f32 / img.px[1] as f32;
                 }
                 if cw || ch {
-                    img.b = img.a + openecraft_core::geom::p(w, h);
+                    let size = openecraft_core::geom::p(w, h);
+                    let min = if img.angle == 0.0 { img.a } else { openecraft_core::geom::R::from_points(img.a, img.b).center() - size * 0.5 };
+                    (img.a, img.b) = (min, min + size);
                 }
+                angle_row(ui, &mut img.angle);
                 ui.label(tr("Layer"));
                 layer_combo(ui, "ilayer", &mut img.layer, &names);
                 ui.end_row();

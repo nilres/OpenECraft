@@ -206,7 +206,11 @@ Ein ausgewähltes Element zeigt **Griffe**, die beim Ziehen seine Größe oder F
 im Raster: die Ecken und Kantenmitten von Rechtecken, Ellipsen, Strukturkästen und
 Geräteboxen, die Ecken von Bildern (das Seitenverhältnis bleibt), die Enden und Eckpunkte
 von Linien, Polylinien, Polygonen und Bemaßungen, vier Punkte eines Kreises für seinen
-Radius und beide Enden eines Bogens. Die Eigenschaften einer Form zeigen ihre Größe:
+Radius und beide Enden eines Bogens. Ein runder **Drehgriff** über einer ausgewählten
+Form, einem Bild oder einem Text dreht es um seine Mitte, in Schritten von 15° (1° mit
+gehaltener Alt-Taste), der Winkel steht neben dem Mauszeiger; Rechtecke, Ellipsen und
+Bilder behalten den Winkel (*Drehung* in ihren Eigenschaften) und ihre Griffe folgen ihm,
+die übrigen Formen drehen ihre Punkte. Die Eigenschaften einer Form zeigen ihre Größe:
 Breite und Höhe von Rechtecken und Ellipsen, die Länge von Linien und der Radius von
 Kreisen lassen sich eintippen, Größe und Umrisslänge der übrigen werden angezeigt. Der
 **Maßstab** einer Seite (Seiteneigenschaften, `set_page scale`, 1 : 50 ist 50) ist die

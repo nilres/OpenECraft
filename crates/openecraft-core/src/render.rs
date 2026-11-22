@@ -167,9 +167,13 @@ pub fn draw_page_with_core_labels(d: &mut dyn Draw, prj: &Project, idx: &Index, 
     };
     for img in page.images.iter().filter(|i| shown(&i.layer)) {
         d.layer(Some(&img.layer));
-        d.image(img);
+        if img.angle == 0.0 {
+            d.image(img);
+        } else {
+            d.image_quad(img, &graphics::image_corners(img));
+        }
         if opts.selected.contains(&img.id) {
-            d.rect(img.a, img.b, SYMBOL_W, Ink::Selected, false);
+            d.poly(&graphics::image_corners(img), true, SYMBOL_W, Ink::Selected, false);
         }
     }
     for s in page.shapes.iter().filter(|s| shown(&s.layer)) {

@@ -203,7 +203,11 @@ Un elemento seleccionado muestra **tiradores** que cambian su tamaño o su forma
 arrastrarlos, sobre la rejilla: las esquinas y los centros de los bordes de rectángulos,
 elipses, recuadros de estructura y cajas de dispositivo, las esquinas de las imágenes (se
 mantiene la relación de aspecto), los extremos y vértices de líneas, polilíneas, polígonos
-y cotas, cuatro puntos de un círculo para su radio y ambos extremos de un arco. Las
+y cotas, cuatro puntos de un círculo para su radio y ambos extremos de un arco. Un
+**tirador de giro** redondo sobre una forma, imagen o texto seleccionado lo gira
+alrededor de su centro, en pasos de 15° (1° con Alt pulsada), con el ángulo junto al
+puntero; los rectángulos, elipses e imágenes guardan el ángulo (*Rotación* en sus
+propiedades) y sus tiradores lo siguen, las demás formas giran sus puntos. Las
 propiedades de una forma muestran su tamaño: el ancho y el alto de rectángulos y elipses,
 la longitud de las líneas y el radio de los círculos se escriben, el tamaño y la longitud
 del contorno de las demás se muestran. La **escala** de una página (propiedades de la

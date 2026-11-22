@@ -2,9 +2,11 @@
 //! edge middles of rectangles, ellipses, structure boxes and device boxes, the corners
 //! of images (their aspect ratio is kept), the ends and corner points of lines,
 //! polylines, polygons and dimensions, the radius of circles and the ends of arcs.
+//! Shapes, images and texts are also turned to any angle about their middle.
 
 use crate::device_boxes;
 use crate::geom::{p, P, R, GRID};
+use crate::graphics::{self, turn_about};
 use crate::model::*;
 
 /// A point of an item that can be dragged.
@@ -29,7 +31,8 @@ pub const MIN_SIZE: f32 = 1.0;
 #[derive(Clone, Debug, PartialEq)]
 enum Item {
     Shape(Shape),
-    Image(R),
+    /// Its rectangle before the angle, and the angle.
+    Image(R, f32),
     StructureBox(R),
     DeviceBox(R),
     Dimension(P, P),
@@ -48,7 +51,7 @@ fn item(prj: &Project, page: &Page, id: u64) -> Option<Item> {
         return Some(Item::Shape(s.clone()));
     }
     if let Some(i) = page.images.iter().find(|i| i.id == id) {
-        return Some(Item::Image(R::from_points(i.a, i.b)));
+        return Some(Item::Image(R::from_points(i.a, i.b), i.angle));
     }
     if let Some(b) = page.structure_boxes.iter().find(|b| b.id == id) {
         return Some(Item::StructureBox(R::from_points(b.a, b.b)));
@@ -104,7 +107,7 @@ fn sweep_like(deg: f32, like: f32) -> f32 {
 fn shape_grips(s: &Shape) -> Vec<(Grip, P)> {
     match s.kind {
         ShapeKind::Line => vec![(Grip::Point(0), s.a), (Grip::Point(1), s.b)],
-        ShapeKind::Rect | ShapeKind::Ellipse => frame(R::from_points(s.a, s.b), true),
+        ShapeKind::Rect | ShapeKind::Ellipse => turned(frame(R::from_points(s.a, s.b), true), R::from_points(s.a, s.b), s.angle),
         ShapeKind::Circle => {
             let r = s.a.dist(s.b);
             [p(r, 0.0), p(0.0, r), p(-r, 0.0), p(0.0, -r)].into_iter().enumerate().map(|(i, d)| (Grip::Radius(i as u8), s.a + d)).collect()
@@ -122,7 +125,7 @@ fn shape_grips(s: &Shape) -> Vec<(Grip, P)> {
 pub fn grips(prj: &Project, page_i: usize, id: u64) -> Vec<(Grip, P)> {
     match item(prj, &prj.pages[page_i], id) {
         Some(Item::Shape(s)) => shape_grips(&s),
-        Some(Item::Image(r)) => frame(r, false),
+        Some(Item::Image(r, angle)) => turned(frame(r, false), r, angle),
         Some(Item::StructureBox(r) | Item::DeviceBox(r)) => frame(r, true),
         Some(Item::Dimension(a, b)) => vec![(Grip::Point(0), a), (Grip::Point(1), b)],
         None => Vec::new(),
@@ -166,6 +169,64 @@ pub fn reframe_keeping_aspect(r: R, (x, y): (i8, i8), to: P, min: f32) -> R {
     R::from_points(anchor, anchor + p(w * x as f32, h * y as f32))
 }
 
+/// Grips of a rectangle `r` turned by `angle` about its middle.
+fn turned(grips: Vec<(Grip, P)>, r: R, angle: f32) -> Vec<(Grip, P)> {
+    grips.into_iter().map(|(g, q)| (g, turn_about(r.center(), q, angle))).collect()
+}
+
+/// [`reframe`] (or [`reframe_keeping_aspect`]) of the rectangle `r` turned by `angle`
+/// about its middle: the edges that do not move stay where they are on the page. The
+/// result is the rectangle before the angle.
+pub fn reframe_turned(r: R, angle: f32, grip: (i8, i8), to: P, min: f32, keep_aspect: bool) -> R {
+    let c = r.center();
+    let local = R { min: r.min - c, max: r.max - c };
+    let to = (to - c).turned(-angle);
+    let n = if keep_aspect { reframe_keeping_aspect(local, grip, to, min) } else { reframe(local, grip, to, min) };
+    let mid = c + n.center().turned(angle);
+    let half = p(n.width() / 2.0, n.height() / 2.0);
+    R { min: mid - half, max: mid + half }
+}
+
+impl Grab {
+    /// The angle of the frame of a turned rectangle, ellipse or image, else 0.
+    pub fn angle(&self) -> f32 {
+        match &self.from {
+            Item::Shape(s) if matches!(s.kind, ShapeKind::Rect | ShapeKind::Ellipse) => s.angle,
+            Item::Image(_, angle) => *angle,
+            _ => 0.0,
+        }
+    }
+}
+
+/// [`drag`] on a grid of `grid` mm: the grip goes to the nearest grid point, the grip
+/// of a turned frame (rectangle, ellipse, image) gives it a width and height of whole
+/// grid steps along its own sides instead.
+pub fn drag_on_grid(prj: &mut Project, page_i: usize, g: &Grab, to: P, grid: f32) -> Result<(), String> {
+    let frame = match (&g.from, g.grip) {
+        (Item::Shape(s), Grip::Frame(x, y)) => Some((R::from_points(s.a, s.b), (x, y))),
+        (Item::Image(r, _), Grip::Frame(x, y)) => Some((*r, (x, y))),
+        _ => None,
+    };
+    let Some((r, (x, y))) = frame.filter(|_| g.angle() != 0.0 && grid > 0.0) else {
+        return drag(prj, page_i, g, to.snap(grid));
+    };
+    let c = r.center();
+    let mut local = (to - c).turned(-g.angle());
+    // Measured from the edge that stays.
+    let step = |v: f32, from: f32| from + ((v - from) / grid).round() * grid;
+    match x {
+        -1 => local.x = step(local.x, r.max.x - c.x),
+        1 => local.x = step(local.x, r.min.x - c.x),
+        _ => {}
+    }
+    match y {
+        -1 => local.y = step(local.y, r.max.y - c.y),
+        1 => local.y = step(local.y, r.min.y - c.y),
+        _ => {}
+    }
+    drag(prj, page_i, g, c + local.turned(g.angle()))
+}
+
 /// Moves the grip of `g` to `to` (page coordinates): the item takes the shape it
 /// had at the start of the drag, changed by the grip.
 pub fn drag(prj: &mut Project, page_i: usize, g: &Grab, to: P) -> Result<(), String> {
@@ -177,7 +238,7 @@ pub fn drag(prj: &mut Project, page_i: usize, g: &Grab, to: P) -> Result<(), Str
                 (ShapeKind::Line, Grip::Point(_)) => s.b = to,
                 (ShapeKind::Polyline | ShapeKind::Polygon, Grip::Point(i)) if i < s.pts.len() => s.pts[i] = to,
                 (ShapeKind::Rect | ShapeKind::Ellipse, Grip::Frame(x, y)) => {
-                    let r = reframe(R::from_points(s.a, s.b), (x, y), to, MIN_SIZE);
+                    let r = reframe_turned(R::from_points(s.a, s.b), s.angle, (x, y), to, MIN_SIZE, false);
                     (s.a, s.b) = (r.min, r.max);
                 }
                 (ShapeKind::Circle, Grip::Radius(_)) => {
@@ -198,8 +259,8 @@ pub fn drag(prj: &mut Project, page_i: usize, g: &Grab, to: P) -> Result<(), Str
                 t.pts = s.pts;
             }
         }
-        (Item::Image(r), Grip::Frame(x, y)) => {
-            let r = reframe_keeping_aspect(*r, (x, y), to, MIN_SIZE);
+        (Item::Image(r, angle), Grip::Frame(x, y)) => {
+            let r = reframe_turned(*r, *angle, (x, y), to, MIN_SIZE, true);
             if let Some(i) = prj.pages[page_i].images.iter_mut().find(|i| i.id == g.id) {
                 (i.a, i.b) = (r.min, r.max);
             }
@@ -226,6 +287,103 @@ pub fn drag(prj: &mut Project, page_i: usize, g: &Grab, to: P) -> Result<(), Str
         _ => {}
     }
     Ok(())
+}
+
+/// An item being turned: the middle it turns about and the item as it was.
+#[derive(Clone, Debug, PartialEq)]
+pub struct Turning {
+    pub id: u64,
+    pub pivot: P,
+    from: Turned,
+}
+
+#[derive(Clone, Debug, PartialEq)]
+enum Turned {
+    Shape(Shape),
+    Image(f32),
+    Text(f32),
+}
+
+/// The middle item `id` turns about and the point on its outline the turning handle
+/// grows from (towards the top of the item); none for items that do not turn
+/// (symbols, wires, boxes, dimensions, circles).
+pub fn turn_handle(page: &Page, id: u64) -> Option<(P, P)> {
+    if let Some(s) = page.shapes.iter().find(|s| s.id == id) {
+        return match s.kind {
+            ShapeKind::Circle => None,
+            ShapeKind::Rect | ShapeKind::Ellipse => {
+                let r = R::from_points(s.a, s.b);
+                Some((r.center(), turn_about(r.center(), p(r.center().x, r.min.y), s.angle)))
+            }
+            _ => {
+                let r = graphics::shape_bounds(s);
+                r.is_valid().then(|| (r.center(), p(r.center().x, r.min.y)))
+            }
+        };
+    }
+    if let Some(i) = page.images.iter().find(|i| i.id == id) {
+        let r = R::from_points(i.a, i.b);
+        return Some((r.center(), turn_about(r.center(), p(r.center().x, r.min.y), i.angle)));
+    }
+    let t = page.texts.iter().find(|t| t.id == id)?;
+    Some((t.pos, t.pos + p(0.0, -1.5 * t.size.max(1.0)).turned(t.angle)))
+}
+
+/// Starts turning item `id`; none for items that do not turn.
+pub fn start_turn(page: &Page, id: u64) -> Option<Turning> {
+    let (pivot, _) = turn_handle(page, id)?;
+    let from = if let Some(s) = page.shapes.iter().find(|s| s.id == id) {
+        Turned::Shape(s.clone())
+    } else if let Some(i) = page.images.iter().find(|i| i.id == id) {
+        Turned::Image(i.angle)
+    } else {
+        Turned::Text(page.texts.iter().find(|t| t.id == id)?.angle)
+    };
+    Some(Turning { id, pivot, from })
+}
+
+/// The angle of the frame grips of item `id`: that of a turned rectangle, ellipse or
+/// image, else 0.
+pub fn frame_angle(page: &Page, id: u64) -> f32 {
+    if let Some(s) = page.shapes.iter().find(|s| s.id == id && matches!(s.kind, ShapeKind::Rect | ShapeKind::Ellipse)) {
+        return s.angle;
+    }
+    page.images.iter().find(|i| i.id == id).map_or(0.0, |i| i.angle)
+}
+
+/// An angle in degrees from 0 to below 360.
+pub fn normal_angle(deg: f32) -> f32 {
+    let a = deg.rem_euclid(360.0);
+    if (a - 360.0).abs() < 1e-3 || a.abs() < 1e-3 { 0.0 } else { a }
+}
+
+/// Turns the item of `t` by `deg` degrees counter-clockwise from where it was at the
+/// start: rectangles, ellipses, images and texts take an angle, the other shapes turn
+/// their points about its middle.
+pub fn turn(page: &mut Page, t: &Turning, deg: f32) {
+    match &t.from {
+        Turned::Shape(s0) => {
+            let Some(s) = page.shapes.iter_mut().find(|s| s.id == t.id) else { return };
+            if matches!(s0.kind, ShapeKind::Rect | ShapeKind::Ellipse) {
+                s.angle = normal_angle(s0.angle + deg);
+            } else {
+                let mut n = s0.clone();
+                graphics::map_shape(&mut n, |q| turn_about(t.pivot, q, deg));
+                (s.a, s.b) = (n.a, n.b);
+                s.pts = n.pts;
+            }
+        }
+        Turned::Image(a0) => {
+            if let Some(i) = page.images.iter_mut().find(|i| i.id == t.id) {
+                i.angle = normal_angle(a0 + deg);
+            }
+        }
+        Turned::Text(a0) => {
+            if let Some(x) = page.texts.iter_mut().find(|x| x.id == t.id) {
+                x.angle = normal_angle(a0 + deg);
+            }
+        }
+    }
 }
 
 #[cfg(test)]

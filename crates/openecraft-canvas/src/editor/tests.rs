@@ -1337,3 +1337,27 @@ fn the_end_of_a_selected_wire_is_dragged_alone() {
     let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
     assert!(w.a.y == 40.0 || w.b.y == 40.0, "the other end stays on the rail: {w:?}");
 }
+
+#[test]
+fn grips_show_the_direction_they_resize_in() {
+    use egui::CursorIcon as C;
+    assert_eq!(grip_cursor(Grip::Frame(-1, -1), 0.0, false), C::ResizeNwSe);
+    assert_eq!(grip_cursor(Grip::Frame(1, -1), 0.0, false), C::ResizeNeSw);
+    assert_eq!(grip_cursor(Grip::Frame(0, 1), 0.0, false), C::ResizeVertical);
+    assert_eq!(grip_cursor(Grip::Frame(-1, 0), 0.0, false), C::ResizeHorizontal);
+    assert_eq!(grip_cursor(Grip::Radius(0), 0.0, false), C::ResizeHorizontal);
+    assert_eq!(grip_cursor(Grip::Radius(3), 0.0, false), C::ResizeVertical);
+    // The arrows turn with the item.
+    assert_eq!(grip_cursor(Grip::Frame(1, 0), 90.0, false), C::ResizeVertical);
+    assert_eq!(grip_cursor(Grip::Frame(1, 0), 45.0, false), C::ResizeNeSw);
+    assert_eq!(grip_cursor(Grip::Frame(1, 1), 45.0, false), C::ResizeHorizontal);
+    // Points are grabbed, never the crosshair of the empty page.
+    assert_eq!(grip_cursor(Grip::Point(2), 0.0, false), C::Grab);
+    assert_eq!(grip_cursor(Grip::ArcEnd, 0.0, true), C::Grabbing);
+}
+
+#[test]
+fn directions_are_counted_counter_clockwise_on_the_page() {
+    assert_eq!(direction(p(0.0, 0.0), p(10.0, 0.0)), 0.0);
+    assert_eq!(direction(p(0.0, 0.0), p(0.0, -10.0)), 90.0);
+}

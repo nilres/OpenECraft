@@ -127,3 +127,106 @@ fn structure_boxes_and_device_boxes_are_resized() {
     assert_eq!(device_boxes::rect(&prj, s), Some(R::from_points(p(40.0, 40.0), p(96.0, 64.0))));
     assert_eq!(prj.pages[0].symbols.iter().find(|s| s.id == pt).unwrap().pos, p(96.0, 48.0));
 }
+
+#[test]
+fn rectangles_turn_about_their_middle() {
+    let mut prj = Project::default();
+    let id = shape(&mut prj, ShapeKind::Rect, p(0.0, 0.0), p(20.0, 10.0));
+    assert_eq!(turn_handle(&prj.pages[0], id), Some((p(10.0, 5.0), p(10.0, 0.0))));
+    let t = start_turn(&prj.pages[0], id).unwrap();
+    turn(&mut prj.pages[0], &t, 90.0);
+    let s = shape_of(&prj, id);
+    assert_eq!((s.a, s.b, s.angle), (p(0.0, 0.0), p(20.0, 10.0), 90.0));
+    // Counter-clockwise: the long sides stand upright now, the top looks left.
+    let r = graphics::shape_bounds(s);
+    assert!(close(r.min, p(5.0, -5.0)) && close(r.max, p(15.0, 15.0)), "{r:?}");
+    assert!(close(turn_handle(&prj.pages[0], id).unwrap().1, p(5.0, 5.0)));
+    // Every step starts from the shape at the start of the turn.
+    turn(&mut prj.pages[0], &t, -30.0);
+    assert_eq!(shape_of(&prj, id).angle, 330.0);
+    // Circles do not turn.
+    let c = shape(&mut prj, ShapeKind::Circle, p(50.0, 50.0), p(60.0, 50.0));
+    assert!(start_turn(&prj.pages[0], c).is_none());
+}
+
+#[test]
+fn turned_rectangles_are_resized_along_their_sides() {
+    let mut prj = Project::default();
+    let id = shape(&mut prj, ShapeKind::Rect, p(0.0, 0.0), p(20.0, 10.0));
+    prj.pages[0].shapes[0].angle = 90.0;
+    let g = grips(&prj, 0, id);
+    let right = g.iter().find(|(g, _)| *g == Grip::Frame(1, 0)).unwrap().1;
+    let left = g.iter().find(|(g, _)| *g == Grip::Frame(-1, 0)).unwrap().1;
+    assert!(close(right, p(10.0, -5.0)) && close(left, p(10.0, 15.0)));
+    // The right side (now on top) is pulled up by 6 mm: 6 mm longer, the left side stays.
+    pull(&mut prj, id, Grip::Frame(1, 0), p(10.0, -11.0)).unwrap();
+    let s = shape_of(&prj, id);
+    assert!(close(s.b - s.a, p(26.0, 10.0)));
+    let g = grips(&prj, 0, id);
+    assert!(close(g.iter().find(|(g, _)| *g == Grip::Frame(-1, 0)).unwrap().1, left));
+    assert!(close(g.iter().find(|(g, _)| *g == Grip::Frame(1, 0)).unwrap().1, p(10.0, -11.0)));
+}
+
+#[test]
+fn lines_texts_and_images_turn() {
+    let mut prj = Project::default();
+    let line = shape(&mut prj, ShapeKind::Line, p(0.0, 0.0), p(10.0, 0.0));
+    let t = start_turn(&prj.pages[0], line).unwrap();
+    turn(&mut prj.pages[0], &t, 90.0);
+    let s = shape_of(&prj, line);
+    assert!(close(s.a, p(5.0, 5.0)) && close(s.b, p(5.0, -5.0)) && s.angle == 0.0);
+    let text = prj.new_id();
+    prj.pages[0].texts.push(TextItem { id: text, pos: p(30.0, 30.0), text: "A".into(), size: 3.0, angle: 30.0, ..Default::default() });
+    let t = start_turn(&prj.pages[0], text).unwrap();
+    assert_eq!(t.pivot, p(30.0, 30.0));
+    turn(&mut prj.pages[0], &t, 340.0);
+    assert_eq!(prj.pages[0].texts[0].angle, 10.0);
+    // An image turned by a quarter: its corners, what it covers and where it is hit.
+    let id = prj.new_id();
+    prj.pages[0].images.push(ImageItem { id, a: p(0.0, 0.0), b: p(40.0, 20.0), px: [400, 200], ..Default::default() });
+    let t = start_turn(&prj.pages[0], id).unwrap();
+    turn(&mut prj.pages[0], &t, 90.0);
+    let img = &prj.pages[0].images[0];
+    assert!(close(graphics::image_corners(img)[0], p(10.0, 30.0)));
+    let r = graphics::image_bounds(img);
+    assert!(close(r.min, p(10.0, -10.0)) && close(r.max, p(30.0, 30.0)));
+    assert!(graphics::image_hit(img, p(20.0, -8.0)) && !graphics::image_hit(img, p(2.0, 10.0)));
+    // Its corner grips keep the aspect ratio along its turned sides.
+    pull(&mut prj, id, Grip::Frame(1, 1), p(30.0, -30.0)).unwrap();
+    let img = &prj.pages[0].images[0];
+    assert!(close(img.b - img.a, p(60.0, 30.0)), "{:?}", img.b - img.a);
+    assert!(close(graphics::image_corners(img)[0], p(10.0, 30.0)));
+}
+
+#[test]
+fn a_quarter_turn_keeps_the_size_of_images() {
+    let mut prj = Project::default();
+    let id = prj.new_id();
+    prj.pages[0].images.push(ImageItem { id, a: p(0.0, 0.0), b: p(40.0, 20.0), px: [400, 200], ..Default::default() });
+    let symbols = prj.symbol_table();
+    crate::ops::rotate(&symbols, &mut prj.pages[0], &std::collections::BTreeSet::from([id]));
+    let img = &prj.pages[0].images[0];
+    assert!(close(img.b - img.a, p(40.0, 20.0)));
+    assert_eq!(img.angle, 270.0);
+    // Clockwise on the page: it stands upright.
+    let r = graphics::image_bounds(img);
+    assert!(close(p(r.width(), r.height()), p(20.0, 40.0)));
+}
+
+#[test]
+fn turned_frames_change_their_size_in_grid_steps() {
+    let mut prj = Project::default();
+    // A size off the grid comes onto it.
+    let id = shape(&mut prj, ShapeKind::Rect, p(0.0, 0.0), p(20.3, 12.9));
+    prj.pages[0].shapes[0].angle = 30.0;
+    let g = grab(&prj, 0, id, Grip::Frame(1, 1)).unwrap();
+    drag_on_grid(&mut prj, 0, &g, p(31.3, 9.7), 4.0).unwrap();
+    let s = shape_of(&prj, id);
+    let size = s.b - s.a;
+    assert!(close(size, size.snap(4.0)) && size.x > 20.0, "{size:?}");
+    // Without an angle the grip goes to the grid point.
+    let r = shape(&mut prj, ShapeKind::Rect, p(0.0, 0.0), p(20.0, 12.0));
+    let g = grab(&prj, 0, r, Grip::Frame(1, 1)).unwrap();
+    drag_on_grid(&mut prj, 0, &g, p(30.9, 17.1), 4.0).unwrap();
+    assert_eq!(shape_of(&prj, r).b, p(32.0, 16.0));
+}

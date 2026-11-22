@@ -139,8 +139,23 @@ fn ellipse_pts(c: P, rx: f32, ry: f32, start: f32, sweep: f32, steps: usize) -> 
         .collect()
 }
 
+/// `q` turned by `deg` degrees counter-clockwise about `c`.
+pub fn turn_about(c: P, q: P, deg: f32) -> P {
+    c + (q - c).turned(deg)
+}
+
 /// Outline of a shape as a polyline and whether it is closed.
 pub fn outline(s: &Shape) -> (Vec<P>, bool) {
+    let (pts, closed) = flat_outline(s);
+    if s.angle == 0.0 || !matches!(s.kind, ShapeKind::Rect | ShapeKind::Ellipse) {
+        return (pts, closed);
+    }
+    let c = R::from_points(s.a, s.b).center();
+    (pts.into_iter().map(|q| turn_about(c, q, s.angle)).collect(), closed)
+}
+
+/// Outline of a shape before its angle.
+fn flat_outline(s: &Shape) -> (Vec<P>, bool) {
     let (a, b) = (s.a, s.b);
     match s.kind {
         ShapeKind::Line => (vec![a, b], false),
@@ -413,8 +428,31 @@ pub fn add_image(prj: &mut Project, page: usize, at: P, name: &str, bytes: &[u8]
         file: crate::document::Document::new(name, bytes),
         px,
         layer: layer.to_string(),
+        angle: 0.0,
     });
     id
+}
+
+/// Corners of an image on the page (top left, top right, bottom right, bottom left of
+/// the picture), turned by its angle.
+pub fn image_corners(img: &ImageItem) -> [P; 4] {
+    let r = R::from_points(img.a, img.b);
+    [r.min, p(r.max.x, r.min.y), r.max, p(r.min.x, r.max.y)].map(|q| turn_about(r.center(), q, img.angle))
+}
+
+/// What an image covers on the page.
+pub fn image_bounds(img: &ImageItem) -> R {
+    let mut r = R::nothing();
+    for q in image_corners(img) {
+        r.extend(q);
+    }
+    r
+}
+
+/// `q` lies on the (turned) image.
+pub fn image_hit(img: &ImageItem, q: P) -> bool {
+    let r = R::from_points(img.a, img.b);
+    r.contains(turn_about(r.center(), q, -img.angle))
 }
 
 #[cfg(test)]

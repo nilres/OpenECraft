@@ -225,7 +225,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("page_templates", &["model", "ops", "structure"]),
     ("subproject", &["model", "options", "structure", "symlib"]),
     ("graphics", &["document", "geom", "model"]),
-    ("grips", &["device_boxes", "geom", "model"]),
+    ("grips", &["device_boxes", "geom", "graphics", "model"]),
     ("document", &["frame", "geom", "model", "ops", "render", "symbols"]),
     ("forms", &["frame", "geom", "graphics", "model", "params", "properties", "qr", "render", "revision", "structure", "symbols", "table"]),
     ("report_blocks", &["analysis", "ext", "forms", "model", "ops", "reports", "strips", "symbols", "table"]),

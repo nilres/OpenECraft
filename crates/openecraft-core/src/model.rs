@@ -1698,6 +1698,10 @@ pub struct Shape {
     /// Arc angle in degrees.
     #[serde(skip_serializing_if = "is_zero")]
     pub sweep: f32,
+    /// Rectangles and ellipses: turned about the middle of `a` – `b` by this many
+    /// degrees, counter-clockwise. Other shapes turn their points.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub angle: f32,
     /// Line width in mm; 0 = the normal symbol line.
     #[serde(skip_serializing_if = "is_zero")]
     pub width: f32,
@@ -1772,6 +1776,9 @@ pub struct ImageItem {
     pub px: [u32; 2],
     #[serde(skip_serializing_if = "String::is_empty")]
     pub layer: String,
+    /// Turned about the middle of `a` – `b` by this many degrees, counter-clockwise.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub angle: f32,
 }
 
 /// Connection definition point on a wire.
