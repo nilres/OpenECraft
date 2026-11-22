@@ -189,46 +189,9 @@ pub fn draw_page_with_core_labels(d: &mut dyn Draw, prj: &Project, idx: &Index, 
         let ink = if opts.selected.contains(&b.id) { Ink::Selected } else { b.color.map(Ink::Color).unwrap_or(Ink::Line) };
         draw_structure_box(d, b, ink);
     }
-    let colors = if prj.wire_colors && page.kind == PageKind::Schematic {
-        crate::potentials::wire_colors(prj, &an.netlist, &an.open)
-    } else {
-        Default::default()
-    };
     let dots = netlist::junctions(prj, page);
+    draw_sheet_wires(d, prj, an, page, opts, &dots);
     let style = &prj.wire_settings;
-    let jumps = jumps::jumps(page, &dots, style.jump, style.jump_wire);
-    for w in &page.wires {
-        let ink = if opts.selected.contains(&w.id) {
-            Ink::Selected
-        } else if opts.highlight_wires.contains(&w.id) {
-            Ink::Highlight
-        } else {
-            Ink::Wire
-        };
-        let parts = colors.get(&w.id).map(|c| crate::potentials::color_parts(c)).unwrap_or_default();
-        let strokes = jumps::strokes(w, jumps.get(&w.id).map_or(&[][..], |v| v), style.jump);
-        if w.bend.is_some() {
-            let path = &strokes[0];
-            let color = parts.first().filter(|_| ink == Ink::Wire).map_or(ink, |c| Ink::Color(*c));
-            d.poly(path, false, WIRE_W, color, false);
-            if let [_, second] = parts.as_slice() {
-                if ink == Ink::Wire { dashed_wire_path(d, path, Ink::Color(*second)); }
-            }
-            continue;
-        }
-        for (a, b) in strokes.iter().flat_map(|s| s.windows(2)).map(|s| (s[0], s[1])) {
-            match parts.as_slice() {
-                // Black too: the canvas shows it in its line colour when it is dark.
-                [c] if ink == Ink::Wire => d.line(a, b, WIRE_W, Ink::Color(*c), false),
-                // Two-colour wires: the second colour dashed over the first.
-                [c1, c2] if ink == Ink::Wire => {
-                    d.line(a, b, WIRE_W, Ink::Color(*c1), false);
-                    d.line(a, b, WIRE_W, Ink::Color(*c2), true);
-                }
-                _ => d.line(a, b, WIRE_W, ink, false),
-            }
-        }
-    }
     // A directed T-junction replaces the dot where it fits its wires.
     let directed: Vec<P> = page.junctions.iter().filter(|j| !j.dot && !j.is_corner() && netlist::junctions::fits(prj, page, j)).map(|j| j.pos).collect();
     for j in dots {
@@ -771,6 +734,48 @@ fn find_inst<'a>(prj: &'a Project, loc: &Loc) -> Option<&'a SymbolInst> {
 
 /// Distance of a wire number from the ends of its wire (mm).
 const END_CLEARANCE: f32 = 4.5;
+fn draw_sheet_wires(d: &mut dyn Draw, prj: &Project, an: &Analysis, page: &Page, opts: &Opts, dots: &[P]) {
+    let colors = if prj.wire_colors && page.kind == PageKind::Schematic {
+        crate::potentials::wire_colors(prj, &an.netlist, &an.open)
+    } else {
+        Default::default()
+    };
+    let style = &prj.wire_settings;
+    let jumps = jumps::jumps(page, dots, style.jump, style.jump_wire);
+    for w in &page.wires {
+        let ink = if opts.selected.contains(&w.id) {
+            Ink::Selected
+        } else if opts.highlight_wires.contains(&w.id) {
+            Ink::Highlight
+        } else {
+            Ink::Wire
+        };
+        let parts = colors.get(&w.id).map(|c| crate::potentials::color_parts(c)).unwrap_or_default();
+        let strokes = jumps::strokes(w, jumps.get(&w.id).map_or(&[][..], |v| v), style.jump);
+        if w.bend.is_some() {
+            let path = &strokes[0];
+            let color = parts.first().filter(|_| ink == Ink::Wire).map_or(ink, |c| Ink::Color(*c));
+            d.poly(path, false, WIRE_W, color, false);
+            if let [_, second] = parts.as_slice() {
+                if ink == Ink::Wire { dashed_wire_path(d, path, Ink::Color(*second)); }
+            }
+            continue;
+        }
+        for (a, b) in strokes.iter().flat_map(|s| s.windows(2)).map(|s| (s[0], s[1])) {
+            match parts.as_slice() {
+                // Black too: the canvas shows it in its line colour when it is dark.
+                [c] if ink == Ink::Wire => d.line(a, b, WIRE_W, Ink::Color(*c), false),
+                // Two-colour wires: the second colour dashed over the first.
+                [c1, c2] if ink == Ink::Wire => {
+                    d.line(a, b, WIRE_W, Ink::Color(*c1), false);
+                    d.line(a, b, WIRE_W, Ink::Color(*c2), true);
+                }
+                _ => d.line(a, b, WIRE_W, ink, false),
+            }
+        }
+    }
+}
+
 /// Carry dash phase across every segment of one sheet wire (millimetres).
 fn dashed_wire_path(d: &mut dyn Draw, points: &[P], ink: Ink) {
     let mut draw = true;
