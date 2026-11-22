@@ -169,7 +169,8 @@ fn a_long_text_is_cut_at_a_word() {
 fn the_sections_and_the_bar_have_texts_in_the_required_languages() {
     openecraft_i18n::with_lang(Lang::De, || {
         for (_, text) in SECTIONS {
-            assert!(section_text(text) != text || text == "FAQ", "{text}");
+            // Two are the same word in German.
+            assert!(section_text(text) != text || ["FAQ", "Videos"].contains(&text), "{text}");
         }
         for (_, text) in BAR {
             assert_ne!(bar_text(text), text, "{text}");

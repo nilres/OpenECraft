@@ -332,6 +332,14 @@ ol.points li::before { content: counter(step); left: 14px; top: 13px; width: 22p
 .symbol-links a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); text-decoration: none; font-size: 14px; }
 .symbol-links a:hover { color: var(--text); border-color: var(--cyan); }
 @media (max-width: 700px) { .symbol-sheet { grid-template-columns: 1fr; } }
+/* The videos of the project: a picture, the title, the day and what the video shows. */
+.video { padding: 0; overflow: hidden; }
+.video > :not(.video-picture) { margin-left: 20px; margin-right: 20px; }
+.video-picture { display: block; aspect-ratio: 16 / 9; background: #000; }
+.video-picture img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video h3 { margin-top: 16px; font-size: 18px; }
+.video .video-day { margin-top: 4px; }
+.video .button { margin-bottom: 20px; }
 /* The reference tables: read whole, with the colour of a wire beside its name. */
 .table-scroll.reference { max-height: none; max-width: 60em; margin-top: 22px; }
 table.reference { font-size: 15px; }

@@ -1,7 +1,7 @@
 //! The pages written as content files (`website/content/<folder>.html`, a folder of
 //! pages with its own as `index.html`): questions and answers, how-tos, tools and the
 //! comparisons with single products. A file starts with lines `name: value` (`title`,
-//! `description`, `kind`: `page`, `faq` or `tool`), then an empty line and the content
+//! `description`, `kind`: `page`, `faq`, `tool` or `videos`), then an empty line and the content
 //! of `<main>`, written in English with its texts marked (`data-t`, as on the pages
 //! written whole). The build puts it into the frame of the site in every language.
 //!
@@ -24,7 +24,7 @@ pub struct Content {
     pub folder: String,
     pub title: String,
     pub description: String,
-    /// `page`, `faq` or `tool`.
+    /// `page`, `faq`, `tool` or `videos`.
     pub kind: String,
     pub body: String,
 }
@@ -48,7 +48,7 @@ pub fn parse(folder: &str, text: &str) -> Result<Content, String> {
         match name {
             "title" => content.title = value.trim().to_string(),
             "description" => content.description = value.trim().to_string(),
-            "kind" if ["page", "faq", "tool"].contains(&value.trim()) => content.kind = value.trim().to_string(),
+            "kind" if ["page", "faq", "tool", "videos"].contains(&value.trim()) => content.kind = value.trim().to_string(),
             _ => return Err(format!("{folder}: unknown line of the head: {line}")),
         }
     }
@@ -112,6 +112,7 @@ impl Content {
         let kind = match self.kind.as_str() {
             "faq" => Kind::Faq(Content::questions(&body)),
             "tool" => Kind::Tool,
+            "videos" => Kind::Videos,
             _ => Kind::Plain,
         };
         Page { folder: self.folder.clone(), title: text(&self.title), description: text(&self.description), main: body, kind, langs: Langs::All }

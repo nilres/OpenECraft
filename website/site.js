@@ -76,6 +76,7 @@
             downloads: address("downloads") || (repository && repository + "/releases/latest"),
             documentation: folder("documentation") || (repository && repository + "/blob/master/docs"),
             issues: address("issues") || (repository && repository + "/issues"),
+            videos: address("videos"),
         };
         for (const a of $$("[data-link]")) {
             const target = targets[a.dataset.link];
@@ -83,6 +84,31 @@
             if (target) a.href = target + (a.dataset.path || "");
             if (a.dataset.link !== "editor") a.rel = "noopener";
         }
+    }
+
+    // The page of the videos: the list of videos.js (kept current by the server of the
+    // site, website-videos.sh), each as a copy of the template of the page. The
+    // pictures are files of the site; a video is watched where its link leads.
+    function videos() {
+        const list = $("[data-videos]");
+        const template = $("#video");
+        if (!list || !template) return;
+        const all = Array.isArray(window.OPENECRAFT_VIDEOS) ? window.OPENECRAFT_VIDEOS : [];
+        for (const video of all) {
+            if (!/^[\w-]+$/.test(String(video.id)) || !/^https:\/\//.test(String(video.url))) continue;
+            const card = template.content.firstElementChild.cloneNode(true);
+            $("h3", card).textContent = video.title || "";
+            const day = new Date(video.day + "T12:00:00");
+            $(".video-day", card).textContent = isNaN(day) ? "" : day.toLocaleDateString(pageLang, { year: "numeric", month: "long", day: "numeric" });
+            $(".video-about", card).textContent = String(video.about || "").split("\n")[0];
+            const picture = $("img", card);
+            picture.src = "../videos/" + video.id + ".jpg";
+            picture.alt = video.title || "";
+            for (const a of card.querySelectorAll("a")) { a.href = video.url; a.rel = "noopener"; }
+            list.append(card);
+        }
+        const none = $("[data-videos-none]");
+        if (none) none.hidden = list.children.length > 0;
     }
 
     // The links to the pages of the site (data-page) lead to the page in the language of
@@ -856,6 +882,7 @@
     }
 
     links();
+    videos();
     pages(pageLang);
     languagePages();
     menu();
