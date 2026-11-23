@@ -85,7 +85,7 @@ async function pull(x0, y0, x1, y1, ms = 1200) {
     await sleep(200);
 }
 async function press(name) {
-    const vk = { Escape: 27, Enter: 13 }[name];
+    const vk = { Escape: 27, Enter: 13, Delete: 46 }[name];
     const text = name === "Enter" ? "\r" : undefined;
     await page.call("Input.dispatchKeyEvent", { type: text ? "keyDown" : "rawKeyDown", key: name, code: name, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk, text });
     await sleep(130);
