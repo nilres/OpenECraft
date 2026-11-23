@@ -1,14 +1,14 @@
 # Stores and package managers
 
 What OpenECraft needs to appear in the app stores and package managers people search,
-prepared for version 0.1.2. Every file here points at the assets of the GitHub release
-`v0.1.2` (checksums from the release's asset digests); the maintainer submits them. The
+prepared for version 0.1.3. Every file here points at the assets of the GitHub release
+`v0.1.3` (checksums from the release's asset digests); the maintainer submits them. The
 packages themselves are built by CI ([releasing](../../docs/releasing.md)), nothing here
 builds anything.
 
 | Store | Prepared | Repository / place | Notes |
 | --- | --- | --- | --- |
-| winget | `winget/manifests/o/OpenECraft/OpenECraft/0.1.2/` | PR to `microsoft/winget-pkgs` | open to anyone, no notability rule |
+| winget | `winget/manifests/o/OpenECraft/OpenECraft/0.1.3/` | PR to `microsoft/winget-pkgs` | open to anyone, no notability rule |
 | Homebrew | `homebrew/Casks/openecraft.rb` | own tap `nilres/homebrew-openecraft` | `homebrew/cask` needs notarized apps and 225 stars for a self-submission |
 | AUR | `aur/openecraft-bin/` (`PKGBUILD`, `.SRCINFO`) | `ssh://aur@aur.archlinux.org/openecraft-bin.git` | from the Linux tar.gz |
 | Scoop | `scoop/openecraft.json` | own bucket or PR to `ScoopInstaller/Extras` | unpacks the Windows setup |
@@ -37,11 +37,11 @@ Steps:
 1. Check locally (Windows, `winget settings --enable LocalManifestFiles` once, as
    administrator):
    ```powershell
-   winget validate --manifest installer\stores\winget\manifests\o\OpenECraft\OpenECraft\0.1.2
-   winget install --manifest installer\stores\winget\manifests\o\OpenECraft\OpenECraft\0.1.2
+   winget validate --manifest installer\stores\winget\manifests\o\OpenECraft\OpenECraft\0.1.3
+   winget install --manifest installer\stores\winget\manifests\o\OpenECraft\OpenECraft\0.1.3
    ```
 2. Fork `microsoft/winget-pkgs`, copy the folder to the same path
-   `manifests/o/OpenECraft/OpenECraft/0.1.2/` in the fork, open a PR (one package
+   `manifests/o/OpenECraft/OpenECraft/0.1.3/` in the fork, open a PR (one package
    version per PR; fill in its checklist). Alternatively `wingetcreate submit <folder>`
    or `komac submit <folder>` do fork, branch and PR in one go.
 3. The validation pipeline installs the setup in a VM and scans it; a bot labels the PR.
@@ -87,7 +87,7 @@ programs built on Debian 12) to `/usr`, the license files to
    # fill in the Maintainer line of the PKGBUILD
    makepkg --printsrcinfo | diff - .SRCINFO   # must be empty
    namcap PKGBUILD && makepkg -si && namcap openecraft-bin-*.pkg.tar.zst
-   git add PKGBUILD .SRCINFO && git commit -m "openecraft-bin 0.1.2-1" && git push
+   git add PKGBUILD .SRCINFO && git commit -m "openecraft-bin 0.1.3-1" && git push
    ```
    The first push creates the package. There is no review; the AUR asks that the
    package follows the [AUR submission guidelines](https://wiki.archlinux.org/title/AUR_submission_guidelines)
@@ -103,7 +103,7 @@ The release already contains a strictly confined snap (`openecraft_<version>_amd
 
 1. Ubuntu One account, then `snapcraft login` and `snapcraft register openecraft`.
 2. Download the snap of the release and upload it:
-   `snapcraft upload --release=stable openecraft_0.1.2_amd64.snap`. The automated
+   `snapcraft upload --release=stable openecraft_0.1.3_amd64.snap`. The automated
    review passes strict snaps with these plugs; a failing check is shown on the
    upload page.
 3. Fill in the listing at <https://snapcraft.io/openecraft/listing>: title, summary,
@@ -148,7 +148,7 @@ removes it.
    choco pack
    choco install openecraft --source . -y
    choco uninstall openecraft -y
-   choco push openecraft.0.1.2.nupkg --source https://push.chocolatey.org/ --api-key <key>
+   choco push openecraft.0.1.3.nupkg --source https://push.chocolatey.org/ --api-key <key>
    ```
 3. The package goes through automatic validation and verification (VirusTotal, a test
    install) and then a human moderator; a first package can take days to weeks.
@@ -169,10 +169,10 @@ What the manifest has to cover, from the existing packaging:
 | --- | --- |
 | App id | `io.github.nilres.OpenECraft` (verified through the GitHub account `nilres`) |
 | Runtime | `org.freedesktop.Platform` / `Sdk` `25.08` as today, plus the SDK extension `org.freedesktop.Sdk.Extension.rust-stable`; the code needs no GTK (the file dialogs use the portal) and no system C libraries (SQLite is bundled) |
-| Source | the release tag as `git` source with `tag` and `commit` (v0.1.2: `5ac04ff59230264d6a9d0343f5c9a5272250db7b`) |
-| Crates | no network during the build: `cargo-sources.json` from [flatpak-cargo-generator](https://github.com/flatpak/flatpak-builder-tools/tree/master/cargo) on the `Cargo.lock` of the tag, `python3 flatpak-cargo-generator.py Cargo.lock -o cargo-sources.json` (617 crates, no git dependencies; about 250 KB, it lives in the Flathub repository and is regenerated for every release); `CARGO_HOME` set to `cargo` in the module's build folder, `cargo --offline build --release --locked` |
+| Source | the release tag as `git` source with `tag` and `commit` (v0.1.3: `f14af9cd43bdd8bb7310a66e31d61d76c82c97ac`) |
+| Crates | no network during the build: `cargo-sources.json` from [flatpak-cargo-generator](https://github.com/flatpak/flatpak-builder-tools/tree/master/cargo) on the `Cargo.lock` of the tag, `python3 flatpak-cargo-generator.py Cargo.lock -o cargo-sources.json` (620 crates, no git dependencies; about 250 KB, it lives in the Flathub repository and is regenerated for every release); `CARGO_HOME` set to `cargo` in the module's build folder, `cargo --offline build --release --locked` |
 | Programs | `-p openecraft -p openecraft-parts-manager -p openecraft-cli -p openecraft-parts-server -p openecraft-project-server`, installed like `stage()` in `installer/linux/build.sh`: the binaries, both desktop entries, the metainfo, the MIME types, the icons (256 px PNG and SVG) |
-| Licenses | `LICENSE-MIT`, `LICENSE-APACHE`, `crates/openecraft-fonts/fonts/OFL.txt` and `THIRD-PARTY-LICENSES.html` to `/app/share/licenses/io.github.nilres.OpenECraft/`; the last one is generated by cargo-about, so either build cargo-about too or take the release asset (`THIRD-PARTY-LICENSES.html` of v0.1.2, sha256 `f74ac301ffdeb9466286af0dbd4a66bf5718305698fb7099154397aa53a628ac`) |
+| Licenses | `LICENSE-MIT`, `LICENSE-APACHE`, `crates/openecraft-fonts/fonts/OFL.txt` and `THIRD-PARTY-LICENSES.html` to `/app/share/licenses/io.github.nilres.OpenECraft/`; the last one is generated by cargo-about, so either build cargo-about too or take the release asset (`THIRD-PARTY-LICENSES.html` of v0.1.3, sha256 `48aeba64b79055c3dc08b9f7801e1cde963344dec93e308d41d92c2e937f5e9d`) |
 | Permissions | `--share=ipc`, `--socket=wayland`, `--socket=fallback-x11`, `--device=dri`; `--share=network` (parts server, project server, Vault, EPLAN Data Portal); `--filesystem=home` needs a reason in the PR (projects open other files by path: recent projects, linked documents, the folders of a split project) or has to give way to the portals |
 | Updates | `--env=OPENECRAFT_NO_UPDATE_CHECK=1`: Flathub updates the app, the notice pointing at GitHub would only confuse |
 | Other programs | `flatpak run --command=openecraft-cli io.github.nilres.OpenECraft mcp`, as today |
@@ -181,9 +181,9 @@ The metainfo (`installer/linux/io.github.nilres.OpenECraft.metainfo.xml`) now ha
 the Flathub linter demands (screenshots with captions, releases, OARS rating, developer,
 launchable) and what its quality guidelines ask for (summary of 34 characters, brand
 colours, help and contribution links); `appstreamcli validate` passes. The metainfo of
-the tag **v0.1.2 has no screenshots** (`appstream-missing-screenshots`, never
-excepted), so the first submission uses the first release tag after this change.
-The screenshots are pinned to `v0.1.2` and are app captures without window frame;
+the tag v0.1.2 had no screenshots (`appstream-missing-screenshots`, never excepted);
+**v0.1.3 is the first release tag with them**, so the first submission uses it.
+The screenshots are pinned to `v0.1.3` and are app captures without window frame;
 Flathub's quality review (not the linter) wants window captures on Linux of at most
 1000×700 (2000×1400 HiDPI).
 

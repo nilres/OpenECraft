@@ -3,6 +3,8 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [0.1.4] - unreleased
+
 ## [0.1.3] - 2026-11-23
 
 - **Mounting rails in 3D:** a rail of the panel layout shows its real profile instead of

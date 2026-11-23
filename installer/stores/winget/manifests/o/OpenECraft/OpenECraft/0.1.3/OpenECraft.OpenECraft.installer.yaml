@@ -1,11 +1,11 @@
 # yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.28.0.schema.json
 
 PackageIdentifier: OpenECraft.OpenECraft
-PackageVersion: 0.1.2
+PackageVersion: 0.1.3
 MinimumOSVersion: 10.0.0.0
 InstallerType: inno
 UpgradeBehavior: install
-ReleaseDate: 2026-11-15
+ReleaseDate: 2026-11-23
 FileExtensions:
 - oec
 - oecp
@@ -13,20 +13,20 @@ FileExtensions:
 # AppId of installer/windows/openecraft.iss; the setup names its entry after AppVerName.
 ProductCode: '{53B40BA8-0D7F-4081-8069-C7A181DEFA3C}_is1'
 AppsAndFeaturesEntries:
-- DisplayName: OpenECraft 0.1.2
+- DisplayName: OpenECraft 0.1.3
   Publisher: OpenECraft
   ProductCode: '{53B40BA8-0D7F-4081-8069-C7A181DEFA3C}_is1'
 Installers:
 - Architecture: x64
   Scope: user
-  InstallerUrl: https://github.com/nilres/OpenECraft/releases/download/v0.1.2/OpenECraft-0.1.2-setup.exe
-  InstallerSha256: F254BBA47FF33AF744B78003948F18E7C6EF8FEC88FAB3B02179EFBB35E76346
+  InstallerUrl: https://github.com/nilres/OpenECraft/releases/download/v0.1.3/OpenECraft-0.1.3-setup.exe
+  InstallerSha256: B1165D6EE1CE08D1C58FBA11C14460A2B503AE1462237F5579CBC9A89EF6817D
   InstallerSwitches:
     Custom: /CURRENTUSER
 - Architecture: x64
   Scope: machine
-  InstallerUrl: https://github.com/nilres/OpenECraft/releases/download/v0.1.2/OpenECraft-0.1.2-setup.exe
-  InstallerSha256: F254BBA47FF33AF744B78003948F18E7C6EF8FEC88FAB3B02179EFBB35E76346
+  InstallerUrl: https://github.com/nilres/OpenECraft/releases/download/v0.1.3/OpenECraft-0.1.3-setup.exe
+  InstallerSha256: B1165D6EE1CE08D1C58FBA11C14460A2B503AE1462237F5579CBC9A89EF6817D
   InstallerSwitches:
     Custom: /ALLUSERS
 ManifestType: installer

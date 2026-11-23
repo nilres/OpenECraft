@@ -1,6 +1,6 @@
 cask "openecraft" do
-  version "0.1.2"
-  sha256 "bf58be78d2cf6e46fec4283cccd8e872c414957307fd26b9a8802d82688861b5"
+  version "0.1.3"
+  sha256 "a3531f477b2269380c902c8816785bb37e6d5fc8756c24d45a61a4cc15b91d9e"
 
   url "https://github.com/nilres/OpenECraft/releases/download/v#{version}/OpenECraft-#{version}-macos.dmg",
       verified: "github.com/nilres/OpenECraft/"

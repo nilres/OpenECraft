@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>openecraft</id>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
     <packageSourceUrl>https://github.com/nilres/OpenECraft/tree/master/installer/stores/chocolatey</packageSourceUrl>
     <!-- The Chocolatey account that maintains the package. -->
     <owners>CHOCOLATEY-USER</owners>
     <title>OpenECraft</title>
     <authors>OpenECraft contributors</authors>
     <projectUrl>https://openecraft.org/</projectUrl>
-    <iconUrl>https://cdn.jsdelivr.net/gh/nilres/OpenECraft@v0.1.2/assets/icon.png</iconUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/nilres/OpenECraft@v0.1.3/assets/icon.png</iconUrl>
     <licenseUrl>https://github.com/nilres/OpenECraft#license</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/nilres/OpenECraft</projectSourceUrl>
@@ -24,7 +24,7 @@ The package installs the editor for all users. The setup's other components – 
     choco install openecraft --install-arguments="'/COMPONENTS=main,partsmanager,cli,servers /TASKS=fileassoc,addtopath'"
 
 Available in English, German, French, Spanish and 16 further languages. The editor looks for newer releases on GitHub when it starts and installs them itself; *Settings › Updates* switches this off.]]></description>
-    <releaseNotes>https://github.com/nilres/OpenECraft/releases/tag/v0.1.2</releaseNotes>
+    <releaseNotes>https://github.com/nilres/OpenECraft/releases/tag/v0.1.3</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
