@@ -117,3 +117,22 @@ fn devices_moved_by_a_command_follow_structure_boxes() {
     run(&mut s, "undo", json!({})).unwrap();
     assert!(s.project().unwrap().all_tags().contains(&"=SYS+CAB1-K1".to_string()));
 }
+
+#[test]
+fn tools_that_only_read_are_tools_and_leave_the_project_as_it_is() {
+    for name in READ.iter().chain(SERVER) {
+        assert!(find(name).is_some(), "{name}");
+    }
+    let mut s = crate::testing::session();
+    crate::testing::run(&mut s, "new_project", json!({ "demo": true })).unwrap();
+    let before = serde_json::to_value(s.project().unwrap()).unwrap();
+    let mut ran = 0;
+    for entry in entries(&s).into_iter().filter(|e| e.effect() == openecraft_api::Effect::Read && e.needs_project()) {
+        let name = entry.name().to_string();
+        if call(&mut s, entry, &Map::new()).is_ok() {
+            ran += 1;
+            assert!(serde_json::to_value(s.project().unwrap()).unwrap() == before, "{name} changes the project");
+        }
+    }
+    assert!(ran > 40, "{ran}");
+}

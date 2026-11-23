@@ -8,6 +8,7 @@ use crate::params::{Args, Param, Text};
 use crate::analysis::Analysis;
 use crate::issue::Issue;
 use crate::table::Table;
+use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
 
@@ -40,6 +41,34 @@ impl Export {
     }
 }
 
+/// What a command does, for clients that ask the user before a call (the annotations
+/// of the MCP tools). A command that does not say is taken to change the project.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Effect {
+    /// Only reads: the project, files and servers stay as they are.
+    Read,
+    /// Only adds to the project: nothing in it is changed, replaced or removed.
+    Add,
+    /// May change, replace or remove what is there.
+    #[default]
+    Change,
+}
+
+/// Words of command names written in capitals in a title.
+const ACRONYMS: [&str; 16] = ["plc", "pdf", "dxf", "dwg", "csv", "aml", "cnc", "pv", "emc", "pct", "ema", "eplan", "xml", "id", "io", "3d"];
+
+/// The title of a command for lists that show one: its name as words (`set_plc_card`:
+/// `Set PLC card`).
+pub fn title(name: &str) -> String {
+    let words: Vec<String> = name.split('_').filter(|w| !w.is_empty()).map(|w| if ACRONYMS.contains(&w) { w.to_uppercase() } else { w.to_string() }).collect();
+    let mut title = words.join(" ");
+    if let Some(first) = title.get(..1).map(str::to_uppercase) {
+        title.replace_range(..1, &first);
+    }
+    title
+}
+
 /// A function on the project with typed parameters. Offered as command of the command
 /// line, tool of the MCP server and entry of the editor's Plugins menu; changes of the
 /// project become one undo step.
@@ -48,6 +77,7 @@ pub struct Command {
     pub name: String,
     pub help: Text,
     pub params: Vec<Param>,
+    pub effect: Effect,
     pub run: Arc<CommandFn>,
 }
 
@@ -113,7 +143,15 @@ pub struct Registry {
 
 impl Registry {
     pub fn command(&mut self, name: impl Into<String>, help: impl Into<Text>, params: Vec<Param>, run: impl Fn(&mut Project, &Args) -> Result<Value, String> + Send + Sync + 'static) -> &mut Self {
-        self.commands.push(Command { name: name.into(), help: help.into(), params, run: Arc::new(run) });
+        self.commands.push(Command { name: name.into(), help: help.into(), params, effect: Effect::default(), run: Arc::new(run) });
+        self
+    }
+
+    /// Says what the command added last does.
+    pub fn effect(&mut self, effect: Effect) -> &mut Self {
+        if let Some(c) = self.commands.last_mut() {
+            c.effect = effect;
+        }
         self
     }
 

@@ -129,7 +129,7 @@ CLI gibt einem älteren Editor diese Merkmale nicht.
 
 | Anfrage | Antwort |
 | --- | --- |
-| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}]}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (alle Listen optional, `params` von Exportern und `keywords` von Berichten ebenfalls) |
+| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}], "effect"}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (alle Listen optional, `params` von Exportern und `keywords` von Berichten ebenfalls) |
 | `{"method": "command", "name", "params": {…}, "project": {…}}` | `{"result": <any JSON>, "project": {…}}` – `project` nur, wenn der Befehl es geändert hat |
 | `{"method": "check", "name", "project"}` | `{"issues": [{"severity": "error" \| "warning" \| "info", "message", "page": <page index>, "item": <item id>}]}` – `page` / `item` optional; `page` allein zeigt auf die Seite, eine Seite, die das Projekt nicht hat, auf nichts |
 | `{"method": "report", "name", "project"}` | `{"headers": ["…"], "rows": [["…"]]}` |
@@ -140,6 +140,14 @@ Parameterarten: `str`, `int`, `num`, `bool`, `ids` (Liste von Element-IDs), `poi
 
 Ein Befehl, der mit einem Fehler antwortet, lässt das Projekt unverändert, auch im
 Editor und im MCP-Server.
+
+`effect` eines Befehls sagt, was er tut: `read` (er liest nur: das Projekt bleibt, wie es
+ist), `add` (er fügt dem Projekt nur etwas hinzu) oder `change` (er kann ändern, ersetzen
+oder entfernen, was da ist; der Standard). Der MCP-Server gibt es als Annotationen des
+Werkzeugs weiter (`readOnlyHint`, `destructiveHint`), nach denen ein Client entscheidet,
+ob er seinen Benutzer vor einem Aufruf fragt; ein Plugin in Rust sagt es mit
+`.effect(Effect::Read)` nach `reg.command(…)`. Der Titel eines Werkzeugs ist sein Name
+in Wörtern (`set_spares`: *Set spares*).
 
 `describe` wird einmal gefragt, wenn das Plugin geladen wird; Prüfungen laufen im Editor
 nach jeder Änderung des Projekts, sollten also schnell antworten. Die

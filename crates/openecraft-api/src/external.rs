@@ -10,7 +10,7 @@
 //! `{"error": "…"}` is an error. Not available in the browser (no processes).
 
 use crate::params::{Param, Text};
-use crate::{Export, Registry, Table};
+use crate::{Effect, Export, Registry, Table};
 use crate::{Info, Plugin, API_VERSION};
 use openecraft_core::model::Project;
 use openecraft_core::issue::{Issue, Severity};
@@ -69,6 +69,8 @@ struct CommandDesc {
     help: String,
     #[serde(default)]
     params: Vec<Param>,
+    #[serde(default)]
+    effect: Effect,
 }
 
 #[derive(Deserialize)]
@@ -285,7 +287,8 @@ impl Plugin for External {
                     *prj = Project::from_json(&changed.to_string())?;
                 }
                 Ok(answer.get_mut("result").map(Value::take).unwrap_or(Value::Null))
-            });
+            })
+            .effect(c.effect);
         }
         for c in desc.checks {
             let (t, name) = (self.transport.clone(), c.name.clone());

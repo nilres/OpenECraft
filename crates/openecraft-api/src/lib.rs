@@ -17,7 +17,7 @@ pub mod params {
 }
 
 pub use host::{run_checks, Loaded, Origin, Plugins, PLUGIN_PATH_VAR};
-pub use openecraft_core::ext::{Check, Command, Export, Exporter, Registry, Report};
+pub use openecraft_core::ext::{title, Check, Command, Effect, Export, Exporter, Registry, Report};
 pub use openecraft_core::table::Table;
 pub use params::{optional, param, Args, Kind, Param, Text};
 

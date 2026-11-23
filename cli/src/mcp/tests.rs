@@ -96,7 +96,7 @@ fn the_offered_tools_can_be_limited() {
     let r = handle(&mut s, &request(1, "tools/list", json!({}))).unwrap();
     let names: Vec<&str> = r["result"]["tools"].as_array().unwrap().iter().map(|t| t["name"].as_str().unwrap()).collect();
     assert!(names.contains(&"new_project") && names.contains(&"parts_search"));
-    let meta = |n: &str| META.iter().any(|(m, _, _)| *m == n);
+    let meta = |n: &str| META.iter().any(|(m, ..)| *m == n);
     assert!(names.iter().all(|n| *n == "new_project" || n.starts_with("parts_") || meta(n)), "{names:?}");
     let r = handle(&mut s, &request(2, "tools/call", json!({ "name": "check", "arguments": {} }))).unwrap();
     assert_eq!(r["error"]["code"], -32602);
@@ -267,4 +267,40 @@ fn the_bundle_and_the_registry_entry_start_this_server() {
     assert_eq!(entry["description"], manifest["description"]);
     // The registry refuses a longer description.
     assert!(entry["description"].as_str().unwrap().chars().count() <= 100);
+}
+
+#[test]
+fn tools_have_a_title_and_annotations() {
+    let mut s = session();
+    let listed = handle(&mut s, &request(1, "tools/list", json!({}))).unwrap()["result"]["tools"].clone();
+    let listed = listed.as_array().unwrap();
+    for t in listed {
+        let (name, a) = (t["name"].as_str().unwrap(), &t["annotations"]);
+        assert!(t["title"].as_str().is_some_and(|title| !title.is_empty() && a["title"] == title), "{name}");
+        assert!(["readOnlyHint", "destructiveHint", "openWorldHint"].iter().all(|k| a[*k].is_boolean()), "{name}");
+        assert!(!(a["readOnlyHint"] == true && a["destructiveHint"] == true), "{name}");
+    }
+    let hints = |name: &str| {
+        let t = listed.iter().find(|t| t["name"] == name).unwrap_or_else(|| panic!("{name}"));
+        let a = &t["annotations"];
+        (t["title"].as_str().unwrap().to_string(), a["readOnlyHint"] == true, a["destructiveHint"] == true, a["openWorldHint"] == true)
+    };
+    assert_eq!(hints("list_pages"), ("List pages".to_string(), true, false, false));
+    assert_eq!(hints("check"), ("Check".to_string(), true, false, false));
+    assert_eq!(hints("delete_items"), ("Delete items".to_string(), false, true, false));
+    // A report can be written to a file.
+    assert_eq!(hints("report"), ("Report".to_string(), false, true, false));
+    // The parts server is beyond the project and its files.
+    assert_eq!(hints("parts_search"), ("Parts search".to_string(), true, false, true));
+    assert_eq!(hints("assign_part"), ("Assign part".to_string(), false, true, true));
+
+    // The meta tools too; describe_tool shows the annotations of a tool not offered.
+    s.mcp_tools = vec!["core".into()];
+    let listed = handle(&mut s, &request(2, "tools/list", json!({}))).unwrap()["result"]["tools"].clone();
+    let meta = |name: &str| listed.as_array().unwrap().iter().find(|t| t["name"] == name).unwrap()["annotations"].clone();
+    assert_eq!((meta("find_tools")["readOnlyHint"].clone(), meta("find_tools")["openWorldHint"].clone()), (json!(true), json!(false)));
+    assert_eq!((meta("call_tool")["destructiveHint"].clone(), meta("call_tool")["openWorldHint"].clone()), (json!(true), json!(true)));
+    let r = call_tool(&mut s, "describe_tool", json!({ "name": "check_panel" }));
+    let described: Value = serde_json::from_str(r["content"][0]["text"].as_str().unwrap()).unwrap();
+    assert_eq!((described["title"].as_str(), described["annotations"]["readOnlyHint"].as_bool()), (Some("Check panel"), Some(true)));
 }

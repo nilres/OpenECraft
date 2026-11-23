@@ -31,7 +31,7 @@ use crate::session::Session;
 use openecraft_api::builtin::common;
 use openecraft_api::params;
 pub use openecraft_api::params::{optional, param, Args, Kind, Param};
-use openecraft_api::Command;
+use openecraft_api::{Command, Effect, Origin};
 use openecraft_i18n::tr;
 use serde_json::{Map, Value};
 
@@ -49,6 +49,14 @@ pub struct Tool {
 pub fn all() -> impl Iterator<Item = &'static Tool> {
     [project::TOOLS, management::TOOLS, pages::TOOLS, sheets::TOOLS, devices::TOOLS, plc::TOOLS, tables::TOOLS, panel::TOOLS, integration::TOOLS, languages::TOOLS, structure::TOOLS, properties::TOOLS, config::TOOLS, output::TOOLS, reports::TOOLS, parts::TOOLS, vault::TOOLS, plugins::TOOLS].into_iter().flatten()
 }
+
+/// Tools of this crate that only read (the project, files, the parts server, the
+/// vault) and whose name does not start with `list_` or `get_`. A tool that can write
+/// a file (`report`, `table_get`) is not one of them.
+const READ: &[&str] = &["project_info", "archive_info", "enclosure_systems", "integration_connectors", "check", "parts_search", "parts_history", "parts_catalogs", "parts_users", "parts_get", "vault_browse", "vault_items"];
+
+/// Tools outside the areas `parts_…` and `vault_…` that ask the parts server.
+const SERVER: &[&str] = &["assign_part"];
 
 pub fn find(name: &str) -> Option<&'static Tool> {
     all().find(|t| t.name == name)
@@ -96,6 +104,24 @@ impl Entry {
         match self {
             Entry::Tool(t) => t.params,
             Entry::Plugin(c) => &c.params,
+        }
+    }
+
+    /// What the tool does (the annotations of the MCP tools).
+    pub fn effect(&self) -> Effect {
+        match self {
+            Entry::Tool(t) if READ.contains(&t.name) => Effect::Read,
+            Entry::Tool(t) => openecraft_api::builtin::effect(t.name),
+            Entry::Plugin(c) => c.effect,
+        }
+    }
+
+    /// The tool reaches beyond the project and its files: a server, or the program of
+    /// an external plugin.
+    pub fn open_world(&self, session: &Session) -> bool {
+        match self {
+            Entry::Tool(t) => t.name.starts_with("parts_") || t.name.starts_with("vault_") || SERVER.contains(&t.name),
+            Entry::Plugin(c) => !session.plugins.list().iter().any(|l| l.origin == Origin::BuiltIn && l.registry.commands.iter().any(|b| b.name == c.name)),
         }
     }
 

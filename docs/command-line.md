@@ -130,6 +130,12 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   query), `describe_tool` (description and parameters) and `call_tool` (calls any tool
   by its name). Names separated by commas choose other tools, `parts_*` all tools
   starting with `parts_`, `*` all of them (e.g. `core,panel*,parts_*`).
+- Every tool of the MCP server has a title (its name as words) and annotations, by which
+  a client decides whether to ask its user before a call: `readOnlyHint` for a tool that
+  changes nothing (`list_…`, `get_…`, `check`, `parts_search` and others),
+  `destructiveHint` for one that may change, replace or remove what is there (a tool
+  that can write a file is one of them), `openWorldHint` for one that reaches the parts
+  server, Autodesk Vault or the program of an external plugin.
 - Without a parts server `parts_search` and `parts_get` use the parts of the project and
   the built-in catalog (`parts_search --local` always), and `assign_part` names similar
   parts for a number it does not know.

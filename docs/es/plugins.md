@@ -130,7 +130,7 @@ editor más antiguo.
 
 | Petición | Respuesta |
 | --- | --- |
-| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}]}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (todas las listas son opcionales, también `params` de los exportadores y `keywords` de los informes) |
+| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}], "effect"}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (todas las listas son opcionales, también `params` de los exportadores y `keywords` de los informes) |
 | `{"method": "command", "name", "params": {…}, "project": {…}}` | `{"result": <any JSON>, "project": {…}}` – `project` solo si el comando lo modificó |
 | `{"method": "check", "name", "project"}` | `{"issues": [{"severity": "error" \| "warning" \| "info", "message", "page": <page index>, "item": <item id>}]}` – `page` / `item` opcionales; `page` sola señala la página, una página que el proyecto no tiene no señala nada |
 | `{"method": "report", "name", "project"}` | `{"headers": ["…"], "rows": [["…"]]}` |
@@ -142,6 +142,14 @@ por defecto.
 
 Un comando que responde con un error deja el proyecto sin cambios, también en el editor y
 en el servidor MCP.
+
+`effect` de un comando dice lo que hace: `read` (solo lee: el proyecto queda como está),
+`add` (solo añade al proyecto) o `change` (puede cambiar, sustituir o quitar lo que hay;
+el valor por defecto). El servidor MCP lo pasa como anotaciones de la herramienta
+(`readOnlyHint`, `destructiveHint`), según las cuales un cliente decide si pregunta a su
+usuario antes de una llamada; un plugin en Rust lo dice con `.effect(Effect::Read)`
+después de `reg.command(…)`. El título de una herramienta es su nombre en palabras
+(`set_spares`: *Set spares*).
 
 `describe` se pide una vez cuando se carga el plugin; las comprobaciones se ejecutan tras
 cada cambio del proyecto en el editor, por lo que deben responder con rapidez. Los ajustes

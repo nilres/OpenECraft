@@ -31,7 +31,7 @@ fn fake(log: Arc<Mutex<Vec<Value>>>) -> External {
             log.lock().unwrap().push(req.clone());
             Ok(match (req["method"].as_str().unwrap(), req["name"].as_str()) {
                 ("describe", _) => json!({
-                    "commands": [{ "name": "set_title", "help": "Sets the title", "params": [{ "name": "title", "kind": "str" }] }, { "name": "fail" }],
+                    "commands": [{ "name": "set_title", "help": "Sets the title", "params": [{ "name": "title", "kind": "str" }] }, { "name": "fail", "effect": "read" }],
                     "checks": [{ "name": "titled", "title": "Title set" }],
                     "reports": [{ "name": "titles", "title": "Titles", "keywords": ["ISO 7200"] }],
                     "exporters": [{ "name": "title_txt", "title": "Title", "extension": "txt" }],
@@ -69,6 +69,8 @@ fn external_plugins_answer_json_requests() {
     assert_eq!(p.run(p.command("set_title").unwrap(), &mut prj, &args).unwrap(), "ok");
     assert_eq!(prj.info.name, "Plant 7");
     assert_eq!(p.run(p.command("fail").unwrap(), &mut prj, &Default::default()).unwrap_err(), "failed on purpose");
+    // A command that does not say what it does may change the project.
+    assert_eq!((p.command("set_title").unwrap().effect, p.command("fail").unwrap().effect), (crate::Effect::Change, crate::Effect::Read));
 
     let titles = p.report("titles").unwrap();
     assert_eq!(titles.keywords, ["ISO 7200"]);

@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **MCP tools say what they do:** every tool of the MCP server has a title and the
+  annotations `readOnlyHint`, `destructiveHint` and `openWorldHint`, so that a client
+  knows which tools only read (`list_…`, `get_…`, `check`, `parts_search` and others),
+  which may change or remove what is there and which reach the parts server, Autodesk
+  Vault or an external plugin, and asks its user accordingly. An external plugin says it of a
+  command with `effect` (`read`, `add` or `change`) in its answer to `describe`
+  ([plugins](docs/plugins.md)).
+
 ## [0.1.3] - 2026-11-23
 
 - **Mounting rails in 3D:** a rail of the panel layout shows its real profile instead of

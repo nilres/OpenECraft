@@ -311,3 +311,50 @@ fn structure_boxes_give_their_devices_a_structure() {
     tags.sort();
     assert_eq!(tags, vec!["=SYS+CAB1-S1".to_string(), "=SYS+FIELD-K1".to_string()]);
 }
+
+#[test]
+fn commands_that_only_read_are_commands() {
+    let p = Plugins::new(Vec::<String>::new());
+    for name in READ {
+        assert_eq!(p.command(name).map(|c| c.effect), Some(Effect::Read), "{name}");
+    }
+    assert_eq!(p.command("list_devices").map(|c| c.effect), Some(Effect::Read));
+    for name in ["place_symbol", "delete_items", "panel_rules", "set_page"] {
+        assert_eq!(p.command(name).map(|c| c.effect), Some(Effect::Change), "{name}");
+    }
+}
+
+#[test]
+fn commands_that_only_read_leave_the_project_as_it_is() {
+    use crate::params::Kind;
+    let p = Plugins::new(Vec::<String>::new());
+    let demo = demo_project();
+    let before = serde_json::to_value(&demo).unwrap();
+    let mut ran = 0;
+    for c in p.commands().filter(|c| c.effect == Effect::Read) {
+        // Without arguments, and with a value for every parameter.
+        let filled: Map<String, serde_json::Value> = c
+            .params
+            .iter()
+            .map(|a| {
+                let value = match a.kind {
+                    Kind::Str => serde_json::json!("1"),
+                    Kind::Int | Kind::Num => serde_json::json!(1),
+                    Kind::Bool => serde_json::json!(true),
+                    Kind::Ids => serde_json::json!([1]),
+                    Kind::Points => serde_json::json!([[40, 40], [80, 80]]),
+                    Kind::Object => serde_json::json!({}),
+                };
+                (a.name.to_string(), value)
+            })
+            .collect();
+        for args in [Map::new(), filled] {
+            let mut prj = demo.clone();
+            if p.run(c, &mut prj, &args).is_ok() {
+                ran += 1;
+                assert!(serde_json::to_value(&prj).unwrap() == before, "{} changes the project", c.name);
+            }
+        }
+    }
+    assert!(ran > 60, "{ran}");
+}
