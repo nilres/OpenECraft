@@ -438,6 +438,27 @@ pub fn rotate(prj: &mut Project, page: usize, sel: &BTreeSet<u64>) {
     square_wires(prj, page, &before);
 }
 
+/// Mirrors a selection; attached wires stay square.
+pub fn mirror(prj: &mut Project, page: usize, sel: &BTreeSet<u64>) {
+    let before = Before::of(&prj.pages[page], sel);
+    ops::mirror(&prj.symbol_table(), &mut prj.pages[page], sel);
+    square_wires(prj, page, &before);
+}
+
+/// Turns symbol `id` to rotation `rot` (quarter turns clockwise) and mirrors it as
+/// `mirror` says, with its wires (see [`rotate`], [`mirror`]).
+pub fn orient(prj: &mut Project, page: usize, id: u64, rot: u8, mirror: bool) {
+    let Some(s) = prj.pages[page].symbols.iter().find(|s| s.id == id) else { return };
+    let (turns, flip) = ((rot % 4 + 4 - s.rot % 4) % 4, s.mirror != mirror);
+    let sel = crate::device_boxes::with_points(prj, page, &BTreeSet::from([id]));
+    if flip {
+        self::mirror(prj, page, &sel);
+    }
+    for _ in 0..turns {
+        rotate(prj, page, &sel);
+    }
+}
+
 fn upright(w: &Wire) -> bool {
     (w.a.x - w.b.x).abs() < TOUCH
 }

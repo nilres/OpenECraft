@@ -12,6 +12,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Vault or an external plugin, and asks its user accordingly. An external plugin says it of a
   command with `effect` (`read`, `add` or `change`) in its answer to `describe`
   ([plugins](docs/plugins.md)).
+- **Wires stay on mirrored and turned devices:** mirroring a symbol in the schematic
+  (key M, *Mirror*) takes the wires at its connection points along and keeps them
+  square, as rotating did; where the mirrored symbol still has a connection point, the
+  wire stays. *Rotate left*, *Rotate right* and *Mirror* in the properties of a symbol
+  and `update_symbol rotation=… mirror=…` move the wires too, instead of leaving them
+  where the connection points were.
 
 ## [0.1.3] - 2026-11-23
 

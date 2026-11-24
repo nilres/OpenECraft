@@ -1766,14 +1766,14 @@ impl Editor {
             }
         }
         let items = self.items(prj, page_i);
-        let page = &mut prj.pages[page_i];
         if m {
             if matches!(self.tool, Tool::Place(_)) {
                 self.place_mirror = !self.place_mirror;
             } else {
-                ops::mirror(page, &items);
+                routing::mirror(prj, page_i, &items);
             }
         }
+        let page = &mut prj.pages[page_i];
         if space && self.tool == Tool::Wire {
             self.wire_hfirst = !self.wire_hfirst;
         }

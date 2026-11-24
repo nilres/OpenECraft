@@ -334,7 +334,7 @@ impl App {
                     self.editor.place_mirror = !self.editor.place_mirror;
                 } else {
                     let items = self.editor.items(&self.session.prj, page);
-                    ops::mirror(&mut self.session.prj.pages[page], &items);
+                    routing::mirror(&mut self.session.prj, page, &items);
                 }
             }
             Cmd::Find => self.find_ui.open = true,
