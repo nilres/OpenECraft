@@ -59,6 +59,12 @@ impl Plugins {
         }
         let mut registry = Registry::default();
         plugin.register(&mut registry).map_err(|e| tr_fmt!("Plugin {}: {}", info.id, e))?;
+        if origin == Origin::BuiltIn {
+            // The built-in commands are classified in one table.
+            for c in &mut registry.commands {
+                c.effect = crate::builtin::effect(&c.name);
+            }
+        }
         let mut seen: Vec<(&str, &str)> = Vec::new();
         for (kind, name) in registry.names() {
             let taken = seen.contains(&(kind, name))

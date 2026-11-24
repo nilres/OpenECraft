@@ -526,16 +526,13 @@ fn add_cable_passage(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(json!({ "cutouts": ids, "from": left_name, "to": right_name, "lineup": lineup_json(prj, ei) }))
 }
 
-/// An accessory part of the project, the example catalog or a shipped catalog; one of a
-/// shipped catalog is copied into the project.
-fn accessory_part(prj: &mut Project, number: &str) -> Result<openecraft_core::parts::Part, String> {
+/// An accessory part of the project, the example catalog or a shipped catalog.
+fn accessory_part(prj: &Project, number: &str) -> Result<openecraft_core::parts::Part, String> {
     if let Some(p) = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == number) {
         return Ok(p.clone());
     }
     let shipped = openecraft_core::parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).find(|p| p.number == number);
-    let p = shipped.ok_or_else(|| tr_fmt!("Unknown part: {}", number))?;
-    prj.parts.push(p.clone());
-    Ok(p)
+    shipped.ok_or_else(|| tr_fmt!("Unknown part: {}", number))
 }
 
 fn fitting_places(prj: &mut Project, a: &Args) -> Result<Value, String> {
@@ -560,6 +557,10 @@ fn place_accessory(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let face = face_arg(a, "face")?.unwrap_or_default();
     let part = a.req("part").to_string();
     let pd = accessory_part(prj, &part)?;
+    // One of a shipped catalog comes into the project.
+    if !prj.parts.iter().chain(openecraft_core::parts::catalog()).any(|p| p.number == part) {
+        prj.parts.push(pd.clone());
+    }
     if !panel::allowed_faces(&pd).contains(&face) {
         return Err(tr_fmt!("{} cannot be mounted on the {}", part, face.title()));
     }

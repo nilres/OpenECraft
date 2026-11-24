@@ -71,6 +71,8 @@ The status bar of a screenshot shows the coordinates of the pointer on the page.
 - **The parts list beside the drawing** does not exist in the editor: *Dock* puts the
   reports into a tab over the page. A Short shows both by cutting each out while its
   tab is in front.
+- **No Messages pane.** The recorders close it before a take, so the page has room.
+  A scene that shows it gets it back with *View › Reset pane layout* (`scene-checks.mjs`).
 - **Seeking** in the recorded file needs a player that reads it whole; YouTube
   encodes it again.
 

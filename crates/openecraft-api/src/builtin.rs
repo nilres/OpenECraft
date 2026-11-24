@@ -2,7 +2,7 @@
 //! checks, reports or exports register them here (see AGENTS.md, extensibility).
 
 use crate::params::{Args, Param};
-use crate::{Registry, Table};
+use crate::{Effect, Registry, Table};
 use crate::{Info, Plugin, Text};
 use openecraft_core::model::Project;
 use openecraft_core::analysis::Analysis;
@@ -79,6 +79,23 @@ pub fn current_names(command: &str, args: &serde_json::Map<String, serde_json::V
         out.insert(name.to_string(), v.clone());
     }
     out
+}
+
+/// Built-in commands that only read the project and whose name does not start with
+/// `list_` or `get_`. A command that shows something and changes it when given values
+/// (`panel_rules`) is not one of them.
+const READ: &[&str] = &[
+    "project_statistics", "check_panel", "panel_thermal", "cnc_machines", "machining_plan", "copper_bars", "production_status",
+    "detect_floor_plan", "plot", "locate", "measure", "check_settings", "preview_core_labels", "preview_cable_definition",
+    "short_circuit", "load_calculation", "emc_check", "electrical_sizing", "verify_project", "harness_data", "harness_topology",
+    "integration_status", "preplanning", "find", "wiring_list", "harness_nailboard", "marking_schemes", "mounting_list", "terminations",
+    "fitting_places",
+];
+
+/// What the built-in command or tool `name` does: `list_…`, `get_…` and the commands of
+/// [`READ`] only read, all others may change what is there.
+pub fn effect(name: &str) -> Effect {
+    if name.starts_with("list_") || name.starts_with("get_") || READ.contains(&name) { Effect::Read } else { Effect::Change }
 }
 
 /// Names of the checks of the built-in plugins.

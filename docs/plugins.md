@@ -121,7 +121,7 @@ project; using a separate updated CLI does not give an older editor these featur
 
 | Request | Answer |
 | --- | --- |
-| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}]}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (all lists optional, `params` of exporters and `keywords` of reports too) |
+| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}], "effect"}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (all lists optional, `params` of exporters and `keywords` of reports too) |
 | `{"method": "command", "name", "params": {…}, "project": {…}}` | `{"result": <any JSON>, "project": {…}}` – `project` only if the command changed it |
 | `{"method": "check", "name", "project"}` | `{"issues": [{"severity": "error" \| "warning" \| "info", "message", "page": <page index>, "item": <item id>}]}` – `page` / `item` optional; `page` alone points at the page, a page the project does not have at nothing |
 | `{"method": "report", "name", "project"}` | `{"headers": ["…"], "rows": [["…"]]}` |
@@ -132,6 +132,13 @@ Parameter kinds: `str`, `int`, `num`, `bool`, `ids` (list of item ids), `points`
 
 A command that answers with an error leaves the project unchanged, also in the editor
 and the MCP server.
+
+`effect` of a command says what it does: `read` (it only reads: the project stays as it
+is), `add` (it only adds to the project) or `change` (it may change, replace or remove
+what is there; the default). The MCP server passes it on as the annotations of the
+tool (`readOnlyHint`, `destructiveHint`), by which a client decides whether to ask its
+user before a call; a plugin in Rust says it with `.effect(Effect::Read)` after
+`reg.command(…)`. The title of a tool is its name as words (`set_spares`: *Set spares*).
 
 `describe` is asked once when the plugin is loaded; checks run after every change of
 the project in the editor, so they should answer quickly. The project's check settings

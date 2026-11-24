@@ -141,6 +141,13 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   (llama a cualquier herramienta por su nombre). Los nombres separados por comas eligen
   otras herramientas, `parts_*` todas las herramientas que empiezan por `parts_`, `*` todas
   (p. ej. `core,panel*,parts_*`).
+- Cada herramienta del servidor MCP tiene un título (su nombre en palabras) y anotaciones,
+  según las cuales un cliente decide si pregunta a su usuario antes de una llamada:
+  `readOnlyHint` para una herramienta que no cambia nada (`list_…`, `get_…`, `check`,
+  `parts_search` y otras), `destructiveHint` para una que puede cambiar, sustituir o
+  quitar lo que hay (una herramienta que puede escribir un archivo es una de ellas),
+  `openWorldHint` para una que llega al servidor de artículos, a Autodesk Vault o al programa de
+  un plugin externo.
 - Sin servidor de artículos, `parts_search` y `parts_get` usan los artículos del proyecto y
   el catálogo integrado (`parts_search --local` siempre), y `assign_part` nombra artículos
   parecidos para un número que no conoce.

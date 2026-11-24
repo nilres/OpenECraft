@@ -8,6 +8,7 @@
 use crate::session::Session;
 use crate::tools;
 use openecraft_api::params::{optional, param, Kind, Param};
+use openecraft_api::Effect;
 use serde_json::{json, Map, Value};
 use std::io::{BufRead, Write};
 use std::path::{Component, Path, PathBuf};
@@ -39,19 +40,21 @@ pub const CORE: &[&str] = &[
 ];
 
 /// Tools of the MCP server itself that reach the tools not offered.
-const META: [(&str, &str, &[Param]); 3] = [
+const META: [(&str, &str, &[Param], Effect); 3] = [
     (
         "find_tools",
         "Finds the tools beyond those offered (panel layout in 3D, PLC, terminals, harnesses, fluid power, buildings, \
 parts server, imports, revisions and more): without a query the names of all tools, with one the tools whose name or \
 description has every word, with their description",
         &[optional("query", Kind::Str, "Words in the name or description of the tool")],
+        Effect::Read,
     ),
-    ("describe_tool", "Shows the description and the parameters (JSON schema) of any tool", &[param("name", Kind::Str, "Name of the tool")]),
+    ("describe_tool", "Shows the description and the parameters (JSON schema) of any tool", &[param("name", Kind::Str, "Name of the tool")], Effect::Read),
     (
         "call_tool",
         "Calls any tool by its name, also one not offered in the list of tools; the result is that of the tool",
         &[param("name", Kind::Str, "Name of the tool"), optional("arguments", Kind::Object, "Parameters of the tool")],
+        Effect::Change,
     ),
 ];
 
@@ -238,15 +241,31 @@ fn initialize(session: &Session, params: &Value) -> Value {
     })
 }
 
-fn describe(tool: &tools::Entry) -> Value {
-    json!({ "name": tool.name(), "description": tool.help(), "inputSchema": tools::schema(tool.clone()) })
+/// A tool as the list of tools has it. The title and the annotations tell the client
+/// what to show and when to ask its user: `readOnlyHint` for a tool that changes
+/// nothing, `destructiveHint` for one that may change or remove what is there,
+/// `openWorldHint` for one that reaches a server or the program of a plugin.
+fn tool(name: &str, help: &str, schema: Value, effect: Effect, open_world: bool) -> Value {
+    let title = openecraft_api::title(name);
+    json!({
+        "name": name,
+        "title": title,
+        "description": help,
+        "inputSchema": schema,
+        "annotations": { "title": title, "readOnlyHint": effect == Effect::Read, "destructiveHint": effect == Effect::Change, "openWorldHint": open_world },
+    })
+}
+
+fn describe(session: &Session, entry: &tools::Entry) -> Value {
+    tool(entry.name(), entry.help(), tools::schema(entry.clone()), entry.effect(), entry.open_world(session))
 }
 
 /// The offered tools, followed by the meta tools when not all of them are offered.
 fn list(session: &Session) -> Vec<Value> {
-    let mut list: Vec<Value> = tools::entries(session).iter().filter(|t| offered(session, t.name())).map(describe).collect();
+    let mut list: Vec<Value> = tools::entries(session).iter().filter(|t| offered(session, t.name())).map(|t| describe(session, t)).collect();
     if !offers_all(session) {
-        list.extend(META.iter().map(|(name, help, params)| json!({ "name": name, "description": help, "inputSchema": openecraft_api::params::schema(params) })));
+        // call_tool reaches every tool, also those that ask a server.
+        list.extend(META.iter().map(|(name, help, params, effect)| tool(name, help, openecraft_api::params::schema(params), *effect, *name == "call_tool")));
     }
     list
 }
@@ -274,7 +293,7 @@ fn meta(session: &mut Session, name: &str, args: &Map<String, Value>) -> Result<
         }
         "describe_tool" => {
             let tool = text("name");
-            tools::lookup(session, &tool).map(|t| describe(&t)).ok_or_else(|| format!("unknown tool: {tool}"))
+            tools::lookup(session, &tool).map(|t| describe(session, &t)).ok_or_else(|| format!("unknown tool: {tool}"))
         }
         _ => {
             let params = json!({ "name": text("name"), "arguments": args.get("arguments").cloned().unwrap_or(Value::Null) });
@@ -291,7 +310,7 @@ fn call(session: &mut Session, params: &Value, any: bool) -> Result<Value, (i64,
         Some(Value::Object(map)) => map.clone(),
         Some(_) => return Err((-32602, "arguments must be an object".into())),
     };
-    if !any && !offers_all(session) && META.iter().any(|(m, _, _)| *m == name) {
+    if !any && !offers_all(session) && META.iter().any(|(m, ..)| *m == name) {
         return Ok(match meta(session, name, &args) {
             // call_tool answers with the result of the tool it called.
             Ok(result) if name == "call_tool" => result,

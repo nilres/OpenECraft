@@ -130,7 +130,7 @@ fonctionnalités à un éditeur plus ancien.
 
 | Requête | Réponse |
 | --- | --- |
-| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}]}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (toutes les listes sont facultatives, les `params` des exportateurs et les `keywords` des rapports aussi) |
+| `{"method": "describe"}` | `{"commands": [{"name", "help", "params": [{"name", "kind", "required", "help"}], "effect"}], "checks": [{"name", "title"}], "reports": [{"name", "title", "keywords": ["…"]}], "exporters": [{"name", "title", "extension", "params"}]}` (toutes les listes sont facultatives, les `params` des exportateurs et les `keywords` des rapports aussi) |
 | `{"method": "command", "name", "params": {…}, "project": {…}}` | `{"result": <any JSON>, "project": {…}}` – `project` seulement si la commande l'a modifié |
 | `{"method": "check", "name", "project"}` | `{"issues": [{"severity": "error" \| "warning" \| "info", "message", "page": <page index>, "item": <item id>}]}` – `page` / `item` facultatifs ; `page` seul désigne la page, une page que le projet n'a pas ne désigne rien |
 | `{"method": "report", "name", "project"}` | `{"headers": ["…"], "rows": [["…"]]}` |
@@ -141,6 +141,14 @@ Types de paramètres : `str`, `int`, `num`, `bool`, `ids` (liste d'identifiants 
 
 Une commande qui répond par une erreur laisse le projet inchangé, dans l'éditeur et le
 serveur MCP aussi.
+
+`effect` d'une commande dit ce qu'elle fait : `read` (elle ne fait que lire : le projet
+reste tel quel), `add` (elle ne fait qu'ajouter au projet) ou `change` (elle peut modifier,
+remplacer ou supprimer ce qui existe ; la valeur par défaut). Le serveur MCP le transmet
+comme annotations de l'outil (`readOnlyHint`, `destructiveHint`), d'après lesquelles un
+client décide de demander ou non à son utilisateur avant un appel ; un plugin en Rust le
+dit avec `.effect(Effect::Read)` après `reg.command(…)`. Le titre d'un outil est son nom
+en mots (`set_spares` : *Set spares*).
 
 `describe` est demandé une fois au chargement du plugin ; les contrôles s'exécutent après
 chaque modification du projet dans l'éditeur, ils doivent donc répondre vite. Les paramètres
