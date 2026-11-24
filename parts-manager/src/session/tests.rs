@@ -251,6 +251,19 @@ fn enclosure_packages_are_imported_with_their_files() {
 }
 
 #[test]
+fn an_imported_part_is_merged_into_the_part_of_a_shipped_catalog() {
+    // A package whose part is the Striebel & John distribution panel by its order number.
+    let mut zip = openecraft_core::zip::ZipWriter::new("2026-11-24");
+    zip.add("CSV_article_list\\bill-of-material.csv", b"2CPX054002R9999;1;Pc(s.);Distribution panel FV17;4011617540021\n");
+    zip.add("Product_description\\Product_Description.pdf", b"%PDF-1.7");
+    let mut s = Session::default();
+    let parts = s.import_package("fv17.zip", &zip.finish()).unwrap();
+    let p = &parts[0];
+    assert_eq!((p.number.as_str(), p.subgroup.as_str(), p.tech_value("Rows")), ("SJ.2CPX054002R9999", "Distribution panel", Some("7")));
+    assert_eq!(s.pending_files.iter().map(|f| f.part.as_str()).collect::<Vec<_>>(), ["SJ.2CPX054002R9999"]);
+}
+
+#[test]
 fn parts_are_only_editable_with_the_right_to_change_them() {
     use openecraft_parts::access::{Access, Grant, Policy, Subject};
     use openecraft_parts::portal::PartsRight;

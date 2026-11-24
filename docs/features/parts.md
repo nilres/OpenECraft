@@ -159,6 +159,17 @@ the device. Floor-standing parts stand upright on the floor of a room.
   the frame around the door are left out. The panel layout draws and checks them (see
   [panel layout](panel-layout.md#restricted-areas)). The macro, the EPLAN project
   (`.zw1`), the STEP file and the PDF documents are stored as attachments.
+- **A part already known:** an EDZ file, an EPLAN parts XML or an enclosure package
+  whose part is already in the parts database, on the parts server or in a catalog
+  shipped with OpenECraft is merged into that part instead of replacing it (the editor,
+  Parts Manager and `parts_import`). The known part is the one of the same number, else
+  the one of the same order number from the same manufacturer (or the only part with
+  that order number); it keeps its number, and the files and references of the import
+  follow it. The import's values win; what it lacks stays, such as the part data
+  `Fields`, `Rows` and `Module spaces` of the Striebel & John cabinets and panels. The
+  group and subgroup stay, the technical data are merged line by line (the import's
+  `Key: value` for the same key), accessories are united. CSV, JSON and BMEcat files
+  still replace the parts of their numbers.
 
 ### Placing an EPLAN symbol
 

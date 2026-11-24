@@ -224,15 +224,21 @@ impl Session {
 
     /// Updates the local copy with a server reply.
     /// The parts of an EDZ file or the ZIP package of an enclosure configurator to
-    /// upload; its files wait for the upload.
+    /// upload, merged into the parts of the server and of the shipped catalogs they are
+    /// ([`openecraft_parts::merge`]); its files wait for the upload.
     pub fn import_package(&mut self, path: &str, bytes: &[u8]) -> Result<Vec<Part>, String> {
         let edz = if openecraft_edz::package::is_zip(bytes) {
             openecraft_edz::package::read(bytes, Some(openecraft_step::parse_step_without))?
         } else {
             openecraft_edz::folder::read_file(std::path::Path::new(path), bytes)?
         };
-        self.pending_files = edz.files;
-        Ok(edz.parts)
+        let shipped: Vec<Part> = openecraft_parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).collect();
+        let merged = openecraft_parts::merge::merge_imported(edz.parts, self.parts.iter().chain(&shipped));
+        self.pending_files = edz.files.into_iter().map(|mut f| {
+            f.part = merged.number_of(&f.part).to_string();
+            f
+        }).collect();
+        Ok(merged.parts)
     }
 
     pub fn apply(&mut self, reply: &Reply) -> Option<FollowUp> {

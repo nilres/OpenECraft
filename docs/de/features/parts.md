@@ -189,6 +189,19 @@ dem Betriebsmittel gibt. Bodenstehende Artikel stehen aufrecht auf dem Boden ein
   (siehe
   [Schaltschrankaufbau](panel-layout.md#sperrflächen)). Das Makro, das EPLAN-Projekt
   (`.zw1`), die STEP-Datei und die PDF-Dokumente werden als Anhänge gespeichert.
+- **Ein schon bekannter Artikel:** eine EDZ-Datei, ein EPLAN-Artikel-XML oder ein
+  Gehäusepaket, dessen Artikel schon in der Artikeldatenbank, auf dem Artikelserver
+  oder in einem mit OpenECraft gelieferten Katalog ist, wird mit diesem Artikel
+  zusammengeführt, statt ihn zu ersetzen (Editor, Parts Manager und `parts_import`).
+  Der bekannte Artikel ist der mit derselben Nummer, sonst der mit derselben
+  Bestellnummer vom selben Hersteller (oder der einzige Artikel mit dieser
+  Bestellnummer); er behält seine Nummer, und die Dateien und Verweise des Imports
+  folgen ihm. Die Werte des Imports gewinnen; was ihm fehlt, bleibt, etwa die
+  Artikeldaten `Fields`, `Rows` und `Module spaces` der Schränke und Felder von
+  Striebel & John. Gruppe und Untergruppe bleiben, die technischen Daten werden Zeile
+  für Zeile zusammengeführt (das `Schlüssel: Wert` des Imports für denselben
+  Schlüssel), Zubehör wird vereinigt. CSV-, JSON- und BMEcat-Dateien ersetzen die
+  Artikel ihrer Nummern weiterhin.
 
 ### Ein EPLAN-Symbol platzieren
 

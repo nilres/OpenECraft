@@ -31,6 +31,7 @@ mod eplan;
 mod filter;
 mod graphics;
 pub mod mechanics;
+pub mod merge;
 mod ifc;
 pub mod legal;
 mod mounting;

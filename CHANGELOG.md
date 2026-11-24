@@ -28,6 +28,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   accessory of their part. Dropped there it is placed, or added to the device. New
   command `fitting_places`. A distribution panel comes with a mounting rail for each of
   its rows, so devices can be placed in it.
+- **Imports merge into known parts:** an EDZ file of the EPLAN Data Portal (or an EPLAN
+  parts XML, an enclosure package) whose part is already in the database, on the parts
+  server or in a shipped catalog is merged into it instead of replacing it, found by
+  its number or its order number: the import's values win, the catalog's part data
+  such as fields and rows stay.
 
 ## [0.1.3] - 2026-11-23
 

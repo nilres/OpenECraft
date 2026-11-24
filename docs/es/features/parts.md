@@ -187,6 +187,18 @@ una sala.
   las dibuja y las comprueba (véase
   [diseño del armario](panel-layout.md#zonas-restringidas)). La macro, el proyecto de
   EPLAN (`.zw1`), el archivo STEP y los documentos PDF se guardan como adjuntos.
+- **Un artículo ya conocido:** un archivo EDZ, un XML de artículos de EPLAN o un
+  paquete de envolvente cuyo artículo ya está en la base de artículos, en el servidor
+  de artículos o en un catálogo incluido en OpenECraft se combina con ese artículo en
+  lugar de reemplazarlo (el editor, Parts Manager y `parts_import`). El artículo
+  conocido es el del mismo número, si no el de la misma referencia de pedido del mismo
+  fabricante (o el único artículo con esa referencia); conserva su número, y los
+  archivos y referencias de la importación lo siguen. Los valores de la importación
+  ganan; lo que le falta se mantiene, como los datos de artículo `Fields`, `Rows` y
+  `Module spaces` de los armarios y campos de Striebel & John. El grupo y el subgrupo
+  se mantienen, los datos técnicos se combinan línea por línea (el `Clave: valor` de la
+  importación para la misma clave), los accesorios se unen. Los archivos CSV, JSON y
+  BMEcat siguen reemplazando los artículos de sus números.
 
 ### Colocar un símbolo de EPLAN
 

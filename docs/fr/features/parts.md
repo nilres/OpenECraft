@@ -189,6 +189,18 @@ pièce.
   L'implantation d'armoire les dessine et les vérifie (voir
   [implantation d'armoire](panel-layout.md#zones-interdites)). La macro, le projet EPLAN
   (`.zw1`), le fichier STEP et les documents PDF sont enregistrés comme pièces jointes.
+- **Un article déjà connu :** un fichier EDZ, un XML d'articles EPLAN ou un paquet
+  d'enveloppe dont l'article est déjà dans la base d'articles, sur le serveur
+  d'articles ou dans un catalogue livré avec OpenECraft est fusionné avec cet article au
+  lieu de le remplacer (l'éditeur, Parts Manager et `parts_import`). L'article connu est
+  celui du même numéro, sinon celui de la même référence de commande du même fabricant
+  (ou le seul article de cette référence) ; il garde son numéro, et les fichiers et
+  références de l'import le suivent. Les valeurs de l'import l'emportent ; ce qui lui
+  manque reste, comme les données d'article `Fields`, `Rows` et `Module spaces` des
+  armoires et champs de Striebel & John. Le groupe et le sous-groupe restent, les
+  données techniques sont fusionnées ligne par ligne (le `Clé: valeur` de l'import pour
+  la même clé), les accessoires sont réunis. Les fichiers CSV, JSON et BMEcat
+  remplacent toujours les articles de leurs numéros.
 
 ### Placer un symbole EPLAN
 
