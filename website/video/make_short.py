@@ -85,11 +85,14 @@ async function pull(x0, y0, x1, y1, ms = 1200) {
     await sleep(200);
 }
 async function press(name) {
-    const vk = { Escape: 27, Enter: 13, Delete: 46 }[name];
-    const text = name === "Enter" ? "\r" : undefined;
-    await page.call("Input.dispatchKeyEvent", { type: text ? "keyDown" : "rawKeyDown", key: name, code: name, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk, text });
+    // A key by its name, or the key of a letter ("r").
+    const letter = name.length === 1;
+    const vk = { Escape: 27, Enter: 13, Delete: 46 }[name] ?? name.toUpperCase().charCodeAt(0);
+    const code = letter ? "Key" + name.toUpperCase() : name;
+    const text = name === "Enter" ? "\r" : letter ? name : undefined;
+    await page.call("Input.dispatchKeyEvent", { type: text ? "keyDown" : "rawKeyDown", key: name, code, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk, text });
     await sleep(130);
-    await page.call("Input.dispatchKeyEvent", { type: "keyUp", key: name, code: name, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk });
+    await page.call("Input.dispatchKeyEvent", { type: "keyUp", key: name, code, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk });
     await sleep(280);
 }
 async function wheel(x, y, ticks) {
