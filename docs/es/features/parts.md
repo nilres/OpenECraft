@@ -78,7 +78,9 @@ Vista frontal 2D (SVG) y modelo 3D por artículo:
 
 - **STL**, **OBJ**;
 - **STEP**: sólidos y modelos de superficies de archivos AP203 / AP214 / AP242,
-  colocados según su estructura de ensamblaje, teselados y convertidos a mm;
+  colocados según su estructura de ensamblaje (también cuando los cuerpos de una pieza
+  dependen de otra representación, como en los modelos CAD de CADENAS, p. ej. los de
+  Rittal), teselados y convertidos a mm;
 - **IGES 5.3**: sólidos y superficies recortadas;
 - **Parasolid** (`.x_t` / `.x_b`): cuerpos de archivos de transmisión V13 y posteriores,
   planos, cilindros, conos, esferas, toros y superficies B teselados con exactitud,

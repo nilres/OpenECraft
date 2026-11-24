@@ -74,7 +74,9 @@ im App-Speicher (Desktop) / lokalen Speicher (Browser) gespeichert.
 
 - **STL**, **OBJ**;
 - **STEP**: Volumen- und Flächenmodelle aus AP203- / AP214- / AP242-Dateien, nach ihrer
-  Baugruppenstruktur platziert, tesselliert und in mm umgerechnet;
+  Baugruppenstruktur platziert (auch wo die Körper eines Teils an einer weiteren
+  Darstellung hängen, wie in den CAD-Modellen von CADENAS, etwa denen von Rittal),
+  tesselliert und in mm umgerechnet;
 - **IGES 5.3**: Volumenkörper und getrimmte Flächen;
 - **Parasolid** (`.x_t` / `.x_b`): Körper aus Transmit-Dateien ab V13, Ebenen,
   Zylinder, Kegel, Kugeln, Tori und B-Flächen exakt tesselliert, Verrundungen und andere

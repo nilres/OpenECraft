@@ -350,6 +350,8 @@ fn part_of(el: &Element, variant: Option<&Element>) -> Option<Part> {
         subgroup: num(get("P_ARTICLE_PRODUCTSUBGROUP")) as u16,
     };
     productgroups::apply(&mut part, c);
+    let texts = [part.description.clone(), part.note.clone()];
+    crate::filter::complete_enclosure(&mut part, &[&texts[0], &texts[1]]);
     Some(part)
 }
 

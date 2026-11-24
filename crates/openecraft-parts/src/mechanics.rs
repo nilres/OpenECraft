@@ -121,6 +121,28 @@ pub const SYSTEMS: &[SystemData] = &[
 
 /// The system of the 19-inch racks.
 pub const RACK_SYSTEM: &str = "rack19";
+
+/// The enclosure system ([`SYSTEMS`]) a maker's description of an enclosure names
+/// ("VX Baying enclosure system", "Compact enclosure AX", "KX Terminal box").
+pub fn system_from_text(text: &str) -> Option<&'static str> {
+    let t = text.to_lowercase();
+    let has = |words: &[&str]| words.iter().any(|w| t.contains(w));
+    if has(&["19-inch", "19 inch", "19\" ", "server rack", "network rack"]) {
+        Some(RACK_SYSTEM)
+    } else if has(&["baying", "bayed", "anreih"]) {
+        Some("baying")
+    } else if has(&["terminal box", "klemmenkasten"]) {
+        Some("terminal_box")
+    } else if has(&["house connection", "hausanschluss"]) {
+        Some(HOUSE_CONNECTION_SYSTEM)
+    } else if has(&["polycarbonate", "polyester", "plastic enclosure"]) {
+        Some("plastic")
+    } else if has(&["compact enclosure", "kompakt"]) {
+        Some("compact")
+    } else {
+        None
+    }
+}
 /// The system of the house connection boxes (the utility's fuses at the building entry).
 pub const HOUSE_CONNECTION_SYSTEM: &str = "house_connection";
 /// Height of a rack unit (1 U), mm.

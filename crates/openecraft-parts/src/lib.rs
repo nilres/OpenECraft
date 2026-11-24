@@ -51,7 +51,7 @@ pub use catalog::{add_generated_models, default_catalog, nozzles, shaft, Nozzle,
 pub use connection::{default_connection_points, points_from_text, points_to_text, upper_side, ConnectionPoint, Exit};
 pub use csv::{csv_escape, from_csv, import, parse_csv, to_csv};
 pub use eplan::{from_eplan_documents, from_eplan_xml, is_eplan_xml, language_text, to_eplan_xml};
-pub use filter::{count_value, distinct_counts, distinct_values, enclosure_on_floor, is_enclosure, EnclosureFilter, EnclosureMounting, EnclosureSort, Grouping, PartFilter, SizeRange};
+pub use filter::{complete_enclosure, count_value, distinct_counts, distinct_values, enclosure_on_floor, is_enclosure, is_enclosure_body, size_from_text, EnclosureFilter, EnclosureMounting, EnclosureSort, Grouping, PartFilter, SizeRange};
 pub use ifc::parse_ifc;
 pub use mounting::{cutout_outline, cutouts_text, parse_cutouts, Cutout, MountingData, PlacedCutout, RailMount, RestrictedArea, Restriction, ENCLOSURE_FACES, MOUNTING_KEYS};
 pub use graphics::{parse_mesh, parse_obj, parse_stl, parse_svg, Mesh3d, MeshBuilder, Model2d, Prim2d, DOOR_PAINT, MAX_TRIANGLES, UNPAINTED};

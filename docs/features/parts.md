@@ -66,7 +66,8 @@ in the app storage (desktop) / local storage (browser).
 
 - **STL**, **OBJ**;
 - **STEP**: solids and surface models of AP203 / AP214 / AP242 files, placed by their
-  assembly structure, tessellated and converted to mm;
+  assembly structure (also where a part's solids hang on a further representation, as
+  in the CAD models of CADENAS such as Rittal's), tessellated and converted to mm;
 - **IGES 5.3**: solids and trimmed surfaces;
 - **Parasolid** (`.x_t` / `.x_b`): bodies of V13 and newer transmit files, planes,
   cylinders, cones, spheres, tori and B-surfaces tessellated exactly, blends and other

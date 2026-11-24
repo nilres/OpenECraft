@@ -312,8 +312,14 @@ server. OpenECraft is not affiliated with EPLAN.
 - Manufacturers are filtered by their short name, product groups by the id of the
   EPLAN catalog entry: (generic product group + 1) · 10⁸ + (product group + 1) · 10⁴ +
   (subgroup + 1), e.g. `200050000` for electrical engineering / plugs.
+- Enclosures (product group *Enclosure*) come without dimensions from the portal: their
+  size, their enclosure system and a missing mounting plate are read from the
+  description (`WHD: 800x2000x600 mm`, *baying*, *compact*, *terminal box*, *without
+  mounting plate*), so that they can be placed in the panel layout like the enclosures
+  of the catalogs (tested with Rittal VX25, TS 8, AX and KX).
 - Parts in EPLAN format (macros, connection points) come as EDZ files from the portal
-  web page; import them like other parts files (see [parts management](features/parts.md)).
+  web page with an EPLAN license (a free account downloads commercial data and DXF
+  drawings only); import them like other parts files (see [parts management](features/parts.md)).
 - Only the desktop version and the command line reach the portal: it allows no
   cross-origin requests from browsers, so the web version would need a proxy.
 

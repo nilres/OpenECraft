@@ -468,6 +468,11 @@ pub fn part(res: &Value, included: &[Value]) -> Part {
             *target = name;
         }
     }
+    // The portal names no dimensions: those of an enclosure come from its description,
+    // in English where it has one (the order of its values is named there).
+    let english = res["attributes"]["description"]["en_US"].as_str().unwrap_or_default().to_string();
+    let texts = [english, part.note.clone(), part.description.clone()];
+    openecraft_parts::complete_enclosure(&mut part, &[&texts[0], &texts[1], &texts[2]]);
     if let Value::Array(list) = field(res, included, "accessories") {
         part.accessories = list.iter().map(|a| first(a, &["part_number"])).filter(|n| !n.is_empty()).collect();
     }

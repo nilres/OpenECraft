@@ -700,6 +700,10 @@ pub fn new_enclosure(prj: &mut Project, part: &str, name: &str) -> Enclosure {
         if let Some(hinge) = pd.tech_value("Door hinge").and_then(DoorHinge::from_key) {
             e.door_hinge = hinge;
         }
+        // A terminal box without a mounting plate (`Mounting plate: no`).
+        if pd.tech_value("Mounting plate").is_some_and(|v| matches!(v.trim().to_ascii_lowercase().as_str(), "no" | "false" | "0")) {
+            e.no_implicit_plate = true;
+        }
         if let Some(origin) = pd.tech_value("Mounting origin").and_then(mounting_origin) {
             e.mounting_origin = Some(origin);
             // Its size when it is not centred (`Mounting size: 550 x 575`).

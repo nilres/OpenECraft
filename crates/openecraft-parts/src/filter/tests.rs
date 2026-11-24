@@ -140,3 +140,44 @@ fn enclosure_search_sorts_and_keeps_each_part_once() {
     let f = EnclosureFilter { sort: EnclosureSort::Height, ..Default::default() };
     assert_eq!(f.apply(&parts).last().map(|p| p.number.as_str()), Some("GEN.TS-600X2000X500"));
 }
+
+
+#[test]
+fn the_size_of_an_enclosure_comes_from_a_labelled_description() {
+    assert_eq!(size_from_text("VX Baying enclosure system, WHD: 800x2000x600 mm, sheet steel"), Some((800.0, 2000.0, 600.0)));
+    assert_eq!(size_from_text("VX Anreih-Schranksystem, BHT: 800x2000x500 mm, Stahlblech"), Some((800.0, 2000.0, 500.0)));
+    assert_eq!(size_from_text("Armario, An.Al.Pr.: 500 x 500 x 210 mm"), Some((500.0, 500.0, 210.0)));
+    assert_eq!(size_from_text("Cabinet (W x H x D) 600 \u{d7} 760 \u{d7} 210,5 mm"), Some((600.0, 760.0, 210.5)));
+    // Height first, depth before height.
+    assert_eq!(size_from_text("Wall cabinet, H x W x D: 1100 x 800 x 215 mm"), Some((800.0, 1100.0, 215.0)));
+    assert_eq!(size_from_text("Box, W x D x H 300 x 150 x 400 mm"), Some((300.0, 400.0, 150.0)));
+    // Without a label the order is unknown; two values are no size.
+    assert_eq!(size_from_text("Wall cabinet ComfortLine A, 3 fields, 1100 x 800 x 215 mm"), None);
+    assert_eq!(size_from_text("Side panel for VX, HD: 2000x600 mm"), None);
+    assert_eq!(size_from_text(""), None);
+}
+
+#[test]
+fn an_enclosure_of_eplan_data_is_completed_from_its_texts() {
+    // As the EPLAN Data Portal sends a Rittal enclosure: product group, no dimensions.
+    let mut p = Part { number: "RIT.8806000".into(), group: "Enclosure".into(), subgroup: "General".into(), ..Default::default() };
+    assert!(is_enclosure_body(&p) && !is_enclosure(&p));
+    complete_enclosure(&mut p, &["VX Baying enclosure system, WHD: 800x2000x600 mm, sheet steel, with mounting plate, single door at the front"]);
+    assert_eq!((p.width, p.height, p.depth), (800.0, 2000.0, 600.0));
+    assert!(is_enclosure(&p));
+    assert_eq!((p.tech_value("Enclosure system"), p.tech_value("Mounting plate")), (Some("baying"), None));
+    assert!(enclosure_on_floor(&p));
+    let mut kx = Part { group: "Enclosure".into(), subgroup: "General".into(), tech_data: "IP: 66".into(), ..Default::default() };
+    complete_enclosure(&mut kx, &["KX Terminal box, WHD: 200x200x120 mm, sheet steel, without mounting plate, with cover"]);
+    assert_eq!(kx.tech_data, "IP: 66\nEnclosure system: terminal_box\nMounting plate: no");
+    assert!(!enclosure_on_floor(&kx));
+    // Data of the part is kept; accessories and other groups are no enclosures.
+    let mut known = Part { group: "Enclosure".into(), width: 500.0, height: 500.0, depth: 250.0, tech_data: "Enclosure system: plastic".into(), ..Default::default() };
+    complete_enclosure(&mut known, &["AX Compact enclosure, WHD: 600x600x210 mm"]);
+    assert_eq!((known.width, known.depth, known.tech_data.as_str()), (500.0, 250.0, "Enclosure system: plastic"));
+    let mut panel = Part { group: "Housing accessories, internal extension".into(), subgroup: "General".into(), ..Default::default() };
+    complete_enclosure(&mut panel, &["Panel, WHD: 250x150x80 mm"]);
+    assert_eq!(panel.width, 0.0);
+    let plate = Part { group: "Enclosure".into(), subgroup: "General".into(), accessory: true, width: 700.0, height: 1900.0, ..Default::default() };
+    assert!(!is_enclosure(&plate));
+}

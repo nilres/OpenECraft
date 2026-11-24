@@ -291,3 +291,65 @@ fn absolute_download_urls_use_the_same_origin_rules_as_authorization() {
         assert!(!endpoint("fixture").needs_token(url));
     }
 }
+
+
+#[test]
+fn an_enclosure_of_the_portal_gets_its_size_from_its_description() {
+    let doc = json!({
+        "data": [{
+            "type": "parts",
+            "id": "933976",
+            "attributes": {
+                "part_number": "RIT.8806000",
+                "designation": { "en_US": "Baying-enclosure system VX25", "de_DE": "Anreih-Schranksystem VX25" },
+                "description": {
+                    "en_US": "VX Baying enclosure system, WHD: 800x2000x600 mm, sheet steel, with mounting plate, single door at the front",
+                    "de_DE": "VX Anreih-Schranksystem, BHT: 800x2000x600 mm, Stahlblech, mit Montageplatte",
+                    "fr_FR": "VX Armoires \u{e9}lectriques juxtaposables, 1 porte, LHP 800x2000x600 mm"
+                }
+            },
+            "relationships": {
+                "product_top_group": { "data": { "type": "eplan_catalog_entries", "id": "400000000" } },
+                "product_group": { "data": { "type": "eplan_catalog_entries", "id": "400560000" } },
+                "product_sub_group": { "data": { "type": "eplan_catalog_entries", "id": "400560002" } }
+            }
+        }]
+    });
+    // In every language: the English text names the order of the values.
+    for lang in [openecraft_i18n::Lang::En, openecraft_i18n::Lang::Fr] {
+        let p = openecraft_i18n::with_lang(lang, || parts(&doc)).remove(0);
+        assert_eq!((p.group.as_str(), p.subgroup.as_str()), ("Enclosure", "General"));
+        assert_eq!((p.width, p.height, p.depth), (800.0, 2000.0, 600.0));
+        assert!(openecraft_parts::is_enclosure(&p));
+        assert_eq!(p.tech_value("Enclosure system"), Some("baying"));
+    }
+}
+
+/// The EPLAN data of Rittal enclosures of four systems as the portal's part search
+/// answers (`parts.json` in `OPENECRAFT_RITTAL_DIR`: `POST /api/parts` with the portal
+/// ids of RIT.8606000, 8806000, 8805000, 8806500, 1050000, 1060000 and 1502000): none
+/// of them is in a shipped catalog, each becomes an enclosure of the panel layout.
+#[test]
+#[ignore = "requires OPENECRAFT_RITTAL_DIR with the portal's answer for Rittal enclosures"]
+fn rittal_enclosures_of_the_portal_become_enclosures() {
+    use openecraft_core::panel;
+    let dir = std::env::var("OPENECRAFT_RITTAL_DIR").unwrap();
+    let doc: Value = serde_json::from_slice(&std::fs::read(std::path::Path::new(&dir).join("parts.json")).unwrap()).unwrap();
+    let found = with_lang_en(|| parts(&doc));
+    let size = |n: &str| found.iter().find(|p| p.number == n).map(|p| (p.width, p.height, p.depth, p.tech_value("Enclosure system").unwrap_or_default().to_string()));
+    assert_eq!(size("RIT.8806000"), Some((800.0, 2000.0, 600.0, "baying".into())));
+    assert_eq!(size("RIT.8805000"), Some((800.0, 2000.0, 500.0, "baying".into())));
+    assert_eq!(size("RIT.8806500"), Some((800.0, 2000.0, 600.0, "baying".into())));
+    assert_eq!(size("RIT.1050000"), Some((500.0, 500.0, 210.0, "compact".into())));
+    assert_eq!(size("RIT.1502000"), Some((200.0, 200.0, 120.0, "terminal_box".into())));
+    assert_eq!(found.len(), 7);
+    let mut prj = openecraft_core::model::Project { parts: found.clone(), ..Default::default() };
+    for p in &found {
+        assert!(openecraft_parts::is_enclosure(p), "{}", p.number);
+        let e = panel::new_enclosure(&mut prj, &p.number, "+X");
+        assert_eq!((e.width, e.height, e.depth), (p.width, p.height, p.depth), "{}", p.number);
+        assert_eq!(openecraft_parts::enclosure_on_floor(p), p.number.starts_with("RIT.8"), "{}", p.number);
+        // Only the terminal box comes without its mounting plate.
+        assert_eq!(e.no_implicit_plate, p.number == "RIT.1502000", "{}", p.number);
+    }
+}

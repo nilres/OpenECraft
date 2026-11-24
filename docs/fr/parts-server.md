@@ -343,8 +343,14 @@ du portail sur un serveur d'articles partagé. OpenECraft n'est pas affilié à 
   l'identifiant de l'entrée du catalogue EPLAN : (groupe de produits générique + 1) · 10⁸ +
   (groupe de produits + 1) · 10⁴ + (sous-groupe + 1), p. ex. `200050000` pour
   électrotechnique / connecteurs.
+- Les coffrets (groupe de produits *Enclosure*) viennent du portail sans dimensions :
+  leur taille, leur système de coffret et l'absence de plaque de montage sont lus dans
+  la description (`WHD: 800x2000x600 mm`, *baying*, *compact*, *terminal box*,
+  *without mounting plate*), de sorte qu'ils se placent dans l'implantation d'armoire comme les
+  coffrets des catalogues (testé avec Rittal VX25, TS 8, AX et KX).
 - Les articles au format EPLAN (macros, points de raccordement) viennent comme fichiers EDZ
-  de la page web du portail ; importez-les comme d'autres fichiers d'articles (voir
+  de la page web du portail avec une licence EPLAN (un compte gratuit ne télécharge que
+  les données commerciales et les dessins DXF) ; importez-les comme d'autres fichiers d'articles (voir
   [gestion des articles](features/parts.md)).
 - Seules la version de bureau et la ligne de commande atteignent le portail : il n'autorise
   aucune requête cross-origin des navigateurs, la version web aurait donc besoin d'un proxy.

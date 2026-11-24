@@ -311,7 +311,7 @@ fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
     cutout_table(ui, "pcut", &mut part.mounting_data.cutouts);
     ui.label(RichText::new(tr("Door cutouts")).strong().color(DOOR_CUTOUT)).on_hover_text(tr("In the door, when they differ from the cutouts"));
     cutout_table(ui, "pdcut", &mut part.mounting_data.door_cutouts);
-    if part.subgroup == "Enclosure" || !part.mounting_data.restricted.is_empty() {
+    if openecraft_parts::is_enclosure_body(part) || !part.mounting_data.restricted.is_empty() {
         restricted_table(ui, &mut part.mounting_data.restricted);
     }
 }

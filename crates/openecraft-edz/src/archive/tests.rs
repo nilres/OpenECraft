@@ -237,6 +237,8 @@ fn abb_comfortline_archives_merge_into_the_shipped_catalog() {
             imported.extend(read(&std::fs::read(&path).unwrap()).unwrap().parts);
         }
     }
+    // Every cabinet is an enclosure, also those the shipped catalog lacks (A13 … A54).
+    assert_eq!(imported.iter().filter(|p| openecraft_parts::is_enclosure(p)).count(), 45);
     let shipped = openecraft_parts::bundled::load("striebel_john").unwrap().parts;
     let merged = openecraft_parts::merge::merge_imported(imported, &shipped);
     assert!(merged.merged >= 49, "{}", merged.merged);

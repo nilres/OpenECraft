@@ -128,9 +128,109 @@ pub struct EnclosureFilter {
     pub sort: EnclosureSort,
 }
 
-/// An enclosure body with outer dimensions (product subgroup `Enclosure`).
+/// An enclosure body with outer dimensions (product subgroup `Enclosure`, or EPLAN's
+/// product group `Enclosure` as the makers' EPLAN data has it).
 pub fn is_enclosure(p: &Part) -> bool {
-    p.subgroup == "Enclosure" && p.width > 0.0 && p.height > 0.0
+    is_enclosure_body(p) && p.width > 0.0 && p.height > 0.0
+}
+
+/// An enclosure body by its product group, with or without its dimensions.
+pub fn is_enclosure_body(p: &Part) -> bool {
+    p.subgroup == "Enclosure" || (p.group == "Enclosure" && matches!(p.subgroup.as_str(), "" | "General") && !p.accessory)
+}
+
+/// The outer size a description names with the order of its values (`WHD: 800x2000x600
+/// mm`, `BHT`, `H x W x D`, …): width, height and depth in mm. Values without such a
+/// label are left alone, makers write them in different orders.
+pub fn size_from_text(text: &str) -> Option<(f32, f32, f32)> {
+    // The label without spaces, dots and x, and where its values go (0 width, 1 height,
+    // 2 depth): English, German, French, Spanish, Italian and Polish.
+    const LABELS: [(&str, [usize; 3]); 10] = [
+        ("WHD", [0, 1, 2]),
+        ("BHT", [0, 1, 2]),
+        ("LHP", [0, 1, 2]),
+        ("ANALPR", [0, 1, 2]),
+        ("LAP", [0, 1, 2]),
+        ("SWG", [0, 1, 2]),
+        ("HWD", [1, 0, 2]),
+        ("HBT", [1, 0, 2]),
+        ("WDH", [0, 2, 1]),
+        ("BTH", [0, 2, 1]),
+    ];
+    let chars: Vec<char> = text.chars().collect();
+    let digit = |i: usize| chars.get(i).is_some_and(char::is_ascii_digit);
+    let number = |i: &mut usize| -> Option<f32> {
+        let start = *i;
+        while digit(*i) || (*i > start && matches!(chars.get(*i), Some('.' | ',')) && digit(*i + 1)) {
+            *i += 1;
+        }
+        (*i > start).then(|| chars[start..*i].iter().collect::<String>().replace(',', ".").parse().ok()).flatten()
+    };
+    let spaces = |i: &mut usize| {
+        while chars.get(*i) == Some(&' ') {
+            *i += 1;
+        }
+    };
+    let mut i = 0;
+    while i < chars.len() {
+        if !digit(i) || (i > 0 && (digit(i - 1) || matches!(chars[i - 1], '.' | ','))) {
+            i += 1;
+            continue;
+        }
+        let (start, mut j, mut values) = (i, i, Vec::new());
+        while let Some(v) = number(&mut j) {
+            values.push(v);
+            if values.len() == 3 {
+                break;
+            }
+            spaces(&mut j);
+            if !matches!(chars.get(j), Some('x' | 'X' | '\u{d7}')) {
+                break;
+            }
+            j += 1;
+            spaces(&mut j);
+        }
+        if values.len() == 3 && values.iter().all(|v| *v > 0.0) {
+            let before: Vec<char> = chars[..start].iter().rev().take_while(|c| c.is_alphabetic() || matches!(c, ' ' | '.' | ':' | '/' | '(' | ')' | '-' | '\u{d7}')).copied().collect();
+            let label: String = before.iter().rev().filter(|c| c.is_alphabetic() && !matches!(c, 'x' | 'X')).collect::<String>().to_uppercase();
+            if let Some((_, order)) = LABELS.iter().find(|(l, _)| label.ends_with(l)) {
+                let mut size = [0.0; 3];
+                for (v, &d) in values.iter().zip(order) {
+                    size[d] = *v;
+                }
+                return Some((size[0], size[1], size[2]));
+            }
+        }
+        i = j.max(i + 1);
+    }
+    None
+}
+
+/// What the panel layout needs of an enclosure body ([`is_enclosure_body`]) taken from
+/// its maker's texts where its data lacks it (the EPLAN Data Portal names no
+/// dimensions): the outer size, the enclosure system (`Enclosure system`) and that it has
+/// no mounting plate (`Mounting plate: no`).
+pub fn complete_enclosure(p: &mut Part, texts: &[&str]) {
+    if !is_enclosure_body(p) {
+        return;
+    }
+    if p.width <= 0.0 || p.height <= 0.0 {
+        if let Some((w, h, d)) = texts.iter().find_map(|t| size_from_text(t)) {
+            (p.width, p.height) = (w, h);
+            if p.depth <= 0.0 {
+                p.depth = d;
+            }
+        }
+    }
+    let system = if p.tech_value("Enclosure system").is_none() { texts.iter().find_map(|t| crate::mechanics::system_from_text(t)) } else { None };
+    let no_plate = p.tech_value("Mounting plate").is_none() && texts.iter().any(|t| t.to_lowercase().contains("without mounting plate"));
+    let lines = system.map(|s| format!("Enclosure system: {s}")).into_iter().chain(no_plate.then(|| "Mounting plate: no".to_string()));
+    for line in lines {
+        if !p.tech_data.is_empty() {
+            p.tech_data.push('\n');
+        }
+        p.tech_data.push_str(&line);
+    }
 }
 
 /// A whole number of the part data (`Rows: 7`), for the fields and rows of a cabinet.

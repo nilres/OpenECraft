@@ -78,7 +78,9 @@ Vue de face 2D (SVG) et modèle 3D par article :
 
 - **STL**, **OBJ** ;
 - **STEP** : solides et modèles surfaciques des fichiers AP203 / AP214 / AP242, placés
-  selon leur structure d'assemblage, tessellés et convertis en mm ;
+  selon leur structure d'assemblage (aussi lorsque les corps d'une pièce dépendent d'une
+  autre représentation, comme dans les modèles CAO de CADENAS, par exemple ceux de
+  Rittal), tessellés et convertis en mm ;
 - **IGES 5.3** : solides et surfaces limitées ;
 - **Parasolid** (`.x_t` / `.x_b`) : corps des fichiers de transmission V13 et plus
   récents, plans, cylindres, cônes, sphères, tores et surfaces B tessellés exactement,

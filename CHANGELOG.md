@@ -43,6 +43,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   imports go to the parts server in several requests, files larger than it takes are
   left out and named. The distribution panels of the Striebel & John catalog have
   their number of device rows and the row spacing of ABB's data sheets.
+- **Enclosures of any maker:** parts of EPLAN's product group *Enclosure* are
+  enclosures of the panel layout, such as ABB's cabinets missing from the catalog;
+  enclosures of the EPLAN Data Portal get their size, enclosure system and a missing
+  mounting plate from their description (tested with Rittal VX25, TS 8, AX and KX).
+- **STEP models of CADENAS:** STEP files that give a part its solids through a further
+  representation, such as the CAD models of Rittal's enclosures, are assembled as
+  they are meant to be instead of each solid at its own origin.
 - **Wires stay on mirrored and turned devices:** mirroring a symbol in the schematic
   (key M, *Mirror*) takes the wires at its connection points along and keeps them
   square, as rotating did; where the mirrored symbol still has a connection point, the
