@@ -33,6 +33,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   server or in a shipped catalog is merged into it instead of replacing it, found by
   its number or its order number: the import's values win, the catalog's part data
   such as fields and rows stay.
+- **ABB's EDZ files:** EDZ files packed as ZIP archives (as ABB publishes its EPLAN
+  data, such as the Striebel & John ComfortLine cabinets and panels) are read; large
+  imports go to the parts server in several requests, files larger than it takes are
+  left out and named. The distribution panels of the Striebel & John catalog have
+  their number of device rows and the row spacing of ABB's data sheets.
 
 ## [0.1.3] - 2026-11-23
 

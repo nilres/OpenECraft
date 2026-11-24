@@ -716,15 +716,28 @@ fn import_package(s: &mut Session, edz: openecraft_edz::Edz) -> Result<Value, St
         }
     }
     let merged = merge::merge_imported(edz.parts, on_server.iter().chain(&shipped));
-    let result = s.server.import(serde_json::to_vec(&merged.parts).map_err(|e| e.to_string())?)?;
-    let mut attached = Vec::new();
+    let (merged_count, renamed) = (merged.merged, merged.renamed.clone());
+    let numbers = |n: &str| renamed.iter().find(|(from, _)| from == n).map_or(n.to_string(), |(_, to)| to.clone());
+    // In batches below the server's limit: the models of an EDZ file make it large.
+    let mut result = openecraft_parts::api::ImportResult::default();
+    for batch in openecraft_parts::api::import_batches(merged.parts) {
+        let r = s.server.import(serde_json::to_vec(&batch).map_err(|e| e.to_string())?)?;
+        result.imported += r.imported;
+        result.revision = r.revision;
+    }
+    let (mut attached, mut skipped) = (Vec::new(), Vec::new());
     for f in edz.files {
-        let number = merged.number_of(&f.part).to_string();
+        let number = numbers(&f.part);
+        // More than the server takes (a 3D macro of 40 MB): the part has its model.
+        if f.data.len() > openecraft_parts::api::MAX_BODY {
+            skipped.push(json!({ "number": number, "file": f.name, "bytes": f.data.len() }));
+            continue;
+        }
         s.server.attach(&number, &f.name, Some(f.kind), f.data)?;
         attached.push(json!({ "number": number, "file": f.name }));
     }
-    let renamed: Vec<Value> = merged.renamed.iter().map(|(from, to)| json!({ "imported": from, "number": to })).collect();
-    Ok(json!({ "imported": result.imported, "merged": merged.merged, "renamed": renamed, "revision": result.revision, "attached": attached }))
+    let renamed: Vec<Value> = renamed.iter().map(|(from, to)| json!({ "imported": from, "number": to })).collect();
+    Ok(json!({ "imported": result.imported, "merged": merged_count, "renamed": renamed, "revision": result.revision, "attached": attached, "skipped": skipped }))
 }
 
 fn export(s: &mut Session, a: &Args) -> Result<Value, String> {

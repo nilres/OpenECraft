@@ -146,8 +146,8 @@ const MODULES_PER_FIELD: u32 = 12;
 const RAIL_MARGIN: f32 = 10.0;
 
 /// The mounting rails a panel accessory of height `h` carries: as many as its part data
-/// `Mounting rails` says, for a distribution panel one per row of its module spaces (12
-/// per field width), else none. Their centre lines (y from the top of the panel) in its
+/// `Device rows` says, for a distribution panel without it one per row of its module
+/// spaces (12 per field width), else none. Their centre lines (y from the top of the panel) in its
 /// rows (`Rows`, `Row spacing`), in the lowest rows when it has fewer rails than rows
 /// (a connection point zone above them).
 pub fn panel_rails(part: &Part, h: f32) -> Vec<f32> {
@@ -156,7 +156,7 @@ pub fn panel_rails(part: &Part, h: f32) -> Vec<f32> {
         let fields = parts::count_value(part, "Fields").unwrap_or(1).max(1);
         parts::count_value(part, "Module spaces").map(|m| m / (MODULES_PER_FIELD * fields)).or(rows)
     };
-    let rails = parts::count_value(part, "Mounting rails").or_else(|| (part.subgroup == "Distribution panel").then(distribution).flatten()).unwrap_or(0);
+    let rails = parts::count_value(part, "Device rows").or_else(|| (part.subgroup == "Distribution panel").then(distribution).flatten()).unwrap_or(0);
     if rails == 0 || h <= 0.0 {
         return Vec::new();
     }

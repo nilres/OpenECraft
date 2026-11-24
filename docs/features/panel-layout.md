@@ -34,9 +34,9 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   device's part (an auxiliary contact, a signal contact) the placed devices it fits.
   Dropped onto a place it goes there; onto a device it becomes an accessory of the
   device. The command `fitting_places` lists the places for the command line and AI
-  agents. A distribution panel comes with its mounting rails, one per row of its module
-  spaces (part data `Module spaces`, `Row spacing`; any other panel with
-  `Mounting rails: n`): devices are placed onto them and move with the panel.
+  agents. A distribution panel comes with its mounting rails (part data `Device rows`,
+  else one per row of its `Module spaces`, `Row spacing` apart; any other panel with
+  `Device rows: n`): devices are placed onto them and move with the panel.
 - Mounting rails and cable ducts drawn by length; select one and drag either end to
   resize it, or move it (devices travel with their rail). Devices are placed from a
   "devices to place" list with their real dimensions from the parts data (contactor +

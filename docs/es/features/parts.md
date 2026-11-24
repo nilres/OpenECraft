@@ -146,7 +146,7 @@ una sala.
   centro) o un texto que nombre el carril (*DIN rail*, *Hutschiene*, *TS 35*, *TS 15*,
   *35 x 15*, *G 32*) hacen del artículo uno para un carril de montaje de ese tamaño
   (*Carril de montaje 35 mm*).
-- **EDZ** (archivos del EPLAN Data Portal, 7-Zip): el XML de artículos que contiene se
+- **EDZ** (archivos del EPLAN Data Portal, 7-Zip o ZIP como los publica ABB): el XML de artículos que contiene se
   lee como arriba, junto con las distancias, la potencia disipada y el enlace a la hoja
   de datos. Las macros de ventana 2D incrustadas se convierten en símbolos del proyecto.
   La imagen del producto se conserva con el artículo como un JPEG pequeño (192 px como
@@ -198,7 +198,10 @@ una sala.
   `Module spaces` de los armarios y campos de Striebel & John. El grupo y el subgrupo
   se mantienen, los datos técnicos se combinan línea por línea (el `Clave: valor` de la
   importación para la misma clave), los accesorios se unen. Los archivos CSV, JSON y
-  BMEcat siguen reemplazando los artículos de sus números.
+  BMEcat siguen reemplazando los artículos de sus números. Parts Manager y
+  `parts_import` suben un archivo grande en varias solicitudes; un archivo que contiene
+  más grande de lo que acepta el servidor de artículos (32 MB, como algunas macros 3D
+  de ABB) no se guarda y se nombra, el artículo conserva el modelo leído de él.
 
 ### Colocar un símbolo de EPLAN
 

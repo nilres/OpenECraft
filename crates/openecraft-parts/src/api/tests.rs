@@ -95,3 +95,15 @@ fn rights_on_a_part_come_from_its_manufacturer_or_its_catalog() {
     assert!(!denied.may_on_part(PartsRight::EditParts, &part));
     assert!(denied.may_on_part(PartsRight::EditParts, &Part { catalog: String::new(), ..part }));
 }
+
+#[test]
+fn large_imports_go_in_batches_below_the_limit() {
+    let big = |n: &str| Part { number: n.into(), note: "x".repeat(MAX_BODY / 3), ..Default::default() };
+    let batches = import_batches(vec![big("A"), big("B"), Part { number: "C".into(), ..Default::default() }, big("D")]);
+    let numbers: Vec<Vec<&str>> = batches.iter().map(|b| b.iter().map(|p| p.number.as_str()).collect()).collect();
+    assert_eq!(numbers, [vec!["A", "B", "C"], vec!["D"]]);
+    assert!(batches.iter().all(|b| serde_json::to_vec(b).unwrap().len() < MAX_BODY));
+    // A part larger than the limit alone, nothing for no parts.
+    assert_eq!(import_batches(vec![Part { note: "x".repeat(MAX_BODY), ..Default::default() }, big("E")]).len(), 2);
+    assert!(import_batches(Vec::new()).is_empty());
+}

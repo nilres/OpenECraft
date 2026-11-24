@@ -201,3 +201,59 @@ fn vendor_archives_place_their_parts_with_the_macro_symbol() {
     }
     assert!(checked > 0, "no EDZ file with a schematic macro");
 }
+
+#[test]
+fn an_edz_file_may_be_a_zip_archive() {
+    // As ABB publishes them: the same items in a ZIP archive, with \ in the names.
+    let mut zip = openecraft_core::zip::ZipWriter::new("2026-11-24");
+    zip.add("manifest.xml", MANIFEST.as_bytes());
+    zip.add("items\\partxml\\SIE.LOGO.part.xml", PART.as_bytes());
+    zip.add("items\\picture\\Siemens\\LOGO!\\logo.png", b"PNG");
+    let bytes = zip.finish();
+    assert!(is_edz(&bytes) && !crate::package::is_zip(&bytes));
+    let edz = read(&bytes).unwrap();
+    assert_eq!(edz.parts[0].number, "SIE.LOGO");
+    assert_eq!(edz.files.iter().map(|f| (f.part.as_str(), f.name.as_str())).collect::<Vec<_>>(), [("SIE.LOGO", "logo.png")]);
+    // Another ZIP archive is no EDZ file.
+    let mut other = openecraft_core::zip::ZipWriter::new("2026-11-24");
+    other.add("CSV_article_list/bill-of-material.csv", b"1;1;Pc(s.);x;1");
+    let other = other.finish();
+    assert!(!is_edz(&other) && crate::package::is_zip(&other));
+}
+
+/// ABB's EDZ files of the Striebel & John ComfortLine A cabinets and distribution panels
+/// (`ABB_9AAF603720.edz`, `ABB_9AAF618175.edz` of the ABB library), which may not be
+/// checked in: their parts are merged into the shipped catalog by their order numbers,
+/// a cabinet keeps its field grid and a distribution panel its rails.
+#[test]
+#[ignore = "requires OPENECRAFT_SJ_EDZ_DIR pointing to ABB's ComfortLine EDZ files"]
+fn abb_comfortline_archives_merge_into_the_shipped_catalog() {
+    use openecraft_core::panel::{self, fit};
+    let dir = std::env::var("OPENECRAFT_SJ_EDZ_DIR").unwrap();
+    let mut imported = Vec::new();
+    for entry in std::fs::read_dir(dir).unwrap() {
+        let path = entry.unwrap().path();
+        if path.extension().is_some_and(|e| e.eq_ignore_ascii_case("edz")) {
+            imported.extend(read(&std::fs::read(&path).unwrap()).unwrap().parts);
+        }
+    }
+    let shipped = openecraft_parts::bundled::load("striebel_john").unwrap().parts;
+    let merged = openecraft_parts::merge::merge_imported(imported, &shipped);
+    assert!(merged.merged >= 49, "{}", merged.merged);
+    assert_eq!(merged.number_of("ABB.2CPX054002R9999"), "SJ.2CPX054002R9999");
+    let mut parts = shipped.clone();
+    for p in merged.parts {
+        openecraft_parts::upsert(&mut parts, p);
+    }
+    let fv17 = parts.iter().find(|p| p.number == "SJ.2CPX054002R9999").unwrap().clone();
+    assert!(fv17.model_3d.is_some() && fv17.tech_value("GTIN").is_some());
+    let mut prj = openecraft_core::model::Project { parts, ..Default::default() };
+    let e = panel::new_enclosure(&mut prj, "SJ.2CPX052032R9999", "+Z1");
+    prj.layout.enclosures.push(e);
+    assert_eq!(fit::field_grid(&prj, &prj.layout.enclosures[0]), Some((3, 7, 250.0, 150.0)));
+    let places = fit::places(&prj, 0, &fv17);
+    assert_eq!(places.len(), 3);
+    let id = fit::put(&mut prj, &openecraft_parts::PartsDb::default(), 0, &fv17.number, &places[1], openecraft_core::geom::p(0.0, 0.0)).unwrap();
+    let rails: Vec<f32> = prj.layout.enclosures[0].items.iter().filter(|i| i.mounted_on == id).map(|i| i.center().y).collect();
+    assert_eq!(rails, [150.0, 275.0, 400.0, 525.0, 650.0, 775.0, 900.0]);
+}

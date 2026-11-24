@@ -144,7 +144,7 @@ dem Betriebsmittel gibt. Bodenstehende Artikel stehen aufrecht auf dem Boden ein
   (*DIN rail*, *Hutschiene*, *TS 35*, *TS 15*, *35 x 15*, *G 32*), machen den Artikel zu
   einem für
   eine Tragschiene dieser Größe (*Tragschiene 35 mm*).
-- **EDZ** (Archive des EPLAN Data Portal, 7-Zip): Das Artikel-XML darin wird wie oben
+- **EDZ** (Archive des EPLAN Data Portal, 7-Zip oder ZIP, wie ABB sie veröffentlicht): Das Artikel-XML darin wird wie oben
   gelesen, zusammen mit Abständen, Verlustleistung und dem Link zum Datenblatt.
   Eingebettete 2D-Fenstermakros werden Projektsymbole. Das Produktbild wird als kleines
   JPEG (höchstens 192 px) mit dem Artikel aufbewahrt und in den Artikeldetails mit seinen
@@ -201,7 +201,10 @@ dem Betriebsmittel gibt. Bodenstehende Artikel stehen aufrecht auf dem Boden ein
   Striebel & John. Gruppe und Untergruppe bleiben, die technischen Daten werden Zeile
   für Zeile zusammengeführt (das `Schlüssel: Wert` des Imports für denselben
   Schlüssel), Zubehör wird vereinigt. CSV-, JSON- und BMEcat-Dateien ersetzen die
-  Artikel ihrer Nummern weiterhin.
+  Artikel ihrer Nummern weiterhin. Parts Manager und `parts_import` laden eine große
+  Datei in mehreren Anfragen hoch; eine Datei darin, die größer ist, als der
+  Artikelserver annimmt (32 MB, etwa manche 3D-Makros von ABB), wird nicht gespeichert
+  und genannt, der Artikel behält das daraus gelesene Modell.
 
 ### Ein EPLAN-Symbol platzieren
 

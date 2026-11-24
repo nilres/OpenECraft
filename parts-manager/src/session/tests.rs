@@ -237,6 +237,16 @@ fn files_of_an_edz_file_are_attached_after_its_parts_are_uploaded() {
     assert_eq!(s.apply(&Reply::Imported(Err("denied".into()))), None);
     assert!(s.pending_files.is_empty(), "a failed upload drops the files");
     assert!(s.import_package("part.edz", b"no archive").is_err());
+    // A large file goes up in batches, one after the other, then its files.
+    let batch = |n: &str| vec![part(n)];
+    s.pending_parts = vec![batch("C"), batch("B")];
+    s.pending_files = vec![EdzFile { part: "C".into(), name: "c.png".into(), kind: openecraft_parts::portal::AttachmentKind::Image, data: vec![1] }];
+    assert_eq!(s.apply(&Reply::Imported(Ok(ImportResult::default()))), Some(FollowUp::Upload(batch("B"))));
+    assert_eq!(s.apply(&Reply::Imported(Ok(ImportResult::default()))), Some(FollowUp::Upload(batch("C"))));
+    assert!(matches!(s.apply(&Reply::Imported(Ok(ImportResult::default()))), Some(FollowUp::Attach(_))));
+    s.pending_parts = vec![batch("D")];
+    assert_eq!(s.apply(&Reply::Imported(Err("denied".into()))), None);
+    assert!(s.pending_parts.is_empty(), "a failed upload drops the other batches");
 }
 
 #[test]
@@ -261,6 +271,13 @@ fn an_imported_part_is_merged_into_the_part_of_a_shipped_catalog() {
     let p = &parts[0];
     assert_eq!((p.number.as_str(), p.subgroup.as_str(), p.tech_value("Rows")), ("SJ.2CPX054002R9999", "Distribution panel", Some("7")));
     assert_eq!(s.pending_files.iter().map(|f| f.part.as_str()).collect::<Vec<_>>(), ["SJ.2CPX054002R9999"]);
+    assert!(s.skipped_files.is_empty());
+    // A file larger than the server takes is left out and named.
+    let mut zip = openecraft_core::zip::ZipWriter::new("2026-11-24");
+    zip.add("CSV_article_list/bill-of-material.csv", b"2CPX054002R9999;1;Pc(s.);Distribution panel FV17;4011617540021");
+    zip.add("Product_description/Huge.pdf", &vec![b'x'; openecraft_parts::api::MAX_BODY + 1]);
+    s.import_package("big.zip", &zip.finish()).unwrap();
+    assert_eq!((s.pending_files.len(), s.skipped_files.clone()), (0, vec!["Huge.pdf".to_string()]));
 }
 
 #[test]

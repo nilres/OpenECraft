@@ -40,8 +40,8 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
   Déposé sur un emplacement, il y va ; sur un appareil, il devient un accessoire de
   l'appareil. La commande `fitting_places` liste les emplacements pour la ligne de
   commande et les agents d'IA. Un champ de répartition apporte ses rails de montage, un
-  par rangée de ses modules (données d'article `Module spaces`, `Row spacing` ; tout
-  autre champ avec `Mounting rails: n`) : les appareils y sont placés et suivent le champ.
+  par rangée (données d'article `Device rows`, sinon un par rangée de ses
+  `Module spaces`, espacées de `Row spacing` ; tout autre champ avec `Device rows: n`) : les appareils y sont placés et suivent le champ.
 - Rails de montage et goulottes dessinés à la longueur ; sélectionnez-en un et faites
   glisser l'une de ses extrémités pour le redimensionner, ou déplacez-le (les appareils
   suivent leur rail). Les appareils sont placés à partir d'une liste « appareils à

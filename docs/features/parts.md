@@ -124,7 +124,7 @@ the device. Floor-standing parts stand upright on the floor of a room.
   interpreted yet). EPLAN's rail data (snap height, centre offset) or a text naming the rail
   (*DIN rail*, *Hutschiene*, *TS 35*, *TS 15*, *35 x 15*, *G 32*) make the part one for
   a mounting rail of that size (*Mounting rail 35 mm*).
-- **EDZ** (EPLAN Data Portal archives, 7-Zip): the parts XML inside is read as above,
+- **EDZ** (EPLAN Data Portal archives, 7-Zip or ZIP as ABB publishes them): the parts XML inside is read as above,
   together with clearances, power loss and the datasheet link. Embedded 2D window
   macros become project symbols. The product picture is kept with the part as a small
   JPEG (at most 192 px) and shown in the part details with its mounting data
@@ -169,7 +169,10 @@ the device. Floor-standing parts stand upright on the floor of a room.
   `Fields`, `Rows` and `Module spaces` of the Striebel & John cabinets and panels. The
   group and subgroup stay, the technical data are merged line by line (the import's
   `Key: value` for the same key), accessories are united. CSV, JSON and BMEcat files
-  still replace the parts of their numbers.
+  still replace the parts of their numbers. Parts Manager and `parts_import` upload a
+  large file in several requests; a file of it larger than the parts server takes
+  (32 MB, such as some 3D macros of ABB) is not stored and named, the part keeps the
+  model read from it.
 
 ### Placing an EPLAN symbol
 
