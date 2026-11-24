@@ -76,6 +76,11 @@ in the app storage (desktop) / local storage (browser).
   converted to mm;
 - **JT**: the tri-strip meshes of JT 8 files.
 
+The model of an enclosure's mounting plate, a separate file such as the `CAD_MPL_…` file
+of Rittal's CAD models, is read with *Import its model…* under *Mounting plate*: its
+width and height become the part data `Mounting size: 699 x 1896`, and an enclosure of
+the part gets a plate of that size, centred unless the part names its `Mounting origin`.
+
 Parts with dimensions but without a model get a generated one by what they are: DIN
 rail devices with their terminals, toggle or display, terminals in their colours (PE
 green, N blue), PLC modules, fuse switch disconnectors, wall-mounted electronics with

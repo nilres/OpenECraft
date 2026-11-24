@@ -21,7 +21,7 @@
 
 use crate::endpoint::with_content_type;
 use openecraft_i18n::{lang, tr, tr_fmt};
-use openecraft_parts::api::{self, encode_component, PartQuery, ServerInfo};
+use openecraft_parts::api::{self, encode_component, Accessories, PartQuery, ServerInfo};
 use openecraft_parts::portal::{Attachment, AttachmentKind, Facet, Lifecycle, SearchResult, Sort};
 use openecraft_parts::productgroups::{self, Classification};
 use openecraft_parts::{unix_from_date, Part};
@@ -34,8 +34,16 @@ pub const EPLAN_NAME: &str = "EPLAN Data Portal";
 const LIMIT: usize = 50;
 /// Parts a search for one number may return (numbers that contain it come as well).
 const FIND_LIMIT: usize = 20;
-/// Related resources the answers include: names of manufacturer and groups, pictures.
-const INCLUDE: &str = "manufacturer,product_top_group,product_group,product_sub_group,picture_file.preview";
+/// Related resources the answers include: names of manufacturer and groups, pictures,
+/// the accessories (by number only, [`ACCESSORY_NUMBERS`]).
+const INCLUDE: &str = "manufacturer,product_top_group,product_group,product_sub_group,picture_file.preview,accessories";
+/// Of the accessories only their numbers: their texts in all languages would make an
+/// answer many times larger (380 instead of 20 kB for an enclosure of Rittal).
+const ACCESSORY_NUMBERS: (&str, &str) = ("fields[related_parts]", "part_number");
+/// The accessories of a part with their maker and groups ([`EplanEndpoint::accessories`]).
+const ACCESSORY_INCLUDE: &str = "accessories,accessories.manufacturer,accessories.product_top_group,accessories.product_group,accessories.product_sub_group";
+/// What the portal sends of those accessories.
+const ACCESSORY_FIELDS: &str = "part_number,order_number,type_number,designation,lifecycle,manufacturer,product_top_group,product_group,product_sub_group";
 /// The facets the portal can filter by.
 const FACETS: [&str; 4] = ["top_group", "group", "subgroup", "manufacturer"];
 
@@ -110,13 +118,27 @@ impl EplanEndpoint {
 
     /// POST /parts: the parts with these portal ids.
     pub fn parts(&self, ids: &[String]) -> ehttp::Request {
-        let req = ehttp::Request::post(self.url(&format!("/parts{}", params(&[("include", INCLUDE.into())]))), ids.join(",").into_bytes());
+        let query = [("include", INCLUDE.into()), (ACCESSORY_NUMBERS.0, ACCESSORY_NUMBERS.1.into())];
+        let req = ehttp::Request::post(self.url(&format!("/parts{}", params(&query))), ids.join(",").into_bytes());
         self.authorized(with_content_type(req, "text/plain"))
     }
 
     /// Search for exactly this part number ([`decode_part`] picks the part).
     pub fn part(&self, number: &str) -> ehttp::Request {
-        let query = [("search", format!("\"{}\"", number.trim().replace('"', ""))), ("include", INCLUDE.into()), ("page[limit]", FIND_LIMIT.to_string())];
+        let query = [("search", quoted(number)), ("include", INCLUDE.into()), (ACCESSORY_NUMBERS.0, ACCESSORY_NUMBERS.1.into()), ("page[limit]", FIND_LIMIT.to_string())];
+        self.get(&format!("/parts{}", params(&query)))
+    }
+
+    /// The accessories of the part with this number with their texts, maker and groups
+    /// ([`decode_accessories`]).
+    pub fn accessories(&self, number: &str) -> ehttp::Request {
+        let query = [
+            ("search", quoted(number)),
+            ("include", ACCESSORY_INCLUDE.into()),
+            ("fields[parts]", "part_number,accessories".into()),
+            ("fields[related_parts]", ACCESSORY_FIELDS.into()),
+            ("page[limit]", FIND_LIMIT.to_string()),
+        ];
         self.get(&format!("/parts{}", params(&query)))
     }
 
@@ -208,6 +230,7 @@ pub fn query_string(query: &PartQuery) -> String {
         list.push(("sort", format!("{}{sort}", if query.descending { "-" } else { "" })));
     }
     list.push(("include", INCLUDE.into()));
+    list.push((ACCESSORY_NUMBERS.0, ACCESSORY_NUMBERS.1.into()));
     list.push(("page[offset]", query.offset.unwrap_or(0).to_string()));
     list.push(("page[limit]", query.limit.unwrap_or(LIMIT).to_string()));
     params(&list)
@@ -289,6 +312,18 @@ pub fn decode_part(number: &str, result: ehttp::Result<ehttp::Response>) -> Resu
         return Ok(None);
     }
     Ok(parts(&document(result)?).into_iter().find(|p| p.number.eq_ignore_ascii_case(number.trim())))
+}
+
+/// Answer of [`EplanEndpoint::accessories`]: the accessories of the part with this
+/// number in the order the part lists them. The portal names no parts an accessory fits.
+pub fn decode_accessories(number: &str, result: ehttp::Result<ehttp::Response>) -> Result<Accessories, String> {
+    let doc = document(result)?;
+    let included = doc["included"].as_array().map(Vec::as_slice).unwrap_or_default();
+    let data = doc["data"].as_array().map(Vec::as_slice).unwrap_or_default();
+    let main = data.iter().find(|r| r["attributes"]["part_number"].as_str().is_some_and(|n| n.eq_ignore_ascii_case(number.trim())));
+    let listed = main.and_then(|r| r["relationships"]["accessories"]["data"].as_array()).map(Vec::as_slice).unwrap_or_default();
+    let accessories = listed.iter().map(|a| lookup(a, included)).filter(|a| a.get("attributes").is_some()).map(|a| part(a, included)).collect();
+    Ok(Accessories { accessories, fits: Vec::new() })
 }
 
 /// Answer of [`EplanEndpoint::file`].
@@ -436,6 +471,11 @@ fn lifecycle(v: &Value) -> Lifecycle {
     } else {
         Lifecycle::Active
     }
+}
+
+/// A search for exactly this number.
+fn quoted(number: &str) -> String {
+    format!("\"{}\"", number.trim().replace('"', ""))
 }
 
 /// A part number as part of a file name.

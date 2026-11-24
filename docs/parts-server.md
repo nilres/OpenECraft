@@ -317,6 +317,9 @@ server. OpenECraft is not affiliated with EPLAN.
   description (`WHD: 800x2000x600 mm`, *baying*, *compact*, *terminal box*, *without
   mounting plate*), so that they can be placed in the panel layout like the enclosures
   of the catalogs (tested with Rittal VX25, TS 8, AX and KX).
+- A part loaded from the portal lists its accessories by number; the details of the
+  part show them with their description, maker and product group, so that they can be
+  opened and added like other parts and fit their part in the panel layout.
 - Parts in EPLAN format (macros, connection points) come as EDZ files from the portal
   web page with an EPLAN license (a free account downloads commercial data and DXF
   drawings only); import them like other parts files (see [parts management](features/parts.md)).

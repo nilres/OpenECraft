@@ -348,6 +348,10 @@ du portail sur un serveur d'articles partagé. OpenECraft n'est pas affilié à 
   la description (`WHD: 800x2000x600 mm`, *baying*, *compact*, *terminal box*,
   *without mounting plate*), de sorte qu'ils se placent dans l'implantation d'armoire comme les
   coffrets des catalogues (testé avec Rittal VX25, TS 8, AX et KX).
+- Un article chargé depuis le portail liste ses accessoires par leur numéro ; les
+  détails de l'article les montrent avec leur description, leur fabricant et leur
+  groupe de produits, de sorte qu'ils s'ouvrent et s'ajoutent comme les autres articles
+  et vont avec leur article dans l'implantation d'armoire.
 - Les articles au format EPLAN (macros, points de raccordement) viennent comme fichiers EDZ
   de la page web du portail avec une licence EPLAN (un compte gratuit ne télécharge que
   les données commerciales et les dessins DXF) ; importez-les comme d'autres fichiers d'articles (voir

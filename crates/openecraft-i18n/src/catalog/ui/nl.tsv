@@ -5,6 +5,7 @@
 2D front view	2D-vooraanzicht
 2D front view (SVG)	2D-vooraanzicht (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A separate model of the mounting plate (such as the CAD_MPL file of Rittal's CAD models): its width and height become the size of the plate, centred in the enclosure	Een apart model van de montageplaat (zoals het CAD_MPL-bestand van de CAD-modellen van Rittal): de breedte en hoogte ervan worden de maat van de plaat, gecentreerd in de behuizing
 A short title for the problem (optional)	Een korte titel voor het probleem (optioneel)
 Accessories of this part	Toebehoren van dit artikel
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Toebehoren werkt alleen samen met de artikelen waarop het past. Een artikel noemt zijn toebehoren, een toebehoren de artikelen waarop het past; één kant is genoeg.
@@ -64,6 +65,7 @@ Hides this form and takes a screenshot of the window as it is now	Verbergt dit f
 Identifying letter of devices using this part (K, Q, S …)	Kenletter van apparaten met dit artikel (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT importeren…
 Import SVG…	SVG importeren…
+Import its model…	Model ervan importeren…
 In the door, when they differ from the cutouts	In de deur, als ze afwijken van de uitsparingen
 Internal values of the EPLAN part exchange (0: undefined)	Interne waarden van de EPLAN-artikeluitwisseling (0: niet gedefinieerd)
 Isometric view, everything shown	Isometrische weergave, alles zichtbaar
@@ -192,8 +194,10 @@ e.g. 25.4 for models in inch, 1000 for models in metres	bijv. 25,4 voor modellen
 from {} mm²	vanaf {} mm²
 no 2D model	geen 2D-model
 no mounting data	geen montagegegevens
+no size given – the plate keeps 25 mm from the edges	geen maat opgegeven – de plaat blijft 25 mm van de randen
 none – a box of the mounting dimensions is drawn	geen – er wordt een blok met de montageafmetingen getekend
 none – a plain rectangle is drawn	geen – er wordt een eenvoudige rechthoek getekend
+none – the enclosure has no mounting plate	geen – de behuizing heeft geen montageplaat
 only needed for uploads	alleen nodig voor uploads
 read-only	alleen-lezen
 signed in as {} ({})	aangemeld als {} ({})
@@ -219,6 +223,8 @@ up to {} mm²	tot {} mm²
 {}, {} wires per connection point	{}, {} draden per aansluitpunt
 {}: 2D front view with {} elements assigned to {}	{}: 2D-vooraanzicht met {} elementen toegewezen aan {}
 {}: 3D model with {} triangles ({} × {} × {} mm) assigned to {}	{}: 3D-model met {} driehoeken ({} × {} × {} mm) toegewezen aan {}
+{}: mounting plate of {} × {} mm for {}	{}: montageplaat van {} × {} mm voor {}
+{}: the model ({} × {} × {} mm) does not fit into {} as its mounting plate	{}: het model ({} × {} × {} mm) past niet als montageplaat in {}
 ★ Favorites	★ Favorieten
 ★ Remove from favorites	★ Verwijderen uit favorieten
 ☆ Add to favorites	☆ Toevoegen aan favorieten

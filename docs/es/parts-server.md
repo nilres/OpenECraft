@@ -338,6 +338,10 @@ servidor de artículos compartido. OpenECraft no está afiliado a EPLAN.
   descripción (`WHD: 800x2000x600 mm`, *baying*, *compact*, *terminal box*, *without
   mounting plate*), de modo que se colocan en el diseño del armario como las
   envolventes de los catálogos (probado con Rittal VX25, TS 8, AX y KX).
+- Un artículo cargado del portal lista sus accesorios por número; los detalles del
+  artículo los muestran con su descripción, fabricante y grupo de productos, de modo
+  que se abren y se añaden como otros artículos y encajan con su artículo en el diseño
+  del armario.
 - Los artículos en formato EPLAN (macros, puntos de conexión) llegan como archivos EDZ
   desde la página web del portal con una licencia de EPLAN (una cuenta gratuita solo
   descarga datos comerciales y dibujos DXF); impórtelos como otros archivos de artículos (véase

@@ -45,13 +45,15 @@ pub enum ModelKind {
     Front2d,
     /// 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT).
     Mesh3d,
+    /// 3D model of the mounting plate of an enclosure: the size of its plate.
+    MountingPlate,
 }
 
 impl FileKind for ModelKind {
     fn filter(self) -> (&'static str, &'static [&'static str]) {
         match self {
             ModelKind::Front2d => (tr("2D front view (SVG)"), &["svg"]),
-            ModelKind::Mesh3d => (tr("3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)"), &["stl", "obj", "step", "stp", "igs", "iges", "x_t", "x_b", "xmt_txt", "xmt_bin", "ifc", "jt"]),
+            ModelKind::Mesh3d | ModelKind::MountingPlate => (tr("3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)"), &["stl", "obj", "step", "stp", "igs", "iges", "x_t", "x_b", "xmt_txt", "xmt_bin", "ifc", "jt"]),
         }
     }
 }
@@ -1077,6 +1079,20 @@ fn graphics_tab(ui: &mut egui::Ui, part: &mut Part, model_scale: &mut f32) -> Op
             }
         }
     }
+    if openecraft_parts::is_enclosure_body(part) {
+        ui.separator();
+        ui.label(RichText::new(tr("Mounting plate")).strong());
+        ui.horizontal_wrapped(|ui| {
+            match part.tech_value("Mounting size") {
+                Some(size) => ui.label(tr_fmt!("{} mm", size.trim_end_matches("mm").trim().replace(" x ", " × "))),
+                None if part.tech_value("Mounting plate").is_some_and(|v| v.eq_ignore_ascii_case("no")) => ui.weak(tr("none – the enclosure has no mounting plate")),
+                None => ui.weak(tr("no size given – the plate keeps 25 mm from the edges")),
+            };
+            if ui.button(tr("Import its model…")).on_hover_text(tr("A separate model of the mounting plate (such as the CAD_MPL file of Rittal's CAD models): its width and height become the size of the plate, centred in the enclosure")).clicked() {
+                request = Some(ModelKind::MountingPlate);
+            }
+        });
+    }
     request
 }
 
@@ -1085,10 +1101,11 @@ pub fn apply_model(part: &mut Part, kind: ModelKind, name: &str, bytes: &[u8]) -
     Ok(assign_model(part, name, read_model(kind, name, bytes)?))
 }
 
-/// A model read from a file: a 2D front view or a 3D model.
+/// A model read from a file: a 2D front view, a 3D model or that of a mounting plate.
 pub enum Model {
     Front2d(Model2d),
     Mesh3d(Mesh3d),
+    MountingPlate(Mesh3d),
 }
 
 /// Parses the model file `name` (STEP, IGES and Parasolid files are tessellated, which
@@ -1097,6 +1114,7 @@ pub fn read_model(kind: ModelKind, name: &str, bytes: &[u8]) -> Result<Model, St
     match kind {
         ModelKind::Front2d => Ok(Model::Front2d(parse_svg(&String::from_utf8_lossy(bytes))?)),
         ModelKind::Mesh3d => Ok(Model::Mesh3d(parse_model_3d(short_name(name), bytes)?)),
+        ModelKind::MountingPlate => Ok(Model::MountingPlate(parse_model_3d(short_name(name), bytes)?)),
     }
 }
 
@@ -1121,6 +1139,13 @@ pub fn assign_model(part: &mut Part, name: &str, model: Model) -> String {
             }
             part.model_3d = Some(m.into());
             msg
+        }
+        Model::MountingPlate(m) => {
+            let (s, number) = (m.size(), part.number.clone());
+            match openecraft_parts::set_mounting_plate(part, s) {
+                Some([w, h]) => tr_fmt!("{}: mounting plate of {} × {} mm for {}", file, w, h, number),
+                None => tr_fmt!("{}: the model ({} × {} × {} mm) does not fit into {} as its mounting plate", file, format!("{:.1}", s[0]), format!("{:.1}", s[1]), format!("{:.1}", s[2]), number),
+            }
         }
     }
 }

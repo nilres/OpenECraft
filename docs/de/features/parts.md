@@ -85,6 +85,12 @@ im App-Speicher (Desktop) / lokalen Speicher (Browser) gespeichert.
   in mm umgerechnet;
 - **JT**: die Tri-Strip-Netze von JT-8-Dateien.
 
+Das Modell der Montageplatte eines Gehäuses, eine eigene Datei wie die Datei `CAD_MPL_…`
+der CAD-Modelle von Rittal, wird mit *Ihr Modell importieren…* unter *Montageplatte*
+gelesen: Seine Breite und Höhe werden die Artikeldaten `Mounting size: 699 x 1896`, und
+ein Gehäuse des Artikels erhält eine Platte dieser Größe, mittig, sofern der Artikel
+keinen `Mounting origin` nennt.
+
 Artikel mit Abmessungen, aber ohne Modell erhalten ein erzeugtes, je nachdem, was sie
 sind: Reiheneinbaugeräte mit ihren Klemmen, Kipphebel oder Anzeige, Klemmen in ihren
 Farben (PE

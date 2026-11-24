@@ -704,10 +704,14 @@ pub fn new_enclosure(prj: &mut Project, part: &str, name: &str) -> Enclosure {
         if pd.tech_value("Mounting plate").is_some_and(|v| matches!(v.trim().to_ascii_lowercase().as_str(), "no" | "false" | "0")) {
             e.no_implicit_plate = true;
         }
+        // Its size (`Mounting size: 550 x 575`); without its place it is centred.
+        let size = pd.tech_value("Mounting size").and_then(mounting_size);
         if let Some(origin) = pd.tech_value("Mounting origin").and_then(mounting_origin) {
             e.mounting_origin = Some(origin);
-            // Its size when it is not centred (`Mounting size: 550 x 575`).
-            e.mounting_size = pd.tech_value("Mounting size").and_then(mounting_size);
+            e.mounting_size = size;
+        } else if let Some([w, h]) = size.filter(|[w, h]| *w <= e.width && *h <= e.height) {
+            e.mounting_origin = Some([(e.width - w) / 2.0, (e.height - h) / 2.0, PLATE_Z]);
+            e.mounting_size = Some([w, h]);
         }
     }
     e

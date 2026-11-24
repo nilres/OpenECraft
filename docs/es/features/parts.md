@@ -89,6 +89,12 @@ Vista frontal 2D (SVG) y modelo 3D por artículo:
   convertidos a mm;
 - **JT**: las mallas de tiras de triángulos de los archivos JT 8.
 
+El modelo de la placa de montaje de una envolvente, un archivo aparte como el archivo
+`CAD_MPL_…` de los modelos CAD de Rittal, se lee con *Importar su modelo…* en *Placa de
+montaje*: su ancho y su alto pasan a ser los datos de artículo `Mounting size: 699 x 1896`,
+y una envolvente del artículo recibe una placa de ese tamaño, centrada salvo que el
+artículo indique su `Mounting origin`.
+
 Los artículos con dimensiones pero sin modelo reciben uno generado según lo que son:
 dispositivos de carril DIN con sus bornes, palanca o pantalla, bornes en sus colores (PE
 verde, N azul), módulos de PLC, interruptores-seccionadores con fusibles, electrónica de

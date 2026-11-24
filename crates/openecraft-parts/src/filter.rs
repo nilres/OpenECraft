@@ -233,6 +233,22 @@ pub fn complete_enclosure(p: &mut Part, texts: &[&str]) {
     }
 }
 
+/// The mounting plate of an enclosure part from the size of a model of the plate (as
+/// the `CAD_MPL_…` files of Rittal's CAD models): its width along x, its height the
+/// larger of the other two extents (the plate standing or lying). Without a `Mounting
+/// origin` the enclosure centres it. `None` for a model larger than the enclosure.
+pub fn set_mounting_plate(p: &mut Part, model: [f32; 3]) -> Option<[f32; 2]> {
+    let round = |v: f32| (v * 10.0).round() / 10.0;
+    let size = [round(model[0]), round(model[1].max(model[2]))];
+    let positive = size.iter().all(|v| v.is_finite() && *v > 0.0);
+    if !positive || (p.width > 0.0 && size[0] > p.width) || (p.height > 0.0 && size[1] > p.height) {
+        return None;
+    }
+    p.set_tech_value("Mounting size", Some(&format!("{} x {}", size[0], size[1])));
+    p.set_tech_value("Mounting plate", None);
+    Some(size)
+}
+
 /// A whole number of the part data (`Rows: 7`), for the fields and rows of a cabinet.
 pub fn count_value(p: &Part, key: &str) -> Option<u32> {
     p.tech_value(key)?.split_whitespace().next()?.parse().ok()

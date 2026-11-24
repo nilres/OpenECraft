@@ -178,5 +178,12 @@ fn rittal_models_have_the_size_of_their_enclosure() {
         for k in 0..3 {
             assert!(size[k] > expected[k] - 5.0 && size[k] < expected[k] + 25.0, "{part}: {size:?}, expected {expected:?}");
         }
+        // The model of its mounting plate gives the size of the plate.
+        let plate = std::path::Path::new(&dir).join(part).join(format!("CAD_MPL_{}.{}.stp", &part[4..8], &part[8..]));
+        if let Ok(bytes) = std::fs::read(&plate) {
+            let mut p = openecraft_parts::Part { width: expected[0], height: expected[1], depth: expected[2], ..Default::default() };
+            let [w, h] = openecraft_parts::set_mounting_plate(&mut p, parse_step(&bytes).unwrap().size()).unwrap();
+            assert!(w > expected[0] - 150.0 && h > expected[1] - 150.0, "{part}: plate {w} x {h}");
+        }
     }
 }

@@ -37,6 +37,18 @@ fn technical_data_values() {
     assert_eq!(p.tech_value("Cross-section"), Some("1.5 mm²"));
     assert_eq!(p.tech_value("Voltage"), None);
     assert_eq!(p.quantity_unit, "m");
+    let mut q = Part { tech_data: "IP: 55
+Mounting size: 1 x 2
+Colour: RAL 7035".into(), ..Default::default() };
+    q.set_tech_value("mounting size", Some("700 x 1896"));
+    assert_eq!(q.tech_data, "IP: 55
+mounting size: 700 x 1896
+Colour: RAL 7035");
+    q.set_tech_value("Door hinge", Some("right"));
+    q.set_tech_value("IP", None);
+    assert_eq!(q.tech_data, "mounting size: 700 x 1896
+Colour: RAL 7035
+Door hinge: right");
 }
 
 #[test]

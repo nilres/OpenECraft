@@ -89,6 +89,12 @@ Vue de face 2D (SVG) et modèle 3D par article :
   convertis en mm ;
 - **JT** : les maillages en bandes de triangles des fichiers JT 8.
 
+Le modèle de la plaque de montage d'un coffret, un fichier distinct comme le fichier
+`CAD_MPL_…` des modèles CAO de Rittal, se lit avec *Importer son modèle…* sous *Plaque de
+montage* : sa largeur et sa hauteur deviennent les données d'article
+`Mounting size: 699 x 1896`, et un coffret de l'article reçoit une plaque de cette
+taille, centrée sauf si l'article indique son `Mounting origin`.
+
 Les articles avec des dimensions mais sans modèle en reçoivent un généré d'après ce
 qu'ils sont : appareils sur rail DIN avec leurs bornes, leur levier ou leur afficheur,
 bornes dans leurs couleurs (PE vert, N bleu), modules API, interrupteurs-sectionneurs à

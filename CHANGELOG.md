@@ -50,6 +50,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **STEP models of CADENAS:** STEP files that give a part its solids through a further
   representation, such as the CAD models of Rittal's enclosures, are assembled as
   they are meant to be instead of each solid at its own origin.
+- **Accessories of the EPLAN Data Portal:** a part of the portal lists its accessories,
+  and its details show them with their description, maker and product group.
+- **Mounting plate from its model:** the part editor reads the separate model of an
+  enclosure's mounting plate (such as Rittal's `CAD_MPL` files) and gives the enclosure
+  a plate of its size, centred.
 - **Wires stay on mirrored and turned devices:** mirroring a symbol in the schematic
   (key M, *Mirror*) takes the wires at its connection points along and keeps them
   square, as rotating did; where the mirrored symbol still has a connection point, the

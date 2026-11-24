@@ -181,3 +181,22 @@ fn an_enclosure_of_eplan_data_is_completed_from_its_texts() {
     let plate = Part { group: "Enclosure".into(), subgroup: "General".into(), accessory: true, width: 700.0, height: 1900.0, ..Default::default() };
     assert!(!is_enclosure(&plate));
 }
+
+#[test]
+fn the_mounting_plate_of_an_enclosure_comes_from_its_model() {
+    // Rittal's model of the plate of a VX25 enclosure (standing, its folded edges 22 mm)
+    // and of an AX enclosure (lying).
+    let mut vx = Part { width: 800.0, height: 2000.0, depth: 600.0, tech_data: "Enclosure system: baying".into(), ..Default::default() };
+    assert_eq!(set_mounting_plate(&mut vx, [699.0, 1896.0, 22.04]), Some([699.0, 1896.0]));
+    assert_eq!(vx.tech_data, "Enclosure system: baying
+Mounting size: 699 x 1896");
+    let mut ax = Part { width: 500.0, height: 500.0, tech_data: "Mounting plate: no".into(), ..Default::default() };
+    assert_eq!(set_mounting_plate(&mut ax, [450.0, 2.5, 475.0]), Some([450.0, 475.0]));
+    assert_eq!(ax.tech_data, "Mounting size: 450 x 475");
+    // Another model replaces it; the enclosure's own model is no plate.
+    assert_eq!(set_mounting_plate(&mut ax, [440.04, 460.0, 2.0]), Some([440.0, 460.0]));
+    assert_eq!(ax.tech_value("Mounting size"), Some("440 x 460"));
+    assert_eq!(set_mounting_plate(&mut ax, [500.0, 504.0, 216.7]), None);
+    assert_eq!(set_mounting_plate(&mut ax, [0.0, 0.0, 0.0]), None);
+    assert_eq!(ax.tech_value("Mounting size"), Some("440 x 460"));
+}
