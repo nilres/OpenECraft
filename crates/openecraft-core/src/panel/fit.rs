@@ -3,9 +3,10 @@
 //! part with field widths and rows (part data `Fields: 1`, `Rows: 7`, a distribution
 //! panel of a meter cabinet) goes into the free slots of the cabinet's field grid on
 //! the mounting plate; another accessory of the enclosure anywhere on the faces it may
-//! be mounted on; an accessory of a device's part onto the placed device.
+//! be mounted on; an accessory of a device's part onto the placed device. A panel with
+//! mounting rails (a distribution panel) carries them, so that devices go onto them.
 
-use super::{allowed_faces, new_accessory, part_by_number, Enclosure, Face, ItemKind};
+use super::{allowed_faces, new_accessory, part_by_number, Enclosure, Face, ItemKind, PanelItem};
 use crate::geom::{p, R};
 use crate::model::Project;
 use crate::parts::{self, Part};
@@ -69,7 +70,7 @@ pub fn places(prj: &Project, ei: usize, acc: &Part) -> Vec<Place> {
         match (field_grid(prj, e), parts::count_value(acc, "Fields"), parts::count_value(acc, "Rows")) {
             (Some((fields, rows, cw, ch)), Some(af), Some(ar)) if af >= 1 && ar >= 1 && af <= fields && ar <= rows => {
                 // Slots taken by accessories already in the grid.
-                let taken: Vec<R> = e.items.iter().filter(|i| i.face == Face::Plate && i.kind == ItemKind::Accessory).map(|i| i.rect().expand(-1.0)).collect();
+                let taken: Vec<R> = e.items.iter().filter(|i| i.face == Face::Plate && matches!(i.kind, ItemKind::Accessory | ItemKind::MountingPlate)).map(|i| i.rect().expand(-1.0)).collect();
                 for row in 0..=rows - ar {
                     for field in 0..=fields - af {
                         let min = p(field as f32 * cw, row as f32 * ch);
@@ -124,9 +125,7 @@ pub fn put(prj: &mut Project, db: &crate::parts::PartsDb, ei: usize, number: &st
             let mut item = new_accessory(prj, number, Face::Plate, r.min);
             // Exactly in its slot, whatever the snap grid and the size of the part.
             (item.x, item.y, item.w, item.h) = (r.min.x, r.min.y, r.width(), r.height());
-            let id = item.id;
-            prj.layout.enclosures[ei].items.push(item);
-            Ok(id)
+            Ok(add_panel(prj, ei, item))
         }
         Place::Face(f) => {
             let probe = new_accessory(prj, number, *f, p(0.0, 0.0));
@@ -134,6 +133,88 @@ pub fn put(prj: &mut Project, db: &crate::parts::PartsDb, ei: usize, number: &st
             Ok(id)
         }
     }
+}
+
+/// Modular devices (DIN 43880) stand this far out of their rail: a panel holds its
+/// rails so deep that the fronts of the devices on them are at its front.
+pub const MODULAR_DEPTH: f32 = 70.0;
+/// Thickness of the frame that carries the rails of a panel.
+const PANEL_SHEET: f32 = 2.0;
+/// Module spaces of a row of one field width.
+const MODULES_PER_FIELD: u32 = 12;
+/// Space left and right of the rails of a panel.
+const RAIL_MARGIN: f32 = 10.0;
+
+/// The mounting rails a panel accessory of height `h` carries: as many as its part data
+/// `Mounting rails` says, for a distribution panel one per row of its module spaces (12
+/// per field width), else none. Their centre lines (y from the top of the panel) in its
+/// rows (`Rows`, `Row spacing`), in the lowest rows when it has fewer rails than rows
+/// (a connection point zone above them).
+pub fn panel_rails(part: &Part, h: f32) -> Vec<f32> {
+    let rows = parts::count_value(part, "Rows");
+    let distribution = || {
+        let fields = parts::count_value(part, "Fields").unwrap_or(1).max(1);
+        parts::count_value(part, "Module spaces").map(|m| m / (MODULES_PER_FIELD * fields)).or(rows)
+    };
+    let rails = parts::count_value(part, "Mounting rails").or_else(|| (part.subgroup == "Distribution panel").then(distribution).flatten()).unwrap_or(0);
+    if rails == 0 || h <= 0.0 {
+        return Vec::new();
+    }
+    let rows = rows.unwrap_or(rails).max(rails);
+    let pitch = super::tech_number(part, "Row spacing").filter(|s| *s > 0.0 && *s * rows as f32 <= h + 0.5).unwrap_or(h / rows as f32);
+    let top = (h - pitch * rows as f32) / 2.0;
+    (rows - rails..rows).map(|i| top + pitch * (i as f32 + 0.5)).collect()
+}
+
+/// The rail part of a panel: 35 × 15 mm when its description says so, else 35 × 7.5.
+fn rail_part(part: &Part) -> &'static str {
+    if part.description.contains("35 x 15") {
+        "GEN.RAIL-TS35X15-1M"
+    } else {
+        super::RAIL_PART
+    }
+}
+
+/// Adds accessory item `it` to enclosure `ei`. A panel on the mounting plate with
+/// mounting rails ([`panel_rails`]) becomes a mounting plate that carries them: the
+/// rails across the panel less a margin on each side, mounted on it, not billed (they
+/// come with the panel) and so deep that modular devices on them end at the front of
+/// the panel. The item's id.
+pub fn add_panel(prj: &mut Project, ei: usize, mut it: PanelItem) -> u64 {
+    let id = it.id;
+    let part = part_by_number(prj, &it.part).cloned();
+    let lines = part.as_ref().filter(|_| it.face == Face::Plate && it.kind == ItemKind::Accessory).map(|p| panel_rails(p, it.h)).unwrap_or_default();
+    let mut rails = Vec::new();
+    if let (Some(part), false) = (&part, lines.is_empty()) {
+        let number = rail_part(part);
+        let (pw, pd) = super::part_profile(ItemKind::Rail, part_by_number(prj, number));
+        it.kind = ItemKind::MountingPlate;
+        it.d = PANEL_SHEET;
+        it.z = (part.depth - MODULAR_DEPTH - pd - PANEL_SHEET).max(0.0);
+        let margin = RAIL_MARGIN.min(it.w / 4.0);
+        for y in lines {
+            rails.push(PanelItem {
+                id: prj.new_id(),
+                kind: ItemKind::Rail,
+                part: number.into(),
+                face: it.face,
+                x: it.x + margin,
+                y: it.y + y - pw / 2.0,
+                w: it.w - 2.0 * margin,
+                h: pw,
+                z: it.z + it.d,
+                d: pd,
+                mounted_on: id,
+                mounting_explicit: true,
+                bom_excluded: true,
+                ..Default::default()
+            });
+        }
+    }
+    let e = &mut prj.layout.enclosures[ei];
+    e.items.push(it);
+    e.items.extend(rails);
+    id
 }
 
 #[cfg(test)]

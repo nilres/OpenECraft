@@ -38,7 +38,10 @@ los muestran.
   auxiliar, un contacto de señalización) los dispositivos colocados a los que se ajusta.
   Soltado sobre un lugar va allí; sobre un dispositivo pasa a ser accesorio del
   dispositivo. El comando `fitting_places` enumera los lugares para la línea de
-  comandos y los agentes de IA.
+  comandos y los agentes de IA. Un campo de distribución trae sus carriles de montaje,
+  uno por fila de sus módulos (datos de artículo `Module spaces`, `Row spacing`;
+  cualquier otro campo con `Mounting rails: n`): los dispositivos se colocan en ellos y
+  se mueven con el campo.
 - Carriles de montaje y canaletas dibujados por longitud; seleccione uno y arrastre
   cualquiera de sus extremos para cambiar su tamaño, o muévalo (los dispositivos viajan
   con su carril). Los dispositivos se colocan desde una lista de "dispositivos por

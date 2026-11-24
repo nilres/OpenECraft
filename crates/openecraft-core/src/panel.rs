@@ -1541,9 +1541,7 @@ pub fn place_accessory(prj: &mut Project, enc: usize, part: &str, face: Face, at
     if let Some(height) = part_by_number(prj, part).and_then(|p| tech_number(p, "Mounting height")) {
         at_mounting_height(&prj.layout.enclosures[enc], &mut item, height);
     }
-    let id = item.id;
-    prj.layout.enclosures[enc].items.push(item);
-    Some(id)
+    Some(fit::add_panel(prj, enc, item))
 }
 
 /// Devices whose centre lies on a horizontal rail are centred on it and mounted on

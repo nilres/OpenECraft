@@ -567,10 +567,8 @@ fn place_accessory(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let mut it = panel::new_accessory(prj, &part, face, p(a.num("x").unwrap_or(0.0), a.num("y").unwrap_or(0.0)));
     it.fastening = fastening_arg(a)?.unwrap_or_default();
     it.anchor = Anchor { x: align_arg(a, "anchor_x")?.unwrap_or_default(), y: align_arg(a, "anchor_y")?.unwrap_or_default() };
-    let e = &mut prj.layout.enclosures[ei];
-    panel::apply_one_anchor(e, &mut it);
-    let id = it.id;
-    e.items.push(it);
+    panel::apply_one_anchor(&prj.layout.enclosures[ei], &mut it);
+    let id = panel::fit::add_panel(prj, ei, it);
     Ok(item_json(prj, prj.layout.enclosures[ei].item(id).unwrap()))
 }
 

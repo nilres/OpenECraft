@@ -36,7 +36,10 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
   Artikels eines Betriebsmittels (ein Hilfsschalter, ein Signalkontakt) die platzierten
   Betriebsmittel, zu denen es passt. Auf einer Stelle abgelegt kommt es dorthin; auf
   einem Betriebsmittel wird es Zubehör des Betriebsmittels. Der Befehl `fitting_places`
-  listet die Stellen für die Kommandozeile und KI-Agenten.
+  listet die Stellen für die Kommandozeile und KI-Agenten. Ein Verteilerfeld bringt
+  seine Tragschienen mit, eine je Reihe seiner Teilungseinheiten (Artikeldaten
+  `Module spaces`, `Row spacing`; jedes andere Feld mit `Mounting rails: n`):
+  Betriebsmittel werden darauf platziert und wandern mit dem Feld mit.
 - Tragschienen und Kabelkanäle werden in ihrer Länge gezeichnet; eine(n) auswählen und
   an einem der Enden ziehen, um die Länge zu ändern, oder verschieben (Betriebsmittel
   wandern mit ihrer Schiene mit). Betriebsmittel werden aus einer Liste „Zu

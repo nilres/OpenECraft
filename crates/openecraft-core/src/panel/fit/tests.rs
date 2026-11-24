@@ -34,7 +34,7 @@ fn a_distribution_panel_takes_the_free_fields_of_its_cabinet() {
     let middle = places(&prj, ei, &fv17)[1].clone();
     let id = put(&mut prj, &db, ei, FV17, &middle, p(0.0, 0.0)).unwrap();
     let it = prj.layout.enclosures[ei].item(id).unwrap();
-    assert_eq!((it.kind, it.face, it.x, it.y, it.w, it.h), (ItemKind::Accessory, Face::Plate, 250.0, 0.0, 250.0, 1050.0));
+    assert_eq!((it.kind, it.face, it.x, it.y, it.w, it.h), (ItemKind::MountingPlate, Face::Plate, 250.0, 0.0, 250.0, 1050.0));
     assert_eq!(slots(&places(&prj, ei, &fv17)), [(0.0, 0.0, 250.0, 1050.0), (500.0, 0.0, 250.0, 1050.0)]);
     // A panel of two fields no longer fits anywhere.
     let two = prj.parts.iter().find(|p| crate::parts::count_value(p, "Fields") == Some(2) && crate::parts::count_value(p, "Rows") == Some(7) && crate::parts::accessory::fits(p, part(&prj, CABINET))).unwrap().clone();
@@ -52,6 +52,59 @@ fn a_distribution_panel_takes_the_free_fields_of_its_cabinet() {
     assert!(places(&prj, ei, &fv17).is_empty());
     assert!(fits_enclosure(&prj, ei, &fv17));
     assert!(!fits_enclosure(&prj, ei, crate::parts::catalog().iter().find(|p| p.number == "GEN.GLAND-M20").unwrap()));
+}
+
+#[test]
+fn a_distribution_panel_brings_a_mounting_rail_for_each_row() {
+    let (mut prj, ei) = sj_project();
+    let fv17 = part(&prj, FV17).clone();
+    assert_eq!(panel_rails(&fv17, 1050.0), [75.0, 225.0, 375.0, 525.0, 675.0, 825.0, 975.0]);
+    let slot = places(&prj, ei, &fv17)[1].clone();
+    let id = put(&mut prj, &PartsDb::default(), ei, FV17, &slot, p(0.0, 0.0)).unwrap();
+    let e = &prj.layout.enclosures[ei];
+    let panel = e.item(id).unwrap().clone();
+    let rails: Vec<PanelItem> = e.items.iter().filter(|i| i.kind == ItemKind::Rail).cloned().collect();
+    assert_eq!(rails.len(), 7);
+    for (r, y) in rails.iter().zip([75.0, 225.0, 375.0, 525.0, 675.0, 825.0, 975.0]) {
+        assert_eq!((r.part.as_str(), r.x, r.w, r.center().y, r.mounted_on, r.bom_excluded), (crate::panel::RAIL_PART, 260.0, 230.0, y, id, true));
+        // So deep that a modular device on it ends at the front of the panel.
+        assert!((r.z + r.d + MODULAR_DEPTH - fv17.depth).abs() < 0.01, "{}", r.z);
+    }
+    assert!((panel.z + panel.d - rails[0].z).abs() < 0.01);
+    // The rails are not billed, the panel is.
+    let bom = crate::panel::layout_material(&prj);
+    assert!(bom.iter().any(|l| l.0 == FV17) && !bom.iter().any(|l| l.0 == crate::panel::RAIL_PART), "{bom:?}");
+    assert!(crate::panel::cut_pieces(&prj).is_empty());
+    // A device dropped onto a row goes onto its rail and moves with the panel.
+    let mut dev = PanelItem { id: prj.new_id(), kind: ItemKind::Device, tag: "-F1".into(), w: 18.0, h: 90.0, d: 70.0, x: 300.0, y: 380.0 - 45.0, ..Default::default() };
+    crate::panel::snap_to_rail(&prj.layout.enclosures[ei], &mut dev);
+    assert_eq!(dev.mounted_on, rails[2].id);
+    let dev_id = dev.id;
+    prj.layout.enclosures[ei].items.push(dev);
+    let carried = crate::panel::mounted_items(&prj.layout.enclosures[ei], &[id]);
+    assert_eq!(carried.len(), 9, "the panel, its rails and the device");
+    assert!(carried.contains(&dev_id));
+}
+
+#[test]
+fn the_rails_of_other_panels() {
+    let prj = Project { parts: bundled::load("striebel_john").unwrap().parts, ..Default::default() };
+    let get = |t: &str| prj.parts.iter().find(|p| p.type_number == t).unwrap();
+    // A connection point zone above five rails.
+    assert_eq!(panel_rails(get("FV17A2"), 1050.0), [375.0, 525.0, 675.0, 825.0, 975.0]);
+    // Rows 125 mm apart, the rails 35 x 15 mm.
+    let narrow = get("1V3A");
+    assert_eq!(panel_rails(narrow, 1050.0), [150.0, 275.0, 400.0, 525.0, 650.0, 775.0, 900.0]);
+    assert_eq!(rail_part(narrow), "GEN.RAIL-TS35X15-1M");
+    // Blind panels, meter panels and the cabinets carry none.
+    for t in ["1B3A", "FD17R", "A37"] {
+        assert!(panel_rails(get(t), 1050.0).is_empty(), "{t}");
+    }
+    // Part data of any other panel.
+    let mut other = Part { number: "X.PANEL".into(), tech_data: "Mounting rails: 2".into(), ..Default::default() };
+    assert_eq!(panel_rails(&other, 300.0), [75.0, 225.0]);
+    other.tech_data = "Mounting rails: 2\nRows: 3".into();
+    assert_eq!(panel_rails(&other, 300.0), [150.0, 250.0]);
 }
 
 #[test]

@@ -53,7 +53,7 @@ fn a_distribution_panel_dragged_over_the_cabinet_drops_into_a_free_field() {
     frame(&mut ui, &mut prj, 0.2, vec![release], Some(at));
     let e = &prj.layout.enclosures[0];
     let panel = e.items.iter().find(|i| i.part == FV17).expect("dropped into the cabinet");
-    assert_eq!((panel.kind, panel.face, panel.x, panel.y, panel.w, panel.h), (ItemKind::Accessory, Face::Plate, 250.0, 0.0, 250.0, 1050.0));
+    assert_eq!((panel.kind, panel.face, panel.x, panel.y, panel.w, panel.h), (ItemKind::MountingPlate, Face::Plate, 250.0, 0.0, 250.0, 1050.0));
     assert!(prj.parts.iter().any(|p| p.number == FV17), "into the project's parts");
     assert_eq!(ui.selection.iter().copied().collect::<Vec<_>>(), [panel.id]);
 }

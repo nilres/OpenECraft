@@ -153,7 +153,11 @@ fn the_places_an_accessory_fits() {
     let places = run(&mut s, "fitting_places", json!({ "enclosure": "+Z1", "part": "SJ.2CPX054002R9999" })).unwrap();
     let xs: Vec<f64> = places.as_array().unwrap().iter().map(|p| p["x"].as_f64().unwrap()).collect();
     assert_eq!((places[0]["kind"].as_str(), places[0]["height"].as_f64(), xs), (Some("slot"), Some(1050.0), vec![0.0, 250.0, 500.0]));
-    run(&mut s, "place_accessory", json!({ "enclosure": "+Z1", "part": "SJ.2CPX054002R9999", "face": "plate", "x": 250, "y": 0 })).unwrap();
+    let panel = run(&mut s, "place_accessory", json!({ "enclosure": "+Z1", "part": "SJ.2CPX054002R9999", "face": "plate", "x": 250, "y": 0 })).unwrap();
+    // With its seven mounting rails.
+    assert_eq!(panel["kind"], "mounting_plate");
+    let e = s.project().unwrap().layout.enclosures.iter().find(|e| e.name == "+Z1").unwrap();
+    assert_eq!(e.items.iter().filter(|i| i.kind == panel::ItemKind::Rail && i.mounted_on == panel["id"].as_u64().unwrap()).count(), 7);
     let places = run(&mut s, "fitting_places", json!({ "enclosure": "+Z1", "part": "SJ.2CPX054002R9999" })).unwrap();
     assert_eq!(places.as_array().unwrap().len(), 2);
     // Fits nothing in the demo cabinet.
