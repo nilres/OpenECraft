@@ -1,7 +1,8 @@
 //! The release notes as pages of the site and as a feed: every released version of
 //! `CHANGELOG.md` gets a page with its changes, the overview lists them, and
 //! `news/feed.xml` (Atom) tells feed readers of a new release. In English, as the
-//! changelog is written. The version being worked on (`unreleased`) is left out.
+//! changelog is written (read by `openecraft_parts::changelog`). The version being
+//! worked on (`unreleased`) is left out.
 
 use crate::docs::target;
 use crate::frame::{attribute, escape, files, hero, shortened, File, Kind, Langs, Page, Place, DESCRIPTION};
@@ -14,42 +15,16 @@ pub const FOLDER: &str = "news";
 /// The file of the feed below the site.
 pub const FEED: &str = "news/feed.xml";
 
-/// A released version of the changelog.
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct Release {
-    pub version: String,
-    /// `2026-11-15`.
-    pub date: String,
-    /// Its changes, as Markdown.
-    pub text: String,
+pub use openecraft_parts::changelog::{releases, Release};
+
+/// The folder of a release below [`FOLDER`]: `v0-1-2`.
+pub fn slug(release: &Release) -> String {
+    format!("v{}", release.version.replace('.', "-"))
 }
 
-impl Release {
-    /// Its folder below [`FOLDER`]: `v0-1-2`.
-    pub fn slug(&self) -> String {
-        format!("v{}", self.version.replace('.', "-"))
-    }
-
-    /// What its changes are about: the words in bold that start each of them.
-    pub fn headlines(&self) -> Vec<String> {
-        self.text.lines().filter_map(|line| line.strip_prefix("- **")).filter_map(|rest| rest.split("**").next()).map(|text| text.trim_end_matches(':').to_string()).collect()
-    }
-}
-
-/// The released versions of a changelog, newest first as it lists them.
-pub fn releases(changelog: &str) -> Vec<Release> {
-    changelog
-        .replace("\r\n", "\n")
-        .split("\n## [")
-        .skip(1)
-        .filter_map(|section| {
-            let (head, text) = section.split_once('\n')?;
-            let (version, date) = head.split_once("] - ")?;
-            let date = date.trim();
-            let released = date.len() == 10 && date.chars().all(|c| c.is_ascii_digit() || c == '-');
-            released.then(|| Release { version: version.to_string(), date: date.to_string(), text: text.trim().to_string() })
-        })
-        .collect()
+/// The date of a release: `2026-11-15`.
+fn date(release: &Release) -> &str {
+    release.date.as_deref().unwrap_or_default()
 }
 
 /// The changes of a release as HTML for a page whose way to the site is `root`; a
@@ -63,13 +38,13 @@ fn changes(release: &Release, root: &str, repository: Option<&str>) -> String {
 }
 
 fn description(release: &Release) -> String {
-    shortened(&format!("What is new in OpenECraft {} of {}: {}", release.version, release.date, release.headlines().join(", ")), DESCRIPTION.end - 1)
+    shortened(&format!("What is new in OpenECraft {} of {}: {}", release.version, date(release), release.headlines().join(", ")), DESCRIPTION.end - 1)
 }
 
 /// The feed of the releases (Atom). Its addresses are relative to the folder of the
 /// news; `website-site.sh` names the public address of that folder in it (`xml:base`).
 pub fn feed(releases: &[Release], repository: &str) -> String {
-    let updated = |release: &Release| format!("{}T00:00:00Z", release.date);
+    let updated = |release: &Release| format!("{}T00:00:00Z", date(release));
     let mut out = String::from("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<feed xmlns=\"http://www.w3.org/2005/Atom\">\n");
     out.push_str("  <title>OpenECraft releases</title>\n  <subtitle>What is new in OpenECraft, the open source electrical CAE</subtitle>\n  <id>tag:openecraft.org,2026:releases</id>\n");
     out.push_str(&format!("  <updated>{}</updated>\n", releases.first().map(updated).unwrap_or_else(|| "2026-11-04T00:00:00Z".to_string())));
@@ -79,7 +54,7 @@ pub fn feed(releases: &[Release], repository: &str) -> String {
         out.push_str(&format!(
             "  <entry>\n    <title>OpenECraft {version}</title>\n    <id>tag:openecraft.org,2026:release-{version}</id>\n    <updated>{}</updated>\n    <link rel=\"alternate\" type=\"text/html\" href=\"{}/\" />\n    <summary>{}</summary>\n    <content type=\"html\">{}</content>\n  </entry>\n",
             updated(release),
-            release.slug(),
+            slug(release),
             escape(&description(release)),
             escape(&changes(release, "../", repository)),
             version = attribute(&release.version)
@@ -95,13 +70,13 @@ pub fn site(changelog: &str, repository: &str) -> Vec<File> {
     let releases = releases(changelog);
     let mut out = Vec::new();
     for release in &releases {
-        let folder = format!("{FOLDER}/{}", release.slug());
+        let folder = format!("{FOLDER}/{}", slug(release));
         let place = Place::of(&folder, Lang::En);
         let main = format!(
             "<article class=\"band doc\">\n    <p class=\"eyebrow\"><a href=\"{}\">Release notes</a></p>\n    <h1>OpenECraft {}</h1>\n    <p class=\"sub\">Released on {}. <a data-link=\"downloads\" href=\"#\">Download the latest release</a></p>\n{}</article>\n",
             place.file(&format!("{FOLDER}/")),
             escape(&release.version),
-            escape(&release.date),
+            escape(date(release)),
             changes(release, &place.root(), None)
         );
         let page = Page { folder, title: format!("OpenECraft {} – release notes", release.version), description: description(release), main, kind: Kind::Plain, langs: Langs::English };
@@ -116,8 +91,8 @@ pub fn site(changelog: &str, repository: &str) -> Vec<File> {
         main.push_str(&format!(
             "        <article class=\"card\"><h3>OpenECraft {}</h3><p>{}</p><ul>{headlines}</ul><a class=\"button\" href=\"{}\">Read the release notes</a></article>\n",
             escape(&release.version),
-            escape(&release.date),
-            place.file(&format!("{FOLDER}/{}/", release.slug()))
+            escape(date(release)),
+            place.file(&format!("{FOLDER}/{}/", slug(release)))
         ));
     }
     main.push_str("    </div>\n</section>\n");

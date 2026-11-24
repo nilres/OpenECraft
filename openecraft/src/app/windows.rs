@@ -158,6 +158,7 @@ impl App {
         self.parts_management_and_part_selection_window(ctx);
         self.page_properties_window(ctx);
         self.section_properties_window(ctx);
+        self.whats_new_window(ctx);
     }
 
     /// What is done while a project opens (its analysis is built in the background):

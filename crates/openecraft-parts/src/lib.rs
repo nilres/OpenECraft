@@ -15,6 +15,7 @@
 //! - accessories that fit other parts ([`accessory`])
 //! - the EPLAN product groups with their exchange numbers ([`productgroups`])
 //! - pin layouts and mating faces of plug connectors ([`connector`])
+//! - the version history of `CHANGELOG.md` ([`changelog`])
 
 pub mod access;
 pub mod accessory;
@@ -23,6 +24,7 @@ pub mod base64;
 mod bmecat;
 pub mod bundled;
 mod catalog;
+pub mod changelog;
 mod connection;
 pub mod connector;
 mod csv;

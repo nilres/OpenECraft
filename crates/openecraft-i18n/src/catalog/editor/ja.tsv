@@ -936,6 +936,7 @@ Imported {} stations, {} modules, {} bus systems, {} connections; {} addresses a
 Imported {} title blocks and {} report schemes	{} 個の表題欄と {} 個のレポートスキームをインポートしました
 Importing {} from the parts server…	部品サーバーから {} をインポートしています…
 Import…	インポート…
+In development: not released yet	開発中：未リリース
 In every section counting starts again after the section number (2.3.1).	各セクションでは、セクション番号の後から番号付けが再開されます (2.3.1)。
 In review	レビュー中
 In strip order; PE and other non-numeric terminals keep their designation	端子台の順序で番号付けします。PE などの数字以外の端子は名称を保持します
@@ -1230,6 +1231,7 @@ New subsection	新しいサブセクション
 New tag for {}	{} の新しいタグ
 New zone	新しいゾーン
 New, empty placement scheme	新しい空の配置スキーム
+Newer version: {}	新しいバージョン：{}
 Next free contact numbers on this device	このデバイスの次の空き接点番号
 Next item	次のアイテム
 Next page tab	次のページタブ
@@ -1326,6 +1328,7 @@ Of the outer diameter, as laid fixed	外径の倍数、固定敷設時
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径の倍数。配管は直径の1.5倍のエルボで曲げられます
 Off	オフ
 Offset from one row to the next: downwards for lists, sideways for rows side by side	行から次の行へのオフセット: リストの場合は下方向、横に並ぶ行の場合は横方向
+Older version: {}	古いバージョン：{}
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	タッチスクリーンとトラックパッドで有効です。パンのみ：ピンチでズームしません。ズームのみ：システムがトラックパッドを区別できる場合、トラックパッドでの 2 本指スクロールもズームします。1 本指はマウスの左ボタンと同じです。
 On a touch screen; trackpads leave three-finger gestures to the system.	タッチスクリーンで有効です。トラックパッドの 3 本指の操作はシステムが使います。
 On startup	起動時
@@ -1374,6 +1377,9 @@ OpenECraft structure template (JSON)	OpenECraft 構造テンプレート (JSON)
 OpenECraft symbol library	OpenECraft シンボルライブラリ
 OpenECraft title blocks	OpenECraft 表題欄
 OpenECraft title blocks and report schemes (JSON)	OpenECraft 表題欄とレポートスキーム (JSON)
+OpenECraft was updated to version {}. These are its new features:	OpenECraft はバージョン {} に更新されました。新機能は次のとおりです：
+OpenECraft was updated to version {}. These are the new features of the versions since the one you used last:	OpenECraft はバージョン {} に更新されました。前回使用したバージョン以降の各バージョンの新機能は次のとおりです：
+OpenECraft {}	OpenECraft {}
 OpenECraft {} is available	OpenECraft {} が利用可能です
 OpenECraft {} is installed and starts next time	OpenECraft {} がインストールされ、次回から起動します
 OpenECraft {} is installed when you close OpenECraft	OpenECraft {} は OpenECraft を閉じるとインストールされます
@@ -1631,6 +1637,7 @@ Release page	リリースページ
 Release route	ルートの固定を解除
 Release without saving	保存せずに解放
 Release: lock all pages	リリース: すべてのページをロック
+Released on {}	リリース日 {}
 Released page – read only	リリース済みのページ – 読み取り専用
 Released pages in it keep their names	その中のリリース済みページは名前を保持します
 Released pages keep their name.	リリース済みのページは名前を維持します。
@@ -2081,6 +2088,7 @@ The EPLAN Data Portal only offers searching and reading parts: open the data por
 The Insert center finds symbols, macros, devices and unplaced functions; favorites and recently used ones come first.	挿入センターはシンボル、マクロ、デバイス、未配置の機能を検索します。お気に入りと最近使用したものが先頭に来ます。
 The accessory fits none of the device's parts	このアクセサリは機器のどの部品にも適合しません
 The aspect ratio is kept.	縦横比は維持されます。
+The changes are written in English.	変更内容は英語で書かれています。
 The check warns about cable ducts filled above this level	この充填率を超えた配線ダクトについてチェックで警告します
 The checks keep the distances between classes and let classes overlap as set in Layout checks	チェックでは、レイアウトチェックの設定に従ってクラス間の距離を確保し、クラスの重なりを許可します
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	すべてのプラグインのコマンドをプラグインごとに検索付きで表示します。星を付けるとコマンドがプラグインタブに固定されます
@@ -2107,6 +2115,7 @@ The modifiers that turn the wheel sideways or make it zoom are set under Modifie
 The modules no string takes yet in series, on the first inverter	まだどのストリングにも属さないモジュールを直列に、最初のインバーターへ
 The name on the server needs letters, digits, space, - _ . (up to 64 characters).	サーバー上の名前には、文字、数字、スペース、- _ . を使用します (最大 64 文字)。
 The names of its pages follow	そのページの名前も変わります
+The new features of every version of OpenECraft, one page per version	OpenECraft の各バージョンの新機能（バージョンごとに 1 ページ）
 The open project already has your version	開いているプロジェクトには既にあなたの版があります
 The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	開いているプロジェクトには、まだプロジェクトサーバーに保存されていない変更があります。先に保存するかどうかを確認します。コピーに含まれるのは保存済みの変更だけです。
 The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	開いているプロジェクトは、このプロジェクトのローカル復元コピーです。その変更はプロジェクトサーバーになく、コピーにも含まれません。
@@ -2232,6 +2241,7 @@ Verify project	プロジェクトを検証
 Verify selected	選択したものを検証
 Verify the project against it	このルールセットでプロジェクトを検証
 Verify while reading	読み込み時に検証
+Version history	バージョン履歴
 Version {}	バージョン {}
 Vertical	垂直
 Vertical (mm, downwards)	垂直 (mm、下方向)
@@ -2255,6 +2265,7 @@ Web between holes	穴間の残し幅
 Welcome to OpenECraft	OpenECraft へようこそ
 What is new	新機能
 What should be checked or changed?	何をチェックまたは変更しますか?
+What's new in OpenECraft {}	OpenECraft {} の新機能
 Wheel and touch	ホイールとタッチ
 Wheel: zoom · drag: move · click on a room: its floor plan	ホイール：ズーム · ドラッグ：移動 · 部屋をクリック：その平面図
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	ホイール：ズーム · ドラッグ：移動 · 部屋をクリック：平面図 · 敷地境界の頂点をドラッグ
@@ -2325,6 +2336,7 @@ X {}  Y {} mm · {}	X {}  Y {} mm · {}
 YYYY-MM-DD	YYYY-MM-DD
 You may only view this project.	このプロジェクトは閲覧のみ可能です。
 You may review this project: comments, markup and approvals, no other changes.	このプロジェクトはレビューのみ可能です: コメント、マークアップ、承認のみで、その他の変更はできません。
+You use OpenECraft {}. Each version has a page with its changes.	OpenECraft {} を使用しています。各バージョンにその変更内容のページがあります。
 Your unsaved changes of it are taken back	未保存の変更は取り消されます
 Your version of {}	{} のあなたの版
 Your version taken over: {}. Save to store it on the project server.	あなたの版を取り込みました: {}。プロジェクトサーバーに保存してください。
@@ -2432,6 +2444,7 @@ x y	x y
 {} (copy)	{} (コピー)
 {} (default)	{} (既定)
 {} (first column)	{} (最初の列)
+{} (in development)	{}（開発中）
 {} (locked by {})	{} ({} がロック中)
 {} (no such device)	{} (デバイスが存在しません)
 {} (not placed in the layout)	{} (レイアウトに配置されていません)

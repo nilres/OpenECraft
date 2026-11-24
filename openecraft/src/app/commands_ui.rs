@@ -256,6 +256,7 @@ impl App {
             Cmd::Settings => self.settings.open(),
             Cmd::Tutorial => self.help_chapter(1),
             Cmd::About => self.help_about(),
+            Cmd::VersionHistory => self.help_version(None),
             Cmd::Legal => self.help_legal(),
             Cmd::ReportBug => self.report_bug(),
             Cmd::CheckForUpdates => self.check_for_updates(ctx),

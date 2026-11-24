@@ -95,6 +95,7 @@ mod report_blocks_ui;
 mod symbol_editor;
 mod update_ui;
 mod vault_ui;
+mod whats_new;
 
 use crate::dock::{LeftTab, Pane, ToolPane};
 
@@ -145,6 +146,8 @@ struct ShellState {
     wheel_source_policy_migrated: bool,
     /// What the editor opens when it starts.
     startup: crate::startup::Startup,
+    /// The version that was started last (What's new shows what came since).
+    seen_version: String,
     /// Automatic saving of shared projects to the project server.
     server_autosave: crate::server_save::Settings,
 }
@@ -171,6 +174,7 @@ impl Default for ShellState {
             nav: openecraft_ui::nav::Settings::default(),
             wheel_source_policy_migrated: false,
             startup: crate::startup::Startup::default(),
+            seen_version: String::new(),
             server_autosave: crate::server_save::Settings::default(),
         }
     }
@@ -428,6 +432,8 @@ pub struct App {
     pending_drop: Option<crate::parts_ui::PendingDrop>,
     /// Updates from the releases on GitHub.
     updater: crate::updater::Updater,
+    /// The versions What's new shows (indices of `whats_new::history`); empty: closed.
+    whats_new: Vec<usize>,
 }
 
 impl App {
@@ -545,6 +551,7 @@ impl App {
             plugins.set_enabled(id, false);
         }
         let first_start = !shell.started && !stored;
+        let whats_new = whats_new::at_start(first_start, &shell.seen_version);
         let mut app = App {
             session: Session::new(prj, file_name),
             opened: None,
@@ -673,6 +680,7 @@ impl App {
             tablet_applied: None,
             pending_drop: None,
             updater: crate::updater::Updater::default(),
+            whats_new,
             dark: cc.egui_ctx.theme() == egui::Theme::Dark,
         };
         crate::style::apply(&cc.egui_ctx);
@@ -696,6 +704,7 @@ impl App {
             app.show_pane(Pane::Tool(ToolPane::Start));
         }
         app.shell.started = true;
+        app.shell.seen_version = whats_new::VERSION.to_string();
         // In the background: without a connection nothing waits for it.
         if app.shell.update_check && crate::updater::allowed_at_start() {
             app.updater.start(&cc.egui_ctx, false);

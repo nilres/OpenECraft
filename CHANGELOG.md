@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **What's new and version history:** at the first start after an update the editor
+  shows the new features of the versions since the one used last in the window *What's
+  new in OpenECraft*. *File › Help › Version history* (also on the Help tab) shows the
+  changes of every version again in the Help pane: one page per version, grouped by
+  series, with an overview of all of them ([user interface](docs/user-interface.md)).
 - **MCP tools say what they do:** every tool of the MCP server has a title and the
   annotations `readOnlyHint`, `destructiveHint` and `openWorldHint`, so that a client
   knows which tools only read (`list_…`, `get_…`, `check`, `parts_search` and others),

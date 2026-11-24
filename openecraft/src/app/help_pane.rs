@@ -1,10 +1,13 @@
 //! The Help pane (F1): the quick guide, the tutorial (`docs/tutorial.md`, rendered),
-//! the keyboard shortcuts, the version and the legal texts (the legal notice of who
-//! runs a web editor, the disclaimer, the privacy notice). F1 or the pane menu › Help
-//! opens the tutorial chapter of the pane in use.
+//! the keyboard shortcuts, the version, the version history (one page per version of
+//! `CHANGELOG.md`, grouped by series: `whats_new`) and the legal texts (the legal
+//! notice of who runs a web editor, the disclaimer, the privacy notice). F1 or the pane
+//! menu › Help opens the tutorial chapter of the pane in use.
 
 use super::*;
+use super::whats_new::{self, VERSION};
 use crate::shortcuts;
+use openecraft_parts::changelog;
 
 const TUTORIAL: &str = include_str!("../../../docs/tutorial.md");
 const PRODUCT: &str = "OpenECraft";
@@ -17,6 +20,10 @@ pub(super) enum Section {
     Shortcuts,
     About,
     Legal,
+    /// The version history: every version with its headlines.
+    Versions,
+    /// A version of the history (index in `whats_new::history`, newest first).
+    Version(usize),
 }
 
 pub(super) struct HelpUi {
@@ -90,6 +97,13 @@ impl App {
         self.show_pane(Pane::Tool(ToolPane::Help));
     }
 
+    /// Shows a version of the history (`None`: the overview of all; Help › Version history).
+    pub(super) fn help_version(&mut self, version: Option<usize>) {
+        self.help.section = version.map_or(Section::Versions, Section::Version);
+        self.help.scroll_top = true;
+        self.show_pane(Pane::Tool(ToolPane::Help));
+    }
+
     /// Opens the help at the chapter of a pane.
     pub(super) fn help_for(&mut self, pane: Pane) {
         self.help_chapter(chapter_of(pane));
@@ -121,6 +135,8 @@ impl App {
                         self.help.scroll_top = true;
                     }
                 }
+                ui.separator();
+                self.version_tree(ui);
             });
         });
         egui::CentralPanel::default().show(ui, |ui| {
@@ -129,7 +145,8 @@ impl App {
                 area = area.vertical_scroll_offset(0.0);
             }
             area.show(ui, |ui| {
-                ui.set_max_width(760.0);
+                // Lines of a readable length, within a narrow pane too.
+                ui.set_max_width(ui.available_width().min(760.0));
                 match self.help.section {
                     Section::Guide => self.quick_guide(ui),
                     Section::Tutorial(i) => {
@@ -149,9 +166,92 @@ impl App {
                         let notice = self.help.legal.get_or_insert_with(openecraft_ui::io::site_legal);
                         openecraft_ui::legal::show(ui, notice, openecraft_ui::legal::Program::Editor);
                     }
+                    Section::Versions => self.version_overview(ui),
+                    Section::Version(i) => self.version_page(ui, i),
                 }
             });
         });
+    }
+
+    /// The versions in the list of sections: the overview, below it the series (`0.1`)
+    /// with their versions; the series of the version shown is open.
+    fn version_tree(&mut self, ui: &mut egui::Ui) {
+        if ui.selectable_label(self.help.section == Section::Versions, RichText::new(tr("Version history")).strong()).clicked() {
+            self.help.section = Section::Versions;
+            self.help.scroll_top = true;
+        }
+        let history = whats_new::history();
+        for (n, (series, versions)) in changelog::series(history).into_iter().enumerate() {
+            let shown = matches!(self.help.section, Section::Version(i) if versions.contains(&i));
+            let mut header = egui::CollapsingHeader::new(tr_fmt!("OpenECraft {}", series)).id_salt(("help_series", &series)).default_open(n == 0);
+            if shown && self.help.scroll_top {
+                header = header.open(Some(true));
+            }
+            header.show(ui, |ui| {
+                for i in versions {
+                    if ui.selectable_label(self.help.section == Section::Version(i), whats_new::title(&history[i])).clicked() {
+                        self.help.section = Section::Version(i);
+                        self.help.scroll_top = true;
+                    }
+                }
+            });
+        }
+    }
+
+    /// Every version with what its changes are about; a click opens its page.
+    fn version_overview(&mut self, ui: &mut egui::Ui) {
+        ui.heading(tr("Version history"));
+        ui.label(tr_fmt!("You use OpenECraft {}. Each version has a page with its changes.", VERSION));
+        whats_new::english_note(ui);
+        let history = whats_new::history();
+        let mut open = None;
+        for (series, versions) in changelog::series(history) {
+            ui.add_space(8.0);
+            ui.label(RichText::new(tr_fmt!("OpenECraft {}", series)).strong().size(16.0));
+            for i in versions {
+                ui.add_space(4.0);
+                if ui.link(RichText::new(tr_fmt!("OpenECraft {}", whats_new::title(&history[i]))).strong()).clicked() {
+                    open = Some(i);
+                }
+                for headline in history[i].headlines() {
+                    ui.label(format!("•  {headline}"));
+                }
+            }
+        }
+        if let Some(i) = open {
+            self.help_version(Some(i));
+        }
+    }
+
+    /// The changes of a version, with the ways to the newer and the older one.
+    fn version_page(&mut self, ui: &mut egui::Ui, i: usize) {
+        let history = whats_new::history();
+        let Some(release) = history.get(i) else { return };
+        ui.heading(tr_fmt!("OpenECraft {}", release.version));
+        match &release.date {
+            Some(date) => ui.label(tr_fmt!("Released on {}", date)),
+            None => ui.label(tr("In development: not released yet")),
+        };
+        whats_new::english_note(ui);
+        ui.add_space(6.0);
+        whats_new::changes(ui, release);
+        ui.add_space(8.0);
+        ui.separator();
+        let mut go = None;
+        ui.horizontal(|ui| {
+            if i > 0 && ui.button(tr_fmt!("Newer version: {}", history[i - 1].version)).clicked() {
+                go = Some(Some(i - 1));
+            }
+            if i + 1 < history.len() && ui.button(tr_fmt!("Older version: {}", history[i + 1].version)).clicked() {
+                go = Some(Some(i + 1));
+            }
+            if ui.button(tr("Version history")).clicked() {
+                go = Some(None);
+            }
+        });
+        if let Some(version) = go {
+            self.help_version(version);
+        }
     }
 
     /// The first hour in eight steps, each with a link to its tutorial chapter.
@@ -218,9 +318,9 @@ impl App {
     }
 }
 
-/// Renders the Markdown of the tutorial: headings, lists, paragraphs, code blocks,
-/// `code` and *emphasis*.
-fn markdown(ui: &mut egui::Ui, lines: &[&str]) {
+/// Renders the Markdown of the tutorial and the changelog: headings, lists, paragraphs,
+/// code blocks, `code`, *emphasis*, **strong** and the text of [links](address).
+pub(super) fn markdown(ui: &mut egui::Ui, lines: &[&str]) {
     let mut para = String::new();
     let mut code = false;
     let flush = |ui: &mut egui::Ui, para: &mut String| {
@@ -265,14 +365,38 @@ fn starts_numbered(t: &str) -> bool {
     digits > 0 && t[digits..].starts_with(". ")
 }
 
-/// A line with `code` (monospace) and *emphasis* / **strong** (italics, strong).
+/// The text of a line without the addresses of its links: `[text](address)` → `text`.
+fn link_texts(s: &str) -> String {
+    let mut out = String::new();
+    let mut rest = s;
+    while let Some(open) = rest.find('[') {
+        let after = &rest[open + 1..];
+        let link = after.find("](").and_then(|mid| after[mid + 2..].find(')').map(|end| (mid, mid + 2 + end)));
+        match link {
+            Some((mid, end)) if !after[..mid].contains('[') => {
+                out.push_str(&rest[..open]);
+                out.push_str(&after[..mid]);
+                rest = &after[end + 1..];
+            }
+            _ => {
+                out.push_str(&rest[..=open]);
+                rest = after;
+            }
+        }
+    }
+    out.push_str(rest);
+    out
+}
+
+/// A line with `code` (monospace), *emphasis* (italics) and **strong** text.
 fn inline(ui: &egui::Ui, s: &str) -> egui::text::LayoutJob {
     let mut job = egui::text::LayoutJob::default();
     let body = egui::TextStyle::Body.resolve(ui.style());
     let mono = egui::TextStyle::Monospace.resolve(ui.style());
     let color = ui.visuals().text_color();
     let strong = ui.visuals().strong_text_color();
-    let text = s.strip_prefix("- ").map(|r| format!("•  {r}")).unwrap_or_else(|| s.to_string());
+    let s = link_texts(s);
+    let text = s.strip_prefix("- ").map(|r| format!("•  {r}")).unwrap_or_else(|| s.clone());
     let mut code = false;
     for (i, part) in text.split('`').enumerate() {
         if i > 0 {
@@ -282,9 +406,13 @@ fn inline(ui: &egui::Ui, s: &str) -> egui::text::LayoutJob {
             job.append(part, 0.0, egui::TextFormat::simple(mono.clone(), color));
             continue;
         }
-        for (j, seg) in part.split('*').enumerate() {
-            let fmt = if j % 2 == 1 { egui::TextFormat { italics: true, color: strong, ..egui::TextFormat::simple(body.clone(), strong) } } else { egui::TextFormat::simple(body.clone(), color) };
-            job.append(seg, 0.0, fmt);
+        for (k, run) in part.split("**").enumerate() {
+            let bold = k % 2 == 1;
+            for (j, seg) in run.split('*').enumerate() {
+                let italics = j % 2 == 1;
+                let fmt = egui::TextFormat { italics, ..egui::TextFormat::simple(body.clone(), if bold || italics { strong } else { color }) };
+                job.append(seg, 0.0, fmt);
+            }
         }
     }
     job.wrap.max_width = ui.available_width();

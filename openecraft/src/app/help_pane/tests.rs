@@ -21,3 +21,12 @@ fn f1_opens_the_chapter_of_the_pane_in_use() {
     // In the Help pane F1 keeps the chapter shown.
     assert_eq!(key_help(Some(Pane::Tool(ToolPane::Help)), Pane::Page), None);
 }
+
+#[test]
+fn links_show_their_text() {
+    assert_eq!(link_texts("see the [tutorial](docs/tutorial.md#9-reports)."), "see the tutorial.");
+    assert_eq!(link_texts("a [b](c) and [d](e#f), #217"), "a b and d, #217");
+    // Brackets that are no link stay.
+    assert_eq!(link_texts("[x] and [y"), "[x] and [y");
+    assert_eq!(link_texts("[[a](b)"), "[a");
+}
