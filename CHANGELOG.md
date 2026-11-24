@@ -17,6 +17,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Vault or an external plugin, and asks its user accordingly. An external plugin says it of a
   command with `effect` (`read`, `add` or `change`) in its answer to `describe`
   ([plugins](docs/plugins.md)).
+- **Plugins build report pages and reuse the start page:** the plugin documentation shows
+  how a page kind is written in a project (`{"Report": "terminal_diagram"}` for a report
+  page), and a project a plugin or a file gets wrong is refused with the place of the
+  mistake (`pages[2].kind.Report: …`). A command that builds a set of pages fills the
+  empty start page of a new project instead of adding a second page `1`
+  ([plugins](docs/plugins.md)).
 - **Wires stay on mirrored and turned devices:** mirroring a symbol in the schematic
   (key M, *Mirror*) takes the wires at its connection points along and keeps them
   square, as rotating did; where the mirrored symbol still has a connection point, the

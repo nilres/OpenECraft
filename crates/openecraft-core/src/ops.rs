@@ -121,6 +121,16 @@ pub fn next_page_name(prj: &Project, at: usize) -> String {
     sections::next_page_name(prj, sections::section_at(prj, at))
 }
 
+/// The start page of a new project (its only page, a schematic page without content),
+/// which a command building a set of pages fills, keeping its name, instead of
+/// adding a page beside it.
+pub fn blank_page(prj: &Project) -> Option<usize> {
+    match prj.pages.as_slice() {
+        [pg] if pg.kind == PageKind::Schematic && pg.is_empty() => Some(0),
+        _ => None,
+    }
+}
+
 /// Inserts a page at `at` (clamped), into the section of the page before it. Returns
 /// its index.
 pub fn insert_page(prj: &mut Project, at: usize, mut page: Page) -> usize {

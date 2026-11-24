@@ -2245,8 +2245,18 @@ impl Project {
     /// The project of a file as it is written there, for a project handed on by the
     /// program itself. Read here, so that a crate reading projects does not get its
     /// own copy of the code for it.
+    ///
+    /// An error names the place in the file (`pages[2].kind: …`): read a second time
+    /// with the path tracked, so that reading a valid file costs nothing more.
     pub fn read_json(text: &str) -> Result<Project, String> {
-        serde_json::from_str(text).map_err(|e| tr_fmt!("Not a valid project file: {}", e))
+        serde_json::from_str(text).map_err(|e| {
+            let mut de = serde_json::Deserializer::from_str(text);
+            let error = match serde_path_to_error::deserialize::<_, Project>(&mut de) {
+                Err(at) if at.path().iter().next().is_some() => format!("{}: {}", at.path(), e),
+                _ => e.to_string(),
+            };
+            tr_fmt!("Not a valid project file: {}", error)
+        })
     }
 
     /// Content of a project file.

@@ -133,6 +133,18 @@ Parameter kinds: `str`, `int`, `num`, `bool`, `ids` (list of item ids), `points`
 A command that answers with an error leaves the project unchanged, also in the editor
 and the MCP server.
 
+Every page of `project` has a `kind`: `"Schematic"`, `"Cover"`, `"Overview"`,
+`"Graphic"` or `"Document"`, and for a page that shows something of the project, what
+it shows: `{"Report": "terminal_diagram"}` (a report by its name in `list_reports`,
+also one of a plugin), `{"Mounting": 12}` and `{"Drilling": 12}` (the id of the
+enclosure). A project OpenECraft cannot read is refused with the place of the mistake
+(`pages[2].kind.Report: invalid type: unit variant, expected newtype variant`).
+
+A command that builds a set of pages fills the start page of a new project (its only
+page, a schematic page without content; `openecraft_core::ops::blank_page` in Rust)
+and keeps its name, instead of adding a page beside it. The pages it adds take names
+the project does not have yet: the check warns about a page name used twice.
+
 `effect` of a command says what it does: `read` (it only reads: the project stays as it
 is), `add` (it only adds to the project) or `change` (it may change, replace or remove
 what is there; the default). The MCP server passes it on as the annotations of the

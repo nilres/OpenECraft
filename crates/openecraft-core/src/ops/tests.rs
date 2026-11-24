@@ -842,3 +842,16 @@ fn sheet_wire_bounds_and_rotation_follow_bend() {
     let w = &pg.wires[0];
     assert!((w.point_at(0.5) - w.a).dist(direction.transform(1, false)) < 0.01);
 }
+
+#[test]
+fn the_blank_start_page_of_a_new_project_is_found() {
+    let mut prj = crate::project_templates::builtin("Empty (IEC 60204-1)").unwrap();
+    assert_eq!(blank_page(&prj), Some(0));
+    assert_eq!(blank_page(&crate::project_templates::builtin("Machine").unwrap()), None, "no schematic page first");
+    let id = prj.new_id();
+    prj.pages[0].texts.push(TextItem { id, text: "Note".into(), ..Default::default() });
+    assert_eq!(blank_page(&prj), None, "a page with content");
+    prj.pages[0].texts.clear();
+    add_page(&mut prj, PageKind::Schematic, 1);
+    assert_eq!(blank_page(&prj), None, "a project of several pages");
+}
