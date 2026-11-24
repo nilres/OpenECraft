@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Een verdieping boven de hoogste
 A local file opens locally, a server project is opened on the project server again	Een lokaal bestand opent lokaal, een serverproject wordt opnieuw op de projectserver geopend
 A local file or a project on the project server	Een lokaal bestand of een project op de projectserver
+A new enclosure standing in this room	Een nieuwe behuizing in deze ruimte
 A new project	Een nieuw project
 A new release is downloaded in the background and installed when you close OpenECraft.	Een nieuwe versie wordt op de achtergrond gedownload en geïnstalleerd wanneer u OpenECraft sluit.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Een nieuwe versie wordt op de achtergrond gedownload en vervangt deze installatie; ze wordt vanaf de volgende start gebruikt.
@@ -178,6 +179,8 @@ Assign to existing device	Aan bestaand apparaat toewijzen
 Assign to harness	Aan kabelboom toewijzen
 Assign wires: select them in the schematic › Assign to cable.	Draden toewijzen: selecteer ze in het schema › Aan kabel toewijzen.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Asynchrone motoren aan het net verhogen de hoogste kortsluitstroom (IEC 60909-0)
+At least, mm (0: any)	Minstens, mm (0: willekeurig)
+At most, mm (0: any)	Hoogstens, mm (0: willekeurig)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Bij de hoogste omgevingstemperatuur; de verwarming houdt het dauwpunt aan. 0 = niet meegenomen
 At the origin	In de oorsprong
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Op het voedingspunt: Ik3 max {} kA, Ik1 min {} kA
@@ -663,9 +666,13 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Boorlijst (CSV)
 Drilling list of this face (CSV)	Boorlijst van dit vlak (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Boorpatroon van het getoonde vlak als DXF, DWG of CSV
+Drop an enclosure here to add it; onto a room to put it in there	Zet hier een behuizing neer om ze toe te voegen; op een ruimte om ze daarin te plaatsen
 Drop between the pages	Neerzetten tussen de pagina's
 Drop between the rows or onto a section	Neerzetten tussen de rijen of op een sectie
 Drop onto a level to put the room on it	Neerzetten op een verdieping om de ruimte erop te plaatsen
+Drop {} here	{} hier neerzetten
+Drop {} onto one of the highlighted places	Zet {} neer op een van de gemarkeerde plaatsen
+Drop {} onto {} to add it to the device	Zet {} neer op {} om het aan het apparaat toe te voegen
 Duct fill	Gootvulling
 Duct fill limit	Grenswaarde gootvulling
 Duplicate	Dupliceren
@@ -699,6 +706,8 @@ Embed as document page	Insluiten als documentpagina
 Embeds a file (PDF, Word, Excel, image …) as a page	Sluit een bestand (PDF, Word, Excel, afbeelding …) in als pagina
 Embeds the file in the project (replaces the current one)	Sluit het bestand in het project in (vervangt het huidige)
 Enclosure system	Behuizingssysteem
+Enclosure {} added	Behuizing {} toegevoegd
+Enclosure {} added in room {}	Behuizing {} toegevoegd in ruimte {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Behuizingen (+CAB1), apparaten (-M1) en machineplaatsen (+M1) bij de knooppunten
 Enclosures and rooms	Behuizingen en ruimten
 Enclosures, devices to place and placed devices	Kasten, te plaatsen en geplaatste apparaten
@@ -753,7 +762,10 @@ Field	Veld
 Field (name, description, company, creator, date, revision) or project property	Veld (name, description, company, creator, date, revision) of projecteigenschap
 Field cables	Veldkabels
 Field length	Veldlengte
+Field widths and rows of meter and distribution cabinets	Veldbreedtes en rijen van meter- en verdeelkasten
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Veld; tech:<name> voor technische gegevens van artikelen, prop:<name> voor projecteigenschappen
+Fields	Velden
+Fields / rows	Velden / rijen
 File format version {}. Files of older versions are converted when they are opened.	Versie van de bestandsindeling {}. Bestanden van oudere versies worden bij het openen geconverteerd.
 File name	Bestandsnaam
 File of another system (connector)	Bestand van een ander systeem (connector)
@@ -779,6 +791,7 @@ Fit page	Pagina passend maken
 Fits {}	Past op {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	In de rechthoek ingepast met behoud van de beeldverhouding (PNG, JPEG)
 Float	Losmaken
+Floor	Bodem
 Floor above ground	Vloer boven maaiveld
 Floor plan with {} walls	Plattegrond met {} wanden
 Floor-standing part	Vloerstaand artikel
@@ -1214,6 +1227,8 @@ New cover sheet	Nieuw voorblad
 New document page…	Nieuwe documentpagina…
 New empty	Nieuw, leeg
 New enclosure	Nieuwe behuizing
+New enclosure in this room…	Nieuwe behuizing in deze ruimte…
+New enclosure…	Nieuwe behuizing…
 New graphics page	Nieuwe grafiekpagina
 New harness	Nieuwe kabelboom
 New items go onto this layer	Nieuwe elementen komen op deze laag
@@ -1273,6 +1288,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Nog geen behuizing – maak er een met Nieuwe behuizing, of een ruimte voor kasten met Nieuwe ruimte.
 No field cables: place the enclosures and field devices at nodes of the route network.	Geen veldkabels: plaats de behuizingen en veldapparaten bij knooppunten van het tracénetwerk.
 No filter fans: an air/air heat exchanger or a cooling unit	Geen filterventilatoren: een lucht/lucht-warmtewisselaar of een koelaggregaat
+No free place is left for {} in this enclosure	Er is geen vrije plaats meer voor {} in deze behuizing
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Nog geen vrijstaand PV-veld: rijen schuine tafels op geheide palen op het perceel.
 No gesture	Geen gebaar
 No harnesses defined.	Geen kabelbomen gedefinieerd.
@@ -1794,6 +1810,7 @@ Row	Rij
 Row distance	Rijafstand
 Row drawing	Rijtekening
 Row labels	Rijlabels
+Rows	Rijen
 Rows of tables behind each other	Rijen tafels achter elkaar
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Rijen schuine tafels op palen vóór wat er in de installatie staat, naar voren gericht; verplaats het naar zijn plek
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rijen op vrijgegeven pagina's kunnen niet worden gewijzigd. Een regeleinde in een tekst wordt geschreven als \\n.
@@ -1870,7 +1887,9 @@ Scrolling zooms, also where it pans	Scrollen zoomt, ook waar het anders verschui
 Search (* and ? as placeholders)…	Zoeken (* en ? als jokertekens)…
 Search below this folder	Zoeken onder deze map
 Search number, description, maker	Nummer, beschrijving, fabrikant zoeken
+Search the enclosures of the parts database and the catalogs for a new one	Zoek een nieuwe behuizing in de artikeldatabase en de catalogi
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	De artikelserver doorzoeken op catalogus, productgroep en technische gegevens, artikelen toevoegen en de database controleren op updates
+Search…	Zoeken…
 Second channel	Tweede kanaal
 Seconds from a change to its automatic save (10 to 600)	Seconden van een wijziging tot de automatische opslag ervan (10 tot 600)
 Section properties	Sectie-eigenschappen
@@ -2364,6 +2383,7 @@ all lines	alle regels
 all, or e.g. -X*, -W1	alle, of bijv. -X*, -W1
 all, or e.g. K, Q	alle, of bijv. K, Q
 along z	langs z
+any	willekeurig
 both ends	beide einden
 built-in	ingebouwd
 by hand	handmatig
@@ -2477,6 +2497,7 @@ x y	x y
 {} Vault items found for the project parts	{} Vault-items gevonden voor de projectartikelen
 {} Vault items found: review the changes in the integration window	{} Vault-items gevonden: beoordeel de wijzigingen in het integratievenster
 {} added to building {}	{} toegevoegd aan gebouw {}
+{} added to device {}	{} toegevoegd aan apparaat {}
 {} addresses changed	{} adressen gewijzigd
 {} air-termination rods	{} opvangstaven
 {} already exists on the project server.	{} bestaat al op de projectserver.
@@ -2527,18 +2548,23 @@ x y	x y
 {} example catalog parts refreshed	{} artikelen van de voorbeeldcatalogus vernieuwd
 {} favorites added	{} favorieten toegevoegd
 {} field wiring problems (see Check)	{} problemen met de veldbedrading (zie Controle)
+{} fits neither this enclosure nor a device in it	{} past niet bij deze behuizing en niet bij een apparaat erin
+{} fits on another face of this enclosure: {}	{} past op een andere zijde van deze behuizing: {}
 {} found	{} gevonden
 {} function texts copied	{} functieteksten gekopieerd
 {} generated pages in the project (changes on them are replaced)	{} gegenereerde pagina's in het project (wijzigingen daarop worden vervangen)
 {} grants on the project	{} toekenningen voor het project
 {} has no function with a symbol; assign it to a device in its properties	{} heeft geen functie met symbool; wijs het toe aan een apparaat in de eigenschappen daarvan
 {} has unsaved changes. Discard them?	{} heeft niet-opgeslagen wijzigingen. Verwerpen?
+{} imported into the parts database and added as enclosure {}	{} geïmporteerd in de artikeldatabase en toegevoegd als behuizing {}
 {} imported into the parts database and placed as {}	{} in de artikeldatabase geïmporteerd en geplaatst als {}
 {} in {}	{} in {}
 {} is in the schematic	{} staat in het schema
 {} is in the schematic: cable {} from {}	{} staat in het schema: kabel {} van {}
 {} is neither in the parts database nor on the parts server	{} staat niet in de artikeldatabase en niet op de artikelserver
+{} is not an enclosure: only enclosures can be dropped here	{} is geen behuizing: hier kunnen alleen behuizingen worden neergezet
 {} is not in the disk image	{} staat niet in de schijfkopie
+{} is not in the parts database yet: import it, then drag it here	{} staat nog niet in de artikeldatabase: importeer het en sleep het dan hierheen
 {} is not made for wall mounting: place it on a mounting rail	{} is niet bedoeld voor wandmontage: plaats het op een rail
 {} is used by: {}	{} wordt gebruikt door: {}
 {} items copied	{} elementen gekopieerd
@@ -2564,6 +2590,7 @@ x y	x y
 {} objects, {} pages	{} objecten, {} pagina's
 {} of {} approvals	{} van {} goedkeuringen
 {} of {} connections numbered	{} van {} verbindingen genummerd
+{} of {} enclosures	{} van {} behuizingen
 {} of {} entries shown: search to narrow the list	{} van {} items weergegeven: zoek om de lijst te verkleinen
 {} of {} items	{} van {} elementen
 {} of {} pages locked	{} van {} pagina's vergrendeld
@@ -2588,6 +2615,7 @@ x y	x y
 {} pieces	{} stuks
 {} pins used	{} pennen gebruikt
 {} placed as {}	{} geplaatst als {}
+{} placed in {}	{} geplaatst in {}
 {} placement problems (red) – see Check	{} plaatsingsproblemen (rood) – zie Controle
 {} problems	{} problemen
 {} project parts updated	{} projectartikelen bijgewerkt

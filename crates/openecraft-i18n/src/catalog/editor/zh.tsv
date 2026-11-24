@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	在最高楼层之上添加一层
 A local file opens locally, a server project is opened on the project server again	本地文件在本地打开，服务器项目在项目服务器上重新打开
 A local file or a project on the project server	本地文件或项目服务器上的项目
+A new enclosure standing in this room	放在此房间中的新机柜
 A new project	新项目
 A new release is downloaded in the background and installed when you close OpenECraft.	新版本会在后台下载，并在关闭 OpenECraft 时安装。
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	新版本会在后台下载并替换此安装；从下次启动起生效。
@@ -177,6 +178,8 @@ Assign to existing device	分配给现有设备
 Assign to harness	分配给线束
 Assign wires: select them in the schematic › Assign to cable.	分配导线：在原理图中选择导线 › 分配给电缆。
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	电网上的异步电机会增大最大短路电流 (IEC 60909-0)
+At least, mm (0: any)	最小值，mm（0：任意）
+At most, mm (0: any)	最大值，mm（0：任意）
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	在最高环境温度下；加热器保持在露点以上。0 = 不考虑
 At the origin	在原点
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	在供电点：Ik3 max {} kA，Ik1 min {} kA
@@ -657,9 +660,13 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	钻孔列表 (CSV)
 Drilling list of this face (CSV)	此面的钻孔列表 (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	所示面的钻孔图，格式为 DXF、DWG 或 CSV
+Drop an enclosure here to add it; onto a room to put it in there	将机柜拖放到此处即可添加；拖放到房间上即可放入该房间
 Drop between the pages	放到页之间
 Drop between the rows or onto a section	放到行之间或分节上
 Drop onto a level to put the room on it	拖放到楼层上以将房间放在该楼层
+Drop {} here	将 {} 放到此处
+Drop {} onto one of the highlighted places	将 {} 放到某个突出显示的位置上
+Drop {} onto {} to add it to the device	将 {0} 放到 {1} 上以添加到该设备
 Duct fill	线槽填充
 Duct fill limit	线槽填充限值
 Duplicate	复制
@@ -693,6 +700,8 @@ Embed as document page	嵌入为文档页
 Embeds a file (PDF, Word, Excel, image …) as a page	将文件（PDF、Word、Excel、图像 …）作为页嵌入
 Embeds the file in the project (replaces the current one)	将文件嵌入项目中（替换当前文件）
 Enclosure system	机柜系统
+Enclosure {} added	已添加机柜 {}
+Enclosure {} added in room {}	已在房间 {1} 中添加机柜 {0}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	节点上的机柜 (+CAB1)、设备 (-M1) 和机器位置 (+M1)
 Enclosures and rooms	机柜和房间
 Enclosures, devices to place and placed devices	机柜、待放置和已放置的设备
@@ -746,7 +755,10 @@ Field	字段
 Field (name, description, company, creator, date, revision) or project property	字段（name、description、company、creator、date、revision）或项目属性
 Field cables	现场电缆
 Field length	字段长度
+Field widths and rows of meter and distribution cabinets	电表箱和配电柜的列宽和排数
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	字段；tech:<名称> 表示部件的技术数据，prop:<名称> 表示项目属性
+Fields	列
+Fields / rows	列 / 排
 File format version {}. Files of older versions are converted when they are opened.	文件格式版本 {}。旧版本的文件在打开时会被转换。
 File name	文件名
 File of another system (connector)	其他系统的文件（接口）
@@ -772,6 +784,7 @@ Fit page	适合页面
 Fits {}	适配 {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	按原比例缩放到矩形中（PNG、JPEG）
 Float	浮动
+Floor	柜底
 Floor plan with {} walls	有 {} 面墙的平面图
 Floor-standing part	落地式部件
 Fluid and process	流体和过程
@@ -1199,6 +1212,8 @@ New cover sheet	新建封面
 New document page…	新建文档页…
 New empty	新建空白
 New enclosure	新建机柜
+New enclosure in this room…	在此房间新建机柜…
+New enclosure…	新建机柜…
 New graphics page	新建图形页
 New harness	新建线束
 New items go onto this layer	新元素放到此图层上
@@ -1257,6 +1272,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	还没有机柜 – 使用“新建机柜”创建，或使用“新建房间”创建放置机柜的房间。
 No field cables: place the enclosures and field devices at nodes of the route network.	没有现场电缆：请将机柜和现场设备放置在布线网络的节点上。
 No filter fans: an air/air heat exchanger or a cooling unit	不使用过滤风扇：使用空气/空气换热器或冷却装置
+No free place is left for {} in this enclosure	此机柜中已没有可放置 {} 的空位
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	尚无地面光伏阵列：场地上打入式立柱上的倾斜支架排。
 No gesture	无动作
 No harnesses defined.	未定义线束。
@@ -1773,6 +1789,7 @@ Row	行
 Row distance	行距
 Row drawing	行图形
 Row labels	行标签
+Rows	排
 Rows of tables behind each other	前后排列的支架排
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	设施中已有对象前方立柱上的倾斜支架排，朝向前方；请将其移到所需位置
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	已发布页上的行无法更改。文本中的换行写作 \\n。
@@ -1846,7 +1863,9 @@ Scrolling zooms, also where it pans	滚动时缩放，在平移处也是如此
 Search (* and ? as placeholders)…	搜索（* 和 ? 作为通配符）…
 Search below this folder	在此文件夹下搜索
 Search number, description, maker	搜索编号、描述、制造商
+Search the enclosures of the parts database and the catalogs for a new one	在部件数据库和目录中搜索新机柜
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	按目录、产品组和技术数据搜索部件服务器，添加部件并检查数据库更新
+Search…	搜索…
 Second channel	第二通道
 Seconds from a change to its automatic save (10 to 600)	从更改到自动保存的秒数（10 到 600）
 Section properties	分节属性
@@ -2337,6 +2356,7 @@ all lines	所有行
 all, or e.g. -X*, -W1	全部，或例如 -X*、-W1
 all, or e.g. K, Q	全部，或例如 K, Q
 along z	沿 z
+any	任意
 both ends	两端
 built-in	内置
 by hand	手动
@@ -2445,6 +2465,7 @@ x y	x y
 {} Vault items found for the project parts	找到 {} 个与项目部件对应的 Vault 项
 {} Vault items found: review the changes in the integration window	找到 {} 个 Vault 项：请在集成窗口中审阅更改
 {} added to building {}	{0} 已添加到建筑物 {1}
+{} added to device {}	已将 {0} 添加到设备 {1}
 {} addresses changed	已更改 {} 个地址
 {} air-termination rods	{} 根接闪杆
 {} already exists on the project server.	{} 已存在于项目服务器上。
@@ -2495,17 +2516,22 @@ x y	x y
 {} example catalog parts refreshed	已刷新 {} 个示例目录部件
 {} favorites added	已添加 {} 个收藏
 {} field wiring problems (see Check)	{} 个现场接线问题（请参阅检查）
+{} fits neither this enclosure nor a device in it	{} 既不适合此机柜，也不适合其中的设备
+{} fits on another face of this enclosure: {}	{0} 适合此机柜的另一面：{1}
 {} found	找到 {} 个
 {} function texts copied	已复制 {} 个功能文本
 {} generated pages in the project (changes on them are replaced)	项目中有 {} 个生成的页（对其所做的更改将被替换）
 {} grants on the project	项目上的 {} 项授权
 {} has no function with a symbol; assign it to a device in its properties	{} 没有带符号的功能；请在设备属性中将其分配给设备
 {} has unsaved changes. Discard them?	{} 有未保存的更改。是否放弃？
+{} imported into the parts database and added as enclosure {}	{0} 已导入部件数据库并添加为机柜 {1}
 {} imported into the parts database and placed as {}	{} 已导入部件数据库并放置为 {}
 {} in {}	{1} 中的 {0}
 {} is in the schematic: cable {} from {}	{} 已在原理图中：电缆 {} 来自 {}
 {} is neither in the parts database nor on the parts server	{} 不在部件数据库中，也不在部件服务器上
+{} is not an enclosure: only enclosures can be dropped here	{} 不是机柜：此处只能拖放机柜
 {} is not in the disk image	磁盘映像中没有 {}
+{} is not in the parts database yet: import it, then drag it here	{} 尚不在部件数据库中：请先导入，然后拖到此处
 {} is not made for wall mounting: place it on a mounting rail	{} 不适合墙面安装：请将其放在安装导轨上
 {} is used by: {}	{} 已被以下项使用：{}
 {} items copied	已复制 {} 个元素
@@ -2531,6 +2557,7 @@ x y	x y
 {} objects, {} pages	{} 个对象，{} 页
 {} of {} approvals	{} / {} 个审批
 {} of {} connections numbered	已为 {} / {} 个连接编号
+{} of {} enclosures	{1} 个机柜中的 {0} 个
 {} of {} entries shown: search to narrow the list	显示 {} / {} 个条目：请搜索以缩小列表范围
 {} of {} items	{} / {} 个元件
 {} of {} pages locked	已锁定 {} / {} 页
@@ -2555,6 +2582,7 @@ x y	x y
 {} pieces	{} 件
 {} pins used	已使用 {} 个插针
 {} placed as {}	{} 已放置为 {}
+{} placed in {}	已将 {0} 放入 {1}
 {} placement problems (red) – see Check	{} 个放置问题（红色）– 请参阅“检查”
 {} project parts updated	已更新 {} 个项目部件
 {} projects on the server	服务器上有 {} 个项目

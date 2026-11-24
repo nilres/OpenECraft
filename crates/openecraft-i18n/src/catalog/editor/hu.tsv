@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Egy szint a legfelső fölé
 A local file opens locally, a server project is opened on the project server again	A helyi fájl helyben nyílik meg, a kiszolgálóprojekt újra a projektkiszolgálón nyílik meg
 A local file or a project on the project server	Helyi fájl vagy projekt a projektkiszolgálón
+A new enclosure standing in this room	Új szekrény ebben a helyiségben
 A new project	Új projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Az új verzió a háttérben töltődik le, és az OpenECraft bezárásakor települ.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Az új verzió a háttérben töltődik le, és lecseréli ezt a telepítést; a következő indítástól használatos.
@@ -178,6 +179,8 @@ Assign to existing device	Hozzárendelés meglévő készülékhez
 Assign to harness	Hozzárendelés kábelköteghez
 Assign wires: select them in the schematic › Assign to cable.	Vezetékek hozzárendelése: jelölje ki őket a kapcsolási rajzon › Hozzárendelés kábelhez.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	A hálózatra kapcsolt aszinkronmotorok növelik a legnagyobb zárlati áramot (IEC 60909-0)
+At least, mm (0: any)	Legalább, mm (0: bármennyi)
+At most, mm (0: any)	Legfeljebb, mm (0: bármennyi)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	A legmagasabb környezeti hőmérsékleten; a fűtés tartja a harmatpontot. 0 = nincs figyelembe véve
 At the origin	Az origóban
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	A betáplálási pontban: Ik3 max {} kA, Ik1 min {} kA
@@ -663,9 +666,13 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Furatlista (CSV)
 Drilling list of this face (CSV)	A felület furatlistája (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	A megjelenített felület furatképe DXF, DWG vagy CSV formátumban
+Drop an enclosure here to add it; onto a room to put it in there	Ejtse ide a szekrényt a hozzáadáshoz; egy helyiségre, hogy oda kerüljön
 Drop between the pages	Ejtse az oldalak közé
 Drop between the rows or onto a section	Ejtse a sorok közé vagy egy szakaszra
 Drop onto a level to put the room on it	Ejtse egy szintre, hogy a helyiség arra kerüljön
+Drop {} here	{} ejtése ide
+Drop {} onto one of the highlighted places	Ejtse a(z) {} elemet az egyik kiemelt helyre
+Drop {} onto {} to add it to the device	Ejtse a(z) {} elemet a(z) {} eszközre a hozzáadáshoz
 Duct fill	Csatornatöltöttség
 Duct fill limit	Csatornatöltöttség határértéke
 Duplicate	Kettőzés
@@ -699,6 +706,8 @@ Embed as document page	Beágyazás dokumentumlapként
 Embeds a file (PDF, Word, Excel, image …) as a page	Fájlt (PDF, Word, Excel, kép …) ágyaz be oldalként
 Embeds the file in the project (replaces the current one)	Beágyazza a fájlt a projektbe (lecseréli a jelenlegit)
 Enclosure system	Szekrényrendszer
+Enclosure {} added	{} szekrény hozzáadva
+Enclosure {} added in room {}	{} szekrény hozzáadva a(z) {} helyiségben
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Szekrények (+CAB1), készülékek (-M1) és géphelyek (+M1) a csomópontokon
 Enclosures and rooms	Szekrények és helyiségek
 Enclosures, devices to place and placed devices	Szekrények, elhelyezendő és elhelyezett készülékek
@@ -753,7 +762,10 @@ Field	Mező
 Field (name, description, company, creator, date, revision) or project property	Mező (name, description, company, creator, date, revision) vagy projekttulajdonság
 Field cables	Terepi kábelek
 Field length	Mezőhossz
+Field widths and rows of meter and distribution cabinets	Mérő- és elosztószekrények mezőszélességei és sorai
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Mező; tech:<name> az alkatrészek műszaki adataihoz, prop:<name> a projekttulajdonságokhoz
+Fields	Mezők
+Fields / rows	Mezők / sorok
 File format version {}. Files of older versions are converted when they are opened.	Fájlformátum-verzió: {}. A régebbi verziók fájljai megnyitáskor átalakításra kerülnek.
 File name	Fájlnév
 File of another system (connector)	Más rendszer fájlja (összekötő)
@@ -779,6 +791,7 @@ Fit page	Oldal méretre igazítása
 Fits {}	Illeszkedik ehhez: {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	A téglalapba illesztve, a méretarány megtartásával (PNG, JPEG)
 Float	Leválasztás
+Floor	Fenéklemez
 Floor above ground	Padló a terep felett
 Floor plan with {} walls	Alaprajz {} fallal
 Floor-standing part	Padlón álló cikk
@@ -1214,6 +1227,8 @@ New cover sheet	Új fedlap
 New document page…	Új dokumentumoldal…
 New empty	Új, üres
 New enclosure	Új szekrény
+New enclosure in this room…	Új szekrény ebben a helyiségben…
+New enclosure…	Új szekrény…
 New graphics page	Új grafikus oldal
 New harness	Új kábelköteg
 New items go onto this layer	Az új elemek erre a rétegre kerülnek
@@ -1273,6 +1288,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Még nincs szekrény – hozzon létre egyet az Új szekrény paranccsal, vagy helyiséget a szekrényeknek az Új helyiség paranccsal.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nincsenek terepi kábelek: helyezze el a szekrényeket és a terepi készülékeket a nyomvonalhálózat csomópontjain.
 No filter fans: an air/air heat exchanger or a cooling unit	Nincsenek szűrős ventilátorok: levegő/levegő hőcserélő vagy hűtőkészülék
+No free place is left for {} in this enclosure	Ebben a szekrényben nem maradt szabad hely a(z) {} számára
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Még nincs szabadföldi PV-mező: döntött asztalok sorai vert oszlopokon a telken.
 No gesture	Nincs kézmozdulat
 No harnesses defined.	Nincsenek definiált kábelkötegek.
@@ -1794,6 +1810,7 @@ Row	Sor
 Row distance	Sortávolság
 Row drawing	Sorrajz
 Row labels	Sorfeliratok
+Rows	Sorok
 Rows of tables behind each other	Egymás mögötti asztalsorok
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Döntött asztalok sorai oszlopokon a létesítményben állók előtt, előre nézve; helyezze a helyére
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	A kiadott oldalakon lévő sorok nem módosíthatók. A szövegben a sortörést \\n jelöli.
@@ -1870,7 +1887,9 @@ Scrolling zooms, also where it pans	A görgetés nagyít, ott is, ahol mozgatna
 Search (* and ? as placeholders)…	Keresés (* és ? helyettesítő karakterként)…
 Search below this folder	Keresés ebben a mappában és alatta
 Search number, description, maker	Szám, leírás, gyártó keresése
+Search the enclosures of the parts database and the catalogs for a new one	Új szekrény keresése az alkatrész-adatbázisban és a katalógusokban
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Keresés az alkatrészszerveren katalógus, termékcsoport és műszaki adatok szerint, alkatrészek hozzáadása és az adatbázis frissítéseinek ellenőrzése
+Search…	Keresés…
 Second channel	Második csatorna
 Seconds from a change to its automatic save (10 to 600)	Másodpercek egy módosítástól az automatikus mentéséig (10 és 600 között)
 Section properties	Szakasz tulajdonságai
@@ -2364,6 +2383,7 @@ all lines	összes sor
 all, or e.g. -X*, -W1	összes, vagy pl. -X*, -W1
 all, or e.g. K, Q	mind, vagy pl. K, Q
 along z	z mentén
+any	bármennyi
 both ends	mindkét vég
 built-in	beépített
 by hand	kézzel
@@ -2477,6 +2497,7 @@ x y	x y
 {} Vault items found for the project parts	{} Vault-elem található a projektalkatrészekhez
 {} Vault items found: review the changes in the integration window	{} Vault-elem található: tekintse át a változásokat az integrációs ablakban
 {} added to building {}	{} hozzáadva a(z) {} épülethez
+{} added to device {}	{} hozzáadva a(z) {} eszközhöz
 {} addresses changed	{} cím módosítva
 {} air-termination rods	{} felfogórúd
 {} already exists on the project server.	{} már létezik a projektszerveren.
@@ -2527,18 +2548,23 @@ x y	x y
 {} example catalog parts refreshed	{} példakatalógus-alkatrész frissítve
 {} favorites added	Hozzáadott kedvencek: {}
 {} field wiring problems (see Check)	{} terepi huzalozási probléma (lásd: Ellenőrzés)
+{} fits neither this enclosure nor a device in it	{} nem illik sem ehhez a szekrényhez, sem a benne lévő eszközhöz
+{} fits on another face of this enclosure: {}	{} a szekrény egy másik oldalára illik: {}
 {} found	{} találat
 {} function texts copied	{} funkciószöveg másolva
 {} generated pages in the project (changes on them are replaced)	{} generált oldal a projektben (a rajtuk végzett módosítások lecserélődnek)
 {} grants on the project	{} hozzárendelés a projekten
 {} has no function with a symbol; assign it to a device in its properties	A(z) {} alkatrésznek nincs szimbólummal rendelkező funkciója; rendelje egy készülékhez annak tulajdonságaiban
 {} has unsaved changes. Discard them?	A(z) {} nem mentett módosításokat tartalmaz. Elveti őket?
+{} imported into the parts database and added as enclosure {}	{} importálva az alkatrész-adatbázisba és hozzáadva {} szekrényként
 {} imported into the parts database and placed as {}	{} bekerült az alkatrész-adatbázisba, elhelyezve: {}
 {} in {}	{} itt: {}
 {} is in the schematic	{} a kapcsolási rajzon van
 {} is in the schematic: cable {} from {}	A(z) {} a kapcsolási rajzon van: {} kábel innen: {}
 {} is neither in the parts database nor on the parts server	{} sem az alkatrész-adatbázisban, sem az alkatrészkiszolgálón nem található
+{} is not an enclosure: only enclosures can be dropped here	{} nem szekrény: ide csak szekrényeket lehet ejteni
 {} is not in the disk image	A(z) {} nincs a lemezképben
+{} is not in the parts database yet: import it, then drag it here	{} még nincs az alkatrész-adatbázisban: importálja, majd húzza ide
 {} is not made for wall mounting: place it on a mounting rail	{} nem falra szerelésre készült: helyezze szerelősínre
 {} is used by: {}	{} használja: {}
 {} items copied	{} elem másolva
@@ -2564,6 +2590,7 @@ x y	x y
 {} objects, {} pages	{} objektum, {} oldal
 {} of {} approvals	{} / {} jóváhagyás
 {} of {} connections numbered	{} / {} összeköttetés számozva
+{} of {} enclosures	{} / {} szekrény
 {} of {} entries shown: search to narrow the list	{} / {} bejegyzés látható: a lista szűkítéséhez keressen
 {} of {} items	{} / {} elem
 {} of {} pages locked	{} / {} oldal zárolva
@@ -2588,6 +2615,7 @@ x y	x y
 {} pieces	{} db
 {} pins used	{} érintkezőtű foglalt
 {} placed as {}	{} elhelyezve: {}
+{} placed in {}	{} elhelyezve itt: {}
 {} placement problems (red) – see Check	{} elhelyezési probléma (piros) – lásd: Ellenőrzés
 {} problems	{} probléma
 {} project parts updated	{} projektalkatrész frissítve

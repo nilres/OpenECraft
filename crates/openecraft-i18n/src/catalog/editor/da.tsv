@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	En etage over den øverste
 A local file opens locally, a server project is opened on the project server again	En lokal fil åbnes lokalt, et serverprojekt åbnes igen på projektserveren
 A local file or a project on the project server	En lokal fil eller et projekt på projektserveren
+A new enclosure standing in this room	En ny kapsling i dette rum
 A new project	Et nyt projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	En ny version hentes i baggrunden og installeres, når du lukker OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	En ny version hentes i baggrunden og erstatter denne installation; den bruges fra næste start.
@@ -178,6 +179,8 @@ Assign to existing device	Tildel til eksisterende enhed
 Assign to harness	Tildel til ledningsnet
 Assign wires: select them in the schematic › Assign to cable.	Tildel ledninger: Vælg dem i diagrammet › Tildel til kabel.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Asynkronmotorer på nettet øger den største kortslutningsstrøm (IEC 60909-0)
+At least, mm (0: any)	Mindst, mm (0: vilkårligt)
+At most, mm (0: any)	Højst, mm (0: vilkårligt)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Ved den højeste omgivelsestemperatur; varmeren holder dugpunktet. 0 = tages ikke i betragtning
 At the origin	I origo
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Ved forsyningspunktet: Ik3 maks. {} kA, Ik1 min. {} kA
@@ -663,9 +666,13 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Boreliste (CSV)
 Drilling list of this face (CSV)	Boreliste for denne flade (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Boremønster for den viste flade som DXF, DWG eller CSV
+Drop an enclosure here to add it; onto a room to put it in there	Slip en kapsling her for at tilføje den; på et rum for at placere den der
 Drop between the pages	Slip mellem siderne
 Drop between the rows or onto a section	Slip mellem rækkerne eller på et afsnit
 Drop onto a level to put the room on it	Slip på en etage for at placere rummet der
+Drop {} here	Slip {} her
+Drop {} onto one of the highlighted places	Slip {} på et af de fremhævede steder
+Drop {} onto {} to add it to the device	Slip {} på {} for at tilføje den til enheden
 Duct fill	Kanalfyldning
 Duct fill limit	Grænse for kanalfyldning
 Duplicate	Dupliker
@@ -699,6 +706,8 @@ Embed as document page	Indlejr som dokumentside
 Embeds a file (PDF, Word, Excel, image …) as a page	Integrerer en fil (PDF, Word, Excel, billede …) som en side
 Embeds the file in the project (replaces the current one)	Integrerer filen i projektet (erstatter den aktuelle)
 Enclosure system	Kapslingssystem
+Enclosure {} added	Kapsling {} tilføjet
+Enclosure {} added in room {}	Kapsling {} tilføjet i rum {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Kapslinger (+CAB1), enheder (-M1) og maskinplaceringer (+M1) ved knuderne
 Enclosures and rooms	Kabinetter og rum
 Enclosures, devices to place and placed devices	Skabe, enheder der skal placeres og placerede enheder
@@ -753,7 +762,10 @@ Field	Felt
 Field (name, description, company, creator, date, revision) or project property	Felt (name, description, company, creator, date, revision) eller projektegenskab
 Field cables	Feltkabler
 Field length	Feltlængde
+Field widths and rows of meter and distribution cabinets	Feltbredder og rækker i måler- og fordelingsskabe
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Felt; tech:<navn> for tekniske data for artikler, prop:<navn> for projektegenskaber
+Fields	Felter
+Fields / rows	Felter / rækker
 File format version {}. Files of older versions are converted when they are opened.	Filformatversion {}. Filer fra ældre versioner konverteres, når de åbnes.
 File name	Filnavn
 File of another system (connector)	Fil fra et andet system (connector)
@@ -779,6 +791,7 @@ Fit page	Tilpas side
 Fits {}	Passer til {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Tilpasses rektanglet med bevaret billedformat (PNG, JPEG)
 Float	Frigør
+Floor	Bund
 Floor above ground	Gulv over terræn
 Floor plan with {} walls	Plantegning med {} vægge
 Floor-standing part	Gulvstående artikel
@@ -1214,6 +1227,8 @@ New cover sheet	Ny forside
 New document page…	Ny dokumentside…
 New empty	Ny, tom
 New enclosure	Ny kapsling
+New enclosure in this room…	Ny kapsling i dette rum…
+New enclosure…	Ny kapsling…
 New graphics page	Ny grafikside
 New harness	Nyt ledningsnet
 New items go onto this layer	Nye elementer placeres på dette lag
@@ -1273,6 +1288,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ingen kapsling endnu – opret en med Ny kapsling, eller et rum til skabe med Nyt rum.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ingen feltkabler: placer kapslingerne og feltenhederne ved knuder i føringsnettet.
 No filter fans: an air/air heat exchanger or a cooling unit	Ingen filterventilatorer: en luft/luft-varmeveksler eller en køleenhed
+No free place is left for {} in this enclosure	Der er ingen ledig plads tilbage til {} i denne kapsling
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Endnu intet jordmonteret solcellefelt: rækker af skrå borde på rammede stolper på grunden.
 No gesture	Ingen bevægelse
 No harnesses defined.	Ingen ledningsnet defineret.
@@ -1794,6 +1810,7 @@ Row	Række
 Row distance	Rækkeafstand
 Row drawing	Rækketegning
 Row labels	Rækkeetiketter
+Rows	Rækker
 Rows of tables behind each other	Rækker af borde bag hinanden
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Rækker af skrå borde på stolper foran det, der står i anlægget, vendt fremad; flyt det på plads
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rækker på frigivne sider kan ikke ændres. Et linjeskift i en tekst skrives som \\n.
@@ -1870,7 +1887,9 @@ Scrolling zooms, also where it pans	Rulning zoomer, også hvor den panorerer
 Search (* and ? as placeholders)…	Søg (* og ? som jokertegn)…
 Search below this folder	Søg under denne mappe
 Search number, description, maker	Søg nummer, beskrivelse, producent
+Search the enclosures of the parts database and the catalogs for a new one	Søg en ny kapsling i artikeldatabasen og katalogerne
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Søg på artikelserveren efter katalog, produktgruppe og tekniske data, tilføj artikler, og kontrollér databasen for opdateringer
+Search…	Søg…
 Second channel	Anden kanal
 Seconds from a change to its automatic save (10 to 600)	Sekunder fra en ændring til dens automatiske lagring (10 til 600)
 Section properties	Afsnitsegenskaber
@@ -2364,6 +2383,7 @@ all lines	alle linjer
 all, or e.g. -X*, -W1	alle, eller f.eks. -X*, -W1
 all, or e.g. K, Q	alle, eller f.eks. K, Q
 along z	langs z
+any	vilkårligt
 both ends	begge ender
 built-in	indbygget
 by hand	manuelt
@@ -2477,6 +2497,7 @@ x y	x y
 {} Vault items found for the project parts	{} Vault-elementer fundet for projektartiklerne
 {} Vault items found: review the changes in the integration window	{} Vault-elementer fundet: gennemgå ændringerne i integrationsvinduet
 {} added to building {}	{} tilføjet til bygning {}
+{} added to device {}	{} tilføjet til enhed {}
 {} addresses changed	{} adresser ændret
 {} air-termination rods	{} fangstænger
 {} already exists on the project server.	{} findes allerede på projektserveren.
@@ -2527,18 +2548,23 @@ x y	x y
 {} example catalog parts refreshed	{} artikler fra eksempelkataloget opdateret
 {} favorites added	{} favoritter tilføjet
 {} field wiring problems (see Check)	{} problemer med feltledningsføringen (se Kontrol)
+{} fits neither this enclosure nor a device in it	{} passer hverken til denne kapsling eller til en enhed i den
+{} fits on another face of this enclosure: {}	{} passer på en anden side af denne kapsling: {}
 {} found	{} fundet
 {} function texts copied	{} funktionstekster kopieret
 {} generated pages in the project (changes on them are replaced)	{} genererede sider i projektet (ændringer på dem erstattes)
 {} grants on the project	{} tildelinger for projektet
 {} has no function with a symbol; assign it to a device in its properties	{} har ingen funktion med symbol; tildel den til en enhed i enhedens egenskaber
 {} has unsaved changes. Discard them?	{} har ikke-gemte ændringer. Kassér dem?
+{} imported into the parts database and added as enclosure {}	{} importeret til artikeldatabasen og tilføjet som kapsling {}
 {} imported into the parts database and placed as {}	{} importeret til artikeldatabasen og placeret som {}
 {} in {}	{} i {}
 {} is in the schematic	{} er i diagrammet
 {} is in the schematic: cable {} from {}	{} er i diagrammet: kabel {} fra {}
 {} is neither in the parts database nor on the parts server	{} findes hverken i artikeldatabasen eller på artikelserveren
+{} is not an enclosure: only enclosures can be dropped here	{} er ikke en kapsling: her kan kun kapslinger slippes
 {} is not in the disk image	{} er ikke i diskbilledet
+{} is not in the parts database yet: import it, then drag it here	{} er ikke i artikeldatabasen endnu: importér den, og træk den så herhen
 {} is not made for wall mounting: place it on a mounting rail	{} er ikke beregnet til vægmontage: placer den på en skinne
 {} is used by: {}	{} bruges af: {}
 {} items copied	{} elementer kopieret
@@ -2564,6 +2590,7 @@ x y	x y
 {} objects, {} pages	{} objekter, {} sider
 {} of {} approvals	{} af {} godkendelser
 {} of {} connections numbered	{} af {} forbindelser nummereret
+{} of {} enclosures	{} af {} kapslinger
 {} of {} entries shown: search to narrow the list	{} af {} poster vist: søg for at indsnævre listen
 {} of {} items	{} af {} elementer
 {} of {} pages locked	{} af {} sider låst
@@ -2588,6 +2615,7 @@ x y	x y
 {} pieces	{} stk.
 {} pins used	{} ben i brug
 {} placed as {}	{} placeret som {}
+{} placed in {}	{} placeret i {}
 {} placement problems (red) – see Check	{} placeringsproblemer (røde) – se Kontrol
 {} problems	{} problemer
 {} project parts updated	{} projektartikler opdateret

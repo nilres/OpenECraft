@@ -35,7 +35,7 @@ pub fn drag_row(ui: &mut egui::Ui, drag: bool, number: &str, add: impl FnOnce(&m
     if r.response.hovered() && !ui.ctx().is_being_dragged(id) {
         ui.ctx().set_cursor_icon(egui::CursorIcon::Default);
     }
-    r.inner.union(r.response.interact(Sense::click())).on_hover_text(tr("Drag it onto a schematic page to place it"))
+    r.inner.union(r.response.interact(Sense::click())).on_hover_text(tr("Drag it onto a schematic page to place it, an enclosure also into Enclosures and rooms"))
 }
 
 /// Graphics file of a part.

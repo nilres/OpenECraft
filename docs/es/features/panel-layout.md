@@ -19,6 +19,26 @@ los muestran.
 
 - Envolventes (a partir de un artículo como `GEN.ENC-600X800` o de tamaño personalizado)
   con placa de montaje.
+- *Nueva envolvente* (el botón del navegador *Envolventes y salas* o su menú
+  contextual, sobre una sala *Nueva envolvente en esta sala…*) busca las envolventes de
+  la base de datos de artículos, del proyecto y de los catálogos incluidos con
+  OpenECraft: por texto, sistema de envolvente, fabricante, *Montaje* (pared o suelo),
+  ancho, alto y fondo de … a, y las columnas y filas de los armarios de contadores y de
+  distribución (*Columnas / filas*, datos de artículo `Fields: 3`, `Rows: 7`), ordenadas
+  por número de artículo o tamaño. Un doble clic en una envolvente la crea; la búsqueda
+  se mantiene para la siguiente. Una envolvente arrastrada desde la gestión de artículos
+  (o el portal de datos) al navegador se crea al instante, en la sala sobre la que se
+  soltó (también sobre un armario que esté en una).
+- **Accesorios arrastrados a la envolvente:** un accesorio arrastrado desde la gestión
+  de artículos sobre la vista 2D o 3D de una envolvente muestra los lugares donde
+  encaja, resaltados: un panel de distribución de un armario de contadores (como el
+  Striebel & John FV17, datos de artículo `Fields: 1`, `Rows: 7`) las columnas libres de
+  la cuadrícula del armario, otro accesorio del artículo de la envolvente las caras en
+  las que puede montarse, un accesorio del artículo de un dispositivo (un contacto
+  auxiliar, un contacto de señalización) los dispositivos colocados a los que se ajusta.
+  Soltado sobre un lugar va allí; sobre un dispositivo pasa a ser accesorio del
+  dispositivo. El comando `fitting_places` enumera los lugares para la línea de
+  comandos y los agentes de IA.
 - Carriles de montaje y canaletas dibujados por longitud; seleccione uno y arrastre
   cualquiera de sus extremos para cambiar su tamaño, o muévalo (los dispositivos viajan
   con su carril). Los dispositivos se colocan desde una lista de "dispositivos por

@@ -426,6 +426,9 @@ pub struct App {
     tablet_applied: Option<bool>,
     /// A part dropped onto a page that is being downloaded from the parts server.
     pending_drop: Option<crate::parts_ui::PendingDrop>,
+    /// A part dropped into the enclosures of the panel layout that is being downloaded
+    /// from the parts server.
+    pending_enclosure: Option<crate::panel_ui::PartDrop>,
     /// Updates from the releases on GitHub.
     updater: crate::updater::Updater,
 }
@@ -672,6 +675,7 @@ impl App {
             last_selection: (0, Vec::new()),
             tablet_applied: None,
             pending_drop: None,
+            pending_enclosure: None,
             updater: crate::updater::Updater::default(),
             dark: cc.egui_ctx.theme() == egui::Theme::Dark,
         };

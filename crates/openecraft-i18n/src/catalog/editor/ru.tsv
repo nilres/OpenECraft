@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Этаж над самым верхним
 A local file opens locally, a server project is opened on the project server again	Локальный файл открывается локально, проект с сервера снова открывается на сервере проектов
 A local file or a project on the project server	Локальный файл или проект на сервере проектов
+A new enclosure standing in this room	Новый корпус в этом помещении
 A new project	Новый проект
 A new release is downloaded in the background and installed when you close OpenECraft.	Новая версия загружается в фоновом режиме и устанавливается при закрытии OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Новая версия загружается в фоновом режиме и заменяет эту установку; она используется со следующего запуска.
@@ -178,6 +179,8 @@ Assign to existing device	Назначить существующему устр
 Assign to harness	Назначить жгуту
 Assign wires: select them in the schematic › Assign to cable.	Назначение проводов: выберите их на схеме › Назначить кабелю.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Асинхронные двигатели в сети увеличивают максимальный ток короткого замыкания (IEC 60909-0)
+At least, mm (0: any)	Не менее, мм (0: любое)
+At most, mm (0: any)	Не более, мм (0: любое)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	При максимальной температуре окружающей среды; обогреватель поддерживает температуру выше точки росы. 0 = не учитывается
 At the origin	В начале координат
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	В точке питания: Ik3 max {} kA, Ik1 min {} kA
@@ -662,9 +665,13 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Список отверстий (CSV)
 Drilling list of this face (CSV)	Список сверления этой поверхности (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Схема сверления показанной стороны в DXF, DWG или CSV
+Drop an enclosure here to add it; onto a room to put it in there	Перетащите сюда корпус, чтобы добавить его; на помещение, чтобы поставить его туда
 Drop between the pages	Отпустите между листами
 Drop between the rows or onto a section	Отпустите между строками или на разделе
 Drop onto a level to put the room on it	Отпустите на уровне, чтобы поставить на него помещение
+Drop {} here	Отпустите {} здесь
+Drop {} onto one of the highlighted places	Отпустите {} на одно из выделенных мест
+Drop {} onto {} to add it to the device	Отпустите {} на {}, чтобы добавить к устройству
 Duct fill	Заполнение канала
 Duct fill limit	Предел заполнения канала
 Duplicate	Дублировать
@@ -698,6 +705,8 @@ Embed as document page	Внедрить как лист документа
 Embeds a file (PDF, Word, Excel, image …) as a page	Встраивает файл (PDF, Word, Excel, изображение …) как лист
 Embeds the file in the project (replaces the current one)	Встраивает файл в проект (заменяет текущий)
 Enclosure system	Система корпусов
+Enclosure {} added	Корпус {} добавлен
+Enclosure {} added in room {}	Корпус {} добавлен в помещение {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Корпуса (+CAB1), устройства (-M1) и места на машине (+M1) в узлах
 Enclosures and rooms	Шкафы и помещения
 Enclosures, devices to place and placed devices	Шкафы, устройства для размещения и размещённые устройства
@@ -752,7 +761,10 @@ Field	Поле
 Field (name, description, company, creator, date, revision) or project property	Поле (name, description, company, creator, date, revision) или свойство проекта
 Field cables	Полевые кабели
 Field length	Длина поля
+Field widths and rows of meter and distribution cabinets	Ширина полей и ряды счётчиковых и распределительных шкафов
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Поле; tech:<name> для технических данных изделий, prop:<name> для свойств проекта
+Fields	Поля
+Fields / rows	Поля / ряды
 File format version {}. Files of older versions are converted when they are opened.	Версия формата файла {}. Файлы старых версий преобразуются при открытии.
 File name	Имя файла
 File of another system (connector)	Файл другой системы (коннектор)
@@ -778,6 +790,7 @@ Fit page	По размеру листа
 Fits {}	Подходит к {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Вписывается в прямоугольник с сохранением пропорций (PNG, JPEG)
 Float	Открепить
+Floor	Днище
 Floor above ground	Пол над землёй
 Floor plan with {} walls	План с {} стенами
 Floor-standing part	Напольное изделие
@@ -1213,6 +1226,8 @@ New cover sheet	Новый титульный лист
 New document page…	Новый лист документа…
 New empty	Новая, пустая
 New enclosure	Новый корпус
+New enclosure in this room…	Новый корпус в этом помещении…
+New enclosure…	Новый корпус…
 New graphics page	Новый лист графики
 New harness	Новый жгут
 New items go onto this layer	Новые объекты помещаются на этот слой
@@ -1272,6 +1287,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Корпусов пока нет – создайте корпус командой Новый корпус или помещение для шкафов командой Новое помещение.
 No field cables: place the enclosures and field devices at nodes of the route network.	Нет полевых кабелей: разместите корпуса и полевые устройства в узлах сети трасс.
 No filter fans: an air/air heat exchanger or a cooling unit	Без вентиляторов с фильтром: теплообменник воздух/воздух или холодильный агрегат
+No free place is left for {} in this enclosure	В этом корпусе больше нет свободного места для {}
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Наземного фотоэлектрического поля ещё нет: ряды наклонных столов на забивных стойках на участке.
 No gesture	Без жеста
 No harnesses defined.	Жгуты не определены.
@@ -1793,6 +1809,7 @@ Row	Строка
 Row distance	Расстояние между рядами
 Row drawing	Чертёж строки
 Row labels	Подписи строк
+Rows	Ряды
 Rows of tables behind each other	Ряды столов друг за другом
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Ряды наклонных столов на стойках перед тем, что стоит в установке, обращённые вперёд; переместите поле на его место
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Строки на выпущенных листах нельзя изменять. Разрыв строки в тексте записывается как \\n.
@@ -1869,7 +1886,9 @@ Scrolling zooms, also where it pans	Прокрутка масштабирует,
 Search (* and ? as placeholders)…	Поиск (* и ? как подстановочные знаки)…
 Search below this folder	Искать в этой папке и ниже
 Search number, description, maker	Поиск номера, описания, производителя
+Search the enclosures of the parts database and the catalogs for a new one	Найти новый корпус в базе изделий и каталогах
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Поиск на сервере изделий по каталогу, группе продуктов и техническим данным, добавление изделий и проверка базы данных на наличие обновлений
+Search…	Поиск…
 Second channel	Второй канал
 Seconds from a change to its automatic save (10 to 600)	Секунды от изменения до его автоматического сохранения (от 10 до 600)
 Section properties	Свойства раздела
@@ -2363,6 +2382,7 @@ all lines	все строки
 all, or e.g. -X*, -W1	все или, например, -X*, -W1
 all, or e.g. K, Q	все или, например, K, Q
 along z	вдоль z
+any	любое
 both ends	оба конца
 built-in	встроенное
 by hand	вручную
@@ -2476,6 +2496,7 @@ x y	x y
 {} Vault items found for the project parts	Найдено элементов Vault для изделий проекта: {}
 {} Vault items found: review the changes in the integration window	Найдено элементов Vault: {}; проверьте изменения в окне интеграции
 {} added to building {}	{} добавлен к зданию {}
+{} added to device {}	{} добавлено к устройству {}
 {} addresses changed	Изменено адресов: {}
 {} air-termination rods	Молниеприёмных стержней: {}
 {} already exists on the project server.	{} уже существует на сервере проектов.
@@ -2526,18 +2547,23 @@ x y	x y
 {} example catalog parts refreshed	Обновлено изделий примера каталога: {}
 {} favorites added	Добавлено в избранное: {}
 {} field wiring problems (see Check)	Проблем полевого монтажа: {} (см. «Проверка»)
+{} fits neither this enclosure nor a device in it	{} не подходит ни к этому корпусу, ни к устройству в нём
+{} fits on another face of this enclosure: {}	{} подходит к другой стороне этого корпуса: {}
 {} found	Найдено: {}
 {} function texts copied	Скопировано текстов функций: {}
 {} generated pages in the project (changes on them are replaced)	Созданных листов в проекте: {} (изменения на них будут заменены)
 {} grants on the project	Назначений для проекта: {}
 {} has no function with a symbol; assign it to a device in its properties	У {} нет функции с символом; назначьте его устройству в свойствах устройства
 {} has unsaved changes. Discard them?	В {} есть несохранённые изменения. Отменить их?
+{} imported into the parts database and added as enclosure {}	{} импортировано в базу изделий и добавлено как корпус {}
 {} imported into the parts database and placed as {}	{} импортировано в базу данных изделий и размещено как {}
 {} in {}	{} в {}
 {} is in the schematic	{} есть на схеме
 {} is in the schematic: cable {} from {}	{} на схеме: кабель {} от {}
 {} is neither in the parts database nor on the parts server	{} нет ни в базе данных изделий, ни на сервере изделий
+{} is not an enclosure: only enclosures can be dropped here	{} не является корпусом: сюда можно перетаскивать только корпуса
 {} is not in the disk image	{} нет в образе диска
+{} is not in the parts database yet: import it, then drag it here	{} ещё нет в базе изделий: импортируйте его, затем перетащите сюда
 {} is not made for wall mounting: place it on a mounting rail	{} не предназначен для настенного монтажа: установите его на рейку
 {} is used by: {}	{} используется: {}
 {} items copied	Скопировано элементов: {}
@@ -2563,6 +2589,7 @@ x y	x y
 {} objects, {} pages	Объектов: {}, листов: {}
 {} of {} approvals	{} из {} утверждений
 {} of {} connections numbered	Пронумеровано соединений: {} из {}
+{} of {} enclosures	{} из {} корпусов
 {} of {} entries shown: search to narrow the list	Показано записей: {} из {}; используйте поиск, чтобы сузить список
 {} of {} items	{} из {} элементов
 {} of {} pages locked	Заблокировано листов: {} из {}
@@ -2587,6 +2614,7 @@ x y	x y
 {} pieces	{} шт.
 {} pins used	Занято контактов: {}
 {} placed as {}	{} размещено как {}
+{} placed in {}	{} размещено в {}
 {} placement problems (red) – see Check	Проблем размещения: {} (красным) – см. «Проверка»
 {} problems	Проблем: {}
 {} project parts updated	Обновлено изделий проекта: {}

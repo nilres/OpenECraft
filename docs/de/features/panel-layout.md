@@ -18,6 +18,25 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
 
 - Gehäuse (aus einem Artikel wie `GEN.ENC-600X800` oder mit eigener Größe) mit
   Montageplatte.
+- *Neues Gehäuse* (die Schaltfläche des Navigators *Gehäuse und Räume* oder sein
+  Kontextmenü, auf einem Raum *Neues Gehäuse in diesem Raum…*) durchsucht die Gehäuse
+  der Artikeldatenbank, des Projekts und der mit OpenECraft gelieferten Kataloge: nach
+  Text, Gehäusesystem, Hersteller, *Montage* (Wand oder Boden), Breite, Höhe und Tiefe
+  von … bis und den Feldbreiten und Reihen von Zähler- und Verteilerschränken (*Felder /
+  Reihen*, Artikeldaten `Fields: 3`, `Rows: 7`), sortiert nach Artikelnummer oder Größe.
+  Ein Doppelklick auf ein Gehäuse legt es an; die Suche bleibt für das nächste. Ein aus
+  der Artikelverwaltung (oder dem Datenportal) in den Navigator gezogenes Gehäuse wird
+  sofort angelegt, in dem Raum, auf dem es abgelegt wurde (auch auf einem Schrank, der
+  in einem steht).
+- **Zubehör ins Gehäuse ziehen:** Zubehör, das aus der Artikelverwaltung über die 2D-
+  oder 3D-Ansicht eines Gehäuses gezogen wird, zeigt die Stellen, an die es passt,
+  hervorgehoben: ein Verteilerfeld eines Zählerschranks (etwa das Striebel & John FV17,
+  Artikeldaten `Fields: 1`, `Rows: 7`) die freien Felder im Raster des Schranks, anderes
+  Zubehör des Gehäuseartikels die Seiten, an die es montiert werden darf, Zubehör des
+  Artikels eines Betriebsmittels (ein Hilfsschalter, ein Signalkontakt) die platzierten
+  Betriebsmittel, zu denen es passt. Auf einer Stelle abgelegt kommt es dorthin; auf
+  einem Betriebsmittel wird es Zubehör des Betriebsmittels. Der Befehl `fitting_places`
+  listet die Stellen für die Kommandozeile und KI-Agenten.
 - Tragschienen und Kabelkanäle werden in ihrer Länge gezeichnet; eine(n) auswählen und
   an einem der Enden ziehen, um die Länge zu ändern, oder verschieben (Betriebsmittel
   wandern mit ihrer Schiene mit). Betriebsmittel werden aus einer Liste „Zu

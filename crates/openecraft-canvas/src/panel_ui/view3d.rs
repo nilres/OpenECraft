@@ -316,6 +316,10 @@ impl PanelUi {
                 }
             }
         }
+        // An accessory dragged from the parts management: where it fits.
+        if let Some(pose) = shown.iter().find(|s| s.0 == ei).map(|s| s.1) {
+            self.accessory_drop_3d(ui, &resp, prj, ei, &pose, &project_view);
+        }
         // The control points of the selected wire, cable or tube; one dragged follows the pointer
         // at the depth it had, the route is searched through it where it is dropped.
         let pos = panel::positions(&prj.layout);

@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Un piano sopra il più alto
 A local file opens locally, a server project is opened on the project server again	Un file locale si apre in locale, un progetto del server viene riaperto sul server dei progetti
 A local file or a project on the project server	Un file locale o un progetto sul server dei progetti
+A new enclosure standing in this room	Un nuovo armadio in questo locale
 A new project	Un nuovo progetto
 A new release is downloaded in the background and installed when you close OpenECraft.	Una nuova versione viene scaricata in background e installata alla chiusura di OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Una nuova versione viene scaricata in background e sostituisce questa installazione; viene usata dal prossimo avvio.
@@ -178,6 +179,8 @@ Assign to existing device	Assegna a dispositivo esistente
 Assign to harness	Assegna a cablaggio
 Assign wires: select them in the schematic › Assign to cable.	Assegna conduttori: selezionali nello schema › Assegna a cavo.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	I motori asincroni sulla rete aumentano la corrente di cortocircuito massima (IEC 60909-0)
+At least, mm (0: any)	Almeno, mm (0: qualsiasi)
+At most, mm (0: any)	Al massimo, mm (0: qualsiasi)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Alla temperatura ambiente massima; il riscaldatore mantiene il punto di rugiada. 0 = non considerato
 At the origin	Nell'origine
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Al punto di alimentazione: Ik3 max {} kA, Ik1 min {} kA
@@ -663,9 +666,13 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Elenco forature (CSV)
 Drilling list of this face (CSV)	Lista fori di questa faccia (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Schema di foratura della faccia mostrata come DXF, DWG o CSV
+Drop an enclosure here to add it; onto a room to put it in there	Rilascia qui un armadio per aggiungerlo; su un locale per metterlo lì
 Drop between the pages	Rilascia tra le pagine
 Drop between the rows or onto a section	Rilascia tra le righe o su una sezione
 Drop onto a level to put the room on it	Rilascia su un piano per mettervi il locale
+Drop {} here	Rilascia {} qui
+Drop {} onto one of the highlighted places	Rilascia {} su uno dei punti evidenziati
+Drop {} onto {} to add it to the device	Rilascia {} su {} per aggiungerlo all'apparecchio
 Duct fill	Riempimento canalina
 Duct fill limit	Limite di riempimento canalina
 Duplicate	Duplica
@@ -699,6 +706,8 @@ Embed as document page	Incorpora come pagina di documento
 Embeds a file (PDF, Word, Excel, image …) as a page	Incorpora un file (PDF, Word, Excel, immagine …) come pagina
 Embeds the file in the project (replaces the current one)	Incorpora il file nel progetto (sostituisce quello attuale)
 Enclosure system	Sistema di armadi
+Enclosure {} added	Armadio {} aggiunto
+Enclosure {} added in room {}	Armadio {} aggiunto nel locale {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Armadi (+CAB1), dispositivi (-M1) e luoghi macchina (+M1) sui nodi
 Enclosures and rooms	Armadi e locali
 Enclosures, devices to place and placed devices	Armadi, dispositivi da posizionare e posizionati
@@ -753,7 +762,10 @@ Field	Campo
 Field (name, description, company, creator, date, revision) or project property	Campo (name, description, company, creator, date, revision) o proprietà di progetto
 Field cables	Cavi di campo
 Field length	Lunghezza campo
+Field widths and rows of meter and distribution cabinets	Colonne e file dei quadri contatori e di distribuzione
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Campo; tech:<name> per i dati tecnici degli articoli, prop:<name> per le proprietà del progetto
+Fields	Colonne
+Fields / rows	Colonne / file
 File format version {}. Files of older versions are converted when they are opened.	Versione del formato di file {}. I file di versioni precedenti vengono convertiti all'apertura.
 File name	Nome file
 File of another system (connector)	File di un altro sistema (connettore)
@@ -779,6 +791,7 @@ Fit page	Adatta pagina
 Fits {}	Compatibile con {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Adattata al rettangolo mantenendo le proporzioni (PNG, JPEG)
 Float	Sgancia
+Floor	Fondo
 Floor above ground	Pavimento sopra il terreno
 Floor plan with {} walls	Pianta con {} pareti
 Floor-standing part	Articolo a pavimento
@@ -1214,6 +1227,8 @@ New cover sheet	Nuova copertina
 New document page…	Nuova pagina documento…
 New empty	Nuovo vuoto
 New enclosure	Nuovo armadio
+New enclosure in this room…	Nuovo armadio in questo locale…
+New enclosure…	Nuovo armadio…
 New graphics page	Nuova pagina di grafica
 New harness	Nuovo cablaggio
 New items go onto this layer	I nuovi elementi vengono inseriti in questo livello
@@ -1273,6 +1288,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ancora nessun armadio – creane uno con Nuovo armadio, o un locale per gli armadi con Nuovo locale.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nessun cavo di campo: posiziona gli armadi e i dispositivi di campo sui nodi della rete dei percorsi cavi.
 No filter fans: an air/air heat exchanger or a cooling unit	Nessun ventilatore con filtro: uno scambiatore di calore aria/aria o un condizionatore
+No free place is left for {} in this enclosure	Non è rimasto alcun posto libero per {} in questo armadio
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Ancora nessun campo FV a terra: file di tavoli inclinati su pali infissi sul lotto.
 No gesture	Nessun gesto
 No harnesses defined.	Nessun cablaggio definito.
@@ -1794,6 +1810,7 @@ Row	Riga
 Row distance	Distanza tra le file
 Row drawing	Disegno di riga
 Row labels	Etichette righe
+Rows	File
 Rows of tables behind each other	File di tavoli una dietro l'altra
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	File di tavoli inclinati su pali davanti a ciò che si trova nell'impianto, rivolte in avanti; spostarlo al suo posto
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Le righe sulle pagine rilasciate non possono essere modificate. Un'interruzione di riga in un testo si scrive come \\n.
@@ -1870,7 +1887,9 @@ Scrolling zooms, also where it pans	Lo scorrimento esegue lo zoom, anche dove sp
 Search (* and ? as placeholders)…	Cerca (* e ? come caratteri jolly)…
 Search below this folder	Cerca sotto questa cartella
 Search number, description, maker	Cerca numero, descrizione, produttore
+Search the enclosures of the parts database and the catalogs for a new one	Cerca un nuovo armadio nel database articoli e nei cataloghi
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Cerca nel server articoli per catalogo, gruppo di prodotti e dati tecnici, aggiungi articoli e verifica la presenza di aggiornamenti nel database
+Search…	Cerca…
 Second channel	Secondo canale
 Seconds from a change to its automatic save (10 to 600)	Secondi tra una modifica e il suo salvataggio automatico (da 10 a 600)
 Section properties	Proprietà della sezione
@@ -2364,6 +2383,7 @@ all lines	tutte le righe
 all, or e.g. -X*, -W1	tutti, oppure ad es. -X*, -W1
 all, or e.g. K, Q	tutte, o ad es. K, Q
 along z	lungo z
+any	qualsiasi
 both ends	entrambe le estremità
 built-in	integrato
 by hand	manualmente
@@ -2477,6 +2497,7 @@ x y	x y
 {} Vault items found for the project parts	{} elementi di Vault trovati per gli articoli del progetto
 {} Vault items found: review the changes in the integration window	{} elementi di Vault trovati: esamina le modifiche nella finestra di integrazione
 {} added to building {}	{} aggiunto all'edificio {}
+{} added to device {}	{} aggiunto all'apparecchio {}
 {} addresses changed	{} indirizzi modificati
 {} air-termination rods	{} aste di captazione
 {} already exists on the project server.	{} esiste già sul server di progetto.
@@ -2527,18 +2548,23 @@ x y	x y
 {} example catalog parts refreshed	{} articoli del catalogo di esempio aggiornati
 {} favorites added	{} preferiti aggiunti
 {} field wiring problems (see Check)	{} problemi della cablatura di campo (vedi Verifica)
+{} fits neither this enclosure nor a device in it	{} non si adatta né a questo armadio né a un apparecchio al suo interno
+{} fits on another face of this enclosure: {}	{} va su un'altra faccia di questo armadio: {}
 {} found	{} trovati
 {} function texts copied	{} testi di funzione copiati
 {} generated pages in the project (changes on them are replaced)	{} pagine generate nel progetto (le modifiche su di esse vengono sostituite)
 {} grants on the project	{} assegnazioni sul progetto
 {} has no function with a symbol; assign it to a device in its properties	{} non ha funzioni con simbolo; assegnalo a un dispositivo nelle sue proprietà
 {} has unsaved changes. Discard them?	{} ha modifiche non salvate. Scartarle?
+{} imported into the parts database and added as enclosure {}	{} importato nel database articoli e aggiunto come armadio {}
 {} imported into the parts database and placed as {}	{} importato nel database articoli e posizionato come {}
 {} in {}	{} in {}
 {} is in the schematic	{} è nello schema
 {} is in the schematic: cable {} from {}	{} è nello schema: cavo {} da {}
 {} is neither in the parts database nor on the parts server	{} non è né nel database articoli né sul server articoli
+{} is not an enclosure: only enclosures can be dropped here	{} non è un armadio: qui si possono rilasciare solo armadi
 {} is not in the disk image	{} non è nell'immagine disco
+{} is not in the parts database yet: import it, then drag it here	{} non è ancora nel database articoli: importalo, poi trascinalo qui
 {} is not made for wall mounting: place it on a mounting rail	{} non è previsto per il montaggio a parete: posizionarlo su una guida
 {} is used by: {}	{} è usato da: {}
 {} items copied	{} elementi copiati
@@ -2564,6 +2590,7 @@ x y	x y
 {} objects, {} pages	{} oggetti, {} pagine
 {} of {} approvals	{} di {} approvazioni
 {} of {} connections numbered	{} di {} collegamenti numerati
+{} of {} enclosures	{} di {} armadi
 {} of {} entries shown: search to narrow the list	{} di {} voci visualizzate: esegui una ricerca per restringere l'elenco
 {} of {} items	{} di {} elementi
 {} of {} pages locked	{} di {} pagine bloccate
@@ -2588,6 +2615,7 @@ x y	x y
 {} pieces	{} pezzi
 {} pins used	{} pin utilizzati
 {} placed as {}	{} posizionato come {}
+{} placed in {}	{} posizionato in {}
 {} placement problems (red) – see Check	{} problemi di posizionamento (in rosso) – vedi Verifica
 {} problems	{} problemi
 {} project parts updated	{} articoli del progetto aggiornati

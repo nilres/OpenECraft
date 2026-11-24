@@ -19,6 +19,27 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
 
 - Armoires (à partir d'un article tel que `GEN.ENC-600X800` ou de taille libre) avec
   plaque de montage.
+- *Nouvelle enveloppe* (le bouton du navigateur *Enveloppes et salles* ou son menu
+  contextuel, sur une pièce *Nouvelle enveloppe dans cette pièce…*) cherche les
+  enveloppes de la base de données des articles, du projet et des catalogues livrés
+  avec OpenECraft : par texte, système d'enveloppe, fabricant, *Montage* (mur ou sol),
+  largeur, hauteur et profondeur de … à, et les colonnes et rangées des armoires de
+  comptage et de distribution (*Colonnes / rangées*, données d'article `Fields: 3`,
+  `Rows: 7`), triées par numéro d'article ou par taille. Un double-clic sur une
+  enveloppe la crée ; la recherche reste pour la suivante. Une enveloppe glissée depuis
+  la gestion des articles (ou le portail de données) dans le navigateur est créée
+  aussitôt, dans la pièce sur laquelle elle a été déposée (aussi sur une armoire qui se
+  trouve dans une pièce).
+- **Accessoires glissés dans l'enveloppe :** un accessoire glissé depuis la gestion des
+  articles sur la vue 2D ou 3D d'une enveloppe montre les emplacements où il convient,
+  mis en évidence : un panneau de distribution d'une armoire de comptage (comme le
+  Striebel & John FV17, données d'article `Fields: 1`, `Rows: 7`) les colonnes libres de
+  la grille de l'armoire, un autre accessoire de l'article de l'enveloppe les faces sur
+  lesquelles il peut être monté, un accessoire de l'article d'un appareil (un contact
+  auxiliaire, un contact de signalisation) les appareils placés auxquels il convient.
+  Déposé sur un emplacement, il y va ; sur un appareil, il devient un accessoire de
+  l'appareil. La commande `fitting_places` liste les emplacements pour la ligne de
+  commande et les agents d'IA.
 - Rails de montage et goulottes dessinés à la longueur ; sélectionnez-en un et faites
   glisser l'une de ses extrémités pour le redimensionner, ou déplacez-le (les appareils
   suivent leur rail). Les appareils sont placés à partir d'une liste « appareils à

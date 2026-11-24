@@ -3,6 +3,7 @@
 
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
+use openecraft_ui::part_editor::PartDrag;
 use crate::commands::Cmd;
 use crate::editor::{EguiDraw, Palette};
 use crate::gestures::{MouseAction, Role};
@@ -20,14 +21,17 @@ use std::collections::{BTreeSet, HashMap, HashSet};
 use std::sync::Arc;
 use view3d::default_cam;
 
+mod accessory_drop;
 mod gpu3d;
 mod nav3d;
+mod new_enclosure;
 mod plan;
 mod routing_ui;
 mod scene3d;
 pub mod site_plan;
 mod site_tools;
 mod terminations;
+pub use new_enclosure::PartDrop;
 pub use site_tools::SiteTool;
 
 /// A roof picked in the 3D view: its building, its id and the point clicked on it in the
@@ -400,16 +404,6 @@ fn checks_section(ui: &mut egui::Ui, prj: &mut Project, ei: usize, findings: &[p
     });
 }
 
-struct NewEnclosure {
-    name: String,
-    part: String,
-    /// Enclosure system the part list is narrowed to.
-    system: String,
-    width: f32,
-    height: f32,
-    depth: f32,
-}
-
 /// Rectangular pattern of copies of the selection.
 struct PatternDialog {
     nx: usize,
@@ -579,7 +573,14 @@ pub struct PanelUi {
     /// View the 3D camera glides to, and the camera as this frame left it.
     cam_goal: Option<(Orbit, Orbit)>,
     device_filter: String,
-    new_enclosure: Option<NewEnclosure>,
+    new_enclosure: Option<new_enclosure::NewEnclosure>,
+    /// The search of the last new enclosure dialog, kept for the next one.
+    enclosure_filter: Option<parts::EnclosureFilter>,
+    /// A part dropped into the navigator that the application imports from the parts
+    /// server first (then [`PanelUi::drop_part`]).
+    pub fetch_part: Option<PartDrop>,
+    /// The part being dragged over the views, for the places it fits.
+    dragged: accessory_drop::Dragged,
     pub status: String,
     /// Requests for the application.
     pub goto_schematic: Option<String>,
@@ -693,6 +694,22 @@ fn bundled_parts() -> &'static [parts::Part] {
 #[derive(Clone, Copy, PartialEq, Debug)]
 struct DraggedRoom(usize);
 
+/// What was asked for in the enclosure tree of the navigator: a new room, a new
+/// enclosure (in a room, index) or a part dropped (into a room).
+#[derive(Default)]
+struct NavTree {
+    new_room: bool,
+    new_enclosure: Option<Option<usize>>,
+    dropped: Option<(String, Option<usize>)>,
+}
+
+/// Marks a row of the navigator a dragged item can be dropped onto.
+fn drop_highlight(ui: &egui::Ui, rect: Rect) {
+    let v = ui.visuals();
+    ui.painter().rect_filled(rect, 2.0, v.selection.bg_fill.gamma_multiply(0.4));
+    ui.painter().rect_stroke(rect, 2.0, Stroke::new(1.5, v.selection.stroke.color), egui::StrokeKind::Inside);
+}
+
 /// What the navigator does with the levels of the buildings.
 #[derive(Clone, Copy, PartialEq, Debug)]
 enum NavAction {
@@ -775,6 +792,9 @@ impl Default for PanelUi {
             cam_goal: None,
             device_filter: String::new(),
             new_enclosure: None,
+            enclosure_filter: None,
+            fetch_part: None,
+            dragged: None,
             status: String::new(),
             goto_schematic: None,
             add_page: None,
@@ -1268,21 +1288,78 @@ impl PanelUi {
     // ------------------------------------------------------------------ navigator
 
     pub fn navigator(&mut self, ui: &mut egui::Ui, prj: &mut Project, db: &PartsDb) {
-        ui.horizontal_wrapped(|ui| {
-            ui.heading(tr("Enclosures and rooms"));
-            if openecraft_ui::icons::button(ui, openecraft_ui::icons::Icon::Plus, tr("New enclosure")).clicked() {
-                self.new_enclosure_dialog(prj, db);
+        let mut tree = NavTree::default();
+        self.track_dragged_part(ui.ctx(), prj, db);
+        // An enclosure dragged (or a part only the parts server has) can be dropped here.
+        let enclosure_dragged = self.dragged.as_ref().is_some_and(|(_, part)| part.as_ref().is_none_or(parts::is_enclosure));
+        // Right-clicked or dropped onto outside the rows: the background of the tree.
+        let r = ui
+            .scope_builder(egui::UiBuilder::new().sense(Sense::click()), |ui| {
+                ui.horizontal_wrapped(|ui| {
+                    // Not selectable: a right click on it opens the menu of the tree.
+                    ui.add(egui::Label::new(RichText::new(tr("Enclosures and rooms")).heading()).selectable(false));
+                    if icons::button(ui, Icon::Plus, tr("New enclosure")).clicked() {
+                        tree.new_enclosure = Some(None);
+                    }
+                    if icons::button(ui, Icon::Wall, tr("New room")).clicked() {
+                        tree.new_room = true;
+                    }
+                });
+                self.enclosure_tree(ui, prj, &mut tree);
+                if enclosure_dragged {
+                    Self::part_drop_zone(ui, &mut tree);
+                }
+            })
+            .response;
+        r.context_menu(|ui| {
+            if icons::text_button(ui, Icon::Enclosure, tr("New enclosure…")).on_hover_text(tr("Search the enclosures of the parts database and the catalogs for a new one")).clicked() {
+                tree.new_enclosure = Some(None);
+                ui.close();
             }
-            if openecraft_ui::icons::button(ui, openecraft_ui::icons::Icon::Wall, tr("New room")).clicked() {
-                self.new_room(prj);
+            if icons::text_button(ui, Icon::Wall, tr("New room")).clicked() {
+                tree.new_room = true;
+                ui.close();
             }
         });
-        self.enclosure_tree(ui, prj);
+        if let Some(d) = r.dnd_release_payload::<PartDrag>() {
+            tree.dropped = Some((d.number.clone(), None));
+        }
+        if tree.new_room {
+            self.new_room(prj);
+        }
+        if let Some(room) = tree.new_enclosure {
+            self.new_enclosure_dialog_in(prj, db, room);
+        }
+        if let Some((number, room)) = tree.dropped {
+            self.part_dropped(prj, db, &number, room);
+        }
         self.navigator_devices(ui, prj, db);
     }
 
+    /// While an enclosure is dragged: the place at the end of the navigator's tree where
+    /// it is dropped to make a new enclosure.
+    fn part_drop_zone(ui: &mut egui::Ui, tree: &mut NavTree) {
+        // As high as its text needs in the width of the pane.
+        let width = ui.available_width();
+        let font = egui::TextStyle::Small.resolve(ui.style());
+        let text = tr("Drop an enclosure here to add it; onto a room to put it in there");
+        let galley = ui.painter().layout(text.to_string(), font, Color32::PLACEHOLDER, (width - 12.0).max(40.0));
+        let (rect, r) = ui.allocate_exact_size(vec2(width, galley.size().y + 12.0), Sense::hover());
+        let hovered = r.dnd_hover_payload::<PartDrag>().is_some();
+        let v = ui.visuals();
+        let color = if hovered { v.selection.stroke.color } else { v.weak_text_color() };
+        if hovered {
+            ui.painter().rect_filled(rect, 3.0, v.selection.bg_fill.gamma_multiply(0.4));
+        }
+        ui.painter().rect_stroke(rect, 3.0, Stroke::new(1.0, color), egui::StrokeKind::Inside);
+        ui.painter().galley(rect.center() - galley.size() / 2.0, galley, color);
+        if let Some(d) = r.dnd_release_payload::<PartDrag>() {
+            tree.dropped = Some((d.number.clone(), None));
+        }
+    }
+
     /// The buildings, rooms and enclosures of the navigator.
-    fn enclosure_tree(&mut self, ui: &mut egui::Ui, prj: &mut Project) {
+    fn enclosure_tree(&mut self, ui: &mut egui::Ui, prj: &mut Project, tree: &mut NavTree) {
         let mut remove = None;
         // Buildings with their levels (the highest first) and the rooms on them, the
         // rooms with the line-ups standing in them, then the other line-ups; bayed
@@ -1353,22 +1430,41 @@ impl PanelUi {
                                 self.open_cabinet(i);
                             }
                         }
+                        // A part dropped onto a room, or onto a cabinet standing in one,
+                        // goes into that room.
+                        let room = if e.is_room() { Some(i) } else { panel::room_of(&prj.layout, i) };
+                        if r.dnd_hover_payload::<PartDrag>().is_some() {
+                            drop_highlight(ui, r.rect);
+                        }
+                        if let Some(d) = r.dnd_release_payload::<PartDrag>() {
+                            tree.dropped = Some((d.number.clone(), room));
+                        }
                         if let Some(l) = level {
                             // Dropped onto a room of a level: onto its level.
                             if let Some(d) = r.dnd_release_payload::<DraggedRoom>() {
                                 act = Some(NavAction::Put(d.0, l));
                             }
-                            r.context_menu(|ui| {
-                                if icons::text_button(ui, Icon::Wall, tr("New room on this level")).clicked() {
-                                    act = Some(NavAction::NewRoomOn(l));
-                                    ui.close();
-                                }
-                                if icons::text_button(ui, Icon::Close, tr("Take out of the building")).on_hover_text(tr("Take the room out of the building; it stays where it stands")).clicked() {
-                                    act = Some(NavAction::TakeOut(i));
-                                    ui.close();
-                                }
-                            });
                         }
+                        r.context_menu(|ui| {
+                            let (text, tip) = if e.is_room() {
+                                (tr("New enclosure in this room…"), tr("A new enclosure standing in this room"))
+                            } else {
+                                (tr("New enclosure…"), tr("Search the enclosures of the parts database and the catalogs for a new one"))
+                            };
+                            if icons::text_button(ui, Icon::Enclosure, text).on_hover_text(tip).clicked() {
+                                tree.new_enclosure = Some(room);
+                                ui.close();
+                            }
+                            let Some(l) = level else { return };
+                            if icons::text_button(ui, Icon::Wall, tr("New room on this level")).clicked() {
+                                act = Some(NavAction::NewRoomOn(l));
+                                ui.close();
+                            }
+                            if icons::text_button(ui, Icon::Close, tr("Take out of the building")).on_hover_text(tr("Take the room out of the building; it stays where it stands")).clicked() {
+                                act = Some(NavAction::TakeOut(i));
+                                ui.close();
+                            }
+                        });
                     });
                 });
             });
@@ -2537,88 +2633,7 @@ impl PanelUi {
     pub fn dialogs(&mut self, ctx: &egui::Context, prj: &mut Project, db: &PartsDb) {
         self.pattern_dialog(ctx, prj);
         self.save_macro_dialog(ctx, prj);
-        let Some(ne) = &mut self.new_enclosure else { return };
-        let mut open = true;
-        let mut create = false;
-        let mut enclosures: Vec<&parts::Part> = Vec::new();
-        for p in db.parts.iter().chain(prj.parts.iter()).chain(parts::catalog()) {
-            let system = panel::system_of_part(p).map(|s| s.id()).unwrap_or("");
-            let wanted = ne.system.is_empty() || system == ne.system;
-            if p.subgroup == "Enclosure" && p.width > 0.0 && wanted && !enclosures.iter().any(|x| x.number == p.number) {
-                enclosures.push(p);
-            }
-        }
-        egui::Window::new(tr("New enclosure"))
-            .open(&mut open)
-            .resizable(false)
-            .collapsible(false)
-            .pivot(egui::Align2::CENTER_CENTER)
-            .default_pos(ctx.content_rect().center())
-            .show(ctx, |ui| {
-            egui::Grid::new("newenc").num_columns(2).spacing([10.0, 6.0]).show(ui, |ui| {
-                ui.label(tr("Location"));
-                ui.text_edit_singleline(&mut ne.name);
-                ui.end_row();
-                ui.label(tr("Enclosure system"));
-                let title = panel::SYSTEMS.iter().find(|s| s.id() == ne.system).map(|s| s.title()).unwrap_or(tr("(all)"));
-                egui::ComboBox::from_id_salt("newencsys").selected_text(title).width(220.0).show_ui(ui, |ui| {
-                    ui.selectable_value(&mut ne.system, String::new(), tr("(all)"));
-                    for s in &panel::SYSTEMS {
-                        ui.selectable_value(&mut ne.system, s.id().to_string(), s.title());
-                    }
-                });
-                ui.end_row();
-                ui.label(tr("Part"));
-                let before = ne.part.clone();
-                egui::ComboBox::from_id_salt("encpart")
-                    .selected_text(if ne.part.is_empty() { "(custom size)".to_string() } else { ne.part.clone() })
-                    .width(220.0)
-                    .show_ui(ui, |ui| {
-                        ui.selectable_value(&mut ne.part, String::new(), tr("(custom size)"));
-                        for p in &enclosures {
-                            ui.selectable_value(&mut ne.part, p.number.clone(), format!("{} – {}", p.number, p.description));
-                        }
-                    });
-                if ne.part != before {
-                    apply_enclosure_part(ne, db);
-                }
-                ui.end_row();
-                let custom = ne.part.is_empty();
-                ui.label(tr("Width × height × depth"));
-                ui.add_enabled_ui(custom, |ui| {
-                    ui.horizontal(|ui| {
-                        ui.add(egui::DragValue::new(&mut ne.width).speed(5.0).range(100.0..=5000.0));
-                        ui.add(egui::DragValue::new(&mut ne.height).speed(5.0).range(100.0..=5000.0));
-                        ui.add(egui::DragValue::new(&mut ne.depth).speed(5.0).range(60.0..=2000.0));
-                    });
-                });
-                ui.end_row();
-            });
-            if icons::text_button(ui, Icon::Check, tr("Create")).clicked() {
-                create = true;
-            }
-        });
-        if create {
-            let ne = self.new_enclosure.take().unwrap();
-            if !ne.part.is_empty() {
-                parts::ensure_in_project(prj, db, &ne.part);
-            }
-            let mut e = panel::new_enclosure(prj, &ne.part, &ne.name);
-            if ne.part.is_empty() {
-                e.width = ne.width;
-                e.height = ne.height;
-                e.depth = ne.depth;
-                if !ne.system.is_empty() {
-                    panel::apply_system(&mut e, &ne.system, None);
-                }
-            }
-            prj.layout.enclosures.push(e);
-            self.enclosure = prj.layout.enclosures.len() - 1;
-            self.selection.clear();
-            self.fit_pending = true;
-        } else if !open {
-            self.new_enclosure = None;
-        }
+        self.new_enclosure_window(ctx, prj, db);
     }
 
     fn pattern_dialog(&mut self, ctx: &egui::Context, prj: &mut Project) {
@@ -2682,6 +2697,7 @@ impl PanelUi {
     // ------------------------------------------------------------------ canvas
 
     pub fn canvas(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, db: &PartsDb) {
+        self.track_dragged_part(ui.ctx(), prj, db);
         if self.site {
             self.site_canvas(ui, prj, an);
             return;
@@ -2832,21 +2848,6 @@ impl PanelUi {
                 self.remove_enclosure(prj, i);
             }
         }
-    }
-
-    /// Opens the dialog for a new enclosure.
-    pub fn new_enclosure_dialog(&mut self, prj: &Project, db: &PartsDb) {
-        let part = if db.get(panel::ENCLOSURE_PART).is_some() { panel::ENCLOSURE_PART } else { "" };
-        let mut ne = NewEnclosure {
-            name: panel::free_name(&prj.layout, "+CAB"),
-            part: part.into(),
-            system: String::new(),
-            width: 600.0,
-            height: 800.0,
-            depth: 250.0,
-        };
-        apply_enclosure_part(&mut ne, db);
-        self.new_enclosure = Some(ne);
     }
 
     /// The walls of the enclosure (Layout space › View › Walls); of a room its walls
@@ -3218,9 +3219,7 @@ impl PanelUi {
             });
             let elsewhere = |d: &DraggedRoom| prj.layout.enclosures.get(d.0).is_some_and(|e| e.level != id);
             if r.dnd_hover_payload::<DraggedRoom>().is_some_and(|d| elsewhere(&d)) {
-                let color = ui.visuals().selection.stroke.color;
-                ui.painter().rect_filled(r.rect, 2.0, ui.visuals().selection.bg_fill.gamma_multiply(0.4));
-                ui.painter().rect_stroke(r.rect, 2.0, Stroke::new(1.5, color), egui::StrokeKind::Inside);
+                drop_highlight(ui, r.rect);
             }
             if let Some(d) = r.dnd_release_payload::<DraggedRoom>() {
                 act = Some(NavAction::Put(d.0, id));
@@ -4289,6 +4288,10 @@ impl PanelUi {
                 painter.circle_stroke(point, 4.0, Stroke::new(1.5, pal.line));
             }
         }
+        // An accessory dragged from the parts management: where it fits.
+        let zoom = self.zoom;
+        let screen = move |q: P| origin + vec2(mirror.map(|m| m - (q.x + fm.x)).unwrap_or(q.x + fm.x), q.y + fm.y) * zoom;
+        self.accessory_drop_2d(ui, &resp, prj, ei, plate, &screen);
     }
 
     /// The control points of the selected wire, cable or tube on the face shown: a right
@@ -4571,18 +4574,6 @@ fn paste_corner(clip: &panel::PanelClip, q: P) -> P {
     p(clip.x + panel::snap(q.x - clip.w / 2.0 - clip.x), clip.y + panel::snap(q.y - clip.h / 2.0 - clip.y))
 }
 
-
-fn apply_enclosure_part(ne: &mut NewEnclosure, db: &PartsDb) {
-    if let Some(p) = db.get(&ne.part) {
-        if p.width > 0.0 && p.height > 0.0 {
-            ne.width = p.width;
-            ne.height = p.height;
-            if p.depth > 0.0 {
-                ne.depth = p.depth;
-            }
-        }
-    }
-}
 
 /// Dissolves the groups of the items (all members leave them).
 fn ungroup(e: &mut Enclosure, ids: &[u64]) {

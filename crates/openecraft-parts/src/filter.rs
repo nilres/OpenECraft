@@ -63,6 +63,149 @@ impl PartFilter {
     }
 }
 
+/// Where an enclosure part is mounted (filter of the new enclosure dialog).
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum EnclosureMounting {
+    #[default]
+    Any,
+    Wall,
+    /// Floor-standing: a baying system, a rack or a part made for the floor.
+    Floor,
+}
+
+/// A range of an outer dimension, mm; 0 leaves its end open.
+#[derive(Clone, Copy, Debug, Default, PartialEq)]
+pub struct SizeRange {
+    pub min: f32,
+    pub max: f32,
+}
+
+impl SizeRange {
+    pub fn contains(self, v: f32) -> bool {
+        (self.min <= 0.0 || v >= self.min) && (self.max <= 0.0 || v <= self.max)
+    }
+
+    pub fn is_open(self) -> bool {
+        self.min <= 0.0 && self.max <= 0.0
+    }
+}
+
+/// How the enclosures found are sorted.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum EnclosureSort {
+    /// Manufacturer, then part number.
+    #[default]
+    Number,
+    Width,
+    Height,
+    Depth,
+    /// Front area, the smallest first.
+    Size,
+}
+
+impl EnclosureSort {
+    pub const ALL: [EnclosureSort; 5] = [EnclosureSort::Number, EnclosureSort::Width, EnclosureSort::Height, EnclosureSort::Depth, EnclosureSort::Size];
+}
+
+/// Search of the enclosure parts offered for a new enclosure: free text, enclosure
+/// system, manufacturer, mounting, ranges of the outer dimensions, and the field
+/// widths and rows of meter and distribution cabinets (part data `Fields: 3`,
+/// `Rows: 7`).
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct EnclosureFilter {
+    /// Searched in number, type, order number, manufacturer, description and groups.
+    pub text: String,
+    /// Id of the enclosure system (part data `Enclosure system`), empty for all.
+    pub system: String,
+    /// Empty for all.
+    pub manufacturer: String,
+    pub mounting: EnclosureMounting,
+    pub width: SizeRange,
+    pub height: SizeRange,
+    pub depth: SizeRange,
+    pub fields: Option<u32>,
+    pub rows: Option<u32>,
+    pub sort: EnclosureSort,
+}
+
+/// An enclosure body with outer dimensions (product subgroup `Enclosure`).
+pub fn is_enclosure(p: &Part) -> bool {
+    p.subgroup == "Enclosure" && p.width > 0.0 && p.height > 0.0
+}
+
+/// A whole number of the part data (`Rows: 7`), for the fields and rows of a cabinet.
+pub fn count_value(p: &Part, key: &str) -> Option<u32> {
+    p.tech_value(key)?.split_whitespace().next()?.parse().ok()
+}
+
+/// The enclosure stands on the floor: its part says so, or its system is a baying
+/// system or a rack.
+pub fn enclosure_on_floor(p: &Part) -> bool {
+    let system = p.tech_value("Enclosure system").map(str::trim);
+    p.floor_standing() || crate::mechanics::SYSTEMS.iter().any(|s| Some(s.id) == system && (s.bayable || s.id == crate::mechanics::RACK_SYSTEM))
+}
+
+impl EnclosureFilter {
+    pub fn matches(&self, p: &Part) -> bool {
+        let system = p.tech_value("Enclosure system").map(str::trim).unwrap_or("");
+        let count = |want: Option<u32>, key: &str| want.is_none_or(|n| count_value(p, key) == Some(n));
+        is_enclosure(p)
+            && p.matches_text(&self.text)
+            && (self.system.is_empty() || self.system == system)
+            && (self.manufacturer.is_empty() || self.manufacturer == p.manufacturer)
+            && match self.mounting {
+                EnclosureMounting::Any => true,
+                EnclosureMounting::Wall => !enclosure_on_floor(p),
+                EnclosureMounting::Floor => enclosure_on_floor(p),
+            }
+            && self.width.contains(p.width)
+            && self.height.contains(p.height)
+            && (self.depth.is_open() || (p.depth > 0.0 && self.depth.contains(p.depth)))
+            && count(self.fields, "Fields")
+            && count(self.rows, "Rows")
+    }
+
+    /// True if any criterion restricts the enclosures (the order does not).
+    pub fn is_active(&self) -> bool {
+        *self != EnclosureFilter { sort: self.sort, ..Default::default() }
+    }
+
+    /// Clears all criteria, keeps the order.
+    pub fn reset(&mut self) {
+        *self = EnclosureFilter { sort: self.sort, ..Default::default() };
+    }
+
+    /// The enclosures of `parts` that match, each part number once (the first one
+    /// wins), in the order chosen.
+    pub fn apply<'a>(&self, parts: impl IntoIterator<Item = &'a Part>) -> Vec<&'a Part> {
+        let mut found: Vec<&Part> = Vec::new();
+        for p in parts {
+            if self.matches(p) && !found.iter().any(|x| x.number == p.number) {
+                found.push(p);
+            }
+        }
+        let by_number = |a: &&Part, b: &&Part| a.manufacturer.cmp(&b.manufacturer).then(natural_cmp(&a.number, &b.number));
+        let by = |f: fn(&Part) -> f32| move |a: &&Part, b: &&Part| f(a).total_cmp(&f(b)).then(by_number(a, b));
+        match self.sort {
+            EnclosureSort::Number => found.sort_by(by_number),
+            EnclosureSort::Width => found.sort_by(by(|p| p.width)),
+            EnclosureSort::Height => found.sort_by(by(|p| p.height)),
+            EnclosureSort::Depth => found.sort_by(by(|p| p.depth)),
+            EnclosureSort::Size => found.sort_by(by(|p| p.width * p.height)),
+        }
+        found
+    }
+}
+
+/// The distinct numbers of a part data key (`Fields`, `Rows`) among the parts,
+/// ascending.
+pub fn distinct_counts<'a>(parts: impl IntoIterator<Item = &'a Part>, key: &str) -> Vec<u32> {
+    let mut v: Vec<u32> = parts.into_iter().filter_map(|p| count_value(p, key)).collect();
+    v.sort_unstable();
+    v.dedup();
+    v
+}
+
 /// Distinct non-empty values of a part field, naturally sorted.
 pub fn distinct_values<'a>(parts: impl IntoIterator<Item = &'a Part>, field: impl Fn(&Part) -> &str) -> Vec<String> {
     let mut values: Vec<String> = parts.into_iter().map(&field).filter(|v| !v.is_empty()).map(String::from).collect();

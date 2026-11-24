@@ -57,6 +57,9 @@ impl App {
     /// After the panes: the requests of the panel layout and the assistants.
     pub(super) fn layout_requests(&mut self, ctx: &egui::Context, idx: &Index) {
         self.panel_ui.dialogs(ctx, &mut self.session.prj, &self.parts_db);
+        if let Some(drop) = self.panel_ui.fetch_part.take() {
+            self.fetch_enclosure(ctx, drop);
+        }
         self.pv_properties(ctx);
         self.earthing_properties(ctx);
         if std::mem::take(&mut self.mounting_ui.export) {

@@ -5,6 +5,22 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Searching enclosures:** the *New enclosure* dialog searches the enclosures of the
+  parts database, the project and the shipped catalogs by text, enclosure system,
+  manufacturer, wall or floor mounting, width, height and depth, and the field widths
+  and rows of meter and distribution cabinets, sorted by part number or size; a double
+  click creates the enclosure. The navigator *Enclosures and rooms* opens it from its
+  context menu, on a room for an enclosure standing in it.
+- **Enclosures dragged into the navigator:** an enclosure dragged from the parts
+  management or the data portal into *Enclosures and rooms* is created at once, in the
+  room it is dropped onto; one only on the parts server is imported first.
+- **Accessories dragged into an enclosure:** an accessory dragged from the parts
+  management over the 2D or 3D view of an enclosure highlights where it fits: the free
+  fields of a meter cabinet for its distribution panels (such as the Striebel & John
+  FV17), the faces for other accessories of the enclosure, the placed devices for an
+  accessory of their part. Dropped there it is placed, or added to the device. New
+  command `fitting_places`.
+
 ## [0.1.3] - 2026-11-23
 
 - **Mounting rails in 3D:** a rail of the panel layout shows its real profile instead of

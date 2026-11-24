@@ -162,6 +162,15 @@ pub static COMMANDS: &[Spec] = &[
         run: place_accessory,
     },
     Spec {
+        name: "fitting_places",
+        help: tr_const!("Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits"),
+        params: &[
+            param("enclosure", Kind::Str, ENCLOSURE),
+            param("part", Kind::Str, tr_const!("Accessory part number, e.g. GEN.GLAND-M25")),
+        ],
+        run: fitting_places,
+    },
+    Spec {
         name:"place_mounting_plate",
         help:tr_const!("Places an explicit mounting plate in a cabinet or open assembly"),
         params:&[
@@ -517,12 +526,40 @@ fn add_cable_passage(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(json!({ "cutouts": ids, "from": left_name, "to": right_name, "lineup": lineup_json(prj, ei) }))
 }
 
+/// An accessory part of the project, the example catalog or a shipped catalog; one of a
+/// shipped catalog is copied into the project.
+fn accessory_part(prj: &mut Project, number: &str) -> Result<openecraft_core::parts::Part, String> {
+    if let Some(p) = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == number) {
+        return Ok(p.clone());
+    }
+    let shipped = openecraft_core::parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).find(|p| p.number == number);
+    let p = shipped.ok_or_else(|| tr_fmt!("Unknown part: {}", number))?;
+    prj.parts.push(p.clone());
+    Ok(p)
+}
+
+fn fitting_places(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let ei = enclosure_index(prj, a.req("enclosure"))?;
+    let part = accessory_part(prj, a.req("part"))?;
+    let e = &prj.layout.enclosures[ei];
+    let places = panel::fit::places(prj, ei, &part);
+    Ok(Value::Array(
+        places
+            .iter()
+            .map(|pl| match pl {
+                panel::fit::Place::Slot(r) => json!({ "kind": "slot", "face": "plate", "x": r.min.x, "y": r.min.y, "width": r.width(), "height": r.height() }),
+                panel::fit::Place::Face(f) => json!({ "kind": "face", "face": e.face_key(*f) }),
+                panel::fit::Place::Device(id, tag) => json!({ "kind": "device", "tag": tag, "id": id }),
+            })
+            .collect(),
+    ))
+}
+
 fn place_accessory(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let ei = enclosure_index(prj, a.req("enclosure"))?;
     let face = face_arg(a, "face")?.unwrap_or_default();
     let part = a.req("part").to_string();
-    let known = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == part).cloned();
-    let pd = known.ok_or_else(|| tr_fmt!("Unknown part: {}", part))?;
+    let pd = accessory_part(prj, &part)?;
     if !panel::allowed_faces(&pd).contains(&face) {
         return Err(tr_fmt!("{} cannot be mounted on the {}", part, face.title()));
     }

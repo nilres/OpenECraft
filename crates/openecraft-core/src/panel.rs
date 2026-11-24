@@ -32,6 +32,7 @@ mod manufacturing;
 mod mounting;
 mod placement;
 pub mod earthing;
+pub mod fit;
 pub mod floorplan;
 pub mod lightning;
 pub mod plot;

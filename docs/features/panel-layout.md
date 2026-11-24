@@ -17,6 +17,24 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
 ## Enclosures and devices
 
 - Enclosures (from a part such as `GEN.ENC-600X800` or custom size) with mounting plate.
+- *New enclosure* (the button of the navigator *Enclosures and rooms* or its context
+  menu, on a room *New enclosure in this room…*) searches the enclosures of the parts
+  database, the project and the catalogs shipped with OpenECraft: by text, enclosure
+  system, manufacturer, *Mounting* (wall or floor), width, height and depth from … to,
+  and the field widths and rows of meter and distribution cabinets (*Fields / rows*,
+  part data `Fields: 3`, `Rows: 7`), sorted by part number or size. A double click on an
+  enclosure creates it; the search stays for the next one. An enclosure dragged from the
+  parts management (or the data portal) into the navigator is created at once, in the
+  room it was dropped onto (also onto a cabinet standing in one).
+- **Accessories dragged into the enclosure:** an accessory dragged from the parts
+  management over the 2D or 3D view of an enclosure shows the places it fits,
+  highlighted: a distribution panel of a meter cabinet (such as the Striebel & John
+  FV17, part data `Fields: 1`, `Rows: 7`) the free fields of the cabinet's grid, another
+  accessory of the enclosure's part the faces it may be mounted on, an accessory of a
+  device's part (an auxiliary contact, a signal contact) the placed devices it fits.
+  Dropped onto a place it goes there; onto a device it becomes an accessory of the
+  device. The command `fitting_places` lists the places for the command line and AI
+  agents.
 - Mounting rails and cable ducts drawn by length; select one and drag either end to
   resize it, or move it (devices travel with their rail). Devices are placed from a
   "devices to place" list with their real dimensions from the parts data (contactor +

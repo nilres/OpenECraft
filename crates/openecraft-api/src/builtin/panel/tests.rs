@@ -143,6 +143,25 @@ fn enclosures_bayed_with_a_cable_passage() {
 }
 
 #[test]
+fn the_places_an_accessory_fits() {
+    let mut s = demo();
+    // A Striebel & John cabinet of 3 fields and 7 rows: its distribution panel of one
+    // field (FV17) fits each field, one dropped into the middle leaves two.
+    let cabinet = openecraft_core::parts::bundled::load("striebel_john").unwrap().parts.into_iter().find(|p| p.number == "SJ.2CPX052032R9999").unwrap();
+    s.project_mut().unwrap().parts.push(cabinet);
+    run(&mut s, "add_enclosure", json!({ "name": "+Z1", "part": "SJ.2CPX052032R9999" })).unwrap();
+    let places = run(&mut s, "fitting_places", json!({ "enclosure": "+Z1", "part": "SJ.2CPX054002R9999" })).unwrap();
+    let xs: Vec<f64> = places.as_array().unwrap().iter().map(|p| p["x"].as_f64().unwrap()).collect();
+    assert_eq!((places[0]["kind"].as_str(), places[0]["height"].as_f64(), xs), (Some("slot"), Some(1050.0), vec![0.0, 250.0, 500.0]));
+    run(&mut s, "place_accessory", json!({ "enclosure": "+Z1", "part": "SJ.2CPX054002R9999", "face": "plate", "x": 250, "y": 0 })).unwrap();
+    let places = run(&mut s, "fitting_places", json!({ "enclosure": "+Z1", "part": "SJ.2CPX054002R9999" })).unwrap();
+    assert_eq!(places.as_array().unwrap().len(), 2);
+    // Fits nothing in the demo cabinet.
+    assert_eq!(run(&mut s, "fitting_places", json!({ "enclosure": "+CAB1", "part": "SJ.2CPX054002R9999" })).unwrap(), json!([]));
+    assert!(run(&mut s, "fitting_places", json!({ "enclosure": "+CAB1", "part": "NO.SUCH" })).unwrap_err().contains("Unknown part"));
+}
+
+#[test]
 fn accessories_items_and_arranging() {
     let mut s = demo();
     let g = run(&mut s, "place_accessory", json!({ "enclosure": "+CAB1", "part": "GEN.GLAND-M25", "face": "bottom", "anchor_x": "center:0", "y": 60 })).unwrap();

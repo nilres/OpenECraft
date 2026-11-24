@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Un nivel deasupra celui mai înalt
 A local file opens locally, a server project is opened on the project server again	Un fișier local se deschide local, un proiect de pe server este redeschis pe serverul de proiecte
 A local file or a project on the project server	Un fișier local sau un proiect de pe serverul de proiecte
+A new enclosure standing in this room	O carcasă nouă în această încăpere
 A new project	Un proiect nou
 A new release is downloaded in the background and installed when you close OpenECraft.	O versiune nouă se descarcă în fundal și se instalează când închideți OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	O versiune nouă se descarcă în fundal și înlocuiește această instalare; este folosită de la următoarea pornire.
@@ -178,6 +179,8 @@ Assign to existing device	Atribuire la dispozitiv existent
 Assign to harness	Atribuire la cablaj
 Assign wires: select them in the schematic › Assign to cable.	Atribuire conductoare: selectați-le în schemă › Atribuire la cablu.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Motoarele asincrone conectate la rețea măresc cel mai mare curent de scurtcircuit (IEC 60909-0)
+At least, mm (0: any)	Cel puțin, mm (0: oricât)
+At most, mm (0: any)	Cel mult, mm (0: oricât)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	La cea mai ridicată temperatură ambiantă; încălzitorul menține punctul de rouă. 0 = neluat în considerare
 At the origin	În origine
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	La punctul de alimentare: Ik3 max {} kA, Ik1 min {} kA
@@ -663,9 +666,13 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Listă de găuri (CSV)
 Drilling list of this face (CSV)	Listă de găurire a acestei fețe (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Modelul de găurire al feței afișate ca DXF, DWG sau CSV
+Drop an enclosure here to add it; onto a room to put it in there	Plasați aici o carcasă pentru a o adăuga; pe o încăpere pentru a o pune acolo
 Drop between the pages	Plasați între pagini
 Drop between the rows or onto a section	Plasați între rânduri sau pe o secțiune
 Drop onto a level to put the room on it	Plasați pe un nivel pentru a pune încăperea pe el
+Drop {} here	Plasați {} aici
+Drop {} onto one of the highlighted places	Plasați {} pe unul dintre locurile evidențiate
+Drop {} onto {} to add it to the device	Plasați {} pe {} pentru a-l adăuga la echipament
 Duct fill	Umplere canal
 Duct fill limit	Limită de umplere a canalului
 Duplicate	Duplicare
@@ -699,6 +706,8 @@ Embed as document page	Încorporare ca pagină de document
 Embeds a file (PDF, Word, Excel, image …) as a page	Încorporează un fișier (PDF, Word, Excel, imagine …) ca pagină
 Embeds the file in the project (replaces the current one)	Încorporează fișierul în proiect (îl înlocuiește pe cel actual)
 Enclosure system	Sistem de carcase
+Enclosure {} added	Carcasa {} a fost adăugată
+Enclosure {} added in room {}	Carcasa {} a fost adăugată în încăperea {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Carcase (+CAB1), dispozitive (-M1) și locuri ale mașinilor (+M1) la noduri
 Enclosures and rooms	Carcase și încăperi
 Enclosures, devices to place and placed devices	Dulapuri, dispozitive de plasat și dispozitive plasate
@@ -753,7 +762,10 @@ Field	Câmp
 Field (name, description, company, creator, date, revision) or project property	Câmp (name, description, company, creator, date, revision) sau proprietate de proiect
 Field cables	Cabluri de câmp
 Field length	Lungime câmp
+Field widths and rows of meter and distribution cabinets	Lățimile câmpurilor și rândurile dulapurilor de contoare și de distribuție
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Câmp; tech:<name> pentru datele tehnice ale articolelor, prop:<name> pentru proprietățile proiectului
+Fields	Câmpuri
+Fields / rows	Câmpuri / rânduri
 File format version {}. Files of older versions are converted when they are opened.	Versiunea formatului de fișier {}. Fișierele versiunilor mai vechi sunt convertite la deschidere.
 File name	Nume fișier
 File of another system (connector)	Fișier al unui alt sistem (conector)
@@ -779,6 +791,7 @@ Fit page	Încadrare pagină
 Fits {}	Compatibil cu {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Încadrată în dreptunghi păstrând proporțiile (PNG, JPEG)
 Float	Detașare
+Floor	Podea
 Floor above ground	Pardoseală peste teren
 Floor plan with {} walls	Plan cu {} pereți
 Floor-standing part	Articol care stă pe pardoseală
@@ -1214,6 +1227,8 @@ New cover sheet	Pagină de copertă nouă
 New document page…	Pagină de document nouă…
 New empty	Nou, gol
 New enclosure	Carcasă nouă
+New enclosure in this room…	Carcasă nouă în această încăpere…
+New enclosure…	Carcasă nouă…
 New graphics page	Pagină de grafică nouă
 New harness	Cablaj nou
 New items go onto this layer	Elementele noi se plasează pe acest strat
@@ -1273,6 +1288,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Încă nicio carcasă – creați una cu Carcasă nouă sau o încăpere pentru dulapuri cu Încăpere nouă.
 No field cables: place the enclosures and field devices at nodes of the route network.	Niciun cablu de câmp: plasați carcasele și dispozitivele de câmp la nodurile rețelei de trasee.
 No filter fans: an air/air heat exchanger or a cooling unit	Fără ventilatoare cu filtru: un schimbător de căldură aer/aer sau un agregat de răcire
+No free place is left for {} in this enclosure	Nu mai este niciun loc liber pentru {} în această carcasă
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Încă niciun câmp PV la sol: rânduri de mese înclinate pe stâlpi bătuți pe teren.
 No gesture	Niciun gest
 No harnesses defined.	Nu sunt definite cablaje.
@@ -1794,6 +1810,7 @@ Row	Rând
 Row distance	Distanța dintre rânduri
 Row drawing	Desen de rând
 Row labels	Etichete de rânduri
+Rows	Rânduri
 Rows of tables behind each other	Rânduri de mese una în spatele alteia
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Rânduri de mese înclinate pe stâlpi în fața a ceea ce se află în instalație, orientate în față; mutați-l la locul lui
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rândurile de pe paginile aprobate nu pot fi modificate. Un salt de rând într-un text se scrie ca \\n.
@@ -1870,7 +1887,9 @@ Scrolling zooms, also where it pans	Derularea mărește, și acolo unde deplasea
 Search (* and ? as placeholders)…	Căutare (* și ? ca metacaractere)…
 Search below this folder	Căutare sub acest folder
 Search number, description, maker	Caută număr, descriere, producător
+Search the enclosures of the parts database and the catalogs for a new one	Căutați o carcasă nouă în baza de date a pieselor și în cataloage
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Căutați în serverul de articole după catalog, grupă de produse și date tehnice, adăugați articole și verificați baza de date pentru actualizări
+Search…	Căutare…
 Second channel	Al doilea canal
 Seconds from a change to its automatic save (10 to 600)	Secunde de la o modificare până la salvarea ei automată (de la 10 la 600)
 Section properties	Proprietățile secțiunii
@@ -2364,6 +2383,7 @@ all lines	toate rândurile
 all, or e.g. -X*, -W1	toate, sau de ex. -X*, -W1
 all, or e.g. K, Q	toate sau de ex. K, Q
 along z	de-a lungul z
+any	oricât
 both ends	ambele capete
 built-in	integrat
 by hand	manual
@@ -2477,6 +2497,7 @@ x y	x y
 {} Vault items found for the project parts	{} elemente Vault găsite pentru articolele proiectului
 {} Vault items found: review the changes in the integration window	{} elemente Vault găsite: examinați modificările în fereastra de integrare
 {} added to building {}	{} adăugat la clădirea {}
+{} added to device {}	{} a fost adăugat la echipamentul {}
 {} addresses changed	{} adrese modificate
 {} air-termination rods	{} tije de captare
 {} already exists on the project server.	{} există deja pe serverul de proiecte.
@@ -2527,18 +2548,23 @@ x y	x y
 {} example catalog parts refreshed	S-au reîmprospătat {} articole din catalogul exemplu
 {} favorites added	Favorite adăugate: {}
 {} field wiring problems (see Check)	{} probleme de cablare de câmp (vezi Verificare)
+{} fits neither this enclosure nor a device in it	{} nu se potrivește nici în această carcasă, nici la un echipament din ea
+{} fits on another face of this enclosure: {}	{} se potrivește pe o altă față a acestei carcase: {}
 {} found	{} găsite
 {} function texts copied	{} texte de funcție copiate
 {} generated pages in the project (changes on them are replaced)	{} pagini generate în proiect (modificările de pe ele se înlocuiesc)
 {} grants on the project	{} atribuiri pentru proiect
 {} has no function with a symbol; assign it to a device in its properties	{} nu are nicio funcție cu simbol; atribuiți-l unui dispozitiv în proprietățile acestuia
 {} has unsaved changes. Discard them?	{} are modificări nesalvate. Renunțați la ele?
+{} imported into the parts database and added as enclosure {}	{} a fost importat în baza de date a pieselor și adăugat ca și carcasa {}
 {} imported into the parts database and placed as {}	{} importat în baza de date de articole și plasat ca {}
 {} in {}	{} în {}
 {} is in the schematic	{} este în schemă
 {} is in the schematic: cable {} from {}	{} este în schemă: cablul {} de la {}
 {} is neither in the parts database nor on the parts server	{} nu se află nici în baza de date de articole, nici pe serverul de articole
+{} is not an enclosure: only enclosures can be dropped here	{} nu este o carcasă: aici se pot plasa doar carcase
 {} is not in the disk image	{} nu este în imaginea de disc
+{} is not in the parts database yet: import it, then drag it here	{} nu este încă în baza de date a pieselor: importați-l, apoi trageți-l aici
 {} is not made for wall mounting: place it on a mounting rail	{} nu este destinat montajului pe perete: așezați-l pe o șină
 {} is used by: {}	{} este folosit de: {}
 {} items copied	{} elemente copiate
@@ -2564,6 +2590,7 @@ x y	x y
 {} objects, {} pages	{} obiecte, {} pagini
 {} of {} approvals	{} din {} avize
 {} of {} connections numbered	{} din {} conexiuni numerotate
+{} of {} enclosures	{} din {} carcase
 {} of {} entries shown: search to narrow the list	{} din {} intrări afișate: căutați pentru a restrânge lista
 {} of {} items	{} din {} elemente
 {} of {} pages locked	{} din {} pagini blocate
@@ -2588,6 +2615,7 @@ x y	x y
 {} pieces	{} bucăți
 {} pins used	{} pini utilizați
 {} placed as {}	{} plasat ca {}
+{} placed in {}	{} a fost plasat în {}
 {} placement problems (red) – see Check	{} probleme de plasare (roșu) – consultați Verificare
 {} problems	{} probleme
 {} project parts updated	S-au actualizat {} articole ale proiectului

@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Kerros ylimmän päälle
 A local file opens locally, a server project is opened on the project server again	Paikallinen tiedosto avautuu paikallisesti, palvelinprojekti avataan uudelleen projektipalvelimella
 A local file or a project on the project server	Paikallinen tiedosto tai projektipalvelimen projekti
+A new enclosure standing in this room	Uusi kotelo tähän tilaan
 A new project	Uusi projekti
 A new release is downloaded in the background and installed when you close OpenECraft.	Uusi versio ladataan taustalla ja asennetaan, kun suljet OpenECraftin.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Uusi versio ladataan taustalla ja se korvaa tämän asennuksen; sitä käytetään seuraavasta käynnistyksestä alkaen.
@@ -178,6 +179,8 @@ Assign to existing device	Määritä olemassa olevaan laitteeseen
 Assign to harness	Määritä johtosarjaan
 Assign wires: select them in the schematic › Assign to cable.	Määritä johdot: valitse ne piirikaaviosta › Määritä kaapeliin.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Verkkoon liitetyt epätahtimoottorit lisäävät suurinta oikosulkuvirtaa (IEC 60909-0)
+At least, mm (0: any)	Vähintään, mm (0: mikä tahansa)
+At most, mm (0: any)	Enintään, mm (0: mikä tahansa)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Korkeimmassa ympäristön lämpötilassa; lämmitin pitää kastepisteen. 0 = ei huomioida
 At the origin	Origossa
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Syöttöpisteessä: Ik3 max {} kA, Ik1 min {} kA
@@ -663,9 +666,13 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Porausluettelo (CSV)
 Drilling list of this face (CSV)	Tämän pinnan porausluettelo (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Näytetyn pinnan porauskuvio DXF-, DWG- tai CSV-muodossa
+Drop an enclosure here to add it; onto a room to put it in there	Pudota kotelo tähän lisätäksesi sen; tilan päälle sijoittaaksesi sen sinne
 Drop between the pages	Pudota sivujen väliin
 Drop between the rows or onto a section	Pudota rivien väliin tai osion päälle
 Drop onto a level to put the room on it	Pudota kerrokseen sijoittaaksesi tilan siihen
+Drop {} here	Pudota {} tähän
+Drop {} onto one of the highlighted places	Pudota {} johonkin korostetuista kohdista
+Drop {} onto {} to add it to the device	Pudota {} kohteeseen {} lisätäksesi sen laitteeseen
 Duct fill	Kourun täyttö
 Duct fill limit	Johtokourun täyttöraja
 Duplicate	Monista
@@ -699,6 +706,8 @@ Embed as document page	Upota asiakirjasivuksi
 Embeds a file (PDF, Word, Excel, image …) as a page	Upottaa tiedoston (PDF, Word, Excel, kuva …) sivuksi
 Embeds the file in the project (replaces the current one)	Upottaa tiedoston projektiin (korvaa nykyisen)
 Enclosure system	Kotelojärjestelmä
+Enclosure {} added	Kotelo {} lisätty
+Enclosure {} added in room {}	Kotelo {} lisätty tilaan {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Kotelot (+CAB1), laitteet (-M1) ja koneiden sijainnit (+M1) solmuissa
 Enclosures and rooms	Kotelot ja tilat
 Enclosures, devices to place and placed devices	Kaapit, sijoitettavat ja sijoitetut laitteet
@@ -753,7 +762,10 @@ Field	Kenttä
 Field (name, description, company, creator, date, revision) or project property	Kenttä (name, description, company, creator, date, revision) tai projektiominaisuus
 Field cables	Kenttäkaapelit
 Field length	Kentän pituus
+Field widths and rows of meter and distribution cabinets	Mittari- ja jakokeskusten kenttäleveydet ja rivit
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Kenttä; tech:<name> osien teknisille tiedoille, prop:<name> projektin ominaisuuksille
+Fields	Kentät
+Fields / rows	Kentät / rivit
 File format version {}. Files of older versions are converted when they are opened.	Tiedostomuodon versio {}. Vanhempien versioiden tiedostot muunnetaan avattaessa.
 File name	Tiedostonimi
 File of another system (connector)	Toisen järjestelmän tiedosto (konnektori)
@@ -779,6 +791,7 @@ Fit page	Sovita sivu
 Fits {}	Sopii osaan {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Sovitetaan suorakulmioon kuvasuhde säilyttäen (PNG, JPEG)
 Float	Irrota
+Floor	Pohja
 Floor above ground	Lattia maan yläpuolella
 Floor plan with {} walls	Pohjapiirros, {} seinää
 Floor-standing part	Lattialle sijoitettava osa
@@ -1214,6 +1227,8 @@ New cover sheet	Uusi kansilehti
 New document page…	Uusi dokumenttisivu…
 New empty	Uusi tyhjä
 New enclosure	Uusi kotelo
+New enclosure in this room…	Uusi kotelo tähän tilaan…
+New enclosure…	Uusi kotelo…
 New graphics page	Uusi grafiikkasivu
 New harness	Uusi johtosarja
 New items go onto this layer	Uudet kohteet tulevat tälle tasolle
@@ -1273,6 +1288,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ei vielä koteloa – luo sellainen komennolla Uusi kotelo tai tila kaapeille komennolla Uusi tila.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ei kenttäkaapeleita: sijoita kotelot ja kenttälaitteet reittiverkon solmuihin.
 No filter fans: an air/air heat exchanger or a cooling unit	Ei suodatinpuhaltimia: ilma/ilma-lämmönsiirrin tai jäähdytyslaite
+No free place is left for {} in this enclosure	Tässä kotelossa ei ole enää vapaata paikkaa kohteelle {}
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Ei vielä maa-asennettua aurinkopaneelikenttää: kallistettujen pöytien rivejä lyöntipaaluilla tontilla.
 No gesture	Ei elettä
 No harnesses defined.	Johtosarjoja ei ole määritetty.
@@ -1794,6 +1810,7 @@ Row	Rivi
 Row distance	Riviväli
 Row drawing	Rivipiirros
 Row labels	Rivien merkinnät
+Rows	Rivit
 Rows of tables behind each other	Pöytärivit peräkkäin
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Kallistettujen pöytien rivejä paaluilla laitoksessa olevien kohteiden edessä, eteenpäin suunnattuina; siirrä se paikalleen
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Vapautettujen sivujen rivejä ei voi muuttaa. Rivinvaihto tekstissä kirjoitetaan muodossa \\n.
@@ -1870,7 +1887,9 @@ Scrolling zooms, also where it pans	Vieritys zoomaa myös siellä, missä se pan
 Search (* and ? as placeholders)…	Hae (* ja ? jokerimerkkeinä)…
 Search below this folder	Hae tämän kansion alta
 Search number, description, maker	Hae numeroa, kuvausta, valmistajaa
+Search the enclosures of the parts database and the catalogs for a new one	Etsi uusi kotelo osatietokannasta ja luetteloista
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Hae osapalvelimelta luettelon, tuoteryhmän ja teknisten tietojen mukaan, lisää osia ja tarkista tietokannan päivitykset
+Search…	Hae…
 Second channel	Toinen kanava
 Seconds from a change to its automatic save (10 to 600)	Sekunnit muutoksesta sen automaattiseen tallennukseen (10–600)
 Section properties	Osion ominaisuudet
@@ -2364,6 +2383,7 @@ all lines	kaikki rivit
 all, or e.g. -X*, -W1	kaikki, tai esim. -X*, -W1
 all, or e.g. K, Q	kaikki tai esim. K, Q
 along z	z:n suuntaan
+any	mikä tahansa
 both ends	molemmat päät
 built-in	sisäinen
 by hand	käsin
@@ -2477,6 +2497,7 @@ x y	x y
 {} Vault items found for the project parts	Projektin osille löytyi {} Vault-nimikettä
 {} Vault items found: review the changes in the integration window	{} Vault-nimikettä löytyi: tarkista muutokset integraatioikkunassa
 {} added to building {}	{} lisätty rakennukseen {}
+{} added to device {}	{} lisätty laitteeseen {}
 {} addresses changed	{} osoitetta muutettu
 {} air-termination rods	{} ukkosenjohdatintankoa
 {} already exists on the project server.	{} on jo projektipalvelimella.
@@ -2527,18 +2548,23 @@ x y	x y
 {} example catalog parts refreshed	{} esimerkkiluettelon osaa päivitetty
 {} favorites added	Suosikkeja lisätty: {}
 {} field wiring problems (see Check)	{} kenttäjohdotuksen ongelmaa (katso Tarkistus)
+{} fits neither this enclosure nor a device in it	{} ei sovi tähän koteloon eikä sen laitteeseen
+{} fits on another face of this enclosure: {}	{} sopii tämän kotelon toiselle sivulle: {}
 {} found	{} löytyi
 {} function texts copied	{} toimintotekstiä kopioitiin
 {} generated pages in the project (changes on them are replaced)	{} luotua sivua projektissa (niihin tehdyt muutokset korvataan)
 {} grants on the project	{} myöntöä projektiin
 {} has no function with a symbol; assign it to a device in its properties	Osalla {} ei ole symbolillista toimintoa; liitä se laitteeseen laitteen ominaisuuksissa
 {} has unsaved changes. Discard them?	Kohteessa {} on tallentamattomia muutoksia. Hylätäänkö ne?
+{} imported into the parts database and added as enclosure {}	{} tuotu osatietokantaan ja lisätty koteloksi {}
 {} imported into the parts database and placed as {}	{} tuotiin osatietokantaan ja sijoitettiin nimellä {}
 {} in {}	{} ({})
 {} is in the schematic	{} on kaaviossa
 {} is in the schematic: cable {} from {}	{} on kaaviossa: kaapeli {} kohteesta {}
 {} is neither in the parts database nor on the parts server	{} ei ole osatietokannassa eikä osapalvelimella
+{} is not an enclosure: only enclosures can be dropped here	{} ei ole kotelo: tähän voi pudottaa vain koteloita
 {} is not in the disk image	{} ei ole levykuvassa
+{} is not in the parts database yet: import it, then drag it here	{} ei ole vielä osatietokannassa: tuo se ja vedä se sitten tähän
 {} is not made for wall mounting: place it on a mounting rail	{} ei ole tarkoitettu seinäasennukseen: aseta se asennuskiskoon
 {} is used by: {}	Kohdetta {} käyttää: {}
 {} items copied	{} kohdetta kopioitiin
@@ -2564,6 +2590,7 @@ x y	x y
 {} objects, {} pages	{} objektia, {} sivua
 {} of {} approvals	{}/{} hyväksyntää
 {} of {} connections numbered	{}/{} yhteyttä numeroitu
+{} of {} enclosures	{} / {} koteloa
 {} of {} entries shown: search to narrow the list	{} / {} merkintää näytetään: rajaa luetteloa hakemalla
 {} of {} items	{} / {} kohdetta
 {} of {} pages locked	{}/{} sivua lukittu
@@ -2588,6 +2615,7 @@ x y	x y
 {} pieces	{} kpl
 {} pins used	{} nastaa käytössä
 {} placed as {}	{} sijoitettiin nimellä {}
+{} placed in {}	{} sijoitettu kohteeseen {}
 {} placement problems (red) – see Check	{} sijoitteluongelmaa (punainen) – katso Tarkistus
 {} problems	{} ongelmaa
 {} project parts updated	{} projektin osaa päivitetty
