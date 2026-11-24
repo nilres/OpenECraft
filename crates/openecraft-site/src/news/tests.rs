@@ -6,8 +6,8 @@ const CHANGELOG: &str = "# Changelog\n\nThe notable changes.\n\n## [0.3.0] - unr
 fn the_released_versions_are_read_from_the_changelog() {
     let releases = releases(CHANGELOG);
     assert_eq!(releases.len(), 2, "the version being worked on is left out");
-    assert_eq!((releases[0].version.as_str(), releases[0].date.as_str()), ("0.2.0", "2026-12-01"));
-    assert_eq!(releases[0].slug(), "v0-2-0");
+    assert_eq!((releases[0].version.as_str(), releases[0].date.as_deref().unwrap()), ("0.2.0", "2026-12-01"));
+    assert_eq!(slug(&releases[0]), "v0-2-0");
     assert_eq!(releases[0].headlines(), ["Symbol pages", "Faster & <better>"]);
     assert!(releases[0].text.starts_with("- **Symbol pages:**") && releases[0].text.ends_with("#9-reports)."));
     assert_eq!(releases[1].version, "0.1.0");

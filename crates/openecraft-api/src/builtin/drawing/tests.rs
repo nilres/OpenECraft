@@ -829,6 +829,30 @@ fn a_moved_wire_keeps_its_connection_unless_told_and_a_wire_end_leaves_it() {
 }
 
 #[test]
+fn turned_and_mirrored_symbols_keep_their_wires() {
+    let mut s = new_session();
+    let placed = run(&mut s, "place_symbol", json!({"page":"1","symbol":"main3","x":100,"y":100,"tag":"-Q1"})).unwrap();
+    run(&mut s, "place_symbol", json!({"page":"1","symbol":"main3","x":100,"y":160,"tag":"-Q2"})).unwrap();
+    for (a, b) in [("2", "1"), ("4", "3"), ("6", "5")] {
+        run(&mut s, "connect", json!({"page":"1","from":format!("-Q1:{a}"),"to":format!("-Q2:{b}")})).unwrap();
+    }
+    let nets = |s: &Session| {
+        let prj = s.project().unwrap();
+        let net = openecraft_core::netlist::Netlist::build(prj, false);
+        let (q1, q2) = (prj.pages[0].symbols[0].id, prj.pages[0].symbols[1].id);
+        // Connection points 2, 4, 6 of -Q1 to 1, 3, 5 of -Q2.
+        [(3, 0), (4, 1), (5, 2)].map(|(a, b)| net.pin_net.get(&(q1, a)).is_some_and(|n| net.pin_net.get(&(q2, b)) == Some(n)))
+    };
+    assert_eq!(nets(&s), [true; 3]);
+    for (rotation, mirror) in [(0, true), (90, true), (0, false)] {
+        let out = run(&mut s, "update_symbol", json!({"page":"1","id":placed["id"],"rotation":rotation,"mirror":mirror})).unwrap();
+        assert_eq!((out["rotation"].as_u64(), out["mirror"].as_bool()), (Some(rotation), Some(mirror)));
+        assert_eq!(nets(&s), [true; 3], "{rotation} {mirror}");
+    }
+    assert!(run(&mut s, "update_symbol", json!({"page":"1","id":placed["id"],"rotation":45})).is_err());
+}
+
+#[test]
 fn imported_symbols_are_scaled_with_their_wires_and_keep_their_texts() {
     use openecraft_core::symbols::{Anchor, Prim};
     use openecraft_core::symlib::{UserPin, UserSymbol};

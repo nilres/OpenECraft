@@ -256,6 +256,7 @@ impl App {
             Cmd::Settings => self.settings.open(),
             Cmd::Tutorial => self.help_chapter(1),
             Cmd::About => self.help_about(),
+            Cmd::VersionHistory => self.help_version(None),
             Cmd::Legal => self.help_legal(),
             Cmd::ReportBug => self.report_bug(),
             Cmd::CheckForUpdates => self.check_for_updates(ctx),
@@ -334,7 +335,7 @@ impl App {
                     self.editor.place_mirror = !self.editor.place_mirror;
                 } else {
                     let items = self.editor.items(&self.session.prj, page);
-                    ops::mirror(&mut self.session.prj.pages[page], &items);
+                    routing::mirror(&mut self.session.prj, page, &items);
                 }
             }
             Cmd::Find => self.find_ui.open = true,

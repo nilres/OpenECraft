@@ -950,6 +950,7 @@ Imported {} stations, {} modules, {} bus systems, {} connections; {} addresses a
 Imported {} title blocks and {} report schemes	已导入 {} 个标题栏和 {} 个报表方案
 Importing {} from the parts server…	正在从部件服务器导入 {}…
 Import…	导入…
+In development: not released yet	开发中：尚未发布
 In every section counting starts again after the section number (2.3.1).	在每个分节中，编号在分节号之后重新开始 (2.3.1)。
 In review	审阅中
 In strip order; PE and other non-numeric terminals keep their designation	按端子排顺序；PE 和其他非数字端子保留其标识
@@ -1247,6 +1248,7 @@ New subsection	新建子分节
 New tag for {}	{} 的新标识符
 New zone	新建安装区
 New, empty placement scheme	新的空放置方案
+Newer version: {}	较新版本：{}
 Next free contact numbers on this device	此设备上的下一个空闲触点编号
 Next item	下一个元件
 Next page tab	下一个页选项卡
@@ -1344,6 +1346,7 @@ Of the outer diameter, as laid fixed	外径的倍数，固定敷设
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径的倍数；管道用一倍半直径的弯头弯曲
 Off	关
 Offset from one row to the next: downwards for lists, sideways for rows side by side	从一行到下一行的偏移：列表向下，并排的行向侧面
+Older version: {}	较旧版本：{}
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	适用于触摸屏和触控板。仅平移：捏合不缩放；仅缩放：在系统能区分触控板时，双指在触控板上滚动也会缩放。单指的作用与鼠标左键相同。
 On a touch screen; trackpads leave three-finger gestures to the system.	适用于触摸屏；触控板的三指操作由系统处理。
 On startup	启动时
@@ -1392,6 +1395,9 @@ OpenECraft structure template (JSON)	OpenECraft 结构模板 (JSON)
 OpenECraft symbol library	OpenECraft 符号库
 OpenECraft title blocks	OpenECraft 标题栏
 OpenECraft title blocks and report schemes (JSON)	OpenECraft 标题栏和报表方案 (JSON)
+OpenECraft was updated to version {}. These are its new features:	OpenECraft 已更新到版本 {}。以下是它的新功能：
+OpenECraft was updated to version {}. These are the new features of the versions since the one you used last:	OpenECraft 已更新到版本 {}。以下是自您上次使用的版本以来各版本的新功能：
+OpenECraft {}	OpenECraft {}
 OpenECraft {} is available	OpenECraft {} 现已推出
 OpenECraft {} is installed and starts next time	OpenECraft {} 已安装，将在下次启动时使用
 OpenECraft {} is installed when you close OpenECraft	OpenECraft {} 将在关闭 OpenECraft 时安装
@@ -1649,6 +1655,7 @@ Release page	版本页面
 Release route	释放布线
 Release without saving	释放而不保存
 Release: lock all pages	发布：锁定所有页
+Released on {}	发布于 {}
 Released page – read only	已发布页 – 只读
 Released pages in it keep their names	其中已发布的页保留名称
 Released pages keep their name.	已发布页保留其名称。
@@ -2101,6 +2108,7 @@ The EPLAN Data Portal only offers searching and reading parts: open the data por
 The Insert center finds symbols, macros, devices and unplaced functions; favorites and recently used ones come first.	插入中心可查找符号、宏、设备和未放置的功能；收藏和最近使用的排在前面。
 The accessory fits none of the device's parts	该附件不适配设备的任何部件
 The aspect ratio is kept.	保持纵横比。
+The changes are written in English.	更改内容用英文编写。
 The check warns about cable ducts filled above this level	线槽填充率超过此值时检查会发出警告
 The checks keep the distances between classes and let classes overlap as set in Layout checks	检查会保持类别之间的距离，并按“布局检查”中的设置允许类别重叠
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	按插件列出所有插件的命令并可搜索；点击星标可将命令固定到插件选项卡
@@ -2127,6 +2135,7 @@ The modifiers that turn the wheel sideways or make it zoom are set under Modifie
 The modules no string takes yet in series, on the first inverter	尚未分配到组串的组件串联，接到第一台逆变器
 The name on the server needs letters, digits, space, - _ . (up to 64 characters).	服务器上的名称由字母、数字、空格、- _ . 组成（最多 64 个字符）。
 The names of its pages follow	其页的名称随之改变
+The new features of every version of OpenECraft, one page per version	OpenECraft 每个版本的新功能，每个版本一页
 The open project already has your version	打开的项目已包含你的版本
 The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	打开的项目有尚未保存到项目服务器的更改。系统会询问是否先保存；只有已保存的更改才包含在副本中。
 The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	打开的项目是此项目的本地恢复副本。其更改不在项目服务器上，也不包含在副本中。
@@ -2252,6 +2261,7 @@ Verify project	校验项目
 Verify selected	校验所选项目
 Verify the project against it	根据它验证项目
 Verify while reading	读取时校验
+Version history	版本历史
 Version {}	版本 {}
 Vertical	垂直
 Vertical (mm, downwards)	垂直（mm，向下）
@@ -2274,6 +2284,7 @@ Web between holes	孔间筋宽
 Welcome to OpenECraft	欢迎使用 OpenECraft
 What is new	新功能
 What should be checked or changed?	应检查或更改什么？
+What's new in OpenECraft {}	OpenECraft {} 的新功能
 Wheel and touch	滚轮和触摸
 Wheel: zoom · drag: move · click on a room: its floor plan	滚轮：缩放 · 拖动：移动 · 单击房间：其平面图
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	滚轮：缩放 · 拖动：移动 · 单击房间：其平面图 · 拖动场地边界的角点
@@ -2344,6 +2355,7 @@ X {}  Y {} mm · {}	X {}  Y {} mm · {}
 YYYY-MM-DD	YYYY-MM-DD
 You may only view this project.	您只能查看此项目。
 You may review this project: comments, markup and approvals, no other changes.	您可以审阅此项目：批注、标记和审批，不可进行其他更改。
+You use OpenECraft {}. Each version has a page with its changes.	您正在使用 OpenECraft {}。每个版本都有一页列出其更改。
 Your unsaved changes of it are taken back	你对其所做的未保存更改将被撤回
 Your version of {}	你在 {} 的版本
 Your version taken over: {}. Save to store it on the project server.	已接受你的版本：{}。保存以将其存储到项目服务器。
@@ -2452,6 +2464,7 @@ x y	x y
 {} (copy)	{}（副本）
 {} (default)	{}（默认）
 {} (first column)	{}（第一列）
+{} (in development)	{}（开发中）
 {} (locked by {})	{}（已被 {} 锁定）
 {} (no such device)	{}（设备不存在）
 {} (not placed in the layout)	{}（未放置在布局中）

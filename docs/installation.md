@@ -131,6 +131,11 @@ updates* looks again and reports every outcome. *Settings › Updates* switches 
 at start off, the environment variable `OPENECRAFT_NO_UPDATE_CHECK` (any value) does so
 for all users of a computer. The web version has no update of its own.
 
+At the first start of a new version the window *What's new in OpenECraft* shows the
+changes of the versions since the one used last, as `CHANGELOG.md` lists them (in
+English). *File › Help › Version history* shows them again: one page per version,
+grouped by series (`0.1`) in the Help pane.
+
 ## Docker images of the servers
 
 The parts server and the project server are also published as Docker images on

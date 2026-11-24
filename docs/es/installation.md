@@ -143,6 +143,11 @@ Actualizaciones* desactiva la comprobación al inicio; la variable de entorno
 `OPENECRAFT_NO_UPDATE_CHECK` (cualquier valor) lo hace para todos los usuarios de un
 equipo. La versión web no tiene actualización propia.
 
+Al primer inicio de una versión nueva, la ventana *Novedades de OpenECraft* muestra los
+cambios de las versiones desde la que se usó por última vez, tal como los lista
+`CHANGELOG.md` (en inglés). *Archivo › Ayuda › Historial de versiones* los vuelve a
+mostrar: una página por versión, agrupadas por serie (`0.1`) en el panel Ayuda.
+
 ## Imágenes Docker de los servidores
 
 El servidor de artículos y el servidor de proyectos se publican también como imágenes

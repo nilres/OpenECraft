@@ -3,7 +3,7 @@
 //! fields of a multiple selection, or the page.
 
 use super::*;
-use openecraft_core::device_boxes;
+use openecraft_core::{device_boxes, routing};
 use openecraft_core::model::PinLabel;
 use openecraft_core::symbols::Anchor;
 
@@ -830,12 +830,14 @@ impl App {
         // A device box takes its connection points to another device.
         let box_points = if device_boxes::is_box(&s) { device_boxes::points_of(&self.session.prj, &self.session.prj.pages[pi], s.id) } else { Vec::new() };
         if edited != s {
-            self.session.prj.pages[pi].symbols[si] = edited.clone();
+            // Turned and mirrored with its wires.
+            self.session.prj.pages[pi].symbols[si] = SymbolInst { rot: s.rot, mirror: s.mirror, ..edited.clone() };
             if edited.tag != s.tag {
                 for p in self.session.prj.pages[pi].symbols.iter_mut().filter(|p| box_points.contains(&p.id)) {
                     p.tag.clone_from(&edited.tag);
                 }
             }
+            routing::orient(&mut self.session.prj, pi, s.id, edited.rot, edited.mirror);
         }
         if let Some(factor) = scale {
             if let Err(e) = ops::set_symbol_scale(&mut self.session.prj, pi, s.id, factor) {

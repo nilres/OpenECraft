@@ -851,6 +851,7 @@ fn update_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(tag) = a.str("tag") {
         ops::check_tag(tag)?;
     }
+    let rot = rotation(a)?;
     // Scaled before it moves: a symbol that cannot be scaled is left as it is.
     if let Some(factor) = num_in(a, "scale", openecraft_core::symlib::SCALE_RANGE.0, openecraft_core::symlib::SCALE_RANGE.1)? {
         ops::set_symbol_scale(prj, i, id, factor)?;
@@ -858,6 +859,10 @@ fn update_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if !to.same(old) {
         routing::move_selection(prj, i, &BTreeSet::from([id]), to - old);
     }
+    // Turned and mirrored with its wires.
+    let s = prj.pages[i].symbols.iter().find(|x| x.id == id).ok_or_else(|| tr_fmt!("No symbol with id {}", id))?;
+    let mirror = a.value("mirror").and_then(Value::as_bool).unwrap_or(s.mirror);
+    routing::orient(prj, i, id, rot.unwrap_or(s.rot), mirror);
     let symbols = if a.value("scale").is_some() { prj.symbol_table() } else { symbols };
     let sym = prj.pages[i].symbols.iter_mut().find(|x| x.id == id).ok_or_else(|| tr_fmt!("No symbol with id {}", id))?;
     if let Some(tag) = a.str("tag") {

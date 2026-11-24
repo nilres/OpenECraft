@@ -144,6 +144,12 @@ Aide › Rechercher des mises à jour* cherche de nouveau et signale chaque rés
 d'environnement `OPENECRAFT_NO_UPDATE_CHECK` (valeur quelconque) le fait pour tous les
 utilisateurs d'un ordinateur. La version web n'a pas de mise à jour propre.
 
+Au premier démarrage d'une nouvelle version, la fenêtre *Nouveautés d'OpenECraft*
+montre les modifications des versions parues depuis celle utilisée en dernier, telles
+que `CHANGELOG.md` les liste (en anglais). *Fichier › Aide › Historique des versions*
+les montre de nouveau : une page par version, regroupées par série (`0.1`) dans le
+panneau Aide.
+
 ## Images Docker des serveurs
 
 Le serveur d'articles et le serveur de projets sont aussi publiés comme images Docker à

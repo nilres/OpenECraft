@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **What's new and version history:** at the first start after an update the editor
+  shows the new features of the versions since the one used last in the window *What's
+  new in OpenECraft*. *File › Help › Version history* (also on the Help tab) shows the
+  changes of every version again in the Help pane: one page per version, grouped by
+  series, with an overview of all of them ([user interface](docs/user-interface.md)).
 - **MCP tools say what they do:** every tool of the MCP server has a title and the
   annotations `readOnlyHint`, `destructiveHint` and `openWorldHint`, so that a client
   knows which tools only read (`list_…`, `get_…`, `check`, `parts_search` and others),
@@ -38,6 +43,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   imports go to the parts server in several requests, files larger than it takes are
   left out and named. The distribution panels of the Striebel & John catalog have
   their number of device rows and the row spacing of ABB's data sheets.
+- **Wires stay on mirrored and turned devices:** mirroring a symbol in the schematic
+  (key M, *Mirror*) takes the wires at its connection points along and keeps them
+  square, as rotating did; where the mirrored symbol still has a connection point, the
+  wire stays. *Rotate left*, *Rotate right* and *Mirror* in the properties of a symbol
+  and `update_symbol rotation=… mirror=…` move the wires too, instead of leaving them
+  where the connection points were.
 
 ## [0.1.3] - 2026-11-23
 

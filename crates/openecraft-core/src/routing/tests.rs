@@ -1,5 +1,70 @@
 use super::*;
 
+/// A three pole main contact with a wire up from each upper and down from each lower
+/// connection point.
+fn contact_with_wires() -> (Project, u64) {
+    let mut prj = Project::default();
+    let id = sym(&mut prj, "main3", p(100.0, 100.0));
+    let symbols = prj.symbol_table();
+    for q in symbol_pins(&prj, &symbols, id) {
+        let wid = prj.new_id();
+        let far = p(q.x, if q.y < 100.0 { q.y - 16.0 } else { q.y + 16.0 });
+        prj.pages[0].wires.push(Wire { id: wid, a: far, b: q, ..Default::default() });
+    }
+    (prj, id)
+}
+
+fn symbol_pins(prj: &Project, symbols: &Symbols, id: u64) -> Vec<P> {
+    let s = prj.pages[0].symbols.iter().find(|s| s.id == id).unwrap();
+    let def = symbols.get(&s.sym).unwrap();
+    (0..def.pins.len()).map(|i| def.pin_world(i, s.pos, s.rot, s.mirror)).collect()
+}
+
+fn all_attached(prj: &Project, id: u64) -> bool {
+    symbol_pins(prj, &prj.symbol_table(), id).iter().all(|q| prj.pages[0].wires.iter().any(|w| w.a.same(*q) || w.b.same(*q)))
+}
+
+#[test]
+fn mirroring_a_symbol_takes_its_wires_along() {
+    let (mut prj, id) = contact_with_wires();
+    let before = symbol_pins(&prj, &prj.symbol_table(), id);
+    mirror(&mut prj, 0, &BTreeSet::from([id]));
+    assert_ne!(symbol_pins(&prj, &prj.symbol_table(), id), before, "the connection points moved");
+    assert!(all_attached(&prj, id), "{:?}", prj.pages[0].wires);
+    assert!(square(&prj), "{:?}", prj.pages[0].wires);
+    mirror(&mut prj, 0, &BTreeSet::from([id]));
+    assert!(all_attached(&prj, id), "{:?}", prj.pages[0].wires);
+}
+
+#[test]
+fn wires_stay_where_a_mirrored_symbol_keeps_its_connection_points() {
+    use crate::symlib::{UserPin, UserSymbol};
+    let mut prj = Project::default();
+    let pin = |x: f32, y: f32| UserPin { pos: p(x, y), ..Default::default() };
+    prj.symbols.push(UserSymbol { key: "user:three".into(), pins: vec![pin(-8.0, 0.0), pin(8.0, 0.0), pin(-8.0, 8.0)], ..Default::default() });
+    let id = sym(&mut prj, "user:three", p(100.0, 100.0));
+    prj.pages[0].wires = vec![
+        Wire { id: 10, a: p(92.0, 100.0), b: p(92.0, 80.0), ..Default::default() },
+        Wire { id: 11, a: p(108.0, 100.0), b: p(108.0, 80.0), ..Default::default() },
+        Wire { id: 12, a: p(92.0, 108.0), b: p(92.0, 128.0), ..Default::default() },
+    ];
+    mirror(&mut prj, 0, &BTreeSet::from([id]));
+    assert_eq!(the_wire(&prj, 10).a, p(92.0, 100.0), "the point is still there");
+    assert_eq!(the_wire(&prj, 11).a, p(108.0, 100.0));
+    assert!(all_attached(&prj, id) && square(&prj), "{:?}", prj.pages[0].wires);
+}
+
+#[test]
+fn turning_a_symbol_to_an_orientation_takes_its_wires_along() {
+    let (mut prj, id) = contact_with_wires();
+    for (rot, mirror) in [(1, false), (3, true), (2, true), (0, false)] {
+        orient(&mut prj, 0, id, rot, mirror);
+        let s = prj.pages[0].symbols.iter().find(|s| s.id == id).unwrap();
+        assert_eq!((s.rot, s.mirror), (rot, mirror));
+        assert!(all_attached(&prj, id), "{rot} {mirror}: {:?}", prj.pages[0].wires);
+    }
+}
+
 #[test]
 fn joining_reversed_wires_preserves_all_live_label_positions() {
     use crate::model::wiring::WireLabel;

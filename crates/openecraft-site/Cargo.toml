@@ -9,5 +9,6 @@ license = "MIT OR Apache-2.0"
 openecraft-api = { path = "../openecraft-api" }
 openecraft-core = { path = "../openecraft-core" }
 openecraft-i18n = { path = "../openecraft-i18n" }
+openecraft-parts = { path = "../openecraft-parts" }
 pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
 serde_json = "1"

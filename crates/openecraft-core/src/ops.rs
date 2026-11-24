@@ -421,8 +421,17 @@ pub fn set_symbol_scale(prj: &mut Project, page: usize, id: u64, factor: f32) ->
         .filter(|(a, b)| !a.same(*b))
         .collect();
     let pg = &mut prj.pages[page];
+    follow_points(pg, &moves);
+    if let Some(s) = pg.symbols.iter_mut().find(|s| s.id == id) {
+        s.sym = key;
+    }
+    Ok(())
+}
+
+/// Moves the wire ends and junctions at the first point of each of `moves` to its second.
+fn follow_points(page: &mut Page, moves: &[(P, P)]) {
     let to = |q: P| moves.iter().find(|(a, _)| a.same(q)).map(|(_, b)| *b);
-    for w in &mut pg.wires {
+    for w in &mut page.wires {
         if let Some(b) = to(w.a) {
             w.a = b;
         }
@@ -430,15 +439,11 @@ pub fn set_symbol_scale(prj: &mut Project, page: usize, id: u64, factor: f32) ->
             w.b = b;
         }
     }
-    for j in &mut pg.junctions {
+    for j in &mut page.junctions {
         if let Some(b) = to(j.pos) {
             j.pos = b;
         }
     }
-    if let Some(s) = pg.symbols.iter_mut().find(|s| s.id == id) {
-        s.sym = key;
-    }
-    Ok(())
 }
 
 /// Wire ends (wire id, is end `a`) of unselected wires touching the selection, so they
@@ -558,10 +563,19 @@ pub fn rotate(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>) {
     }
 }
 
-pub fn mirror(page: &mut Page, sel: &BTreeSet<u64>) {
+/// Mirrors the selected symbols and junctions where they are. The wires at a connection
+/// point the symbol no longer has follow it; where it still has one, they stay.
+pub fn mirror(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>) {
+    let mut moves = Vec::new();
     for s in page.symbols.iter_mut().filter(|s| sel.contains(&s.id)) {
+        if let Some(def) = symbols.get(&s.sym) {
+            let at = |mirror: bool| (0..def.pins.len()).map(|i| def.pin_world(i, s.pos, s.rot, mirror)).collect::<Vec<P>>();
+            let (old, new) = (at(s.mirror), at(!s.mirror));
+            moves.extend(old.into_iter().zip(new.iter().copied()).filter(|(a, _)| !new.iter().any(|q| q.same(*a))));
+        }
         s.mirror = !s.mirror;
     }
+    follow_points(page, &moves);
     for j in page.junctions.iter_mut().filter(|j| sel.contains(&j.id)) {
         j.mirror();
     }

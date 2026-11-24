@@ -145,6 +145,11 @@ schaltet die Prüfung beim Start ab, die Umgebungsvariable `OPENECRAFT_NO_UPDATE
 (beliebiger Wert) tut das für alle Benutzer eines Rechners. Die Web-Version hat kein
 eigenes Update.
 
+Beim ersten Start einer neuen Version zeigt das Fenster *Neu in OpenECraft* die
+Änderungen der Versionen seit der zuletzt verwendeten, wie `CHANGELOG.md` sie aufführt
+(auf Englisch). *Datei › Hilfe › Versionsverlauf* zeigt sie wieder: eine Seite je
+Version, nach Reihen (`0.1`) gegliedert im Fenster Hilfe.
+
 ## Docker-Images der Server
 
 Der Artikelserver und der Projektserver werden bei jedem Release und bei jedem Push auf
