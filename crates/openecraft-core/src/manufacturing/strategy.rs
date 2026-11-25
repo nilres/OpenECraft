@@ -6,8 +6,8 @@
 use super::machines::{Machine, MachineKind, Tool, ToolKind};
 use crate::geom::{p, P};
 use crate::model::Project;
-use crate::panel::{Face, Fastening, ItemKind, PLATE_THICKNESS};
-use crate::production::{holes_on, openings};
+use crate::panel::{Face, Fastening, ItemKind, Sheet, PLATE_THICKNESS};
+use crate::production::{sheet_holes, sheet_openings};
 use openecraft_i18n::{tr, tr_fmt};
 pub use crate::model::manufacturing::{Method, OpKind, Operation, Strategy};
 
@@ -55,11 +55,15 @@ impl OpKind {
     }
 }
 
-/// Machining of one face on one machine.
+/// Machining of one sheet (a face or a leaf of the door) on one machine.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Plan {
     pub enclosure: String,
     pub face: Face,
+    /// The leaf of a door of several leaves.
+    pub leaf: Option<usize>,
+    /// Key of the sheet in file names and programs ([`Sheet::key`]).
+    pub sheet: String,
     pub machine: String,
     pub width: f32,
     pub height: f32,
@@ -200,10 +204,14 @@ impl Builder<'_> {
     }
 }
 
-/// Plans the machining of a face of an enclosure on a machine.
-pub fn plan(prj: &Project, enc: usize, face: Face, m: &Machine, s: &Strategy) -> Plan {
+/// Plans the machining of a sheet of an enclosure (a face or a leaf of the door) on a
+/// machine.
+pub fn plan(prj: &Project, enc: usize, sheet: impl Into<Sheet>, m: &Machine, s: &Strategy) -> Plan {
+    let sheet = sheet.into();
+    let face = sheet.face;
     let e = &prj.layout.enclosures[enc];
-    let (fw, fh) = e.face_size(face);
+    let (fw, fh) = sheet.size(e);
+    let title = sheet.title(e);
     let t = thickness(e, face);
     let name = |id: u64| e.item(id).map(|i| if i.kind == ItemKind::Device { i.tag.clone() } else { i.kind.title().to_string() }).unwrap_or_default();
     let mut b = Builder { m, s, ops: Vec::new(), problems: Vec::new() };
@@ -212,12 +220,12 @@ pub fn plan(prj: &Project, enc: usize, face: Face, m: &Machine, s: &Strategy) ->
     }
     let fits = |a: f32, b: f32| (fw <= a + 0.01 && fh <= b + 0.01) || (fw <= b + 0.01 && fh <= a + 0.01);
     if !fits(m.area.0, m.area.1) {
-        b.problems.push(tr_fmt!("{}: the {} ({} x {} mm) is larger than the working area of {}", e.name, face.title(), super::num(fw), super::num(fh), m.name));
+        b.problems.push(tr_fmt!("{}: the {} ({} x {} mm) is larger than the working area of {}", e.name, title, super::num(fw), super::num(fh), m.name));
     }
     if t > m.max_thickness + 1e-4 {
-        b.problems.push(tr_fmt!("{}: the {} is {} mm thick, {} takes at most {} mm", e.name, face.title(), super::num(t), m.name, super::num(m.max_thickness)));
+        b.problems.push(tr_fmt!("{}: the {} is {} mm thick, {} takes at most {} mm", e.name, title, super::num(t), m.name, super::num(m.max_thickness)));
     }
-    let holes = holes_on(e, &prj.parts, face);
+    let holes = sheet_holes(e, &prj.parts, sheet);
     let mut taps = Vec::new();
     for h in &holes {
         let n = name(h.item);
@@ -239,9 +247,9 @@ pub fn plan(prj: &Project, enc: usize, face: Face, m: &Machine, s: &Strategy) ->
         }
     }
     if untapped > 0 {
-        b.problems.push(tr_fmt!("{}: {} threads on the {} are cut by hand", e.name, untapped, face.title()));
+        b.problems.push(tr_fmt!("{}: {} threads on the {} are cut by hand", e.name, untapped, title));
     }
-    for o in openings(e, &prj.parts, face) {
+    for o in sheet_openings(e, &prj.parts, sheet) {
         let n = name(o.item);
         if o.round {
             b.round(o.item, o.center, o.w, &n, true);
@@ -253,7 +261,7 @@ pub fn plan(prj: &Project, enc: usize, face: Face, m: &Machine, s: &Strategy) ->
         }
     }
     let Builder { ops, problems, .. } = b;
-    let mut out = Plan { enclosure: e.name.clone(), face, machine: m.id.clone(), width: fw, height: fh, thickness: t, ops: order(ops, m, s.optimize), travel: 0.0, milled: 0.0, tool_changes: 0, time: 0.0, problems };
+    let mut out = Plan { enclosure: e.name.clone(), face, leaf: sheet.leaf, sheet: sheet.key(e), machine: m.id.clone(), width: fw, height: fh, thickness: t, ops: order(ops, m, s.optimize), travel: 0.0, milled: 0.0, tool_changes: 0, time: 0.0, problems };
     estimate(&mut out, m);
     out
 }

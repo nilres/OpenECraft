@@ -431,6 +431,8 @@ Does not match	Matchar inte
 Door (front view)	Dörr (frontvy)
 Door and walls	Dörr och väggar
 Door handle and document holder	Dörrhandtag och ritningsficka
+Door leaf {}	Dörrblad {}
+Door leaf {} (front view)	Dörrblad {} (frontvy)
 Double socket outlet with PE	Dubbelt vägguttag med skyddsjord
 Downstream	Efter
 Drag chain	Släpkedja
@@ -793,6 +795,8 @@ Latitude is within ±90° and longitude within ±180°	Latituden ligger inom ±9
 Lead time (days)	Ledtid (dagar)
 Leakage current	Läckström
 Leakage line	Läckledning
+Left door leaf	Vänster dörrblad
+Left door leaf (front view)	Vänster dörrblad (frontvy)
 Left side panel	Vänster sidovägg
 Legend plate text	Skylttext
 Length (m)	Längd (m)
@@ -1033,6 +1037,7 @@ Oil resistant	Oljebeständig
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	En schemasida med potentialerna +24V / 0V, tryckknappar, en väljare, lampor och en säkring; artiklar och stycklista.
 One schematic page, the potentials of IEC 60204-1	En schemasida, potentialerna enligt IEC 60204-1
 One-way flow control valve	Strypbackventil
+Only another enclosure can be bayed there	Där kan bara en annan kapsling byggas ihop
 Only revisions that are not released can be submitted	Endast revisioner som inte är frisläppta kan skickas
 Only symbols of the symbol library can be scaled	Endast symboler i symbolbiblioteket kan skalas
 Only {}	Endast {}
@@ -1387,6 +1392,8 @@ Revision table: author of the last revision (2: the one before …)	Revisionstab
 Revision table: date of the last revision (2: the one before …)	Revisionstabell: datum för den senaste revisionen (2: den före …)
 Revision table: description of the last revision (2: the one before …)	Revisionstabell: beskrivning av den senaste revisionen (2: den före …)
 Revision table: index of the last revision (2: the one before …)	Revisionstabell: index för den senaste revisionen (2: den före …)
+Right door leaf	Höger dörrblad
+Right door leaf (front view)	Höger dörrblad (frontvy)
 Right side panel	Höger sidovägg
 Ring earth electrode	Ringjordtag
 Ring terminal	Ringkabelsko
@@ -1664,6 +1671,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	Formeln slutar för tidigt
 The function definition needs a key and a name	Funktionsdefinitionen behöver en nyckel och ett namn
 The index of the project names no file layout: it was not written by OpenECraft	Projektets index anger ingen fillayout: det har inte skrivits av OpenECraft
+The item is no frame in an opening of a side wall	Elementet är ingen ram i en öppning i en sidovägg
 The last page cannot be deleted	Den sista sidan kan inte tas bort
 The macro box has no items left	Makrorutan har inga objekt kvar
 The next free id is already in use	Nästa lediga ID används redan
@@ -2204,6 +2212,7 @@ yellow	gul
 {}: {} overhangs the end of its mounting rail	{}: {} sticker ut över änden av sin monteringsskena
 {}: {} pins used, the plug parts have {}	{}: {} stift använda, kontaktdonsartiklarna har {}
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} når cirka {} °C på sin plats, tillåtet {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} sträcker sig över fogen mellan dörrbladen
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} når {} av de {} skenorna i sitt skensystem
 {}: {} solenoid coils linked, the valve has {}	{}: {} magnetspolar länkade, ventilen har {}
 {}: {} stands in an inner wall	{}: {} står i en innervägg

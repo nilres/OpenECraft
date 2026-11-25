@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Kondygnacja nad najwyższą
 A local file opens locally, a server project is opened on the project server again	Plik lokalny otwiera się lokalnie, projekt z serwera jest ponownie otwierany na serwerze projektów
 A local file or a project on the project server	Plik lokalny lub projekt na serwerze projektów
+A new enclosure of the same part, bayed at this frame	Nowa obudowa tej samej części, dołączona przy tej ramce
 A new enclosure standing in this room	Nowa obudowa w tym pomieszczeniu
 A new project	Nowy projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Nowa wersja jest pobierana w tle i instalowana po zamknięciu OpenECraft.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	W początku układu
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	W punkcie zasilania: Ik3 max {} kA, Ik1 min {} kA
 At the top level	Na najwyższym poziomie
+Attach an enclosure here	Dołącz tu obudowę
 Author	Autor
 Auto-connect	Autołączenie
 Auto-connect selection	Autołączenie zaznaczenia
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Wycięcia w drzwiach (CSV)
 Door hinge	Zawiasy drzwi
 Door: {} devices, {} cutouts	Drzwi: urządzenia: {}, wycięcia: {}
 Dot	Punkt
+Double door	Drzwi dwuskrzydłowe
 Double-click	Dwukrotne kliknięcie
 Down conductors	Przewody odprowadzające
 Download into database	Pobierz do bazy danych
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Zakończenie przewodu, polilinii, wielo
 Finish or cancel the drawing, then back to selecting	Zakończenie lub anulowanie rysowania, potem powrót do zaznaczania
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Zakończone zmiany projektu otwartego z serwera projektów są na nim zapisywane samoczynnie; trwające wprowadzanie jest zapisywane po jego zakończeniu. Blokady pozostają. Zapisz (Ctrl+S) nadal zapisuje od razu.
 First row	Pierwszy wiersz
+Fit all plastic covers	Załóż wszystkie osłony z tworzywa
 Fit page	Dopasuj stronę
 Fits {}	Pasuje do {}
 Fitted	Założona
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Pozostaw puste powtarzające się wartości pierwszej kolumny
 Left button	Lewy przycisk
 Left edges	Lewe krawędzie
+Left leaf	Lewe skrzydło
 Legend plates (door devices)	Tabliczki opisowe (urządzenia na drzwiach)
 Length from the node to the device	Długość od węzła do urządzenia
 Length inside an enclosure	Długość wewnątrz obudowy
@@ -1242,6 +1247,7 @@ New document page…	Nowa strona dokumentu…
 New empty	Nowy, pusty
 New enclosure	Nowa obudowa
 New enclosure in this room…	Nowa obudowa w tym pomieszczeniu…
+New enclosure like this one	Nowa obudowa taka jak ta
 New enclosure…	Nowa obudowa…
 New graphics page	Nowa strona grafiki
 New harness	Nowa wiązka
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Na ekranie dotykowym; gładziki zostawiają gesty trzema palcami systemowi.
 On startup	Przy uruchomieniu
 On the roof, joined to the air-termination conductors; move it to its place	Na dachu, połączona ze zwodami; przesuń ją na jej miejsce
+One leaf	Jedno skrzydło
 One row per label	Jeden wiersz na etykietę
 Only devices on the current page	Tylko urządzenia na bieżącej stronie
 Only frames no page uses can be deleted	Można usuwać tylko ramki, których nie używa żadna strona
@@ -2118,6 +2125,7 @@ Tablet mode	Tryb tabletu
 Tag	Oznaczenie
 Tag field	Pole oznaczenia
 Tag placed by hand	Oznaczenie umieszczone ręcznie
+Take off all plastic covers	Zdejmij wszystkie osłony z tworzywa
 Take out a subproject	Wydziel podprojekt
 Take out of the building	Wyjmij z budynku
 Take out {} pages…	Wydziel strony ({})…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Wygenerowane przez niego strony pozostają
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Baza danych artykułów jest wspólna dla wszystkich projektów. Artykuły są kopiowane do projektu, gdy zostaną przypisane do urządzenia.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Osłona pola z tworzywa; bez niej widać ramę, szyny i okablowanie za nią
+The plastic covers of all panels of the field grid of this enclosure	Osłony z tworzywa wszystkich pól siatki pól tej obudowy
+The plastic covers of all panels of the field grids of every enclosure	Osłony z tworzywa wszystkich pól siatek pól każdej obudowy
 The point's coordinates in the coordinate reference system	Współrzędne punktu w układzie odniesienia współrzędnych
 The post; its accessories are the table beams, rails and clamps	Słup; jego akcesoria to belki stołu, szyny i zaciski
 The project changed since the search.	Projekt zmienił się od czasu wyszukiwania.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Obrócenie widoku 3D w stronę punktu
 Twin ferrules where two wires share a connection point	Tulejki podwójne tam, gdzie dwa przewody dzielą punkt połączenia
 Two fingers	Dwa palce
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Dwa skrzydła, każde na zawiasach przy zewnętrznej krawędzi; urządzenia na drzwiach poruszają się ze skrzydłem pod ich środkiem
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tutaj muszą spotkać się dwa przewody pod kątem prostym. Przy włączonym automatycznym łączeniu punkty przyłączenia naprzeciw jego ramion są z nim łączone.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Wpisz punkt i naciśnij Enter: x y w mm lub @dx dy względem ostatniego punktu; działa jak kliknięcie bieżącym narzędziem
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Całe wyrazy
 Width / going	Szerokość / stopień
 Width / height (mm)	Szerokość / wysokość (mm)
 Width factor	Współczynnik szerokości
+Width of the left leaf; the right one takes the rest of the front	Szerokość lewego skrzydła; prawe zajmuje resztę frontu
 Width of the letters to their usual width (0.8: narrow lettering)	Szerokość liter względem ich zwykłej szerokości (0,8: wąskie pismo)
 Width × depth	Szerokość × głębokość
 Width × height	Szerokość × wysokość
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	Zmienione adresy: {}
 {} air-termination rods	{} iglic odgromowych
 {} already exists on the project server.	{} już istnieje na serwerze projektów.
+{} attached to {}	Dołączono {} do {}
 {} bundles, {} branch points	Wiązki: {}, punkty rozgałęzień: {}
 {} bus cables created	Utworzone kable magistrali: {}
 {} bus connections	Połączenia magistrali: {}
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} umieszczono jako {}
 {} placed in {}	{} umieszczono w {}
 {} placement problems (red) – see Check	Problemy z rozmieszczeniem (czerwone): {} – zobacz Kontrola
+{} plastic covers fitted	Założono osłony z tworzywa: {}
+{} plastic covers taken off	Zdjęto osłony z tworzywa: {}
 {} problems	Problemy: {}
 {} project parts updated	Zaktualizowano artykuły projektu: {}
 {} projects on the server	Projekty na serwerze: {}

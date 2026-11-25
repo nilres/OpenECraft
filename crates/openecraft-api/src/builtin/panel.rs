@@ -98,6 +98,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("mounting_origin",Kind::Object,tr_const!("Mounting-face origin as x, y and z; empty object restores the default")),
             optional("mounting_size",Kind::Object,tr_const!("Mounting plate size as width and height; empty object restores the centred plate")),
             optional("door_hinge", Kind::Str, tr_const!("Edge the door is hinged at, seen from the front: left or right")),
+            optional("door_leaves", Kind::Str, DOOR_LEAVES),
         ],
         run: add_enclosure,
     },
@@ -111,6 +112,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("mounting_origin",Kind::Object,tr_const!("Mounting-face origin as x, y and z; empty object restores the default")),
             optional("mounting_size",Kind::Object,tr_const!("Mounting plate size as width and height; empty object restores the centred plate")),
             optional("door_hinge", Kind::Str, tr_const!("Edge the door is hinged at, seen from the front: left or right")),
+            optional("door_leaves", Kind::Str, DOOR_LEAVES),
             optional("system", Kind::Str, tr_const!("compact, baying, terminal_box, plastic, house_connection or rack19; empty for none")),
             optional("part", Kind::Str, tr_const!("Enclosure part number")),
             optional("device_tag",Kind::Str,tr_const!("Device tag assigned to this enclosure body")),
@@ -144,6 +146,25 @@ pub static COMMANDS: &[Spec] = &[
             optional("after", Kind::Bool, tr_const!("After it instead of before")),
         ],
         run: move_enclosure,
+    },
+    Spec {
+        name: "attach_enclosure",
+        help: tr_const!("Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall"),
+        params: &[
+            param("enclosure", Kind::Str, tr_const!("Enclosure with the frame")),
+            param("id", Kind::Int, tr_const!("Item id of the frame")),
+            optional("other", Kind::Str, tr_const!("Enclosure to attach; without it a new one like the enclosure with the frame")),
+        ],
+        run: attach_enclosure,
+    },
+    Spec {
+        name: "set_covers",
+        help: tr_const!("Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off"),
+        params: &[
+            param("cover", Kind::Bool, tr_const!("Covers fitted; false takes them off")),
+            optional("enclosure", Kind::Str, tr_const!("Enclosure; without it every enclosure")),
+        ],
+        run: set_covers,
     },
     Spec {
         name: "add_cable_passage",
@@ -364,6 +385,7 @@ fn enclosure_json(prj: &Project, e: &Enclosure) -> Value {
         "mounting_origin":e.mounting_origin,
         "mounting_size":e.mounting_size,
         "door_hinge":e.door_hinge.key(),
+        "door_leaves":e.door_leaves.iter().map(|l| json!({"x": l.x, "width": l.w, "hinge": l.hinge.key()})).collect::<Vec<_>>(),
         "mounting_frame":panel::face_frame(e,Face::Plate),
         "lineup": lineup_json(prj, ei),
         "system": e.build.system,
@@ -405,6 +427,7 @@ fn add_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
         panel::apply_system(&mut e, system, size);
     }
     resize(&mut e, a);
+    if let Some(leaves) = door_leaves(a)? {panel::doors::set(&mut e, &leaves);}
     if a.value("mounting_origin").is_some() {e.mounting_origin=mounting_origin(a)?;}
     if a.value("mounting_size").is_some() {e.mounting_size=mounting_size(a)?;}
     if let Some(hinge) = door_hinge(a)? {e.door_hinge = hinge;}
@@ -428,11 +451,13 @@ fn check_size(a: &Args) -> Result<(), String> {
 }
 
 fn resize(e: &mut Enclosure, a: &Args) {
+    let old_width = e.width;
     for (name, field) in [("width", &mut e.width), ("height", &mut e.height), ("depth", &mut e.depth)] {
         if let Some(v) = a.num(name) {
             *field = v;
         }
     }
+    panel::doors::fit_width(e, old_width);
     panel::sync_part(e);
     panel::apply_anchors(e);
 }
@@ -443,6 +468,7 @@ fn set_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let origin=mounting_origin(a)?;
     let size=mounting_size(a)?;
     let hinge=door_hinge(a)?;
+    let leaves=door_leaves(a)?;
     let old_part=prj.layout.enclosures[ei].part.clone();let old_tag=prj.layout.enclosures[ei].device_tag.clone();
     if a.num("plinth").is_some_and(|v| !(v >= 0.0 && v.is_finite())) {
         return Err(tr("The plinth height must not be negative").to_string());
@@ -473,6 +499,7 @@ fn set_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
         }
     }
     resize(e, a);
+    if let Some(leaves) = leaves {panel::doors::set(e, &leaves);}
     if let Some(part)=a.str("part") {e.part=part.into();}
     if let Some(tag)=a.str("device_tag") {e.device_tag=tag.into();}
     if let Some(tag)=a.str("owner_device") {e.owner_device=tag.into();}
@@ -489,6 +516,20 @@ fn mounting_origin(a:&Args)->Result<Option<[f32;3]>,String> {
     match coordinates {
         [Some(x),Some(y),Some(z)] if [x,y,z].iter().all(|v|v.is_finite())=>Ok(Some([x,y,z])),
         _=>Err(tr("Mounting origin must contain finite x, y and z coordinates").into()),
+    }
+}
+
+/// Help of the parameter `door_leaves`.
+const DOOR_LEAVES: &str = tr_const!("Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf");
+
+/// The parameter `door_leaves`, checked before anything changes.
+fn door_leaves(a: &Args) -> Result<Option<String>, String> {
+    let Some(text) = a.str("door_leaves") else { return Ok(None) };
+    let t = text.trim();
+    if t.is_empty() || t == "1" || panel::doors::parse(t, 1000.0).is_some() {
+        Ok(Some(t.to_string()))
+    } else {
+        Err(tr_fmt!("Unknown door leaves: {}", text))
     }
 }
 
@@ -533,6 +574,28 @@ fn move_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let order: Vec<&str> = prj.layout.enclosures.iter().map(|e| e.name.as_str()).collect();
     let lineup: Vec<&str> = panel::lineup_of(&prj.layout, at).into_iter().map(|i| prj.layout.enclosures[i].name.as_str()).collect();
     Ok(json!({ "index": at, "order": order, "lineup": lineup }))
+}
+
+fn attach_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let ei = enclosure_index(prj, a.req("enclosure"))?;
+    let id = a.int("id").unwrap_or(0) as u64;
+    let other = match a.str("other").map(str::trim).filter(|n| !n.is_empty()) {
+        Some(name) => {
+            let other = enclosure_index(prj, name)?;
+            panel::fit::attach_at_frame(prj, ei, id, other)?;
+            other
+        }
+        None => panel::fit::attach_new_at_frame(prj, ei, id)?,
+    };
+    let lineup: Vec<&str> = panel::lineup_of(&prj.layout, ei).into_iter().map(|i| prj.layout.enclosures[i].name.as_str()).collect();
+    Ok(json!({ "attached": prj.layout.enclosures[other].name, "lineup": lineup }))
+}
+
+fn set_covers(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let ei = a.str("enclosure").map(str::trim).filter(|n| !n.is_empty()).map(|n| enclosure_index(prj, n)).transpose()?;
+    let changed = panel::fit::set_covers(prj, ei, a.flag("cover"));
+    let (fitted, off) = panel::fit::covers(prj, ei);
+    Ok(json!({ "changed": changed, "fitted": fitted, "off": off }))
 }
 
 fn add_cable_passage(prj: &mut Project, a: &Args) -> Result<Value, String> {

@@ -67,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	この�
 Bar id	バー ID
 Bar thickness, mm (default 5)	バーの厚さ (mm) (既定 5)
 Bar width, mm (default 20)	バーの幅 (mm) (既定 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	別の筐体の側壁にある連結フレーム（Striebel & John の CZ3 など）に筐体を連結します。右壁のフレームなら右側に、左壁のフレームなら左側に連結します
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	エンクロージャーを別のエンクロージャーの右側に連結します (列盤)。right_of を指定しない場合は列盤から外れます
 Bend radius in drag chains as a multiple of the cable diameter	ケーブルキャリア内の曲げ半径 (ケーブル径の倍数)
 Bend radius of a drag chain in mm	ケーブルキャリアの曲げ半径 (mm)
@@ -146,6 +147,7 @@ Corner points on the mounting plate in mm	取付板上のコーナー点 (mm)
 Correction of the time estimate	時間見積もりの補正
 Cost of free air against ducts and routing paths	ダクトと配線経路に対する空中のコスト
 Counting step (default 1)	カウンターの増分 (既定 1)
+Covers fitted; false takes them off	カバー取付済み。false で取り外します
 Creates a bus cable for the connection (without cable tag)	接続用のバスケーブルを作成します (ケーブルタグなし)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	ケーブルのないバス接続ごとに、バスタイプのケーブル (タイプ、心線、断面積) を作成します
 Creates or changes a PCT loop of the pre-planning	事前計画の計装ループを作成または変更します
@@ -264,12 +266,16 @@ Enclosure or room it goes before or after	前または後ろに移動する先�
 Enclosure part number	エンクロージャーの部品番号
 Enclosure system (default: the enclosure's)	エンクロージャーシステム (既定: そのエンクロージャーのシステム)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	コピー先のエンクロージャー (取付場所、例: +CAB2)。省略時は同じもの
+Enclosure to attach; without it a new one like the enclosure with the frame	連結する筐体。省略するとフレームのある筐体と同じ新しい筐体
+Enclosure with the frame	フレームのある筐体
 Enclosure {} exists already	エンクロージャー {} は既に存在します
+Enclosure; without it every enclosure	筐体。省略するとすべての筐体
 Enclosures, panel items, accessories and panel macros	エンクロージャー、盤アイテム、付属品、盤マクロ
 End brackets and end plates from the tech data of the terminal parts	端子部品の技術データに基づくエンドクランプとエンドカバー
 End holes from the bar end as a multiple of the width	バー端からの端部穴位置 (幅に対する倍率)
 End: device tag and connection point, e.g. -S1:14	終点: デバイスタグと接続ポイント (例: -S1:14)
 Face: plate, door, left, right, rear, roof or bottom	面: plate、door、left、right、rear、roof または bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	面: plate、door、left、right、rear、roof または bottom。両開き扉の扉には door_left と door_right
 Field plan: nodes, segments, outlines, routes, bonds and accessories	フィールド計画: ノード、区間、輪郭、ルート、ボンディング、付属品
 Figure	指標
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	すべての (フィルター処理された) 行の列内のテキストを検索して置換します。検索テキストがない場合、列は置換テキストで埋められます
@@ -283,6 +289,7 @@ First counter value (default 1)	カウンターの開始値 (既定 1)
 First page number (default 1)	最初のページ番号 (既定 1)
 First port as station:port, e.g. PLC1:X1 P2	1 つ目のポート (ステーション:ポート、例: PLC1:X1 P2)
 First row with the column names	最初の行に列名を含める
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	筐体またはすべての筐体のフィールドグリッドの全パネルの樹脂カバーを取り付けるか、すべて取り外します
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	陸屋根と野立て：モジュールが向く方向 (度)、上から見て反時計回り (0：+z 方向)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	デバイス名の書式: {letter}、{n} (カウンター)、{page}、{column}、{row}。既定は {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	スキーム format の書式: {n} (カウンター)、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
@@ -361,6 +368,7 @@ Invalid answer of the plugin: {}	プラグインの応答が無効です: {}
 Invalid segment name: {}	無効なセグメント名: {}
 Invalid title block elements: {}	無効な表題欄要素: {}
 Item id	アイテム ID
+Item id of the frame	フレームの要素 ID
 Item ids	アイテム ID
 Jumper number	ジャンパー番号
 Jumper number (terminals with the same number are bridged); 0 removes it	ジャンパー番号 (同じ番号の端子が橋絡されます)。0 で削除
@@ -381,6 +389,7 @@ Landscape (true) or portrait (false)	横 (true) または縦 (false)
 Language the project texts are written in, e.g. en	プロジェクトテキストの記述言語 (例: en)
 Larger round holes are milled, mm	これより大きい丸穴はフライス加工 (mm)
 Largest difference between hole and tool, mm	穴と工具の最大差 (mm)
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	両開き扉の扉板：左からの幅（例：275 + 525、幅の後に left または right でヒンジ）、または同じ幅の扉板の枚数。空または 1 で片開き
 Left edge from the left end of the wall (seen from inside) in mm	壁の左端からの左端位置（内側から見て）、mm
 Left edge in mm	左端（mm）
 Left edge on the face in mm	面上の左端の位置 (mm)
@@ -976,6 +985,7 @@ Unknown class: {}	不明なクラス: {}
 Unknown data type: {}	不明なデータ型: {}
 Unknown direction {}: left, right, up or down	不明な方向 {}：left、right、up または down
 Unknown door hinge: {}	不明なヒンジ側: {}
+Unknown door leaves: {}	不明な扉板: {}
 Unknown earth electrode: {}	不明な接地極: {}
 Unknown earthing system: {}	不明な系統接地方式: {}
 Unknown face {}	不明な面 {}

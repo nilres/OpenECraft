@@ -156,7 +156,7 @@ fn drilling_pattern(prj: &Project) -> Table {
         // Jumps go to the drilling pattern page of the enclosure, else to its layout.
         let page = prj.pages.iter().position(|pg| pg.kind == PageKind::Drilling(e.id)).or_else(|| prj.pages.iter().position(|pg| pg.kind == PageKind::Mounting(e.id)));
         for f in crate::production::drilling(e, &prj.parts) {
-            let face = if f.face == panel::Face::Door { tr("Door (front view)").to_string() } else { f.face.title().to_string() };
+            let face = panel::Sheet { face: f.face, leaf: f.leaf }.front_title(e);
             for (k, kind) in f.kinds.iter().enumerate() {
                 for x in f.features.iter().filter(|x| x.kind == k) {
                     let item = e.item(x.item).map(|i| if i.tag.is_empty() { i.kind.title().to_string() } else { i.tag.clone() }).unwrap_or_default();

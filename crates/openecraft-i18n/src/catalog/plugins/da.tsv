@@ -67,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Backupb
 Bar id	Skinne-id
 Bar thickness, mm (default 5)	Skinnetykkelse, mm (standard 5)
 Bar width, mm (default 20)	Skinnebredde, mm (standard 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Sammenbygger en kapsling ved forbindelsesrammen i en sidevæg på en anden (f.eks. CZ3 fra Striebel & John): til højre for den ved en ramme i højre væg, til venstre ved en i venstre væg
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Sammenbygger en kapsling side om side til højre for en anden (sammenbygning); uden right_of forlader den sin sammenbygning
 Bend radius in drag chains as a multiple of the cable diameter	Bøjningsradius i slæbekæder som et multiplum af kabeldiameteren
 Bend radius of a drag chain in mm	Bøjningsradius for en slæbekæde i mm
@@ -146,6 +147,7 @@ Corner points on the mounting plate in mm	Hjørnepunkter på monteringspladen i 
 Correction of the time estimate	Korrektion af tidsestimatet
 Cost of free air against ducts and routing paths	Omkostning for fri luft i forhold til kanaler og føringsveje
 Counting step (default 1)	Tællertrin (standard 1)
+Covers fitted; false takes them off	Afdækninger monteret; false tager dem af
 Creates a bus cable for the connection (without cable tag)	Opretter et buskabel til forbindelsen (uden kabelmærkning)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Opretter et kabel af bustypen (type, ledere, tværsnit) til hver busforbindelse uden kabel
 Creates or changes a PCT loop of the pre-planning	Opretter eller ændrer en PCT-sløjfe i forplanlægningen
@@ -264,12 +266,16 @@ Enclosure or room it goes before or after	Kapsling eller rum, den placeres før 
 Enclosure part number	Kapslingens artikelnummer
 Enclosure system (default: the enclosure's)	Kapslingssystem (standard: kapslingens)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kapsling, som kopierne kommer i (placering, f.eks. +CAB2); uden angivelse den samme
+Enclosure to attach; without it a new one like the enclosure with the frame	Kapsling, der skal sammenbygges; uden den en ny som kapslingen med rammen
+Enclosure with the frame	Kapsling med rammen
 Enclosure {} exists already	Kapslingen {} findes allerede
+Enclosure; without it every enclosure	Kapsling; uden den hver kapsling
 Enclosures, panel items, accessories and panel macros	Kapslinger, layoutelementer, tilbehør og tavlemakroer
 End brackets and end plates from the tech data of the terminal parts	Endestop og endeplader ud fra klemmeartiklernes tekniske data
 End holes from the bar end as a multiple of the width	Endehuller fra skinneenden som et multiplum af bredden
 End: device tag and connection point, e.g. -S1:14	Slut: enhedsmærkning og tilslutningspunkt, f.eks. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Flade: plate, door, left, right, rear, roof eller bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Flade: plate, door, left, right, rear, roof eller bottom; door_left og door_right for fløjene på en dobbeltdør
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Feltplan: knuder, afsnit, omrids, føringer, udligning og tilbehør
 Figure	Nøgletal
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Søger og erstatter tekst i en kolonne i alle (filtrerede) rækker; uden søgetekst udfyldes kolonnen med erstatningen
@@ -283,6 +289,7 @@ First counter value (default 1)	Første tællerværdi (standard 1)
 First page number (default 1)	Første sidenummer (standard 1)
 First port as station:port, e.g. PLC1:X1 P2	Første port som station:port, f.eks. PLC1:X1 P2
 First row with the column names	Første række med kolonnenavnene
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Monterer plastafdækningerne på alle felter i feltrasteret i en kapsling eller i hver kapsling, eller tager dem alle af
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Flade tage og jordmonteret: retning, modulerne vender mod, i grader, mod uret set ovenfra (0: mod +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format for enhedsnavnet: {letter}, {n} (tæller), {page}, {column}, {row}; standard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format for skemaet format: {n} (tæller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -361,6 +368,7 @@ Invalid answer of the plugin: {}	Ugyldigt svar fra plugin: {}
 Invalid segment name: {}	Ugyldigt segmentnavn: {}
 Invalid title block elements: {}	Ugyldige elementer i tegningshovedet: {}
 Item id	Element-id
+Item id of the frame	Element-id for rammen
 Item ids	Element-id'er
 Jumper number	Bronummer
 Jumper number (terminals with the same number are bridged); 0 removes it	Bronummer (klemmer med samme nummer brokobles); 0 fjerner det
@@ -381,6 +389,7 @@ Landscape (true) or portrait (false)	Liggende (true) eller stående (false)
 Language the project texts are written in, e.g. en	Sprog, som projektteksterne er skrevet på, f.eks. en
 Larger round holes are milled, mm	Større runde huller fræses, mm
 Largest difference between hole and tool, mm	Største forskel mellem hul og værktøj, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Fløje på en dobbeltdør: deres bredder fra venstre, f.eks. 275 + 525 (med left eller right efter en bredde for dens hængsel), eller deres antal for lige brede fløje; tom eller 1 for én fløj
 Left edge from the left end of the wall (seen from inside) in mm	Venstre kant fra væggens venstre ende (set indefra) i mm
 Left edge in mm	Venstre kant i mm
 Left edge on the face in mm	Venstre kant på fladen i mm
@@ -976,6 +985,7 @@ Unknown class: {}	Ukendt klasse: {}
 Unknown data type: {}	Ukendt datatype: {}
 Unknown direction {}: left, right, up or down	Ukendt retning {}: left, right, up eller down
 Unknown door hinge: {}	Ukendt hængselside: {}
+Unknown door leaves: {}	Ukendte dørfløje: {}
 Unknown earth electrode: {}	Ukendt jordelektrode: {}
 Unknown earthing system: {}	Ukendt jordingssystem: {}
 Unknown face {}	Ukendt flade {}

@@ -77,6 +77,15 @@ fn explicit_physical_frames_and_unnumbered_parts_round_trip_through_the_api() {
     let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_hinge":"right"})).unwrap();
     assert_eq!(e["door_hinge"],"right");
     assert!(run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_hinge":"top"})).is_err());
+    // A double door: its leaves follow a new width; one leaf again.
+    let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_leaves":"2"})).unwrap();
+    let width=e["size"][0].as_f64().unwrap();
+    assert_eq!((e["door_leaves"][0]["hinge"].as_str(),e["door_leaves"][1]["hinge"].as_str(),e["door_leaves"][1]["x"].as_f64()),(Some("left"),Some("right"),Some(width/2.0)));
+    let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","width":width*2.0})).unwrap();
+    assert_eq!(e["door_leaves"][1]["x"].as_f64(),Some(width));
+    assert!(run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_leaves":"wide"})).unwrap_err().contains("door leaves"));
+    let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_leaves":""})).unwrap();
+    assert_eq!(e["door_leaves"],json!([]));
 }
 
 #[test]
@@ -177,6 +186,15 @@ fn the_places_an_accessory_fits() {
     assert_eq!(kinds, [("opening", "left"), ("opening", "right"), ("opening", "left"), ("opening", "right")]);
     let frame = run(&mut s, "place_accessory", json!({ "enclosure": "+Z1", "part": "SJ.2CPX052461R9999", "face": "left", "x": 100, "y": 100 })).unwrap();
     assert_eq!((frame["x"].as_f64(), frame["y"].as_f64(), frame["h"].as_f64()), (Some(5.0), Some(71.0), Some(232.0)), "the upper one");
+    // A cabinet attached there: a new one like it, left of it.
+    let r = run(&mut s, "attach_enclosure", json!({ "enclosure": "+Z1", "id": frame["id"] })).unwrap();
+    assert_eq!((r["attached"].as_str(), r["lineup"].clone()), (Some("+Z2"), json!(["+Z2", "+Z1"])));
+    assert!(run(&mut s, "attach_enclosure", json!({ "enclosure": "+Z1", "id": id })).is_err(), "the panel is no frame");
+    // All covers at once.
+    let r = run(&mut s, "set_covers", json!({ "cover": true })).unwrap();
+    assert_eq!((r["changed"].as_u64(), r["fitted"].as_u64(), r["off"].as_u64()), (Some(1), Some(1), Some(0)));
+    let r = run(&mut s, "set_covers", json!({ "enclosure": "+Z1", "cover": false })).unwrap();
+    assert_eq!((r["changed"].as_u64(), r["off"].as_u64()), (Some(1), Some(1)));
     // Fits nothing in the demo cabinet.
     assert_eq!(run(&mut s, "fitting_places", json!({ "enclosure": "+CAB1", "part": "SJ.2CPX054002R9999" })).unwrap(), json!([]));
     assert!(run(&mut s, "fitting_places", json!({ "enclosure": "+CAB1", "part": "NO.SUCH" })).unwrap_err().contains("Unknown part"));

@@ -67,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	이 단
 Bar id	바 ID
 Bar thickness, mm (default 5)	바 두께(mm, 기본값 5)
 Bar width, mm (default 20)	바 폭(mm, 기본값 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	다른 외함의 측벽에 있는 연결 프레임(Striebel & John의 CZ3 등)에 외함을 연결합니다. 오른쪽 벽의 프레임이면 오른쪽에, 왼쪽 벽의 프레임이면 왼쪽에 연결합니다
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	외함을 다른 외함의 오른쪽에 나란히 결합합니다(열 배치). right_of가 없으면 열 배치에서 빠집니다
 Bend radius in drag chains as a multiple of the cable diameter	케이블 직경의 배수로 나타낸 케이블 체인 내 굽힘 반경
 Bend radius of a drag chain in mm	케이블 체인의 굽힘 반경(mm)
@@ -146,6 +147,7 @@ Corner points on the mounting plate in mm	장착 플레이트 위의 꺾임점(m
 Correction of the time estimate	시간 추정 보정
 Cost of free air against ducts and routing paths	덕트 및 배선 경로 대비 자유 공간의 비용
 Counting step (default 1)	카운트 간격(기본값 1)
+Covers fitted; false takes them off	커버 장착됨. false이면 분리합니다
 Creates a bus cable for the connection (without cable tag)	연결에 대한 버스 케이블을 만듭니다(케이블 태그 없음)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	케이블이 없는 모든 버스 연결에 버스 유형의 케이블(유형, 심선, 단면적)을 만듭니다
 Creates or changes a PCT loop of the pre-planning	사전 계획의 PCT 루프를 만들거나 변경합니다
@@ -264,12 +266,16 @@ Enclosure or room it goes before or after	앞이나 뒤로 이동할 기준 외�
 Enclosure part number	외함 부품 번호
 Enclosure system (default: the enclosure's)	외함 시스템(기본값: 해당 외함의 시스템)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	복사본이 들어갈 외함(위치, 예: +CAB2). 생략하면 같은 외함
+Enclosure to attach; without it a new one like the enclosure with the frame	연결할 외함. 생략하면 프레임이 있는 외함과 같은 새 외함
+Enclosure with the frame	프레임이 있는 외함
 Enclosure {} exists already	외함 {}이(가) 이미 있습니다
+Enclosure; without it every enclosure	외함. 생략하면 모든 외함
 Enclosures, panel items, accessories and panel macros	외함, 패널 항목, 부속품 및 패널 매크로
 End brackets and end plates from the tech data of the terminal parts	단자 부품의 기술 데이터에 따른 엔드 브래킷 및 엔드 플레이트
 End holes from the bar end as a multiple of the width	바 끝에서 끝 구멍까지의 거리(폭의 배수)
 End: device tag and connection point, e.g. -S1:14	끝: 장치 태그 및 연결 지점(예: -S1:14)
 Face: plate, door, left, right, rear, roof or bottom	면: plate, door, left, right, rear, roof 또는 bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	면: plate, door, left, right, rear, roof 또는 bottom; 양문형 도어의 날개는 door_left 및 door_right
 Field plan: nodes, segments, outlines, routes, bonds and accessories	필드 계획: 노드, 구간, 외곽선, 경로, 본딩 및 부속품
 Figure	지표
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	모든 (필터링된) 행의 열에서 텍스트를 찾아 바꿉니다. 찾을 텍스트가 없으면 열을 바꿀 텍스트로 채웁니다
@@ -283,6 +289,7 @@ First counter value (default 1)	첫 카운터 값(기본값 1)
 First page number (default 1)	첫 페이지 번호(기본값 1)
 First port as station:port, e.g. PLC1:X1 P2	station:port 형식의 첫 번째 포트(예: PLC1:X1 P2)
 First row with the column names	열 이름이 있는 첫 행
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	외함 또는 모든 외함의 필드 그리드에 있는 모든 패널의 플라스틱 커버를 장착하거나 모두 분리합니다
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	평지붕과 지상형: 모듈이 향하는 방향 (도), 위에서 보아 반시계 방향 (0: +z 방향)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	장치 이름 형식: {letter}, {n}(카운터), {page}, {column}, {row}. 기본값 {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 체계의 형식: {n}(카운터), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -361,6 +368,7 @@ Invalid answer of the plugin: {}	플러그인의 응답이 잘못되었습니다
 Invalid segment name: {}	잘못된 세그먼트 이름: {}
 Invalid title block elements: {}	잘못된 표제란 요소: {}
 Item id	항목 ID
+Item id of the frame	프레임의 항목 ID
 Item ids	항목 ID
 Jumper number	점퍼 번호
 Jumper number (terminals with the same number are bridged); 0 removes it	점퍼 번호(번호가 같은 단자는 서로 연결됨). 0이면 제거
@@ -381,6 +389,7 @@ Landscape (true) or portrait (false)	가로(true) 또는 세로(false)
 Language the project texts are written in, e.g. en	프로젝트 텍스트가 작성된 언어(예: en)
 Larger round holes are milled, mm	이보다 큰 원형 구멍은 밀링 가공(mm)
 Largest difference between hole and tool, mm	구멍과 공구 간 최대 차이(mm)
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	양문형 도어의 날개: 왼쪽부터의 폭(예: 275 + 525, 폭 뒤에 left 또는 right로 경첩 지정) 또는 같은 폭 날개의 개수. 비우거나 1이면 한 날개
 Left edge from the left end of the wall (seen from inside) in mm	벽 왼쪽 끝에서 왼쪽 가장자리까지(안쪽에서 볼 때), mm
 Left edge in mm	왼쪽 가장자리(mm)
 Left edge on the face in mm	면에서의 왼쪽 가장자리(mm)
@@ -976,6 +985,7 @@ Unknown class: {}	알 수 없는 클래스: {}
 Unknown data type: {}	알 수 없는 데이터 유형: {}
 Unknown direction {}: left, right, up or down	알 수 없는 방향 {}: left, right, up 또는 down
 Unknown door hinge: {}	알 수 없는 힌지 쪽: {}
+Unknown door leaves: {}	알 수 없는 도어 날개: {}
 Unknown earth electrode: {}	알 수 없는 접지극: {}
 Unknown earthing system: {}	알 수 없는 접지 계통: {}
 Unknown face {}	알 수 없는 면 {}

@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Поверх над найвищим
 A local file opens locally, a server project is opened on the project server again	Локальний файл відкривається локально, проєкт сервера знову відкривається на сервері проєктів
 A local file or a project on the project server	Локальний файл або проєкт на сервері проєктів
+A new enclosure of the same part, bayed at this frame	Нова шафа того самого виробу, прибудована біля цієї рамки
 A new enclosure standing in this room	Новий корпус у цьому приміщенні
 A new project	Новий проєкт
 A new release is downloaded in the background and installed when you close OpenECraft.	Нова версія завантажується у фоновому режимі й встановлюється під час закриття OpenECraft.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	У початку координат
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	У точці живлення: Ik3 max {} kA, Ik1 min {} kA
 At the top level	На верхньому рівні
+Attach an enclosure here	Прибудувати тут шафу
 Author	Автор
 Auto-connect	Автопідключення
 Auto-connect selection	Автопідключення виділеного
@@ -622,6 +624,7 @@ Door cutouts (CSV)	Вирізи дверей (CSV)
 Door hinge	Петлі дверей
 Door: {} devices, {} cutouts	Двері: пристроїв – {}, вирізів – {}
 Dot	Точка
+Double door	Двостулкові
 Double-click	Подвійне клацання
 Down conductors	Струмовідводи
 Download into database	Завантажити до бази даних
@@ -793,6 +796,7 @@ Finish a wire, polyline, polygon or wall	Завершити провід, пол
 Finish or cancel the drawing, then back to selecting	Завершити або скасувати малювання й повернутися до вибору
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Завершені зміни проєкту, відкритого із сервера проєктів, зберігаються на ньому самі; незавершене введення зберігається після його завершення. Блокування залишаються. Зберегти (Ctrl+S) і далі зберігає одразу.
 First row	Перший рядок
+Fit all plastic covers	Встановити всі пластикові кришки
 Fit page	Умістити сторінку
 Fits {}	Підходить до {}
 Fitted	Встановлена
@@ -1064,6 +1068,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Залишати повторювані значення першого стовпця порожніми
 Left button	Ліва кнопка
 Left edges	Ліві краї
+Left leaf	Ліва стулка
 Legend plates (door devices)	Таблички з написами (пристрої на дверях)
 Length from the node to the device	Довжина від вузла до пристрою
 Length inside an enclosure	Довжина всередині шафи
@@ -1241,6 +1246,7 @@ New document page…	Нова сторінка документа…
 New empty	Новий порожній
 New enclosure	Новий корпус
 New enclosure in this room…	Новий корпус у цьому приміщенні…
+New enclosure like this one	Нова шафа, як ця
 New enclosure…	Новий корпус…
 New graphics page	Нова сторінка графіки
 New harness	Новий джгут
@@ -1380,6 +1386,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	На сенсорному екрані; тачпади залишають жести трьома пальцями системі.
 On startup	Під час запуску
 On the roof, joined to the air-termination conductors; move it to its place	На даху, з'єднаний з блискавкоприймальними провідниками; перемістіть його на місце
+One leaf	Одна стулка
 One row per label	Один рядок на кожну мітку
 Only devices on the current page	Лише пристрої на поточній сторінці
 Only frames no page uses can be deleted	Видаляти можна лише рамки, які не використовує жодна сторінка
@@ -2117,6 +2124,7 @@ Tablet mode	Режим планшета
 Tag	Позначення
 Tag field	Поле позначення
 Tag placed by hand	Позначення розміщено вручну
+Take off all plastic covers	Зняти всі пластикові кришки
 Take out a subproject	Винести підпроєкт
 Take out of the building	Вивести з будівлі
 Take out {} pages…	Винести сторінки ({})…
@@ -2193,6 +2201,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Згенеровані ним сторінки залишаються
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	База даних виробів спільна для всіх проєктів. Вироби копіюються в проєкт, коли їх призначають пристрою.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Пластикова кришка панелі; без неї видно раму, рейки та проводку за нею
+The plastic covers of all panels of the field grid of this enclosure	Пластикові кришки всіх полів сітки полів цієї шафи
+The plastic covers of all panels of the field grids of every enclosure	Пластикові кришки всіх полів сіток полів кожної шафи
 The point's coordinates in the coordinate reference system	Координати точки в системі координат
 The post; its accessories are the table beams, rails and clamps	Стійка; її аксесуари — балки стола, рейки й затискачі
 The project changed since the search.	Проєкт змінився після пошуку.
@@ -2260,6 +2270,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Повернути 3D-вигляд до точки
 Twin ferrules where two wires share a connection point	Подвійні наконечники там, де два проводи підключені до однієї точки
 Two fingers	Два пальці
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Дві стулки, кожна на завісах біля своєї зовнішньої кромки; прилади на дверях рухаються зі стулкою під їхньою серединою
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Тут мають сходитися два проводи під прямим кутом. За ввімкненого автоз'єднання точки підключення навпроти його плечей з'єднуються з ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введіть точку й натисніть Enter: x y у мм або @dx dy відносно останньої точки; діє як клацання поточним інструментом
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пік
@@ -2353,6 +2364,7 @@ Whole words	Цілі слова
 Width / going	Ширина / проступ
 Width / height (mm)	Ширина / висота (мм)
 Width factor	Коефіцієнт ширини
+Width of the left leaf; the right one takes the rest of the front	Ширина лівої стулки; права займає решту фасаду
 Width of the letters to their usual width (0.8: narrow lettering)	Ширина літер відносно їхньої звичайної ширини (0,8: вузький шрифт)
 Width × depth	Ширина × глибина
 Width × height	Ширина × висота
@@ -2543,6 +2555,7 @@ x y	x y
 {} addresses changed	Змінено адрес: {}
 {} air-termination rods	Блискавкоприймальних стрижнів: {}
 {} already exists on the project server.	{} уже існує на сервері проєктів.
+{} attached to {}	{} прибудовано до {}
 {} bundles, {} branch points	Пучків: {}, точок відгалуження: {}
 {} bus cables created	Створено шинних кабелів: {}
 {} bus connections	Шинних з’єднань: {}
@@ -2659,6 +2672,8 @@ x y	x y
 {} placed as {}	{} розміщено як {}
 {} placed in {}	{} розміщено в {}
 {} placement problems (red) – see Check	Проблем розміщення (червоні): {} – див. «Перевірка»
+{} plastic covers fitted	Встановлено пластикових кришок: {}
+{} plastic covers taken off	Знято пластикових кришок: {}
 {} problems	Проблем: {}
 {} project parts updated	Оновлено виробів проєкту: {}
 {} projects on the server	Проєктів на сервері: {}

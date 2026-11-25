@@ -249,3 +249,80 @@ fn an_accessory_of_a_device_goes_onto_the_placed_device() {
     assert_eq!(put(&mut prj, &db, 0, "HAG.CZ001", &found[0], p(0.0, 0.0)), Ok(0));
     assert!(prj.devices["-F1"].parts.iter().any(|r| r.number == "HAG.CZ001"));
 }
+
+const CZC4: &str = "SJ.2CPX052466R9999";
+const CZC14: &str = "SJ.2CPX052467R9999";
+
+#[test]
+fn a_joining_frame_is_a_collar_through_its_opening_with_a_flange() {
+    let (mut prj, ei) = sj_project();
+    let found = places(&prj, ei, part(&prj, CZ3));
+    let id = put(&mut prj, &PartsDb::default(), ei, CZ3, &found[0], p(0.0, 0.0)).unwrap();
+    let it = prj.layout.enclosures[ei].item(id).unwrap().clone();
+    let tris = frame_mesh(&prj, &it).unwrap();
+    // The collar fills the opening (20..105 from the back, 812..1014 from the top) less
+    // 1 mm, the flange the whole frame, all within the item.
+    let (lo, hi) = painted_bounds(&tris, FRAME_PLASTIC).unwrap();
+    assert_eq!((lo[0], lo[1], hi[0], hi[1]), (it.x, it.y, it.x + it.w, it.y + it.h));
+    assert!((lo[2] - it.z).abs() < 0.01 && hi[2].abs() < 0.01, "{lo:?} {hi:?}");
+    let through = |x: f32, y: f32| !tris.iter().any(|t| {
+        let (a, b) = ([0, 1].map(|k| t.0.iter().map(|v| v[k]).fold(f32::INFINITY, f32::min)), [0, 1].map(|k| t.0.iter().map(|v| v[k]).fold(f32::NEG_INFINITY, f32::max)));
+        a[0] < x && x < b[0] && a[1] < y && y < b[1]
+    });
+    assert!(through(62.5, 913.0), "open in the middle");
+    assert!(!through(22.0, 913.0) && !through(10.0, 913.0), "collar and flange");
+    assert!(painted_bounds(&tris, COPPER).is_none(), "no busbars");
+    // The busbar connectors: five bars, or five pairs, through the frame.
+    for (number, bars) in [(CZC4, 5), (CZC14, 10)] {
+        let slot = places(&prj, ei, part(&prj, number))[0].clone();
+        let id = put(&mut prj, &PartsDb::default(), ei, number, &slot, p(0.0, 0.0)).unwrap();
+        let it = prj.layout.enclosures[ei].item(id).unwrap().clone();
+        let tris = crate::panel::device_mesh_painted(&prj, &it).unwrap();
+        assert_eq!(tris.iter().filter(|t| t.1 == Some(COPPER)).count(), bars * 12, "{number}");
+    }
+    // A frame elsewhere keeps its box.
+    let mut loose = it.clone();
+    loose.y = 400.0;
+    assert!(frame_mesh(&prj, &loose).is_none());
+    assert_eq!(busbar_size("Cu 2 x 12 x 5 mm"), Some((2, 12.0, 5.0)));
+    assert_eq!(busbar_size("Cu 12 x 5 mm"), Some((1, 12.0, 5.0)));
+}
+
+#[test]
+fn an_enclosure_is_attached_at_the_side_of_its_joining_frame() {
+    let (mut prj, ei) = sj_project();
+    for name in ["+Z2", "+Z3"] {
+        let e = new_enclosure(&mut prj, CABINET, name);
+        prj.layout.enclosures.push(e);
+    }
+    let room = crate::panel::buildings::add_room(&mut prj, "+R1", None).unwrap();
+    crate::panel::set_room(&mut prj, ei, Some(room), None).unwrap();
+    let found = places(&prj, ei, part(&prj, CZ3));
+    let right = found.iter().find(|pl| pl.face(&prj.layout.enclosures[ei]) == Some(Face::Right)).unwrap().clone();
+    let left = found.iter().find(|pl| pl.face(&prj.layout.enclosures[ei]) == Some(Face::Left)).unwrap().clone();
+    let r = put(&mut prj, &PartsDb::default(), ei, CZ3, &right, p(0.0, 0.0)).unwrap();
+    let l = put(&mut prj, &PartsDb::default(), ei, CZ3, &left, p(0.0, 0.0)).unwrap();
+    assert_eq!((joining_side(&prj, ei, r), joining_side(&prj, ei, l)), (Some(Face::Right), Some(Face::Left)));
+    attach_at_frame(&mut prj, ei, r, 1).unwrap();
+    assert_eq!(crate::panel::lineup_of(&prj.layout, ei), [0, 1]);
+    // On the left it becomes the left end and stands in the room of the line-up.
+    attach_at_frame(&mut prj, ei, l, 2).unwrap();
+    assert_eq!(crate::panel::lineup_of(&prj.layout, ei), [2, 0, 1]);
+    assert_eq!([0, 1, 2].map(|i| crate::panel::room_of(&prj.layout, i)), [Some(room); 3]);
+    assert!(attach_at_frame(&mut prj, ei, r, ei).is_err(), "not to itself");
+    assert!(attach_at_frame(&mut prj, ei, r, room).is_err(), "no room");
+}
+
+#[test]
+fn the_covers_of_all_panels_are_taken_off_and_fitted_at_once() {
+    let (mut prj, ei) = sj_project();
+    for _ in 0..2 {
+        let slot = places(&prj, ei, part(&prj, FV17))[0].clone();
+        put(&mut prj, &PartsDb::default(), ei, FV17, &slot, p(0.0, 0.0)).unwrap();
+    }
+    assert_eq!(covers(&prj, None), (2, 0));
+    assert_eq!(set_covers(&mut prj, Some(ei), false), 2);
+    assert_eq!((covers(&prj, Some(ei)), set_covers(&mut prj, None, false)), ((0, 2), 0));
+    assert_eq!(set_covers(&mut prj, None, true), 2);
+    assert_eq!(covers(&prj, None), (2, 0));
+}

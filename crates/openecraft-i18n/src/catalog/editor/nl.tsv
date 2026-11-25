@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Een verdieping boven de hoogste
 A local file opens locally, a server project is opened on the project server again	Een lokaal bestand opent lokaal, een serverproject wordt opnieuw op de projectserver geopend
 A local file or a project on the project server	Een lokaal bestand of een project op de projectserver
+A new enclosure of the same part, bayed at this frame	Een nieuwe behuizing van hetzelfde artikel, aangebouwd bij dit frame
 A new enclosure standing in this room	Een nieuwe behuizing in deze ruimte
 A new project	Een nieuw project
 A new release is downloaded in the background and installed when you close OpenECraft.	Een nieuwe versie wordt op de achtergrond gedownload en geïnstalleerd wanneer u OpenECraft sluit.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	In de oorsprong
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Op het voedingspunt: Ik3 max {} kA, Ik1 min {} kA
 At the top level	Op het hoogste niveau
+Attach an enclosure here	Hier een behuizing aanbouwen
 Author	Auteur
 Auto-connect	Automatisch verbinden
 Auto-connect selection	Selectie automatisch verbinden
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Deuruitsparingen (CSV)
 Door hinge	Deurscharnieren
 Door: {} devices, {} cutouts	Deur: {} apparaten, {} uitsparingen
 Dot	Punt
+Double door	Dubbele deur
 Double-click	Dubbelklik
 Down conductors	Afleidingen
 Download into database	Downloaden naar database
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Een draad, polylijn, veelhoek of wand a
 Finish or cancel the drawing, then back to selecting	Tekenen afronden of annuleren, daarna terug naar selecteren
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Voltooide wijzigingen van een project dat van de projectserver is geopend, worden daar vanzelf opgeslagen; lopende invoer wordt opgeslagen zodra die is voltooid. Vergrendelingen blijven behouden. Opslaan (Ctrl+S) slaat nog steeds direct op.
 First row	Eerste rij
+Fit all plastic covers	Alle kunststof afdekkingen aanbrengen
 Fit page	Pagina passend maken
 Fits {}	Past op {}
 Fitted	Aangebracht
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Herhaalde waarden van de eerste kolom leeg laten
 Left button	Linkerknop
 Left edges	Linkerranden
+Left leaf	Linkervleugel
 Legend plates (door devices)	Tekstplaatjes (deurapparaten)
 Length from the node to the device	Lengte van het knooppunt tot het apparaat
 Length inside an enclosure	Lengte in de behuizing
@@ -1242,6 +1247,7 @@ New document page…	Nieuwe documentpagina…
 New empty	Nieuw, leeg
 New enclosure	Nieuwe behuizing
 New enclosure in this room…	Nieuwe behuizing in deze ruimte…
+New enclosure like this one	Nieuwe behuizing zoals deze
 New enclosure…	Nieuwe behuizing…
 New graphics page	Nieuwe grafiekpagina
 New harness	Nieuwe kabelboom
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Op een touchscreen; trackpads laten gebaren met drie vingers aan het systeem.
 On startup	Bij het starten
 On the roof, joined to the air-termination conductors; move it to its place	Op het dak, verbonden met de opvanggeleiders; verplaats hem naar zijn plaats
+One leaf	Eén vleugel
 One row per label	Eén rij per label
 Only devices on the current page	Alleen apparaten op de huidige pagina
 Only frames no page uses can be deleted	Alleen kaders die door geen enkele pagina worden gebruikt, kunnen worden verwijderd
@@ -2118,6 +2125,7 @@ Tablet mode	Tabletmodus
 Tag	Aanduiding
 Tag field	Aanduidingsveld
 Tag placed by hand	Aanduiding handmatig geplaatst
+Take off all plastic covers	Alle kunststof afdekkingen afnemen
 Take out a subproject	Deelproject afsplitsen
 Take out of the building	Uit het gebouw halen
 Take out {} pages…	{} pagina's afsplitsen…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	De gegenereerde pagina's blijven behouden
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	De artikeldatabase wordt door alle projecten gedeeld. Artikelen worden naar een project gekopieerd wanneer ze aan een apparaat worden toegewezen.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	De kunststof afdekking van het veld; zonder ziet men het frame, de rails en de bedrading erachter
+The plastic covers of all panels of the field grid of this enclosure	De kunststof afdekkingen van alle velden van het veldraster van deze behuizing
+The plastic covers of all panels of the field grids of every enclosure	De kunststof afdekkingen van alle velden van de veldrasters van elke behuizing
 The point's coordinates in the coordinate reference system	De coördinaten van het punt in het coördinatenreferentiesysteem
 The post; its accessories are the table beams, rails and clamps	De paal; de toebehoren zijn de tafelliggers, rails en klemmen
 The project changed since the search.	Het project is gewijzigd sinds de zoekopdracht.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	De 3D-weergave naar het punt draaien
 Twin ferrules where two wires share a connection point	Dubbele adereindhulzen waar twee draden een aansluitpunt delen
 Two fingers	Twee vingers
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Twee vleugels, elk aan de buitenrand scharnierend; apparaten op de deur gaan mee met de vleugel onder hun midden
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier moeten twee draden in een rechte hoek samenkomen. Met Auto-connect aan worden aansluitpunten tegenover zijn armen ermee verbonden.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Typ een punt en druk op Enter: x y in mm, of @dx dy ten opzichte van het laatste punt; dit werkt als een klik met het huidige gereedschap
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Hele woorden
 Width / going	Breedte / aantrede
 Width / height (mm)	Breedte / hoogte (mm)
 Width factor	Breedtefactor
+Width of the left leaf; the right one takes the rest of the front	Breedte van de linkervleugel; de rechter neemt de rest van de voorkant in
 Width of the letters to their usual width (0.8: narrow lettering)	Breedte van de letters ten opzichte van hun gewone breedte (0,8: smalle letters)
 Width × depth	Breedte × diepte
 Width × height	Breedte × hoogte
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	{} adressen gewijzigd
 {} air-termination rods	{} opvangstaven
 {} already exists on the project server.	{} bestaat al op de projectserver.
+{} attached to {}	{} aangebouwd aan {}
 {} bundles, {} branch points	{} bundels, {} aftakpunten
 {} bus cables created	{} buskabels gemaakt
 {} bus connections	{} busverbindingen
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} geplaatst als {}
 {} placed in {}	{} geplaatst in {}
 {} placement problems (red) – see Check	{} plaatsingsproblemen (rood) – zie Controle
+{} plastic covers fitted	{} kunststof afdekkingen aangebracht
+{} plastic covers taken off	{} kunststof afdekkingen afgenomen
 {} problems	{} problemen
 {} project parts updated	{} projectartikelen bijgewerkt
 {} projects on the server	{} projecten op de server

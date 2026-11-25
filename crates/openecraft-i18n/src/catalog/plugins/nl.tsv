@@ -67,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Back-up
 Bar id	Rail-ID
 Bar thickness, mm (default 5)	Raildikte, mm (standaard 5)
 Bar width, mm (default 20)	Railbreedte, mm (standaard 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Bouwt een behuizing aan bij het verbindingsframe in een zijwand van een andere (zoals de CZ3 van Striebel & John): rechts ervan bij een frame in de rechterwand, links ervan bij een in de linkerwand
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Koppelt een behuizing naast een andere, rechts ervan (koppeling); zonder right_of verlaat deze de koppeling
 Bend radius in drag chains as a multiple of the cable diameter	Buigradius in sleepkettingen als veelvoud van de kabeldiameter
 Bend radius of a drag chain in mm	Buigradius van een sleepketting in mm
@@ -146,6 +147,7 @@ Corner points on the mounting plate in mm	Hoekpunten op de montageplaat in mm
 Correction of the time estimate	Correctie van de tijdschatting
 Cost of free air against ducts and routing paths	Kosten van vrij in de lucht ten opzichte van goten en routeringspaden
 Counting step (default 1)	Telstap (standaard 1)
+Covers fitted; false takes them off	Afdekkingen aangebracht; false neemt ze af
 Creates a bus cable for the connection (without cable tag)	Maakt een buskabel voor de verbinding (zonder kabelaanduiding)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Maakt een kabel van het bustype (type, aders, doorsnede) voor elke busverbinding zonder kabel
 Creates or changes a PCT loop of the pre-planning	Maakt of wijzigt een PCT-lus van de voorplanning
@@ -264,12 +266,16 @@ Enclosure or room it goes before or after	Behuizing of ruimte waarvoor of waarna
 Enclosure part number	Artikelnummer van de behuizing
 Enclosure system (default: the enclosure's)	Behuizingssysteem (standaard: dat van de behuizing)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Behuizing waar de kopieën heen gaan (locatie, bijv. +CAB2); dezelfde indien weggelaten
+Enclosure to attach; without it a new one like the enclosure with the frame	Aan te bouwen behuizing; zonder een nieuwe zoals de behuizing met het frame
+Enclosure with the frame	Behuizing met het frame
 Enclosure {} exists already	Behuizing {} bestaat al
+Enclosure; without it every enclosure	Behuizing; zonder elke behuizing
 Enclosures, panel items, accessories and panel macros	Behuizingen, montage-elementen, toebehoren en montagemacro's
 End brackets and end plates from the tech data of the terminal parts	Eindsteunen en eindplaten uit de technische gegevens van de klemartikelen
 End holes from the bar end as a multiple of the width	Eindboringen vanaf het railuiteinde als veelvoud van de breedte
 End: device tag and connection point, e.g. -S1:14	Einde: apparaataanduiding en aansluitpunt, bijv. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Vlak: plate, door, left, right, rear, roof of bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Vlak: plate, door, left, right, rear, roof of bottom; door_left en door_right voor de vleugels van een dubbele deur
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Veldplan: knooppunten, segmenten, contouren, tracés, potentiaalvereffening en toebehoren
 Figure	Kengetal
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Zoekt en vervangt tekst in een kolom van alle (gefilterde) rijen; zonder zoektekst wordt de kolom gevuld met de vervangende tekst
@@ -283,6 +289,7 @@ First counter value (default 1)	Eerste tellerwaarde (standaard 1)
 First page number (default 1)	Eerste paginanummer (standaard 1)
 First port as station:port, e.g. PLC1:X1 P2	Eerste poort als station:poort, bijv. PLC1:X1 P2
 First row with the column names	Eerste rij met de kolomnamen
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Brengt de kunststof afdekkingen van alle velden van het veldraster van een behuizing, of van elke behuizing, aan of neemt ze allemaal af
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Platte daken en vrijstaand: richting waarin de modules wijzen in graden, tegen de klok in van bovenaf gezien (0: naar +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Indeling van de apparaatnaam: {letter}, {n} (teller), {page}, {column}, {row}; standaard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Indeling van het schema format: {n} (teller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -361,6 +368,7 @@ Invalid answer of the plugin: {}	Ongeldig antwoord van de plugin: {}
 Invalid segment name: {}	Ongeldige segmentnaam: {}
 Invalid title block elements: {}	Ongeldige titelblokelementen: {}
 Item id	Element-id
+Item id of the frame	Element-id van het frame
 Item ids	Element-id's
 Jumper number	Brugnummer
 Jumper number (terminals with the same number are bridged); 0 removes it	Brugnummer (klemmen met hetzelfde nummer zijn doorverbonden); 0 verwijdert het
@@ -381,6 +389,7 @@ Landscape (true) or portrait (false)	Liggend (true) of staand (false)
 Language the project texts are written in, e.g. en	Taal waarin de projectteksten zijn geschreven, bijv. en
 Larger round holes are milled, mm	Grotere ronde gaten worden gefreesd, mm
 Largest difference between hole and tool, mm	Grootste verschil tussen gat en gereedschap, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Vleugels van een dubbele deur: hun breedtes van links, bijv. 275 + 525 (met left of right na een breedte voor zijn scharnier), of hun aantal voor even brede vleugels; leeg of 1 voor één vleugel
 Left edge from the left end of the wall (seen from inside) in mm	Linkerrand vanaf het linkereinde van de wand (gezien van binnen) in mm
 Left edge in mm	Linkerrand in mm
 Left edge on the face in mm	Linkerrand op het vlak in mm
@@ -976,6 +985,7 @@ Unknown class: {}	Onbekende klasse: {}
 Unknown data type: {}	Onbekend gegevenstype: {}
 Unknown direction {}: left, right, up or down	Onbekende richting {}: left, right, up of down
 Unknown door hinge: {}	Onbekende scharnierzijde: {}
+Unknown door leaves: {}	Onbekende deurvleugels: {}
 Unknown earth electrode: {}	Onbekende aardelektrode: {}
 Unknown earthing system: {}	Onbekend aardingsstelsel: {}
 Unknown face {}	Onbekend vlak {}

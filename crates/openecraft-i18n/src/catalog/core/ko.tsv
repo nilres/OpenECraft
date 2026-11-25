@@ -423,6 +423,8 @@ Does not match	일치하지 않음
 Door (front view)	도어(정면도)
 Door and walls	도어 및 벽
 Door handle and document holder	도어 손잡이 및 도면 보관함
+Door leaf {}	도어 날개 {}
+Door leaf {} (front view)	도어 날개 {}(정면도)
 Double socket outlet with PE	접지극 2구 콘센트
 Downstream	하위
 Drag chain	케이블 체인
@@ -783,6 +785,8 @@ Latitude is within ±90° and longitude within ±180°	위도는 ±90°, 경도�
 Lead time (days)	리드 타임(일)
 Leakage current	누설 전류
 Leakage line	누유 라인
+Left door leaf	왼쪽 도어 날개
+Left door leaf (front view)	왼쪽 도어 날개(정면도)
 Left side panel	왼쪽 측면 패널
 Legend plate text	명판 텍스트
 Length (m)	길이(m)
@@ -1022,6 +1026,7 @@ Oil resistant	내유성
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V 전위, 푸시 버튼, 선택 스위치, 표시등, 퓨즈가 있는 회로도 한 페이지; 부품과 자재 명세서.
 One schematic page, the potentials of IEC 60204-1	회로도 페이지 한 개, IEC 60204-1의 전위
 One-way flow control valve	일방향 유량 제어 밸브
+Only another enclosure can be bayed there	그곳에는 다른 외함만 연결할 수 있습니다
 Only revisions that are not released can be submitted	릴리스되지 않은 개정만 제출할 수 있습니다
 Only symbols of the symbol library can be scaled	기호 라이브러리의 기호만 배율을 바꿀 수 있습니다
 Only {}	{}만
@@ -1374,6 +1379,8 @@ Revision table: author of the last revision (2: the one before …)	개정 표: 
 Revision table: date of the last revision (2: the one before …)	개정 표: 마지막 개정의 날짜(2: 그 이전 …)
 Revision table: description of the last revision (2: the one before …)	개정 표: 마지막 개정의 설명(2: 그 이전 …)
 Revision table: index of the last revision (2: the one before …)	개정 표: 마지막 개정의 색인(2: 그 이전 …)
+Right door leaf	오른쪽 도어 날개
+Right door leaf (front view)	오른쪽 도어 날개(정면도)
 Right side panel	오른쪽 측면 패널
 Ring earth electrode	환상 접지극
 Ring terminal	링 단자
@@ -1648,6 +1655,7 @@ The first column must be Key	첫 번째 열은 Key여야 합니다
 The folder {} already holds the project {}: a split project needs a folder of its own	폴더 {}에 이미 프로젝트 {}이(가) 있습니다. 분할 프로젝트에는 전용 폴더가 필요합니다
 The formula ends too early	수식이 너무 일찍 끝납니다
 The function definition needs a key and a name	기능 정의에는 키와 이름이 필요합니다
+The item is no frame in an opening of a side wall	이 항목은 측벽 개구부에 있는 프레임이 아닙니다
 The last page cannot be deleted	마지막 페이지는 삭제할 수 없습니다
 The macro box has no items left	매크로 박스에 남은 항목이 없습니다
 The next free id is already in use	다음 사용 가능한 ID가 이미 사용 중입니다
@@ -2179,6 +2187,7 @@ yellow	노랑
 {}: {} overhangs the end of its mounting rail	{}: {}이(가) 장착 레일의 끝을 벗어납니다
 {}: {} pins used, the plug parts have {}	{0}: 핀 {1}개 사용됨, 플러그 부품의 핀 수는 {2}개
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {}이(가) 해당 위치에서 약 {} °C에 도달합니다(허용 {} °C)
+{}: {} reaches over the joint between the door leaves	{}: {}이(가) 도어 날개 사이의 이음새에 걸쳐 있습니다
 {}: {} solenoid coils linked, the valve has {}	{0}: 솔레노이드 코일 {1}개 연결됨, 밸브의 솔레노이드는 {2}개
 {}: {} stands in an inner wall	{}: {}이(가) 내벽 안에 있습니다
 {}: {} stands in the swing of the door in wall {}	{}: {}이(가) 벽 {} 문의 개폐 범위에 있습니다

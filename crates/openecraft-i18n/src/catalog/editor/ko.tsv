@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	가장 높은 층 위의 층
 A local file opens locally, a server project is opened on the project server again	로컬 파일은 로컬에서 열리고, 서버 프로젝트는 프로젝트 서버에서 다시 열립니다
 A local file or a project on the project server	로컬 파일 또는 프로젝트 서버의 프로젝트
+A new enclosure of the same part, bayed at this frame	같은 부품의 새 외함을 이 프레임에 연결합니다
 A new enclosure standing in this room	이 방에 놓을 새 외함
 A new project	새 프로젝트
 A new release is downloaded in the background and installed when you close OpenECraft.	새 릴리스는 백그라운드에서 다운로드되며 OpenECraft를 닫으면 설치됩니다.
@@ -185,6 +186,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	원점에
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	전원 공급점: Ik3 max {} kA, Ik1 min {} kA
 At the top level	최상위 수준
+Attach an enclosure here	여기에 외함 연결
 Author	작성자
 Auto-connect	자동 연결
 Auto-connect selection	선택 항목 자동 연결
@@ -615,6 +617,7 @@ Door cutouts (CSV)	도어 컷아웃(CSV)
 Door hinge	도어 힌지
 Door: {} devices, {} cutouts	도어: 장치 {}개, 컷아웃 {}개
 Dot	점
+Double door	양문형
 Double-click	두 번 클릭
 Down conductors	인하 도선
 Download into database	데이터베이스로 다운로드
@@ -784,6 +787,7 @@ Finish a wire, polyline, polygon or wall	전선, 폴리선, 다각형 또는 벽
 Finish or cancel the drawing, then back to selecting	그리기를 끝내거나 취소한 뒤 선택으로 돌아가기
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	프로젝트 서버에서 연 프로젝트의 완료된 변경 내용은 자동으로 서버에 저장됩니다. 진행 중인 입력은 완료된 후 저장됩니다. 잠금은 유지됩니다. 저장 (Ctrl+S)은 계속 바로 저장합니다.
 First row	첫 행
+Fit all plastic covers	모든 플라스틱 커버 장착
 Fit page	페이지 맞춤
 Fits {}	{}에 호환
 Fitted	장착됨
@@ -1051,6 +1055,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	첫 번째 열의 반복 값을 비워 둠
 Left button	왼쪽 단추
 Left edges	왼쪽 가장자리
+Left leaf	왼쪽 날개
 Legend plates (door devices)	명판(도어 장치)
 Length from the node to the device	노드에서 장치까지의 길이
 Length inside an enclosure	외함 내부 길이
@@ -1224,6 +1229,7 @@ New document page…	새 문서 페이지…
 New empty	새로 만들기(빈 항목)
 New enclosure	새 외함
 New enclosure in this room…	이 방에 새 외함…
+New enclosure like this one	이것과 같은 새 외함
 New enclosure…	새 외함…
 New graphics page	새 그래픽 페이지
 New harness	새 하네스
@@ -1362,6 +1368,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	터치스크린에 적용됩니다. 트랙패드의 세 손가락 제스처는 시스템이 사용합니다.
 On startup	시작할 때
 On the roof, joined to the air-termination conductors; move it to its place	지붕 위에서 수뢰 도체에 연결됩니다. 제자리로 옮기세요
+One leaf	한 날개
 One row per label	라벨당 한 행
 Only devices on the current page	현재 페이지의 장치만
 Only frames no page uses can be deleted	어떤 페이지도 사용하지 않는 프레임만 삭제할 수 있습니다
@@ -2090,6 +2097,7 @@ Tablet mode	태블릿 모드
 Tag	태그
 Tag field	태그 필드
 Tag placed by hand	수동으로 배치된 태그
+Take off all plastic covers	모든 플라스틱 커버 분리
 Take out a subproject	하위 프로젝트 반출
 Take out of the building	건물에서 제외
 Take out {} pages…	페이지 {}개 반출…
@@ -2166,6 +2174,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	생성된 페이지는 유지됩니다
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	부품 데이터베이스는 모든 프로젝트가 공유합니다. 부품은 장치에 지정될 때 프로젝트로 복사됩니다.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	패널의 플라스틱 커버입니다. 없으면 프레임, 레일과 그 뒤의 배선이 보입니다
+The plastic covers of all panels of the field grid of this enclosure	이 외함의 필드 그리드에 있는 모든 패널의 플라스틱 커버
+The plastic covers of all panels of the field grids of every enclosure	모든 외함의 필드 그리드에 있는 모든 패널의 플라스틱 커버
 The point's coordinates in the coordinate reference system	좌표 참조계에서의 점의 좌표
 The post; its accessories are the table beams, rails and clamps	말뚝; 부속품은 가대 보, 레일과 클램프입니다
 The project changed since the search.	검색 이후 프로젝트가 변경되었습니다.
@@ -2232,6 +2242,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3D 보기를 해당 점으로 돌리기
 Twin ferrules where two wires share a connection point	두 전선이 연결 지점을 공유하는 곳에 이중 페룰
 Two fingers	두 손가락
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	두 날개, 각각 바깥쪽 가장자리에 경첩. 도어의 장치는 중심 아래의 날개와 함께 움직입니다
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2324,6 +2335,7 @@ Whole words	단어 단위로
 Width / going	폭 / 발판
 Width / height (mm)	너비 / 높이(mm)
 Width factor	폭 계수
+Width of the left leaf; the right one takes the rest of the front	왼쪽 날개의 폭. 오른쪽 날개가 전면의 나머지를 차지합니다
 Width of the letters to their usual width (0.8: narrow lettering)	평소 폭에 대한 글자의 폭(0.8: 좁은 글자)
 Width × depth	너비 × 깊이
 Width × height	너비 × 높이
@@ -2509,6 +2521,7 @@ x y	x y
 {} addresses changed	주소 {}개 변경됨
 {} air-termination rods	피뢰침 {}개
 {} already exists on the project server.	{}이(가) 프로젝트 서버에 이미 있습니다.
+{} attached to {}	{}을(를) {}에 연결했습니다
 {} bundles, {} branch points	번들 {}개, 분기점 {}개
 {} bus cables created	버스 케이블 {}개 만들어짐
 {} bus connections	버스 연결 {}개
@@ -2623,6 +2636,8 @@ x y	x y
 {} placed as {}	{}을(를) {}(으)로 배치했습니다
 {} placed in {}	{0}을(를) {1}에 배치함
 {} placement problems (red) – see Check	배치 문제 {}개(빨간색) – 검사 참조
+{} plastic covers fitted	플라스틱 커버 {}개를 장착했습니다
+{} plastic covers taken off	플라스틱 커버 {}개를 분리했습니다
 {} project parts updated	프로젝트 부품 {}개 업데이트됨
 {} projects on the server	서버의 프로젝트 {}개
 {} projects selected	프로젝트 {}개 선택됨

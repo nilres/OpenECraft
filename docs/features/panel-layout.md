@@ -42,11 +42,18 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   carriers of the cabinet behind it, and its plastic cover in front with a slot for each
   row of devices. *Plastic cover* in its properties (command `set_panel_item` with
   `cover`) takes the cover off, to see the frame, the rails and the wiring behind it.
+  *Take off all plastic covers* and *Fit all plastic covers* in the context menu of the
+  layout do so for every panel of the enclosure, in the context menu of the navigator
+  for every enclosure (command `set_covers`).
 - A frame that joins two cabinets (such as the insulating frame CZ3 of Striebel & John,
   part data `Opening: 202 x 85`) goes only into the openings of the side walls made for
   it (part data of the cabinet `Side openings: 202 x 85 at 86 / 20; …`: height × depth
   at the distance from the bottom / from the back): dragged into the enclosure, the free
   openings are highlighted; placed on a side wall, it goes into the nearest free one.
+  It is drawn with its flange on the outside of the wall and its collar through the
+  opening, a busbar connector (CZC4, CZC14) with its busbars through it. *Attach an
+  enclosure here* in the context menu of the frame bays an enclosure at this side: a new
+  one like this, or one of the others (command `attach_enclosure`).
 - Mounting rails and cable ducts drawn by length; select one and drag either end to
   resize it, or move it (devices travel with their rail). Devices are placed from a
   "devices to place" list with their real dimensions from the parts data (contactor +
@@ -165,6 +172,15 @@ the handle on their sides, the 3D view opens the door about that edge, and the d
 wires run along the door to that edge, over the hinge loop and into the plate's edge
 on that side.
 
+A double door has two leaves, each hinged at its outer edge (*Door* › *Double door* and
+the width of the *Left leaf* in the enclosure's properties, `door_leaves` of
+`add_enclosure` / `set_enclosure`, part data `Door leaves: 275 + 525` with the widths
+of the leaves from the left, as the ComfortLine A cabinets of Striebel & John with three
+to five field widths and the univers cabinet `HAG.FR25S2` of Hager have). The door stays one face for its devices: each is on the
+leaf under its middle, opens with it in the 3D view and has its wires run over its
+hinge; the door view draws every leaf with its hinges and the joint between them, and a
+device reaching over the joint is reported.
+
 ## Restricted areas
 
 An enclosure part can keep areas of its faces free (*Restricted areas* in the part's
@@ -210,6 +226,12 @@ of every face with its letter, its dimensions from the bottom left corner of the
 (*New drilling pattern page*, `add_page kind=drilling enclosure=+CAB1`) draws its faces
 with their holes and cutouts at one scale, dimensioned from that corner, with the kinds
 of holes and cutouts and their counts beside them.
+
+A double door (see [Enclosure door](#enclosure-door)) is drilled leaf by leaf: the
+report, the page and the *NC data* take each leaf as a sheet of its own, dimensioned
+from its bottom left corner, and the hand-off to the machines makes a program for each
+leaf (`CAB1_door_left.nc`; `face=door_left` or `door_right` of `machining_plan` and
+`cnc_program`).
 
 ## Virtual wiring and duct fill levels
 

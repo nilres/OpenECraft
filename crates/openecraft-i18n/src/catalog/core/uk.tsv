@@ -431,6 +431,8 @@ Does not match	Не відповідає
 Door (front view)	Двері (фронтальний вигляд)
 Door and walls	Дверцята та стінки
 Door handle and document holder	Ручка дверей і кишеня для документації
+Door leaf {}	Стулка дверей {}
+Door leaf {} (front view)	Стулка дверей {} (фронтальний вигляд)
 Double socket outlet with PE	Подвійна розетка із заземлювальним контактом
 Downstream	Нижче за схемою
 Drag chain	Кабельний ланцюг
@@ -793,6 +795,8 @@ Latitude is within ±90° and longitude within ±180°	Широта лежить
 Lead time (days)	Термін поставки (днів)
 Leakage current	Струм витоку
 Leakage line	Дренажна лінія
+Left door leaf	Ліва стулка дверей
+Left door leaf (front view)	Ліва стулка дверей (фронтальний вигляд)
 Left side panel	Ліва бічна стінка
 Legend plate text	Текст таблички
 Length (m)	Довжина (м)
@@ -1033,6 +1037,7 @@ Oil resistant	Оливостійкий
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Одна сторінка схеми з потенціалами +24V / 0V, кнопками, перемикачем, лампами та запобіжником; вироби та специфікація.
 One schematic page, the potentials of IEC 60204-1	Одна сторінка схеми, потенціали за IEC 60204-1
 One-way flow control valve	Дросель зі зворотним клапаном
+Only another enclosure can be bayed there	Туди можна прибудувати лише іншу шафу
 Only revisions that are not released can be submitted	Подавати можна лише незатверджені ревізії
 Only symbols of the symbol library can be scaled	Масштабувати можна лише символи з бібліотеки символів
 Only {}	Лише {}
@@ -1387,6 +1392,8 @@ Revision table: author of the last revision (2: the one before …)	Таблиц
 Revision table: date of the last revision (2: the one before …)	Таблиця змін: дата останньої зміни (2: попередньої …)
 Revision table: description of the last revision (2: the one before …)	Таблиця змін: опис останньої зміни (2: попередньої …)
 Revision table: index of the last revision (2: the one before …)	Таблиця змін: індекс останньої зміни (2: попередньої …)
+Right door leaf	Права стулка дверей
+Right door leaf (front view)	Права стулка дверей (фронтальний вигляд)
 Right side panel	Права бічна стінка
 Ring earth electrode	Кільцевий заземлювач
 Ring terminal	Кільцевий наконечник
@@ -1664,6 +1671,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	Формула закінчується занадто рано
 The function definition needs a key and a name	Визначенню функції потрібні ключ і назва
 The index of the project names no file layout: it was not written by OpenECraft	Індекс проєкту не вказує структуру файлів: його записано не OpenECraft
+The item is no frame in an opening of a side wall	Елемент не є рамкою в отворі бічної стінки
 The last page cannot be deleted	Останню сторінку не можна видалити
 The macro box has no items left	У рамці макросу не залишилося елементів
 The next free id is already in use	Наступний вільний ідентифікатор уже зайнято
@@ -2204,6 +2212,7 @@ yellow	жовтий
 {}: {} overhangs the end of its mounting rail	{}: {} виступає за кінець своєї монтажної рейки
 {}: {} pins used, the plug parts have {}	{}: зайнято штирів – {}, вироби штекера мають {}
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} нагрівається у своєму місці приблизно до {} °C, допустимо {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} виходить за стик між стулками дверей
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} досягає {} з {} шин своєї системи збірних шин
 {}: {} solenoid coils linked, the valve has {}	{}: пов’язано котушок – {}, клапан має {}
 {}: {} stands in an inner wall	{}: {} стоїть у внутрішній стіні

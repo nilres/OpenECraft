@@ -168,6 +168,10 @@ pub struct Program {
     pub machine: String,
     /// The face; None for the copper bars.
     pub face: Option<Face>,
+    /// The leaf of a door of several leaves.
+    pub leaf: Option<usize>,
+    /// Key of the sheet: the face's, `door_left`, `bars`, ….
+    pub sheet: String,
     pub operations: usize,
     /// Estimated machine time, s.
     pub time: f32,

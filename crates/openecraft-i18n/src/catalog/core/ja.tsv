@@ -423,6 +423,8 @@ Does not match	一致しません
 Door (front view)	扉 (正面図)
 Door and walls	扉と壁面
 Door handle and document holder	扉ハンドルと図面ポケット
+Door leaf {}	扉 {}
+Door leaf {} (front view)	扉 {} (正面図)
 Double socket outlet with PE	接地極付き 2 口コンセント
 Downstream	下位
 Drag chain	ケーブルキャリア
@@ -782,6 +784,8 @@ Latitude is within ±90° and longitude within ±180°	緯度は ±90°、経度
 Lead time (days)	リードタイム (日)
 Leakage current	漏れ電流
 Leakage line	ドレンライン
+Left door leaf	左扉
+Left door leaf (front view)	左扉 (正面図)
 Left side panel	左側板
 Legend plate text	銘板テキスト
 Length (m)	長さ (m)
@@ -1021,6 +1025,7 @@ Oil resistant	耐油性
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V の電位、押しボタン、セレクタスイッチ、表示灯、ヒューズを含む1枚の回路図ページ。部品と部品表。
 One schematic page, the potentials of IEC 60204-1	回路図ページ 1 枚、IEC 60204-1 の電位
 One-way flow control valve	ワンウェイ流量制御弁
+Only another enclosure can be bayed there	そこに連結できるのは別の筐体だけです
 Only revisions that are not released can be submitted	提出できるのはリリースされていないリビジョンのみです
 Only symbols of the symbol library can be scaled	シンボルライブラリのシンボルだけを拡大縮小できます
 Only {}	{} のみ
@@ -1373,6 +1378,8 @@ Revision table: author of the last revision (2: the one before …)	リビジョ
 Revision table: date of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの日付（2: その前 …）
 Revision table: description of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの説明（2: その前 …）
 Revision table: index of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの記号（2: その前 …）
+Right door leaf	右扉
+Right door leaf (front view)	右扉 (正面図)
 Right side panel	右側板
 Ring earth electrode	環状接地極
 Ring terminal	丸形端子
@@ -1647,6 +1654,7 @@ The first column must be Key	最初の列は Key である必要があります
 The folder {} already holds the project {}: a split project needs a folder of its own	フォルダー {} には既にプロジェクト {} があります。分割プロジェクトには専用のフォルダーが必要です
 The formula ends too early	数式が不完全です
 The function definition needs a key and a name	機能定義にはキーと名前が必要です
+The item is no frame in an opening of a side wall	この要素は側壁の開口部にあるフレームではありません
 The last page cannot be deleted	最後のページは削除できません
 The macro box has no items left	マクロボックスにアイテムが残っていません
 The next free id is already in use	次の空き ID はすでに使用されています
@@ -2179,6 +2187,7 @@ yellow	黄
 {}: {} overhangs the end of its mounting rail	{}: {} が取付レールの端からはみ出しています
 {}: {} pins used, the plug parts have {}	{}: {} ピンを使用していますが、プラグ部品のピン数は {} です
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} の設置位置の温度は約 {} °C です (許容値 {} °C)
+{}: {} reaches over the joint between the door leaves	{}: {} が扉の左右の合わせ目にまたがっています
 {}: {} solenoid coils linked, the valve has {}	{}: {} 個のソレノイドコイルがリンクされていますが、バルブのソレノイドは {} 個です
 {}: {} stands in an inner wall	{}: {} が内壁の中にあります
 {}: {} stands in the swing of the door in wall {}	{}: {} が壁 {} のドアの開閉範囲にあります

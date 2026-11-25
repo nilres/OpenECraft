@@ -81,7 +81,7 @@ impl App {
         if let Some((ei, face, format)) = self.panel_ui.export.take() {
             if let Some(e) = self.session.prj.layout.enclosures.get(ei) {
                 let base: String = e.name.chars().map(|c| if c.is_alphanumeric() { c } else { '_' }).collect();
-                let what = face.key();
+                let what = face.key(e);
                 match format {
                     NcFormat::Dxf => {
                         let content = openecraft_core::production::nc_dxf(&self.session.prj, ei, face);

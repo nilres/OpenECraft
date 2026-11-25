@@ -754,11 +754,28 @@ impl App {
             Cmd::LayoutFloorPart => self.panel_ui.floor_part_menu(ui, &self.session.prj, &self.parts_db),
             Cmd::LayoutWalls => self.panel_ui.walls_menu(ui, &self.session.prj),
             Cmd::LayoutNcData => {
-                for (label, format) in [(tr("DXF drawing"), NcFormat::Dxf), ("DWG", NcFormat::Dwg), (tr("Drilling list (CSV)"), NcFormat::Csv)] {
-                    if ui.button(label).clicked() {
-                        self.panel_ui.export = Some((self.panel_ui.enclosure, self.panel_ui.face, format));
-                        ui.close();
+                let ei = self.panel_ui.enclosure;
+                let face = self.panel_ui.face;
+                let formats = [(tr("DXF drawing"), NcFormat::Dxf), ("DWG", NcFormat::Dwg), (tr("Drilling list (CSV)"), NcFormat::Csv)];
+                // A door of several leaves: the NC data of each leaf.
+                let leaves: Vec<_> = self.session.prj.layout.enclosures.get(ei).map(|e| openecraft_core::production::sheets(e).into_iter().filter(|s| s.face == face && s.leaf.is_some()).map(|s| (s, s.title(e))).collect()).unwrap_or_default();
+                if leaves.is_empty() {
+                    for (label, format) in formats {
+                        if ui.button(label).clicked() {
+                            self.panel_ui.export = Some((ei, face.into(), format));
+                            ui.close();
+                        }
                     }
+                }
+                for (sheet, title) in leaves {
+                    ui.menu_button(title, |ui| {
+                        for (label, format) in formats {
+                            if ui.button(label).clicked() {
+                                self.panel_ui.export = Some((ei, sheet, format));
+                                ui.close();
+                            }
+                        }
+                    });
                 }
             }
             _ => {}

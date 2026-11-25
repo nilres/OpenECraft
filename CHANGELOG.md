@@ -52,14 +52,23 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   they are meant to be instead of each solid at its own origin.
 - **Accessories of the EPLAN Data Portal:** a part of the portal lists its accessories,
   and its details show them with their description, maker and product group.
+- **Double doors:** an enclosure's door can have two leaves, each hinged at its outer
+  edge; the devices on the door open with their leaf in the 3D view and their wires run
+  over its hinge. Each leaf is drilled as a sheet of its own: the drilling pattern, the
+  NC data and the CNC programs take it from its own corner. The ComfortLine A cabinets of
+  Striebel & John with three to five field widths and the univers cabinet FR25S2 of
+  Hager have theirs.
 - **Order of the navigator:** the rooms, enclosures and buildings of the navigator are
   dragged to change their order; a bayed enclosure moves within its line-up (bayed
   again) or with it, a room onto the level of the room it is dropped next to.
 - **Panels of meter cabinets as they are built:** a distribution panel such as the FV17
   is a frame on brackets with its rails behind a plastic cover with a slot for each row,
-  the other panels of the field grid too; the cover can be taken off.
+  the other panels of the field grid too; the cover can be taken off, also of all panels
+  of an enclosure or of the project at once.
 - **Joining frames in their openings:** the insulating frame CZ3 that joins two
-  Striebel & John cabinets goes only into the openings of their side walls made for it.
+  Striebel & John cabinets goes only into the openings of their side walls made for it;
+  it is drawn with its flange and collar (a busbar connector with its busbars), and an
+  enclosure is attached at it from its context menu.
 - **Mounting plate from its model:** the part editor reads the separate model of an
   enclosure's mounting plate (such as Rittal's `CAD_MPL` files) and gives the enclosure
   a plate of its size, centred.

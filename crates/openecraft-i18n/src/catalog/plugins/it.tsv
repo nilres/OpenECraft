@@ -67,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Protezi
 Bar id	ID barra
 Bar thickness, mm (default 5)	Spessore della barra, mm (predefinito 5)
 Bar width, mm (default 20)	Larghezza della barra, mm (predefinito 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Affianca un involucro al telaio di collegamento in una parete laterale di un altro (come il CZ3 di Striebel & John): alla sua destra per un telaio nella parete destra, alla sua sinistra per uno nella parete sinistra
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Affianca un armadio a destra di un altro (affiancamento); senza right_of esce dal suo affiancamento
 Bend radius in drag chains as a multiple of the cable diameter	Raggio di curvatura nelle catene portacavi come multiplo del diametro del cavo
 Bend radius of a drag chain in mm	Raggio di curvatura di una catena portacavi in mm
@@ -146,6 +147,7 @@ Corner points on the mounting plate in mm	Punti d'angolo sulla piastra di montag
 Correction of the time estimate	Correzione della stima dei tempi
 Cost of free air against ducts and routing paths	Costo dell'aria libera rispetto a canaline e percorsi di instradamento
 Counting step (default 1)	Passo di conteggio (predefinito 1)
+Covers fitted; false takes them off	Coperture montate; false le toglie
 Creates a bus cable for the connection (without cable tag)	Crea un cavo bus per il collegamento (senza sigla cavo)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Crea un cavo del tipo di bus (tipo, anime, sezione) per ogni collegamento bus senza cavo
 Creates or changes a PCT loop of the pre-planning	Crea o modifica un loop PCT della preprogettazione
@@ -264,12 +266,16 @@ Enclosure or room it goes before or after	Armadio o locale prima o dopo il quale
 Enclosure part number	Codice articolo dell'armadio
 Enclosure system (default: the enclosure's)	Sistema di armadi (predefinito: quello dell'armadio)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Armadio in cui vanno le copie (luogo, ad es. +CAB2); lo stesso se omesso
+Enclosure to attach; without it a new one like the enclosure with the frame	Involucro da affiancare; senza, uno nuovo come l'involucro con il telaio
+Enclosure with the frame	Involucro con il telaio
 Enclosure {} exists already	L'armadio {} esiste già
+Enclosure; without it every enclosure	Involucro; senza, ogni involucro
 Enclosures, panel items, accessories and panel macros	Armadi, elementi del layout, accessori e macro di layout
 End brackets and end plates from the tech data of the terminal parts	Fermi terminali e piastre terminali dai dati tecnici degli articoli dei morsetti
 End holes from the bar end as a multiple of the width	Fori di estremità dall'estremità della barra come multiplo della larghezza
 End: device tag and connection point, e.g. -S1:14	Fine: sigla dispositivo e punto di connessione, ad es. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Faccia: plate, door, left, right, rear, roof o bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Faccia: plate, door, left, right, rear, roof o bottom; door_left e door_right per le ante di una porta a due ante
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Piano di campo: nodi, tratti, contorni, percorsi, collegamenti equipotenziali e accessori
 Figure	Indicatore
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Trova e sostituisce il testo in una colonna di tutte le righe (filtrate); senza testo da trovare la colonna viene compilata con il testo sostitutivo
@@ -283,6 +289,7 @@ First counter value (default 1)	Primo valore del contatore (predefinito 1)
 First page number (default 1)	Primo numero di pagina (predefinito 1)
 First port as station:port, e.g. PLC1:X1 P2	Prima porta come stazione:porta, ad es. PLC1:X1 P2
 First row with the column names	Prima riga con i nomi delle colonne
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Monta le coperture in plastica di tutti i campi della griglia di un involucro, o di ogni involucro, o le toglie tutte
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Tetti piani e campi a terra: direzione verso cui sono rivolti i moduli in gradi, in senso antiorario visto dall'alto (0: verso +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formato del nome del dispositivo: {letter}, {n} (contatore), {page}, {column}, {row}; predefinito {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formato dello schema format: {n} (contatore), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -361,6 +368,7 @@ Invalid answer of the plugin: {}	Risposta del plugin non valida: {}
 Invalid segment name: {}	Nome del segmento non valido: {}
 Invalid title block elements: {}	Elementi del cartiglio non validi: {}
 Item id	ID elemento
+Item id of the frame	Id dell'elemento del telaio
 Item ids	ID elementi
 Jumper number	Numero di ponticello
 Jumper number (terminals with the same number are bridged); 0 removes it	Numero di ponticello (i morsetti con lo stesso numero sono ponticellati); 0 lo rimuove
@@ -381,6 +389,7 @@ Landscape (true) or portrait (false)	Orizzontale (true) o verticale (false)
 Language the project texts are written in, e.g. en	Lingua in cui sono scritti i testi del progetto, ad es. en
 Larger round holes are milled, mm	I fori tondi più grandi vengono fresati, mm
 Largest difference between hole and tool, mm	Differenza massima tra foro e utensile, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Ante di una porta a due ante: le loro larghezze da sinistra, ad es. 275 + 525 (con left o right dopo una larghezza per la sua cerniera), o il loro numero per ante di uguale larghezza; vuoto o 1 per un'anta
 Left edge from the left end of the wall (seen from inside) in mm	Bordo sinistro dall'estremità sinistra della parete (visto dall'interno) in mm
 Left edge in mm	Bordo sinistro in mm
 Left edge on the face in mm	Bordo sinistro sulla faccia in mm
@@ -976,6 +985,7 @@ Unknown class: {}	Classe sconosciuta: {}
 Unknown data type: {}	Tipo di dati sconosciuto: {}
 Unknown direction {}: left, right, up or down	Direzione sconosciuta {}: left, right, up o down
 Unknown door hinge: {}	Lato cerniere sconosciuto: {}
+Unknown door leaves: {}	Ante della porta sconosciute: {}
 Unknown earth electrode: {}	Dispersore sconosciuto: {}
 Unknown earthing system: {}	Sistema di distribuzione sconosciuto: {}
 Unknown face {}	Faccia sconosciuta {}

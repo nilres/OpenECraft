@@ -431,6 +431,8 @@ Does not match	Nem egyezik
 Door (front view)	Ajtó (elölnézet)
 Door and walls	Ajtó és falak
 Door handle and document holder	Ajtófogantyú és dokumentumtartó
+Door leaf {}	Ajtószárny {}
+Door leaf {} (front view)	Ajtószárny {} (elölnézet)
 Double socket outlet with PE	Kettős dugaszolóaljzat védőérintkezővel
 Downstream	Utána kapcsolt
 Drag chain	Energialánc
@@ -793,6 +795,8 @@ Latitude is within ±90° and longitude within ±180°	A szélesség ±90°, a h
 Lead time (days)	Szállítási idő (nap)
 Leakage current	Szivárgási áram
 Leakage line	Szivárgóolaj-vezeték
+Left door leaf	Bal ajtószárny
+Left door leaf (front view)	Bal ajtószárny (elölnézet)
 Left side panel	Bal oldalfal
 Legend plate text	Jelölőtábla szövege
 Length (m)	Hossz (m)
@@ -1033,6 +1037,7 @@ Oil resistant	Olajálló
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Egy kapcsolási rajz oldal +24V / 0V potenciálokkal, nyomógombokkal, választókapcsolóval, jelzőlámpákkal és biztosítóval; alkatrészek és anyagjegyzék.
 One schematic page, the potentials of IEC 60204-1	Egy kapcsolásirajz-oldal, az IEC 60204-1 szerinti potenciálok
 One-way flow control valve	Egyirányú fojtószelep
+Only another enclosure can be bayed there	Oda csak egy másik szekrény sorolható
 Only revisions that are not released can be submitted	Csak a ki nem adott revíziók küldhetők be
 Only symbols of the symbol library can be scaled	Csak a szimbólumtár szimbólumai méretezhetők
 Only {}	Csak {}
@@ -1387,6 +1392,8 @@ Revision table: author of the last revision (2: the one before …)	Revíziós t
 Revision table: date of the last revision (2: the one before …)	Revíziós táblázat: az utolsó revízió dátuma (2: az azt megelőzőé …)
 Revision table: description of the last revision (2: the one before …)	Revíziós táblázat: az utolsó revízió leírása (2: az azt megelőzőé …)
 Revision table: index of the last revision (2: the one before …)	Revíziós táblázat: az utolsó revízió indexe (2: az azt megelőzőé …)
+Right door leaf	Jobb ajtószárny
+Right door leaf (front view)	Jobb ajtószárny (elölnézet)
 Right side panel	Jobb oldalfal
 Ring earth electrode	Körföldelő
 Ring terminal	Gyűrűs saru
@@ -1664,6 +1671,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	A képlet túl korán véget ér
 The function definition needs a key and a name	A funkciódefinícióhoz kulcs és név szükséges
 The index of the project names no file layout: it was not written by OpenECraft	A projekt indexe nem nevez meg fájlelrendezést: nem az OpenECraft írta
+The item is no frame in an opening of a side wall	Az elem nem egy oldalfal nyílásában lévő keret
 The last page cannot be deleted	Az utolsó oldal nem törölhető
 The macro box has no items left	A makródoboznak nem maradt eleme
 The next free id is already in use	A következő szabad azonosító már foglalt
@@ -2204,6 +2212,7 @@ yellow	sárga
 {}: {} overhangs the end of its mounting rail	{}: {} túlnyúlik a szerelősíne végén
 {}: {} pins used, the plug parts have {}	{}: {} érintkezőtű foglalt, a csatlakozódugó-alkatrészeknek {} van
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} a helyén kb. {} °C-ot ér el, megengedett {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} átnyúlik az ajtószárnyak közötti illesztésen
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} {} sínt ér el a gyűjtősín-rendszerének {} sínje közül
 {}: {} solenoid coils linked, the valve has {}	{}: {} mágnestekercs kapcsolva, a szelepnek {} van
 {}: {} stands in an inner wall	{}: {} egy belső falban áll

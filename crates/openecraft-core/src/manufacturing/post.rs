@@ -22,9 +22,9 @@ pub fn thread_pitch(thread: &str) -> f32 {
     }
 }
 
-/// File name of a program: `CAB1_plate.nc`.
+/// File name of a program: `CAB1_plate.nc`, `CAB1_door_left.nc`.
 pub fn file_name(plan: &Plan, m: &Machine) -> String {
-    format!("{}_{}.{}", super::file_stem(&plan.enclosure), plan.face.key(), m.dialect.extension())
+    format!("{}_{}.{}", super::file_stem(&plan.enclosure), plan.sheet, m.dialect.extension())
 }
 
 /// The program of a plan for its machine.
@@ -53,7 +53,7 @@ fn speed(m: &Machine, n: u32) -> u32 {
 
 fn iso(plan: &Plan, m: &Machine) -> String {
     let mut out = String::from("%\n");
-    let _ = writeln!(out, "O0001 (OPENECRAFT {} {})", plan.enclosure, plan.face.key().to_uppercase());
+    let _ = writeln!(out, "O0001 (OPENECRAFT {} {})", plan.enclosure, plan.sheet.to_uppercase());
     let _ = writeln!(out, "(SHEET {} X {} X {})", num(plan.width), num(plan.height), num(plan.thickness));
     out.push_str("G21 G90 G17 G40 G49 G80\nG0 Z50\n");
     let depth = num(-(plan.thickness + 1.0));
@@ -121,7 +121,7 @@ fn iso(plan: &Plan, m: &Machine) -> String {
 
 fn heidenhain(plan: &Plan, m: &Machine) -> String {
     let mut lines: Vec<String> = Vec::new();
-    let pgm = super::file_stem(&format!("{}_{}", plan.enclosure, plan.face.key())).to_uppercase();
+    let pgm = super::file_stem(&format!("{}_{}", plan.enclosure, plan.sheet)).to_uppercase();
     lines.push(format!("BEGIN PGM {pgm} MM"));
     lines.push(format!("BLK FORM 0.1 Z X+0 Y+0 Z-{}", num(plan.thickness)));
     lines.push(format!("BLK FORM 0.2 X+{} Y+{} Z+0", num(plan.width), num(plan.height)));
@@ -175,7 +175,7 @@ fn heidenhain(plan: &Plan, m: &Machine) -> String {
 
 fn punch(plan: &Plan, m: &Machine) -> String {
     let mut out = String::from("%\n");
-    let _ = writeln!(out, "(OPENECRAFT {} {})", plan.enclosure, plan.face.key().to_uppercase());
+    let _ = writeln!(out, "(OPENECRAFT {} {})", plan.enclosure, plan.sheet.to_uppercase());
     let _ = writeln!(out, "G92 X{} Y{}", num(plan.width), num(plan.height));
     out.push_str("G90 G21\n");
     let mut tool = None;
@@ -215,7 +215,7 @@ fn csv(plan: &Plan, m: &Machine) -> String {
             OpKind::Punch { .. } => (String::new(), String::new(), String::new(), String::new(), 1),
             OpKind::Manual { what } => (String::new(), String::new(), String::new(), what.clone(), 0),
         };
-        let _ = writeln!(out, "{};{};{};{};{};{};{tool};{x};{y};{d};{w};{h};{thread};{hits}", plan.enclosure, plan.face.key(), m.id, o.seq, o.item, o.kind.key());
+        let _ = writeln!(out, "{};{};{};{};{};{};{tool};{x};{y};{d};{w};{h};{thread};{hits}", plan.enclosure, plan.sheet, m.id, o.seq, o.item, o.kind.key());
     }
     out
 }

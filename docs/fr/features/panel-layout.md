@@ -47,13 +47,21 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
   les supports de l'armoire derrière lui, et devant lui son capot plastique avec une
   fente pour chaque rangée d'appareils. *Capot plastique* dans ses propriétés
   (commande `set_panel_item` avec `cover`) retire le capot, pour voir le cadre, les
-  rails et le câblage derrière.
+  rails et le câblage derrière. *Retirer tous les capots plastiques* et *Poser tous les
+  capots plastiques* dans le menu contextuel de l'implantation le font pour chaque champ
+  de l'enveloppe, dans le menu contextuel du navigateur pour chaque enveloppe
+  (commande `set_covers`).
 - Un cadre qui relie deux armoires (comme le cadre isolant CZ3 de Striebel & John,
   données d'article `Opening: 202 x 85`) ne va que dans les ouvertures des parois
   latérales prévues pour lui (données d'article de l'armoire
   `Side openings: 202 x 85 at 86 / 20; …` : hauteur × profondeur à la distance du bas /
   de l'arrière) : glissé dans l'enveloppe, les ouvertures libres sont mises en évidence ;
-  placé sur une paroi latérale, il va dans l'ouverture libre la plus proche.
+  placé sur une paroi latérale, il va dans l'ouverture libre la plus proche. Il est
+  dessiné avec sa bride à l'extérieur de la paroi et son collet à travers l'ouverture,
+  un connecteur de jeux de barres (CZC4, CZC14) avec ses barres qui le traversent.
+  *Juxtaposer une enveloppe ici* dans le menu contextuel du cadre juxtapose une
+  enveloppe de ce côté : une nouvelle comme celle-ci, ou l'une des autres
+  (commande `attach_enclosure`).
 - Rails de montage et goulottes dessinés à la longueur ; sélectionnez-en un et faites
   glisser l'une de ses extrémités pour le redimensionner, ou déplacez-le (les appareils
   suivent leur rail). Les appareils sont placés à partir d'une liste « appareils à
@@ -191,6 +199,17 @@ porte montre les charnières et la poignée de leurs côtés, la vue 3D ouvre la
 autour de ce bord, et les fils de porte longent la porte jusqu'à ce bord, passent par
 la boucle de charnière et entrent dans le bord de la plaque de ce côté.
 
+Une porte double a deux vantaux, chacun articulé sur son bord extérieur (*Porte* ›
+*Porte double* et la largeur du *Vantail gauche* dans les propriétés de l'armoire,
+`door_leaves` de `add_enclosure` / `set_enclosure`, donnée d'article
+`Door leaves: 275 + 525` avec les largeurs des vantaux depuis la gauche, comme en ont les
+armoires ComfortLine A de Striebel & John de trois à cinq largeurs de champ et
+l'armoire univers `HAG.FR25S2` de Hager). La porte
+reste une face pour ses appareils : chacun est sur le vantail sous son milieu, s'ouvre
+avec lui dans la vue 3D et a ses fils routés par sa charnière ; la vue de la porte
+dessine chaque vantail avec ses charnières et le joint entre eux, et un appareil qui
+passe par-dessus le joint est signalé.
+
 ## Zones interdites
 
 Un article d'armoire peut garder libres des zones de ses faces (*Zones interdites*
@@ -242,6 +261,12 @@ opération. Une page *Plan de perçage* d'une armoire (*Nouvelle page de plan de
 perçage*, `add_page kind=drilling enclosure=+CAB1`) dessine ses faces avec leurs trous
 et découpes à une même échelle, cotées depuis ce coin, avec à côté les types de trous et
 de découpes et leur nombre.
+
+Une porte double (voir [Porte de l'armoire](#porte-de-larmoire)) est percée vantail par
+vantail : le rapport, la page et les *Données CN* prennent chaque vantail comme une tôle
+à part, cotée depuis son coin inférieur gauche, et la transmission aux machines crée un
+programme pour chaque vantail (`CAB1_door_left.nc` ; `face=door_left` ou `door_right`
+de `machining_plan` et `cnc_program`).
 
 ## Câblage virtuel et taux de remplissage des goulottes
 

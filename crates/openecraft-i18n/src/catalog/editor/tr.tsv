@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	En üsttekinin üzerine bir kat
 A local file opens locally, a server project is opened on the project server again	Yerel bir dosya yerel olarak açılır, sunucu projesi proje sunucusunda yeniden açılır
 A local file or a project on the project server	Yerel bir dosya veya proje sunucusundaki bir proje
+A new enclosure of the same part, bayed at this frame	Aynı parçadan yeni bir pano, bu çerçeveye eklenmiş
 A new enclosure standing in this room	Bu odada duran yeni bir pano
 A new project	Yeni bir proje
 A new release is downloaded in the background and installed when you close OpenECraft.	Yeni bir sürüm arka planda indirilir ve OpenECraft'ı kapattığınızda yüklenir.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	Orijinde
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Besleme noktasında: Ik3 maks {} kA, Ik1 min {} kA
 At the top level	En üst düzeyde
+Attach an enclosure here	Buraya pano ekle
 Author	Yazar
 Auto-connect	Otomatik bağla
 Auto-connect selection	Seçimi otomatik bağla
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Kapı kesimleri (CSV)
 Door hinge	Kapı menteşesi
 Door: {} devices, {} cutouts	Kapı: {} cihaz, {} kesim
 Dot	Nokta
+Double door	Çift kanatlı
 Double-click	Çift tıklama
 Down conductors	İniş iletkenleri
 Download into database	Veritabanına indir
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Kablo, çoklu çizgi, çokgen veya duva
 Finish or cancel the drawing, then back to selecting	Çizimi bitir veya iptal et, sonra seçime dön
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Proje sunucusundan açılan bir projenin tamamlanan değişiklikleri kendiliğinden sunucuya kaydedilir; süren giriş tamamlanınca kaydedilir. Kilitler korunur. Kaydet (Ctrl+S) yine hemen kaydeder.
 First row	İlk satır
+Fit all plastic covers	Tüm plastik kapakları tak
 Fit page	Sayfaya sığdır
 Fits {}	{} ile uyumlu
 Fitted	Takılı
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	İlk sütunun yinelenen değerlerini boş bırak
 Left button	Sol düğme
 Left edges	Sol kenarlar
+Left leaf	Sol kanat
 Legend plates (door devices)	Tanıtım plakaları (kapı cihazları)
 Length from the node to the device	Düğümden cihaza uzunluk
 Length inside an enclosure	Pano içi uzunluk
@@ -1242,6 +1247,7 @@ New document page…	Yeni belge sayfası…
 New empty	Yeni, boş
 New enclosure	Yeni pano
 New enclosure in this room…	Bu odada yeni pano…
+New enclosure like this one	Bunun gibi yeni pano
 New enclosure…	Yeni pano…
 New graphics page	Yeni grafik sayfası
 New harness	Yeni kablo demeti
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Dokunmatik ekranda; dokunmatik yüzeyler üç parmak hareketlerini sisteme bırakır.
 On startup	Başlangıçta
 On the roof, joined to the air-termination conductors; move it to its place	Çatıda, yakalama iletkenlerine bağlı; yerine taşıyın
+One leaf	Tek kanat
 One row per label	Etiket başına bir satır
 Only devices on the current page	Yalnızca geçerli sayfadaki cihazlar
 Only frames no page uses can be deleted	Yalnızca hiçbir sayfanın kullanmadığı çerçeveler silinebilir
@@ -2118,6 +2125,7 @@ Tablet mode	Tablet modu
 Tag	Etiket
 Tag field	Etiket alanı
 Tag placed by hand	Etiket elle yerleştirildi
+Take off all plastic covers	Tüm plastik kapakları çıkar
 Take out a subproject	Alt proje dışarı al
 Take out of the building	Binadan çıkar
 Take out {} pages…	{} sayfayı dışarı al…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Oluşturduğu sayfalar kalır
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Parça veritabanı tüm projeler tarafından paylaşılır. Parçalar bir cihaza atandığında projeye kopyalanır.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Panelin plastik kapağı; kapak olmadan çerçeve, raylar ve arkasındaki kablolama görünür
+The plastic covers of all panels of the field grid of this enclosure	Bu panonun alan ızgarasındaki tüm panellerin plastik kapakları
+The plastic covers of all panels of the field grids of every enclosure	Her panonun alan ızgaralarındaki tüm panellerin plastik kapakları
 The point's coordinates in the coordinate reference system	Noktanın koordinat referans sistemindeki koordinatları
 The post; its accessories are the table beams, rails and clamps	Direk; aksesuarları masa kirişleri, raylar ve kelepçelerdir
 The project changed since the search.	Proje aramadan bu yana değişti.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3B görünümü noktaya çevir
 Twin ferrules where two wires share a connection point	İki telin bir bağlantı noktasını paylaştığı yerlerde ikiz yüksükler
 Two fingers	İki parmak
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	İki kanat, her biri dış kenarından menteşeli; kapıdaki cihazlar ortalarının altındaki kanatla birlikte hareket eder
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Burada iki tel dik açıyla birleşmeli. Otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Bir nokta yazın ve Enter'a basın: mm cinsinden x y veya son noktaya göre @dx dy; geçerli aracın tıklaması gibi davranır
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Tam sözcükler
 Width / going	Genişlik / basamak
 Width / height (mm)	Genişlik / yükseklik (mm)
 Width factor	Genişlik faktörü
+Width of the left leaf; the right one takes the rest of the front	Sol kanadın genişliği; sağ kanat önün geri kalanını kaplar
 Width of the letters to their usual width (0.8: narrow lettering)	Harflerin olağan genişliklerine göre genişliği (0,8: dar yazı)
 Width × depth	Genişlik × derinlik
 Width × height	Genişlik × yükseklik
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	{} adres değiştirildi
 {} air-termination rods	{} paratoner çubuğu
 {} already exists on the project server.	{} proje sunucusunda zaten var.
+{} attached to {}	{}, {} panosuna eklendi
 {} bundles, {} branch points	{} demet, {} dallanma noktası
 {} bus cables created	{} bus kablosu oluşturuldu
 {} bus connections	{} bus bağlantısı
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} {} olarak yerleştirildi
 {} placed in {}	{} {} içine yerleştirildi
 {} placement problems (red) – see Check	{} yerleştirme sorunu (kırmızı) – bkz. Kontrol
+{} plastic covers fitted	{} plastik kapak takıldı
+{} plastic covers taken off	{} plastik kapak çıkarıldı
 {} problems	{} sorun
 {} project parts updated	{} proje parçası güncellendi
 {} projects on the server	Sunucuda {} proje

@@ -421,6 +421,8 @@ Does not match	不匹配
 Door (front view)	柜门（正视图）
 Door and walls	柜门和柜壁
 Door handle and document holder	门把手和图纸袋
+Door leaf {}	门扇 {}
+Door leaf {} (front view)	门扇 {}（正视图）
 Double socket outlet with PE	带 PE 的双联插座
 Downstream	下级
 Drag chain	拖链
@@ -780,6 +782,8 @@ Latitude is within ±90° and longitude within ±180°	纬度在 ±90° 以内�
 Lead time (days)	交货期（天）
 Leakage current	泄漏电流
 Leakage line	泄漏管路
+Left door leaf	左门扇
+Left door leaf (front view)	左门扇（正视图）
 Left side panel	左侧板
 Legend plate text	标牌文本
 Length (m)	长度 (m)
@@ -1019,6 +1023,7 @@ Oil resistant	耐油
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	一页原理图，包含 +24V / 0V 电位、按钮、选择开关、指示灯和熔断器；部件和物料清单。
 One schematic page, the potentials of IEC 60204-1	一个原理图页，IEC 60204-1 的电位
 One-way flow control valve	单向节流阀
+Only another enclosure can be bayed there	那里只能并接另一个机柜
 Only revisions that are not released can be submitted	只能提交尚未发布的修订
 Only symbols of the symbol library can be scaled	只能缩放符号库中的符号
 Only {}	仅 {}
@@ -1371,6 +1376,8 @@ Revision table: author of the last revision (2: the one before …)	修订表：
 Revision table: date of the last revision (2: the one before …)	修订表：最近一次修订的日期（2：再前一次 …）
 Revision table: description of the last revision (2: the one before …)	修订表：最近一次修订的说明（2：再前一次 …）
 Revision table: index of the last revision (2: the one before …)	修订表：最近一次修订的索引（2：再前一次 …）
+Right door leaf	右门扇
+Right door leaf (front view)	右门扇（正视图）
 Right side panel	右侧板
 Ring earth electrode	环形接地极
 Ring terminal	环形端子
@@ -1645,6 +1652,7 @@ The first column must be Key	第一列必须是 Key
 The folder {} already holds the project {}: a split project needs a folder of its own	文件夹 {} 已包含项目 {}：拆分项目需要单独的文件夹
 The formula ends too early	公式提前结束
 The function definition needs a key and a name	功能定义需要键和名称
+The item is no frame in an opening of a side wall	该项目不是侧壁开口中的框架
 The last page cannot be deleted	无法删除最后一页
 The macro box has no items left	宏边框中已没有元素
 The next free id is already in use	下一个空闲 ID 已被占用
@@ -2176,6 +2184,7 @@ yellow	黄色
 {}: {} overhangs the end of its mounting rail	{}：{} 超出其安装导轨的末端
 {}: {} pins used, the plug parts have {}	{}：已使用 {} 个插针，插头部件只有 {} 个
 {}: {} reaches about {} °C at its place, allowed {} °C	{}：{} 在其位置处约达 {} °C，允许 {} °C
+{}: {} reaches over the joint between the door leaves	{}：{} 跨过了门扇之间的连接处
 {}: {} solenoid coils linked, the valve has {}	{}：已关联 {} 个电磁线圈，该阀有 {} 个
 {}: {} stands in an inner wall	{}：{} 位于内墙中
 {}: {} stands in the swing of the door in wall {}	{}：{} 位于墙 {} 门的开启范围内

@@ -591,8 +591,8 @@ pub struct PanelUi {
     pub open_properties: bool,
     /// Items copied in the layout (Ctrl+C), pasted with Ctrl+V.
     pub clip: Option<panel::PanelClip>,
-    /// NC export of an enclosure face.
-    pub export: Option<(usize, Face, NcFormat)>,
+    /// NC export of a sheet of an enclosure (a face or a leaf of the door).
+    pub export: Option<(usize, panel::Sheet, NcFormat)>,
     pattern: Option<PatternDialog>,
     /// Name of the 3D macro being saved from the selection.
     save_macro: Option<String>,
@@ -701,12 +701,15 @@ struct DraggedRow(usize);
 struct DraggedBuilding(usize);
 
 /// What was asked for in the enclosure tree of the navigator: a new room, a new
-/// enclosure (in a room, index) or a part dropped (into a room).
+/// enclosure (in a room, index), a part dropped (into a room) or the covers of the
+/// panels.
 #[derive(Default)]
 struct NavTree {
     new_room: bool,
     new_enclosure: Option<Option<usize>>,
     dropped: Option<(String, Option<usize>)>,
+    /// The plastic covers of every panel fitted or taken off.
+    covers: Option<bool>,
 }
 
 /// Marks a row of the navigator a dragged item can be dropped onto.
@@ -1065,8 +1068,64 @@ impl PanelUi {
     }
 
     /// The context menu of the items in the front view.
+    /// Entries of a context menu for the field grid and the joining frames of enclosure
+    /// `ei`: an enclosure attached at the joining frame selected, the plastic covers of
+    /// all its panels taken off or fitted.
+    fn fittings_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize) {
+        if ei >= prj.layout.enclosures.len() {
+            return;
+        }
+        let one = if self.selection.len() == 1 { self.selection.first().copied() } else { None };
+        let frame = one.and_then(|id| panel::fit::joining_side(prj, ei, id).map(|side| (id, side)));
+        let (on, off) = panel::fit::covers(prj, Some(ei));
+        if frame.is_none() && on + off == 0 {
+            return;
+        }
+        if let Some((id, side)) = frame {
+            ui.menu_button(tr("Attach an enclosure here"), |ui| {
+                let attached = |prj: &Project, at: usize| tr_fmt!("{} attached to {}", prj.layout.enclosures[at].name, prj.layout.enclosures[ei].name);
+                if ui.button(tr("New enclosure like this one")).on_hover_text(tr("A new enclosure of the same part, bayed at this frame")).clicked() {
+                    self.status = match panel::fit::attach_new_at_frame(prj, ei, id) {
+                        Ok(at) => attached(prj, at),
+                        Err(e) => e,
+                    };
+                    ui.close();
+                }
+                // The other enclosures, not those standing there already.
+                let (left, right) = panel::neighbours(&prj.layout, ei);
+                let there = if side == Face::Right { right } else { left };
+                let others: Vec<usize> = (0..prj.layout.enclosures.len()).filter(|&i| i != ei && Some(i) != there && !prj.layout.enclosures[i].is_room()).collect();
+                if !others.is_empty() {
+                    ui.separator();
+                }
+                for i in others {
+                    if ui.button(prj.layout.enclosures[i].name.as_str()).clicked() {
+                        self.status = match panel::fit::attach_at_frame(prj, ei, id, i) {
+                            Ok(()) => attached(prj, i),
+                            Err(e) => e,
+                        };
+                        ui.close();
+                    }
+                }
+            });
+        }
+        let tip = tr("The plastic covers of all panels of the field grid of this enclosure");
+        if on > 0 && ui.button(tr("Take off all plastic covers")).on_hover_text(tip).clicked() {
+            let n = panel::fit::set_covers(prj, Some(ei), false);
+            self.status = tr_fmt!("{} plastic covers taken off", n);
+            ui.close();
+        }
+        if off > 0 && ui.button(tr("Fit all plastic covers")).on_hover_text(tip).clicked() {
+            let n = panel::fit::set_covers(prj, Some(ei), true);
+            self.status = tr_fmt!("{} plastic covers fitted", n);
+            ui.close();
+        }
+        ui.separator();
+    }
+
     fn item_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize, an: &Analysis) {
         self.control_menu(ui, prj, an);
+        self.fittings_menu(ui, prj, ei);
         let any = !self.selection.is_empty();
         let cut = ui.add_enabled(any, egui::Button::new(tr("Cut")).shortcut_text("Ctrl+X")).on_hover_text(tr("Devices go back to the devices to place"));
         if cut.clicked() {
@@ -1330,6 +1389,7 @@ impl PanelUi {
                 }
             })
             .response;
+        let (on, off) = panel::fit::covers(prj, None);
         r.context_menu(|ui| {
             if icons::text_button(ui, Icon::Enclosure, tr("New enclosure…")).on_hover_text(tr("Search the enclosures of the parts database and the catalogs for a new one")).clicked() {
                 tree.new_enclosure = Some(None);
@@ -1339,8 +1399,25 @@ impl PanelUi {
                 tree.new_room = true;
                 ui.close();
             }
+            // The plastic covers of the panels of every enclosure.
+            let tip = tr("The plastic covers of all panels of the field grids of every enclosure");
+            if on + off > 0 {
+                ui.separator();
+            }
+            if on > 0 && ui.button(tr("Take off all plastic covers")).on_hover_text(tip).clicked() {
+                tree.covers = Some(false);
+                ui.close();
+            }
+            if off > 0 && ui.button(tr("Fit all plastic covers")).on_hover_text(tip).clicked() {
+                tree.covers = Some(true);
+                ui.close();
+            }
         });
-        if let Some(d) = r.dnd_release_payload::<PartDrag>() {
+        if let Some(fitted) = tree.covers {
+            let n = panel::fit::set_covers(prj, None, fitted);
+            self.status = if fitted { tr_fmt!("{} plastic covers fitted", n) } else { tr_fmt!("{} plastic covers taken off", n) };
+        }
+        if let Some(d) = crate::dropped::<PartDrag>(&r) {
             tree.dropped = Some((d.number.clone(), None));
         }
         if tree.new_room {
@@ -1372,7 +1449,7 @@ impl PanelUi {
         }
         ui.painter().rect_stroke(rect, 3.0, Stroke::new(1.0, color), egui::StrokeKind::Inside);
         ui.painter().galley(rect.center() - galley.size() / 2.0, galley, color);
-        if let Some(d) = r.dnd_release_payload::<PartDrag>() {
+        if let Some(d) = crate::dropped::<PartDrag>(&r) {
             tree.dropped = Some((d.number.clone(), None));
         }
     }
@@ -1453,14 +1530,14 @@ impl PanelUi {
                         if r.dnd_hover_payload::<PartDrag>().is_some() {
                             drop_highlight(ui, r.rect);
                         }
-                        if let Some(d) = r.dnd_release_payload::<PartDrag>() {
+                        if let Some(d) = crate::dropped::<PartDrag>(&r) {
                             tree.dropped = Some((d.number.clone(), room));
                         }
                         // A room goes only among the rooms: onto a room or a cabinet in one.
                         let fits = |d: &DraggedRow| d.0 != i && prj.layout.enclosures.get(d.0).is_some_and(|f| !f.is_room() || room.is_some());
                         if r.dnd_hover_payload::<DraggedRow>().is_some_and(|d| fits(&d)) {
                             let after = drop_line(ui, r.rect);
-                            if let Some(d) = r.dnd_release_payload::<DraggedRow>() {
+                            if let Some(d) = crate::dropped::<DraggedRow>(&r) {
                                 act = Some(NavAction::Move(d.0, i, after));
                             }
                         }
@@ -1998,6 +2075,7 @@ impl PanelUi {
             ui.label(RichText::new(if e.part.is_empty() { "–" } else { &e.part }).monospace());
             ui.end_row();
             ui.label(tr("Width × height"));
+            let old_width = e.width;
             ui.horizontal(|ui| {
                 ui.add(egui::DragValue::new(&mut e.width).speed(5.0).range(100.0..=5000.0));
                 ui.add(egui::DragValue::new(&mut e.height).speed(5.0).range(100.0..=5000.0));
@@ -2024,15 +2102,39 @@ impl PanelUi {
             ui.add(egui::DragValue::new(&mut e.door_clearance).speed(1.0).range(0.0..=500.0).suffix(" mm"))
                 .on_hover_text(tr("Space behind the door that devices must keep free (door-mounted devices, handles)"));
             ui.end_row();
-            ui.label(tr("Door hinge"));
+            // The leaves keep their shares of a new width.
+            panel::doors::fit_width(e, old_width);
+            ui.label(tr("Door"));
+            let double = e.door_leaves.len() > 1;
             ui.horizontal(|ui| {
-                for (hinge, title) in [(panel::DoorHinge::Left, tr("Left")), (panel::DoorHinge::Right, tr("Right"))] {
-                    ui.selectable_value(&mut e.door_hinge, hinge, title);
+                if ui.selectable_label(!double, tr("One leaf")).clicked() && double {
+                    panel::doors::split(e, None);
                 }
-            })
-            .response
-            .on_hover_text(tr("Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it"));
+                let tip = tr("Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle");
+                if ui.selectable_label(double, tr("Double door")).on_hover_text(tip).clicked() && !double {
+                    panel::doors::split(e, Some(e.width / 2.0));
+                }
+            });
             ui.end_row();
+            if double {
+                ui.label(tr("Left leaf"));
+                let mut left = e.door_leaves[0].w;
+                let r = ui.add(egui::DragValue::new(&mut left).speed(5.0).range(50.0..=(e.width - 50.0).max(50.0)).suffix(" mm"));
+                if r.on_hover_text(tr("Width of the left leaf; the right one takes the rest of the front")).changed() && e.door_leaves.len() == 2 {
+                    panel::doors::split(e, Some(left));
+                }
+                ui.end_row();
+            } else {
+                ui.label(tr("Door hinge"));
+                ui.horizontal(|ui| {
+                    for (hinge, title) in [(panel::DoorHinge::Left, tr("Left")), (panel::DoorHinge::Right, tr("Right"))] {
+                        ui.selectable_value(&mut e.door_hinge, hinge, title);
+                    }
+                })
+                .response
+                .on_hover_text(tr("Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it"));
+                ui.end_row();
+            }
             let (pw, ph) = e.plate_size();
             ui.label(tr("Mounting plate"));
             ui.label(format!("{pw:.0} × {ph:.0} mm"));
@@ -2095,41 +2197,60 @@ impl PanelUi {
         ui.add(egui::Label::new(tr_fmt!("Mounting plate: {} holes, {} cutouts", holes, cutouts)).wrap());
         ui.horizontal_wrapped(|ui| {
             if icons::text_button(ui, Icon::Download, tr("NC data (DXF)")).on_hover_text(tr("Plate outline, holes per diameter, cutouts")).clicked() {
-                self.export = Some((ei, Face::Plate, NcFormat::Dxf));
+                self.export = Some((ei, Face::Plate.into(), NcFormat::Dxf));
             }
             if icons::text_button(ui, Icon::Download, tr("NC data (DWG)")).on_hover_text(tr("Plate outline, holes per diameter, cutouts")).clicked() {
-                self.export = Some((ei, Face::Plate, NcFormat::Dwg));
+                self.export = Some((ei, Face::Plate.into(), NcFormat::Dwg));
             }
             if icons::text_button(ui, Icon::Download, tr("Drilling list (CSV)")).clicked() {
-                self.export = Some((ei, Face::Plate, NcFormat::Csv));
+                self.export = Some((ei, Face::Plate.into(), NcFormat::Csv));
             }
         });
         let door_devices = e.items.iter().filter(|i| i.face == Face::Door && i.kind == ItemKind::Device).count();
         ui.label(tr_fmt!("Door: {} devices, {} cutouts", door_devices, openecraft_core::production::openings(e, &prj.parts, Face::Door).len()));
-        ui.horizontal_wrapped(|ui| {
-            if icons::text_button(ui, Icon::Download, tr("Door NC data (DXF)")).clicked() {
-                self.export = Some((ei, Face::Door, NcFormat::Dxf));
-            }
-            if icons::text_button(ui, Icon::Download, tr("Door NC data (DWG)")).clicked() {
-                self.export = Some((ei, Face::Door, NcFormat::Dwg));
-            }
-            if icons::text_button(ui, Icon::Download, tr("Door cutouts (CSV)")).clicked() {
-                self.export = Some((ei, Face::Door, NcFormat::Csv));
-            }
-        });
+        let leaves: Vec<panel::Sheet> = openecraft_core::production::sheets(e).into_iter().filter(|s| s.leaf.is_some()).collect();
+        if leaves.is_empty() {
+            ui.horizontal_wrapped(|ui| {
+                if icons::text_button(ui, Icon::Download, tr("Door NC data (DXF)")).clicked() {
+                    self.export = Some((ei, Face::Door.into(), NcFormat::Dxf));
+                }
+                if icons::text_button(ui, Icon::Download, tr("Door NC data (DWG)")).clicked() {
+                    self.export = Some((ei, Face::Door.into(), NcFormat::Dwg));
+                }
+                if icons::text_button(ui, Icon::Download, tr("Door cutouts (CSV)")).clicked() {
+                    self.export = Some((ei, Face::Door.into(), NcFormat::Csv));
+                }
+            });
+        }
+        // A door of several leaves: each leaf is a sheet of its own.
+        for s in leaves {
+            let (n, m) = (openecraft_core::production::sheet_holes(e, &prj.parts, s).len(), openecraft_core::production::sheet_openings(e, &prj.parts, s).len());
+            ui.label(tr_fmt!("{}: {} holes, {} cutouts", s.title(e), n, m));
+            ui.horizontal_wrapped(|ui| {
+                if icons::text_button(ui, Icon::Download, tr("NC data (DXF)")).clicked() {
+                    self.export = Some((ei, s, NcFormat::Dxf));
+                }
+                if icons::text_button(ui, Icon::Download, tr("NC data (DWG)")).clicked() {
+                    self.export = Some((ei, s, NcFormat::Dwg));
+                }
+                if icons::text_button(ui, Icon::Download, tr("Drilling list (CSV)")).clicked() {
+                    self.export = Some((ei, s, NcFormat::Csv));
+                }
+            });
+        }
         if self.face.is_wall() {
             let face = self.face;
             let n = openecraft_core::production::holes_on(e, &prj.parts, face).len();
             ui.label(tr_fmt!("{}: {} holes, {} cutouts", face.title(), n, openecraft_core::production::openings(e, &prj.parts, face).len()));
             ui.horizontal_wrapped(|ui| {
                 if icons::text_button(ui, Icon::Download, tr("NC data of this face (DXF)")).clicked() {
-                    self.export = Some((ei, face, NcFormat::Dxf));
+                    self.export = Some((ei, face.into(), NcFormat::Dxf));
                 }
                 if icons::text_button(ui, Icon::Download, tr("NC data of this face (DWG)")).clicked() {
-                    self.export = Some((ei, face, NcFormat::Dwg));
+                    self.export = Some((ei, face.into(), NcFormat::Dwg));
                 }
                 if icons::text_button(ui, Icon::Download, tr("Drilling list of this face (CSV)")).clicked() {
-                    self.export = Some((ei, face, NcFormat::Csv));
+                    self.export = Some((ei, face.into(), NcFormat::Csv));
                 }
             });
         }
@@ -3247,7 +3368,7 @@ impl PanelUi {
                     let mut act = r.clicked().then_some(NavAction::Site(Some(bi)));
                     if r.dnd_hover_payload::<DraggedBuilding>().is_some_and(|d| d.0 != bi) {
                         let after = drop_line(ui, r.rect);
-                        if let Some(d) = r.dnd_release_payload::<DraggedBuilding>() {
+                        if let Some(d) = crate::dropped::<DraggedBuilding>(&r) {
                             act = Some(NavAction::MoveBuilding(d.0, bi, after));
                         }
                     }
@@ -3277,7 +3398,7 @@ impl PanelUi {
             let elsewhere = |d: &DraggedRow| prj.layout.enclosures.get(d.0).is_some_and(|e| e.is_room() && e.level != id);
             if r.dnd_hover_payload::<DraggedRow>().is_some_and(|d| elsewhere(&d)) {
                 drop_highlight(ui, r.rect);
-                if let Some(d) = r.dnd_release_payload::<DraggedRow>() {
+                if let Some(d) = crate::dropped::<DraggedRow>(&r) {
                     act = Some(NavAction::Put(d.0, id));
                 }
             }

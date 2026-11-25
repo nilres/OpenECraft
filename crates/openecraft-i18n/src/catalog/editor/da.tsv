@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	En etage over den øverste
 A local file opens locally, a server project is opened on the project server again	En lokal fil åbnes lokalt, et serverprojekt åbnes igen på projektserveren
 A local file or a project on the project server	En lokal fil eller et projekt på projektserveren
+A new enclosure of the same part, bayed at this frame	En ny kapsling af samme artikel, sammenbygget ved denne ramme
 A new enclosure standing in this room	En ny kapsling i dette rum
 A new project	Et nyt projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	En ny version hentes i baggrunden og installeres, når du lukker OpenECraft.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	I origo
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Ved forsyningspunktet: Ik3 maks. {} kA, Ik1 min. {} kA
 At the top level	På øverste niveau
+Attach an enclosure here	Sammenbyg en kapsling her
 Author	Forfatter
 Auto-connect	Autoforbind
 Auto-connect selection	Autoforbind markering
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Dørudskæringer (CSV)
 Door hinge	Dørens hængsler
 Door: {} devices, {} cutouts	Dør: {} enheder, {} udskæringer
 Dot	Punkt
+Double door	Dobbeltdør
 Double-click	Dobbeltklik
 Down conductors	Nedledere
 Download into database	Download til database
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Afslut en leder, polylinje, polygon ell
 Finish or cancel the drawing, then back to selecting	Afslut eller annullér tegningen, derefter tilbage til valg
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Afsluttede ændringer i et projekt, der er åbnet fra projektserveren, gemmes der af sig selv; igangværende indtastning gemmes, når den er afsluttet. Låse bevares. Gem (Ctrl+S) gemmer stadig med det samme.
 First row	Første række
+Fit all plastic covers	Monter alle plastafdækninger
 Fit page	Tilpas side
 Fits {}	Passer til {}
 Fitted	Monteret
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Lad gentagne værdier i den første kolonne være tomme
 Left button	Venstre knap
 Left edges	Venstre kanter
+Left leaf	Venstre fløj
 Legend plates (door devices)	Betegnelsesskilte (dørenheder)
 Length from the node to the device	Længde fra knuden til enheden
 Length inside an enclosure	Længde inde i en kapsling
@@ -1242,6 +1247,7 @@ New document page…	Ny dokumentside…
 New empty	Ny, tom
 New enclosure	Ny kapsling
 New enclosure in this room…	Ny kapsling i dette rum…
+New enclosure like this one	Ny kapsling som denne
 New enclosure…	Ny kapsling…
 New graphics page	Ny grafikside
 New harness	Nyt ledningsnet
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	På berøringsskærm; pegefelter overlader bevægelser med tre fingre til systemet.
 On startup	Ved start
 On the roof, joined to the air-termination conductors; move it to its place	På taget, forbundet med fanglederne; flyt den på plads
+One leaf	Én fløj
 One row per label	Én række pr. mærkat
 Only devices on the current page	Kun enheder på den aktuelle side
 Only frames no page uses can be deleted	Kun rammer, som ingen side bruger, kan slettes
@@ -2118,6 +2125,7 @@ Tablet mode	Tablettilstand
 Tag	Betegnelse
 Tag field	Mærkningsfelt
 Tag placed by hand	Mærkning placeret manuelt
+Take off all plastic covers	Tag alle plastafdækninger af
 Take out a subproject	Udtag et delprojekt
 Take out of the building	Tag ud af bygningen
 Take out {} pages…	Udtag {} sider…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	De sider, den har genereret, bevares
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Artikeldatabasen deles af alle projekter. Artikler kopieres til et projekt, når de tildeles en enhed.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Feltets plastafdækning; uden den ses rammen, skinnerne og ledningsføringen bag den
+The plastic covers of all panels of the field grid of this enclosure	Plastafdækningerne på alle felter i feltrasteret i denne kapsling
+The plastic covers of all panels of the field grids of every enclosure	Plastafdækningerne på alle felter i feltrasterne i hver kapsling
 The point's coordinates in the coordinate reference system	Punktets koordinater i referencesystemet
 The post; its accessories are the table beams, rails and clamps	Stolpen; dens tilbehør er bordbjælker, skinner og klemmer
 The project changed since the search.	Projektet er ændret siden søgningen.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Vend 3D-visningen mod punktet
 Twin ferrules where two wires share a connection point	Dobbelte terminalrør hvor to ledere deler et tilslutningspunkt
 Two fingers	To fingre
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	To fløje, hver hængslet i sin yderkant; udstyr på døren følger fløjen under dets midte
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Her skal to ledere mødes i ret vinkel. Med automatisk forbindelse slået til forbindes tilslutningspunkter over for dets arme med det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv et punkt, og tryk på Enter: x y i mm eller @dx dy i forhold til det sidste punkt; det virker som et klik med det aktuelle værktøj
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Hele ord
 Width / going	Bredde / grund
 Width / height (mm)	Bredde / højde (mm)
 Width factor	Breddefaktor
+Width of the left leaf; the right one takes the rest of the front	Bredde af venstre fløj; den højre fylder resten af fronten
 Width of the letters to their usual width (0.8: narrow lettering)	Bogstavernes bredde i forhold til deres sædvanlige bredde (0,8: smal skrift)
 Width × depth	Bredde × dybde
 Width × height	Bredde × højde
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	{} adresser ændret
 {} air-termination rods	{} fangstænger
 {} already exists on the project server.	{} findes allerede på projektserveren.
+{} attached to {}	{} sammenbygget med {}
 {} bundles, {} branch points	{} bundter, {} forgreningspunkter
 {} bus cables created	{} buskabler oprettet
 {} bus connections	{} busforbindelser
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} placeret som {}
 {} placed in {}	{} placeret i {}
 {} placement problems (red) – see Check	{} placeringsproblemer (røde) – se Kontrol
+{} plastic covers fitted	{} plastafdækninger monteret
+{} plastic covers taken off	{} plastafdækninger taget af
 {} problems	{} problemer
 {} project parts updated	{} projektartikler opdateret
 {} projects on the server	{} projekter på serveren

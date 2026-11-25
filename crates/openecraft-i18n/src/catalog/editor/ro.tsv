@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Un nivel deasupra celui mai înalt
 A local file opens locally, a server project is opened on the project server again	Un fișier local se deschide local, un proiect de pe server este redeschis pe serverul de proiecte
 A local file or a project on the project server	Un fișier local sau un proiect de pe serverul de proiecte
+A new enclosure of the same part, bayed at this frame	O carcasă nouă din aceeași piesă, alăturată la acest cadru
 A new enclosure standing in this room	O carcasă nouă în această încăpere
 A new project	Un proiect nou
 A new release is downloaded in the background and installed when you close OpenECraft.	O versiune nouă se descarcă în fundal și se instalează când închideți OpenECraft.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	În origine
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	La punctul de alimentare: Ik3 max {} kA, Ik1 min {} kA
 At the top level	La nivelul superior
+Attach an enclosure here	Alătură aici o carcasă
 Author	Autor
 Auto-connect	Conectare automată
 Auto-connect selection	Conectare automată selecție
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Decupaje ușă (CSV)
 Door hinge	Balamalele ușii
 Door: {} devices, {} cutouts	Ușă: {} dispozitive, {} decupaje
 Dot	Punct
+Double door	Ușă dublă
 Double-click	Dublu clic
 Down conductors	Conductoare de coborâre
 Download into database	Descărcare în baza de date
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Terminarea unui fir, unei polilinii, un
 Finish or cancel the drawing, then back to selecting	Terminarea sau anularea desenului, apoi înapoi la selectare
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Modificările încheiate ale unui proiect deschis de pe serverul de proiecte sunt salvate acolo de la sine; o introducere în curs este salvată după ce se încheie. Blocările se păstrează. Salvare (Ctrl+S) salvează în continuare imediat.
 First row	Primul rând
+Fit all plastic covers	Montează toate capacele din plastic
 Fit page	Încadrare pagină
 Fits {}	Compatibil cu {}
 Fitted	Montat
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Lăsare necompletate a valorilor repetate din prima coloană
 Left button	Butonul stâng
 Left edges	Marginile din stânga
+Left leaf	Canatul stâng
 Legend plates (door devices)	Plăcuțe de identificare (dispozitive de ușă)
 Length from the node to the device	Lungimea de la nod la dispozitiv
 Length inside an enclosure	Lungime în interiorul unei carcase
@@ -1242,6 +1247,7 @@ New document page…	Pagină de document nouă…
 New empty	Nou, gol
 New enclosure	Carcasă nouă
 New enclosure in this room…	Carcasă nouă în această încăpere…
+New enclosure like this one	Carcasă nouă ca aceasta
 New enclosure…	Carcasă nouă…
 New graphics page	Pagină de grafică nouă
 New harness	Cablaj nou
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Pe ecranul tactil; touchpadurile lasă gesturile cu trei degete sistemului.
 On startup	La pornire
 On the roof, joined to the air-termination conductors; move it to its place	Pe acoperiș, legată de conductoarele de captare; mutați-o la locul ei
+One leaf	Un canat
 One row per label	Un rând per etichetă
 Only devices on the current page	Numai dispozitivele de pe pagina curentă
 Only frames no page uses can be deleted	Pot fi șterse doar chenarele pe care nu le folosește nicio pagină
@@ -2118,6 +2125,7 @@ Tablet mode	Mod tabletă
 Tag	Identificator
 Tag field	Câmp de identificator
 Tag placed by hand	Identificator plasat manual
+Take off all plastic covers	Scoate toate capacele din plastic
 Take out a subproject	Extragere subproiect
 Take out of the building	Scoateți din clădire
 Take out {} pages…	Extragere {} pagini…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Paginile generate de acesta rămân
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Baza de date de articole este partajată de toate proiectele. Articolele se copiază într-un proiect atunci când sunt atribuite unui dispozitiv.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Capacul din plastic al panoului; fără el se văd rama, șinele și cablajul din spatele lui
+The plastic covers of all panels of the field grid of this enclosure	Capacele din plastic ale tuturor câmpurilor grilei acestei carcase
+The plastic covers of all panels of the field grids of every enclosure	Capacele din plastic ale tuturor câmpurilor grilelor fiecărei carcase
 The point's coordinates in the coordinate reference system	Coordonatele punctului în sistemul de coordonate de referință
 The post; its accessories are the table beams, rails and clamps	Stâlpul; accesoriile lui sunt grinzile mesei, șinele și clemele
 The project changed since the search.	Proiectul s-a modificat de la căutare.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Întoarcerea vederii 3D spre punct
 Twin ferrules where two wires share a connection point	Manșoane duble unde două conductoare împart un punct de conexiune
 Two fingers	Două degete
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Două canaturi, fiecare cu balamale pe marginea exterioară; aparatele de pe ușă merg cu canatul de sub mijlocul lor
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aici trebuie să se întâlnească două fire în unghi drept. Cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Introduceți un punct și apăsați Enter: x y în mm sau @dx dy relativ la ultimul punct; acționează ca un clic al instrumentului curent
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Cuvinte întregi
 Width / going	Lățime / treaptă
 Width / height (mm)	Lățime / înălțime (mm)
 Width factor	Factor de lățime
+Width of the left leaf; the right one takes the rest of the front	Lățimea canatului stâng; cel drept ocupă restul feței
 Width of the letters to their usual width (0.8: narrow lettering)	Lățimea literelor față de lățimea lor obișnuită (0,8: scris îngust)
 Width × depth	Lățime × adâncime
 Width × height	Lățime × înălțime
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	{} adrese modificate
 {} air-termination rods	{} tije de captare
 {} already exists on the project server.	{} există deja pe serverul de proiecte.
+{} attached to {}	{} alăturată la {}
 {} bundles, {} branch points	{} mănunchiuri, {} puncte de ramificație
 {} bus cables created	{} cabluri de magistrală create
 {} bus connections	{} conexiuni de magistrală
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} plasat ca {}
 {} placed in {}	{} a fost plasat în {}
 {} placement problems (red) – see Check	{} probleme de plasare (roșu) – consultați Verificare
+{} plastic covers fitted	{} capace din plastic montate
+{} plastic covers taken off	{} capace din plastic scoase
 {} problems	{} probleme
 {} project parts updated	S-au actualizat {} articole ale proiectului
 {} projects on the server	{} proiecte pe server

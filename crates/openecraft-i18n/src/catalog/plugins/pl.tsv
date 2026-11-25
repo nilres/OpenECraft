@@ -67,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Ochrona
 Bar id	Identyfikator szyny
 Bar thickness, mm (default 5)	Grubość szyny, mm (domyślnie 5)
 Bar width, mm (default 20)	Szerokość szyny, mm (domyślnie 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Dołącza obudowę przy ramce łączącej w ścianie bocznej innej obudowy (np. CZ3 firmy Striebel & John): po jej prawej stronie dla ramki w prawej ścianie, po lewej dla ramki w lewej ścianie
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Szereguje obudowę obok innej, z jej prawej strony; bez right_of obudowa opuszcza swój szereg
 Bend radius in drag chains as a multiple of the cable diameter	Promień gięcia w prowadnikach kablowych jako wielokrotność średnicy kabla
 Bend radius of a drag chain in mm	Promień gięcia prowadnika kablowego w mm
@@ -146,6 +147,7 @@ Corner points on the mounting plate in mm	Punkty narożne na płycie montażowej
 Correction of the time estimate	Korekta szacowania czasu
 Cost of free air against ducts and routing paths	Koszt prowadzenia swobodnego w porównaniu z kanałami i ścieżkami prowadzenia
 Counting step (default 1)	Krok liczenia (domyślnie 1)
+Covers fitted; false takes them off	Osłony założone; false je zdejmuje
 Creates a bus cable for the connection (without cable tag)	Tworzy kabel magistrali dla połączenia (bez oznaczenia kabla)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Tworzy kabel typu magistrali (typ, żyły, przekrój) dla każdego połączenia magistrali bez kabla
 Creates or changes a PCT loop of the pre-planning	Tworzy lub zmienia pętlę AKPiA planowania wstępnego
@@ -264,12 +266,16 @@ Enclosure or room it goes before or after	Obudowa lub pomieszczenie, przed któr
 Enclosure part number	Numer artykułu obudowy
 Enclosure system (default: the enclosure's)	System obudów (domyślnie: system danej obudowy)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Obudowa, do której trafiają kopie (miejsce montażu, np. +CAB2); bez podania ta sama
+Enclosure to attach; without it a new one like the enclosure with the frame	Dołączana obudowa; bez niej nowa, taka jak obudowa z ramką
+Enclosure with the frame	Obudowa z ramką
 Enclosure {} exists already	Obudowa {} już istnieje
+Enclosure; without it every enclosure	Obudowa; bez niej każda obudowa
 Enclosures, panel items, accessories and panel macros	Obudowy, elementy zabudowy, akcesoria i makra zabudowy
 End brackets and end plates from the tech data of the terminal parts	Uchwyty końcowe i pokrywy końcowe z danych technicznych artykułów zacisków
 End holes from the bar end as a multiple of the width	Otwory końcowe od końca szyny jako wielokrotność szerokości
 End: device tag and connection point, e.g. -S1:14	Koniec: oznaczenie urządzenia i punkt połączenia, np. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Powierzchnia: plate, door, left, right, rear, roof lub bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Powierzchnia: plate, door, left, right, rear, roof lub bottom; door_left i door_right dla skrzydeł drzwi dwuskrzydłowych
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Plan obiektowy: węzły, odcinki, obrysy, trasy, połączenia wyrównawcze i akcesoria
 Figure	Wskaźnik
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Znajduje i zastępuje tekst w kolumnie wszystkich (przefiltrowanych) wierszy; bez szukanego tekstu kolumna jest wypełniana zamiennikiem
@@ -283,6 +289,7 @@ First counter value (default 1)	Pierwsza wartość licznika (domyślnie 1)
 First page number (default 1)	Pierwszy numer strony (domyślnie 1)
 First port as station:port, e.g. PLC1:X1 P2	Pierwszy port jako stacja:port, np. PLC1:X1 P2
 First row with the column names	Pierwszy wiersz z nazwami kolumn
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Zakłada osłony z tworzywa wszystkich pól siatki pól obudowy lub każdej obudowy albo zdejmuje je wszystkie
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Dachy płaskie i pola naziemne: kierunek, w którym zwrócone są moduły, w stopniach, przeciwnie do ruchu wskazówek zegara patrząc z góry (0: w stronę +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format nazwy urządzenia: {letter}, {n} (licznik), {page}, {column}, {row}; domyślnie {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format schematu format: {n} (licznik), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -361,6 +368,7 @@ Invalid answer of the plugin: {}	Nieprawidłowa odpowiedź wtyczki: {}
 Invalid segment name: {}	Nieprawidłowa nazwa segmentu: {}
 Invalid title block elements: {}	Nieprawidłowe elementy tabliczki rysunkowej: {}
 Item id	Identyfikator elementu
+Item id of the frame	Identyfikator elementu ramki
 Item ids	Identyfikatory elementów
 Jumper number	Numer mostka
 Jumper number (terminals with the same number are bridged); 0 removes it	Numer mostka (zaciski o tym samym numerze są zmostkowane); 0 go usuwa
@@ -381,6 +389,7 @@ Landscape (true) or portrait (false)	Poziomo (true) lub pionowo (false)
 Language the project texts are written in, e.g. en	Język, w którym są pisane teksty projektu, np. en
 Larger round holes are milled, mm	Większe otwory okrągłe są frezowane, mm
 Largest difference between hole and tool, mm	Największa różnica między otworem a narzędziem, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Skrzydła drzwi dwuskrzydłowych: ich szerokości od lewej, np. 275 + 525 (z left lub right po szerokości dla jego zawiasu), albo ich liczba dla skrzydeł równej szerokości; puste lub 1 dla jednego skrzydła
 Left edge from the left end of the wall (seen from inside) in mm	Lewa krawędź od lewego końca ściany (patrząc od wewnątrz) w mm
 Left edge in mm	Lewa krawędź w mm
 Left edge on the face in mm	Lewa krawędź na ścianie w mm
@@ -976,6 +985,7 @@ Unknown class: {}	Nieznana klasa: {}
 Unknown data type: {}	Nieznany typ danych: {}
 Unknown direction {}: left, right, up or down	Nieznany kierunek {}: left, right, up lub down
 Unknown door hinge: {}	Nieznana strona zawiasów: {}
+Unknown door leaves: {}	Nieznane skrzydła drzwi: {}
 Unknown earth electrode: {}	Nieznany uziom: {}
 Unknown earthing system: {}	Nieznany układ sieci: {}
 Unknown face {}	Nieznana powierzchnia {}

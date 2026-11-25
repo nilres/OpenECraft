@@ -60,6 +60,24 @@ fn the_drilling_page_shows_every_hole_and_cutout_with_its_dimensions() {
 }
 
 #[test]
+fn the_drilling_page_shows_each_leaf_of_a_double_door() {
+    let mut prj = demo_project();
+    let e = &mut prj.layout.enclosures[0];
+    let mut middles: Vec<f32> = e.items.iter().filter(|i| i.face == Face::Door).map(|i| i.x + i.w / 2.0).collect();
+    middles.sort_by(f32::total_cmp);
+    crate::panel::doors::split(e, Some((middles[0] + middles[middles.len() - 1]) / 2.0));
+    let id = e.id;
+    let at = { let n = prj.pages.len(); crate::ops::add_page(&mut prj, PageKind::Drilling(id), n) };
+    let an = Analysis::with_builtin(&prj);
+    let mut d = Rec::default();
+    super::super::draw_page(&mut d, &prj, &an.index, &an, at, &Opts::default());
+    for leaf in ["Left door leaf (front view)", "Right door leaf (front view)"] {
+        assert!(d.texts.iter().any(|(_, t)| t.starts_with(leaf)), "{leaf}");
+    }
+    assert!(!d.texts.iter().any(|(_, t)| t.starts_with("Door (front view)")));
+}
+
+#[test]
 fn a_drilling_page_without_its_enclosure_says_so() {
     let mut prj = demo_project();
     let at = { let n = prj.pages.len(); crate::ops::add_page(&mut prj, PageKind::Drilling(9_999_999), n) };

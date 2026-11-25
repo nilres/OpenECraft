@@ -108,7 +108,7 @@ impl PanelUi {
         let full = places.is_empty() && fit::fits_enclosure(prj, ei, &part);
         self.status = self.drag_status(e, &number, &places, hit.as_ref(), Some(self.face), full);
         ui.ctx().set_cursor_icon(if hit.is_some() { egui::CursorIcon::Grabbing } else { egui::CursorIcon::NoDrop });
-        if resp.dnd_release_payload::<PartDrag>().is_some() {
+        if crate::dropped::<PartDrag>(resp).is_some() {
             if let (Some(pl), Some(q)) = (hit, at) {
                 self.drop_accessory(prj, ei, &part, &pl, q);
             }
@@ -147,7 +147,7 @@ impl PanelUi {
             painter.rect(frame, 3.0, ui.visuals().extreme_bg_color, Stroke::new(1.0, fit_color()), egui::StrokeKind::Outside);
             painter.galley(frame.min + egui::vec2(4.0, 4.0), galley, ui.visuals().text_color());
         }
-        if resp.dnd_release_payload::<PartDrag>().is_some() {
+        if crate::dropped::<PartDrag>(resp).is_some() {
             if let (Some(k), Some(q)) = (hit, ptr) {
                 let at = point_on_face(e, &places[k], pose, project_view, q);
                 let place = places[k].clone();

@@ -67,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Tartal�
 Bar id	Sínazonosító
 Bar thickness, mm (default 5)	Sínvastagság, mm (alapértelmezés: 5)
 Bar width, mm (default 20)	Sínszélesség, mm (alapértelmezés: 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Egy szekrényt egy másik oldalfalában lévő összekötő kerethez sorol (pl. a Striebel & John CZ3): jobb oldali falban lévő keretnél jobbra, bal oldali falban lévőnél balra
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Egy szekrényt egy másik jobb oldalához sorol (szekrénysor); right_of nélkül a szekrény kilép a szekrénysorból
 Bend radius in drag chains as a multiple of the cable diameter	Hajlítási sugár energialáncokban a kábelátmérő többszöröseként
 Bend radius of a drag chain in mm	Az energialánc hajlítási sugara mm-ben
@@ -146,6 +147,7 @@ Corner points on the mounting plate in mm	Sarokpontok a szerelőlapon mm-ben
 Correction of the time estimate	Az időbecslés korrekciója
 Cost of free air against ducts and routing paths	A szabad vezetés költsége a csatornákhoz és fektetési utakhoz képest
 Counting step (default 1)	Számlálási lépésköz (alapértelmezés: 1)
+Covers fitted; false takes them off	Burkolatok felhelyezve; a false leveszi őket
 Creates a bus cable for the connection (without cable tag)	Buszkábelt hoz létre a kapcsolathoz (kábelazonosító nélkül)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Minden kábel nélküli buszkapcsolathoz bustípusú kábelt (típus, erek, keresztmetszet) hoz létre
 Creates or changes a PCT loop of the pre-planning	Létrehozza vagy módosítja az előtervezés egy PCT-körét
@@ -264,12 +266,16 @@ Enclosure or room it goes before or after	A szekrény vagy helyiség, amely elé
 Enclosure part number	A szekrény cikkszáma
 Enclosure system (default: the enclosure's)	Szekrényrendszer (alapértelmezés: a szekrényé)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Szekrény, ahová a másolatok kerülnek (szerelési hely, pl. +CAB2); megadás nélkül ugyanaz
+Enclosure to attach; without it a new one like the enclosure with the frame	A sorolandó szekrény; nélküle egy új, olyan, mint a keretet tartalmazó szekrény
+Enclosure with the frame	A keretet tartalmazó szekrény
 Enclosure {} exists already	A(z) {} szekrény már létezik
+Enclosure; without it every enclosure	Szekrény; nélküle minden szekrény
 Enclosures, panel items, accessories and panel macros	Szekrények, elrendezési elemek, tartozékok és elrendezési makrók
 End brackets and end plates from the tech data of the terminal parts	Végbakok és zárólapok a sorkapocs-alkatrészek műszaki adataiból
 End holes from the bar end as a multiple of the width	Végfuratok a sín végétől a szélesség többszöröseként
 End: device tag and connection point, e.g. -S1:14	Vég: készülékazonosító és csatlakozási pont, pl. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Felület: plate, door, left, right, rear, roof vagy bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Felület: plate, door, left, right, rear, roof vagy bottom; door_left és door_right a kétszárnyú ajtó szárnyaihoz
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Terepi terv: csomópontok, szakaszok, körvonalak, nyomvonalak, potenciálkiegyenlítés és tartozékok
 Figure	Mutató
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Szöveget keres és cserél az összes (szűrt) sor egy oszlopában; keresőszöveg nélkül az oszlop a cserével töltődik ki
@@ -283,6 +289,7 @@ First counter value (default 1)	Első számlálóérték (alapértelmezés: 1)
 First page number (default 1)	Első oldalszám (alapértelmezés: 1)
 First port as station:port, e.g. PLC1:X1 P2	Első port állomás:port alakban, pl. PLC1:X1 P2
 First row with the column names	Első sor az oszlopnevekkel
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Felhelyezi egy szekrény vagy minden szekrény mezőrácsa összes mezőjének műanyag burkolatát, vagy mindet leveszi
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Lapostetők és szabadföldi mezők: az irány, amerre a modulok néznek, fokban, felülről nézve az óramutató járásával ellentétesen (0: +z felé)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	A készüléknév formátuma: {letter}, {n} (számláló), {page}, {column}, {row}; alapértelmezés: {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	A format séma formátuma: {n} (számláló), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -361,6 +368,7 @@ Invalid answer of the plugin: {}	Érvénytelen bővítményválasz: {}
 Invalid segment name: {}	Érvénytelen szegmensnév: {}
 Invalid title block elements: {}	Érvénytelen szövegmező-elemek: {}
 Item id	Elemazonosító
+Item id of the frame	A keret elemazonosítója
 Item ids	Elemazonosítók
 Jumper number	Áthidalásszám
 Jumper number (terminals with the same number are bridged); 0 removes it	Áthidalásszám (az azonos számú sorkapcsok át vannak hidalva); 0 eltávolítja
@@ -381,6 +389,7 @@ Landscape (true) or portrait (false)	Fekvő (true) vagy álló (false)
 Language the project texts are written in, e.g. en	A projektszövegek nyelve, pl. en
 Larger round holes are milled, mm	Az ennél nagyobb kerek furatok marással készülnek, mm
 Largest difference between hole and tool, mm	A furat és a szerszám közötti legnagyobb eltérés, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Kétszárnyú ajtó szárnyai: szélességük balról, pl. 275 + 525 (egy szélesség után left vagy right a zsanérjához), vagy számuk egyforma széles szárnyakhoz; üres vagy 1 egy szárnyhoz
 Left edge from the left end of the wall (seen from inside) in mm	Bal él a fal bal végétől (belülről nézve), mm
 Left edge in mm	Bal szél mm-ben
 Left edge on the face in mm	Bal él a felületen, mm-ben
@@ -976,6 +985,7 @@ Unknown class: {}	Ismeretlen osztály: {}
 Unknown data type: {}	Ismeretlen adattípus: {}
 Unknown direction {}: left, right, up or down	Ismeretlen irány {}: left, right, up vagy down
 Unknown door hinge: {}	Ismeretlen zsanéroldal: {}
+Unknown door leaves: {}	Ismeretlen ajtószárnyak: {}
 Unknown earth electrode: {}	Ismeretlen földelő: {}
 Unknown earthing system: {}	Ismeretlen földelési rendszer: {}
 Unknown face {}	Ismeretlen felület: {}

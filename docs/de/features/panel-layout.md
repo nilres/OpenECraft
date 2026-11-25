@@ -47,13 +47,19 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
   Kunststoffabdeckung mit einem Ausschnitt je Reihe von Betriebsmitteln.
   *Kunststoffabdeckung* in seinen Eigenschaften (Befehl `set_panel_item` mit `cover`)
   nimmt die Abdeckung ab, um den Rahmen, die Tragschienen und die Verdrahtung dahinter
-  zu sehen.
+  zu sehen. *Alle Kunststoffabdeckungen abnehmen* und *Alle Kunststoffabdeckungen
+  anbringen* im Kontextmenü des Aufbaus tun das für jedes Feld des Gehäuses, im
+  Kontextmenü des Navigators für jedes Gehäuse (Befehl `set_covers`).
 - Ein Rahmen, der zwei Schränke verbindet (etwa der Isolierrahmen CZ3 von Striebel &
   John, Artikeldaten `Opening: 202 x 85`), geht nur in die dafür vorgesehenen Öffnungen
   der Seitenwände (Artikeldaten des Schranks `Side openings: 202 x 85 at 86 / 20; …`:
   Höhe × Tiefe im Abstand vom Boden / von der Rückwand): in das Gehäuse gezogen, werden
   die freien Öffnungen hervorgehoben; auf einer Seitenwand platziert, geht er in die
-  nächste freie.
+  nächste freie. Er wird mit seinem Flansch außen an der Wand und seinem Kragen durch
+  die Öffnung gezeichnet, ein Sammelschienenverbinder (CZC4, CZC14) mit seinen
+  Sammelschienen hindurch. *Hier ein Gehäuse anreihen* im Kontextmenü des Rahmens reiht
+  an dieser Seite ein Gehäuse an: ein neues wie dieses oder eines der anderen (Befehl
+  `attach_enclosure`).
 - Tragschienen und Kabelkanäle werden in ihrer Länge gezeichnet; eine(n) auswählen und
   an einem der Enden ziehen, um die Länge zu ändern, oder verschieben (Betriebsmittel
   wandern mit ihrer Schiene mit). Betriebsmittel werden aus einer Liste „Zu
@@ -195,6 +201,17 @@ Scharniere und den Griff auf ihren Seiten, die 3D-Ansicht öffnet die Tür um di
 Kante, und die Türdrähte laufen an der Tür entlang zu dieser Kante, über die
 Scharnierschlaufe und auf dieser Seite in den Rand der Platte.
 
+Eine zweiflügelige Tür hat zwei Flügel, jeder an seiner äußeren Kante angeschlagen
+(*Tür* › *Zweiflügelig* und die Breite unter *Linker Flügel* in den Eigenschaften des
+Gehäuses, `door_leaves` von `add_enclosure` / `set_enclosure`, Artikeldaten
+`Door leaves: 275 + 525` mit den Breiten der Flügel von links, wie sie die
+ComfortLine-A-Schränke von Striebel & John mit drei bis fünf Feldbreiten und der
+univers-Schrank `HAG.FR25S2` von Hager haben). Die Tür
+bleibt eine Fläche für ihre Betriebsmittel: Jedes sitzt auf dem Flügel unter seiner
+Mitte, öffnet sich mit ihm in der 3D-Ansicht und hat seine Drähte über dessen Scharnier
+geführt; die Türansicht zeichnet jeden Flügel mit seinen Scharnieren und die Fuge
+dazwischen, und ein Betriebsmittel, das über die Fuge reicht, wird gemeldet.
+
 ## Sperrflächen
 
 Ein Gehäuseartikel kann Bereiche seiner Flächen freihalten (*Sperrflächen* in den
@@ -246,6 +263,12 @@ Größe, Gewinde und Bearbeitung. Eine Seite *Bohrbild* eines Gehäuses (*Neue
 Bohrbild-Seite*, `add_page kind=drilling enclosure=+CAB1`) zeichnet seine Flächen mit
 ihren Bohrungen und Ausschnitten in einem Maßstab, bemaßt von dieser Ecke, daneben die
 Arten der Bohrungen und Ausschnitte mit ihrer Anzahl.
+
+Eine zweiflügelige Tür (siehe [Gehäusetür](#gehäusetür)) wird Flügel für Flügel
+gebohrt: Auswertung, Seite und *NC-Daten* nehmen jeden Flügel als eigenes Blech, bemaßt
+von seiner linken unteren Ecke, und die Übergabe an die Maschinen erzeugt für jeden
+Flügel ein Programm (`CAB1_door_left.nc`; `face=door_left` oder `door_right` von
+`machining_plan` und `cnc_program`).
 
 ## Virtuelle Verdrahtung und Füllgrade der Kabelkanäle
 

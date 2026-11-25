@@ -29,6 +29,15 @@ fn machines_strategy_and_programs() {
     assert!(!prj.layout.manufacturing.strategy.tap);
     assert!(run(&p, &mut prj, "machining_strategy", json!({ "face": "door", "machine": "nope" })).is_err());
     assert!(run(&p, &mut prj, "cnc_program", json!({ "enclosure": "+CAB1", "face": "front" })).is_err());
+    // A double door: each leaf on the door's machine.
+    assert!(run(&p, &mut prj, "cnc_program", json!({ "enclosure": "+CAB1", "face": "door_right" })).is_err(), "one leaf");
+    let e = &mut prj.layout.enclosures[0];
+    let width = e.width;
+    openecraft_core::panel::doors::split(e, Some(width / 2.0));
+    let prog = run(&p, &mut prj, "cnc_program", json!({ "enclosure": "+CAB1", "face": "door_right" })).unwrap();
+    assert_eq!((&prog["file"], &prog["face"], &prog["machine"]), (&json!("CAB1_door_right.pun"), &json!("door_right"), &json!("punch_turret")));
+    assert_eq!(prog["sheet"][0], json!(width / 2.0));
+    prj.layout.enclosures[0].door_leaves.clear();
     // An own machine.
     let own = run(&p, &mut prj, "set_cnc_machine", json!({ "id": "my_mill", "dialect": "heidenhain", "tools": "D4.2 T1; D3.3 T2; M5 T3; M4 T4; F8 T5" })).unwrap();
     assert_eq!(own["tools"], "D4.2 T1; D3.3 T2; M5 T3; M4 T4; F8 T5");

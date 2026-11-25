@@ -431,6 +431,8 @@ Does not match	Komt niet overeen
 Door (front view)	Deur (vooraanzicht)
 Door and walls	Deur en wanden
 Door handle and document holder	Deurgreep en schemahouder
+Door leaf {}	Deurvleugel {}
+Door leaf {} (front view)	Deurvleugel {} (vooraanzicht)
 Double socket outlet with PE	Dubbele wandcontactdoos met randaarde
 Downstream	Nageschakeld
 Drag chain	Sleepketting
@@ -793,6 +795,8 @@ Latitude is within ±90° and longitude within ±180°	De breedtegraad ligt binn
 Lead time (days)	Levertijd (dagen)
 Leakage current	Lekstroom
 Leakage line	Lekolieleiding
+Left door leaf	Linkerdeurvleugel
+Left door leaf (front view)	Linkerdeurvleugel (vooraanzicht)
 Left side panel	Linkerzijwand
 Legend plate text	Tekst naamplaatje
 Length (m)	Lengte (m)
@@ -1033,6 +1037,7 @@ Oil resistant	Oliebestendig
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Eén schemapagina met de potentialen +24V / 0V, drukknoppen, een keuzeschakelaar, signaallampen en een zekering; artikelen en stuklijst.
 One schematic page, the potentials of IEC 60204-1	Eén schemapagina, de potentialen van IEC 60204-1
 One-way flow control valve	Smoorterugslagventiel
+Only another enclosure can be bayed there	Daar kan alleen een andere behuizing aangebouwd worden
 Only revisions that are not released can be submitted	Alleen revisies die niet zijn vrijgegeven, kunnen worden ingediend
 Only symbols of the symbol library can be scaled	Alleen symbolen uit de symboolbibliotheek kunnen worden geschaald
 Only {}	Alleen {}
@@ -1387,6 +1392,8 @@ Revision table: author of the last revision (2: the one before …)	Revisietabel
 Revision table: date of the last revision (2: the one before …)	Revisietabel: datum van de laatste revisie (2: die daarvoor …)
 Revision table: description of the last revision (2: the one before …)	Revisietabel: beschrijving van de laatste revisie (2: die daarvoor …)
 Revision table: index of the last revision (2: the one before …)	Revisietabel: index van de laatste revisie (2: die daarvoor …)
+Right door leaf	Rechterdeurvleugel
+Right door leaf (front view)	Rechterdeurvleugel (vooraanzicht)
 Right side panel	Rechterzijwand
 Ring earth electrode	Ringaarde
 Ring terminal	Ringkabelschoen
@@ -1664,6 +1671,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	De formule eindigt te vroeg
 The function definition needs a key and a name	De functiedefinitie heeft een sleutel en een naam nodig
 The index of the project names no file layout: it was not written by OpenECraft	De index van het project noemt geen bestandsindeling: hij is niet door OpenECraft geschreven
+The item is no frame in an opening of a side wall	Het element is geen frame in een opening van een zijwand
 The last page cannot be deleted	De laatste pagina kan niet worden verwijderd
 The macro box has no items left	Het macrokader heeft geen elementen meer
 The next free id is already in use	De volgende vrije ID is al in gebruik
@@ -2204,6 +2212,7 @@ yellow	geel
 {}: {} overhangs the end of its mounting rail	{}: {} steekt uit over het einde van de montagerail
 {}: {} pins used, the plug parts have {}	{}: {} pennen gebruikt, de stekkerartikelen hebben er {}
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} bereikt op zijn plaats ongeveer {} °C, toegestaan {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} reikt over de naad tussen de deurvleugels
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} bereikt {} van de {} rails van zijn railsysteem
 {}: {} solenoid coils linked, the valve has {}	{}: {} magneetspoelen gekoppeld, het ventiel heeft er {}
 {}: {} stands in an inner wall	{}: {} staat in een binnenwand

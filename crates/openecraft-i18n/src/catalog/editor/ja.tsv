@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	最上階の上の階
 A local file opens locally, a server project is opened on the project server again	ローカルファイルはローカルで開き、サーバープロジェクトはプロジェクトサーバーで再度開きます
 A local file or a project on the project server	ローカルファイルまたはプロジェクトサーバー上のプロジェクト
+A new enclosure of the same part, bayed at this frame	同じ部品の新しい筐体をこのフレームに連結します
 A new enclosure standing in this room	この部屋に置く新しいエンクロージャー
 A new project	新しいプロジェクト
 A new release is downloaded in the background and installed when you close OpenECraft.	新しいリリースはバックグラウンドでダウンロードされ、OpenECraft を閉じるとインストールされます。
@@ -185,6 +186,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	原点に
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	受電点: Ik3 max {} kA、Ik1 min {} kA
 At the top level	最上位
+Attach an enclosure here	ここに筐体を連結
 Author	作成者
 Auto-connect	自動接続
 Auto-connect selection	選択範囲を自動接続
@@ -616,6 +618,7 @@ Door cutouts (CSV)	扉の切り欠き (CSV)
 Door hinge	扉のヒンジ
 Door: {} devices, {} cutouts	扉: デバイス {} 個、切り欠き {} 個
 Dot	点
+Double door	両開き
 Double-click	ダブルクリック
 Down conductors	引下げ導線
 Download into database	データベースにダウンロード
@@ -786,6 +789,7 @@ Finish a wire, polyline, polygon or wall	配線、ポリライン、多角形、
 Finish or cancel the drawing, then back to selecting	描画を終了またはキャンセルし、選択に戻る
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	プロジェクトサーバーから開いたプロジェクトの完了した変更は、自動的にサーバーに保存されます。入力中の内容は完了後に保存されます。ロックは保持されます。保存 (Ctrl+S) は引き続きただちに保存します。
 First row	最初の行
+Fit all plastic covers	すべての樹脂カバーを取り付ける
 Fit page	ページに合わせる
 Fits {}	{} に適合
 Fitted	取付済み
@@ -1053,6 +1057,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	最初の列で繰り返される値を空白にする
 Left button	左ボタン
 Left edges	左端
+Left leaf	左扉
 Legend plates (door devices)	銘板 (扉取付機器)
 Length from the node to the device	ノードからデバイスまでの長さ
 Length inside an enclosure	エンクロージャー内の長さ
@@ -1226,6 +1231,7 @@ New document page…	新しいドキュメントページ…
 New empty	新規 (空)
 New enclosure	新しいエンクロージャー
 New enclosure in this room…	この部屋に新しいエンクロージャー…
+New enclosure like this one	これと同じ新しい筐体
 New enclosure…	新しいエンクロージャー…
 New graphics page	新しい図形ページ
 New harness	新しいハーネス
@@ -1364,6 +1370,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	タッチスクリーンで有効です。トラックパッドの 3 本指の操作はシステムが使います。
 On startup	起動時
 On the roof, joined to the air-termination conductors; move it to its place	屋根の上で受雷導体に接続されます。位置まで移動してください
+One leaf	片開き
 One row per label	ラベルごとに 1 行
 Only devices on the current page	現在のページのデバイスのみ
 Only frames no page uses can be deleted	削除できるのはどのページでも使用されていない図枠のみです
@@ -2093,6 +2100,7 @@ Tablet mode	タブレットモード
 Tag	タグ
 Tag field	タグフィールド
 Tag placed by hand	手動で配置したタグ
+Take off all plastic covers	すべての樹脂カバーを取り外す
 Take out a subproject	サブプロジェクトを切り出し
 Take out of the building	建物から外す
 Take out {} pages…	{} ページを切り出し…
@@ -2169,6 +2177,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	生成されたページは残ります
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	部品データベースはすべてのプロジェクトで共有されます。部品はデバイスに割り当てられたときにプロジェクトにコピーされます。
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	パネルの樹脂カバー。外すとフレーム、レール、その奥の配線が見えます
+The plastic covers of all panels of the field grid of this enclosure	この筐体のフィールドグリッドの全パネルの樹脂カバー
+The plastic covers of all panels of the field grids of every enclosure	すべての筐体のフィールドグリッドの全パネルの樹脂カバー
 The point's coordinates in the coordinate reference system	座標参照系での点の座標
 The post; its accessories are the table beams, rails and clamps	杭。付属品は架台の梁、レール、クランプです
 The project changed since the search.	検索後にプロジェクトが変更されました。
@@ -2236,6 +2246,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3D ビューをその点に向ける
 Twin ferrules where two wires share a connection point	2本の電線が接続ポイントを共有する場合はツインフェルール
 Two fingers	2 本指
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	2 枚の扉板、それぞれ外側の端にヒンジ。扉上の機器は中心の下にある扉板と一緒に動きます
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	ここで2本の接続線が直角に交わる必要があります。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	点を入力して Enter キーを押します: x y (mm)、または最後の点からの相対位置 @dx dy。現在のツールでのクリックと同じように動作します
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V、I {} A、{} kWp
@@ -2328,6 +2339,7 @@ Whole words	単語単位
 Width / going	幅 / 踏面
 Width / height (mm)	幅 / 高さ (mm)
 Width factor	幅係数
+Width of the left leaf; the right one takes the rest of the front	左扉の幅。右扉が前面の残りを占めます
 Width of the letters to their usual width (0.8: narrow lettering)	通常の幅に対する文字の幅（0.8：細い文字）
 Width × depth	幅 × 奥行
 Width × height	幅 × 高さ
@@ -2513,6 +2525,7 @@ x y	x y
 {} addresses changed	{} 個のアドレスを変更しました
 {} air-termination rods	突針 {} 本
 {} already exists on the project server.	{} はプロジェクトサーバーに既に存在します。
+{} attached to {}	{} を {} に連結しました
 {} bundles, {} branch points	束 {} 個、分岐点 {} 個
 {} bus cables created	{} 本のバスケーブルを作成しました
 {} bus connections	{} 件のバス接続
@@ -2628,6 +2641,8 @@ x y	x y
 {} placed as {}	{} を {} として配置しました
 {} placed in {}	{0} を {1} に配置しました
 {} placement problems (red) – see Check	{} 件の配置の問題 (赤) – チェックを参照
+{} plastic covers fitted	{} 個の樹脂カバーを取り付けました
+{} plastic covers taken off	{} 個の樹脂カバーを取り外しました
 {} project parts updated	{} 個のプロジェクト部品を更新しました
 {} projects on the server	サーバー上の {} 個のプロジェクト
 {} projects selected	{} 個のプロジェクトを選択中

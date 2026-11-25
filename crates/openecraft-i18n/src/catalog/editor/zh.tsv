@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	在最高楼层之上添加一层
 A local file opens locally, a server project is opened on the project server again	本地文件在本地打开，服务器项目在项目服务器上重新打开
 A local file or a project on the project server	本地文件或项目服务器上的项目
+A new enclosure of the same part, bayed at this frame	同一部件的新机柜，并接在此框架处
 A new enclosure standing in this room	放在此房间中的新机柜
 A new project	新项目
 A new release is downloaded in the background and installed when you close OpenECraft.	新版本会在后台下载，并在关闭 OpenECraft 时安装。
@@ -185,6 +186,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	在原点
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	在供电点：Ik3 max {} kA，Ik1 min {} kA
 At the top level	在顶层
+Attach an enclosure here	在此处并接机柜
 Author	作者
 Auto-connect	自动连接
 Auto-connect selection	自动连接所选内容
@@ -617,6 +619,7 @@ Door cutouts (CSV)	柜门开孔 (CSV)
 Door hinge	柜门铰链
 Door: {} devices, {} cutouts	柜门：{} 个设备，{} 个开孔
 Dot	点
+Double door	双开门
 Double-click	双击
 Down conductors	引下线
 Download into database	下载到数据库
@@ -787,6 +790,7 @@ Finish a wire, polyline, polygon or wall	完成导线、多段线、多边形或
 Finish or cancel the drawing, then back to selecting	完成或取消绘制，然后返回选择
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	从项目服务器打开的项目，其已完成的更改会自动保存到服务器；正在进行的输入在完成后保存。锁定保持不变。保存 (Ctrl+S) 仍会立即保存。
 First row	第一行
+Fit all plastic covers	安装所有塑料盖板
 Fit page	适合页面
 Fits {}	适配 {}
 Fitted	已安装
@@ -1054,6 +1058,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	第一列中重复的值留空
 Left button	左键
 Left edges	左边缘
+Left leaf	左门扇
 Legend plates (door devices)	铭牌（柜门设备）
 Length from the node to the device	节点到设备的长度
 Length inside an enclosure	机柜内长度
@@ -1227,6 +1232,7 @@ New document page…	新建文档页…
 New empty	新建空白
 New enclosure	新建机柜
 New enclosure in this room…	在此房间新建机柜…
+New enclosure like this one	与此相同的新机柜
 New enclosure…	新建机柜…
 New graphics page	新建图形页
 New harness	新建线束
@@ -1365,6 +1371,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	适用于触摸屏；触控板的三指操作由系统处理。
 On startup	启动时
 On the roof, joined to the air-termination conductors; move it to its place	在屋顶上，连接到接闪导体；将其移到所需位置
+One leaf	单扇
 One row per label	每个标签一行
 Only devices on the current page	仅限当前页上的设备
 Only frames no page uses can be deleted	只能删除没有页使用的图框
@@ -2093,6 +2100,7 @@ Tablet mode	平板模式
 Tag	标识符
 Tag field	标识符字段
 Tag placed by hand	手动放置的标识符
+Take off all plastic covers	拆下所有塑料盖板
 Take out a subproject	移出子项目
 Take out of the building	移出建筑物
 Take out {} pages…	移出 {} 页…
@@ -2169,6 +2177,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	其生成的页保留
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	部件数据库由所有项目共享。将部件分配给设备时，部件会被复制到项目中。
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	面板的塑料盖板；去掉后可看到框架、导轨及其后面的接线
+The plastic covers of all panels of the field grid of this enclosure	此机柜区域网格中所有面板的塑料盖板
+The plastic covers of all panels of the field grids of every enclosure	每个机柜区域网格中所有面板的塑料盖板
 The point's coordinates in the coordinate reference system	该点在坐标参考系中的坐标
 The post; its accessories are the table beams, rails and clamps	立柱；其附件为支架横梁、导轨和夹具
 The project changed since the search.	自搜索以来项目已更改。
@@ -2236,6 +2246,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	将 3D 视图转向该点
 Twin ferrules where two wires share a connection point	两根导线共用一个连接点时使用双线管型端子
 Two fingers	双指
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	两扇门扇，各自在外侧边缘铰接；门上的设备随其中心下方的门扇一起转动
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	此处必须有两条连接线直角相交。开启自动连接时，正对其分支的连接点会接到它上。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	输入点并按 Enter：x y（单位 mm），或 @dx dy 表示相对于上一个点；其作用与当前工具的单击相同
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V，I {} A，{} kWp
@@ -2327,6 +2338,7 @@ Whole words	全字匹配
 Width / going	宽度 / 踏步
 Width / height (mm)	宽度 / 高度 (mm)
 Width factor	宽度系数
+Width of the left leaf; the right one takes the rest of the front	左门扇的宽度；右门扇占据正面其余部分
 Width of the letters to their usual width (0.8: narrow lettering)	字母宽度与常规宽度之比（0.8：紧凑字体）
 Width × depth	宽度 × 深度
 Width × height	宽 × 高
@@ -2512,6 +2524,7 @@ x y	x y
 {} addresses changed	已更改 {} 个地址
 {} air-termination rods	{} 根接闪杆
 {} already exists on the project server.	{} 已存在于项目服务器上。
+{} attached to {}	已将 {} 并接到 {}
 {} bundles, {} branch points	{} 个线缆束，{} 个分支点
 {} bus cables created	已创建 {} 根总线电缆
 {} bus connections	{} 个总线连接
@@ -2627,6 +2640,8 @@ x y	x y
 {} placed as {}	{} 已放置为 {}
 {} placed in {}	已将 {0} 放入 {1}
 {} placement problems (red) – see Check	{} 个放置问题（红色）– 请参阅“检查”
+{} plastic covers fitted	已安装 {} 个塑料盖板
+{} plastic covers taken off	已拆下 {} 个塑料盖板
 {} project parts updated	已更新 {} 个项目部件
 {} projects on the server	服务器上有 {} 个项目
 {} projects selected	已选择 {} 个项目

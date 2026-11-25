@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Un piano sopra il più alto
 A local file opens locally, a server project is opened on the project server again	Un file locale si apre in locale, un progetto del server viene riaperto sul server dei progetti
 A local file or a project on the project server	Un file locale o un progetto sul server dei progetti
+A new enclosure of the same part, bayed at this frame	Un nuovo involucro dello stesso articolo, affiancato a questo telaio
 A new enclosure standing in this room	Un nuovo armadio in questo locale
 A new project	Un nuovo progetto
 A new release is downloaded in the background and installed when you close OpenECraft.	Una nuova versione viene scaricata in background e installata alla chiusura di OpenECraft.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	Nell'origine
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Al punto di alimentazione: Ik3 max {} kA, Ik1 min {} kA
 At the top level	Al livello superiore
+Attach an enclosure here	Affianca qui un involucro
 Author	Autore
 Auto-connect	Collegamento automatico
 Auto-connect selection	Collega automaticamente la selezione
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Aperture porta (CSV)
 Door hinge	Cerniere della porta
 Door: {} devices, {} cutouts	Porta: {} dispositivi, {} aperture
 Dot	Punto
+Double door	Porta a due ante
 Double-click	Doppio clic
 Down conductors	Calate
 Download into database	Scarica nel database
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Terminare un filo, una polilinea, un po
 Finish or cancel the drawing, then back to selecting	Terminare o annullare il disegno, poi tornare alla selezione
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Le modifiche concluse di un progetto aperto dal server di progetto vi vengono salvate automaticamente; un inserimento in corso viene salvato appena è concluso. I blocchi restano. Salva (Ctrl+S) continua a salvare subito.
 First row	Prima riga
+Fit all plastic covers	Monta tutte le coperture in plastica
 Fit page	Adatta pagina
 Fits {}	Compatibile con {}
 Fitted	Montata
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Lascia vuoti i valori ripetuti della prima colonna
 Left button	Tasto sinistro
 Left edges	Bordi sinistri
+Left leaf	Anta sinistra
 Legend plates (door devices)	Targhette di identificazione (dispositivi sulla porta)
 Length from the node to the device	Lunghezza dal nodo al dispositivo
 Length inside an enclosure	Lunghezza all'interno di un armadio
@@ -1242,6 +1247,7 @@ New document page…	Nuova pagina documento…
 New empty	Nuovo vuoto
 New enclosure	Nuovo armadio
 New enclosure in this room…	Nuovo armadio in questo locale…
+New enclosure like this one	Nuovo involucro come questo
 New enclosure…	Nuovo armadio…
 New graphics page	Nuova pagina di grafica
 New harness	Nuovo cablaggio
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Sul touch screen; i trackpad lasciano i gesti a tre dita al sistema.
 On startup	All'avvio
 On the roof, joined to the air-termination conductors; move it to its place	Sul tetto, collegata ai conduttori di captazione; spostarla al suo posto
+One leaf	Un'anta
 One row per label	Una riga per etichetta
 Only devices on the current page	Solo i dispositivi sulla pagina corrente
 Only frames no page uses can be deleted	Possono essere eliminate solo le cornici non utilizzate da alcuna pagina
@@ -2118,6 +2125,7 @@ Tablet mode	Modalità tablet
 Tag	Sigla
 Tag field	Campo sigla
 Tag placed by hand	Sigla posizionata manualmente
+Take off all plastic covers	Togli tutte le coperture in plastica
 Take out a subproject	Estrai un sottoprogetto
 Take out of the building	Togli dall'edificio
 Take out {} pages…	Estrai {} pagine…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Le pagine generate restano
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Il database articoli è condiviso da tutti i progetti. Gli articoli vengono copiati in un progetto quando vengono assegnati a un dispositivo.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	La copertura in plastica del pannello; senza di essa si vedono il telaio, le guide e il cablaggio dietro
+The plastic covers of all panels of the field grid of this enclosure	Le coperture in plastica di tutti i campi della griglia di questo involucro
+The plastic covers of all panels of the field grids of every enclosure	Le coperture in plastica di tutti i campi delle griglie di ogni involucro
 The point's coordinates in the coordinate reference system	Le coordinate del punto nel sistema di riferimento delle coordinate
 The post; its accessories are the table beams, rails and clamps	Il palo; i suoi accessori sono le travi del tavolo, le guide e i morsetti
 The project changed since the search.	Il progetto è cambiato dopo la ricerca.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Orientare la vista 3D verso il punto
 Twin ferrules where two wires share a connection point	Puntalini doppi dove due conduttori condividono un punto di connessione
 Two fingers	Due dita
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Due ante, ciascuna incernierata sul suo bordo esterno; i dispositivi sulla porta seguono l'anta sotto il loro centro
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Qui devono incontrarsi due conduttori ad angolo retto. Con la connessione automatica attiva, i punti di collegamento rivolti ai suoi bracci vi vengono cablati.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Digita un punto e premi Enter: x y in mm o @dx dy rispetto all'ultimo punto; agisce come un clic dello strumento corrente
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Parole intere
 Width / going	Larghezza / pedata
 Width / height (mm)	Larghezza / altezza (mm)
 Width factor	Fattore di larghezza
+Width of the left leaf; the right one takes the rest of the front	Larghezza dell'anta sinistra; la destra occupa il resto del fronte
 Width of the letters to their usual width (0.8: narrow lettering)	Larghezza delle lettere rispetto alla loro larghezza abituale (0,8: scrittura stretta)
 Width × depth	Larghezza × profondità
 Width × height	Larghezza × altezza
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	{} indirizzi modificati
 {} air-termination rods	{} aste di captazione
 {} already exists on the project server.	{} esiste già sul server di progetto.
+{} attached to {}	{} affiancato a {}
 {} bundles, {} branch points	{} fasci, {} punti di derivazione
 {} bus cables created	{} cavi bus creati
 {} bus connections	{} collegamenti bus
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} posizionato come {}
 {} placed in {}	{} posizionato in {}
 {} placement problems (red) – see Check	{} problemi di posizionamento (in rosso) – vedi Verifica
+{} plastic covers fitted	{} coperture in plastica montate
+{} plastic covers taken off	{} coperture in plastica tolte
 {} problems	{} problemi
 {} project parts updated	{} articoli del progetto aggiornati
 {} projects on the server	{} progetti sul server

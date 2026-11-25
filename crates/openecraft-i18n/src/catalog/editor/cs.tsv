@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Podlaží nad nejvyšším
 A local file opens locally, a server project is opened on the project server again	Místní soubor se otevře místně, projekt ze serveru se znovu otevře na serveru projektů
 A local file or a project on the project server	Místní soubor nebo projekt na serveru projektů
+A new enclosure of the same part, bayed at this frame	Nová skříň stejného dílu, připojená u tohoto rámečku
 A new enclosure standing in this room	Nová skříň v této místnosti
 A new project	Nový projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Nová verze se stáhne na pozadí a nainstaluje se po zavření OpenECraft.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	V počátku
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	V místě napájení: Ik3 max {} kA, Ik1 min {} kA
 At the top level	Na nejvyšší úrovni
+Attach an enclosure here	Připojit sem skříň
 Author	Autor
 Auto-connect	Automatické propojení
 Auto-connect selection	Automaticky propojit výběr
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Výřezy ve dveřích (CSV)
 Door hinge	Závěsy dveří
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
+Double door	Dvoukřídlé dveře
 Double-click	Dvojklik
 Down conductors	Svody
 Download into database	Stáhnout do databáze
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Dokončit vodič, lomenou čáru, mnoho
 Finish or cancel the drawing, then back to selecting	Dokončit nebo zrušit kreslení, pak zpět k výběru
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Dokončené změny projektu otevřeného z projektového serveru se na něj ukládají samy; probíhající zadávání se uloží, jakmile je dokončeno. Zámky zůstávají. Uložit (Ctrl+S) nadále ukládá ihned.
 First row	První řádek
+Fit all plastic covers	Nasadit všechny plastové kryty
 Fit page	Přizpůsobit stránku
 Fits {}	Hodí se k {}
 Fitted	Nasazen
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Opakované hodnoty prvního sloupce ponechat prázdné
 Left button	Levé tlačítko
 Left edges	Levé hrany
+Left leaf	Levé křídlo
 Legend plates (door devices)	Popisné štítky (přístroje ve dveřích)
 Length from the node to the device	Délka od uzlu k přístroji
 Length inside an enclosure	Délka uvnitř skříně
@@ -1242,6 +1247,7 @@ New document page…	Nová stránka dokumentu…
 New empty	Nový, prázdný
 New enclosure	Nová skříň
 New enclosure in this room…	Nová skříň v této místnosti…
+New enclosure like this one	Nová skříň jako tato
 New enclosure…	Nová skříň…
 New graphics page	Nová stránka grafiky
 New harness	Nový kabelový svazek
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Na dotykové obrazovce; touchpady nechávají gesta třemi prsty systému.
 On startup	Při spuštění
 On the roof, joined to the air-termination conductors; move it to its place	Na střeše, spojená s jímacím vedením; přesuňte ji na její místo
+One leaf	Jedno křídlo
 One row per label	Jeden řádek na štítek
 Only devices on the current page	Pouze přístroje na aktuální stránce
 Only frames no page uses can be deleted	Odstranit lze jen rámečky, které nepoužívá žádná stránka
@@ -2118,6 +2125,7 @@ Tablet mode	Režim tabletu
 Tag	Označení
 Tag field	Pole označení
 Tag placed by hand	Označení umístěno ručně
+Take off all plastic covers	Sejmout všechny plastové kryty
 Take out a subproject	Vyčlenit podprojekt
 Take out of the building	Vyjmout z budovy
 Take out {} pages…	Vyčlenit stránky ({})…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Stránky, které vytvořil, zůstanou
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Databázi artiklů sdílejí všechny projekty. Artikly se zkopírují do projektu, když jsou přiřazeny k přístroji.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Plastový kryt pole; bez něj je vidět rám, lišty a zapojení za ním
+The plastic covers of all panels of the field grid of this enclosure	Plastové kryty všech polí mřížky polí této skříně
+The plastic covers of all panels of the field grids of every enclosure	Plastové kryty všech polí mřížek polí každé skříně
 The point's coordinates in the coordinate reference system	Souřadnice bodu v souřadnicovém referenčním systému
 The post; its accessories are the table beams, rails and clamps	Sloupek; jeho příslušenstvím jsou nosníky stolu, lišty a svorky
 The project changed since the search.	Projekt se od hledání změnil.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Natočit 3D pohled na bod
 Twin ferrules where two wires share a connection point	Dvojité dutinky tam, kde dva vodiče sdílejí přípojný bod
 Two fingers	Dva prsty
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Dvě křídla, každé zavěšené na své vnější hraně; přístroje na dveřích jdou s křídlem pod svým středem
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Zde se musí stýkat dva vodiče v pravém úhlu. Při zapnutém automatickém spojování se k němu připojí připojovací body naproti jeho ramenům.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Zadejte bod a stiskněte Enter: x y v mm nebo @dx dy relativně k poslednímu bodu; působí jako kliknutí aktuálním nástrojem
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Celá slova
 Width / going	Šířka / stupeň
 Width / height (mm)	Šířka / výška (mm)
 Width factor	Šířkový faktor
+Width of the left leaf; the right one takes the rest of the front	Šířka levého křídla; pravé zabírá zbytek čela
 Width of the letters to their usual width (0.8: narrow lettering)	Šířka písmen vůči jejich obvyklé šířce (0,8: úzké písmo)
 Width × depth	Šířka × hloubka
 Width × height	Šířka × výška
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	Změněno adres: {}
 {} air-termination rods	{} jímacích tyčí
 {} already exists on the project server.	{} na projektovém serveru již existuje.
+{} attached to {}	{} připojena k {}
 {} bundles, {} branch points	Svazky: {}, body odbočení: {}
 {} bus cables created	Vytvořeno sběrnicových kabelů: {}
 {} bus connections	Sběrnicová spojení: {}
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} umístěn jako {}
 {} placed in {}	{} umístěno do {}
 {} placement problems (red) – see Check	Problémy s umístěním (červeně): {} – viz Kontrola
+{} plastic covers fitted	Nasazeno plastových krytů: {}
+{} plastic covers taken off	Sejmuto plastových krytů: {}
 {} problems	Problémy: {}
 {} project parts updated	Aktualizováno artiklů projektu: {}
 {} projects on the server	Projekty na serveru: {}

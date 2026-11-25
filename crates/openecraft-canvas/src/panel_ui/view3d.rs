@@ -468,6 +468,9 @@ impl PanelUi {
     /// The context menu of the 3D view: what was right-clicked.
     fn menu_3d(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
         self.control_menu(ui, prj, an);
+        // The selection is of the current enclosure (picking an item makes its enclosure
+        // the current one).
+        self.fittings_menu(ui, prj, self.enclosure);
         let any = !self.selection.is_empty();
         if ui.add_enabled(any, egui::Button::new(tr("Properties"))).clicked() {
             self.open_properties = true;

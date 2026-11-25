@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	En våning ovanför den högsta
 A local file opens locally, a server project is opened on the project server again	En lokal fil öppnas lokalt, ett serverprojekt öppnas igen på projektservern
 A local file or a project on the project server	En lokal fil eller ett projekt på projektservern
+A new enclosure of the same part, bayed at this frame	En ny kapsling av samma artikel, ihopbyggd vid denna ram
 A new enclosure standing in this room	En ny kapsling i det här rummet
 A new project	Ett nytt projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	En ny version laddas ned i bakgrunden och installeras när du stänger OpenECraft.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	I origo
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Vid matningspunkten: Ik3 max {} kA, Ik1 min {} kA
 At the top level	På översta nivån
+Attach an enclosure here	Bygg ihop en kapsling här
 Author	Författare
 Auto-connect	Autoanslut
 Auto-connect selection	Autoanslut markering
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Dörrurtag (CSV)
 Door hinge	Dörrens gångjärn
 Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
 Dot	Punkt
+Double door	Pardörr
 Double-click	Dubbelklick
 Down conductors	Nedledare
 Download into database	Ladda ned till databasen
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Avsluta en ledning, polylinje, polygon 
 Finish or cancel the drawing, then back to selecting	Avsluta eller avbryt ritandet, sedan tillbaka till markering
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Avslutade ändringar i ett projekt som öppnats från projektservern sparas dit av sig själva; pågående inmatning sparas när den är avslutad. Lås behålls. Spara (Ctrl+S) sparar fortfarande direkt.
 First row	Första raden
+Fit all plastic covers	Montera alla plastkåpor
 Fit page	Anpassa sida
 Fits {}	Passar till {}
 Fitted	Monterad
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Lämna upprepade värden i den första kolumnen tomma
 Left button	Vänster knapp
 Left edges	Vänsterkanter
+Left leaf	Vänster blad
 Legend plates (door devices)	Märkskyltar (dörrapparater)
 Length from the node to the device	Längd från noden till apparaten
 Length inside an enclosure	Längd inne i en kapsling
@@ -1242,6 +1247,7 @@ New document page…	Ny dokumentsida…
 New empty	Ny, tom
 New enclosure	Ny kapsling
 New enclosure in this room…	Ny kapsling i det här rummet…
+New enclosure like this one	Ny kapsling som denna
 New enclosure…	Ny kapsling…
 New graphics page	Ny grafiksida
 New harness	Ny kabelstam
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	På pekskärm; styrplattor lämnar gester med tre fingrar åt systemet.
 On startup	Vid start
 On the roof, joined to the air-termination conductors; move it to its place	På taket, förbunden med uppfångningsledarna; flytta den till sin plats
+One leaf	Ett blad
 One row per label	En rad per etikett
 Only devices on the current page	Endast apparater på den aktuella sidan
 Only frames no page uses can be deleted	Endast ramar som ingen sida använder kan tas bort
@@ -2118,6 +2125,7 @@ Tablet mode	Surfplatteläge
 Tag	Beteckning
 Tag field	Beteckningsfält
 Tag placed by hand	Beteckning placerad manuellt
+Take off all plastic covers	Ta av alla plastkåpor
 Take out a subproject	Lyft ut ett delprojekt
 Take out of the building	Ta ut ur byggnaden
 Take out {} pages…	Lyft ut {} sidor…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	De sidor det genererade finns kvar
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Artikeldatabasen delas av alla projekt. Artiklar kopieras till ett projekt när de tilldelas en apparat.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Fältets plastkåpa; utan den syns ramen, skenorna och ledningsdragningen bakom den
+The plastic covers of all panels of the field grid of this enclosure	Plastkåporna på alla fält i fältrastret i denna kapsling
+The plastic covers of all panels of the field grids of every enclosure	Plastkåporna på alla fält i fältrastren i varje kapsling
 The point's coordinates in the coordinate reference system	Punktens koordinater i referenssystemet
 The post; its accessories are the table beams, rails and clamps	Stolpen; dess tillbehör är bordsbalkar, skenor och klämmor
 The project changed since the search.	Projektet har ändrats sedan sökningen.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Vänd 3D-vyn mot punkten
 Twin ferrules where two wires share a connection point	Dubbla ändhylsor där två ledare delar en anslutningspunkt
 Two fingers	Två fingrar
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Två blad, vart och ett med gångjärn i sin ytterkant; utrustning på dörren följer bladet under dess mitt
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Här måste två ledare mötas i rät vinkel. Med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv en punkt och tryck på Retur: x y i mm, eller @dx dy relativt till den senaste punkten; det fungerar som ett klick med det aktuella verktyget
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Hela ord
 Width / going	Bredd / steg
 Width / height (mm)	Bredd / höjd (mm)
 Width factor	Breddfaktor
+Width of the left leaf; the right one takes the rest of the front	Bredd på vänster blad; det högra tar resten av fronten
 Width of the letters to their usual width (0.8: narrow lettering)	Bokstävernas bredd i förhållande till deras vanliga bredd (0,8: smal text)
 Width × depth	Bredd × djup
 Width × height	Bredd × höjd
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	{} adresser ändrade
 {} air-termination rods	{} spetsledare
 {} already exists on the project server.	{} finns redan på projektservern.
+{} attached to {}	{} ihopbyggd med {}
 {} bundles, {} branch points	{} knippen, {} förgreningspunkter
 {} bus cables created	{} busskablar skapade
 {} bus connections	{} bussanslutningar
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} placerad som {}
 {} placed in {}	{} placerad i {}
 {} placement problems (red) – see Check	{} placeringsproblem (röda) – se Kontroll
+{} plastic covers fitted	{} plastkåpor monterade
+{} plastic covers taken off	{} plastkåpor avtagna
 {} problems	{} problem
 {} project parts updated	{} projektartiklar uppdaterade
 {} projects on the server	{} projekt på servern

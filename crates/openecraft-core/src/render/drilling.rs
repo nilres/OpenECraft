@@ -5,6 +5,7 @@
 //! and the legend of the kinds with their sizes, threads, operations and counts.
 
 use super::*;
+use crate::panel::Sheet;
 use crate::production::{dim, drilling, FaceDrilling};
 use crate::text::TextStyle;
 
@@ -34,7 +35,7 @@ pub(super) fn draw_page(d: &mut dyn Draw, prj: &Project, id: u64, frame: &crate:
     }
     let area = R::from_points(p(a.min.x + 6.0, a.min.y + 6.0), p(a.max.x - LEGEND - 6.0, a.max.y - 12.0));
     for (f, (o, n)) in faces.iter().zip(layout(&faces, area)) {
-        draw_face(d, f, o, n);
+        draw_face(d, e, f, o, n);
     }
     legend(d, e, &faces, p(a.max.x - LEGEND - 2.0, a.min.y + 14.0));
     let caption = tr_fmt!("{} {} - dimensions in mm from the bottom left corner of each face", e.name, e.part);
@@ -76,12 +77,12 @@ fn layout(faces: &[FaceDrilling], area: R) -> Vec<(P, f32)> {
 /// One face at `o` (its top left corner on the page) at the scale 1:`n`: its outline, the
 /// holes and cutouts with their letters and the ordinate dimensions of their middles
 /// below it (x) and left of it (y).
-fn draw_face(d: &mut dyn Draw, f: &FaceDrilling, o: P, n: f32) {
+fn draw_face(d: &mut dyn Draw, e: &Enclosure, f: &FaceDrilling, o: P, n: f32) {
     let k = 1.0 / n;
     let (fw, fh) = f.size;
     let at = |q: P| p(o.x + q.x * k, o.y + q.y * k);
     d.rect(o, at(p(fw, fh)), 0.35, Ink::Frame, false);
-    let title = if f.face == Face::Door { tr("Door (front view)") } else { f.face.title() };
+    let title = Sheet { face: f.face, leaf: f.leaf }.front_title(e);
     d.text(p(o.x + fw * k / 2.0, o.y - 2.0), &format!("{title} (1:{n})"), 3.0, Anchor::Center, VAnchor::Bottom, Ink::Text);
     for x in &f.features {
         let c = at(x.pos);
@@ -150,8 +151,8 @@ fn legend(d: &mut dyn Draw, e: &Enclosure, faces: &[FaceDrilling], o: P) {
     y += 3.0;
     for f in faces {
         y += 3.5;
-        let title = if f.face == Face::Door { tr("Door (front view)") } else { f.face.title() };
-        d.text(p(o.x, y), title, 2.5, Anchor::Left, VAnchor::Bottom, Ink::Text);
+        let title = Sheet { face: f.face, leaf: f.leaf }.front_title(e);
+        d.text(p(o.x, y), &title, 2.5, Anchor::Left, VAnchor::Bottom, Ink::Text);
         d.line(p(o.x, y + 0.6), p(o.x + LEGEND - 4.0, y + 0.6), 0.13, Ink::Frame, false);
         for kind in &f.kinds {
             y += 3.0;

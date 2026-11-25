@@ -431,6 +431,8 @@ Does not match	Eşleşmiyor
 Door (front view)	Kapı (ön görünüm)
 Door and walls	Kapı ve duvarlar
 Door handle and document holder	Kapı kolu ve şema cebi
+Door leaf {}	Kapı kanadı {}
+Door leaf {} (front view)	Kapı kanadı {} (ön görünüm)
 Double socket outlet with PE	Topraklı çift priz
 Downstream	Alt kademe
 Drag chain	Enerji zinciri
@@ -793,6 +795,8 @@ Latitude is within ±90° and longitude within ±180°	Enlem ±90° ve boylam ±
 Lead time (days)	Teslim süresi (gün)
 Leakage current	Kaçak akım
 Leakage line	Kaçak hattı
+Left door leaf	Sol kapı kanadı
+Left door leaf (front view)	Sol kapı kanadı (ön görünüm)
 Left side panel	Sol yan panel
 Legend plate text	Etiket metni
 Length (m)	Uzunluk (m)
@@ -1033,6 +1037,7 @@ Oil resistant	Yağa dayanıklı
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V potansiyelleri, butonlar, bir seçici anahtar, lambalar ve bir sigorta içeren tek şema sayfası; parçalar ve malzeme listesi.
 One schematic page, the potentials of IEC 60204-1	Tek şema sayfası, IEC 60204-1 potansiyelleri
 One-way flow control valve	Tek yönlü akış kontrol valfi
+Only another enclosure can be bayed there	Oraya yalnızca başka bir pano eklenebilir
 Only revisions that are not released can be submitted	Yalnızca yayımlanmamış revizyonlar gönderilebilir
 Only symbols of the symbol library can be scaled	Yalnızca sembol kitaplığındaki semboller ölçeklenebilir
 Only {}	Yalnızca {}
@@ -1387,6 +1392,8 @@ Revision table: author of the last revision (2: the one before …)	Revizyon tab
 Revision table: date of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun tarihi (2: bir öncekinin …)
 Revision table: description of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun açıklaması (2: bir öncekinin …)
 Revision table: index of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun indeksi (2: bir öncekinin …)
+Right door leaf	Sağ kapı kanadı
+Right door leaf (front view)	Sağ kapı kanadı (ön görünüm)
 Right side panel	Sağ yan panel
 Ring earth electrode	Halka topraklama
 Ring terminal	Halka kablo pabucu
@@ -1664,6 +1671,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	Formül çok erken bitiyor
 The function definition needs a key and a name	Fonksiyon tanımı için bir anahtar ve ad gerekli
 The index of the project names no file layout: it was not written by OpenECraft	Projenin dizini bir dosya düzeni belirtmiyor: OpenECraft tarafından yazılmamış
+The item is no frame in an opening of a side wall	Öğe, bir yan duvar açıklığındaki bir çerçeve değil
 The last page cannot be deleted	Son sayfa silinemez
 The macro box has no items left	Makro kutusunda hiç öğe kalmadı
 The next free id is already in use	Sonraki boş kimlik zaten kullanımda
@@ -2204,6 +2212,7 @@ yellow	sarı
 {}: {} overhangs the end of its mounting rail	{}: {} montaj rayının ucundan taşıyor
 {}: {} pins used, the plug parts have {}	{}: {} pin kullanılıyor, fiş parçalarında {} pin var
 {}: {} reaches about {} °C at its place, allowed {} °C	{0}: {1} bulunduğu yerde yaklaşık {2} °C'ye ulaşıyor, izin verilen {3} °C
+{}: {} reaches over the joint between the door leaves	{}: {} kapı kanatları arasındaki ek yerinin üzerine taşıyor
 {}: {} reaches {} of the {} bars of its busbar system	{}: {}, bara sisteminin baralarından {} tanesine ulaşıyor (toplam {})
 {}: {} solenoid coils linked, the valve has {}	{}: {} solenoid bobini ilişkilendirilmiş, valfte {} var
 {}: {} stands in an inner wall	{}: {} bir iç duvarın içinde duruyor

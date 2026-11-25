@@ -54,6 +54,7 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Egy szint a legfelső fölé
 A local file opens locally, a server project is opened on the project server again	A helyi fájl helyben nyílik meg, a kiszolgálóprojekt újra a projektkiszolgálón nyílik meg
 A local file or a project on the project server	Helyi fájl vagy projekt a projektkiszolgálón
+A new enclosure of the same part, bayed at this frame	Ugyanannak a cikknek egy új szekrénye, ehhez a kerethez sorolva
 A new enclosure standing in this room	Új szekrény ebben a helyiségben
 A new project	Új projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Az új verzió a háttérben töltődik le, és az OpenECraft bezárásakor települ.
@@ -186,6 +187,7 @@ At the highest ambient temperature; the heater keeps the dew point. 0 = not cons
 At the origin	Az origóban
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	A betáplálási pontban: Ik3 max {} kA, Ik1 min {} kA
 At the top level	A legfelső szinten
+Attach an enclosure here	Szekrény sorolása ide
 Author	Szerző
 Auto-connect	Automatikus összekötés
 Auto-connect selection	Kijelölés automatikus összekötése
@@ -623,6 +625,7 @@ Door cutouts (CSV)	Ajtókivágások (CSV)
 Door hinge	Ajtózsanérok
 Door: {} devices, {} cutouts	Ajtó: {} készülék, {} kivágás
 Dot	Pont
+Double door	Kétszárnyú ajtó
 Double-click	Dupla kattintás
 Down conductors	Levezetők
 Download into database	Letöltés az adatbázisba
@@ -794,6 +797,7 @@ Finish a wire, polyline, polygon or wall	Vezeték, vonallánc, sokszög vagy fal
 Finish or cancel the drawing, then back to selecting	A rajzolás befejezése vagy megszakítása, majd vissza a kijelöléshez
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	A projektszerverről megnyitott projekt befejezett módosításai maguktól mentődnek oda; a folyamatban lévő bevitel a befejezése után mentődik. A zárolások megmaradnak. A Mentés (Ctrl+S) továbbra is azonnal ment.
 First row	Első sor
+Fit all plastic covers	Az összes műanyag burkolat felhelyezése
 Fit page	Oldal méretre igazítása
 Fits {}	Illeszkedik ehhez: {}
 Fitted	Felszerelve
@@ -1065,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Az első oszlop ismétlődő értékeinek üresen hagyása
 Left button	Bal gomb
 Left edges	Bal élek
+Left leaf	Bal szárny
 Legend plates (door devices)	Feliratos táblák (ajtókészülékek)
 Length from the node to the device	Hossz a csomóponttól a készülékig
 Length inside an enclosure	Hossz a szekrényen belül
@@ -1242,6 +1247,7 @@ New document page…	Új dokumentumoldal…
 New empty	Új, üres
 New enclosure	Új szekrény
 New enclosure in this room…	Új szekrény ebben a helyiségben…
+New enclosure like this one	Új szekrény, mint ez
 New enclosure…	Új szekrény…
 New graphics page	Új grafikus oldal
 New harness	Új kábelköteg
@@ -1381,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Érintőképernyőn; az érintőpadok a háromujjas kézmozdulatokat a rendszerre hagyják.
 On startup	Indításkor
 On the roof, joined to the air-termination conductors; move it to its place	A tetőn, a felfogó vezetőkhöz kötve; helyezze a helyére
+One leaf	Egy szárny
 One row per label	Címkénként egy sor
 Only devices on the current page	Csak az aktuális oldalon lévő készülékek
 Only frames no page uses can be deleted	Csak az egyetlen oldal által sem használt keretek törölhetők
@@ -2118,6 +2125,7 @@ Tablet mode	Táblagép mód
 Tag	Azonosító
 Tag field	Azonosítómező
 Tag placed by hand	Kézzel elhelyezett azonosító
+Take off all plastic covers	Az összes műanyag burkolat levétele
 Take out a subproject	Alprojekt kiemelése
 Take out of the building	Kivétel az épületből
 Take out {} pages…	{} oldal kiemelése…
@@ -2194,6 +2202,8 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Az általa generált oldalak megmaradnak
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Az alkatrész-adatbázis minden projekt számára közös. Az alkatrészek akkor kerülnek be egy projektbe, amikor egy készülékhez rendelik őket.
 The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	A mező műanyag burkolata; nélküle látszik a keret, a sínek és a mögötte lévő huzalozás
+The plastic covers of all panels of the field grid of this enclosure	A szekrény mezőrácsa összes mezőjének műanyag burkolata
+The plastic covers of all panels of the field grids of every enclosure	Minden szekrény mezőrácsai összes mezőjének műanyag burkolata
 The point's coordinates in the coordinate reference system	A pont koordinátái a koordináta-rendszerben
 The post; its accessories are the table beams, rails and clamps	Az oszlop; tartozékai az asztalgerendák, a sínek és a szorítók
 The project changed since the search.	A projekt a keresés óta megváltozott.
@@ -2261,6 +2271,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	A 3D nézet ráfordítása a pontra
 Twin ferrules where two wires share a connection point	Iker érvéghüvelyek, ahol két vezeték osztozik egy csatlakozási ponton
 Two fingers	Két ujj
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Két szárny, mindegyik a külső élén zsanérozva; az ajtón lévő eszközök a közepük alatti szárnnyal mozognak
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Itt két vezetéknek kell derékszögben találkoznia. Bekapcsolt automatikus csatlakoztatással a karjaival szemközti csatlakozási pontok hozzá vezetékeződnek.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Írjon be egy pontot, és nyomja le az Enter billentyűt: x y mm-ben, vagy @dx dy az utolsó ponthoz képest; úgy működik, mint az aktuális eszközzel végzett kattintás
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2354,6 +2365,7 @@ Whole words	Csak teljes szavak
 Width / going	Szélesség / fellépő
 Width / height (mm)	Szélesség / magasság (mm)
 Width factor	Szélességi tényező
+Width of the left leaf; the right one takes the rest of the front	A bal szárny szélessége; a jobb a homlokoldal többi részét foglalja el
 Width of the letters to their usual width (0.8: narrow lettering)	A betűk szélessége a szokásos szélességükhöz képest (0,8: keskeny írás)
 Width × depth	Szélesség × mélység
 Width × height	Szélesség × magasság
@@ -2544,6 +2556,7 @@ x y	x y
 {} addresses changed	{} cím módosítva
 {} air-termination rods	{} felfogórúd
 {} already exists on the project server.	{} már létezik a projektszerveren.
+{} attached to {}	{} sorolva ehhez: {}
 {} bundles, {} branch points	{} köteg, {} elágazási pont
 {} bus cables created	{} buszkábel létrehozva
 {} bus connections	{} buszkapcsolat
@@ -2660,6 +2673,8 @@ x y	x y
 {} placed as {}	{} elhelyezve: {}
 {} placed in {}	{} elhelyezve itt: {}
 {} placement problems (red) – see Check	{} elhelyezési probléma (piros) – lásd: Ellenőrzés
+{} plastic covers fitted	{} műanyag burkolat felhelyezve
+{} plastic covers taken off	{} műanyag burkolat levéve
 {} problems	{} probléma
 {} project parts updated	{} projektalkatrész frissítve
 {} projects on the server	{} projekt a szerveren

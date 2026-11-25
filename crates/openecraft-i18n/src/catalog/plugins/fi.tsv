@@ -67,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Varasuo
 Bar id	Kiskon ID
 Bar thickness, mm (default 5)	Kiskon paksuus, mm (oletus 5)
 Bar width, mm (default 20)	Kiskon leveys, mm (oletus 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Liittää kotelon toisen kotelon sivuseinän liitoskehykseen (esim. Striebel & Johnin CZ3): sen oikealle puolelle oikean seinän kehyksessä, vasemmalle vasemman seinän kehyksessä
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Rivittää kotelon toisen kotelon oikealle puolelle (rivitys); ilman right_of-arvoa se poistuu rivityksestään
 Bend radius in drag chains as a multiple of the cable diameter	Taivutussäde kaapelinvetoketjuissa kaapelin halkaisijan monikertana
 Bend radius of a drag chain in mm	Kaapelinvetoketjun taivutussäde mm
@@ -146,6 +147,7 @@ Corner points on the mounting plate in mm	Kulmapisteet asennuslevyllä millimetr
 Correction of the time estimate	Aika-arvion korjaus
 Cost of free air against ducts and routing paths	Vapaan reitityksen kustannus suhteessa kouruihin ja reitityspolkuihin
 Counting step (default 1)	Laskennan askel (oletus 1)
+Covers fitted; false takes them off	Suojukset asennettu; false irrottaa ne
 Creates a bus cable for the connection (without cable tag)	Luo väyläkaapelin yhteydelle (ilman kaapelitunnusta)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Luo väylätyypin kaapelin (tyyppi, johtimet, poikkipinta-ala) jokaiselle väyläyhteydelle, jolla ei ole kaapelia
 Creates or changes a PCT loop of the pre-planning	Luo tai muuttaa esisuunnittelun instrumentointipiirin
@@ -264,12 +266,16 @@ Enclosure or room it goes before or after	Kotelo tai tila, jonka eteen tai taaks
 Enclosure part number	Kotelon osanumero
 Enclosure system (default: the enclosure's)	Kotelojärjestelmä (oletus: kotelon järjestelmä)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kotelo, johon kopiot menevät (sijainti, esim. +CAB2); ilman sitä sama
+Enclosure to attach; without it a new one like the enclosure with the frame	Liitettävä kotelo; ilman sitä uusi samanlainen kuin kehyksellinen kotelo
+Enclosure with the frame	Kotelo, jossa kehys on
 Enclosure {} exists already	Kotelo {} on jo olemassa
+Enclosure; without it every enclosure	Kotelo; ilman sitä jokainen kotelo
 Enclosures, panel items, accessories and panel macros	Kotelot, asennusosat, tarvikkeet ja kaappiasennuksen makrot
 End brackets and end plates from the tech data of the terminal parts	Päätytuet ja päätylevyt riviliitinosien teknisistä tiedoista
 End holes from the bar end as a multiple of the width	Päätyreiät kiskon päästä leveyden monikertana
 End: device tag and connection point, e.g. -S1:14	Loppu: laitetunnus ja liitäntäpiste, esim. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Pinta: plate, door, left, right, rear, roof tai bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Pinta: plate, door, left, right, rear, roof tai bottom; door_left ja door_right kaksilehtisen oven lehdille
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Kenttäsuunnitelma: solmut, osuudet, ääriviivat, reitit, potentiaalintasaukset ja tarvikkeet
 Figure	Tunnusluku
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Etsii ja korvaa tekstiä kaikkien (suodatettujen) rivien sarakkeessa; ilman hakutekstiä sarake täytetään korvaavalla tekstillä
@@ -283,6 +289,7 @@ First counter value (default 1)	Laskurin ensimmäinen arvo (oletus 1)
 First page number (default 1)	Ensimmäinen sivunumero (oletus 1)
 First port as station:port, e.g. PLC1:X1 P2	Ensimmäinen portti muodossa asema:portti, esim. PLC1:X1 P2
 First row with the column names	Ensimmäinen rivi sarakkeiden nimillä
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Asentaa kotelon tai jokaisen kotelon kenttäruudukon kaikkien kenttien muovisuojukset tai irrottaa ne kaikki
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Tasakatot ja maa-asennus: suunta, johon moduulit osoittavat, asteina, vastapäivään ylhäältä katsottuna (0: kohti +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Laitteen nimen muoto: {letter}, {n} (laskuri), {page}, {column}, {row}; oletus {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Skeeman format muoto: {n} (laskuri), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -361,6 +368,7 @@ Invalid answer of the plugin: {}	Laajennuksen virheellinen vastaus: {}
 Invalid segment name: {}	Virheellinen segmentin nimi: {}
 Invalid title block elements: {}	Virheelliset nimiön elementit: {}
 Item id	Kohteen tunniste
+Item id of the frame	Kehyksen kohteen tunnus
 Item ids	Kohteiden tunnisteet
 Jumper number	Siltanumero
 Jumper number (terminals with the same number are bridged); 0 removes it	Siltanumero (samanumeroiset riviliittimet on silloitettu); 0 poistaa sen
@@ -381,6 +389,7 @@ Landscape (true) or portrait (false)	Vaakasuunta (true) tai pystysuunta (false)
 Language the project texts are written in, e.g. en	Kieli, jolla projektin tekstit on kirjoitettu, esim. en
 Larger round holes are milled, mm	Suuremmat pyöreät reiät jyrsitään, mm
 Largest difference between hole and tool, mm	Suurin ero reiän ja työkalun välillä, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Pariovien lehdet: niiden leveydet vasemmalta, esim. 275 + 525 (leveyden perässä left tai right saranaa varten), tai niiden määrä samanlevyisille lehdille; tyhjä tai 1 yhdelle lehdelle
 Left edge from the left end of the wall (seen from inside) in mm	Vasen reuna seinän vasemmasta päästä (sisältä katsottuna), mm
 Left edge in mm	Vasen reuna millimetreinä
 Left edge on the face in mm	Vasen reuna pinnalla millimetreinä
@@ -976,6 +985,7 @@ Unknown class: {}	Tuntematon luokka: {}
 Unknown data type: {}	Tuntematon tietotyyppi: {}
 Unknown direction {}: left, right, up or down	Tuntematon suunta {}: left, right, up tai down
 Unknown door hinge: {}	Tuntematon saranapuoli: {}
+Unknown door leaves: {}	Tuntemattomat ovilehdet: {}
 Unknown earth electrode: {}	Tuntematon maadoituselektrodi: {}
 Unknown earthing system: {}	Tuntematon maadoitusjärjestelmä: {}
 Unknown face {}	Tuntematon pinta {}

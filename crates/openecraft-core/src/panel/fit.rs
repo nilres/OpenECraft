@@ -160,9 +160,154 @@ pub fn into_opening(prj: &Project, ei: usize, it: &mut PanelItem) -> bool {
 /// True if accessory item `it` of enclosure `e` sits in an opening of a side wall made
 /// for it (it may reach over the edge of the wall's mounting area there).
 pub fn at_opening(prj: &Project, e: &Enclosure, it: &PanelItem) -> bool {
-    let (Some(acc), Some(main)) = (part_by_number(prj, &it.part), part_by_number(prj, &e.part)) else { return false };
+    opening_of(prj, e, it).is_some()
+}
+
+/// The opening of a side wall of enclosure `e` frame item `it` sits in (face
+/// coordinates).
+fn opening_of(prj: &Project, e: &Enclosure, it: &PanelItem) -> Option<R> {
+    let (acc, main) = (part_by_number(prj, &it.part)?, part_by_number(prj, &e.part)?);
     let c = it.rect().center();
-    openings(e, main, acc, false).iter().any(|(f, r)| *f == it.face && r.contains(c))
+    openings(e, main, acc, false).into_iter().find(|(f, r)| *f == it.face && r.contains(c)).map(|(_, r)| r)
+}
+
+/// The side of enclosure `ei` the frame item `id` joins it to another enclosure at:
+/// `Left` or `Right` when it sits in an opening of that side wall made for it.
+pub fn joining_side(prj: &Project, ei: usize, id: u64) -> Option<Face> {
+    let e = prj.layout.enclosures.get(ei)?;
+    let it = e.item(id)?;
+    (it.kind == ItemKind::Accessory && matches!(it.face, Face::Left | Face::Right) && at_opening(prj, e, it)).then_some(it.face)
+}
+
+/// Bays enclosure `other` to enclosure `ei` at the side the joining frame item `id`
+/// sits in ([`joining_side`]): to its right for a frame in the right wall, to its left
+/// for one in the left wall.
+pub fn attach_at_frame(prj: &mut Project, ei: usize, id: u64, other: usize) -> Result<(), String> {
+    let Some(side) = joining_side(prj, ei, id) else {
+        return Err(openecraft_i18n::tr("The item is no frame in an opening of a side wall").to_string());
+    };
+    let done = if side == Face::Right { super::bay_right_of(prj, other, ei) } else { super::lineup::bay_left_of(prj, other, ei) };
+    if done {
+        Ok(())
+    } else {
+        Err(openecraft_i18n::tr("Only another enclosure can be bayed there").to_string())
+    }
+}
+
+/// Bays a new enclosure like enclosure `ei` (its part, or its size), named after it, to
+/// it at the side of its joining frame item `id` ([`attach_at_frame`]); its index.
+pub fn attach_new_at_frame(prj: &mut Project, ei: usize, id: u64) -> Result<usize, String> {
+    if joining_side(prj, ei, id).is_none() {
+        return Err(openecraft_i18n::tr("The item is no frame in an opening of a side wall").to_string());
+    }
+    let e = &prj.layout.enclosures[ei];
+    let (part, size) = (e.part.clone(), (e.width, e.height, e.depth));
+    let prefix = e.name.trim_end_matches(|c: char| c.is_ascii_digit());
+    let prefix = if prefix.is_empty() { "+CAB".to_string() } else { prefix.to_string() };
+    let name = super::free_name(&prj.layout, &prefix);
+    let mut new = super::new_enclosure(prj, &part, &name);
+    if part_by_number(prj, &part).is_none() {
+        (new.width, new.height, new.depth) = size;
+    }
+    prj.layout.enclosures.push(new);
+    let at = prj.layout.enclosures.len() - 1;
+    attach_at_frame(prj, ei, id, at)?;
+    Ok(at)
+}
+
+/// Dark grey plastic of a joining frame, the copper of the busbars through it.
+const FRAME_PLASTIC: [u8; 3] = [92, 96, 102];
+const COPPER: [u8; 3] = [184, 115, 51];
+/// Wall of a joining frame's collar and thickness of its flange.
+const COLLAR: f32 = 4.0;
+const FLANGE: f32 = 4.0;
+
+/// The 3D model of a frame that joins two enclosures ([`at_opening`]) in face
+/// coordinates: its flange on the outside of the side wall and its collar through the
+/// opening into the enclosure beside, with the busbars of a busbar connector (part data
+/// `Poles: 5`, `Busbars: Cu 2 x 12 x 5 mm`) through it. `None` for other items.
+pub fn frame_mesh(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Option<[u8; 3]>)>> {
+    if it.kind != ItemKind::Accessory || !matches!(it.face, Face::Left | Face::Right) {
+        return None;
+    }
+    let e = prj.layout.enclosures.iter().find(|e| e.item(it.id).is_some())?;
+    let r = opening_of(prj, e, it)?;
+    let part = part_by_number(prj, &it.part)?;
+    // The opening in the item's coordinates, the collar 1 mm inside it.
+    let (x0, y0, x1, y1) = (r.min.x - it.x + 1.0, r.min.y - it.y + 1.0, r.max.x - it.x - 1.0, r.max.y - it.y - 1.0);
+    let (z0, z1) = (it.z, it.z + it.d);
+    let mut m = crate::parts::Mesh3d::default();
+    // The collar, open through.
+    let t = COLLAR;
+    m.add_painted_box([x0, y0, z0], [x1, y0 + t, z1], FRAME_PLASTIC);
+    m.add_painted_box([x0, y1 - t, z0], [x1, y1, z1], FRAME_PLASTIC);
+    m.add_painted_box([x0, y0 + t, z0], [x0 + t, y1 - t, z1], FRAME_PLASTIC);
+    m.add_painted_box([x1 - t, y0 + t, z0], [x1, y1 - t, z1], FRAME_PLASTIC);
+    // The flange against the outside of the wall, round the collar.
+    let f1 = (-e.wall().max(0.0)).clamp(z0 + FLANGE, z1);
+    let (w, h) = (it.w, it.h);
+    if x0 > 0.0 && y0 > 0.0 && x1 < w && y1 < h {
+        m.add_painted_box([0.0, 0.0, f1 - FLANGE], [w, y0, f1], FRAME_PLASTIC);
+        m.add_painted_box([0.0, y1, f1 - FLANGE], [w, h, f1], FRAME_PLASTIC);
+        m.add_painted_box([0.0, y0, f1 - FLANGE], [x0, y1, f1], FRAME_PLASTIC);
+        m.add_painted_box([x1, y0, f1 - FLANGE], [w, y1, f1], FRAME_PLASTIC);
+    }
+    // The busbars, one pole after the other along the long side of the opening.
+    let poles = parts::count_value(part, "Poles").unwrap_or(0).min(12) as usize;
+    if let Some((n, bw, bt)) = part.tech_value("Busbars").and_then(busbar_size).filter(|_| poles > 0) {
+        let long_y = y1 - y0 >= x1 - x0;
+        let (along, across) = if long_y { (y1 - y0 - 2.0 * t, x1 - x0 - 2.0 * t) } else { (x1 - x0 - 2.0 * t, y1 - y0 - 2.0 * t) };
+        let pitch = along / poles as f32;
+        // The bars of a pole with a gap of their thickness between them.
+        let pack = (2 * n - 1) as f32 * bt;
+        if pack < pitch && bw < across {
+            for k in 0..poles {
+                for j in 0..n {
+                    let a = t + pitch * (k as f32 + 0.5) - pack / 2.0 + j as f32 * 2.0 * bt;
+                    let b = t + (across - bw) / 2.0;
+                    let (lo, hi) = if long_y { ([x0 + b, y0 + a], [x0 + b + bw, y0 + a + bt]) } else { ([x0 + a, y0 + b], [x0 + a + bt, y0 + b + bw]) };
+                    m.add_painted_box([lo[0], lo[1], z0], [hi[0], hi[1], z1], COPPER);
+                }
+            }
+        }
+    }
+    Some(laid(&m, it))
+}
+
+/// Busbars of part data `Cu 2 x 12 x 5 mm`: how many per pole, width and thickness.
+fn busbar_size(v: &str) -> Option<(usize, f32, f32)> {
+    let nums: Vec<f32> = v.split(|c: char| !(c.is_ascii_digit() || c == '.')).filter_map(|t| t.parse().ok()).collect();
+    match nums[..] {
+        [w, t] if w > 0.0 && t > 0.0 => Some((1, w, t)),
+        [n, w, t] if (1.0..=4.0).contains(&n) && w > 0.0 && t > 0.0 => Some((n as usize, w, t)),
+        _ => None,
+    }
+}
+
+/// The panels of the field grid ([`is_insert`]) of enclosure `ei`, of every enclosure
+/// for `None`: how many have their plastic cover fitted and how many not.
+pub fn covers(prj: &Project, ei: Option<usize>) -> (usize, usize) {
+    let panels = prj.layout.enclosures.iter().enumerate().filter(|(k, _)| ei.is_none_or(|i| i == *k)).flat_map(|(_, e)| e.items.iter().filter(|it| is_insert(prj, it)));
+    panels.fold((0, 0), |(on, off), it| if it.uncovered { (on, off + 1) } else { (on + 1, off) })
+}
+
+/// Fits the plastic covers of the panels of the field grid of enclosure `ei` (of every
+/// enclosure for `None`), or takes them all off; how many panels changed.
+pub fn set_covers(prj: &mut Project, ei: Option<usize>, fitted: bool) -> usize {
+    let panels: Vec<(usize, u64)> = prj
+        .layout
+        .enclosures
+        .iter()
+        .enumerate()
+        .filter(|(k, _)| ei.is_none_or(|i| i == *k))
+        .flat_map(|(k, e)| e.items.iter().filter(|it| is_insert(prj, it) && it.uncovered == fitted).map(move |it| (k, it.id)))
+        .collect();
+    for &(k, id) in &panels {
+        if let Some(it) = prj.layout.enclosures[k].items.iter_mut().find(|i| i.id == id) {
+            it.uncovered = !fitted;
+        }
+    }
+    panels.len()
 }
 
 /// The parts of a device: those assigned to it, else the part of its item.
@@ -342,18 +487,22 @@ pub fn insert_mesh(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Option<[u8
             }
         }
     }
-    // Laid on the plate: right-handed only with its y down turned round (as `plate_box`).
+    Some(laid(&m, it))
+}
+
+/// The triangles of model `m` (in the coordinates of item `it`, from its top left
+/// corner) laid on its face: right-handed only with its y down turned round (as
+/// `plate_box`).
+fn laid(m: &crate::parts::Mesh3d, it: &PanelItem) -> Vec<(Tri, Option<[u8; 3]>)> {
     let at = |v: [f32; 3]| [it.x + v[0], it.y + v[1], v[2]];
-    Some(
-        m.triangles
-            .iter()
-            .enumerate()
-            .map(|(i, t)| {
-                let [p, q, s] = t.map(|k| at(m.vertices[k as usize]));
-                ([p, s, q], m.color(i))
-            })
-            .collect(),
-    )
+    m.triangles
+        .iter()
+        .enumerate()
+        .map(|(i, t)| {
+            let [p, q, s] = t.map(|k| at(m.vertices[k as usize]));
+            ([p, s, q], m.color(i))
+        })
+        .collect()
 }
 
 /// The rail part of a panel: 35 × 15 mm when its description says so, else 35 × 7.5.

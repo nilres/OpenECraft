@@ -47,13 +47,19 @@ los muestran.
   atornilladas a los soportes del armario que hay detrás, y delante su cubierta de
   plástico con una ranura para cada fila de dispositivos. *Cubierta de plástico* en sus
   propiedades (comando `set_panel_item` con `cover`) quita la cubierta, para ver el
-  bastidor, los carriles y el cableado de detrás.
+  bastidor, los carriles y el cableado de detrás. *Quitar todas las cubiertas de
+  plástico* y *Colocar todas las cubiertas de plástico* en el menú contextual del montaje
+  lo hacen para cada campo de la envolvente, en el menú contextual del navegador para
+  cada envolvente (comando `set_covers`).
 - Un marco que une dos armarios (como el marco aislante CZ3 de Striebel & John, datos de
   artículo `Opening: 202 x 85`) solo va en las aberturas de las paredes laterales
   previstas para él (datos de artículo del armario `Side openings: 202 x 85 at 86 / 20; …`:
   alto × fondo a la distancia desde abajo / desde atrás): arrastrado a la envolvente, se
   resaltan las aberturas libres; colocado en una pared lateral, va a la abertura libre más
-  cercana.
+  cercana. Se dibuja con su brida por fuera de la pared y su collarín a través de la
+  abertura, un conector de embarrado (CZC4, CZC14) con sus barras atravesándolo.
+  *Alinear una envolvente aquí* en el menú contextual del marco alinea una envolvente en
+  este lado: una nueva como esta, o una de las otras (comando `attach_enclosure`).
 - Carriles de montaje y canaletas dibujados por longitud; seleccione uno y arrastre
   cualquiera de sus extremos para cambiar su tamaño, o muévalo (los dispositivos viajan
   con su carril). Los dispositivos se colocan desde una lista de "dispositivos por
@@ -189,6 +195,17 @@ la puerta muestra las bisagras y la maneta en sus lados, la vista 3D abre la pue
 alrededor de ese borde, y los hilos de la puerta discurren a lo largo de la puerta hasta
 ese borde, por el bucle de la bisagra y hasta el borde de la placa en ese lado.
 
+Una puerta doble tiene dos hojas, cada una con bisagras en su borde exterior (*Puerta* ›
+*Puerta doble* y el ancho de la *Hoja izquierda* en las propiedades de la envolvente,
+`door_leaves` de `add_enclosure` / `set_enclosure`, dato de artículo
+`Door leaves: 275 + 525` con los anchos de las hojas desde la izquierda, como los tienen
+los armarios ComfortLine A de Striebel & John de tres a cinco anchos de campo y el
+armario univers `HAG.FR25S2` de Hager). La puerta
+sigue siendo una cara para sus dispositivos: cada uno está en la hoja bajo su centro, se
+abre con ella en la vista 3D y sus hilos pasan por su bisagra; la vista de la puerta
+dibuja cada hoja con sus bisagras y la junta entre ellas, y se avisa de un dispositivo
+que sobrepasa la junta.
+
 ## Zonas restringidas
 
 Un artículo de envolvente puede mantener libres zonas de sus caras (*Zonas restringidas*
@@ -241,6 +258,12 @@ envolvente (*Nueva página de patrón de taladrado*,
 `add_page kind=drilling enclosure=+CAB1`) dibuja sus caras con sus taladros y recortes a
 una misma escala, acotados desde esa esquina, y al lado los tipos de taladros y recortes
 con su número.
+
+Una puerta doble (ver [Puerta del armario](#puerta-del-armario)) se taladra hoja por
+hoja: el informe, la página y los *Datos CN* toman cada hoja como una chapa propia,
+acotada desde su esquina inferior izquierda, y la entrega a las máquinas crea un
+programa para cada hoja (`CAB1_door_left.nc`; `face=door_left` o `door_right` de
+`machining_plan` y `cnc_program`).
 
 ## Cableado virtual y grados de llenado de las canaletas
 

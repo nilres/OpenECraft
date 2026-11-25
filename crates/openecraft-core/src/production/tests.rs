@@ -211,6 +211,43 @@ fn door_cutouts_and_nc_data() {
 }
 
 #[test]
+fn the_leaves_of_a_double_door_are_drilled_apart() {
+    let mut e = Enclosure { width: 800.0, height: 1000.0, ..Default::default() };
+    crate::panel::doors::split(&mut e, Some(300.0));
+    let lamp = Part { number: "LAMP".into(), group: "Signal devices".into(), ..Default::default() };
+    for (id, x) in [(1, 100.0), (2, 500.0), (3, 600.0)] {
+        e.items.push(PanelItem { part: "LAMP".into(), face: Face::Door, ..item(id, ItemKind::Device, x, 200.0, 30.0, 30.0) });
+    }
+    let parts = std::slice::from_ref(&lamp);
+    // A sheet for each leaf instead of the door.
+    let all = sheets(&e);
+    let door: Vec<Sheet> = all.iter().copied().filter(|s| s.face == Face::Door).collect();
+    assert_eq!(all.len(), Face::ALL.len() + 1);
+    assert_eq!(door, [Sheet { face: Face::Door, leaf: Some(0) }, Sheet { face: Face::Door, leaf: Some(1) }]);
+    assert_eq!((door[0].key(&e), door[1].key(&e)), ("door_left".to_string(), "door_right".to_string()));
+    assert_eq!((door[0].size(&e), door[1].size(&e)), ((300.0, 1000.0), (500.0, 1000.0)));
+    assert_eq!((sheet_from_key(&e, "door_right"), sheet_from_key(&e, "door")), (Some(door[1]), Some(Face::Door.into())));
+    assert_eq!(sheet_from_key(&e, "door_3"), None);
+    // Every cutout on the leaf it is in, measured from the leaf's left edge.
+    let xs = |s: Sheet| sheet_openings(&e, parts, s).iter().map(|o| o.center.x).collect::<Vec<_>>();
+    assert_eq!((xs(door[0]), xs(door[1])), (vec![115.0], vec![215.0, 315.0]));
+    assert_eq!(xs(Face::Door.into()).len(), 3, "the whole door");
+    let pattern = drilling(&e, parts);
+    assert_eq!(pattern.iter().map(|f| (f.face, f.leaf, f.size)).collect::<Vec<_>>(), [(Face::Door, Some(0), (300.0, 1000.0)), (Face::Door, Some(1), (500.0, 1000.0))]);
+    assert_eq!(pattern[1].features.iter().map(|x| (x.x, x.y)).collect::<Vec<_>>(), [(215.0, 785.0), (315.0, 785.0)]);
+    // The NC data of a leaf: its outline and its cutouts.
+    let mut prj = Project::new_default();
+    prj.parts.push(lamp.clone());
+    prj.layout.enclosures = vec![e];
+    let csv = nc_csv(&prj, 0, door[1]);
+    assert_eq!(csv.lines().count(), 1 + 2);
+    assert!(csv.lines().skip(1).all(|l| l.contains(";Right door leaf;")) && csv.contains(";215.0;785.0;22.5;"), "{csv}");
+    let dxf = nc_dxf(&prj, 0, door[0]);
+    assert!(dxf.contains("\nDOOR_LEFT\n") && dxf.contains("\n10\n300.000\n"), "{dxf}");
+    assert_eq!(dxf.matches("0\nCIRCLE\n").count(), 1);
+}
+
+#[test]
 fn cutouts_sit_where_the_part_has_them_and_turn_with_the_item() {
     // A panel 214 x 158 with its cutout 6.5 mm above the middle, and a second round one.
     let mut part = Part { number: "HMI".into(), width: 214.0, height: 158.0, depth: 36.0, ..Default::default() };
