@@ -1001,7 +1001,8 @@ Radius und hält Abstand zu jedem anderen Weg und zu sich selbst (wo seine Enden
 seinen Biegeradius zu nahe beieinander liegen, läuft er in einer Schleife herum, die
 niemals über oder neben seinen eigenen Weg, die Bögen an seinen Ecken und den Stutzen,
 aus dem er kommt, zurückkehrt; wo es keine solche Schleife gibt, wird er nicht
-verlegt); Wege kommen nur dort zusammen, wo sie auf dasselbe Betriebsmittel zulaufen,
+verlegt); Wege kommen nur dort zusammen, wo sie auf dasselbe Betriebsmittel zulaufen
+(und wo dünne zu einem Bündel gebunden werden, siehe unten),
 und dort liegen sie nebeneinander: Ein Weg läuft niemals quer über einen anderen, mit
 dem er zusammenkommt (er darf es nur auf seinem eigenen Weg aus einem Anschlusspunkt
 heraus oder dort, wo er auf das Betriebsmittel zuläuft, an dem der andere endet, und
@@ -1022,6 +1023,32 @@ dazwischen brauchen (eine Kabeleinführung direkt unter dem Kasten, in den sie f
 zwei Armaturen übereinander mit ihren Anschlüssen an den Seiten). Der Bereich Meldungen springt zu einem Anschlusspunkt
 des Drahts oder Kabels, und die 3D-Ansicht zeigt an jedem seiner Enden anstelle des
 Wegs einen roten Hinweis mit dem Grund.
+
+Wo es keinen Kabelkanal gibt, werden dünne Drähte und Kabel wie ein Kabelbaum verlegt.
+Ein Schrank ohne Kabelkanäle auf seiner Montageplatte und ohne Verlegewege und ein Raum
+ohne Kabelpritschen und Verlegewege haben nichts, worin sie gelegt werden könnten: Dort
+kommt ein Draht oder Kabel, das nicht dicker ist als ein Viertel einer Zelle des
+Verlegerasters (6 mm in einem Schrank, 12 mm in einem Raum) und denselben Weg nimmt wie
+ein zuvor verlegtes, zu diesem hinüber und läuft mit ihm durch dieselben Zellen, mit
+Kabelbindern an es gebunden. Ein Schritt entlang eines solchen Bündels kostet wenig
+mehr als einer durch einen Kabelkanal, sodass die späteren Drähte den ersten folgen und
+abzweigen, wo sich ihre Wege trennen; ein Weg kommt längs in ein Bündel und verlässt es
+längs, niemals quer hindurch. Ein Bündel hat den Platz aller seiner Drähte (es hält wie
+ein einzelner Weg die Hälfte seiner Dicke Abstand zu allem), wird nicht dicker als eine
+Zelle und ein Drittel und enthält keine Klassen, die Abstand halten (Leistung und
+Signale); dickere Leiter und Schläuche werden an nichts gebunden und behalten ihren
+eigenen Weg. In einem Schrank kostet ein Schritt entlang der Montageplatte (seiner
+Rückseite) und entlang seiner Seitenwände ein Fünftel eines Schritts durch die Luft vor
+den Betriebsmitteln: Drähte und Kabel halten sich an die Rückseite und die Seiten, wo
+ihre Enden und ihre Biegeradien es zulassen. Abstände und Biegeradien sind die jedes
+Wegs. Die 3D-Ansicht legt die Drähte eines Bündels auf Spuren in einem Quadrat, so
+viele, wie gleichzeitig hindurchlaufen (einer, der abzweigt, gibt seine Spur für den
+nächsten frei); ein Draht behält seinen Platz um die Ecken des Bündels, liegt auf der
+Seite, zu der er abzweigt, und kommt von seinem Anschlusspunkt auf einem schrägen Stück
+hinter seiner Aderendhülse auf seine Spur. Kabelbinder werden um das Bündel gezeichnet,
+frei von seinen Bögen und höchstens 150 mm voneinander entfernt (300 mm in einem Raum);
+die Bündelliste nennt ihre Anzahl je Bündel (*Kabelbinder*), `list_routing` als
+`cable_ties`. Schränke und Räume mit Kabelkanälen werden wie bisher verlegt.
 
 Die Verlegung arbeitet auf einem Raster (25 mm in einem Schrank, 50 mm in einem Raum);
 ein Anschlusspunkt liegt, wo er liegt. Die 3D-Ansicht zeichnet einen Weg gerade aus

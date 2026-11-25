@@ -1011,7 +1011,8 @@ radio y se mantiene separado de todos los demás recorridos y de sí mismo (dond
 extremos están demasiado cerca para su radio de curvatura, da la vuelta en un bucle que
 nunca vuelve a cruzar ni a acompañar su propio camino, las curvas de sus esquinas ni la
 boca de la que sale; donde no existe tal bucle no se tiende); los recorridos solo se
-juntan donde llegan al mismo dispositivo, y allí van uno junto a otro: un recorrido nunca
+juntan donde llegan al mismo dispositivo (y donde los finos se atan en un haz, véase
+más abajo), y allí van uno junto a otro: un recorrido nunca
 cruza otro con el que se junta (solo puede hacerlo en su propia salida de un punto de
 conexión, o donde llega al dispositivo en el que termina el otro, y también allí lo rodea
 cuando eso cuesta poco). La salida recta de cada punto de conexión y de cada entrada de
@@ -1031,6 +1032,31 @@ necesitan las curvas entre ellos (una entrada de cables justo debajo de la caja 
 conduce, dos accesorios uno encima de otro con sus conexiones en los lados). El panel de mensajes salta a un punto de conexión del
 hilo o del cable, y la vista 3D muestra una nota roja con el motivo en cada uno de sus
 extremos en lugar del recorrido.
+
+Donde no hay canaleta, los hilos y cables finos se tienden como un mazo de cables. Un
+armario sin canaletas en su placa de montaje y sin rutas de tendido, y una sala sin
+bandejas portacables ni rutas de tendido, no tienen dónde alojarlos: allí, un hilo o cable no más
+grueso que un cuarto de celda de la rejilla de tendido (6 mm en un armario, 12 mm en
+una sala) que sigue el mismo camino que otro tendido antes se acerca a él y pasa con él
+por las mismas celdas, atado a él con bridas. Un paso a lo largo de un haz así cuesta
+poco más que uno por una canaleta, de modo que los hilos posteriores siguen a los
+primeros y se derivan donde sus caminos se separan; un recorrido entra en un haz a lo
+largo de él y lo deja a lo largo de él, nunca a través de él. Un haz tiene el espacio
+de todos sus hilos (mantiene la mitad de su grosor libre de todo, como un recorrido
+solo), no se hace más grueso que una celda y un tercio y no contiene clases que guardan
+distancia (potencia y señales); los conductores más gruesos y los tubos no se atan a
+nada y conservan su propio camino. En un armario, un paso a lo largo de la placa de
+montaje (su fondo) y de sus paredes laterales cuesta una quinta parte de un paso por el
+aire delante de los aparatos: los hilos y cables se mantienen en el fondo y en los
+lados donde sus extremos y sus radios de curvatura lo permiten. Las distancias y los
+radios de curvatura son los de todo recorrido. La vista 3D coloca los hilos de un haz
+en carriles en cuadrado, tantos como pasan por él a la vez (el que lo deja libera su
+carril para el siguiente); un hilo conserva su sitio en las esquinas del haz, queda en
+el lado por el que lo deja y llega a su carril desde su punto de conexión por un tramo
+oblicuo detrás de su puntera. Las bridas se dibujan alrededor del haz, fuera de sus
+curvas y a 150 mm como máximo entre sí (300 mm en una sala); la lista de haces indica
+su número por haz (*Bridas*), `list_routing` como `cable_ties`. Los armarios y las
+salas con canaletas se tienden como antes.
 
 El tendido trabaja sobre una rejilla (25 mm en un armario, 50 mm en una sala); un punto
 de conexión está donde está. La vista 3D dibuja un recorrido saliendo recto de su punto

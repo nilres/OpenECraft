@@ -2649,3 +2649,49 @@ fn a_dropped_control_point_shows_it_is_routed_until_the_routing_has_it() {
     ui.control_feedback(&quick);
     assert!(ui.status.starts_with("Cable -W1 is led through its control points"), "{}", ui.status);
 }
+
+#[test]
+fn cable_ties_hold_the_bundles_of_wires_without_cable_ducts() {
+    // Example 14 has no cable ducts: its thin wires are tied into bundles, and the 3D
+    // view draws a cable tie (a band of quads among the tubes, which are triangles:
+    // an outside and an inside for each of its sides) round the tubes of a bundle
+    // where the routing says one sits.
+    let prj = openecraft_core::sample::example("industrial_main_distribution").unwrap();
+    let an = Analysis::build(&prj);
+    let ties: usize = an.routing.bundles.iter().map(|b| b.ties.len()).sum();
+    assert!(ties > 50, "{ties} cable ties");
+    let ctx = egui::Context::default();
+    let laid_out = |show_wires: bool| {
+        let mut ui = PanelUi { show_wires, ..Default::default() };
+        let shown = ui.shown_3d(&prj, 0);
+        let mut scene = ui.scene_3d(&ctx, &prj, &an, 0, &shown);
+        while scene.waiting.is_some() {
+            std::thread::sleep(std::time::Duration::from_millis(20));
+            scene = ui.scene_3d(&ctx, &prj, &an, 0, &shown);
+        }
+        scene
+    };
+    let scene = laid_out(true);
+    let sides = 2 * scene3d::TIE_SIDES;
+    let bands: Vec<_> = scene.tubes.iter().filter(|f| f.n == 4).collect();
+    let drawn = bands.len() / sides;
+    assert!(bands.len() % sides == 0 && drawn > ties / 2 && drawn <= ties, "{} faces of {ties} cable ties", bands.len());
+    // Each goes round two tubes at least, no wider than a bundle gets (two thirds of a
+    // cell of the routing each way, and the lanes its tubes change over).
+    let from = |q: [f32; 3], a: [f32; 3], b: [f32; 3]| {
+        let d = vec3::sub(b, a);
+        let t = (vec3::dot(vec3::sub(q, a), d) / vec3::dot(d, d).max(1e-9)).clamp(0.0, 1.0);
+        vec3::dist(q, vec3::add(a, vec3::scale(d, t)))
+    };
+    for band in bands.chunks(sides) {
+        let middle = vec3::scale(band.iter().flat_map(|f| f.pts).fold([0.0; 3], vec3::add), 1.0 / (4 * sides) as f32);
+        let radius = band.iter().flat_map(|f| f.pts).map(|q| vec3::dist(q, middle)).fold(0.0, f32::max);
+        let inside = scene.tube_paths.iter().filter(|(points, half, _)| points.windows(2).any(|s| from(middle, s[0], s[1]) < radius - half + 0.5)).count();
+        assert!(inside >= 2 && radius < 30.0, "{inside} tubes in a band of {radius} mm at {middle:?}");
+    }
+    // They are drawn with the wires only, and a cabinet with cable ducts has none.
+    assert!(laid_out(false).tubes.iter().all(|f| f.n != 4));
+    let demo = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&demo);
+    assert!(an.routing.bundles.iter().all(|b| b.ties.is_empty()));
+}

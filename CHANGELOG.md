@@ -5,6 +5,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Wires and cables without cable ducts are tied into bundles:** in a cabinet without
+  cable ducts on its mounting plate, and in a room without cable trays, the 3D routing
+  lays thin wires and cables that go the same way together, as a bundle held by cable
+  ties, instead of each on a way of its own a cell beside the next, and keeps them to
+  the mounting plate (the back) and the side walls of the cabinet where it can.
+  Clearances and bend radii are kept as before; conductors thicker than a quarter of a
+  cell of the routing grid keep a way of their own. The 3D view draws the bundles with
+  their cable ties, the bundle list and `list_routing` count them. Cabinets and rooms
+  with cable ducts are routed as before
+  ([panel layout](docs/features/panel-layout.md#3d-routing)).
 - **What's new and version history:** at the first start after an update the editor
   shows the new features of the versions since the one used last in the window *What's
   new in OpenECraft*. *File › Help › Version history* (also on the Help tab) shows the

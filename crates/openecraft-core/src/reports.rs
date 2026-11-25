@@ -405,9 +405,10 @@ fn bonding_list(prj: &Project) -> Table {
 }
 
 /// Bundles: stretches shared by several wires, cables and tubes, with their
-/// diameter and the branches at their ends.
+/// diameter, the branches at their ends and the cable ties that hold those which run
+/// freely.
 fn bundle_list(r: &crate::routing3d::Routing) -> Table {
-    let mut t = Table::with_widths(&[(tr_const!("Bundle"), 0.5), (tr_const!("Items"), 0.5), (tr_const!("Diameter (mm)"), 0.7), (tr_const!("Length (mm)"), 0.7), (tr_const!("Classes"), 1.0), (tr_const!("Branches"), 0.6), (tr_const!("Contents"), 3.0)]);
+    let mut t = Table::with_widths(&[(tr_const!("Bundle"), 0.5), (tr_const!("Items"), 0.5), (tr_const!("Diameter (mm)"), 0.7), (tr_const!("Length (mm)"), 0.7), (tr_const!("Classes"), 1.0), (tr_const!("Branches"), 0.6), (tr_const!("Cable ties"), 0.6), (tr_const!("Contents"), 3.0)]);
     for (bi, b) in r.bundles.iter().enumerate() {
         let classes: Vec<&str> = b.classes.iter().map(|c| c.title()).collect();
         let branches = r.branches.iter().filter(|x| x.bundles.contains(&bi)).count();
@@ -420,6 +421,7 @@ fn bundle_list(r: &crate::routing3d::Routing) -> Table {
                 format!("{:.0}", b.length),
                 classes.join(", "),
                 branches.to_string(),
+                b.ties.len().to_string(),
                 labels.join(", "),
             ],
             None,

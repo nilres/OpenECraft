@@ -89,7 +89,7 @@ fn items_of_a_bundle_lie_side_by_side_and_do_not_cross() {
         item("B", Class::Power, 10.0, route.clone()),
         item("C", Class::Power, 10.0, vec![[0.0, 2000.0, 0.0], [500.0, 2000.0, 0.0], [500.0, 2500.0, 0.0]]),
     ];
-    let ways: Vec<Way> = items.iter().map(|it| Way { points: &it.points, radii: &it.radii, diameter: it.diameter, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
+    let ways: Vec<Way> = items.iter().map(|it| Way { points: &it.points, radii: &it.radii, diameter: it.diameter, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
     let laid = spread_ways(&ways, 25.0, &[], &[], &[]);
     let (a, b) = (&laid[0].0, &laid[1].0);
     assert_eq!(laid[2].0, items[2].points, "alone it stays as it is");
@@ -115,7 +115,7 @@ fn lanes_keep_off_the_surface_the_ways_run_along() {
     // Five wires lying 5 mm in front of a plate (z 0) that may come 3 mm nearer to it:
     // two rows away from it, side by side along it.
     let line = vec![[0.0, 0.0, 5.0], [500.0, 0.0, 5.0], [500.0, 300.0, 5.0], [800.0, 300.0, 5.0]];
-    let ways: Vec<Way> = (0..5).map(|_| Way { points: &line, radii: &[], diameter: 3.0, rest: [0.0, 0.0, 1.0], below: 3.0, steps: 2, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
+    let ways: Vec<Way> = (0..5).map(|_| Way { points: &line, radii: &[], diameter: 3.0, rest: [0.0, 0.0, 1.0], below: 3.0, steps: 2, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
     let laid = spread_ways(&ways, 8.0, &[], &[], &[]);
     for (points, _) in &laid {
         assert!(points.iter().all(|q| q[2] >= 2.0 - 0.01), "{points:?}");
@@ -140,7 +140,7 @@ fn lanes_keep_out_of_devices_beside_them() {
     // Three cables run together along x; a device lies right beside them on one side
     // (y below -6): centred, a lane would run through it, so they go to the other side.
     let line = vec![[0.0, -300.0, 0.0], [0.0, 0.0, 0.0], [500.0, 0.0, 0.0], [500.0, 300.0, 0.0]];
-    let ways: Vec<Way> = (0..3).map(|_| Way { points: &line, radii: &[], diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
+    let ways: Vec<Way> = (0..3).map(|_| Way { points: &line, radii: &[], diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
     let device = ([100.0, -100.0, -50.0], [400.0, -6.0, 50.0]);
     let middle = |p: &[V3]| p.windows(2).find(|s| (s[1][0] - s[0][0]).abs() > 400.0).map(|s| [0, 1, 2].map(|k| (s[0][k] + s[1][k]) / 2.0)).unwrap();
     let free = spread_ways(&ways, 25.0, &[], &[], &[]);
@@ -166,7 +166,7 @@ fn ways_along_a_duct_lie_inside_it() {
     // Six wires along a duct (x 0 .. 500), inside 40 wide (y) and 30 deep (z) on a
     // plate at z 0; all on the duct's middle line.
     let line = vec![[-50.0, 20.0, -100.0], [-50.0, 20.0, 15.0], [550.0, 20.0, 15.0], [550.0, 200.0, 15.0]];
-    let ways: Vec<Way> = (0..6).map(|_| Way { points: &line, radii: &[], diameter: 8.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
+    let ways: Vec<Way> = (0..6).map(|_| Way { points: &line, radii: &[], diameter: 8.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
     let duct = Channel { inside: ([0.0, 0.0, 0.0], [500.0, 40.0, 30.0]), floor: [0.0, 0.0, 1.0], rim: 0.0, wall: 0.0 };
     let laid = spread_ways(&ways, 8.0, &[], &[duct], &[]);
     let middles: Vec<V3> = laid.iter().map(|(p, _)| p.windows(2).find(|s| (s[1][0] - s[0][0]).abs() > 500.0).map(|s| [0, 1, 2].map(|k| (s[0][k] + s[1][k]) / 2.0)).unwrap()).collect();
@@ -183,7 +183,7 @@ fn a_moved_stretch_meets_a_slanting_one_where_their_lines_cross() {
     // The first stretch (along x) moved down by 20 meets the second one, slanting up at
     // 45 degrees, 20 earlier along x: no step back and forth at the corner.
     let points = [[0.0, 0.0, 50.0], [100.0, 0.0, 50.0], [200.0, 0.0, 150.0]];
-    let (laid, _) = lay(&points, &[0.0; 3], &[[0.0, 0.0, -20.0], [0.0; 3]], [[0.0; 3]; 2], [0.0; 2]);
+    let (laid, _) = lay(&points, &[0.0; 3], &[[0.0, 0.0, -20.0], [0.0; 3]], &[], [[0.0; 3]; 2], [0.0; 2]);
     assert_eq!(laid.len(), 3, "{laid:?}");
     assert!(crate::parts::vec3::dist(laid[1], [80.0, 0.0, 30.0]) < 0.01, "{laid:?}");
 }
@@ -251,7 +251,7 @@ fn wires_on_terminals_closer_than_they_are_thick_leave_them_straight() {
         })
         .collect();
     let radii = [0.0, 20.0, 20.0, 0.0];
-    let ways: Vec<Way> = lines.iter().map(|l| Way { points: l, radii: &radii, diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 4, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
+    let ways: Vec<Way> = lines.iter().map(|l| Way { points: l, radii: &radii, diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 4, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
     let rounds = std::cell::Cell::new(0);
     let laid = lay_out(&ways, 8.0, &[], &[], &[], &|n, total| {
         assert_eq!(total, ROUNDS);
@@ -298,7 +298,7 @@ fn ways_cross_the_walls_of_a_duct_above_their_rim() {
     // up to 20 above its floor; a wire 10 mm thick lying in it at z 5 leaves it across
     // the wall at y 40.
     let line = vec![[100.0, 20.0, 5.0], [300.0, 20.0, 5.0], [300.0, 200.0, 5.0]];
-    let way = Way { points: &line, radii: &[0.0, 30.0, 0.0], diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] };
+    let way = Way { points: &line, radii: &[0.0, 30.0, 0.0], diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] };
     let duct = Channel { inside: ([0.0, 0.0, 0.0], [500.0, 40.0, 70.0]), floor: [0.0, 0.0, 1.0], rim: 20.0, wall: 0.0 };
     let (points, _) = spread_ways(&[way], 8.0, &[], &[duct], &[]).remove(0);
     // Where it crosses y 40 it lies 25 above the floor at least; its ends stay.
@@ -309,7 +309,7 @@ fn ways_cross_the_walls_of_a_duct_above_their_rim() {
     assert_eq!((points[0], *points.last().unwrap()), (line[0], line[2]));
     // Without a rim it stays as it is.
     let open = Channel { rim: 0.0, ..duct };
-    let way = Way { points: &line, radii: &[0.0, 30.0, 0.0], diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] };
+    let way = Way { points: &line, radii: &[0.0, 30.0, 0.0], diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] };
     assert_eq!(spread_ways(&[way], 8.0, &[], &[open], &[]).remove(0).0, line);
 }
 
@@ -331,7 +331,7 @@ fn strands_over_the_rim_of_a_duct_stay_over_it() {
     }
     // A way through a duct from wall to wall (across y) low in it rises over both rims.
     let through = vec![[200.0, -100.0, 5.0], [200.0, 150.0, 5.0]];
-    let way = Way { points: &through, radii: &[0.0, 0.0], diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] };
+    let way = Way { points: &through, radii: &[0.0, 0.0], diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] };
     let (points, _) = spread_ways(&[way], 8.0, &[], &[duct], &[]).remove(0);
     for wall in [0.0, 40.0] {
         let crossing = points.windows(2).find(|s| s[0][1] != s[1][1] && (s[0][1] - wall) * (s[1][1] - wall) <= 0.0).expect("crosses the wall");
@@ -369,7 +369,7 @@ fn a_way_from_one_duct_into_the_next_keeps_under_the_cover_of_the_first() {
     // cover) and turns in the second at z 60: it rises behind the end of the first,
     // not along it into its cover.
     let line = vec![[100.0, 20.0, 56.0], [550.0, 20.0, 60.0], [550.0, 400.0, 60.0]];
-    let way = Way { points: &line, radii: &[0.0, 100.0, 0.0], diameter: 26.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] };
+    let way = Way { points: &line, radii: &[0.0, 100.0, 0.0], diameter: 26.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, tied: false, leave: [[0.0; 3]; 2], straight: [0.0; 2] };
     let first = Channel { inside: ([0.0, 0.0, 0.0], [500.0, 40.0, 70.0]), floor: [0.0, 0.0, 1.0], rim: 20.0, wall: 0.0 };
     let next = Channel { inside: ([502.0, -500.0, 0.0], [600.0, 500.0, 130.0]), floor: [0.0, 0.0, 1.0], rim: 20.0, wall: 0.0 };
     for channels in [[next, first], [first, next]] {
@@ -392,7 +392,7 @@ fn lanes_are_changed_on_a_slanting_piece_not_in_a_step_at_the_corner() {
     let points = [[0.0, 0.0, 50.0], [300.0, 0.0, 50.0], [300.0, 400.0, 50.0], [600.0, 400.0, 50.0], [600.0, 800.0, 50.0]];
     let radii = [0.0, 30.0, 30.0, 30.0, 0.0];
     let offsets = [[0.0; 3], [0.0, 0.0, -5.0], [0.0, 0.0, 5.0], [0.0; 3]];
-    let (laid, bends) = lay(&points, &radii, &offsets, [[0.0; 3]; 2], [0.0; 2]);
+    let (laid, bends) = lay(&points, &radii, &offsets, &[], [[0.0; 3]; 2], [0.0; 2]);
     // The corner between them lies midway between their lanes; each comes onto its
     // lane behind the bend of that corner, 5.5 mm along for each mm aside.
     assert!(laid.iter().any(|q| dist(*q, [300.0, 400.0, 50.0]) < 0.01), "{laid:?}");
@@ -413,18 +413,18 @@ fn a_way_leaves_its_end_point_straight_on() {
     // z 50, 25 wide): routed from the point onto the grid, along y, then along x.
     let points = [[106.0, 0.0, 58.0], [100.0, 12.5, 50.0], [100.0, 200.0, 50.0], [400.0, 200.0, 50.0], [400.0, 600.0, 50.0]];
     let radii = [0.0, 20.0, 20.0, 20.0, 0.0];
-    let (laid, _) = lay(&points, &radii, &[[0.0; 3]; 4], [[0.0, 25.0, 0.0], [0.0; 3]], [0.0; 2]);
+    let (laid, _) = lay(&points, &radii, &[[0.0; 3]; 4], &[], [[0.0, 25.0, 0.0], [0.0; 3]], [0.0; 2]);
     // Straight out along y to its first corner, which lies on that line; the stretch
     // after it comes back onto the grid behind the bend; from there as it was routed.
     assert_eq!(laid[0], points[0]);
     assert!(dist(laid[1], [106.0, 200.0, 58.0]) < 0.01 && dist(laid[2], [170.0, 200.0, 50.0]) < 0.01, "{laid:?}");
     assert_eq!(laid[3..], points[3..]);
     // Without its direction it runs out the way the stretch after the slanting one does.
-    assert_eq!(lay(&points, &radii, &[[0.0; 3]; 4], [[0.0; 3]; 2], [0.0; 2]).0, laid);
+    assert_eq!(lay(&points, &radii, &[[0.0; 3]; 4], &[], [[0.0; 3]; 2], [0.0; 2]).0, laid);
     // A stretch too short to take that up is moved with the corner: the turn back in
     // 40 mm stays as wide as it was routed, the long stretch after it leans over.
     let back = [[106.0, 0.0, 58.0], [100.0, 12.5, 50.0], [100.0, 100.0, 50.0], [140.0, 100.0, 50.0], [140.0, -300.0, 50.0], [500.0, -300.0, 50.0]];
-    let (laid, _) = lay(&back, &[0.0, 20.0, 20.0, 20.0, 20.0, 0.0], &[[0.0; 3]; 5], [[0.0, 25.0, 0.0], [0.0; 3]], [0.0; 2]);
+    let (laid, _) = lay(&back, &[0.0, 20.0, 20.0, 20.0, 20.0, 0.0], &[[0.0; 3]; 5], &[], [[0.0, 25.0, 0.0], [0.0; 3]], [0.0; 2]);
     assert!(dist(laid[1], [106.0, 100.0, 58.0]) < 0.01 && dist(laid[2], [146.0, 100.0, 58.0]) < 0.01, "{laid:?}");
     assert_eq!(laid[laid.len() - 2..], back[4..]);
 }
@@ -477,7 +477,7 @@ fn the_ways_out_of_ends_with_a_direction_take_no_lanes() {
         })
         .collect();
     let radii = [0.0, 20.0, 20.0, 0.0];
-    let ways = |leave: [V3; 2]| -> Vec<Way> { lines.iter().map(|l| Way { points: l, radii: &radii, diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 4, held: false, leave, straight: [0.0; 2] }).collect() };
+    let ways = |leave: [V3; 2]| -> Vec<Way> { lines.iter().map(|l| Way { points: l, radii: &radii, diameter: 10.0, rest: [0.0; 3], below: f32::INFINITY, steps: 4, held: false, tied: false, leave, straight: [0.0; 2] }).collect() };
     // Leaving their terminals straight back, they run to their lanes along y where
     // those begin; laid side by side there too, some would start along y earlier or later.
     let straight = spread_ways(&ways([[0.0, 0.0, -25.0]; 2]), 8.0, &[], &[], &[]);
@@ -525,7 +525,7 @@ fn a_way_laid_out_moves_its_corner_behind_its_ferrule_only_into_free_space() {
     // not into a box in front of it; there the bend is tightened instead.
     let way = vec![[0.0, 0.0, 50.0], [0.0, 20.0, 50.0], [0.0, 20.0, 10.0], [300.0, 20.0, 10.0]];
     let radii = [0.0, 12.0, 12.0, 0.0];
-    let ways = [Way { points: &way, radii: &radii, diameter: 2.0, rest: [0.0; 3], below: f32::INFINITY, steps: 4, held: false, leave: [[0.0, 1.0, 0.0], [0.0; 3]], straight: [14.0, 0.0] }];
+    let ways = [Way { points: &way, radii: &radii, diameter: 2.0, rest: [0.0; 3], below: f32::INFINITY, steps: 4, held: false, tied: false, leave: [[0.0, 1.0, 0.0], [0.0; 3]], straight: [14.0, 0.0] }];
     let furthest = |obstacles: &[(V3, V3)]| {
         let laid = lay_out(&ways, 8.0, obstacles, &[], &[], &|_, _| true).expect("not stopped");
         laid[0].iter().filter(|q| q[0].abs() < 1.0 && q[2] > 12.0).map(|q| q[1]).fold(0.0, f32::max)
@@ -533,4 +533,132 @@ fn a_way_laid_out_moves_its_corner_behind_its_ferrule_only_into_free_space() {
     assert!(furthest(&[]) > 25.0);
     let in_front = ([-5.0, 22.0, 0.0], [5.0, 40.0, 60.0]);
     assert!(furthest(&[in_front]) <= 20.0 + 1e-3);
+}
+
+#[test]
+fn cable_ties_sit_on_the_straight_stretches_of_a_bundle() {
+    // 400 mm, a corner, 60 mm, a corner, 40 mm: clear of the bends by 30 mm, no further
+    // apart than 150 mm.
+    let way = [[0.0, 0.0, 0.0], [400.0, 0.0, 0.0], [400.0, 60.0, 0.0], [400.0, 60.0, 40.0]];
+    let ties = tie_points(&way, 30.0, 150.0);
+    let along: Vec<f32> = ties.iter().filter(|q| q[1] == 0.0).map(|q| q[0]).collect();
+    assert_eq!(along.len(), 4, "{ties:?}");
+    assert!((along[0] - 30.0).abs() < 1e-3 && (along[3] - 370.0).abs() < 1e-3 && along.windows(2).all(|w| w[1] - w[0] <= 150.0), "{along:?}");
+    // One in the middle of the stretch just long enough, none on the one too short.
+    assert_eq!(ties.len(), 5, "{ties:?}");
+    assert!(dist(ties[4], [400.0, 30.0, 0.0]) < 1e-3, "{ties:?}");
+    assert!(tie_points(&way[2..], 30.0, 150.0).is_empty());
+}
+
+#[test]
+fn the_way_of_a_bundle_follows_its_routes() {
+    // Two routes share the stretch along x at y = 37.5: the bundle is traced through
+    // cells of 25 mm (its points lie on their corners), its way lies on the routes.
+    let a = item("A", Class::Control, 3.0, vec![[12.5, 37.5, 0.0], [312.5, 37.5, 0.0], [312.5, 237.5, 0.0]]);
+    let b = item("B", Class::Control, 3.0, vec![[112.5, 137.5, 0.0], [112.5, 37.5, 0.0], [312.5, 37.5, 0.0], [312.5, -62.5, 0.0]]);
+    let items = [a, b];
+    let (bundles, _) = find(&items, 25.0);
+    assert_eq!(bundles.len(), 1);
+    assert!(bundles[0].points.iter().all(|q| q[1] == 50.0), "{:?}", bundles[0].points);
+    let (enclosure, way) = way_of(&bundles[0], &items, 25.0);
+    assert_eq!(enclosure, Some(0));
+    assert_eq!(way[..2], [[112.5, 37.5, 0.0], [312.5, 37.5, 0.0]], "{way:?}");
+    // (No further on round the corner than half a cell.)
+    assert!(way.len() <= 3 && way.iter().all(|q| (q[1] - 37.5).abs() <= 12.5), "{way:?}");
+}
+
+/// Where the polyline passes the plane `at` across `axis`.
+fn passing(points: &[V3], axis: usize, at: f32) -> V3 {
+    let s = points.windows(2).find(|s| (s[0][axis] - at) * (s[1][axis] - at) <= 0.0 && s[0][axis] != s[1][axis]).expect("passes");
+    add(s[0], scale(sub(s[1], s[0]), (at - s[0][axis]) / (s[1][axis] - s[0][axis])))
+}
+
+#[test]
+fn ways_tied_into_a_bundle_lie_in_a_square() {
+    // Four ways along the plate (z up from it), 60 mm in front of it: side by side in
+    // rows away from the plate as deep as they lie in front of it, in one stack; tied
+    // into a bundle, in a square of two by two.
+    let line = [[0.0, -50.0, 60.0], [0.0, 0.0, 60.0], [300.0, 0.0, 60.0], [300.0, -50.0, 60.0]];
+    let places = |tied: bool| -> (Vec<i32>, Vec<i32>) {
+        let ways: Vec<Way> = (0..4).map(|_| Way { points: &line, radii: &[], diameter: 3.0, rest: [0.0, 0.0, 1.0], below: 40.0, steps: 2, held: false, tied, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
+        let laid = spread_ways(&ways, 25.0, &[], &[], &[]);
+        let at: Vec<V3> = laid.iter().map(|(p, _)| passing(p, 0, 150.0)).collect();
+        let distinct = |k: usize| {
+            let mut v: Vec<i32> = at.iter().map(|q| (q[k] * 10.0).round() as i32).collect();
+            v.sort_unstable();
+            v.dedup();
+            v
+        };
+        (distinct(1), distinct(2))
+    };
+    let (across, away) = places(false);
+    assert_eq!((across.len(), away.len()), (1, 4));
+    let (across, away) = places(true);
+    assert_eq!((across.len(), away.len()), (2, 2));
+    assert_eq!((across[1] - across[0], away[1] - away[0]), (40, 40));
+}
+
+#[test]
+fn ways_that_follow_one_another_in_a_bundle_share_a_lane() {
+    // One way all along, one with it over its first third and one over its last: two
+    // lanes, the short ones on the same one.
+    let long = [[-100.0, -50.0, 0.0], [-100.0, 0.0, 0.0], [700.0, 0.0, 0.0], [700.0, -50.0, 0.0]];
+    let first = [[0.0, -50.0, 0.0], [0.0, 0.0, 0.0], [200.0, 0.0, 0.0], [200.0, 100.0, 0.0]];
+    let last = [[400.0, 100.0, 0.0], [400.0, 0.0, 0.0], [600.0, 0.0, 0.0], [600.0, -50.0, 0.0]];
+    let radii = [0.0, 10.0, 10.0, 0.0];
+    let lines: [&[V3]; 3] = [&long, &first, &last];
+    let ways: Vec<Way> = lines.iter().map(|l| Way { points: l, radii: &radii, diameter: 4.0, rest: [0.0; 3], below: f32::INFINITY, steps: 2, held: false, tied: true, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
+    let laid = spread_ways(&ways, 25.0, &[], &[], &[]);
+    let at = [passing(&laid[0].0, 0, 100.0), passing(&laid[1].0, 0, 100.0), passing(&laid[0].0, 0, 500.0), passing(&laid[2].0, 0, 500.0)];
+    // Apart by their thickness and a millimetre where two run together.
+    assert!((dist(at[0], at[1]) - 5.0).abs() < 0.01 && (dist(at[2], at[3]) - 5.0).abs() < 0.01, "{at:?}");
+    // The two short ones lie on one lane: the same place across the bundle, on the
+    // side they turn to (+y).
+    assert!((at[1][1] - at[3][1]).abs() < 0.01 && (at[1][2] - at[3][2]).abs() < 0.01, "{at:?}");
+    assert!(at[1][1] > at[0][1] + 4.9, "{at:?}");
+}
+
+#[test]
+fn a_bundle_of_ways_tied_together_turns_as_one() {
+    // Three ways along x, round a corner and on along y, all on one line: on their
+    // lanes none crosses another, the one inside the bend stays inside.
+    let line = [[0.0, -100.0, 0.0], [0.0, 0.0, 0.0], [300.0, 0.0, 0.0], [300.0, 300.0, 0.0], [600.0, 300.0, 0.0]];
+    let radii = [0.0, 12.0, 12.0, 12.0, 0.0];
+    let ways: Vec<Way> = (0..3).map(|_| Way { points: &line, radii: &radii, diameter: 3.0, rest: [0.0, 0.0, 1.0], below: 0.0, steps: 2, held: false, tied: true, leave: [[0.0; 3]; 2], straight: [0.0; 2] }).collect();
+    let laid = spread_ways(&ways, 25.0, &[], &[], &[]);
+    let before: Vec<f32> = laid.iter().map(|(p, _)| passing(p, 0, 150.0)[1]).collect();
+    let after: Vec<f32> = laid.iter().map(|(p, _)| passing(p, 1, 150.0)[0]).collect();
+    for i in 0..3 {
+        for j in 0..3 {
+            // Further inside the bend (towards +y) before it: further inside (towards
+            // -x) after it.
+            if before[i] > before[j] + 0.1 {
+                assert!(after[i] < after[j] - 0.1, "{before:?} {after:?}");
+            }
+        }
+    }
+    let mut lanes = before.clone();
+    lanes.sort_by(f32::total_cmp);
+    assert!(lanes.windows(2).all(|w| w[1] - w[0] > 3.9), "{before:?}");
+}
+
+#[test]
+fn a_way_comes_onto_its_lane_in_a_bundle_on_a_slanting_piece() {
+    // Out of its connection point straight on in line with it (its ferrule: 12 mm),
+    // then over to the lane of the bundle 10 mm aside, where the stretch is long
+    // enough; on a short one the lane is moved with the end point as for a way alone.
+    let points = [[10.0, 0.0, 0.0], [0.0, 10.0, 0.0], [0.0, 400.0, 0.0], [200.0, 400.0, 0.0]];
+    let radii = [0.0, 10.0, 10.0, 0.0];
+    let leave = [[0.0, 25.0, 0.0], [0.0; 3]];
+    let (laid, _) = lay(&points, &radii, &[[0.0; 3]; 3], &[false, true, false], leave, [12.0, 0.0]);
+    assert_eq!(laid[0], points[0]);
+    assert!(laid[1][0] == 10.0 && laid[1][1] >= 12.0, "{laid:?}");
+    assert!(laid[2][0] == 0.0 && (laid[2][1] - laid[1][1] - LANE_CHANGE * 10.0).abs() < 0.01, "{laid:?}");
+    assert_eq!(laid[laid.len() - 2], [0.0, 400.0, 0.0]);
+    // Alone, the lane is moved with the end point.
+    let (alone, _) = lay(&points, &radii, &[[0.0; 3]; 3], &[], leave, [12.0, 0.0]);
+    assert!(alone[1][0] == 10.0 && alone[1][1] > 300.0, "{alone:?}");
+    let short = [[10.0, 0.0, 0.0], [0.0, 10.0, 0.0], [0.0, 60.0, 0.0], [200.0, 60.0, 0.0]];
+    let (laid, _) = lay(&short, &radii, &[[0.0; 3]; 3], &[false, true, false], leave, [12.0, 0.0]);
+    assert!(laid.iter().all(|q| q[0] >= 9.99), "{laid:?}");
 }
