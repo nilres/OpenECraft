@@ -1,5 +1,6 @@
 # English<TAB>Dansk – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(kun MCP-server)
+A template needs a name	En skabelon skal have et navn
 Access token for changes	Adgangstoken til ændringer
 Access token of a Vault session or an Autodesk account instead of user and password	Adgangstoken for en Vault-session eller en Autodesk-konto i stedet for bruger og adgangskode
 Address of the Vault server, e.g. https://vault.example.com	Adressen på Vault-serveren, f.eks. https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	Def
 Delete the role	Slet rollen
 Deletes a catalog without parts from the parts server	Sletter et katalog uden artikler fra artikelserveren
 Deletes a part from the parts server	Sletter en artikel fra artikelserveren
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Sletter en af brugerens skabeloner fra skabelonmappen (en medfølgende skabelon med samme navn kommer tilbage)
 Deletes a user of the parts server (administrators only)	Sletter en bruger af artikelserveren (kun administratorer)
 Descending order	Faldende rækkefølge
 Discard unsaved changes of the open project	Kassér ikke-gemte ændringer i det åbne projekt
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Viser eksempelprojekterne, fra en første kreds til et helt anlæg, med de funktioner hvert enkelt viser
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Viser eksporterne (indbyggede og fra plugins): navn til export, titel, filtypenavn og parametre
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Viser mapperne og filerne i en Vault-mappe eller søger i filegenskaberne under den (eller i hele vaulten)
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Viser projektskabelonerne (de medfølgende og dem i skabelonmappen: --templates / OPENECRAFT_TEMPLATES) med deres parametre, formler og de sider, en betingelse udelader
 Lists the reports (built-in and of plugins): name for report and title	Viser rapporterne (indbyggede og fra plugins): navn til report og titel
 Lists the users of the parts server (administrators only)	Viser artikelserverens brugere (kun administratorer)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Indlæste plugins (indbyggede og fra plugin-mapperne i --plugins / OPENECRAFT_PLUGINS) med deres kommandoer, kontroller, rapporter og eksporter; aktiverer eller deaktiverer et for denne session
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Producent, hvis artikler 
 Maximum number of hits (default 50)	Maksimalt antal resultater (standard 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Fletter to versioner af en fil i et opdelt projekt post for post (gits flettedriver): resultatet erstatter denne sides fil; hvor siderne er forskellige, bevares dens værdier, og kommandoen mislykkes
 Name of a built-in template (list_structure_templates)	Navn på en indbygget skabelon (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Navn på en skabelon (list_project_templates) eller en skabelonfil
 Name of the knowledge vault (default Vault)	Navnet på vaulten (standard Vault)
+Name of the template (default: its template name, otherwise the project name)	Skabelonens navn (standard: dens skabelonnavn, ellers projektnavnet)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Nye konti venter på godkendelse af en administrator (true) eller logger på med det samme (false)
 New file name (save as)	Nyt filnavn (gem som)
 New pages for every value of the group column (default true)	Nye sider for hver værdi i grupperingskolonnen (standard true)
@@ -147,6 +152,7 @@ No grant of {} found	Ingen tildeling for {} fundet
 No profile named {}	Ingen profil med navnet {}
 No project is open: use open_project or new_project first	Intet projekt er åbent: Brug først open_project eller new_project
 No role {} defined	Ingen rolle {} defineret
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Ingen skabelonmappe: angiv --templates <mappe> eller sæt OPENECRAFT_TEMPLATES
 Not a valid catalog: {}	Ikke et gyldigt katalog: {}
 Not a valid part: {}	Ikke en gyldig artikel: {}
 Not connected to a vault: use vault_connect first	Ikke forbundet til en vault: brug først vault_connect
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Kun siderne i denn
 Only the projects that match these search terms	Kun de projekter, der matcher disse søgetermer
 Only this block	Kun denne blok
 Open (true) or close (false) the registration	Åbn (true) eller luk (false) registreringen
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	Åbn selve skabelonen for at ændre den: pladsholdere, parametre og sidebetingelser bevares (save_project_template gemmer den)
 Opens a project file or archive (files of older versions are converted)	Åbner en projektfil eller et arkiv (filer fra ældre versioner konverteres)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Åbner en projektfil eller et arkiv fra vaulten; vault_upload uden mål tjekker en ny version af den ind
 Option {} needs the form name=value	Option {} skal have formen navn=værdi
@@ -203,6 +210,7 @@ Redoes the last undone change	Gentager den sidst fortrudte ændring
 Remove the grants of the user or group (only of this role and scope, if given)	Fjern brugerens eller gruppens tildelinger (kun for denne rolle og dette område, hvis angivet)
 Remove the parts assigned so far	Fjern de hidtil tildelte artikler
 Removes a file from a part on the parts server	Fjerner en fil fra en artikel på artikelserveren
+Replace a template of the same name	Erstat en skabelon med samme navn
 Replace the file at path if it exists	Erstat filen på path, hvis den findes
 Replace the project parts by their newer server versions	Erstat projektartiklerne med deres nyere serverversioner
 Replacement text	Erstatningstekst
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Rollenavn
 Role of requests without sign-in; none: sign-in needed for reading	Rolle for anmodninger uden logon; none: logon kræves for at læse
 Role: reader, manufacturer, editor, admin or a defined role	Rolle: reader, manufacturer, editor, admin eller en defineret rolle
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Gemmer projektet som en skabelon i skabelonmappen med dets parametre, formler og sidebetingelser; en af brugerens skabeloner med navnet på en medfølgende skabelon træder i dens sted
 Saves the project to its file or to a new path	Gemmer projektet i dets fil eller under en ny sti
 Scale drawings down that do not fit on the page (default: true)	Formindsk tegninger, der ikke passer på siden (standard: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Søgetermer, f.eks. company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Viser manifestet for et projektarkiv
 Shows the project properties, file, number of pages and devices and the check result	Viser projektegenskaber, fil, antal sider og enheder samt kontrolresultatet
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Viser artikelserverens roller, tildelinger og katalogtjenester og angiver eventuelt rollen for anonyme anmodninger (kun administratorer)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Viser, om brugere selv må registrere sig på artikelserveren (som læsere), og åbner eller lukker eventuelt registreringen (kun administratorer)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Start fra en projektskabelon (list_project_templates: de medfølgende som Maskine eller Motorstarter direkte start og dem i skabelonmappen) eller en skabelonfil
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Start fra en projektskabelon: en indbygget (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) eller en projektfil
 Start from an example project (names: list_examples)	Start fra et eksempelprojekt (navne: list_examples)
 Start from the demo project	Start fra demoprojektet
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Brugerdefinerede egenskaber (navn: værdi; en tom værdi fjerner den)
 User name to sign in with	Brugernavn til logon
 User or group name (wildcards; directory groups as directory:group)	Bruger- eller gruppenavn (jokertegn; grupper fra en katalogtjeneste som katalogtjeneste:gruppe)
+Values of the parameters (name: value); the others keep their default	Parametrenes værdier (navn: værdi); de øvrige beholder deres standardværdi
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	Værdier for skabelonens parametre (navn: værdi, f.eks. POWER_KW: 7.5); de øvrige beholder deres standardværdi
 Values to set (name: value; an empty value removes a property)	Værdier, der skal angives (navn: værdi; en tom værdi fjerner en egenskab)
 Vault user name (signs in)	Vault-brugernavn (logger på)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Hvad der skrives: oec (projektfil), oecp (opdelt projekt i sin egen mappe) eller oecz (arkiv); standard: efter outputfilens filendelse
 Width and height must be greater than 0	Bredde og højde skal være større end 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Ord at søge efter i rapporternes titler, navne og søgeord (standarder som VDE 0100-600)
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Beregner værdierne i en projektskabelon for de angivne parametre (mærkestrøm, indstillingsområder, artikler) uden at starte et projekt
 Write the table as CSV to this file	Skriv tabellen som CSV til denne fil
 Writes the check scheme of the project (checks switched off, message levels) to a file	Skriver projektets kontrolskema (kontroller, der er slået fra, meddelelsesniveauer) til en fil
 Writes the embedded file of a document page	Skriver den integrerede fil fra en dokumentside

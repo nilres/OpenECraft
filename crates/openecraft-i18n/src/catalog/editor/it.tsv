@@ -68,6 +68,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Una pagina di schema per ogni dispositivo pianificato con una macro di pagina che non è ancora nello schema (segmento selezionato, altrimenti tutti)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Un progetto suddiviso (.oecp) è una cartella con un piccolo file per pagina, dispositivo, articolo e file incorporato, per il controllo di versione come git: File › Salva come progetto suddiviso.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Un progetto suddiviso è una cartella di file: il browser non può aprirlo. Convertirlo prima in un file di progetto (.oec) o in un archivio (.oecz).
+A template file to pass on; New › From a template file… starts projects from it	Un file di modello da condividere; Nuovo › Da un file modello… avvia progetti da esso
 A template of this name is replaced.	Un modello con questo nome verrà sostituito.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Un modello imposta il tipo di pagina, la cornice di stampa, il cartiglio, la struttura e la descrizione di una nuova pagina e ne posiziona il contenuto.
 A way through free air costs this many times the way in a duct or routing path	Un percorso in aria libera costa questo numero di volte il percorso in una canalina o in un percorso di instradamento
@@ -532,6 +533,7 @@ Delete section	Elimina sezione
 Delete shaft	Elimina cavedio
 Delete stair	Elimina scala
 Delete string	Elimina stringa
+Delete template	Elimina modello
 Delete the group	Elimina il gruppo
 Delete the layer; its items move to the default layer	Elimina il livello; i suoi elementi passano al livello predefinito
 Delete the property and all its values	Elimina la proprietà e tutti i suoi valori
@@ -687,6 +689,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Modifica in tabella
 Edit in table…	Modifica in tabella…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Modalità modifica: trascinare gli edifici al loro posto nella planimetria e ruotarli; un clic su un locale non lo apre più
+Edit template	Modifica modello
 Editable copy of this plot frame	Copia modificabile di questa cornice di stampa
 Editable copy of this title block	Copia modificabile di questo cartiglio
 Effective surface	Superficie efficace
@@ -729,6 +732,7 @@ Export SVG…	Esporta SVG…
 Export all pages as PDF in {}	Esporta tutte le pagine come PDF in {}
 Export as EPLAN parts XML…	Esporta come XML articoli EPLAN…
 Export as PDF in language	Esporta come PDF nella lingua
+Export as file…	Esporta come file…
 Export check scheme…	Esporta schema di verifica…
 Export favorites…	Esporta preferiti…
 Export library…	Esporta libreria…
@@ -794,6 +798,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Formato dei riferimenti incrociati, struttura della pagina di destinazione, punti di interruzione, immagini dei contatti
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Disegno in scala della tavola chiodata del cablaggio con lunghezze delle diramazioni e tabelle dei pin dei connettori
 Forms	Moduli
+Formula	Formula
+Formulas	Formule
 Form…	Modulo…
 Frame	Cornice
 Frame of all pages that do not choose one	Cornice di tutte le pagine che non ne scelgono una
@@ -986,6 +992,7 @@ Introduction	Introduzione
 Invalid value	Valore non valido
 Invert the direction of panning by scrolling	Inverti la direzione dello spostamento con lo scorrimento
 Inverter or charge controller (devices with PV input data)	Inverter o regolatore di carica (dispositivi con dati di ingresso FV)
+It takes the place of the bundled template of this name.	Sostituisce il modello incluso con questo nome.
 Items copied: {}	Elementi copiati: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Elementi copiati: {} (dispositivi esclusi: {}, un dispositivo si posiziona una sola volta)
 Items cut: {}	Elementi tagliati: {}
@@ -1202,6 +1209,7 @@ Nailboard (SVG)…	Tavola chiodata (SVG)…
 Name and cross reference	Nome e riferimento incrociato
 Name on the server	Nome sul server
 Name the inspector in the report data first.	Indicare prima l'ispettore nei dati del rapporto.
+Name, parameters, formulas and page conditions of the project as a template	Nome, parametri, formule e condizioni di pagina del progetto come modello
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nome; Tipo di dati; Indirizzo logico; Commento – per strumenti di programmazione PLC
 Named copy of this form, for report blocks	Copia con nome di questo modulo, per i blocchi di report
 Navigators	Navigatori
@@ -1229,6 +1237,7 @@ New pages for every group (strip, plug, cable, device …)	Nuove pagine per ogni
 New potential	Nuovo potenziale
 New project	Nuovo progetto
 New project from template	Nuovo progetto da modello
+New project from {}	Nuovo progetto da {}
 New project scheme from the selected one	Nuovo schema di progetto da quello selezionato
 New project, not saved yet	Nuovo progetto, non ancora salvato
 New report page	Nuova pagina di report
@@ -1340,6 +1349,7 @@ Number prefix	Prefisso numero
 Number wires	Numera conduttori
 Numbering	Numerazione
 Numbers removed from {} wires	Numeri rimossi da {} conduttori
+Numeric	Numerico
 Object	Oggetto
 Of the outer diameter, as laid fixed	Del diametro esterno, in posa fissa
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Del diametro esterno; le tubazioni sono curvate con curve di un diametro e mezzo
@@ -1451,6 +1461,7 @@ PV array {} lies outside the protection of the air-termination system	Il campo F
 PV array {} of building {}: {} modules	Campo FV {} dell'edificio {}: {} moduli
 PV array {} of building {}: {} modules, {} kWp	Campo FV {} dell'edificio {}: {} moduli, {} kWp
 PV arrays	Campi fotovoltaici
+Page conditions	Condizioni di pagina
 Page graphics	Grafica della pagina
 Page heading	Intestazione pagina
 Page list, devices, parts, panel layout and settings	Elenco pagine, dispositivi, articoli, layout quadro e impostazioni
@@ -1478,6 +1489,9 @@ Pane menu	Menu del riquadro
 Panel wiring report	Report cablatura quadro
 Panes	Riquadri
 Paper	Carta
+Parameter	Parametro
+Parameters	Parametri
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	I parametri vengono richiesti quando si avvia un progetto dal modello; le formule calcolano altri valori. Entrambi compilano {NAME} nei testi del progetto. Una pagina con una condizione (REPORTS=yes) viene esclusa quando la condizione non è soddisfatta.
 Parent section	Sezione superiore
 Part of the profile: generic types or parts from the parts store	Articolo del profilo: tipi generici o articoli dell'archivio articoli
 Part selection from the parts database	Selezione articoli dal database articoli
@@ -1821,6 +1835,7 @@ Save as 3D macro	Salva come macro 3D
 Save as 3D macro…	Salva come macro 3D…
 Save as local file	Salva come file locale
 Save as macro	Salva come macro
+Save as project template	Salva come modello di progetto
 Save as project template…	Salva come modello di progetto…
 Save as scheme	Salva come schema
 Save as split project…	Salva come progetto suddiviso…
@@ -1846,6 +1861,8 @@ Save to project server: {}	Salva sul server dei progetti: {}
 Save to project server: {} – the connection is lost, saving tries again	Salva sul server dei progetti: {} – la connessione è persa, il salvataggio riprova
 Save workspace	Salva area di lavoro
 Save workspace…	Salva area di lavoro…
+Saved in the browser	Salvato nel browser
+Saved in {}, where the command line finds it too	Salvato in {}, dove lo trova anche la riga di comando
 Saved the properties of {} (revision {})	Proprietà di {} salvate (revisione {})
 Saved to	Salvato in
 Saved to the project server (revision {})	Salvato sul server di progetto (revisione {})
@@ -1855,6 +1872,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Salva i livelli con le loro impostazioni come schema delle impostazioni per altri progetti
 Saves the placed properties as a placement scheme of the project	Salva le proprietà posizionate come schema di posizionamento del progetto
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Salva il progetto senza revisioni, baseline, riesame e contrassegni di cablatura come modello per nuovi progetti
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Salva il progetto senza revisioni, baseline, riesame e contrassegni di cablatura come modello per nuovi progetti, nella cartella dei modelli accanto a quelli inclusi
 Saves the project's own properties, function definitions and schemes for other projects	Salva le proprietà, le definizioni di funzione e gli schemi propri del progetto per altri progetti
 Saves the workspace, the arrangement of the panels and the open windows	Salva l'area di lavoro, la disposizione dei riquadri e le finestre aperte
 Saves your version of the whole project as a project file	Salva la tua versione dell'intero progetto come file di progetto
@@ -2095,6 +2113,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Lingue di destinazione
 Temperature rise at the roof against the middle (IEC/TR 60890)	Aumento di temperatura sul tetto rispetto al centro (IEC/TR 60890)
 Template	Modello
+Template parameters	Parametri del modello
+Template {} deleted	Modello {} eliminato
+Template {} saved	Modello {} salvato
 Templates	Modelli
 Terminal markers	Marcatori morsetto
 Terminal number, PLC address, potential name …	Numero morsetto, indirizzo PLC, nome potenziale …
@@ -2374,6 +2395,7 @@ all lines	tutte le righe
 all, or e.g. -X*, -W1	tutti, oppure ad es. -X*, -W1
 all, or e.g. K, Q	tutte, o ad es. K, Q
 along z	lungo z
+always	sempre
 both ends	entrambe le estremità
 built-in	integrato
 by hand	manualmente
@@ -2399,6 +2421,7 @@ e.g. corp:Engineering	ad es. corp:Progettazione
 e.g. customer, ERP, PLM	ad es. cliente, ERP, PLM
 e.g. cutout too small, part missing	ad es. foratura troppo piccola, articolo mancante
 e.g. de, fr, it	ad es. de, fr, it
+e.g. round(POWER_KW * 2, 1)	ad es. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	ad es. conduttore troppo corto, morsetto mancante
 empty	vuota
 female	femmina
@@ -2445,6 +2468,7 @@ ridge {} m	colmo {} m
 set on the device	impostato sul dispositivo
 sloped ceiling from {} m	soffitto inclinato da {} m
 some	alcuni
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, cifre), ceil, floor, min, max, if(condizione, allora, altrimenti), step(x, limite, valore, …, altrimenti); & unisce testi
 taken over	acquisito
 the device before it	l'apparecchio precedente
 the project data (page list, devices, settings)	i dati del progetto (elenco pagine, dispositivi, impostazioni)
@@ -2481,6 +2505,7 @@ x y	x y
 {} (revision {})	{} (revisione {})
 {} (spare)	{} (riserva)
 {} (subproject of {})	{} (sottoprogetto di {})
+{} (template of the user)	{} (modello dell'utente)
 {} (unused)	{} (inutilizzato)
 {} ({} open)	{} ({} aperti)
 {} / {} mm  (column {})	{} / {} mm  (colonna {})

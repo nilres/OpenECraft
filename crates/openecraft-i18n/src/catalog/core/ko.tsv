@@ -23,6 +23,9 @@ A port cannot be connected to itself	포트는 자신에게 연결할 수 없습
 A room needs at least four walls	방에는 벽이 4개 이상 필요합니다
 A section number consists of letters and digits and does not start with 0	구역 번호는 문자와 숫자로 이루어지며 0으로 시작하지 않습니다
 A section number must not be empty or contain a dot	구역 번호는 비어 있거나 점을 포함할 수 없습니다
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	인터록된 접촉기로 양방향 운전하는 3상 모터: 모터 전력에 따라 선정한 전력 회로와 제어 회로, 선택적 보고서 페이지
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	스타로 기동하고 델타로 운전하는 3상 모터: 모터 전력에 따라 선정한 전력 회로와 제어 회로, 선택적 보고서 페이지
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	직입 기동하는 3상 모터: 모터 전력에 따라 선정한 전력 회로와 제어 회로, 선택적 단자 다이어그램, 연결 목록, 장치 목록 및 자재 명세서
 A0 landscape	A0 가로
 A1 landscape	A1 가로
 A2 landscape	A2 가로
@@ -65,6 +68,7 @@ Analog output module	아날로그 출력 모듈
 Analysis	분석
 Another section here has this number	여기에 있는 다른 구역이 이미 이 번호를 사용합니다
 Antenna outlet	안테나 콘센트
+Anticlockwise	시계 반대 방향
 Apparent power (kVA)	피상 전력(kVA)
 Applied directives	적용된 지침
 Approval date	승인 날짜
@@ -170,6 +174,7 @@ Cam profile switch NC	캠 프로파일 스위치 b접점
 Cam profile switch NO	캠 프로파일 스위치 a접점
 Cam switch NC	캠 스위치 b접점
 Cam switch NO	캠 스위치 a접점
+Cannot delete {}: {}	{}을(를) 삭제할 수 없음: {}
 Cannot read the DWG file: {}	DWG 파일을 읽을 수 없습니다: {}
 Capacitive sensor, 2-wire	정전용량형 센서, 2선식
 Capacitive sensor, 3-wire	정전용량형 센서, 3선식
@@ -215,6 +220,7 @@ Circuit breaker 4-pole	차단기 4극
 Circuits, protective devices, switches and terminals labelled	회로, 보호 장치, 스위치 및 단자 표시됨
 Circular milling	원형 밀링
 Clip / snap-on	클립 / 스냅 장착
+Clockwise	시계 방향
 Cloud	구름
 Clutch (electromagnetic)	클러치(전자식)
 Coil and timing	코일 및 타이밍
@@ -252,7 +258,9 @@ Connections of the conductors	도체의 접속
 Connector pin-outs and flat cables	커넥터 핀 배치와 리본 케이블
 Connector pin-outs: mating faces and pin tables (SVG)	커넥터 핀 배치: 결합면과 핀 표 (SVG)
 Contact material	접점 재질
+Contactor	접촉기
 Contactor (single-line)	접촉기(단선)
+Contactor at least (AC-3)	접촉기 최소 정격(AC-3)
 Contactor coil KM (GB)	접촉기 코일 KM(GB)
 Contactor coil KM (GOST)	접촉기 코일 KM(GOST)
 Contactor main contacts KM (GB)	접촉기 주접점 KM(GB)
@@ -265,6 +273,7 @@ Contour milling	윤곽 밀링
 Contractor	계약자
 Control	제어
 Control cabinet	제어반
+Control circuit {}	제어 회로 {}
 Control mode	제어 방식
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	경유점 {}({} {})이(가) 무언가의 내부 또는 외함 밖에 있음: 경유점 없이 배선됩니다. 경유점을 빈 공간으로 이동하십시오.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	경유점 {}({} {})이(가) 경로를 벗어나 있음: 배선이 지나는 어떤 캐비닛이나 방에도 없습니다. 경유점을 경로 위로 이동하십시오.
@@ -307,10 +316,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	표지, 목차, 기능 및 위치가 있는 회로도 페이지, 장치 목록, 부품 목록, 단자 및 케이블 다이어그램
 Create projects	프로젝트 만들기
 Creation date	작성 날짜
+Cross-section of the motor circuit	모터 회로의 단면적
 Cross-section {} carries {} A, less than the {} A of {}	단면적 {0}의 허용 전류 {1} A가 {3}의 {2} A보다 작습니다
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	페이지 {}의 교차가 연결선과 맞지 않습니다: 네 방향 모두에 연결선이 필요하며 그 지점에 접속점이 없어야 합니다
 Current capacity (A)	허용 전류(A)
 Current consumption	소비 전류
+Current of the mains and delta contactor	주 접촉기 및 델타 접촉기의 전류
+Current of the star contactor	스타 접촉기의 전류
 Current range	전류 범위
 Current setting	전류 설정
 Current transformer	변류기
@@ -344,6 +356,7 @@ Default {} ({})	기본값 {} ({})
 Degree of protection	보호 등급
 Delete projects	프로젝트 삭제
 Delivery date	납품일
+Delta	델타
 Demand (diversity factor {})	수요(부등률 {})
 Demand {} A above the usable {} A of the supply	수요 {0} A가 전원 공급의 사용 가능한 {1} A를 초과함
 Density	밀도
@@ -398,6 +411,7 @@ Disconnector 3-pole, lockable	단로기 3극, 잠금 가능
 Displacement	배제 용적
 Distribution board	분전반
 Distribution board (IEC 61439)	분전반(IEC 61439)
+Division by zero in the formula	수식에서 0으로 나누기
 Document	문서
 Document (embedded file)	문서(포함된 파일)
 Document A4 portrait	문서 A4 세로
@@ -418,6 +432,7 @@ Drilling and milling centre	드릴링 및 밀링 센터
 Drive	드라이브
 Drive type	구동 방식
 Driven by	구동 장치
+Driven machine	피구동 기계
 Drives	드라이브
 Drop-out time	복귀 시간
 Duct fill levels	덕트 충전율
@@ -819,6 +834,8 @@ Main switch	주 스위치
 Main switch 1-pole	주 스위치 1극
 Main switch 2-pole	주 스위치 2극
 Main switch 3-pole	메인 스위치 3극
+Mains	전원
+Mains and delta contactor	주 접촉기 및 델타 접촉기
 Mains frequency	전원 주파수
 Mains voltage	전원 전압
 Maintenance	유지보수
@@ -884,11 +901,16 @@ Motor DC	DC 모터
 Motor DC, shunt-wound	DC 모터, 분권
 Motor cable {} of frequency converter {} must be shielded	주파수 변환기 {1}의 모터 케이블 {0}은(는) 차폐되어야 합니다
 Motor data	모터 데이터
+Motor protection	모터 보호
 Motor protection (class 10)	모터 보호(클래스 10)
 Motor protection switch	모터 보호 스위치
 Motor protection switch (single-line)	모터 보호 스위치(단선)
 Motor protection switch 1-pole	모터 보호 스위치 1극
 Motor protection switch 2-pole	모터 보호 스위치 2극
+Motor running	모터 운전 중
+Motor starter direct on line	모터 기동기(직입 기동)
+Motor starter reversing	모터 기동기(정역 운전)
+Motor starter star-delta	모터 기동기(스타-델타)
 Motor, electronically commutated (brushless DC)	모터, 전자 정류(브러시리스 DC)
 Motors	모터
 Motors / Loads	모터 / 부하
@@ -954,6 +976,7 @@ No segment template named {}	이름이 {}인 세그먼트 템플릿이 없습니
 No subproject {}	하위 프로젝트 {}이(가) 없습니다
 No such object: {}	해당 개체가 없습니다: {}
 No surge protective device at the supply (IEC 60364-4-44)	전원 공급부에 서지 보호 장치가 없습니다(IEC 60364-4-44)
+No template of the user is named {}	이름이 {}인 사용자 템플릿이 없습니다
 No terminal {}	단자 {} 없음
 No user defined property {}	사용자 정의 속성 {}이(가) 없습니다
 No wires at the pins of {}	{}의 핀에 전선이 없습니다
@@ -1193,7 +1216,9 @@ Potentials, interruption points	전위, 중단점
 Potentiometer	전위차계
 Power (kWp)	출력 (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	여러 페이지의 주회로와 제어 회로: 메인 스위치, 모터 보호, 인터록이 있는 접촉기 3개, 온 딜레이 타이머, 중단점, 전선 색상이 있는 전위, 모터 케이블 및 케이블 보고서.
+Power circuit {}	전력 회로 {}
 Power factor	역률
+Power factor cos phi	역률 cos phi
 Power factor meter	역률계
 Power loss (W)	전력 손실(W)
 Power module	전원 모듈
@@ -1246,6 +1271,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	보호 도체�
 Protective devices	보호 장치
 Protective earth	보호 접지
 Protective earth (PE)	보호 도체(PE)
+Protective earth terminal	보호 접지 단자
 Protective hose	보호 호스
 Protective, earthing and bonding conductors present and adequate	보호, 접지 및 본딩 도체가 있고 적절함
 Proximity sensor	근접 센서
@@ -1295,6 +1321,7 @@ Rated cross-section	정격 단면적
 Rated current (A)	정격 전류(A)
 Rated current of the assembly	어셈블리 정격 전류
 Rated current of the auxiliary contacts	보조 접점 정격 전류
+Rated current {} A, motor protection switch {}	정격 전류 {} A, 모터 보호 스위치 {}
 Rated diversity factor	정격 부등률
 Rated frequency	정격 주파수
 Rated impulse withstand voltage	정격 임펄스 내전압
@@ -1331,6 +1358,7 @@ Remote I/O	원격 I/O
 Remote I/O {} has no controller	원격 I/O {}에 컨트롤러가 없습니다
 Replace needs the text to find	바꾸기에는 찾을 텍스트가 필요합니다
 Replacement part number	대체 부품 번호
+Report pages	보고서 페이지
 Residual current device	누전 차단기
 Residual current device 1-pole	누전 차단기 1극
 Residual current device 2-pole	누전 차단기 2극
@@ -1432,6 +1460,7 @@ Service unit	서비스 유닛
 Service unit (filter, regulator, lubricator)	서비스 유닛(필터, 레귤레이터, 루브리케이터)
 Setpoint	설정값
 Setting range	설정 범위
+Setting range of the motor protection switch	모터 보호 스위치의 설정 범위
 Sheath colour	시스 색상
 Sheath material	시스 재질
 Shed roof	외쪽지붕
@@ -1493,6 +1522,9 @@ Spiral	나선형
 Stainless steel	스테인리스강
 Stainless steel V4A	스테인리스강 V4A
 Standard	표준
+Star	스타
+Star contactor	스타 접촉기
+Star time	스타 시간
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	릴레이를 이용한 시작 / 정지 회로: 코일과 접점이 상호 참조 및 접점 이미지와 함께 하나의 장치를 구성; 단자대, 전선 번호, 단자도 및 연결 목록.
 Start date	시작일
 Starting current ratio	기동 전류비
@@ -1505,6 +1537,7 @@ Station {}: bus system {} does not exist	스테이션 {0}: 버스 시스템 {1}�
 Steam	증기
 Steel, hot-dip galvanised	용융 아연 도금강
 Stock	재고
+Stop	정지
 Stop category	정지 범주
 Storage temperature range	보관 온도 범위
 Straight	직선
@@ -1536,6 +1569,7 @@ Supplementary fields	추가 필드
 Suppliers	공급업체
 Supply network	배전 계통
 Supply voltage	공급 전압
+Supply {} V / 50 Hz, TN-S	전원 {} V / 50 Hz, TN-S
 Surface (m²)	표면적(m²)
 Surface-mounted	노출 배선
 Surge protection type	서지 보호 유형
@@ -1554,6 +1588,7 @@ Switches / Sensors	스위치 / 센서
 Switches, pushbuttons	스위치, 푸시버튼
 Switching frequency	개폐 빈도
 Switching output	스위칭 출력
+Syntax error in the formula at {}	수식의 {}에 구문 오류가 있습니다
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	페이지 {}의 T분기점이 연결선과 맞지 않습니다: 그 방향으로 하나, 가로로 둘의 연결선이 필요하며 그 지점에 접속점이 없어야 합니다
 Table of contents	목차
 Tabloid landscape	Tabloid 가로
@@ -1580,6 +1615,7 @@ Terminal data	단자 데이터
 Terminal description	단자 설명
 Terminal line-up	단자 배열
 Terminal marker	단자 마커
+Terminal of the motor circuit	모터 회로의 단자
 Terminal parts	단말 부품
 Terminal strip data of {} without terminals	단자가 없는 {}의 단자대 데이터
 Terminal strip overview	단자대 개요
@@ -1609,6 +1645,7 @@ The file is empty	파일이 비어 있습니다
 The file was written by a newer version (format {}): data this version does not know is lost when saving	이 파일은 최신 버전(형식 {})에서 작성되었습니다. 이 버전에서 알 수 없는 데이터는 저장할 때 손실됩니다
 The first column must be Key	첫 번째 열은 Key여야 합니다
 The folder {} already holds the project {}: a split project needs a folder of its own	폴더 {}에 이미 프로젝트 {}이(가) 있습니다. 분할 프로젝트에는 전용 폴더가 필요합니다
+The formula ends too early	수식이 너무 일찍 끝납니다
 The function definition needs a key and a name	기능 정의에는 키와 이름이 필요합니다
 The last page cannot be deleted	마지막 페이지는 삭제할 수 없습니다
 The macro box has no items left	매크로 박스에 남은 항목이 없습니다
@@ -1735,14 +1772,17 @@ Unit of measurement	측정 단위
 Unit price	단가
 Unknown cable {}	알 수 없는 케이블 {}
 Unknown device: {}	알 수 없는 장치: {}
+Unknown function {} in the formula	수식에 알 수 없는 함수 {}이(가) 있습니다
 Unknown job {}	알 수 없는 작업 {}
 Unknown macro	알 수 없는 매크로
 Unknown macro box	알 수 없는 매크로 박스
+Unknown name {} in the formula	수식에 알 수 없는 이름 {}이(가) 있습니다
 Unknown object: {}	알 수 없는 개체: {}
 Unknown revision	알 수 없는 개정
 Unknown symbol '{}'	알 수 없는 심볼 '{}'
 Unknown tool {}	알 수 없는 공구 {}
 Unused connection points	사용하지 않는 연결 지점
+Upper limit of the setting range	설정 범위의 상한
 Upstream	상위
 User defined	사용자 정의
 User symbols	사용자 심볼
@@ -1821,6 +1861,7 @@ Within a suite, wall mounted	열 중간, 벽면 장착
 Within a suite, wall mounted, roof covered	열 중간, 벽면 장착, 지붕 덮음
 Word document	Word 문서
 Working line	작동 라인
+Wrong number of values for {}	{}의 값 개수가 잘못되었습니다
 XLPE / EPR (90 °C)	XLPE / EPR(90 °C)
 Year of construction	제작 연도
 Yes / no	예 / 아니요
@@ -1943,8 +1984,12 @@ yellow	노랑
 {} is a built-in property	{}은(는) 기본 제공 속성입니다
 {} is a built-in scheme	{}은(는) 기본 제공 스키마입니다
 {} is a busbar machine and makes no sheets	{}은(는) 부스바 가공기이므로 판금을 가공하지 않습니다
+{} is above the last step	{}이(가) 마지막 단계보다 큽니다
+{} is defined twice	{}이(가) 두 번 정의됨
 {} is neither the protective device nor a device of the circuit of {}	{}은(는) 보호 장치도 아니고 {} 회로의 장치도 아닙니다
+{} is no valid name: letters, digits and _, not starting with a digit	{}은(는) 올바른 이름이 아닙니다: 문자, 숫자 및 _만 사용할 수 있으며 숫자로 시작할 수 없습니다
 {} is not a busbar machine	{}은(는) 부스바 가공기가 아닙니다
+{} is not a number	{}은(는) 숫자가 아닙니다
 {} is not a property of {}	{}은(는) {}의 속성이 아닙니다
 {} is not an approver of this project	{}은(는) 이 프로젝트의 승인자가 아닙니다
 {} is not connected to the mains: place it without a protective device	{}은(는) 전원에 연결되지 않습니다: 보호 장치 없이 배치하십시오
@@ -2101,6 +2146,7 @@ yellow	노랑
 {}: voltage drop {} V ({} %) above {} %	{0}: 전압 강하 {1} V({2} %)가 {3} %를 초과함
 {}: wire colour {} differs from the potential definition ({})	{0}: 전선 색상 {1}이(가) 전위 정의({2})와 다릅니다
 {}: wire without core designation	{}: 심선 명칭 없는 전선
+{}: {}	{}: {}
 {}: {} ({})	{}: {}({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {}({})과(와) {}({})의 간격은 {} mm이며, 최소 {} mm가 필요합니다
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{0}: 전력 손실 {1} W로 외함이 {2} °C까지 가열됨(최고 {3} °C): {4} 필요
@@ -2119,6 +2165,8 @@ yellow	노랑
 {}: {} is inside the EMC clearance of {} ({} mm)	{}: {}이(가) {}의 EMC 이격 거리({} mm) 안에 있습니다
 {}: {} is inside the ventilation clearance of {}	{}: {}이(가) {}의 환기 이격 거리 안에 있습니다
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {}은(는) 장착 레일용이지만 플레이트에 직접 장착되어 있습니다
+{}: {} is not a number	{}: {}은(는) 숫자가 아닙니다
+{}: {} is not one of its choices	{}: {}은(는) 선택 항목에 없습니다
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {}이(가) 바닥에서 {} … {} mm 높이에 있습니다. 허용 {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg이(가) {}의 허용 하중 {} kg을 초과합니다
 {}: {} lies in a restricted placing area of the {}	{0}: {1}이(가) {2}의 배치 금지 영역에 있습니다

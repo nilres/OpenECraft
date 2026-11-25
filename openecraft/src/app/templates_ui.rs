@@ -244,7 +244,7 @@ impl App {
             }
             ui.horizontal(|ui| {
                 save = ui.add_enabled(!s.name.trim().is_empty() && problems.is_empty(), egui::Button::new(tr("Save"))).clicked();
-                export = ui.button(tr("Export as file…")).on_hover_text(tr("A template file to pass on; File › Open template file… starts projects from it")).clicked();
+                export = ui.button(tr("Export as file…")).on_hover_text(tr("A template file to pass on; New › From a template file… starts projects from it")).clicked();
                 cancel = ui.button(tr("Cancel")).clicked();
             });
         });

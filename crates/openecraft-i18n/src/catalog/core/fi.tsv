@@ -26,6 +26,9 @@ A port cannot be connected to itself	Porttia ei voi yhdistää itseensä
 A room needs at least four walls	Tilassa on oltava vähintään neljä seinää
 A section number consists of letters and digits and does not start with 0	Osion numero koostuu kirjaimista ja numeroista eikä ala numerolla 0
 A section number must not be empty or contain a dot	Osion numero ei saa olla tyhjä eikä sisältää pistettä
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Kolmivaihemoottori molempiin pyörimissuuntiin lukituilla kontaktoreilla: pää- ja ohjauspiiri mitoitettuna moottorin tehon mukaan, valinnaiset raporttisivut
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Kolmivaihemoottori, joka käynnistetään tähdessä ja ajetaan kolmiossa: pää- ja ohjauspiiri mitoitettuna moottorin tehon mukaan, valinnaiset raporttisivut
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Suoraan kytketty kolmivaihemoottori: pää- ja ohjauspiiri mitoitettuna moottorin tehon mukaan, valinnaisesti riviliitinkaavio, yhteysluettelo, laiteluettelo ja osaluettelo
 A0 landscape	A0 vaaka
 A1 landscape	A1 vaaka
 A2 landscape	A2 vaaka
@@ -68,6 +71,7 @@ Analog output module	Analogialähtömoduuli
 Analysis	Analyysi
 Another section here has this number	Toisella osiolla tässä on jo tämä numero
 Antenna outlet	Antennirasia
+Anticlockwise	Vastapäivään
 Apparent power (kVA)	Näennäisteho (kVA)
 Applied directives	Sovelletut direktiivit
 Approval date	Hyväksymispäivä
@@ -177,6 +181,7 @@ Cam profile switch NC	Käyränokkakytkin, avautuva
 Cam profile switch NO	Käyränokkakytkin, sulkeutuva
 Cam switch NC	Nokkakytkin, avautuva
 Cam switch NO	Nokkakytkin, sulkeutuva
+Cannot delete {}: {}	Kohdetta {} ei voi poistaa: {}
 Cannot read the DWG file: {}	DWG-tiedostoa ei voi lukea: {}
 Capacitive sensor, 2-wire	Kapasitiivinen anturi, 2-johtiminen
 Capacitive sensor, 3-wire	Kapasitiivinen anturi, 3-johtiminen
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Katkaisija 4-napainen
 Circuits, protective devices, switches and terminals labelled	Virtapiirit, suojalaitteet, kytkimet ja liittimet merkitty
 Circular milling	Ympyräjyrsintä
 Clip / snap-on	Pidike / napsautuskiinnitys
+Clockwise	Myötäpäivään
 Cloud	Pilvi
 Clutch (electromagnetic)	Kytkin (sähkömagneettinen)
 Coil and timing	Kela ja ajoitus
@@ -260,7 +266,9 @@ Connections of the conductors	Johtimien liitokset
 Connector pin-outs and flat cables	Liittimien nastajärjestykset ja lattakaapelit
 Connector pin-outs: mating faces and pin tables (SVG)	Liittimien nastajärjestykset: liitinpinnat ja nastataulukot (SVG)
 Contact material	Kosketinmateriaali
+Contactor	Kontaktori
 Contactor (single-line)	Kontaktori (yksinapainen esitys)
+Contactor at least (AC-3)	Kontaktori vähintään (AC-3)
 Contactor coil KM (GB)	Kontaktorin kela KM (GB)
 Contactor coil KM (GOST)	Kontaktorin kela KM (GOST)
 Contactor main contacts KM (GB)	Kontaktorin pääkoskettimet KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Muotojyrsintä
 Contractor	Urakoitsija
 Control	Ohjaus
 Control cabinet	Ohjauskaappi
+Control circuit {}	Ohjauspiiri {}
 Control mode	Ohjaustapa
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Ohjauspiste {} kohteelle {} {} on jonkin sisällä tai kotelon ulkopuolella: se reititetään ilman ohjauspisteitään. Siirrä ohjauspiste vapaaseen tilaan.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Ohjauspiste {} kohteelle {} {} on reittinsä ulkopuolella: ei missään kaapissa tai tilassa, jonka läpi se reititetään. Siirrä ohjauspiste reitille.
@@ -315,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Kansilehti, sisällysluettelo, piirikaaviosivut toiminnolla ja sijainnilla, laiteluettelo, osaluettelo, riviliitin- ja kaapelikaaviot
 Create projects	Luo projekteja
 Creation date	Luontipäivä
+Cross-section of the motor circuit	Moottoripiirin poikkipinta-ala
 Cross-section {} carries {} A, less than the {} A of {}	Poikkipinta-ala {0} kestää {1} A, vähemmän kuin kohteen {3} {2} A
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Sivun {} risteys ei sovi johtimiinsa: se tarvitsee johtimen kaikkiin neljään suuntaan eikä liitäntäpistettä siinä
 Current capacity (A)	Virrankestoisuus (A)
 Current consumption	Virrankulutus
+Current of the mains and delta contactor	Verkko- ja kolmiokontaktorin virta
+Current of the star contactor	Tähtikontaktorin virta
 Current range	Virta-alue
 Current setting	Virran asetus
 Current transformer	Virtamuuntaja
@@ -352,6 +364,7 @@ Default {} ({})	Oletus {} ({})
 Degree of protection	Kotelointiluokka
 Delete projects	Poista projekteja
 Delivery date	Toimituspäivä
+Delta	Kolmio
 Demand (diversity factor {})	Tarve (samanaikaisuuskerroin {})
 Demand {} A above the usable {} A of the supply	Tarve {} A yli syötön käytettävissä olevan {} A
 Density	Tiheys
@@ -406,6 +419,7 @@ Disconnector 3-pole, lockable	Erotin, 3-napainen, lukittava
 Displacement	Kierrostilavuus
 Distribution board	Jakokeskus
 Distribution board (IEC 61439)	Jakokeskus (IEC 61439)
+Division by zero in the formula	Jako nollalla kaavassa
 Document	Dokumentti
 Document (embedded file)	Dokumentti (upotettu tiedosto)
 Document A4 portrait	Dokumentti A4 pysty
@@ -426,6 +440,7 @@ Drilling and milling centre	Pora- ja jyrsinkeskus
 Drive	Käyttö
 Drive type	Käytön tyyppi
 Driven by	Käyttävä laite
+Driven machine	Käytettävä kone
 Drives	Käytöt
 Drop-out time	Päästöaika
 Duct fill levels	Johtokourujen täyttöasteet
@@ -829,6 +844,8 @@ Main switch	Pääkytkin
 Main switch 1-pole	Pääkytkin, 1-napainen
 Main switch 2-pole	Pääkytkin, 2-napainen
 Main switch 3-pole	Pääkytkin 3-napainen
+Mains	Verkko
+Mains and delta contactor	Verkko- ja kolmiokontaktori
 Mains frequency	Verkkotaajuus
 Mains voltage	Verkkojännite
 Maintenance	Huolto
@@ -895,11 +912,16 @@ Motor DC, shunt-wound	Tasavirtamoottori, sivuvirta
 Motor cable {} of frequency converter {} must be shielded	Taajuusmuuttajan {1} moottorikaapelin {0} on oltava suojavaipallinen
 Motor data	Moottorin tiedot
 Motor operator of a circuit breaker	Katkaisijan moottoriohjain
+Motor protection	Moottorinsuoja
 Motor protection (class 10)	Moottorinsuoja (luokka 10)
 Motor protection switch	Moottorinsuojakytkin
 Motor protection switch (single-line)	Moottorinsuojakatkaisija (yksinapainen)
 Motor protection switch 1-pole	Moottorinsuojakatkaisija, 1-napainen
 Motor protection switch 2-pole	Moottorinsuojakatkaisija, 2-napainen
+Motor running	Moottori käy
+Motor starter direct on line	Moottorin suorakäynnistys
+Motor starter reversing	Moottorin suunnanvaihto
+Motor starter star-delta	Moottorin tähti-kolmiokäynnistys
 Motor, electronically commutated (brushless DC)	Moottori, elektronisesti kommutoitu (harjaton DC)
 Motors	Moottorit
 Motors / Loads	Moottorit / kuormat
@@ -965,6 +987,7 @@ No segment template named {}	Segmenttimallia nimeltä {} ei ole
 No subproject {}	Aliprojektia {} ei ole
 No such object: {}	Objektia ei ole: {}
 No surge protective device at the supply (IEC 60364-4-44)	Syötössä ei ole ylijännitesuojaa (IEC 60364-4-44)
+No template of the user is named {}	Käyttäjän malleista mikään ei ole nimeltään {}
 No terminal {}	Ei riviliitintä {}
 No user defined property {}	Käyttäjän määrittämää ominaisuutta {} ei ole
 No wires at the pins of {}	Liittimen {} nastoissa ei ole johtimia
@@ -1206,7 +1229,9 @@ Potentials, interruption points	Potentiaalit, katkoskohdat
 Potentiometer	Potentiometri
 Power (kWp)	Teho (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Pää- ja ohjauspiiri usealla sivulla: pääkytkin, moottorinsuoja, kolme kontaktoria lukituksineen, vetohidasteinen aikarele, katkaisukohdat, potentiaalit johdinväreineen, moottorikaapeli ja kaapeliraportit.
+Power circuit {}	Pääpiiri {}
 Power factor	Tehokerroin
+Power factor cos phi	Tehokerroin cos phi
 Power factor meter	Tehokerroinmittari
 Power loss (W)	Häviöteho (W)
 Power module	Tehomoduuli
@@ -1259,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Suojajohtimien 
 Protective devices	Suojalaitteet
 Protective earth	Suojamaadoitus
 Protective earth (PE)	Suojajohdin (PE)
+Protective earth terminal	Suojamaadoitusriviliitin
 Protective hose	Suojaletku
 Protective, earthing and bonding conductors present and adequate	Suoja-, maadoitus- ja potentiaalintasausjohtimet olemassa ja riittävät
 Proximity sensor	Läheisyysanturi
@@ -1308,6 +1334,7 @@ Rated cross-section	Mitoituspoikkipinta-ala
 Rated current (A)	Mitoitusvirta (A)
 Rated current of the assembly	Kokoonpanon mitoitusvirta
 Rated current of the auxiliary contacts	Apukoskettimien mitoitusvirta
+Rated current {} A, motor protection switch {}	Mitoitusvirta {} A, moottorinsuojakytkin {}
 Rated diversity factor	Mitoitettu käyttökerroin
 Rated frequency	Mitoitustaajuus
 Rated impulse withstand voltage	Mitoitussysäyskestojännite
@@ -1344,6 +1371,7 @@ Remote I/O	Hajautettu I/O
 Remote I/O {} has no controller	Hajautetulla I/O:lla {} ei ole ohjainta
 Replace needs the text to find	Korvaaminen tarvitsee etsittävän tekstin
 Replacement part number	Korvaavan osan numero
+Report pages	Raporttisivut
 Residual current device	Vikavirtasuojakytkin
 Residual current device 1-pole	Vikavirtasuoja, 1-napainen
 Residual current device 2-pole	Vikavirtasuoja, 2-napainen
@@ -1446,6 +1474,7 @@ Service unit	Huoltoyksikkö
 Service unit (filter, regulator, lubricator)	Huoltoyksikkö (suodatin, säädin, voitelulaite)
 Setpoint	Asetusarvo
 Setting range	Asettelualue
+Setting range of the motor protection switch	Moottorinsuojakytkimen asettelualue
 Sheath colour	Vaipan väri
 Sheath material	Vaipan materiaali
 Shed roof	Pulpettikatto
@@ -1507,6 +1536,9 @@ Spiral	Kierreportaat
 Stainless steel	Ruostumaton teräs
 Stainless steel V4A	Ruostumaton teräs V4A
 Standard	Standardi
+Star	Tähti
+Star contactor	Tähtikontaktori
+Star time	Tähtikytkennän aika
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Käynnistys- / pysäytyspiiri releellä: kela ja koskettimet muodostavat yhden laitteen ristiviittauksineen ja kosketinkuvineen, riviliitin, johdinnumerot, riviliitinkaavio ja kytkentäluettelo.
 Start date	Aloituspäivä
 Starting current ratio	Käynnistysvirtasuhde
@@ -1519,6 +1551,7 @@ Station {}: bus system {} does not exist	Asema {}: väyläjärjestelmää {} ei 
 Steam	Höyry
 Steel, hot-dip galvanised	Kuumasinkitty teräs
 Stock	Varasto
+Stop	Seis
 Stop category	Pysäytysluokka
 Storage temperature range	Varastointilämpötila-alue
 Straight	Suorat
@@ -1550,6 +1583,7 @@ Supplementary fields	Lisäkentät
 Suppliers	Toimittajat
 Supply network	Jakelujärjestelmä
 Supply voltage	Syöttöjännite
+Supply {} V / 50 Hz, TN-S	Syöttö {} V / 50 Hz, TN-S
 Surface (m²)	Pinta-ala (m²)
 Surface-mounted	Pinta-asennus
 Surge protection type	Ylijännitesuojan tyyppi
@@ -1568,6 +1602,7 @@ Switches / Sensors	Kytkimet / anturit
 Switches, pushbuttons	Kytkimet, painikkeet
 Switching frequency	Kytkentätaajuus
 Switching output	Kytkentälähtö
+Syntax error in the formula at {}	Syntaksivirhe kaavassa kohdassa {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Sivun {} T-haara ei sovi johtimiinsa: se tarvitsee yhden johtimen suunnassaan, kaksi poikittain eikä liitäntäpistettä siinä
 Table of contents	Sisällysluettelo
 Tabloid landscape	Tabloid vaaka
@@ -1594,6 +1629,7 @@ Terminal data	Riviliittimen tiedot
 Terminal description	Riviliittimen kuvaus
 Terminal line-up	Riviliitinjärjestys
 Terminal marker	Riviliitinmerkki
+Terminal of the motor circuit	Moottoripiirin riviliitin
 Terminal parts	Päätteiden nimikkeet
 Terminal strip data of {} without terminals	Riviliitinriman {} tiedot ilman riviliittimiä
 Terminal strip overview	Riviliitinrimojen yleiskatsaus
@@ -1624,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	Ensimmäisen sarakkeen on oltava Key
 The folder {} already holds the project {}: a split project needs a folder of its own	Kansiossa {} on jo projekti {}: jaettu projekti tarvitsee oman kansion
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Kansiossa {} on tiedostoja, jotka eivät kuulu mihinkään projektiin ({}): jaettu projekti tarvitsee oman kansion
+The formula ends too early	Kaava päättyy liian aikaisin
 The function definition needs a key and a name	Toimintomäärittely tarvitsee avaimen ja nimen
 The index of the project names no file layout: it was not written by OpenECraft	Projektin hakemisto ei ilmoita tiedostorakennetta: sitä ei ole kirjoittanut OpenECraft
 The last page cannot be deleted	Viimeistä sivua ei voi poistaa
@@ -1754,14 +1791,17 @@ Unit of measurement	Mittayksikkö
 Unit price	Yksikköhinta
 Unknown cable {}	Tuntematon kaapeli {}
 Unknown device: {}	Tuntematon laite: {}
+Unknown function {} in the formula	Tuntematon funktio {} kaavassa
 Unknown job {}	Tuntematon työ {}
 Unknown macro	Tuntematon makro
 Unknown macro box	Tuntematon makrolaatikko
+Unknown name {} in the formula	Tuntematon nimi {} kaavassa
 Unknown object: {}	Tuntematon objekti: {}
 Unknown revision	Tuntematon revisio
 Unknown symbol '{}'	Tuntematon symboli '{}'
 Unknown tool {}	Tuntematon työkalu {}
 Unused connection points	Käyttämättömät liitäntäpisteet
+Upper limit of the setting range	Asettelualueen yläraja
 Upstream	Edeltävä
 User defined	Käyttäjän määrittämä
 User symbols	Käyttäjän symbolit
@@ -1840,6 +1880,7 @@ Within a suite, wall mounted	Rivin sisällä, seinäasennus
 Within a suite, wall mounted, roof covered	Rivin sisällä, seinäasennus, katto peitetty
 Word document	Word-asiakirja
 Working line	Työlinja
+Wrong number of values for {}	Väärä määrä arvoja kohteelle {}
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	Valmistusvuosi
 Yes / no	Kyllä / ei
@@ -1964,8 +2005,12 @@ yellow	keltainen
 {} is a built-in property	{} on sisäinen ominaisuus
 {} is a built-in scheme	{} on sisäinen skeema
 {} is a busbar machine and makes no sheets	{} on kiskontyöstökone eikä valmista levyjä
+{} is above the last step	{} on viimeisen portaan yläpuolella
+{} is defined twice	{} on määritetty kahdesti
 {} is neither the protective device nor a device of the circuit of {}	{} ei ole suojalaite eikä kohteen {} ryhmän laite
+{} is no valid name: letters, digits and _, not starting with a digit	{} ei ole kelvollinen nimi: kirjaimet, numerot ja _, ei saa alkaa numerolla
 {} is not a busbar machine	{} ei ole kiskontyöstökone
+{} is not a number	{} ei ole luku
 {} is not a property of {}	{} ei ole kohteen {} ominaisuus
 {} is not an approver of this project	{} ei ole tämän projektin hyväksyjä
 {} is not connected to the mains: place it without a protective device	{} ei liity verkkoon: sijoita se ilman suojalaitetta
@@ -2124,6 +2169,7 @@ yellow	keltainen
 {}: voltage drop {} V ({} %) above {} %	{}: jännitteenalenema {} V ({} %) yli {} %
 {}: wire colour {} differs from the potential definition ({})	{}: johtoväri {} poikkeaa potentiaalin määrityksestä ({})
 {}: wire without core designation	{}: johto ilman johdinmerkintää
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) ja {} ({}) ovat {} mm:n päässä toisistaan, vähintään {} mm vaaditaan
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W:n häviöteho lämmittää kotelon {} °C:seen (enintään {} °C): tarvitaan {}
@@ -2143,7 +2189,9 @@ yellow	keltainen
 {}: {} is inside the ventilation clearance of {}	{}: {} on kohteen {} tuuletusetäisyyden sisällä
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} on tarkoitettu asennuskiskoon, mutta se on suoraan levyllä
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} on tehty kiskojärjestelmiin, joiden keskiöväli on {} mm, kiskot, joilla se on, ovat {} mm:n päässä toisistaan
+{}: {} is not a number	{}: {} ei ole luku
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} ei ole tarkoitettu seinäasennukseen, asenna se kiskoon
+{}: {} is not one of its choices	{}: {} ei ole sen valinnoissa
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} on {} … {} mm lattian yläpuolella, sallittu {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg kohteessa {} ylittää sen kantavuuden {} kg
 {}: {} lies in a restricted placing area of the {}	{0}: {1} on sijoittelulta kielletyllä alueella kohteessa {2}

@@ -3,6 +3,7 @@
 1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: horní / levý konec čáry jde napříč k pravému / dolnímu rameni · 2: k levému / hornímu rameni (výchozí 2)
 A cable definition needs a start and an end point	Definice kabelu vyžaduje počáteční a koncový bod
 A copper bar needs at least one segment	Měděná přípojnice potřebuje alespoň jeden úsek
+A new formula {} needs its formula	Nový vzorec {} potřebuje svůj výraz
 A segment cannot be moved below itself	Segment nelze přesunout pod sebe sama
 A segment needs two different nodes	Úsek potřebuje dva různé uzly
 A wire needs at least two points	Vodič potřebuje alespoň dva body
@@ -105,6 +106,7 @@ Changes name, description, function, location or parent of a segment	Změní ná
 Changes position, face, fastening or anchors of a panel item	Změní polohu, plochu, upevnění nebo ukotvení prvku rozváděče
 Changes the device, connection and terminal tables	Mění tabulky přístrojů, spojení a svorek
 Changes the level of a kind of message (code as shown by check)	Změní úroveň druhu hlášení (kód, jak jej zobrazuje check)
+Changes the name and description of the open project as a template (save_project_template saves it)	Změní název a popis otevřeného projektu jako šablony (save_project_template ji uloží)
 Changes the properties of a wire	Změní vlastnosti vodiče
 Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Změní systém, velikost a komponenty skříně (sokl, strany spojené do řady, přírubová deska); ukotvené prvky se přizpůsobí
 Check {} failed: {}	Kontrola {} selhala: {}
@@ -150,6 +152,8 @@ Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing 
 Creates or changes a bus system (PROFINET, EtherCAT, …)	Vytvoří nebo změní sběrnicový systém (PROFINET, EtherCAT, …)
 Creates or changes a configurator option	Vytvoří nebo změní volbu konfigurátoru
 Creates or changes a fluid device group	Vytvoří nebo změní skupinu tekutinových přístrojů
+Creates or changes a formula of the template: a value worked out from the parameters and the formulas before it, filling {NAME}	Vytvoří nebo změní vzorec šablony: hodnotu vypočítanou z parametrů a předchozích vzorců, která vyplní {NAME}
+Creates or changes a parameter of the template: a value asked for when a project is started from it, filling {NAME} in the texts of the project	Vytvoří nebo změní parametr šablony: hodnotu zadávanou při zakládání projektu ze šablony, která vyplní {NAME} v textech projektu
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Vytvoří nebo změní rámeček výkresu projektu (vestavěné rámečky se zkopírují pod novým názvem)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Vytvoří nebo změní definici potenciálu; jeho vodiče převezmou barvu a průřez, pokud nejsou nastaveny na vodiči
 Creates or changes a title block of the project (built-in ones are copied under a new name)	Vytvoří nebo změní rohové razítko projektu (vestavěná se zkopírují pod novým názvem)
@@ -174,6 +178,7 @@ Date (YYYY-MM-DD)	Datum (RRRR-MM-DD)
 Date of the acceptance	Datum přijetí
 Default property values	Výchozí hodnoty vlastností
 Default symbol key	Klíč výchozího symbolu
+Default value	Výchozí hodnota
 Define the identifiers in use (default: true)	Definovat použité identifikátory (výchozí: true)
 Defines a reusable project function definition or changes it	Definuje opakovaně použitelnou projektovou definici funkce nebo ji změní
 Defines a structure identifier or changes its description	Definuje identifikátor struktury nebo změní jeho popis
@@ -279,6 +284,7 @@ First row with the column names	První řádek s názvy sloupců
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Ploché střechy a pozemní pole: směr, kterým moduly hledí, ve stupních, proti směru hodinových ručiček při pohledu shora (0: směrem k +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formát názvu přístroje: {letter}, {n} (čítač), {page}, {column}, {row}; výchozí {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formát schématu format: {n} (čítač), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Formula: numbers, \"texts\", names, + - * / ^, comparisons, & and sqrt, abs, round, ceil, floor, min, max, if, step	Vzorec: čísla, \"texty\", názvy, + - * / ^, porovnání, & a sqrt, abs, round, ceil, floor, min, max, if, step
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Základový zemnič: jak daleko uvnitř obvodových zdí (výchozí 100), obvodový: jak daleko vně (výchozí 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Základový zemnič: jeho největší oko, mm (výchozí 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Výchozí rámeček pro nový rámeček (výchozí: A3 landscape)
@@ -366,6 +372,8 @@ Key, e.g. user.customer_code	Klíč, např. user.customer_code
 Keys of the routes, comma separated (all if missing)	Klíče tras oddělené čárkou (všechny, pokud chybí)
 Kind: machining, punching or busbar	Druh: machining, punching nebo busbar
 Known length of the cable in m (taken instead of the 3D route)	Známá délka kabelu v m (použije se místo 3D trasy)
+Label shown when the value is asked for	Popisek zobrazený při dotazu na hodnotu
+Label shown with the value	Popisek zobrazený s hodnotou
 Label: terminal number, PLC address or potential name	Popisek: číslo svorky, adresa PLC nebo název potenciálu
 Landscape (true) or portrait (false)	Na šířku (true) nebo na výšku (false)
 Language the project texts are written in, e.g. en	Jazyk, ve kterém jsou texty projektu napsány, např. en
@@ -484,6 +492,7 @@ Nailboard layout of a harness: the branches from the common node to the connecto
 Name (default E1, E2, …)	Název (výchozí E1, E2, …)
 Name (default F1, F2, …)	Název (výchozí F1, F2, …)
 Name both the building and the roof, or neither for a freestanding PV array	Zadejte budovu i střechu, nebo ani jedno pro pozemní FV pole
+Name in the list of templates	Název v seznamu šablon
 Name of the assembly	Název sestavy
 Name of the bar, e.g. L1 -Q1	Název přípojnice, např. L1 -Q1
 Name of the check	Název kontroly
@@ -491,6 +500,7 @@ Name of the customer rule set to remove	Název zákaznické sady pravidel k odeb
 Name of the frame	Název rámečku
 Name of the machine	Název stroje
 Name of the main earthing terminal	Název hlavní uzemňovací svorky
+Name of the placeholder, e.g. POWER_KW for {POWER_KW}: letters, digits and _	Název zástupného symbolu, např. POWER_KW pro {POWER_KW}: písmena, číslice a _
 Name of the safety function to remove	Název bezpečnostní funkce k odebrání
 Name of the segment	Název segmentu
 Name of the title block	Název rohového razítka
@@ -500,6 +510,7 @@ Name or id; the tag for places	Název nebo ID; u umístění označení
 Name placed by hand: X offset from the insertion point in mm	Název umístěný ručně: posun X od bodu vložení v mm
 Name placed by hand: Y offset from the insertion point in mm	Název umístěný ručně: posun Y od bodu vložení v mm
 Name, e.g. the location +M1	Název, např. umístění +M1
+Name, parameters, formulas and page conditions of a project template	Název, parametry, vzorce a podmínky stránek šablony projektu
 New device tag	Nové označení přístroje
 New identifier	Nový identifikátor
 New page name	Nový název stránky
@@ -573,6 +584,7 @@ OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=hodno
 Offset from the symbol position in mm (default: below the symbol)	Odsazení od polohy symbolu v mm (výchozí: pod symbolem)
 Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Posun označení kabelu u vodiče od jeho automatického místa, jeden bod [dx, dy] v mm (žádný bod = automaticky)
 Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Posun označení žíly od jeho automatického místa, jeden bod [dx, dy] v mm (žádný bod = automaticky)
+On a page of a project template: OPTION=value, OPTION!=value, OPTION=a|b joined by & (parameters and formulas of get_template); a project started from the template leaves the page out when it does not hold. Empty: always	Na stránce šablony projektu: OPTION=hodnota, OPTION!=hodnota, OPTION=a|b spojené pomocí & (parametry a vzorce z get_template); projekt založený ze šablony stránku vynechá, pokud podmínka neplatí. Prázdné: vždy
 One end, e.g. -K1:A1	Jeden konec, např. -K1:A1
 One row per printed label instead of a count	Jeden řádek na každý vytištěný štítek místo počtu
 Only devices on these pages (names separated by commas)	Pouze přístroje na těchto stránkách (názvy oddělené čárkami)
@@ -695,6 +707,7 @@ Project exports	Exporty projektu
 Project languages, dictionary and translations	Jazyky projektu, slovník a překlady
 Project reports	Výkazy projektu
 Project statistics	Statistika projektu
+Project templates	Šablony projektů
 Property and function definitions, property values and placement schemes	Definice vlastností a funkcí, hodnoty vlastností a schémata umístění
 Property key	Klíč vlastnosti
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Klíče a hodnoty vlastností, např. {\"device.rated_power\": \"5.5\"}
@@ -723,6 +736,7 @@ Remove unused definitions (default: false)	Odebrat nepoužívané definice (výc
 Removes a control point of the route of a wire, cable or tube, or all of them	Odstraní průchozí bod trasy vodiče, kabelu nebo trubky, nebo všechny
 Removes a copper bar	Odebere měděnou přípojnici
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Odebere uzel (s jeho úseky a umístěními), úsek, umístění, obrys, vodič pospojování nebo příslušenství
+Removes a parameter or formula of the template	Odebere parametr nebo vzorec šablony
 Removes a planned device from a segment	Odebere plánovaný přístroj ze segmentu
 Removes a project function definition; its symbols go back to their built-in one	Odebere projektovou definici funkce; její symboly opět dostanou vestavěnou definici
 Removes a project option; its content stays in the project	Odebere projektovou volbu; její obsah zůstane v projektu
@@ -821,6 +835,7 @@ Shows the PLC hardware configuration: stations with racks, slots, modules and ad
 Shows the content of a page: symbols with their connection point positions, wires and texts	Zobrazí obsah stránky: symboly s polohami jejich přípojných bodů, vodiče a texty
 Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Zobrazí data jiných systémů uložená v projektu (odkazy na artikly, dokumenty) a protokol výměny
 Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Zobrazí čelní stranu konektoru: rozložení pinů jeho dílu, polohu každého pinu (mm, pohled na stranu kolíků) s potenciálem, barvou vodiče a žílou kabelu obou stran
+Shows the open project as a template: name, parameters, formulas with their values at the defaults, the pages with a condition and the mistakes	Zobrazí otevřený projekt jako šablonu: název, parametry, vzorce s jejich hodnotami při výchozích hodnotách, stránky s podmínkou a chyby
 Shows the options and rules of the configurator	Zobrazí volby a pravidla konfigurátoru
 Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Zobrazí kolíky konektoru v pořadí konektoru: co je připojeno na straně zdířek a na straně kolíků, potenciál, volné kolíky
 Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Zobrazí pravidla 3D vedení a změní zadaná: rastr, odstup, faktor volného vedení, oddělení, poloměry ohybu, délky řezu, rezervy
@@ -917,6 +932,7 @@ The rotation must be 0, 90, 180 or 270	Otočení musí být 0, 90, 180 nebo 270
 The straight line of a crossing: vertical or horizontal (default vertical)	Přímá čára křížení: vertical nebo horizontal (výchozí vertical)
 The text height must be at least 0.5 mm	Výška textu musí být alespoň 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Dvě ramena rohu, svislé a vodorovné, např. down left (výchozí: podle vodičů v místě, jinak down right)
+The value must be a number	Hodnota musí být číslo
 The width factor must be from 0.1 to 10	Šířkový faktor musí být od 0,1 do 10
 The wire has no length	Spoj nemá délku
 The wire that jumps: vertical or horizontal	Vodič, který přeskakuje: vertical nebo horizontal
@@ -936,6 +952,7 @@ Top edge on the mounting plate in mm	Horní okraj na montážní desce v mm
 Translated line	Přeložený řádek
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Otočení kolem svislé osy ve stupních, proti směru hodinových ručiček při pohledu shora (90: čela směřují doprava)
 Two wires at a connection point share a twin ferrule	Dva vodiče v přípojném bodu sdílejí dvojitou dutinku
+Unit, e.g. A	Jednotka, např. A
 Unit, e.g. kW	Jednotka, např. kW
 Unknown T-connection style: {}	Neznámý styl spojení T: {}
 Unknown accessory kind: {}	Neznámý druh příslušenství: {}

@@ -68,6 +68,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	O pagină de schemă pentru fiecare dispozitiv planificat cu macro de pagină care nu este încă în schemă (segmentul selectat, altfel toate)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Un proiect divizat (.oecp) este un dosar cu câte un fișier mic pentru fiecare pagină, dispozitiv, articol și fișier încorporat, pentru controlul versiunilor precum git: Fișier › Salvare ca proiect divizat.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Un proiect divizat este un dosar de fișiere: browserul nu îl poate deschide. Convertiți-l mai întâi într-un fișier de proiect (.oec) sau într-o arhivă (.oecz).
+A template file to pass on; New › From a template file… starts projects from it	Un fișier de șablon de transmis mai departe; Nou › Dintr-un fișier șablon… pornește proiecte din el
 A template of this name is replaced.	Un șablon cu acest nume va fi înlocuit.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Un șablon setează tipul paginii, chenarul, cartușul, structura și descrierea unei pagini noi și îi plasează conținutul.
 A way through free air costs this many times the way in a duct or routing path	Un traseu prin aer liber costă de atâtea ori mai mult decât un traseu într-un canal sau pe o cale de pozare
@@ -532,6 +533,7 @@ Delete section	Șterge secțiunea
 Delete shaft	Șterge puțul
 Delete stair	Ștergeți scara
 Delete string	Ștergeți șirul
+Delete template	Ștergere șablon
 Delete the group	Ștergerea grupului
 Delete the layer; its items move to the default layer	Ștergeți stratul; elementele sale se mută pe stratul implicit
 Delete the property and all its values	Ștergerea proprietății și a tuturor valorilor sale
@@ -687,6 +689,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Editare în tabel
 Edit in table…	Editare în tabel…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Mod de editare: trageți clădirile la locul lor în planul de situație și rotiți-le; un clic pe o încăpere nu o mai deschide
+Edit template	Editare șablon
 Editable copy of this plot frame	Copie editabilă a acestui chenar
 Editable copy of this title block	Copie editabilă a acestui cartuș
 Effective surface	Suprafață efectivă
@@ -729,6 +732,7 @@ Export SVG…	Export SVG…
 Export all pages as PDF in {}	Export al tuturor paginilor ca PDF în {}
 Export as EPLAN parts XML…	Export ca XML de articole EPLAN…
 Export as PDF in language	Export ca PDF în limba
+Export as file…	Export ca fișier…
 Export check scheme…	Export schemă de verificare…
 Export favorites…	Export favorite…
 Export library…	Export bibliotecă…
@@ -794,6 +798,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Formatul referințelor încrucișate, structura paginii țintă, puncte de întrerupere, imagini ale contactelor
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Desen de planșetă al cablajului la scară, cu lungimile ramificațiilor și tabelele de pini ale conectorilor
 Forms	Formulare
+Formula	Formulă
+Formulas	Formule
 Form…	Formular…
 Frame	Cadru
 Frame of all pages that do not choose one	Chenarul tuturor paginilor care nu își aleg unul propriu
@@ -986,6 +992,7 @@ Introduction	Introducere
 Invalid value	Valoare nevalidă
 Invert the direction of panning by scrolling	Inversează direcția deplasării prin derulare
 Inverter or charge controller (devices with PV input data)	Invertor sau regulator de încărcare (dispozitive cu date de intrare fotovoltaică)
+It takes the place of the bundled template of this name.	Ia locul șablonului integrat cu acest nume.
 Items copied: {}	Elemente copiate: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Elemente copiate: {} (dispozitive omise: {}, un dispozitiv se plasează o singură dată)
 Items cut: {}	Elemente decupate: {}
@@ -1202,6 +1209,7 @@ Nailboard (SVG)…	Planșetă (SVG)…
 Name and cross reference	Nume și referință încrucișată
 Name on the server	Nume pe server
 Name the inspector in the report data first.	Indicați mai întâi inspectorul în datele raportului.
+Name, parameters, formulas and page conditions of the project as a template	Numele, parametrii, formulele și condițiile de pagină ale proiectului ca șablon
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Name; Data Type; Logical Address; Comment – pentru instrumentele de programare PLC
 Named copy of this form, for report blocks	Copie denumită a acestui formular, pentru blocuri de raport
 Navigators	Navigatoare
@@ -1229,6 +1237,7 @@ New pages for every group (strip, plug, cable, device …)	Pagini noi pentru fie
 New potential	Potențial nou
 New project	Proiect nou
 New project from template	Proiect nou din șablon
+New project from {}	Proiect nou din {}
 New project scheme from the selected one	Schemă de proiect nouă din cea selectată
 New project, not saved yet	Proiect nou, încă nesalvat
 New report page	Pagină de raport nouă
@@ -1340,6 +1349,7 @@ Number prefix	Prefix număr
 Number wires	Numerotare conductoare
 Numbering	Numerotare
 Numbers removed from {} wires	Numerele au fost eliminate de la {} conductoare
+Numeric	Numeric
 Object	Obiect
 Of the outer diameter, as laid fixed	Din diametrul exterior, pozat fix
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Din diametrul exterior; țevile se curbează cu coturi de un diametru și jumătate
@@ -1451,6 +1461,7 @@ PV array {} lies outside the protection of the air-termination system	Câmpul PV
 PV array {} of building {}: {} modules	Câmpul PV {} al clădirii {}: {} module
 PV array {} of building {}: {} modules, {} kWp	Câmpul PV {} al clădirii {}: {} module, {} kWp
 PV arrays	Câmpuri fotovoltaice
+Page conditions	Condiții de pagină
 Page graphics	Grafica paginii
 Page heading	Titlul paginii
 Page list, devices, parts, panel layout and settings	Lista de pagini, dispozitive, articole, amplasare în tablou și setări
@@ -1478,6 +1489,9 @@ Pane menu	Meniul panoului
 Panel wiring report	Raport de cablare a tabloului
 Panes	Panouri
 Paper	Hârtie
+Parameter	Parametru
+Parameters	Parametri
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	Parametrii sunt ceruți la pornirea unui proiect din șablon; formulele calculează alte valori. Ambele completează {NAME} în textele proiectului. O pagină cu o condiție (REPORTS=yes) este omisă când aceasta nu este îndeplinită.
 Parent section	Secțiune părinte
 Part of the profile: generic types or parts from the parts store	Articolul profilului: tipuri generice sau articole din catalogul de articole
 Part selection from the parts database	Selecție articol din baza de date de articole
@@ -1821,6 +1835,7 @@ Save as 3D macro	Salvare ca macro 3D
 Save as 3D macro…	Salvare ca macro 3D…
 Save as local file	Salvare ca fișier local
 Save as macro	Salvare ca macro
+Save as project template	Salvare ca șablon de proiect
 Save as project template…	Salvare ca șablon de proiect…
 Save as scheme	Salvare ca schemă
 Save as split project…	Salvare ca proiect divizat…
@@ -1846,6 +1861,8 @@ Save to project server: {}	Salvează pe serverul de proiecte: {}
 Save to project server: {} – the connection is lost, saving tries again	Salvează pe serverul de proiecte: {} – conexiunea s-a pierdut, salvarea încearcă din nou
 Save workspace	Salvare spațiu de lucru
 Save workspace…	Salvare spațiu de lucru…
+Saved in the browser	Salvat în browser
+Saved in {}, where the command line finds it too	Salvat în {}, unde îl găsește și linia de comandă
 Saved the properties of {} (revision {})	Proprietățile {} au fost salvate (revizia {})
 Saved to	Salvat în
 Saved to the project server (revision {})	Salvat pe serverul de proiecte (revizia {})
@@ -1855,6 +1872,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Salvează straturile cu setările lor ca schemă de setări pentru alte proiecte
 Saves the placed properties as a placement scheme of the project	Salvează proprietățile plasate ca schemă de plasare a proiectului
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Salvează proiectul fără revizii, versiuni de referință, examinare și marcaje de cablare ca șablon pentru proiecte noi
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Salvează proiectul fără revizii, versiuni de referință, comentarii și marcaje de cablare ca șablon pentru proiecte noi, în folderul de șabloane, alături de cele integrate
 Saves the project's own properties, function definitions and schemes for other projects	Salvează proprietățile, definițiile de funcție și schemele proprii ale proiectului pentru alte proiecte
 Saves the workspace, the arrangement of the panels and the open windows	Salvează spațiul de lucru, aranjarea panourilor și ferestrele deschise
 Saves your version of the whole project as a project file	Salvează versiunea dvs. a întregului proiect ca fișier de proiect
@@ -2095,6 +2113,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Limbi țintă
 Temperature rise at the roof against the middle (IEC/TR 60890)	Creșterea temperaturii la plafon față de mijloc (IEC/TR 60890)
 Template	Șablon
+Template parameters	Parametri de șablon
+Template {} deleted	Șablonul {} a fost șters
+Template {} saved	Șablonul {} a fost salvat
 Templates	Șabloane
 Terminal markers	Marcaje de bornă
 Terminal number, PLC address, potential name …	Număr bornă, adresă PLC, nume potențial …
@@ -2374,6 +2395,7 @@ all lines	toate rândurile
 all, or e.g. -X*, -W1	toate, sau de ex. -X*, -W1
 all, or e.g. K, Q	toate sau de ex. K, Q
 along z	de-a lungul z
+always	întotdeauna
 both ends	ambele capete
 built-in	integrat
 by hand	manual
@@ -2399,6 +2421,7 @@ e.g. corp:Engineering	de ex. corp:Inginerie
 e.g. customer, ERP, PLM	de ex. client, ERP, PLM
 e.g. cutout too small, part missing	de ex. decupaj prea mic, articol lipsă
 e.g. de, fr, it	de ex. de, fr, it
+e.g. round(POWER_KW * 2, 1)	de ex. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	de ex. conductor prea scurt, bornă lipsă
 empty	goală
 female	mamă
@@ -2445,6 +2468,7 @@ ridge {} m	coamă {} m
 set on the device	stabilit pe dispozitiv
 sloped ceiling from {} m	tavan înclinat de la {} m
 some	unele
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, cifre), ceil, floor, min, max, if(condiție, atunci, altfel), step(x, limită, valoare, …, altfel); & unește texte
 taken over	preluat
 the device before it	aparatul dinainte
 the project data (page list, devices, settings)	datele proiectului (lista de pagini, dispozitive, setări)
@@ -2481,6 +2505,7 @@ x y	x y
 {} (revision {})	{} (revizia {})
 {} (spare)	{} (rezervă)
 {} (subproject of {})	{} (subproiect al {})
+{} (template of the user)	{} (șablon al utilizatorului)
 {} (unused)	{} (neutilizat)
 {} ({} open)	{} ({} deschise)
 {} / {} mm  (column {})	{} / {} mm  (coloana {})

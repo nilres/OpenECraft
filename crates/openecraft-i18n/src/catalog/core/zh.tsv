@@ -22,6 +22,9 @@ A plot boundary has at least three corners	场地边界至少有三个角点
 A port cannot be connected to itself	端口不能连接到自身
 A section number consists of letters and digits and does not start with 0	分节号由字母和数字组成，且不以 0 开头
 A section number must not be empty or contain a dot	分节号不能为空，也不能包含点
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	带互锁接触器、可双向运行的三相电机：主电路和控制电路按电机功率选型，可选报表页
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	星形启动、三角形运行的三相电机：主电路和控制电路按电机功率选型，可选报表页
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	直接启动的三相电机：主电路和控制电路按电机功率选型，可选端子图、连接列表、设备列表和物料清单
 A0 landscape	A0 横向
 A1 landscape	A1 横向
 A2 landscape	A2 横向
@@ -64,6 +67,7 @@ Analog output module	模拟量输出模块
 Analysis	分析
 Another section here has this number	此处另一个分节已使用此编号
 Antenna outlet	天线插座
+Anticlockwise	逆时针
 Apparent power (kVA)	视在功率 (kVA)
 Applied directives	适用的指令
 Approval date	批准日期
@@ -169,6 +173,7 @@ Cam profile switch NC	曲线凸轮开关，常闭
 Cam profile switch NO	曲线凸轮开关，常开
 Cam switch NC	凸轮开关，常闭
 Cam switch NO	凸轮开关，常开
+Cannot delete {}: {}	无法删除 {}：{}
 Cannot read the DWG file: {}	无法读取 DWG 文件：{}
 Capacitive sensor, 2-wire	电容式传感器，2 线制
 Capacitive sensor, 3-wire	电容式传感器，3 线制
@@ -213,6 +218,7 @@ Circuit breaker 4-pole	断路器 4 极
 Circuits, protective devices, switches and terminals labelled	回路、保护装置、开关和端子已标识
 Circular milling	圆周铣削
 Clip / snap-on	卡扣 / 卡装
+Clockwise	顺时针
 Cloud	云线
 Clutch (electromagnetic)	离合器（电磁）
 Coil and timing	线圈和时间特性
@@ -250,7 +256,9 @@ Connections of the conductors	导体的连接
 Connector pin-outs and flat cables	连接器引脚分配和扁平电缆
 Connector pin-outs: mating faces and pin tables (SVG)	连接器引脚分配：插合面和引脚表 (SVG)
 Contact material	触点材料
+Contactor	接触器
 Contactor (single-line)	接触器（单线）
+Contactor at least (AC-3)	接触器最小规格 (AC-3)
 Contactor coil KM (GB)	接触器线圈 KM (GB)
 Contactor coil KM (GOST)	接触器线圈 KM (GOST)
 Contactor main contacts KM (GB)	接触器主触点 KM (GB)
@@ -263,6 +271,7 @@ Contour milling	轮廓铣削
 Contractor	承包商
 Control	控制
 Control cabinet	控制柜
+Control circuit {}	控制电路 {}
 Control mode	控制方式
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	控制点 {}（{} {}）位于某物内部或机柜之外：将不经过其控制点布线。请将控制点移到空闲空间。
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	控制点 {}（{} {}）偏离其路径：不在其布线经过的任何机柜或房间内。请将控制点移到其路径上。
@@ -305,10 +314,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	封面、目录、带功能和位置的原理图页、设备列表、物料清单、端子图和电缆图
 Create projects	创建项目
 Creation date	创建日期
+Cross-section of the motor circuit	电机电路的截面积
 Cross-section {} carries {} A, less than the {} A of {}	截面积 {0} 的载流量为 {1} A，小于 {3} 的 {2} A
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	第 {} 页上的交叉与其连接线不匹配：需要四个方向都有连接线，且该处不能有连接点
 Current capacity (A)	载流量 (A)
 Current consumption	电流消耗
+Current of the mains and delta contactor	主接触器和三角形接触器的电流
+Current of the star contactor	星形接触器的电流
 Current range	电流范围
 Current setting	电流整定值
 Current transformer	电流互感器
@@ -342,6 +354,7 @@ Default {} ({})	默认 {} ({})
 Degree of protection	防护等级
 Delete projects	删除项目
 Delivery date	交货日期
+Delta	三角形
 Demand (diversity factor {})	需求（同时系数 {}）
 Demand {} A above the usable {} A of the supply	需求 {} A 超过电源进线可用的 {} A
 Density	密度
@@ -396,6 +409,7 @@ Disconnector 3-pole, lockable	隔离开关，3 极，可锁定
 Displacement	排量
 Distribution board	配电箱
 Distribution board (IEC 61439)	配电柜 (IEC 61439)
+Division by zero in the formula	公式中除以零
 Document	文档
 Document (embedded file)	文档（嵌入的文件）
 Document A4 portrait	文档 A4 纵向
@@ -416,6 +430,7 @@ Drilling and milling centre	钻铣加工中心
 Drive	驱动器
 Drive type	传动方式
 Driven by	驱动设备
+Driven machine	被驱动机器
 Drives	驱动
 Drop-out time	释放时间
 Duct fill levels	线槽填充率
@@ -816,6 +831,8 @@ Main switch	主开关
 Main switch 1-pole	主开关，1 极
 Main switch 2-pole	主开关，2 极
 Main switch 3-pole	主开关 3 极
+Mains	电网
+Mains and delta contactor	主接触器和三角形接触器
 Mains frequency	电网频率
 Mains voltage	电网电压
 Maintenance	维护
@@ -881,11 +898,16 @@ Motor DC	直流电机
 Motor DC, shunt-wound	直流电机，并励
 Motor cable {} of frequency converter {} must be shielded	变频器 {1} 的电机电缆 {0} 必须屏蔽
 Motor data	电机数据
+Motor protection	电机保护
 Motor protection (class 10)	电机保护（10 级）
 Motor protection switch	电机保护开关
 Motor protection switch (single-line)	电机保护开关（单线）
 Motor protection switch 1-pole	电机保护开关，1 极
 Motor protection switch 2-pole	电机保护开关，2 极
+Motor running	电机运行
+Motor starter direct on line	电机启动器（直接启动）
+Motor starter reversing	电机启动器（正反转）
+Motor starter star-delta	电机启动器（星三角）
 Motor, electronically commutated (brushless DC)	电机，电子换向（无刷直流）
 Motors	电机
 Motors / Loads	电机 / 负载
@@ -951,6 +973,7 @@ No segment template named {}	没有名为 {} 的规划段模板
 No subproject {}	子项目 {} 不存在
 No such object: {}	对象不存在：{}
 No surge protective device at the supply (IEC 60364-4-44)	电源进线处没有浪涌保护器 (IEC 60364-4-44)
+No template of the user is named {}	没有名为 {} 的用户模板
 No terminal {}	没有端子 {}
 No user defined property {}	用户定义属性 {} 不存在
 No wires at the pins of {}	{} 的引脚上没有导线
@@ -1190,7 +1213,9 @@ Potentials, interruption points	电位、中断点
 Potentiometer	电位器
 Power (kWp)	功率 (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	分布在多页上的主电路和控制电路：主开关、电机保护、三个带互锁的接触器、通电延时继电器、中断点、带导线颜色的电位、电机电缆和电缆报表。
+Power circuit {}	主电路 {}
 Power factor	功率因数
+Power factor cos phi	功率因数 cos phi
 Power factor meter	功率因数表
 Power loss (W)	功率损耗 (W)
 Power module	电源模块
@@ -1243,6 +1268,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	保护导体必
 Protective devices	保护设备
 Protective earth	保护接地
 Protective earth (PE)	保护导体 (PE)
+Protective earth terminal	保护接地端子
 Protective hose	保护软管
 Protective, earthing and bonding conductors present and adequate	保护、接地和联结导体齐全且合适
 Proximity sensor	接近开关
@@ -1292,6 +1318,7 @@ Rated cross-section	额定截面积
 Rated current (A)	额定电流 (A)
 Rated current of the assembly	成套设备额定电流
 Rated current of the auxiliary contacts	辅助触点额定电流
+Rated current {} A, motor protection switch {}	额定电流 {} A，电机保护开关 {}
 Rated diversity factor	额定分散系数
 Rated frequency	额定频率
 Rated impulse withstand voltage	额定冲击耐受电压
@@ -1328,6 +1355,7 @@ Remote I/O	分布式 I/O
 Remote I/O {} has no controller	分布式 I/O {} 没有控制器
 Replace needs the text to find	替换需要提供要查找的文本
 Replacement part number	替换部件编号
+Report pages	报表页
 Residual current device	剩余电流保护装置
 Residual current device 1-pole	剩余电流保护装置，1 极
 Residual current device 2-pole	剩余电流保护装置，2 极
@@ -1429,6 +1457,7 @@ Service unit	气源处理单元
 Service unit (filter, regulator, lubricator)	气源处理单元（过滤器、调压阀、油雾器）
 Setpoint	设定值
 Setting range	设定范围
+Setting range of the motor protection switch	电机保护开关的设定范围
 Sheath colour	护套颜色
 Sheath material	护套材料
 Shed roof	单坡屋顶
@@ -1490,6 +1519,9 @@ Spiral	螺旋
 Stainless steel	不锈钢
 Stainless steel V4A	不锈钢 V4A
 Standard	标准
+Star	星形
+Star contactor	星形接触器
+Star time	星形运行时间
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	带继电器的启动 / 停止电路：线圈和触点组成一个设备，带交叉引用和触点映像；端子排、导线编号、端子图和连接列表。
 Start date	开始日期
 Starting current ratio	启动电流比
@@ -1502,6 +1534,7 @@ Station {}: bus system {} does not exist	站 {}：总线系统 {} 不存在
 Steam	蒸汽
 Steel, hot-dip galvanised	热镀锌钢
 Stock	库存
+Stop	停止
 Stop category	停止类别
 Storage temperature range	存储温度范围
 Straight	直跑
@@ -1533,6 +1566,7 @@ Supplementary fields	附加字段
 Suppliers	供应商
 Supply network	电网类型
 Supply voltage	供电电压
+Supply {} V / 50 Hz, TN-S	供电 {} V / 50 Hz，TN-S
 Surface (m²)	表面积 (m²)
 Surface-mounted	明装
 Surge protection type	浪涌保护类型
@@ -1551,6 +1585,7 @@ Switches / Sensors	开关 / 传感器
 Switches, pushbuttons	开关、按钮
 Switching frequency	开关频率
 Switching output	开关输出
+Syntax error in the formula at {}	公式在 {} 处有语法错误
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	第 {} 页上的T型节点与其连接线不匹配：需要一条沿其方向的连接线、两条横向连接线，且该处不能有连接点
 Table of contents	目录
 Tabloid landscape	Tabloid 横向
@@ -1577,6 +1612,7 @@ Terminal data	端子数据
 Terminal description	端子描述
 Terminal line-up	端子排列图
 Terminal marker	端子标记
+Terminal of the motor circuit	电机电路的端子
 Terminal parts	端子物料
 Terminal strip data of {} without terminals	{} 的端子排数据没有端子
 Terminal strip overview	端子排概览
@@ -1606,6 +1642,7 @@ The file is empty	文件为空
 The file was written by a newer version (format {}): data this version does not know is lost when saving	该文件由较新版本写入（格式 {}）：保存时将丢失此版本无法识别的数据
 The first column must be Key	第一列必须是 Key
 The folder {} already holds the project {}: a split project needs a folder of its own	文件夹 {} 已包含项目 {}：拆分项目需要单独的文件夹
+The formula ends too early	公式提前结束
 The function definition needs a key and a name	功能定义需要键和名称
 The last page cannot be deleted	无法删除最后一页
 The macro box has no items left	宏边框中已没有元素
@@ -1732,14 +1769,17 @@ Unit of measurement	计量单位
 Unit price	单价
 Unknown cable {}	未知电缆 {}
 Unknown device: {}	未知设备：{}
+Unknown function {} in the formula	公式中有未知运算 {}
 Unknown job {}	未知作业 {}
 Unknown macro	未知宏
 Unknown macro box	未知宏边框
+Unknown name {} in the formula	公式中有未知名称 {}
 Unknown object: {}	未知对象：{}
 Unknown revision	未知修订
 Unknown symbol '{}'	未知符号“{}”
 Unknown tool {}	未知刀具 {}
 Unused connection points	未使用的连接点
+Upper limit of the setting range	设定范围上限
 Upstream	上级
 User defined	用户定义
 User symbols	用户符号
@@ -1818,6 +1858,7 @@ Within a suite, wall mounted	柜列中间，壁挂式
 Within a suite, wall mounted, roof covered	柜列中间，壁挂式，顶部遮盖
 Word document	Word 文档
 Working line	工作管路
+Wrong number of values for {}	{} 的值数量错误
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	制造年份
 Yes / no	是 / 否
@@ -1940,8 +1981,12 @@ yellow	黄色
 {} is a built-in property	{} 是内置属性
 {} is a built-in scheme	{} 是内置方案
 {} is a busbar machine and makes no sheets	{} 是母线加工机，不加工板材
+{} is above the last step	{} 超出最后一级
+{} is defined twice	{} 被定义了两次
 {} is neither the protective device nor a device of the circuit of {}	{} 既不是保护设备，也不是 {} 回路中的设备
+{} is no valid name: letters, digits and _, not starting with a digit	{} 不是有效名称：只能使用字母、数字和 _，且不能以数字开头
 {} is not a busbar machine	{} 不是母线加工机
+{} is not a number	{} 不是数字
 {} is not a property of {}	{} 不是 {} 的属性
 {} is not an approver of this project	{} 不是此项目的审批人
 {} is not connected to the mains: place it without a protective device	{} 不接入电网：请在不指定保护设备的情况下放置
@@ -2098,6 +2143,7 @@ yellow	黄色
 {}: voltage drop {} V ({} %) above {} %	{}：电压降 {} V（{} %）超过 {} %
 {}: wire colour {} differs from the potential definition ({})	{}：导线颜色 {} 与电位定义不同（{}）
 {}: wire without core designation	{}：导线没有芯线标识
+{}: {}	{}：{}
 {}: {} ({})	{}：{}（{}）
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}：{} ({}) 与 {} ({}) 相距 {} mm，至少需要 {} mm
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}：{} W 功率损耗使机柜升温至 {} °C（最高 {} °C）：需要 {}
@@ -2115,7 +2161,9 @@ yellow	黄色
 {}: {} is inside the EMC clearance of {} ({} mm)	{}：{} 位于 {} 的 EMC 间距内 ({} mm)
 {}: {} is inside the ventilation clearance of {}	{}：{} 位于 {} 的通风间距内
 {}: {} is made for a mounting rail but sits directly on the plate	{}：{} 设计用于安装导轨，但直接安装在安装板上
+{}: {} is not a number	{}：{} 不是数字
 {}: {} is not made for wall mounting, mount it on a rail	{}：{} 不适合墙面安装，请安装在导轨上
+{}: {} is not one of its choices	{}：{} 不是其选项值之一
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}：{} 离地 {} … {} mm，允许 {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{0}：{2} 上的 {1} kg 超过其承载能力 {3} kg
 {}: {} lies in a restricted placing area of the {}	{0}：{1} 位于 {2} 上的禁止放置区域内

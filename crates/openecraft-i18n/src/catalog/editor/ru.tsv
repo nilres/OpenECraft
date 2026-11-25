@@ -68,6 +68,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Лист схемы для каждого запланированного устройства с макросом листа, которого ещё нет на схеме (выбранный сегмент, иначе все)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Разделённый проект (.oecp) — это папка с одним небольшим файлом на каждую страницу, устройство, изделие и встроенный файл, для систем контроля версий, таких как git: Файл › Сохранить как разделённый проект.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Разделённый проект — это папка с файлами: браузер не может её открыть. Сначала преобразуйте его в файл проекта (.oec) или архив (.oecz).
+A template file to pass on; New › From a template file… starts projects from it	Файл шаблона для передачи другим; Создать › Из файла шаблона… создаёт из него проекты
 A template of this name is replaced.	Шаблон с этим именем будет заменён.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Шаблон задаёт тип листа, рамку, основную надпись, структуру и описание нового листа и размещает его содержимое.
 A way through free air costs this many times the way in a duct or routing path	Путь по открытому пространству стоит во столько раз дороже пути в канале или по пути прокладки
@@ -531,6 +532,7 @@ Delete section	Удалить раздел
 Delete shaft	Удалить шахту
 Delete stair	Удалить лестницу
 Delete string	Удалить цепочку
+Delete template	Удалить шаблон
 Delete the group	Удалить группу
 Delete the layer; its items move to the default layer	Удалить слой; его объекты переносятся на слой по умолчанию
 Delete the property and all its values	Удалить свойство со всеми значениями
@@ -686,6 +688,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Изменить в таблице
 Edit in table…	Изменить в таблице…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Режим правки: перетаскивайте здания на их места на ситуационном плане и поворачивайте их; щелчок по помещению больше не открывает его
+Edit template	Изменить шаблон
 Editable copy of this plot frame	Редактируемая копия этой рамки листа
 Editable copy of this title block	Редактируемая копия этой основной надписи
 Effective surface	Эффективная поверхность
@@ -728,6 +731,7 @@ Export SVG…	Экспортировать SVG…
 Export all pages as PDF in {}	Экспортировать все листы в PDF на языке {}
 Export as EPLAN parts XML…	Экспортировать как XML изделий EPLAN…
 Export as PDF in language	Экспортировать в PDF на языке
+Export as file…	Экспортировать как файл…
 Export check scheme…	Экспортировать схему проверки…
 Export favorites…	Экспорт избранного…
 Export library…	Экспортировать библиотеку…
@@ -793,6 +797,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Формат перекрёстных ссылок, структура целевого листа, точки разрыва, зеркала контактов
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Чертёж плаза жгута в масштабе с длинами ответвлений и таблицами контактов разъёмов
 Forms	Формы
+Formula	Формула
+Formulas	Формулы
 Form…	Форма…
 Frame	Рамка
 Frame of all pages that do not choose one	Рамка всех листов, для которых она не выбрана
@@ -985,6 +991,7 @@ Introduction	Введение
 Invalid value	Недопустимое значение
 Invert the direction of panning by scrolling	Обратить направление сдвига прокруткой
 Inverter or charge controller (devices with PV input data)	Инвертор или контроллер заряда (устройства с данными входа ФЭ)
+It takes the place of the bundled template of this name.	Он заменяет поставляемый шаблон с этим именем.
 Items copied: {}	Скопировано элементов: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Скопировано элементов: {} (пропущено устройств: {}, устройство размещается только один раз)
 Items cut: {}	Вырезано элементов: {}
@@ -1201,6 +1208,7 @@ Nailboard (SVG)…	Плаз (SVG)…
 Name and cross reference	Имя и перекрёстная ссылка
 Name on the server	Имя на сервере
 Name the inspector in the report data first.	Сначала укажите проверяющего в данных протокола.
+Name, parameters, formulas and page conditions of the project as a template	Имя, параметры, формулы и условия листов проекта как шаблона
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Имя; тип данных; логический адрес; комментарий – для средств программирования ПЛК
 Named copy of this form, for report blocks	Именованная копия этой формы для блоков отчётов
 Navigators	Навигаторы
@@ -1228,6 +1236,7 @@ New pages for every group (strip, plug, cable, device …)	Новые листы
 New potential	Новый потенциал
 New project	Новый проект
 New project from template	Новый проект из шаблона
+New project from {}	Новый проект из {}
 New project scheme from the selected one	Новая схема проекта на основе выбранной
 New project, not saved yet	Новый проект, ещё не сохранён
 New report page	Новый лист отчёта
@@ -1339,6 +1348,7 @@ Number prefix	Префикс номера
 Number wires	Нумеровать провода
 Numbering	Нумерация
 Numbers removed from {} wires	Номера удалены у проводов: {}
+Numeric	Числовой
 Object	Объект
 Of the outer diameter, as laid fixed	От наружного диаметра, при стационарной прокладке
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	От наружного диаметра; трубы гнутся отводами в полтора диаметра
@@ -1450,6 +1460,7 @@ PV array {} lies outside the protection of the air-termination system	Фотоэ
 PV array {} of building {}: {} modules	Фотоэлектрическое поле {} здания {}: {} модулей
 PV array {} of building {}: {} modules, {} kWp	Фотоэлектрическое поле {} здания {}: {} модулей, {} кВт пик
 PV arrays	Фотоэлектрические поля
+Page conditions	Условия листов
 Page graphics	Графика листа
 Page heading	Заголовок листа
 Page list, devices, parts, panel layout and settings	Список листов, устройства, изделия, компоновка шкафа и настройки
@@ -1477,6 +1488,9 @@ Pane menu	Меню панели
 Panel wiring report	Отчёт о монтаже проводов шкафа
 Panes	Панели
 Paper	Бумага
+Parameter	Параметр
+Parameters	Параметры
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	Параметры запрашиваются при создании проекта из шаблона; формулы вычисляют дальнейшие значения. И те, и другие заполняют {NAME} в текстах проекта. Лист с условием (REPORTS=yes) исключается, если условие не выполняется.
 Parent section	Родительский раздел
 Part of the profile: generic types or parts from the parts store	Изделие профиля: универсальные типы или изделия из базы изделий
 Part selection from the parts database	Выбор изделия из базы данных изделий
@@ -1820,6 +1834,7 @@ Save as 3D macro	Сохранить как 3D-макрос
 Save as 3D macro…	Сохранить как 3D-макрос…
 Save as local file	Сохранить как локальный файл
 Save as macro	Сохранить как макрос
+Save as project template	Сохранить как шаблон проекта
 Save as project template…	Сохранить как шаблон проекта…
 Save as scheme	Сохранить как схему
 Save as split project…	Сохранить как разделённый проект…
@@ -1845,6 +1860,8 @@ Save to project server: {}	Сохранить на сервере проекто
 Save to project server: {} – the connection is lost, saving tries again	Сохранить на сервере проектов: {} – соединение потеряно, сохранение повторит попытку
 Save workspace	Сохранить рабочее пространство
 Save workspace…	Сохранить рабочее пространство…
+Saved in the browser	Сохранено в браузере
+Saved in {}, where the command line finds it too	Сохранено в {}, где его найдёт и командная строка
 Saved the properties of {} (revision {})	Свойства {} сохранены (ревизия {})
 Saved to	Сохранено в
 Saved to the project server (revision {})	Сохранено на сервере проектов (ревизия {})
@@ -1854,6 +1871,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Сохраняет слои с их настройками как схему настроек для других проектов
 Saves the placed properties as a placement scheme of the project	Сохраняет размещённые свойства как схему размещения проекта
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Сохраняет проект без ревизий, базовых версий, рецензирования и отметок проводки как шаблон для новых проектов
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Сохраняет проект без ревизий, базовых версий, рецензирования и отметок проводки как шаблон для новых проектов в папку шаблонов рядом с поставляемыми
 Saves the project's own properties, function definitions and schemes for other projects	Сохраняет собственные свойства, определения функций и схемы проекта для других проектов
 Saves the workspace, the arrangement of the panels and the open windows	Сохраняет рабочее пространство, расположение панелей и открытые окна
 Saves your version of the whole project as a project file	Сохраняет вашу версию всего проекта в файл проекта
@@ -2094,6 +2112,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Целевые языки
 Temperature rise at the roof against the middle (IEC/TR 60890)	Повышение температуры у крыши относительно середины (IEC/TR 60890)
 Template	Шаблон
+Template parameters	Параметры шаблона
+Template {} deleted	Шаблон {} удалён
+Template {} saved	Шаблон {} сохранён
 Templates	Шаблоны
 Terminal markers	Маркировка клемм
 Terminal number, PLC address, potential name …	Номер клеммы, адрес ПЛК, имя потенциала …
@@ -2373,6 +2394,7 @@ all lines	все строки
 all, or e.g. -X*, -W1	все или, например, -X*, -W1
 all, or e.g. K, Q	все или, например, K, Q
 along z	вдоль z
+always	всегда
 both ends	оба конца
 built-in	встроенное
 by hand	вручную
@@ -2398,6 +2420,7 @@ e.g. corp:Engineering	например, corp:Проектирование
 e.g. customer, ERP, PLM	например, заказчик, ERP, PLM
 e.g. cutout too small, part missing	например, вырез слишком мал, нет изделия
 e.g. de, fr, it	например, de, fr, it
+e.g. round(POWER_KW * 2, 1)	например round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	например, провод слишком короткий, нет клеммы
 empty	пусто
 female	гнездо
@@ -2444,6 +2467,7 @@ ridge {} m	конёк {} м
 set on the device	задано у устройства
 sloped ceiling from {} m	скошенный потолок от {} м
 some	некоторые
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, знаки), ceil, floor, min, max, if(условие, то, иначе), step(x, предел, значение, …, иначе); & соединяет тексты
 taken over	перенесено
 the device before it	предыдущее устройство
 the project data (page list, devices, settings)	данные проекта (список листов, устройства, настройки)
@@ -2480,6 +2504,7 @@ x y	x y
 {} (revision {})	{} (ревизия {})
 {} (spare)	{} (резерв)
 {} (subproject of {})	{} (подпроект {})
+{} (template of the user)	{} (пользовательский шаблон)
 {} (unused)	{} (не используется)
 {} ({} open)	{} (открыто: {})
 {} / {} mm  (column {})	{} / {} мм  (столбец {})

@@ -68,6 +68,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	为每个具有页宏且尚未在原理图中的已规划设备生成一个原理图页（所选规划段，否则全部）
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	拆分项目（.oecp）是一个文件夹，每个页面、设备、部件和嵌入文件各有一个小文件，用于 git 等版本控制：文件 › 另存为拆分项目。
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	拆分项目是一个包含多个文件的文件夹：浏览器无法打开。请先将其转换为项目文件（.oec）或归档（.oecz）。
+A template file to pass on; New › From a template file… starts projects from it	用于传递的模板文件；“新建 › 来自模板文件…”可从中新建项目
 A template of this name is replaced.	将替换同名模板。
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	模板设置新页的页类型、图框、标题栏、结构和描述，并放置其内容。
 A way through free air costs this many times the way in a duct or routing path	穿过自由空间的路径成本是线槽或布线路径中的这么多倍
@@ -527,6 +528,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	删除分节
 Delete stair	删除楼梯
 Delete string	删除组串
+Delete template	删除模板
 Delete the group	删除组
 Delete the layer; its items move to the default layer	删除图层；其元素将移到默认图层
 Delete the property and all its values	删除该属性及其所有值
@@ -681,6 +683,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	在表格中编辑
 Edit in table…	在表格中编辑…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	编辑模式：在总平面图中将建筑物拖到其位置并旋转；单击房间不再打开它
+Edit template	编辑模板
 Editable copy of this plot frame	此图框的可编辑副本
 Editable copy of this title block	此标题栏的可编辑副本
 Effective surface	有效表面积
@@ -723,6 +726,7 @@ Export SVG…	导出 SVG…
 Export all pages as PDF in {}	将所有页导出为 {} PDF
 Export as EPLAN parts XML…	导出为 EPLAN 部件 XML…
 Export as PDF in language	以指定语言导出为 PDF
+Export as file…	导出为文件…
 Export check scheme…	导出检查方案…
 Export favorites…	导出收藏…
 Export library…	导出库…
@@ -786,6 +790,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	交叉引用的格式、目标页的结构、中断点、触点映像
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	按比例绘制的线束钉板图，含分支长度和连接器的插针表
 Forms	表单
+Formula	公式
+Formulas	公式
 Form…	表单…
 Frame	外框
 Frame of all pages that do not choose one	所有未选择图框的页使用的图框
@@ -976,6 +982,7 @@ Introduction	简介
 Invalid value	无效值
 Invert the direction of panning by scrolling	反转滚动平移的方向
 Inverter or charge controller (devices with PV input data)	逆变器或充电控制器（带光伏输入数据的设备）
+It takes the place of the bundled template of this name.	它将取代同名的内置模板。
 Items copied: {}	已复制的元素：{}
 Items copied: {} (devices left out: {}, a device is placed once)	已复制的元素：{}（省略的设备：{}，设备只放置一次）
 Items cut: {}	已剪切的元素：{}
@@ -1188,6 +1195,7 @@ Nailboard (SVG)…	钉板图 (SVG)…
 Name and cross reference	名称和交叉引用
 Name on the server	服务器上的名称
 Name the inspector in the report data first.	请先在报告数据中填写检验员。
+Name, parameters, formulas and page conditions of the project as a template	项目作为模板的名称、参数、公式和页条件
 Name; Data Type; Logical Address; Comment – for PLC programming tools	名称; 数据类型; 逻辑地址; 注释 – 用于 PLC 编程工具
 Named copy of this form, for report blocks	此表单的命名副本，用于报表块
 Navigators	导航器
@@ -1214,6 +1222,7 @@ New pages for every group (strip, plug, cable, device …)	每个组（端子排
 New potential	新建电位
 New project	新建项目
 New project from template	从模板新建项目
+New project from {}	从 {} 新建项目
 New project scheme from the selected one	根据所选方案新建项目方案
 New project, not saved yet	新项目，尚未保存
 New report page	新建报表页
@@ -1324,6 +1333,7 @@ Number prefix	编号前缀
 Number wires	为导线编号
 Numbering	编号
 Numbers removed from {} wires	已移除 {} 条导线的编号
+Numeric	数值
 Object	对象
 Of the outer diameter, as laid fixed	外径的倍数，固定敷设
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径的倍数；管道用一倍半直径的弯头弯曲
@@ -1435,6 +1445,7 @@ PV array {} lies outside the protection of the air-termination system	光伏阵�
 PV array {} of building {}: {} modules	建筑物 {1} 的光伏阵列 {0}：{2} 块组件
 PV array {} of building {}: {} modules, {} kWp	建筑物 {1} 的光伏阵列 {0}：{2} 块组件，{3} kWp
 PV arrays	光伏阵列
+Page conditions	页条件
 Page graphics	页图形
 Page heading	页标题
 Page list, devices, parts, panel layout and settings	页列表、设备、部件、安装板布局和设置
@@ -1462,6 +1473,9 @@ Pane menu	窗格菜单
 Panel wiring report	机柜接线报表
 Panes	窗格
 Paper	纸张
+Parameter	参数
+Parameters	参数
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	从模板新建项目时会询问参数；公式计算其他值。两者都会填入项目文本中的 {NAME}。带条件 (REPORTS=yes) 的页在条件不成立时会被省略。
 Parent section	上级分节
 Part of the profile: generic types or parts from the parts store	型材的部件：通用类型或部件库中的部件
 Part selection from the parts database	从部件数据库中选择部件
@@ -1800,6 +1814,7 @@ Save as 3D macro	另存为 3D 宏
 Save as 3D macro…	另存为 3D 宏…
 Save as local file	另存为本地文件
 Save as macro	另存为宏
+Save as project template	另存为项目模板
 Save as project template…	另存为项目模板…
 Save as scheme	另存为方案
 Save as split project…	另存为拆分项目…
@@ -1825,6 +1840,8 @@ Save to project server: {}	保存到项目服务器：{}
 Save to project server: {} – the connection is lost, saving tries again	保存到项目服务器：{} – 连接已断开，保存将重试
 Save workspace	保存工作区
 Save workspace…	保存工作区…
+Saved in the browser	已保存在浏览器中
+Saved in {}, where the command line finds it too	已保存到 {}，命令行也能在那里找到它
 Saved the properties of {} (revision {})	已保存 {} 的属性（修订 {}）
 Saved to	保存位置
 Saved to the project server (revision {})	已保存到项目服务器（修订 {}）
@@ -1832,6 +1849,7 @@ Saved workspaces	已保存的工作区
 Saves the layers with their settings as a settings scheme for other projects	将图层及其设置保存为设置方案，供其他项目使用
 Saves the placed properties as a placement scheme of the project	将已放置的属性保存为项目的放置方案
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	将项目另存为新项目的模板，不含修订、基线、审阅和接线标记
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	将项目（不含修订、基线、审阅和接线标记）作为新项目的模板保存到模板文件夹中，与内置模板并列
 Saves the project's own properties, function definitions and schemes for other projects	保存项目自有的属性、功能定义和方案，供其他项目使用
 Saves the workspace, the arrangement of the panels and the open windows	保存工作区、窗口排列和打开的对话框
 Saves your version of the whole project as a project file	将你的整个项目版本保存为项目文件
@@ -2070,6 +2088,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	目标语言
 Temperature rise at the roof against the middle (IEC/TR 60890)	柜顶相对于中部的温升 (IEC/TR 60890)
 Template	模板
+Template parameters	模板参数
+Template {} deleted	已删除模板 {}
+Template {} saved	已保存模板 {}
 Templates	模板
 Terminal markers	端子标记
 Terminal number, PLC address, potential name …	端子号、PLC 地址、电位名称 …
@@ -2347,6 +2368,7 @@ all lines	所有行
 all, or e.g. -X*, -W1	全部，或例如 -X*、-W1
 all, or e.g. K, Q	全部，或例如 K, Q
 along z	沿 z
+always	始终
 both ends	两端
 built-in	内置
 by hand	手动
@@ -2372,6 +2394,7 @@ e.g. corp:Engineering	例如 corp:Engineering
 e.g. customer, ERP, PLM	例如客户、ERP、PLM
 e.g. cutout too small, part missing	例如开孔太小、缺少部件
 e.g. de, fr, it	例如 de、fr、it
+e.g. round(POWER_KW * 2, 1)	例如 round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	例如导线太短、缺少端子
 empty	空
 female	插孔
@@ -2416,6 +2439,7 @@ ridge {} m	屋脊 {} m
 set on the device	在设备上设置
 sloped ceiling from {} m	斜顶自 {} m
 some	部分
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt、abs、round(x, 位数)、ceil、floor、min、max、if(条件, 则, 否则)、step(x, 限值, 值, …, 否则)；& 连接文本
 taken over	已采用
 the device before it	前一个设备
 the project data (page list, devices, settings)	项目数据（页列表、设备、设置）
@@ -2449,6 +2473,7 @@ x y	x y
 {} (revision {})	{}（修订 {}）
 {} (spare)	{}（备用）
 {} (subproject of {})	{}（{} 的子项目）
+{} (template of the user)	{}（用户模板）
 {} (unused)	{}（未使用）
 {} ({} open)	{}（{} 个待翻译）
 {} / {} mm  (column {})	{} / {} mm  （列 {}）

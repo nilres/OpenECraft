@@ -246,10 +246,12 @@ pub fn check(prj: &Project, idx: &Index, nl: &Netlist) -> Vec<Issue> {
                 v.push(crate::issue!(Severity::Error, l.and_then(t), "{}: part {} is not in the project parts (Parts management › synchronize)", tag, r.number));
             }
         }
-        // Function templates: more functions placed than the parts provide?
+        // Function templates: more functions placed than the parts provide? Not known
+        // yet while a part number is a template placeholder.
+        let pending = data.is_some_and(|d| d.parts.iter().any(|r| prj.placeholder(&r.number)));
         let usage = crate::parts::usage_of(prj, None, tag, placed.get(tag.as_str()).map(Vec::as_slice).unwrap_or(&[]));
         let has_templates = usage.values().any(|(_, avail)| *avail > 0);
-        if has_templates {
+        if has_templates && !pending {
             for (kind, (placed, avail)) in &usage {
                 if !matches!(kind, crate::parts::FnKind::Terminal | crate::parts::FnKind::PlugPin) && placed > avail {
                     let l = dev.mains.first().or(dev.auxs.first()).or(dev.others.first());
@@ -330,6 +332,7 @@ fn check_function_parts(prj: &Project) -> Vec<Issue> {
 fn check_accessories(prj: &Project, idx: &Index) -> Vec<Issue> {
     crate::parts::loose_accessories(prj)
         .into_iter()
+        .filter(|(tag, _)| !prj.devices.get(tag).is_some_and(|d| d.parts.iter().any(|r| prj.placeholder(&r.number))))
         .map(|(tag, number)| {
             let target = idx.devices.get(&tag).and_then(|d| d.mains.first().or(d.auxs.first()).or(d.others.first())).map(|l| (l.page, l.sym_id));
             crate::issue!(Severity::Warning, target, "{}: accessory {} fits none of the device's parts", tag, number)

@@ -26,6 +26,9 @@ A port cannot be connected to itself	En port kan inte anslutas till sig själv
 A room needs at least four walls	Ett rum behöver minst fyra väggar
 A section number consists of letters and digits and does not start with 0	Ett avsnittsnummer består av bokstäver och siffror och börjar inte med 0
 A section number must not be empty or contain a dot	Ett avsnittsnummer får inte vara tomt eller innehålla en punkt
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	En trefasmotor i båda rotationsriktningarna med förreglade kontaktorer: kraft- och styrkrets dimensionerade utifrån motoreffekten, valfria rapportsidor
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	En trefasmotor som startar i stjärna och går i triangel: kraft- och styrkrets dimensionerade utifrån motoreffekten, valfria rapportsidor
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	En direktstartad trefasmotor: kraft- och styrkrets dimensionerade utifrån motoreffekten, valfritt plintschema, förbindelselista, apparatlista och stycklista
 A0 landscape	A0 liggande
 A1 landscape	A1 liggande
 A2 landscape	A2 liggande
@@ -68,6 +71,7 @@ Analog output module	Analog utgångsmodul
 Analysis	Analys
 Another section here has this number	Ett annat avsnitt här har redan detta nummer
 Antenna outlet	Antennuttag
+Anticlockwise	Moturs
 Apparent power (kVA)	Skenbar effekt (kVA)
 Applied directives	Tillämpade direktiv
 Approval date	Godkännandedatum
@@ -177,6 +181,7 @@ Cam profile switch NC	Kurvbrytare, brytande
 Cam profile switch NO	Kurvbrytare, slutande
 Cam switch NC	Kambrytare, brytande
 Cam switch NO	Kambrytare, slutande
+Cannot delete {}: {}	Det går inte att ta bort {}: {}
 Cannot read the DWG file: {}	Det går inte att läsa DWG-filen: {}
 Capacitive sensor, 2-wire	Kapacitiv givare, 2-tråds
 Capacitive sensor, 3-wire	Kapacitiv givare, 3-tråds
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Effektbrytare 4-polig
 Circuits, protective devices, switches and terminals labelled	Kretsar, skyddsanordningar, brytare och plintar märkta
 Circular milling	Cirkelfräsning
 Clip / snap-on	Clips / snäppfäste
+Clockwise	Medurs
 Cloud	Moln
 Clutch (electromagnetic)	Koppling (elektromagnetisk)
 Coil and timing	Spole och tidsförlopp
@@ -260,7 +266,9 @@ Connections of the conductors	Ledarnas anslutningar
 Connector pin-outs and flat cables	Kontakters stiftbeläggning och flatkablar
 Connector pin-outs: mating faces and pin tables (SVG)	Kontakters stiftbeläggning: anslutningssidor och stifttabeller (SVG)
 Contact material	Kontaktmaterial
+Contactor	Kontaktor
 Contactor (single-line)	Kontaktor (enlinje)
+Contactor at least (AC-3)	Kontaktor minst (AC-3)
 Contactor coil KM (GB)	Kontaktorspole KM (GB)
 Contactor coil KM (GOST)	Kontaktorspole KM (GOST)
 Contactor main contacts KM (GB)	Kontaktorns huvudkontakter KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Konturfräsning
 Contractor	Entreprenör
 Control	Styrning
 Control cabinet	Apparatskåp
+Control circuit {}	Styrkrets {}
 Control mode	Styrmetod
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Stödpunkt {} för {} {} ligger inuti något eller utanför kapslingen: den dras utan sina stödpunkter. Flytta stödpunkten till fritt utrymme.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Stödpunkt {} för {} {} ligger utanför sin väg: i inget skåp eller rum som den dras genom. Flytta stödpunkten till sin väg.
@@ -315,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Försättsblad, innehållsförteckning, schemasidor med funktion och placering, apparatlista, stycklista, plint- och kabelscheman
 Create projects	Skapa projekt
 Creation date	Skapandedatum
+Cross-section of the motor circuit	Motorkretsens tvärsnitt
 Cross-section {} carries {} A, less than the {} A of {}	Tvärsnitt {} klarar {} A, mindre än {} A för {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Korsningen på sida {} passar inte sina ledare: den behöver en ledare i alla fyra riktningar och ingen anslutningspunkt där
 Current capacity (A)	Strömbelastningsförmåga (A)
 Current consumption	Strömförbrukning
+Current of the mains and delta contactor	Ström för nät- och triangelkontaktorn
+Current of the star contactor	Ström för stjärnkontaktorn
 Current range	Strömområde
 Current setting	Ströminställning
 Current transformer	Strömtransformator
@@ -352,6 +364,7 @@ Default {} ({})	Standard {} ({})
 Degree of protection	Kapslingsklass
 Delete projects	Ta bort projekt
 Delivery date	Leveransdatum
+Delta	Triangel
 Demand (diversity factor {})	Behov (sammanlagringsfaktor {})
 Demand {} A above the usable {} A of the supply	Behov {} A över matningens användbara {} A
 Density	Densitet
@@ -406,6 +419,7 @@ Disconnector 3-pole, lockable	Frånskiljare 3-polig, låsbar
 Displacement	Deplacement
 Distribution board	Fördelningscentral
 Distribution board (IEC 61439)	Fördelningscentral (IEC 61439)
+Division by zero in the formula	Division med noll i formeln
 Document	Dokument
 Document (embedded file)	Dokument (inbäddad fil)
 Document A4 portrait	Dokument A4 stående
@@ -426,6 +440,7 @@ Drilling and milling centre	Borr- och fräscenter
 Drive	Drivenhet
 Drive type	Drivtyp
 Driven by	Drivs av
+Driven machine	Driven maskin
 Drives	Drivsystem
 Drop-out time	Frånslagstid
 Duct fill levels	Fyllnadsgrad för kabelkanaler
@@ -829,6 +844,8 @@ Main switch	Huvudbrytare
 Main switch 1-pole	Huvudbrytare 1-polig
 Main switch 2-pole	Huvudbrytare 2-polig
 Main switch 3-pole	Huvudbrytare 3-polig
+Mains	Nät
+Mains and delta contactor	Nät- och triangelkontaktor
 Mains frequency	Nätfrekvens
 Mains voltage	Nätspänning
 Maintenance	Underhåll
@@ -895,11 +912,16 @@ Motor DC, shunt-wound	Likströmsmotor, shuntlindad
 Motor cable {} of frequency converter {} must be shielded	Motorkabel {} för frekvensomriktare {} måste vara skärmad
 Motor data	Motordata
 Motor operator of a circuit breaker	Motordon för effektbrytare
+Motor protection	Motorskydd
 Motor protection (class 10)	Motorskydd (klass 10)
 Motor protection switch	Motorskyddsbrytare
 Motor protection switch (single-line)	Motorskydd (enlinje)
 Motor protection switch 1-pole	Motorskydd 1-poligt
 Motor protection switch 2-pole	Motorskydd 2-poligt
+Motor running	Motor i drift
+Motor starter direct on line	Motorstartare direktstart
+Motor starter reversing	Motorstartare reversering
+Motor starter star-delta	Motorstartare Y/D-start
 Motor, electronically commutated (brushless DC)	Motor, elektroniskt kommuterad (borstlös DC)
 Motors	Motorer
 Motors / Loads	Motorer / laster
@@ -965,6 +987,7 @@ No segment template named {}	Ingen segmentmall med namnet {}
 No subproject {}	Inget delprojekt {}
 No such object: {}	Inget sådant objekt: {}
 No surge protective device at the supply (IEC 60364-4-44)	Inget överspänningsskydd vid matningen (IEC 60364-4-44)
+No template of the user is named {}	Ingen av användarens mallar heter {}
 No terminal {}	Ingen plint {}
 No user defined property {}	Ingen användardefinierad egenskap {}
 No wires at the pins of {}	Inga ledare vid stiften på {}
@@ -1206,7 +1229,9 @@ Potentials, interruption points	Potentialer, brytpunkter
 Potentiometer	Potentiometer
 Power (kWp)	Effekt (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Huvud- och manöverkrets på flera sidor: huvudbrytare, motorskydd, tre kontaktorer med förreglingar, tillslagsfördröjt tidrelä, avbrottspunkter, potentialer med ledarfärger, motorkabel och kabelrapporter.
+Power circuit {}	Kraftkrets {}
 Power factor	Effektfaktor
+Power factor cos phi	Effektfaktor cos phi
 Power factor meter	Effektfaktormätare
 Power loss (W)	Effektförlust (W)
 Power module	Kraftmodul
@@ -1259,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Skyddsledare m�
 Protective devices	Skyddsanordningar
 Protective earth	Skyddsjord
 Protective earth (PE)	Skyddsledare (PE)
+Protective earth terminal	Skyddsjordplint
 Protective hose	Skyddsslang
 Protective, earthing and bonding conductors present and adequate	Skydds-, jordnings- och potentialutjämningsledare finns och är tillräckliga
 Proximity sensor	Närhetsgivare
@@ -1308,6 +1334,7 @@ Rated cross-section	Märkarea
 Rated current (A)	Märkström (A)
 Rated current of the assembly	Kopplingsutrustningens märkström
 Rated current of the auxiliary contacts	Hjälpkontakternas märkström
+Rated current {} A, motor protection switch {}	Märkström {} A, motorskyddsbrytare {}
 Rated diversity factor	Märklastfaktor
 Rated frequency	Märkfrekvens
 Rated impulse withstand voltage	Märkstötspänningstålighet
@@ -1344,6 +1371,7 @@ Remote I/O	Distribuerad I/O
 Remote I/O {} has no controller	Distribuerad I/O {} har ingen styrenhet
 Replace needs the text to find	Ersätt behöver texten som ska sökas
 Replacement part number	Artikelnummer för ersättningsartikel
+Report pages	Rapportsidor
 Residual current device	Jordfelsbrytare
 Residual current device 1-pole	Jordfelsbrytare 1-polig
 Residual current device 2-pole	Jordfelsbrytare 2-polig
@@ -1446,6 +1474,7 @@ Service unit	Luftberedningsaggregat
 Service unit (filter, regulator, lubricator)	Luftberedningsenhet (filter, regulator, dimsmörjare)
 Setpoint	Börvärde
 Setting range	Inställningsområde
+Setting range of the motor protection switch	Motorskyddsbrytarens inställningsområde
 Sheath colour	Mantelfärg
 Sheath material	Mantelmaterial
 Shed roof	Pulpettak
@@ -1507,6 +1536,9 @@ Spiral	Spiraltrappa
 Stainless steel	Rostfritt stål
 Stainless steel V4A	Rostfritt stål V4A
 Standard	Standard
+Star	Stjärna
+Star contactor	Stjärnkontaktor
+Star time	Tid i stjärnkoppling
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Start-/stoppkrets med ett relä: spole och kontakter bildar en apparat med korsreferenser och kontaktbild, plint, ledningsnummer, plintschema och förbindningslista.
 Start date	Startdatum
 Starting current ratio	Startströmsförhållande
@@ -1519,6 +1551,7 @@ Station {}: bus system {} does not exist	Station {}: bussystemet {} finns inte
 Steam	Ånga
 Steel, hot-dip galvanised	Varmförzinkat stål
 Stock	Lager
+Stop	Stopp
 Stop category	Stoppkategori
 Storage temperature range	Lagringstemperaturområde
 Straight	Rak
@@ -1550,6 +1583,7 @@ Supplementary fields	Tilläggsfält
 Suppliers	Leverantörer
 Supply network	Nätsystem
 Supply voltage	Matningsspänning
+Supply {} V / 50 Hz, TN-S	Matning {} V / 50 Hz, TN-S
 Surface (m²)	Yta (m²)
 Surface-mounted	Utanpåliggande
 Surge protection type	Typ av överspänningsskydd
@@ -1568,6 +1602,7 @@ Switches / Sensors	Brytare / givare
 Switches, pushbuttons	Brytare, tryckknappar
 Switching frequency	Kopplingsfrekvens
 Switching output	Kopplingsutgång
+Syntax error in the formula at {}	Syntaxfel i formeln vid {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	T-stycket på sida {} passar inte sina ledare: det behöver en ledare i sin riktning, två tvärs över och ingen anslutningspunkt där
 Table of contents	Innehållsförteckning
 Tabloid landscape	Tabloid liggande
@@ -1594,6 +1629,7 @@ Terminal data	Plintdata
 Terminal description	Plintbeskrivning
 Terminal line-up	Plintuppställning
 Terminal marker	Plintmärkning
+Terminal of the motor circuit	Plint i motorkretsen
 Terminal parts	Artiklar för ändar
 Terminal strip data of {} without terminals	Plintradsdata för {} utan plintar
 Terminal strip overview	Plintradsöversikt
@@ -1624,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	Den första kolumnen måste vara Key
 The folder {} already holds the project {}: a split project needs a folder of its own	Mappen {} innehåller redan projektet {}: ett delat projekt behöver en egen mapp
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Mappen {} innehåller filer som inte hör till något projekt ({}): ett delat projekt behöver en egen mapp
+The formula ends too early	Formeln slutar för tidigt
 The function definition needs a key and a name	Funktionsdefinitionen behöver en nyckel och ett namn
 The index of the project names no file layout: it was not written by OpenECraft	Projektets index anger ingen fillayout: det har inte skrivits av OpenECraft
 The last page cannot be deleted	Den sista sidan kan inte tas bort
@@ -1754,14 +1791,17 @@ Unit of measurement	Måttenhet
 Unit price	Enhetspris
 Unknown cable {}	Okänd kabel {}
 Unknown device: {}	Okänd enhet: {}
+Unknown function {} in the formula	Okänd funktion {} i formeln
 Unknown job {}	Okänd order {}
 Unknown macro	Okänt makro
 Unknown macro box	Okänd makroruta
+Unknown name {} in the formula	Okänt namn {} i formeln
 Unknown object: {}	Okänt objekt: {}
 Unknown revision	Okänd revision
 Unknown symbol '{}'	Okänd symbol '{}'
 Unknown tool {}	Okänt verktyg {}
 Unused connection points	Oanvända anslutningspunkter
+Upper limit of the setting range	Inställningsområdets övre gräns
 Upstream	Före
 User defined	Användardefinierad
 User symbols	Användarsymboler
@@ -1840,6 +1880,7 @@ Within a suite, wall mounted	Inom en skåprad, väggmonterad
 Within a suite, wall mounted, roof covered	Inom en skåprad, väggmonterad, täckt tak
 Word document	Word-dokument
 Working line	Arbetsledning
+Wrong number of values for {}	Fel antal värden för {}
 XLPE / EPR (90 °C)	PEX / EPR (90 °C)
 Year of construction	Tillverkningsår
 Yes / no	Ja / nej
@@ -1964,8 +2005,12 @@ yellow	gul
 {} is a built-in property	{} är en inbyggd egenskap
 {} is a built-in scheme	{} är ett inbyggt schema
 {} is a busbar machine and makes no sheets	{} är en skenbearbetningsmaskin och tillverkar inga plåtar
+{} is above the last step	{} ligger över det sista steget
+{} is defined twice	{} är definierad två gånger
 {} is neither the protective device nor a device of the circuit of {}	{} är varken skyddsdonet eller en apparat i gruppen för {}
+{} is no valid name: letters, digits and _, not starting with a digit	{} är inget giltigt namn: bokstäver, siffror och _, får inte börja med en siffra
 {} is not a busbar machine	{} är inte en skenbearbetningsmaskin
+{} is not a number	{} är inget tal
 {} is not a property of {}	{} är inte en egenskap för {}
 {} is not an approver of this project	{} är inte godkännare för det här projektet
 {} is not connected to the mains: place it without a protective device	{} ansluts inte till nätet: placera den utan skyddsdon
@@ -2124,6 +2169,7 @@ yellow	gul
 {}: voltage drop {} V ({} %) above {} %	{}: spänningsfall {} V ({} %) över {} %
 {}: wire colour {} differs from the potential definition ({})	{}: ledarfärg {} avviker från potentialdefinitionen ({})
 {}: wire without core designation	{}: ledning utan ledarbeteckning
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) och {} ({}) ligger {} mm från varandra, minst {} mm krävs
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W effektförlust värmer kapslingen till {} °C (högst {} °C): {} behövs
@@ -2143,7 +2189,9 @@ yellow	gul
 {}: {} is inside the ventilation clearance of {}	{}: {} ligger inom ventilationsavståndet för {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} är avsedd för en monteringsskena men sitter direkt på plåten
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} är gjord för skensystem med {} mm centrumavstånd, skenorna den sitter på ligger {} mm isär
+{}: {} is not a number	{}: {} är inget tal
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} är inte avsedd för väggmontage, montera den på en skena
+{}: {} is not one of its choices	{}: {} är inte ett av dess val
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} ligger {} … {} mm över golvet, tillåtet {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg på {} överskrider dess bärförmåga på {} kg
 {}: {} lies in a restricted placing area of the {}	{}: {} ligger i ett område på {} där inget får placeras

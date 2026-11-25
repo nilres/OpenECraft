@@ -1,5 +1,6 @@
 # English<TAB>Português – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(somente servidor MCP)
+A template needs a name	Um modelo precisa de um nome
 Access token for changes	Token de acesso para alterações
 Access token of a Vault session or an Autodesk account instead of user and password	Token de acesso de uma sessão do Vault ou de uma conta Autodesk em vez de usuário e senha
 Address of the Vault server, e.g. https://vault.example.com	Endereço do servidor Vault, por exemplo, https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	Def
 Delete the role	Excluir a função
 Deletes a catalog without parts from the parts server	Exclui um catálogo sem peças do servidor de peças
 Deletes a part from the parts server	Exclui uma peça do servidor de peças
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Exclui um modelo do usuário da pasta de modelos (um incluído com o mesmo nome volta a aparecer)
 Deletes a user of the parts server (administrators only)	Exclui um usuário do servidor de peças (somente administradores)
 Descending order	Ordem decrescente
 Discard unsaved changes of the open project	Descartar as alterações não salvas do projeto aberto
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Lista os projetos de exemplo, do primeiro circuito a uma instalação completa, com as funções que cada um mostra
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Lista as exportações (integradas e de plug-ins): nome para export, título, extensão de arquivo e parâmetros
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Lista as pastas e os arquivos de uma pasta do Vault ou pesquisa as propriedades de arquivo abaixo dela (ou em todo o vault)
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Lista os modelos de projeto (os incluídos e os da pasta de modelos: --templates / OPENECRAFT_TEMPLATES) com seus parâmetros, fórmulas e as páginas que uma condição omite
 Lists the reports (built-in and of plugins): name for report and title	Lista os relatórios (integrados e de plug-ins): nome para report e título
 Lists the users of the parts server (administrators only)	Lista os usuários do servidor de peças (somente administradores)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Plug-ins carregados (integrados e das pastas de plug-ins de --plugins / OPENECRAFT_PLUGINS) com seus comandos, verificações, relatórios e exportações; ativa ou desativa um para esta sessão
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Fabricante cujas peças u
 Maximum number of hits (default 50)	Número máximo de resultados (padrão 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Mescla duas versões de um arquivo de um projeto dividido registro por registro (o driver de mesclagem do git): o resultado substitui o arquivo deste lado; onde os dois lados diferem, seus valores permanecem e o comando falha
 Name of a built-in template (list_structure_templates)	Nome de um modelo integrado (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Nome de um modelo (list_project_templates) ou um arquivo de modelo
 Name of the knowledge vault (default Vault)	Nome do vault (padrão Vault)
+Name of the template (default: its template name, otherwise the project name)	Nome do modelo (padrão: seu nome de modelo, caso contrário o nome do projeto)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Novas contas aguardam a aprovação de um administrador (true) ou entram na hora (false)
 New file name (save as)	Novo nome de arquivo (salvar como)
 New pages for every value of the group column (default true)	Novas páginas para cada valor da coluna de agrupamento (padrão true)
@@ -147,6 +152,7 @@ No grant of {} found	Nenhuma concessão de {} encontrada
 No profile named {}	Nenhum perfil com o nome {}
 No project is open: use open_project or new_project first	Nenhum projeto está aberto: use primeiro open_project ou new_project
 No role {} defined	Nenhuma função {} definida
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Nenhuma pasta de modelos: informe --templates <pasta> ou defina OPENECRAFT_TEMPLATES
 Not a valid catalog: {}	Não é um catálogo válido: {}
 Not a valid part: {}	Não é uma peça válida: {}
 Not connected to a vault: use vault_connect first	Não conectado a um vault: use vault_connect primeiro
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Apenas as páginas
 Only the projects that match these search terms	Somente os projetos que correspondem a estes termos de pesquisa
 Only this block	Apenas este bloco
 Open (true) or close (false) the registration	Abrir (true) ou fechar (false) o cadastro
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	Abrir o próprio modelo para alterá-lo: espaços reservados, parâmetros e condições de página são mantidos (save_project_template o salva)
 Opens a project file or archive (files of older versions are converted)	Abre um arquivo de projeto ou arquivo compactado (arquivos de versões mais antigas são convertidos)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Abre um arquivo de projeto ou arquivo compactado do vault; vault_upload sem destino faz check-in de uma nova versão dele
 Option {} needs the form name=value	A opção {} precisa da forma nome=valor
@@ -203,6 +210,7 @@ Redoes the last undone change	Refaz a última alteração desfeita
 Remove the grants of the user or group (only of this role and scope, if given)	Remover as concessões do usuário ou grupo (somente desta função e escopo, se informados)
 Remove the parts assigned so far	Remover as peças atribuídas até agora
 Removes a file from a part on the parts server	Remove um arquivo de uma peça no servidor de peças
+Replace a template of the same name	Substituir um modelo com o mesmo nome
 Replace the file at path if it exists	Substituir o arquivo em path se existir
 Replace the project parts by their newer server versions	Substituir as peças do projeto por suas versões mais recentes do servidor
 Replacement text	Texto de substituição
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Nome da função
 Role of requests without sign-in; none: sign-in needed for reading	Função das solicitações sem entrada; none: é preciso entrar para ler
 Role: reader, manufacturer, editor, admin or a defined role	Função: reader, manufacturer, editor, admin ou uma função definida
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Salva o projeto como modelo na pasta de modelos, com seus parâmetros, fórmulas e condições de página; um modelo do usuário com o nome de um incluído toma o lugar dele
 Saves the project to its file or to a new path	Salva o projeto em seu arquivo ou em um novo caminho
 Scale drawings down that do not fit on the page (default: true)	Reduzir os desenhos que não cabem na página (padrão: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Termos de pesquisa, por exemplo, company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Mostra o manifesto de um arquivo compact
 Shows the project properties, file, number of pages and devices and the check result	Mostra as propriedades do projeto, o arquivo, o número de páginas e dispositivos e o resultado da verificação
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Mostra as funções, concessões e serviços de diretório do servidor de peças, opcionalmente definindo a função das solicitações anônimas (somente administradores)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Mostra se os usuários podem se cadastrar sozinhos no servidor de peças (como leitores), abrindo ou fechando opcionalmente o cadastro (somente administradores)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Começar a partir de um modelo de projeto (list_project_templates: os incluídos, como Machine ou Motor starter direct on line, e os da pasta de modelos) ou um arquivo de modelo
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Começar a partir de um modelo de projeto: um integrado (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) ou um arquivo de projeto
 Start from an example project (names: list_examples)	Começar a partir de um projeto de exemplo (nomes: list_examples)
 Start from the demo project	Começar a partir do projeto de demonstração
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Propriedades definidas pelo usuário (nome: valor; um valor vazio a remove)
 User name to sign in with	Nome de usuário para entrar
 User or group name (wildcards; directory groups as directory:group)	Nome de usuário ou de grupo (curingas; grupos de diretório como diretório:grupo)
+Values of the parameters (name: value); the others keep their default	Valores dos parâmetros (nome: valor); os demais mantêm seu valor padrão
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	Valores dos parâmetros do modelo (nome: valor, por exemplo, POWER_KW: 7.5); os demais mantêm seu valor padrão
 Values to set (name: value; an empty value removes a property)	Valores a definir (nome: valor; um valor vazio remove uma propriedade)
 Vault user name (signs in)	Nome de usuário do Vault (entra)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	O que é gravado: oec (arquivo de projeto), oecp (projeto dividido em uma pasta própria) ou oecz (arquivo compactado); padrão: pela extensão da saída
 Width and height must be greater than 0	Largura e altura devem ser maiores que 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Palavras a procurar nos títulos, nomes e termos de pesquisa (normas como VDE 0100-600) dos relatórios
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Calcula os valores de um modelo de projeto para os parâmetros informados (corrente nominal, faixas de ajuste, peças) sem iniciar um projeto
 Write the table as CSV to this file	Gravar a tabela como CSV neste arquivo
 Writes the check scheme of the project (checks switched off, message levels) to a file	Grava o esquema de verificação do projeto (verificações desativadas, níveis de mensagem) em um arquivo
 Writes the embedded file of a document page	Grava o arquivo incorporado de uma página de documento

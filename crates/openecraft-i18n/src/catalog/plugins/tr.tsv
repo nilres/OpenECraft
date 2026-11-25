@@ -3,6 +3,7 @@
 1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: çizginin üst / sol ucu enine sağ / alt kola gider · 2: sol / üst kola (varsayılan 2)
 A cable definition needs a start and an end point	Kablo tanımı bir başlangıç ve bir bitiş noktası gerektirir
 A copper bar needs at least one segment	Bir bakır bara için en az bir segment gerekli
+A new formula {} needs its formula	Yeni {} formülünün bir ifadesi olmalıdır
 A segment cannot be moved below itself	Bir segment kendi altına taşınamaz
 A segment needs two different nodes	Bir segment için iki farklı düğüm gerekli
 A wire needs at least two points	Bir tel en az iki nokta gerektirir
@@ -105,6 +106,7 @@ Changes name, description, function, location or parent of a segment	Bir segment
 Changes position, face, fastening or anchors of a panel item	Bir pano öğesinin konumunu, yüzeyini, sabitlemesini veya ankrajlarını değiştirir
 Changes the device, connection and terminal tables	Cihaz, bağlantı ve klemens tablolarını değiştirir
 Changes the level of a kind of message (code as shown by check)	Bir mesaj türünün seviyesini değiştirir (kod check tarafından gösterildiği gibi)
+Changes the name and description of the open project as a template (save_project_template saves it)	Açık projenin şablon olarak adını ve açıklamasını değiştirir (save_project_template onu kaydeder)
 Changes the properties of a wire	Bir telin özelliklerini değiştirir
 Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Bir panonun sistemini, boyutunu ve bileşenlerini (kaide, yan yana bağlı taraflar, rakor plakası) değiştirir; ankrajlı öğeler izler
 Check {} failed: {}	{} kontrolü başarısız oldu: {}
@@ -150,6 +152,8 @@ Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing 
 Creates or changes a bus system (PROFINET, EtherCAT, …)	Bir bus sistemi (PROFINET, EtherCAT, …) oluşturur veya değiştirir
 Creates or changes a configurator option	Bir yapılandırıcı seçeneği oluşturur veya değiştirir
 Creates or changes a fluid device group	Bir akışkan cihaz grubu oluşturur veya değiştirir
+Creates or changes a formula of the template: a value worked out from the parameters and the formulas before it, filling {NAME}	Şablonun bir formülünü oluşturur veya değiştirir: parametrelerden ve önceki formüllerden hesaplanan ve {NAME} yer tutucusunu dolduran bir değer
+Creates or changes a parameter of the template: a value asked for when a project is started from it, filling {NAME} in the texts of the project	Şablonun bir parametresini oluşturur veya değiştirir: şablondan bir proje başlatılırken sorulan ve projenin metinlerindeki {NAME} yer tutucusunu dolduran bir değer
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Projenin bir çizim çerçevesini oluşturur veya değiştirir (yerleşik çerçeveler yeni bir adla kopyalanır)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Bir potansiyel tanımı oluşturur veya değiştirir; telde ayarlanmadıkça telleri rengi ve kesiti bu tanımdan alır
 Creates or changes a title block of the project (built-in ones are copied under a new name)	Projenin bir antedini oluşturur veya değiştirir (yerleşik olanlar yeni bir adla kopyalanır)
@@ -174,6 +178,7 @@ Date (YYYY-MM-DD)	Tarih (YYYY-AA-GG)
 Date of the acceptance	Kabul tarihi
 Default property values	Varsayılan özellik değerleri
 Default symbol key	Varsayılan sembol anahtarı
+Default value	Varsayılan değer
 Define the identifiers in use (default: true)	Kullanılan tanımlayıcıları tanımla (varsayılan: true)
 Defines a reusable project function definition or changes it	Yeniden kullanılabilir bir proje fonksiyon tanımı tanımlar veya değiştirir
 Defines a structure identifier or changes its description	Bir yapı tanımlayıcısı tanımlar veya açıklamasını değiştirir
@@ -279,6 +284,7 @@ First row with the column names	Sütun adlarını içeren ilk satır
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Düz çatılar ve arazi tipi: modüllerin baktığı yön, derece, yukarıdan bakıldığında saat yönünün tersine (0: +z yönüne)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Cihaz adının formatı: {letter}, {n} (sayaç), {page}, {column}, {row}; varsayılan {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format şemasının formatı: {n} (sayaç), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Formula: numbers, \"texts\", names, + - * / ^, comparisons, & and sqrt, abs, round, ceil, floor, min, max, if, step	Formül: sayılar, \"metinler\", adlar, + - * / ^, karşılaştırmalar, & ve sqrt, abs, round, ceil, floor, min, max, if, step
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Temel topraklaması: dış duvarların ne kadar içinde (varsayılan 100), halka: ne kadar dışında (varsayılan 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Temel topraklaması: en büyük gözü, mm (varsayılan 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Çerçeve yeniyse başlangıç alınacak çerçeve (varsayılan: A3 landscape)
@@ -366,6 +372,8 @@ Key, e.g. user.customer_code	Anahtar, ör. user.customer_code
 Keys of the routes, comma separated (all if missing)	Güzergâhların anahtarları, virgülle ayrılmış (verilmezse tümü)
 Kind: machining, punching or busbar	Tür: machining, punching veya busbar
 Known length of the cable in m (taken instead of the 3D route)	Kablonun m cinsinden bilinen uzunluğu (3D güzergah yerine kullanılır)
+Label shown when the value is asked for	Değer sorulduğunda gösterilen yazı
+Label shown with the value	Değerle birlikte gösterilen yazı
 Label: terminal number, PLC address or potential name	Yazı: klemens numarası, PLC adresi veya potansiyel adı
 Landscape (true) or portrait (false)	Yatay (true) veya dikey (false)
 Language the project texts are written in, e.g. en	Proje metinlerinin yazıldığı dil, ör. en
@@ -484,6 +492,7 @@ Nailboard layout of a harness: the branches from the common node to the connecto
 Name (default E1, E2, …)	Ad (varsayılan E1, E2, …)
 Name (default F1, F2, …)	Ad (varsayılan F1, F2, …)
 Name both the building and the roof, or neither for a freestanding PV array	Hem binayı hem çatıyı belirtin ya da arazi tipi bir PV dizisi için hiçbirini
+Name in the list of templates	Şablon listesindeki ad
 Name of the assembly	Montaj grubunun adı
 Name of the bar, e.g. L1 -Q1	Baranın adı, ör. L1 -Q1
 Name of the check	Kontrolün adı
@@ -491,6 +500,7 @@ Name of the customer rule set to remove	Kaldırılacak müşteri kural setinin a
 Name of the frame	Çerçevenin adı
 Name of the machine	Makinenin adı
 Name of the main earthing terminal	Ana topraklama barasının adı
+Name of the placeholder, e.g. POWER_KW for {POWER_KW}: letters, digits and _	Yer tutucunun adı, ör. {POWER_KW} için POWER_KW: harfler, rakamlar ve _
 Name of the safety function to remove	Kaldırılacak güvenlik fonksiyonunun adı
 Name of the segment	Segmentin adı
 Name of the title block	Antedin adı
@@ -500,6 +510,7 @@ Name or id; the tag for places	Ad veya kimlik; yerleşimler için etiket
 Name placed by hand: X offset from the insertion point in mm	Elle yerleştirilen ad: ekleme noktasından mm cinsinden X uzaklığı
 Name placed by hand: Y offset from the insertion point in mm	Elle yerleştirilen ad: ekleme noktasından mm cinsinden Y uzaklığı
 Name, e.g. the location +M1	Ad, ör. +M1 konumu
+Name, parameters, formulas and page conditions of a project template	Bir proje şablonunun adı, parametreleri, formülleri ve sayfa koşulları
 New device tag	Yeni cihaz etiketi
 New identifier	Yeni tanımlayıcı
 New page name	Yeni sayfa adı
@@ -573,6 +584,7 @@ OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=değe
 Offset from the symbol position in mm (default: below the symbol)	Sembol konumundan mm cinsinden uzaklık (varsayılan: sembolün altı)
 Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Telde gösterilen kablo etiketinin otomatik yerinden kayması, bir nokta [dx, dy] mm cinsinden (nokta yok = otomatik)
 Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Damar tanımının otomatik yerinden kayması, bir nokta [dx, dy] mm cinsinden (nokta yok = otomatik)
+On a page of a project template: OPTION=value, OPTION!=value, OPTION=a|b joined by & (parameters and formulas of get_template); a project started from the template leaves the page out when it does not hold. Empty: always	Bir proje şablonunun sayfasında: & ile birleştirilen OPTION=değer, OPTION!=değer, OPTION=a|b (get_template parametreleri ve formülleri); şablondan başlatılan bir proje, koşul sağlanmadığında sayfayı dışarıda bırakır. Boş: her zaman
 One end, e.g. -K1:A1	Bir uç, ör. -K1:A1
 One row per printed label instead of a count	Sayı yerine yazdırılan her etiket için bir satır
 Only devices on these pages (names separated by commas)	Yalnızca bu sayfalardaki cihazlar (adlar virgülle ayrılmış)
@@ -695,6 +707,7 @@ Project exports	Proje dışa aktarımları
 Project languages, dictionary and translations	Proje dilleri, sözlük ve çeviriler
 Project reports	Proje raporları
 Project statistics	Proje istatistikleri
+Project templates	Proje şablonları
 Property and function definitions, property values and placement schemes	Özellik ve fonksiyon tanımları, özellik değerleri ve yerleştirme şemaları
 Property key	Özellik anahtarı
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Özellik anahtarları ve değerleri, ör. {\"device.rated_power\": \"5.5\"}
@@ -723,6 +736,7 @@ Remove unused definitions (default: false)	Kullanılmayan tanımları kaldır (v
 Removes a control point of the route of a wire, cable or tube, or all of them	Bir telin, kablonun veya tüpün güzergâhındaki bir ara noktayı ya da tümünü kaldırır
 Removes a copper bar	Bir bakır barayı kaldırır
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Bir düğümü (segmentleri ve yerleşimleriyle birlikte), segmenti, yerleşimi, dış hattı, kuşaklama iletkenini veya aksesuarı kaldırır
+Removes a parameter or formula of the template	Şablonun bir parametresini veya formülünü kaldırır
 Removes a planned device from a segment	Bir segmentten planlanmış bir cihazı kaldırır
 Removes a project function definition; its symbols go back to their built-in one	Bir proje fonksiyon tanımını kaldırır; sembolleri yeniden yerleşik tanımlarına döner
 Removes a project option; its content stays in the project	Bir proje seçeneğini kaldırır; içeriği projede kalır
@@ -821,6 +835,7 @@ Shows the PLC hardware configuration: stations with racks, slots, modules and ad
 Shows the content of a page: symbols with their connection point positions, wires and texts	Bir sayfanın içeriğini gösterir: bağlantı noktası konumlarıyla semboller, teller ve metinler
 Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Projede saklanan diğer sistemlere ait verileri (parça bağlantıları, belgeler) ve değişim günlüğünü gösterir
 Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Bir konnektörün eşleşme yüzünü gösterir: parçasının pin düzeni, her pinin konumu (mm, pin tarafından görünüm), iki tarafın potansiyeli, tel rengi ve kablo damarı
+Shows the open project as a template: name, parameters, formulas with their values at the defaults, the pages with a condition and the mistakes	Açık projeyi şablon olarak gösterir: ad, parametreler, varsayılanlardaki değerleriyle formüller, koşulu olan sayfalar ve hatalar
 Shows the options and rules of the configurator	Yapılandırıcının seçeneklerini ve kurallarını gösterir
 Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Bir fişin pinlerini fiş sırasına göre gösterir: soket tarafında ve pin tarafında neyin bağlı olduğu, potansiyel, kullanılmayan pinler
 Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	3D yönlendirme kurallarını gösterir ve verilenleri değiştirir: ızgara, açıklık mesafesi, serbest hava faktörü, ayırma, bükme yarıçapları, kesim uzunlukları, paylar
@@ -917,6 +932,7 @@ The rotation must be 0, 90, 180 or 270	Döndürme 0, 90, 180 veya 270 olmalıdı
 The straight line of a crossing: vertical or horizontal (default vertical)	Bir kesişmenin düz çizgisi: vertical veya horizontal (varsayılan vertical)
 The text height must be at least 0.5 mm	Metin yüksekliği en az 0,5 mm olmalıdır
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Bir köşenin dikey ve yatay iki kolu, örn. down left (varsayılan: oradaki tellere göre, yoksa down right)
+The value must be a number	Değer bir sayı olmalıdır
 The width factor must be from 0.1 to 10	Genişlik faktörü 0,1 ile 10 arasında olmalıdır
 The wire has no length	Bağlantının uzunluğu yok
 The wire that jumps: vertical or horizontal	Atlayan tel: vertical veya horizontal
@@ -936,6 +952,7 @@ Top edge on the mounting plate in mm	mm cinsinden montaj plakası üzerindeki ü
 Translated line	Çevrilmiş satır
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Derece cinsinden dikey eksen etrafında dönüş, yukarıdan bakıldığında saat yönünün tersine (90: ön yüzler sağa bakar)
 Two wires at a connection point share a twin ferrule	Bir bağlantı noktasındaki iki tel bir ikiz yüksüğü paylaşır
+Unit, e.g. A	Birim, ör. A
 Unit, e.g. kW	Birim, ör. kW
 Unknown T-connection style: {}	Bilinmeyen T bağlantı stili: {}
 Unknown accessory kind: {}	Bilinmeyen aksesuar türü: {}

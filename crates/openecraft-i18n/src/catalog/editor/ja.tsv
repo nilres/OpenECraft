@@ -68,6 +68,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	ページマクロを持ち、まだ回路図にない計画済みデバイスごとの回路図ページ (選択したセグメント、選択がない場合はすべて)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	分割プロジェクト（.oecp）は、ページ、機器、部品、埋め込みファイルごとに小さなファイルを持つフォルダーで、git などのバージョン管理用です: ファイル › 分割プロジェクトとして保存。
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	分割プロジェクトはファイルのフォルダーです。ブラウザーでは開けません。先にプロジェクトファイル（.oec）またはアーカイブ（.oecz）に変換してください。
+A template file to pass on; New › From a template file… starts projects from it	受け渡し用のテンプレートファイル。「新規 › テンプレートファイルから…」でそこからプロジェクトを開始できます
 A template of this name is replaced.	この名前のテンプレートは置き換えられます。
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	テンプレートは、新しいページのページタイプ、図枠、表題欄、構造、説明を設定し、その内容を配置します。
 A way through free air costs this many times the way in a duct or routing path	空中を通る経路のコストは、ダクトまたは配線経路を通る場合のこの倍数になります
@@ -526,6 +527,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	セクションを削除
 Delete stair	階段を削除
 Delete string	ストリングを削除
+Delete template	テンプレートを削除
 Delete the group	グループを削除
 Delete the layer; its items move to the default layer	レイヤーを削除します。そのアイテムは既定のレイヤーに移動します
 Delete the property and all its values	プロパティとそのすべての値を削除
@@ -680,6 +682,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	表で編集
 Edit in table…	表で編集…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	編集モード：配置図で建物をその位置へドラッグして回転します。部屋をクリックしても開かなくなります
+Edit template	テンプレートを編集
 Editable copy of this plot frame	この図枠の編集可能なコピー
 Editable copy of this title block	この表題欄の編集可能なコピー
 Effective surface	有効表面積
@@ -722,6 +725,7 @@ Export SVG…	SVG のエクスポート…
 Export all pages as PDF in {}	すべてのページを {} の PDF としてエクスポート
 Export as EPLAN parts XML…	EPLAN 部品 XML としてエクスポート…
 Export as PDF in language	言語を指定して PDF としてエクスポート
+Export as file…	ファイルとしてエクスポート…
 Export check scheme…	チェックスキームのエクスポート…
 Export favorites…	お気に入りをエクスポート…
 Export library…	ライブラリのエクスポート…
@@ -785,6 +789,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	相互参照の書式、参照先ページの構造、中断ポイント、接点イメージ
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	分岐長とコネクターのピン表を含む、縮尺どおりのハーネス布線板図
 Forms	フォーム
+Formula	数式
+Formulas	数式
 Form…	フォーム…
 Frame	枠
 Frame of all pages that do not choose one	図枠を選択していないすべてのページの図枠
@@ -975,6 +981,7 @@ Introduction	はじめに
 Invalid value	無効な値
 Invert the direction of panning by scrolling	スクロールによるパンの方向を反転する
 Inverter or charge controller (devices with PV input data)	インバーターまたは充電コントローラー（PV入力データのある機器）
+It takes the place of the bundled template of this name.	この名前の組み込みテンプレートの代わりになります。
 Items copied: {}	コピーした要素: {}
 Items copied: {} (devices left out: {}, a device is placed once)	コピーした要素: {} (除外したデバイス: {}、デバイスは一度だけ配置されます)
 Items cut: {}	切り取った要素: {}
@@ -1187,6 +1194,7 @@ Nailboard (SVG)…	布線板 (SVG)…
 Name and cross reference	名前と相互参照
 Name on the server	サーバー上の名前
 Name the inspector in the report data first.	先にレポートのデータに点検者を入力してください。
+Name, parameters, formulas and page conditions of the project as a template	テンプレートとしてのプロジェクトの名前、パラメーター、数式、ページ条件
 Name; Data Type; Logical Address; Comment – for PLC programming tools	名前; データ型; 論理アドレス; コメント – PLC プログラミングツール用
 Named copy of this form, for report blocks	このフォームの名前付きコピー (レポートブロック用)
 Navigators	ナビゲーター
@@ -1213,6 +1221,7 @@ New pages for every group (strip, plug, cable, device …)	グループ (端子�
 New potential	新しい電位
 New project	新しいプロジェクト
 New project from template	テンプレートから新規プロジェクト
+New project from {}	{} から新規プロジェクト
 New project scheme from the selected one	選択したスキームから新しいプロジェクトスキームを作成
 New project, not saved yet	新しいプロジェクト、未保存
 New report page	新しいレポートページ
@@ -1323,6 +1332,7 @@ Number prefix	番号のプレフィックス
 Number wires	電線に番号を付ける
 Numbering	番号付け
 Numbers removed from {} wires	{} 本の電線から番号を削除しました
+Numeric	数値
 Object	オブジェクト
 Of the outer diameter, as laid fixed	外径の倍数、固定敷設時
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径の倍数。配管は直径の1.5倍のエルボで曲げられます
@@ -1434,6 +1444,7 @@ PV array {} lies outside the protection of the air-termination system	PVアレ�
 PV array {} of building {}: {} modules	建物 {1} の PVアレイ {0}：{2} 枚のモジュール
 PV array {} of building {}: {} modules, {} kWp	建物 {1} の PVアレイ {0}：{2} 枚のモジュール、{3} kWp
 PV arrays	PVアレイ
+Page conditions	ページ条件
 Page graphics	ページのグラフィック
 Page heading	ページ見出し
 Page list, devices, parts, panel layout and settings	ページリスト、デバイス、部品、盤レイアウト、設定
@@ -1461,6 +1472,9 @@ Pane menu	ペインメニュー
 Panel wiring report	盤配線レポート
 Panes	ペイン
 Paper	用紙
+Parameter	パラメーター
+Parameters	パラメーター
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	パラメーターはテンプレートからプロジェクトを開始するときに入力を求められ、数式はさらに値を計算します。どちらもプロジェクトのテキスト内の {NAME} を置き換えます。条件 (REPORTS=yes) のあるページは、条件が成り立たないときに除外されます。
 Parent section	親セクション
 Part of the profile: generic types or parts from the parts store	プロファイルの部品: 汎用タイプまたは部品ストアの部品
 Part selection from the parts database	部品データベースからの部品選択
@@ -1799,6 +1813,7 @@ Save as 3D macro	3D マクロとして保存
 Save as 3D macro…	3D マクロとして保存…
 Save as local file	ローカルファイルとして保存
 Save as macro	マクロとして保存
+Save as project template	プロジェクトテンプレートとして保存
 Save as project template…	プロジェクトテンプレートとして保存…
 Save as scheme	スキームとして保存
 Save as split project…	分割プロジェクトとして保存…
@@ -1824,6 +1839,8 @@ Save to project server: {}	プロジェクトサーバーに保存：{}
 Save to project server: {} – the connection is lost, saving tries again	プロジェクトサーバーに保存：{} – 接続が切れています。保存は再試行します
 Save workspace	ワークスペースを保存
 Save workspace…	ワークスペースを保存…
+Saved in the browser	ブラウザーに保存しました
+Saved in {}, where the command line finds it too	{} に保存しました。コマンドラインからも見つかります
 Saved the properties of {} (revision {})	{} のプロパティを保存しました (リビジョン {})
 Saved to	保存先
 Saved to the project server (revision {})	プロジェクトサーバーに保存しました (リビジョン {})
@@ -1831,6 +1848,7 @@ Saved workspaces	保存されたワークスペース
 Saves the layers with their settings as a settings scheme for other projects	レイヤーとその設定を他のプロジェクト用の設定スキームとして保存します
 Saves the placed properties as a placement scheme of the project	配置されたプロパティをプロジェクトの配置スキームとして保存します
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	リビジョン、ベースライン、レビュー、配線マークを除いてプロジェクトを新規プロジェクト用のテンプレートとして保存します
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	リビジョン、ベースライン、レビュー、配線マークを除いたプロジェクトを、新しいプロジェクト用のテンプレートとして、組み込みテンプレートと並べてテンプレートフォルダーに保存します
 Saves the project's own properties, function definitions and schemes for other projects	プロジェクト独自のプロパティ、機能定義、スキームを他のプロジェクト用に保存します
 Saves the workspace, the arrangement of the panels and the open windows	ワークスペース、パネルの配置、開いているウィンドウを保存します
 Saves your version of the whole project as a project file	プロジェクト全体のあなたの版をプロジェクトファイルとして保存します
@@ -2070,6 +2088,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	ターゲット言語
 Temperature rise at the roof against the middle (IEC/TR 60890)	中央部に対する天井部の温度上昇 (IEC/TR 60890)
 Template	テンプレート
+Template parameters	テンプレートパラメーター
+Template {} deleted	テンプレート {} を削除しました
+Template {} saved	テンプレート {} を保存しました
 Templates	テンプレート
 Terminal markers	端子マーカー
 Terminal number, PLC address, potential name …	端子番号、PLC アドレス、電位名 …
@@ -2348,6 +2369,7 @@ all lines	すべての行
 all, or e.g. -X*, -W1	すべて、または例: -X*、-W1
 all, or e.g. K, Q	すべて、または K, Q など
 along z	z 方向
+always	常に
 both ends	両端
 built-in	組み込み
 by hand	手動
@@ -2373,6 +2395,7 @@ e.g. corp:Engineering	例: corp:Engineering
 e.g. customer, ERP, PLM	例: 顧客、ERP、PLM
 e.g. cutout too small, part missing	例: 切り欠きが小さすぎる、部品が不足している
 e.g. de, fr, it	例: de、fr、it
+e.g. round(POWER_KW * 2, 1)	例: round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	例: 電線が短すぎる、端子がない
 empty	空
 female	メス
@@ -2417,6 +2440,7 @@ ridge {} m	棟 {} m
 set on the device	デバイスで設定
 sloped ceiling from {} m	{} m からの傾斜天井
 some	一部
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt、abs、round(x, 桁数)、ceil、floor、min、max、if(条件, 成立時の値, 不成立時の値)、step(x, 限界, 値, …, それ以外)。& はテキストを連結します
 taken over	反映済み
 the device before it	前の機器
 the project data (page list, devices, settings)	プロジェクトデータ (ページリスト、デバイス、設定)
@@ -2450,6 +2474,7 @@ x y	x y
 {} (revision {})	{} (リビジョン {})
 {} (spare)	{} (予備)
 {} (subproject of {})	{} ({} のサブプロジェクト)
+{} (template of the user)	{} (ユーザーテンプレート)
 {} (unused)	{} (未使用)
 {} ({} open)	{} (未翻訳 {})
 {} / {} mm  (column {})	{} / {} mm  (列 {})

@@ -1,5 +1,6 @@
 # English<TAB>简体中文 – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	（仅限 MCP 服务器）
+A template needs a name	模板需要名称
 Access token for changes	用于更改的访问令牌
 Access token of a Vault session or an Autodesk account instead of user and password	Vault 会话或 Autodesk 帐户的访问令牌，代替用户和密码
 Address of the Vault server, e.g. https://vault.example.com	Vault 服务器地址，例如 https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	定
 Delete the role	删除该角色
 Deletes a catalog without parts from the parts server	从部件服务器删除不含部件的目录
 Deletes a part from the parts server	从部件服务器删除部件
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	从模板文件夹中删除用户模板（同名的内置模板会恢复）
 Deletes a user of the parts server (administrators only)	删除部件服务器的用户（仅限管理员）
 Descending order	降序
 Discard unsaved changes of the open project	放弃已打开项目中未保存的更改
@@ -122,6 +124,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	列出从第一个电路到整个工厂的示例项目以及每个项目展示的功能
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	列出导出（内置和插件的）：用于 export 的名称、标题、文件扩展名和参数
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	列出 Vault 文件夹中的文件夹和文件，或搜索其下（或整个 Vault）的文件属性
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	列出项目模板（内置模板和模板文件夹中的模板：--templates / OPENECRAFT_TEMPLATES）及其参数、公式和被条件省略的页
 Lists the reports (built-in and of plugins): name for report and title	列出报表（内置和插件的）：用于 report 的名称和标题
 Lists the users of the parts server (administrators only)	列出部件服务器的用户（仅限管理员）
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	已加载的插件（内置插件以及来自 --plugins / OPENECRAFT_PLUGINS 插件文件夹的插件）及其命令、检查、报表和导出；为本会话启用或禁用插件
@@ -133,7 +136,9 @@ Manufacturer (wildcards); default * (everything)	制造商（可用通配符）�
 Manufacturer whose parts a manufacturer user maintains	制造商用户所维护部件的制造商
 Maximum number of hits (default 50)	最大命中数（默认 50）
 Name of a built-in template (list_structure_templates)	内置模板的名称 (list_structure_templates)
+Name of a template (list_project_templates) or a template file	模板名称 (list_project_templates) 或模板文件
 Name of the knowledge vault (default Vault)	知识库名称（默认 Vault）
+Name of the template (default: its template name, otherwise the project name)	模板名称（默认：其模板名称，否则为项目名称）
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	新帐户等待管理员批准 (true) 或立即登录 (false)
 New file name (save as)	新文件名（另存为）
 New pages for every value of the group column (default true)	为分组列的每个值新建页（默认 true）
@@ -143,6 +148,7 @@ No grant of {} found	未找到 {} 的授权
 No profile named {}	没有名为 {} 的配置文件
 No project is open: use open_project or new_project first	未打开项目：请先使用 open_project 或 new_project
 No role {} defined	未定义角色 {}
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	没有模板文件夹：请指定 --templates <文件夹> 或设置 OPENECRAFT_TEMPLATES
 Not a valid catalog: {}	不是有效的目录：{}
 Not a valid part: {}	不是有效的部件：{}
 Not connected to a vault: use vault_connect first	未连接到 Vault：请先使用 vault_connect
@@ -153,6 +159,7 @@ Only the pages of this report block; default all report pages	仅限此报表块
 Only the projects that match these search terms	仅限与这些搜索条件匹配的项目
 Only this block	仅此块
 Open (true) or close (false) the registration	开放 (true) 或关闭 (false) 注册
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	打开模板本身以进行更改：占位符、参数和页条件保持不变（由 save_project_template 保存）
 Opens a project file or archive (files of older versions are converted)	打开项目文件或归档（旧版本的文件将被转换）
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	从 Vault 打开项目文件或归档；不带目标的 vault_upload 会签入其新版本
 Option {} needs the form name=value	选项 {} 需要 name=value 形式
@@ -198,6 +205,7 @@ Redoes the last undone change	恢复上次撤消的更改
 Remove the grants of the user or group (only of this role and scope, if given)	删除用户或组的授权（如已指定，则仅删除该角色和范围的授权）
 Remove the parts assigned so far	移除迄今已分配的部件
 Removes a file from a part on the parts server	从部件服务器上的部件中删除文件
+Replace a template of the same name	替换同名模板
 Replace the file at path if it exists	如果 path 处的文件已存在则替换
 Replace the project parts by their newer server versions	用服务器上的更新版本替换项目部件
 Replacement text	替换文本
@@ -214,6 +222,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	角色名称
 Role of requests without sign-in; none: sign-in needed for reading	未登录请求的角色；none：读取需要登录
 Role: reader, manufacturer, editor, admin or a defined role	角色：reader, manufacturer, editor, admin 或已定义的角色
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	将项目作为模板保存到模板文件夹中，包括其参数、公式和页条件；与内置模板同名的用户模板将取代该内置模板
 Saves the project to its file or to a new path	将项目保存到其文件或新路径
 Scale drawings down that do not fit on the page (default: true)	缩小不适合页面的图纸（默认：true）
 Search terms, e.g. company=ACME; customer~plant; conveyor	搜索条件，例如 company=ACME; customer~plant; conveyor
@@ -229,6 +238,7 @@ Shows the manifest of a project archive	显示项目归档的清单
 Shows the project properties, file, number of pages and devices and the check result	显示项目属性、文件、页数和设备数以及检查结果
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	显示部件服务器的角色、授权和目录服务，可选择设置匿名请求的角色（仅限管理员）
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	显示用户是否可以在部件服务器上自行注册（作为读者），并可选择开放或关闭注册（仅限管理员）
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	从项目模板（list_project_templates：内置模板，如“机器”或“电机启动器（直接启动）”，以及模板文件夹中的模板）或模板文件开始
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	从项目模板开始：内置模板（Machine、Distribution board (IEC 61439)、Empty (IEC 60204-1)）或项目文件
 Start from an example project (names: list_examples)	从示例项目开始（名称：list_examples）
 Start from the demo project	从演示项目开始
@@ -273,11 +283,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	用户定义的属性（名称: 值；值为空时将其移除）
 User name to sign in with	用于登录的用户名
 User or group name (wildcards; directory groups as directory:group)	用户名或组名（可用通配符；目录服务组写作 directory:group）
+Values of the parameters (name: value); the others keep their default	参数值（名称: 值）；其余参数保持默认值
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	模板的参数值（名称: 值，例如 POWER_KW: 7.5）；其余参数保持默认值
 Values to set (name: value; an empty value removes a property)	要设置的值（名称: 值；值为空时删除属性）
 Vault user name (signs in)	Vault 用户名（用于登录）
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	写入的内容：oec（项目文件）、oecp（单独文件夹中的拆分项目）或 oecz（归档）；默认：按输出的扩展名
 Width and height must be greater than 0	宽度和高度必须大于 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	在报表的标题、名称和搜索词（如 VDE 0100-600 等标准）中查找的词
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	计算项目模板在给定参数下的值（额定电流、设定范围、部件），无需新建项目
 Write the table as CSV to this file	将表格以 CSV 格式写入此文件
 Writes the check scheme of the project (checks switched off, message levels) to a file	将项目的检查方案（已关闭的检查、消息级别）写入文件
 Writes the embedded file of a document page	写出文档页的嵌入文件

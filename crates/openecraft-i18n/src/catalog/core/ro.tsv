@@ -26,6 +26,9 @@ A port cannot be connected to itself	Un port nu poate fi conectat la el însuși
 A room needs at least four walls	O încăpere are nevoie de cel puțin patru pereți
 A section number consists of letters and digits and does not start with 0	Un număr de secțiune constă din litere și cifre și nu începe cu 0
 A section number must not be empty or contain a dot	Un număr de secțiune nu poate fi gol și nu poate conține un punct
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Un motor trifazat în ambele sensuri de rotație cu contactoare interblocate: circuitul de putere și cel de comandă dimensionate după puterea motorului, pagini de raport opționale
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Un motor trifazat pornit în stea și funcționând în triunghi: circuitul de putere și cel de comandă dimensionate după puterea motorului, pagini de raport opționale
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Un motor trifazat cu pornire directă: circuitul de putere și cel de comandă dimensionate după puterea motorului, opțional schemă de borne, listă de conexiuni, listă de dispozitive și listă de materiale
 A0 landscape	A0 vedere
 A1 landscape	A1 vedere
 A2 landscape	A2 vedere
@@ -68,6 +71,7 @@ Analog output module	Modul de ieșiri analogice
 Analysis	Analiză
 Another section here has this number	O altă secțiune de aici are deja acest număr
 Antenna outlet	Priză de antenă
+Anticlockwise	Sens antiorar
 Apparent power (kVA)	Putere aparentă (kVA)
 Applied directives	Directive aplicate
 Approval date	Data aprobării
@@ -177,6 +181,7 @@ Cam profile switch NC	Comutator cu profil de camă NÎ
 Cam profile switch NO	Comutator cu profil de camă ND
 Cam switch NC	Comutator cu camă NÎ
 Cam switch NO	Comutator cu camă ND
+Cannot delete {}: {}	{} nu poate fi șters: {}
 Cannot read the DWG file: {}	Fișierul DWG nu poate fi citit: {}
 Capacitive sensor, 2-wire	Senzor capacitiv, 2 fire
 Capacitive sensor, 3-wire	Senzor capacitiv, 3 fire
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Întrerupător automat tetrapolar
 Circuits, protective devices, switches and terminals labelled	Circuite, dispozitive de protecție, întrerupătoare și borne marcate
 Circular milling	Frezare circulară
 Clip / snap-on	Clemă / fixare prin clic
+Clockwise	Sens orar
 Cloud	Nor
 Clutch (electromagnetic)	Cuplaj (electromagnetic)
 Coil and timing	Bobină și temporizare
@@ -260,7 +266,9 @@ Connections of the conductors	Conexiunile conductoarelor
 Connector pin-outs and flat cables	Configurația pinilor conectorilor și cabluri plate
 Connector pin-outs: mating faces and pin tables (SVG)	Configurația pinilor conectorilor: fețe de cuplare și tabele de pini (SVG)
 Contact material	Material de contact
+Contactor	Contactor
 Contactor (single-line)	Contactor (monofilar)
+Contactor at least (AC-3)	Contactor minim (AC-3)
 Contactor coil KM (GB)	Bobină de contactor KM (GB)
 Contactor coil KM (GOST)	Bobină de contactor KM (GOST)
 Contactor main contacts KM (GB)	Contacte principale de contactor KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Frezare de contur
 Contractor	Contractant
 Control	Comandă
 Control cabinet	Tablou de comandă
+Control circuit {}	Circuit de comandă {}
 Control mode	Mod de reglare
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Punctul de trecere {} al {} {} se află în interiorul a ceva sau în afara carcasei: este pozat fără punctele sale de trecere. Mutați punctul de trecere într-un spațiu liber.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Punctul de trecere {} al {} {} se află în afara drumului său: în niciun dulap sau încăpere prin care este pozat. Mutați punctul de trecere pe drumul său.
@@ -315,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Pagină de copertă, cuprins, pagini de schemă cu funcție și loc de montare, listă de dispozitive, listă de materiale, scheme de borne și de cabluri
 Create projects	Creare proiecte
 Creation date	Data creării
+Cross-section of the motor circuit	Secțiunea circuitului motorului
 Cross-section {} carries {} A, less than the {} A of {}	Secțiunea {} suportă {} A, mai puțin decât cei {} A ai lui {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Încrucișarea de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în toate cele patru direcții și niciun punct de conexiune acolo
 Current capacity (A)	Capacitate de curent (A)
 Current consumption	Consum de curent
+Current of the mains and delta contactor	Curentul contactorului de rețea și al celui de triunghi
+Current of the star contactor	Curentul contactorului de stea
 Current range	Domeniu de curent
 Current setting	Reglaj de curent
 Current transformer	Transformator de curent
@@ -352,6 +364,7 @@ Default {} ({})	Implicit {} ({})
 Degree of protection	Grad de protecție
 Delete projects	Ștergere proiecte
 Delivery date	Data livrării
+Delta	Triunghi
 Demand (diversity factor {})	Necesar (factor de simultaneitate {})
 Demand {} A above the usable {} A of the supply	Necesar {} A peste cei {} A utilizabili ai alimentării
 Density	Densitate
@@ -406,6 +419,7 @@ Disconnector 3-pole, lockable	Separator tripolar, blocabil
 Displacement	Cilindree
 Distribution board	Tablou de distribuție
 Distribution board (IEC 61439)	Tablou de distribuție (IEC 61439)
+Division by zero in the formula	Împărțire la zero în formulă
 Document	Document
 Document (embedded file)	Document (fișier încorporat)
 Document A4 portrait	Document A4 portret
@@ -426,6 +440,7 @@ Drilling and milling centre	Centru de găurire și frezare
 Drive	Acționare
 Drive type	Tip de transmisie
 Driven by	Antrenat de
+Driven machine	Mașină antrenată
 Drives	Acționări
 Drop-out time	Timp de revenire
 Duct fill levels	Grade de umplere ale canalelor de cablu
@@ -829,6 +844,8 @@ Main switch	Întrerupător principal
 Main switch 1-pole	Întrerupător principal monopolar
 Main switch 2-pole	Întrerupător principal bipolar
 Main switch 3-pole	Separator principal tripolar
+Mains	Rețea
+Mains and delta contactor	Contactor de rețea și de triunghi
 Mains frequency	Frecvența rețelei
 Mains voltage	Tensiunea rețelei
 Maintenance	Întreținere
@@ -895,11 +912,16 @@ Motor DC, shunt-wound	Motor de c.c., cu excitație derivație
 Motor cable {} of frequency converter {} must be shielded	Cablul de motor {} al convertizorului de frecvență {} trebuie să fie ecranat
 Motor data	Date motor
 Motor operator of a circuit breaker	Acționare cu motor a unui întreruptor automat
+Motor protection	Protecția motorului
 Motor protection (class 10)	Protecția motorului (clasa 10)
 Motor protection switch	Întrerupător de protecție a motorului
 Motor protection switch (single-line)	Întrerupător de protecție a motorului (monofilar)
 Motor protection switch 1-pole	Întrerupător de protecție a motorului monopolar
 Motor protection switch 2-pole	Întrerupător de protecție a motorului bipolar
+Motor running	Motor în funcțiune
+Motor starter direct on line	Demaror de motor cu pornire directă
+Motor starter reversing	Demaror de motor cu inversare de sens
+Motor starter star-delta	Demaror de motor stea-triunghi
 Motor, electronically commutated (brushless DC)	Motor cu comutație electronică (c.c. fără perii)
 Motors	Motoare
 Motors / Loads	Motoare / sarcini
@@ -965,6 +987,7 @@ No segment template named {}	Niciun șablon de segment cu numele {}
 No subproject {}	Nu există subproiectul {}
 No such object: {}	Nu există obiectul: {}
 No surge protective device at the supply (IEC 60364-4-44)	Niciun dispozitiv de protecție la supratensiune la alimentare (IEC 60364-4-44)
+No template of the user is named {}	Niciun șablon al utilizatorului nu se numește {}
 No terminal {}	Nicio bornă {}
 No user defined property {}	Nu există proprietatea definită de utilizator {}
 No wires at the pins of {}	Niciun fir la pinii lui {}
@@ -1206,7 +1229,9 @@ Potentials, interruption points	Potențiale, puncte de întrerupere
 Potentiometer	Potențiometru
 Power (kWp)	Putere (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Circuit de forță și de comandă pe mai multe pagini: întrerupător general, protecția motorului, trei contactoare cu interblocări, releu de timp cu întârziere la anclanșare, puncte de întrerupere, potențiale cu culori de fire, cablul motorului și rapoarte de cabluri.
+Power circuit {}	Circuit de putere {}
 Power factor	Factor de putere
+Power factor cos phi	Factor de putere cos phi
 Power factor meter	Cosfimetru
 Power loss (W)	Putere disipată (W)
 Power module	Modul de alimentare
@@ -1259,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Conductoarele d
 Protective devices	Dispozitive de protecție
 Protective earth	Împământare de protecție
 Protective earth (PE)	Conductor de protecție (PE)
+Protective earth terminal	Bornă de împământare de protecție
 Protective hose	Tub flexibil de protecție
 Protective, earthing and bonding conductors present and adequate	Conductoare de protecție, de împământare și de echipotențializare prezente și adecvate
 Proximity sensor	Senzor de proximitate
@@ -1308,6 +1334,7 @@ Rated cross-section	Secțiune nominală
 Rated current (A)	Curent nominal (A)
 Rated current of the assembly	Curentul nominal al ansamblului
 Rated current of the auxiliary contacts	Curentul nominal al contactelor auxiliare
+Rated current {} A, motor protection switch {}	Curent nominal {} A, întrerupător de protecție a motorului {}
 Rated diversity factor	Factor nominal de diversitate
 Rated frequency	Frecvență nominală
 Rated impulse withstand voltage	Tensiune nominală de ținere la impuls
@@ -1344,6 +1371,7 @@ Remote I/O	I/O descentralizate
 Remote I/O {} has no controller	I/O descentralizate {} nu au controler
 Replace needs the text to find	Înlocuirea necesită textul de căutat
 Replacement part number	Număr articol de înlocuire
+Report pages	Pagini de raport
 Residual current device	Dispozitiv diferențial rezidual
 Residual current device 1-pole	Dispozitiv diferențial rezidual monopolar
 Residual current device 2-pole	Dispozitiv diferențial rezidual bipolar
@@ -1446,6 +1474,7 @@ Service unit	Unitate de preparare a aerului
 Service unit (filter, regulator, lubricator)	Unitate de preparare a aerului (filtru, regulator, lubrifiator)
 Setpoint	Valoare prescrisă
 Setting range	Domeniu de reglaj
+Setting range of the motor protection switch	Domeniul de reglaj al întrerupătorului de protecție a motorului
 Sheath colour	Culoarea mantalei
 Sheath material	Materialul mantalei
 Shed roof	Acoperiș într-o apă
@@ -1507,6 +1536,9 @@ Spiral	În spirală
 Stainless steel	Oțel inoxidabil
 Stainless steel V4A	Oțel inoxidabil V4A
 Standard	Standard
+Star	Stea
+Star contactor	Contactor de stea
+Star time	Durata în stea
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Circuit pornire / oprire cu un releu: bobina și contactele formează un aparat cu referințe încrucișate și imaginea contactelor, șir de cleme, numere de fire, schema șirului de cleme și lista conexiunilor.
 Start date	Data de început
 Starting current ratio	Raportul curentului de pornire
@@ -1519,6 +1551,7 @@ Station {}: bus system {} does not exist	Stația {}: sistemul de magistrală {} 
 Steam	Abur
 Steel, hot-dip galvanised	Oțel zincat la cald
 Stock	Stoc
+Stop	Oprire
 Stop category	Categorie de oprire
 Storage temperature range	Domeniu de temperatură de depozitare
 Straight	Dreaptă
@@ -1550,6 +1583,7 @@ Supplementary fields	Câmpuri suplimentare
 Suppliers	Furnizori
 Supply network	Tip de rețea
 Supply voltage	Tensiune de alimentare
+Supply {} V / 50 Hz, TN-S	Alimentare {} V / 50 Hz, TN-S
 Surface (m²)	Suprafață (m²)
 Surface-mounted	Aparent
 Surge protection type	Tip de protecție la supratensiune
@@ -1568,6 +1602,7 @@ Switches / Sensors	Comutatoare / senzori
 Switches, pushbuttons	Comutatoare, butoane
 Switching frequency	Frecvență de comutare
 Switching output	Ieșire de comutare
+Syntax error in the formula at {}	Eroare de sintaxă în formulă la {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Piesa T de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în direcția ei, două transversal și niciun punct de conexiune acolo
 Table of contents	Cuprins
 Tabloid landscape	Tabloid vedere
@@ -1594,6 +1629,7 @@ Terminal data	Date bornă
 Terminal description	Descriere bornă
 Terminal line-up	Dispunere borne
 Terminal marker	Marcaj de bornă
+Terminal of the motor circuit	Borna circuitului motorului
 Terminal parts	Articole capete
 Terminal strip data of {} without terminals	Date de șir de borne pentru {} fără borne
 Terminal strip overview	Prezentare șiruri de borne
@@ -1624,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	Prima coloană trebuie să fie Key
 The folder {} already holds the project {}: a split project needs a folder of its own	Dosarul {} conține deja proiectul {}: un proiect divizat are nevoie de un dosar propriu
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Dosarul {} conține fișiere care nu aparțin niciunui proiect ({}): un proiect divizat are nevoie de un dosar propriu
+The formula ends too early	Formula se termină prea devreme
 The function definition needs a key and a name	Definiția de funcție necesită o cheie și un nume
 The index of the project names no file layout: it was not written by OpenECraft	Indexul proiectului nu indică nicio structură a fișierelor: nu a fost scris de OpenECraft
 The last page cannot be deleted	Ultima pagină nu poate fi ștearsă
@@ -1754,14 +1791,17 @@ Unit of measurement	Unitate de măsură
 Unit price	Preț unitar
 Unknown cable {}	Cablu necunoscut {}
 Unknown device: {}	Aparat necunoscut: {}
+Unknown function {} in the formula	Funcție necunoscută {} în formulă
 Unknown job {}	Comandă de lucru necunoscută {}
 Unknown macro	Macro necunoscut
 Unknown macro box	Casetă macro necunoscută
+Unknown name {} in the formula	Nume necunoscut {} în formulă
 Unknown object: {}	Obiect necunoscut: {}
 Unknown revision	Revizie necunoscută
 Unknown symbol '{}'	Simbol necunoscut '{}'
 Unknown tool {}	Sculă necunoscută {}
 Unused connection points	Puncte de conexiune neutilizate
+Upper limit of the setting range	Limita superioară a domeniului de reglaj
 Upstream	Amonte
 User defined	Definit de utilizator
 User symbols	Simboluri ale utilizatorului
@@ -1840,6 +1880,7 @@ Within a suite, wall mounted	În interiorul unui rând, montat pe perete
 Within a suite, wall mounted, roof covered	În interiorul unui rând, montat pe perete, cu partea superioară acoperită
 Word document	Document Word
 Working line	Conductă de lucru
+Wrong number of values for {}	Număr greșit de valori pentru {}
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	An de fabricație
 Yes / no	Da / nu
@@ -1964,8 +2005,12 @@ yellow	galben
 {} is a built-in property	{} este o proprietate integrată
 {} is a built-in scheme	{} este o schemă integrată
 {} is a busbar machine and makes no sheets	{} este o mașină de prelucrare a barelor și nu prelucrează table
+{} is above the last step	{} este peste ultima treaptă
+{} is defined twice	{} este definit de două ori
 {} is neither the protective device nor a device of the circuit of {}	{} nu este nici dispozitivul de protecție, nici un aparat al circuitului lui {}
+{} is no valid name: letters, digits and _, not starting with a digit	{} nu este un nume valid: litere, cifre și _, fără a începe cu o cifră
 {} is not a busbar machine	{} nu este o mașină de prelucrare a barelor
+{} is not a number	{} nu este un număr
 {} is not a property of {}	{} nu este o proprietate a {}
 {} is not an approver of this project	{} nu este avizator al acestui proiect
 {} is not connected to the mains: place it without a protective device	{} nu se conectează la rețea: plasați-l fără dispozitiv de protecție
@@ -2124,6 +2169,7 @@ yellow	galben
 {}: voltage drop {} V ({} %) above {} %	{}: cădere de tensiune {} V ({} %) peste {} %
 {}: wire colour {} differs from the potential definition ({})	{}: culoarea conductorului {} diferă de definiția potențialului ({})
 {}: wire without core designation	{}: conductor fără denumire de fir
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) și {} ({}) sunt la {} mm unul de altul, sunt necesari cel puțin {} mm
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W putere disipată încălzesc carcasa la {} °C (maxim {} °C): este necesar(ă) {}
@@ -2143,7 +2189,9 @@ yellow	galben
 {}: {} is inside the ventilation clearance of {}	{}: {} se află în distanța de ventilație a {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} este destinat unei șine de montaj, dar este fixat direct pe placă
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} este făcut pentru sisteme de bare cu distanța între axe de {} mm, barele pe care stă sunt la {} mm una de alta
+{}: {} is not a number	{}: {} nu este un număr
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} nu este destinat montajului pe perete, montați-l pe o șină
+{}: {} is not one of its choices	{}: {} nu este una dintre opțiunile sale de alegere
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} este la {} … {} mm deasupra podelei, permis {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg pe {} depășesc sarcina sa de {} kg
 {}: {} lies in a restricted placing area of the {}	{}: {} se află într-o zonă interzisă amplasării pe {}

@@ -68,6 +68,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	En diagramside pr. planlagt enhed med en sidemakro, der endnu ikke er i diagrammet (valgt segment, ellers alle)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Et opdelt projekt (.oecp) er en mappe med en lille fil pr. side, komponent, artikel og indlejret fil, til versionsstyring som git: Filer › Gem som opdelt projekt.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Et opdelt projekt er en mappe med filer: browseren kan ikke åbne det. Konverter det først til en projektfil (.oec) eller et arkiv (.oecz).
+A template file to pass on; New › From a template file… starts projects from it	En skabelonfil til videregivelse; Ny › Fra en skabelonfil… starter projekter ud fra den
 A template of this name is replaced.	En skabelon med dette navn erstattes.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	En skabelon angiver sidetype, plotramme, tegningshoved, struktur og beskrivelse for en ny side og placerer dens indhold.
 A way through free air costs this many times the way in a duct or routing path	En vej gennem fri luft koster så mange gange mere end vejen i en kanal eller føringsvej
@@ -532,6 +533,7 @@ Delete section	Slet afsnit
 Delete shaft	Slet skakt
 Delete stair	Slet trappe
 Delete string	Slet streng
+Delete template	Slet skabelon
 Delete the group	Slet gruppen
 Delete the layer; its items move to the default layer	Slet laget; dets elementer flyttes til standardlaget
 Delete the property and all its values	Slet egenskaben og alle dens værdier
@@ -687,6 +689,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Rediger i tabel
 Edit in table…	Rediger i tabel…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Redigeringstilstand: træk bygningerne på plads i situationsplanen og drej dem; et klik på et rum åbner det ikke længere
+Edit template	Rediger skabelon
 Editable copy of this plot frame	Redigerbar kopi af denne plotramme
 Editable copy of this title block	Redigerbar kopi af dette tegningshoved
 Effective surface	Effektiv overflade
@@ -729,6 +732,7 @@ Export SVG…	Eksportér SVG…
 Export all pages as PDF in {}	Eksportér alle sider som PDF på {}
 Export as EPLAN parts XML…	Eksportér som EPLAN-artikel-XML…
 Export as PDF in language	Eksportér som PDF på sprog
+Export as file…	Eksportér som fil…
 Export check scheme…	Eksportér kontrolskema…
 Export favorites…	Eksportér favoritter…
 Export library…	Eksportér bibliotek…
@@ -794,6 +798,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Format for krydsreferencer, målsidens struktur, afbrydelsespunkter, kontaktspejle
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Sømbrætstegning af ledningsnettet i målestok med grenlængder og stikkenes bentabeller
 Forms	Formularer
+Formula	Formel
+Formulas	Formler
 Form…	Formular…
 Frame	Ramme
 Frame of all pages that do not choose one	Ramme for alle sider, der ikke vælger en
@@ -986,6 +992,7 @@ Introduction	Indledning
 Invalid value	Ugyldig værdi
 Invert the direction of panning by scrolling	Vend retningen for panorering med rulning
 Inverter or charge controller (devices with PV input data)	Inverter eller laderegulator (enheder med PV-indgangsdata)
+It takes the place of the bundled template of this name.	Den træder i stedet for den medfølgende skabelon med dette navn.
 Items copied: {}	Kopierede elementer: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Kopierede elementer: {} (udeladte enheder: {}, en enhed placeres kun én gang)
 Items cut: {}	Klippede elementer: {}
@@ -1202,6 +1209,7 @@ Nailboard (SVG)…	Sømbræt (SVG)…
 Name and cross reference	Navn og krydshenvisning
 Name on the server	Navn på serveren
 Name the inspector in the report data first.	Angiv først kontrolløren i rapportens data.
+Name, parameters, formulas and page conditions of the project as a template	Projektets navn, parametre, formler og sidebetingelser som skabelon
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Navn; datatype; logisk adresse; kommentar – til PLC-programmeringsværktøjer
 Named copy of this form, for report blocks	Navngiven kopi af denne formular til rapportblokke
 Navigators	Navigatorer
@@ -1229,6 +1237,7 @@ New pages for every group (strip, plug, cable, device …)	Nye sider for hver gr
 New potential	Nyt potentiale
 New project	Nyt projekt
 New project from template	Nyt projekt fra skabelon
+New project from {}	Nyt projekt fra {}
 New project scheme from the selected one	Nyt projektskema ud fra det valgte
 New project, not saved yet	Nyt projekt, ikke gemt endnu
 New report page	Ny rapportside
@@ -1340,6 +1349,7 @@ Number prefix	Nummerpræfiks
 Number wires	Nummerér ledninger
 Numbering	Nummerering
 Numbers removed from {} wires	Numre fjernet fra {} ledninger
+Numeric	Tal
 Object	Objekt
 Of the outer diameter, as laid fixed	Af den ydre diameter, fast forlagt
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Af den ydre diameter; rør bøjes med bøjninger på halvanden diameter
@@ -1451,6 +1461,7 @@ PV array {} lies outside the protection of the air-termination system	Solcellefe
 PV array {} of building {}: {} modules	Solcellefelt {} i bygning {}: {} moduler
 PV array {} of building {}: {} modules, {} kWp	Solcellefelt {} i bygning {}: {} moduler, {} kWp
 PV arrays	Solcelleanlæg
+Page conditions	Sidebetingelser
 Page graphics	Sidegrafik
 Page heading	Sideoverskrift
 Page list, devices, parts, panel layout and settings	Sideliste, enheder, artikler, tavlelayout og indstillinger
@@ -1478,6 +1489,9 @@ Pane menu	Panelmenu
 Panel wiring report	Rapport over tavleledningsføring
 Panes	Paneler
 Paper	Papir
+Parameter	Parameter
+Parameters	Parametre
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	Parametre efterspørges, når et projekt startes fra skabelonen; formler beregner yderligere værdier. Begge udfylder {NAME} i projektets tekster. En side med en betingelse (REPORTS=yes) udelades, når betingelsen ikke er opfyldt.
 Parent section	Overordnet afsnit
 Part of the profile: generic types or parts from the parts store	Profilens artikel: generiske typer eller artikler fra artikellageret
 Part selection from the parts database	Artikelvalg fra artikeldatabasen
@@ -1821,6 +1835,7 @@ Save as 3D macro	Gem som 3D-makro
 Save as 3D macro…	Gem som 3D-makro…
 Save as local file	Gem som lokal fil
 Save as macro	Gem som makro
+Save as project template	Gem som projektskabelon
 Save as project template…	Gem som projektskabelon…
 Save as scheme	Gem som skema
 Save as split project…	Gem som opdelt projekt…
@@ -1846,6 +1861,8 @@ Save to project server: {}	Gem på projektserveren: {}
 Save to project server: {} – the connection is lost, saving tries again	Gem på projektserveren: {} – forbindelsen er mistet, gemning prøver igen
 Save workspace	Gem arbejdsområde
 Save workspace…	Gem arbejdsområde…
+Saved in the browser	Gemt i browseren
+Saved in {}, where the command line finds it too	Gemt i {}, hvor kommandolinjen også finder den
 Saved the properties of {} (revision {})	Egenskaberne for {} er gemt (revision {})
 Saved to	Gemt i
 Saved to the project server (revision {})	Gemt på projektserveren (revision {})
@@ -1855,6 +1872,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Gemmer lagene med deres indstillinger som et indstillingsskema til andre projekter
 Saves the placed properties as a placement scheme of the project	Gemmer de placerede egenskaber som et placeringsskema i projektet
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Gemmer projektet uden revisioner, baselines, gennemsyn og ledningsmarkeringer som en skabelon til nye projekter
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Gemmer projektet uden revisioner, baselines, gennemsyn og ledningsmarkeringer som en skabelon til nye projekter, i skabelonmappen ved siden af de medfølgende
 Saves the project's own properties, function definitions and schemes for other projects	Gemmer projektets egne egenskaber, funktionsdefinitioner og skemaer til andre projekter
 Saves the workspace, the arrangement of the panels and the open windows	Gemmer arbejdsområdet, panelernes arrangement og de åbne vinduer
 Saves your version of the whole project as a project file	Gemmer din version af hele projektet som en projektfil
@@ -2095,6 +2113,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Målsprog
 Temperature rise at the roof against the middle (IEC/TR 60890)	Temperaturstigning ved taget i forhold til midten (IEC/TR 60890)
 Template	Skabelon
+Template parameters	Skabelonparametre
+Template {} deleted	Skabelonen {} er slettet
+Template {} saved	Skabelonen {} er gemt
 Templates	Skabeloner
 Terminal markers	Klemmærkater
 Terminal number, PLC address, potential name …	Klemnummer, PLC-adresse, potentialenavn …
@@ -2374,6 +2395,7 @@ all lines	alle linjer
 all, or e.g. -X*, -W1	alle, eller f.eks. -X*, -W1
 all, or e.g. K, Q	alle, eller f.eks. K, Q
 along z	langs z
+always	altid
 both ends	begge ender
 built-in	indbygget
 by hand	manuelt
@@ -2399,6 +2421,7 @@ e.g. corp:Engineering	f.eks. corp:Engineering
 e.g. customer, ERP, PLM	f.eks. kunde, ERP, PLM
 e.g. cutout too small, part missing	f.eks. udskæring for lille, artikel mangler
 e.g. de, fr, it	f.eks. de, fr, it
+e.g. round(POWER_KW * 2, 1)	f.eks. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	f.eks. ledning for kort, klemme mangler
 empty	tom
 female	hun
@@ -2445,6 +2468,7 @@ ridge {} m	kip {} m
 set on the device	angivet på enheden
 sloped ceiling from {} m	skråloft fra {} m
 some	nogle
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, decimaler), ceil, floor, min, max, if(betingelse, så, ellers), step(x, grænse, værdi, …, ellers); & sammensætter tekster
 taken over	overtaget
 the device before it	enheden før
 the project data (page list, devices, settings)	projektdataene (sideliste, enheder, indstillinger)
@@ -2481,6 +2505,7 @@ x y	x y
 {} (revision {})	{} (revision {})
 {} (spare)	{} (reserve)
 {} (subproject of {})	{} (delprojekt af {})
+{} (template of the user)	{} (brugerens skabelon)
 {} (unused)	{} (ubrugt)
 {} ({} open)	{} ({} åbne)
 {} / {} mm  (column {})	{} / {} mm  (kolonne {})

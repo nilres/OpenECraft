@@ -26,6 +26,9 @@ A port cannot be connected to itself	Uma porta não pode ser conectada a si mesm
 A room needs at least four walls	Uma sala precisa de pelo menos quatro paredes
 A section number consists of letters and digits and does not start with 0	Um número de seção consiste em letras e dígitos e não começa com 0
 A section number must not be empty or contain a dot	Um número de seção não pode estar vazio nem conter um ponto
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Um motor trifásico nos dois sentidos de rotação com contatores intertravados: circuito de potência e de comando dimensionados a partir da potência do motor, páginas de relatório opcionais
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Um motor trifásico com partida em estrela e funcionamento em triângulo: circuito de potência e de comando dimensionados a partir da potência do motor, páginas de relatório opcionais
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Um motor trifásico com partida direta: circuito de potência e de comando dimensionados a partir da potência do motor, diagrama de bornes, lista de conexões, lista de dispositivos e lista de materiais opcionais
 A0 landscape	A0 paisagem
 A1 landscape	A1 paisagem
 A2 landscape	A2 paisagem
@@ -68,6 +71,7 @@ Analog output module	Módulo de saída analógica
 Analysis	Análise
 Another section here has this number	Outra seção aqui já tem este número
 Antenna outlet	Tomada de antena
+Anticlockwise	Sentido anti-horário
 Apparent power (kVA)	Potência aparente (kVA)
 Applied directives	Diretivas aplicadas
 Approval date	Data de liberação
@@ -177,6 +181,7 @@ Cam profile switch NC	Chave de came de perfil NF
 Cam profile switch NO	Chave de came de perfil NA
 Cam switch NC	Chave de came NF
 Cam switch NO	Chave de came NA
+Cannot delete {}: {}	Não é possível excluir {}: {}
 Cannot read the DWG file: {}	Não é possível ler o arquivo DWG: {}
 Capacitive sensor, 2-wire	Sensor capacitivo, 2 fios
 Capacitive sensor, 3-wire	Sensor capacitivo, 3 fios
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Disjuntor 4 polos
 Circuits, protective devices, switches and terminals labelled	Circuitos, dispositivos de proteção, interruptores e bornes identificados
 Circular milling	Fresamento circular
 Clip / snap-on	Clipe / encaixe
+Clockwise	Sentido horário
 Cloud	Nuvem
 Clutch (electromagnetic)	Embreagem (eletromagnética)
 Coil and timing	Bobina e temporização
@@ -260,7 +266,9 @@ Connections of the conductors	Conexões dos condutores
 Connector pin-outs and flat cables	Pinagens de conectores e cabos planos
 Connector pin-outs: mating faces and pin tables (SVG)	Pinagens dos conectores: faces de acoplamento e tabelas de pinos (SVG)
 Contact material	Material do contato
+Contactor	Contator
 Contactor (single-line)	Contator (unifilar)
+Contactor at least (AC-3)	Contator no mínimo (AC-3)
 Contactor coil KM (GB)	Bobina de contator KM (GB)
 Contactor coil KM (GOST)	Bobina de contator KM (GOST)
 Contactor main contacts KM (GB)	Contatos principais do contator KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Fresamento de contorno
 Contractor	Contratada
 Control	Comando
 Control cabinet	Painel de comando
+Control circuit {}	Circuito de comando {}
 Control mode	Modo de controle
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	O ponto de passagem {} de {} {} está dentro de algo ou fora do gabinete: é roteado sem os seus pontos de passagem. Mova o ponto de passagem para um espaço livre.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	O ponto de passagem {} de {} {} está fora do seu caminho: em nenhum gabinete ou sala por onde é roteado. Mova o ponto de passagem para o seu caminho.
@@ -315,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Folha de rosto, sumário, páginas de esquema elétrico com função e localização, lista de dispositivos, lista de materiais, diagramas de bornes e de cabos
 Create projects	Criar projetos
 Creation date	Data de criação
+Cross-section of the motor circuit	Seção transversal do circuito do motor
 Cross-section {} carries {} A, less than the {} A of {}	A seção transversal {} conduz {} A, menos que os {} A de {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	O cruzamento na página {} não corresponde aos seus fios: precisa de um fio nas quatro direções e nenhum ponto de conexão ali
 Current capacity (A)	Capacidade de corrente (A)
 Current consumption	Consumo de corrente
+Current of the mains and delta contactor	Corrente do contator de rede e de triângulo
+Current of the star contactor	Corrente do contator de estrela
 Current range	Faixa de corrente
 Current setting	Ajuste de corrente
 Current transformer	Transformador de corrente
@@ -352,6 +364,7 @@ Default {} ({})	Padrão {} ({})
 Degree of protection	Grau de proteção
 Delete projects	Excluir projetos
 Delivery date	Data de entrega
+Delta	Triângulo
 Demand (diversity factor {})	Demanda (fator de simultaneidade {})
 Demand {} A above the usable {} A of the supply	Demanda {} A acima dos {} A utilizáveis da alimentação
 Density	Densidade
@@ -406,6 +419,7 @@ Disconnector 3-pole, lockable	Seccionador tripolar, com cadeado
 Displacement	Volume de deslocamento
 Distribution board	Quadro de distribuição
 Distribution board (IEC 61439)	Quadro de distribuição (IEC 61439)
+Division by zero in the formula	Divisão por zero na fórmula
 Document	Documento
 Document (embedded file)	Documento (arquivo incorporado)
 Document A4 portrait	Documento A4 retrato
@@ -426,6 +440,7 @@ Drilling and milling centre	Centro de furação e fresamento
 Drive	Acionamento
 Drive type	Tipo de acionamento
 Driven by	Acionado por
+Driven machine	Máquina acionada
 Drives	Acionamentos
 Drop-out time	Tempo de desligamento
 Duct fill levels	Graus de ocupação das canaletas
@@ -829,6 +844,8 @@ Main switch	Chave geral
 Main switch 1-pole	Chave geral unipolar
 Main switch 2-pole	Chave geral bipolar
 Main switch 3-pole	Chave geral 3 polos
+Mains	Rede
+Mains and delta contactor	Contator de rede e de triângulo
 Mains frequency	Frequência da rede
 Mains voltage	Tensão da rede
 Maintenance	Manutenção
@@ -895,11 +912,16 @@ Motor DC, shunt-wound	Motor CC, excitação em derivação
 Motor cable {} of frequency converter {} must be shielded	O cabo do motor {} do inversor de frequência {} deve ser blindado
 Motor data	Dados do motor
 Motor operator of a circuit breaker	Acionamento motorizado de um disjuntor
+Motor protection	Proteção do motor
 Motor protection (class 10)	Proteção de motor (classe 10)
 Motor protection switch	Disjuntor-motor
 Motor protection switch (single-line)	Disjuntor-motor (unifilar)
 Motor protection switch 1-pole	Disjuntor-motor unipolar
 Motor protection switch 2-pole	Disjuntor-motor bipolar
+Motor running	Motor em funcionamento
+Motor starter direct on line	Partida de motor direta
+Motor starter reversing	Partida de motor reversora
+Motor starter star-delta	Partida de motor estrela-triângulo
 Motor, electronically commutated (brushless DC)	Motor com comutação eletrônica (CC sem escovas)
 Motors	Motores
 Motors / Loads	Motores / cargas
@@ -965,6 +987,7 @@ No segment template named {}	Nenhum modelo de segmento com o nome {}
 No subproject {}	Nenhum subprojeto {}
 No such object: {}	Objeto inexistente: {}
 No surge protective device at the supply (IEC 60364-4-44)	Nenhum dispositivo de proteção contra surtos na alimentação (IEC 60364-4-44)
+No template of the user is named {}	Nenhum modelo do usuário se chama {}
 No terminal {}	Nenhum borne {}
 No user defined property {}	Nenhuma propriedade definida pelo usuário {}
 No wires at the pins of {}	Nenhum fio nos pinos de {}
@@ -1206,7 +1229,9 @@ Potentials, interruption points	Potenciais, pontos de interrupção
 Potentiometer	Potenciômetro
 Power (kWp)	Potência (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Circuito de potência e de comando em várias páginas: chave geral, proteção do motor, três contatores com intertravamentos, temporizador com retardo na energização, pontos de interrupção, potenciais com cores de fios, cabo do motor e relatórios de cabos.
+Power circuit {}	Circuito de potência {}
 Power factor	Fator de potência
+Power factor cos phi	Fator de potência cos phi
 Power factor meter	Medidor de fator de potência
 Power loss (W)	Perda de potência (W)
 Power module	Módulo de alimentação
@@ -1259,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Os condutores d
 Protective devices	Dispositivos de proteção
 Protective earth	Terra de proteção
 Protective earth (PE)	Condutor de proteção (PE)
+Protective earth terminal	Borne de terra de proteção
 Protective hose	Mangueira de proteção
 Protective, earthing and bonding conductors present and adequate	Condutores de proteção, aterramento e equipotencialização presentes e adequados
 Proximity sensor	Sensor de proximidade
@@ -1308,6 +1334,7 @@ Rated cross-section	Seção transversal nominal
 Rated current (A)	Corrente nominal (A)
 Rated current of the assembly	Corrente nominal do conjunto
 Rated current of the auxiliary contacts	Corrente nominal dos contatos auxiliares
+Rated current {} A, motor protection switch {}	Corrente nominal {} A, disjuntor-motor {}
 Rated diversity factor	Fator de diversidade nominal
 Rated frequency	Frequência nominal
 Rated impulse withstand voltage	Tensão suportável de impulso nominal
@@ -1344,6 +1371,7 @@ Remote I/O	E/S remota
 Remote I/O {} has no controller	A E/S remota {} não tem controlador
 Replace needs the text to find	Substituir precisa do texto a localizar
 Replacement part number	Número da peça substituta
+Report pages	Páginas de relatório
 Residual current device	Dispositivo DR
 Residual current device 1-pole	Dispositivo DR unipolar
 Residual current device 2-pole	Dispositivo DR bipolar
@@ -1446,6 +1474,7 @@ Service unit	Unidade de conservação
 Service unit (filter, regulator, lubricator)	Unidade de conservação (filtro, regulador, lubrificador)
 Setpoint	Valor de referência
 Setting range	Faixa de ajuste
+Setting range of the motor protection switch	Faixa de ajuste do disjuntor-motor
 Sheath colour	Cor da capa
 Sheath material	Material da capa
 Shed roof	Telhado de uma água
@@ -1507,6 +1536,9 @@ Spiral	Caracol
 Stainless steel	Aço inoxidável
 Stainless steel V4A	Aço inoxidável V4A
 Standard	Norma
+Star	Estrela
+Star contactor	Contator de estrela
+Star time	Tempo em estrela
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Circuito liga / desliga com um relé: bobina e contatos formam um dispositivo com referências cruzadas e imagem de contatos, régua de bornes, números de fios, diagrama de bornes e lista de conexões.
 Start date	Data de início
 Starting current ratio	Relação de corrente de partida
@@ -1519,6 +1551,7 @@ Station {}: bus system {} does not exist	Estação {}: o sistema de barramento {
 Steam	Vapor
 Steel, hot-dip galvanised	Aço galvanizado a quente
 Stock	Estoque
+Stop	Desligar
 Stop category	Categoria de parada
 Storage temperature range	Faixa de temperatura de armazenamento
 Straight	Reta
@@ -1550,6 +1583,7 @@ Supplementary fields	Campos complementares
 Suppliers	Fornecedores
 Supply network	Sistema de alimentação
 Supply voltage	Tensão de alimentação
+Supply {} V / 50 Hz, TN-S	Alimentação {} V / 50 Hz, TN-S
 Surface (m²)	Superfície (m²)
 Surface-mounted	Aparente
 Surge protection type	Tipo de proteção contra surtos
@@ -1568,6 +1602,7 @@ Switches / Sensors	Chaves / sensores
 Switches, pushbuttons	Chaves, botões
 Switching frequency	Frequência de manobras
 Switching output	Saída de comutação
+Syntax error in the formula at {}	Erro de sintaxe na fórmula em {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	A peça em T na página {} não corresponde aos seus fios: precisa de um fio na sua direção, dois transversais e nenhum ponto de conexão ali
 Table of contents	Sumário
 Tabloid landscape	Tabloid paisagem
@@ -1594,6 +1629,7 @@ Terminal data	Dados do borne
 Terminal description	Descrição do borne
 Terminal line-up	Alinhamento de bornes
 Terminal marker	Marcador de borne
+Terminal of the motor circuit	Borne do circuito do motor
 Terminal parts	Peças das pontas
 Terminal strip data of {} without terminals	Dados de régua de bornes de {} sem bornes
 Terminal strip overview	Visão geral de réguas de bornes
@@ -1624,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	A primeira coluna deve ser Key
 The folder {} already holds the project {}: a split project needs a folder of its own	A pasta {} já contém o projeto {}: um projeto dividido precisa de uma pasta própria
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	A pasta {} contém arquivos que não pertencem a nenhum projeto ({}): um projeto dividido precisa de uma pasta própria
+The formula ends too early	A fórmula termina cedo demais
 The function definition needs a key and a name	A definição de função precisa de uma chave e de um nome
 The index of the project names no file layout: it was not written by OpenECraft	O índice do projeto não indica nenhuma estrutura de arquivos: ele não foi gravado pelo OpenECraft
 The last page cannot be deleted	A última página não pode ser excluída
@@ -1754,14 +1791,17 @@ Unit of measurement	Unidade de medida
 Unit price	Preço unitário
 Unknown cable {}	Cabo desconhecido {}
 Unknown device: {}	Dispositivo desconhecido: {}
+Unknown function {} in the formula	Função desconhecida {} na fórmula
 Unknown job {}	Ordem desconhecida {}
 Unknown macro	Macro desconhecida
 Unknown macro box	Caixa de macro desconhecida
+Unknown name {} in the formula	Nome desconhecido {} na fórmula
 Unknown object: {}	Objeto desconhecido: {}
 Unknown revision	Revisão desconhecida
 Unknown symbol '{}'	Símbolo desconhecido '{}'
 Unknown tool {}	Ferramenta desconhecida {}
 Unused connection points	Pontos de conexão não utilizados
+Upper limit of the setting range	Limite superior da faixa de ajuste
 Upstream	A montante
 User defined	Definido pelo usuário
 User symbols	Símbolos do usuário
@@ -1840,6 +1880,7 @@ Within a suite, wall mounted	Dentro de uma fileira, montado na parede
 Within a suite, wall mounted, roof covered	Dentro de uma fileira, montado na parede, teto coberto
 Word document	Documento do Word
 Working line	Linha de trabalho
+Wrong number of values for {}	Número incorreto de valores para {}
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	Ano de fabricação
 Yes / no	Sim / não
@@ -1964,8 +2005,12 @@ yellow	amarelo
 {} is a built-in property	{} é uma propriedade integrada
 {} is a built-in scheme	{} é um esquema integrado
 {} is a busbar machine and makes no sheets	{} é uma máquina de processamento de barramentos e não fabrica chapas
+{} is above the last step	{} está acima do último degrau
+{} is defined twice	{} está definido duas vezes
 {} is neither the protective device nor a device of the circuit of {}	{} não é nem o dispositivo de proteção nem um equipamento do circuito de {}
+{} is no valid name: letters, digits and _, not starting with a digit	{} não é um nome válido: letras, dígitos e _, sem começar com um dígito
 {} is not a busbar machine	{} não é uma máquina de processamento de barramentos
+{} is not a number	{} não é um número
 {} is not a property of {}	{} não é uma propriedade de {}
 {} is not an approver of this project	{} não é um aprovador deste projeto
 {} is not connected to the mains: place it without a protective device	{} não é ligado à rede: coloque-o sem dispositivo de proteção
@@ -2124,6 +2169,7 @@ yellow	amarelo
 {}: voltage drop {} V ({} %) above {} %	{}: queda de tensão {} V ({} %) acima de {} %
 {}: wire colour {} differs from the potential definition ({})	{}: a cor de fio {} difere da definição do potencial ({})
 {}: wire without core designation	{}: fio sem designação de veia
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) e {} ({}) estão a {} mm de distância, são necessários pelo menos {} mm
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W de perda de potência aquecem o gabinete a {} °C (máximo {} °C): {} necessário
@@ -2143,7 +2189,9 @@ yellow	amarelo
 {}: {} is inside the ventilation clearance of {}	{}: {} está dentro da distância de ventilação de {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} foi feito para trilho de montagem, mas está diretamente na placa
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} é feito para sistemas de barramentos com {} mm de distância entre centros, as barras em que está montado estão a {} mm uma da outra
+{}: {} is not a number	{}: {} não é um número
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} não é feito para montagem na parede, monte-o em um trilho
+{}: {} is not one of its choices	{}: {} não é uma de suas opções
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} está a {} … {} mm acima do piso, permitido {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg em {} excedem sua carga de {} kg
 {}: {} lies in a restricted placing area of the {}	{}: {} está em uma área restrita para posicionamento em {}

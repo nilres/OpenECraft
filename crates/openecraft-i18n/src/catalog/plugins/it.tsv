@@ -3,6 +3,7 @@
 1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: l'estremità superiore / sinistra della linea va trasversalmente al braccio destro / inferiore · 2: al braccio sinistro / superiore (predefinito 2)
 A cable definition needs a start and an end point	Una definizione cavo richiede un punto iniziale e un punto finale
 A copper bar needs at least one segment	Una barra di rame richiede almeno un tratto
+A new formula {} needs its formula	Una nuova formula {} richiede la sua formula
 A segment cannot be moved below itself	Un segmento non può essere spostato sotto se stesso
 A segment needs two different nodes	Un tratto richiede due nodi diversi
 A wire needs at least two points	Un conduttore richiede almeno due punti
@@ -105,6 +106,7 @@ Changes name, description, function, location or parent of a segment	Modifica no
 Changes position, face, fastening or anchors of a panel item	Modifica posizione, faccia, fissaggio o ancoraggi di un elemento del layout
 Changes the device, connection and terminal tables	Modifica le tabelle di dispositivi, collegamenti e morsetti
 Changes the level of a kind of message (code as shown by check)	Modifica il livello di un tipo di messaggio (codice come mostrato da check)
+Changes the name and description of the open project as a template (save_project_template saves it)	Modifica il nome e la descrizione del progetto aperto come modello (save_project_template lo salva)
 Changes the properties of a wire	Modifica le proprietà di un conduttore
 Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Modifica sistema, dimensioni e componenti di un armadio (zoccolo, lati affiancati, piastra passacavi); gli elementi ancorati lo seguono
 Check {} failed: {}	Verifica {} non riuscita: {}
@@ -150,6 +152,8 @@ Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing 
 Creates or changes a bus system (PROFINET, EtherCAT, …)	Crea o modifica un sistema bus (PROFINET, EtherCAT, …)
 Creates or changes a configurator option	Crea o modifica un'opzione del configuratore
 Creates or changes a fluid device group	Crea o modifica un gruppo di dispositivi fluidici
+Creates or changes a formula of the template: a value worked out from the parameters and the formulas before it, filling {NAME}	Crea o modifica una formula del modello: un valore calcolato dai parametri e dalle formule precedenti, che compila {NAME}
+Creates or changes a parameter of the template: a value asked for when a project is started from it, filling {NAME} in the texts of the project	Crea o modifica un parametro del modello: un valore richiesto quando si avvia un progetto da esso, che compila {NAME} nei testi del progetto
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Crea o modifica una cornice di stampa del progetto (le cornici integrate vengono copiate con un nuovo nome)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Crea o modifica una definizione di potenziale; i suoi conduttori ne prendono colore e sezione, se non impostati sul conduttore
 Creates or changes a title block of the project (built-in ones are copied under a new name)	Crea o modifica un cartiglio del progetto (quelli integrati vengono copiati con un nuovo nome)
@@ -174,6 +178,7 @@ Date (YYYY-MM-DD)	Data (AAAA-MM-GG)
 Date of the acceptance	Data dell'accettazione
 Default property values	Valori predefiniti delle proprietà
 Default symbol key	Chiave del simbolo predefinito
+Default value	Valore predefinito
 Define the identifiers in use (default: true)	Definisci gli identificatori in uso (predefinito: true)
 Defines a reusable project function definition or changes it	Definisce una definizione di funzione di progetto riutilizzabile o la modifica
 Defines a structure identifier or changes its description	Definisce un identificatore di struttura o ne modifica la descrizione
@@ -279,6 +284,7 @@ First row with the column names	Prima riga con i nomi delle colonne
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Tetti piani e campi a terra: direzione verso cui sono rivolti i moduli in gradi, in senso antiorario visto dall'alto (0: verso +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formato del nome del dispositivo: {letter}, {n} (contatore), {page}, {column}, {row}; predefinito {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formato dello schema format: {n} (contatore), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Formula: numbers, \"texts\", names, + - * / ^, comparisons, & and sqrt, abs, round, ceil, floor, min, max, if, step	Formula: numeri, \"testi\", nomi, + - * / ^, confronti, & e sqrt, abs, round, ceil, floor, min, max, if, step
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Dispersore di fondazione: quanto all'interno dei muri esterni (predefinito 100), anello: quanto all'esterno (predefinito 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Dispersore di fondazione: la sua maglia più grande, mm (predefinita 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Cornice di partenza quando la cornice è nuova (predefinito: A3 landscape)
@@ -366,6 +372,8 @@ Key, e.g. user.customer_code	Chiave, ad es. user.customer_code
 Keys of the routes, comma separated (all if missing)	Chiavi dei percorsi, separate da virgole (tutti se omesse)
 Kind: machining, punching or busbar	Tipo: machining, punching o busbar
 Known length of the cable in m (taken instead of the 3D route)	Lunghezza nota del cavo in m (usata al posto del percorso 3D)
+Label shown when the value is asked for	Etichetta mostrata quando viene richiesto il valore
+Label shown with the value	Etichetta mostrata con il valore
 Label: terminal number, PLC address or potential name	Etichetta: numero morsetto, indirizzo PLC o nome potenziale
 Landscape (true) or portrait (false)	Orizzontale (true) o verticale (false)
 Language the project texts are written in, e.g. en	Lingua in cui sono scritti i testi del progetto, ad es. en
@@ -484,6 +492,7 @@ Nailboard layout of a harness: the branches from the common node to the connecto
 Name (default E1, E2, …)	Nome (predefinito E1, E2, …)
 Name (default F1, F2, …)	Nome (predefinito F1, F2, …)
 Name both the building and the roof, or neither for a freestanding PV array	Indicare sia l'edificio sia il tetto, oppure nessuno dei due per un campo FV a terra
+Name in the list of templates	Nome nell'elenco dei modelli
 Name of the assembly	Nome dell'assieme
 Name of the bar, e.g. L1 -Q1	Nome della barra, ad es. L1 -Q1
 Name of the check	Nome della verifica
@@ -491,6 +500,7 @@ Name of the customer rule set to remove	Nome del set di regole del cliente da ri
 Name of the frame	Nome della cornice
 Name of the machine	Nome della macchina
 Name of the main earthing terminal	Nome del collettore principale di terra
+Name of the placeholder, e.g. POWER_KW for {POWER_KW}: letters, digits and _	Nome del segnaposto, ad es. POWER_KW per {POWER_KW}: lettere, cifre e _
 Name of the safety function to remove	Nome della funzione di sicurezza da rimuovere
 Name of the segment	Nome del segmento
 Name of the title block	Nome del cartiglio
@@ -500,6 +510,7 @@ Name or id; the tag for places	Nome o ID; per i posizionamenti la sigla
 Name placed by hand: X offset from the insertion point in mm	Nome posizionato manualmente: scostamento X dal punto di inserimento in mm
 Name placed by hand: Y offset from the insertion point in mm	Nome posizionato manualmente: scostamento Y dal punto di inserimento in mm
 Name, e.g. the location +M1	Nome, ad es. il luogo +M1
+Name, parameters, formulas and page conditions of a project template	Nome, parametri, formule e condizioni di pagina di un modello di progetto
 New device tag	Nuova sigla dispositivo
 New identifier	Nuovo identificatore
 New page name	Nuovo nome pagina
@@ -573,6 +584,7 @@ OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=valor
 Offset from the symbol position in mm (default: below the symbol)	Distanza dalla posizione del simbolo in mm (predefinito: sotto il simbolo)
 Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Spostamento della sigla del cavo mostrata sul filo dalla posizione automatica, un punto [dx, dy] in mm (nessun punto = automatico)
 Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Spostamento della designazione dell'anima dalla posizione automatica, un punto [dx, dy] in mm (nessun punto = automatico)
+On a page of a project template: OPTION=value, OPTION!=value, OPTION=a|b joined by & (parameters and formulas of get_template); a project started from the template leaves the page out when it does not hold. Empty: always	Su una pagina di un modello di progetto: OPTION=valore, OPTION!=valore, OPTION=a|b uniti da & (parametri e formule di get_template); un progetto avviato dal modello esclude la pagina quando la condizione non è soddisfatta. Vuoto: sempre
 One end, e.g. -K1:A1	Un'estremità, ad es. -K1:A1
 One row per printed label instead of a count	Una riga per ogni etichetta stampata invece di un conteggio
 Only devices on these pages (names separated by commas)	Solo i dispositivi su queste pagine (nomi separati da virgole)
@@ -695,6 +707,7 @@ Project exports	Esportazioni del progetto
 Project languages, dictionary and translations	Lingue del progetto, dizionario e traduzioni
 Project reports	Report del progetto
 Project statistics	Statistiche del progetto
+Project templates	Modelli di progetto
 Property and function definitions, property values and placement schemes	Definizioni delle proprietà e di funzione, valori delle proprietà e schemi di posizionamento
 Property key	Chiave di proprietà
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Chiavi e valori delle proprietà, ad es. {\"device.rated_power\": \"5.5\"}
@@ -723,6 +736,7 @@ Remove unused definitions (default: false)	Rimuovi le definizioni non utilizzate
 Removes a control point of the route of a wire, cable or tube, or all of them	Rimuove un punto di passaggio del percorso di un conduttore, cavo o tubo, o tutti
 Removes a copper bar	Rimuove una barra di rame
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Rimuove un nodo (con i suoi tratti e posizionamenti), un tratto, un posizionamento, un contorno, un conduttore equipotenziale o un accessorio
+Removes a parameter or formula of the template	Rimuove un parametro o una formula del modello
 Removes a planned device from a segment	Rimuove un dispositivo pianificato da un segmento
 Removes a project function definition; its symbols go back to their built-in one	Rimuove una definizione di funzione di progetto; i suoi simboli tornano a quella predefinita
 Removes a project option; its content stays in the project	Rimuove un'opzione di progetto; il suo contenuto resta nel progetto
@@ -821,6 +835,7 @@ Shows the PLC hardware configuration: stations with racks, slots, modules and ad
 Shows the content of a page: symbols with their connection point positions, wires and texts	Mostra il contenuto di una pagina: simboli con le posizioni dei loro punti di connessione, conduttori e testi
 Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Mostra i dati degli altri sistemi salvati nel progetto (collegamenti degli articoli, documenti) e il registro di scambio
 Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Mostra la faccia di accoppiamento di un connettore: disposizione dei pin del suo articolo, posizione di ogni pin (mm, vista lato pin) con potenziale, colore del filo e conduttore del cavo di entrambi i lati
+Shows the open project as a template: name, parameters, formulas with their values at the defaults, the pages with a condition and the mistakes	Mostra il progetto aperto come modello: nome, parametri, formule con i loro valori ai valori predefiniti, le pagine con una condizione e gli errori
 Shows the options and rules of the configurator	Mostra le opzioni e le regole del configuratore
 Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Mostra i pin di un connettore nell'ordine del connettore: cosa è collegato sul lato femmina e sul lato maschio, potenziale, pin non utilizzati
 Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Mostra le regole dell'instradamento 3D e modifica quelle indicate: griglia, distanza minima, fattore aria libera, separazione, raggi di curvatura, lunghezze di taglio, riserve
@@ -917,6 +932,7 @@ The rotation must be 0, 90, 180 or 270	La rotazione deve essere 0, 90, 180 o 270
 The straight line of a crossing: vertical or horizontal (default vertical)	La linea dritta di un incrocio: vertical o horizontal (predefinito vertical)
 The text height must be at least 0.5 mm	L'altezza del testo deve essere di almeno 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	I due bracci di un angolo, verticale e orizzontale, ad es. down left (predefinito: dai conduttori presenti, altrimenti down right)
+The value must be a number	Il valore deve essere un numero
 The width factor must be from 0.1 to 10	Il fattore di larghezza deve essere da 0,1 a 10
 The wire has no length	Il collegamento non ha lunghezza
 The wire that jumps: vertical or horizontal	Il filo che salta: vertical o horizontal
@@ -936,6 +952,7 @@ Top edge on the mounting plate in mm	Bordo superiore sulla piastra di montaggio 
 Translated line	Riga tradotta
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Rotazione attorno all'asse verticale in gradi, in senso antiorario visto dall'alto (90: i fronti sono rivolti a destra)
 Two wires at a connection point share a twin ferrule	Due conduttori su un punto di connessione condividono un puntalino doppio
+Unit, e.g. A	Unità, ad es. A
 Unit, e.g. kW	Unità, ad es. kW
 Unknown T-connection style: {}	Stile di giunzione a T sconosciuto: {}
 Unknown accessory kind: {}	Tipo di accessorio sconosciuto: {}

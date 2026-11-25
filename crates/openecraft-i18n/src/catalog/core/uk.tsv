@@ -26,6 +26,9 @@ A port cannot be connected to itself	Порт не можна з’єднати 
 A room needs at least four walls	Приміщенню потрібні щонайменше чотири стіни
 A section number consists of letters and digits and does not start with 0	Номер розділу складається з літер і цифр і не починається з 0
 A section number must not be empty or contain a dot	Номер розділу не може бути порожнім або містити крапку
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Трифазний двигун з обертанням в обидва боки та взаємно заблокованими контакторами: силове коло та коло керування, розраховані за потужністю двигуна, за вибором сторінки звітів
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Трифазний двигун із пуском у зірці та роботою в трикутнику: силове коло та коло керування, розраховані за потужністю двигуна, за вибором сторінки звітів
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Трифазний двигун із прямим увімкненням: силове коло та коло керування, розраховані за потужністю двигуна, за вибором схема клем, перелік з’єднань, перелік пристроїв і специфікація
 A0 landscape	A0 альбомна
 A1 landscape	A1 альбомна
 A2 landscape	A2 альбомна
@@ -68,6 +71,7 @@ Analog output module	Модуль аналогових виходів
 Analysis	Аналіз
 Another section here has this number	Інший розділ тут уже має цей номер
 Antenna outlet	Антенна розетка
+Anticlockwise	Обертання вліво
 Apparent power (kVA)	Повна потужність (kVA)
 Applied directives	Застосовані директиви
 Approval date	Дата затвердження
@@ -177,6 +181,7 @@ Cam profile switch NC	Копірний вимикач, розмикальний
 Cam profile switch NO	Копірний вимикач, замикальний
 Cam switch NC	Кулачковий вимикач, розмикальний
 Cam switch NO	Кулачковий вимикач, замикальний
+Cannot delete {}: {}	Не вдалося видалити {}: {}
 Cannot read the DWG file: {}	Не вдається прочитати файл DWG: {}
 Capacitive sensor, 2-wire	Ємнісний датчик, 2-провідний
 Capacitive sensor, 3-wire	Ємнісний датчик, 3-провідний
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Автоматичний вимикач, 4-полюсни
 Circuits, protective devices, switches and terminals labelled	Кола, захисні пристрої, вимикачі та клеми марковані
 Circular milling	Кругове фрезерування
 Clip / snap-on	Затискач / защіпка
+Clockwise	Обертання вправо
 Cloud	Хмара
 Clutch (electromagnetic)	Муфта (електромагнітна)
 Coil and timing	Котушка та часові характеристики
@@ -260,7 +266,9 @@ Connections of the conductors	З'єднання провідників
 Connector pin-outs and flat cables	Розпіновки роз'ємів і плоскі кабелі
 Connector pin-outs: mating faces and pin tables (SVG)	Розпіновки роз'ємів: боки з'єднання і таблиці контактів (SVG)
 Contact material	Матеріал контактів
+Contactor	Контактор
 Contactor (single-line)	Контактор (однолінійне зображення)
+Contactor at least (AC-3)	Контактор щонайменше (AC-3)
 Contactor coil KM (GB)	Котушка контактора KM (GB)
 Contactor coil KM (GOST)	Котушка контактора KM (ГОСТ)
 Contactor main contacts KM (GB)	Головні контакти контактора KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Контурне фрезерування
 Contractor	Підрядник
 Control	Керування
 Control cabinet	Шафа керування
+Control circuit {}	Коло керування {}
 Control mode	Спосіб керування
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Опорна точка {} для {} {} знаходиться всередині чогось або поза корпусом: прокладається без своїх опорних точок. Перемістіть опорну точку у вільний простір.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Опорна точка {} для {} {} лежить поза його шляхом: у жодній шафі чи приміщенні, через які він прокладений. Перемістіть опорну точку на його шлях.
@@ -315,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Титульний аркуш, зміст, сторінки схем із функцією та місцем, перелік пристроїв, специфікація, схеми клем і кабелів
 Create projects	Створювати проєкти
 Creation date	Дата створення
+Cross-section of the motor circuit	Переріз кола двигуна
 Cross-section {} carries {} A, less than the {} A of {}	Переріз {} витримує {} A, менше ніж {} A для {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Перехрестя на сторінці {} не відповідає своїм проводам: потрібен провід у всіх чотирьох напрямках і жодної точки підключення там
 Current capacity (A)	Допустимий струм (A)
 Current consumption	Споживаний струм
+Current of the mains and delta contactor	Струм мережевого контактора та контактора трикутника
+Current of the star contactor	Струм контактора зірки
 Current range	Діапазон струму
 Current setting	Уставка струму
 Current transformer	Трансформатор струму
@@ -352,6 +364,7 @@ Default {} ({})	Типово {} ({})
 Degree of protection	Ступінь захисту
 Delete projects	Видаляти проєкти
 Delivery date	Дата поставки
+Delta	Трикутник
 Demand (diversity factor {})	Потреба (коефіцієнт одночасності {})
 Demand {} A above the usable {} A of the supply	Потреба {} A перевищує допустимі {} A живлення
 Density	Густина
@@ -406,6 +419,7 @@ Disconnector 3-pole, lockable	Роз’єднувач, 3-полюсний, із 
 Displacement	Робочий об’єм
 Distribution board	Розподільчий щит
 Distribution board (IEC 61439)	Розподільчий щит (IEC 61439)
+Division by zero in the formula	Ділення на нуль у формулі
 Document	Документ
 Document (embedded file)	Документ (вбудований файл)
 Document A4 portrait	Документ A4 книжкова
@@ -426,6 +440,7 @@ Drilling and milling centre	Свердлильно-фрезерний центр
 Drive	Привод
 Drive type	Тип приводу
 Driven by	Приводиться від
+Driven machine	Робочий механізм
 Drives	Приводи
 Drop-out time	Час відпускання
 Duct fill levels	Ступінь заповнення кабельних каналів
@@ -829,6 +844,8 @@ Main switch	Головний вимикач
 Main switch 1-pole	Головний вимикач, 1-полюсний
 Main switch 2-pole	Головний вимикач, 2-полюсний
 Main switch 3-pole	Головний вимикач, 3-полюсний
+Mains	Мережа
+Mains and delta contactor	Мережевий контактор і контактор трикутника
 Mains frequency	Частота мережі
 Mains voltage	Напруга мережі
 Maintenance	Технічне обслуговування
@@ -895,11 +912,16 @@ Motor DC, shunt-wound	Двигун постійного струму, парал
 Motor cable {} of frequency converter {} must be shielded	Кабель двигуна {} перетворювача частоти {} має бути екранованим
 Motor data	Дані двигуна
 Motor operator of a circuit breaker	Моторний привід автоматичного вимикача
+Motor protection	Захист двигуна
 Motor protection (class 10)	Захист двигуна (клас 10)
 Motor protection switch	Автоматичний вимикач захисту двигуна
 Motor protection switch (single-line)	Автоматичний вимикач захисту двигуна (однолінійне зображення)
 Motor protection switch 1-pole	Автоматичний вимикач захисту двигуна, 1-полюсний
 Motor protection switch 2-pole	Автоматичний вимикач захисту двигуна, 2-полюсний
+Motor running	Двигун працює
+Motor starter direct on line	Прямий пуск двигуна
+Motor starter reversing	Реверсивний пуск двигуна
+Motor starter star-delta	Пуск двигуна зірка-трикутник
 Motor, electronically commutated (brushless DC)	Двигун з електронною комутацією (безщітковий постійного струму)
 Motors	Двигуни
 Motors / Loads	Двигуни / навантаження
@@ -965,6 +987,7 @@ No segment template named {}	Немає шаблону сегмента з на�
 No subproject {}	Немає підпроєкту {}
 No such object: {}	Немає такого об’єкта: {}
 No surge protective device at the supply (IEC 60364-4-44)	На вводі живлення немає пристрою захисту від перенапруг (IEC 60364-4-44)
+No template of the user is named {}	Немає шаблону користувача з назвою {}
 No terminal {}	Немає клеми {}
 No user defined property {}	Немає користувацької властивості {}
 No wires at the pins of {}	Немає проводів на контактах {}
@@ -1206,7 +1229,9 @@ Potentials, interruption points	Потенціали, точки розриву
 Potentiometer	Потенціометр
 Power (kWp)	Потужність (кВт пік)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Силове коло та коло керування на кількох сторінках: головний вимикач, захист двигуна, три контактори з блокуваннями, реле часу із затримкою ввімкнення, точки розриву, потенціали з кольорами проводів, кабель двигуна та звіти щодо кабелів.
+Power circuit {}	Силове коло {}
 Power factor	Коефіцієнт потужності
+Power factor cos phi	Коефіцієнт потужності cos phi
 Power factor meter	Вимірювач коефіцієнта потужності
 Power loss (W)	Втрати потужності (W)
 Power module	Модуль живлення
@@ -1259,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Захисні 
 Protective devices	Захисні пристрої
 Protective earth	Захисне заземлення
 Protective earth (PE)	Захисний провідник (PE)
+Protective earth terminal	Клема захисного провідника
 Protective hose	Захисний рукав
 Protective, earthing and bonding conductors present and adequate	Захисні, заземлювальні та зрівнювальні провідники наявні та достатні
 Proximity sensor	Безконтактний датчик
@@ -1308,6 +1334,7 @@ Rated cross-section	Номінальний переріз
 Rated current (A)	Номінальний струм (A)
 Rated current of the assembly	Номінальний струм комплектного пристрою
 Rated current of the auxiliary contacts	Номінальний струм допоміжних контактів
+Rated current {} A, motor protection switch {}	Номінальний струм {} A, автоматичний вимикач захисту двигуна {}
 Rated diversity factor	Номінальний коефіцієнт одночасності
 Rated frequency	Номінальна частота
 Rated impulse withstand voltage	Номінальна імпульсна витримувана напруга
@@ -1344,6 +1371,7 @@ Remote I/O	Розподілений ввід/вивід
 Remote I/O {} has no controller	Розподілений ввід/вивід {} не має контролера
 Replace needs the text to find	Для заміни потрібен текст для пошуку
 Replacement part number	Номер замінного виробу
+Report pages	Сторінки звітів
 Residual current device	Пристрій захисного вимкнення
 Residual current device 1-pole	Пристрій захисного вимкнення, 1-полюсний
 Residual current device 2-pole	Пристрій захисного вимкнення, 2-полюсний
@@ -1446,6 +1474,7 @@ Service unit	Блок підготовки повітря
 Service unit (filter, regulator, lubricator)	Блок підготовки повітря (фільтр, регулятор, лубрикатор)
 Setpoint	Задане значення
 Setting range	Діапазон налаштування
+Setting range of the motor protection switch	Діапазон налаштування автоматичного вимикача захисту двигуна
 Sheath colour	Колір оболонки
 Sheath material	Матеріал оболонки
 Shed roof	Односхилий дах
@@ -1507,6 +1536,9 @@ Spiral	Гвинтові
 Stainless steel	Нержавна сталь
 Stainless steel V4A	Нержавна сталь V4A
 Standard	Стандарт
+Star	Зірка
+Star contactor	Контактор зірки
+Star time	Час роботи в зірці
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Схема пуску / зупинки з реле: котушка та контакти утворюють один пристрій із перехресними посиланнями та дзеркалом контактів, клемник, номери проводів, схема клемника та перелік з'єднань.
 Start date	Дата початку
 Starting current ratio	Кратність пускового струму
@@ -1519,6 +1551,7 @@ Station {}: bus system {} does not exist	Станція {}: шинна сист�
 Steam	Пара
 Steel, hot-dip galvanised	Сталь гарячеоцинкована
 Stock	Запас
+Stop	Стоп
 Stop category	Категорія зупинки
 Storage temperature range	Діапазон температури зберігання
 Straight	Прямі
@@ -1550,6 +1583,7 @@ Supplementary fields	Додаткові поля
 Suppliers	Постачальники
 Supply network	Тип мережі
 Supply voltage	Напруга живлення
+Supply {} V / 50 Hz, TN-S	Живлення {} V / 50 Hz, TN-S
 Surface (m²)	Поверхня (м²)
 Surface-mounted	Відкрите прокладання
 Surge protection type	Тип захисту від перенапруги
@@ -1568,6 +1602,7 @@ Switches / Sensors	Вимикачі / датчики
 Switches, pushbuttons	Перемикачі, кнопки
 Switching frequency	Частота комутацій
 Switching output	Комутаційний вихід
+Syntax error in the formula at {}	Синтаксична помилка у формулі в місці {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Т-подібний вузол на сторінці {} не відповідає своїм проводам: потрібен один провід у його напрямку, два впоперек і жодної точки підключення там
 Table of contents	Зміст
 Tabloid landscape	Tabloid альбомна
@@ -1594,6 +1629,7 @@ Terminal data	Дані клеми
 Terminal description	Опис клеми
 Terminal line-up	Розташування клем
 Terminal marker	Маркер клеми
+Terminal of the motor circuit	Клема кола двигуна
 Terminal parts	Артикули наконечників
 Terminal strip data of {} without terminals	Дані клемної колодки {} без клем
 Terminal strip overview	Огляд клемних колодок
@@ -1624,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	Перший стовпець має бути Key
 The folder {} already holds the project {}: a split project needs a folder of its own	Папка {} уже містить проєкт {}: розділеному проєкту потрібна власна папка
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Папка {} містить файли, що не належать до жодного проєкту ({}): розділеному проєкту потрібна власна папка
+The formula ends too early	Формула закінчується занадто рано
 The function definition needs a key and a name	Визначенню функції потрібні ключ і назва
 The index of the project names no file layout: it was not written by OpenECraft	Індекс проєкту не вказує структуру файлів: його записано не OpenECraft
 The last page cannot be deleted	Останню сторінку не можна видалити
@@ -1754,14 +1791,17 @@ Unit of measurement	Одиниця вимірювання
 Unit price	Ціна за одиницю
 Unknown cable {}	Невідомий кабель {}
 Unknown device: {}	Невідомий пристрій: {}
+Unknown function {} in the formula	Невідома функція {} у формулі
 Unknown job {}	Невідоме завдання {}
 Unknown macro	Невідомий макрос
 Unknown macro box	Невідома рамка макросу
+Unknown name {} in the formula	Невідома назва {} у формулі
 Unknown object: {}	Невідомий об’єкт: {}
 Unknown revision	Невідома ревізія
 Unknown symbol '{}'	Невідомий символ '{}'
 Unknown tool {}	Невідомий інструмент {}
 Unused connection points	Невикористані точки підключення
+Upper limit of the setting range	Верхня межа діапазону налаштування
 Upstream	Вище за схемою
 User defined	Користувацьке
 User symbols	Символи користувача
@@ -1840,6 +1880,7 @@ Within a suite, wall mounted	Усередині ряду, настінна
 Within a suite, wall mounted, roof covered	Усередині ряду, настінна, дах закрито
 Word document	Документ Word
 Working line	Робоча лінія
+Wrong number of values for {}	Неправильна кількість значень для {}
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	Рік виготовлення
 Yes / no	Так / ні
@@ -1964,8 +2005,12 @@ yellow	жовтий
 {} is a built-in property	{} – вбудована властивість
 {} is a built-in scheme	{} – вбудована схема
 {} is a busbar machine and makes no sheets	{} – верстат для обробки шин і не виготовляє листові деталі
+{} is above the last step	{} вище останнього ступеня
+{} is defined twice	Назву {} визначено двічі
 {} is neither the protective device nor a device of the circuit of {}	{} не є ні захисним пристроєм, ні пристроєм кола {}
+{} is no valid name: letters, digits and _, not starting with a digit	{} – недопустима назва: літери, цифри та _, не може починатися з цифри
 {} is not a busbar machine	{} не є верстатом для обробки шин
+{} is not a number	{} не є числом
 {} is not a property of {}	{} не є властивістю {}
 {} is not an approver of this project	{} не є погоджувачем цього проєкту
 {} is not connected to the mains: place it without a protective device	{} не підключається до мережі: розмістіть його без захисного пристрою
@@ -2124,6 +2169,7 @@ yellow	жовтий
 {}: voltage drop {} V ({} %) above {} %	{}: спад напруги {} V ({} %) понад {} %
 {}: wire colour {} differs from the potential definition ({})	{}: колір проводу {} відрізняється від визначення потенціалу ({})
 {}: wire without core designation	{}: провід без позначення жили
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) і {} ({}) розташовано на відстані {} мм, потрібно щонайменше {} мм
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: втрати потужності {} W нагрівають корпус до {} °C (максимум {} °C): потрібно {}
@@ -2143,7 +2189,9 @@ yellow	жовтий
 {}: {} is inside the ventilation clearance of {}	{}: {} знаходиться у відстані для вентиляції {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} призначено для монтажної рейки, але встановлено безпосередньо на панель
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} розрахований на системи збірних шин з міжосьовою відстанню {} мм, шини, на яких він встановлений, розташовані через {} мм
+{}: {} is not a number	{}: {} не є числом
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} не призначений для настінного монтажу, встановіть його на рейку
+{}: {} is not one of its choices	{}: {} не є одним із його варіантів вибору
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} розташовано на {} … {} мм над підлогою, допустимо {} … {} мм
 {}: {} kg on the {} exceed its load of {} kg	{}: {} кг на {} перевищують його допустиме навантаження {} кг
 {}: {} lies in a restricted placing area of the {}	{}: {} розташовано в зоні, забороненій для розміщення, на {}

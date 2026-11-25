@@ -3,6 +3,7 @@
 1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1：直线的上 / 左端横向通往右 / 下分支 · 2：通往左 / 上分支（默认 2）
 A cable definition needs a start and an end point	电缆定义需要起点和终点
 A copper bar needs at least one segment	铜排至少需要一个段
+A new formula {} needs its formula	新公式 {} 需要公式内容
 A segment cannot be moved below itself	规划段不能移动到其自身下方
 A segment needs two different nodes	布线段需要两个不同的节点
 A wire needs at least two points	导线至少需要两个点
@@ -105,6 +106,7 @@ Changes name, description, function, location or parent of a segment	更改规�
 Changes position, face, fastening or anchors of a panel item	更改布局元件的位置、面、紧固方式或锚定
 Changes the device, connection and terminal tables	更改设备表、连接表和端子表
 Changes the level of a kind of message (code as shown by check)	更改某类消息的级别（代码如 check 所示）
+Changes the name and description of the open project as a template (save_project_template saves it)	更改已打开项目作为模板的名称和描述（由 save_project_template 保存）
 Changes the properties of a wire	更改导线的属性
 Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	更改机柜的系统、尺寸和构件（底座、并柜侧、法兰板）；锚定的元素随之调整
 Check {} failed: {}	检查 {} 失败：{}
@@ -150,6 +152,8 @@ Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing 
 Creates or changes a bus system (PROFINET, EtherCAT, …)	创建或更改总线系统（PROFINET、EtherCAT、…）
 Creates or changes a configurator option	创建或更改配置器选项
 Creates or changes a fluid device group	创建或更改流体设备组
+Creates or changes a formula of the template: a value worked out from the parameters and the formulas before it, filling {NAME}	创建或更改模板的公式：由参数和之前的公式计算出的值，用于填入 {NAME}
+Creates or changes a parameter of the template: a value asked for when a project is started from it, filling {NAME} in the texts of the project	创建或更改模板的参数：从模板新建项目时询问的值，用于填入项目文本中的 {NAME}
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	创建或更改项目的图框（内置图框以新名称复制）
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	创建或更改电位定义；除非在导线上另行设置，其导线将采用该颜色和截面积
 Creates or changes a title block of the project (built-in ones are copied under a new name)	创建或修改项目的标题栏（内置标题栏以新名称复制）
@@ -174,6 +178,7 @@ Date (YYYY-MM-DD)	日期 (YYYY-MM-DD)
 Date of the acceptance	接受日期
 Default property values	属性的默认值
 Default symbol key	默认符号键
+Default value	默认值
 Define the identifiers in use (default: true)	定义已使用的标识符（默认：true）
 Defines a reusable project function definition or changes it	定义或更改可重用的项目功能定义
 Defines a structure identifier or changes its description	定义结构标识符或更改其描述
@@ -279,6 +284,7 @@ First row with the column names	包含列名的第一行
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	平屋顶和地面安装：组件朝向的方向，单位为度，从上方看逆时针（0：朝向 +z）
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	设备名称格式：{letter}、{n}（计数器）、{page}、{column}、{row}；默认 {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 方案的格式：{n}（计数器）、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
+Formula: numbers, \"texts\", names, + - * / ^, comparisons, & and sqrt, abs, round, ceil, floor, min, max, if, step	公式：数字、\"文本\"、名称、+ - * / ^、比较、& 以及 sqrt、abs、round、ceil、floor、min、max、if、step
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	基础接地极：在外墙以内的距离（默认 100），环形：在外墙以外的距离（默认 1000），mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	基础接地极：最大网格，mm（默认 20000）
 Frame to start from when the frame is new (default: A3 landscape)	新建图框时的起始图框（默认：A3 landscape）
@@ -366,6 +372,8 @@ Key, e.g. user.customer_code	键，例如 user.customer_code
 Keys of the routes, comma separated (all if missing)	布线的键，以逗号分隔（未指定时为全部）
 Kind: machining, punching or busbar	类型：machining, punching 或 busbar
 Known length of the cable in m (taken instead of the 3D route)	电缆的已知长度，单位 m（代替 3D 路径）
+Label shown when the value is asked for	询问该值时显示的标签
+Label shown with the value	与值一起显示的标签
 Label: terminal number, PLC address or potential name	标签：端子号、PLC 地址或电位名称
 Landscape (true) or portrait (false)	横向 (true) 或纵向 (false)
 Language the project texts are written in, e.g. en	编写项目文本所用的语言，例如 en
@@ -484,6 +492,7 @@ Nailboard layout of a harness: the branches from the common node to the connecto
 Name (default E1, E2, …)	名称（默认 E1、E2、…）
 Name (default F1, F2, …)	名称（默认 F1、F2、…）
 Name both the building and the roof, or neither for a freestanding PV array	请同时指定建筑物和屋顶，或者对地面光伏阵列两者都不指定
+Name in the list of templates	模板列表中的名称
 Name of the assembly	组件名称
 Name of the bar, e.g. L1 -Q1	铜排名称，例如 L1 -Q1
 Name of the check	检查的名称
@@ -491,6 +500,7 @@ Name of the customer rule set to remove	要移除的客户规则集的名称
 Name of the frame	图框名称
 Name of the machine	机器名称
 Name of the main earthing terminal	总接地端子的名称
+Name of the placeholder, e.g. POWER_KW for {POWER_KW}: letters, digits and _	占位符名称，例如 POWER_KW 对应 {POWER_KW}：字母、数字和 _
 Name of the safety function to remove	要移除的安全功能的名称
 Name of the segment	规划段名称
 Name of the title block	标题栏名称
@@ -500,6 +510,7 @@ Name or id; the tag for places	名称或 ID；放置则为标识符
 Name placed by hand: X offset from the insertion point in mm	手动放置的名称：相对于插入点的 X 偏移（mm）
 Name placed by hand: Y offset from the insertion point in mm	手动放置的名称：相对于插入点的 Y 偏移（mm）
 Name, e.g. the location +M1	名称，例如位置 +M1
+Name, parameters, formulas and page conditions of a project template	项目模板的名称、参数、公式和页条件
 New device tag	新设备标识符
 New identifier	新标识符
 New page name	新页名
@@ -573,6 +584,7 @@ OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=值�
 Offset from the symbol position in mm (default: below the symbol)	相对符号位置的偏移，单位 mm（默认：符号下方）
 Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	导线处电缆标识符相对自动位置的偏移，一个点 [dx, dy]，单位 mm（无点 = 自动）
 Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	芯线标识相对自动位置的偏移，一个点 [dx, dy]，单位 mm（无点 = 自动）
+On a page of a project template: OPTION=value, OPTION!=value, OPTION=a|b joined by & (parameters and formulas of get_template); a project started from the template leaves the page out when it does not hold. Empty: always	在项目模板的页上：OPTION=值、OPTION!=值、OPTION=a|b，用 & 连接（get_template 的参数和公式）；从模板新建的项目在条件不成立时省略该页。空：始终
 One end, e.g. -K1:A1	一端，例如 -K1:A1
 One row per printed label instead of a count	每个打印的标签一行，而不是数量
 Only devices on these pages (names separated by commas)	仅限这些页上的设备（名称以逗号分隔）
@@ -695,6 +707,7 @@ Project exports	项目导出
 Project languages, dictionary and translations	项目语言、词典和翻译
 Project reports	项目报表
 Project statistics	项目统计
+Project templates	项目模板
 Property and function definitions, property values and placement schemes	属性定义和功能定义、属性值和放置方案
 Property key	属性键
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	属性键和值，例如 {\"device.rated_power\": \"5.5\"}
@@ -723,6 +736,7 @@ Remove unused definitions (default: false)	移除未使用的定义（默认：f
 Removes a control point of the route of a wire, cable or tube, or all of them	删除导线、电缆或管子布线的一个或所有控制点
 Removes a copper bar	删除铜排
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	删除节点（连同其布线段和放置）、布线段、放置、轮廓、等电位联结导体或附件
+Removes a parameter or formula of the template	删除模板的参数或公式
 Removes a planned device from a segment	从规划段中删除已规划设备
 Removes a project function definition; its symbols go back to their built-in one	删除项目功能定义；其符号恢复为内置定义
 Removes a project option; its content stays in the project	删除项目选项；其内容保留在项目中
@@ -821,6 +835,7 @@ Shows the PLC hardware configuration: stations with racks, slots, modules and ad
 Shows the content of a page: symbols with their connection point positions, wires and texts	显示页的内容：符号及其连接点位置、导线和文本
 Shows the data of the other systems stored in the project (part links, documents) and the exchange log	显示项目中存储的其他系统数据（部件链接、文档）和交换日志
 Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	显示插头的插合面：部件的引脚布局、每个引脚的位置（mm，从插针侧看）以及两侧的电位、导线颜色和电缆芯线
+Shows the open project as a template: name, parameters, formulas with their values at the defaults, the pages with a condition and the mistakes	将已打开项目显示为模板：名称、参数、公式及其在默认值下的结果、带条件的页以及错误
 Shows the options and rules of the configurator	显示配置器的选项和规则
 Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	按插头顺序显示插头的插针：插孔侧和插针侧连接的内容、电位、未使用的插针
 Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	显示 3D 布线的规则并更改指定的规则：栅格、间距、自由布线系数、隔离、弯曲半径、下料长度、余量
@@ -917,6 +932,7 @@ The rotation must be 0, 90, 180 or 270	旋转角度必须为 0、90、180 或 27
 The straight line of a crossing: vertical or horizontal (default vertical)	交叉的直线：vertical 或 horizontal（默认 vertical）
 The text height must be at least 0.5 mm	文字高度必须至少为 0.5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	拐角的两个分支，垂直和水平，例如 down left（默认：按该处的连接线，否则 down right）
+The value must be a number	值必须是数字
 The width factor must be from 0.1 to 10	宽度系数必须在 0.1 到 10 之间
 The wire has no length	连接没有长度
 The wire that jumps: vertical or horizontal	跳线的导线：vertical 或 horizontal
@@ -936,6 +952,7 @@ Top edge on the mounting plate in mm	安装板上的上边缘 (mm)
 Translated line	翻译后的行
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	绕垂直轴旋转的角度（度），从上方看为逆时针（90：正面朝右）
 Two wires at a connection point share a twin ferrule	同一连接点的两根导线共用一个双线管型端子
+Unit, e.g. A	单位，例如 A
 Unit, e.g. kW	单位，例如 kW
 Unknown T-connection style: {}	未知的 T 形连接样式：{}
 Unknown accessory kind: {}	未知附件类型：{}

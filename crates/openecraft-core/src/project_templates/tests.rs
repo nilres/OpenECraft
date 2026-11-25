@@ -46,9 +46,10 @@ fn bundled_templates_have_no_mistakes() {
     for t in bundled() {
         assert!(problems(&t).is_empty(), "{}: {:?}", name(&t), problems(&t));
         assert!(!t.template.name.is_empty());
-        // Opened to be changed, the placeholders of its part numbers are no errors.
+        // Opened to be changed, the placeholders of its part numbers are no errors or
+        // warnings (functions and accessories of a part not chosen yet).
         let an = crate::analysis::Analysis::checked(&t);
-        let errors: Vec<String> = an.issues.iter().filter(|i| i.severity == crate::issue::Severity::Error).map(|i| i.message()).collect();
+        let errors: Vec<String> = an.issues.iter().filter(|i| i.severity <= crate::issue::Severity::Warning).map(|i| i.message()).collect();
         assert!(errors.is_empty(), "{}: {errors:#?}", name(&t));
     }
 }
