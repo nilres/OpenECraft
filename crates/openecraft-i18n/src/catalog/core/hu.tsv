@@ -26,6 +26,9 @@ A port cannot be connected to itself	Egy port nem köthető össze önmagával
 A room needs at least four walls	Egy helyiségnek legalább négy fal kell
 A section number consists of letters and digits and does not start with 0	A szakaszszám betűkből és számjegyekből áll, és nem kezdődik 0-val
 A section number must not be empty or contain a dot	A szakaszszám nem lehet üres, és nem tartalmazhat pontot
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Háromfázisú motor mindkét forgásirányban, reteszelt mágneskapcsolókkal: fő- és vezérlőáramkör a motor teljesítményéből méretezve, választható kimutatásoldalak
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Csillagban induló és deltában járó háromfázisú motor: fő- és vezérlőáramkör a motor teljesítményéből méretezve, választható kimutatásoldalak
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Közvetlenül bekapcsolt háromfázisú motor: fő- és vezérlőáramkör a motor teljesítményéből méretezve, választható sorkapocsterv, összeköttetéslista, készüléklista és anyagjegyzék
 A0 landscape	A0 fekvő
 A1 landscape	A1 fekvő
 A2 landscape	A2 fekvő
@@ -68,6 +71,7 @@ Analog output module	Analóg kimeneti modul
 Analysis	Analízis
 Another section here has this number	Egy másik szakasznak itt már ez a száma
 Antenna outlet	Antennaaljzat
+Anticlockwise	Balra forgás
 Apparent power (kVA)	Látszólagos teljesítmény (kVA)
 Applied directives	Alkalmazott irányelvek
 Approval date	Jóváhagyás dátuma
@@ -177,6 +181,7 @@ Cam profile switch NC	Vezérlőpályás kapcsoló, nyitóérintkező
 Cam profile switch NO	Vezérlőpályás kapcsoló, záróérintkező
 Cam switch NC	Bütykös kapcsoló, nyitóérintkező
 Cam switch NO	Bütykös kapcsoló, záróérintkező
+Cannot delete {}: {}	{} nem törölhető: {}
 Cannot read the DWG file: {}	A DWG-fájl nem olvasható: {}
 Capacitive sensor, 2-wire	Kapacitív érzékelő, 2 vezetékes
 Capacitive sensor, 3-wire	Kapacitív érzékelő, 3 vezetékes
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Megszakító, 4 pólusú
 Circuits, protective devices, switches and terminals labelled	Áramkörök, védőkészülékek, kapcsolók és sorkapcsok jelölve
 Circular milling	Körkörös marás
 Clip / snap-on	Bepattintás
+Clockwise	Jobbra forgás
 Cloud	Felhő
 Clutch (electromagnetic)	Tengelykapcsoló (elektromágneses)
 Coil and timing	Tekercs és időzítés
@@ -260,7 +266,9 @@ Connections of the conductors	A vezetők csatlakozásai
 Connector pin-outs and flat cables	Csatlakozók lábkiosztása és szalagkábelek
 Connector pin-outs: mating faces and pin tables (SVG)	Csatlakozók lábkiosztása: csatlakozó felületek és lábtáblázatok (SVG)
 Contact material	Érintkezőanyag
+Contactor	Mágneskapcsoló
 Contactor (single-line)	Mágneskapcsoló (egyvonalas)
+Contactor at least (AC-3)	Mágneskapcsoló legalább (AC-3)
 Contactor coil KM (GB)	Mágneskapcsoló tekercse KM (GB)
 Contactor coil KM (GOST)	Mágneskapcsoló tekercse KM (GOST)
 Contactor main contacts KM (GB)	Mágneskapcsoló főérintkezői KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Kontúrmarás
 Contractor	Vállalkozó
 Control	Vezérlés
 Control cabinet	Kapcsolószekrény
+Control circuit {}	Vezérlőáramkör {}
 Control mode	Szabályozási mód
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	A(z) {}. támpont ({} {}) valamin belül vagy a szekrényen kívül van: a támpontjai nélkül lesz fektetve. Helyezze át a támpontot szabad helyre.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	A(z) {}. támpont ({} {}) az útján kívül van: egyik szekrényben vagy helyiségben sem, amelyen át fektetik. Helyezze a támpontot az útjára.
@@ -286,6 +295,7 @@ Control voltage	Vezérlőfeszültség
 Control voltage type	Vezérlőfeszültség fajtája
 Conventional touch voltage limit UL (V)	Megegyezés szerinti érintési feszültséghatár UL (V)
 Converted from file format {} to {}: {}	Átalakítva a(z) {} fájlformátumról erre: {}: {}
+Conveyor	Szállítóberendezés
 Coolant	Hűtőközeg
 Cooler	Hűtő
 Cooling method	Hűtési mód
@@ -314,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Fedlap, tartalomjegyzék, kapcsolásirajz-oldalak funkcióval és szerelési hellyel, készüléklista, anyagjegyzék, sorkapocs- és kábeltervek
 Create projects	Projektek létrehozása
 Creation date	Létrehozás dátuma
+Cross-section of the motor circuit	A motoráramkör keresztmetszete
 Cross-section {} carries {} A, less than the {} A of {}	A(z) {} keresztmetszet {} A-t visel el, kevesebbet, mint a(z) {} A ({})
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	A(z) {}. lapon lévő kereszteződés nem illik a vezetékeihez: mind a négy irányban vezeték kell, és nem lehet ott csatlakozási pont
 Current capacity (A)	Áramterhelhetőség (A)
 Current consumption	Áramfelvétel
+Current of the mains and delta contactor	A hálózati és a delta mágneskapcsoló árama
+Current of the star contactor	A csillag mágneskapcsoló árama
 Current range	Áramtartomány
 Current setting	Árambeállítás
 Current transformer	Áramváltó
@@ -351,6 +364,7 @@ Default {} ({})	Alapértelmezés {} ({})
 Degree of protection	Védettségi fokozat
 Delete projects	Projektek törlése
 Delivery date	Szállítási határidő
+Delta	Delta
 Demand (diversity factor {})	Igény (egyidejűségi tényező: {})
 Demand {} A above the usable {} A of the supply	A(z) {} A igény meghaladja a betáplálás használható {} A-ét
 Density	Sűrűség
@@ -405,6 +419,7 @@ Disconnector 3-pole, lockable	Szakaszoló, 3 pólusú, lezárható
 Displacement	Lökettérfogat
 Distribution board	Elosztó
 Distribution board (IEC 61439)	Elosztó (IEC 61439)
+Division by zero in the formula	Nullával való osztás a képletben
 Document	Dokumentum
 Document (embedded file)	Dokumentum (beágyazott fájl)
 Document A4 portrait	Dokumentum, A4 álló
@@ -425,6 +440,7 @@ Drilling and milling centre	Fúró-maró megmunkálóközpont
 Drive	Hajtás
 Drive type	Hajtás típusa
 Driven by	Meghajtja
+Driven machine	Hajtott gép
 Drives	Hajtások
 Drop-out time	Elengedési idő
 Duct fill levels	Kábelcsatornák töltöttsége
@@ -824,9 +840,12 @@ Main contacts 3-pole, automatic tripping	Főérintkezők, 3 pólusú, automatiku
 Main contacts 4-pole	Főérintkezők, 4 pólusú
 Main function	Főfunkció
 Main function with contact image	Főfunkció érintkezőtükörrel
+Main switch	Főkapcsoló
 Main switch 1-pole	Főkapcsoló, 1 pólusú
 Main switch 2-pole	Főkapcsoló, 2 pólusú
 Main switch 3-pole	Főkapcsoló, 3 pólusú
+Mains	Hálózat
+Mains and delta contactor	Hálózati és delta mágneskapcsoló
 Mains frequency	Hálózati frekvencia
 Mains voltage	Hálózati feszültség
 Maintenance	Karbantartás
@@ -893,11 +912,16 @@ Motor DC, shunt-wound	Egyenáramú motor, párhuzamos gerjesztésű
 Motor cable {} of frequency converter {} must be shielded	A(z) {1} frekvenciaváltó {0} motorkábelének árnyékoltnak kell lennie
 Motor data	Motoradatok
 Motor operator of a circuit breaker	Megszakító motoros hajtása
+Motor protection	Motorvédelem
 Motor protection (class 10)	Motorvédelem (10. osztály)
 Motor protection switch	Motorvédő kapcsoló
 Motor protection switch (single-line)	Motorvédő kapcsoló (egyvonalas)
 Motor protection switch 1-pole	Motorvédő kapcsoló, 1 pólusú
 Motor protection switch 2-pole	Motorvédő kapcsoló, 2 pólusú
+Motor running	Motor jár
+Motor starter direct on line	Közvetlen motorindító
+Motor starter reversing	Irányváltó motorindító
+Motor starter star-delta	Csillag-delta motorindító
 Motor, electronically commutated (brushless DC)	Motor, elektronikus kommutációjú (kefe nélküli DC)
 Motors	Motorok
 Motors / Loads	Motorok / terhelések
@@ -963,6 +987,7 @@ No segment template named {}	Nincs ilyen nevű szegmenssablon: {}
 No subproject {}	Nincs ilyen alprojekt: {}
 No such object: {}	Nincs ilyen objektum: {}
 No surge protective device at the supply (IEC 60364-4-44)	Nincs túlfeszültség-védelmi eszköz a betáplálásnál (IEC 60364-4-44)
+No template of the user is named {}	A felhasználónak nincs {} nevű sablonja
 No terminal {}	Nincs {} sorkapocs
 No user defined property {}	Nincs ilyen felhasználói tulajdonság: {}
 No wires at the pins of {}	Nincs vezeték a(z) {} lábain
@@ -1204,7 +1229,9 @@ Potentials, interruption points	Potenciálok, megszakítási pontok
 Potentiometer	Potenciométer
 Power (kWp)	Teljesítmény (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Fő- és vezérlőáramkör több oldalon: főkapcsoló, motorvédelem, három mágneskapcsoló reteszeléssel, meghúzáskésleltetett időrelé, megszakítási pontok, potenciálok érszínekkel, motorkábel és kábelkimutatások.
+Power circuit {}	Főáramkör {}
 Power factor	Teljesítménytényező
+Power factor cos phi	Teljesítménytényező cos phi
 Power factor meter	Teljesítménytényező-mérő
 Power loss (W)	Veszteségi teljesítmény (W)
 Power module	Tápmodul
@@ -1257,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	A védővezető
 Protective devices	Védőkészülékek
 Protective earth	Védőföldelés
 Protective earth (PE)	Védővezető (PE)
+Protective earth terminal	Védőföldelő sorkapocs
 Protective hose	Védőtömlő
 Protective, earthing and bonding conductors present and adequate	Védő-, földelő- és egyenpotenciálú összekötő vezetők megvannak és megfelelők
 Proximity sensor	Közelítéskapcsoló
@@ -1306,6 +1334,7 @@ Rated cross-section	Névleges keresztmetszet
 Rated current (A)	Névleges áram (A)
 Rated current of the assembly	A kapcsolóberendezés névleges árama
 Rated current of the auxiliary contacts	A segédérintkezők névleges árama
+Rated current {} A, motor protection switch {}	Névleges áram {} A, motorvédő kapcsoló {}
 Rated diversity factor	Névleges egyidejűségi tényező
 Rated frequency	Névleges frekvencia
 Rated impulse withstand voltage	Névleges lökőfeszültség-állóság
@@ -1342,6 +1371,7 @@ Remote I/O	Decentralizált periféria
 Remote I/O {} has no controller	A(z) {} decentralizált perifériának nincs vezérlője
 Replace needs the text to find	A cseréhez meg kell adni a keresendő szöveget
 Replacement part number	Helyettesítő cikkszám
+Report pages	Kimutatásoldalak
 Residual current device	Áram-védőkapcsoló
 Residual current device 1-pole	Áram-védőkapcsoló, 1 pólusú
 Residual current device 2-pole	Áram-védőkapcsoló, 2 pólusú
@@ -1444,6 +1474,7 @@ Service unit	Levegő-előkészítő egység
 Service unit (filter, regulator, lubricator)	Levegő-előkészítő egység (szűrő, szabályozó, olajozó)
 Setpoint	Alapjel
 Setting range	Beállítási tartomány
+Setting range of the motor protection switch	A motorvédő kapcsoló beállítási tartománya
 Sheath colour	Köpeny színe
 Sheath material	Köpeny anyaga
 Shed roof	Félnyeregtető
@@ -1505,6 +1536,9 @@ Spiral	Csigalépcső
 Stainless steel	Rozsdamentes acél
 Stainless steel V4A	Rozsdamentes acél V4A
 Standard	Szabvány
+Star	Csillag
+Star contactor	Csillag mágneskapcsoló
+Star time	Csillagkapcsolási idő
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Start / stop áramkör relével: a tekercs és az érintkezők egy eszközt alkotnak kereszthivatkozásokkal és érintkezőképpel; sorkapocs, vezetékszámok, sorkapocsrajz és kapcsolatlista.
 Start date	Kezdés dátuma
 Starting current ratio	Indítási áramviszony
@@ -1517,6 +1551,7 @@ Station {}: bus system {} does not exist	{} állomás: a(z) {} buszrendszer nem 
 Steam	Gőz
 Steel, hot-dip galvanised	Tűzihorganyzott acél
 Stock	Készlet
+Stop	Leállítás
 Stop category	Leállítási kategória
 Storage temperature range	Tárolási hőmérséklet-tartomány
 Straight	Egyenes
@@ -1548,6 +1583,7 @@ Supplementary fields	Kiegészítő mezők
 Suppliers	Szállítók
 Supply network	Hálózattípus
 Supply voltage	Tápfeszültség
+Supply {} V / 50 Hz, TN-S	Betáplálás {} V / 50 Hz, TN-S
 Surface (m²)	Felület (m²)
 Surface-mounted	Falon kívüli
 Surge protection type	Túlfeszültség-védelem típusa
@@ -1566,6 +1602,7 @@ Switches / Sensors	Kapcsolók / érzékelők
 Switches, pushbuttons	Kapcsolók, nyomógombok
 Switching frequency	Kapcsolási gyakoriság
 Switching output	Kapcsolókimenet
+Syntax error in the formula at {}	Szintaktikai hiba a képletben itt: {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	A(z) {}. lapon lévő T-elem nem illik a vezetékeihez: egy vezeték kell az irányában, kettő keresztben, és nem lehet ott csatlakozási pont
 Table of contents	Tartalomjegyzék
 Tabloid landscape	Tabloid fekvő
@@ -1592,6 +1629,7 @@ Terminal data	Sorkapocsadatok
 Terminal description	Sorkapocsleírás
 Terminal line-up	Sorkapocs-sorrend
 Terminal marker	Sorkapocsjelölő
+Terminal of the motor circuit	A motoráramkör sorkapcsa
 Terminal parts	Végződések cikkszámai
 Terminal strip data of {} without terminals	{} sorkapocsléc-adatai sorkapcsok nélkül
 Terminal strip overview	Sorkapocsléc-áttekintés
@@ -1622,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	Az első oszlopnak Key-nek kell lennie
 The folder {} already holds the project {}: a split project needs a folder of its own	A(z) {} mappa már tartalmazza a(z) {} projektet: a felosztott projektnek saját mappa kell
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	A(z) {} mappa olyan fájlokat tartalmaz, amelyek egyik projekthez sem tartoznak ({}): a felosztott projektnek saját mappa kell
+The formula ends too early	A képlet túl korán véget ér
 The function definition needs a key and a name	A funkciódefinícióhoz kulcs és név szükséges
 The index of the project names no file layout: it was not written by OpenECraft	A projekt indexe nem nevez meg fájlelrendezést: nem az OpenECraft írta
 The last page cannot be deleted	Az utolsó oldal nem törölhető
@@ -1752,14 +1791,17 @@ Unit of measurement	Mértékegység
 Unit price	Egységár
 Unknown cable {}	Ismeretlen kábel: {}
 Unknown device: {}	Ismeretlen készülék: {}
+Unknown function {} in the formula	Ismeretlen függvény a képletben: {}
 Unknown job {}	Ismeretlen megbízás: {}
 Unknown macro	Ismeretlen makró
 Unknown macro box	Ismeretlen makródoboz
+Unknown name {} in the formula	Ismeretlen név a képletben: {}
 Unknown object: {}	Ismeretlen objektum: {}
 Unknown revision	Ismeretlen revízió
 Unknown symbol '{}'	Ismeretlen szimbólum: '{}'
 Unknown tool {}	Ismeretlen szerszám: {}
 Unused connection points	Nem használt csatlakozási pontok
+Upper limit of the setting range	A beállítási tartomány felső határa
 Upstream	Előtte kapcsolt
 User defined	Felhasználó által definiált
 User symbols	Felhasználói szimbólumok
@@ -1837,6 +1879,7 @@ Within a suite, wall mounted	Sor belsejében, falra szerelt
 Within a suite, wall mounted, roof covered	Sor belsejében, falra szerelt, tetővel fedett
 Word document	Word-dokumentum
 Working line	Munkavezeték
+Wrong number of values for {}	Hibás az értékek száma ennél: {}
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	Gyártási év
 Yes / no	Igen / nem
@@ -1961,8 +2004,12 @@ yellow	sárga
 {} is a built-in property	{} beépített tulajdonság
 {} is a built-in scheme	{} beépített séma
 {} is a busbar machine and makes no sheets	{} sínmegmunkáló gép, lemezeket nem gyárt
+{} is above the last step	A(z) {} az utolsó lépcső fölött van
+{} is defined twice	A(z) {} kétszer van definiálva
 {} is neither the protective device nor a device of the circuit of {}	A(z) {} se nem védőkészülék, se nem a(z) {} áramkörének készüléke
+{} is no valid name: letters, digits and _, not starting with a digit	A(z) {} nem érvényes név: betűk, számjegyek és _, nem kezdődhet számjeggyel
 {} is not a busbar machine	{} nem sínmegmunkáló gép
+{} is not a number	A(z) {} nem szám
 {} is not a property of {}	{} nem tulajdonsága ennek: {}
 {} is not an approver of this project	{} nem jóváhagyója ennek a projektnek
 {} is not connected to the mains: place it without a protective device	A(z) {} nem csatlakozik a hálózatra: helyezze el védőkészülék nélkül
@@ -2121,6 +2168,7 @@ yellow	sárga
 {}: voltage drop {} V ({} %) above {} %	{}: feszültségesés {} V ({} %), több mint {} %
 {}: wire colour {} differs from the potential definition ({})	{}: a(z) {} érszín eltér a potenciáldefiníciótól ({})
 {}: wire without core designation	{}: vezeték érmegnevezés nélkül
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) és {} ({}) távolsága {} mm, legalább {} mm szükséges
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W veszteségi teljesítmény {} °C-ra melegíti a szekrényt (legfeljebb {} °C): {} szükséges
@@ -2140,7 +2188,9 @@ yellow	sárga
 {}: {} is inside the ventilation clearance of {}	{}: {} a(z) {} szellőzési szabad terében van
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} szerelősínre készült, de közvetlenül a lapon ül
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} {} mm osztástávolságú gyűjtősín-rendszerekhez készült, a sínek, amelyeken ül, {} mm-re vannak egymástól
+{}: {} is not a number	{}: a(z) {} nem szám
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} nem falra szerelésre készült, szerelje sínre
+{}: {} is not one of its choices	{}: a(z) {} nem tartozik a választható értékei közé
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} {} … {} mm-rel van a padló felett, megengedett {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg ezen: {} meghaladja a(z) {} kg-os teherbírást
 {}: {} lies in a restricted placing area of the {}	{}: {} elhelyezésre tiltott területen van ezen: {}

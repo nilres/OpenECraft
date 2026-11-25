@@ -241,7 +241,7 @@ pub static TABS: &[Tab] = &[
             g("macros", tr_const!("Macros"), &[L(C::Macros), S(C::ImportMacros)]),
             g("parts", tr_const!("Parts"), &[L(C::PartsManagement), S(C::DataPortal), S(C::ImportParts)]),
             g("properties", tr_const!("Properties"), &[L(C::PropertyDatabase)]),
-            g("templates", tr_const!("Templates"), &[L(C::SaveAsProjectTemplate), S(C::SavePageAsTemplate)]),
+            g("templates", tr_const!("Templates"), &[L(C::SaveAsProjectTemplate), S(C::ProjectTemplate), S(C::SavePageAsTemplate)]),
         ],
     },
     Tab {

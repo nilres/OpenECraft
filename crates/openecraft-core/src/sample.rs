@@ -167,20 +167,20 @@ fn assign_parts(prj: &mut Project, db: &PartsDb, devices: &[(&str, &[&str])]) {
 }
 
 /// Renumbers the wires of a finished example.
-fn number_wires(prj: &mut Project) {
+pub(crate) fn number_wires(prj: &mut Project) {
     let open = crate::netlist::Netlist::build(prj, false);
     let bridged = crate::netlist::Netlist::build(prj, true);
     crate::wirenum::renumber(prj, &open, &bridged, false);
 }
 
-struct Pg<'a> {
-    prj: &'a mut Project,
-    page: usize,
+pub(crate) struct Pg<'a> {
+    pub(crate) prj: &'a mut Project,
+    pub(crate) page: usize,
 }
 
 impl Pg<'_> {
     #[allow(clippy::too_many_arguments)]
-    fn sym(&mut self, key: &str, x: f32, y: f32, rot: u8, tag: &str, label: &str, ftext: &str) -> &mut Self {
+    pub(crate) fn sym(&mut self, key: &str, x: f32, y: f32, rot: u8, tag: &str, label: &str, ftext: &str) -> &mut Self {
         let def = self.prj.symbol(key).expect("symbol");
         let id = self.prj.new_id();
         // Tags take the missing structure aspects from the page or the structure box
@@ -202,42 +202,42 @@ impl Pg<'_> {
         self
     }
 
-    fn pins(&mut self, pins: &[&str]) -> &mut Self {
+    pub(crate) fn pins(&mut self, pins: &[&str]) -> &mut Self {
         if let Some(s) = self.prj.pages[self.page].symbols.last_mut() {
             s.pins = pins.iter().map(|x| x.to_string()).collect();
         }
         self
     }
 
-    fn mirror(&mut self) -> &mut Self {
+    pub(crate) fn mirror(&mut self) -> &mut Self {
         if let Some(s) = self.prj.pages[self.page].symbols.last_mut() {
             s.mirror = true;
         }
         self
     }
 
-    fn w(&mut self, x1: f32, y1: f32, x2: f32, y2: f32) -> &mut Self {
+    pub(crate) fn w(&mut self, x1: f32, y1: f32, x2: f32, y2: f32) -> &mut Self {
         let id = self.prj.new_id();
         self.prj.pages[self.page].wires.push(Wire { id, a: p(x1, y1), b: p(x2, y2), ..Default::default() });
         self
     }
 
     /// Wire through several points.
-    fn path(&mut self, pts: &[(f32, f32)]) -> &mut Self {
+    pub(crate) fn path(&mut self, pts: &[(f32, f32)]) -> &mut Self {
         for s in pts.windows(2) {
             self.w(s[0].0, s[0].1, s[1].0, s[1].1);
         }
         self
     }
 
-    fn text(&mut self, x: f32, y: f32, t: &str, size: f32) -> &mut Self {
+    pub(crate) fn text(&mut self, x: f32, y: f32, t: &str, size: f32) -> &mut Self {
         let id = self.prj.new_id();
         self.prj.pages[self.page].texts.push(TextItem { id, pos: P { x, y }, text: t.into(), size, ..Default::default() });
         self
     }
 }
 
-fn add_page(prj: &mut Project, name: &str, desc: &str, kind: PageKind) -> usize {
+pub(crate) fn add_page(prj: &mut Project, name: &str, desc: &str, kind: PageKind) -> usize {
     let id = prj.new_id();
     prj.pages.push(Page::new(id, name, desc, kind));
     prj.pages.len() - 1

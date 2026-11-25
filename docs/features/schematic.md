@@ -284,6 +284,37 @@ without revisions, baselines, review, wiring marks and accepted check messages.
 Command line: `new_project --template Machine` (or a file); `new_project --example
 <name>` starts from an [example project](../../README.md#example-projects).
 
+**Parametric templates** ask for values when a project is started from them and work
+out further ones with formulas: the bundled *Motor starter direct on line*, *Motor
+starter star-delta* and *Motor starter reversing* ask for the driven machine, the rated
+power, the mains voltage, cos phi, the efficiency and whether to add the report pages,
+and size the starter from them – rated current (7.5 kW at 400 V: 14.6 A), the setting
+range of the motor protection switch (10 - 16 A), the contactors (AC-3), the
+cross-section of the motor circuit and the parts of the built-in catalog. The values
+fill the placeholders `{NAME}` in the texts of the project (tags, function texts, texts,
+device data, part numbers, page descriptions); a page with a condition (`REPORTS=yes`,
+written as in the configurator) is left out when it does not hold. A formula knows
+numbers, `"texts"`, the names of the parameters and of the formulas before it,
+`+ - * / ^`, comparisons, `&` (joins texts) and `sqrt`, `abs`, `round`, `ceil`, `floor`,
+`min`, `max`, `if` and `step(x, limit, value, …, otherwise)`, the value of the first
+limit `x` does not exceed.
+
+The pane *Master data › Template parameters* shows the open project as a template:
+name, description, parameters (label, unit, default, choices), formulas with their
+values and the condition of every page. *Save as project template…* saves the project
+in the **templates folder** (`OpenECraft/data/templates` in the data folder of the
+user, or the folder of `OPENECRAFT_TEMPLATES`; in the browser the storage of the
+editor), where the command line finds it too, and *Export as file…* writes a template
+file to pass on. The templates of the folder come beside the bundled ones in *New
+project from template*; one with the name of a bundled template takes its place, so a
+bundled template is extended by changing it (*Edit template* in the menu of its tile
+opens the template itself) and saving it under its name. Command line:
+`list_project_templates`, `template_values`, `new_project --template "Motor starter
+direct on line" --values '{"POWER_KW": 7.5}'`, `new_project --edit`,
+`save_project_template`, `delete_project_template` and the commands `get_template`,
+`set_template`, `set_template_parameter`, `set_template_formula`,
+`remove_template_parameter` and `set_page --condition`.
+
 ## Storage
 
 JSON project files (`.oec`); the current project and the parts

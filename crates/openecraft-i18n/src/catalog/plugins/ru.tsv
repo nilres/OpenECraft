@@ -3,6 +3,7 @@
 1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: верхний / левый конец линии идёт поперёк к правому / нижнему плечу · 2: к левому / верхнему плечу (по умолчанию 2)
 A cable definition needs a start and an end point	Определению кабеля нужны начальная и конечная точки
 A copper bar needs at least one segment	Для медной шины требуется хотя бы один участок
+A new formula {} needs its formula	Новой формуле {} нужно выражение
 A segment cannot be moved below itself	Сегмент нельзя переместить под самого себя
 A segment needs two different nodes	Для участка требуются два разных узла
 A wire needs at least two points	Проводу нужны как минимум две точки
@@ -105,6 +106,7 @@ Changes name, description, function, location or parent of a segment	Измен�
 Changes position, face, fastening or anchors of a panel item	Изменяет положение, поверхность, крепление или привязку элемента компоновки
 Changes the device, connection and terminal tables	Изменяет таблицы устройств, соединений и клемм
 Changes the level of a kind of message (code as shown by check)	Изменяет уровень вида сообщений (код, как показывает check)
+Changes the name and description of the open project as a template (save_project_template saves it)	Изменяет имя и описание открытого проекта как шаблона (save_project_template сохраняет его)
 Changes the properties of a wire	Изменяет свойства провода
 Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Изменяет систему, размер и компоненты корпуса (цоколь, пристыкованные стороны, фланцевая панель); привязанные элементы следуют за ним
 Check {} failed: {}	Сбой проверки {}: {}
@@ -150,6 +152,8 @@ Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing 
 Creates or changes a bus system (PROFINET, EtherCAT, …)	Создаёт или изменяет шинную систему (PROFINET, EtherCAT, …)
 Creates or changes a configurator option	Создаёт или изменяет параметр конфигуратора
 Creates or changes a fluid device group	Создаёт или изменяет группу устройств гидропневматики
+Creates or changes a formula of the template: a value worked out from the parameters and the formulas before it, filling {NAME}	Создаёт или изменяет формулу шаблона: значение, вычисляемое из параметров и предшествующих формул и заполняющее {NAME}
+Creates or changes a parameter of the template: a value asked for when a project is started from it, filling {NAME} in the texts of the project	Создаёт или изменяет параметр шаблона: значение, запрашиваемое при создании проекта из шаблона и заполняющее {NAME} в текстах проекта
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Создаёт или изменяет рамку листа проекта (встроенные рамки копируются под новым именем)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Создаёт или изменяет определение потенциала; его провода получают цвет и сечение, если они не заданы на проводе
 Creates or changes a title block of the project (built-in ones are copied under a new name)	Создаёт или изменяет основную надпись проекта (встроенные копируются под новым именем)
@@ -174,6 +178,7 @@ Date (YYYY-MM-DD)	Дата (ГГГГ-ММ-ДД)
 Date of the acceptance	Дата принятия
 Default property values	Значения свойств по умолчанию
 Default symbol key	Ключ символа по умолчанию
+Default value	Значение по умолчанию
 Define the identifiers in use (default: true)	Определить используемые идентификаторы (по умолчанию: true)
 Defines a reusable project function definition or changes it	Определяет многократно используемое определение функции проекта или изменяет его
 Defines a structure identifier or changes its description	Определяет идентификатор структуры или изменяет его описание
@@ -279,6 +284,7 @@ First row with the column names	Первая строка с именами ст
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Плоские крыши и наземные поля: направление, куда обращены модули, в градусах, против часовой стрелки при виде сверху (0: к +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Формат имени устройства: {letter}, {n} (счётчик), {page}, {column}, {row}; по умолчанию {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Формат для схемы format: {n} (счётчик), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Formula: numbers, \"texts\", names, + - * / ^, comparisons, & and sqrt, abs, round, ceil, floor, min, max, if, step	Формула: числа, \"тексты\", имена, + - * / ^, сравнения, & и sqrt, abs, round, ceil, floor, min, max, if, step
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Фундаментный заземлитель: насколько внутри наружных стен (по умолчанию 100), кольцевой: насколько снаружи (по умолчанию 1000), мм
 Foundation earth electrode: its largest mesh, mm (default 20000)	Фундаментный заземлитель: его наибольшая ячейка, мм (по умолчанию 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Исходная рамка для новой рамки (по умолчанию: A3 landscape)
@@ -366,6 +372,8 @@ Key, e.g. user.customer_code	Ключ, например user.customer_code
 Keys of the routes, comma separated (all if missing)	Ключи трасс через запятую (если не указаны – все)
 Kind: machining, punching or busbar	Тип: machining, punching или busbar
 Known length of the cable in m (taken instead of the 3D route)	Известная длина кабеля в m (берётся вместо 3D-трассы)
+Label shown when the value is asked for	Надпись, показываемая при запросе значения
+Label shown with the value	Надпись, показываемая вместе со значением
 Label: terminal number, PLC address or potential name	Надпись: номер клеммы, адрес ПЛК или имя потенциала
 Landscape (true) or portrait (false)	Альбомная (true) или книжная (false)
 Language the project texts are written in, e.g. en	Язык, на котором написаны тексты проекта, например en
@@ -485,6 +493,7 @@ Nailboard layout of a harness: the branches from the common node to the connecto
 Name (default E1, E2, …)	Имя (по умолчанию E1, E2, …)
 Name (default F1, F2, …)	Имя (по умолчанию F1, F2, …)
 Name both the building and the roof, or neither for a freestanding PV array	Укажите и здание, и крышу или ни то ни другое для наземного фотоэлектрического поля
+Name in the list of templates	Имя в списке шаблонов
 Name of the assembly	Имя сборки
 Name of the bar, e.g. L1 -Q1	Имя шины, например L1 -Q1
 Name of the check	Имя проверки
@@ -492,9 +501,9 @@ Name of the customer rule set to remove	Имя удаляемого набора
 Name of the frame	Имя рамки
 Name of the machine	Имя станка
 Name of the main earthing terminal	Имя главной заземляющей шины
+Name of the placeholder, e.g. POWER_KW for {POWER_KW}: letters, digits and _	Имя заполнителя, например POWER_KW для {POWER_KW}: буквы, цифры и _
 Name of the safety function to remove	Имя удаляемой функции безопасности
 Name of the segment	Имя сегмента
-Name of the template	Имя шаблона
 Name of the title block	Имя основной надписи
 Name of the title block (with page_type: empty removes the choice)	Имя основной надписи (с page_type: пусто удаляет выбор)
 Name of the work area	Имя рабочей области
@@ -502,6 +511,7 @@ Name or id; the tag for places	Имя или идентификатор; для 
 Name placed by hand: X offset from the insertion point in mm	Имя размещено вручную: смещение по X от точки вставки в мм
 Name placed by hand: Y offset from the insertion point in mm	Имя размещено вручную: смещение по Y от точки вставки в мм
 Name, e.g. the location +M1	Имя, например место установки +M1
+Name, parameters, formulas and page conditions of a project template	Имя, параметры, формулы и условия листов шаблона проекта
 New device tag	Новое обозначение устройства
 New identifier	Новый идентификатор
 New page name	Новое имя листа
@@ -575,6 +585,7 @@ OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=зн�
 Offset from the symbol position in mm (default: below the symbol)	Смещение от позиции символа в мм (по умолчанию: под символом)
 Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Смещение обозначения кабеля у провода от его автоматического места, одна точка [dx, dy] в мм (без точки = автоматически)
 Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Смещение обозначения жилы от его автоматического места, одна точка [dx, dy] в мм (без точки = автоматически)
+On a page of a project template: OPTION=value, OPTION!=value, OPTION=a|b joined by & (parameters and formulas of get_template); a project started from the template leaves the page out when it does not hold. Empty: always	На листе шаблона проекта: OPTION=значение, OPTION!=значение, OPTION=a|b, соединённые через & (параметры и формулы из get_template); проект, созданный из шаблона, исключает лист, если условие не выполняется. Пусто: всегда
 One end, e.g. -K1:A1	Один конец, например -K1:A1
 One row per printed label instead of a count	Одна строка на каждый печатаемый маркер вместо количества
 Only devices on these pages (names separated by commas)	Только устройства на этих листах (имена через запятую)
@@ -697,6 +708,7 @@ Project exports	Экспорт проекта
 Project languages, dictionary and translations	Языки проекта, словарь и переводы
 Project reports	Отчёты проекта
 Project statistics	Статистика проекта
+Project templates	Шаблоны проектов
 Property and function definitions, property values and placement schemes	Определения свойств и функций, значения свойств и схемы размещения
 Property key	Ключ свойства
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Ключи и значения свойств, например {\"device.rated_power\": \"5.5\"}
@@ -725,6 +737,7 @@ Remove unused definitions (default: false)	Удалить неиспользуе
 Removes a control point of the route of a wire, cable or tube, or all of them	Удаляет опорную точку трассы провода, кабеля или трубки или все
 Removes a copper bar	Удаляет медную шину
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Удаляет узел (с его участками и размещениями), участок, размещение, контур, проводник уравнивания потенциалов или принадлежность
+Removes a parameter or formula of the template	Удаляет параметр или формулу шаблона
 Removes a planned device from a segment	Удаляет запланированное устройство из сегмента
 Removes a project function definition; its symbols go back to their built-in one	Удаляет определение функции проекта; его символы снова получают встроенное определение
 Removes a project option; its content stays in the project	Удаляет опцию проекта; её содержимое остаётся в проекте
@@ -823,6 +836,7 @@ Shows the PLC hardware configuration: stations with racks, slots, modules and ad
 Shows the content of a page: symbols with their connection point positions, wires and texts	Показывает содержимое листа: символы с положениями их точек подключения, провода и тексты
 Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Показывает сохранённые в проекте данные других систем (связи изделий, документы) и журнал обмена
 Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Показывает сторону сочленения разъёма: расположение контактов изделия, положение каждого контакта (мм, вид со стороны штырей) с потенциалом, цветом провода и жилой кабеля с обеих сторон
+Shows the open project as a template: name, parameters, formulas with their values at the defaults, the pages with a condition and the mistakes	Показывает открытый проект как шаблон: имя, параметры, формулы с их значениями при значениях по умолчанию, листы с условием и ошибки
 Shows the options and rules of the configurator	Показывает параметры и правила конфигуратора
 Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Показывает контакты штекера в порядке штекера: что подключено со стороны гнёзд и со стороны штырей, потенциал, свободные контакты
 Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Показывает правила 3D-прокладки и изменяет указанные: сетка, зазор, коэффициент открытой прокладки, разделение, радиусы изгиба, длины отрезков, запасы
@@ -919,6 +933,7 @@ The rotation must be 0, 90, 180 or 270	Поворот должен быть 0, 9
 The straight line of a crossing: vertical or horizontal (default vertical)	Прямая линия пересечения: vertical или horizontal (по умолчанию vertical)
 The text height must be at least 0.5 mm	Высота текста должна быть не меньше 0,5 мм
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Два плеча угла, вертикальное и горизонтальное, например down left (по умолчанию: по проводам в этой точке, иначе down right)
+The value must be a number	Значение должно быть числом
 The width factor must be from 0.1 to 10	Коэффициент ширины должен быть от 0,1 до 10
 The wire has no length	У соединения нет длины
 The wire that jumps: vertical or horizontal	Провод, который перескакивает: vertical или horizontal
@@ -938,6 +953,7 @@ Top edge on the mounting plate in mm	Верхний край на монтажн
 Translated line	Переведённая строка
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Поворот вокруг вертикальной оси в градусах, против часовой стрелки при виде сверху (90: лицевые стороны обращены вправо)
 Two wires at a connection point share a twin ferrule	Два провода в точке подключения получают общий двойной наконечник
+Unit, e.g. A	Единица, например A
 Unit, e.g. kW	Единица, например kW
 Unknown T-connection style: {}	Неизвестный стиль T-соединения: {}
 Unknown accessory kind: {}	Неизвестный вид принадлежности: {}

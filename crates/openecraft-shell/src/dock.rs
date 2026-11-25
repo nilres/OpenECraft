@@ -97,6 +97,7 @@ pub enum ToolPane {
     Integration,
     Languages,
     Configurator,
+    ProjectTemplate,
     Projects,
     Structure,
     PropertyDatabase,
@@ -113,7 +114,7 @@ pub enum ToolPane {
 
 impl ToolPane {
     #[cfg(test)]
-    pub const ALL: [ToolPane; 38] = [
+    pub const ALL: [ToolPane; 39] = [
         ToolPane::Start,
         ToolPane::Help,
         ToolPane::Reports,
@@ -140,6 +141,7 @@ impl ToolPane {
         ToolPane::Integration,
         ToolPane::Languages,
         ToolPane::Configurator,
+        ToolPane::ProjectTemplate,
         ToolPane::Projects,
         ToolPane::Structure,
         ToolPane::PropertyDatabase,
@@ -262,7 +264,7 @@ pub fn menu_groups() -> Vec<(&'static str, Vec<Pane>)> {
         (tr_const!("Connections"), tools(&[T::Cables, T::Potentials, T::Harnesses, T::FieldWiring])),
         (
             tr_const!("Project data"),
-            tools(&[T::Reports, T::ReportBlocks, T::Tables, T::Revisions, T::Compare, T::ChangeRequests, T::Languages, T::Configurator, T::Projects]),
+            tools(&[T::Reports, T::ReportBlocks, T::Tables, T::Revisions, T::Compare, T::ChangeRequests, T::Languages, T::Configurator, T::ProjectTemplate, T::Projects]),
         ),
         (tr_const!("Tools"), tools(&[T::Electrical, T::Inspection, T::Process, T::Integration, T::ProjectServer, T::Vault])),
         (tr_const!("Master data"), tools(&[T::SymbolEditor, T::Forms, T::Macros, T::Parts, T::DataPortal, T::PropertyDatabase])),

@@ -289,7 +289,6 @@ Main	Главн.
 Main earthing busbar (device) it is connected to; empty: none	Главная заземляющая шина (устройство), к которой он подключён; пусто: нет
 Main earthing terminal	Главная заземляющая шина
 Main equipotential bonding (Ω)	Основная система уравнивания потенциалов (Ом)
-Main switch	Главный выключатель
 Manufacturer	Производитель
 Manufacturers	Производители
 Manufacturing	Изготовление
@@ -321,6 +320,7 @@ Name of the block	Имя блока
 Name of the plot, e.g. the cadastral parcel	Название участка, напр. кадастровый участок
 Name of the point, e.g. a survey point	Название точки, напр. геодезический пункт
 Name of the scheme	Имя схемы
+Name of the template	Имя шаблона
 Net	Цепь
 Never	Никогда
 New group	Новая группа
@@ -405,6 +405,7 @@ Page templates	Шаблоны листов
 Page type	Тип листа
 Page {} is locked	Лист {} заблокирован
 Page {} of {}	Страница {} из {}
+Page {}: {}	Лист {}: {}
 Pages	Листы
 Panel layout	Компоновка шкафа
 Parameter {} has the wrong type	Параметр {} имеет неверный тип
@@ -579,6 +580,7 @@ Socket side	Сторона гнёзд
 Solenoid not linked	Катушка не связана
 Sort by	Сортировать по
 Source	Источник
+Start	Начало
 Started	Начато
 State	Состояние
 Status	Состояние
@@ -618,6 +620,7 @@ The identifier must not be empty	Идентификатор не может бы
 The long side of the modules along the rows	Длинная сторона модулей вдоль рядов
 The page is released	Лист выпущен
 The project has no circuits fed from the mains	В проекте нет цепей, питаемых от сети
+The template has no parameter {}	У шаблона нет параметра {}
 There is a connection symbol at this point already	В этой точке уже есть символ соединения
 Thermal	Тепловой режим
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Эта страница не устанавливает файлы cookie, не использует отслеживание и ничего не загружает с других серверов.
@@ -710,6 +713,7 @@ yes	да
 {} circuits	Цепей: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} не устанавливается на пол: выберите изделие с отметкой напольного монтажа
 {} exists already	{} уже существует
+{} exists already: pass overwrite to replace it	{} уже существует: укажите overwrite, чтобы заменить
 {} is not a PNG or JPEG image	{} не является изображением PNG или JPEG
 {} mm	{} мм
 {} parts	Изделий: {}

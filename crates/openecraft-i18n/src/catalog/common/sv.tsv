@@ -289,7 +289,6 @@ Main	Huvud
 Main earthing busbar (device) it is connected to; empty: none	Huvudjordningsskena (apparat) som det är anslutet till; tom: ingen
 Main earthing terminal	Huvudjordningsskena
 Main equipotential bonding (Ω)	Huvudpotentialutjämning (Ω)
-Main switch	Huvudbrytare
 Manufacturer	Tillverkare
 Manufacturers	Tillverkare
 Manufacturing	Tillverkning
@@ -321,6 +320,7 @@ Name of the block	Blockets namn
 Name of the plot, e.g. the cadastral parcel	Tomtens namn, t.ex. fastighetsbeteckningen
 Name of the point, e.g. a survey point	Punktens namn, t.ex. en mätpunkt
 Name of the scheme	Schemats namn
+Name of the template	Mallens namn
 Net	Nät
 Never	Aldrig
 New group	Ny grupp
@@ -405,6 +405,7 @@ Page templates	Sidmallar
 Page type	Sidtyp
 Page {} is locked	Sida {} är låst
 Page {} of {}	Sida {} av {}
+Page {}: {}	Sida {}: {}
 Pages	Sidor
 Panel layout	Skåplayout
 Parameter {} has the wrong type	Parametern {} har fel typ
@@ -579,6 +580,7 @@ Socket side	Hylssida
 Solenoid not linked	Magnetspole inte länkad
 Sort by	Sortera efter
 Source	Källa
+Start	Start
 Started	Påbörjad
 State	Tillstånd
 Status	Status
@@ -618,6 +620,7 @@ The identifier must not be empty	Beteckningen får inte vara tom
 The long side of the modules along the rows	Modulernas långsida längs raderna
 The page is released	Sidan är frisläppt
 The project has no circuits fed from the mains	Projektet har inga kretsar som matas från nätet
+The template has no parameter {}	Mallen har ingen parameter {}
 There is a connection symbol at this point already	Det finns redan en förbindelsesymbol i den här punkten
 Thermal	Termik
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Den här sidan sätter inga kakor, använder ingen spårning och läser inte in något från andra servrar.
@@ -710,6 +713,7 @@ yes	ja
 {} circuits	{} kretsar
 {} does not stand on the floor: choose a part marked for floor mounting	{} står inte på golvet: välj en artikel som är märkt för golvmontage
 {} exists already	{} finns redan
+{} exists already: pass overwrite to replace it	{} finns redan: ange overwrite för att ersätta den
 {} is not a PNG or JPEG image	{} är inte en PNG- eller JPEG-bild
 {} mm	{} mm
 {} parts	{} artiklar

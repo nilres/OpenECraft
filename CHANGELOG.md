@@ -55,6 +55,25 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Mounting plate from its model:** the part editor reads the separate model of an
   enclosure's mounting plate (such as Rittal's `CAD_MPL` files) and gives the enclosure
   a plate of its size, centred.
+- **Project templates with parameters:** *New project from template* lists the bundled
+  templates beside those of the user, which *Save as project template…* now keeps in a
+  templates folder shared with the command line (in the browser in the editor's
+  storage); a template of the user with the name of a bundled one takes its place, and
+  *Edit template* opens one to change it. A template can ask for parameters and work
+  out further values with formulas, which fill `{NAME}` placeholders in the project,
+  and leave out pages by a condition (pane *Master data › Template parameters*). New
+  bundled templates: *Motor starter direct on line*, *star-delta* and *reversing*,
+  sized from the motor power (7.5 kW: 14.6 A, motor protection switch 10 - 16 A,
+  contactor, cross-section, catalog parts) with optional report pages. Command line and
+  MCP: `list_project_templates`, `template_values`, `new_project --values`,
+  `save_project_template`, `delete_project_template`, `--templates`
+  ([project templates](docs/features/schematic.md#project-templates)).
+- **Plugins build report pages and reuse the start page:** the plugin documentation shows
+  how a page kind is written in a project (`{"Report": "terminal_diagram"}` for a report
+  page), and a project a plugin or a file gets wrong is refused with the place of the
+  mistake (`pages[2].kind.Report: …`). A command that builds a set of pages fills the
+  empty start page of a new project instead of adding a second page `1`
+  ([plugins](docs/plugins.md)).
 - **Wires stay on mirrored and turned devices:** mirroring a symbol in the schematic
   (key M, *Mirror*) takes the wires at its connection points along and keeps them
   square, as rotating did; where the mirrored symbol still has a connection point, the

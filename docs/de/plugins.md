@@ -141,6 +141,19 @@ Parameterarten: `str`, `int`, `num`, `bool`, `ids` (Liste von Element-IDs), `poi
 Ein Befehl, der mit einem Fehler antwortet, lässt das Projekt unverändert, auch im
 Editor und im MCP-Server.
 
+Jede Seite von `project` hat eine Art `kind`: `"Schematic"`, `"Cover"`, `"Overview"`,
+`"Graphic"` oder `"Document"`, und eine Seite, die etwas vom Projekt zeigt, dazu, was sie
+zeigt: `{"Report": "terminal_diagram"}` (eine Auswertung mit ihrem Namen in
+`list_reports`, auch die eines Plugins), `{"Mounting": 12}` und `{"Drilling": 12}` (die
+ID des Gehäuses). Ein Projekt, das OpenECraft nicht lesen kann, wird mit der Stelle des
+Fehlers abgelehnt (`pages[2].kind.Report: invalid type: unit variant, expected newtype variant`).
+
+Ein Befehl, der eine Reihe von Seiten erstellt, füllt die Startseite eines neuen
+Projekts (seine einzige Seite, eine Schaltplanseite ohne Inhalt;
+`openecraft_core::ops::blank_page` in Rust) und behält ihren Namen, statt eine Seite
+daneben anzulegen. Die Seiten, die er hinzufügt, bekommen Namen, die das Projekt noch
+nicht hat: die Prüfung warnt vor einem doppelt vergebenen Seitennamen.
+
 `effect` eines Befehls sagt, was er tut: `read` (er liest nur: das Projekt bleibt, wie es
 ist), `add` (er fügt dem Projekt nur etwas hinzu) oder `change` (er kann ändern, ersetzen
 oder entfernen, was da ist; der Standard). Der MCP-Server gibt es als Annotationen des

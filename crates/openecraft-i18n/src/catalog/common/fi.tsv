@@ -289,7 +289,6 @@ Main	Pää
 Main earthing busbar (device) it is connected to; empty: none	Päämaadoituskisko (laite), johon se on liitetty; tyhjä: ei mitään
 Main earthing terminal	Päämaadoituskisko
 Main equipotential bonding (Ω)	Pääpotentiaalintasaus (Ω)
-Main switch	Pääkytkin
 Manufacturer	Valmistaja
 Manufacturers	Valmistajat
 Manufacturing	Valmistus
@@ -321,6 +320,7 @@ Name of the block	Lohkon nimi
 Name of the plot, e.g. the cadastral parcel	Tontin nimi, esim. kiinteistötunnus
 Name of the point, e.g. a survey point	Pisteen nimi, esim. mittapiste
 Name of the scheme	Mallin nimi
+Name of the template	Mallin nimi
 Net	Verkko
 Never	Ei koskaan
 New group	Uusi ryhmä
@@ -405,6 +405,7 @@ Page templates	Sivumallit
 Page type	Sivutyyppi
 Page {} is locked	Sivu {} on lukittu
 Page {} of {}	Sivu {} / {}
+Page {}: {}	Sivu {}: {}
 Pages	Sivut
 Panel layout	Kaappiasennus
 Parameter {} has the wrong type	Parametrin {} tyyppi on väärä
@@ -579,6 +580,7 @@ Socket side	Holkkipuoli
 Solenoid not linked	Magneettikelaa ei linkitetty
 Sort by	Lajitteluperuste
 Source	Lähde
+Start	Aloitus
 Started	Aloitettu
 State	Tila
 Status	Tila
@@ -618,6 +620,7 @@ The identifier must not be empty	Tunnus ei saa olla tyhjä
 The long side of the modules along the rows	Moduulien pitkä sivu rivien suuntaisesti
 The page is released	Sivu on vapautettu
 The project has no circuits fed from the mains	Projektissa ei ole verkosta syötettyjä virtapiirejä
+The template has no parameter {}	Mallissa ei ole parametria {}
 There is a connection symbol at this point already	Tässä pisteessä on jo liitossymboli
 Thermal	Lämpö
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Tämä sivu ei aseta evästeitä, ei käytä seurantaa eikä lataa mitään muilta palvelimilta.
@@ -710,6 +713,7 @@ yes	kyllä
 {} circuits	Virtapiirejä: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} ei seiso lattialla: valitse lattia-asennukseen merkitty osa
 {} exists already	{} on jo olemassa
+{} exists already: pass overwrite to replace it	{} on jo olemassa: korvaa antamalla overwrite
 {} is not a PNG or JPEG image	{} ei ole PNG- tai JPEG-kuva
 {} mm	{} mm
 {} parts	{} osaa

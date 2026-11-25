@@ -68,6 +68,7 @@ mod harness_ui;
 mod integration_ui;
 mod languages_ui;
 mod config_ui;
+mod templates_ui;
 mod drawing_ui;
 mod electrical_ui;
 mod inspection_ui;
@@ -358,6 +359,7 @@ pub struct App {
     languages_ui: languages_ui::LanguagesUi,
     tables_ui: tables_ui::TablesUi,
     config_ui: config_ui::ConfigUi,
+    templates_ui: templates_ui::TemplatesUi,
     /// Wire numbering: also renumber / remove manually set numbers.
     numbering_overwrite: bool,
     page_props: Option<usize>,
@@ -460,6 +462,7 @@ impl App {
         let mut remote = crate::remote::Remote::default();
         let mut vault = crate::vault::Vault::default();
         let mut macro_lib = None;
+        let mut stored_templates: Vec<Project> = Vec::new();
         let mut disabled_plugins: Vec<String> = Vec::new();
         let mut plugin_folders: Vec<String> = Vec::new();
         let mut language: Option<String> = None;
@@ -488,6 +491,7 @@ impl App {
             eplan_url = stored::get(storage, "eplan_portal_url");
             server_kind = stored::get(storage, "parts_server_kind");
             macro_lib = stored::get_as(storage, "macros", |text| openecraft_core::macros::MacroLibrary::from_json(text).ok());
+            stored_templates = stored::get_as(storage, templates_ui::STORAGE_KEY, |text| serde_json::from_str(text).ok()).unwrap_or_default();
             if let Some(db) = stored::get_as(storage, "project_database", |text| openecraft_core::projects::Database::from_json(text).ok()) {
                 projects_ui.db = db;
             }
@@ -641,6 +645,7 @@ impl App {
             languages_ui: Default::default(),
             tables_ui: Default::default(),
             config_ui: Default::default(),
+            templates_ui: templates_ui::TemplatesUi::new(stored_templates),
             numbering_overwrite: false,
             page_props: None,
             section_props: None,
@@ -1138,6 +1143,7 @@ impl App {
             (&mut self.languages_ui.open, Pane::Tool(T::Languages)),
             (&mut self.tables_ui.open, Pane::Tool(T::Tables)),
             (&mut self.config_ui.open, Pane::Tool(T::Configurator)),
+            (&mut self.templates_ui.open, Pane::Tool(T::ProjectTemplate)),
             (&mut self.compare_ui.open, Pane::Tool(T::Compare)),
             (&mut self.requests_ui.open, Pane::Tool(T::ChangeRequests)),
             (&mut self.structure_ui.open, Pane::Tool(T::Structure)),
@@ -1363,6 +1369,7 @@ impl eframe::App for App {
             storage.set_string("macros", self.macro_lib.to_json());
         }
         storage.set_string("project_database", self.projects_ui.db.to_json());
+        stored::set(storage, templates_ui::STORAGE_KEY, &self.templates_ui.stored);
         stored::set(storage, "project_server_url", &self.remote.url);
         stored::set(storage, "project_server_user", &self.remote.user);
         stored::set(storage, SERVER_PROJECT_KEY, &self.remote.project().or_else(|| self.recovery.clone()));

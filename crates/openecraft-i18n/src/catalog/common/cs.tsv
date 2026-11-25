@@ -289,7 +289,6 @@ Main	Hlavní
 Main earthing busbar (device) it is connected to; empty: none	Hlavní uzemňovací přípojnice (zařízení), ke které je připojen; prázdné: žádná
 Main earthing terminal	Hlavní uzemňovací svorka
 Main equipotential bonding (Ω)	Hlavní ochranné pospojování (Ω)
-Main switch	Hlavní vypínač
 Manufacturer	Výrobce
 Manufacturers	Výrobci
 Manufacturing	Výroba
@@ -321,6 +320,7 @@ Name of the block	Název bloku
 Name of the plot, e.g. the cadastral parcel	Název pozemku, např. katastrální parcela
 Name of the point, e.g. a survey point	Název bodu, např. geodetický bod
 Name of the scheme	Název schématu
+Name of the template	Název šablony
 Net	Síť
 Never	Nikdy
 New group	Nová skupina
@@ -405,6 +405,7 @@ Page templates	Šablony stránek
 Page type	Typ stránky
 Page {} is locked	Stránka {} je uzamčena
 Page {} of {}	Stránka {} z {}
+Page {}: {}	Stránka {}: {}
 Pages	Stránky
 Panel layout	Rozvržení rozváděče
 Parameter {} has the wrong type	Parametr {} má nesprávný typ
@@ -579,6 +580,7 @@ Socket side	Strana zdířek
 Solenoid not linked	Cívka není propojena
 Sort by	Seřadit podle
 Source	Zdroj
+Start	Začátek
 Started	Zahájeno
 State	Stav
 Status	Stav
@@ -618,6 +620,7 @@ The identifier must not be empty	Identifikátor nesmí být prázdný
 The long side of the modules along the rows	Delší strana modulů podél řad
 The page is released	Stránka je uvolněna
 The project has no circuits fed from the mains	Projekt nemá žádné obvody napájené ze sítě
+The template has no parameter {}	Šablona nemá parametr {}
 There is a connection symbol at this point already	V tomto bodě už symbol spojení je
 Thermal	Tepelné poměry
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Tato stránka neukládá žádné soubory cookie, nepoužívá sledování a nenačítá nic z jiných serverů.
@@ -710,6 +713,7 @@ yes	ano
 {} circuits	Obvody: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} nestojí na podlaze: zvolte artikl označený pro montáž na podlahu
 {} exists already	{} již existuje
+{} exists already: pass overwrite to replace it	{} již existuje: pro nahrazení zadejte overwrite
 {} is not a PNG or JPEG image	{} není obrázek PNG ani JPEG
 {} mm	{} mm
 {} parts	Artikly: {}

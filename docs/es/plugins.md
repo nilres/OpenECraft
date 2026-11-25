@@ -143,6 +143,19 @@ por defecto.
 Un comando que responde con un error deja el proyecto sin cambios, también en el editor y
 en el servidor MCP.
 
+Cada página de `project` tiene un tipo `kind`: `"Schematic"`, `"Cover"`, `"Overview"`,
+`"Graphic"` o `"Document"`, y para una página que muestra algo del proyecto, lo que
+muestra: `{"Report": "terminal_diagram"}` (un informe por su nombre en `list_reports`,
+también el de un plugin), `{"Mounting": 12}` y `{"Drilling": 12}` (el identificador de
+la envolvente). Un proyecto que OpenECraft no puede leer se rechaza con el lugar del
+error (`pages[2].kind.Report: invalid type: unit variant, expected newtype variant`).
+
+Un comando que construye una serie de páginas rellena la página de inicio de un proyecto
+nuevo (su única página, una página de esquema sin contenido;
+`openecraft_core::ops::blank_page` en Rust) y mantiene su nombre, en lugar de añadir una
+página al lado. Las páginas que añade toman nombres que el proyecto aún no tiene: la
+comprobación avisa de un nombre de página usado dos veces.
+
 `effect` de un comando dice lo que hace: `read` (solo lee: el proyecto queda como está),
 `add` (solo añade al proyecto) o `change` (puede cambiar, sustituir o quitar lo que hay;
 el valor por defecto). El servidor MCP lo pasa como anotaciones de la herramienta

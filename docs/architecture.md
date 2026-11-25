@@ -80,7 +80,9 @@ Layers, bottom up (a module may use its own layer and the layers below):
    windows and rooms found in a floor plan on paper; uses `raster`),
    `ttf` (TrueType reader and
    subsetter for PDF fonts), `params` (typed parameters and
-   `Text`), `table` (report tables), `parallel` (work spread over the threads), `issue` (`Issue`, `Severity`; a built-in check's
+   `Text`), `table` (report tables), `parallel` (work spread over the threads), `formula`
+   (the formulas of project templates: numbers, texts, names, operators, functions such
+   as `step`), `issue` (`Issue`, `Severity`; a built-in check's
    message is an English template with its arguments, `issue!(severity, target, "…",
    args)`, translated by `Issue::message()` where it is shown, so that the analysis
    survives a language change and MCP clients get a stable `key`; plugin and generated
@@ -116,7 +118,10 @@ Layers, bottom up (a module may use its own layer and the layers below):
    `export3d`, `aml`, `integration`, `kbl` (harness data as KBL / VDA 4964),
    `harness_export` (harness interface: JSON, wire processing list, 3D bundle).
 8. Project files, sharing, verification: `archive`, `storage` (the project as a set of
-   files: the split format for version control), `collab`, `projects`, `verify`, `sample`.
+   files: the split format for version control), `collab`, `projects`, `verify`, `sample`,
+   `project_templates` (bundled and user templates, their parameters, formulas and page
+   conditions, the templates folder; the bundled motor starters are drawn with the
+   page builder of `sample`).
 
 Known upward edges (listed in `CORE_RULES`, to be removed): `structure`, `macros`,
 `page_templates` and `document` use `ops`; `field`, `document` and `review` draw with

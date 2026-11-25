@@ -1,5 +1,6 @@
 # English<TAB>Română – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(doar serverul MCP)
+A template needs a name	Un șablon are nevoie de un nume
 Access token for changes	Token de acces pentru modificări
 Access token of a Vault session or an Autodesk account instead of user and password	Tokenul de acces al unei sesiuni Vault sau al unui cont Autodesk în locul utilizatorului și parolei
 Address of the Vault server, e.g. https://vault.example.com	Adresa serverului Vault, de ex. https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	Def
 Delete the role	Ștergerea rolului
 Deletes a catalog without parts from the parts server	Șterge de pe serverul de articole un catalog fără articole
 Deletes a part from the parts server	Șterge un articol de pe serverul de articole
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Șterge un șablon al utilizatorului din folderul de șabloane (unul integrat cu același nume revine)
 Deletes a user of the parts server (administrators only)	Șterge un utilizator al serverului de articole (numai administratori)
 Descending order	Ordine descrescătoare
 Discard unsaved changes of the open project	Renunță la modificările nesalvate ale proiectului deschis
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Listează proiectele exemplu, de la un prim circuit la o instalație întreagă, cu funcțiile pe care le arată fiecare
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Listează exporturile (integrate și ale pluginurilor): numele pentru export, titlul, extensia de fișier și parametrii
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Listează folderele și fișierele unui folder Vault sau caută în proprietățile fișierelor de sub acesta (sau în întregul vault)
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Listează șabloanele de proiect (cele integrate și cele din folderul de șabloane: --templates / OPENECRAFT_TEMPLATES) cu parametrii, formulele lor și paginile pe care le omite o condiție
 Lists the reports (built-in and of plugins): name for report and title	Listează rapoartele (integrate și ale pluginurilor): numele pentru report și titlul
 Lists the users of the parts server (administrators only)	Listează utilizatorii serverului de articole (numai administratori)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Pluginuri încărcate (integrate și din folderele de pluginuri din --plugins / OPENECRAFT_PLUGINS) cu comenzile, verificările, rapoartele și exporturile lor; activează sau dezactivează unul pentru această sesiune
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Producătorul ale cărui 
 Maximum number of hits (default 50)	Număr maxim de rezultate (implicit 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Îmbină două versiuni ale unui fișier dintr-un proiect divizat înregistrare cu înregistrare (driverul de îmbinare git): rezultatul înlocuiește fișierul acestei părți; acolo unde părțile diferă, valorile ei rămân și comanda eșuează
 Name of a built-in template (list_structure_templates)	Numele unui șablon integrat (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Numele unui șablon (list_project_templates) sau un fișier de șablon
 Name of the knowledge vault (default Vault)	Numele seifului de cunoștințe (implicit Vault)
+Name of the template (default: its template name, otherwise the project name)	Numele șablonului (implicit: numele său de șablon, altfel numele proiectului)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Conturile noi așteaptă aprobarea unui administrator (true) sau se conectează imediat (false)
 New file name (save as)	Nume de fișier nou (salvare ca)
 New pages for every value of the group column (default true)	Pagini noi pentru fiecare valoare a coloanei de grupare (implicit true)
@@ -147,6 +152,7 @@ No grant of {} found	Nu s-a găsit nicio atribuire pentru {}
 No profile named {}	Niciun profil cu numele {}
 No project is open: use open_project or new_project first	Niciun proiect deschis: folosiți mai întâi open_project sau new_project
 No role {} defined	Nu este definit niciun rol {}
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Niciun folder de șabloane: indicați --templates <folder> sau setați OPENECRAFT_TEMPLATES
 Not a valid catalog: {}	Nu este un catalog valid: {}
 Not a valid part: {}	Nu este un articol valid: {}
 Not connected to a vault: use vault_connect first	Nu există conexiune la un vault: folosiți mai întâi vault_connect
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Doar paginile aces
 Only the projects that match these search terms	Numai proiectele care corespund acestor termeni de căutare
 Only this block	Doar acest bloc
 Open (true) or close (false) the registration	Deschideți (true) sau închideți (false) înregistrarea
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	Deschide șablonul însuși pentru a-l modifica: substituenții, parametrii și condițiile de pagină rămân (save_project_template îl salvează)
 Opens a project file or archive (files of older versions are converted)	Deschide un fișier de proiect sau o arhivă (fișierele versiunilor mai vechi sunt convertite)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Deschide un fișier de proiect sau o arhivă din vault; vault_upload fără țintă înregistrează (check-in) o versiune nouă a acestuia
 Option {} needs the form name=value	Opțiunea {} necesită forma nume=valoare
@@ -203,6 +210,7 @@ Redoes the last undone change	Reface ultima modificare anulată
 Remove the grants of the user or group (only of this role and scope, if given)	Eliminarea atribuirilor utilizatorului sau grupului (numai pentru acest rol și domeniu, dacă sunt indicate)
 Remove the parts assigned so far	Eliminare articole atribuite până acum
 Removes a file from a part on the parts server	Elimină un fișier al unui articol de pe serverul de articole
+Replace a template of the same name	Înlocuiește un șablon cu același nume
 Replace the file at path if it exists	Înlocuiește fișierul din path dacă există
 Replace the project parts by their newer server versions	Înlocuirea articolelor proiectului cu versiunile lor mai noi de pe server
 Replacement text	Text de înlocuire
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Nume rol
 Role of requests without sign-in; none: sign-in needed for reading	Rolul cererilor fără conectare; none: citirea necesită conectare
 Role: reader, manufacturer, editor, admin or a defined role	Rol: reader, manufacturer, editor, admin sau un rol definit
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Salvează proiectul ca șablon în folderul de șabloane, cu parametrii, formulele și condițiile sale de pagină; un șablon al utilizatorului cu numele unuia integrat îi ia locul
 Saves the project to its file or to a new path	Salvează proiectul în fișierul său sau într-o cale nouă
 Scale drawings down that do not fit on the page (default: true)	Micșorează desenele care nu încap pe pagină (implicit: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Termeni de căutare, de ex. company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Afișează manifestul unei arhive de pro
 Shows the project properties, file, number of pages and devices and the check result	Afișează proprietățile proiectului, fișierul, numărul de pagini și de dispozitive și rezultatul verificării
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Afișează rolurile, atribuirile și serviciile de director ale serverului de articole și, opțional, setează rolul cererilor anonime (numai administratori)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Arată dacă utilizatorii se pot înregistra singuri pe serverul de articole (ca cititori) și, opțional, deschide sau închide înregistrarea (doar administratori)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Pornire de la un șablon de proiect (list_project_templates: cele integrate, precum Mașină sau Demaror de motor cu pornire directă, și cele din folderul de șabloane) sau de la un fișier de șablon
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Pornire de la un șablon de proiect: unul integrat (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) sau un fișier de proiect
 Start from an example project (names: list_examples)	Pornește de la un proiect exemplu (nume: list_examples)
 Start from the demo project	Pornire de la proiectul demonstrativ
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Proprietăți definite de utilizator (nume: valoare; o valoare goală o elimină)
 User name to sign in with	Numele de utilizator pentru conectare
 User or group name (wildcards; directory groups as directory:group)	Nume de utilizator sau de grup (metacaractere; grupurile unui serviciu de director ca director:grup)
+Values of the parameters (name: value); the others keep their default	Valorile parametrilor (nume: valoare); ceilalți își păstrează valoarea implicită
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	Valorile parametrilor șablonului (nume: valoare, de ex. POWER_KW: 7.5); ceilalți își păstrează valoarea implicită
 Values to set (name: value; an empty value removes a property)	Valori de setat (nume: valoare; o valoare goală elimină o proprietate)
 Vault user name (signs in)	Nume de utilizator Vault (pentru conectare)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Ce se scrie: oec (fișier de proiect), oecp (proiect divizat într-un dosar propriu) sau oecz (arhivă); implicit: după extensia ieșirii
 Width and height must be greater than 0	Lățimea și înălțimea trebuie să fie mai mari decât 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Cuvinte de căutat în titlurile, numele și termenii de căutare (standarde precum VDE 0100-600) ale rapoartelor
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Calculează valorile unui șablon de proiect pentru parametrii dați (curent nominal, domenii de reglaj, articole) fără a porni un proiect
 Write the table as CSV to this file	Scriere tabel ca CSV în acest fișier
 Writes the check scheme of the project (checks switched off, message levels) to a file	Scrie schema de verificare a proiectului (verificări dezactivate, niveluri de mesaj) într-un fișier
 Writes the embedded file of a document page	Scrie fișierul încorporat al unei pagini de document
@@ -298,7 +311,6 @@ openecraft-cli version\n\nShows the version of the command line (also --version 
 schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) sau un raport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo și redo funcționează doar într-o sesiune MCP: linia de comandă redeschide proiectul pentru fiecare comandă
 user or group	user sau group
-{} exists already: pass overwrite to replace it	{} există deja: indicați overwrite pentru a-l înlocui
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} este o arhivă și rămâne neschimbată: salvați proiectul ca fișier de proiect (save_project --path <file>.oec) sau convertiți arhiva (convert_project)
 {} is an archive: pass a path to save the project as a project file	{} este o arhivă: indicați o cale pentru a salva proiectul ca fișier de proiect
 {} is not a language of the project	{} nu este o limbă a proiectului

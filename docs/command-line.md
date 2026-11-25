@@ -32,6 +32,17 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   opens the project anew for every command. An archive given as `--project` stays
   unchanged: save the project as a project file (`save_project --path <file>.oec`) or
   convert the archive (`convert_project`).
+- **Project templates**: `list_project_templates` lists the bundled templates and those of
+  the templates folder (`--templates <folder>`, `OPENECRAFT_TEMPLATES`, otherwise
+  `OpenECraft/data/templates` in the data folder of the user, which the editor uses
+  too). `new_project --template "Motor starter direct on line" --values '{"POWER_KW":
+  7.5}'` starts a project with the values of its parameters, `template_values` shows
+  what the formulas work out without starting one, `save_project_template` saves the
+  open project into the folder and `delete_project_template` removes one there; a
+  template of the folder with the name of a bundled one takes its place. `new_project
+  --edit` opens a template itself, `get_template`, `set_template_parameter`,
+  `set_template_formula` and `set_page --condition` change it
+  ([project templates](features/schematic.md#project-templates)).
 - A **split project** keeps the project as many small files for version control (git):
   the index `<name>.oecp` with a folder `pages` (one file per page), `data` (one file
   per device, part, cable … and per area of the project-wide data; the files of a kind

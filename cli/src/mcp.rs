@@ -30,7 +30,7 @@ parts server (parts_search, parts_get; without a server they search the project 
 /// agent needs to draw, check and export schematics. The others stay reachable
 /// through the meta tools.
 pub const CORE: &[&str] = &[
-    "new_project", "open_project", "save_project", "convert_project", "list_examples", "project_info", "set_project_info", "undo", "redo",
+    "new_project", "list_project_templates", "template_values", "open_project", "save_project", "convert_project", "list_examples", "project_info", "set_project_info", "undo", "redo",
     "list_pages", "get_page", "add_page", "set_page", "renumber_pages",
     "list_symbols", "place_symbol", "place_part", "update_symbol", "move_items", "delete_items",
     "add_wire", "connect", "route", "update_wire", "add_text", "list_potentials", "set_wire_colors", "set_wire_numbering", "renumber_wires",

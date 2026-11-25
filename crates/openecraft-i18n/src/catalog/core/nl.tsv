@@ -26,6 +26,9 @@ A port cannot be connected to itself	Een poort kan niet met zichzelf worden verb
 A room needs at least four walls	Een ruimte heeft minstens vier wanden nodig
 A section number consists of letters and digits and does not start with 0	Een sectienummer bestaat uit letters en cijfers en begint niet met 0
 A section number must not be empty or contain a dot	Een sectienummer mag niet leeg zijn of een punt bevatten
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Een draaistroommotor in beide draairichtingen met vergrendelde magneetschakelaars: hoofd- en stuurstroomkring gedimensioneerd op basis van het motorvermogen, optionele rapportpagina's
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Een draaistroommotor die in ster start en in driehoek draait: hoofd- en stuurstroomkring gedimensioneerd op basis van het motorvermogen, optionele rapportpagina's
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Een direct ingeschakelde draaistroommotor: hoofd- en stuurstroomkring gedimensioneerd op basis van het motorvermogen, optioneel klemmenplan, verbindingslijst, apparatenlijst en stuklijst
 A0 landscape	A0 liggend
 A1 landscape	A1 liggend
 A2 landscape	A2 liggend
@@ -68,6 +71,7 @@ Analog output module	Analoge uitgangsmodule
 Analysis	Analyse
 Another section here has this number	Een andere sectie hier heeft dit nummer al
 Antenna outlet	Antennecontactdoos
+Anticlockwise	Linksom
 Apparent power (kVA)	Schijnbaar vermogen (kVA)
 Applied directives	Toegepaste richtlijnen
 Approval date	Goedkeuringsdatum
@@ -177,6 +181,7 @@ Cam profile switch NC	Curveschakelaar verbreekcontact
 Cam profile switch NO	Curveschakelaar maakcontact
 Cam switch NC	Nokkenschakelaar verbreekcontact
 Cam switch NO	Nokkenschakelaar maakcontact
+Cannot delete {}: {}	Kan {} niet verwijderen: {}
 Cannot read the DWG file: {}	Kan het DWG-bestand niet lezen: {}
 Capacitive sensor, 2-wire	Capacitieve sensor, 2-draads
 Capacitive sensor, 3-wire	Capacitieve sensor, 3-draads
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Vermogensschakelaar 4-polig
 Circuits, protective devices, switches and terminals labelled	Stroomkringen, beveiligingen, schakelaars en klemmen gemarkeerd
 Circular milling	Circulair frezen
 Clip / snap-on	Klem / klik
+Clockwise	Rechtsom
 Cloud	Wolk
 Clutch (electromagnetic)	Koppeling (elektromagnetisch)
 Coil and timing	Spoel en tijdgedrag
@@ -260,7 +266,9 @@ Connections of the conductors	Verbindingen van de geleiders
 Connector pin-outs and flat cables	Pinbezettingen van connectoren en platte kabels
 Connector pin-outs: mating faces and pin tables (SVG)	Pinbezettingen: steekzijden en pintabellen (SVG)
 Contact material	Contactmateriaal
+Contactor	Magneetschakelaar
 Contactor (single-line)	Magneetschakelaar (eenlijnig)
+Contactor at least (AC-3)	Magneetschakelaar minimaal (AC-3)
 Contactor coil KM (GB)	Magneetschakelaarspoel KM (GB)
 Contactor coil KM (GOST)	Magneetschakelaarspoel KM (GOST)
 Contactor main contacts KM (GB)	Hoofdcontacten magneetschakelaar KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Contourfrezen
 Contractor	Aannemer
 Control	Besturing
 Control cabinet	Schakelkast
+Control circuit {}	Stuurstroomkring {}
 Control mode	Regelmodus
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Steunpunt {} van {} {} ligt in iets of buiten de behuizing: het wordt gelegd zonder zijn steunpunten. Verplaats het steunpunt naar vrije ruimte.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Steunpunt {} van {} {} ligt buiten zijn weg: in geen kast of ruimte waardoor het wordt gelegd. Verplaats het steunpunt naar zijn weg.
@@ -286,6 +295,7 @@ Control voltage	Stuurspanning
 Control voltage type	Type stuurspanning
 Conventional touch voltage limit UL (V)	Conventionele aanraakspanningsgrens UL (V)
 Converted from file format {} to {}: {}	Geconverteerd van bestandsindeling {} naar {}: {}
+Conveyor	Transporteur
 Coolant	Koelmiddel
 Cooler	Koeler
 Cooling method	Koelmethode
@@ -314,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Voorblad, inhoudsopgave, schemapagina's met functie en plaats, apparatenlijst, stuklijst, klem- en kabelschema's
 Create projects	Projecten maken
 Creation date	Aanmaakdatum
+Cross-section of the motor circuit	Doorsnede van de motorstroomkring
 Cross-section {} carries {} A, less than the {} A of {}	Doorsnede {} voert {} A, minder dan de {} A van {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	De kruising op pagina {} past niet bij zijn draden: hij heeft een draad in alle vier richtingen en geen aansluitpunt daar nodig
 Current capacity (A)	Stroombelastbaarheid (A)
 Current consumption	Stroomopname
+Current of the mains and delta contactor	Stroom van de net- en driehoekmagneetschakelaar
+Current of the star contactor	Stroom van de stermagneetschakelaar
 Current range	Stroombereik
 Current setting	Stroominstelling
 Current transformer	Stroomtransformator
@@ -351,6 +364,7 @@ Default {} ({})	Standaard {} ({})
 Degree of protection	Beschermingsgraad
 Delete projects	Projecten verwijderen
 Delivery date	Leverdatum
+Delta	Driehoek
 Demand (diversity factor {})	Vraag (gelijktijdigheidsfactor {})
 Demand {} A above the usable {} A of the supply	Vraag {} A boven de bruikbare {} A van de voeding
 Density	Dichtheid
@@ -405,6 +419,7 @@ Disconnector 3-pole, lockable	Scheidingsschakelaar 3-polig, afsluitbaar
 Displacement	Slagvolume
 Distribution board	Verdeelinrichting
 Distribution board (IEC 61439)	Verdeelinrichting (IEC 61439)
+Division by zero in the formula	Deling door nul in de formule
 Document	Document
 Document (embedded file)	Document (ingesloten bestand)
 Document A4 portrait	Document A4 staand
@@ -425,6 +440,7 @@ Drilling and milling centre	Boor- en freescentrum
 Drive	Aandrijving
 Drive type	Aandrijftype
 Driven by	Aangedreven door
+Driven machine	Aangedreven machine
 Drives	Aandrijvingen
 Drop-out time	Afvaltijd
 Duct fill levels	Vullingsgraad van kabelgoten
@@ -824,9 +840,12 @@ Main contacts 3-pole, automatic tripping	Hoofdcontacten 3-polig, automatische ui
 Main contacts 4-pole	Hoofdcontacten 4-polig
 Main function	Hoofdfunctie
 Main function with contact image	Hoofdfunctie met contactbeeld
+Main switch	Hoofdschakelaar
 Main switch 1-pole	Hoofdschakelaar 1-polig
 Main switch 2-pole	Hoofdschakelaar 2-polig
 Main switch 3-pole	Hoofdschakelaar 3-polig
+Mains	Net
+Mains and delta contactor	Net- en driehoekmagneetschakelaar
 Mains frequency	Netfrequentie
 Mains voltage	Netspanning
 Maintenance	Onderhoud
@@ -893,11 +912,16 @@ Motor DC, shunt-wound	Gelijkstroommotor, shuntmotor
 Motor cable {} of frequency converter {} must be shielded	Motorkabel {} van frequentieomvormer {} moet afgeschermd zijn
 Motor data	Motorgegevens
 Motor operator of a circuit breaker	Motoraandrijving van een vermogensschakelaar
+Motor protection	Motorbeveiliging
 Motor protection (class 10)	Motorbeveiliging (klasse 10)
 Motor protection switch	Motorbeveiligingsschakelaar
 Motor protection switch (single-line)	Motorbeveiligingsschakelaar (eenlijnig)
 Motor protection switch 1-pole	Motorbeveiligingsschakelaar 1-polig
 Motor protection switch 2-pole	Motorbeveiligingsschakelaar 2-polig
+Motor running	Motor draait
+Motor starter direct on line	Motorstarter direct
+Motor starter reversing	Motorstarter omkeerschakeling
+Motor starter star-delta	Motorstarter ster-driehoek
 Motor, electronically commutated (brushless DC)	Motor, elektronisch gecommuteerd (borstelloze gelijkstroommotor)
 Motors	Motoren
 Motors / Loads	Motoren / belastingen
@@ -963,6 +987,7 @@ No segment template named {}	Geen segmentsjabloon met de naam {}
 No subproject {}	Geen deelproject {}
 No such object: {}	Object bestaat niet: {}
 No surge protective device at the supply (IEC 60364-4-44)	Geen overspanningsbeveiliging bij de voeding (IEC 60364-4-44)
+No template of the user is named {}	Geen sjabloon van de gebruiker heet {}
 No terminal {}	Geen klem {}
 No user defined property {}	Geen door de gebruiker gedefinieerde eigenschap {}
 No wires at the pins of {}	Geen draden aan de pinnen van {}
@@ -1204,7 +1229,9 @@ Potentials, interruption points	Potentialen, onderbrekingspunten
 Potentiometer	Potentiometer
 Power (kWp)	Vermogen (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Hoofd- en stuurstroomkring over meerdere pagina's: hoofdschakelaar, motorbeveiliging, drie magneetschakelaars met vergrendelingen, opkomvertraagd tijdrelais, onderbrekingspunten, potentialen met draadkleuren, motorkabel en kabeloverzichten.
+Power circuit {}	Hoofdstroomkring {}
 Power factor	Arbeidsfactor
+Power factor cos phi	Arbeidsfactor cos phi
 Power factor meter	Arbeidsfactormeter
 Power loss (W)	Vermogensverlies (W)
 Power module	Voedingsmodule
@@ -1257,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Beschermingslei
 Protective devices	Beveiligingsapparaten
 Protective earth	Beschermingsaarde
 Protective earth (PE)	Beschermingsaarde (PE)
+Protective earth terminal	Klem voor beschermingsaarde
 Protective hose	Beschermslang
 Protective, earthing and bonding conductors present and adequate	Beschermings-, aardings- en vereffeningsleidingen aanwezig en toereikend
 Proximity sensor	Naderingsschakelaar
@@ -1306,6 +1334,7 @@ Rated cross-section	Nominale doorsnede
 Rated current (A)	Nominale stroom (A)
 Rated current of the assembly	Nominale stroom van de schakelinstallatie
 Rated current of the auxiliary contacts	Nominale stroom van de hulpcontacten
+Rated current {} A, motor protection switch {}	Nominale stroom {} A, motorbeveiligingsschakelaar {}
 Rated diversity factor	Nominale gelijktijdigheidsfactor
 Rated frequency	Nominale frequentie
 Rated impulse withstand voltage	Nominale stootspanningsvastheid
@@ -1342,6 +1371,7 @@ Remote I/O	Decentrale I/O
 Remote I/O {} has no controller	Decentrale I/O {} heeft geen controller
 Replace needs the text to find	Vervangen heeft de te zoeken tekst nodig
 Replacement part number	Artikelnummer vervangend artikel
+Report pages	Rapportpagina's
 Residual current device	Aardlekschakelaar
 Residual current device 1-pole	Aardlekschakelaar 1-polig
 Residual current device 2-pole	Aardlekschakelaar 2-polig
@@ -1444,6 +1474,7 @@ Service unit	Verzorgingseenheid
 Service unit (filter, regulator, lubricator)	Verzorgingseenheid (filter, regelaar, olienevelaar)
 Setpoint	Setpoint
 Setting range	Instelbereik
+Setting range of the motor protection switch	Instelbereik van de motorbeveiligingsschakelaar
 Sheath colour	Kleur mantel
 Sheath material	Materiaal mantel
 Shed roof	Lessenaarsdak
@@ -1505,6 +1536,9 @@ Spiral	Wenteltrap
 Stainless steel	Roestvrij staal
 Stainless steel V4A	Roestvast staal V4A
 Standard	Norm
+Star	Ster
+Star contactor	Stermagneetschakelaar
+Star time	Stertijd
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Start-/stopschakeling met een relais: spoel en contacten vormen één apparaat met kruisverwijzingen en contactbeeld, klemmenstrook, draadnummers, klemmenschema en verbindingslijst.
 Start date	Begindatum
 Starting current ratio	Verhouding aanloopstroom
@@ -1517,6 +1551,7 @@ Station {}: bus system {} does not exist	Station {}: bussysteem {} bestaat niet
 Steam	Stoom
 Steel, hot-dip galvanised	Staal, thermisch verzinkt
 Stock	Voorraad
+Stop	Stop
 Stop category	Stopcategorie
 Storage temperature range	Opslagtemperatuurbereik
 Straight	Recht
@@ -1548,6 +1583,7 @@ Supplementary fields	Aanvullende velden
 Suppliers	Leveranciers
 Supply network	Netvorm
 Supply voltage	Voedingsspanning
+Supply {} V / 50 Hz, TN-S	Voeding {} V / 50 Hz, TN-S
 Surface (m²)	Oppervlak (m²)
 Surface-mounted	Opbouw
 Surge protection type	Type overspanningsbeveiliging
@@ -1566,6 +1602,7 @@ Switches / Sensors	Schakelaars / sensoren
 Switches, pushbuttons	Schakelaars, drukknoppen
 Switching frequency	Schakelfrequentie
 Switching output	Schakeluitgang
+Syntax error in the formula at {}	Syntaxisfout in de formule bij {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Het T-stuk op pagina {} past niet bij zijn draden: het heeft één draad in zijn richting, twee dwars en geen aansluitpunt daar nodig
 Table of contents	Inhoudsopgave
 Tabloid landscape	Tabloid liggend
@@ -1592,6 +1629,7 @@ Terminal data	Klemgegevens
 Terminal description	Klembeschrijving
 Terminal line-up	Klemmenopstelling
 Terminal marker	Klemmarkering
+Terminal of the motor circuit	Klem van de motorstroomkring
 Terminal parts	Artikelen draadeinden
 Terminal strip data of {} without terminals	Klemmenstrookgegevens van {} zonder klemmen
 Terminal strip overview	Overzicht klemmenstroken
@@ -1622,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	De eerste kolom moet Key zijn
 The folder {} already holds the project {}: a split project needs a folder of its own	De map {} bevat al het project {}: een gesplitst project heeft een eigen map nodig
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	De map {} bevat bestanden die bij geen project horen ({}): een gesplitst project heeft een eigen map nodig
+The formula ends too early	De formule eindigt te vroeg
 The function definition needs a key and a name	De functiedefinitie heeft een sleutel en een naam nodig
 The index of the project names no file layout: it was not written by OpenECraft	De index van het project noemt geen bestandsindeling: hij is niet door OpenECraft geschreven
 The last page cannot be deleted	De laatste pagina kan niet worden verwijderd
@@ -1752,14 +1791,17 @@ Unit of measurement	Meeteenheid
 Unit price	Stukprijs
 Unknown cable {}	Onbekende kabel {}
 Unknown device: {}	Onbekend apparaat: {}
+Unknown function {} in the formula	Onbekende functie {} in de formule
 Unknown job {}	Onbekende opdracht {}
 Unknown macro	Onbekende macro
 Unknown macro box	Onbekend macrokader
+Unknown name {} in the formula	Onbekende naam {} in de formule
 Unknown object: {}	Onbekend object: {}
 Unknown revision	Onbekende revisie
 Unknown symbol '{}'	Onbekend symbool '{}'
 Unknown tool {}	Onbekend gereedschap {}
 Unused connection points	Ongebruikte aansluitpunten
+Upper limit of the setting range	Bovengrens van het instelbereik
 Upstream	Voorgeschakeld
 User defined	Door de gebruiker gedefinieerd
 User symbols	Gebruikerssymbolen
@@ -1837,6 +1879,7 @@ Within a suite, wall mounted	Binnen een rij, wandmontage
 Within a suite, wall mounted, roof covered	Binnen een rij, wandmontage, dak afgedekt
 Word document	Word-document
 Working line	Werkleiding
+Wrong number of values for {}	Verkeerd aantal waarden voor {}
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	Bouwjaar
 Yes / no	Ja / nee
@@ -1961,8 +2004,12 @@ yellow	geel
 {} is a built-in property	{} is een ingebouwde eigenschap
 {} is a built-in scheme	{} is een ingebouwd schema
 {} is a busbar machine and makes no sheets	{} is een railbewerkingsmachine en maakt geen platen
+{} is above the last step	{} ligt boven de laatste trede
+{} is defined twice	{} is twee keer gedefinieerd
 {} is neither the protective device nor a device of the circuit of {}	{} is noch het beveiligingsapparaat noch een apparaat van de groep van {}
+{} is no valid name: letters, digits and _, not starting with a digit	{} is geen geldige naam: letters, cijfers en _, niet beginnend met een cijfer
 {} is not a busbar machine	{} is geen railbewerkingsmachine
+{} is not a number	{} is geen getal
 {} is not a property of {}	{} is geen eigenschap van {}
 {} is not an approver of this project	{} is geen goedkeurder van dit project
 {} is not connected to the mains: place it without a protective device	{} wordt niet op het net aangesloten: plaats het zonder beveiligingsapparaat
@@ -2121,6 +2168,7 @@ yellow	geel
 {}: voltage drop {} V ({} %) above {} %	{}: spanningsval {} V ({} %) boven {} %
 {}: wire colour {} differs from the potential definition ({})	{}: draadkleur {} wijkt af van de potentiaaldefinitie ({})
 {}: wire without core designation	{}: draad zonder aderbenaming
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) en {} ({}) liggen {} mm uit elkaar, minimaal {} mm vereist
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W vermogensverlies verwarmt de behuizing tot {} °C (maximaal {} °C): {} nodig
@@ -2140,7 +2188,9 @@ yellow	geel
 {}: {} is inside the ventilation clearance of {}	{}: {} ligt binnen de ventilatieafstand van {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} is bedoeld voor een montagerail, maar zit direct op de plaat
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} is gemaakt voor railsystemen met {} mm hartafstand, de rails waarop het zit liggen {} mm uit elkaar
+{}: {} is not a number	{}: {} is geen getal
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} is niet bedoeld voor wandmontage, monteer het op een rail
+{}: {} is not one of its choices	{}: {} is geen van de keuzes
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} ligt {} … {} mm boven de vloer, toegestaan {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg op {} overschrijdt de draagkracht van {} kg
 {}: {} lies in a restricted placing area of the {}	{}: {} ligt in een verboden plaatsingszone op {}

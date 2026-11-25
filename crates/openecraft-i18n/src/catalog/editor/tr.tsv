@@ -69,6 +69,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Sayfa makrosu olan ve henüz şemada bulunmayan her planlanmış cihaz için bir şema sayfası (seçili segment, aksi halde tümü)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Bölünmüş proje (.oecp), git gibi sürüm denetimi için her sayfa, cihaz, parça ve gömülü dosya başına küçük bir dosya içeren bir klasördür: Dosya › Bölünmüş proje olarak kaydet.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Bölünmüş proje bir dosya klasörüdür: tarayıcı onu açamaz. Önce bir proje dosyasına (.oec) veya arşive (.oecz) dönüştürün.
+A template file to pass on; New › From a template file… starts projects from it	Başkalarına vermek için bir şablon dosyası; Yeni › Bir şablon dosyasından… bununla projeler başlatır
 A template of this name is replaced.	Bu ada sahip bir şablon değiştirilir.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Şablon, yeni bir sayfanın sayfa tipini, çizim çerçevesini, antetini, yapısını ve açıklamasını belirler ve içeriğini yerleştirir.
 A way through free air costs this many times the way in a duct or routing path	Serbest havadan geçen bir yol, kanal veya yönlendirme yolundaki yolun bu kadar katı maliyetlidir
@@ -535,6 +536,7 @@ Delete section	Bölümü sil
 Delete shaft	Şaftı sil
 Delete stair	Merdiveni sil
 Delete string	Diziyi sil
+Delete template	Şablonu sil
 Delete the group	Grubu sil
 Delete the layer; its items move to the default layer	Katmanı sil; öğeleri varsayılan katmana taşınır
 Delete the property and all its values	Özelliği ve tüm değerlerini sil
@@ -694,6 +696,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Tabloda düzenle
 Edit in table…	Tabloda düzenle…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Düzenleme modu: binaları vaziyet planında yerlerine sürükleyin ve döndürün; bir odaya tıklamak artık onu açmaz
+Edit template	Şablonu düzenle
 Editable copy of this plot frame	Bu çizim çerçevesinin düzenlenebilir kopyası
 Editable copy of this title block	Bu antetin düzenlenebilir kopyası
 Effective surface	Etkin yüzey
@@ -738,6 +741,7 @@ Export SVG…	SVG dışa aktar…
 Export all pages as PDF in {}	Tüm sayfaları {} dilinde PDF olarak dışa aktar
 Export as EPLAN parts XML…	EPLAN parça XML'i olarak dışa aktar…
 Export as PDF in language	Dil seçerek PDF olarak dışa aktar
+Export as file…	Dosya olarak dışa aktar…
 Export check scheme…	Kontrol şemasını dışa aktar…
 Export favorites…	Favorileri dışa aktar…
 Export library…	Kütüphaneyi dışa aktar…
@@ -807,6 +811,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Çapraz referansların formatı, hedef sayfanın yapısı, kesme noktaları, kontak görüntüleri
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Kablo demetinin dal uzunlukları ve konnektörlerin pin tablolarıyla birlikte ölçekli çivili tahta çizimi
 Forms	Formlar
+Formula	Formül
+Formulas	Formüller
 Form…	Form…
 Frame	Çerçeve
 Frame of all pages that do not choose one	Kendi çerçevesini seçmeyen tüm sayfaların çerçevesi
@@ -999,6 +1005,7 @@ Introduction	Giriş
 Invalid value	Geçersiz değer
 Invert the direction of panning by scrolling	Kaydırmayla görünüm kaydırma yönünü ters çevir
 Inverter or charge controller (devices with PV input data)	İnvertör veya şarj kontrol cihazı (PV giriş verisi olan cihazlar)
+It takes the place of the bundled template of this name.	Bu adlı birlikte gelen şablonun yerini alır.
 Items copied: {}	Kopyalanan öğeler: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Kopyalanan öğeler: {} (atlanan cihazlar: {}, bir cihaz yalnızca bir kez yerleştirilir)
 Items cut: {}	Kesilen öğeler: {}
@@ -1216,6 +1223,7 @@ Nailboard (SVG)…	Çivili tahta (SVG)…
 Name and cross reference	Ad ve çapraz referans
 Name on the server	Sunucudaki ad
 Name the inspector in the report data first.	Önce rapor verilerinde denetçiyi belirtin.
+Name, parameters, formulas and page conditions of the project as a template	Projenin şablon olarak adı, parametreleri, formülleri ve sayfa koşulları
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Ad; Veri tipi; Mantıksal adres; Açıklama – PLC programlama araçları için
 Named copy of this form, for report blocks	Rapor blokları için bu formun adlandırılmış kopyası
 Navigators	Gezginler
@@ -1245,6 +1253,7 @@ New pages for every group (strip, plug, cable, device …)	Her grup (şerit, fi�
 New potential	Yeni potansiyel
 New project	Yeni proje
 New project from template	Şablondan yeni proje
+New project from {}	{} şablonundan yeni proje
 New project scheme from the selected one	Seçili şemadan yeni proje şeması
 New project, not saved yet	Yeni proje, henüz kaydedilmedi
 New report page	Yeni rapor sayfası
@@ -1357,6 +1366,7 @@ Number prefix	Numara öneki
 Number wires	Telleri numaralandır
 Numbering	Numaralandırma
 Numbers removed from {} wires	{} telden numaralar kaldırıldı
+Numeric	Sayısal
 Object	Nesne
 Of the outer diameter, as laid fixed	Dış çapın katı, sabit döşemede
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Dış çapın katı; borular bir buçuk çaplık dirseklerle bükülür
@@ -1468,6 +1478,7 @@ PV array {} lies outside the protection of the air-termination system	PV dizisi 
 PV array {} of building {}: {} modules	{1} binasının PV dizisi {0}: {2} modül
 PV array {} of building {}: {} modules, {} kWp	{1} binasının PV dizisi {0}: {2} modül, {3} kWp
 PV arrays	PV dizileri
+Page conditions	Sayfa koşulları
 Page graphics	Sayfa grafikleri
 Page heading	Sayfa başlığı
 Page list, devices, parts, panel layout and settings	Sayfa listesi, cihazlar, parçalar, pano yerleşimi ve ayarlar
@@ -1483,7 +1494,6 @@ Page {} ({})	Sayfa {} ({})
 Page {} is now page {}	{} sayfası artık {} sayfası
 Page {} locked	Sayfa {} kilitli
 Page {} – {}	Sayfa {} – {}
-Page {}: {}	Sayfa {}: {}
 Pages and templates using the frame follow	Çerçeveyi kullanan sayfalar ve şablonlar değişikliği izler
 Pages of revision {}	Revizyon {} sayfaları
 Pages of the selected block	Seçili bloğun sayfaları
@@ -1496,6 +1506,9 @@ Pane menu	Panel menüsü
 Panel wiring report	Pano kablolama raporu
 Panes	Paneller
 Paper	Kâğıt
+Parameter	Parametre
+Parameters	Parametreler
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	Şablondan bir proje başlatılırken parametreler sorulur; formüller başka değerleri hesaplar. Her ikisi de projenin metinlerindeki {NAME} yer tutucularını doldurur. Koşulu olan bir sayfa (REPORTS=yes), koşul sağlanmadığında dışarıda bırakılır.
 Parent section	Üst bölüm
 Part of the profile: generic types or parts from the parts store	Profilin parçası: genel tipler veya parça deposundaki parçalar
 Part selection from the parts database	Parça veritabanından parça seçimi
@@ -1840,6 +1853,7 @@ Save as 3D macro	3D makro olarak kaydet
 Save as 3D macro…	3D makro olarak kaydet…
 Save as local file	Yerel dosya olarak kaydet
 Save as macro	Makro olarak kaydet
+Save as project template	Proje şablonu olarak kaydet
 Save as project template…	Proje şablonu olarak kaydet…
 Save as scheme	Şema olarak kaydet
 Save as split project…	Bölünmüş proje olarak kaydet…
@@ -1865,6 +1879,8 @@ Save to project server: {}	Proje sunucusuna kaydet: {}
 Save to project server: {} – the connection is lost, saving tries again	Proje sunucusuna kaydet: {} – bağlantı kesildi, kaydetme yeniden dener
 Save workspace	Çalışma alanını kaydet
 Save workspace…	Çalışma alanını kaydet…
+Saved in the browser	Tarayıcıda kaydedildi
+Saved in {}, where the command line finds it too	{} konumuna kaydedildi; komut satırı da onu orada bulur
 Saved the properties of {} (revision {})	{} özellikleri kaydedildi (revizyon {})
 Saved to	Kaydedildiği yer
 Saved to the project server (revision {})	Proje sunucusuna kaydedildi (revizyon {})
@@ -1874,6 +1890,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Katmanları ayarlarıyla birlikte diğer projeler için bir ayar şeması olarak kaydeder
 Saves the placed properties as a placement scheme of the project	Yerleştirilen özellikleri projenin bir yerleştirme şeması olarak kaydeder
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Projeyi revizyonlar, referans sürümler, inceleme ve kablolama işaretleri olmadan yeni projeler için şablon olarak kaydeder
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Projeyi revizyonlar, referans sürümler, inceleme ve kablolama işaretleri olmadan yeni projeler için şablon olarak, birlikte gelenlerin yanına şablon klasörüne kaydeder
 Saves the project's own properties, function definitions and schemes for other projects	Projenin kendi özelliklerini, fonksiyon tanımlarını ve şemalarını diğer projeler için kaydeder
 Saves the workspace, the arrangement of the panels and the open windows	Çalışma alanını, panellerin düzenini ve açık pencereleri kaydeder
 Saves your version of the whole project as a project file	Projenin tamamının sizin sürümünüzü proje dosyası olarak kaydeder
@@ -2030,7 +2047,6 @@ Standard workspaces	Standart çalışma alanları
 Standoff height	Mesafe tutucu yüksekliği
 Star a command in Plugin commands to pin it here	Buraya sabitlemek için Eklenti komutları içinde bir komutu yıldızla işaretleyin
 Star: the first point refers to all, the others to it	Yıldız: ilk nokta tümüne, diğerleri ona referans verir
-Start	Başlat
 Start again when the page structure changes	Sayfa yapısı değiştiğinde yeniden başla
 Start at	Başlangıç değeri
 Start byte	Başlangıç baytı
@@ -2117,6 +2133,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Hedef diller
 Temperature rise at the roof against the middle (IEC/TR 60890)	Tavandaki sıcaklık artışı, ortaya göre (IEC/TR 60890)
 Template	Şablon
+Template parameters	Şablon parametreleri
+Template {} deleted	{} şablonu silindi
+Template {} saved	{} şablonu kaydedildi
 Templates	Şablonlar
 Terminal markers	Klemens işaretleri
 Terminal number, PLC address, potential name …	Klemens numarası, PLC adresi, potansiyel adı …
@@ -2397,6 +2416,7 @@ all, or e.g. -X*, -W1	tümü veya ör. -X*, -W1
 all, or e.g. K, Q	tümü veya ör. K, Q
 along z	z boyunca
 any	herhangi
+always	her zaman
 both ends	her iki uç
 built-in	yerleşik
 by hand	elle
@@ -2422,6 +2442,7 @@ e.g. corp:Engineering	ör. corp:Mühendislik
 e.g. customer, ERP, PLM	ör. müşteri, ERP, PLM
 e.g. cutout too small, part missing	ör. kesim çok küçük, parça eksik
 e.g. de, fr, it	ör. de, fr, it
+e.g. round(POWER_KW * 2, 1)	ör. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	ör. tel çok kısa, klemens eksik
 empty	boş
 female	dişi
@@ -2468,6 +2489,7 @@ ridge {} m	mahya {} m
 set on the device	cihazda belirlendi
 sloped ceiling from {} m	{} m'den itibaren eğimli tavan
 some	bazıları
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, basamak), ceil, floor, min, max, if(koşul, ise, değilse), step(x, sınır, değer, …, aksi halde); & metinleri birleştirir
 taken over	aktarıldı
 the device before it	önceki cihaz
 the project data (page list, devices, settings)	proje verileri (sayfa listesi, cihazlar, ayarlar)
@@ -2504,6 +2526,7 @@ x y	x y
 {} (revision {})	{} (revizyon {})
 {} (spare)	{} (yedek)
 {} (subproject of {})	{0} ({1} alt projesi)
+{} (template of the user)	{} (kullanıcı şablonu)
 {} (unused)	{} (kullanılmıyor)
 {} ({} open)	{} ({} açık)
 {} / {} mm  (column {})	{} / {} mm  (sütun {})

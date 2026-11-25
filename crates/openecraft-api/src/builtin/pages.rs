@@ -53,6 +53,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("product", Kind::Str, tr_const!("Higher-level product aspect (-) of the page; the devices on the page move along")),
             optional("section", Kind::Str, tr_const!("Moves the page into this section (list_sections; empty = top level); its name gets the section number")),
             optional("before", Kind::Str, tr_const!("Moves the page before this page of its section (or of the section given)")),
+            optional("condition", Kind::Str, tr_const!("On a page of a project template: OPTION=value, OPTION!=value, OPTION=a|b joined by & (parameters and formulas of get_template); a project started from the template leaves the page out when it does not hold. Empty: always")),
         ],
         run: set_page,
     },
@@ -282,6 +283,12 @@ fn set_page(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     if let Some(d) = a.str("description") {
         prj.pages[i].description = d.into();
+    }
+    if let Some(c) = a.str("condition") {
+        prj.pages[i].condition = c.trim().into();
+        if let Some(p) = openecraft_core::project_templates::problems(prj).into_iter().find(|p| p.starts_with(&tr_fmt!("Page {}: {}", prj.pages[i].name, ""))) {
+            return Err(p);
+        }
     }
     if let Some(f) = a.str("frame") {
         if !f.is_empty() && !frame::names(prj).iter().any(|n| n == f) {

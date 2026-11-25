@@ -1,5 +1,6 @@
 # English<TAB>Magyar – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(csak MCP-kiszolgáló)
+A template needs a name	A sablonnak névre van szüksége
 Access token for changes	Hozzáférési token a módosításokhoz
 Access token of a Vault session or an Autodesk account instead of user and password	Vault-munkamenet vagy Autodesk-fiók hozzáférési tokenje a felhasználó és jelszó helyett
 Address of the Vault server, e.g. https://vault.example.com	A Vault-szerver címe, pl. https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	Def
 Delete the role	A szerepkör törlése
 Deletes a catalog without parts from the parts server	Alkatrész nélküli katalógust töröl az alkatrészszerverről
 Deletes a part from the parts server	Töröl egy alkatrészt az alkatrészszerverről
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Törli a felhasználó egyik sablonját a sablonmappából (a mellékelt azonos nevű sablon visszatér)
 Deletes a user of the parts server (administrators only)	Az alkatrészszerver egy felhasználóját törli (csak rendszergazdák)
 Descending order	Csökkenő sorrend
 Discard unsaved changes of the open project	A megnyitott projekt nem mentett változtatásainak elvetése
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Felsorolja a mintaprojekteket az első áramkörtől a teljes létesítményig, az általuk bemutatott funkciókkal
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Felsorolja az exportokat (beépítetteket és a bővítményekét): név az export számára, cím, fájlkiterjesztés és paraméterek
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Felsorolja egy Vault-mappa mappáit és fájljait, vagy keres az alatta lévő (vagy a teljes vaultban lévő) fájltulajdonságokban
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Felsorolja a projektsablonokat (a mellékelteket és a sablonmappában lévőket: --templates / OPENECRAFT_TEMPLATES) a paramétereikkel, képleteikkel és azokkal az oldalakkal, amelyeket egy feltétel kihagy
 Lists the reports (built-in and of plugins): name for report and title	Felsorolja a kimutatásokat (beépítetteket és a bővítményekét): név a report számára és cím
 Lists the users of the parts server (administrators only)	Felsorolja az alkatrészszerver felhasználóit (csak rendszergazdák)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Betöltött bővítmények (beépítettek és a --plugins / OPENECRAFT_PLUGINS bővítménymappáiból származók) a parancsaikkal, ellenőrzéseikkel, kimutatásaikkal és exportjaikkal; egyet engedélyez vagy letilt ebben a munkamenetben
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Gyártó, amelynek alkatr
 Maximum number of hits (default 50)	Találatok maximális száma (alapértelmezés: 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Egy felosztott projekt fájljának két verzióját egyesíti rekordonként (a git egyesítő illesztője): az eredmény felváltja ennek az oldalnak a fájlját; ahol a két oldal eltér, annak értékei megmaradnak, és a parancs meghiúsul
 Name of a built-in template (list_structure_templates)	Egy beépített sablon neve (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Egy sablon neve (list_project_templates) vagy egy sablonfájl
 Name of the knowledge vault (default Vault)	A vault neve (alapértelmezés: Vault)
+Name of the template (default: its template name, otherwise the project name)	A sablon neve (alapértelmezett: a sablonneve, különben a projekt neve)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Az új fiókok rendszergazdai jóváhagyásra várnak (true), vagy azonnal bejelentkeznek (false)
 New file name (save as)	Új fájlnév (mentés másként)
 New pages for every value of the group column (default true)	Új oldalak a csoportosító oszlop minden értékéhez (alapértelmezés: true)
@@ -147,6 +152,7 @@ No grant of {} found	Nem található hozzárendelés ehhez: {}
 No profile named {}	Nincs ilyen nevű profil: {}
 No project is open: use open_project or new_project first	Nincs megnyitott projekt: először használja az open_project vagy a new_project parancsot
 No role {} defined	Nincs definiálva {} szerepkör
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Nincs sablonmappa: adja meg a --templates <mappa> kapcsolót, vagy állítsa be az OPENECRAFT_TEMPLATES változót
 Not a valid catalog: {}	Nem érvényes katalógus: {}
 Not a valid part: {}	Nem érvényes alkatrész: {}
 Not connected to a vault: use vault_connect first	Nincs kapcsolat vaulttal: előbb használja a vault_connect parancsot
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Csak ennek a kimut
 Only the projects that match these search terms	Csak az ezeknek a keresési kifejezéseknek megfelelő projektek
 Only this block	Csak ez a blokk
 Open (true) or close (false) the registration	A regisztráció megnyitása (true) vagy lezárása (false)
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	Magának a sablonnak a megnyitása a módosításához: a helyőrzők, paraméterek és oldalfeltételek megmaradnak (a save_project_template menti)
 Opens a project file or archive (files of older versions are converted)	Megnyit egy projektfájlt vagy archívumot (a régebbi verziók fájljai átalakításra kerülnek)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Megnyit egy projektfájlt vagy archívumot a vaultból; a cél nélküli vault_upload ennek új verzióját adja be
 Option {} needs the form name=value	A(z) {} opcióhoz név=érték forma szükséges
@@ -203,6 +210,7 @@ Redoes the last undone change	Újra végrehajtja az utoljára visszavont módos�
 Remove the grants of the user or group (only of this role and scope, if given)	A felhasználó vagy csoport hozzárendeléseinek eltávolítása (ha meg van adva, csak ennek a szerepkörnek és hatókörnek a hozzárendeléseié)
 Remove the parts assigned so far	Az eddig hozzárendelt alkatrészek eltávolítása
 Removes a file from a part on the parts server	Eltávolít egy fájlt egy alkatrészből az alkatrészszerveren
+Replace a template of the same name	Azonos nevű sablon cseréje
 Replace the file at path if it exists	A path helyén lévő fájl cseréje, ha létezik
 Replace the project parts by their newer server versions	A projektalkatrészek lecserélése újabb szerververzióikra
 Replacement text	Csereszöveg
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Szerepkör neve
 Role of requests without sign-in; none: sign-in needed for reading	A bejelentkezés nélküli kérések szerepköre; none: az olvasáshoz bejelentkezés szükséges
 Role: reader, manufacturer, editor, admin or a defined role	Szerepkör: reader, manufacturer, editor, admin vagy egy definiált szerepkör
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Sablonként menti a projektet a sablonmappába a paramétereivel, képleteivel és oldalfeltételeivel; a felhasználó egy mellékelt sablon nevét viselő sablonja annak helyébe lép
 Saves the project to its file or to a new path	A projektet a saját fájljába vagy új elérési útra menti
 Scale drawings down that do not fit on the page (default: true)	Az oldalra el nem férő rajzok kicsinyítése (alapértelmezés: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Keresési kifejezések, pl. company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Megjeleníti egy projektarchívum manife
 Shows the project properties, file, number of pages and devices and the check result	Megjeleníti a projekttulajdonságokat, a fájlt, az oldalak és készülékek számát, valamint az ellenőrzés eredményét
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Megjeleníti az alkatrészszerver szerepköreit, hozzárendeléseit és címtárait, és igény szerint beállítja a névtelen kérések szerepkörét (csak rendszergazdák)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Megmutatja, hogy a felhasználók maguk regisztrálhatnak-e az alkatrészszerveren (olvasóként), és igény szerint megnyitja vagy lezárja a regisztrációt (csak rendszergazdák)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Indítás projektsablonból (list_project_templates: a mellékeltek, például Gép vagy Közvetlen motorindító, és a sablonmappában lévők) vagy sablonfájlból
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Indítás projektsablonból: beépítettből (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) vagy projektfájlból
 Start from an example project (names: list_examples)	Indulás egy mintaprojektből (nevek: list_examples)
 Start from the demo project	Kezdés a bemutatóprojektből
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Felhasználó által definiált tulajdonságok (név: érték; üres érték eltávolítja)
 User name to sign in with	Bejelentkezési felhasználónév
 User or group name (wildcards; directory groups as directory:group)	Felhasználó- vagy csoportnév (helyettesítő karakterek; címtárcsoportok címtár:csoport formában)
+Values of the parameters (name: value); the others keep their default	A paraméterek értékei (név: érték); a többi megtartja alapértelmezett értékét
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	A sablon paramétereinek értékei (név: érték, pl. POWER_KW: 7.5); a többi megtartja alapértelmezett értékét
 Values to set (name: value; an empty value removes a property)	Beállítandó értékek (név: érték; az üres érték eltávolítja a tulajdonságot)
 Vault user name (signs in)	Vault-felhasználónév (bejelentkezik)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Mi kerül kiírásra: oec (projektfájl), oecp (felosztott projekt saját mappában) vagy oecz (archívum); alapértelmezés: a kimenet kiterjesztése szerint
 Width and height must be greater than 0	A szélességnek és a magasságnak 0-nál nagyobbnak kell lennie
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	A kimutatások címében, nevében és keresőszavaiban (például VDE 0100-600 szabvány) keresendő szavak
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Kiszámítja egy projektsablon értékeit a megadott paraméterekhez (névleges áram, beállítási tartományok, cikkek) projekt indítása nélkül
 Write the table as CSV to this file	A táblázat írása CSV-ként ebbe a fájlba
 Writes the check scheme of the project (checks switched off, message levels) to a file	Fájlba írja a projekt ellenőrzési sémáját (kikapcsolt ellenőrzések, üzenetszintek)
 Writes the embedded file of a document page	Kiírja egy dokumentumoldal beágyazott fájlját
@@ -298,7 +311,6 @@ openecraft-cli version\n\nShows the version of the command line (also --version 
 schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) vagy egy kimutatás: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	Az undo és a redo csak MCP-munkamenetben működik: a parancssor minden parancshoz újra megnyitja a projektet
 user or group	user vagy group
-{} exists already: pass overwrite to replace it	{} már létezik: a cseréhez adja meg az overwrite paramétert
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	A(z) {} archívum, és nem változik: mentse a projektet projektfájlként (save_project --path <file>.oec), vagy alakítsa át az archívumot (convert_project)
 {} is an archive: pass a path to save the project as a project file	A(z) {} archívum: adjon meg egy elérési utat a projekt projektfájlként való mentéséhez
 {} is not a language of the project	{} nem a projekt nyelve

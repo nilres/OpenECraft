@@ -306,7 +306,6 @@ Main	Haupt	Principal	Principal
 Main earthing busbar (device) it is connected to; empty: none	Haupterdungsschiene (Gerät), an die er angeschlossen ist; leer: keine	Borne principale de terre (appareil) à laquelle elle est raccordée ; vide : aucune	Barra principal de tierra (equipo) a la que está conectado; vacío: ninguna
 Main earthing terminal	Haupterdungsschiene	Borne principale de terre	Borne principal de tierra
 Main equipotential bonding (Ω)	Schutzpotentialausgleich (Ω)	Liaison équipotentielle principale (Ω)	Conexión equipotencial principal (Ω)
-Main switch	Hauptschalter	Interrupteur principal	Interruptor principal
 Manufacturer	Hersteller	Fabricant	Fabricante
 Manufacturers	Hersteller	Fabricants	Fabricantes
 Manufacturing	Fertigung	Fabrication	Fabricación
@@ -339,6 +338,7 @@ Name of the block	Name des Blocks	Nom du bloc	Nombre del bloque
 Name of the plot, e.g. the cadastral parcel	Name des Grundstücks, z. B. das Flurstück	Nom du terrain, p. ex. la parcelle cadastrale	Nombre de la parcela, p. ej. la parcela catastral
 Name of the point, e.g. a survey point	Name des Punkts, z. B. ein Vermessungspunkt	Nom du point, p. ex. un point géodésique	Nombre del punto, p. ej. un punto topográfico
 Name of the scheme	Name des Schemas	Nom du schéma	Nombre del esquema
+Name of the template	Name der Vorlage	Nom du modèle	Nombre de la plantilla
 Net	Netz	Réseau	Red
 Never	Nie	Jamais	Nunca
 New group	Neue Gruppe	Nouveau groupe	Nuevo grupo
@@ -428,6 +428,7 @@ Page templates	Seitenvorlagen	Modèles de page	Plantillas de página
 Page type	Seitentyp	Type de page	Tipo de página
 Page {} is locked	Seite {} ist gesperrt	La page {} est verrouillée	La página {} está bloqueada
 Page {} of {}	Seite {} von {}	Page {} sur {}	Página {} de {}
+Page {}: {}	Seite {}: {}	Page {} : {}	Página {}: {}
 Pages	Seiten	Pages	Páginas
 Panel layout	Schaltschrankaufbau	Implantation d'armoire	Diseño del armario
 Parameter {} has the wrong type	Parameter {} hat den falschen Typ	Le paramètre {} a un type incorrect	El parámetro {} tiene un tipo incorrecto
@@ -605,6 +606,7 @@ Socket side	Buchsenseite	Côté douille	Lado hembra
 Solenoid not linked	Magnetspule nicht verknüpft	Bobine non liée	Bobina no vinculada
 Sort by	Sortieren nach	Trier par	Ordenar por
 Source	Quelle	Source	Origen
+Start	Start	Départ	Inicio
 Started	Begonnen	Commencé	Iniciado
 State	Zustand	État	Estado
 Status	Status	État	Estado
@@ -645,6 +647,7 @@ The long side of the modules along the rows	Die lange Seite der Module entlang d
 The page is released	Die Seite ist freigegeben	La page est validée	La página está liberada
 The project has no circuits fed from the mains	Das Projekt hat keine aus dem Netz gespeisten Stromkreise	Le projet n'a aucun circuit alimenté par le réseau	El proyecto no tiene circuitos alimentados desde la red
 The ridge (or the slope of a shed roof) runs along z instead of x	Der First (oder die Neigung eines Pultdachs) verläuft entlang z statt x	Le faîtage (ou la pente d'un toit en appentis) suit z au lieu de x	La cumbrera (o la pendiente de una cubierta a un agua) va a lo largo de z en lugar de x
+The template has no parameter {}	Die Vorlage hat keinen Parameter {}	Le modèle n'a pas de paramètre {}	La plantilla no tiene ningún parámetro {}
 There is a connection symbol at this point already	An diesem Punkt gibt es schon ein Verbindungssymbol	Il y a déjà un symbole de liaison à ce point	Ya hay un símbolo de conexión en este punto
 Thermal	Thermik	Thermique	Térmica
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Diese Seite setzt keine Cookies, verwendet kein Tracking und lädt nichts von anderen Servern.	Cette page ne dépose aucun cookie, n'utilise aucun traçage et ne charge rien depuis d'autres serveurs.	Esta página no usa cookies ni seguimiento y no carga nada de otros servidores.
@@ -743,6 +746,7 @@ yes	ja	oui	sí
 {} circuits	{} Stromkreise	{} circuits	{} circuitos
 {} does not stand on the floor: choose a part marked for floor mounting	{} steht nicht auf dem Boden: einen für Bodenmontage gekennzeichneten Artikel wählen	{} ne se pose pas au sol : choisissez un article marqué pour le montage au sol	{} no se apoya en el suelo: elija un artículo marcado para montaje en suelo
 {} exists already	{} existiert bereits	{} existe déjà	{} ya existe
+{} exists already: pass overwrite to replace it	{} existiert bereits: overwrite angeben, um sie zu ersetzen	{} existe déjà : passez overwrite pour le remplacer	{} ya existe: indique overwrite para reemplazarlo
 {} is no 19-inch rack	{} ist kein 19-Zoll-Rack	{} n'est pas une baie 19 pouces	{} no es un rack de 19 pulgadas
 {} is not a PNG or JPEG image	{} ist kein PNG- oder JPEG-Bild	{} n'est pas une image PNG ou JPEG	{} no es una imagen PNG o JPEG
 {} is not a room	{} ist kein Raum	{} n'est pas une salle	{} no es una sala

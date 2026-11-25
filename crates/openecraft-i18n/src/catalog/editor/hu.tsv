@@ -69,6 +69,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Oldalmakróval rendelkező, a kapcsolási rajzon még nem szereplő tervezett készülékenként egy kapcsolásirajz-oldal (a kijelölt szegmens, különben mind)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	A felosztott projekt (.oecp) egy mappa, amely oldalanként, készülékenként, cikkenként és beágyazott fájlonként egy kis fájlt tartalmaz, verziókezeléshez, például githez: Fájl › Mentés felosztott projektként.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	A felosztott projekt egy fájlokat tartalmazó mappa: a böngésző nem tudja megnyitni. Először alakítsa projektfájllá (.oec) vagy archívummá (.oecz).
+A template file to pass on; New › From a template file… starts projects from it	Továbbadható sablonfájl; az Új › Sablonfájlból… projekteket indít belőle
 A template of this name is replaced.	Az ilyen nevű sablon lecserélődik.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	A sablon meghatározza egy új oldal típusát, rajzkeretét, szövegmezőjét, struktúráját és leírását, és elhelyezi a tartalmát.
 A way through free air costs this many times the way in a duct or routing path	A szabad téren át vezető út ennyiszer többe kerül, mint a csatornában vagy fektetési úton vezető
@@ -535,6 +536,7 @@ Delete section	Szakasz törlése
 Delete shaft	Akna törlése
 Delete stair	Lépcső törlése
 Delete string	String törlése
+Delete template	Sablon törlése
 Delete the group	A csoport törlése
 Delete the layer; its items move to the default layer	A réteg törlése; elemei az alapértelmezett rétegre kerülnek
 Delete the property and all its values	Tulajdonság törlése az összes értékével együtt
@@ -694,6 +696,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Szerkesztés táblázatban
 Edit in table…	Szerkesztés táblázatban…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Szerkesztő mód: húzza az épületeket a helyükre a helyszínrajzon, és forgassa el őket; egy helyiségre kattintás már nem nyitja meg
+Edit template	Sablon szerkesztése
 Editable copy of this plot frame	A rajzkeret szerkeszthető másolata
 Editable copy of this title block	A szövegmező szerkeszthető másolata
 Effective surface	Hatásos felület
@@ -738,6 +741,7 @@ Export SVG…	SVG exportálása…
 Export all pages as PDF in {}	Összes oldal exportálása PDF-ként ezen a nyelven: {}
 Export as EPLAN parts XML…	Exportálás EPLAN-alkatrész-XML-be…
 Export as PDF in language	Exportálás PDF-ként adott nyelven
+Export as file…	Exportálás fájlként…
 Export check scheme…	Ellenőrzési séma exportálása…
 Export favorites…	Kedvencek exportálása…
 Export library…	Könyvtár exportálása…
@@ -807,6 +811,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Kereszthivatkozások formátuma, a céloldal struktúrája, megszakítási pontok, érintkezőtükrök
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	A kábelköteg méretarányos szögestábla-rajza az elágazási hosszakkal és a csatlakozók érintkezőtű-táblázataival
 Forms	Űrlapok
+Formula	Képlet
+Formulas	Képletek
 Form…	Űrlap…
 Frame	Keret
 Frame of all pages that do not choose one	Az összes olyan oldal kerete, amely nem választ sajátot
@@ -999,6 +1005,7 @@ Introduction	Bevezetés
 Invalid value	Érvénytelen érték
 Invert the direction of panning by scrolling	A görgetéssel való mozgatás irányának megfordítása
 Inverter or charge controller (devices with PV input data)	Inverter vagy töltésszabályozó (PV-bemeneti adatokkal rendelkező eszközök)
+It takes the place of the bundled template of this name.	Az ilyen nevű mellékelt sablon helyébe lép.
 Items copied: {}	Másolt elemek: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Másolt elemek: {} (kihagyott készülékek: {}, egy készüléket csak egyszer lehet elhelyezni)
 Items cut: {}	Kivágott elemek: {}
@@ -1216,6 +1223,7 @@ Nailboard (SVG)…	Szögestábla (SVG)…
 Name and cross reference	Név és kereszthivatkozás
 Name on the server	Név a szerveren
 Name the inspector in the report data first.	Először adja meg az ellenőrt a jegyzőkönyv adataiban.
+Name, parameters, formulas and page conditions of the project as a template	A projekt neve, paraméterei, képletei és oldalfeltételei sablonként
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Név; Adattípus; Logikai cím; Megjegyzés – PLC-programozó eszközökhöz
 Named copy of this form, for report blocks	Az űrlap elnevezett másolata kimutatásblokkokhoz
 Navigators	Navigátorok
@@ -1245,6 +1253,7 @@ New pages for every group (strip, plug, cable, device …)	Új oldalak minden cs
 New potential	Új potenciál
 New project	Új projekt
 New project from template	Új projekt sablonból
+New project from {}	Új projekt ebből: {}
 New project scheme from the selected one	Új projektséma a kijelöltből
 New project, not saved yet	Új projekt, még nincs mentve
 New report page	Új kimutatásoldal
@@ -1357,6 +1366,7 @@ Number prefix	Számelőtag
 Number wires	Vezetékek számozása
 Numbering	Számozás
 Numbers removed from {} wires	Számok eltávolítva {} vezetékről
+Numeric	Szám
 Object	Objektum
 Of the outer diameter, as laid fixed	A külső átmérő többszöröse, fix fektetésnél
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	A külső átmérő többszöröse; a csöveket másfél átmérőjű ívekkel hajlítják
@@ -1468,6 +1478,7 @@ PV array {} lies outside the protection of the air-termination system	A(z) {} PV
 PV array {} of building {}: {} modules	{} PV mező, {} épület: {} modul
 PV array {} of building {}: {} modules, {} kWp	{} PV mező, {} épület: {} modul, {} kWp
 PV arrays	PV-mezők
+Page conditions	Oldalfeltételek
 Page graphics	Oldalgrafika
 Page heading	Oldalcím
 Page list, devices, parts, panel layout and settings	Oldallista, készülékek, alkatrészek, szekrényelrendezés és beállítások
@@ -1483,7 +1494,6 @@ Page {} ({})	{}. oldal ({})
 Page {} is now page {}	A(z) {} oldal most a(z) {} oldal
 Page {} locked	{}. oldal zárolva
 Page {} – {}	{}. oldal – {}
-Page {}: {}	{} oldal: {}
 Pages and templates using the frame follow	Az ezt a keretet használó oldalak és sablonok követik a változást
 Pages of revision {}	A(z) {} revízió oldalai
 Pages of the selected block	A kijelölt blokk oldalai
@@ -1496,6 +1506,9 @@ Pane menu	Panelmenü
 Panel wiring report	Szekrényhuzalozási kimutatás
 Panes	Panelek
 Paper	Papír
+Parameter	Paraméter
+Parameters	Paraméterek
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	A paramétereket a program akkor kérdezi le, amikor a sablonból projekt indul; a képletek további értékeket számítanak ki. Mindkettő kitölti a {NAME} helyőrzőt a projekt szövegeiben. A feltétellel (REPORTS=yes) rendelkező oldal kimarad, ha a feltétel nem teljesül.
 Parent section	Szülőszakasz
 Part of the profile: generic types or parts from the parts store	A profil alkatrésze: általános típusok vagy alkatrészek az alkatrész-törzsadatbázisból
 Part selection from the parts database	Alkatrész kiválasztása az alkatrész-adatbázisból
@@ -1840,6 +1853,7 @@ Save as 3D macro	Mentés 3D-makróként
 Save as 3D macro…	Mentés 3D-makróként…
 Save as local file	Mentés helyi fájlként
 Save as macro	Mentés makróként
+Save as project template	Mentés projektsablonként
 Save as project template…	Mentés projektsablonként…
 Save as scheme	Mentés sémaként
 Save as split project…	Mentés felosztott projektként…
@@ -1865,6 +1879,8 @@ Save to project server: {}	Mentés a projektkiszolgálóra: {}
 Save to project server: {} – the connection is lost, saving tries again	Mentés a projektkiszolgálóra: {} – a kapcsolat megszakadt, a mentés újrapróbálkozik
 Save workspace	Munkaterület mentése
 Save workspace…	Munkaterület mentése…
+Saved in the browser	Mentve a böngészőben
+Saved in {}, where the command line finds it too	Mentve ide: {}, ahol a parancssor is megtalálja
 Saved the properties of {} (revision {})	{} tulajdonságai mentve ({}. revízió)
 Saved to	Mentés helye
 Saved to the project server (revision {})	Mentve a projektszerverre ({}. revízió)
@@ -1874,6 +1890,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Elmenti a rétegeket a beállításaikkal együtt beállítássémaként más projektekhez
 Saves the placed properties as a placement scheme of the project	Elmenti az elhelyezett tulajdonságokat a projekt elhelyezési sémájaként
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Revíziók, alapállapotok, véleményezés és huzalozási jelölések nélkül menti a projektet sablonként új projektekhez
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Revíziók, alapállapotok, véleményezés és huzalozási jelölések nélkül menti a projektet sablonként új projektekhez, a sablonmappába a mellékeltek mellé
 Saves the project's own properties, function definitions and schemes for other projects	Elmenti a projekt saját tulajdonságait, funkciódefinícióit és sémáit más projektek számára
 Saves the workspace, the arrangement of the panels and the open windows	Menti a munkaterületet, a panelek elrendezését és a megnyitott ablakokat
 Saves your version of the whole project as a project file	Az egész projekt Ön által módosított változatát projektfájlba menti
@@ -2030,7 +2047,6 @@ Standard workspaces	Alapértelmezett munkaterületek
 Standoff height	Távtartó magassága
 Star a command in Plugin commands to pin it here	Jelöljön meg egy parancsot csillaggal a Bővítményparancsok ablakban, hogy ide kerüljön
 Star: the first point refers to all, the others to it	Csillag: az első pont mindegyikre hivatkozik, a többi rá
-Start	Kezdés
 Start again when the page structure changes	Újrakezdés, ha az oldalstruktúra megváltozik
 Start at	Kezdőérték
 Start byte	Kezdőbájt
@@ -2117,6 +2133,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Célnyelvek
 Temperature rise at the roof against the middle (IEC/TR 60890)	Hőmérséklet-emelkedés a tetőnél a középhez képest (IEC/TR 60890)
 Template	Sablon
+Template parameters	Sablonparaméterek
+Template {} deleted	A(z) {} sablon törölve
+Template {} saved	A(z) {} sablon mentve
 Templates	Sablonok
 Terminal markers	Sorkapocsjelölők
 Terminal number, PLC address, potential name …	Sorkapocsszám, PLC-cím, potenciálnév …
@@ -2397,6 +2416,7 @@ all, or e.g. -X*, -W1	összes, vagy pl. -X*, -W1
 all, or e.g. K, Q	mind, vagy pl. K, Q
 along z	z mentén
 any	bármennyi
+always	mindig
 both ends	mindkét vég
 built-in	beépített
 by hand	kézzel
@@ -2422,6 +2442,7 @@ e.g. corp:Engineering	pl. corp:Engineering
 e.g. customer, ERP, PLM	pl. ügyfél, ERP, PLM
 e.g. cutout too small, part missing	pl. túl kicsi kivágás, hiányzó alkatrész
 e.g. de, fr, it	pl. de, fr, it
+e.g. round(POWER_KW * 2, 1)	pl. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	pl. túl rövid a vezeték, hiányzik a sorkapocs
 empty	üres
 female	hüvely
@@ -2468,6 +2489,7 @@ ridge {} m	gerinc {} m
 set on the device	a készüléken megadva
 sloped ceiling from {} m	ferde mennyezet {} m-től
 some	néhány
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, tizedesjegyek), ceil, floor, min, max, if(feltétel, akkor, különben), step(x, határ, érték, …, különben); & összefűzi a szövegeket
 taken over	átvéve
 the device before it	az előző készülék
 the project data (page list, devices, settings)	a projektadatok (oldallista, készülékek, beállítások)
@@ -2504,6 +2526,7 @@ x y	x y
 {} (revision {})	{} ({}. revízió)
 {} (spare)	{} (tartalék)
 {} (subproject of {})	{} ({} alprojektje)
+{} (template of the user)	{} (felhasználói sablon)
 {} (unused)	{} (nem használt)
 {} ({} open)	{} ({} nyitott)
 {} / {} mm  (column {})	{} / {} mm  ({}. oszlop)

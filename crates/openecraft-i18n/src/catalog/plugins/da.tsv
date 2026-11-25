@@ -3,6 +3,7 @@
 1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: linjens øverste / venstre ende går på tværs til højre / nederste arm · 2: til venstre / øverste arm (standard 2)
 A cable definition needs a start and an end point	En kabeldefinition kræver et start- og et slutpunkt
 A copper bar needs at least one segment	En kobberskinne skal have mindst ét afsnit
+A new formula {} needs its formula	En ny formel {} skal have sin formel
 A segment cannot be moved below itself	Et segment kan ikke flyttes ind under sig selv
 A segment needs two different nodes	Et afsnit skal have to forskellige knuder
 A wire needs at least two points	En ledning skal have mindst to punkter
@@ -105,6 +106,7 @@ Changes name, description, function, location or parent of a segment	Ændrer et 
 Changes position, face, fastening or anchors of a panel item	Ændrer position, flade, fastgørelse eller ankre for et layoutelement
 Changes the device, connection and terminal tables	Ændrer tabellerne over enheder, forbindelser og klemmer
 Changes the level of a kind of message (code as shown by check)	Ændrer niveauet for en type meddelelse (kode som vist af check)
+Changes the name and description of the open project as a template (save_project_template saves it)	Ændrer navn og beskrivelse af det åbne projekt som skabelon (save_project_template gemmer den)
 Changes the properties of a wire	Ændrer egenskaberne for en ledning
 Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Ændrer system, størrelse og komponenter for en kapsling (sokkel, sammenbyggede sider, flangeplade); forankrede elementer følger med
 Check {} failed: {}	Kontrol {} mislykkedes: {}
@@ -150,6 +152,8 @@ Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing 
 Creates or changes a bus system (PROFINET, EtherCAT, …)	Opretter eller ændrer et bussystem (PROFINET, EtherCAT, …)
 Creates or changes a configurator option	Opretter eller ændrer en konfiguratorindstilling
 Creates or changes a fluid device group	Opretter eller ændrer en fluidenhedsgruppe
+Creates or changes a formula of the template: a value worked out from the parameters and the formulas before it, filling {NAME}	Opretter eller ændrer en formel i skabelonen: en værdi, der beregnes ud fra parametrene og formlerne før den og udfylder {NAME}
+Creates or changes a parameter of the template: a value asked for when a project is started from it, filling {NAME} in the texts of the project	Opretter eller ændrer en parameter i skabelonen: en værdi, der efterspørges, når et projekt startes fra den, og udfylder {NAME} i projektets tekster
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Opretter eller ændrer en plotramme i projektet (indbyggede rammer kopieres under et nyt navn)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Opretter eller ændrer en potentialedefinition; dens ledninger overtager farve og tværsnit, medmindre de er angivet på ledningen
 Creates or changes a title block of the project (built-in ones are copied under a new name)	Opretter eller ændrer et tegningshoved i projektet (indbyggede kopieres under et nyt navn)
@@ -174,6 +178,7 @@ Date (YYYY-MM-DD)	Dato (ÅÅÅÅ-MM-DD)
 Date of the acceptance	Dato for accepten
 Default property values	Standardværdier for egenskaber
 Default symbol key	Nøgle for standardsymbol
+Default value	Standardværdi
 Define the identifiers in use (default: true)	Definer de brugte betegnelser (standard: true)
 Defines a reusable project function definition or changes it	Definerer en genanvendelig funktionsdefinition i projektet eller ændrer den
 Defines a structure identifier or changes its description	Definerer en strukturbetegnelse eller ændrer dens beskrivelse
@@ -279,6 +284,7 @@ First row with the column names	Første række med kolonnenavnene
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Flade tage og jordmonteret: retning, modulerne vender mod, i grader, mod uret set ovenfra (0: mod +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format for enhedsnavnet: {letter}, {n} (tæller), {page}, {column}, {row}; standard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format for skemaet format: {n} (tæller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Formula: numbers, \"texts\", names, + - * / ^, comparisons, & and sqrt, abs, round, ceil, floor, min, max, if, step	Formel: tal, \"tekster\", navne, + - * / ^, sammenligninger, & og sqrt, abs, round, ceil, floor, min, max, if, step
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Fundamentjord: hvor langt inden for ydervæggene (standard 100), ring: hvor langt uden for dem (standard 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Fundamentjord: dens største maske, mm (standard 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Ramme, der tages udgangspunkt i, når rammen er ny (standard: A3 landscape)
@@ -366,6 +372,8 @@ Key, e.g. user.customer_code	Nøgle, f.eks. user.customer_code
 Keys of the routes, comma separated (all if missing)	Nøgler for føringerne, kommasepareret (alle, hvis de mangler)
 Kind: machining, punching or busbar	Type: machining, punching eller busbar
 Known length of the cable in m (taken instead of the 3D route)	Kendt længde af kablet i m (bruges i stedet for 3D-føringen)
+Label shown when the value is asked for	Etiket, der vises, når værdien efterspørges
+Label shown with the value	Etiket, der vises med værdien
 Label: terminal number, PLC address or potential name	Etiket: klemnummer, PLC-adresse eller potentialenavn
 Landscape (true) or portrait (false)	Liggende (true) eller stående (false)
 Language the project texts are written in, e.g. en	Sprog, som projektteksterne er skrevet på, f.eks. en
@@ -485,6 +493,7 @@ Nailboard layout of a harness: the branches from the common node to the connecto
 Name (default E1, E2, …)	Navn (standard E1, E2, …)
 Name (default F1, F2, …)	Navn (standard F1, F2, …)
 Name both the building and the roof, or neither for a freestanding PV array	Angiv både bygningen og taget, eller ingen af dem for et jordmonteret solcellefelt
+Name in the list of templates	Navn på listen over skabeloner
 Name of the assembly	Samlingens navn
 Name of the bar, e.g. L1 -Q1	Skinnens navn, f.eks. L1 -Q1
 Name of the check	Kontrollens navn
@@ -492,9 +501,9 @@ Name of the customer rule set to remove	Navn på det kunderegelsæt, der skal fj
 Name of the frame	Rammens navn
 Name of the machine	Maskinens navn
 Name of the main earthing terminal	Navn på hovedjordskinnen
+Name of the placeholder, e.g. POWER_KW for {POWER_KW}: letters, digits and _	Pladsholderens navn, f.eks. POWER_KW for {POWER_KW}: bogstaver, cifre og _
 Name of the safety function to remove	Navn på den sikkerhedsfunktion, der skal fjernes
 Name of the segment	Segmentets navn
-Name of the template	Skabelonens navn
 Name of the title block	Tegningshovedets navn
 Name of the title block (with page_type: empty removes the choice)	Tegningshovedets navn (med page_type: tom fjerner valget)
 Name of the work area	Arbejdsområdets navn
@@ -502,6 +511,7 @@ Name or id; the tag for places	Navn eller id; betegnelsen for placeringer
 Name placed by hand: X offset from the insertion point in mm	Navn placeret manuelt: X-forskydning fra indsætningspunktet i mm
 Name placed by hand: Y offset from the insertion point in mm	Navn placeret manuelt: Y-forskydning fra indsætningspunktet i mm
 Name, e.g. the location +M1	Navn, f.eks. placeringen +M1
+Name, parameters, formulas and page conditions of a project template	Navn, parametre, formler og sidebetingelser for en projektskabelon
 New device tag	Ny enhedsmærkning
 New identifier	Ny betegnelse
 New page name	Nyt sidenavn
@@ -575,6 +585,7 @@ OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=værd
 Offset from the symbol position in mm (default: below the symbol)	Forskydning fra symbolets position i mm (standard: under symbolet)
 Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Forskydning af kabelmærkningen ved lederen fra dens automatiske plads, ét punkt [dx, dy] i mm (intet punkt = automatisk)
 Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Forskydning af lederbetegnelsen fra dens automatiske plads, ét punkt [dx, dy] i mm (intet punkt = automatisk)
+On a page of a project template: OPTION=value, OPTION!=value, OPTION=a|b joined by & (parameters and formulas of get_template); a project started from the template leaves the page out when it does not hold. Empty: always	På en side i en projektskabelon: OPTION=værdi, OPTION!=værdi, OPTION=a|b forbundet med & (parametre og formler fra get_template); et projekt, der startes fra skabelonen, udelader siden, når betingelsen ikke er opfyldt. Tom: altid
 One end, e.g. -K1:A1	Den ene ende, f.eks. -K1:A1
 One row per printed label instead of a count	Én række pr. udskrevet mærkat i stedet for et antal
 Only devices on these pages (names separated by commas)	Kun enheder på disse sider (navne adskilt af kommaer)
@@ -697,6 +708,7 @@ Project exports	Projekteksporter
 Project languages, dictionary and translations	Projektsprog, ordbog og oversættelser
 Project reports	Projektrapporter
 Project statistics	Projektstatistik
+Project templates	Projektskabeloner
 Property and function definitions, property values and placement schemes	Egenskabs- og funktionsdefinitioner, egenskabsværdier og placeringsskemaer
 Property key	Egenskabsnøgle
 Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Egenskabsnøgler og værdier, f.eks. {\"device.rated_power\": \"5.5\"}
@@ -725,6 +737,7 @@ Remove unused definitions (default: false)	Fjern ubrugte definitioner (standard:
 Removes a control point of the route of a wire, cable or tube, or all of them	Fjerner et støttepunkt i føringen af en ledning, et kabel eller et rør, eller dem alle
 Removes a copper bar	Fjerner en kobberskinne
 Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Fjerner en knude (med dens afsnit og placeringer), et afsnit, en placering, et omrids, en udligningsleder eller tilbehør
+Removes a parameter or formula of the template	Fjerner en parameter eller formel i skabelonen
 Removes a planned device from a segment	Fjerner en planlagt enhed fra et segment
 Removes a project function definition; its symbols go back to their built-in one	Fjerner en funktionsdefinition i projektet; dens symboler får igen den indbyggede
 Removes a project option; its content stays in the project	Fjerner en projektoption; dens indhold forbliver i projektet
@@ -823,6 +836,7 @@ Shows the PLC hardware configuration: stations with racks, slots, modules and ad
 Shows the content of a page: symbols with their connection point positions, wires and texts	Viser indholdet af en side: symboler med positionerne af deres tilslutningspunkter, ledninger og tekster
 Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Viser de data fra de andre systemer, der er gemt i projektet (artikellinks, dokumenter), og udvekslingsloggen
 Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Viser et stiks stikside: artiklens benplacering, hvert bens position (mm, set mod bensiden) med potential, lederfarve og kabelleder på begge sider
+Shows the open project as a template: name, parameters, formulas with their values at the defaults, the pages with a condition and the mistakes	Viser det åbne projekt som skabelon: navn, parametre, formler med deres værdier ved standardværdierne, siderne med en betingelse og fejlene
 Shows the options and rules of the configurator	Viser konfiguratorens indstillinger og regler
 Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Viser benene i et stik i stikrækkefølge: hvad der er tilsluttet på bøsningssiden og på bensiden, potentiale, ubrugte ben
 Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Viser reglerne for 3D-føringen og ændrer de angivne: gitter, frigang, faktor for fri luft, adskillelse, bøjningsradier, afkortningslængder, reserver
@@ -919,6 +933,7 @@ The rotation must be 0, 90, 180 or 270	Rotationen skal være 0, 90, 180 eller 27
 The straight line of a crossing: vertical or horizontal (default vertical)	En krydsnings lige linje: vertical eller horizontal (standard vertical)
 The text height must be at least 0.5 mm	Teksthøjden skal være mindst 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Et hjørnes to arme, lodret og vandret, f.eks. down left (standard: efter lederne der, ellers down right)
+The value must be a number	Værdien skal være et tal
 The width factor must be from 0.1 to 10	Breddefaktoren skal være fra 0,1 til 10
 The wire has no length	Forbindelsen har ingen længde
 The wire that jumps: vertical or horizontal	Ledningen, der springer: vertical eller horizontal
@@ -938,6 +953,7 @@ Top edge on the mounting plate in mm	Øverste kant på monteringspladen i mm
 Translated line	Oversat linje
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Drejning om lodret akse i grader, mod uret set ovenfra (90: fronterne vender mod højre)
 Two wires at a connection point share a twin ferrule	To ledere ved et tilslutningspunkt deler et dobbelt terminalrør
+Unit, e.g. A	Enhed, f.eks. A
 Unit, e.g. kW	Enhed, f.eks. kW
 Unknown T-connection style: {}	Ukendt stil for T-forbindelse: {}
 Unknown accessory kind: {}	Ukendt type tilbehør: {}

@@ -69,6 +69,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	페이지 매크로가 있고 아직 회로도에 없는 계획된 장치마다 회로도 페이지 한 개(선택한 세그먼트, 없으면 모두)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	분할 프로젝트(.oecp)는 페이지, 장치, 부품 및 포함된 파일마다 작은 파일이 하나 있는 폴더로, git과 같은 버전 관리용입니다: 파일 › 분할 프로젝트로 저장.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	분할 프로젝트는 파일이 들어 있는 폴더입니다. 브라우저에서는 열 수 없습니다. 먼저 프로젝트 파일(.oec) 또는 아카이브(.oecz)로 변환하세요.
+A template file to pass on; New › From a template file… starts projects from it	전달용 템플릿 파일. 새로 만들기 › 템플릿 파일에서…로 이 파일에서 프로젝트를 시작합니다
 A template of this name is replaced.	이 이름의 템플릿이 교체됩니다.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	템플릿은 새 페이지의 페이지 유형, 플롯 프레임, 표제란, 구조 및 설명을 설정하고 내용을 배치합니다.
 A way through free air costs this many times the way in a duct or routing path	자유 공간을 지나는 경로의 비용이 덕트나 배선 경로를 지나는 경우의 몇 배인지
@@ -528,6 +529,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	구역 삭제
 Delete stair	계단 삭제
 Delete string	스트링 삭제
+Delete template	템플릿 삭제
 Delete the group	그룹 삭제
 Delete the layer; its items move to the default layer	레이어 삭제. 레이어의 항목은 기본 레이어로 이동합니다
 Delete the property and all its values	속성 및 모든 값 삭제
@@ -685,6 +687,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	표에서 편집
 Edit in table…	표에서 편집…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	편집 모드: 배치도에서 건물을 제자리로 드래그하고 회전합니다. 방을 클릭해도 더 이상 열리지 않습니다
+Edit template	템플릿 편집
 Editable copy of this plot frame	이 플롯 프레임의 편집 가능한 복사본
 Editable copy of this title block	이 표제란의 편집 가능한 복사본
 Effective surface	유효 표면적
@@ -729,6 +732,7 @@ Export SVG…	SVG 내보내기…
 Export all pages as PDF in {}	모든 페이지를 {} PDF로 내보내기
 Export as EPLAN parts XML…	EPLAN 부품 XML로 내보내기…
 Export as PDF in language	언어별 PDF로 내보내기
+Export as file…	파일로 내보내기…
 Export check scheme…	검사 스키마 내보내기…
 Export favorites…	즐겨찾기 내보내기…
 Export library…	라이브러리 내보내기…
@@ -796,6 +800,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	상호 참조 형식, 대상 페이지의 구조, 중단점, 접점 이미지
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	분기 길이와 커넥터의 핀 표가 포함된 하네스의 실척 폼보드 도면
 Forms	양식
+Formula	수식
+Formulas	수식
 Form…	양식…
 Frame	프레임
 Frame of all pages that do not choose one	프레임을 선택하지 않은 모든 페이지의 프레임
@@ -986,6 +992,7 @@ Introduction	소개
 Invalid value	잘못된 값
 Invert the direction of panning by scrolling	스크롤 이동 방향 반전
 Inverter or charge controller (devices with PV input data)	인버터 또는 충전 컨트롤러 (태양광 입력 데이터가 있는 장치)
+It takes the place of the bundled template of this name.	이 이름의 기본 제공 템플릿을 대신합니다.
 Items copied: {}	복사한 요소: {}
 Items copied: {} (devices left out: {}, a device is placed once)	복사한 요소: {} (제외된 장치: {}, 장치는 한 번만 배치됩니다)
 Items cut: {}	잘라낸 요소: {}
@@ -1199,6 +1206,7 @@ Nailboard (SVG)…	네일보드(SVG)…
 Name and cross reference	이름 및 상호 참조
 Name on the server	서버의 이름
 Name the inspector in the report data first.	먼저 보고서 데이터에 검사자를 입력하십시오.
+Name, parameters, formulas and page conditions of the project as a template	템플릿으로서 프로젝트의 이름, 매개 변수, 수식 및 페이지 조건
 Name; Data Type; Logical Address; Comment – for PLC programming tools	이름; 데이터 유형; 논리 주소; 주석 – PLC 프로그래밍 도구용
 Named copy of this form, for report blocks	보고서 블록용으로 이 양식에 이름을 지정한 복사본
 Navigators	탐색기
@@ -1227,6 +1235,7 @@ New pages for every group (strip, plug, cable, device …)	각 그룹(단자대,
 New potential	새 전위
 New project	새 프로젝트
 New project from template	템플릿에서 새 프로젝트
+New project from {}	{}에서 새 프로젝트
 New project scheme from the selected one	선택한 스키마에서 새 프로젝트 스키마
 New project, not saved yet	새 프로젝트, 아직 저장되지 않음
 New report page	새 보고서 페이지
@@ -1338,6 +1347,7 @@ Number prefix	번호 접두사
 Number wires	전선 번호 지정
 Numbering	번호 지정
 Numbers removed from {} wires	전선 {}개에서 번호 제거됨
+Numeric	숫자
 Object	개체
 Of the outer diameter, as laid fixed	외경의 배수, 고정 포설 시
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	외경의 배수. 배관은 직경 1.5배의 곡관으로 굽힘
@@ -1449,6 +1459,7 @@ PV array {} lies outside the protection of the air-termination system	태양광 
 PV array {} of building {}: {} modules	건물 {1}의 태양광 어레이 {0}: 모듈 {2}개
 PV array {} of building {}: {} modules, {} kWp	건물 {1}의 태양광 어레이 {0}: 모듈 {2}개, {3} kWp
 PV arrays	태양광 어레이
+Page conditions	페이지 조건
 Page graphics	페이지 그래픽
 Page heading	페이지 제목
 Page list, devices, parts, panel layout and settings	페이지 목록, 장치, 부품, 패널 레이아웃 및 설정
@@ -1464,7 +1475,6 @@ Page {} ({})	페이지 {}({})
 Page {} is now page {}	페이지 {}은(는) 이제 페이지 {}입니다
 Page {} locked	페이지 {} 잠김
 Page {} – {}	페이지 {} – {}
-Page {}: {}	{} 페이지: {}
 Pages and templates using the frame follow	이 프레임을 사용하는 페이지와 템플릿이 따라갑니다
 Pages of revision {}	개정 {}의 페이지
 Pages of the selected block	선택한 블록의 페이지
@@ -1477,6 +1487,9 @@ Pane menu	창 메뉴
 Panel wiring report	패널 배선 보고서
 Panes	창
 Paper	용지
+Parameter	매개 변수
+Parameters	매개 변수
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	매개 변수는 템플릿에서 프로젝트를 시작할 때 입력을 요청하고, 수식은 추가 값을 계산합니다. 둘 다 프로젝트 텍스트의 {NAME}을 채웁니다. 조건(REPORTS=yes)이 있는 페이지는 조건이 맞지 않으면 제외됩니다.
 Parent section	상위 구역
 Part of the profile: generic types or parts from the parts store	프로필의 부품: 일반 유형 또는 부품 저장소의 부품
 Part selection from the parts database	부품 데이터베이스에서 부품 선택
@@ -1815,6 +1828,7 @@ Save as 3D macro	3D 매크로로 저장
 Save as 3D macro…	3D 매크로로 저장…
 Save as local file	로컬 파일로 저장
 Save as macro	매크로로 저장
+Save as project template	프로젝트 템플릿으로 저장
 Save as project template…	프로젝트 템플릿으로 저장…
 Save as scheme	스키마로 저장
 Save as split project…	분할 프로젝트로 저장…
@@ -1840,6 +1854,8 @@ Save to project server: {}	프로젝트 서버에 저장: {}
 Save to project server: {} – the connection is lost, saving tries again	프로젝트 서버에 저장: {} – 연결이 손실되었습니다. 저장을 다시 시도합니다
 Save workspace	작업 공간 저장
 Save workspace…	작업 공간 저장…
+Saved in the browser	브라우저에 저장됨
+Saved in {}, where the command line finds it too	{}에 저장됨. 명령줄에서도 찾을 수 있습니다
 Saved the properties of {} (revision {})	{}의 속성을 저장했습니다(개정 {})
 Saved to	저장 위치
 Saved to the project server (revision {})	프로젝트 서버에 저장됨(개정 {})
@@ -1847,6 +1863,7 @@ Saved workspaces	저장된 작업 공간
 Saves the layers with their settings as a settings scheme for other projects	레이어와 그 설정을 다른 프로젝트용 설정 스키마로 저장합니다
 Saves the placed properties as a placement scheme of the project	배치된 속성을 프로젝트의 배치 스키마로 저장합니다
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	개정, 기준선, 검토 및 배선 표시 없이 프로젝트를 새 프로젝트용 템플릿으로 저장합니다
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	개정, 기준선, 검토 및 배선 표시 없이 프로젝트를 새 프로젝트용 템플릿으로 템플릿 폴더에 저장합니다(기본 제공 템플릿과 함께 표시됨)
 Saves the project's own properties, function definitions and schemes for other projects	프로젝트 고유의 속성, 기능 정의 및 스키마를 다른 프로젝트용으로 저장합니다
 Saves the workspace, the arrangement of the panels and the open windows	작업 공간, 창 배치 및 열린 대화 상자를 저장합니다
 Saves your version of the whole project as a project file	전체 프로젝트의 내 버전을 프로젝트 파일로 저장합니다
@@ -2002,7 +2019,6 @@ Standard workspaces	표준 작업 공간
 Standoff height	스탠드오프 높이
 Star a command in Plugin commands to pin it here	플러그인 명령에서 별표를 누르면 여기에 고정됩니다
 Star: the first point refers to all, the others to it	스타: 첫 번째 지점은 모든 지점을, 나머지는 첫 번째 지점을 참조
-Start	시작
 Start again when the page structure changes	페이지 구조가 바뀌면 다시 시작
 Start at	시작 값
 Start byte	시작 바이트
@@ -2089,6 +2105,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	대상 언어
 Temperature rise at the roof against the middle (IEC/TR 60890)	중앙 대비 천장부 온도 상승(IEC/TR 60890)
 Template	템플릿
+Template parameters	템플릿 매개 변수
+Template {} deleted	템플릿 {} 삭제됨
+Template {} saved	템플릿 {} 저장됨
 Templates	템플릿
 Terminal markers	단자 마커
 Terminal number, PLC address, potential name …	단자 번호, PLC 주소, 전위 이름 …
@@ -2367,6 +2386,7 @@ all, or e.g. -X*, -W1	모두, 또는 예: -X*, -W1
 all, or e.g. K, Q	모두 또는 예: K, Q
 along z	z 방향
 any	제한 없음
+always	항상
 both ends	양쪽 끝
 built-in	기본 제공
 by hand	수동
@@ -2392,6 +2412,7 @@ e.g. corp:Engineering	예: corp:Engineering
 e.g. customer, ERP, PLM	예: 고객, ERP, PLM
 e.g. cutout too small, part missing	예: 컷아웃이 너무 작음, 부품 없음
 e.g. de, fr, it	예: de, fr, it
+e.g. round(POWER_KW * 2, 1)	예: round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	예: 전선이 너무 짧음, 단자 누락
 empty	비어 있음
 female	암
@@ -2436,6 +2457,7 @@ ridge {} m	용마루 {} m
 set on the device	장치에서 설정됨
 sloped ceiling from {} m	{} m부터 경사 천장
 some	일부
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, 자릿수), ceil, floor, min, max, if(조건, 참, 거짓), step(x, 한계, 값, …, 그 외); &는 텍스트를 연결합니다
 taken over	반영됨
 the device before it	앞의 장치
 the project data (page list, devices, settings)	프로젝트 데이터(페이지 목록, 장치, 설정)
@@ -2469,6 +2491,7 @@ x y	x y
 {} (revision {})	{}(개정 {})
 {} (spare)	{}(예비)
 {} (subproject of {})	{}({}의 하위 프로젝트)
+{} (template of the user)	{}(사용자 템플릿)
 {} (unused)	{}(사용 안 함)
 {} ({} open)	{}(미번역 {}개)
 {} / {} mm  (column {})	{} / {} mm  (열 {})

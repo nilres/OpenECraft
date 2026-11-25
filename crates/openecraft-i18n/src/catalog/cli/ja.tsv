@@ -1,5 +1,6 @@
 # English<TAB>日本語 – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(MCP サーバーのみ)
+A template needs a name	テンプレートには名前が必要です
 Access token for changes	変更用のアクセストークン
 Access token of a Vault session or an Autodesk account instead of user and password	ユーザーとパスワードの代わりに使用する、Vault セッションまたは Autodesk アカウントのアクセストークン
 Address of the Vault server, e.g. https://vault.example.com	Vault サーバーのアドレス (例: https://vault.example.com)
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	部
 Delete the role	ロールを削除
 Deletes a catalog without parts from the parts server	部品のないカタログを部品サーバーから削除します
 Deletes a part from the parts server	部品サーバーから部品を削除します
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	ユーザーのテンプレートをテンプレートフォルダーから削除します (同じ名前の組み込みテンプレートが戻ります)
 Deletes a user of the parts server (administrators only)	部品サーバーのユーザーを削除します (管理者のみ)
 Descending order	降順
 Discard unsaved changes of the open project	開いているプロジェクトの未保存の変更を破棄
@@ -122,6 +124,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	最初の回路からプラント全体までのサンプルプロジェクトを、それぞれが示す機能とともに一覧表示します
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	エクスポート (組み込みおよびプラグイン) を一覧表示します: export 用の名前、タイトル、ファイル拡張子、パラメーター
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Vault フォルダーのフォルダーとファイルを一覧表示するか、その下 (または Vault 全体) のファイルプロパティを検索します
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	プロジェクトテンプレート (組み込みのものとテンプレートフォルダーのもの: --templates / OPENECRAFT_TEMPLATES) を、パラメーター、数式、条件によって除外されるページとともに一覧表示します
 Lists the reports (built-in and of plugins): name for report and title	レポート (組み込みおよびプラグイン) を一覧表示します: report 用の名前とタイトル
 Lists the users of the parts server (administrators only)	部品サーバーのユーザーを一覧表示します (管理者のみ)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	読み込まれたプラグイン (組み込み、および --plugins / OPENECRAFT_PLUGINS のプラグインフォルダーから) とそのコマンド、チェック、レポート、エクスポート。このセッションでプラグインを有効化または無効化します
@@ -133,7 +136,9 @@ Manufacturer (wildcards); default * (everything)	メーカー (ワイルドカ�
 Manufacturer whose parts a manufacturer user maintains	メーカーユーザーが部品を管理するメーカー
 Maximum number of hits (default 50)	最大ヒット数 (既定値 50)
 Name of a built-in template (list_structure_templates)	組み込みテンプレートの名前 (list_structure_templates)
+Name of a template (list_project_templates) or a template file	テンプレートの名前 (list_project_templates) またはテンプレートファイル
 Name of the knowledge vault (default Vault)	ナレッジ Vault の名前 (既定 Vault)
+Name of the template (default: its template name, otherwise the project name)	テンプレートの名前 (既定: テンプレート名、なければプロジェクト名)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	新しいアカウントは管理者の承認を待つ (true) か、そのままサインインする (false)
 New file name (save as)	新しいファイル名 (名前を付けて保存)
 New pages for every value of the group column (default true)	グループ列の値ごとに新しいページ (既定値 true)
@@ -143,6 +148,7 @@ No grant of {} found	{} の付与が見つかりません
 No profile named {}	{} という名前のプロファイルはありません
 No project is open: use open_project or new_project first	プロジェクトが開かれていません: 最初に open_project または new_project を使用してください
 No role {} defined	ロール {} は定義されていません
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	テンプレートフォルダーがありません: --templates <フォルダー> を指定するか OPENECRAFT_TEMPLATES を設定してください
 Not a valid catalog: {}	有効なカタログではありません: {}
 Not a valid part: {}	有効な部品ではありません: {}
 Not connected to a vault: use vault_connect first	Vault に接続されていません: 先に vault_connect を使用してください
@@ -153,6 +159,7 @@ Only the pages of this report block; default all report pages	このレポート
 Only the projects that match these search terms	これらの検索条件に一致するプロジェクトのみ
 Only this block	このブロックのみ
 Open (true) or close (false) the registration	登録の受け付けを開始 (true) または停止 (false)
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	テンプレート自体を開いて変更します: プレースホルダー、パラメーター、ページ条件は保持されます (save_project_template で保存)
 Opens a project file or archive (files of older versions are converted)	プロジェクトファイルまたはアーカイブを開きます (旧バージョンのファイルは変換されます)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Vault からプロジェクトファイルまたはアーカイブを開きます。ターゲットを指定しない vault_upload では、その新しいバージョンがチェックインされます
 Option {} needs the form name=value	オプション {} は 名前=値 の形式で指定する必要があります
@@ -198,6 +205,7 @@ Redoes the last undone change	最後に元に戻した変更をやり直しま�
 Remove the grants of the user or group (only of this role and scope, if given)	ユーザーまたはグループの付与を削除 (指定した場合はこのロールとスコープのみ)
 Remove the parts assigned so far	これまでに割り当てた部品を削除
 Removes a file from a part on the parts server	部品サーバー上の部品からファイルを削除します
+Replace a template of the same name	同じ名前のテンプレートを置き換える
 Replace the file at path if it exists	path のファイルが存在する場合は置き換える
 Replace the project parts by their newer server versions	プロジェクト部品をサーバーの新しいバージョンに置き換える
 Replacement text	置換後のテキスト
@@ -214,6 +222,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	ロール名
 Role of requests without sign-in; none: sign-in needed for reading	サインインなしのリクエストのロール。none: 読み取りにはサインインが必要
 Role: reader, manufacturer, editor, admin or a defined role	ロール: reader、manufacturer、editor、admin または定義済みのロール
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	プロジェクトを、パラメーター、数式、ページ条件とともにテンプレートとしてテンプレートフォルダーに保存します。組み込みテンプレートと同じ名前のユーザーテンプレートはその代わりになります
 Saves the project to its file or to a new path	プロジェクトを既存のファイルまたは新しいパスに保存します
 Scale drawings down that do not fit on the page (default: true)	ページに収まらない図面を縮小する (既定: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	検索条件 (例: company=ACME; customer~plant; conveyor)
@@ -229,6 +238,7 @@ Shows the manifest of a project archive	プロジェクトアーカイブのマ�
 Shows the project properties, file, number of pages and devices and the check result	プロジェクトプロパティ、ファイル、ページ数、デバイス数、チェック結果を表示します
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	部品サーバーのロール、付与、ディレクトリを表示し、必要に応じて匿名リクエストのロールを設定します (管理者のみ)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	ユーザーが部品サーバーに自分で登録できるか (閲覧者として) を表示し、必要に応じて登録の受け付けを開始または停止します (管理者のみ)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	プロジェクトテンプレート (list_project_templates: 「機械」や「モーター始動器 (直入れ始動)」などの組み込みのものと、テンプレートフォルダーのもの) またはテンプレートファイルから開始します
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	プロジェクトテンプレートから開始します: 組み込みテンプレート (Machine、Distribution board (IEC 61439)、Empty (IEC 60204-1)) またはプロジェクトファイル
 Start from an example project (names: list_examples)	サンプルプロジェクトから開始（名前：list_examples）
 Start from the demo project	デモプロジェクトから開始
@@ -273,11 +283,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	ユーザー定義プロパティ (名前: 値。空の値を指定すると削除されます)
 User name to sign in with	サインインに使用するユーザー名
 User or group name (wildcards; directory groups as directory:group)	ユーザー名またはグループ名 (ワイルドカード可。ディレクトリのグループは ディレクトリ:グループ)
+Values of the parameters (name: value); the others keep their default	パラメーターの値 (名前: 値)。その他は既定値のままです
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	テンプレートのパラメーターの値 (名前: 値、例: POWER_KW: 7.5)。その他は既定値のままです
 Values to set (name: value; an empty value removes a property)	設定する値 (名前: 値。空の値を指定するとプロパティが削除されます)
 Vault user name (signs in)	Vault のユーザー名 (サインイン)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	書き込む形式: oec（プロジェクトファイル）、oecp（専用フォルダー内の分割プロジェクト）、oecz（アーカイブ）。既定: 出力の拡張子による
 Width and height must be greater than 0	幅と高さは 0 より大きくなければなりません
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	レポートのタイトル、名前、検索語 (VDE 0100-600 などの規格) で検索する語
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	プロジェクトを開始せずに、指定したパラメーターでのプロジェクトテンプレートの値 (定格電流、設定範囲、部品) を計算します
 Write the table as CSV to this file	表を CSV としてこのファイルに書き込む
 Writes the check scheme of the project (checks switched off, message levels) to a file	プロジェクトのチェックスキーム (オフにしたチェック、メッセージレベル) をファイルに書き込みます
 Writes the embedded file of a document page	ドキュメントページの埋め込みファイルを書き出します
@@ -293,7 +306,6 @@ openecraft-cli version\n\nShows the version of the command line (also --version 
 schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic、overview、graphic、cover、またはレポート: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo と redo は MCP セッションでのみ機能します: コマンドラインはコマンドごとにプロジェクトを開き直します
 user or group	user または group
-{} exists already: pass overwrite to replace it	{} は既に存在します。置き換えるには overwrite を指定してください
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} はアーカイブのため変更されません: プロジェクトをプロジェクトファイルとして保存する (save_project --path <file>.oec) か、アーカイブを変換してください (convert_project)
 {} is an archive: pass a path to save the project as a project file	{} はアーカイブです: プロジェクトをプロジェクトファイルとして保存するにはパスを指定してください
 {} is not a language of the project	{} はプロジェクトの言語ではありません

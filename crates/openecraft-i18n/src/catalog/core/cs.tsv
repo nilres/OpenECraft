@@ -26,6 +26,9 @@ A port cannot be connected to itself	Port nelze připojit sám k sobě
 A room needs at least four walls	Místnost potřebuje alespoň čtyři stěny
 A section number consists of letters and digits and does not start with 0	Číslo oddílu se skládá z písmen a číslic a nezačíná číslicí 0
 A section number must not be empty or contain a dot	Číslo oddílu nesmí být prázdné ani obsahovat tečku
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Třífázový motor v obou směrech otáčení se vzájemně blokovanými stykači: silový a řídicí obvod dimenzovaný podle výkonu motoru, volitelně stránky výkazů
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Třífázový motor rozbíhaný do hvězdy a provozovaný v trojúhelníku: silový a řídicí obvod dimenzovaný podle výkonu motoru, volitelně stránky výkazů
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Třífázový motor spínaný přímo: silový a řídicí obvod dimenzovaný podle výkonu motoru, volitelně schéma svorkovnice, seznam spojení, seznam přístrojů a kusovník
 A0 landscape	A0 na šířku
 A1 landscape	A1 na šířku
 A2 landscape	A2 na šířku
@@ -68,6 +71,7 @@ Analog output module	Modul analogových výstupů
 Analysis	Analýza
 Another section here has this number	Jiný oddíl zde už má toto číslo
 Antenna outlet	Anténní zásuvka
+Anticlockwise	Chod vlevo
 Apparent power (kVA)	Zdánlivý výkon (kVA)
 Applied directives	Použité směrnice
 Approval date	Datum schválení
@@ -177,6 +181,7 @@ Cam profile switch NC	Křivkový spínač, rozpínací
 Cam profile switch NO	Křivkový spínač, spínací
 Cam switch NC	Vačkový spínač, rozpínací
 Cam switch NO	Vačkový spínač, spínací
+Cannot delete {}: {}	{} nelze odstranit: {}
 Cannot read the DWG file: {}	Soubor DWG nelze přečíst: {}
 Capacitive sensor, 2-wire	Kapacitní senzor, 2vodičový
 Capacitive sensor, 3-wire	Kapacitní senzor, 3vodičový
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Jistič 4pólový
 Circuits, protective devices, switches and terminals labelled	Obvody, jisticí přístroje, spínače a svorky označeny
 Circular milling	Kruhové frézování
 Clip / snap-on	Svorka / nacvaknutí
+Clockwise	Chod vpravo
 Cloud	Oblak
 Clutch (electromagnetic)	Spojka (elektromagnetická)
 Coil and timing	Cívka a časování
@@ -260,7 +266,9 @@ Connections of the conductors	Spoje vodičů
 Connector pin-outs and flat cables	Zapojení konektorů a ploché kabely
 Connector pin-outs: mating faces and pin tables (SVG)	Zapojení konektorů: čelní strany a tabulky pinů (SVG)
 Contact material	Materiál kontaktů
+Contactor	Stykač
 Contactor (single-line)	Stykač (jednopólové zobrazení)
+Contactor at least (AC-3)	Stykač nejméně (AC-3)
 Contactor coil KM (GB)	Cívka stykače KM (GB)
 Contactor coil KM (GOST)	Cívka stykače KM (GOST)
 Contactor main contacts KM (GB)	Hlavní kontakty stykače KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Obrysové frézování
 Contractor	Zhotovitel
 Control	Řízení
 Control cabinet	Rozváděč
+Control circuit {}	Řídicí obvod {}
 Control mode	Způsob řízení
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Průchozí bod {} prvku {} {} leží uvnitř něčeho nebo mimo skříň: vede se bez svých průchozích bodů. Přesuňte průchozí bod do volného prostoru.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Průchozí bod {} prvku {} {} leží mimo jeho cestu: v žádné skříni ani místnosti, kterou vede. Přesuňte průchozí bod na jeho cestu.
@@ -286,6 +295,7 @@ Control voltage	Řídicí napětí
 Control voltage type	Druh řídicího napětí
 Conventional touch voltage limit UL (V)	Dohodnutá mez dotykového napětí UL (V)
 Converted from file format {} to {}: {}	Převedeno z formátu souboru {} na {}: {}
+Conveyor	Dopravník
 Coolant	Chladicí kapalina
 Cooler	Chladič
 Cooling method	Způsob chlazení
@@ -314,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Titulní list, obsah, stránky schématu s funkcí a umístěním, seznam přístrojů, kusovník, schémata svorek a kabelů
 Create projects	Vytvářet projekty
 Creation date	Datum vytvoření
+Cross-section of the motor circuit	Průřez obvodu motoru
 Cross-section {} carries {} A, less than the {} A of {}	Průřez {} snese {} A, méně než {} A z {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Křížení na straně {} neodpovídá svým vodičům: potřebuje vodič ve všech čtyřech směrech a žádný připojovací bod v místě
 Current capacity (A)	Proudová zatížitelnost (A)
 Current consumption	Odběr proudu
+Current of the mains and delta contactor	Proud síťového a trojúhelníkového stykače
+Current of the star contactor	Proud stykače hvězdy
 Current range	Rozsah proudu
 Current setting	Nastavení proudu
 Current transformer	Transformátor proudu
@@ -351,6 +364,7 @@ Default {} ({})	Výchozí {} ({})
 Degree of protection	Stupeň krytí
 Delete projects	Odstraňovat projekty
 Delivery date	Termín dodání
+Delta	Trojúhelník
 Demand (diversity factor {})	Odběr (součinitel soudobosti {})
 Demand {} A above the usable {} A of the supply	Odběr {} A nad využitelnými {} A napájení
 Density	Hustota
@@ -405,6 +419,7 @@ Disconnector 3-pole, lockable	Odpojovač 3pólový, uzamykatelný
 Displacement	Zdvihový objem
 Distribution board	Rozvodnice
 Distribution board (IEC 61439)	Rozvodnice (IEC 61439)
+Division by zero in the formula	Dělení nulou ve vzorci
 Document	Dokument
 Document (embedded file)	Dokument (vložený soubor)
 Document A4 portrait	Dokument A4 na výšku
@@ -425,6 +440,7 @@ Drilling and milling centre	Vrtací a frézovací centrum
 Drive	Pohon
 Drive type	Typ pohonu
 Driven by	Poháněno
+Driven machine	Poháněný stroj
 Drives	Pohony
 Drop-out time	Doba odpadu
 Duct fill levels	Zaplnění kabelových kanálů
@@ -824,9 +840,12 @@ Main contacts 3-pole, automatic tripping	Hlavní kontakty 3pólové, samočinné
 Main contacts 4-pole	Hlavní kontakty 4pólové
 Main function	Hlavní funkce
 Main function with contact image	Hlavní funkce se zrcadlem kontaktů
+Main switch	Hlavní vypínač
 Main switch 1-pole	Hlavní vypínač 1pólový
 Main switch 2-pole	Hlavní vypínač 2pólový
 Main switch 3-pole	Hlavní vypínač 3pólový
+Mains	Síť
+Mains and delta contactor	Síťový a trojúhelníkový stykač
 Mains frequency	Síťová frekvence
 Mains voltage	Síťové napětí
 Maintenance	Údržba
@@ -893,11 +912,16 @@ Motor DC, shunt-wound	Stejnosměrný motor, derivační
 Motor cable {} of frequency converter {} must be shielded	Motorový kabel {} frekvenčního měniče {} musí být stíněný
 Motor data	Údaje motoru
 Motor operator of a circuit breaker	Motorový pohon jističe
+Motor protection	Ochrana motoru
 Motor protection (class 10)	Ochrana motoru (třída 10)
 Motor protection switch	Motorový spouštěč
 Motor protection switch (single-line)	Motorový spouštěč (jednopólový)
 Motor protection switch 1-pole	Motorový spouštěč 1pólový
 Motor protection switch 2-pole	Motorový spouštěč 2pólový
+Motor running	Motor běží
+Motor starter direct on line	Přímé spouštění motoru
+Motor starter reversing	Reverzace motoru
+Motor starter star-delta	Spouštění motoru hvězda-trojúhelník
 Motor, electronically commutated (brushless DC)	Motor, elektronicky komutovaný (bezkartáčový DC)
 Motors	Motory
 Motors / Loads	Motory / zátěže
@@ -963,6 +987,7 @@ No segment template named {}	Žádná šablona segmentu s názvem {}
 No subproject {}	Žádný podprojekt {}
 No such object: {}	Žádný takový objekt: {}
 No surge protective device at the supply (IEC 60364-4-44)	Na přívodu není přepěťová ochrana (IEC 60364-4-44)
+No template of the user is named {}	Žádná šablona uživatele se nejmenuje {}
 No terminal {}	Žádná svorka {}
 No user defined property {}	Žádná uživatelsky definovaná vlastnost {}
 No wires at the pins of {}	Žádné vodiče na pinech {}
@@ -1204,7 +1229,9 @@ Potentials, interruption points	Potenciály, body přerušení
 Potentiometer	Potenciometr
 Power (kWp)	Výkon (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Silový a řídicí obvod na několika stránkách: hlavní vypínač, ochrana motoru, tři stykače s blokováním, časové relé se zpožděným přítahem, body přerušení, potenciály s barvami vodičů, kabel motoru a výkazy kabelů.
+Power circuit {}	Silový obvod {}
 Power factor	Účiník
+Power factor cos phi	Účiník cos phi
 Power factor meter	Měřič účiníku
 Power loss (W)	Ztrátový výkon (W)
 Power module	Napájecí modul
@@ -1257,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Ochranné vodi�
 Protective devices	Ochranné přístroje
 Protective earth	Ochranné uzemnění
 Protective earth (PE)	Ochranný vodič (PE)
+Protective earth terminal	Svorka ochranného vodiče
 Protective hose	Ochranná hadice
 Protective, earthing and bonding conductors present and adequate	Ochranné, uzemňovací a pospojovací vodiče přítomny a vyhovující
 Proximity sensor	Přibližovací spínač
@@ -1306,6 +1334,7 @@ Rated cross-section	Jmenovitý průřez
 Rated current (A)	Jmenovitý proud (A)
 Rated current of the assembly	Jmenovitý proud rozváděče
 Rated current of the auxiliary contacts	Jmenovitý proud pomocných kontaktů
+Rated current {} A, motor protection switch {}	Jmenovitý proud {} A, motorový spouštěč {}
 Rated diversity factor	Jmenovitý součinitel soudobosti
 Rated frequency	Jmenovitá frekvence
 Rated impulse withstand voltage	Jmenovité impulzní výdržné napětí
@@ -1342,6 +1371,7 @@ Remote I/O	Decentrální periferie
 Remote I/O {} has no controller	Decentrální periferie {} nemá řídicí systém
 Replace needs the text to find	Nahrazení potřebuje hledaný text
 Replacement part number	Číslo náhradního artiklu
+Report pages	Stránky výkazů
 Residual current device	Proudový chránič
 Residual current device 1-pole	Proudový chránič 1pólový
 Residual current device 2-pole	Proudový chránič 2pólový
@@ -1444,6 +1474,7 @@ Service unit	Jednotka úpravy vzduchu
 Service unit (filter, regulator, lubricator)	Úpravná jednotka (filtr, regulátor, maznice)
 Setpoint	Požadovaná hodnota
 Setting range	Rozsah nastavení
+Setting range of the motor protection switch	Rozsah nastavení motorového spouštěče
 Sheath colour	Barva pláště
 Sheath material	Materiál pláště
 Shed roof	Pultová střecha
@@ -1505,6 +1536,9 @@ Spiral	Točité
 Stainless steel	Nerezová ocel
 Stainless steel V4A	Nerezová ocel V4A
 Standard	Norma
+Star	Hvězda
+Star contactor	Stykač hvězdy
+Star time	Doba chodu do hvězdy
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Obvod start / stop s relé: cívka a kontakty tvoří jedno zařízení s křížovými odkazy a obrazem kontaktů, svorkovnice, čísla vodičů, schéma svorkovnice a seznam spojení.
 Start date	Datum zahájení
 Starting current ratio	Poměr záběrného proudu
@@ -1517,6 +1551,7 @@ Station {}: bus system {} does not exist	Stanice {}: sběrnicový systém {} nee
 Steam	Pára
 Steel, hot-dip galvanised	Ocel žárově zinkovaná
 Stock	Zásoba
+Stop	Stop
 Stop category	Kategorie zastavení
 Storage temperature range	Rozsah skladovací teploty
 Straight	Přímé
@@ -1548,6 +1583,7 @@ Supplementary fields	Doplňková pole
 Suppliers	Dodavatelé
 Supply network	Typ sítě
 Supply voltage	Napájecí napětí
+Supply {} V / 50 Hz, TN-S	Napájení {} V / 50 Hz, TN-S
 Surface (m²)	Plocha (m²)
 Surface-mounted	Na omítce
 Surge protection type	Typ přepěťové ochrany
@@ -1566,6 +1602,7 @@ Switches / Sensors	Spínače / snímače
 Switches, pushbuttons	Spínače, tlačítka
 Switching frequency	Četnost spínání
 Switching output	Spínací výstup
+Syntax error in the formula at {}	Chyba syntaxe ve vzorci na místě {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	T-kus na straně {} neodpovídá svým vodičům: potřebuje jeden vodič ve svém směru, dva napříč a žádný připojovací bod v místě
 Table of contents	Obsah
 Tabloid landscape	Tabloid na šířku
@@ -1592,6 +1629,7 @@ Terminal data	Údaje svorky
 Terminal description	Popis svorky
 Terminal line-up	Řazení svorek
 Terminal marker	Štítek svorky
+Terminal of the motor circuit	Svorka obvodu motoru
 Terminal parts	Díly koncovek
 Terminal strip data of {} without terminals	Data svorkovnice {} bez svorek
 Terminal strip overview	Přehled svorkovnic
@@ -1622,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	První sloupec musí být Key
 The folder {} already holds the project {}: a split project needs a folder of its own	Složka {} již obsahuje projekt {}: rozdělený projekt potřebuje vlastní složku
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Složka {} obsahuje soubory, které nepatří k žádnému projektu ({}): rozdělený projekt potřebuje vlastní složku
+The formula ends too early	Vzorec končí příliš brzy
 The function definition needs a key and a name	Definice funkce potřebuje klíč a název
 The index of the project names no file layout: it was not written by OpenECraft	Index projektu neuvádí rozložení souborů: nebyl zapsán aplikací OpenECraft
 The last page cannot be deleted	Poslední stránku nelze odstranit
@@ -1752,14 +1791,17 @@ Unit of measurement	Měrná jednotka
 Unit price	Jednotková cena
 Unknown cable {}	Neznámý kabel {}
 Unknown device: {}	Neznámý přístroj: {}
+Unknown function {} in the formula	Neznámá funkce {} ve vzorci
 Unknown job {}	Neznámá zakázka {}
 Unknown macro	Neznámé makro
 Unknown macro box	Neznámý rámeček makra
+Unknown name {} in the formula	Neznámý název {} ve vzorci
 Unknown object: {}	Neznámý objekt: {}
 Unknown revision	Neznámá revize
 Unknown symbol '{}'	Neznámý symbol '{}'
 Unknown tool {}	Neznámý nástroj {}
 Unused connection points	Nepoužité připojovací body
+Upper limit of the setting range	Horní mez rozsahu nastavení
 Upstream	Předřazený
 User defined	Uživatelsky definováno
 User symbols	Uživatelské symboly
@@ -1837,6 +1879,7 @@ Within a suite, wall mounted	Uvnitř řady, montáž na stěnu
 Within a suite, wall mounted, roof covered	Uvnitř řady, montáž na stěnu, zakrytá střecha
 Word document	Dokument Word
 Working line	Pracovní vedení
+Wrong number of values for {}	Nesprávný počet hodnot pro {}
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	Rok výroby
 Yes / no	Ano / ne
@@ -1961,8 +2004,12 @@ yellow	žlutá
 {} is a built-in property	{} je vestavěná vlastnost
 {} is a built-in scheme	{} je vestavěné schéma
 {} is a busbar machine and makes no sheets	{} je stroj na zpracování přípojnic a nevyrábí plechy
+{} is above the last step	{} je nad posledním stupněm
+{} is defined twice	Název {} je definován dvakrát
 {} is neither the protective device nor a device of the circuit of {}	{} není ani ochranný přístroj, ani přístroj obvodu {}
+{} is no valid name: letters, digits and _, not starting with a digit	{} není platný název: písmena, číslice a _, nesmí začínat číslicí
 {} is not a busbar machine	{} není stroj na zpracování přípojnic
+{} is not a number	{} není číslo
 {} is not a property of {}	{} není vlastností {}
 {} is not an approver of this project	{} není schvalovatelem tohoto projektu
 {} is not connected to the mains: place it without a protective device	{} se nepřipojuje k síti: umístěte jej bez ochranného přístroje
@@ -2121,6 +2168,7 @@ yellow	žlutá
 {}: voltage drop {} V ({} %) above {} %	{}: úbytek napětí {} V ({} %) nad {} %
 {}: wire colour {} differs from the potential definition ({})	{}: barva vodiče {} se liší od definice potenciálu ({})
 {}: wire without core designation	{}: vodič bez označení žíly
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) a {} ({}) jsou od sebe {} mm, vyžaduje se alespoň {} mm
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: ztrátový výkon {} W ohřeje skříň na {} °C (nejvýše {} °C): potřeba {}
@@ -2140,7 +2188,9 @@ yellow	žlutá
 {}: {} is inside the ventilation clearance of {}	{}: {} leží ve větracím odstupu {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} je určen pro montážní lištu, ale sedí přímo na desce
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} je určen pro přípojnicové systémy s roztečí {} mm, přípojnice, na kterých je namontován, jsou od sebe {} mm
+{}: {} is not a number	{}: {} není číslo
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} není určen pro montáž na stěnu, namontujte jej na lištu
+{}: {} is not one of its choices	{}: {} není jednou z jeho možností výběru
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} je {} … {} mm nad podlahou, povoleno {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg na {} překračuje nosnost {} kg
 {}: {} lies in a restricted placing area of the {}	{}: {} leží v oblasti zakázané pro umístění na {}

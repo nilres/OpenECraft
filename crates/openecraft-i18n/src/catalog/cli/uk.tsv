@@ -1,5 +1,6 @@
 # English<TAB>Українська – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(лише сервер MCP)
+A template needs a name	Шаблону потрібна назва
 Access token for changes	Токен доступу для змін
 Access token of a Vault session or an Autodesk account instead of user and password	Маркер доступу сеансу Vault або облікового запису Autodesk замість користувача й пароля
 Address of the Vault server, e.g. https://vault.example.com	Адреса сервера Vault, напр. https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	В�
 Delete the role	Видалити роль
 Deletes a catalog without parts from the parts server	Видаляє каталог без виробів із сервера виробів
 Deletes a part from the parts server	Видаляє виріб із сервера виробів
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Видаляє шаблон користувача з папки шаблонів (вбудований шаблон із тією самою назвою повертається)
 Deletes a user of the parts server (administrators only)	Видаляє користувача сервера виробів (лише адміністратори)
 Descending order	У порядку спадання
 Discard unsaved changes of the open project	Відхилити незбережені зміни відкритого проєкту
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Виводить приклади проєктів від першого кола до цілої установки з функціями, які показує кожен
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Перелічує експорти (вбудовані та з плагінів): назва для export, заголовок, розширення файлу та параметри
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Перелічує папки й файли папки Vault або шукає у властивостях файлів під нею (або в усьому сховищі)
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Виводить шаблони проєктів (вбудовані та з папки шаблонів: --templates / OPENECRAFT_TEMPLATES) з їхніми параметрами, формулами та сторінками, які виключає умова
 Lists the reports (built-in and of plugins): name for report and title	Перелічує звіти (вбудовані та з плагінів): назва для report і заголовок
 Lists the users of the parts server (administrators only)	Перелічує користувачів сервера виробів (лише адміністратори)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Завантажені плагіни (вбудовані та з папок плагінів --plugins / OPENECRAFT_PLUGINS) з їхніми командами, перевірками, звітами та експортами; вмикає або вимикає один із них для цього сеансу
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Виробник, вир�
 Maximum number of hits (default 50)	Максимальна кількість результатів (за замовчуванням 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Об'єднує дві версії файлу розділеного проєкту запис за записом (драйвер злиття git): результат замінює файл цієї сторони; там, де сторони відрізняються, залишаються її значення, а команда завершується з помилкою
 Name of a built-in template (list_structure_templates)	Назва вбудованого шаблону (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Назва шаблону (list_project_templates) або файл шаблону
 Name of the knowledge vault (default Vault)	Назва сховища (за замовчуванням Vault)
+Name of the template (default: its template name, otherwise the project name)	Назва шаблону (за замовчуванням: його назва шаблону, інакше назва проєкту)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Нові облікові записи чекають схвалення адміністратора (true) або входять одразу (false)
 New file name (save as)	Нове ім’я файлу (зберегти як)
 New pages for every value of the group column (default true)	Нові сторінки для кожного значення стовпця групування (за замовчуванням true)
@@ -147,6 +152,7 @@ No grant of {} found	Не знайдено призначень для {}
 No profile named {}	Немає профілю з назвою {}
 No project is open: use open_project or new_project first	Жоден проєкт не відкрито: спочатку використайте open_project або new_project
 No role {} defined	Роль {} не визначено
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Немає папки шаблонів: вкажіть --templates <папка> або задайте OPENECRAFT_TEMPLATES
 Not a valid catalog: {}	Недійсний каталог: {}
 Not a valid part: {}	Недійсний виріб: {}
 Not connected to a vault: use vault_connect first	Немає підключення до сховища Vault: спочатку скористайтеся vault_connect
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Лише стор�
 Only the projects that match these search terms	Лише проєкти, що відповідають цим умовам пошуку
 Only this block	Лише цей блок
 Open (true) or close (false) the registration	Відкрити (true) або закрити (false) реєстрацію
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	Відкрити сам шаблон, щоб змінити його: заповнювачі, параметри та умови сторінок зберігаються (save_project_template зберігає його)
 Opens a project file or archive (files of older versions are converted)	Відкриває файл або архів проєкту (файли старіших версій перетворюються)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Відкриває файл або архів проєкту зі сховища; vault_upload без цілі повертає його нову версію
 Option {} needs the form name=value	Для опції {} потрібна форма назва=значення
@@ -203,6 +210,7 @@ Redoes the last undone change	Повторює останню скасовану
 Remove the grants of the user or group (only of this role and scope, if given)	Вилучити призначення користувача або групи (лише для цієї ролі та області, якщо їх задано)
 Remove the parts assigned so far	Вилучити досі призначені вироби
 Removes a file from a part on the parts server	Вилучає файл виробу на сервері виробів
+Replace a template of the same name	Замінити шаблон із тією самою назвою
 Replace the file at path if it exists	Замінити файл path, якщо він існує
 Replace the project parts by their newer server versions	Замінити вироби проєкту їхніми новішими версіями із сервера
 Replacement text	Текст заміни
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Назва ролі
 Role of requests without sign-in; none: sign-in needed for reading	Роль запитів без входу; none: для читання потрібен вхід
 Role: reader, manufacturer, editor, admin or a defined role	Роль: reader, manufacturer, editor, admin або визначена роль
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Зберігає проєкт як шаблон у папці шаблонів разом з його параметрами, формулами та умовами сторінок; шаблон користувача з назвою вбудованого займає його місце
 Saves the project to its file or to a new path	Зберігає проєкт у його файл або за новим шляхом
 Scale drawings down that do not fit on the page (default: true)	Зменшувати креслення, які не вміщуються на сторінці (за замовчуванням: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Умови пошуку, напр. company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Показує маніфест архі
 Shows the project properties, file, number of pages and devices and the check result	Показує властивості проєкту, файл, кількість сторінок і пристроїв та результат перевірки
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Показує ролі, призначення та служби каталогів сервера виробів і за потреби задає роль анонімних запитів (лише адміністратори)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Показує, чи можуть користувачі самі реєструватися на сервері виробів (як читачі), і за потреби відкриває або закриває реєстрацію (лише адміністратори)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Почати із шаблону проєкту (list_project_templates: вбудовані, як-от Machine або Motor starter direct on line, і шаблони з папки шаблонів) або файлу шаблону
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Почати із шаблону проєкту: вбудованого (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) або файлу проєкту
 Start from an example project (names: list_examples)	Почати з прикладу проєкту (імена: list_examples)
 Start from the demo project	Почати з демонстраційного проєкту
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Користувацькі властивості (назва: значення; порожнє значення вилучає властивість)
 User name to sign in with	Ім’я користувача для входу
 User or group name (wildcards; directory groups as directory:group)	Ім’я користувача або назва групи (символи узагальнення; групи служби каталогів у вигляді каталог:група)
+Values of the parameters (name: value); the others keep their default	Значення параметрів (назва: значення); решта зберігають значення за замовчуванням
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	Значення параметрів шаблону (назва: значення, наприклад POWER_KW: 7.5); решта зберігають значення за замовчуванням
 Values to set (name: value; an empty value removes a property)	Значення для встановлення (назва: значення; порожнє значення вилучає властивість)
 Vault user name (signs in)	Ім’я користувача Vault (для входу)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Що записується: oec (файл проєкту), oecp (розділений проєкт у власній папці) або oecz (архів); типово: за розширенням вихідного файлу
 Width and height must be greater than 0	Ширина і висота мають бути більшими за 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Слова для пошуку в назвах, іменах і ключових словах (стандартах, наприклад VDE 0100-600) звітів
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Обчислює значення шаблону проєкту для заданих параметрів (номінальний струм, діапазони налаштування, вироби), не створюючи проєкт
 Write the table as CSV to this file	Записати таблицю як CSV у цей файл
 Writes the check scheme of the project (checks switched off, message levels) to a file	Записує схему перевірки проєкту (вимкнені перевірки, рівні повідомлень) у файл
 Writes the embedded file of a document page	Записує вбудований файл сторінки документа
@@ -298,7 +311,6 @@ openecraft-cli version\n\nShows the version of the command line (also --version 
 schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) або звіт: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo і redo працюють лише в сеансі MCP: командний рядок відкриває проєкт заново для кожної команди
 user or group	user або group
-{} exists already: pass overwrite to replace it	{} вже існує: вкажіть overwrite, щоб замінити
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} — це архів, він не змінюється: збережіть проєкт як файл проєкту (save_project --path <file>.oec) або перетворіть архів (convert_project)
 {} is an archive: pass a path to save the project as a project file	{} — це архів: вкажіть шлях, щоб зберегти проєкт як файл проєкту
 {} is not a language of the project	{} не є мовою проєкту

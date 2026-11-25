@@ -289,7 +289,6 @@ Main	Principal
 Main earthing busbar (device) it is connected to; empty: none	Barramento de equipotencialização principal (dispositivo) ao qual está ligado; vazio: nenhum
 Main earthing terminal	Barramento de aterramento principal
 Main equipotential bonding (Ω)	Equipotencialização principal (Ω)
-Main switch	Chave geral
 Manufacturer	Fabricante
 Manufacturers	Fabricantes
 Manufacturing	Fabricação
@@ -321,6 +320,7 @@ Name of the block	Nome do bloco
 Name of the plot, e.g. the cadastral parcel	Nome do terreno, p. ex. o lote cadastral
 Name of the point, e.g. a survey point	Nome do ponto, p. ex. um marco topográfico
 Name of the scheme	Nome do esquema
+Name of the template	Nome do modelo
 Net	Rede
 Never	Nunca
 New group	Novo grupo
@@ -405,6 +405,7 @@ Page templates	Modelos de página
 Page type	Tipo de página
 Page {} is locked	A página {} está bloqueada
 Page {} of {}	Página {} de {}
+Page {}: {}	Página {}: {}
 Pages	Páginas
 Panel layout	Layout do painel
 Parameter {} has the wrong type	O parâmetro {} tem o tipo errado
@@ -579,6 +580,7 @@ Socket side	Lado do soquete
 Solenoid not linked	Solenoide não vinculado
 Sort by	Classificar por
 Source	Origem
+Start	Início
 Started	Iniciado
 State	Estado
 Status	Status
@@ -618,6 +620,7 @@ The identifier must not be empty	O identificador não pode ficar vazio
 The long side of the modules along the rows	O lado longo dos módulos ao longo das fileiras
 The page is released	A página está liberada
 The project has no circuits fed from the mains	O projeto não tem circuitos alimentados pela rede
+The template has no parameter {}	O modelo não tem o parâmetro {}
 There is a connection symbol at this point already	Já existe um símbolo de conexão neste ponto
 Thermal	Térmica
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Esta página não define cookies, não usa rastreamento e não carrega nada de outros servidores.
@@ -710,6 +713,7 @@ yes	sim
 {} circuits	{} circuitos
 {} does not stand on the floor: choose a part marked for floor mounting	{} não fica no piso: escolha uma peça marcada para montagem no piso
 {} exists already	{} já existe
+{} exists already: pass overwrite to replace it	{} já existe: passe overwrite para substituí-lo
 {} is not a PNG or JPEG image	{} não é uma imagem PNG ou JPEG
 {} mm	{} mm
 {} parts	{} peças

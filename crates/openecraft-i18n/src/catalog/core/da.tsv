@@ -26,6 +26,9 @@ A port cannot be connected to itself	En port kan ikke forbindes med sig selv
 A room needs at least four walls	Et rum skal have mindst fire vægge
 A section number consists of letters and digits and does not start with 0	Et afsnitsnummer består af bogstaver og cifre og begynder ikke med 0
 A section number must not be empty or contain a dot	Et afsnitsnummer må ikke være tomt eller indeholde et punktum
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	En trefasemotor i begge omløbsretninger med forriglede kontaktorer: kraft- og styrekreds dimensioneret ud fra motoreffekten, valgfrie rapportsider
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	En trefasemotor, der starter i stjerne og kører i trekant: kraft- og styrekreds dimensioneret ud fra motoreffekten, valgfrie rapportsider
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	En direkte indkoblet trefasemotor: kraft- og styrekreds dimensioneret ud fra motoreffekten, valgfrit klemdiagram, forbindelsesliste, enhedsliste og stykliste
 A0 landscape	A0 liggende
 A1 landscape	A1 liggende
 A2 landscape	A2 liggende
@@ -68,6 +71,7 @@ Analog output module	Analogt udgangsmodul
 Analysis	Analyse
 Another section here has this number	Et andet afsnit her har allerede dette nummer
 Antenna outlet	Antennestik
+Anticlockwise	Mod uret
 Apparent power (kVA)	Tilsyneladende effekt (kVA)
 Applied directives	Anvendte direktiver
 Approval date	Godkendelsesdato
@@ -177,6 +181,7 @@ Cam profile switch NC	Kurveafbryder, bryde
 Cam profile switch NO	Kurveafbryder, slutte
 Cam switch NC	Kamafbryder, bryde
 Cam switch NO	Kamafbryder, slutte
+Cannot delete {}: {}	Kan ikke slette {}: {}
 Cannot read the DWG file: {}	Kan ikke læse DWG-filen: {}
 Capacitive sensor, 2-wire	Kapacitiv sensor, 2-leder
 Capacitive sensor, 3-wire	Kapacitiv sensor, 3-leder
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Effektafbryder 4-polet
 Circuits, protective devices, switches and terminals labelled	Kredse, beskyttelsesudstyr, afbrydere og klemmer mærket
 Circular milling	Cirkulær fræsning
 Clip / snap-on	Clips / snap-on
+Clockwise	Med uret
 Cloud	Sky
 Clutch (electromagnetic)	Kobling (elektromagnetisk)
 Coil and timing	Spole og tidsforløb
@@ -260,7 +266,9 @@ Connections of the conductors	Ledernes forbindelser
 Connector pin-outs and flat cables	Stikforbindelsers benforbindelse og fladkabler
 Connector pin-outs: mating faces and pin tables (SVG)	Stikforbindelsers benforbindelse: stiksider og bentabeller (SVG)
 Contact material	Kontaktmateriale
+Contactor	Kontaktor
 Contactor (single-line)	Kontaktor (enstreget)
+Contactor at least (AC-3)	Kontaktor mindst (AC-3)
 Contactor coil KM (GB)	Kontaktorspole KM (GB)
 Contactor coil KM (GOST)	Kontaktorspole KM (GOST)
 Contactor main contacts KM (GB)	Kontaktorhovedkontakter KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Konturfræsning
 Contractor	Entreprenør
 Control	Styring
 Control cabinet	Styretavle
+Control circuit {}	Styrekreds {}
 Control mode	Reguleringsmetode
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Støttepunkt {} for {} {} ligger inde i noget eller uden for kapslingen: den føres uden sine støttepunkter. Flyt støttepunktet til frit rum.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Støttepunkt {} for {} {} ligger uden for sin vej: i intet skab eller rum, den føres igennem. Flyt støttepunktet ind på sin vej.
@@ -286,6 +295,7 @@ Control voltage	Styrespænding
 Control voltage type	Styrespændingstype
 Conventional touch voltage limit UL (V)	Konventionel grænse for berøringsspænding UL (V)
 Converted from file format {} to {}: {}	Konverteret fra filformat {} til {}: {}
+Conveyor	Transportør
 Coolant	Kølemiddel
 Cooler	Køler
 Cooling method	Kølemetode
@@ -314,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Forside, indholdsfortegnelse, diagramsider med funktion og placering, enhedsliste, stykliste, klemme- og kabeldiagrammer
 Create projects	Opret projekter
 Creation date	Oprettelsesdato
+Cross-section of the motor circuit	Motorkredsens tværsnit
 Cross-section {} carries {} A, less than the {} A of {}	Tværsnittet {} kan bære {} A, mindre end de {} A for {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Krydsningen på side {} passer ikke til sine ledere: den kræver en leder i alle fire retninger og intet tilslutningspunkt der
 Current capacity (A)	Strømbelastningsevne (A)
 Current consumption	Strømforbrug
+Current of the mains and delta contactor	Strøm for net- og trekantkontaktoren
+Current of the star contactor	Strøm for stjernekontaktoren
 Current range	Strømområde
 Current setting	Strømindstilling
 Current transformer	Strømtransformer
@@ -351,6 +364,7 @@ Default {} ({})	Standard {} ({})
 Degree of protection	Kapslingsklasse
 Delete projects	Slet projekter
 Delivery date	Leveringsdato
+Delta	Trekant
 Demand (diversity factor {})	Behov (samtidighedsfaktor {})
 Demand {} A above the usable {} A of the supply	Behovet {} A er over forsyningens anvendelige {} A
 Density	Densitet
@@ -405,6 +419,7 @@ Disconnector 3-pole, lockable	Adskiller 3-polet, aflåselig
 Displacement	Slagvolumen
 Distribution board	Fordelingstavle
 Distribution board (IEC 61439)	Fordelingstavle (IEC 61439)
+Division by zero in the formula	Division med nul i formlen
 Document	Dokument
 Document (embedded file)	Dokument (integreret fil)
 Document A4 portrait	Dokument A4 stående
@@ -425,6 +440,7 @@ Drilling and milling centre	Bore- og fræsecenter
 Drive	Drev
 Drive type	Drivtype
 Driven by	Drevet af
+Driven machine	Drevet maskine
 Drives	Drev
 Drop-out time	Frafaldstid
 Duct fill levels	Fyldningsgrad for kabelkanaler
@@ -824,9 +840,12 @@ Main contacts 3-pole, automatic tripping	Hovedkontakter 3-polet, automatisk udl�
 Main contacts 4-pole	Hovedkontakter 4-polet
 Main function	Hovedfunktion
 Main function with contact image	Hovedfunktion med kontaktbillede
+Main switch	Hovedafbryder
 Main switch 1-pole	Hovedafbryder 1-polet
 Main switch 2-pole	Hovedafbryder 2-polet
 Main switch 3-pole	Hovedafbryder 3-polet
+Mains	Net
+Mains and delta contactor	Net- og trekantkontaktor
 Mains frequency	Netfrekvens
 Mains voltage	Netspænding
 Maintenance	Vedligeholdelse
@@ -893,11 +912,16 @@ Motor DC, shunt-wound	DC-motor, shuntviklet
 Motor cable {} of frequency converter {} must be shielded	Motorkablet {} fra frekvensomformeren {} skal være skærmet
 Motor data	Motordata
 Motor operator of a circuit breaker	Motordrev til en effektafbryder
+Motor protection	Motorværn
 Motor protection (class 10)	Motorbeskyttelse (klasse 10)
 Motor protection switch	Motorværn
 Motor protection switch (single-line)	Motorværn (enstreget)
 Motor protection switch 1-pole	Motorværn 1-polet
 Motor protection switch 2-pole	Motorværn 2-polet
+Motor running	Motor kører
+Motor starter direct on line	Motorstarter direkte start
+Motor starter reversing	Motorstarter vendekobling
+Motor starter star-delta	Motorstarter stjerne-trekant
 Motor, electronically commutated (brushless DC)	Motor, elektronisk kommuteret (børsteløs DC)
 Motors	Motorer
 Motors / Loads	Motorer / belastninger
@@ -963,6 +987,7 @@ No segment template named {}	Ingen segmentskabelon med navnet {}
 No subproject {}	Intet delprojekt {}
 No such object: {}	Intet sådant objekt: {}
 No surge protective device at the supply (IEC 60364-4-44)	Ingen overspændingsbeskyttelse ved forsyningen (IEC 60364-4-44)
+No template of the user is named {}	Ingen af brugerens skabeloner hedder {}
 No terminal {}	Ingen klemme {}
 No user defined property {}	Ingen brugerdefineret egenskab {}
 No wires at the pins of {}	Ingen ledere ved benene på {}
@@ -1204,7 +1229,9 @@ Potentials, interruption points	Potentialer, afbrydelsespunkter
 Potentiometer	Potentiometer
 Power (kWp)	Effekt (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Hoved- og styrekreds på flere sider: hovedafbryder, motorværn, tre kontaktorer med forriglinger, tiltrækningsforsinket tidsrelæ, afbrydelsespunkter, potentialer med lederfarver, motorkabel og kabelrapporter.
+Power circuit {}	Kraftkreds {}
 Power factor	Effektfaktor
+Power factor cos phi	Effektfaktor cos phi
 Power factor meter	Effektfaktormåler
 Power loss (W)	Effekttab (W)
 Power module	Strømforsyningsmodul
@@ -1257,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Beskyttelsesled
 Protective devices	Beskyttelsesudstyr
 Protective earth	Beskyttelsesjord
 Protective earth (PE)	Beskyttelsesleder (PE)
+Protective earth terminal	Beskyttelsesjordklemme
 Protective hose	Beskyttelsesslange
 Protective, earthing and bonding conductors present and adequate	Beskyttelses-, jordings- og udligningsledere til stede og tilstrækkelige
 Proximity sensor	Nærhedsføler
@@ -1306,6 +1334,7 @@ Rated cross-section	Mærketværsnit
 Rated current (A)	Mærkestrøm (A)
 Rated current of the assembly	Tavlens mærkestrøm
 Rated current of the auxiliary contacts	Hjælpekontakternes mærkestrøm
+Rated current {} A, motor protection switch {}	Mærkestrøm {} A, motorværn {}
 Rated diversity factor	Mærkesamtidighedsfaktor
 Rated frequency	Mærkefrekvens
 Rated impulse withstand voltage	Mærkestødholdespænding
@@ -1342,6 +1371,7 @@ Remote I/O	Decentral I/O
 Remote I/O {} has no controller	Den decentrale I/O {} har ingen controller
 Replace needs the text to find	Erstat kræver den tekst, der skal søges efter
 Replacement part number	Erstatningsartikelnummer
+Report pages	Rapportsider
 Residual current device	Fejlstrømsafbryder
 Residual current device 1-pole	Fejlstrømsafbryder 1-polet
 Residual current device 2-pole	Fejlstrømsafbryder 2-polet
@@ -1444,6 +1474,7 @@ Service unit	Behandlingsenhed
 Service unit (filter, regulator, lubricator)	Behandlingsenhed (filter, regulator, smøreapparat)
 Setpoint	Sætpunkt
 Setting range	Indstillingsområde
+Setting range of the motor protection switch	Motorværnets indstillingsområde
 Sheath colour	Kappefarve
 Sheath material	Kappemateriale
 Shed roof	Ensidigt tag
@@ -1505,6 +1536,9 @@ Spiral	Spindeltrappe
 Stainless steel	Rustfrit stål
 Stainless steel V4A	Rustfrit stål V4A
 Standard	Standard
+Star	Stjerne
+Star contactor	Stjernekontaktor
+Star time	Tid i stjernekobling
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Start-/stopkreds med et relæ: spole og kontakter udgør én komponent med krydshenvisninger og kontaktbillede, klemrække, ledningsnumre, klemplan og forbindelsesliste.
 Start date	Startdato
 Starting current ratio	Startstrømsforhold
@@ -1517,6 +1551,7 @@ Station {}: bus system {} does not exist	Station {}: Bussystemet {} findes ikke
 Steam	Damp
 Steel, hot-dip galvanised	Varmforzinket stål
 Stock	Lager
+Stop	Stop
 Stop category	Stopkategori
 Storage temperature range	Opbevaringstemperaturområde
 Straight	Lige
@@ -1548,6 +1583,7 @@ Supplementary fields	Ekstra felter
 Suppliers	Leverandører
 Supply network	Netsystem
 Supply voltage	Forsyningsspænding
+Supply {} V / 50 Hz, TN-S	Forsyning {} V / 50 Hz, TN-S
 Surface (m²)	Overflade (m²)
 Surface-mounted	Udvendig
 Surge protection type	Type af overspændingsbeskyttelse
@@ -1566,6 +1602,7 @@ Switches / Sensors	Afbrydere / sensorer
 Switches, pushbuttons	Afbrydere, trykknapper
 Switching frequency	Koblingshyppighed
 Switching output	Koblingsudgang
+Syntax error in the formula at {}	Syntaksfejl i formlen ved {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	T-stykket på side {} passer ikke til sine ledere: det kræver en leder i dets retning, to på tværs og intet tilslutningspunkt der
 Table of contents	Indholdsfortegnelse
 Tabloid landscape	Tabloid liggende
@@ -1592,6 +1629,7 @@ Terminal data	Klemmedata
 Terminal description	Klemmebeskrivelse
 Terminal line-up	Klemopstilling
 Terminal marker	Klemmærkat
+Terminal of the motor circuit	Klemme i motorkredsen
 Terminal parts	Artikler til ender
 Terminal strip data of {} without terminals	Klemrækkedata for {} uden klemmer
 Terminal strip overview	Klemrækkeoversigt
@@ -1622,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	Den første kolonne skal være Key
 The folder {} already holds the project {}: a split project needs a folder of its own	Mappen {} indeholder allerede projektet {}: et opdelt projekt skal have sin egen mappe
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Mappen {} indeholder filer, der ikke hører til noget projekt ({}): et opdelt projekt skal have sin egen mappe
+The formula ends too early	Formlen slutter for tidligt
 The function definition needs a key and a name	Funktionsdefinitionen skal have en nøgle og et navn
 The index of the project names no file layout: it was not written by OpenECraft	Projektets indeks angiver intet fillayout: det er ikke skrevet af OpenECraft
 The last page cannot be deleted	Den sidste side kan ikke slettes
@@ -1752,14 +1791,17 @@ Unit of measurement	Måleenhed
 Unit price	Stykpris
 Unknown cable {}	Ukendt kabel {}
 Unknown device: {}	Ukendt enhed: {}
+Unknown function {} in the formula	Ukendt funktion {} i formlen
 Unknown job {}	Ukendt ordre {}
 Unknown macro	Ukendt makro
 Unknown macro box	Ukendt makroboks
+Unknown name {} in the formula	Ukendt navn {} i formlen
 Unknown object: {}	Ukendt objekt: {}
 Unknown revision	Ukendt revision
 Unknown symbol '{}'	Ukendt symbol '{}'
 Unknown tool {}	Ukendt værktøj {}
 Unused connection points	Ubenyttede tilslutningspunkter
+Upper limit of the setting range	Indstillingsområdets øvre grænse
 Upstream	Foranliggende
 User defined	Brugerdefineret
 User symbols	Brugersymboler
@@ -1837,6 +1879,7 @@ Within a suite, wall mounted	Inde i en række, vægmonteret
 Within a suite, wall mounted, roof covered	Inde i en række, vægmonteret, tag tildækket
 Word document	Word-dokument
 Working line	Arbejdsledning
+Wrong number of values for {}	Forkert antal værdier for {}
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	Byggeår
 Yes / no	Ja / nej
@@ -1961,8 +2004,12 @@ yellow	gul
 {} is a built-in property	{} er en indbygget egenskab
 {} is a built-in scheme	{} er et indbygget skema
 {} is a busbar machine and makes no sheets	{} er en skinnebearbejdningsmaskine og fremstiller ingen plader
+{} is above the last step	{} ligger over det sidste trin
+{} is defined twice	{} er defineret to gange
 {} is neither the protective device nor a device of the circuit of {}	{} er hverken beskyttelsesenheden eller en enhed i gruppen for {}
+{} is no valid name: letters, digits and _, not starting with a digit	{} er ikke et gyldigt navn: bogstaver, cifre og _, må ikke begynde med et ciffer
 {} is not a busbar machine	{} er ikke en skinnebearbejdningsmaskine
+{} is not a number	{} er ikke et tal
 {} is not a property of {}	{} er ikke en egenskab for {}
 {} is not an approver of this project	{} er ikke godkender af dette projekt
 {} is not connected to the mains: place it without a protective device	{} tilsluttes ikke nettet: placer den uden beskyttelsesenhed
@@ -2121,6 +2168,7 @@ yellow	gul
 {}: voltage drop {} V ({} %) above {} %	{}: Spændingsfald {} V ({} %) over {} %
 {}: wire colour {} differs from the potential definition ({})	{}: Ledningsfarven {} afviger fra potentialedefinitionen ({})
 {}: wire without core designation	{}: ledning uden lederbetegnelse
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) og {} ({}) er {} mm fra hinanden, mindst {} mm påkrævet
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W effekttab opvarmer kapslingen til {} °C (højst {} °C): {} nødvendig
@@ -2140,7 +2188,9 @@ yellow	gul
 {}: {} is inside the ventilation clearance of {}	{}: {} ligger inden for ventilationsafstanden for {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} er beregnet til en monteringsskinne, men sidder direkte på pladen
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} er lavet til skinnesystemer med {} mm centerafstand, skinnerne den sidder på ligger {} mm fra hinanden
+{}: {} is not a number	{}: {} er ikke et tal
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} er ikke beregnet til vægmontage, monter den på en skinne
+{}: {} is not one of its choices	{}: {} er ikke en af dens valgmuligheder
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} er {} … {} mm over gulvet, tilladt {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg på {} overskrider dens bæreevne på {} kg
 {}: {} lies in a restricted placing area of the {}	{}: {} ligger i et område på {}, hvor intet må placeres

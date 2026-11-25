@@ -69,6 +69,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	En schemasida för varje planerad apparat med ett sidmakro som ännu inte finns i kretsschemat (markerat segment, annars alla)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Ett delat projekt (.oecp) är en mapp med en liten fil per sida, apparat, artikel och inbäddad fil, för versionshantering som git: Arkiv › Spara som delat projekt.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Ett delat projekt är en mapp med filer: webbläsaren kan inte öppna det. Konvertera det först till en projektfil (.oec) eller ett arkiv (.oecz).
+A template file to pass on; New › From a template file… starts projects from it	En mallfil att lämna vidare; Ny › Från en mallfil… startar projekt från den
 A template of this name is replaced.	En mall med det här namnet ersätts.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	En mall anger sidtyp, ritningsram, namnruta, struktur och beskrivning för en ny sida och placerar dess innehåll.
 A way through free air costs this many times the way in a duct or routing path	En väg genom fri luft kostar så här många gånger vägen i en kanal eller dragningsväg
@@ -535,6 +536,7 @@ Delete section	Ta bort avsnitt
 Delete shaft	Ta bort schakt
 Delete stair	Ta bort trappa
 Delete string	Ta bort sträng
+Delete template	Ta bort mall
 Delete the group	Ta bort gruppen
 Delete the layer; its items move to the default layer	Ta bort lagret; dess objekt flyttas till standardlagret
 Delete the property and all its values	Ta bort egenskapen och alla dess värden
@@ -694,6 +696,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Redigera i tabell
 Edit in table…	Redigera i tabell…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Redigeringsläge: dra byggnaderna till sina platser i situationsplanen och vrid dem; ett klick på ett rum öppnar det inte längre
+Edit template	Redigera mall
 Editable copy of this plot frame	Redigerbar kopia av den här ritningsramen
 Editable copy of this title block	Redigerbar kopia av den här namnrutan
 Effective surface	Effektiv yta
@@ -738,6 +741,7 @@ Export SVG…	Exportera SVG…
 Export all pages as PDF in {}	Exportera alla sidor som PDF på {}
 Export as EPLAN parts XML…	Exportera som EPLAN-artikel-XML…
 Export as PDF in language	Exportera som PDF på språk
+Export as file…	Exportera som fil…
 Export check scheme…	Exportera kontrollschema…
 Export favorites…	Exportera favoriter…
 Export library…	Exportera bibliotek…
@@ -807,6 +811,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Format för korsreferenser, målsidans struktur, avbrottspunkter, kontaktavbildningar
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Spikbräderitning av kabelstammen i skala med grenlängder och stifttabellerna för kontaktdonen
 Forms	Formulär
+Formula	Formel
+Formulas	Formler
 Form…	Formulär…
 Frame	Ram
 Frame of all pages that do not choose one	Ram för alla sidor som inte väljer någon
@@ -999,6 +1005,7 @@ Introduction	Inledning
 Invalid value	Ogiltigt värde
 Invert the direction of panning by scrolling	Vänd riktningen för panorering med rullning
 Inverter or charge controller (devices with PV input data)	Växelriktare eller laddregulator (enheter med PV-ingångsdata)
+It takes the place of the bundled template of this name.	Den ersätter den medföljande mallen med detta namn.
 Items copied: {}	Kopierade element: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Kopierade element: {} (utelämnade apparater: {}, en apparat placeras bara en gång)
 Items cut: {}	Urklippta element: {}
@@ -1216,6 +1223,7 @@ Nailboard (SVG)…	Spikbräde (SVG)…
 Name and cross reference	Namn och korsreferens
 Name on the server	Namn på servern
 Name the inspector in the report data first.	Ange först kontrollanten i rapportens uppgifter.
+Name, parameters, formulas and page conditions of the project as a template	Projektets namn, parametrar, formler och sidvillkor som mall
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Namn; datatyp; logisk adress; kommentar – för PLC-programmeringsverktyg
 Named copy of this form, for report blocks	Namngiven kopia av det här formuläret, för rapportblock
 Navigators	Navigatorer
@@ -1245,6 +1253,7 @@ New pages for every group (strip, plug, cable, device …)	Nya sidor för varje 
 New potential	Ny potential
 New project	Nytt projekt
 New project from template	Nytt projekt från mall
+New project from {}	Nytt projekt från {}
 New project scheme from the selected one	Nytt projektschema från det markerade
 New project, not saved yet	Nytt projekt, inte sparat än
 New report page	Ny rapportsida
@@ -1357,6 +1366,7 @@ Number prefix	Nummerprefix
 Number wires	Numrera ledningar
 Numbering	Numrering
 Numbers removed from {} wires	Nummer borttagna från {} ledningar
+Numeric	Tal
 Object	Objekt
 Of the outer diameter, as laid fixed	Av ytterdiametern, fast förlagd
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Av ytterdiametern; rör böjs med böjar på en och en halv diameter
@@ -1468,6 +1478,7 @@ PV array {} lies outside the protection of the air-termination system	Solcellsf�
 PV array {} of building {}: {} modules	Solcellsfält {} i byggnad {}: {} moduler
 PV array {} of building {}: {} modules, {} kWp	Solcellsfält {} i byggnad {}: {} moduler, {} kWp
 PV arrays	Solcellsfält
+Page conditions	Sidvillkor
 Page graphics	Sidgrafik
 Page heading	Sidrubrik
 Page list, devices, parts, panel layout and settings	Sidlista, apparater, artiklar, skåplayout och inställningar
@@ -1483,7 +1494,6 @@ Page {} ({})	Sida {} ({})
 Page {} is now page {}	Sida {} är nu sida {}
 Page {} locked	Sida {} låst
 Page {} – {}	Sida {} – {}
-Page {}: {}	Sida {}: {}
 Pages and templates using the frame follow	Sidor och mallar som använder ramen följer med
 Pages of revision {}	Sidor i revision {}
 Pages of the selected block	Sidor i det markerade blocket
@@ -1496,6 +1506,9 @@ Pane menu	Panelmeny
 Panel wiring report	Rapport skåpinkoppling
 Panes	Paneler
 Paper	Papper
+Parameter	Parameter
+Parameters	Parametrar
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	Parametrar efterfrågas när ett projekt startas från mallen; formler beräknar ytterligare värden. Båda fyller i {NAME} i projektets texter. En sida med ett villkor (REPORTS=yes) utelämnas när villkoret inte är uppfyllt.
 Parent section	Överordnat avsnitt
 Part of the profile: generic types or parts from the parts store	Profilens artikel: generiska typer eller artiklar från artikellagret
 Part selection from the parts database	Artikelval från artikeldatabasen
@@ -1840,6 +1853,7 @@ Save as 3D macro	Spara som 3D-makro
 Save as 3D macro…	Spara som 3D-makro…
 Save as local file	Spara som lokal fil
 Save as macro	Spara som makro
+Save as project template	Spara som projektmall
 Save as project template…	Spara som projektmall…
 Save as scheme	Spara som schema
 Save as split project…	Spara som delat projekt…
@@ -1865,6 +1879,8 @@ Save to project server: {}	Spara på projektservern: {}
 Save to project server: {} – the connection is lost, saving tries again	Spara på projektservern: {} – anslutningen är förlorad, sparandet försöker igen
 Save workspace	Spara arbetsyta
 Save workspace…	Spara arbetsyta…
+Saved in the browser	Sparad i webbläsaren
+Saved in {}, where the command line finds it too	Sparad i {}, där även kommandoraden hittar den
 Saved the properties of {} (revision {})	Egenskaperna för {} sparades (revision {})
 Saved to	Sparat i
 Saved to the project server (revision {})	Sparat på projektservern (revision {})
@@ -1874,6 +1890,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Sparar lagren med deras inställningar som ett inställningsschema för andra projekt
 Saves the placed properties as a placement scheme of the project	Sparar de placerade egenskaperna som ett placeringsschema i projektet
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Sparar projektet utan revisioner, baslinjer, granskning och inkopplingsmarkeringar som en mall för nya projekt
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Sparar projektet utan revisioner, baslinjer, granskning och inkopplingsmarkeringar som en mall för nya projekt, i mallmappen bredvid de medföljande
 Saves the project's own properties, function definitions and schemes for other projects	Sparar projektets egna egenskaper, funktionsdefinitioner och scheman för andra projekt
 Saves the workspace, the arrangement of the panels and the open windows	Sparar arbetsytan, panelernas placering och de öppna fönstren
 Saves your version of the whole project as a project file	Sparar din version av hela projektet som en projektfil
@@ -2030,7 +2047,6 @@ Standard workspaces	Standardarbetsytor
 Standoff height	Distanshöjd
 Star a command in Plugin commands to pin it here	Markera ett kommando med stjärnan i Plugin-kommandon för att fästa det här
 Star: the first point refers to all, the others to it	Stjärna: den första punkten hänvisar till alla, de andra till den
-Start	Start
 Start again when the page structure changes	Börja om när sidstrukturen ändras
 Start at	Börja vid
 Start byte	Startbyte
@@ -2117,6 +2133,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Målspråk
 Temperature rise at the roof against the middle (IEC/TR 60890)	Temperaturhöjning vid taket jämfört med mitten (IEC/TR 60890)
 Template	Mall
+Template parameters	Mallparametrar
+Template {} deleted	Mallen {} har tagits bort
+Template {} saved	Mallen {} har sparats
 Templates	Mallar
 Terminal markers	Plintmärkningar
 Terminal number, PLC address, potential name …	Plintnummer, PLC-adress, potentialnamn …
@@ -2397,6 +2416,7 @@ all, or e.g. -X*, -W1	alla, eller t.ex. -X*, -W1
 all, or e.g. K, Q	alla, eller t.ex. K, Q
 along z	längs z
 any	valfritt
+always	alltid
 both ends	båda ändarna
 built-in	inbyggd
 by hand	manuellt
@@ -2422,6 +2442,7 @@ e.g. corp:Engineering	t.ex. corp:Konstruktion
 e.g. customer, ERP, PLM	t.ex. kund, ERP, PLM
 e.g. cutout too small, part missing	t.ex. urtaget för litet, artikel saknas
 e.g. de, fr, it	t.ex. de, fr, it
+e.g. round(POWER_KW * 2, 1)	t.ex. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	t.ex. ledningen för kort, plint saknas
 empty	tom
 female	hona
@@ -2468,6 +2489,7 @@ ridge {} m	nock {} m
 set on the device	angivet på apparaten
 sloped ceiling from {} m	snedtak från {} m
 some	några
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, decimaler), ceil, floor, min, max, if(villkor, då, annars), step(x, gräns, värde, …, annars); & sammanfogar texter
 taken over	överförd
 the device before it	apparaten före
 the project data (page list, devices, settings)	projektdata (sidlista, apparater, inställningar)
@@ -2504,6 +2526,7 @@ x y	x y
 {} (revision {})	{} (revision {})
 {} (spare)	{} (reserv)
 {} (subproject of {})	{} (delprojekt av {})
+{} (template of the user)	{} (användarens mall)
 {} (unused)	{} (oanvänd)
 {} ({} open)	{} ({} öppna)
 {} / {} mm  (column {})	{} / {} mm  (kolumn {})

@@ -287,7 +287,6 @@ Main	メイン
 Main earthing busbar (device) it is connected to; empty: none	接続先の主接地ブスバー (デバイス)。空欄: なし
 Main earthing terminal	主接地端子
 Main equipotential bonding (Ω)	主等電位ボンディング (Ω)
-Main switch	主開閉器
 Manufacturer	メーカー
 Manufacturers	メーカー
 Manufacturing	製造
@@ -319,6 +318,7 @@ Name of the block	ブロックの名前
 Name of the plot, e.g. the cadastral parcel	敷地の名前（例：地番）
 Name of the point, e.g. a survey point	点の名前（例：測量点）
 Name of the scheme	スキームの名前
+Name of the template	テンプレートの名前
 Net	ネット
 Never	表示しない
 New group	新しいグループ
@@ -403,6 +403,7 @@ Page templates	ページテンプレート
 Page type	ページタイプ
 Page {} is locked	ページ {} はロックされています
 Page {} of {}	{} / {} ページ
+Page {}: {}	ページ {}: {}
 Pages	ページ
 Panel layout	盤レイアウト
 Parameter {} has the wrong type	パラメーター {} の型が正しくありません
@@ -577,6 +578,7 @@ Socket side	ソケット側
 Solenoid not linked	ソレノイド未リンク
 Sort by	並べ替え
 Source	ソース
+Start	開始
 Started	開始済み
 State	状態
 Status	ステータス
@@ -616,6 +618,7 @@ The identifier must not be empty	識別子は空にできません
 The long side of the modules along the rows	モジュールの長辺を列に沿わせる
 The page is released	ページはリリース済みです
 The project has no circuits fed from the mains	プロジェクトに電源から給電される回路がありません
+The template has no parameter {}	テンプレートにパラメーター {} はありません
 There is a connection symbol at this point already	この点にはすでに接続シンボルがあります
 Thermal	熱
 This page sets no cookies, uses no tracking and loads nothing from other servers.	このページは Cookie を設定せず、トラッキングを使わず、他のサーバーから何も読み込みません。
@@ -706,6 +709,7 @@ yes	はい
 {} circuits	{} 回路
 {} does not stand on the floor: choose a part marked for floor mounting	{} は床置きではありません: 床置きとしてマークされた部品を選択してください
 {} exists already	{} は既に存在します
+{} exists already: pass overwrite to replace it	{} は既に存在します。置き換えるには overwrite を指定してください
 {} is not a PNG or JPEG image	{} は PNG または JPEG 画像ではありません
 {} mm	{} mm
 {} parts	{} 個の部品

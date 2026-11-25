@@ -128,7 +128,7 @@ pub fn verify(prj: &Project) -> Verification {
         push(Severity::Warning, tr_fmt!("PLC card data of {} without PLC points", t), None, true);
     }
     for (tag, d) in &prj.devices {
-        for p in d.parts.iter().filter(|p| !prj.parts.iter().any(|x| x.number == p.number)) {
+        for p in d.parts.iter().filter(|p| !prj.parts.iter().any(|x| x.number == p.number) && !prj.placeholder(&p.number)) {
             push(Severity::Error, tr_fmt!("{}: part {} is not in the project parts", tag, p.number), None, false);
         }
         let undefined = properties::undefined_values(prj, &Object::Device(tag.clone()));

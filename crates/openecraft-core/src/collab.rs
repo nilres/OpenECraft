@@ -881,6 +881,7 @@ fn with_data(out: &mut Project, src: &Project) {
         forms,
         report_blocks,
         configuration,
+        template,
         marking,
         fluid,
         pct_loops,
@@ -930,6 +931,7 @@ fn with_data(out: &mut Project, src: &Project) {
     out.forms = forms.clone();
     out.report_blocks = report_blocks.clone();
     out.configuration = configuration.clone();
+    out.template = template.clone();
     out.marking = marking.clone();
     out.fluid = fluid.clone();
     out.pct_loops = pct_loops.clone();
@@ -979,6 +981,7 @@ fn same_data(a: &Project, b: &Project) -> bool {
         forms,
         report_blocks,
         configuration,
+        template,
         marking,
         fluid,
         pct_loops,
@@ -1029,6 +1032,7 @@ fn same_data(a: &Project, b: &Project) -> bool {
         && *forms == b.forms
         && *report_blocks == b.report_blocks
         && *configuration == b.configuration
+        && *template == b.template
         && *marking == b.marking
         && *fluid == b.fluid
         && *pct_loops == b.pct_loops

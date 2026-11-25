@@ -289,7 +289,6 @@ Main	Ana
 Main earthing busbar (device) it is connected to; empty: none	Bağlı olduğu ana topraklama barası (cihaz); boş: yok
 Main earthing terminal	Ana topraklama barası
 Main equipotential bonding (Ω)	Ana eş potansiyel kuşaklama (Ω)
-Main switch	Ana şalter
 Manufacturer	Üretici
 Manufacturers	Üreticiler
 Manufacturing	Üretim
@@ -321,6 +320,7 @@ Name of the block	Bloğun adı
 Name of the plot, e.g. the cadastral parcel	Arsanın adı, ör. kadastro parseli
 Name of the point, e.g. a survey point	Noktanın adı, ör. bir ölçüm noktası
 Name of the scheme	Düzenin adı
+Name of the template	Şablonun adı
 Net	Ağ
 Never	Hiçbir zaman
 New group	Yeni grup
@@ -405,6 +405,7 @@ Page templates	Sayfa şablonları
 Page type	Sayfa tipi
 Page {} is locked	Sayfa {} kilitli
 Page {} of {}	Sayfa {} / {}
+Page {}: {}	Sayfa {}: {}
 Pages	Sayfalar
 Panel layout	Pano yerleşimi
 Parameter {} has the wrong type	{} parametresinin tipi yanlış
@@ -579,6 +580,7 @@ Socket side	Soket tarafı
 Solenoid not linked	Solenoid ilişkilendirilmemiş
 Sort by	Sıralama ölçütü
 Source	Kaynak
+Start	Başlat
 Started	Başladı
 State	Durum
 Status	Durum
@@ -618,6 +620,7 @@ The identifier must not be empty	Tanımlayıcı boş olamaz
 The long side of the modules along the rows	Modüllerin uzun kenarı sıralar boyunca
 The page is released	Sayfa yayımlanmış
 The project has no circuits fed from the mains	Projede şebekeden beslenen devre yok
+The template has no parameter {}	Şablonda {} parametresi yok
 There is a connection symbol at this point already	Bu noktada zaten bir bağlantı sembolü var
 Thermal	Termik
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Bu sayfa çerez kullanmaz, izleme yapmaz ve başka sunuculardan hiçbir şey yüklemez.
@@ -710,6 +713,7 @@ yes	evet
 {} circuits	{} devre
 {} does not stand on the floor: choose a part marked for floor mounting	{} zemine konmaz: zemine montaj için işaretlenmiş bir parça seçin
 {} exists already	{} zaten var
+{} exists already: pass overwrite to replace it	{} zaten var: değiştirmek için overwrite verin
 {} is not a PNG or JPEG image	{} bir PNG veya JPEG görüntüsü değil
 {} mm	{} mm
 {} parts	{} parça

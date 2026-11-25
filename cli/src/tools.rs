@@ -23,6 +23,7 @@ mod properties;
 mod sheets;
 mod structure;
 mod tables;
+mod templates;
 mod vault;
 #[cfg(test)]
 mod workflows;
@@ -47,13 +48,13 @@ pub struct Tool {
 }
 
 pub fn all() -> impl Iterator<Item = &'static Tool> {
-    [project::TOOLS, management::TOOLS, pages::TOOLS, sheets::TOOLS, devices::TOOLS, plc::TOOLS, tables::TOOLS, panel::TOOLS, integration::TOOLS, languages::TOOLS, structure::TOOLS, properties::TOOLS, config::TOOLS, output::TOOLS, reports::TOOLS, parts::TOOLS, vault::TOOLS, plugins::TOOLS].into_iter().flatten()
+    [project::TOOLS, management::TOOLS, pages::TOOLS, sheets::TOOLS, devices::TOOLS, plc::TOOLS, tables::TOOLS, panel::TOOLS, integration::TOOLS, languages::TOOLS, structure::TOOLS, templates::TOOLS, properties::TOOLS, config::TOOLS, output::TOOLS, reports::TOOLS, parts::TOOLS, vault::TOOLS, plugins::TOOLS].into_iter().flatten()
 }
 
 /// Tools of this crate that only read (the project, files, the parts server, the
 /// vault) and whose name does not start with `list_` or `get_`. A tool that can write
 /// a file (`report`, `table_get`) is not one of them.
-const READ: &[&str] = &["project_info", "archive_info", "enclosure_systems", "integration_connectors", "check", "parts_search", "parts_history", "parts_catalogs", "parts_users", "parts_get", "vault_browse", "vault_items"];
+const READ: &[&str] = &["project_info", "template_values", "archive_info", "enclosure_systems", "integration_connectors", "check", "parts_search", "parts_history", "parts_catalogs", "parts_users", "parts_get", "vault_browse", "vault_items"];
 
 /// Tools outside the areas `parts_…` and `vault_…` that ask the parts server.
 const SERVER: &[&str] = &["assign_part"];

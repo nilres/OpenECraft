@@ -1,5 +1,6 @@
 # English<TAB>Svenska – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(endast MCP-server)
+A template needs a name	En mall behöver ett namn
 Access token for changes	Åtkomsttoken för ändringar
 Access token of a Vault session or an Autodesk account instead of user and password	Åtkomsttoken för en Vault-session eller ett Autodesk-konto i stället för användare och lösenord
 Address of the Vault server, e.g. https://vault.example.com	Vault-serverns adress, t.ex. https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	Def
 Delete the role	Ta bort rollen
 Deletes a catalog without parts from the parts server	Tar bort en katalog utan artiklar från artikelservern
 Deletes a part from the parts server	Tar bort en artikel från artikelservern
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Tar bort en av användarens mallar från mallmappen (en medföljande mall med samma namn kommer tillbaka)
 Deletes a user of the parts server (administrators only)	Tar bort en användare från artikelservern (endast administratörer)
 Descending order	Fallande ordning
 Discard unsaved changes of the open project	Ignorera osparade ändringar i det öppna projektet
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Listar exempelprojekten, från en första krets till en hel anläggning, med de funktioner vart och ett visar
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Listar exporterna (inbyggda och från plugins): namn för export, titel, filtillägg och parametrar
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Listar mapparna och filerna i en Vault-mapp, eller söker i filegenskaperna under den (eller i hela valvet)
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Listar projektmallarna (de medföljande och de i mallmappen: --templates / OPENECRAFT_TEMPLATES) med deras parametrar, formler och de sidor som ett villkor utelämnar
 Lists the reports (built-in and of plugins): name for report and title	Listar rapporterna (inbyggda och från plugins): namn för report och titel
 Lists the users of the parts server (administrators only)	Listar användarna på artikelservern (endast administratörer)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Inlästa plugins (inbyggda och från plugin-mapparna i --plugins / OPENECRAFT_PLUGINS) med deras kommandon, kontroller, rapporter och exporter; aktiverar eller inaktiverar en för den här sessionen
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Tillverkare vars artiklar
 Maximum number of hits (default 50)	Maximalt antal träffar (standard 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Slår ihop två versioner av en fil i ett delat projekt post för post (gits sammanslagningsdrivrutin): resultatet ersätter den här sidans fil; där sidorna skiljer sig behålls dess värden och kommandot misslyckas
 Name of a built-in template (list_structure_templates)	Namn på en inbyggd mall (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Namn på en mall (list_project_templates) eller en mallfil
 Name of the knowledge vault (default Vault)	Namn på kunskapsvalvet (standard Vault)
+Name of the template (default: its template name, otherwise the project name)	Mallens namn (standard: dess mallnamn, annars projektnamnet)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Nya konton väntar på godkännande av en administratör (true) eller loggar in direkt (false)
 New file name (save as)	Nytt filnamn (spara som)
 New pages for every value of the group column (default true)	Nya sidor för varje värde i grupperingskolumnen (standard true)
@@ -147,6 +152,7 @@ No grant of {} found	Ingen tilldelning för {} hittades
 No profile named {}	Ingen profil med namnet {}
 No project is open: use open_project or new_project first	Inget projekt är öppet: använd först open_project eller new_project
 No role {} defined	Ingen roll {} har definierats
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Ingen mallmapp: ange --templates <mapp> eller sätt OPENECRAFT_TEMPLATES
 Not a valid catalog: {}	Ingen giltig katalog: {}
 Not a valid part: {}	Inte en giltig artikel: {}
 Not connected to a vault: use vault_connect first	Inte ansluten till ett vault: använd vault_connect först
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Endast sidorna i d
 Only the projects that match these search terms	Endast de projekt som matchar de här söktermerna
 Only this block	Endast det här blocket
 Open (true) or close (false) the registration	Öppna (true) eller stäng (false) registreringen
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	Öppna själva mallen för att ändra den: platshållare, parametrar och sidvillkor finns kvar (save_project_template sparar den)
 Opens a project file or archive (files of older versions are converted)	Öppnar en projektfil eller ett arkiv (filer från äldre versioner konverteras)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Öppnar en projektfil eller ett arkiv från valvet; vault_upload utan mål checkar in en ny version av den
 Option {} needs the form name=value	Alternativet {} kräver formen namn=värde
@@ -203,6 +210,7 @@ Redoes the last undone change	Gör om den senast ångrade ändringen
 Remove the grants of the user or group (only of this role and scope, if given)	Ta bort användarens eller gruppens tilldelningar (endast för den här rollen och det här omfånget, om de anges)
 Remove the parts assigned so far	Ta bort de artiklar som tilldelats hittills
 Removes a file from a part on the parts server	Tar bort en fil från en artikel på artikelservern
+Replace a template of the same name	Ersätt en mall med samma namn
 Replace the file at path if it exists	Ersätt filen på path om den finns
 Replace the project parts by their newer server versions	Ersätt projektartiklarna med deras nyare serverversioner
 Replacement text	Ersättningstext
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Rollnamn
 Role of requests without sign-in; none: sign-in needed for reading	Roll för begäranden utan inloggning; none: inloggning krävs för läsning
 Role: reader, manufacturer, editor, admin or a defined role	Roll: reader, manufacturer, editor, admin eller en definierad roll
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Sparar projektet som en mall i mallmappen, med dess parametrar, formler och sidvillkor; en av användarens mallar med samma namn som en medföljande mall ersätter denna
 Saves the project to its file or to a new path	Sparar projektet i dess fil eller till en ny sökväg
 Scale drawings down that do not fit on the page (default: true)	Skala ned ritningar som inte får plats på sidan (standard: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Söktermer, t.ex. company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Visar manifestet för ett projektarkiv
 Shows the project properties, file, number of pages and devices and the check result	Visar projektegenskaperna, filen, antal sidor och apparater samt kontrollresultatet
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Visar artikelserverns roller, tilldelningar och katalogtjänster och anger valfritt rollen för anonyma begäranden (endast administratörer)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Visar om användare får registrera sig själva på artikelservern (som läsare) och öppnar eller stänger valfritt registreringen (endast administratörer)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Börja från en projektmall (list_project_templates: de medföljande som Maskin eller Motorstartare direktstart, och de i mallmappen) eller en mallfil
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Börja från en projektmall: en inbyggd (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) eller en projektfil
 Start from an example project (names: list_examples)	Utgå från ett exempelprojekt (namn: list_examples)
 Start from the demo project	Börja från demoprojektet
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Användardefinierade egenskaper (namn: värde; ett tomt värde tar bort den)
 User name to sign in with	Användarnamn för inloggning
 User or group name (wildcards; directory groups as directory:group)	Användar- eller gruppnamn (jokertecken; grupper i en katalogtjänst som katalogtjänst:grupp)
+Values of the parameters (name: value); the others keep their default	Parametrarnas värden (namn: värde); de övriga behåller sitt standardvärde
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	Värden för mallens parametrar (namn: värde, t.ex. POWER_KW: 7.5); de övriga behåller sitt standardvärde
 Values to set (name: value; an empty value removes a property)	Värden som ska anges (namn: värde; ett tomt värde tar bort en egenskap)
 Vault user name (signs in)	Vault-användarnamn (loggar in)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Vad som skrivs: oec (projektfil), oecp (delat projekt i en egen mapp) eller oecz (arkiv); standard: enligt utdatafilens filändelse
 Width and height must be greater than 0	Bredd och höjd måste vara större än 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Ord att söka i rapporternas titlar, namn och söktermer (standarder som VDE 0100-600)
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Beräknar värdena i en projektmall för de angivna parametrarna (märkström, inställningsområden, artiklar) utan att starta ett projekt
 Write the table as CSV to this file	Skriv tabellen som CSV till den här filen
 Writes the check scheme of the project (checks switched off, message levels) to a file	Skriver projektets kontrollschema (avstängda kontroller, meddelandenivåer) till en fil
 Writes the embedded file of a document page	Skriver den inbäddade filen för en dokumentsida
@@ -298,7 +311,6 @@ openecraft-cli version\n\nShows the version of the command line (also --version 
 schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) eller en rapport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo och redo fungerar bara i en MCP-session: kommandoraden öppnar projektet på nytt för varje kommando
 user or group	user eller group
-{} exists already: pass overwrite to replace it	{} finns redan: ange overwrite för att ersätta den
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} är ett arkiv och lämnas oförändrat: spara projektet som projektfil (save_project --path <file>.oec) eller konvertera arkivet (convert_project)
 {} is an archive: pass a path to save the project as a project file	{} är ett arkiv: ange en sökväg för att spara projektet som projektfil
 {} is not a language of the project	{} är inte ett språk i projektet

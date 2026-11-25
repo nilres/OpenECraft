@@ -1,5 +1,6 @@
 # English<TAB>Nederlands – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(alleen MCP-server)
+A template needs a name	Een sjabloon heeft een naam nodig
 Access token for changes	Toegangstoken voor wijzigingen
 Access token of a Vault session or an Autodesk account instead of user and password	Toegangstoken van een Vault-sessie of een Autodesk-account in plaats van gebruiker en wachtwoord
 Address of the Vault server, e.g. https://vault.example.com	Adres van de Vault-server, bijv. https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	Def
 Delete the role	De rol verwijderen
 Deletes a catalog without parts from the parts server	Verwijdert een catalogus zonder artikelen van de artikelserver
 Deletes a part from the parts server	Verwijdert een artikel van de artikelserver
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Verwijdert een sjabloon van de gebruiker uit de sjablonenmap (een meegeleverde met dezelfde naam komt terug)
 Deletes a user of the parts server (administrators only)	Verwijdert een gebruiker van de artikelserver (alleen beheerders)
 Descending order	Aflopende volgorde
 Discard unsaved changes of the open project	Niet-opgeslagen wijzigingen van het geopende project negeren
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Toont de voorbeeldprojecten, van een eerste stroomkring tot een hele installatie, met de functies die elk laat zien
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Toont de exports (ingebouwd en van plugins): naam voor export, titel, bestandsextensie en parameters
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Toont de mappen en bestanden van een Vault-map, of doorzoekt de bestandseigenschappen daaronder (of in de hele vault)
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Toont de projectsjablonen (de meegeleverde en die van de sjablonenmap: --templates / OPENECRAFT_TEMPLATES) met hun parameters, formules en de pagina's die een voorwaarde weglaat
 Lists the reports (built-in and of plugins): name for report and title	Toont de rapporten (ingebouwd en van plugins): naam voor report en titel
 Lists the users of the parts server (administrators only)	Toont de gebruikers van de artikelserver (alleen beheerders)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Geladen plugins (ingebouwd en uit de pluginmappen van --plugins / OPENECRAFT_PLUGINS) met hun opdrachten, controles, rapporten en exports; schakelt er een in of uit voor deze sessie
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Fabrikant waarvan een fab
 Maximum number of hits (default 50)	Maximaal aantal resultaten (standaard 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Voegt twee versies van een bestand van een gesplitst project record voor record samen (het merge-stuurprogramma van git): het resultaat vervangt het bestand van deze kant; waar beide kanten verschillen, blijven de waarden ervan staan en mislukt de opdracht
 Name of a built-in template (list_structure_templates)	Naam van een ingebouwde sjabloon (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Naam van een sjabloon (list_project_templates) of een sjabloonbestand
 Name of the knowledge vault (default Vault)	Naam van de knowledge vault (standaard Vault)
+Name of the template (default: its template name, otherwise the project name)	Naam van de sjabloon (standaard: de sjabloonnaam, anders de projectnaam)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Nieuwe accounts wachten op goedkeuring door een beheerder (true) of melden zich meteen aan (false)
 New file name (save as)	Nieuwe bestandsnaam (opslaan als)
 New pages for every value of the group column (default true)	Nieuwe pagina's voor elke waarde van de groeperingskolom (standaard true)
@@ -147,6 +152,7 @@ No grant of {} found	Geen toekenning voor {} gevonden
 No profile named {}	Geen profiel met de naam {}
 No project is open: use open_project or new_project first	Er is geen project geopend: gebruik eerst open_project of new_project
 No role {} defined	Geen rol {} gedefinieerd
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Geen sjablonenmap: geef --templates <map> op of stel OPENECRAFT_TEMPLATES in
 Not a valid catalog: {}	Geen geldige catalogus: {}
 Not a valid part: {}	Geen geldig artikel: {}
 Not connected to a vault: use vault_connect first	Niet verbonden met een vault: gebruik eerst vault_connect
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Alleen de pagina's
 Only the projects that match these search terms	Alleen de projecten die aan deze zoektermen voldoen
 Only this block	Alleen dit blok
 Open (true) or close (false) the registration	De registratie openen (true) of sluiten (false)
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	De sjabloon zelf openen om hem te wijzigen: tijdelijke aanduidingen, parameters en paginavoorwaarden blijven behouden (save_project_template slaat hem op)
 Opens a project file or archive (files of older versions are converted)	Opent een projectbestand of archief (bestanden van oudere versies worden geconverteerd)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Opent een projectbestand of archief uit de vault; vault_upload zonder doel checkt er een nieuwe versie van in
 Option {} needs the form name=value	Optie {} vereist de vorm naam=waarde
@@ -203,6 +210,7 @@ Redoes the last undone change	Voert de laatst ongedaan gemaakte wijziging opnieu
 Remove the grants of the user or group (only of this role and scope, if given)	De toekenningen van de gebruiker of groep verwijderen (alleen van deze rol en dit bereik, indien opgegeven)
 Remove the parts assigned so far	De tot nu toe toegewezen artikelen verwijderen
 Removes a file from a part on the parts server	Verwijdert een bestand van een artikel op de artikelserver
+Replace a template of the same name	Een sjabloon met dezelfde naam vervangen
 Replace the file at path if it exists	Het bestand op path vervangen als het bestaat
 Replace the project parts by their newer server versions	De projectartikelen vervangen door hun nieuwere serverversies
 Replacement text	Vervangende tekst
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Rolnaam
 Role of requests without sign-in; none: sign-in needed for reading	Rol van aanvragen zonder aanmelding; none: aanmelden vereist om te lezen
 Role: reader, manufacturer, editor, admin or a defined role	Rol: reader, manufacturer, editor, admin of een gedefinieerde rol
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Slaat het project op als sjabloon in de sjablonenmap, met de parameters, formules en paginavoorwaarden; een sjabloon van de gebruiker met de naam van een meegeleverde neemt de plaats daarvan in
 Saves the project to its file or to a new path	Slaat het project op in zijn bestand of op een nieuw pad
 Scale drawings down that do not fit on the page (default: true)	Tekeningen die niet op de pagina passen verkleinen (standaard: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Zoektermen, bijv. company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Toont het manifest van een projectarchie
 Shows the project properties, file, number of pages and devices and the check result	Toont de projecteigenschappen, het bestand, het aantal pagina's en apparaten en het controleresultaat
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Toont de rollen, toekenningen en directoryservices van de artikelserver en stelt optioneel de rol van anonieme aanvragen in (alleen beheerders)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Toont of gebruikers zich zelf op de artikelserver mogen registreren (als lezer) en opent of sluit desgewenst de registratie (alleen beheerders)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Beginnen met een projectsjabloon (list_project_templates: de meegeleverde zoals Machine of Motor starter direct on line, en die van de sjablonenmap) of een sjabloonbestand
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Beginnen met een projectsjabloon: een ingebouwde (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) of een projectbestand
 Start from an example project (names: list_examples)	Beginnen met een voorbeeldproject (namen: list_examples)
 Start from the demo project	Beginnen met het demoproject
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Door de gebruiker gedefinieerde eigenschappen (naam: waarde; een lege waarde verwijdert de eigenschap)
 User name to sign in with	Gebruikersnaam voor het aanmelden
 User or group name (wildcards; directory groups as directory:group)	Gebruikers- of groepsnaam (jokertekens; groepen van een directoryservice als directory:groep)
+Values of the parameters (name: value); the others keep their default	Waarden van de parameters (naam: waarde); de overige behouden hun standaardwaarde
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	Waarden van de parameters van de sjabloon (naam: waarde, bijv. POWER_KW: 7.5); de overige behouden hun standaardwaarde
 Values to set (name: value; an empty value removes a property)	In te stellen waarden (naam: waarde; een lege waarde verwijdert een eigenschap)
 Vault user name (signs in)	Vault-gebruikersnaam (meldt aan)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Wat er wordt geschreven: oec (projectbestand), oecp (gesplitst project in een eigen map) of oecz (archief); standaard: volgens de extensie van de uitvoer
 Width and height must be greater than 0	Breedte en hoogte moeten groter zijn dan 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Woorden om te zoeken in de titels, namen en zoektermen (normen zoals VDE 0100-600) van de rapporten
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Berekent de waarden van een projectsjabloon voor de opgegeven parameters (nominale stroom, instelbereiken, artikelen) zonder een project te starten
 Write the table as CSV to this file	De tabel als CSV naar dit bestand schrijven
 Writes the check scheme of the project (checks switched off, message levels) to a file	Schrijft het controleschema van het project (uitgeschakelde controles, meldingsniveaus) naar een bestand
 Writes the embedded file of a document page	Schrijft het ingesloten bestand van een documentpagina
@@ -298,7 +311,6 @@ openecraft-cli version\n\nShows the version of the command line (also --version 
 schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) of een rapport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo en redo werken alleen in een MCP-sessie: de opdrachtregel opent het project voor elke opdracht opnieuw
 user or group	user of group
-{} exists already: pass overwrite to replace it	{} bestaat al: geef overwrite op om het te vervangen
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} is een archief en blijft ongewijzigd: sla het project op als projectbestand (save_project --path <file>.oec) of converteer het archief (convert_project)
 {} is an archive: pass a path to save the project as a project file	{} is een archief: geef een pad op om het project als projectbestand op te slaan
 {} is not a language of the project	{} is geen taal van het project

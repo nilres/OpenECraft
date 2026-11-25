@@ -4,12 +4,13 @@
 //! blocking clients of the command line; only sending the request differs.
 //! [`eplan`] wraps the API of the EPLAN Data Portal so that it can be read like a
 //! parts server ([`Connection`]). [`update`] looks for new releases of OpenECraft on
-//! GitHub.
+//! GitHub. [`places`] names the folders of the user (data, project templates).
 
 mod connection;
 pub mod credentials;
 pub mod project_credentials;
 pub mod eplan;
+pub mod places;
 mod endpoint;
 mod projects;
 pub mod update;

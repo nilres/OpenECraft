@@ -69,6 +69,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Een schemapagina per gepland apparaat met een paginamacro dat nog niet in het schema staat (geselecteerd segment, anders alle)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Een gesplitst project (.oecp) is een map met één klein bestand per pagina, apparaat, artikel en ingesloten bestand, voor versiebeheer zoals git: Bestand › Opslaan als gesplitst project.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Een gesplitst project is een map met bestanden: de browser kan het niet openen. Converteer het eerst naar een projectbestand (.oec) of een archief (.oecz).
+A template file to pass on; New › From a template file… starts projects from it	Een sjabloonbestand om door te geven; Nieuw › Uit een sjabloonbestand… start er projecten mee
 A template of this name is replaced.	Een sjabloon met deze naam wordt vervangen.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Een sjabloon bepaalt het paginatype, het plotkader, het titelblok, de structuur en de beschrijving van een nieuwe pagina en plaatst de inhoud ervan.
 A way through free air costs this many times the way in a duct or routing path	Een weg vrij door de lucht kost zoveel keer de weg in een goot of routeringspad
@@ -535,6 +536,7 @@ Delete section	Sectie verwijderen
 Delete shaft	Schacht verwijderen
 Delete stair	Trap verwijderen
 Delete string	String verwijderen
+Delete template	Sjabloon verwijderen
 Delete the group	De groep verwijderen
 Delete the layer; its items move to the default layer	De laag verwijderen; de elementen ervan gaan naar de standaardlaag
 Delete the property and all its values	Eigenschap met alle waarden verwijderen
@@ -694,6 +696,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Bewerken in tabel
 Edit in table…	Bewerken in tabel…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Bewerkmodus: sleep de gebouwen naar hun plaats in de situatietekening en draai ze; een klik op een ruimte opent die niet meer
+Edit template	Sjabloon bewerken
 Editable copy of this plot frame	Bewerkbare kopie van dit plotkader
 Editable copy of this title block	Bewerkbare kopie van dit titelblok
 Effective surface	Effectief oppervlak
@@ -738,6 +741,7 @@ Export SVG…	SVG exporteren…
 Export all pages as PDF in {}	Alle pagina's exporteren als PDF in {}
 Export as EPLAN parts XML…	Exporteren als EPLAN-artikel-XML…
 Export as PDF in language	Exporteren als PDF in taal
+Export as file…	Exporteren als bestand…
 Export check scheme…	Controleschema exporteren…
 Export favorites…	Favorieten exporteren…
 Export library…	Bibliotheek exporteren…
@@ -807,6 +811,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Indeling van kruisverwijzingen, structuur van de doelpagina, onderbrekingspunten, contactspiegels
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Spijkerbordtekening van de kabelboom op schaal met aftaklengten en de pintabellen van de connectors
 Forms	Formulieren
+Formula	Formule
+Formulas	Formules
 Form…	Formulier…
 Frame	Kader
 Frame of all pages that do not choose one	Kader van alle pagina's die er geen kiezen
@@ -999,6 +1005,7 @@ Introduction	Inleiding
 Invalid value	Ongeldige waarde
 Invert the direction of panning by scrolling	Richting van verschuiven door scrollen omkeren
 Inverter or charge controller (devices with PV input data)	Omvormer of laadregelaar (apparaten met PV-ingangsgegevens)
+It takes the place of the bundled template of this name.	Deze vervangt de meegeleverde sjabloon met deze naam.
 Items copied: {}	Gekopieerde elementen: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Gekopieerde elementen: {} (weggelaten apparaten: {}, een apparaat wordt maar één keer geplaatst)
 Items cut: {}	Geknipte elementen: {}
@@ -1216,6 +1223,7 @@ Nailboard (SVG)…	Spijkerbord (SVG)…
 Name and cross reference	Naam en kruisverwijzing
 Name on the server	Naam op de server
 Name the inspector in the report data first.	Vul eerst de inspecteur in bij de rapportgegevens.
+Name, parameters, formulas and page conditions of the project as a template	Naam, parameters, formules en paginavoorwaarden van het project als sjabloon
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Naam; gegevenstype; logisch adres; commentaar – voor PLC-programmeertools
 Named copy of this form, for report blocks	Benoemde kopie van dit formulier, voor rapportblokken
 Navigators	Navigators
@@ -1245,6 +1253,7 @@ New pages for every group (strip, plug, cable, device …)	Nieuwe pagina's voor 
 New potential	Nieuwe potentiaal
 New project	Nieuw project
 New project from template	Nieuw project uit sjabloon
+New project from {}	Nieuw project uit {}
 New project scheme from the selected one	Nieuw projectschema op basis van het geselecteerde
 New project, not saved yet	Nieuw project, nog niet opgeslagen
 New report page	Nieuwe rapportpagina
@@ -1357,6 +1366,7 @@ Number prefix	Nummervoorvoegsel
 Number wires	Draden nummeren
 Numbering	Nummering
 Numbers removed from {} wires	Nummers van {} draden verwijderd
+Numeric	Numeriek
 Object	Object
 Of the outer diameter, as laid fixed	Van de buitendiameter, vast gelegd
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Van de buitendiameter; buizen worden gebogen met bochten van anderhalve diameter
@@ -1468,6 +1478,7 @@ PV array {} lies outside the protection of the air-termination system	PV-veld {}
 PV array {} of building {}: {} modules	PV-veld {} van gebouw {}: {} modules
 PV array {} of building {}: {} modules, {} kWp	PV-veld {} van gebouw {}: {} modules, {} kWp
 PV arrays	PV-velden
+Page conditions	Paginavoorwaarden
 Page graphics	Paginagrafiek
 Page heading	Paginakop
 Page list, devices, parts, panel layout and settings	Paginalijst, apparaten, artikelen, kastlay-out en instellingen
@@ -1483,7 +1494,6 @@ Page {} ({})	Pagina {} ({})
 Page {} is now page {}	Pagina {} is nu pagina {}
 Page {} locked	Pagina {} vergrendeld
 Page {} – {}	Pagina {} – {}
-Page {}: {}	Pagina {}: {}
 Pages and templates using the frame follow	Pagina's en sjablonen die het kader gebruiken, volgen
 Pages of revision {}	Pagina's van revisie {}
 Pages of the selected block	Pagina's van het geselecteerde blok
@@ -1496,6 +1506,9 @@ Pane menu	Paneelmenu
 Panel wiring report	Rapport kastbedrading
 Panes	Panelen
 Paper	Papier
+Parameter	Parameter
+Parameters	Parameters
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	Parameters worden gevraagd wanneer een project vanuit de sjabloon wordt gestart; formules berekenen verdere waarden. Beide vullen {NAME} in de teksten van het project. Een pagina met een voorwaarde (REPORTS=yes) wordt weggelaten als de voorwaarde niet geldt.
 Parent section	Bovenliggende sectie
 Part of the profile: generic types or parts from the parts store	Artikel van het profiel: generieke typen of artikelen uit het artikelbestand
 Part selection from the parts database	Artikelselectie uit de artikeldatabase
@@ -1840,6 +1853,7 @@ Save as 3D macro	Opslaan als 3D-macro
 Save as 3D macro…	Opslaan als 3D-macro…
 Save as local file	Opslaan als lokaal bestand
 Save as macro	Opslaan als macro
+Save as project template	Opslaan als projectsjabloon
 Save as project template…	Opslaan als projectsjabloon…
 Save as scheme	Opslaan als schema
 Save as split project…	Opslaan als gesplitst project…
@@ -1865,6 +1879,8 @@ Save to project server: {}	Opslaan op projectserver: {}
 Save to project server: {} – the connection is lost, saving tries again	Opslaan op projectserver: {} – de verbinding is verbroken, opslaan probeert het opnieuw
 Save workspace	Werkruimte opslaan
 Save workspace…	Werkruimte opslaan…
+Saved in the browser	Opgeslagen in de browser
+Saved in {}, where the command line finds it too	Opgeslagen in {}, waar de opdrachtregel hem ook vindt
 Saved the properties of {} (revision {})	Eigenschappen van {} opgeslagen (revisie {})
 Saved to	Opgeslagen in
 Saved to the project server (revision {})	Opgeslagen op de projectserver (revisie {})
@@ -1874,6 +1890,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Slaat de lagen met hun instellingen op als instellingenschema voor andere projecten
 Saves the placed properties as a placement scheme of the project	Slaat de geplaatste eigenschappen op als plaatsingsschema van het project
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Slaat het project zonder revisies, basisversies, review en bedradingsmarkeringen op als sjabloon voor nieuwe projecten
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Slaat het project zonder revisies, baselines, review en bedradingsmarkeringen op als sjabloon voor nieuwe projecten, in de sjablonenmap naast de meegeleverde
 Saves the project's own properties, function definitions and schemes for other projects	Slaat de eigen eigenschappen, functiedefinities en schema's van het project op voor andere projecten
 Saves the workspace, the arrangement of the panels and the open windows	Slaat de werkruimte, de indeling van de deelvensters en de geopende vensters op
 Saves your version of the whole project as a project file	Slaat jouw versie van het hele project op als projectbestand
@@ -2030,7 +2047,6 @@ Standard workspaces	Standaardwerkruimten
 Standoff height	Afstandshoogte
 Star a command in Plugin commands to pin it here	Markeer een opdracht met de ster in Pluginopdrachten om hem hier vast te zetten
 Star: the first point refers to all, the others to it	Ster: het eerste punt verwijst naar alle, de andere naar dit punt
-Start	Begin
 Start again when the page structure changes	Opnieuw beginnen wanneer de paginastructuur verandert
 Start at	Beginnen bij
 Start byte	Startbyte
@@ -2117,6 +2133,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Doeltalen
 Temperature rise at the roof against the middle (IEC/TR 60890)	Temperatuurstijging bij het dak ten opzichte van het midden (IEC/TR 60890)
 Template	Sjabloon
+Template parameters	Sjabloonparameters
+Template {} deleted	Sjabloon {} verwijderd
+Template {} saved	Sjabloon {} opgeslagen
 Templates	Sjablonen
 Terminal markers	Klemmarkeringen
 Terminal number, PLC address, potential name …	Klemnummer, PLC-adres, potentiaalnaam …
@@ -2397,6 +2416,7 @@ all, or e.g. -X*, -W1	alle, of bijv. -X*, -W1
 all, or e.g. K, Q	alle, of bijv. K, Q
 along z	langs z
 any	willekeurig
+always	altijd
 both ends	beide einden
 built-in	ingebouwd
 by hand	handmatig
@@ -2422,6 +2442,7 @@ e.g. corp:Engineering	bijv. corp:Engineering
 e.g. customer, ERP, PLM	bijv. klant, ERP, PLM
 e.g. cutout too small, part missing	bijv. uitsparing te klein, artikel ontbreekt
 e.g. de, fr, it	bijv. de, fr, it
+e.g. round(POWER_KW * 2, 1)	bijv. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	bijv. draad te kort, klem ontbreekt
 empty	leeg
 female	bus
@@ -2468,6 +2489,7 @@ ridge {} m	nok {} m
 set on the device	ingesteld op het apparaat
 sloped ceiling from {} m	schuin plafond vanaf {} m
 some	enkele
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, cijfers), ceil, floor, min, max, if(voorwaarde, dan, anders), step(x, grens, waarde, …, anders); & voegt teksten samen
 taken over	overgenomen
 the device before it	het apparaat ervoor
 the project data (page list, devices, settings)	de projectgegevens (paginalijst, apparaten, instellingen)
@@ -2504,6 +2526,7 @@ x y	x y
 {} (revision {})	{} (revisie {})
 {} (spare)	{} (reserve)
 {} (subproject of {})	{} (deelproject van {})
+{} (template of the user)	{} (sjabloon van de gebruiker)
 {} (unused)	{} (ongebruikt)
 {} ({} open)	{} ({} open)
 {} / {} mm  (column {})	{} / {} mm  (kolom {})

@@ -289,7 +289,6 @@ Main	Principal
 Main earthing busbar (device) it is connected to; empty: none	Bara principală de împământare (aparat) la care este conectată; gol: niciuna
 Main earthing terminal	Bornă principală de împământare
 Main equipotential bonding (Ω)	Legătură de echipotențializare principală (Ω)
-Main switch	Întrerupător principal
 Manufacturer	Producător
 Manufacturers	Producători
 Manufacturing	Fabricație
@@ -321,6 +320,7 @@ Name of the block	Numele blocului
 Name of the plot, e.g. the cadastral parcel	Numele terenului, de ex. parcela cadastrală
 Name of the point, e.g. a survey point	Numele punctului, de ex. un punct geodezic
 Name of the scheme	Numele schemei
+Name of the template	Numele șablonului
 Net	Rețea
 Never	Niciodată
 New group	Grup nou
@@ -405,6 +405,7 @@ Page templates	Șabloane de pagină
 Page type	Tip pagină
 Page {} is locked	Pagina {} este blocată
 Page {} of {}	Pagina {} din {}
+Page {}: {}	Pagina {}: {}
 Pages	Pagini
 Panel layout	Amplasare în tablou
 Parameter {} has the wrong type	Parametrul {} are tipul greșit
@@ -579,6 +580,7 @@ Socket side	Partea mufei
 Solenoid not linked	Bobină nelegată
 Sort by	Sortare după
 Source	Sursă
+Start	Start
 Started	Început
 State	Stare
 Status	Stare
@@ -618,6 +620,7 @@ The identifier must not be empty	Identificatorul nu poate fi gol
 The long side of the modules along the rows	Latura lungă a modulelor de-a lungul rândurilor
 The page is released	Pagina este aprobată
 The project has no circuits fed from the mains	Proiectul nu are circuite alimentate din rețea
+The template has no parameter {}	Șablonul nu are parametrul {}
 There is a connection symbol at this point already	Există deja un simbol de conexiune în acest punct
 Thermal	Termic
 This page sets no cookies, uses no tracking and loads nothing from other servers.	Această pagină nu setează cookie-uri, nu folosește urmărire și nu încarcă nimic de pe alte servere.
@@ -710,6 +713,7 @@ yes	da
 {} circuits	{} circuite
 {} does not stand on the floor: choose a part marked for floor mounting	{} nu stă pe pardoseală: alegeți un articol marcat pentru montaj pe pardoseală
 {} exists already	{} există deja
+{} exists already: pass overwrite to replace it	{} există deja: indicați overwrite pentru a-l înlocui
 {} is not a PNG or JPEG image	{} nu este o imagine PNG sau JPEG
 {} mm	{} mm
 {} parts	{} articole

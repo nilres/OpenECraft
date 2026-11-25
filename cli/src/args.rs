@@ -12,6 +12,8 @@ pub struct Options {
     pub lang: Option<String>,
     /// Folder of external plugins.
     pub plugins: Option<String>,
+    /// Folder of the project templates of the user.
+    pub templates: Option<String>,
     /// All parameters as one JSON object (`--json '{…}'`).
     pub json: Option<String>,
     pub help: bool,
@@ -59,6 +61,7 @@ pub fn parse(argv: &[String]) -> Result<Invocation, String> {
             "token" => &mut inv.options.token,
             "lang" => &mut inv.options.lang,
             "plugins" => &mut inv.options.plugins,
+            "templates" => &mut inv.options.templates,
             "json" => &mut inv.options.json,
             _ => {
                 inv.params.push((name.replace('-', "_"), value));

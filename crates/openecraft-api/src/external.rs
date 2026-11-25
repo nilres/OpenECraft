@@ -284,7 +284,7 @@ impl Plugin for External {
             reg.command(c.name.clone(), text(c.help, &c.name), c.params, move |prj, args| {
                 let mut answer = ask(&t, json!({ "method": "command", "name": name, "params": args.0, "project": project_value(prj) }))?;
                 if let Some(changed) = answer.get_mut("project").map(Value::take) {
-                    *prj = Project::from_json(&changed.to_string())?;
+                    *prj = Project::from_json(&changed.to_string()).map_err(|e| tr_fmt!("Invalid answer of the plugin: {}", e))?;
                 }
                 Ok(answer.get_mut("result").map(Value::take).unwrap_or(Value::Null))
             })

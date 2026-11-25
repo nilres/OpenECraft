@@ -69,6 +69,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Piirikaaviosivu jokaiselle sivumakrolliselle suunnitellulle laitteelle, joka ei vielä ole piirikaaviossa (valittu segmentti, muuten kaikki)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Jaettu projekti (.oecp) on kansio, jossa on pieni tiedosto jokaista sivua, laitetta, nimikettä ja upotettua tiedostoa kohti, versionhallintaa kuten gitiä varten: Tiedosto › Tallenna jaettuna projektina.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Jaettu projekti on tiedostokansio: selain ei voi avata sitä. Muunna se ensin projektitiedostoksi (.oec) tai arkistoksi (.oecz).
+A template file to pass on; New › From a template file… starts projects from it	Mallitiedosto jaettavaksi; Uusi › Mallitiedostosta… aloittaa siitä projekteja
 A template of this name is replaced.	Tämänniminen malli korvataan.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Malli asettaa uuden sivun sivutyypin, piirustuskehyksen, nimiön, rakenteen ja kuvauksen sekä sijoittaa sen sisällön.
 A way through free air costs this many times the way in a duct or routing path	Reitti vapaan tilan kautta maksaa tämän verran kertaa enemmän kuin reitti kourussa tai reitityspolulla
@@ -535,6 +536,7 @@ Delete section	Poista osio
 Delete shaft	Poista kuilu
 Delete stair	Poista portaat
 Delete string	Poista merkkijono
+Delete template	Poista malli
 Delete the group	Poista ryhmä
 Delete the layer; its items move to the default layer	Poista taso; sen kohteet siirtyvät oletustasolle
 Delete the property and all its values	Poista ominaisuus ja kaikki sen arvot
@@ -694,6 +696,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	Muokkaa taulukossa
 Edit in table…	Muokkaa taulukossa…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Muokkaustila: vedä rakennukset paikoilleen asemapiirroksessa ja käännä niitä; huoneen napsautus ei enää avaa sitä
+Edit template	Muokkaa mallia
 Editable copy of this plot frame	Tämän piirustuskehyksen muokattava kopio
 Editable copy of this title block	Tämän nimiön muokattava kopio
 Effective surface	Tehollinen pinta-ala
@@ -738,6 +741,7 @@ Export SVG…	Vie SVG…
 Export all pages as PDF in {}	Vie kaikki sivut PDF-muodossa kielellä {}
 Export as EPLAN parts XML…	Vie EPLAN-osa-XML-muodossa…
 Export as PDF in language	Vie PDF-muodossa kielellä
+Export as file…	Vie tiedostona…
 Export check scheme…	Vie tarkistusskeema…
 Export favorites…	Vie suosikit…
 Export library…	Vie kirjasto…
@@ -807,6 +811,8 @@ For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_
 Format of cross references, structure of the target page, interruption points, contact images	Ristiviittausten muoto, kohdesivun rakenne, katkoskohdat, kosketinkuviot
 Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Johtosarjan naulalautapiirustus mittakaavassa haarojen pituuksineen ja liittimien nastataulukoineen
 Forms	Lomakkeet
+Formula	Kaava
+Formulas	Kaavat
 Form…	Lomake…
 Frame	Kehys
 Frame of all pages that do not choose one	Kaikkien niiden sivujen kehys, jotka eivät valitse omaa
@@ -999,6 +1005,7 @@ Introduction	Johdanto
 Invalid value	Virheellinen arvo
 Invert the direction of panning by scrolling	Käännä vierityksellä panoroinnin suunta
 Inverter or charge controller (devices with PV input data)	Vaihtosuuntaaja tai lataussäädin (laitteet, joilla on aurinkosähkötulon tiedot)
+It takes the place of the bundled template of this name.	Se korvaa tämännimisen mukana tulevan mallin.
 Items copied: {}	Kopioidut kohteet: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Kopioidut kohteet: {} (pois jätetyt laitteet: {}, laite sijoitetaan vain kerran)
 Items cut: {}	Leikatut kohteet: {}
@@ -1216,6 +1223,7 @@ Nailboard (SVG)…	Naulalauta (SVG)…
 Name and cross reference	Nimi ja ristiviittaus
 Name on the server	Nimi palvelimella
 Name the inspector in the report data first.	Anna ensin tarkastaja raportin tiedoissa.
+Name, parameters, formulas and page conditions of the project as a template	Projektin nimi, parametrit, kaavat ja sivuehdot mallina
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nimi; tietotyyppi; looginen osoite; kommentti – PLC-ohjelmointityökaluille
 Named copy of this form, for report blocks	Tämän lomakkeen nimetty kopio raporttilohkoja varten
 Navigators	Navigaattorit
@@ -1245,6 +1253,7 @@ New pages for every group (strip, plug, cable, device …)	Uudet sivut jokaisell
 New potential	Uusi potentiaali
 New project	Uusi projekti
 New project from template	Uusi projekti mallista
+New project from {}	Uusi projekti mallista {}
 New project scheme from the selected one	Uusi projektiskeema valitusta
 New project, not saved yet	Uusi projekti, ei vielä tallennettu
 New report page	Uusi raporttisivu
@@ -1357,6 +1366,7 @@ Number prefix	Numeron etuliite
 Number wires	Numeroi johdot
 Numbering	Numerointi
 Numbers removed from {} wires	Numerot poistettu {} johdosta
+Numeric	Luku
 Object	Objekti
 Of the outer diameter, as laid fixed	Ulkohalkaisijasta, kiinteästi asennettuna
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Ulkohalkaisijasta; putket taivutetaan puolentoista halkaisijan käyrillä
@@ -1468,6 +1478,7 @@ PV array {} lies outside the protection of the air-termination system	Aurinkopan
 PV array {} of building {}: {} modules	Aurinkopaneelikenttä {}, rakennus {}: {} moduulia
 PV array {} of building {}: {} modules, {} kWp	Aurinkopaneelikenttä {}, rakennus {}: {} moduulia, {} kWp
 PV arrays	Aurinkopaneelikentät
+Page conditions	Sivuehdot
 Page graphics	Sivun grafiikka
 Page heading	Sivun otsikko
 Page list, devices, parts, panel layout and settings	Sivuluettelo, laitteet, osat, kaappiasennus ja asetukset
@@ -1483,7 +1494,6 @@ Page {} ({})	Sivu {} ({})
 Page {} is now page {}	Sivu {} on nyt sivu {}
 Page {} locked	Sivu {} lukittu
 Page {} – {}	Sivu {} – {}
-Page {}: {}	Sivu {}: {}
 Pages and templates using the frame follow	Kehystä käyttävät sivut ja mallit seuraavat
 Pages of revision {}	Revision {} sivut
 Pages of the selected block	Valitun lohkon sivut
@@ -1496,6 +1506,9 @@ Pane menu	Ruudun valikko
 Panel wiring report	Kaapin johdotusraportti
 Panes	Ruudut
 Paper	Paperi
+Parameter	Parametri
+Parameters	Parametrit
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	Parametrit kysytään, kun projekti aloitetaan mallista; kaavat laskevat lisäarvoja. Molemmat täyttävät merkinnän {NAME} projektin teksteissä. Sivu, jolla on ehto (REPORTS=yes), jätetään pois, kun ehto ei täyty.
 Parent section	Yläosio
 Part of the profile: generic types or parts from the parts store	Profiilin osa: yleiset tyypit tai osarekisterin osat
 Part selection from the parts database	Osan valinta osatietokannasta
@@ -1840,6 +1853,7 @@ Save as 3D macro	Tallenna 3D-makrona
 Save as 3D macro…	Tallenna 3D-makrona…
 Save as local file	Tallenna paikallisena tiedostona
 Save as macro	Tallenna makrona
+Save as project template	Tallenna projektimallina
 Save as project template…	Tallenna projektimallina…
 Save as scheme	Tallenna skeemana
 Save as split project…	Tallenna jaettuna projektina…
@@ -1865,6 +1879,8 @@ Save to project server: {}	Tallenna projektipalvelimelle: {}
 Save to project server: {} – the connection is lost, saving tries again	Tallenna projektipalvelimelle: {} – yhteys on katkennut, tallennus yrittää uudelleen
 Save workspace	Tallenna työtila
 Save workspace…	Tallenna työtila…
+Saved in the browser	Tallennettu selaimeen
+Saved in {}, where the command line finds it too	Tallennettu kohteeseen {}, josta myös komentorivi löytää sen
 Saved the properties of {} (revision {})	Projektin {} ominaisuudet tallennettu (revisio {})
 Saved to	Tallennettu kohteeseen
 Saved to the project server (revision {})	Tallennettu projektipalvelimelle (revisio {})
@@ -1874,6 +1890,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Tallentaa tasot asetuksineen asetusskeemaksi muita projekteja varten
 Saves the placed properties as a placement scheme of the project	Tallentaa sijoitetut ominaisuudet projektin sijoitteluskeemaksi
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Tallentaa projektin ilman revisioita, vertailutiloja, tarkastusta ja johdotusmerkintöjä mallina uusia projekteja varten
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Tallentaa projektin ilman revisioita, vertailutiloja, tarkastusta ja johdotusmerkintöjä mallina uusia projekteja varten mallikansioon mukana tulevien mallien rinnalle
 Saves the project's own properties, function definitions and schemes for other projects	Tallentaa projektin omat ominaisuudet, toimintomäärittelyt ja skeemat muita projekteja varten
 Saves the workspace, the arrangement of the panels and the open windows	Tallentaa työtilan, paneelien järjestyksen ja avoimet ikkunat
 Saves your version of the whole project as a project file	Tallentaa versiosi koko projektista projektitiedostoksi
@@ -2030,7 +2047,6 @@ Standard workspaces	Vakiotyötilat
 Standoff height	Välikekorkeus
 Star a command in Plugin commands to pin it here	Kiinnitä komento tähän tähdellä kohdassa Laajennusten komennot
 Star: the first point refers to all, the others to it	Tähti: ensimmäinen kohta viittaa kaikkiin, muut siihen
-Start	Aloitus
 Start again when the page structure changes	Aloita alusta, kun sivun rakenne muuttuu
 Start at	Aloita kohdasta
 Start byte	Aloitustavu
@@ -2117,6 +2133,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Kohdekielet
 Temperature rise at the roof against the middle (IEC/TR 60890)	Lämpötilan nousu katossa keskikohtaan verrattuna (IEC/TR 60890)
 Template	Malli
+Template parameters	Mallin parametrit
+Template {} deleted	Malli {} poistettu
+Template {} saved	Malli {} tallennettu
 Templates	Mallit
 Terminal markers	Riviliitinmerkit
 Terminal number, PLC address, potential name …	Riviliittimen numero, PLC-osoite, potentiaalin nimi …
@@ -2397,6 +2416,7 @@ all, or e.g. -X*, -W1	kaikki, tai esim. -X*, -W1
 all, or e.g. K, Q	kaikki tai esim. K, Q
 along z	z:n suuntaan
 any	mikä tahansa
+always	aina
 both ends	molemmat päät
 built-in	sisäinen
 by hand	käsin
@@ -2422,6 +2442,7 @@ e.g. corp:Engineering	esim. corp:Engineering
 e.g. customer, ERP, PLM	esim. asiakas, ERP, PLM
 e.g. cutout too small, part missing	esim. aukko liian pieni, osa puuttuu
 e.g. de, fr, it	esim. de, fr, it
+e.g. round(POWER_KW * 2, 1)	esim. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	esim. johto liian lyhyt, riviliitin puuttuu
 empty	tyhjä
 female	naaras
@@ -2468,6 +2489,7 @@ ridge {} m	harja {} m
 set on the device	asetettu laitteelle
 sloped ceiling from {} m	vino katto alkaen {} m
 some	jotkin
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, desimaalit), ceil, floor, min, max, if(ehto, niin, muuten), step(x, raja, arvo, …, muuten); & yhdistää tekstit
 taken over	otettu käyttöön
 the device before it	edellinen laite
 the project data (page list, devices, settings)	projektin tiedot (sivuluettelo, laitteet, asetukset)
@@ -2504,6 +2526,7 @@ x y	x y
 {} (revision {})	{} (revisio {})
 {} (spare)	{} (vara)
 {} (subproject of {})	{} (projektin {} aliprojekti)
+{} (template of the user)	{} (käyttäjän malli)
 {} (unused)	{} (käyttämätön)
 {} ({} open)	{} ({} avoinna)
 {} / {} mm  (column {})	{} / {} mm  (sarake {})

@@ -1,5 +1,6 @@
 # English<TAB>Suomi – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(vain MCP-palvelin)
+A template needs a name	Mallilla on oltava nimi
 Access token for changes	Käyttöoikeustokeni muutoksia varten
 Access token of a Vault session or an Autodesk account instead of user and password	Vault-istunnon tai Autodesk-tilin käyttöoikeustokeni käyttäjän ja salasanan sijaan
 Address of the Vault server, e.g. https://vault.example.com	Vault-palvelimen osoite, esim. https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	Mä
 Delete the role	Poista rooli
 Deletes a catalog without parts from the parts server	Poistaa osattoman luettelon osapalvelimelta
 Deletes a part from the parts server	Poistaa osan osapalvelimelta
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Poistaa käyttäjän mallin mallikansiosta (samanniminen mukana tuleva malli palaa käyttöön)
 Deletes a user of the parts server (administrators only)	Poistaa osapalvelimen käyttäjän (vain järjestelmänvalvojat)
 Descending order	Laskeva järjestys
 Discard unsaved changes of the open project	Hylkää avoimen projektin tallentamattomat muutokset
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Luettelee esimerkkiprojektit ensimmäisestä piiristä kokonaiseen laitokseen ja niiden näyttämät toiminnot
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Luettelee viennit (sisäiset ja laajennusten): nimi komennolle export, otsikko, tiedostopääte ja parametrit
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Luettelee Vault-kansion kansiot ja tiedostot tai hakee tiedostojen ominaisuuksista sen alta (tai koko Vaultista)
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Luettelee projektimallit (mukana tulevat ja mallikansion mallit: --templates / OPENECRAFT_TEMPLATES) parametreineen, kaavoineen ja sivuineen, jotka ehto jättää pois
 Lists the reports (built-in and of plugins): name for report and title	Luettelee raportit (sisäiset ja laajennusten): nimi komennolle report ja otsikko
 Lists the users of the parts server (administrators only)	Luettelee osapalvelimen käyttäjät (vain järjestelmänvalvojat)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Ladatut laajennukset (sisäiset ja valitsimen --plugins / muuttujan OPENECRAFT_PLUGINS laajennuskansioista) komentoineen, tarkistuksineen, raportteineen ja vienteineen; ottaa yhden käyttöön tai poistaa sen käytöstä tämän istunnon ajaksi
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Valmistaja, jonka osia va
 Maximum number of hits (default 50)	Osumien enimmäismäärä (oletus 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Yhdistää jaetun projektin tiedoston kaksi versiota tietue kerrallaan (gitin yhdistämisajuri): tulos korvaa tämän puolen tiedoston; missä puolet eroavat, sen arvot säilyvät ja komento epäonnistuu
 Name of a built-in template (list_structure_templates)	Sisäisen mallin nimi (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Mallin nimi (list_project_templates) tai mallitiedosto
 Name of the knowledge vault (default Vault)	Vaultin nimi (oletus Vault)
+Name of the template (default: its template name, otherwise the project name)	Mallin nimi (oletus: sen mallinimi, muuten projektin nimi)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Uudet tilit odottavat järjestelmänvalvojan hyväksyntää (true) tai kirjautuvat heti (false)
 New file name (save as)	Uusi tiedostonimi (tallenna nimellä)
 New pages for every value of the group column (default true)	Uudet sivut jokaiselle ryhmittelysarakkeen arvolle (oletus true)
@@ -147,6 +152,7 @@ No grant of {} found	Kohteelle {} ei löytynyt myöntöä
 No profile named {}	Profiilia nimeltä {} ei ole
 No project is open: use open_project or new_project first	Projektia ei ole avattu: käytä ensin komentoa open_project tai new_project
 No role {} defined	Roolia {} ei ole määritetty
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Ei mallikansiota: anna --templates <kansio> tai aseta OPENECRAFT_TEMPLATES
 Not a valid catalog: {}	Ei kelvollinen luettelo: {}
 Not a valid part: {}	Ei kelvollinen osa: {}
 Not connected to a vault: use vault_connect first	Ei yhteyttä Vaultiin: käytä ensin komentoa vault_connect
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Vain tämän rapor
 Only the projects that match these search terms	Vain näitä hakuehtoja vastaavat projektit
 Only this block	Vain tämä lohko
 Open (true) or close (false) the registration	Avaa (true) tai sulje (false) rekisteröityminen
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	Avaa itse malli muuttaaksesi sitä: paikkamerkit, parametrit ja sivuehdot säilyvät (save_project_template tallentaa sen)
 Opens a project file or archive (files of older versions are converted)	Avaa projektitiedoston tai arkiston (vanhempien versioiden tiedostot muunnetaan)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Avaa projektitiedoston tai arkiston Vaultista; vault_upload ilman kohdetta kirjaa siitä sisään uuden version
 Option {} needs the form name=value	Valitsin {} vaatii muodon nimi=arvo
@@ -203,6 +210,7 @@ Redoes the last undone change	Tekee uudelleen viimeksi kumotun muutoksen
 Remove the grants of the user or group (only of this role and scope, if given)	Poista käyttäjän tai ryhmän myönnöt (vain tämän roolin ja laajuuden, jos annettu)
 Remove the parts assigned so far	Poista tähän mennessä määritetyt osat
 Removes a file from a part on the parts server	Poistaa tiedoston osasta osapalvelimella
+Replace a template of the same name	Korvaa samanniminen malli
 Replace the file at path if it exists	Korvaa path-tiedosto, jos se on olemassa
 Replace the project parts by their newer server versions	Korvaa projektin osat niiden uudemmilla palvelinversioilla
 Replacement text	Korvaava teksti
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Roolin nimi
 Role of requests without sign-in; none: sign-in needed for reading	Pyyntöjen rooli ilman kirjautumista; none: lukeminen vaatii kirjautumisen
 Role: reader, manufacturer, editor, admin or a defined role	Rooli: reader, manufacturer, editor, admin tai määritetty rooli
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Tallentaa projektin mallina mallikansioon parametreineen, kaavoineen ja sivuehtoineen; käyttäjän malli, jolla on mukana tulevan mallin nimi, korvaa sen
 Saves the project to its file or to a new path	Tallentaa projektin sen tiedostoon tai uuteen polkuun
 Scale drawings down that do not fit on the page (default: true)	Pienennä piirustukset, jotka eivät mahdu sivulle (oletus: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Hakuehdot, esim. company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Näyttää projektiarkiston manifestin
 Shows the project properties, file, number of pages and devices and the check result	Näyttää projektin ominaisuudet, tiedoston, sivujen ja laitteiden määrän sekä tarkistuksen tuloksen
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Näyttää osapalvelimen roolit, myönnöt ja hakemistopalvelut ja valinnaisesti asettaa anonyymien pyyntöjen roolin (vain järjestelmänvalvojat)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Näyttää, voivatko käyttäjät rekisteröityä osapalvelimelle itse (lukijoina), ja valinnaisesti avaa tai sulkee rekisteröitymisen (vain järjestelmänvalvojat)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Aloita projektimallista (list_project_templates: mukana tulevat, kuten Kone tai Moottorin suorakäynnistys, ja mallikansion mallit) tai mallitiedostosta
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Aloita projektimallista: sisäisestä (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) tai projektitiedostosta
 Start from an example project (names: list_examples)	Aloita esimerkkiprojektista (nimet: list_examples)
 Start from the demo project	Aloita esittelyprojektista
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Käyttäjän määrittämät ominaisuudet (nimi: arvo; tyhjä arvo poistaa sen)
 User name to sign in with	Kirjautumisessa käytettävä käyttäjänimi
 User or group name (wildcards; directory groups as directory:group)	Käyttäjän tai ryhmän nimi (yleismerkit; hakemistopalvelun ryhmät muodossa hakemisto:ryhmä)
+Values of the parameters (name: value); the others keep their default	Parametrien arvot (nimi: arvo); muut säilyttävät oletusarvonsa
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	Mallin parametrien arvot (nimi: arvo, esim. POWER_KW: 7.5); muut säilyttävät oletusarvonsa
 Values to set (name: value; an empty value removes a property)	Asetettavat arvot (nimi: arvo; tyhjä arvo poistaa ominaisuuden)
 Vault user name (signs in)	Vault-käyttäjänimi (kirjautuu sisään)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Mitä kirjoitetaan: oec (projektitiedosto), oecp (jaettu projekti omassa kansiossaan) tai oecz (arkisto); oletus: tulosteen tiedostopäätteen mukaan
 Width and height must be greater than 0	Leveyden ja korkeuden on oltava suurempia kuin 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Raporttien otsikoista, nimistä ja hakusanoista (standardeista kuten VDE 0100-600) haettavat sanat
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Laskee projektimallin arvot annetuille parametreille (mitoitusvirta, asettelualueet, osat) aloittamatta projektia
 Write the table as CSV to this file	Kirjoita taulukko CSV-muodossa tähän tiedostoon
 Writes the check scheme of the project (checks switched off, message levels) to a file	Kirjoittaa projektin tarkistusskeeman (käytöstä poistetut tarkistukset, ilmoitustasot) tiedostoon
 Writes the embedded file of a document page	Kirjoittaa dokumenttisivun upotetun tiedoston
@@ -298,7 +311,6 @@ openecraft-cli version\n\nShows the version of the command line (also --version 
 schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) tai raportti: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo ja redo toimivat vain MCP-istunnossa: komentorivi avaa projektin uudelleen jokaista komentoa varten
 user or group	user tai group
-{} exists already: pass overwrite to replace it	{} on jo olemassa: korvaa antamalla overwrite
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} on arkisto eikä muutu: tallenna projekti projektitiedostona (save_project --path <file>.oec) tai muunna arkisto (convert_project)
 {} is an archive: pass a path to save the project as a project file	{} on arkisto: anna polku tallentaaksesi projektin projektitiedostona
 {} is not a language of the project	{} ei ole projektin kieli

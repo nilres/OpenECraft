@@ -1,5 +1,6 @@
 # English<TAB>Čeština – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(jen server MCP)
+A template needs a name	Šablona potřebuje název
 Access token for changes	Přístupový token pro změny
 Access token of a Vault session or an Autodesk account instead of user and password	Přístupový token relace Vault nebo účtu Autodesk místo uživatele a hesla
 Address of the Vault server, e.g. https://vault.example.com	Adresa serveru Vault, např. https://vault.example.com
@@ -54,6 +55,7 @@ Defines, changes or deletes a role of the parts server (administrators only)	Def
 Delete the role	Odstranit roli
 Deletes a catalog without parts from the parts server	Odstraní katalog bez artiklů ze serveru artiklů
 Deletes a part from the parts server	Odstraní artikl ze serveru artiklů
+Deletes a template of the user from the templates folder (a bundled one of the same name comes back)	Odstraní šablonu uživatele ze složky šablon (dodávaná šablona stejného názvu se vrátí)
 Deletes a user of the parts server (administrators only)	Odstraní uživatele serveru artiklů (pouze správci)
 Descending order	Sestupné pořadí
 Discard unsaved changes of the open project	Zahodit neuložené změny otevřeného projektu
@@ -125,6 +127,7 @@ Lists the enclosure systems with their standard sizes, wall thickness, plinth an
 Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Vypíše ukázkové projekty od prvního obvodu po celé zařízení s funkcemi, které každý ukazuje
 Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Vypíše exporty (vestavěné a z pluginů): název pro export, titulek, příponu souboru a parametry
 Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Vypíše složky a soubory složky Vault nebo prohledá vlastnosti souborů pod ní (nebo v celém trezoru)
+Lists the project templates (the bundled ones and those of the templates folder: --templates / OPENECRAFT_TEMPLATES) with their parameters, formulas and the pages a condition leaves out	Vypíše šablony projektů (dodávané a ty ze složky šablon: --templates / OPENECRAFT_TEMPLATES) s jejich parametry, vzorci a stránkami, které podmínka vynechá
 Lists the reports (built-in and of plugins): name for report and title	Vypíše výkazy (vestavěné a z pluginů): název pro report a titulek
 Lists the users of the parts server (administrators only)	Vypíše uživatele serveru artiklů (pouze správci)
 Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Načtené pluginy (vestavěné a ze složek pluginů z --plugins / OPENECRAFT_PLUGINS) s jejich příkazy, kontrolami, výkazy a exporty; povolí nebo zakáže jeden pro tuto relaci
@@ -137,7 +140,9 @@ Manufacturer whose parts a manufacturer user maintains	Výrobce, jehož artikly 
 Maximum number of hits (default 50)	Maximální počet výsledků (výchozí 50)
 Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Sloučí dvě verze souboru rozděleného projektu záznam po záznamu (slučovací ovladač gitu): výsledek nahradí soubor této strany; kde se obě strany liší, zůstanou její hodnoty a příkaz selže
 Name of a built-in template (list_structure_templates)	Název vestavěné šablony (list_structure_templates)
+Name of a template (list_project_templates) or a template file	Název šablony (list_project_templates) nebo soubor šablony
 Name of the knowledge vault (default Vault)	Název trezoru (výchozí Vault)
+Name of the template (default: its template name, otherwise the project name)	Název šablony (výchozí: její název šablony, jinak název projektu)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Nové účty čekají na schválení správcem (true), nebo se přihlásí hned (false)
 New file name (save as)	Nový název souboru (uložit jako)
 New pages for every value of the group column (default true)	Nové stránky pro každou hodnotu sloupce seskupení (výchozí true)
@@ -147,6 +152,7 @@ No grant of {} found	Nenalezeno žádné přidělení pro {}
 No profile named {}	Žádný profil s názvem {}
 No project is open: use open_project or new_project first	Není otevřen žádný projekt: nejprve použijte open_project nebo new_project
 No role {} defined	Není definována žádná role {}
+No templates folder: pass --templates <folder> or set OPENECRAFT_TEMPLATES	Žádná složka šablon: zadejte --templates <složka> nebo nastavte OPENECRAFT_TEMPLATES
 Not a valid catalog: {}	Není platný katalog: {}
 Not a valid part: {}	Neplatný artikl: {}
 Not connected to a vault: use vault_connect first	Není připojeno k Vault: nejprve použijte vault_connect
@@ -157,6 +163,7 @@ Only the pages of this report block; default all report pages	Jen stránky tohot
 Only the projects that match these search terms	Pouze projekty odpovídající těmto hledaným výrazům
 Only this block	Jen tento blok
 Open (true) or close (false) the registration	Otevřít (true) nebo uzavřít (false) registraci
+Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)	Otevřít samotnou šablonu a změnit ji: zástupné symboly, parametry a podmínky stránek zůstanou (save_project_template ji uloží)
 Opens a project file or archive (files of older versions are converted)	Otevře projektový soubor nebo archiv (soubory starších verzí se převedou)
 Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Otevře projektový soubor nebo archiv z trezoru Vault; vault_upload bez cíle vrátí jeho novou verzi se změnami
 Option {} needs the form name=value	Volba {} vyžaduje tvar název=hodnota
@@ -203,6 +210,7 @@ Redoes the last undone change	Znovu provede poslední vrácenou změnu
 Remove the grants of the user or group (only of this role and scope, if given)	Odebrat přidělení uživatele nebo skupiny (pouze této role a rozsahu, jsou-li zadány)
 Remove the parts assigned so far	Odebrat dosud přiřazené artikly
 Removes a file from a part on the parts server	Odebere soubor z artiklu na serveru artiklů
+Replace a template of the same name	Nahradit šablonu stejného názvu
 Replace the file at path if it exists	Nahradit soubor v path, pokud existuje
 Replace the project parts by their newer server versions	Nahradit artikly projektu jejich novějšími verzemi ze serveru
 Replacement text	Náhradní text
@@ -219,6 +227,7 @@ Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, admin
 Role name	Název role
 Role of requests without sign-in; none: sign-in needed for reading	Role požadavků bez přihlášení; none: pro čtení je nutné přihlášení
 Role: reader, manufacturer, editor, admin or a defined role	Role: reader, manufacturer, editor, admin nebo definovaná role
+Saves the project as a template in the templates folder, with its parameters, formulas and page conditions; a template of the user with the name of a bundled one takes its place	Uloží projekt jako šablonu do složky šablon, s jeho parametry, vzorci a podmínkami stránek; šablona uživatele s názvem dodávané šablony nastoupí na její místo
 Saves the project to its file or to a new path	Uloží projekt do jeho souboru nebo do nové cesty
 Scale drawings down that do not fit on the page (default: true)	Zmenšit výkresy, které se nevejdou na stránku (výchozí: true)
 Search terms, e.g. company=ACME; customer~plant; conveyor	Hledané výrazy, např. company=ACME; customer~plant; conveyor
@@ -234,6 +243,7 @@ Shows the manifest of a project archive	Zobrazí manifest archivu projektu
 Shows the project properties, file, number of pages and devices and the check result	Zobrazí vlastnosti projektu, soubor, počet stránek a přístrojů a výsledek kontroly
 Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Zobrazí role, přidělení a adresářové služby serveru artiklů, volitelně nastaví roli anonymních požadavků (pouze správci)
 Shows whether users may register themselves on the parts server (as readers), optionally opening or closing the registration (administrators only)	Ukazuje, zda se uživatelé mohou sami registrovat na serveru artiklů (jako čtenáři), a volitelně registraci otevře nebo uzavře (jen správci)
+Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file	Začít ze šablony projektu (list_project_templates: dodávané jako Machine nebo Motor starter direct on line a ty ze složky šablon) nebo ze souboru šablony
 Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Začít ze šablony projektu: vestavěné (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) nebo projektového souboru
 Start from an example project (names: list_examples)	Začít z ukázkového projektu (názvy: list_examples)
 Start from the demo project	Začít z ukázkového projektu
@@ -278,11 +288,14 @@ Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--l
 User defined properties (name: value; an empty value removes it)	Uživatelské vlastnosti (název: hodnota; prázdná hodnota vlastnost odebere)
 User name to sign in with	Uživatelské jméno pro přihlášení
 User or group name (wildcards; directory groups as directory:group)	Název uživatele nebo skupiny (zástupné znaky; skupiny adresářové služby jako adresář:skupina)
+Values of the parameters (name: value); the others keep their default	Hodnoty parametrů (název: hodnota); ostatní si ponechají výchozí hodnotu
+Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default	Hodnoty parametrů šablony (název: hodnota, např. POWER_KW: 7.5); ostatní si ponechají výchozí hodnotu
 Values to set (name: value; an empty value removes a property)	Hodnoty k nastavení (název: hodnota; prázdná hodnota odebere vlastnost)
 Vault user name (signs in)	Uživatelské jméno Vault (přihlásí se)
 What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Co se zapisuje: oec (soubor projektu), oecp (rozdělený projekt ve vlastní složce) nebo oecz (archiv); výchozí: podle přípony výstupu
 Width and height must be greater than 0	Šířka a výška musí být větší než 0
 Words to find in the titles, names and search terms (standards such as VDE 0100-600) of the reports	Slova hledaná v názvech, jménech a hledaných výrazech (normách jako VDE 0100-600) výkazů
+Works out the values of a project template for the given parameters (rated current, setting ranges, parts) without starting a project	Vypočítá hodnoty šablony projektu pro zadané parametry (jmenovitý proud, rozsahy nastavení, artikly), aniž by založil projekt
 Write the table as CSV to this file	Zapsat tabulku jako CSV do tohoto souboru
 Writes the check scheme of the project (checks switched off, message levels) to a file	Zapíše schéma kontroly projektu (vypnuté kontroly, úrovně hlášení) do souboru
 Writes the embedded file of a document page	Zapíše vložený soubor stránky dokumentu
@@ -298,7 +311,6 @@ openecraft-cli version\n\nShows the version of the command line (also --version 
 schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) nebo výkaz: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo a redo fungují jen v relaci MCP: příkazový řádek otevírá projekt pro každý příkaz znovu
 user or group	user nebo group
-{} exists already: pass overwrite to replace it	{} již existuje: pro nahrazení zadejte overwrite
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} je archiv a zůstává beze změny: uložte projekt jako projektový soubor (save_project --path <file>.oec) nebo archiv převeďte (convert_project)
 {} is an archive: pass a path to save the project as a project file	{} je archiv: zadejte cestu pro uložení projektu jako projektového souboru
 {} is not a language of the project	{} není jazykem projektu

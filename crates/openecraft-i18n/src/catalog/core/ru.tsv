@@ -26,6 +26,9 @@ A port cannot be connected to itself	Порт нельзя соединить с
 A room needs at least four walls	Помещению нужны минимум четыре стены
 A section number consists of letters and digits and does not start with 0	Номер раздела состоит из букв и цифр и не начинается с 0
 A section number must not be empty or contain a dot	Номер раздела не может быть пустым или содержать точку
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Трёхфазный двигатель с вращением в обе стороны и взаимно заблокированными контакторами: силовая цепь и цепь управления, рассчитанные по мощности двигателя, по выбору листы отчётов
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Трёхфазный двигатель с пуском в звезде и работой в треугольнике: силовая цепь и цепь управления, рассчитанные по мощности двигателя, по выбору листы отчётов
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Трёхфазный двигатель с прямым включением: силовая цепь и цепь управления, рассчитанные по мощности двигателя, по выбору схема клемм, список соединений, список устройств и спецификация
 A0 landscape	A0 альбомная
 A1 landscape	A1 альбомная
 A2 landscape	A2 альбомная
@@ -68,6 +71,7 @@ Analog output module	Модуль аналоговых выходов
 Analysis	Анализ
 Another section here has this number	Другой раздел здесь уже имеет этот номер
 Antenna outlet	Антенная розетка
+Anticlockwise	Вращение влево
 Apparent power (kVA)	Полная мощность (kVA)
 Applied directives	Применённые директивы
 Approval date	Дата утверждения
@@ -177,6 +181,7 @@ Cam profile switch NC	Выключатель с профильным кулач�
 Cam profile switch NO	Выключатель с профильным кулачком, замыкающий контакт
 Cam switch NC	Кулачковый выключатель, размыкающий контакт
 Cam switch NO	Кулачковый выключатель, замыкающий контакт
+Cannot delete {}: {}	Не удалось удалить {}: {}
 Cannot read the DWG file: {}	Не удаётся прочитать файл DWG: {}
 Capacitive sensor, 2-wire	Ёмкостный датчик, 2-проводный
 Capacitive sensor, 3-wire	Ёмкостный датчик, 3-проводный
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Силовой выключатель 4-полюсный
 Circuits, protective devices, switches and terminals labelled	Цепи, защитные устройства, выключатели и клеммы промаркированы
 Circular milling	Круговое фрезерование
 Clip / snap-on	Защёлка
+Clockwise	Вращение вправо
 Cloud	Облако
 Clutch (electromagnetic)	Муфта (электромагнитная)
 Coil and timing	Катушка и временные характеристики
@@ -260,7 +266,9 @@ Connections of the conductors	Соединения проводников
 Connector pin-outs and flat cables	Распиновки разъёмов и плоские кабели
 Connector pin-outs: mating faces and pin tables (SVG)	Распиновки разъёмов: стороны сочленения и таблицы контактов (SVG)
 Contact material	Материал контактов
+Contactor	Контактор
 Contactor (single-line)	Контактор (однолинейное изображение)
+Contactor at least (AC-3)	Контактор не менее (AC-3)
 Contactor coil KM (GB)	Катушка контактора KM (GB)
 Contactor coil KM (GOST)	Катушка контактора KM (ГОСТ)
 Contactor main contacts KM (GB)	Главные контакты контактора KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Контурное фрезерование
 Contractor	Подрядчик
 Control	Управление
 Control cabinet	Шкаф управления
+Control circuit {}	Цепь управления {}
 Control mode	Способ регулирования
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Опорная точка {} для {} {} находится внутри чего-либо или вне корпуса: прокладывается без своих опорных точек. Переместите опорную точку в свободное пространство.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Опорная точка {} для {} {} лежит вне его пути: ни в одном шкафу или помещении, через которые он проложен. Переместите опорную точку на его путь.
@@ -286,6 +295,7 @@ Control voltage	Напряжение управления
 Control voltage type	Род тока управления
 Conventional touch voltage limit UL (V)	Условное предельное напряжение прикосновения UL (В)
 Converted from file format {} to {}: {}	Преобразовано из формата файла {} в {}: {}
+Conveyor	Конвейер
 Coolant	Охлаждающая жидкость
 Cooler	Охладитель
 Cooling method	Способ охлаждения
@@ -314,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Титульный лист, содержание, листы схем с функциональным назначением и местом установки, список устройств, спецификация, схемы клемм и кабелей
 Create projects	Создание проектов
 Creation date	Дата создания
+Cross-section of the motor circuit	Сечение цепи двигателя
 Cross-section {} carries {} A, less than the {} A of {}	Сечение {} выдерживает {} A, меньше, чем {} A у {}
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Пересечение на странице {} не соответствует своим проводам: нужен провод во всех четырёх направлениях и никакой точки подключения там
 Current capacity (A)	Допустимый ток (A)
 Current consumption	Потребляемый ток
+Current of the mains and delta contactor	Ток сетевого контактора и контактора треугольника
+Current of the star contactor	Ток контактора звезды
 Current range	Диапазон тока
 Current setting	Уставка тока
 Current transformer	Трансформатор тока
@@ -351,6 +364,7 @@ Default {} ({})	По умолчанию {} ({})
 Degree of protection	Степень защиты
 Delete projects	Удаление проектов
 Delivery date	Дата поставки
+Delta	Треугольник
 Demand (diversity factor {})	Расчётная (коэффициент одновременности {})
 Demand {} A above the usable {} A of the supply	Потребность {} A выше допустимых {} A питания
 Density	Плотность
@@ -405,6 +419,7 @@ Disconnector 3-pole, lockable	Разъединитель 3-полюсный, с 
 Displacement	Рабочий объём
 Distribution board	Распределительный щит
 Distribution board (IEC 61439)	Распределительный щит (IEC 61439)
+Division by zero in the formula	Деление на ноль в формуле
 Document	Документ
 Document (embedded file)	Документ (встроенный файл)
 Document A4 portrait	Документ A4 книжная
@@ -425,6 +440,7 @@ Drilling and milling centre	Сверлильно-фрезерный центр
 Drive	Привод
 Drive type	Тип привода
 Driven by	Приводится от
+Driven machine	Приводимый механизм
 Drives	Приводы
 Drop-out time	Время отпускания
 Duct fill levels	Степень заполнения кабельных каналов
@@ -824,9 +840,12 @@ Main contacts 3-pole, automatic tripping	Главные контакты 3-по�
 Main contacts 4-pole	Главные контакты 4-полюсные
 Main function	Главная функция
 Main function with contact image	Главная функция с зеркалом контактов
+Main switch	Главный выключатель
 Main switch 1-pole	Главный выключатель 1-полюсный
 Main switch 2-pole	Главный выключатель 2-полюсный
 Main switch 3-pole	Главный выключатель 3-полюсный
+Mains	Сеть
+Mains and delta contactor	Сетевой контактор и контактор треугольника
 Mains frequency	Частота сети
 Mains voltage	Напряжение сети
 Maintenance	Техническое обслуживание
@@ -893,11 +912,16 @@ Motor DC, shunt-wound	Двигатель постоянного тока, пар
 Motor cable {} of frequency converter {} must be shielded	Кабель двигателя {} преобразователя частоты {} должен быть экранирован
 Motor data	Данные двигателя
 Motor operator of a circuit breaker	Моторный привод автоматического выключателя
+Motor protection	Защита двигателя
 Motor protection (class 10)	Защита двигателя (класс 10)
 Motor protection switch	Автомат защиты двигателя
 Motor protection switch (single-line)	Автоматический выключатель защиты двигателя (однолинейный)
 Motor protection switch 1-pole	Автоматический выключатель защиты двигателя 1-полюсный
 Motor protection switch 2-pole	Автоматический выключатель защиты двигателя 2-полюсный
+Motor running	Двигатель работает
+Motor starter direct on line	Прямой пуск двигателя
+Motor starter reversing	Реверсивный пуск двигателя
+Motor starter star-delta	Пуск двигателя звезда-треугольник
 Motor, electronically commutated (brushless DC)	Двигатель с электронной коммутацией (бесщеточный постоянного тока)
 Motors	Двигатели
 Motors / Loads	Двигатели / нагрузки
@@ -963,6 +987,7 @@ No segment template named {}	Нет шаблона сегмента с имен�
 No subproject {}	Нет подпроекта {}
 No such object: {}	Объект не найден: {}
 No surge protective device at the supply (IEC 60364-4-44)	Нет устройства защиты от перенапряжений на вводе питания (IEC 60364-4-44)
+No template of the user is named {}	Нет пользовательского шаблона с именем {}
 No terminal {}	Нет клеммы {}
 No user defined property {}	Нет пользовательского свойства {}
 No wires at the pins of {}	Нет проводов на контактах {}
@@ -1204,7 +1229,9 @@ Potentials, interruption points	Потенциалы, точки разрыва
 Potentiometer	Потенциометр
 Power (kWp)	Мощность (кВт пик)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Силовая цепь и цепь управления на нескольких страницах: главный выключатель, защита двигателя, три контактора с блокировками, реле времени с задержкой включения, точки разрыва, потенциалы с цветами проводов, кабель двигателя и отчёты по кабелям.
+Power circuit {}	Силовая цепь {}
 Power factor	Коэффициент мощности
+Power factor cos phi	Коэффициент мощности cos phi
 Power factor meter	Измеритель коэффициента мощности
 Power loss (W)	Потери мощности (W)
 Power module	Модуль питания
@@ -1257,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Защитны�
 Protective devices	Защитные устройства
 Protective earth	Защитное заземление
 Protective earth (PE)	Защитный проводник (PE)
+Protective earth terminal	Клемма защитного проводника
 Protective hose	Защитный рукав
 Protective, earthing and bonding conductors present and adequate	Защитные, заземляющие и уравнивающие проводники имеются и достаточны
 Proximity sensor	Бесконтактный датчик
@@ -1306,6 +1334,7 @@ Rated cross-section	Номинальное сечение
 Rated current (A)	Номинальный ток (A)
 Rated current of the assembly	Номинальный ток НКУ
 Rated current of the auxiliary contacts	Номинальный ток вспомогательных контактов
+Rated current {} A, motor protection switch {}	Номинальный ток {} A, автомат защиты двигателя {}
 Rated diversity factor	Номинальный коэффициент разновременности
 Rated frequency	Номинальная частота
 Rated impulse withstand voltage	Номинальное импульсное выдерживаемое напряжение
@@ -1342,6 +1371,7 @@ Remote I/O	Распределённый ввод-вывод
 Remote I/O {} has no controller	У распределённого ввода-вывода {} нет контроллера
 Replace needs the text to find	Для замены требуется искомый текст
 Replacement part number	Номер заменяющего изделия
+Report pages	Листы отчётов
 Residual current device	Устройство защитного отключения
 Residual current device 1-pole	Устройство защитного отключения 1-полюсное
 Residual current device 2-pole	Устройство защитного отключения 2-полюсное
@@ -1444,6 +1474,7 @@ Service unit	Блок подготовки воздуха
 Service unit (filter, regulator, lubricator)	Блок подготовки воздуха (фильтр, регулятор, маслораспылитель)
 Setpoint	Уставка
 Setting range	Диапазон уставок
+Setting range of the motor protection switch	Диапазон уставок автомата защиты двигателя
 Sheath colour	Цвет оболочки
 Sheath material	Материал оболочки
 Shed roof	Односкатная крыша
@@ -1505,6 +1536,9 @@ Spiral	Винтовая
 Stainless steel	Нержавеющая сталь
 Stainless steel V4A	Нержавеющая сталь V4A
 Standard	Стандарт
+Star	Звезда
+Star contactor	Контактор звезды
+Star time	Время работы в звезде
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Схема пуска / останова с реле: катушка и контакты образуют одно устройство с перекрёстными ссылками и зеркалом контактов, клеммник, номера проводов, схема клеммника и перечень соединений.
 Start date	Дата начала
 Starting current ratio	Кратность пускового тока
@@ -1517,6 +1551,7 @@ Station {}: bus system {} does not exist	Станция {}: шинная сис�
 Steam	Пар
 Steel, hot-dip galvanised	Сталь горячеоцинкованная
 Stock	Складской запас
+Stop	Стоп
 Stop category	Категория останова
 Storage temperature range	Диапазон температуры хранения
 Straight	Прямая
@@ -1548,6 +1583,7 @@ Supplementary fields	Дополнительные поля
 Suppliers	Поставщики
 Supply network	Тип сети
 Supply voltage	Напряжение питания
+Supply {} V / 50 Hz, TN-S	Питание {} V / 50 Hz, TN-S
 Surface (m²)	Поверхность (м²)
 Surface-mounted	Открытая прокладка
 Surge protection type	Тип защиты от перенапряжений
@@ -1566,6 +1602,7 @@ Switches / Sensors	Выключатели / датчики
 Switches, pushbuttons	Выключатели, кнопки
 Switching frequency	Частота коммутаций
 Switching output	Коммутационный выход
+Syntax error in the formula at {}	Синтаксическая ошибка в формуле в месте {}
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Т-образный узел на странице {} не соответствует своим проводам: нужен один провод в его направлении, два поперёк и никакой точки подключения там
 Table of contents	Содержание
 Tabloid landscape	Tabloid альбомная
@@ -1592,6 +1629,7 @@ Terminal data	Данные клеммы
 Terminal description	Описание клеммы
 Terminal line-up	Расположение клемм
 Terminal marker	Маркировка клеммы
+Terminal of the motor circuit	Клемма цепи двигателя
 Terminal parts	Артикулы наконечников
 Terminal strip data of {} without terminals	Данные клеммной колодки {} без клемм
 Terminal strip overview	Обзор клеммных колодок
@@ -1622,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	Первый столбец должен быть Key
 The folder {} already holds the project {}: a split project needs a folder of its own	Папка {} уже содержит проект {}: разделённому проекту нужна собственная папка
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Папка {} содержит файлы, не относящиеся ни к одному проекту ({}): разделённому проекту нужна собственная папка
+The formula ends too early	Формула заканчивается слишком рано
 The function definition needs a key and a name	Для определения функции требуются ключ и имя
 The index of the project names no file layout: it was not written by OpenECraft	Индекс проекта не указывает структуру файлов: он записан не OpenECraft
 The last page cannot be deleted	Последний лист нельзя удалить
@@ -1752,14 +1791,17 @@ Unit of measurement	Единица измерения
 Unit price	Цена за единицу
 Unknown cable {}	Неизвестный кабель {}
 Unknown device: {}	Неизвестное устройство: {}
+Unknown function {} in the formula	Неизвестная функция {} в формуле
 Unknown job {}	Неизвестное задание {}
 Unknown macro	Неизвестный макрос
 Unknown macro box	Неизвестная рамка макроса
+Unknown name {} in the formula	Неизвестное имя {} в формуле
 Unknown object: {}	Неизвестный объект: {}
 Unknown revision	Неизвестная ревизия
 Unknown symbol '{}'	Неизвестный символ '{}'
 Unknown tool {}	Неизвестный инструмент {}
 Unused connection points	Неиспользуемые точки подключения
+Upper limit of the setting range	Верхняя граница диапазона уставок
 Upstream	Вышестоящий
 User defined	Пользовательский
 User symbols	Пользовательские символы
@@ -1837,6 +1879,7 @@ Within a suite, wall mounted	В середине ряда, настенный
 Within a suite, wall mounted, roof covered	В середине ряда, настенный, крыша закрыта
 Word document	Документ Word
 Working line	Рабочая линия
+Wrong number of values for {}	Неверное количество значений для {}
 XLPE / EPR (90 °C)	СПЭ / EPR (90 °C)
 Year of construction	Год выпуска
 Yes / no	Да / нет
@@ -1961,8 +2004,12 @@ yellow	жёлтый
 {} is a built-in property	{} – встроенное свойство
 {} is a built-in scheme	{} – встроенная схема
 {} is a busbar machine and makes no sheets	{} является станком для обработки шин и не обрабатывает листы
+{} is above the last step	{} выше последней ступени
+{} is defined twice	Имя {} определено дважды
 {} is neither the protective device nor a device of the circuit of {}	{} не является ни защитным устройством, ни устройством цепи {}
+{} is no valid name: letters, digits and _, not starting with a digit	{} – недопустимое имя: буквы, цифры и _, не начиная с цифры
 {} is not a busbar machine	{} не является станком для обработки шин
+{} is not a number	{} не является числом
 {} is not a property of {}	{} не является свойством {}
 {} is not an approver of this project	{} не является утверждающим в этом проекте
 {} is not connected to the mains: place it without a protective device	{} не подключается к сети: разместите его без защитного устройства
@@ -2121,6 +2168,7 @@ yellow	жёлтый
 {}: voltage drop {} V ({} %) above {} %	{}: падение напряжения {} V ({} %) выше {} %
 {}: wire colour {} differs from the potential definition ({})	{}: цвет провода {} отличается от определения потенциала ({})
 {}: wire without core designation	{}: провод без обозначения жилы
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) и {} ({}) находятся на расстоянии {} мм друг от друга, требуется не менее {} мм
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: потери мощности {} W нагревают корпус до {} °C (максимум {} °C): требуется {}
@@ -2140,7 +2188,9 @@ yellow	жёлтый
 {}: {} is inside the ventilation clearance of {}	{}: {} находится в зазоре для вентиляции {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} предназначен для монтажной рейки, но установлен непосредственно на панель
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {} рассчитан на системы сборных шин с межосевым расстоянием {} мм, шины, на которых он установлен, расположены через {} мм
+{}: {} is not a number	{}: {} не является числом
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} не предназначен для настенного монтажа, установите его на рейку
+{}: {} is not one of its choices	{}: {} не входит в его варианты выбора
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} находится на высоте {} … {} мм над полом, допустимо {} … {} мм
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg на {} превышают допустимую нагрузку {} kg
 {}: {} lies in a restricted placing area of the {}	{}: {} находится в зоне, запрещённой для размещения, на {}

@@ -312,6 +312,7 @@ impl App {
             T::Integration => self.integration_pane(ui),
             T::Languages => self.languages_pane(ui),
             T::Configurator => self.config_pane(ui),
+            T::ProjectTemplate => self.template_pane(ui),
             T::Projects => self.projects_pane(ui),
             T::Structure => self.structure_pane(ui),
             T::PropertyDatabase => self.property_db_pane(ui),

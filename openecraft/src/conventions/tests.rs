@@ -147,6 +147,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("params", &[]),
     ("table", &["params"]),
     ("issue", &[]),
+    ("formula", &[]),
     ("ttf", &[]),
     ("parallel", &[]),
     ("qr", &[]),
@@ -259,7 +260,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("archive", &["document", "model", "pdf", "storage", "zip"]),
     ("storage", &["archive", "document", "model", "parallel"]),
     ("projects", &["archive", "index", "issue", "model", "properties", "storage", "verify"]),
-    ("project_templates", &["model", "structure"]),
+    ("project_templates", &["config", "formula", "model", "parts", "potentials", "sample", "structure"]),
     ("verify", &["analysis", "issue", "model", "options", "properties", "structure", "symbols"]),
     ("sample", &["electrofluid", "geom", "harness", "model", "netlist", "ops", "panel", "parts", "pinout", "potentials", "review", "revision", "sections", "sizing", "structure", "symbols", "wirenum"]),
 ];

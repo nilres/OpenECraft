@@ -142,6 +142,19 @@ Types de paramètres : `str`, `int`, `num`, `bool`, `ids` (liste d'identifiants 
 Une commande qui répond par une erreur laisse le projet inchangé, dans l'éditeur et le
 serveur MCP aussi.
 
+Chaque page de `project` a un type `kind` : `"Schematic"`, `"Cover"`, `"Overview"`,
+`"Graphic"` ou `"Document"`, et pour une page qui montre quelque chose du projet, ce
+qu'elle montre : `{"Report": "terminal_diagram"}` (un rapport par son nom dans
+`list_reports`, aussi celui d'un plugin), `{"Mounting": 12}` et `{"Drilling": 12}`
+(l'identifiant de l'enveloppe). Un projet qu'OpenECraft ne peut pas lire est refusé avec
+l'endroit de l'erreur (`pages[2].kind.Report: invalid type: unit variant, expected newtype variant`).
+
+Une commande qui construit une série de pages remplit la page de départ d'un nouveau
+projet (sa seule page, une page de schéma sans contenu ;
+`openecraft_core::ops::blank_page` en Rust) et garde son nom, au lieu d'ajouter une
+page à côté. Les pages qu'elle ajoute prennent des noms que le projet n'a pas encore :
+la vérification signale un nom de page utilisé deux fois.
+
 `effect` d'une commande dit ce qu'elle fait : `read` (elle ne fait que lire : le projet
 reste tel quel), `add` (elle ne fait qu'ajouter au projet) ou `change` (elle peut modifier,
 remplacer ou supprimer ce qui existe ; la valeur par défaut). Le serveur MCP le transmet

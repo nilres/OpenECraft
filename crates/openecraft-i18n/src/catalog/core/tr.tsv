@@ -26,6 +26,9 @@ A port cannot be connected to itself	Bir port kendisine bağlanamaz
 A room needs at least four walls	Bir oda en az dört duvar gerektirir
 A section number consists of letters and digits and does not start with 0	Bölüm numarası harf ve rakamlardan oluşur ve 0 ile başlamaz
 A section number must not be empty or contain a dot	Bölüm numarası boş olamaz ve nokta içeremez
+A three-phase motor in both directions with interlocked contactors: power and control circuit sized from the motor power, optional report pages	Kilitlemeli kontaktörlerle iki yönde çalışan üç fazlı motor: motor gücüne göre boyutlandırılmış güç ve kumanda devresi, isteğe bağlı rapor sayfaları
+A three-phase motor started in star and run in delta: power and control circuit sized from the motor power, optional report pages	Yıldızda kalkış yapan ve üçgende çalışan üç fazlı motor: motor gücüne göre boyutlandırılmış güç ve kumanda devresi, isteğe bağlı rapor sayfaları
+A three-phase motor switched on directly: power and control circuit sized from the motor power, optional terminal diagram, connection list, device list and bill of materials	Doğrudan devreye alınan üç fazlı motor: motor gücüne göre boyutlandırılmış güç ve kumanda devresi, isteğe bağlı klemens şeması, bağlantı listesi, cihaz listesi ve malzeme listesi
 A0 landscape	A0 yatay
 A1 landscape	A1 yatay
 A2 landscape	A2 yatay
@@ -68,6 +71,7 @@ Analog output module	Analog çıkış modülü
 Analysis	Analiz
 Another section here has this number	Buradaki başka bir bölüm bu numaraya sahip
 Antenna outlet	Anten prizi
+Anticlockwise	Sola dönüş
 Apparent power (kVA)	Görünür güç (kVA)
 Applied directives	Uygulanan direktifler
 Approval date	Onay tarihi
@@ -177,6 +181,7 @@ Cam profile switch NC	Profil kam şalteri NK
 Cam profile switch NO	Profil kam şalteri NA
 Cam switch NC	Kam şalteri NK
 Cam switch NO	Kam şalteri NA
+Cannot delete {}: {}	{} silinemiyor: {}
 Cannot read the DWG file: {}	DWG dosyası okunamıyor: {}
 Capacitive sensor, 2-wire	Kapasitif sensör, 2 telli
 Capacitive sensor, 3-wire	Kapasitif sensör, 3 telli
@@ -223,6 +228,7 @@ Circuit breaker 4-pole	Devre kesici 4 kutuplu
 Circuits, protective devices, switches and terminals labelled	Devreler, koruma cihazları, anahtarlar ve klemensler etiketli
 Circular milling	Dairesel frezeleme
 Clip / snap-on	Klips / geçmeli
+Clockwise	Sağa dönüş
 Cloud	Bulut
 Clutch (electromagnetic)	Kavrama (elektromanyetik)
 Coil and timing	Bobin ve zamanlama
@@ -260,7 +266,9 @@ Connections of the conductors	İletken bağlantıları
 Connector pin-outs and flat cables	Konnektör pin dizilimleri ve yassı kablolar
 Connector pin-outs: mating faces and pin tables (SVG)	Konnektör pin dizilimleri: eşleşme yüzleri ve pin tabloları (SVG)
 Contact material	Kontak malzemesi
+Contactor	Kontaktör
 Contactor (single-line)	Kontaktör (tek hat)
+Contactor at least (AC-3)	Kontaktör en az (AC-3)
 Contactor coil KM (GB)	Kontaktör bobini KM (GB)
 Contactor coil KM (GOST)	Kontaktör bobini KM (GOST)
 Contactor main contacts KM (GB)	Kontaktör ana kontakları KM (GB)
@@ -273,6 +281,7 @@ Contour milling	Kontur frezeleme
 Contractor	Yüklenici
 Control	Kumanda
 Control cabinet	Kumanda panosu
+Control circuit {}	Kumanda devresi {}
 Control mode	Kontrol yöntemi
 Control point {} of {} {} lies inside something or outside the enclosure: it is laid without its control points. Move the control point into free space.	Ara nokta {} ({} {}) bir şeyin içinde veya panonun dışında: ara noktaları olmadan döşenir. Ara noktayı boş alana taşıyın.
 Control point {} of {} {} lies off its way: in no cabinet or room it is routed through. Move the control point onto its way.	Ara nokta {} ({} {}) yolunun dışında: içinden geçtiği hiçbir panoda veya odada değil. Ara noktayı yoluna taşıyın.
@@ -286,6 +295,7 @@ Control voltage	Kumanda gerilimi
 Control voltage type	Kumanda gerilimi tipi
 Conventional touch voltage limit UL (V)	Geleneksel dokunma gerilimi sınırı UL (V)
 Converted from file format {} to {}: {}	{} dosya formatından {} formatına dönüştürüldü: {}
+Conveyor	Konveyör
 Coolant	Soğutucu
 Cooler	Soğutucu
 Cooling method	Soğutma yöntemi
@@ -314,10 +324,13 @@ Cover sheet, single-line overview, schematic pages, bill of materials, enclosure
 Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Kapak sayfası, içindekiler, fonksiyon ve konumlu şema sayfaları, cihaz listesi, malzeme listesi, klemens ve kablo şemaları
 Create projects	Proje oluştur
 Creation date	Oluşturma tarihi
+Cross-section of the motor circuit	Motor devresinin kesiti
 Cross-section {} carries {} A, less than the {} A of {}	{} kesiti {} A taşıyor, {} A gerektiren {} için yetersiz
 Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Sayfa {} üzerindeki kesişme tellerine uymuyor: dört yönde de tel gerekir ve orada bağlantı noktası olmamalı
 Current capacity (A)	Akım taşıma kapasitesi (A)
 Current consumption	Akım tüketimi
+Current of the mains and delta contactor	Şebeke ve üçgen kontaktörünün akımı
+Current of the star contactor	Yıldız kontaktörünün akımı
 Current range	Akım aralığı
 Current setting	Akım ayarı
 Current transformer	Akım trafosu
@@ -351,6 +364,7 @@ Default {} ({})	Varsayılan {} ({})
 Degree of protection	Koruma derecesi
 Delete projects	Projeleri sil
 Delivery date	Teslim tarihi
+Delta	Üçgen
 Demand (diversity factor {})	Talep (eş zamanlılık faktörü {})
 Demand {} A above the usable {} A of the supply	Talep {} A, beslemenin kullanılabilir {} A değerinin üzerinde
 Density	Yoğunluk
@@ -405,6 +419,7 @@ Disconnector 3-pole, lockable	Ayırıcı 3 kutuplu, kilitlenebilir
 Displacement	Deplasman hacmi
 Distribution board	Dağıtım panosu
 Distribution board (IEC 61439)	Dağıtım panosu (IEC 61439)
+Division by zero in the formula	Formülde sıfıra bölme
 Document	Belge
 Document (embedded file)	Belge (gömülü dosya)
 Document A4 portrait	Belge A4 dikey
@@ -425,6 +440,7 @@ Drilling and milling centre	Delme ve frezeleme merkezi
 Drive	Sürücü
 Drive type	Tahrik türü
 Driven by	Tahrik eden
+Driven machine	Tahrik edilen makine
 Drives	Sürücüler
 Drop-out time	Bırakma süresi
 Duct fill levels	Kablo kanalı doluluk oranları
@@ -824,9 +840,12 @@ Main contacts 3-pole, automatic tripping	Ana kontaklar 3 kutuplu, otomatik açma
 Main contacts 4-pole	Ana kontaklar 4 kutuplu
 Main function	Ana fonksiyon
 Main function with contact image	Kontak görüntülü ana fonksiyon
+Main switch	Ana şalter
 Main switch 1-pole	Ana şalter 1 kutuplu
 Main switch 2-pole	Ana şalter 2 kutuplu
 Main switch 3-pole	Ana şalter 3 kutuplu
+Mains	Şebeke
+Mains and delta contactor	Şebeke ve üçgen kontaktörü
 Mains frequency	Şebeke frekansı
 Mains voltage	Şebeke gerilimi
 Maintenance	Bakım
@@ -893,11 +912,16 @@ Motor DC, shunt-wound	DC motor, şönt sargılı
 Motor cable {} of frequency converter {} must be shielded	{} frekans konvertörünün motor kablosu {} ekranlı olmalıdır
 Motor data	Motor verileri
 Motor operator of a circuit breaker	Devre kesicinin motor tahriki
+Motor protection	Motor koruma
 Motor protection (class 10)	Motor koruma (sınıf 10)
 Motor protection switch	Motor koruma şalteri
 Motor protection switch (single-line)	Motor koruma şalteri (tek hatlı)
 Motor protection switch 1-pole	Motor koruma şalteri 1 kutuplu
 Motor protection switch 2-pole	Motor koruma şalteri 2 kutuplu
+Motor running	Motor çalışıyor
+Motor starter direct on line	Direkt motor yol verici
+Motor starter reversing	Çift yönlü motor yol verici
+Motor starter star-delta	Yıldız-üçgen motor yol verici
 Motor, electronically commutated (brushless DC)	Motor, elektronik komütasyonlu (fırçasız DC)
 Motors	Motorlar
 Motors / Loads	Motorlar / Yükler
@@ -963,6 +987,7 @@ No segment template named {}	{} adlı segment şablonu yok
 No subproject {}	{} alt projesi yok
 No such object: {}	Böyle bir nesne yok: {}
 No surge protective device at the supply (IEC 60364-4-44)	Beslemede aşırı gerilim koruma cihazı yok (IEC 60364-4-44)
+No template of the user is named {}	{} adında bir kullanıcı şablonu yok
 No terminal {}	{} klemensi yok
 No user defined property {}	{} kullanıcı tanımlı özelliği yok
 No wires at the pins of {}	{} pinlerinde tel yok
@@ -1204,7 +1229,9 @@ Potentials, interruption points	Potansiyeller, kesme noktaları
 Potentiometer	Potansiyometre
 Power (kWp)	Güç (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Birkaç sayfada güç ve kumanda devresi: ana şalter, motor koruma, kilitlemeli üç kontaktör, çekmede gecikmeli zaman rölesi, kesinti noktaları, kablo renkli potansiyeller, motor kablosu ve kablo raporları.
+Power circuit {}	Güç devresi {}
 Power factor	Güç faktörü
+Power factor cos phi	Güç faktörü cos phi
 Power factor meter	Güç faktörü ölçer
 Power loss (W)	Güç kaybı (W)
 Power module	Güç modülü
@@ -1257,6 +1284,7 @@ Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	Koruma iletkenl
 Protective devices	Koruma cihazları
 Protective earth	Koruma topraklaması
 Protective earth (PE)	Koruma iletkeni (PE)
+Protective earth terminal	Koruma iletkeni klemensi
 Protective hose	Koruma hortumu
 Protective, earthing and bonding conductors present and adequate	Koruma, topraklama ve kuşaklama iletkenleri mevcut ve yeterli
 Proximity sensor	Yaklaşım sensörü
@@ -1306,6 +1334,7 @@ Rated cross-section	Anma kesiti
 Rated current (A)	Anma akımı (A)
 Rated current of the assembly	Panonun anma akımı
 Rated current of the auxiliary contacts	Yardımcı kontakların anma akımı
+Rated current {} A, motor protection switch {}	Anma akımı {} A, motor koruma şalteri {}
 Rated diversity factor	Anma eş zamanlılık faktörü
 Rated frequency	Anma frekansı
 Rated impulse withstand voltage	Anma darbe dayanım gerilimi
@@ -1342,6 +1371,7 @@ Remote I/O	Uzak I/O
 Remote I/O {} has no controller	Uzak I/O {} için kontrolör yok
 Replace needs the text to find	Değiştirme için aranacak metin gerekli
 Replacement part number	Yedek parça numarası
+Report pages	Rapor sayfaları
 Residual current device	Kaçak akım koruma cihazı
 Residual current device 1-pole	Kaçak akım koruma cihazı 1 kutuplu
 Residual current device 2-pole	Kaçak akım koruma cihazı 2 kutuplu
@@ -1444,6 +1474,7 @@ Service unit	Şartlandırıcı
 Service unit (filter, regulator, lubricator)	Şartlandırıcı (filtre, regülatör, yağlayıcı)
 Setpoint	Ayar değeri
 Setting range	Ayar aralığı
+Setting range of the motor protection switch	Motor koruma şalterinin ayar aralığı
 Sheath colour	Kılıf rengi
 Sheath material	Kılıf malzemesi
 Shed roof	Tek eğimli çatı
@@ -1505,6 +1536,9 @@ Spiral	Döner
 Stainless steel	Paslanmaz çelik
 Stainless steel V4A	Paslanmaz çelik V4A
 Standard	Standart
+Star	Yıldız
+Star contactor	Yıldız kontaktörü
+Star time	Yıldız süresi
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Röleli başlat / durdur devresi: bobin ve kontaklar çapraz referanslar ve kontak görüntüsüyle tek bir cihaz oluşturur; klemens dizisi, kablo numaraları, klemens şeması ve bağlantı listesi.
 Start date	Başlangıç tarihi
 Starting current ratio	Kalkış akımı oranı
@@ -1517,6 +1551,7 @@ Station {}: bus system {} does not exist	İstasyon {}: {} bus sistemi mevcut de�
 Steam	Buhar
 Steel, hot-dip galvanised	Sıcak daldırma galvanizli çelik
 Stock	Stok
+Stop	Dur
 Stop category	Durdurma kategorisi
 Storage temperature range	Depolama sıcaklığı aralığı
 Straight	Düz
@@ -1548,6 +1583,7 @@ Supplementary fields	Ek alanlar
 Suppliers	Tedarikçiler
 Supply network	Şebeke tipi
 Supply voltage	Besleme gerilimi
+Supply {} V / 50 Hz, TN-S	Besleme {} V / 50 Hz, TN-S
 Surface (m²)	Yüzey (m²)
 Surface-mounted	Sıva üstü
 Surge protection type	Aşırı gerilim koruma tipi
@@ -1566,6 +1602,7 @@ Switches / Sensors	Anahtarlar / Sensörler
 Switches, pushbuttons	Şalterler, butonlar
 Switching frequency	Anahtarlama frekansı
 Switching output	Anahtarlama çıkışı
+Syntax error in the formula at {}	Formülde {} konumunda sözdizimi hatası
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Sayfa {} üzerindeki T parçası tellerine uymuyor: yönünde bir tel, enine iki tel gerekir ve orada bağlantı noktası olmamalı
 Table of contents	İçindekiler
 Tabloid landscape	Tabloid yatay
@@ -1592,6 +1629,7 @@ Terminal data	Klemens verileri
 Terminal description	Klemens açıklaması
 Terminal line-up	Klemens dizilimi
 Terminal marker	Klemens işareti
+Terminal of the motor circuit	Motor devresinin klemensi
 Terminal parts	Uç parçaları
 Terminal strip data of {} without terminals	Klemensi olmayan {} klemens şeridi verileri
 Terminal strip overview	Klemens şeridi genel bakışı
@@ -1622,6 +1660,7 @@ The file was written by a newer version (format {}): data this version does not 
 The first column must be Key	İlk sütun Key olmalıdır
 The folder {} already holds the project {}: a split project needs a folder of its own	{} klasörü zaten {} projesini içeriyor: bölünmüş bir proje kendi klasörüne ihtiyaç duyar
 The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	{} klasörü hiçbir projeye ait olmayan dosyalar içeriyor ({}): bölünmüş bir proje kendi klasörüne ihtiyaç duyar
+The formula ends too early	Formül çok erken bitiyor
 The function definition needs a key and a name	Fonksiyon tanımı için bir anahtar ve ad gerekli
 The index of the project names no file layout: it was not written by OpenECraft	Projenin dizini bir dosya düzeni belirtmiyor: OpenECraft tarafından yazılmamış
 The last page cannot be deleted	Son sayfa silinemez
@@ -1752,14 +1791,17 @@ Unit of measurement	Ölçü birimi
 Unit price	Birim fiyat
 Unknown cable {}	Bilinmeyen kablo {}
 Unknown device: {}	Bilinmeyen cihaz: {}
+Unknown function {} in the formula	Formülde bilinmeyen fonksiyon {}
 Unknown job {}	Bilinmeyen iş emri {}
 Unknown macro	Bilinmeyen makro
 Unknown macro box	Bilinmeyen makro kutusu
+Unknown name {} in the formula	Formülde bilinmeyen ad {}
 Unknown object: {}	Bilinmeyen nesne: {}
 Unknown revision	Bilinmeyen revizyon
 Unknown symbol '{}'	Bilinmeyen sembol '{}'
 Unknown tool {}	Bilinmeyen takım {}
 Unused connection points	Kullanılmayan bağlantı noktaları
+Upper limit of the setting range	Ayar aralığının üst sınırı
 Upstream	Üst kademe
 User defined	Kullanıcı tanımlı
 User symbols	Kullanıcı sembolleri
@@ -1837,6 +1879,7 @@ Within a suite, wall mounted	Dizi içinde, duvara monte
 Within a suite, wall mounted, roof covered	Dizi içinde, duvara monte, üstü kapalı
 Word document	Word belgesi
 Working line	Çalışma hattı
+Wrong number of values for {}	{} için yanlış sayıda değer
 XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
 Year of construction	Üretim yılı
 Yes / no	Evet / hayır
@@ -1961,8 +2004,12 @@ yellow	sarı
 {} is a built-in property	{} yerleşik bir özelliktir
 {} is a built-in scheme	{} yerleşik bir şemadır
 {} is a busbar machine and makes no sheets	{} bir bara işleme makinesidir ve sac üretmez
+{} is above the last step	{} son kademenin üzerinde
+{} is defined twice	{} iki kez tanımlandı
 {} is neither the protective device nor a device of the circuit of {}	{} ne koruma cihazı ne de {} devresinin bir cihazıdır
+{} is no valid name: letters, digits and _, not starting with a digit	{} geçerli bir ad değil: harfler, rakamlar ve _, rakamla başlamamalı
 {} is not a busbar machine	{} bir bara işleme makinesi değil
+{} is not a number	{} bir sayı değil
 {} is not a property of {}	{0}, {1} öğesinin bir özelliği değil
 {} is not an approver of this project	{} bu projenin onaylayıcısı değil
 {} is not connected to the mains: place it without a protective device	{} şebekeye bağlanmaz: koruma cihazı olmadan yerleştirin
@@ -2121,6 +2168,7 @@ yellow	sarı
 {}: voltage drop {} V ({} %) above {} %	{}: gerilim düşümü {} V (%{}), %{} sınırının üzerinde
 {}: wire colour {} differs from the potential definition ({})	{}: {} tel rengi potansiyel tanımından farklı ({})
 {}: wire without core designation	{}: damar tanımı olmayan tel
+{}: {}	{}: {}
 {}: {} ({})	{}: {} ({})
 {}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{0}: {1} ({2}) ile {3} ({4}) arasında {5} mm var, en az {6} mm gerekli
 {}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W güç kaybı panoyu {} °C'ye ısıtıyor (en yüksek {} °C): {} gerekli
@@ -2140,7 +2188,9 @@ yellow	sarı
 {}: {} is inside the ventilation clearance of {}	{0}: {1}, {2} öğesinin havalandırma mesafesi içinde
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} montaj rayı için tasarlanmış, ancak doğrudan plakaya oturuyor
 {}: {} is made for busbar systems with {} mm centre distance, the bars it sits on are {} mm apart	{}: {}, {} mm eksen aralıklı bara sistemleri için yapılmıştır, üzerinde durduğu baralar arasında {} mm var
+{}: {} is not a number	{}: {} bir sayı değil
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} duvara montaj için uygun değil, bir raya monte edin
+{}: {} is not one of its choices	{}: {} seçeneklerinden biri değil
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} zeminden {} … {} mm yukarıda, izin verilen {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{0}: {2} üzerindeki {1} kg, {3} kg taşıma yükünü aşıyor
 {}: {} lies in a restricted placing area of the {}	{0}: {1}, {2} üzerinde yerleştirme yasak alanında

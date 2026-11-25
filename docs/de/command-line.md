@@ -33,6 +33,17 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   `--project` angegebenes Archiv bleibt unverändert: Speichern Sie das Projekt als
   Projektdatei (`save_project --path <file>.oec`) oder wandeln Sie das Archiv um
   (`convert_project`).
+- **Projektvorlagen**: `list_project_templates` listet die mitgelieferten Vorlagen und
+  die des Vorlagenordners (`--templates <Ordner>`, `OPENECRAFT_TEMPLATES`, sonst
+  `OpenECraft/data/templates` im Datenordner des Benutzers, den auch der Editor nutzt).
+  `new_project --template "Motor starter direct on line" --values '{"POWER_KW": 7.5}'`
+  legt ein Projekt mit den Werten seiner Parameter an, `template_values` zeigt, was die
+  Formeln berechnen, ohne eines anzulegen, `save_project_template` speichert das offene
+  Projekt in den Ordner und `delete_project_template` entfernt eine Vorlage dort; eine
+  Vorlage des Ordners mit dem Namen einer mitgelieferten tritt an deren Stelle.
+  `new_project --edit` öffnet eine Vorlage selbst, `get_template`,
+  `set_template_parameter`, `set_template_formula` und `set_page --condition` ändern sie
+  ([Projektvorlagen](features/schematic.md#projektvorlagen)).
 - Ein **geteiltes Projekt** hält das Projekt als viele kleine Dateien für die
   Versionsverwaltung (git): den Index `<name>.oecp` mit einem Ordner `pages` (eine Datei
   je Seite), `data` (eine Datei je Betriebsmittel, Artikel, Kabel … und je Bereich der

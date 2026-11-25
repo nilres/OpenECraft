@@ -171,7 +171,7 @@ pub fn symbol_json(symbols: &Symbols, s: &SymbolInst) -> Value {
 }
 
 pub fn page_json(pg: &Page) -> Value {
-    json!({
+    let mut v = json!({
         "name": pg.name,
         "description": pg.description,
         "kind": kind_name(pg.kind),
@@ -184,7 +184,11 @@ pub fn page_json(pg: &Page) -> Value {
         "frame": pg.frame,
         "scale": pg.scale,
         "document": pg.document.as_ref().map(|d| d.name.clone()),
-    })
+    });
+    if !pg.condition.is_empty() {
+        v["condition"] = pg.condition.clone().into();
+    }
+    v
 }
 
 /// No upper bound for [`num_in`].

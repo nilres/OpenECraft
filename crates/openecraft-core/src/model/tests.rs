@@ -67,6 +67,17 @@ fn project_file_round_trip() {
 }
 
 #[test]
+fn project_file_errors_name_the_place() {
+    let mut v = serde_json::to_value(Project::new_default()).unwrap();
+    v["pages"][0]["kind"] = "Report".into();
+    let e = Project::from_json(&v.to_string()).unwrap_err();
+    assert!(e.starts_with("Not a valid project file: pages[0].kind.Report: invalid type: unit variant"), "{e}");
+    // Report pages are written with the name of their report.
+    v["pages"][0]["kind"] = serde_json::json!({ "Report": "terminal_diagram" });
+    assert_eq!(Project::from_json(&v.to_string()).unwrap().pages[0].kind, PageKind::Report(ReportKind::TerminalDiagram.into()));
+}
+
+#[test]
 fn only_unreleased_schematic_pages_are_editable() {
     let mut pg = Page::new(1, "1", "", PageKind::Schematic);
     assert!(pg.is_editable());

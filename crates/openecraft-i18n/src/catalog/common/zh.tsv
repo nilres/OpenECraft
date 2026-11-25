@@ -287,7 +287,6 @@ Main	主
 Main earthing busbar (device) it is connected to; empty: none	所连接的总接地母线（设备）；空：无
 Main earthing terminal	总接地端子
 Main equipotential bonding (Ω)	总等电位联结 (Ω)
-Main switch	主开关
 Manufacturer	制造商
 Manufacturers	制造商
 Manufacturing	制造
@@ -319,6 +318,7 @@ Name of the block	块名称
 Name of the plot, e.g. the cadastral parcel	场地名称，例如地籍宗地
 Name of the point, e.g. a survey point	点的名称，例如测量点
 Name of the scheme	方案名称
+Name of the template	模板名称
 Net	网络
 Never	从不
 New group	新建组
@@ -403,6 +403,7 @@ Page templates	页模板
 Page type	页类型
 Page {} is locked	页 {} 已锁定
 Page {} of {}	第 {} 页，共 {} 页
+Page {}: {}	页 {}：{}
 Pages	页
 Panel layout	安装板布局
 Parameter {} has the wrong type	参数 {} 的类型错误
@@ -577,6 +578,7 @@ Socket side	插孔侧
 Solenoid not linked	电磁线圈未关联
 Sort by	排序方式
 Source	来源
+Start	开始
 Started	已开始
 State	状态
 Status	状态
@@ -616,6 +618,7 @@ The identifier must not be empty	标识符不能为空
 The long side of the modules along the rows	组件长边沿行方向
 The page is released	该页已发布
 The project has no circuits fed from the mains	项目中没有由电网供电的回路
+The template has no parameter {}	模板没有参数 {}
 There is a connection symbol at this point already	此处已有连接符号
 Thermal	热
 This page sets no cookies, uses no tracking and loads nothing from other servers.	本页面不设置 Cookie，不使用跟踪，也不从其他服务器加载任何内容。
@@ -707,6 +710,7 @@ yes	是
 {} circuits	{} 个回路
 {} does not stand on the floor: choose a part marked for floor mounting	{} 不是落地式：请选择标记为落地安装的部件
 {} exists already	{} 已存在
+{} exists already: pass overwrite to replace it	{} 已存在：传入 overwrite 以替换
 {} is not a PNG or JPEG image	{} 不是 PNG 或 JPEG 图像
 {} mm	{} mm
 {} parts	{} 个部件

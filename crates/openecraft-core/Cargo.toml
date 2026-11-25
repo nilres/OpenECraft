@@ -8,6 +8,7 @@ license = "MIT OR Apache-2.0"
 [dependencies]
 serde = { version = "1", features = ["derive", "rc"] }
 serde_json = { version = "1", features = ["raw_value"] }
+serde_path_to_error = "0.1"
 openecraft-parts = { path = "../openecraft-parts" }
 openecraft-i18n = { path = "../openecraft-i18n" }
 openecraft-fonts = { path = "../openecraft-fonts" }

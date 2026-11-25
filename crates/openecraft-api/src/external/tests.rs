@@ -22,6 +22,45 @@ use openecraft_core::analysis::Analysis;
 use openecraft_core::sample::demo_project;
 use std::sync::Mutex;
 
+/// A plugin adding a page of the kind it is given, as JSON of the project file.
+fn page_adder() -> External {
+    let info = Info { id: "pages".into(), name: Text::Owned("Pages".into()), version: "1".into(), description: Text::Owned(String::new()) };
+    External::new(
+        info,
+        Arc::new(|req: &Value| {
+            Ok(match req["method"].as_str().unwrap() {
+                "describe" => json!({ "commands": [{ "name": "add_kind", "params": [{ "name": "kind", "kind": "object" }], "effect": "add" }] }),
+                _ => {
+                    let mut prj = req["project"].clone();
+                    let mut page = prj["pages"][0].clone();
+                    page["id"] = (prj["next_id"].as_u64().unwrap() + 1000).into();
+                    page["name"] = "2".into();
+                    page["kind"] = req["params"]["kind"]["kind"].clone();
+                    prj["pages"].as_array_mut().unwrap().push(page);
+                    json!({ "result": null, "project": prj })
+                }
+            })
+        }),
+    )
+}
+
+#[test]
+fn external_plugins_add_report_pages() {
+    let mut p = Plugins::default();
+    p.add(&page_adder(), Origin::External("pages".into())).unwrap();
+    let mut prj = openecraft_core::model::Project::new_default();
+    let run = |p: &Plugins, prj: &mut openecraft_core::model::Project, kind: Value| {
+        let args = json!({ "kind": { "kind": kind } }).as_object().unwrap().clone();
+        p.run(p.command("add_kind").unwrap(), prj, &args)
+    };
+    run(&p, &mut prj, json!({ "Report": "terminal_diagram" })).unwrap();
+    assert_eq!(prj.pages[1].kind, openecraft_core::model::PageKind::Report(openecraft_core::model::ReportKind::TerminalDiagram.into()));
+    // The unit form of a report page is refused with the place of the mistake.
+    let e = run(&p, &mut prj, json!("Report")).unwrap_err();
+    assert!(e.starts_with("Invalid answer of the plugin: Not a valid project file: pages[2].kind.Report: "), "{e}");
+    assert_eq!(prj.pages.len(), 2, "the project stays as it was");
+}
+
 /// Plugin answering like an external program; records the requests.
 fn fake(log: Arc<Mutex<Vec<Value>>>) -> External {
     let info = Info { id: "fake".into(), name: Text::Owned("Fake".into()), version: "1".into(), description: Text::Owned(String::new()) };
