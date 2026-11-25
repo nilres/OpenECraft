@@ -36,6 +36,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   mistake (`pages[2].kind.Report: …`). A command that builds a set of pages fills the
   empty start page of a new project instead of adding a second page `1`
   ([plugins](docs/plugins.md)).
+- **Wires to the door stay while it turns:** opening or closing the enclosure door in the
+  3D view keeps the wires laid out side by side; the part on the door turns with it,
+  the part inside the enclosure stays and the short piece over the hinge bends between
+  them. Before, the wires in the ducts fell onto one line during the turn, so that some
+  of them seemed to disappear (#270).
 - **Wires stay on mirrored and turned devices:** mirroring a symbol in the schematic
   (key M, *Mirror*) takes the wires at its connection points along and keeps them
   square, as rotating did; where the mirrored symbol still has a connection point, the

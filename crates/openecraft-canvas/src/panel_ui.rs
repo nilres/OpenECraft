@@ -867,12 +867,6 @@ impl PanelUi {
         self.gpu.failed()
     }
 
-    /// The door of the 3D view is still turning to where it is to be.
-    fn door_turning(&self) -> bool {
-        let target = if self.door_open { DOOR_OPEN_ANGLE } else { 0.0 };
-        (self.door_angle - target).abs() > 1e-3
-    }
-
     /// True while a gesture is in progress (no undo step yet).
     pub fn busy(&self) -> bool {
         self.start.is_some() || self.drag.is_some() || !self.path_points.is_empty() || !self.wall_points.is_empty() || self.plan_drag.is_some() || self.site_move.is_some()

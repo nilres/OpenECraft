@@ -7,7 +7,7 @@
 //! that is done the scene shows them as they were routed.
 
 use super::routing_ui::RouteRef;
-use super::{PanelUi, OUTER_WALLS, WIRE_HIGHLIGHT};
+use super::{PanelUi, DOOR_OPEN_ANGLE, OUTER_WALLS, WIRE_HIGHLIGHT};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::model::Project;
 use openecraft_core::panel::roofs::{self, Ceiling, Lin, RoofFaceKind};
@@ -72,6 +72,75 @@ struct TubeWay {
     leave: [V3; 2],
     /// How its first and last end look where they are connected ([`wire_end`]).
     ends: [EndLook; 2],
+    /// A wire to a door: its points as routed with the door open and how far they turn
+    /// with it (none for the others).
+    door: Vec<DoorPoint>,
+}
+
+impl TubeWay {
+    /// Its [`DoorPoint`]s; those of a way along the plate do not turn.
+    fn door_points(&self) -> Vec<DoorPoint> {
+        match self.door.is_empty() {
+            true => self.points.iter().map(|&at| DoorPoint { at, share: 0.0, hinge: at, axis: [0.0, 1.0, 0.0] }).collect(),
+            false => self.door.clone(),
+        }
+    }
+}
+
+/// A point of the way of a wire to a door as routed with the door open at
+/// [`DOOR_OPEN_ANGLE`] (view coordinates), how far it turns with the door (1 on the
+/// door, 0 inside the enclosure, between them over the hinge loop) and the hinge it
+/// turns about (a point and the axis, view coordinates).
+#[derive(Clone, Copy, Debug)]
+struct DoorPoint {
+    at: V3,
+    share: f32,
+    hinge: V3,
+    axis: V3,
+}
+
+/// `v` turned with a door opened by `angle` about its hinge at the origin: the left
+/// front edge, or the right one (`right`, mirrored).
+fn door_turn(v: V3, angle: f32, right: bool) -> V3 {
+    let (sin, cos) = angle.sin_cos();
+    let x = if right { -v[0] } else { v[0] };
+    let (x, z) = (x * cos - v[2] * sin, x * sin + v[2] * cos);
+    [if right { -x } else { x }, v[1], z]
+}
+
+/// `q` turned by `angle` about the axis `axis` (a unit vector) through `at`.
+fn turn_about(q: V3, at: V3, axis: V3, angle: f32) -> V3 {
+    let v = sub(q, at);
+    let (sin, cos) = angle.sin_cos();
+    let r = vec3::add(vec3::add(vec3::scale(v, cos), vec3::scale(cross(axis, v), sin)), vec3::scale(axis, dot(axis, v) * (1.0 - cos)));
+    vec3::add(at, r)
+}
+
+/// The way `points` of a wire to a door, laid out with the door open, with the door
+/// turned by `delta` from there: each point turns as far as the nearest stretch of the
+/// way as routed (`door`), so that the part on the door turns with it, the part inside
+/// stays and the short piece over the hinge loop bends between them.
+fn with_door(points: &[V3], door: &[DoorPoint], delta: f32) -> Vec<V3> {
+    if door.is_empty() || delta == 0.0 {
+        return points.to_vec();
+    }
+    points
+        .iter()
+        .map(|&q| {
+            let mut best = (f32::INFINITY, door[0].share, door[0]);
+            for (i, a) in door.iter().enumerate() {
+                let b = door.get(i + 1).unwrap_or(a);
+                let ab = sub(b.at, a.at);
+                let t = (dot(sub(q, a.at), ab) / dot(ab, ab).max(1e-9)).clamp(0.0, 1.0);
+                let d = vec3::dist(q, vec3::add(a.at, vec3::scale(ab, t)));
+                if d < best.0 {
+                    best = (d, a.share + (b.share - a.share) * t, if b.share > a.share { *b } else { *a });
+                }
+            }
+            let (_, share, at) = best;
+            if share > 0.0 { turn_about(q, at.hinge, at.axis, share * delta) } else { q }
+        })
+        .collect()
 }
 
 /// How the end of a wire or core at its connection point looks: the pieces of the
@@ -92,9 +161,10 @@ impl std::ops::Deref for EndLook {
     }
 }
 
-/// A stretch of a wire drawn along the plate: its index, its points, the axes of the
-/// openings it leaves (zero: none) and whether it starts and ends at a connection point.
-type WireStretch = (usize, Vec<V3>, [V3; 2], [bool; 2]);
+/// A stretch of a wire drawn along the plate: its index, its points, how far each of
+/// them turns with the door ([`DoorPoint::share`]), the axes of the openings it leaves
+/// (zero: none) and whether it starts and ends at a connection point.
+type WireStretch = (usize, Vec<V3>, Vec<f32>, [V3; 2], [bool; 2]);
 
 /// [`EndLook`] of the end `at` of the wire of `cross_section` from `at` to `to` (none for
 /// an unknown cross-section): its termination ([`production::Ends::end`]; a twin ferrule
@@ -1045,8 +1115,9 @@ impl PanelUi {
     /// The scene of the 3D view of enclosure `ei` showing `shown`: the one built before
     /// while nothing it shows changed and it does not wait for a layout that is done
     /// (always a new one during a gesture, whose layout checks are made live). Its wires,
-    /// cables and tubes are laid out on another thread (not during a gesture or while
-    /// the door turns); `ctx` repaints when that is done.
+    /// cables and tubes are laid out on another thread (not during a gesture; the wires
+    /// to the doors with the doors open, so that the layout stays while they turn);
+    /// `ctx` repaints when that is done.
     pub(super) fn scene_3d(&mut self, ctx: &egui::Context, prj: &Project, an: &Analysis, ei: usize, shown: &[(usize, SitePose)]) -> Arc<Scene3d> {
         self.layouts.collect();
         let state = self.scene_state(an, ei, shown);
@@ -1054,7 +1125,7 @@ impl PanelUi {
         if let Some(s) = self.scene.as_ref().filter(|s| !self.busy() && s.analysis == an.id && s.state == state && s.layout == prj.layout).filter(current) {
             return s.clone();
         }
-        let settled = !self.busy() && !self.door_turning();
+        let settled = !self.busy();
         let mut layouts = std::mem::take(&mut self.layouts);
         let s = Arc::new(self.build_scene(prj, an, ei, shown, state, &mut |input| layouts.get(ctx, input, settled)));
         self.layouts = layouts;
@@ -1089,9 +1160,9 @@ impl PanelUi {
     fn build_scene(&self, prj: &Project, an: &Analysis, ei: usize, shown: &[(usize, SitePose)], state: u64, lay_out: &mut dyn FnMut(LayoutInput) -> Result<Arc<Vec<Vec<V3>>>, u64>) -> Scene3d {
         let mut s = Scene3d { id: NEXT_SCENE.fetch_add(1, Ordering::Relaxed), analysis: an.id, layout: prj.layout.clone(), state, ..Default::default() };
         let pos = panel::positions(&prj.layout);
-        let (sin, cos) = self.door_angle.sin_cos();
-        // The doors turn about their hinges on the left front edge (view coordinates).
-        let swing_dir = |v: V3| [v[0] * cos - v[2] * sin, v[1], v[0] * sin + v[2] * cos];
+        // The wires to the doors are laid out with the doors open (the layout stays while
+        // they turn); the parts on a door turn with it from there.
+        let delta = self.door_angle - DOOR_OPEN_ANGLE;
         let light = norm([0.35, 0.75, 0.55]);
         let lit = |base: Color32, n: V3| {
             let shade = 0.55 + 0.45 * dot(n, light).max(0.0);
@@ -1165,19 +1236,16 @@ impl PanelUi {
             // The door turns about its hinge edge: the left front edge, or the right one
             // (mirrored).
             let right = e.door_hinge == panel::DoorHinge::Right;
-            let swing_dir = |v: V3| {
-                if right {
-                    let r = swing_dir([-v[0], v[1], v[2]]);
-                    [-r[0], r[1], r[2]]
-                } else {
-                    swing_dir(v)
-                }
-            };
+            let swing_dir = |v: V3| door_turn(v, self.door_angle, right);
             let hinge_x = if right { e.width } else { 0.0 };
-            let swing = |q: V3| {
-                let r = swing_dir([q[0] - hinge_x, q[1], q[2] - e.depth]);
+            let swing_by = |q: V3, angle: f32| {
+                let r = door_turn([q[0] - hinge_x, q[1], q[2] - e.depth], angle, right);
                 [r[0] + hinge_x, r[1], r[2] + e.depth]
             };
+            let swing = |q: V3| swing_by(q, self.door_angle);
+            // The wires on the door, laid out with it open: their hinge in the view.
+            let open = |q: V3| swing_by(q, DOOR_OPEN_ANGLE);
+            let hinge = (pose.apply([hinge_x, 0.0, e.depth]), pose.turn([0.0, if right { 1.0 } else { -1.0 }, 0.0]));
             let problems = panel::problems_of(&self.findings(prj, an, k));
             #[allow(clippy::too_many_arguments)]
             let add_box = |s: &mut Scene3d, layer: u8, side: Option<usize>, obj: Option<usize>, min: V3, max: V3, base: Color32, item: Option<u64>, door: bool, decal: bool| {
@@ -1560,11 +1628,11 @@ impl PanelUi {
                 let (color, stripe, width) = super::wire_look(&wire.color, selected, done, selected_wire.is_some());
                 let diameter = openecraft_core::harness::outer_diameter(&wire.cross_section);
                 // Door ends run along the door and over the hinge loop; the part on the
-                // door swings with it.
-                let door_end = |at: V3, route: &Option<panel::Route>, plate: Option<&openecraft_core::geom::P>, z: f32| -> Vec<V3> {
-                    let (Some(q), Some(route)) = (plate, route) else { return Vec::new() };
+                // door swings with it (and how far each point turns with the door).
+                let door_end = |at: V3, route: &Option<panel::Route>, plate: Option<&openecraft_core::geom::P>, z: f32| -> (Vec<V3>, Vec<f32>) {
+                    let (Some(q), Some(route)) = (plate, route) else { return (Vec::new(), Vec::new()) };
                     let (path, n) = panel::door_path(e, at, route, [PLATE_MARGIN + q.x, PLATE_MARGIN + q.y, PLATE_Z + z]);
-                    path.into_iter().enumerate().map(|(i, v)| if i < n { swing(up(v)) } else { up(v) }).collect()
+                    path.into_iter().enumerate().map(|(i, v)| if i < n { (open(up(v)), 1.0) } else { (up(v), 0.0) }).unzip()
                 };
                 // Cable passages (line-up coordinates) in this enclosure's view: through
                 // one straight on, for the bend radius on this side of its wall.
@@ -1578,7 +1646,11 @@ impl PanelUi {
                 // it starts and ends at a connection point.
                 let paths: Vec<WireStretch> = match wire.door {
                     (Some(a), Some(b)) if wire.on_door() => match &wire.door_routes.0 {
-                        Some(r) => vec![(0, panel::door_jumper_path(e, a, b, r).into_iter().map(|v| swing(up(v))).collect(), [[0.0; 3]; 2], [true; 2])],
+                        Some(r) => {
+                            let v: Vec<V3> = panel::door_jumper_path(e, a, b, r).into_iter().map(|v| open(up(v))).collect();
+                            let shares = vec![1.0; v.len()];
+                            vec![(0, v, shares, [[0.0; 3]; 2], [true; 2])]
+                        }
                         None => Vec::new(),
                     },
                     (a, b) => wire
@@ -1639,21 +1711,27 @@ impl PanelUi {
                             }
                             let connected = [(entry, a, wire.terminals.0, &wire.door_routes.0), (exit, b, wire.terminals.1, &wire.door_routes.1)].map(|(through, door, terminal, door_route)| through.is_none() && if door.is_some() { door_route.is_some() } else { terminal.is_some() });
                             // From the connection points down to the plate.
-                            let mut v = match (entry, a) {
+                            let (mut v, mut shares) = match (entry, a) {
                                 (None, Some(a)) => door_end(a, &wire.door_routes.0, route.points.first(), z),
-                                (None, None) if !from_terminal => wire.terminals.0.map(up).into_iter().collect(),
-                                _ => Vec::new(),
+                                (None, None) if !from_terminal => (wire.terminals.0.map(up).into_iter().collect(), Vec::new()),
+                                _ => (Vec::new(), Vec::new()),
                             };
                             v.extend(entry.into_iter().flat_map(|q| through(q, 1.0)));
                             let around: Vec<(V3, V3)> = blockers.iter().filter(|(id, _)| *id != wire.items.0 && *id != wire.items.1).map(|(_, b)| *b).collect();
                             v.extend(over(&along, &around, &duct_boxes, diameter / 2.0, prj.layout.routing.bend_radius(RouteKind::Wire, diameter)));
                             v.extend(exit.into_iter().flat_map(|q| through(q, -1.0).into_iter().rev()));
                             match (exit, b) {
-                                (None, Some(b)) => v.extend(door_end(b, &wire.door_routes.1, route.points.last(), z).into_iter().rev()),
+                                (None, Some(b)) => {
+                                    let (end, end_shares) = door_end(b, &wire.door_routes.1, route.points.last(), z);
+                                    shares.resize(v.len(), 0.0);
+                                    v.extend(end.into_iter().rev());
+                                    shares.extend(end_shares.into_iter().rev());
+                                }
                                 (None, None) if !to_terminal => v.extend(wire.terminals.1.map(up)),
                                 _ => {}
                             }
-                            (i, v, leave, connected)
+                            shares.resize(v.len(), 0.0);
+                            (i, v, shares, leave, connected)
                         })
                         .collect(),
                 };
@@ -1663,7 +1741,11 @@ impl PanelUi {
                 let on_plate = !e.is_room() && wire.door == (None, None);
                 let dim = selected_wire.is_some() && !selected;
                 let end = [wire_end(prj, &an.ends, &wire.from, &wire.to, &wire.cross_section, dim), wire_end(prj, &an.ends, &wire.to, &wire.from, &wire.cross_section, dim)];
-                for (i, path, leave, connected) in &paths {
+                for (i, path, shares, leave, connected) in &paths {
+                    let door: Vec<DoorPoint> = match shares.iter().any(|s| *s > 0.0) {
+                        true => path.iter().zip(shares).map(|(q, &share)| DoorPoint { at: pose.apply(*q), share, hinge: hinge.0, axis: hinge.1 }).collect(),
+                        false => Vec::new(),
+                    };
                     let (rest, below) = match on_plate {
                         true => (pose.turn([0.0, 0.0, 1.0]), path.iter().map(|q| q[2] - PLATE_Z).fold(f32::INFINITY, f32::min) - diameter / 2.0 - super::routing_ui::PLATE_CLEAR),
                         false => ([0.0; 3], f32::INFINITY),
@@ -1704,10 +1786,10 @@ impl PanelUi {
                     let path: Vec<V3> = path.iter().map(|q| pose.apply(*q)).collect();
                     if diameter > 0.0 {
                         let bends = vec![bend; path.len()];
-                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: leave.map(|x| pose.turn(x)), ends }));
+                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: leave.map(|x| pose.turn(x)), ends, door }));
                         continue;
                     }
-                    for seg in path.windows(2) {
+                    for seg in with_door(&path, &door, delta).windows(2) {
                         let (a, b) = (seg[0], seg[1]);
                         if selected {
                             s.lines.push(SceneLine { a, b, color, stripe: None, least: width, diameter, tube: false });
@@ -1745,6 +1827,9 @@ impl PanelUi {
             let next = last.is_some_and(|(w, j)| w == wi && j + 1 == i);
             match pending.last_mut() {
                 Some(prev) if next && prev.points.last().zip(t.points.first()).is_some_and(|(a, b)| vec3::dist(*a, *b) < 0.5) => {
+                    if !prev.door.is_empty() || !t.door.is_empty() {
+                        prev.door = [&*prev, &t].into_iter().flat_map(TubeWay::door_points).collect();
+                    }
                     prev.points.extend(t.points.into_iter().skip(1));
                     prev.bends.extend(t.bends.into_iter().skip(1));
                     prev.below = prev.below.min(t.below);
@@ -1773,7 +1858,7 @@ impl PanelUi {
         for line in self.routing_lines_3d(prj, an, &keys, &to_view, selected_wire) {
             if line.diameter > 0.0 {
                 let (sides, steps) = if matches!(line.target, RouteRef::Wire(_)) { (WIRE_SIDES, 2) } else { (TUBE_SIDES, 4) };
-                pending.push(TubeWay { points: line.points, bends: line.bends, diameter: line.diameter, color: line.color, stripe: line.stripe, width: line.width, on_top: line.on_top, target: line.target, sides, steps, rest: line.rest, below: line.below, as_is: line.as_is, leave: line.leave, ends: line.ends });
+                pending.push(TubeWay { points: line.points, bends: line.bends, diameter: line.diameter, color: line.color, stripe: line.stripe, width: line.width, on_top: line.on_top, target: line.target, sides, steps, rest: line.rest, below: line.below, as_is: line.as_is, leave: line.leave, ends: line.ends, door: Vec::new() });
                 continue;
             }
             for seg in line.points.windows(2) {
@@ -1819,7 +1904,7 @@ impl PanelUi {
         };
         let mut laid = laid.iter();
         for t in &pending {
-            let points = laid.next().unwrap_or(&t.points);
+            let points = &with_door(laid.next().unwrap_or(&t.points), &t.door, delta);
             tube_ways.push((points.clone(), t.diameter / 2.0));
             s.tube_paths.push((points.clone(), t.diameter / 2.0, t.target.clone()));
             s.straight_ends.push(t.ends.each_ref().map(|e| e.straight));

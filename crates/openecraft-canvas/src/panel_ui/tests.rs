@@ -1210,6 +1210,53 @@ fn wires_are_laid_out_on_another_thread_with_their_progress_shown() {
 }
 
 #[test]
+fn wires_to_the_door_keep_their_layout_while_it_turns() {
+    // The wires are laid out once with the door open; while it turns, the parts on the
+    // door turn with it and the wires inside stay where they were laid (issue #270).
+    let prj = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&prj);
+    let ctx = egui::Context::default();
+    let mut ui = PanelUi { show_wires: true, ..Default::default() };
+    let shown = ui.shown_3d(&prj, 0);
+    let open = ui.scene_3d(&ctx, &prj, &an, 0, &shown);
+    assert!(open.waiting.is_none());
+    let on_door = |t: &routing_ui::RouteRef| matches!(t, routing_ui::RouteRef::Wire(wi) if an.wiring[*wi].door != (None, None));
+    assert!(open.tube_paths.iter().any(|(_, _, t)| on_door(t)), "the demo has wires to its door");
+    // No new layout is worked out (none would be waited for).
+    ui.layouts.wait = 0;
+    ui.door_open = false;
+    ui.door_angle = DOOR_OPEN_ANGLE / 2.0;
+    let turning = ui.scene_3d(&ctx, &prj, &an, 0, &shown);
+    assert!(turning.waiting.is_none() && ui.layouts.progress().is_none());
+    assert_eq!(open.tube_paths.len(), turning.tube_paths.len());
+    let e = &prj.layout.enclosures[0];
+    let pose = shown.iter().find(|s| s.0 == 0).unwrap().1;
+    let hinge = pose.apply([if e.door_hinge == panel::DoorHinge::Right { e.width } else { 0.0 }, 0.0, e.depth]);
+    let off_hinge = |q: [f32; 3]| ((q[0] - hinge[0]).powi(2) + (q[2] - hinge[2]).powi(2)).sqrt();
+    let mut turned = 0;
+    for (n, ((a, _, t), (b, _, _))) in open.tube_paths.iter().zip(&turning.tube_paths).enumerate() {
+        assert_eq!(a.len(), b.len(), "way {n}");
+        if !on_door(t) {
+            assert_eq!(a, b, "way {n} stays");
+            continue;
+        }
+        if !matches!(t, routing_ui::RouteRef::Wire(wi) if an.wiring[*wi].enclosure == 0) {
+            continue;
+        }
+        turned += 1;
+        // Its end on the door moves, the end on the plate does not; inside the enclosure
+        // the wire keeps its distance to the hinge.
+        for (p, q) in a.iter().zip(b) {
+            assert!((off_hinge(*p) - off_hinge(*q)).abs() < 0.01 && (p[1] - q[1]).abs() < 0.01, "way {n} turns about the hinge: {p:?} {q:?}");
+        }
+        assert!(a.iter().zip(b).any(|(p, q)| vec3::dist(*p, *q) > 10.0), "way {n} turns with the door");
+        let jumper = matches!(t, routing_ui::RouteRef::Wire(wi) if an.wiring[*wi].on_door());
+        assert!(jumper || a.iter().zip(b).any(|(p, q)| p == q), "way {n} stays inside");
+    }
+    assert!(turned > 0);
+}
+
+#[test]
 fn cores_part_from_their_cable_without_lying_in_each_other() {
     // The five cores of the main cable to the AC distribution part in front of its
     // terminals: each from its own place in the cable, none inside another where they

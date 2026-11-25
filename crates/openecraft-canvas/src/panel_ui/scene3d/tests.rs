@@ -145,3 +145,27 @@ fn wire_ends_are_cut_off_the_way() {
     assert!(tip.flat.iter().flatten().all(near), "round the connection point");
     assert!(tip.flat.iter().flatten().all(|v| v[2].abs() <= 0.5), "flat across up");
 }
+
+#[test]
+fn ways_to_the_door_turn_with_it_and_bend_over_the_hinge() {
+    // A way from the door (open at DOOR_OPEN_ANGLE) over the hinge loop into the
+    // enclosure; hinge on the left front edge at the origin.
+    let open = |q: V3| door_turn(q, DOOR_OPEN_ANGLE, false);
+    let at = [open([300.0, 500.0, -15.0]), open([20.0, 500.0, -15.0]), [20.0, 400.0, -45.0], [60.0, 400.0, -200.0]];
+    let door: Vec<DoorPoint> = at.iter().zip([1.0, 1.0, 0.0, 0.0]).map(|(&at, share)| DoorPoint { at, share, hinge: [0.0; 3], axis: [0.0, -1.0, 0.0] }).collect();
+    // Closed: the part on the door where the closed door has it, the part inside stays.
+    let closed = with_door(&at, &door, -DOOR_OPEN_ANGLE);
+    for (q, want) in closed.iter().zip([[300.0, 500.0, -15.0], [20.0, 500.0, -15.0], at[2], at[3]]) {
+        assert!(vec3::dist(*q, want) < 1e-3, "{q:?} {want:?}");
+    }
+    // Over the hinge loop it turns part of the way.
+    let mid = vec3::scale(vec3::add(at[1], at[2]), 0.5);
+    let bent = with_door(&[mid], &door, -DOOR_OPEN_ANGLE)[0];
+    let half = door_turn(mid, -DOOR_OPEN_ANGLE / 2.0, false);
+    assert!(vec3::dist(bent, half) < 1e-3, "{bent:?} {half:?}");
+    // Right hinge: mirrored.
+    let q = door_turn([-100.0, 0.0, -10.0], 0.5, true);
+    let m = door_turn([100.0, 0.0, -10.0], 0.5, false);
+    assert!(vec3::dist(q, [-m[0], m[1], m[2]]) < 1e-4);
+    assert!(vec3::dist(turn_about([-100.0, 0.0, -10.0], [0.0; 3], [0.0, 1.0, 0.0], 0.5), q) < 1e-3);
+}
