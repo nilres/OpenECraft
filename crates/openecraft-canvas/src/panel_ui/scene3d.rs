@@ -1430,7 +1430,8 @@ impl PanelUi {
                         .collect();
                     s.objects.push(bounds(&corners));
                     s.ducts.push(it.kind == ItemKind::Duct);
-                    exact.push(!on_door && (pose.angle.sin() * pose.angle.cos()).abs() < 1e-4);
+                    // A panel of the field grid is hollow: wires run behind its cover.
+                    exact.push(!on_door && (pose.angle.sin() * pose.angle.cos()).abs() < 1e-4 && !panel::fit::is_insert(prj, it));
                     s.objects.len() - 1
                 });
                 // Devices with a 3D model in their part are drawn with it instead of a box,
@@ -1438,6 +1439,7 @@ impl PanelUi {
                 if let Some(painted) = panel::device_mesh_painted(prj, it) {
                     let layer = if it.kind == ItemKind::Rail { 2 } else { EQUIPMENT };
                     let (tris, colors): (Vec<_>, Vec<_>) = painted.into_iter().unzip();
+                    let first = s.faces.len();
                     for (tri, own) in panel::place_triangles(e, it, tris).into_iter().zip(colors) {
                         let base = match (highlight, own) {
                             (None, Some([r, g, b])) => Color32::from_rgb(r, g, b),
@@ -1451,6 +1453,12 @@ impl PanelUi {
                         let normal = pose.turn(n);
                         let w = w.map(|q| pose.apply(q));
                         s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer, side: None, obj, item: Some((k, it.id)), outline: false, decal: false, pv: None });
+                    }
+                    // A model beyond the item's box (the frame and cover of a panel in
+                    // front of the plate it is): its object is the model's bounds.
+                    if let (Some(o), true) = (obj, s.faces.len() > first && panel::fit::is_insert(prj, it)) {
+                        let pts: Vec<V3> = s.faces[first..].iter().flat_map(|f| f.pts).collect();
+                        s.objects[o] = bounds(&pts);
                     }
                     openings(&mut s, prj, e, it, &pose, obj, k, &lit);
                     continue;

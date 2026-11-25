@@ -200,3 +200,19 @@ Mounting size: 699 x 1896");
     assert_eq!(set_mounting_plate(&mut ax, [0.0, 0.0, 0.0]), None);
     assert_eq!(ax.tech_value("Mounting size"), Some("440 x 460"));
 }
+
+#[test]
+fn side_openings_of_an_enclosure_and_the_frames_that_go_into_them() {
+    // A ComfortLine A cabinet of 7 rows: joining openings at the bottom and the top,
+    // two small ones between them.
+    let cabinet = Part { tech_data: "Rows: 7\nSide openings: 202 x 85 at 86 / 20; 202 x 85 at 812 / 20; 60 x 27 mm at 405 / 69; bad; 60 x 27 at 710,5 / 69".into(), ..Default::default() };
+    let openings = side_openings(&cabinet);
+    assert_eq!(openings.len(), 4);
+    assert_eq!(openings[0], SideOpening { height: 202.0, depth: 85.0, bottom: 86.0, back: 20.0 });
+    assert_eq!(openings[1].bottom, 812.0);
+    assert_eq!(openings[3], SideOpening { height: 60.0, depth: 27.0, bottom: 710.5, back: 69.0 });
+    assert!(side_openings(&Part::default()).is_empty());
+    let frame = Part { tech_data: "Faces: Left, Right\nOpening: 202 x 85 mm".into(), ..Default::default() };
+    assert_eq!(opening_size(&frame), Some([202.0, 85.0]));
+    assert_eq!(opening_size(&Part { tech_data: "Opening: 0 x 85".into(), ..Default::default() }), None);
+}

@@ -662,6 +662,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	표시된 면의 드릴 �
 Drop an enclosure here to add it; onto a room to put it in there	여기에 외함을 놓으면 추가되고, 방 위에 놓으면 그 방에 배치됩니다
 Drop between the pages	페이지 사이에 놓기
 Drop between the rows or onto a section	행 사이 또는 구역 위에 놓기
+Drop between two buildings to move it there	두 건물 사이에 놓으면 그곳으로 이동합니다
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	두 행 사이에 놓으면 외함이 그곳으로 이동합니다. 결합된 외함은 열 배치 안에서 또는 열 배치와 함께 이동합니다
+Drop between two rows to move the room there, onto a level to put it on that level	두 행 사이에 놓으면 방이 그곳으로 이동하고, 층에 놓으면 그 층에 배치됩니다
 Drop onto a level to put the room on it	방을 층에 놓으면 그 층에 배치됩니다
 Drop {} here	{}을(를) 여기에 놓기
 Drop {} onto one of the highlighted places	{}을(를) 강조 표시된 위치 중 하나에 놓기
@@ -783,6 +786,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	첫 행
 Fit page	페이지 맞춤
 Fits {}	{}에 호환
+Fitted	장착됨
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	가로세로 비율을 유지하며 사각형에 맞춤(PNG, JPEG)
 Float	분리
 Floor	바닥
@@ -1554,6 +1558,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	플랜트 레이아웃
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	플랜트 레이아웃, 경로 네트워크, 필드 케이블 계획, 등전위 본딩 및 케이블 부속품
 Plant segments with planned devices before the schematic	회로도 작성 전 계획된 장치가 포함된 플랜트 세그먼트
+Plastic cover	플라스틱 커버
 Plate outline, holes per diameter, cutouts	플레이트 외곽선, 직경별 구멍, 컷아웃
 Plot boundary	부지 경계
 Plot boundary drawn: {} m²	부지 경계를 그렸습니다: {} m²
@@ -2160,6 +2165,7 @@ The page name gets the section number	페이지 이름에 구역 번호가 붙�
 The page type, plot frame, title block, structure, description and the whole content are saved.	페이지 유형, 플롯 프레임, 표제란, 구조, 설명 및 전체 내용이 저장됩니다.
 The pages it generated stay	생성된 페이지는 유지됩니다
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	부품 데이터베이스는 모든 프로젝트가 공유합니다. 부품은 장치에 지정될 때 프로젝트로 복사됩니다.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	패널의 플라스틱 커버입니다. 없으면 프레임, 레일과 그 뒤의 배선이 보입니다
 The point's coordinates in the coordinate reference system	좌표 참조계에서의 점의 좌표
 The post; its accessories are the table beams, rails and clamps	말뚝; 부속품은 가대 보, 레일과 클램프입니다
 The project changed since the search.	검색 이후 프로젝트가 변경되었습니다.
@@ -2582,6 +2588,7 @@ x y	x y
 {} mm, removed	{} mm, 제거됨
 {} modules	모듈 {}개
 {} modules, {} kWp	모듈 {}개, {} kWp
+{} moved	{}을(를) 이동했습니다
 {} new texts in the dictionary	사전의 새 텍스트 {}개
 {} notes	참고 {}개
 {} objects pasted	개체 {}개 붙여넣음

@@ -690,9 +690,15 @@ fn bundled_parts() -> &'static [parts::Part] {
     PARTS.get_or_init(|| parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).collect())
 }
 
-/// A room dragged in the navigator (the drag payload).
+/// A room or an enclosure dragged in the navigator (the drag payload): onto another
+/// row it moves before or after it, a room onto a level onto that level.
 #[derive(Clone, Copy, PartialEq, Debug)]
-struct DraggedRoom(usize);
+struct DraggedRow(usize);
+
+/// A building dragged in the navigator (the drag payload): onto another one it moves
+/// before or after it.
+#[derive(Clone, Copy, PartialEq, Debug)]
+struct DraggedBuilding(usize);
 
 /// What was asked for in the enclosure tree of the navigator: a new room, a new
 /// enclosure (in a room, index) or a part dropped (into a room).
@@ -710,6 +716,15 @@ fn drop_highlight(ui: &egui::Ui, rect: Rect) {
     ui.painter().rect_stroke(rect, 2.0, Stroke::new(1.5, v.selection.stroke.color), egui::StrokeKind::Inside);
 }
 
+/// Where a row dragged over `rect` goes: after it when the pointer is in its lower
+/// half; the line it goes to is drawn.
+fn drop_line(ui: &egui::Ui, rect: Rect) -> bool {
+    let after = ui.ctx().pointer_latest_pos().is_some_and(|q| q.y > rect.center().y);
+    let y = if after { rect.bottom() } else { rect.top() };
+    ui.painter().hline(rect.x_range(), y, Stroke::new(2.0, ui.visuals().selection.stroke.color));
+    after
+}
+
 /// What the navigator does with the levels of the buildings.
 #[derive(Clone, Copy, PartialEq, Debug)]
 enum NavAction {
@@ -718,6 +733,10 @@ enum NavAction {
     NewRoomOn(u64),
     /// Puts a room onto a level.
     Put(usize, u64),
+    /// Moves a row of the tree (room or enclosure) before another one, or after it.
+    Move(usize, usize, bool),
+    /// Moves a building before another one, or after it.
+    MoveBuilding(usize, usize, bool),
     /// Takes a room out of its building.
     TakeOut(usize),
     /// Shows a room: in the 3D view when it is shown, otherwise its floor plan.
@@ -1417,12 +1436,10 @@ impl PanelUi {
                         remove = Some(i);
                     }
                     ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
-                        let mut r = ui.add(egui::Button::selectable(i == self.enclosure && !self.site, label.as_str()).truncate()).on_hover_text(label.as_str());
-                        if e.is_room() {
-                            // Rooms are dragged onto the levels of the buildings.
-                            r = r.interact(Sense::drag());
-                            r.dnd_set_drag_payload(DraggedRoom(i));
-                        }
+                        // Dragged onto another row to move it there, a room onto a level
+                        // of a building.
+                        let r = ui.add(egui::Button::selectable(i == self.enclosure && !self.site, label.as_str()).truncate()).on_hover_text(label.as_str()).interact(Sense::drag());
+                        r.dnd_set_drag_payload(DraggedRow(i));
                         if r.clicked() {
                             if e.is_room() {
                                 act = Some(NavAction::Open(i));
@@ -1439,10 +1456,12 @@ impl PanelUi {
                         if let Some(d) = r.dnd_release_payload::<PartDrag>() {
                             tree.dropped = Some((d.number.clone(), room));
                         }
-                        if let Some(l) = level {
-                            // Dropped onto a room of a level: onto its level.
-                            if let Some(d) = r.dnd_release_payload::<DraggedRoom>() {
-                                act = Some(NavAction::Put(d.0, l));
+                        // A room goes only among the rooms: onto a room or a cabinet in one.
+                        let fits = |d: &DraggedRow| d.0 != i && prj.layout.enclosures.get(d.0).is_some_and(|f| !f.is_room() || room.is_some());
+                        if r.dnd_hover_payload::<DraggedRow>().is_some_and(|d| fits(&d)) {
+                            let after = drop_line(ui, r.rect);
+                            if let Some(d) = r.dnd_release_payload::<DraggedRow>() {
+                                act = Some(NavAction::Move(d.0, i, after));
                             }
                         }
                         r.context_menu(|ui| {
@@ -1598,6 +1617,8 @@ impl PanelUi {
                 _ => Vec::new(),
             };
             let mut new_part = None;
+            // A panel of the field grid: its plastic cover can be taken off.
+            let insert = prj.layout.enclosures[ei].item(id).is_some_and(|it| panel::fit::is_insert(prj, it));
             let e = &mut prj.layout.enclosures[ei];
             let Some(idx) = e.items.iter().position(|i| i.id == id) else {
                 self.selection.clear();
@@ -1647,6 +1668,14 @@ impl PanelUi {
                         ui.add(egui::DragValue::new(&mut it.x).speed(1.0).suffix(" mm"));
                         ui.add(egui::DragValue::new(&mut it.y).speed(1.0).suffix(" mm"));
                     });
+                    ui.end_row();
+                }
+                if insert {
+                    ui.label(tr("Plastic cover"));
+                    let mut covered = !it.uncovered;
+                    if ui.checkbox(&mut covered, tr("Fitted")).on_hover_text(tr("The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen")).changed() {
+                        it.uncovered = !covered;
+                    }
                     ui.end_row();
                 }
                 if matches!(it.kind, ItemKind::Device | ItemKind::Accessory) {
@@ -2946,6 +2975,26 @@ impl PanelUi {
                     Err(e) => e,
                 };
             }
+            NavAction::Move(from, to, after) => {
+                let (current, name) = (prj.layout.enclosures.get(self.enclosure).map(|e| e.id), prj.layout.enclosures[from].name.clone());
+                match panel::order::move_in_tree(prj, from, to, after) {
+                    Ok(_) => {
+                        // The enclosure shown stays the same one.
+                        if let Some(i) = current.and_then(|id| prj.layout.enclosures.iter().position(|e| e.id == id)) {
+                            self.enclosure = i;
+                        }
+                        self.status = tr_fmt!("{} moved", name);
+                    }
+                    Err(e) => self.status = e,
+                }
+            }
+            NavAction::MoveBuilding(from, to, after) => {
+                let shown = self.site_plan.building.and_then(|b| prj.layout.buildings.get(b)).map(|b| b.name.clone());
+                if let Ok(at) = panel::order::move_building(prj, from, to, after) {
+                    self.site_plan.building = shown.and_then(|n| prj.layout.buildings.iter().position(|b| b.name == n));
+                    self.status = tr_fmt!("{} moved", prj.layout.buildings[at].name);
+                }
+            }
             NavAction::TakeOut(r) => {
                 self.status = match panel::buildings::set_room_level(prj, r, None, None) {
                     Ok(()) => tr_fmt!("Room {} taken out of the building; it stays where it stands", prj.layout.enclosures[r].name),
@@ -3193,8 +3242,15 @@ impl PanelUi {
                     return act;
                 }
                 Heading::Building(bi) => {
-                    let r = ui.add(egui::Button::selectable(self.site && self.site_plan.building == Some(bi), RichText::new(text).strong()).truncate()).on_hover_text(tr("Click to show the building in the site plan; right-click for new levels"));
+                    let r = ui.add(egui::Button::selectable(self.site && self.site_plan.building == Some(bi), RichText::new(text).strong()).truncate()).on_hover_text(tr("Click to show the building in the site plan; right-click for new levels")).interact(Sense::drag());
+                    r.dnd_set_drag_payload(DraggedBuilding(bi));
                     let mut act = r.clicked().then_some(NavAction::Site(Some(bi)));
+                    if r.dnd_hover_payload::<DraggedBuilding>().is_some_and(|d| d.0 != bi) {
+                        let after = drop_line(ui, r.rect);
+                        if let Some(d) = r.dnd_release_payload::<DraggedBuilding>() {
+                            act = Some(NavAction::MoveBuilding(d.0, bi, after));
+                        }
+                    }
                     r.context_menu(|ui| {
                         if icons::text_button(ui, Icon::Plus, tr("Level on top")).on_hover_text(tr("A level on top of the highest one")).clicked() {
                             act = Some(NavAction::NewLevel(bi, false));
@@ -3217,27 +3273,36 @@ impl PanelUi {
                     ui.close();
                 }
             });
-            let elsewhere = |d: &DraggedRoom| prj.layout.enclosures.get(d.0).is_some_and(|e| e.level != id);
-            if r.dnd_hover_payload::<DraggedRoom>().is_some_and(|d| elsewhere(&d)) {
+            // A room of another level.
+            let elsewhere = |d: &DraggedRow| prj.layout.enclosures.get(d.0).is_some_and(|e| e.is_room() && e.level != id);
+            if r.dnd_hover_payload::<DraggedRow>().is_some_and(|d| elsewhere(&d)) {
                 drop_highlight(ui, r.rect);
-            }
-            if let Some(d) = r.dnd_release_payload::<DraggedRoom>() {
-                act = Some(NavAction::Put(d.0, id));
+                if let Some(d) = r.dnd_release_payload::<DraggedRow>() {
+                    act = Some(NavAction::Put(d.0, id));
+                }
             }
             act
         })
         .inner
     }
 
-    /// The label at the pointer while a room is dragged in the navigator.
+    /// The label at the pointer while a row is dragged in the navigator.
     fn room_drag_label(ui: &egui::Ui, prj: &Project) {
-        let Some(d) = egui::DragAndDrop::payload::<DraggedRoom>(ui.ctx()) else { return };
-        let (Some(pos), Some(e)) = (ui.ctx().pointer_latest_pos(), prj.layout.enclosures.get(d.0)) else { return };
+        let row = egui::DragAndDrop::payload::<DraggedRow>(ui.ctx()).and_then(|d| prj.layout.enclosures.get(d.0)).map(|e| {
+            let hint = if e.is_room() { tr("Drop between two rows to move the room there, onto a level to put it on that level") } else { tr("Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it") };
+            (e.name.clone(), hint)
+        });
+        let building = egui::DragAndDrop::payload::<DraggedBuilding>(ui.ctx()).and_then(|d| prj.layout.buildings.get(d.0)).map(|b| (b.name.clone(), tr("Drop between two buildings to move it there")));
+        let (Some(pos), Some((name, hint))) = (ui.ctx().pointer_latest_pos(), row.or(building)) else { return };
+        // Only once the pointer moved away from where the drag began (a click is no drag).
+        if !ui.ctx().input(|i| i.pointer.is_decidedly_dragging()) {
+            return;
+        }
         ui.ctx().set_cursor_icon(egui::CursorIcon::Grabbing);
         egui::Area::new(egui::Id::unique("room_drag_label")).order(egui::Order::Tooltip).fixed_pos(pos + vec2(16.0, 12.0)).interactable(false).show(ui.ctx(), |ui| {
             egui::Frame::popup(ui.style()).show(ui, |ui| {
-                ui.label(RichText::new(e.name.as_str()).strong());
-                ui.weak(tr("Drop onto a level to put the room on it"));
+                ui.label(RichText::new(name).strong());
+                ui.weak(hint);
             });
         });
     }

@@ -302,7 +302,8 @@ pub fn validate(prj: &Project, e: &Enclosure) -> Vec<Finding> {
     for (a, b) in class_collisions(prj, e) {
         push(CheckKind::Collision, Severity::Warning, vec![a, b], tr_fmt!("{}: {} collides with {}", e.name, name(a), name(b)));
     }
-    for id in outside(e) {
+    // A frame in an opening of a side wall made for it may reach over its edge.
+    for id in outside(e).into_iter().filter(|&id| !e.item(id).is_some_and(|it| super::fit::at_opening(prj, e, it))) {
         push(CheckKind::Outside, Severity::Warning, vec![id], tr_fmt!("{}: {} outside the mounting plate / enclosure", e.name, name(id)));
     }
     // The restricted placing areas of the enclosure (its maker's data); touching an

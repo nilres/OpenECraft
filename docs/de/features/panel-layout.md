@@ -41,6 +41,19 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
   `Module spaces`, `Row spacing` voneinander entfernt; jedes andere Feld mit
   `Device rows: n`):
   Betriebsmittel werden darauf platziert und wandern mit dem Feld mit.
+- Ein Feld des Feldrasters wird gezeichnet, wie es gebaut ist: ein Rahmen aus zwei
+  Seitenprofilen, der die Tragschienen eines Verteilerfelds trägt, auf Haltewinkeln, die
+  auf die Träger des Schranks dahinter geschraubt sind, und davor seine
+  Kunststoffabdeckung mit einem Ausschnitt je Reihe von Betriebsmitteln.
+  *Kunststoffabdeckung* in seinen Eigenschaften (Befehl `set_panel_item` mit `cover`)
+  nimmt die Abdeckung ab, um den Rahmen, die Tragschienen und die Verdrahtung dahinter
+  zu sehen.
+- Ein Rahmen, der zwei Schränke verbindet (etwa der Isolierrahmen CZ3 von Striebel &
+  John, Artikeldaten `Opening: 202 x 85`), geht nur in die dafür vorgesehenen Öffnungen
+  der Seitenwände (Artikeldaten des Schranks `Side openings: 202 x 85 at 86 / 20; …`:
+  Höhe × Tiefe im Abstand vom Boden / von der Rückwand): in das Gehäuse gezogen, werden
+  die freien Öffnungen hervorgehoben; auf einer Seitenwand platziert, geht er in die
+  nächste freie.
 - Tragschienen und Kabelkanäle werden in ihrer Länge gezeichnet; eine(n) auswählen und
   an einem der Enden ziehen, um die Länge zu ändern, oder verschieben (Betriebsmittel
   wandern mit ihrer Schiene mit). Betriebsmittel werden aus einer Liste „Zu
@@ -411,6 +424,13 @@ und den Treppen, die die Ebene erreichen (keine Dächer); ein zweiter Klick zeig
 die gesamte Anlage. Das Kontextmenü des Grundstücks fügt ein Gebäude hinzu, zeichnet
 die Grundstücksgrenze oder setzt den Bezugspunkt, das eines Gebäudes eine Ebene oben
 oder ein Untergeschoss, das einer Ebene einen Raum darauf.
+
+Die Zeilen des Navigators werden gezogen, um ihre Reihenfolge zu ändern: ein Raum
+zwischen andere Räume (auf die Ebene des Raums, neben dem er abgelegt wird), ein
+Gehäuse zwischen andere Gehäuse – ein angereihtes innerhalb seiner Anreihung, die in
+der neuen Reihenfolge neu angereiht wird, oder mit seiner ganzen Anreihung vor oder
+hinter eine andere Anreihung, in den Raum, in dem diese steht – und ein Gebäude
+zwischen die Gebäude (Befehl `move_enclosure`).
 
 ## Grundstücksgrenze und Bezugspunkt
 

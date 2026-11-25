@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Aggiunge i dispositivi di un modello a un segmento
 Adds the outline of a machine, building or area to the plant layout	Aggiunge il contorno di una macchina, di un edificio o di un'area al layout dell'impianto
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Aggiunge, sostituisce o rimuove un profilo: un connettore con i nomi delle colonne usati dall'altro sistema
+After it instead of before	Dopo invece che prima
 Air-termination rod: its name	Asta di captazione: il suo nome
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Allinea gli elementi, li distribuisce uniformemente, allinea i dispositivi su una guida o copia gli elementi in una matrice
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Allinea simboli, testi e grafica a un bordo o centro comune; le estremità dei conduttori collegati seguono
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Armadio (luogo, ad es. +C
 Enclosure climate and electrical sizing	Climatizzazione dell'armadio e dimensionamento elettrico
 Enclosure it stands right of; empty to take it out of its line-up	Armadio alla cui destra si trova; vuoto per toglierlo dall'affiancamento
 Enclosure name (all if missing)	Nome armadio (tutti se omesso)
+Enclosure or room it goes before or after	Armadio o locale prima o dopo il quale va
 Enclosure part number	Codice articolo dell'armadio
 Enclosure system (default: the enclosure's)	Sistema di armadi (predefinito: quello dell'armadio)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Armadio in cui vanno le copie (luogo, ad es. +CAB2); lo stesso se omesso
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Elenca le te
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Elenca i cartigli (integrati e quelli del progetto) con i loro elementi, quello predefinito del progetto e i segnaposto
 Lists the translation dictionary of the project texts (source line and translations)	Elenca il dizionario di traduzione dei testi del progetto (riga di origine e traduzioni)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Elenca le macro finestra posizionate sulle pagine (riquadri macro) con macro, variante, valori dei segnaposto e numero di elementi
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Elenca dove un articolo accessorio si adatta in un armadio: le colonne libere di un quadro contatori o di distribuzione (dati articolo Fields e Rows), le facce dell'armadio di cui è accessorio, gli apparecchi al cui articolo si adatta
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Elenca dove un articolo accessorio si adatta in un armadio: le colonne libere di un quadro contatori o di distribuzione (dati articolo Fields e Rows), le aperture libere delle sue pareti laterali per un telaio che unisce gli armadi (dati articolo Opening e Side openings), le facce dell'armadio di cui è accessorio, gli apparecchi al cui articolo si adatta
 Load losses of the transformer in W (0: typical)	Perdite a carico del trasformatore in W (0: tipiche)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Utenze della rete, carico di ogni dispositivo di protezione, fabbisogno con il fattore di contemporaneità, bilanciamento delle fasi e bilanci dei carichi degli alimentatori
 Loads the potential definitions of a standard (replaces those of the same name)	Carica le definizioni di potenziale di una norma (sostituisce quelle con lo stesso nome)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Le dimensioni di montaggio devono contenere larghezza e altezza positive
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Sposta un punto di passaggio del percorso di un conduttore, cavo o tubo; l'instradamento segnala un errore dove il percorso non può passarvi
 Moves an air-termination rod, changes its height, renames or removes it	Sposta un'asta di captazione, ne modifica l'altezza, la rinomina o la rimuove
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Sposta un armadio o un locale nell'ordine dell'albero di armadi e locali: prima o dopo un altro (un armadio affiancato nel suo affiancamento, affiancato di nuovo, o con il suo affiancamento; un locale tra i locali, sul piano dell'altro)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Sposta un'estremità di un conduttore: lascia ciò a cui è collegata e si collega a ciò che incontra; il conduttore resta ortogonale
 Moves symbols, wires and texts; connected wire ends follow	Sposta simboli, conduttori e testi; le estremità dei conduttori collegati li seguono
 Moves the page before this page of its section (or of the section given)	Sposta la pagina prima di questa pagina della sua sezione (o della sezione indicata)
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	La pagin
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Le pagine con un suffisso (3.a) restano sottopagine della pagina precedente (predefinito true)
 Panel layout checks	Verifiche del layout del quadro
 Panel manufacturing	Produzione quadri
+Panel of a field grid: with its plastic cover (false: taken off)	Pannello di una griglia di campi: con la sua copertura in plastica (false: rimossa)
 Paper height in mm (custom paper)	Altezza del foglio in mm (formato personalizzato)
 Paper width in mm (custom paper)	Larghezza del foglio in mm (formato personalizzato)
 Part lifecycle	Ciclo di vita degli articoli

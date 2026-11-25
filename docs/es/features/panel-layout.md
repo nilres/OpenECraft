@@ -42,6 +42,18 @@ los muestran.
   uno por fila (datos de artículo `Device rows`, si no uno por fila de sus
   `Module spaces`, separados `Row spacing`; cualquier otro campo con `Device rows: n`): los dispositivos se colocan en ellos y
   se mueven con el campo.
+- Un campo de la cuadrícula se dibuja tal como está construido: un bastidor de dos
+  perfiles laterales, que lleva los carriles de un campo de distribución, sobre escuadras
+  atornilladas a los soportes del armario que hay detrás, y delante su cubierta de
+  plástico con una ranura para cada fila de dispositivos. *Cubierta de plástico* en sus
+  propiedades (comando `set_panel_item` con `cover`) quita la cubierta, para ver el
+  bastidor, los carriles y el cableado de detrás.
+- Un marco que une dos armarios (como el marco aislante CZ3 de Striebel & John, datos de
+  artículo `Opening: 202 x 85`) solo va en las aberturas de las paredes laterales
+  previstas para él (datos de artículo del armario `Side openings: 202 x 85 at 86 / 20; …`:
+  alto × fondo a la distancia desde abajo / desde atrás): arrastrado a la envolvente, se
+  resaltan las aberturas libres; colocado en una pared lateral, va a la abertura libre más
+  cercana.
 - Carriles de montaje y canaletas dibujados por longitud; seleccione uno y arrastre
   cualquiera de sus extremos para cambiar su tamaño, o muévalo (los dispositivos viajan
   con su carril). Los dispositivos se colocan desde una lista de "dispositivos por
@@ -409,6 +421,12 @@ cubiertas); un segundo clic vuelve a mostrar toda la planta. El menú contextual
 emplazamiento añade un edificio, dibuja el límite de la parcela o coloca el punto de
 referencia; el de un edificio, un nivel encima o un sótano; el de un nivel, una sala en
 él.
+
+Las filas del navegador se arrastran para cambiar su orden: una sala entre otras salas
+(al nivel de la sala junto a la que se suelta), una envolvente entre otras envolventes
+– una alineada dentro de su alineación, que se alinea de nuevo en el nuevo orden, o con
+toda su alineación antes o después de otra alineación, en la sala en la que esta se
+encuentra – y un edificio entre los edificios (comando `move_enclosure`).
 
 ## Límite de la parcela y punto de referencia
 

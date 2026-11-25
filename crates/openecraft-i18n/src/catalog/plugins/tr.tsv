@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Bir şablonun cihazlarını bir segmente ekler
 Adds the outline of a machine, building or area to the plant layout	Tesis yerleşimine bir makinenin, binanın veya alanın dış hatlarını ekler
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Bir profil ekler, değiştirir veya kaldırır: diğer sistemin kullandığı sütun adlarına sahip bir bağlayıcı
+After it instead of before	Önüne değil arkasına
 Air-termination rod: its name	Paratoner çubuğu: adı
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Öğeleri hizalar, eşit aralıklarla dağıtır, cihazları bir ray üzerinde sıralar veya öğeleri bir desen halinde kopyalar
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Sembolleri, metinleri ve grafikleri ortak bir kenara veya merkeze hizalar; bağlı tel uçları takip eder
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Ayarları değişecek pan
 Enclosure climate and electrical sizing	Pano iklimlendirmesi ve elektriksel boyutlandırma
 Enclosure it stands right of; empty to take it out of its line-up	Sağında durduğu pano; dizilimden çıkarmak için boş
 Enclosure name (all if missing)	Pano adı (verilmezse tümü)
+Enclosure or room it goes before or after	Önüne veya arkasına gideceği pano ya da oda
 Enclosure part number	Pano parça numarası
 Enclosure system (default: the enclosure's)	Pano sistemi (varsayılan: panonunki)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kopyaların gideceği pano (konum, ör. +CAB2); belirtilmezse aynısı
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Tel uçları
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Antetleri (yerleşik ve projeye ait) öğeleriyle, projenin varsayılanını ve yer tutucuları listeler
 Lists the translation dictionary of the project texts (source line and translations)	Proje metinlerinin çeviri sözlüğünü listeler (kaynak satır ve çeviriler)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Sayfalara yerleştirilen pencere makrolarını (makro kutuları) makro, varyant, yer tutucu değerleri ve öğe sayısıyla birlikte listeler
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Bir aksesuar parçasının panoda nereye uyduğunu listeler: sayaç veya dağıtım panosunun boş alanları (parça verisi Fields ve Rows), aksesuarı olduğu panonun yüzleri, parçasına uyduğu cihazlar
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Bir aksesuar parçasının panoda nereye uyduğunu listeler: sayaç veya dağıtım panosunun boş alanları (parça verisi Fields ve Rows), panoları birleştiren bir çerçeve için yan duvarlarındaki boş açıklıklar (parça verisi Opening ve Side openings), aksesuarı olduğu panonun yüzleri, parçasına uyduğu cihazlar
 Load losses of the transformer in W (0: typical)	Transformatörün W cinsinden yük kayıpları (0: tipik)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Şebekenin yükleri, her koruma cihazının yükü, eş zamanlılık faktörüyle talep, faz dengesi ve güç kaynağı bilançoları
 Loads the potential definitions of a standard (replaces those of the same name)	Bir standardın potansiyel tanımlarını yükler (aynı adlı olanları değiştirir)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Montaj boyutu pozitif bir genişlik ve yükseklik içermelidir
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Bir telin, kablonun veya tüpün güzergâhındaki bir ara noktayı taşır; güzergâh ondan geçirilemiyorsa yönlendirme hata bildirir
 Moves an air-termination rod, changes its height, renames or removes it	Bir paratoner çubuğunu taşır, yüksekliğini değiştirir, yeniden adlandırır veya kaldırır
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Bir panoyu veya odayı pano ve oda ağacının sırasında başka birinin önüne veya arkasına taşır (yan yana dizilmiş bir panoyu dizilimi içinde yeniden dizerek ya da dizilimiyle birlikte; bir odayı odalar arasında, diğerinin katına)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Bir telin bir ucunu taşır: bağlı olduğu yerden ayrılır ve karşılaştığı şeye bağlanır; tel dik açılı kalır
 Moves symbols, wires and texts; connected wire ends follow	Sembolleri, telleri ve metinleri taşır; bağlı tel uçları onları izler
 Moves the page before this page of its section (or of the section given)	Sayfayı bölümünün (veya verilen bölümün) bu sayfasının önüne taşır
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Sayfa {}
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Ekli sayfalar (3.a) önceki sayfanın alt sayfaları olarak kalır (varsayılan true)
 Panel layout checks	Pano yerleşimi kontrolleri
 Panel manufacturing	Pano üretimi
+Panel of a field grid: with its plastic cover (false: taken off)	Alan ızgarasının paneli: plastik kapağıyla (false: çıkarılmış)
 Paper height in mm (custom paper)	mm cinsinden kâğıt yüksekliği (özel kâğıt)
 Paper width in mm (custom paper)	mm cinsinden kâğıt genişliği (özel kâğıt)
 Part lifecycle	Parça yaşam döngüsü

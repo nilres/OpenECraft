@@ -254,6 +254,48 @@ pub fn count_value(p: &Part, key: &str) -> Option<u32> {
     p.tech_value(key)?.split_whitespace().next()?.parse().ok()
 }
 
+/// An opening in both side walls of an enclosure where it is joined to its neighbour
+/// (an insulating frame goes into it): its height and depth, how far its lower edge is
+/// from the bottom of the enclosure and its rear edge from the back (mm).
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct SideOpening {
+    pub height: f32,
+    pub depth: f32,
+    pub bottom: f32,
+    pub back: f32,
+}
+
+fn mm(s: &str) -> Option<f32> {
+    s.trim().trim_end_matches("mm").trim().replace(',', ".").parse::<f32>().ok().filter(|v| v.is_finite() && *v >= 0.0)
+}
+
+/// Height × depth (`202 x 85`).
+fn opening(s: &str) -> Option<[f32; 2]> {
+    let (h, d) = s.split_once(['x', '×'])?;
+    Some([mm(h)?, mm(d)?]).filter(|[h, d]| *h > 0.0 && *d > 0.0)
+}
+
+/// The openings in the side walls of an enclosure part (part data
+/// `Side openings: 202 x 85 at 86 / 20; 60 x 27 at 405 / 69`: height × depth at the
+/// distance from the bottom / from the back); entries that cannot be read are left out.
+pub fn side_openings(p: &Part) -> Vec<SideOpening> {
+    let Some(list) = p.tech_value("Side openings") else { return Vec::new() };
+    list.split(';')
+        .filter_map(|entry| {
+            let (size, at) = entry.split_once(" at ")?;
+            let [height, depth] = opening(size)?;
+            let (bottom, back) = at.split_once('/')?;
+            Some(SideOpening { height, depth, bottom: mm(bottom)?, back: mm(back)? })
+        })
+        .collect()
+}
+
+/// The size of the side opening an accessory goes into, height × depth (part data
+/// `Opening: 202 x 85`): an insulating frame that joins two enclosures.
+pub fn opening_size(p: &Part) -> Option<[f32; 2]> {
+    opening(p.tech_value("Opening")?)
+}
+
 /// The enclosure stands on the floor: its part says so, or its system is a baying
 /// system or a rack.
 pub fn enclosure_on_floor(p: &Part) -> bool {

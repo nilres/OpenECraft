@@ -665,6 +665,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	所示面的钻孔图，�
 Drop an enclosure here to add it; onto a room to put it in there	将机柜拖放到此处即可添加；拖放到房间上即可放入该房间
 Drop between the pages	放到页之间
 Drop between the rows or onto a section	放到行之间或分节上
+Drop between two buildings to move it there	拖放到两个建筑之间可将其移到那里
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	拖放到两行之间可将机柜移到那里；并柜的机柜在其并柜排列内移动，或随排列一起移动
+Drop between two rows to move the room there, onto a level to put it on that level	拖放到两行之间可将房间移到那里，拖放到楼层上可将其放在该楼层
 Drop onto a level to put the room on it	拖放到楼层上以将房间放在该楼层
 Drop {} here	将 {} 放到此处
 Drop {} onto one of the highlighted places	将 {} 放到某个突出显示的位置上
@@ -786,6 +789,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	第一行
 Fit page	适合页面
 Fits {}	适配 {}
+Fitted	已安装
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	按原比例缩放到矩形中（PNG、JPEG）
 Float	浮动
 Floor	柜底
@@ -1558,6 +1562,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	工厂布局
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	工厂布局、布线网络、现场电缆规划、等电位联结和电缆附件
 Plant segments with planned devices before the schematic	在原理图之前包含已规划设备的工厂规划段
+Plastic cover	塑料盖板
 Plate outline, holes per diameter, cutouts	板轮廓、按直径分组的孔、开孔
 Plot boundary	场地边界
 Plot boundary drawn: {} m²	已绘制场地边界：{} m²
@@ -2163,6 +2168,7 @@ The page name gets the section number	页名称获得分节号
 The page type, plot frame, title block, structure, description and the whole content are saved.	将保存页类型、图框、标题栏、结构、描述和全部内容。
 The pages it generated stay	其生成的页保留
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	部件数据库由所有项目共享。将部件分配给设备时，部件会被复制到项目中。
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	面板的塑料盖板；去掉后可看到框架、导轨及其后面的接线
 The point's coordinates in the coordinate reference system	该点在坐标参考系中的坐标
 The post; its accessories are the table beams, rails and clamps	立柱；其附件为支架横梁、导轨和夹具
 The project changed since the search.	自搜索以来项目已更改。
@@ -2586,6 +2592,7 @@ x y	x y
 {} mm, removed	{} mm，已移除
 {} modules	{} 块组件
 {} modules, {} kWp	{} 块组件，{} kWp
+{} moved	已移动 {}
 {} new texts in the dictionary	词典中有 {} 个新文本
 {} notes	{} 个提示
 {} objects pasted	已粘贴 {} 个对象

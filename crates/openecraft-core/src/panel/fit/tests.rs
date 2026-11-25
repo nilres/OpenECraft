@@ -87,6 +87,49 @@ fn a_distribution_panel_brings_a_mounting_rail_for_each_row() {
     assert!(carried.contains(&dev_id));
 }
 
+/// Bounds (min, max) of the triangles of a colour.
+fn painted_bounds(tris: &[(Tri, Option<[u8; 3]>)], color: [u8; 3]) -> Option<([f32; 3], [f32; 3])> {
+    let pts: Vec<[f32; 3]> = tris.iter().filter(|t| t.1 == Some(color)).flat_map(|t| t.0).collect();
+    (!pts.is_empty()).then(|| ([0, 1, 2].map(|k| pts.iter().map(|v| v[k]).fold(f32::INFINITY, f32::min)), [0, 1, 2].map(|k| pts.iter().map(|v| v[k]).fold(f32::NEG_INFINITY, f32::max))))
+}
+
+#[test]
+fn a_distribution_panel_is_a_frame_on_brackets_behind_a_cover() {
+    let (mut prj, ei) = sj_project();
+    let slot = places(&prj, ei, part(&prj, FV17))[0].clone();
+    let id = put(&mut prj, &PartsDb::default(), ei, FV17, &slot, p(0.0, 0.0)).unwrap();
+    let panel = prj.layout.enclosures[ei].item(id).unwrap().clone();
+    assert!(is_insert(&prj, &panel));
+    let tris = insert_mesh(&prj, &panel).unwrap();
+    // The frame where the rails sit, the brackets back to the rear wall.
+    let (lo, hi) = painted_bounds(&tris, FRAME_STEEL).unwrap();
+    assert_eq!((lo[0], lo[1], hi[0], hi[1]), (0.0, 0.0, 250.0, 1050.0));
+    let e = &prj.layout.enclosures[ei];
+    let wall = e.wall() - e.mounting_z();
+    assert!(wall < 0.0 && (lo[2] - wall).abs() < 0.01 && (hi[2] - (panel.z + panel.d)).abs() < 0.01, "{lo:?} {hi:?}");
+    // The cover at the front of the panel, a slot for each row of devices.
+    let (lo, hi) = painted_bounds(&tris, COVER_PLASTIC).unwrap();
+    assert!((hi[2] - 160.0).abs() < 0.01 && lo[2] < 160.0 - COVER - 1.0, "{lo:?} {hi:?}");
+    let covered = |x: f32, y: f32| tris.iter().filter(|t| t.1 == Some(COVER_PLASTIC)).any(|t| {
+        let (a, b) = ([0, 1].map(|k| t.0.iter().map(|v| v[k]).fold(f32::INFINITY, f32::min)), [0, 1].map(|k| t.0.iter().map(|v| v[k]).fold(f32::NEG_INFINITY, f32::max)));
+        t.0.iter().all(|v| v[2] > 160.0 - COVER - 0.01) && a[0] <= x && x <= b[0] && a[1] <= y && y <= b[1]
+    });
+    assert!(!covered(125.0, 150.0) && !covered(125.0, 900.0), "slots at the rails");
+    assert!(covered(125.0, 210.0) && covered(125.0, 50.0) && covered(5.0, 150.0));
+    // Without its cover.
+    prj.layout.enclosures[ei].items.iter_mut().find(|i| i.id == id).unwrap().uncovered = true;
+    let bare = crate::panel::device_mesh_painted(&prj, prj.layout.enclosures[ei].item(id).unwrap()).unwrap();
+    assert!(painted_bounds(&bare, COVER_PLASTIC).is_none() && painted_bounds(&bare, FRAME_STEEL).is_some());
+    // Other panels of the grid (a meter panel) too, the rails' own item is none.
+    let meter = prj.parts.iter().find(|p| p.subgroup == "Meter panel" && crate::parts::accessory::fits(p, part(&prj, CABINET)) && crate::parts::count_value(p, "Fields") == Some(1)).unwrap().number.clone();
+    let slot = places(&prj, ei, part(&prj, &meter))[0].clone();
+    let id = put(&mut prj, &PartsDb::default(), ei, &meter, &slot, p(0.0, 0.0)).unwrap();
+    let e = &prj.layout.enclosures[ei];
+    let tris = insert_mesh(&prj, e.item(id).unwrap()).unwrap();
+    assert!(painted_bounds(&tris, FRAME_STEEL).is_some_and(|(lo, _)| (lo[2] - wall).abs() < 0.01));
+    assert!(e.items.iter().filter(|i| i.kind == ItemKind::Rail).all(|r| insert_mesh(&prj, r).is_none()));
+}
+
 #[test]
 fn the_rails_of_other_panels() {
     let prj = Project { parts: bundled::load("striebel_john").unwrap().parts, ..Default::default() };
@@ -121,6 +164,50 @@ fn parts_of_other_cabinets_and_other_parts_fit_nowhere() {
     assert!(places(&prj, ei, five).is_empty());
     let unrelated = crate::parts::catalog().iter().find(|p| p.number == "GEN.GLAND-M20").unwrap();
     assert!(places(&prj, ei, unrelated).is_empty());
+}
+
+/// The insulating frame CZ3 that joins two cabinets at their sides, and the smaller
+/// frame CZ5.
+const CZ3: &str = "SJ.2CPX052461R9999";
+const CZ5: &str = "SJ.2CPX052463R9999";
+
+fn openings_of(places: &[Place]) -> Vec<(Face, f32, f32, f32, f32)> {
+    places.iter().filter_map(|pl| if let Place::Opening(f, r) = pl { Some((*f, r.min.x, r.min.y, r.width(), r.height())) } else { None }).collect()
+}
+
+#[test]
+fn a_joining_frame_goes_only_into_the_openings_of_the_side_walls() {
+    let (mut prj, ei) = sj_project();
+    let cz3 = part(&prj, CZ3).clone();
+    // The cabinet of 7 rows, 1100 x 800 x 215 mm: an opening 202 x 85 mm 86 mm above the
+    // bottom and one 86 mm below the top, 20 mm from the back, in both side walls.
+    let found = places(&prj, ei, &cz3);
+    assert_eq!(
+        openings_of(&found),
+        [(Face::Left, 20.0, 812.0, 85.0, 202.0), (Face::Right, 110.0, 812.0, 85.0, 202.0), (Face::Left, 20.0, 86.0, 85.0, 202.0), (Face::Right, 110.0, 86.0, 85.0, 202.0)]
+    );
+    assert_eq!(found.len(), 4, "nowhere else");
+    // The small openings take the small frame.
+    assert_eq!(openings_of(&places(&prj, ei, part(&prj, CZ5))).len(), 4);
+    // Dropped: the frame over the opening, outside the wall.
+    let id = put(&mut prj, &PartsDb::default(), ei, CZ3, &found[0], p(0.0, 0.0)).unwrap();
+    let it = prj.layout.enclosures[ei].item(id).unwrap().clone();
+    assert_eq!((it.face, it.x, it.y, it.w, it.h, it.d, it.z), (Face::Left, 5.0, 797.0, 115.0, 232.0, 50.0, -50.0));
+    assert_eq!(openings_of(&places(&prj, ei, &cz3)).len(), 3, "taken");
+    // Reaching over the edge of the wall there is no fault.
+    let e = &prj.layout.enclosures[ei];
+    assert!(at_opening(&prj, e, &it));
+    assert!(!crate::panel::validate(&prj, e).iter().any(|f| f.kind == crate::panel::CheckKind::Outside), "{:?}", crate::panel::validate(&prj, e));
+    // Placed by hand on a side wall: into the nearest free opening there.
+    let at = crate::panel::place_accessory(&mut prj, ei, CZ3, Face::Right, p(60.0, 700.0)).unwrap();
+    let it = prj.layout.enclosures[ei].item(at).unwrap();
+    assert_eq!((it.face, it.x, it.y), (Face::Right, 95.0, 797.0));
+    // A cabinet without openings in its data: anywhere on the faces the frame may go.
+    let mut prj = Project { parts: bundled::load("striebel_john").unwrap().parts, ..Default::default() };
+    prj.parts.iter_mut().find(|p| p.number == CABINET).unwrap().set_tech_value("Side openings", None);
+    let e = new_enclosure(&mut prj, CABINET, "+Z1");
+    prj.layout.enclosures.push(e);
+    assert_eq!(places(&prj, 0, &cz3), [Place::Face(Face::Left), Place::Face(Face::Right)]);
 }
 
 #[test]

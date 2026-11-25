@@ -35,6 +35,7 @@ pub mod earthing;
 pub mod fit;
 pub mod floorplan;
 pub mod lightning;
+pub mod order;
 pub mod plot;
 mod points;
 pub mod rack;
@@ -1230,7 +1231,7 @@ pub fn rail_mesh(prj: &Project, it: &PanelItem) -> Vec<(Tri, Option<[u8; 3]>)> {
 
 /// Zinc-plated steel of screws and nuts, aluminium of blind rivets and the dark of
 /// their recesses and mandrels.
-const STEEL_ZINC: [u8; 3] = [176, 181, 188];
+pub(crate) const STEEL_ZINC: [u8; 3] = [176, 181, 188];
 const RIVET: [u8; 3] = [196, 200, 204];
 const MANDREL: [u8; 3] = [70, 72, 78];
 
@@ -1270,6 +1271,10 @@ fn device_mesh_placed(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Option<
     }
     if it.kind == ItemKind::Rail {
         return Some(rail_mesh(prj, it));
+    }
+    // The panels of a cabinet's field grid: frame, brackets and cover.
+    if let Some(tris) = fit::insert_mesh(prj, it) {
+        return Some(tris);
     }
     // A placed model repeats the model's triangles in their order.
     let painted = |mesh: &crate::parts::Mesh3d, tris: Vec<Tri>| -> Vec<(Tri, Option<[u8; 3]>)> {
@@ -1540,10 +1545,14 @@ pub fn new_accessory(prj: &mut Project, part: &str, face: Face, at: P) -> PanelI
 }
 
 /// Places an accessory on a face of an enclosure; on the wall of a room a part with a
-/// mounting height (technical data) goes at that height.
+/// mounting height (technical data) goes at that height, a frame that joins two
+/// enclosures into the nearest opening of the side wall made for it.
 pub fn place_accessory(prj: &mut Project, enc: usize, part: &str, face: Face, at: P) -> Option<u64> {
     prj.layout.enclosures.get(enc)?;
     let mut item = new_accessory(prj, part, face, at);
+    if fit::into_opening(prj, enc, &mut item) {
+        return Some(fit::add_panel(prj, enc, item));
+    }
     stand_on_floor(&prj.layout.enclosures[enc], &mut item);
     // Outlets and switches go on the walls of a room at their usual height.
     if let Some(height) = part_by_number(prj, part).and_then(|p| tech_number(p, "Mounting height")) {

@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	テンプレートのデバイスをセグメントに追加します
 Adds the outline of a machine, building or area to the plant layout	機械、建物、またはエリアの輪郭をプラントレイアウトに追加します
 Adds, replaces or removes a profile: a connector with the column names the other system uses	プロファイル (相手システムで使用される列名を持つコネクター) を追加、置換、または削除します
+After it instead of before	前ではなく後ろへ
 Air-termination rod: its name	突針：その名前
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	アイテムの整列、均等配置、レール上へのデバイスの整列、パターンでのアイテムのコピーを行います
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	シンボル、テキスト、グラフィックを共通の端または中央に揃えます。接続された電線の端も追従します
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	設定を変更するエ�
 Enclosure climate and electrical sizing	盤内温度と電気的サイジング
 Enclosure it stands right of; empty to take it out of its line-up	右側に設置する基準のエンクロージャー。空の場合は列盤から外します
 Enclosure name (all if missing)	エンクロージャー名 (省略時はすべて)
+Enclosure or room it goes before or after	前または後ろに移動する先のエンクロージャーまたは部屋
 Enclosure part number	エンクロージャーの部品番号
 Enclosure system (default: the enclosure's)	エンクロージャーシステム (既定: そのエンクロージャーのシステム)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	コピー先のエンクロージャー (取付場所、例: +CAB2)。省略時は同じもの
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	電線端末
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	表題欄（組み込みとプロジェクト独自）を要素、プロジェクトの既定、プレースホルダーとともに一覧表示します
 Lists the translation dictionary of the project texts (source line and translations)	プロジェクトテキストの翻訳辞書 (ソース行と翻訳) を一覧表示します
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	ページに配置されたウィンドウマクロ (マクロボックス) を、マクロ、バリアント、プレースホルダー値、アイテム数とともに一覧表示します
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	付属部品がエンクロージャー内のどこに適合するかを一覧表示します: メーター盤または分電盤の空き列（部品データ Fields と Rows）、それを付属品とするエンクロージャーの面、その部品に適合するデバイス
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	付属部品がエンクロージャー内のどこに適合するかを一覧表示します: メーター盤または分電盤の空き列（部品データ Fields と Rows）、エンクロージャーをつなぐフレーム用の側壁の空き開口部（部品データ Opening と Side openings）、それを付属品とするエンクロージャーの面、その部品に適合するデバイス
 Load losses of the transformer in W (0: typical)	変圧器の負荷損 (W) (0: 標準値)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	電源系統の負荷、各保護機器の負荷、分散率を考慮した需要、相バランス、電源装置の負荷バジェット
 Loads the potential definitions of a standard (replaces those of the same name)	規格の電位定義を読み込みます (同じ名前の定義を置換します)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	取付サイズには正の幅と高さが必要です
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	電線、ケーブル、チューブのルートの経由点を移動します: ルートがそこを通せない場合、配線はエラーを報告します
 Moves an air-termination rod, changes its height, renames or removes it	突針を移動し、高さを変更し、名前を変更または削除します
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	エンクロージャーまたは部屋を、エンクロージャーと部屋のツリーの順序で別のものの前か後ろに移動します (連結されたエンクロージャーは列盤内で連結し直すか列盤ごと、部屋は部屋の間で相手のフロアへ)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	電線の一方の端を移動します。端は接続先から離れ、接触したものに接続されます。電線は直角のままです
 Moves symbols, wires and texts; connected wire ends follow	シンボル、電線、テキストを移動します。接続された電線端が追従します
 Moves the page before this page of its section (or of the section given)	ページをそのセクション（または指定したセクション）のこのページの前に移動します
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	ペー�
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	サフィックス付きのページ (3.a) は前のページのサブページのままにする (既定 true)
 Panel layout checks	盤レイアウトチェック
 Panel manufacturing	盤製造
+Panel of a field grid: with its plastic cover (false: taken off)	フィールドグリッドのパネル: 樹脂カバー付き (false: 取り外し)
 Paper height in mm (custom paper)	用紙の高さ (mm、カスタム用紙)
 Paper width in mm (custom paper)	用紙の幅 (mm、カスタム用紙)
 Part lifecycle	部品のライフサイクル

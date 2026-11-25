@@ -671,6 +671,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	Vrtací obrazec zobrazené
 Drop an enclosure here to add it; onto a room to put it in there	Pusťte sem skříň pro přidání; na místnost pro umístění do ní
 Drop between the pages	Pustit mezi stránky
 Drop between the rows or onto a section	Pustit mezi řádky nebo na oddíl
+Drop between two buildings to move it there	Pusťte mezi dvě budovy a budova se tam přesune
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Pusťte mezi dva řádky a skříň se tam přesune; skříň v řadě se přesune v rámci své řady nebo s ní
+Drop between two rows to move the room there, onto a level to put it on that level	Pusťte mezi dva řádky a místnost se tam přesune, na podlaží a bude stát na něm
 Drop onto a level to put the room on it	Pusťte na podlaží a místnost bude stát na něm
 Drop {} here	Pustit {} sem
 Drop {} onto one of the highlighted places	Pusťte {} na jedno ze zvýrazněných míst
@@ -793,6 +796,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	První řádek
 Fit page	Přizpůsobit stránku
 Fits {}	Hodí se k {}
+Fitted	Nasazen
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Vepsáno do obdélníku se zachováním poměru stran (PNG, JPEG)
 Float	Uvolnit
 Floor	Dno
@@ -1575,6 +1579,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Dispozice zařízení
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Dispozice zařízení, síť tras, plánování polních kabelů, ochranné pospojování a kabelové příslušenství
 Plant segments with planned devices before the schematic	Segmenty zařízení s plánovanými přístroji před schématem zapojení
+Plastic cover	Plastový kryt
 Plate outline, holes per diameter, cutouts	Obrys desky, otvory podle průměru, výřezy
 Plot boundary	Hranice pozemku
 Plot boundary drawn: {} m²	Hranice pozemku nakreslena: {} m²
@@ -2188,6 +2193,7 @@ The page name gets the section number	Název stránky dostane číslo oddílu
 The page type, plot frame, title block, structure, description and the whole content are saved.	Uloží se typ stránky, rámeček výkresu, rohové razítko, struktura, popis a celý obsah.
 The pages it generated stay	Stránky, které vytvořil, zůstanou
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Databázi artiklů sdílejí všechny projekty. Artikly se zkopírují do projektu, když jsou přiřazeny k přístroji.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Plastový kryt pole; bez něj je vidět rám, lišty a zapojení za ním
 The point's coordinates in the coordinate reference system	Souřadnice bodu v souřadnicovém referenčním systému
 The post; its accessories are the table beams, rails and clamps	Sloupek; jeho příslušenstvím jsou nosníky stolu, lišty a svorky
 The project changed since the search.	Projekt se od hledání změnil.
@@ -2619,6 +2625,7 @@ x y	x y
 {} mm, removed	{} mm, odebráno
 {} modules	{} modulů
 {} modules, {} kWp	{} modulů, {} kWp
+{} moved	{} přesunuto
 {} new texts in the dictionary	Nové texty ve slovníku: {}
 {} notes	Poznámky: {}
 {} objects pasted	Vloženo objektů: {}

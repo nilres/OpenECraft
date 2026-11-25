@@ -42,6 +42,18 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
   commande et les agents d'IA. Un champ de répartition apporte ses rails de montage, un
   par rangée (données d'article `Device rows`, sinon un par rangée de ses
   `Module spaces`, espacées de `Row spacing` ; tout autre champ avec `Device rows: n`) : les appareils y sont placés et suivent le champ.
+- Un champ de la grille est dessiné tel qu'il est construit : un cadre de deux profilés
+  latéraux, qui porte les rails d'un champ de distribution, sur des équerres vissées sur
+  les supports de l'armoire derrière lui, et devant lui son capot plastique avec une
+  fente pour chaque rangée d'appareils. *Capot plastique* dans ses propriétés
+  (commande `set_panel_item` avec `cover`) retire le capot, pour voir le cadre, les
+  rails et le câblage derrière.
+- Un cadre qui relie deux armoires (comme le cadre isolant CZ3 de Striebel & John,
+  données d'article `Opening: 202 x 85`) ne va que dans les ouvertures des parois
+  latérales prévues pour lui (données d'article de l'armoire
+  `Side openings: 202 x 85 at 86 / 20; …` : hauteur × profondeur à la distance du bas /
+  de l'arrière) : glissé dans l'enveloppe, les ouvertures libres sont mises en évidence ;
+  placé sur une paroi latérale, il va dans l'ouverture libre la plus proche.
 - Rails de montage et goulottes dessinés à la longueur ; sélectionnez-en un et faites
   glisser l'une de ses extrémités pour le redimensionner, ou déplacez-le (les appareils
   suivent leur rail). Les appareils sont placés à partir d'une liste « appareils à
@@ -417,6 +429,13 @@ atteignant le niveau (sans les toits) ; un second clic montre de nouveau toute
 l'installation. Le menu contextuel du terrain ajoute un bâtiment, dessine la limite du
 terrain ou place le point de référence, celui d'un bâtiment un niveau au-dessus ou un
 sous-sol, celui d'un niveau une salle sur ce niveau.
+
+Les lignes du navigateur se glissent pour changer leur ordre : une salle entre d'autres
+salles (sur le niveau de la salle à côté de laquelle elle est déposée), une enveloppe
+entre d'autres enveloppes – une enveloppe juxtaposée dans sa juxtaposition, qui est
+juxtaposée à nouveau dans le nouvel ordre, ou avec toute sa juxtaposition avant ou
+après une autre juxtaposition, dans la salle où celle-ci se trouve – et un bâtiment
+entre les bâtiments (commande `move_enclosure`).
 
 ## Limite du terrain et point de référence
 

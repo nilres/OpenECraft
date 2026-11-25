@@ -671,6 +671,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	Näytetyn pinnan porauskuv
 Drop an enclosure here to add it; onto a room to put it in there	Pudota kotelo tähän lisätäksesi sen; tilan päälle sijoittaaksesi sen sinne
 Drop between the pages	Pudota sivujen väliin
 Drop between the rows or onto a section	Pudota rivien väliin tai osion päälle
+Drop between two buildings to move it there	Pudota kahden rakennuksen väliin siirtääksesi sen sinne
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Pudota kahden rivin väliin siirtääksesi kotelon sinne; rivitetty kotelo siirtyy rivityksensä sisällä tai sen mukana
+Drop between two rows to move the room there, onto a level to put it on that level	Pudota kahden rivin väliin siirtääksesi tilan sinne, kerrokseen sijoittaaksesi sen siihen kerrokseen
 Drop onto a level to put the room on it	Pudota kerrokseen sijoittaaksesi tilan siihen
 Drop {} here	Pudota {} tähän
 Drop {} onto one of the highlighted places	Pudota {} johonkin korostetuista kohdista
@@ -793,6 +796,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	Ensimmäinen rivi
 Fit page	Sovita sivu
 Fits {}	Sopii osaan {}
+Fitted	Asennettu
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Sovitetaan suorakulmioon kuvasuhde säilyttäen (PNG, JPEG)
 Float	Irrota
 Floor	Pohja
@@ -1575,6 +1579,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Laitoksen sijoituskuva
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Laitoksen sijoituskuva, reittiverkko, kenttäkaapelisuunnittelu, potentiaalintasaus ja kaapelitarvikkeet
 Plant segments with planned devices before the schematic	Laitoksen segmentit suunniteltuine laitteineen ennen piirikaaviota
+Plastic cover	Muovisuojus
 Plate outline, holes per diameter, cutouts	Levyn ääriviiva, reiät halkaisijoittain, aukot
 Plot boundary	Tontin raja
 Plot boundary drawn: {} m²	Tontin raja piirretty: {} m²
@@ -2188,6 +2193,7 @@ The page name gets the section number	Sivun nimi saa osion numeron
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sivutyyppi, piirustuskehys, nimiö, rakenne, kuvaus ja koko sisältö tallennetaan.
 The pages it generated stay	Sen luomat sivut jäävät
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Osatietokanta on kaikkien projektien yhteinen. Osat kopioidaan projektiin, kun ne määritetään laitteelle.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Kentän muovisuojus; ilman sitä näkyvät runko, kiskot ja niiden takana oleva johdotus
 The point's coordinates in the coordinate reference system	Pisteen koordinaatit koordinaattijärjestelmässä
 The post; its accessories are the table beams, rails and clamps	Paalu; sen tarvikkeita ovat pöydän palkit, kiskot ja kiinnittimet
 The project changed since the search.	Projekti on muuttunut haun jälkeen.
@@ -2619,6 +2625,7 @@ x y	x y
 {} mm, removed	{} mm, poistettu
 {} modules	{} moduulia
 {} modules, {} kWp	{} moduulia, {} kWp
+{} moved	{} siirretty
 {} new texts in the dictionary	{} uutta tekstiä sanakirjassa
 {} notes	Huomautuksia: {}
 {} objects pasted	{} objektia liitetty

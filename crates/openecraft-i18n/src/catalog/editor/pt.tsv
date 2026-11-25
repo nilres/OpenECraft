@@ -671,6 +671,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	Padrão de furação da fa
 Drop an enclosure here to add it; onto a room to put it in there	Solte um gabinete aqui para adicioná-lo; sobre uma sala para colocá-lo nela
 Drop between the pages	Soltar entre as páginas
 Drop between the rows or onto a section	Soltar entre as linhas ou sobre uma seção
+Drop between two buildings to move it there	Solte entre dois edifícios para movê-lo para lá
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Solte entre duas linhas para mover o gabinete para lá; um acoplado move-se dentro da sua fileira ou com ela
+Drop between two rows to move the room there, onto a level to put it on that level	Solte entre duas linhas para mover a sala para lá, sobre um pavimento para colocá-la nesse pavimento
 Drop onto a level to put the room on it	Solte sobre um pavimento para colocar a sala nele
 Drop {} here	Soltar {} aqui
 Drop {} onto one of the highlighted places	Solte {} em um dos locais destacados
@@ -793,6 +796,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	Primeira linha
 Fit page	Ajustar página
 Fits {}	Compatível com {}
+Fitted	Montada
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Ajustada ao retângulo mantendo a proporção (PNG, JPEG)
 Float	Desacoplar
 Floor	Piso
@@ -1575,6 +1579,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Layout da planta
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Layout da planta, rede de rotas, planejamento de cabos de campo, equipotencialização e acessórios de cabo
 Plant segments with planned devices before the schematic	Segmentos da planta com dispositivos planejados antes do esquema elétrico
+Plastic cover	Tampa plástica
 Plate outline, holes per diameter, cutouts	Contorno da placa, furos por diâmetro, recortes
 Plot boundary	Limite do terreno
 Plot boundary drawn: {} m²	Limite do terreno desenhado: {} m²
@@ -2188,6 +2193,7 @@ The page name gets the section number	O nome da página recebe o número da seç
 The page type, plot frame, title block, structure, description and the whole content are saved.	O tipo de página, a moldura de plotagem, o selo, a estrutura, a descrição e todo o conteúdo são salvos.
 The pages it generated stay	As páginas geradas por ele permanecem
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	O banco de dados de peças é compartilhado por todos os projetos. As peças são copiadas para um projeto quando são atribuídas a um dispositivo.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	A tampa plástica do painel; sem ela veem-se o quadro, os trilhos e a fiação atrás dela
 The point's coordinates in the coordinate reference system	As coordenadas do ponto no sistema de referência de coordenadas
 The post; its accessories are the table beams, rails and clamps	A estaca; seus acessórios são as vigas da mesa, os trilhos e as braçadeiras
 The project changed since the search.	O projeto foi alterado desde a pesquisa.
@@ -2619,6 +2625,7 @@ x y	x y
 {} mm, removed	{} mm, removido
 {} modules	{} módulos
 {} modules, {} kWp	{} módulos, {} kWp
+{} moved	{} movido
 {} new texts in the dictionary	{} novos textos no dicionário
 {} notes	{} notas
 {} objects pasted	{} objetos colados

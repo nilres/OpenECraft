@@ -664,6 +664,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	表示中の面の穴あ�
 Drop an enclosure here to add it; onto a room to put it in there	ここにエンクロージャーをドロップして追加、部屋の上にドロップしてその部屋に配置
 Drop between the pages	ページの間にドロップ
 Drop between the rows or onto a section	行の間またはセクションの上にドロップ
+Drop between two buildings to move it there	2 つの建物の間にドロップするとそこへ移動します
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	2 つの行の間にドロップするとエンクロージャーをそこへ移動します。連結されたものは列盤内で、または列盤ごと移動します
+Drop between two rows to move the room there, onto a level to put it on that level	2 つの行の間にドロップすると部屋をそこへ移動し、フロアにドロップするとそのフロアに置きます
 Drop onto a level to put the room on it	フロアにドロップすると部屋をそのフロアに置きます
 Drop {} here	{} をここにドロップ
 Drop {} onto one of the highlighted places	{} を強調表示された場所のいずれかにドロップ
@@ -785,6 +788,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	最初の行
 Fit page	ページに合わせる
 Fits {}	{} に適合
+Fitted	取付済み
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	縦横比を保って四角形に収めます（PNG、JPEG）
 Float	フロート
 Floor	底板
@@ -1557,6 +1561,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	プラントレイアウト
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	プラントレイアウト、ルートネットワーク、フィールドケーブル計画、等電位ボンディング、ケーブル付属品
 Plant segments with planned devices before the schematic	回路図作成前の、計画済みデバイスを含むプラントセグメント
+Plastic cover	樹脂カバー
 Plate outline, holes per diameter, cutouts	板の外形、直径ごとの穴、切り欠き
 Plot boundary	敷地境界
 Plot boundary drawn: {} m²	敷地境界を描きました：{} m²
@@ -2163,6 +2168,7 @@ The page name gets the section number	ページ名にセクション番号が付
 The page type, plot frame, title block, structure, description and the whole content are saved.	ページタイプ、図枠、表題欄、構造、説明、すべての内容が保存されます。
 The pages it generated stay	生成されたページは残ります
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	部品データベースはすべてのプロジェクトで共有されます。部品はデバイスに割り当てられたときにプロジェクトにコピーされます。
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	パネルの樹脂カバー。外すとフレーム、レール、その奥の配線が見えます
 The point's coordinates in the coordinate reference system	座標参照系での点の座標
 The post; its accessories are the table beams, rails and clamps	杭。付属品は架台の梁、レール、クランプです
 The project changed since the search.	検索後にプロジェクトが変更されました。
@@ -2587,6 +2593,7 @@ x y	x y
 {} mm, removed	{} mm、削除
 {} modules	{} 枚のモジュール
 {} modules, {} kWp	{} 枚のモジュール、{} kWp
+{} moved	{} を移動しました
 {} new texts in the dictionary	辞書に {} 件の新しいテキスト
 {} notes	{} 件の注記
 {} objects pasted	{} 個のオブジェクトを貼り付けました

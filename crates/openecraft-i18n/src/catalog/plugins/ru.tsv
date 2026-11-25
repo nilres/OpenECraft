@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Добавляет устройства шаблона в сегмент
 Adds the outline of a machine, building or area to the plant layout	Добавляет контур машины, здания или участка на план установки
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Добавляет, заменяет или удаляет профиль: коннектор с именами столбцов, используемыми другой системой
+After it instead of before	После, а не до
 Air-termination rod: its name	Молниеприёмный стержень: его имя
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Выравнивает элементы, равномерно распределяет их, выстраивает устройства на рейке или копирует элементы массивом
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Выравнивает символы, тексты и графику по общему краю или центру; концы подключённых проводов следуют за ними
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Корпус (место 
 Enclosure climate and electrical sizing	Климат шкафа и электрический расчёт
 Enclosure it stands right of; empty to take it out of its line-up	Шкаф, справа от которого он стоит; пусто, чтобы вывести его из ряда
 Enclosure name (all if missing)	Имя корпуса (если не указано – все)
+Enclosure or room it goes before or after	Корпус или помещение, до или после которого он перемещается
 Enclosure part number	Номер изделия корпуса
 Enclosure system (default: the enclosure's)	Система корпусов (по умолчанию: система корпуса)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Корпус, в который попадают копии (место установки, например +CAB2); без указания тот же
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Перечи
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Перечисляет основные надписи (встроенные и собственные проекта) с их элементами, надпись по умолчанию и заполнители
 Lists the translation dictionary of the project texts (source line and translations)	Выводит словарь переводов текстов проекта (исходная строка и переводы)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Выводит список оконных макросов, размещённых на листах (рамки макросов), с макросом, вариантом, значениями заполнителей и числом элементов
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Перечисляет, куда принадлежность подходит в корпусе: свободные поля счётчикового или распределительного шкафа (данные изделия Fields и Rows), стороны корпуса, принадлежностью которого она является, устройства, к изделию которых она подходит
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Перечисляет, куда принадлежность подходит в корпусе: свободные поля счётчикового или распределительного шкафа (данные изделия Fields и Rows), свободные проёмы в его боковых стенках для рамки, соединяющей шкафы (данные изделия Opening и Side openings), стороны корпуса, принадлежностью которого она является, устройства, к изделию которых она подходит
 Load losses of the transformer in W (0: typical)	Потери короткого замыкания трансформатора в W (0: типовые)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Нагрузки сети, нагрузка каждого защитного устройства, расчётная нагрузка с коэффициентом одновременности, симметрия фаз и баланс нагрузки блоков питания
 Loads the potential definitions of a standard (replaces those of the same name)	Загружает определения потенциалов стандарта (заменяет одноимённые)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Монтажный размер должен содержать положительные ширину и высоту
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Перемещает опорную точку трассы провода, кабеля или трубки; прокладка сообщает об ошибке, если трассу нельзя провести через неё
 Moves an air-termination rod, changes its height, renames or removes it	Перемещает молниеприёмный стержень, изменяет его высоту, переименовывает или удаляет его
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Перемещает корпус или помещение в порядке дерева корпусов и помещений: до или после другого (корпус в ряду — внутри ряда с новой стыковкой или вместе с рядом; помещение — среди помещений, на уровень другого)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Перемещает один конец провода: он отсоединяется от того, к чему подключён, и подключается к тому, чего касается; провод остаётся прямоугольным
 Moves symbols, wires and texts; connected wire ends follow	Перемещает символы, провода и тексты; подключённые концы проводов следуют за ними
 Moves the page before this page of its section (or of the section given)	Перемещает лист перед этим листом его раздела (или указанного раздела)
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Лист
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Листы с суффиксом (3.a) остаются подлистами предыдущего листа (по умолчанию true)
 Panel layout checks	Проверки компоновки шкафа
 Panel manufacturing	Изготовление шкафов
+Panel of a field grid: with its plastic cover (false: taken off)	Панель сетки полей: с пластиковой крышкой (false: снята)
 Paper height in mm (custom paper)	Высота бумаги в мм (пользовательский формат)
 Paper width in mm (custom paper)	Ширина бумаги в мм (пользовательский формат)
 Part lifecycle	Жизненный цикл изделия

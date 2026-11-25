@@ -671,6 +671,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	Gösterilen yüzün delik 
 Drop an enclosure here to add it; onto a room to put it in there	Eklemek için panoyu buraya bırakın; oraya koymak için bir odanın üzerine
 Drop between the pages	Sayfaların arasına bırakın
 Drop between the rows or onto a section	Satırların arasına veya bir bölümün üzerine bırakın
+Drop between two buildings to move it there	Oraya taşımak için iki binanın arasına bırakın
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Panoyu oraya taşımak için iki satırın arasına bırakın; yan yana dizilmiş bir pano kendi dizilimi içinde ya da dizilimiyle birlikte taşınır
+Drop between two rows to move the room there, onto a level to put it on that level	Odayı oraya taşımak için iki satırın arasına, o kata koymak için bir kata bırakın
 Drop onto a level to put the room on it	Odayı bir kata koymak için kata bırakın
 Drop {} here	{} öğesini buraya bırakın
 Drop {} onto one of the highlighted places	{} öğesini vurgulanan yerlerden birine bırakın
@@ -793,6 +796,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	İlk satır
 Fit page	Sayfaya sığdır
 Fits {}	{} ile uyumlu
+Fitted	Takılı
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	En boy oranı korunarak dikdörtgene sığdırılır (PNG, JPEG)
 Float	Ayır
 Floor	Taban
@@ -1575,6 +1579,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Tesis yerleşimi
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Tesis yerleşimi, güzergâh ağı, saha kablosu planlaması, eş potansiyel kuşaklama ve kablo aksesuarları
 Plant segments with planned devices before the schematic	Şemadan önce planlanmış cihazlarla tesis segmentleri
+Plastic cover	Plastik kapak
 Plate outline, holes per diameter, cutouts	Plaka dış hattı, çapa göre delikler, kesimler
 Plot boundary	Arsa sınırı
 Plot boundary drawn: {} m²	Arsa sınırı çizildi: {} m²
@@ -2188,6 +2193,7 @@ The page name gets the section number	Sayfa adı bölüm numarasını alır
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sayfa tipi, çizim çerçevesi, antet, yapı, açıklama ve tüm içerik kaydedilir.
 The pages it generated stay	Oluşturduğu sayfalar kalır
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Parça veritabanı tüm projeler tarafından paylaşılır. Parçalar bir cihaza atandığında projeye kopyalanır.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Panelin plastik kapağı; kapak olmadan çerçeve, raylar ve arkasındaki kablolama görünür
 The point's coordinates in the coordinate reference system	Noktanın koordinat referans sistemindeki koordinatları
 The post; its accessories are the table beams, rails and clamps	Direk; aksesuarları masa kirişleri, raylar ve kelepçelerdir
 The project changed since the search.	Proje aramadan bu yana değişti.
@@ -2619,6 +2625,7 @@ x y	x y
 {} mm, removed	{} mm, kaldırıldı
 {} modules	{} modül
 {} modules, {} kWp	{} modül, {} kWp
+{} moved	{} taşındı
 {} new texts in the dictionary	Sözlükte {} yeni metin
 {} notes	{} not
 {} objects pasted	{} nesne yapıştırıldı

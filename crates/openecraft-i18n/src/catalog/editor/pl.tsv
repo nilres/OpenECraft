@@ -671,6 +671,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	Wzór wierceń pokazanej �
 Drop an enclosure here to add it; onto a room to put it in there	Upuść tu obudowę, aby ją dodać; na pomieszczenie, aby ją w nim umieścić
 Drop between the pages	Upuść między stronami
 Drop between the rows or onto a section	Upuść między wierszami lub na sekcji
+Drop between two buildings to move it there	Upuść między dwa budynki, aby go tam przenieść
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Upuść między dwa wiersze, aby przenieść tam obudowę; obudowa w szeregu przesuwa się w obrębie szeregu lub razem z nim
+Drop between two rows to move the room there, onto a level to put it on that level	Upuść między dwa wiersze, aby przenieść tam pomieszczenie, na kondygnację, aby umieścić je na tej kondygnacji
 Drop onto a level to put the room on it	Upuść na kondygnację, aby umieścić na niej pomieszczenie
 Drop {} here	Upuść {} tutaj
 Drop {} onto one of the highlighted places	Upuść {} na jedno z wyróżnionych miejsc
@@ -793,6 +796,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	Pierwszy wiersz
 Fit page	Dopasuj stronę
 Fits {}	Pasuje do {}
+Fitted	Założona
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Dopasowany do prostokąta z zachowaniem proporcji (PNG, JPEG)
 Float	Odepnij
 Floor	Podłoga
@@ -1575,6 +1579,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Plan instalacji
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Plan instalacji, sieć tras, planowanie kabli obiektowych, połączenia wyrównawcze i akcesoria kablowe
 Plant segments with planned devices before the schematic	Segmenty instalacji z zaplanowanymi urządzeniami przed schematem
+Plastic cover	Osłona z tworzywa
 Plate outline, holes per diameter, cutouts	Obrys płyty, otwory wg średnicy, wycięcia
 Plot boundary	Granica działki
 Plot boundary drawn: {} m²	Narysowano granicę działki: {} m²
@@ -2188,6 +2193,7 @@ The page name gets the section number	Nazwa strony otrzymuje numer sekcji
 The page type, plot frame, title block, structure, description and the whole content are saved.	Zapisywane są typ strony, ramka rysunku, tabliczka rysunkowa, struktura, opis i cała zawartość.
 The pages it generated stay	Wygenerowane przez niego strony pozostają
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Baza danych artykułów jest wspólna dla wszystkich projektów. Artykuły są kopiowane do projektu, gdy zostaną przypisane do urządzenia.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Osłona pola z tworzywa; bez niej widać ramę, szyny i okablowanie za nią
 The point's coordinates in the coordinate reference system	Współrzędne punktu w układzie odniesienia współrzędnych
 The post; its accessories are the table beams, rails and clamps	Słup; jego akcesoria to belki stołu, szyny i zaciski
 The project changed since the search.	Projekt zmienił się od czasu wyszukiwania.
@@ -2619,6 +2625,7 @@ x y	x y
 {} mm, removed	{} mm, usunięto
 {} modules	{} moduły
 {} modules, {} kWp	{} moduły, {} kWp
+{} moved	Przeniesiono {}
 {} new texts in the dictionary	Nowe teksty w słowniku: {}
 {} notes	Uwagi: {}
 {} objects pasted	Wklejone obiekty: {}

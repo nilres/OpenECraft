@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Adaugă dispozitivele unui șablon într-un segment
 Adds the outline of a machine, building or area to the plant layout	Adaugă conturul unei mașini, al unei clădiri sau al unei zone în planul de amplasare a instalației
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Adaugă, înlocuiește sau elimină un profil: un conector cu numele de coloane folosite de celălalt sistem
+After it instead of before	După, în loc de înainte
 Air-termination rod: its name	Tijă de captare: numele ei
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Aliniază elemente, le distanțează uniform, aliniază dispozitive pe o șină sau copiază elemente după un model
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Aliniază simbolurile, textele și grafica la o margine sau un centru comun; capetele conectate ale conductoarelor urmează
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Carcasa (loc de montare, 
 Enclosure climate and electrical sizing	Climatul carcasei și dimensionarea electrică
 Enclosure it stands right of; empty to take it out of its line-up	Carcasa în dreapta căreia stă; gol pentru a o scoate din rând
 Enclosure name (all if missing)	Nume carcasă (toate, dacă lipsește)
+Enclosure or room it goes before or after	Carcasa sau încăperea înainte sau după care se mută
 Enclosure part number	Numărul de articol al carcasei
 Enclosure system (default: the enclosure's)	Sistem de carcase (implicit: cel al carcasei)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Carcasa în care ajung copiile (loc de montare, de ex. +CAB2); aceeași dacă lipsește
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Listează te
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Listează cartușele (încorporate și ale proiectului) cu elementele lor, cartușul implicit și substituenții
 Lists the translation dictionary of the project texts (source line and translations)	Listează dicționarul de traduceri al textelor proiectului (rândul sursă și traducerile)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Listează macro-urile de fereastră plasate pe pagini (casete macro) cu macro-ul, varianta, valorile substituenților și numărul de elemente
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Listează unde se potrivește o piesă accesorie într-o carcasă: câmpurile libere ale unui dulap de contoare sau de distribuție (datele piesei Fields și Rows), fețele carcasei căreia îi este accesoriu, echipamentele la a căror piesă se potrivește
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Listează unde se potrivește o piesă accesorie într-o carcasă: câmpurile libere ale unui dulap de contoare sau de distribuție (datele piesei Fields și Rows), deschiderile libere din pereții laterali pentru un cadru care unește carcasele (datele piesei Opening și Side openings), fețele carcasei căreia îi este accesoriu, echipamentele la a căror piesă se potrivește
 Load losses of the transformer in W (0: typical)	Pierderile în sarcină ale transformatorului în W (0: tipice)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Consumatorii rețelei, sarcina fiecărui dispozitiv de protecție, necesarul cu factorul de simultaneitate, echilibrul fazelor și bilanțurile surselor de alimentare
 Loads the potential definitions of a standard (replaces those of the same name)	Încarcă definițiile de potențial ale unui standard (le înlocuiește pe cele cu același nume)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Dimensiunea de montaj trebuie să conțină o lățime și o înălțime pozitive
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Mută un punct de trecere al traseului unui conductor, cablu sau tub; pozarea raportează o eroare acolo unde traseul nu poate trece prin el
 Moves an air-termination rod, changes its height, renames or removes it	Mută o tijă de captare, îi modifică înălțimea, o redenumește sau o elimină
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Mută o carcasă sau o încăpere în ordinea arborelui de carcase și încăperi: înainte sau după alta (o carcasă alăturată în rândul ei, alăturată din nou, sau cu rândul ei; o încăpere printre încăperi, pe nivelul celeilalte)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Mută un capăt al unui conductor: acesta părăsește ceea ce era conectat și se conectează la ceea ce întâlnește; conductorul rămâne ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Mută simboluri, conductoare și texte; capetele conductoarelor conectate le urmează
 Moves the page before this page of its section (or of the section given)	Mută pagina înaintea acestei pagini din secțiunea ei (sau din secțiunea dată)
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Pagina {
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Paginile cu sufix (3.a) rămân subpagini ale paginii anterioare (implicit true)
 Panel layout checks	Verificări ale amplasării în tablou
 Panel manufacturing	Fabricarea tablourilor
+Panel of a field grid: with its plastic cover (false: taken off)	Panou al unei grile de câmpuri: cu capacul din plastic (false: scos)
 Paper height in mm (custom paper)	Înălțimea hârtiei în mm (format personalizat)
 Paper width in mm (custom paper)	Lățimea hârtiei în mm (format personalizat)
 Part lifecycle	Ciclul de viață al articolului

@@ -37,6 +37,16 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   agents. A distribution panel comes with its mounting rails (part data `Device rows`,
   else one per row of its `Module spaces`, `Row spacing` apart; any other panel with
   `Device rows: n`): devices are placed onto them and move with the panel.
+- A panel of the field grid is drawn as it is built: a frame of two side profiles,
+  which carries the rails of a distribution panel, on brackets screwed onto the
+  carriers of the cabinet behind it, and its plastic cover in front with a slot for each
+  row of devices. *Plastic cover* in its properties (command `set_panel_item` with
+  `cover`) takes the cover off, to see the frame, the rails and the wiring behind it.
+- A frame that joins two cabinets (such as the insulating frame CZ3 of Striebel & John,
+  part data `Opening: 202 x 85`) goes only into the openings of the side walls made for
+  it (part data of the cabinet `Side openings: 202 x 85 at 86 / 20; …`: height × depth
+  at the distance from the bottom / from the back): dragged into the enclosure, the free
+  openings are highlighted; placed on a side wall, it goes into the nearest free one.
 - Mounting rails and cable ducts drawn by length; select one and drag either end to
   resize it, or move it (devices travel with their rail). Devices are placed from a
   "devices to place" list with their real dimensions from the parts data (contactor +
@@ -357,6 +367,12 @@ the floor slabs and the stairs reaching the level (no roofs); a second click sho
 of the plant again. The context menu of the site adds a building, draws the plot
 boundary or places the reference point, that of a building a level on top or a
 basement, that of a level a room on it.
+
+The rows of the navigator are dragged to change their order: a room between other
+rooms (onto the level of the room it is dropped next to), an enclosure between other
+enclosures – a bayed one within its line-up, which is bayed again in the new order, or
+with its whole line-up before or after another line-up, into the room that one stands
+in – and a building between the buildings (command `move_enclosure`).
 
 ## Plot boundary and reference point
 

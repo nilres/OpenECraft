@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Lisää mallin laitteet segmenttiin
 Adds the outline of a machine, building or area to the plant layout	Lisää koneen, rakennuksen tai alueen ääriviivan laitoksen sijoituskuvaan
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Lisää, korvaa tai poistaa profiilin: konnektori, jossa on toisen järjestelmän käyttämät sarakkeiden nimet
+After it instead of before	Taakse eteen sijaan
 Air-termination rod: its name	Ukkosenjohdatintanko: sen nimi
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Tasaa kohteet, jakaa ne tasaisesti, rivittää laitteet kiskolle tai kopioi kohteet kuvioksi
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Tasaa symbolit, tekstit ja grafiikan yhteiseen reunaan tai keskikohtaan; liitetyt johtojen päät seuraavat
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Kotelo (sijainti, esim. +
 Enclosure climate and electrical sizing	Kaapin ilmasto ja sähköinen mitoitus
 Enclosure it stands right of; empty to take it out of its line-up	Kotelo, jonka oikealla puolella se on; tyhjä poistaa sen rivityksestä
 Enclosure name (all if missing)	Kotelon nimi (kaikki, jos puuttuu)
+Enclosure or room it goes before or after	Kotelo tai tila, jonka eteen tai taakse se siirtyy
 Enclosure part number	Kotelon osanumero
 Enclosure system (default: the enclosure's)	Kotelojärjestelmä (oletus: kotelon järjestelmä)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kotelo, johon kopiot menevät (sijainti, esim. +CAB2); ilman sitä sama
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Luettelee jo
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Luettelee nimiöt (sisäänrakennetut ja projektin omat) elementteineen, projektin oletuksen ja paikkamerkit
 Lists the translation dictionary of the project texts (source line and translations)	Luettelee projektin tekstien käännössanakirjan (lähderivi ja käännökset)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Luettelee sivuille sijoitetut ikkunamakrot (makrolaatikot) makron, variantin, paikkamerkkien arvojen ja kohteiden määrän kanssa
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Luettelee, mihin lisävarusteosa sopii kotelossa: mittari- tai jakokeskuksen vapaat kentät (osatiedot Fields ja Rows), kotelon sivut, jonka lisävaruste se on, laitteet, joiden osaan se sopii
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Luettelee, mihin lisävarusteosa sopii kotelossa: mittari- tai jakokeskuksen vapaat kentät (osatiedot Fields ja Rows), sen sivuseinien vapaat aukot koteloita yhdistävälle kehykselle (osatiedot Opening ja Side openings), kotelon sivut, jonka lisävaruste se on, laitteet, joiden osaan se sopii
 Load losses of the transformer in W (0: typical)	Muuntajan kuormitushäviöt W (0: tyypillinen)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Verkon kuormat, kunkin suojalaitteen kuorma, tarve samanaikaisuuskertoimella, vaiheiden tasapaino ja virtalähteiden kuormitustaseet
 Loads the potential definitions of a standard (replaces those of the same name)	Lataa standardin potentiaalimääritykset (korvaa samannimiset)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Asennuskoon on sisällettävä positiivinen leveys ja korkeus
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Siirtää johdon, kaapelin tai putken reitin ohjauspistettä; reititys ilmoittaa virheestä, jos reittiä ei voi ohjata sen kautta
 Moves an air-termination rod, changes its height, renames or removes it	Siirtää ukkosenjohdatintankoa, muuttaa sen korkeutta, nimeää sen uudelleen tai poistaa sen
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Siirtää koteloa tai tilaa kotelo- ja tilapuun järjestyksessä: toisen eteen tai taakse (rivitetyn kotelon rivityksensä sisällä uudelleen rivitettynä tai koko rivityksen; tilan tilojen kesken toisen tilan kerrokseen)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Siirtää johdon yhtä päätä: se irtoaa siitä, mihin se on liitetty, ja liittyy siihen, mihin se osuu; johto pysyy suorakulmaisena
 Moves symbols, wires and texts; connected wire ends follow	Siirtää symboleja, johtoja ja tekstejä; liitettyjen johtojen päät seuraavat
 Moves the page before this page of its section (or of the section given)	Siirtää sivun osionsa (tai annetun osion) tämän sivun eteen
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Sivu {} 
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Sivut, joilla on pääte (3.a), pysyvät edellisen sivun alasivuina (oletus true)
 Panel layout checks	Kaappiasennuksen tarkistukset
 Panel manufacturing	Kaappivalmistus
+Panel of a field grid: with its plastic cover (false: taken off)	Kenttäjaon kenttä: muovisuojuksen kanssa (false: irrotettu)
 Paper height in mm (custom paper)	Paperin korkeus millimetreinä (mukautettu paperi)
 Paper width in mm (custom paper)	Paperin leveys millimetreinä (mukautettu paperi)
 Part lifecycle	Osan elinkaari

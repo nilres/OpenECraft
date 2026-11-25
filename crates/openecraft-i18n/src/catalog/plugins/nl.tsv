@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Voegt de apparaten van een sjabloon toe aan een segment
 Adds the outline of a machine, building or area to the plant layout	Voegt de contour van een machine, gebouw of zone toe aan de installatielay-out
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Voegt een profiel toe, vervangt of verwijdert het: een connector met de kolomnamen die het andere systeem gebruikt
+After it instead of before	Erna in plaats van ervoor
 Air-termination rod: its name	Opvangstaaf: de naam
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Lijnt elementen uit, verdeelt ze gelijkmatig, plaatst apparaten op een rij op een rail of kopieert elementen in een patroon
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Lijnt symbolen, teksten en grafiek uit op een gemeenschappelijke rand of middenlijn; aangesloten draadeinden volgen mee
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Behuizing (locatie, bijv.
 Enclosure climate and electrical sizing	Klimaatbeheersing van de behuizing en elektrische dimensionering
 Enclosure it stands right of; empty to take it out of its line-up	Behuizing waar deze rechts van staat; leeg om deze uit de koppeling te halen
 Enclosure name (all if missing)	Naam van de behuizing (alle als deze ontbreekt)
+Enclosure or room it goes before or after	Behuizing of ruimte waarvoor of waarna het komt
 Enclosure part number	Artikelnummer van de behuizing
 Enclosure system (default: the enclosure's)	Behuizingssysteem (standaard: dat van de behuizing)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Behuizing waar de kopieën heen gaan (locatie, bijv. +CAB2); dezelfde indien weggelaten
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Toont de gek
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Toont de titelblokken (ingebouwde en die van het project) met hun elementen, de projectstandaard en de plaatshouders
 Lists the translation dictionary of the project texts (source line and translations)	Geeft een lijst van het vertaalwoordenboek van de projectteksten (bronregel en vertalingen)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Toont de op de pagina's geplaatste venstermacro's (macrokaders) met macro, variant, waarden van tijdelijke aanduidingen en aantal elementen
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Geeft aan waar een toebehorenartikel in een behuizing past: de vrije velden van een meter- of verdeelkast (artikelgegevens Fields en Rows), de zijden van de behuizing waarvan het toebehoren is, de apparaten bij wier artikel het past
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Geeft aan waar een toebehorenartikel in een behuizing past: de vrije velden van een meter- of verdeelkast (artikelgegevens Fields en Rows), de vrije openingen in de zijwanden voor een frame dat behuizingen verbindt (artikelgegevens Opening en Side openings), de zijden van de behuizing waarvan het toebehoren is, de apparaten bij wier artikel het past
 Load losses of the transformer in W (0: typical)	Kortsluitverliezen van de transformator in W (0: typisch)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Belastingen van het net, belasting van elk beveiligingsapparaat, vraag met de gelijktijdigheidsfactor, fasebalans en belastingsbudgetten van de voedingen
 Loads the potential definitions of a standard (replaces those of the same name)	Laadt de potentiaaldefinities van een norm (vervangt die met dezelfde naam)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	De montagegrootte moet een positieve breedte en hoogte bevatten
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Verplaatst een steunpunt van de route van een draad, kabel of buis; de routering meldt een fout waar de route er niet doorheen kan
 Moves an air-termination rod, changes its height, renames or removes it	Verplaatst een opvangstaaf, wijzigt de hoogte, hernoemt of verwijdert hem
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Verplaatst een behuizing of een ruimte in de volgorde van de boom van behuizingen en ruimten: voor of na een andere (een gekoppelde behuizing binnen haar koppeling, opnieuw gekoppeld, of met haar koppeling; een ruimte tussen de ruimten, op de verdieping van de andere)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Verplaatst één uiteinde van een draad: het laat los waar het op aangesloten is en verbindt met wat het raakt; de draad blijft haaks
 Moves symbols, wires and texts; connected wire ends follow	Verplaatst symbolen, draden en teksten; aangesloten draadeinden volgen
 Moves the page before this page of its section (or of the section given)	Verplaatst de pagina vóór deze pagina van haar sectie (of van de opgegeven sectie)
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Pagina {
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Pagina's met een achtervoegsel (3.a) blijven subpagina's van de vorige pagina (standaard true)
 Panel layout checks	Controles van de kastlay-out
 Panel manufacturing	Kastbouw
+Panel of a field grid: with its plastic cover (false: taken off)	Veld van een veldraster: met zijn kunststof afdekking (false: verwijderd)
 Paper height in mm (custom paper)	Papierhoogte in mm (aangepast papier)
 Paper width in mm (custom paper)	Papierbreedte in mm (aangepast papier)
 Part lifecycle	Levenscyclus van artikelen

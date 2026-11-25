@@ -2,13 +2,16 @@
 //! into the panel layout and taken when it is dropped. An accessory of the enclosure's
 //! part with field widths and rows (part data `Fields: 1`, `Rows: 7`, a distribution
 //! panel of a meter cabinet) goes into the free slots of the cabinet's field grid on
-//! the mounting plate; another accessory of the enclosure anywhere on the faces it may
-//! be mounted on; an accessory of a device's part onto the placed device. A panel with
-//! mounting rails (a distribution panel) carries them, so that devices go onto them.
+//! the mounting plate; a frame that joins two enclosures (part data `Opening`) into the
+//! openings of the side walls made for it (part data `Side openings` of the enclosure);
+//! another accessory of the enclosure anywhere on the faces it may be mounted on; an
+//! accessory of a device's part onto the placed device. A panel with mounting rails (a
+//! distribution panel) carries them, so that devices go onto them.
 
 use super::{allowed_faces, new_accessory, part_by_number, Enclosure, Face, ItemKind, PanelItem};
 use crate::geom::{p, R};
 use crate::model::Project;
+use crate::parts::vec3::Tri;
 use crate::parts::{self, Part};
 
 /// A place an accessory fits.
@@ -18,6 +21,8 @@ pub enum Place {
     Slot(R),
     /// Anywhere on a face of the enclosure.
     Face(Face),
+    /// A free opening in a side wall (face coordinates).
+    Opening(Face, R),
     /// Onto a placed device whose part it fits (its item id and tag).
     Device(u64, String),
 }
@@ -27,7 +32,7 @@ impl Place {
     pub fn face(&self, e: &Enclosure) -> Option<Face> {
         match self {
             Place::Slot(_) => Some(Face::Plate),
-            Place::Face(f) => Some(*f),
+            Place::Face(f) | Place::Opening(f, _) => Some(*f),
             Place::Device(id, _) => e.item(*id).map(|i| i.face),
         }
     }
@@ -35,7 +40,7 @@ impl Place {
     /// The area of the place on its face; a whole face is its mounting area.
     pub fn rect(&self, e: &Enclosure) -> Option<R> {
         match self {
-            Place::Slot(r) => Some(*r),
+            Place::Slot(r) | Place::Opening(_, r) => Some(*r),
             Place::Face(f) => Some(super::mounting_area(e, *f)),
             Place::Device(id, _) => e.item(*id).map(|i| i.rect()),
         }
@@ -66,7 +71,7 @@ pub fn fits_enclosure(prj: &Project, ei: usize, acc: &Part) -> bool {
 pub fn places(prj: &Project, ei: usize, acc: &Part) -> Vec<Place> {
     let Some(e) = prj.layout.enclosures.get(ei) else { return Vec::new() };
     let mut out = Vec::new();
-    if part_by_number(prj, &e.part).is_some_and(|main| parts::accessory::fits(acc, main)) {
+    if let Some(main) = part_by_number(prj, &e.part).filter(|main| parts::accessory::fits(acc, main)) {
         match (field_grid(prj, e), parts::count_value(acc, "Fields"), parts::count_value(acc, "Rows")) {
             (Some((fields, rows, cw, ch)), Some(af), Some(ar)) if af >= 1 && ar >= 1 && af <= fields && ar <= rows => {
                 // Slots taken by accessories already in the grid.
@@ -81,6 +86,9 @@ pub fn places(prj: &Project, ei: usize, acc: &Part) -> Vec<Place> {
                     }
                 }
             }
+            _ if parts::opening_size(acc).is_some() && !parts::side_openings(main).is_empty() => {
+                out.extend(free_openings(e, main, acc).into_iter().map(|(f, r)| Place::Opening(f, r)));
+            }
             _ => out.extend(allowed_faces(acc).into_iter().filter(|f| e.faces().contains(f)).map(Place::Face)),
         }
     }
@@ -91,6 +99,70 @@ pub fn places(prj: &Project, ei: usize, acc: &Part) -> Vec<Place> {
         }
     }
     out
+}
+
+/// Side opening `o` on side wall `face` in face coordinates (y from the top; x from the
+/// back on the left wall, from the front on the right one).
+pub fn opening_rect(e: &Enclosure, face: Face, o: &parts::SideOpening) -> R {
+    let y = e.height - o.bottom - o.height;
+    let x = if face == Face::Right { e.depth - o.back - o.depth } else { o.back };
+    R::from_points(p(x, y), p(x + o.depth, y + o.height))
+}
+
+/// The openings of the side walls of enclosure `e` (part `main`) frame `acc` goes into:
+/// those of its size (part data `Opening`) on the faces it may be mounted on; with
+/// `free` only those no accessory sits in yet.
+fn openings(e: &Enclosure, main: &Part, acc: &Part, free: bool) -> Vec<(Face, R)> {
+    let Some([h, d]) = parts::opening_size(acc) else { return Vec::new() };
+    let faces = allowed_faces(acc);
+    let mut out = Vec::new();
+    for o in parts::side_openings(main).iter().filter(|o| (o.height - h).abs() <= 1.0 && (o.depth - d).abs() <= 1.0) {
+        for face in [Face::Left, Face::Right].into_iter().filter(|f| faces.contains(f)) {
+            let r = opening_rect(e, face, o);
+            let taken = e.items.iter().any(|i| i.face == face && i.kind == ItemKind::Accessory && i.rect().overlaps(&r));
+            if !(free && taken) {
+                out.push((face, r));
+            }
+        }
+    }
+    out
+}
+
+fn free_openings(e: &Enclosure, main: &Part, acc: &Part) -> Vec<(Face, R)> {
+    openings(e, main, acc, true)
+}
+
+/// Puts frame item `it` into opening `r` of its face: centred on it, its larger sides
+/// along the opening's, outside the wall (between the two enclosures it joins), so that
+/// it keeps clear of what is mounted inside.
+fn into(it: &mut PanelItem, r: R) {
+    let mut dims = [it.w, it.h, it.d];
+    dims.sort_by(f32::total_cmp);
+    let [thin, mid, long] = dims;
+    let (w, h) = if r.height() >= r.width() { (mid, long) } else { (long, mid) };
+    let c = r.center();
+    (it.x, it.y, it.w, it.h, it.d, it.z) = (c.x - w / 2.0, c.y - h / 2.0, w, h, thin, -thin);
+}
+
+/// A frame that joins two enclosures placed on a side wall of enclosure `ei` goes into
+/// the free opening of that wall nearest to it. False when it is no such frame or no
+/// opening is free.
+pub fn into_opening(prj: &Project, ei: usize, it: &mut PanelItem) -> bool {
+    let (Some(e), Some(acc)) = (prj.layout.enclosures.get(ei), part_by_number(prj, &it.part)) else { return false };
+    let Some(main) = part_by_number(prj, &e.part) else { return false };
+    let at = it.rect().center();
+    let nearest = free_openings(e, main, acc).into_iter().filter(|(f, _)| *f == it.face).min_by(|a, b| a.1.center().dist(at).total_cmp(&b.1.center().dist(at)));
+    let Some((_, r)) = nearest else { return false };
+    into(it, r);
+    true
+}
+
+/// True if accessory item `it` of enclosure `e` sits in an opening of a side wall made
+/// for it (it may reach over the edge of the wall's mounting area there).
+pub fn at_opening(prj: &Project, e: &Enclosure, it: &PanelItem) -> bool {
+    let (Some(acc), Some(main)) = (part_by_number(prj, &it.part), part_by_number(prj, &e.part)) else { return false };
+    let c = it.rect().center();
+    openings(e, main, acc, false).iter().any(|(f, r)| *f == it.face && r.contains(c))
 }
 
 /// The parts of a device: those assigned to it, else the part of its item.
@@ -125,6 +197,11 @@ pub fn put(prj: &mut Project, db: &crate::parts::PartsDb, ei: usize, number: &st
             let mut item = new_accessory(prj, number, Face::Plate, r.min);
             // Exactly in its slot, whatever the snap grid and the size of the part.
             (item.x, item.y, item.w, item.h) = (r.min.x, r.min.y, r.width(), r.height());
+            Ok(add_panel(prj, ei, item))
+        }
+        Place::Opening(f, r) => {
+            let mut item = new_accessory(prj, number, *f, r.min);
+            into(&mut item, *r);
             Ok(add_panel(prj, ei, item))
         }
         Place::Face(f) => {
@@ -164,6 +241,119 @@ pub fn panel_rails(part: &Part, h: f32) -> Vec<f32> {
     let pitch = super::tech_number(part, "Row spacing").filter(|s| *s > 0.0 && *s * rows as f32 <= h + 0.5).unwrap_or(h / rows as f32);
     let top = (h - pitch * rows as f32) / 2.0;
     (rows - rails..rows).map(|i| top + pitch * (i as f32 + 0.5)).collect()
+}
+
+/// Zinc-plated sheet steel of the frame of a panel and its brackets, the white plastic
+/// of its cover.
+const FRAME_STEEL: [u8; 3] = [176, 181, 188];
+const COVER_PLASTIC: [u8; 3] = [236, 236, 231];
+/// Width and depth of the side profiles of a panel's frame; thickness of its sheet
+/// steel and of its cover.
+const PROFILE: f32 = 20.0;
+const SHEET: f32 = 1.5;
+const COVER: f32 = 2.5;
+/// Height of the slot in the cover for a row of modular devices (fronts of 45 mm).
+const SLOT: f32 = 46.0;
+/// How far the edges of the cover are folded back.
+const COVER_EDGE: f32 = 25.0;
+
+/// True if item `it` is a panel of a cabinet's field grid (part data `Fields` and
+/// `Rows`) on the mounting plate.
+pub fn is_insert(prj: &Project, it: &PanelItem) -> bool {
+    it.face == Face::Plate
+        && matches!(it.kind, ItemKind::Accessory | ItemKind::MountingPlate)
+        && part_by_number(prj, &it.part).is_some_and(|p| parts::count_value(p, "Fields").is_some() && parts::count_value(p, "Rows").is_some())
+}
+
+/// The 3D model of a panel of a cabinet's field grid ([`is_insert`]) in plate
+/// coordinates: its frame of two side profiles and a cross bar at the top and the
+/// bottom (a distribution panel's rails are screwed onto it), the brackets with their
+/// screws that hold it on the rear wall of the cabinet behind it, and its plastic cover
+/// in front with a slot for each row of devices, left out when the cover is taken off
+/// ([`PanelItem::uncovered`]). `None` for other items.
+pub fn insert_mesh(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Option<[u8; 3]>)>> {
+    if !is_insert(prj, it) {
+        return None;
+    }
+    let part = part_by_number(prj, &it.part)?;
+    let (w, h) = (it.w, it.h);
+    // The front of the frame and of the cover: a panel with rails holds them so deep
+    // that modular devices on them end at its front ([`add_panel`]).
+    let (rails, frame, front) = if it.kind == ItemKind::MountingPlate {
+        let (_, pd) = super::part_profile(ItemKind::Rail, part_by_number(prj, rail_part(part)));
+        (panel_rails(part, h), it.z + it.d, it.z + it.d + pd + MODULAR_DEPTH)
+    } else {
+        let front = it.z + it.d;
+        (Vec::new(), (front - MODULAR_DEPTH - 7.5).max(it.z + PROFILE), front)
+    };
+    let mut m = crate::parts::Mesh3d::default();
+    let pw = PROFILE.min(w / 4.0);
+    // The side profiles, open to the back.
+    for x in [0.0, w - pw] {
+        m.add_painted_box([x, 0.0, frame - SHEET], [x + pw, h, frame], FRAME_STEEL);
+        m.add_painted_box([x, 0.0, frame - PROFILE], [x + SHEET, h, frame - SHEET], FRAME_STEEL);
+        m.add_painted_box([x + pw - SHEET, 0.0, frame - PROFILE], [x + pw, h, frame - SHEET], FRAME_STEEL);
+    }
+    let bar = 15.0f32.min(h / 8.0);
+    for y in [0.0, h - bar] {
+        m.add_painted_box([pw, y, frame - SHEET], [w - pw, y + bar, frame], FRAME_STEEL);
+    }
+    // The brackets at the ends of the profiles: back to the rear wall (behind the plate,
+    // which the cabinet of a field grid need not have), their feet screwed on there.
+    let back = frame - PROFILE;
+    let wall = prj.layout.enclosures.iter().find(|e| e.item(it.id).is_some()).map_or(0.0, |e| (e.wall() - e.mounting_z()).min(0.0));
+    if back > wall + SHEET {
+        let foot = 25.0f32.min(h / 6.0);
+        for x in [0.0, w - pw] {
+            let (x0, x1) = (x + 2.0f32.min(pw / 4.0), x + pw - 2.0f32.min(pw / 4.0));
+            for (y0, y1, fy0, fy1) in [(0.0, SHEET, 0.0, foot), (h - SHEET, h, h - foot, h)] {
+                m.add_painted_box([x0, y0, wall + SHEET], [x1, y1, back], FRAME_STEEL);
+                m.add_painted_box([x0, fy0, wall], [x1, fy1, wall + SHEET], FRAME_STEEL);
+                let r = ((x1 - x0) / 2.0 - 1.0).clamp(1.0, 4.0);
+                m.add_cylinder([(x0 + x1) / 2.0, (fy0 + fy1) / 2.0, wall + SHEET], 2, r, 0.6 * r, 12, super::STEEL_ZINC);
+            }
+        }
+    }
+    if !it.uncovered {
+        let (z0, z1) = (front - COVER, front);
+        // A slot for each row of devices, between the rails' ends.
+        let (sx0, sx1) = (RAIL_MARGIN.min(w / 4.0) + 5.0, w - RAIL_MARGIN.min(w / 4.0) - 5.0);
+        let mut y = 0.0;
+        for line in rails.iter().filter(|_| sx1 > sx0) {
+            let (a, b) = ((line - SLOT / 2.0).max(y), (line + SLOT / 2.0).min(h));
+            if b <= a {
+                continue;
+            }
+            if a > y {
+                m.add_painted_box([0.0, y, z0], [w, a, z1], COVER_PLASTIC);
+            }
+            m.add_painted_box([0.0, a, z0], [sx0, b, z1], COVER_PLASTIC);
+            m.add_painted_box([sx1, a, z0], [w, b, z1], COVER_PLASTIC);
+            y = b;
+        }
+        if y < h {
+            m.add_painted_box([0.0, y, z0], [w, h, z1], COVER_PLASTIC);
+        }
+        // Its edges folded back.
+        let edge = COVER_EDGE.min(z0 - frame).max(0.0);
+        if edge > 0.0 {
+            for (lo, hi) in [([0.0, 0.0], [COVER, h]), ([w - COVER, 0.0], [w, h]), ([COVER, 0.0], [w - COVER, COVER]), ([COVER, h - COVER], [w - COVER, h])] {
+                m.add_painted_box([lo[0], lo[1], z0 - edge], [hi[0], hi[1], z0], COVER_PLASTIC);
+            }
+        }
+    }
+    // Laid on the plate: right-handed only with its y down turned round (as `plate_box`).
+    let at = |v: [f32; 3]| [it.x + v[0], it.y + v[1], v[2]];
+    Some(
+        m.triangles
+            .iter()
+            .enumerate()
+            .map(|(i, t)| {
+                let [p, q, s] = t.map(|k| at(m.vertices[k as usize]));
+                ([p, s, q], m.color(i))
+            })
+            .collect(),
+    )
 }
 
 /// The rail part of a panel: 35 × 15 mm when its description says so, else 35 × 7.5.

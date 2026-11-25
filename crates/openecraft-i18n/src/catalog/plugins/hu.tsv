@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Egy sablon készülékeit adja hozzá egy szegmenshez
 Adds the outline of a machine, building or area to the plant layout	Egy gép, épület vagy terület körvonalát adja a létesítmény-elrendezéshez
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Profilt ad hozzá, cserél le vagy távolít el: egy összekötő a másik rendszer által használt oszlopnevekkel
+After it instead of before	Mögé, nem elé
 Air-termination rod: its name	Felfogórúd: a neve
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Elemeket igazít, egyenletesen eloszt, készülékeket sorakoztat fel egy sínen, vagy elemeket másol mintában
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Szimbólumokat, szövegeket és grafikákat igazít egy közös élhez vagy középvonalhoz; a csatlakoztatott vezetékvégek követik őket
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Szekrény (szerelési hel
 Enclosure climate and electrical sizing	Szekrényklíma és villamos méretezés
 Enclosure it stands right of; empty to take it out of its line-up	A szekrény, amelytől jobbra áll; üres, ha ki kell venni a szekrénysorból
 Enclosure name (all if missing)	Szekrény neve (ha hiányzik: az összes)
+Enclosure or room it goes before or after	A szekrény vagy helyiség, amely elé vagy mögé kerül
 Enclosure part number	A szekrény cikkszáma
 Enclosure system (default: the enclosure's)	Szekrényrendszer (alapértelmezés: a szekrényé)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Szekrény, ahová a másolatok kerülnek (szerelési hely, pl. +CAB2); megadás nélkül ugyanaz
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Felsorolja a
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Felsorolja a szövegmezőket (beépített és a projekt saját) elemeikkel, a projekt alapértelmezését és a helyőrzőket
 Lists the translation dictionary of the project texts (source line and translations)	Felsorolja a projektszövegek fordítási szótárát (forrássor és fordítások)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Felsorolja az oldalakon elhelyezett ablakmakrókat (makródobozokat) a makróval, változattal, helyőrzőértékekkel és az elemek számával
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Felsorolja, hová illik egy tartozék a szekrényben: a mérő- vagy elosztószekrény szabad mezői (Fields és Rows alkatrészadat), annak a szekrénynek az oldalai, amelynek tartozéka, az eszközök, amelyek alkatrészéhez illik
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Felsorolja, hová illik egy tartozék a szekrényben: a mérő- vagy elosztószekrény szabad mezői (Fields és Rows alkatrészadat), oldalfalainak szabad nyílásai a szekrényeket összekötő kerethez (Opening és Side openings alkatrészadat), annak a szekrénynek az oldalai, amelynek tartozéka, az eszközök, amelyek alkatrészéhez illik
 Load losses of the transformer in W (0: typical)	A transzformátor rövidzárási veszteségei W-ban (0: tipikus)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	A hálózat fogyasztói, az egyes védőkészülékek terhelése, igény az egyidejűségi tényezővel, fázisszimmetria és a tápegységek terhelési mérlege
 Loads the potential definitions of a standard (replaces those of the same name)	Betölti egy szabvány potenciáldefinícióit (lecseréli az azonos nevűeket)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	A szerelési méretnek pozitív szélességet és magasságot kell tartalmaznia
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Áthelyezi egy vezeték, kábel vagy cső nyomvonalának egy támpontját; a fektetés hibát jelez, ahol a nyomvonal nem vezethető át rajta
 Moves an air-termination rod, changes its height, renames or removes it	Áthelyez egy felfogórudat, módosítja a magasságát, átnevezi vagy eltávolítja
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Áthelyez egy szekrényt vagy helyiséget a szekrények és helyiségek fájának sorrendjében: egy másik elé vagy mögé (a sorolt szekrényt a szekrénysorán belül, újra sorolva, vagy a szekrénysorral együtt; a helyiséget a helyiségek között, a másik szintjére)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Egy vezeték egyik végét mozgatja: leválik arról, amihez csatlakozik, és csatlakozik ahhoz, amibe ütközik; a vezeték derékszögű marad
 Moves symbols, wires and texts; connected wire ends follow	Szimbólumokat, vezetékeket és szövegeket mozgat; a csatlakozó vezetékvégek követik
 Moves the page before this page of its section (or of the section given)	Áthelyezi az oldalt a szakasza (vagy a megadott szakasz) ezen oldala elé
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	A(z) {} 
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Az utótaggal rendelkező oldalak (3.a) az előző oldal aloldalai maradnak (alapértelmezés: true)
 Panel layout checks	Szekrényelrendezési ellenőrzések
 Panel manufacturing	Szekrénygyártás
+Panel of a field grid: with its plastic cover (false: taken off)	Mezőrács mezője: a műanyag burkolatával (false: levéve)
 Paper height in mm (custom paper)	Papírmagasság mm-ben (egyéni papír)
 Paper width in mm (custom paper)	Papírszélesség mm-ben (egyéni papír)
 Part lifecycle	Alkatrész életciklusa

@@ -955,6 +955,10 @@ pub struct PanelItem {
     /// Doors and windows: how their leaf opens.
     #[serde(skip_serializing_if = "Swing::is_default")]
     pub swing: Swing,
+    /// A panel of a cabinet's field grid shown without its plastic cover (taken off, as
+    /// while it is wired).
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub uncovered: bool,
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]

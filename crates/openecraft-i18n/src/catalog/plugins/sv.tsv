@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Lägger till apparaterna från en mall i ett segment
 Adds the outline of a machine, building or area to the plant layout	Lägger till konturen av en maskin, en byggnad eller ett område i anläggningslayouten
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Lägger till, ersätter eller tar bort en profil: en anslutning med de kolumnnamn som det andra systemet använder
+After it instead of before	Efter i stället för före
 Air-termination rod: its name	Spetsledare: dess namn
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Justerar objekt, fördelar dem jämnt, radar upp apparater på en skena eller kopierar objekt i ett mönster
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Justerar symboler, texter och grafik mot en gemensam kant eller mittlinje; anslutna ledningsändar följer med
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Kapsling (placering, t.ex
 Enclosure climate and electrical sizing	Skåpsklimat och elektrisk dimensionering
 Enclosure it stands right of; empty to take it out of its line-up	Kapsling som den står till höger om; tom för att ta ut den ur skåpraden
 Enclosure name (all if missing)	Kapslingsnamn (alla om det saknas)
+Enclosure or room it goes before or after	Kapsling eller rum som den hamnar före eller efter
 Enclosure part number	Kapslingens artikelnummer
 Enclosure system (default: the enclosure's)	Kapslingssystem (standard: kapslingens)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kapsling som kopiorna hamnar i (placering, t.ex. +CAB2); utan anges samma
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Listar valda
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Listar namnrutorna (inbyggda och projektets egna) med deras element, projektets standard och platshållarna
 Lists the translation dictionary of the project texts (source line and translations)	Listar översättningsordlistan för projekttexterna (källrad och översättningar)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Listar de fönstermakron som placerats på sidorna (makrorutor) med makro, variant, platshållarvärden och antal objekt
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Listar var en tillbehörsartikel passar i en kapsling: de lediga fälten i ett mätar- eller fördelningsskåp (artikeldata Fields och Rows), sidorna på kapslingen den är tillbehör till, enheterna vars artikel den passar
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Listar var en tillbehörsartikel passar i en kapsling: de lediga fälten i ett mätar- eller fördelningsskåp (artikeldata Fields och Rows), de fria öppningarna i dess sidoväggar för en ram som förbinder kapslingar (artikeldata Opening och Side openings), sidorna på kapslingen den är tillbehör till, enheterna vars artikel den passar
 Load losses of the transformer in W (0: typical)	Transformatorns belastningsförluster i W (0: typiskt värde)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Nätets laster, last för varje skyddsdon, behov med sammanlagringsfaktor, fasbalans och lastbudgetar för nätaggregat
 Loads the potential definitions of a standard (replaces those of the same name)	Läser in potentialdefinitionerna för en standard (ersätter de med samma namn)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Monteringsstorleken måste innehålla en positiv bredd och höjd
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Flyttar en stödpunkt i dragningen av en ledning, kabel eller ett rör; dragningen rapporterar ett fel där den inte kan dras genom den
 Moves an air-termination rod, changes its height, renames or removes it	Flyttar en spetsledare, ändrar dess höjd, byter namn på den eller tar bort den
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Flyttar en kapsling eller ett rum i ordningen i trädet av kapslingar och rum: före eller efter en annan (en sammanbyggd kapsling inom sin skåprad, sammanbyggd på nytt, eller med sin skåprad; ett rum bland rummen, till den andras våning)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flyttar en ände av en ledning: den lämnar det den är ansluten till och ansluts till det den möter; ledningen förblir vinkelrät
 Moves symbols, wires and texts; connected wire ends follow	Flyttar symboler, ledningar och texter; anslutna ledningsändar följer med
 Moves the page before this page of its section (or of the section given)	Flyttar sidan före denna sida i dess avsnitt (eller i det angivna avsnittet)
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Sidan {}
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Sidor med tillägg (3.a) förblir undersidor till föregående sida (standard true)
 Panel layout checks	Kontroller av skåplayout
 Panel manufacturing	Skåptillverkning
+Panel of a field grid: with its plastic cover (false: taken off)	Fält i ett fältraster: med sin plastkåpa (false: borttagen)
 Paper height in mm (custom paper)	Papperets höjd i mm (anpassat papper)
 Paper width in mm (custom paper)	Papperets bredd i mm (anpassat papper)
 Part lifecycle	Artikelns livscykel

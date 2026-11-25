@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Føjer enhederne fra en skabelon til et segment
 Adds the outline of a machine, building or area to the plant layout	Tilføjer omridset af en maskine, en bygning eller et område til anlægslayoutet
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Tilføjer, erstatter eller fjerner en profil: en connector med de kolonnenavne, det andet system bruger
+After it instead of before	Efter i stedet for før
 Air-termination rod: its name	Fangstang: dens navn
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Justerer elementer, fordeler dem jævnt, stiller enheder op på en skinne eller kopierer elementer i et mønster
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Justerer symboler, tekster og grafik efter en fælles kant eller midte; tilsluttede ledningsender følger med
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Kapsling (placering, f.ek
 Enclosure climate and electrical sizing	Kapslingsklima og elektrisk dimensionering
 Enclosure it stands right of; empty to take it out of its line-up	Kapsling, som den står til højre for; tom for at tage den ud af sammenbygningen
 Enclosure name (all if missing)	Kapslingsnavn (alle, hvis det mangler)
+Enclosure or room it goes before or after	Kapsling eller rum, den placeres før eller efter
 Enclosure part number	Kapslingens artikelnummer
 Enclosure system (default: the enclosure's)	Kapslingssystem (standard: kapslingens)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kapsling, som kopierne kommer i (placering, f.eks. +CAB2); uden angivelse den samme
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Viser de val
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Viser tegningshovederne (indbyggede og projektets egne) med deres elementer, projektets standard og pladsholderne
 Lists the translation dictionary of the project texts (source line and translations)	Viser oversættelsesordbogen for projektteksterne (kildelinje og oversættelser)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Viser de vinduesmakroer, der er placeret på siderne (makrobokse), med makro, variant, pladsholderværdier og antal elementer
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Viser, hvor en tilbehørsartikel passer i en kapsling: de frie felter i et måler- eller fordelingsskab (artikeldata Fields og Rows), siderne af kapslingen, den er tilbehør til, enhederne, hvis artikel den passer til
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Viser, hvor en tilbehørsartikel passer i en kapsling: de frie felter i et måler- eller fordelingsskab (artikeldata Fields og Rows), de frie åbninger i dets sidevægge til en ramme, der forbinder kapslinger (artikeldata Opening og Side openings), siderne af kapslingen, den er tilbehør til, enhederne, hvis artikel den passer til
 Load losses of the transformer in W (0: typical)	Transformerens belastningstab i W (0: typisk)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Forsyningsnettets belastninger, belastningen af hver beskyttelsesenhed, behov med samtidighedsfaktoren, fasebalance og belastningsbudgetter for strømforsyninger
 Loads the potential definitions of a standard (replaces those of the same name)	Indlæser potentialedefinitionerne fra en standard (erstatter dem med samme navn)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Monteringsstørrelsen skal indeholde en positiv bredde og højde
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Flytter et støttepunkt i føringen af en ledning, et kabel eller et rør; føringen melder en fejl, hvor den ikke kan føres gennem det
 Moves an air-termination rod, changes its height, renames or removes it	Flytter en fangstang, ændrer dens højde, omdøber eller fjerner den
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Flytter en kapsling eller et rum i rækkefølgen i træet af kapslinger og rum: før eller efter en anden (en sammenbygget kapsling inden for sin sammenbygning, sammenbygget på ny, eller med sin sammenbygning; et rum blandt rummene, til den andens etage)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flytter én ende af en ledning: den forlader det, den er tilsluttet, og forbindes med det, den møder; ledningen forbliver vinkelret
 Moves symbols, wires and texts; connected wire ends follow	Flytter symboler, ledninger og tekster; tilsluttede ledningsender følger med
 Moves the page before this page of its section (or of the section given)	Flytter siden foran denne side i dens afsnit (eller i det angivne afsnit)
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Side {} 
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Sider med suffiks (3.a) forbliver undersider af den forrige side (standard true)
 Panel layout checks	Kontroller af tavlelayout
 Panel manufacturing	Tavleproduktion
+Panel of a field grid: with its plastic cover (false: taken off)	Felt i et feltgitter: med sin plastafdækning (false: taget af)
 Paper height in mm (custom paper)	Papirhøjde i mm (brugerdefineret papir)
 Paper width in mm (custom paper)	Papirbredde i mm (brugerdefineret papir)
 Part lifecycle	Artiklens livscyklus

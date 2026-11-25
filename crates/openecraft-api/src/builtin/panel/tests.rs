@@ -140,6 +140,11 @@ fn enclosures_bayed_with_a_cable_passage() {
     assert_eq!((e["lineup"]["right_of"].as_str(), e["lineup"]["position"][0].as_f64()), (Some("+CAB1"), Some(600.0)));
     let r = run(&mut s, "bay_enclosure", json!({ "enclosure": "+CAB2" })).unwrap();
     assert_eq!(r["lineup"], json!(["+CAB2"]));
+    // Moved in the order of the tree.
+    let r = run(&mut s, "move_enclosure", json!({ "enclosure": "+CAB2", "to": "+CAB1" })).unwrap();
+    assert_eq!((r["index"].as_u64(), &r["order"][0]), (Some(0), &json!("+CAB2")));
+    let r = run(&mut s, "move_enclosure", json!({ "enclosure": "+CAB2", "to": "+CAB1", "after": true })).unwrap();
+    assert_eq!(r["index"].as_u64(), Some(1));
 }
 
 #[test]
@@ -160,6 +165,18 @@ fn the_places_an_accessory_fits() {
     assert_eq!(e.items.iter().filter(|i| i.kind == panel::ItemKind::Rail && i.mounted_on == panel["id"].as_u64().unwrap()).count(), 7);
     let places = run(&mut s, "fitting_places", json!({ "enclosure": "+Z1", "part": "SJ.2CPX054002R9999" })).unwrap();
     assert_eq!(places.as_array().unwrap().len(), 2);
+    // Its plastic cover taken off.
+    let id = panel["id"].as_u64().unwrap();
+    assert_eq!(panel["uncovered"], false);
+    let item = run(&mut s, "set_panel_item", json!({ "enclosure": "+Z1", "id": id, "cover": false })).unwrap();
+    assert_eq!(item["uncovered"], true);
+    // The insulating frame CZ3 that joins cabinets: only into the openings of the side
+    // walls, placed by hand into the nearest one.
+    let frames = run(&mut s, "fitting_places", json!({ "enclosure": "+Z1", "part": "SJ.2CPX052461R9999" })).unwrap();
+    let kinds: Vec<(&str, &str)> = frames.as_array().unwrap().iter().map(|p| (p["kind"].as_str().unwrap(), p["face"].as_str().unwrap())).collect();
+    assert_eq!(kinds, [("opening", "left"), ("opening", "right"), ("opening", "left"), ("opening", "right")]);
+    let frame = run(&mut s, "place_accessory", json!({ "enclosure": "+Z1", "part": "SJ.2CPX052461R9999", "face": "left", "x": 100, "y": 100 })).unwrap();
+    assert_eq!((frame["x"].as_f64(), frame["y"].as_f64(), frame["h"].as_f64()), (Some(5.0), Some(71.0), Some(232.0)), "the upper one");
     // Fits nothing in the demo cabinet.
     assert_eq!(run(&mut s, "fitting_places", json!({ "enclosure": "+CAB1", "part": "SJ.2CPX054002R9999" })).unwrap(), json!([]));
     assert!(run(&mut s, "fitting_places", json!({ "enclosure": "+CAB1", "part": "NO.SUCH" })).unwrap_err().contains("Unknown part"));

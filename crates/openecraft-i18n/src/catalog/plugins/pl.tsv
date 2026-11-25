@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Dodaje urządzenia z szablonu do segmentu
 Adds the outline of a machine, building or area to the plant layout	Dodaje obrys maszyny, budynku lub obszaru do planu instalacji
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Dodaje, zastępuje lub usuwa profil: konektor z nazwami kolumn używanymi przez inny system
+After it instead of before	Za zamiast przed
 Air-termination rod: its name	Iglica odgromowa: jej nazwa
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Wyrównuje elementy, rozmieszcza je równomiernie, ustawia urządzenia w rzędzie na szynie lub kopiuje elementy według wzoru
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Wyrównuje symbole, teksty i grafikę do wspólnej krawędzi lub środka; podłączone końce przewodów podążają za nimi
@@ -259,6 +260,7 @@ Enclosure (location, e.g. +CAB1) whose settings change	Obudowa (miejsce montażu
 Enclosure climate and electrical sizing	Klimatyzacja obudowy i dobór elektryczny
 Enclosure it stands right of; empty to take it out of its line-up	Obudowa, z której prawej strony stoi; puste, aby wyjąć ją z szeregu
 Enclosure name (all if missing)	Nazwa obudowy (wszystkie, jeśli nie podano)
+Enclosure or room it goes before or after	Obudowa lub pomieszczenie, przed które lub za które trafia
 Enclosure part number	Numer artykułu obudowy
 Enclosure system (default: the enclosure's)	System obudów (domyślnie: system danej obudowy)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Obudowa, do której trafiają kopie (miejsce montażu, np. +CAB2); bez podania ta sama
@@ -440,7 +442,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Wyświetla w
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Wyświetla tabliczki rysunkowe (wbudowane i projektu) z ich elementami, domyślną projektu i symbole zastępcze
 Lists the translation dictionary of the project texts (source line and translations)	Wyświetla słownik tłumaczeń tekstów projektu (wiersz źródłowy i tłumaczenia)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Wyświetla listę makr okien umieszczonych na stronach (ramki makr) z makrem, wariantem, wartościami symboli zastępczych i liczbą elementów
-Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits	Wyświetla, gdzie część akcesoryjna pasuje w obudowie: wolne pola szafy licznikowej lub rozdzielczej (dane części Fields i Rows), ściany obudowy, której jest akcesorium, urządzenia, do których części pasuje
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Wyświetla, gdzie część akcesoryjna pasuje w obudowie: wolne pola szafy licznikowej lub rozdzielczej (dane części Fields i Rows), wolne otwory w jej ścianach bocznych na ramkę łączącą obudowy (dane części Opening i Side openings), ściany obudowy, której jest akcesorium, urządzenia, do których części pasuje
 Load losses of the transformer in W (0: typical)	Straty obciążeniowe transformatora w W (0: typowe)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Odbiorniki sieci, obciążenie każdego urządzenia zabezpieczającego, zapotrzebowanie ze współczynnikiem jednoczesności, symetria faz i bilanse obciążenia zasilaczy
 Loads the potential definitions of a standard (replaces those of the same name)	Ładuje definicje potencjałów z normy (zastępuje te o tej samej nazwie)
@@ -485,6 +487,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Rozmiar montażowy musi zawierać dodatnią szerokość i wysokość
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Przesuwa punkt pośredni trasy przewodu, kabla lub węża; prowadzenie zgłasza błąd, gdy trasa nie może przez niego przejść
 Moves an air-termination rod, changes its height, renames or removes it	Przesuwa iglicę odgromową, zmienia jej wysokość, nazwę lub ją usuwa
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Przenosi obudowę lub pomieszczenie w kolejności drzewa obudów i pomieszczeń: przed inne lub za nie (obudowę w szeregu w obrębie szeregu, szeregując ją na nowo, albo razem z szeregiem; pomieszczenie między pomieszczeniami, na kondygnację tego drugiego)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Przesuwa jeden koniec przewodu: odłącza się od tego, do czego był podłączony, i łączy z tym, co napotka; przewód pozostaje prostokątny
 Moves symbols, wires and texts; connected wire ends follow	Przesuwa symbole, przewody i teksty; podłączone końce przewodów podążają za nimi
 Moves the page before this page of its section (or of the section given)	Przenosi stronę przed tę stronę jej sekcji (lub podanej sekcji)
@@ -626,6 +629,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Strona {
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Strony z przyrostkiem (3.a) pozostają podstronami poprzedniej strony (domyślnie true)
 Panel layout checks	Kontrole zabudowy szafy
 Panel manufacturing	Produkcja szaf sterowniczych
+Panel of a field grid: with its plastic cover (false: taken off)	Pole siatki pól: z osłoną z tworzywa (false: zdjęta)
 Paper height in mm (custom paper)	Wysokość papieru w mm (format niestandardowy)
 Paper width in mm (custom paper)	Szerokość papieru w mm (format niestandardowy)
 Part lifecycle	Cykl życia artykułu

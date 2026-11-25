@@ -136,6 +136,16 @@ pub static COMMANDS: &[Spec] = &[
         run: bay_enclosure,
     },
     Spec {
+        name: "move_enclosure",
+        help: tr_const!("Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)"),
+        params: &[
+            param("enclosure", Kind::Str, ENCLOSURE),
+            param("to", Kind::Str, tr_const!("Enclosure or room it goes before or after")),
+            optional("after", Kind::Bool, tr_const!("After it instead of before")),
+        ],
+        run: move_enclosure,
+    },
+    Spec {
         name: "add_cable_passage",
         help: tr_const!("Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it"),
         params: &[
@@ -163,7 +173,7 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "fitting_places",
-        help: tr_const!("Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the faces of the enclosure it is an accessory of, the devices whose part it fits"),
+        help: tr_const!("Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits"),
         params: &[
             param("enclosure", Kind::Str, ENCLOSURE),
             param("part", Kind::Str, tr_const!("Accessory part number, e.g. GEN.GLAND-M25")),
@@ -213,6 +223,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("single_part",Kind::Bool,tr_const!("This footprint represents only its own part")),
             optional("owner_device",Kind::Str,tr_const!("Material owner device tag")),
             optional("bom_excluded",Kind::Bool,tr_const!("Exclude from bill of materials")),
+            optional("cover",Kind::Bool,tr_const!("Panel of a field grid: with its plastic cover (false: taken off)")),
         ],
         run: set_panel_item,
     },
@@ -319,6 +330,7 @@ fn item_json(prj: &Project, it: &PanelItem) -> Value {
         "anchor": [it.anchor.x.text(), it.anchor.y.text()],
         "group": it.group,
         "mounted_on":it.mounted_on,"mounting_explicit":it.mounting_explicit,"rail_mount_override":it.rail_mount_override,"rail_mount":it.rail_mount,"rail_vertical":it.rail_vertical,
+        "uncovered":it.uncovered,
     })
 }
 
@@ -514,6 +526,15 @@ fn bay_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(json!({ "lineup": lineup }))
 }
 
+fn move_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let ei = enclosure_index(prj, a.req("enclosure"))?;
+    let to = enclosure_index(prj, a.req("to"))?;
+    let at = panel::order::move_in_tree(prj, ei, to, a.flag("after"))?;
+    let order: Vec<&str> = prj.layout.enclosures.iter().map(|e| e.name.as_str()).collect();
+    let lineup: Vec<&str> = panel::lineup_of(&prj.layout, at).into_iter().map(|i| prj.layout.enclosures[i].name.as_str()).collect();
+    Ok(json!({ "index": at, "order": order, "lineup": lineup }))
+}
+
 fn add_cable_passage(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let ei = enclosure_index(prj, a.req("enclosure"))?;
     let Some(right) = panel::neighbours(&prj.layout, ei).1 else {
@@ -546,6 +567,7 @@ fn fitting_places(prj: &mut Project, a: &Args) -> Result<Value, String> {
             .map(|pl| match pl {
                 panel::fit::Place::Slot(r) => json!({ "kind": "slot", "face": "plate", "x": r.min.x, "y": r.min.y, "width": r.width(), "height": r.height() }),
                 panel::fit::Place::Face(f) => json!({ "kind": "face", "face": e.face_key(*f) }),
+                panel::fit::Place::Opening(f, r) => json!({ "kind": "opening", "face": e.face_key(*f), "x": r.min.x, "y": r.min.y, "width": r.width(), "height": r.height() }),
                 panel::fit::Place::Device(id, tag) => json!({ "kind": "device", "tag": tag, "id": id }),
             })
             .collect(),
@@ -568,6 +590,8 @@ fn place_accessory(prj: &mut Project, a: &Args) -> Result<Value, String> {
     it.fastening = fastening_arg(a)?.unwrap_or_default();
     it.anchor = Anchor { x: align_arg(a, "anchor_x")?.unwrap_or_default(), y: align_arg(a, "anchor_y")?.unwrap_or_default() };
     panel::apply_one_anchor(&prj.layout.enclosures[ei], &mut it);
+    // A frame that joins two enclosures goes into the nearest opening made for it.
+    panel::fit::into_opening(prj, ei, &mut it);
     let id = panel::fit::add_panel(prj, ei, it);
     Ok(item_json(prj, prj.layout.enclosures[ei].item(id).unwrap()))
 }
@@ -666,6 +690,7 @@ fn set_panel_item(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(single)=bool_arg(a,"single_part") {it.single_part=single;}
     if let Some(tag)=a.str("owner_device") {it.owner_device=tag.into();}
     if let Some(excluded)=bool_arg(a,"bom_excluded") {it.bom_excluded=excluded;}
+    if let Some(cover)=bool_arg(a,"cover") {it.uncovered = !cover;}
     if let Some(parent)=a.int("mounted_on") {
         if parent<0 || !panel::can_mount(e,id,parent as u64) {return Err(tr("Invalid mounting parent").into());}
         it.mounted_on=parent as u64;

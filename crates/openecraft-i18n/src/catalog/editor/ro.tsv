@@ -671,6 +671,9 @@ Drilling pattern of the face shown as DXF, DWG or CSV	Modelul de găurire al fe�
 Drop an enclosure here to add it; onto a room to put it in there	Plasați aici o carcasă pentru a o adăuga; pe o încăpere pentru a o pune acolo
 Drop between the pages	Plasați între pagini
 Drop between the rows or onto a section	Plasați între rânduri sau pe o secțiune
+Drop between two buildings to move it there	Plasați între două clădiri pentru a o muta acolo
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Plasați între două rânduri pentru a muta carcasa acolo; una alăturată se mută în rândul ei sau împreună cu el
+Drop between two rows to move the room there, onto a level to put it on that level	Plasați între două rânduri pentru a muta încăperea acolo, pe un nivel pentru a o pune pe acel nivel
 Drop onto a level to put the room on it	Plasați pe un nivel pentru a pune încăperea pe el
 Drop {} here	Plasați {} aici
 Drop {} onto one of the highlighted places	Plasați {} pe unul dintre locurile evidențiate
@@ -793,6 +796,7 @@ Finished changes of a project opened from the project server are saved to it by 
 First row	Primul rând
 Fit page	Încadrare pagină
 Fits {}	Compatibil cu {}
+Fitted	Montat
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Încadrată în dreptunghi păstrând proporțiile (PNG, JPEG)
 Float	Detașare
 Floor	Podea
@@ -1575,6 +1579,7 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Plan de amplasare a instalației
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Plan de amplasare a instalației, rețea de trasee, planificarea cablurilor de câmp, legătură echipotențială și accesorii de cablu
 Plant segments with planned devices before the schematic	Segmente de instalație cu dispozitive planificate înainte de schemă
+Plastic cover	Capac din plastic
 Plate outline, holes per diameter, cutouts	Contur placă, găuri pe diametru, decupaje
 Plot boundary	Limita terenului
 Plot boundary drawn: {} m²	Limita terenului desenată: {} m²
@@ -2188,6 +2193,7 @@ The page name gets the section number	Numele paginii primește numărul secțiun
 The page type, plot frame, title block, structure, description and the whole content are saved.	Se salvează tipul paginii, chenarul, cartușul, structura, descrierea și întregul conținut.
 The pages it generated stay	Paginile generate de acesta rămân
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Baza de date de articole este partajată de toate proiectele. Articolele se copiază într-un proiect atunci când sunt atribuite unui dispozitiv.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Capacul din plastic al panoului; fără el se văd rama, șinele și cablajul din spatele lui
 The point's coordinates in the coordinate reference system	Coordonatele punctului în sistemul de coordonate de referință
 The post; its accessories are the table beams, rails and clamps	Stâlpul; accesoriile lui sunt grinzile mesei, șinele și clemele
 The project changed since the search.	Proiectul s-a modificat de la căutare.
@@ -2619,6 +2625,7 @@ x y	x y
 {} mm, removed	{} mm, eliminat
 {} modules	{} module
 {} modules, {} kWp	{} module, {} kWp
+{} moved	{} mutat
 {} new texts in the dictionary	{} texte noi în dicționar
 {} notes	Note: {}
 {} objects pasted	{} obiecte lipite

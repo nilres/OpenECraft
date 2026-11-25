@@ -52,6 +52,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   they are meant to be instead of each solid at its own origin.
 - **Accessories of the EPLAN Data Portal:** a part of the portal lists its accessories,
   and its details show them with their description, maker and product group.
+- **Order of the navigator:** the rooms, enclosures and buildings of the navigator are
+  dragged to change their order; a bayed enclosure moves within its line-up (bayed
+  again) or with it, a room onto the level of the room it is dropped next to.
+- **Panels of meter cabinets as they are built:** a distribution panel such as the FV17
+  is a frame on brackets with its rails behind a plastic cover with a slot for each row,
+  the other panels of the field grid too; the cover can be taken off.
+- **Joining frames in their openings:** the insulating frame CZ3 that joins two
+  Striebel & John cabinets goes only into the openings of their side walls made for it.
 - **Mounting plate from its model:** the part editor reads the separate model of an
   enclosure's mounting plate (such as Rittal's `CAD_MPL` files) and gives the enclosure
   a plate of its size, centred.
