@@ -324,6 +324,39 @@ marques de câblage ni messages de vérification acceptés.
 Ligne de commande : `new_project --template Machine` (ou un fichier) ; `new_project
 --example <name>` part d'un [projet d'exemple](../../../README.md#example-projects).
 
+Les **modèles paramétrés** demandent des valeurs quand un projet est démarré à partir
+d'eux et en calculent d'autres par des formules : les modèles fournis *Démarreur moteur
+direct*, *Démarreur moteur étoile-triangle* et *Démarreur moteur inverseur* demandent la
+machine entraînée, la puissance assignée, la tension du réseau, cos phi, le rendement et
+s'il faut ajouter les pages de rapport, et dimensionnent le démarreur à partir d'eux –
+courant assigné (7,5 kW sous 400 V : 14,6 A), plage de réglage du disjoncteur moteur
+(10 - 16 A), contacteurs (AC-3), section du circuit moteur et articles du catalogue
+intégré. Les valeurs remplissent les espaces réservés `{NAME}` dans les textes du projet
+(repères, textes de fonction, textes, données d'appareil, références d'article,
+descriptions de page) ; une page avec une condition (`REPORTS=yes`, écrite comme dans le
+configurateur) est omise quand elle n'est pas remplie. Une formule connaît les nombres,
+les `"textes"`, les noms des paramètres et des formules qui la précèdent, `+ - * / ^`,
+les comparaisons, `&` (joint des textes) et `sqrt`, `abs`, `round`, `ceil`, `floor`,
+`min`, `max`, `if` et `step(x, limite, valeur, …, sinon)`, la valeur de la première
+limite que `x` ne dépasse pas.
+
+Le volet *Données de base › Paramètres du modèle* montre le projet ouvert en tant que
+modèle : nom, description, paramètres (libellé, unité, valeur par défaut, choix),
+formules avec leurs valeurs et la condition de chaque page. *Enregistrer comme modèle de
+projet…* enregistre le projet dans le **dossier des modèles**
+(`OpenECraft/data/templates` dans le dossier de données de l'utilisateur, ou le dossier
+de `OPENECRAFT_TEMPLATES` ; dans le navigateur, le stockage de l'éditeur), où la ligne
+de commande le trouve aussi, et *Exporter comme fichier…* écrit un fichier de modèle à
+transmettre. Les modèles du dossier figurent à côté de ceux fournis dans *Nouveau projet
+à partir d'un modèle* ; un modèle portant le nom d'un modèle fourni prend sa place :
+on étend ainsi un modèle fourni en le modifiant (*Modifier le modèle* dans le menu de sa
+vignette ouvre le modèle lui-même) et en l'enregistrant sous son nom. Ligne de commande :
+`list_project_templates`, `template_values`, `new_project --template "Motor starter
+direct on line" --values '{"POWER_KW": 7.5}'`, `new_project --edit`,
+`save_project_template`, `delete_project_template` et les commandes `get_template`,
+`set_template`, `set_template_parameter`, `set_template_formula`,
+`remove_template_parameter` et `set_page --condition`.
+
 ## Enregistrement
 
 Fichiers de projet JSON (`.oec`) ; le projet courant et la base de données d'articles

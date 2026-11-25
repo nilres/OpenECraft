@@ -32,6 +32,10 @@ pub struct Session {
     /// Folder the files of the MCP tools must be in; `None` = anywhere (the command
     /// line). See `mcp::root_from_env`.
     pub mcp_root: Option<PathBuf>,
+    /// Folder of the project templates of the user (`--templates`,
+    /// `OPENECRAFT_TEMPLATES`, otherwise in the data folder of the editor); `None` in
+    /// the tests.
+    pub templates: Option<PathBuf>,
 }
 
 impl Session {
@@ -49,6 +53,7 @@ impl Session {
             plugins: Plugins::new(crate::tools::all().map(|t| t.name)),
             mcp_tools: Vec::new(),
             mcp_root: None,
+            templates: None,
         }
     }
 

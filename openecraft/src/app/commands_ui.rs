@@ -229,11 +229,7 @@ impl App {
             Cmd::Save => self.save(ctx, false),
             Cmd::SaveAs => self.save(ctx, true),
             Cmd::SaveAsSplit => self.save_split(ctx),
-            Cmd::SaveAsProjectTemplate => {
-                let t = openecraft_core::project_templates::as_template(&self.session.prj);
-                let name = format!("{}_template.oec", self.session.prj.info.name.replace(' ', "_"));
-                self.export(ctx, name, (tr("OpenECraft project template"), "oec"), t.to_json());
-            }
+            Cmd::SaveAsProjectTemplate => self.save_as_template(),
             Cmd::CheckInVault => self.check_in_project(),
             Cmd::ImportDrawing => self.io.open(ctx, Purpose::Drawing),
             Cmd::ImportSettings => self.io.open(ctx, Purpose::SettingsScheme),

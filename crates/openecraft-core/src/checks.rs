@@ -241,7 +241,7 @@ pub fn check(prj: &Project, idx: &Index, nl: &Netlist) -> Vec<Issue> {
         }
         let data = prj.devices.get(tag);
         for r in data.map(|d| d.parts.as_slice()).unwrap_or(&[]) {
-            if !prj.parts.iter().any(|p| p.number == r.number) {
+            if !prj.parts.iter().any(|p| p.number == r.number) && !prj.placeholder(&r.number) {
                 let l = dev.mains.first().or(dev.others.first()).or(dev.auxs.first());
                 v.push(crate::issue!(Severity::Error, l.and_then(t), "{}: part {} is not in the project parts (Parts management › synchronize)", tag, r.number));
             }

@@ -290,7 +290,6 @@ Main	Hoofd
 Main earthing busbar (device) it is connected to; empty: none	Hoofdaardrail (apparaat) waarop hij is aangesloten; leeg: geen
 Main earthing terminal	Hoofdaardrail
 Main equipotential bonding (Ω)	Hoofdpotentiaalvereffening (Ω)
-Main switch	Hoofdschakelaar
 Manufacturer	Fabrikant
 Manufacturers	Fabrikanten
 Manufacturing	Productie
@@ -322,6 +321,7 @@ Name of the block	Naam van het blok
 Name of the plot, e.g. the cadastral parcel	Naam van het perceel, bijv. het kadastrale perceel
 Name of the point, e.g. a survey point	Naam van het punt, bijv. een meetpunt
 Name of the scheme	Naam van het schema
+Name of the template	Naam van de sjabloon
 Net	Net
 Never	Nooit
 New group	Nieuwe groep
@@ -406,6 +406,7 @@ Page templates	Paginasjablonen
 Page type	Paginatype
 Page {} is locked	Pagina {} is vergrendeld
 Page {} of {}	Pagina {} van {}
+Page {}: {}	Pagina {}: {}
 Pages	Pagina's
 Panel layout	Kastlay-out
 Parameter {} has the wrong type	Parameter {} heeft het verkeerde type
@@ -580,6 +581,7 @@ Socket side	Buszijde
 Solenoid not linked	Magneetspoel niet gekoppeld
 Sort by	Sorteren op
 Source	Bron
+Start	Begin
 Started	Gestart
 State	Status
 Status	Status
@@ -710,6 +712,7 @@ yes	ja
 {} circuits	{} stroomkringen
 {} does not stand on the floor: choose a part marked for floor mounting	{} staat niet op de vloer: kies een artikel dat voor vloermontage is gemarkeerd
 {} exists already	{} bestaat al
+{} exists already: pass overwrite to replace it	{} bestaat al: geef overwrite op om het te vervangen
 {} is not a PNG or JPEG image	{} is geen PNG- of JPEG-afbeelding
 {} parts	{} artikelen
 {} symbols	{} symbolen

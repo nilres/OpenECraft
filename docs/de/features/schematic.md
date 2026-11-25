@@ -327,6 +327,38 @@ Prüfmeldungen.
 Befehlszeile: `new_project --template Machine` (oder eine Datei); `new_project --example
 <name>` beginnt mit einem [Beispielprojekt](../../../README.md#example-projects).
 
+**Parametrische Vorlagen** fragen beim Anlegen eines Projekts Werte ab und berechnen
+mit Formeln weitere: die mitgelieferten *Motorstarter direkt*, *Motorstarter
+Stern-Dreieck* und *Motorstarter Wendeschaltung* fragen nach der angetriebenen Maschine,
+der Bemessungsleistung, der Netzspannung, cos phi, dem Wirkungsgrad und ob die
+Auswertungsseiten dazukommen, und bemessen daraus den Starter – Bemessungsstrom (7,5 kW
+an 400 V: 14,6 A), Einstellbereich des Motorschutzschalters (10 - 16 A), Schütze (AC-3),
+Querschnitt des Motorstromkreises und die Artikel des mitgelieferten Katalogs. Die Werte
+füllen die Platzhalter `{NAME}` in den Texten des Projekts (Kennzeichen,
+Funktionstexte, Texte, Betriebsmitteldaten, Artikelnummern, Seitenbeschreibungen); eine
+Seite mit einer Bedingung (`REPORTS=yes`, geschrieben wie im Konfigurator) entfällt,
+wenn sie nicht zutrifft. Eine Formel kennt Zahlen, `"Texte"`, die Namen der Parameter
+und der Formeln davor, `+ - * / ^`, Vergleiche, `&` (verbindet Texte) und `sqrt`, `abs`,
+`round`, `ceil`, `floor`, `min`, `max`, `if` und `step(x, Grenze, Wert, …, sonst)`, den
+Wert der ersten Grenze, die `x` nicht überschreitet.
+
+Der Bereich *Stammdaten › Vorlagenparameter* zeigt das offene Projekt als Vorlage:
+Name, Beschreibung, Parameter (Beschriftung, Einheit, Vorgabewert, Auswahlwerte),
+Formeln mit ihren Werten und die Bedingung jeder Seite. *Als Projektvorlage speichern…*
+speichert das Projekt im **Vorlagenordner** (`OpenECraft/data/templates` im
+Datenordner des Benutzers oder der Ordner von `OPENECRAFT_TEMPLATES`; im Browser der
+Speicher des Editors), wo auch die Kommandozeile es findet, und *Als Datei
+exportieren…* schreibt eine Vorlagendatei zum Weitergeben. Die Vorlagen des Ordners
+stehen in *Neues Projekt aus Vorlage* neben den mitgelieferten; eine mit dem Namen einer
+mitgelieferten Vorlage tritt an deren Stelle, so wird eine mitgelieferte Vorlage
+erweitert, indem man sie ändert (*Vorlage bearbeiten* im Menü ihrer Kachel öffnet die
+Vorlage selbst) und unter ihrem Namen speichert. Befehlszeile:
+`list_project_templates`, `template_values`, `new_project --template "Motor starter
+direct on line" --values '{"POWER_KW": 7.5}'`, `new_project --edit`,
+`save_project_template`, `delete_project_template` und die Befehle `get_template`,
+`set_template`, `set_template_parameter`, `set_template_formula`,
+`remove_template_parameter` und `set_page --condition`.
+
 ## Speicherung
 
 JSON-Projektdateien (`.oec`); das aktuelle Projekt und die

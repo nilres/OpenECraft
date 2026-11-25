@@ -125,6 +125,7 @@ pub fn window_panes(layout: &Layout) -> Vec<crate::dock::ToolPane> {
                 "languages" => T::Languages,
                 "tables" => T::Tables,
                 "configurator" => T::Configurator,
+                "project_template" => T::ProjectTemplate,
                 "compare" => T::Compare,
                 "change_requests" => T::ChangeRequests,
                 "structure" => T::Structure,

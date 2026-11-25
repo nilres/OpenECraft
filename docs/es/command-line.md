@@ -32,6 +32,17 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   `undo` / `redo`, ya que abre el proyecto de nuevo para cada comando. Un archivo comprimido
   indicado como `--project` no se modifica: guarde el proyecto como archivo de proyecto
   (`save_project --path <file>.oec`) o convierta el archivo comprimido (`convert_project`).
+- **Plantillas de proyecto**: `list_project_templates` lista las plantillas incluidas y
+  las de la carpeta de plantillas (`--templates <carpeta>`, `OPENECRAFT_TEMPLATES`, si
+  no `OpenECraft/data/templates` en la carpeta de datos del usuario, que también usa el
+  editor). `new_project --template "Motor starter direct on line" --values
+  '{"POWER_KW": 7.5}'` inicia un proyecto con los valores de sus parámetros,
+  `template_values` muestra lo que calculan las fórmulas sin iniciar ninguno,
+  `save_project_template` guarda el proyecto abierto en la carpeta y
+  `delete_project_template` quita una plantilla de ella; una plantilla de la carpeta con
+  el nombre de una incluida ocupa su lugar. `new_project --edit` abre una plantilla en
+  sí, `get_template`, `set_template_parameter`, `set_template_formula` y `set_page
+  --condition` la cambian ([plantillas de proyecto](features/schematic.md#plantillas-de-proyecto)).
 - Un **proyecto dividido** guarda el proyecto en muchos archivos pequeños para el control
   de versiones (git): el índice `<name>.oecp` y, junto a él, una carpeta `pages` (un
   archivo por página), `data` (un archivo por dispositivo, artículo, cable … y por área de

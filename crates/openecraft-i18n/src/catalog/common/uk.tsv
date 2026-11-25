@@ -290,7 +290,6 @@ Main	Головн.
 Main earthing busbar (device) it is connected to; empty: none	Головна заземлювальна шина (пристрій), до якої він під'єднаний; порожньо: немає
 Main earthing terminal	Головна заземлювальна шина
 Main equipotential bonding (Ω)	Основне зрівнювання потенціалів (Ом)
-Main switch	Головний вимикач
 Manufacturer	Виробник
 Manufacturers	Виробники
 Manufacturing	Виготовлення
@@ -322,6 +321,7 @@ Name of the block	Назва блоку
 Name of the plot, e.g. the cadastral parcel	Назва ділянки, напр. кадастрова ділянка
 Name of the point, e.g. a survey point	Назва точки, напр. геодезичний пункт
 Name of the scheme	Назва схеми
+Name of the template	Назва шаблону
 Net	Мережа
 Never	Ніколи
 New group	Нова група
@@ -406,6 +406,7 @@ Page templates	Шаблони сторінок
 Page type	Тип сторінки
 Page {} is locked	Сторінку {} заблоковано
 Page {} of {}	Сторінка {} з {}
+Page {}: {}	Сторінка {}: {}
 Pages	Сторінки
 Panel layout	Компонування шафи
 Parameter {} has the wrong type	Параметр {} має неправильний тип
@@ -580,6 +581,7 @@ Socket side	Сторона гнізд
 Solenoid not linked	Котушку не пов’язано
 Sort by	Сортувати за
 Source	Джерело
+Start	Пуск
 Started	Розпочато
 State	Стан
 Status	Стан
@@ -710,6 +712,7 @@ yes	так
 {} circuits	Кіл: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} не встановлюється на підлогу: виберіть виріб із позначкою монтажу на підлогу
 {} exists already	{} вже існує
+{} exists already: pass overwrite to replace it	{} вже існує: вкажіть overwrite, щоб замінити
 {} is not a PNG or JPEG image	{} не є зображенням PNG або JPEG
 {} parts	Виробів: {}
 {} symbols	Символів: {}

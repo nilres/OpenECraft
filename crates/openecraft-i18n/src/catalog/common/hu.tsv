@@ -290,7 +290,6 @@ Main	Fő
 Main earthing busbar (device) it is connected to; empty: none	Fő földelősín (eszköz), amelyhez csatlakozik; üres: nincs
 Main earthing terminal	Fő földelősín
 Main equipotential bonding (Ω)	Fő egyenpotenciálú összekötés (Ω)
-Main switch	Főkapcsoló
 Manufacturer	Gyártó
 Manufacturers	Gyártók
 Manufacturing	Gyártás
@@ -322,6 +321,7 @@ Name of the block	A blokk neve
 Name of the plot, e.g. the cadastral parcel	A telek neve, pl. a helyrajzi szám
 Name of the point, e.g. a survey point	A pont neve, pl. egy geodéziai pont
 Name of the scheme	A séma neve
+Name of the template	A sablon neve
 Net	Hálózat
 Never	Soha
 New group	Új csoport
@@ -406,6 +406,7 @@ Page templates	Oldalsablonok
 Page type	Oldaltípus
 Page {} is locked	A(z) {} oldal zárolva van
 Page {} of {}	{}. oldal (összesen: {})
+Page {}: {}	{} oldal: {}
 Pages	Oldalak
 Panel layout	Szekrényelrendezés
 Parameter {} has the wrong type	A(z) {} paraméter típusa hibás
@@ -580,6 +581,7 @@ Socket side	Hüvelyoldal
 Solenoid not linked	A mágnestekercs nincs kapcsolva
 Sort by	Rendezés
 Source	Forrás
+Start	Kezdés
 Started	Elkezdve
 State	Állapot
 Status	Állapot
@@ -710,6 +712,7 @@ yes	igen
 {} circuits	{} áramkör
 {} does not stand on the floor: choose a part marked for floor mounting	{} nem a padlón áll: válasszon padlóra szerelésre jelölt alkatrészt
 {} exists already	{} már létezik
+{} exists already: pass overwrite to replace it	{} már létezik: a cseréhez adja meg az overwrite paramétert
 {} is not a PNG or JPEG image	{} nem PNG- vagy JPEG-kép
 {} parts	{} alkatrész
 {} symbols	Szimbólumok: {}

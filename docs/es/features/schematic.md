@@ -323,6 +323,38 @@ aceptados. Línea de comandos: `new_project --template Machine` (o un archivo);
 `new_project --example <name>` parte de un
 [proyecto de ejemplo](../../../README.md#example-projects).
 
+Las **plantillas paramétricas** piden valores al iniciar un proyecto a partir de ellas y
+calculan otros con fórmulas: las incluidas *Arrancador directo de motor*, *Arrancador
+estrella-triángulo de motor* y *Arrancador inversor de motor* piden la máquina
+accionada, la potencia asignada, la tensión de red, cos phi, el rendimiento y si se
+añaden las páginas de informe, y dimensionan el arrancador a partir de ellos – corriente
+asignada (7,5 kW a 400 V: 14,6 A), rango de ajuste del guardamotor (10 - 16 A),
+contactores (AC-3), sección del circuito del motor y los artículos del catálogo
+integrado. Los valores rellenan los marcadores `{NAME}` en los textos del proyecto
+(identificadores, textos de función, textos, datos de equipo, números de artículo,
+descripciones de página); una página con una condición (`REPORTS=yes`, escrita como en
+el configurador) se omite cuando no se cumple. Una fórmula conoce números, `"textos"`,
+los nombres de los parámetros y de las fórmulas anteriores, `+ - * / ^`, comparaciones,
+`&` (une textos) y `sqrt`, `abs`, `round`, `ceil`, `floor`, `min`, `max`, `if` y
+`step(x, límite, valor, …, si no)`, el valor del primer límite que `x` no supera.
+
+El panel *Datos maestros › Parámetros de plantilla* muestra el proyecto abierto como
+plantilla: nombre, descripción, parámetros (etiqueta, unidad, valor por defecto,
+opciones), fórmulas con sus valores y la condición de cada página. *Guardar como
+plantilla de proyecto…* guarda el proyecto en la **carpeta de plantillas**
+(`OpenECraft/data/templates` en la carpeta de datos del usuario, o la carpeta de
+`OPENECRAFT_TEMPLATES`; en el navegador, el almacenamiento del editor), donde también la
+encuentra la línea de comandos, y *Exportar como archivo…* escribe un archivo de
+plantilla para pasar. Las plantillas de la carpeta aparecen junto a las incluidas en
+*Nuevo proyecto desde plantilla*; una con el nombre de una plantilla incluida ocupa su
+lugar, así se amplía una plantilla incluida cambiándola (*Editar plantilla* en el menú
+de su mosaico abre la propia plantilla) y guardándola con su nombre. Línea de comandos:
+`list_project_templates`, `template_values`, `new_project --template "Motor starter
+direct on line" --values '{"POWER_KW": 7.5}'`, `new_project --edit`,
+`save_project_template`, `delete_project_template` y los comandos `get_template`,
+`set_template`, `set_template_parameter`, `set_template_formula`,
+`remove_template_parameter` y `set_page --condition`.
+
 ## Almacenamiento
 
 Archivos de proyecto JSON (`.oec`); el proyecto actual y la base de datos de

@@ -290,7 +290,6 @@ Main	Huvud
 Main earthing busbar (device) it is connected to; empty: none	Huvudjordningsskena (apparat) som det är anslutet till; tom: ingen
 Main earthing terminal	Huvudjordningsskena
 Main equipotential bonding (Ω)	Huvudpotentialutjämning (Ω)
-Main switch	Huvudbrytare
 Manufacturer	Tillverkare
 Manufacturers	Tillverkare
 Manufacturing	Tillverkning
@@ -322,6 +321,7 @@ Name of the block	Blockets namn
 Name of the plot, e.g. the cadastral parcel	Tomtens namn, t.ex. fastighetsbeteckningen
 Name of the point, e.g. a survey point	Punktens namn, t.ex. en mätpunkt
 Name of the scheme	Schemats namn
+Name of the template	Mallens namn
 Net	Nät
 Never	Aldrig
 New group	Ny grupp
@@ -406,6 +406,7 @@ Page templates	Sidmallar
 Page type	Sidtyp
 Page {} is locked	Sida {} är låst
 Page {} of {}	Sida {} av {}
+Page {}: {}	Sida {}: {}
 Pages	Sidor
 Panel layout	Skåplayout
 Parameter {} has the wrong type	Parametern {} har fel typ
@@ -580,6 +581,7 @@ Socket side	Hylssida
 Solenoid not linked	Magnetspole inte länkad
 Sort by	Sortera efter
 Source	Källa
+Start	Start
 Started	Påbörjad
 State	Tillstånd
 Status	Status
@@ -710,6 +712,7 @@ yes	ja
 {} circuits	{} kretsar
 {} does not stand on the floor: choose a part marked for floor mounting	{} står inte på golvet: välj en artikel som är märkt för golvmontage
 {} exists already	{} finns redan
+{} exists already: pass overwrite to replace it	{} finns redan: ange overwrite för att ersätta den
 {} is not a PNG or JPEG image	{} är inte en PNG- eller JPEG-bild
 {} parts	{} artiklar
 {} symbols	{} symboler

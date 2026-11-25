@@ -290,7 +290,6 @@ Main	Princ.
 Main earthing busbar (device) it is connected to; empty: none	Collettore principale di terra (apparecchio) a cui è collegato; vuoto: nessuno
 Main earthing terminal	Collettore principale di terra
 Main equipotential bonding (Ω)	Collegamento equipotenziale principale (Ω)
-Main switch	Interruttore generale
 Manufacturer	Produttore
 Manufacturers	Produttori
 Manufacturing	Produzione
@@ -322,6 +321,7 @@ Name of the block	Nome del blocco
 Name of the plot, e.g. the cadastral parcel	Nome del lotto, p. es. la particella catastale
 Name of the point, e.g. a survey point	Nome del punto, p. es. un caposaldo
 Name of the scheme	Nome dello schema
+Name of the template	Nome del modello
 Net	Rete
 Never	Mai
 New group	Nuovo gruppo
@@ -406,6 +406,7 @@ Page templates	Modelli di pagina
 Page type	Tipo di pagina
 Page {} is locked	La pagina {} è bloccata
 Page {} of {}	Pagina {} di {}
+Page {}: {}	Pagina {}: {}
 Pages	Pagine
 Panel layout	Layout del quadro
 Parameter {} has the wrong type	Il parametro {} ha il tipo errato
@@ -580,6 +581,7 @@ Socket side	Lato femmina
 Solenoid not linked	Bobina non collegata
 Sort by	Ordina per
 Source	Fonte
+Start	Inizio
 Started	Avviato
 State	Stato
 Status	Stato
@@ -710,6 +712,7 @@ yes	sì
 {} circuits	{} circuiti
 {} does not stand on the floor: choose a part marked for floor mounting	{} non poggia sul pavimento: scegli un articolo contrassegnato per il montaggio a pavimento
 {} exists already	{} esiste già
+{} exists already: pass overwrite to replace it	{} esiste già: passare overwrite per sostituirlo
 {} is not a PNG or JPEG image	{} non è un'immagine PNG o JPEG
 {} parts	{} articoli
 {} symbols	{} simboli

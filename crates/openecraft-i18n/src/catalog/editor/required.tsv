@@ -104,6 +104,7 @@ A schematic page 3.1, 3.2, … after the current page, kept as sub-page when ren
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Eine Schaltplanseite je geplantem Gerät mit Seitenmakro, das noch nicht im Schaltplan ist (gewähltes Segment, sonst alle)	Une page de schéma par appareil planifié avec une macro de page qui n'est pas encore dans le schéma (segment choisi, sinon tous)	Una página de esquema por equipo planificado con macro de página que aún no está en el esquema (segmento elegido, si no todos)
 A split project (.oecp) is a folder with one small file per page, device, part and embedded file, for version control such as git: File › Save as split project.	Ein geteiltes Projekt (.oecp) ist ein Ordner mit je einer kleinen Datei pro Seite, Betriebsmittel, Artikel und eingebetteter Datei, für die Versionsverwaltung wie git: Datei › Als geteiltes Projekt speichern.	Un projet fractionné (.oecp) est un dossier avec un petit fichier par page, appareil, article et fichier incorporé, pour la gestion de versions comme git : Fichier › Enregistrer comme projet fractionné.	Un proyecto dividido (.oecp) es una carpeta con un archivo pequeño por página, dispositivo, artículo y archivo incrustado, para el control de versiones como git: Archivo › Guardar como proyecto dividido.
 A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.	Ein geteiltes Projekt ist ein Ordner mit Dateien: der Browser kann es nicht öffnen. Wandeln Sie es zuerst in eine Projektdatei (.oec) oder ein Archiv (.oecz) um.	Un projet fractionné est un dossier de fichiers : le navigateur ne peut pas l'ouvrir. Convertissez-le d'abord en fichier de projet (.oec) ou en archive (.oecz).	Un proyecto dividido es una carpeta de archivos: el navegador no puede abrirlo. Conviértalo primero en un archivo de proyecto (.oec) o en un archivo comprimido (.oecz).
+A template file to pass on; File › Open template file… starts projects from it	Eine Vorlagendatei zum Weitergeben; Datei › Vorlagendatei öffnen… beginnt Projekte damit	Un fichier de modèle à transmettre ; Fichier › Ouvrir un fichier de modèle… démarre des projets à partir de lui	Un archivo de plantilla para pasar; Archivo › Abrir archivo de plantilla… inicia proyectos a partir de él
 A template of this name is replaced.	Eine Vorlage mit diesem Namen wird ersetzt.	Un modèle portant ce nom est remplacé.	Se reemplaza una plantilla con este nombre.
 A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Eine Vorlage legt Seitentyp, Plotrahmen, Schriftfeld, Struktur und Beschreibung einer neuen Seite fest und platziert ihren Inhalt.	Un modèle définit le type, le cadre, le cartouche, la structure et la description d'une nouvelle page et place son contenu.	Una plantilla fija el tipo, el marco, el cajetín, la estructura y la descripción de una página nueva y coloca su contenido.
 A way through free air costs this many times the way in a duct or routing path	Ein Weg durch freien Raum kostet so viel mal mehr als im Kanal oder Verlegeweg	Un chemin à l'air libre coûte autant de fois plus que dans une goulotte ou un chemin de routage	Un recorrido por aire libre cuesta tantas veces más que en una canaleta o ruta de tendido
@@ -657,6 +658,7 @@ Delete section	Abschnitt löschen	Supprimer la section	Eliminar sección
 Delete shaft	Schacht löschen	Supprimer la gaine	Eliminar patinillo
 Delete stair	Treppe löschen	Supprimer l'escalier	Eliminar escalera
 Delete string	String löschen	Supprimer la chaîne	Eliminar string
+Delete template	Vorlage löschen	Supprimer le modèle	Borrar plantilla
 Delete the group	Gruppe löschen	Supprimer le groupe	Eliminar el grupo
 Delete the group {}?	Gruppe {} löschen?	Supprimer le groupe {} ?	¿Eliminar el grupo {}?
 Delete the layer; its items move to the default layer	Ebene löschen; ihre Objekte kommen auf die Standardebene	Supprimer le calque ; ses éléments passent sur le calque par défaut	Eliminar la capa; sus elementos pasan a la capa predeterminada
@@ -839,6 +841,7 @@ Edge the door is hinged at, seen from the front: the 3D view opens the door ther
 Edit in table	In Tabelle bearbeiten	Modifier dans un tableau	Editar en tabla
 Edit in table…	In Tabelle bearbeiten…	Modifier dans un tableau…	Editar en tabla…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Bearbeitungsmodus: Gebäude im Lageplan an ihren Platz ziehen und drehen; ein Klick auf einen Raum öffnet ihn dann nicht mehr	Mode édition : faire glisser les bâtiments à leur place dans le plan de situation et les tourner ; un clic sur une pièce ne l'ouvre plus	Modo de edición: arrastre los edificios a su sitio en el plano de situación y gírelos; un clic en un local ya no lo abre
+Edit template	Vorlage bearbeiten	Modifier le modèle	Editar plantilla
 Edit the cable's core list or select another cable, then assign the crossed wires. Existing assignments must be changed explicitly in the wire properties.	Aderliste des Kabels bearbeiten oder anderes Kabel wählen, dann die gekreuzten Drähte zuordnen. Vorhandene Zuordnungen müssen ausdrücklich in den Drahteigenschaften geändert werden.	Modifiez la liste des conducteurs du câble ou sélectionnez un autre câble, puis affectez les fils croisés. Les affectations existantes doivent être modifiées explicitement dans les propriétés des fils.	Edite la lista de conductores del cable o seleccione otro cable y después asigne los hilos cruzados. Las asignaciones existentes deben modificarse expresamente en las propiedades de los hilos.
 Editable copy of this plot frame	Bearbeitbare Kopie dieses Plotrahmens	Copie modifiable de ce cadre	Copia editable de este marco
 Editable copy of this title block	Bearbeitbare Kopie dieses Schriftfelds	Copie modifiable de ce cartouche	Copia editable de este cajetín
@@ -890,6 +893,7 @@ Export SVG…	SVG exportieren…	Exporter en SVG…	Exportar SVG…
 Export all pages as PDF in {}	Alle Seiten als PDF in {} exportieren	Exporter toutes les pages en PDF en {}	Exportar todas las páginas como PDF en {}
 Export as EPLAN parts XML…	Als EPLAN-Artikel-XML exportieren…	Exporter en XML d'articles EPLAN…	Exportar como XML de artículos EPLAN…
 Export as PDF in language	Als PDF in Sprache exportieren	Exporter en PDF dans la langue	Exportar como PDF en idioma
+Export as file…	Als Datei exportieren…	Exporter comme fichier…	Exportar como archivo…
 Export check scheme…	Prüfschema exportieren…	Exporter le schéma de vérification…	Exportar el esquema de comprobación…
 Export favorites…	Favoriten exportieren…	Exporter les favoris…	Exportar favoritos…
 Export library…	Bibliothek exportieren…	Exporter la bibliothèque…	Exportar biblioteca…
@@ -973,6 +977,8 @@ Formboard drawing of the harness to scale with branch lengths and the pin tables
 Formboard length	Formbrettlänge	Longueur sur planche	Longitud en tablero
 Forms	Formulare	Formulaires	Formularios
 Forms and frames	Formulare und Rahmen	Formulaires et cadres	Formularios y marcos
+Formula	Formel	Formule	Fórmula
+Formulas	Formeln	Formules	Fórmulas
 Form…	Formular…	Formulaire…	Formulario…
 Found: {} rooms, {} doors, {} windows	Erkannt: {} Räume, {} Türen, {} Fenster	Détecté : {} pièces, {} portes, {} fenêtres	Detectado: {} salas, {} puertas, {} ventanas
 Frame	Rahmen	Cadre	Marco
@@ -1184,6 +1190,7 @@ Introduction	Einführung	Introduction	Introducción
 Invalid value	Ungültiger Wert	Valeur invalide	Valor no válido
 Invert the direction of panning by scrolling	Richtung des Verschiebens durch Scrollen umkehren	Inverser le sens du déplacement par défilement	Invertir la dirección del desplazamiento de la vista
 Inverter or charge controller (devices with PV input data)	Wechselrichter oder Laderegler (Betriebsmittel mit PV-Eingangsdaten)	Onduleur ou régulateur de charge (appareils avec des données d'entrée PV)	Inversor o regulador de carga (dispositivos con datos de entrada FV)
+It takes the place of the bundled template of this name.	Sie tritt an die Stelle der mitgelieferten Vorlage dieses Namens.	Il prend la place du modèle fourni de ce nom.	Ocupa el lugar de la plantilla incluida con este nombre.
 Items copied: {}	Kopierte Elemente: {}	Éléments copiés : {}	Elementos copiados: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Kopierte Elemente: {} (ausgelassene Betriebsmittel: {}, ein Betriebsmittel wird nur einmal platziert)	Éléments copiés : {} (appareils omis : {}, un appareil n'est placé qu'une fois)	Elementos copiados: {} (dispositivos omitidos: {}, un dispositivo se coloca una sola vez)
 Items cut: {}	Ausgeschnittene Elemente: {}	Éléments coupés : {}	Elementos cortados: {}
@@ -1421,6 +1428,7 @@ Nailboard (SVG)…	Nagelbrett (SVG)…	Plan de clouage (SVG)…	Plano de clavos 
 Name and cross reference	Name und Querverweis	Nom et renvoi	Nombre y referencia cruzada
 Name on the server	Name auf dem Server	Nom sur le serveur	Nombre en el servidor
 Name the inspector in the report data first.	Zuerst den Prüfer in den Berichtsdaten angeben.	Indiquez d'abord le contrôleur dans les données du rapport.	Indique primero el inspector en los datos del informe.
+Name, parameters, formulas and page conditions of the project as a template	Name, Parameter, Formeln und Seitenbedingungen des Projekts als Vorlage	Nom, paramètres, formules et conditions de page du projet en tant que modèle	Nombre, parámetros, fórmulas y condiciones de página del proyecto como plantilla
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Name; Datentyp; Logische Adresse; Kommentar – für SPS-Programmierwerkzeuge	Nom ; Type de données ; Adresse logique ; Commentaire – pour les outils de programmation API	Nombre; Tipo de datos; Dirección lógica; Comentario – para herramientas de programación PLC
 Named copy of this form, for report blocks	Benannte Kopie dieses Formulars, für Auswertungsblöcke	Copie nommée de ce formulaire, pour les blocs de rapports	Copia con nombre de este formulario, para bloques de informes
 Navigators	Navigatoren	Navigateurs	Navegadores
@@ -1449,6 +1457,7 @@ New pages for every group (strip, plug, cable, device …)	Neue Seiten für jede
 New potential	Neues Potenzial	Nouveau potentiel	Nuevo potencial
 New project	Neues Projekt	Nouveau projet	Nuevo proyecto
 New project from template	Neues Projekt aus Vorlage	Nouveau projet à partir d'un modèle	Nuevo proyecto desde plantilla
+New project from {}	Neues Projekt aus {}	Nouveau projet à partir de {}	Proyecto nuevo a partir de {}
 New project scheme from the selected one	Neues Projektschema aus dem gewählten	Nouveau schéma de projet à partir du schéma choisi	Nuevo esquema de proyecto a partir del seleccionado
 New project, not saved yet	Neues Projekt, noch nicht gespeichert	Nouveau projet, pas encore enregistré	Proyecto nuevo, aún no guardado
 New report page	Neue Berichtsseite	Nouvelle page de rapport	Nueva página de informe
@@ -1585,6 +1594,7 @@ Number prefix	Nummernpräfix	Préfixe de numéro	Prefijo de número
 Number wires	Leitungen nummerieren	Numéroter les fils	Numerar hilos
 Numbering	Nummerierung	Numérotation	Numeración
 Numbers removed from {} wires	Nummern von {} Leitungen entfernt	Numéros retirés de {} fils	Números eliminados de {} hilos
+Numeric	Zahl	Numérique	Numérico
 Object	Objekt	Objet	Objeto
 Of it the feeder cables up to the board: {} %	Davon die Zuleitungskabel bis zum Verteiler: {} %	Dont les câbles d'alimentation jusqu'au tableau : {} %	De ello, los cables de alimentación hasta el cuadro: {} %
 Of the outer diameter, as laid fixed	Vom Außendurchmesser, fest verlegt	Du diamètre extérieur, en pose fixe	Del diámetro exterior, en instalación fija
@@ -1706,6 +1716,7 @@ PV array {} lies outside the protection of the air-termination system	PV-Anlage 
 PV array {} of building {}: {} modules	PV-Anlage {} von Gebäude {}: {} Module	Champ photovoltaïque {} du bâtiment {} : {} modules	Campo fotovoltaico {} del edificio {}: {} módulos
 PV array {} of building {}: {} modules, {} kWp	PV-Anlage {} von Gebäude {}: {} Module, {} kWp	Champ photovoltaïque {} du bâtiment {} : {} modules, {} kWc	Campo fotovoltaico {} del edificio {}: {} módulos, {} kWp
 PV arrays	PV-Anlagen	Champs photovoltaïques	Campos fotovoltaicos
+Page conditions	Seitenbedingungen	Conditions de page	Condiciones de página
 Page graphics	Seitengrafik	Graphique de page	Gráficos de página
 Page heading	Seitenüberschrift	Titre de la page	Encabezado de la página
 Page list, devices, parts, panel layout and settings	Seitenliste, Geräte, Artikel, Schaltschrankaufbau und Einstellungen	Liste des pages, appareils, articles, implantation d'armoire et paramètres	Lista de páginas, dispositivos, artículos, montaje del armario y ajustes
@@ -1721,7 +1732,6 @@ Page {} ({})	Seite {} ({})	Page {} ({})	Página {} ({})
 Page {} is now page {}	Seite {} ist jetzt Seite {}	La page {} est maintenant la page {}	La página {} ahora es la página {}
 Page {} locked	Seite {} gesperrt	Page {} verrouillée	Página {} bloqueada
 Page {} – {}	Seite {} – {}	Page {} – {}	Página {} – {}
-Page {}: {}	Seite {}: {}	Page {} : {}	Página {}: {}
 Page, Insert center and properties	Seite, Einfügezentrum und Eigenschaften	Page, centre d'insertion et propriétés	Página, centro de inserción y propiedades
 Pages and structure	Seiten und Struktur	Pages et structure	Páginas y estructura
 Pages and templates using the frame follow	Seiten und Vorlagen mit diesem Rahmen ziehen mit	Les pages et modèles utilisant ce cadre suivent	Las páginas y plantillas que usan el marco lo siguen
@@ -1736,6 +1746,9 @@ Pane menu	Fenstermenü	Menu du panneau	Menú del panel
 Panel wiring report	Bericht Schaltschrankverdrahtung	Rapport de câblage de l'armoire	Informe de cableado del armario
 Panes	Fenster	Panneaux	Paneles
 Paper	Papier	Papier	Papel
+Parameter	Parameter	Paramètre	Parámetro
+Parameters	Parameter	Paramètres	Parámetros
+Parameters are asked for when a project is started from the template; formulas work out further values. Both fill {NAME} in the texts of the project. A page with a condition (REPORTS=yes) is left out when it does not hold.	Parameter werden beim Anlegen eines Projekts aus der Vorlage abgefragt; Formeln berechnen weitere Werte. Beide füllen {NAME} in den Texten des Projekts. Eine Seite mit einer Bedingung (REPORTS=yes) entfällt, wenn sie nicht zutrifft.	Les paramètres sont demandés quand un projet est démarré à partir du modèle ; les formules calculent d'autres valeurs. Les deux remplissent {NAME} dans les textes du projet. Une page avec une condition (REPORTS=yes) est omise quand elle n'est pas remplie.	Los parámetros se piden al iniciar un proyecto a partir de la plantilla; las fórmulas calculan otros valores. Ambos rellenan {NAME} en los textos del proyecto. Una página con una condición (REPORTS=yes) se omite cuando no se cumple.
 Parent section	Übergeordneter Abschnitt	Section parente	Sección superior
 Part of the profile: generic types or parts from the parts store	Artikel des Profils: generische Typen oder Artikel aus dem Artikelstamm	Article du profilé : types génériques ou articles de la base d'articles	Artículo del perfil: tipos genéricos o artículos de la base de artículos
 Part selection from the parts database	Artikelauswahl aus der Artikeldatenbank	Sélection d'article dans la base d'articles	Selección de artículo de la base de datos de artículos
@@ -2123,6 +2136,7 @@ Save as 3D macro	Als 3D-Makro speichern	Enregistrer comme macro 3D	Guardar como 
 Save as 3D macro…	Als 3D-Makro speichern…	Enregistrer comme macro 3D…	Guardar como macro 3D…
 Save as local file	Als lokale Datei speichern	Enregistrer comme fichier local	Guardar como archivo local
 Save as macro	Als Makro speichern	Enregistrer comme macro	Guardar como macro
+Save as project template	Als Projektvorlage speichern	Enregistrer comme modèle de projet	Guardar como plantilla de proyecto
 Save as project template…	Als Projektvorlage speichern…	Enregistrer comme modèle de projet…	Guardar como plantilla de proyecto…
 Save as scheme	Als Schema speichern	Enregistrer comme schéma	Guardar como esquema
 Save as split project…	Als geteiltes Projekt speichern…	Enregistrer comme projet fractionné…	Guardar como proyecto dividido…
@@ -2151,6 +2165,8 @@ Save to project server: {} – the connection is lost, saving tries again	Auf de
 Save to project server: {} – the project is being opened again first	Auf dem Projektserver speichern: {} – das Projekt wird zuerst erneut geöffnet	Enregistrer sur le serveur de projets : {} – le projet est d'abord rouvert	Guardar en el servidor de proyectos: {} – primero se vuelve a abrir el proyecto
 Save workspace	Arbeitsbereich speichern	Enregistrer l'espace de travail	Guardar espacio de trabajo
 Save workspace…	Arbeitsbereich speichern…	Enregistrer l'espace de travail…	Guardar espacio de trabajo…
+Saved in the browser	Im Browser gespeichert	Enregistré dans le navigateur	Guardada en el navegador
+Saved in {}, where the command line finds it too	Gespeichert in {}, wo auch die Kommandozeile sie findet	Enregistré dans {}, où la ligne de commande le trouve aussi	Guardada en {}, donde también la encuentra la línea de comandos
 Saved the properties of {} (revision {})	Eigenschaften von {} gespeichert (Revision {})	Propriétés de {} enregistrées (révision {})	Propiedades de {} guardadas (revisión {})
 Saved to	Gespeichert in	Enregistré dans	Guardado en
 Saved to the project server (revision {})	Auf dem Projektserver gespeichert (Revision {})	Enregistré sur le serveur de projets (révision {})	Guardado en el servidor de proyectos (revisión {})
@@ -2160,6 +2176,7 @@ Saved {}. Another program changed files of the project meanwhile ({}): the proje
 Saves the layers with their settings as a settings scheme for other projects	Speichert die Ebenen mit ihren Einstellungen als Einstellungsschema für andere Projekte	Enregistre les calques avec leurs paramètres comme schéma de paramètres pour d'autres projets	Guarda las capas con sus ajustes como esquema de ajustes para otros proyectos
 Saves the placed properties as a placement scheme of the project	Speichert die platzierten Eigenschaften als Platzierungsschema des Projekts	Enregistre les propriétés placées comme schéma de placement du projet	Guarda las propiedades colocadas como esquema de colocación del proyecto
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Speichert das Projekt ohne Revisionen, Stände, Prüfung und Verdrahtungsmarken als Vorlage für neue Projekte	Enregistre le projet sans révisions, états de référence, revue ni marques de câblage comme modèle de nouveaux projets	Guarda el proyecto sin revisiones, líneas base, revisión ni marcas de cableado como plantilla para nuevos proyectos
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones	Speichert das Projekt ohne Revisionen, Stände, Prüfung und Verdrahtungsmarken als Vorlage für neue Projekte, im Vorlagenordner neben den mitgelieferten	Enregistre le projet sans révisions, états de référence, revue ni marques de câblage comme modèle pour de nouveaux projets, dans le dossier des modèles à côté de ceux fournis	Guarda el proyecto sin revisiones, estados de referencia, revisión ni marcas de cableado como plantilla para proyectos nuevos, en la carpeta de plantillas junto a las incluidas
 Saves the project's own properties, function definitions and schemes for other projects	Speichert die eigenen Eigenschaften, Funktionsdefinitionen und Schemata des Projekts für andere Projekte	Enregistre les propriétés, définitions de fonction et schémas propres au projet pour d'autres projets	Guarda las propiedades, definiciones de función y esquemas propios del proyecto para otros proyectos
 Saves the workspace, the arrangement of the panels and the open windows	Speichert den Arbeitsbereich, die Anordnung der Fenster und die geöffneten Dialoge	Enregistre l'espace de travail, la disposition des panneaux et les fenêtres ouvertes	Guarda el espacio de trabajo, la disposición de los paneles y las ventanas abiertas
 Saves your version of the whole project as a project file	Speichert Ihre Fassung des ganzen Projekts als Projektdatei	Enregistre votre version du projet entier dans un fichier de projet	Guarda su versión de todo el proyecto como archivo de proyecto
@@ -2342,7 +2359,6 @@ Standard workspaces	Standard-Arbeitsbereiche	Espaces de travail standard	Espacio
 Standoff height	Abstandshöhe	Hauteur d'entretoise	Altura del distanciador
 Star a command in Plugin commands to pin it here	Einen Befehl in Plugin-Befehle mit dem Stern markieren, um ihn hier anzuheften	Marquez une commande d'une étoile dans Commandes de plugin pour l'épingler ici	Marque un comando con la estrella en Comandos de plugin para fijarlo aquí
 Star: the first point refers to all, the others to it	Stern: der erste Punkt verweist auf alle, die anderen auf ihn	Étoile : le premier point renvoie à tous, les autres à lui	Estrella: el primer punto remite a todos, los demás a él
-Start	Start	Départ	Inicio
 Start again when the page structure changes	Neu beginnen, wenn sich die Seitenstruktur ändert	Recommencer quand la structure de page change	Empezar de nuevo cuando cambia la estructura de página
 Start at	Beginnen bei	Commencer à	Empezar en
 Start byte	Startbyte	Octet de départ	Byte inicial
@@ -2434,6 +2450,9 @@ Takes the way with the least weight: its length in grid steps, 1.2 per bend and 
 Target languages	Zielsprachen	Langues cibles	Idiomas de destino
 Temperature rise at the roof against the middle (IEC/TR 60890)	Temperaturerhöhung am Dach gegenüber der Mitte (IEC/TR 60890)	Échauffement au toit par rapport au milieu (CEI/TR 60890)	Aumento de temperatura en el techo respecto al centro (IEC/TR 60890)
 Template	Vorlage	Modèle	Plantilla
+Template parameters	Vorlagenparameter	Paramètres du modèle	Parámetros de plantilla
+Template {} deleted	Vorlage {} gelöscht	Modèle {} supprimé	Plantilla {} borrada
+Template {} saved	Vorlage {} gespeichert	Modèle {} enregistré	Plantilla {} guardada
 Templates	Vorlagen	Modèles	Plantillas
 Terminal markers	Klemmenmarkierer	Repères de bornes	Marcadores de bornas
 Terminal number, PLC address, potential name …	Klemmennummer, SPS-Adresse, Potenzialname …	Numéro de borne, adresse API, nom du potentiel …	Número de borne, dirección PLC, nombre del potencial …
@@ -2782,6 +2801,7 @@ all lines	alle Zeilen	toutes les lignes	todas las líneas
 all, or e.g. -X*, -W1	alle, oder z. B. -X*, -W1	tous, ou p. ex. -X*, -W1	todos, o p. ej. -X*, -W1
 all, or e.g. K, Q	alle, oder z. B. K, Q	toutes, ou p. ex. K, Q	todas, o p. ej. K, Q
 along z	entlang z	le long de z	a lo largo de z
+always	immer	toujours	siempre
 both ends	beide Enden	les deux extrémités	ambos extremos
 built-in	eingebaut	intégrée	integrada
 by hand	von Hand	à la main	a mano
@@ -2807,6 +2827,7 @@ e.g. corp:Engineering	z. B. corp:Konstruktion	p. ex. corp:Ingenierie	p. ej. corp
 e.g. customer, ERP, PLM	z. B. Kunde, ERP, PLM	p. ex. client, ERP, PLM	p. ej. cliente, ERP, PLM
 e.g. cutout too small, part missing	z. B. Ausschnitt zu klein, Artikel fehlt	p. ex. découpe trop petite, article manquant	p. ej. recorte demasiado pequeño, falta el artículo
 e.g. de, fr, it	z. B. de, fr, it	p. ex. de, fr, it	p. ej. de, fr, it
+e.g. round(POWER_KW * 2, 1)	z. B. round(POWER_KW * 2, 1)	p. ex. round(POWER_KW * 2, 1)	p. ej. round(POWER_KW * 2, 1)
 e.g. wire too short, terminal missing	z. B. Draht zu kurz, Klemme fehlt	p. ex. fil trop court, borne manquante	p. ej. cable demasiado corto, falta un borne
 empty	leer	vide	vacía
 female	Buchse	femelle	hembra
@@ -2856,6 +2877,7 @@ ridge {} m	First {} m	faîtage {} m	cumbrera {} m
 set on the device	am Betriebsmittel gesetzt	défini sur l'appareil	definido en el dispositivo
 sloped ceiling from {} m	Dachschräge ab {} m	plafond rampant dès {} m	techo inclinado desde {} m
 some	einige	certaines	algunas
+sqrt, abs, round(x, digits), ceil, floor, min, max, if(condition, then, else), step(x, limit, value, …, otherwise); & joins texts	sqrt, abs, round(x, Stellen), ceil, floor, min, max, if(Bedingung, dann, sonst), step(x, Grenze, Wert, …, sonst); & verbindet Texte	sqrt, abs, round(x, chiffres), ceil, floor, min, max, if(condition, alors, sinon), step(x, limite, valeur, …, sinon) ; & joint des textes	sqrt, abs, round(x, cifras), ceil, floor, min, max, if(condición, entonces, si no), step(x, límite, valor, …, si no); & une textos
 taken over	übernommen	reprise	adoptada
 the device before it	das Betriebsmittel davor	l'appareil précédent	el equipo anterior
 the project data (page list, devices, settings)	die Projektdaten (Seitenliste, Geräte, Einstellungen)	les données du projet (liste des pages, appareils, paramètres)	los datos del proyecto (lista de páginas, dispositivos, ajustes)
@@ -2893,6 +2915,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} (revision {})	{} (Revision {})	{} (révision {})	{} (revisión {})
 {} (spare)	{} (Reserve)	{} (réserve)	{} (reserva)
 {} (subproject of {})	{} (Teilprojekt von {})	{} (sous-projet de {})	{} (subproyecto de {})
+{} (template of the user)	{} (Vorlage des Benutzers)	{} (modèle de l'utilisateur)	{} (plantilla del usuario)
 {} (unused)	{} (unbenutzt)	{} (inutilisée)	{} (sin usar)
 {} ({} of {})	{} ({} von {})	{} ({} sur {})	{} ({} de {})
 {} ({} open)	{} ({} offen)	{} ({} à traduire)	{} ({} pendientes)

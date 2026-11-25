@@ -290,7 +290,6 @@ Main	Hoved
 Main earthing busbar (device) it is connected to; empty: none	Hovedjordskinne (apparat), som den er tilsluttet; tom: ingen
 Main earthing terminal	Hovedjordskinne
 Main equipotential bonding (Ω)	Hovedudligningsforbindelse (Ω)
-Main switch	Hovedafbryder
 Manufacturer	Producent
 Manufacturers	Producenter
 Manufacturing	Produktion
@@ -322,6 +321,7 @@ Name of the block	Blokkens navn
 Name of the plot, e.g. the cadastral parcel	Grundens navn, f.eks. matriklen
 Name of the point, e.g. a survey point	Punktets navn, f.eks. et målepunkt
 Name of the scheme	Skemaets navn
+Name of the template	Skabelonens navn
 Net	Net
 Never	Aldrig
 New group	Ny gruppe
@@ -406,6 +406,7 @@ Page templates	Sideskabeloner
 Page type	Sidetype
 Page {} is locked	Side {} er låst
 Page {} of {}	Side {} af {}
+Page {}: {}	Side {}: {}
 Pages	Sider
 Panel layout	Tavlelayout
 Parameter {} has the wrong type	Parameteren {} har den forkerte type
@@ -580,6 +581,7 @@ Socket side	Bøsningsside
 Solenoid not linked	Magnetspole ikke tilknyttet
 Sort by	Sortér efter
 Source	Kilde
+Start	Start
 Started	Startet
 State	Tilstand
 Status	Status
@@ -710,6 +712,7 @@ yes	ja
 {} circuits	{} kredse
 {} does not stand on the floor: choose a part marked for floor mounting	{} står ikke på gulvet: vælg en artikel, der er markeret til gulvmontage
 {} exists already	{} findes allerede
+{} exists already: pass overwrite to replace it	{} findes allerede: angiv overwrite for at erstatte den
 {} is not a PNG or JPEG image	{} er ikke et PNG- eller JPEG-billede
 {} parts	{} artikler
 {} symbols	{} symboler

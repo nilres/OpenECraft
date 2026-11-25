@@ -290,7 +290,6 @@ Main	Hlavní
 Main earthing busbar (device) it is connected to; empty: none	Hlavní uzemňovací přípojnice (zařízení), ke které je připojen; prázdné: žádná
 Main earthing terminal	Hlavní uzemňovací svorka
 Main equipotential bonding (Ω)	Hlavní ochranné pospojování (Ω)
-Main switch	Hlavní vypínač
 Manufacturer	Výrobce
 Manufacturers	Výrobci
 Manufacturing	Výroba
@@ -322,6 +321,7 @@ Name of the block	Název bloku
 Name of the plot, e.g. the cadastral parcel	Název pozemku, např. katastrální parcela
 Name of the point, e.g. a survey point	Název bodu, např. geodetický bod
 Name of the scheme	Název schématu
+Name of the template	Název šablony
 Net	Síť
 Never	Nikdy
 New group	Nová skupina
@@ -406,6 +406,7 @@ Page templates	Šablony stránek
 Page type	Typ stránky
 Page {} is locked	Stránka {} je uzamčena
 Page {} of {}	Stránka {} z {}
+Page {}: {}	Stránka {}: {}
 Pages	Stránky
 Panel layout	Rozvržení rozváděče
 Parameter {} has the wrong type	Parametr {} má nesprávný typ
@@ -580,6 +581,7 @@ Socket side	Strana zdířek
 Solenoid not linked	Cívka není propojena
 Sort by	Seřadit podle
 Source	Zdroj
+Start	Začátek
 Started	Zahájeno
 State	Stav
 Status	Stav
@@ -710,6 +712,7 @@ yes	ano
 {} circuits	Obvody: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} nestojí na podlaze: zvolte artikl označený pro montáž na podlahu
 {} exists already	{} již existuje
+{} exists already: pass overwrite to replace it	{} již existuje: pro nahrazení zadejte overwrite
 {} is not a PNG or JPEG image	{} není obrázek PNG ani JPEG
 {} parts	Artikly: {}
 {} symbols	Symboly: {}

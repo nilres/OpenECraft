@@ -33,6 +33,7 @@ pub mod macro_box;
 pub mod plugs;
 pub mod harness;
 pub mod config;
+pub mod project_template;
 pub mod structure;
 pub mod subproject;
 pub mod review;
@@ -149,6 +150,9 @@ pub struct Project {
     /// Options and generation rules of the configurator.
     #[serde(skip_serializing_if = "config::Configuration::is_empty")]
     pub configuration: config::Configuration,
+    /// Name, parameters and formulas of a project template (`crate::project_templates`).
+    #[serde(skip_serializing_if = "project_template::TemplateDefinition::is_empty")]
+    pub template: project_template::TemplateDefinition,
     /// Marker texts and materials.
     #[serde(skip_serializing_if = "marking::Settings::is_default")]
     pub marking: marking::Settings,
@@ -253,6 +257,7 @@ impl Default for Project {
             report_blocks: Vec::new(),
             marking: Default::default(),
             configuration: Default::default(),
+            template: Default::default(),
             fluid: Default::default(),
             pct_loops: Vec::new(),
             wiring_marks: Vec::new(),
@@ -708,6 +713,10 @@ pub struct Page {
     /// Inserted by the configurator: replaced when it generates again.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub generated: bool,
+    /// On a page of a project template: `OPTION=value` (as in the configurator); a
+    /// project started from the template leaves the page out when it does not hold.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub condition: String,
     /// Title block of this page; empty = the project's default.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub title_block: String,
@@ -782,6 +791,7 @@ impl Page {
             product: String::new(),
             locked: false,
             generated: false,
+            condition: String::new(),
             title_block: String::new(),
             frame: String::new(),
             scale: 1.0,
@@ -2233,6 +2243,13 @@ impl Project {
             self.fix_next_id();
             self.id_floor.0 = self.next_id + (random() % ID_SLOTS + 1) * ID_SLOT;
         }
+    }
+
+    /// In a project template, a text holding a placeholder `{NAME}` of its parameters
+    /// or formulas, filled when a project is started from it.
+    pub fn placeholder(&self, text: &str) -> bool {
+        let def = &self.template;
+        def.parameters.iter().map(|p| &p.name).chain(def.formulas.iter().map(|f| &f.name)).any(|n| text.contains(&format!("{{{n}}}")))
     }
 
     /// Reads a project file and prepares it for editing ([`Project::normalize`]).

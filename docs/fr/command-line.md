@@ -32,6 +32,17 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   refuse `undo` / `redo`, car elle rouvre le projet pour chaque commande. Une archive donnée
   comme `--project` reste inchangée : enregistrez le projet comme fichier de projet
   (`save_project --path <file>.oec`) ou convertissez l'archive (`convert_project`).
+- **Modèles de projet** : `list_project_templates` liste les modèles fournis et ceux du
+  dossier des modèles (`--templates <dossier>`, `OPENECRAFT_TEMPLATES`, sinon
+  `OpenECraft/data/templates` dans le dossier de données de l'utilisateur, que l'éditeur
+  utilise aussi). `new_project --template "Motor starter direct on line" --values
+  '{"POWER_KW": 7.5}'` démarre un projet avec les valeurs de ses paramètres,
+  `template_values` montre ce que calculent les formules sans en démarrer un,
+  `save_project_template` enregistre le projet ouvert dans le dossier et
+  `delete_project_template` y supprime un modèle ; un modèle du dossier portant le nom
+  d'un modèle fourni prend sa place. `new_project --edit` ouvre un modèle lui-même,
+  `get_template`, `set_template_parameter`, `set_template_formula` et `set_page
+  --condition` le modifient ([modèles de projet](features/schematic.md#modèles-de-projet)).
 - Un **projet fractionné** conserve le projet sous forme de nombreux petits fichiers pour la
   gestion de versions (git) : l'index `<name>.oecp` avec, à côté de lui, un dossier `pages`
   (un fichier par page), `data` (un fichier par appareil, article, câble … et par domaine

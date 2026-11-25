@@ -27,6 +27,7 @@ pub fn run(argv: &[String]) -> Result<String, String> {
     let mut session = Session::new(parts_server::Server::from_options(&inv.options));
     session.vault = vault::Vault::from_env();
     session.plugins.load_env();
+    session.templates = inv.options.templates.as_ref().map(std::path::PathBuf::from).or_else(openecraft_client::places::templates_dir);
     if let Some(dir) = &inv.options.plugins {
         session.plugins.load_dir(std::path::Path::new(dir));
     }

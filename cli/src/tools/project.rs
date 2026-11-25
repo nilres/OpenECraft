@@ -21,7 +21,9 @@ pub static TOOLS: &[Tool] = &[
             optional("name", Kind::Str, tr_const!("Project name")),
             optional("demo", Kind::Bool, tr_const!("Start from the demo project")),
             optional("example", Kind::Str, tr_const!("Start from an example project (names: list_examples)")),
-            optional("template", Kind::Str, tr_const!("Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file")),
+            optional("template", Kind::Str, tr_const!("Start from a project template (list_project_templates: the bundled ones such as Machine or Motor starter direct on line, and those of the templates folder) or a template file")),
+            optional("values", Kind::Object, tr_const!("Values of the parameters of the template (name: value, e.g. POWER_KW: 7.5); the others keep their default")),
+            optional("edit", Kind::Bool, tr_const!("Open the template itself to change it: placeholders, parameters and page conditions stay (save_project_template saves it)")),
             optional("overwrite", Kind::Bool, tr_const!("Replace the file at path if it exists")),
             DISCARD,
         ],
@@ -120,15 +122,12 @@ fn new_project(s: &mut Session, a: &Args) -> Result<Value, String> {
     } else if let Some(key) = a.str("example") {
         sample::example(key).ok_or_else(|| tr_fmt!("Unknown example {}: see list_examples", key))?
     } else if let Some(t) = a.str("template") {
-        let template = match openecraft_core::project_templates::builtin(t) {
-            Some(p) => p,
-            None if !std::path::Path::new(t).exists() => {
-                let names: Vec<&str> = openecraft_core::project_templates::BUILTIN.iter().map(|(n, _)| tr(n)).collect();
-                return Err(tr_fmt!("Unknown template {}: give a built-in one ({}) or a project file", t, names.join(", ")));
-            }
-            None => crate::session::read_project(std::path::Path::new(t))?.0,
-        };
-        openecraft_core::project_templates::from_template(&template, "", "")
+        let template = super::templates::find(s, t)?;
+        if a.flag("edit") {
+            openecraft_core::project_templates::from_template(&template, "", "")
+        } else {
+            openecraft_core::project_templates::instantiate(&template, a.str("name").unwrap_or_default(), "", &super::templates::given(a))?
+        }
     } else {
         Project::new_default()
     };

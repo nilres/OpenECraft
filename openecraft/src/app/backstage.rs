@@ -21,6 +21,8 @@ impl App {
                         let r = backstage_entry(ui, p.icon(), tr(p.title()), p == page);
                         if r.clicked() {
                             self.backstage = Some(p);
+                            // Templates saved meanwhile (also by the command line) show.
+                            self.templates_ui.reload();
                         }
                     }
                     Entry::Command(c) => {
@@ -159,16 +161,7 @@ impl App {
 
     fn backstage_new(&mut self, ui: &mut egui::Ui) {
         ui.label(RichText::new(tr("New project from template")).strong());
-        ui.horizontal_wrapped(|ui| {
-            for (name, desc) in openecraft_core::project_templates::BUILTIN {
-                if tile(ui, Icon::Template, tr(name)).on_hover_text(tr(desc)).clicked() {
-                    if let Some(t) = openecraft_core::project_templates::builtin(name) {
-                        let prj = openecraft_core::project_templates::from_template(&t, tr("New project"), &openecraft_ui::io::today());
-                        self.request_replace(&ui.ctx().clone(), Replace::Project(Box::new(prj), None));
-                    }
-                }
-            }
-        });
+        self.backstage_templates(ui);
         self.backstage_examples(ui);
     }
 

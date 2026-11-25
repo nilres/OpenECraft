@@ -290,7 +290,6 @@ Main	Główny
 Main earthing busbar (device) it is connected to; empty: none	Główna szyna uziemiająca (urządzenie), do której jest podłączony; puste: brak
 Main earthing terminal	Główna szyna uziemiająca
 Main equipotential bonding (Ω)	Połączenia wyrównawcze główne (Ω)
-Main switch	Wyłącznik główny
 Manufacturer	Producent
 Manufacturers	Producenci
 Manufacturing	Produkcja
@@ -322,6 +321,7 @@ Name of the block	Nazwa bloku
 Name of the plot, e.g. the cadastral parcel	Nazwa działki, np. działka ewidencyjna
 Name of the point, e.g. a survey point	Nazwa punktu, np. punkt osnowy
 Name of the scheme	Nazwa wzorca
+Name of the template	Nazwa szablonu
 Net	Sieć
 Never	Nigdy
 New group	Nowa grupa
@@ -406,6 +406,7 @@ Page templates	Szablony stron
 Page type	Typ strony
 Page {} is locked	Strona {} jest zablokowana
 Page {} of {}	Strona {} z {}
+Page {}: {}	Strona {}: {}
 Pages	Strony
 Panel layout	Zabudowa szafy
 Parameter {} has the wrong type	Parametr {} ma nieprawidłowy typ
@@ -580,6 +581,7 @@ Socket side	Strona gniazda
 Solenoid not linked	Cewka niepowiązana
 Sort by	Sortuj według
 Source	Źródło
+Start	Początek
 Started	Rozpoczęto
 State	Stan
 Status	Stan
@@ -710,6 +712,7 @@ yes	tak
 {} circuits	Obwody: {}
 {} does not stand on the floor: choose a part marked for floor mounting	{} nie stoi na podłodze: wybierz artykuł oznaczony do montażu na podłodze
 {} exists already	{} już istnieje
+{} exists already: pass overwrite to replace it	{} już istnieje: podaj overwrite, aby go zastąpić
 {} is not a PNG or JPEG image	{} nie jest obrazem PNG ani JPEG
 {} parts	Artykuły: {}
 {} symbols	Symbole: {}

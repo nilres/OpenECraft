@@ -336,6 +336,16 @@ Coil power: 4.5 W
 B10d: 1300000".into();
     p.power = "7.5 kW / 400 V".into();
     p.accessories = vec!["GEN.AUX-2NO2NC".into(), "GEN.AUX-1NO1NC".into()];
+    for (amps, kw, price, loss, width) in [(25, "11", 78.0, "6", 55.0), (32, "15", 96.0, "7.5", 55.0)] {
+        let p = c.add(&format!("GEN.CT-{amps}A-24DC"), &format!("Contactor 3P {amps} A, coil 24 V DC, 1 NO + 1 NC aux"), rc, "Power contactor", "K", price, (width, 90.0, 100.0, 0.6), &[(Coil, "A1 A2"), (MainContacts3, main3), (No, "13 14"), (Nc, "21 22")]);
+        p.voltage = "24 V DC".into();
+        p.current = format!("{amps} A (AC-3)");
+        p.tech_data = format!("Power loss: {loss} W
+Coil power: {loss} W
+B10d: 1300000");
+        p.power = format!("{kw} kW / 400 V");
+        p.accessories = vec!["GEN.AUX-2NO2NC".into(), "GEN.AUX-1NO1NC".into()];
+    }
     c.add("GEN.AUX-2NO2NC", "Auxiliary contact block 2 NO + 2 NC, front mounting", rc, "Auxiliary contact block", "K", 14.6, (45.0, 40.0, 40.0, 0.05), &[(No, "53 54"), (Nc, "61 62"), (Nc, "71 72"), (No, "83 84")]).accessory_front();
     c.add("GEN.AUX-1NO1NC", "Auxiliary contact block 1 NO + 1 NC", rc, "Auxiliary contact block", "K", 9.8, (45.0, 40.0, 40.0, 0.03), &[(No, "53 54"), (Nc, "61 62")]).accessory_front();
     let p = c.add("GEN.RLY-24DC-2CO", "Interface relay 24 V DC, 2 CO, with socket", rc, "Relay", "K", 12.4, (15.5, 78.0, 70.0, 0.04), &[(Coil, "A1 A2"), (Changeover, "11 12 14"), (Changeover, "21 22 24")]);
@@ -379,6 +389,16 @@ Instantaneous trip: 13 x In".into();
 Breaking capacity: 50 kA
 Instantaneous trip: 13 x In".into();
     p.accessories = vec!["GEN.MPS-AUX-1NO1NC".into()];
+    // The further setting ranges, for the motor starter templates.
+    for (range, price, loss) in [("0.63 - 1", 58.0, 4), ("1 - 1.6", 58.0, 4), ("1.6 - 2.5", 59.0, 5), ("6.3 - 10", 66.0, 7), ("10 - 16", 72.0, 8), ("16 - 20", 84.0, 9), ("20 - 25", 92.0, 10), ("25 - 32", 104.0, 11)] {
+        let number = format!("GEN.MPS-{}A", range.replace(" - ", "-"));
+        let p = c.add(&number, &format!("Motor protection switch {range} A"), sd, "Motor protection switch", "Q", price, (45.0, 97.0, 97.0, 0.3), &[(MotorProtection, main3)]);
+        p.current = format!("{range} A");
+        p.tech_data = format!("Power loss: {loss} W
+Breaking capacity: 50 kA
+Instantaneous trip: 13 x In");
+        p.accessories = vec!["GEN.MPS-AUX-1NO1NC".into()];
+    }
     // Lateral auxiliary switch: snapped onto the left side of the switch, beside it on the rail.
     let p = c.add("GEN.MPS-AUX-1NO1NC", "Auxiliary switch for motor protection switch, 1 NO + 1 NC, lateral mounting on the left", sd, "Auxiliary switch", "Q", 12.9, (9.0, 90.0, 60.0, 0.02), &[(No, "13 14"), (Nc, "21 22")]);
     p.accessory = true;

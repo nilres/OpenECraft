@@ -613,16 +613,7 @@ impl Store {
 /// Folder for the data of the app `app`, as eframe chooses it for its own storage.
 #[cfg(not(target_arch = "wasm32"))]
 fn data_dir(app: &str) -> std::path::PathBuf {
-    let env = |v: &str| std::env::var_os(v).filter(|s| !s.is_empty()).map(std::path::PathBuf::from);
-    let home = env("HOME").or_else(|| env("USERPROFILE")).unwrap_or_else(std::env::temp_dir);
-    let base = if cfg!(target_os = "windows") {
-        env("APPDATA").unwrap_or_else(|| home.join("AppData").join("Roaming"))
-    } else if cfg!(target_os = "macos") {
-        home.join("Library").join("Application Support")
-    } else {
-        env("XDG_DATA_HOME").unwrap_or_else(|| home.join(".local").join("share"))
-    };
-    base.join(app).join("data")
+    openecraft_client::places::data_dir(app).unwrap_or_else(|| std::env::temp_dir().join(app).join("data"))
 }
 
 /// The key-value store of [`Store`] in IndexedDB: one object store of byte arrays.

@@ -29,6 +29,7 @@ pub mod exporters;
 pub mod fluid;
 pub mod document;
 pub mod forms;
+pub mod formula;
 pub mod functions;
 pub mod frame;
 pub mod graphics;

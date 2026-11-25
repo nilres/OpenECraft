@@ -159,6 +159,7 @@ impl App {
         self.page_properties_window(ctx);
         self.section_properties_window(ctx);
         self.whats_new_window(ctx);
+        self.template_windows(ctx);
     }
 
     /// What is done while a project opens (its analysis is built in the background):

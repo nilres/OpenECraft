@@ -17,6 +17,19 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Vault or an external plugin, and asks its user accordingly. An external plugin says it of a
   command with `effect` (`read`, `add` or `change`) in its answer to `describe`
   ([plugins](docs/plugins.md)).
+- **Project templates with parameters:** *New project from template* lists the bundled
+  templates beside those of the user, which *Save as project template…* now keeps in a
+  templates folder shared with the command line (in the browser in the editor's
+  storage); a template of the user with the name of a bundled one takes its place, and
+  *Edit template* opens one to change it. A template can ask for parameters and work
+  out further values with formulas, which fill `{NAME}` placeholders in the project,
+  and leave out pages by a condition (pane *Master data › Template parameters*). New
+  bundled templates: *Motor starter direct on line*, *star-delta* and *reversing*,
+  sized from the motor power (7.5 kW: 14.6 A, motor protection switch 10 - 16 A,
+  contactor, cross-section, catalog parts) with optional report pages. Command line and
+  MCP: `list_project_templates`, `template_values`, `new_project --values`,
+  `save_project_template`, `delete_project_template`, `--templates`
+  ([project templates](docs/features/schematic.md#project-templates)).
 - **Plugins build report pages and reuse the start page:** the plugin documentation shows
   how a page kind is written in a project (`{"Report": "terminal_diagram"}` for a report
   page), and a project a plugin or a file gets wrong is refused with the place of the
