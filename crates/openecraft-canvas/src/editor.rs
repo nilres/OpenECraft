@@ -2337,8 +2337,8 @@ impl Editor {
                         self.window_select(prj, page_i, rect, (start, end), shift);
                     }
                 }
-                Drag::Move { applied, .. } => {
-                    ops::cleanup_wires(&mut prj.pages[page_i]);
+                Drag::Move { applied, moving, .. } => {
+                    moving.finish(prj, page_i);
                     let pg = &prj.pages[page_i];
                     let moved_symbols = pg.symbols.iter().any(|s| self.selection.contains(&s.id)) || pg.junctions.iter().any(|j| self.selection.contains(&j.id));
                     if self.autoconnect && moved_symbols && (applied.x != 0.0 || applied.y != 0.0) {
@@ -2348,7 +2348,7 @@ impl Editor {
                         }
                     }
                 }
-                Drag::End { .. } => ops::cleanup_wires(&mut prj.pages[page_i]),
+                Drag::End { moving, .. } => { moving.finish(prj, page_i); }
                 Drag::Prop { .. } | Drag::Grip { .. } | Drag::Turn { .. } | Drag::Bend { .. } | Drag::None => {}
             }
         }
