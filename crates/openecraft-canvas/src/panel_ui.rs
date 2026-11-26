@@ -1889,12 +1889,9 @@ impl PanelUi {
                 } else {
                     ui.label(tr("Length"));
                     let mut len = it.length();
-                    if ui.add(egui::DragValue::new(&mut len).speed(5.0).range(10.0..=5000.0).suffix(" mm")).changed() {
-                        if it.horizontal() {
-                            it.w = len;
-                        } else {
-                            it.h = len;
-                        }
+                    let field = egui::DragValue::new(&mut len).speed(5.0).range(it.min_length()..=5000.0).suffix(" mm");
+                    if ui.add(field.update_while_editing(false)).changed() {
+                        it.set_length(len);
                     }
                     ui.end_row();
                     ui.label(tr("Orientation"));
@@ -2421,7 +2418,7 @@ impl PanelUi {
                 match f {
                     Face::Wall(n) => {
                         let mut length = walls[n as usize].length();
-                        let r = ui.add(egui::DragValue::new(&mut length).speed(10.0).range(panel::MIN_WALL..=100_000.0).suffix(" mm"));
+                        let r = ui.add(egui::DragValue::new(&mut length).speed(10.0).range(panel::MIN_WALL..=100_000.0).suffix(" mm").update_while_editing(false));
                         if r.on_hover_text(tr("Length of the wall; its end moves, the next wall with it")).changed() {
                             match panel::wall_length_set(&corners, n as usize, (length / 10.0).round() * 10.0) {
                                 Ok(o) => new_outline = Some(o),
