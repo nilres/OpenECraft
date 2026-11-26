@@ -10,6 +10,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   server and closes its schematic pages, panel layouts and tool windows: the start page
   is left alone, and the commands that need a project wait until one is opened or
   started ([tutorial](docs/tutorial.md#1-a-new-project)).
+- **Semiconductor components:** diodes, LEDs, transistors, thyristors, triacs, optocouplers
+  and the bridge rectifier have a category of their own in the Insert center and the
+  function definitions instead of being listed under *Passive components*; the diode of
+  the shipped catalog is in the product group *Semiconductors*.
 - **Wires and cables without cable ducts are tied into bundles:** in a cabinet without
   cable ducts on its mounting plate, and in a room without cable trays, the 3D routing
   lays thin wires and cables that go the same way together, as a bundle held by cable

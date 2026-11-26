@@ -67,3 +67,14 @@ fn project_definitions_are_assigned_to_symbols() {
     assert!(assign(&mut prj, 7, "user.coil").is_err());
     assert!(assign(&mut prj, 99, "fn.coil").is_err());
 }
+
+#[test]
+fn semiconductor_definitions_are_not_passive_components() {
+    let category = |key: &str| builtin_def(key).unwrap().category;
+    for key in ["fn.diode", "fn.led", "fn.zener_diode", "fn.photodiode", "fn.transistor", "fn.thyristor", "fn.optocoupler", "fn.bridge_rectifier"] {
+        assert_eq!(category(key), FnCategory::Semiconductors, "{key}");
+    }
+    for key in ["fn.resistor", "fn.capacitor", "fn.inductor", "fn.varistor", "fn.ntc"] {
+        assert_eq!(category(key), FnCategory::Passive, "{key}");
+    }
+}
