@@ -5,6 +5,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Devices on the door shown in 3D:** *Show in 3D view* centres the view on a device
+  on the door where the opened door holds it, also in the mounting assistant. Fixed:
+  the door opened, but the view was centred on where the device is with the door closed.
 - **Drag and drop from the Insert center:** a symbol, device or unplaced function
   dragged from the Insert center or the navigator onto a schematic page is placed there
   once, and the tool in use stays (a click still starts a place tool). Symbols can also

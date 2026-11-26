@@ -7,7 +7,7 @@
 //! that is done the scene shows them as they were routed.
 
 use super::routing_ui::RouteRef;
-use super::{PanelUi, OUTER_WALLS, WIRE_HIGHLIGHT};
+use super::{door_swing, door_swing_dir, PanelUi, OUTER_WALLS, WIRE_HIGHLIGHT};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::model::Project;
 use openecraft_core::panel::roofs::{self, Ceiling, Lin, RoofFaceKind};
@@ -1089,9 +1089,6 @@ impl PanelUi {
     fn build_scene(&self, prj: &Project, an: &Analysis, ei: usize, shown: &[(usize, SitePose)], state: u64, lay_out: &mut dyn FnMut(LayoutInput) -> Result<Arc<Vec<Vec<V3>>>, u64>) -> Scene3d {
         let mut s = Scene3d { id: NEXT_SCENE.fetch_add(1, Ordering::Relaxed), analysis: an.id, layout: prj.layout.clone(), state, ..Default::default() };
         let pos = panel::positions(&prj.layout);
-        let (sin, cos) = self.door_angle.sin_cos();
-        // The doors turn about their hinges on the left front edge (view coordinates).
-        let swing_dir = |v: V3| [v[0] * cos - v[2] * sin, v[1], v[0] * sin + v[2] * cos];
         let light = norm([0.35, 0.75, 0.55]);
         let lit = |base: Color32, n: V3| {
             let shade = 0.55 + 0.45 * dot(n, light).max(0.0);
@@ -1167,19 +1164,8 @@ impl PanelUi {
             // under its middle.
             let leaves = panel::doors::leaves(e);
             let leaf_at = |x: f32| panel::doors::leaf_index(e, x);
-            let swing_dir = |li: usize, v: V3| {
-                if leaves[li].hinge == panel::DoorHinge::Right {
-                    let r = swing_dir([-v[0], v[1], v[2]]);
-                    [-r[0], r[1], r[2]]
-                } else {
-                    swing_dir(v)
-                }
-            };
-            let swing = |li: usize, q: V3| {
-                let hinge_x = leaves[li].hinge_x();
-                let r = swing_dir(li, [q[0] - hinge_x, q[1], q[2] - e.depth]);
-                [r[0] + hinge_x, r[1], r[2] + e.depth]
-            };
+            let swing_dir = |li: usize, v: V3| door_swing_dir(&leaves[li], self.door_angle, v);
+            let swing = |li: usize, q: V3| door_swing(e, &leaves[li], self.door_angle, q);
             let problems = panel::problems_of(&self.findings(prj, an, k));
             #[allow(clippy::too_many_arguments)]
             let add_box = |s: &mut Scene3d, layer: u8, side: Option<usize>, obj: Option<usize>, min: V3, max: V3, base: Color32, item: Option<u64>, door: Option<usize>, decal: bool| {
