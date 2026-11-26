@@ -37,3 +37,32 @@ fn commands_in_menus_still_close_the_menu() {
     assert!(shown);
     assert!(!open);
 }
+
+#[test]
+fn undo_analyses_the_project_before_the_panes_read_it() {
+    use openecraft_core::installation as inst;
+    let ctx = egui::Context::default();
+    let mut app = App::new(&eframe::CreationContext::_new_kittest(ctx.clone()));
+    app.replace_project(openecraft_core::sample::example("electrical_room").expect("example"), None);
+    app.session.refresh(&app.plugins, false);
+    while app.session.opening().is_some() {
+        app.session.opening_shown();
+        app.session.refresh(&app.plugins, false);
+    }
+    // A socket outlet put into a room and into the schematic of a circuit.
+    let breaker = inst::breakers(&app.session.prj, &app.session.analysis.netlist).into_iter().next().expect("breaker").tag;
+    let prj = &mut app.session.prj;
+    let ri = prj.layout.enclosures.iter().position(|e| e.is_room()).expect("room");
+    let (lo, _) = openecraft_core::panel::bounds(&openecraft_core::panel::outline(&prj.layout.enclosures[ri]));
+    let q = openecraft_core::panel::site_poses(prj)[ri].apply([lo[0] + 10.0, 0.0, lo[1] + 1000.0]);
+    let id = inst::place_at(prj, ri, "GEN.SOCKET-F-UP", [q[0], q[2]], None).expect("placed");
+    inst::into_schematic(prj, &breaker, id, &inst::Options::default()).expect("in the schematic");
+    app.session.commit(true);
+    app.session.refresh(&app.plugins, false);
+    app.run(&ctx, Cmd::Undo);
+    let an = &app.session.analysis;
+    inst::circuits(&app.session.prj, &an.netlist, &an.connections, None);
+    app.run(&ctx, Cmd::Redo);
+    let an = &app.session.analysis;
+    inst::circuits(&app.session.prj, &an.netlist, &an.connections, None);
+}

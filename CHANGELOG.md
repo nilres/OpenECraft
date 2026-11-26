@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Undo no longer crashes the Buildings pane:** undoing or redoing the placing of an
+  installation device while the tab *Electrical installation* was open crashed the
+  editor, because the pane read the circuits of the netlist of the state before. The
+  project is now analysed again right after *Undo* and *Redo*.
 - **DXF downloads out of the search index:** the Docker image of the website sends
   the DXF drawings of the symbols with `X-Robots-Tag: noindex`; a search engine
   fetched each one and listed it as a page it does not index
