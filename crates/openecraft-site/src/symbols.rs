@@ -34,6 +34,7 @@ pub fn slug(category: Category) -> &'static str {
         Category::Plc => "plc",
         Category::Potentials => "potentials-connectors",
         Category::Passive => "passive-components",
+        Category::Semiconductors => "semiconductor-components",
         Category::Sensors => "sensors",
         Category::Measuring => "measuring-instruments",
         Category::Power => "transformers-power-supplies",
