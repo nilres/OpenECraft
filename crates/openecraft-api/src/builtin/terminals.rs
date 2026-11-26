@@ -28,6 +28,18 @@ const STRIP: crate::params::Param = param("strip", Kind::Str, tr_const!("Tag of 
 
 pub static COMMANDS: &[Spec] = &[
     Spec {
+        name: "create_strip",
+        help: tr_const!("Creates an empty terminal strip with a new device tag"),
+        params: &[STRIP],
+        run: create_strip,
+    },
+    Spec {
+        name: "add_terminal",
+        help: tr_const!("Adds an unplaced spare terminal to a strip; it can be placed from the navigator"),
+        params: &[STRIP],
+        run: add_terminal,
+    },
+    Spec {
         name: "list_strips",
         help: tr_const!("Lists the terminal strips with their number of terminals and length on the rail"),
         params: &[],
@@ -74,6 +86,17 @@ pub static COMMANDS: &[Spec] = &[
         run: renumber_strip,
     },
 ];
+
+fn create_strip(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let tag = openecraft_core::ops::create_terminal_strip(prj, a.req("strip"))?;
+    Ok(json!({ "strip": tag }))
+}
+
+fn add_terminal(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let strip = a.req("strip").trim();
+    let label = strips::add_terminal(prj, strip)?;
+    Ok(json!({ "strip": strip, "terminal": label, "spare": true }))
+}
 
 fn kind_code(k: JumperKind) -> &'static str {
     match k {

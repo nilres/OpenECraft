@@ -20,6 +20,13 @@ editor loads them for the current session and remembers usable folders for later
 launches. A failed sibling plugin does not prevent remembering plugins that loaded.
 `OPENECRAFT_PLUGINS` remains available for environment-based configuration.
 
+The `terminals` plugin provides `create_strip` and `add_terminal`, both taking a
+`strip` device tag. `create_strip` creates an empty strip and rejects invalid or
+already used tags. `add_terminal` adds one unplaced spare to an existing strip and
+returns its numeric `terminal` designation and `spare: true`. These commands back
+the editor's **Add New** menus and are also available through the command line and
+MCP. Unplaced terminals can be dragged from **Strips / plugs** onto a schematic.
+
 ## Rust plugins
 
 Built-in plugins live in `crates/openecraft-api/src/builtin.rs` and its submodules and

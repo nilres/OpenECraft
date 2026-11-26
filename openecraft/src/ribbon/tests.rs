@@ -1,5 +1,18 @@
 use super::*;
 
+const SCHEMATICS_SHORTCUTS: &[(TabId, &str)] = &[
+    (TabId::Insert, "symbols"),
+    (TabId::Insert, "macros"),
+    (TabId::Connections, "numbering"),
+    (TabId::Connections, "cables"),
+    (TabId::Connections, "potentials"),
+    (TabId::Connections, "harnesses"),
+    (TabId::Connections, "field"),
+    (TabId::Connections, "marking"),
+    (TabId::Connections, "xref"),
+    (TabId::Connections, "crossings"),
+];
+
 #[test]
 fn tabs_and_groups_have_unique_keys_and_tips() {
     let mut keys = std::collections::BTreeSet::new();
@@ -8,13 +21,68 @@ fn tabs_and_groups_have_unique_keys_and_tips() {
         assert!(keys.insert(t.key), "tab {} twice", t.key);
         assert!(tips.insert(t.key_tip), "key tip {} twice", t.key_tip);
         let mut groups = std::collections::BTreeSet::new();
+        let mut commands = std::collections::BTreeSet::new();
         for g in t.groups {
             assert!(groups.insert(g.id), "group {}/{} twice", t.key, g.id);
             assert!(!g.items.is_empty(), "group {}/{} is empty", t.key, g.id);
+            for item in g.items {
+                assert!(commands.insert(item.cmd()), "command {:?} twice in {}", item.cmd(), t.key);
+            }
         }
     }
     assert!(!tips.contains(&'F'), "F is the key tip of the File tab");
     assert_eq!(tab(TabId::Plugins).groups.len(), 1, "favorites, recent and external plugins are added from the registry");
+}
+
+#[test]
+fn schematics_is_a_regular_tab_with_the_page_navigator() {
+    let schematics = tab(TabId::Schematics);
+    assert!(!schematics.context);
+    assert_eq!(schematics.key_tip, 'S');
+    let home = TABS.iter().position(|t| t.id == TabId::Home).unwrap();
+    assert_eq!(TABS[home + 1].id, TabId::Schematics);
+    assert!(places(Cmd::PagesPane).contains(&"schematics/navigators".to_string()));
+}
+
+#[test]
+fn insert_starts_with_page_then_symbols_and_connections_stay_in_schematics() {
+    let insert = tab(TabId::Insert);
+    assert_eq!(insert.groups[0].id, "page");
+    assert_eq!(insert.groups[1].id, "symbols");
+    assert!(!insert.groups.iter().any(|g| g.id == "connections"));
+    assert!(!tab(TabId::Schematics).groups.iter().any(|g| g.id == "page"));
+    let home_page = tab(TabId::Home).groups.iter().find(|g| g.id == "page").unwrap();
+    assert!(insert.groups[0].items.starts_with(home_page.items));
+    for item in home_page.items {
+        assert!(places(item.cmd()).contains(&"insert/page".to_string()));
+        assert!(!places(item.cmd()).contains(&"schematics/page".to_string()));
+    }
+    for cmd in [Cmd::NewDocumentPage, Cmd::ImportDrawing] {
+        assert!(places(cmd).contains(&"insert/page".to_string()));
+    }
+    for item in CONNECTIONS_GROUP.items {
+        assert!(places(item.cmd()).contains(&"schematics/connections".to_string()));
+        assert!(!places(item.cmd()).contains(&"insert/connections".to_string()));
+    }
+}
+
+#[test]
+fn schematics_shortcuts_keep_the_original_groups_and_button_sizes() {
+    for &(source, id) in SCHEMATICS_SHORTCUTS {
+        let original = tab(source).groups.iter().find(|g| g.id == id).unwrap();
+        let shortcut = tab(TabId::Schematics)
+            .groups
+            .iter()
+            .find(|g| g.id == id)
+            .unwrap();
+        assert_eq!(shortcut.title, original.title);
+        assert_eq!(shortcut.items, original.items, "{id}");
+        for item in original.items {
+            let locations = places(item.cmd());
+            assert!(locations.contains(&format!("{}/{id}", tab(source).key)));
+            assert!(locations.contains(&format!("schematics/{id}")));
+        }
+    }
 }
 
 #[test]
@@ -81,15 +149,21 @@ fn groups_collapse_from_the_right_until_the_tab_fits() {
 }
 
 #[test]
-fn a_command_has_one_place_in_the_ribbon() {
-    // Deliberate second entry points: the navigators of Home and the quick access row.
+fn commands_have_one_primary_place_and_explicit_shortcuts() {
+    // Home navigators, Insert page controls and shared Schematics groups are shortcuts.
     let mut seen: std::collections::BTreeMap<Cmd, Vec<String>> = Default::default();
     for t in TABS {
         for g in t.groups {
             if t.id == TabId::Home && g.id == "navigators" {
                 continue;
             }
+            if t.id == TabId::Schematics && SCHEMATICS_SHORTCUTS.iter().any(|(_, id)| *id == g.id) {
+                continue;
+            }
             for i in g.items {
+                if t.id == TabId::Insert && g.id == "page" && PAGE_GROUP.items.iter().any(|p| p.cmd() == i.cmd()) {
+                    continue;
+                }
                 seen.entry(i.cmd()).or_default().push(format!("{}/{}", t.key, g.id));
             }
         }

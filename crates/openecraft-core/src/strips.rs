@@ -31,6 +31,19 @@ pub fn strip_tags(prj: &Project) -> Vec<String> {
     v
 }
 
+/// Adds one unplaced terminal using the strip's spare-terminal inventory.
+pub fn add_terminal(prj: &mut Project, strip: &str) -> Result<String, String> {
+    if !strip_tags(prj).iter().any(|tag| tag == strip) {
+        return Err(tr_fmt!("No terminal strip {}", strip));
+    }
+    let spares = prj.strips.get(strip).map_or(0, |data| data.spares);
+    let max = terminals(prj, strip).iter().filter_map(|t| t.label.parse::<u32>().ok()).max().unwrap_or(0);
+    let label = max.checked_add(spares).and_then(|n| n.checked_add(1))
+        .filter(|_| spares < 1000).ok_or_else(|| tr_fmt!("Cannot add another terminal to strip {}", strip))?;
+    prj.strips.entry(strip.to_string()).or_default().spares += 1;
+    Ok(label.to_string())
+}
+
 /// Terminals of a strip in strip order: the stored order first, the rest sorted by
 /// designation (then schematic order).
 pub fn terminals(prj: &Project, strip: &str) -> Vec<Terminal> {

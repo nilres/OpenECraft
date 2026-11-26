@@ -2,6 +2,12 @@ use super::*;
 use crate::ribbon;
 
 #[test]
+fn new_schematic_pages_use_the_circuit_page_icon() {
+    assert_eq!(def(Cmd::NewSchematicPage).icon, Icon::SchematicPage);
+    assert_ne!(def(Cmd::NewDocumentPage).icon, Icon::SchematicPage);
+}
+
+#[test]
 fn ids_are_unique_snake_case_and_every_command_is_defined_once() {
     let mut ids = std::collections::BTreeSet::new();
     let mut cmds = std::collections::BTreeSet::new();

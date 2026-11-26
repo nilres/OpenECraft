@@ -55,6 +55,7 @@ mod xref_ui;
 mod wires_ui;
 mod compare_ui;
 mod engineering;
+mod strips_ui;
 mod field_ui;
 mod form_layout_ui;
 mod forms_ui;
@@ -1075,6 +1076,10 @@ impl App {
         }
     }
 
+    fn ordered_page_tabs(&self) -> Vec<u64> {
+        ordered_page_tabs(&self.session.prj, &self.page_tabs)
+    }
+
     /// UI scale and theme of the shell (tablet mode enlarges everything).
     fn apply_scale(&mut self, ctx: &egui::Context) {
         let tablet = self.shell.tablet();
@@ -1289,6 +1294,17 @@ impl eframe::App for App {
         eframe::set_value(storage, UI_KEY, &shell);
         eframe::set_value(storage, openecraft_ui::language::STORAGE_KEY, &openecraft_i18n::lang().code());
     }
+}
+
+/// Keep opening order for tab eviction, but display and navigate by page number.
+fn ordered_page_tabs(prj: &Project, opened: &[u64]) -> Vec<u64> {
+    let mut pages: Vec<&Page> = prj.pages.iter().filter(|p| opened.contains(&p.id)).collect();
+    pages.sort_by(|a, b| {
+        natural_cmp(&a.name, &b.name)
+            .then_with(|| natural_cmp(&structure::page_full_name(a), &structure::page_full_name(b)))
+            .then_with(|| a.id.cmp(&b.id))
+    });
+    pages.into_iter().map(|p| p.id).collect()
 }
 
 #[cfg(test)]

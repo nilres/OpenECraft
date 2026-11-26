@@ -1,6 +1,40 @@
 use super::*;
 
 #[test]
+fn page_tabs_follow_numbers_and_subpages_instead_of_opening_order() {
+    let names = ["6", "1", "2", "4", "9", "2.1", "3.1", "3", "5", "8", "10", "2.10", "2.2"];
+    let prj = Project {
+        pages: names.iter().enumerate().map(|(i, name)| Page::new(i as u64 + 1, name, "", PageKind::Schematic)).collect(),
+        ..Default::default()
+    };
+    let opened: Vec<u64> = prj.pages.iter().map(|p| p.id).rev().collect();
+    let sorted = ordered_page_tabs(&prj, &opened);
+    let actual: Vec<&str> = sorted.iter().map(|id| prj.pages.iter().find(|p| p.id == *id).unwrap().name.as_str()).collect();
+    assert_eq!(actual, ["1", "2", "2.1", "2.2", "2.10", "3", "3.1", "4", "5", "6", "8", "9", "10"]);
+    assert_eq!(prj.pages.iter().map(|p| p.name.as_str()).collect::<Vec<_>>(), names, "project page order stays unchanged");
+    assert_eq!(opened, (1..=13).rev().collect::<Vec<u64>>(), "opening order is retained for the tab limit");
+}
+
+#[test]
+fn page_tabs_follow_renumbering_and_ignore_closed_or_deleted_pages() {
+    let mut prj = Project {
+        pages: vec![
+            Page::new(1, "10", "", PageKind::Schematic),
+            Page::new(2, "2", "", PageKind::Schematic),
+            Page::new(3, "1", "", PageKind::Schematic),
+        ],
+        ..Default::default()
+    };
+    let opened = vec![1, 2, 999];
+    assert_eq!(ordered_page_tabs(&prj, &opened), vec![2, 1]);
+    prj.pages[0].name = "1.1".into();
+    assert_eq!(ordered_page_tabs(&prj, &opened), vec![1, 2]);
+    prj.pages.remove(1);
+    assert_eq!(ordered_page_tabs(&prj, &opened), vec![1]);
+    assert!(ordered_page_tabs(&prj, &[]).is_empty());
+}
+
+#[test]
 fn tablet_mode_of_a_wiring_start_is_not_stored() {
     let mut shell = ShellState { tablet_once: true, ..Default::default() };
     assert!(shell.tablet());

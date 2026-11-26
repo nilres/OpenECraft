@@ -121,6 +121,11 @@ impl Probe {
         self.pointer.map(|p| p.y).filter(|y| (rect.top()..rect.bottom()).contains(y))
     }
 
+    /// A display-only group contributes to the list bounds, but is not a drop target.
+    pub fn group_row(&mut self, rect: egui::Rect) {
+        self.over(rect);
+    }
+
     /// A page row: a dragged page goes before or after it.
     pub fn page(&mut self, prj: &Project, rect: egui::Rect, i: usize) {
         let Some(y) = self.over(rect) else { return };
@@ -337,13 +342,18 @@ impl App {
         let Some(pos) = ctx.pointer_latest_pos() else { return };
         let prj = &self.session.prj;
         let title = match dragged {
-            Dragged::Page(p) => prj.pages.get(p).map(|pg| format!("{} {}   {}", openecraft_view::page_icon(pg.kind), structure::page_full_name(pg), pg.description)).unwrap_or_default(),
+            Dragged::Page(p) => prj.pages.get(p).map(|pg| format!("{}   {}", structure::page_full_name(pg), pg.description)).unwrap_or_default(),
             Dragged::Section(id) => sections::title(prj, id),
         };
+        let page = match dragged { Dragged::Page(p) => prj.pages.get(p), Dragged::Section(_) => None };
         egui::Area::new(egui::Id::unique("page_drag_label")).order(egui::Order::Tooltip).fixed_pos(pos + egui::vec2(16.0, 12.0)).interactable(false).show(ctx, |ui| {
             egui::Frame::popup(ui.style()).show(ui, |ui| {
                 ui.set_max_width(320.0);
-                ui.label(RichText::new(title).strong());
+                if let Some(pg) = page {
+                    egui::WidgetAtom::new((navigator::page_icon(pg.kind), RichText::new(title).strong())).show(ui);
+                } else {
+                    ui.label(RichText::new(title).strong());
+                }
                 match (text, refused) {
                     (Err(e), _) => {
                         ui.colored_label(crate::style::error(), e);

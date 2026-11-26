@@ -3,6 +3,57 @@
 
 use super::*;
 
+pub(super) fn page_icon(kind: PageKind) -> egui::Atom<'static> {
+    if kind == PageKind::Schematic {
+        egui::Atom::paint(egui::Vec2::splat(16.0), |ui, args| {
+            icons::paint(ui.painter(), args.rect, Icon::SchematicPage, args.fallback_text_color);
+        })
+    } else {
+        egui::Atom::from(openecraft_view::page_icon(kind))
+    }
+}
+
+#[derive(Debug, PartialEq, Eq)]
+enum PageGroup {
+    Page(usize),
+    PanelLayout(Vec<PanelPages>),
+}
+
+#[derive(Debug, PartialEq, Eq)]
+struct PanelPages {
+    enclosure: u64,
+    pages: Vec<usize>,
+}
+
+fn page_groups(prj: &Project, shown: &[usize]) -> Vec<PageGroup> {
+    let mut panels: Vec<PanelPages> = Vec::new();
+    for &i in shown {
+        if let PageKind::Mounting(enclosure) = prj.pages[i].kind {
+            if let Some(panel) = panels.iter_mut().find(|p| p.enclosure == enclosure) {
+                panel.pages.push(i);
+            } else {
+                panels.push(PanelPages { enclosure, pages: vec![i] });
+            }
+        }
+    }
+    let mut layouts = Some(panels);
+    let mut groups = Vec::new();
+    for &i in shown {
+        if matches!(prj.pages[i].kind, PageKind::Mounting(_)) {
+            if let Some(pages) = layouts.take() {
+                groups.push(PageGroup::PanelLayout(pages));
+            }
+        } else {
+            groups.push(PageGroup::Page(i));
+        }
+    }
+    groups
+}
+
+fn panel_page_title(prj: &Project, enclosure: u64) -> String {
+    prj.layout.enclosures.iter().find(|e| e.id == enclosure).map(|e| e.name.clone()).unwrap_or_else(|| tr_fmt!("No enclosure {}", enclosure))
+}
+
 impl App {
     #[allow(clippy::too_many_lines)]
     /// One navigator tab (a docked pane), with the work area chooser above it.
@@ -36,9 +87,7 @@ impl App {
                         for (st, pages) in openecraft_view::structure_groups(&self.session.prj, &shown) {
                             let title = if st.is_empty() { tr("(no structure)").to_string() } else { openecraft_view::structure_title(&self.session.prj, &st) };
                             egui::CollapsingHeader::new(title).id_salt(("ptree", st.as_str())).default_open(true).show(ui, |ui| {
-                                for i in pages {
-                                    action = std::mem::replace(&mut action, PageAction::None).or(self.page_row(ui, i, &mut probe));
-                                }
+                                action = std::mem::replace(&mut action, PageAction::None).or(self.page_rows(ui, &pages, &mut probe));
                             });
                         }
                     } else if !self.session.prj.sections.is_empty() {
@@ -51,9 +100,7 @@ impl App {
                         });
                         probe.below(strip);
                     } else {
-                        for i in shown {
-                            action = std::mem::replace(&mut action, PageAction::None).or(self.page_row(ui, i, &mut probe));
-                        }
+                        action = self.page_rows(ui, &shown, &mut probe);
                         probe.below(None);
                     }
                     if let Some(a) = self.page_drop(ui, &probe) {
@@ -229,22 +276,53 @@ impl PageAction {
 }
 
 impl App {
+    pub(super) fn page_rows(&self, ui: &mut egui::Ui, shown: &[usize], probe: &mut page_dnd::Probe) -> PageAction {
+        let mut action = PageAction::None;
+        for group in page_groups(&self.session.prj, shown) {
+            match group {
+                PageGroup::Page(i) => action = action.or(self.page_row(ui, i, probe)),
+                PageGroup::PanelLayout(panels) => {
+                    let reveal = self.scroll_nav && panels.iter().any(|p| p.pages.contains(&self.session.page));
+                    let header = egui::CollapsingHeader::new(tr("Panel layout")).id_salt("panel_pages").default_open(true).open(reveal.then_some(true)).show(ui, |ui| {
+                        let mut action = PageAction::None;
+                        for panel in panels {
+                            let reveal = self.scroll_nav && panel.pages.contains(&self.session.page);
+                            let title = panel_page_title(&self.session.prj, panel.enclosure);
+                            let header = egui::CollapsingHeader::new(title).id_salt(("panel_pages", panel.enclosure)).default_open(true).open(reveal.then_some(true)).show(ui, |ui| {
+                                let mut action = PageAction::None;
+                                for i in panel.pages {
+                                    action = action.or(self.page_row(ui, i, probe));
+                                }
+                                action
+                            });
+                            probe.group_row(header.header_response.rect);
+                            action = action.or(header.body_returned.unwrap_or(PageAction::None));
+                        }
+                        action
+                    });
+                    probe.group_row(header.header_response.rect);
+                    action = action.or(header.body_returned.unwrap_or(PageAction::None));
+                }
+            }
+        }
+        action
+    }
+
     /// One page of the page list; it is dragged to move it between pages or onto a
     /// section.
     pub(super) fn page_row(&self, ui: &mut egui::Ui, i: usize, probe: &mut page_dnd::Probe) -> PageAction {
         let pg = &self.session.prj.pages[i];
-        let icon = openecraft_view::page_icon(pg.kind);
         let mut text = egui::text::LayoutJob::default();
         let dragged = probe.dragged == Some(page_dnd::Dragged::Page(i));
         let color = if dragged { ui.visuals().weak_text_color() } else { ui.visuals().text_color() };
         let style = egui::TextFormat { color, ..Default::default() };
         let name = if self.page_tree { pg.name.clone() } else { structure::page_full_name(pg) };
-        text.append(&format!("{icon} {name}   {}", pg.description), 0.0, style.clone());
+        text.append(&format!("{name}   {}", pg.description), 0.0, style.clone());
         if let Some((mark, color)) = self.page_lock_mark(pg.id) {
             text.append(&mark, 8.0, egui::TextFormat { color, ..style });
         }
         let sectioned = !self.session.prj.sections.is_empty();
-        let mut r = ui.selectable_label(i == self.session.page, text);
+        let mut r = ui.add(egui::Button::selectable(i == self.session.page, (page_icon(pg.kind), text)));
         if probe.enabled {
             r = r.interact(egui::Sense::drag());
             r.dnd_set_drag_payload(page_dnd::Dragged::Page(i));
@@ -411,6 +489,10 @@ impl App {
     /// the plug parts): a click shows a placed one, spare ones are dragged into the page.
     fn strips_tab(&mut self, ui: &mut egui::Ui) {
         use openecraft_core::strips::{self, ElementKind};
+        let can_strip = self.cmd_enabled(Cmd::NewTerminalStrip);
+        let can_terminal = self.cmd_enabled(Cmd::NewTerminal);
+        let mut creation = None;
+        let mut selected = None;
         let prj = &self.session.prj;
         let mut jump = None;
         let mut start: Option<crate::editor::PlacePayload> = None;
@@ -427,7 +509,10 @@ impl App {
             .clicked()
         };
         egui::ScrollArea::vertical().id_salt("strips_nav").auto_shrink([false, false]).show(ui, |ui| {
-            ui.label(RichText::new(tr("Terminal strips")).strong());
+            ui.horizontal_wrapped(|ui| {
+                ui.label(RichText::new(tr("Terminal strips")).strong());
+                creation = super::strips_ui::add_menu(ui, can_strip, can_terminal);
+            });
             let tags = strips::strip_tags(prj);
             if tags.is_empty() {
                 ui.weak(tr("(no entries)"));
@@ -435,7 +520,7 @@ impl App {
             for tag in &tags {
                 let layout = strips::strip_layout(prj, tag);
                 let n = layout.iter().filter(|e| matches!(e.kind, ElementKind::Terminal(_) | ElementKind::Spare(_))).count();
-                egui::CollapsingHeader::new(RichText::new(format!("{tag}  ({n})")).monospace()).id_salt(("strip_nav", tag)).show(ui, |ui| {
+                let header = egui::CollapsingHeader::new(RichText::new(format!("{tag}  ({n})")).monospace()).id_salt(("strip_nav", tag)).show(ui, |ui| {
                     for e in &layout {
                         match &e.kind {
                             ElementKind::Terminal(label) => {
@@ -461,6 +546,14 @@ impl App {
                             _ => {}
                         }
                     }
+                });
+                if header.header_response.clicked() || header.header_response.secondary_clicked()
+                    || header.body_response.as_ref().is_some_and(|r| r.contains_pointer() && ui.input(|i| i.pointer.secondary_clicked()))
+                { selected = Some(tag.clone()); }
+                header.header_response.context_menu(|ui| {
+                    creation = super::strips_ui::creation_menu(ui, can_strip, can_terminal);
+                    ui.separator();
+                    super::dock_ui::placeholder(ui);
                 });
             }
             ui.add_space(6.0);
@@ -495,6 +588,8 @@ impl App {
         if let Some((page, id)) = jump {
             self.goto(page, id);
         }
+        if let Some(tag) = selected { self.eng.strip = tag; }
+        if let Some(cmd) = creation { self.run(&ui.ctx().clone(), cmd); }
         if let Some(pl) = start {
             self.editor.set_tool(Tool::Place(pl.symbol));
             self.editor.place_tag = Some(pl.tag);
@@ -502,3 +597,6 @@ impl App {
         }
     }
 }
+
+#[cfg(test)]
+mod tests;

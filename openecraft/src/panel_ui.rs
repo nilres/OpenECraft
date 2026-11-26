@@ -1019,6 +1019,8 @@ impl PanelUi {
             self.remove_selection(prj, ei);
             ui.close();
         }
+        ui.separator();
+        if ui.button(tr("Placeholder")).clicked() { ui.close(); }
     }
 
     fn select_wire(&mut self, key: (String, String)) {
@@ -2635,12 +2637,16 @@ impl PanelUi {
 
     // ------------------------------------------------------------------ canvas
 
-    pub fn canvas(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, db: &PartsDb) {
+    pub fn canvas(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, db: &PartsDb, toolbar: impl FnOnce(&mut egui::Ui)) {
         if self.site {
+            ui.horizontal(toolbar);
+            ui.separator();
             self.site_canvas(ui, prj, an);
             return;
         }
         let Some(ei) = self.enclosure_index(prj) else {
+            ui.horizontal(toolbar);
+            ui.separator();
             ui.centered_and_justified(|ui| {
                 ui.label(tr("Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout."));
             });
@@ -2651,6 +2657,7 @@ impl PanelUi {
             if self.view == View::ThreeD && !self.in_room {
                 self.door_button(ui);
             }
+            toolbar(ui);
             if let Tool::PlaceDevice(tag) = &self.tool {
                 ui.label(RichText::new(tr_fmt!("Placing {}", tag)).strong());
             }

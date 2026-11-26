@@ -1,6 +1,19 @@
 use super::*;
 
 #[test]
+fn adding_terminals_checks_capacity_before_changing_the_strip() {
+    let mut prj = crate::sample::demo_project();
+    prj.strips.entry("-X1".into()).or_default().spares = 1000;
+    assert!(add_terminal(&mut prj, "-X1").is_err());
+    assert_eq!(prj.strips["-X1"].spares, 1000);
+    prj.strips.get_mut("-X1").unwrap().spares = 0;
+    let first = terminals(&prj, "-X1")[0].clone();
+    prj.pages[first.page].symbols[first.sym].label = u32::MAX.to_string();
+    assert!(add_terminal(&mut prj, "-X1").is_err());
+    assert_eq!(prj.strips["-X1"].spares, 0);
+}
+
+#[test]
 fn terminal_layout_uses_each_functions_explicitly_selected_part() {
     let mut prj=crate::sample::demo_project();
     let terms=terminals(&prj,"-X1");let term=&terms[0];

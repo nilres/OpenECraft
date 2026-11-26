@@ -26,6 +26,19 @@ fn row(top: f32) -> egui::Rect {
 }
 
 #[test]
+fn collapsed_layout_groups_keep_drop_markers_below_the_visible_rows() {
+    let (prj, _, _, _) = project();
+    let mut over = probe(Dragged::Page(0), &prj, 10.0);
+    over.group_row(row(0.0));
+    over.below(None);
+    assert_eq!(over.target, None);
+    let mut below = probe(Dragged::Page(0), &prj, 30.0);
+    below.group_row(row(0.0));
+    below.below(None);
+    assert_eq!(below.target, Some((DropAt::Page { section: 0, before: None }, Mark::Line { y: 20.0, left: 0.0 })));
+}
+
+#[test]
 fn rows_are_split_into_zones() {
     assert_eq!(zone(0.0, 20.0, 4.0, false), Zone::Above);
     assert_eq!(zone(0.0, 20.0, 12.0, false), Zone::Below);

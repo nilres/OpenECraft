@@ -1040,6 +1040,30 @@ pub fn check_tag(tag: &str) -> Result<(), String> {
     Ok(())
 }
 
+/// Validates the tag of a new, empty terminal strip without changing the project.
+pub fn new_strip_problem(prj: &Project, tag: &str) -> Option<String> {
+    let tag = tag.trim();
+    if let Err(error) = check_tag(tag) {
+        return Some(error);
+    }
+    if prj.all_tags().iter().any(|t| t == tag) || prj.unplaced_tags().any(|t| t == tag)
+        || prj.cables.iter().any(|c| c.tag == tag) || prj.harnesses.iter().any(|h| h.tag == tag)
+    {
+        return Some(tr_fmt!("Device {} already exists", tag));
+    }
+    None
+}
+
+/// Creates an empty strip, which can receive spare or placed terminals later.
+pub fn create_terminal_strip(prj: &mut Project, tag: &str) -> Result<String, String> {
+    if let Some(error) = new_strip_problem(prj, tag) {
+        return Err(error);
+    }
+    let tag = tag.trim().to_string();
+    prj.strips.insert(tag.clone(), StripData::default());
+    Ok(tag)
+}
+
 /// A legacy imported prefix may contain spaces; renaming keeps it unchanged.
 fn check_renamed_tag(old:&str,new:&str)->Result<(),String> {
     let result=check_tag(new);

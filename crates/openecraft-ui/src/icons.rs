@@ -15,6 +15,7 @@ use egui::{pos2, vec2, Color32, Painter, Pos2, Rect, Response, Sense, Shape, Str
 pub enum Icon {
     File,
     FileNew,
+    SchematicPage,
     FolderOpen,
     Save,
     SaveAs,
@@ -173,8 +174,8 @@ pub enum Icon {
 
 impl Icon {
     /// Every icon, for the tests.
-    pub const ALL: [Icon; 156] = [
-        Icon::File, Icon::FileNew, Icon::FolderOpen, Icon::Save, Icon::SaveAs, Icon::Download, Icon::Upload, Icon::Print, Icon::Template,
+    pub const ALL: [Icon; 157] = [
+        Icon::File, Icon::FileNew, Icon::SchematicPage, Icon::FolderOpen, Icon::Save, Icon::SaveAs, Icon::Download, Icon::Upload, Icon::Print, Icon::Template,
         Icon::Info, Icon::Settings, Icon::Help, Icon::Quit, Icon::Home, Icon::Undo, Icon::Redo, Icon::Cut, Icon::Copy, Icon::Paste,
         Icon::Delete, Icon::Rotate, Icon::Mirror, Icon::Align, Icon::Distribute, Icon::Move, Icon::MultiCopy, Icon::Find, Icon::Select,
         Icon::SelectAll, Icon::PageProperties, Icon::Renumber, Icon::Previous, Icon::Next, Icon::Report, Icon::Table, Icon::Symbol,
@@ -205,6 +206,7 @@ impl Icon {
         match self {
             Icon::File => "P 4 1.5 10 1.5 13 4.5 13 14.5 4 14.5 ; M 10 1.5 10 4.5 13 4.5",
             Icon::FileNew => "P 3 1.5 9 1.5 12 4.5 12 9 ; M 12 9 12 14.5 3 14.5 3 1.5 ; M 9 1.5 9 4.5 12 4.5 ; M 7.5 7 7.5 12 ; M 5 9.5 10 9.5",
+            Icon::SchematicPage => "P 2 1 10 1 14 5 14 15 2 15 ; M 10 1 10 5 14 5 ; R 6 7.5 3 3 ; M 4 8.25 6 8.25 ; M 4 9.75 6 9.75 ; M 9 8.25 12 8.25 ; M 9 9.75 11 9.75 12 10.75 12 11.45 ; C 12 12 0.55 ; M 7 7.5 7 5.5 5.5 4.5 ; C 5 4.15 0.65 ; M 8.5 7.5 8.5 5.75 ; C 8.5 5.25 0.5 ; M 7 10.5 7 13 ; M 8.5 10.5 8.5 12 9.3 13 ; C 9.85 13 0.55",
             Icon::FolderOpen => "P 1.5 3 6 3 7.5 4.5 14.5 4.5 14.5 13.5 1.5 13.5 ; M 1.5 7 14.5 7",
             Icon::Save => "P 2 2 12 2 14 4 14 14 2 14 ; R 5 2 6 4 ; R 4.5 9 7 5",
             Icon::SaveAs => "M 9 14 2 14 2 2 11 2 13 4 13 7 ; R 4.5 2 5 3.5 ; M 4.5 14 4.5 9 9 9 ; P 9.5 15 10 12.5 14 8.5 15.5 10 11.5 14",
@@ -416,7 +418,8 @@ pub fn paint(painter: &Painter, rect: Rect, icon: Icon, color: Color32) {
     let s = rect.width().min(rect.height()) / 16.0;
     let o = rect.center() - vec2(8.0, 8.0) * s;
     let at = |p: Pos2| o + p.to_vec2() * s;
-    let stroke = Stroke::new((1.25 * s).max(1.0), color);
+    let width = if icon == Icon::SchematicPage { (0.8 * s).max(0.8) } else { (1.25 * s).max(1.0) };
+    let stroke = Stroke::new(width, color);
     for prim in prims {
         match prim {
             Prim::Lines(pts, closed) => {

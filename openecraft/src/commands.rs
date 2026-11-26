@@ -173,6 +173,8 @@ pub enum Cmd {
     CableEditor,
     Potentials,
     TerminalStrips,
+    NewTerminalStrip,
+    NewTerminal,
     Plugs,
     PlcOverview,
     PlcHardware,
@@ -437,7 +439,7 @@ pub static ALL: &[Def] = &[
     d(C::Copy, "copy", tr_const!("Copy"), I::Copy),
     d(C::Paste, "paste", tr_const!("Paste"), I::Paste).tip(tr_const!("Copy / cut / paste (devices get new tags)")),
     d(C::MultipleCopy, "multiple_copy", tr_const!("Multiple copy…"), I::MultiCopy),
-    d(C::NewSchematicPage, "new_schematic_page", tr_const!("New schematic page"), I::FileNew),
+    d(C::NewSchematicPage, "new_schematic_page", tr_const!("New schematic page"), I::SchematicPage),
     d(C::NewPage, "new_page", tr_const!("New page"), I::FileNew).menu().tip(tr_const!("Cover sheet, overview, graphics, report, mounting layout or a page template")),
     d(C::NewSubPage, "new_sub_page", tr_const!("New sub-page"), I::FileNew)
         .tip(tr_const!("A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering")),
@@ -602,6 +604,8 @@ pub static ALL: &[Def] = &[
     d(C::CableEditor, "cables", tr_const!("Cables"), I::Cable).tool(ToolPane::Cables),
     d(C::Potentials, "potentials", tr_const!("Potentials"), I::Potential).tool(ToolPane::Potentials),
     d(C::TerminalStrips, "terminal_strips", tr_const!("Terminal strips"), I::Terminal).tool(ToolPane::TerminalStrips),
+    d(C::NewTerminalStrip, "new_terminal_strip", tr_const!("New terminal strip"), I::Terminal),
+    d(C::NewTerminal, "new_terminal", tr_const!("New terminal"), I::Terminal),
     d(C::Plugs, "plugs", tr_const!("Plugs"), I::Plug).tool(ToolPane::Plugs),
     d(C::PlcOverview, "plc_overview", tr_const!("PLC overview"), I::Plc).tool(ToolPane::PlcOverview),
     d(C::PlcHardware, "plc_hardware", tr_const!("PLC hardware and bus topology"), I::Plc)

@@ -42,6 +42,9 @@ impl App {
             Cmd::UpdateReportBlocks => !self.session.prj.report_blocks.is_empty(),
             Cmd::RenameDevice | Cmd::PartSelection => self.selected_tag().is_some(),
             Cmd::RenameCable => self.selected_cable().is_some() && self.page_editable() && !self.remote.viewer(),
+            Cmd::NewTerminalStrip => self.remote.may(openecraft_core::collab::ProjectRight::EditProject) && self.plugins.command("create_strip").is_some(),
+            Cmd::NewTerminal => self.remote.may(openecraft_core::collab::ProjectRight::EditProject)
+                && self.plugins.command("add_terminal").is_some() && !openecraft_core::strips::strip_tags(&self.session.prj).is_empty(),
             Cmd::ShowInLayout | Cmd::ShowIn3d => self.selected_tag().is_some_and(|t| openecraft_core::panel::locate(&self.session.prj, &t).is_some()),
             Cmd::Quit => FileIo::has_own_window(),
             Cmd::CheckForUpdates => crate::updater::supported() && !self.updater.busy(),
@@ -292,6 +295,8 @@ impl App {
                 self.io.open(ctx, Purpose::Document);
             }
             Cmd::NewSection => self.new_section(),
+            Cmd::NewTerminalStrip => self.new_terminal_strip(),
+            Cmd::NewTerminal => self.add_strip_terminal(ctx),
             Cmd::PageProperties => self.page_props = Some(page),
             Cmd::RenumberPages => self.numbering_ui.show_pages = true,
             Cmd::MovePageUp => self.session.page = ops::move_page(&mut self.session.prj, page, page - 1),
@@ -680,27 +685,8 @@ impl App {
                 }
             }
             Cmd::Panes => {
-                // One submenu per area keeps the menu short.
-                for (title, panes) in crate::dock::menu_groups() {
-                    ui.menu_button(tr(title), |ui| {
-                        for pane in panes {
-                            let mut shown = self.pane_shown(pane);
-                            let title = self.pane_title(pane).text().to_string();
-                            // The page is never hidden: its entry only brings it back.
-                            let can_hide = pane != Pane::Page;
-                            let tip = commands::for_pane(pane).map(|c| tr(commands::def(c).tip)).unwrap_or("");
-                            let r = ui.add_enabled(can_hide || !shown, egui::Checkbox::new(&mut shown, title));
-                            let r = if tip.is_empty() { r } else { r.on_hover_text(tip) };
-                            if r.changed() {
-                                if shown {
-                                    self.show_pane(pane);
-                                } else {
-                                    self.floating.retain(|p| *p != pane);
-                                    crate::dock::close(&mut self.dock, pane);
-                                }
-                            }
-                        }
-                    });
+                if let Some(request) = super::dock_ui::panes_menu(ui, |p| self.pane_shown(p), |p| self.pane_title(p)) {
+                    self.pane_request(request);
                 }
                 ui.separator();
                 self.cmd_button(ui, Cmd::ResetLayout);
@@ -854,22 +840,25 @@ impl App {
     /// Ctrl+Tab: the next page tab.
     fn cycle_page_tab(&mut self, forward: bool) {
         let Some(cur) = self.session.prj.pages.get(self.session.page).map(|p| p.id) else { return };
-        let Some(at) = self.page_tabs.iter().position(|id| *id == cur) else { return };
-        let n = self.page_tabs.len();
-        let next = self.page_tabs[if forward { (at + 1) % n } else { (at + n - 1) % n }];
+        let tabs = self.ordered_page_tabs();
+        let Some(at) = tabs.iter().position(|id| *id == cur) else { return };
+        let n = tabs.len();
+        let next = tabs[if forward { (at + 1) % n } else { (at + n - 1) % n }];
         if let Some(i) = self.session.prj.pages.iter().position(|p| p.id == next) {
             self.goto(i, 0);
         }
     }
 
     pub(super) fn close_page_tab(&mut self, id: u64) {
-        if self.page_tabs.len() < 2 {
+        let mut tabs = self.ordered_page_tabs();
+        if tabs.len() < 2 {
             return;
         }
-        let at = self.page_tabs.iter().position(|t| *t == id).unwrap_or(0);
+        let at = tabs.iter().position(|t| *t == id).unwrap_or(0);
+        tabs.retain(|t| *t != id);
         self.page_tabs.retain(|t| *t != id);
         if self.session.prj.pages.get(self.session.page).map(|p| p.id) == Some(id) {
-            let next = self.page_tabs[at.min(self.page_tabs.len() - 1)];
+            let next = tabs[at.min(tabs.len() - 1)];
             if let Some(i) = self.session.prj.pages.iter().position(|p| p.id == next) {
                 self.goto(i, 0);
             }

@@ -5,6 +5,32 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Panel-layout navigation**: each panel has its own collapsible group in Pages,
+  with its layout pages nested beneath it under Panel layout, including within
+  sections and structure groups. A dropdown beside Open/Close door switches between
+  the panel's layout page, 3D view and mounting surface; layout pages also show it
+  so the panel views can be reached again.
+
+- **Page tab order**: open pages stay in natural number order, including subpages.
+  Keyboard tab navigation and closing a tab follow the same visible order.
+
+- **Schematic page icon**: a circuit diagram inside a folded-corner page identifies
+  schematic pages in the Pages navigator, its drag preview and New schematic page.
+
+- **Schematics ribbon tab**: symbols, macros, connection tools,
+  wire numbering, cables, potentials, harnesses, field wiring, marking, cross
+  references and wire crossings are available beside Home. Shared controls remain
+  in their original tabs; connection tools are now in Schematics. Insert starts
+  with the Page group before Symbols, including document pages and drawing import.
+  Home also retains its page controls.
+
+- **Terminal creation and pane context menus**: **Add New** in the terminal strip
+  selector and navigator creates a strip or adds an unplaced terminal. Pane tabs
+  and backgrounds offer a right-click menu with a **Placeholder** entry.
+
+- **Add panes from the pane menu**: the three-dot menu now has an **Add New**
+  submenu with the same grouped pane list and layout reset as View > Panes.
+
 - **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
   in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
   click on a face, edge or corner of the cube turns the camera to look from there

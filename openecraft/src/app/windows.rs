@@ -426,6 +426,7 @@ impl App {
         self.numbering_windows(ctx);
         self.arrange_windows(ctx);
         self.save_macro_dialog(ctx);
+        self.new_strip_window(ctx);
         self.save_template_window(ctx);
         self.plugins_windows(ctx);
         self.properties_float_window(ctx);

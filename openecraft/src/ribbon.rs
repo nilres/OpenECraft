@@ -13,6 +13,7 @@ pub const STORAGE_KEY: &str = "ribbon";
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum TabId {
     Home,
+    Schematics,
     Insert,
     Edit,
     View,
@@ -70,6 +71,27 @@ const fn g(id: &'static str, title: &'static str, items: &'static [Item]) -> Gro
     Group { id, title, items }
 }
 
+const PAGE_GROUP: Group = g(
+    "page",
+    tr_const!("Page"),
+    &[L(C::NewSchematicPage), S(C::NewPage), S(C::NewSubPage), S(C::NewSection), S(C::PageProperties), S(C::RenumberPages), S(C::DeletePage), S(C::MovePageUp), S(C::MovePageDown)],
+);
+const SYMBOLS_GROUP: Group = g("symbols", tr_const!("Symbols"), &[L(C::InsertCenter), S(C::UnplacedPane), S(C::DeviceBoxTool), S(C::DeviceConnectionTool)]);
+const CONNECTIONS_GROUP: Group = g(
+    "connections",
+    tr_const!("Connections"),
+    &[L(C::WireTool), S(C::JunctionTool), S(C::CornerTool), S(C::CrossingTool), S(C::BridgeTool), S(C::ConnDefTool), S(C::CableDefTool), S(C::InterruptionPoint), S(C::PotentialPoint)],
+);
+const MACROS_GROUP: Group = g("macros", tr_const!("Macros"), &[L(C::InsertMacro), S(C::SaveSelectionAsMacro), S(C::SavePageAsMacro)]);
+const WIRE_NUMBERING_GROUP: Group = g("numbering", tr_const!("Numbering"), &[L(C::WireNumbering)]);
+const CABLES_GROUP: Group = g("cables", tr_const!("Cables"), &[L(C::CableEditor), S(C::RenameCable), S(C::AlignCoreLabels)]);
+const POTENTIALS_GROUP: Group = g("potentials", tr_const!("Potentials"), &[L(C::Potentials)]);
+const HARNESSES_GROUP: Group = g("harnesses", tr_const!("Harnesses"), &[L(C::Harnesses)]);
+const FIELD_GROUP: Group = g("field", tr_const!("Field wiring"), &[L(C::FieldWiring)]);
+const MARKING_GROUP: Group = g("marking", tr_const!("Marking"), &[L(C::Marking)]);
+const XREF_GROUP: Group = g("xref", tr_const!("Cross references"), &[L(C::CrossReferences)]);
+const CROSSINGS_GROUP: Group = g("crossings", tr_const!("Wire crossings"), &[L(C::WireCrossings)]);
+
 pub static TABS: &[Tab] = &[
     Tab {
         id: TabId::Home,
@@ -79,14 +101,31 @@ pub static TABS: &[Tab] = &[
         context: false,
         groups: &[
             g("clipboard", tr_const!("Clipboard"), &[L(C::Paste), S(C::Cut), S(C::Copy), S(C::MultipleCopy)]),
-            g(
-                "page",
-                tr_const!("Page"),
-                &[L(C::NewSchematicPage), S(C::NewPage), S(C::NewSubPage), S(C::NewSection), S(C::PageProperties), S(C::RenumberPages), S(C::DeletePage), S(C::MovePageUp), S(C::MovePageDown)],
-            ),
+            PAGE_GROUP,
             g("edit", tr_const!("Edit"), &[L(C::SelectTool), S(C::Undo), S(C::Redo), S(C::Delete), S(C::Rotate), S(C::Mirror), S(C::Align), S(C::Distribute), S(C::MoveBy)]),
             g("find", tr_const!("Find"), &[L(C::Find), S(C::CommandSearch), S(C::SelectAll)]),
             g("navigators", tr_const!("Navigators"), &[S(C::PagesPane), S(C::DevicesPane), S(C::MessagesPane)]),
+        ],
+    },
+    Tab {
+        id: TabId::Schematics,
+        key: "schematics",
+        title: tr_const!("Schematics"),
+        key_tip: 'S',
+        context: false,
+        groups: &[
+            SYMBOLS_GROUP,
+            CONNECTIONS_GROUP,
+            MACROS_GROUP,
+            WIRE_NUMBERING_GROUP,
+            CABLES_GROUP,
+            POTENTIALS_GROUP,
+            HARNESSES_GROUP,
+            FIELD_GROUP,
+            MARKING_GROUP,
+            XREF_GROUP,
+            CROSSINGS_GROUP,
+            g("navigators", tr_const!("Navigators"), &[L(C::PagesPane)]),
         ],
     },
     Tab {
@@ -96,14 +135,14 @@ pub static TABS: &[Tab] = &[
         key_tip: 'I',
         context: false,
         groups: &[
-            g("symbols", tr_const!("Symbols"), &[L(C::InsertCenter), S(C::UnplacedPane), S(C::DeviceBoxTool), S(C::DeviceConnectionTool)]),
             g(
-                "connections",
-                tr_const!("Connections"),
-                &[L(C::WireTool), S(C::JunctionTool), S(C::CornerTool), S(C::CrossingTool), S(C::BridgeTool), S(C::ConnDefTool), S(C::CableDefTool), S(C::InterruptionPoint), S(C::PotentialPoint)],
+                "page",
+                tr_const!("Page"),
+                &[L(C::NewSchematicPage), S(C::NewPage), S(C::NewSubPage), S(C::NewSection), S(C::PageProperties), S(C::RenumberPages), S(C::DeletePage), S(C::MovePageUp), S(C::MovePageDown), S(C::NewDocumentPage), S(C::ImportDrawing)],
             ),
+            SYMBOLS_GROUP,
             g("structure", tr_const!("Structure"), &[L(C::StructureBoxTool)]),
-            g("macros", tr_const!("Macros"), &[L(C::InsertMacro), S(C::SaveSelectionAsMacro), S(C::SavePageAsMacro)]),
+            MACROS_GROUP,
             g("text", tr_const!("Text"), &[L(C::TextTool), S(C::PathFunctionText), S(C::SpecialText)]),
             g(
                 "graphics",
@@ -112,7 +151,6 @@ pub static TABS: &[Tab] = &[
             ),
             g("dimensions", tr_const!("Dimension"), &[S(C::DimAligned), S(C::DimHorizontal), S(C::DimVertical)]),
             g("review", tr_const!("Review"), &[L(C::CommentTool), S(C::Markup)]),
-            g("page", tr_const!("Page"), &[S(C::NewDocumentPage), S(C::ImportDrawing)]),
         ],
     },
     Tab {
@@ -168,7 +206,7 @@ pub static TABS: &[Tab] = &[
         groups: &[
             g("navigators", tr_const!("Navigators"), &[S(C::DevicesPane), S(C::StripsPane), S(C::PlcPane)]),
             g("numbering", tr_const!("Numbering"), &[L(C::DeviceNumbering), S(C::RenameDevice)]),
-            g("terminals", tr_const!("Terminals"), &[L(C::TerminalStrips)]),
+            g("terminals", tr_const!("Terminals"), &[L(C::TerminalStrips), S(C::NewTerminalStrip), S(C::NewTerminal)]),
             g("plugs", tr_const!("Plugs"), &[L(C::Plugs)]),
             g("plc", tr_const!("PLC"), &[L(C::PlcOverview), S(C::PlcHardware)]),
             g("parts", tr_const!("Parts"), &[L(C::PartSelection)]),
@@ -185,14 +223,14 @@ pub static TABS: &[Tab] = &[
         context: false,
         groups: &[
             g("navigators", tr_const!("Navigators"), &[S(C::ConnectionsPane), S(C::CablesPane)]),
-            g("numbering", tr_const!("Numbering"), &[L(C::WireNumbering)]),
-            g("cables", tr_const!("Cables"), &[L(C::CableEditor), S(C::RenameCable), S(C::AlignCoreLabels)]),
-            g("potentials", tr_const!("Potentials"), &[L(C::Potentials)]),
-            g("harnesses", tr_const!("Harnesses"), &[L(C::Harnesses)]),
-            g("field", tr_const!("Field wiring"), &[L(C::FieldWiring)]),
-            g("marking", tr_const!("Marking"), &[L(C::Marking)]),
-            g("xref", tr_const!("Cross references"), &[L(C::CrossReferences)]),
-            g("crossings", tr_const!("Wire crossings"), &[L(C::WireCrossings)]),
+            WIRE_NUMBERING_GROUP,
+            CABLES_GROUP,
+            POTENTIALS_GROUP,
+            HARNESSES_GROUP,
+            FIELD_GROUP,
+            MARKING_GROUP,
+            XREF_GROUP,
+            CROSSINGS_GROUP,
         ],
     },
     Tab {

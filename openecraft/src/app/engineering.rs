@@ -30,7 +30,8 @@ pub struct EngineeringUi {
     macro_variant: String,
     pub show_strips: bool,
     pub show_potentials: bool,
-    strip: String,
+    pub(super) strip: String,
+    pub(super) new_strip: Option<super::strips_ui::Draft>,
     pub show_plc: bool,
     card: String,
     pub show_revisions: bool,
@@ -421,18 +422,20 @@ impl App {
         let mut moved = None;
         let mut relabel: Vec<(usize, usize, String, String)> = Vec::new();
         let mut jump = None;
+        let mut creation = None;
+        let can_strip = self.cmd_enabled(crate::commands::Cmd::NewTerminalStrip);
+        let can_terminal = self.cmd_enabled(crate::commands::Cmd::NewTerminal);
         ui.scope(|ui| {
-            if tags.is_empty() {
-                ui.weak(tr("No terminal strips: place terminals in a schematic first."));
-                return;
-            }
             ui.horizontal_wrapped(|ui| {
                 ui.label(tr("Strip"));
                 egui::ComboBox::from_id_salt("strip").selected_text(&strip).show_ui(ui, |ui| {
                     for t in &tags {
                         ui.selectable_value(&mut self.eng.strip, t.clone(), t);
                     }
+                    ui.separator();
+                    ui.menu_button(tr("Add New"), |ui| creation = super::strips_ui::creation_menu(ui, can_strip, can_terminal));
                 });
+                if tags.is_empty() { return; }
                 ui.separator();
                 ui.label(tr("Spare terminals"));
                 ui.add(egui::DragValue::new(&mut data.spares).range(0..=500));
@@ -449,6 +452,10 @@ impl App {
                     data.manual_accessories = !auto;
                 }
             });
+            if tags.is_empty() {
+                ui.weak(tr("(no entries)"));
+                return;
+            }
             egui::CollapsingHeader::new(tr("Strip on the rail")).id_salt("strip_layout").default_open(true).show(ui, |ui| {
                 ui.horizontal_wrapped(|ui| {
                     for e in &layout {
@@ -589,6 +596,7 @@ impl App {
         if let Some((pg, id)) = jump {
             self.goto(pg, id);
         }
+        if let Some(cmd) = creation { self.run(ctx, cmd); }
     }
 
     pub(super) fn marking_body(&mut self, ui: &mut egui::Ui) {

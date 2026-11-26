@@ -1,16 +1,61 @@
 //! The docked panes (see `crate::dock`): every pane drawn by the app, its tab title,
-//! the pane menu (float, close, help), the page tabs above the page and the panes
+//! the pane menu (add panes, float, close, help), the page tabs above the page and the panes
 //! floating as windows.
 
 use super::*;
 use crate::dock::{self, Pane};
 
 /// What the pane menu of a tab bar asked for.
-enum PaneRequest {
+#[derive(Debug, PartialEq)]
+pub(super) enum PaneRequest {
     Show(Pane),
     Float(Pane),
     Close(Pane),
     Help(Pane),
+}
+
+/// Shared by View > Panes and the pane menu; apply changes after drawing the tree.
+pub(super) fn panes_menu(ui: &mut egui::Ui, shown: impl Fn(Pane) -> bool, title: impl Fn(Pane) -> egui::WidgetText) -> Option<PaneRequest> {
+    let mut request = None;
+    for (group, panes) in dock::menu_groups() {
+        ui.menu_button(tr(group), |ui| {
+            for pane in panes {
+                let mut visible = shown(pane);
+                let tip = crate::commands::for_pane(pane).map(|c| tr(crate::commands::def(c).tip)).unwrap_or("");
+                let r = ui.add_enabled(pane != Pane::Page || !visible, egui::Checkbox::new(&mut visible, title(pane)));
+                let r = if tip.is_empty() { r } else { r.on_hover_text(tip) };
+                if r.changed() {
+                    request = Some(if visible { PaneRequest::Show(pane) } else { PaneRequest::Close(pane) });
+                }
+            }
+        });
+    }
+    request
+}
+
+pub(super) fn placeholder(ui: &mut egui::Ui) {
+    if ui.button(tr("Placeholder")).clicked() { ui.close(); }
+}
+
+fn pane_context_response(ui: &egui::Ui) -> egui::Response {
+    let response = ui.interact(ui.available_rect_before_wrap(), ui.scope_id().with("pane_context"), egui::Sense::hover());
+    if ui.input(|i| i.pointer.secondary_clicked()) && ui.rect_contains_pointer(response.rect) {
+        egui::Popup::close_all(ui.ctx());
+    }
+    response
+}
+
+/// A fallback for pane contents that do not already provide an item context menu.
+fn pane_context_popup(ui: &egui::Ui, response: &egui::Response, contents: impl FnOnce(&mut egui::Ui)) {
+    let ctx = ui.ctx();
+    let mut popup = egui::Popup::context_menu(response);
+    if response.secondary_clicked()
+        || (ui.input(|i| i.pointer.secondary_clicked()) && ui.rect_contains_pointer(response.rect) && !egui::Popup::is_any_open(ctx))
+    {
+        // Reopening an existing menu must not count this click as an outside click.
+        popup = popup.open_memory(egui::SetOpenCommand::Bool(true)).close_behavior(egui::PopupCloseBehavior::IgnoreClicks);
+    }
+    popup.show(contents);
 }
 
 /// Draws the panes of the tile tree with the app.
@@ -86,7 +131,7 @@ impl egui_tiles::Behavior<Pane> for Docked<'_> {
         let title = self.tab_title_for_tile(tiles, tile);
         let compact = self.compact.contains(&tile);
         let pane = tiles.get_pane(&tile).copied();
-        match pane {
+        let response = match pane {
             Some(pane) if compact => {
                 // Blanks as wide as the icon painted over them.
                 let mut plain = PlainTab("    ".into(), 2.0);
@@ -97,7 +142,9 @@ impl egui_tiles::Behavior<Pane> for Docked<'_> {
                 r.on_hover_text(title.text())
             }
             _ => PlainTab(title, 8.0).tab_ui(tiles, ui, id, tile, state),
-        }
+        };
+        if let Some(pane) = pane { pane_context_popup(ui, &response, |ui| self.app.pane_context_items(ui, pane)); }
+        response
     }
 
     fn top_bar_right_ui(&mut self, tiles: &egui_tiles::Tiles<Pane>, ui: &mut egui::Ui, _tile: egui_tiles::TileId, tabs: &egui_tiles::Tabs, _scroll: &mut f32) {
@@ -117,6 +164,18 @@ impl egui_tiles::Behavior<Pane> for Docked<'_> {
         ui.add_space(4.0);
         let r = icons::button(ui, Icon::Dots, tr("Pane menu"));
         egui::Popup::menu(&r).show(|ui| {
+            ui.menu_button(tr("Add New"), |ui| {
+                let request = panes_menu(
+                    ui,
+                    |p| tiles.find_pane(&p).is_some() || self.app.floating.contains(&p),
+                    |p| self.app.pane_title(p),
+                );
+                if request.is_some() {
+                    self.request = request;
+                }
+                ui.separator();
+                self.app.cmd_button(ui, Cmd::ResetLayout);
+            });
             if icons::text_button(ui, Icon::Float, tr("Float")).on_hover_text(tr("Show the pane as a window")).clicked() {
                 self.request = Some(PaneRequest::Float(pane));
                 ui.close();
@@ -181,18 +240,26 @@ impl App {
         if !self.floating.contains(&self.active_doc) {
             self.active_doc = dock::shown_document(&self.dock, self.active_doc);
         }
+        if let Some(request) = request {
+            self.pane_request(request);
+        }
+    }
+
+    pub(super) fn pane_request(&mut self, request: PaneRequest) {
         match request {
-            Some(PaneRequest::Show(p)) => self.show_pane(p),
-            Some(PaneRequest::Float(p)) => {
+            PaneRequest::Show(p) => self.show_pane(p),
+            PaneRequest::Float(p) => {
                 dock::close(&mut self.dock, p);
                 if dock::find(&self.dock, p).is_none() {
                     self.shell.placement.set(p, true);
                     self.show_pane(p);
                 }
             }
-            Some(PaneRequest::Close(p)) => dock::close(&mut self.dock, p),
-            Some(PaneRequest::Help(p)) => self.help_for(p),
-            None => {}
+            PaneRequest::Close(p) => {
+                self.floating.retain(|pane| *pane != p);
+                dock::close(&mut self.dock, p);
+            }
+            PaneRequest::Help(p) => self.help_for(p),
         }
     }
 
@@ -248,6 +315,7 @@ impl App {
 
     /// The content of a pane.
     pub(super) fn pane_ui(&mut self, ui: &mut egui::Ui, pane: Pane, idx: &Index) {
+        let background = pane_context_response(ui);
         // Clicks make a pane the active one: keys go to the document worked in.
         if ui.input(|i| i.pointer.any_pressed()) && ui.rect_contains_pointer(ui.max_rect()) {
             self.active_pane = Some(pane);
@@ -281,6 +349,18 @@ impl App {
                 });
             }
         }
+        pane_context_popup(ui, &background, |ui| self.pane_context_items(ui, pane));
+    }
+
+    fn pane_context_items(&mut self, ui: &mut egui::Ui, pane: Pane) {
+        if matches!(pane, Pane::Navigator(LeftTab::Strips) | Pane::Tool(ToolPane::TerminalStrips)) {
+            ui.menu_button(tr("Add New"), |ui| {
+                self.cmd_button(ui, Cmd::NewTerminalStrip);
+                self.cmd_button(ui, Cmd::NewTerminal);
+            });
+            ui.separator();
+        }
+        placeholder(ui);
     }
 
     fn tool_pane(&mut self, ui: &mut egui::Ui, t: ToolPane) {
@@ -363,6 +443,7 @@ impl App {
     fn page_pane(&mut self, ui: &mut egui::Ui, idx: &Index) {
         let ctx = ui.ctx().clone();
         self.page_tabs_bar(ui);
+        self.layout_page_toolbar(ui);
         let page = self.session.page;
         let locked_by = self.page_locked_by();
         self.editor.read_only = locked_by.is_some() || self.remote.viewer();
@@ -426,14 +507,14 @@ impl App {
         parts::assign_placed_function_part(&mut self.session.prj, &self.parts_db, page_i, id, number);
     }
 
-    /// Tabs of the pages opened lately; a click shows the page, the cross closes the tab.
+    /// Open pages in number order; a click shows the page, the cross closes the tab.
     fn page_tabs_bar(&mut self, ui: &mut egui::Ui) {
         let current = self.session.prj.pages.get(self.session.page).map(|p| p.id);
         let mut goto = None;
         let mut close = None;
         ui.horizontal(|ui| {
             ui.spacing_mut().item_spacing.x = 2.0;
-            for &id in &self.page_tabs {
+            for id in self.ordered_page_tabs() {
                 let Some((i, pg)) = self.session.prj.pages.iter().enumerate().find(|(_, p)| p.id == id) else { continue };
                 let name = structure::page_full_name(pg);
                 let full = if pg.description.is_empty() { name } else { format!("{name}  {}", pg.description) };
@@ -519,5 +600,10 @@ impl App {
                 self.cmd_button(ui, c);
             }
         }
+        ui.separator();
+        placeholder(ui);
     }
 }
+
+#[cfg(test)]
+mod tests;

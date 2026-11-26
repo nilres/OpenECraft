@@ -4,6 +4,46 @@
 
 use super::*;
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(super) enum LayoutView {
+    Layout,
+    ThreeD,
+    MountingSurface,
+}
+
+impl LayoutView {
+    const ALL: [Self; 3] = [Self::Layout, Self::ThreeD, Self::MountingSurface];
+
+    fn title(self) -> &'static str {
+        match self {
+            Self::Layout => tr("Layout"),
+            Self::ThreeD => tr("3D view"),
+            Self::MountingSurface => tr("Mounting surface"),
+        }
+    }
+}
+
+pub(super) fn layout_view_combo(ui: &mut egui::Ui, current: Option<LayoutView>, has_layout: bool, has_panel: bool) -> Option<LayoutView> {
+    let mut picked = None;
+    egui::ComboBox::from_id_salt("layout_view").selected_text(current.map_or(tr("Floor plan"), LayoutView::title)).width(130.0).show_ui(ui, |ui| {
+        for view in LayoutView::ALL {
+            let enabled = if view == LayoutView::Layout { has_layout } else { has_panel };
+            if ui.add_enabled(enabled, egui::Button::selectable(Some(view) == current, view.title())).clicked() && Some(view) != current {
+                picked = Some(view);
+            }
+        }
+    });
+    picked
+}
+
+fn layout_page(prj: &Project, enclosure: u64, current: usize) -> Option<usize> {
+    if prj.pages.get(current).is_some_and(|p| p.kind == PageKind::Mounting(enclosure)) {
+        return Some(current);
+    }
+    prj.pages.iter().enumerate().filter(|(_, p)| p.kind == PageKind::Mounting(enclosure))
+        .min_by(|(_, a), (_, b)| natural_cmp(&a.name, &b.name).then_with(|| a.id.cmp(&b.id))).map(|(i, _)| i)
+}
+
 impl App {
     /// Before the panes are drawn: the assistants mark what is done in the 3D view.
     pub(super) fn layout_frame(&mut self) {
@@ -34,7 +74,53 @@ impl App {
     }
 
     pub(super) fn layout_view_pane(&mut self, ui: &mut egui::Ui) {
-        self.panel_ui.canvas(ui, &mut self.session.prj, &self.session.analysis, &self.parts_db);
+        let current = match self.panel_ui.view {
+            crate::panel_ui::View::ThreeD => Some(LayoutView::ThreeD),
+            crate::panel_ui::View::Front => Some(LayoutView::MountingSurface),
+            crate::panel_ui::View::Plan => None,
+        };
+        let enclosure = self.session.prj.layout.enclosures.get(self.panel_ui.enclosure).map(|e| e.id);
+        let has_layout = enclosure.and_then(|id| layout_page(&self.session.prj, id, self.session.page)).is_some();
+        let mut picked = None;
+        self.panel_ui.canvas(ui, &mut self.session.prj, &self.session.analysis, &self.parts_db, |ui| {
+            picked = layout_view_combo(ui, current, has_layout, enclosure.is_some());
+        });
+        if let Some((view, enclosure)) = picked.zip(enclosure) {
+            self.select_layout_view(ui.ctx(), enclosure, view);
+        }
+    }
+
+    pub(super) fn layout_page_toolbar(&mut self, ui: &mut egui::Ui) {
+        let Some(PageKind::Mounting(enclosure)) = self.session.prj.pages.get(self.session.page).map(|p| p.kind) else { return };
+        let has_panel = self.session.prj.layout.enclosures.iter().any(|e| e.id == enclosure);
+        let mut picked = None;
+        ui.horizontal(|ui| { picked = layout_view_combo(ui, Some(LayoutView::Layout), true, has_panel); });
+        ui.separator();
+        if let Some(view) = picked {
+            self.select_layout_view(ui.ctx(), enclosure, view);
+        }
+    }
+
+    fn select_layout_view(&mut self, ctx: &egui::Context, enclosure: u64, view: LayoutView) {
+        if view == LayoutView::Layout {
+            if let Some(page) = layout_page(&self.session.prj, enclosure, self.session.page) {
+                self.goto(page, 0);
+            }
+            return;
+        }
+        let Some(index) = self.session.prj.layout.enclosures.iter().position(|e| e.id == enclosure) else { return };
+        if self.panel_ui.enclosure != index {
+            self.panel_ui.selection.clear();
+            self.panel_ui.fit();
+        }
+        self.panel_ui.enclosure = index;
+        self.panel_ui.site = false;
+        self.show_pane(Pane::LayoutView);
+        match view {
+            LayoutView::ThreeD if self.panel_ui.view != crate::panel_ui::View::ThreeD => self.run(ctx, Cmd::Layout3d),
+            LayoutView::MountingSurface => self.run(ctx, Cmd::LayoutFront),
+            _ => {}
+        }
     }
 
     pub(super) fn wiring_checklist_pane(&mut self, ui: &mut egui::Ui) {
@@ -107,3 +193,6 @@ impl App {
         }
     }
 }
+
+#[cfg(test)]
+mod tests;

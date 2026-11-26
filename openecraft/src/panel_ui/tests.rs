@@ -3,6 +3,39 @@ use openecraft_core::panel::buildings as bld;
 use openecraft_core::parts::vec3;
 use openecraft_ui::view_cube::ViewCube;
 
+#[test]
+fn the_layout_toolbar_is_available_without_an_enclosure_and_beside_the_door() {
+    for enclosure in [false, true] {
+        let mut prj = Project::default();
+        if enclosure {
+            prj.layout.enclosures.push(panel::Enclosure { name: "+CAB1".into(), ..Default::default() });
+        }
+        let an = Analysis::build(&prj);
+        let db = PartsDb::default();
+        let mut panel = PanelUi { view: View::ThreeD, ..Default::default() };
+        let ctx = egui::Context::default();
+        let mut toolbar = None;
+        let mut output = ctx.run_ui(egui::RawInput::default(), |ui| {
+            panel.canvas(ui, &mut prj, &an, &db, |ui| {
+                toolbar = Some(ui.button(tr("Mounting surface")).rect);
+            });
+        });
+        output.textures_delta.clear();
+        let toolbar = toolbar.expect("the view control is available even in an empty project");
+        if enclosure {
+            let door = output.shapes.iter().find_map(|shape| {
+                if let egui::Shape::Text(text) = &shape.shape {
+                    (text.galley.text() == tr("Close door")).then(|| egui::Rect::from_min_size(text.pos, text.galley.size()))
+                } else {
+                    None
+                }
+            }).expect("the door button is shown in 3D");
+            assert!(toolbar.left() > door.right());
+            assert!((toolbar.center().y - door.center().y).abs() < 2.0);
+        }
+    }
+}
+
 /// A building with two levels and a room outside it.
 fn building_and_room() -> (Project, [u64; 2], usize) {
     let mut prj = Project::default();

@@ -47,9 +47,8 @@ impl App {
     pub(super) fn section_tree(&self, ui: &mut egui::Ui, shown: &[usize], probe: &mut Probe) -> PageAction {
         let prj = &self.session.prj;
         let mut action = PageAction::None;
-        for &i in shown.iter().filter(|&&i| sections::of_page(prj, i) == 0) {
-            action = action.or(self.page_row(ui, i, probe));
-        }
+        let pages: Vec<usize> = shown.iter().copied().filter(|&i| sections::of_page(prj, i) == 0).collect();
+        action = action.or(self.page_rows(ui, &pages, probe));
         for id in sections::children(prj, 0) {
             action = action.or(self.section_node(ui, id, shown, probe));
         }
@@ -62,9 +61,8 @@ impl App {
         let title = if probe.dragged == Some(Dragged::Section(id)) { title.weak() } else { title.strong() };
         let header = egui::CollapsingHeader::new(title).id_salt(("section", id)).default_open(true).show(ui, |ui| {
             let mut action = PageAction::None;
-            for &i in shown.iter().filter(|&&i| sections::of_page(prj, i) == id) {
-                action = action.or(self.page_row(ui, i, probe));
-            }
+            let pages: Vec<usize> = shown.iter().copied().filter(|&i| sections::of_page(prj, i) == id).collect();
+            action = action.or(self.page_rows(ui, &pages, probe));
             for c in sections::children(prj, id) {
                 action = action.or(self.section_node(ui, c, shown, probe));
             }
