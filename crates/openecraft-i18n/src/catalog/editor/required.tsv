@@ -77,6 +77,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Ein Kabel des Bustyps für jede Verbindung ohne Kabel	Un câble du type de bus pour chaque liaison sans câble	Un cable del tipo de bus para cada conexión sin cable
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Ein Kabel, das ein Gehäuse verlässt und keine freie Verschraubung findet, bekommt eine seiner Größe: im Dach für ein Gerät im Raum, im Boden für das Feld oder einen an der Wand hängenden Schrank	Un câble qui sort d'une armoire et ne trouve aucun presse-étoupe libre en reçoit un à sa taille : dans le toit pour un appareil dans la pièce, dans le fond pour le terrain ou une armoire suspendue au mur	Un cable que sale de un armario y no encuentra ningún prensaestopas libre recibe uno de su tamaño: en el techo para un aparato en la sala, en el fondo para el campo o un armario colgado en la pared
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Ein gleich großer Ausschnitt an derselben Stelle in der Seitenwand des Nachbarn: zusammen bilden sie eine Kabeldurchführung	Une découpe de même taille au même endroit dans la paroi latérale de la voisine : ensemble elles forment un passage de câbles	Un recorte del mismo tamaño en el mismo lugar de la pared lateral del vecino: juntos forman un paso de cables
+A drag to the side turns the 3D view the other way round	Ziehen zur Seite dreht die 3D-Ansicht andersherum	Un glissement sur le côté tourne la vue 3D dans l'autre sens	Arrastrar hacia un lado gira la vista 3D en el sentido contrario
+A drag up or down tilts the 3D view the other way round	Ziehen nach oben oder unten kippt die 3D-Ansicht andersherum	Un glissement vers le haut ou le bas incline la vue 3D dans l'autre sens	Arrastrar hacia arriba o abajo inclina la vista 3D en el sentido contrario
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Eine gleichnamige Datei im Ordner erhält eine neue Version (aus- und eingecheckt), sonst wird die Datei hinzugefügt	Un fichier du même nom dans le dossier reçoit une nouvelle version (extrait puis archivé), sinon le fichier est ajouté	Un archivo con el mismo nombre en la carpeta recibe una nueva versión (desprotegido y protegido), si no el archivo se añade
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Ein Ordner mit je einer kleinen Datei pro Seite, Betriebsmittel und Artikel statt einer Projektdatei, für die Versionsverwaltung wie git	Un dossier avec un petit fichier par page, appareil et article au lieu d'un seul fichier de projet, pour la gestion de versions comme git	Una carpeta con un archivo pequeño por página, dispositivo y artículo en lugar de un único archivo de proyecto, para el control de versiones como git
 A hidden or locked layer cannot take new items	Eine ausgeblendete oder gesperrte Ebene nimmt keine neuen Elemente auf	Un calque masqué ou verrouillé ne peut pas recevoir de nouveaux éléments	Una capa oculta o bloqueada no puede recibir elementos nuevos
@@ -764,6 +766,7 @@ Door clearance	Türfreiraum	Dégagement de porte	Espacio libre de la puerta
 Door cutouts (CSV)	Türausschnitte (CSV)	Découpes de porte (CSV)	Recortes de puerta (CSV)
 Door hinge	Türanschlag	Charnières de la porte	Bisagras de la puerta
 Door in a wall of the room: click on the wall in the floor plan or in the view of the wall	Tür in einer Wand des Raums: im Grundriss oder in der Ansicht der Wand auf die Wand klicken	Porte dans un mur de la salle : cliquez sur le mur dans le plan ou dans la vue du mur	Puerta en una pared de la sala: haga clic en la pared en el plano o en la vista de la pared
+Door opening angle	Öffnungswinkel der Tür	Angle d'ouverture de la porte	Ángulo de apertura de la puerta
 Door: {} devices, {} cutouts	Tür: {} Betriebsmittel, {} Ausschnitte	Porte : {} appareils, {} découpes	Puerta: {} dispositivos, {} recortes
 Dot	Punkt	Point	Punto
 Double door	Zweiflügelig	Porte double	Puerta doble
@@ -1128,6 +1131,7 @@ Hoses and pipes	Schläuche und Rohre	Flexibles et tuyaux	Mangueras y tuberías
 Hoses rated below it are errors; 0 = not checked	Schläuche mit geringerer Druckstufe sind Fehler; 0 = nicht geprüft	Les flexibles prévus pour moins sont des erreurs ; 0 = non vérifié	Las mangueras aptas para menos son errores; 0 = no se comprueba
 How far inside the outer walls	Wie weit innerhalb der Außenwände	Distance à l'intérieur des murs extérieurs	Cuánto dentro de los muros exteriores
 How far outside the outer walls	Wie weit außerhalb der Außenwände	Distance à l'extérieur des murs extérieurs	Cuánto fuera de los muros exteriores
+How far the enclosure door opens in the 3D view of the panel layout	Wie weit sich die Gehäusetür in der 3D-Ansicht des Aufbauplans öffnet	Jusqu'où la porte de l'armoire s'ouvre dans la vue 3D de l'implantation	Cuánto se abre la puerta de la envolvente en la vista 3D de la disposición del armario
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Wie der Flügel öffnet: Anschlag an der linken oder rechten Kante (vom Raum aus gesehen), in den Raum hinein oder aus ihm heraus, oder schiebend an der Wand entlang	Comment le vantail s'ouvre : paumelles sur le bord gauche ou droit (vu de l'intérieur de la pièce), vers l'intérieur ou l'extérieur de la pièce, ou coulissant le long du mur	Cómo abre la hoja: con bisagras en el borde izquierdo o derecho (visto desde dentro del recinto), hacia dentro o hacia fuera del recinto, o corredera a lo largo de la pared
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Wie die Leitung an diesem Ende abgeschlossen wird; standardmäßig wie für den Anschlusspunkt oder sein Betriebsmittel gewählt, sonst wie das Layout Aderendhülsen vorgibt	Comment le fil est terminé à cette extrémité ; par défaut comme choisi pour le point de connexion ou son appareil, sinon selon le réglage des embouts de l'implantation	Cómo se termina el cable en este extremo; por defecto como se eligió para el punto de conexión o su equipo, si no según el ajuste de punteras del montaje
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Wie Leitungen über die gekreuzten Leitungen springen, wie T-Verbindungen markiert werden und ob verschobene Elemente ihre Verbindungen neu verlegen	Comment les fils sautent par-dessus les fils qu'ils croisent, comment les jonctions en T sont marquées et si les éléments déplacés retracent leurs connexions	Cómo saltan los cables sobre los cables que cruzan, cómo se marcan las uniones en T y si los elementos movidos vuelven a trazar sus conexiones
@@ -1211,7 +1215,9 @@ Interruption points refer to	Unterbrechungspunkte verweisen auf	Les points d'int
 Interval	Intervall	Intervalle	Intervalo
 Introduction	Einführung	Introduction	Introducción
 Invalid value	Ungültiger Wert	Valeur invalide	Valor no válido
+Invert horizontally	Horizontal umkehren	Inverser horizontalement	Invertir horizontalmente
 Invert the direction of panning by scrolling	Richtung des Verschiebens durch Scrollen umkehren	Inverser le sens du déplacement par défilement	Invertir la dirección del desplazamiento de la vista
+Invert vertically	Vertikal umkehren	Inverser verticalement	Invertir verticalmente
 Inverter or charge controller (devices with PV input data)	Wechselrichter oder Laderegler (Betriebsmittel mit PV-Eingangsdaten)	Onduleur ou régulateur de charge (appareils avec des données d'entrée PV)	Inversor o regulador de carga (dispositivos con datos de entrada FV)
 It takes the place of the bundled template of this name.	Sie tritt an die Stelle der mitgelieferten Vorlage dieses Namens.	Il prend la place du modèle fourni de ce nom.	Ocupa el lugar de la plantilla incluida con este nombre.
 Items copied: {}	Kopierte Elemente: {}	Éléments copiés : {}	Elementos copiados: {}
@@ -1694,6 +1700,7 @@ Opened {}	{} geöffnet	{} ouvert	{} abierto
 Opened {} from Vault (version {})	{} aus Vault geöffnet (Version {})	{} ouvert depuis Vault (version {})	{} abierto desde Vault (versión {})
 Opened {} from the project server	{} vom Projektserver geöffnet	{} ouvert depuis le serveur de projets	{} abierto desde el servidor de proyectos
 Opening	Öffnung	Ouverture	Abertura
+Opening angle of the door in the 3D view	Öffnungswinkel der Tür in der 3D-Ansicht	Angle d'ouverture de la porte dans la vue 3D	Ángulo de apertura de la puerta en la vista 3D
 Opening in the mounting plate / door: click two corners (round: in the properties)	Öffnung in Montageplatte / Tür: Zwei Ecken anklicken (rund: in den Eigenschaften)	Ouverture dans la plaque de montage / la porte : cliquez sur deux coins (rond : dans les propriétés)	Abertura en la placa de montaje / puerta: haz clic en dos esquinas (redonda: en las propiedades)
 Opening the project	Projekt wird geöffnet	Ouverture du projet	Abriendo el proyecto
 Opening {}…	{} wird geöffnet…	Ouverture de {}…	Abriendo {}…
@@ -1705,6 +1712,7 @@ Operations / year	Schaltspiele / Jahr	Manœuvres / an	Maniobras / año
 Option	Option	Option	Opción
 Optional on this computer: the sign-in token is protected by Windows Credential Manager. Your password is never saved; the server expiry still applies.	Optional auf diesem Computer: Die Windows-Anmeldeinformationsverwaltung schützt den Anmeldetoken. Ihr Passwort wird nie gespeichert; die Ablaufzeit des Servers gilt weiterhin.	Facultatif sur cet ordinateur : le jeton de connexion est protégé par le Gestionnaire d'identification Windows. Votre mot de passe n'est jamais enregistré ; l'expiration définie par le serveur reste applicable.	Opcional en este equipo: el Administrador de credenciales de Windows protege el token de sesión. Su contraseña nunca se guarda; la caducidad del servidor sigue vigente.
 Options	Optionen	Options	Opciones
+Orbit direction	Drehrichtung	Sens de rotation	Dirección de giro
 Orbit the 3D view	3D-Ansicht drehen	Faire pivoter la vue 3D	Orbitar la vista 3D
 Order follows the line start. Existing assignments stay in place.	Die Reihenfolge beginnt am Linienanfang. Vorhandene Zuordnungen bleiben bestehen.	L'ordre suit le début de la ligne. Les affectations existantes sont conservées.	El orden sigue el inicio de la línea. Las asignaciones existentes se conservan.
 Ordinary cable	Normales Kabel	Câble ordinaire	Cable normal
@@ -2309,6 +2317,7 @@ Short-circuit currents	Kurzschlussströme	Courants de court-circuit	Corrientes d
 Short-circuit power of the network	Kurzschlussleistung des Netzes	Puissance de court-circuit du réseau	Potencia de cortocircuito de la red
 Shortest profile	Kürzestes Profil	Profilé le plus court	Perfil más corto
 Show	Anzeigen	Afficher	Mostrar
+Show a row of buttons for the view settings at the top of the 3D view	Eine Reihe von Schaltflächen für die Ansichtseinstellungen oben in der 3D-Ansicht zeigen	Afficher une rangée de boutons pour les réglages d'affichage en haut de la vue 3D	Mostrar una fila de botones para los ajustes de vista en la parte superior de la vista 3D
 Show all enclosures side by side at their places in the room	Alle Gehäuse nebeneinander an ihrem Platz im Raum zeigen	Afficher toutes les armoires côte à côte à leur place dans la salle	Mostrar todos los armarios uno al lado del otro en su lugar en la sala
 Show and equip this face	Diese Fläche zeigen und bestücken	Afficher et équiper cette face	Mostrar y equipar esta cara
 Show as list	Als Liste anzeigen	Afficher en liste	Mostrar como lista
@@ -2723,6 +2732,7 @@ Vertical position	Vertikale Lage	Position verticale	Posición vertical
 Vertically	Vertikal	Verticalement	Verticalmente
 Via:	Über:	Via :	Por:
 View	Ansicht	Affichage	Ver
+View buttons	Ansichtsschaltflächen	Boutons d'affichage	Botones de vista
 Visible	Sichtbar	Visible	Visible
 Voltage (line to line)	Spannung (Außenleiter)	Tension (entre phases)	Tensión (entre fases)
 Voltage at maximum power	Spannung bei maximaler Leistung	Tension à puissance maximale	Tensión a potencia máxima
@@ -2798,6 +2808,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Drähte der Verbindung	Fils de la liaison	Hilos de la conexión
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Drähte nehmen ebenfalls die hindernisbewussten 3D-Wege statt nur der Kabelkanäle auf der Platte	Les fils prennent aussi les tracés 3D qui évitent les obstacles, au lieu des seules goulottes sur la plaque	Los cables también siguen los recorridos 3D que evitan obstáculos, en lugar de solo las canaletas de la placa
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Drähte ohne eigene Farbe oder eigenen Querschnitt übernehmen sie vom Potenzial ihrer Verbindung; Kabeladern behalten die Werte des Kabels.	Les fils sans couleur ni section propres les reprennent du potentiel de leur liaison ; les conducteurs de câble gardent les valeurs du câble.	Los hilos sin color ni sección propios los toman del potencial de su conexión; los conductores de cable conservan los valores del cable.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Leitungen, offene Kabelkanäle, Wände davor und die anderen Einstellungen von Layoutbereich › Anzeigen mit einem Klick	Fils, goulottes ouvertes, murs devant et les autres réglages de Espace de montage › Afficher en un clic	Hilos, canaletas abiertas, paredes delante y los demás ajustes de Espacio de montaje › Mostrar con un clic
 Wiring and mounting	Verdrahtung und Montage	Câblage et montage	Cableado y montaje
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Verdrahtungsassistent: Checkliste der Drähte mit 3D-Ansicht und Fortschritt (Tablet: Web-App mit #wiring öffnen)	Assistant de câblage : liste de contrôle des fils avec vue 3D et avancement (tablette : ouvrir l'application web avec #wiring)	Asistente de cableado: lista de comprobación de los cables con vista 3D y progreso (tableta: abrir la aplicación web con #wiring)
 Wiring space between devices and ducts	Verdrahtungsraum zwischen Geräten und Kanälen	Espace de câblage entre appareils et goulottes	Espacio de cableado entre aparatos y canaletas

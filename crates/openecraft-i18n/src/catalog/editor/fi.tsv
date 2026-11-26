@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Väylätyypin kaapeli jokaiselle yhteydelle, jolla ei ole kaapelia
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Kotelosta lähtevä kaapeli, joka ei löydä vapaata läpivientiä, saa kokoisensa läpiviennin: kattoon huoneessa olevalle laitteelle, pohjaan kentälle tai seinällä riippuvalle kotelolle
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Samankokoinen aukko samassa kohdassa naapurin sivuseinässä: yhdessä ne muodostavat kaapelin läpivientiaukon
+A drag to the side turns the 3D view the other way round	Sivulle vetäminen kääntää 3D-näkymää toiseen suuntaan
+A drag up or down tilts the 3D view the other way round	Ylös tai alas vetäminen kallistaa 3D-näkymää toiseen suuntaan
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Kansio, jossa on pieni tiedosto jokaista sivua, laitetta ja nimikettä kohti yhden projektitiedoston sijaan, versionhallintaa kuten gitiä varten
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Suuri teksti jokaisen sivun poikki, esim. LUONNOS, kun revisiota valmistellaan; teksteissä voi olla paikkamerkkejä, tyhjä: ei leimaa.
@@ -625,6 +627,7 @@ Door NC data (DXF)	Oven NC-tiedot (DXF)
 Door clearance	Oven vapaa tila
 Door cutouts (CSV)	Oviaukot (CSV)
 Door hinge	Oven saranat
+Door opening angle	Oven avautumiskulma
 Door: {} devices, {} cutouts	Ovi: {} laitetta, {} aukkoa
 Dot	Piste
 Double door	Pariovi
@@ -933,6 +936,7 @@ Hoses and pipes	Letkut ja putket
 Hoses rated below it are errors; 0 = not checked	Sitä pienemmälle paineelle mitoitetut letkut ovat virheitä; 0 = ei tarkisteta
 How far inside the outer walls	Kuinka paljon ulkoseinien sisäpuolella
 How far outside the outer walls	Kuinka paljon ulkoseinien ulkopuolella
+How far the enclosure door opens in the 3D view of the panel layout	Kuinka pitkälle kotelon ovi aukeaa keskuksen asettelun 3D-näkymässä
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Miten lehti avautuu: saranat vasemmassa tai oikeassa reunassa (huoneen sisältä katsottuna), huoneeseen päin tai siitä ulos, tai liukuen seinää pitkin
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Miten johdin päätetään tässä päässä; oletuksena liitäntäpisteelle tai sen laitteelle valitulla tavalla, muuten asettelun pääteholkkiasetuksen mukaan
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Miten johtimet hyppäävät risteämiensä johtimien yli, miten T-liitokset merkitään ja reititetäänkö siirrettyjen kohteiden yhteydet uudelleen
@@ -1013,7 +1017,9 @@ Interruption points refer to	Katkoskohdat viittaavat
 Interval	Aikaväli
 Introduction	Johdanto
 Invalid value	Virheellinen arvo
+Invert horizontally	Käännä vaakasuunnassa
 Invert the direction of panning by scrolling	Käännä vierityksellä panoroinnin suunta
+Invert vertically	Käännä pystysuunnassa
 Inverter or charge controller (devices with PV input data)	Vaihtosuuntaaja tai lataussäädin (laitteet, joilla on aurinkosähkötulon tiedot)
 It takes the place of the bundled template of this name.	Se korvaa tämännimisen mukana tulevan mallin.
 Items copied: {}	Kopioidut kohteet: {}
@@ -1445,6 +1451,7 @@ Opened {}	Avattu {}
 Opened {} from Vault (version {})	{} avattiin Vaultista (versio {})
 Opened {} from the project server	{} avattu projektipalvelimelta
 Opening	Aukko
+Opening angle of the door in the 3D view	Oven avautumiskulma 3D-näkymässä
 Opening in the mounting plate / door: click two corners (round: in the properties)	Aukko asennuslevyyn / oveen: napsauta kahta kulmaa (pyöreä: ominaisuuksissa)
 Opening {}…	Avataan {}…
 Opens	Avautuu
@@ -1454,6 +1461,7 @@ Open…	Avaa…
 Operations / year	Kytkentäkerrat / vuosi
 Option	Vaihtoehto
 Options	Vaihtoehdot
+Orbit direction	Kiertosuunta
 Orbit the 3D view	Kierrä 3D-näkymää
 Ordinary cable	Tavallinen kaapeli
 Orientation	Suunta
@@ -1996,6 +2004,7 @@ Short-circuit currents	Oikosulkuvirrat
 Short-circuit power of the network	Verkon oikosulkuteho
 Shortest profile	Lyhyin profiili
 Show	Näytä
+Show a row of buttons for the view settings at the top of the 3D view	Näytä näkymäasetusten painikerivi 3D-näkymän yläreunassa
 Show all enclosures side by side at their places in the room	Näytä kaikki kotelot vierekkäin paikoillaan huoneessa
 Show as list	Näytä luettelona
 Show as tiles	Näytä ruutuina
@@ -2336,6 +2345,7 @@ Vertical position	Pystysijainti
 Vertically	Pystysuunnassa
 Via:	Kautta:
 View	Näytä
+View buttons	Näkymäpainikkeet
 Visible	Näkyvä
 Voltage (line to line)	Jännite (pääjännite)
 Voltage at maximum power	Jännite maksimiteholla
@@ -2399,6 +2409,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Liitoksen johtimet
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Myös johdot käyttävät esteet huomioivia 3D-reittejä pelkkien levyn johtokourujen sijaan
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Johdot, joilla ei ole omaa väriä tai poikkipinta-alaa, saavat ne yhteytensä potentiaalista; kaapelin johtimet säilyttävät kaapelin arvot.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Johtimet, avoimet kaapelikanavat, edessä olevat seinät ja muut kohdan Asennustila › Näytä asetukset yhdellä napsautuksella
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Johdotusavustaja: johtojen tarkistuslista 3D-näkymällä ja edistymisellä (tabletti: avaa verkkosovellus osoitteella #wiring)
 Wiring space between devices and ducts	Johdotustila laitteiden ja kourujen välissä
 With a user account of the server; replaces the access token	Palvelimen käyttäjätilillä; korvaa käyttöoikeustokenin

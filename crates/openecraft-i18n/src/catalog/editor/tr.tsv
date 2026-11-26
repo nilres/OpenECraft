@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Kablosu olmayan her bağlantı için bus tipinde bir kablo
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Bir panodan çıkan ve boş rakor bulamayan kablo kendi boyutunda bir rakor alır: odadaki bir cihaz için tavana, saha veya duvara asılı bir pano için tabana
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Komşunun yan duvarında aynı yerde aynı boyutta bir kesim: birlikte bir kablo geçişi oluştururlar
+A drag to the side turns the 3D view the other way round	Yana sürükleme 3B görünümü ters yönde döndürür
+A drag up or down tilts the 3D view the other way round	Yukarı veya aşağı sürükleme 3B görünümü ters yönde eğer
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Klasörde aynı adlı bir dosya varsa yeni bir sürüm alır (kullanıma alınıp iade edilir), aksi halde dosya eklenir
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Tek bir proje dosyası yerine her sayfa, cihaz ve parça başına küçük bir dosya içeren klasör, git gibi sürüm denetimi için
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Her sayfanın üzerinde büyük bir metin, ör. bir revizyon hazırlanırken TASLAK; metinler yer tutucu alır, boş: damga yok.
@@ -625,6 +627,7 @@ Door NC data (DXF)	Kapı NC verileri (DXF)
 Door clearance	Kapı boşluğu
 Door cutouts (CSV)	Kapı kesimleri (CSV)
 Door hinge	Kapı menteşesi
+Door opening angle	Kapı açılma açısı
 Door: {} devices, {} cutouts	Kapı: {} cihaz, {} kesim
 Dot	Nokta
 Double door	Çift kanatlı
@@ -933,6 +936,7 @@ Hoses and pipes	Hortumlar ve borular
 Hoses rated below it are errors; 0 = not checked	Bunun altında derecelendirilmiş hortumlar hatadır; 0 = kontrol edilmez
 How far inside the outer walls	Dış duvarların ne kadar içinde
 How far outside the outer walls	Dış duvarların ne kadar dışında
+How far the enclosure door opens in the 3D view of the panel layout	Pano yerleşiminin 3B görünümünde muhafaza kapısının ne kadar açıldığı
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Kanadın açılışı: sol veya sağ kenarında menteşeli (odanın içinden bakıldığında), odaya doğru veya dışarı, ya da duvar boyunca sürgülü
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Telin bu uçta nasıl sonlandırıldığı; varsayılan olarak bağlantı noktası veya cihazı için seçildiği gibi, aksi halde yerleşimin yüksük ayarına göre
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Tellerin kesiştikleri tellerin üzerinden nasıl atladığı, T bağlantılarının nasıl işaretlendiği ve taşınan öğelerin bağlantılarının yeniden yönlendirilip yönlendirilmediği
@@ -1013,7 +1017,9 @@ Interruption points refer to	Kesme noktalarının referansı
 Interval	Aralık
 Introduction	Giriş
 Invalid value	Geçersiz değer
+Invert horizontally	Yatay olarak ters çevir
 Invert the direction of panning by scrolling	Kaydırmayla görünüm kaydırma yönünü ters çevir
+Invert vertically	Dikey olarak ters çevir
 Inverter or charge controller (devices with PV input data)	İnvertör veya şarj kontrol cihazı (PV giriş verisi olan cihazlar)
 It takes the place of the bundled template of this name.	Bu adlı birlikte gelen şablonun yerini alır.
 Items copied: {}	Kopyalanan öğeler: {}
@@ -1445,6 +1451,7 @@ Opened {}	{} açıldı
 Opened {} from Vault (version {})	{} Vault'tan açıldı (sürüm {})
 Opened {} from the project server	{} proje sunucusundan açıldı
 Opening	Açıklık
+Opening angle of the door in the 3D view	3B görünümde kapının açılma açısı
 Opening in the mounting plate / door: click two corners (round: in the properties)	Montaj plakasında / kapıda açıklık: iki köşeye tıklayın (yuvarlak: özelliklerde)
 Opening {}…	{} açılıyor…
 Opens	Açılış
@@ -1454,6 +1461,7 @@ Open…	Aç…
 Operations / year	Çalışma / yıl
 Option	Seçenek
 Options	Seçenekler
+Orbit direction	Döndürme yönü
 Orbit the 3D view	3B görünümü döndür
 Ordinary cable	Normal kablo
 Orientation	Yön
@@ -1996,6 +2004,7 @@ Short-circuit currents	Kısa devre akımları
 Short-circuit power of the network	Şebekenin kısa devre gücü
 Shortest profile	En kısa profil
 Show	Göster
+Show a row of buttons for the view settings at the top of the 3D view	3B görünümün üstünde görünüm ayarları için bir düğme satırı göster
 Show all enclosures side by side at their places in the room	Tüm panoları odadaki yerlerinde yan yana göster
 Show as list	Liste olarak göster
 Show as tiles	Döşeme olarak göster
@@ -2336,6 +2345,7 @@ Vertical position	Dikey konum
 Vertically	Dikey
 Via:	Üzerinden:
 View	Görünüm
+View buttons	Görünüm düğmeleri
 Visible	Görünür
 Voltage (line to line)	Gerilim (fazlar arası)
 Voltage at maximum power	Maksimum güçteki gerilim
@@ -2399,6 +2409,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Bağlantının telleri
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Teller de yalnızca plakadaki kablo kanalları yerine engelleri dikkate alan 3D güzergâhları kullanır
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Kendi rengi veya kesiti olmayan teller bunları bağlantılarının potansiyelinden alır; kablo damarları kablonun değerlerini korur.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Teller, açık kablo kanalları, öndeki duvarlar ve Montaj alanı › Göster altındaki diğer ayarlar tek tıklamayla
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Kablolama yardımcısı: 3D görünüm ve ilerleme ile tellerin kontrol listesi (tablet: web uygulamasını #wiring ile açın)
 Wiring space between devices and ducts	Cihazlar ve kanallar arasındaki kablolama alanı
 With a user account of the server; replaces the access token	Sunucunun bir kullanıcı hesabıyla; erişim belirtecinin yerini alır

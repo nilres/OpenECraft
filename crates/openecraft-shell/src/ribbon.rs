@@ -50,6 +50,15 @@ pub struct Group {
     pub id: &'static str,
     pub title: &'static str,
     pub items: &'static [Item],
+    /// Icon of the group folded into one button; without one it shows the command of
+    /// the group that is on, or else its first.
+    pub icon: Option<openecraft_ui::icons::Icon>,
+}
+
+impl Group {
+    const fn icon(self, icon: openecraft_ui::icons::Icon) -> Group {
+        Group { icon: Some(icon), ..self }
+    }
 }
 
 pub struct Tab {
@@ -67,7 +76,7 @@ use Cmd as C;
 use Item::{Large as L, Small as S};
 
 const fn g(id: &'static str, title: &'static str, items: &'static [Item]) -> Group {
-    Group { id, title, items }
+    Group { id, title, items, icon: None }
 }
 
 pub static TABS: &[Tab] = &[
@@ -279,7 +288,8 @@ pub static TABS: &[Tab] = &[
                 tr_const!("View"),
                 &[L(C::Layout3d), S(C::LayoutFloorPlan), S(C::LayoutFront), S(C::LayoutDoor), S(C::LayoutDoorInside), S(C::LayoutWalls), S(C::LayoutFit)],
             ),
-            g("show", tr_const!("Show"), &[S(C::LayoutWires), S(C::LayoutDuctFill), S(C::LayoutHeat), S(C::LayoutLineup), S(C::LayoutSite), S(C::LayoutBuilding), S(C::LayoutHideFrontWalls), S(C::LayoutHideCeiling), S(C::LayoutHidePvModules), S(C::LayoutSeeThroughPv), S(C::LayoutOpenDucts), S(C::LayoutCoversOff), S(C::LayoutZones), S(C::LayoutPaperPlan), S(C::LayoutOpenWalls)]),
+            g("show", tr_const!("Show"), &[S(C::LayoutWires), S(C::LayoutDuctFill), S(C::LayoutHeat), S(C::LayoutLineup), S(C::LayoutSite), S(C::LayoutBuilding), S(C::LayoutHideFrontWalls), S(C::LayoutHideCeiling), S(C::LayoutHidePvModules), S(C::LayoutSeeThroughPv), S(C::LayoutOpenDucts), S(C::LayoutCoversOff), S(C::LayoutZones), S(C::LayoutPaperPlan), S(C::LayoutOpenWalls)])
+                .icon(openecraft_ui::icons::Icon::Eye),
             g("site", tr_const!("Site"), &[S(C::LayoutPlotBoundary), S(C::LayoutReferencePoint), S(C::LayoutMeasure), S(C::LayoutMoveBuildings), S(C::LayoutEarthing)]),
             g("production", tr_const!("Production"), &[L(C::LayoutNcData), S(C::LayoutReports), S(C::LayoutMountingPage), S(C::LayoutDrillingPage)]),
         ],

@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Bustípusú kábel minden kábel nélküli kapcsolathoz
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	A szekrényből kilépő kábel, amely nem talál szabad tömszelencét, a méretének megfelelőt kap: a tetőbe a helyiségben lévő készülékhez, a fenékbe a terephez vagy a falon függő szekrénynél
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Azonos méretű kivágás ugyanott a szomszéd oldalfalában: együtt kábelátvezetést alkotnak
+A drag to the side turns the 3D view the other way round	Oldalra húzás a 3D nézetet a másik irányba forgatja
+A drag up or down tilts the 3D view the other way round	Felfelé vagy lefelé húzás a 3D nézetet a másik irányba dönti
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	A mappában lévő azonos nevű fájl új verziót kap (kivétel és beadás), különben a fájl hozzáadódik
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Mappa oldalanként, készülékenként és cikkenként egy kis fájllal egyetlen projektfájl helyett, verziókezeléshez, például githez
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Nagy szöveg minden oldalon keresztben, pl. TERVEZET, amíg egy revízió készül; a szövegek helyőrzőket fogadnak, üres: nincs bélyegző.
@@ -625,6 +627,7 @@ Door NC data (DXF)	Ajtó NC-adatai (DXF)
 Door clearance	Ajtó szabad tere
 Door cutouts (CSV)	Ajtókivágások (CSV)
 Door hinge	Ajtózsanérok
+Door opening angle	Ajtó nyitási szöge
 Door: {} devices, {} cutouts	Ajtó: {} készülék, {} kivágás
 Dot	Pont
 Double door	Kétszárnyú ajtó
@@ -933,6 +936,7 @@ Hoses and pipes	Tömlők és csövek
 Hoses rated below it are errors; 0 = not checked	Az ennél kisebb névleges nyomású tömlők hibának számítanak; 0 = nincs ellenőrzés
 How far inside the outer walls	Mennyivel a külső falakon belül
 How far outside the outer walls	Mennyivel a külső falakon kívül
+How far the enclosure door opens in the 3D view of the panel layout	Milyen szélesre nyílik a szekrény ajtaja a szekrényelrendezés 3D nézetében
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hogyan nyílik a szárny: a bal vagy jobb élén zsanérral (a helyiség belsejéből nézve), a helyiség felé vagy kifelé, vagy a fal mentén tolva
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hogyan van a vezeték ezen a végén lezárva; alapértelmezés szerint a csatlakozási ponthoz vagy eszközéhez választott módon, egyébként az elrendezés érvéghüvely-beállítása szerint
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hogyan ugorják át a vezetékek az általuk keresztezett vezetékeket, hogyan jelölik a T-csatlakozásokat, és újravezetik-e az áthelyezett elemek a kapcsolataikat
@@ -1013,7 +1017,9 @@ Interruption points refer to	A megszakítási pontok hivatkozása
 Interval	Időköz
 Introduction	Bevezetés
 Invalid value	Érvénytelen érték
+Invert horizontally	Vízszintes megfordítás
 Invert the direction of panning by scrolling	A görgetéssel való mozgatás irányának megfordítása
+Invert vertically	Függőleges megfordítás
 Inverter or charge controller (devices with PV input data)	Inverter vagy töltésszabályozó (PV-bemeneti adatokkal rendelkező eszközök)
 It takes the place of the bundled template of this name.	Az ilyen nevű mellékelt sablon helyébe lép.
 Items copied: {}	Másolt elemek: {}
@@ -1445,6 +1451,7 @@ Opened {}	{} megnyitva
 Opened {} from Vault (version {})	{} megnyitva a Vaultból ({} verzió)
 Opened {} from the project server	{} megnyitva a projektszerverről
 Opening	Nyílás
+Opening angle of the door in the 3D view	Az ajtó nyitási szöge a 3D nézetben
 Opening in the mounting plate / door: click two corners (round: in the properties)	Nyílás a szerelőlapon / ajtón: kattintson két sarokra (kerek: a tulajdonságokban)
 Opening {}…	{} megnyitása…
 Opens	Nyílás
@@ -1454,6 +1461,7 @@ Open…	Megnyitás…
 Operations / year	Kapcsolások / év
 Option	Opció
 Options	Opciók
+Orbit direction	Forgatási irány
 Orbit the 3D view	A 3D nézet forgatása
 Ordinary cable	Normál kábel
 Orientation	Tájolás
@@ -1996,6 +2004,7 @@ Short-circuit currents	Zárlati áramok
 Short-circuit power of the network	A hálózat zárlati teljesítménye
 Shortest profile	Legrövidebb profil
 Show	Megjelenítés
+Show a row of buttons for the view settings at the top of the 3D view	Gombsor megjelenítése a nézetbeállításokhoz a 3D nézet tetején
 Show all enclosures side by side at their places in the room	Az összes szekrény megjelenítése egymás mellett, a helyiségben elfoglalt helyükön
 Show as list	Megjelenítés listaként
 Show as tiles	Megjelenítés csempékként
@@ -2336,6 +2345,7 @@ Vertical position	Függőleges helyzet
 Vertically	Függőlegesen
 Via:	Érintendő:
 View	Nézet
+View buttons	Nézetgombok
 Visible	Látható
 Voltage (line to line)	Feszültség (vonali)
 Voltage at maximum power	Feszültség maximális teljesítménynél
@@ -2399,6 +2409,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	A kapcsolat vezetékei
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	A vezetékek is az akadályokat figyelembe vevő 3D nyomvonalakat követik, nem csak a lapon lévő kábelcsatornákat
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	A saját szín vagy keresztmetszet nélküli vezetékek ezeket az összeköttetésük potenciáljától veszik át; a kábelerek megtartják a kábel értékeit.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Vezetékek, nyitott kábelcsatornák, elöl lévő falak és a Szerelési tér › Megjelenítés többi beállítása egy kattintással
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Huzalozási asszisztens: a vezetékek ellenőrzőlistája 3D nézettel és előrehaladással (táblagép: nyissa meg a webalkalmazást a #wiring címmel)
 Wiring space between devices and ducts	Huzalozási hely a készülékek és a csatornák között
 With a user account of the server; replaces the access token	A szerver felhasználói fiókjával; felváltja a hozzáférési tokent

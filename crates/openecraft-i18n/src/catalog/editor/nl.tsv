@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Een kabel van het bustype voor elke verbinding zonder kabel
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Een kabel die een kast verlaat en geen vrije wartel vindt, krijgt er een van zijn maat: in het dak voor een apparaat in de ruimte, in de bodem voor het veld of een aan de wand hangende kast
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Een uitsparing van dezelfde grootte op dezelfde plaats in de zijwand van de buur: samen vormen ze een kabeldoorvoer
+A drag to the side turns the 3D view the other way round	Slepen opzij draait de 3D-weergave de andere kant op
+A drag up or down tilts the 3D view the other way round	Slepen omhoog of omlaag kantelt de 3D-weergave de andere kant op
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Een bestand met dezelfde naam in de map krijgt een nieuwe versie (uit- en ingecheckt), anders wordt het bestand toegevoegd
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Een map met één klein bestand per pagina, apparaat en artikel in plaats van één projectbestand, voor versiebeheer zoals git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Een grote tekst over elke pagina, bijv. CONCEPT terwijl een revisie wordt voorbereid; teksten nemen plaatshouders, leeg: geen stempel.
@@ -625,6 +627,7 @@ Door NC data (DXF)	NC-gegevens deur (DXF)
 Door clearance	Deurvrijruimte
 Door cutouts (CSV)	Deuruitsparingen (CSV)
 Door hinge	Deurscharnieren
+Door opening angle	Openingshoek van de deur
 Door: {} devices, {} cutouts	Deur: {} apparaten, {} uitsparingen
 Dot	Punt
 Double door	Dubbele deur
@@ -933,6 +936,7 @@ Hoses and pipes	Slangen en buizen
 Hoses rated below it are errors; 0 = not checked	Slangen met een lagere drukklasse zijn fouten; 0 = niet gecontroleerd
 How far inside the outer walls	Hoe ver binnen de buitenmuren
 How far outside the outer walls	Hoe ver buiten de buitenmuren
+How far the enclosure door opens in the 3D view of the panel layout	Hoe ver de kastdeur opengaat in de 3D-weergave van de kastindeling
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hoe het blad opent: scharnieren aan de linker- of rechterrand (gezien vanuit de ruimte), de ruimte in of uit, of schuivend langs de wand
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hoe de draad aan dit uiteinde wordt afgewerkt; standaard zoals gekozen voor het aansluitpunt of zijn apparaat, anders zoals de layout adereindhulzen instelt
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hoe draden over de gekruiste draden springen, hoe T-verbindingen gemarkeerd worden en of verplaatste elementen hun verbindingen opnieuw leggen
@@ -1013,7 +1017,9 @@ Interruption points refer to	Onderbrekingspunten verwijzen naar
 Interval	Interval
 Introduction	Inleiding
 Invalid value	Ongeldige waarde
+Invert horizontally	Horizontaal omkeren
 Invert the direction of panning by scrolling	Richting van verschuiven door scrollen omkeren
+Invert vertically	Verticaal omkeren
 Inverter or charge controller (devices with PV input data)	Omvormer of laadregelaar (apparaten met PV-ingangsgegevens)
 It takes the place of the bundled template of this name.	Deze vervangt de meegeleverde sjabloon met deze naam.
 Items copied: {}	Gekopieerde elementen: {}
@@ -1445,6 +1451,7 @@ Opened {}	{} geopend
 Opened {} from Vault (version {})	{} geopend vanuit Vault (versie {})
 Opened {} from the project server	{} geopend vanaf de projectserver
 Opening	Opening
+Opening angle of the door in the 3D view	Openingshoek van de deur in de 3D-weergave
 Opening in the mounting plate / door: click two corners (round: in the properties)	Opening in montageplaat / deur: klik op twee hoeken (rond: in de eigenschappen)
 Opening {}…	{} openen…
 Opens	Opent
@@ -1454,6 +1461,7 @@ Open…	Openen…
 Operations / year	Schakelcycli / jaar
 Option	Optie
 Options	Opties
+Orbit direction	Draairichting
 Orbit the 3D view	De 3D-weergave draaien
 Ordinary cable	Gewone kabel
 Orientation	Oriëntatie
@@ -1996,6 +2004,7 @@ Short-circuit currents	Kortsluitstromen
 Short-circuit power of the network	Kortsluitvermogen van het net
 Shortest profile	Kortste profiel
 Show	Weergeven
+Show a row of buttons for the view settings at the top of the 3D view	Een rij knoppen voor de weergave-instellingen boven in de 3D-weergave tonen
 Show all enclosures side by side at their places in the room	Alle behuizingen naast elkaar op hun plaats in de ruimte weergeven
 Show as list	Als lijst tonen
 Show as tiles	Als tegels tonen
@@ -2336,6 +2345,7 @@ Vertical position	Verticale positie
 Vertically	Verticaal
 Via:	Via:
 View	Beeld
+View buttons	Weergaveknoppen
 Visible	Zichtbaar
 Voltage (line to line)	Spanning (fase-fase)
 Voltage at maximum power	Spanning bij maximaal vermogen
@@ -2399,6 +2409,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Draden van de verbinding
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Draden volgen ook de 3D-routes die obstakels vermijden, in plaats van alleen de kabelgoten op de plaat
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Draden zonder eigen kleur of doorsnede nemen die over van de potentiaal van hun verbinding; kabeladers behouden de waarden van de kabel.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Draden, open kabelgoten, wanden ervoor en de andere instellingen van Montageruimte › Weergeven met één klik
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Bedradingsassistent: checklist van de draden met 3D-weergave en voortgang (tablet: open de web-app met #wiring)
 Wiring space between devices and ducts	Bedradingsruimte tussen apparaten en goten
 With a user account of the server; replaces the access token	Met een gebruikersaccount van de server; vervangt het toegangstoken

@@ -2878,3 +2878,70 @@ fn a_duct_over_the_joint_of_a_double_door_opens_cut_with_both_leaves() {
     assert!(duct.iter().all(|f| reach(f).is_some()), "{:?}", duct.iter().find(|f| reach(f).is_none()).map(|f| f.pts));
     assert!(duct.iter().any(|f| reach(f) == Some(1)) && duct.iter().any(|f| reach(f) == Some(0)));
 }
+
+#[test]
+fn the_door_opens_as_far_as_the_user_chose() {
+    let mut ui = PanelUi::default();
+    assert!((ui.prefs_3d.door_open_angle() - DOOR_OPEN_ANGLE).abs() < 0.01);
+    assert!(!ui.door_turning());
+    ui.prefs_3d.door_angle = 180.0;
+    assert!(ui.door_turning(), "turns on to the new angle");
+    ui.door_angle = std::f32::consts::PI;
+    assert!(!ui.door_turning());
+    // Outside the angles offered (an old or edited setting): the nearest one.
+    ui.prefs_3d.door_angle = 300.0;
+    assert!((ui.prefs_3d.door_open_angle() - std::f32::consts::PI).abs() < 1e-4);
+    ui.prefs_3d.door_angle = 10.0;
+    assert!((ui.prefs_3d.door_open_angle() - std::f32::consts::FRAC_PI_2).abs() < 1e-4);
+    ui.prefs_3d.door_angle = f32::NAN;
+    assert!((ui.prefs_3d.door_open_angle() - DOOR_OPEN_ANGLE).abs() < 0.01);
+}
+
+#[test]
+fn a_drag_orbits_the_other_way_round_when_inverted() {
+    let mut prefs = Prefs3d::default();
+    let dl = vec2(10.0, -4.0);
+    assert_eq!(prefs.orbit_drag(dl), dl);
+    prefs.invert_x = true;
+    assert_eq!(prefs.orbit_drag(dl), vec2(-10.0, -4.0));
+    prefs.invert_y = true;
+    assert_eq!(prefs.orbit_drag(dl), vec2(-10.0, 4.0));
+    prefs.invert_x = false;
+    assert_eq!(prefs.orbit_drag(dl), vec2(10.0, 4.0));
+    // Stored by the application; missing keys keep their defaults.
+    let back: Prefs3d = serde_json::from_str(&serde_json::to_string(&prefs).unwrap()).unwrap();
+    assert_eq!(back, prefs);
+    let old: Prefs3d = serde_json::from_str(r#"{"invert_y":true}"#).unwrap();
+    assert_eq!(old, Prefs3d { invert_y: true, ..Prefs3d::default() });
+}
+
+#[test]
+fn the_view_bar_switches_the_settings_of_the_show_group() {
+    let mut ui = PanelUi::default();
+    assert!(ui.prefs_3d.view_bar, "shown unless switched off");
+    // Every button is a view setting of Layout space › Show, switched there as in the ribbon.
+    let show = openecraft_shell::ribbon::tab(openecraft_shell::ribbon::TabId::LayoutSpace).groups.iter().find(|g| g.id == "show").unwrap();
+    for room in [false, true] {
+        ui.in_room = room;
+        let cmds = ui.view_bar_commands();
+        assert!(cmds.contains(&Cmd::LayoutWires) && cmds.contains(&Cmd::LayoutOpenDucts), "{room}");
+        for &cmd in cmds {
+            assert!(show.items.iter().any(|i| i.cmd() == cmd), "{cmd:?} not in Show");
+            let before = ui.view_setting(cmd).unwrap();
+            assert!(ui.toggle_view_setting(cmd));
+            assert_eq!(ui.view_setting(cmd), Some(!before), "{cmd:?}");
+            assert!(ui.toggle_view_setting(cmd));
+            assert_eq!(ui.view_setting(cmd), Some(before), "{cmd:?}");
+        }
+    }
+    // Ducts are opened and the wires hidden as by the ribbon commands.
+    ui.toggle_view_setting(Cmd::LayoutOpenDucts);
+    assert!(ui.open_ducts);
+    ui.toggle_view_setting(Cmd::LayoutWires);
+    assert!(!ui.show_wires);
+    // Other commands are not view settings.
+    assert_eq!(ui.view_setting(Cmd::Layout3d), None);
+    assert!(!ui.toggle_view_setting(Cmd::LayoutFit));
+    let old: Prefs3d = serde_json::from_str(r#"{"door_angle":120.0}"#).unwrap();
+    assert!(old.view_bar, "kept settings of before get the row");
+}

@@ -104,3 +104,11 @@ fn a_command_has_one_place_in_the_ribbon() {
     }
     assert!(places(Cmd::DevicesPane).contains(&"devices/navigators".to_string()));
 }
+
+#[test]
+fn the_view_settings_of_the_panel_layout_fold_into_an_eye() {
+    // Folded, the group showed the setting that is on: Wires, a schematic wire.
+    let show = tab(TabId::LayoutSpace).groups.iter().find(|g| g.id == "show").unwrap();
+    assert_eq!(show.icon, Some(openecraft_ui::icons::Icon::Eye));
+    assert!(tab(TabId::Insert).groups.iter().all(|g| g.icon.is_none()), "tool groups show the tool that is on");
+}

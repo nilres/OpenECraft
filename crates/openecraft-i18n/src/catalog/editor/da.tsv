@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Et kabel af bustypen til hver forbindelse uden kabel
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Et kabel, der forlader et skab og ikke finder nogen ledig forskruning, får en i sin størrelse: i taget for en enhed i rummet, i bunden for feltet eller et skab, der hænger på væggen
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	En udskæring af samme størrelse på samme sted i naboens sidevæg: Sammen udgør de en kabelgennemføring
+A drag to the side turns the 3D view the other way round	Et træk til siden drejer 3D-visningen den anden vej
+A drag up or down tilts the 3D view the other way round	Et træk op eller ned vipper 3D-visningen den anden vej
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samme navn i mappen får en ny version (tjekket ud og ind), ellers tilføjes filen
 A folder with one small file per page, device and part instead of one project file, for version control such as git	En mappe med en lille fil pr. side, komponent og artikel i stedet for en projektfil, til versionsstyring som git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	En stor tekst hen over hver side, f.eks. UDKAST mens en revision forberedes; teksterne tager pladsholdere, tom: intet stempel.
@@ -625,6 +627,7 @@ Door NC data (DXF)	Dør-NC-data (DXF)
 Door clearance	Dørfrigang
 Door cutouts (CSV)	Dørudskæringer (CSV)
 Door hinge	Dørens hængsler
+Door opening angle	Dørens åbningsvinkel
 Door: {} devices, {} cutouts	Dør: {} enheder, {} udskæringer
 Dot	Punkt
 Double door	Dobbeltdør
@@ -933,6 +936,7 @@ Hoses and pipes	Slanger og rør
 Hoses rated below it are errors; 0 = not checked	Slanger med lavere trykklasse er fejl; 0 = kontrolleres ikke
 How far inside the outer walls	Hvor langt inden for ydervæggene
 How far outside the outer walls	Hvor langt uden for ydervæggene
+How far the enclosure door opens in the 3D view of the panel layout	Hvor langt kapslingens dør åbner i 3D-visningen af tavlelayoutet
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hvordan fløjen åbner: hængsler i venstre eller højre kant (set inde fra rummet), ind i eller ud af rummet, eller skydes langs væggen
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hvordan lederen afsluttes i denne ende; som standard som valgt for tilslutningspunktet eller dets enhed, ellers efter layoutets indstilling for terminalrør
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hvordan ledninger springer over de ledninger, de krydser, hvordan T-forbindelser markeres, og om flyttede elementer får deres forbindelser trukket på ny
@@ -1013,7 +1017,9 @@ Interruption points refer to	Afbrydelsespunkter henviser til
 Interval	Interval
 Introduction	Indledning
 Invalid value	Ugyldig værdi
+Invert horizontally	Inverter vandret
 Invert the direction of panning by scrolling	Vend retningen for panorering med rulning
+Invert vertically	Inverter lodret
 Inverter or charge controller (devices with PV input data)	Inverter eller laderegulator (enheder med PV-indgangsdata)
 It takes the place of the bundled template of this name.	Den træder i stedet for den medfølgende skabelon med dette navn.
 Items copied: {}	Kopierede elementer: {}
@@ -1445,6 +1451,7 @@ Opened {}	{} er åbnet
 Opened {} from Vault (version {})	{} er åbnet fra Vault (version {})
 Opened {} from the project server	{} er åbnet fra projektserveren
 Opening	Åbning
+Opening angle of the door in the 3D view	Dørens åbningsvinkel i 3D-visningen
 Opening in the mounting plate / door: click two corners (round: in the properties)	Åbning i monteringsplade / dør: Klik på to hjørner (rund: i egenskaberne)
 Opening {}…	Åbner {}…
 Opens	Åbner
@@ -1454,6 +1461,7 @@ Open…	Åbn…
 Operations / year	Koblinger / år
 Option	Indstilling
 Options	Indstillinger
+Orbit direction	Rotationsretning
 Orbit the 3D view	Rotér 3D-visningen
 Ordinary cable	Almindeligt kabel
 Orientation	Retning
@@ -1996,6 +2004,7 @@ Short-circuit currents	Kortslutningsstrømme
 Short-circuit power of the network	Nettets kortslutningseffekt
 Shortest profile	Korteste profil
 Show	Vis
+Show a row of buttons for the view settings at the top of the 3D view	Vis en række knapper til visningsindstillingerne øverst i 3D-visningen
 Show all enclosures side by side at their places in the room	Vis alle kapslinger side om side på deres pladser i rummet
 Show as list	Vis som liste
 Show as tiles	Vis som felter
@@ -2336,6 +2345,7 @@ Vertical position	Lodret position
 Vertically	Lodret
 Via:	Via:
 View	Vis
+View buttons	Visningsknapper
 Visible	Synlig
 Voltage (line to line)	Spænding (mellem faser)
 Voltage at maximum power	Spænding ved maksimal effekt
@@ -2399,6 +2409,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Forbindelsens ledere
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Ledninger følger også de 3D-føringer, der tager højde for forhindringer, i stedet for kun kabelkanalerne på pladen
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Ledninger uden egen farve eller eget tværsnit overtager dem fra potentialet for deres forbindelse; kabelledere bevarer kablets værdier.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Ledninger, åbne kabelkanaler, vægge foran og de andre indstillinger i Monteringsrum › Vis med et klik
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Ledningsføringsassistent: tjekliste over ledningerne med 3D-visning og fremdrift (tablet: åbn webappen med #wiring)
 Wiring space between devices and ducts	Ledningsplads mellem enheder og kanaler
 With a user account of the server; replaces the access token	Med en brugerkonto på serveren; erstatter adgangstokenet
