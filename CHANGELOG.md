@@ -8,6 +8,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Devices on the door shown in 3D:** *Show in 3D view* centres the view on a device
   on the door where the opened door holds it, also in the mounting assistant. Fixed:
   the door opened, but the view was centred on where the device is with the door closed.
+- **Wires and cables without cable ducts are tied into bundles:** in a cabinet without
+  cable ducts on its mounting plate, and in a room without cable trays, the 3D routing
+  lays thin wires and cables that go the same way together, as a bundle held by cable
+  ties, instead of each on a way of its own a cell beside the next, and keeps them to
+  the mounting plate (the back) and the side walls of the cabinet where it can.
+  Clearances and bend radii are kept as before; conductors thicker than a quarter of a
+  cell of the routing grid keep a way of their own. The 3D view draws the bundles with
+  their cable ties, the bundle list and `list_routing` count them. Cabinets and rooms
+  with cable ducts are routed as before
+  ([panel layout](docs/features/panel-layout.md#3d-routing)).
 - **Drag and drop from the Insert center:** a symbol, device or unplaced function
   dragged from the Insert center or the navigator onto a schematic page is placed there
   once, and the tool in use stays (a click still starts a place tool). Symbols can also
@@ -107,6 +117,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   wire stays. *Rotate left*, *Rotate right* and *Mirror* in the properties of a symbol
   and `update_symbol rotation=… mirror=…` move the wires too, instead of leaving them
   where the connection points were.
+- **A straightened wire is one wire:** when moving wires, symbols or a wire end makes
+  a step of a wire disappear, the pieces in a line are joined where nothing else
+  connects and pieces of no length are removed, so the wire has one segment and moves
+  as one again (editor, arrow keys, *Move by*, `move_items`, `move_wire_end`). A wire
+  drawn in line with another, continuing it, joins it the same way (wire tool,
+  `add_wire`, `connect`, `route`). Pieces in a line the edit did not change stay
+  apart; *Join collinear wires* joins those.
 
 ## [0.1.3] - 2026-11-23
 

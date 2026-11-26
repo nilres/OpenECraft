@@ -35,6 +35,14 @@ fn inside(q: V3, lo: V3, hi: V3) -> bool {
     (0..3).all(|i| q[i] > lo[i] && q[i] < hi[i])
 }
 
+/// The enclosure with a short cable duct in the lower left corner of its mounting
+/// plate: with a duct on the plate the routes of a cabinet are not kept to its back
+/// and its sides, a step through its free air costs the same everywhere.
+fn ducted(mut e: Enclosure) -> Enclosure {
+    e.items.push(PanelItem { id: 99, kind: ItemKind::Duct, x: 0.0, y: 700.0, w: 40.0, h: 50.0, d: 60.0, ..Default::default() });
+    e
+}
+
 #[test]
 fn close_bends_leave_out_the_ends_and_lane_changes() {
     let lane_change = [[0.0, 0.0, 0.0], [100.0, 0.0, 0.0], [100.0, 10.0, 0.0], [300.0, 10.0, 0.0], [300.0, 200.0, 0.0]];
@@ -177,7 +185,7 @@ fn simplify_and_bends() {
 
 #[test]
 fn stretches_between_bends_are_at_least_two_bend_radii() {
-    let prj = project(with_block());
+    let prj = project(ducted(with_block()));
     let s = space(&prj);
     let rules = RoutingRules::default();
     // Round the device and up to a point just beside its far corner: a cable bends only
@@ -469,7 +477,7 @@ fn the_last_corner_lies_where_the_way_into_the_end_begins() {
 
 #[test]
 fn the_way_out_of_an_end_stays_free_for_its_route() {
-    let prj = project(with_block());
+    let prj = project(ducted(with_block()));
     let mut s = space(&prj);
     let rules = RoutingRules::default();
     // A route still to be searched leaves the top of the device upwards.
@@ -545,7 +553,7 @@ fn a_way_out_beside_its_end_is_long_enough_to_come_onto_it() {
     // its bend (30 mm more than the cell is away), which fits beside the device.
     let mut e = single();
     e.items.push(PanelItem { id: 8, kind: ItemKind::Device, tag: "-K2".into(), x: 275.0, y: 200.0, w: 25.0, h: 80.0, d: 200.0, ..Default::default() });
-    let prj = project(e);
+    let prj = project(ducted(e));
     let s = space(&prj);
     let (a, b) = ([310.0, 320.0, 110.0], [510.0, 100.0, 110.0]);
     let r = Request { at: [a, b], leave: [[0.0, -1.0, 0.0], [0.0; 3]], turn: 10.0, half: 1.5, ..req(&[]) };
@@ -637,4 +645,112 @@ fn a_route_does_not_run_through_itself() {
     let mut from_nozzle = vec![[300.0, 260.0, 110.0]];
     from_nozzle.extend(&w.points);
     assert_eq!(meets_itself(&from_nozzle, 45.0, 11.7, 0), None, "{from_nozzle:?}");
+}
+
+/// A wire of control voltage, 3 mm thick, between `a` and `b`.
+fn wire(a: V3, b: V3) -> Request<'static> {
+    Request { kind: RouteKind::Wire, class: Class::Control, ignore: &[], at: [a, b], leave: [[0.0; 3]; 2], out: [0.0; 2], straight: [0.0; 2], area: 7.0, turn: 12.5, half: 1.5 }
+}
+
+/// The request routed and laid through the space as the routing lays a route: the ones
+/// after it keep apart from it, or are tied to it.
+fn laid(s: &mut Space, r: &Request) -> Way {
+    let w = s.route(r.at[0], r.at[1], r, &RoutingRules::default()).expect("a way");
+    let zone = s.end_zone(r);
+    s.occupy(&w.cells, r.class, r.area);
+    s.take(&w.points, r.half, 0.0, &[(r.at[0], zone), (r.at[1], zone)], &[]);
+    if r.kind != RouteKind::Tube {
+        s.lay_strand(&w.points, 2.0 * r.half);
+    }
+    w
+}
+
+/// The cells of a way between the heights 250 and 550 that are cells of `other` too.
+fn shared_midway(s: &Space, w: &Way, other: &Way) -> usize {
+    w.cells.iter().filter(|&&c| s.centre(c)[1] > 250.0 && s.centre(c)[1] < 550.0 && other.cells.contains(&c)).count()
+}
+
+#[test]
+fn wires_without_a_cable_duct_are_tied_into_bundles() {
+    // A cabinet without cable ducts: a second wire between points beside those of the
+    // first comes over to it and runs with it through its cells, tied to it.
+    let prj = project(single());
+    let mut s = space(&prj);
+    assert!(s.ties());
+    let (a, b) = ([300.0, 100.0, 150.0], [300.0, 700.0, 150.0]);
+    let first = laid(&mut s, &wire(a, b));
+    let beside = wire([350.0, 100.0, 150.0], [350.0, 700.0, 150.0]);
+    let second = laid(&mut s, &beside);
+    assert!(shared_midway(&s, &second, &first) >= 10, "{:?}", second.points);
+    assert!(s.still_apart(&first.cells, &beside));
+    assert!(s.tied_at([300.0, 400.0, 150.0]) && !s.tied_at([350.0, 400.0, 150.0]));
+    // Together they take the room of a bundle: a thick cable keeps further from them
+    // than from one wire.
+    assert!(bundle_half(2, 3.0) > 3.0 && bundle_half(1, 3.0) == 1.5 && bundle_half(4, 3.0) < 5.0);
+    // A hose is tied to nothing: it keeps apart from the wires.
+    let hose = Request { kind: RouteKind::Tube, class: Class::Fluid, half: 4.0, ..wire([250.0, 100.0, 150.0], [250.0, 700.0, 150.0]) };
+    let third = laid(&mut s, &hose);
+    assert_eq!(shared_midway(&s, &third, &first), 0, "{:?}", third.points);
+    assert!(!s.still_apart(&first.cells, &hose));
+    // Nor is a signal wire to a power wire: the classes that keep apart share no bundle.
+    let mut s = space(&prj);
+    let power = laid(&mut s, &Request { class: Class::Power, ..wire(a, b) });
+    let signal = Request { class: Class::Signal, ..beside };
+    let w = laid(&mut s, &signal);
+    assert_eq!(shared_midway(&s, &w, &power), 0, "{:?}", w.points);
+    // No more are tied together than have room: a bundle is no thicker than a cell
+    // and a half, and keeps half its thickness from everything like a route.
+    let mut s = space(&prj);
+    let thick = Request { kind: RouteKind::Cable, half: 9.0, turn: 72.0, area: 250.0, ..wire(a, b) };
+    let one = laid(&mut s, &thick);
+    let two = laid(&mut s, &Request { at: beside.at, ..thick });
+    assert_eq!(shared_midway(&s, &two, &one), 0, "{:?}", two.points);
+    // With a cable duct on the mounting plate the wires are laid in the ducts: outside
+    // them they keep apart as before.
+    let mut e = single();
+    e.items.push(PanelItem { id: 3, kind: ItemKind::Duct, x: 0.0, y: 0.0, w: 40.0, h: 750.0, d: 60.0, ..Default::default() });
+    let prj = project(e);
+    let mut s = space(&prj);
+    assert!(!s.ties());
+    let first = laid(&mut s, &wire(a, b));
+    let second = laid(&mut s, &beside);
+    assert_eq!(shared_midway(&s, &second, &first), 0, "{:?}", second.points);
+    assert!(!s.tied_at([300.0, 400.0, 150.0]));
+}
+
+#[test]
+fn a_route_joins_and_leaves_a_bundle_along_it_and_never_runs_through_it() {
+    let prj = project(single());
+    let mut s = space(&prj);
+    let first = laid(&mut s, &wire([300.0, 100.0, 150.0], [300.0, 700.0, 150.0]));
+    // Across it at its depth: round it, or with it for a stretch, but through none of
+    // its cells both coming and going across it.
+    let across = laid(&mut s, &wire([100.0, 400.0, 150.0], [500.0, 400.0, 150.0]));
+    assert!(across.points.len() > 2, "{:?}", across.points);
+    for c in across.cells.windows(3).filter(|c| first.cells.contains(&c[1])) {
+        let [before, at, after] = [c[0], c[1], c[2]].map(|i| s.coords(i));
+        assert!(before[1] != at[1] || after[1] != at[1], "{:?}", across.points);
+    }
+}
+
+#[test]
+fn wires_without_a_cable_duct_keep_to_the_back_and_the_sides() {
+    // Between two points 50 mm in front of the mounting plate a wire runs along the
+    // plate behind them rather than through the air between them: a step there costs
+    // less.
+    let prj = project(single());
+    let s = space(&prj);
+    let (a, b) = ([100.0, 400.0, 70.0], [500.0, 400.0, 70.0]);
+    let r = Request { leave: [[0.0, 0.0, -1.0], [0.0, 0.0, -1.0]], ..wire(a, b) };
+    let w = s.route(a, b, &r, &RoutingRules::default()).expect("a way");
+    let low = w.points.iter().map(|q| q[2]).fold(f32::INFINITY, f32::min);
+    assert!(low < crate::panel::PLATE_Z + 25.0, "{:?}", w.points);
+    // With cable ducts on the plate the free air costs the same everywhere.
+    let mut e = single();
+    e.items.push(PanelItem { id: 3, kind: ItemKind::Duct, x: 0.0, y: 0.0, w: 40.0, h: 750.0, d: 60.0, ..Default::default() });
+    let prj = project(e);
+    let s = space(&prj);
+    let free = Request { leave: [[0.0; 3]; 2], ..r };
+    let w = s.route(a, b, &free, &RoutingRules::default()).expect("a way");
+    assert!(w.points.iter().all(|q| (q[2] - 70.0).abs() < 13.0), "{:?}", w.points);
 }
