@@ -302,8 +302,13 @@ pub fn validate(prj: &Project, e: &Enclosure) -> Vec<Finding> {
     for (a, b) in class_collisions(prj, e) {
         push(CheckKind::Collision, Severity::Warning, vec![a, b], tr_fmt!("{}: {} collides with {}", e.name, name(a), name(b)));
     }
-    for id in outside(e) {
+    // A frame in an opening of a side wall made for it may reach over its edge.
+    for id in outside(e).into_iter().filter(|&id| !e.item(id).is_some_and(|it| super::fit::at_opening(prj, e, it))) {
         push(CheckKind::Outside, Severity::Warning, vec![id], tr_fmt!("{}: {} outside the mounting plate / enclosure", e.name, name(id)));
+    }
+    // A device on a door of several leaves stays on one of them.
+    for it in e.items.iter().filter(|i| super::doors::crosses_joint(e, i)) {
+        push(CheckKind::Outside, Severity::Warning, vec![it.id], tr_fmt!("{}: {} reaches over the joint between the door leaves", e.name, name(it.id)));
     }
     // The restricted placing areas of the enclosure (its maker's data); touching an
     // edge is no overlap.

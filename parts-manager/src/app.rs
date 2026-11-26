@@ -149,6 +149,7 @@ impl ManagerApp {
             match self.session.apply(&reply) {
                 Some(FollowUp::Reload) => self.client.download(ctx),
                 Some(FollowUp::Delete(number)) => self.client.delete(ctx, &number),
+                Some(FollowUp::Upload(parts)) => self.client.upload(ctx, &parts),
                 Some(FollowUp::Attach(files)) => {
                     self.client.download(ctx);
                     for f in files {
@@ -166,7 +167,12 @@ impl ManagerApp {
     fn loaded(&mut self, ctx: &egui::Context, loaded: Loaded<Purpose>) {
         match loaded.purpose {
             Purpose::Parts if openecraft_edz::is_edz(&loaded.bytes) || openecraft_edz::package::is_zip(&loaded.bytes) || (loaded.name.to_ascii_lowercase().ends_with(".xml") && openecraft_parts::is_eplan_xml(&loaded.text())) => match self.session.import_package(&loaded.name,&loaded.bytes) {
-                Ok(parts) => self.client.upload(ctx, &parts),
+                Ok(parts) => {
+                    self.client.upload(ctx, &parts);
+                    if !self.session.skipped_files.is_empty() {
+                        self.client.status = tr_fmt!("Files larger than {} MB are not stored: {}", openecraft_parts::api::MAX_BODY >> 20, self.session.skipped_files.join(", "));
+                    }
+                }
                 Err(e) => self.client.status = tr_fmt!("Parts import failed: {}", e),
             },
             Purpose::Parts => self.client.upload_file(ctx, loaded.bytes),

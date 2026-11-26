@@ -1,4 +1,31 @@
 use super::*;
+use openecraft_i18n::{with_lang, Lang};
+
+#[test]
+fn the_model_of_a_mounting_plate_gives_its_size() {
+    let mut part = Part { number: "RIT.1050000".into(), group: "Enclosure".into(), width: 500.0, height: 500.0, depth: 210.0, ..Default::default() };
+    // A plate of 450 × 475 mm lying on its back, 2.5 mm thick.
+    let obj = "v 0 0 0
+v 450 0 0
+v 450 2.5 475
+v 0 2.5 475
+f 1 2 3
+f 1 3 4
+";
+    let msg = with_lang(Lang::En, || apply_model(&mut part, ModelKind::MountingPlate, "CAD_MPL_1050.000.obj", obj.as_bytes())).unwrap();
+    assert_eq!(msg, "CAD_MPL_1050.000.obj: mounting plate of 450 × 475 mm for RIT.1050000");
+    assert_eq!((part.tech_value("Mounting size"), part.model_3d.is_none()), (Some("450 x 475"), true));
+    // The model of the enclosure is no plate of it.
+    let body = "v 0 0 0
+v 500 0 0
+v 500 504 216
+f 1 2 3
+";
+    let msg = with_lang(Lang::En, || apply_model(&mut part, ModelKind::MountingPlate, "1050.000.obj", body.as_bytes())).unwrap();
+    assert!(msg.contains("does not fit"), "{msg}");
+    assert_eq!(part.tech_value("Mounting size"), Some("450 x 475"));
+    assert_eq!(ModelKind::MountingPlate.filter().1, ModelKind::Mesh3d.filter().1);
+}
 
 #[test]
 fn models_are_assigned_to_the_part() {

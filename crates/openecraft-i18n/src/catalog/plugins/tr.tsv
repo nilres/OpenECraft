@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Bir şablonun cihazlarını bir segmente ekler
 Adds the outline of a machine, building or area to the plant layout	Tesis yerleşimine bir makinenin, binanın veya alanın dış hatlarını ekler
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Bir profil ekler, değiştirir veya kaldırır: diğer sistemin kullandığı sütun adlarına sahip bir bağlayıcı
+After it instead of before	Önüne değil arkasına
 Air-termination rod: its name	Paratoner çubuğu: adı
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Öğeleri hizalar, eşit aralıklarla dağıtır, cihazları bir ray üzerinde sıralar veya öğeleri bir desen halinde kopyalar
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Sembolleri, metinleri ve grafikleri ortak bir kenara veya merkeze hizalar; bağlı tel uçları takip eder
@@ -66,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	kA cins
 Bar id	Bara kimliği
 Bar thickness, mm (default 5)	Bara kalınlığı, mm (varsayılan 5)
 Bar width, mm (default 20)	Bara genişliği, mm (varsayılan 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Bir panoyu başka bir panonun yan duvarındaki birleştirme çerçevesine ekler (Striebel & John CZ3 gibi): sağ duvardaki bir çerçevede sağına, sol duvardakinde soluna
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Bir panoyu başka bir panonun sağına yan yana bağlar (yan yana dizilim); right_of verilmezse pano dizilimden çıkar
 Bend radius in drag chains as a multiple of the cable diameter	Enerji zincirlerinde kablo çapının katı olarak bükülme yarıçapı
 Bend radius of a drag chain in mm	mm cinsinden enerji zinciri bükülme yarıçapı
@@ -145,6 +147,7 @@ Corner points on the mounting plate in mm	mm cinsinden montaj plakası üzerinde
 Correction of the time estimate	Süre tahmini düzeltmesi
 Cost of free air against ducts and routing paths	Kanallara ve yönlendirme yollarına göre serbest havanın maliyeti
 Counting step (default 1)	Sayma adımı (varsayılan 1)
+Covers fitted; false takes them off	Kapaklar takılı; false onları çıkarır
 Creates a bus cable for the connection (without cable tag)	Bağlantı için bir bus kablosu oluşturur (kablo etiketi olmadan)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Kablosu olmayan her bus bağlantısı için bus tipinde (tip, damarlar, kesit) bir kablo oluşturur
 Creates or changes a PCT loop of the pre-planning	Ön planlamanın bir PCT döngüsünü oluşturur veya değiştirir
@@ -259,15 +262,20 @@ Enclosure (location, e.g. +CAB1) whose settings change	Ayarları değişecek pan
 Enclosure climate and electrical sizing	Pano iklimlendirmesi ve elektriksel boyutlandırma
 Enclosure it stands right of; empty to take it out of its line-up	Sağında durduğu pano; dizilimden çıkarmak için boş
 Enclosure name (all if missing)	Pano adı (verilmezse tümü)
+Enclosure or room it goes before or after	Önüne veya arkasına gideceği pano ya da oda
 Enclosure part number	Pano parça numarası
 Enclosure system (default: the enclosure's)	Pano sistemi (varsayılan: panonunki)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kopyaların gideceği pano (konum, ör. +CAB2); belirtilmezse aynısı
+Enclosure to attach; without it a new one like the enclosure with the frame	Eklenecek pano; verilmezse çerçeveli pano gibi yeni bir pano
+Enclosure with the frame	Çerçeveli pano
 Enclosure {} exists already	Pano {} zaten var
+Enclosure; without it every enclosure	Pano; verilmezse her pano
 Enclosures, panel items, accessories and panel macros	Panolar, pano öğeleri, aksesuarlar ve pano makroları
 End brackets and end plates from the tech data of the terminal parts	Klemens parçalarının teknik verilerinden uç tutucular ve kapak plakaları
 End holes from the bar end as a multiple of the width	Genişliğin katı olarak bara ucundan uç delikleri
 End: device tag and connection point, e.g. -S1:14	Bitiş: cihaz etiketi ve bağlantı noktası, ör. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Yüzey: plate, door, left, right, rear, roof veya bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Yüzey: plate, door, left, right, rear, roof veya bottom; çift kanatlı kapının kanatları için door_left ve door_right
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Saha planı: düğümler, segmentler, dış hatlar, güzergâhlar, kuşaklamalar ve aksesuarlar
 Figure	Gösterge
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Tüm (filtrelenmiş) satırların bir sütunundaki metni bulur ve değiştirir; aranan metin yoksa sütun yeni değerle doldurulur
@@ -281,6 +289,7 @@ First counter value (default 1)	İlk sayaç değeri (varsayılan 1)
 First page number (default 1)	İlk sayfa numarası (varsayılan 1)
 First port as station:port, e.g. PLC1:X1 P2	istasyon:port biçiminde ilk port, ör. PLC1:X1 P2
 First row with the column names	Sütun adlarını içeren ilk satır
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Bir panonun veya her panonun alan ızgarasındaki tüm panellerin plastik kapaklarını takar ya da hepsini çıkarır
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Düz çatılar ve arazi tipi: modüllerin baktığı yön, derece, yukarıdan bakıldığında saat yönünün tersine (0: +z yönüne)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Cihaz adının formatı: {letter}, {n} (sayaç), {page}, {column}, {row}; varsayılan {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format şemasının formatı: {n} (sayaç), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -359,6 +368,7 @@ Invalid answer of the plugin: {}	Eklentiden geçersiz yanıt: {}
 Invalid segment name: {}	Geçersiz segment adı: {}
 Invalid title block elements: {}	Geçersiz antet öğeleri: {}
 Item id	Öğe kimliği
+Item id of the frame	Çerçevenin öğe kimliği
 Item ids	Öğe kimlikleri
 Jumper number	Köprü numarası
 Jumper number (terminals with the same number are bridged); 0 removes it	Köprü numarası (aynı numaralı klemensler köprülenir); 0 kaldırır
@@ -379,6 +389,7 @@ Landscape (true) or portrait (false)	Yatay (true) veya dikey (false)
 Language the project texts are written in, e.g. en	Proje metinlerinin yazıldığı dil, ör. en
 Larger round holes are milled, mm	Daha büyük yuvarlak delikler frezelenir, mm
 Largest difference between hole and tool, mm	Delik ile takım arasındaki en büyük fark, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Çift kanatlı kapının kanatları: soldan genişlikleri, ör. 275 + 525 (menteşesi için genişlikten sonra left veya right), ya da eşit genişlikteki kanatların sayısı; tek kanat için boş veya 1
 Left edge from the left end of the wall (seen from inside) in mm	Duvarın sol ucundan sol kenar (içeriden bakıldığında), mm
 Left edge in mm	mm cinsinden sol kenar
 Left edge on the face in mm	mm cinsinden yüzey üzerindeki sol kenar
@@ -440,6 +451,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Tel uçları
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Antetleri (yerleşik ve projeye ait) öğeleriyle, projenin varsayılanını ve yer tutucuları listeler
 Lists the translation dictionary of the project texts (source line and translations)	Proje metinlerinin çeviri sözlüğünü listeler (kaynak satır ve çeviriler)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Sayfalara yerleştirilen pencere makrolarını (makro kutuları) makro, varyant, yer tutucu değerleri ve öğe sayısıyla birlikte listeler
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Bir aksesuar parçasının panoda nereye uyduğunu listeler: sayaç veya dağıtım panosunun boş alanları (parça verisi Fields ve Rows), panoları birleştiren bir çerçeve için yan duvarlarındaki boş açıklıklar (parça verisi Opening ve Side openings), aksesuarı olduğu panonun yüzleri, parçasına uyduğu cihazlar
 Load losses of the transformer in W (0: typical)	Transformatörün W cinsinden yük kayıpları (0: tipik)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Şebekenin yükleri, her koruma cihazının yükü, eş zamanlılık faktörüyle talep, faz dengesi ve güç kaynağı bilançoları
 Loads the potential definitions of a standard (replaces those of the same name)	Bir standardın potansiyel tanımlarını yükler (aynı adlı olanları değiştirir)
@@ -484,6 +496,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Montaj boyutu pozitif bir genişlik ve yükseklik içermelidir
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Bir telin, kablonun veya tüpün güzergâhındaki bir ara noktayı taşır; güzergâh ondan geçirilemiyorsa yönlendirme hata bildirir
 Moves an air-termination rod, changes its height, renames or removes it	Bir paratoner çubuğunu taşır, yüksekliğini değiştirir, yeniden adlandırır veya kaldırır
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Bir panoyu veya odayı pano ve oda ağacının sırasında başka birinin önüne veya arkasına taşır (yan yana dizilmiş bir panoyu dizilimi içinde yeniden dizerek ya da dizilimiyle birlikte; bir odayı odalar arasında, diğerinin katına)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Bir telin bir ucunu taşır: bağlı olduğu yerden ayrılır ve karşılaştığı şeye bağlanır; tel dik açılı kalır
 Moves symbols, wires and texts; connected wire ends follow	Sembolleri, telleri ve metinleri taşır; bağlı tel uçları onları izler
 Moves the page before this page of its section (or of the section given)	Sayfayı bölümünün (veya verilen bölümün) bu sayfasının önüne taşır
@@ -625,6 +638,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Sayfa {}
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Ekli sayfalar (3.a) önceki sayfanın alt sayfaları olarak kalır (varsayılan true)
 Panel layout checks	Pano yerleşimi kontrolleri
 Panel manufacturing	Pano üretimi
+Panel of a field grid: with its plastic cover (false: taken off)	Alan ızgarasının paneli: plastik kapağıyla (false: çıkarılmış)
 Paper height in mm (custom paper)	mm cinsinden kâğıt yüksekliği (özel kâğıt)
 Paper width in mm (custom paper)	mm cinsinden kâğıt genişliği (özel kâğıt)
 Part lifecycle	Parça yaşam döngüsü
@@ -971,6 +985,7 @@ Unknown class: {}	Bilinmeyen sınıf: {}
 Unknown data type: {}	Bilinmeyen veri türü: {}
 Unknown direction {}: left, right, up or down	Bilinmeyen yön {}: left, right, up veya down
 Unknown door hinge: {}	Bilinmeyen menteşe tarafı: {}
+Unknown door leaves: {}	Bilinmeyen kapı kanatları: {}
 Unknown earth electrode: {}	Bilinmeyen topraklama elektrodu: {}
 Unknown earthing system: {}	Bilinmeyen topraklama sistemi: {}
 Unknown face {}	Bilinmeyen yüzey {}

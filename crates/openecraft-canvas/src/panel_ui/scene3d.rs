@@ -162,9 +162,9 @@ impl std::ops::Deref for EndLook {
 }
 
 /// A stretch of a wire drawn along the plate: its index, its points, how far each of
-/// them turns with the door ([`DoorPoint::share`]), the axes of the openings it leaves
+/// them turns with the door ([`DoorPoint::share`]) and with which leaf, the axes of the openings it leaves
 /// (zero: none) and whether it starts and ends at a connection point.
-type WireStretch = (usize, Vec<V3>, Vec<f32>, [V3; 2], [bool; 2]);
+type WireStretch = (usize, Vec<V3>, Vec<(f32, usize)>, [V3; 2], [bool; 2]);
 
 /// [`EndLook`] of the end `at` of the wire of `cross_section` from `at` to `to` (none for
 /// an unknown cross-section): its termination ([`production::Ends::end`]; a twin ferrule
@@ -1233,22 +1233,26 @@ impl PanelUi {
             let e = &prj.layout.enclosures[k];
             // A room under a roof that slopes its ceiling: its walls and ceiling cut.
             let ceiling = if e.is_room() { roofs::ceiling_with(prj, &plant, k) } else { None };
-            // The door turns about its hinge edge: the left front edge, or the right one
-            // (mirrored).
-            let right = e.door_hinge == panel::DoorHinge::Right;
-            let swing_dir = |v: V3| door_turn(v, self.door_angle, right);
-            let hinge_x = if right { e.width } else { 0.0 };
-            let swing_by = |q: V3, angle: f32| {
-                let r = door_turn([q[0] - hinge_x, q[1], q[2] - e.depth], angle, right);
+            // Each leaf of the door turns about its hinge edge: the left front edge of the
+            // leaf, or its right one (mirrored). What is on the door goes with the leaf
+            // under its middle.
+            let leaves = panel::doors::leaves(e);
+            let leaf_at = |x: f32| panel::doors::leaf_index(e, x);
+            let right = |li: usize| leaves[li].hinge == panel::DoorHinge::Right;
+            let swing_dir = |li: usize, v: V3| door_turn(v, self.door_angle, right(li));
+            let swing_by = |li: usize, q: V3, angle: f32| {
+                let hinge_x = leaves[li].hinge_x();
+                let r = door_turn([q[0] - hinge_x, q[1], q[2] - e.depth], angle, right(li));
                 [r[0] + hinge_x, r[1], r[2] + e.depth]
             };
-            let swing = |q: V3| swing_by(q, self.door_angle);
-            // The wires on the door, laid out with it open: their hinge in the view.
-            let open = |q: V3| swing_by(q, DOOR_OPEN_ANGLE);
-            let hinge = (pose.apply([hinge_x, 0.0, e.depth]), pose.turn([0.0, if right { 1.0 } else { -1.0 }, 0.0]));
+            let swing = |li: usize, q: V3| swing_by(li, q, self.door_angle);
+            // The wires on the door, laid out with it open: the hinges of the leaves in the
+            // view.
+            let open = |li: usize, q: V3| swing_by(li, q, DOOR_OPEN_ANGLE);
+            let hinge = |li: usize| (pose.apply([leaves[li].hinge_x(), 0.0, e.depth]), pose.turn([0.0, if right(li) { 1.0 } else { -1.0 }, 0.0]));
             let problems = panel::problems_of(&self.findings(prj, an, k));
             #[allow(clippy::too_many_arguments)]
-            let add_box = |s: &mut Scene3d, layer: u8, side: Option<usize>, obj: Option<usize>, min: V3, max: V3, base: Color32, item: Option<u64>, door: bool, decal: bool| {
+            let add_box = |s: &mut Scene3d, layer: u8, side: Option<usize>, obj: Option<usize>, min: V3, max: V3, base: Color32, item: Option<u64>, door: Option<usize>, decal: bool| {
                 let c = |x: usize, y: usize, z: usize| [if x == 0 { min[0] } else { max[0] }, if y == 0 { min[1] } else { max[1] }, if z == 0 { min[2] } else { max[2] }];
                 let faces: [([usize; 4], V3); 6] = [
                     ([0b000, 0b010, 0b011, 0b001], [-1.0, 0.0, 0.0]),
@@ -1260,9 +1264,9 @@ impl PanelUi {
                 ];
                 for (corners, n) in faces {
                     let mut pts = corners.map(|b| c(b >> 2 & 1, b >> 1 & 1, b & 1));
-                    let n = if door {
-                        pts = pts.map(swing);
-                        swing_dir(n)
+                    let n = if let Some(li) = door {
+                        pts = pts.map(|q| swing(li, q));
+                        swing_dir(li, n)
                     } else {
                         n
                     };
@@ -1289,7 +1293,15 @@ impl PanelUi {
             };
             // Door leaf on its hinge: seen from the outside it covers the equipment
             // (translucent), seen from the inside it is behind the door devices.
-            let mut door_side = None;
+            // A side of each leaf of the door.
+            let mut door_sides: Vec<Option<usize>> = vec![None; leaves.len()];
+            let mut door_side = |s: &mut Scene3d, li: usize| {
+                *door_sides[li].get_or_insert_with(|| {
+                    let l = leaves[li];
+                    s.sides.push(SceneSide { normal: pose.turn(swing_dir(li, [0.0, 0.0, 1.0])), at: pose.apply(swing(li, [l.x + l.w / 2.0, h / 2.0, dpt + t])), inside: 3, hideable: false, decal: false, glass: false });
+                    s.sides.len() - 1
+                })
+            };
             let mut ceiling_side = None;
             // The maker's model of the enclosure takes the place of the generic body,
             // walls, door and plates: its triangles go with the wall, door or inside
@@ -1299,21 +1311,23 @@ impl PanelUi {
                 let [r, g, b] = openecraft_core::export3d::component_color(Role::Body);
                 let body = Color32::from_rgb(r, g, b);
                 let mut walls: Vec<(Face, Option<usize>)> = Vec::new();
-                for (face, tri) in model {
-                    let door = *face == Some(Face::Door);
-                    let q = if door { tri.map(swing) } else { *tri };
+                // A door in one piece cut at the joints of the leaves: each piece opens
+                // with its own leaf.
+                let pieces = model.iter().flat_map(|(face, tri)| match face {
+                    Some(Face::Door) => panel::doors::split_triangle(e, tri).into_iter().map(|(li, t)| (face, Some(li), t)).collect::<Vec<_>>(),
+                    _ => vec![(face, None, *tri)],
+                });
+                for (face, leaf, tri) in pieces {
+                    let q = match leaf {
+                        Some(li) => tri.map(|v| swing(li, v)),
+                        None => tri,
+                    };
                     let n = norm(cross(sub(q[1], q[0]), sub(q[2], q[0])));
                     if n == [0.0; 3] {
                         continue; // no area
                     }
                     let (layer, side, color) = match *face {
-                        Some(Face::Door) => {
-                            let side = *door_side.get_or_insert_with(|| {
-                                s.sides.push(SceneSide { normal: pose.turn(swing_dir([0.0, 0.0, 1.0])), at: pose.apply(swing([w / 2.0, h / 2.0, dpt + t])), inside: 3, hideable: false, decal: false, glass: false });
-                                s.sides.len() - 1
-                            });
-                            (3, Some(side), Color32::from_rgb(190, 194, 200))
-                        }
+                        Some(Face::Door) => (3, Some(door_side(&mut s, leaf.unwrap_or(0))), Color32::from_rgb(190, 194, 200)),
                         Some(f) => {
                             let side = match walls.iter().find(|(g, _)| *g == f) {
                                 Some((_, side)) => *side,
@@ -1342,11 +1356,9 @@ impl PanelUi {
                     let (min, max) = up_box(bx);
                     match c.role {
                         Role::Door => {
-                            let side = *door_side.get_or_insert_with(|| {
-                                s.sides.push(SceneSide { normal: pose.turn(swing_dir([0.0, 0.0, 1.0])), at: pose.apply(swing([w / 2.0, h / 2.0, dpt + t])), inside: 3, hideable: false, decal: false, glass: false });
-                                s.sides.len() - 1
-                            });
-                            add_box(&mut s, 3, Some(side), None, min, max, Color32::from_rgb(190, 194, 200), None, true, false);
+                            let li = leaf_at((min[0] + max[0]) / 2.0);
+                            let side = door_side(&mut s, li);
+                            add_box(&mut s, 3, Some(side), None, min, max, Color32::from_rgb(190, 194, 200), None, Some(li), false);
                         }
                         // Left out on request: the ceiling (the walls in front go per frame).
                         Role::RoomWall(Face::Roof) if self.hide_ceiling => {}
@@ -1362,14 +1374,14 @@ impl PanelUi {
                         }
                         Role::Wall(face) | Role::RoomWall(face) => {
                             let side = wall_side(&mut s, face, bx, true, false);
-                            add_box(&mut s, 0, side, None, min, max, color, None, false, false);
+                            add_box(&mut s, 0, side, None, min, max, color, None, None, false);
                         }
                         Role::GlandPlate => {
                             let side = wall_side(&mut s, Face::Bottom, bx, false, false);
-                            add_box(&mut s, 0, side, None, min, max, color, None, false, false);
+                            add_box(&mut s, 0, side, None, min, max, color, None, None, false);
                         }
-                        Role::MountingPlate | Role::Body | Role::RackRails => add_box(&mut s, 1, None, None, min, max, color, None, false, false),
-                        Role::Plinth | Role::BayingKit => add_box(&mut s, 0, None, None, min, max, color, None, false, false),
+                        Role::MountingPlate | Role::Body | Role::RackRails => add_box(&mut s, 1, None, None, min, max, color, None, None, false),
+                        Role::Plinth | Role::BayingKit => add_box(&mut s, 0, None, None, min, max, color, None, None, false),
                     }
                 }
             }
@@ -1380,7 +1392,11 @@ impl PanelUi {
                 let pts: Vec<V3> = corners
                     .iter()
                     .map(|q| up([q[0] + 0.6 * inward[0], q[1] + 0.6 * inward[1], q[2] + 0.6 * inward[2]]))
-                    .map(|q| if face == Face::Door { swing(q) } else { q })
+                    .collect::<Vec<V3>>();
+                let leaf = leaf_at(pts.iter().map(|q| q[0]).sum::<f32>() / pts.len().max(1) as f32);
+                let pts: Vec<V3> = pts
+                    .into_iter()
+                    .map(|q| if face == Face::Door { swing(leaf, q) } else { q })
                     .map(|q| pose.apply(q))
                     .collect();
                 let base = if kind == openecraft_core::parts::Restriction::Placing { Color32::from_rgb(90, 140, 220) } else { Color32::from_rgb(230, 140, 40) };
@@ -1477,6 +1493,21 @@ impl PanelUi {
                     },
                 };
                 let on_door = it.face == Face::Door;
+                let door_leaf = on_door.then(|| panel::doors::leaf_of(e, it));
+                let leaf = door_leaf.unwrap_or(0);
+                // A rail, duct or busbar over the joint between two leaves is cut there:
+                // each piece opens with its own leaf.
+                let cut = on_door && it.kind.is_profile() && panel::doors::crosses_joint(e, it);
+                let leaf_of_x = |x: f32| if cut { leaf_at(x) } else { leaf };
+                let pieces = |min: V3, max: V3| -> Vec<(V3, V3, Option<usize>)> {
+                    if !cut {
+                        return vec![(min, max, door_leaf)];
+                    }
+                    let mut xs = vec![min[0]];
+                    xs.extend(panel::doors::joints(e).into_iter().filter(|j| *j > min[0] && *j < max[0]));
+                    xs.push(max[0]);
+                    xs.windows(2).map(|w| ([w[0], min[1], min[2]], [w[1], max[1], max[2]], Some(leaf_at((w[0] + w[1]) / 2.0)))).collect()
+                };
                 let (b0, b1) = panel::item_box(e, it);
                 let (min, max) = if it.kind == ItemKind::Cutout && it.face == Face::Plate {
                     // Dark patch just in front of the plate.
@@ -1493,12 +1524,15 @@ impl PanelUi {
                     let corners: Vec<V3> = (0..8)
                         .map(|c| {
                             let q = [if c & 1 == 0 { min[0] } else { max[0] }, if c & 2 == 0 { min[1] } else { max[1] }, if c & 4 == 0 { min[2] } else { max[2] }];
-                            pose.apply(if on_door { swing(q) } else { q })
+                            pose.apply(if on_door { swing(leaf_of_x(q[0]), q) } else { q })
                         })
                         .collect();
                     s.objects.push(bounds(&corners));
                     s.ducts.push(it.kind == ItemKind::Duct);
-                    exact.push(!on_door && (pose.angle.sin() * pose.angle.cos()).abs() < 1e-4);
+                    // A panel of the field grid is hollow (wires run behind its cover), so
+                    // is a frame joining two enclosures.
+                    let hollow = panel::fit::is_insert(prj, it) || panel::fit::at_opening(prj, e, it);
+                    exact.push(!on_door && (pose.angle.sin() * pose.angle.cos()).abs() < 1e-4 && !hollow);
                     s.objects.len() - 1
                 });
                 // Devices with a 3D model in their part are drawn with it instead of a box,
@@ -1506,12 +1540,20 @@ impl PanelUi {
                 if let Some(painted) = panel::device_mesh_painted(prj, it) {
                     let layer = if it.kind == ItemKind::Rail { 2 } else { EQUIPMENT };
                     let (tris, colors): (Vec<_>, Vec<_>) = painted.into_iter().unzip();
-                    for (tri, own) in panel::place_triangles(e, it, tris).into_iter().zip(colors) {
+                    let first = s.faces.len();
+                    let placed = panel::place_triangles(e, it, tris).into_iter().zip(colors).flat_map(|(tri, own)| {
+                        if cut {
+                            panel::doors::split_triangle(e, &tri).into_iter().map(|(li, t)| (t, own, li)).collect()
+                        } else {
+                            vec![(tri, own, leaf)]
+                        }
+                    });
+                    for (tri, own, leaf) in placed {
                         let base = match (highlight, own) {
                             (None, Some([r, g, b])) => Color32::from_rgb(r, g, b),
                             _ => base,
                         };
-                        let w = tri.map(up).map(|q| if on_door { swing(q) } else { q });
+                        let w = tri.map(up).map(|q| if on_door { swing(leaf, q) } else { q });
                         let n = norm(cross(sub(w[1], w[0]), sub(w[2], w[0])));
                         if n == [0.0; 3] {
                             continue; // no area
@@ -1519,6 +1561,12 @@ impl PanelUi {
                         let normal = pose.turn(n);
                         let w = w.map(|q| pose.apply(q));
                         s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer, side: None, obj, item: Some((k, it.id)), outline: false, decal: false, pv: None });
+                    }
+                    // A model beyond the item's box (the frame and cover of a panel in
+                    // front of the plate it is): its object is the model's bounds.
+                    if let (Some(o), true) = (obj, s.faces.len() > first && panel::fit::is_insert(prj, it)) {
+                        let pts: Vec<V3> = s.faces[first..].iter().flat_map(|f| f.pts).collect();
+                        s.objects[o] = bounds(&pts);
                     }
                     openings(&mut s, prj, e, it, &pose, obj, k, &lit);
                     continue;
@@ -1559,7 +1607,9 @@ impl PanelUi {
                     for (bx, [r, g, b], finger) in panel::duct_boxes(e, it, !self.open_ducts) {
                         let (min, max) = up_box(bx);
                         let first = s.faces.len();
-                        add_box(&mut s, EQUIPMENT, None, obj, min, max, highlight.unwrap_or(Color32::from_rgb(r, g, b)), Some(it.id), on_door, false);
+                        for (min, max, door_leaf) in pieces(min, max) {
+                            add_box(&mut s, EQUIPMENT, None, obj, min, max, highlight.unwrap_or(Color32::from_rgb(r, g, b)), Some(it.id), door_leaf, false);
+                        }
                         if let (true, false, Some(duct)) = (finger, on_door, obj) {
                             let corners: Vec<V3> = (0..8).map(|c| pose.apply([[min[0], max[0]][c & 1], [min[1], max[1]][c >> 1 & 1], [min[2], max[2]][c >> 2]])).collect();
                             fingers.push((duct, first..s.faces.len(), bounds(&corners)));
@@ -1575,7 +1625,9 @@ impl PanelUi {
                     ItemKind::Duct | ItemKind::Busbar | ItemKind::Device | ItemKind::Accessory => (EQUIPMENT, None),
                 };
                 let decal = it.kind == ItemKind::Cutout && !it.face.is_wall();
-                add_box(&mut s, layer, side, obj, min, max, base, Some(it.id), on_door, decal);
+                for (min, max, door_leaf) in pieces(min, max) {
+                    add_box(&mut s, layer, side, obj, min, max, base, Some(it.id), door_leaf, decal);
+                }
                 openings(&mut s, prj, e, it, &pose, obj, k, &lit);
             }
             // The drives on the floor: shafts and couplings, pulleys and belts, gear
@@ -1629,10 +1681,11 @@ impl PanelUi {
                 let diameter = openecraft_core::harness::outer_diameter(&wire.cross_section);
                 // Door ends run along the door and over the hinge loop; the part on the
                 // door swings with it (and how far each point turns with the door).
-                let door_end = |at: V3, route: &Option<panel::Route>, plate: Option<&openecraft_core::geom::P>, z: f32| -> (Vec<V3>, Vec<f32>) {
+                let door_end = |at: V3, route: &Option<panel::Route>, plate: Option<&openecraft_core::geom::P>, z: f32| -> (Vec<V3>, Vec<(f32, usize)>) {
                     let (Some(q), Some(route)) = (plate, route) else { return (Vec::new(), Vec::new()) };
                     let (path, n) = panel::door_path(e, at, route, [PLATE_MARGIN + q.x, PLATE_MARGIN + q.y, PLATE_Z + z]);
-                    path.into_iter().enumerate().map(|(i, v)| if i < n { (open(up(v)), 1.0) } else { (up(v), 0.0) }).unzip()
+                    let leaf = leaf_at(at[0]);
+                    path.into_iter().enumerate().map(|(i, v)| if i < n { (open(leaf, up(v)), (1.0, leaf)) } else { (up(v), (0.0, leaf)) }).unzip()
                 };
                 // Cable passages (line-up coordinates) in this enclosure's view: through
                 // one straight on, for the bend radius on this side of its wall.
@@ -1647,8 +1700,9 @@ impl PanelUi {
                 let paths: Vec<WireStretch> = match wire.door {
                     (Some(a), Some(b)) if wire.on_door() => match &wire.door_routes.0 {
                         Some(r) => {
-                            let v: Vec<V3> = panel::door_jumper_path(e, a, b, r).into_iter().map(|v| open(up(v))).collect();
-                            let shares = vec![1.0; v.len()];
+                            let leaf = leaf_at(a[0]);
+                            let v: Vec<V3> = panel::door_jumper_path(e, a, b, r).into_iter().map(|v| open(leaf, up(v))).collect();
+                            let shares = vec![(1.0, leaf); v.len()];
                             vec![(0, v, shares, [[0.0; 3]; 2], [true; 2])]
                         }
                         None => Vec::new(),
@@ -1723,14 +1777,14 @@ impl PanelUi {
                             match (exit, b) {
                                 (None, Some(b)) => {
                                     let (end, end_shares) = door_end(b, &wire.door_routes.1, route.points.last(), z);
-                                    shares.resize(v.len(), 0.0);
+                                    shares.resize(v.len(), (0.0, 0));
                                     v.extend(end.into_iter().rev());
                                     shares.extend(end_shares.into_iter().rev());
                                 }
                                 (None, None) if !to_terminal => v.extend(wire.terminals.1.map(up)),
                                 _ => {}
                             }
-                            shares.resize(v.len(), 0.0);
+                            shares.resize(v.len(), (0.0, 0));
                             (i, v, shares, leave, connected)
                         })
                         .collect(),
@@ -1742,8 +1796,8 @@ impl PanelUi {
                 let dim = selected_wire.is_some() && !selected;
                 let end = [wire_end(prj, &an.ends, &wire.from, &wire.to, &wire.cross_section, dim), wire_end(prj, &an.ends, &wire.to, &wire.from, &wire.cross_section, dim)];
                 for (i, path, shares, leave, connected) in &paths {
-                    let door: Vec<DoorPoint> = match shares.iter().any(|s| *s > 0.0) {
-                        true => path.iter().zip(shares).map(|(q, &share)| DoorPoint { at: pose.apply(*q), share, hinge: hinge.0, axis: hinge.1 }).collect(),
+                    let door: Vec<DoorPoint> = match shares.iter().any(|s| s.0 > 0.0) {
+                        true => path.iter().zip(shares).map(|(q, &(share, leaf))| DoorPoint { at: pose.apply(*q), share, hinge: hinge(leaf).0, axis: hinge(leaf).1 }).collect(),
                         false => Vec::new(),
                     };
                     let (rest, below) = match on_plate {
@@ -1810,7 +1864,8 @@ impl PanelUi {
                 let (b0, b1) = panel::item_box(e, it);
                 // Door devices show their front on the outside of the door leaf.
                 let (front, normal) = if it.face == Face::Door {
-                    (swing(up([(b0[0] + b1[0]) / 2.0, (b0[1] + b1[1]) / 2.0, b1[2] + 2.5])), swing_dir([0.0, 0.0, 1.0]))
+                    let leaf = panel::doors::leaf_of(e, it);
+                    (swing(leaf, up([(b0[0] + b1[0]) / 2.0, (b0[1] + b1[1]) / 2.0, b1[2] + 2.5])), swing_dir(leaf, [0.0, 0.0, 1.0]))
                 } else {
                     // The side facing into the enclosure.
                     let n = panel::face_frame(e, it.face)[3];

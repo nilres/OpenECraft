@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Lägger till apparaterna från en mall i ett segment
 Adds the outline of a machine, building or area to the plant layout	Lägger till konturen av en maskin, en byggnad eller ett område i anläggningslayouten
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Lägger till, ersätter eller tar bort en profil: en anslutning med de kolumnnamn som det andra systemet använder
+After it instead of before	Efter i stället för före
 Air-termination rod: its name	Spetsledare: dess namn
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Justerar objekt, fördelar dem jämnt, radar upp apparater på en skena eller kopierar objekt i ett mönster
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Justerar symboler, texter och grafik mot en gemensam kant eller mittlinje; anslutna ledningsändar följer med
@@ -66,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Back-up
 Bar id	Sken-ID
 Bar thickness, mm (default 5)	Skentjocklek, mm (standard 5)
 Bar width, mm (default 20)	Skenbredd, mm (standard 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Bygger ihop en kapsling vid förbindelseramen i en sidovägg på en annan (t.ex. CZ3 från Striebel & John): till höger om den för en ram i högra väggen, till vänster för en i vänstra väggen
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Bygger samman en kapsling sida vid sida till höger om en annan (skåprad); utan right_of lämnar den sin skåprad
 Bend radius in drag chains as a multiple of the cable diameter	Böjradie i släpkedjor som en multipel av kabeldiametern
 Bend radius of a drag chain in mm	Böjradie för en släpkedja i mm
@@ -145,6 +147,7 @@ Corner points on the mounting plate in mm	Hörnpunkter på monteringsplåten i m
 Correction of the time estimate	Korrigering av tidsuppskattningen
 Cost of free air against ducts and routing paths	Kostnad för fri förläggning jämfört med kanaler och dragningsvägar
 Counting step (default 1)	Räknarsteg (standard 1)
+Covers fitted; false takes them off	Kåpor monterade; false tar av dem
 Creates a bus cable for the connection (without cable tag)	Skapar en busskabel för anslutningen (utan kabelbeteckning)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Skapar en kabel av busstypen (typ, ledare, tvärsnitt) för varje bussanslutning utan kabel
 Creates or changes a PCT loop of the pre-planning	Skapar eller ändrar en instrumentslinga i förprojekteringen
@@ -259,15 +262,20 @@ Enclosure (location, e.g. +CAB1) whose settings change	Kapsling (placering, t.ex
 Enclosure climate and electrical sizing	Skåpsklimat och elektrisk dimensionering
 Enclosure it stands right of; empty to take it out of its line-up	Kapsling som den står till höger om; tom för att ta ut den ur skåpraden
 Enclosure name (all if missing)	Kapslingsnamn (alla om det saknas)
+Enclosure or room it goes before or after	Kapsling eller rum som den hamnar före eller efter
 Enclosure part number	Kapslingens artikelnummer
 Enclosure system (default: the enclosure's)	Kapslingssystem (standard: kapslingens)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kapsling som kopiorna hamnar i (placering, t.ex. +CAB2); utan anges samma
+Enclosure to attach; without it a new one like the enclosure with the frame	Kapsling som ska byggas ihop; utan den en ny som kapslingen med ramen
+Enclosure with the frame	Kapsling med ramen
 Enclosure {} exists already	Kapsling {} finns redan
+Enclosure; without it every enclosure	Kapsling; utan den varje kapsling
 Enclosures, panel items, accessories and panel macros	Kapslingar, layoutobjekt, tillbehör och layoutmakron
 End brackets and end plates from the tech data of the terminal parts	Ändstöd och ändplattor från plintartiklarnas tekniska data
 End holes from the bar end as a multiple of the width	Ändhål från skenänden som en multipel av bredden
 End: device tag and connection point, e.g. -S1:14	Slut: apparatbeteckning och anslutningspunkt, t.ex. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Yta: plate, door, left, right, rear, roof eller bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Yta: plate, door, left, right, rear, roof eller bottom; door_left och door_right för bladen på en dubbeldörr
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Fältplan: noder, avsnitt, konturer, kabelvägar, potentialutjämning och tillbehör
 Figure	Nyckeltal
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Söker efter och ersätter text i en kolumn för alla (filtrerade) rader; utan söktext fylls kolumnen med ersättningen
@@ -281,6 +289,7 @@ First counter value (default 1)	Första räknarvärde (standard 1)
 First page number (default 1)	Första sidnummer (standard 1)
 First port as station:port, e.g. PLC1:X1 P2	Första port som station:port, t.ex. PLC1:X1 P2
 First row with the column names	Första raden med kolumnnamnen
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Monterar plastkåporna på alla fält i fältrastret i en kapsling, eller i varje kapsling, eller tar av dem alla
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Platta tak och markmonterat: riktning som modulerna vetter mot i grader, moturs sett ovanifrån (0: mot +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format för apparatnamnet: {letter}, {n} (räknare), {page}, {column}, {row}; standard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format för schemat format: {n} (räknare), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -359,6 +368,7 @@ Invalid answer of the plugin: {}	Ogiltigt svar från plugin: {}
 Invalid segment name: {}	Ogiltigt segmentnamn: {}
 Invalid title block elements: {}	Ogiltiga element i namnrutan: {}
 Item id	Objekt-ID
+Item id of the frame	Elementets id för ramen
 Item ids	Objekt-ID:n
 Jumper number	Bygelnummer
 Jumper number (terminals with the same number are bridged); 0 removes it	Bygelnummer (plintar med samma nummer byglas); 0 tar bort det
@@ -379,6 +389,7 @@ Landscape (true) or portrait (false)	Liggande (true) eller stående (false)
 Language the project texts are written in, e.g. en	Språk som projekttexterna är skrivna på, t.ex. en
 Larger round holes are milled, mm	Större runda hål fräses, mm
 Largest difference between hole and tool, mm	Största skillnad mellan hål och verktyg, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Dörrblad i en pardörr: deras bredder från vänster, t.ex. 275 + 525 (med left eller right efter en bredd för dess gångjärn), eller deras antal för lika breda blad; tomt eller 1 för ett blad
 Left edge from the left end of the wall (seen from inside) in mm	Vänster kant från väggens vänstra ände (sett inifrån) i mm
 Left edge in mm	Vänsterkant i mm
 Left edge on the face in mm	Vänsterkant på ytan i mm
@@ -440,6 +451,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Listar valda
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Listar namnrutorna (inbyggda och projektets egna) med deras element, projektets standard och platshållarna
 Lists the translation dictionary of the project texts (source line and translations)	Listar översättningsordlistan för projekttexterna (källrad och översättningar)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Listar de fönstermakron som placerats på sidorna (makrorutor) med makro, variant, platshållarvärden och antal objekt
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Listar var en tillbehörsartikel passar i en kapsling: de lediga fälten i ett mätar- eller fördelningsskåp (artikeldata Fields och Rows), de fria öppningarna i dess sidoväggar för en ram som förbinder kapslingar (artikeldata Opening och Side openings), sidorna på kapslingen den är tillbehör till, enheterna vars artikel den passar
 Load losses of the transformer in W (0: typical)	Transformatorns belastningsförluster i W (0: typiskt värde)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Nätets laster, last för varje skyddsdon, behov med sammanlagringsfaktor, fasbalans och lastbudgetar för nätaggregat
 Loads the potential definitions of a standard (replaces those of the same name)	Läser in potentialdefinitionerna för en standard (ersätter de med samma namn)
@@ -484,6 +496,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Monteringsstorleken måste innehålla en positiv bredd och höjd
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Flyttar en stödpunkt i dragningen av en ledning, kabel eller ett rör; dragningen rapporterar ett fel där den inte kan dras genom den
 Moves an air-termination rod, changes its height, renames or removes it	Flyttar en spetsledare, ändrar dess höjd, byter namn på den eller tar bort den
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Flyttar en kapsling eller ett rum i ordningen i trädet av kapslingar och rum: före eller efter en annan (en sammanbyggd kapsling inom sin skåprad, sammanbyggd på nytt, eller med sin skåprad; ett rum bland rummen, till den andras våning)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flyttar en ände av en ledning: den lämnar det den är ansluten till och ansluts till det den möter; ledningen förblir vinkelrät
 Moves symbols, wires and texts; connected wire ends follow	Flyttar symboler, ledningar och texter; anslutna ledningsändar följer med
 Moves the page before this page of its section (or of the section given)	Flyttar sidan före denna sida i dess avsnitt (eller i det angivna avsnittet)
@@ -625,6 +638,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Sidan {}
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Sidor med tillägg (3.a) förblir undersidor till föregående sida (standard true)
 Panel layout checks	Kontroller av skåplayout
 Panel manufacturing	Skåptillverkning
+Panel of a field grid: with its plastic cover (false: taken off)	Fält i ett fältraster: med sin plastkåpa (false: borttagen)
 Paper height in mm (custom paper)	Papperets höjd i mm (anpassat papper)
 Paper width in mm (custom paper)	Papperets bredd i mm (anpassat papper)
 Part lifecycle	Artikelns livscykel
@@ -971,6 +985,7 @@ Unknown class: {}	Okänd klass: {}
 Unknown data type: {}	Okänd datatyp: {}
 Unknown direction {}: left, right, up or down	Okänd riktning {}: left, right, up eller down
 Unknown door hinge: {}	Okänd gångjärnssida: {}
+Unknown door leaves: {}	Okända dörrblad: {}
 Unknown earth electrode: {}	Okänt jordtag: {}
 Unknown earthing system: {}	Okänt jordningssystem: {}
 Unknown face {}	Okänd yta {}

@@ -617,6 +617,24 @@ impl Part {
         })
     }
 
+    /// Sets the `Name: value` line of the technical data in place of the one there is;
+    /// `None` removes it.
+    pub fn set_tech_value(&mut self, name: &str, value: Option<&str>) {
+        let is = |l: &str| l.split_once(':').is_some_and(|(k, _)| k.trim().eq_ignore_ascii_case(name));
+        let mut line = value.map(|v| format!("{name}: {v}"));
+        let mut out = Vec::new();
+        for l in self.tech_data.lines() {
+            if !is(l) {
+                out.push(l.to_string());
+            } else if let Some(new) = line.take() {
+                out.push(new);
+            }
+        }
+        out.extend(line);
+        self.tech_data = out.join("
+");
+    }
+
     pub fn template_summary(&self) -> String {
         let mut counts: BTreeMap<FnKind, usize> = BTreeMap::new();
         for f in &self.functions {

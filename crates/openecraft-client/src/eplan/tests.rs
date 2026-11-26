@@ -80,7 +80,7 @@ fn requests_of_the_portal() {
     assert_eq!(endpoint(" Bearer PAT:abc123 ").info().headers.get("Authorization"), Some("Bearer PAT:abc123"));
     assert_eq!(endpoint("").info().headers.get("Authorization"), None);
 
-    let include = "include=manufacturer%2Cproduct_top_group%2Cproduct_group%2Cproduct_sub_group%2Cpicture_file.preview";
+    let include = "include=manufacturer%2Cproduct_top_group%2Cproduct_group%2Cproduct_sub_group%2Cpicture_file.preview%2Caccessories&fields%5Brelated_parts%5D=part_number";
     let q = PartQuery { q: Some("contactor 24V".into()), manufacturer: Some("SIE".into()), sort: Sort::Manufacturer, descending: true, offset: Some(50), limit: Some(25), ..Default::default() };
     assert_eq!(
         e.search(&q).url,
@@ -97,6 +97,63 @@ fn requests_of_the_portal() {
     // Several parts by their ids, without ids the first number.
     assert_eq!(e.lookup(&["A".into(), "B".into()], &["7".into()]).body, b"7".to_vec());
     assert!(e.lookup(&["A".into(), "B".into()], &[]).url.contains("search=%22A%22"));
+    // The accessories with their texts and groups, the part with nothing else.
+    assert_eq!(
+        e.accessories("RIT.1502000").url,
+        "https://portal.test/api/parts?search=%22RIT.1502000%22&include=accessories%2Caccessories.manufacturer%2Caccessories.product_top_group%2Caccessories.product_group%2Caccessories.product_sub_group&fields%5Bparts%5D=part_number%2Caccessories&fields%5Brelated_parts%5D=part_number%2Corder_number%2Ctype_number%2Cdesignation%2Clifecycle%2Cmanufacturer%2Cproduct_top_group%2Cproduct_group%2Cproduct_sub_group&page%5Blimit%5D=20"
+    );
+}
+
+/// An enclosure with two accessories as the portal sends them, by number only in a
+/// search and with their texts and groups to [`EplanEndpoint::accessories`].
+fn enclosure_with_accessories(detailed: bool) -> Value {
+    let accessory = |id: &str, number: &str, text: &str| {
+        if detailed {
+            json!({ "type": "related_parts", "id": id, "attributes": { "part_number": number, "designation": { "en_US": text } }, "relationships": {
+                "manufacturer": { "data": { "type": "manufacturers", "id": "57" } },
+                "product_top_group": { "data": { "type": "eplan_catalog_entries", "id": "400000000" } },
+                "product_group": { "data": { "type": "eplan_catalog_entries", "id": "400520000" } },
+                "product_sub_group": { "data": { "type": "eplan_catalog_entries", "id": "400520002" } }
+            } })
+        } else {
+            json!({ "type": "related_parts", "id": id, "attributes": { "part_number": number } })
+        }
+    };
+    json!({
+        "data": [{
+            "type": "parts",
+            "id": "995210",
+            "attributes": { "part_number": "RIT.1502000", "designation": { "en_US": "Terminal box KX" } },
+            "relationships": { "accessories": { "data": [
+                { "type": "related_parts", "id": "995329" },
+                { "type": "related_parts", "id": "1016655" },
+                { "type": "related_parts", "id": "1" }
+            ] } }
+        }],
+        "included": [
+            accessory("1016655", "RIT.2584100", "AX pole mounting"),
+            accessory("995329", "RIT.2508020", "Wall mounting bracket"),
+            { "type": "manufacturers", "id": "57", "attributes": { "short_name": "RIT" } },
+            { "type": "eplan_catalog_entries", "id": "400520000", "attributes": { "name": "Housing accessories, internal extension" } }
+        ]
+    })
+}
+
+#[test]
+fn accessories_of_the_portal_are_linked_to_their_part() {
+    // A part found names its accessories by number.
+    let found = with_lang_en(|| parts(&enclosure_with_accessories(false)));
+    assert_eq!(found[0].accessories, ["RIT.2508020", "RIT.2584100"]);
+    // The accessories themselves in the order the part lists them; one the answer does
+    // not include is left out.
+    let body = enclosure_with_accessories(true).to_string();
+    let acc = with_lang_en(|| decode_accessories("rit.1502000", response(200, &body))).unwrap();
+    let listed: Vec<(&str, &str, &str, &str)> = acc.accessories.iter().map(|p| (p.number.as_str(), p.description.as_str(), p.manufacturer.as_str(), p.portal_id.as_str())).collect();
+    assert_eq!(listed, [("RIT.2508020", "Wall mounting bracket", "RIT", "995329"), ("RIT.2584100", "AX pole mounting", "RIT", "1016655")]);
+    assert_eq!(acc.accessories[0].top_group, TopGroup::Mechanics);
+    assert!(acc.fits.is_empty());
+    // Another part: none.
+    assert!(decode_accessories("RIT.1050000", response(200, &body)).unwrap().accessories.is_empty());
 }
 
 #[test]
@@ -289,5 +346,67 @@ fn absolute_download_urls_use_the_same_origin_rules_as_authorization() {
         let request = endpoint("fixture").file(url);
         assert_eq!(request.headers.get("Authorization"), None, "{url}");
         assert!(!endpoint("fixture").needs_token(url));
+    }
+}
+
+
+#[test]
+fn an_enclosure_of_the_portal_gets_its_size_from_its_description() {
+    let doc = json!({
+        "data": [{
+            "type": "parts",
+            "id": "933976",
+            "attributes": {
+                "part_number": "RIT.8806000",
+                "designation": { "en_US": "Baying-enclosure system VX25", "de_DE": "Anreih-Schranksystem VX25" },
+                "description": {
+                    "en_US": "VX Baying enclosure system, WHD: 800x2000x600 mm, sheet steel, with mounting plate, single door at the front",
+                    "de_DE": "VX Anreih-Schranksystem, BHT: 800x2000x600 mm, Stahlblech, mit Montageplatte",
+                    "fr_FR": "VX Armoires \u{e9}lectriques juxtaposables, 1 porte, LHP 800x2000x600 mm"
+                }
+            },
+            "relationships": {
+                "product_top_group": { "data": { "type": "eplan_catalog_entries", "id": "400000000" } },
+                "product_group": { "data": { "type": "eplan_catalog_entries", "id": "400560000" } },
+                "product_sub_group": { "data": { "type": "eplan_catalog_entries", "id": "400560002" } }
+            }
+        }]
+    });
+    // In every language: the English text names the order of the values.
+    for lang in [openecraft_i18n::Lang::En, openecraft_i18n::Lang::Fr] {
+        let p = openecraft_i18n::with_lang(lang, || parts(&doc)).remove(0);
+        assert_eq!((p.group.as_str(), p.subgroup.as_str()), ("Enclosure", "General"));
+        assert_eq!((p.width, p.height, p.depth), (800.0, 2000.0, 600.0));
+        assert!(openecraft_parts::is_enclosure(&p));
+        assert_eq!(p.tech_value("Enclosure system"), Some("baying"));
+    }
+}
+
+/// The EPLAN data of Rittal enclosures of four systems as the portal's part search
+/// answers (`parts.json` in `OPENECRAFT_RITTAL_DIR`: `POST /api/parts` with the portal
+/// ids of RIT.8606000, 8806000, 8805000, 8806500, 1050000, 1060000 and 1502000): none
+/// of them is in a shipped catalog, each becomes an enclosure of the panel layout.
+#[test]
+#[ignore = "requires OPENECRAFT_RITTAL_DIR with the portal's answer for Rittal enclosures"]
+fn rittal_enclosures_of_the_portal_become_enclosures() {
+    use openecraft_core::panel;
+    let dir = std::env::var("OPENECRAFT_RITTAL_DIR").unwrap();
+    let doc: Value = serde_json::from_slice(&std::fs::read(std::path::Path::new(&dir).join("parts.json")).unwrap()).unwrap();
+    let found = with_lang_en(|| parts(&doc));
+    let size = |n: &str| found.iter().find(|p| p.number == n).map(|p| (p.width, p.height, p.depth, p.tech_value("Enclosure system").unwrap_or_default().to_string()));
+    assert_eq!(size("RIT.8806000"), Some((800.0, 2000.0, 600.0, "baying".into())));
+    assert_eq!(size("RIT.8805000"), Some((800.0, 2000.0, 500.0, "baying".into())));
+    assert_eq!(size("RIT.8806500"), Some((800.0, 2000.0, 600.0, "baying".into())));
+    assert_eq!(size("RIT.1050000"), Some((500.0, 500.0, 210.0, "compact".into())));
+    assert_eq!(size("RIT.1502000"), Some((200.0, 200.0, 120.0, "terminal_box".into())));
+    assert_eq!(found.len(), 7);
+    let mut prj = openecraft_core::model::Project { parts: found.clone(), ..Default::default() };
+    for p in &found {
+        assert!(openecraft_parts::is_enclosure(p), "{}", p.number);
+        let e = panel::new_enclosure(&mut prj, &p.number, "+X");
+        assert_eq!((e.width, e.height, e.depth), (p.width, p.height, p.depth), "{}", p.number);
+        assert_eq!(openecraft_parts::enclosure_on_floor(p), p.number.starts_with("RIT.8"), "{}", p.number);
+        // Only the terminal box comes without its mounting plate.
+        assert_eq!(e.no_implicit_plate, p.number == "RIT.1502000", "{}", p.number);
     }
 }

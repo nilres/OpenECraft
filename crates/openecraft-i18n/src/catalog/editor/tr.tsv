@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	En üsttekinin üzerine bir kat
 A local file opens locally, a server project is opened on the project server again	Yerel bir dosya yerel olarak açılır, sunucu projesi proje sunucusunda yeniden açılır
 A local file or a project on the project server	Yerel bir dosya veya proje sunucusundaki bir proje
+A new enclosure of the same part, bayed at this frame	Aynı parçadan yeni bir pano, bu çerçeveye eklenmiş
+A new enclosure standing in this room	Bu odada duran yeni bir pano
 A new project	Yeni bir proje
 A new release is downloaded in the background and installed when you close OpenECraft.	Yeni bir sürüm arka planda indirilir ve OpenECraft'ı kapattığınızda yüklenir.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Yeni bir sürüm arka planda indirilir ve bu kurulumun yerini alır; bir sonraki başlatmadan itibaren kullanılır.
@@ -179,10 +181,13 @@ Assign to existing device	Mevcut cihaza ata
 Assign to harness	Kablo demetine ata
 Assign wires: select them in the schematic › Assign to cable.	Telleri ata: bunları şemada seçin › Kabloya ata.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Şebekedeki asenkron motorlar en yüksek kısa devre akımını artırır (IEC 60909-0)
+At least, mm (0: any)	En az, mm (0: herhangi)
+At most, mm (0: any)	En çok, mm (0: herhangi)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	En yüksek ortam sıcaklığında; ısıtıcı çiğ noktasını korur. 0 = dikkate alınmaz
 At the origin	Orijinde
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Besleme noktasında: Ik3 maks {} kA, Ik1 min {} kA
 At the top level	En üst düzeyde
+Attach an enclosure here	Buraya pano ekle
 Author	Yazar
 Auto-connect	Otomatik bağla
 Auto-connect selection	Seçimi otomatik bağla
@@ -620,6 +625,7 @@ Door cutouts (CSV)	Kapı kesimleri (CSV)
 Door hinge	Kapı menteşesi
 Door: {} devices, {} cutouts	Kapı: {} cihaz, {} kesim
 Dot	Nokta
+Double door	Çift kanatlı
 Double-click	Çift tıklama
 Down conductors	İniş iletkenleri
 Download into database	Veritabanına indir
@@ -665,9 +671,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Delik listesi (CSV)
 Drilling list of this face (CSV)	Bu yüzeyin delik listesi (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Gösterilen yüzün delik deseni DXF, DWG veya CSV olarak
+Drop an enclosure here to add it; onto a room to put it in there	Eklemek için panoyu buraya bırakın; oraya koymak için bir odanın üzerine
 Drop between the pages	Sayfaların arasına bırakın
 Drop between the rows or onto a section	Satırların arasına veya bir bölümün üzerine bırakın
+Drop between two buildings to move it there	Oraya taşımak için iki binanın arasına bırakın
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Panoyu oraya taşımak için iki satırın arasına bırakın; yan yana dizilmiş bir pano kendi dizilimi içinde ya da dizilimiyle birlikte taşınır
+Drop between two rows to move the room there, onto a level to put it on that level	Odayı oraya taşımak için iki satırın arasına, o kata koymak için bir kata bırakın
 Drop onto a level to put the room on it	Odayı bir kata koymak için kata bırakın
+Drop {} here	{} öğesini buraya bırakın
+Drop {} onto one of the highlighted places	{} öğesini vurgulanan yerlerden birine bırakın
+Drop {} onto {} to add it to the device	Cihaza eklemek için {} öğesini {} üzerine bırakın
 Duct fill	Kanal doluluğu
 Duct fill limit	Kanal doluluk sınırı
 Duplicate	Çoğalt
@@ -702,6 +715,8 @@ Embed as document page	Belge sayfası olarak göm
 Embeds a file (PDF, Word, Excel, image …) as a page	Bir dosyayı (PDF, Word, Excel, görüntü …) sayfa olarak gömer
 Embeds the file in the project (replaces the current one)	Dosyayı projeye gömer (mevcut olanı değiştirir)
 Enclosure system	Pano sistemi
+Enclosure {} added	Pano {} eklendi
+Enclosure {} added in room {}	Pano {} {} odasına eklendi
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Düğümlerdeki panolar (+CAB1), cihazlar (-M1) ve makine konumları (+M1)
 Enclosures and rooms	Muhafazalar ve odalar
 Enclosures, devices to place and placed devices	Kabinler, yerleştirilecek ve yerleştirilmiş cihazlar
@@ -757,7 +772,10 @@ Field	Alan
 Field (name, description, company, creator, date, revision) or project property	Alan (name, description, company, creator, date, revision) veya proje özelliği
 Field cables	Saha kabloları
 Field length	Alan uzunluğu
+Field widths and rows of meter and distribution cabinets	Sayaç ve dağıtım panolarının alan genişlikleri ve sıraları
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Alan; parçaların teknik verileri için tech:<ad>, proje özellikleri için prop:<ad>
+Fields	Alanlar
+Fields / rows	Alanlar / sıralar
 File format version {}. Files of older versions are converted when they are opened.	Dosya formatı sürümü {}. Eski sürümlerin dosyaları açılırken dönüştürülür.
 File name	Dosya adı
 File of another system (connector)	Başka bir sistemin dosyası (bağlayıcı)
@@ -779,10 +797,13 @@ Finish a wire, polyline, polygon or wall	Kablo, çoklu çizgi, çokgen veya duva
 Finish or cancel the drawing, then back to selecting	Çizimi bitir veya iptal et, sonra seçime dön
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Proje sunucusundan açılan bir projenin tamamlanan değişiklikleri kendiliğinden sunucuya kaydedilir; süren giriş tamamlanınca kaydedilir. Kilitler korunur. Kaydet (Ctrl+S) yine hemen kaydeder.
 First row	İlk satır
+Fit all plastic covers	Tüm plastik kapakları tak
 Fit page	Sayfaya sığdır
 Fits {}	{} ile uyumlu
+Fitted	Takılı
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	En boy oranı korunarak dikdörtgene sığdırılır (PNG, JPEG)
 Float	Ayır
+Floor	Taban
 Floor above ground	Zeminden yükseklik
 Floor plan with {} walls	{} duvarlı kat planı
 Floor-standing part	Zemine konan parça
@@ -1048,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	İlk sütunun yinelenen değerlerini boş bırak
 Left button	Sol düğme
 Left edges	Sol kenarlar
+Left leaf	Sol kanat
 Legend plates (door devices)	Tanıtım plakaları (kapı cihazları)
 Length from the node to the device	Düğümden cihaza uzunluk
 Length inside an enclosure	Pano içi uzunluk
@@ -1145,6 +1167,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	Ölçülen
 Measures against common cause failure (at least 65 points)	Ortak nedenli arızalara karşı önlemler (en az 65 puan)
 Merge a symbol library file	Bir sembol kütüphanesi dosyasını birleştir
+Merged with the parts already known: {}	Zaten bilinen parçalarla birleştirildi: {}
 Message	Mesaj
 Messages	Mesajlar
 Messages ({})	Mesajlar ({})
@@ -1223,6 +1246,9 @@ New cover sheet	Yeni kapak sayfası
 New document page…	Yeni belge sayfası…
 New empty	Yeni, boş
 New enclosure	Yeni pano
+New enclosure in this room…	Bu odada yeni pano…
+New enclosure like this one	Bunun gibi yeni pano
+New enclosure…	Yeni pano…
 New graphics page	Yeni grafik sayfası
 New harness	Yeni kablo demeti
 New items go onto this layer	Yeni öğeler bu katmana eklenir
@@ -1284,6 +1310,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Henüz pano yok – Yeni pano ile bir pano veya Yeni oda ile panolar için bir oda oluşturun.
 No field cables: place the enclosures and field devices at nodes of the route network.	Saha kablosu yok: panoları ve saha cihazlarını güzergâh ağının düğümlerine yerleştirin.
 No filter fans: an air/air heat exchanger or a cooling unit	Filtreli fan yok: hava/hava ısı eşanjörü veya soğutma ünitesi
+No free place is left for {} in this enclosure	Bu panoda {} için boş yer kalmadı
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Henüz arazi tipi PV dizisi yok: arsada çakma direkler üzerinde eğimli masa sıraları.
 No gesture	Hareket yok
 No harnesses defined.	Tanımlı kablo demeti yok.
@@ -1360,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Dokunmatik ekranda; dokunmatik yüzeyler üç parmak hareketlerini sisteme bırakır.
 On startup	Başlangıçta
 On the roof, joined to the air-termination conductors; move it to its place	Çatıda, yakalama iletkenlerine bağlı; yerine taşıyın
+One leaf	Tek kanat
 One row per label	Etiket başına bir satır
 Only devices on the current page	Yalnızca geçerli sayfadaki cihazlar
 Only frames no page uses can be deleted	Yalnızca hiçbir sayfanın kullanmadığı çerçeveler silinebilir
@@ -1558,6 +1586,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Tesis yerleşimi
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Tesis yerleşimi, güzergâh ağı, saha kablosu planlaması, eş potansiyel kuşaklama ve kablo aksesuarları
 Plant segments with planned devices before the schematic	Şemadan önce planlanmış cihazlarla tesis segmentleri
+Plastic cover	Plastik kapak
+Plastic covers off	Plastik kapaklar çıkarıldı
 Plate outline, holes per diameter, cutouts	Plaka dış hattı, çapa göre delikler, kesimler
 Plot boundary	Arsa sınırı
 Plot boundary drawn: {} m²	Arsa sınırı çizildi: {} m²
@@ -1814,6 +1844,7 @@ Row	Satır
 Row distance	Sıra aralığı
 Row drawing	Satır çizimi
 Row labels	Satır yazıları
+Rows	Sıralar
 Rows of tables behind each other	Arka arkaya masa sıraları
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Tesiste duranların önünde, direkler üzerinde öne bakan eğimli masa sıraları; yerine taşıyın
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Yayımlanmış sayfalardaki satırlar değiştirilemez. Metindeki satır sonu \\n olarak yazılır.
@@ -1894,7 +1925,9 @@ Scrolling zooms, also where it pans	Kaydırma, kaydırdığı yerde de yakınla�
 Search (* and ? as placeholders)…	Ara (* ve ? joker karakter olarak)…
 Search below this folder	Bu klasörün altında ara
 Search number, description, maker	Numara, açıklama, üretici ara
+Search the enclosures of the parts database and the catalogs for a new one	Parça veritabanında ve kataloglarda yeni bir pano arayın
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Parça sunucusunda katalog, ürün grubu ve teknik verilere göre arayın, parça ekleyin ve veritabanında güncellemeleri kontrol edin
+Search…	Ara…
 Second channel	İkinci kanal
 Seconds from a change to its automatic save (10 to 600)	Bir değişiklikten otomatik kaydına kadar geçen saniye (10 ile 600 arası)
 Section properties	Bölüm özellikleri
@@ -2093,6 +2126,8 @@ Tablet mode	Tablet modu
 Tag	Etiket
 Tag field	Etiket alanı
 Tag placed by hand	Etiket elle yerleştirildi
+Take off all plastic covers	Tüm plastik kapakları çıkar
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	Her kabinin alan ızgaralarındaki tüm panellerin plastik kapaklarını çıkarır: çerçeveler, raylar ve arkalarındaki kablolama görünür; hepsini takmak için yeniden
 Take out a subproject	Alt proje dışarı al
 Take out of the building	Binadan çıkar
 Take out {} pages…	{} sayfayı dışarı al…
@@ -2168,6 +2203,9 @@ The page name gets the section number	Sayfa adı bölüm numarasını alır
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sayfa tipi, çizim çerçevesi, antet, yapı, açıklama ve tüm içerik kaydedilir.
 The pages it generated stay	Oluşturduğu sayfalar kalır
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Parça veritabanı tüm projeler tarafından paylaşılır. Parçalar bir cihaza atandığında projeye kopyalanır.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Panelin plastik kapağı; kapak olmadan çerçeve, raylar ve arkasındaki kablolama görünür
+The plastic covers of all panels of the field grid of this enclosure	Bu panonun alan ızgarasındaki tüm panellerin plastik kapakları
+The plastic covers of all panels of the field grids of every enclosure	Her panonun alan ızgaralarındaki tüm panellerin plastik kapakları
 The point's coordinates in the coordinate reference system	Noktanın koordinat referans sistemindeki koordinatları
 The post; its accessories are the table beams, rails and clamps	Direk; aksesuarları masa kirişleri, raylar ve kelepçelerdir
 The project changed since the search.	Proje aramadan bu yana değişti.
@@ -2235,6 +2273,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3B görünümü noktaya çevir
 Twin ferrules where two wires share a connection point	İki telin bir bağlantı noktasını paylaştığı yerlerde ikiz yüksükler
 Two fingers	İki parmak
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	İki kanat, her biri dış kenarından menteşeli; kapıdaki cihazlar ortalarının altındaki kanatla birlikte hareket eder
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Burada iki tel dik açıyla birleşmeli. Otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Bir nokta yazın ve Enter'a basın: mm cinsinden x y veya son noktaya göre @dx dy; geçerli aracın tıklaması gibi davranır
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2328,6 +2367,7 @@ Whole words	Tam sözcükler
 Width / going	Genişlik / basamak
 Width / height (mm)	Genişlik / yükseklik (mm)
 Width factor	Genişlik faktörü
+Width of the left leaf; the right one takes the rest of the front	Sol kanadın genişliği; sağ kanat önün geri kalanını kaplar
 Width of the letters to their usual width (0.8: narrow lettering)	Harflerin olağan genişliklerine göre genişliği (0,8: dar yazı)
 Width × depth	Genişlik × derinlik
 Width × height	Genişlik × yükseklik
@@ -2396,6 +2436,7 @@ all, or e.g. -X*, -W1	tümü veya ör. -X*, -W1
 all, or e.g. K, Q	tümü veya ör. K, Q
 along z	z boyunca
 always	her zaman
+any	herhangi
 both ends	her iki uç
 built-in	yerleşik
 by hand	elle
@@ -2513,9 +2554,11 @@ x y	x y
 {} Vault items found for the project parts	Proje parçaları için {} Vault öğesi bulundu
 {} Vault items found: review the changes in the integration window	{} Vault öğesi bulundu: değişiklikleri entegrasyon penceresinde inceleyin
 {} added to building {}	{1} binasına {0} eklendi
+{} added to device {}	{} cihaza eklendi: {}
 {} addresses changed	{} adres değiştirildi
 {} air-termination rods	{} paratoner çubuğu
 {} already exists on the project server.	{} proje sunucusunda zaten var.
+{} attached to {}	{}, {} panosuna eklendi
 {} bundles, {} branch points	{} demet, {} dallanma noktası
 {} bus cables created	{} bus kablosu oluşturuldu
 {} bus connections	{} bus bağlantısı
@@ -2563,18 +2606,23 @@ x y	x y
 {} example catalog parts refreshed	{} örnek katalog parçası yenilendi
 {} favorites added	{} favori eklendi
 {} field wiring problems (see Check)	{} saha kablolaması sorunu (bkz. Kontrol)
+{} fits neither this enclosure nor a device in it	{} ne bu panoya ne de içindeki bir cihaza uyar
+{} fits on another face of this enclosure: {}	{} bu panonun başka bir yüzüne uyar: {}
 {} found	{} bulundu
 {} function texts copied	{} fonksiyon metni kopyalandı
 {} generated pages in the project (changes on them are replaced)	Projede {} oluşturulmuş sayfa (bunlardaki değişikliklerin üzerine yazılır)
 {} grants on the project	Projede {} yetki ataması
 {} has no function with a symbol; assign it to a device in its properties	{} parçasının sembollü işlevi yok; bir cihaza, cihazın özelliklerinde atayın
 {} has unsaved changes. Discard them?	{} kaydedilmemiş değişiklikler içeriyor. Atılsın mı?
+{} imported into the parts database and added as enclosure {}	{} parça veritabanına aktarıldı ve {} panosu olarak eklendi
 {} imported into the parts database and placed as {}	{} parça veritabanına aktarıldı ve {} olarak yerleştirildi
 {} in {}	{} ({})
 {} is in the schematic	{} şemada
 {} is in the schematic: cable {} from {}	{} şemada: {} kablosu, {} kaynağından
 {} is neither in the parts database nor on the parts server	{} ne parça veritabanında ne de parça sunucusunda var
+{} is not an enclosure: only enclosures can be dropped here	{} bir pano değil: buraya yalnızca panolar bırakılabilir
 {} is not in the disk image	{} disk görüntüsünde yok
+{} is not in the parts database yet: import it, then drag it here	{} henüz parça veritabanında değil: içe aktarın, sonra buraya sürükleyin
 {} is not made for wall mounting: place it on a mounting rail	{} duvara montaj için uygun değil: bir montaj rayına yerleştirin
 {} is used by: {}	{} şunlar tarafından kullanılıyor: {}
 {} items copied	{} öğe kopyalandı
@@ -2586,13 +2634,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} m: {} m doğuya, {} m kuzeye, kuzeyden {}°
 {} macro boxes updated	{} makro kutusu güncellendi
 {} markers	{} işaret
-{} mm	{} mm
 {} mm (cut {} mm)	{} mm (kesim {} mm)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	Plaka üzerinde {} mm + {} mm pay; geri kalanı bağlantı noktalarından plakaya olan yoldur.
 {} mm, now {} mm	{} mm, şimdi {} mm
 {} mm, removed	{} mm, kaldırıldı
 {} modules	{} modül
 {} modules, {} kWp	{} modül, {} kWp
+{} moved	{} taşındı
 {} new texts in the dictionary	Sözlükte {} yeni metin
 {} notes	{} not
 {} objects pasted	{} nesne yapıştırıldı
@@ -2600,6 +2648,7 @@ x y	x y
 {} objects, {} pages	{} nesne, {} sayfa
 {} of {} approvals	{} / {} onay
 {} of {} connections numbered	{} / {} bağlantı numaralandırıldı
+{} of {} enclosures	{1} panodan {0}
 {} of {} entries shown: search to narrow the list	{1} girişten {0} tanesi gösteriliyor: listeyi daraltmak için arayın
 {} of {} items	{} / {} öğe
 {} of {} pages locked	{} / {} sayfa kilitli
@@ -2624,7 +2673,10 @@ x y	x y
 {} pieces	{} adet
 {} pins used	{} pin kullanılıyor
 {} placed as {}	{} {} olarak yerleştirildi
+{} placed in {}	{} {} içine yerleştirildi
 {} placement problems (red) – see Check	{} yerleştirme sorunu (kırmızı) – bkz. Kontrol
+{} plastic covers fitted	{} plastik kapak takıldı
+{} plastic covers taken off	{} plastik kapak çıkarıldı
 {} problems	{} sorun
 {} project parts updated	{} proje parçası güncellendi
 {} projects on the server	Sunucuda {} proje

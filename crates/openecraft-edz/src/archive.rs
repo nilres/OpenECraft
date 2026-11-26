@@ -24,9 +24,24 @@ pub struct Edz {
     pub files: Vec<EdzFile>,
 }
 
-/// The bytes are a 7-Zip archive (as EDZ files are).
+/// The bytes are an EDZ file: a 7-Zip archive, or a ZIP archive with a `manifest.xml`
+/// and the parts XML below `items/partxml` (as ABB publishes them).
 pub fn is_edz(bytes: &[u8]) -> bool {
-    bytes.starts_with(&[b'7', b'z', 0xBC, 0xAF, 0x27, 0x1C])
+    bytes.starts_with(&[b'7', b'z', 0xBC, 0xAF, 0x27, 0x1C]) || is_zip_edz(bytes)
+}
+
+/// A ZIP archive whose central directory names a `manifest.xml` and a parts XML.
+fn is_zip_edz(bytes: &[u8]) -> bool {
+    if !bytes.starts_with(b"PK\x03\x04") || bytes.len() < 22 {
+        return false;
+    }
+    // The end of the central directory, at most a comment of 64 kB from the end.
+    let last = bytes.len() - 22;
+    let Some(end) = (last.saturating_sub(0xFFFF)..=last).rev().find(|&i| bytes[i..i + 4] == [0x50, 0x4b, 0x05, 0x06]) else { return false };
+    let start = u32::from_le_bytes([bytes[end + 16], bytes[end + 17], bytes[end + 18], bytes[end + 19]]) as usize;
+    let Some(dir) = bytes.get(start..end) else { return false };
+    let has = |name: &[u8]| dir.windows(name.len()).any(|w| w.eq_ignore_ascii_case(name));
+    has(b"manifest.xml") && (has(b"items/partxml/") || has(b"items\\partxml\\"))
 }
 
 /// Most an archive may unpack to (all files together): more is refused rather than
@@ -39,6 +54,10 @@ fn unpack(bytes: &[u8]) -> Result<Vec<(String, Vec<u8>)>, String> {
 }
 
 fn unpack_with_limit(bytes: &[u8], limit: u64) -> Result<Vec<(String, Vec<u8>)>, String> {
+    if is_zip_edz(bytes) {
+        let files = openecraft_core::zip::read_zip(bytes).map_err(|e| format!("not a readable EDZ archive: {e}"))?;
+        return Ok(files.into_iter().filter(|(name, _)| !name.ends_with(['/', '\\'])).map(|(name, data)| (name.replace('\\', "/"), data)).collect());
+    }
     let mut reader = ArchiveReader::new(Cursor::new(bytes), Password::empty()).map_err(|e| format!("not a readable EDZ archive: {e}"))?;
     let mut files = Vec::new();
     let mut left = limit;

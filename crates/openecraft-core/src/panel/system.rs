@@ -180,7 +180,14 @@ pub fn components(e: &Enclosure) -> Vec<Component> {
     };
     let one = |role, part: String, boxes| Component { role, part, count: 1, boxes };
     let frame = if modular { frame_boxes(e, sys.map(|s| s.data.frame).unwrap_or(0.0)) } else { Vec::new() };
-    let mut v = vec![one(Role::Body, body, frame), one(Role::Door, String::new(), vec![wall_box(e, Face::Door)])];
+    // A sheet for each leaf of the door, 1 mm apart where two meet.
+    let (door_lo, door_hi) = wall_box(e, Face::Door);
+    let all = super::doors::leaves(e);
+    let leaves = all.iter().enumerate().map(|(i, l)| {
+        let (a, b) = (l.x + if i > 0 { 0.5 } else { 0.0 }, l.x + l.w - if i + 1 < all.len() { 0.5 } else { 0.0 });
+        ([a.max(door_lo[0]), door_lo[1], door_lo[2]], [b.min(door_hi[0]), door_hi[1], door_hi[2]])
+    });
+    let mut v = vec![one(Role::Body, body, frame), one(Role::Door, String::new(), leaves.collect())];
     for (face, open) in [(Face::Left, e.build.left_open), (Face::Right, e.build.right_open)] {
         if !open {
             let part = sys.filter(|_| modular).map(|s| mechanics::side_number(s.data, h, d)).unwrap_or_default();

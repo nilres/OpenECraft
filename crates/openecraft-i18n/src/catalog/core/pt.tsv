@@ -23,6 +23,7 @@ A device tag must not be empty	A identificação do dispositivo não pode estar 
 A pipe run turns at right angles	Um percurso de tubulação vira em ângulo reto
 A plot boundary has at least three corners	Um limite de terreno tem pelo menos três vértices
 A port cannot be connected to itself	Uma porta não pode ser conectada a si mesma
+A room goes before or after another room	Uma sala vai antes ou depois de outra sala
 A room needs at least four walls	Uma sala precisa de pelo menos quatro paredes
 A section number consists of letters and digits and does not start with 0	Um número de seção consiste em letras e dígitos e não começa com 0
 A section number must not be empty or contain a dot	Um número de seção não pode estar vazio nem conter um ponto
@@ -430,6 +431,8 @@ Does not match	Não corresponde
 Door (front view)	Porta (vista frontal)
 Door and walls	Porta e paredes
 Door handle and document holder	Manopla da porta e porta-documentos
+Door leaf {}	Folha da porta {}
+Door leaf {} (front view)	Folha da porta {} (vista frontal)
 Double socket outlet with PE	Tomada dupla com PE
 Downstream	A jusante
 Drag chain	Esteira porta-cabos
@@ -792,6 +795,8 @@ Latitude is within ±90° and longitude within ±180°	A latitude fica dentro de
 Lead time (days)	Prazo de entrega (dias)
 Leakage current	Corrente de fuga
 Leakage line	Linha de dreno
+Left door leaf	Folha esquerda da porta
+Left door leaf (front view)	Folha esquerda da porta (vista frontal)
 Left side panel	Painel lateral esquerdo
 Legend plate text	Texto da placa de identificação
 Length (m)	Comprimento (m)
@@ -1032,6 +1037,7 @@ Oil resistant	Resistente a óleo
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Uma página de esquema com os potenciais +24V / 0V, botões, uma chave seletora, sinaleiros e um fusível; peças e lista de materiais.
 One schematic page, the potentials of IEC 60204-1	Uma página de esquema elétrico, os potenciais da IEC 60204-1
 One-way flow control valve	Válvula reguladora de fluxo unidirecional
+Only another enclosure can be bayed there	Só outro gabinete pode ser acoplado ali
 Only revisions that are not released can be submitted	Somente revisões não liberadas podem ser enviadas
 Only symbols of the symbol library can be scaled	Somente símbolos da biblioteca de símbolos podem ser dimensionados
 Only {}	Somente {}
@@ -1386,6 +1392,8 @@ Revision table: author of the last revision (2: the one before …)	Tabela de re
 Revision table: date of the last revision (2: the one before …)	Tabela de revisões: data da última revisão (2: a anterior …)
 Revision table: description of the last revision (2: the one before …)	Tabela de revisões: descrição da última revisão (2: a anterior …)
 Revision table: index of the last revision (2: the one before …)	Tabela de revisões: índice da última revisão (2: a anterior …)
+Right door leaf	Folha direita da porta
+Right door leaf (front view)	Folha direita da porta (vista frontal)
 Right side panel	Painel lateral direito
 Ring earth electrode	Anel de aterramento
 Ring terminal	Terminal olhal
@@ -1663,6 +1671,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	A fórmula termina cedo demais
 The function definition needs a key and a name	A definição de função precisa de uma chave e de um nome
 The index of the project names no file layout: it was not written by OpenECraft	O índice do projeto não indica nenhuma estrutura de arquivos: ele não foi gravado pelo OpenECraft
+The item is no frame in an opening of a side wall	O item não é um quadro numa abertura de uma parede lateral
 The last page cannot be deleted	A última página não pode ser excluída
 The macro box has no items left	A caixa de macro não tem mais itens
 The next free id is already in use	O próximo ID livre já está em uso
@@ -1829,7 +1838,6 @@ Voltage range	Faixa de tensão
 Voltage type	Tipo de tensão
 Voltmeter	Voltímetro
 Voltmeter, differential	Voltímetro, diferencial
-Wall	Parede
 Wall {}	Parede {}
 Wall {} is not at a right angle	A parede {} não está em ângulo reto
 Wall {} is shorter than {} mm	A parede {} é mais curta que {} mm
@@ -2154,6 +2162,7 @@ yellow	amarelo
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: os bornes {} estão a {} mm acima do piso, são necessários pelo menos {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: o sistema de barramentos com {} barras une {} condutores ({}): curto-circuito
 {}: the busbar {} of earth electrode {} does not exist	{}: o barramento {} do eletrodo de aterramento {} não existe
+{}: the cutout for {} reaches over the joint between the door leaves and is cut by hand	{}: o recorte para {} ultrapassa a junta entre as folhas da porta e é feito à mão
 {}: the device {} of PV array {} does not exist	{}: o dispositivo {} do sistema fotovoltaico {} não existe
 {}: the earthing busbar {} of PV array {} does not exist	{}: o barramento de aterramento {} do arranjo FV {} não existe
 {}: the freestanding PV array {} stands on {}	{}: o arranjo FV no solo {} fica sobre {}
@@ -2204,6 +2213,7 @@ yellow	amarelo
 {}: {} overhangs the end of its mounting rail	{}: {} ultrapassa o fim de seu trilho de montagem
 {}: {} pins used, the plug parts have {}	{}: {} pinos usados, as peças de plugue têm {}
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} atinge cerca de {} °C em seu local, permitido {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} ultrapassa a junta entre as folhas da porta
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} alcança {} das {} barras do seu sistema de barramentos
 {}: {} solenoid coils linked, the valve has {}	{}: {} bobinas solenoides vinculadas, a válvula tem {}
 {}: {} stands in an inner wall	{}: {} está dentro de uma parede interna

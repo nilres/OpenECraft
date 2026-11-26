@@ -57,6 +57,7 @@ impl App {
             Cmd::LayoutBuilding => self.panel_ui.view == crate::panel_ui::View::ThreeD && self.panel_ui.in_room,
             Cmd::LayoutZones | Cmd::LayoutPaperPlan => self.panel_ui.in_room,
             Cmd::LayoutOpenWalls => self.panel_ui.view == crate::panel_ui::View::ThreeD && self.panel_ui.in_room,
+            Cmd::LayoutCoversOff => openecraft_core::panel::fit::covers(&self.session.prj, None) != (0, 0),
             Cmd::LayoutLineup | Cmd::LayoutSite | Cmd::LayoutHideFrontWalls | Cmd::LayoutHideCeiling | Cmd::LayoutHidePvModules | Cmd::LayoutSeeThroughPv | Cmd::LayoutOpenDucts => self.panel_ui.view == crate::panel_ui::View::ThreeD,
             _ => true,
         }
@@ -147,6 +148,7 @@ impl App {
             Cmd::LayoutHidePvModules => self.panel_ui.hide_pv_modules,
             Cmd::LayoutSeeThroughPv => self.panel_ui.see_through_pv,
             Cmd::LayoutOpenDucts => self.panel_ui.open_ducts,
+            Cmd::LayoutCoversOff => matches!(openecraft_core::panel::fit::covers(&self.session.prj, None), (0, off) if off > 0),
             Cmd::WiringMode => !self.mounting_ui.active,
             Cmd::MountingMode => self.mounting_ui.active,
             Cmd::TabletMode => self.shell.tablet(),
@@ -507,6 +509,12 @@ impl App {
             Cmd::LayoutHidePvModules => self.panel_ui.hide_pv_modules = !self.panel_ui.hide_pv_modules,
             Cmd::LayoutSeeThroughPv => self.panel_ui.see_through_pv = !self.panel_ui.see_through_pv,
             Cmd::LayoutOpenDucts => self.panel_ui.open_ducts = !self.panel_ui.open_ducts,
+            Cmd::LayoutCoversOff => {
+                // All off while one is fitted, otherwise all fitted again.
+                let (on, _) = openecraft_core::panel::fit::covers(&self.session.prj, None);
+                let n = openecraft_core::panel::fit::set_covers(&mut self.session.prj, None, on == 0);
+                self.notify(ctx, if on == 0 { tr_fmt!("{} plastic covers fitted", n) } else { tr_fmt!("{} plastic covers taken off", n) });
+            }
             Cmd::LayoutFit => self.panel_ui.fit(),
             Cmd::LayoutReports => {
                 self.report_kind = ReportKind::PanelWiring.into();
@@ -754,11 +762,28 @@ impl App {
             Cmd::LayoutFloorPart => self.panel_ui.floor_part_menu(ui, &self.session.prj, &self.parts_db),
             Cmd::LayoutWalls => self.panel_ui.walls_menu(ui, &self.session.prj),
             Cmd::LayoutNcData => {
-                for (label, format) in [(tr("DXF drawing"), NcFormat::Dxf), ("DWG", NcFormat::Dwg), (tr("Drilling list (CSV)"), NcFormat::Csv)] {
-                    if ui.button(label).clicked() {
-                        self.panel_ui.export = Some((self.panel_ui.enclosure, self.panel_ui.face, format));
-                        ui.close();
+                let ei = self.panel_ui.enclosure;
+                let face = self.panel_ui.face;
+                let formats = [(tr("DXF drawing"), NcFormat::Dxf), ("DWG", NcFormat::Dwg), (tr("Drilling list (CSV)"), NcFormat::Csv)];
+                // A door of several leaves: the NC data of each leaf.
+                let leaves: Vec<_> = self.session.prj.layout.enclosures.get(ei).map(|e| openecraft_core::production::sheets(e).into_iter().filter(|s| s.face == face && s.leaf.is_some()).map(|s| (s, s.title(e))).collect()).unwrap_or_default();
+                if leaves.is_empty() {
+                    for (label, format) in formats {
+                        if ui.button(label).clicked() {
+                            self.panel_ui.export = Some((ei, face.into(), format));
+                            ui.close();
+                        }
                     }
+                }
+                for (sheet, title) in leaves {
+                    ui.menu_button(title, |ui| {
+                        for (label, format) in formats {
+                            if ui.button(label).clicked() {
+                                self.panel_ui.export = Some((ei, sheet, format));
+                                ui.close();
+                            }
+                        }
+                    });
                 }
             }
             _ => {}

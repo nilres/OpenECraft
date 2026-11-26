@@ -1,4 +1,5 @@
 use super::*;
+use crate::panel::Face;
 use crate::sample::demo_project;
 
 #[test]
@@ -21,6 +22,23 @@ fn release_and_changes_after_the_hand_off() {
     let (job2, _) = release(&mut prj, 0, "2026-10-25").unwrap();
     assert_eq!(job2.id, "CAB1-2");
     assert!(changed(&prj).is_empty());
+}
+
+#[test]
+fn each_leaf_of_a_double_door_is_a_program_of_its_own() {
+    let mut prj = demo_project();
+    let e = &mut prj.layout.enclosures[0];
+    let mut middles: Vec<f32> = e.items.iter().filter(|i| i.face == Face::Door).map(|i| i.x + i.w / 2.0).collect();
+    middles.sort_by(f32::total_cmp);
+    let joint = (middles[0] + middles[middles.len() - 1]) / 2.0;
+    crate::panel::doors::split(e, Some(joint));
+    let list = programs(&prj, 0).unwrap();
+    let names: Vec<&str> = list.iter().map(|p| p.name.as_str()).collect();
+    assert_eq!(names, ["CAB1_plate.nc", "CAB1_door_left.nc", "CAB1_door_right.nc", "CAB1_bottom.nc"]);
+    assert_eq!(list.iter().map(|p| p.leaf).collect::<Vec<_>>(), [None, Some(0), Some(1), None]);
+    assert!(list[1].content.contains("DOOR_LEFT") && list[2].content.contains("DOOR_RIGHT"));
+    let (job, _) = release(&mut prj, 0, "2026-11-25").unwrap();
+    assert_eq!(job.programs.iter().map(|p| p.face.as_str()).collect::<Vec<_>>(), ["plate", "door_left", "door_right", "bottom"]);
 }
 
 #[test]

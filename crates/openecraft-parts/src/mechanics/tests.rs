@@ -73,3 +73,15 @@ fn rail_profiles_by_part() {
     assert_eq!(RailProfile::of(&part("GEN.RAIL-TS15-1M", "Mounting rail TS 15 x 5.5, 1 m")), RailProfile::TopHat { perforated: false });
     assert_eq!(RailProfile::of(&part("GEN.RAIL-G32-1M", "Mounting rail G 32, 1 m")), RailProfile::G);
 }
+
+#[test]
+fn the_system_of_an_enclosure_comes_from_its_description() {
+    assert_eq!(system_from_text("VX Baying enclosure system, WHD: 800x2000x600 mm"), Some("baying"));
+    assert_eq!(system_from_text("TS Bayed enclosure system"), Some("baying"));
+    assert_eq!(system_from_text("AX Compact enclosure, WHD: 500x500x210 mm"), Some("compact"));
+    assert_eq!(system_from_text("KX Terminal box, WHD: 200x200x120 mm"), Some("terminal_box"));
+    assert_eq!(system_from_text("Network rack 19-inch, 42 U"), Some(RACK_SYSTEM));
+    assert_eq!(system_from_text("Enclosure, polycarbonate, hinged cover"), Some("plastic"));
+    assert_eq!(system_from_text("Wall cabinet ComfortLine A"), None);
+    assert!(system_from_text("VX Baying enclosure system").and_then(system).is_some());
+}

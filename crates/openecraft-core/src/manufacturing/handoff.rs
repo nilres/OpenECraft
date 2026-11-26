@@ -5,13 +5,13 @@
 
 use super::{bars, checksum, machines, post, strategy};
 use crate::model::Project;
-use crate::panel::Face;
 use openecraft_i18n::tr_fmt;
 use serde_json::{json, Value};
 pub use crate::model::manufacturing::{Job, Program, ProgramRef};
 
-/// The programs of an enclosure: one per face with machining, and one for its copper
-/// bars and busbar systems; none for a room (rooms are not machined).
+/// The programs of an enclosure: one per sheet with machining (a face, each leaf of a
+/// door of several leaves), and one for its copper bars and busbar systems; none for a
+/// room (rooms are not machined).
 pub fn programs(prj: &Project, enc: usize) -> Result<Vec<Program>, String> {
     let mf = &prj.layout.manufacturing;
     let e = &prj.layout.enclosures[enc];
@@ -19,14 +19,14 @@ pub fn programs(prj: &Project, enc: usize) -> Result<Vec<Program>, String> {
     if e.is_room() {
         return Ok(v);
     }
-    for face in Face::ALL {
-        if crate::production::holes_on(e, &prj.parts, face).is_empty() && crate::production::openings(e, &prj.parts, face).is_empty() {
+    for sheet in crate::production::sheets(e) {
+        if crate::production::sheet_holes(e, &prj.parts, sheet).is_empty() && crate::production::sheet_openings(e, &prj.parts, sheet).is_empty() {
             continue;
         }
-        let m = machines::get(prj, mf.machine_of(face))?;
-        let plan = strategy::plan(prj, enc, face, &m, &mf.strategy);
+        let m = machines::get(prj, mf.machine_of(sheet.face))?;
+        let plan = strategy::plan(prj, enc, sheet, &m, &mf.strategy);
         let content = post::program(&plan, &m);
-        v.push(Program { name: post::file_name(&plan, &m), machine: m.id.clone(), face: Some(face), operations: plan.ops.len(), time: plan.time, factor: m.time_factor, problems: plan.problems, content });
+        v.push(Program { name: post::file_name(&plan, &m), machine: m.id.clone(), face: Some(sheet.face), leaf: sheet.leaf, sheet: plan.sheet.clone(), operations: plan.ops.len(), time: plan.time, factor: m.time_factor, problems: plan.problems, content });
     }
     let has_bars = bars::pieces(prj).iter().any(|p| p.enclosure == e.name);
     if has_bars {
@@ -35,13 +35,13 @@ pub fn programs(prj: &Project, enc: usize) -> Result<Vec<Program>, String> {
         let operations = content.lines().count().saturating_sub(1);
         let time = operations as f32 * m.hit_time * m.time_factor.max(0.01);
         let name = format!("{}_bars.{}", super::file_stem(&e.name), m.dialect.extension());
-        v.push(Program { name, machine: m.id.clone(), face: None, operations, time, factor: m.time_factor, problems, content });
+        v.push(Program { name, machine: m.id.clone(), face: None, leaf: None, sheet: "bars".into(), operations, time, factor: m.time_factor, problems, content });
     }
     Ok(v)
 }
 
 fn reference(p: &Program) -> ProgramRef {
-    ProgramRef { name: p.name.clone(), machine: p.machine.clone(), face: p.face.map(|f| f.key().to_string()).unwrap_or_else(|| "bars".into()), operations: p.operations, time: p.time, factor: p.factor, checksum: checksum(&p.content) }
+    ProgramRef { name: p.name.clone(), machine: p.machine.clone(), face: p.sheet.clone(), operations: p.operations, time: p.time, factor: p.factor, checksum: checksum(&p.content) }
 }
 
 /// Releases the programs of an enclosure as a new job.

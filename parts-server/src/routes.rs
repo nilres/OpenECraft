@@ -177,7 +177,7 @@ pub fn router(state: AppState) -> Router {
         .route(&api("/bundled"), get(bundled_catalogs))
         .route(&api("/bundled/{id}"), post(install_bundled))
         .route(&api("/access"), get(access).put(save_access))
-        .layer(DefaultBodyLimit::max(32 * 1024 * 1024))
+        .layer(DefaultBodyLimit::max(openecraft_parts::api::MAX_BODY))
         .layer(axum::middleware::from_fn_with_state(state.clone(), signed_in_changes))
         .layer(axum::middleware::map_response(openecraft_auth::json_errors))
         .layer(axum::middleware::map_response(openecraft_auth::security_headers))
