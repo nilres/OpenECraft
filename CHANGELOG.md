@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Semiconductor components:** diodes, LEDs, transistors, thyristors, triacs, optocouplers
+  and the bridge rectifier have a category of their own in the Insert center and the
+  function definitions instead of being listed under *Passive components*; the diode of
+  the shipped catalog is in the product group *Semiconductors*.
 - **Drag and drop from the Insert center:** a symbol, device or unplaced function
   dragged from the Insert center or the navigator onto a schematic page is placed there
   once, and the tool in use stays (a click still starts a place tool). Symbols can also
