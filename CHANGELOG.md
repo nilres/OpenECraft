@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Typing the length of a rail or duct:** the length of a mounting rail or cable duct
+  and of a wall in the panel layout is applied when the field is left or Enter is
+  pressed, no longer at every key, and a length below the cross-section no longer turns
+  the rail or duct round (typing `100` gave 10 mm, [#259](https://github.com/nilres/OpenECraft/issues/259)).
 - **What's new and version history:** at the first start after an update the editor
   shows the new features of the versions since the one used last in the window *What's
   new in OpenECraft*. *File › Help › Version history* (also on the Help tab) shows the
