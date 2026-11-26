@@ -72,6 +72,9 @@ impl App {
     /// Whether a toggle is on; `None` for commands that are no toggles.
     pub(super) fn cmd_checked(&self, cmd: Cmd) -> Option<bool> {
         use crate::panel_ui::View;
+        if let Some(on) = self.panel_ui.view_setting(cmd) {
+            return Some(on);
+        }
         let tool = &self.editor.tool;
         let on = match cmd {
             Cmd::AutoConnect => self.editor.autoconnect,
@@ -134,20 +137,6 @@ impl App {
             Cmd::LayoutRoomWindow => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Window),
             Cmd::LayoutRoomPenetration => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Penetration),
             Cmd::LayoutRoomEntry => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Entry),
-            Cmd::LayoutWires => self.panel_ui.show_wires,
-            Cmd::LayoutDuctFill => self.panel_ui.show_fill,
-            Cmd::LayoutHeat => self.panel_ui.show_heat,
-            Cmd::LayoutLineup => self.panel_ui.show_lineup,
-            Cmd::LayoutSite => self.panel_ui.show_site,
-            Cmd::LayoutBuilding => self.panel_ui.show_building,
-            Cmd::LayoutZones => self.panel_ui.show_zones,
-            Cmd::LayoutPaperPlan => self.panel_ui.show_paper,
-            Cmd::LayoutOpenWalls => self.panel_ui.open_walls,
-            Cmd::LayoutHideFrontWalls => self.panel_ui.hide_front_walls,
-            Cmd::LayoutHideCeiling => self.panel_ui.hide_ceiling,
-            Cmd::LayoutHidePvModules => self.panel_ui.hide_pv_modules,
-            Cmd::LayoutSeeThroughPv => self.panel_ui.see_through_pv,
-            Cmd::LayoutOpenDucts => self.panel_ui.open_ducts,
             Cmd::LayoutCoversOff => matches!(openecraft_core::panel::fit::covers(&self.session.prj, None), (0, off) if off > 0),
             Cmd::WiringMode => !self.mounting_ui.active,
             Cmd::MountingMode => self.mounting_ui.active,
@@ -208,6 +197,9 @@ impl App {
     /// Runs a command without asking (`run` asked before one that replaces the project).
     #[allow(clippy::too_many_lines)]
     pub(super) fn exec(&mut self, ctx: &egui::Context, cmd: Cmd) {
+        if self.panel_ui.toggle_view_setting(cmd) {
+            return;
+        }
         let page = self.session.page;
         match cmd {
             // ------------------------------------------------------------ file
@@ -495,20 +487,6 @@ impl App {
                 use crate::panel_ui::View;
                 self.panel_ui.view = if self.panel_ui.view == View::ThreeD { View::Front } else { View::ThreeD };
             }
-            Cmd::LayoutWires => self.panel_ui.show_wires = !self.panel_ui.show_wires,
-            Cmd::LayoutDuctFill => self.panel_ui.show_fill = !self.panel_ui.show_fill,
-            Cmd::LayoutHeat => self.panel_ui.show_heat = !self.panel_ui.show_heat,
-            Cmd::LayoutLineup => self.panel_ui.toggle_lineup(),
-            Cmd::LayoutSite => self.panel_ui.toggle_site(),
-            Cmd::LayoutBuilding => self.panel_ui.toggle_building(),
-            Cmd::LayoutZones => self.panel_ui.show_zones = !self.panel_ui.show_zones,
-            Cmd::LayoutPaperPlan => self.panel_ui.show_paper = !self.panel_ui.show_paper,
-            Cmd::LayoutOpenWalls => self.panel_ui.open_walls = !self.panel_ui.open_walls,
-            Cmd::LayoutHideFrontWalls => self.panel_ui.hide_front_walls = !self.panel_ui.hide_front_walls,
-            Cmd::LayoutHideCeiling => self.panel_ui.hide_ceiling = !self.panel_ui.hide_ceiling,
-            Cmd::LayoutHidePvModules => self.panel_ui.hide_pv_modules = !self.panel_ui.hide_pv_modules,
-            Cmd::LayoutSeeThroughPv => self.panel_ui.see_through_pv = !self.panel_ui.see_through_pv,
-            Cmd::LayoutOpenDucts => self.panel_ui.open_ducts = !self.panel_ui.open_ducts,
             Cmd::LayoutCoversOff => {
                 // All off while one is fitted, otherwise all fitted again.
                 let (on, _) = openecraft_core::panel::fit::covers(&self.session.prj, None);

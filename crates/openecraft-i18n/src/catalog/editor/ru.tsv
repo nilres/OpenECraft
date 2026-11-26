@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Кабель шинного типа для каждого соединения без кабеля
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Кабель, выходящий из шкафа и не находящий свободного ввода, получает ввод своего размера: в крыше для устройства в помещении, в днище для поля или шкафа, висящего на стене
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Вырез того же размера в том же месте боковой стенки соседа: вместе они образуют кабельный проход
+A drag to the side turns the 3D view the other way round	Перетаскивание в сторону вращает 3D-вид в обратную сторону
+A drag up or down tilts the 3D view the other way round	Перетаскивание вверх или вниз наклоняет 3D-вид в обратную сторону
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Одноимённый файл в папке получает новую версию (извлекается и возвращается), иначе файл добавляется
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Папка с одним небольшим файлом на каждую страницу, устройство и изделие вместо одного файла проекта, для систем контроля версий, таких как git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Крупный текст поперёк каждого листа, например ЧЕРНОВИК, пока готовится изменение; тексты принимают заполнители, пусто: без штампа.
@@ -622,6 +624,7 @@ Door NC data (DXF)	Данные ЧПУ двери (DXF)
 Door clearance	Свободное пространство двери
 Door cutouts (CSV)	Вырезы в двери (CSV)
 Door hinge	Петли двери
+Door opening angle	Угол открывания двери
 Door: {} devices, {} cutouts	Дверь: устройств – {}, вырезов – {}
 Dot	Точка
 Double door	Двустворчатая
@@ -930,6 +933,7 @@ Hoses and pipes	Шланги и трубы
 Hoses rated below it are errors; 0 = not checked	Шланги, рассчитанные на меньшее давление, – ошибки; 0 = не проверяется
 How far inside the outer walls	Насколько внутри наружных стен
 How far outside the outer walls	Насколько снаружи наружных стен
+How far the enclosure door opens in the 3D view of the panel layout	Насколько открывается дверь шкафа в 3D-виде компоновки шкафа
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Как открывается створка: петли у левого или правого края (вид изнутри помещения), внутрь или наружу помещения, или сдвигается вдоль стены
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Как провод оконцован на этом конце; по умолчанию как выбрано для точки подключения или её устройства, иначе по настройке наконечников компоновки
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Как провода перескакивают через пересекаемые провода, как обозначаются T-соединения и прокладываются ли соединения перемещённых элементов заново
@@ -1010,7 +1014,9 @@ Interruption points refer to	Точки разрыва ссылаются на
 Interval	Интервал
 Introduction	Введение
 Invalid value	Недопустимое значение
+Invert horizontally	Инвертировать по горизонтали
 Invert the direction of panning by scrolling	Обратить направление сдвига прокруткой
+Invert vertically	Инвертировать по вертикали
 Inverter or charge controller (devices with PV input data)	Инвертор или контроллер заряда (устройства с данными входа ФЭ)
 It takes the place of the bundled template of this name.	Он заменяет поставляемый шаблон с этим именем.
 Items copied: {}	Скопировано элементов: {}
@@ -1443,6 +1449,7 @@ Opened {}	Открыто: {}
 Opened {} from Vault (version {})	{} открыт из Vault (версия {})
 Opened {} from the project server	{} открыт с сервера проектов
 Opening	Проём
+Opening angle of the door in the 3D view	Угол открывания двери в 3D-виде
 Opening in the mounting plate / door: click two corners (round: in the properties)	Проём в монтажной панели / двери: щёлкните два угла (круглый – в свойствах)
 Opening {}…	Открытие {}…
 Opens	Открывание
@@ -1452,6 +1459,7 @@ Open…	Открыть…
 Operations / year	Срабатываний / год
 Option	Параметр
 Options	Параметры
+Orbit direction	Направление вращения
 Orbit the 3D view	Вращать 3D-вид
 Ordinary cable	Обычный кабель
 Orientation	Ориентация
@@ -1994,6 +2002,7 @@ Short-circuit currents	Токи короткого замыкания
 Short-circuit power of the network	Мощность короткого замыкания сети
 Shortest profile	Минимальная длина профиля
 Show	Показать
+Show a row of buttons for the view settings at the top of the 3D view	Показывать ряд кнопок настроек вида вверху 3D-вида
 Show all enclosures side by side at their places in the room	Показать все корпуса рядом на их местах в помещении
 Show as list	Показать списком
 Show as tiles	Показать плитками
@@ -2334,6 +2343,7 @@ Vertical position	Положение по вертикали
 Vertically	По вертикали
 Via:	Через:
 View	Вид
+View buttons	Кнопки вида
 Visible	Видимый
 Voltage (line to line)	Напряжение (линейное)
 Voltage at maximum power	Напряжение при максимальной мощности
@@ -2397,6 +2407,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Провода соединения
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Провода тоже прокладываются по 3D-трассам с обходом препятствий, а не только по кабельным каналам на панели
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Провода без собственного цвета или сечения получают их от потенциала своего соединения; жилы кабелей сохраняют значения кабеля.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Провода, открытые кабельные каналы, стены спереди и другие настройки Монтажное пространство › Показать одним щелчком
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Помощник монтажа проводов: контрольный список проводов с 3D-видом и ходом выполнения (планшет: откройте веб-приложение с #wiring)
 Wiring space between devices and ducts	Пространство для монтажа проводов между устройствами и каналами
 With a user account of the server; replaces the access token	С учётной записью пользователя сервера; заменяет маркер доступа

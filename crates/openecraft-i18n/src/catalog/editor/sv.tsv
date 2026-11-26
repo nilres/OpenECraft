@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	En kabel av busstypen för varje anslutning utan kabel
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	En kabel som lämnar ett skåp och inte hittar någon ledig förskruvning får en i sin storlek: i taket för en apparat i rummet, i botten för fältet eller ett skåp som hänger på väggen
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Ett urtag av samma storlek på samma ställe i grannens sidovägg: tillsammans bildar de en kabelgenomföring
+A drag to the side turns the 3D view the other way round	En dragning åt sidan vrider 3D-vyn åt andra hållet
+A drag up or down tilts the 3D view the other way round	En dragning uppåt eller nedåt lutar 3D-vyn åt andra hållet
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samma namn i mappen får en ny version (utcheckad och incheckad), annars läggs filen till
 A folder with one small file per page, device and part instead of one project file, for version control such as git	En mapp med en liten fil per sida, apparat och artikel i stället för en projektfil, för versionshantering som git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	En stor text över varje sida, t.ex. UTKAST medan en revision förbereds; texterna tar platshållare, tomt: ingen stämpel.
@@ -623,6 +625,7 @@ Door NC data (DXF)	NC-data för dörr (DXF)
 Door clearance	Dörrfrigång
 Door cutouts (CSV)	Dörrurtag (CSV)
 Door hinge	Dörrens gångjärn
+Door opening angle	Dörrens öppningsvinkel
 Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
 Dot	Punkt
 Double door	Pardörr
@@ -931,6 +934,7 @@ Hoses and pipes	Slangar och rör
 Hoses rated below it are errors; 0 = not checked	Slangar som är dimensionerade under det här värdet är fel; 0 = kontrolleras inte
 How far inside the outer walls	Hur långt innanför ytterväggarna
 How far outside the outer walls	Hur långt utanför ytterväggarna
+How far the enclosure door opens in the 3D view of the panel layout	Hur långt kapslingens dörr öppnas i 3D-vyn av skåplayouten
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hur bladet öppnas: gångjärn i vänster eller höger kant (sett inifrån rummet), in i eller ut ur rummet, eller skjutbart längs väggen
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hur ledaren avslutas i denna ände; som standard som valt för anslutningspunkten eller dess enhet, annars enligt layoutens inställning för ändhylsor
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hur ledningar hoppar över ledningarna de korsar, hur T-förbindelser markeras och om flyttade objekt får sina förbindelser dragna på nytt
@@ -1011,7 +1015,9 @@ Interruption points refer to	Avbrottspunkter hänvisar till
 Interval	Intervall
 Introduction	Inledning
 Invalid value	Ogiltigt värde
+Invert horizontally	Invertera vågrätt
 Invert the direction of panning by scrolling	Vänd riktningen för panorering med rullning
+Invert vertically	Invertera lodrätt
 Inverter or charge controller (devices with PV input data)	Växelriktare eller laddregulator (enheter med PV-ingångsdata)
 It takes the place of the bundled template of this name.	Den ersätter den medföljande mallen med detta namn.
 Items copied: {}	Kopierade element: {}
@@ -1444,6 +1450,7 @@ Opened {}	{} öppnad
 Opened {} from Vault (version {})	{} öppnad från Vault (version {})
 Opened {} from the project server	{} öppnad från projektservern
 Opening	Öppning
+Opening angle of the door in the 3D view	Dörrens öppningsvinkel i 3D-vyn
 Opening in the mounting plate / door: click two corners (round: in the properties)	Öppning i monteringsplåten / dörren: klicka på två hörn (rund: i egenskaperna)
 Opening {}…	Öppnar {}…
 Opens	Öppnas
@@ -1453,6 +1460,7 @@ Open…	Öppna…
 Operations / year	Manövrer / år
 Option	Alternativ
 Options	Alternativ
+Orbit direction	Rotationsriktning
 Orbit the 3D view	Rotera 3D-vyn
 Ordinary cable	Vanlig kabel
 Orientation	Orientering
@@ -1995,6 +2003,7 @@ Short-circuit currents	Kortslutningsströmmar
 Short-circuit power of the network	Nätets kortslutningseffekt
 Shortest profile	Kortaste profil
 Show	Visa
+Show a row of buttons for the view settings at the top of the 3D view	Visa en rad knappar för visningsinställningarna överst i 3D-vyn
 Show all enclosures side by side at their places in the room	Visa alla kapslingar sida vid sida på sina platser i rummet
 Show as list	Visa som lista
 Show as tiles	Visa som rutor
@@ -2335,6 +2344,7 @@ Vertical position	Vertikal position
 Vertically	Lodrätt
 Via:	Via:
 View	Visa
+View buttons	Visningsknappar
 Visible	Synligt
 Voltage (line to line)	Spänning (huvudspänning)
 Voltage at maximum power	Spänning vid maximal effekt
@@ -2398,6 +2408,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Förbindelsens ledare
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Ledningar tar också de 3D-vägar som tar hänsyn till hinder, i stället för bara kabelkanalerna på plåten
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Ledningar utan egen färg eller eget tvärsnitt hämtar dem från potentialen för sin förbindelse; kabelledare behåller kabelns värden.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Ledare, öppna kabelkanaler, väggar framför och de andra inställningarna i Monteringsutrymme › Visa med ett klick
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Inkopplingsassistent: checklista över ledningarna med 3D-vy och förlopp (surfplatta: öppna webbappen med #wiring)
 Wiring space between devices and ducts	Kopplingsutrymme mellan apparater och kanaler
 With a user account of the server; replaces the access token	Med ett användarkonto på servern; ersätter åtkomsttoken
