@@ -45,8 +45,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **A straightened wire is one wire:** when moving wires, symbols or a wire end makes
   a step of a wire disappear, the pieces in a line are joined where nothing else
   connects and pieces of no length are removed, so the wire has one segment and moves
-  as one again (editor, arrow keys, *Move by*, `move_items`, `move_wire_end`). Pieces in
-  a line the move did not change stay apart; *Join collinear wires* joins those.
+  as one again (editor, arrow keys, *Move by*, `move_items`, `move_wire_end`). A wire
+  drawn in line with another, continuing it, joins it the same way (wire tool,
+  `add_wire`, `connect`, `route`). Pieces in a line the edit did not change stay
+  apart; *Join collinear wires* joins those.
 
 ## [0.1.3] - 2026-11-23
 

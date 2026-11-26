@@ -1135,3 +1135,17 @@ fn a_move_joins_only_the_wires_it_changed() {
     move_selection(&mut prj, 0, &BTreeSet::from([moved]), p(8.0, 0.0));
     assert_eq!(prj.pages[0].wires.len(), 3);
 }
+
+#[test]
+fn a_wire_drawn_in_line_joins_the_wire_it_continues() {
+    let mut prj = Project::default();
+    let old = wire(&mut prj, p(40.0, 40.0), p(60.0, 40.0));
+    wire(&mut prj, p(80.0, 40.0), p(100.0, 40.0));
+    let before = shapes(&prj.pages[0]);
+    let new = wire(&mut prj, p(60.0, 40.0), p(80.0, 40.0));
+    let joins = join_changed(&prj.symbol_table(), &mut prj.pages[0], &before);
+    assert_eq!(prj.pages[0].wires.len(), 1);
+    assert_eq!(joined_into(&joins, new), old);
+    let w = the_wire(&prj, old);
+    assert_eq!((w.a.x.min(w.b.x), w.a.x.max(w.b.x)), (40.0, 100.0));
+}
