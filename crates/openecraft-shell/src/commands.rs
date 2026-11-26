@@ -279,6 +279,52 @@ pub enum Cmd {
     TabletMode,
 }
 
+/// Commands that need no open project: after File › Close project only they run (the
+/// start page is shown instead of the pages and the layout); the others wait for a
+/// project.
+const WITHOUT_PROJECT: &[Cmd] = &[
+    Cmd::Backstage,
+    Cmd::StartPage,
+    Cmd::NewProject,
+    Cmd::NewFromTemplateFile,
+    Cmd::OpenDemo,
+    Cmd::OpenExample,
+    Cmd::Open,
+    Cmd::Settings,
+    Cmd::Quit,
+    Cmd::CommandSearch,
+    Cmd::Theme,
+    Cmd::UiScale,
+    Cmd::Language,
+    Cmd::MinimizeRibbon,
+    Cmd::Shortcuts,
+    Cmd::CustomizeRibbon,
+    Cmd::ProjectManagement,
+    Cmd::PartsManagement,
+    Cmd::DataPortal,
+    Cmd::ProjectServer,
+    Cmd::Vault,
+    Cmd::ManagePlugins,
+    Cmd::Help,
+    Cmd::Tutorial,
+    Cmd::About,
+    Cmd::VersionHistory,
+    Cmd::Legal,
+    Cmd::ReportBug,
+    Cmd::CheckForUpdates,
+    Cmd::InstallUpdate,
+];
+
+/// The command acts on the open project (disabled while none is open).
+pub fn needs_project(cmd: Cmd) -> bool {
+    !WITHOUT_PROJECT.contains(&cmd)
+}
+
+/// The pane shows the open project (hidden while none is open).
+pub fn pane_needs_project(pane: Pane) -> bool {
+    ALL.iter().find(|d| d.pane == Some(pane)).is_none_or(|d| needs_project(d.cmd))
+}
+
 /// Commands that change the items of the current page: disabled on a page that
 /// cannot be edited (released, generated, locked by another user).
 pub fn changes_page(cmd: Cmd) -> bool {

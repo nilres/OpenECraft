@@ -22,6 +22,9 @@ impl App {
         if commands::changes_page(cmd) && !self.page_editable() {
             return false;
         }
+        if self.closed && commands::needs_project(cmd) {
+            return false;
+        }
         match cmd {
             Cmd::Undo => self.session.history.can_undo(),
             Cmd::Redo => self.session.history.can_redo(),
@@ -215,9 +218,12 @@ impl App {
             Cmd::StartPage => {}
             Cmd::NewProject => self.replace_project(Project::new_default(), None),
             Cmd::CloseProject => {
-                // No project stays open: an empty one, not saved anywhere, under the start page.
+                // No project stays open: the start page takes the place of the pages, the
+                // layout and the tools of the project (an empty project, saved nowhere,
+                // stays behind it until a project is opened).
                 self.replace_project(Project::new_default(), None);
-                self.show_pane(Pane::Tool(ToolPane::Start));
+                self.closed = true;
+                self.floating.retain(|p| !commands::pane_needs_project(*p));
                 self.remote.list();
             }
             Cmd::NewFromTemplateFile => self.io.open(ctx, Purpose::ProjectTemplate),

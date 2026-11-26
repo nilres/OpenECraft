@@ -201,6 +201,9 @@ impl App {
     pub(super) fn floating_panes(&mut self, ctx: &egui::Context) {
         // A pane docked in the workspace switched to is shown there only.
         self.floating.retain(|p| dock::find(&self.dock, *p).is_none());
+        if self.closed {
+            self.floating.retain(|p| !crate::commands::pane_needs_project(*p));
+        }
         let idx = std::mem::take(&mut self.session.index);
         let screen = ctx.content_rect();
         for (i, pane) in self.floating.clone().into_iter().enumerate() {

@@ -303,6 +303,9 @@ pub struct App {
     discard: crate::session::Guard<Replace>,
     /// Recovery data is ready: the next close request is not cancelled.
     closing: bool,
+    /// File › Close project: no project is open, the start page takes the place of the
+    /// panes until a project is opened or started.
+    closed: bool,
     shutdown: Option<crate::shutdown::Shutdown>,
     /// Page (id) whose deletion waits for the confirmation.
     confirm_delete_page: Option<u64>,
@@ -604,6 +607,7 @@ impl App {
             layout_name: None,
             discard: Default::default(),
             closing: false,
+            closed: false,
             shutdown: None,
             confirm_delete_page: None,
             confirm_remove_layout: None,
@@ -887,6 +891,7 @@ impl App {
         // The files of a split project as they were just read, if this is that project.
         let tracked = self.opened.take();
         self.session.replace(prj, file_name, tracked);
+        self.closed = false;
         self.example = None;
         self.find_ui.clear_results();
         parts::link_unassigned_plc_parts(&mut self.session.prj, &self.parts_db, None);
@@ -1291,6 +1296,9 @@ impl eframe::App for App {
             Some(page) => {
                 egui::CentralPanel::default().show(ui, |ui| self.backstage_ui(ui, page));
             }
+            None if self.closed => {
+                egui::CentralPanel::default().show(ui, |ui| self.start_page(ui));
+            }
             None => {
                 let fill = ui.visuals().panel_fill;
                 egui::CentralPanel::default().frame(egui::Frame::NONE.fill(fill)).show(ui, |ui| self.docked(ui, &idx));
@@ -1325,11 +1333,11 @@ impl eframe::App for App {
         self.check_locks(&ctx);
         self.autosave_remote(&ctx, can_commit);
 
-        let mut title = format!(
-            "OpenECraft – {}{}",
-            self.session.prj.info.name,
-            if self.session.dirty() { " *" } else { "" }
-        );
+        let mut title = if self.closed {
+            "OpenECraft".to_string()
+        } else {
+            format!("OpenECraft – {}{}", self.session.prj.info.name, if self.session.dirty() { " *" } else { "" })
+        };
         if let Some(stats) = self.frame_stats.text().filter(|_| self.shell.frame_stats) {
             title = format!("{title}   ({stats})");
         }

@@ -31,7 +31,9 @@ ci-dessous peuvent y être essayées.
   `<name>.oecp` et un petit fichier par page, appareil et article, de sorte qu'une
   modification ne touche que les fichiers qu'elle concerne.
 - *Fichier › Fermer le projet* (Ctrl+Shift+F4) ferme le projet, propose d'enregistrer
-  les modifications non enregistrées et affiche la page d'accueil.
+  les modifications non enregistrées et ferme ses pages de schéma, implantations
+  d'armoire et outils : seule la page d'accueil reste jusqu'à ce qu'un projet soit
+  ouvert ou commencé.
 
 ## 2. Pages et structure
 

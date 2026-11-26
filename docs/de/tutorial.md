@@ -34,7 +34,9 @@ sich daran ausprobieren.
   Betriebsmittel und Artikel, sodass eine Änderung nur die Dateien berührt, die sie
   betrifft.
 - *Datei › Projekt schließen* (Strg+Umschalt+F4) schließt das Projekt, fragt bei
-  ungespeicherten Änderungen nach dem Speichern und zeigt die Startseite.
+  ungespeicherten Änderungen nach dem Speichern und schließt seine Schaltplanseiten,
+  Aufbaupläne und Werkzeuge: nur die Startseite bleibt, bis ein Projekt geöffnet oder
+  begonnen wird.
 
 ## 2. Seiten und Struktur
 
