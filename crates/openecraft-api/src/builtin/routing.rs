@@ -415,7 +415,7 @@ fn list_routing(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let bundles: Vec<Value> = r
         .bundles
         .iter()
-        .map(|b| json!({ "items": b.items.iter().map(|&i| r.items[i].key.clone()).collect::<Vec<_>>(), "length_mm": b.length, "diameter_mm": (b.diameter * 10.0).round() / 10.0, "classes": b.classes.iter().map(|c| c.key()).collect::<Vec<_>>() }))
+        .map(|b| json!({ "items": b.items.iter().map(|&i| r.items[i].key.clone()).collect::<Vec<_>>(), "length_mm": b.length, "diameter_mm": (b.diameter * 10.0).round() / 10.0, "classes": b.classes.iter().map(|c| c.key()).collect::<Vec<_>>(), "cable_ties": b.ties.len() }))
         .collect();
     let branches: Vec<Value> = r.branches.iter().map(|b| json!({ "at": b.at, "bundles": b.bundles, "items": b.items })).collect();
     let shields: Vec<Value> = r

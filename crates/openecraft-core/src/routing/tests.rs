@@ -1112,3 +1112,40 @@ fn a_leg_that_would_touch_a_neighbouring_connection_point_becomes_a_jog() {
     assert_eq!(ends_at(&prj, p(40.0, 76.0)), 0, "the neighbour stays free");
     assert_eq!(ends_at(&prj, p(48.0, 76.0)), 1, "still on its connection point");
 }
+
+#[test]
+fn a_straightened_step_is_one_wire() {
+    let mut prj = Project::default();
+    wire(&mut prj, p(40.0, 40.0), p(60.0, 40.0));
+    wire(&mut prj, p(60.0, 40.0), p(60.0, 48.0));
+    let end = wire(&mut prj, p(60.0, 48.0), p(80.0, 48.0));
+    move_selection(&mut prj, 0, &BTreeSet::from([end]), p(0.0, -8.0));
+    let wires = &prj.pages[0].wires;
+    assert_eq!(wires.len(), 1, "{wires:?}");
+    let (a, b) = (wires[0].a, wires[0].b);
+    assert!((a.same(p(40.0, 40.0)) && b.same(p(80.0, 40.0))) || (a.same(p(80.0, 40.0)) && b.same(p(40.0, 40.0))), "{wires:?}");
+}
+
+#[test]
+fn a_move_joins_only_the_wires_it_changed() {
+    let mut prj = Project::default();
+    wire(&mut prj, p(40.0, 80.0), p(60.0, 80.0));
+    wire(&mut prj, p(60.0, 80.0), p(80.0, 80.0));
+    let moved = wire(&mut prj, p(40.0, 120.0), p(60.0, 120.0));
+    move_selection(&mut prj, 0, &BTreeSet::from([moved]), p(8.0, 0.0));
+    assert_eq!(prj.pages[0].wires.len(), 3);
+}
+
+#[test]
+fn a_wire_drawn_in_line_joins_the_wire_it_continues() {
+    let mut prj = Project::default();
+    let old = wire(&mut prj, p(40.0, 40.0), p(60.0, 40.0));
+    wire(&mut prj, p(80.0, 40.0), p(100.0, 40.0));
+    let before = shapes(&prj.pages[0]);
+    let new = wire(&mut prj, p(60.0, 40.0), p(80.0, 40.0));
+    let joins = join_changed(&prj.symbol_table(), &mut prj.pages[0], &before);
+    assert_eq!(prj.pages[0].wires.len(), 1);
+    assert_eq!(joined_into(&joins, new), old);
+    let w = the_wire(&prj, old);
+    assert_eq!((w.a.x.min(w.b.x), w.a.x.max(w.b.x)), (40.0, 100.0));
+}

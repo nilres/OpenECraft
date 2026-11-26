@@ -3,7 +3,9 @@
 //! cells they form one bundle, and where items join or leave there is a branch. Ways
 //! running together lie side by side, each on a lane of its own ([`spread_ways`]);
 //! where they still run inside or through each other they are pushed apart
-//! ([`separate`]).
+//! ([`separate`]). A bundle of wires and cables that run freely is held by cable ties
+//! ([`tie_points`]); its ways lie in a square of as many lanes as run through it at
+//! once and keep their places round its corners.
 
 use super::{Class, RoutedItem};
 use crate::parts::vec3::{add, cross, dist, dot, fillet_each, norm, segment_in_box, sub, V3};
@@ -19,6 +21,11 @@ pub struct Bundle {
     /// Outer diameter of the bundle, mm.
     pub diameter: f32,
     pub classes: Vec<Class>,
+    /// Where cable ties hold it together (layout coordinates): along a bundle of
+    /// wires and cables that run freely, in no cable duct or routing path
+    /// ([`tie_points`]); none elsewhere.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub ties: Vec<V3>,
 }
 
 /// Where items join or leave bundles.
@@ -149,6 +156,7 @@ pub fn find(items: &[RoutedItem], cell: f32) -> (Vec<Bundle>, Vec<Branch>) {
             items: members,
             points,
             classes,
+            ties: Vec::new(),
         });
     }
     // Branches: nodes where bundles end and items go different ways.
@@ -165,6 +173,58 @@ pub fn find(items: &[RoutedItem], cell: f32) -> (Vec<Bundle>, Vec<Branch>) {
         }
     }
     (bundles, branches)
+}
+
+/// The way of a bundle as its first item was routed (the points of the bundle itself
+/// lie on the cells it was traced through, `cell` wide, up to half a cell beside it):
+/// the points of that item in those cells, and the enclosure the stretch of the item
+/// they are of starts in ([`RoutedItem::stretches`]).
+pub fn way_of(bundle: &Bundle, items: &[RoutedItem], cell: f32) -> (Option<usize>, Vec<V3>) {
+    let Some(it) = bundle.items.first().and_then(|&i| items.get(i)) else { return (None, Vec::new()) };
+    let on: BTreeSet<Key> = keys_along(&bundle.points, cell).into_iter().collect();
+    let mut best: (Option<usize>, Vec<V3>) = (None, Vec::new());
+    for (leg, points) in it.stretches() {
+        let mut run: Vec<V3> = Vec::new();
+        let mut keep = |run: &mut Vec<V3>| {
+            if super::grid::length(run) > super::grid::length(&best.1) {
+                best = (leg.or(it.enclosures.first().copied()), std::mem::take(run));
+            }
+            run.clear();
+        };
+        for s in points.windows(2) {
+            let steps = (dist(s[0], s[1]) / (cell * 0.5)).ceil().max(1.0) as usize;
+            for k in 0..=steps {
+                let q = add(s[0], scale(sub(s[1], s[0]), k as f32 / steps as f32));
+                if on.contains(&key_of(q, cell)) {
+                    run.push(q);
+                } else {
+                    keep(&mut run);
+                }
+            }
+        }
+        keep(&mut run);
+    }
+    (best.0, super::grid::simplify(best.1))
+}
+
+/// Where cable ties hold a bundle that runs along `way`: on its straight stretches,
+/// `margin` mm from their ends (where its routes bend, join and leave) and no further
+/// than `pitch` mm apart; one in the middle of a stretch just long enough.
+pub fn tie_points(way: &[V3], margin: f32, pitch: f32) -> Vec<V3> {
+    let mut ties = Vec::new();
+    for s in way.windows(2) {
+        let room = dist(s[0], s[1]) - 2.0 * margin;
+        if room < 0.0 || pitch <= 0.0 {
+            continue;
+        }
+        let n = (room / pitch).ceil() as usize + 1;
+        let along = norm(sub(s[1], s[0]));
+        for k in 0..n {
+            let t = if n == 1 { room / 2.0 } else { room * k as f32 / (n - 1) as f32 };
+            ties.push(add(s[0], scale(along, margin + t)));
+        }
+    }
+    ties
 }
 
 /// The inside of a cable duct the ways may run along: its box and the direction away
@@ -194,6 +254,10 @@ pub struct Way<'a> {
     pub steps: usize,
     /// Laid as it is (the cores of a cable where they part): the others keep off it.
     pub held: bool,
+    /// Tied into a bundle with the ways it runs together with (a wire or cable where
+    /// there is no cable duct): their lanes form a square in the order the ways come to
+    /// the bundle and leave it, not rows as deep as they lie in front of the surface.
+    pub tied: bool,
     /// The direction it leaves its first and its last point in, where known (a
     /// connection point, a cable gland; none: zero): it runs straight out of them. As
     /// long as the cells of the routing there are wide.
@@ -221,37 +285,20 @@ pub struct Way<'a> {
 pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[Channel], insides: &[(V3, V3)]) -> Vec<(Vec<V3>, Vec<f32>)> {
     let stretches: Vec<(usize, &[V3])> = ways.iter().enumerate().filter(|(_, w)| !w.held).map(|(i, w)| (i, w.points)).collect();
     let (_, chains) = chains(&stretches, cell);
-    // Across each line of the grid the directions of the bundles on it, turned with
-    // them round their corners.
-    let line_of = |e: &Edge| -> Line {
-        let axis = (0..3).find(|&k| e.0[k] != e.1[k]).unwrap_or(0);
-        let mut at = e.0;
-        at[axis] = 0;
-        (axis, at)
-    };
-    let mut across: BTreeMap<Line, (V3, V3)> = BTreeMap::new();
-    for (chain, _) in &chains {
-        let dir = |j: usize| -> V3 { [0, 1, 2].map(|k| (chain[j + 1][k] - chain[j][k]) as f32) };
-        let first = dir(0);
-        let axis = (0..3).find(|&k| first[k] != 0.0).unwrap_or(0);
-        let (mut u, mut v) = (unit((axis + 1) % 3), unit((axis + 2) % 3));
-        for j in 0..chain.len() - 1 {
-            let d = dir(j);
-            if j > 0 && d != dir(j - 1) {
-                // What pointed along the bundle now points along the new way, what
-                // pointed the new way now points back.
-                let (before, w) = (dir(j - 1), cross(dir(j - 1), d));
-                let turn = |x: V3| add(add(scale(d, dot(x, before)), scale(before, -dot(x, d))), scale(w, dot(x, w)));
-                (u, v) = (turn(u), turn(v));
-            }
-            across.entry(line_of(&(chain[j].min(chain[j + 1]), chain[j].max(chain[j + 1])))).or_insert((u, v));
-        }
-    }
+    let across = turned(&chains);
     let runs = runs_of(ways);
     let groups = groups(ways, &runs);
     // The move of each run onto its lane, across its axis.
     let mut moves: HashMap<(usize, usize), V3> = HashMap::new();
-    for members in groups.values().filter(|m| m.len() >= 2) {
+    // The bundles of ways tied together last, the largest first, and once more: each
+    // of their ways takes its lane by where it lies on the bundles before and after.
+    let all_tied = |members: &Vec<usize>| members.iter().all(|&r| ways[runs[r].0].tied);
+    let mut order: Vec<&Vec<usize>> = groups.values().filter(|m| m.len() >= 2).collect();
+    order.sort_by_key(|m| (all_tied(m), std::cmp::Reverse(if all_tied(m) { m.len() } else { 0 })));
+    let again: Vec<&Vec<usize>> = order.iter().copied().filter(|m| all_tied(m)).collect();
+    // The stretches that run with others.
+    let together: std::collections::HashSet<(usize, usize)> = order.iter().flat_map(|m| m.iter().map(|&r| (runs[r].0, runs[r].1))).collect();
+    for members in order.into_iter().chain(again) {
         let axis = runs[members[0]].2;
         let middle = scale(members.iter().fold([0.0; 3], |m, &r| add(m, runs[r].5)), 1.0 / members.len() as f32);
         let line = (axis, {
@@ -287,6 +334,10 @@ pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[
             continue;
         }
         let gap = members.iter().map(|&r| ways[runs[r].0].diameter).fold(0.0, f32::max) + 1.0;
+        // Tied together: as many lanes as ways run through the bundle at once.
+        let tied = all_tied(members);
+        let spans: Vec<(f32, f32)> = members.iter().map(|&r| (runs[r].3, runs[r].4)).collect();
+        let lanes = if tied { lanes_at_once(&spans).len() } else { members.len() };
         // The surface the ways run along, across their axis.
         let rest = members.iter().map(|&r| ways[runs[r].0].rest).find(|n| *n != [0.0; 3]).map(|mut n| {
             n[axis] = 0.0;
@@ -296,14 +347,23 @@ pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[
         let (u, v, cols, rows) = match rest {
             Some(n) => {
                 let below = members.iter().map(|&r| ways[runs[r].0].below).fold(f32::INFINITY, f32::min).max(0.0);
-                let rows = ((2.0 * below / gap).floor() as usize + 1).min(members.len());
-                (norm(cross(unit(axis), n)), n, members.len().div_ceil(rows), rows)
+                let square = lanes.div_ceil((lanes as f32).sqrt().ceil() as usize);
+                let rows = ((2.0 * below / gap).floor() as usize + 1).min(if tied { square } else { lanes });
+                (norm(cross(unit(axis), n)), n, lanes.div_ceil(rows), rows)
             }
             None => {
                 let (u, v) = across.get(&line).copied().unwrap_or((unit((axis + 1) % 3), unit((axis + 2) % 3)));
-                let cols = (members.len() as f32).sqrt().ceil() as usize;
-                (u, v, cols, members.len().div_ceil(cols))
+                let cols = (lanes as f32).sqrt().ceil() as usize;
+                (u, v, cols, lanes.div_ceil(cols))
             }
+        };
+        // The lane of each way: tied together, the one nearest to where it wants to lie.
+        let lane: Vec<usize> = if tied {
+            let places: Vec<V3> = (0..cols * rows).map(|k| add(scale(u, ((k % cols) as f32 - (cols - 1) as f32 / 2.0) * gap), scale(v, ((k / cols) as f32 - (rows - 1) as f32 / 2.0) * gap))).collect();
+            let wants: Vec<V3> = members.iter().map(|&r| wanted(ways, (runs[r].0, runs[r].1), axis, &moves, &together, gap, cols.max(rows) as f32 * gap)).collect();
+            tied_lanes(&wants, &spans, &places)
+        } else {
+            (0..members.len()).collect()
         };
         // The moves of the members onto lanes of `cols` × `rows` around the middle,
         // shifted by `aside` lanes along `u` and `v`, away from the surface where they
@@ -312,7 +372,8 @@ pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[
             let mut tos: Vec<V3> = members
                 .iter()
                 .enumerate()
-                .map(|(k, &r)| {
+                .map(|(m, &r)| {
+                    let k = lane[m];
                     let (c, row) = ((k % cols) as f32 - (cols - 1) as f32 / 2.0 + aside.0, (k / cols) as f32 - (rows - 1) as f32 / 2.0 + aside.1);
                     let mut to = sub(add(middle, add(scale(u, c * gap), scale(v, row * gap))), runs[r].5);
                     to[axis] = 0.0;
@@ -355,7 +416,7 @@ pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[
             }
         }
         if cols > 1 && rest.is_some() {
-            tries.push((1, members.len(), (0.0, 0.0)));
+            tries.push((1, if tied { cols * rows } else { members.len() }, (0.0, 0.0)));
         }
         if let Some(tos) = tries.into_iter().map(|(c, r, aside)| layout(c, r, aside)).find(|tos| clear(tos)) {
             for (&r, to) in members.iter().zip(tos) {
@@ -370,10 +431,129 @@ pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[
                 return (way.points.to_vec(), way.radii.to_vec());
             }
             let offsets: Vec<V3> = (0..way.points.len().saturating_sub(1)).map(|j| moves.get(&(i, j)).copied().unwrap_or([0.0; 3])).collect();
-            let (points, radii) = lay(way.points, way.radii, &offsets, way.leave, way.straight);
+            // (The stretches on a lane of a bundle of ways tied together.)
+            let tied: Vec<bool> = (0..offsets.len()).map(|j| way.tied && moves.contains_key(&(i, j))).collect();
+            let (points, radii) = lay(way.points, way.radii, &offsets, &tied, way.leave, way.straight);
             in_ducts(points, radii, way.diameter / 2.0, channels)
         })
         .collect()
+}
+
+/// Across each line of the grid the directions of the bundles (`chains`) on it, turned
+/// with them round their corners.
+fn turned(chains: &[(Vec<Key>, Vec<usize>)]) -> BTreeMap<Line, (V3, V3)> {
+    let line_of = |e: &Edge| -> Line {
+        let axis = (0..3).find(|&k| e.0[k] != e.1[k]).unwrap_or(0);
+        let mut at = e.0;
+        at[axis] = 0;
+        (axis, at)
+    };
+    let mut across: BTreeMap<Line, (V3, V3)> = BTreeMap::new();
+    for (chain, _) in chains {
+        let dir = |j: usize| -> V3 { [0, 1, 2].map(|k| (chain[j + 1][k] - chain[j][k]) as f32) };
+        let first = dir(0);
+        let axis = (0..3).find(|&k| first[k] != 0.0).unwrap_or(0);
+        let (mut u, mut v) = (unit((axis + 1) % 3), unit((axis + 2) % 3));
+        for j in 0..chain.len() - 1 {
+            let d = dir(j);
+            if j > 0 && d != dir(j - 1) {
+                // What pointed along the bundle now points along the new way, what
+                // pointed the new way now points back.
+                let (before, w) = (dir(j - 1), cross(dir(j - 1), d));
+                let turn = |x: V3| add(add(scale(d, dot(x, before)), scale(before, -dot(x, d))), scale(w, dot(x, w)));
+                (u, v) = (turn(u), turn(v));
+            }
+            across.entry(line_of(&(chain[j].min(chain[j + 1]), chain[j].max(chain[j + 1])))).or_insert((u, v));
+        }
+    }
+    across
+}
+
+/// Where the stretch `j` of the way `i`, tied into a bundle along `axis`, wants to lie
+/// across the middle of the bundle: on its lane on the stretch round the corner before
+/// and after it (`moves`; what lies inside a bend stays inside: the bundle turns as
+/// one); at the edge (`reach` away) on the side it comes from or leaves to on a way of
+/// its own; a little to that side where it turns with others not laid yet (`together`).
+fn wanted(ways: &[Way], (i, j): (usize, usize), axis: usize, moves: &HashMap<(usize, usize), V3>, together: &std::collections::HashSet<(usize, usize)>, gap: f32, reach: f32) -> V3 {
+    let pts = ways[i].points;
+    let d = norm(sub(pts[j + 1], pts[j]));
+    let mut want = [0.0; 3];
+    for (stretch, corner, far) in [(j.checked_sub(1), j, j.checked_sub(1)), (Some(j + 1), j + 1, Some(j + 2))] {
+        let (Some(stretch), Some(far)) = (stretch, far.and_then(|f| pts.get(f))) else { continue };
+        let side = norm(sub(*far, pts[corner]));
+        match moves.get(&(i, stretch)) {
+            Some(o) => {
+                let a = norm(sub(pts[stretch + 1], pts[stretch]));
+                let w = cross(a, d);
+                want = add(want, add(scale(a, -dot(*o, d)), scale(w, dot(*o, w))));
+            }
+            None if together.contains(&(i, stretch)) => want = add(want, scale(side, 0.25 * gap)),
+            None => want = add(want, scale(side, reach)),
+        }
+    }
+    want[axis] = 0.0;
+    want
+}
+
+/// The lane (of `places` across the bundle) of each way tied into a bundle, of where
+/// they want to lie (`wants`) and what they run along of it (`spans`): each takes the
+/// free lane nearest to where it wants to lie, then two that run along each other
+/// change lanes, or one takes a free lane, as long as that brings them nearer to it.
+fn tied_lanes(wants: &[V3], spans: &[(f32, f32)], places: &[V3]) -> Vec<usize> {
+    let off = |m: usize, k: usize| dist(places[k], wants[m]).powi(2);
+    let mut free: Vec<f32> = vec![f32::NEG_INFINITY; places.len()];
+    let mut lane = vec![0; spans.len()];
+    for m in by_start(spans) {
+        let k = (0..free.len()).filter(|&k| free[k] + FOLLOW <= spans[m].0).min_by(|&a, &b| off(m, a).total_cmp(&off(m, b)).then(a.cmp(&b))).unwrap_or(0);
+        (lane[m], free[k]) = (k, spans[m].1);
+    }
+    let along = |a: usize, b: usize| spans[a].0 < spans[b].1 + FOLLOW && spans[b].0 < spans[a].1 + FOLLOW;
+    // The lane `k` is free along the run `m`, but for the run `but`.
+    let free_for = |lane: &[usize], m: usize, k: usize, but: usize| (0..lane.len()).all(|o| o == m || o == but || lane[o] != k || !along(m, o));
+    for _ in 0..4 {
+        let mut better = false;
+        for m in 0..spans.len() {
+            if let Some(k) = (0..places.len()).filter(|&k| off(m, k) + 1e-3 < off(m, lane[m]) && free_for(&lane, m, k, m)).min_by(|&a, &b| off(m, a).total_cmp(&off(m, b))) {
+                (lane[m], better) = (k, true);
+            }
+            for o in m + 1..spans.len() {
+                let (km, ko) = (lane[m], lane[o]);
+                if km != ko && along(m, o) && off(m, ko) + off(o, km) + 1e-3 < off(m, km) + off(o, ko) && free_for(&lane, m, ko, o) && free_for(&lane, o, km, m) {
+                    (lane[m], lane[o], better) = (ko, km, true);
+                }
+            }
+        }
+        if !better {
+            break;
+        }
+    }
+    lane
+}
+
+/// How far (mm) behind a way that left a bundle of ways tied together the next one
+/// follows on its lane ([`lanes_at_once`]): the first has come off the lane by then.
+const FOLLOW: f32 = 50.0;
+
+/// The runs of a bundle (from where to where along it each runs) in the order they
+/// begin.
+fn by_start(spans: &[(f32, f32)]) -> Vec<usize> {
+    let mut order: Vec<usize> = (0..spans.len()).collect();
+    order.sort_by(|&a, &b| spans[a].0.total_cmp(&spans[b].0).then(a.cmp(&b)));
+    order
+}
+
+/// The lanes the runs of a bundle of ways tied together need (where the last run on
+/// each ends): as many as run through it at once, a run following another on its lane
+/// [`FOLLOW`] mm behind it.
+fn lanes_at_once(spans: &[(f32, f32)]) -> Vec<f32> {
+    let mut lanes: Vec<f32> = Vec::new();
+    for m in by_start(spans) {
+        match lanes.iter_mut().find(|till| **till + FOLLOW <= spans[m].0) {
+            Some(till) => *till = spans[m].1,
+            None => lanes.push(spans[m].1),
+        }
+    }
+    lanes
 }
 
 /// The axis away from a channel's floor, which way along it, and where the floor is.
@@ -519,8 +699,11 @@ fn runs_of(ways: &[Way]) -> Vec<Run> {
         // (The way out is the stretch at the end, with the one after it where it only
         // leads from the end point onto the grid of the routing.)
         let short = |j: usize| dist(way.points[j], way.points[j + 1]) <= DOGLEG && (0..3).filter(|&k| (way.points[j][k] - way.points[j + 1][k]).abs() > 1e-3).count() > 1;
-        let out = usize::from(way.leave[0] != [0.0; 3]) + usize::from(way.leave[0] != [0.0; 3] && n > 2 && short(0));
-        let back = usize::from(way.leave[1] != [0.0; 3]) + usize::from(way.leave[1] != [0.0; 3] && n > 2 && short(n - 2));
+        // (Tied into bundles, the way out lies on a lane like every stretch along an
+        // axis: the ways out of a row of connection points run together from there.)
+        let own = |end: usize| way.leave[end] != [0.0; 3] && !way.tied;
+        let out = usize::from(own(0)) + usize::from(own(0) && n > 2 && short(0));
+        let back = usize::from(own(1)) + usize::from(own(1) && n > 2 && short(n - 2));
         for (j, s) in way.points.windows(2).enumerate() {
             if j < out || j + 1 + back >= n {
                 continue;
@@ -654,8 +837,12 @@ const IN_LINE: f32 = 12.5;
 /// further aside (the way straight out of it was barred, [`IN_LINE`]), the way comes
 /// onto the line of its first stretch as the routing left room for ([`onto_lane`]),
 /// straight out of the end point for `straight` first (for the first and the last).
+/// A stretch on a lane of a bundle of ways tied together (`tied`, one per stretch;
+/// none: no stretch) is not moved with an end point where it is long enough for the
+/// way to come onto it on a slanting piece ([`slant_onto`]): the ways out of a row of
+/// connection points that run together would all be laid on one line.
 #[allow(clippy::too_many_lines)]
-fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2], straight: [f32; 2]) -> (Vec<V3>, Vec<f32>) {
+fn lay(points: &[V3], radii: &[f32], offsets: &[V3], tied: &[bool], leave: [V3; 2], straight: [f32; 2]) -> (Vec<V3>, Vec<f32>) {
     let n = points.len();
     let radius = |j: usize| radii.get(j).copied().unwrap_or(0.0);
     let dir = |j: usize| norm(sub(points[j + 1], points[j]));
@@ -745,8 +932,6 @@ fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2], straight: [
         let half = if dot(out, out) > 0.25 { dot(out, out).sqrt() / 2.0 } else { IN_LINE };
         dot(v, v) > 0.0025 && v.iter().all(|c| c.abs() <= half + 0.01)
     };
-    let from_start = start.map(|_| beside(points[0], lanes[0])).filter(|v| in_line(*v, leave[0]));
-    let from_end = end.map(|_| beside(points[n - 1], lanes[m - 1])).filter(|v| in_line(*v, leave[1]));
     // How far the bend of each node reaches along its stretches: its radius at a right
     // angle, nothing where the way runs straight on.
     let reach: Vec<f32> = (0..=m)
@@ -758,6 +943,15 @@ fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2], straight: [
             nodes[k].1 * (turn / 2.0).tan().min(1.0)
         })
         .collect();
+    // Onto a lane of a bundle of ways tied together a way comes from its end point on a
+    // slanting piece, where the stretch is long enough for it ([`slant_onto`]): the
+    // lane is not moved with the end point then. (Both ends on one stretch: half each.)
+    let on_bundle = |k: usize| tied.get(first + k).copied().unwrap_or(false);
+    let other = |k: usize| if m == 1 { scale(add(nodes[0].0, nodes[1].0), 0.5) } else { nodes[k].0 };
+    let slant_in = (start.is_some() && on_bundle(0)).then_some(lanes[0]).and_then(|lane| slant_onto(points[0], lane, other(1), bend, reach[1], straight[0]));
+    let slant_out = (end.is_some() && on_bundle(m - 1)).then_some(lanes[m - 1]).and_then(|lane| slant_onto(points[n - 1], lane, other(m - 1), bend, reach[m - 1], straight[1]));
+    let from_start = start.map(|_| beside(points[0], lanes[0])).filter(|v| in_line(*v, leave[0]) && slant_in.is_none());
+    let from_end = end.map(|_| beside(points[n - 1], lanes[m - 1])).filter(|v| in_line(*v, leave[1]) && slant_out.is_none());
     // The stretch `k` comes onto its lane between its nodes at `from` and `to`.
     let onto = |lanes: &[(V3, V3)], k: usize, from: V3, to: V3| {
         let (a, d) = lanes[k];
@@ -822,10 +1016,10 @@ fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2], straight: [
         out.push((from, r0));
         // From an end point beside its line onto it.
         if k == 0 && start.is_some() && from_start.is_none() {
-            out.extend(onto_lane(from, (a, d), to, bend, r1, straight[0]).map(|q| (q, bend)));
+            out.extend(slant_in.unwrap_or_else(|| onto_lane(from, (a, d), to, bend, r1, straight[0])).map(|q| (q, bend)));
         }
         if k + 1 == m && end.is_some() && from_end.is_none() {
-            let [p, q] = onto_lane(to, (a, d), from, bend, r0, straight[1]);
+            let [p, q] = slant_out.unwrap_or_else(|| onto_lane(to, (a, d), from, bend, r0, straight[1]));
             out.extend([(q, bend), (p, bend)]);
         }
         // Onto its lane behind the bends of its corners (their radius: a right angle);
@@ -845,6 +1039,25 @@ fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2], straight: [
     out.push(nodes[nodes.len() - 1]);
     out.dedup_by(|a, b| dot(sub(a.0, b.0), sub(a.0, b.0)) < 0.0025);
     out.into_iter().unzip()
+}
+
+/// How far the bend of a corner of a slanting piece ([`slant_onto`]) reaches along
+/// it, in bend radii: it turns by a ninth of a right angle.
+const SLANT_BEND: f32 = 0.1;
+
+/// The corners of the slanting piece on which a way with the bend radius `bend` comes
+/// from its end point `at` onto its lane `lane` (a point and its direction) in a bundle
+/// of ways tied together, which it runs along to `to` (a corner whose bend reaches
+/// `corner` along it): straight out of `at`, in line with it, for `straight` and the
+/// bend behind that, then over to the lane, [`LANE_CHANGE`] times as far as it lies
+/// aside. `None` where the lane passes through `at` or the stretch is too short.
+fn slant_onto(at: V3, lane: (V3, V3), to: V3, bend: f32, corner: f32, straight: f32) -> Option<[V3; 2]> {
+    let d = scale(lane.1, dot(sub(to, at), lane.1).signum());
+    let off = sub(lane.0, at);
+    let across = sub(off, scale(d, dot(off, d)));
+    let (aside, length) = (dot(across, across).sqrt(), dot(sub(to, at), d));
+    let (out, slant) = (straight + SLANT_BEND * bend + 1.0, LANE_CHANGE * aside);
+    (aside >= 0.05 && out + slant + SLANT_BEND * bend + corner + 1.0 <= length).then(|| [add(at, scale(d, out)), add(add(at, scale(d, out + slant)), across)])
 }
 
 /// The corners of the S-bend on which a way with the bend radius `bend` comes from its

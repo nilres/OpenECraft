@@ -572,7 +572,17 @@ fn wires_of_cabinets_without_cable_ducts_run_from_point_to_point() {
             assert_eq!(grid::close_bends(&it.points, 2.0 * it.bend_radius), 0, "{key}: {} {:?}", it.label, it.points);
         }
         // None runs inside another: only where both come up to one of their ends (the
-        // terminals of one device, a cable parting into its cores) they converge.
+        // terminals of one device, a cable parting into its cores) they converge, and
+        // where they are tied into a bundle (there is no cable duct to lay them in).
+        // (Two that only meet where both turn, each to its own side, bend apart there.)
+        // Or where two bundles branch: each of the two runs in a bundle there.
+        let tied = |a: &RoutedItem, b: &RoutedItem, q: V3| {
+            let index = |i: &RoutedItem| an.routing.items.iter().position(|x| x.key == i.key);
+            let near = |bundle: &Bundle| bundle.points.windows(2).any(|s| grid::dist_to_segment(q, s[0], s[1]) <= 25.0);
+            let turns = |i: &RoutedItem| i.points.iter().any(|x| dist(*x, q) < 0.5);
+            let bundled = |i: &RoutedItem| an.routing.bundles.iter().any(|bundle| index(i).is_some_and(|k| bundle.items.contains(&k)) && near(bundle));
+            (bundled(a) && bundled(b)) || (turns(a) && turns(b))
+        };
         let rules = &prj.layout.routing;
         let cell = rules.grid.max(5.0);
         let zone = |i: &RoutedItem| (3.0 * cell).max(2.0 * i.bend_radius.max(cell / 2.0) + cell) + i.diameter / 2.0 + 2.0 * cell;
@@ -587,7 +597,7 @@ fn wires_of_cabinets_without_cable_ducts_run_from_point_to_point() {
                     for sb in segments(b) {
                         let (p, q) = nearest(sa, sb);
                         let inside = dist(p, q) < (a.diameter + b.diameter) / 2.0 - 0.5;
-                        assert!(!inside || (near_end(a, p) && near_end(b, q)), "{key}: {} and {} run inside each other at {p:?}", a.label, b.label);
+                        assert!(!inside || (near_end(a, p) && near_end(b, q)) || tied(a, b, p), "{key}: {} and {} run inside each other at {p:?}", a.label, b.label);
                     }
                 }
             }
@@ -667,4 +677,80 @@ fn routes_through_one_wall_penetration_pass_it_side_by_side() {
     // A shaft or a link between buildings is passed as it is.
     let shaft = panel::WallLink { via: panel::Via::Shaft, ..link };
     assert_eq!(glands.through_wall(&prj, shaft, 25.0, front, front), shaft);
+}
+
+/// The share of the length of the wires and cables routed through cabinet line-ups
+/// that lies within a cell (25 mm) of the mounting plate or a side wall of its cabinet.
+fn share_at_the_back(prj: &Project, an: &Analysis) -> f32 {
+    use crate::parts::vec3::{add, scale, sub};
+    let pos = crate::panel::positions(&prj.layout);
+    let at_wall = |q: V3| {
+        prj.layout.enclosures.iter().zip(&pos).any(|(e, o)| {
+            let l = sub(q, *o);
+            !e.is_room() && l[0] >= 0.0 && l[0] <= e.width && (l[2] - e.mounting_z() <= 25.0 || l[0] - e.wall() <= 25.0 || e.width - e.wall() - l[0] <= 25.0)
+        })
+    };
+    let (mut all, mut back) = (0.0, 0.0);
+    for it in an.routing.items.iter().filter(|i| i.routed() && i.kind != RouteKind::Tube) {
+        for s in it.points.windows(2) {
+            let n = (dist(s[0], s[1]) / 5.0).ceil().max(1.0) as usize;
+            for k in 0..n {
+                let q = add(s[0], scale(sub(s[1], s[0]), (k as f32 + 0.5) / n as f32));
+                all += dist(s[0], s[1]) / n as f32;
+                if at_wall(q) {
+                    back += dist(s[0], s[1]) / n as f32;
+                }
+            }
+        }
+    }
+    back / all
+}
+
+#[test]
+fn wires_and_cables_without_cable_ducts_are_tied_into_bundles_along_the_back() {
+    // The two distribution cabinets without cable ducts: their wires were laid each
+    // on a way of its own, a cell beside the next one (5 m and 6 m of 50 m and 90 m
+    // ran with another one, where they come up to their devices), a fifth of their
+    // length along the mounting plate or a side wall.
+    for (key, together, at_the_back) in [("pv_transformer_metering", 0.12, 0.2), ("industrial_main_distribution", 0.3, 0.2)] {
+        let prj = crate::sample::example(key).unwrap();
+        let an = Analysis::checked(&prj);
+        assert!(an.routing.items.iter().all(|i| i.routed()), "{key}");
+        let free: Vec<usize> = (0..an.routing.items.len()).filter(|&i| an.routing.items[i].wire.is_none_or(|wi| wire_in_3d(&prj.layout, &an.wiring[wi]))).collect();
+        let length: f32 = free.iter().map(|&i| grid::length(&an.routing.items[i].points)).sum();
+        // Tied: bundles of wires and cables (no tubes, no classes that keep apart)
+        // held by cable ties clear of their ends, no further apart than 150 mm.
+        let tied: Vec<&Bundle> = an.routing.bundles.iter().filter(|b| !b.ties.is_empty()).collect();
+        let shared: f32 = tied.iter().map(|b| b.length * b.items.len() as f32).sum();
+        assert!(shared >= together * length, "{key}: {shared} of {length} mm run in bundles");
+        for b in &tied {
+            let items: Vec<&RoutedItem> = b.items.iter().map(|&i| &an.routing.items[i]).collect();
+            assert!(items.iter().all(|i| i.kind != RouteKind::Tube), "{key}");
+            assert!(!items.iter().any(|a| items.iter().any(|c| a.class.keeps_apart(c.class))), "{key}: {:?}", b.classes);
+            assert!(b.ties.len() as f32 <= b.length / 150.0 + 2.0 * b.points.len() as f32, "{key}: {} ties on {} mm", b.ties.len(), b.length);
+            // Each of them where every route of the bundle passes, on a straight stretch.
+            for q in &b.ties {
+                for it in &items {
+                    let on = it.points.windows(2).any(|s| grid::dist_to_segment(*q, s[0], s[1]) < 0.5 && dist(*q, s[0]) >= it.bend_radius && dist(*q, s[1]) >= it.bend_radius);
+                    assert!(on, "{key}: tie at {q:?} off {} {:?}", it.label, it.points);
+                }
+            }
+        }
+        assert!(tied.len() >= 10, "{key}: {} bundles with cable ties", tied.len());
+        // Along the back and the sides of the cabinets.
+        let back = share_at_the_back(&prj, &an);
+        assert!(back >= at_the_back, "{key}: {back} of the length at the back or a side");
+        // The same routes whichever way they are searched.
+        let route_on = |workers: usize| {
+            let mut wiring = crate::panel::virtual_wiring(&prj, &an.connections).0;
+            let jobs = jobs(&prj, &wiring, &an.connections, &an.open);
+            route(&prj, &mut wiring, jobs, Glands::default(), &|_, _| {}, workers, &[])
+        };
+        assert!(route_on(1) == route_on(4), "{key}");
+    }
+    // With cable ducts on the mounting plates nothing is tied: the wires lie in them.
+    let prj = crate::sample::example("cabinet_lineup").unwrap();
+    let an = Analysis::checked(&prj);
+    assert!(!an.routing.bundles.is_empty() && an.routing.bundles.iter().all(|b| b.ties.is_empty()));
+    assert!(prj.layout.enclosures.iter().all(|e| !runs_freely(e)));
 }

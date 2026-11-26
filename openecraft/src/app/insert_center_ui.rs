@@ -1,6 +1,7 @@
 //! The Insert center pane (see `crate::insert_center`): search, favorites, recently
 //! used, and the tree of symbols, macros, devices and unplaced functions. A click starts
-//! placing, a drag of an unplaced function places it at the drop point.
+//! placing; a symbol, device or unplaced function dragged into the page is placed once
+//! at the drop point and the tool stays.
 
 use super::*;
 use crate::insert_center::Entry;
@@ -313,7 +314,13 @@ impl App {
                 ui.vertical(|ui| {
                     ui.set_width(64.0);
                     let r = match e {
-                        Entry::Symbol(k) => symbol_icon(ui, &self.session.prj, k, egui::vec2(56.0, 40.0)),
+                        Entry::Symbol(k) => match e.symbol_key(&self.session.prj) {
+                            Some(symbol) => {
+                                let payload = crate::editor::PlacePayload { symbol, tag: String::new(), label: String::new(), pins: Vec::new() };
+                                super::drag_source(ui, ui.make_persistent_id(("ic_drag", symbol)), payload, |ui| symbol_icon(ui, &self.session.prj, k, egui::vec2(56.0, 40.0)))
+                            }
+                            None => symbol_icon(ui, &self.session.prj, k, egui::vec2(56.0, 40.0)),
+                        },
                         Entry::Part(n) => openecraft_ui::part_editor::drag_row(ui, true, n, |ui| icons::show(ui, icon, 40.0).interact(egui::Sense::click())),
                         _ => icons::show(ui, icon, 40.0).interact(egui::Sense::click()),
                     };

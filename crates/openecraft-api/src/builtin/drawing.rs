@@ -592,6 +592,7 @@ fn wire_policy(value:&str)->Result<Option<bool>,String> {
 }
 
 fn push_path(prj: &mut Project, page: usize, pts: &[P],explicit_junctions:Option<bool>) -> Vec<u64> {
+    let before = routing::shapes(&prj.pages[page]);
     let mut ids = Vec::new();
     for seg in pts.windows(2).filter(|s| !s[0].same(s[1])) {
         let id = prj.new_id();
@@ -599,7 +600,13 @@ fn push_path(prj: &mut Project, page: usize, pts: &[P],explicit_junctions:Option
         ids.push(id);
     }
     ops::cleanup_wires(&mut prj.pages[page]);
-    ids
+    // A wire drawn in line with another joins it; the ids are those of the wires now.
+    let joins = routing::join_changed(&prj.symbol_table(), &mut prj.pages[page], &before);
+    let mut now: Vec<u64> = Vec::new();
+    for id in ids.into_iter().map(|id| routing::joined_into(&joins, id)) {
+        if !now.contains(&id) { now.push(id); }
+    }
+    now
 }
 
 /// A connection point found on a page: its position, the symbol and its number of

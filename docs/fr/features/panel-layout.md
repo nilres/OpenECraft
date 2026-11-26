@@ -1111,7 +1111,8 @@ rayon, et reste à l'écart de tout autre parcours et de lui-même (lorsque ses
 extrémités sont trop proches pour son rayon de courbure, il fait une boucle qui ne
 recoupe ni ne longe jamais son propre chemin, les coudes à ses coins et le piquage
 dont il sort ; lorsqu'une telle boucle n'existe pas, il n'est pas routé) ; les
-parcours ne se rejoignent que là où ils arrivent au même appareil, et là ils sont côte
+parcours ne se rejoignent que là où ils arrivent au même appareil (et là où des
+parcours fins sont liés en faisceau, voir plus bas), et là ils sont côte
 à côte : un parcours ne croise jamais un autre parcours qu'il rejoint (il ne le peut
 que sur sa propre sortie d'un point de connexion, ou là où il arrive à l'appareil où
 l'autre se termine, et il le contourne là aussi lorsque cela coûte peu). La sortie
@@ -1132,6 +1133,33 @@ laquelle elle mène, deux raccords l'un au-dessus de l'autre avec leurs orifices
 les côtés). Le panneau des messages saute à un point de connexion du
 fil ou du câble, et la vue 3D montre une note rouge avec la raison à chacune de ses
 extrémités à la place du parcours.
+
+Sans goulotte, les fils et câbles fins sont posés comme un faisceau. Une armoire sans
+goulottes sur sa plaque de montage et sans chemins de routage, et une salle sans
+chemins de câbles ni chemins de routage, n'ont rien où les poser : là, un fil ou un
+câble pas plus épais qu'un quart de cellule de la grille de routage (6 mm dans une
+armoire, 12 mm dans une salle) qui suit le même chemin qu'un autre posé avant lui le
+rejoint et passe avec lui par les mêmes cellules, lié à lui par des colliers de
+serrage. Un pas le long d'un tel faisceau coûte à peine plus qu'un pas dans une
+goulotte, de sorte que les fils suivants suivent les premiers et bifurquent là où leurs
+chemins se séparent ; un parcours entre dans un faisceau le long de celui-ci et le quitte
+le long de celui-ci, jamais à travers lui. Un faisceau a la place de tous ses fils (il
+garde la moitié de son épaisseur libre de tout, comme un parcours seul), ne devient pas
+plus épais qu'une cellule et un tiers et ne contient pas de classes qui se tiennent à
+distance (puissance et signaux) ; les conducteurs plus épais et les tuyaux ne sont liés
+à rien et gardent leur propre chemin. Dans une armoire, un pas le long de la plaque de
+montage (son fond) et le long de ses parois latérales coûte un cinquième d'un pas dans
+l'air devant les appareils : les fils et câbles restent au fond et sur les côtés là où
+leurs extrémités et leurs rayons de courbure le permettent. Les distances et les rayons
+de courbure sont ceux de tout parcours. La vue 3D pose les fils d'un faisceau sur des
+voies en carré, autant qu'il en passe en même temps (celui qui le quitte libère sa voie
+pour le suivant) ; un fil garde sa place dans les coins du faisceau, se trouve du côté
+où il le quitte et vient sur sa voie depuis son point de connexion par un tronçon
+oblique derrière son embout. Les colliers de serrage sont dessinés autour du faisceau,
+hors de ses courbes et à 150 mm au plus les uns des autres (300 mm dans une salle) ; la
+liste des faisceaux donne leur nombre par faisceau (*Colliers de serrage*),
+`list_routing` sous `cable_ties`. Les armoires et les salles avec goulottes sont
+routées comme avant.
 
 Le routage travaille sur une grille (25 mm dans une armoire, 50 mm dans une salle) ;
 un point de connexion se trouve là où il se trouve. La vue 3D dessine un parcours tout

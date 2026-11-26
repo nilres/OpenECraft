@@ -1249,10 +1249,12 @@ impl Editor {
             (l.wire, l.which, R::from_points(min, min + p(size.x, size.y)))
         }).collect();
         // Connection points and wire ends off the grid are invisible grid lines.
-        let placing = match self.tool {
+        // A symbol dragged in snaps by itself, also while a place tool is in use (it is
+        // still hovered in the frame of the release).
+        let placing = resp.dnd_hover_payload::<PlacePayload>().map(|pl| (pl.symbol, false)).or(match self.tool {
             Tool::Place(key) => Some((key, true)),
-            _ => resp.dnd_hover_payload::<PlacePayload>().or_else(|| crate::dropped::<PlacePayload>(&resp)).map(|pl| (pl.symbol, false)),
-        };
+            _ => None,
+        });
         let drop_hover = resp.dnd_hover_payload::<PlacePayload>().is_some() || resp.dnd_hover_payload::<PartDrag>().is_some();
         let needs_snap = !self.tool.is_review() && (self.tool != Tool::Select || resp.clicked_by(PointerButton::Primary) || drop_hover);
         let snapped = if needs_snap {
@@ -1399,12 +1401,13 @@ impl Editor {
             }
         }
         if let Some(w) = world {
-            if let (Some(sn), true) = (snapped, editable) {
+            let placement_drag = resp.dnd_hover_payload::<PlacePayload>().is_some()
+                || resp.dnd_hover_payload::<PartDrag>().is_some();
+            // While something is dragged in, only it is previewed, not the tool.
+            if let (Some(sn), true, false) = (snapped, editable, placement_drag) {
                 let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
                 self.previews(&mut g, prj, idx, page_i, w, sn);
             }
-            let placement_drag = resp.dnd_hover_payload::<PlacePayload>().is_some()
-                || resp.dnd_hover_payload::<PartDrag>().is_some();
             if (self.tool != Tool::Select || self.full_crosshair || placement_drag)
                 && (editable || self.tool.is_review() || self.tool == Tool::Select)
             {
@@ -1896,14 +1899,30 @@ impl Editor {
     /// names the part to assign to it.
     pub fn place_part_at(&mut self, prj: &mut Project, page_i: usize, symbol: &'static str, pins: Vec<String>, number: &str, at: P) -> CanvasOutput {
         let mut out = CanvasOutput::default();
-        self.set_tool(Tool::Place(symbol));
+        let payload = PlacePayload { symbol, tag: String::new(), label: String::new(), pins };
+        self.drop_at(prj, page_i, &payload, Some(number), at, &mut out);
+        out
+    }
+
+    /// Places exactly one symbol dragged onto the page at `at` (unturned, with the tag,
+    /// label and connection points of the payload and the part `number`); the tool in
+    /// use and its placement settings stay as they were.
+    fn drop_at(&mut self, prj: &mut Project, page_i: usize, pl: &PlacePayload, number: Option<&str>, at: P, out: &mut CanvasOutput) {
+        let tool = self.tool.clone();
+        let kept = (self.place_tag.take(), self.place_once.take(), self.place_part.take(), self.place_rot, self.place_mirror);
+        // A symbol without a device (Insert center) gets its tag as when placed by click.
+        self.place_tag = (!pl.tag.is_empty()).then(|| pl.tag.clone());
+        self.place_once = Some((pl.label.clone(), pl.pins.clone()));
+        self.place_part = number.map(str::to_string);
         self.place_rot = 0;
         self.place_mirror = false;
-        self.place_tag = None;
-        self.place_once = Some((String::new(), pins));
-        self.place_part = Some(number.to_string());
-        self.place_at(prj, page_i, symbol, at, &mut out);
-        out
+        self.place_at(prj, page_i, pl.symbol, at, out);
+        (self.place_tag, self.place_once, self.place_part, self.place_rot, self.place_mirror) = kept;
+        self.tool = tool;
+        self.selection.clear();
+        if self.tool == Tool::Select {
+            self.selection.extend(out.placed);
+        }
     }
 
     fn place_at(&mut self, prj: &mut Project, page_i: usize, key: &str, sn: P, out: &mut CanvasOutput) {
@@ -2093,13 +2112,7 @@ impl Editor {
             return;
         }
         if let (Some(sn), Some(pl)) = (snapped, crate::dropped::<PlacePayload>(resp)) {
-            self.set_tool(Tool::Place(pl.symbol));
-            self.place_rot = 0;
-            self.place_mirror = false;
-            // A symbol without a device (Insert center) gets its tag as when placed by click.
-            self.place_tag = (!pl.tag.is_empty()).then(|| pl.tag.clone());
-            self.place_once = Some((pl.label.clone(), pl.pins.clone()));
-            self.place_at(prj, page_i, pl.symbol, sn, out);
+            self.drop_at(prj, page_i, &pl, None, sn, out);
             return;
         }
         let click = resp.clicked_by(PointerButton::Primary).then_some(snapped).flatten().or_else(|| self.typed.take());
@@ -2136,11 +2149,13 @@ impl Editor {
                         Some(a) => {
                             let ends_on_connection = Self::is_connection(&prj.symbol_table(), &prj.pages[page_i], sn);
                             let path = self.wire_path(prj, &prj.pages[page_i], a, sn);
+                            let before = routing::shapes(&prj.pages[page_i]);
                             for seg in path.windows(2) {
                                 let id = prj.new_id();
                                 prj.pages[page_i].wires.push(Wire { id, a: seg[0], b: seg[1], ..Default::default() });
                             }
                             ops::cleanup_wires(&mut prj.pages[page_i]);
+                            routing::join_changed(&prj.symbol_table(), &mut prj.pages[page_i], &before);
                             self.route_cache = None;
                             self.wire_start = if ends_on_connection { None } else { Some(sn) };
                         }
@@ -2337,8 +2352,8 @@ impl Editor {
                         self.window_select(prj, page_i, rect, (start, end), shift);
                     }
                 }
-                Drag::Move { applied, .. } => {
-                    ops::cleanup_wires(&mut prj.pages[page_i]);
+                Drag::Move { applied, moving, .. } => {
+                    moving.finish(prj, page_i);
                     let pg = &prj.pages[page_i];
                     let moved_symbols = pg.symbols.iter().any(|s| self.selection.contains(&s.id)) || pg.junctions.iter().any(|j| self.selection.contains(&j.id));
                     if self.autoconnect && moved_symbols && (applied.x != 0.0 || applied.y != 0.0) {
@@ -2348,7 +2363,7 @@ impl Editor {
                         }
                     }
                 }
-                Drag::End { .. } => ops::cleanup_wires(&mut prj.pages[page_i]),
+                Drag::End { moving, .. } => { moving.finish(prj, page_i); }
                 Drag::Prop { .. } | Drag::Grip { .. } | Drag::Turn { .. } | Drag::Bend { .. } | Drag::None => {}
             }
         }
