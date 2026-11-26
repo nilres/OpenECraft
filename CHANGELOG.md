@@ -8,6 +8,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Devices on the door shown in 3D:** *Show in 3D view* centres the view on a device
   on the door where the opened door holds it, also in the mounting assistant. Fixed:
   the door opened, but the view was centred on where the device is with the door closed.
+- **Door opening angle and orbit direction of the 3D view:** the door of an enclosure
+  opens as far as chosen, from 90° to 180°, beside *Open door* / *Close door* and in
+  *File › Settings › Appearance*, so that it no longer blocks the view onto the
+  mounting plate. The settings also invert the direction a drag orbits the 3D view,
+  to the side and up or down. Both are kept like the other user settings
+  ([user interface](docs/user-interface.md)).
+- **Buttons for the view settings in the 3D view:** a row of buttons at the top of the
+  3D view switches the settings of *Layout space › Show* at a click: wires, duct fill,
+  heat map, open cable ducts, walls in front, line-up and all enclosures, for a room
+  also the ceiling, open walls, installation zones, PV modules and the whole building.
+  *File › Settings › Appearance › View buttons* hides the row. The *Show* group folded
+  in a narrow ribbon has an eye as its icon instead of the wire symbol of *Wires*.
 - **Typing the length of a rail or duct:** the length of a mounting rail or cable duct
   and of a wall in the panel layout is applied when the field is left or Enter is
   pressed, no longer at every key, and a length below the cross-section no longer turns

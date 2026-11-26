@@ -131,6 +131,8 @@ struct ShellState {
     sides: crate::dock::Sides,
     /// Opacity of the walls in front in the 3D view of the panel layout, 0 … 1.
     wall_opacity: f32,
+    /// Opening angle of the door and orbit direction of the 3D view.
+    view_3d: crate::panel_ui::Prefs3d,
     /// The title bar shows the frame time and the frames per second.
     frame_stats: bool,
     /// Extend the schematic placement crosshair to the edges of the canvas.
@@ -167,6 +169,7 @@ impl Default for ShellState {
             placement: crate::dock::Placement::default(),
             sides: crate::dock::Sides::default(),
             wall_opacity: crate::panel_ui::WALL_OPACITY,
+            view_3d: crate::panel_ui::Prefs3d::default(),
             frame_stats: false,
             full_crosshair: false,
             gpu_3d: true,
@@ -692,6 +695,7 @@ impl App {
             whats_new,
             dark: cc.egui_ctx.theme() == egui::Theme::Dark,
         };
+        app.panel_ui.prefs_3d = app.shell.view_3d;
         crate::style::apply(&cc.egui_ctx);
         app.remote.attach(&cc.egui_ctx);
         // A split project: its files as the last run read them tell what another
@@ -1388,6 +1392,7 @@ impl eframe::App for App {
         stored::set(storage, RECENT_KEY, &self.recent);
         let mut shell = self.shell.clone();
         shell.dirty = self.session.dirty();
+        shell.view_3d = self.panel_ui.prefs_3d;
         shell.workspace = self.workspace.key().to_string();
         shell.docks = self.docks.iter().map(|(w, t)| (w.key().to_string(), crate::dock::to_json(t))).collect();
         stored::set(storage, UI_KEY, &shell);

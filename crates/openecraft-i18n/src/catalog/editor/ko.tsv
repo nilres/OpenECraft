@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	케이블이 없는 모든 연결에 버스 유형의 케이블
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	외함을 나가면서 빈 글랜드를 찾지 못한 케이블은 크기에 맞는 글랜드를 받습니다: 실내 기기는 천장면, 필드 또는 벽걸이 외함은 바닥면
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	인접 외함 측벽의 같은 위치에 있는 같은 크기의 컷아웃: 함께 케이블 통로를 이룹니다
+A drag to the side turns the 3D view the other way round	옆으로 끌면 3D 보기가 반대 방향으로 회전합니다
+A drag up or down tilts the 3D view the other way round	위아래로 끌면 3D 보기가 반대 방향으로 기울어집니다
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	폴더에 같은 이름의 파일이 있으면 새 버전이 생성되고(체크 아웃 후 체크 인), 그렇지 않으면 파일이 추가됩니다
 A folder with one small file per page, device and part instead of one project file, for version control such as git	하나의 프로젝트 파일 대신 페이지, 장치 및 부품마다 작은 파일이 하나 있는 폴더, git과 같은 버전 관리용
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	모든 페이지에 걸친 큰 텍스트(예: 개정 준비 중 '초안'). 자리 표시자 사용 가능, 비어 있음 = 없음.
@@ -615,6 +617,7 @@ Door NC data (DXF)	도어 NC 데이터(DXF)
 Door clearance	도어 이격 거리
 Door cutouts (CSV)	도어 컷아웃(CSV)
 Door hinge	도어 힌지
+Door opening angle	문 열림 각도
 Door: {} devices, {} cutouts	도어: 장치 {}개, 컷아웃 {}개
 Dot	점
 Double door	양문형
@@ -919,6 +922,7 @@ Hoses and pipes	호스 및 배관
 Hoses rated below it are errors; 0 = not checked	정격이 이보다 낮은 호스는 오류입니다. 0 = 검사 안 함
 How far inside the outer walls	외벽 안쪽 거리
 How far outside the outer walls	외벽 바깥쪽 거리
+How far the enclosure door opens in the 3D view of the panel layout	패널 레이아웃의 3D 보기에서 함체 문이 열리는 정도
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	문짝이 열리는 방식: 왼쪽 또는 오른쪽 가장자리에 경첩(실내에서 볼 때), 실내 쪽 또는 바깥쪽으로 열림, 또는 벽을 따라 미닫이
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	이 끝단에서 전선을 마감하는 방식. 기본값은 연결점 또는 그 장치에 선택한 것, 없으면 레이아웃의 페룰 설정을 따릅니다
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	전선이 교차하는 전선을 넘는 방식, T 연결을 표시하는 방식, 이동한 항목의 연결을 다시 배선할지 여부
@@ -998,7 +1002,9 @@ Interruption points refer to	중단점의 참조 대상
 Interval	간격
 Introduction	소개
 Invalid value	잘못된 값
+Invert horizontally	가로 방향 반전
 Invert the direction of panning by scrolling	스크롤 이동 방향 반전
+Invert vertically	세로 방향 반전
 Inverter or charge controller (devices with PV input data)	인버터 또는 충전 컨트롤러 (태양광 입력 데이터가 있는 장치)
 It takes the place of the bundled template of this name.	이 이름의 기본 제공 템플릿을 대신합니다.
 Items copied: {}	복사한 요소: {}
@@ -1424,6 +1430,7 @@ Opened {}	{} 열림
 Opened {} from Vault (version {})	Vault에서 {}을(를) 열었습니다(버전 {})
 Opened {} from the project server	프로젝트 서버에서 {} 열림
 Opening	개구부
+Opening angle of the door in the 3D view	3D 보기에서 문이 열리는 각도
 Opening in the mounting plate / door: click two corners (round: in the properties)	장착 플레이트 / 도어의 개구부: 두 모서리를 클릭하세요(원형: 속성에서)
 Opening {}…	{} 여는 중…
 Opens	열림 방식
@@ -1433,6 +1440,7 @@ Open…	열기…
 Operations / year	동작 횟수 / 년
 Option	옵션
 Options	옵션
+Orbit direction	회전 방향
 Orbit the 3D view	3D 보기 회전
 Ordinary cable	일반 케이블
 Orientation	방향
@@ -1966,6 +1974,7 @@ Short-circuit currents	단락 전류
 Short-circuit power of the network	계통의 단락 용량
 Shortest profile	최단 프로파일
 Show	표시
+Show a row of buttons for the view settings at the top of the 3D view	3D 보기 위쪽에 보기 설정 버튼 줄 표시
 Show all enclosures side by side at their places in the room	모든 외함을 공간 내 해당 위치에 나란히 표시
 Show as list	목록으로 표시
 Show as tiles	타일로 표시
@@ -2304,6 +2313,7 @@ Vertical position	수직 위치
 Vertically	세로
 Via:	경유:
 View	보기
+View buttons	보기 버튼
 Visible	표시
 Voltage (line to line)	전압(선간)
 Voltage at maximum power	최대 전력 시 전압
@@ -2367,6 +2377,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	연결의 전선
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	전선도 플레이트 위의 케이블 덕트만 사용하는 대신 장애물을 고려한 3D 경로를 사용합니다
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	고유 색상이나 단면적이 없는 전선은 연결의 전위에서 값을 가져옵니다. 케이블 심선은 케이블의 값을 유지합니다.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	전선, 열린 케이블 덕트, 앞쪽 벽 및 레이아웃 공간 › 표시 의 다른 설정을 한 번의 클릭으로
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	배선 작업 도우미: 3D 보기와 진행률이 포함된 전선 체크리스트(태블릿: #wiring으로 웹 앱 열기)
 Wiring space between devices and ducts	장치와 덕트 사이의 배선 공간
 With a user account of the server; replaces the access token	서버의 사용자 계정으로. 액세스 토큰을 대체합니다

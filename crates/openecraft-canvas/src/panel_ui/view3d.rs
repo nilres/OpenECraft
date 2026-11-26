@@ -11,7 +11,7 @@ use crate::commands::Cmd;
 use crate::gestures::{MouseAction, Role};
 use super::routing_ui::{ControlDrag, RouteMenu, RouteRef, PICK};
 use super::scene3d::{Scene3d, EQUIPMENT, ON_TOP};
-use super::{PanelUi, RoofTarget, Tool, DOOR_OPEN_ANGLE, OUTER_WALLS};
+use super::{PanelUi, RoofTarget, Tool, DOOR_ANGLES, OUTER_WALLS};
 use openecraft_core::geom::p;
 use openecraft_core::model::Project;
 use openecraft_core::panel::{self, ItemKind, SitePose};
@@ -26,6 +26,10 @@ impl PanelUi {
         let text = if self.door_open { tr("Close door") } else { tr("Open door") };
         if ui.button(text).on_hover_text(tr("Swing the enclosure door open or shut (door devices and their wires move with it)")).clicked() {
             self.door_open = !self.door_open;
+        }
+        if self.door_open {
+            let r = ui.add(egui::DragValue::new(&mut self.prefs_3d.door_angle).speed(1.0).range(DOOR_ANGLES).suffix(" °"));
+            r.on_hover_text(tr("Opening angle of the door in the 3D view"));
         }
     }
 
@@ -113,7 +117,7 @@ impl PanelUi {
         let (resp, painter) = ui.allocate_painter(ui.available_size(), Sense::click_and_drag());
         let rect = resp.rect;
         let dt = ui.input(|i| i.stable_dt).min(0.1);
-        let target = if self.door_open { DOOR_OPEN_ANGLE } else { 0.0 };
+        let target = if self.door_open { self.prefs_3d.door_open_angle() } else { 0.0 };
         if (self.door_angle - target).abs() > 1e-3 {
             let step = dt * 2.5;
             self.door_angle += (target - self.door_angle).clamp(-step, step);
@@ -154,7 +158,7 @@ impl PanelUi {
         let drag = if gesture.touch || self.control_drag.is_some() { None } else { gestures.drag_of(&[MouseAction::Pan3d, MouseAction::Orbit3d], &resp, mods) };
         match drag {
             Some(MouseAction::Pan3d) => nav3d::pan(cam, resp.drag_delta(), f),
-            Some(_) => nav3d::orbit(cam, resp.drag_delta()),
+            Some(_) => nav3d::orbit(cam, self.prefs_3d.orbit_drag(resp.drag_delta())),
             None => {}
         }
         moved |= drag.is_some();
@@ -250,7 +254,7 @@ impl PanelUi {
         // While the wires, cables and tubes are laid out on another thread: how far it is.
         if let Some(done) = self.layouts.progress() {
             let width = 300.0;
-            let at = Rect::from_min_size(Pos2::new(rect.center().x - width / 2.0, rect.top() + 12.0), vec2(width, 60.0));
+            let at = Rect::from_min_size(Pos2::new(rect.center().x - width / 2.0, rect.top() + 48.0), vec2(width, 60.0));
             let mut boxed = ui.new_child(egui::UiBuilder::new().max_rect(at));
             egui::Frame::popup(boxed.style()).show(&mut boxed, |ui| {
                 ui.set_width(width - 20.0);
@@ -258,6 +262,9 @@ impl PanelUi {
                 ui.add(egui::ProgressBar::new(done).show_percentage().animate(true));
             });
             ui.ctx().request_repaint_after(std::time::Duration::from_millis(100));
+        }
+        if self.prefs_3d.view_bar {
+            self.view_bar(ui, rect);
         }
         let mut view = self.view_cube(ui, rect, resp.id, cam, fitted);
         view_cube::axes(&painter, rect.left_bottom() + vec2(34.0, -58.0), cam.yaw, cam.pitch, 20.0);
@@ -494,6 +501,32 @@ impl PanelUi {
         }
     }
 
+    /// The row of buttons at the top middle of `rect` that switch the view settings of
+    /// Layout space › Show, as the ribbon does.
+    fn view_bar(&mut self, ui: &mut egui::Ui, rect: Rect) {
+        let cmds = self.view_bar_commands();
+        let size = ui.spacing().interact_size.y;
+        let gap = 2.0;
+        let pad = 4.0;
+        let width = cmds.len() as f32 * (size + gap) - gap + 2.0 * pad;
+        let at = Rect::from_center_size(Pos2::new(rect.center().x, rect.top() + 8.0 + size / 2.0 + pad), vec2(width, size + 2.0 * pad));
+        let visuals = ui.visuals();
+        ui.painter().rect(at, 6.0, visuals.window_fill.gamma_multiply(0.85), visuals.window_stroke, egui::StrokeKind::Inside);
+        let mut bar = ui.new_child(egui::UiBuilder::new().max_rect(at.shrink(pad)).layout(egui::Layout::left_to_right(egui::Align::Center)));
+        bar.spacing_mut().item_spacing.x = gap;
+        for &cmd in cmds {
+            let def = crate::commands::def(cmd);
+            let on = self.view_setting(cmd).unwrap_or(false);
+            let mut r = openecraft_ui::icons::toggle_button(&mut bar, def.icon, tr(def.title), on);
+            if !def.tip.is_empty() {
+                r = r.on_hover_text(tr(def.tip));
+            }
+            if r.clicked() {
+                self.toggle_view_setting(cmd);
+            }
+        }
+    }
+
     /// The view cube in the top right corner of `rect`: looking from a side, an edge or a
     /// corner, quarter turns, the starting view and fitting (turns start from where a
     /// glide is heading); gives the view to glide to. A drag on it orbits at once.
@@ -509,7 +542,7 @@ impl PanelUi {
             Action::Turn(q) => Some(Orbit { yaw: vec3::quarter_turn(aim.yaw, q), ..aim }),
             Action::Orbit(dl) => {
                 if let Some(c) = self.cam.as_mut() {
-                    nav3d::orbit(c, dl);
+                    nav3d::orbit(c, self.prefs_3d.orbit_drag(dl));
                 }
                 self.cam_goal = None;
                 ui.ctx().request_repaint();

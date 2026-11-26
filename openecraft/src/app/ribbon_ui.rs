@@ -211,17 +211,17 @@ impl App {
     /// widths are measured when a group is drawn and kept for the next frames.
     fn ribbon_groups(&mut self, ui: &mut egui::Ui, available: f32) {
         let tab = ribbon::tab(self.ribbon.tab);
-        let mut groups: Vec<(String, Vec<Item>)> = tab
+        let mut groups: Vec<(String, Vec<Item>, Option<Icon>)> = tab
             .groups
             .iter()
             .filter(|g| !self.ribbon.custom.is_hidden(tab, g))
-            .map(|g| (tr(g.title).to_string(), g.items.to_vec()))
+            .map(|g| (tr(g.title).to_string(), g.items.to_vec(), g.icon))
             .collect();
         for (_, g, cmds) in self.ribbon.custom.groups_of(tab) {
-            groups.push((g.title.clone(), cmds.into_iter().map(Item::Small).collect()));
+            groups.push((g.title.clone(), cmds.into_iter().map(Item::Small).collect(), None));
         }
         let tips: Vec<char> = if self.ribbon.tips == Some(Tips::Commands(tab.id)) {
-            let titles: Vec<String> = groups.iter().flat_map(|(_, items)| items.iter().map(|i| tr(commands::def(i.cmd()).title).to_string())).collect();
+            let titles: Vec<String> = groups.iter().flat_map(|(_, items, _)| items.iter().map(|i| tr(commands::def(i.cmd()).title).to_string())).collect();
             ribbon::key_tips(&titles, &[])
         } else {
             Vec::new()
@@ -232,20 +232,20 @@ impl App {
         let plugins_key = egui::Id::unique(("ribbon_plugin_width", size));
         let extra = if tab.id == TabId::Plugins { measured(ui, plugins_key).unwrap_or(0.0) } else { 0.0 };
         // A group not measured yet is drawn whole once.
-        let full: Vec<f32> = groups.iter().map(|(t, _)| measured(ui, width_key(t, false)).unwrap_or(0.0)).collect();
-        let short: Vec<f32> = groups.iter().map(|(t, _)| measured(ui, width_key(t, true)).unwrap_or(LARGE_W + 12.0)).collect();
+        let full: Vec<f32> = groups.iter().map(|(t, ..)| measured(ui, width_key(t, false)).unwrap_or(0.0)).collect();
+        let short: Vec<f32> = groups.iter().map(|(t, ..)| measured(ui, width_key(t, true)).unwrap_or(LARGE_W + 12.0)).collect();
         if full.contains(&0.0) {
             ui.ctx().request_repaint();
         }
         let collapsed = ribbon::collapsed(&full, &short, available - extra);
         let mut k = 0;
-        for ((title, items), short) in groups.into_iter().zip(collapsed) {
+        for ((title, items, icon), short) in groups.into_iter().zip(collapsed) {
             let n = items.len();
             let tip_slice: Vec<char> = tips.get(k..k + n).map(|s| s.to_vec()).unwrap_or_default();
             k += n;
             let x = ui.cursor().min.x;
             if short {
-                self.collapsed_group(ui, &title, &items);
+                self.collapsed_group(ui, &title, &items, icon);
             } else {
                 self.ribbon_group(ui, &title, &items, &tip_slice);
             }
@@ -261,12 +261,14 @@ impl App {
     }
 
     /// A group that does not fit: one button with the commands of the group in its menu.
-    fn collapsed_group(&mut self, ui: &mut egui::Ui, title: &str, items: &[Item]) {
+    fn collapsed_group(&mut self, ui: &mut egui::Ui, title: &str, items: &[Item], own_icon: Option<Icon>) {
         ui.vertical(|ui| {
             // A folded group shows the tool of it that is on (Draw › Door), so that the
             // active tool stays visible.
             let active = items.iter().map(|i| i.cmd()).find(|&c| self.cmd_checked(c) == Some(true));
-            let icon = active.or(items.first().map(|i| i.cmd())).map(|c| commands::def(c).icon).unwrap_or(Icon::Dots);
+            // A group of view settings has an icon of its own: the setting on would say
+            // little of the group (Show › Wires).
+            let icon = own_icon.or_else(|| active.or(items.first().map(|i| i.cmd())).map(|c| commands::def(c).icon)).unwrap_or(Icon::Dots);
             let tip = match active {
                 Some(c) => tr_fmt!("{}: {} is on", title, tr(commands::def(c).title)),
                 None => title.to_string(),

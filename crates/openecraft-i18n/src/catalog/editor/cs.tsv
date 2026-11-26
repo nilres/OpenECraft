@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Kabel typu sběrnice pro každé spojení bez kabelu
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Kabel, který opouští skříň a nenajde volnou vývodku, dostane vývodku své velikosti: ve stropě pro přístroj v místnosti, ve dně pro pole nebo skříň zavěšenou na stěně
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Výřez stejné velikosti na stejném místě v boční stěně souseda: společně tvoří kabelovou průchodku
+A drag to the side turns the 3D view the other way round	Tažení do strany otáčí 3D pohled opačně
+A drag up or down tilts the 3D view the other way round	Tažení nahoru nebo dolů naklání 3D pohled opačně
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Soubor se stejným názvem ve složce dostane novou verzi (rezervace a vrácení se změnami), jinak se soubor přidá
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Složka s jedním malým souborem pro každou stránku, přístroj a artikl místo jednoho souboru projektu, pro správu verzí jako git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Velký text přes každou stránku, např. NÁVRH, když se připravuje revize; texty přijímají zástupné symboly, prázdné: žádné razítko.
@@ -623,6 +625,7 @@ Door NC data (DXF)	Data NC dveří (DXF)
 Door clearance	Volný prostor u dveří
 Door cutouts (CSV)	Výřezy ve dveřích (CSV)
 Door hinge	Závěsy dveří
+Door opening angle	Úhel otevření dveří
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
 Double door	Dvoukřídlé dveře
@@ -931,6 +934,7 @@ Hoses and pipes	Hadice a potrubí
 Hoses rated below it are errors; 0 = not checked	Hadice dimenzované na nižší tlak jsou chyby; 0 = nekontroluje se
 How far inside the outer walls	Jak daleko uvnitř obvodových zdí
 How far outside the outer walls	Jak daleko vně obvodových zdí
+How far the enclosure door opens in the 3D view of the panel layout	Jak daleko se otevírají dveře skříně ve 3D pohledu rozvržení rozvaděče
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Jak se otevírá křídlo: závěsy na levé nebo pravé hraně (při pohledu z místnosti), dovnitř nebo ven z místnosti, nebo posuvně podél stěny
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Jak je vodič na tomto konci zakončen; výchozí je volba pro připojovací bod nebo jeho zařízení, jinak podle nastavení dutinek v rozvržení
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Jak vodiče přeskakují křížené vodiče, jak se značí spojení T a zda přesunuté prvky vedou svá spojení znovu
@@ -1011,7 +1015,9 @@ Interruption points refer to	Body přerušení odkazují na
 Interval	Interval
 Introduction	Úvod
 Invalid value	Neplatná hodnota
+Invert horizontally	Obrátit vodorovně
 Invert the direction of panning by scrolling	Obrátit směr posouvání pohledu
+Invert vertically	Obrátit svisle
 Inverter or charge controller (devices with PV input data)	Střídač nebo regulátor nabíjení (zařízení s daty FV vstupu)
 It takes the place of the bundled template of this name.	Nahradí dodávanou šablonu tohoto názvu.
 Items copied: {}	Zkopírované prvky: {}
@@ -1443,6 +1449,7 @@ Opened {}	Otevřeno: {}
 Opened {} from Vault (version {})	{} otevřeno z Vault (verze {})
 Opened {} from the project server	{} otevřen z projektového serveru
 Opening	Otvor
+Opening angle of the door in the 3D view	Úhel otevření dveří ve 3D pohledu
 Opening in the mounting plate / door: click two corners (round: in the properties)	Otvor v montážní desce / dveřích: klikněte na dva rohy (kruhový: ve vlastnostech)
 Opening {}…	Otevírání {}…
 Opens	Otevírání
@@ -1452,6 +1459,7 @@ Open…	Otevřít…
 Operations / year	Operace / rok
 Option	Volba
 Options	Volby
+Orbit direction	Směr otáčení
 Orbit the 3D view	Otáčet 3D pohled
 Ordinary cable	Běžný kabel
 Orientation	Orientace
@@ -1994,6 +2002,7 @@ Short-circuit currents	Zkratové proudy
 Short-circuit power of the network	Zkratový výkon sítě
 Shortest profile	Nejkratší profil
 Show	Zobrazit
+Show a row of buttons for the view settings at the top of the 3D view	Zobrazit řadu tlačítek pro nastavení zobrazení nahoře ve 3D pohledu
 Show all enclosures side by side at their places in the room	Zobrazit všechny skříně vedle sebe na jejich místech v místnosti
 Show as list	Zobrazit jako seznam
 Show as tiles	Zobrazit jako dlaždice
@@ -2334,6 +2343,7 @@ Vertical position	Svislá poloha
 Vertically	Svisle
 Via:	Přes:
 View	Zobrazení
+View buttons	Tlačítka zobrazení
 Visible	Viditelná
 Voltage (line to line)	Napětí (sdružené)
 Voltage at maximum power	Napětí při maximálním výkonu
@@ -2397,6 +2407,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Vodiče spojení
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Vodiče také použijí 3D trasy respektující překážky, místo pouze kabelových kanálů na desce
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Vodiče bez vlastní barvy nebo průřezu je převezmou z potenciálu svého spojení; žíly kabelů si ponechají hodnoty kabelu.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Vodiče, otevřené kabelové kanály, stěny vpředu a další nastavení Montážní prostor › Zobrazit jedním kliknutím
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Asistent zapojování: kontrolní seznam vodičů s 3D pohledem a postupem (tablet: otevřete webovou aplikaci s #wiring)
 Wiring space between devices and ducts	Prostor pro zapojení mezi přístroji a kanály
 With a user account of the server; replaces the access token	S uživatelským účtem serveru; nahrazuje přístupový token
