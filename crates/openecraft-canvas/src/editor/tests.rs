@@ -1388,3 +1388,61 @@ fn concealed_wire_selected_and_bent_as_one_item() {
     drag(&mut ed, &ctx, &mut reopened, 0, next, mid);
     assert_eq!(reopened.pages[0].wires[0].bend, None);
 }
+
+/// Drags a symbol from a list beside the page (Insert center, navigator) to `at` and
+/// releases it there.
+fn drop_symbol(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, payload: PlacePayload, at: Pos2) -> CanvasOutput {
+    let source = std::cell::Cell::new(Rect::NOTHING);
+    let paint = |ed: &mut Editor, prj: &mut Project, events: Vec<Event>| {
+        let idx = Index::build(prj);
+        let an = Analysis::build(prj);
+        let input = RawInput { screen_rect: Some(Rect::from_min_size(Pos2::ZERO, vec2(1200., 800.))), events, ..Default::default() };
+        let mut canvas = CanvasOutput::default();
+        let mut out = ctx.run_ui(input, |ui| {
+            egui::Panel::left("list").show(ui, |ui| {
+                source.set(ui.dnd_drag_source(ui.make_persistent_id("entry"), payload.clone(), |ui| ui.allocate_response(vec2(80., 20.), egui::Sense::click())).response.rect);
+            });
+            canvas = ed.ui(ui, prj, page, &idx, &an);
+        });
+        out.textures_delta.clear();
+        canvas
+    };
+    paint(ed, prj, vec![]);
+    let start = source.get().center();
+    paint(ed, prj, vec![Event::PointerMoved(start), button(start, true)]);
+    for i in 1..=10 {
+        paint(ed, prj, vec![Event::PointerMoved(start + (at - start) * i as f32 / 10.)]);
+    }
+    paint(ed, prj, vec![button(at, false)])
+}
+
+#[test]
+fn a_dropped_symbol_is_placed_once_and_the_tool_stays() {
+    let ctx = egui::Context::default();
+    let mut prj = demo_project();
+    let page = 1;
+    let payload = || PlacePayload { symbol: "term", tag: String::new(), label: String::new(), pins: Vec::new() };
+    let terminals = |prj: &Project| prj.pages[page].symbols.iter().filter(|s| s.sym == "term").count();
+    // Regression: the snapping took the released payload, so the drop placed nothing.
+    let mut ed = Editor::default();
+    let before = terminals(&prj);
+    let out = drop_symbol(&mut ed, &ctx, &mut prj, page, payload(), pos2(600., 400.));
+    assert_eq!(terminals(&prj), before + 1);
+    assert_eq!(ed.tool, Tool::Select);
+    assert_eq!(ed.selection, out.placed.into_iter().collect());
+    // Another tool stays in use with its settings; the drop is not turned like it.
+    for tool in [Tool::Wire, Tool::Place("coil")] {
+        let mut ed = Editor::default();
+        ed.set_tool(tool.clone());
+        ed.place_rot = 1;
+        let before = terminals(&prj);
+        let out = drop_symbol(&mut ed, &ctx, &mut prj, page, payload(), pos2(700., 300.));
+        let placed = out.placed.expect("dropped symbol placed");
+        assert_eq!(terminals(&prj), before + 1);
+        assert_eq!(prj.pages[page].symbols.iter().find(|s| s.id == placed).map(|s| s.rot), Some(0));
+        assert_eq!(ed.tool, tool);
+        assert_eq!(ed.place_rot, 1);
+        assert!(ed.place_once.is_none());
+        assert!(ed.selection.is_empty());
+    }
+}

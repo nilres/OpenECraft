@@ -567,6 +567,12 @@ pub struct PlacePayload {
     pub pins: Vec<String>,
 }
 
+/// What of type `T` is dropped onto `resp` this frame. egui takes the payload whatever
+/// its type, so it is only taken when it is a `T`, leaving another kind to its own check.
+fn released<T: std::any::Any + Send + Sync>(resp: &egui::Response) -> Option<std::sync::Arc<T>> {
+    egui::DragAndDrop::has_payload_of_type::<T>(&resp.ctx).then(|| resp.dnd_release_payload::<T>()).flatten()
+}
+
 fn crosshair_segments(rect: Rect, center: Pos2, full_canvas: bool) -> [[Pos2; 2]; 2] {
     let (left, right, top, bottom) = if full_canvas {
         (rect.left(), rect.right(), rect.top(), rect.bottom())
@@ -1249,10 +1255,12 @@ impl Editor {
             (l.wire, l.which, R::from_points(min, min + p(size.x, size.y)))
         }).collect();
         // Connection points and wire ends off the grid are invisible grid lines.
-        let placing = match self.tool {
+        // A symbol dragged in snaps by itself, also while a place tool is in use (it is
+        // still hovered in the frame of the release).
+        let placing = resp.dnd_hover_payload::<PlacePayload>().map(|pl| (pl.symbol, false)).or(match self.tool {
             Tool::Place(key) => Some((key, true)),
-            _ => resp.dnd_hover_payload::<PlacePayload>().or_else(|| resp.dnd_release_payload::<PlacePayload>()).map(|pl| (pl.symbol, false)),
-        };
+            _ => None,
+        });
         let drop_hover = resp.dnd_hover_payload::<PlacePayload>().is_some() || resp.dnd_hover_payload::<PartDrag>().is_some();
         let needs_snap = !self.tool.is_review() && (self.tool != Tool::Select || resp.clicked_by(PointerButton::Primary) || drop_hover);
         let snapped = if needs_snap {
@@ -1309,7 +1317,7 @@ impl Editor {
             // A part dragged onto a released, locked or generated page: say why it
             // cannot be dropped here instead of ignoring it.
             ui.ctx().set_cursor_icon(egui::CursorIcon::NoDrop);
-            if resp.dnd_release_payload::<PartDrag>().is_some() {
+            if released::<PartDrag>(&resp).is_some() {
                 out.message = Some(tr("Parts can only be dropped onto pages that can be changed; this one is released, locked or generated").to_string());
             }
         } else if self.tool == Tool::Select {
@@ -1399,12 +1407,13 @@ impl Editor {
             }
         }
         if let Some(w) = world {
-            if let (Some(sn), true) = (snapped, editable) {
+            let placement_drag = resp.dnd_hover_payload::<PlacePayload>().is_some()
+                || resp.dnd_hover_payload::<PartDrag>().is_some();
+            // While something is dragged in, only it is previewed, not the tool.
+            if let (Some(sn), true, false) = (snapped, editable, placement_drag) {
                 let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
                 self.previews(&mut g, prj, idx, page_i, w, sn);
             }
-            let placement_drag = resp.dnd_hover_payload::<PlacePayload>().is_some()
-                || resp.dnd_hover_payload::<PartDrag>().is_some();
             if (self.tool != Tool::Select || self.full_crosshair || placement_drag)
                 && (editable || self.tool.is_review() || self.tool == Tool::Select)
             {
@@ -1896,14 +1905,30 @@ impl Editor {
     /// names the part to assign to it.
     pub fn place_part_at(&mut self, prj: &mut Project, page_i: usize, symbol: &'static str, pins: Vec<String>, number: &str, at: P) -> CanvasOutput {
         let mut out = CanvasOutput::default();
-        self.set_tool(Tool::Place(symbol));
+        let payload = PlacePayload { symbol, tag: String::new(), label: String::new(), pins };
+        self.drop_at(prj, page_i, &payload, Some(number), at, &mut out);
+        out
+    }
+
+    /// Places exactly one symbol dragged onto the page at `at` (unturned, with the tag,
+    /// label and connection points of the payload and the part `number`); the tool in
+    /// use and its placement settings stay as they were.
+    fn drop_at(&mut self, prj: &mut Project, page_i: usize, pl: &PlacePayload, number: Option<&str>, at: P, out: &mut CanvasOutput) {
+        let tool = self.tool.clone();
+        let kept = (self.place_tag.take(), self.place_once.take(), self.place_part.take(), self.place_rot, self.place_mirror);
+        // A symbol without a device (Insert center) gets its tag as when placed by click.
+        self.place_tag = (!pl.tag.is_empty()).then(|| pl.tag.clone());
+        self.place_once = Some((pl.label.clone(), pl.pins.clone()));
+        self.place_part = number.map(str::to_string);
         self.place_rot = 0;
         self.place_mirror = false;
-        self.place_tag = None;
-        self.place_once = Some((String::new(), pins));
-        self.place_part = Some(number.to_string());
-        self.place_at(prj, page_i, symbol, at, &mut out);
-        out
+        self.place_at(prj, page_i, pl.symbol, at, out);
+        (self.place_tag, self.place_once, self.place_part, self.place_rot, self.place_mirror) = kept;
+        self.tool = tool;
+        self.selection.clear();
+        if self.tool == Tool::Select {
+            self.selection.extend(out.placed);
+        }
     }
 
     fn place_at(&mut self, prj: &mut Project, page_i: usize, key: &str, sn: P, out: &mut CanvasOutput) {
@@ -2088,18 +2113,12 @@ impl Editor {
         }
         // A part from the parts management or the data portal: the application imports
         // it when needed and places it.
-        if let (Some(sn), Some(pl)) = (snapped, resp.dnd_release_payload::<PartDrag>()) {
+        if let (Some(sn), Some(pl)) = (snapped, released::<PartDrag>(resp)) {
             out.dropped_part = Some((pl.number.clone(), sn));
             return;
         }
-        if let (Some(sn), Some(pl)) = (snapped, resp.dnd_release_payload::<PlacePayload>()) {
-            self.set_tool(Tool::Place(pl.symbol));
-            self.place_rot = 0;
-            self.place_mirror = false;
-            // A symbol without a device (Insert center) gets its tag as when placed by click.
-            self.place_tag = (!pl.tag.is_empty()).then(|| pl.tag.clone());
-            self.place_once = Some((pl.label.clone(), pl.pins.clone()));
-            self.place_at(prj, page_i, pl.symbol, sn, out);
+        if let (Some(sn), Some(pl)) = (snapped, released::<PlacePayload>(resp)) {
+            self.drop_at(prj, page_i, &pl, None, sn, out);
             return;
         }
         let click = resp.clicked_by(PointerButton::Primary).then_some(snapped).flatten().or_else(|| self.typed.take());

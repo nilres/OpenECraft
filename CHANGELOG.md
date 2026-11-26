@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Drag and drop from the Insert center:** a symbol, device or unplaced function
+  dragged from the Insert center or the navigator onto a schematic page is placed there
+  once, and the tool in use stays (a click still starts a place tool). Symbols can also
+  be dragged from the tile view. Fixed: dropping a symbol placed nothing.
 - **What's new and version history:** at the first start after an update the editor
   shows the new features of the versions since the one used last in the window *What's
   new in OpenECraft*. *File › Help › Version history* (also on the Help tab) shows the
