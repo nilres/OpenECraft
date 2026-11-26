@@ -442,15 +442,41 @@ pub fn sheet_holes(e: &Enclosure, parts: &[Part], s: impl Into<Sheet>) -> Vec<Ho
     v
 }
 
-/// The openings of a sheet ([`openings`]) in its own coordinates, as [`sheet_holes`].
+/// The openings of a sheet ([`openings`]) in its own coordinates, as [`sheet_holes`]. An
+/// opening reaching over the joint between two leaves: a straight rectangle is cut on
+/// each leaf as far as it reaches onto it; a round or turned one stays on the leaf under
+/// its middle, reaching over its edge ([`over_edge`]).
 pub fn sheet_openings(e: &Enclosure, parts: &[Part], s: impl Into<Sheet>) -> Vec<Opening> {
     let s = s.into();
-    let (x0, _, _) = s.area(e);
-    let mut v: Vec<Opening> = openings(e, parts, s.face).into_iter().filter(|o| s.holds(e, o.center.x)).collect();
-    for o in &mut v {
-        o.center.x -= x0;
+    let all = openings(e, parts, s.face);
+    let Some((i, l)) = s.door_leaf(e) else { return all };
+    let (a, z) = (l.x, l.x + l.w);
+    let mut v = Vec::new();
+    for mut o in all {
+        let b = o.bounds();
+        if b.max.x <= a + 0.01 || b.min.x >= z - 0.01 {
+            continue;
+        }
+        let within = b.min.x >= a - 0.01 && b.max.x <= z + 0.01;
+        if !within && !o.round && o.angle == 0.0 {
+            let (left, right) = (b.min.x.max(a), b.max.x.min(z));
+            o.center.x = (left + right) / 2.0;
+            o.w = right - left;
+            o.radius = o.radius.min(o.w / 2.0);
+        } else if !within && doors::leaf_index(e, o.center.x) != i {
+            continue;
+        }
+        o.center.x -= a;
+        v.push(o);
     }
     v
+}
+
+/// True if opening `o` of a sheet `width` mm wide reaches over its left or right edge:
+/// a round or turned cutout over the joint between two leaves of a door.
+pub fn over_edge(o: &Opening, width: f32) -> bool {
+    let b = o.bounds();
+    b.min.x < -0.01 || b.max.x > width + 0.01
 }
 
 // ---------------------------------------------------------------------- drilling pattern

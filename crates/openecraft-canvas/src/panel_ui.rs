@@ -2116,7 +2116,8 @@ impl PanelUi {
                 }
             });
             ui.end_row();
-            if double {
+            // As the buttons left it: one leaf again has no leaves to show.
+            if e.door_leaves.len() > 1 {
                 ui.label(tr("Left leaf"));
                 let mut left = e.door_leaves[0].w;
                 let r = ui.add(egui::DragValue::new(&mut left).speed(5.0).range(50.0..=(e.width - 50.0).max(50.0)).suffix(" mm"));

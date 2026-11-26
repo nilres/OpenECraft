@@ -1241,11 +1241,16 @@ impl PanelUi {
                 let [r, g, b] = openecraft_core::export3d::component_color(Role::Body);
                 let body = Color32::from_rgb(r, g, b);
                 let mut walls: Vec<(Face, Option<usize>)> = Vec::new();
-                for (face, tri) in model {
-                    let leaf = (*face == Some(Face::Door)).then(|| leaf_at((tri[0][0] + tri[1][0] + tri[2][0]) / 3.0));
+                // A door in one piece cut at the joints of the leaves: each piece opens
+                // with its own leaf.
+                let pieces = model.iter().flat_map(|(face, tri)| match face {
+                    Some(Face::Door) => panel::doors::split_triangle(e, tri).into_iter().map(|(li, t)| (face, Some(li), t)).collect::<Vec<_>>(),
+                    _ => vec![(face, None, *tri)],
+                });
+                for (face, leaf, tri) in pieces {
                     let q = match leaf {
                         Some(li) => tri.map(|v| swing(li, v)),
-                        None => *tri,
+                        None => tri,
                     };
                     let n = norm(cross(sub(q[1], q[0]), sub(q[2], q[0])));
                     if n == [0.0; 3] {
@@ -1420,6 +1425,19 @@ impl PanelUi {
                 let on_door = it.face == Face::Door;
                 let door_leaf = on_door.then(|| panel::doors::leaf_of(e, it));
                 let leaf = door_leaf.unwrap_or(0);
+                // A rail, duct or busbar over the joint between two leaves is cut there:
+                // each piece opens with its own leaf.
+                let cut = on_door && it.kind.is_profile() && panel::doors::crosses_joint(e, it);
+                let leaf_of_x = |x: f32| if cut { leaf_at(x) } else { leaf };
+                let pieces = |min: V3, max: V3| -> Vec<(V3, V3, Option<usize>)> {
+                    if !cut {
+                        return vec![(min, max, door_leaf)];
+                    }
+                    let mut xs = vec![min[0]];
+                    xs.extend(panel::doors::joints(e).into_iter().filter(|j| *j > min[0] && *j < max[0]));
+                    xs.push(max[0]);
+                    xs.windows(2).map(|w| ([w[0], min[1], min[2]], [w[1], max[1], max[2]], Some(leaf_at((w[0] + w[1]) / 2.0)))).collect()
+                };
                 let (b0, b1) = panel::item_box(e, it);
                 let (min, max) = if it.kind == ItemKind::Cutout && it.face == Face::Plate {
                     // Dark patch just in front of the plate.
@@ -1436,7 +1454,7 @@ impl PanelUi {
                     let corners: Vec<V3> = (0..8)
                         .map(|c| {
                             let q = [if c & 1 == 0 { min[0] } else { max[0] }, if c & 2 == 0 { min[1] } else { max[1] }, if c & 4 == 0 { min[2] } else { max[2] }];
-                            pose.apply(if on_door { swing(leaf, q) } else { q })
+                            pose.apply(if on_door { swing(leaf_of_x(q[0]), q) } else { q })
                         })
                         .collect();
                     s.objects.push(bounds(&corners));
@@ -1453,7 +1471,14 @@ impl PanelUi {
                     let layer = if it.kind == ItemKind::Rail { 2 } else { EQUIPMENT };
                     let (tris, colors): (Vec<_>, Vec<_>) = painted.into_iter().unzip();
                     let first = s.faces.len();
-                    for (tri, own) in panel::place_triangles(e, it, tris).into_iter().zip(colors) {
+                    let placed = panel::place_triangles(e, it, tris).into_iter().zip(colors).flat_map(|(tri, own)| {
+                        if cut {
+                            panel::doors::split_triangle(e, &tri).into_iter().map(|(li, t)| (t, own, li)).collect()
+                        } else {
+                            vec![(tri, own, leaf)]
+                        }
+                    });
+                    for (tri, own, leaf) in placed {
                         let base = match (highlight, own) {
                             (None, Some([r, g, b])) => Color32::from_rgb(r, g, b),
                             _ => base,
@@ -1512,7 +1537,9 @@ impl PanelUi {
                     for (bx, [r, g, b], finger) in panel::duct_boxes(e, it, !self.open_ducts) {
                         let (min, max) = up_box(bx);
                         let first = s.faces.len();
-                        add_box(&mut s, EQUIPMENT, None, obj, min, max, highlight.unwrap_or(Color32::from_rgb(r, g, b)), Some(it.id), door_leaf, false);
+                        for (min, max, door_leaf) in pieces(min, max) {
+                            add_box(&mut s, EQUIPMENT, None, obj, min, max, highlight.unwrap_or(Color32::from_rgb(r, g, b)), Some(it.id), door_leaf, false);
+                        }
                         if let (true, false, Some(duct)) = (finger, on_door, obj) {
                             let corners: Vec<V3> = (0..8).map(|c| pose.apply([[min[0], max[0]][c & 1], [min[1], max[1]][c >> 1 & 1], [min[2], max[2]][c >> 2]])).collect();
                             fingers.push((duct, first..s.faces.len(), bounds(&corners)));
@@ -1528,7 +1555,9 @@ impl PanelUi {
                     ItemKind::Duct | ItemKind::Busbar | ItemKind::Device | ItemKind::Accessory => (EQUIPMENT, None),
                 };
                 let decal = it.kind == ItemKind::Cutout && !it.face.is_wall();
-                add_box(&mut s, layer, side, obj, min, max, base, Some(it.id), door_leaf, decal);
+                for (min, max, door_leaf) in pieces(min, max) {
+                    add_box(&mut s, layer, side, obj, min, max, base, Some(it.id), door_leaf, decal);
+                }
                 openings(&mut s, prj, e, it, &pose, obj, k, &lit);
             }
             // The drives on the floor: shafts and couplings, pulleys and belts, gear

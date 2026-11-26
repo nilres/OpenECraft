@@ -78,3 +78,18 @@ fn the_double_door_of_a_catalog_cabinet_has_its_leaves_everywhere() {
     assert_eq!(found.len(), 1, "{found:?}");
     assert_eq!(found[0].items, [260]);
 }
+
+#[test]
+fn a_door_in_one_piece_is_cut_at_the_joints_of_its_leaves() {
+    let e = cabinet(800.0, "300 + 500");
+    // A triangle over the joint: a piece on each leaf, together as large as it.
+    let tri = [[100.0, 0.0, 400.0], [700.0, 0.0, 400.0], [100.0, 600.0, 400.0]];
+    let area = |t: &Tri| ((t[1][0] - t[0][0]) * (t[2][1] - t[0][1]) - (t[2][0] - t[0][0]) * (t[1][1] - t[0][1])).abs() / 2.0;
+    let pieces = split_triangle(&e, &tri);
+    let on = |li: usize| pieces.iter().filter(|(l, _)| *l == li).map(|(_, t)| area(t)).sum::<f32>();
+    assert!((on(0) + on(1) - area(&tri)).abs() < 0.5, "{pieces:?}");
+    assert!(on(0) > 0.0 && on(1) > 0.0);
+    assert!(pieces.iter().all(|(l, t)| t.iter().all(|q| if *l == 0 { q[0] <= 300.0 } else { q[0] >= 300.0 })));
+    // One on a leaf stays as it is.
+    assert_eq!(split_triangle(&e, &[[400.0, 0.0, 0.0], [700.0, 0.0, 0.0], [400.0, 10.0, 0.0]]), [(1, [[400.0, 0.0, 0.0], [700.0, 0.0, 0.0], [400.0, 10.0, 0.0]])]);
+}

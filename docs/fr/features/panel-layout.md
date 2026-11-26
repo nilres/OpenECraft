@@ -49,8 +49,8 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
   (commande `set_panel_item` avec `cover`) retire le capot, pour voir le cadre, les
   rails et le câblage derrière. *Retirer tous les capots plastiques* et *Poser tous les
   capots plastiques* dans le menu contextuel de l'implantation le font pour chaque champ
-  de l'enveloppe, dans le menu contextuel du navigateur pour chaque enveloppe
-  (commande `set_covers`).
+  de l'enveloppe, dans le menu contextuel du navigateur pour chaque enveloppe, de même
+  que *Espace de montage › Afficher › Capots plastiques retirés* (commande `set_covers`).
 - Un cadre qui relie deux armoires (comme le cadre isolant CZ3 de Striebel & John,
   données d'article `Opening: 202 x 85`) ne va que dans les ouvertures des parois
   latérales prévues pour lui (données d'article de l'armoire
@@ -208,7 +208,9 @@ l'armoire univers `HAG.FR25S2` de Hager). La porte
 reste une face pour ses appareils : chacun est sur le vantail sous son milieu, s'ouvre
 avec lui dans la vue 3D et a ses fils routés par sa charnière ; la vue de la porte
 dessine chaque vantail avec ses charnières et le joint entre eux, et un appareil qui
-passe par-dessus le joint est signalé.
+passe par-dessus le joint est signalé. Un rail ou une goulotte qui passe par-dessus le
+joint s'ouvre dans la vue 3D coupé au joint, chaque morceau avec son vantail, comme il
+faudrait le monter.
 
 ## Zones interdites
 
@@ -266,7 +268,12 @@ Une porte double (voir [Porte de l'armoire](#porte-de-larmoire)) est percée van
 vantail : le rapport, la page et les *Données CN* prennent chaque vantail comme une tôle
 à part, cotée depuis son coin inférieur gauche, et la transmission aux machines crée un
 programme pour chaque vantail (`CAB1_door_left.nc` ; `face=door_left` ou `door_right`
-de `machining_plan` et `cnc_program`).
+de `machining_plan` et `cnc_program`). Une découpe droite qui passe par-dessus le joint
+est faite sur les deux vantaux, chacun aussi loin qu'elle s'étend sur lui ; une découpe
+ronde ou tournée reste sur le vantail sous son milieu et est faite à la main. La
+configuration pour le fabricant de l'armoire (`export_enclosure_configuration`) liste
+les vantaux (`door_leaves`) et, pour tout ce qui est sur la porte, son vantail et sa
+place sur lui (`leaf`, `leaf_x`) ; l'import les relit.
 
 ## Câblage virtuel et taux de remplissage des goulottes
 

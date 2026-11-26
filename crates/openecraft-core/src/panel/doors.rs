@@ -7,6 +7,7 @@
 //! the right), `Door leaves: 2` leaves of equal width.
 
 use super::{DoorHinge, DoorLeaf, Enclosure, Face, PanelItem};
+use crate::parts::vec3::{Tri, V3};
 
 /// The leaves of the door of enclosure `e` from the left: one over the whole front
 /// hinged at [`Enclosure::door_hinge`] when it has no leaves of its own.
@@ -43,6 +44,46 @@ pub fn joints(e: &Enclosure) -> Vec<f32> {
 /// be mounted, the leaves open apart.
 pub fn crosses_joint(e: &Enclosure, it: &PanelItem) -> bool {
     it.face == Face::Door && joints(e).iter().any(|&j| it.x < j - 0.5 && j + 0.5 < it.x + it.w)
+}
+
+/// Triangle `tri` of a door in one piece (a maker's model) cut at the joints between the
+/// leaves: the pieces with the leaf each is on, so that the leaves open apart without
+/// tearing the triangles that reach over a joint.
+pub fn split_triangle(e: &Enclosure, tri: &Tri) -> Vec<(usize, Tri)> {
+    let mut polys: Vec<Vec<V3>> = vec![tri.to_vec()];
+    for j in joints(e) {
+        let mut next = Vec::new();
+        for poly in polys {
+            // The parts of the polygon left and right of the joint.
+            let (mut left, mut right) = (Vec::new(), Vec::new());
+            for (k, &a) in poly.iter().enumerate() {
+                let b = poly[(k + 1) % poly.len()];
+                if a[0] <= j {
+                    left.push(a);
+                }
+                if a[0] >= j {
+                    right.push(a);
+                }
+                if (a[0] < j && b[0] > j) || (a[0] > j && b[0] < j) {
+                    let t = (j - a[0]) / (b[0] - a[0]);
+                    let q = [j, a[1] + t * (b[1] - a[1]), a[2] + t * (b[2] - a[2])];
+                    left.push(q);
+                    right.push(q);
+                }
+            }
+            next.extend([left, right].into_iter().filter(|p| p.len() >= 3));
+        }
+        polys = next;
+    }
+    let mut out = Vec::new();
+    for poly in polys {
+        let x = poly.iter().map(|q| q[0]).sum::<f32>() / poly.len() as f32;
+        let li = leaf_index(e, x);
+        for k in 1..poly.len() - 1 {
+            out.push((li, [poly[0], poly[k], poly[k + 1]]));
+        }
+    }
+    out
 }
 
 /// The leaves of part data `Door leaves` for a front `width` mm wide: widths from the

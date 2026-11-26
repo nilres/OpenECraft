@@ -251,6 +251,13 @@ pub fn plan(prj: &Project, enc: usize, sheet: impl Into<Sheet>, m: &Machine, s: 
     }
     for o in sheet_openings(e, &prj.parts, sheet) {
         let n = name(o.item);
+        if crate::production::over_edge(&o, fw) {
+            // Over the joint between two leaves of the door: the machine would leave the sheet.
+            b.problems.push(tr_fmt!("{}: the cutout for {} reaches over the joint between the door leaves and is cut by hand", e.name, n));
+            let what = if o.round { format!("Ø{}", super::num(o.w)) } else { format!("{} x {}", super::num(o.w), super::num(o.h)) };
+            b.push(o.item, None, o.center, OpKind::Manual { what });
+            continue;
+        }
         if o.round {
             b.round(o.item, o.center, o.w, &n, true);
         } else if o.angle != 0.0 {

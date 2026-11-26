@@ -49,7 +49,8 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
   nimmt die Abdeckung ab, um den Rahmen, die Tragschienen und die Verdrahtung dahinter
   zu sehen. *Alle Kunststoffabdeckungen abnehmen* und *Alle Kunststoffabdeckungen
   anbringen* im Kontextmenü des Aufbaus tun das für jedes Feld des Gehäuses, im
-  Kontextmenü des Navigators für jedes Gehäuse (Befehl `set_covers`).
+  Kontextmenü des Navigators für jedes Gehäuse, ebenso *Layoutbereich › Anzeigen ›
+  Kunststoffabdeckungen ab* (Befehl `set_covers`).
 - Ein Rahmen, der zwei Schränke verbindet (etwa der Isolierrahmen CZ3 von Striebel &
   John, Artikeldaten `Opening: 202 x 85`), geht nur in die dafür vorgesehenen Öffnungen
   der Seitenwände (Artikeldaten des Schranks `Side openings: 202 x 85 at 86 / 20; …`:
@@ -210,7 +211,9 @@ univers-Schrank `HAG.FR25S2` von Hager haben). Die Tür
 bleibt eine Fläche für ihre Betriebsmittel: Jedes sitzt auf dem Flügel unter seiner
 Mitte, öffnet sich mit ihm in der 3D-Ansicht und hat seine Drähte über dessen Scharnier
 geführt; die Türansicht zeichnet jeden Flügel mit seinen Scharnieren und die Fuge
-dazwischen, und ein Betriebsmittel, das über die Fuge reicht, wird gemeldet.
+dazwischen, und ein Betriebsmittel, das über die Fuge reicht, wird gemeldet. Eine
+Schiene oder ein Kanal über die Fuge öffnet sich in der 3D-Ansicht an der Fuge geteilt,
+jedes Stück mit seinem Flügel, so wie sie montiert werden müssten.
 
 ## Sperrflächen
 
@@ -268,7 +271,12 @@ Eine zweiflügelige Tür (siehe [Gehäusetür](#gehäusetür)) wird Flügel für
 gebohrt: Auswertung, Seite und *NC-Daten* nehmen jeden Flügel als eigenes Blech, bemaßt
 von seiner linken unteren Ecke, und die Übergabe an die Maschinen erzeugt für jeden
 Flügel ein Programm (`CAB1_door_left.nc`; `face=door_left` oder `door_right` von
-`machining_plan` und `cnc_program`).
+`machining_plan` und `cnc_program`). Ein gerader Ausschnitt, der über die Fuge reicht,
+wird auf beiden Flügeln geschnitten, jeweils so weit er auf ihn reicht; ein runder oder
+gedrehter bleibt auf dem Flügel unter seiner Mitte und wird von Hand gemacht. Die
+Konfiguration für den Gehäusehersteller (`export_enclosure_configuration`) listet die
+Flügel (`door_leaves`) und für alles auf der Tür seinen Flügel und seinen Platz darauf
+(`leaf`, `leaf_x`); der Import liest sie zurück.
 
 ## Virtuelle Verdrahtung und Füllgrade der Kabelkanäle
 

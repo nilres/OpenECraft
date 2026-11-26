@@ -50,7 +50,8 @@ los muestran.
   bastidor, los carriles y el cableado de detrás. *Quitar todas las cubiertas de
   plástico* y *Colocar todas las cubiertas de plástico* en el menú contextual del montaje
   lo hacen para cada campo de la envolvente, en el menú contextual del navegador para
-  cada envolvente (comando `set_covers`).
+  cada envolvente, igual que *Espacio de montaje › Mostrar › Cubiertas de plástico
+  quitadas* (comando `set_covers`).
 - Un marco que une dos armarios (como el marco aislante CZ3 de Striebel & John, datos de
   artículo `Opening: 202 x 85`) solo va en las aberturas de las paredes laterales
   previstas para él (datos de artículo del armario `Side openings: 202 x 85 at 86 / 20; …`:
@@ -204,7 +205,8 @@ armario univers `HAG.FR25S2` de Hager). La puerta
 sigue siendo una cara para sus dispositivos: cada uno está en la hoja bajo su centro, se
 abre con ella en la vista 3D y sus hilos pasan por su bisagra; la vista de la puerta
 dibuja cada hoja con sus bisagras y la junta entre ellas, y se avisa de un dispositivo
-que sobrepasa la junta.
+que sobrepasa la junta. Un carril o un canal que sobrepasa la junta se abre en la vista
+3D cortado en la junta, cada trozo con su hoja, como habría que montarlo.
 
 ## Zonas restringidas
 
@@ -263,7 +265,12 @@ Una puerta doble (ver [Puerta del armario](#puerta-del-armario)) se taladra hoja
 hoja: el informe, la página y los *Datos CN* toman cada hoja como una chapa propia,
 acotada desde su esquina inferior izquierda, y la entrega a las máquinas crea un
 programa para cada hoja (`CAB1_door_left.nc`; `face=door_left` o `door_right` de
-`machining_plan` y `cnc_program`).
+`machining_plan` y `cnc_program`). Un recorte recto que sobrepasa la junta se hace en
+ambas hojas, en cada una hasta donde llega sobre ella; uno redondo o girado queda en la
+hoja bajo su centro y se hace a mano. La configuración para el fabricante de la
+envolvente (`export_enclosure_configuration`) lista las hojas (`door_leaves`) y, para
+todo lo que está en la puerta, su hoja y su posición en ella (`leaf`, `leaf_x`); la
+importación las vuelve a leer.
 
 ## Cableado virtual y grados de llenado de las canaletas
 

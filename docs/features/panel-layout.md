@@ -44,7 +44,8 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   `cover`) takes the cover off, to see the frame, the rails and the wiring behind it.
   *Take off all plastic covers* and *Fit all plastic covers* in the context menu of the
   layout do so for every panel of the enclosure, in the context menu of the navigator
-  for every enclosure (command `set_covers`).
+  for every enclosure, as does *Layout space › Show › Plastic covers off* (command
+  `set_covers`).
 - A frame that joins two cabinets (such as the insulating frame CZ3 of Striebel & John,
   part data `Opening: 202 x 85`) goes only into the openings of the side walls made for
   it (part data of the cabinet `Side openings: 202 x 85 at 86 / 20; …`: height × depth
@@ -179,7 +180,8 @@ of the leaves from the left, as the ComfortLine A cabinets of Striebel & John wi
 to five field widths and the univers cabinet `HAG.FR25S2` of Hager have). The door stays one face for its devices: each is on the
 leaf under its middle, opens with it in the 3D view and has its wires run over its
 hinge; the door view draws every leaf with its hinges and the joint between them, and a
-device reaching over the joint is reported.
+device reaching over the joint is reported. A rail or duct over the joint opens in the 3D
+view cut at the joint, each piece with its leaf, as it would have to be mounted.
 
 ## Restricted areas
 
@@ -231,7 +233,12 @@ A double door (see [Enclosure door](#enclosure-door)) is drilled leaf by leaf: t
 report, the page and the *NC data* take each leaf as a sheet of its own, dimensioned
 from its bottom left corner, and the hand-off to the machines makes a program for each
 leaf (`CAB1_door_left.nc`; `face=door_left` or `door_right` of `machining_plan` and
-`cnc_program`).
+`cnc_program`). A straight cutout reaching over the joint is cut on both leaves, each as
+far as it reaches onto it; a round or turned one stays on the leaf under its middle and
+is left to the hand. The configuration for the enclosure maker
+(`export_enclosure_configuration`) lists the leaves (`door_leaves`) and, for everything
+on the door, its leaf and its place across it (`leaf`, `leaf_x`); the import reads them
+back.
 
 ## Virtual wiring and duct fill levels
 

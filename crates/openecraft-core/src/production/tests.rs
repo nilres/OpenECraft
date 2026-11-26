@@ -248,6 +248,30 @@ fn the_leaves_of_a_double_door_are_drilled_apart() {
 }
 
 #[test]
+fn a_cutout_over_the_joint_of_the_leaves_is_cut_on_each_leaf() {
+    let mut e = Enclosure { width: 800.0, height: 1000.0, ..Default::default() };
+    crate::panel::doors::split(&mut e, Some(300.0));
+    // Straight from 260 to 340, round around 300, turned around 300.
+    e.items.push(PanelItem { face: Face::Door, ..item(1, ItemKind::Cutout, 260.0, 100.0, 80.0, 40.0) });
+    e.items.push(PanelItem { face: Face::Door, round: true, ..item(2, ItemKind::Cutout, 290.0, 300.0, 30.0, 30.0) });
+    let (left, right) = (Sheet { face: Face::Door, leaf: Some(0) }, Sheet { face: Face::Door, leaf: Some(1) });
+    let cut = |s: Sheet| sheet_openings(&e, &[], s).iter().map(|o| (o.item, o.center.x, o.w)).collect::<Vec<_>>();
+    // The round one on the right leaf (its middle at 305), over the edge.
+    assert_eq!(cut(left), [(1, 280.0, 40.0)]);
+    assert_eq!(cut(right), [(1, 20.0, 40.0), (2, 5.0, 30.0)]);
+    let o = sheet_openings(&e, &[], right);
+    assert!(!over_edge(&o[0], 500.0) && over_edge(&o[1], 500.0));
+    // The machine leaves the round one to the hand.
+    let mut prj = Project::new_default();
+    prj.layout.enclosures = vec![e];
+    let m = crate::manufacturing::machines::get(&prj, crate::manufacturing::machines::DEFAULT_SHEET).unwrap();
+    let plan = crate::manufacturing::strategy::plan(&prj, 0, right, &m, &Default::default());
+    assert!(plan.problems.iter().any(|p| p.contains("reaches over the joint")), "{:?}", plan.problems);
+    assert!(plan.ops.iter().any(|o| o.item == 2 && o.tool.is_none()));
+    assert!(plan.ops.iter().any(|o| o.item == 1 && o.tool.is_some()));
+}
+
+#[test]
 fn cutouts_sit_where_the_part_has_them_and_turn_with_the_item() {
     // A panel 214 x 158 with its cutout 6.5 mm above the middle, and a second round one.
     let mut part = Part { number: "HMI".into(), width: 214.0, height: 158.0, depth: 36.0, ..Default::default() };

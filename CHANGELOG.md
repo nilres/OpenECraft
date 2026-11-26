@@ -54,8 +54,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   and its details show them with their description, maker and product group.
 - **Double doors:** an enclosure's door can have two leaves, each hinged at its outer
   edge; the devices on the door open with their leaf in the 3D view and their wires run
-  over its hinge. Each leaf is drilled as a sheet of its own: the drilling pattern, the
-  NC data and the CNC programs take it from its own corner. The ComfortLine A cabinets of
+  over its hinge, a rail or duct over the joint (and a maker's door in one piece) cut
+  there. Each leaf is drilled as a sheet of its own: the drilling pattern, the
+  NC data and the CNC programs take it from its own corner, a straight cutout over the
+  joint is cut on both leaves, and the configuration for the enclosure maker lists the
+  leaves and the leaf of everything on the door. The ComfortLine A cabinets of
   Striebel & John with three to five field widths and the univers cabinet FR25S2 of
   Hager have theirs.
 - **Order of the navigator:** the rooms, enclosures and buildings of the navigator are
@@ -64,7 +67,7 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Panels of meter cabinets as they are built:** a distribution panel such as the FV17
   is a frame on brackets with its rails behind a plastic cover with a slot for each row,
   the other panels of the field grid too; the cover can be taken off, also of all panels
-  of an enclosure or of the project at once.
+  of an enclosure or of the project at once (*Layout space › Show › Plastic covers off*).
 - **Joining frames in their openings:** the insulating frame CZ3 that joins two
   Striebel & John cabinets goes only into the openings of their side walls made for it;
   it is drawn with its flange and collar (a busbar connector with its busbars), and an
