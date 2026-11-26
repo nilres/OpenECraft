@@ -51,6 +51,9 @@ pub(super) struct RouteLine {
     pub target: RouteRef,
     /// Drawn as it is, not laid beside the others (the cores where a cable parts).
     pub as_is: bool,
+    /// Tied into bundles with the lines it runs together with: a wire or cable where
+    /// there is no cable duct to lay it in ([`routing3d::ties_in`]).
+    pub tied: bool,
     /// The direction the route leaves the first and the last point in, where they are
     /// its ends and it is known (view coordinates, as long as the cells of the routing
     /// there are wide; none: zero).
@@ -76,6 +79,14 @@ pub(super) fn core_end(prj: &Project, an: &Analysis, cable: &str, at: &str) -> s
         .find(|(end, _, _)| end == at)
         .map(|(_, other, cs)| super::scene3d::wire_end(prj, &an.ends, at, &other, &cs, false))
         .unwrap_or_default()
+}
+
+/// Whether the route of `diameter` is tied into bundles in the cabinet of the lineup or
+/// the room it is drawn in (`leg`; none: in all it runs through): without a cable duct
+/// to lay them in, wires and cables are tied together.
+fn tied_on(prj: &Project, it: &openecraft_core::routing3d::RoutedItem, leg: Option<usize>, diameter: f32) -> bool {
+    let passes: Vec<usize> = leg.map_or_else(|| it.enclosures.clone(), |k| panel::lineup_of(&prj.layout, k));
+    passes.iter().any(|&k| routing3d::ties_in(&prj.layout, &prj.layout.enclosures[k], it.kind, diameter))
 }
 
 /// Diameter of the cores of a cable of `diameter` as thick as it tells for their number
@@ -775,7 +786,7 @@ impl PanelUi {
             for path in &e.paths {
                 let selected = self.selected_object == Some(path.id);
                 let color = if path.face.is_some() { PIPE_COLOR } else { PATH_COLOR };
-                out.push(RouteLine { points: path.points.iter().map(|q| g(*q)).collect(), color, stripe: None, width: if selected { 3.0 } else { 1.5 }, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: RouteRef::None, as_is: false, leave: [[0.0; 3]; 2], ends: Default::default() });
+                out.push(RouteLine { points: path.points.iter().map(|q| g(*q)).collect(), color, stripe: None, width: if selected { 3.0 } else { 1.5 }, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: RouteRef::None, as_is: false, tied: false, leave: [[0.0; 3]; 2], ends: Default::default() });
             }
             for r in &e.reservations {
                 let color = match r.mode {
@@ -799,7 +810,7 @@ impl PanelUi {
                     ((0, 1, 0), (0, 1, 1)),
                     ((1, 1, 0), (1, 1, 1)),
                 ] {
-                    out.push(RouteLine { points: vec![c(s.0, s.1, s.2), c(t.0, t.1, t.2)], color, stripe: None, width: 1.0, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: false, target: RouteRef::None, as_is: false, leave: [[0.0; 3]; 2], ends: Default::default() });
+                    out.push(RouteLine { points: vec![c(s.0, s.1, s.2), c(t.0, t.1, t.2)], color, stripe: None, width: 1.0, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: false, target: RouteRef::None, as_is: false, tied: false, leave: [[0.0; 3]; 2], ends: Default::default() });
                 }
             }
         }
@@ -852,6 +863,7 @@ impl PanelUi {
                     Some(q) if !in_room && front.is_finite() => (norm(sub(to_view(leg, [q[0], q[1], q[2] + 1.0]), to_view(leg, *q))), front - it.diameter / 2.0 - PLATE_CLEAR),
                     _ => ([0.0; 3], f32::INFINITY),
                 };
+                let tied = tied_on(prj, it, leg, diameter);
                 // The way out of the ends of the route (not where the cores part there).
                 let mut leave = [[0.0; 3]; 2];
                 for (end, q) in [(0, points.first().filter(|_| s == 0)), (1, points.last().filter(|_| s == last))] {
@@ -895,7 +907,7 @@ impl PanelUi {
                     }
                 }
                 for (c, pin) in cores.into_iter().zip(core_pins) {
-                    out.push(RouteLine { bends: vec![0.0; c.len()], points: c, color, stripe: None, width: width * 0.5, diameter: core_diameter(it, diameter), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, leave: [[0.0; 3]; 2], ends: [Default::default(), core_end(prj, an, &it.key, &pin)] });
+                    out.push(RouteLine { bends: vec![0.0; c.len()], points: c, color, stripe: None, width: width * 0.5, diameter: core_diameter(it, diameter), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, tied: false, leave: [[0.0; 3]; 2], ends: [Default::default(), core_end(prj, an, &it.key, &pin)] });
                 }
                 let index = match joined {
                     Some((prev, index)) if prev + 1 == s => {
@@ -922,13 +934,12 @@ impl PanelUi {
                         if line.rest == [0.0; 3] {
                             line.rest = rest;
                         }
-                        line.below = line.below.min(below);
-                        line.leave[1] = leave[1];
-                        line.ends[1] = ends[1].clone();
+                        (line.tied, line.below) = (line.tied || tied, line.below.min(below));
+                        (line.leave[1], line.ends[1]) = (leave[1], ends[1].clone());
                         index
                     }
                     _ => {
-                        out.push(RouteLine { points, color, stripe, width, diameter, bends, rest, below, on_top: selected, target: target.clone(), as_is: false, leave, ends: ends.clone() });
+                        out.push(RouteLine { points, color, stripe, width, diameter, bends, rest, below, on_top: selected, target: target.clone(), as_is: false, tied, leave, ends: ends.clone() });
                         out.len() - 1
                     }
                 };
@@ -949,7 +960,8 @@ impl PanelUi {
             let count = |k: RouteKind| here.iter().filter(|&&i| r.items[i].kind == k && r.items[i].routed()).count();
             ui.label(tr_fmt!("{} wires, {} cables and {} tubes routed", count(RouteKind::Wire), count(RouteKind::Cable), count(RouteKind::Tube)));
             let bundles = r.bundles.iter().filter(|b| b.items.iter().any(|i| here.contains(i))).count();
-            ui.label(tr_fmt!("{} bundles, {} branch points", bundles, r.branches.len()));
+            let ties: usize = r.bundles.iter().filter(|b| b.items.iter().any(|i| here.contains(i))).map(|b| b.ties.len()).sum();
+            ui.label(tr_fmt!("{} bundles, {} branch points, {} cable ties", bundles, r.branches.len(), ties));
             for &i in here.iter().filter(|&&i| !r.items[i].routed() && r.items[i].kind != RouteKind::Wire) {
                 ui.colored_label(Color32::from_rgb(220, 120, 0), format!("{} {}: {}", r.items[i].kind.title(), r.items[i].label, r.items[i].status_text()));
             }

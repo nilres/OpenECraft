@@ -951,7 +951,8 @@ radius only, and keeps apart from every other route and from itself (where its e
 lie too close for its bend radius it runs round in a loop that never comes back
 across or alongside its own way, the bends at its corners and the nozzle it comes out
 of; where there is no such loop it is not routed); routes come together only where
-they come up to the same device, and there they lie side by side: a route never runs
+they come up to the same device (and where thin ones are tied into a bundle, see
+below), and there they lie side by side: a route never runs
 across another one it comes together with (it may only on its own way out of a
 connection point, or where it comes up to the device the other one ends at, and goes
 round it there too where that costs little). The straight way out of every connection
@@ -969,6 +970,29 @@ between them need (a cable entry right below the box it leads into, two fittings
 above the other with their ports on their sides). The messages pane jumps to a connection point of
 the wire or cable, and the 3D view shows a red note with the reason at each of its ends
 in place of the route.
+
+Where there is no cable duct, thin wires and cables are laid like a wiring harness. A
+cabinet without cable ducts on its mounting plate and without routing paths, and a room
+without cable trays and routing paths, has nothing to lay them in: there a wire or
+cable no thicker than a quarter of a cell of the routing grid (6 mm in a cabinet, 12 mm
+in a room) that goes the same way as one laid before it comes over to it and runs with
+it through the same cells, tied to it with cable ties. A step along such a bundle costs
+little more than one through a cable duct, so the later wires follow the first ones and
+branch off where their ways part; a route joins a bundle along it and leaves it along
+it, never through it. A bundle has the room of all its wires (it keeps half its
+thickness clear of everything like a single route), grows no thicker than a cell and a
+third and holds no classes that keep apart (power and signals); thicker conductors and
+tubes are tied to nothing and keep a way of their own. In a cabinet a step along the
+mounting plate (its back) and along its side walls costs a fifth of one through the air
+in front of the devices: wires and cables keep to the back and the sides where their
+ends and their bend radii allow it. Clearances and bend radii are those of every route.
+The 3D view lays the wires of a bundle on lanes in a square, as many as run through it
+at once (one that leaves frees its lane for the next); a wire keeps its place round the
+corners of the bundle, lies on the side it leaves to and comes onto its lane from its
+connection point on a slanting piece behind its ferrule. Cable ties are drawn round the
+bundle, clear of its bends and no further apart than 150 mm (300 mm in a room); the
+bundle list gives their number for each bundle (*Cable ties*), `list_routing` as
+`cable_ties`. Cabinets and rooms with cable ducts are routed as before.
 
 The routing works on a grid (25 mm in a cabinet, 50 mm in a room); a connection point
 lies where it lies. The 3D view draws a route straight out of its connection point:

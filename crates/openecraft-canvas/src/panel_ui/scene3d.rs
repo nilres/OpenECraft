@@ -14,7 +14,7 @@ use openecraft_core::panel::roofs::{self, Ceiling, Lin, RoofFaceKind};
 use openecraft_core::panel::lightning::{self, LpsKind};
 use openecraft_core::panel::solar::{self, cabling::Lead};
 use openecraft_core::panel::{self, buildings as bld, stairs, Face, ItemKind, Opening, Role, SitePose, PLATE_MARGIN, PLATE_Z};
-use openecraft_core::parts::vec3::{self, cross, dot, norm, sub, V3};
+use openecraft_core::parts::vec3::{self, add, cross, dot, norm, sub, V3};
 use openecraft_core::production::{self, EndPiece, EndShape};
 use openecraft_core::routing3d::bundles::{self, Channel, Way};
 use openecraft_core::routing3d::RouteKind;
@@ -47,6 +47,14 @@ const OPENING: f32 = 5.0;
 const OPENING_COLOR: Color32 = Color32::from_rgb(34, 36, 40);
 /// How long (ms) a scene waits for its layout before it is shown without it.
 const LAYOUT_WAIT: u32 = 30;
+/// A cable tie round a bundle: its width along the bundle and how far it stands off
+/// the tubes (mm), the sides of its band, its colour, and how far (mm) from where the
+/// bundle was routed its tubes may lie once laid side by side.
+const TIE_WIDTH: f32 = 4.8;
+const TIE_THICKNESS: f32 = 0.6;
+pub(super) const TIE_SIDES: usize = 14;
+const TIE_COLOR: Color32 = Color32::from_rgb(30, 30, 34);
+const TIE_REACH: f32 = 30.0;
 
 /// A wire, cable or tube drawn as a round tube, before it is laid beside the others it
 /// runs with: its corners and their bend radii, how it looks and what it is.
@@ -68,6 +76,8 @@ struct TubeWay {
     below: f32,
     /// Drawn as it is, not laid beside the others.
     as_is: bool,
+    /// Tied into bundles with the ones it runs together with (see [`Way`]).
+    tied: bool,
     /// The direction it leaves its ends in (see [`Way`]).
     leave: [V3; 2],
     /// How its first and last end look where they are connected ([`wire_end`]).
@@ -416,6 +426,7 @@ struct LayoutWay {
     below: f32,
     steps: usize,
     held: bool,
+    tied: bool,
     leave: [V3; 2],
     straight: [f32; 2],
 }
@@ -425,7 +436,7 @@ impl LayoutInput {
     fn key(&self) -> u64 {
         let mut h = std::collections::hash_map::DefaultHasher::new();
         for w in &self.ways {
-            (w.points.len(), w.bends.len(), w.steps, w.held).hash(&mut h);
+            (w.points.len(), w.bends.len(), w.steps, w.held, w.tied).hash(&mut h);
             w.points.iter().chain(&w.leave).flatten().chain(&w.bends).chain(&w.rest).chain(&w.straight).chain([&w.diameter, &w.below]).for_each(|v| v.to_bits().hash(&mut h));
         }
         (self.obstacles.len(), self.insides.len(), self.channels.len()).hash(&mut h);
@@ -436,7 +447,7 @@ impl LayoutInput {
 
     /// The ways laid out; `None` when `progress` (rounds done, of all) answers false.
     fn lay_out(&self, progress: &dyn Fn(usize, usize) -> bool) -> Option<Vec<Vec<V3>>> {
-        let ways: Vec<Way> = self.ways.iter().map(|w| Way { points: &w.points, radii: &w.bends, diameter: w.diameter, rest: w.rest, below: w.below, steps: w.steps, held: w.held, leave: w.leave, straight: w.straight }).collect();
+        let ways: Vec<Way> = self.ways.iter().map(|w| Way { points: &w.points, radii: &w.bends, diameter: w.diameter, rest: w.rest, below: w.below, steps: w.steps, held: w.held, tied: w.tied, leave: w.leave, straight: w.straight }).collect();
         bundles::lay_out(&ways, LANE_CELL, &self.obstacles, &self.channels, &self.insides, progress)
     }
 }
@@ -1840,7 +1851,7 @@ impl PanelUi {
                     let path: Vec<V3> = path.iter().map(|q| pose.apply(*q)).collect();
                     if diameter > 0.0 {
                         let bends = vec![bend; path.len()];
-                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: leave.map(|x| pose.turn(x)), ends, door }));
+                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, tied: false, leave: leave.map(|x| pose.turn(x)), ends, door }));
                         continue;
                     }
                     for seg in with_door(&path, &door, delta).windows(2) {
@@ -1913,7 +1924,7 @@ impl PanelUi {
         for line in self.routing_lines_3d(prj, an, &keys, &to_view, selected_wire) {
             if line.diameter > 0.0 {
                 let (sides, steps) = if matches!(line.target, RouteRef::Wire(_)) { (WIRE_SIDES, 2) } else { (TUBE_SIDES, 4) };
-                pending.push(TubeWay { points: line.points, bends: line.bends, diameter: line.diameter, color: line.color, stripe: line.stripe, width: line.width, on_top: line.on_top, target: line.target, sides, steps, rest: line.rest, below: line.below, as_is: line.as_is, leave: line.leave, ends: line.ends, door: Vec::new() });
+                pending.push(TubeWay { points: line.points, bends: line.bends, diameter: line.diameter, color: line.color, stripe: line.stripe, width: line.width, on_top: line.on_top, target: line.target, sides, steps, rest: line.rest, below: line.below, as_is: line.as_is, tied: line.tied, leave: line.leave, ends: line.ends, door: Vec::new() });
                 continue;
             }
             for seg in line.points.windows(2) {
@@ -1949,7 +1960,7 @@ impl PanelUi {
                 insides.push(([0, 1, 2].map(|i| corners.iter().map(|q| q[i]).fold(f32::INFINITY, f32::min)), [0, 1, 2].map(|i| corners.iter().map(|q| q[i]).fold(f32::NEG_INFINITY, f32::max))));
             }
         }
-        let ways = pending.iter().map(|t| LayoutWay { points: t.points.clone(), bends: t.bends.clone(), diameter: t.diameter, rest: t.rest, below: t.below, steps: t.steps, held: t.as_is, leave: t.leave, straight: t.ends.each_ref().map(|e| e.straight) }).collect();
+        let ways = pending.iter().map(|t| LayoutWay { points: t.points.clone(), bends: t.bends.clone(), diameter: t.diameter, rest: t.rest, below: t.below, steps: t.steps, held: t.as_is, tied: t.tied, leave: t.leave, straight: t.ends.each_ref().map(|e| e.straight) }).collect();
         let laid = match lay_out(LayoutInput { ways, obstacles, channels, insides }) {
             Ok(ways) => ways,
             Err(key) => {
@@ -1990,6 +2001,43 @@ impl PanelUi {
         let in_view = |q: V3| keys.iter().any(|&k| q[0] >= pos[k][0] && q[0] <= pos[k][0] + prj.layout.enclosures[k].width);
         if self.show_wires {
             s.branches = an.routing.branches.iter().filter(|b| in_view(b.at)).map(|b| to_view(None, b.at)).collect();
+            // The cable ties of the bundles of wires and cables that run freely: a band
+            // round the tubes of its routes where they pass each.
+            let cell = prj.layout.routing.grid.max(5.0);
+            for b in an.routing.bundles.iter().filter(|b| !b.ties.is_empty()) {
+                let leg = bundles::way_of(b, &an.routing.items, cell).0;
+                let room = leg.filter(|&k| prj.layout.enclosures[k].is_room());
+                if room.is_some_and(|k| !keys.contains(&k)) || !b.items.iter().any(|&i| an.routing.items[i].enclosures.iter().any(|k| keys.contains(k))) {
+                    continue;
+                }
+                let of_bundle = |t: &RouteRef| {
+                    b.items.iter().any(|&i| match t {
+                        RouteRef::Wire(wi) => an.routing.items[i].wire == Some(*wi),
+                        RouteRef::Item(key) => an.routing.items[i].wire.is_none() && an.routing.items[i].key == *key,
+                        RouteRef::None => false,
+                    })
+                };
+                let tubes: Vec<(&[V3], f32)> = s.tube_paths.iter().filter(|(_, _, t)| of_bundle(t)).map(|(p, r, _)| (p.as_slice(), *r)).collect();
+                for q in b.ties.iter().filter(|q| room.is_some() || in_view(**q)) {
+                    let Some((at, along, radius)) = tie_round(&tubes, to_view(leg, *q)) else { continue };
+                    let ends = [sub(at, vec3::scale(along, TIE_WIDTH / 2.0)), add(at, vec3::scale(along, TIE_WIDTH / 2.0))];
+                    let side = norm(cross(along, if along[1].abs() < 0.9 { [0.0, 1.0, 0.0] } else { [1.0, 0.0, 0.0] }));
+                    let up = cross(along, side);
+                    let spoke = |k: usize| {
+                        let a = k as f32 / TIE_SIDES as f32 * std::f32::consts::TAU;
+                        add(vec3::scale(side, a.cos()), vec3::scale(up, a.sin()))
+                    };
+                    for k in 0..TIE_SIDES {
+                        let (u, v) = (vec3::scale(spoke(k), radius), vec3::scale(spoke(k + 1), radius));
+                        let out = norm(add(u, v));
+                        // Its outside, and its inside seen through the gaps between the tubes.
+                        for (pts, normal) in [([add(ends[0], u), add(ends[0], v), add(ends[1], v), add(ends[1], u)], out), ([add(ends[1], u), add(ends[1], v), add(ends[0], v), add(ends[0], u)], vec3::scale(out, -1.0))] {
+                            s.tubes.push(SceneFace { pts, n: 4, normal, color: lit(TIE_COLOR, normal), layer: EQUIPMENT, side: None, obj: None, item: None, outline: false, decal: false, pv: None });
+                        }
+                    }
+                    equipment_wires.push(SceneLine { a: ends[0], b: ends[1], color: TIE_COLOR, stripe: None, least: 1.0, diameter: 2.0 * radius, tube: true });
+                }
+            }
         }
         // Wires, cut where they enter and leave the ducts and the devices: the parts
         // inside a device are not seen.
@@ -2026,6 +2074,36 @@ impl PanelUi {
         s.bounds = if pts.is_empty() { ([0.0; 3], [0.0; 3]) } else { bounds(&pts) };
         s
     }
+}
+
+/// Where a cable tie at `at` goes round the `tubes` (the way and the radius of each)
+/// of its bundle: the middle of where they pass it, the direction they run in there
+/// and the radius of the band round all of them. `None` where fewer than two of them
+/// pass within [`TIE_REACH`].
+fn tie_round(tubes: &[(&[V3], f32)], at: V3) -> Option<(V3, V3, f32)> {
+    let mut passing: Vec<(V3, V3, f32)> = Vec::new();
+    for (way, radius) in tubes {
+        let nearest = way.windows(2).map(|s| {
+            let (d, l) = (sub(s[1], s[0]), vec3::dist(s[0], s[1]).max(1e-6));
+            let t = (dot(sub(at, s[0]), d) / (l * l)).clamp(0.0, 1.0);
+            (add(s[0], vec3::scale(d, t)), vec3::scale(d, 1.0 / l))
+        });
+        if let Some((q, d)) = nearest.min_by(|a, b| vec3::dist(a.0, at).total_cmp(&vec3::dist(b.0, at))).filter(|(q, _)| vec3::dist(*q, at) <= TIE_REACH) {
+            passing.push((q, d, *radius));
+        }
+    }
+    if passing.len() < 2 {
+        return None;
+    }
+    let along = passing[0].1;
+    let middle = vec3::scale(passing.iter().fold([0.0; 3], |m, p| add(m, p.0)), 1.0 / passing.len() as f32);
+    // Across the bundle: how far its tubes reach from its middle.
+    let reach = |p: &(V3, V3, f32)| {
+        let off = sub(p.0, middle);
+        vec3::dist(off, vec3::scale(along, dot(off, along))) + p.2
+    };
+    let radius = passing.iter().map(reach).fold(0.0, f32::max) + TIE_THICKNESS;
+    Some((middle, along, radius))
 }
 
 /// A point of the 3D routing from layout to view coordinates (`pos`: the positions of

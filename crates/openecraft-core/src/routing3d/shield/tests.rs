@@ -52,7 +52,7 @@ fn terminations_and_problems() {
     // devices either way (field ends are cable glands).
     it.ends = [device("-A1", 100.0), End { tag: "-A9".into(), ..Default::default() }];
     let power = item("L1", Class::Power, 4.0, vec![]);
-    let bundle = Bundle { items: vec![0, 1], points: vec![], length: 200.0, diameter: 9.0, classes: vec![Class::Signal, Class::Power] };
+    let bundle = Bundle { items: vec![0, 1], points: vec![], length: 200.0, diameter: 9.0, classes: vec![Class::Signal, Class::Power], ties: Vec::new() };
     let (infos, problems) = analyse(&prj, &[it.clone(), power], std::slice::from_ref(&bundle));
     // No placed device -A1: its end counts as entering from the field.
     assert_eq!(infos[0].ends[1].termination, Termination::Field);
