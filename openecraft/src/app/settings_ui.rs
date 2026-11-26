@@ -359,6 +359,21 @@ impl App {
                 self.shell.wall_opacity = percent / 100.0;
             }
             ui.end_row();
+            ui.label(tr("Door opening angle"));
+            let prefs = &mut self.panel_ui.prefs_3d;
+            let r = ui.add(egui::Slider::new(&mut prefs.door_angle, crate::panel_ui::DOOR_ANGLES).step_by(5.0).suffix(" °"));
+            r.on_hover_text(tr("How far the enclosure door opens in the 3D view of the panel layout"));
+            ui.end_row();
+            ui.label(tr("Orbit direction"));
+            ui.horizontal(|ui| {
+                ui.checkbox(&mut prefs.invert_x, tr("Invert horizontally")).on_hover_text(tr("A drag to the side turns the 3D view the other way round"));
+                ui.checkbox(&mut prefs.invert_y, tr("Invert vertically")).on_hover_text(tr("A drag up or down tilts the 3D view the other way round"));
+            });
+            ui.end_row();
+            ui.label(tr("View buttons"));
+            ui.checkbox(&mut prefs.view_bar, tr("Show a row of buttons for the view settings at the top of the 3D view"))
+                .on_hover_text(tr("Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click"));
+            ui.end_row();
             ui.label(tr("Language"));
             // All languages at once: a list that scrolls hid most of them.
             ui.horizontal_wrapped(|ui| {

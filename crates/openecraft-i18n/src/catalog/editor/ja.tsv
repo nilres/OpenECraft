@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	ケーブルのない接続ごとにバスタイプのケーブルを作成
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	盤から出て空いているグランドが見つからないケーブルは、そのサイズのグランドを得ます：室内の機器には天井面、フィールドまたは壁掛けの盤には底面
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	隣のエンクロージャーの側板の同じ位置に同じサイズの切り欠きを追加します。両方でケーブル貫通口になります
+A drag to the side turns the 3D view the other way round	横にドラッグすると 3D ビューが逆向きに回転します
+A drag up or down tilts the 3D view the other way round	上下にドラッグすると 3D ビューが逆向きに傾きます
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	フォルダー内に同名のファイルがある場合は新しいバージョンになり (チェックアウトとチェックイン)、ない場合はファイルが追加されます
 A folder with one small file per page, device and part instead of one project file, for version control such as git	1 つのプロジェクトファイルの代わりに、ページ、機器、部品ごとに小さなファイルを持つフォルダー。git などのバージョン管理用
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	各ページに大きく表示する文字（例: リビジョン準備中の「ドラフト」）。プレースホルダーを使えます。空 = なし。
@@ -616,6 +618,7 @@ Door NC data (DXF)	扉の NC データ (DXF)
 Door clearance	扉のクリアランス
 Door cutouts (CSV)	扉の切り欠き (CSV)
 Door hinge	扉のヒンジ
+Door opening angle	ドアの開き角度
 Door: {} devices, {} cutouts	扉: デバイス {} 個、切り欠き {} 個
 Dot	点
 Double door	両開き
@@ -921,6 +924,7 @@ Hoses and pipes	ホースと配管
 Hoses rated below it are errors; 0 = not checked	これより定格の低いホースはエラーになります。0 = チェックしない
 How far inside the outer walls	外壁の内側への距離
 How far outside the outer walls	外壁の外側への距離
+How far the enclosure door opens in the 3D view of the panel layout	パネルレイアウトの 3D ビューで筐体のドアが開く角度
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	扉の開き方：左または右の端に吊り元（室内から見て）、室内側または室外側へ開く、または壁に沿って引く
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	この端での電線の端末処理。既定では接続点またはその機器に選んだもの、なければレイアウトのフェルール設定に従います
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	配線が交差する配線をどのように越えるか、T 接続をどのように示すか、移動した項目の接続を再配線するか
@@ -1000,7 +1004,9 @@ Interruption points refer to	中断ポイントの参照先
 Interval	間隔
 Introduction	はじめに
 Invalid value	無効な値
+Invert horizontally	水平方向を反転
 Invert the direction of panning by scrolling	スクロールによるパンの方向を反転する
+Invert vertically	垂直方向を反転
 Inverter or charge controller (devices with PV input data)	インバーターまたは充電コントローラー（PV入力データのある機器）
 It takes the place of the bundled template of this name.	この名前の組み込みテンプレートの代わりになります。
 Items copied: {}	コピーした要素: {}
@@ -1426,6 +1432,7 @@ Opened {}	{} を開きました
 Opened {} from Vault (version {})	Vault から {} を開きました (バージョン {})
 Opened {} from the project server	プロジェクトサーバーから {} を開きました
 Opening	開口部
+Opening angle of the door in the 3D view	3D ビューでのドアの開き角度
 Opening in the mounting plate / door: click two corners (round: in the properties)	取付板 / 扉の開口部: 2 つのコーナーをクリック (円形: プロパティで設定)
 Opening {}…	{} を開いています…
 Opens	開き方
@@ -1435,6 +1442,7 @@ Open…	開く…
 Operations / year	動作回数 / 年
 Option	オプション
 Options	オプション
+Orbit direction	回転方向
 Orbit the 3D view	3D ビューを回転
 Ordinary cable	通常のケーブル
 Orientation	向き
@@ -1969,6 +1977,7 @@ Short-circuit currents	短絡電流
 Short-circuit power of the network	系統の短絡容量
 Shortest profile	最短プロファイル
 Show	表示
+Show a row of buttons for the view settings at the top of the 3D view	3D ビューの上部に表示設定のボタン列を表示
 Show all enclosures side by side at their places in the room	すべてのエンクロージャーを室内の位置に並べて表示
 Show as list	一覧で表示
 Show as tiles	タイルで表示
@@ -2308,6 +2317,7 @@ Vertical position	垂直位置
 Vertically	垂直方向
 Via:	経由:
 View	表示
+View buttons	表示ボタン
 Visible	表示
 Voltage (line to line)	電圧 (線間)
 Voltage at maximum power	最大出力時の電圧
@@ -2371,6 +2381,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	接続の電線
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	電線も、板上の配線ダクトだけでなく、障害物を考慮した 3D ルートを使用します
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	独自の色または断面積を持たない電線は、接続の電位からその値を引き継ぎます。ケーブル心線はケーブルの値を保持します。
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	配線、開いた配線ダクト、手前の壁など レイアウト空間 › 表示 の設定をワンクリックで
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	配線アシスタント: 3D ビューと進捗付きの電線チェックリスト (タブレット: #wiring で Web アプリを開く)
 Wiring space between devices and ducts	デバイスとダクトの間の配線スペース
 With a user account of the server; replaces the access token	サーバーのユーザーアカウントを使用 (アクセストークンの代わり)

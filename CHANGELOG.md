@@ -5,6 +5,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Door opening angle and orbit direction of the 3D view:** the door of an enclosure
+  opens as far as chosen, from 90° to 180°, beside *Open door* / *Close door* and in
+  *File › Settings › Appearance*, so that it no longer blocks the view onto the
+  mounting plate. The settings also invert the direction a drag orbits the 3D view,
+  to the side and up or down. Both are kept like the other user settings
+  ([user interface](docs/user-interface.md)).
+- **Buttons for the view settings in the 3D view:** a row of buttons at the top of the
+  3D view switches the settings of *Layout space › Show* at a click: wires, duct fill,
+  heat map, open cable ducts, walls in front, line-up and all enclosures, for a room
+  also the ceiling, open walls, installation zones, PV modules and the whole building.
+  *File › Settings › Appearance › View buttons* hides the row. The *Show* group folded
+  in a narrow ribbon has an eye as its icon instead of the wire symbol of *Wires*.
 - **Wires and cables without cable ducts are tied into bundles:** in a cabinet without
   cable ducts on its mounting plate, and in a room without cable trays, the 3D routing
   lays thin wires and cables that go the same way together, as a bundle held by cable
