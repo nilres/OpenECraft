@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Voegt de apparaten van een sjabloon toe aan een segment
 Adds the outline of a machine, building or area to the plant layout	Voegt de contour van een machine, gebouw of zone toe aan de installatielay-out
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Voegt een profiel toe, vervangt of verwijdert het: een connector met de kolomnamen die het andere systeem gebruikt
+After it instead of before	Erna in plaats van ervoor
 Air-termination rod: its name	Opvangstaaf: de naam
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Lijnt elementen uit, verdeelt ze gelijkmatig, plaatst apparaten op een rij op een rail of kopieert elementen in een patroon
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Lijnt symbolen, teksten en grafiek uit op een gemeenschappelijke rand of middenlijn; aangesloten draadeinden volgen mee
@@ -66,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Back-up
 Bar id	Rail-ID
 Bar thickness, mm (default 5)	Raildikte, mm (standaard 5)
 Bar width, mm (default 20)	Railbreedte, mm (standaard 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Bouwt een behuizing aan bij het verbindingsframe in een zijwand van een andere (zoals de CZ3 van Striebel & John): rechts ervan bij een frame in de rechterwand, links ervan bij een in de linkerwand
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Koppelt een behuizing naast een andere, rechts ervan (koppeling); zonder right_of verlaat deze de koppeling
 Bend radius in drag chains as a multiple of the cable diameter	Buigradius in sleepkettingen als veelvoud van de kabeldiameter
 Bend radius of a drag chain in mm	Buigradius van een sleepketting in mm
@@ -145,6 +147,7 @@ Corner points on the mounting plate in mm	Hoekpunten op de montageplaat in mm
 Correction of the time estimate	Correctie van de tijdschatting
 Cost of free air against ducts and routing paths	Kosten van vrij in de lucht ten opzichte van goten en routeringspaden
 Counting step (default 1)	Telstap (standaard 1)
+Covers fitted; false takes them off	Afdekkingen aangebracht; false neemt ze af
 Creates a bus cable for the connection (without cable tag)	Maakt een buskabel voor de verbinding (zonder kabelaanduiding)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Maakt een kabel van het bustype (type, aders, doorsnede) voor elke busverbinding zonder kabel
 Creates or changes a PCT loop of the pre-planning	Maakt of wijzigt een PCT-lus van de voorplanning
@@ -259,15 +262,20 @@ Enclosure (location, e.g. +CAB1) whose settings change	Behuizing (locatie, bijv.
 Enclosure climate and electrical sizing	Klimaatbeheersing van de behuizing en elektrische dimensionering
 Enclosure it stands right of; empty to take it out of its line-up	Behuizing waar deze rechts van staat; leeg om deze uit de koppeling te halen
 Enclosure name (all if missing)	Naam van de behuizing (alle als deze ontbreekt)
+Enclosure or room it goes before or after	Behuizing of ruimte waarvoor of waarna het komt
 Enclosure part number	Artikelnummer van de behuizing
 Enclosure system (default: the enclosure's)	Behuizingssysteem (standaard: dat van de behuizing)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Behuizing waar de kopieën heen gaan (locatie, bijv. +CAB2); dezelfde indien weggelaten
+Enclosure to attach; without it a new one like the enclosure with the frame	Aan te bouwen behuizing; zonder een nieuwe zoals de behuizing met het frame
+Enclosure with the frame	Behuizing met het frame
 Enclosure {} exists already	Behuizing {} bestaat al
+Enclosure; without it every enclosure	Behuizing; zonder elke behuizing
 Enclosures, panel items, accessories and panel macros	Behuizingen, montage-elementen, toebehoren en montagemacro's
 End brackets and end plates from the tech data of the terminal parts	Eindsteunen en eindplaten uit de technische gegevens van de klemartikelen
 End holes from the bar end as a multiple of the width	Eindboringen vanaf het railuiteinde als veelvoud van de breedte
 End: device tag and connection point, e.g. -S1:14	Einde: apparaataanduiding en aansluitpunt, bijv. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Vlak: plate, door, left, right, rear, roof of bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Vlak: plate, door, left, right, rear, roof of bottom; door_left en door_right voor de vleugels van een dubbele deur
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Veldplan: knooppunten, segmenten, contouren, tracés, potentiaalvereffening en toebehoren
 Figure	Kengetal
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Zoekt en vervangt tekst in een kolom van alle (gefilterde) rijen; zonder zoektekst wordt de kolom gevuld met de vervangende tekst
@@ -281,6 +289,7 @@ First counter value (default 1)	Eerste tellerwaarde (standaard 1)
 First page number (default 1)	Eerste paginanummer (standaard 1)
 First port as station:port, e.g. PLC1:X1 P2	Eerste poort als station:poort, bijv. PLC1:X1 P2
 First row with the column names	Eerste rij met de kolomnamen
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Brengt de kunststof afdekkingen van alle velden van het veldraster van een behuizing, of van elke behuizing, aan of neemt ze allemaal af
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Platte daken en vrijstaand: richting waarin de modules wijzen in graden, tegen de klok in van bovenaf gezien (0: naar +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Indeling van de apparaatnaam: {letter}, {n} (teller), {page}, {column}, {row}; standaard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Indeling van het schema format: {n} (teller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -359,6 +368,7 @@ Invalid answer of the plugin: {}	Ongeldig antwoord van de plugin: {}
 Invalid segment name: {}	Ongeldige segmentnaam: {}
 Invalid title block elements: {}	Ongeldige titelblokelementen: {}
 Item id	Element-id
+Item id of the frame	Element-id van het frame
 Item ids	Element-id's
 Jumper number	Brugnummer
 Jumper number (terminals with the same number are bridged); 0 removes it	Brugnummer (klemmen met hetzelfde nummer zijn doorverbonden); 0 verwijdert het
@@ -379,6 +389,7 @@ Landscape (true) or portrait (false)	Liggend (true) of staand (false)
 Language the project texts are written in, e.g. en	Taal waarin de projectteksten zijn geschreven, bijv. en
 Larger round holes are milled, mm	Grotere ronde gaten worden gefreesd, mm
 Largest difference between hole and tool, mm	Grootste verschil tussen gat en gereedschap, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Vleugels van een dubbele deur: hun breedtes van links, bijv. 275 + 525 (met left of right na een breedte voor zijn scharnier), of hun aantal voor even brede vleugels; leeg of 1 voor één vleugel
 Left edge from the left end of the wall (seen from inside) in mm	Linkerrand vanaf het linkereinde van de wand (gezien van binnen) in mm
 Left edge in mm	Linkerrand in mm
 Left edge on the face in mm	Linkerrand op het vlak in mm
@@ -440,6 +451,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Toont de gek
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Toont de titelblokken (ingebouwde en die van het project) met hun elementen, de projectstandaard en de plaatshouders
 Lists the translation dictionary of the project texts (source line and translations)	Geeft een lijst van het vertaalwoordenboek van de projectteksten (bronregel en vertalingen)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Toont de op de pagina's geplaatste venstermacro's (macrokaders) met macro, variant, waarden van tijdelijke aanduidingen en aantal elementen
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Geeft aan waar een toebehorenartikel in een behuizing past: de vrije velden van een meter- of verdeelkast (artikelgegevens Fields en Rows), de vrije openingen in de zijwanden voor een frame dat behuizingen verbindt (artikelgegevens Opening en Side openings), de zijden van de behuizing waarvan het toebehoren is, de apparaten bij wier artikel het past
 Load losses of the transformer in W (0: typical)	Kortsluitverliezen van de transformator in W (0: typisch)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Belastingen van het net, belasting van elk beveiligingsapparaat, vraag met de gelijktijdigheidsfactor, fasebalans en belastingsbudgetten van de voedingen
 Loads the potential definitions of a standard (replaces those of the same name)	Laadt de potentiaaldefinities van een norm (vervangt die met dezelfde naam)
@@ -484,6 +496,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	De montagegrootte moet een positieve breedte en hoogte bevatten
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Verplaatst een steunpunt van de route van een draad, kabel of buis; de routering meldt een fout waar de route er niet doorheen kan
 Moves an air-termination rod, changes its height, renames or removes it	Verplaatst een opvangstaaf, wijzigt de hoogte, hernoemt of verwijdert hem
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Verplaatst een behuizing of een ruimte in de volgorde van de boom van behuizingen en ruimten: voor of na een andere (een gekoppelde behuizing binnen haar koppeling, opnieuw gekoppeld, of met haar koppeling; een ruimte tussen de ruimten, op de verdieping van de andere)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Verplaatst één uiteinde van een draad: het laat los waar het op aangesloten is en verbindt met wat het raakt; de draad blijft haaks
 Moves symbols, wires and texts; connected wire ends follow	Verplaatst symbolen, draden en teksten; aangesloten draadeinden volgen
 Moves the page before this page of its section (or of the section given)	Verplaatst de pagina vóór deze pagina van haar sectie (of van de opgegeven sectie)
@@ -625,6 +638,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Pagina {
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Pagina's met een achtervoegsel (3.a) blijven subpagina's van de vorige pagina (standaard true)
 Panel layout checks	Controles van de kastlay-out
 Panel manufacturing	Kastbouw
+Panel of a field grid: with its plastic cover (false: taken off)	Veld van een veldraster: met zijn kunststof afdekking (false: verwijderd)
 Paper height in mm (custom paper)	Papierhoogte in mm (aangepast papier)
 Paper width in mm (custom paper)	Papierbreedte in mm (aangepast papier)
 Part lifecycle	Levenscyclus van artikelen
@@ -971,6 +985,7 @@ Unknown class: {}	Onbekende klasse: {}
 Unknown data type: {}	Onbekend gegevenstype: {}
 Unknown direction {}: left, right, up or down	Onbekende richting {}: left, right, up of down
 Unknown door hinge: {}	Onbekende scharnierzijde: {}
+Unknown door leaves: {}	Onbekende deurvleugels: {}
 Unknown earth electrode: {}	Onbekende aardelektrode: {}
 Unknown earthing system: {}	Onbekend aardingsstelsel: {}
 Unknown face {}	Onbekend vlak {}

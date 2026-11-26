@@ -8,6 +8,7 @@ use crate::{Registry, Table};
 use crate::{Info, Plugin, Text};
 use openecraft_core::manufacturing::{self as mf, bars, configurator, feedback, handoff, machines, post, strategy, BarRules, CopperBar, Machine, Method, Strategy};
 use openecraft_core::model::Project;
+use openecraft_core::production;
 use openecraft_core::panel::{self, Face};
 use openecraft_core::issue::{Issue, Severity};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
@@ -15,6 +16,7 @@ use serde_json::{json, Value};
 
 const ENCLOSURE: &str = tr_const!("Enclosure (location, e.g. +CAB1)");
 const FACE: &str = tr_const!("Face: plate, door, left, right, rear, roof or bottom");
+const SHEET: &str = tr_const!("Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door");
 const MACHINE: &str = tr_const!("Machine id (default: the machine of the face)");
 const DATE: &str = tr_const!("Date (YYYY-MM-DD)");
 
@@ -75,13 +77,13 @@ impl Plugin for PanelManufacturing {
             .command(
                 "machining_plan",
                 tr_const!("Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make"),
-                vec![param("enclosure", Kind::Str, ENCLOSURE), param("face", Kind::Str, FACE), optional("machine", Kind::Str, MACHINE)],
+                vec![param("enclosure", Kind::Str, ENCLOSURE), param("face", Kind::Str, SHEET), optional("machine", Kind::Str, MACHINE)],
                 |prj, a| plan_json(prj, a, false),
             )
             .command(
                 "cnc_program",
                 tr_const!("Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)"),
-                vec![param("enclosure", Kind::Str, ENCLOSURE), param("face", Kind::Str, FACE), optional("machine", Kind::Str, MACHINE)],
+                vec![param("enclosure", Kind::Str, ENCLOSURE), param("face", Kind::Str, SHEET), optional("machine", Kind::Str, MACHINE)],
                 |prj, a| plan_json(prj, a, true),
             )
             .command(
@@ -189,11 +191,6 @@ impl Plugin for PanelManufacturing {
 fn enclosure(prj: &Project, a: &Args) -> Result<usize, String> {
     let name = a.req("enclosure");
     mf::enclosure_index(prj, name).ok_or_else(|| tr_fmt!("No enclosure named {}", name))
-}
-
-fn face(a: &Args) -> Result<Face, String> {
-    let key = a.req("face");
-    Face::from_key(key).ok_or_else(|| tr_fmt!("Unknown face {}", key))
 }
 
 fn r1(v: f32) -> f32 {
@@ -366,10 +363,11 @@ fn set_strategy(prj: &mut Project, a: &Args) -> Result<Value, String> {
 
 fn plan_json(prj: &mut Project, a: &Args, with_program: bool) -> Result<Value, String> {
     let enc = enclosure(prj, a)?;
-    let face = face(a)?;
-    let id = a.str("machine").unwrap_or(prj.layout.manufacturing.machine_of(face)).to_string();
+    let key = a.req("face");
+    let sheet = production::sheet_from_key(&prj.layout.enclosures[enc], key).ok_or_else(|| tr_fmt!("Unknown face {}", key))?;
+    let id = a.str("machine").unwrap_or(prj.layout.manufacturing.machine_of(sheet.face)).to_string();
     let m = machines::get(prj, &id)?;
-    let plan = strategy::plan(prj, enc, face, &m, &prj.layout.manufacturing.strategy);
+    let plan = strategy::plan(prj, enc, sheet, &m, &prj.layout.manufacturing.strategy);
     let mut counts = serde_json::Map::new();
     for o in &plan.ops {
         let n = counts.get(o.kind.key()).and_then(Value::as_u64).unwrap_or(0) + 1;
@@ -386,7 +384,7 @@ fn plan_json(prj: &mut Project, a: &Args, with_program: bool) -> Result<Value, S
     }
     let mut v = json!({
         "enclosure": plan.enclosure,
-        "face": face.key(),
+        "face": plan.sheet,
         "machine": m.id,
         "sheet": [plan.width, plan.height, plan.thickness],
         "operations": plan.ops.len(),
@@ -573,7 +571,7 @@ fn operations_report(prj: &Project) -> Result<Table, String> {
     let mut t = Table::new([tr_const!("Enclosure"), tr_const!("Face"), tr_const!("Machine"), tr_const!("Operations"), tr_const!("Tools"), tr_const!("Time"), tr_const!("Problems")]);
     for enc in 0..prj.layout.enclosures.len() {
         for p in handoff::programs(prj, enc)? {
-            let face = p.face.map(|f| f.title()).unwrap_or(tr("Copper bars"));
+            let face = p.face.map(|face| panel::Sheet { face, leaf: p.leaf }.title(&prj.layout.enclosures[enc])).unwrap_or_else(|| tr("Copper bars").into());
             let tools = p.content.lines().filter(|l| l.starts_with('T') || l.contains("TOOL CALL")).count();
             t.push(vec![prj.layout.enclosures[enc].name.clone(), face.to_string(), p.machine, p.operations.to_string(), tools.to_string(), strategy::duration(p.time), p.problems.join("; ")], None);
         }

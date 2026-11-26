@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Додає пристрої шаблону до сегмента
 Adds the outline of a machine, building or area to the plant layout	Додає контур машини, будівлі або зони до плану установки
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Додає, замінює або вилучає профіль: конектор із назвами стовпців, які використовує інша система
+After it instead of before	Після, а не перед
 Air-termination rod: its name	Блискавкоприймальний стрижень: його назва
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Вирівнює елементи, розподіляє їх рівномірно, шикує пристрої на рейці або копіює елементи масивом
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Вирівнює символи, тексти й графіку за спільним краєм або центром; під’єднані кінці проводів переміщуються разом
@@ -66,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Рез�
 Bar id	Ідентифікатор шини
 Bar thickness, mm (default 5)	Товщина шини, мм (за замовчуванням 5)
 Bar width, mm (default 20)	Ширина шини, мм (за замовчуванням 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Прибудовує шафу біля з'єднувальної рамки в бічній стінці іншої шафи (наприклад, CZ3 від Striebel & John): праворуч від неї для рамки в правій стінці, ліворуч для рамки в лівій стінці
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Приєднує корпус праворуч від іншого (з’єднання в ряд); без right_of корпус виходить зі свого ряду
 Bend radius in drag chains as a multiple of the cable diameter	Радіус згину в кабельних ланцюгах як кратне діаметра кабелю
 Bend radius of a drag chain in mm	Радіус згину кабельного ланцюга в мм
@@ -145,6 +147,7 @@ Corner points on the mounting plate in mm	Кутові точки на монт�
 Correction of the time estimate	Корекція оцінки часу
 Cost of free air against ducts and routing paths	Вартість вільного прокладання порівняно з каналами та трасами прокладання
 Counting step (default 1)	Крок лічби (за замовчуванням 1)
+Covers fitted; false takes them off	Кришки встановлено; false знімає їх
 Creates a bus cable for the connection (without cable tag)	Створює шинний кабель для з’єднання (без позначення кабелю)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Створює кабель шинного типу (тип, жили, переріз) для кожного шинного з’єднання без кабелю
 Creates or changes a PCT loop of the pre-planning	Створює або змінює контур КВПіА попереднього планування
@@ -259,15 +262,20 @@ Enclosure (location, e.g. +CAB1) whose settings change	Корпус (розта�
 Enclosure climate and electrical sizing	Клімат шафи та електричні розрахунки
 Enclosure it stands right of; empty to take it out of its line-up	Корпус, праворуч від якого він стоїть; порожньо – вивести його з ряду
 Enclosure name (all if missing)	Назва корпусу (усі, якщо не вказано)
+Enclosure or room it goes before or after	Корпус або приміщення, перед яким або після якого він переміщується
 Enclosure part number	Номер виробу корпусу
 Enclosure system (default: the enclosure's)	Система корпусів (за замовчуванням: система корпусу)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Корпус, до якого потрапляють копії (розташування, напр. +CAB2); без зазначення той самий
+Enclosure to attach; without it a new one like the enclosure with the frame	Шафа, що прибудовується; без неї нова, як шафа з рамкою
+Enclosure with the frame	Шафа з рамкою
 Enclosure {} exists already	Корпус {} вже існує
+Enclosure; without it every enclosure	Шафа; без неї кожна шафа
 Enclosures, panel items, accessories and panel macros	Шафи, елементи компонування, аксесуари та макроси компонування
 End brackets and end plates from the tech data of the terminal parts	Кінцеві фіксатори та кінцеві кришки з технічних даних виробів клем
 End holes from the bar end as a multiple of the width	Кінцеві отвори від кінця шини як кратне ширини
 End: device tag and connection point, e.g. -S1:14	Кінець: позначення пристрою та точка підключення, напр. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Грань: plate, door, left, right, rear, roof або bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Грань: plate, door, left, right, rear, roof або bottom; door_left і door_right для стулок двостулкових дверей
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Польовий план: вузли, ділянки, контури, траси, вирівнювання потенціалів і аксесуари
 Figure	Показник
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Знаходить і замінює текст у стовпці всіх (відфільтрованих) рядків; без тексту пошуку стовпець заповнюється заміною
@@ -281,6 +289,7 @@ First counter value (default 1)	Перше значення лічильника
 First page number (default 1)	Номер першої сторінки (за замовчуванням 1)
 First port as station:port, e.g. PLC1:X1 P2	Перший порт у форматі станція:порт, напр. PLC1:X1 P2
 First row with the column names	Перший рядок із назвами стовпців
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Встановлює пластикові кришки всіх полів сітки полів шафи або кожної шафи чи знімає їх усі
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Пласкі дахи й наземні поля: напрямок, куди звернені модулі, у градусах, проти годинникової стрілки, якщо дивитися згори (0: до +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Формат назви пристрою: {letter}, {n} (лічильник), {page}, {column}, {row}; за замовчуванням {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Формат для схеми format: {n} (лічильник), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -359,6 +368,7 @@ Invalid answer of the plugin: {}	Недійсна відповідь плагі�
 Invalid segment name: {}	Недійсна назва сегмента: {}
 Invalid title block elements: {}	Недійсні елементи основного напису: {}
 Item id	Ідентифікатор елемента
+Item id of the frame	Ідентифікатор елемента рамки
 Item ids	Ідентифікатори елементів
 Jumper number	Номер перемички
 Jumper number (terminals with the same number are bridged); 0 removes it	Номер перемички (клеми з однаковим номером з’єднано перемичкою); 0 вилучає її
@@ -379,6 +389,7 @@ Landscape (true) or portrait (false)	Альбомна (true) або книжко
 Language the project texts are written in, e.g. en	Мова, якою написано тексти проєкту, напр. en
 Larger round holes are milled, mm	Більші круглі отвори фрезеруються, мм
 Largest difference between hole and tool, mm	Найбільша різниця між отвором та інструментом, мм
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Стулки двостулкових дверей: їхні ширини зліва, напр. 275 + 525 (з left або right після ширини для її завіси), або їх кількість для стулок однакової ширини; порожньо або 1 для однієї стулки
 Left edge from the left end of the wall (seen from inside) in mm	Лівий край від лівого кінця стіни (вигляд зсередини), мм
 Left edge in mm	Лівий край у мм
 Left edge on the face in mm	Лівий край на грані в мм
@@ -440,6 +451,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Перелі
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Перелічує основні написи (вбудовані та власні проєкту) з їхніми елементами, типовий напис і заповнювачі
 Lists the translation dictionary of the project texts (source line and translations)	Перелічує словник перекладів текстів проєкту (рядок оригіналу та переклади)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Перелічує віконні макроси, розміщені на сторінках (рамки макросів), з макросом, варіантом, значеннями заповнювачів і кількістю елементів
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Перелічує, куди приладдя підходить у корпусі: вільні поля лічильникової або розподільної шафи (дані виробу Fields і Rows), вільні отвори в його бічних стінках для рамки, що з'єднує шафи (дані виробу Opening і Side openings), сторони корпусу, приладдям якого воно є, пристрої, до виробу яких воно підходить
 Load losses of the transformer in W (0: typical)	Втрати короткого замикання трансформатора у W (0: типові)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Навантаження мережі, навантаження кожного захисного пристрою, потреба з коефіцієнтом одночасності, баланс фаз і баланс навантаження блоків живлення
 Loads the potential definitions of a standard (replaces those of the same name)	Завантажує визначення потенціалів стандарту (замінює однойменні)
@@ -484,6 +496,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Монтажний розмір має містити додатні ширину й висоту
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Переміщує опорну точку траси проводу, кабелю або трубки; прокладання повідомляє про помилку, якщо трасу не можна провести через неї
 Moves an air-termination rod, changes its height, renames or removes it	Переміщує блискавкоприймальний стрижень, змінює його висоту, перейменовує чи видаляє його
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Переміщує корпус або приміщення в порядку дерева корпусів і приміщень: перед іншим або після нього (корпус у ряду — в межах ряду з новим з’єднанням або разом із рядом; приміщення — серед приміщень, на поверх іншого)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Переміщує один кінець проводу: він від'єднується від того, до чого підключений, і підключається до того, чого торкається; провід залишається прямокутним
 Moves symbols, wires and texts; connected wire ends follow	Переміщує символи, проводи й тексти; кінці підключених проводів слідують за ними
 Moves the page before this page of its section (or of the section given)	Переміщує сторінку перед цією сторінкою її розділу (або вказаного розділу)
@@ -625,6 +638,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Стор
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Сторінки із суфіксом (3.a) залишаються підсторінками попередньої сторінки (за замовчуванням true)
 Panel layout checks	Перевірки компонування шафи
 Panel manufacturing	Виготовлення шаф
+Panel of a field grid: with its plastic cover (false: taken off)	Панель сітки полів: з пластиковою кришкою (false: знята)
 Paper height in mm (custom paper)	Висота паперу в мм (власний формат)
 Paper width in mm (custom paper)	Ширина паперу в мм (власний формат)
 Part lifecycle	Життєвий цикл виробу
@@ -971,6 +985,7 @@ Unknown class: {}	Невідомий клас: {}
 Unknown data type: {}	Невідомий тип даних: {}
 Unknown direction {}: left, right, up or down	Невідомий напрямок {}: left, right, up або down
 Unknown door hinge: {}	Невідома сторона петель: {}
+Unknown door leaves: {}	Невідомі стулки дверей: {}
 Unknown earth electrode: {}	Невідомий заземлювач: {}
 Unknown earthing system: {}	Невідомий тип системи заземлення: {}
 Unknown face {}	Невідома грань {}

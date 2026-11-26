@@ -700,14 +700,44 @@ fn import(s: &mut Session, a: &Args) -> Result<Value, String> {
     import_package(s, openecraft_edz::read(&content)?)
 }
 
+/// Uploads the parts of an EDZ file merged into the parts of the server and of the
+/// shipped catalogs they are ([`openecraft_parts::merge`]), then their files.
 fn import_package(s: &mut Session, edz: openecraft_edz::Edz) -> Result<Value, String> {
-    let result = s.server.import(serde_json::to_vec(&edz.parts).map_err(|e| e.to_string())?)?;
-    let mut attached = Vec::new();
-    for f in edz.files {
-        s.server.attach(&f.part, &f.name, Some(f.kind), f.data)?;
-        attached.push(json!({ "number": f.part, "file": f.name }));
+    use openecraft_parts::merge;
+    let shipped: Vec<Part> = openecraft_parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).collect();
+    let shipped_refs: Vec<&Part> = shipped.iter().collect();
+    // The server's copy of each part, by its own number or the number it has in a
+    // shipped catalog.
+    let mut on_server = Vec::new();
+    for p in &edz.parts {
+        let number = merge::find_known(p, &shipped_refs).map_or(p.number.as_str(), |k| k.number.as_str());
+        if let Some(found) = s.server.get(number)? {
+            on_server.push(found);
+        }
     }
-    Ok(json!({ "imported": result.imported, "revision": result.revision, "attached": attached }))
+    let merged = merge::merge_imported(edz.parts, on_server.iter().chain(&shipped));
+    let (merged_count, renamed) = (merged.merged, merged.renamed.clone());
+    let numbers = |n: &str| renamed.iter().find(|(from, _)| from == n).map_or(n.to_string(), |(_, to)| to.clone());
+    // In batches below the server's limit: the models of an EDZ file make it large.
+    let mut result = openecraft_parts::api::ImportResult::default();
+    for batch in openecraft_parts::api::import_batches(merged.parts) {
+        let r = s.server.import(serde_json::to_vec(&batch).map_err(|e| e.to_string())?)?;
+        result.imported += r.imported;
+        result.revision = r.revision;
+    }
+    let (mut attached, mut skipped) = (Vec::new(), Vec::new());
+    for f in edz.files {
+        let number = numbers(&f.part);
+        // More than the server takes (a 3D macro of 40 MB): the part has its model.
+        if f.data.len() > openecraft_parts::api::MAX_BODY {
+            skipped.push(json!({ "number": number, "file": f.name, "bytes": f.data.len() }));
+            continue;
+        }
+        s.server.attach(&number, &f.name, Some(f.kind), f.data)?;
+        attached.push(json!({ "number": number, "file": f.name }));
+    }
+    let renamed: Vec<Value> = renamed.iter().map(|(from, to)| json!({ "imported": from, "number": to })).collect();
+    Ok(json!({ "imported": result.imported, "merged": merged_count, "renamed": renamed, "revision": result.revision, "attached": attached, "skipped": skipped }))
 }
 
 fn export(s: &mut Session, a: &Args) -> Result<Value, String> {

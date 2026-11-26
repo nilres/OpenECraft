@@ -567,12 +567,6 @@ pub struct PlacePayload {
     pub pins: Vec<String>,
 }
 
-/// What of type `T` is dropped onto `resp` this frame. egui takes the payload whatever
-/// its type, so it is only taken when it is a `T`, leaving another kind to its own check.
-fn released<T: std::any::Any + Send + Sync>(resp: &egui::Response) -> Option<std::sync::Arc<T>> {
-    egui::DragAndDrop::has_payload_of_type::<T>(&resp.ctx).then(|| resp.dnd_release_payload::<T>()).flatten()
-}
-
 fn crosshair_segments(rect: Rect, center: Pos2, full_canvas: bool) -> [[Pos2; 2]; 2] {
     let (left, right, top, bottom) = if full_canvas {
         (rect.left(), rect.right(), rect.top(), rect.bottom())
@@ -1317,7 +1311,7 @@ impl Editor {
             // A part dragged onto a released, locked or generated page: say why it
             // cannot be dropped here instead of ignoring it.
             ui.ctx().set_cursor_icon(egui::CursorIcon::NoDrop);
-            if released::<PartDrag>(&resp).is_some() {
+            if crate::dropped::<PartDrag>(&resp).is_some() {
                 out.message = Some(tr("Parts can only be dropped onto pages that can be changed; this one is released, locked or generated").to_string());
             }
         } else if self.tool == Tool::Select {
@@ -2113,11 +2107,11 @@ impl Editor {
         }
         // A part from the parts management or the data portal: the application imports
         // it when needed and places it.
-        if let (Some(sn), Some(pl)) = (snapped, released::<PartDrag>(resp)) {
+        if let (Some(sn), Some(pl)) = (snapped, crate::dropped::<PartDrag>(resp)) {
             out.dropped_part = Some((pl.number.clone(), sn));
             return;
         }
-        if let (Some(sn), Some(pl)) = (snapped, released::<PlacePayload>(resp)) {
+        if let (Some(sn), Some(pl)) = (snapped, crate::dropped::<PlacePayload>(resp)) {
             self.drop_at(prj, page_i, &pl, None, sn, out);
             return;
         }

@@ -23,6 +23,7 @@ A device tag must not be empty	Marcajul echipamentului nu poate fi gol
 A pipe run turns at right angles	Un traseu de conducte se întoarce în unghi drept
 A plot boundary has at least three corners	O limită de teren are cel puțin trei colțuri
 A port cannot be connected to itself	Un port nu poate fi conectat la el însuși
+A room goes before or after another room	O încăpere se mută înainte sau după altă încăpere
 A room needs at least four walls	O încăpere are nevoie de cel puțin patru pereți
 A section number consists of letters and digits and does not start with 0	Un număr de secțiune constă din litere și cifre și nu începe cu 0
 A section number must not be empty or contain a dot	Un număr de secțiune nu poate fi gol și nu poate conține un punct
@@ -430,6 +431,8 @@ Does not match	Nu corespunde
 Door (front view)	Ușă (vedere frontală)
 Door and walls	Ușă și pereți
 Door handle and document holder	Mâner de ușă și buzunar pentru documente
+Door leaf {}	Canatul {}
+Door leaf {} (front view)	Canatul {} (vedere frontală)
 Double socket outlet with PE	Priză dublă cu PE
 Downstream	Aval
 Drag chain	Lanț portcablu
@@ -792,6 +795,8 @@ Latitude is within ±90° and longitude within ±180°	Latitudinea este în ±90
 Lead time (days)	Timp de livrare (zile)
 Leakage current	Curent de scurgere
 Leakage line	Conductă de scurgeri
+Left door leaf	Canatul stâng al ușii
+Left door leaf (front view)	Canatul stâng al ușii (vedere frontală)
 Left side panel	Perete lateral stânga
 Legend plate text	Text plăcuță de marcare
 Length (m)	Lungime (m)
@@ -1032,6 +1037,7 @@ Oil resistant	Rezistent la ulei
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	O pagină de schemă cu potențialele +24V / 0V, butoane, un comutator selector, lămpi și o siguranță; piese și lista de materiale.
 One schematic page, the potentials of IEC 60204-1	O pagină de schemă, potențialele conform IEC 60204-1
 One-way flow control valve	Supapă de reglare a debitului unidirecțională
+Only another enclosure can be bayed there	Acolo se poate alătura doar o altă carcasă
 Only revisions that are not released can be submitted	Pot fi trimise doar reviziile care nu sunt aprobate
 Only symbols of the symbol library can be scaled	Doar simbolurile din biblioteca de simboluri pot fi scalate
 Only {}	Doar {}
@@ -1386,6 +1392,8 @@ Revision table: author of the last revision (2: the one before …)	Tabel de rev
 Revision table: date of the last revision (2: the one before …)	Tabel de revizii: data ultimei revizii (2: a celei dinainte …)
 Revision table: description of the last revision (2: the one before …)	Tabel de revizii: descrierea ultimei revizii (2: a celei dinainte …)
 Revision table: index of the last revision (2: the one before …)	Tabel de revizii: indicele ultimei revizii (2: a celei dinainte …)
+Right door leaf	Canatul drept al ușii
+Right door leaf (front view)	Canatul drept al ușii (vedere frontală)
 Right side panel	Perete lateral dreapta
 Ring earth electrode	Priză de pământ inelară
 Ring terminal	Papuc inel
@@ -1663,6 +1671,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	Formula se termină prea devreme
 The function definition needs a key and a name	Definiția de funcție necesită o cheie și un nume
 The index of the project names no file layout: it was not written by OpenECraft	Indexul proiectului nu indică nicio structură a fișierelor: nu a fost scris de OpenECraft
+The item is no frame in an opening of a side wall	Elementul nu este un cadru într-o deschidere a unui perete lateral
 The last page cannot be deleted	Ultima pagină nu poate fi ștearsă
 The macro box has no items left	Caseta macro nu mai are elemente
 The next free id is already in use	Următorul ID liber este deja utilizat
@@ -1829,7 +1838,6 @@ Voltage range	Domeniu de tensiune
 Voltage type	Tip de tensiune
 Voltmeter	Voltmetru
 Voltmeter, differential	Voltmetru, diferențial
-Wall	Perete
 Wall {}	Peretele {}
 Wall {} is not at a right angle	Peretele {} nu este în unghi drept
 Wall {} is shorter than {} mm	Peretele {} este mai scurt de {} mm
@@ -2154,6 +2162,7 @@ yellow	galben
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: bornele {} sunt la {} mm deasupra podelei, sunt necesari cel puțin {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: sistemul de bare cu {} bare unește {} conductoare ({}): scurtcircuit
 {}: the busbar {} of earth electrode {} does not exist	{}: bara {} a prizei de pământ {} nu există
+{}: the cutout for {} reaches over the joint between the door leaves and is cut by hand	{}: decupajul pentru {} trece peste îmbinarea dintre canaturile ușii și se face manual
 {}: the device {} of PV array {} does not exist	{}: dispozitivul {} al câmpului fotovoltaic {} nu există
 {}: the earthing busbar {} of PV array {} does not exist	{}: bara de împământare {} a câmpului PV {} nu există
 {}: the freestanding PV array {} stands on {}	{}: câmpul PV la sol {} stă pe {}
@@ -2204,6 +2213,7 @@ yellow	galben
 {}: {} overhangs the end of its mounting rail	{}: {} depășește capătul șinei sale de montaj
 {}: {} pins used, the plug parts have {}	{}: {} pini utilizați, articolele de conector au {}
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} atinge aproximativ {} °C la locul său, permis {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} trece peste îmbinarea dintre canaturile ușii
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} ajunge la {} din cele {} bare ale sistemului său de bare
 {}: {} solenoid coils linked, the valve has {}	{}: {} bobine legate, supapa are {}
 {}: {} stands in an inner wall	{}: {} stă într-un perete interior

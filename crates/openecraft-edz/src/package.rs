@@ -19,9 +19,9 @@ use serde_json::json;
 /// (`openecraft_step::parse_step_without`).
 pub type StepReader = fn(&[u8], &dyn Fn(&str) -> bool) -> Result<Mesh3d, String>;
 
-/// The bytes are a ZIP archive.
+/// The bytes are a ZIP archive, not an EDZ file in one ([`crate::is_edz`]).
 pub fn is_zip(bytes: &[u8]) -> bool {
-    bytes.starts_with(b"PK\x03\x04")
+    bytes.starts_with(b"PK\x03\x04") && !crate::is_edz(bytes)
 }
 
 /// Products of a configurator's STEP model that are areas kept free of cutouts or

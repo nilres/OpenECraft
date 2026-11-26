@@ -252,6 +252,27 @@ pub fn bay_right_of(prj: &mut Project, ei: usize, left: usize) -> bool {
     true
 }
 
+/// Bays an enclosure to the left side of `right`, taking it out of its line-up first;
+/// at the left end of the line-up it takes over the line-up's room and place. False if
+/// that is not possible (as [`bay_right_of`]).
+pub fn bay_left_of(prj: &mut Project, ei: usize, right: usize) -> bool {
+    let n = prj.layout.enclosures.len();
+    if ei == right || ei >= n || right >= n || prj.layout.enclosures[ei].is_room() || prj.layout.enclosures[right].is_room() {
+        return false;
+    }
+    unbay(prj, ei);
+    if let Some(l) = neighbours(&prj.layout, right).0 {
+        return bay_right_of(prj, ei, l);
+    }
+    let id = ensure_id(prj, ei);
+    let first = &mut prj.layout.enclosures[right];
+    let (room, site) = (std::mem::take(&mut first.room), first.site.take());
+    first.bayed_to = id;
+    let e = &mut prj.layout.enclosures[ei];
+    (e.room, e.site) = (room, site);
+    true
+}
+
 /// A place where wires cross from an enclosure into its right neighbour.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Passage {

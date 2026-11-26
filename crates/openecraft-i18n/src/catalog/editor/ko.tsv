@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	가장 높은 층 위의 층
 A local file opens locally, a server project is opened on the project server again	로컬 파일은 로컬에서 열리고, 서버 프로젝트는 프로젝트 서버에서 다시 열립니다
 A local file or a project on the project server	로컬 파일 또는 프로젝트 서버의 프로젝트
+A new enclosure of the same part, bayed at this frame	같은 부품의 새 외함을 이 프레임에 연결합니다
+A new enclosure standing in this room	이 방에 놓을 새 외함
 A new project	새 프로젝트
 A new release is downloaded in the background and installed when you close OpenECraft.	새 릴리스는 백그라운드에서 다운로드되며 OpenECraft를 닫으면 설치됩니다.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	새 릴리스는 백그라운드에서 다운로드되어 이 설치를 대체하며, 다음 실행부터 사용됩니다.
@@ -178,10 +180,13 @@ Assign to existing device	기존 장치에 지정
 Assign to harness	하네스에 지정
 Assign wires: select them in the schematic › Assign to cable.	전선 지정: 회로도에서 전선을 선택 › 케이블에 지정.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	전원에 연결된 비동기 모터가 최대 단락 전류를 증가시킵니다(IEC 60909-0)
+At least, mm (0: any)	최소, mm (0: 제한 없음)
+At most, mm (0: any)	최대, mm (0: 제한 없음)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	최고 주위 온도 기준. 히터가 이슬점을 유지합니다. 0 = 고려 안 함
 At the origin	원점에
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	전원 공급점: Ik3 max {} kA, Ik1 min {} kA
 At the top level	최상위 수준
+Attach an enclosure here	여기에 외함 연결
 Author	작성자
 Auto-connect	자동 연결
 Auto-connect selection	선택 항목 자동 연결
@@ -612,6 +617,7 @@ Door cutouts (CSV)	도어 컷아웃(CSV)
 Door hinge	도어 힌지
 Door: {} devices, {} cutouts	도어: 장치 {}개, 컷아웃 {}개
 Dot	점
+Double door	양문형
 Double-click	두 번 클릭
 Down conductors	인하 도선
 Download into database	데이터베이스로 다운로드
@@ -656,9 +662,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	드릴 목록 (CSV)
 Drilling list of this face (CSV)	이 면의 드릴링 목록(CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	표시된 면의 드릴 패턴 (DXF, DWG 또는 CSV)
+Drop an enclosure here to add it; onto a room to put it in there	여기에 외함을 놓으면 추가되고, 방 위에 놓으면 그 방에 배치됩니다
 Drop between the pages	페이지 사이에 놓기
 Drop between the rows or onto a section	행 사이 또는 구역 위에 놓기
+Drop between two buildings to move it there	두 건물 사이에 놓으면 그곳으로 이동합니다
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	두 행 사이에 놓으면 외함이 그곳으로 이동합니다. 결합된 외함은 열 배치 안에서 또는 열 배치와 함께 이동합니다
+Drop between two rows to move the room there, onto a level to put it on that level	두 행 사이에 놓으면 방이 그곳으로 이동하고, 층에 놓으면 그 층에 배치됩니다
 Drop onto a level to put the room on it	방을 층에 놓으면 그 층에 배치됩니다
+Drop {} here	{}을(를) 여기에 놓기
+Drop {} onto one of the highlighted places	{}을(를) 강조 표시된 위치 중 하나에 놓기
+Drop {} onto {} to add it to the device	{0}을(를) {1}에 놓아 장치에 추가
 Duct fill	덕트 충전율
 Duct fill limit	덕트 충전율 한계
 Duplicate	복제
@@ -693,6 +706,8 @@ Embed as document page	문서 페이지로 포함
 Embeds a file (PDF, Word, Excel, image …) as a page	파일(PDF, Word, Excel, 이미지 …)을 페이지로 포함
 Embeds the file in the project (replaces the current one)	파일을 프로젝트에 포함합니다(현재 파일을 교체)
 Enclosure system	외함 시스템
+Enclosure {} added	외함 {} 추가됨
+Enclosure {} added in room {}	방 {1}에 외함 {0} 추가됨
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	노드의 외함(+CAB1), 장치(-M1) 및 기계 위치(+M1)
 Enclosures and rooms	외함 및 실
 Enclosures, devices to place and placed devices	외함, 배치할 장치와 배치된 장치
@@ -747,7 +762,10 @@ Field	필드
 Field (name, description, company, creator, date, revision) or project property	필드(name, description, company, creator, date, revision) 또는 프로젝트 속성
 Field cables	필드 케이블
 Field length	필드 길이
+Field widths and rows of meter and distribution cabinets	계량기함과 분전반의 열 폭과 단 수
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	필드. 부품의 기술 데이터는 tech:<name>, 프로젝트 속성은 prop:<name>
+Fields	열
+Fields / rows	열 / 단
 File format version {}. Files of older versions are converted when they are opened.	파일 형식 버전 {}. 이전 버전의 파일은 열 때 변환됩니다.
 File name	파일 이름
 File of another system (connector)	다른 시스템의 파일(커넥터)
@@ -769,10 +787,13 @@ Finish a wire, polyline, polygon or wall	전선, 폴리선, 다각형 또는 벽
 Finish or cancel the drawing, then back to selecting	그리기를 끝내거나 취소한 뒤 선택으로 돌아가기
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	프로젝트 서버에서 연 프로젝트의 완료된 변경 내용은 자동으로 서버에 저장됩니다. 진행 중인 입력은 완료된 후 저장됩니다. 잠금은 유지됩니다. 저장 (Ctrl+S)은 계속 바로 저장합니다.
 First row	첫 행
+Fit all plastic covers	모든 플라스틱 커버 장착
 Fit page	페이지 맞춤
 Fits {}	{}에 호환
+Fitted	장착됨
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	가로세로 비율을 유지하며 사각형에 맞춤(PNG, JPEG)
 Float	분리
+Floor	바닥
 Floor plan with {} walls	벽 {}개의 평면도
 Floor-standing part	바닥 설치 부품
 Fluid and process	유체 및 공정
@@ -1034,6 +1055,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	첫 번째 열의 반복 값을 비워 둠
 Left button	왼쪽 단추
 Left edges	왼쪽 가장자리
+Left leaf	왼쪽 날개
 Legend plates (door devices)	명판(도어 장치)
 Length from the node to the device	노드에서 장치까지의 길이
 Length inside an enclosure	외함 내부 길이
@@ -1128,6 +1150,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	측정값
 Measures against common cause failure (at least 65 points)	공통 원인 고장에 대한 대책(최소 65점)
 Merge a symbol library file	심볼 라이브러리 파일 병합
+Merged with the parts already known: {}	이미 알려진 부품과 병합됨: {}
 Message	메시지
 Messages	메시지
 Messages ({})	메시지 ({})
@@ -1205,6 +1228,9 @@ New cover sheet	새 표지
 New document page…	새 문서 페이지…
 New empty	새로 만들기(빈 항목)
 New enclosure	새 외함
+New enclosure in this room…	이 방에 새 외함…
+New enclosure like this one	이것과 같은 새 외함
+New enclosure…	새 외함…
 New graphics page	새 그래픽 페이지
 New harness	새 하네스
 New items go onto this layer	새 항목이 이 레이어에 추가됩니다
@@ -1265,6 +1291,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	아직 외함이 없습니다 – 새 외함으로 만들거나 새 방으로 외함용 방을 만드십시오.
 No field cables: place the enclosures and field devices at nodes of the route network.	필드 케이블이 없습니다. 외함과 필드 장치를 경로 네트워크의 노드에 배치하세요.
 No filter fans: an air/air heat exchanger or a cooling unit	필터 팬 없음: 공기/공기 열교환기 또는 냉각 장치
+No free place is left for {} in this enclosure	이 외함에는 {}을(를) 놓을 빈 자리가 더 이상 없습니다
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	아직 지상형 태양광 어레이가 없습니다: 부지의 항타 말뚝 위에 기울어진 가대 열.
 No gesture	제스처 없음
 No harnesses defined.	정의된 하네스가 없습니다.
@@ -1341,6 +1368,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	터치스크린에 적용됩니다. 트랙패드의 세 손가락 제스처는 시스템이 사용합니다.
 On startup	시작할 때
 On the roof, joined to the air-termination conductors; move it to its place	지붕 위에서 수뢰 도체에 연결됩니다. 제자리로 옮기세요
+One leaf	한 날개
 One row per label	라벨당 한 행
 Only devices on the current page	현재 페이지의 장치만
 Only frames no page uses can be deleted	어떤 페이지도 사용하지 않는 프레임만 삭제할 수 있습니다
@@ -1537,6 +1565,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	플랜트 레이아웃
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	플랜트 레이아웃, 경로 네트워크, 필드 케이블 계획, 등전위 본딩 및 케이블 부속품
 Plant segments with planned devices before the schematic	회로도 작성 전 계획된 장치가 포함된 플랜트 세그먼트
+Plastic cover	플라스틱 커버
+Plastic covers off	플라스틱 커버 분리
 Plate outline, holes per diameter, cutouts	플레이트 외곽선, 직경별 구멍, 컷아웃
 Plot boundary	부지 경계
 Plot boundary drawn: {} m²	부지 경계를 그렸습니다: {} m²
@@ -1789,6 +1819,7 @@ Row	행
 Row distance	열 간격
 Row drawing	행 도면
 Row labels	행 레이블
+Rows	단
 Rows of tables behind each other	앞뒤로 놓인 가대 열
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	설비에 있는 것의 앞에, 말뚝 위에 기울어진 가대 열을 앞쪽을 향해 놓습니다; 제자리로 옮기십시오
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	릴리스된 페이지의 행은 변경할 수 없습니다. 텍스트의 줄 바꿈은 \\n으로 씁니다.
@@ -1867,7 +1898,9 @@ Scrolling zooms, also where it pans	스크롤로 확대/축소(이동하는 곳�
 Search (* and ? as placeholders)…	검색 (* 와 ? 는 와일드카드)…
 Search below this folder	이 폴더 아래에서 검색
 Search number, description, maker	번호, 설명, 제조업체 검색
+Search the enclosures of the parts database and the catalogs for a new one	부품 데이터베이스와 카탈로그에서 새 외함 검색
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	카탈로그, 제품 그룹 및 기술 데이터로 부품 서버를 검색하고, 부품을 추가하며, 데이터베이스의 업데이트를 확인합니다
+Search…	검색…
 Second channel	두 번째 채널
 Seconds from a change to its automatic save (10 to 600)	변경부터 자동 저장까지의 초 (10 ~ 600)
 Section properties	구역 속성
@@ -2065,6 +2098,8 @@ Tablet mode	태블릿 모드
 Tag	태그
 Tag field	태그 필드
 Tag placed by hand	수동으로 배치된 태그
+Take off all plastic covers	모든 플라스틱 커버 분리
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	모든 외함의 필드 그리드에 있는 모든 패널의 플라스틱 커버를 분리합니다. 프레임, 레일과 그 뒤의 배선이 보입니다. 다시 누르면 모두 장착합니다
 Take out a subproject	하위 프로젝트 반출
 Take out of the building	건물에서 제외
 Take out {} pages…	페이지 {}개 반출…
@@ -2140,6 +2175,9 @@ The page name gets the section number	페이지 이름에 구역 번호가 붙�
 The page type, plot frame, title block, structure, description and the whole content are saved.	페이지 유형, 플롯 프레임, 표제란, 구조, 설명 및 전체 내용이 저장됩니다.
 The pages it generated stay	생성된 페이지는 유지됩니다
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	부품 데이터베이스는 모든 프로젝트가 공유합니다. 부품은 장치에 지정될 때 프로젝트로 복사됩니다.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	패널의 플라스틱 커버입니다. 없으면 프레임, 레일과 그 뒤의 배선이 보입니다
+The plastic covers of all panels of the field grid of this enclosure	이 외함의 필드 그리드에 있는 모든 패널의 플라스틱 커버
+The plastic covers of all panels of the field grids of every enclosure	모든 외함의 필드 그리드에 있는 모든 패널의 플라스틱 커버
 The point's coordinates in the coordinate reference system	좌표 참조계에서의 점의 좌표
 The post; its accessories are the table beams, rails and clamps	말뚝; 부속품은 가대 보, 레일과 클램프입니다
 The project changed since the search.	검색 이후 프로젝트가 변경되었습니다.
@@ -2206,6 +2244,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3D 보기를 해당 점으로 돌리기
 Twin ferrules where two wires share a connection point	두 전선이 연결 지점을 공유하는 곳에 이중 페룰
 Two fingers	두 손가락
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	두 날개, 각각 바깥쪽 가장자리에 경첩. 도어의 장치는 중심 아래의 날개와 함께 움직입니다
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2298,6 +2337,7 @@ Whole words	단어 단위로
 Width / going	폭 / 발판
 Width / height (mm)	너비 / 높이(mm)
 Width factor	폭 계수
+Width of the left leaf; the right one takes the rest of the front	왼쪽 날개의 폭. 오른쪽 날개가 전면의 나머지를 차지합니다
 Width of the letters to their usual width (0.8: narrow lettering)	평소 폭에 대한 글자의 폭(0.8: 좁은 글자)
 Width × depth	너비 × 깊이
 Width × height	너비 × 높이
@@ -2366,6 +2406,7 @@ all, or e.g. -X*, -W1	모두, 또는 예: -X*, -W1
 all, or e.g. K, Q	모두 또는 예: K, Q
 along z	z 방향
 always	항상
+any	제한 없음
 both ends	양쪽 끝
 built-in	기본 제공
 by hand	수동
@@ -2478,9 +2519,11 @@ x y	x y
 {} Vault items found for the project parts	프로젝트 부품에 대한 Vault 항목 {}개를 찾았습니다
 {} Vault items found: review the changes in the integration window	Vault 항목 {}개를 찾았습니다. 통합 창에서 변경 내용을 검토하세요
 {} added to building {}	{0}이(가) 건물 {1}에 추가되었습니다
+{} added to device {}	{0}을(를) 장치 {1}에 추가함
 {} addresses changed	주소 {}개 변경됨
 {} air-termination rods	피뢰침 {}개
 {} already exists on the project server.	{}이(가) 프로젝트 서버에 이미 있습니다.
+{} attached to {}	{}을(를) {}에 연결했습니다
 {} bundles, {} branch points	번들 {}개, 분기점 {}개
 {} bus cables created	버스 케이블 {}개 만들어짐
 {} bus connections	버스 연결 {}개
@@ -2528,17 +2571,22 @@ x y	x y
 {} example catalog parts refreshed	예제 카탈로그 부품 {}개 새로 고침
 {} favorites added	즐겨찾기 {}개 추가됨
 {} field wiring problems (see Check)	필드 배선 문제 {}개(검사 참조)
+{} fits neither this enclosure nor a device in it	{}은(는) 이 외함에도 그 안의 장치에도 맞지 않습니다
+{} fits on another face of this enclosure: {}	{0}은(는) 이 외함의 다른 면에 맞습니다: {1}
 {} found	{}개 찾음
 {} function texts copied	기능 텍스트 {}개를 복사했습니다
 {} generated pages in the project (changes on them are replaced)	프로젝트에 생성된 페이지 {}개(해당 페이지의 변경 내용은 교체됨)
 {} grants on the project	프로젝트에 대한 권한 부여 {}개
 {} has no function with a symbol; assign it to a device in its properties	{}에는 기호가 있는 기능이 없습니다. 장치 속성에서 장치에 할당하십시오
 {} has unsaved changes. Discard them?	{}에 저장되지 않은 변경 내용이 있습니다. 취소할까요?
+{} imported into the parts database and added as enclosure {}	{0}을(를) 부품 데이터베이스로 가져와 외함 {1}(으)로 추가함
 {} imported into the parts database and placed as {}	{}을(를) 부품 데이터베이스로 가져와 {}(으)로 배치했습니다
 {} in {}	{1}의 {0}
 {} is in the schematic: cable {} from {}	{}은(는) 회로도에 있습니다: 케이블 {}, 시작점 {}
 {} is neither in the parts database nor on the parts server	{}은(는) 부품 데이터베이스와 부품 서버 어디에도 없습니다
+{} is not an enclosure: only enclosures can be dropped here	{}은(는) 외함이 아닙니다. 여기에는 외함만 놓을 수 있습니다
 {} is not in the disk image	디스크 이미지에 {}이(가) 없습니다
+{} is not in the parts database yet: import it, then drag it here	{}이(가) 아직 부품 데이터베이스에 없습니다. 가져온 후 여기로 드래그하세요
 {} is used by: {}	{}을(를) 사용하는 항목: {}
 {} items copied	항목 {}개를 복사했습니다
 {} items deleted	항목 {}개 삭제됨
@@ -2549,13 +2597,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} m: 동쪽 {} m, 북쪽 {} m, 북쪽에서 {}°
 {} macro boxes updated	매크로 박스 {}개를 업데이트했습니다
 {} markers	마커 {}개
-{} mm	{} mm
 {} mm (cut {} mm)	{} mm(절단 {} mm)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	플레이트 위 {} mm + 여유 {} mm. 나머지는 연결 지점에서 플레이트까지의 거리입니다.
 {} mm, now {} mm	{} mm, 현재 {} mm
 {} mm, removed	{} mm, 제거됨
 {} modules	모듈 {}개
 {} modules, {} kWp	모듈 {}개, {} kWp
+{} moved	{}을(를) 이동했습니다
 {} new texts in the dictionary	사전의 새 텍스트 {}개
 {} notes	참고 {}개
 {} objects pasted	개체 {}개 붙여넣음
@@ -2563,6 +2611,7 @@ x y	x y
 {} objects, {} pages	개체 {}개, 페이지 {}개
 {} of {} approvals	승인 {1}개 중 {0}개
 {} of {} connections numbered	연결 {1}개 중 {0}개 번호 지정됨
+{} of {} enclosures	외함 {1}개 중 {0}개
 {} of {} entries shown: search to narrow the list	항목 {}/{}개 표시됨. 목록을 좁히려면 검색하세요
 {} of {} items	항목 {}/{}개
 {} of {} pages locked	페이지 {1}개 중 {0}개 잠김
@@ -2587,7 +2636,10 @@ x y	x y
 {} pieces	{}개
 {} pins used	핀 {}개 사용됨
 {} placed as {}	{}을(를) {}(으)로 배치했습니다
+{} placed in {}	{0}을(를) {1}에 배치함
 {} placement problems (red) – see Check	배치 문제 {}개(빨간색) – 검사 참조
+{} plastic covers fitted	플라스틱 커버 {}개를 장착했습니다
+{} plastic covers taken off	플라스틱 커버 {}개를 분리했습니다
 {} project parts updated	프로젝트 부품 {}개 업데이트됨
 {} projects on the server	서버의 프로젝트 {}개
 {} projects selected	프로젝트 {}개 선택됨

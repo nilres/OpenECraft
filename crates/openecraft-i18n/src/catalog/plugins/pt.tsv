@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Adiciona os dispositivos de um modelo a um segmento
 Adds the outline of a machine, building or area to the plant layout	Adiciona o contorno de uma máquina, edifício ou área ao layout da planta
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Adiciona, substitui ou remove um perfil: um conector com os nomes de coluna que o outro sistema usa
+After it instead of before	Depois em vez de antes
 Air-termination rod: its name	Captor tipo haste: o seu nome
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Alinha itens, distribui-os uniformemente, alinha dispositivos em um trilho ou copia itens em um padrão
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Alinha símbolos, textos e gráficos a uma borda ou centro comum; as extremidades de fios conectadas acompanham
@@ -66,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Proteç
 Bar id	ID da barra
 Bar thickness, mm (default 5)	Espessura da barra, mm (padrão 5)
 Bar width, mm (default 20)	Largura da barra, mm (padrão 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Acopla um gabinete no quadro de união numa parede lateral de outro (como o CZ3 da Striebel & John): à sua direita para um quadro na parede direita, à sua esquerda para um na parede esquerda
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Acopla um gabinete lado a lado à direita de outro (fileira); sem right_of, ele sai de sua fileira
 Bend radius in drag chains as a multiple of the cable diameter	Raio de curvatura em esteiras porta-cabos como múltiplo do diâmetro do cabo
 Bend radius of a drag chain in mm	Raio de curvatura de uma esteira porta-cabos em mm
@@ -145,6 +147,7 @@ Corner points on the mounting plate in mm	Pontos de canto na placa de montagem e
 Correction of the time estimate	Correção da estimativa de tempo
 Cost of free air against ducts and routing paths	Custo do ar livre em relação às canaletas e caminhos de roteamento
 Counting step (default 1)	Passo de contagem (padrão 1)
+Covers fitted; false takes them off	Tampas montadas; false retira-as
 Creates a bus cable for the connection (without cable tag)	Cria um cabo de barramento para a conexão (sem identificador de cabo)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Cria um cabo do tipo do barramento (tipo, veias, seção transversal) para cada conexão de barramento sem cabo
 Creates or changes a PCT loop of the pre-planning	Cria ou altera uma malha de instrumentação do pré-planejamento
@@ -259,15 +262,20 @@ Enclosure (location, e.g. +CAB1) whose settings change	Gabinete (localização, 
 Enclosure climate and electrical sizing	Clima do gabinete e dimensionamento elétrico
 Enclosure it stands right of; empty to take it out of its line-up	Gabinete à direita do qual ele fica; vazio para retirá-lo de sua fileira
 Enclosure name (all if missing)	Nome do gabinete (todos, se ausente)
+Enclosure or room it goes before or after	Gabinete ou sala antes ou depois do qual vai
 Enclosure part number	Número da peça do gabinete
 Enclosure system (default: the enclosure's)	Sistema de gabinete (padrão: o do gabinete)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Gabinete para onde vão as cópias (localização, por exemplo, +CAB2); o mesmo se omitido
+Enclosure to attach; without it a new one like the enclosure with the frame	Gabinete a acoplar; sem ele, um novo como o gabinete com o quadro
+Enclosure with the frame	Gabinete com o quadro
 Enclosure {} exists already	O gabinete {} já existe
+Enclosure; without it every enclosure	Gabinete; sem ele, todos os gabinetes
 Enclosures, panel items, accessories and panel macros	Gabinetes, itens do painel, acessórios e macros de painel
 End brackets and end plates from the tech data of the terminal parts	Batentes finais e placas de fechamento a partir dos dados técnicos das peças de borne
 End holes from the bar end as a multiple of the width	Furos de extremidade a partir do fim da barra como múltiplo da largura
 End: device tag and connection point, e.g. -S1:14	Fim: identificador de dispositivo e ponto de conexão, por exemplo, -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Face: plate, door, left, right, rear, roof ou bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Face: plate, door, left, right, rear, roof ou bottom; door_left e door_right para as folhas de uma porta dupla
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Plano de campo: nós, trechos, contornos, rotas, equipotencializações e acessórios
 Figure	Indicador
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Localiza e substitui texto em uma coluna de todas as linhas (filtradas); sem texto a localizar, a coluna é preenchida com a substituição
@@ -281,6 +289,7 @@ First counter value (default 1)	Primeiro valor do contador (padrão 1)
 First page number (default 1)	Primeiro número de página (padrão 1)
 First port as station:port, e.g. PLC1:X1 P2	Primeira porta como estação:porta, por exemplo, PLC1:X1 P2
 First row with the column names	Primeira linha com os nomes das colunas
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Monta as tampas plásticas de todos os campos da grade de campos de um gabinete, ou de todos os gabinetes, ou retira todas
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Telhados planos e no solo: direção para a qual os módulos estão voltados em graus, no sentido anti-horário visto de cima (0: para +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formato do nome do dispositivo: {letter}, {n} (contador), {page}, {column}, {row}; padrão {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formato do esquema format: {n} (contador), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -359,6 +368,7 @@ Invalid answer of the plugin: {}	Resposta inválida do plug-in: {}
 Invalid segment name: {}	Nome de segmento inválido: {}
 Invalid title block elements: {}	Elementos de selo inválidos: {}
 Item id	ID do item
+Item id of the frame	Id do item do quadro
 Item ids	IDs dos itens
 Jumper number	Número da ponte
 Jumper number (terminals with the same number are bridged); 0 removes it	Número da ponte (bornes com o mesmo número são interligados); 0 o remove
@@ -379,6 +389,7 @@ Landscape (true) or portrait (false)	Paisagem (true) ou retrato (false)
 Language the project texts are written in, e.g. en	Idioma em que os textos do projeto são escritos, por exemplo, en
 Larger round holes are milled, mm	Furos redondos maiores são fresados, mm
 Largest difference between hole and tool, mm	Maior diferença entre furo e ferramenta, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Folhas de uma porta dupla: as suas larguras a partir da esquerda, p. ex. 275 + 525 (com left ou right após uma largura para a sua dobradiça), ou o seu número para folhas de largura igual; vazio ou 1 para uma folha
 Left edge from the left end of the wall (seen from inside) in mm	Borda esquerda a partir da extremidade esquerda da parede (vista de dentro) em mm
 Left edge in mm	Borda esquerda em mm
 Left edge on the face in mm	Borda esquerda na face em mm
@@ -440,6 +451,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Lista as ter
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Lista os selos (integrados e os do projeto) com seus elementos, o padrão do projeto e os marcadores
 Lists the translation dictionary of the project texts (source line and translations)	Lista o dicionário de tradução dos textos do projeto (linha de origem e traduções)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Lista as macros de janela posicionadas nas páginas (caixas de macro) com macro, variante, valores dos espaços reservados e número de itens
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Lista onde uma peça acessória serve em um gabinete: as colunas livres de um quadro de medidores ou de distribuição (dados de peça Fields e Rows), as aberturas livres das suas paredes laterais para um quadro que une gabinetes (dados de peça Opening e Side openings), as faces do gabinete do qual é acessório, os dispositivos cuja peça ela serve
 Load losses of the transformer in W (0: typical)	Perdas em carga do transformador em W (0: típico)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Cargas da rede, carga de cada dispositivo de proteção, demanda com o fator de simultaneidade, equilíbrio de fases e balanços de carga das fontes de alimentação
 Loads the potential definitions of a standard (replaces those of the same name)	Carrega as definições de potencial de uma norma (substitui as de mesmo nome)
@@ -484,6 +496,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	O tamanho de montagem deve conter largura e altura positivas
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Move um ponto de passagem da rota de um fio, cabo ou tubo; o roteamento informa um erro onde a rota não pode passar por ele
 Moves an air-termination rod, changes its height, renames or removes it	Move um captor tipo haste, altera a sua altura, renomeia-o ou remove-o
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Move um gabinete ou uma sala na ordem da árvore de gabinetes e salas: antes ou depois de outro (um gabinete acoplado dentro da sua fileira, acoplado de novo, ou com a sua fileira; uma sala entre as salas, para o pavimento da outra)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Move uma extremidade de um fio: ela deixa aquilo a que está conectada e se conecta ao que encontra; o fio continua ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Move símbolos, fios e textos; as extremidades dos fios conectados acompanham
 Moves the page before this page of its section (or of the section given)	Move a página para antes desta página da sua seção (ou da seção indicada)
@@ -625,6 +638,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	A págin
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Páginas com sufixo (3.a) continuam subpáginas da página anterior (padrão true)
 Panel layout checks	Verificações do layout do painel
 Panel manufacturing	Fabricação de painéis
+Panel of a field grid: with its plastic cover (false: taken off)	Painel de uma grade de campos: com a sua tampa plástica (false: retirada)
 Paper height in mm (custom paper)	Altura do papel em mm (papel personalizado)
 Paper width in mm (custom paper)	Largura do papel em mm (papel personalizado)
 Part lifecycle	Ciclo de vida da peça
@@ -971,6 +985,7 @@ Unknown class: {}	Classe desconhecida: {}
 Unknown data type: {}	Tipo de dado desconhecido: {}
 Unknown direction {}: left, right, up or down	Direção desconhecida {}: left, right, up ou down
 Unknown door hinge: {}	Lado de dobradiça desconhecido: {}
+Unknown door leaves: {}	Folhas de porta desconhecidas: {}
 Unknown earth electrode: {}	Eletrodo de aterramento desconhecido: {}
 Unknown earthing system: {}	Esquema de aterramento desconhecido: {}
 Unknown face {}	Face desconhecida {}

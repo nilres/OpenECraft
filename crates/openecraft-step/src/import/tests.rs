@@ -133,3 +133,57 @@ fn files_without_geometry_are_refused() {
     let empty = "ISO-10303-21;\nHEADER;\nENDSEC;\nDATA;\nENDSEC;\nEND-ISO-10303-21;\n";
     assert!(parse_step(empty.as_bytes()).is_err());
 }
+
+#[test]
+fn products_linked_through_a_further_representation_are_placed() {
+    // As CADENAS and CATIA write them: the product's shape representation holds only a
+    // placement and is related to the one with the solid.
+    let indirect = CUBOID_MM.replacen(
+        "#10 = SHAPE_REPRESENTATION('', (#16), #11);",
+        "#10 = SHAPE_REPRESENTATION('', (#990), #11);\n#990 = AXIS2_PLACEMENT_3D('',#993,#994,#995);\n#993 = CARTESIAN_POINT('',(0.,0.,0.));\n#994 = DIRECTION('',(0.,0.,1.));\n#995 = DIRECTION('',(1.,0.,0.));\n#991 = ADVANCED_BREP_SHAPE_REPRESENTATION('',(#16),#11);\n#992 = SHAPE_REPRESENTATION_RELATIONSHIP('','',#10,#991);",
+        1,
+    );
+    assert_ne!(indirect, CUBOID_MM);
+    let links = representation_links(&indirect);
+    assert_eq!(links.get(&7), Some(&vec![990, 16]));
+    assert_size(&parse_step(assembly_file(&indirect, &[0.0, 50.0]).as_bytes()).unwrap(), [60.0, 20.0, 30.0]);
+}
+
+/// Rittal's CAD models of seven enclosures (STEP AP214, low detail level, from
+/// rittal.com; `OPENECRAFT_RITTAL_STEP_DIR` with a folder per part, `RIT.8806000/8806.000(2).stp`),
+/// which link their parts and solids through a further representation: assembled as the
+/// files place their parts, each has the size of its enclosure (hinges, handle and roof
+/// a few millimetres more).
+#[test]
+#[ignore = "requires OPENECRAFT_RITTAL_STEP_DIR with Rittal's STEP models"]
+fn rittal_models_have_the_size_of_their_enclosure() {
+    let dir = std::env::var("OPENECRAFT_RITTAL_STEP_DIR").unwrap();
+    let enclosures = [
+        ("RIT.8606000", [600.0, 2000.0, 600.0]),
+        ("RIT.8806000", [800.0, 2000.0, 600.0]),
+        ("RIT.8805000", [800.0, 2000.0, 500.0]),
+        ("RIT.8806500", [800.0, 2000.0, 600.0]),
+        ("RIT.1050000", [500.0, 500.0, 210.0]),
+        ("RIT.1060000", [600.0, 600.0, 210.0]),
+        ("RIT.1502000", [200.0, 200.0, 120.0]),
+    ];
+    for (part, expected) in enclosures {
+        // The enclosure, not its mounting plate (`CAD_MPL_…`) or gland plate (`CAD_FPL_…`).
+        let file = std::fs::read_dir(std::path::Path::new(&dir).join(part))
+            .unwrap()
+            .map(|e| e.unwrap().path())
+            .find(|f| f.extension().is_some_and(|e| e == "stp") && !f.file_name().unwrap().to_string_lossy().starts_with("CAD_"))
+            .unwrap();
+        let size = parse_step(&std::fs::read(&file).unwrap()).unwrap().size();
+        for k in 0..3 {
+            assert!(size[k] > expected[k] - 5.0 && size[k] < expected[k] + 25.0, "{part}: {size:?}, expected {expected:?}");
+        }
+        // The model of its mounting plate gives the size of the plate.
+        let plate = std::path::Path::new(&dir).join(part).join(format!("CAD_MPL_{}.{}.stp", &part[4..8], &part[8..]));
+        if let Ok(bytes) = std::fs::read(&plate) {
+            let mut p = openecraft_parts::Part { width: expected[0], height: expected[1], depth: expected[2], ..Default::default() };
+            let [w, h] = openecraft_parts::set_mounting_plate(&mut p, parse_step(&bytes).unwrap().size()).unwrap();
+            assert!(w > expected[0] - 150.0 && h > expected[1] - 150.0, "{part}: plate {w} x {h}");
+        }
+    }
+}

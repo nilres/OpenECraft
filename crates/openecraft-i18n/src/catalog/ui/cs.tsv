@@ -5,6 +5,7 @@
 2D front view	2D čelní pohled
 2D front view (SVG)	2D čelní pohled (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A separate model of the mounting plate (such as the CAD_MPL file of Rittal's CAD models): its width and height become the size of the plate, centred in the enclosure	Samostatný model montážní desky (např. soubor CAD_MPL v CAD modelech Rittal): jeho šířka a výška se stanou velikostí desky, vystředěné ve skříni
 A short title for the problem (optional)	Krátký název problému (volitelné)
 Accessories of this part	Příslušenství tohoto dílu
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Příslušenství funguje jen s díly, ke kterým se hodí. Díl uvádí své příslušenství, příslušenství díly, ke kterým se hodí; stačí jedna strana.
@@ -47,7 +48,7 @@ Disclaimer	Vyloučení odpovědnosti
 Door cutouts	Výřezy ve dveřích
 Downloaded {} ({} bytes)	Staženo {} ({} bajtů)
 Downloading parts…	Stahování artiklů…
-Drag it onto a schematic page to place it	Přetažením na stránku schématu jej umístíte
+Drag it onto a schematic page to place it, an enclosure also into Enclosures and rooms	Přetažením na stránku schématu jej umístíte, skříň také do Rozvaděčové skříně a místnosti
 EPLAN numbers	Čísla EPLAN
 EPLAN product groups	Skupiny produktů EPLAN
 Expected result (optional)	Očekávaný výsledek (volitelné)
@@ -64,6 +65,7 @@ Hides this form and takes a screenshot of the window as it is now	Skryje tento f
 Identifying letter of devices using this part (K, Q, S …)	Kódové písmeno přístrojů s tímto artiklem (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Importovat STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Importovat SVG…
+Import its model…	Importovat její model…
 In the door, when they differ from the cutouts	Ve dveřích, pokud se liší od výřezů
 Internal values of the EPLAN part exchange (0: undefined)	Interní hodnoty výměny artiklů EPLAN (0: nedefinováno)
 Isometric view, everything shown	Izometrický pohled, vše viditelné
@@ -192,8 +194,10 @@ e.g. 25.4 for models in inch, 1000 for models in metres	např. 25,4 pro modely v
 from {} mm²	od {} mm²
 no 2D model	žádný 2D model
 no mounting data	žádná montážní data
+no size given – the plate keeps 25 mm from the edges	velikost neuvedena – deska má od okrajů odstup 25 mm
 none – a box of the mounting dimensions is drawn	žádný – vykreslí se kvádr s montážními rozměry
 none – a plain rectangle is drawn	žádný – vykreslí se prostý obdélník
+none – the enclosure has no mounting plate	žádná – skříň nemá montážní desku
 only needed for uploads	potřebné jen pro nahrávání
 read-only	jen pro čtení
 signed in as {} ({})	přihlášen jako {} ({})
@@ -219,6 +223,8 @@ up to {} mm²	do {} mm²
 {}, {} wires per connection point	{}, {} vodičů na přípojný bod
 {}: 2D front view with {} elements assigned to {}	{}: 2D čelní pohled s prvky ({}) přiřazen k {}
 {}: 3D model with {} triangles ({} × {} × {} mm) assigned to {}	{}: 3D model s trojúhelníky ({}, {} × {} × {} mm) přiřazen k {}
+{}: mounting plate of {} × {} mm for {}	{}: montážní deska {} × {} mm pro {}
+{}: the model ({} × {} × {} mm) does not fit into {} as its mounting plate	{}: model ({} × {} × {} mm) se nevejde do {} jako jeho montážní deska
 ★ Favorites	★ Oblíbené
 ★ Remove from favorites	★ Odebrat z oblíbených
 ☆ Add to favorites	☆ Přidat k oblíbeným

@@ -316,6 +316,10 @@ impl PanelUi {
                 }
             }
         }
+        // An accessory dragged from the parts management: where it fits.
+        if let Some(pose) = shown.iter().find(|s| s.0 == ei).map(|s| s.1) {
+            self.accessory_drop_3d(ui, &resp, prj, ei, &pose, &project_view);
+        }
         // The control points of the selected wire, cable or tube; one dragged follows the pointer
         // at the depth it had, the route is searched through it where it is dropped.
         let pos = panel::positions(&prj.layout);
@@ -464,6 +468,9 @@ impl PanelUi {
     /// The context menu of the 3D view: what was right-clicked.
     fn menu_3d(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
         self.control_menu(ui, prj, an);
+        // The selection is of the current enclosure (picking an item makes its enclosure
+        // the current one).
+        self.fittings_menu(ui, prj, self.enclosure);
         let any = !self.selection.is_empty();
         if ui.add_enabled(any, egui::Button::new(tr("Properties"))).clicked() {
             self.open_properties = true;

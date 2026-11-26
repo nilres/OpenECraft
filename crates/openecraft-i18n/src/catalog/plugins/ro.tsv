@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Adaugă dispozitivele unui șablon într-un segment
 Adds the outline of a machine, building or area to the plant layout	Adaugă conturul unei mașini, al unei clădiri sau al unei zone în planul de amplasare a instalației
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Adaugă, înlocuiește sau elimină un profil: un conector cu numele de coloane folosite de celălalt sistem
+After it instead of before	După, în loc de înainte
 Air-termination rod: its name	Tijă de captare: numele ei
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Aliniază elemente, le distanțează uniform, aliniază dispozitive pe o șină sau copiază elemente după un model
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Aliniază simbolurile, textele și grafica la o margine sau un centru comun; capetele conectate ale conductoarelor urmează
@@ -66,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Protec�
 Bar id	ID bară
 Bar thickness, mm (default 5)	Grosimea barei, mm (implicit 5)
 Bar width, mm (default 20)	Lățimea barei, mm (implicit 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Alătură o carcasă la cadrul de îmbinare dintr-un perete lateral al alteia (cum ar fi CZ3 de la Striebel & John): la dreapta ei pentru un cadru în peretele drept, la stânga pentru unul în peretele stâng
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Alătură o carcasă în dreapta alteia (rând de carcase); fără right_of, aceasta părăsește rândul
 Bend radius in drag chains as a multiple of the cable diameter	Raza de curbură în lanțurile portcablu ca multiplu al diametrului cablului
 Bend radius of a drag chain in mm	Raza de curbură a unui lanț portcablu în mm
@@ -145,6 +147,7 @@ Corner points on the mounting plate in mm	Colțuri pe placa de montaj în mm
 Correction of the time estimate	Corecția estimării de timp
 Cost of free air against ducts and routing paths	Costul pozării libere față de canale și căi de pozare
 Counting step (default 1)	Pas de numărare (implicit 1)
+Covers fitted; false takes them off	Capace montate; false le scoate
 Creates a bus cable for the connection (without cable tag)	Creează un cablu de magistrală pentru conexiune (fără identificator de cablu)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Creează un cablu de tipul magistralei (tip, fire, secțiune) pentru fiecare conexiune de magistrală fără cablu
 Creates or changes a PCT loop of the pre-planning	Creează sau modifică o buclă AMC a preplanificării
@@ -259,15 +262,20 @@ Enclosure (location, e.g. +CAB1) whose settings change	Carcasa (loc de montare, 
 Enclosure climate and electrical sizing	Climatul carcasei și dimensionarea electrică
 Enclosure it stands right of; empty to take it out of its line-up	Carcasa în dreapta căreia stă; gol pentru a o scoate din rând
 Enclosure name (all if missing)	Nume carcasă (toate, dacă lipsește)
+Enclosure or room it goes before or after	Carcasa sau încăperea înainte sau după care se mută
 Enclosure part number	Numărul de articol al carcasei
 Enclosure system (default: the enclosure's)	Sistem de carcase (implicit: cel al carcasei)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Carcasa în care ajung copiile (loc de montare, de ex. +CAB2); aceeași dacă lipsește
+Enclosure to attach; without it a new one like the enclosure with the frame	Carcasa de alăturat; fără ea, una nouă ca și carcasa cu cadrul
+Enclosure with the frame	Carcasa cu cadrul
 Enclosure {} exists already	Carcasa {} există deja
+Enclosure; without it every enclosure	Carcasă; fără ea, fiecare carcasă
 Enclosures, panel items, accessories and panel macros	Carcase, elemente de tablou, accesorii și macro-uri de tablou
 End brackets and end plates from the tech data of the terminal parts	Opritoare de capăt și plăci de capăt din datele tehnice ale articolelor de bornă
 End holes from the bar end as a multiple of the width	Găurile de capăt de la capătul barei ca multiplu al lățimii
 End: device tag and connection point, e.g. -S1:14	Sfârșit: identificator de dispozitiv și punct de conexiune, de ex. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Față: plate, door, left, right, rear, roof sau bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Față: plate, door, left, right, rear, roof sau bottom; door_left și door_right pentru canaturile unei uși duble
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Plan de câmp: noduri, segmente, contururi, trasee, legături echipotențiale și accesorii
 Figure	Indicator
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Caută și înlocuiește text într-o coloană a tuturor rândurilor (filtrate); fără text de căutat, coloana se completează cu textul de înlocuire
@@ -281,6 +289,7 @@ First counter value (default 1)	Prima valoare a contorului (implicit 1)
 First page number (default 1)	Numărul primei pagini (implicit 1)
 First port as station:port, e.g. PLC1:X1 P2	Primul port ca stație:port, de ex. PLC1:X1 P2
 First row with the column names	Primul rând cu numele coloanelor
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Montează capacele din plastic ale tuturor câmpurilor grilei unei carcase, sau ale fiecărei carcase, sau le scoate pe toate
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Acoperișuri plate și la sol: direcția în care sunt orientate modulele în grade, în sens antiorar văzut de sus (0: spre +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formatul numelui dispozitivului: {letter}, {n} (contor), {page}, {column}, {row}; implicit {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formatul schemei format: {n} (contor), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -359,6 +368,7 @@ Invalid answer of the plugin: {}	Răspuns nevalid al pluginului: {}
 Invalid segment name: {}	Nume de segment nevalid: {}
 Invalid title block elements: {}	Elemente de cartuș nevalide: {}
 Item id	ID element
+Item id of the frame	Id-ul elementului cadrului
 Item ids	ID-uri elemente
 Jumper number	Număr de punte
 Jumper number (terminals with the same number are bridged); 0 removes it	Numărul de punte (bornele cu același număr sunt puntate); 0 îl elimină
@@ -379,6 +389,7 @@ Landscape (true) or portrait (false)	Vedere (true) sau portret (false)
 Language the project texts are written in, e.g. en	Limba în care sunt scrise textele proiectului, de ex. en
 Larger round holes are milled, mm	Găurile rotunde mai mari sunt frezate, mm
 Largest difference between hole and tool, mm	Cea mai mare diferență între gaură și sculă, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Canaturile unei uși duble: lățimile lor de la stânga, de ex. 275 + 525 (cu left sau right după o lățime pentru balamaua sa), sau numărul lor pentru canaturi de lățime egală; gol sau 1 pentru un canat
 Left edge from the left end of the wall (seen from inside) in mm	Marginea stângă de la capătul stâng al peretelui (văzut din interior), în mm
 Left edge in mm	Marginea stângă în mm
 Left edge on the face in mm	Marginea stângă pe față în mm
@@ -440,6 +451,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Listează te
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Listează cartușele (încorporate și ale proiectului) cu elementele lor, cartușul implicit și substituenții
 Lists the translation dictionary of the project texts (source line and translations)	Listează dicționarul de traduceri al textelor proiectului (rândul sursă și traducerile)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Listează macro-urile de fereastră plasate pe pagini (casete macro) cu macro-ul, varianta, valorile substituenților și numărul de elemente
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Listează unde se potrivește o piesă accesorie într-o carcasă: câmpurile libere ale unui dulap de contoare sau de distribuție (datele piesei Fields și Rows), deschiderile libere din pereții laterali pentru un cadru care unește carcasele (datele piesei Opening și Side openings), fețele carcasei căreia îi este accesoriu, echipamentele la a căror piesă se potrivește
 Load losses of the transformer in W (0: typical)	Pierderile în sarcină ale transformatorului în W (0: tipice)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Consumatorii rețelei, sarcina fiecărui dispozitiv de protecție, necesarul cu factorul de simultaneitate, echilibrul fazelor și bilanțurile surselor de alimentare
 Loads the potential definitions of a standard (replaces those of the same name)	Încarcă definițiile de potențial ale unui standard (le înlocuiește pe cele cu același nume)
@@ -484,6 +496,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Dimensiunea de montaj trebuie să conțină o lățime și o înălțime pozitive
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Mută un punct de trecere al traseului unui conductor, cablu sau tub; pozarea raportează o eroare acolo unde traseul nu poate trece prin el
 Moves an air-termination rod, changes its height, renames or removes it	Mută o tijă de captare, îi modifică înălțimea, o redenumește sau o elimină
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Mută o carcasă sau o încăpere în ordinea arborelui de carcase și încăperi: înainte sau după alta (o carcasă alăturată în rândul ei, alăturată din nou, sau cu rândul ei; o încăpere printre încăperi, pe nivelul celeilalte)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Mută un capăt al unui conductor: acesta părăsește ceea ce era conectat și se conectează la ceea ce întâlnește; conductorul rămâne ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Mută simboluri, conductoare și texte; capetele conductoarelor conectate le urmează
 Moves the page before this page of its section (or of the section given)	Mută pagina înaintea acestei pagini din secțiunea ei (sau din secțiunea dată)
@@ -625,6 +638,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Pagina {
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Paginile cu sufix (3.a) rămân subpagini ale paginii anterioare (implicit true)
 Panel layout checks	Verificări ale amplasării în tablou
 Panel manufacturing	Fabricarea tablourilor
+Panel of a field grid: with its plastic cover (false: taken off)	Panou al unei grile de câmpuri: cu capacul din plastic (false: scos)
 Paper height in mm (custom paper)	Înălțimea hârtiei în mm (format personalizat)
 Paper width in mm (custom paper)	Lățimea hârtiei în mm (format personalizat)
 Part lifecycle	Ciclul de viață al articolului
@@ -971,6 +985,7 @@ Unknown class: {}	Clasă necunoscută: {}
 Unknown data type: {}	Tip de date necunoscut: {}
 Unknown direction {}: left, right, up or down	Direcție necunoscută {}: left, right, up sau down
 Unknown door hinge: {}	Parte necunoscută a balamalelor: {}
+Unknown door leaves: {}	Canaturi de ușă necunoscute: {}
 Unknown earth electrode: {}	Priză de pământ necunoscută: {}
 Unknown earthing system: {}	Sistem de legare la pământ necunoscut: {}
 Unknown face {}	Față necunoscută {}

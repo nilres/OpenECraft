@@ -26,6 +26,8 @@ pub enum FollowUp {
     /// Load all parts again and store these files with their parts (pictures and
     /// macros of an imported EDZ file).
     Attach(Vec<EdzFile>),
+    /// Upload the next batch of the parts of an imported file.
+    Upload(Vec<Part>),
 }
 
 /// A catalog being edited; `original` is its id on the server (`None`: new).
@@ -71,6 +73,11 @@ pub struct Session {
     pub history: Option<(String, Vec<HistoryEntry>)>,
     /// Files of an EDZ file being uploaded, stored with their parts once the parts are.
     pub pending_files: Vec<EdzFile>,
+    /// Further batches of the parts of a file being uploaded
+    /// ([`openecraft_parts::api::import_batches`]), sent one after the other.
+    pub pending_parts: Vec<Vec<Part>>,
+    /// Files of the last imported file left out: larger than the server takes.
+    pub skipped_files: Vec<String>,
 }
 
 impl Session {
@@ -224,15 +231,27 @@ impl Session {
 
     /// Updates the local copy with a server reply.
     /// The parts of an EDZ file or the ZIP package of an enclosure configurator to
-    /// upload; its files wait for the upload.
+    /// upload, merged into the parts of the server and of the shipped catalogs they are
+    /// ([`openecraft_parts::merge`]): the first batch, the others and its files wait
+    /// for its upload.
     pub fn import_package(&mut self, path: &str, bytes: &[u8]) -> Result<Vec<Part>, String> {
         let edz = if openecraft_edz::package::is_zip(bytes) {
             openecraft_edz::package::read(bytes, Some(openecraft_step::parse_step_without))?
         } else {
             openecraft_edz::folder::read_file(std::path::Path::new(path), bytes)?
         };
-        self.pending_files = edz.files;
-        Ok(edz.parts)
+        let shipped: Vec<Part> = openecraft_parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).collect();
+        let merged = openecraft_parts::merge::merge_imported(edz.parts, self.parts.iter().chain(&shipped));
+        let (files, skipped): (Vec<EdzFile>, Vec<EdzFile>) = edz.files.into_iter().map(|mut f| {
+            f.part = merged.number_of(&f.part).to_string();
+            f
+        }).partition(|f| f.data.len() <= openecraft_parts::api::MAX_BODY);
+        self.pending_files = files;
+        self.skipped_files = skipped.into_iter().map(|f| f.name).collect();
+        let mut batches = openecraft_parts::api::import_batches(merged.parts).into_iter();
+        let first = batches.next().unwrap_or_default();
+        self.pending_parts = batches.rev().collect();
+        Ok(first)
     }
 
     pub fn apply(&mut self, reply: &Reply) -> Option<FollowUp> {
@@ -277,10 +296,12 @@ impl Session {
                 }
                 None
             }
+            Reply::Imported(Ok(_)) if !self.pending_parts.is_empty() => self.pending_parts.pop().map(FollowUp::Upload),
             Reply::Imported(Ok(_)) if !self.pending_files.is_empty() => Some(FollowUp::Attach(std::mem::take(&mut self.pending_files))),
             Reply::Imported(Ok(_)) => Some(FollowUp::Reload),
             Reply::Imported(Err(_)) => {
                 self.pending_files.clear();
+                self.pending_parts.clear();
                 None
             }
             Reply::History(number, Ok(h)) => {

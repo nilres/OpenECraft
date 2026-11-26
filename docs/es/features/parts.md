@@ -78,7 +78,9 @@ Vista frontal 2D (SVG) y modelo 3D por artículo:
 
 - **STL**, **OBJ**;
 - **STEP**: sólidos y modelos de superficies de archivos AP203 / AP214 / AP242,
-  colocados según su estructura de ensamblaje, teselados y convertidos a mm;
+  colocados según su estructura de ensamblaje (también cuando los cuerpos de una pieza
+  dependen de otra representación, como en los modelos CAD de CADENAS, p. ej. los de
+  Rittal), teselados y convertidos a mm;
 - **IGES 5.3**: sólidos y superficies recortadas;
 - **Parasolid** (`.x_t` / `.x_b`): cuerpos de archivos de transmisión V13 y posteriores,
   planos, cilindros, conos, esferas, toros y superficies B teselados con exactitud,
@@ -86,6 +88,12 @@ Vista frontal 2D (SVG) y modelo 3D por artículo:
 - **IFC**: cuerpos teselados, facetados y extruidos de todos los productos, colocados y
   convertidos a mm;
 - **JT**: las mallas de tiras de triángulos de los archivos JT 8.
+
+El modelo de la placa de montaje de una envolvente, un archivo aparte como el archivo
+`CAD_MPL_…` de los modelos CAD de Rittal, se lee con *Importar su modelo…* en *Placa de
+montaje*: su ancho y su alto pasan a ser los datos de artículo `Mounting size: 699 x 1896`,
+y una envolvente del artículo recibe una placa de ese tamaño, centrada salvo que el
+artículo indique su `Mounting origin`.
 
 Los artículos con dimensiones pero sin modelo reciben uno generado según lo que son:
 dispositivos de carril DIN con sus bornes, palanca o pantalla, bornes en sus colores (PE
@@ -146,7 +154,7 @@ una sala.
   centro) o un texto que nombre el carril (*DIN rail*, *Hutschiene*, *TS 35*, *TS 15*,
   *35 x 15*, *G 32*) hacen del artículo uno para un carril de montaje de ese tamaño
   (*Carril de montaje 35 mm*).
-- **EDZ** (archivos del EPLAN Data Portal, 7-Zip): el XML de artículos que contiene se
+- **EDZ** (archivos del EPLAN Data Portal, 7-Zip o ZIP como los publica ABB): el XML de artículos que contiene se
   lee como arriba, junto con las distancias, la potencia disipada y el enlace a la hoja
   de datos. Las macros de ventana 2D incrustadas se convierten en símbolos del proyecto.
   La imagen del producto se conserva con el artículo como un JPEG pequeño (192 px como
@@ -187,6 +195,21 @@ una sala.
   las dibuja y las comprueba (véase
   [diseño del armario](panel-layout.md#zonas-restringidas)). La macro, el proyecto de
   EPLAN (`.zw1`), el archivo STEP y los documentos PDF se guardan como adjuntos.
+- **Un artículo ya conocido:** un archivo EDZ, un XML de artículos de EPLAN o un
+  paquete de envolvente cuyo artículo ya está en la base de artículos, en el servidor
+  de artículos o en un catálogo incluido en OpenECraft se combina con ese artículo en
+  lugar de reemplazarlo (el editor, Parts Manager y `parts_import`). El artículo
+  conocido es el del mismo número, si no el de la misma referencia de pedido del mismo
+  fabricante (o el único artículo con esa referencia); conserva su número, y los
+  archivos y referencias de la importación lo siguen. Los valores de la importación
+  ganan; lo que le falta se mantiene, como los datos de artículo `Fields`, `Rows` y
+  `Module spaces` de los armarios y campos de Striebel & John. El grupo y el subgrupo
+  se mantienen, los datos técnicos se combinan línea por línea (el `Clave: valor` de la
+  importación para la misma clave), los accesorios se unen. Los archivos CSV, JSON y
+  BMEcat siguen reemplazando los artículos de sus números. Parts Manager y
+  `parts_import` suben un archivo grande en varias solicitudes; un archivo que contiene
+  más grande de lo que acepta el servidor de artículos (32 MB, como algunas macros 3D
+  de ABB) no se guarda y se nombra, el artículo conserva el modelo leído de él.
 
 ### Colocar un símbolo de EPLAN
 

@@ -74,7 +74,9 @@ im App-Speicher (Desktop) / lokalen Speicher (Browser) gespeichert.
 
 - **STL**, **OBJ**;
 - **STEP**: Volumen- und Flächenmodelle aus AP203- / AP214- / AP242-Dateien, nach ihrer
-  Baugruppenstruktur platziert, tesselliert und in mm umgerechnet;
+  Baugruppenstruktur platziert (auch wo die Körper eines Teils an einer weiteren
+  Darstellung hängen, wie in den CAD-Modellen von CADENAS, etwa denen von Rittal),
+  tesselliert und in mm umgerechnet;
 - **IGES 5.3**: Volumenkörper und getrimmte Flächen;
 - **Parasolid** (`.x_t` / `.x_b`): Körper aus Transmit-Dateien ab V13, Ebenen,
   Zylinder, Kegel, Kugeln, Tori und B-Flächen exakt tesselliert, Verrundungen und andere
@@ -82,6 +84,12 @@ im App-Speicher (Desktop) / lokalen Speicher (Browser) gespeichert.
 - **IFC**: tessellierte, facettierte und extrudierte Körper aller Produkte, platziert und
   in mm umgerechnet;
 - **JT**: die Tri-Strip-Netze von JT-8-Dateien.
+
+Das Modell der Montageplatte eines Gehäuses, eine eigene Datei wie die Datei `CAD_MPL_…`
+der CAD-Modelle von Rittal, wird mit *Ihr Modell importieren…* unter *Montageplatte*
+gelesen: Seine Breite und Höhe werden die Artikeldaten `Mounting size: 699 x 1896`, und
+ein Gehäuse des Artikels erhält eine Platte dieser Größe, mittig, sofern der Artikel
+keinen `Mounting origin` nennt.
 
 Artikel mit Abmessungen, aber ohne Modell erhalten ein erzeugtes, je nachdem, was sie
 sind: Reiheneinbaugeräte mit ihren Klemmen, Kipphebel oder Anzeige, Klemmen in ihren
@@ -144,7 +152,7 @@ dem Betriebsmittel gibt. Bodenstehende Artikel stehen aufrecht auf dem Boden ein
   (*DIN rail*, *Hutschiene*, *TS 35*, *TS 15*, *35 x 15*, *G 32*), machen den Artikel zu
   einem für
   eine Tragschiene dieser Größe (*Tragschiene 35 mm*).
-- **EDZ** (Archive des EPLAN Data Portal, 7-Zip): Das Artikel-XML darin wird wie oben
+- **EDZ** (Archive des EPLAN Data Portal, 7-Zip oder ZIP, wie ABB sie veröffentlicht): Das Artikel-XML darin wird wie oben
   gelesen, zusammen mit Abständen, Verlustleistung und dem Link zum Datenblatt.
   Eingebettete 2D-Fenstermakros werden Projektsymbole. Das Produktbild wird als kleines
   JPEG (höchstens 192 px) mit dem Artikel aufbewahrt und in den Artikeldetails mit seinen
@@ -189,6 +197,22 @@ dem Betriebsmittel gibt. Bodenstehende Artikel stehen aufrecht auf dem Boden ein
   (siehe
   [Schaltschrankaufbau](panel-layout.md#sperrflächen)). Das Makro, das EPLAN-Projekt
   (`.zw1`), die STEP-Datei und die PDF-Dokumente werden als Anhänge gespeichert.
+- **Ein schon bekannter Artikel:** eine EDZ-Datei, ein EPLAN-Artikel-XML oder ein
+  Gehäusepaket, dessen Artikel schon in der Artikeldatenbank, auf dem Artikelserver
+  oder in einem mit OpenECraft gelieferten Katalog ist, wird mit diesem Artikel
+  zusammengeführt, statt ihn zu ersetzen (Editor, Parts Manager und `parts_import`).
+  Der bekannte Artikel ist der mit derselben Nummer, sonst der mit derselben
+  Bestellnummer vom selben Hersteller (oder der einzige Artikel mit dieser
+  Bestellnummer); er behält seine Nummer, und die Dateien und Verweise des Imports
+  folgen ihm. Die Werte des Imports gewinnen; was ihm fehlt, bleibt, etwa die
+  Artikeldaten `Fields`, `Rows` und `Module spaces` der Schränke und Felder von
+  Striebel & John. Gruppe und Untergruppe bleiben, die technischen Daten werden Zeile
+  für Zeile zusammengeführt (das `Schlüssel: Wert` des Imports für denselben
+  Schlüssel), Zubehör wird vereinigt. CSV-, JSON- und BMEcat-Dateien ersetzen die
+  Artikel ihrer Nummern weiterhin. Parts Manager und `parts_import` laden eine große
+  Datei in mehreren Anfragen hoch; eine Datei darin, die größer ist, als der
+  Artikelserver annimmt (32 MB, etwa manche 3D-Makros von ABB), wird nicht gespeichert
+  und genannt, der Artikel behält das daraus gelesene Modell.
 
 ### Ein EPLAN-Symbol platzieren
 

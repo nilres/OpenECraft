@@ -21,6 +21,7 @@ use std::collections::{BTreeSet, HashMap, HashSet};
 mod assembly;
 pub mod buildings;
 pub mod busbars;
+pub mod doors;
 mod clipboard;
 mod checks;
 mod drives;
@@ -32,8 +33,10 @@ mod manufacturing;
 mod mounting;
 mod placement;
 pub mod earthing;
+pub mod fit;
 pub mod floorplan;
 pub mod lightning;
+pub mod order;
 pub mod plot;
 mod points;
 pub mod rack;
@@ -50,7 +53,7 @@ pub use checks::{box_gap, class_collisions, class_title, clearances, data_number
 pub use drives::{drives, Drive, DriveKind, DRIVE, DRIVEN_BY};
 pub use fastening::{fastening_material, Fastening};
 pub use fill::{duct_capacity, duct_fill, duct_inside, duct_lanes, duct_lanes_in_order, wire_area, DuctContent, DuctFill, DuctLoads, LANE_GAP, OVERFILL_COST};
-pub use lineup::{add_facing_cutout, add_passage, bay_right_of, lineup_of, lineups, neighbours, next_passage_place, passages, positions, route_across, set_site, site_poses, unbay, Leg, Passage, SitePlace, SitePose, LINEUP_GAP, PASSAGE_DIAMETER};
+pub use lineup::{add_facing_cutout, add_passage, bay_left_of, bay_right_of, lineup_of, lineups, neighbours, next_passage_place, passages, positions, route_across, set_site, site_poses, unbay, Leg, Passage, SitePlace, SitePose, LINEUP_GAP, PASSAGE_DIAMETER};
 pub use macros::{all_macros, builtin_macros, group_members, insert_macro, macro_from_items, ItemGroup, PanelMacro};
 pub use placement::{align, apply_anchors, apply_one_anchor, arrange_on_rail, capture_anchors, distribute, pattern_copy, Align, AlignTo, Anchor};
 pub use points::{device_points, exit_vector, nozzles, point_of, PlacedPoint};
@@ -62,7 +65,7 @@ pub use rooms::{
 };
 pub(crate) use rooms::inner_footprint;
 pub use system::{apply_system, components, maker_model, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{AirRod, Building, DoorHinge, Electrode, ElectrodeKind, FloorPlan, Lightning, Material, RodBase, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
+pub use crate::model::panel::{AirRod, Building, DoorHinge, DoorLeaf, Sheet, Electrode, ElectrodeKind, FloorPlan, Lightning, Material, RodBase, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;
@@ -356,6 +359,7 @@ impl Default for Enclosure {
             mounting_size: None,
             door_clearance: 0.0,
             door_hinge: DoorHinge::Left,
+            door_leaves: Vec::new(),
             items: Vec::new(),
             climate: Default::default(),
             build: Default::default(),
@@ -699,10 +703,22 @@ pub fn new_enclosure(prj: &mut Project, part: &str, name: &str) -> Enclosure {
         if let Some(hinge) = pd.tech_value("Door hinge").and_then(DoorHinge::from_key) {
             e.door_hinge = hinge;
         }
+        // A double door (`Door leaves: 275 + 525`: the widths of its leaves from the left).
+        if let Some(leaves) = pd.tech_value("Door leaves").and_then(|v| doors::parse(v, e.width)) {
+            e.door_leaves = leaves;
+        }
+        // A terminal box without a mounting plate (`Mounting plate: no`).
+        if pd.tech_value("Mounting plate").is_some_and(|v| matches!(v.trim().to_ascii_lowercase().as_str(), "no" | "false" | "0")) {
+            e.no_implicit_plate = true;
+        }
+        // Its size (`Mounting size: 550 x 575`); without its place it is centred.
+        let size = pd.tech_value("Mounting size").and_then(mounting_size);
         if let Some(origin) = pd.tech_value("Mounting origin").and_then(mounting_origin) {
             e.mounting_origin = Some(origin);
-            // Its size when it is not centred (`Mounting size: 550 x 575`).
-            e.mounting_size = pd.tech_value("Mounting size").and_then(mounting_size);
+            e.mounting_size = size;
+        } else if let Some([w, h]) = size.filter(|[w, h]| *w <= e.width && *h <= e.height) {
+            e.mounting_origin = Some([(e.width - w) / 2.0, (e.height - h) / 2.0, PLATE_Z]);
+            e.mounting_size = Some([w, h]);
         }
     }
     e
@@ -1221,7 +1237,7 @@ pub fn rail_mesh(prj: &Project, it: &PanelItem) -> Vec<(Tri, Option<[u8; 3]>)> {
 
 /// Zinc-plated steel of screws and nuts, aluminium of blind rivets and the dark of
 /// their recesses and mandrels.
-const STEEL_ZINC: [u8; 3] = [176, 181, 188];
+pub(crate) const STEEL_ZINC: [u8; 3] = [176, 181, 188];
 const RIVET: [u8; 3] = [196, 200, 204];
 const MANDREL: [u8; 3] = [70, 72, 78];
 
@@ -1261,6 +1277,14 @@ fn device_mesh_placed(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Option<
     }
     if it.kind == ItemKind::Rail {
         return Some(rail_mesh(prj, it));
+    }
+    // The panels of a cabinet's field grid: frame, brackets and cover.
+    if let Some(tris) = fit::insert_mesh(prj, it) {
+        return Some(tris);
+    }
+    // A frame joining two enclosures in its opening: flange, collar and busbars.
+    if let Some(tris) = fit::frame_mesh(prj, it) {
+        return Some(tris);
     }
     // A placed model repeats the model's triangles in their order.
     let painted = |mesh: &crate::parts::Mesh3d, tris: Vec<Tri>| -> Vec<(Tri, Option<[u8; 3]>)> {
@@ -1531,18 +1555,20 @@ pub fn new_accessory(prj: &mut Project, part: &str, face: Face, at: P) -> PanelI
 }
 
 /// Places an accessory on a face of an enclosure; on the wall of a room a part with a
-/// mounting height (technical data) goes at that height.
+/// mounting height (technical data) goes at that height, a frame that joins two
+/// enclosures into the nearest opening of the side wall made for it.
 pub fn place_accessory(prj: &mut Project, enc: usize, part: &str, face: Face, at: P) -> Option<u64> {
     prj.layout.enclosures.get(enc)?;
     let mut item = new_accessory(prj, part, face, at);
+    if fit::into_opening(prj, enc, &mut item) {
+        return Some(fit::add_panel(prj, enc, item));
+    }
     stand_on_floor(&prj.layout.enclosures[enc], &mut item);
     // Outlets and switches go on the walls of a room at their usual height.
     if let Some(height) = part_by_number(prj, part).and_then(|p| tech_number(p, "Mounting height")) {
         at_mounting_height(&prj.layout.enclosures[enc], &mut item, height);
     }
-    let id = item.id;
-    prj.layout.enclosures[enc].items.push(item);
-    Some(id)
+    Some(fit::add_panel(prj, enc, item))
 }
 
 /// Devices whose centre lies on a horizontal rail are centred on it and mounted on
@@ -2428,7 +2454,7 @@ pub fn door_path(e: &Enclosure, at: V3, route: &Route, plate: V3) -> (Vec<V3>, u
 
 /// Where a wire of a device joins the wiring on the plate, and the length from its
 /// connection point to there: down to the plate, or for door devices along the door
-/// (through its cable ducts) to the hinge ([`Enclosure::door_hinge`]) and across the
+/// (through its cable ducts) to the hinge of its leaf ([`doors::leaf_at`]) and across the
 /// hinge loop, joining the plate at its edge on that side; door
 /// devices also return their route on the door. Without a connection point the wire
 /// starts at the device centre, at its front.
@@ -2440,12 +2466,16 @@ pub fn wiring_end(e: &Enclosure, it: &PanelItem, point: Option<&PlacedPoint>) ->
     match it.face {
         Face::Plate => (WireEnd { pos: at, exit: point.map(|pt| pt.exit) }, height, None),
         Face::Door => {
+            // Over the hinge of the leaf the device is on.
             let (pw, ph) = e.plate_size();
-            let right = e.door_hinge == DoorHinge::Right;
-            let r = route_door(e, at, p(if right { e.width - DOOR_FRAME / 2.0 } else { DOOR_FRAME / 2.0 }, at.y));
+            let leaf = doors::leaf_at(e, at.x);
+            let right = leaf.hinge == DoorHinge::Right;
+            let x = leaf.hinge_x() + if right { -DOOR_FRAME / 2.0 } else { DOOR_FRAME / 2.0 };
+            let r = route_door(e, at, p(x, at.y));
             let hinge = r.points.last().copied().unwrap_or(at);
             let length = r.plate_length + height + DOOR_LOOP + (e.depth - PLATE_Z);
-            (WireEnd::at(p(if right { pw } else { 0.0 }, (hinge.y - PLATE_MARGIN).clamp(0.0, ph))), length, Some(r))
+            let plate_x = if leaf.hinge_x() > e.width / 2.0 { pw } else { 0.0 };
+            (WireEnd::at(p(plate_x, (hinge.y - PLATE_MARGIN).clamp(0.0, ph))), length, Some(r))
         }
         wall => {
             // Devices on the walls (fans, lights): straight to the nearest plate edge.

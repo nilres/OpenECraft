@@ -5,6 +5,7 @@
 2D front view	2D-Frontansicht	Vue de face 2D	Vista frontal 2D
 2D front view (SVG)	2D-Frontansicht (SVG)	Vue de face 2D (SVG)	Vista frontal 2D (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-Modell (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	Modèle 3D (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	Modelo 3D (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A separate model of the mounting plate (such as the CAD_MPL file of Rittal's CAD models): its width and height become the size of the plate, centred in the enclosure	Ein eigenes Modell der Montageplatte (etwa die Datei CAD_MPL der CAD-Modelle von Rittal): Seine Breite und Höhe werden die Größe der Platte, mittig im Gehäuse	Un modèle distinct de la plaque de montage (comme le fichier CAD_MPL des modèles CAO de Rittal) : sa largeur et sa hauteur deviennent la taille de la plaque, centrée dans l'enveloppe	Un modelo aparte de la placa de montaje (como el archivo CAD_MPL de los modelos CAD de Rittal): su ancho y su alto pasan a ser el tamaño de la placa, centrada en la envolvente
 A short title for the problem (optional)	Ein kurzer Titel für das Problem (optional)	Un titre court pour le problème (facultatif)	Un título breve para el problema (opcional)
 Accessories of this part	Zubehör dieses Artikels	Accessoires de cet article	Accesorios de este artículo
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Zubehör funktioniert nur zusammen mit den Artikeln, zu denen es passt. Ein Artikel nennt sein Zubehör, ein Zubehör die Artikel, zu denen es passt; eine Seite genügt.	Les accessoires ne fonctionnent qu'avec les articles auxquels ils conviennent. Un article indique ses accessoires, un accessoire les articles auxquels il convient ; un seul côté suffit.	Los accesorios solo funcionan junto con los artículos con los que son compatibles. Un artículo indica sus accesorios, un accesorio los artículos con los que es compatible; basta con un lado.
@@ -50,7 +51,7 @@ Disclaimer	Haftungsausschluss	Clause de non-responsabilité	Exención de respons
 Door cutouts	Türausschnitte	Découpes de porte	Recortes de puerta
 Downloaded {} ({} bytes)	{} heruntergeladen ({} Bytes)	{} téléchargé ({} octets)	{} descargado ({} bytes)
 Downloading parts…	Artikel werden heruntergeladen …	Téléchargement des articles…	Descargando artículos…
-Drag it onto a schematic page to place it	Auf eine Schaltplanseite ziehen, um ihn zu platzieren	Faites-le glisser sur une page de schéma pour le placer	Arrástrelo a una página de esquema para colocarlo
+Drag it onto a schematic page to place it, an enclosure also into Enclosures and rooms	Auf eine Schaltplanseite ziehen, um ihn zu platzieren, ein Gehäuse auch in Gehäuse und Räume	Faites-le glisser sur une page de schéma pour le placer, une enveloppe aussi dans Enveloppes et salles	Arrástrelo a una página de esquema para colocarlo, una envolvente también a Envolventes y salas
 EPLAN numbers	EPLAN-Nummern	Numéros EPLAN	Números EPLAN
 EPLAN product groups	EPLAN-Produktgruppen	Groupes de produits EPLAN	Grupos de productos EPLAN
 Expected result (optional)	Erwartetes Ergebnis (optional)	Résultat attendu (facultatif)	Resultado esperado (opcional)
@@ -68,6 +69,7 @@ Hides this form and takes a screenshot of the window as it is now	Blendet dieses
 Identifying letter of devices using this part (K, Q, S …)	Kennbuchstabe von Betriebsmitteln mit diesem Artikel (K, Q, S …)	Lettre d'identification des appareils utilisant cet article (K, Q, S …)	Letra identificativa de los dispositivos que usan este artículo (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT importieren…	Importer STL / OBJ / STEP / IGES / IFC / JT…	Importar STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	SVG importieren…	Importer SVG…	Importar SVG…
+Import its model…	Ihr Modell importieren…	Importer son modèle…	Importar su modelo…
 In the door, when they differ from the cutouts	In der Tür, wenn sie von den Ausschnitten abweichen	Dans la porte, lorsqu'elles diffèrent des découpes	En la puerta, cuando difieren de los recortes
 Internal values of the EPLAN part exchange (0: undefined)	Interne Werte des EPLAN-Artikelaustauschs (0: undefiniert)	Valeurs internes de l'échange d'articles EPLAN (0 : non défini)	Valores internos del intercambio de artículos de EPLAN (0: indefinido)
 Isometric view, everything shown	Isometrische Ansicht, alles sichtbar	Vue isométrique, tout visible	Vista isométrica, todo visible
@@ -201,8 +203,10 @@ e.g. 25.4 for models in inch, 1000 for models in metres	z. B. 25,4 für Modelle 
 from {} mm²	ab {} mm²	à partir de {} mm²	desde {} mm²
 no 2D model	kein 2D-Modell	pas de modèle 2D	sin modelo 2D
 no mounting data	keine Montagedaten	pas de données de montage	sin datos de montaje
+no size given – the plate keeps 25 mm from the edges	keine Größe angegeben – die Platte hält 25 mm Abstand zu den Rändern	aucune taille indiquée – la plaque reste à 25 mm des bords	sin tamaño indicado – la placa queda a 25 mm de los bordes
 none – a box of the mounting dimensions is drawn	keines – ein Quader der Montageabmessungen wird gezeichnet	aucun – un parallélépipède aux dimensions de montage est dessiné	ninguno – se dibuja una caja con las dimensiones de montaje
 none – a plain rectangle is drawn	keines – ein einfaches Rechteck wird gezeichnet	aucun – un simple rectangle est dessiné	ninguno – se dibuja un rectángulo simple
+none – the enclosure has no mounting plate	keine – das Gehäuse hat keine Montageplatte	aucune – l'enveloppe n'a pas de plaque de montage	ninguna – la envolvente no tiene placa de montaje
 only needed for uploads	nur für Uploads erforderlich	nécessaire uniquement pour les envois	necesario solo para las subidas
 read-only	schreibgeschützt	lecture seule	solo lectura
 signed in as {} ({})	angemeldet als {} ({})	connecté en tant que {} ({})	sesión iniciada como {} ({})
@@ -229,6 +233,8 @@ up to {} mm²	bis {} mm²	jusqu'à {} mm²	hasta {} mm²
 {}, {} wires per connection point	{}, {} Leiter je Anschluss	{}, {} fils par point de connexion	{}, {} cables por punto de conexión
 {}: 2D front view with {} elements assigned to {}	{}: 2D-Frontansicht mit {} Elementen {} zugewiesen	{} : vue de face 2D avec {} éléments affectée à {}	{}: vista frontal 2D con {} elementos asignada a {}
 {}: 3D model with {} triangles ({} × {} × {} mm) assigned to {}	{}: 3D-Modell mit {} Dreiecken ({} × {} × {} mm) {} zugewiesen	{} : modèle 3D avec {} triangles ({} × {} × {} mm) affecté à {}	{}: modelo 3D con {} triángulos ({} × {} × {} mm) asignado a {}
+{}: mounting plate of {} × {} mm for {}	{}: Montageplatte von {} × {} mm für {}	{} : plaque de montage de {} × {} mm pour {}	{}: placa de montaje de {} × {} mm para {}
+{}: the model ({} × {} × {} mm) does not fit into {} as its mounting plate	{}: Das Modell ({} × {} × {} mm) passt nicht als Montageplatte in {}	{} : le modèle ({} × {} × {} mm) ne tient pas dans {} comme plaque de montage	{}: el modelo ({} × {} × {} mm) no cabe en {} como su placa de montaje
 ★ Favorites	★ Favoriten	★ Favoris	★ Favoritos
 ★ Remove from favorites	★ Aus Favoriten entfernen	★ Retirer des favoris	★ Quitar de favoritos
 ☆ Add to favorites	☆ Zu Favoriten hinzufügen	☆ Ajouter aux favoris	☆ Añadir a favoritos

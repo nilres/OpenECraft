@@ -5,7 +5,7 @@
 
 use crate::geom::{p, P, R};
 use crate::model::{natural_cmp, Project};
-use crate::panel::{Enclosure, Face, Fastening, ItemKind, PanelItem, PanelRotation};
+use crate::panel::{doors, DoorLeaf, Enclosure, Face, Fastening, ItemKind, PanelItem, PanelRotation, Sheet};
 use crate::parts::vec3::{add, cross, dot, norm, scale, sub, Tri, V3};
 use crate::parts::{Cutout, Part, PlacedCutout};
 pub use crate::model::panel::{Termination, WireTermination};
@@ -345,6 +345,140 @@ pub fn openings(e: &Enclosure, parts: &[Part], face: Face) -> Vec<Opening> {
     v
 }
 
+// ---------------------------------------------------------------------- sheets
+
+impl From<Face> for Sheet {
+    fn from(face: Face) -> Self {
+        Sheet { face, leaf: None }
+    }
+}
+
+impl Sheet {
+    /// The leaf of the door of enclosure `e` this sheet is.
+    fn door_leaf(self, e: &Enclosure) -> Option<(usize, DoorLeaf)> {
+        let i = self.leaf.filter(|_| self.face == Face::Door)?;
+        doors::leaves(e).get(i).map(|l| (i, *l))
+    }
+
+    /// Where the sheet is across its face, and its size.
+    fn area(self, e: &Enclosure) -> (f32, f32, f32) {
+        let (fw, fh) = e.face_size(self.face);
+        match self.door_leaf(e) {
+            Some((_, l)) => (l.x, l.w, fh),
+            None => (0.0, fw, fh),
+        }
+    }
+
+    /// Its size (mm).
+    pub fn size(self, e: &Enclosure) -> (f32, f32) {
+        let (_, w, h) = self.area(e);
+        (w, h)
+    }
+
+    /// Its key in file names and parameters: the face's, `door_left` and `door_right` for
+    /// the leaves of a double door, `door_1`, `door_2`, … for more leaves.
+    pub fn key(self, e: &Enclosure) -> String {
+        match self.door_leaf(e) {
+            Some((i, _)) if doors::leaves(e).len() == 2 => if i == 0 { "door_left".into() } else { "door_right".into() },
+            Some((i, _)) => format!("door_{}", i + 1),
+            None => self.face.key().into(),
+        }
+    }
+
+    /// Its name in the current language.
+    pub fn title(self, e: &Enclosure) -> String {
+        match self.door_leaf(e) {
+            Some((i, _)) if doors::leaves(e).len() == 2 => if i == 0 { tr("Left door leaf").into() } else { tr("Right door leaf").into() },
+            Some((i, _)) => tr_fmt!("Door leaf {}", i + 1),
+            None => self.face.title().into(),
+        }
+    }
+
+    /// Its name over a drawing of its holes: the door and its leaves seen from the front.
+    pub fn front_title(self, e: &Enclosure) -> String {
+        match self.door_leaf(e) {
+            Some((i, _)) if doors::leaves(e).len() == 2 => if i == 0 { tr("Left door leaf (front view)").into() } else { tr("Right door leaf (front view)").into() },
+            Some((i, _)) => tr_fmt!("Door leaf {} (front view)", i + 1),
+            None if self.face == Face::Door => tr("Door (front view)").into(),
+            None => self.face.title().into(),
+        }
+    }
+
+    /// True for the sheet `x` (face coordinates) is on.
+    fn holds(self, e: &Enclosure, x: f32) -> bool {
+        self.door_leaf(e).is_none_or(|(i, _)| doors::leaf_index(e, x) == i)
+    }
+}
+
+/// The sheets of an enclosure: its faces, a door of several leaves as one per leaf.
+pub fn sheets(e: &Enclosure) -> Vec<Sheet> {
+    let leaves = e.door_leaves.len();
+    Face::ALL
+        .iter()
+        .flat_map(|&face| {
+            let n = if face == Face::Door && leaves > 1 { leaves } else { 0 };
+            if n == 0 { vec![Sheet::from(face)] } else { (0..n).map(|i| Sheet { face, leaf: Some(i) }).collect() }
+        })
+        .collect()
+}
+
+/// The sheet of a key of [`Sheet::key`] (also the face keys: `door` is the whole door).
+pub fn sheet_from_key(e: &Enclosure, key: &str) -> Option<Sheet> {
+    if let Some(face) = Face::from_key(key) {
+        return Some(face.into());
+    }
+    sheets(e).into_iter().find(|s| s.leaf.is_some() && s.key(e) == key)
+}
+
+/// The holes of a sheet ([`holes_on`]) in its own coordinates: a hole is on the leaf it
+/// is drilled in, measured from the leaf's left edge.
+pub fn sheet_holes(e: &Enclosure, parts: &[Part], s: impl Into<Sheet>) -> Vec<Hole> {
+    let s = s.into();
+    let (x0, _, _) = s.area(e);
+    let mut v: Vec<Hole> = holes_on(e, parts, s.face).into_iter().filter(|h| s.holds(e, h.pos.x)).collect();
+    for h in &mut v {
+        h.pos.x -= x0;
+    }
+    v
+}
+
+/// The openings of a sheet ([`openings`]) in its own coordinates, as [`sheet_holes`]. An
+/// opening reaching over the joint between two leaves: a straight rectangle is cut on
+/// each leaf as far as it reaches onto it; a round or turned one stays on the leaf under
+/// its middle, reaching over its edge ([`over_edge`]).
+pub fn sheet_openings(e: &Enclosure, parts: &[Part], s: impl Into<Sheet>) -> Vec<Opening> {
+    let s = s.into();
+    let all = openings(e, parts, s.face);
+    let Some((i, l)) = s.door_leaf(e) else { return all };
+    let (a, z) = (l.x, l.x + l.w);
+    let mut v = Vec::new();
+    for mut o in all {
+        let b = o.bounds();
+        if b.max.x <= a + 0.01 || b.min.x >= z - 0.01 {
+            continue;
+        }
+        let within = b.min.x >= a - 0.01 && b.max.x <= z + 0.01;
+        if !within && !o.round && o.angle == 0.0 {
+            let (left, right) = (b.min.x.max(a), b.max.x.min(z));
+            o.center.x = (left + right) / 2.0;
+            o.w = right - left;
+            o.radius = o.radius.min(o.w / 2.0);
+        } else if !within && doors::leaf_index(e, o.center.x) != i {
+            continue;
+        }
+        o.center.x -= a;
+        v.push(o);
+    }
+    v
+}
+
+/// True if opening `o` of a sheet `width` mm wide reaches over its left or right edge:
+/// a round or turned cutout over the joint between two leaves of a door.
+pub fn over_edge(o: &Opening, width: f32) -> bool {
+    let b = o.bounds();
+    b.min.x < -0.01 || b.max.x > width + 0.01
+}
+
 // ---------------------------------------------------------------------- drilling pattern
 
 /// A kind of hole or cutout of a drilling pattern: its letter, size and how it is made.
@@ -403,11 +537,13 @@ pub struct DrillFeature {
     pub outline: Vec<P>,
 }
 
-/// The drilling pattern of one face: its size, the kinds of holes and cutouts and every
-/// one of them, by kind, then from the bottom left.
+/// The drilling pattern of one sheet (a face or a leaf of the door): its size, the kinds
+/// of holes and cutouts and every one of them, by kind, then from the bottom left.
 #[derive(Clone, Debug, PartialEq)]
 pub struct FaceDrilling {
     pub face: Face,
+    /// The leaf of a door of several leaves.
+    pub leaf: Option<usize>,
     pub size: (f32, f32),
     pub kinds: Vec<DrillKind>,
     pub features: Vec<DrillFeature>,
@@ -437,10 +573,10 @@ fn kind_label(i: usize) -> String {
 /// mounting plate first): the holes of [`holes_on`] and the openings of [`openings`].
 pub fn drilling(e: &Enclosure, parts: &[Part]) -> Vec<FaceDrilling> {
     let mut out = Vec::new();
-    for face in Face::ALL {
-        let (fw, fh) = e.face_size(face);
-        let holes = holes_on(e, parts, face);
-        let opens = openings(e, parts, face);
+    for sheet in sheets(e) {
+        let (fw, fh) = sheet.size(e);
+        let holes = sheet_holes(e, parts, sheet);
+        let opens = sheet_openings(e, parts, sheet);
         if holes.is_empty() && opens.is_empty() {
             continue;
         }
@@ -474,7 +610,7 @@ pub fn drilling(e: &Enclosure, parts: &[Part]) -> Vec<FaceDrilling> {
             k.label = kind_label(i);
         }
         features.sort_by(|a, b| a.kind.cmp(&b.kind).then(a.y.total_cmp(&b.y)).then(a.x.total_cmp(&b.x)));
-        out.push(FaceDrilling { face, size: (fw, fh), kinds, features });
+        out.push(FaceDrilling { face: sheet.face, leaf: sheet.leaf, size: (fw, fh), kinds, features });
     }
     out
 }
@@ -485,33 +621,36 @@ fn csv_num(v: f32) -> String {
     format!("{v:.1}")
 }
 
-/// Drilling and cutout list of a face (mounting plate, door, wall) for NC machines:
-/// coordinates from the bottom left corner, y up.
-pub fn nc_csv(prj: &Project, enc: usize, face: Face) -> String {
+/// Drilling and cutout list of a sheet (mounting plate, door or one of its leaves, wall)
+/// for NC machines: coordinates from the bottom left corner, y up.
+pub fn nc_csv(prj: &Project, enc: usize, sheet: impl Into<Sheet>) -> String {
+    let sheet = sheet.into();
     let e = &prj.layout.enclosures[enc];
-    let (_, fh) = e.face_size(face);
+    let (_, fh) = sheet.size(e);
+    let title = sheet.title(e);
     let name = |id: u64| e.item(id).map(|i| if i.kind == ItemKind::Device { i.tag.clone() } else { i.kind.title().to_string() }).unwrap_or_default();
     let mut out = String::from("Enclosure;Face;Item;Operation;X;Y;Diameter;Thread;Width;Height;Angle;Radius\n");
-    for h in holes_on(e, &prj.parts, face) {
+    for h in sheet_holes(e, &prj.parts, sheet) {
         let op = h.fastening.operation();
         let thread = if h.fastening == Fastening::Tapped { &h.thread } else { &h.thread_size };
-        let _ = writeln!(out, "{};{};{};{op};{};{};{};{};;;;", e.name, face.title(), name(h.item), csv_num(h.pos.x), csv_num(fh - h.pos.y), csv_num(h.diameter), thread);
+        let _ = writeln!(out, "{};{title};{};{op};{};{};{};{};;;;", e.name, name(h.item), csv_num(h.pos.x), csv_num(fh - h.pos.y), csv_num(h.diameter), thread);
     }
-    for o in openings(e, &prj.parts, face) {
+    for o in sheet_openings(e, &prj.parts, sheet) {
         let (op, dia) = if o.round { ("Cutout round", csv_num(o.w)) } else { ("Cutout rectangular", String::new()) };
         let (angle, radius) = (if o.angle != 0.0 { csv_num(o.angle) } else { String::new() }, if o.radius > 0.0 { csv_num(o.radius) } else { String::new() });
-        let _ = writeln!(out, "{};{};{};{op};{};{};{dia};;{};{};{angle};{radius}", e.name, face.title(), name(o.item), csv_num(o.center.x), csv_num(fh - o.center.y), csv_num(o.w), csv_num(o.h));
+        let _ = writeln!(out, "{};{title};{};{op};{};{};{dia};;{};{};{angle};{radius}", e.name, name(o.item), csv_num(o.center.x), csv_num(fh - o.center.y), csv_num(o.w), csv_num(o.h));
     }
     out
 }
 
-/// A face as DXF for NC machines: outline, holes on one layer per diameter
-/// (`HOLE_D4.2`), thread marks, weld studs (`STUD_M5`), cutouts; millimetres, origin
-/// bottom left.
-pub fn nc_dxf(prj: &Project, enc: usize, face: Face) -> String {
+/// A sheet (face or leaf of the door) as DXF for NC machines: outline, holes on one
+/// layer per diameter (`HOLE_D4.2`), thread marks, weld studs (`STUD_M5`), cutouts;
+/// millimetres, origin bottom left.
+pub fn nc_dxf(prj: &Project, enc: usize, sheet: impl Into<Sheet>) -> String {
+    let sheet = sheet.into();
     let e = &prj.layout.enclosures[enc];
-    let (fw, fh) = e.face_size(face);
-    let all = holes_on(e, &prj.parts, face);
+    let (fw, fh) = sheet.size(e);
+    let all = sheet_holes(e, &prj.parts, sheet);
     let (studs, hs): (Vec<Hole>, Vec<Hole>) = all.into_iter().partition(|h| h.fastening == Fastening::Stud);
     let mut diameters: Vec<f32> = Vec::new();
     for h in &hs {
@@ -521,7 +660,7 @@ pub fn nc_dxf(prj: &Project, enc: usize, face: Face) -> String {
     }
     let hole_layer = |d: f32| format!("HOLE_D{d:.1}");
     let stud_layer = |h: &Hole| format!("STUD_{}", h.thread_size);
-    let outline = face.key().to_uppercase();
+    let outline = sheet.key(e).to_uppercase();
     let outline = outline.as_str();
     let mut layers: Vec<(String, u8)> = vec![(outline.into(), 7), ("CUTOUT".into(), 1), ("THREAD".into(), 3)];
     layers.extend(diameters.iter().map(|d| (hole_layer(*d), 5)));
@@ -561,7 +700,7 @@ pub fn nc_dxf(prj: &Project, enc: usize, face: Face) -> String {
     for h in &studs {
         circle(&mut out, &stud_layer(h), h.pos, h.diameter / 2.0);
     }
-    for o in openings(e, &prj.parts, face) {
+    for o in sheet_openings(e, &prj.parts, sheet) {
         if o.round {
             circle(&mut out, "CUTOUT", o.center, o.w / 2.0);
         } else if o.angle == 0.0 && o.radius == 0.0 {

@@ -23,6 +23,7 @@ A device tag must not be empty	Laitetunnus ei saa olla tyhjä
 A pipe run turns at right angles	Putkireitti kääntyy suorassa kulmassa
 A plot boundary has at least three corners	Tontin rajalla on vähintään kolme kulmaa
 A port cannot be connected to itself	Porttia ei voi yhdistää itseensä
+A room goes before or after another room	Tila siirtyy toisen tilan eteen tai taakse
 A room needs at least four walls	Tilassa on oltava vähintään neljä seinää
 A section number consists of letters and digits and does not start with 0	Osion numero koostuu kirjaimista ja numeroista eikä ala numerolla 0
 A section number must not be empty or contain a dot	Osion numero ei saa olla tyhjä eikä sisältää pistettä
@@ -430,6 +431,8 @@ Does not match	Ei vastaa
 Door (front view)	Ovi (etunäkymä)
 Door and walls	Ovi ja seinät
 Door handle and document holder	Oven kahva ja piirustustasku
+Door leaf {}	Ovilehti {}
+Door leaf {} (front view)	Ovilehti {} (etunäkymä)
 Double socket outlet with PE	Kaksoispistorasia suojakoskettimella
 Downstream	Jälkeinen
 Drag chain	Kaapelinvetoketju
@@ -792,6 +795,8 @@ Latitude is within ±90° and longitude within ±180°	Leveysaste on välillä �
 Lead time (days)	Toimitusaika (päivää)
 Leakage current	Vuotovirta
 Leakage line	Vuotolinja
+Left door leaf	Vasen ovilehti
+Left door leaf (front view)	Vasen ovilehti (etunäkymä)
 Left side panel	Vasen sivuseinä
 Legend plate text	Kilven teksti
 Length (m)	Pituus (m)
@@ -1032,6 +1037,7 @@ Oil resistant	Öljynkestävä
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Yksi kaaviosivu, jossa potentiaalit +24V / 0V, painikkeet, valintakytkin, merkkivalot ja sulake; nimikkeet ja osaluettelo.
 One schematic page, the potentials of IEC 60204-1	Yksi piirikaaviosivu, IEC 60204-1:n mukaiset potentiaalit
 One-way flow control valve	Yksisuuntainen virtauksensäätöventtiili
+Only another enclosure can be bayed there	Siihen voidaan liittää vain toinen kotelo
 Only revisions that are not released can be submitted	Vain vapauttamattomia revisioita voi lähettää
 Only symbols of the symbol library can be scaled	Vain symbolikirjaston symboleja voi skaalata
 Only {}	Vain {}
@@ -1386,6 +1392,8 @@ Revision table: author of the last revision (2: the one before …)	Revisiotaulu
 Revision table: date of the last revision (2: the one before …)	Revisiotaulukko: viimeisimmän revision päivämäärä (2: sitä edellisen …)
 Revision table: description of the last revision (2: the one before …)	Revisiotaulukko: viimeisimmän revision kuvaus (2: sitä edellisen …)
 Revision table: index of the last revision (2: the one before …)	Revisiotaulukko: viimeisimmän revision tunnus (2: sitä edellisen …)
+Right door leaf	Oikea ovilehti
+Right door leaf (front view)	Oikea ovilehti (etunäkymä)
 Right side panel	Oikea sivuseinä
 Ring earth electrode	Rengasmaadoitus
 Ring terminal	Rengaskaapelikenkä
@@ -1663,6 +1671,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	Kaava päättyy liian aikaisin
 The function definition needs a key and a name	Toimintomäärittely tarvitsee avaimen ja nimen
 The index of the project names no file layout: it was not written by OpenECraft	Projektin hakemisto ei ilmoita tiedostorakennetta: sitä ei ole kirjoittanut OpenECraft
+The item is no frame in an opening of a side wall	Kohde ei ole kehys sivuseinän aukossa
 The last page cannot be deleted	Viimeistä sivua ei voi poistaa
 The macro box has no items left	Makrolaatikossa ei ole enää kohteita
 The next free id is already in use	Seuraava vapaa tunnus on jo käytössä
@@ -1829,7 +1838,6 @@ Voltage range	Jännitealue
 Voltage type	Jännitelaji
 Voltmeter	Jännitemittari
 Voltmeter, differential	Jännitemittari, erojännite
-Wall	Seinä
 Wall {}	Seinä {}
 Wall {} is not at a right angle	Seinä {} ei ole suorassa kulmassa
 Wall {} is shorter than {} mm	Seinä {} on lyhyempi kuin {} mm
@@ -2154,6 +2162,7 @@ yellow	keltainen
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: riviliittimet {} ovat {} mm lattian yläpuolella, vähintään {} mm vaaditaan
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: kiskojärjestelmä, jossa on {} kiskoa, yhdistää {} johdinta ({}): oikosulku
 {}: the busbar {} of earth electrode {} does not exist	{0}: maadoituselektrodin {2} kiskoa {1} ei ole
+{}: the cutout for {} reaches over the joint between the door leaves and is cut by hand	{}: kohteen {} aukko ulottuu ovilehtien välisen raon yli ja leikataan käsin
 {}: the device {} of PV array {} does not exist	{0}: aurinkopaneelikentän {2} laitetta {1} ei ole
 {}: the earthing busbar {} of PV array {} does not exist	{0}: aurinkopaneelikentän {2} maadoituskiskoa {1} ei ole
 {}: the freestanding PV array {} stands on {}	{}: maa-asennettu aurinkopaneelikenttä {} on kohteen {} päällä
@@ -2204,6 +2213,7 @@ yellow	keltainen
 {}: {} overhangs the end of its mounting rail	{}: {} ulottuu asennuskiskonsa pään yli
 {}: {} pins used, the plug parts have {}	{}: {} nastaa käytössä, pistoliitinosissa on {}
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} saavuttaa paikallaan noin {} °C, sallittu {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} ulottuu ovilehtien välisen raon yli
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} ulottuu {} kiskoon kiskojärjestelmänsä {} kiskosta
 {}: {} solenoid coils linked, the valve has {}	{}: {} magneettikelaa linkitetty, venttiilissä on {}
 {}: {} stands in an inner wall	{}: {} on väliseinän sisällä

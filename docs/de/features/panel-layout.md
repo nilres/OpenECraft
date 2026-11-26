@@ -18,6 +18,49 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
 
 - Gehäuse (aus einem Artikel wie `GEN.ENC-600X800` oder mit eigener Größe) mit
   Montageplatte.
+- *Neues Gehäuse* (die Schaltfläche des Navigators *Gehäuse und Räume* oder sein
+  Kontextmenü, auf einem Raum *Neues Gehäuse in diesem Raum…*) durchsucht die Gehäuse
+  der Artikeldatenbank, des Projekts und der mit OpenECraft gelieferten Kataloge: nach
+  Text, Gehäusesystem, Hersteller, *Montage* (Wand oder Boden), Breite, Höhe und Tiefe
+  von … bis und den Feldbreiten und Reihen von Zähler- und Verteilerschränken (*Felder /
+  Reihen*, Artikeldaten `Fields: 3`, `Rows: 7`), sortiert nach Artikelnummer oder Größe.
+  Ein Doppelklick auf ein Gehäuse legt es an; die Suche bleibt für das nächste. Ein aus
+  der Artikelverwaltung (oder dem Datenportal) in den Navigator gezogenes Gehäuse wird
+  sofort angelegt, in dem Raum, auf dem es abgelegt wurde (auch auf einem Schrank, der
+  in einem steht).
+- **Zubehör ins Gehäuse ziehen:** Zubehör, das aus der Artikelverwaltung über die 2D-
+  oder 3D-Ansicht eines Gehäuses gezogen wird, zeigt die Stellen, an die es passt,
+  hervorgehoben: ein Verteilerfeld eines Zählerschranks (etwa das Striebel & John FV17,
+  Artikeldaten `Fields: 1`, `Rows: 7`) die freien Felder im Raster des Schranks, anderes
+  Zubehör des Gehäuseartikels die Seiten, an die es montiert werden darf, Zubehör des
+  Artikels eines Betriebsmittels (ein Hilfsschalter, ein Signalkontakt) die platzierten
+  Betriebsmittel, zu denen es passt. Auf einer Stelle abgelegt kommt es dorthin; auf
+  einem Betriebsmittel wird es Zubehör des Betriebsmittels. Der Befehl `fitting_places`
+  listet die Stellen für die Kommandozeile und KI-Agenten. Ein Verteilerfeld bringt
+  seine Tragschienen mit (Artikeldaten `Device rows`, sonst eine je Reihe seiner
+  `Module spaces`, `Row spacing` voneinander entfernt; jedes andere Feld mit
+  `Device rows: n`):
+  Betriebsmittel werden darauf platziert und wandern mit dem Feld mit.
+- Ein Feld des Feldrasters wird gezeichnet, wie es gebaut ist: ein Rahmen aus zwei
+  Seitenprofilen, der die Tragschienen eines Verteilerfelds trägt, auf Haltewinkeln, die
+  auf die Träger des Schranks dahinter geschraubt sind, und davor seine
+  Kunststoffabdeckung mit einem Ausschnitt je Reihe von Betriebsmitteln.
+  *Kunststoffabdeckung* in seinen Eigenschaften (Befehl `set_panel_item` mit `cover`)
+  nimmt die Abdeckung ab, um den Rahmen, die Tragschienen und die Verdrahtung dahinter
+  zu sehen. *Alle Kunststoffabdeckungen abnehmen* und *Alle Kunststoffabdeckungen
+  anbringen* im Kontextmenü des Aufbaus tun das für jedes Feld des Gehäuses, im
+  Kontextmenü des Navigators für jedes Gehäuse, ebenso *Layoutbereich › Anzeigen ›
+  Kunststoffabdeckungen ab* (Befehl `set_covers`).
+- Ein Rahmen, der zwei Schränke verbindet (etwa der Isolierrahmen CZ3 von Striebel &
+  John, Artikeldaten `Opening: 202 x 85`), geht nur in die dafür vorgesehenen Öffnungen
+  der Seitenwände (Artikeldaten des Schranks `Side openings: 202 x 85 at 86 / 20; …`:
+  Höhe × Tiefe im Abstand vom Boden / von der Rückwand): in das Gehäuse gezogen, werden
+  die freien Öffnungen hervorgehoben; auf einer Seitenwand platziert, geht er in die
+  nächste freie. Er wird mit seinem Flansch außen an der Wand und seinem Kragen durch
+  die Öffnung gezeichnet, ein Sammelschienenverbinder (CZC4, CZC14) mit seinen
+  Sammelschienen hindurch. *Hier ein Gehäuse anreihen* im Kontextmenü des Rahmens reiht
+  an dieser Seite ein Gehäuse an: ein neues wie dieses oder eines der anderen (Befehl
+  `attach_enclosure`).
 - Tragschienen und Kabelkanäle werden in ihrer Länge gezeichnet; eine(n) auswählen und
   an einem der Enden ziehen, um die Länge zu ändern, oder verschieben (Betriebsmittel
   wandern mit ihrer Schiene mit). Betriebsmittel werden aus einer Liste „Zu
@@ -159,6 +202,19 @@ Scharniere und den Griff auf ihren Seiten, die 3D-Ansicht öffnet die Tür um di
 Kante, und die Türdrähte laufen an der Tür entlang zu dieser Kante, über die
 Scharnierschlaufe und auf dieser Seite in den Rand der Platte.
 
+Eine zweiflügelige Tür hat zwei Flügel, jeder an seiner äußeren Kante angeschlagen
+(*Tür* › *Zweiflügelig* und die Breite unter *Linker Flügel* in den Eigenschaften des
+Gehäuses, `door_leaves` von `add_enclosure` / `set_enclosure`, Artikeldaten
+`Door leaves: 275 + 525` mit den Breiten der Flügel von links, wie sie die
+ComfortLine-A-Schränke von Striebel & John mit drei bis fünf Feldbreiten und der
+univers-Schrank `HAG.FR25S2` von Hager haben). Die Tür
+bleibt eine Fläche für ihre Betriebsmittel: Jedes sitzt auf dem Flügel unter seiner
+Mitte, öffnet sich mit ihm in der 3D-Ansicht und hat seine Drähte über dessen Scharnier
+geführt; die Türansicht zeichnet jeden Flügel mit seinen Scharnieren und die Fuge
+dazwischen, und ein Betriebsmittel, das über die Fuge reicht, wird gemeldet. Eine
+Schiene oder ein Kanal über die Fuge öffnet sich in der 3D-Ansicht an der Fuge geteilt,
+jedes Stück mit seinem Flügel, so wie sie montiert werden müssten.
+
 ## Sperrflächen
 
 Ein Gehäuseartikel kann Bereiche seiner Flächen freihalten (*Sperrflächen* in den
@@ -210,6 +266,17 @@ Größe, Gewinde und Bearbeitung. Eine Seite *Bohrbild* eines Gehäuses (*Neue
 Bohrbild-Seite*, `add_page kind=drilling enclosure=+CAB1`) zeichnet seine Flächen mit
 ihren Bohrungen und Ausschnitten in einem Maßstab, bemaßt von dieser Ecke, daneben die
 Arten der Bohrungen und Ausschnitte mit ihrer Anzahl.
+
+Eine zweiflügelige Tür (siehe [Gehäusetür](#gehäusetür)) wird Flügel für Flügel
+gebohrt: Auswertung, Seite und *NC-Daten* nehmen jeden Flügel als eigenes Blech, bemaßt
+von seiner linken unteren Ecke, und die Übergabe an die Maschinen erzeugt für jeden
+Flügel ein Programm (`CAB1_door_left.nc`; `face=door_left` oder `door_right` von
+`machining_plan` und `cnc_program`). Ein gerader Ausschnitt, der über die Fuge reicht,
+wird auf beiden Flügeln geschnitten, jeweils so weit er auf ihn reicht; ein runder oder
+gedrehter bleibt auf dem Flügel unter seiner Mitte und wird von Hand gemacht. Die
+Konfiguration für den Gehäusehersteller (`export_enclosure_configuration`) listet die
+Flügel (`door_leaves`) und für alles auf der Tür seinen Flügel und seinen Platz darauf
+(`leaf`, `leaf_x`); der Import liest sie zurück.
 
 ## Virtuelle Verdrahtung und Füllgrade der Kabelkanäle
 
@@ -388,6 +455,13 @@ und den Treppen, die die Ebene erreichen (keine Dächer); ein zweiter Klick zeig
 die gesamte Anlage. Das Kontextmenü des Grundstücks fügt ein Gebäude hinzu, zeichnet
 die Grundstücksgrenze oder setzt den Bezugspunkt, das eines Gebäudes eine Ebene oben
 oder ein Untergeschoss, das einer Ebene einen Raum darauf.
+
+Die Zeilen des Navigators werden gezogen, um ihre Reihenfolge zu ändern: ein Raum
+zwischen andere Räume (auf die Ebene des Raums, neben dem er abgelegt wird), ein
+Gehäuse zwischen andere Gehäuse – ein angereihtes innerhalb seiner Anreihung, die in
+der neuen Reihenfolge neu angereiht wird, oder mit seiner ganzen Anreihung vor oder
+hinter eine andere Anreihung, in den Raum, in dem diese steht – und ein Gebäude
+zwischen die Gebäude (Befehl `move_enclosure`).
 
 ## Grundstücksgrenze und Bezugspunkt
 

@@ -338,8 +338,18 @@ gemeinsamen Artikelserver stellen. OpenECraft steht in keiner Verbindung zu EPLA
 - Hersteller werden nach ihrem Kurznamen gefiltert, Produktgruppen nach der ID des
   EPLAN-Katalogeintrags: (Produktobergruppe + 1) · 10⁸ + (Produktgruppe + 1) · 10⁴ +
   (Untergruppe + 1), z. B. `200050000` für Elektrotechnik / Stecker.
-- Artikel im EPLAN-Format (Makros, Anschlusspunkte) kommen als EDZ-Dateien von der
-  Webseite des Portals; importieren Sie sie wie andere Artikeldateien (siehe [Artikelverwaltung](features/parts.md)).
+- Gehäuse (Produktgruppe *Enclosure*) kommen ohne Abmessungen aus dem Portal: Ihre
+  Größe, ihr Gehäusesystem und eine fehlende Montageplatte werden aus der Beschreibung
+  gelesen (`WHD: 800x2000x600 mm`, *baying*, *compact*, *terminal box*, *without
+  mounting plate*), sodass sie wie die Gehäuse der Kataloge im Schaltschrankaufbau platziert werden
+  können (getestet mit Rittal VX25, TS 8, AX und KX).
+- Ein aus dem Portal geladener Artikel führt sein Zubehör mit der Nummer; die Details
+  des Artikels zeigen es mit Beschreibung, Hersteller und Produktgruppe, sodass es sich
+  wie andere Artikel öffnen und hinzufügen lässt und im Schaltschrankaufbau zu seinem
+  Artikel passt.
+- Artikel im EPLAN-Format (Makros, Anschlusspunkte) kommen mit einer EPLAN-Lizenz als
+  EDZ-Dateien von der Webseite des Portals (ein kostenloses Konto lädt nur kaufmännische
+  Daten und DXF-Zeichnungen); importieren Sie sie wie andere Artikeldateien (siehe [Artikelverwaltung](features/parts.md)).
 - Nur die Desktop-Version und die Kommandozeile erreichen das Portal: Es erlaubt keine
   Cross-Origin-Anfragen von Browsern, sodass die Web-Version einen Proxy bräuchte.
 
