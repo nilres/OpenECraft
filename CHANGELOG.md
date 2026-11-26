@@ -5,6 +5,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Close project:** *File › Close project* (Ctrl+Shift+F4) closes the open project,
+  asks to save unsaved changes first, releases the pages of a project of the project
+  server and shows the start page ([tutorial](docs/tutorial.md#1-a-new-project)).
 - **Wires and cables without cable ducts are tied into bundles:** in a cabinet without
   cable ducts on its mounting plate, and in a room without cable trays, the 3D routing
   lays thin wires and cables that go the same way together, as a bundle held by cable

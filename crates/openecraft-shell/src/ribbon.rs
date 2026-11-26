@@ -362,6 +362,7 @@ pub static BACKSTAGE: &[Entry] = &[
     Entry::Command(C::SaveAs),
     Entry::Command(C::SaveAsSplit),
     Entry::Command(C::SaveAsProjectTemplate),
+    Entry::Command(C::CloseProject),
     Entry::Page(Page::Import),
     Entry::Page(Page::Export),
     Entry::Page(Page::Print),

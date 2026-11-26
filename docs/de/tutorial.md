@@ -33,6 +33,8 @@ sich daran ausprobieren.
   speichern…*): ein Ordner mit dem Index `<name>.oecp` und einer kleinen Datei je Seite,
   Betriebsmittel und Artikel, sodass eine Änderung nur die Dateien berührt, die sie
   betrifft.
+- *Datei › Projekt schließen* (Strg+Umschalt+F4) schließt das Projekt, fragt bei
+  ungespeicherten Änderungen nach dem Speichern und zeigt die Startseite.
 
 ## 2. Seiten und Struktur
 

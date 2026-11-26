@@ -23,6 +23,7 @@ pub enum Cmd {
     SaveAs,
     SaveAsSplit,
     SaveAsProjectTemplate,
+    CloseProject,
     CheckInVault,
     ImportDrawing,
     ImportSettings,
@@ -425,6 +426,8 @@ pub static ALL: &[Def] = &[
         .tip(tr_const!("A folder with one small file per page, device and part instead of one project file, for version control such as git")),
     d(C::SaveAsProjectTemplate, "save_as_project_template", tr_const!("Save as project template…"), I::Template)
         .tip(tr_const!("Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones")),
+    d(C::CloseProject, "close_project", tr_const!("Close project"), I::Close).keys("Ctrl+Shift+F4")
+        .tip(tr_const!("Closes the project, asking to save unsaved changes, and shows the start page")),
     d(C::ProjectTemplate, "project_template", tr_const!("Template parameters"), I::Template).tool(ToolPane::ProjectTemplate)
         .tip(tr_const!("Name, parameters, formulas and page conditions of the project as a template")),
     d(C::CheckInVault, "check_in_vault", tr_const!("Check in to Vault"), I::Upload),

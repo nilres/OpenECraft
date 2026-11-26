@@ -119,3 +119,12 @@ fn the_layout_view_commands_bring_the_view_to_the_front() {
         assert!(d.pane.is_none() && d.kind != Kind::Menu, "{:?} is a plain command", d.cmd);
     }
 }
+
+#[test]
+fn close_project_has_a_shortcut_of_its_own() {
+    let keys = def(Cmd::CloseProject).default_keys();
+    assert_eq!(keys.len(), 1);
+    let others: Vec<Cmd> = ALL.iter().filter(|d| d.cmd != Cmd::CloseProject && d.default_keys().contains(&keys[0])).map(|d| d.cmd).collect();
+    assert!(others.is_empty(), "{others:?}");
+    assert!(ribbon::places(Cmd::CloseProject).contains(&"backstage".to_string()));
+}

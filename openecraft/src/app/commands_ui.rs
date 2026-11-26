@@ -196,7 +196,7 @@ impl App {
             self.search.menu = Some(cmd);
             return;
         }
-        let replaces = matches!(cmd, Cmd::NewProject | Cmd::NewFromTemplateFile | Cmd::OpenDemo | Cmd::Open)
+        let replaces = matches!(cmd, Cmd::NewProject | Cmd::CloseProject | Cmd::NewFromTemplateFile | Cmd::OpenDemo | Cmd::Open)
             || (cmd == Cmd::OpenExample && self.pending_example.is_some());
         if replaces {
             self.request_replace(ctx, Replace::Cmd(cmd));
@@ -214,6 +214,12 @@ impl App {
             Cmd::Backstage => self.backstage = if self.backstage.is_some() { None } else { Some(crate::ribbon::Page::Home) },
             Cmd::StartPage => {}
             Cmd::NewProject => self.replace_project(Project::new_default(), None),
+            Cmd::CloseProject => {
+                // No project stays open: an empty one, not saved anywhere, under the start page.
+                self.replace_project(Project::new_default(), None);
+                self.show_pane(Pane::Tool(ToolPane::Start));
+                self.remote.list();
+            }
             Cmd::NewFromTemplateFile => self.io.open(ctx, Purpose::ProjectTemplate),
             Cmd::OpenDemo => self.replace_project(sample::demo_project(), None),
             Cmd::OpenExample => match self.pending_example.take().and_then(|key| sample::example(key).map(|prj| (key, prj))) {

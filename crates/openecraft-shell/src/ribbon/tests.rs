@@ -25,7 +25,7 @@ fn context_tabs_are_the_layout_space_and_the_wiring() {
 
 #[test]
 fn the_backstage_offers_files_and_settings() {
-    for c in [Cmd::Save, Cmd::SaveAs, Cmd::Settings, Cmd::Quit, Cmd::Open, Cmd::NewProject, Cmd::PrintAll, Cmd::ImportDrawing] {
+    for c in [Cmd::Save, Cmd::SaveAs, Cmd::Settings, Cmd::Quit, Cmd::Open, Cmd::NewProject, Cmd::CloseProject, Cmd::PrintAll, Cmd::ImportDrawing] {
         assert!(places(c).iter().any(|p| p.starts_with("backstage")), "{c:?}");
     }
     assert!(places(Cmd::Undo).contains(&"quick".to_string()));

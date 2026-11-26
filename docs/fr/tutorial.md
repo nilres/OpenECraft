@@ -30,6 +30,8 @@ ci-dessous peuvent y être essayées.
   fractionné (*Fichier › Enregistrer comme projet fractionné…*) : un dossier avec l'index
   `<name>.oecp` et un petit fichier par page, appareil et article, de sorte qu'une
   modification ne touche que les fichiers qu'elle concerne.
+- *Fichier › Fermer le projet* (Ctrl+Shift+F4) ferme le projet, propose d'enregistrer
+  les modifications non enregistrées et affiche la page d'accueil.
 
 ## 2. Pages et structure
 
