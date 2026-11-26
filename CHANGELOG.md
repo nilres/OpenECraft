@@ -5,6 +5,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Insert center finds abbreviations:** the search also finds symbols, macros, devices
+  and unplaced functions by common abbreviations and synonyms of their names, such as
+  `RCD`, `RCCB` or `FI` for the residual current device, `MCB` or `LS` for the circuit
+  breaker, `SPD`, `PSU`, `PLC` or `VFD`, also in translated names and part descriptions
+  (*Fehlerstromschutzschalter*); the tooltip of an entry lists its keywords
+  ([#273](https://github.com/nilres/OpenECraft/issues/273)).
 - **Typing the length of a rail or duct:** the length of a mounting rail or cable duct
   and of a wall in the panel layout is applied when the field is left or Enter is
   pressed, no longer at every key, and a length below the cross-section no longer turns

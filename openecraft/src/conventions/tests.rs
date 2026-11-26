@@ -147,6 +147,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("params", &[]),
     ("table", &["params"]),
     ("issue", &[]),
+    ("keywords", &[]),
     ("formula", &[]),
     ("ttf", &[]),
     ("parallel", &[]),

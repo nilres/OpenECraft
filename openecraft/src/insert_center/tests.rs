@@ -154,3 +154,18 @@ fn search_uses_all_words_and_placeholders() {
     ic.query = String::new();
     assert!(ic.matches(&["anything"]));
 }
+
+#[test]
+fn search_finds_abbreviations_and_synonyms() {
+    let mut ic = InsertCenter { query: "RCD".into(), ..Default::default() };
+    assert!(ic.matches(&["Residual current device 4-pole", "F"]));
+    assert!(!ic.matches(&["Circuit breaker 1-pole", "F"]));
+    ic.query = "fi 4-pole".into();
+    assert!(ic.matches(&["Residual current device 4-pole", "F"]));
+    ic.query = "mcb".into();
+    assert!(ic.matches(&["Leitungsschutzschalter B16", "Hager"]));
+    // The built-in symbols are found by their abbreviations too.
+    ic.query = "RCD".into();
+    let groups = symbol_groups(&Project::default(), &PartsDb { parts: vec![] }, &ic);
+    assert!(groups.iter().flat_map(|g| &g.entries).any(|e| *e == Entry::Symbol("rcd4".into())));
+}

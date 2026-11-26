@@ -254,7 +254,13 @@ impl App {
                     Entry::Part(n) => (String::new(), parts::lookup(&self.session.prj, Some(&self.parts_db), n).map(|p| p.description.clone()).unwrap_or_default()),
                     Entry::Macro(n) => (String::new(), self.macro_lib.get(n).map(|m| m.description.clone()).unwrap_or_default()),
                 };
-                let full = if about.is_empty() { title.clone() } else { format!("{title} – {about}") };
+                let mut full = if about.is_empty() { title.clone() } else { format!("{title} – {about}") };
+                // The abbreviations and synonyms the search finds the entry by.
+                let keywords = openecraft_core::keywords::keywords(&full);
+                if !keywords.is_empty() {
+                    full = format!("{full}
+{}", tr_fmt!("Keywords: {}", keywords));
+                }
                 let text = title.clone();
                 let selected = active.as_ref() == Some(e);
                 // Star and letter stay at the right edge; a long title is shortened

@@ -44,6 +44,7 @@ pub mod inspection;
 pub mod references;
 pub mod integration;
 pub mod issue;
+pub mod keywords;
 pub mod kbl;
 pub mod loads;
 pub mod macros;
