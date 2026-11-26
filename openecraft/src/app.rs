@@ -120,6 +120,8 @@ struct ShellState {
     tablet_once: bool,
     /// The project had unsaved changes when the app was closed.
     dirty: bool,
+    /// No project was open (File › Close project) when the app was closed.
+    closed: bool,
     /// The start page was shown once.
     started: bool,
     workspace: String,
@@ -161,6 +163,7 @@ impl Default for ShellState {
             tablet: false,
             tablet_once: false,
             dirty: false,
+            closed: false,
             started: false,
             workspace: "schematic".into(),
             docks: Vec::new(),
@@ -548,6 +551,7 @@ impl App {
         parts_ui.server.set_kind(server_kind.unwrap_or_default());
         let prj = prj.unwrap_or_else(sample::demo_project);
         let unsaved = shell.dirty;
+        let closed = shell.closed && !unsaved;
         let workspace = Workspace::from_key(&shell.workspace).unwrap_or(Workspace::Schematic);
         let dock = dock.unwrap_or_else(|| crate::dock::default_tree_for(workspace));
         let docks: HashMap<Workspace, egui_tiles::Tree<Pane>> =
@@ -607,7 +611,7 @@ impl App {
             layout_name: None,
             discard: Default::default(),
             closing: false,
-            closed: false,
+            closed,
             shutdown: None,
             confirm_delete_page: None,
             confirm_remove_layout: None,
@@ -891,7 +895,11 @@ impl App {
         // The files of a split project as they were just read, if this is that project.
         let tracked = self.opened.take();
         self.session.replace(prj, file_name, tracked);
-        self.closed = false;
+        if std::mem::take(&mut self.closed) {
+            // Opened from the start page that stood alone: the project comes to the front.
+            crate::dock::close(&mut self.dock, Pane::Tool(ToolPane::Start));
+            self.show_pane(crate::dock::main_document(self.workspace));
+        }
         self.example = None;
         self.find_ui.clear_results();
         parts::link_unassigned_plc_parts(&mut self.session.prj, &self.parts_db, None);
@@ -1396,6 +1404,7 @@ impl eframe::App for App {
         stored::set(storage, RECENT_KEY, &self.recent);
         let mut shell = self.shell.clone();
         shell.dirty = self.session.dirty();
+        shell.closed = self.closed;
         shell.workspace = self.workspace.key().to_string();
         shell.docks = self.docks.iter().map(|(w, t)| (w.key().to_string(), crate::dock::to_json(t))).collect();
         stored::set(storage, UI_KEY, &shell);
