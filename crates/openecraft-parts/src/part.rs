@@ -58,7 +58,8 @@ pub const PRODUCT_GROUPS: &[(&str, &[&str])] = &[
     ("PLC", &["Digital input module", "Digital output module", "Analog input module", "Analog output module", "CPU", "Bus coupler"]),
     ("Valves", &["Solenoid valve", "Directional valve"]),
     ("Fluid power components", &["Cylinder", "Pump", "Service unit"]),
-    ("Passive components", &["Resistor", "Capacitor", "Diode", "Varistor"]),
+    ("Passive components", &["Resistor", "Capacitor", "Varistor"]),
+    ("Semiconductors", &["Diode"]),
     (
         "Mounting",
         &[

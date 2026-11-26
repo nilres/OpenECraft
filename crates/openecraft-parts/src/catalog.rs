@@ -902,7 +902,7 @@ Breaking capacity: 100 kA".into();
 
     c.add("GEN.RES-1K", "Resistor 1 kΩ 0.6 W", "Passive components", "Resistor", "R", 0.1, (0.0, 0.0, 0.0, 0.0), &[(Generic, "1 2")]);
     c.add("GEN.CAP-100N", "Capacitor 100 nF 63 V", "Passive components", "Capacitor", "C", 0.15, (0.0, 0.0, 0.0, 0.0), &[(Generic, "1 2")]);
-    c.add("GEN.DIODE-1N4007", "Rectifier diode 1 A 1000 V", "Passive components", "Diode", "V", 0.08, (0.0, 0.0, 0.0, 0.0), &[(Generic, "A K")]);
+    c.add("GEN.DIODE-1N4007", "Rectifier diode 1 A 1000 V", "Semiconductors", "Diode", "V", 0.08, (0.0, 0.0, 0.0, 0.0), &[(Generic, "A K")]);
     c.add("GEN.VAR-275V", "Varistor 275 V AC, 4.5 kA", "Passive components", "Varistor", "R", 0.6, (0.0, 0.0, 0.0, 0.0), &[(Generic, "1 2")]);
 
     let p = c.add("GEN.RAIL-TS35-1M", "Mounting rail TS 35 x 7.5, perforated, 1 m", "Mounting", "Mounting rail", "", 6.5, (1000.0, 35.0, 7.5, 0.35), &[]);

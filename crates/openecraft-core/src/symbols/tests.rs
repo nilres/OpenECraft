@@ -63,3 +63,14 @@ fn overview_symbols_refer_to_the_main_function_but_stay_out_of_the_netlist() {
     let svg = crate::svg::page_svg(&prj, 1);
     assert!(svg.contains("/1.3"), "cross reference missing");
 }
+
+#[test]
+fn semiconductors_are_not_passive_components() {
+    let category = |key: &str| library().iter().find(|d| d.key == key).unwrap().category;
+    for key in ["diode", "led", "zener", "photodiode", "npn", "pnp", "nmos", "thyristor", "triac", "optocoupler", "bridge_rect"] {
+        assert_eq!(category(key), Category::Semiconductors, "{key}");
+    }
+    for key in ["res", "cap", "cap_pol", "inductor", "potentiometer", "varistor", "ntc", "ldr"] {
+        assert_eq!(category(key), Category::Passive, "{key}");
+    }
+}

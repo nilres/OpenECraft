@@ -17,6 +17,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   also the ceiling, open walls, installation zones, PV modules and the whole building.
   *File › Settings › Appearance › View buttons* hides the row. The *Show* group folded
   in a narrow ribbon has an eye as its icon instead of the wire symbol of *Wires*.
+- **Semiconductor components:** diodes, LEDs, transistors, thyristors, triacs, optocouplers
+  and the bridge rectifier have a category of their own in the Insert center and the
+  function definitions instead of being listed under *Passive components*; the diode of
+  the shipped catalog is in the product group *Semiconductors*.
 - **Wires and cables without cable ducts are tied into bundles:** in a cabinet without
   cable ducts on its mounting plate, and in a room without cable trays, the 3D routing
   lays thin wires and cables that go the same way together, as a bundle held by cable
