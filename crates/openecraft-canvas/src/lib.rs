@@ -13,3 +13,10 @@ pub mod jobs;
 pub mod panel_ui;
 
 use openecraft_shell::{commands, gestures, shortcuts, style};
+
+/// What of type `P` is dropped onto `r` this frame. Unlike `Response::dnd_release_payload`
+/// it leaves a payload of another type alone: egui takes the payload before it checks
+/// the type, so asking for the wrong type first would lose what was dropped.
+pub(crate) fn dropped<P: std::any::Any + Send + Sync>(r: &egui::Response) -> Option<std::sync::Arc<P>> {
+    egui::DragAndDrop::has_payload_of_type::<P>(&r.ctx).then(|| r.dnd_release_payload::<P>()).flatten()
+}

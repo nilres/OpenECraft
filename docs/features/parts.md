@@ -66,7 +66,8 @@ in the app storage (desktop) / local storage (browser).
 
 - **STL**, **OBJ**;
 - **STEP**: solids and surface models of AP203 / AP214 / AP242 files, placed by their
-  assembly structure, tessellated and converted to mm;
+  assembly structure (also where a part's solids hang on a further representation, as
+  in the CAD models of CADENAS such as Rittal's), tessellated and converted to mm;
 - **IGES 5.3**: solids and trimmed surfaces;
 - **Parasolid** (`.x_t` / `.x_b`): bodies of V13 and newer transmit files, planes,
   cylinders, cones, spheres, tori and B-surfaces tessellated exactly, blends and other
@@ -74,6 +75,11 @@ in the app storage (desktop) / local storage (browser).
 - **IFC**: tessellated, faceted and extruded bodies of all products, placed and
   converted to mm;
 - **JT**: the tri-strip meshes of JT 8 files.
+
+The model of an enclosure's mounting plate, a separate file such as the `CAD_MPL_…` file
+of Rittal's CAD models, is read with *Import its model…* under *Mounting plate*: its
+width and height become the part data `Mounting size: 699 x 1896`, and an enclosure of
+the part gets a plate of that size, centred unless the part names its `Mounting origin`.
 
 Parts with dimensions but without a model get a generated one by what they are: DIN
 rail devices with their terminals, toggle or display, terminals in their colours (PE
@@ -124,7 +130,7 @@ the device. Floor-standing parts stand upright on the floor of a room.
   interpreted yet). EPLAN's rail data (snap height, centre offset) or a text naming the rail
   (*DIN rail*, *Hutschiene*, *TS 35*, *TS 15*, *35 x 15*, *G 32*) make the part one for
   a mounting rail of that size (*Mounting rail 35 mm*).
-- **EDZ** (EPLAN Data Portal archives, 7-Zip): the parts XML inside is read as above,
+- **EDZ** (EPLAN Data Portal archives, 7-Zip or ZIP as ABB publishes them): the parts XML inside is read as above,
   together with clearances, power loss and the datasheet link. Embedded 2D window
   macros become project symbols. The product picture is kept with the part as a small
   JPEG (at most 192 px) and shown in the part details with its mounting data
@@ -159,6 +165,20 @@ the device. Floor-standing parts stand upright on the floor of a room.
   the frame around the door are left out. The panel layout draws and checks them (see
   [panel layout](panel-layout.md#restricted-areas)). The macro, the EPLAN project
   (`.zw1`), the STEP file and the PDF documents are stored as attachments.
+- **A part already known:** an EDZ file, an EPLAN parts XML or an enclosure package
+  whose part is already in the parts database, on the parts server or in a catalog
+  shipped with OpenECraft is merged into that part instead of replacing it (the editor,
+  Parts Manager and `parts_import`). The known part is the one of the same number, else
+  the one of the same order number from the same manufacturer (or the only part with
+  that order number); it keeps its number, and the files and references of the import
+  follow it. The import's values win; what it lacks stays, such as the part data
+  `Fields`, `Rows` and `Module spaces` of the Striebel & John cabinets and panels. The
+  group and subgroup stay, the technical data are merged line by line (the import's
+  `Key: value` for the same key), accessories are united. CSV, JSON and BMEcat files
+  still replace the parts of their numbers. Parts Manager and `parts_import` upload a
+  large file in several requests; a file of it larger than the parts server takes
+  (32 MB, such as some 3D macros of ABB) is not stored and named, the part keeps the
+  model read from it.
 
 ### Placing an EPLAN symbol
 

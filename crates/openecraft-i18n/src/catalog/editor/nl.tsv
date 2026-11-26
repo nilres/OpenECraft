@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Een verdieping boven de hoogste
 A local file opens locally, a server project is opened on the project server again	Een lokaal bestand opent lokaal, een serverproject wordt opnieuw op de projectserver geopend
 A local file or a project on the project server	Een lokaal bestand of een project op de projectserver
+A new enclosure of the same part, bayed at this frame	Een nieuwe behuizing van hetzelfde artikel, aangebouwd bij dit frame
+A new enclosure standing in this room	Een nieuwe behuizing in deze ruimte
 A new project	Een nieuw project
 A new release is downloaded in the background and installed when you close OpenECraft.	Een nieuwe versie wordt op de achtergrond gedownload en geïnstalleerd wanneer u OpenECraft sluit.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Een nieuwe versie wordt op de achtergrond gedownload en vervangt deze installatie; ze wordt vanaf de volgende start gebruikt.
@@ -179,10 +181,13 @@ Assign to existing device	Aan bestaand apparaat toewijzen
 Assign to harness	Aan kabelboom toewijzen
 Assign wires: select them in the schematic › Assign to cable.	Draden toewijzen: selecteer ze in het schema › Aan kabel toewijzen.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Asynchrone motoren aan het net verhogen de hoogste kortsluitstroom (IEC 60909-0)
+At least, mm (0: any)	Minstens, mm (0: willekeurig)
+At most, mm (0: any)	Hoogstens, mm (0: willekeurig)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Bij de hoogste omgevingstemperatuur; de verwarming houdt het dauwpunt aan. 0 = niet meegenomen
 At the origin	In de oorsprong
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Op het voedingspunt: Ik3 max {} kA, Ik1 min {} kA
 At the top level	Op het hoogste niveau
+Attach an enclosure here	Hier een behuizing aanbouwen
 Author	Auteur
 Auto-connect	Automatisch verbinden
 Auto-connect selection	Selectie automatisch verbinden
@@ -620,6 +625,7 @@ Door cutouts (CSV)	Deuruitsparingen (CSV)
 Door hinge	Deurscharnieren
 Door: {} devices, {} cutouts	Deur: {} apparaten, {} uitsparingen
 Dot	Punt
+Double door	Dubbele deur
 Double-click	Dubbelklik
 Down conductors	Afleidingen
 Download into database	Downloaden naar database
@@ -665,9 +671,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Boorlijst (CSV)
 Drilling list of this face (CSV)	Boorlijst van dit vlak (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Boorpatroon van het getoonde vlak als DXF, DWG of CSV
+Drop an enclosure here to add it; onto a room to put it in there	Zet hier een behuizing neer om ze toe te voegen; op een ruimte om ze daarin te plaatsen
 Drop between the pages	Neerzetten tussen de pagina's
 Drop between the rows or onto a section	Neerzetten tussen de rijen of op een sectie
+Drop between two buildings to move it there	Neerzetten tussen twee gebouwen om het daarheen te verplaatsen
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Neerzetten tussen twee rijen om de behuizing daarheen te verplaatsen; een gekoppelde verplaatst binnen haar koppeling of met de koppeling
+Drop between two rows to move the room there, onto a level to put it on that level	Neerzetten tussen twee rijen om de ruimte daarheen te verplaatsen, op een verdieping om haar op die verdieping te plaatsen
 Drop onto a level to put the room on it	Neerzetten op een verdieping om de ruimte erop te plaatsen
+Drop {} here	{} hier neerzetten
+Drop {} onto one of the highlighted places	Zet {} neer op een van de gemarkeerde plaatsen
+Drop {} onto {} to add it to the device	Zet {} neer op {} om het aan het apparaat toe te voegen
 Duct fill	Gootvulling
 Duct fill limit	Grenswaarde gootvulling
 Duplicate	Dupliceren
@@ -702,6 +715,8 @@ Embed as document page	Insluiten als documentpagina
 Embeds a file (PDF, Word, Excel, image …) as a page	Sluit een bestand (PDF, Word, Excel, afbeelding …) in als pagina
 Embeds the file in the project (replaces the current one)	Sluit het bestand in het project in (vervangt het huidige)
 Enclosure system	Behuizingssysteem
+Enclosure {} added	Behuizing {} toegevoegd
+Enclosure {} added in room {}	Behuizing {} toegevoegd in ruimte {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Behuizingen (+CAB1), apparaten (-M1) en machineplaatsen (+M1) bij de knooppunten
 Enclosures and rooms	Behuizingen en ruimten
 Enclosures, devices to place and placed devices	Kasten, te plaatsen en geplaatste apparaten
@@ -757,7 +772,10 @@ Field	Veld
 Field (name, description, company, creator, date, revision) or project property	Veld (name, description, company, creator, date, revision) of projecteigenschap
 Field cables	Veldkabels
 Field length	Veldlengte
+Field widths and rows of meter and distribution cabinets	Veldbreedtes en rijen van meter- en verdeelkasten
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Veld; tech:<name> voor technische gegevens van artikelen, prop:<name> voor projecteigenschappen
+Fields	Velden
+Fields / rows	Velden / rijen
 File format version {}. Files of older versions are converted when they are opened.	Versie van de bestandsindeling {}. Bestanden van oudere versies worden bij het openen geconverteerd.
 File name	Bestandsnaam
 File of another system (connector)	Bestand van een ander systeem (connector)
@@ -779,10 +797,13 @@ Finish a wire, polyline, polygon or wall	Een draad, polylijn, veelhoek of wand a
 Finish or cancel the drawing, then back to selecting	Tekenen afronden of annuleren, daarna terug naar selecteren
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Voltooide wijzigingen van een project dat van de projectserver is geopend, worden daar vanzelf opgeslagen; lopende invoer wordt opgeslagen zodra die is voltooid. Vergrendelingen blijven behouden. Opslaan (Ctrl+S) slaat nog steeds direct op.
 First row	Eerste rij
+Fit all plastic covers	Alle kunststof afdekkingen aanbrengen
 Fit page	Pagina passend maken
 Fits {}	Past op {}
+Fitted	Aangebracht
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	In de rechthoek ingepast met behoud van de beeldverhouding (PNG, JPEG)
 Float	Losmaken
+Floor	Bodem
 Floor above ground	Vloer boven maaiveld
 Floor plan with {} walls	Plattegrond met {} wanden
 Floor-standing part	Vloerstaand artikel
@@ -1048,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Herhaalde waarden van de eerste kolom leeg laten
 Left button	Linkerknop
 Left edges	Linkerranden
+Left leaf	Linkervleugel
 Legend plates (door devices)	Tekstplaatjes (deurapparaten)
 Length from the node to the device	Lengte van het knooppunt tot het apparaat
 Length inside an enclosure	Lengte in de behuizing
@@ -1145,6 +1167,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	Gemeten
 Measures against common cause failure (at least 65 points)	Maatregelen tegen uitval door een gemeenschappelijke oorzaak (minstens 65 punten)
 Merge a symbol library file	Een symboolbibliotheekbestand samenvoegen
+Merged with the parts already known: {}	Samengevoegd met al bekende artikelen: {}
 Message	Bericht
 Messages	Meldingen
 Messages ({})	Meldingen ({})
@@ -1223,6 +1246,9 @@ New cover sheet	Nieuw voorblad
 New document page…	Nieuwe documentpagina…
 New empty	Nieuw, leeg
 New enclosure	Nieuwe behuizing
+New enclosure in this room…	Nieuwe behuizing in deze ruimte…
+New enclosure like this one	Nieuwe behuizing zoals deze
+New enclosure…	Nieuwe behuizing…
 New graphics page	Nieuwe grafiekpagina
 New harness	Nieuwe kabelboom
 New items go onto this layer	Nieuwe elementen komen op deze laag
@@ -1284,6 +1310,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Nog geen behuizing – maak er een met Nieuwe behuizing, of een ruimte voor kasten met Nieuwe ruimte.
 No field cables: place the enclosures and field devices at nodes of the route network.	Geen veldkabels: plaats de behuizingen en veldapparaten bij knooppunten van het tracénetwerk.
 No filter fans: an air/air heat exchanger or a cooling unit	Geen filterventilatoren: een lucht/lucht-warmtewisselaar of een koelaggregaat
+No free place is left for {} in this enclosure	Er is geen vrije plaats meer voor {} in deze behuizing
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Nog geen vrijstaand PV-veld: rijen schuine tafels op geheide palen op het perceel.
 No gesture	Geen gebaar
 No harnesses defined.	Geen kabelbomen gedefinieerd.
@@ -1360,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Op een touchscreen; trackpads laten gebaren met drie vingers aan het systeem.
 On startup	Bij het starten
 On the roof, joined to the air-termination conductors; move it to its place	Op het dak, verbonden met de opvanggeleiders; verplaats hem naar zijn plaats
+One leaf	Eén vleugel
 One row per label	Eén rij per label
 Only devices on the current page	Alleen apparaten op de huidige pagina
 Only frames no page uses can be deleted	Alleen kaders die door geen enkele pagina worden gebruikt, kunnen worden verwijderd
@@ -1558,6 +1586,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Installatielay-out
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Installatielay-out, tracénetwerk, veldkabelplanning, potentiaalvereffening en kabeltoebehoren
 Plant segments with planned devices before the schematic	Installatiesegmenten met geplande apparaten vóór het schema
+Plastic cover	Kunststof afdekking
+Plastic covers off	Kunststof afdekkingen eraf
 Plate outline, holes per diameter, cutouts	Plaatcontour, boringen per diameter, uitsparingen
 Plot boundary	Perceelgrens
 Plot boundary drawn: {} m²	Perceelgrens getekend: {} m²
@@ -1814,6 +1844,7 @@ Row	Rij
 Row distance	Rijafstand
 Row drawing	Rijtekening
 Row labels	Rijlabels
+Rows	Rijen
 Rows of tables behind each other	Rijen tafels achter elkaar
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Rijen schuine tafels op palen vóór wat er in de installatie staat, naar voren gericht; verplaats het naar zijn plek
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rijen op vrijgegeven pagina's kunnen niet worden gewijzigd. Een regeleinde in een tekst wordt geschreven als \\n.
@@ -1894,7 +1925,9 @@ Scrolling zooms, also where it pans	Scrollen zoomt, ook waar het anders verschui
 Search (* and ? as placeholders)…	Zoeken (* en ? als jokertekens)…
 Search below this folder	Zoeken onder deze map
 Search number, description, maker	Nummer, beschrijving, fabrikant zoeken
+Search the enclosures of the parts database and the catalogs for a new one	Zoek een nieuwe behuizing in de artikeldatabase en de catalogi
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	De artikelserver doorzoeken op catalogus, productgroep en technische gegevens, artikelen toevoegen en de database controleren op updates
+Search…	Zoeken…
 Second channel	Tweede kanaal
 Seconds from a change to its automatic save (10 to 600)	Seconden van een wijziging tot de automatische opslag ervan (10 tot 600)
 Section properties	Sectie-eigenschappen
@@ -2093,6 +2126,8 @@ Tablet mode	Tabletmodus
 Tag	Aanduiding
 Tag field	Aanduidingsveld
 Tag placed by hand	Aanduiding handmatig geplaatst
+Take off all plastic covers	Alle kunststof afdekkingen afnemen
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	De kunststof afdekkingen van alle velden van de veldrasters van elke kast eraf halen: de frames, de rails en de bedrading erachter zijn te zien; opnieuw om ze allemaal terug te plaatsen
 Take out a subproject	Deelproject afsplitsen
 Take out of the building	Uit het gebouw halen
 Take out {} pages…	{} pagina's afsplitsen…
@@ -2168,6 +2203,9 @@ The page name gets the section number	De paginanaam krijgt het sectienummer
 The page type, plot frame, title block, structure, description and the whole content are saved.	Het paginatype, het plotkader, het titelblok, de structuur, de beschrijving en de volledige inhoud worden opgeslagen.
 The pages it generated stay	De gegenereerde pagina's blijven behouden
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	De artikeldatabase wordt door alle projecten gedeeld. Artikelen worden naar een project gekopieerd wanneer ze aan een apparaat worden toegewezen.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	De kunststof afdekking van het veld; zonder ziet men het frame, de rails en de bedrading erachter
+The plastic covers of all panels of the field grid of this enclosure	De kunststof afdekkingen van alle velden van het veldraster van deze behuizing
+The plastic covers of all panels of the field grids of every enclosure	De kunststof afdekkingen van alle velden van de veldrasters van elke behuizing
 The point's coordinates in the coordinate reference system	De coördinaten van het punt in het coördinatenreferentiesysteem
 The post; its accessories are the table beams, rails and clamps	De paal; de toebehoren zijn de tafelliggers, rails en klemmen
 The project changed since the search.	Het project is gewijzigd sinds de zoekopdracht.
@@ -2235,6 +2273,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	De 3D-weergave naar het punt draaien
 Twin ferrules where two wires share a connection point	Dubbele adereindhulzen waar twee draden een aansluitpunt delen
 Two fingers	Twee vingers
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Twee vleugels, elk aan de buitenrand scharnierend; apparaten op de deur gaan mee met de vleugel onder hun midden
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier moeten twee draden in een rechte hoek samenkomen. Met Auto-connect aan worden aansluitpunten tegenover zijn armen ermee verbonden.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Typ een punt en druk op Enter: x y in mm, of @dx dy ten opzichte van het laatste punt; dit werkt als een klik met het huidige gereedschap
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2328,6 +2367,7 @@ Whole words	Hele woorden
 Width / going	Breedte / aantrede
 Width / height (mm)	Breedte / hoogte (mm)
 Width factor	Breedtefactor
+Width of the left leaf; the right one takes the rest of the front	Breedte van de linkervleugel; de rechter neemt de rest van de voorkant in
 Width of the letters to their usual width (0.8: narrow lettering)	Breedte van de letters ten opzichte van hun gewone breedte (0,8: smalle letters)
 Width × depth	Breedte × diepte
 Width × height	Breedte × hoogte
@@ -2396,6 +2436,7 @@ all, or e.g. -X*, -W1	alle, of bijv. -X*, -W1
 all, or e.g. K, Q	alle, of bijv. K, Q
 along z	langs z
 always	altijd
+any	willekeurig
 both ends	beide einden
 built-in	ingebouwd
 by hand	handmatig
@@ -2513,9 +2554,12 @@ x y	x y
 {} Vault items found for the project parts	{} Vault-items gevonden voor de projectartikelen
 {} Vault items found: review the changes in the integration window	{} Vault-items gevonden: beoordeel de wijzigingen in het integratievenster
 {} added to building {}	{} toegevoegd aan gebouw {}
+{} added to device {}	{} toegevoegd aan apparaat {}
 {} addresses changed	{} adressen gewijzigd
 {} air-termination rods	{} opvangstaven
 {} already exists on the project server.	{} bestaat al op de projectserver.
+{} attached to {}	{} aangebouwd aan {}
+{} bundles, {} branch points	{} bundels, {} aftakpunten
 {} bundles, {} branch points, {} cable ties	{} bundels, {} aftakpunten, {} kabelbinders
 {} bus cables created	{} buskabels gemaakt
 {} bus connections	{} busverbindingen
@@ -2563,18 +2607,23 @@ x y	x y
 {} example catalog parts refreshed	{} artikelen van de voorbeeldcatalogus vernieuwd
 {} favorites added	{} favorieten toegevoegd
 {} field wiring problems (see Check)	{} problemen met de veldbedrading (zie Controle)
+{} fits neither this enclosure nor a device in it	{} past niet bij deze behuizing en niet bij een apparaat erin
+{} fits on another face of this enclosure: {}	{} past op een andere zijde van deze behuizing: {}
 {} found	{} gevonden
 {} function texts copied	{} functieteksten gekopieerd
 {} generated pages in the project (changes on them are replaced)	{} gegenereerde pagina's in het project (wijzigingen daarop worden vervangen)
 {} grants on the project	{} toekenningen voor het project
 {} has no function with a symbol; assign it to a device in its properties	{} heeft geen functie met symbool; wijs het toe aan een apparaat in de eigenschappen daarvan
 {} has unsaved changes. Discard them?	{} heeft niet-opgeslagen wijzigingen. Verwerpen?
+{} imported into the parts database and added as enclosure {}	{} geïmporteerd in de artikeldatabase en toegevoegd als behuizing {}
 {} imported into the parts database and placed as {}	{} in de artikeldatabase geïmporteerd en geplaatst als {}
 {} in {}	{} in {}
 {} is in the schematic	{} staat in het schema
 {} is in the schematic: cable {} from {}	{} staat in het schema: kabel {} van {}
 {} is neither in the parts database nor on the parts server	{} staat niet in de artikeldatabase en niet op de artikelserver
+{} is not an enclosure: only enclosures can be dropped here	{} is geen behuizing: hier kunnen alleen behuizingen worden neergezet
 {} is not in the disk image	{} staat niet in de schijfkopie
+{} is not in the parts database yet: import it, then drag it here	{} staat nog niet in de artikeldatabase: importeer het en sleep het dan hierheen
 {} is not made for wall mounting: place it on a mounting rail	{} is niet bedoeld voor wandmontage: plaats het op een rail
 {} is used by: {}	{} wordt gebruikt door: {}
 {} items copied	{} elementen gekopieerd
@@ -2586,13 +2635,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} m: {} m naar het oosten, {} m naar het noorden, {}° vanaf het noorden
 {} macro boxes updated	{} macrokaders bijgewerkt
 {} markers	{} markeringen
-{} mm	{} mm
 {} mm (cut {} mm)	{} mm (op lengte {} mm)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm op de plaat + {} mm reserve; de rest is de weg van de aansluitpunten naar de plaat.
 {} mm, now {} mm	{} mm, nu {} mm
 {} mm, removed	{} mm, verwijderd
 {} modules	{} modules
 {} modules, {} kWp	{} modules, {} kWp
+{} moved	{} verplaatst
 {} new texts in the dictionary	{} nieuwe teksten in het woordenboek
 {} notes	{} opmerkingen
 {} objects pasted	{} objecten geplakt
@@ -2600,6 +2649,7 @@ x y	x y
 {} objects, {} pages	{} objecten, {} pagina's
 {} of {} approvals	{} van {} goedkeuringen
 {} of {} connections numbered	{} van {} verbindingen genummerd
+{} of {} enclosures	{} van {} behuizingen
 {} of {} entries shown: search to narrow the list	{} van {} items weergegeven: zoek om de lijst te verkleinen
 {} of {} items	{} van {} elementen
 {} of {} pages locked	{} van {} pagina's vergrendeld
@@ -2624,7 +2674,10 @@ x y	x y
 {} pieces	{} stuks
 {} pins used	{} pennen gebruikt
 {} placed as {}	{} geplaatst als {}
+{} placed in {}	{} geplaatst in {}
 {} placement problems (red) – see Check	{} plaatsingsproblemen (rood) – zie Controle
+{} plastic covers fitted	{} kunststof afdekkingen aangebracht
+{} plastic covers taken off	{} kunststof afdekkingen afgenomen
 {} problems	{} problemen
 {} project parts updated	{} projectartikelen bijgewerkt
 {} projects on the server	{} projecten op de server

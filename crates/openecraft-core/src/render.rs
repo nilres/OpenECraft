@@ -1612,26 +1612,38 @@ pub fn draw_enclosure(
             d.rect(tf(0.0, 0.0), tf(pw, ph), 0.25, Ink::Frame, false);
         }
         Face::Door => {
-            // Door frame, hinges on the hinge side, handle on the other.
+            // The frame of each leaf, its hinges at its hinge edge; the handle on the
+            // other edge of the widest leaf (the one that opens first), the joint
+            // between two leaves a strong line.
             let f = panel::DOOR_FRAME;
-            let (a, b) = (tf(f, f), tf(e.width - f, e.height - f));
-            for (s, t) in [(a, p(b.x, a.y)), (p(b.x, a.y), b), (b, p(a.x, b.y)), (p(a.x, b.y), a)] {
-                d.line(s, t, 0.15, Ink::Frame, true);
+            let all = panel::doors::leaves(e);
+            let widest = all.iter().enumerate().fold(0, |b, (i, l)| if l.w >= all[b].w { i } else { b });
+            for (i, leaf) in all.iter().enumerate() {
+                let (x0, x1) = (leaf.x + if i == 0 { f } else { f / 2.0 }, leaf.x + leaf.w - if i + 1 == all.len() { f } else { f / 2.0 });
+                let (a, b) = (tf(x0, f), tf(x1, e.height - f));
+                for (s, t) in [(a, p(b.x, a.y)), (p(b.x, a.y), b), (b, p(a.x, b.y)), (p(a.x, b.y), a)] {
+                    d.line(s, t, 0.15, Ink::Frame, true);
+                }
+                // x from the hinge edge of the leaf.
+                let right = leaf.hinge == panel::DoorHinge::Right;
+                let x = |from_hinge: f32| if right { leaf.x + leaf.w - from_hinge } else { leaf.x + from_hinge };
+                // A rectangle between two distances from the hinge edge, its corners in order.
+                let rect = |a: f32, b: f32, y0: f32, y1: f32| (tf(x(a).min(x(b)), y0), tf(x(a).max(x(b)), y1));
+                for y in [0.15, 0.85] {
+                    let hy = e.height * y;
+                    let (s, t) = rect(-3.0, 3.0, hy - 25.0, hy + 25.0);
+                    d.rect(s, t, 0.25, Ink::Frame, false);
+                }
+                if i == widest {
+                    let hy = e.height / 2.0;
+                    let (h0, h1) = rect(leaf.w - 32.0, leaf.w - 14.0, hy - 50.0, hy + 50.0);
+                    d.rect(h0, h1, 0.0, Ink::Fill, true);
+                    d.rect(h0, h1, 0.25, Ink::Line, false);
+                }
+                if i > 0 {
+                    d.line(tf(leaf.x, 0.0), tf(leaf.x, e.height), 0.35, Ink::Frame, false);
+                }
             }
-            // x from the hinge edge.
-            let right = e.door_hinge == panel::DoorHinge::Right;
-            let x = |from_hinge: f32| if right { e.width - from_hinge } else { from_hinge };
-            // A rectangle between two distances from the hinge edge, its corners in order.
-            let rect = |a: f32, b: f32, y0: f32, y1: f32| (tf(x(a).min(x(b)), y0), tf(x(a).max(x(b)), y1));
-            for y in [0.15, 0.85] {
-                let hy = e.height * y;
-                let (s, t) = rect(-3.0, 3.0, hy - 25.0, hy + 25.0);
-                d.rect(s, t, 0.25, Ink::Frame, false);
-            }
-            let hy = e.height / 2.0;
-            let (h0, h1) = rect(e.width - 32.0, e.width - 14.0, hy - 50.0, hy + 50.0);
-            d.rect(h0, h1, 0.0, Ink::Fill, true);
-            d.rect(h0, h1, 0.25, Ink::Line, false);
         }
         wall => {
             // The sheet, its mounting area inside the flanges (dashed) and, for walls

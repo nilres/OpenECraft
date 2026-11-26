@@ -23,6 +23,7 @@ A device tag must not be empty	Обозначение устройства не 
 A pipe run turns at right angles	Трасса трубопровода поворачивает под прямым углом
 A plot boundary has at least three corners	Граница участка имеет не менее трёх углов
 A port cannot be connected to itself	Порт нельзя соединить с самим собой
+A room goes before or after another room	Помещение перемещается только до или после другого помещения
 A room needs at least four walls	Помещению нужны минимум четыре стены
 A section number consists of letters and digits and does not start with 0	Номер раздела состоит из букв и цифр и не начинается с 0
 A section number must not be empty or contain a dot	Номер раздела не может быть пустым или содержать точку
@@ -431,6 +432,8 @@ Does not match	Не соответствует
 Door (front view)	Дверь (вид спереди)
 Door and walls	Дверь и стенки
 Door handle and document holder	Ручка двери и карман для документации
+Door leaf {}	Створка двери {}
+Door leaf {} (front view)	Створка двери {} (вид спереди)
 Double socket outlet with PE	Двойная розетка с заземляющим контактом
 Downstream	Нижестоящий
 Drag chain	Кабельная цепь
@@ -793,6 +796,8 @@ Latitude is within ±90° and longitude within ±180°	Широта лежит �
 Lead time (days)	Срок поставки (дни)
 Leakage current	Ток утечки
 Leakage line	Дренажная линия
+Left door leaf	Левая створка двери
+Left door leaf (front view)	Левая створка двери (вид спереди)
 Left side panel	Левая боковая стенка
 Legend plate text	Текст маркировочной таблички
 Length (m)	Длина (м)
@@ -1033,6 +1038,7 @@ Oil resistant	Маслостойкий
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Одна страница схемы с потенциалами +24V / 0V, кнопками, переключателем, лампами и предохранителем; изделия и спецификация.
 One schematic page, the potentials of IEC 60204-1	Один лист схемы, потенциалы по IEC 60204-1
 One-way flow control valve	Дроссель с обратным клапаном
+Only another enclosure can be bayed there	Туда можно пристроить только другой шкаф
 Only revisions that are not released can be submitted	Отправить можно только невыпущенные ревизии
 Only symbols of the symbol library can be scaled	Масштабировать можно только символы из библиотеки символов
 Only {}	Только {}
@@ -1387,6 +1393,8 @@ Revision table: author of the last revision (2: the one before …)	Таблиц
 Revision table: date of the last revision (2: the one before …)	Таблица изменений: дата последнего изменения (2: предыдущего …)
 Revision table: description of the last revision (2: the one before …)	Таблица изменений: описание последнего изменения (2: предыдущего …)
 Revision table: index of the last revision (2: the one before …)	Таблица изменений: индекс последнего изменения (2: предыдущего …)
+Right door leaf	Правая створка двери
+Right door leaf (front view)	Правая створка двери (вид спереди)
 Right side panel	Правая боковая стенка
 Ring earth electrode	Кольцевой заземлитель
 Ring terminal	Кольцевой наконечник
@@ -1664,6 +1672,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	Формула заканчивается слишком рано
 The function definition needs a key and a name	Для определения функции требуются ключ и имя
 The index of the project names no file layout: it was not written by OpenECraft	Индекс проекта не указывает структуру файлов: он записан не OpenECraft
+The item is no frame in an opening of a side wall	Элемент не является рамкой в проёме боковой стенки
 The last page cannot be deleted	Последний лист нельзя удалить
 The macro box has no items left	В рамке макроса не осталось элементов
 The next free id is already in use	Следующий свободный идентификатор уже занят
@@ -1830,7 +1839,6 @@ Voltage range	Диапазон напряжения
 Voltage type	Род тока
 Voltmeter	Вольтметр
 Voltmeter, differential	Вольтметр дифференциальный
-Wall	Стена
 Wall {}	Стена {}
 Wall {} is not at a right angle	Стена {} не под прямым углом
 Wall {} is shorter than {} mm	Стена {} короче {} мм
@@ -2155,6 +2163,7 @@ yellow	жёлтый
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: клеммы {} находятся на высоте {} мм над полом, требуется не менее {} мм
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система сборных шин с {} шинами соединяет {} проводника ({}): короткое замыкание
 {}: the busbar {} of earth electrode {} does not exist	{}: шины {} заземлителя {} не существует
+{}: the cutout for {} reaches over the joint between the door leaves and is cut by hand	{}: вырез для {} выходит за стык между створками двери и выполняется вручную
 {}: the device {} of PV array {} does not exist	{}: устройство {} фотоэлектрического поля {} не существует
 {}: the earthing busbar {} of PV array {} does not exist	{}: шины заземления {} фотоэлектрического поля {} не существует
 {}: the freestanding PV array {} stands on {}	{}: наземное фотоэлектрическое поле {} стоит на {}
@@ -2205,6 +2214,7 @@ yellow	жёлтый
 {}: {} overhangs the end of its mounting rail	{}: {} выступает за конец своей монтажной рейки
 {}: {} pins used, the plug parts have {}	{}: занято контактов – {}, у изделий штекера – {}
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} нагревается на своем месте примерно до {} °C, допустимо {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} выходит за стык между створками двери
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} достает до {} из {} шин своей системы сборных шин
 {}: {} solenoid coils linked, the valve has {}	{}: связано катушек – {}, у клапана – {}
 {}: {} stands in an inner wall	{}: {} стоит во внутренней стене

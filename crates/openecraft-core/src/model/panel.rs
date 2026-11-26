@@ -797,6 +797,10 @@ pub struct Enclosure {
     /// The edge the door is hinged at, seen from the front.
     #[serde(skip_serializing_if = "DoorHinge::is_left")]
     pub door_hinge: DoorHinge,
+    /// The leaves of a door of several leaves (a double door), from the left seen from
+    /// the front; none: one leaf over the whole front, hinged at `door_hinge`.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub door_leaves: Vec<DoorLeaf>,
     pub items: Vec<PanelItem>,
     /// Installation and temperatures for the climate calculation.
     #[serde(skip_serializing_if = "super::climate::Climate::is_default")]
@@ -955,6 +959,10 @@ pub struct PanelItem {
     /// Doors and windows: how their leaf opens.
     #[serde(skip_serializing_if = "Swing::is_default")]
     pub swing: Swing,
+    /// A panel of a cabinet's field grid shown without its plastic cover (taken off, as
+    /// while it is wired).
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub uncovered: bool,
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -1047,6 +1055,34 @@ impl Opening {
     pub fn is_cutout(&self) -> bool {
         *self == Opening::Cutout
     }
+}
+
+/// A leaf of a door of several leaves: its left edge and width across the front of the
+/// enclosure, seen from the front (mm), and the edge it is hinged at. Devices on the
+/// door are on the leaf under their middle and turn with it.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct DoorLeaf {
+    pub x: f32,
+    pub w: f32,
+    #[serde(skip_serializing_if = "DoorHinge::is_left")]
+    pub hinge: DoorHinge,
+}
+
+impl DoorLeaf {
+    /// Where the leaf is hinged across the front.
+    pub fn hinge_x(&self) -> f32 {
+        if self.hinge.is_left() { self.x } else { self.x + self.w }
+    }
+}
+
+/// A sheet machined on its own: a face of an enclosure, or leaf `leaf` of a door of
+/// several leaves (the door is one face for its devices; its leaves are drilled apart,
+/// each from its own bottom left corner).
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+pub struct Sheet {
+    pub face: Face,
+    pub leaf: Option<usize>,
 }
 
 /// The edge a cabinet's door is hinged at, seen from the front: the 3D view opens the

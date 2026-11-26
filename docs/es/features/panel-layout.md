@@ -19,6 +19,48 @@ los muestran.
 
 - Envolventes (a partir de un artículo como `GEN.ENC-600X800` o de tamaño personalizado)
   con placa de montaje.
+- *Nueva envolvente* (el botón del navegador *Envolventes y salas* o su menú
+  contextual, sobre una sala *Nueva envolvente en esta sala…*) busca las envolventes de
+  la base de datos de artículos, del proyecto y de los catálogos incluidos con
+  OpenECraft: por texto, sistema de envolvente, fabricante, *Montaje* (pared o suelo),
+  ancho, alto y fondo de … a, y las columnas y filas de los armarios de contadores y de
+  distribución (*Columnas / filas*, datos de artículo `Fields: 3`, `Rows: 7`), ordenadas
+  por número de artículo o tamaño. Un doble clic en una envolvente la crea; la búsqueda
+  se mantiene para la siguiente. Una envolvente arrastrada desde la gestión de artículos
+  (o el portal de datos) al navegador se crea al instante, en la sala sobre la que se
+  soltó (también sobre un armario que esté en una).
+- **Accesorios arrastrados a la envolvente:** un accesorio arrastrado desde la gestión
+  de artículos sobre la vista 2D o 3D de una envolvente muestra los lugares donde
+  encaja, resaltados: un panel de distribución de un armario de contadores (como el
+  Striebel & John FV17, datos de artículo `Fields: 1`, `Rows: 7`) las columnas libres de
+  la cuadrícula del armario, otro accesorio del artículo de la envolvente las caras en
+  las que puede montarse, un accesorio del artículo de un dispositivo (un contacto
+  auxiliar, un contacto de señalización) los dispositivos colocados a los que se ajusta.
+  Soltado sobre un lugar va allí; sobre un dispositivo pasa a ser accesorio del
+  dispositivo. El comando `fitting_places` enumera los lugares para la línea de
+  comandos y los agentes de IA. Un campo de distribución trae sus carriles de montaje,
+  uno por fila (datos de artículo `Device rows`, si no uno por fila de sus
+  `Module spaces`, separados `Row spacing`; cualquier otro campo con `Device rows: n`): los dispositivos se colocan en ellos y
+  se mueven con el campo.
+- Un campo de la cuadrícula se dibuja tal como está construido: un bastidor de dos
+  perfiles laterales, que lleva los carriles de un campo de distribución, sobre escuadras
+  atornilladas a los soportes del armario que hay detrás, y delante su cubierta de
+  plástico con una ranura para cada fila de dispositivos. *Cubierta de plástico* en sus
+  propiedades (comando `set_panel_item` con `cover`) quita la cubierta, para ver el
+  bastidor, los carriles y el cableado de detrás. *Quitar todas las cubiertas de
+  plástico* y *Colocar todas las cubiertas de plástico* en el menú contextual del montaje
+  lo hacen para cada campo de la envolvente, en el menú contextual del navegador para
+  cada envolvente, igual que *Espacio de montaje › Mostrar › Cubiertas de plástico
+  quitadas* (comando `set_covers`).
+- Un marco que une dos armarios (como el marco aislante CZ3 de Striebel & John, datos de
+  artículo `Opening: 202 x 85`) solo va en las aberturas de las paredes laterales
+  previstas para él (datos de artículo del armario `Side openings: 202 x 85 at 86 / 20; …`:
+  alto × fondo a la distancia desde abajo / desde atrás): arrastrado a la envolvente, se
+  resaltan las aberturas libres; colocado en una pared lateral, va a la abertura libre más
+  cercana. Se dibuja con su brida por fuera de la pared y su collarín a través de la
+  abertura, un conector de embarrado (CZC4, CZC14) con sus barras atravesándolo.
+  *Alinear una envolvente aquí* en el menú contextual del marco alinea una envolvente en
+  este lado: una nueva como esta, o una de las otras (comando `attach_enclosure`).
 - Carriles de montaje y canaletas dibujados por longitud; seleccione uno y arrastre
   cualquiera de sus extremos para cambiar su tamaño, o muévalo (los dispositivos viajan
   con su carril). Los dispositivos se colocan desde una lista de "dispositivos por
@@ -154,6 +196,18 @@ la puerta muestra las bisagras y la maneta en sus lados, la vista 3D abre la pue
 alrededor de ese borde, y los hilos de la puerta discurren a lo largo de la puerta hasta
 ese borde, por el bucle de la bisagra y hasta el borde de la placa en ese lado.
 
+Una puerta doble tiene dos hojas, cada una con bisagras en su borde exterior (*Puerta* ›
+*Puerta doble* y el ancho de la *Hoja izquierda* en las propiedades de la envolvente,
+`door_leaves` de `add_enclosure` / `set_enclosure`, dato de artículo
+`Door leaves: 275 + 525` con los anchos de las hojas desde la izquierda, como los tienen
+los armarios ComfortLine A de Striebel & John de tres a cinco anchos de campo y el
+armario univers `HAG.FR25S2` de Hager). La puerta
+sigue siendo una cara para sus dispositivos: cada uno está en la hoja bajo su centro, se
+abre con ella en la vista 3D y sus hilos pasan por su bisagra; la vista de la puerta
+dibuja cada hoja con sus bisagras y la junta entre ellas, y se avisa de un dispositivo
+que sobrepasa la junta. Un carril o un canal que sobrepasa la junta se abre en la vista
+3D cortado en la junta, cada trozo con su hoja, como habría que montarlo.
+
 ## Zonas restringidas
 
 Un artículo de envolvente puede mantener libres zonas de sus caras (*Zonas restringidas*
@@ -206,6 +260,17 @@ envolvente (*Nueva página de patrón de taladrado*,
 `add_page kind=drilling enclosure=+CAB1`) dibuja sus caras con sus taladros y recortes a
 una misma escala, acotados desde esa esquina, y al lado los tipos de taladros y recortes
 con su número.
+
+Una puerta doble (ver [Puerta del armario](#puerta-del-armario)) se taladra hoja por
+hoja: el informe, la página y los *Datos CN* toman cada hoja como una chapa propia,
+acotada desde su esquina inferior izquierda, y la entrega a las máquinas crea un
+programa para cada hoja (`CAB1_door_left.nc`; `face=door_left` o `door_right` de
+`machining_plan` y `cnc_program`). Un recorte recto que sobrepasa la junta se hace en
+ambas hojas, en cada una hasta donde llega sobre ella; uno redondo o girado queda en la
+hoja bajo su centro y se hace a mano. La configuración para el fabricante de la
+envolvente (`export_enclosure_configuration`) lista las hojas (`door_leaves`) y, para
+todo lo que está en la puerta, su hoja y su posición en ella (`leaf`, `leaf_x`); la
+importación las vuelve a leer.
 
 ## Cableado virtual y grados de llenado de las canaletas
 
@@ -386,6 +451,12 @@ cubiertas); un segundo clic vuelve a mostrar toda la planta. El menú contextual
 emplazamiento añade un edificio, dibuja el límite de la parcela o coloca el punto de
 referencia; el de un edificio, un nivel encima o un sótano; el de un nivel, una sala en
 él.
+
+Las filas del navegador se arrastran para cambiar su orden: una sala entre otras salas
+(al nivel de la sala junto a la que se suelta), una envolvente entre otras envolventes
+– una alineada dentro de su alineación, que se alinea de nuevo en el nuevo orden, o con
+toda su alineación antes o después de otra alineación, en la sala en la que esta se
+encuentra – y un edificio entre los edificios (comando `move_enclosure`).
 
 ## Límite de la parcela y punto de referencia
 

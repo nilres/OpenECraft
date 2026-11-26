@@ -1,4 +1,4 @@
-use cadmpeg_ir::products::{AssemblyGraph, Occurrence, OccurrenceParent, PrototypeReference};
+use cadmpeg_ir::products::{AssemblyGraph, Occurrence, OccurrenceParent, ProductDefinition, PrototypeReference};
 use cadmpeg_ir::topology::{Body, BodyKind};
 use cadmpeg_ir::transform::Transform;
 use cadmpeg_ir::geometry::CurveGeometry;
@@ -30,12 +30,87 @@ fn matrix(t: &Transform) -> Matrix4 {
     )
 }
 
+/// The number of a STEP entity reference (`#123`, also at the end of an id).
+fn entity(reference: &str) -> Option<u64> {
+    reference.rsplit_once('#').and_then(|(_, n)| n.parse().ok())
+}
+
+/// The solids and surface models of each product (by the entity number of its
+/// `PRODUCT`) as the file links them: product definition, its shape, the shape's
+/// representation and the representations related to that one without a placement
+/// (`SHAPE_REPRESENTATION_RELATIONSHIP`, as CADENAS and CATIA write them).
+fn representation_links(text: &str) -> HashMap<u64, Vec<u64>> {
+    // Each simple entity: its type and the entities it refers to, in order.
+    let mut entities: HashMap<u64, (String, Vec<u64>)> = HashMap::new();
+    let (mut start, mut quoted) = (0, false);
+    for (i, c) in text.char_indices() {
+        match c {
+            '\'' => quoted = !quoted,
+            ';' if !quoted => {
+                let statement = text[start..i].trim();
+                start = i + 1;
+                let Some((id, body)) = statement.strip_prefix('#').and_then(|s| s.split_once('=')) else { continue };
+                let (Ok(id), body) = (id.trim().parse::<u64>(), body.trim()) else { continue };
+                let kind: String = body.chars().take_while(|c| c.is_ascii_alphanumeric() || *c == '_').collect();
+                let refs = body.split('#').skip(1).filter_map(|r| r.split(|c: char| !c.is_ascii_digit()).next()?.parse().ok()).collect();
+                entities.insert(id, (kind, refs));
+            }
+            _ => {}
+        }
+    }
+    let of_kind = |kind: &'static str| entities.iter().filter(move |(_, (k, _))| k == kind).map(|(id, (_, refs))| (*id, refs));
+    let first_ref = |kind: &'static str| -> HashMap<u64, u64> { of_kind(kind).filter_map(|(id, refs)| Some((*refs.first()?, id))).collect() };
+    // Product → its formation → definition → shape → representations.
+    let formations: HashMap<u64, u64> = entities.iter().filter(|(_, (k, _))| k.starts_with("PRODUCT_DEFINITION_FORMATION")).filter_map(|(id, (_, refs))| Some((*refs.last()?, *id))).collect();
+    let (definitions, shapes) = (first_ref("PRODUCT_DEFINITION"), first_ref("PRODUCT_DEFINITION_SHAPE"));
+    let mut representations: HashMap<u64, Vec<u64>> = HashMap::new();
+    for (_, refs) in of_kind("SHAPE_DEFINITION_REPRESENTATION") {
+        if let [shape, rep, ..] = refs[..] {
+            representations.entry(shape).or_default().push(rep);
+        }
+    }
+    let mut related: HashMap<u64, Vec<u64>> = HashMap::new();
+    for (_, refs) in of_kind("SHAPE_REPRESENTATION_RELATIONSHIP") {
+        if let [a, b, ..] = refs[..] {
+            related.entry(a).or_default().push(b);
+            related.entry(b).or_default().push(a);
+        }
+    }
+    let mut out = HashMap::new();
+    for (&product, &formation) in &formations {
+        let Some(shape) = definitions.get(&formation).and_then(|d| shapes.get(d)) else { continue };
+        let mut reps: Vec<u64> = representations.get(shape).cloned().unwrap_or_default();
+        let mut i = 0;
+        while i < reps.len() {
+            for &r in related.get(&reps[i]).into_iter().flatten() {
+                if !reps.contains(&r) {
+                    reps.push(r);
+                }
+            }
+            i += 1;
+        }
+        // The items of a representation; the last reference is its context.
+        let items: Vec<u64> = reps.iter().filter_map(|r| entities.get(r)).flat_map(|(_, refs)| refs.split_last().map_or(&[][..], |(_, items)| items)).copied().collect();
+        out.insert(product, items);
+    }
+    out
+}
+
 /// All shells of the solids and surface models with their placement: once per use
 /// in the assembly structure; bodies of no product where they are. Uses of a product
-/// whose name `skip` accepts are left out with everything below them.
-fn placed_shells(ir: &CadIr, skip: &dyn Fn(&str) -> bool) -> Result<Vec<(ImportedSheet, Matrix4)>, String> {
+/// whose name `skip` accepts are left out with everything below them. `links` gives a
+/// product the solids the decoder left without one ([`representation_links`]).
+fn placed_shells(ir: &CadIr, links: &HashMap<u64, Vec<u64>>, skip: &dyn Fn(&str) -> bool) -> Result<Vec<(ImportedSheet, Matrix4)>, String> {
     let mut uses: HashMap<_, Vec<Matrix4>> = HashMap::new();
     let mut left_out = HashSet::new();
+    let owned: HashSet<_> = ir.model.product_definitions.iter().flat_map(|p| &p.bodies).collect();
+    let bodies_of = |p: &ProductDefinition| -> Vec<_> {
+        if !p.bodies.is_empty() {
+            return p.bodies.clone();
+        }
+        let items = p.native_ref.as_deref().and_then(entity).and_then(|n| links.get(&n)).map_or(&[][..], Vec::as_slice);
+        ir.model.bodies.iter().filter(|b| !owned.contains(&b.id) && entity(b.id.as_str()).is_some_and(|n| items.contains(&n))).map(|b| b.id.clone()).collect()
+    };
     if let Ok(graph) = AssemblyGraph::new(&ir.model.occurrences) {
         let definition = |o: &Occurrence| match &o.prototype {
             PrototypeReference::Local { definition } => ir.model.product_definitions.iter().find(|p| &p.id == definition),
@@ -60,12 +135,13 @@ fn placed_shells(ir: &CadIr, skip: &dyn Fn(&str) -> bool) -> Result<Vec<(Importe
         };
         for occurrence in &ir.model.occurrences {
             let Some(product) = definition(occurrence) else { continue };
+            let bodies = bodies_of(product);
             if skipped(occurrence) {
-                left_out.extend(&product.bodies);
+                left_out.extend(bodies);
                 continue;
             }
             let placement = graph.resolved_transform(&occurrence.id).map_or(Matrix4::identity(), |t| matrix(&t));
-            for body in &product.bodies {
+            for body in bodies {
                 uses.entry(body).or_default().push(placement);
             }
         }
@@ -221,7 +297,8 @@ pub fn parse_step_without(bytes: &[u8], skip: &dyn Fn(&str) -> bool) -> Result<M
     }
     fill_arc_ranges(&mut ir);
     // cadmpeg converts lengths to millimetres while decoding.
-    mesh_shells(&placed_shells(&ir, skip)?, 1.0)
+    let links = representation_links(&String::from_utf8_lossy(bytes));
+    mesh_shells(&placed_shells(&ir, &links, skip)?, 1.0)
 }
 
 #[cfg(test)]

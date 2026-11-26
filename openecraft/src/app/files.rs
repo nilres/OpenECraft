@@ -11,7 +11,9 @@ pub(super) enum Done {
     Export { name: String, title: String, extension: String, out: Result<Vec<u8>, String> },
     /// A model file read for the part it was chosen for.
     Model { name: String, model: Result<pe::Model, String> },
-    Parts(Result<Vec<parts::Part>, String>),
+    /// Parts read from a parts file; `merge`: EPLAN data (EDZ, parts XML, enclosure
+    /// package), merged into the parts already known.
+    Parts { list: Result<Vec<parts::Part>, String>, merge: bool },
     /// The sheets of a floor plan for a level (its id).
     FloorPlan { level: u64, name: String, sheets: Result<Vec<openecraft_scan::Sheet>, String> },
 }
@@ -265,7 +267,7 @@ impl App {
                     };
                     self.notify(ctx, msg);
                 }
-                Ok(Done::Parts(list)) => self.add_parts(ctx, list),
+                Ok(Done::Parts { list, merge }) => self.add_parts(ctx, list, merge),
                 Ok(Done::FloorPlan { level, name, sheets: Ok(sheets) }) => {
                     let msg = self.buildings_ui.floor.read(&mut self.session.prj, level, name, sheets);
                     self.notify(ctx, msg);
@@ -503,14 +505,24 @@ impl App {
             } else {
                 openecraft_edz::folder::read_with_library(std::path::Path::new(&path), &bytes, &mappings)
             };
-            Done::Parts(package.map(|package| package.parts))
+            let merge = openecraft_edz::is_edz(&bytes) || openecraft_edz::package::is_zip(&bytes) || parts::is_eplan_xml(&openecraft_edz::decode_text(&bytes));
+            Done::Parts { list: package.map(|package| package.parts), merge }
         }));
     }
 
-    /// Adds the parts read from a parts file to the database.
-    fn add_parts(&mut self, ctx: &egui::Context, list: Result<Vec<parts::Part>, String>) {
+    /// Adds the parts read from a parts file to the database; EPLAN data (`merge`)
+    /// merged into the parts of the database and of the shipped catalogs they are
+    /// ([`parts::merge`]).
+    fn add_parts(&mut self, ctx: &egui::Context, list: Result<Vec<parts::Part>, String>, merge: bool) {
         match list {
             Ok(list) => {
+                let merged = if merge {
+                    let shipped: Vec<parts::Part> = parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).collect();
+                    parts::merge::merge_imported(list, self.parts_db.parts.iter().chain(&shipped))
+                } else {
+                    parts::merge::Merged { parts: list, ..Default::default() }
+                };
+                let list = merged.parts;
                 let n = list.len();
                 // One part by its number and description, more by their count and numbers.
                 let (text, detail) = match &list[..] {
@@ -523,6 +535,7 @@ impl App {
                         (tr_fmt!("Imported {} parts into the database", n), numbers.join(", "))
                     }
                 };
+                let detail = if merged.merged == 0 { detail } else { format!("{detail}\n{}", tr_fmt!("Merged with the parts already known: {}", merged.merged)) };
                 for p in list {
                     // A part the project has already takes what the import brings.
                     parts::refresh_in_project(&mut self.session.prj, &p);

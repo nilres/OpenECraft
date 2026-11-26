@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Egy szint a legfelső fölé
 A local file opens locally, a server project is opened on the project server again	A helyi fájl helyben nyílik meg, a kiszolgálóprojekt újra a projektkiszolgálón nyílik meg
 A local file or a project on the project server	Helyi fájl vagy projekt a projektkiszolgálón
+A new enclosure of the same part, bayed at this frame	Ugyanannak a cikknek egy új szekrénye, ehhez a kerethez sorolva
+A new enclosure standing in this room	Új szekrény ebben a helyiségben
 A new project	Új projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Az új verzió a háttérben töltődik le, és az OpenECraft bezárásakor települ.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Az új verzió a háttérben töltődik le, és lecseréli ezt a telepítést; a következő indítástól használatos.
@@ -179,10 +181,13 @@ Assign to existing device	Hozzárendelés meglévő készülékhez
 Assign to harness	Hozzárendelés kábelköteghez
 Assign wires: select them in the schematic › Assign to cable.	Vezetékek hozzárendelése: jelölje ki őket a kapcsolási rajzon › Hozzárendelés kábelhez.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	A hálózatra kapcsolt aszinkronmotorok növelik a legnagyobb zárlati áramot (IEC 60909-0)
+At least, mm (0: any)	Legalább, mm (0: bármennyi)
+At most, mm (0: any)	Legfeljebb, mm (0: bármennyi)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	A legmagasabb környezeti hőmérsékleten; a fűtés tartja a harmatpontot. 0 = nincs figyelembe véve
 At the origin	Az origóban
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	A betáplálási pontban: Ik3 max {} kA, Ik1 min {} kA
 At the top level	A legfelső szinten
+Attach an enclosure here	Szekrény sorolása ide
 Author	Szerző
 Auto-connect	Automatikus összekötés
 Auto-connect selection	Kijelölés automatikus összekötése
@@ -620,6 +625,7 @@ Door cutouts (CSV)	Ajtókivágások (CSV)
 Door hinge	Ajtózsanérok
 Door: {} devices, {} cutouts	Ajtó: {} készülék, {} kivágás
 Dot	Pont
+Double door	Kétszárnyú ajtó
 Double-click	Dupla kattintás
 Down conductors	Levezetők
 Download into database	Letöltés az adatbázisba
@@ -665,9 +671,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Furatlista (CSV)
 Drilling list of this face (CSV)	A felület furatlistája (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	A megjelenített felület furatképe DXF, DWG vagy CSV formátumban
+Drop an enclosure here to add it; onto a room to put it in there	Ejtse ide a szekrényt a hozzáadáshoz; egy helyiségre, hogy oda kerüljön
 Drop between the pages	Ejtse az oldalak közé
 Drop between the rows or onto a section	Ejtse a sorok közé vagy egy szakaszra
+Drop between two buildings to move it there	Ejtse két épület közé az áthelyezéshez
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Ejtse két sor közé a szekrény áthelyezéséhez; a sorolt szekrény a szekrénysorán belül vagy azzal együtt mozog
+Drop between two rows to move the room there, onto a level to put it on that level	Ejtse két sor közé a helyiség áthelyezéséhez, egy szintre, hogy arra a szintre kerüljön
 Drop onto a level to put the room on it	Ejtse egy szintre, hogy a helyiség arra kerüljön
+Drop {} here	{} ejtése ide
+Drop {} onto one of the highlighted places	Ejtse a(z) {} elemet az egyik kiemelt helyre
+Drop {} onto {} to add it to the device	Ejtse a(z) {} elemet a(z) {} eszközre a hozzáadáshoz
 Duct fill	Csatornatöltöttség
 Duct fill limit	Csatornatöltöttség határértéke
 Duplicate	Kettőzés
@@ -702,6 +715,8 @@ Embed as document page	Beágyazás dokumentumlapként
 Embeds a file (PDF, Word, Excel, image …) as a page	Fájlt (PDF, Word, Excel, kép …) ágyaz be oldalként
 Embeds the file in the project (replaces the current one)	Beágyazza a fájlt a projektbe (lecseréli a jelenlegit)
 Enclosure system	Szekrényrendszer
+Enclosure {} added	{} szekrény hozzáadva
+Enclosure {} added in room {}	{} szekrény hozzáadva a(z) {} helyiségben
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Szekrények (+CAB1), készülékek (-M1) és géphelyek (+M1) a csomópontokon
 Enclosures and rooms	Szekrények és helyiségek
 Enclosures, devices to place and placed devices	Szekrények, elhelyezendő és elhelyezett készülékek
@@ -757,7 +772,10 @@ Field	Mező
 Field (name, description, company, creator, date, revision) or project property	Mező (name, description, company, creator, date, revision) vagy projekttulajdonság
 Field cables	Terepi kábelek
 Field length	Mezőhossz
+Field widths and rows of meter and distribution cabinets	Mérő- és elosztószekrények mezőszélességei és sorai
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Mező; tech:<name> az alkatrészek műszaki adataihoz, prop:<name> a projekttulajdonságokhoz
+Fields	Mezők
+Fields / rows	Mezők / sorok
 File format version {}. Files of older versions are converted when they are opened.	Fájlformátum-verzió: {}. A régebbi verziók fájljai megnyitáskor átalakításra kerülnek.
 File name	Fájlnév
 File of another system (connector)	Más rendszer fájlja (összekötő)
@@ -779,10 +797,13 @@ Finish a wire, polyline, polygon or wall	Vezeték, vonallánc, sokszög vagy fal
 Finish or cancel the drawing, then back to selecting	A rajzolás befejezése vagy megszakítása, majd vissza a kijelöléshez
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	A projektszerverről megnyitott projekt befejezett módosításai maguktól mentődnek oda; a folyamatban lévő bevitel a befejezése után mentődik. A zárolások megmaradnak. A Mentés (Ctrl+S) továbbra is azonnal ment.
 First row	Első sor
+Fit all plastic covers	Az összes műanyag burkolat felhelyezése
 Fit page	Oldal méretre igazítása
 Fits {}	Illeszkedik ehhez: {}
+Fitted	Felszerelve
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	A téglalapba illesztve, a méretarány megtartásával (PNG, JPEG)
 Float	Leválasztás
+Floor	Fenéklemez
 Floor above ground	Padló a terep felett
 Floor plan with {} walls	Alaprajz {} fallal
 Floor-standing part	Padlón álló cikk
@@ -1048,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Az első oszlop ismétlődő értékeinek üresen hagyása
 Left button	Bal gomb
 Left edges	Bal élek
+Left leaf	Bal szárny
 Legend plates (door devices)	Feliratos táblák (ajtókészülékek)
 Length from the node to the device	Hossz a csomóponttól a készülékig
 Length inside an enclosure	Hossz a szekrényen belül
@@ -1145,6 +1167,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	Mért
 Measures against common cause failure (at least 65 points)	Közös okú meghibásodás elleni intézkedések (legalább 65 pont)
 Merge a symbol library file	Szimbólumkönyvtár-fájl egyesítése
+Merged with the parts already known: {}	Egyesítve a már ismert cikkekkel: {}
 Message	Üzenet
 Messages	Üzenetek
 Messages ({})	Üzenetek ({})
@@ -1223,6 +1246,9 @@ New cover sheet	Új fedlap
 New document page…	Új dokumentumoldal…
 New empty	Új, üres
 New enclosure	Új szekrény
+New enclosure in this room…	Új szekrény ebben a helyiségben…
+New enclosure like this one	Új szekrény, mint ez
+New enclosure…	Új szekrény…
 New graphics page	Új grafikus oldal
 New harness	Új kábelköteg
 New items go onto this layer	Az új elemek erre a rétegre kerülnek
@@ -1284,6 +1310,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Még nincs szekrény – hozzon létre egyet az Új szekrény paranccsal, vagy helyiséget a szekrényeknek az Új helyiség paranccsal.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nincsenek terepi kábelek: helyezze el a szekrényeket és a terepi készülékeket a nyomvonalhálózat csomópontjain.
 No filter fans: an air/air heat exchanger or a cooling unit	Nincsenek szűrős ventilátorok: levegő/levegő hőcserélő vagy hűtőkészülék
+No free place is left for {} in this enclosure	Ebben a szekrényben nem maradt szabad hely a(z) {} számára
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Még nincs szabadföldi PV-mező: döntött asztalok sorai vert oszlopokon a telken.
 No gesture	Nincs kézmozdulat
 No harnesses defined.	Nincsenek definiált kábelkötegek.
@@ -1360,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Érintőképernyőn; az érintőpadok a háromujjas kézmozdulatokat a rendszerre hagyják.
 On startup	Indításkor
 On the roof, joined to the air-termination conductors; move it to its place	A tetőn, a felfogó vezetőkhöz kötve; helyezze a helyére
+One leaf	Egy szárny
 One row per label	Címkénként egy sor
 Only devices on the current page	Csak az aktuális oldalon lévő készülékek
 Only frames no page uses can be deleted	Csak az egyetlen oldal által sem használt keretek törölhetők
@@ -1558,6 +1586,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Létesítmény-elrendezés
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Létesítmény-elrendezés, nyomvonalhálózat, terepi kábeltervezés, potenciálkiegyenlítés és kábeltartozékok
 Plant segments with planned devices before the schematic	Létesítményszegmensek tervezett készülékekkel a kapcsolási rajz előtt
+Plastic cover	Műanyag burkolat
+Plastic covers off	Műanyag burkolatok le
 Plate outline, holes per diameter, cutouts	Lap körvonala, furatok átmérőnként, kivágások
 Plot boundary	Telekhatár
 Plot boundary drawn: {} m²	Telekhatár megrajzolva: {} m²
@@ -1814,6 +1844,7 @@ Row	Sor
 Row distance	Sortávolság
 Row drawing	Sorrajz
 Row labels	Sorfeliratok
+Rows	Sorok
 Rows of tables behind each other	Egymás mögötti asztalsorok
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Döntött asztalok sorai oszlopokon a létesítményben állók előtt, előre nézve; helyezze a helyére
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	A kiadott oldalakon lévő sorok nem módosíthatók. A szövegben a sortörést \\n jelöli.
@@ -1894,7 +1925,9 @@ Scrolling zooms, also where it pans	A görgetés nagyít, ott is, ahol mozgatna
 Search (* and ? as placeholders)…	Keresés (* és ? helyettesítő karakterként)…
 Search below this folder	Keresés ebben a mappában és alatta
 Search number, description, maker	Szám, leírás, gyártó keresése
+Search the enclosures of the parts database and the catalogs for a new one	Új szekrény keresése az alkatrész-adatbázisban és a katalógusokban
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Keresés az alkatrészszerveren katalógus, termékcsoport és műszaki adatok szerint, alkatrészek hozzáadása és az adatbázis frissítéseinek ellenőrzése
+Search…	Keresés…
 Second channel	Második csatorna
 Seconds from a change to its automatic save (10 to 600)	Másodpercek egy módosítástól az automatikus mentéséig (10 és 600 között)
 Section properties	Szakasz tulajdonságai
@@ -2093,6 +2126,8 @@ Tablet mode	Táblagép mód
 Tag	Azonosító
 Tag field	Azonosítómező
 Tag placed by hand	Kézzel elhelyezett azonosító
+Take off all plastic covers	Az összes műanyag burkolat levétele
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	Minden szekrény mezőrasztere összes mezőjének műanyag burkolatát leveszi: láthatóvá válnak a keretek, a sínek és a mögöttük lévő huzalozás; újra, hogy mindet visszategye
 Take out a subproject	Alprojekt kiemelése
 Take out of the building	Kivétel az épületből
 Take out {} pages…	{} oldal kiemelése…
@@ -2168,6 +2203,9 @@ The page name gets the section number	Az oldal neve megkapja a szakasz számát
 The page type, plot frame, title block, structure, description and the whole content are saved.	Az oldal típusa, rajzkerete, szövegmezője, struktúrája, leírása és teljes tartalma mentésre kerül.
 The pages it generated stay	Az általa generált oldalak megmaradnak
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Az alkatrész-adatbázis minden projekt számára közös. Az alkatrészek akkor kerülnek be egy projektbe, amikor egy készülékhez rendelik őket.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	A mező műanyag burkolata; nélküle látszik a keret, a sínek és a mögötte lévő huzalozás
+The plastic covers of all panels of the field grid of this enclosure	A szekrény mezőrácsa összes mezőjének műanyag burkolata
+The plastic covers of all panels of the field grids of every enclosure	Minden szekrény mezőrácsai összes mezőjének műanyag burkolata
 The point's coordinates in the coordinate reference system	A pont koordinátái a koordináta-rendszerben
 The post; its accessories are the table beams, rails and clamps	Az oszlop; tartozékai az asztalgerendák, a sínek és a szorítók
 The project changed since the search.	A projekt a keresés óta megváltozott.
@@ -2235,6 +2273,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	A 3D nézet ráfordítása a pontra
 Twin ferrules where two wires share a connection point	Iker érvéghüvelyek, ahol két vezeték osztozik egy csatlakozási ponton
 Two fingers	Két ujj
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Két szárny, mindegyik a külső élén zsanérozva; az ajtón lévő eszközök a közepük alatti szárnnyal mozognak
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Itt két vezetéknek kell derékszögben találkoznia. Bekapcsolt automatikus csatlakoztatással a karjaival szemközti csatlakozási pontok hozzá vezetékeződnek.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Írjon be egy pontot, és nyomja le az Enter billentyűt: x y mm-ben, vagy @dx dy az utolsó ponthoz képest; úgy működik, mint az aktuális eszközzel végzett kattintás
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2328,6 +2367,7 @@ Whole words	Csak teljes szavak
 Width / going	Szélesség / fellépő
 Width / height (mm)	Szélesség / magasság (mm)
 Width factor	Szélességi tényező
+Width of the left leaf; the right one takes the rest of the front	A bal szárny szélessége; a jobb a homlokoldal többi részét foglalja el
 Width of the letters to their usual width (0.8: narrow lettering)	A betűk szélessége a szokásos szélességükhöz képest (0,8: keskeny írás)
 Width × depth	Szélesség × mélység
 Width × height	Szélesség × magasság
@@ -2396,6 +2436,7 @@ all, or e.g. -X*, -W1	összes, vagy pl. -X*, -W1
 all, or e.g. K, Q	mind, vagy pl. K, Q
 along z	z mentén
 always	mindig
+any	bármennyi
 both ends	mindkét vég
 built-in	beépített
 by hand	kézzel
@@ -2513,9 +2554,12 @@ x y	x y
 {} Vault items found for the project parts	{} Vault-elem található a projektalkatrészekhez
 {} Vault items found: review the changes in the integration window	{} Vault-elem található: tekintse át a változásokat az integrációs ablakban
 {} added to building {}	{} hozzáadva a(z) {} épülethez
+{} added to device {}	{} hozzáadva a(z) {} eszközhöz
 {} addresses changed	{} cím módosítva
 {} air-termination rods	{} felfogórúd
 {} already exists on the project server.	{} már létezik a projektszerveren.
+{} attached to {}	{} sorolva ehhez: {}
+{} bundles, {} branch points	{} köteg, {} elágazási pont
 {} bundles, {} branch points, {} cable ties	{} köteg, {} elágazási pont, {} kábelkötegelő
 {} bus cables created	{} buszkábel létrehozva
 {} bus connections	{} buszkapcsolat
@@ -2563,18 +2607,23 @@ x y	x y
 {} example catalog parts refreshed	{} példakatalógus-alkatrész frissítve
 {} favorites added	Hozzáadott kedvencek: {}
 {} field wiring problems (see Check)	{} terepi huzalozási probléma (lásd: Ellenőrzés)
+{} fits neither this enclosure nor a device in it	{} nem illik sem ehhez a szekrényhez, sem a benne lévő eszközhöz
+{} fits on another face of this enclosure: {}	{} a szekrény egy másik oldalára illik: {}
 {} found	{} találat
 {} function texts copied	{} funkciószöveg másolva
 {} generated pages in the project (changes on them are replaced)	{} generált oldal a projektben (a rajtuk végzett módosítások lecserélődnek)
 {} grants on the project	{} hozzárendelés a projekten
 {} has no function with a symbol; assign it to a device in its properties	A(z) {} alkatrésznek nincs szimbólummal rendelkező funkciója; rendelje egy készülékhez annak tulajdonságaiban
 {} has unsaved changes. Discard them?	A(z) {} nem mentett módosításokat tartalmaz. Elveti őket?
+{} imported into the parts database and added as enclosure {}	{} importálva az alkatrész-adatbázisba és hozzáadva {} szekrényként
 {} imported into the parts database and placed as {}	{} bekerült az alkatrész-adatbázisba, elhelyezve: {}
 {} in {}	{} itt: {}
 {} is in the schematic	{} a kapcsolási rajzon van
 {} is in the schematic: cable {} from {}	A(z) {} a kapcsolási rajzon van: {} kábel innen: {}
 {} is neither in the parts database nor on the parts server	{} sem az alkatrész-adatbázisban, sem az alkatrészkiszolgálón nem található
+{} is not an enclosure: only enclosures can be dropped here	{} nem szekrény: ide csak szekrényeket lehet ejteni
 {} is not in the disk image	A(z) {} nincs a lemezképben
+{} is not in the parts database yet: import it, then drag it here	{} még nincs az alkatrész-adatbázisban: importálja, majd húzza ide
 {} is not made for wall mounting: place it on a mounting rail	{} nem falra szerelésre készült: helyezze szerelősínre
 {} is used by: {}	{} használja: {}
 {} items copied	{} elem másolva
@@ -2586,13 +2635,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} m: {} m keletre, {} m északra, {}° északtól
 {} macro boxes updated	{} makródoboz frissítve
 {} markers	{} jelölő
-{} mm	{} mm
 {} mm (cut {} mm)	{} mm (vágva {} mm)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm a lapon + {} mm tartalék; a többi a csatlakozási pontoktól a lapig tartó út.
 {} mm, now {} mm	{} mm, most {} mm
 {} mm, removed	{} mm, eltávolítva
 {} modules	{} modul
 {} modules, {} kWp	{} modul, {} kWp
+{} moved	{} áthelyezve
 {} new texts in the dictionary	{} új szöveg a szótárban
 {} notes	Megjegyzések: {}
 {} objects pasted	{} objektum beillesztve
@@ -2600,6 +2649,7 @@ x y	x y
 {} objects, {} pages	{} objektum, {} oldal
 {} of {} approvals	{} / {} jóváhagyás
 {} of {} connections numbered	{} / {} összeköttetés számozva
+{} of {} enclosures	{} / {} szekrény
 {} of {} entries shown: search to narrow the list	{} / {} bejegyzés látható: a lista szűkítéséhez keressen
 {} of {} items	{} / {} elem
 {} of {} pages locked	{} / {} oldal zárolva
@@ -2624,7 +2674,10 @@ x y	x y
 {} pieces	{} db
 {} pins used	{} érintkezőtű foglalt
 {} placed as {}	{} elhelyezve: {}
+{} placed in {}	{} elhelyezve itt: {}
 {} placement problems (red) – see Check	{} elhelyezési probléma (piros) – lásd: Ellenőrzés
+{} plastic covers fitted	{} műanyag burkolat felhelyezve
+{} plastic covers taken off	{} műanyag burkolat levéve
 {} problems	{} probléma
 {} project parts updated	{} projektalkatrész frissítve
 {} projects on the server	{} projekt a szerveren

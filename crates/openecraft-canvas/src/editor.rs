@@ -1251,7 +1251,7 @@ impl Editor {
         // Connection points and wire ends off the grid are invisible grid lines.
         let placing = match self.tool {
             Tool::Place(key) => Some((key, true)),
-            _ => resp.dnd_hover_payload::<PlacePayload>().or_else(|| resp.dnd_release_payload::<PlacePayload>()).map(|pl| (pl.symbol, false)),
+            _ => resp.dnd_hover_payload::<PlacePayload>().or_else(|| crate::dropped::<PlacePayload>(&resp)).map(|pl| (pl.symbol, false)),
         };
         let drop_hover = resp.dnd_hover_payload::<PlacePayload>().is_some() || resp.dnd_hover_payload::<PartDrag>().is_some();
         let needs_snap = !self.tool.is_review() && (self.tool != Tool::Select || resp.clicked_by(PointerButton::Primary) || drop_hover);
@@ -1309,7 +1309,7 @@ impl Editor {
             // A part dragged onto a released, locked or generated page: say why it
             // cannot be dropped here instead of ignoring it.
             ui.ctx().set_cursor_icon(egui::CursorIcon::NoDrop);
-            if resp.dnd_release_payload::<PartDrag>().is_some() {
+            if crate::dropped::<PartDrag>(&resp).is_some() {
                 out.message = Some(tr("Parts can only be dropped onto pages that can be changed; this one is released, locked or generated").to_string());
             }
         } else if self.tool == Tool::Select {
@@ -2088,11 +2088,11 @@ impl Editor {
         }
         // A part from the parts management or the data portal: the application imports
         // it when needed and places it.
-        if let (Some(sn), Some(pl)) = (snapped, resp.dnd_release_payload::<PartDrag>()) {
+        if let (Some(sn), Some(pl)) = (snapped, crate::dropped::<PartDrag>(resp)) {
             out.dropped_part = Some((pl.number.clone(), sn));
             return;
         }
-        if let (Some(sn), Some(pl)) = (snapped, resp.dnd_release_payload::<PlacePayload>()) {
+        if let (Some(sn), Some(pl)) = (snapped, crate::dropped::<PlacePayload>(resp)) {
             self.set_tool(Tool::Place(pl.symbol));
             self.place_rot = 0;
             self.place_mirror = false;

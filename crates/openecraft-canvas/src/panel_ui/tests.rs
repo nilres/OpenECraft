@@ -2695,3 +2695,186 @@ fn cable_ties_hold_the_bundles_of_wires_without_cable_ducts() {
     let an = Analysis::build(&demo);
     assert!(an.routing.bundles.iter().all(|b| b.ties.is_empty()));
 }
+
+/// Drags the navigator's row showing `from` onto the row showing `to` (its upper or lower
+/// half) with the pointer, as a user does.
+fn drag_in_navigator(prj: &mut Project, ui: &mut PanelUi, from: &str, to: &str, after: bool) {
+    let ctx = egui::Context::default();
+    let rect = egui::Rect::from_min_size(egui::pos2(0.0, 0.0), egui::vec2(400.0, 800.0));
+    let db = PartsDb::default();
+    let mut t = 0.0;
+    let mut frame = |prj: &mut Project, ui: &mut PanelUi, events: Vec<egui::Event>| {
+        t += 1.0 / 60.0;
+        let input = egui::RawInput { screen_rect: Some(rect), time: Some(t), predicted_dt: 1.0 / 60.0, events, ..Default::default() };
+        let mut out = ctx.run_ui(input, |c| {
+            egui::CentralPanel::default().show(c, |u| ui.navigator(u, prj, &db));
+        });
+        out.textures_delta.clear();
+        let mut rows = Vec::new();
+        fn texts(s: &egui::epaint::ClippedShape, out: &mut Vec<(String, egui::Rect)>) {
+            fn walk(s: &egui::Shape, out: &mut Vec<(String, egui::Rect)>) {
+                match s {
+                    egui::Shape::Text(t) => out.push((t.galley.job.text.clone(), t.visual_bounding_rect())),
+                    egui::Shape::Vec(v) => v.iter().for_each(|s| walk(s, out)),
+                    _ => {}
+                }
+            }
+            walk(&s.shape, out);
+        }
+        out.shapes.iter().for_each(|s| texts(s, &mut rows));
+        rows
+    };
+    let rows = frame(prj, ui, vec![]);
+    let find = |rows: &[(String, egui::Rect)], name: &str| rows.iter().find(|(t, _)| t.starts_with(&format!("{name} "))).map(|r| r.1).unwrap_or_else(|| panic!("no row {name} in {rows:?}"));
+    let (a, b) = (find(&rows, from).center(), find(&rows, to));
+    let b = if after { egui::pos2(b.center().x, b.bottom() - 1.0) } else { egui::pos2(b.center().x, b.top() + 1.0) };
+    let press = |pos, pressed| egui::Event::PointerButton { pos, button: egui::PointerButton::Primary, pressed, modifiers: Default::default() };
+    frame(prj, ui, vec![egui::Event::PointerMoved(a)]);
+    frame(prj, ui, vec![press(a, true)]);
+    for k in 1..=8 {
+        let p = a + (b - a) * (k as f32 / 8.0);
+        frame(prj, ui, vec![egui::Event::PointerMoved(p)]);
+    }
+    frame(prj, ui, vec![egui::Event::PointerMoved(b)]);
+    frame(prj, ui, vec![press(b, false)]);
+    frame(prj, ui, vec![]);
+}
+
+#[test]
+fn navigator_rows_are_dragged_to_reorder_them_and_into_rooms() {
+    let mut prj = Project::default();
+    for name in ["+A1", "+A2", "+A3"] {
+        prj.layout.enclosures.push(panel::Enclosure { name: name.into(), width: 600.0, height: 2000.0, depth: 400.0, ..Default::default() });
+    }
+    let room = bld::add_room(&mut prj, "+ROOM1", None).unwrap();
+    let mut ui = PanelUi::default();
+    let names = |prj: &Project| prj.layout.enclosures.iter().filter(|e| !e.is_room()).map(|e| e.name.clone()).collect::<Vec<_>>();
+    drag_in_navigator(&mut prj, &mut ui, "+A3", "+A1", false);
+    assert_eq!(names(&prj), ["+A3", "+A1", "+A2"], "{}", ui.status);
+    // Onto the room: it stands in it.
+    drag_in_navigator(&mut prj, &mut ui, "+A1", "+ROOM1", true);
+    let a1 = prj.layout.enclosures.iter().position(|e| e.name == "+A1").unwrap();
+    let room = prj.layout.enclosures.iter().position(|e| e.name == "+ROOM1").unwrap_or(room);
+    assert_eq!(panel::room_of(&prj.layout, a1), Some(room), "{}", ui.status);
+    // Buildings among the buildings.
+    for name in ["+B1", "+B2"] {
+        bld::add_building(&mut prj, name).unwrap();
+    }
+    drag_in_navigator(&mut prj, &mut ui, "+B2", "+B1", false);
+    assert_eq!(prj.layout.buildings.iter().map(|b| b.name.as_str()).collect::<Vec<_>>(), ["+B2", "+B1"], "{}", ui.status);
+}
+
+#[test]
+fn each_leaf_of_a_double_door_turns_about_its_own_hinge() {
+    let mut prj = Project::default();
+    let mut e = Enclosure { name: "+A1".into(), width: 800.0, height: 1000.0, ..Default::default() };
+    panel::doors::split(&mut e, Some(300.0));
+    for (id, x) in [(1, 100.0), (2, 600.0)] {
+        e.items.push(PanelItem { id, kind: ItemKind::Device, face: Face::Door, x, y: 400.0, w: 60.0, h: 60.0, d: 40.0, ..Default::default() });
+    }
+    prj.layout.enclosures.push(e);
+    let an = Analysis::checked(&prj);
+    let mut ui = PanelUi::default();
+    let shown = ui.shown_3d(&prj, 0);
+    let centre_x = |ui: &mut PanelUi, id: u64| {
+        let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+        let xs: Vec<f32> = scene.faces.iter().filter(|f| f.item == Some((0, id))).flat_map(|f| f.pts.map(|q| q[0])).collect();
+        xs.iter().sum::<f32>() / xs.len() as f32
+    };
+    ui.door_angle = 0.0;
+    let closed = [centre_x(&mut ui, 1), centre_x(&mut ui, 2)];
+    assert!((closed[0] - 130.0).abs() < 1.0 && (closed[1] - 630.0).abs() < 1.0, "{closed:?}");
+    // Opened: the left leaf swings out to the left, the right one to the right.
+    ui.door_angle = DOOR_OPEN_ANGLE;
+    let open = [centre_x(&mut ui, 1), centre_x(&mut ui, 2)];
+    assert!(open[0] < 60.0 && open[1] > 740.0, "{open:?}");
+}
+
+#[test]
+fn a_double_door_is_made_one_leaf_again_in_the_properties() {
+    // Where a text is drawn on the screen.
+    fn text_at(shapes: &[egui::epaint::ClippedShape], text: &str) -> Option<egui::Pos2> {
+        fn find(s: &egui::Shape, text: &str) -> Option<egui::Pos2> {
+            match s {
+                egui::Shape::Text(t) if t.galley.text() == text => Some(t.pos + t.galley.rect.center().to_vec2()),
+                egui::Shape::Vec(v) => v.iter().find_map(|s| find(s, text)),
+                _ => None,
+            }
+        }
+        shapes.iter().find_map(|c| find(&c.shape, text))
+    }
+    let mut prj = Project::default();
+    let mut e = Enclosure { name: "+CAB1".into(), width: 800.0, height: 2000.0, depth: 400.0, ..Default::default() };
+    panel::doors::split(&mut e, Some(400.0));
+    prj.layout.enclosures.push(e);
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi::default();
+    let ctx = egui::Context::default();
+    let mut frame = |prj: &mut Project, time: f64, events: Vec<egui::Event>| {
+        let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(800.0, 3000.0))), time: Some(time), events, ..Default::default() };
+        let mut out = ctx.run_ui(input, |ui_| ui.properties(ui_, prj, &an, &PartsDb::default()));
+        out.textures_delta.clear();
+        out.shapes
+    };
+    let shapes = frame(&mut prj, 0.0, Vec::new());
+    let at = text_at(&shapes, tr("One leaf")).expect("the door row is shown");
+    let click = |pressed| egui::Event::PointerButton { pos: at, button: egui::PointerButton::Primary, pressed, modifiers: Default::default() };
+    frame(&mut prj, 0.1, vec![egui::Event::PointerMoved(at), click(true)]);
+    frame(&mut prj, 0.2, vec![click(false)]);
+    frame(&mut prj, 0.3, Vec::new());
+    assert!(prj.layout.enclosures[0].door_leaves.is_empty());
+}
+
+#[test]
+fn a_makers_door_in_one_piece_opens_as_two_leaves() {
+    // A maker's enclosure 800 mm wide whose door is one box of large triangles.
+    let mut prj = Project::default();
+    let mut part = openecraft_core::parts::Part { number: "MAK.800".into(), width: 800.0, height: 600.0, depth: 350.0, ..Default::default() };
+    part.tech_data = "Enclosure system: compact".into();
+    let mut mesh = openecraft_core::parts::Mesh3d::default();
+    for tri in [vec3::box_triangles([0.0, 0.0, 0.0], [1.5, 600.0, 345.0]), vec3::box_triangles([2.0, 2.0, 334.0], [798.0, 598.0, 350.0])].concat() {
+        let base = mesh.vertices.len() as u32;
+        mesh.vertices.extend(tri);
+        mesh.triangles.push([base, base + 1, base + 2]);
+    }
+    part.model_3d = Some(mesh.into());
+    prj.parts.push(part);
+    let mut e = panel::new_enclosure(&mut prj, "MAK.800", "+A1");
+    assert!(panel::maker_model(&prj, &e).is_some());
+    panel::doors::split(&mut e, Some(300.0));
+    prj.layout.enclosures.push(e);
+    let an = Analysis::checked(&prj);
+    let mut ui = PanelUi::default();
+    let shown = ui.shown_3d(&prj, 0);
+    let pose = shown[0].1;
+    let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+    // Opened, every piece of the door stays on one leaf: within its width of its hinge.
+    let hinges = [(pose.apply([0.0, 0.0, 350.0]), 300.0), (pose.apply([800.0, 0.0, 350.0]), 500.0)];
+    let door: Vec<_> = scene.faces.iter().filter(|f| f.layer == 3 && f.item.is_none()).collect();
+    assert!(!door.is_empty());
+    for f in door {
+        let fits = hinges.iter().any(|(h, w)| f.pts[..f.n as usize].iter().all(|q| (q[0] - h[0]).hypot(q[2] - h[2]) <= w + 20.0));
+        assert!(fits, "{:?}", &f.pts[..f.n as usize]);
+    }
+}
+
+#[test]
+fn a_duct_over_the_joint_of_a_double_door_opens_cut_with_both_leaves() {
+    let mut prj = Project::default();
+    let mut e = Enclosure { name: "+A1".into(), width: 800.0, height: 1000.0, depth: 300.0, ..Default::default() };
+    panel::doors::split(&mut e, Some(300.0));
+    e.items.push(PanelItem { id: 1, kind: ItemKind::Duct, face: Face::Door, x: 60.0, y: 200.0, w: 420.0, h: 25.0, d: 25.0, ..Default::default() });
+    prj.layout.enclosures.push(e);
+    let an = Analysis::checked(&prj);
+    let mut ui = PanelUi::default();
+    let shown = ui.shown_3d(&prj, 0);
+    let pose = shown[0].1;
+    let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+    // Each piece within its leaf's reach of its hinge, and pieces on both leaves.
+    let hinges = [(pose.apply([0.0, 0.0, 300.0]), 300.0), (pose.apply([800.0, 0.0, 300.0]), 500.0)];
+    let reach = |f: &&scene3d::SceneFace| hinges.iter().position(|(h, w)| f.pts[..f.n as usize].iter().all(|q| (q[0] - h[0]).hypot(q[2] - h[2]) <= w + 60.0));
+    let duct: Vec<_> = scene.faces.iter().filter(|f| f.item == Some((0, 1))).collect();
+    assert!(!duct.is_empty());
+    assert!(duct.iter().all(|f| reach(f).is_some()), "{:?}", duct.iter().find(|f| reach(f).is_none()).map(|f| f.pts));
+    assert!(duct.iter().any(|f| reach(f) == Some(1)) && duct.iter().any(|f| reach(f) == Some(0)));
+}

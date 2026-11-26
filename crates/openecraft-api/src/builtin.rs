@@ -90,6 +90,7 @@ const READ: &[&str] = &[
     "detect_floor_plan", "plot", "locate", "measure", "check_settings", "preview_core_labels", "preview_cable_definition",
     "short_circuit", "load_calculation", "emc_check", "electrical_sizing", "verify_project", "harness_data", "harness_topology",
     "integration_status", "preplanning", "find", "wiring_list", "harness_nailboard", "marking_schemes", "mounting_list", "terminations",
+    "fitting_places",
 ];
 
 /// What the built-in command or tool `name` does: `list_…`, `get_…` and the commands of

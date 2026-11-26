@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Un piano sopra il più alto
 A local file opens locally, a server project is opened on the project server again	Un file locale si apre in locale, un progetto del server viene riaperto sul server dei progetti
 A local file or a project on the project server	Un file locale o un progetto sul server dei progetti
+A new enclosure of the same part, bayed at this frame	Un nuovo involucro dello stesso articolo, affiancato a questo telaio
+A new enclosure standing in this room	Un nuovo armadio in questo locale
 A new project	Un nuovo progetto
 A new release is downloaded in the background and installed when you close OpenECraft.	Una nuova versione viene scaricata in background e installata alla chiusura di OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Una nuova versione viene scaricata in background e sostituisce questa installazione; viene usata dal prossimo avvio.
@@ -179,10 +181,13 @@ Assign to existing device	Assegna a dispositivo esistente
 Assign to harness	Assegna a cablaggio
 Assign wires: select them in the schematic › Assign to cable.	Assegna conduttori: selezionali nello schema › Assegna a cavo.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	I motori asincroni sulla rete aumentano la corrente di cortocircuito massima (IEC 60909-0)
+At least, mm (0: any)	Almeno, mm (0: qualsiasi)
+At most, mm (0: any)	Al massimo, mm (0: qualsiasi)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Alla temperatura ambiente massima; il riscaldatore mantiene il punto di rugiada. 0 = non considerato
 At the origin	Nell'origine
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	Al punto di alimentazione: Ik3 max {} kA, Ik1 min {} kA
 At the top level	Al livello superiore
+Attach an enclosure here	Affianca qui un involucro
 Author	Autore
 Auto-connect	Collegamento automatico
 Auto-connect selection	Collega automaticamente la selezione
@@ -620,6 +625,7 @@ Door cutouts (CSV)	Aperture porta (CSV)
 Door hinge	Cerniere della porta
 Door: {} devices, {} cutouts	Porta: {} dispositivi, {} aperture
 Dot	Punto
+Double door	Porta a due ante
 Double-click	Doppio clic
 Down conductors	Calate
 Download into database	Scarica nel database
@@ -665,9 +671,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Elenco forature (CSV)
 Drilling list of this face (CSV)	Lista fori di questa faccia (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Schema di foratura della faccia mostrata come DXF, DWG o CSV
+Drop an enclosure here to add it; onto a room to put it in there	Rilascia qui un armadio per aggiungerlo; su un locale per metterlo lì
 Drop between the pages	Rilascia tra le pagine
 Drop between the rows or onto a section	Rilascia tra le righe o su una sezione
+Drop between two buildings to move it there	Rilascia tra due edifici per spostarlo lì
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Rilascia tra due righe per spostarvi l'armadio; uno affiancato si sposta nel suo affiancamento o con esso
+Drop between two rows to move the room there, onto a level to put it on that level	Rilascia tra due righe per spostarvi il locale, su un piano per metterlo su quel piano
 Drop onto a level to put the room on it	Rilascia su un piano per mettervi il locale
+Drop {} here	Rilascia {} qui
+Drop {} onto one of the highlighted places	Rilascia {} su uno dei punti evidenziati
+Drop {} onto {} to add it to the device	Rilascia {} su {} per aggiungerlo all'apparecchio
 Duct fill	Riempimento canalina
 Duct fill limit	Limite di riempimento canalina
 Duplicate	Duplica
@@ -702,6 +715,8 @@ Embed as document page	Incorpora come pagina di documento
 Embeds a file (PDF, Word, Excel, image …) as a page	Incorpora un file (PDF, Word, Excel, immagine …) come pagina
 Embeds the file in the project (replaces the current one)	Incorpora il file nel progetto (sostituisce quello attuale)
 Enclosure system	Sistema di armadi
+Enclosure {} added	Armadio {} aggiunto
+Enclosure {} added in room {}	Armadio {} aggiunto nel locale {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Armadi (+CAB1), dispositivi (-M1) e luoghi macchina (+M1) sui nodi
 Enclosures and rooms	Armadi e locali
 Enclosures, devices to place and placed devices	Armadi, dispositivi da posizionare e posizionati
@@ -757,7 +772,10 @@ Field	Campo
 Field (name, description, company, creator, date, revision) or project property	Campo (name, description, company, creator, date, revision) o proprietà di progetto
 Field cables	Cavi di campo
 Field length	Lunghezza campo
+Field widths and rows of meter and distribution cabinets	Colonne e file dei quadri contatori e di distribuzione
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Campo; tech:<name> per i dati tecnici degli articoli, prop:<name> per le proprietà del progetto
+Fields	Colonne
+Fields / rows	Colonne / file
 File format version {}. Files of older versions are converted when they are opened.	Versione del formato di file {}. I file di versioni precedenti vengono convertiti all'apertura.
 File name	Nome file
 File of another system (connector)	File di un altro sistema (connettore)
@@ -779,10 +797,13 @@ Finish a wire, polyline, polygon or wall	Terminare un filo, una polilinea, un po
 Finish or cancel the drawing, then back to selecting	Terminare o annullare il disegno, poi tornare alla selezione
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Le modifiche concluse di un progetto aperto dal server di progetto vi vengono salvate automaticamente; un inserimento in corso viene salvato appena è concluso. I blocchi restano. Salva (Ctrl+S) continua a salvare subito.
 First row	Prima riga
+Fit all plastic covers	Monta tutte le coperture in plastica
 Fit page	Adatta pagina
 Fits {}	Compatibile con {}
+Fitted	Montata
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Adattata al rettangolo mantenendo le proporzioni (PNG, JPEG)
 Float	Sgancia
+Floor	Fondo
 Floor above ground	Pavimento sopra il terreno
 Floor plan with {} walls	Pianta con {} pareti
 Floor-standing part	Articolo a pavimento
@@ -1048,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Lascia vuoti i valori ripetuti della prima colonna
 Left button	Tasto sinistro
 Left edges	Bordi sinistri
+Left leaf	Anta sinistra
 Legend plates (door devices)	Targhette di identificazione (dispositivi sulla porta)
 Length from the node to the device	Lunghezza dal nodo al dispositivo
 Length inside an enclosure	Lunghezza all'interno di un armadio
@@ -1145,6 +1167,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	Misurato
 Measures against common cause failure (at least 65 points)	Misure contro i guasti di causa comune (almeno 65 punti)
 Merge a symbol library file	Unisci un file di libreria simboli
+Merged with the parts already known: {}	Uniti agli articoli già noti: {}
 Message	Messaggio
 Messages	Messaggi
 Messages ({})	Messaggi ({})
@@ -1223,6 +1246,9 @@ New cover sheet	Nuova copertina
 New document page…	Nuova pagina documento…
 New empty	Nuovo vuoto
 New enclosure	Nuovo armadio
+New enclosure in this room…	Nuovo armadio in questo locale…
+New enclosure like this one	Nuovo involucro come questo
+New enclosure…	Nuovo armadio…
 New graphics page	Nuova pagina di grafica
 New harness	Nuovo cablaggio
 New items go onto this layer	I nuovi elementi vengono inseriti in questo livello
@@ -1284,6 +1310,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ancora nessun armadio – creane uno con Nuovo armadio, o un locale per gli armadi con Nuovo locale.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nessun cavo di campo: posiziona gli armadi e i dispositivi di campo sui nodi della rete dei percorsi cavi.
 No filter fans: an air/air heat exchanger or a cooling unit	Nessun ventilatore con filtro: uno scambiatore di calore aria/aria o un condizionatore
+No free place is left for {} in this enclosure	Non è rimasto alcun posto libero per {} in questo armadio
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Ancora nessun campo FV a terra: file di tavoli inclinati su pali infissi sul lotto.
 No gesture	Nessun gesto
 No harnesses defined.	Nessun cablaggio definito.
@@ -1360,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Sul touch screen; i trackpad lasciano i gesti a tre dita al sistema.
 On startup	All'avvio
 On the roof, joined to the air-termination conductors; move it to its place	Sul tetto, collegata ai conduttori di captazione; spostarla al suo posto
+One leaf	Un'anta
 One row per label	Una riga per etichetta
 Only devices on the current page	Solo i dispositivi sulla pagina corrente
 Only frames no page uses can be deleted	Possono essere eliminate solo le cornici non utilizzate da alcuna pagina
@@ -1558,6 +1586,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Layout dell'impianto
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Layout dell'impianto, rete dei percorsi cavi, pianificazione dei cavi di campo, collegamento equipotenziale e accessori per cavi
 Plant segments with planned devices before the schematic	Segmenti dell'impianto con dispositivi pianificati prima dello schema
+Plastic cover	Copertura in plastica
+Plastic covers off	Coperture in plastica tolte
 Plate outline, holes per diameter, cutouts	Contorno della piastra, fori per diametro, aperture
 Plot boundary	Confine del lotto
 Plot boundary drawn: {} m²	Confine del lotto disegnato: {} m²
@@ -1814,6 +1844,7 @@ Row	Riga
 Row distance	Distanza tra le file
 Row drawing	Disegno di riga
 Row labels	Etichette righe
+Rows	File
 Rows of tables behind each other	File di tavoli una dietro l'altra
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	File di tavoli inclinati su pali davanti a ciò che si trova nell'impianto, rivolte in avanti; spostarlo al suo posto
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Le righe sulle pagine rilasciate non possono essere modificate. Un'interruzione di riga in un testo si scrive come \\n.
@@ -1894,7 +1925,9 @@ Scrolling zooms, also where it pans	Lo scorrimento esegue lo zoom, anche dove sp
 Search (* and ? as placeholders)…	Cerca (* e ? come caratteri jolly)…
 Search below this folder	Cerca sotto questa cartella
 Search number, description, maker	Cerca numero, descrizione, produttore
+Search the enclosures of the parts database and the catalogs for a new one	Cerca un nuovo armadio nel database articoli e nei cataloghi
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Cerca nel server articoli per catalogo, gruppo di prodotti e dati tecnici, aggiungi articoli e verifica la presenza di aggiornamenti nel database
+Search…	Cerca…
 Second channel	Secondo canale
 Seconds from a change to its automatic save (10 to 600)	Secondi tra una modifica e il suo salvataggio automatico (da 10 a 600)
 Section properties	Proprietà della sezione
@@ -2093,6 +2126,8 @@ Tablet mode	Modalità tablet
 Tag	Sigla
 Tag field	Campo sigla
 Tag placed by hand	Sigla posizionata manualmente
+Take off all plastic covers	Togli tutte le coperture in plastica
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	Togliere le coperture in plastica di tutti i campi delle griglie di campi di ogni armadio: si vedono i telai, le guide e il cablaggio dietro di essi; di nuovo per rimetterle tutte
 Take out a subproject	Estrai un sottoprogetto
 Take out of the building	Togli dall'edificio
 Take out {} pages…	Estrai {} pagine…
@@ -2168,6 +2203,9 @@ The page name gets the section number	Il nome della pagina riceve il numero dell
 The page type, plot frame, title block, structure, description and the whole content are saved.	Vengono salvati tipo di pagina, cornice di stampa, cartiglio, struttura, descrizione e l'intero contenuto.
 The pages it generated stay	Le pagine generate restano
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Il database articoli è condiviso da tutti i progetti. Gli articoli vengono copiati in un progetto quando vengono assegnati a un dispositivo.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	La copertura in plastica del pannello; senza di essa si vedono il telaio, le guide e il cablaggio dietro
+The plastic covers of all panels of the field grid of this enclosure	Le coperture in plastica di tutti i campi della griglia di questo involucro
+The plastic covers of all panels of the field grids of every enclosure	Le coperture in plastica di tutti i campi delle griglie di ogni involucro
 The point's coordinates in the coordinate reference system	Le coordinate del punto nel sistema di riferimento delle coordinate
 The post; its accessories are the table beams, rails and clamps	Il palo; i suoi accessori sono le travi del tavolo, le guide e i morsetti
 The project changed since the search.	Il progetto è cambiato dopo la ricerca.
@@ -2235,6 +2273,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Orientare la vista 3D verso il punto
 Twin ferrules where two wires share a connection point	Puntalini doppi dove due conduttori condividono un punto di connessione
 Two fingers	Due dita
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Due ante, ciascuna incernierata sul suo bordo esterno; i dispositivi sulla porta seguono l'anta sotto il loro centro
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Qui devono incontrarsi due conduttori ad angolo retto. Con la connessione automatica attiva, i punti di collegamento rivolti ai suoi bracci vi vengono cablati.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Digita un punto e premi Enter: x y in mm o @dx dy rispetto all'ultimo punto; agisce come un clic dello strumento corrente
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2328,6 +2367,7 @@ Whole words	Parole intere
 Width / going	Larghezza / pedata
 Width / height (mm)	Larghezza / altezza (mm)
 Width factor	Fattore di larghezza
+Width of the left leaf; the right one takes the rest of the front	Larghezza dell'anta sinistra; la destra occupa il resto del fronte
 Width of the letters to their usual width (0.8: narrow lettering)	Larghezza delle lettere rispetto alla loro larghezza abituale (0,8: scrittura stretta)
 Width × depth	Larghezza × profondità
 Width × height	Larghezza × altezza
@@ -2396,6 +2436,7 @@ all, or e.g. -X*, -W1	tutti, oppure ad es. -X*, -W1
 all, or e.g. K, Q	tutte, o ad es. K, Q
 along z	lungo z
 always	sempre
+any	qualsiasi
 both ends	entrambe le estremità
 built-in	integrato
 by hand	manualmente
@@ -2513,9 +2554,12 @@ x y	x y
 {} Vault items found for the project parts	{} elementi di Vault trovati per gli articoli del progetto
 {} Vault items found: review the changes in the integration window	{} elementi di Vault trovati: esamina le modifiche nella finestra di integrazione
 {} added to building {}	{} aggiunto all'edificio {}
+{} added to device {}	{} aggiunto all'apparecchio {}
 {} addresses changed	{} indirizzi modificati
 {} air-termination rods	{} aste di captazione
 {} already exists on the project server.	{} esiste già sul server di progetto.
+{} attached to {}	{} affiancato a {}
+{} bundles, {} branch points	{} fasci, {} punti di derivazione
 {} bundles, {} branch points, {} cable ties	{} fasci, {} punti di derivazione, {} fascette
 {} bus cables created	{} cavi bus creati
 {} bus connections	{} collegamenti bus
@@ -2563,18 +2607,23 @@ x y	x y
 {} example catalog parts refreshed	{} articoli del catalogo di esempio aggiornati
 {} favorites added	{} preferiti aggiunti
 {} field wiring problems (see Check)	{} problemi della cablatura di campo (vedi Verifica)
+{} fits neither this enclosure nor a device in it	{} non si adatta né a questo armadio né a un apparecchio al suo interno
+{} fits on another face of this enclosure: {}	{} va su un'altra faccia di questo armadio: {}
 {} found	{} trovati
 {} function texts copied	{} testi di funzione copiati
 {} generated pages in the project (changes on them are replaced)	{} pagine generate nel progetto (le modifiche su di esse vengono sostituite)
 {} grants on the project	{} assegnazioni sul progetto
 {} has no function with a symbol; assign it to a device in its properties	{} non ha funzioni con simbolo; assegnalo a un dispositivo nelle sue proprietà
 {} has unsaved changes. Discard them?	{} ha modifiche non salvate. Scartarle?
+{} imported into the parts database and added as enclosure {}	{} importato nel database articoli e aggiunto come armadio {}
 {} imported into the parts database and placed as {}	{} importato nel database articoli e posizionato come {}
 {} in {}	{} in {}
 {} is in the schematic	{} è nello schema
 {} is in the schematic: cable {} from {}	{} è nello schema: cavo {} da {}
 {} is neither in the parts database nor on the parts server	{} non è né nel database articoli né sul server articoli
+{} is not an enclosure: only enclosures can be dropped here	{} non è un armadio: qui si possono rilasciare solo armadi
 {} is not in the disk image	{} non è nell'immagine disco
+{} is not in the parts database yet: import it, then drag it here	{} non è ancora nel database articoli: importalo, poi trascinalo qui
 {} is not made for wall mounting: place it on a mounting rail	{} non è previsto per il montaggio a parete: posizionarlo su una guida
 {} is used by: {}	{} è usato da: {}
 {} items copied	{} elementi copiati
@@ -2586,13 +2635,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} m: {} m verso est, {} m verso nord, {}° da nord
 {} macro boxes updated	{} riquadri macro aggiornati
 {} markers	{} marcatori
-{} mm	{} mm
 {} mm (cut {} mm)	{} mm (taglio {} mm)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm sulla piastra + {} mm di riserva; il resto è il percorso dai punti di connessione alla piastra.
 {} mm, now {} mm	{} mm, ora {} mm
 {} mm, removed	{} mm, rimosso
 {} modules	{} moduli
 {} modules, {} kWp	{} moduli, {} kWp
+{} moved	{} spostato
 {} new texts in the dictionary	{} nuovi testi nel dizionario
 {} notes	{} note
 {} objects pasted	{} oggetti incollati
@@ -2600,6 +2649,7 @@ x y	x y
 {} objects, {} pages	{} oggetti, {} pagine
 {} of {} approvals	{} di {} approvazioni
 {} of {} connections numbered	{} di {} collegamenti numerati
+{} of {} enclosures	{} di {} armadi
 {} of {} entries shown: search to narrow the list	{} di {} voci visualizzate: esegui una ricerca per restringere l'elenco
 {} of {} items	{} di {} elementi
 {} of {} pages locked	{} di {} pagine bloccate
@@ -2624,7 +2674,10 @@ x y	x y
 {} pieces	{} pezzi
 {} pins used	{} pin utilizzati
 {} placed as {}	{} posizionato come {}
+{} placed in {}	{} posizionato in {}
 {} placement problems (red) – see Check	{} problemi di posizionamento (in rosso) – vedi Verifica
+{} plastic covers fitted	{} coperture in plastica montate
+{} plastic covers taken off	{} coperture in plastica tolte
 {} problems	{} problemi
 {} project parts updated	{} articoli del progetto aggiornati
 {} projects on the server	{} progetti sul server

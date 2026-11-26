@@ -23,6 +23,7 @@ A device tag must not be empty	Oznaczenie urządzenia nie może być puste
 A pipe run turns at right angles	Trasa rurociągu skręca pod kątem prostym
 A plot boundary has at least three corners	Granica działki ma co najmniej trzy narożniki
 A port cannot be connected to itself	Portu nie można połączyć z nim samym
+A room goes before or after another room	Pomieszczenie można przenieść tylko przed inne pomieszczenie lub za nie
 A room needs at least four walls	Pomieszczenie wymaga co najmniej czterech ścian
 A section number consists of letters and digits and does not start with 0	Numer sekcji składa się z liter i cyfr i nie zaczyna się od 0
 A section number must not be empty or contain a dot	Numer sekcji nie może być pusty ani zawierać kropki
@@ -431,6 +432,8 @@ Does not match	Nie pasuje
 Door (front view)	Drzwi (widok z przodu)
 Door and walls	Drzwi i ściany
 Door handle and document holder	Uchwyt drzwi i kieszeń na dokumentację
+Door leaf {}	Skrzydło drzwi {}
+Door leaf {} (front view)	Skrzydło drzwi {} (widok z przodu)
 Double socket outlet with PE	Gniazdo podwójne z uziemieniem
 Downstream	Za
 Drag chain	Prowadnik kablowy
@@ -793,6 +796,8 @@ Latitude is within ±90° and longitude within ±180°	Szerokość geograficzna 
 Lead time (days)	Czas dostawy (dni)
 Leakage current	Prąd upływu
 Leakage line	Przewód przecieku
+Left door leaf	Lewe skrzydło drzwi
+Left door leaf (front view)	Lewe skrzydło drzwi (widok z przodu)
 Left side panel	Lewa ściana boczna
 Legend plate text	Tekst tabliczki opisowej
 Length (m)	Długość (m)
@@ -1033,6 +1038,7 @@ Oil resistant	Olejoodporny
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Jedna strona schematu z potencjałami +24V / 0V, przyciskami, przełącznikiem wyboru, lampkami i bezpiecznikiem; artykuły i zestawienie materiałów.
 One schematic page, the potentials of IEC 60204-1	Jedna strona schematu, potencjały wg IEC 60204-1
 One-way flow control valve	Zawór dławiąco-zwrotny
+Only another enclosure can be bayed there	Można tam dołączyć tylko inną obudowę
 Only revisions that are not released can be submitted	Przesłać można tylko rewizje, które nie zostały wydane
 Only symbols of the symbol library can be scaled	Skalować można tylko symbole z biblioteki symboli
 Only {}	Tylko {}
@@ -1387,6 +1393,8 @@ Revision table: author of the last revision (2: the one before …)	Tabela rewiz
 Revision table: date of the last revision (2: the one before …)	Tabela rewizji: data ostatniej rewizji (2: poprzedniej …)
 Revision table: description of the last revision (2: the one before …)	Tabela rewizji: opis ostatniej rewizji (2: poprzedniej …)
 Revision table: index of the last revision (2: the one before …)	Tabela rewizji: indeks ostatniej rewizji (2: poprzedniej …)
+Right door leaf	Prawe skrzydło drzwi
+Right door leaf (front view)	Prawe skrzydło drzwi (widok z przodu)
 Right side panel	Prawa ściana boczna
 Ring earth electrode	Uziom otokowy
 Ring terminal	Końcówka oczkowa
@@ -1664,6 +1672,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	Formuła kończy się zbyt wcześnie
 The function definition needs a key and a name	Definicja funkcji wymaga klucza i nazwy
 The index of the project names no file layout: it was not written by OpenECraft	Indeks projektu nie podaje układu plików: nie został zapisany przez OpenECraft
+The item is no frame in an opening of a side wall	Element nie jest ramką w otworze ściany bocznej
 The last page cannot be deleted	Nie można usunąć ostatniej strony
 The macro box has no items left	Ramka makra nie zawiera już żadnych elementów
 The next free id is already in use	Następny wolny identyfikator jest już zajęty
@@ -1830,7 +1839,6 @@ Voltage range	Zakres napięcia
 Voltage type	Rodzaj napięcia
 Voltmeter	Woltomierz
 Voltmeter, differential	Woltomierz, różnicowy
-Wall	Ściana
 Wall {}	Ściana {}
 Wall {} is not at a right angle	Ściana {} nie jest pod kątem prostym
 Wall {} is shorter than {} mm	Ściana {} jest krótsza niż {} mm
@@ -2155,6 +2163,7 @@ yellow	żółty
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: zaciski {} znajdują się {} mm nad podłogą, wymagane co najmniej {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: system szyn zbiorczych z {} szynami łączy {} przewody ({}): zwarcie
 {}: the busbar {} of earth electrode {} does not exist	{}: szyna {} uziomu {} nie istnieje
+{}: the cutout for {} reaches over the joint between the door leaves and is cut by hand	{}: wycięcie dla {} wystaje poza szczelinę między skrzydłami drzwi i jest wykonywane ręcznie
 {}: the device {} of PV array {} does not exist	{}: urządzenie {} instalacji PV {} nie istnieje
 {}: the earthing busbar {} of PV array {} does not exist	{}: szyna uziemiająca {} pola PV {} nie istnieje
 {}: the freestanding PV array {} stands on {}	{}: naziemne pole PV {} stoi na {}
@@ -2205,6 +2214,7 @@ yellow	żółty
 {}: {} overhangs the end of its mounting rail	{}: {} wystaje poza koniec swojej szyny montażowej
 {}: {} pins used, the plug parts have {}	{}: zajęte piny: {}, artykuły wtyku mają {}
 {}: {} reaches about {} °C at its place, allowed {} °C	{}: {} osiąga w swoim miejscu ok. {} °C, dopuszczalne {} °C
+{}: {} reaches over the joint between the door leaves	{}: {} wystaje poza szczelinę między skrzydłami drzwi
 {}: {} reaches {} of the {} bars of its busbar system	{}: {} sięga {} z {} szyn swojego systemu szyn zbiorczych
 {}: {} solenoid coils linked, the valve has {}	{}: powiązane cewki elektromagnetyczne: {}, zawór ma {}
 {}: {} stands in an inner wall	{}: {} stoi w ścianie wewnętrznej

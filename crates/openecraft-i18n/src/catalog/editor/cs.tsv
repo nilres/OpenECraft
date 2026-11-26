@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Podlaží nad nejvyšším
 A local file opens locally, a server project is opened on the project server again	Místní soubor se otevře místně, projekt ze serveru se znovu otevře na serveru projektů
 A local file or a project on the project server	Místní soubor nebo projekt na serveru projektů
+A new enclosure of the same part, bayed at this frame	Nová skříň stejného dílu, připojená u tohoto rámečku
+A new enclosure standing in this room	Nová skříň v této místnosti
 A new project	Nový projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Nová verze se stáhne na pozadí a nainstaluje se po zavření OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Nová verze se stáhne na pozadí a nahradí tuto instalaci; použije se od příštího spuštění.
@@ -179,10 +181,13 @@ Assign to existing device	Přiřadit k existujícímu přístroji
 Assign to harness	Přiřadit ke svazku
 Assign wires: select them in the schematic › Assign to cable.	Přiřazení vodičů: vyberte je ve schématu › Přiřadit ke kabelu.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Asynchronní motory na síti zvyšují nejvyšší zkratový proud (IEC 60909-0)
+At least, mm (0: any)	Nejméně, mm (0: libovolně)
+At most, mm (0: any)	Nejvýše, mm (0: libovolně)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Při nejvyšší okolní teplotě; topení udržuje rosný bod. 0 = nezohledňuje se
 At the origin	V počátku
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	V místě napájení: Ik3 max {} kA, Ik1 min {} kA
 At the top level	Na nejvyšší úrovni
+Attach an enclosure here	Připojit sem skříň
 Author	Autor
 Auto-connect	Automatické propojení
 Auto-connect selection	Automaticky propojit výběr
@@ -620,6 +625,7 @@ Door cutouts (CSV)	Výřezy ve dveřích (CSV)
 Door hinge	Závěsy dveří
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
+Double door	Dvoukřídlé dveře
 Double-click	Dvojklik
 Down conductors	Svody
 Download into database	Stáhnout do databáze
@@ -665,9 +671,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Seznam vrtání (CSV)
 Drilling list of this face (CSV)	Seznam otvorů této plochy (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Vrtací obrazec zobrazené plochy jako DXF, DWG nebo CSV
+Drop an enclosure here to add it; onto a room to put it in there	Pusťte sem skříň pro přidání; na místnost pro umístění do ní
 Drop between the pages	Pustit mezi stránky
 Drop between the rows or onto a section	Pustit mezi řádky nebo na oddíl
+Drop between two buildings to move it there	Pusťte mezi dvě budovy a budova se tam přesune
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Pusťte mezi dva řádky a skříň se tam přesune; skříň v řadě se přesune v rámci své řady nebo s ní
+Drop between two rows to move the room there, onto a level to put it on that level	Pusťte mezi dva řádky a místnost se tam přesune, na podlaží a bude stát na něm
 Drop onto a level to put the room on it	Pusťte na podlaží a místnost bude stát na něm
+Drop {} here	Pustit {} sem
+Drop {} onto one of the highlighted places	Pusťte {} na jedno ze zvýrazněných míst
+Drop {} onto {} to add it to the device	Pusťte {} na {} a přidejte jej k přístroji
 Duct fill	Zaplnění kanálu
 Duct fill limit	Mez zaplnění kanálu
 Duplicate	Duplikovat
@@ -702,6 +715,8 @@ Embed as document page	Vložit jako stránku dokumentu
 Embeds a file (PDF, Word, Excel, image …) as a page	Vloží soubor (PDF, Word, Excel, obrázek …) jako stránku
 Embeds the file in the project (replaces the current one)	Vloží soubor do projektu (nahradí stávající)
 Enclosure system	Systém skříní
+Enclosure {} added	Skříň {} přidána
+Enclosure {} added in room {}	Skříň {} přidána do místnosti {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Skříně (+CAB1), přístroje (-M1) a umístění strojů (+M1) v uzlech
 Enclosures and rooms	Rozvaděčové skříně a místnosti
 Enclosures, devices to place and placed devices	Skříně, přístroje k umístění a umístěné přístroje
@@ -757,7 +772,10 @@ Field	Pole
 Field (name, description, company, creator, date, revision) or project property	Pole (name, description, company, creator, date, revision) nebo vlastnost projektu
 Field cables	Polní kabely
 Field length	Délka pole
+Field widths and rows of meter and distribution cabinets	Šířky polí a řady elektroměrových a rozváděčových skříní
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Pole; tech:<název> pro technické údaje artiklů, prop:<název> pro vlastnosti projektu
+Fields	Pole
+Fields / rows	Pole / řady
 File format version {}. Files of older versions are converted when they are opened.	Verze formátu souboru {}. Soubory starších verzí se při otevření převedou.
 File name	Název souboru
 File of another system (connector)	Soubor jiného systému (konektor)
@@ -779,10 +797,13 @@ Finish a wire, polyline, polygon or wall	Dokončit vodič, lomenou čáru, mnoho
 Finish or cancel the drawing, then back to selecting	Dokončit nebo zrušit kreslení, pak zpět k výběru
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Dokončené změny projektu otevřeného z projektového serveru se na něj ukládají samy; probíhající zadávání se uloží, jakmile je dokončeno. Zámky zůstávají. Uložit (Ctrl+S) nadále ukládá ihned.
 First row	První řádek
+Fit all plastic covers	Nasadit všechny plastové kryty
 Fit page	Přizpůsobit stránku
 Fits {}	Hodí se k {}
+Fitted	Nasazen
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Vepsáno do obdélníku se zachováním poměru stran (PNG, JPEG)
 Float	Uvolnit
+Floor	Dno
 Floor above ground	Podlaha nad terénem
 Floor plan with {} walls	Půdorys s {} stěnami
 Floor-standing part	Díl na podlahu
@@ -1048,6 +1069,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Opakované hodnoty prvního sloupce ponechat prázdné
 Left button	Levé tlačítko
 Left edges	Levé hrany
+Left leaf	Levé křídlo
 Legend plates (door devices)	Popisné štítky (přístroje ve dveřích)
 Length from the node to the device	Délka od uzlu k přístroji
 Length inside an enclosure	Délka uvnitř skříně
@@ -1145,6 +1167,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	Naměřeno
 Measures against common cause failure (at least 65 points)	Opatření proti poruchám se společnou příčinou (alespoň 65 bodů)
 Merge a symbol library file	Sloučit soubor knihovny symbolů
+Merged with the parts already known: {}	Sloučeno s již známými díly: {}
 Message	Zpráva
 Messages	Zprávy
 Messages ({})	Zprávy ({})
@@ -1223,6 +1246,9 @@ New cover sheet	Nový titulní list
 New document page…	Nová stránka dokumentu…
 New empty	Nový, prázdný
 New enclosure	Nová skříň
+New enclosure in this room…	Nová skříň v této místnosti…
+New enclosure like this one	Nová skříň jako tato
+New enclosure…	Nová skříň…
 New graphics page	Nová stránka grafiky
 New harness	Nový kabelový svazek
 New items go onto this layer	Nové objekty se umístí do této vrstvy
@@ -1284,6 +1310,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Zatím žádná skříň – vytvořte ji pomocí Nová skříň, nebo místnost pro rozváděče pomocí Nová místnost.
 No field cables: place the enclosures and field devices at nodes of the route network.	Žádné polní kabely: umístěte skříně a polní přístroje do uzlů sítě tras.
 No filter fans: an air/air heat exchanger or a cooling unit	Bez filtračních ventilátorů: výměník tepla vzduch/vzduch nebo chladicí jednotka
+No free place is left for {} in this enclosure	V této skříni už není volné místo pro {}
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Zatím žádné pozemní FV pole: řady skloněných stolů na beraněných sloupcích na pozemku.
 No gesture	Žádné gesto
 No harnesses defined.	Nejsou definovány žádné kabelové svazky.
@@ -1360,6 +1387,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	Na dotykové obrazovce; touchpady nechávají gesta třemi prsty systému.
 On startup	Při spuštění
 On the roof, joined to the air-termination conductors; move it to its place	Na střeše, spojená s jímacím vedením; přesuňte ji na její místo
+One leaf	Jedno křídlo
 One row per label	Jeden řádek na štítek
 Only devices on the current page	Pouze přístroje na aktuální stránce
 Only frames no page uses can be deleted	Odstranit lze jen rámečky, které nepoužívá žádná stránka
@@ -1558,6 +1586,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	Dispozice zařízení
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Dispozice zařízení, síť tras, plánování polních kabelů, ochranné pospojování a kabelové příslušenství
 Plant segments with planned devices before the schematic	Segmenty zařízení s plánovanými přístroji před schématem zapojení
+Plastic cover	Plastový kryt
+Plastic covers off	Plastové kryty sejmuté
 Plate outline, holes per diameter, cutouts	Obrys desky, otvory podle průměru, výřezy
 Plot boundary	Hranice pozemku
 Plot boundary drawn: {} m²	Hranice pozemku nakreslena: {} m²
@@ -1814,6 +1844,7 @@ Row	Řádek
 Row distance	Vzdálenost řad
 Row drawing	Kresba řádku
 Row labels	Popisky řádků
+Rows	Řady
 Rows of tables behind each other	Řady stolů za sebou
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Řady skloněných stolů na sloupcích před tím, co stojí v zařízení, natočené dopředu; přesuňte je na místo
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Řádky na uvolněných stránkách nelze měnit. Zalomení řádku v textu se zapisuje jako \\n.
@@ -1894,7 +1925,9 @@ Scrolling zooms, also where it pans	Posouvání přibližuje, i tam, kde jinak p
 Search (* and ? as placeholders)…	Hledat (* a ? jako zástupné znaky)…
 Search below this folder	Hledat pod touto složkou
 Search number, description, maker	Hledat číslo, popis, výrobce
+Search the enclosures of the parts database and the catalogs for a new one	Vyhledat novou skříň v databázi dílů a v katalozích
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Prohledávat server artiklů podle katalogu, skupiny produktů a technických údajů, přidávat artikly a kontrolovat aktualizace databáze
+Search…	Hledat…
 Second channel	Druhý kanál
 Seconds from a change to its automatic save (10 to 600)	Sekundy od změny do jejího automatického uložení (10 až 600)
 Section properties	Vlastnosti oddílu
@@ -2093,6 +2126,8 @@ Tablet mode	Režim tabletu
 Tag	Označení
 Tag field	Pole označení
 Tag placed by hand	Označení umístěno ručně
+Take off all plastic covers	Sejmout všechny plastové kryty
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	Sejmout plastové kryty všech polí rastrů polí každé skříně: jsou vidět rámy, lišty a zapojení za nimi; znovu pro nasazení všech
 Take out a subproject	Vyčlenit podprojekt
 Take out of the building	Vyjmout z budovy
 Take out {} pages…	Vyčlenit stránky ({})…
@@ -2168,6 +2203,9 @@ The page name gets the section number	Název stránky dostane číslo oddílu
 The page type, plot frame, title block, structure, description and the whole content are saved.	Uloží se typ stránky, rámeček výkresu, rohové razítko, struktura, popis a celý obsah.
 The pages it generated stay	Stránky, které vytvořil, zůstanou
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Databázi artiklů sdílejí všechny projekty. Artikly se zkopírují do projektu, když jsou přiřazeny k přístroji.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Plastový kryt pole; bez něj je vidět rám, lišty a zapojení za ním
+The plastic covers of all panels of the field grid of this enclosure	Plastové kryty všech polí mřížky polí této skříně
+The plastic covers of all panels of the field grids of every enclosure	Plastové kryty všech polí mřížek polí každé skříně
 The point's coordinates in the coordinate reference system	Souřadnice bodu v souřadnicovém referenčním systému
 The post; its accessories are the table beams, rails and clamps	Sloupek; jeho příslušenstvím jsou nosníky stolu, lišty a svorky
 The project changed since the search.	Projekt se od hledání změnil.
@@ -2235,6 +2273,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Natočit 3D pohled na bod
 Twin ferrules where two wires share a connection point	Dvojité dutinky tam, kde dva vodiče sdílejí přípojný bod
 Two fingers	Dva prsty
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Dvě křídla, každé zavěšené na své vnější hraně; přístroje na dveřích jdou s křídlem pod svým středem
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Zde se musí stýkat dva vodiče v pravém úhlu. Při zapnutém automatickém spojování se k němu připojí připojovací body naproti jeho ramenům.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Zadejte bod a stiskněte Enter: x y v mm nebo @dx dy relativně k poslednímu bodu; působí jako kliknutí aktuálním nástrojem
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2328,6 +2367,7 @@ Whole words	Celá slova
 Width / going	Šířka / stupeň
 Width / height (mm)	Šířka / výška (mm)
 Width factor	Šířkový faktor
+Width of the left leaf; the right one takes the rest of the front	Šířka levého křídla; pravé zabírá zbytek čela
 Width of the letters to their usual width (0.8: narrow lettering)	Šířka písmen vůči jejich obvyklé šířce (0,8: úzké písmo)
 Width × depth	Šířka × hloubka
 Width × height	Šířka × výška
@@ -2396,6 +2436,7 @@ all, or e.g. -X*, -W1	vše, nebo např. -X*, -W1
 all, or e.g. K, Q	všechna, nebo např. K, Q
 along z	podél z
 always	vždy
+any	libovolně
 both ends	oba konce
 built-in	vestavěné
 by hand	ručně
@@ -2513,9 +2554,12 @@ x y	x y
 {} Vault items found for the project parts	Nalezené položky Vault pro artikly projektu: {}
 {} Vault items found: review the changes in the integration window	Nalezené položky Vault: {}; zkontrolujte změny v okně integrace
 {} added to building {}	{} přidán k budově {}
+{} added to device {}	{} přidáno k přístroji {}
 {} addresses changed	Změněno adres: {}
 {} air-termination rods	{} jímacích tyčí
 {} already exists on the project server.	{} na projektovém serveru již existuje.
+{} attached to {}	{} připojena k {}
+{} bundles, {} branch points	Svazky: {}, body odbočení: {}
 {} bundles, {} branch points, {} cable ties	Svazky: {}, body odbočení: {}, stahovací pásky: {}
 {} bus cables created	Vytvořeno sběrnicových kabelů: {}
 {} bus connections	Sběrnicová spojení: {}
@@ -2563,18 +2607,23 @@ x y	x y
 {} example catalog parts refreshed	Aktualizováno artiklů ukázkového katalogu: {}
 {} favorites added	Přidáno oblíbených: {}
 {} field wiring problems (see Check)	{} problémů polní kabeláže (viz Kontrola)
+{} fits neither this enclosure nor a device in it	{} se nehodí ani do této skříně, ani k přístroji v ní
+{} fits on another face of this enclosure: {}	{} se hodí na jinou stranu této skříně: {}
 {} found	Nalezeno: {}
 {} function texts copied	Zkopírováno {} textů funkcí
 {} generated pages in the project (changes on them are replaced)	Vytvořené stránky v projektu: {} (změny na nich budou nahrazeny)
 {} grants on the project	Přidělení k projektu: {}
 {} has no function with a symbol; assign it to a device in its properties	{} nemá funkci se symbolem; přiřaďte jej přístroji v jeho vlastnostech
 {} has unsaved changes. Discard them?	{} obsahuje neuložené změny. Zahodit je?
+{} imported into the parts database and added as enclosure {}	{} importováno do databáze dílů a přidáno jako skříň {}
 {} imported into the parts database and placed as {}	{} importován do databáze artiklů a umístěn jako {}
 {} in {}	{} v {}
 {} is in the schematic	{} je ve schématu
 {} is in the schematic: cable {} from {}	{} je ve schématu: kabel {} od {}
 {} is neither in the parts database nor on the parts server	{} není v databázi artiklů ani na serveru artiklů
+{} is not an enclosure: only enclosures can be dropped here	{} není skříň: sem lze pustit jen skříně
 {} is not in the disk image	{} není v obrazu disku
+{} is not in the parts database yet: import it, then drag it here	{} ještě není v databázi dílů: importujte jej a pak jej sem přetáhněte
 {} is not made for wall mounting: place it on a mounting rail	{} není určen pro montáž na stěnu: umístěte jej na lištu
 {} is used by: {}	{} používá: {}
 {} items copied	Zkopírováno {} prvků
@@ -2586,13 +2635,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} m: {} m na východ, {} m na sever, {}° od severu
 {} macro boxes updated	Aktualizováno {} rámečků maker
 {} markers	Štítky: {}
-{} mm	{} mm
 {} mm (cut {} mm)	{} mm (řez {} mm)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm na desce + {} mm rezerva; zbytek je cesta od přípojných bodů k desce.
 {} mm, now {} mm	{} mm, nyní {} mm
 {} mm, removed	{} mm, odebráno
 {} modules	{} modulů
 {} modules, {} kWp	{} modulů, {} kWp
+{} moved	{} přesunuto
 {} new texts in the dictionary	Nové texty ve slovníku: {}
 {} notes	Poznámky: {}
 {} objects pasted	Vloženo objektů: {}
@@ -2600,6 +2649,7 @@ x y	x y
 {} objects, {} pages	{} objektů, {} stránek
 {} of {} approvals	{} z {} schválení
 {} of {} connections numbered	Očíslováno {} z {} spojení
+{} of {} enclosures	{} z {} skříní
 {} of {} entries shown: search to narrow the list	Zobrazeno {} z {} položek: zúžte seznam hledáním
 {} of {} items	{} z {} prvků
 {} of {} pages locked	Uzamčeno {} z {} stránek
@@ -2624,7 +2674,10 @@ x y	x y
 {} pieces	{} ks
 {} pins used	Obsazené kolíky: {}
 {} placed as {}	{} umístěn jako {}
+{} placed in {}	{} umístěno do {}
 {} placement problems (red) – see Check	Problémy s umístěním (červeně): {} – viz Kontrola
+{} plastic covers fitted	Nasazeno plastových krytů: {}
+{} plastic covers taken off	Sejmuto plastových krytů: {}
 {} problems	Problémy: {}
 {} project parts updated	Aktualizováno artiklů projektu: {}
 {} projects on the server	Projekty na serveru: {}

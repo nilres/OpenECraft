@@ -51,9 +51,10 @@ pub fn pages_dwg_with(prj: &Project, an: &crate::analysis::Analysis, pages: &[us
     from_dxf(&crate::dxf::pages_dxf_with(prj, an, pages))
 }
 
-/// NC data of an enclosure face as DWG, like [`crate::production::nc_dxf`].
-pub fn nc_dwg(prj: &Project, enc: usize, face: crate::panel::Face) -> Result<Vec<u8>, String> {
-    from_dxf(&crate::production::nc_dxf(prj, enc, face))
+/// NC data of a sheet of an enclosure (face or leaf of the door) as DWG, like
+/// [`crate::production::nc_dxf`].
+pub fn nc_dwg(prj: &Project, enc: usize, sheet: impl Into<crate::panel::Sheet>) -> Result<Vec<u8>, String> {
+    from_dxf(&crate::production::nc_dxf(prj, enc, sheet))
 }
 
 /// Inserts a DWG drawing as a new schematic page after `after` (see

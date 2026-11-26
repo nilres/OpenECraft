@@ -1,4 +1,5 @@
 use super::*;
+use crate::production::{holes_on, openings};
 use crate::sample::demo_project;
 
 #[test]
@@ -13,6 +14,46 @@ fn export_lists_components_and_machining() {
     let opens: usize = Face::ALL.into_iter().map(|f| openings(e, &prj.parts, f).len()).sum();
     assert_eq!(machining.len(), holes + opens);
     assert!(machining.iter().any(|m| m["face"] == "door" && m["kind"] == "cutout"));
+}
+
+#[test]
+fn the_leaves_of_a_double_door_are_exchanged_with_the_configurator() {
+    let mut prj = demo_project();
+    let e = &mut prj.layout.enclosures[0];
+    let width = e.width;
+    doors::split(e, Some(width / 2.0));
+    // A straight cutout over the joint: cut on both leaves.
+    let id = prj.new_id();
+    let (x, y) = (width / 2.0 - 30.0, 100.0);
+    prj.layout.enclosures[0].items.push(PanelItem { id, kind: ItemKind::Cutout, face: Face::Door, x, y, w: 80.0, h: 40.0, ..Default::default() });
+    let v = export(&prj, 0);
+    let leaves = v["door_leaves"].as_array().unwrap();
+    assert_eq!(leaves.iter().map(|l| (l["key"].as_str().unwrap(), l["hinge"].as_str().unwrap())).collect::<Vec<_>>(), [("door_left", "left"), ("door_right", "right")]);
+    assert_eq!(leaves[1]["x"], json!(width / 2.0));
+    let door: Vec<&Value> = v["machining"].as_array().unwrap().iter().filter(|m| m["face"] == "door").collect();
+    assert!(door.iter().all(|m| m["leaf"].is_string() && m["leaf_x"].is_number()), "{door:?}");
+    for m in &door {
+        let x0 = if m["leaf"] == "door_left" { 0.0 } else { width as f64 / 2.0 };
+        assert!((m["x"].as_f64().unwrap() - m["leaf_x"].as_f64().unwrap() - x0).abs() < 0.1, "{m}");
+    }
+    let pieces: Vec<(&str, f64)> = door.iter().filter(|m| m["h"] == json!(40.0)).map(|m| (m["leaf"].as_str().unwrap(), m["w"].as_f64().unwrap())).collect();
+    assert_eq!(pieces, [("door_left", 30.0), ("door_right", 50.0)]);
+    // Read back: the leaves, and a place given on its leaf alone.
+    let mut other = Project::new_default();
+    let mut file = v.clone();
+    file["machining"] = json!([{ "face": "door", "kind": "cutout", "leaf": "door_right", "leaf_x": 100.0, "y": 500.0, "diameter": 22.5 }]);
+    let done = import(&mut other, &file.to_string()).unwrap();
+    assert_eq!((done.cutouts, done.skipped.len()), (1, 0), "{done:?}");
+    let e = &other.layout.enclosures[0];
+    assert_eq!(doors::text(e), doors::text(&prj.layout.enclosures[0]));
+    let cut = e.items.iter().find(|i| i.kind == ItemKind::Cutout).unwrap();
+    assert!((cut.center().x - (width / 2.0 + 100.0)).abs() < 0.01);
+    // As a text, and wrong.
+    file["door_leaves"] = json!("2");
+    file["enclosure"] = json!("+CAB9");
+    assert_eq!(import(&mut other, &file.to_string()).unwrap().skipped.len(), 0);
+    file["door_leaves"] = json!("x + y");
+    assert_eq!(import(&mut other, &file.to_string()).unwrap().skipped, ["x + y"]);
 }
 
 #[test]

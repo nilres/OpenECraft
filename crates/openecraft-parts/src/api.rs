@@ -66,6 +66,29 @@ use serde::{Deserialize, Serialize};
 pub use crate::portal::{Catalog, HistoryEntry, SearchResult};
 
 pub const API_PREFIX: &str = "/api/v1";
+/// Largest request body the parts server takes (an import, a file).
+pub const MAX_BODY: usize = 32 * 1024 * 1024;
+
+/// Parts to import in batches that each stay well below [`MAX_BODY`] as JSON (the parts
+/// of an EDZ file with their 3D models and EPLAN macros are larger together); a part
+/// larger than that alone goes in a batch of its own.
+pub fn import_batches(parts: Vec<Part>) -> Vec<Vec<Part>> {
+    let limit = MAX_BODY * 3 / 4;
+    let mut out: Vec<Vec<Part>> = Vec::new();
+    let mut size = 0;
+    for p in parts {
+        let n = serde_json::to_vec(&p).map_or(0, |v| v.len()) + 1;
+        match out.last_mut() {
+            Some(batch) if size + n <= limit => batch.push(p),
+            _ => {
+                out.push(vec![p]);
+                size = 0;
+            }
+        }
+        size += n;
+    }
+    out
+}
 pub const DEFAULT_PORT: u16 = 8090;
 /// The public parts server of the project: the server the editor, the parts manager
 /// and the command line connect to until another one is set.

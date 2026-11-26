@@ -19,6 +19,49 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
 
 - Armoires (à partir d'un article tel que `GEN.ENC-600X800` ou de taille libre) avec
   plaque de montage.
+- *Nouvelle enveloppe* (le bouton du navigateur *Enveloppes et salles* ou son menu
+  contextuel, sur une pièce *Nouvelle enveloppe dans cette pièce…*) cherche les
+  enveloppes de la base de données des articles, du projet et des catalogues livrés
+  avec OpenECraft : par texte, système d'enveloppe, fabricant, *Montage* (mur ou sol),
+  largeur, hauteur et profondeur de … à, et les colonnes et rangées des armoires de
+  comptage et de distribution (*Colonnes / rangées*, données d'article `Fields: 3`,
+  `Rows: 7`), triées par numéro d'article ou par taille. Un double-clic sur une
+  enveloppe la crée ; la recherche reste pour la suivante. Une enveloppe glissée depuis
+  la gestion des articles (ou le portail de données) dans le navigateur est créée
+  aussitôt, dans la pièce sur laquelle elle a été déposée (aussi sur une armoire qui se
+  trouve dans une pièce).
+- **Accessoires glissés dans l'enveloppe :** un accessoire glissé depuis la gestion des
+  articles sur la vue 2D ou 3D d'une enveloppe montre les emplacements où il convient,
+  mis en évidence : un panneau de distribution d'une armoire de comptage (comme le
+  Striebel & John FV17, données d'article `Fields: 1`, `Rows: 7`) les colonnes libres de
+  la grille de l'armoire, un autre accessoire de l'article de l'enveloppe les faces sur
+  lesquelles il peut être monté, un accessoire de l'article d'un appareil (un contact
+  auxiliaire, un contact de signalisation) les appareils placés auxquels il convient.
+  Déposé sur un emplacement, il y va ; sur un appareil, il devient un accessoire de
+  l'appareil. La commande `fitting_places` liste les emplacements pour la ligne de
+  commande et les agents d'IA. Un champ de répartition apporte ses rails de montage, un
+  par rangée (données d'article `Device rows`, sinon un par rangée de ses
+  `Module spaces`, espacées de `Row spacing` ; tout autre champ avec `Device rows: n`) : les appareils y sont placés et suivent le champ.
+- Un champ de la grille est dessiné tel qu'il est construit : un cadre de deux profilés
+  latéraux, qui porte les rails d'un champ de distribution, sur des équerres vissées sur
+  les supports de l'armoire derrière lui, et devant lui son capot plastique avec une
+  fente pour chaque rangée d'appareils. *Capot plastique* dans ses propriétés
+  (commande `set_panel_item` avec `cover`) retire le capot, pour voir le cadre, les
+  rails et le câblage derrière. *Retirer tous les capots plastiques* et *Poser tous les
+  capots plastiques* dans le menu contextuel de l'implantation le font pour chaque champ
+  de l'enveloppe, dans le menu contextuel du navigateur pour chaque enveloppe, de même
+  que *Espace de montage › Afficher › Capots plastiques retirés* (commande `set_covers`).
+- Un cadre qui relie deux armoires (comme le cadre isolant CZ3 de Striebel & John,
+  données d'article `Opening: 202 x 85`) ne va que dans les ouvertures des parois
+  latérales prévues pour lui (données d'article de l'armoire
+  `Side openings: 202 x 85 at 86 / 20; …` : hauteur × profondeur à la distance du bas /
+  de l'arrière) : glissé dans l'enveloppe, les ouvertures libres sont mises en évidence ;
+  placé sur une paroi latérale, il va dans l'ouverture libre la plus proche. Il est
+  dessiné avec sa bride à l'extérieur de la paroi et son collet à travers l'ouverture,
+  un connecteur de jeux de barres (CZC4, CZC14) avec ses barres qui le traversent.
+  *Juxtaposer une enveloppe ici* dans le menu contextuel du cadre juxtapose une
+  enveloppe de ce côté : une nouvelle comme celle-ci, ou l'une des autres
+  (commande `attach_enclosure`).
 - Rails de montage et goulottes dessinés à la longueur ; sélectionnez-en un et faites
   glisser l'une de ses extrémités pour le redimensionner, ou déplacez-le (les appareils
   suivent leur rail). Les appareils sont placés à partir d'une liste « appareils à
@@ -156,6 +199,19 @@ porte montre les charnières et la poignée de leurs côtés, la vue 3D ouvre la
 autour de ce bord, et les fils de porte longent la porte jusqu'à ce bord, passent par
 la boucle de charnière et entrent dans le bord de la plaque de ce côté.
 
+Une porte double a deux vantaux, chacun articulé sur son bord extérieur (*Porte* ›
+*Porte double* et la largeur du *Vantail gauche* dans les propriétés de l'armoire,
+`door_leaves` de `add_enclosure` / `set_enclosure`, donnée d'article
+`Door leaves: 275 + 525` avec les largeurs des vantaux depuis la gauche, comme en ont les
+armoires ComfortLine A de Striebel & John de trois à cinq largeurs de champ et
+l'armoire univers `HAG.FR25S2` de Hager). La porte
+reste une face pour ses appareils : chacun est sur le vantail sous son milieu, s'ouvre
+avec lui dans la vue 3D et a ses fils routés par sa charnière ; la vue de la porte
+dessine chaque vantail avec ses charnières et le joint entre eux, et un appareil qui
+passe par-dessus le joint est signalé. Un rail ou une goulotte qui passe par-dessus le
+joint s'ouvre dans la vue 3D coupé au joint, chaque morceau avec son vantail, comme il
+faudrait le monter.
+
 ## Zones interdites
 
 Un article d'armoire peut garder libres des zones de ses faces (*Zones interdites*
@@ -207,6 +263,17 @@ opération. Une page *Plan de perçage* d'une armoire (*Nouvelle page de plan de
 perçage*, `add_page kind=drilling enclosure=+CAB1`) dessine ses faces avec leurs trous
 et découpes à une même échelle, cotées depuis ce coin, avec à côté les types de trous et
 de découpes et leur nombre.
+
+Une porte double (voir [Porte de l'armoire](#porte-de-larmoire)) est percée vantail par
+vantail : le rapport, la page et les *Données CN* prennent chaque vantail comme une tôle
+à part, cotée depuis son coin inférieur gauche, et la transmission aux machines crée un
+programme pour chaque vantail (`CAB1_door_left.nc` ; `face=door_left` ou `door_right`
+de `machining_plan` et `cnc_program`). Une découpe droite qui passe par-dessus le joint
+est faite sur les deux vantaux, chacun aussi loin qu'elle s'étend sur lui ; une découpe
+ronde ou tournée reste sur le vantail sous son milieu et est faite à la main. La
+configuration pour le fabricant de l'armoire (`export_enclosure_configuration`) liste
+les vantaux (`door_leaves`) et, pour tout ce qui est sur la porte, son vantail et sa
+place sur lui (`leaf`, `leaf_x`) ; l'import les relit.
 
 ## Câblage virtuel et taux de remplissage des goulottes
 
@@ -394,6 +461,13 @@ atteignant le niveau (sans les toits) ; un second clic montre de nouveau toute
 l'installation. Le menu contextuel du terrain ajoute un bâtiment, dessine la limite du
 terrain ou place le point de référence, celui d'un bâtiment un niveau au-dessus ou un
 sous-sol, celui d'un niveau une salle sur ce niveau.
+
+Les lignes du navigateur se glissent pour changer leur ordre : une salle entre d'autres
+salles (sur le niveau de la salle à côté de laquelle elle est déposée), une enveloppe
+entre d'autres enveloppes – une enveloppe juxtaposée dans sa juxtaposition, qui est
+juxtaposée à nouveau dans le nouvel ordre, ou avec toute sa juxtaposition avant ou
+après une autre juxtaposition, dans la salle où celle-ci se trouve – et un bâtiment
+entre les bâtiments (commande `move_enclosure`).
 
 ## Limite du terrain et point de référence
 

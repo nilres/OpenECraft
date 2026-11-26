@@ -17,6 +17,44 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
 ## Enclosures and devices
 
 - Enclosures (from a part such as `GEN.ENC-600X800` or custom size) with mounting plate.
+- *New enclosure* (the button of the navigator *Enclosures and rooms* or its context
+  menu, on a room *New enclosure in this room…*) searches the enclosures of the parts
+  database, the project and the catalogs shipped with OpenECraft: by text, enclosure
+  system, manufacturer, *Mounting* (wall or floor), width, height and depth from … to,
+  and the field widths and rows of meter and distribution cabinets (*Fields / rows*,
+  part data `Fields: 3`, `Rows: 7`), sorted by part number or size. A double click on an
+  enclosure creates it; the search stays for the next one. An enclosure dragged from the
+  parts management (or the data portal) into the navigator is created at once, in the
+  room it was dropped onto (also onto a cabinet standing in one).
+- **Accessories dragged into the enclosure:** an accessory dragged from the parts
+  management over the 2D or 3D view of an enclosure shows the places it fits,
+  highlighted: a distribution panel of a meter cabinet (such as the Striebel & John
+  FV17, part data `Fields: 1`, `Rows: 7`) the free fields of the cabinet's grid, another
+  accessory of the enclosure's part the faces it may be mounted on, an accessory of a
+  device's part (an auxiliary contact, a signal contact) the placed devices it fits.
+  Dropped onto a place it goes there; onto a device it becomes an accessory of the
+  device. The command `fitting_places` lists the places for the command line and AI
+  agents. A distribution panel comes with its mounting rails (part data `Device rows`,
+  else one per row of its `Module spaces`, `Row spacing` apart; any other panel with
+  `Device rows: n`): devices are placed onto them and move with the panel.
+- A panel of the field grid is drawn as it is built: a frame of two side profiles,
+  which carries the rails of a distribution panel, on brackets screwed onto the
+  carriers of the cabinet behind it, and its plastic cover in front with a slot for each
+  row of devices. *Plastic cover* in its properties (command `set_panel_item` with
+  `cover`) takes the cover off, to see the frame, the rails and the wiring behind it.
+  *Take off all plastic covers* and *Fit all plastic covers* in the context menu of the
+  layout do so for every panel of the enclosure, in the context menu of the navigator
+  for every enclosure, as does *Layout space › Show › Plastic covers off* (command
+  `set_covers`).
+- A frame that joins two cabinets (such as the insulating frame CZ3 of Striebel & John,
+  part data `Opening: 202 x 85`) goes only into the openings of the side walls made for
+  it (part data of the cabinet `Side openings: 202 x 85 at 86 / 20; …`: height × depth
+  at the distance from the bottom / from the back): dragged into the enclosure, the free
+  openings are highlighted; placed on a side wall, it goes into the nearest free one.
+  It is drawn with its flange on the outside of the wall and its collar through the
+  opening, a busbar connector (CZC4, CZC14) with its busbars through it. *Attach an
+  enclosure here* in the context menu of the frame bays an enclosure at this side: a new
+  one like this, or one of the others (command `attach_enclosure`).
 - Mounting rails and cable ducts drawn by length; select one and drag either end to
   resize it, or move it (devices travel with their rail). Devices are placed from a
   "devices to place" list with their real dimensions from the parts data (contactor +
@@ -135,6 +173,16 @@ the handle on their sides, the 3D view opens the door about that edge, and the d
 wires run along the door to that edge, over the hinge loop and into the plate's edge
 on that side.
 
+A double door has two leaves, each hinged at its outer edge (*Door* › *Double door* and
+the width of the *Left leaf* in the enclosure's properties, `door_leaves` of
+`add_enclosure` / `set_enclosure`, part data `Door leaves: 275 + 525` with the widths
+of the leaves from the left, as the ComfortLine A cabinets of Striebel & John with three
+to five field widths and the univers cabinet `HAG.FR25S2` of Hager have). The door stays one face for its devices: each is on the
+leaf under its middle, opens with it in the 3D view and has its wires run over its
+hinge; the door view draws every leaf with its hinges and the joint between them, and a
+device reaching over the joint is reported. A rail or duct over the joint opens in the 3D
+view cut at the joint, each piece with its leaf, as it would have to be mounted.
+
 ## Restricted areas
 
 An enclosure part can keep areas of its faces free (*Restricted areas* in the part's
@@ -180,6 +228,17 @@ of every face with its letter, its dimensions from the bottom left corner of the
 (*New drilling pattern page*, `add_page kind=drilling enclosure=+CAB1`) draws its faces
 with their holes and cutouts at one scale, dimensioned from that corner, with the kinds
 of holes and cutouts and their counts beside them.
+
+A double door (see [Enclosure door](#enclosure-door)) is drilled leaf by leaf: the
+report, the page and the *NC data* take each leaf as a sheet of its own, dimensioned
+from its bottom left corner, and the hand-off to the machines makes a program for each
+leaf (`CAB1_door_left.nc`; `face=door_left` or `door_right` of `machining_plan` and
+`cnc_program`). A straight cutout reaching over the joint is cut on both leaves, each as
+far as it reaches onto it; a round or turned one stays on the leaf under its middle and
+is left to the hand. The configuration for the enclosure maker
+(`export_enclosure_configuration`) lists the leaves (`door_leaves`) and, for everything
+on the door, its leaf and its place across it (`leaf`, `leaf_x`); the import reads them
+back.
 
 ## Virtual wiring and duct fill levels
 
@@ -337,6 +396,12 @@ the floor slabs and the stairs reaching the level (no roofs); a second click sho
 of the plant again. The context menu of the site adds a building, draws the plot
 boundary or places the reference point, that of a building a level on top or a
 basement, that of a level a room on it.
+
+The rows of the navigator are dragged to change their order: a room between other
+rooms (onto the level of the room it is dropped next to), an enclosure between other
+enclosures – a bayed one within its line-up, which is bayed again in the new order, or
+with its whole line-up before or after another line-up, into the room that one stands
+in – and a building between the buildings (command `move_enclosure`).
 
 ## Plot boundary and reference point
 

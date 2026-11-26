@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	将模板中的设备添加到规划段
 Adds the outline of a machine, building or area to the plant layout	向工厂布局添加机器、建筑物或区域的轮廓
 Adds, replaces or removes a profile: a connector with the column names the other system uses	添加、替换或删除配置文件：使用其他系统列名的接口
+After it instead of before	移到其后而非其前
 Air-termination rod: its name	接闪杆：其名称
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	对齐元素、均匀分布元素、在导轨上排列设备或按阵列复制元素
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	将符号、文本和图形对齐到共同的边缘或中心；连接的导线端点随之移动
@@ -66,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	在此�
 Bar id	铜排 ID
 Bar thickness, mm (default 5)	铜排厚度，mm（默认 5）
 Bar width, mm (default 20)	铜排宽度，mm（默认 20）
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	在另一个机柜侧壁的连接框架处并接一个机柜（例如 Striebel & John 的 CZ3）：右壁中的框架并接在其右侧，左壁中的框架并接在其左侧
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	将一个机柜并排放置在另一个机柜的右侧（并柜排列）；不指定 right_of 时，它将脱离其并柜排列
 Bend radius in drag chains as a multiple of the cable diameter	拖链中的弯曲半径，为电缆直径的倍数
 Bend radius of a drag chain in mm	拖链的弯曲半径，单位 mm
@@ -145,6 +147,7 @@ Corner points on the mounting plate in mm	安装板上的拐点 (mm)
 Correction of the time estimate	时间估算修正
 Cost of free air against ducts and routing paths	自由布线相对于线槽和布线路径的成本
 Counting step (default 1)	计数步长（默认 1）
+Covers fitted; false takes them off	盖板已安装；false 表示拆下
 Creates a bus cable for the connection (without cable tag)	为该连接创建总线电缆（无电缆标识符）
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	为每个没有电缆的总线连接创建总线类型的电缆（类型、芯线、截面积）
 Creates or changes a PCT loop of the pre-planning	创建或更改预规划的 PCT 回路
@@ -259,15 +262,20 @@ Enclosure (location, e.g. +CAB1) whose settings change	要更改设置的机柜�
 Enclosure climate and electrical sizing	机柜温控和电气选型
 Enclosure it stands right of; empty to take it out of its line-up	其左侧相邻的机柜；空表示将其移出并柜排列
 Enclosure name (all if missing)	机柜名称（未指定时为全部）
+Enclosure or room it goes before or after	要移到其之前或之后的机柜或房间
 Enclosure part number	机柜部件编号
 Enclosure system (default: the enclosure's)	机柜系统（默认：该机柜的系统）
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	副本所放入的机柜（位置，例如 +CAB2）；省略时为同一机柜
+Enclosure to attach; without it a new one like the enclosure with the frame	要并接的机柜；省略时为一个与带框架机柜相同的新机柜
+Enclosure with the frame	带框架的机柜
 Enclosure {} exists already	机柜 {} 已存在
+Enclosure; without it every enclosure	机柜；省略时为每个机柜
 Enclosures, panel items, accessories and panel macros	机柜、布局元件、附件和布局宏
 End brackets and end plates from the tech data of the terminal parts	根据端子部件的技术数据添加终端固定件和终端盖板
 End holes from the bar end as a multiple of the width	端孔距铜排端部的距离，为宽度的倍数
 End: device tag and connection point, e.g. -S1:14	终点：设备标识符和连接点，例如 -S1:14
 Face: plate, door, left, right, rear, roof or bottom	面：plate, door, left, right, rear, roof 或 bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	面：plate, door, left, right, rear, roof 或 bottom；双开门的门扇为 door_left 和 door_right
 Field plan: nodes, segments, outlines, routes, bonds and accessories	现场规划：节点、布线段、轮廓、路径、等电位联结和附件
 Figure	指标
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	在所有（已筛选）行的某一列中查找并替换文本；不指定查找内容时，用替换内容填充该列
@@ -281,6 +289,7 @@ First counter value (default 1)	计数器起始值（默认 1）
 First page number (default 1)	起始页号（默认 1）
 First port as station:port, e.g. PLC1:X1 P2	第一个端口，格式为 station:port，例如 PLC1:X1 P2
 First row with the column names	包含列名的第一行
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	安装一个机柜或每个机柜的区域网格中所有面板的塑料盖板，或将其全部拆下
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	平屋顶和地面安装：组件朝向的方向，单位为度，从上方看逆时针（0：朝向 +z）
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	设备名称格式：{letter}、{n}（计数器）、{page}、{column}、{row}；默认 {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 方案的格式：{n}（计数器）、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
@@ -359,6 +368,7 @@ Invalid answer of the plugin: {}	插件的应答无效：{}
 Invalid segment name: {}	无效的规划段名称：{}
 Invalid title block elements: {}	无效的标题栏元素：{}
 Item id	元素 ID
+Item id of the frame	框架的项目 ID
 Item ids	元素 ID
 Jumper number	跳线编号
 Jumper number (terminals with the same number are bridged); 0 removes it	跳线编号（编号相同的端子相互桥接）；0 表示删除
@@ -379,6 +389,7 @@ Landscape (true) or portrait (false)	横向 (true) 或纵向 (false)
 Language the project texts are written in, e.g. en	编写项目文本所用的语言，例如 en
 Larger round holes are milled, mm	大于此值的圆孔将被铣削，mm
 Largest difference between hole and tool, mm	孔与刀具之间的最大差值，mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	双开门的门扇：从左起的宽度，例如 275 + 525（宽度后加 left 或 right 指定铰链），或等宽门扇的数量；空或 1 表示单扇
 Left edge from the left end of the wall (seen from inside) in mm	左边缘距墙左端的距离（从内侧看），mm
 Left edge in mm	左边缘（毫米）
 Left edge on the face in mm	面上的左边缘 (mm)
@@ -440,6 +451,7 @@ Lists the terminations chosen for wire ends and the kinds there are	列出为导
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	列出标题栏（内置和项目自有）及其元素、项目默认标题栏和占位符
 Lists the translation dictionary of the project texts (source line and translations)	列出项目文本的翻译词典（源行和翻译）
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	列出页上放置的窗口宏（宏边框）及其宏、变体、占位符值和元素数量
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	列出附件部件在机柜中适合的位置：电表箱或配电柜的空闲列（部件数据 Fields 和 Rows）、用于连接机柜的框架的侧壁空闲开口（部件数据 Opening 和 Side openings）、以其为附件的机柜的各面、其部件与之匹配的设备
 Load losses of the transformer in W (0: typical)	变压器负载损耗，单位 W（0：典型值）
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	电网的负载、每个保护设备的负载、按同时系数计算的需求、相平衡以及电源装置的负载预算
 Loads the potential definitions of a standard (replaces those of the same name)	加载某一标准的电位定义（替换同名定义）
@@ -484,6 +496,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	安装尺寸必须包含正的宽度和高度
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	移动导线、电缆或管子布线的一个控制点；布线无法经过该点时会报告错误
 Moves an air-termination rod, changes its height, renames or removes it	移动接闪杆，更改其高度，重命名或删除
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	在机柜和房间树的顺序中，将机柜或房间移到另一个之前或之后（并柜的机柜在其并柜排列内重新排列，或随排列一起移动；房间在房间之间移动，并放到另一个房间的楼层）
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	移动导线的一端：该端离开原来连接的对象，并连接到所接触的对象；导线保持直角
 Moves symbols, wires and texts; connected wire ends follow	移动符号、导线和文本；所连接的导线端会跟随移动
 Moves the page before this page of its section (or of the section given)	将页移到其分节（或指定分节）中此页之前
@@ -625,6 +638,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	页 {} �
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	带后缀的页 (3.a) 保持为前一页的子页（默认 true）
 Panel layout checks	安装板布局检查
 Panel manufacturing	机柜制造
+Panel of a field grid: with its plastic cover (false: taken off)	分区网格中的面板：带塑料盖板（false：已拆下）
 Paper height in mm (custom paper)	纸张高度 (mm)（自定义纸张）
 Paper width in mm (custom paper)	纸张宽度 (mm)（自定义纸张）
 Part lifecycle	部件生命周期
@@ -971,6 +985,7 @@ Unknown class: {}	未知类别：{}
 Unknown data type: {}	未知数据类型：{}
 Unknown direction {}: left, right, up or down	未知方向 {}：left、right、up 或 down
 Unknown door hinge: {}	未知的铰链侧：{}
+Unknown door leaves: {}	未知的门扇：{}
 Unknown earth electrode: {}	未知接地极：{}
 Unknown earthing system: {}	未知接地系统：{}
 Unknown face {}	未知面 {}

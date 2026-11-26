@@ -27,6 +27,64 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Vault or an external plugin, and asks its user accordingly. An external plugin says it of a
   command with `effect` (`read`, `add` or `change`) in its answer to `describe`
   ([plugins](docs/plugins.md)).
+- **Searching enclosures:** the *New enclosure* dialog searches the enclosures of the
+  parts database, the project and the shipped catalogs by text, enclosure system,
+  manufacturer, wall or floor mounting, width, height and depth, and the field widths
+  and rows of meter and distribution cabinets, sorted by part number or size; a double
+  click creates the enclosure. The navigator *Enclosures and rooms* opens it from its
+  context menu, on a room for an enclosure standing in it.
+- **Enclosures dragged into the navigator:** an enclosure dragged from the parts
+  management or the data portal into *Enclosures and rooms* is created at once, in the
+  room it is dropped onto; one only on the parts server is imported first.
+- **Accessories dragged into an enclosure:** an accessory dragged from the parts
+  management over the 2D or 3D view of an enclosure highlights where it fits: the free
+  fields of a meter cabinet for its distribution panels (such as the Striebel & John
+  FV17), the faces for other accessories of the enclosure, the placed devices for an
+  accessory of their part. Dropped there it is placed, or added to the device. New
+  command `fitting_places`. A distribution panel comes with a mounting rail for each of
+  its rows, so devices can be placed in it.
+- **Imports merge into known parts:** an EDZ file of the EPLAN Data Portal (or an EPLAN
+  parts XML, an enclosure package) whose part is already in the database, on the parts
+  server or in a shipped catalog is merged into it instead of replacing it, found by
+  its number or its order number: the import's values win, the catalog's part data
+  such as fields and rows stay.
+- **ABB's EDZ files:** EDZ files packed as ZIP archives (as ABB publishes its EPLAN
+  data, such as the Striebel & John ComfortLine cabinets and panels) are read; large
+  imports go to the parts server in several requests, files larger than it takes are
+  left out and named. The distribution panels of the Striebel & John catalog have
+  their number of device rows and the row spacing of ABB's data sheets.
+- **Enclosures of any maker:** parts of EPLAN's product group *Enclosure* are
+  enclosures of the panel layout, such as ABB's cabinets missing from the catalog;
+  enclosures of the EPLAN Data Portal get their size, enclosure system and a missing
+  mounting plate from their description (tested with Rittal VX25, TS 8, AX and KX).
+- **STEP models of CADENAS:** STEP files that give a part its solids through a further
+  representation, such as the CAD models of Rittal's enclosures, are assembled as
+  they are meant to be instead of each solid at its own origin.
+- **Accessories of the EPLAN Data Portal:** a part of the portal lists its accessories,
+  and its details show them with their description, maker and product group.
+- **Double doors:** an enclosure's door can have two leaves, each hinged at its outer
+  edge; the devices on the door open with their leaf in the 3D view and their wires run
+  over its hinge, a rail or duct over the joint (and a maker's door in one piece) cut
+  there. Each leaf is drilled as a sheet of its own: the drilling pattern, the
+  NC data and the CNC programs take it from its own corner, a straight cutout over the
+  joint is cut on both leaves, and the configuration for the enclosure maker lists the
+  leaves and the leaf of everything on the door. The ComfortLine A cabinets of
+  Striebel & John with three to five field widths and the univers cabinet FR25S2 of
+  Hager have theirs.
+- **Order of the navigator:** the rooms, enclosures and buildings of the navigator are
+  dragged to change their order; a bayed enclosure moves within its line-up (bayed
+  again) or with it, a room onto the level of the room it is dropped next to.
+- **Panels of meter cabinets as they are built:** a distribution panel such as the FV17
+  is a frame on brackets with its rails behind a plastic cover with a slot for each row,
+  the other panels of the field grid too; the cover can be taken off, also of all panels
+  of an enclosure or of the project at once (*Layout space › Show › Plastic covers off*).
+- **Joining frames in their openings:** the insulating frame CZ3 that joins two
+  Striebel & John cabinets goes only into the openings of their side walls made for it;
+  it is drawn with its flange and collar (a busbar connector with its busbars), and an
+  enclosure is attached at it from its context menu.
+- **Mounting plate from its model:** the part editor reads the separate model of an
+  enclosure's mounting plate (such as Rittal's `CAD_MPL` files) and gives the enclosure
+  a plate of its size, centred.
 - **Project templates with parameters:** *New project from template* lists the bundled
   templates beside those of the user, which *Save as project template…* now keeps in a
   templates folder shared with the command line (in the browser in the editor's

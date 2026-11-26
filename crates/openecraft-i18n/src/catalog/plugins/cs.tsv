@@ -39,6 +39,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Přidá přístroje šablony do segmentu
 Adds the outline of a machine, building or area to the plant layout	Přidá obrys stroje, budovy nebo oblasti do dispozice zařízení
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Přidá, nahradí nebo odebere profil: konektor s názvy sloupců, které používá jiný systém
+After it instead of before	Za ni místo před ni
 Air-termination rod: its name	Jímací tyč: její název
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Zarovná prvky, rovnoměrně je rozmístí, seřadí přístroje na liště nebo zkopíruje prvky do vzoru
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Zarovná symboly, texty a grafiku ke společné hraně nebo středu; připojené konce vodičů následují
@@ -66,6 +67,7 @@ Back-up protection up to this short-circuit current in kA (0: not given)	Zálož
 Bar id	ID přípojnice
 Bar thickness, mm (default 5)	Tloušťka přípojnice, mm (výchozí 5)
 Bar width, mm (default 20)	Šířka přípojnice, mm (výchozí 20)
+Bays an enclosure at the joining frame in a side wall of another one (such as the CZ3 of Striebel & John): to its right for a frame in the right wall, to its left for one in the left wall	Připojí skříň u spojovacího rámečku v boční stěně jiné skříně (např. CZ3 od Striebel & John): vpravo od ní u rámečku v pravé stěně, vlevo u rámečku v levé stěně
 Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Připojí skříň do řady vpravo od jiné (řazení do řady); bez right_of ji z řady vyjme
 Bend radius in drag chains as a multiple of the cable diameter	Poloměr ohybu v energetických řetězech jako násobek průměru kabelu
 Bend radius of a drag chain in mm	Poloměr ohybu energetického řetězu v mm
@@ -145,6 +147,7 @@ Corner points on the mounting plate in mm	Rohové body na montážní desce v mm
 Correction of the time estimate	Korekce odhadu času
 Cost of free air against ducts and routing paths	Cena volného vedení oproti kanálům a trasám vedení
 Counting step (default 1)	Krok čítání (výchozí 1)
+Covers fitted; false takes them off	Kryty nasazeny; false je sejme
 Creates a bus cable for the connection (without cable tag)	Vytvoří sběrnicový kabel pro spojení (bez označení kabelu)
 Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Vytvoří kabel typu sběrnice (typ, žíly, průřez) pro každé sběrnicové spojení bez kabelu
 Creates or changes a PCT loop of the pre-planning	Vytvoří nebo změní smyčku MaR předběžného návrhu
@@ -259,15 +262,20 @@ Enclosure (location, e.g. +CAB1) whose settings change	Skříň (umístění, na
 Enclosure climate and electrical sizing	Klima skříně a elektrické dimenzování
 Enclosure it stands right of; empty to take it out of its line-up	Skříň, vpravo od které stojí; prázdné pro vyjmutí z řady
 Enclosure name (all if missing)	Název skříně (všechny, pokud chybí)
+Enclosure or room it goes before or after	Skříň nebo místnost, před kterou nebo za kterou patří
 Enclosure part number	Číslo artiklu skříně
 Enclosure system (default: the enclosure's)	Systém skříní (výchozí: systém skříně)
 Enclosure the copies go to (location, e.g. +CAB2); the same one without	Skříň, do které kopie přijdou (umístění, např. +CAB2); bez zadání stejná
+Enclosure to attach; without it a new one like the enclosure with the frame	Připojovaná skříň; bez ní nová jako skříň s rámečkem
+Enclosure with the frame	Skříň s rámečkem
 Enclosure {} exists already	Skříň {} již existuje
+Enclosure; without it every enclosure	Skříň; bez ní každá skříň
 Enclosures, panel items, accessories and panel macros	Skříně, prvky rozváděče, příslušenství a makra rozváděče
 End brackets and end plates from the tech data of the terminal parts	Koncové držáky a koncové desky z technických údajů artiklů svorek
 End holes from the bar end as a multiple of the width	Koncové otvory od konce přípojnice jako násobek šířky
 End: device tag and connection point, e.g. -S1:14	Konec: označení přístroje a přípojný bod, např. -S1:14
 Face: plate, door, left, right, rear, roof or bottom	Plocha: plate, door, left, right, rear, roof nebo bottom
+Face: plate, door, left, right, rear, roof or bottom; door_left and door_right for the leaves of a double door	Plocha: plate, door, left, right, rear, roof nebo bottom; door_left a door_right pro křídla dvoukřídlých dveří
 Field plan: nodes, segments, outlines, routes, bonds and accessories	Plán pole: uzly, úseky, obrysy, trasy, pospojování a příslušenství
 Figure	Ukazatel
 Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Najde a nahradí text ve sloupci všech (filtrovaných) řádků; bez hledaného textu se sloupec vyplní náhradou
@@ -281,6 +289,7 @@ First counter value (default 1)	První hodnota čítače (výchozí 1)
 First page number (default 1)	Číslo první stránky (výchozí 1)
 First port as station:port, e.g. PLC1:X1 P2	První port jako stanice:port, např. PLC1:X1 P2
 First row with the column names	První řádek s názvy sloupců
+Fits the plastic covers of all panels of the field grid of an enclosure, or of every enclosure, or takes them all off	Nasadí plastové kryty všech polí mřížky polí skříně nebo každé skříně, nebo je všechny sejme
 Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Ploché střechy a pozemní pole: směr, kterým moduly hledí, ve stupních, proti směru hodinových ručiček při pohledu shora (0: směrem k +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formát názvu přístroje: {letter}, {n} (čítač), {page}, {column}, {row}; výchozí {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formát schématu format: {n} (čítač), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
@@ -359,6 +368,7 @@ Invalid answer of the plugin: {}	Neplatná odpověď pluginu: {}
 Invalid segment name: {}	Neplatný název segmentu: {}
 Invalid title block elements: {}	Neplatné prvky rohového razítka: {}
 Item id	ID prvku
+Item id of the frame	ID prvku rámečku
 Item ids	ID prvků
 Jumper number	Číslo propojky
 Jumper number (terminals with the same number are bridged); 0 removes it	Číslo propojky (svorky se stejným číslem jsou propojeny); 0 jej odebere
@@ -379,6 +389,7 @@ Landscape (true) or portrait (false)	Na šířku (true) nebo na výšku (false)
 Language the project texts are written in, e.g. en	Jazyk, ve kterém jsou texty projektu napsány, např. en
 Larger round holes are milled, mm	Větší kruhové otvory se frézují, mm
 Largest difference between hole and tool, mm	Největší rozdíl mezi otvorem a nástrojem, mm
+Leaves of a double door: their widths from the left, e.g. 275 + 525 (with left or right after a width for its hinge), or their number for leaves of equal width; empty or 1 for one leaf	Křídla dvoukřídlých dveří: jejich šířky zleva, např. 275 + 525 (s left nebo right za šířkou pro jeho závěs), nebo jejich počet pro stejně široká křídla; prázdné nebo 1 pro jedno křídlo
 Left edge from the left end of the wall (seen from inside) in mm	Levá hrana od levého konce stěny (při pohledu zevnitř) v mm
 Left edge in mm	Levý okraj v mm
 Left edge on the face in mm	Levý okraj na ploše v mm
@@ -440,6 +451,7 @@ Lists the terminations chosen for wire ends and the kinds there are	Vypíše zvo
 Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Vypíše rohová razítka (vestavěná i vlastní razítka projektu) s jejich prvky, výchozí razítko projektu a zástupné symboly
 Lists the translation dictionary of the project texts (source line and translations)	Vypíše překladový slovník textů projektu (zdrojový řádek a překlady)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Vypíše okenní makra umístěná na stránkách (rámečky maker) s makrem, variantou, hodnotami zástupných symbolů a počtem prvků
+Lists where an accessory part fits in an enclosure: the free fields of a meter or distribution cabinet (part data Fields and Rows), the free openings of its side walls for a frame that joins enclosures (part data Opening and Side openings), the faces of the enclosure it is an accessory of, the devices whose part it fits	Vypíše, kam se díl příslušenství hodí ve skříni: volná pole elektroměrové nebo rozváděčové skříně (data dílu Fields a Rows), volné otvory v jeho bočních stěnách pro rámeček spojující skříně (data dílu Opening a Side openings), strany skříně, jejímž je příslušenstvím, přístroje, k jejichž dílu se hodí
 Load losses of the transformer in W (0: typical)	Ztráty nakrátko transformátoru ve W (0: typické)
 Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Spotřebiče sítě, zatížení každého ochranného přístroje, odběr se součinitelem soudobosti, symetrie fází a bilance zatížení napájecích zdrojů
 Loads the potential definitions of a standard (replaces those of the same name)	Načte definice potenciálů podle normy (nahradí stejnojmenné)
@@ -484,6 +496,7 @@ Mounting plate size as width and height; empty object restores the centred plate
 Mounting size must contain a positive width and height	Montážní velikost musí obsahovat kladnou šířku a výšku
 Moves a control point of the route of a wire, cable or tube; the routing reports an error where the route cannot be led through it	Přesune průchozí bod trasy vodiče, kabelu nebo trubky; vedení hlásí chybu, kde jím trasa nemůže vést
 Moves an air-termination rod, changes its height, renames or removes it	Přesune jímací tyč, změní její výšku, přejmenuje ji nebo odstraní
+Moves an enclosure or a room in the order of the tree of enclosures and rooms: before or after another one (a bayed enclosure within its line-up, bayed again, or with its line-up; a room among the rooms, onto the level of the other one)	Přesune skříň nebo místnost v pořadí stromu skříní a místností: před jinou nebo za ni (skříň v řadě v rámci své řady, znovu seřazenou, nebo s celou řadou; místnost mezi místnostmi, na podlaží té druhé)
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Přesune jeden konec vodiče: odpojí se od toho, k čemu je připojen, a připojí se k tomu, na co narazí; vodič zůstane pravoúhlý
 Moves symbols, wires and texts; connected wire ends follow	Přesune symboly, vodiče a texty; připojené konce vodičů se posunou s nimi
 Moves the page before this page of its section (or of the section given)	Přesune stránku před tuto stránku jejího oddílu (nebo zadaného oddílu)
@@ -625,6 +638,7 @@ Page {} is out in subproject {}: insert or discard the subproject first	Stránka
 Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Stránky s příponou (3.a) zůstanou podstránkami předchozí stránky (výchozí true)
 Panel layout checks	Kontroly rozvržení rozváděče
 Panel manufacturing	Výroba rozváděčů
+Panel of a field grid: with its plastic cover (false: taken off)	Pole rastru polí: s plastovým krytem (false: sejmutý)
 Paper height in mm (custom paper)	Výška papíru v mm (vlastní formát)
 Paper width in mm (custom paper)	Šířka papíru v mm (vlastní formát)
 Part lifecycle	Životní cyklus artiklu
@@ -971,6 +985,7 @@ Unknown class: {}	Neznámá třída: {}
 Unknown data type: {}	Neznámý datový typ: {}
 Unknown direction {}: left, right, up or down	Neznámý směr {}: left, right, up nebo down
 Unknown door hinge: {}	Neznámá strana závěsů: {}
+Unknown door leaves: {}	Neznámá křídla dveří: {}
 Unknown earth electrode: {}	Neznámý zemnič: {}
 Unknown earthing system: {}	Neznámá soustava uzemnění: {}
 Unknown face {}	Neznámá plocha {}

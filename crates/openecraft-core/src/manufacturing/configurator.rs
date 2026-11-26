@@ -4,11 +4,15 @@
 //! enclosure, and the smallest standard size of a system the layout fits into.
 //!
 //! Positions in the files are millimetres from the bottom left corner of the face,
-//! y up (like the NC lists), centres of holes, cutouts and accessories.
+//! y up (like the NC lists), centres of holes, cutouts and accessories. A door of
+//! several leaves is listed in `door_leaves` (key, left edge, width and hinge of each
+//! leaf); what is on the door names its leaf (`leaf`) and its place across that leaf
+//! (`leaf_x`), its machining is that of each leaf (a straight cutout over the joint
+//! cut on both).
 
 use crate::model::Project;
-use crate::panel::{self, Enclosure, Face, ItemKind, PanelItem, PLATE_MARGIN, PLATE_THICKNESS, PLATE_Z, SYSTEMS};
-use crate::production::{holes_on, openings};
+use crate::panel::{self, doors, Enclosure, Face, ItemKind, PanelItem, Sheet, PLATE_MARGIN, PLATE_THICKNESS, PLATE_Z, SYSTEMS};
+use crate::production::{sheet_from_key, sheet_holes, sheet_openings, sheets};
 use openecraft_i18n::{tr, tr_fmt};
 use serde_json::{json, Map, Value};
 
@@ -21,21 +25,46 @@ pub fn export(prj: &Project, enc: usize) -> Value {
     let components: Vec<Value> = panel::components(e).into_iter().filter(|c| !c.part.is_empty()).map(|c| json!({ "role": c.role.title(), "part": c.part, "count": c.count })).collect();
     let mut accessories = Vec::new();
     let mut machining = Vec::new();
+    let leaves = doors::leaves(e);
+    // The leaf of a place on the door across the front: its key and the place across it.
+    let leaf = |v: &mut Value, face: Face, x: f32| {
+        if face == Face::Door && leaves.len() > 1 {
+            let i = doors::leaf_index(e, x);
+            v["leaf"] = json!(Sheet { face, leaf: Some(i) }.key(e));
+            v["leaf_x"] = json!(r(x - leaves[i].x));
+        }
+    };
     for face in Face::ALL {
         let (_, fh) = e.face_size(face);
         for it in e.items.iter().filter(|i| i.face == face && i.kind == ItemKind::Accessory) {
             let c = it.center();
-            accessories.push(json!({ "part": it.part, "face": face.key(), "x": r(c.x), "y": r(fh - c.y), "w": r(it.w), "h": r(it.h) }));
+            let mut v = json!({ "part": it.part, "face": face.key(), "x": r(c.x), "y": r(fh - c.y), "w": r(it.w), "h": r(it.h) });
+            leaf(&mut v, face, c.x);
+            accessories.push(v);
         }
-        for h in holes_on(e, &prj.parts, face) {
-            machining.push(json!({ "face": face.key(), "kind": "hole", "x": r(h.pos.x), "y": r(fh - h.pos.y), "diameter": r(h.diameter), "thread": h.thread, "fastening": h.fastening.key() }));
+    }
+    for s in sheets(e) {
+        let (_, fh) = s.size(e);
+        // Back to places across the face.
+        let x0 = s.leaf.map(|i| leaves[i].x).unwrap_or(0.0);
+        let mut put = |mut v: Value, x: f32| {
+            v["face"] = json!(s.face.key());
+            v["x"] = json!(r(x0 + x));
+            if s.leaf.is_some() {
+                v["leaf"] = json!(s.key(e));
+                v["leaf_x"] = json!(r(x));
+            }
+            machining.push(v);
+        };
+        for h in sheet_holes(e, &prj.parts, s) {
+            put(json!({ "kind": "hole", "y": r(fh - h.pos.y), "diameter": r(h.diameter), "thread": h.thread, "fastening": h.fastening.key() }), h.pos.x);
         }
-        for o in openings(e, &prj.parts, face) {
-            let (x, y) = (r(o.center.x), r(fh - o.center.y));
-            machining.push(if o.round {
-                json!({ "face": face.key(), "kind": "cutout", "x": x, "y": y, "diameter": r(o.w) })
+        for o in sheet_openings(e, &prj.parts, s) {
+            let y = r(fh - o.center.y);
+            let v = if o.round {
+                json!({ "kind": "cutout", "y": y, "diameter": r(o.w) })
             } else {
-                let mut c = json!({ "face": face.key(), "kind": "cutout", "x": x, "y": y, "w": r(o.w), "h": r(o.h) });
+                let mut c = json!({ "kind": "cutout", "y": y, "w": r(o.w), "h": r(o.h) });
                 if o.angle != 0.0 {
                     c["angle"] = json!(r(o.angle));
                 }
@@ -43,9 +72,15 @@ pub fn export(prj: &Project, enc: usize) -> Value {
                     c["radius"] = json!(r(o.radius));
                 }
                 c
-            });
+            };
+            put(v, o.center.x);
         }
     }
+    let door_leaves: Vec<Value> = if leaves.len() > 1 {
+        leaves.iter().enumerate().map(|(i, l)| json!({ "key": Sheet { face: Face::Door, leaf: Some(i) }.key(e), "x": r(l.x), "width": r(l.w), "hinge": l.hinge.key() })).collect()
+    } else {
+        Vec::new()
+    };
     json!({
         "format": FORMAT,
         "project": prj.info.name,
@@ -57,6 +92,7 @@ pub fn export(prj: &Project, enc: usize) -> Value {
         "left_open": e.build.left_open,
         "right_open": e.build.right_open,
         "gland_plate": e.build.gland_plate,
+        "door_leaves": door_leaves,
         "components": components,
         "accessories": accessories,
         "machining": machining,
@@ -86,11 +122,12 @@ fn text<'a>(o: &'a Map<String, Value>, keys: &[&str]) -> Option<&'a str> {
     get(o, keys).and_then(Value::as_str)
 }
 
-/// Imports a configured enclosure: system, size, components, accessories and cutouts.
-/// An enclosure of the same name is updated (its accessories and cutouts are kept,
-/// those of the configuration are added unless one of the same part sits at the same
-/// place), otherwise a new one is added. Keys are the ones of [`export`]; also
-/// `name`, `article` / `article_number` and `width` / `height` / `depth`.
+/// Imports a configured enclosure: system, size, door leaves, components, accessories
+/// and cutouts. An enclosure of the same name is updated (its accessories and cutouts are
+/// kept, those of the configuration are added unless one of the same part sits at the
+/// same place), otherwise a new one is added. Keys are the ones of [`export`]; also
+/// `name`, `article` / `article_number`, `width` / `height` / `depth`, `door_leaves` as
+/// a text (`275 + 525`) and a place on a leaf by `leaf` and `leaf_x` alone.
 pub fn import(prj: &mut Project, text_in: &str) -> Result<Imported, String> {
     let v: Value = serde_json::from_str(text_in).map_err(|e| tr_fmt!("Invalid configuration: {}", e))?;
     let o = v.as_object().ok_or_else(|| tr("The configuration is not a JSON object").to_string())?;
@@ -118,6 +155,7 @@ pub fn import(prj: &mut Project, text_in: &str) -> Result<Imported, String> {
     };
     {
         let e = &mut prj.layout.enclosures[ei];
+        let old_width = e.width;
         if let Some(system) = text(o, &["system"]).map(str::trim).filter(|s| !s.is_empty()) {
             if SYSTEMS.iter().all(|s| s.id() != system) {
                 return Err(tr_fmt!("Unknown enclosure system: {}", system));
@@ -144,13 +182,29 @@ pub fn import(prj: &mut Project, text_in: &str) -> Result<Imported, String> {
         }
         panel::sync_part(e);
         panel::apply_anchors(e);
+        doors::fit_width(e, old_width);
+        match get(o, &["door_leaves"]) {
+            Some(Value::String(s)) => {
+                if !doors::set(e, s) {
+                    out.skipped.push(s.clone());
+                }
+            }
+            Some(Value::Array(list)) => {
+                // Widths from the left with their hinges.
+                let text: Vec<String> = list.iter().filter_map(Value::as_object).filter_map(|l| number(l, &["width", "w"]).map(|w| format!("{w} {}", text(l, &["hinge"]).unwrap_or_default()))).collect();
+                if !doors::set(e, &text.join(" + ")) {
+                    out.skipped.push(format!("{list:?}"));
+                }
+            }
+            _ => {}
+        }
     }
     let list = |key: &str| get(o, &[key]).and_then(Value::as_array).cloned().unwrap_or_default();
     for a in list("accessories") {
         let Some(a) = a.as_object() else { continue };
         let part = text(a, &["part", "article", "article_number"]).unwrap_or_default().to_string();
         let face = text(a, &["face"]).and_then(Face::from_key).unwrap_or(Face::Plate);
-        let (Some(x), Some(y)) = (number(a, &["x"]), number(a, &["y"])) else {
+        let (Some(x), Some(y)) = (across(&prj.layout.enclosures[ei], a), number(a, &["y"])) else {
             out.skipped.push(part);
             continue;
         };
@@ -169,7 +223,7 @@ pub fn import(prj: &mut Project, text_in: &str) -> Result<Imported, String> {
             continue;
         }
         let face = text(c, &["face"]).and_then(Face::from_key).unwrap_or(Face::Plate);
-        let (Some(x), Some(y)) = (number(c, &["x"]), number(c, &["y"])) else {
+        let (Some(x), Some(y)) = (across(&prj.layout.enclosures[ei], c), number(c, &["y"])) else {
             out.skipped.push(format!("{c:?}"));
             continue;
         };
@@ -188,6 +242,15 @@ pub fn import(prj: &mut Project, text_in: &str) -> Result<Imported, String> {
         }
     }
     Ok(out)
+}
+
+/// The place of an entry across its face: `x`, otherwise `leaf_x` on the leaf `leaf`.
+fn across(e: &Enclosure, o: &Map<String, Value>) -> Option<f32> {
+    if let Some(x) = number(o, &["x"]) {
+        return Some(x);
+    }
+    let s = text(o, &["leaf"]).and_then(|k| sheet_from_key(e, k)).filter(|s| s.leaf.is_some())?;
+    Some(doors::leaves(e)[s.leaf?].x + number(o, &["leaf_x"])?)
 }
 
 /// Adds an item centred at (x, y) from the bottom left of its face, unless one of the

@@ -23,6 +23,7 @@ A device tag must not be empty	Cihaz etiketi boş olamaz
 A pipe run turns at right angles	Bir boru güzergâhı dik açıyla döner
 A plot boundary has at least three corners	Bir arsa sınırının en az üç köşesi vardır
 A port cannot be connected to itself	Bir port kendisine bağlanamaz
+A room goes before or after another room	Bir oda yalnızca başka bir odanın önüne veya arkasına taşınabilir
 A room needs at least four walls	Bir oda en az dört duvar gerektirir
 A section number consists of letters and digits and does not start with 0	Bölüm numarası harf ve rakamlardan oluşur ve 0 ile başlamaz
 A section number must not be empty or contain a dot	Bölüm numarası boş olamaz ve nokta içeremez
@@ -431,6 +432,8 @@ Does not match	Eşleşmiyor
 Door (front view)	Kapı (ön görünüm)
 Door and walls	Kapı ve duvarlar
 Door handle and document holder	Kapı kolu ve şema cebi
+Door leaf {}	Kapı kanadı {}
+Door leaf {} (front view)	Kapı kanadı {} (ön görünüm)
 Double socket outlet with PE	Topraklı çift priz
 Downstream	Alt kademe
 Drag chain	Enerji zinciri
@@ -793,6 +796,8 @@ Latitude is within ±90° and longitude within ±180°	Enlem ±90° ve boylam ±
 Lead time (days)	Teslim süresi (gün)
 Leakage current	Kaçak akım
 Leakage line	Kaçak hattı
+Left door leaf	Sol kapı kanadı
+Left door leaf (front view)	Sol kapı kanadı (ön görünüm)
 Left side panel	Sol yan panel
 Legend plate text	Etiket metni
 Length (m)	Uzunluk (m)
@@ -1033,6 +1038,7 @@ Oil resistant	Yağa dayanıklı
 One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	+24V / 0V potansiyelleri, butonlar, bir seçici anahtar, lambalar ve bir sigorta içeren tek şema sayfası; parçalar ve malzeme listesi.
 One schematic page, the potentials of IEC 60204-1	Tek şema sayfası, IEC 60204-1 potansiyelleri
 One-way flow control valve	Tek yönlü akış kontrol valfi
+Only another enclosure can be bayed there	Oraya yalnızca başka bir pano eklenebilir
 Only revisions that are not released can be submitted	Yalnızca yayımlanmamış revizyonlar gönderilebilir
 Only symbols of the symbol library can be scaled	Yalnızca sembol kitaplığındaki semboller ölçeklenebilir
 Only {}	Yalnızca {}
@@ -1387,6 +1393,8 @@ Revision table: author of the last revision (2: the one before …)	Revizyon tab
 Revision table: date of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun tarihi (2: bir öncekinin …)
 Revision table: description of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun açıklaması (2: bir öncekinin …)
 Revision table: index of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun indeksi (2: bir öncekinin …)
+Right door leaf	Sağ kapı kanadı
+Right door leaf (front view)	Sağ kapı kanadı (ön görünüm)
 Right side panel	Sağ yan panel
 Ring earth electrode	Halka topraklama
 Ring terminal	Halka kablo pabucu
@@ -1664,6 +1672,7 @@ The folder {} holds files that belong to no project ({}): a split project needs 
 The formula ends too early	Formül çok erken bitiyor
 The function definition needs a key and a name	Fonksiyon tanımı için bir anahtar ve ad gerekli
 The index of the project names no file layout: it was not written by OpenECraft	Projenin dizini bir dosya düzeni belirtmiyor: OpenECraft tarafından yazılmamış
+The item is no frame in an opening of a side wall	Öğe, bir yan duvar açıklığındaki bir çerçeve değil
 The last page cannot be deleted	Son sayfa silinemez
 The macro box has no items left	Makro kutusunda hiç öğe kalmadı
 The next free id is already in use	Sonraki boş kimlik zaten kullanımda
@@ -1830,7 +1839,6 @@ Voltage range	Gerilim aralığı
 Voltage type	Gerilim türü
 Voltmeter	Voltmetre
 Voltmeter, differential	Voltmetre, diferansiyel
-Wall	Duvar
 Wall {}	Duvar {}
 Wall {} is not at a right angle	Duvar {} dik açıda değil
 Wall {} is shorter than {} mm	Duvar {}, {} mm'den kısa
@@ -2155,6 +2163,7 @@ yellow	sarı
 {}: terminals {} are {} mm above the floor, at least {} mm required	{0}: {1} klemensleri zeminden {2} mm yukarıda, en az {3} mm gerekli
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: {} baralı bara sistemi {} iletkeni birleştiriyor ({}): kısa devre
 {}: the busbar {} of earth electrode {} does not exist	{0}: topraklama elektrodu {2} için {1} barası yok
+{}: the cutout for {} reaches over the joint between the door leaves and is cut by hand	{}: {} için kesim kapı kanatları arasındaki ek yerinin üzerine taşıyor ve elle yapılır
 {}: the device {} of PV array {} does not exist	{0}: PV dizisi {2} için {1} cihazı mevcut değil
 {}: the earthing busbar {} of PV array {} does not exist	{0}: PV dizisi {2} için topraklama barası {1} yok
 {}: the freestanding PV array {} stands on {}	{}: arazi tipi PV dizisi {}, {} üzerinde duruyor
@@ -2205,6 +2214,7 @@ yellow	sarı
 {}: {} overhangs the end of its mounting rail	{}: {} montaj rayının ucundan taşıyor
 {}: {} pins used, the plug parts have {}	{}: {} pin kullanılıyor, fiş parçalarında {} pin var
 {}: {} reaches about {} °C at its place, allowed {} °C	{0}: {1} bulunduğu yerde yaklaşık {2} °C'ye ulaşıyor, izin verilen {3} °C
+{}: {} reaches over the joint between the door leaves	{}: {} kapı kanatları arasındaki ek yerinin üzerine taşıyor
 {}: {} reaches {} of the {} bars of its busbar system	{}: {}, bara sisteminin baralarından {} tanesine ulaşıyor (toplam {})
 {}: {} solenoid coils linked, the valve has {}	{}: {} solenoid bobini ilişkilendirilmiş, valfte {} var
 {}: {} stands in an inner wall	{}: {} bir iç duvarın içinde duruyor

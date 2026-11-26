@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	最上階の上の階
 A local file opens locally, a server project is opened on the project server again	ローカルファイルはローカルで開き、サーバープロジェクトはプロジェクトサーバーで再度開きます
 A local file or a project on the project server	ローカルファイルまたはプロジェクトサーバー上のプロジェクト
+A new enclosure of the same part, bayed at this frame	同じ部品の新しい筐体をこのフレームに連結します
+A new enclosure standing in this room	この部屋に置く新しいエンクロージャー
 A new project	新しいプロジェクト
 A new release is downloaded in the background and installed when you close OpenECraft.	新しいリリースはバックグラウンドでダウンロードされ、OpenECraft を閉じるとインストールされます。
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	新しいリリースはバックグラウンドでダウンロードされ、このインストールを置き換えます。次回の起動から使われます。
@@ -178,10 +180,13 @@ Assign to existing device	既存のデバイスに割り当て
 Assign to harness	ハーネスに割り当て
 Assign wires: select them in the schematic › Assign to cable.	電線の割り当て: 回路図で電線を選択 › ケーブルに割り当て。
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	系統に接続された誘導電動機が最大短絡電流を増加させます (IEC 60909-0)
+At least, mm (0: any)	最小、mm（0：任意）
+At most, mm (0: any)	最大、mm（0：任意）
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	最高周囲温度時。ヒーターが露点を維持します。0 = 考慮しない
 At the origin	原点に
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	受電点: Ik3 max {} kA、Ik1 min {} kA
 At the top level	最上位
+Attach an enclosure here	ここに筐体を連結
 Author	作成者
 Auto-connect	自動接続
 Auto-connect selection	選択範囲を自動接続
@@ -613,6 +618,7 @@ Door cutouts (CSV)	扉の切り欠き (CSV)
 Door hinge	扉のヒンジ
 Door: {} devices, {} cutouts	扉: デバイス {} 個、切り欠き {} 個
 Dot	点
+Double door	両開き
 Double-click	ダブルクリック
 Down conductors	引下げ導線
 Download into database	データベースにダウンロード
@@ -658,9 +664,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	穴あけリスト (CSV)
 Drilling list of this face (CSV)	この面の穴あけリスト (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	表示中の面の穴あけパターンを DXF、DWG、CSV で
+Drop an enclosure here to add it; onto a room to put it in there	ここにエンクロージャーをドロップして追加、部屋の上にドロップしてその部屋に配置
 Drop between the pages	ページの間にドロップ
 Drop between the rows or onto a section	行の間またはセクションの上にドロップ
+Drop between two buildings to move it there	2 つの建物の間にドロップするとそこへ移動します
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	2 つの行の間にドロップするとエンクロージャーをそこへ移動します。連結されたものは列盤内で、または列盤ごと移動します
+Drop between two rows to move the room there, onto a level to put it on that level	2 つの行の間にドロップすると部屋をそこへ移動し、フロアにドロップするとそのフロアに置きます
 Drop onto a level to put the room on it	フロアにドロップすると部屋をそのフロアに置きます
+Drop {} here	{} をここにドロップ
+Drop {} onto one of the highlighted places	{} を強調表示された場所のいずれかにドロップ
+Drop {} onto {} to add it to the device	{0} を {1} にドロップしてデバイスに追加
 Duct fill	ダクト充填率
 Duct fill limit	ダクト充填率の上限
 Duplicate	複製
@@ -695,6 +708,8 @@ Embed as document page	ドキュメントページとして埋め込む
 Embeds a file (PDF, Word, Excel, image …) as a page	ファイル (PDF、Word、Excel、画像 …) をページとして埋め込みます
 Embeds the file in the project (replaces the current one)	ファイルをプロジェクトに埋め込みます (現在のファイルを置き換えます)
 Enclosure system	エンクロージャーシステム
+Enclosure {} added	エンクロージャー {} を追加しました
+Enclosure {} added in room {}	部屋 {1} にエンクロージャー {0} を追加しました
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	ノードのエンクロージャー (+CAB1)、デバイス (-M1)、機械の取付場所 (+M1)
 Enclosures and rooms	筐体と部屋
 Enclosures, devices to place and placed devices	筐体、配置するデバイスと配置済みのデバイス
@@ -749,7 +764,10 @@ Field	フィールド
 Field (name, description, company, creator, date, revision) or project property	フィールド (name、description、company、creator、date、revision) またはプロジェクトプロパティ
 Field cables	フィールドケーブル
 Field length	フィールド長
+Field widths and rows of meter and distribution cabinets	メーター盤と分電盤の列幅と段数
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	フィールド。部品の技術データは tech:<name>、プロジェクトプロパティは prop:<name>
+Fields	列
+Fields / rows	列 / 段
 File format version {}. Files of older versions are converted when they are opened.	ファイル形式のバージョン {}。旧バージョンのファイルは開くときに変換されます。
 File name	ファイル名
 File of another system (connector)	他のシステムのファイル (コネクター)
@@ -771,10 +789,13 @@ Finish a wire, polyline, polygon or wall	配線、ポリライン、多角形、
 Finish or cancel the drawing, then back to selecting	描画を終了またはキャンセルし、選択に戻る
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	プロジェクトサーバーから開いたプロジェクトの完了した変更は、自動的にサーバーに保存されます。入力中の内容は完了後に保存されます。ロックは保持されます。保存 (Ctrl+S) は引き続きただちに保存します。
 First row	最初の行
+Fit all plastic covers	すべての樹脂カバーを取り付ける
 Fit page	ページに合わせる
 Fits {}	{} に適合
+Fitted	取付済み
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	縦横比を保って四角形に収めます（PNG、JPEG）
 Float	フロート
+Floor	底板
 Floor plan with {} walls	壁 {} 面の平面図
 Floor-standing part	床置き部品
 Fluid and process	流体とプロセス
@@ -1036,6 +1057,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	最初の列で繰り返される値を空白にする
 Left button	左ボタン
 Left edges	左端
+Left leaf	左扉
 Legend plates (door devices)	銘板 (扉取付機器)
 Length from the node to the device	ノードからデバイスまでの長さ
 Length inside an enclosure	エンクロージャー内の長さ
@@ -1130,6 +1152,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	測定値
 Measures against common cause failure (at least 65 points)	共通原因故障に対する対策 (65 ポイント以上)
 Merge a symbol library file	シンボルライブラリファイルをマージ
+Merged with the parts already known: {}	既知の部品と統合: {}
 Message	メッセージ
 Messages	メッセージ
 Messages ({})	メッセージ ({})
@@ -1207,6 +1230,9 @@ New cover sheet	新しい表紙
 New document page…	新しいドキュメントページ…
 New empty	新規 (空)
 New enclosure	新しいエンクロージャー
+New enclosure in this room…	この部屋に新しいエンクロージャー…
+New enclosure like this one	これと同じ新しい筐体
+New enclosure…	新しいエンクロージャー…
 New graphics page	新しい図形ページ
 New harness	新しいハーネス
 New items go onto this layer	新しいアイテムはこのレイヤーに配置されます
@@ -1267,6 +1293,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	エンクロージャーがまだありません – 「新しいエンクロージャー」で作成するか、「新しい部屋」でキャビネット用の部屋を作成します。
 No field cables: place the enclosures and field devices at nodes of the route network.	フィールドケーブルがありません。エンクロージャーとフィールドデバイスをルートネットワークのノードに配置してください。
 No filter fans: an air/air heat exchanger or a cooling unit	フィルターファンなし: 空気/空気熱交換器またはクーラー
+No free place is left for {} in this enclosure	このエンクロージャーには {} を置く空き場所がもうありません
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	野立てPVアレイはまだありません。敷地上の打込み杭に傾斜した架台を列に並べます。
 No gesture	ジェスチャーなし
 No harnesses defined.	ハーネスが定義されていません。
@@ -1343,6 +1370,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	タッチスクリーンで有効です。トラックパッドの 3 本指の操作はシステムが使います。
 On startup	起動時
 On the roof, joined to the air-termination conductors; move it to its place	屋根の上で受雷導体に接続されます。位置まで移動してください
+One leaf	片開き
 One row per label	ラベルごとに 1 行
 Only devices on the current page	現在のページのデバイスのみ
 Only frames no page uses can be deleted	削除できるのはどのページでも使用されていない図枠のみです
@@ -1540,6 +1568,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	プラントレイアウト
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	プラントレイアウト、ルートネットワーク、フィールドケーブル計画、等電位ボンディング、ケーブル付属品
 Plant segments with planned devices before the schematic	回路図作成前の、計画済みデバイスを含むプラントセグメント
+Plastic cover	樹脂カバー
+Plastic covers off	樹脂カバーを外す
 Plate outline, holes per diameter, cutouts	板の外形、直径ごとの穴、切り欠き
 Plot boundary	敷地境界
 Plot boundary drawn: {} m²	敷地境界を描きました：{} m²
@@ -1792,6 +1822,7 @@ Row	行
 Row distance	列間隔
 Row drawing	行図形
 Row labels	行ラベル
+Rows	段
 Rows of tables behind each other	前後に並ぶ架台の列
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	施設内にあるものの手前に、杭の上の傾斜した架台を前向きに列に並べます。所定の位置へ移動してください
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	リリース済みのページ上の行は変更できません。テキスト内の改行は \\n と記述します。
@@ -1870,7 +1901,9 @@ Scrolling zooms, also where it pans	スクロールでズーム（パンする�
 Search (* and ? as placeholders)…	検索 (* と ? はワイルドカード)…
 Search below this folder	このフォルダーの下を検索
 Search number, description, maker	番号、説明、メーカーを検索
+Search the enclosures of the parts database and the catalogs for a new one	部品データベースとカタログから新しいエンクロージャーを検索
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	カタログ、製品グループ、技術データで部品サーバーを検索し、部品を追加して、データベースの更新を確認します
+Search…	検索…
 Second channel	第 2 チャンネル
 Seconds from a change to its automatic save (10 to 600)	変更から自動保存までの秒数 (10 ～ 600)
 Section properties	セクションのプロパティ
@@ -2068,6 +2101,8 @@ Tablet mode	タブレットモード
 Tag	タグ
 Tag field	タグフィールド
 Tag placed by hand	手動で配置したタグ
+Take off all plastic covers	すべての樹脂カバーを取り外す
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	すべての筐体のフィールドグリッドの全パネルの樹脂カバーを外します。フレーム、レール、その奥の配線が見えます。もう一度押すとすべて取り付けます
 Take out a subproject	サブプロジェクトを切り出し
 Take out of the building	建物から外す
 Take out {} pages…	{} ページを切り出し…
@@ -2143,6 +2178,9 @@ The page name gets the section number	ページ名にセクション番号が付
 The page type, plot frame, title block, structure, description and the whole content are saved.	ページタイプ、図枠、表題欄、構造、説明、すべての内容が保存されます。
 The pages it generated stay	生成されたページは残ります
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	部品データベースはすべてのプロジェクトで共有されます。部品はデバイスに割り当てられたときにプロジェクトにコピーされます。
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	パネルの樹脂カバー。外すとフレーム、レール、その奥の配線が見えます
+The plastic covers of all panels of the field grid of this enclosure	この筐体のフィールドグリッドの全パネルの樹脂カバー
+The plastic covers of all panels of the field grids of every enclosure	すべての筐体のフィールドグリッドの全パネルの樹脂カバー
 The point's coordinates in the coordinate reference system	座標参照系での点の座標
 The post; its accessories are the table beams, rails and clamps	杭。付属品は架台の梁、レール、クランプです
 The project changed since the search.	検索後にプロジェクトが変更されました。
@@ -2210,6 +2248,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3D ビューをその点に向ける
 Twin ferrules where two wires share a connection point	2本の電線が接続ポイントを共有する場合はツインフェルール
 Two fingers	2 本指
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	2 枚の扉板、それぞれ外側の端にヒンジ。扉上の機器は中心の下にある扉板と一緒に動きます
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	ここで2本の接続線が直角に交わる必要があります。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	点を入力して Enter キーを押します: x y (mm)、または最後の点からの相対位置 @dx dy。現在のツールでのクリックと同じように動作します
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V、I {} A、{} kWp
@@ -2302,6 +2341,7 @@ Whole words	単語単位
 Width / going	幅 / 踏面
 Width / height (mm)	幅 / 高さ (mm)
 Width factor	幅係数
+Width of the left leaf; the right one takes the rest of the front	左扉の幅。右扉が前面の残りを占めます
 Width of the letters to their usual width (0.8: narrow lettering)	通常の幅に対する文字の幅（0.8：細い文字）
 Width × depth	幅 × 奥行
 Width × height	幅 × 高さ
@@ -2370,6 +2410,7 @@ all, or e.g. -X*, -W1	すべて、または例: -X*、-W1
 all, or e.g. K, Q	すべて、または K, Q など
 along z	z 方向
 always	常に
+any	任意
 both ends	両端
 built-in	組み込み
 by hand	手動
@@ -2482,9 +2523,12 @@ x y	x y
 {} Vault items found for the project parts	プロジェクト部品の Vault アイテムが {} 件見つかりました
 {} Vault items found: review the changes in the integration window	Vault アイテムが {} 件見つかりました: 統合ウィンドウで変更を確認してください
 {} added to building {}	{0} を建物 {1} に追加しました
+{} added to device {}	{0} をデバイス {1} に追加しました
 {} addresses changed	{} 個のアドレスを変更しました
 {} air-termination rods	突針 {} 本
 {} already exists on the project server.	{} はプロジェクトサーバーに既に存在します。
+{} attached to {}	{} を {} に連結しました
+{} bundles, {} branch points	束 {} 個、分岐点 {} 個
 {} bundles, {} branch points, {} cable ties	束 {} 個、分岐点 {} 個、結束バンド {} 本
 {} bus cables created	{} 本のバスケーブルを作成しました
 {} bus connections	{} 件のバス接続
@@ -2532,17 +2576,22 @@ x y	x y
 {} example catalog parts refreshed	{} 個のサンプルカタログ部品を更新しました
 {} favorites added	お気に入りを {} 件追加しました
 {} field wiring problems (see Check)	フィールド配線の問題が {} 件あります (チェックを参照)
+{} fits neither this enclosure nor a device in it	{} はこのエンクロージャーにも中のデバイスにも適合しません
+{} fits on another face of this enclosure: {}	{0} はこのエンクロージャーの別の面に適合します: {1}
 {} found	{} 件見つかりました
 {} function texts copied	機能テキストを {} 件コピーしました
 {} generated pages in the project (changes on them are replaced)	プロジェクト内の生成されたページ {} 件 (ページ上の変更は置き換えられます)
 {} grants on the project	プロジェクトに対する付与 {} 件
 {} has no function with a symbol; assign it to a device in its properties	{} にはシンボル付きの機能がありません。デバイスのプロパティでデバイスに割り当ててください
 {} has unsaved changes. Discard them?	{} には未保存の変更があります。破棄しますか?
+{} imported into the parts database and added as enclosure {}	{0} を部品データベースにインポートし、エンクロージャー {1} として追加しました
 {} imported into the parts database and placed as {}	{} を部品データベースにインポートし、{} として配置しました
 {} in {}	{1} 内の {0}
 {} is in the schematic: cable {} from {}	{} は回路図にあります：ケーブル {}、接続元 {}
 {} is neither in the parts database nor on the parts server	{} は部品データベースにも部品サーバーにもありません
+{} is not an enclosure: only enclosures can be dropped here	{} はエンクロージャーではありません。ここにはエンクロージャーのみドロップできます
 {} is not in the disk image	ディスクイメージに {} がありません
+{} is not in the parts database yet: import it, then drag it here	{} はまだ部品データベースにありません。インポートしてからここにドラッグしてください
 {} is not made for wall mounting: place it on a mounting rail	{} は壁取付用ではありません: 取付レールに配置してください
 {} is used by: {}	{} は次で使用されています: {}
 {} items copied	{} 個のアイテムをコピーしました
@@ -2554,13 +2603,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} m：東へ {} m、北へ {} m、北から {}°
 {} macro boxes updated	{} 個のマクロボックスを更新しました
 {} markers	{} 個のマーカー
-{} mm	{} mm
 {} mm (cut {} mm)	{} mm (切断 {} mm)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	板上 {} mm + 余長 {} mm。残りは接続ポイントから板までの距離です。
 {} mm, now {} mm	{} mm、現在 {} mm
 {} mm, removed	{} mm、削除
 {} modules	{} 枚のモジュール
 {} modules, {} kWp	{} 枚のモジュール、{} kWp
+{} moved	{} を移動しました
 {} new texts in the dictionary	辞書に {} 件の新しいテキスト
 {} notes	{} 件の注記
 {} objects pasted	{} 個のオブジェクトを貼り付けました
@@ -2568,6 +2617,7 @@ x y	x y
 {} objects, {} pages	オブジェクト {} 個、ページ {} 個
 {} of {} approvals	{} / {} 件の承認
 {} of {} connections numbered	{} / {} 件の接続に番号を付けました
+{} of {} enclosures	{1} 個中 {0} 個のエンクロージャー
 {} of {} entries shown: search to narrow the list	{} / {} 件のエントリを表示中: 検索して一覧を絞り込んでください
 {} of {} items	{} / {} 個のアイテム
 {} of {} pages locked	{} / {} ページをロック済み
@@ -2592,7 +2642,10 @@ x y	x y
 {} pieces	{} 個
 {} pins used	{} ピン使用
 {} placed as {}	{} を {} として配置しました
+{} placed in {}	{0} を {1} に配置しました
 {} placement problems (red) – see Check	{} 件の配置の問題 (赤) – チェックを参照
+{} plastic covers fitted	{} 個の樹脂カバーを取り付けました
+{} plastic covers taken off	{} 個の樹脂カバーを取り外しました
 {} project parts updated	{} 個のプロジェクト部品を更新しました
 {} projects on the server	サーバー上の {} 個のプロジェクト
 {} projects selected	{} 個のプロジェクトを選択中

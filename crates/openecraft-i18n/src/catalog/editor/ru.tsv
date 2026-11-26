@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Этаж над самым верхним
 A local file opens locally, a server project is opened on the project server again	Локальный файл открывается локально, проект с сервера снова открывается на сервере проектов
 A local file or a project on the project server	Локальный файл или проект на сервере проектов
+A new enclosure of the same part, bayed at this frame	Новый шкаф того же изделия, пристроенный у этой рамки
+A new enclosure standing in this room	Новый корпус в этом помещении
 A new project	Новый проект
 A new release is downloaded in the background and installed when you close OpenECraft.	Новая версия загружается в фоновом режиме и устанавливается при закрытии OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Новая версия загружается в фоновом режиме и заменяет эту установку; она используется со следующего запуска.
@@ -179,10 +181,13 @@ Assign to existing device	Назначить существующему устр
 Assign to harness	Назначить жгуту
 Assign wires: select them in the schematic › Assign to cable.	Назначение проводов: выберите их на схеме › Назначить кабелю.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Асинхронные двигатели в сети увеличивают максимальный ток короткого замыкания (IEC 60909-0)
+At least, mm (0: any)	Не менее, мм (0: любое)
+At most, mm (0: any)	Не более, мм (0: любое)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	При максимальной температуре окружающей среды; обогреватель поддерживает температуру выше точки росы. 0 = не учитывается
 At the origin	В начале координат
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	В точке питания: Ik3 max {} kA, Ik1 min {} kA
 At the top level	На верхнем уровне
+Attach an enclosure here	Пристроить здесь шкаф
 Author	Автор
 Auto-connect	Автосоединение
 Auto-connect selection	Автосоединение выделенного
@@ -619,6 +624,7 @@ Door cutouts (CSV)	Вырезы в двери (CSV)
 Door hinge	Петли двери
 Door: {} devices, {} cutouts	Дверь: устройств – {}, вырезов – {}
 Dot	Точка
+Double door	Двустворчатая
 Double-click	Двойной щелчок
 Down conductors	Токоотводы
 Download into database	Загрузить в базу данных
@@ -664,9 +670,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Список отверстий (CSV)
 Drilling list of this face (CSV)	Список сверления этой поверхности (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Схема сверления показанной стороны в DXF, DWG или CSV
+Drop an enclosure here to add it; onto a room to put it in there	Перетащите сюда корпус, чтобы добавить его; на помещение, чтобы поставить его туда
 Drop between the pages	Отпустите между листами
 Drop between the rows or onto a section	Отпустите между строками или на разделе
+Drop between two buildings to move it there	Отпустите между двумя зданиями, чтобы переместить его туда
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Отпустите между двумя строками, чтобы переместить туда корпус; корпус в ряду перемещается внутри ряда или вместе с ним
+Drop between two rows to move the room there, onto a level to put it on that level	Отпустите между двумя строками, чтобы переместить туда помещение, на уровне — чтобы поставить его на этот уровень
 Drop onto a level to put the room on it	Отпустите на уровне, чтобы поставить на него помещение
+Drop {} here	Отпустите {} здесь
+Drop {} onto one of the highlighted places	Отпустите {} на одно из выделенных мест
+Drop {} onto {} to add it to the device	Отпустите {} на {}, чтобы добавить к устройству
 Duct fill	Заполнение канала
 Duct fill limit	Предел заполнения канала
 Duplicate	Дублировать
@@ -701,6 +714,8 @@ Embed as document page	Внедрить как лист документа
 Embeds a file (PDF, Word, Excel, image …) as a page	Встраивает файл (PDF, Word, Excel, изображение …) как лист
 Embeds the file in the project (replaces the current one)	Встраивает файл в проект (заменяет текущий)
 Enclosure system	Система корпусов
+Enclosure {} added	Корпус {} добавлен
+Enclosure {} added in room {}	Корпус {} добавлен в помещение {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Корпуса (+CAB1), устройства (-M1) и места на машине (+M1) в узлах
 Enclosures and rooms	Шкафы и помещения
 Enclosures, devices to place and placed devices	Шкафы, устройства для размещения и размещённые устройства
@@ -756,7 +771,10 @@ Field	Поле
 Field (name, description, company, creator, date, revision) or project property	Поле (name, description, company, creator, date, revision) или свойство проекта
 Field cables	Полевые кабели
 Field length	Длина поля
+Field widths and rows of meter and distribution cabinets	Ширина полей и ряды счётчиковых и распределительных шкафов
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Поле; tech:<name> для технических данных изделий, prop:<name> для свойств проекта
+Fields	Поля
+Fields / rows	Поля / ряды
 File format version {}. Files of older versions are converted when they are opened.	Версия формата файла {}. Файлы старых версий преобразуются при открытии.
 File name	Имя файла
 File of another system (connector)	Файл другой системы (коннектор)
@@ -778,10 +796,13 @@ Finish a wire, polyline, polygon or wall	Завершить провод, пол
 Finish or cancel the drawing, then back to selecting	Завершить или отменить рисование и вернуться к выбору
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Завершённые изменения проекта, открытого с сервера проектов, сохраняются на нём сами; незавершённый ввод сохраняется после его завершения. Блокировки остаются. Сохранить (Ctrl+S) по-прежнему сохраняет сразу.
 First row	Первая строка
+Fit all plastic covers	Установить все пластиковые крышки
 Fit page	По размеру листа
 Fits {}	Подходит к {}
+Fitted	Установлена
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Вписывается в прямоугольник с сохранением пропорций (PNG, JPEG)
 Float	Открепить
+Floor	Днище
 Floor above ground	Пол над землёй
 Floor plan with {} walls	План с {} стенами
 Floor-standing part	Напольное изделие
@@ -1047,6 +1068,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Не повторять одинаковые значения первого столбца
 Left button	Левая кнопка
 Left edges	По левому краю
+Left leaf	Левая створка
 Legend plates (door devices)	Шильдики (устройства на двери)
 Length from the node to the device	Длина от узла до устройства
 Length inside an enclosure	Длина внутри корпуса
@@ -1144,6 +1166,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	Измерено
 Measures against common cause failure (at least 65 points)	Меры против отказов по общей причине (не менее 65 баллов)
 Merge a symbol library file	Объединить с файлом библиотеки символов
+Merged with the parts already known: {}	Объединено с уже известными изделиями: {}
 Message	Сообщение
 Messages	Сообщения
 Messages ({})	Сообщения ({})
@@ -1222,6 +1245,9 @@ New cover sheet	Новый титульный лист
 New document page…	Новый лист документа…
 New empty	Новая, пустая
 New enclosure	Новый корпус
+New enclosure in this room…	Новый корпус в этом помещении…
+New enclosure like this one	Новый шкаф, как этот
+New enclosure…	Новый корпус…
 New graphics page	Новый лист графики
 New harness	Новый жгут
 New items go onto this layer	Новые объекты помещаются на этот слой
@@ -1283,6 +1309,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Корпусов пока нет – создайте корпус командой Новый корпус или помещение для шкафов командой Новое помещение.
 No field cables: place the enclosures and field devices at nodes of the route network.	Нет полевых кабелей: разместите корпуса и полевые устройства в узлах сети трасс.
 No filter fans: an air/air heat exchanger or a cooling unit	Без вентиляторов с фильтром: теплообменник воздух/воздух или холодильный агрегат
+No free place is left for {} in this enclosure	В этом корпусе больше нет свободного места для {}
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Наземного фотоэлектрического поля ещё нет: ряды наклонных столов на забивных стойках на участке.
 No gesture	Без жеста
 No harnesses defined.	Жгуты не определены.
@@ -1359,6 +1386,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	На сенсорном экране; тачпады оставляют жесты тремя пальцами системе.
 On startup	При запуске
 On the roof, joined to the air-termination conductors; move it to its place	На крыше, соединён с молниеприёмными проводниками; переместите его на место
+One leaf	Одна створка
 One row per label	Одна строка на каждый маркер
 Only devices on the current page	Только устройства на текущем листе
 Only frames no page uses can be deleted	Удалять можно только рамки, которые не используются ни одним листом
@@ -1557,6 +1585,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	План установки
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	План установки, сеть трасс, планирование полевых кабелей, уравнивание потенциалов и кабельные принадлежности
 Plant segments with planned devices before the schematic	Сегменты установки с запланированными устройствами до создания схемы
+Plastic cover	Пластиковая крышка
+Plastic covers off	Пластиковые крышки сняты
 Plate outline, holes per diameter, cutouts	Контур панели, отверстия по диаметрам, вырезы
 Plot boundary	Граница участка
 Plot boundary drawn: {} m²	Граница участка нарисована: {} м²
@@ -1813,6 +1843,7 @@ Row	Строка
 Row distance	Расстояние между рядами
 Row drawing	Чертёж строки
 Row labels	Подписи строк
+Rows	Ряды
 Rows of tables behind each other	Ряды столов друг за другом
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Ряды наклонных столов на стойках перед тем, что стоит в установке, обращённые вперёд; переместите поле на его место
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Строки на выпущенных листах нельзя изменять. Разрыв строки в тексте записывается как \\n.
@@ -1893,7 +1924,9 @@ Scrolling zooms, also where it pans	Прокрутка масштабирует,
 Search (* and ? as placeholders)…	Поиск (* и ? как подстановочные знаки)…
 Search below this folder	Искать в этой папке и ниже
 Search number, description, maker	Поиск номера, описания, производителя
+Search the enclosures of the parts database and the catalogs for a new one	Найти новый корпус в базе изделий и каталогах
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Поиск на сервере изделий по каталогу, группе продуктов и техническим данным, добавление изделий и проверка базы данных на наличие обновлений
+Search…	Поиск…
 Second channel	Второй канал
 Seconds from a change to its automatic save (10 to 600)	Секунды от изменения до его автоматического сохранения (от 10 до 600)
 Section properties	Свойства раздела
@@ -2092,6 +2125,8 @@ Tablet mode	Режим планшета
 Tag	Обозначение
 Tag field	Поле обозначения
 Tag placed by hand	Обозначение размещено вручную
+Take off all plastic covers	Снять все пластиковые крышки
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	Снять пластиковые крышки всех полей сеток полей каждого шкафа: видны рамы, рейки и проводка за ними; повторно, чтобы установить все
 Take out a subproject	Вынести подпроект
 Take out of the building	Вывести из здания
 Take out {} pages…	Вынести листы ({})…
@@ -2167,6 +2202,9 @@ The page name gets the section number	Имя листа получает ном�
 The page type, plot frame, title block, structure, description and the whole content are saved.	Сохраняются тип листа, рамка, основная надпись, структура, описание и всё содержимое.
 The pages it generated stay	Созданные им листы остаются
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	База данных изделий общая для всех проектов. Изделия копируются в проект, когда их назначают устройству.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Пластиковая крышка панели; без неё видны рама, рейки и проводка за ней
+The plastic covers of all panels of the field grid of this enclosure	Пластиковые крышки всех полей сетки полей этого шкафа
+The plastic covers of all panels of the field grids of every enclosure	Пластиковые крышки всех полей сеток полей каждого шкафа
 The point's coordinates in the coordinate reference system	Координаты точки в системе координат
 The post; its accessories are the table beams, rails and clamps	Стойка; её принадлежности — балки стола, рейки и зажимы
 The project changed since the search.	Проект изменился после поиска.
@@ -2234,6 +2272,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Повернуть 3D-вид к точке
 Twin ferrules where two wires share a connection point	Двойные наконечники там, где два провода подключены к одной точке
 Two fingers	Два пальца
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Две створки, каждая на петлях у своей внешней кромки; приборы на двери движутся со створкой под их серединой
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Здесь должны сходиться два провода под прямым углом. При включённом автосоединении точки подключения напротив его плеч соединяются с ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введите точку и нажмите Enter: x y в мм или @dx dy относительно последней точки; действует как щелчок текущим инструментом
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пик
@@ -2327,6 +2366,7 @@ Whole words	Слова целиком
 Width / going	Ширина / проступь
 Width / height (mm)	Ширина / высота (мм)
 Width factor	Коэффициент ширины
+Width of the left leaf; the right one takes the rest of the front	Ширина левой створки; правая занимает остаток фасада
 Width of the letters to their usual width (0.8: narrow lettering)	Ширина букв относительно их обычной ширины (0,8: узкий шрифт)
 Width × depth	Ширина × глубина
 Width × height	Ширина × высота
@@ -2395,6 +2435,7 @@ all, or e.g. -X*, -W1	все или, например, -X*, -W1
 all, or e.g. K, Q	все или, например, K, Q
 along z	вдоль z
 always	всегда
+any	любое
 both ends	оба конца
 built-in	встроенное
 by hand	вручную
@@ -2512,9 +2553,12 @@ x y	x y
 {} Vault items found for the project parts	Найдено элементов Vault для изделий проекта: {}
 {} Vault items found: review the changes in the integration window	Найдено элементов Vault: {}; проверьте изменения в окне интеграции
 {} added to building {}	{} добавлен к зданию {}
+{} added to device {}	{} добавлено к устройству {}
 {} addresses changed	Изменено адресов: {}
 {} air-termination rods	Молниеприёмных стержней: {}
 {} already exists on the project server.	{} уже существует на сервере проектов.
+{} attached to {}	{} пристроен к {}
+{} bundles, {} branch points	Пучков: {}, точек ответвления: {}
 {} bundles, {} branch points, {} cable ties	Пучков: {}, точек ответвления: {}, кабельных стяжек: {}
 {} bus cables created	Создано шинных кабелей: {}
 {} bus connections	Шинных соединений: {}
@@ -2562,18 +2606,23 @@ x y	x y
 {} example catalog parts refreshed	Обновлено изделий примера каталога: {}
 {} favorites added	Добавлено в избранное: {}
 {} field wiring problems (see Check)	Проблем полевого монтажа: {} (см. «Проверка»)
+{} fits neither this enclosure nor a device in it	{} не подходит ни к этому корпусу, ни к устройству в нём
+{} fits on another face of this enclosure: {}	{} подходит к другой стороне этого корпуса: {}
 {} found	Найдено: {}
 {} function texts copied	Скопировано текстов функций: {}
 {} generated pages in the project (changes on them are replaced)	Созданных листов в проекте: {} (изменения на них будут заменены)
 {} grants on the project	Назначений для проекта: {}
 {} has no function with a symbol; assign it to a device in its properties	У {} нет функции с символом; назначьте его устройству в свойствах устройства
 {} has unsaved changes. Discard them?	В {} есть несохранённые изменения. Отменить их?
+{} imported into the parts database and added as enclosure {}	{} импортировано в базу изделий и добавлено как корпус {}
 {} imported into the parts database and placed as {}	{} импортировано в базу данных изделий и размещено как {}
 {} in {}	{} в {}
 {} is in the schematic	{} есть на схеме
 {} is in the schematic: cable {} from {}	{} на схеме: кабель {} от {}
 {} is neither in the parts database nor on the parts server	{} нет ни в базе данных изделий, ни на сервере изделий
+{} is not an enclosure: only enclosures can be dropped here	{} не является корпусом: сюда можно перетаскивать только корпуса
 {} is not in the disk image	{} нет в образе диска
+{} is not in the parts database yet: import it, then drag it here	{} ещё нет в базе изделий: импортируйте его, затем перетащите сюда
 {} is not made for wall mounting: place it on a mounting rail	{} не предназначен для настенного монтажа: установите его на рейку
 {} is used by: {}	{} используется: {}
 {} items copied	Скопировано элементов: {}
@@ -2585,13 +2634,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} м: {} м на восток, {} м на север, {}° от севера
 {} macro boxes updated	Обновлено рамок макросов: {}
 {} markers	Маркеров: {}
-{} mm	{} мм
 {} mm (cut {} mm)	{} мм (отрезок {} мм)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} мм на панели + {} мм запас; остальное – путь от точек подключения до панели.
 {} mm, now {} mm	{} мм, теперь {} мм
 {} mm, removed	{} мм, удалено
 {} modules	{} модулей
 {} modules, {} kWp	{} модулей, {} кВт пик
+{} moved	{} перемещено
 {} new texts in the dictionary	Новых текстов в словаре: {}
 {} notes	Примечаний: {}
 {} objects pasted	Вставлено объектов: {}
@@ -2599,6 +2648,7 @@ x y	x y
 {} objects, {} pages	Объектов: {}, листов: {}
 {} of {} approvals	{} из {} утверждений
 {} of {} connections numbered	Пронумеровано соединений: {} из {}
+{} of {} enclosures	{} из {} корпусов
 {} of {} entries shown: search to narrow the list	Показано записей: {} из {}; используйте поиск, чтобы сузить список
 {} of {} items	{} из {} элементов
 {} of {} pages locked	Заблокировано листов: {} из {}
@@ -2623,7 +2673,10 @@ x y	x y
 {} pieces	{} шт.
 {} pins used	Занято контактов: {}
 {} placed as {}	{} размещено как {}
+{} placed in {}	{} размещено в {}
 {} placement problems (red) – see Check	Проблем размещения: {} (красным) – см. «Проверка»
+{} plastic covers fitted	Установлено пластиковых крышек: {}
+{} plastic covers taken off	Снято пластиковых крышек: {}
 {} problems	Проблем: {}
 {} project parts updated	Обновлено изделий проекта: {}
 {} projects on the server	Проектов на сервере: {}

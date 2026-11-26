@@ -5,6 +5,7 @@
 2D front view	Вид спереди 2D
 2D front view (SVG)	Вид спереди 2D (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-модель (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A separate model of the mounting plate (such as the CAD_MPL file of Rittal's CAD models): its width and height become the size of the plate, centred in the enclosure	Отдельная модель монтажной панели (например, файл CAD_MPL CAD-моделей Rittal): её ширина и высота становятся размером панели, по центру корпуса
 A short title for the problem (optional)	Короткий заголовок проблемы (необязательно)
 Accessories of this part	Принадлежности этого изделия
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Принадлежности работают только вместе с изделиями, к которым они подходят. Изделие перечисляет свои принадлежности, принадлежность — изделия, к которым подходит; достаточно одной стороны.
@@ -47,7 +48,7 @@ Disclaimer	Отказ от ответственности
 Door cutouts	Вырезы в двери
 Downloaded {} ({} bytes)	{} скачан ({} байт)
 Downloading parts…	Скачивание изделий…
-Drag it onto a schematic page to place it	Перетащите на страницу схемы, чтобы разместить
+Drag it onto a schematic page to place it, an enclosure also into Enclosures and rooms	Перетащите на страницу схемы, чтобы разместить, корпус также в Шкафы и помещения
 EPLAN numbers	Номера EPLAN
 EPLAN product groups	Группы продуктов EPLAN
 Expected result (optional)	Ожидаемый результат (необязательно)
@@ -64,6 +65,7 @@ Hides this form and takes a screenshot of the window as it is now	Скрывае
 Identifying letter of devices using this part (K, Q, S …)	Буквенный код устройств с этим изделием (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Импортировать STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Импортировать SVG…
+Import its model…	Импортировать её модель…
 In the door, when they differ from the cutouts	В двери, если они отличаются от вырезов
 Internal values of the EPLAN part exchange (0: undefined)	Внутренние значения обмена изделиями EPLAN (0: не определено)
 Isometric view, everything shown	Изометрический вид, всё видно
@@ -192,8 +194,10 @@ e.g. 25.4 for models in inch, 1000 for models in metres	например, 25,4 �
 from {} mm²	от {} мм²
 no 2D model	нет 2D-модели
 no mounting data	нет монтажных данных
+no size given – the plate keeps 25 mm from the edges	размер не указан – панель отстоит от краёв на 25 мм
 none – a box of the mounting dimensions is drawn	нет – рисуется параллелепипед по монтажным размерам
 none – a plain rectangle is drawn	нет – рисуется простой прямоугольник
+none – the enclosure has no mounting plate	нет – у корпуса нет монтажной панели
 only needed for uploads	нужен только для выгрузки
 read-only	только чтение
 signed in as {} ({})	вход выполнен как {} ({})
@@ -219,6 +223,8 @@ up to {} mm²	до {} мм²
 {}, {} wires per connection point	{}, {} проводов на точку подключения
 {}: 2D front view with {} elements assigned to {}	{}: вид спереди 2D с элементами ({}) назначен {}
 {}: 3D model with {} triangles ({} × {} × {} mm) assigned to {}	{}: 3D-модель с треугольниками ({}) ({} × {} × {} мм) назначена {}
+{}: mounting plate of {} × {} mm for {}	{}: монтажная панель {} × {} мм для {}
+{}: the model ({} × {} × {} mm) does not fit into {} as its mounting plate	{}: модель ({} × {} × {} мм) не помещается в {} как его монтажная панель
 ★ Favorites	★ Избранное
 ★ Remove from favorites	★ Удалить из избранного
 ☆ Add to favorites	☆ Добавить в избранное

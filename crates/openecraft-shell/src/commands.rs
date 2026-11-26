@@ -265,6 +265,7 @@ pub enum Cmd {
     LayoutHidePvModules,
     LayoutSeeThroughPv,
     LayoutOpenDucts,
+    LayoutCoversOff,
     LayoutFit,
     LayoutNcData,
     LayoutReports,
@@ -803,6 +804,9 @@ pub static ALL: &[Def] = &[
         .toggle()
         .tip(tr_const!("See through the walls and floors of the rooms in the 3D view: the flush-mounted lines in them are seen")),
     d(C::LayoutOpenDucts, "layout_open_ducts", tr_const!("Open cable ducts"), I::Duct).toggle().tip(tr_const!("Leave out the covers of all cable ducts in the 3D view: the wires in them are seen")),
+    d(C::LayoutCoversOff, "layout_covers_off", tr_const!("Plastic covers off"), I::Accessory)
+        .toggle()
+        .tip(tr_const!("Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all")),
     d(C::LayoutFit, "layout_fit", tr_const!("Fit"), I::Fit),
     d(C::LayoutNcData, "layout_nc_data", tr_const!("NC data"), I::Drill).menu().tip(tr_const!("Drilling pattern of the face shown as DXF, DWG or CSV")),
     d(C::LayoutReports, "layout_reports", tr_const!("Panel wiring report"), I::Report),
@@ -855,6 +859,7 @@ pub fn acts_in_layout_view(cmd: Cmd) -> bool {
             | C::LayoutPaperPlan
             | C::LayoutOpenWalls
             | C::LayoutOpenDucts
+            | C::LayoutCoversOff
             | C::LayoutFit
     )
 }

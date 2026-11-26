@@ -5,6 +5,7 @@
 2D front view	2D-frontvy
 2D front view (SVG)	2D-frontvy (SVG)
 3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-modell (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+A separate model of the mounting plate (such as the CAD_MPL file of Rittal's CAD models): its width and height become the size of the plate, centred in the enclosure	En separat modell av monteringsplåten (som CAD_MPL-filen i Rittals CAD-modeller): dess bredd och höjd blir plåtens storlek, centrerad i kapslingen
 A short title for the problem (optional)	En kort rubrik för problemet (valfritt)
 Accessories of this part	Tillbehör till den här artikeln
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Tillbehör fungerar bara tillsammans med de artiklar de passar till. En artikel listar sina tillbehör, ett tillbehör de artiklar det passar till; en sida räcker.
@@ -47,7 +48,7 @@ Disclaimer	Ansvarsfriskrivning
 Door cutouts	Dörrurtag
 Downloaded {} ({} bytes)	{} nedladdad ({} byte)
 Downloading parts…	Laddar ned artiklar…
-Drag it onto a schematic page to place it	Dra till en schemasida för att placera
+Drag it onto a schematic page to place it, an enclosure also into Enclosures and rooms	Dra till en schemasida för att placera, en kapsling även till Kapslingar och rum
 EPLAN numbers	EPLAN-nummer
 EPLAN product groups	EPLAN-produktgrupper
 Expected result (optional)	Förväntat resultat (valfritt)
@@ -64,6 +65,7 @@ Hides this form and takes a screenshot of the window as it is now	Döljer formul
 Identifying letter of devices using this part (K, Q, S …)	Kodbokstav för apparater som använder den här artikeln (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	Importera STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	Importera SVG…
+Import its model…	Importera dess modell…
 In the door, when they differ from the cutouts	I dörren, när de skiljer sig från urtagen
 Internal values of the EPLAN part exchange (0: undefined)	Interna värden för EPLAN-artikelutbytet (0: odefinierat)
 Isometric view, everything shown	Isometrisk vy, allt visas
@@ -192,8 +194,10 @@ e.g. 25.4 for models in inch, 1000 for models in metres	t.ex. 25.4 för modeller
 from {} mm²	från {} mm²
 no 2D model	ingen 2D-modell
 no mounting data	inga monteringsdata
+no size given – the plate keeps 25 mm from the edges	ingen storlek angiven – plåten håller 25 mm från kanterna
 none – a box of the mounting dimensions is drawn	ingen – en låda med monteringsmåtten ritas
 none – a plain rectangle is drawn	ingen – en enkel rektangel ritas
+none – the enclosure has no mounting plate	ingen – kapslingen har ingen monteringsplåt
 only needed for uploads	behövs bara för uppladdningar
 read-only	skrivskyddad
 signed in as {} ({})	inloggad som {} ({})
@@ -219,6 +223,8 @@ up to {} mm²	upp till {} mm²
 {}, {} wires per connection point	{}, {} ledningar per anslutningspunkt
 {}: 2D front view with {} elements assigned to {}	{}: 2D-frontvy med {} element tilldelad {}
 {}: 3D model with {} triangles ({} × {} × {} mm) assigned to {}	{}: 3D-modell med {} trianglar ({} × {} × {} mm) tilldelad {}
+{}: mounting plate of {} × {} mm for {}	{}: monteringsplåt på {} × {} mm för {}
+{}: the model ({} × {} × {} mm) does not fit into {} as its mounting plate	{}: modellen ({} × {} × {} mm) får inte plats i {} som dess monteringsplåt
 ★ Favorites	★ Favoriter
 ★ Remove from favorites	★ Ta bort från favoriter
 ☆ Add to favorites	☆ Lägg till i favoriter

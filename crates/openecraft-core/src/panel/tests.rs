@@ -1075,6 +1075,13 @@ fn the_mounting_plate_comes_from_the_enclosure_part() {
     let e = new_enclosure(&mut prj, "RIT.1360000", "+CAB1");
     assert_eq!((e.mounting_size, e.plate_size()), (Some([500.0, 575.0]), (500.0, 575.0)));
     assert_eq!(mounting_size("0 x 5"), None);
+    // A plate of a size alone is centred; one larger than the enclosure is not used.
+    prj.parts[0].tech_data = "Mounting size: 450 x 475".into();
+    let e = new_enclosure(&mut prj, "RIT.1360000", "+CAB1");
+    assert_eq!((e.mounting_origin, e.plate_size(), e.mounting_z()), (Some([75.0, 62.5, PLATE_Z]), (450.0, 475.0), PLATE_Z));
+    prj.parts[0].tech_data = "Mounting size: 650 x 475".into();
+    let e = new_enclosure(&mut prj, "RIT.1360000", "+CAB1");
+    assert_eq!((e.mounting_origin, e.mounting_size), (None, None));
 }
 
 #[test]

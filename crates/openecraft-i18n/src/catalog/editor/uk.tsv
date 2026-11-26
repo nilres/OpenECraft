@@ -54,6 +54,8 @@ A large text across every page, e.g. DRAFT while a revision is being prepared; t
 A level on top of the highest one	Поверх над найвищим
 A local file opens locally, a server project is opened on the project server again	Локальний файл відкривається локально, проєкт сервера знову відкривається на сервері проєктів
 A local file or a project on the project server	Локальний файл або проєкт на сервері проєктів
+A new enclosure of the same part, bayed at this frame	Нова шафа того самого виробу, прибудована біля цієї рамки
+A new enclosure standing in this room	Новий корпус у цьому приміщенні
 A new project	Новий проєкт
 A new release is downloaded in the background and installed when you close OpenECraft.	Нова версія завантажується у фоновому режимі й встановлюється під час закриття OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Нова версія завантажується у фоновому режимі й замінює цю інсталяцію; вона використовується з наступного запуску.
@@ -179,10 +181,13 @@ Assign to existing device	Призначити наявному пристрою
 Assign to harness	Призначити джгуту
 Assign wires: select them in the schematic › Assign to cable.	Призначення проводів: виберіть їх на схемі › Призначити кабелю.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Асинхронні двигуни в мережі збільшують максимальний струм короткого замикання (IEC 60909-0)
+At least, mm (0: any)	Не менше, мм (0: будь-яке)
+At most, mm (0: any)	Не більше, мм (0: будь-яке)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	За найвищої температури навколишнього середовища; нагрівач підтримує температуру вище точки роси. 0 = не враховується
 At the origin	У початку координат
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	У точці живлення: Ik3 max {} kA, Ik1 min {} kA
 At the top level	На верхньому рівні
+Attach an enclosure here	Прибудувати тут шафу
 Author	Автор
 Auto-connect	Автопідключення
 Auto-connect selection	Автопідключення виділеного
@@ -619,6 +624,7 @@ Door cutouts (CSV)	Вирізи дверей (CSV)
 Door hinge	Петлі дверей
 Door: {} devices, {} cutouts	Двері: пристроїв – {}, вирізів – {}
 Dot	Точка
+Double door	Двостулкові
 Double-click	Подвійне клацання
 Down conductors	Струмовідводи
 Download into database	Завантажити до бази даних
@@ -664,9 +670,16 @@ Draws the symbol larger or smaller; its texts keep their size and connected wire
 Drilling list (CSV)	Список отворів (CSV)
 Drilling list of this face (CSV)	Перелік отворів цієї грані (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Схема свердління показаної сторони у DXF, DWG або CSV
+Drop an enclosure here to add it; onto a room to put it in there	Перетягніть сюди корпус, щоб додати його; на приміщення, щоб поставити його туди
 Drop between the pages	Відпустіть між сторінками
 Drop between the rows or onto a section	Відпустіть між рядками або на розділі
+Drop between two buildings to move it there	Відпустіть між двома будівлями, щоб перемістити її туди
+Drop between two rows to move the enclosure there; a bayed one moves within its line-up, or with it	Відпустіть між двома рядками, щоб перемістити туди корпус; корпус у ряду переміщується в межах ряду або разом із ним
+Drop between two rows to move the room there, onto a level to put it on that level	Відпустіть між двома рядками, щоб перемістити туди приміщення, на поверсі — щоб поставити його на цей поверх
 Drop onto a level to put the room on it	Відпустіть на поверсі, щоб поставити на нього приміщення
+Drop {} here	Відпустіть {} тут
+Drop {} onto one of the highlighted places	Відпустіть {} на одне з виділених місць
+Drop {} onto {} to add it to the device	Відпустіть {} на {}, щоб додати до пристрою
 Duct fill	Заповнення каналу
 Duct fill limit	Межа заповнення каналу
 Duplicate	Дублювати
@@ -701,6 +714,8 @@ Embed as document page	Вбудувати як сторінку документ
 Embeds a file (PDF, Word, Excel, image …) as a page	Вбудовує файл (PDF, Word, Excel, зображення …) як сторінку
 Embeds the file in the project (replaces the current one)	Вбудовує файл у проєкт (замінює поточний)
 Enclosure system	Система корпусів
+Enclosure {} added	Корпус {} додано
+Enclosure {} added in room {}	Корпус {} додано до приміщення {}
 Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Шафи (+CAB1), пристрої (-M1) і місця на машині (+M1) у вузлах
 Enclosures and rooms	Шафи та приміщення
 Enclosures, devices to place and placed devices	Шафи, пристрої для розміщення та розміщені пристрої
@@ -756,7 +771,10 @@ Field	Поле
 Field (name, description, company, creator, date, revision) or project property	Поле (name, description, company, creator, date, revision) або властивість проєкту
 Field cables	Польові кабелі
 Field length	Довжина поля
+Field widths and rows of meter and distribution cabinets	Ширина полів і ряди лічильникових і розподільних шаф
 Field; tech:<name> for tech data of parts, prop:<name> for project properties	Поле; tech:<name> для технічних даних виробів, prop:<name> для властивостей проєкту
+Fields	Поля
+Fields / rows	Поля / ряди
 File format version {}. Files of older versions are converted when they are opened.	Версія формату файлу {}. Файли старіших версій перетворюються під час відкриття.
 File name	Назва файлу
 File of another system (connector)	Файл іншої системи (конектор)
@@ -778,10 +796,13 @@ Finish a wire, polyline, polygon or wall	Завершити провід, пол
 Finish or cancel the drawing, then back to selecting	Завершити або скасувати малювання й повернутися до вибору
 Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Завершені зміни проєкту, відкритого із сервера проєктів, зберігаються на ньому самі; незавершене введення зберігається після його завершення. Блокування залишаються. Зберегти (Ctrl+S) і далі зберігає одразу.
 First row	Перший рядок
+Fit all plastic covers	Встановити всі пластикові кришки
 Fit page	Умістити сторінку
 Fits {}	Підходить до {}
+Fitted	Встановлена
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	Вписується в прямокутник зі збереженням пропорцій (PNG, JPEG)
 Float	Відкріпити
+Floor	Днище
 Floor above ground	Підлога над землею
 Floor plan with {} walls	План із {} стінами
 Floor-standing part	Виріб на підлогу
@@ -1047,6 +1068,7 @@ Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, 
 Leave repeated values of the first column blank	Залишати повторювані значення першого стовпця порожніми
 Left button	Ліва кнопка
 Left edges	Ліві краї
+Left leaf	Ліва стулка
 Legend plates (door devices)	Таблички з написами (пристрої на дверях)
 Length from the node to the device	Довжина від вузла до пристрою
 Length inside an enclosure	Довжина всередині шафи
@@ -1144,6 +1166,7 @@ Measure in the site plan: click two points for the distance, how far east and no
 Measured	Виміряно
 Measures against common cause failure (at least 65 points)	Заходи проти відмов зі спільної причини (щонайменше 65 балів)
 Merge a symbol library file	Об’єднати файл бібліотеки символів
+Merged with the parts already known: {}	Об'єднано з уже відомими виробами: {}
 Message	Повідомлення
 Messages	Повідомлення
 Messages ({})	Повідомлення ({})
@@ -1222,6 +1245,9 @@ New cover sheet	Новий титульний аркуш
 New document page…	Нова сторінка документа…
 New empty	Новий порожній
 New enclosure	Новий корпус
+New enclosure in this room…	Новий корпус у цьому приміщенні…
+New enclosure like this one	Нова шафа, як ця
+New enclosure…	Новий корпус…
 New graphics page	Нова сторінка графіки
 New harness	Новий джгут
 New items go onto this layer	Нові об’єкти розміщуються на цьому шарі
@@ -1283,6 +1309,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Корпусів ще немає – створіть корпус командою Новий корпус або приміщення для шаф командою Нове приміщення.
 No field cables: place the enclosures and field devices at nodes of the route network.	Немає польових кабелів: розмістіть шафи та польові пристрої у вузлах мережі трас.
 No filter fans: an air/air heat exchanger or a cooling unit	Без фільтрувальних вентиляторів: теплообмінник повітря/повітря або холодильний агрегат
+No free place is left for {} in this enclosure	У цьому корпусі більше немає вільного місця для {}
 No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Наземного фотоелектричного поля ще немає: ряди похилих столів на забивних стійках на ділянці.
 No gesture	Без жесту
 No harnesses defined.	Джгути не визначено.
@@ -1359,6 +1386,7 @@ On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: s
 On a touch screen; trackpads leave three-finger gestures to the system.	На сенсорному екрані; тачпади залишають жести трьома пальцями системі.
 On startup	Під час запуску
 On the roof, joined to the air-termination conductors; move it to its place	На даху, з'єднаний з блискавкоприймальними провідниками; перемістіть його на місце
+One leaf	Одна стулка
 One row per label	Один рядок на кожну мітку
 Only devices on the current page	Лише пристрої на поточній сторінці
 Only frames no page uses can be deleted	Видаляти можна лише рамки, які не використовує жодна сторінка
@@ -1557,6 +1585,8 @@ Plan devices in the single-line diagram, generate the schematic and keep both in
 Plant layout	План установки
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	План установки, мережа трас, планування польових кабелів, вирівнювання потенціалів і кабельні аксесуари
 Plant segments with planned devices before the schematic	Сегменти установки із запланованими пристроями до створення схеми
+Plastic cover	Пластикова кришка
+Plastic covers off	Пластикові кришки зняті
 Plate outline, holes per diameter, cutouts	Контур панелі, отвори за діаметрами, вирізи
 Plot boundary	Межа ділянки
 Plot boundary drawn: {} m²	Межу ділянки намальовано: {} м²
@@ -1813,6 +1843,7 @@ Row	Рядок
 Row distance	Відстань між рядами
 Row drawing	Креслення рядка
 Row labels	Позначення рядків
+Rows	Ряди
 Rows of tables behind each other	Ряди столів один за одним
 Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Ряди похилих столів на стійках перед тим, що стоїть в установці, звернені вперед; перемістіть поле на його місце
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Рядки на затверджених сторінках не можна змінити. Розрив рядка в тексті записується як \\n.
@@ -1893,7 +1924,9 @@ Scrolling zooms, also where it pans	Прокручування масштабу�
 Search (* and ? as placeholders)…	Пошук (* і ? як символи підстановки)…
 Search below this folder	Шукати в цій папці та вкладених
 Search number, description, maker	Пошук номера, опису, виробника
+Search the enclosures of the parts database and the catalogs for a new one	Знайти новий корпус у базі виробів і каталогах
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Шукати на сервері виробів за каталогом, групою продуктів і технічними даними, додавати вироби та перевіряти базу даних на оновлення
+Search…	Пошук…
 Second channel	Другий канал
 Seconds from a change to its automatic save (10 to 600)	Секунди від зміни до її автоматичного збереження (від 10 до 600)
 Section properties	Властивості розділу
@@ -2092,6 +2125,8 @@ Tablet mode	Режим планшета
 Tag	Позначення
 Tag field	Поле позначення
 Tag placed by hand	Позначення розміщено вручну
+Take off all plastic covers	Зняти всі пластикові кришки
+Take off the plastic covers of all panels of the field grids of every enclosure: the frames, the rails and the wiring behind them are seen; again to fit them all	Зняти пластикові кришки всіх полів сіток полів кожної шафи: видно рами, рейки та проводку за ними; повторно, щоб встановити всі
 Take out a subproject	Винести підпроєкт
 Take out of the building	Вивести з будівлі
 Take out {} pages…	Винести сторінки ({})…
@@ -2167,6 +2202,9 @@ The page name gets the section number	Ім'я сторінки отримує н
 The page type, plot frame, title block, structure, description and the whole content are saved.	Зберігаються тип сторінки, рамка аркуша, основний напис, структура, опис і весь вміст.
 The pages it generated stay	Згенеровані ним сторінки залишаються
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	База даних виробів спільна для всіх проєктів. Вироби копіюються в проєкт, коли їх призначають пристрою.
+The plastic cover of the panel; without it the frame, the rails and the wiring behind it are seen	Пластикова кришка панелі; без неї видно раму, рейки та проводку за нею
+The plastic covers of all panels of the field grid of this enclosure	Пластикові кришки всіх полів сітки полів цієї шафи
+The plastic covers of all panels of the field grids of every enclosure	Пластикові кришки всіх полів сіток полів кожної шафи
 The point's coordinates in the coordinate reference system	Координати точки в системі координат
 The post; its accessories are the table beams, rails and clamps	Стійка; її аксесуари — балки стола, рейки й затискачі
 The project changed since the search.	Проєкт змінився після пошуку.
@@ -2234,6 +2272,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Повернути 3D-вигляд до точки
 Twin ferrules where two wires share a connection point	Подвійні наконечники там, де два проводи підключені до однієї точки
 Two fingers	Два пальці
+Two leaves, each hinged at its outer edge; devices on the door go with the leaf under their middle	Дві стулки, кожна на завісах біля своєї зовнішньої кромки; прилади на дверях рухаються зі стулкою під їхньою серединою
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Тут мають сходитися два проводи під прямим кутом. За ввімкненого автоз'єднання точки підключення навпроти його плечей з'єднуються з ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введіть точку й натисніть Enter: x y у мм або @dx dy відносно останньої точки; діє як клацання поточним інструментом
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пік
@@ -2327,6 +2366,7 @@ Whole words	Цілі слова
 Width / going	Ширина / проступ
 Width / height (mm)	Ширина / висота (мм)
 Width factor	Коефіцієнт ширини
+Width of the left leaf; the right one takes the rest of the front	Ширина лівої стулки; права займає решту фасаду
 Width of the letters to their usual width (0.8: narrow lettering)	Ширина літер відносно їхньої звичайної ширини (0,8: вузький шрифт)
 Width × depth	Ширина × глибина
 Width × height	Ширина × висота
@@ -2395,6 +2435,7 @@ all, or e.g. -X*, -W1	усі або напр. -X*, -W1
 all, or e.g. K, Q	усі або напр. K, Q
 along z	уздовж z
 always	завжди
+any	будь-яке
 both ends	обидва кінці
 built-in	вбудований
 by hand	вручну
@@ -2512,9 +2553,12 @@ x y	x y
 {} Vault items found for the project parts	Знайдено елементів Vault для виробів проєкту: {}
 {} Vault items found: review the changes in the integration window	Знайдено елементів Vault: {}; перегляньте зміни у вікні інтеграції
 {} added to building {}	{} додано до будівлі {}
+{} added to device {}	{} додано до пристрою {}
 {} addresses changed	Змінено адрес: {}
 {} air-termination rods	Блискавкоприймальних стрижнів: {}
 {} already exists on the project server.	{} уже існує на сервері проєктів.
+{} attached to {}	{} прибудовано до {}
+{} bundles, {} branch points	Пучків: {}, точок відгалуження: {}
 {} bundles, {} branch points, {} cable ties	Пучків: {}, точок відгалуження: {}, кабельних стяжок: {}
 {} bus cables created	Створено шинних кабелів: {}
 {} bus connections	Шинних з’єднань: {}
@@ -2562,18 +2606,23 @@ x y	x y
 {} example catalog parts refreshed	Оновлено виробів прикладу каталогу: {}
 {} favorites added	Додано до вибраного: {}
 {} field wiring problems (see Check)	Проблем польового монтажу: {} (див. Перевірка)
+{} fits neither this enclosure nor a device in it	{} не підходить ні до цього корпусу, ні до пристрою в ньому
+{} fits on another face of this enclosure: {}	{} підходить до іншої сторони цього корпусу: {}
 {} found	Знайдено: {}
 {} function texts copied	Скопійовано текстів функцій: {}
 {} generated pages in the project (changes on them are replaced)	Згенерованих сторінок у проєкті: {} (зміни в них буде замінено)
 {} grants on the project	Призначень для проєкту: {}
 {} has no function with a symbol; assign it to a device in its properties	{} не має функції із символом; призначте його пристрою в його властивостях
 {} has unsaved changes. Discard them?	У {} є незбережені зміни. Скасувати їх?
+{} imported into the parts database and added as enclosure {}	{} імпортовано до бази виробів і додано як корпус {}
 {} imported into the parts database and placed as {}	{} імпортовано до бази даних виробів і розміщено як {}
 {} in {}	{} у {}
 {} is in the schematic	{} є на схемі
 {} is in the schematic: cable {} from {}	{} на схемі: кабель {} від {}
 {} is neither in the parts database nor on the parts server	{} немає ні в базі даних виробів, ні на сервері виробів
+{} is not an enclosure: only enclosures can be dropped here	{} не є корпусом: сюди можна перетягувати лише корпуси
 {} is not in the disk image	{} немає в образі диска
+{} is not in the parts database yet: import it, then drag it here	{} ще немає в базі виробів: імпортуйте його, потім перетягніть сюди
 {} is not made for wall mounting: place it on a mounting rail	{} не призначений для настінного монтажу: встановіть його на рейку
 {} is used by: {}	{} використовується для: {}
 {} items copied	Скопійовано елементів: {}
@@ -2585,13 +2634,13 @@ x y	x y
 {} m: {} m east, {} m north, {}° from north	{} м: {} м на схід, {} м на північ, {}° від півночі
 {} macro boxes updated	Оновлено рамок макросів: {}
 {} markers	Маркерів: {}
-{} mm	{} мм
 {} mm (cut {} mm)	{} мм (відрізано {} мм)
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} мм на панелі + {} мм запасу; решта – шлях від точок підключення до панелі.
 {} mm, now {} mm	{} мм, тепер {} мм
 {} mm, removed	{} мм, вилучено
 {} modules	{} модулів
 {} modules, {} kWp	{} модулів, {} кВт пік
+{} moved	{} переміщено
 {} new texts in the dictionary	Нових текстів у словнику: {}
 {} notes	Приміток: {}
 {} objects pasted	Вставлено об’єктів: {}
@@ -2599,6 +2648,7 @@ x y	x y
 {} objects, {} pages	Об’єктів: {}, сторінок: {}
 {} of {} approvals	{} з {} погоджень
 {} of {} connections numbered	Пронумеровано {} з {} з’єднань
+{} of {} enclosures	{} з {} корпусів
 {} of {} entries shown: search to narrow the list	Показано записів: {} з {}; скористайтеся пошуком, щоб звузити список
 {} of {} items	{} з {} елементів
 {} of {} pages locked	Заблоковано {} з {} сторінок
@@ -2623,7 +2673,10 @@ x y	x y
 {} pieces	{} шт.
 {} pins used	Зайнято штирів: {}
 {} placed as {}	{} розміщено як {}
+{} placed in {}	{} розміщено в {}
 {} placement problems (red) – see Check	Проблем розміщення (червоні): {} – див. «Перевірка»
+{} plastic covers fitted	Встановлено пластикових кришок: {}
+{} plastic covers taken off	Знято пластикових кришок: {}
 {} problems	Проблем: {}
 {} project parts updated	Оновлено виробів проєкту: {}
 {} projects on the server	Проєктів на сервері: {}
