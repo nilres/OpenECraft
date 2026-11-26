@@ -1151,3 +1151,20 @@ fn door_devices_stand_out_of_the_door_by_their_front() {
     }
     assert!(checked >= 2, "{checked} door devices");
 }
+
+#[test]
+fn rail_length_keeps_its_orientation() {
+    // Issue #259: a length shorter than the rail's height turned the rail round.
+    let mut rail = duct(1, 0.0, 0.0, 500.0, 35.0);
+    rail.set_length(1.0);
+    assert!(rail.horizontal());
+    assert_eq!((rail.w, rail.h), (36.0, 35.0));
+    rail.set_length(100.0);
+    assert_eq!((rail.w, rail.h), (100.0, 35.0));
+    let mut upright = duct(2, 0.0, 0.0, 40.0, 600.0);
+    upright.set_length(5.0);
+    assert!(!upright.horizontal());
+    assert_eq!((upright.w, upright.h), (40.0, 41.0));
+    upright.set_length(250.0);
+    assert_eq!((upright.w, upright.h), (40.0, 250.0));
+}
