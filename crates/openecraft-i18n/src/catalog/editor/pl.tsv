@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Kabel typu magistrali dla każdego połączenia bez kabla
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Kabel wychodzący z obudowy, który nie znajduje wolnej dławnicy, dostaje dławnicę swojego rozmiaru: w dachu dla urządzenia w pomieszczeniu, w dnie dla pola lub obudowy wiszącej na ścianie
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Wycięcie tej samej wielkości w tym samym miejscu ściany bocznej sąsiada: razem tworzą przepust kablowy
+A drag to the side turns the 3D view the other way round	Przeciągnięcie w bok obraca widok 3D w przeciwną stronę
+A drag up or down tilts the 3D view the other way round	Przeciągnięcie w górę lub w dół pochyla widok 3D w przeciwną stronę
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Plik o tej samej nazwie w folderze otrzymuje nową wersję (wyewidencjonowanie i zaewidencjonowanie), w przeciwnym razie plik jest dodawany
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Folder z jednym małym plikiem na stronę, urządzenie i artykuł zamiast jednego pliku projektu, dla kontroli wersji takiej jak git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Duży tekst na każdej stronie, np. PROJEKT, gdy przygotowywana jest rewizja; teksty przyjmują symbole zastępcze, pusty: brak stempla.
@@ -623,6 +625,7 @@ Door NC data (DXF)	Dane NC drzwi (DXF)
 Door clearance	Wolna przestrzeń drzwi
 Door cutouts (CSV)	Wycięcia w drzwiach (CSV)
 Door hinge	Zawiasy drzwi
+Door opening angle	Kąt otwarcia drzwi
 Door: {} devices, {} cutouts	Drzwi: urządzenia: {}, wycięcia: {}
 Dot	Punkt
 Double door	Drzwi dwuskrzydłowe
@@ -931,6 +934,7 @@ Hoses and pipes	Węże i rury
 Hoses rated below it are errors; 0 = not checked	Węże o niższej klasie ciśnienia są błędami; 0 = bez sprawdzania
 How far inside the outer walls	Jak daleko wewnątrz ścian zewnętrznych
 How far outside the outer walls	Jak daleko na zewnątrz ścian zewnętrznych
+How far the enclosure door opens in the 3D view of the panel layout	Jak szeroko otwierają się drzwi obudowy w widoku 3D układu szafy
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Jak otwiera się skrzydło: zawiasy przy lewej lub prawej krawędzi (patrząc z wnętrza pomieszczenia), do wewnątrz lub na zewnątrz pomieszczenia, albo przesuwnie wzdłuż ściany
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Jak przewód jest zakończony na tym końcu; domyślnie jak wybrano dla punktu przyłączenia lub jego urządzenia, w przeciwnym razie według ustawienia tulejek w układzie
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Jak przewody przeskakują nad krzyżowanymi przewodami, jak oznaczane są połączenia T i czy przesunięte elementy prowadzą swoje połączenia na nowo
@@ -1011,7 +1015,9 @@ Interruption points refer to	Punkty przerwania odsyłają do
 Interval	Odstęp
 Introduction	Wprowadzenie
 Invalid value	Nieprawidłowa wartość
+Invert horizontally	Odwróć w poziomie
 Invert the direction of panning by scrolling	Odwróć kierunek przesuwania przewijaniem
+Invert vertically	Odwróć w pionie
 Inverter or charge controller (devices with PV input data)	Falownik lub regulator ładowania (urządzenia z danymi wejścia PV)
 It takes the place of the bundled template of this name.	Zastępuje on dołączony szablon o tej nazwie.
 Items copied: {}	Skopiowane elementy: {}
@@ -1443,6 +1449,7 @@ Opened {}	Otwarto {}
 Opened {} from Vault (version {})	Otwarto {} z Vault (wersja {})
 Opened {} from the project server	Otwarto {} z serwera projektów
 Opening	Otwór
+Opening angle of the door in the 3D view	Kąt otwarcia drzwi w widoku 3D
 Opening in the mounting plate / door: click two corners (round: in the properties)	Otwór w płycie montażowej / drzwiach: kliknij dwa narożniki (okrągły: we właściwościach)
 Opening {}…	Otwieranie {}…
 Opens	Otwieranie
@@ -1452,6 +1459,7 @@ Open…	Otwórz…
 Operations / year	Cykle łączeniowe / rok
 Option	Opcja
 Options	Opcje
+Orbit direction	Kierunek obrotu
 Orbit the 3D view	Obracanie widoku 3D
 Ordinary cable	Zwykły kabel
 Orientation	Orientacja
@@ -1994,6 +2002,7 @@ Short-circuit currents	Prądy zwarciowe
 Short-circuit power of the network	Moc zwarciowa sieci
 Shortest profile	Najkrótszy profil
 Show	Pokaż
+Show a row of buttons for the view settings at the top of the 3D view	Pokaż rząd przycisków ustawień widoku u góry widoku 3D
 Show all enclosures side by side at their places in the room	Pokaż wszystkie obudowy obok siebie w ich miejscach w pomieszczeniu
 Show as list	Pokaż jako listę
 Show as tiles	Pokaż jako kafelki
@@ -2334,6 +2343,7 @@ Vertical position	Położenie pionowe
 Vertically	W pionie
 Via:	Przez:
 View	Widok
+View buttons	Przyciski widoku
 Visible	Widoczna
 Voltage (line to line)	Napięcie (międzyfazowe)
 Voltage at maximum power	Napięcie przy mocy maksymalnej
@@ -2397,6 +2407,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Przewody połączenia
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Przewody również korzystają z tras 3D omijających przeszkody zamiast tylko z kanałów kablowych na płycie
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Przewody bez własnego koloru lub przekroju przejmują je z potencjału swojego połączenia; żyły kabla zachowują wartości kabla.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Przewody, otwarte korytka kablowe, ściany z przodu i inne ustawienia Przestrzeń montażowa › Pokaż jednym kliknięciem
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Asystent okablowania: lista kontrolna przewodów z widokiem 3D i postępem (tablet: otwórz aplikację internetową z #wiring)
 Wiring space between devices and ducts	Przestrzeń na okablowanie między urządzeniami a kanałami
 With a user account of the server; replaces the access token	Z kontem użytkownika serwera; zastępuje token dostępu

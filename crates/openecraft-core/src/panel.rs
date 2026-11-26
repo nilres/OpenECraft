@@ -310,6 +310,22 @@ impl PanelItem {
         self.w.max(self.h)
     }
 
+    /// Rails and ducts: the shortest running length, longer than the cross-section
+    /// (a shorter one would turn the item round).
+    pub fn min_length(&self) -> f32 {
+        (self.w.min(self.h) + 1.0).max(10.0)
+    }
+
+    /// Rails and ducts: sets the running length and keeps the orientation.
+    pub fn set_length(&mut self, len: f32) {
+        let len = len.max(self.min_length());
+        if self.horizontal() {
+            self.w = len;
+        } else {
+            self.h = len;
+        }
+    }
+
     /// Centre line of a rail / duct.
     pub fn center_line(&self) -> (P, P) {
         if self.horizontal() {

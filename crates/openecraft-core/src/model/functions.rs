@@ -51,6 +51,7 @@ pub enum FnCategory {
     Plugs,
     Plc,
     Passive,
+    Semiconductors,
     BlackBox,
     Potentials,
     Fluid,

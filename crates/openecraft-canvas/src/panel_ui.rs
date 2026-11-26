@@ -504,6 +504,8 @@ pub struct PanelUi {
     pub door_open: bool,
     /// Current opening angle of the door (radians), animated towards `door_open`.
     door_angle: f32,
+    /// The user's settings of the 3D view (stored by the application).
+    pub prefs_3d: Prefs3d,
     /// Cable ducts coloured by their fill level.
     pub show_fill: bool,
     /// Estimated air temperature over the mounting plate.
@@ -777,6 +779,7 @@ impl Default for PanelUi {
             done_items: HashSet::new(),
             door_open: true,
             door_angle: DOOR_OPEN_ANGLE,
+            prefs_3d: Prefs3d::default(),
             show_fill: true,
             show_heat: false,
             show_lineup: true,
@@ -886,8 +889,43 @@ const OUTER_WALLS: u8 = 6;
 
 const WIRE_COLOR: Color32 = Color32::from_rgb(40, 110, 230);
 const WIRE_DONE: Color32 = Color32::from_rgb(50, 170, 80);
-/// Opening angle of the door in the 3D view.
+/// Opening angle of the door in the 3D view, unless set otherwise (radians).
 const DOOR_OPEN_ANGLE: f32 = 1.85;
+/// Opening angles of the door the user can choose (degrees).
+pub const DOOR_ANGLES: std::ops::RangeInclusive<f32> = 90.0..=180.0;
+
+/// The user's settings of the 3D view: how far the door opens, which way a drag orbits.
+#[derive(Clone, Copy, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
+#[serde(default)]
+pub struct Prefs3d {
+    /// Opening angle of the door (degrees, within [`DOOR_ANGLES`]).
+    pub door_angle: f32,
+    /// A drag to the side turns the view the other way round.
+    pub invert_x: bool,
+    /// A drag up or down tilts the view the other way round.
+    pub invert_y: bool,
+    /// The row of buttons at the top of the 3D view that switch its view settings.
+    pub view_bar: bool,
+}
+
+impl Default for Prefs3d {
+    fn default() -> Self {
+        Prefs3d { door_angle: DOOR_OPEN_ANGLE.to_degrees().round(), invert_x: false, invert_y: false, view_bar: true }
+    }
+}
+
+impl Prefs3d {
+    /// The opening angle of the door (radians).
+    pub fn door_open_angle(&self) -> f32 {
+        let a = if self.door_angle.is_finite() { self.door_angle } else { DOOR_OPEN_ANGLE.to_degrees() };
+        a.clamp(*DOOR_ANGLES.start(), *DOOR_ANGLES.end()).to_radians()
+    }
+
+    /// The drag `dl` (points) the way the camera orbits by it.
+    pub fn orbit_drag(&self, dl: Vec2) -> Vec2 {
+        vec2(if self.invert_x { -dl.x } else { dl.x }, if self.invert_y { -dl.y } else { dl.y })
+    }
+}
 /// Selected wire and the devices it connects (same colour as potential highlighting).
 const WIRE_HIGHLIGHT: Color32 = Color32::from_rgb(230, 40, 200);
 /// Routing paths and reservations.
@@ -907,6 +945,13 @@ impl PanelUi {
     /// The graphics card could not draw the 3D view: it is drawn by the processor.
     pub fn gpu_failed(&self) -> bool {
         self.gpu.failed()
+    }
+
+    /// The door of the 3D view is still turning to where it is to be.
+    #[cfg(test)]
+    fn door_turning(&self) -> bool {
+        let target = if self.door_open { self.prefs_3d.door_open_angle() } else { 0.0 };
+        (self.door_angle - target).abs() > 1e-3
     }
 
     /// True while a gesture is in progress (no undo step yet).
@@ -1845,12 +1890,9 @@ impl PanelUi {
                 } else {
                     ui.label(tr("Length"));
                     let mut len = it.length();
-                    if ui.add(egui::DragValue::new(&mut len).speed(5.0).range(10.0..=5000.0).suffix(" mm")).changed() {
-                        if it.horizontal() {
-                            it.w = len;
-                        } else {
-                            it.h = len;
-                        }
+                    let field = egui::DragValue::new(&mut len).speed(5.0).range(it.min_length()..=5000.0).suffix(" mm");
+                    if ui.add(field.update_while_editing(false)).changed() {
+                        it.set_length(len);
                     }
                     ui.end_row();
                     ui.label(tr("Orientation"));
@@ -2377,7 +2419,7 @@ impl PanelUi {
                 match f {
                     Face::Wall(n) => {
                         let mut length = walls[n as usize].length();
-                        let r = ui.add(egui::DragValue::new(&mut length).speed(10.0).range(panel::MIN_WALL..=100_000.0).suffix(" mm"));
+                        let r = ui.add(egui::DragValue::new(&mut length).speed(10.0).range(panel::MIN_WALL..=100_000.0).suffix(" mm").update_while_editing(false));
                         if r.on_hover_text(tr("Length of the wall; its end moves, the next wall with it")).changed() {
                             match panel::wall_length_set(&corners, n as usize, (length / 10.0).round() * 10.0) {
                                 Ok(o) => new_outline = Some(o),
@@ -2912,6 +2954,70 @@ impl PanelUi {
         self.site = false;
         self.view = View::Front;
         self.show_face(face, inside);
+    }
+
+    /// Whether a view setting of Layout space › Show is on; `None` for other commands.
+    pub fn view_setting(&self, cmd: Cmd) -> Option<bool> {
+        Some(match cmd {
+            Cmd::LayoutWires => self.show_wires,
+            Cmd::LayoutDuctFill => self.show_fill,
+            Cmd::LayoutHeat => self.show_heat,
+            Cmd::LayoutLineup => self.show_lineup,
+            Cmd::LayoutSite => self.show_site,
+            Cmd::LayoutBuilding => self.show_building,
+            Cmd::LayoutZones => self.show_zones,
+            Cmd::LayoutPaperPlan => self.show_paper,
+            Cmd::LayoutOpenWalls => self.open_walls,
+            Cmd::LayoutHideFrontWalls => self.hide_front_walls,
+            Cmd::LayoutHideCeiling => self.hide_ceiling,
+            Cmd::LayoutHidePvModules => self.hide_pv_modules,
+            Cmd::LayoutSeeThroughPv => self.see_through_pv,
+            Cmd::LayoutOpenDucts => self.open_ducts,
+            _ => return None,
+        })
+    }
+
+    /// Switches a view setting of Layout space › Show; false for other commands.
+    pub fn toggle_view_setting(&mut self, cmd: Cmd) -> bool {
+        let flag = match cmd {
+            Cmd::LayoutLineup => {
+                self.toggle_lineup();
+                return true;
+            }
+            Cmd::LayoutSite => {
+                self.toggle_site();
+                return true;
+            }
+            Cmd::LayoutBuilding => {
+                self.toggle_building();
+                return true;
+            }
+            Cmd::LayoutWires => &mut self.show_wires,
+            Cmd::LayoutDuctFill => &mut self.show_fill,
+            Cmd::LayoutHeat => &mut self.show_heat,
+            Cmd::LayoutZones => &mut self.show_zones,
+            Cmd::LayoutPaperPlan => &mut self.show_paper,
+            Cmd::LayoutOpenWalls => &mut self.open_walls,
+            Cmd::LayoutHideFrontWalls => &mut self.hide_front_walls,
+            Cmd::LayoutHideCeiling => &mut self.hide_ceiling,
+            Cmd::LayoutHidePvModules => &mut self.hide_pv_modules,
+            Cmd::LayoutSeeThroughPv => &mut self.see_through_pv,
+            Cmd::LayoutOpenDucts => &mut self.open_ducts,
+            _ => return false,
+        };
+        *flag = !*flag;
+        true
+    }
+
+    /// The view settings the button row of the 3D view offers: those of an enclosure, or
+    /// those of rooms and buildings.
+    pub fn view_bar_commands(&self) -> &'static [Cmd] {
+        use Cmd as C;
+        if self.in_room || self.site {
+            &[C::LayoutWires, C::LayoutOpenDucts, C::LayoutHideFrontWalls, C::LayoutHideCeiling, C::LayoutOpenWalls, C::LayoutZones, C::LayoutHidePvModules, C::LayoutSeeThroughPv, C::LayoutBuilding, C::LayoutSite]
+        } else {
+            &[C::LayoutWires, C::LayoutDuctFill, C::LayoutHeat, C::LayoutOpenDucts, C::LayoutHideFrontWalls, C::LayoutLineup, C::LayoutSite]
+        }
     }
 
     pub fn toggle_lineup(&mut self) {

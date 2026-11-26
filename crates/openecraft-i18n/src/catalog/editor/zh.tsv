@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	为每个没有电缆的连接创建一根总线类型的电缆
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	离开机柜且找不到空闲密封接头的电缆会获得一个与其尺寸相符的密封接头：房间内的设备装在顶部，现场设备或挂墙机柜装在底部
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	在相邻机柜侧板的相同位置开一个相同大小的孔：两者共同构成电缆过孔
+A drag to the side turns the 3D view the other way round	向侧面拖动时 3D 视图反向旋转
+A drag up or down tilts the 3D view the other way round	向上或向下拖动时 3D 视图反向倾斜
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	文件夹中的同名文件将获得新版本（签出后签入），否则添加该文件
 A folder with one small file per page, device and part instead of one project file, for version control such as git	一个文件夹，每个页面、设备和部件各有一个小文件，而不是单个项目文件，用于 git 等版本控制
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	每页上的大号文字，例如准备修订时的“草稿”；文字可含占位符，空 = 无水印。
@@ -617,6 +619,7 @@ Door NC data (DXF)	柜门 NC 数据 (DXF)
 Door clearance	柜门间隙
 Door cutouts (CSV)	柜门开孔 (CSV)
 Door hinge	柜门铰链
+Door opening angle	门的打开角度
 Door: {} devices, {} cutouts	柜门：{} 个设备，{} 个开孔
 Dot	点
 Double door	双开门
@@ -922,6 +925,7 @@ Hoses and pipes	软管和管道
 Hoses rated below it are errors; 0 = not checked	额定压力低于此值的软管视为错误；0 = 不检查
 How far inside the outer walls	在外墙以内的距离
 How far outside the outer walls	在外墙以外的距离
+How far the enclosure door opens in the 3D view of the panel layout	柜体门在面板布局 3D 视图中打开的程度
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	门扇的开启方式：铰链在左侧或右侧边缘（从房间内看），向房间内或向外开，或沿墙推拉
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	导线在此端的端接方式；默认按连接点或其设备的选择，否则按布局的管型端子设置
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	导线如何跳过所交叉的导线、T 形连接如何标记，以及移动的项目是否重新布线其连接
@@ -1001,7 +1005,9 @@ Interruption points refer to	中断点引用
 Interval	间隔
 Introduction	简介
 Invalid value	无效值
+Invert horizontally	水平反转
 Invert the direction of panning by scrolling	反转滚动平移的方向
+Invert vertically	垂直反转
 Inverter or charge controller (devices with PV input data)	逆变器或充电控制器（带光伏输入数据的设备）
 It takes the place of the bundled template of this name.	它将取代同名的内置模板。
 Items copied: {}	已复制的元素：{}
@@ -1427,6 +1433,7 @@ Opened {}	已打开 {}
 Opened {} from Vault (version {})	已从 Vault 打开 {}（版本 {}）
 Opened {} from the project server	已从项目服务器打开 {}
 Opening	开口
+Opening angle of the door in the 3D view	3D 视图中门的打开角度
 Opening in the mounting plate / door: click two corners (round: in the properties)	安装板 / 柜门中的开口：单击两个角点（圆形：在属性中设置）
 Opening {}…	正在打开 {}…
 Opens	开启方式
@@ -1436,6 +1443,7 @@ Open…	打开…
 Operations / year	操作次数 / 年
 Option	选项
 Options	选项
+Orbit direction	旋转方向
 Orbit the 3D view	旋转 3D 视图
 Ordinary cable	普通电缆
 Orientation	方向
@@ -1969,6 +1977,7 @@ Short-circuit currents	短路电流
 Short-circuit power of the network	电网短路容量
 Shortest profile	最短型材
 Show	显示
+Show a row of buttons for the view settings at the top of the 3D view	在 3D 视图顶部显示一排视图设置按钮
 Show all enclosures side by side at their places in the room	在房间中各自的位置并排显示所有机柜
 Show as list	以列表显示
 Show as tiles	以图块显示
@@ -2308,6 +2317,7 @@ Vertical position	垂直位置
 Vertically	垂直
 Via:	经过：
 View	视图
+View buttons	视图按钮
 Visible	可见
 Voltage (line to line)	电压（线电压）
 Voltage at maximum power	最大功率点电压
@@ -2370,6 +2380,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	连接的导线
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	导线也采用避障的 3D 路径，而不是仅使用安装板上的线槽
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	没有自身颜色或截面积的导线从其连接的电位获取；电缆芯线保留电缆的值。
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	一键切换导线、打开的线槽、前方的墙以及 布局空间 › 显示 中的其他设置
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	接线助手：带 3D 视图和进度的导线检查清单（平板电脑：使用 #wiring 打开 Web 应用）
 Wiring space between devices and ducts	设备与线槽之间的接线空间
 With a user account of the server; replaces the access token	使用服务器的用户帐户；替代访问令牌

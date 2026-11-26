@@ -48,6 +48,8 @@ A cable gland for every cable that leaves an enclosure and finds no free gland t
 A cable of the bus type for every connection without cable	Un cablu de tipul magistralei pentru fiecare conexiune fără cablu
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Un cablu care iese dintr-o carcasă și nu găsește nicio presetupă liberă primește una de mărimea lui: în acoperiș pentru un aparat din încăpere, în fund pentru teren sau o carcasă agățată pe perete
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Un decupaj de aceeași dimensiune în același loc în peretele lateral al vecinului: împreună formează o trecere de cabluri
+A drag to the side turns the 3D view the other way round	O tragere în lateral rotește vizualizarea 3D în sens invers
+A drag up or down tilts the 3D view the other way round	O tragere în sus sau în jos înclină vizualizarea 3D în sens invers
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Un fișier cu același nume din folder primește o versiune nouă (check-out și check-in), altfel fișierul este adăugat
 A folder with one small file per page, device and part instead of one project file, for version control such as git	Un dosar cu câte un fișier mic pentru fiecare pagină, dispozitiv și articol în locul unui singur fișier de proiect, pentru controlul versiunilor precum git
 A large text across every page, e.g. DRAFT while a revision is being prepared; texts take placeholders, empty: no stamp.	Un text mare peste fiecare pagină, de ex. CIORNĂ cât timp se pregătește o revizie; textele acceptă substituenți, gol: fără ștampilă.
@@ -623,6 +625,7 @@ Door NC data (DXF)	Date NC ușă (DXF)
 Door clearance	Distanță liberă față de ușă
 Door cutouts (CSV)	Decupaje ușă (CSV)
 Door hinge	Balamalele ușii
+Door opening angle	Unghiul de deschidere a ușii
 Door: {} devices, {} cutouts	Ușă: {} dispozitive, {} decupaje
 Dot	Punct
 Double door	Ușă dublă
@@ -931,6 +934,7 @@ Hoses and pipes	Furtunuri și conducte
 Hoses rated below it are errors; 0 = not checked	Furtunurile dimensionate sub aceasta sunt erori; 0 = neverificat
 How far inside the outer walls	Cât de mult în interiorul pereților exteriori
 How far outside the outer walls	Cât de mult în afara pereților exteriori
+How far the enclosure door opens in the 3D view of the panel layout	Cât de mult se deschide ușa carcasei în vizualizarea 3D a dispunerii tabloului
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Cum se deschide canatul: balamale pe marginea stângă sau dreaptă (văzut din interiorul încăperii), spre interior sau spre exterior, sau glisant de-a lungul peretelui
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Cum este terminat conductorul la acest capăt; implicit cum s-a ales pentru punctul de conectare sau echipamentul său, altfel după setarea manșoanelor din amplasare
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Cum sar firele peste firele pe care le încrucișează, cum sunt marcate joncțiunile în T și dacă elementele mutate își retrasează conexiunile
@@ -1011,7 +1015,9 @@ Interruption points refer to	Punctele de întrerupere fac referire la
 Interval	Interval
 Introduction	Introducere
 Invalid value	Valoare nevalidă
+Invert horizontally	Inversează pe orizontală
 Invert the direction of panning by scrolling	Inversează direcția deplasării prin derulare
+Invert vertically	Inversează pe verticală
 Inverter or charge controller (devices with PV input data)	Invertor sau regulator de încărcare (dispozitive cu date de intrare fotovoltaică)
 It takes the place of the bundled template of this name.	Ia locul șablonului integrat cu acest nume.
 Items copied: {}	Elemente copiate: {}
@@ -1443,6 +1449,7 @@ Opened {}	S-a deschis {}
 Opened {} from Vault (version {})	{} a fost deschis din Vault (versiunea {})
 Opened {} from the project server	S-a deschis {} de pe serverul de proiecte
 Opening	Deschidere
+Opening angle of the door in the 3D view	Unghiul de deschidere a ușii în vizualizarea 3D
 Opening in the mounting plate / door: click two corners (round: in the properties)	Deschidere în placa de montaj / ușă: faceți clic pe două colțuri (rotundă: în proprietăți)
 Opening {}…	Se deschide {}…
 Opens	Deschidere
@@ -1452,6 +1459,7 @@ Open…	Deschidere…
 Operations / year	Manevre / an
 Option	Opțiune
 Options	Opțiuni
+Orbit direction	Direcția de rotire
 Orbit the 3D view	Rotirea vederii 3D
 Ordinary cable	Cablu obișnuit
 Orientation	Orientare
@@ -1994,6 +2002,7 @@ Short-circuit currents	Curenți de scurtcircuit
 Short-circuit power of the network	Puterea de scurtcircuit a rețelei
 Shortest profile	Cel mai scurt profil
 Show	Afișare
+Show a row of buttons for the view settings at the top of the 3D view	Afișează un rând de butoane pentru setările de vizualizare în partea de sus a vizualizării 3D
 Show all enclosures side by side at their places in the room	Afișați toate carcasele una lângă alta, la locurile lor din încăpere
 Show as list	Afișare ca listă
 Show as tiles	Afișare ca dale
@@ -2334,6 +2343,7 @@ Vertical position	Poziție verticală
 Vertically	Vertical
 Via:	Prin:
 View	Vizualizare
+View buttons	Butoane de vizualizare
 Visible	Vizibil
 Voltage (line to line)	Tensiune (între faze)
 Voltage at maximum power	Tensiune la putere maximă
@@ -2397,6 +2407,7 @@ Wires must leave here in all four directions. Until then the connection is chain
 Wires of the connection	Firele conexiunii
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Și conductoarele urmează traseele 3D care țin cont de obstacole, nu doar canalele de cablu de pe placă
 Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Conductoarele fără culoare sau secțiune proprie le preiau de la potențialul conexiunii lor; firele de cablu păstrează valorile cablului.
+Wires, open cable ducts, walls in front and the other settings of Layout space › Show at a click	Fire, canale de cablu deschise, pereți în față și celelalte setări din Spațiu de montaj › Afișare dintr-un clic
 Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Asistent de cablare: listă de verificare a conductoarelor cu vedere 3D și progres (tabletă: deschideți aplicația web cu #wiring)
 Wiring space between devices and ducts	Spațiu de cablare între dispozitive și canale
 With a user account of the server; replaces the access token	Cu un cont de utilizator al serverului; înlocuiește tokenul de acces
