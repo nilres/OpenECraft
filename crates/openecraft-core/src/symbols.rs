@@ -173,6 +173,8 @@ pub enum Category {
     Plc,
     Potentials,
     Passive,
+    /// Diodes, transistors, thyristors and optocouplers.
+    Semiconductors,
     /// Electronic sensors (proximity, photoelectric) and controllers.
     Sensors,
     Measuring,
@@ -198,7 +200,7 @@ pub enum Category {
 
 impl Category {
     /// Categories of the built-in libraries.
-    pub const ALL: [Category; 22] = [
+    pub const ALL: [Category; 23] = [
         Category::Coils,
         Category::Contacts,
         Category::Switches,
@@ -212,6 +214,7 @@ impl Category {
         Category::Plc,
         Category::Potentials,
         Category::Passive,
+        Category::Semiconductors,
         Category::BlackBox,
         Category::SingleLine,
         Category::Nfpa,
@@ -235,6 +238,7 @@ impl Category {
             Category::Plc => tr("PLC"),
             Category::Potentials => tr("Potentials / Connectors"),
             Category::Passive => tr("Passive components"),
+            Category::Semiconductors => tr("Semiconductor components"),
             Category::Sensors => tr("Sensors"),
             Category::Measuring => tr("Measuring instruments"),
             Category::Power => tr("Transformers / power supplies"),
@@ -1336,7 +1340,7 @@ fn build_library() -> Vec<SymbolDef> {
     b.l(0.0, -4.0, 0.0, -1.5).poly(&[(-1.8, -1.5), (1.8, -1.5), (0.0, 1.5)], true, false);
     b.l(-1.8, 1.5, 1.8, 1.5).l(0.0, 1.5, 0.0, 4.0);
     b.pin(0.0, -4.0, "A").pin(0.0, 4.0, "K");
-    v.push(def("diode", "Diode", C::Passive, "V", MAIN).build(&mut b));
+    v.push(def("diode", "Diode", C::Semiconductors, "V", MAIN).build(&mut b));
 
     b.l(0.0, -4.0, 0.0, -1.5).poly(&[(-1.8, -1.5), (1.8, -1.5), (0.0, 1.5)], true, false);
     b.l(-1.8, 1.5, 1.8, 1.5).l(0.0, 1.5, 0.0, 4.0);
@@ -1345,7 +1349,7 @@ fn build_library() -> Vec<SymbolDef> {
         b.poly(&[(3.8, y - 1.2), (3.0, y - 1.0), (3.6, y - 0.4)], true, true);
     }
     b.pin(0.0, -4.0, "A").pin(0.0, 4.0, "K");
-    v.push(def("led", "LED", C::Passive, "P", MAIN).build(&mut b));
+    v.push(def("led", "LED", C::Semiconductors, "P", MAIN).build(&mut b));
 
     b.l(0.0, -4.0, 0.0, -3.0).l(0.0, 3.0, 0.0, 4.0);
     for y in [-2.25, -0.75, 0.75, 2.25] {
@@ -1384,7 +1388,7 @@ fn build_library() -> Vec<SymbolDef> {
     diode_body(&mut b);
     b.l(-1.8, 2.2, -1.8, 1.5).l(-1.8, 1.5, 1.8, 1.5).l(1.8, 1.5, 1.8, 0.8).l(0.0, 1.5, 0.0, 4.0);
     b.pin(0.0, -4.0, "A").pin(0.0, 4.0, "K");
-    v.push(def("zener", "Zener diode", C::Passive, "V", MAIN).build(&mut b));
+    v.push(def("zener", "Zener diode", C::Semiconductors, "V", MAIN).build(&mut b));
 
     diode_body(&mut b);
     b.l(-1.8, 1.5, 1.8, 1.5).l(0.0, 1.5, 0.0, 4.0);
@@ -1393,7 +1397,7 @@ fn build_library() -> Vec<SymbolDef> {
         arrow(&mut b, 2.2, y + 0.2, -0.75, 0.66);
     }
     b.pin(0.0, -4.0, "A").pin(0.0, 4.0, "K");
-    v.push(def("photodiode", "Photodiode", C::Passive, "B", MAIN).build(&mut b));
+    v.push(def("photodiode", "Photodiode", C::Semiconductors, "B", MAIN).build(&mut b));
 
     // Bipolar transistors: base on the left, collector up, emitter down.
     for (key, name, pnp) in [("npn", "Transistor NPN", false), ("pnp", "Transistor PNP", true)] {
@@ -1405,7 +1409,7 @@ fn build_library() -> Vec<SymbolDef> {
             arrow(&mut b, 0.0, 2.2, 0.68, 0.73);
         }
         b.pin(-4.0, 0.0, "B").pin(0.0, -4.0, "C").pin(0.0, 4.0, "E");
-        v.push(def(key, name, C::Passive, "V", MAIN).build(&mut b));
+        v.push(def(key, name, C::Semiconductors, "V", MAIN).build(&mut b));
     }
 
     // N-channel MOSFET (enhancement): gate left, drain up, source down, body to source.
@@ -1416,20 +1420,20 @@ fn build_library() -> Vec<SymbolDef> {
     b.l(-1.0, -1.5, 0.0, -1.5).l(0.0, -1.5, 0.0, -4.0).l(-1.0, 1.5, 0.0, 1.5).l(0.0, 1.5, 0.0, 4.0).l(-0.6, 0.0, 0.0, 0.0).l(0.0, 0.0, 0.0, 1.5);
     arrow(&mut b, -1.0, 0.0, -1.0, 0.0);
     b.pin(-4.0, 0.0, "G").pin(0.0, -4.0, "D").pin(0.0, 4.0, "S");
-    v.push(def("nmos", "MOSFET N-channel", C::Passive, "V", MAIN).build(&mut b));
+    v.push(def("nmos", "MOSFET N-channel", C::Semiconductors, "V", MAIN).build(&mut b));
 
     // Thyristor: diode with the gate at the cathode.
     diode_body(&mut b);
     b.l(-1.8, 1.5, 1.8, 1.5).l(0.0, 1.5, 0.0, 4.0).l(0.9, 1.5, 4.0, 4.0);
     b.pin(0.0, -4.0, "A").pin(0.0, 4.0, "K").pin(4.0, 4.0, "G");
-    v.push(def("thyristor", "Thyristor", C::Passive, "V", MAIN).build(&mut b));
+    v.push(def("thyristor", "Thyristor", C::Semiconductors, "V", MAIN).build(&mut b));
 
     // Triac: two triangles in antiparallel between two bars, gate at the bottom.
     b.l(0.0, -4.0, 0.0, -1.5).l(-2.6, -1.5, 2.6, -1.5).l(-2.6, 1.5, 2.6, 1.5).l(0.0, 1.5, 0.0, 4.0);
     b.poly(&[(-2.6, -1.5), (0.0, -1.5), (-1.3, 1.5)], true, false).poly(&[(0.0, 1.5), (2.6, 1.5), (1.3, -1.5)], true, false);
     b.l(1.3, 1.5, 4.0, 4.0);
     b.pin(0.0, -4.0, "A1").pin(0.0, 4.0, "A2").pin(4.0, 4.0, "G");
-    v.push(def("triac", "Triac", C::Passive, "V", MAIN).build(&mut b));
+    v.push(def("triac", "Triac", C::Semiconductors, "V", MAIN).build(&mut b));
 
     // NTC thermistor: resistor with the non-linear stroke and the sign of the coefficient.
     b.l(0.0, -4.0, 0.0, -3.0).rect(-1.2, -3.0, 1.2, 3.0, false).l(0.0, 3.0, 0.0, 4.0);
@@ -1456,7 +1460,7 @@ fn build_library() -> Vec<SymbolDef> {
     b.l(2.0, -2.0, 2.0, 2.0).l(2.0, -0.9, 4.0, -2.4).l(4.0, -2.4, 4.0, -8.0).l(2.0, 0.9, 4.0, 2.4).l(4.0, 2.4, 4.0, 8.0);
     arrow(&mut b, 4.0, 2.4, 0.8, 0.6);
     b.pin(-4.0, -8.0, "A").pin(-4.0, 8.0, "K").pin(4.0, -8.0, "C").pin(4.0, 8.0, "E");
-    v.push(def("optocoupler", "Optocoupler", C::Passive, "U", MAIN).build(&mut b));
+    v.push(def("optocoupler", "Optocoupler", C::Semiconductors, "U", MAIN).build(&mut b));
 
     // Bridge rectifier: the four diodes as one block, AC on the sides, + up, - down.
     b.rect(-4.0, -4.0, 4.0, 4.0, false);
@@ -1464,7 +1468,7 @@ fn build_library() -> Vec<SymbolDef> {
     b.text(-2.6, 2.4, "~", 1.8, Center).text(2.6, 2.4, "~", 1.8, Center);
     b.l(0.0, -8.0, 0.0, -4.0).l(0.0, 4.0, 0.0, 8.0).l(-8.0, 0.0, -4.0, 0.0).l(4.0, 0.0, 8.0, 0.0);
     b.pin(-8.0, 0.0, "~1").pin(8.0, 0.0, "~2").pin(0.0, -8.0, "+").pin(0.0, 8.0, "-");
-    v.push(def("bridge_rect", "Bridge rectifier block", C::Passive, "T", MAIN).build(&mut b));
+    v.push(def("bridge_rect", "Bridge rectifier block", C::Semiconductors, "T", MAIN).build(&mut b));
 
     // ---------------------------------------------------------------- installation plan
     // Single-line symbols of building installation plans with one connection point

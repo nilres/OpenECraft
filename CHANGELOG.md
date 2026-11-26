@@ -8,6 +8,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Devices on the door shown in 3D:** *Show in 3D view* centres the view on a device
   on the door where the opened door holds it, also in the mounting assistant. Fixed:
   the door opened, but the view was centred on where the device is with the door closed.
+- **Semiconductor components:** diodes, LEDs, transistors, thyristors, triacs, optocouplers
+  and the bridge rectifier have a category of their own in the Insert center and the
+  function definitions instead of being listed under *Passive components*; the diode of
+  the shipped catalog is in the product group *Semiconductors*.
 - **Wires and cables without cable ducts are tied into bundles:** in a cabinet without
   cable ducts on its mounting plate, and in a room without cable trays, the 3D routing
   lays thin wires and cables that go the same way together, as a bundle held by cable
