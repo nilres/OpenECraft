@@ -8,8 +8,11 @@
 //! [`RoutingRules::wires_3d`] they are routed in 3D like cables and tubes, and so are
 //! always the wires of a room and of a cabinet without cable ducts on its mounting
 //! plate, from connection point to connection point ([`between_points`]): there is no
-//! duct to lay them in, they keep clear of everything and of each other like a cable,
-//! and one that finds no way is an error. All routes are polylines in layout
+//! duct to lay them in, they keep clear of everything like a cable, and one that
+//! finds no way is an error. Without a duct, thin wires and cables that go the same
+//! way are tied into bundles with cable ties ([`runs_freely`], [`Bundle::ties`]) and
+//! kept to the back and the sides of their cabinet; the others keep apart from each
+//! other. All routes are polylines in layout
 //! coordinates ([`crate::panel::positions`]: enclosure coordinates of the whole layout,
 //! x right, y down, z from the rear walls).
 
@@ -571,6 +574,26 @@ pub fn between_points(layout: &Layout, w: &RoutedWire) -> bool {
     open(w.enclosure) || open(w.last_enclosure())
 }
 
+/// Wires and cables run freely through the enclosure: it has no cable duct to lay
+/// them in (a cabinet: on its mounting plate; a room: on none of its faces), no routing
+/// path for them and is no rack with cable ways of its own. There they are tied into
+/// bundles where they run the same way, and in a cabinet they keep to its back and its
+/// sides ([`grid::Space::mark_loose`]).
+pub fn runs_freely(e: &panel::Enclosure) -> bool {
+    let duct = |i: &PanelItem| i.kind == ItemKind::Duct && (i.face == Face::Plate || e.is_room());
+    let path = |p: &RoutingPath| p.kind.accepts(RouteKind::Wire) || p.kind.accepts(RouteKind::Cable);
+    !e.items.iter().any(duct) && !e.paths.iter().any(path) && !panel::is_rack(e)
+}
+
+/// A wire or cable `diameter` mm thick is tied into bundles with others in the
+/// enclosure: it runs freely there ([`runs_freely`]) and is thin enough for it (a
+/// quarter of a cell of the routing there, [`grid::tied_thickness`]: a thicker one is
+/// laid on a way of its own). Tubes are tied to nothing.
+pub fn ties_in(layout: &Layout, e: &panel::Enclosure, kind: RouteKind, diameter: f32) -> bool {
+    let cell = layout.routing.grid.max(if e.is_room() { room::ROOM_GRID } else { 5.0 });
+    kind != RouteKind::Tube && runs_freely(e) && diameter <= grid::tied_thickness(cell)
+}
+
 /// Class of a connection from its potential (kind and voltage).
 pub fn class_of_net(prj: &Project, net: &str) -> Class {
     use crate::potentials::PotentialKind;
@@ -955,6 +978,10 @@ const ROUTING_THREADS: usize = 4;
 const NOZZLE_OUT: f32 = 30.0;
 /// Bend radius of a pipe in diameters: a long-radius elbow.
 const PIPE_ELBOW: f32 = 1.5;
+/// How far apart at most (in cells of the routing: 150 mm in a cabinet, 300 mm in a
+/// room) cable ties hold a bundle of wires and cables that run freely; the first one
+/// sits a cell beyond the bends of its routes at its ends and corners.
+const TIE_PITCH: f32 = 6.0;
 
 /// The two end tags of a cable: the device most of its cores start at, and the one
 /// most of them end at; of as many, the one of the core first in the cable's list of
@@ -1439,6 +1466,9 @@ fn keep_around(space: &mut grid::Space, prj: &Project, wiring: &[RoutedWire], ei
         let zone = (3.0 * space.cell).max(2.0 * it.bend_radius + space.cell) + it.diameter / 2.0;
         let ends = [(points[0], zone), (points[points.len() - 1], zone)];
         space.take(points, it.diameter / 2.0, reach, &ends, &items);
+        if it.kind != RouteKind::Tube {
+            space.lay_strand(points, it.diameter);
+        }
     }
 }
 
@@ -1631,6 +1661,11 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
                 let frozen_legs = thawed(&jobs[k], legs);
                 for (i, leg) in legs.iter().enumerate().filter(|(_, leg)| !flush_leg(&jobs[k], leg) && vias(&jobs[k], leg).is_empty()) {
                     let space = &spaces[&leg.lineup];
+                    // Where wires and cables are tied into bundles each one is searched
+                    // among the ones before it: they draw it to them.
+                    if jobs[k].kind != RouteKind::Tube && space.ties() {
+                        continue;
+                    }
                     let ignore = jobs[k].ignore(leg);
                     if !frozen_legs.get(i).is_some_and(|p| thawed_ok(p, leg, space, &jobs[k].request(leg, space, &ignore, rules))) {
                         tasks.push((k, i));
@@ -1758,10 +1793,14 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
                 space.load_ducts(&cells, area);
             }
             // The routes after it keep apart from it (not from the way of a wire along the
-            // cable ducts of the plate: it is laid out with the others in the 3D view).
+            // cable ducts of the plate: it is laid out with the others in the 3D view);
+            // where there is no cable duct, wires and cables are tied to it.
             if job.fixed.is_none() {
                 let zone = space.end_zone(&req);
                 space.take(&points, job.diameter / 2.0, reach, &[(leg.a, zone), (leg.b, zone)], req.ignore);
+                if job.kind != RouteKind::Tube {
+                    space.lay_strand(&points, job.diameter);
+                }
             }
             let radii = grid::corner_radii(&points, radius);
             ways.push((leg.lineup, points, free, radii));
@@ -1871,7 +1910,15 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
         }
         items.push(item);
     }
-    let (bundles, branches) = bundles::find(&items, rules.grid.max(5.0));
+    let (mut bundles, branches) = bundles::find(&items, rules.grid.max(5.0));
+    // Cable ties hold the bundles of wires and cables that run freely: clear of where
+    // their routes bend, join and leave.
+    for b in &mut bundles {
+        let (enclosure, way) = bundles::way_of(b, &items, rules.grid.max(5.0));
+        let Some(space) = enclosure.and_then(lineup_of).and_then(|lu| spaces.get(&lu)).filter(|s| s.ties()) else { continue };
+        let bend = b.items.iter().map(|&i| items[i].bend_radius).fold(0.0, f32::max);
+        b.ties = bundles::tie_points(&way, bend + space.cell, TIE_PITCH * space.cell).into_iter().filter(|q| space.tied_at(*q)).collect();
+    }
     // Classes that keep apart in one bundle; routes that end at the same device (the
     // power cable and the pipes of a heat pump) meet at it, where they leave it
     // ([`grid::Request::at`]) and come up to it.

@@ -251,6 +251,8 @@ pub struct Moving {
     /// Where the connection symbols are with the stretched wires.
     spots: Vec<(u64, P)>,
     next_id: u64,
+    /// The wires before the move, to find the ones it changed ([`Moving::finish`]).
+    shapes: Vec<Shape>,
 }
 
 impl Moving {
@@ -299,7 +301,15 @@ impl Moving {
     fn with(prj: &Project, page: usize, sel: &BTreeSet<u64>, attached: Vec<(u64, bool)>, held: Vec<HeldEnd>) -> Moving {
         let pg = &prj.pages[page];
         let spots = pg.junctions.iter().map(|j| (j.id, j.pos)).collect();
-        Moving { attached, held, branches: Vec::new(), keep: true, before: Before::of(pg, sel), stretched: pg.wires.clone(), spots, next_id: prj.next_id }
+        Moving { attached, held, branches: Vec::new(), keep: true, before: Before::of(pg, sel), stretched: pg.wires.clone(), spots, next_id: prj.next_id, shapes: shapes(pg) }
+    }
+
+    /// Ends the move: removes wires of no length or lying on each other and joins the
+    /// collinear pieces of wires the move changed, so that a straightened step is one
+    /// wire again. Returns the number of wires joined.
+    pub fn finish(&self, prj: &mut Project, page: usize) -> usize {
+        ops::cleanup_wires(&mut prj.pages[page]);
+        join_changed(&prj.symbol_table(), &mut prj.pages[page], &self.shapes).len()
     }
 
     /// Moves the selection `d` further; attached wires stretch and stay square.
@@ -362,7 +372,9 @@ pub fn move_selection(prj: &mut Project, page: usize, sel: &BTreeSet<u64>, d: P)
 
 /// Moves a selection by `d`, keeping its connections or leaving them ([`Moving::keeping`]).
 pub fn move_selection_keeping(prj: &mut Project, page: usize, sel: &BTreeSet<u64>, d: P, keep: bool) {
-    Moving::keeping(prj, page, sel, keep).step(prj, page, sel, d);
+    let mut m = Moving::keeping(prj, page, sel, keep);
+    m.step(prj, page, sel, d);
+    m.finish(prj, page);
 }
 
 /// Moves the end `is_a` of the wire `wire` to `to`. It leaves what it was connected
@@ -370,8 +382,9 @@ pub fn move_selection_keeping(prj: &mut Project, page: usize, sel: &BTreeSet<u64
 pub fn move_wire_end(prj: &mut Project, page: usize, wire: u64, is_a: bool, to: P) -> bool {
     let Some(w) = prj.pages[page].wires.iter().find(|w| w.id == wire) else { return false };
     let d = to - if is_a { w.a } else { w.b };
-    Moving::wire_end(prj, page, wire, is_a).step(prj, page, &BTreeSet::new(), d);
-    ops::cleanup_wires(&mut prj.pages[page]);
+    let mut m = Moving::wire_end(prj, page, wire, is_a);
+    m.step(prj, page, &BTreeSet::new(), d);
+    m.finish(prj, page);
     true
 }
 
@@ -965,7 +978,36 @@ fn search(symbols: &Symbols, page: &Page, area: R, a: P, b: P, costs: Costs) -> 
 /// Joins collinear wires that meet end to end where nothing else connects. Returns
 /// the number of wires removed.
 pub fn merge_collinear(symbols: &Symbols, page: &mut Page) -> usize {
-    let mut removed = 0;
+    merge_collinear_where(symbols, page, |_, _| true).len()
+}
+
+/// A wire's id and ends, to find the wires an edit changed ([`join_changed`]).
+pub type Shape = (u64, P, P);
+
+/// The wires of a page as they are now.
+pub fn shapes(page: &Page) -> Vec<Shape> {
+    page.wires.iter().map(|w| (w.id, w.a, w.b)).collect()
+}
+
+/// [`merge_collinear`] for the pairs of wires of which at least one is new or changed
+/// since `before`: a wire drawn in line with another or a straightened step becomes
+/// one wire. Returns the wires removed with the wire each was joined to.
+pub fn join_changed(symbols: &Symbols, page: &mut Page, before: &[Shape]) -> Vec<(u64, u64)> {
+    let changed = |w: &Wire| !before.iter().any(|&(id, a, b)| id == w.id && a.same(w.a) && b.same(w.b));
+    merge_collinear_where(symbols, page, |w, v| changed(w) || changed(v))
+}
+
+/// The wire `id` is part of after the joins of [`join_changed`].
+pub fn joined_into(joins: &[(u64, u64)], mut id: u64) -> u64 {
+    while let Some(&(_, kept)) = joins.iter().find(|(removed, _)| *removed == id) {
+        id = kept;
+    }
+    id
+}
+
+/// [`merge_collinear`] for the pairs of wires `pick` accepts.
+fn merge_collinear_where(symbols: &Symbols, page: &mut Page, pick: impl Fn(&Wire, &Wire) -> bool) -> Vec<(u64, u64)> {
+    let mut removed = Vec::new();
     loop {
         let all = pins(symbols, page);
         let mut merged = None;
@@ -981,7 +1023,7 @@ pub fn merge_collinear(symbols: &Symbols, page: &mut Page) -> usize {
                 let alone = page.wires.iter().filter(|x| x.a.same(m) || x.b.same(m) || on_segment_interior(m, x.a, x.b)).count() == 2
                     && !all.iter().any(|(_, q, _)| q.same(m));
                 let same_props = w.same_properties(v);
-                if collinear && opposite && alone && same_props {
+                if collinear && opposite && alone && same_props && pick(w, v) {
                     merged = Some((i, j, far_w, far_v));
                     break 'outer;
                 }
@@ -998,8 +1040,8 @@ pub fn merge_collinear(symbols: &Symbols, page: &mut Page) -> usize {
         page.wires[i].a = a;
         page.wires[i].b = b;
         page.wires[i].labels = labels;
+        removed.push((page.wires[j].id, page.wires[i].id));
         page.wires.remove(j);
-        removed += 1;
     }
     removed
 }

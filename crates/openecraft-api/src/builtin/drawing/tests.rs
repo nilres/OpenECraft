@@ -913,3 +913,14 @@ fn update_sheet_wire_bend_and_straighten() {
         else { assert_eq!(result["bezier_offsets"],json!([[4.0,12.0],[-4.0,12.0]])); }
     }
 }
+
+#[test]
+fn a_wire_added_in_line_with_another_joins_it() {
+    let mut s = new_session();
+    let first = run(&mut s,"add_wire",json!({"page":"1","points":[[20,20],[60,20]]})).unwrap();
+    let second = run(&mut s,"add_wire",json!({"page":"1","points":[[60,20],[100,20]]})).unwrap();
+    assert_eq!(second["ids"], first["ids"]);
+    let wires = &s.project().unwrap().pages[0].wires;
+    assert_eq!(wires.len(), 1);
+    assert_eq!((wires[0].a.x, wires[0].b.x), (20.0, 100.0));
+}

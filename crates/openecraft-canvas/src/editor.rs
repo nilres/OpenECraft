@@ -2149,11 +2149,13 @@ impl Editor {
                         Some(a) => {
                             let ends_on_connection = Self::is_connection(&prj.symbol_table(), &prj.pages[page_i], sn);
                             let path = self.wire_path(prj, &prj.pages[page_i], a, sn);
+                            let before = routing::shapes(&prj.pages[page_i]);
                             for seg in path.windows(2) {
                                 let id = prj.new_id();
                                 prj.pages[page_i].wires.push(Wire { id, a: seg[0], b: seg[1], ..Default::default() });
                             }
                             ops::cleanup_wires(&mut prj.pages[page_i]);
+                            routing::join_changed(&prj.symbol_table(), &mut prj.pages[page_i], &before);
                             self.route_cache = None;
                             self.wire_start = if ends_on_connection { None } else { Some(sn) };
                         }
@@ -2350,8 +2352,8 @@ impl Editor {
                         self.window_select(prj, page_i, rect, (start, end), shift);
                     }
                 }
-                Drag::Move { applied, .. } => {
-                    ops::cleanup_wires(&mut prj.pages[page_i]);
+                Drag::Move { applied, moving, .. } => {
+                    moving.finish(prj, page_i);
                     let pg = &prj.pages[page_i];
                     let moved_symbols = pg.symbols.iter().any(|s| self.selection.contains(&s.id)) || pg.junctions.iter().any(|j| self.selection.contains(&j.id));
                     if self.autoconnect && moved_symbols && (applied.x != 0.0 || applied.y != 0.0) {
@@ -2361,7 +2363,7 @@ impl Editor {
                         }
                     }
                 }
-                Drag::End { .. } => ops::cleanup_wires(&mut prj.pages[page_i]),
+                Drag::End { moving, .. } => { moving.finish(prj, page_i); }
                 Drag::Prop { .. } | Drag::Grip { .. } | Drag::Turn { .. } | Drag::Bend { .. } | Drag::None => {}
             }
         }
