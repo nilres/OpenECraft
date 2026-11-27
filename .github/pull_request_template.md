@@ -8,6 +8,8 @@
 
 ## Checklist
 
+- [ ] I confirm the [clean room pledge](../CONTRIBUTING.md#the-clean-room-pledge): this contribution is my own work from public sources only and contains no code, symbols, data or texts copied or derived from a commercial product
+
 - [ ] `cargo test --workspace` and both `cargo clippy` runs of [CONTRIBUTING.md](../CONTRIBUTING.md) pass without warnings
 - [ ] New texts are in the catalog in English, German, French and Spanish
 - [ ] New behaviour has a test (in `src/<module>/tests.rs`), a fix a regression test
