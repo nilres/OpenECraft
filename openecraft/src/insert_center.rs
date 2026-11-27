@@ -1,6 +1,7 @@
 //! The Insert center (EPLAN's *Insert center*): one place to find symbols, macros,
 //! devices (parts with function templates) and unplaced functions by a search with
-//! `*` / `?` placeholders, with favorites and the recently used entries first. No UI
+//! `*` / `?` placeholders (also by abbreviations and synonyms, `openecraft_core::keywords`),
+//! with favorites and the recently used entries first. No UI
 //! code: `app/insert_center_ui.rs` draws it and places what is chosen.
 
 use openecraft_core::{
@@ -159,9 +160,13 @@ impl InsertCenter {
         }
     }
 
-    /// Whether the texts of an entry match the search (all words, `*` / `?` placeholders).
+    /// Whether the texts of an entry match the search (all words, `*` / `?` placeholders);
+    /// the abbreviations and synonyms of the texts count too ("RCD", "MCB", "FI").
     pub fn matches(&self, texts: &[&str]) -> bool {
-        let all = texts.join(" ");
+        let mut all = texts.join(" ");
+        let keywords = openecraft_core::keywords::keywords(&all);
+        all.push(' ');
+        all.push_str(&keywords);
         self.query.split_whitespace().all(|w| crate::commands::wildcard_match(w, &all))
     }
 

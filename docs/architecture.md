@@ -86,7 +86,8 @@ Layers, bottom up (a module may use its own layer and the layers below):
    message is an English template with its arguments, `issue!(severity, target, "…",
    args)`, translated by `Issue::message()` where it is shown, so that the analysis
    survives a language change and MCP clients get a stable `key`; plugin and generated
-   texts are `Issue::plain`).
+   texts are `Issue::plain`), `keywords` (abbreviations and synonyms of device names
+   for searches: "RCD" finds the residual current device).
 2. `symbols`, `symlib`: symbol definitions. The 2D PXF decoder lives in
    `symlib::ema`. The macro module uses its device definitions to construct
    native multi-device window macros. Macro resolution also visits primitive text
