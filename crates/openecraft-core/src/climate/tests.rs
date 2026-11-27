@@ -106,3 +106,14 @@ fn the_heater_keeps_the_dew_point() {
     assert!((r.dew_point.unwrap() - 16.7).abs() < 0.1);
     assert!((r.heating - 6.831 * (r.dew_point.unwrap() - 10.0)).abs() < 0.1, "{}", r.heating);
 }
+
+#[test]
+fn an_open_assembly_gives_its_heat_to_the_room() {
+    let prj = Project::default();
+    let mut e = Enclosure { kind: crate::panel::EnclosureKind::Assembly, ..enclosure() };
+    e.climate.extra_loss = 500.0;
+    e.climate.ambient_min = -15.0;
+    let r = calculate(&prj, &e);
+    assert!(r.open);
+    assert_eq!((r.inside, r.cooling, r.heating, r.loss), (e.climate.ambient_max, Cooling::None, 0.0, 500.0));
+}

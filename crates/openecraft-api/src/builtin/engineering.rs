@@ -119,6 +119,7 @@ fn enclosure_climate(prj: &mut Project, a: &Args) -> Result<Value, String> {
                 "material": MATERIALS.iter().find(|x| x.1 == c.material).map(|x| x.0),
                 "ambient": [c.ambient_min, c.ambient_max],
                 "inside_allowed": [c.inside_min, c.inside_max],
+                "open_assembly": r.open,
                 "surface_m2": r.surface,
                 "power_loss_w": r.loss,
                 "inside_without_cooling": r.inside,

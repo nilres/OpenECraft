@@ -7,7 +7,8 @@
 //! and spreads below the duct, only part of it passes. Fans and cooling units mix the
 //! air and weaken the plumes. Devices are checked against their highest ambient
 //! temperature (part data `Max temperature: 55 °C` or `Operating temperature:
-//! -25 … 60 °C`).
+//! -25 … 60 °C`). An open mounting assembly has no walls: the plate stands in the
+//! room air, which the devices do not heat up, only their plumes rise above them.
 
 use super::checks::data_number;
 use super::{part_by_number, Enclosure, Face, ItemKind, PanelItem};
@@ -101,6 +102,9 @@ pub struct HeatMap {
     /// Stratified temperature at the bottom and at the top of the plate, °C.
     pub bottom: f32,
     pub top: f32,
+    /// Open mounting assembly: room air at the plate instead of the inside air of an
+    /// enclosure.
+    pub open: bool,
     plate_h: f32,
 }
 
@@ -177,6 +181,7 @@ pub fn heat_map(prj: &Project, e: &Enclosure) -> HeatMap {
         sources,
         bottom: c.ambient_max + rise * (2.0 - k),
         top: c.ambient_max + rise * k,
+        open: result.open,
         plate_h: ph,
     };
     for r in 0..rows {

@@ -5,6 +5,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Thermal simulation of an open mounting assembly:** an assembly without enclosure
+  walls is no longer calculated as a closed box. Its plate stands in the room air: the
+  heat map has only the plumes rising above the devices, no warmer inside air and no
+  stratification, the climate calculation asks for neither cooling nor heating, and
+  the hot spot of the checks is told against the room air. `panel_thermal` gives the
+  model it used (`enclosure` or `open_assembly`), `climate` gives `open_assembly`
+  ([#289](https://github.com/nilres/OpenECraft/issues/289)).
 - **Door opening angle and orbit direction of the 3D view:** the door of an enclosure
   opens as far as chosen, from 90° to 180°, beside *Open door* / *Close door* and in
   *File › Settings › Appearance*, so that it no longer blocks the view onto the

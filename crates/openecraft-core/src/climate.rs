@@ -3,7 +3,9 @@
 //! and the fan, heat exchanger (sealed enclosures) or cooling unit needed to keep the
 //! inside temperature, with the air flow corrected for the altitude; the heater keeps
 //! the lowest inside temperature and the dew point of the ambient air. Power losses
-//! come from the tech data of the parts (`Power loss: 7.5 W`).
+//! come from the tech data of the parts (`Power loss: 7.5 W`). An open mounting
+//! assembly has no walls and no inside air: its devices give off their heat to the
+//! room air, so it needs neither cooling nor heating.
 
 use openecraft_i18n::{tr, tr_fmt};
 use crate::model::Project;
@@ -143,6 +145,8 @@ pub struct ClimateResult {
     pub heating: f32,
     /// Dew point of the ambient air (°C), when the humidity is given.
     pub dew_point: Option<f32>,
+    /// Open mounting assembly: no enclosure, the inside is the room air.
+    pub open: bool,
 }
 
 /// Power loss of a part from its tech data (`Power loss: 7.5 W`).
@@ -172,6 +176,10 @@ pub fn calculate(prj: &Project, e: &Enclosure) -> ClimateResult {
     let c = &e.climate;
     let (devices, without_data) = enclosure_loss(prj, e);
     let loss = devices + c.extra_loss.max(0.0);
+    let dew_point = (c.humidity > 0.0).then(|| dew_point(c.ambient_max, c.humidity));
+    if e.is_assembly() {
+        return ClimateResult { surface: 0.0, loss, without_data, inside: c.ambient_max, cooling: Cooling::None, heating: 0.0, dew_point, open: true };
+    }
     let surface = c.installation.surface(e.width / 1000.0, e.height / 1000.0, e.depth / 1000.0).max(0.01);
     let ka = c.material.k() * surface;
     let inside = c.ambient_max + loss / ka;
@@ -189,10 +197,9 @@ pub fn calculate(prj: &Project, e: &Enclosure) -> ClimateResult {
     };
     // Moist air must not condense when the devices are off at the lowest ambient
     // temperature: the heater keeps the inside above its dew point.
-    let dew_point = (c.humidity > 0.0).then(|| dew_point(c.ambient_max, c.humidity));
     let lowest = dew_point.map_or(c.inside_min, |d| d.max(c.inside_min));
     let heating = (ka * (lowest - c.ambient_min)).max(0.0);
-    ClimateResult { surface, loss, without_data, inside, cooling, heating, dew_point }
+    ClimateResult { surface, loss, without_data, inside, cooling, heating, dew_point, open: false }
 }
 
 impl Cooling {
