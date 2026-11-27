@@ -82,15 +82,21 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   options `tags`, `circuit_colors`, `connections`, `room_names`, `rooms` and `tag_parts`
   (the aspects of the device tags shown, e.g. only `-X1.6` of `=SD1+F1-X1.6`), `legend`,
   `legend_at`, `room_descriptions`, `tag_size`, `room_size`, `legend_size` (font sizes in pt),
-  `symbol_scale` and `cabinet_scale` (symbol sizes in %) of `set_page`;
+  `symbol_scale` and `cabinet_scale` (symbol sizes in %) of `set_page` (only on
+  installation plan pages, rooms only of the page's level, all options checked before
+  any is set);
   rooms show the description of their location identifier (*Description* in the room's
-  properties); long legend texts are wrapped inside their column so that they stay
-  inside the frame
+  properties); long legend texts are wrapped inside their column (a word too wide by
+  characters) so that they stay inside the frame, a legend above or below the plan takes
+  at most half of the page and notes the circuits that do not fit; devices of circuits
+  the legend does not list stay black; the caption writes the scale as the page
+  properties do (`1 : 50`)
   ([panel layout](docs/features/panel-layout.md)).
 - **Plan symbols from the symbol library:** installation plan pages and the site plan draw
   every device with a symbol of the library (IEC 60617-11), turned towards its wall: the
   plan symbol of its part (*Plan symbol* in the part's mounting data, `set_plan_symbol`,
-  `plan_symbols`) or the one of its kind and subgroup (two-way, intermediate and blind
+  `plan_symbols`) or the one of its kind and subgroup, chosen by whole words of its
+  subgroup, number and description (two-way, intermediate and blind
   switches, dimmers, double socket outlets, wall and recessed lights …). 23 new
   installation symbols: single, triple, switched, splash-proof and CEE socket outlets,
   intermediate, series and blind switches, wall, recessed, spot and emergency lights,

@@ -90,25 +90,28 @@ pub(super) fn draw_page(d: &mut dyn Draw, prj: &Project, an: &Analysis, page: &P
     let (mut x0, mut y0, mut x1, mut y1) = (a.min.x + 10.0, a.min.y + 10.0, a.max.x - 10.0, a.max.y - 16.0);
     let band = |cols: usize| 4.0 * ls + legend_rows(view, &circuits, &shown, cols, lw).iter().sum::<f32>() + 4.0;
     let cols = (((a.max.x - a.min.x) - 16.0) / lw).floor().max(1.0) as usize;
+    // A band above or below keeps at least half of the area for the plan; what does not
+    // fit into it is noted in the legend.
+    let band_max = ((a.max.y - a.min.y) - 26.0) / 2.0;
     let lbox = if !legend {
         None
     } else {
         Some(match view.legend_at {
             LegendAt::Right => {
                 x1 = a.max.x - lw - 2.0;
-                (p(x1 + 4.0, a.min.y + 10.0), 1)
+                (p(x1 + 4.0, a.min.y + 10.0), 1, a.max.y - 12.0)
             }
             LegendAt::Left => {
                 x0 = a.min.x + lw + 6.0;
-                (p(a.min.x + 4.0, a.min.y + 10.0), 1)
+                (p(a.min.x + 4.0, a.min.y + 10.0), 1, a.max.y - 12.0)
             }
             LegendAt::Top => {
-                y0 = a.min.y + 6.0 + band(cols);
-                (p(a.min.x + 8.0, a.min.y + 6.0), cols)
+                y0 = a.min.y + 6.0 + band(cols).min(band_max);
+                (p(a.min.x + 8.0, a.min.y + 6.0), cols, y0 - 2.0)
             }
             LegendAt::Bottom => {
-                y1 = a.max.y - 14.0 - band(cols);
-                (p(a.min.x + 8.0, y1 + 4.0), cols)
+                y1 = a.max.y - 14.0 - band(cols).min(band_max);
+                (p(a.min.x + 8.0, y1 + 4.0), cols, a.max.y - 12.0)
             }
         })
     };
@@ -176,7 +179,8 @@ pub(super) fn draw_page(d: &mut dyn Draw, prj: &Project, an: &Analysis, page: &P
         let k = circuit_of(i.item);
         let c = map.at(i.at);
         let up = i.facing.map(|f| p(-f[0], -f[1]));
-        symbol_sized(d, prj, &i.symbol, c, up, ink_of(k), sym);
+        // Devices of circuits the legend does not list (in neighbouring rooms) stay black.
+        symbol_sized(d, prj, &i.symbol, c, up, ink_of(k.filter(|k| shown.contains(k))), sym);
         if view.tags && !i.tag.is_empty() {
             let into = up.map_or(p(0.0, 1.0), |u| p(-u.x, -u.y));
             let reach = if up.is_some() { 2.0 * sym + 1.8 } else { sym + 1.8 };
@@ -190,17 +194,15 @@ pub(super) fn draw_page(d: &mut dyn Draw, prj: &Project, an: &Analysis, page: &P
         }
     }
     let d = clip.d;
-    if let Some((at, cols)) = lbox {
-        let bottom = if matches!(view.legend_at, LegendAt::Right | LegendAt::Left) { a.max.y - 12.0 } else { f32::MAX };
+    if let Some((at, cols, bottom)) = lbox {
         draw_legend(d, view, &circuits, &shown, (at, cols, lw), bottom);
     }
-    let scale = if fixed { tr_fmt!("Scale 1:{}", n) } else { tr_fmt!("Scale 1:{} (fitted)", n) };
+    let n_text = crate::graphics::scale_text(n);
+    let scale = if fixed { tr_fmt!("Scale {}", n_text) } else { tr_fmt!("Scale {} (fitted)", n_text) };
     let caption = format!("{} {}  -  {}", building.name, lv.name, scale);
     d.text(p(a.min.x + 8.0, a.max.y - 7.0), &caption, 3.0, Anchor::Left, VAnchor::Middle, Ink::Text);
 }
 
-/// The legend of the circuits `shown` from `at` in `cols` columns `width` apart, not
-/// below `bottom`: a line in the colour of each circuit, its device and text, a link to
 /// The text of the legend line of circuit `c`: its protective device and function text.
 fn legend_text(c: &installation::Circuit) -> String {
     if c.text.is_empty() { c.breaker.clone() } else { format!("{}  {}", c.breaker, c.text) }
@@ -225,7 +227,7 @@ fn printed_width(text: &str, size: f32) -> f32 {
 fn wrap_printed(text: &str, size: f32, width: f32) -> Vec<String> {
     let mut out: Vec<String> = Vec::new();
     let mut cur = String::new();
-    for word in text.split(' ') {
+    for word in text.split(' ').flat_map(|w| split_wide(w, size, width)) {
         let longer = if cur.is_empty() { word.to_string() } else { format!("{cur} {word}") };
         if cur.is_empty() || printed_width(&longer, size) <= width {
             cur = longer;
@@ -234,6 +236,21 @@ fn wrap_printed(text: &str, size: f32, width: f32) -> Vec<String> {
         }
     }
     out.push(cur);
+    out
+}
+
+/// A word broken by characters into pieces no wider than `width` mm as printed (a
+/// single piece when it fits).
+fn split_wide(word: &str, size: f32, width: f32) -> Vec<String> {
+    let mut out = vec![String::new()];
+    for c in word.chars() {
+        let cur = out.last_mut().expect("never empty");
+        if !cur.is_empty() && printed_width(&format!("{cur}{c}"), size) > width {
+            out.push(c.to_string());
+        } else {
+            cur.push(c);
+        }
+    }
     out
 }
 
@@ -262,7 +279,11 @@ fn draw_legend(d: &mut dyn Draw, view: &PlanView, circuits: &[installation::Circ
             let n = r * cols + col;
             let Some(&k) = shown.get(n) else { break };
             let (x, y) = (at.x + col as f32 * width, top + 2.5 * ls);
-            if y + 3.0 * ls * (lines[n].len() - 1) as f32 > bottom {
+            // The last line left notes the circuits that do not fit.
+            let last = n + 1 == shown.len();
+            if y + 3.0 * ls * (lines[n].len() - 1) as f32 > bottom - if last { 0.0 } else { 3.0 * ls } {
+                let more = shown.len() - n;
+                d.text(p(x, y.min(bottom - ls)), &tr_fmt!("{} more circuits do not fit", more), size, Anchor::Left, VAnchor::Middle, Ink::Text);
                 return;
             }
             let ink = if view.circuit_colors { Ink::Color(circuit_color(k)) } else { Ink::Line };
@@ -390,6 +411,9 @@ pub fn room_location(name: &str) -> String {
 
 /// The largest usual drawing scale at which `real` (mm) fits into `space` (mm).
 fn fit_scale(real: (f32, f32), space: (f32, f32)) -> f32 {
+    if !(space.0 > 0.0 && space.1 > 0.0) {
+        return FIT_SCALES[FIT_SCALES.len() - 1];
+    }
     let needed = (real.0 / space.0).max(real.1 / space.1);
     FIT_SCALES
         .into_iter()

@@ -189,16 +189,24 @@ pub fn plan_symbol(prj: &Project, part: &Part, kind: Kind) -> String {
 /// switches, double and triple socket outlets, wall and recessed lights).
 pub fn default_plan_symbol(kind: Kind, part: Option<&Part>) -> &'static str {
     let text = part.map(|p| format!("{} {} {}", p.subgroup, p.number, p.description).to_lowercase()).unwrap_or_default();
-    let has = |k: &[&str]| k.iter().any(|k| text.contains(k));
+    // Whole words only, so that "inter" of "interface" or "3x" of a number such as
+    // "1032X00" choose nothing; a key of several words ("two-way") matches them in a row.
+    let words: Vec<&str> = text.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect();
+    let has = |k: &[&str]| {
+        k.iter().any(|k| {
+            let key: Vec<&str> = k.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect();
+            words.windows(key.len()).any(|w| w == key.as_slice())
+        })
+    };
     match kind {
         Kind::Socket if has(&["triple", "3-fold", "3x"]) => "inst_socket3",
         Kind::Socket if has(&["double", "2-fold", "2x"]) => "inst_socket2",
         Kind::Socket if has(&["cee", "5p"]) => "inst_socket_cee",
         Kind::Socket => "inst_socket",
-        Kind::Switch if has(&["dimmer", "dim-"]) => "inst_dimmer",
+        Kind::Switch if has(&["dimmer", "dim"]) => "inst_dimmer",
         Kind::Switch if has(&["blind"]) => "inst_switch_blind",
-        Kind::Switch if has(&["push button", "-pb-", "pb-"]) => "inst_push",
-        Kind::Switch if has(&["intermediate", "inter"]) => "inst_switch_inter",
+        Kind::Switch if has(&["push button", "pushbutton", "pb"]) => "inst_push",
+        Kind::Switch if has(&["intermediate"]) => "inst_switch_inter",
         Kind::Switch if has(&["two-way", "2way"]) => "inst_switch2",
         Kind::Switch if has(&["series"]) => "inst_switch_series",
         Kind::Switch => "inst_switch",

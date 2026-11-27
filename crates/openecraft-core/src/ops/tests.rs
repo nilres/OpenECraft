@@ -855,3 +855,10 @@ fn the_blank_start_page_of_a_new_project_is_found() {
     add_page(&mut prj, PageKind::Schematic, 1);
     assert_eq!(blank_page(&prj), None, "a project of several pages");
 }
+
+#[test]
+fn an_installation_plan_of_a_missing_level_is_described_without_a_trailing_blank() {
+    let mut prj = Project::default();
+    let i = add_page(&mut prj, PageKind::InstallationPlan(999), 0);
+    assert_eq!(prj.pages[i].description, tr("Installation plan"));
+}

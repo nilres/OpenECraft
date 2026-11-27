@@ -170,8 +170,10 @@ pub fn add_page(prj: &mut Project, kind: PageKind, at: usize) -> usize {
         PageKind::Graphic => tr("Graphics").to_string(),
         PageKind::Document => tr("Document").to_string(),
         PageKind::InstallationPlan(level) => {
-            let name = prj.layout.buildings.iter().find_map(|b| b.levels.iter().find(|l| l.id == level).map(|l| format!("{} {}", b.name, l.name))).unwrap_or_default();
-            tr_fmt!("Installation plan {}", name)
+            match prj.layout.buildings.iter().find_map(|b| b.levels.iter().find(|l| l.id == level).map(|l| format!("{} {}", b.name, l.name))) {
+                Some(name) => tr_fmt!("Installation plan {}", name),
+                None => tr("Installation plan").to_string(),
+            }
         }
     };
     let page = Page::new(id, &next_page_name(prj, at), &desc, kind);

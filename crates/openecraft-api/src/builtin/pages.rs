@@ -283,6 +283,56 @@ fn get_page(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(v)
 }
 
+/// The keys of [`set_page`] for the options of an installation plan page.
+const PLAN_KEYS: [&str; 14] = ["tags", "circuit_colors", "connections", "room_names", "room_descriptions", "legend", "legend_at", "tag_size", "room_size", "legend_size", "symbol_scale", "cabinet_scale", "tag_parts", "rooms"];
+
+/// The options of an installation plan page: all checked on a copy first, so that a
+/// wrong value leaves the page as it was.
+fn set_plan(prj: &mut Project, i: usize, a: &Args) -> Result<(), String> {
+    if !PLAN_KEYS.iter().any(|k| a.value(k).is_some()) {
+        return Ok(());
+    }
+    let PageKind::InstallationPlan(level) = prj.pages[i].kind else {
+        return Err(tr_fmt!("Page {} is no installation plan", prj.pages[i].name));
+    };
+    let mut plan = prj.pages[i].plan.clone();
+    for (key, v) in [("tags", &mut plan.tags), ("circuit_colors", &mut plan.circuit_colors), ("connections", &mut plan.connections), ("room_names", &mut plan.room_names), ("room_descriptions", &mut plan.room_descriptions), ("legend", &mut plan.legend)] {
+        if let Some(b) = a.value(key).and_then(Value::as_bool) {
+            *v = b;
+        }
+    }
+    if let Some(at) = a.str("legend_at") {
+        plan.legend_at = openecraft_core::model::LegendAt::ALL.into_iter().find(|l| l.key().eq_ignore_ascii_case(at.trim())).ok_or_else(|| tr_fmt!("Unknown legend position: {} (right, left, top or bottom)", at))?;
+    }
+    for (key, v, lo, hi) in [("tag_size", &mut plan.tag_size, 2.0, 72.0), ("room_size", &mut plan.room_size, 2.0, 72.0), ("legend_size", &mut plan.legend_size, 2.0, 72.0), ("symbol_scale", &mut plan.symbol_scale, 10.0, 1000.0), ("cabinet_scale", &mut plan.cabinet_scale, 10.0, 1000.0)] {
+        if let Some(x) = num_in(a, key, lo, hi)? {
+            *v = x;
+        }
+    }
+    if let Some(t) = a.str("tag_parts") {
+        let t = t.trim();
+        let mut parts = openecraft_core::model::TagParts { function: false, installation: false, location: false, product: false };
+        if t.is_empty() || t.eq_ignore_ascii_case("all") {
+            parts = openecraft_core::model::TagParts::default();
+        } else {
+            for k in t.split(',').map(str::trim).filter(|k| !k.is_empty()) {
+                *parts.get_mut(Aspect::from_key(k).ok_or_else(|| tr_fmt!("Unknown aspect: {}", k))?) = true;
+            }
+        }
+        plan.tag_parts = parts;
+    }
+    if let Some(t) = a.str("rooms") {
+        let names: Vec<String> = t.split(',').map(str::trim).filter(|n| !n.is_empty()).map(String::from).collect();
+        let on_level = openecraft_core::panel::buildings::rooms_on(&prj.layout, level);
+        if let Some(n) = names.iter().find(|n| !on_level.iter().any(|&ri| prj.layout.enclosures[ri].name == **n)) {
+            return Err(tr_fmt!("No room named {} on the level of the page", n));
+        }
+        plan.rooms = names;
+    }
+    prj.pages[i].plan = plan;
+    Ok(())
+}
+
 fn set_page(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = unlocked(prj, a.req("page"))?;
     // Leading and trailing blanks are no part of a name.
@@ -319,39 +369,7 @@ fn set_page(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(s) = num_in(a, "scale", 0.001, 100_000.0)? {
         prj.pages[i].scale = s;
     }
-    let plan = &mut prj.pages[i].plan;
-    for (key, v) in [("tags", &mut plan.tags), ("circuit_colors", &mut plan.circuit_colors), ("connections", &mut plan.connections), ("room_names", &mut plan.room_names), ("room_descriptions", &mut plan.room_descriptions), ("legend", &mut plan.legend)] {
-        if let Some(b) = a.value(key).and_then(Value::as_bool) {
-            *v = b;
-        }
-    }
-    if let Some(at) = a.str("legend_at") {
-        plan.legend_at = openecraft_core::model::LegendAt::ALL.into_iter().find(|l| l.key().eq_ignore_ascii_case(at.trim())).ok_or_else(|| tr_fmt!("Unknown legend position: {} (right, left, top or bottom)", at))?;
-    }
-    for (key, v, lo, hi) in [("tag_size", &mut plan.tag_size, 2.0, 72.0), ("room_size", &mut plan.room_size, 2.0, 72.0), ("legend_size", &mut plan.legend_size, 2.0, 72.0), ("symbol_scale", &mut plan.symbol_scale, 10.0, 1000.0), ("cabinet_scale", &mut plan.cabinet_scale, 10.0, 1000.0)] {
-        if let Some(x) = num_in(a, key, lo, hi)? {
-            *v = x;
-        }
-    }
-    if let Some(t) = a.str("tag_parts") {
-        let t = t.trim();
-        let mut parts = openecraft_core::model::TagParts { function: false, installation: false, location: false, product: false };
-        if t.is_empty() || t.eq_ignore_ascii_case("all") {
-            parts = openecraft_core::model::TagParts::default();
-        } else {
-            for k in t.split(',').map(str::trim).filter(|k| !k.is_empty()) {
-                *parts.get_mut(Aspect::from_key(k).ok_or_else(|| tr_fmt!("Unknown aspect: {}", k))?) = true;
-            }
-        }
-        prj.pages[i].plan.tag_parts = parts;
-    }
-    if let Some(t) = a.str("rooms") {
-        let names: Vec<String> = t.split(',').map(str::trim).filter(|n| !n.is_empty()).map(String::from).collect();
-        if let Some(n) = names.iter().find(|n| !openecraft_core::panel::rooms(&prj.layout).into_iter().any(|ri| prj.layout.enclosures[ri].name == **n)) {
-            return Err(tr_fmt!("No room named {}", n));
-        }
-        prj.pages[i].plan.rooms = names;
-    }
+    set_plan(prj, i, a)?;
     if Aspect::ALL.iter().any(|asp| a.str(asp.key()).is_some()) {
         let mut dt = Dt::of_page(&prj.pages[i]);
         for asp in Aspect::ALL {

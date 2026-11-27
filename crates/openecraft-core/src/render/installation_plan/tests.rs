@@ -102,7 +102,7 @@ fn page_scale_is_kept_and_written_in_the_caption() {
     let last = prj.pages.len() - 1;
     prj.pages[last].scale = 100.0;
     let rec = draw(&prj);
-    assert!(rec.texts.iter().any(|t| t.ends_with(&tr_fmt!("Scale 1:{}", 100))));
+    assert!(rec.texts.iter().any(|t| t.ends_with(&tr_fmt!("Scale {}", "1 : 100"))));
 }
 
 #[test]
@@ -147,6 +147,18 @@ fn default_plan_symbols_follow_the_subgroup() {
     assert_eq!(installation::default_plan_symbol(Kind::Socket, Some(&part("Socket outlet", "X.DOUBLE"))), "inst_socket2");
     assert_eq!(installation::default_plan_symbol(Kind::Light, Some(&part("Wall light", "X"))), "inst_wall_light");
     assert_eq!(installation::default_plan_symbol(Kind::Light, None), "inst_lamp");
+}
+
+#[test]
+fn plan_symbols_are_chosen_by_whole_words() {
+    let part = |sub: &str, number: &str| crate::parts::Part { subgroup: sub.into(), number: number.into(), ..Default::default() };
+    // "inter" of "interface", "3x" and "pb" inside part numbers choose nothing.
+    assert_eq!(installation::default_plan_symbol(Kind::Switch, Some(&part("Switch interface", "X"))), "inst_switch");
+    assert_eq!(installation::default_plan_symbol(Kind::Socket, Some(&part("Socket outlet", "1032X00"))), "inst_socket");
+    assert_eq!(installation::default_plan_symbol(Kind::Switch, Some(&part("Switch", "APB-12"))), "inst_switch");
+    assert_eq!(installation::default_plan_symbol(Kind::Switch, Some(&part("Intermediate switch", "X"))), "inst_switch_inter");
+    assert_eq!(installation::default_plan_symbol(Kind::Socket, Some(&part("Socket outlet", "GEN.SOCKET-F-2X-UP"))), "inst_socket2");
+    assert_eq!(installation::default_plan_symbol(Kind::Switch, Some(&part("Switch", "X.TWO-WAY"))), "inst_switch2");
 }
 
 #[test]
@@ -260,7 +272,7 @@ fn a_large_scale_is_kept_and_cut_off_at_the_edge() {
     for q in &pts.0 {
         assert!(q.x >= a.min.x - 0.01 && q.x <= a.max.x + 0.01 && q.y >= a.min.y - 0.01 && q.y <= a.max.y + 0.01, "{q:?} outside {a:?}");
     }
-    assert!(draw(&prj).texts.iter().any(|t| t.ends_with(&tr_fmt!("Scale 1:{}", 10))));
+    assert!(draw(&prj).texts.iter().any(|t| t.ends_with(&tr_fmt!("Scale {}", "1 : 10"))));
 }
 
 #[test]
@@ -272,8 +284,8 @@ fn chosen_rooms_are_fitted_onto_the_page() {
     (e.width, e.depth) = (1500.0, 1200.0);
     e.site = Some(crate::model::panel::SitePlace { x: 9000.0, z: 0.0, angle: 0.0 });
     let n = |rec: &Rec| -> f32 {
-        let caption = rec.texts.iter().find(|t| t.contains(" 1:")).expect("caption");
-        caption.split(':').nth(1).unwrap().split(' ').next().unwrap().parse().unwrap()
+        let caption = rec.texts.iter().find(|t| t.contains(" 1 : ")).expect("caption");
+        caption.split(" : ").nth(1).unwrap().split(' ').next().unwrap().parse().unwrap()
     };
     let whole = n(&draw(&prj));
     let rooms = panel::buildings::rooms_on(&prj.layout, level);
@@ -283,7 +295,7 @@ fn chosen_rooms_are_fitted_onto_the_page() {
     prj.pages[last].plan.rooms = vec![prj.layout.enclosures[small].name.clone()];
     let one = n(&draw(&prj));
     assert!(one < whole, "1:{one} for one room, 1:{whole} for the level");
-    assert!(draw(&prj).texts.iter().any(|t| t.ends_with(&tr_fmt!("Scale 1:{} (fitted)", one))));
+    assert!(draw(&prj).texts.iter().any(|t| t.ends_with(&tr_fmt!("Scale {} (fitted)", crate::graphics::scale_text(one)))));
 }
 
 #[test]
@@ -457,3 +469,87 @@ fn device_and_cabinet_symbols_can_be_enlarged() {
     assert!(below(&prj) > small, "the name stands below a larger symbol");
 }
 
+
+#[test]
+fn a_word_wider_than_the_column_is_broken() {
+    let lines = wrap_printed("-F1  =HAUPTVERTEILUNG+HAUSWIRTSCHAFTSRAUM-STECKDOSEN", 2.2, 30.0);
+    assert!(lines.len() >= 2, "{lines:?}");
+    for l in &lines {
+        assert!(printed_width(l, 2.2) <= 30.0, "{l}");
+    }
+}
+
+#[test]
+fn a_page_without_room_left_is_fitted_at_the_largest_scale() {
+    assert_eq!(fit_scale((5000.0, 4000.0), (300.0, -20.0)), FIT_SCALES[FIT_SCALES.len() - 1]);
+    assert_eq!(fit_scale((5000.0, 4000.0), (0.0, 200.0)), FIT_SCALES[FIT_SCALES.len() - 1]);
+}
+
+#[test]
+fn a_large_legend_at_the_bottom_leaves_room_for_the_plan() {
+    let mut prj = office_with_circuit();
+    let last = prj.pages.len() - 1;
+    prj.pages[last].plan.legend_at = LegendAt::Bottom;
+    prj.pages[last].plan.legend_size = 72.0;
+    let t = texts(&prj).0;
+    let title = t.iter().find(|t| t.1 == tr("Circuits")).expect("legend");
+    let room = &prj.layout.enclosures.iter().find(|e| e.is_room()).expect("room").name;
+    let name = t.iter().find(|t| &t.1 == room).expect("the room is still drawn");
+    assert!(name.0.y < title.0.y);
+}
+
+#[test]
+fn a_typed_scale_is_written_as_in_the_page_properties() {
+    let (mut prj, _) = office();
+    let last = prj.pages.len() - 1;
+    prj.pages[last].scale = 100.0 / 3.0;
+    assert!(draw(&prj).texts.iter().any(|t| t.ends_with(&tr_fmt!("Scale {}", "1 : 33.333"))));
+}
+
+/// The colours drawn on a page before its legend and in it.
+#[derive(Default)]
+struct Colours {
+    legend: bool,
+    plan: Vec<[u8; 3]>,
+    listed: Vec<[u8; 3]>,
+}
+
+impl Draw for Colours {
+    fn line(&mut self, _: P, _: P, _: f32, ink: Ink, _: bool) {
+        self.ink(ink);
+    }
+    fn poly(&mut self, _: &[P], _: bool, _: f32, ink: Ink, _: bool) {
+        self.ink(ink);
+    }
+    fn circle(&mut self, _: P, _: f32, _: f32, ink: Ink, _: bool) {
+        self.ink(ink);
+    }
+    fn text(&mut self, _: P, text: &str, _: f32, _: Anchor, _: VAnchor, _: Ink) {
+        self.legend |= text == tr("Circuits");
+    }
+}
+
+impl Colours {
+    fn ink(&mut self, ink: Ink) {
+        if let Ink::Color(c) = ink {
+            if self.legend { self.listed.push(c) } else { self.plan.push(c) }
+        }
+    }
+}
+
+#[test]
+fn only_circuits_of_the_legend_are_coloured() {
+    // One room of the office: devices of neighbouring rooms seen beside it stay black.
+    let (mut prj, level) = office();
+    let last = prj.pages.len() - 1;
+    for ri in panel::buildings::rooms_on(&prj.layout, level) {
+        prj.pages[last].plan.rooms = vec![prj.layout.enclosures[ri].name.clone()];
+        let an = Analysis::with_builtin(&prj);
+        let frame = crate::frame::of_page(&prj, last);
+        let mut c = Colours::default();
+        super::draw_page(&mut c, &prj, &an, &prj.pages[last], level, &frame);
+        for col in &c.plan {
+            assert!(c.listed.contains(col), "{col:?} on the plan of {} but not in its legend", prj.layout.enclosures[ri].name);
+        }
+    }
+}
