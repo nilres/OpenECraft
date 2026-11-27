@@ -64,7 +64,8 @@ impl App {
                 ui.label(format!("•  {line}"));
             }
             ui.add_space(12.0);
-            if ui.button(tr("Close the start page")).clicked() {
+            // Without an open project there is nothing behind the start page.
+            if !self.closed && ui.button(tr("Close the start page")).clicked() {
                 crate::dock::close(&mut self.dock, Pane::Tool(ToolPane::Start));
             }
         });

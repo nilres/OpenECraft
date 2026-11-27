@@ -103,7 +103,7 @@ impl App {
                         }
                     });
                 }
-                if cmd == Cmd::PreviousPage {
+                if cmd == Cmd::PreviousPage && !self.closed {
                     let name = self.session.prj.pages.get(self.session.page).map(structure::page_full_name).unwrap_or_default();
                     let r = ui.add(egui::Button::new(RichText::new(name).monospace()).frame(false)).on_hover_text(tr("Pages"));
                     egui::Popup::menu(&r).show(|ui| {
@@ -122,7 +122,7 @@ impl App {
             }
             ui.separator();
             let current = self.workspace;
-            egui::ComboBox::from_id_salt("workspace").selected_text(tr(current.title())).width(130.0).show_ui(ui, |ui| {
+            ui.add_enabled_ui(!self.closed, |ui| egui::ComboBox::from_id_salt("workspace").selected_text(tr(current.title())).width(130.0).show_ui(ui, |ui| {
                 for w in Workspace::ALL {
                     if ui.selectable_label(w == current, tr(w.title())).clicked() {
                         self.set_workspace(w);
@@ -130,7 +130,7 @@ impl App {
                 }
             })
             .response
-            .on_hover_text(tr("Workspaces"));
+            .on_hover_text(tr("Workspaces")));
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 // On a narrow window the project name goes first, then the search text
                 // (the icon stays): nothing is drawn over the commands on the left.
@@ -143,7 +143,7 @@ impl App {
                     self.run(&ui.ctx().clone(), Cmd::ReportBug);
                 }
                 let room = ui.available_width();
-                if room > 420.0 {
+                if room > 420.0 && !self.closed {
                     let dirty = if self.session.dirty() { " *" } else { "" };
                     ui.add(egui::Label::new(RichText::new(format!("{}{}", self.session.prj.info.name, dirty)).weak()).truncate());
                     ui.separator();
