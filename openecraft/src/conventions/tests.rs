@@ -239,7 +239,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("ext", &["analysis", "issue", "model", "params", "table"]),
     ("exporters", &["aml", "analysis", "dwg", "dxf", "export3d", "ext", "harness", "harness_export", "kbl", "marking", "model", "nailboard", "page_select", "params", "pdf", "pinout", "plc", "plugs", "reports", "svg", "translation", "xlsx"]),
     // 7 output and exchange formats
-    ("render", &["analysis", "cabledef", "conndef", "device_boxes", "document", "electrofluid", "forms", "frame", "geom", "graphics", "index", "macro_boxes", "model", "netlist", "panel", "parts", "potentials", "production", "props", "references", "report_blocks", "review", "revision", "structure", "structure_boxes", "symbols", "text", "wirenum"]),
+    ("render", &["analysis", "cabledef", "conndef", "device_boxes", "document", "electrofluid", "forms", "frame", "geom", "graphics", "index", "installation", "macro_boxes", "model", "netlist", "panel", "parts", "potentials", "production", "props", "references", "report_blocks", "review", "revision", "structure", "structure_boxes", "symbols", "text", "wirenum"]),
     ("svg", &["analysis", "frame", "geom", "model", "render", "symbols", "text"]),
     ("pdf", &["analysis", "document", "frame", "geom", "model", "render", "structure", "symbols", "text", "ttf"]),
     ("pdf_comments", &["geom", "model", "review"]),

@@ -25,10 +25,17 @@ fotorresistencia, optoacoplador y puente rectificador.
 
 ## Símbolos de plano de instalación
 
-**Símbolos de plano de instalación** (IEC 60617-11): interruptores unipolares y
-conmutadores, regulador de luz, pulsador, punto de luz, luminaria fluorescente, toma
-doble con tierra, caja de derivación, detector de movimiento y cuadro de distribución,
-cada uno con un punto de conexión para el cable.
+**Símbolos de plano de instalación** (IEC 60617-11): interruptores unipolares,
+conmutadores, interruptores de cruce, dobles y de persiana, regulador de luz, pulsador,
+punto de luz, aplique, luminaria empotrada, foco, luminarias fluorescente y de
+emergencia, tomas con tierra (simple, doble, triple, con interruptor, protegida contra
+salpicaduras, CEE trifásica), caja de derivación, caja de conexión de aparato, tomas de
+datos y de antena, elemento calefactor, termostato de ambiente, motor, ventilador,
+interfono de puerta, timbre, detector de humo, detector de movimiento, contacto de
+ventana o puerta y cuadro de distribución, cada uno con un punto de conexión para el
+cable arriba. Las páginas de plano de instalación dibujan un dispositivo con el símbolo de
+plano de su artículo (*Símbolo de plano* en los datos de montaje del artículo, comando
+`set_plan_symbol`, lista `plan_symbols`) o con el de su tipo.
 
 ## Editor de símbolos y bibliotecas
 

@@ -174,11 +174,12 @@ pub enum Icon {
     SplitDown,
     FullScreen,
     Windows,
+    Discord,
 }
 
 impl Icon {
     /// Every icon, for the tests.
-    pub const ALL: [Icon; 161] = [
+    pub const ALL: [Icon; 162] = [
         Icon::File, Icon::FileNew, Icon::FolderOpen, Icon::Save, Icon::SaveAs, Icon::Download, Icon::Upload, Icon::Print, Icon::Template,
         Icon::Info, Icon::Settings, Icon::Help, Icon::Quit, Icon::Home, Icon::Undo, Icon::Redo, Icon::Cut, Icon::Copy, Icon::Paste,
         Icon::Delete, Icon::Rotate, Icon::Mirror, Icon::Align, Icon::Distribute, Icon::Move, Icon::MultiCopy, Icon::Find, Icon::Select,
@@ -208,6 +209,7 @@ impl Icon {
         Icon::SplitDown,
         Icon::FullScreen,
         Icon::Windows,
+        Icon::Discord,
     ];
 
     /// The path of the icon (see the module documentation).
@@ -229,6 +231,8 @@ impl Icon {
             Icon::FullScreen => "M 1.5 5.5 1.5 1.5 5.5 1.5 ; M 10.5 1.5 14.5 1.5 14.5 5.5 ; M 14.5 10.5 14.5 14.5 10.5 14.5 ; M 5.5 14.5 1.5 14.5 1.5 10.5 ; M 1.5 1.5 6 6 ; M 14.5 1.5 10 6 ; M 14.5 14.5 10 10 ; M 1.5 14.5 6 10",
             Icon::Windows => "R 1.5 6 9 8 ; M 5.5 6 5.5 2 14.5 2 14.5 10 10.5 10",
             Icon::Bug => "E 8 10 3.5 4.5 ; A 8 5.5 2.5 180 360 ; M 8 5.5 8 14.5 ; M 4.5 8 1.5 6.5 ; M 4.5 10.5 1.5 10.5 ; M 5 13 2 14.5 ; M 11.5 8 14.5 6.5 ; M 11.5 10.5 14.5 10.5 ; M 11 13 14 14.5 ; M 6.5 3.5 5 1.5 ; M 9.5 3.5 11 1.5",
+            // The head of the Discord logo; its eyes are drawn by `discord_button`.
+            Icon::Discord => "F 3.8 3 6.3 2.5 9.7 2.5 12.2 3 14 6 14.6 11.3 12.2 13.2 11.2 12 4.8 12 3.8 13.2 1.4 11.3 2 6",
             Icon::Help => "C 8 8 6.5 ; M 6 6.2 6 5.2 7 4.2 9 4.2 10 5.2 10 6.5 8 8 8 9.5 ; D 8 11.8 0.9",
             Icon::Quit => "M 9 2 3 2 3 14 9 14 ; M 7 8 14.5 8 ; M 12 5.5 14.5 8 12 10.5",
             Icon::Home => "M 1.5 8 8 2 14.5 8 ; M 3.5 6.5 3.5 14 12.5 14 12.5 6.5 ; R 6.5 9.5 3 4.5",
@@ -530,6 +534,35 @@ pub fn text_button(ui: &mut Ui, icon: Icon, text: &str) -> Response {
     let text_pos = pos2(rect.min.x + h + ui.spacing().button_padding.x * 0.5, rect.center().y - galley.size().y / 2.0);
     ui.painter().galley_with_override_text_color(text_pos, galley, color);
     resp
+}
+
+/// The colour of the Discord brand.
+pub const DISCORD: Color32 = Color32::from_rgb(0x58, 0x65, 0xF2);
+
+/// A pill in the colour of Discord with its logo and a cross: the responses of the logo
+/// (`label` its tooltip) and of the cross (`close` its tooltip).
+pub fn discord_button(ui: &mut Ui, label: &str, close: &str) -> (Response, Response) {
+    let h = ui.spacing().interact_size.y;
+    let (rect, _) = ui.allocate_exact_size(vec2(h * 1.9, h), Sense::hover());
+    let logo_rect = Rect::from_min_max(rect.min, pos2(rect.min.x + h * 1.15, rect.max.y));
+    let close_rect = Rect::from_min_max(pos2(logo_rect.max.x, rect.min.y), rect.max);
+    let logo = ui.interact(logo_rect, egui::Id::unique("discord_button"), Sense::click());
+    let cross = ui.interact(close_rect, egui::Id::unique("discord_button_close"), Sense::click());
+    logo.widget_info(|| WidgetInfo::labeled(Role::Link, true, label));
+    cross.widget_info(|| WidgetInfo::labeled(Role::Button, true, close));
+    let fill = if logo.hovered() || cross.hovered() { DISCORD.gamma_multiply(0.85) } else { DISCORD };
+    let painter = ui.painter();
+    painter.rect_filled(rect, h / 2.0, fill);
+    let icon = Rect::from_center_size(logo_rect.center() + vec2(h * 0.08, 0.0), Vec2::splat(h * 0.72));
+    paint(painter, icon, Icon::Discord, Color32::WHITE);
+    let s = icon.width() / 16.0;
+    for x in [5.6, 10.4] {
+        let c = icon.min + vec2(x, 8.2) * s;
+        painter.add(egui::epaint::EllipseShape::filled(c, vec2(1.25, 1.4) * s, fill));
+    }
+    let cross_color = if cross.hovered() { Color32::WHITE } else { Color32::from_white_alpha(200) };
+    paint(painter, Rect::from_center_size(close_rect.center() - vec2(h * 0.06, 0.0), Vec2::splat(h * 0.42)), Icon::Close, cross_color);
+    (logo.on_hover_text(label), cross.on_hover_text(close))
 }
 
 #[cfg(test)]

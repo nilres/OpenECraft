@@ -630,6 +630,20 @@ pub fn part_editor(ui: &mut egui::Ui, part: &mut Part, state: &mut EditorState, 
                 num_row(ui, tr("Depth"), &mut part.depth, " mm");
                 num_row(ui, tr("Weight"), &mut part.weight, " kg");
                 text_row(ui, tr("Mounting"), &mut part.mounting);
+                ui.label(tr("Plan symbol"));
+                let shown = openecraft_parts::PLAN_SYMBOLS.iter().find(|(k, _)| *k == part.plan_symbol).map_or_else(
+                    || if part.plan_symbol.is_empty() { tr("(by its kind)").to_string() } else { part.plan_symbol.clone() },
+                    |(_, n)| tr(n).to_string(),
+                );
+                egui::ComboBox::from_id_salt("planSymbol").selected_text(shown).show_ui(ui, |ui| {
+                    ui.selectable_value(&mut part.plan_symbol, String::new(), tr("(by its kind)"));
+                    for (k, n) in openecraft_parts::PLAN_SYMBOLS {
+                        ui.selectable_value(&mut part.plan_symbol, k.to_string(), tr(n));
+                    }
+                })
+                .response
+                .on_hover_text(tr("Symbol of the part on installation plans (IEC 60617-11); by its kind: socket outlet, switch, light … from its subgroup"));
+                ui.end_row();
             });
             ui.add_space(6.0);
             ui.label(RichText::new(tr("Mounting data")).strong());

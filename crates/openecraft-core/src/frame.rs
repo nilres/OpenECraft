@@ -188,7 +188,7 @@ impl PlotFrame {
 
 /// Page kinds with column / row strips.
 pub fn has_strips(kind: PageKind) -> bool {
-    matches!(kind, PageKind::Schematic | PageKind::Overview)
+    matches!(kind, PageKind::Schematic | PageKind::Overview | PageKind::InstallationPlan(_))
 }
 
 /// The built-in frames.

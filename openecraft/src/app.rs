@@ -150,6 +150,8 @@ struct ShellState {
     catalog_logos: bool,
     /// Look for a new release when the editor starts (and install it).
     update_check: bool,
+    /// The title bar shows the button of the Discord server.
+    discord_button: bool,
     /// What the wheel, trackpads and touch screens do in the views.
     nav: openecraft_ui::nav::Settings,
     /// Whether the unknown wheel-source default has been migrated.
@@ -185,6 +187,7 @@ impl Default for ShellState {
             gpu_3d: true,
             catalog_logos: true,
             update_check: true,
+            discord_button: true,
             nav: openecraft_ui::nav::Settings::default(),
             wheel_source_policy_migrated: false,
             startup: crate::startup::Startup::default(),

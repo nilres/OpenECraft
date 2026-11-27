@@ -139,6 +139,15 @@ impl App {
                 if r.on_hover_text(tr(report.tip)).clicked() {
                     self.run(&ui.ctx().clone(), Cmd::ReportBug);
                 }
+                if self.shell.discord_button {
+                    let (join, hide) = icons::discord_button(ui, tr("Join the Discord server"), tr("Hide the Discord button (shown again in Settings › Appearance)"));
+                    if join.clicked() {
+                        ui.ctx().open_url(egui::OpenUrl::new_tab(openecraft_ui::bug_report::DISCORD_URL));
+                    }
+                    if hide.clicked() {
+                        self.shell.discord_button = false;
+                    }
+                }
                 let room = ui.available_width();
                 if room > 420.0 && !self.closed {
                     let dirty = if self.session.dirty() { " *" } else { "" };

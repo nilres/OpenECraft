@@ -23,9 +23,15 @@ Fotowiderstand, Optokoppler und Brückengleichrichter.
 
 ## Symbole für Installationspläne
 
-**Symbole für Installationspläne** (IEC 60617-11): Aus- und Wechselschalter, Dimmer,
-Taster, Leuchtenauslass, Leuchtstofflampe, Doppelsteckdose mit PE, Abzweigdose,
-Bewegungsmelder und Verteiler, jeweils mit einem Anschlusspunkt für das Kabel.
+**Symbole für Installationspläne** (IEC 60617-11): Aus-, Wechsel-, Kreuz-, Serien- und
+Jalousieschalter, Dimmer, Taster, Leuchtenauslass, Wandleuchte, Einbauleuchte, Strahler,
+Leuchtstofflampe und Notleuchte, Steckdosen mit PE (einfach, doppelt, dreifach, mit
+Schalter, spritzwassergeschützt, CEE-Drehstrom), Abzweigdose, Geräteanschlussdose, Daten-
+und Antennendose, Heizelement, Raumthermostat, Motor, Lüfter, Türsprechstelle, Klingel,
+Rauchwarnmelder, Bewegungsmelder, Fenster- oder Türkontakt und Verteiler, jeweils mit
+einem Anschlusspunkt für das Kabel oben. Installationsplan-Seiten zeichnen ein
+Betriebsmittel mit dem Plansymbol seines Artikels (*Plansymbol* in den Montagedaten des
+Artikels, Befehl `set_plan_symbol`, Liste `plan_symbols`) oder dem seiner Art.
 
 ## Symboleditor und Bibliotheken
 

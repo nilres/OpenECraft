@@ -17,6 +17,7 @@ pub fn page_icon(kind: PageKind) -> &'static str {
         PageKind::Overview => "🗺",
         PageKind::Graphic => "✏",
         PageKind::Document => "📎",
+        PageKind::InstallationPlan(_) => "🗺",
     }
 }
 

@@ -55,7 +55,7 @@ step.
 
 ## Example projects
 
-The start page and *File › New* list sixteen example projects; each builds on the one
+The start page and *File › New* list seventeen example projects; each builds on the one
 before and shows more of the features (command line: `list_examples`,
 `new_project --example <name>`). All of them pass the project check without errors or
 warnings.
@@ -78,6 +78,7 @@ warnings.
 | 14 | `industrial_main_distribution` | The main low-voltage distribution of an industrial plant in two bayed Hager univers cabinets: two aluminium supplies on busbar terminals for Al through a cable entry flange, transformer metering in the supply busbar, isolated by NH3 strips with solid links (they protect nothing), power analyser Janitza UMG 604-PRO for the zero export of the battery storage, a 185 mm busbar system through both cabinets with Hager LVSG NH fuse switch disconnector strips: four measured feeders with LVZW current transformers clipped in behind the poles and Loxone energy meters (DC charging station, sub-distributions, air conditioning), heat pumps behind residual current devices of type B, PV inverters and battery storage behind two h3+ coupling switches with motor operators, undervoltage releases and auxiliary switches, fed from busbar terminals |
 | 15 | `plant_buildings` | The pump room in a plant of two buildings: main building with the electrical room on its ground level and the control room above, joined by a shaft; pump house with pump motor 2, linked by a cable trench between the building entries through which the motor cable is routed; façade lights on the outside walls and a weather station on the roof |
 | 16 | `office_building` | The plant of level 15 with an office building: office on the ground level, attic under a gable roof whose slopes cut its ceiling down to the knee wall, a stair turned at a quarter landing, roof windows, a PV array of LONGi modules on rails and roof hooks, its string cabled down to the inverter and its mounting earthed to a bonding busbar in the attic, foundation and ring earth electrodes and a lightning protection system of class III; Gira socket outlets, network outlet and switch, MDT KNX push button and room temperature controller at their mounting heights, a COSMO heating circuit manifold and a single-room control box |
+| 17 | `office_installation_plans` | The office building on installation plan pages: per level the walls, doors and windows, the rooms with identifier and description, the devices with their plan symbols turned towards their walls; the ground level fitted onto the page, the attic at 1:50 with larger room names, smaller symbols and the legend at the bottom |
 
 The projects are built in code (`crates/openecraft-core/src/sample/`), so they always
 match the current file format; *Save as…* writes one as an `.oec` file.

@@ -813,6 +813,35 @@ lengths of their cables are those of the 3D routing.
   panel and batten lights, emergency lights with their sign, panel heaters with grille
   and thermostat, towel radiators with their bars, infrared heating panels). The 3D
   menu *Insert › Outlets, switches, heating* has a tab *Lights* too.
+- **Installation plan pages** (*New installation plan page* in the tab *Electrical
+  installation* of the *Buildings* pane, a page type in the *Page properties*; command
+  `add_page kind=installation_plan building=… level=…`) print the installation of one
+  level: the walls of its rooms with gaps for the doors and windows, the leaves and
+  swings of the doors, the room names, the cabinets and distribution boards standing in
+  the rooms (their footprint as the distribution board symbol, with their names), the
+  devices with their symbols turned towards
+  their wall and their tags, the connections of the circuits and a legend of the
+  circuits in their colours; a symbol and a line of the legend link to the
+  installation page of the circuit in the PDF export. The page has the column and row
+  strips of the frame. Its scale (1 : 50, 1 : 100 …) is kept, or *Fit onto the page*
+  chooses the largest that fits (written as *fitted* in the caption); ticking some
+  *Rooms* (`set_page rooms=+BATH,+KIT`) centres or fits the page on them, and what does
+  not fit into the drawing area is cut off at its edge. Tags, circuit colours,
+  connections and room names can be switched off in the page properties (`set_page`
+  with `tags`, `circuit_colors`, `connections`, `room_names`), and the tags shortened to
+  some of their aspects (*Tags shown as*: full tag, location and device, function and
+  device, device only, or custom; `tag_parts`: only the product aspect shows `-X1.6` of
+  `=SD1+F1-X1.6`).
+  The legend can be switched off or placed at the right, the left, the top or the bottom
+  (`legend`, `legend_at`); a room shows its location identifier and the description of
+  that identifier from the structure management, e.g. *Kitchen* (*Description* in the
+  room's properties, `define_structure`), each of them can be switched off
+  (`room_names`, `room_descriptions`), and the font sizes of tags, rooms and legend
+  (in pt, `tag_size`, `room_size`, `legend_size`) and the sizes of the device and
+  cabinet symbols (in %, `symbol_scale`, `cabinet_scale`) are set per page.
+
+![Installation plan page of a flat: rooms with doors and windows, devices with their plan symbols turned towards their walls, tags shortened to the product aspect](../images/installation-plan.png)
+
 - **Heating elements** are put in the same way: panel heaters (`GEN.HEATER-PANEL-1000`,
   `GEN.HEATER-PANEL-2000`, 400 mm) and towel radiators (`GEN.HEATER-TOWEL-500`,
   900 mm) on the wall, infrared heating panels (`GEN.HEATER-IR-600`) on the ceiling;

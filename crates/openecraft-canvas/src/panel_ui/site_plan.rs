@@ -5,7 +5,10 @@
 //! floor plan of the site in the Layout space.
 
 use egui::{pos2, vec2, Color32, Pos2, Rect, Stroke, Vec2};
+use openecraft_core::geom;
 use openecraft_core::model::Project;
+use openecraft_core::render::installation_plan as plan_page;
+use openecraft_core::render::Ink;
 use openecraft_core::panel::{self, buildings as bld, floorplan, plot, roofs, solar, stairs};
 use openecraft_i18n::{tr, tr_fmt};
 
@@ -313,19 +316,10 @@ pub fn level_plan(prj: &Project, bi: usize, level: u64) -> SitePlan {
     plan
 }
 
-/// Colour of the circuit with index `k`.
+/// Colour of the circuit with index `k` (the same as on installation plan pages).
 pub fn circuit_color(k: usize) -> Color32 {
-    const COLORS: [Color32; 8] = [
-        Color32::from_rgb(220, 70, 60),
-        Color32::from_rgb(40, 130, 220),
-        Color32::from_rgb(40, 160, 80),
-        Color32::from_rgb(200, 130, 20),
-        Color32::from_rgb(150, 80, 200),
-        Color32::from_rgb(20, 160, 170),
-        Color32::from_rgb(200, 60, 150),
-        Color32::from_rgb(120, 120, 40),
-    ];
-    COLORS[k % COLORS.len()]
+    let [r, g, b] = plan_page::circuit_color(k);
+    Color32::from_rgb(r, g, b)
 }
 
 /// The room on the level shown under `p` (one of the building highlighted).
@@ -357,11 +351,10 @@ pub fn installation_at(prj: &Project, plan: &SitePlan, frame: &Frame, p: Pos2) -
 /// lights as symbols of installation plans (IEC 60617-11) in the colour of their
 /// circuit.
 pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, circuits: &[openecraft_core::installation::Circuit], highlight: Option<&str>) {
-    use openecraft_core::installation::{self as inst, Kind};
+    use openecraft_core::installation as inst;
     let painter = ui.painter_at(size);
     let frame = frame(size, prj, plan);
     let items = installation_items(prj, plan);
-    let weak = ui.visuals().text_color();
     let poses = panel::site_poses(prj);
     let shown = |tag: &str| items.iter().any(|p| p.tag == tag);
     for (k, c) in circuits.iter().enumerate() {
@@ -374,60 +367,15 @@ pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SiteP
             painter.extend(egui::Shape::dashed_line(&[a, corner, b], Stroke::new(width, circuit_color(k)), 5.0, 3.0));
         }
     }
+    // The symbols as on installation plan pages, drawn at 3 points per millimetre.
+    let pal = crate::editor::Palette::new(ui.visuals().dark_mode);
+    let zoom = 3.0;
+    let mut d = crate::editor::EguiDraw { painter: &painter, origin: Pos2::ZERO, zoom, pal: &pal, force: None, mirror: None, textures: None };
     for p in &items {
-        let color = circuits.iter().position(|c| c.has_item(p.item)).map_or(weak, circuit_color);
+        let ink = circuits.iter().position(|c| c.has_item(p.item)).map_or(Ink::Line, |k| Ink::Color(plan_page::circuit_color(k)));
         let c = frame.at(p.at);
-        let s = Stroke::new(1.5, color);
-        match p.kind {
-            Kind::Socket => {
-                // A half circle on a line, open towards the wall.
-                let r = 6.0;
-                let arc: Vec<Pos2> = (0..=8).map(|i| c + vec2((std::f32::consts::PI * i as f32 / 8.0).cos() * r, -(std::f32::consts::PI * i as f32 / 8.0).sin() * r)).collect();
-                painter.add(egui::Shape::line(arc, s));
-                painter.line_segment([c - vec2(r, 0.0), c + vec2(r, 0.0)], s);
-            }
-            Kind::Switch => {
-                painter.circle_filled(c, 3.5, color);
-                painter.line_segment([c, c + vec2(7.0, -7.0)], s);
-            }
-            Kind::Light => {
-                let r = 6.0;
-                painter.circle_stroke(c, r, s);
-                let d = r * std::f32::consts::FRAC_1_SQRT_2;
-                painter.line_segment([c - vec2(d, d), c + vec2(d, d)], s);
-                painter.line_segment([c + vec2(d, -d), c - vec2(d, -d)], s);
-            }
-            Kind::Heater => {
-                // A rectangle with the hatching of a heating element.
-                let (w, h) = (8.0, 4.0);
-                painter.rect_stroke(Rect::from_center_size(c, vec2(2.0 * w, 2.0 * h)), 0.0, s, egui::StrokeKind::Middle);
-                for x in [-4.0, 0.0, 4.0] {
-                    painter.line_segment([c + vec2(x - 2.0, h), c + vec2(x + 2.0, -h)], s);
-                }
-            }
-            Kind::Junction => {
-                painter.circle_stroke(c, 4.0, s);
-                painter.circle_filled(c, 1.5, color);
-            }
-            Kind::Connection => {
-                // A box with the cable of the fixed equipment leaving it.
-                painter.rect_stroke(Rect::from_center_size(c, vec2(10.0, 8.0)), 0.0, s, egui::StrokeKind::Middle);
-                painter.arrow(c, vec2(0.0, 9.0), s);
-            }
-            Kind::Data | Kind::Aerial => {
-                // A triangle (data) or a circle with a stem (antenna).
-                if p.kind == Kind::Data {
-                    painter.add(egui::Shape::closed_line(vec![c + vec2(-5.0, 4.0), c + vec2(5.0, 4.0), c + vec2(0.0, -5.0)], s));
-                } else {
-                    painter.circle_stroke(c + vec2(0.0, -2.0), 3.0, s);
-                    painter.line_segment([c + vec2(0.0, 1.0), c + vec2(0.0, 5.0)], s);
-                }
-            }
-            Kind::Smoke => {
-                painter.circle_stroke(c, 5.0, s);
-                painter.text(c, egui::Align2::CENTER_CENTER, "S", egui::FontId::proportional(8.0), color);
-            }
-        }
+        let up = p.facing.map(|f| geom::p(-f[0], -f[1]));
+        plan_page::symbol(&mut d, prj, &p.symbol, geom::p(c.x / zoom, c.y / zoom), up, ink);
     }
 }
 

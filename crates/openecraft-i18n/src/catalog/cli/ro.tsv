@@ -277,7 +277,7 @@ Undoes the last change	Anulează ultima modificare
 Unknown command: {}. Run openecraft-cli help for a list.	Comandă necunoscută: {}. Rulați openecraft-cli help pentru o listă.
 Unknown example {}: see list_examples	Exemplu necunoscut {}: vezi list_examples
 Unknown format {}: give oec, oecp or oecz	Format necunoscut {}: indicați oec, oecp sau oecz
-Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling or a report of list_reports)	Tip de pagină necunoscut: {} (schematic, overview, graphic, cover, mounting, drilling sau un raport din list_reports)
+Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan or a report of list_reports)	Tip de pagină necunoscut: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan sau un raport din list_reports)
 Unknown part {} (parts server: {})	Articol necunoscut {} (server de articole: {})
 Unknown plugin: {}	Plugin necunoscut: {}
 Unknown report scheme: {}	Schemă de raport necunoscută: {}
@@ -308,7 +308,6 @@ erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mc
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine sau exchange
 json (default), csv or xlsx (Excel, needs path)	json (implicit), csv sau xlsx (Excel, necesită path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nAfișează versiunea liniei de comandă (și --version sau -V)\n
-schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) sau un raport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo și redo funcționează doar într-o sesiune MCP: linia de comandă redeschide proiectul pentru fiecare comandă
 user or group	user sau group
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} este o arhivă și rămâne neschimbată: salvați proiectul ca fișier de proiect (save_project --path <file>.oec) sau convertiți arhiva (convert_project)

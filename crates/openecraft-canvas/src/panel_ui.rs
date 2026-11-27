@@ -2358,12 +2358,24 @@ impl PanelUi {
         let levels: Vec<(u64, String, f32)> = prj.layout.buildings.iter().flat_map(|b| b.levels.iter().map(move |l| (l.id, format!("{} › {}", b.name, l.name), l.height))).collect();
         let building = panel::buildings::find_level(&prj.layout, prj.layout.enclosures[ei].level).map(|(bi, _)| panel::buildings::building_pose(&prj.layout.buildings[bi]));
         let mut level: Option<Option<u64>> = None;
+        let structures = &mut prj.structures;
         let e = &mut prj.layout.enclosures[ei];
         let size_before = (e.width, e.depth, e.height);
         ui.label(RichText::new(tr("Room")).strong());
         egui::Grid::new("proom").num_columns(2).spacing([10.0, 5.0]).show(ui, |ui| {
             ui.label(tr("Location"));
             ui.text_edit_singleline(&mut e.name);
+            ui.end_row();
+            // The description of its location identifier ("Kitchen" of +KIT), shown on
+            // installation plan pages and kept in the structure management.
+            ui.label(tr("Description"));
+            let id = openecraft_core::render::installation_plan::room_location(&e.name);
+            let aspect = openecraft_core::structure::Aspect::Location;
+            let mut text = structures.entry(aspect, &id).map(|x| x.description.clone()).unwrap_or_default();
+            let r = ui.add_enabled(!id.is_empty(), egui::TextEdit::singleline(&mut text)).on_hover_text(tr("Description of the location identifier of the room in the structure management"));
+            if r.changed() {
+                structures.define(aspect, &id, &text);
+            }
             ui.end_row();
             ui.label(tr("Width × depth"));
             if e.outline.is_empty() {

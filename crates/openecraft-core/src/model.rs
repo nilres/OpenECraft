@@ -355,6 +355,10 @@ pub enum PageKind {
     Graphic,
     /// An embedded file (PDF, Office document, image).
     Document,
+    /// Installation plan of a level of a building (level id): the rooms with their
+    /// doors and windows and the installation devices with their symbols, tags and
+    /// circuits; what it shows is [`Page::plan`].
+    InstallationPlan(u64),
 }
 
 impl PageKind {
@@ -368,6 +372,7 @@ impl PageKind {
             PageKind::Overview => tr("Overview (not evaluated)").into(),
             PageKind::Graphic => tr("Graphics").into(),
             PageKind::Document => tr("Document (embedded file)").into(),
+            PageKind::InstallationPlan(_) => tr("Installation plan").into(),
         }
     }
 
@@ -731,6 +736,9 @@ pub struct Page {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub document: Option<document::Document>,
     pub kind: PageKind,
+    /// What an installation plan page shows.
+    #[serde(default, skip_serializing_if = "PlanView::is_default")]
+    pub plan: PlanView,
     /// Report pages: what part of the report the page shows (report blocks, pages
     /// output from other projects); none: the first rows of the whole report.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -766,6 +774,164 @@ pub struct Page {
     pub structure_boxes: Vec<structure::StructureBox>,
 }
 
+/// What an installation plan page ([`PageKind::InstallationPlan`]) shows besides the
+/// rooms and the symbols of the devices.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct PlanView {
+    /// The device tags beside the symbols.
+    pub tags: bool,
+    /// Symbols and connections in the colour of their circuit, with a legend of the
+    /// circuits.
+    pub circuit_colors: bool,
+    /// The connections of the circuits from device to device.
+    pub connections: bool,
+    /// The location identifiers of the rooms (`+KIT`).
+    pub room_names: bool,
+    /// The descriptions of the rooms (`Kitchen`): those of their location identifiers in
+    /// the structure management.
+    pub room_descriptions: bool,
+    /// The legend of the circuits and where it stands.
+    pub legend: bool,
+    pub legend_at: LegendAt,
+    /// Font sizes in pt as printed: device tags (and cabinet names), rooms, legend.
+    pub tag_size: f32,
+    pub room_size: f32,
+    pub legend_size: f32,
+    /// Size of the device symbols and of the cabinet symbols in % (100: the usual plan
+    /// symbol of 2.4 mm, the cabinet at its footprint).
+    pub symbol_scale: f32,
+    pub cabinet_scale: f32,
+    /// The aspects of the device tags shown (the device name always): the full tag,
+    /// or e.g. only the product aspect with the name (`-X1.6` of `=SD1+F1-X1.6`).
+    #[serde(skip_serializing_if = "TagParts::is_all")]
+    pub tag_parts: TagParts,
+    /// The rooms (by name) the page is about: the drawing is centred on them, or fitted
+    /// to them, and cut off at the edge of the drawing area; none: the whole level.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rooms: Vec<String>,
+}
+
+impl Default for PlanView {
+    fn default() -> Self {
+        PlanView {
+            tags: true,
+            circuit_colors: true,
+            connections: true,
+            room_names: true,
+            room_descriptions: true,
+            legend: true,
+            legend_at: LegendAt::Right,
+            tag_size: 6.5,
+            room_size: 10.5,
+            legend_size: 8.0,
+            symbol_scale: 100.0,
+            cabinet_scale: 100.0,
+            tag_parts: TagParts::default(),
+            rooms: Vec::new(),
+        }
+    }
+}
+
+/// Where the legend of an installation plan page stands: a column at a side, or a
+/// band at the top or the bottom of the drawing area.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LegendAt {
+    #[default]
+    Right,
+    Left,
+    Top,
+    Bottom,
+}
+
+impl LegendAt {
+    pub const ALL: [LegendAt; 4] = [LegendAt::Right, LegendAt::Left, LegendAt::Top, LegendAt::Bottom];
+
+    /// Name shown (English, translate with `tr`).
+    pub fn title(self) -> &'static str {
+        match self {
+            LegendAt::Right => tr_const!("Right"),
+            LegendAt::Left => tr_const!("Left"),
+            LegendAt::Top => tr_const!("Top"),
+            LegendAt::Bottom => tr_const!("Bottom"),
+        }
+    }
+
+    pub fn key(self) -> &'static str {
+        match self {
+            LegendAt::Right => "right",
+            LegendAt::Left => "left",
+            LegendAt::Top => "top",
+            LegendAt::Bottom => "bottom",
+        }
+    }
+}
+
+/// Which aspects of a device tag (IEC 81346) are shown.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct TagParts {
+    pub function: bool,
+    pub installation: bool,
+    pub location: bool,
+    pub product: bool,
+}
+
+impl Default for TagParts {
+    fn default() -> Self {
+        TagParts { function: true, installation: true, location: true, product: true }
+    }
+}
+
+impl TagParts {
+    const fn of(function: bool, installation: bool, location: bool, product: bool) -> TagParts {
+        TagParts { function, installation, location, product }
+    }
+
+    /// The usual choices: the full tag, location and device, function and device, the
+    /// device alone.
+    pub const PRESETS: [(&'static str, TagParts); 4] = [
+        (tr_const!("Full tag"), TagParts::of(true, true, true, true)),
+        (tr_const!("Location and device"), TagParts::of(false, false, true, true)),
+        (tr_const!("Function and device"), TagParts::of(true, false, false, true)),
+        (tr_const!("Device only"), TagParts::of(false, false, false, true)),
+    ];
+
+    pub fn is_all(&self) -> bool {
+        *self == TagParts::default()
+    }
+
+    /// Tag `tag` with only these aspects (the device name always).
+    pub fn apply(&self, tag: &str) -> String {
+        if self.is_all() {
+            tag.to_string()
+        } else {
+            structure::Dt::parse(tag).tag_with(|a| self.get(a))
+        }
+    }
+
+    pub fn get_mut(&mut self, a: structure::Aspect) -> &mut bool {
+        match a {
+            structure::Aspect::Function => &mut self.function,
+            structure::Aspect::Installation => &mut self.installation,
+            structure::Aspect::Location => &mut self.location,
+            structure::Aspect::Product => &mut self.product,
+        }
+    }
+
+    pub fn get(&self, a: structure::Aspect) -> bool {
+        let mut c = *self;
+        *c.get_mut(a)
+    }
+}
+
+impl PlanView {
+    pub fn is_default(&self) -> bool {
+        *self == PlanView::default()
+    }
+}
+
 impl Default for Page {
     fn default() -> Self {
         Page::new(0, "1", "", PageKind::Schematic)
@@ -797,6 +963,7 @@ impl Page {
             scale: 1.0,
             document: None,
             kind,
+            plan: PlanView::default(),
             report: None,
             symbols: Vec::new(),
             wires: Vec::new(),

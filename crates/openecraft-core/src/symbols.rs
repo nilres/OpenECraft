@@ -1533,6 +1533,168 @@ fn build_library() -> Vec<SymbolDef> {
     b.pin(0.0, -4.0, "1");
     v.push(def("inst_board", "Distribution board", C::Installation, "A", MAIN).build(&mut b));
 
+    // Socket outlets: a cup (half circle away from the wall) with the bar of the
+    // protective contact on the wall side; several cups side by side.
+    let cups = |b: &mut B, xs: &[f32]| {
+        for &x in xs {
+            b.arc(x, 0.0, 2.4, 0.0, 180.0).l(x - 2.4, 0.0, x + 2.4, 0.0);
+        }
+        let (l, r) = (xs[0] - 2.4, xs[xs.len() - 1] + 2.4);
+        b.l(l, -0.9, r, -0.9).l(0.0, 0.0, 0.0, -0.9);
+    };
+    feed(&mut b, -0.9);
+    cups(&mut b, &[0.0]);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_socket", "Socket outlet with PE", C::Installation, "X", MAIN).build(&mut b));
+
+    feed(&mut b, -0.9);
+    cups(&mut b, &[-5.2, 0.0, 5.2]);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_socket3", "Triple socket outlet with PE", C::Installation, "X", MAIN).build(&mut b));
+
+    feed(&mut b, -0.9);
+    cups(&mut b, &[0.0]);
+    b.l(1.7, 1.7, 3.8, 3.8).l(3.8, 3.8, 4.6, 3.0);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_socket_switched", "Socket outlet with switch", C::Installation, "X", MAIN).build(&mut b));
+
+    feed(&mut b, -0.9);
+    cups(&mut b, &[0.0]);
+    b.text(0.0, 4.2, "IP44", 1.6, Anchor::Center);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_socket_ip44", "Socket outlet, splash-proof", C::Installation, "X", MAIN).build(&mut b));
+
+    // Three-phase: three strokes across the feed.
+    feed(&mut b, -0.9);
+    cups(&mut b, &[0.0]);
+    for y in [-3.4, -2.6, -1.8] {
+        b.l(-0.8, y + 0.4, 0.8, y - 0.4);
+    }
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_socket_cee", "CEE socket outlet, three-phase", C::Installation, "X", MAIN).build(&mut b));
+
+    // Switches: the circle with levers (a tick at their end).
+    let lever = |b: &mut B, sx: f32, sy: f32| {
+        b.l(0.7 * sx, 0.7 * sy, 3.2 * sx, 3.2 * sy).l(3.2 * sx, 3.2 * sy, 4.0 * sx, 2.4 * sy);
+    };
+    feed(&mut b, -1.0);
+    b.circle(0.0, 0.0, 1.0, false);
+    for (sx, sy) in [(1.0, -1.0), (-1.0, 1.0), (-1.0, -1.0), (1.0, 1.0)] {
+        lever(&mut b, sx, sy);
+    }
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_switch_inter", "Intermediate switch (installation)", C::Installation, "S", MAIN).build(&mut b));
+
+    feed(&mut b, -1.0);
+    b.circle(0.0, 0.0, 1.0, false);
+    lever(&mut b, 1.0, -1.0);
+    b.l(0.95, -0.3, 3.8, -1.6).l(3.8, -1.6, 4.4, -0.8);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_switch_series", "Series switch (installation)", C::Installation, "S", MAIN).build(&mut b));
+
+    // Blind switch: two levers with arrows (up and down).
+    feed(&mut b, -1.0);
+    b.circle(0.0, 0.0, 1.0, false).l(0.7, -0.7, 3.2, -3.2).l(-0.7, -0.7, -3.2, -3.2);
+    b.poly(&[(3.2, -3.2), (2.2, -3.0), (3.0, -2.2)], true, true).poly(&[(-3.2, -3.2), (-2.2, -3.0), (-3.0, -2.2)], true, true);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_switch_blind", "Blind switch (installation)", C::Installation, "S", MAIN).build(&mut b));
+
+    // Lights: the lighting outlet (circle with a cross) and its variants.
+    let lamp = |b: &mut B, r: f32| {
+        let k = r * std::f32::consts::FRAC_1_SQRT_2;
+        b.circle(0.0, 0.0, r, false).l(-k, -k, k, k).l(-k, k, k, -k);
+    };
+    feed(&mut b, -3.2);
+    lamp(&mut b, 2.5);
+    b.l(-3.2, -3.2, 3.2, -3.2);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_wall_light", "Wall light", C::Installation, "E", MAIN).build(&mut b));
+
+    feed(&mut b, -3.2);
+    lamp(&mut b, 2.0);
+    b.circle(0.0, 0.0, 3.2, false);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_downlight", "Recessed light", C::Installation, "E", MAIN).build(&mut b));
+
+    feed(&mut b, -2.0);
+    lamp(&mut b, 2.0);
+    b.l(1.4, 1.4, 3.8, 3.8).poly(&[(3.8, 3.8), (2.7, 3.5), (3.5, 2.7)], true, true);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_spot", "Spotlight", C::Installation, "E", MAIN).build(&mut b));
+
+    feed(&mut b, -2.5);
+    lamp(&mut b, 2.5);
+    b.circle(0.0, 0.0, 0.8, true);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_emergency", "Emergency light", C::Installation, "E", MAIN).build(&mut b));
+
+    // Device connection outlet: a box with the cable of the fixed equipment.
+    feed(&mut b, -1.2);
+    b.rect(-2.4, -1.2, 2.4, 1.8, false).l(0.0, 1.8, 0.0, 3.8).poly(&[(-0.7, 3.0), (0.0, 3.8), (0.7, 3.0)], false, false);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_connection", "Device connection outlet", C::Installation, "X", MAIN).build(&mut b));
+
+    feed(&mut b, -1.0);
+    b.poly(&[(-2.6, -1.0), (2.6, -1.0), (0.0, 2.6)], true, false);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_data", "Data outlet", C::Installation, "X", MAIN).build(&mut b));
+
+    feed(&mut b, -2.4);
+    b.circle(0.0, 0.0, 2.4, false).text(0.0, 0.0, "TV", 1.6, Anchor::Center);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_aerial", "Antenna outlet", C::Installation, "X", MAIN).build(&mut b));
+
+    // Heating element: a box with the hatching.
+    feed(&mut b, -1.2);
+    b.rect(-4.0, -1.2, 4.0, 1.2, false);
+    for x in [-2.4, 0.0, 2.4] {
+        b.l(x - 0.8, 1.2, x + 0.8, -1.2);
+    }
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_heater", "Heating element (installation)", C::Installation, "E", MAIN).build(&mut b));
+
+    // Devices marked by a letter in a circle.
+    for (key, name, letter, id) in [("inst_thermostat", "Room thermostat", "T", "B"), ("inst_motor", "Motor (blind, window drive)", "M", "M")] {
+        feed(&mut b, -2.4);
+        b.circle(0.0, 0.0, 2.4, false).text(0.0, 0.0, letter, 2.4, Anchor::Center);
+        b.pin(0.0, -4.0, "1");
+        v.push(def(key, name, C::Installation, id, MAIN).build(&mut b));
+    }
+
+    // Fan: a circle with three blades.
+    feed(&mut b, -2.4);
+    b.circle(0.0, 0.0, 2.4, false);
+    for a in [-90.0_f32, 30.0, 150.0] {
+        let (s, c) = a.to_radians().sin_cos();
+        b.l(0.0, 0.0, 1.9 * c, 1.9 * s).arc(1.1 * c, 1.1 * s, 0.8, a, a + 120.0);
+    }
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_fan", "Fan", C::Installation, "M", MAIN).build(&mut b));
+
+    // Door intercom: a box with a loudspeaker.
+    feed(&mut b, -1.2);
+    b.rect(-2.8, -1.2, 2.8, 2.8, false).rect(-1.6, 0.2, -0.6, 1.4, false).poly(&[(-0.6, 0.2), (1.2, -0.6), (1.2, 2.2), (-0.6, 1.4)], true, false);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_intercom", "Door intercom", C::Installation, "P", MAIN).build(&mut b));
+
+    // Bell: a half circle on a bar.
+    feed(&mut b, -2.0);
+    b.arc(0.0, 2.0, 2.6, 180.0, 360.0).l(-2.6, 2.0, 2.6, 2.0);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_bell", "Bell", C::Installation, "P", MAIN).build(&mut b));
+
+    // Smoke alarm: a box with S.
+    feed(&mut b, -2.4);
+    b.rect(-2.4, -2.4, 2.4, 2.4, false).text(0.0, 0.0, "S", 2.4, Anchor::Center);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_smoke", "Smoke alarm", C::Installation, "B", MAIN).build(&mut b));
+
+    // Window or door contact: the magnet and the reed contact side by side.
+    feed(&mut b, -0.4);
+    b.rect(-2.8, -0.4, -0.5, 1.4, false).rect(0.5, -0.4, 2.8, 1.4, true).l(0.0, -0.4, -0.5, -0.4);
+    b.pin(0.0, -4.0, "1");
+    v.push(def("inst_contact", "Window or door contact", C::Installation, "B", MAIN).build(&mut b));
+
     // ---------------------------------------------------------------- black boxes
     b.drect(-4.0, -4.0, 4.0, 4.0).l(0.0, -8.0, 0.0, -4.0).l(0.0, 4.0, 0.0, 8.0);
     b.pin(0.0, -8.0, "1").pin(0.0, 8.0, "2");

@@ -921,6 +921,38 @@ von dort gelesen, und die Längen ihrer Kabel sind die der 3D-Verlegung.
   Wandkonvektoren mit Gitter und Thermostat, Handtuchheizkörper mit ihren Sprossen,
   Infrarot-Heizpaneele). Das 3D-Menü *Einfügen › Dosen, Schalter, Heizung* hat auch
   eine Registerkarte *Leuchten*.
+- **Installationsplan-Seiten** (*Neue Installationsplan-Seite* in der Registerkarte
+  *Elektroinstallation* des Bereichs *Gebäude*, ein Seitentyp in den
+  *Seiteneigenschaften*; Befehl `add_page kind=installation_plan building=… level=…`)
+  drucken die Installation einer Ebene: die Wände ihrer Räume mit Lücken für Türen und
+  Fenster, die Flügel und Schwenkbereiche der Türen, die Raumnamen, die in den Räumen
+  stehenden Schaltschränke und Verteiler (ihre Grundfläche als Verteilersymbol, mit
+  Namen), die Betriebsmittel
+  mit ihren zur Wand gedrehten Symbolen und ihren Kennzeichen, die Verbindungen der
+  Stromkreise und eine Legende der Stromkreise in ihren Farben; ein Symbol und eine
+  Zeile der Legende verweisen im PDF-Export auf die Installationsseite des
+  Stromkreises. Die Seite hat die Spalten- und Zeilenleisten des Rahmens. Ihr Maßstab
+  (1 : 50, 1 : 100 …) bleibt, oder *Auf die Seite einpassen* wählt den größten, der
+  passt (in der Beschriftung als *eingepasst* vermerkt); angehakte *Räume*
+  (`set_page rooms=+BAD,+KU`) richten die Seite auf sie aus bzw. passen sie ein, und was
+  nicht in den Zeichenbereich passt, wird an seinem Rand abgeschnitten. Kennzeichen,
+  Stromkreisfarben, Verbindungen und Raumnamen lassen
+  sich in den Seiteneigenschaften abschalten (`set_page` mit `tags`, `circuit_colors`,
+  `connections`, `room_names`), und die Kennzeichen auf einige ihrer Aspekte kürzen
+  (*BMK anzeigen als*: vollständige BMK, Ort und Gerät, Funktion und Gerät, nur Gerät
+  oder benutzerdefiniert; `tag_parts`: nur der Produktaspekt zeigt `-X1.6` von
+  `=SD1+F1-X1.6`).
+  Die Legende lässt sich ausschalten oder rechts, links, oben oder unten anordnen
+  (`legend`, `legend_at`); ein Raum zeigt sein Ortskennzeichen und dessen Beschreibung
+  aus der Strukturkennzeichenverwaltung, z. B. *Küche* (*Beschreibung* in den
+  Eigenschaften des Raums, `define_structure`), beides einzeln abschaltbar
+  (`room_names`, `room_descriptions`), und die Schriftgrößen von Kennzeichen, Räumen
+  und Legende (in pt, `tag_size`, `room_size`, `legend_size`) sowie die Größen der
+  Geräte- und Schranksymbole (in %, `symbol_scale`, `cabinet_scale`) werden je Seite
+  eingestellt.
+
+![Installationsplan-Seite einer Wohnung: Räume mit Türen und Fenstern, Betriebsmittel mit ihren zur Wand gedrehten Plansymbolen, Kennzeichen auf den Produktaspekt gekürzt](../../images/installation-plan.png)
+
 - **Heizgeräte** werden auf dieselbe Weise eingesetzt: Wandkonvektoren
   (`GEN.HEATER-PANEL-1000`, `GEN.HEATER-PANEL-2000`, 400 mm) und Handtuchheizkörper
   (`GEN.HEATER-TOWEL-500`, 900 mm) an der Wand, Infrarot-Heizpaneele

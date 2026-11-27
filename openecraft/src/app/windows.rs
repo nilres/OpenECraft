@@ -489,6 +489,7 @@ impl App {
             let page_aspects = self.session.prj.structures.page_aspects();
             let structure_entries = self.session.prj.structures.entries.clone();
             let reports = self.report_list("");
+            let levels: Vec<(u64, String)> = self.session.prj.layout.buildings.iter().flat_map(|b| b.levels.iter().map(move |l| (l.id, format!("{} {}", b.name, l.name)))).collect();
             let sections = (!self.session.prj.sections.is_empty()).then(|| (self.section_choices(), openecraft_core::sections::of_page(&self.session.prj, pi)));
             window.open(&mut open).resizable(false).show(ctx, |ui| {
                 let pg = &mut self.session.prj.pages[pi];
@@ -515,6 +516,13 @@ impl App {
                         }
                         for e in &self.session.prj.layout.enclosures {
                             ui.selectable_value(&mut pg.kind, PageKind::Drilling(e.id), tr_fmt!("Drilling pattern {}", e.name));
+                        }
+                        // One entry; the level is chosen below with the other options of the plan.
+                        if let Some(&(first, _)) = levels.first() {
+                            let plan = matches!(pg.kind, PageKind::InstallationPlan(_));
+                            if ui.selectable_label(plan, PageKind::InstallationPlan(first).label()).clicked() && !plan {
+                                pg.kind = PageKind::InstallationPlan(first);
+                            }
                         }
                     });
                     ui.end_row();
@@ -550,6 +558,9 @@ impl App {
                         ui.add(egui::DragValue::new(&mut pg.scale).range(0.001..=100_000.0).speed(0.5).prefix("1 : "))
                             .on_hover_text(tr("Real length per millimetre on the page: the sizes of shapes are shown in it, new dimensions measure in it"));
                     });
+                }
+                if let PageKind::InstallationPlan(level) = pg.kind {
+                    plan_page_options(ui, pg, &self.session.prj.layout, level);
                 }
                 if pg.kind == PageKind::Document {
                     ui.horizontal(|ui| {
@@ -678,6 +689,115 @@ fn page_structure_ui(ui: &mut egui::Ui, pg: &Page, pi: usize, page_aspects: &[As
     ui.weak(tr("Devices placed on the page get its structure; their tags are shown without it."));
     ui.data_mut(|d| d.insert_temp(key, (dt, move_devices)));
     apply
+}
+
+/// The options of an installation plan page: scale, rooms, what is shown and the parts
+/// of the device tags.
+fn plan_page_options(ui: &mut egui::Ui, pg: &mut openecraft_core::model::Page, layout: &openecraft_core::model::panel::Layout, level: u64) {
+    ui.horizontal(|ui| {
+        ui.label(tr("Scale"));
+        let shown = if pg.scale <= 1.0 { tr("Fit onto the page").to_string() } else { openecraft_core::graphics::scale_text(pg.scale) };
+        egui::ComboBox::from_id_salt("plscale").selected_text(shown).show_ui(ui, |ui| {
+            ui.selectable_value(&mut pg.scale, 1.0, tr("Fit onto the page"));
+            for s in [10.0, 20.0, 25.0, 50.0, 75.0, 100.0, 200.0, 250.0, 500.0] {
+                ui.selectable_value(&mut pg.scale, s, openecraft_core::graphics::scale_text(s));
+            }
+        });
+        // Asked after the choice: a fitted page has no scale to type (its 1 : 1 would be
+        // clamped to the least scale and the choice lost).
+        if pg.scale > 1.0 {
+            ui.add(egui::DragValue::new(&mut pg.scale).range(2.0..=100_000.0).speed(0.5).prefix("1 : "));
+        }
+    });
+    ui.horizontal(|ui| {
+        ui.label(tr("Building level"));
+        let name = |b: &openecraft_core::model::panel::Building, l: &openecraft_core::model::panel::Level| format!("{} {}", b.name, l.name);
+        let shown = layout.buildings.iter().find_map(|b| b.levels.iter().find(|l| l.id == level).map(|l| name(b, l))).unwrap_or_else(|| tr("(none)").to_string());
+        egui::ComboBox::from_id_salt("pllevel").selected_text(shown).show_ui(ui, |ui| {
+            for b in &layout.buildings {
+                for l in &b.levels {
+                    if ui.selectable_label(l.id == level, name(b, l)).clicked() && l.id != level {
+                        pg.kind = PageKind::InstallationPlan(l.id);
+                        // The rooms chosen belong to the level before.
+                        pg.plan.rooms.clear();
+                    }
+                }
+            }
+        });
+    });
+    let rooms: Vec<&str> = openecraft_core::panel::buildings::rooms_on(layout, level).into_iter().map(|ri| layout.enclosures[ri].name.as_str()).collect();
+    ui.horizontal_wrapped(|ui| {
+        ui.label(tr("Rooms")).on_hover_text(tr("The page is centred on the rooms ticked; what does not fit is cut off at the edge. None ticked: the whole level."));
+        for r in rooms {
+            let mut on = pg.plan.rooms.iter().any(|x| x == r);
+            if ui.checkbox(&mut on, r).changed() {
+                pg.plan.rooms.retain(|x| x != r);
+                if on {
+                    pg.plan.rooms.push(r.to_string());
+                }
+            }
+        }
+    });
+    ui.horizontal_wrapped(|ui| {
+        ui.checkbox(&mut pg.plan.tags, tr("Device tags"));
+        ui.checkbox(&mut pg.plan.circuit_colors, tr("Circuit colours"));
+        ui.checkbox(&mut pg.plan.connections, tr("Connections of the circuits"));
+        ui.checkbox(&mut pg.plan.room_names, tr("Room identifiers"));
+        ui.checkbox(&mut pg.plan.room_descriptions, tr("Room descriptions")).on_hover_text(tr("The descriptions of the location identifiers of the rooms (structure management or the properties of the room)"));
+    });
+    ui.horizontal(|ui| {
+        ui.checkbox(&mut pg.plan.legend, tr("Legend"));
+        ui.add_enabled_ui(pg.plan.legend, |ui| {
+            egui::ComboBox::from_id_salt("pllegend").selected_text(tr(pg.plan.legend_at.title())).show_ui(ui, |ui| {
+                for at in openecraft_core::model::LegendAt::ALL {
+                    ui.selectable_value(&mut pg.plan.legend_at, at, tr(at.title()));
+                }
+            });
+        });
+    });
+    ui.horizontal_wrapped(|ui| {
+        ui.label(tr("Font sizes"));
+        for (label, v) in [(tr("Device tags"), &mut pg.plan.tag_size), (tr("Rooms"), &mut pg.plan.room_size), (tr("Legend"), &mut pg.plan.legend_size)] {
+            ui.label(label);
+            ui.add(egui::DragValue::new(v).range(2.0..=72.0).speed(0.1).max_decimals(1).suffix(" pt"));
+        }
+    });
+    ui.horizontal_wrapped(|ui| {
+        ui.label(tr("Symbol sizes"));
+        for (label, v) in [(tr("Devices"), &mut pg.plan.symbol_scale), (tr("Cabinets"), &mut pg.plan.cabinet_scale)] {
+            ui.label(label);
+            ui.add(egui::DragValue::new(v).range(10.0..=1000.0).speed(1.0).max_decimals(0).suffix(" %"));
+        }
+    });
+    // A tag of the level as the example of the choice.
+    let example = openecraft_core::panel::buildings::rooms_on(layout, level)
+        .into_iter()
+        .flat_map(|ri| layout.enclosures[ri].items.iter())
+        .map(|it| it.tag.as_str())
+        .find(|t| openecraft_core::structure::Dt::parse(t).tag().starts_with('='))
+        .unwrap_or("=UV1+W2-X1")
+        .to_string();
+    ui.add_enabled_ui(pg.plan.tags, |ui| {
+        ui.horizontal(|ui| {
+            use openecraft_core::model::TagParts;
+            ui.label(tr("Tags shown as"));
+            let preset = TagParts::PRESETS.iter().find(|(_, t)| *t == pg.plan.tag_parts).map(|(n, _)| tr(n).to_string());
+            let shown = format!("{}  ({})", preset.unwrap_or_else(|| tr("Custom").to_string()), pg.plan.tag_parts.apply(&example));
+            egui::ComboBox::from_id_salt("pltags").selected_text(shown).show_ui(ui, |ui| {
+                for (name, t) in TagParts::PRESETS {
+                    ui.selectable_value(&mut pg.plan.tag_parts, t, format!("{}  ({})", tr(name), t.apply(&example)));
+                }
+            });
+        });
+        ui.collapsing(tr("Custom"), |ui| {
+            ui.horizontal_wrapped(|ui| {
+                ui.label(tr("Parts of the device tags"));
+                for asp in openecraft_core::structure::Aspect::ALL {
+                    ui.checkbox(pg.plan.tag_parts.get_mut(asp), format!("{} {}", asp.prefix(), asp.title()));
+                }
+            });
+        });
+    });
 }
 
 #[cfg(test)]

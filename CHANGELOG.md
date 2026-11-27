@@ -44,7 +44,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   a card on the main page and *Chat on Discord* in every footer, set by `community`
   of `config.js` (`OPENECRAFT_COMMUNITY_URL` of the Docker image; empty hides the
   links) ([website](docs/website.md)). New releases and videos are announced in its
-  `#announcements` channel ([releasing](docs/releasing.md)).
+  `#announcements` channel ([releasing](docs/releasing.md)). The editor has a
+  Discord button beside *Report a bug*; its cross hides it, *Show the button of the
+  Discord server* in the settings shows it again.
 - **Own end brackets on terminal strips:** an end bracket part in the parts list of a
   terminal strip (product group `End bracket`) is the one the strip's automatic end
   brackets use, with its width and 3D model, in the panel layout, the glTF export and
@@ -118,6 +120,41 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   dragged from the Insert center or the navigator onto a schematic page is placed there
   once, and the tool in use stays (a click still starts a place tool). Symbols can also
   be dragged from the tile view. Fixed: dropping a symbol placed nothing.
+- **Installation plan pages:** a new page type prints the installation of one level of
+  a building, or of some of its rooms, with the column and row strips of the frame: the
+  walls of its rooms with doors and windows, the room names, the cabinets
+  and distribution boards standing in the rooms (distribution board symbol with their
+  name), the devices
+  with their installation symbols (turned towards their wall) and tags, the connections
+  of the circuits and a legend of the circuits in their colours, at the scale of the page
+  (cut off at the edge of the drawing area) or fitted onto it; in the PDF a symbol links
+  to the installation page of its circuit.
+  *New installation plan page* in the tab *Electrical installation* of the *Buildings*
+  pane, the page type in the *Page properties*, `add_page kind=installation_plan` and the
+  options `tags`, `circuit_colors`, `connections`, `room_names`, `rooms` and `tag_parts`
+  (the aspects of the device tags shown, e.g. only `-X1.6` of `=SD1+F1-X1.6`), `legend`,
+  `legend_at`, `room_descriptions`, `tag_size`, `room_size`, `legend_size` (font sizes in pt),
+  `symbol_scale` and `cabinet_scale` (symbol sizes in %) of `set_page` (only on
+  installation plan pages, rooms only of the page's level, all options checked before
+  any is set);
+  rooms show the description of their location identifier (*Description* in the room's
+  properties); long legend texts are wrapped inside their column (a word too wide by
+  characters) so that they stay inside the frame, a legend above or below the plan takes
+  at most half of the page and notes the circuits that do not fit; devices of circuits
+  the legend does not list stay black; the caption writes the scale as the page
+  properties do (`1 : 50`)
+  ([panel layout](docs/features/panel-layout.md)).
+- **Plan symbols from the symbol library:** installation plan pages and the site plan draw
+  every device with a symbol of the library (IEC 60617-11), turned towards its wall: the
+  plan symbol of its part (*Plan symbol* in the part's mounting data, `set_plan_symbol`,
+  `plan_symbols`) or the one of its kind and subgroup, chosen by whole words of its
+  subgroup, number and description (two-way, intermediate and blind
+  switches, dimmers, double socket outlets, wall and recessed lights …). 23 new
+  installation symbols: single, triple, switched, splash-proof and CEE socket outlets,
+  intermediate, series and blind switches, wall, recessed, spot and emergency lights,
+  device connection, data and antenna outlets, heating element, room thermostat, motor,
+  fan, door intercom, bell, smoke alarm and window contact
+  ([symbols](docs/features/symbols.md)).
 - **What's new and version history:** at the first start after an update the editor
   shows the new features of the versions since the one used last in the window *What's
   new in OpenECraft*. *File › Help › Version history* (also on the Help tab) shows the

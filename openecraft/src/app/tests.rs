@@ -51,6 +51,15 @@ fn catalog_logos_are_shown_unless_switched_off() {
 }
 
 #[test]
+fn the_discord_button_is_shown_until_hidden() {
+    let shell = ShellState { discord_button: false, ..Default::default() };
+    let stored: ShellState = serde_json::from_str(&serde_json::to_string(&shell).unwrap()).unwrap();
+    assert!(!stored.discord_button);
+    let old: ShellState = serde_json::from_str("{}").unwrap();
+    assert!(old.discord_button, "stores written before show the button");
+}
+
+#[test]
 fn wheel_source_policy_is_stored_with_the_shell() {
     let shell = ShellState {
         nav: openecraft_ui::nav::Settings {

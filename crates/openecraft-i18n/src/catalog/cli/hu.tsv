@@ -277,7 +277,7 @@ Undoes the last change	Visszavonja az utolsó módosítást
 Unknown command: {}. Run openecraft-cli help for a list.	Ismeretlen parancs: {}. A listát az openecraft-cli help parancs jeleníti meg.
 Unknown example {}: see list_examples	Ismeretlen példa: {}; lásd list_examples
 Unknown format {}: give oec, oecp or oecz	Ismeretlen formátum: {}; adjon meg oec, oecp vagy oecz értéket
-Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling or a report of list_reports)	Ismeretlen oldaltípus: {} (schematic, overview, graphic, cover, mounting, drilling vagy egy list_reports szerinti kimutatás)
+Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan or a report of list_reports)	Ismeretlen oldaltípus: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan vagy egy list_reports szerinti kimutatás)
 Unknown part {} (parts server: {})	Ismeretlen alkatrész: {} (alkatrészszerver: {})
 Unknown plugin: {}	Ismeretlen bővítmény: {}
 Unknown report scheme: {}	Ismeretlen kimutatásséma: {}
@@ -308,7 +308,6 @@ erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mc
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine vagy exchange
 json (default), csv or xlsx (Excel, needs path)	json (alapértelmezett), csv vagy xlsx (Excel, path szükséges)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nMegjeleníti a parancssor verzióját (--version vagy -V is)\n
-schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) vagy egy kimutatás: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	Az undo és a redo csak MCP-munkamenetben működik: a parancssor minden parancshoz újra megnyitja a projektet
 user or group	user vagy group
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	A(z) {} archívum, és nem változik: mentse a projektet projektfájlként (save_project --path <file>.oec), vagy alakítsa át az archívumot (convert_project)
