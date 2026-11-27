@@ -316,6 +316,17 @@ impl Session {
     /// ([`Analysis::routes_pending`] until it is ready, then the analysis is built
     /// again with it).
     pub fn refresh(&mut self, plugins: &Plugins, editing: bool) {
+        self.refresh_analysis(plugins);
+        if editing || self.index_rev != self.history.rev {
+            self.index = Index::build(&self.prj);
+            self.index_rev = self.history.rev;
+        }
+    }
+
+    /// Rebuilds the analysis like [`Session::refresh`], but not the device index: a
+    /// front end that holds the index while it draws (and puts it back afterwards)
+    /// has the next `refresh` build it.
+    pub fn refresh_analysis(&mut self, plugins: &Plugins) {
         self.take_opened();
         self.take_routed();
         let lang = openecraft_i18n::lang();
@@ -331,10 +342,6 @@ impl Session {
                     self.route_in_background();
                 }
             }
-        }
-        if editing || self.index_rev != self.history.rev {
-            self.index = Index::build(&self.prj);
-            self.index_rev = self.history.rev;
         }
     }
 

@@ -22,6 +22,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   view and explains itself in a tooltip; the details of the current wire or item in
   the wiring and mounting assistants can be hidden
   ([#268](https://github.com/nilres/OpenECraft/issues/268)).
+- **Undo no longer crashes the Buildings pane:** undoing or redoing the placing of an
+  installation device while the tab *Electrical installation* was open crashed the
+  editor, because the pane read the circuits of the netlist of the state before. The
+  project is now analysed again right after *Undo* and *Redo*.
 - **Discord server:** the community of OpenECraft meets on its Discord server
   ([discord.gg/hC4FRJt2fk](https://discord.gg/hC4FRJt2fk)) to ask questions, show projects and talk with
   the developers. The README, the issue chooser of GitHub and the website link it:

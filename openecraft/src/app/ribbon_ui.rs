@@ -94,10 +94,7 @@ impl App {
                         let n = self.session.history.undo_steps().min(15);
                         for k in 1..=n {
                             if ui.button(tr_fmt!("Undo {} steps", k)).clicked() {
-                                self.editor.cancel();
-                                for _ in 0..k {
-                                    self.session.undo();
-                                }
+                                self.undo(k);
                                 ui.close();
                             }
                         }

@@ -158,6 +158,25 @@ impl App {
         page.symbols.iter().find(|s| self.editor.selection.contains(&s.id) && !s.tag.is_empty()).map(|s| s.tag.clone())
     }
 
+    /// Undoes `k` steps and analyses the project again at once: the panes drawn later in
+    /// this frame (the circuits of the buildings pane) must not read the netlist of the
+    /// state before, whose symbols may be gone. The device index is built by the next
+    /// frame: `ui` holds it meanwhile and puts it back at the end of this one.
+    pub(super) fn undo(&mut self, k: usize) {
+        self.editor.cancel();
+        for _ in 0..k {
+            self.session.undo();
+        }
+        self.session.refresh_analysis(&self.plugins);
+    }
+
+    /// Redoes a step, analysed at once like [`Self::undo`].
+    pub(super) fn redo(&mut self) {
+        self.editor.cancel();
+        self.session.redo();
+        self.session.refresh_analysis(&self.plugins);
+    }
+
     /// Runs a command.
     #[allow(clippy::too_many_lines)]
     pub(super) fn run(&mut self, ctx: &egui::Context, cmd: Cmd) {
@@ -312,14 +331,8 @@ impl App {
             Cmd::DeletePage if self.session.page_items(page) > 0 => self.confirm_delete_page = Some(self.session.prj.pages[page].id),
             Cmd::DeletePage => self.delete_page(ctx, page),
             Cmd::SavePageAsTemplate => self.open_save_template(),
-            Cmd::Undo => {
-                self.editor.cancel();
-                self.session.undo();
-            }
-            Cmd::Redo => {
-                self.editor.cancel();
-                self.session.redo();
-            }
+            Cmd::Undo => self.undo(1),
+            Cmd::Redo => self.redo(),
             Cmd::Delete => {
                 let items = self.editor.items(&self.session.prj, page);
                 ops::delete(&mut self.session.prj.pages[page], &items);
