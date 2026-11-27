@@ -157,20 +157,21 @@ impl App {
 
     /// Undoes `k` steps and analyses the project again at once: the panes drawn later in
     /// this frame (the circuits of the buildings pane) must not read the netlist of the
-    /// state before, whose symbols may be gone.
+    /// state before, whose symbols may be gone. The device index is built by the next
+    /// frame: `ui` holds it meanwhile and puts it back at the end of this one.
     pub(super) fn undo(&mut self, k: usize) {
         self.editor.cancel();
         for _ in 0..k {
             self.session.undo();
         }
-        self.session.refresh(&self.plugins, false);
+        self.session.refresh_analysis(&self.plugins);
     }
 
     /// Redoes a step, analysed at once like [`Self::undo`].
     pub(super) fn redo(&mut self) {
         self.editor.cancel();
         self.session.redo();
-        self.session.refresh(&self.plugins, false);
+        self.session.refresh_analysis(&self.plugins);
     }
 
     /// Runs a command.
