@@ -111,18 +111,93 @@ fn nc_export() {
 fn wire_end_treatment() {
     assert_eq!(cross_section_mm2("1.5 mm²"), Some(1.5));
     assert_eq!(cross_section_mm2("2,5mm2"), Some(2.5));
-    assert_eq!(cross_section_mm2("AWG 14"), None);
-    let t = end_treatment("1.5 mm²", true).unwrap();
+    let t = end_treatment("1.5 mm²", true, FerruleCode::Din).unwrap();
     assert_eq!((t.strip, t.ferrule.unwrap().color, t.ferrule.unwrap().part), (8.0, "black", "GEN.FER-1.5"));
-    assert_eq!(end_treatment("6 mm²", false).unwrap(), EndTreatment { kind: Termination::Bare, strip: 10.0, ferrule: None, crimp: None, shared: false });
-    // Unusual cross-sections get a stripping length but no ferrule.
-    assert_eq!(end_treatment("1.2", true).unwrap().ferrule, None);
-    assert!(end_treatment("", true).is_none());
-    // Every ferrule is in the catalog.
+    assert_eq!(end_treatment("6 mm²", false, FerruleCode::Din).unwrap(), EndTreatment { kind: Termination::Bare, strip: 10.0, ferrule: None, crimp: None, shared: false });
+    // Cross-sections between the sizes get the next larger ferrule, too large ones none.
+    assert_eq!(end_treatment("1.2", true, FerruleCode::Din).unwrap().ferrule.unwrap().part, "GEN.FER-1.5");
+    assert_eq!(end_treatment("3 mm²", true, FerruleCode::Din).unwrap().ferrule.unwrap().part, "GEN.FER-4");
+    let none = end_treatment("70 mm²", true, FerruleCode::Din).unwrap();
+    assert!(none.missing() && none.part().is_empty(), "{none:?}");
+    assert_eq!((none.kind, none.strip), (Termination::Ferrule, 12.0));
+    assert!(!end_treatment("70 mm²", false, FerruleCode::Din).unwrap().missing());
+    assert!(end_treatment("", true, FerruleCode::Din).is_none());
+    // Every ferrule and twin ferrule of every colour code is in the catalog.
     let catalog = crate::parts::catalog();
-    for f in FERRULES {
-        assert!(catalog.iter().any(|p| p.number == f.part), "{}", f.part);
+    for code in FerruleCode::ALL {
+        for f in code.ferrules() {
+            for part in [f.part, f.twin].into_iter().filter(|p| !p.is_empty()) {
+                assert!(catalog.iter().any(|p| p.number == part), "{part}");
+                assert_eq!(FerruleCode::of_part(part).map(|(c, _)| c), Some(code));
+            }
+        }
+        assert!(code.ferrules().windows(2).all(|w| w[0].cross_section < w[1].cross_section));
+        assert!(code.ferrules().iter().all(|f| f.rgb() != [128, 128, 128]), "{code:?}");
     }
+}
+
+#[test]
+fn american_wire_sizes() {
+    let mm2 = |s: &str| cross_section_mm2(s).map(|v| (v * 100.0).round() / 100.0);
+    assert_eq!(mm2("14 AWG"), Some(2.08));
+    assert_eq!(mm2("AWG 14"), Some(2.08));
+    assert_eq!(mm2("AWG14"), Some(2.08));
+    assert_eq!(mm2("#18 AWG"), Some(0.82));
+    assert_eq!(mm2("1/0 AWG"), Some(53.48));
+    assert_eq!(mm2("AWG 4/0"), Some(107.22));
+    assert_eq!(mm2("0000 AWG"), Some(107.22));
+    assert_eq!(mm2("250 kcmil"), Some(126.68));
+    assert_eq!(mm2("250 MCM"), Some(126.68));
+    assert_eq!(mm2("AWG"), None);
+    assert_eq!(mm2("AWG x"), None);
+    // AWG wires get the ferrule made for them (UL 486F pairs the sizes).
+    let part = |cs: &str| end_treatment(cs, true, FerruleCode::Din).unwrap().ferrule.map(|f| f.part);
+    for (awg, fer) in [
+        ("26 AWG", "GEN.FER-0.14"),
+        ("24 AWG", "GEN.FER-0.25"),
+        ("22 AWG", "GEN.FER-0.34"),
+        ("20 AWG", "GEN.FER-0.5"),
+        ("18 AWG", "GEN.FER-0.75"),
+        ("16 AWG", "GEN.FER-1.5"),
+        ("14 AWG", "GEN.FER-2.5"),
+        ("12 AWG", "GEN.FER-4"),
+        ("10 AWG", "GEN.FER-6"),
+        ("8 AWG", "GEN.FER-10"),
+        ("6 AWG", "GEN.FER-16"),
+        ("4 AWG", "GEN.FER-25"),
+        ("2 AWG", "GEN.FER-35"),
+        ("1/0 AWG", "GEN.FER-50"),
+    ] {
+        assert_eq!(part(awg), Some(fer), "{awg}");
+    }
+    // The metric equivalents of the issue: 2.08 and 1.31 mm².
+    assert_eq!(part("2.08 mm²"), Some("GEN.FER-2.5"));
+    assert_eq!(part("1.31 mm²"), Some("GEN.FER-1.5"));
+    assert_eq!(part("2/0 AWG"), None);
+}
+
+#[test]
+fn ferrule_colour_codes() {
+    let fer = |cs: &str, code| treatment(cs, Termination::Ferrule, code).unwrap().ferrule.unwrap();
+    assert_eq!((fer("2.5 mm²", FerruleCode::Din).color, fer("2.5 mm²", FerruleCode::French).color, fer("2.5 mm²", FerruleCode::Special).color), ("blue", "grey", "blue"));
+    assert_eq!((fer("0.75", FerruleCode::Din).color, fer("0.75", FerruleCode::French).color, fer("0.75", FerruleCode::Special).color), ("grey", "blue", "white"));
+    assert_eq!(fer("16 mm²", FerruleCode::French).part, "GEN.FERF-16");
+    assert_eq!(treatment("1.5 mm²", Termination::TwinFerrule, FerruleCode::Special).unwrap().part(), "GEN.FER2S-1.5");
+    // The French code starts at 0.34 mm²: a 0.25 mm² wire takes that one.
+    assert_eq!(fer("0.25", FerruleCode::French).part, "GEN.FERF-0.34");
+    // No twin ferrules above 16 mm²: the end has none.
+    let t = treatment("25 mm²", Termination::TwinFerrule, FerruleCode::Din).unwrap();
+    assert!(t.missing(), "{t:?}");
+    for code in FerruleCode::ALL {
+        assert_eq!(FerruleCode::from_key(code.key()), Some(code));
+    }
+    // The project setting reaches the ends, the default is not written to the file.
+    let mut prj = demo_project();
+    assert_eq!(end_at(&prj, "-X9:1", "-X9:2", "1.5 mm²").unwrap().part(), "GEN.FER-1.5");
+    assert!(!serde_json::to_string(&prj.layout).unwrap().contains("ferrule_code"));
+    prj.layout.ferrule_code = FerruleCode::French;
+    assert_eq!(end_at(&prj, "-X9:1", "-X9:2", "1.5 mm²").unwrap().part(), "GEN.FERF-1.5");
+    assert!(serde_json::to_string(&prj.layout).unwrap().contains("\"ferrule_code\":\"french\""));
 }
 
 #[test]
@@ -130,7 +205,7 @@ fn wire_ends_seen_in_3d() {
     let outer = crate::harness::outer_diameter("1.5 mm²");
     // With a ferrule: its metal sleeve at the tip, then its collar (black for 1.5 mm²)
     // over the insulation.
-    let p = end_treatment("1.5 mm²", true).unwrap().pieces("1.5 mm²", outer);
+    let p = end_treatment("1.5 mm²", true, FerruleCode::Din).unwrap().pieces("1.5 mm²", outer);
     assert_eq!(p.len(), 2);
     assert_eq!((p[0].length, p[0].color), (8.0, SLEEVE_RGB));
     assert!(p[0].diameter < outer && p[1].diameter > outer, "{p:?}");
@@ -138,7 +213,7 @@ fn wire_ends_seen_in_3d() {
     // Every ferrule colour is known.
     assert!(FERRULES.iter().all(|f| f.rgb() != [128, 128, 128]));
     // Without one: the bare copper as long as it is stripped, thinner than the insulation.
-    let p = end_treatment("1.5 mm²", false).unwrap().pieces("1.5 mm²", outer);
+    let p = end_treatment("1.5 mm²", false, FerruleCode::Din).unwrap().pieces("1.5 mm²", outer);
     assert_eq!(p.len(), 1);
     assert_eq!((p[0].length, p[0].color), (8.0, COPPER_RGB));
     assert!(p[0].diameter > 1.3 && p[0].diameter < outer, "{p:?}");
@@ -148,15 +223,15 @@ fn wire_ends_seen_in_3d() {
 fn terminations_keep_the_wire_end_straight() {
     let outer = crate::harness::outer_diameter("1.5 mm²");
     // The ferrule with its collar, the terminal with its sleeve; a bare conductor bends.
-    assert_eq!(end_treatment("1.5 mm²", true).unwrap().straight("1.5 mm²", outer), 14.0);
-    assert_eq!(end_treatment("1.5 mm²", false).unwrap().straight("1.5 mm²", outer), 0.0);
+    assert_eq!(end_treatment("1.5 mm²", true, FerruleCode::Din).unwrap().straight("1.5 mm²", outer), 14.0);
+    assert_eq!(end_treatment("1.5 mm²", false, FerruleCode::Din).unwrap().straight("1.5 mm²", outer), 0.0);
     for kind in [Termination::Ring, Termination::Fork, Termination::Pin, Termination::Blade, Termination::Receptacle] {
-        let t = treatment("1.5 mm²", kind).unwrap();
+        let t = treatment("1.5 mm²", kind, FerruleCode::Din).unwrap();
         let all: f32 = t.pieces("1.5 mm²", outer).iter().map(|p| p.length).sum();
         assert!(t.straight("1.5 mm²", outer) == all && all > 10.0, "{kind:?}: {all}");
     }
     // The conductor of a wire sharing the twin ferrule of the other one lies in it.
-    let shared = EndTreatment { shared: true, ..treatment("1.5 mm²", Termination::TwinFerrule).unwrap() };
+    let shared = EndTreatment { shared: true, ..treatment("1.5 mm²", Termination::TwinFerrule, FerruleCode::Din).unwrap() };
     assert_eq!(shared.straight("1.5 mm²", outer), 8.0);
 }
 
@@ -390,7 +465,7 @@ fn terminations_are_chosen_per_wire_end() {
 
 #[test]
 fn crimp_terminals_by_cross_section() {
-    let part = |cs: &str, kind| treatment(cs, kind).unwrap().part();
+    let part = |cs: &str, kind| treatment(cs, kind, FerruleCode::Din).unwrap().part();
     assert_eq!(part("0.75 mm²", Termination::Ring), "GEN.RING-R");
     assert_eq!(part("1.5 mm²", Termination::Fork), "GEN.FORK-B");
     assert_eq!(part("6 mm²", Termination::Receptacle), "GEN.REC-Y");
@@ -398,16 +473,16 @@ fn crimp_terminals_by_cross_section() {
     assert_eq!(part("1.5 mm²", Termination::TwinFerrule), "GEN.FER2-1.5");
     assert_eq!(part("1.5 mm²", Termination::Bare), "");
     // No flat plug for 16 mm²: stripped, no part, said so.
-    let t = treatment("16 mm²", Termination::Blade).unwrap();
+    let t = treatment("16 mm²", Termination::Blade, FerruleCode::Din).unwrap();
     assert_eq!((t.crimp, t.part().as_str()), (None, ""));
     assert!(t.describe().contains(Termination::Blade.title()));
     // The crimp barrel sets the stripping length.
-    assert_eq!(treatment("2.5 mm²", Termination::Pin).unwrap().strip, 7.0);
+    assert_eq!(treatment("2.5 mm²", Termination::Pin, FerruleCode::Din).unwrap().strip, 7.0);
     // Every part is in the catalog.
     let catalog = crate::parts::catalog();
     for cs in ["0.5", "1", "1.5", "2.5", "4", "6", "10", "16", "25", "35", "50", "70", "95", "120", "150", "185", "240"] {
         for kind in Termination::ALL {
-            let Some(t) = treatment(&format!("{cs} mm²"), kind) else { continue };
+            let Some(t) = treatment(&format!("{cs} mm²"), kind, FerruleCode::Din) else { continue };
             let p = t.part();
             assert!(p.is_empty() || catalog.iter().any(|c| c.number == p), "{p} for {cs} mm²");
         }
@@ -419,7 +494,7 @@ fn terminals_seen_in_3d() {
     let outer = crate::harness::outer_diameter("1.5 mm²");
     let (tip, dir, up) = ([0.0, 0.0, 0.0], [0.0, -1.0, 0.0], [0.0, 0.0, 1.0]);
     for kind in Termination::ALL {
-        let p = treatment("1.5 mm²", kind).unwrap().pieces("1.5 mm²", outer);
+        let p = treatment("1.5 mm²", kind, FerruleCode::Din).unwrap().pieces("1.5 mm²", outer);
         assert!(!p.is_empty() && p.iter().all(|q| q.length > 0.0 && q.diameter > 0.0), "{kind:?}: {p:?}");
         // Flat pieces have their triangles, near the tip and as thick as they are.
         for q in p.iter().filter(|q| q.shape != EndShape::Round) {
@@ -432,7 +507,7 @@ fn terminals_seen_in_3d() {
     }
     // A ring terminal: the ring round the tip, then the blue insulated sleeve over the
     // insulation.
-    let p = treatment("1.5 mm²", Termination::Ring).unwrap().pieces("1.5 mm²", outer);
+    let p = treatment("1.5 mm²", Termination::Ring, FerruleCode::Din).unwrap().pieces("1.5 mm²", outer);
     assert!(matches!(p[0].shape, EndShape::Ring { hole, .. } if (hole - 4.3).abs() < 1e-3));
     assert_eq!(p[1].color, [40, 90, 200]);
     assert!(p[1].diameter > outer);

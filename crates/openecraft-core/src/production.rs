@@ -8,7 +8,7 @@ use crate::model::{natural_cmp, Project};
 use crate::panel::{doors, DoorLeaf, Enclosure, Face, Fastening, ItemKind, PanelItem, PanelRotation, Sheet};
 use crate::parts::vec3::{add, cross, dot, norm, scale, sub, Tri, V3};
 use crate::parts::{Cutout, Part, PlacedCutout};
-pub use crate::model::panel::{Termination, WireTermination};
+pub use crate::model::panel::{FerruleCode, Termination, WireTermination};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use std::collections::{HashMap, HashSet};
 use std::fmt::Write;
@@ -721,14 +721,37 @@ pub fn nc_dxf(prj: &Project, enc: usize, sheet: impl Into<Sheet>) -> String {
 
 // ---------------------------------------------------------------------- wire ends
 
-/// Cross-section in mm² from texts like "1.5 mm²", "2,5" or "0.75mm2".
+/// Cross-section in mm² from texts like "1.5 mm²", "2,5" or "0.75mm2", of American
+/// wire sizes too: "14 AWG", "AWG 2/0", "250 kcmil" (or MCM).
 pub fn cross_section_mm2(s: &str) -> Option<f32> {
-    let num: String = s.trim().chars().take_while(|c| c.is_ascii_digit() || *c == '.' || *c == ',').collect();
+    let lower = s.trim().to_ascii_lowercase();
+    if lower.contains("awg") {
+        // The gauge before or after "AWG": "14 AWG", "AWG14", "#14 AWG".
+        let spaced = lower.replace("awg", " awg ");
+        let words: Vec<&str> = spaced.split_whitespace().collect();
+        let i = words.iter().position(|w| *w == "awg")?;
+        let gauge = |w: &str| awg_gauge(w.trim_start_matches('#'));
+        let g = i.checked_sub(1).and_then(|j| gauge(words[j])).or_else(|| words.get(i + 1).and_then(|w| gauge(w)))?;
+        return Some(crate::parts::awg_mm2(g));
+    }
+    let num: String = lower.chars().take_while(|c| c.is_ascii_digit() || *c == '.' || *c == ',').collect();
     let v: f32 = num.replace(',', ".").parse().ok()?;
+    let v = if lower.contains("kcmil") || lower.contains("mcm") { v * 0.506_707 } else { v };
     (v > 0.0).then_some(v)
 }
 
-/// Wire end ferrule (DIN 46228-4 colour code).
+/// The number of an AWG gauge: "14" → 14, "1/0" → 0, "4/0" (or "0000") → -3.
+fn awg_gauge(s: &str) -> Option<f32> {
+    let g = match s.split_once('/') {
+        Some((zeros, "0")) => 1.0 - zeros.parse::<f32>().ok()?,
+        Some(_) => return None,
+        None if s.len() > 1 && s.chars().all(|c| c == '0') => 1.0 - s.len() as f32,
+        None => s.parse().ok()?,
+    };
+    (-3.0..=40.0).contains(&g).then_some(g)
+}
+
+/// Wire end ferrule of a colour code ([`FerruleCode`]).
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Ferrule {
     pub cross_section: f32,
@@ -736,20 +759,120 @@ pub struct Ferrule {
     /// Sleeve length = stripping length.
     pub length: f32,
     pub part: &'static str,
+    /// Part number of the twin ferrule of the size; empty where there is none.
+    pub twin: &'static str,
 }
 
-pub const FERRULES: [Ferrule; 10] = [
-    Ferrule { cross_section: 0.34, color: "turquoise", length: 8.0, part: "GEN.FER-0.34" },
-    Ferrule { cross_section: 0.5, color: "white", length: 8.0, part: "GEN.FER-0.5" },
-    Ferrule { cross_section: 0.75, color: "grey", length: 8.0, part: "GEN.FER-0.75" },
-    Ferrule { cross_section: 1.0, color: "red", length: 8.0, part: "GEN.FER-1.0" },
-    Ferrule { cross_section: 1.5, color: "black", length: 8.0, part: "GEN.FER-1.5" },
-    Ferrule { cross_section: 2.5, color: "blue", length: 8.0, part: "GEN.FER-2.5" },
-    Ferrule { cross_section: 4.0, color: "grey", length: 10.0, part: "GEN.FER-4" },
-    Ferrule { cross_section: 6.0, color: "yellow", length: 12.0, part: "GEN.FER-6" },
-    Ferrule { cross_section: 10.0, color: "red", length: 12.0, part: "GEN.FER-10" },
-    Ferrule { cross_section: 16.0, color: "blue", length: 12.0, part: "GEN.FER-16" },
+const fn fer(cross_section: f32, color: &'static str, length: f32, part: &'static str, twin: &'static str) -> Ferrule {
+    Ferrule { cross_section, color, length, part, twin }
+}
+
+/// The ferrules of DIN 46228-4 (0.14 to 0.34 mm² not in the standard).
+pub const FERRULES: [Ferrule; 15] = [
+    fer(0.14, tr_const!("grey"), 8.0, "GEN.FER-0.14", ""),
+    fer(0.25, tr_const!("yellow"), 8.0, "GEN.FER-0.25", ""),
+    fer(0.34, tr_const!("turquoise"), 8.0, "GEN.FER-0.34", "GEN.FER2-0.34"),
+    fer(0.5, tr_const!("white"), 8.0, "GEN.FER-0.5", "GEN.FER2-0.5"),
+    fer(0.75, tr_const!("grey"), 8.0, "GEN.FER-0.75", "GEN.FER2-0.75"),
+    fer(1.0, tr_const!("red"), 8.0, "GEN.FER-1.0", "GEN.FER2-1.0"),
+    fer(1.5, tr_const!("black"), 8.0, "GEN.FER-1.5", "GEN.FER2-1.5"),
+    fer(2.5, tr_const!("blue"), 8.0, "GEN.FER-2.5", "GEN.FER2-2.5"),
+    fer(4.0, tr_const!("grey"), 10.0, "GEN.FER-4", "GEN.FER2-4"),
+    fer(6.0, tr_const!("yellow"), 12.0, "GEN.FER-6", "GEN.FER2-6"),
+    fer(10.0, tr_const!("red"), 12.0, "GEN.FER-10", "GEN.FER2-10"),
+    fer(16.0, tr_const!("blue"), 12.0, "GEN.FER-16", "GEN.FER2-16"),
+    fer(25.0, tr_const!("yellow"), 16.0, "GEN.FER-25", ""),
+    fer(35.0, tr_const!("red"), 16.0, "GEN.FER-35", ""),
+    fer(50.0, tr_const!("blue"), 20.0, "GEN.FER-50", ""),
 ];
+
+/// The ferrules of the French colour code NF C 63-023.
+pub const FRENCH_FERRULES: [Ferrule; 13] = [
+    fer(0.34, tr_const!("green"), 8.0, "GEN.FERF-0.34", ""),
+    fer(0.5, tr_const!("white"), 8.0, "GEN.FERF-0.5", "GEN.FER2F-0.5"),
+    fer(0.75, tr_const!("blue"), 8.0, "GEN.FERF-0.75", "GEN.FER2F-0.75"),
+    fer(1.0, tr_const!("red"), 8.0, "GEN.FERF-1.0", "GEN.FER2F-1.0"),
+    fer(1.5, tr_const!("black"), 8.0, "GEN.FERF-1.5", "GEN.FER2F-1.5"),
+    fer(2.5, tr_const!("grey"), 8.0, "GEN.FERF-2.5", "GEN.FER2F-2.5"),
+    fer(4.0, tr_const!("orange"), 10.0, "GEN.FERF-4", "GEN.FER2F-4"),
+    fer(6.0, tr_const!("green"), 12.0, "GEN.FERF-6", "GEN.FER2F-6"),
+    fer(10.0, tr_const!("brown"), 12.0, "GEN.FERF-10", "GEN.FER2F-10"),
+    fer(16.0, tr_const!("ivory"), 12.0, "GEN.FERF-16", "GEN.FER2F-16"),
+    fer(25.0, tr_const!("black"), 16.0, "GEN.FERF-25", ""),
+    fer(35.0, tr_const!("red"), 16.0, "GEN.FERF-35", ""),
+    fer(50.0, tr_const!("blue"), 20.0, "GEN.FERF-50", ""),
+];
+
+/// The ferrules of the special colour series.
+pub const SPECIAL_FERRULES: [Ferrule; 15] = [
+    fer(0.14, tr_const!("grey"), 8.0, "GEN.FERS-0.14", ""),
+    fer(0.25, tr_const!("light blue"), 8.0, "GEN.FERS-0.25", ""),
+    fer(0.34, tr_const!("turquoise"), 8.0, "GEN.FERS-0.34", ""),
+    fer(0.5, tr_const!("orange"), 8.0, "GEN.FERS-0.5", "GEN.FER2S-0.5"),
+    fer(0.75, tr_const!("white"), 8.0, "GEN.FERS-0.75", "GEN.FER2S-0.75"),
+    fer(1.0, tr_const!("yellow"), 8.0, "GEN.FERS-1.0", "GEN.FER2S-1.0"),
+    fer(1.5, tr_const!("red"), 8.0, "GEN.FERS-1.5", "GEN.FER2S-1.5"),
+    fer(2.5, tr_const!("blue"), 8.0, "GEN.FERS-2.5", "GEN.FER2S-2.5"),
+    fer(4.0, tr_const!("grey"), 10.0, "GEN.FERS-4", "GEN.FER2S-4"),
+    fer(6.0, tr_const!("black"), 12.0, "GEN.FERS-6", "GEN.FER2S-6"),
+    fer(10.0, tr_const!("ivory"), 12.0, "GEN.FERS-10", "GEN.FER2S-10"),
+    fer(16.0, tr_const!("green"), 12.0, "GEN.FERS-16", "GEN.FER2S-16"),
+    fer(25.0, tr_const!("brown"), 16.0, "GEN.FERS-25", ""),
+    fer(35.0, tr_const!("beige"), 16.0, "GEN.FERS-35", ""),
+    fer(50.0, tr_const!("olive"), 20.0, "GEN.FERS-50", ""),
+];
+
+/// How much a wire may be larger than the nominal cross-section of its ferrule: AWG 18
+/// (0.82 mm²) takes the ferrule of 0.75 mm², AWG 1/0 (53.5 mm²) the one of 50 mm².
+const FERRULE_OVERSIZE: f32 = 1.1;
+
+impl FerruleCode {
+    pub const ALL: [FerruleCode; 3] = [FerruleCode::Din, FerruleCode::French, FerruleCode::Special];
+
+    /// Key in the project file and on the command line.
+    pub fn key(self) -> &'static str {
+        match self {
+            FerruleCode::Din => "din",
+            FerruleCode::French => "french",
+            FerruleCode::Special => "special",
+        }
+    }
+
+    pub fn from_key(key: &str) -> Option<FerruleCode> {
+        let key = key.trim().to_ascii_lowercase();
+        FerruleCode::ALL.into_iter().find(|c| c.key() == key)
+    }
+
+    /// Name, translated.
+    pub fn title(self) -> &'static str {
+        tr(match self {
+            FerruleCode::Din => tr_const!("DIN 46228-4 / UL 486F"),
+            FerruleCode::French => tr_const!("NF C 63-023 (French colour code)"),
+            FerruleCode::Special => tr_const!("Special colour series"),
+        })
+    }
+
+    /// Its ferrules, smallest first.
+    pub fn ferrules(self) -> &'static [Ferrule] {
+        match self {
+            FerruleCode::Din => &FERRULES,
+            FerruleCode::French => &FRENCH_FERRULES,
+            FerruleCode::Special => &SPECIAL_FERRULES,
+        }
+    }
+
+    /// The ferrule of a wire of `cross_section` mm²: the smallest that takes it, metric
+    /// and AWG wires alike ([`FERRULE_OVERSIZE`]); a twin ferrule only of a size there
+    /// are twin ferrules of. None for a wire larger than the largest one.
+    pub fn ferrule_for(self, cross_section: f32, twin: bool) -> Option<Ferrule> {
+        self.ferrules().iter().find(|f| cross_section <= f.cross_section * FERRULE_OVERSIZE + 1e-4).filter(|f| !twin || !f.twin.is_empty()).copied()
+    }
+
+    /// The colour code and ferrule of a part number (single or twin ferrule).
+    pub fn of_part(part: &str) -> Option<(FerruleCode, Ferrule)> {
+        FerruleCode::ALL.into_iter().find_map(|c| c.ferrules().iter().find(|f| f.part == part || f.twin == part).map(|f| (c, *f)))
+    }
+}
 
 impl Ferrule {
     /// Colour of its plastic collar.
@@ -761,14 +884,21 @@ impl Ferrule {
             "red" => [210, 40, 40],
             "black" => [35, 35, 38],
             "blue" => [40, 90, 200],
+            "light blue" => [120, 180, 230],
             "yellow" => [235, 200, 40],
+            "orange" => [235, 130, 30],
+            "green" => [40, 150, 60],
+            "brown" => [120, 70, 35],
+            "ivory" => [240, 232, 200],
+            "beige" => [215, 195, 155],
+            "olive" => [120, 125, 45],
             _ => [128, 128, 128],
         }
     }
 
     /// Length of its plastic collar over the insulation (DIN 46228-4).
     pub fn collar(&self) -> f32 {
-        if self.cross_section <= 4.0 { 6.0 } else if self.cross_section <= 6.0 { 8.0 } else { 10.0 }
+        if self.cross_section <= 4.0 { 6.0 } else if self.cross_section <= 6.0 { 8.0 } else if self.cross_section <= 16.0 { 10.0 } else { 12.0 }
     }
 }
 
@@ -950,7 +1080,7 @@ impl EndTreatment {
     /// Part number of the ferrule or terminal; empty for the bare conductor.
     pub fn part(&self) -> String {
         match (self.kind, self.ferrule, self.crimp) {
-            (Termination::TwinFerrule, Some(f), _) => f.part.replace("GEN.FER-", "GEN.FER2-"),
+            (Termination::TwinFerrule, Some(f), _) => f.twin.to_string(),
             (_, Some(f), _) => f.part.to_string(),
             (_, _, Some(c)) => c.part(),
             _ => String::new(),
@@ -967,6 +1097,11 @@ impl EndTreatment {
             (Termination::Bare, ..) => self.kind.title().to_string(),
             _ => tr_fmt!("{}: none for this cross-section", self.kind.title()),
         }
+    }
+
+    /// It should have a ferrule or terminal but none fits its cross-section.
+    pub fn missing(&self) -> bool {
+        self.kind != Termination::Bare && self.ferrule.is_none() && self.crimp.is_none()
     }
 
     /// How far from its tip the end of a wire of `cross_section` (with the outer
@@ -1101,22 +1236,24 @@ fn annulus(centre: V3, dir: V3, side: V3, up: V3, outer: f32, inner: f32, half_t
     v
 }
 
-/// End treatment for a wire cross-section (None if it is unknown): a ferrule where the
-/// wire ends get them (`ferrules`), otherwise the bare conductor.
-pub fn end_treatment(cross_section: &str, ferrules: bool) -> Option<EndTreatment> {
-    treatment(cross_section, if ferrules { Termination::Ferrule } else { Termination::Bare })
+/// End treatment for a wire cross-section (None if it is unknown): a ferrule of the
+/// colour code `code` where the wire ends get them (`ferrules`), otherwise the bare
+/// conductor.
+pub fn end_treatment(cross_section: &str, ferrules: bool, code: FerruleCode) -> Option<EndTreatment> {
+    treatment(cross_section, if ferrules { Termination::Ferrule } else { Termination::Bare }, code)
 }
 
-/// End treatment of a wire of `cross_section` terminated as `kind` (None for an unknown
-/// cross-section); a cross-section without such a ferrule is stripped bare.
-pub fn treatment(cross_section: &str, kind: Termination) -> Option<EndTreatment> {
+/// End treatment of a wire of `cross_section` terminated as `kind` with the ferrules of
+/// the colour code `code` (None for an unknown cross-section); a cross-section without
+/// such a ferrule or terminal is stripped bare and has none ([`EndTreatment::missing`]).
+pub fn treatment(cross_section: &str, kind: Termination, code: FerruleCode) -> Option<EndTreatment> {
     let cs = cross_section_mm2(cross_section)?;
     let bare = EndTreatment { kind: Termination::Bare, strip: if cs <= 2.5 { 8.0 } else if cs <= 6.0 { 10.0 } else { 12.0 }, ferrule: None, crimp: None, shared: false };
     Some(match kind {
         Termination::Bare => bare,
-        Termination::Ferrule | Termination::TwinFerrule => match FERRULES.iter().find(|f| (f.cross_section - cs).abs() < 0.01) {
-            Some(f) => EndTreatment { kind, strip: f.length, ferrule: Some(*f), crimp: None, shared: false },
-            None => bare,
+        Termination::Ferrule | Termination::TwinFerrule => match code.ferrule_for(cs, kind == Termination::TwinFerrule) {
+            Some(f) => EndTreatment { kind, strip: f.length, ferrule: Some(f), crimp: None, shared: false },
+            None => EndTreatment { kind, ..bare },
         },
         _ => {
             let crimp = Crimp::for_cross_section(kind, cs);
@@ -1146,9 +1283,10 @@ pub fn termination_of(prj: &Project, at: &str, to: &str) -> Option<Termination> 
 /// chosen ([`termination_of`]), otherwise ferrules or the bare conductor as the layout
 /// sets; without the other wires at `at` (twin ferrules are not paired, see [`Ends`]).
 pub fn end_at(prj: &Project, at: &str, to: &str, cross_section: &str) -> Option<EndTreatment> {
+    let code = prj.layout.ferrule_code;
     match termination_of(prj, at, to) {
-        Some(kind) => treatment(cross_section, kind),
-        None => end_treatment(cross_section, prj.layout.ferrules),
+        Some(kind) => treatment(cross_section, kind, code),
+        None => end_treatment(cross_section, prj.layout.ferrules, code),
     }
 }
 
@@ -1253,10 +1391,11 @@ impl Ends {
     pub fn end(&self, prj: &Project, at: &str, to: &str, cross_section: &str) -> Option<EndTreatment> {
         let kind = self.kind(prj, at, to);
         let twin = if kind == Termination::TwinFerrule { self.twin(prj, at, to) } else { None };
-        let Some(t) = twin else { return treatment(cross_section, kind) };
+        let code = prj.layout.ferrule_code;
+        let Some(t) = twin else { return treatment(cross_section, kind, code) };
         let mm2 = |cs: &str| cross_section_mm2(cs).unwrap_or(0.0);
         let larger = if mm2(&t.cross_section) > mm2(cross_section) { t.cross_section.as_str() } else { cross_section };
-        treatment(larger, kind).map(|e| EndTreatment { shared: !t.first, ..e })
+        treatment(larger, kind, code).map(|e| EndTreatment { shared: !t.first, ..e })
     }
 }
 

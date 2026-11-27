@@ -110,7 +110,15 @@ tuyaux. Les projets d'exemple `conveyor`, `cabinet_lineup`, `electrical_room` et
   partagent un point de connexion* (ou `set_ferrules`), chaque paire de ce type sans
   terminaison propre en reçoit un. Le contrôle *Embouts doubles* avertit d'un embout
   double avec un seul fil, à un point comptant plus de deux fils ou pour deux
-  sections. Un embout ou une cosse sertie ne se courbe pas : le fil ou le conducteur
+  sections. Les embouts suivent le code couleur DIN 46228-4 (aussi les couleurs de
+  UL 486F), NF C 63-023 (français) ou la série de couleurs spéciale (*Code couleur des
+  embouts*, ou `set_ferrules --color_code din|french|special`). Un fil reçoit le plus
+  petit embout qui l'accepte, en tailles métriques, AWG et kcmil : 14 AWG et 2,08 mm²
+  celui de 2,5 mm², 18 AWG celui de 0,75 mm². Le contrôle *Tailles d'embouts* nomme
+  les extrémités de fil auxquelles aucun embout ne convient (au-delà de 50 mm², des
+  embouts doubles au-delà de 16 mm²) ; terminée volontairement nue (*Conducteur dénudé*),
+  une telle extrémité n'est plus signalée ; elles manquent dans la nomenclature. Un embout
+  ou une cosse sertie ne se courbe pas : le fil ou le conducteur
   sort tout droit de son point de connexion sur toute sa longueur (avec sa collerette
   ou son manchon isolé) et ne se courbe que derrière. Le routage 3D prévoit cette
   sortie droite lorsque l'espace devant le point de connexion est libre ; lorsqu'il ne

@@ -108,7 +108,16 @@ los muestran.
   *Punteras dobles donde dos cables comparten un punto de conexión* (o `set_ferrules`)
   cada uno de esos pares sin terminación propia recibe una. La comprobación *Punteras
   dobles* advierte de una puntera doble con un solo hilo, en un punto con más de dos
-  hilos o para dos secciones. Una puntera o un terminal engastado no se dobla: el hilo o
+  hilos o para dos secciones. Las punteras siguen el código de colores DIN 46228-4
+  (también los colores de UL 486F), NF C 63-023 (francés) o la serie de colores
+  especial (*Código de colores de las punteras*, o
+  `set_ferrules --color_code din|french|special`). Un hilo recibe la puntera más
+  pequeña que lo admite, en tamaños métricos, AWG y kcmil por igual: 14 AWG y 2,08 mm²
+  la de 2,5 mm², 18 AWG la de 0,75 mm². La comprobación *Tamaños de punteras* nombra
+  los extremos de hilo a los que no les sirve ninguna puntera (por encima de 50 mm², las
+  punteras dobles por encima de 16 mm²); terminado desnudo a propósito (*Conductor
+  desnudo*), un extremo así ya no se notifica; faltan en la lista de materiales. Una puntera
+  o un terminal engastado no se dobla: el hilo o
   el conductor sale recto de su punto de conexión hasta donde llega (con su collar o su
   manguito aislado) y solo se curva detrás. El tendido 3D planifica esa salida recta
   donde el espacio delante del punto de conexión está libre; donde no lo está (un hilo

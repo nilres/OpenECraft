@@ -963,33 +963,48 @@ Breaking capacity: 100 kA".into();
     accessories(&mut c);
     rack_parts(&mut c);
 
-    // Ferrules (DIN 46228-4 colour code), sold per piece.
-    for (cs, color, len) in [
-        ("0.34", "turquoise", 8),
-        ("0.5", "white", 8),
-        ("0.75", "grey", 8),
-        ("1.0", "red", 8),
-        ("1.5", "black", 8),
-        ("2.5", "blue", 8),
-        ("4", "grey", 10),
-        ("6", "yellow", 12),
-        ("10", "red", 12),
-        ("16", "blue", 12),
-    ] {
-        let number = format!("GEN.FER-{cs}");
-        // The number stays as it was; the cross-section is written like the others (1 mm²).
-        let shown = cs.strip_suffix(".0").unwrap_or(cs);
-        let desc = format!("Ferrule {shown} mm², insulated, {color}, {len} mm");
-        let p = c.add(&number, &desc, "Wiring material", "Ferrule", "", 0.03, (0.0, 0.0, 0.0, 0.0), &[]);
-        p.mounting.clear();
-        p.tech_data = format!("Cross-section: {shown} mm²\nColour: {color}\nLength: {len} mm");
-    }
-    // Twin ferrules: two wires of the cross-section in one.
-    for (cs, color) in [("0.34", "turquoise"), ("0.5", "white"), ("0.75", "grey"), ("1.0", "red"), ("1.5", "black"), ("2.5", "blue"), ("4", "grey"), ("6", "yellow"), ("10", "red"), ("16", "blue")] {
-        let shown = cs.strip_suffix(".0").unwrap_or(cs);
-        let p = c.add(&format!("GEN.FER2-{cs}"), &format!("Twin ferrule 2 x {shown} mm², insulated, {color}"), "Wiring material", "Ferrule", "", 0.06, (0.0, 0.0, 0.0, 0.0), &[]);
-        p.mounting.clear();
-        p.tech_data = format!("Cross-section: 2 x {shown} mm²\nColour: {color}");
+    // Ferrules, sold per piece, in three colour codes (`openecraft_core::production::FerruleCode`):
+    // DIN 46228-4 (GEN.FER-), NF C 63-023 (GEN.FERF-) and the special colour series
+    // (GEN.FERS-); (cross-section, colour, sleeve length, AWG, twin ferrule).
+    let din = [
+        ("0.14", "grey", 8, "26", false),
+        ("0.25", "yellow", 8, "24", false),
+        ("0.34", "turquoise", 8, "22", true),
+        ("0.5", "white", 8, "20", true),
+        ("0.75", "grey", 8, "18", true),
+        ("1.0", "red", 8, "", true),
+        ("1.5", "black", 8, "16", true),
+        ("2.5", "blue", 8, "14", true),
+        ("4", "grey", 10, "12", true),
+        ("6", "yellow", 12, "10", true),
+        ("10", "red", 12, "8", true),
+        ("16", "blue", 12, "6", true),
+        ("25", "yellow", 16, "4", false),
+        ("35", "red", 16, "2", false),
+        ("50", "blue", 20, "1/0", false),
+    ];
+    let french = ["", "", "green", "white", "blue", "red", "black", "grey", "orange", "green", "brown", "ivory", "black", "red", "blue"];
+    let special = ["grey", "light blue", "turquoise", "orange", "white", "yellow", "red", "blue", "grey", "black", "ivory", "green", "brown", "beige", "olive"];
+    for (code, single, twin, colors) in [("DIN 46228-4", "FER", "FER2", None), ("NF C 63-023", "FERF", "FER2F", Some(french)), ("special colour series", "FERS", "FER2S", Some(special))] {
+        for (i, (cs, din_color, len, awg, has_twin)) in din.into_iter().enumerate() {
+            let color = colors.map_or(din_color, |c| c[i]);
+            if color.is_empty() {
+                continue;
+            }
+            // The number stays as it was; the cross-section is written like the others (1 mm²).
+            let shown = cs.strip_suffix(".0").unwrap_or(cs);
+            let awg_note = if awg.is_empty() { String::new() } else { format!("\nAWG: {awg}") };
+            let desc = format!("Ferrule {shown} mm², insulated, {color}, {len} mm ({code})");
+            let p = c.add(&format!("GEN.{single}-{cs}"), &desc, "Wiring material", "Ferrule", "", 0.03, (0.0, 0.0, 0.0, 0.0), &[]);
+            p.mounting.clear();
+            p.tech_data = format!("Cross-section: {shown} mm²{awg_note}\nColour: {color}\nColour code: {code}\nLength: {len} mm");
+            // Twin ferrules: two wires of the cross-section in one; from 0.5 mm² (DIN from 0.34 mm²).
+            if has_twin && (colors.is_none() || i > 2) {
+                let p = c.add(&format!("GEN.{twin}-{cs}"), &format!("Twin ferrule 2 x {shown} mm², insulated, {color} ({code})"), "Wiring material", "Ferrule", "", 0.06, (0.0, 0.0, 0.0, 0.0), &[]);
+                p.mounting.clear();
+                p.tech_data = format!("Cross-section: 2 x {shown} mm²\nColour: {color}\nColour code: {code}");
+            }
+        }
     }
 
     // Insulated crimp terminals, coloured by the cross-sections they take.

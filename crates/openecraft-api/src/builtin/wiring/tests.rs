@@ -199,3 +199,17 @@ fn twin_ferrules_are_set_for_both_wires() {
     assert_eq!((r["ferrules"].as_bool(), r["twin_ferrules"].as_bool()), (Some(true), Some(true)));
     assert_eq!(run(&mut s, "terminations", json!({})).unwrap()["twin_ferrules"], true);
 }
+
+#[test]
+fn ferrule_colour_code_is_set() {
+    let mut s = demo();
+    let t = run(&mut s, "terminations", json!({})).unwrap();
+    assert_eq!(t["color_code"], "din");
+    assert_eq!(t["color_codes"].as_array().unwrap().len(), 3);
+    let r = run(&mut s, "set_ferrules", json!({ "color_code": "French" })).unwrap();
+    assert_eq!(r["color_code"], "french");
+    let list = run(&mut s, "wiring_list", json!({})).unwrap();
+    let parts: Vec<&str> = list["wires"].as_array().unwrap().iter().flat_map(|w| w["ends"].as_array().unwrap().iter().filter_map(|e| e["part"].as_str())).collect();
+    assert!(!parts.is_empty() && parts.iter().all(|p| p.starts_with("GEN.FERF-")), "{parts:?}");
+    assert!(run(&mut s, "set_ferrules", json!({ "color_code": "pink" })).unwrap_err().contains("Unknown colour code"));
+}

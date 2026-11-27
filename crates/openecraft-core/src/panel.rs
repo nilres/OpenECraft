@@ -646,6 +646,7 @@ impl Default for Layout {
             wire_reserve: 100.0,
             ferrules: true,
             twin_ferrules: false,
+            ferrule_code: Default::default(),
             terminations: Vec::new(),
             duct_fill_limit: 70.0,
             hardware: true,

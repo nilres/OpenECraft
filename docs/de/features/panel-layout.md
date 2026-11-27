@@ -112,7 +112,15 @@ Anreihungen, Räume des Gebäudes mit ihren bodenstehenden Geräten und Rohrtras
   *Zwillingsaderendhülsen, wo zwei Leitungen einen Anschlusspunkt teilen* (oder
   `set_ferrules`) erhält jedes solche Paar ohne eigene Endenbehandlung eine. Die
   Prüfung *Zwillingsaderendhülsen* warnt vor einer Zwillingsaderendhülse mit einem
-  Draht, an einem Punkt mit mehr als zwei Drähten oder für zwei Querschnitte. Eine
+  Draht, an einem Punkt mit mehr als zwei Drähten oder für zwei Querschnitte. Die
+  Aderendhülsen haben den Farbcode DIN 46228-4 (auch die Farben von UL 486F),
+  NF C 63-023 (französisch) oder die Sonderfarbreihe (*Farbcode der Aderendhülsen*
+  oder `set_ferrules --color_code din|french|special`). Ein Draht erhält die kleinste
+  Aderendhülse, die ihn aufnimmt, bei metrischen, AWG- und kcmil-Größen gleichermaßen:
+  14 AWG und 2,08 mm² die für 2,5 mm², 18 AWG die für 0,75 mm². Die Prüfung
+  *Aderendhülsengrößen* nennt die Drahtenden, auf die keine Aderendhülse passt (über
+  50 mm², Zwillingsaderendhülsen über 16 mm²); bewusst blank abgeschlossen
+  (*Blanker Leiter*), wird ein solches Ende nicht mehr gemeldet; sie fehlen in der Stückliste. Eine
   Aderendhülse oder ein gecrimpter Kabelschuh biegt sich nicht: Der Draht oder die Ader
   läuft gerade aus dem Anschlusspunkt heraus, so weit die Hülse reicht (mit Kragen oder
   Isolierhülse), und biegt erst dahinter. Die 3D-Verlegung plant diesen geraden Weg

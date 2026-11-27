@@ -101,8 +101,8 @@ pub fn end_parts(prj: &Project, h: &Harness, device: &str, pin: &str, cross_sect
     let e = end_of(h, device, pin);
     let at = if pin.is_empty() { device.to_string() } else { format!("{device}:{pin}") };
     let default = match crate::production::termination_of(prj, &at, "") {
-        Some(kind) => crate::production::treatment(cross_section, kind),
-        None => crate::production::end_treatment(cross_section, prj.layout.ferrules && !crate::plugs::plug_tags(prj).iter().any(|p| p == device)),
+        Some(kind) => crate::production::treatment(cross_section, kind, prj.layout.ferrule_code),
+        None => crate::production::end_treatment(cross_section, prj.layout.ferrules && !crate::plugs::plug_tags(prj).iter().any(|p| p == device), prj.layout.ferrule_code),
     };
     let terminal = e.map(|e| e.terminal.clone()).filter(|t| !t.is_empty()).or_else(|| default.map(|d| d.part()).filter(|p| !p.is_empty())).unwrap_or_default();
     let strip = e.map(|e| e.strip).filter(|s| *s > 0.0).or_else(|| default.map(|d| d.strip)).unwrap_or(0.0);

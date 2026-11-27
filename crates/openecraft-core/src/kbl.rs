@@ -775,8 +775,8 @@ pub fn container(prj: &Project, an: &Analysis, h: &Harness) -> String {
         vec![t("Fixing_type", kind)]
     };
     let terminal_kind = |n: &str| -> Vec<X> {
-        match crate::production::FERRULES.iter().find(|fe| fe.part == n) {
-            Some(fe) => vec![t("Terminal_type", "ferrule"), range("Cross_section_area", fe.cross_section, fe.cross_section, MM2)],
+        match crate::production::FerruleCode::of_part(n) {
+            Some((_, fe)) => vec![t("Terminal_type", "ferrule"), range("Cross_section_area", fe.cross_section, fe.cross_section, MM2)],
             None => vec![t("Terminal_type", "crimp contact")],
         }
     };

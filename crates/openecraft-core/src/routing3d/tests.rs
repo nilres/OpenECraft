@@ -627,7 +627,8 @@ fn cables_between_cabinets_in_no_room_run_to_their_entries() {
         assert!((end[1] - pos[k][1] - e.height).abs() < 10.0, "{:?} of {}", leg.points, e.name);
     }
     assert!(an.issues.iter().any(|i| i.severity == Severity::Info && i.message().contains("=MS1-W2") && i.message().contains("cable entries")));
-    assert!(!an.issues.iter().any(|i| i.severity <= Severity::Warning));
+    let warnings: Vec<String> = an.issues.iter().filter(|i| i.severity <= Severity::Warning).map(|i| i.message()).collect();
+    assert!(warnings.is_empty(), "{warnings:?}");
     // Every cable through a cable entry of its own.
     let cables: Vec<&RoutedItem> = an.routing.items.iter().filter(|i| i.kind == RouteKind::Cable).collect();
     let through = |i: &RoutedItem| -> Vec<[i32; 3]> { i.ends.iter().filter(|e| e.tag.contains("GLAND")).filter_map(|e| e.point).chain(i.legs.iter().flat_map(|l| [l.points[0], l.points[l.points.len() - 1]])).map(|q| q.map(|v| v.round() as i32)).collect() };

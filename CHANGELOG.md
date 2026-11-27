@@ -22,6 +22,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   view and explains itself in a tooltip; the details of the current wire or item in
   the wiring and mounting assistants can be hidden
   ([#268](https://github.com/nilres/OpenECraft/issues/268)).
+- **Ferrules for AWG wires and more colour codes:** a wire end gets the smallest
+  ferrule that takes its cross-section instead of none where the size is not one of
+  the catalog: 14 AWG or 2.08 mm² the ferrule of 2.5 mm², 18 AWG the one of 0.75 mm².
+  Cross-sections are read in AWG (`14 AWG`, `AWG 2/0`) and kcmil too; before, `14 AWG`
+  was read as 14 mm². The ferrules go from 0.14 to 50 mm² and come in the colour codes
+  DIN 46228-4 (the colours of UL 486F), NF C 63-023 (French) and the special colour
+  series (*Ferrule colour code* in the panel layout settings,
+  `set_ferrules --color_code`). The new check *Ferrule sizes* names the wire ends no
+  ferrule fits, which were left out of the bill of materials without a word; an end
+  chosen *Bare conductor* is not reported. The examples keep their conductors above
+  16 mm² bare, as they were
+  ([#288](https://github.com/nilres/OpenECraft/issues/288)).
 - **Undo no longer crashes the Buildings pane:** undoing or redoing the placing of an
   installation device while the tab *Electrical installation* was open crashed the
   editor, because the pane read the circuits of the netlist of the state before. The
