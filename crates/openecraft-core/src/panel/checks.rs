@@ -453,7 +453,21 @@ pub fn validate(prj: &Project, e: &Enclosure) -> Vec<Finding> {
             );
         }
     }
-    if map.max > e.climate.inside_max + 0.5 && !map.temps.is_empty() {
+    if map.open && map.max > e.climate.inside_max + 0.5 && !map.temps.is_empty() {
+        push(
+            CheckKind::Thermal,
+            Severity::Info,
+            Vec::new(),
+            tr_fmt!(
+                "{}: hot spot of about {} °C at x = {} mm, y = {} mm of the open mounting assembly (room air at most {} °C)",
+                e.name,
+                format!("{:.0}", map.max),
+                mm(map.hottest.x),
+                mm(map.hottest.y),
+                format!("{:.0}", e.climate.ambient_max)
+            ),
+        );
+    } else if map.max > e.climate.inside_max + 0.5 && !map.temps.is_empty() {
         push(
             CheckKind::Thermal,
             Severity::Info,

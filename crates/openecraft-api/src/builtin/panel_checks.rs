@@ -154,6 +154,7 @@ fn panel_thermal(prj: &Project, a: &Args) -> Result<Value, String> {
     let tag = |id: u64| panel::item_name(e, id);
     let round = |v: f32| (v * 10.0).round() / 10.0;
     Ok(json!({
+        "model": if map.open { "open_assembly" } else { "enclosure" },
         "mean_c": round(map.mean),
         "bottom_c": round(map.bottom),
         "top_c": round(map.top),
