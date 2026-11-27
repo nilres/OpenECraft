@@ -160,6 +160,16 @@ impl Studio {
         }
     }
 
+    /// Follows a cross reference: the page `index` with the item `id` selected and
+    /// centred (0: the page only).
+    pub fn goto(&mut self, index: usize, id: u64) {
+        if index >= self.session.prj.pages.len() {
+            return;
+        }
+        self.session.page = index;
+        self.editor.show_item(&self.session.prj, index, id);
+    }
+
     /// The tool of the page editor by its name on the page.
     pub fn set_tool(&mut self, name: &str) -> Result<(), String> {
         let tool = match name {

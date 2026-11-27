@@ -969,15 +969,7 @@ impl App {
             self.set_workspace(Workspace::Schematic);
         }
         self.show_pane(Pane::Page);
-        if id != 0 {
-            self.editor.selection.insert(id);
-            if let Some(b) = ops::item_bounds(&self.session.prj.symbol_table(), &self.session.prj.pages[page], id) {
-                if self.editor.zoom < 3.0 {
-                    self.editor.zoom = 4.0;
-                }
-                self.editor.center_on = Some(b.center());
-            }
-        }
+        self.editor.show_item(&self.session.prj, page, id);
     }
 
     // ------------------------------------------------------------------ pages

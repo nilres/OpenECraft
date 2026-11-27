@@ -1019,9 +1019,23 @@ impl Editor {
         Some((base, base + dir * TURN_HANDLE, pivot))
     }
 
-    /// Hit test: returns the id of the item under `q` (world), preferring texts and
-    /// electrical symbols. Decorative symbols stay behind wires and their
-    /// definitions. Items on hidden or locked layers are skipped.
+    /// Selects and centres the item `id` of the page `page_i` (0: none, only clears the
+    /// selection).
+    pub fn show_item(&mut self, prj: &Project, page_i: usize, id: u64) {
+        self.cancel();
+        self.selection.clear();
+        if id == 0 {
+            return;
+        }
+        self.selection.insert(id);
+        if let Some(b) = ops::item_bounds(&prj.symbol_table(), &prj.pages[page_i], id) {
+            if self.zoom < 3.0 {
+                self.zoom = 4.0;
+            }
+            self.center_on = Some(b.center());
+        }
+    }
+
     /// Ctrl + click (the key that opens links) on a cross reference: leads to its page.
     fn follow_link(&self, prj: &Project, idx: &Index, page_i: usize, w: P, mods: egui::Modifiers, out: &mut CanvasOutput) -> bool {
         if !self.gestures.held(Role::OpenLink, mods) {
@@ -1032,32 +1046,33 @@ impl Editor {
         true
     }
 
-    /// The page a cross reference drawn at `q` leads to.
-    fn linked_page(&self, q: P) -> Option<usize> {
+    /// The page a cross reference drawn at `q` on the page `page_id` leads to.
+    fn linked_page(&self, page_id: u64, q: P) -> Option<usize> {
+        if self.page_links_of != Some(page_id) {
+            return None;
+        }
         let tol = (2. / self.zoom).max(0.3);
         self.page_links.iter().find(|(r, _)| r.expand(tol).contains(q)).map(|l| l.1)
     }
 
     /// The cross reference at `q`: the page it leads to and, for an interruption
-    /// point, its first counterpart there (0 for the other references).
+    /// point, its counterpart there (0 for the other references).
     pub fn link_at(&self, prj: &Project, idx: &Index, page_i: usize, q: P) -> Option<(usize, u64)> {
         let page = &prj.pages[page_i];
-        if self.page_links_of != Some(page.id) {
-            return None;
-        }
+        let target = self.linked_page(page.id, q)?;
         let tol = (2. / self.zoom).max(0.3);
-        let target = self.linked_page(q)?;
         let counterpart = page.symbols.iter().find_map(|s| {
-            let def = prj.symbol(&s.sym)?;
-            render::interruption_text_bounds(prj, idx, page_i, &def, s)
-                .into_iter()
-                .any(|(t, r)| t == render::IntrText::Xref && r.expand(tol).contains(q))
-                .then(|| idx.interruption_targets(prj, &s.interruption_key(), s.id).first().copied())
-                .flatten()
+            let def = prj.symbol(&s.sym).filter(|def| def.func == Func::Interruption)?;
+            let (_, to) = render::symbol_links(prj, idx, page_i, &def, s).into_iter().find(|(r, _)| r.expand(tol).contains(q))?;
+            let others = idx.interruption_targets(prj, &s.interruption_key(), s.id);
+            others.iter().find(|l| l.page == to).or(others.first()).copied()
         });
         Some(counterpart.map_or((target, 0), |l| (l.page, l.sym_id)))
     }
 
+    /// Hit test: returns the id of the item under `q` (world), preferring texts and
+    /// electrical symbols. Decorative symbols stay behind wires and their
+    /// definitions. Items on hidden or locked layers are skipped.
     pub fn hit(&self, prj: &Project, page_i: usize, q: P) -> Option<u64> {
         let page = &prj.pages[page_i];
         let tol = (8.0 / self.zoom).max(0.4);
@@ -1382,7 +1397,7 @@ impl Editor {
         let pointer_end = world.and_then(|w| self.wire_end_hit(prj, page_i, w)).is_some();
         let pointer_turn = ptr.is_some_and(|s| self.turn_handle(prj, page_i, rect).is_some_and(|(_, h, _)| h.distance(s) <= TURN_HANDLE_HIT));
         let pointer_grip = world.filter(|_| !pointer_turn).and_then(|w| self.grip_hit(prj, page_i, w)).map(|(id, g)| (g, grips::frame_angle(&prj.pages[page_i], id)));
-        self.cursor(ui, world, editable, pointer_hit, (pointer_prop.is_some(), pointer_end, pointer_grip, pointer_turn));
+        self.cursor(ui, prj.pages[page_i].id, world, editable, pointer_hit, (pointer_prop.is_some(), pointer_end, pointer_grip, pointer_turn));
 
         // ------------------------------------------------------------ drawing
         self.update_textures(ui.ctx(), prj, page_i);
@@ -2536,7 +2551,7 @@ impl Editor {
     /// of a selected symbol (`prop_hit`) and the ends of selected wires (`end_hit`),
     /// crosshair for the drawing tools.
     #[allow(clippy::too_many_arguments)]
-    fn cursor(&self, ui: &egui::Ui, world: Option<P>, editable: bool, hit: Option<u64>, (prop_hit, end_hit, grip, turn): (bool, bool, Option<(Grip, f32)>, bool)) {
+    fn cursor(&self, ui: &egui::Ui, page_id: u64, world: Option<P>, editable: bool, hit: Option<u64>, (prop_hit, end_hit, grip, turn): (bool, bool, Option<(Grip, f32)>, bool)) {
         let Some(w) = world else { return };
         // A grip tells that it resizes and the turning handle that it turns, also with
         // the crosshair over the whole canvas.
@@ -2552,7 +2567,7 @@ impl Editor {
             return;
         }
         // With the key that opens links held, a cross reference tells that a click follows it.
-        if matches!((&self.tool, &self.drag), (Tool::Select, Drag::None)) && self.gestures.held(Role::OpenLink, ui.input(|i| i.modifiers)) && self.linked_page(w).is_some() {
+        if matches!((&self.tool, &self.drag), (Tool::Select, Drag::None)) && self.gestures.held(Role::OpenLink, ui.input(|i| i.modifiers)) && self.linked_page(page_id, w).is_some() {
             ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
             return;
         }

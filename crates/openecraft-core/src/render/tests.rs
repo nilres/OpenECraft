@@ -823,3 +823,26 @@ fn curve_dash_phase_continues_over_short_segments() {
         assert!(points.last().unwrap().same(p(start + 1.5, 0.)));
     }
 }
+
+#[test]
+fn the_links_of_a_symbol_are_those_drawn_with_it_also_in_a_reference_field() {
+    use crate::symbols::{BlockAlign,PropertyBlock};
+    let mut prj = Project::default();
+    let id = prj.new_id();
+    prj.pages.push(Page::new(id, "2", "", PageKind::Schematic));
+    for (page, id) in [(0, 7), (1, 8)] {
+        prj.pages[page].symbols.push(SymbolInst {id,sym:"intr".into(),pos:p(100.,100.),label:"L1_OUT".into(),..Default::default()});
+    }
+    let idx = Index::build(&prj);
+    let s = &prj.pages[0].symbols[0];
+    let mut def = (*prj.symbol("intr").unwrap()).clone();
+    let plain = symbol_links(&prj,&idx,0,&def,s);
+    assert_eq!(plain.iter().map(|l|l.1).collect::<Vec<_>>(),[1]);
+    let xref = interruption_text_bounds(&prj,&idx,0,&def,s).into_iter().find(|t|t.0==IntrText::Xref).unwrap().1;
+    assert!(plain[0].0.contains(xref.center()));
+    def.prims.push(Prim::PropertyBlock(PropertyBlock {rows:vec![BlockRow::Property(references::PROPERTY.into())],
+        pos:p(0.,8.),step:p(0.,3.),size:2.,anchor:Anchor::Left,angle:0.,align:BlockAlign::Start,color:None}));
+    let field = symbol_links(&prj,&idx,0,&def,s);
+    assert_eq!(field.iter().map(|l|l.1).collect::<Vec<_>>(),[1],"the reference field links instead");
+    assert!(!field[0].0.contains(xref.center()));
+}
