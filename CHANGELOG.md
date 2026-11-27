@@ -11,6 +11,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   breaker, `SPD`, `PSU`, `PLC` or `VFD`, also in translated names and part descriptions
   (*Fehlerstromschutzschalter*); the tooltip of an entry lists its keywords
   ([#273](https://github.com/nilres/OpenECraft/issues/273)).
+- **Thermal simulation of an open mounting assembly:** an assembly without enclosure
+  walls is no longer calculated as a closed box. Its plate stands in the room air: the
+  heat map has only the plumes rising above the devices, no warmer inside air and no
+  stratification, the climate calculation asks for neither cooling nor heating, and
+  the hot spot of the checks is told against the room air. `panel_thermal` gives the
+  model it used (`enclosure` or `open_assembly`), `climate` gives `open_assembly`
+  ([#289](https://github.com/nilres/OpenECraft/issues/289)).
 - **Close project:** *File › Close project* (Ctrl+Shift+F4) closes the open project,
   asks to save unsaved changes first, releases the pages of a project of the project
   server and closes its schematic pages, panel layouts and tool windows: the start page

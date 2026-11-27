@@ -88,4 +88,12 @@ fn thermal_simulation() {
     let devices = r["devices"].as_array().unwrap();
     assert!(devices.iter().any(|d| d["device"] == "-K1"), "{r:#}");
     assert!(devices.iter().all(|d| d["too_warm"] == false), "{r:#}");
+    assert_eq!(r["model"], "enclosure");
+    // An open assembly: room air at the plate, no stratification.
+    let e = prj.layout.enclosures.iter_mut().find(|e| e.name == "+CAB1").unwrap();
+    e.kind = openecraft_core::panel::EnclosureKind::Assembly;
+    let ambient = f64::from(e.climate.ambient_max);
+    let r = run(&p, &mut prj, "panel_thermal", json!({ "enclosure": "+CAB1" })).unwrap();
+    assert_eq!(r["model"], "open_assembly");
+    assert_eq!((r["mean_c"].as_f64(), r["top_c"].as_f64(), r["bottom_c"].as_f64()), (Some(ambient), Some(ambient), Some(ambient)));
 }

@@ -92,3 +92,26 @@ fn forced_air_weakens_the_plumes() {
     let forced = heat_map(&prj, &prj.layout.enclosures[0]).sources[0].rise;
     assert!((forced - still * 0.5).abs() < 1e-4, "{forced} {still}");
 }
+
+#[test]
+fn an_open_assembly_stands_in_the_room_air() {
+    let mut prj = project();
+    let closed = heat_map(&prj, &prj.layout.enclosures[0]);
+    assert!(!closed.open && closed.mean > closed.bottom);
+    prj.layout.enclosures[0].kind = crate::panel::EnclosureKind::Assembly;
+    let ambient = prj.layout.enclosures[0].climate.ambient_max;
+    let open = heat_map(&prj, &prj.layout.enclosures[0]);
+    // No inside air: room air at the plate, not stratified; only the plume rises.
+    assert!(open.open);
+    assert_eq!((open.mean, open.bottom, open.top), (ambient, ambient, ambient));
+    assert!((open.min - ambient).abs() < 0.1, "{}", open.min);
+    assert!(open.max > ambient + 5.0 && open.max < closed.max, "{} {}", open.max, closed.max);
+    // The depth of the assembly does not matter.
+    prj.layout.enclosures[0].depth *= 3.0;
+    assert_eq!(heat_map(&prj, &prj.layout.enclosures[0]).temps, open.temps);
+    // The hot spot is told against the room air.
+    prj.layout.enclosures[0].climate.ambient_max = 40.0;
+    let f = crate::panel::validate(&prj, &prj.layout.enclosures[0]);
+    let hot = f.iter().find(|f| f.kind == crate::panel::CheckKind::Thermal && f.items.is_empty()).expect("hot spot");
+    assert!(hot.message.contains("room air"), "{}", hot.message);
+}
