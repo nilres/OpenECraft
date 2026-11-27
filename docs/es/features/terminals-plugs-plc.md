@@ -11,7 +11,9 @@ cada borne tiene su artículo: los bornes PE toman el artículo de la regleta co
 técnico `Terminal type: PE`, todos los demás su artículo de paso (lista de materiales,
 longitud de la regleta en el armario, puntos de conexión por borne); **accesorios
 automáticos** a partir de los datos técnicos de los artículos de borne
-(`End bracket: …`, `End plate: …`, `Jumper: …` con artículos de puente `Poles: n`): un
+(`End bracket: …`, `End plate: …`, `Jumper: …` con artículos de puente `Poles: n`; un artículo de soporte final en la
+lista de artículos de la regleta, grupo de productos `End bracket`, sustituye al de los
+datos técnicos): un
 soporte final en ambos extremos, una tapa final después del último borne de cada
 artículo, puentes enchufables de la longitud más corta que encaje (cortados si son más
 largos, con los dientes partidos en los bornes intermedios) – en la lista de
