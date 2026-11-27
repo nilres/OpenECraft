@@ -69,7 +69,7 @@ fn face_view(ui: &mut egui::Ui, po: &Pinout, side: Side, width: f32, highlight: 
     painter.rect_filled(resp.rect, 4.0, pal.paper);
     let scale = pinout::fit_scale(po, FACE_MM, h_mm);
     let centre = openecraft_core::geom::p((FACE_MM + 8.0) / 2.0, (h_mm + 8.0) / 2.0);
-    let mut d = EguiDraw { painter: &painter, origin: resp.rect.min, zoom, pal: &pal, force: None, mirror: None, textures: None };
+    let mut d = EguiDraw { painter: &painter, origin: resp.rect.min, zoom, pal: &pal, force: None, mirror: None, textures: None, links: Vec::new() };
     pinout::draw_face(&mut d, po, side, centre, scale, highlight);
     let hovered = resp.hover_pos().and_then(|pos| {
         let q = pos2((pos.x - resp.rect.min.x) / zoom, (pos.y - resp.rect.min.y) / zoom);

@@ -60,7 +60,7 @@ fn clip_preview(ui: &mut egui::Ui, prj: &Project, clip: &Clip, size: egui::Vec2)
     }
     let zoom = ((size.x - 8.0) / b.width()).min((size.y - 8.0) / b.height()).min(4.0);
     let origin = resp.rect.center() - vec2(b.center().x, b.center().y) * zoom;
-    let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: None };
+    let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: None, links: Vec::new() };
     for w in &clip.wires {
         d.line(w.a, w.b, render::WIRE_W, Ink::Wire, false);
     }

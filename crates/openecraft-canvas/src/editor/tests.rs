@@ -1446,3 +1446,34 @@ fn a_dropped_symbol_is_placed_once_and_the_tool_stays() {
         assert!(ed.selection.is_empty());
     }
 }
+
+#[test]
+fn ctrl_click_on_a_cross_reference_leads_to_the_counterpart() {
+    let mut prj = Project::default();
+    let id = prj.new_id();
+    prj.pages.push(Page::new(id, "2", "", PageKind::Schematic));
+    for (page, id) in [(0, 7), (1, 8)] {
+        prj.pages[page].symbols.push(SymbolInst { id, sym: "intr".into(), pos: p(100.0, 100.0), label: "L1_OUT".into(), ..Default::default() });
+    }
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    let def = prj.symbol("intr").unwrap();
+    let idx = Index::build(&prj);
+    let s = prj.pages[0].symbols[0].clone();
+    let area = render::interruption_text_bounds(&prj, &idx, 0, &def, &s).into_iter().find(|t| t.0 == render::IntrText::Xref).unwrap().1;
+    assert_eq!(ed.link_at(&prj, &idx, 0, area.center()), Some((1, 8)), "the reference names the counterpart on page 2");
+    assert_eq!(ed.link_at(&prj, &idx, 0, p(300.0, 200.0)), None, "nothing beside it");
+
+    let at = ed.w2s(SCREEN, area.center());
+    let press = |ed: &mut Editor, prj: &mut Project, modifiers: Modifiers| {
+        frame_with(ed, &ctx, prj, 0, vec![Event::PointerMoved(at)], modifiers);
+        frame_with(ed, &ctx, prj, 0, vec![Event::PointerButton { pos: at, button: PointerButton::Primary, pressed: true, modifiers }], modifiers);
+        let out = frame_with(ed, &ctx, prj, 0, vec![Event::PointerButton { pos: at, button: PointerButton::Primary, pressed: false, modifiers }], modifiers);
+        frame_with(ed, &ctx, prj, 0, vec![Event::PointerMoved(at + vec2(300.0, 0.0))], Modifiers::default());
+        out.goto
+    };
+    assert_eq!(press(&mut ed, &mut prj, Modifiers::default()), None, "a plain click only selects");
+    assert_eq!(press(&mut ed, &mut prj, Modifiers::COMMAND | Modifiers::CTRL), Some((1, 8)));
+}

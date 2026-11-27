@@ -221,7 +221,7 @@ impl App {
             painter.line_segment([to_screen(x0, gy), to_screen(x1, gy)], (1.0, pal.grid));
             gy += step;
         }
-        let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: None };
+        let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: None, links: Vec::new() };
         field::draw::draw(&mut d, &self.session.prj, &self.session.analysis.field, p(0.0, 0.0), UNITS, fu.cable.as_deref());
         let hl = Color32::from_rgb(230, 120, 20);
         if let Some(n) = fu.node.and_then(|id| self.session.prj.field.node(id)) {

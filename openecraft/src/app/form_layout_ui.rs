@@ -52,7 +52,7 @@ pub(super) fn layout_editor(ui: &mut egui::Ui, fu: &mut FormsUi, prj: &Project, 
     pick(fu, &resp, ui, items, items_origin, zoom);
     let all: Vec<FormItem> = layout.header.iter().chain(&layout.row).cloned().collect();
     load_pictures(ui.ctx(), fu, prj, &all);
-    let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: Some(&fu.textures) };
+    let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: Some(&fu.textures), links: Vec::new() };
     forms::draw_layout(&mut d, layout, &t, prj, page, p(0.0, 0.0));
     let items = if fu.layout_row { &layout.row } else { &layout.header };
     image_outlines(&painter, &pal, items, prj, items_origin, zoom);
