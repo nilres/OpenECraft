@@ -9,7 +9,7 @@
 use super::App;
 use crate::panel_ui::SiteTool;
 use egui::RichText;
-use openecraft_core::model::Project;
+use openecraft_core::model::{PageKind, Project};
 use openecraft_core::parts::vec3;
 use openecraft_core::panel::solar::strings;
 use openecraft_core::panel::{self, buildings as bld, earthing, lightning, plot, roofs, solar, stairs, ElectrodeKind, GeoReference, LinkKind, Opening, PvMounting, RoofShape, StairKind, Turn};
@@ -1219,6 +1219,7 @@ fn site_plan_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi,
     if one_level && !b.levels.iter().any(|l| l.id == st.level) {
         st.level = b.levels.first().map_or(0, |l| l.id);
     }
+    let mut new_page = false;
     ui.horizontal(|ui| {
         ui.label(RichText::new(tr("Site plan")).strong());
         let shown = b.levels.iter().find(|l| l.id == st.level).map_or_else(|| tr("All levels").to_string(), |l| l.name.clone());
@@ -1230,7 +1231,14 @@ fn site_plan_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi,
                 ui.selectable_value(&mut st.level, l.id, l.name.as_str());
             }
         });
+        new_page = st.tab == Tab::Installation && st.level != 0 && ui.button(tr("New installation plan page")).on_hover_text(tr("A page with the installation plan of this level for printing and the PDF export")).clicked();
     });
+    if new_page {
+        let at = prj.pages.len();
+        let i = openecraft_core::ops::add_page(prj, PageKind::InstallationPlan(st.level), at);
+        st.status = tr_fmt!("Page {} added", prj.pages[i].name);
+    }
+
     let mut open = None;
     match st.tab {
         Tab::FloorPlan if st.level != 0 => {

@@ -21,9 +21,15 @@ photoresistor, optocoupler and bridge rectifier.
 
 ## Installation plan symbols
 
-**Installation plan symbols** (IEC 60617-11): 1-pole and two-way switches, dimmer, push
-button, lighting outlet, fluorescent luminaire, double socket outlet with PE, junction box,
-motion detector and distribution board, each with one connection point for the cable.
+**Installation plan symbols** (IEC 60617-11): 1-pole, two-way, intermediate, series and
+blind switches, dimmer, push button, lighting outlet, wall light, recessed light,
+spotlight, fluorescent and emergency luminaires, socket outlets with PE (single, double,
+triple, with switch, splash-proof, CEE three-phase), junction box, device connection
+outlet, data and antenna outlets, heating element, room thermostat, motor, fan, door
+intercom, bell, smoke alarm, motion detector, window or door contact and distribution
+board, each with one connection point for the cable at the top. Installation plan pages
+draw a device with the plan symbol of its part (*Plan symbol* in the part's mounting
+data, command `set_plan_symbol`, list `plan_symbols`), or the one of its kind.
 
 ## Symbol editor and libraries
 

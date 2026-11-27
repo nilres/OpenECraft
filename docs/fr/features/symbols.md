@@ -25,10 +25,17 @@ redresseur.
 
 ## Symboles de plan d'installation
 
-**Symboles de plan d'installation** (IEC 60617-11) : interrupteurs unipolaires et
-va-et-vient, variateur, bouton-poussoir, sortie d'éclairage, luminaire fluorescent, prise
-de courant double avec PE, boîte de dérivation, détecteur de mouvement et tableau de
-distribution, chacun avec un point de connexion pour le câble.
+**Symboles de plan d'installation** (IEC 60617-11) : interrupteurs unipolaires,
+va-et-vient, permutateurs, double allumage et de volet, variateur, bouton-poussoir, sortie
+d'éclairage, applique, encastré lumineux, projecteur, luminaires fluorescent et de
+secours, prises avec PE (simple, double, triple, avec interrupteur, étanche aux
+projections, CEE triphasée), boîte de dérivation, boîte de raccordement d'appareil, prises
+de données et d'antenne, élément chauffant, thermostat d'ambiance, moteur, ventilateur,
+interphone de porte, sonnerie, détecteur de fumée, détecteur de mouvement, contact de
+fenêtre ou de porte et tableau de distribution, chacun avec un point de connexion pour le
+câble en haut. Les pages de plan d'installation dessinent un appareil avec le symbole de
+plan de son article (*Symbole de plan* dans les données de montage de l'article, commande
+`set_plan_symbol`, liste `plan_symbols`) ou celui de son type.
 
 ## Éditeur de symboles et bibliothèques
 

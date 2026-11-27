@@ -129,7 +129,7 @@ impl FormItem {
 
 /// Page types of the conditions of elements and of the title blocks by page type:
 /// (key, title).
-pub const PAGE_TYPES: [(&str, &str); 8] = [
+pub const PAGE_TYPES: [(&str, &str); 9] = [
     ("schematic", tr_const!("Schematic")),
     ("cover", tr_const!("Cover")),
     ("report", tr_const!("Report")),
@@ -138,6 +138,7 @@ pub const PAGE_TYPES: [(&str, &str); 8] = [
     ("overview", tr_const!("Overview")),
     ("graphic", tr_const!("Graphics")),
     ("document", tr_const!("Document")),
+    ("installation_plan", tr_const!("Installation plan")),
 ];
 
 /// Key of the page type of a page kind (`PAGE_TYPES`).
@@ -151,6 +152,7 @@ pub fn page_type(kind: PageKind) -> &'static str {
         PageKind::Overview => "overview",
         PageKind::Graphic => "graphic",
         PageKind::Document => "document",
+        PageKind::InstallationPlan(_) => "installation_plan",
     }
 }
 
@@ -428,6 +430,7 @@ pub fn placeholder(prj: &Project, page_i: usize, name: &str) -> Option<String> {
             PageKind::Overview => tr("Overview"),
             PageKind::Graphic => tr("Graphics"),
             PageKind::Document => tr("Document"),
+            PageKind::InstallationPlan(_) => tr("Installation plan"),
         }
         .into(),
         "sheet" => (page_i + 1).to_string(),

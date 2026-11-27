@@ -252,3 +252,31 @@ fn devices_with_their_tags_cables_and_heights() {
         assert!(run(&mut s, "place_installation", args).is_err());
     }
 }
+
+#[test]
+fn installation_plan_pages_take_their_rooms() {
+    let mut s = house();
+    let level = s.project().unwrap().layout.enclosures.iter().find(|e| e.name == "+ROOM1").unwrap().level;
+    let id = s.project_mut().unwrap().new_id();
+    s.project_mut().unwrap().pages.push(openecraft_core::model::Page::new(id, "IP1", "", openecraft_core::model::PageKind::InstallationPlan(level)));
+    run(&mut s, "set_page", json!({ "page": "IP1", "rooms": "+ROOM1", "tag_parts": "location,product" })).unwrap();
+    let pg = s.project().unwrap().pages.iter().find(|p| p.name == "IP1").unwrap();
+    assert_eq!(pg.plan.rooms, ["+ROOM1"]);
+    assert!(run(&mut s, "set_page", json!({ "page": "IP1", "rooms": "+NOWHERE" })).is_err());
+    run(&mut s, "set_page", json!({ "page": "IP1", "rooms": "" })).unwrap();
+    assert!(s.project().unwrap().pages.iter().find(|p| p.name == "IP1").unwrap().plan.rooms.is_empty());
+}
+
+#[test]
+fn installation_plan_pages_take_legend_and_text_options() {
+    let mut s = house();
+    let level = s.project().unwrap().layout.enclosures.iter().find(|e| e.name == "+ROOM1").unwrap().level;
+    let id = s.project_mut().unwrap().new_id();
+    s.project_mut().unwrap().pages.push(openecraft_core::model::Page::new(id, "IP1", "", openecraft_core::model::PageKind::InstallationPlan(level)));
+    run(&mut s, "set_page", json!({ "page": "IP1", "legend": false, "legend_at": "bottom", "room_descriptions": false, "tag_size": 2.5, "room_size": 4, "legend_size": 3 })).unwrap();
+    let plan = &s.project().unwrap().pages.iter().find(|p| p.name == "IP1").unwrap().plan;
+    assert!(!plan.legend && !plan.room_descriptions);
+    assert_eq!((plan.legend_at, plan.tag_size, plan.room_size, plan.legend_size), (openecraft_core::model::LegendAt::Bottom, 2.5, 4.0, 3.0));
+    assert!(run(&mut s, "set_page", json!({ "page": "IP1", "legend_at": "middle" })).is_err());
+    assert!(run(&mut s, "set_page", json!({ "page": "IP1", "tag_size": 0.1 })).is_err());
+}

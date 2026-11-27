@@ -13,9 +13,11 @@ pub static TOOLS: &[Tool] = &[
         name: "add_page",
         help: tr_const!("Adds a page"),
         params: &[
-            optional("kind", Kind::Str, tr_const!("schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid")),
+            optional("kind", Kind::Str, tr_const!("schematic, overview, graphic, cover, mounting or drilling (with enclosure), installation_plan (with building and level) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid")),
             optional("template", Kind::Str, tr_const!("Page template (list_page_templates) instead of kind")),
             optional("enclosure", Kind::Str, tr_const!("Enclosure of a mounting layout or drilling pattern page")),
+            optional("building", Kind::Str, tr_const!("Building of an installation plan page")),
+            optional("level", Kind::Str, tr_const!("Level of an installation plan page: its name or number (1 = the lowest)")),
             optional("frame", Kind::Str, tr_const!("Plot frame (list_frames); default: the project's")),
             optional("after", Kind::Str, tr_const!("Insert after this page (default: at the end)")),
             optional("name", Kind::Str, tr_const!("Page name (default: next number)")),
@@ -96,8 +98,8 @@ fn import_drawing(s: &mut Session, a: &Args) -> Result<Value, String> {
 
 fn add_page(s: &mut Session, a: &Args) -> Result<Value, String> {
     let report = match a.str("kind").map(|k| k.trim().to_ascii_lowercase()) {
-        Some(k) if !matches!(k.as_str(), "schematic" | "overview" | "graphic" | "graphics" | "cover" | "mounting" | "drilling") => {
-            Some(report_id(&s.plugins, &k).map_err(|_| tr_fmt!("Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling or a report of list_reports)", k))?)
+        Some(k) if !matches!(k.as_str(), "schematic" | "overview" | "graphic" | "graphics" | "cover" | "mounting" | "drilling" | "installation_plan") => {
+            Some(report_id(&s.plugins, &k).map_err(|_| tr_fmt!("Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan or a report of list_reports)", k))?)
         }
         _ => None,
     };
@@ -117,6 +119,7 @@ fn add_page(s: &mut Session, a: &Args) -> Result<Value, String> {
                 let id = prj.layout.enclosures.get(enclosure_index(prj, name)?).map(|e| e.id).unwrap_or_default();
                 if k == "mounting" { PageKind::Mounting(id) } else { PageKind::Drilling(id) }
             }
+            "installation_plan" => PageKind::InstallationPlan(plan_level(prj, a)?),
             _ => PageKind::Report(report.unwrap_or(ReportKind::DeviceList.into())),
         },
         (None, Some(t)) => t.kind,
@@ -161,6 +164,20 @@ fn add_page(s: &mut Session, a: &Args) -> Result<Value, String> {
         pg.description = d.into();
     }
     Ok(page_json(pg))
+}
+
+/// The level of an installation plan page: `building` and `level`; the only building
+/// may be left out.
+fn plan_level(prj: &Project, a: &Args) -> Result<u64, String> {
+    use openecraft_core::panel::buildings as bld;
+    let bi = match a.str("building") {
+        Some(name) => bld::building_index(&prj.layout, name).ok_or_else(|| tr_fmt!("No building named {}", name))?,
+        None if prj.layout.buildings.len() == 1 => 0,
+        None => return Err(tr("An installation plan page needs its building and level").into()),
+    };
+    let b = &prj.layout.buildings[bi];
+    let key = a.str("level").ok_or_else(|| tr("An installation plan page needs its building and level").to_string())?;
+    bld::level_index(b, key).map(|li| b.levels[li].id).ok_or_else(|| tr_fmt!("No level {} in {}", key, b.name))
 }
 
 #[cfg(test)]

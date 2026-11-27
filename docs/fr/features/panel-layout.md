@@ -940,6 +940,37 @@ partir de là, et les longueurs de leurs câbles sont celles du routage 3D.
   thermostat, sèche-serviettes avec leurs barreaux, panneaux chauffants infrarouges).
   Le menu 3D *Insertion › Prises, interrupteurs, chauffage* a aussi un onglet
   *Luminaires*.
+- **Les pages de plan d'installation** (*Nouvelle page de plan d'installation* dans
+  l'onglet *Installation électrique* du volet *Bâtiments*, un type de page dans les
+  *Propriétés de la page* ; commande `add_page kind=installation_plan building=…
+  level=…`) impriment l'installation d'un niveau : les murs de ses salles avec des
+  ouvertures pour les portes et les fenêtres, les vantaux et le débattement des portes,
+  les noms des salles, les armoires et tableaux placés dans les salles (leur emprise
+  comme symbole de tableau de distribution, avec leur nom), les appareils avec leurs
+  symboles tournés vers leur mur et leurs
+  repères, les liaisons des circuits et une légende des circuits dans leurs couleurs ;
+  un symbole et une ligne de la légende renvoient à la page d'installation du circuit
+  dans l'export PDF. La page porte les bandes de colonnes et de lignes du cadre. Son
+  échelle (1 : 50, 1 : 100 …) est conservée, ou *Ajuster à la page* choisit la plus
+  grande qui tient (notée *ajustée* dans la légende) ; les *Pièces* cochées
+  (`set_page rooms=+SDB,+CUI`) centrent ou ajustent la page sur elles, et ce qui ne tient
+  pas dans la zone de dessin est coupé à son bord. Repères, couleurs des circuits, liaisons et noms des
+  salles se désactivent dans les propriétés de la page (`set_page` avec `tags`,
+  `circuit_colors`, `connections`, `room_names`), et les repères se réduisent à certains
+  de leurs aspects (*Repères affichés* : repère complet, emplacement et appareil,
+  fonction et appareil, appareil seul ou personnalisé ; `tag_parts` : le seul aspect
+  produit affiche `-X1.6` de `=SD1+F1-X1.6`).
+  La légende peut être masquée ou placée à droite, à gauche, en haut ou en bas
+  (`legend`, `legend_at`) ; une pièce affiche son repère d'emplacement et la
+  description de ce repère tirée de la gestion des structures, p. ex. *Cuisine*
+  (*Description* dans les propriétés de la pièce, `define_structure`), chacun pouvant
+  être masqué (`room_names`, `room_descriptions`), et les tailles de police des
+  repères, des pièces et de la légende (en pt, `tag_size`, `room_size`,
+  `legend_size`) ainsi que les tailles des symboles d'appareils et d'armoires (en %,
+  `symbol_scale`, `cabinet_scale`) se règlent par page.
+
+![Page de plan d'installation d'un appartement : salles avec portes et fenêtres, appareils avec leurs symboles de plan tournés vers leur mur, repères réduits à l'aspect produit](../../images/installation-plan.png)
+
 - **Les éléments chauffants** s'insèrent de la même façon : convecteurs
   (`GEN.HEATER-PANEL-1000`, `GEN.HEATER-PANEL-2000`, 400 mm) et sèche-serviettes
   (`GEN.HEATER-TOWEL-500`, 900 mm) sur le mur, panneaux chauffants infrarouges

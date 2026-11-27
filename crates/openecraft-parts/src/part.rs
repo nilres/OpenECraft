@@ -426,6 +426,10 @@ pub struct Part {
     /// Preferred project symbol key for a vendor-neutral library assignment.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub symbol: String,
+    /// Symbol of the part on installation plans (a key of [`PLAN_SYMBOLS`] or another
+    /// symbol of the library); empty: the one of its kind.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub plan_symbol: String,
     /// Original vendor records retained alongside the normalized part data.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub source_data: Option<Shared<serde_json::Value>>,
@@ -492,6 +496,44 @@ pub struct Part {
     pub portal_id: String,
 }
 
+/// The symbols of installation plans (IEC 60617-11) of the built-in symbol library:
+/// key and name, for choosing the plan symbol of a part.
+pub const PLAN_SYMBOLS: &[(&str, &str)] = &[
+    ("inst_socket", "Socket outlet with PE"),
+    ("inst_socket2", "Double socket outlet with PE"),
+    ("inst_socket3", "Triple socket outlet with PE"),
+    ("inst_socket_switched", "Socket outlet with switch"),
+    ("inst_socket_ip44", "Socket outlet, splash-proof"),
+    ("inst_socket_cee", "CEE socket outlet, three-phase"),
+    ("inst_switch", "Switch, 1-pole (installation)"),
+    ("inst_switch2", "Two-way switch (installation)"),
+    ("inst_switch_inter", "Intermediate switch (installation)"),
+    ("inst_switch_series", "Series switch (installation)"),
+    ("inst_switch_blind", "Blind switch (installation)"),
+    ("inst_dimmer", "Dimmer (installation)"),
+    ("inst_push", "Push button (installation)"),
+    ("inst_lamp", "Lighting outlet"),
+    ("inst_wall_light", "Wall light"),
+    ("inst_downlight", "Recessed light"),
+    ("inst_spot", "Spotlight"),
+    ("inst_luminaire", "Luminaire, fluorescent"),
+    ("inst_emergency", "Emergency light"),
+    ("inst_junction", "Junction box"),
+    ("inst_connection", "Device connection outlet"),
+    ("inst_data", "Data outlet"),
+    ("inst_aerial", "Antenna outlet"),
+    ("inst_heater", "Heating element (installation)"),
+    ("inst_thermostat", "Room thermostat"),
+    ("inst_motor", "Motor (blind, window drive)"),
+    ("inst_fan", "Fan"),
+    ("inst_intercom", "Door intercom"),
+    ("inst_bell", "Bell"),
+    ("inst_smoke", "Smoke alarm"),
+    ("inst_motion", "Motion detector"),
+    ("inst_contact", "Window or door contact"),
+    ("inst_board", "Distribution board"),
+];
+
 fn is_zero(n: &u64) -> bool {
     *n == 0
 }
@@ -529,6 +571,7 @@ impl Default for Part {
             mounting_data: MountingData::default(),
             functions: Vec::new(),
             symbol: String::new(),
+            plan_symbol: String::new(),
             source_data: None,
             eplan_macro: String::new(),
             eplan_variants: Vec::new(),

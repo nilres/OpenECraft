@@ -35,6 +35,21 @@ const Z: &str = tr_const!("z in the plant (towards the front) in mm");
 
 pub static COMMANDS: &[Spec] = &[
     Spec {
+        name: "plan_symbols",
+        help: tr_const!("Lists the symbols of installation plans (IEC 60617-11) a part can be shown with: key and name"),
+        params: &[],
+        run: plan_symbols,
+    },
+    Spec {
+        name: "set_plan_symbol",
+        help: tr_const!("Sets the symbol of a part on installation plans (a key of plan_symbols or another symbol of the library); a part of a catalog is copied into the project first"),
+        params: &[
+            param("part", Kind::Str, tr_const!("Part number")),
+            optional("symbol", Kind::Str, tr_const!("Symbol key, e.g. inst_thermostat; empty: the symbol of its kind")),
+        ],
+        run: set_plan_symbol,
+    },
+    Spec {
         name: "place_installation",
         help: tr_const!("Puts a socket outlet, switch, light, heating element, junction box or device connection box for a protective device into a room at a point of the plant (a ceiling light on the ceiling there, anything else on the nearest wall at its mounting height; outside the room on the outside of its nearest wall) and into the schematic: a new device on the installation page of the circuit with a cable from the device before it or from the device given; without a protective device only into the room (data and antenna outlets, smoke alarms)"),
         params: &[
@@ -229,6 +244,25 @@ fn write_circuit_cables(prj: &mut Project, _: &Args) -> Result<Value, String> {
     let n = inst::write_cables(prj, &list);
     let cables: Vec<Value> = list.iter().flat_map(|c| &c.legs).filter(|l| !l.cable.is_empty()).filter_map(|l| prj.cables.iter().find(|x| x.tag == l.cable)).map(|c| json!({ "cable": c.tag, "length": c.length, "cable_type": c.cable_type })).collect();
     Ok(json!({ "cables": n, "list": cables }))
+}
+
+fn plan_symbols(prj: &mut Project, _: &Args) -> Result<Value, String> {
+    let list: Vec<Value> = openecraft_core::parts::PLAN_SYMBOLS.iter().filter(|(k, _)| prj.symbol(k).is_some()).map(|(k, n)| json!({ "key": k, "name": tr(n) })).collect();
+    Ok(json!(list))
+}
+
+fn set_plan_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let number = a.req("part");
+    let symbol = a.str("symbol").unwrap_or_default().trim().to_string();
+    if !symbol.is_empty() && prj.symbol(&symbol).is_none() {
+        return Err(tr_fmt!("Unknown symbol: {}", symbol));
+    }
+    inst::take_part(prj, number).ok_or_else(|| tr_fmt!("Unknown part: {}", number))?;
+    let part = prj.parts.iter_mut().find(|p| p.number == number).ok_or_else(|| tr_fmt!("Unknown part: {}", number))?;
+    part.plan_symbol = symbol;
+    let part = part.clone();
+    let shown = inst::kind_of(&part).map(|k| inst::plan_symbol(prj, &part, k));
+    Ok(json!({ "part": part.number, "plan_symbol": part.plan_symbol, "shown": shown }))
 }
 
 #[cfg(test)]

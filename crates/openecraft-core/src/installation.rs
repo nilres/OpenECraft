@@ -174,6 +174,48 @@ pub fn kind_of(part: &Part) -> Option<Kind> {
     }
 }
 
+/// The symbol of a part of kind `kind` on installation plans: its own plan symbol when
+/// the library has it, else the one of its kind and subgroup ([`default_plan_symbol`]).
+pub fn plan_symbol(prj: &Project, part: &Part, kind: Kind) -> String {
+    let own = part.plan_symbol.trim();
+    if !own.is_empty() && prj.symbol(own).is_some() {
+        return own.to_string();
+    }
+    default_plan_symbol(kind, Some(part)).to_string()
+}
+
+/// The plan symbol of a kind, told apart further by the part's subgroup, number and
+/// description (two-way and intermediate switches, push buttons, dimmers, blind
+/// switches, double and triple socket outlets, wall and recessed lights).
+pub fn default_plan_symbol(kind: Kind, part: Option<&Part>) -> &'static str {
+    let text = part.map(|p| format!("{} {} {}", p.subgroup, p.number, p.description).to_lowercase()).unwrap_or_default();
+    let has = |k: &[&str]| k.iter().any(|k| text.contains(k));
+    match kind {
+        Kind::Socket if has(&["triple", "3-fold", "3x"]) => "inst_socket3",
+        Kind::Socket if has(&["double", "2-fold", "2x"]) => "inst_socket2",
+        Kind::Socket if has(&["cee", "5p"]) => "inst_socket_cee",
+        Kind::Socket => "inst_socket",
+        Kind::Switch if has(&["dimmer", "dim-"]) => "inst_dimmer",
+        Kind::Switch if has(&["blind"]) => "inst_switch_blind",
+        Kind::Switch if has(&["push button", "-pb-", "pb-"]) => "inst_push",
+        Kind::Switch if has(&["intermediate", "inter"]) => "inst_switch_inter",
+        Kind::Switch if has(&["two-way", "2way"]) => "inst_switch2",
+        Kind::Switch if has(&["series"]) => "inst_switch_series",
+        Kind::Switch => "inst_switch",
+        Kind::Light if has(&["emergency"]) => "inst_emergency",
+        Kind::Light if has(&["downlight", "recessed"]) => "inst_downlight",
+        Kind::Light if has(&["batten", "fluorescent", "panel"]) => "inst_luminaire",
+        Kind::Light if has(&["wall"]) => "inst_wall_light",
+        Kind::Light => "inst_lamp",
+        Kind::Heater => "inst_heater",
+        Kind::Junction => "inst_junction",
+        Kind::Connection => "inst_connection",
+        Kind::Data => "inst_data",
+        Kind::Aerial => "inst_aerial",
+        Kind::Smoke => "inst_smoke",
+    }
+}
+
 /// The part goes on the ceiling (lights made for it).
 pub fn on_ceiling(part: &Part) -> bool {
     part.tech_value("Ceiling mounting").is_some_and(|v| v.trim().eq_ignore_ascii_case("yes")) || part.mounting.to_lowercase().contains("ceiling")
@@ -195,6 +237,11 @@ pub struct Placed {
     pub floor: f32,
     pub ceiling: f32,
     pub level: u64,
+    /// Into the room from the wall it is on (x, z of the plant); `None` on the ceiling
+    /// or the floor.
+    pub facing: Option<[f32; 2]>,
+    /// Its symbol on installation plans ([`plan_symbol`]).
+    pub symbol: String,
 }
 
 /// Height of the floor of a room above the ground (the level it is on).
@@ -222,7 +269,12 @@ pub fn placed(prj: &Project, poses: &[SitePose], ri: usize, it: &PanelItem) -> O
     let kind = panel::part_by_number(prj, &it.part).and_then(kind_of)?;
     let e = &prj.layout.enclosures[ri];
     let (at, height) = spot(prj, poses, ri, it)?;
-    Some(Placed { room: ri, item: it.id, part: it.part.clone(), tag: it.tag.clone(), kind, at, height, floor: floor_of(prj, ri), ceiling: e.height, level: e.level })
+    let facing = panel::side(e, it.face).and_then(|w| {
+        let v = poses.get(ri)?.turn([w.normal[0], 0.0, w.normal[1]]);
+        Some([v[0], v[2]])
+    });
+    let symbol = panel::part_by_number(prj, &it.part).map_or_else(|| default_plan_symbol(kind, None).to_string(), |p| plan_symbol(prj, p, kind));
+    Some(Placed { room: ri, item: it.id, part: it.part.clone(), tag: it.tag.clone(), kind, at, height, floor: floor_of(prj, ri), ceiling: e.height, level: e.level, facing, symbol })
 }
 
 /// Every item of the installation in the rooms.

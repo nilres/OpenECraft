@@ -41,6 +41,7 @@ pub fn kind_name(kind: PageKind) -> String {
         PageKind::Overview => "overview".into(),
         PageKind::Graphic => "graphic".into(),
         PageKind::Document => "document".into(),
+        PageKind::InstallationPlan(_) => "installation_plan".into(),
     }
 }
 
@@ -187,6 +188,11 @@ pub fn page_json(pg: &Page) -> Value {
     });
     if !pg.condition.is_empty() {
         v["condition"] = pg.condition.clone().into();
+    }
+    if let PageKind::InstallationPlan(level) = pg.kind {
+        v["level"] = level.into();
+        let parts: Vec<&str> = openecraft_core::structure::Aspect::ALL.into_iter().filter(|a| pg.plan.tag_parts.get(*a)).map(|a| a.key()).collect();
+        v["plan"] = json!({ "tags": pg.plan.tags, "circuit_colors": pg.plan.circuit_colors, "connections": pg.plan.connections, "room_names": pg.plan.room_names, "room_descriptions": pg.plan.room_descriptions, "legend": pg.plan.legend, "legend_at": pg.plan.legend_at.key(), "tag_size": pg.plan.tag_size, "room_size": pg.plan.room_size, "legend_size": pg.plan.legend_size, "symbol_scale": pg.plan.symbol_scale, "cabinet_scale": pg.plan.cabinet_scale, "tag_parts": parts, "rooms": pg.plan.rooms });
     }
     v
 }

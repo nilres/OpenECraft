@@ -277,7 +277,7 @@ Undoes the last change	Ångrar den senaste ändringen
 Unknown command: {}. Run openecraft-cli help for a list.	Okänt kommando: {}. Kör openecraft-cli help för att få en lista.
 Unknown example {}: see list_examples	Okänt exempel {}: se list_examples
 Unknown format {}: give oec, oecp or oecz	Okänt format {}: ange oec, oecp eller oecz
-Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling or a report of list_reports)	Okänd sidtyp: {} (schematic, overview, graphic, cover, mounting, drilling eller en rapport från list_reports)
+Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan or a report of list_reports)	Okänd sidtyp: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan eller en rapport från list_reports)
 Unknown part {} (parts server: {})	Okänd artikel {} (artikelserver: {})
 Unknown plugin: {}	Okänt plugin: {}
 Unknown report scheme: {}	Okänt rapportschema: {}
@@ -308,7 +308,6 @@ erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mc
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine eller exchange
 json (default), csv or xlsx (Excel, needs path)	json (standard), csv eller xlsx (Excel, kräver path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nVisar kommandoradens version (även --version eller -V)\n
-schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) eller en rapport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo och redo fungerar bara i en MCP-session: kommandoraden öppnar projektet på nytt för varje kommando
 user or group	user eller group
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} är ett arkiv och lämnas oförändrat: spara projektet som projektfil (save_project --path <file>.oec) eller konvertera arkivet (convert_project)

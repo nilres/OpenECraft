@@ -277,7 +277,7 @@ Undoes the last change	Vrátí zpět poslední změnu
 Unknown command: {}. Run openecraft-cli help for a list.	Neznámý příkaz: {}. Seznam zobrazí openecraft-cli help.
 Unknown example {}: see list_examples	Neznámý příklad {}: viz list_examples
 Unknown format {}: give oec, oecp or oecz	Neznámý formát {}: zadejte oec, oecp nebo oecz
-Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling or a report of list_reports)	Neznámý typ stránky: {} (schematic, overview, graphic, cover, mounting, drilling nebo výkaz z list_reports)
+Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan or a report of list_reports)	Neznámý typ stránky: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan nebo výkaz z list_reports)
 Unknown part {} (parts server: {})	Neznámý artikl {} (server artiklů: {})
 Unknown plugin: {}	Neznámý plugin: {}
 Unknown report scheme: {}	Neznámé schéma výkazu: {}
@@ -308,7 +308,6 @@ erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mc
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine nebo exchange
 json (default), csv or xlsx (Excel, needs path)	json (výchozí), csv nebo xlsx (Excel, vyžaduje path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nZobrazí verzi příkazového řádku (také --version nebo -V)\n
-schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) nebo výkaz: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo a redo fungují jen v relaci MCP: příkazový řádek otevírá projekt pro každý příkaz znovu
 user or group	user nebo group
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} je archiv a zůstává beze změny: uložte projekt jako projektový soubor (save_project --path <file>.oec) nebo archiv převeďte (convert_project)

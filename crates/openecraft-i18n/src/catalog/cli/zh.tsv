@@ -272,7 +272,7 @@ Undoes the last change	撤消上次更改
 Unknown command: {}. Run openecraft-cli help for a list.	未知命令：{}。运行 openecraft-cli help 查看列表。
 Unknown example {}: see list_examples	未知示例 {}：请参阅 list_examples
 Unknown format {}: give oec, oecp or oecz	未知格式 {}：请指定 oec、oecp 或 oecz
-Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling or a report of list_reports)	未知页面类型：{}（schematic、overview、graphic、cover 或 list_reports 中的报表）
+Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan or a report of list_reports)	未知页面类型：{}（schematic、overview、graphic、cover、installation_plan 或 list_reports 中的报表）
 Unknown part {} (parts server: {})	未知部件 {}（部件服务器：{}）
 Unknown plugin: {}	未知插件：{}
 Unknown report scheme: {}	未知报表方案：{}
@@ -303,7 +303,6 @@ erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mc
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine 或 exchange
 json (default), csv or xlsx (Excel, needs path)	json（默认）、csv 或 xlsx（Excel，需要 path）
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\n显示命令行的版本（也可用 --version 或 -V）\n
-schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic、overview、graphic、cover 或报表：table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo 和 redo 仅在 MCP 会话中有效：命令行会为每个命令重新打开项目
 user or group	user 或 group
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} 是归档文件，保持不变：请将项目另存为项目文件 (save_project --path <file>.oec) 或转换归档 (convert_project)

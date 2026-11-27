@@ -277,7 +277,7 @@ Undoes the last change	Отменяет последнее изменение
 Unknown command: {}. Run openecraft-cli help for a list.	Неизвестная команда: {}. Список команд: openecraft-cli help.
 Unknown example {}: see list_examples	Неизвестный пример {}: см. list_examples
 Unknown format {}: give oec, oecp or oecz	Неизвестный формат {}: укажите oec, oecp или oecz
-Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling or a report of list_reports)	Неизвестный тип листа: {} (schematic, overview, graphic, cover, mounting, drilling или отчёт из list_reports)
+Unknown page type: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan or a report of list_reports)	Неизвестный тип листа: {} (schematic, overview, graphic, cover, mounting, drilling, installation_plan или отчёт из list_reports)
 Unknown part {} (parts server: {})	Неизвестное изделие {} (сервер изделий: {})
 Unknown plugin: {}	Неизвестный плагин: {}
 Unknown report scheme: {}	Неизвестная схема отчёта: {}
@@ -308,7 +308,6 @@ erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mc
 erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine или exchange
 json (default), csv or xlsx (Excel, needs path)	json (по умолчанию), csv или xlsx (Excel, требуется path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nПоказывает версию командной строки (также --version или -V)\n
-schematic, overview, graphic, cover, mounting or drilling (with enclosure) or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover, mounting, drilling (enclosure) или отчёт: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo и redo работают только в сеансе MCP: командная строка открывает проект заново для каждой команды
 user or group	user или group
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} — это архив, он не изменяется: сохраните проект как файл проекта (save_project --path <file>.oec) или преобразуйте архив (convert_project)

@@ -13,6 +13,7 @@ mod lamp;
 mod metering;
 mod house;
 mod nshv;
+mod plans;
 mod plant;
 mod press;
 mod pump_room;
@@ -35,7 +36,7 @@ pub struct Example {
 }
 
 /// The example projects, simple ones first.
-pub const EXAMPLES: [Example; 16] = [
+pub const EXAMPLES: [Example; 17] = [
     Example {
         key: "lamp_circuit",
         level: 1,
@@ -147,6 +148,13 @@ pub const EXAMPLES: [Example; 16] = [
         title: tr_const!("16 · Office building with roof, stair and installation"),
         description: tr_const!("The plant of level 15 with an office building: the office on the ground level and the attic under a gable roof whose slopes cut its ceiling down to the knee wall, a stair turned at a quarter landing, roof windows in the front slope; Gira socket outlets, a network outlet and a switch, an MDT KNX push button and room temperature controller, a TV outlet at their mounting heights, a COSMO heating circuit manifold and a single-room control box."),
         build: house::project,
+    },
+    Example {
+        key: "office_installation_plans",
+        level: 17,
+        title: tr_const!("17 · Installation plans of the office building"),
+        description: tr_const!("The office building of level 16 on installation plan pages: one page per level with the walls, doors and windows, the rooms with their identifier and description, the devices with their plan symbols from the symbol library turned towards their walls; the ground level fitted onto the page, the attic at 1:50 with larger room names, smaller symbols and the legend at the bottom."),
+        build: plans::project,
     },
 ];
 

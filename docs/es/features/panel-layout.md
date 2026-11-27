@@ -915,6 +915,38 @@ longitudes de sus cables son las del tendido 3D.
   emergencia con su rótulo, calefactores de panel con rejilla y termostato, radiadores
   toalleros con sus barras, paneles calefactores por infrarrojos). El menú 3D
   *Insertar › Tomas, interruptores, calefacción* tiene también una pestaña *Luminarias*.
+- **Las páginas de plano de instalación** (*Nueva página de plano de instalación* en la
+  pestaña *Instalación eléctrica* del panel *Edificios*, un tipo de página en las
+  *Propiedades de la página*; comando `add_page kind=installation_plan building=…
+  level=…`) imprimen la instalación de un nivel: los muros de sus salas con huecos para
+  las puertas y ventanas, las hojas y el barrido de las puertas, los nombres de las
+  salas, los armarios y cuadros situados en las salas (su planta como símbolo de cuadro
+  de distribución, con su nombre), los dispositivos con sus símbolos girados hacia su
+  muro y sus identificadores,
+  las conexiones de los circuitos y una leyenda de los circuitos en sus colores; un
+  símbolo y una línea de la leyenda enlazan con la página de instalación del circuito
+  en la exportación PDF. La página lleva las franjas de columnas y filas del marco. Su
+  escala (1 : 50, 1 : 100 …) se mantiene, o *Ajustar a la página* elige la mayor que
+  cabe (anotada como *ajustada* en el rótulo); las *Salas* marcadas
+  (`set_page rooms=+BAÑO,+COC`) centran o ajustan la página en ellas, y lo que no cabe en
+  el área de dibujo se corta en su borde. Los identificadores, los colores de los circuitos, las
+  conexiones y los nombres de las salas se desactivan en las propiedades de la página
+  (`set_page` con `tags`, `circuit_colors`, `connections`, `room_names`), y los
+  identificadores se acortan a algunos de sus aspectos (*Identificadores mostrados
+  como*: identificador completo, ubicación y equipo, función y equipo, solo el equipo o
+  personalizado; `tag_parts`: solo el aspecto de producto muestra `-X1.6` de
+  `=SD1+F1-X1.6`).
+  La leyenda puede ocultarse o colocarse a la derecha, a la izquierda, arriba o abajo
+  (`legend`, `legend_at`); una sala muestra su identificador de ubicación y la
+  descripción de ese identificador en la gestión de estructuras, p. ej. *Cocina*
+  (*Descripción* en las propiedades de la sala, `define_structure`), cada uno se puede
+  ocultar (`room_names`, `room_descriptions`), y los tamaños de fuente de
+  identificadores, salas y leyenda (en pt, `tag_size`, `room_size`, `legend_size`) y
+  los tamaños de los símbolos de equipos y armarios (en %, `symbol_scale`,
+  `cabinet_scale`) se ajustan por página.
+
+![Página de plano de instalación de una vivienda: salas con puertas y ventanas, dispositivos con sus símbolos de plano girados hacia su muro, identificadores acortados al aspecto de producto](../../images/installation-plan.png)
+
 - **Los elementos calefactores** se insertan del mismo modo: calefactores de panel
   (`GEN.HEATER-PANEL-1000`, `GEN.HEATER-PANEL-2000`, 400 mm) y radiadores toalleros
   (`GEN.HEATER-TOWEL-500`, 900 mm) en la pared, paneles calefactores por infrarrojos

@@ -9,6 +9,7 @@
 14 · Main low-voltage distribution of an industrial plant	14 · Niederspannungshauptverteilung eines Industriebetriebs	14 · Tableau général basse tension d'un site industriel	14 · Cuadro general de baja tensión de una planta industrial
 15 · Plant with buildings, levels and a shaft	15 · Anlage mit Gebäuden, Ebenen und einem Schacht	15 · Installation avec bâtiments, niveaux et une gaine	15 · Instalación con edificios, niveles y un patinillo
 16 · Office building with roof, stair and installation	16 · Bürogebäude mit Dach, Treppe und Installation	16 · Immeuble de bureaux avec toit, escalier et installation	16 · Edificio de oficinas con cubierta, escalera e instalación
+17 · Installation plans of the office building	17 · Installationspläne des Bürogebäudes	17 · Plans d'installation de l'immeuble de bureaux	17 · Planos de instalación del edificio de oficinas
 19-inch mounting rails	19-Zoll-Profilschienen	Montants 19 pouces	Perfiles de montaje de 19 pulgadas
 19-inch rack	19-Zoll-Rack	Baie 19 pouces	Rack de 19 pulgadas
 19-inch rack elevation	19-Zoll-Rackbelegung	Plan d'occupation de baie 19 pouces	Ocupación del rack de 19 pulgadas
@@ -130,6 +131,7 @@ Battery capacity	Batteriekapazität	Capacité de la batterie	Capacidad de la bat
 Baud rate	Baudrate	Débit en bauds	Velocidad en baudios
 Baying kit	Anreihverbinder	Kit de juxtaposition	Kit de ensamblaje
 Beacon, rotating	Rundumleuchte	Gyrophare	Baliza giratoria
+Bell	Klingel	Sonnerie	Timbre
 Belongs to	Gehört zu	Appartient à	Pertenece a
 Bends	Biegungen	Coudes	Curvas
 Bimetal switch NC	Bimetallschalter Öffner	Interrupteur bilame NF	Interruptor bimetálico NC
@@ -141,6 +143,7 @@ Black box 4 + 4 connections	Black Box 4 + 4 Anschlüsse	Boîte noire 4 + 4 conne
 Black boxes	Black Boxes	Boîtes noires	Cajas negras
 Black boxes / PLC boxes	Black Boxes / SPS-Boxen	Boîtes noires / boîtiers API	Cajas negras / cajas PLC
 Blind rivet	Blindniet	Rivet aveugle	Remache ciego
+Blind switch (installation)	Jalousieschalter (Installation)	Interrupteur de volet (installation)	Interruptor de persiana (instalación)
 Bonding conductor {} refers to the unknown bonding point {}	Potentialausgleichsleiter {} verweist auf den unbekannten Anschlusspunkt {}	Le conducteur d'équipotentialité {} fait référence au point inconnu {}	El conductor equipotencial {} hace referencia al punto desconocido {}
 Bonding conductor {} – {} has no cross-section	Potentialausgleichsleiter {} – {} hat keinen Querschnitt	Le conducteur d'équipotentialité {} – {} n'a pas de section	El conductor equipotencial {} – {} no tiene sección
 Bonding conductor {} – {} has {} mm², at least {} mm² are required	Potentialausgleichsleiter {} – {} hat {} mm², mindestens {} mm² sind erforderlich	Le conducteur d'équipotentialité {} – {} a {} mm², au moins {} mm² sont requis	El conductor equipotencial {} – {} tiene {} mm², se requieren al menos {} mm²
@@ -183,6 +186,7 @@ By cross-section (thickest first)	Nach Querschnitt (dickste zuerst)	Par section 
 By device	Nach Betriebsmittel	Par appareil	Por equipo
 By position (top left first)	Nach Position (oben links zuerst)	Par position (en haut à gauche d'abord)	Por posición (arriba a la izquierda primero)
 By wire number	Nach Drahtnummer	Par numéro de fil	Por número de cable
+CEE socket outlet, three-phase	CEE-Steckdose, Drehstrom	Prise CEE triphasée	Toma CEE trifásica
 CPU	CPU	CPU	CPU
 Cable bridge	Kabelbrücke	Passerelle de câbles	Puente de cables
 Cable connection diagram	Kabelanschlussplan	Plan de raccordement des câbles	Esquema de conexión de cables
@@ -385,7 +389,6 @@ Current setting	Stromeinstellung	Réglage du courant	Ajuste de corriente
 Current transformer	Stromwandler	Transformateur de courant	Transformador de corriente
 Current transformer, 2 cores	Stromwandler, 2 Kerne	Transformateur de courant, 2 noyaux	Transformador de corriente, 2 núcleos
 Current transformer, 2 secondary windings	Stromwandler, 2 Sekundärwicklungen	Transformateur de courant, 2 enroulements secondaires	Transformador de corriente, 2 devanados secundarios
-Custom	Benutzerdefiniert	Personnalisé	Personalizado
 Customer	Kunde	Client	Cliente
 Customer address	Kundenadresse	Adresse du client	Dirección del cliente
 Customer and plant	Kunde und Anlage	Client et installation	Cliente e instalación
@@ -427,6 +430,7 @@ Description of the page's location (structure management)	Beschreibung des Orts 
 Designer	Konstrukteur	Concepteur	Proyectista
 Device connection box	Geräteanschlussdose	Boîte de raccordement d'appareil	Caja de conexión de aparato
 Device connection diagram	Geräteanschlussplan	Plan de raccordement des appareils	Esquema de conexión de equipos
+Device connection outlet	Geräteanschlussdose	Boîte de raccordement d'appareil	Caja de conexión de aparato
 Device data of {} without symbol or panel item	Gerätedaten von {} ohne Symbol oder Aufbauelement	Données d'appareil de {} sans symbole ni élément d'implantation	Datos de dispositivo de {} sin símbolo ni elemento de montaje
 Device description file	Gerätebeschreibungsdatei	Fichier de description d'appareil	Archivo de descripción del equipo
 Device group {} defined twice	Gerätegruppe {} doppelt definiert	Groupe d'appareils {} défini deux fois	Grupo de dispositivos {} definido dos veces
@@ -436,6 +440,7 @@ Device group {}: {} is not a valve	Gerätegruppe {}: {} ist kein Ventil	Groupe d
 Device group {}: {} is not in the schematic	Gerätegruppe {}: {} ist nicht im Schaltplan	Groupe d'appareils {} : {} n'est pas dans le schéma	Grupo de dispositivos {}: {} no está en el esquema
 Device list	Betriebsmittelliste	Liste des appareils	Lista de dispositivos
 Device marker	Betriebsmittelschild	Repère d'appareil	Marcador de equipo
+Device only	Nur Gerät	Appareil seul	Solo el equipo
 Device tag {} must not contain blanks or the separators ; | ,	Betriebsmittelkennzeichen {} darf keine Leerzeichen und keine Trennzeichen ; | , enthalten	Le repère {} ne doit contenir ni espaces ni les séparateurs ; | ,	La designación {} no debe contener espacios ni los separadores ; | ,
 Device tag {} must start with -, = or +	Betriebsmittelkennzeichen {} muss mit -, = oder + beginnen	Le repère {} doit commencer par -, = ou +	La designación {} debe empezar por -, = o +
 Device {} already exists	Betriebsmittel {} existiert bereits	L'appareil {} existe déjà	El equipo {} ya existe
@@ -481,6 +486,7 @@ Does not match	Passt nicht	Ne correspond pas	No coincide
 Door (front view)	Tür (Frontansicht)	Porte (vue de face)	Puerta (vista frontal)
 Door and walls	Tür und Wände	Porte et parois	Puerta y paredes
 Door handle and document holder	Türgriff und Schaltplantasche	Poignée de porte et porte-documents	Maneta de puerta y portadocumentos
+Door intercom	Türsprechstelle	Interphone de porte	Interfono de puerta
 Door leaf {}	Türflügel {}	Vantail {}	Hoja de puerta {}
 Door leaf {} (front view)	Türflügel {} (Frontansicht)	Vantail {} (vue de face)	Hoja de puerta {} (vista frontal)
 Doors and windows go into walls	Türen und Fenster kommen in Wände	Les portes et fenêtres se placent dans les murs	Las puertas y ventanas van en las paredes
@@ -527,6 +533,7 @@ Electromagnetic contactor coil MC (JIS)	Spule elektromagnetisches Schütz MC (JI
 Electronic (LSI)	Elektronisch (LSI)	Électronique (LSI)	Electrónico (LSI)
 Element	Element	Élément	Elemento
 Embedded document: attached to this page in the PDF export	Eingebettetes Dokument: im PDF-Export an diese Seite angehängt	Document intégré : joint à cette page dans l'export PDF	Documento incrustado: adjunto a esta página en la exportación PDF
+Emergency light	Notleuchte	Bloc de secours	Luminaria de emergencia
 Emergency stop	Not-Halt	Arrêt d'urgence	Parada de emergencia
 Emergency stop NC	Not-Halt Öffner	Arrêt d'urgence NF	Parada de emergencia NC
 Emergency stop NC, key reset	Not-Halt Öffner, Entriegelung mit Schlüssel	Arrêt d'urgence NF, déverrouillage par clé	Parada de emergencia NC, desbloqueo con llave
@@ -581,6 +588,7 @@ Exports the wires with cut length, stripping and ferrules for wire processing ma
 External	Extern	Externe	Externo
 External target	Externes Ziel	Cible externe	Destino externo
 Fail-safe	Fehlersicher	Sécurité positive	A prueba de fallos
+Fan	Lüfter	Ventilateur	Ventilador
 Fan 1-phase	Lüfter 1-phasig	Ventilateur monophasé	Ventilador monofásico
 Fan 3-phase	Lüfter 3-phasig	Ventilateur triphasé	Ventilador trifásico
 Fan 3-phase, 6 terminals	Lüfter 3-phasig, 6 Anschlüsse	Ventilateur triphasé, 6 bornes	Ventilador trifásico, 6 bornes
@@ -654,7 +662,9 @@ From the supply (%)	Ab Einspeisung (%)	Depuis l'alimentation (%)	Desde la alimen
 Frozen route of {} is no longer possible and was routed again	Eingefrorene Verlegung von {} ist nicht mehr möglich und wurde neu verlegt	Le tracé figé de {} n'est plus possible et a été re-routé	El recorrido congelado de {} ya no es posible y se ha vuelto a tender
 Full page name	Vollständiger Seitenname	Nom de page complet	Nombre completo de la página
 Full page name (=A1+CAB1/3)	Vollständiger Seitenname (=A1+CAB1/3)	Nom complet de la page (=A1+CAB1/3)	Nombre completo de la página (=A1+CAB1/3)
+Full tag	Vollständige BMK	Repère complet	Identificador completo
 Fullest stretch (mm)	Vollster Abschnitt (mm)	Tronçon le plus rempli (mm)	Tramo más lleno (mm)
+Function and device	Funktion und Gerät	Fonction et appareil	Función y equipo
 Function and location	Funktion und Ort	Fonction et emplacement	Función y ubicación
 Function category	Funktionskategorie	Catégorie de fonction	Categoría de función
 Function designation	Funktionskennzeichen	Désignation de fonction	Designación de función
@@ -746,6 +756,7 @@ Heat pump	Wärmepumpe	Pompe à chaleur	Bomba de calor
 Heat shrink tube	Schrumpfschlauch	Gaine thermorétractable	Tubo termorretráctil
 Heating (W)	Heizung (W)	Chauffage (W)	Calefacción (W)
 Heating element	Heizelement	Élément chauffant	Elemento calefactor
+Heating element (installation)	Heizelement (Installation)	Élément chauffant (installation)	Elemento calefactor (instalación)
 Heating element three-phase	Heizelement dreiphasig	Élément chauffant triphasé	Elemento calefactor trifásico
 Heating water	Heizungswasser	Eau de chauffage	Agua de calefacción
 Higher-level product (-)	Übergeordnetes Produkt (-)	Produit de niveau supérieur (-)	Producto de nivel superior (-)
@@ -835,7 +846,9 @@ Installation date	Einbaudatum	Date d'installation	Fecha de instalación
 Installation devices	Installationsgeräte	Appareils d'installation	Aparatos de instalación
 Installation method	Verlegeart	Mode de pose	Método de instalación
 Installation of {}	Installation von {}	Installation de {}	Instalación de {}
+Installation plan	Installationsplan	Plan d'installation	Plano de instalación
 Installation plan (IEC 60617-11)	Installationsplan (IEC 60617-11)	Plan d'installation (IEC 60617-11)	Plano de instalación (IEC 60617-11)
+Installation plan {}	Installationsplan {}	Plan d'installation {}	Plano de instalación {}
 Installation site (++)	Anlage (++)	Site d'installation (++)	Emplazamiento (++)
 Installation site and location	Aufstellungsort und Ort	Lieu d'installation et emplacement	Lugar de instalación y ubicación
 Installation site of the page	Aufstellungsort der Seite	Lieu d'installation de la page	Lugar de instalación de la página
@@ -848,6 +861,7 @@ Insulation test voltage of SELV and PELV (V)	Messspannung Isolation SELV und PEL
 Integer	Ganzzahl	Entier	Entero
 Integrated EMC filter	Integrierter EMV-Filter	Filtre CEM intégré	Filtro CEM integrado
 Intermediate relay coil KA (GB)	Spule Hilfsrelais KA (GB)	Bobine de relais auxiliaire KA (GB)	Bobina de relé auxiliar KA (GB)
+Intermediate switch (installation)	Kreuzschalter (Installation)	Permutateur (installation)	Interruptor de cruce (instalación)
 Intermediate switch, manually operated	Kreuzschalter, handbetätigt	Permutateur, à commande manuelle	Conmutador de cruce, accionado manualmente
 Internal	Intern	Interne	Interno
 Internal target	Internes Ziel	Cible interne	Destino interno
@@ -898,6 +912,7 @@ Length (mm)	Länge (mm)	Longueur (mm)	Longitud (mm)
 Length known (not calculated)	Länge bekannt (nicht berechnet)	Longueur connue (non calculée)	Longitud conocida (no calculada)
 Letter landscape	Letter quer	Letter paysage	Letter horizontal
 Letters (A, B, C)	Buchstaben (A, B, C)	Lettres (A, B, C)	Letras (A, B, C)
+Level not found - choose another one in the page properties	Ebene nicht gefunden – in den Seiteneigenschaften eine andere wählen	Niveau introuvable - choisissez-en un autre dans les propriétés de la page	Nivel no encontrado: elija otro en las propiedades de la página
 Level switch	Füllstandsschalter	Détecteur de niveau	Interruptor de nivel
 Lifecycle state	Lebenszyklusstatus	État du cycle de vie	Estado del ciclo de vida
 Light source	Leuchtmittel	Source lumineuse	Fuente de luz
@@ -913,6 +928,7 @@ Load calculation	Lastberechnung	Bilan de puissance	Cálculo de cargas
 Loads and power supplies	Verbraucher und Stromversorgungen	Charges et alimentations	Cargas y fuentes de alimentación
 Loads behind it: {}	Nachgeschaltete Verbraucher: {}	Charges en aval : {}	Cargas aguas abajo: {}
 Local page number	Lokale Seitennummer	Numéro de page local	Número de página local
+Location and device	Ort und Gerät	Emplacement et appareil	Ubicación y equipo
 Location designation	Ortskennzeichen	Désignation de localisation	Designación de ubicación
 Location of the page	Ort der Seite	Emplacement de la page	Ubicación de la página
 Longest RCD trip time at 5 × IΔn (ms)	Längste RCD-Auslösezeit bei 5 × IΔn (ms)	Temps de déclenchement DDR maximal à 5 × IΔn (ms)	Tiempo máximo de disparo del diferencial a 5 × IΔn (ms)
@@ -1100,6 +1116,7 @@ No pin view with this id on the page	Keine Anschlussansicht mit dieser ID auf de
 No plugs	Keine Stecker	Aucun connecteur	Sin conectores
 No report block {}	Kein Auswertungsblock {}	Aucun bloc de rapports {}	Ningún bloque de informes {}
 No rooms found in the floor plan	Keine Räume im Grundriss erkannt	Aucune pièce détectée dans le plan	No se detectaron salas en el plano
+No rooms on this level	Keine Räume auf dieser Ebene	Aucune salle à ce niveau	No hay salas en este nivel
 No routed wire, cable or tube {}	Keine verlegte Leitung, kein verlegtes Kabel und kein verlegter Schlauch {}	Aucun fil, câble ou tube posé {}	Ningún hilo, cable o tubo tendido {}
 No segment template named {}	Keine Segmentvorlage namens {}	Aucun modèle de segment nommé {}	No hay ninguna plantilla de segmento llamada {}
 No subproject {}	Kein Teilprojekt {}	Aucun sous-projet {}	No hay ningún subproyecto {}
@@ -1489,6 +1506,7 @@ Rated short-time withstand current	Bemessungskurzzeitstromfestigkeit	Courant ass
 Rated speed	Bemessungsdrehzahl	Vitesse assignée	Velocidad nominal
 Rated torque	Bemessungsmoment	Couple assigné	Par nominal
 Rated voltage	Bemessungsspannung	Tension assignée	Tensión nominal
+Recessed light	Einbauleuchte	Encastré lumineux	Luminaria empotrada
 Rectangular punch	Rechteckstempel	Poinçon rectangulaire	Punzón rectangular
 Rectifier / inverter AC/DC, bidirectional	Gleich- / Wechselrichter AC/DC, bidirektional	Redresseur / onduleur AC/DC, bidirectionnel	Rectificador / inversor AC/DC, bidireccional
 Redline	Redline	Redline	Redline
@@ -1576,6 +1594,7 @@ Safety-related parts of control systems: reliability data of the safety devices	
 Salinity meter	Salzgehaltmesser	Salinomètre	Salinómetro
 Save reviews	Prüfungen speichern	Enregistrer les révisions	Guardar revisiones
 Scale 1:{}	Maßstab 1:{}	Échelle 1:{}	Escala 1:{}
+Scale 1:{} (fitted)	Maßstab 1:{} (eingepasst)	Échelle 1:{} (ajustée)	Escala 1:{} (ajustada)
 Scaling maximum	Skalierung Maximum	Mise à l'échelle maximum	Escalado máximo
 Scaling minimum	Skalierung Minimum	Mise à l'échelle minimum	Escalado mínimo
 Schematic (multi-line)	Schaltplan (mehrpolig)	Schéma (multifilaire)	Esquema (multifilar)
@@ -1622,6 +1641,7 @@ Sensor and measurement	Sensorik und Messung	Capteurs et mesure	Sensores y medici
 Sensors	Sensoren	Capteurs	Sensores
 Sequential (1, 2, 3 …)	Fortlaufend (1, 2, 3 …)	Séquentiel (1, 2, 3 …)	Secuencial (1, 2, 3 …)
 Serial number	Seriennummer	Numéro de série	Número de serie
+Series switch (installation)	Serienschalter (Installation)	Interrupteur double allumage (installation)	Interruptor doble (instalación)
 Service unit	Wartungseinheit	Unité de conditionnement	Unidad de mantenimiento
 Service unit (filter, regulator, lubricator)	Wartungseinheit (Filter, Regler, Öler)	Unité de conditionnement (filtre, régulateur, lubrificateur)	Unidad de mantenimiento (filtro, regulador, lubricador)
 Setpoint	Sollwert	Consigne	Consigna
@@ -1669,6 +1689,9 @@ Sliding to the right	Schiebend nach rechts	Coulissant vers la droite	Corredera h
 Smoke alarm	Rauchwarnmelder	Détecteur de fumée	Detector de humo
 Socket outlet	Steckdose	Prise de courant	Toma de corriente
 Socket outlet three-phase	Steckdose dreiphasig	Prise de courant triphasée	Toma de corriente trifásica
+Socket outlet with PE	Steckdose mit Schutzkontakt	Prise avec terre	Toma con tierra
+Socket outlet with switch	Steckdose mit Schalter	Prise avec interrupteur	Toma con interruptor
+Socket outlet, splash-proof	Steckdose, spritzwassergeschützt	Prise étanche aux projections	Toma protegida contra salpicaduras
 Socket side (female)	Buchsenseite (weiblich)	Côté douilles (femelle)	Lado de casquillos (hembra)
 Soft starter	Sanftanlasser	Démarreur progressif	Arrancador suave
 Solar charge controller	Solarladeregler	Régulateur de charge solaire	Regulador de carga solar
@@ -1689,6 +1712,7 @@ Spare part	Ersatzteil	Pièce de rechange	Repuesto
 Spare terminal	Reserveklemme	Borne de réserve	Borne de reserva
 Speed	Drehzahl	Vitesse	Velocidad
 Spiral	Wendeltreppe	Hélicoïdal	De caracol
+Spotlight	Strahler	Projecteur	Foco
 Stainless steel	Edelstahl	Acier inoxydable	Acero inoxidable
 Stainless steel V4A	Edelstahl V4A	Acier inoxydable V4A	Acero inoxidable V4A
 Stair {} of {}: its levels are missing or its upper level is not above the lower one	Treppe {} von {}: ihre Ebenen fehlen oder ihre obere Ebene liegt nicht über der unteren	Escalier {} de {} : ses niveaux manquent ou son niveau supérieur n'est pas au-dessus de l'inférieur	Escalera {} de {}: faltan sus niveles o su nivel superior no está por encima del inferior
@@ -1842,6 +1866,7 @@ The level has no floor plan	Die Ebene hat keinen Grundriss	Le niveau n'a pas de 
 The level would overlap level {}	Die Ebene würde Ebene {} überlappen	Le niveau chevaucherait le niveau {}	El nivel se solaparía con el nivel {}
 The macro box has no items left	Der Makrokasten hat keine Elemente mehr	La boîte de macro n'a plus d'éléments	La caja de macro ya no tiene elementos
 The next free id is already in use	Die nächste freie ID ist bereits vergeben	Le prochain ID libre est déjà utilisé	El siguiente ID libre ya está en uso
+The office building of level 16 on installation plan pages: one page per level with the walls, doors and windows, the rooms with their identifier and description, the devices with their plan symbols from the symbol library turned towards their walls; the ground level fitted onto the page, the attic at 1:50 with larger room names, smaller symbols and the legend at the bottom.	Das Bürogebäude der Stufe 16 auf Installationsplan-Seiten: je Ebene eine Seite mit Wänden, Türen und Fenstern, den Räumen mit Kennzeichen und Bezeichnung, den Betriebsmitteln mit ihren zur Wand gedrehten Plansymbolen aus der Symbolbibliothek; das Erdgeschoss auf die Seite eingepasst, das Dachgeschoss in 1:50 mit größeren Raumnamen, kleineren Symbolen und der Legende unten.	L'immeuble de bureaux du niveau 16 sur des pages de plan d'installation : une page par niveau avec les murs, portes et fenêtres, les pièces avec leur repère et leur désignation, les appareils avec leurs symboles de plan de la bibliothèque tournés vers leur mur ; le rez-de-chaussée ajusté à la page, les combles au 1:50 avec des noms de pièces plus grands, des symboles plus petits et la légende en bas.	El edificio de oficinas del nivel 16 en páginas de plano de instalación: una página por nivel con muros, puertas y ventanas, las salas con su identificador y descripción, los equipos con sus símbolos de plano de la biblioteca girados hacia su muro; la planta baja ajustada a la página, el ático a 1:50 con nombres de sala más grandes, símbolos más pequeños y la leyenda abajo.
 The option needs a name	Die Option braucht einen Namen	L'option doit avoir un nom	La opción necesita un nombre
 The page needs a number	Die Seite braucht eine Nummer	La page a besoin d'un numéro	La página necesita un número
 The page of {} is full: the next switch of its two-way circuit has to be drawn on the same page	Die Seite von {} ist voll: der nächste Schalter seiner Wechselschaltung muss auf derselben Seite gezeichnet werden	La page de {} est pleine : l'interrupteur suivant de son circuit va-et-vient doit être dessiné sur la même page	La página de {} está llena: el siguiente interruptor de su circuito conmutado debe dibujarse en la misma página
@@ -1946,6 +1971,7 @@ Transistor PNP	Transistor PNP	Transistor PNP	Transistor PNP
 Translation dictionary (CSV)	Übersetzungswörterbuch (CSV)	Dictionnaire de traduction (CSV)	Diccionario de traducción (CSV)
 Triac	Triac	Triac	Triac
 Trip class	Auslöseklasse	Classe de déclenchement	Clase de disparo
+Triple socket outlet with PE	Dreifachsteckdose mit Schutzkontakt	Prise triple avec terre	Toma triple con tierra
 Tripping characteristic	Auslösecharakteristik	Courbe de déclenchement	Característica de disparo
 Trunking	Kabelkanal	Goulotte	Canaleta
 Tube	Rohr (Schlauch)	Tube	Tubo flexible
@@ -2022,6 +2048,7 @@ Voltage range	Spannungsbereich	Plage de tension	Rango de tensión
 Voltage type	Spannungsart	Type de tension	Tipo de tensión
 Voltmeter	Spannungsmesser	Voltmètre	Voltímetro
 Voltmeter, differential	Spannungsmesser, Differenzspannung	Voltmètre différentiel	Voltímetro diferencial
+Wall light	Wandleuchte	Applique	Aplique
 Wall penetrations go into the outer walls of a room	Wanddurchbrüche kommen in die Außenwände eines Raums	Les traversées de mur se placent dans les murs extérieurs d'une salle	Los pasamuros van en las paredes exteriores de una sala
 Wall {}	Wand {}	Mur {}	Pared {}
 Wall {} is not at a right angle	Wand {} ist nicht rechtwinklig	Le mur {} n'est pas à angle droit	La pared {} no está en ángulo recto
@@ -2051,6 +2078,7 @@ Wetted material	Werkstoff medienberührt	Matériau en contact avec le fluide	Mat
 Who approved the last revision (review); {rev.2.approved_by}: the one before	Wer die letzte Revision freigegeben hat (Prüfung); {rev.2.approved_by}: die davor	Qui a approuvé la dernière révision (revue) ; {rev.2.approved_by} : la précédente	Quién aprobó la última revisión (revisión); {rev.2.approved_by}: la anterior
 Width (mm)	Breite (mm)	Largeur (mm)	Ancho (mm)
 Winding connection	Wicklungsschaltung	Couplage des enroulements	Conexión del devanado
+Window or door contact	Fenster- oder Türkontakt	Contact de fenêtre ou de porte	Contacto de ventana o puerta
 Wire assigned to unknown cable {}	Leitung einem unbekannten Kabel zugewiesen {}	Fil affecté à un câble inconnu {}	Hilo asignado a un cable desconocido {}
 Wire colour GNYE is reserved for protective conductors ({})	Die Aderfarbe GNYE ist Schutzleitern vorbehalten ({})	La couleur GNYE est réservée aux conducteurs de protection ({})	El color GNYE está reservado a los conductores de protección ({})
 Wire colours and cross-sections	Aderfarben und Querschnitte	Couleurs et sections des fils	Colores y secciones de los cables

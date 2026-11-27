@@ -603,3 +603,30 @@ fn office_building_has_its_roof_stair_and_installation() {
         assert!(material.iter().any(|(p, ..)| p == part), "{part}");
     }
 }
+
+#[test]
+fn office_installation_plans_draw_both_levels() {
+    let prj = example("office_installation_plans").expect("example");
+    let plans: Vec<usize> = (0..prj.pages.len()).filter(|&i| matches!(prj.pages[i].kind, crate::model::PageKind::InstallationPlan(_))).collect();
+    assert_eq!(plans.len(), 2, "one page per level");
+    assert_eq!(prj.pages[plans[1]].scale, 50.0);
+    assert_eq!(prj.pages[plans[1]].plan.legend_at, crate::model::LegendAt::Bottom);
+    // The pages draw the rooms with their identifier and description.
+    #[derive(Default)]
+    struct Texts(Vec<String>);
+    impl crate::render::Draw for Texts {
+        fn line(&mut self, _: crate::geom::P, _: crate::geom::P, _: f32, _: crate::render::Ink, _: bool) {}
+        fn poly(&mut self, _: &[crate::geom::P], _: bool, _: f32, _: crate::render::Ink, _: bool) {}
+        fn circle(&mut self, _: crate::geom::P, _: f32, _: f32, _: crate::render::Ink, _: bool) {}
+        fn text(&mut self, _: crate::geom::P, text: &str, _: f32, _: crate::symbols::Anchor, _: crate::render::VAnchor, _: crate::render::Ink) {
+            self.0.push(text.into());
+        }
+    }
+    let an = Analysis::with_builtin(&prj);
+    let idx = crate::index::Index::build(&prj);
+    for (i, room, description) in [(plans[0], "+OF1", "Office"), (plans[1], "+AT1", "Attic")] {
+        let mut t = Texts::default();
+        crate::render::draw_page(&mut t, &prj, &idx, &an, i, &crate::render::Opts::default());
+        assert!(t.0.iter().any(|x| x == room) && t.0.iter().any(|x| x == description), "{room} {description} on page {i}");
+    }
+}

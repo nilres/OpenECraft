@@ -162,6 +162,12 @@ impl Dt {
         format!("{}{}", self.structure(), self.name)
     }
 
+    /// The tag with only the aspects `shown` (the device name always).
+    pub fn tag_with(&self, shown: impl Fn(Aspect) -> bool) -> String {
+        let s: String = Aspect::ALL.into_iter().filter(|a| shown(*a) && !self.get(*a).is_empty()).map(|a| a.format(self.get(a))).collect();
+        format!("{s}{}", self.name)
+    }
+
     /// Complete tag of a tag entered in this structure: missing aspects come from it.
     pub fn complete(&self, entered: &str) -> String {
         let mut dt = Dt::parse(entered);

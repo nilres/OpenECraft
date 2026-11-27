@@ -72,6 +72,7 @@ fn page_kind(k: PageKind) -> &'static str {
         PageKind::Overview => "overview",
         PageKind::Graphic => "graphic",
         PageKind::Document => "document",
+        PageKind::InstallationPlan(_) => "installation_plan",
     }
 }
 
