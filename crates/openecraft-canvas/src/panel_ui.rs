@@ -257,6 +257,9 @@ fn climate_section(ui: &mut egui::Ui, prj: &mut Project, ei: usize) {
                 ui.end_row();
             }
         });
+        if result.open {
+            ui.weak(tr("Open mounting assembly: no enclosure walls, the devices give off their heat to the room air (no IEC/TR 60890 calculation)"));
+        }
         if !result.without_data.is_empty() {
             ui.weak(tr_fmt!("Without power loss data: {}", result.without_data.join(", ")));
         }
