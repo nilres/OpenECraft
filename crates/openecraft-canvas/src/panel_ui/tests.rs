@@ -2880,6 +2880,43 @@ fn a_duct_over_the_joint_of_a_double_door_opens_cut_with_both_leaves() {
 }
 
 #[test]
+fn a_device_on_the_door_is_aimed_at_where_the_open_door_holds_it() {
+    let prj = openecraft_core::sample::demo_project();
+    let (ei, it) = panel::locate(&prj, "-P2").expect("pilot light on the door");
+    assert_eq!(it.face, Face::Door);
+    let e = &prj.layout.enclosures[ei];
+    let mut ui = PanelUi { door_open: false, ..PanelUi::default() };
+    assert!(ui.focus_device(&prj, "-P2", true));
+    assert!(ui.door_open);
+    let shown = ui.shown_3d(&prj, ei);
+    let pose = shown.iter().find(|s| s.0 == ei).map(|s| s.1).unwrap_or_default();
+    let (lo, hi) = panel::item_box(e, it);
+    let closed = [(lo[0] + hi[0]) / 2.0, e.height - (lo[1] + hi[1]) / 2.0, (lo[2] + hi[2]) / 2.0];
+    let leaves = panel::doors::leaves(e);
+    let open = door_swing(e, &leaves[panel::doors::leaf_of(e, it)], ui.prefs_3d.door_open_angle(), closed);
+    let target = ui.cam.expect("camera").target;
+    let dist = |a: [f32; 3], b: [f32; 3]| (0..3).map(|k| (a[k] - b[k]).powi(2)).sum::<f32>().sqrt();
+    assert!(dist(target, pose.apply(open)) < 1e-3, "{target:?} {open:?}");
+    assert!(dist(target, pose.apply(closed)) > 100.0, "the door swings the device far away");
+    // The door turns about its hinge: the hinge edge stays, the device keeps its distance to it.
+    let hinge = [leaves[0].hinge_x(), closed[1], e.depth];
+    assert!((dist(open, hinge) - dist(closed, hinge)).abs() < 1e-2);
+    // The mounting assistant aims at the same place.
+    let mut cam = view3d::default_cam(&prj, &shown);
+    cam.dist = 500.0;
+    let mut ui = PanelUi { cam: Some(cam), ..PanelUi::default() };
+    ui.focus_item(&prj, ei, it.id);
+    assert!(dist(ui.cam.unwrap().target, pose.apply(open)) < 1e-3);
+    // A door the user opens further: the view follows it.
+    let mut ui = PanelUi::default();
+    ui.prefs_3d.door_angle = 120.0;
+    assert!(ui.focus_device(&prj, "-P2", true));
+    let wide = door_swing(e, &leaves[panel::doors::leaf_of(e, it)], 120f32.to_radians(), closed);
+    assert!(dist(ui.cam.unwrap().target, pose.apply(wide)) < 1e-3);
+    assert!(dist(wide, open) > 10.0);
+}
+
+#[test]
 fn the_door_opens_as_far_as_the_user_chose() {
     let mut ui = PanelUi::default();
     assert!((ui.prefs_3d.door_open_angle() - DOOR_OPEN_ANGLE).abs() < 0.01);

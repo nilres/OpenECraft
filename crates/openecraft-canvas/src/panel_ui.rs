@@ -894,6 +894,38 @@ const WIRE_COLOR: Color32 = Color32::from_rgb(40, 110, 230);
 const WIRE_DONE: Color32 = Color32::from_rgb(50, 170, 80);
 /// Opening angle of the door in the 3D view, unless set otherwise (radians).
 const DOOR_OPEN_ANGLE: f32 = 1.85;
+
+/// Direction `v` (view coordinates) on leaf `leaf` of a door open by `angle`: the leaf
+/// turns about its hinge edge, the left front edge or its right one (mirrored).
+fn door_swing_dir(leaf: &panel::DoorLeaf, angle: f32, v: [f32; 3]) -> [f32; 3] {
+    let (sin, cos) = angle.sin_cos();
+    let turn = |v: [f32; 3]| [v[0] * cos - v[2] * sin, v[1], v[0] * sin + v[2] * cos];
+    if leaf.hinge == panel::DoorHinge::Right {
+        let r = turn([-v[0], v[1], v[2]]);
+        [-r[0], r[1], r[2]]
+    } else {
+        turn(v)
+    }
+}
+
+/// Point `q` (view coordinates) on leaf `leaf` of the door of `e`, open by `angle`.
+fn door_swing(e: &Enclosure, leaf: &panel::DoorLeaf, angle: f32, q: [f32; 3]) -> [f32; 3] {
+    let hinge_x = leaf.hinge_x();
+    let r = door_swing_dir(leaf, angle, [q[0] - hinge_x, q[1], q[2] - e.depth]);
+    [r[0] + hinge_x, r[1], r[2] + e.depth]
+}
+
+/// The middle of item `it` of `e` in view coordinates; on the door where it is with the
+/// door open by `door_angle`.
+fn item_middle(e: &Enclosure, it: &PanelItem, door_angle: f32) -> [f32; 3] {
+    let (lo, hi) = panel::item_box(e, it);
+    let at = [(lo[0] + hi[0]) / 2.0, e.height - (lo[1] + hi[1]) / 2.0, (lo[2] + hi[2]) / 2.0];
+    if it.face != Face::Door {
+        return at;
+    }
+    let leaves = panel::doors::leaves(e);
+    door_swing(e, &leaves[panel::doors::leaf_of(e, it)], door_angle, at)
+}
 /// Opening angles of the door the user can choose (degrees).
 pub const DOOR_ANGLES: std::ops::RangeInclusive<f32> = 90.0..=180.0;
 
@@ -1363,10 +1395,12 @@ impl PanelUi {
         self.enclosure = enclosure;
         self.face = it.face;
         self.select_item(id);
-        if it.face == Face::Door {
+        let at = if it.face == Face::Door {
             self.door_open = true;
-        }
-        let at = [PLATE_MARGIN + it.x + it.w / 2.0, e.height - PLATE_MARGIN - it.y - it.h / 2.0, PLATE_Z];
+            item_middle(e, it, self.prefs_3d.door_open_angle())
+        } else {
+            [PLATE_MARGIN + it.x + it.w / 2.0, e.height - PLATE_MARGIN - it.y - it.h / 2.0, PLATE_Z]
+        };
         self.aim_camera(prj, enclosure, at);
     }
 
@@ -1393,7 +1427,8 @@ impl PanelUi {
             self.door_open = true;
         }
         let (lo, hi) = panel::item_box(e, it);
-        let at = [(lo[0] + hi[0]) / 2.0, e.height - (lo[1] + hi[1]) / 2.0, (lo[2] + hi[2]) / 2.0];
+        // On the door where the device is once the door is open.
+        let at = item_middle(e, it, self.prefs_3d.door_open_angle());
         let shown = self.shown_3d(prj, ei);
         let pose = shown.iter().find(|s| s.0 == ei).map(|s| s.1).unwrap_or_default();
         let size = (0..3).map(|k| hi[k] - lo[k]).fold(0.0, f32::max);
