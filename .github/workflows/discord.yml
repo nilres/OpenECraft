@@ -1,0 +1,53 @@
+name: Discord
+
+# Posts to the announcements channel of the Discord server of the project: a release
+# when it is published (not a pre-release), and the new videos of the YouTube channel,
+# whose feed is read every 30 minutes (.github/scripts/discord.py). The webhook of the
+# channel is the secret DISCORD_WEBHOOK_URL; without it the posts are only printed. The
+# videos already posted are kept in the cache of the workflow (discord-youtube-*).
+on:
+  release:
+    types: [published]
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    if: ${{ github.event_name == 'release' && !github.event.release.prerelease && !github.event.repository.private }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+      - name: Post the release
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python3 .github/scripts/discord.py release
+
+  youtube:
+    if: ${{ github.event_name != 'release' && github.repository == 'nilres/OpenECraft' }}
+    runs-on: ubuntu-24.04
+    concurrency: discord-youtube
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+      - uses: actions/cache/restore@v4
+        with:
+          path: youtube-seen.txt
+          key: discord-youtube-${{ github.run_id }}
+          restore-keys: discord-youtube-
+      - name: Post the new videos
+        id: post
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python3 .github/scripts/discord.py youtube youtube-seen.txt
+      - if: ${{ steps.post.outputs.changed == 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: youtube-seen.txt
+          key: discord-youtube-${{ github.run_id }}

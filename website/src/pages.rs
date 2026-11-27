@@ -146,6 +146,7 @@ pub const TEXTS: &[&str] = &[
     tr_const!("Projects: projects of EPLAN Electric P8 and AutoCAD Electrical cannot be imported yet; a project is drawn anew in OpenECraft."),
     tr_const!("Public"),
     tr_const!("Report a problem"),
+    tr_const!("Chat on Discord"),
     tr_const!("Reports and checks"),
     tr_const!("Schematics, reports, panel layout in 3D, the workshop and building installation in one program"),
     tr_const!("Schools"),

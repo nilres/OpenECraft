@@ -77,6 +77,7 @@
             documentation: folder("documentation") || (repository && repository + "/blob/master/docs"),
             issues: address("issues") || (repository && repository + "/issues"),
             videos: address("videos"),
+            community: address("community"),
         };
         for (const a of $$("[data-link]")) {
             const target = targets[a.dataset.link];

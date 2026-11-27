@@ -12,7 +12,9 @@ techniques contiennent `Terminal type: PE`, toutes les autres son article de pas
 (nomenclature, longueur du bornier dans l'armoire, points de connexion par borne) ;
 **accessoires automatiques** d'après les données techniques des articles de borne
 (`End bracket: …`, `End plate: …`,
-`Jumper: …` avec des articles de pont `Poles: n`) : une butée d'arrêt aux deux
+`Jumper: …` avec des articles de pont `Poles: n` ; un article de butée d'arrêt dans la
+liste d'articles du bornier, groupe de produits `End bracket`, remplace celui des données
+techniques) : une butée d'arrêt aux deux
 extrémités, un flasque d'extrémité après la dernière borne de chaque article, des ponts
 enfichables de la plus courte longueur qui convient (coupés s'ils sont plus longs, dents
 cassées aux bornes intermédiaires) – dans la nomenclature, le plan de bornes,

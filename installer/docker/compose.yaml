@@ -87,6 +87,8 @@ services:
       OPENECRAFT_DOWNLOADS_URL: ${OPENECRAFT_DOWNLOADS_URL:-}
       OPENECRAFT_DOCUMENTATION_URL: ${OPENECRAFT_DOCUMENTATION_URL:-}
       OPENECRAFT_ISSUES_URL: ${OPENECRAFT_ISSUES_URL:-}
+      # The chat of the community (Discord); empty hides the links.
+      OPENECRAFT_COMMUNITY_URL: ${OPENECRAFT_COMMUNITY_URL:-https://discord.gg/hC4FRJt2fk}
       # The channel with the videos of the project: its address for the links, and its
       # id for the page /videos/, whose list is fetched four times a day (seconds, 0:
       # never; an empty id: no videos).
