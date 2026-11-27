@@ -150,7 +150,9 @@ fn wire_ends_are_cut_off_the_way() {
 fn ways_to_the_door_turn_with_it_and_bend_over_the_hinge() {
     // A way from the door (open at DOOR_OPEN_ANGLE) over the hinge loop into the
     // enclosure; hinge on the left front edge at the origin.
-    let open = |q: V3| door_turn(q, DOOR_OPEN_ANGLE, false);
+    let left = panel::DoorLeaf { x: 0.0, w: 400.0, hinge: panel::DoorHinge::Left };
+    let right = panel::DoorLeaf { hinge: panel::DoorHinge::Right, ..left };
+    let open = |q: V3| door_swing_dir(&left, DOOR_OPEN_ANGLE, q);
     let at = [open([300.0, 500.0, -15.0]), open([20.0, 500.0, -15.0]), [20.0, 400.0, -45.0], [60.0, 400.0, -200.0]];
     let door: Vec<DoorPoint> = at.iter().zip([1.0, 1.0, 0.0, 0.0]).map(|(&at, share)| DoorPoint { at, share, hinge: [0.0; 3], axis: [0.0, -1.0, 0.0] }).collect();
     // Closed: the part on the door where the closed door has it, the part inside stays.
@@ -161,11 +163,11 @@ fn ways_to_the_door_turn_with_it_and_bend_over_the_hinge() {
     // Over the hinge loop it turns part of the way.
     let mid = vec3::scale(vec3::add(at[1], at[2]), 0.5);
     let bent = with_door(&[mid], &door, -DOOR_OPEN_ANGLE)[0];
-    let half = door_turn(mid, -DOOR_OPEN_ANGLE / 2.0, false);
+    let half = door_swing_dir(&left, -DOOR_OPEN_ANGLE / 2.0, mid);
     assert!(vec3::dist(bent, half) < 1e-3, "{bent:?} {half:?}");
     // Right hinge: mirrored.
-    let q = door_turn([-100.0, 0.0, -10.0], 0.5, true);
-    let m = door_turn([100.0, 0.0, -10.0], 0.5, false);
+    let q = door_swing_dir(&right, 0.5, [-100.0, 0.0, -10.0]);
+    let m = door_swing_dir(&left, 0.5, [100.0, 0.0, -10.0]);
     assert!(vec3::dist(q, [-m[0], m[1], m[2]]) < 1e-4);
     assert!(vec3::dist(turn_about([-100.0, 0.0, -10.0], [0.0; 3], [0.0, 1.0, 0.0], 0.5), q) < 1e-3);
 }

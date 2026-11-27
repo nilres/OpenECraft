@@ -277,7 +277,7 @@ fn cube(at: V3, size: f32) -> Vec<Tri> {
 pub fn solids(prj: &Project, an: &Analysis, h: &Harness) -> Vec<Solid> {
     let ws = harness::wires(prj, an, &h.tag);
     let t = topology::build(prj, an, h, &ws);
-    let solid = |name: String, color: [u8; 3], triangles: Vec<Tri>| Solid { name, color, transparent: false, triangles };
+    let solid = |name: String, color: [u8; 3], triangles: Vec<Tri>| Solid { name, color, transparent: false, triangles, colors: Vec::new() };
     let mut out = Vec::new();
     for s in &t.segments {
         out.push(solid(s.id.clone(), [60, 60, 60], tube(&s.points, (s.diameter / 2.0).max(1.0))));

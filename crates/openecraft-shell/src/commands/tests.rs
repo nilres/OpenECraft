@@ -119,3 +119,27 @@ fn the_layout_view_commands_bring_the_view_to_the_front() {
         assert!(d.pane.is_none() && d.kind != Kind::Menu, "{:?} is a plain command", d.cmd);
     }
 }
+
+#[test]
+fn close_project_has_a_shortcut_of_its_own() {
+    let keys = def(Cmd::CloseProject).default_keys();
+    assert_eq!(keys.len(), 1);
+    let others: Vec<Cmd> = ALL.iter().filter(|d| d.cmd != Cmd::CloseProject && d.default_keys().contains(&keys[0])).map(|d| d.cmd).collect();
+    assert!(others.is_empty(), "{others:?}");
+    assert!(ribbon::places(Cmd::CloseProject).contains(&"backstage".to_string()));
+}
+
+#[test]
+fn without_a_project_only_files_settings_and_help_run() {
+    for c in [Cmd::NewProject, Cmd::Open, Cmd::OpenDemo, Cmd::OpenExample, Cmd::Settings, Cmd::Help, Cmd::Language, Cmd::ProjectServer] {
+        assert!(!needs_project(c), "{c:?}");
+    }
+    for c in [Cmd::Save, Cmd::CloseProject, Cmd::NewSchematicPage, Cmd::WireTool, Cmd::Undo, Cmd::WorkspacePanel, Cmd::NewEnclosure, Cmd::PrintAll] {
+        assert!(needs_project(c), "{c:?}");
+    }
+    assert!(pane_needs_project(Pane::Page));
+    assert!(pane_needs_project(Pane::LayoutView));
+    assert!(pane_needs_project(Pane::Tool(ToolPane::Cables)));
+    assert!(!pane_needs_project(Pane::Tool(ToolPane::Help)));
+    assert!(!pane_needs_project(Pane::Tool(ToolPane::ProjectServer)));
+}

@@ -1290,7 +1290,7 @@ fn climate_report(prj: &Project) -> Table {
         t.push(
             vec![
                 e.name.clone(),
-                format!("{:.2}", r.surface),
+                if r.open { "–".into() } else { format!("{:.2}", r.surface) },
                 format!("{:.0}", r.loss),
                 format!("{:.1}", r.inside),
                 format!("{:.0}", e.climate.inside_max),

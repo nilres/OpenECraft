@@ -27,6 +27,9 @@ panel layout. Most steps below can be tried on it.
   For version control (git) the desktop version also saves it as a split project
   (*File › Save as split project…*): a folder with the index `<name>.oecp` and one
   small file per page, device and part, so a change touches only the files it concerns.
+- *File › Close project* (Ctrl+Shift+F4) closes the project, asks to save unsaved
+  changes and closes its schematic pages, panel layouts and tools: only the start page
+  is left until a project is opened or started.
 
 ## 2. Pages and structure
 

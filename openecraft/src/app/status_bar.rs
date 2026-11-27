@@ -46,8 +46,9 @@ impl App {
     pub(super) fn status_bar(&mut self, ui: &mut egui::Ui) {
         let ctx = ui.ctx().clone();
         self.message_popup(&ctx);
-        let on_page = self.active_doc == Pane::Page;
-        let in_layout = self.active_doc == Pane::LayoutView;
+        // Without an open project (File › Close project) no document is worked in.
+        let on_page = self.active_doc == Pane::Page && !self.closed;
+        let in_layout = self.active_doc == Pane::LayoutView && !self.closed;
         // The hint fills the space between the left and the right segments; a tool
         // other than Select keeps its hint before what is under the pointer.
         let hint = if in_layout {
@@ -152,7 +153,7 @@ impl App {
                 ui.separator();
                 // Where the project is and where Save puts it, in words (not only a colour):
                 // a local file, the project server or a local copy of a server project.
-                if self.source_segment(ui) {
+                if !self.closed && self.source_segment(ui) {
                     self.show_pane(Pane::Tool(ToolPane::ProjectServer));
                 }
                 ui.separator();

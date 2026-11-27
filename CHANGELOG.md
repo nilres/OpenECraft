@@ -5,6 +5,25 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Devices on the door shown in 3D:** *Show in 3D view* centres the view on a device
+  on the door where the opened door holds it, also in the mounting assistant. Fixed:
+  the door opened, but the view was centred on where the device is with the door closed.
+- **Colours of part models in the glTF export:** a part's 3D model painted in several
+  colours keeps them in the glTF file, a primitive with its material per colour,
+  instead of one colour for the whole device; the drives of machines keep theirs too
+  ([#290](https://github.com/nilres/OpenECraft/issues/290)).
+- **Thermal simulation of an open mounting assembly:** an assembly without enclosure
+  walls is no longer calculated as a closed box. Its plate stands in the room air: the
+  heat map has only the plumes rising above the devices, no warmer inside air and no
+  stratification, the climate calculation asks for neither cooling nor heating, and
+  the hot spot of the checks is told against the room air. `panel_thermal` gives the
+  model it used (`enclosure` or `open_assembly`), `climate` gives `open_assembly`
+  ([#289](https://github.com/nilres/OpenECraft/issues/289)).
+- **Close project:** *File › Close project* (Ctrl+Shift+F4) closes the open project,
+  asks to save unsaved changes first, releases the pages of a project of the project
+  server and closes its schematic pages, panel layouts and tool windows: the start page
+  is left alone, and the commands that need a project wait until one is opened or
+  started ([tutorial](docs/tutorial.md#1-a-new-project)).
 - **Door opening angle and orbit direction of the 3D view:** the door of an enclosure
   opens as far as chosen, from 90° to 180°, beside *Open door* / *Close door* and in
   *File › Settings › Appearance*, so that it no longer blocks the view onto the
