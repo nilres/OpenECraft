@@ -22,6 +22,9 @@ impl App {
         if commands::changes_page(cmd) && !self.page_editable() {
             return false;
         }
+        if self.closed && commands::needs_project(cmd) {
+            return false;
+        }
         match cmd {
             Cmd::Undo => self.session.history.can_undo(),
             Cmd::Redo => self.session.history.can_redo(),
@@ -185,7 +188,7 @@ impl App {
             self.search.menu = Some(cmd);
             return;
         }
-        let replaces = matches!(cmd, Cmd::NewProject | Cmd::NewFromTemplateFile | Cmd::OpenDemo | Cmd::Open)
+        let replaces = matches!(cmd, Cmd::NewProject | Cmd::CloseProject | Cmd::NewFromTemplateFile | Cmd::OpenDemo | Cmd::Open)
             || (cmd == Cmd::OpenExample && self.pending_example.is_some());
         if replaces {
             self.request_replace(ctx, Replace::Cmd(cmd));
@@ -206,6 +209,15 @@ impl App {
             Cmd::Backstage => self.backstage = if self.backstage.is_some() { None } else { Some(crate::ribbon::Page::Home) },
             Cmd::StartPage => {}
             Cmd::NewProject => self.replace_project(Project::new_default(), None),
+            Cmd::CloseProject => {
+                // No project stays open: the start page takes the place of the pages, the
+                // layout and the tools of the project (an empty project, saved nowhere,
+                // stays behind it until a project is opened).
+                self.replace_project(Project::new_default(), None);
+                self.closed = true;
+                self.floating.retain(|p| !commands::pane_needs_project(*p));
+                self.remote.list();
+            }
             Cmd::NewFromTemplateFile => self.io.open(ctx, Purpose::ProjectTemplate),
             Cmd::OpenDemo => self.replace_project(sample::demo_project(), None),
             Cmd::OpenExample => match self.pending_example.take().and_then(|key| sample::example(key).map(|prj| (key, prj))) {
