@@ -116,6 +116,11 @@ posiciones se guardan con el proyecto y las usan las exportaciones PDF, SVG y DX
 referencia cruzada sigue siendo un enlace a su página.
 Comando: `place_interruption_texts`.
 
+En el editor, Ctrl + clic sigue una referencia cruzada (la tecla que abre los enlaces,
+*Archivo › Ajustes › Teclas y gestos*): se abre la página indicada y, en un punto de
+interrupción, su contraparte queda seleccionada y centrada. Mientras la tecla está
+pulsada, el puntero es una mano sobre una referencia cruzada.
+
 ## Conectividad / potenciales
 
 Los hilos, las piezas en T (con puntos de conexión), los bornes,

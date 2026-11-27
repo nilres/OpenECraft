@@ -100,6 +100,11 @@ reset button returns to the automatic placement. The places are saved with the p
 and used by the PDF, SVG and DXF exports; the cross reference stays a link to its page.
 Command: `place_interruption_texts`.
 
+In the editor a cross reference is followed with Ctrl + click (the key that opens links,
+*File › Settings › Keys and gestures*): the page it names is opened, and for an
+interruption point its counterpart is selected and centred. While the key is held, the
+pointer is a hand over a cross reference.
+
 ## Connectivity / potentials
 
 Wires, T-junctions (with connection dots), terminals,

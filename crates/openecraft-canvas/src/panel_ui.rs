@@ -4430,7 +4430,7 @@ impl PanelUi {
         painter.rect_filled(rect, 0.0, pal.canvas);
         let origin = rect.min + self.offset;
         let problems = panel::problems_of(&self.findings(prj, an, ei));
-        let mut d = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: None, mirror, textures: None };
+        let mut d = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: None, mirror, textures: None, links: Vec::new() };
         render::draw_enclosure(&mut d, e, self.face, self.door_inside, p(0.0, 0.0), 1.0, &self.selection, &problems, prj);
         let to_screen = |q: P| origin + vec2(mirror.map(|m| m - (q.x + fm.x)).unwrap_or(q.x + fm.x), q.y + fm.y) * self.zoom;
         if self.show_heat && self.face == Face::Plate {
@@ -4565,7 +4565,7 @@ impl PanelUi {
             }
         }
         // Previews
-        let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror, textures: None };
+        let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror, textures: None, links: Vec::new() };
         let m = fm;
         match (&self.tool, snapped, plate) {
             (Tool::RoutingPath, Some(sn), _) => {

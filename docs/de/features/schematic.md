@@ -117,6 +117,11 @@ werden mit dem Projekt gespeichert und von den PDF-, SVG- und DXF-Exporten verwe
 der Querverweis bleibt ein Link auf seine Seite.
 Befehl: `place_interruption_texts`.
 
+Im Editor folgt Strg + Klick einem Querverweis (die Taste, die Links öffnet,
+*Datei › Einstellungen › Tasten und Gesten*): die genannte Seite wird geöffnet, bei
+einem Unterbrechungspunkt wird seine Gegenstelle markiert und in die Mitte geholt. Solange die
+Taste gedrückt ist, zeigt der Mauszeiger über einem Querverweis eine Hand.
+
 ## Verbindungen / Potenziale
 
 Leitungen, T-Abzweige (mit Verbindungspunkten), Klemmen,

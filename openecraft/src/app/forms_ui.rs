@@ -589,7 +589,7 @@ fn preview(ui: &mut egui::Ui, fu: &mut FormsUi, prj: &openecraft_core::model::Pr
         pick(fu, &resp, ui, &mut form.items, origin, zoom);
     }
     load_pictures(ui.ctx(), fu, prj, &form.items);
-    let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: Some(&fu.textures) };
+    let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: Some(&fu.textures), links: Vec::new() };
     forms::draw_at(&mut d, form, prj, page, p(0.0, 0.0), 1.0);
     image_outlines(&painter, &pal, &form.items, prj, origin, zoom);
     if let Some(item) = fu.item.and_then(|i| form.items.get(i)) {
@@ -666,7 +666,7 @@ pub(super) fn mark_selected(painter: &egui::Painter, pal: &Palette, item: &FormI
             painter.rect_stroke(egui::Rect::from_two_pos(at(a), at(b)), 0.0, Stroke::new(1.5, pal.selected), egui::StrokeKind::Outside);
         }
         _ => {
-            let mut s = EguiDraw { painter, origin, zoom, pal, force: Some(Ink::Selected), mirror: None, textures: None };
+            let mut s = EguiDraw { painter, origin, zoom, pal, force: Some(Ink::Selected), mirror: None, textures: None, links: Vec::new() };
             draw(&mut s);
         }
     }

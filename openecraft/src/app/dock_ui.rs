@@ -484,6 +484,9 @@ impl App {
         if let Some(url) = out.open_url {
             ctx.open_url(egui::OpenUrl::new_tab(url));
         }
+        if let Some((page, id)) = out.goto {
+            self.goto(page, id);
+        }
         if let Some(msg) = out.message {
             self.notify(&ctx, msg);
         }

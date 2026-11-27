@@ -22,6 +22,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   view and explains itself in a tooltip; the details of the current wire or item in
   the wiring and mounting assistants can be hidden
   ([#268](https://github.com/nilres/OpenECraft/issues/268)).
+- **Cross references are followed in the editor:** Ctrl + click on a cross reference
+  (the key that opens links) opens the page it names; the reference of an interruption
+  point selects and centres its counterpart. While the key is held, the pointer is a
+  hand over a cross reference. Until now only the PDF export linked them.
 - **Ferrules for AWG wires and more colour codes:** a wire end gets the smallest
   ferrule that takes its cross-section instead of none where the size is not one of
   the catalog: 14 AWG or 2.08 mm² the ferrule of 2.5 mm², 18 AWG the one of 0.75 mm².

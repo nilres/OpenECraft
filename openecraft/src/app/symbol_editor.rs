@@ -728,7 +728,7 @@ fn canvas(ui: &mut egui::Ui, se: &mut SymbolEditor, u: &mut UserSymbol) {
     }
 
     // Drawing
-    let mut d = EguiDraw { painter: &painter, origin, zoom: se.zoom, pal: &pal, force: None, mirror: None, textures: None };
+    let mut d = EguiDraw { painter: &painter, origin, zoom: se.zoom, pal: &pal, force: None, mirror: None, textures: None, links: Vec::new() };
     let inst = symbol_preview(u);
     render::draw_prims(&mut d, &u.prims, &inst, Ink::Line);
     if let Some(Hit::Prim(i)) = se.hit {
@@ -742,7 +742,7 @@ fn canvas(ui: &mut egui::Ui, se: &mut SymbolEditor, u: &mut UserSymbol) {
         d.text(pin.pos + p(1.0, -0.9), &pin.label, 1.6, Anchor::Left, VAnchor::Middle, Ink::CrossRef);
     }
     // Previews
-    let mut g = EguiDraw { painter: &painter, origin, zoom: se.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
+    let mut g = EguiDraw { painter: &painter, origin, zoom: se.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None, links: Vec::new() };
     if let (Some(a), Some(q)) = (se.start, snapped) {
         match se.tool {
             SymTool::Line => g.line(a, q, 0.25, Ink::Ghost, false),

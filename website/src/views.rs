@@ -80,6 +80,9 @@ fn schematic(ui: &mut egui::Ui, studio: &mut Studio) {
     if let Some(url) = out.open_url {
         ui.ctx().open_url(egui::OpenUrl::new_tab(url));
     }
+    if let Some((page, id)) = out.goto {
+        studio.goto(page, id);
+    }
 }
 
 #[cfg(test)]

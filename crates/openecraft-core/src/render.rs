@@ -215,22 +215,7 @@ pub fn draw_page_with_core_labels(d: &mut dyn Draw, prj: &Project, idx: &Index, 
     for s in &page.symbols {
         let Some(def) = prj.symbol(&s.sym) else { continue };
         let ink = if opts.selected.contains(&s.id) { Ink::Selected } else { Ink::Line };
-        let tag = if hides_tag(prj, page_i, &def, s) {
-            String::new()
-        } else if structured {
-            structure::relative_at(page, s.pos, &s.tag)
-        } else {
-            s.tag.clone()
-        };
-        let reference_lines = if references::has_field(&def, s) { references::of_symbol(prj, idx, page_i, &def, s) } else { Vec::new() };
-        let property = |key: &str| if key == references::PROPERTY { references::text(&reference_lines) }
-            else { crate::props::symbol_property_text(prj, page_i, s, key) };
-        if tag != s.tag {
-            draw_symbol_resolved(d, &def, &SymbolInst { tag, ..s.clone() }, ink, &property, &reference_lines);
-        } else {
-            draw_symbol_resolved(d, &def, s, ink, &property, &reference_lines);
-        }
-        draw_annotations(d, prj, idx, page_i, &def, s, ink);
+        draw_page_symbol(d, prj, idx, page_i, structured, &def, s, ink);
         if opts.show_pins {
             for i in 0..def.pins.len() {
                 d.circle(def.pin_world(i, s.pos, s.rot, s.mirror), 0.6, 0.15, Ink::Pin, false);
@@ -526,6 +511,47 @@ pub fn cable_def_text_bounds(prj: &Project, page: &Page, cd: &CableDef) -> Vec<R
         let x = match anchor { Anchor::Left => q.x, Anchor::Center => q.x - width / 2.0, Anchor::Right => q.x - width };
         R::from_points(p(x, q.y - size * 0.6), p(x + width, q.y + size * 0.6))
     }).collect()
+}
+
+/// A symbol of a page with its fields, references and annotations.
+#[allow(clippy::too_many_arguments)]
+fn draw_page_symbol(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: usize, structured: bool, def: &SymbolDef, s: &SymbolInst, ink: Ink) {
+    let page = &prj.pages[page_i];
+    let tag = if hides_tag(prj, page_i, def, s) {
+        String::new()
+    } else if structured {
+        structure::relative_at(page, s.pos, &s.tag)
+    } else {
+        s.tag.clone()
+    };
+    let reference_lines = if references::has_field(def, s) { references::of_symbol(prj, idx, page_i, def, s) } else { Vec::new() };
+    let property = |key: &str| if key == references::PROPERTY { references::text(&reference_lines) }
+        else { crate::props::symbol_property_text(prj, page_i, s, key) };
+    if tag != s.tag {
+        draw_symbol_resolved(d, def, &SymbolInst { tag, ..s.clone() }, ink, &property, &reference_lines);
+    } else {
+        draw_symbol_resolved(d, def, s, ink, &property, &reference_lines);
+    }
+    draw_annotations(d, prj, idx, page_i, def, s, ink);
+}
+
+/// The cross references a symbol of a page draws: their areas and the pages they lead to.
+pub fn symbol_links(prj: &Project, idx: &Index, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> Vec<(R, usize)> {
+    struct Links(Vec<(R, usize)>);
+    impl Draw for Links {
+        fn line(&mut self, _: P, _: P, _: f32, _: Ink, _: bool) {}
+        fn poly(&mut self, _: &[P], _: bool, _: f32, _: Ink, _: bool) {}
+        fn circle(&mut self, _: P, _: f32, _: f32, _: Ink, _: bool) {}
+        fn text(&mut self, _: P, _: &str, _: f32, _: Anchor, _: VAnchor, _: Ink) {}
+        fn link(&mut self, min: P, max: P, page: usize) {
+            self.0.push((R::from_points(min, max), page));
+        }
+    }
+    let page = &prj.pages[page_i];
+    let structured = !structure::page_structure(page).is_empty() || !page.structure_boxes.is_empty();
+    let mut links = Links(Vec::new());
+    draw_page_symbol(&mut links, prj, idx, page_i, structured, def, s, Ink::Line);
+    links.0
 }
 
 /// Draws only the symbol graphics (used for canvas, ghost and library previews).

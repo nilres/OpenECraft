@@ -270,7 +270,7 @@ impl Role {
     pub fn title(self) -> &'static str {
         match self {
             Role::AddToSelection => tr_const!("Click or window: add to the selection or take out of it"),
-            Role::OpenLink => tr_const!("Click a text: open its link"),
+            Role::OpenLink => tr_const!("Click a text or a cross reference: follow its link"),
             Role::SingleItem => tr_const!("Click in the panel layout: a single item of an assembly"),
             Role::BendSheetWire => tr_const!("Drag a wire to bend it on the sheet"),
             Role::ReverseKeepConnections => tr_const!("Start of a move: Keep connections the other way round"),

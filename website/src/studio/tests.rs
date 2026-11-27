@@ -350,3 +350,17 @@ fn the_still_picture_of_the_page_is_the_first_sheet_of_the_demo() {
     let html = std::fs::read_to_string(dir.join("index.html")).unwrap();
     assert!(html.contains("<img src=\"sheet.svg\"") && html.contains("rel=\"copy-file\" href=\"sheet.svg\""));
 }
+
+#[test]
+fn following_a_cross_reference_opens_the_page_and_selects_the_counterpart() {
+    let mut s = studio();
+    let (page, sym) = s.session.prj.pages.iter().enumerate().skip(1).find_map(|(i, pg)| pg.symbols.first().map(|sy| (i, sy.id))).unwrap();
+    s.goto(page, sym);
+    assert_eq!(s.session.page, page);
+    assert_eq!(s.editor.selection, [sym].into());
+    s.goto(0, 0);
+    assert_eq!(s.session.page, 0);
+    assert!(s.editor.selection.is_empty(), "the page only");
+    s.goto(s.session.prj.pages.len(), 0);
+    assert_eq!(s.session.page, 0, "a page that does not exist is not opened");
+}

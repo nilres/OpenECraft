@@ -36,7 +36,7 @@ fn frame_preview(ui: &mut egui::Ui, f: &PlotFrame, prj: &openecraft_core::model:
     let o = resp.rect.min + vec2(2.0, 2.0);
     painter.rect_filled(egui::Rect::from_min_size(o, vec2(w*k,h*k)), 0.0, Color32::WHITE);
     let pal = crate::editor::Palette::new(false);
-    let mut draw = crate::editor::EguiDraw { painter: &painter, origin: o, zoom: k, pal: &pal, force: None, mirror: None, textures: None };
+    let mut draw = crate::editor::EguiDraw { painter: &painter, origin: o, zoom: k, pal: &pal, force: None, mirror: None, textures: None, links: Vec::new() };
     openecraft_core::render::draw_plot_frame(&mut draw, prj, page_i, f);
 }
 

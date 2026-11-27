@@ -4,6 +4,50 @@ Thank you for helping. Bug reports, parts and symbols, translations, documentati
 code are all welcome. The rules below are the short version of [AGENTS.md](AGENTS.md),
 which holds every convention of the code base (for people and AI agents alike).
 
+## The clean room pledge
+
+OpenECraft works like EPLAN, AutoCAD Electrical and other commercial tools and reads
+and writes their file formats, but it contains nothing of them. This is the one rule
+without exceptions, and every pull request confirms it in its checklist:
+
+> Everything I contribute is my own work, written in my own words and drawn from
+> public sources only: published standards (IEC 81346, IEC 60617, IEC 61082,
+> IEC 60204-1, …), public documentation, manuals and help pages, public data sheets,
+> published file format specifications and general engineering knowledge.
+> I did not copy, translate, trace or lightly adapt code, symbols, symbol libraries,
+> macros, forms, title blocks, templates, project files, part data, screenshots or
+> texts of a commercial product, and I did not decompile, disassemble or debug its
+> programs to find out how they work.
+> I had no access to the source code, internal documents or non-public specifications
+> of such a product, or I have not used them for this contribution.
+
+What this means in practice:
+
+- **Concepts are fine, copies are not.** Describing what a device tag, a connection
+  point or a cross-reference is, or that a tool has a command for it, is domain
+  knowledge. Reproducing a vendor's dialog layout, wording, icons or symbol drawings is
+  not. Symbols are drawn from the IEC 60617 description, never traced from a vendor
+  library.
+- **File formats** (EDZ, EPLAN XML, DWG, DXF, STEP, Parasolid, JT, …) are implemented
+  from published specifications, from libraries whose licence allows it, and from files
+  you made yourself or are allowed to share, by looking at what the files contain.
+  Never from a vendor program taken apart, and never from files under a confidentiality
+  agreement.
+- **Parts and catalogs** come from the manufacturer's public data sheets, not from
+  exports of a commercial parts database or data portal whose terms forbid it.
+- **Test files** in the repository are made by you (with OpenECraft or another tool
+  whose licence lets you share its output) and contain no customer or employer data.
+- **Vendor documentation is never committed**, not even as a reference in `docs/`;
+  link to the public page instead.
+- **AI assistants:** you are responsible for what they write for you. Do not ask them
+  to reproduce a vendor's code, symbols or texts.
+- **When in doubt, ask first:** open an issue or a discussion and describe the source
+  before you write the code. If you work, or worked, for a vendor of electrical CAE
+  software, say so in your first pull request, so that we can agree on what you can
+  safely work on.
+
+A contribution that breaks the pledge is removed, also after it was merged.
+
 ## Reporting bugs and asking for features
 
 - **Bugs:** open an issue with the *Bug report* form. Name the version

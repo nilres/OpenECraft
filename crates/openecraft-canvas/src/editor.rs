@@ -335,6 +335,8 @@ pub struct EguiDraw<'a> {
     pub mirror: Option<f32>,
     /// Decoded images (bitmaps are drawn as frames without).
     pub textures: Option<&'a Textures>,
+    /// Areas that lead to another page (cross references), in page millimetres.
+    pub links: Vec<(R, usize)>,
 }
 
 impl EguiDraw<'_> {
@@ -351,6 +353,9 @@ impl EguiDraw<'_> {
 }
 
 impl Draw for EguiDraw<'_> {
+    fn link(&mut self, min: P, max: P, page: usize) {
+        self.links.push((R::from_points(min, max), page));
+    }
     fn line(&mut self, a: P, b: P, width: f32, ink: Ink, dashed: bool) {
         let pts = [self.w2s(a), self.w2s(b)];
         let st = self.stroke(width, ink);
@@ -635,6 +640,10 @@ pub struct Editor {
     core_label_hits: Vec<(u64, render::CoreText, R)>,
     core_labels: Vec<render::CoreLabel>,
     core_label_page: Option<u64>,
+    /// Cross references of the page drawn last: their areas and the pages they lead to.
+    page_links: Vec<(R, usize)>,
+    /// Page `page_links` belongs to.
+    page_links_of: Option<u64>,
     /// Device tag of the next symbols placed (navigator: place a function); ends with
     /// the Place tool.
     pub place_tag: Option<String>,
@@ -705,6 +714,8 @@ impl Default for Editor {
             core_label_hits: Vec::new(),
             core_labels: Vec::new(),
             core_label_page: None,
+            page_links: Vec::new(),
+            page_links_of: None,
             place_tag: None,
             place_part: None,
             read_only: false,
@@ -743,6 +754,9 @@ pub struct CanvasOutput {
     pub clicked: Option<P>,
     /// Hyperlink of a text the user Ctrl-clicked.
     pub open_url: Option<String>,
+    /// Cross reference the user Ctrl-clicked: the page it leads to and the item to
+    /// show there (0: the page only).
+    pub goto: Option<(usize, u64)>,
     /// A symbol was placed (its id).
     pub placed: Option<u64>,
     /// The part chosen for the symbol placed.
@@ -1003,6 +1017,57 @@ impl Editor {
         let dir = if dir.length() < 0.5 { vec2(0.0, -1.0) } else { dir.normalized() };
         let base = if matches!(self.drag, Drag::Turn { .. }) { c + dir * (b - c).length() } else { b };
         Some((base, base + dir * TURN_HANDLE, pivot))
+    }
+
+    /// Selects and centres the item `id` of the page `page_i` (0: none, only clears the
+    /// selection).
+    pub fn show_item(&mut self, prj: &Project, page_i: usize, id: u64) {
+        self.cancel();
+        self.selection.clear();
+        if id == 0 {
+            return;
+        }
+        self.selection.insert(id);
+        if let Some(b) = ops::item_bounds(&prj.symbol_table(), &prj.pages[page_i], id) {
+            if self.zoom < 3.0 {
+                self.zoom = 4.0;
+            }
+            self.center_on = Some(b.center());
+        }
+    }
+
+    /// Ctrl + click (the key that opens links) on a cross reference: leads to its page.
+    fn follow_link(&self, prj: &Project, idx: &Index, page_i: usize, w: P, mods: egui::Modifiers, out: &mut CanvasOutput) -> bool {
+        if !self.gestures.held(Role::OpenLink, mods) {
+            return false;
+        }
+        let Some(target) = self.link_at(prj, idx, page_i, w) else { return false };
+        out.goto = Some(target);
+        true
+    }
+
+    /// The page a cross reference drawn at `q` on the page `page_id` leads to.
+    fn linked_page(&self, page_id: u64, q: P) -> Option<usize> {
+        if self.page_links_of != Some(page_id) {
+            return None;
+        }
+        let tol = (2. / self.zoom).max(0.3);
+        self.page_links.iter().find(|(r, _)| r.expand(tol).contains(q)).map(|l| l.1)
+    }
+
+    /// The cross reference at `q`: the page it leads to and, for an interruption
+    /// point, its counterpart there (0 for the other references).
+    pub fn link_at(&self, prj: &Project, idx: &Index, page_i: usize, q: P) -> Option<(usize, u64)> {
+        let page = &prj.pages[page_i];
+        let target = self.linked_page(page.id, q)?;
+        let tol = (2. / self.zoom).max(0.3);
+        let counterpart = page.symbols.iter().find_map(|s| {
+            let def = prj.symbol(&s.sym).filter(|def| def.func == Func::Interruption)?;
+            let (_, to) = render::symbol_links(prj, idx, page_i, &def, s).into_iter().find(|(r, _)| r.expand(tol).contains(q))?;
+            let others = idx.interruption_targets(prj, &s.interruption_key(), s.id);
+            others.iter().find(|l| l.page == to).or(others.first()).copied()
+        });
+        Some(counterpart.map_or((target, 0), |l| (l.page, l.sym_id)))
     }
 
     /// Hit test: returns the id of the item under `q` (world), preferring texts and
@@ -1332,7 +1397,7 @@ impl Editor {
         let pointer_end = world.and_then(|w| self.wire_end_hit(prj, page_i, w)).is_some();
         let pointer_turn = ptr.is_some_and(|s| self.turn_handle(prj, page_i, rect).is_some_and(|(_, h, _)| h.distance(s) <= TURN_HANDLE_HIT));
         let pointer_grip = world.filter(|_| !pointer_turn).and_then(|w| self.grip_hit(prj, page_i, w)).map(|(id, g)| (g, grips::frame_angle(&prj.pages[page_i], id)));
-        self.cursor(ui, world, editable, pointer_hit, (pointer_prop.is_some(), pointer_end, pointer_grip, pointer_turn));
+        self.cursor(ui, prj.pages[page_i].id, world, editable, pointer_hit, (pointer_prop.is_some(), pointer_end, pointer_grip, pointer_turn));
 
         // ------------------------------------------------------------ drawing
         self.update_textures(ui.ctx(), prj, page_i);
@@ -1362,12 +1427,14 @@ impl Editor {
             }
         }
         let origin = rect.min + self.offset;
-        let mut d = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: None, mirror: None, textures: Some(&self.textures) };
+        let mut d = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: None, mirror: None, textures: Some(&self.textures), links: Vec::new() };
         render::draw_page_with_core_labels(&mut d, prj, idx, an, page_i, &opts, &self.core_labels);
+        self.page_links = std::mem::take(&mut d.links);
+        self.page_links_of = Some(prj.pages[page_i].id);
 
         // Previews
         if let (Tool::Markup(kind, _), Some(&a), Some(b)) = (&self.tool, self.pts.first(), world) {
-            let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
+            let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None, links: Vec::new() };
             match kind {
                 MarkupKind::Line => g.line(a, b, 0.5, Ink::Ghost, true),
                 _ => g.rect(a, b, 0.5, Ink::Ghost, false),
@@ -1378,7 +1445,7 @@ impl Editor {
         }
         if let (Some(sn), Some(pl), true) = (snapped, resp.dnd_hover_payload::<PlacePayload>(), editable) {
             if let Some(def) = prj.symbol(pl.symbol) {
-                let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
+                let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None, links: Vec::new() };
                 let inst = SymbolInst { pos: sn, ..ops::symbol_preview(prj, &def) };
                 render::draw_symbol(&mut g, &def, &inst, Ink::Ghost);
                 self.autoconnect_hints(&g, prj, &prj.pages[page_i], inst);
@@ -1396,7 +1463,7 @@ impl Editor {
             let pg = &prj.pages[page_i];
             let moves_symbols = pg.symbols.iter().any(|s| self.selection.contains(&s.id)) || pg.junctions.iter().any(|j| self.selection.contains(&j.id));
             if moves_symbols && (applied.x != 0.0 || applied.y != 0.0) {
-                let g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
+                let g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None, links: Vec::new() };
                 draw_hints(&g, &routing::autoconnect(&prj.symbol_table(), pg, &self.selection, routing::AUTOCONNECT_REACH));
             }
         }
@@ -1405,7 +1472,7 @@ impl Editor {
                 || resp.dnd_hover_payload::<PartDrag>().is_some();
             // While something is dragged in, only it is previewed, not the tool.
             if let (Some(sn), true, false) = (snapped, editable, placement_drag) {
-                let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
+                let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None, links: Vec::new() };
                 self.previews(&mut g, prj, idx, page_i, w, sn);
             }
             if (self.tool != Tool::Select || self.full_crosshair || placement_drag)
@@ -1502,7 +1569,7 @@ impl Editor {
             }
         }
         for label in self.core_label_preview.iter().filter(|_| self.core_label_preview_page == Some(prj.pages[page_i].id)) {
-            let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(if label.conflict { Ink::Error } else { Ink::Ghost }), mirror: None, textures: None };
+            let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(if label.conflict { Ink::Error } else { Ink::Ghost }), mirror: None, textures: None, links: Vec::new() };
             g.text(label.pos, &label.text, render::SMALL_SIZE, label.anchor, label.v, Ink::Ghost);
             let sr = Rect::from_min_max(self.w2s(rect, label.bounds.min), self.w2s(rect, label.bounds.max)).expand(2.);
             painter.rect_stroke(sr, 0., Stroke::new(1., if label.conflict { pal.error } else { pal.ghost }), egui::StrokeKind::Outside);
@@ -2378,6 +2445,9 @@ impl Editor {
                     }
                     return;
                 }
+                if self.follow_link(prj, idx, page_i, w, mods, out) {
+                    return;
+                }
                 self.select_at(prj, page_i, w, shift);
             }
         }
@@ -2481,8 +2551,8 @@ impl Editor {
     /// of a selected symbol (`prop_hit`) and the ends of selected wires (`end_hit`),
     /// crosshair for the drawing tools.
     #[allow(clippy::too_many_arguments)]
-    fn cursor(&self, ui: &egui::Ui, world: Option<P>, editable: bool, hit: Option<u64>, (prop_hit, end_hit, grip, turn): (bool, bool, Option<(Grip, f32)>, bool)) {
-        let Some(_) = world else { return };
+    fn cursor(&self, ui: &egui::Ui, page_id: u64, world: Option<P>, editable: bool, hit: Option<u64>, (prop_hit, end_hit, grip, turn): (bool, bool, Option<(Grip, f32)>, bool)) {
+        let Some(w) = world else { return };
         // A grip tells that it resizes and the turning handle that it turns, also with
         // the crosshair over the whole canvas.
         let grip = match (&self.tool, &self.drag) {
@@ -2494,6 +2564,11 @@ impl Editor {
         };
         if let Some(icon) = grip {
             ui.ctx().set_cursor_icon(icon);
+            return;
+        }
+        // With the key that opens links held, a cross reference tells that a click follows it.
+        if matches!((&self.tool, &self.drag), (Tool::Select, Drag::None)) && self.gestures.held(Role::OpenLink, ui.input(|i| i.modifiers)) && self.linked_page(page_id, w).is_some() {
+            ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
             return;
         }
         if self.full_crosshair {
@@ -2572,7 +2647,7 @@ pub fn symbol_icon(ui: &mut egui::Ui, prj: &Project, key: &str, size: Vec2) -> e
     let zoom = ((size.x - 6.0) / b.width()).min((size.y - 6.0) / b.height()).min(3.2);
     let center = resp.rect.center();
     let origin = center - vec2(b.center().x, b.center().y) * zoom;
-    let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: None };
+    let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: None, links: Vec::new() };
     let inst = ops::symbol_preview(prj, &def);
     render::draw_symbol(&mut d, &def, &inst, Ink::Line);
     resp

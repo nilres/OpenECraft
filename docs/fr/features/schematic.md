@@ -114,6 +114,11 @@ positions sont enregistrées avec le projet et utilisées par les exports PDF, S
 le renvoi reste un lien vers sa page.
 Commande : `place_interruption_texts`.
 
+Dans l'éditeur, Ctrl + clic suit un renvoi (la touche qui ouvre les liens,
+*Fichier › Paramètres › Touches et gestes*) : la page nommée s'ouvre et, pour un point
+d'interruption, son correspondant est sélectionné et centré. Tant que la touche est
+enfoncée, le pointeur est une main au-dessus d'un renvoi.
+
 ## Connectivité / potentiels
 
 Les fils, les jonctions en T (avec points de connexion), les bornes,
