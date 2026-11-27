@@ -29,6 +29,7 @@ BEGIN {
     setting("    ", "documentation", "OPENECRAFT_DOCUMENTATION_URL")
     setting("    ", "issues", "OPENECRAFT_ISSUES_URL")
     setting("    ", "videos", "OPENECRAFT_VIDEOS_URL")
+    setting("    ", "community", "OPENECRAFT_COMMUNITY_URL")
     print "    legal: {"
     setting("        ", "name", "OPENECRAFT_LEGAL_NAME")
     setting("        ", "address", "OPENECRAFT_LEGAL_ADDRESS")

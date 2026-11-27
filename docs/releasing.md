@@ -36,6 +36,11 @@ For a public repository the workflow also
 attests the build provenance of every file (`gh attestation verify <file> --repo
 nilres/OpenECraft`); private repositories need GitHub Enterprise Cloud for that.
 
+Publishing a release (not a pre-release) posts it in the `#announcements` channel of
+the Discord server (`.github/workflows/discord.yml`, which also posts the new videos
+of the YouTube channel); its webhook is the secret `DISCORD_WEBHOOK_URL` of the
+repository, without it nothing is posted.
+
 ## Pinned versions
 
 Release builds are reproducible: cargo runs with `--locked` (`Cargo.lock` must be up to

@@ -53,6 +53,7 @@ has "$url/videos.js" -xF 'window.OPENECRAFT_VIDEOS = [];'
 has "$url/videos/" -F '<script src="../videos.js"></script>'
 has "$url/videos/de.html" -F 'data-videos'
 grep -q 'videos: "https://www.youtube.com/@OpenECraft"' config.js
+grep -q 'community: "https://discord.gg/hC4FRJt2fk"' config.js
 docker exec "$name" sh -c 'command -v curl' > /dev/null
 # The tags of the public address, robots.txt and the sitemap.
 grep -qF '<link rel="canonical" href="https://site.example/openecraft/" />' site.html

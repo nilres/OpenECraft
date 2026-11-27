@@ -303,6 +303,7 @@ fn footer(page: &Page, place: Place) -> String {
         out.push_str(&format!("        <a href=\"{}\">{}</a>\n", place.to(target), escape(section_text(text))));
     }
     out.push_str(&format!("        <a data-link=\"issues\" href=\"#\">{}</a>\n", escape(tr("Report a problem"))));
+    out.push_str(&format!("        <a data-link=\"community\" href=\"#\">{}</a>\n", escape(tr("Chat on Discord"))));
     // The dialogs of the main page, in the language of this one.
     out.push_str(&format!("        <a id=\"licenses-open\" href=\"{}\">{}</a>\n", place.to("#licenses"), escape(tr("Licenses"))));
     out.push_str(&format!("        <a id=\"privacy-open\" href=\"{}\">{}</a>\n", place.to("#privacy"), escape(tr("Privacy"))));
