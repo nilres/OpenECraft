@@ -27,7 +27,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   a card on the main page and *Chat on Discord* in every footer, set by `community`
   of `config.js` (`OPENECRAFT_COMMUNITY_URL` of the Docker image; empty hides the
   links) ([website](docs/website.md)). New releases and videos are announced in its
-  `#announcements` channel ([releasing](docs/releasing.md)).
+  `#announcements` channel ([releasing](docs/releasing.md)). The editor has a
+  Discord button beside *Report a bug*; its cross hides it, *Show the button of the
+  Discord server* in the settings shows it again.
 - **Own end brackets on terminal strips:** an end bracket part in the parts list of a
   terminal strip (product group `End bracket`) is the one the strip's automatic end
   brackets use, with its width and 3D model, in the panel layout, the glTF export and

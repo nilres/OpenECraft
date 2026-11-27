@@ -334,7 +334,10 @@ impl App {
             ui.checkbox(&mut self.shell.ribbon_minimized, tr("Minimize the ribbon"));
             ui.end_row();
             ui.label(tr("Title bar"));
-            ui.checkbox(&mut self.shell.frame_stats, tr("Show the frame time and the frames per second"));
+            ui.vertical(|ui| {
+                ui.checkbox(&mut self.shell.frame_stats, tr("Show the frame time and the frames per second"));
+                ui.checkbox(&mut self.shell.discord_button, tr("Show the button of the Discord server"));
+            });
             ui.end_row();
             ui.label(tr("Schematic crosshair"));
             ui.checkbox(&mut self.shell.full_crosshair, tr("Extend guides to canvas edges"));

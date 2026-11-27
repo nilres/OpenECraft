@@ -11,6 +11,8 @@ use std::sync::{Arc, Mutex};
 
 /// The form for a new issue of the project.
 pub const ISSUES_URL: &str = "https://github.com/nilres/OpenECraft/issues/new";
+/// The invitation to the Discord server of the project.
+pub const DISCORD_URL: &str = "https://discord.gg/hC4FRJt2fk";
 /// The most an answer keeps, in characters.
 pub const MAX_ANSWER: usize = 2000;
 pub const MAX_TITLE: usize = 160;
