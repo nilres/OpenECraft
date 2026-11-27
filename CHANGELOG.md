@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Colours of part models in the glTF export:** a part's 3D model painted in several
+  colours keeps them in the glTF file, a primitive with its material per colour,
+  instead of one colour for the whole device; the drives of machines keep theirs too
+  ([#290](https://github.com/nilres/OpenECraft/issues/290)).
 - **Door opening angle and orbit direction of the 3D view:** the door of an enclosure
   opens as far as chosen, from 90° to 180°, beside *Open door* / *Close door* and in
   *File › Settings › Appearance*, so that it no longer blocks the view onto the
