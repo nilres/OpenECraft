@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **DXF downloads out of the search index:** the Docker image of the website sends
+  the DXF drawings of the symbols with `X-Robots-Tag: noindex`; a search engine
+  fetched each one and listed it as a page it does not index
+  ([website](docs/website.md#docker-image)).
 - **Devices on the door shown in 3D:** *Show in 3D view* centres the view on a device
   on the door where the opened door holds it, also in the mounting assistant. Fixed:
   the door opened, but the view was centred on where the device is with the door closed.

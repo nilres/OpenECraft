@@ -141,6 +141,11 @@ for file in LICENSE-MIT OFL-NotoSans.txt THIRD-PARTY-LICENSES.html editor/LICENS
 done
 curl -fsS -o /dev/null -D headers.txt "$url/LICENSE-MIT"
 grep -qi '^content-type: text/plain' headers.txt
+# The drawings to download as well, the pictures of the pages not.
+curl -fsS -o /dev/null -D headers.txt "$url/symbols/art/no.dxf"
+grep -qi '^x-robots-tag: noindex' headers.txt
+curl -fsS -o /dev/null -D headers.txt "$url/symbols/art/no.svg"
+if grep -qi '^x-robots-tag' headers.txt; then exit 1; fi
 curl -fsS -o /dev/null -D headers.txt "$url/"
 if grep -qi '^x-robots-tag' headers.txt; then exit 1; fi
 # The WebAssembly is sent as the build of the image compressed it.

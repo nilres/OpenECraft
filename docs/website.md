@@ -475,7 +475,9 @@ redirected there by that proxy (`return 301 https://openecraft.example.com$reque
 instead of answering with the page: the pages name their canonical address, but a
 search engine then still reports every page of the other host as a copy, and files
 without tags (the license files) as copies without a canonical address. The license
-files are sent with `X-Robots-Tag: noindex`, by the image of the web editor as well. The WebAssembly (28 MB,
+files are sent with `X-Robots-Tag: noindex`, by the image of the web editor as well,
+and so are the DXF drawings to download (a search engine lists each as a page it does
+not show). The WebAssembly (28 MB,
 10 MB compressed), the scripts and the routings have a compressed copy from the
 build of the image (`installer/docker/compress.sh`), which nginx sends as it is
 (`gzip_static`), also to a reverse
