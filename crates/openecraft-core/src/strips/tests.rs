@@ -151,6 +151,31 @@ fn accessories_follow_the_terminal_parts() {
 }
 
 #[test]
+fn an_end_bracket_in_the_strips_parts_list_replaces_the_one_of_the_tech_data() {
+    let mut prj = demo_project();
+    let mut own = crate::parts::catalog().iter().find(|p| p.number == "GEN.EB-35").unwrap().clone();
+    own.number = "OWN.EB".into();
+    own.width = 8.0;
+    prj.parts.push(own);
+    prj.devices.get_mut("-X1").unwrap().parts.push(crate::parts::PartRef { number: "OWN.EB".into(), count: 1, total: false });
+    let layout = strip_layout(&prj, "-X1");
+    let brackets: Vec<_> = layout.iter().filter(|e| e.kind == ElementKind::EndBracket).map(|e| (e.part.as_str(), e.width)).collect();
+    assert_eq!(brackets, [("OWN.EB", 8.0), ("OWN.EB", 8.0)]);
+    // The panel layout draws it (with its model), the bill of materials counts it once per bracket.
+    let it = prj.layout.find_device("-X1").unwrap().1.clone();
+    let cells = crate::panel::strip_cells(&prj, &it);
+    assert_eq!((cells[0].part.as_str(), cells[cells.len() - 1].part.as_str()), ("OWN.EB", "OWN.EB"));
+    let an = crate::analysis::Analysis::checked(&prj);
+    let qty = |part: &str| an.report(&prj, ReportKind::BillOfMaterials).unwrap().rows.iter().find(|r| r[3] == part).map(|r| r[1].clone()).unwrap_or_default();
+    assert_eq!((qty("OWN.EB").as_str(), qty("GEN.EB-35").as_str()), ("2", ""));
+    // Also without end bracket data in the terminal parts.
+    for p in prj.parts.iter_mut().filter(|p| p.number.starts_with("GEN.TB-")) {
+        p.tech_data.clear();
+    }
+    assert_eq!(strip_layout(&prj, "-X1").iter().filter(|e| e.kind == ElementKind::EndBracket && e.part == "OWN.EB").count(), 2);
+}
+
+#[test]
 fn accessories_are_in_the_bill_of_materials() {
     let prj = demo_project();
     let an = crate::analysis::Analysis::checked(&prj);

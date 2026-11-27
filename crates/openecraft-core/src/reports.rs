@@ -660,15 +660,20 @@ fn bom(prj: &Project, idx: &Index, wiring: &[RoutedWire], conns: &[Connection]) 
     }
     // Wiring and mounting material may come straight from the built-in catalog.
     let cuts = panel::cut_pieces(prj);
-    let mut sum = 0.0;
+    // Totals per currency: prices in different currencies are never added up.
+    let mut sums: BTreeMap<String, (f32, bool)> = BTreeMap::new();
     for (i, (part, (qty, tags))) in groups.iter().enumerate() {
         let pd = prj.parts.iter().chain(catalog.iter()).find(|p| &p.number == part).cloned().unwrap_or_else(|| Part {
             description: "(part not in project – synchronize parts)".into(),
             ..Default::default()
         });
         let total = pd.total_price(*qty);
-        sum += total;
         let unknown = unknown_lengths.contains(part);
+        if total != 0.0 || unknown {
+            let s = sums.entry(pd.currency.clone()).or_default();
+            s.0 += total;
+            s.1 |= unknown;
+        }
         let uncertain = |value: String, zero: bool| if !unknown { value } else if zero { "?".into() } else { format!("{value} + ?") };
         let unit_price = if pd.price_unit > 1 { format!("{:.2}/{}", pd.price, pd.price_unit) } else { format!("{:.2}", pd.price) };
         t.push(
@@ -728,10 +733,18 @@ fn bom(prj: &Project, idx: &Index, wiring: &[RoutedWire], conns: &[Connection]) 
         }
     }
     if !groups.is_empty() {
-        let mut last = vec![String::new(); 10];
-        last[6] = tr("Sum").into();
-        last[9] = if unknown_lengths.is_empty() { format!("{sum:.2}") } else if sum == 0.0 { "?".into() } else { format!("{sum:.2} + ?") };
-        t.push(last, None);
+        let text = |sum: f32, unknown: bool| if !unknown { format!("{sum:.2}") } else if sum == 0.0 { "?".into() } else { format!("{sum:.2} + ?") };
+        let mixed = sums.len() > 1;
+        if sums.is_empty() {
+            sums.insert(String::new(), (0.0, false));
+        }
+        // One sum per currency, each naming its currency, when the lines are priced in several.
+        for (currency, (sum, unknown)) in sums {
+            let mut last = vec![String::new(); 10];
+            last[6] = tr("Sum").into();
+            last[9] = if mixed { format!("{} {currency}", text(sum, unknown)) } else { text(sum, unknown) };
+            t.push(last, None);
+        }
     }
     t
 }

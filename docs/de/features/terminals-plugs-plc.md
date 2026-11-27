@@ -12,7 +12,8 @@ technischen Daten `Terminal type: PE`, alle anderen deren Durchgangsklemmen-Arti
 (Stückliste, Länge der Leiste im Schaltschrank, Anschlusspunkte je Klemme);
 **automatisches Zubehör**
 aus den technischen Daten der Klemmenartikel (`End bracket: …`, `End plate: …`,
-`Jumper: …` mit Brückenartikeln `Poles: n`): ein Endhalter an beiden Enden, ein
+`Jumper: …` mit Brückenartikeln `Poles: n`; ein Endhalter-Artikel in der Artikelliste
+der Leiste, Produktgruppe `End bracket`, ersetzt den aus den technischen Daten): ein Endhalter an beiden Enden, ein
 Abschlussdeckel nach der letzten Klemme jedes Artikels, Steckbrücken der kürzesten
 passenden Länge (gekürzt, wenn länger, Zinken ausgebrochen bei Klemmen dazwischen) – in
 der Stückliste, im Klemmenplan, im Schaltschrankaufbau (2D / 3D) und in der Prüfung;

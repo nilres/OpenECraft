@@ -22,6 +22,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   view and explains itself in a tooltip; the details of the current wire or item in
   the wiring and mounting assistants can be hidden
   ([#268](https://github.com/nilres/OpenECraft/issues/268)).
+- **Own end brackets on terminal strips:** an end bracket part in the parts list of a
+  terminal strip (product group `End bracket`) is the one the strip's automatic end
+  brackets use, with its width and 3D model, in the panel layout, the glTF export and
+  the bill of materials. Fixed: they always took `GEN.EB-35` from the tech data of the
+  terminal parts ([#291](https://github.com/nilres/OpenECraft/issues/291)).
+- **Bill of materials sums each currency:** when the parts of a project are priced in
+  several currencies, the bill of materials ends with one sum per currency, each
+  naming its currency (`8.86 EUR`, `10.00 USD`), in every format of the report. Fixed:
+  all totals were added up into one sum without a currency
+  ([#287](https://github.com/nilres/OpenECraft/issues/287)).
 - **DXF downloads out of the search index:** the Docker image of the website sends
   the DXF drawings of the symbols with `X-Robots-Tag: noindex`; a search engine
   fetched each one and listed it as a page it does not index
