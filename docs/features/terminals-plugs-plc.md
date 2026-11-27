@@ -11,7 +11,8 @@ every terminal has its part: PE terminals take the strip's part with the tech da
 `Terminal type: PE`, all others its feed-through part (bill of materials, panel
 length of the strip, connection points per terminal); **automatic accessories**
 from the tech data of the terminal parts (`End bracket: …`, `End plate: …`,
-`Jumper: …` with jumper parts `Poles: n`): an end bracket at both ends, an end
+`Jumper: …` with jumper parts `Poles: n`; an end bracket part in the strip's parts
+list, product group `End bracket`, takes the place of the one of the tech data): an end bracket at both ends, an end
 plate after the last terminal of each part, plug-in jumpers of the shortest
 fitting length (cut if longer, teeth broken off at terminals in between) – in the
 bill of materials, the terminal diagram, the panel layout (2D / 3D) and the check;

@@ -253,18 +253,30 @@ fn accessory(prj: &Project, terminal_part: &str, key: &str, kind: ElementKind, d
     Some(Element { kind, part: number, width, levels: Vec::new() })
 }
 
+/// Product group of end bracket parts.
+pub const END_BRACKET_GROUP: &str = "End bracket";
+
+/// The end bracket part in the parts list of a strip (product group `End bracket`).
+pub fn strip_end_bracket<'a>(prj: &'a Project, strip: &str) -> Option<&'a Part> {
+    let data = prj.devices.get(strip)?;
+    data.parts.iter().filter_map(|r| part_by_number(prj, &r.number)).find(|p| p.subgroup.eq_ignore_ascii_case(END_BRACKET_GROUP))
+}
+
 /// The strip on the rail in order, each element with its part and width: an end
 /// bracket, the terminals, the spare terminals, an end bracket. An end plate follows
 /// the last terminal of each part (where the next terminal has another part, and at
 /// the end). The accessory parts come from the tech data of the terminal parts
-/// (`End bracket: …`, `End plate: …`), unless the strip has `manual_accessories`.
-/// Reports, the bill of materials and the panel layout all work from this.
+/// (`End bracket: …`, `End plate: …`), unless the strip has `manual_accessories`;
+/// an end bracket part in the strip's parts list takes the place of the one in the
+/// tech data. Reports, the bill of materials and the panel layout all work from this.
 pub fn strip_layout(prj: &Project, strip: &str) -> Vec<Element> {
     let terminals = terminal_elements(prj, strip);
     if terminals.is_empty() || prj.strips.get(strip).is_some_and(|d| d.manual_accessories) {
         return terminals;
     }
-    let bracket = |part: &str| accessory(prj, part, "End bracket", ElementKind::EndBracket, END_BRACKET_WIDTH);
+    let own = strip_end_bracket(prj, strip)
+        .map(|p| Element { kind: ElementKind::EndBracket, part: p.number.clone(), width: p.size().map(|s| s[0]).unwrap_or(END_BRACKET_WIDTH), levels: Vec::new() });
+    let bracket = |part: &str| own.clone().or_else(|| accessory(prj, part, "End bracket", ElementKind::EndBracket, END_BRACKET_WIDTH));
     let mut out: Vec<Element> = bracket(&terminals[0].part).into_iter().collect();
     for (i, e) in terminals.iter().enumerate() {
         out.push(e.clone());

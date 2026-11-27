@@ -29,6 +29,26 @@ fn metered_cable_unknown_lengths_keep_partial_material_totals_uncertain() {
 }
 
 #[test]
+fn bill_of_materials_sums_each_currency_apart() {
+    use crate::parts::Part;
+    let mut prj=Project::default();
+    prj.marking.cable_material.clear();
+    prj.parts.push(Part {number:"EUR-A".into(),price:8.7,..Default::default()});
+    prj.parts.push(Part {number:"EUR-B".into(),price:0.16,..Default::default()});
+    prj.parts.push(Part {number:"USD-A".into(),price:10.,currency:"USD".into(),..Default::default()});
+    prj.parts.push(Part {number:"FREE".into(),currency:"CHF".into(),..Default::default()});
+    prj.cables=["EUR-A","EUR-B","USD-A","FREE"].iter().enumerate()
+        .map(|(i,p)|Cable {id:i as u64+1,tag:format!("-W{}",i+1),part:p.to_string(),..Default::default()}).collect();
+    let table=bom(&prj,&Index::build(&prj),&[],&[]);
+    let sums:Vec<&str>=table.rows.iter().filter(|r|r[6]=="Sum").map(|r|r[9].as_str()).collect();
+    assert_eq!(sums,["8.86 EUR","10.00 USD"]);
+    prj.cables.retain(|c|c.part!="USD-A");
+    let table=bom(&prj,&Index::build(&prj),&[],&[]);
+    let sums:Vec<&str>=table.rows.iter().filter(|r|r[6]=="Sum").map(|r|r[9].as_str()).collect();
+    assert_eq!(sums,["8.86"]);
+}
+
+#[test]
 fn metered_cable_length_check_names_unknown_cables_and_accepts_configured_lengths() {
     let mut prj=Project::default();
     prj.cables.push(Cable {id:1,tag:"-W1".into(),part:"GEN.CBL-4G1.5".into(),..Default::default()});
