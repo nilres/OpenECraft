@@ -9,6 +9,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   installation device while the tab *Electrical installation* was open crashed the
   editor, because the pane read the circuits of the netlist of the state before. The
   project is now analysed again right after *Undo* and *Redo*.
+- **Discord server:** the community of OpenECraft meets on its Discord server
+  ([discord.gg/hC4FRJt2fk](https://discord.gg/hC4FRJt2fk)) to ask questions, show projects and talk with
+  the developers. The README, the issue chooser of GitHub and the website link it:
+  a card on the main page and *Chat on Discord* in every footer, set by `community`
+  of `config.js` (`OPENECRAFT_COMMUNITY_URL` of the Docker image; empty hides the
+  links) ([website](docs/website.md)). New releases and videos are announced in its
+  `#announcements` channel ([releasing](docs/releasing.md)).
 - **Own end brackets on terminal strips:** an end bracket part in the parts list of a
   terminal strip (product group `End bracket`) is the one the strip's automatic end
   brackets use, with its width and 3D model, in the panel layout, the glTF export and

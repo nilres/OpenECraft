@@ -96,6 +96,7 @@ loads first; the Docker image takes the same settings from environment variables
 | `documentation` | `OPENECRAFT_DOCUMENTATION_URL` | The folder with all documents (*All documents in the repository*; the site itself has the tutorial, the installation guide and the feature documents as pages, [below](#pages-the-build-writes)) | The `docs` folder of the repository |
 | `issues` | `OPENECRAFT_ISSUES_URL` | Where problems are reported | The issues of the repository |
 | `videos` | `OPENECRAFT_VIDEOS_URL` | The channel with the videos of the project (YouTube) | Hides the links |
+| `community` | `OPENECRAFT_COMMUNITY_URL` | The chat of the community (the Discord server of the project) | Hides the links |
 
 ### Legal notice
 
