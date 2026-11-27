@@ -95,7 +95,14 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   *Twin ferrules where two wires share a connection point* (or `set_ferrules`) every
   such pair without a termination of its own gets one. The check *Twin ferrules* warns
   about a twin ferrule with one wire, at a point with more than two wires or for two
-  cross-sections. A ferrule or crimped terminal does not bend: the wire or core runs
+  cross-sections. The ferrules are of the colour code DIN 46228-4 (the colours of
+  UL 486F too), NF C 63-023 (French) or the special colour series (*Ferrule colour
+  code*, or `set_ferrules --color_code din|french|special`). A wire gets the smallest
+  ferrule that takes it, metric, AWG and kcmil sizes alike: 14 AWG and 2.08 mm² the one
+  of 2.5 mm², 18 AWG the one of 0.75 mm². The check *Ferrule sizes* names the wire ends
+  no ferrule fits (above 50 mm², twin ferrules above 16 mm²); terminated bare
+  on purpose (*Bare conductor*), such an end is no longer reported; they are not in the bill
+  of materials. A ferrule or crimped terminal does not bend: the wire or core runs
   straight out of its connection point as far as it reaches (with its collar or
   insulated sleeve) and bends only behind it. The 3D routing plans that straight way
   out where the space in front of the connection point is free; where it is not (a

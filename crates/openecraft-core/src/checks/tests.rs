@@ -164,3 +164,24 @@ fn wires_a_clamp_does_not_take_are_reported() {
     );
     assert!(check_clamp_wires(&prj, &[wire("1.5")]).is_empty());
 }
+
+#[test]
+fn wire_ends_without_a_fitting_ferrule_are_reported() {
+    let mut prj = crate::sample::demo_project();
+    let an = crate::analysis::Analysis::checked(&prj);
+    assert!(!an.wiring.is_empty());
+    assert!(check_ferrule_sizes(&prj, &an.ends, &an.wiring).is_empty());
+    // AWG and in-between sizes take the next larger ferrule: nothing to report.
+    let mut wiring = an.wiring.clone();
+    wiring[0].cross_section = "14 AWG".into();
+    wiring[1].cross_section = "2.08 mm²".into();
+    assert!(check_ferrule_sizes(&prj, &an.ends, &wiring).is_empty());
+    // Larger than the largest ferrule: both ends of the wire.
+    wiring[0].cross_section = "185 mm²".into();
+    let issues = check_ferrule_sizes(&prj, &an.ends, &wiring);
+    assert_eq!(issues.len(), 2, "{issues:?}");
+    assert!(issues[0].message().contains("185 mm²") && issues[0].message().contains(&wiring[0].from), "{}", issues[0].message());
+    // Without ferrules there is nothing missing.
+    prj.layout.ferrules = false;
+    assert!(check_ferrule_sizes(&prj, &an.ends, &wiring).is_empty());
+}

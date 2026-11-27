@@ -122,8 +122,8 @@ fn function_template(el: &Element) -> Option<FunctionTemplate> {
     Some(FunctionTemplate { kind, pins: pin_name(attr(el, "terminalNr"), designation), description })
 }
 
-/// Cross-section in mm² of an AWG size.
-fn awg_mm2(awg: f32) -> f32 {
+/// Cross-section in mm² of an AWG size (0 for 1/0, -1 for 2/0, …), rounded to 0.01 mm².
+pub fn awg_mm2(awg: f32) -> f32 {
     let d = 0.127 * 92f32.powf((36.0 - awg) / 39.0);
     (std::f32::consts::FRAC_PI_4 * d * d * 100.0).round() / 100.0
 }

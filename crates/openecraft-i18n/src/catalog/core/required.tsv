@@ -405,6 +405,7 @@ DC -	DC -	CC -	CC -
 DC control circuits should be blue (IEC 60204-1, 13.2.4)	DC-Steuerstromkreise sollten blau sein (IEC 60204-1, 13.2.4)	Les circuits de commande en courant continu devraient être bleus (IEC 60204-1, 13.2.4)	Los circuitos de mando de CC deberían ser azules (IEC 60204-1, 13.2.4)
 DC control circuits should be blue (NFPA 79, 13.2.4)	DC-Steuerstromkreise sollten blau sein (NFPA 79, 13.2.4)	Les circuits de commande en courant continu devraient être bleus (NFPA 79, 13.2.4)	Los circuitos de mando de CC deberían ser azules (NFPA 79, 13.2.4)
 DC/DC converter	Gleichspannungswandler DC/DC	Convertisseur DC/DC	Convertidor DC/DC
+DIN 46228-4 / UL 486F	DIN 46228-4 / UL 486F	DIN 46228-4 / UL 486F	DIN 46228-4 / UL 486F
 DWG export failed: {}	DWG-Export fehlgeschlagen: {}	Échec de l'export DWG : {}	Error al exportar el DWG: {}
 Data outlet	Datendose	Prise de données	Toma de datos
 Data sheet	Datenblatt	Fiche technique	Hoja de datos
@@ -586,6 +587,7 @@ Fan 3-phase	Lüfter 3-phasig	Ventilateur triphasé	Ventilador trifásico
 Fan 3-phase, 6 terminals	Lüfter 3-phasig, 6 Anschlüsse	Ventilateur triphasé, 6 bornes	Ventilador trifásico, 6 bornes
 Ferrule	Aderendhülse	Embout	Punta
 Ferrule from	Aderendhülse von	Embout début	Puntera origen
+Ferrule sizes	Aderendhülsengrößen	Tailles d'embouts	Tamaños de punteras
 Ferrule to	Aderendhülse nach	Embout fin	Puntera destino
 Ferrule {} mm² {}	Aderendhülse {} mm² {}	Embout {} mm² {}	Puntera {} mm² {}
 Field cable routing	Feldkabel-Trassierung	Cheminement des câbles de terrain	Recorrido de cables de campo
@@ -1061,6 +1063,7 @@ NC contact, on-delay KT (GB)	Öffner, einschaltverzögert KT (GB)	Contact NF, te
 NC contact, on-delay KT (GOST)	Öffner, einschaltverzögert KT (GOST)	Contact NF, temporisé à l'appel KT (GOST)	Contacto NC, temporizado a la conexión KT (GOST)
 NC contact, on-delay TLR (JIS)	Öffner, einschaltverzögert TLR (JIS)	Contact NF, temporisé à l'appel TLR (JIS)	Contacto NC, temporizado a la conexión TLR (JIS)
 NC contact, timed opening (NFPA)	Öffner, verzögert öffnend (NFPA)	Contact NF, ouverture temporisée (NFPA)	Contacto NC, apertura temporizada (NFPA)
+NF C 63-023 (French colour code)	NF C 63-023 (französischer Farbcode)	NF C 63-023 (code couleur français)	NF C 63-023 (código de colores francés)
 NFPA / JIC	NFPA / JIC	NFPA / JIC	NFPA / JIC
 NO contact (NFPA)	Schließer (NFPA)	Contact NO (NFPA)	Contacto NA (NFPA)
 NO contact K (GOST)	Schließer K (GOST)	Contact NO K (GOST)	Contacto NA K (GOST)
@@ -1089,6 +1092,7 @@ No device box with this id on the page	Keine Gerätebox mit dieser ID auf der Se
 No device connection point with this id on the page	Kein Geräteanschlusspunkt mit dieser ID auf der Seite	Aucun point de connexion d'appareil avec cet ID sur la page	No hay ningún punto de conexión del dispositivo con este ID en la página
 No devices to add to the single-line diagram	Keine Geräte, die in den Übersichtsschaltplan aufzunehmen sind	Aucun appareil à ajouter au schéma unifilaire	No hay equipos que añadir al esquema unifilar
 No document embedded - choose a file in the page properties	Kein Dokument eingebettet - Datei in den Seiteneigenschaften wählen	Aucun document intégré - choisissez un fichier dans les propriétés de la page	Ningún documento incrustado - elija un archivo en las propiedades de la página
+No ferrule for {} at {} (wire to {})	Keine Aderendhülse für {} an {} (Leitung nach {})	Aucun embout pour {} en {} (fil vers {})	Ninguna puntera para {} en {} (cable hacia {})
 No free place for a cable gland on the faces the cable can leave through: make room or add a cable entry flange	Kein freier Platz für eine Kabelverschraubung auf den Flächen, durch die das Kabel austreten kann: Platz schaffen oder einen Kabeleinführungsflansch ergänzen	Pas de place libre pour un presse-étoupe sur les faces par lesquelles le câble peut sortir : faites de la place ou ajoutez une bride d'entrée de câbles	No hay sitio libre para un prensaestopas en las caras por las que puede salir el cable: haga sitio o añada una brida de entrada de cables
 No holes or cutouts in this enclosure	Keine Bohrungen oder Ausschnitte in diesem Gehäuse	Aucun perçage ni découpe dans cette enveloppe	No hay taladros ni recortes en esta envolvente
 No identifying letter for the device tag.	Kein Kennbuchstabe für das Betriebsmittelkennzeichen.	Pas de lettre d'identification pour le repère d'appareil.	Falta la letra identificativa de la designación del dispositivo.
@@ -1110,6 +1114,7 @@ No such roof	Kein solches Dach	Toit introuvable	No existe esa cubierta
 No surge protective device at the supply (IEC 60364-4-44)	Kein Überspannungsschutz an der Einspeisung (IEC 60364-4-44)	Pas de parafoudre à l'alimentation (IEC 60364-4-44)	Sin protector contra sobretensiones en la alimentación (IEC 60364-4-44)
 No template of the user is named {}	Keine Vorlage des Benutzers heißt {}	Aucun modèle de l'utilisateur ne s'appelle {}	Ninguna plantilla del usuario se llama {}
 No terminal {}	Keine Klemme {}	Aucune borne {}	No hay borne {}
+No twin ferrule for {} at {} (wire to {})	Keine Zwillingsaderendhülse für {} an {} (Leitung nach {})	Aucun embout double pour {} en {} (fil vers {})	Ninguna puntera doble para {} en {} (cable hacia {})
 No user defined property {}	Keine benutzerdefinierte Eigenschaft {}	Aucune propriété utilisateur {}	No hay propiedad de usuario {}
 No wall near the point	Keine Wand in der Nähe des Punkts	Aucun mur près du point	No hay ninguna pared cerca del punto
 No wall {}	Keine Wand {}	Pas de mur {}	No hay pared {}
@@ -1687,6 +1692,7 @@ Source {}, targets {}, {} and {}	Quelle {}, Ziele {}, {} und {}	Source {}, cible
 Spare	Reserve	Réserve	Reserva
 Spare part	Ersatzteil	Pièce de rechange	Repuesto
 Spare terminal	Reserveklemme	Borne de réserve	Borne de reserva
+Special colour series	Sonderfarbreihe	Série de couleurs spéciale	Serie de colores especial
 Speed	Drehzahl	Vitesse	Velocidad
 Spiral	Wendeltreppe	Hélicoïdal	De caracol
 Stainless steel	Edelstahl	Acier inoxydable	Acero inoxidable
@@ -2090,6 +2096,7 @@ auto: {} (potential {})	auto: {} (Potenzial {})	auto : {} (potentiel {})	auto: {
 auto: {} (project default)	auto: {} (Projektvorgabe)	auto : {} (valeur par défaut du projet)	auto: {} (valor predeterminado del proyecto)
 back-up {}	Back-up {}	protection d'accompagnement {}	respaldo {}
 bayed (open)	angereiht (offen)	juxtaposé (ouvert)	ensamblado (abierto)
+beige	beige	beige	beige
 below	unten	en bas	abajo
 black	schwarz	noir	negro
 blue	blau	bleu	azul
@@ -2137,7 +2144,9 @@ is none of	ist keines von	n'est aucun de	no es ninguno de
 is not	ist nicht	n'est pas	no es
 is not empty	ist nicht leer	n'est pas vide	no está vacío
 is one of	ist eines von	est l'un de	es uno de
+ivory	elfenbein	ivoire	marfil
 leakage	Leck	fuite	fuga
+light blue	hellblau	bleu clair	azul claro
 low	niedrig	basse	baja
 measuring	Mess	mesure	medición
 new	neu	nouvelle	nueva
@@ -2152,6 +2161,7 @@ not in the panel layout	nicht im Schaltschrankaufbau	pas dans l'implantation	no 
 not in the same line-up or room	nicht in derselben Anreihung oder demselben Raum	pas dans la même juxtaposition ni la même salle	no está en la misma alineación ni en la misma sala
 not reached	nicht erreicht	non atteint	no alcanzado
 not routed: {}	nicht verlegt: {}	non routé : {}	no tendido: {}
+olive	oliv	olive	oliva
 on the door	auf der Tür	sur la porte	en la puerta
 on the left	links	à gauche	a la izquierda
 on the right	rechts	à droite	a la derecha

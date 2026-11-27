@@ -21,6 +21,9 @@ pub struct Layout {
     /// ferrule, where neither has a termination chosen for it.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub twin_ferrules: bool,
+    /// Colour code of the ferrules (`crate::production::FerruleCode::ferrules`).
+    #[serde(skip_serializing_if = "FerruleCode::is_din")]
+    pub ferrule_code: FerruleCode,
     /// Terminations chosen for wire ends (ring terminals, …), see
     /// `crate::production::termination_of`.
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -76,6 +79,26 @@ pub struct Layout {
     /// `crate::panel::plot`).
     #[serde(skip_serializing_if = "Plot::is_default")]
     pub plot: Plot,
+}
+
+/// Colour code of the insulating collars of ferrules; the sizes are those of
+/// DIN 46228-4 (sizes and parts in `crate::production`).
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum FerruleCode {
+    /// DIN 46228-4, the colours of UL 486F-E as well.
+    #[default]
+    Din,
+    /// NF C 63-023, the French colour code.
+    French,
+    /// The special colour series of the manufacturers (also called German colour code).
+    Special,
+}
+
+impl FerruleCode {
+    pub fn is_din(&self) -> bool {
+        *self == FerruleCode::Din
+    }
 }
 
 /// How a wire end is terminated: stripped bare, with a ferrule or a crimped terminal

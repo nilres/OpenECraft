@@ -100,6 +100,7 @@ pub(super) fn project() -> Project {
     crate::sections::sort_pages(&mut prj);
     crate::sizing::size_wires(&mut prj);
     number_wires(&mut prj);
+    super::bare_large_conductors(&mut prj);
     prj
 }
 

@@ -5,6 +5,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Ferrules for AWG wires and more colour codes:** a wire end gets the smallest
+  ferrule that takes its cross-section instead of none where the size is not one of
+  the catalog: 14 AWG or 2.08 mm² the ferrule of 2.5 mm², 18 AWG the one of 0.75 mm².
+  Cross-sections are read in AWG (`14 AWG`, `AWG 2/0`) and kcmil too; before, `14 AWG`
+  was read as 14 mm². The ferrules go from 0.14 to 50 mm² and come in the colour codes
+  DIN 46228-4 (the colours of UL 486F), NF C 63-023 (French) and the special colour
+  series (*Ferrule colour code* in the panel layout settings,
+  `set_ferrules --color_code`). The new check *Ferrule sizes* names the wire ends no
+  ferrule fits, which were left out of the bill of materials without a word; an end
+  chosen *Bare conductor* is not reported. The examples keep their conductors above
+  16 mm² bare, as they were
+  ([#288](https://github.com/nilres/OpenECraft/issues/288)).
 - **DXF downloads out of the search index:** the Docker image of the website sends
   the DXF drawings of the symbols with `X-Robots-Tag: noindex`; a search engine
   fetched each one and listed it as a page it does not index

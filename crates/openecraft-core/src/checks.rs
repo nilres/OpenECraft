@@ -50,6 +50,7 @@ pub fn builtin() -> Vec<Check> {
         }),
         entry("wiring_marks", tr_const!("Wiring marks"), |prj, an| check_wiring_marks(prj, &an.wiring)),
         entry("twin_ferrules", tr_const!("Twin ferrules"), |prj, an| check_twin_ferrules(prj, &an.ends)),
+        entry("ferrule_sizes", tr_const!("Ferrule sizes"), |prj, an| check_ferrule_sizes(prj, &an.ends, &an.wiring)),
         entry("clamp_wires", tr_const!("Wires at connection points"), |prj, an| check_clamp_wires(prj, &an.connections)),
         entry("mounting_marks", tr_const!("Mounting marks"), |prj, _| check_mounting_marks(prj)),
         entry("preplanning", tr_const!("Pre-planning"), |prj, an| crate::preplanning::issues(prj, &an.index)),
@@ -664,6 +665,24 @@ fn check_twin_ferrules(prj: &Project, ends: &crate::production::Ends) -> Vec<Iss
             v.push(crate::issue!(Severity::Warning, None, "Twin ferrule at {} is not shared with a second wire", at));
         } else if cross_section_mm2(&twins[0].1) != cross_section_mm2(&twins[1].1) {
             v.push(crate::issue!(Severity::Warning, None, "Twin ferrule at {} joins wires of {} and {}", at, twins[0].1, twins[1].1));
+        }
+    }
+    v
+}
+
+/// Wire ends of the panel that should get a ferrule, but no ferrule of the colour code
+/// takes their cross-section: they are missing in the bill of materials.
+fn check_ferrule_sizes(prj: &Project, ends: &crate::production::Ends, wiring: &[crate::panel::RoutedWire]) -> Vec<Issue> {
+    use crate::production::Termination;
+    let mut v = Vec::new();
+    for w in wiring {
+        for (at, to) in [(&w.from, &w.to), (&w.to, &w.from)] {
+            let Some(t) = ends.end(prj, at, to, &w.cross_section).filter(|t| t.missing() && !t.shared) else { continue };
+            match t.kind {
+                Termination::Ferrule => v.push(crate::issue!(Severity::Warning, None, "No ferrule for {} at {} (wire to {})", w.cross_section, at, to)),
+                Termination::TwinFerrule => v.push(crate::issue!(Severity::Warning, None, "No twin ferrule for {} at {} (wire to {})", w.cross_section, at, to)),
+                _ => {}
+            }
         }
     }
     v

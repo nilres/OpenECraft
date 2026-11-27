@@ -2243,6 +2243,18 @@ impl PanelUi {
         ui.checkbox(&mut prj.layout.ferrules, tr("Wire ends with ferrules")).on_hover_text(tr("Production wire list and bill of materials"));
         ui.add_enabled(prj.layout.ferrules, egui::Checkbox::new(&mut prj.layout.twin_ferrules, tr("Twin ferrules where two wires share a connection point")))
             .on_hover_text(tr("Where neither wire has a termination chosen for it"));
+        ui.add_enabled_ui(prj.layout.ferrules, |ui| {
+            ui.horizontal(|ui| {
+                ui.label(tr("Ferrule colour code"));
+                egui::ComboBox::from_id_salt("ferrule_code").selected_text(prj.layout.ferrule_code.title()).show_ui(ui, |ui| {
+                    for code in openecraft_core::production::FerruleCode::ALL {
+                        ui.selectable_value(&mut prj.layout.ferrule_code, code, code.title());
+                    }
+                });
+            })
+            .response
+            .on_hover_text(tr("Metric and AWG wires get the smallest ferrule that takes them"));
+        });
         ui.checkbox(&mut prj.layout.hardware, tr("Fastening hardware in the bill of materials")).on_hover_text(tr("Screws, nuts, washers and rivet nuts of the fixing points"));
         ui.horizontal(|ui| {
             ui.checkbox(&mut prj.layout.auto_glands, tr("Add cable glands for new cables"))

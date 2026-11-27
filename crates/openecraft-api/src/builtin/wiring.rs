@@ -8,7 +8,7 @@ use super::{add_commands, info, Spec};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::model::potentials::PotentialKind;
 use openecraft_core::model::{NumberScheme, Project};
-use openecraft_core::production::{self, EndTreatment, Termination, Twin};
+use openecraft_core::production::{self, EndTreatment, FerruleCode, Termination, Twin};
 use openecraft_core::wiring::{self, Mark, Order, Status};
 use openecraft_core::marking;
 use openecraft_core::wirenum;
@@ -128,6 +128,7 @@ pub static COMMANDS: &[Spec] = &[
         params: &[
             optional("ferrules", Kind::Bool, tr_const!("Wire ends get ferrules")),
             optional("twin_ferrules", Kind::Bool, tr_const!("Two wires at a connection point share a twin ferrule")),
+            optional("color_code", Kind::Str, tr_const!("Colour code of the ferrules: din (DIN 46228-4, UL 486F), french (NF C 63-023) or special (special colour series)")),
         ],
         run: set_ferrules,
     },
@@ -421,6 +422,7 @@ fn end_json(at: &str, e: Option<EndTreatment>, twin: Option<&Twin>) -> Value {
         "strip_mm": e.map(|e| e.strip),
         "part": e.filter(|e| !e.shared).map(|e| e.part()).filter(|p| !p.is_empty()),
         "description": e.map(|e| e.describe()),
+        "missing": e.is_some_and(|e| e.missing()),
         "twin_with": twin.map(|t| t.with.clone()),
     })
 }
@@ -453,7 +455,8 @@ fn set_termination(prj: &mut Project, a: &Args) -> Result<Value, String> {
 fn terminations(prj: &mut Project, _: &Args) -> Result<Value, String> {
     let chosen: Vec<Value> = prj.layout.terminations.iter().map(|t| json!({ "at": t.at, "to": t.to, "termination": t.kind.key() })).collect();
     let kinds: Vec<Value> = Termination::ALL.iter().map(|k| json!({ "key": k.key(), "name": k.title() })).collect();
-    Ok(json!({ "ferrules": prj.layout.ferrules, "twin_ferrules": prj.layout.twin_ferrules, "chosen": chosen, "kinds": kinds }))
+    let codes: Vec<Value> = FerruleCode::ALL.iter().map(|c| json!({ "key": c.key(), "name": c.title() })).collect();
+    Ok(json!({ "ferrules": prj.layout.ferrules, "twin_ferrules": prj.layout.twin_ferrules, "color_code": prj.layout.ferrule_code.key(), "chosen": chosen, "kinds": kinds, "color_codes": codes }))
 }
 
 fn set_ferrules(prj: &mut Project, a: &Args) -> Result<Value, String> {
@@ -463,7 +466,10 @@ fn set_ferrules(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(on) = a.value("twin_ferrules").and_then(Value::as_bool) {
         prj.layout.twin_ferrules = on;
     }
-    Ok(json!({ "ferrules": prj.layout.ferrules, "twin_ferrules": prj.layout.twin_ferrules }))
+    if let Some(v) = a.str("color_code") {
+        prj.layout.ferrule_code = FerruleCode::from_key(v).ok_or_else(|| tr_fmt!("Unknown colour code: {} (din, french, special)", v.trim()))?;
+    }
+    Ok(json!({ "ferrules": prj.layout.ferrules, "twin_ferrules": prj.layout.twin_ferrules, "color_code": prj.layout.ferrule_code.key() }))
 }
 
 fn remove_old_marks(prj: &mut Project, _: &Args) -> Result<Value, String> {

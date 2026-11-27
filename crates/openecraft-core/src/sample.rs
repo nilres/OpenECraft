@@ -167,6 +167,23 @@ fn assign_parts(prj: &mut Project, db: &PartsDb, devices: &[(&str, &[&str])]) {
 }
 
 /// Renumbers the wires of a finished example.
+/// The wire ends of conductors above 16 mm² terminated bare (box terminals, busbar
+/// studs): no ferrule, as before the ferrule sizes went up to 50 mm².
+pub(crate) fn bare_large_conductors(prj: &mut Project) {
+    let (netlist, open) = (crate::netlist::Netlist::build(prj, true), crate::netlist::Netlist::build(prj, false));
+    let conns = crate::netlist::connections(prj, &netlist, &open);
+    use crate::model::panel::{Termination, WireTermination};
+    for c in &conns {
+        // The examples write their cross-sections as "35 mm²".
+        if c.cross_section.trim_end_matches("mm²").trim().parse::<f32>().is_ok_and(|cs| cs > 16.0) {
+            let (a, b) = (crate::netlist::pin_designation(prj, c.a), crate::netlist::pin_designation(prj, c.b));
+            for (at, to) in [(a.clone(), b.clone()), (b, a)] {
+                prj.layout.terminations.push(WireTermination { at, to, kind: Termination::Bare });
+            }
+        }
+    }
+}
+
 pub(crate) fn number_wires(prj: &mut Project) {
     let open = crate::netlist::Netlist::build(prj, false);
     let bridged = crate::netlist::Netlist::build(prj, true);
