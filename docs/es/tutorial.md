@@ -32,6 +32,10 @@ pasos siguientes se pueden probar en él.
   escritorio lo guarda también como proyecto dividido (*Archivo › Guardar como proyecto
   dividido…*): una carpeta con el índice `<name>.oecp` y un archivo pequeño por página,
   dispositivo y artículo, de modo que un cambio solo toca los archivos a los que afecta.
+- *Archivo › Cerrar el proyecto* (Ctrl+Shift+F4) cierra el proyecto, pregunta si
+  guardar los cambios sin guardar y cierra sus páginas de esquema, disposiciones de
+  armario y herramientas: solo queda la página de inicio hasta que se abre o se empieza
+  un proyecto.
 
 ## 2. Páginas y estructura
 

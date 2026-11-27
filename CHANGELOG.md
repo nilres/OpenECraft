@@ -9,6 +9,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   colours keeps them in the glTF file, a primitive with its material per colour,
   instead of one colour for the whole device; the drives of machines keep theirs too
   ([#290](https://github.com/nilres/OpenECraft/issues/290)).
+- **Close project:** *File › Close project* (Ctrl+Shift+F4) closes the open project,
+  asks to save unsaved changes first, releases the pages of a project of the project
+  server and closes its schematic pages, panel layouts and tool windows: the start page
+  is left alone, and the commands that need a project wait until one is opened or
+  started ([tutorial](docs/tutorial.md#1-a-new-project)).
 - **Door opening angle and orbit direction of the 3D view:** the door of an enclosure
   opens as far as chosen, from 90° to 180°, beside *Open door* / *Close door* and in
   *File › Settings › Appearance*, so that it no longer blocks the view onto the
