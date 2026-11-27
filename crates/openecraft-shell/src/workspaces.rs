@@ -71,6 +71,10 @@ pub struct Layout {
     /// saved before panels could be docked.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub dock: String,
+    /// The windows of their own with panes (JSON, see `crate::pane_windows`); empty:
+    /// none.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub pane_windows: String,
     /// The ribbon customisation (JSON, see `crate::ribbon::Custom`); empty: unchanged.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub ribbon: String,

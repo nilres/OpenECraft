@@ -265,7 +265,7 @@ impl Shortcut {
     /// A key without Ctrl or Alt that the app only gives to the page (the others act
     /// in every pane).
     pub fn page_only(&self) -> bool {
-        !self.command && !self.alt && !matches!(self.key, Key::F1 | Key::F2 | Key::F4 | Key::F6 | Key::Insert | Key::PageUp | Key::PageDown)
+        !self.command && !self.alt && !matches!(self.key, Key::F1 | Key::F2 | Key::F4 | Key::F6 | Key::F11 | Key::Insert | Key::PageUp | Key::PageDown)
     }
 }
 

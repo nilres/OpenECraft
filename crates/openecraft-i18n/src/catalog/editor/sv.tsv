@@ -41,6 +41,7 @@
 3D macro	3D-makro
 3D macro {} inserted	3D-makro {} infogat
 3D macro {} saved	3D-makro {} sparat
+3D view in new window	3D-vy i nytt fönster
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = inte i schemat ännu
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baslinje lagrar hela projektet (sidor, apparater, artiklar, inställningar). När en revision frisläpps lagras en.
@@ -202,6 +203,7 @@ Automatic placement	Automatisk placering
 Automatic: {}	Automatiskt: {}
 Avoid:	Undvik:
 Back	Tillbaka
+Back to main window	Tillbaka till huvudfönstret
 Back to the project (Esc)	Tillbaka till projektet (Esc)
 Back-up up to (kA)	Back-up upp till (kA)
 Background	Bakgrund
@@ -235,6 +237,7 @@ Boundary	Gräns
 Boxes	Dosor
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brytförmåga mot kortslutningsströmmen vid varje skyddsdon i nätet, frånkoppling vid den lägsta felströmmen i slutet av dess krets, kablarnas kortslutningshållfasthet och selektivitet mot skyddsdonet före.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brygga: fyra ledare; förbindelsen kommer in på en sida och går till de tre andra, den motsatta sidan först
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Hämtar panelernas fönster till huvudfönstrets skärm (efter att en skärm kopplats bort)
 Building {} added with a level at ground level	Byggnad {} tillagd med en våning i marknivå
 Building {} at x {} m, z {} m	Byggnad {} vid x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	Byggnad {} vid x {} m, z {} m, vriden {}°
@@ -627,6 +630,7 @@ Door NC data (DXF)	NC-data för dörr (DXF)
 Door clearance	Dörrfrigång
 Door cutouts (CSV)	Dörrurtag (CSV)
 Door hinge	Dörrens gångjärn
+Door open	Dörr öppen
 Door opening angle	Dörrens öppningsvinkel
 Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
 Dot	Punkt
@@ -849,6 +853,7 @@ From the function definition	Från funktionsdefinitionen
 From the left end	Från vänster ände
 From the top left corner of the drawing area	Från ritytans övre vänstra hörn
 From – to	Från – till
+Full screen	Helskärm
 Fullest stretch	Fullaste sträcka
 Function definitions	Funktionsdefinitioner
 Function properties	Funktionsegenskaper
@@ -860,6 +865,7 @@ Further devices	Ytterligare apparater
 Further project settings	Övriga projektinställningar
 Gap	Mellanrum
 Gap between devices	Avstånd mellan apparater
+Gather windows	Samla fönstren
 Generate	Generera
 Generate all	Generera alla
 Generate pages	Generera sidor
@@ -913,6 +919,7 @@ Heights above floor (IEC 60204-1)	Höjder över golv (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Hålls ned vid klick, flytt eller rullning. Ctrl är Cmd i macOS.
 Help	Hjälp
 Hide PV modules	Dölj solcellsmoduler
+Hide the details, the buttons and the note	Dölj detaljerna, knapparna och anteckningen
 Hide the groups you do not need and put the commands you use most into own groups.	Dölj de grupper du inte behöver och lägg de mest använda kommandona i egna grupper.
 Highest phase unbalance	Högsta fasobalans
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Högsta spänning (tomgång vid lägsta temperatur), medel- och lägsta spänning (vid maximal effekt vid medel- och högsta temperatur), ström vid maximal effekt, toppeffekt
@@ -1220,6 +1227,7 @@ Move selection by	Flytta markeringen med
 Move selection by…	Flytta markeringen med…
 Move the devices of this page into the new structure	Flytta sidans apparater till den nya strukturen
 Move to section	Flytta till avsnitt
+Move to window	Flytta till fönster
 Move up	Flytta uppåt
 Move up in the 3D view (held)	Flytta uppåt i 3D-vyn (håll ned)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Flyttade symboler drar med sig sina ledningar och flyttade ledningar stannar kvar på anslutningspunkterna där de slutar. Alt nedtryckt under dragning vänder på det; att dra en ände av en markerad ledning kopplar loss den
@@ -1414,6 +1422,7 @@ Open cable ducts	Öppna kabelkanaler
 Open demo project	Öppna demoprojekt
 Open door	Öppna dörren
 Open in a new page tab	Öppna i en ny sidflik
+Open in new window	Öppna i nytt fönster
 Open link	Öppna länk
 Open local recovery copy	Öppna den lokala återställningskopian
 Open project	Öppna projekt
@@ -1500,6 +1509,7 @@ PV array {} lies outside the protection of the air-termination system	Solcellsf�
 PV array {} of building {}: {} modules	Solcellsfält {} i byggnad {}: {} moduler
 PV array {} of building {}: {} modules, {} kWp	Solcellsfält {} i byggnad {}: {} moduler, {} kWp
 PV arrays	Solcellsfält
+Page beside the 3D view	Sidan bredvid 3D-vyn
 Page conditions	Sidvillkor
 Page graphics	Sidgrafik
 Page heading	Sidrubrik
@@ -1679,6 +1689,7 @@ Put a room here	Placera ett rum här
 Put in	Infoga
 Put into the schematic	Lägg i schemat
 Put into the vault	Lägg i valvet
+Put the pane back into the main window	Lägg tillbaka panelen i huvudfönstret
 Put the pane back into the workspace	Lägg tillbaka panelen i arbetsytan
 Puts the project into the folder it was opened from	Lägger projektet i mappen som det öppnades från
 Quick guide	Snabbguide
@@ -2018,11 +2029,16 @@ Show in the schematic	Visa i schemat
 Show on the pages	Visa på sidorna
 Show or hide panes; drag a tab to dock it elsewhere	Visa eller dölj paneler; dra en flik för att docka den på annat ställe
 Show project manager	Visa projekthanteraren
+Show the details, the buttons and the note	Visa detaljerna, knapparna och anteckningen
 Show the enclosures bayed to this one as well	Visa även de kapslingar som är sammanbyggda med den här
 Show the messages accepted as checked	Visa de meddelanden som godkänts som kontrollerade
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Visa solcellsfältens moduler genomskinliga i 3D-vyn: modulernas inbördes ledningar under dem syns
 Show the other wires	Visa de andra ledningarna
 Show the pane as a window	Visa panelen som ett fönster
+Show the pane as a window inside the editor	Visa panelen som ett fönster i redigeraren
+Show the pane below its tabs	Visa panelen under dess flikar
+Show the pane beside its tabs	Visa panelen bredvid dess flikar
+Show the pane in a window of its own, to move to another monitor and maximize	Visa panelen i ett eget fönster som kan flyttas till en annan skärm och maximeras
 Show the ribbon	Visa menyfliksområdet
 Show this wire	Visa den här ledningen
 Show who may use the project	Visa vem som får använda projektet
@@ -2033,8 +2049,11 @@ Shown instead of the measured value	Visas i stället för det uppmätta värdet
 Shown now: {}	Visas nu: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Visas på försättsbladet och av bildelementen i namnrutor som visar projektets logotyp
 Shows	Visar
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Visar 3D-vyn av skåpslayouten i ett eget fönster som kan flyttas till en annan skärm och maximeras
 Shows the differences of your version to the open project; selected ones can be taken over	Visar skillnaderna mellan din version och det öppna projektet; valda kan tas över
+Shows the page and the 3D view side by side in this workspace	Visar sidan och 3D-vyn sida vid sida i den här arbetsytan
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Visar egenskaperna som är sparade på projektservern; du ändrar dem här om du får och ingen har låst projektdata
+Shows the window in use full screen; F11 again ends it	Visar fönstret som används i helskärm; F11 igen avslutar det
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sidoväggar, bakvägg, tak och botten sedda utifrån: fläktar, kabelförskruvningar, urtag
 Sign in in the Project server pane; the project opens afterwards	Logga in i fönstret Projektserver; sedan öppnas projektet
 Sign in…	Logga in…
@@ -2064,6 +2083,8 @@ Space kept free of routes, or for one class only: click two corners	Utrymme som 
 Spare terminals	Reservplintar
 Special text	Specialtext
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Specialtext: projekt- och sidegenskaper som {page} eller {prop:Name} fylls i när sidan ritas
+Split down	Dela nedåt
+Split right	Dela åt höger
 Stairs	Trappor
 Stamp	Stämpel
 Standard form of the report	Rapportens standardformulär
@@ -2114,6 +2135,7 @@ Sums the column in a row below the last row of the report	Summerar kolumnen i en
 Supply and conditions	Matning och förhållanden
 Surge protection	Överspänningsskydd
 Swing the enclosure door open or shut (door devices and their wires move with it)	Sväng upp eller stäng kapslingsdörren (dörrapparater och deras ledningar följer med)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Sväng skåpsdörren öppen eller stängd (dörrapparater och deras ledare följer med); vinkeln finns i högerklicksmenyn
 Switch off the check \"{}\"	Stäng av kontrollen \"{}\"
 Switched off on this computer ({})	Avstängt på den här datorn ({})
 Switches	Strömbrytare
@@ -2192,6 +2214,7 @@ The dictionary is empty: collect the texts from the project.	Ordlistan är tom: 
 The door seen from the front: door devices and cutouts	Dörren sedd framifrån: dörrapparater och urtag
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Dörren sedd inifrån (speglad): kabelkanaler och ledningarna bakom dörren
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Elementet ritas bara när denna text med sina platshållare inte är tom, t.ex. raderna i en revisionstabell
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Skåpet eller rummet som visas (dess namn) och vyn: en sida, planritningen eller 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin vänstra sida mot den valdas högra sida; ledningar går mellan dem genom kabelgenomföringar
 The horizontal wire	Den vågräta ledningen
 The items are selected and moved together	Objekten markeras och flyttas tillsammans
@@ -2389,6 +2412,8 @@ Width × height × depth	Bredd × höjd × djup
 Window macro: {}	Fönstermakro: {}
 Window macros inserted from now on are recorded as macro boxes.	Fönstermakron som infogas från och med nu registreras som makrorutor.
 Window macros placed on the pages (not printed)	Fönstermakron som placerats på sidorna (skrivs inte ut)
+Window {}	Fönster {}
+Windows	Fönster
 Wire colour	Ledarfärg
 Wire crossings	Ledningskorsningar
 Wire crossings…	Ledningskorsningar…

@@ -47,6 +47,14 @@ impl App {
     }
 
     pub(super) fn wiring_workbench_pane(&mut self, ui: &mut egui::Ui) {
+        // Hidden details stay hidden in both assistants and in the next session.
+        self.wiring_ui.details_hidden = self.shell.workbench_details_hidden;
+        self.mounting_ui.details_hidden = self.shell.workbench_details_hidden;
+        self.workbench(ui);
+        self.shell.workbench_details_hidden = if self.mounting_ui.active { self.mounting_ui.details_hidden } else { self.wiring_ui.details_hidden };
+    }
+
+    fn workbench(&mut self, ui: &mut egui::Ui) {
         if self.mounting_ui.active {
             self.mounting_ui.workbench(ui, &mut self.session.prj, &self.session.analysis, &mut self.panel_ui);
         } else {

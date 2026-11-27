@@ -140,6 +140,10 @@ pub enum Cmd {
     SavedWorkspaces,
     SaveWorkspace,
     ResetLayout,
+    View3dInWindow,
+    PageBeside3d,
+    GatherWindows,
+    FullScreen,
     Theme,
     UiScale,
     Language,
@@ -251,6 +255,7 @@ pub enum Cmd {
     LayoutDuctFill,
     LayoutHeat,
     LayoutLineup,
+    LayoutDoorOpen,
     LayoutSite,
     LayoutBuilding,
     LayoutPlotBoundary,
@@ -619,6 +624,12 @@ pub static ALL: &[Def] = &[
     d(C::SaveWorkspace, "save_workspace", tr_const!("Save workspace…"), I::Save)
         .tip(tr_const!("Saves the workspace, the arrangement of the panels and the open windows")),
     d(C::ResetLayout, "reset_layout", tr_const!("Reset pane layout"), I::Panes).tip(tr_const!("Puts the panes of this workspace back at their default places and closes its floating panes")),
+    d(C::View3dInWindow, "view_3d_in_window", tr_const!("3D view in new window"), I::Float)
+        .tip(tr_const!("Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize")),
+    d(C::PageBeside3d, "page_beside_3d", tr_const!("Page beside the 3D view"), I::SplitRight).tip(tr_const!("Shows the page and the 3D view side by side in this workspace")),
+    d(C::GatherWindows, "gather_windows", tr_const!("Gather windows"), I::Windows)
+        .tip(tr_const!("Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)")),
+    d(C::FullScreen, "full_screen", tr_const!("Full screen"), I::FullScreen).keys("F11").tip(tr_const!("Shows the window in use full screen; F11 again ends it")),
     d(C::Theme, "theme", tr_const!("Theme"), I::Theme).menu(),
     d(C::UiScale, "ui_scale", tr_const!("UI scale"), I::Scale).menu(),
     d(C::Language, "language", tr_const!("Language"), I::Language).menu(),
@@ -827,6 +838,9 @@ pub static ALL: &[Def] = &[
         .toggle()
         .tip(tr_const!("Estimated air temperature in front of the mounting plate (power loss of the devices, climate)")),
     d(C::LayoutLineup, "layout_lineup", tr_const!("Line-up"), I::Workspace).toggle().tip(tr_const!("Show the enclosures bayed to this one as well")),
+    d(C::LayoutDoorOpen, "layout_door_open", tr_const!("Door open"), I::Door)
+        .toggle()
+        .tip(tr_const!("Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click")),
     d(C::LayoutSite, "layout_all_enclosures", tr_const!("All enclosures"), I::Eye)
         .toggle()
         .tip(tr_const!("Show all enclosures side by side at their places in the room")),
@@ -898,6 +912,7 @@ pub fn acts_in_layout_view(cmd: Cmd) -> bool {
             | C::LayoutDuctFill
             | C::LayoutHeat
             | C::LayoutLineup
+            | C::LayoutDoorOpen
             | C::LayoutSite
             | C::LayoutBuilding
             | C::LayoutHideFrontWalls

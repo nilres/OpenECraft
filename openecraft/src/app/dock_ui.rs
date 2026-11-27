@@ -1,16 +1,24 @@
 //! The docked panes (see `crate::dock`): every pane drawn by the app, its tab title,
-//! the pane menu (float, close, help), the page tabs above the page and the panes
-//! floating as windows.
+//! the pane menu (split, float, windows, close, help), the page tabs above the page and
+//! the panes floating as windows.
 
 use super::*;
 use crate::dock::{self, Pane};
 
 /// What the pane menu of a tab bar asked for.
-enum PaneRequest {
+pub(super) enum PaneRequest {
     Show(Pane),
     Float(Pane),
     Close(Pane),
     Help(Pane),
+    /// Beside its tabs: on the right (`Horizontal`) or below.
+    Split(Pane, egui_tiles::LinearDir),
+    /// Into a window of its own.
+    NewWindow(Pane),
+    /// Into the window of panes with this id.
+    MoveTo(Pane, u32),
+    /// Out of its window into the main window.
+    Back(Pane),
 }
 
 /// Draws the panes of the tile tree with the app.
@@ -21,6 +29,10 @@ struct Docked<'a> {
     documents: usize,
     /// Tabs of bars too narrow for their titles: icons with tooltips instead.
     compact: Vec<egui_tiles::TileId>,
+    /// The window of panes drawn (`None`: the main window).
+    host: Option<u32>,
+    /// The windows of panes there are.
+    windows: Vec<u32>,
 }
 
 /// Draws a tab the way egui_tiles does (the title, the close button, dragging) with
@@ -116,12 +128,48 @@ impl egui_tiles::Behavior<Pane> for Docked<'_> {
         let compact = tabs.children.len() > 1 && needed > ui.available_width() - 34.0;
         ui.add_space(4.0);
         let r = icons::button(ui, Icon::Dots, tr("Pane menu"));
+        let closable = self.host.is_some() || (pane != Pane::Page && (!pane.is_document() || self.documents > 1));
+        let own_windows = self.app.own_windows;
         egui::Popup::menu(&r).show(|ui| {
-            if icons::text_button(ui, Icon::Float, tr("Float")).on_hover_text(tr("Show the pane as a window")).clicked() {
+            if tabs.children.len() > 1 {
+                if icons::text_button(ui, Icon::SplitRight, tr("Split right")).on_hover_text(tr("Show the pane beside its tabs")).clicked() {
+                    self.request = Some(PaneRequest::Split(pane, egui_tiles::LinearDir::Horizontal));
+                    ui.close();
+                }
+                if icons::text_button(ui, Icon::SplitDown, tr("Split down")).on_hover_text(tr("Show the pane below its tabs")).clicked() {
+                    self.request = Some(PaneRequest::Split(pane, egui_tiles::LinearDir::Vertical));
+                    ui.close();
+                }
+                ui.separator();
+            }
+            if self.host.is_none() && icons::text_button(ui, Icon::Float, tr("Float")).on_hover_text(tr("Show the pane as a window inside the editor")).clicked() {
                 self.request = Some(PaneRequest::Float(pane));
                 ui.close();
             }
-            if pane != Pane::Page && (!pane.is_document() || self.documents > 1) && icons::text_button(ui, Icon::Close, tr("Close")).clicked() {
+            // The page stays in the main window with the ribbon.
+            if own_windows && closable && pane != Pane::Page {
+                let alone = self.host.is_some() && tabs.children.len() == 1 && self.documents_in_window(tiles) == 1;
+                if !alone && icons::text_button(ui, Icon::Float, tr("Open in new window")).on_hover_text(tr("Show the pane in a window of its own, to move to another monitor and maximize")).clicked() {
+                    self.request = Some(PaneRequest::NewWindow(pane));
+                    ui.close();
+                }
+                let others: Vec<u32> = self.windows.iter().copied().filter(|w| Some(*w) != self.host).collect();
+                if !others.is_empty() {
+                    ui.menu_button(tr("Move to window"), |ui| {
+                        for w in others {
+                            if ui.button(tr_fmt!("Window {}", w)).clicked() {
+                                self.request = Some(PaneRequest::MoveTo(pane, w));
+                                ui.close();
+                            }
+                        }
+                    });
+                }
+                if self.host.is_some() && icons::text_button(ui, Icon::Panes, tr("Back to main window")).on_hover_text(tr("Put the pane back into the main window")).clicked() {
+                    self.request = Some(PaneRequest::Back(pane));
+                    ui.close();
+                }
+            }
+            if closable && icons::text_button(ui, Icon::Close, tr("Close")).clicked() {
                 self.request = Some(PaneRequest::Close(pane));
                 ui.close();
             }
@@ -157,42 +205,85 @@ impl egui_tiles::Behavior<Pane> for Docked<'_> {
     }
 }
 
+impl Docked<'_> {
+    /// The panes of the window drawn.
+    fn documents_in_window(&self, tiles: &egui_tiles::Tiles<Pane>) -> usize {
+        tiles.tiles().filter(|t| matches!(t, egui_tiles::Tile::Pane(_))).count()
+    }
+}
+
 impl App {
     /// The panes of the workspace as the user arranged them.
     pub(super) fn docked(&mut self, ui: &mut egui::Ui, idx: &Index) {
         let mut tree = std::mem::replace(&mut self.dock, egui_tiles::Tree::empty(egui::Id::unique("dock_swap")));
-        let documents = dock::panes(&tree).iter().filter(|p| p.is_document()).count();
+        let request = self.tree_ui(ui, idx, &mut tree, None);
+        if tree.root().is_none() || dock::panes(&tree).is_empty() {
+            tree = dock::default_tree_for(self.workspace);
+        }
+        self.dock = tree;
+        // A click on a tab shows another document: keys and the status bar follow it.
+        if !self.floating.contains(&self.active_doc) && self.shell.windows.find(self.active_doc).is_none() {
+            self.active_doc = dock::shown_document(&self.dock, self.active_doc);
+        }
+        if let Some(r) = request {
+            self.pane_request(r, None);
+        }
+    }
+
+    /// Draws a tree of panes: the main window's (`host` `None`) or a window's of panes.
+    pub(super) fn tree_ui(&mut self, ui: &mut egui::Ui, idx: &Index, tree: &mut egui_tiles::Tree<Pane>, host: Option<u32>) -> Option<PaneRequest> {
+        // In a window every pane can be closed: the main window keeps the documents.
+        let documents = if host.is_some() { 2 } else { dock::panes(tree).iter().filter(|p| p.is_document()).count() };
+        let windows = self.shell.windows.ids();
+        let was = self.in_dock;
         self.in_dock = true;
-        let mut behavior = Docked { app: self, idx, request: None, documents, compact: Vec::new() };
+        let mut behavior = Docked { app: self, idx, request: None, documents, compact: Vec::new(), host, windows };
         tree.ui(&mut behavior, ui);
         let request = behavior.request.take();
-        self.in_dock = false;
+        self.in_dock = was;
         // egui_tiles shows the grab hand over tabs, which Windows draws as the move cross.
         ui.ctx().output_mut(|o| {
             if o.cursor_icon == egui::CursorIcon::Grab {
                 o.cursor_icon = egui::CursorIcon::Default;
             }
         });
-        if tree.root().is_none() || dock::panes(&tree).is_empty() {
-            tree = dock::default_tree_for(self.workspace);
-        }
-        self.dock = tree;
-        // A click on a tab shows another document: keys and the status bar follow it.
-        if !self.floating.contains(&self.active_doc) {
-            self.active_doc = dock::shown_document(&self.dock, self.active_doc);
-        }
+        request
+    }
+
+    /// Does what the pane menu of the main window (`host` `None`) or of a window of
+    /// panes asked for.
+    pub(super) fn pane_request(&mut self, request: PaneRequest, host: Option<u32>) {
         match request {
-            Some(PaneRequest::Show(p)) => self.show_pane(p),
-            Some(PaneRequest::Float(p)) => {
+            PaneRequest::Show(p) => self.show_pane(p),
+            PaneRequest::Float(p) => {
                 dock::close(&mut self.dock, p);
                 if dock::find(&self.dock, p).is_none() {
                     self.shell.placement.set(p, true);
                     self.show_pane(p);
                 }
             }
-            Some(PaneRequest::Close(p)) => dock::close(&mut self.dock, p),
-            Some(PaneRequest::Help(p)) => self.help_for(p),
-            None => {}
+            PaneRequest::Close(p) if host.is_some() => self.shell.windows.remove(p),
+            PaneRequest::Close(p) => dock::close(&mut self.dock, p),
+            PaneRequest::Help(p) => self.help_for(p),
+            PaneRequest::Split(p, dir) => {
+                let tree = match host {
+                    None => Some(&mut self.dock),
+                    Some(id) => self.shell.windows.get_mut(id).map(|w| &mut w.tree),
+                };
+                if let Some(tree) = tree {
+                    dock::split(tree, p, dir);
+                }
+            }
+            PaneRequest::NewWindow(p) => self.open_in_window(p),
+            PaneRequest::MoveTo(p, id) => {
+                if self.shell.windows.move_to(&mut self.dock, p, id) {
+                    self.raise_window = Some(id);
+                }
+            }
+            PaneRequest::Back(p) => {
+                self.shell.windows.back(&mut self.dock, p);
+                self.show_pane(p);
+            }
         }
     }
 
@@ -200,7 +291,7 @@ impl App {
     /// the workspace (and they open docked from then on).
     pub(super) fn floating_panes(&mut self, ctx: &egui::Context) {
         // A pane docked in the workspace switched to is shown there only.
-        self.floating.retain(|p| dock::find(&self.dock, *p).is_none());
+        self.floating.retain(|p| dock::find(&self.dock, *p).is_none() && self.shell.windows.find(*p).is_none());
         if self.closed {
             self.floating.retain(|p| !crate::commands::pane_needs_project(*p));
         }
@@ -209,6 +300,7 @@ impl App {
         for (i, pane) in self.floating.clone().into_iter().enumerate() {
             let mut open = true;
             let mut dock_back = false;
+            let mut own_window = false;
             let title = self.pane_title(pane).text().to_string();
             let id = egui::Id::unique(("floating", pane));
             let [w, h] = match pane {
@@ -230,11 +322,16 @@ impl App {
                     if icons::text_button(ui, Icon::Panes, tr("Dock")).on_hover_text(tr("Put the pane back into the workspace")).clicked() {
                         dock_back = true;
                     }
+                    if self.own_windows && icons::text_button(ui, Icon::Float, tr("Open in new window")).on_hover_text(tr("Show the pane in a window of its own, to move to another monitor and maximize")).clicked() {
+                        own_window = true;
+                    }
                 });
                 ui.separator();
                 self.pane_ui(ui, pane, &idx);
             });
-            if !open || dock_back {
+            if own_window {
+                self.open_in_window(pane);
+            } else if !open || dock_back {
                 self.floating.retain(|p| *p != pane);
                 if !open {
                     // The flag that asked for the pane would open it again next frame.

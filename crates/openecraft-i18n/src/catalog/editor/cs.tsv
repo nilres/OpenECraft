@@ -41,6 +41,7 @@
 3D macro	3D makro
 3D macro {} inserted	3D makro {} vloženo
 3D macro {} saved	3D makro {} uloženo
+3D view in new window	3D pohled v novém okně
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = zatím není ve schématu
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Základní verze uchovává celý projekt (stránky, přístroje, artikly, nastavení). Uvolnění revize jednu vytvoří.
@@ -202,6 +203,7 @@ Automatic placement	Automatické umístění
 Automatic: {}	Automaticky: {}
 Avoid:	Vyhnout se:
 Back	Zpět
+Back to main window	Zpět do hlavního okna
 Back to the project (Esc)	Zpět k projektu (Esc)
 Back-up up to (kA)	Záložní do (kA)
 Background	Pozadí
@@ -235,6 +237,7 @@ Boundary	Hranice
 Boxes	Krabice
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Vypínací schopnost vůči zkratovému proudu u každého ochranného přístroje sítě, odpojení při nejnižším poruchovém proudu na konci jeho obvodu, zkratová odolnost kabelů a selektivita s předřazeným přístrojem.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Most: čtyři vodiče; spojení přichází z jedné strany a jde ke třem ostatním, nejprve k protilehlé
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Přenese okna panelů na monitor hlavního okna (po odpojení monitoru)
 Building {} added with a level at ground level	Budova {} přidána s podlažím v úrovni terénu
 Building {} at x {} m, z {} m	Budova {} na x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	Budova {} na x {} m, z {} m, otočená o {}°
@@ -627,6 +630,7 @@ Door NC data (DXF)	Data NC dveří (DXF)
 Door clearance	Volný prostor u dveří
 Door cutouts (CSV)	Výřezy ve dveřích (CSV)
 Door hinge	Závěsy dveří
+Door open	Dveře otevřené
 Door opening angle	Úhel otevření dveří
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
@@ -849,6 +853,7 @@ From the function definition	Z definice funkce
 From the left end	Od levého konce
 From the top left corner of the drawing area	Od levého horního rohu kreslicí plochy
 From – to	Od – do
+Full screen	Celá obrazovka
 Fullest stretch	Nejplnější úsek
 Function definitions	Definice funkcí
 Function properties	Vlastnosti funkce
@@ -860,6 +865,7 @@ Further devices	Další přístroje
 Further project settings	Další nastavení projektu
 Gap	Mezera
 Gap between devices	Mezera mezi přístroji
+Gather windows	Shromáždit okna
 Generate	Vytvořit
 Generate all	Vytvořit vše
 Generate pages	Generovat stránky
@@ -913,6 +919,7 @@ Heights above floor (IEC 60204-1)	Výšky nad podlahou (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Drží se při klepnutí, přesouvání nebo posouvání. Ctrl je v macOS Cmd.
 Help	Nápověda
 Hide PV modules	Skrýt FV moduly
+Hide the details, the buttons and the note	Skrýt podrobnosti, tlačítka a poznámku
 Hide the groups you do not need and put the commands you use most into own groups.	Skryjte skupiny, které nepotřebujete, a nejpoužívanější příkazy dejte do vlastních skupin.
 Highest phase unbalance	Nejvyšší nesymetrie fází
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Nejvyšší napětí (naprázdno při nejnižší teplotě), střední a nejnižší napětí (při maximálním výkonu při střední a nejvyšší teplotě), proud při maximálním výkonu, špičkový výkon
@@ -1220,6 +1227,7 @@ Move selection by	Posunout výběr o
 Move selection by…	Posunout výběr o…
 Move the devices of this page into the new structure	Přesunout přístroje této stránky do nové struktury
 Move to section	Přesunout do oddílu
+Move to window	Přesunout do okna
 Move up	Posunout nahoru
 Move up in the 3D view (held)	Pohyb nahoru v 3D pohledu (držet)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Přesouvané symboly táhnou své vodiče s sebou a přesouvané vodiče zůstávají na přípojných bodech, kde končí. Držení Alt při tažení to obrátí; tažení konce vybraného vodiče jej odpojí
@@ -1414,6 +1422,7 @@ Open cable ducts	Otevřít kabelové kanály
 Open demo project	Otevřít ukázkový projekt
 Open door	Otevřít dveře
 Open in a new page tab	Otevřít v nové kartě stránky
+Open in new window	Otevřít v novém okně
 Open link	Otevřít odkaz
 Open local recovery copy	Otevřít místní obnovovací kopii
 Open project	Otevřít projekt
@@ -1500,6 +1509,7 @@ PV array {} lies outside the protection of the air-termination system	FV pole {}
 PV array {} of building {}: {} modules	FV pole {} budovy {}: {} modulů
 PV array {} of building {}: {} modules, {} kWp	FV pole {} budovy {}: {} modulů, {} kWp
 PV arrays	FV pole
+Page beside the 3D view	Stránka vedle 3D pohledu
 Page conditions	Podmínky stránek
 Page graphics	Grafika stránky
 Page heading	Nadpis stránky
@@ -1679,6 +1689,7 @@ Put a room here	Umístit sem místnost
 Put in	Vložit
 Put into the schematic	Vložit do schématu
 Put into the vault	Uložit do trezoru Vault
+Put the pane back into the main window	Vrátit panel zpět do hlavního okna
 Put the pane back into the workspace	Vrátit panel do pracovního prostoru
 Puts the project into the folder it was opened from	Uloží projekt do složky, ze které byl otevřen
 Quick guide	Stručný průvodce
@@ -2018,11 +2029,16 @@ Show in the schematic	Zobrazit ve schématu
 Show on the pages	Zobrazit na stránkách
 Show or hide panes; drag a tab to dock it elsewhere	Zobrazit nebo skrýt panely; přetažením karty ji ukotvíte jinde
 Show project manager	Zobrazit správce projektů
+Show the details, the buttons and the note	Zobrazit podrobnosti, tlačítka a poznámku
 Show the enclosures bayed to this one as well	Zobrazit i skříně připojené do řady k této
 Show the messages accepted as checked	Zobrazit hlášení přijatá jako zkontrolovaná
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Zobrazit moduly FV polí ve 3D pohledu průhledně: je vidět propojení modulů pod nimi
 Show the other wires	Zobrazit ostatní vodiče
 Show the pane as a window	Zobrazit panel jako okno
+Show the pane as a window inside the editor	Zobrazit panel jako okno uvnitř editoru
+Show the pane below its tabs	Zobrazit panel pod jeho kartami
+Show the pane beside its tabs	Zobrazit panel vedle jeho karet
+Show the pane in a window of its own, to move to another monitor and maximize	Zobrazit panel ve vlastním okně, které lze přesunout na jiný monitor a maximalizovat
 Show the ribbon	Zobrazit pás karet
 Show this wire	Zobrazit tento vodič
 Show who may use the project	Zobrazit, kdo smí projekt používat
@@ -2033,8 +2049,11 @@ Shown instead of the measured value	Zobrazí se místo naměřené hodnoty
 Shown now: {}	Nyní zobrazeno: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Zobrazuje se na titulním listu a v obrázkových prvcích razítek, které zobrazují logo projektu
 Shows	Zobrazuje
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Zobrazí 3D pohled rozvaděče ve vlastním okně, které lze přesunout na jiný monitor a maximalizovat
 Shows the differences of your version to the open project; selected ones can be taken over	Zobrazí rozdíly vaší verze oproti otevřenému projektu; vybrané lze převzít
+Shows the page and the 3D view side by side in this workspace	Zobrazí stránku a 3D pohled vedle sebe v tomto pracovním prostoru
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Zobrazí vlastnosti uložené na projektovém serveru; změníte je zde, pokud smíte a nikdo nezamkl data projektu
+Shows the window in use full screen; F11 again ends it	Zobrazí používané okno na celou obrazovku; opětovné F11 to ukončí
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Boční stěny, zadní stěna, střecha a dno při pohledu zvenku: ventilátory, kabelové vývodky, výřezy
 Sign in in the Project server pane; the project opens afterwards	Přihlaste se v podokně Server projektů; poté se projekt otevře
 Sign in…	Přihlásit se…
@@ -2064,6 +2083,8 @@ Space kept free of routes, or for one class only: click two corners	Prostor bez 
 Spare terminals	Rezervní svorky
 Special text	Speciální text
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Speciální text: vlastnosti projektu a stránky jako {page} nebo {prop:Name} se doplní při vykreslení stránky
+Split down	Rozdělit dolů
+Split right	Rozdělit vpravo
 Stairs	Schodiště
 Stamp	Razítko
 Standard form of the report	Standardní formulář výkazu
@@ -2114,6 +2135,7 @@ Sums the column in a row below the last row of the report	Sečte sloupec v řád
 Supply and conditions	Napájení a podmínky
 Surge protection	Přepěťová ochrana
 Swing the enclosure door open or shut (door devices and their wires move with it)	Otevřít nebo zavřít dveře skříně (přístroje ve dveřích a jejich vodiče se otáčejí s nimi)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Otevřít nebo zavřít dveře rozvaděče (přístroje na dveřích a jejich vodiče se pohybují s nimi); úhel je v nabídce pravého kliknutí
 Switch off the check \"{}\"	Vypnout kontrolu \"{}\"
 Switched off on this computer ({})	Vypnuto na tomto počítači ({})
 Switches	Spínače
@@ -2192,6 +2214,7 @@ The dictionary is empty: collect the texts from the project.	Slovník je prázdn
 The door seen from the front: door devices and cutouts	Dveře zepředu: přístroje ve dveřích a výřezy
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Dveře zevnitř (zrcadlově): kabelové kanály a zapojení za dveřmi
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Prvek se kreslí jen tehdy, když tento text se zástupnými symboly není prázdný, např. řádky tabulky revizí
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Zobrazený rozvaděč nebo místnost (název) a pohled: strana, půdorys nebo 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Skříň stojí levou stranou u pravé strany zvolené skříně; vodiče mezi nimi vedou kabelovými průchodkami
 The horizontal wire	Vodorovný vodič
 The items are selected and moved together	Prvky se vybírají a přesouvají společně
@@ -2389,6 +2412,8 @@ Width × height × depth	Šířka × výška × hloubka
 Window macro: {}	Makro okna: {}
 Window macros inserted from now on are recorded as macro boxes.	Okenní makra vložená od této chvíle se zaznamenávají jako rámečky maker.
 Window macros placed on the pages (not printed)	Okenní makra umístěná na stránkách (netisknou se)
+Window {}	Okno {}
+Windows	Okna
 Wire colour	Barva vodiče
 Wire crossings	Křížení vodičů
 Wire crossings…	Křížení vodičů…

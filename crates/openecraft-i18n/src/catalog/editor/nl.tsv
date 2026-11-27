@@ -41,6 +41,7 @@
 3D macro	3D-macro
 3D macro {} inserted	3D-macro {} ingevoegd
 3D macro {} saved	3D-macro {} opgeslagen
+3D view in new window	3D-weergave in nieuw venster
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = nog niet in het schema
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Een baseline slaat het hele project op (pagina's, apparaten, artikelen, instellingen). Bij het vrijgeven van een revisie wordt er een opgeslagen.
@@ -202,6 +203,7 @@ Automatic placement	Automatische plaatsing
 Automatic: {}	Automatisch: {}
 Avoid:	Vermijden:
 Back	Terug
+Back to main window	Terug naar het hoofdvenster
 Back to the project (Esc)	Terug naar het project (Esc)
 Back-up up to (kA)	Back-up tot (kA)
 Background	Achtergrond
@@ -235,6 +237,7 @@ Boundary	Grens
 Boxes	Dozen
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Uitschakelvermogen ten opzichte van de kortsluitstroom bij elk beveiligingsapparaat van het net, uitschakeling bij de laagste foutstroom aan het einde van de stroomkring, kortsluitvastheid van de kabels en selectiviteit met het voorgeschakelde apparaat.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brug: vier draden; de verbinding komt aan één zijde binnen en gaat naar de drie andere, eerst de tegenoverliggende
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Haalt de vensters van de deelvensters naar de monitor van het hoofdvenster (nadat een monitor is losgekoppeld)
 Building {} added with a level at ground level	Gebouw {} toegevoegd met een verdieping op maaiveldhoogte
 Building {} at x {} m, z {} m	Gebouw {} op x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	Gebouw {} op x {} m, z {} m, {}° gedraaid
@@ -627,6 +630,7 @@ Door NC data (DXF)	NC-gegevens deur (DXF)
 Door clearance	Deurvrijruimte
 Door cutouts (CSV)	Deuruitsparingen (CSV)
 Door hinge	Deurscharnieren
+Door open	Deur open
 Door opening angle	Openingshoek van de deur
 Door: {} devices, {} cutouts	Deur: {} apparaten, {} uitsparingen
 Dot	Punt
@@ -849,6 +853,7 @@ From the function definition	Uit de functiedefinitie
 From the left end	Vanaf het linkeruiteinde
 From the top left corner of the drawing area	Vanaf de linkerbovenhoek van het tekengebied
 From – to	Van – tot
+Full screen	Volledig scherm
 Fullest stretch	Volste gedeelte
 Function definitions	Functiedefinities
 Function properties	Functie-eigenschappen
@@ -860,6 +865,7 @@ Further devices	Verdere apparaten
 Further project settings	Overige projectinstellingen
 Gap	Tussenruimte
 Gap between devices	Afstand tussen apparaten
+Gather windows	Vensters verzamelen
 Generate	Genereren
 Generate all	Alles genereren
 Generate pages	Pagina's genereren
@@ -913,6 +919,7 @@ Heights above floor (IEC 60204-1)	Hoogten boven vloer (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ingedrukt bij klikken, verplaatsen of scrollen. Ctrl is Cmd op macOS.
 Help	Help
 Hide PV modules	PV-modules verbergen
+Hide the details, the buttons and the note	De details, de knoppen en de notitie verbergen
 Hide the groups you do not need and put the commands you use most into own groups.	Verberg de groepen die u niet nodig hebt en zet de meest gebruikte opdrachten in eigen groepen.
 Highest phase unbalance	Hoogste fase-onbalans
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Hoogste spanning (nullast bij de laagste temperatuur), gemiddelde en laagste spanning (bij maximaal vermogen bij de gemiddelde en de hoogste temperatuur), stroom bij maximaal vermogen, piekvermogen
@@ -1220,6 +1227,7 @@ Move selection by	Selectie verplaatsen met
 Move selection by…	Selectie verplaatsen met…
 Move the devices of this page into the new structure	De apparaten van deze pagina naar de nieuwe structuur verplaatsen
 Move to section	Naar sectie verplaatsen
+Move to window	Naar venster verplaatsen
 Move up	Omhoog
 Move up in the 3D view (held)	Omhoog bewegen in de 3D-weergave (ingedrukt houden)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Verplaatste symbolen trekken hun draden mee en verplaatste draden blijven op de aansluitpunten waar ze eindigen. Alt ingedrukt tijdens het slepen keert dit om; een uiteinde van een geselecteerde draad slepen maakt het los
@@ -1414,6 +1422,7 @@ Open cable ducts	Kabelgoten openen
 Open demo project	Demoproject openen
 Open door	Deur openen
 Open in a new page tab	In een nieuw paginatabblad openen
+Open in new window	Openen in nieuw venster
 Open link	Koppeling openen
 Open local recovery copy	Lokale herstelkopie openen
 Open project	Project openen
@@ -1500,6 +1509,7 @@ PV array {} lies outside the protection of the air-termination system	PV-veld {}
 PV array {} of building {}: {} modules	PV-veld {} van gebouw {}: {} modules
 PV array {} of building {}: {} modules, {} kWp	PV-veld {} van gebouw {}: {} modules, {} kWp
 PV arrays	PV-velden
+Page beside the 3D view	Pagina naast de 3D-weergave
 Page conditions	Paginavoorwaarden
 Page graphics	Paginagrafiek
 Page heading	Paginakop
@@ -1679,6 +1689,7 @@ Put a room here	Ruimte hier plaatsen
 Put in	Plaatsen
 Put into the schematic	In het schema zetten
 Put into the vault	In de vault plaatsen
+Put the pane back into the main window	Het deelvenster terugzetten in het hoofdvenster
 Put the pane back into the workspace	Het paneel terugzetten in de werkruimte
 Puts the project into the folder it was opened from	Plaatst het project in de map waaruit het is geopend
 Quick guide	Snelgids
@@ -2018,11 +2029,16 @@ Show in the schematic	Weergeven in het schema
 Show on the pages	Weergeven op de pagina's
 Show or hide panes; drag a tab to dock it elsewhere	Panelen tonen of verbergen; sleep een tabblad om het elders vast te zetten
 Show project manager	Projectbeheer tonen
+Show the details, the buttons and the note	De details, de knoppen en de notitie tonen
 Show the enclosures bayed to this one as well	Ook de behuizingen weergeven die aan deze zijn gekoppeld
 Show the messages accepted as checked	De als gecontroleerd geaccepteerde meldingen weergeven
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	De modules van de PV-velden doorzichtig tonen in de 3D-weergave: de bedrading van de modules onderling eronder wordt zichtbaar
 Show the other wires	De andere draden weergeven
 Show the pane as a window	Het paneel als venster tonen
+Show the pane as a window inside the editor	Het deelvenster als venster in de editor tonen
+Show the pane below its tabs	Het deelvenster onder zijn tabbladen tonen
+Show the pane beside its tabs	Het deelvenster naast zijn tabbladen tonen
+Show the pane in a window of its own, to move to another monitor and maximize	Het deelvenster in een eigen venster tonen, om naar een andere monitor te verplaatsen en te maximaliseren
 Show the ribbon	Het lint tonen
 Show this wire	Deze draad weergeven
 Show who may use the project	Weergeven wie het project mag gebruiken
@@ -2033,8 +2049,11 @@ Shown instead of the measured value	Wordt weergegeven in plaats van de gemeten w
 Shown now: {}	Nu getoond: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Getoond op het voorblad en door de afbeeldingselementen van titelblokken die het projectlogo tonen
 Shows	Toont
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Toont de 3D-weergave van de kastopbouw in een eigen venster, om naar een andere monitor te verplaatsen en te maximaliseren
 Shows the differences of your version to the open project; selected ones can be taken over	Toont de verschillen van je versie met het geopende project; geselecteerde kunnen worden overgenomen
+Shows the page and the 3D view side by side in this workspace	Toont de pagina en de 3D-weergave naast elkaar in deze werkruimte
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Toont de eigenschappen die op de projectserver zijn opgeslagen; je wijzigt ze hier als je dat mag en niemand de projectgegevens heeft vergrendeld
+Shows the window in use full screen; F11 again ends it	Toont het gebruikte venster op het volledige scherm; F11 opnieuw beëindigt het
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Zijwanden, achterwand, dak en bodem gezien van buiten: ventilatoren, kabelwartels, uitsparingen
 Sign in in the Project server pane; the project opens afterwards	Meld u aan in het deelvenster Projectserver; daarna opent het project
 Sign in…	Aanmelden…
@@ -2064,6 +2083,8 @@ Space kept free of routes, or for one class only: click two corners	Ruimte die v
 Spare terminals	Reserveklemmen
 Special text	Speciale tekst
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Speciale tekst: project- en pagina-eigenschappen zoals {page} of {prop:Name} worden ingevuld wanneer de pagina wordt getekend
+Split down	Onder splitsen
+Split right	Rechts splitsen
 Stairs	Trappen
 Stamp	Stempel
 Standard form of the report	Standaardformulier van het rapport
@@ -2114,6 +2135,7 @@ Sums the column in a row below the last row of the report	Telt de kolom op in ee
 Supply and conditions	Voeding en omstandigheden
 Surge protection	Overspanningsbeveiliging
 Swing the enclosure door open or shut (door devices and their wires move with it)	De kastdeur open- of dichtzwaaien (deurapparaten en hun draden zwaaien mee)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	De kastdeur open- of dichtzwaaien (deurapparaten en hun draden bewegen mee); de hoek staat in het menu van een rechtsklik
 Switch off the check \"{}\"	De controle \"{}\" uitschakelen
 Switched off on this computer ({})	Uitgeschakeld op deze computer ({})
 Switches	Schakelaars
@@ -2192,6 +2214,7 @@ The dictionary is empty: collect the texts from the project.	Het woordenboek is 
 The door seen from the front: door devices and cutouts	De deur gezien van voren: deurapparaten en uitsparingen
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	De deur gezien van binnen (gespiegeld): kabelgoten en de bedrading achter de deur
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Het element wordt alleen getekend als deze tekst met zijn plaatshouders niet leeg is, bijv. de rijen van een revisietabel
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	De getoonde kast of ruimte (de naam) en de weergave ervan: een zijde, de plattegrond of 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	De behuizing staat met haar linkerzijde tegen de rechterzijde van de gekozen behuizing; draden lopen ertussen door kabeldoorvoeren
 The horizontal wire	De horizontale draad
 The items are selected and moved together	De elementen worden samen geselecteerd en verplaatst
@@ -2389,6 +2412,8 @@ Width × height × depth	Breedte × hoogte × diepte
 Window macro: {}	Venstermacro: {}
 Window macros inserted from now on are recorded as macro boxes.	Venstermacro's die vanaf nu worden ingevoegd, worden vastgelegd als macrokaders.
 Window macros placed on the pages (not printed)	Op de pagina's geplaatste venstermacro's (niet afgedrukt)
+Window {}	Venster {}
+Windows	Vensters
 Wire colour	Draadkleur
 Wire crossings	Draadkruisingen
 Wire crossings…	Draadkruisingen…

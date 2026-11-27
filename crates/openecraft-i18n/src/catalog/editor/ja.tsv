@@ -41,6 +41,7 @@
 3D macro	3D マクロ
 3D macro {} inserted	3D マクロ {} を挿入しました
 3D macro {} saved	3D マクロ {} を保存しました
+3D view in new window	新しいウィンドウで 3D ビュー
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = まだ回路図にありません
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	ベースラインはプロジェクト全体 (ページ、デバイス、部品、設定) を保存します。リビジョンをリリースするとベースラインが 1 つ保存されます。
@@ -201,6 +202,7 @@ Automatic placement	自動配置
 Automatic: {}	自動: {}
 Avoid:	回避:
 Back	戻る
+Back to main window	メインウィンドウに戻す
 Back to the project (Esc)	プロジェクトに戻る (Esc)
 Back-up up to (kA)	バックアップの上限 (kA)
 Background	背景
@@ -233,6 +235,7 @@ Boundary	境界
 Boxes	ボックス
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	電源系統の各保護機器における短絡電流に対する遮断容量、回路末端の最小故障電流での遮断、ケーブルの短絡耐量、上位機器との選択遮断。
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	ブリッジ：4本の接続線。接続は一方の側から入り、他の3方向へ、まず反対側へ向かいます
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	ペインのウィンドウをメインウィンドウのモニターに集めます（モニターを外した後）
 Building {} added with a level at ground level	地上階 1 つで建物 {} を追加しました
 Building {} at x {} m, z {} m	建物 {} の位置 x {} m、z {} m
 Building {} at x {} m, z {} m, turned {}°	建物 {} の位置 x {} m、z {} m、回転 {}°
@@ -620,6 +623,7 @@ Door NC data (DXF)	扉の NC データ (DXF)
 Door clearance	扉のクリアランス
 Door cutouts (CSV)	扉の切り欠き (CSV)
 Door hinge	扉のヒンジ
+Door open	扉を開く
 Door opening angle	ドアの開き角度
 Door: {} devices, {} cutouts	扉: デバイス {} 個、切り欠き {} 個
 Dot	点
@@ -839,6 +843,7 @@ From the function definition	機能定義から
 From the left end	左端から
 From the top left corner of the drawing area	図面領域の左上隅から
 From – to	から – まで
+Full screen	全画面表示
 Fullest stretch	最大充填区間
 Function definitions	機能定義
 Function properties	機能のプロパティ
@@ -850,6 +855,7 @@ Further devices	その他のデバイス
 Further project settings	その他のプロジェクト設定
 Gap	間隔
 Gap between devices	デバイス間の間隔
+Gather windows	ウィンドウを集める
 Generate	生成
 Generate all	すべて生成
 Generate pages	ページを生成
@@ -903,6 +909,7 @@ Heights above floor (IEC 60204-1)	床面からの高さ (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	クリック、移動、スクロールの間押したままにします。macOS では Ctrl は Cmd です。
 Help	ヘルプ
 Hide PV modules	PVモジュールを非表示
+Hide the details, the buttons and the note	詳細、ボタン、メモを隠す
 Hide the groups you do not need and put the commands you use most into own groups.	不要なグループを非表示にし、よく使うコマンドを独自のグループにまとめます。
 Highest phase unbalance	最大相不平衡
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	最高電圧（最低温度での開放電圧）、平均・最低電圧（平均・最高温度での最大出力時）、最大出力時の電流、ピーク出力
@@ -1205,6 +1212,7 @@ Move selection by	選択内容の移動量
 Move selection by…	選択内容を移動…
 Move the devices of this page into the new structure	このページのデバイスを新しい構造に移動
 Move to section	セクションへ移動
+Move to window	ウィンドウへ移動
 Move up	上へ移動
 Move up in the 3D view (held)	3D ビューで上へ移動（押したまま）
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	移動したシンボルは電線を引き連れ、移動した電線は端のある接続ポイントに留まります。ドラッグ中に Alt を押すと逆になります。選択した電線の端をドラッグすると切り離せます
@@ -1397,6 +1405,7 @@ Open cable ducts	配線ダクトを開く
 Open demo project	デモプロジェクトを開く
 Open door	扉を開く
 Open in a new page tab	新しいページタブで開く
+Open in new window	新しいウィンドウで開く
 Open link	リンクを開く
 Open local recovery copy	ローカル復元コピーを開く
 Open project	プロジェクトを開く
@@ -1483,6 +1492,7 @@ PV array {} lies outside the protection of the air-termination system	PVアレ�
 PV array {} of building {}: {} modules	建物 {1} の PVアレイ {0}：{2} 枚のモジュール
 PV array {} of building {}: {} modules, {} kWp	建物 {1} の PVアレイ {0}：{2} 枚のモジュール、{3} kWp
 PV arrays	PVアレイ
+Page beside the 3D view	ページを 3D ビューの横に
 Page conditions	ページ条件
 Page graphics	ページのグラフィック
 Page heading	ページ見出し
@@ -1659,6 +1669,7 @@ Property removed with {} values	プロパティを削除しました (値 {} 件
 Publish	公開
 Put into the schematic	回路図に入れる
 Put into the vault	Vault に格納
+Put the pane back into the main window	ペインをメインウィンドウに戻します
 Put the pane back into the workspace	ペインをワークスペースに戻す
 Puts the project into the folder it was opened from	プロジェクトを開いたフォルダーにプロジェクトを格納します
 Quick guide	クイックガイド
@@ -1993,11 +2004,16 @@ Show in the schematic	回路図で表示
 Show on the pages	ページに表示
 Show or hide panes; drag a tab to dock it elsewhere	ペインの表示と非表示。タブをドラッグすると別の場所にドッキングします
 Show project manager	プロジェクトマネージャーを表示
+Show the details, the buttons and the note	詳細、ボタン、メモを表示
 Show the enclosures bayed to this one as well	このエンクロージャーに連結されたエンクロージャーも表示
 Show the messages accepted as checked	確認済みとして承認したメッセージを表示
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	3D ビューで PVアレイのモジュールを透過表示します。下にあるモジュール間の配線が見えます
 Show the other wires	他の電線を表示
 Show the pane as a window	ペインをウィンドウとして表示
+Show the pane as a window inside the editor	ペインをエディター内のウィンドウとして表示
+Show the pane below its tabs	ペインをタブの下に表示
+Show the pane beside its tabs	ペインをタブの横に表示
+Show the pane in a window of its own, to move to another monitor and maximize	ペインを独立したウィンドウで表示し、別のモニターに移して最大化できます
 Show the ribbon	リボンを表示
 Show this wire	この電線を表示
 Show who may use the project	プロジェクトを使用できるユーザーを表示
@@ -2008,8 +2024,11 @@ Shown instead of the measured value	測定値の代わりに表示されます
 Shown now: {}	現在の表示: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	表紙と、プロジェクトのロゴを表示する表題欄の画像要素に表示されます
 Shows	表示
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	盤レイアウトの 3D ビューを独立したウィンドウで表示し、別のモニターに移して最大化できます
 Shows the differences of your version to the open project; selected ones can be taken over	あなたの版と開いているプロジェクトの差分を表示します。選択したものを取り込めます
+Shows the page and the 3D view side by side in this workspace	このワークスペースでページと 3D ビューを並べて表示します
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	プロジェクトサーバーに保存されているプロパティを表示します。権限があり、誰もプロジェクトデータをロックしていなければ、ここで変更できます
+Shows the window in use full screen; F11 again ends it	使用中のウィンドウを全画面表示します。もう一度 F11 で終了します
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	外側から見た側板、背板、天板、底板: ファン、ケーブルグランド、切り欠き
 Sign in in the Project server pane; the project opens afterwards	「プロジェクトサーバー」ペインでサインインしてください。その後プロジェクトが開きます
 Sign in…	サインイン…
@@ -2039,6 +2058,8 @@ Space kept free of routes, or for one class only: click two corners	ルートを
 Spare terminals	予備端子
 Special text	特殊テキスト
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	特殊テキスト: {page} や {prop:Name} などのプロジェクトプロパティとページプロパティは、ページの描画時に埋め込まれます
+Split down	下に分割
+Split right	右に分割
 Stairs	階段
 Stamp	印
 Standard form of the report	レポートの標準フォーム
@@ -2089,6 +2110,7 @@ Sums the column in a row below the last row of the report	レポートの最終�
 Supply and conditions	電源供給と条件
 Surge protection	サージ保護
 Swing the enclosure door open or shut (door devices and their wires move with it)	エンクロージャーの扉を開閉します (扉取付機器とその電線も一緒に動きます)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	盤の扉を開閉します（扉の機器とその電線も一緒に動きます）。角度は右クリックのメニューにあります
 Switch off the check \"{}\"	チェック「{}」をオフにする
 Switched off on this computer ({})	このコンピューターではオフになっています（{}）
 Switches	スイッチ
@@ -2167,6 +2189,7 @@ The dictionary is empty: collect the texts from the project.	辞書が空です:
 The door seen from the front: door devices and cutouts	前面から見た扉: 扉取付機器と切り欠き
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	内側から見た扉 (左右反転): 配線ダクトと扉裏の配線
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	このプレースホルダー付きの文字が空でないときだけ要素を描きます（例: リビジョン表の行）
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	表示中の盤または部屋（その名前）とビュー：面、平面図、または 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	エンクロージャーの左側を選択したエンクロージャーの右側に接して設置します。電線はケーブル貫通口を通って両者の間を通ります
 The horizontal wire	水平の配線
 The items are selected and moved together	アイテムはまとめて選択、移動されます
@@ -2363,6 +2386,8 @@ Width × height × depth	幅 × 高さ × 奥行き
 Window macro: {}	ウィンドウマクロ: {}
 Window macros inserted from now on are recorded as macro boxes.	今後挿入するウィンドウマクロはマクロボックスとして記録されます。
 Window macros placed on the pages (not printed)	ページに配置されたウィンドウマクロ (印刷されません)
+Window {}	ウィンドウ {}
+Windows	ウィンドウ
 Wire colour	電線の色
 Wire crossings	配線の交差
 Wire crossings…	配線の交差…

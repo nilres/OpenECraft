@@ -8,7 +8,8 @@ impl App {
     fn current_layout(&mut self, name: &str) -> Layout {
         let left_tab = crate::dock::active_tab(&self.dock).unwrap_or(LeftTab::Pages).key().to_string();
         let ribbon = if self.ribbon.custom == crate::ribbon::Custom::default() { String::new() } else { self.ribbon.custom.to_json() };
-        Layout { name: name.into(), workspace: self.workspace.key().to_string(), left_tab, windows: Vec::new(), dock: crate::dock::to_json(&self.dock), ribbon }
+        let pane_windows = if self.shell.windows.is_empty() { String::new() } else { self.shell.windows.to_json() };
+        Layout { name: name.into(), workspace: self.workspace.key().to_string(), left_tab, windows: Vec::new(), dock: crate::dock::to_json(&self.dock), pane_windows, ribbon }
     }
 
     fn apply_layout(&mut self, layout: &Layout) {
@@ -17,6 +18,8 @@ impl App {
         }
         if let Some(tree) = crate::dock::from_json(&layout.dock) {
             self.dock = tree;
+            self.shell.windows = crate::pane_windows::PaneWindows::from_json(&layout.pane_windows, &self.dock);
+            self.window_placed.clear();
         }
         if let Some(t) = LeftTab::from_key(&layout.left_tab) {
             self.show_tab(t);

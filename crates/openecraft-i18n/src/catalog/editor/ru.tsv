@@ -41,6 +41,7 @@
 3D macro	3D-макрос
 3D macro {} inserted	3D-макрос {} вставлен
 3D macro {} saved	3D-макрос {} сохранён
+3D view in new window	3D-вид в новом окне
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = пока нет на схеме
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Базовая версия хранит весь проект (листы, устройства, изделия, настройки). При выпуске ревизии она создаётся автоматически.
@@ -202,6 +203,7 @@ Automatic placement	Автоматическое размещение
 Automatic: {}	Автоматически: {}
 Avoid:	Избегать:
 Back	Назад
+Back to main window	Вернуть в главное окно
 Back to the project (Esc)	Назад к проекту (Esc)
 Back-up up to (kA)	Резервная защита до (kA)
 Background	Фон
@@ -235,6 +237,7 @@ Boundary	Граница
 Boxes	Коробки
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Отключающая способность по отношению к току короткого замыкания на каждом защитном устройстве сети, отключение при наименьшем токе замыкания в конце его цепи, стойкость кабелей к короткому замыканию и селективность с вышестоящим устройством.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Мост: четыре провода; соединение приходит с одной стороны и идёт к трём другим, сначала к противоположной
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Переносит окна панелей на монитор главного окна (после отключения монитора)
 Building {} added with a level at ground level	Здание {} добавлено с этажом на уровне земли
 Building {} at x {} m, z {} m	Здание {} в x {} м, z {} м
 Building {} at x {} m, z {} m, turned {}°	Здание {} в x {} м, z {} м, повёрнуто на {}°
@@ -626,6 +629,7 @@ Door NC data (DXF)	Данные ЧПУ двери (DXF)
 Door clearance	Свободное пространство двери
 Door cutouts (CSV)	Вырезы в двери (CSV)
 Door hinge	Петли двери
+Door open	Дверь открыта
 Door opening angle	Угол открывания двери
 Door: {} devices, {} cutouts	Дверь: устройств – {}, вырезов – {}
 Dot	Точка
@@ -848,6 +852,7 @@ From the function definition	Из определения функции
 From the left end	От левого конца
 From the top left corner of the drawing area	От левого верхнего угла области чертежа
 From – to	От – до
+Full screen	Полноэкранный режим
 Fullest stretch	Наиболее заполненный участок
 Function definitions	Определения функций
 Function properties	Свойства функции
@@ -859,6 +864,7 @@ Further devices	Другие устройства
 Further project settings	Другие настройки проекта
 Gap	Зазор
 Gap between devices	Зазор между устройствами
+Gather windows	Собрать окна
 Generate	Создать
 Generate all	Создать все
 Generate pages	Создать листы
@@ -912,6 +918,7 @@ Heights above floor (IEC 60204-1)	Высоты над полом (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Удерживается при щелчке, перемещении или прокрутке. Ctrl в macOS — Cmd.
 Help	Справка
 Hide PV modules	Скрыть модули ФЭ
+Hide the details, the buttons and the note	Скрыть подробности, кнопки и заметку
 Hide the groups you do not need and put the commands you use most into own groups.	Скройте ненужные группы и поместите самые используемые команды в собственные группы.
 Highest phase unbalance	Наибольшая несимметрия фаз
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Наибольшее напряжение (холостого хода при самой низкой температуре), среднее и наименьшее напряжение (при максимальной мощности при средней и самой высокой температуре), ток при максимальной мощности, пиковая мощность
@@ -1219,6 +1226,7 @@ Move selection by	Переместить выделенное на
 Move selection by…	Переместить выделенное на…
 Move the devices of this page into the new structure	Переместить устройства этого листа в новую структуру
 Move to section	Переместить в раздел
+Move to window	Переместить в окно
 Move up	Переместить вверх
 Move up in the 3D view (held)	Двигаться вверх в 3D-виде (удерживать)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Перемещаемые символы тянут за собой провода, а перемещаемые провода остаются на точках подключения, где они заканчиваются. Удержание Alt при перетаскивании меняет это на противоположное; перетаскивание конца выбранного провода отсоединяет его
@@ -1413,6 +1421,7 @@ Open cable ducts	Открыть кабельные каналы
 Open demo project	Открыть демонстрационный проект
 Open door	Открыть дверь
 Open in a new page tab	Открыть в новой вкладке листа
+Open in new window	Открыть в новом окне
 Open link	Открыть ссылку
 Open local recovery copy	Открыть локальную копию восстановления
 Open project	Открыть проект
@@ -1499,6 +1508,7 @@ PV array {} lies outside the protection of the air-termination system	Фотоэ
 PV array {} of building {}: {} modules	Фотоэлектрическое поле {} здания {}: {} модулей
 PV array {} of building {}: {} modules, {} kWp	Фотоэлектрическое поле {} здания {}: {} модулей, {} кВт пик
 PV arrays	Фотоэлектрические поля
+Page beside the 3D view	Страница рядом с 3D-видом
 Page conditions	Условия листов
 Page graphics	Графика листа
 Page heading	Заголовок листа
@@ -1678,6 +1688,7 @@ Put a room here	Поставить сюда помещение
 Put in	Вставить
 Put into the schematic	Добавить на схему
 Put into the vault	Поместить в хранилище
+Put the pane back into the main window	Вернуть панель в главное окно
 Put the pane back into the workspace	Вернуть панель в рабочее пространство
 Puts the project into the folder it was opened from	Помещает проект в папку, из которой он был открыт
 Quick guide	Краткое руководство
@@ -2017,11 +2028,16 @@ Show in the schematic	Показать на схеме
 Show on the pages	Показывать на листах
 Show or hide panes; drag a tab to dock it elsewhere	Показать или скрыть панели; перетащите вкладку, чтобы закрепить её в другом месте
 Show project manager	Показать менеджер проектов
+Show the details, the buttons and the note	Показать подробности, кнопки и заметку
 Show the enclosures bayed to this one as well	Показать также шкафы, пристыкованные к этому
 Show the messages accepted as checked	Показать сообщения, принятые как проверенные
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Показывать модули фотоэлектрических полей прозрачными в 3D-виде: видна разводка модулей между собой под ними
 Show the other wires	Показать остальные провода
 Show the pane as a window	Показать панель в отдельном окне
+Show the pane as a window inside the editor	Показать панель как окно внутри редактора
+Show the pane below its tabs	Показать панель под её вкладками
+Show the pane beside its tabs	Показать панель рядом с её вкладками
+Show the pane in a window of its own, to move to another monitor and maximize	Показать панель в отдельном окне, которое можно перенести на другой монитор и развернуть
 Show the ribbon	Показать ленту
 Show this wire	Показать этот провод
 Show who may use the project	Показать, кто может использовать проект
@@ -2032,8 +2048,11 @@ Shown instead of the measured value	Отображается вместо изм
 Shown now: {}	Сейчас показывается: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Показывается на титульном листе и в элементах изображения основных надписей, показывающих логотип проекта
 Shows	Показывает
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Показывает 3D-вид компоновки шкафа в отдельном окне, которое можно перенести на другой монитор и развернуть
 Shows the differences of your version to the open project; selected ones can be taken over	Показывает отличия вашей версии от открытого проекта; выбранные можно перенять
+Shows the page and the 3D view side by side in this workspace	Показывает страницу и 3D-вид рядом в этой рабочей области
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Показывает свойства, сохранённые на сервере проектов; вы изменяете их здесь, если имеете право и никто не заблокировал данные проекта
+Shows the window in use full screen; F11 again ends it	Показывает используемое окно во весь экран; повторное F11 выключает режим
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Боковые стенки, задняя стенка, крыша и дно снаружи: вентиляторы, кабельные вводы, вырезы
 Sign in in the Project server pane; the project opens afterwards	Войдите в панели «Сервер проектов»; затем проект откроется
 Sign in…	Войти…
@@ -2063,6 +2082,8 @@ Space kept free of routes, or for one class only: click two corners	Простр
 Spare terminals	Резервные клеммы
 Special text	Специальный текст
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Специальный текст: свойства проекта и листа, например {page} или {prop:Name}, подставляются при отрисовке листа
+Split down	Разделить вниз
+Split right	Разделить вправо
 Stairs	Лестницы
 Stamp	Штамп
 Standard form of the report	Стандартная форма отчёта
@@ -2113,6 +2134,7 @@ Sums the column in a row below the last row of the report	Суммирует с�
 Supply and conditions	Питание и условия
 Surge protection	Защита от перенапряжений
 Swing the enclosure door open or shut (door devices and their wires move with it)	Открыть или закрыть дверь корпуса (устройства на двери и их провода поворачиваются вместе с ней)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Открыть или закрыть дверь шкафа (устройства на двери и их провода движутся вместе с ней); угол — в меню правого щелчка
 Switch off the check \"{}\"	Отключить проверку «{}»
 Switched off on this computer ({})	Отключено на этом компьютере ({})
 Switches	Выключатели
@@ -2191,6 +2213,7 @@ The dictionary is empty: collect the texts from the project.	Словарь пу
 The door seen from the front: door devices and cutouts	Дверь спереди: устройства на двери и вырезы
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Дверь изнутри (зеркально): кабельные каналы и разводка за дверью
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Элемент рисуется, только если этот текст с заполнителями не пуст, например строки таблицы изменений
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Показанный шкаф или помещение (его имя) и его вид: сторона, план или 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Шкаф стоит левой стороной к правой стороне выбранного; провода проходят между ними через кабельные проходы
 The horizontal wire	Горизонтальный провод
 The items are selected and moved together	Элементы выделяются и перемещаются вместе
@@ -2388,6 +2411,8 @@ Width × height × depth	Ширина × высота × глубина
 Window macro: {}	Макрос окна: {}
 Window macros inserted from now on are recorded as macro boxes.	Оконные макросы, вставленные с этого момента, записываются как рамки макросов.
 Window macros placed on the pages (not printed)	Оконные макросы, размещённые на листах (не печатаются)
+Window {}	Окно {}
+Windows	Окна
 Wire colour	Цвет провода
 Wire crossings	Пересечения проводов
 Wire crossings…	Пересечения проводов…

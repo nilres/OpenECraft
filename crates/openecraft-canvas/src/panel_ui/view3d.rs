@@ -475,6 +475,11 @@ impl PanelUi {
     /// The context menu of the 3D view: what was right-clicked.
     fn menu_3d(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
         self.control_menu(ui, prj, an);
+        // A room has no door to swing.
+        if !self.in_room && !self.whole_site() {
+            ui.horizontal(|ui| self.door_button(ui));
+            ui.separator();
+        }
         // The selection is of the current enclosure (picking an item makes its enclosure
         // the current one).
         self.fittings_menu(ui, prj, self.enclosure);

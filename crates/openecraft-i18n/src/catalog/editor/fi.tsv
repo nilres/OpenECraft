@@ -41,6 +41,7 @@
 3D macro	3D-makro
 3D macro {} inserted	3D-makro {} lisätty
 3D macro {} saved	3D-makro {} tallennettu
+3D view in new window	3D-näkymä uudessa ikkunassa
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = ei vielä piirikaaviossa
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Lähtötaso tallentaa koko projektin (sivut, laitteet, osat, asetukset). Revision vapauttaminen tallentaa lähtötason.
@@ -202,6 +203,7 @@ Automatic placement	Automaattinen sijoittelu
 Automatic: {}	Automaattinen: {}
 Avoid:	Vältä:
 Back	Takaisin
+Back to main window	Takaisin pääikkunaan
 Back to the project (Esc)	Takaisin projektiin (Esc)
 Back-up up to (kA)	Varasuojaus asti (kA)
 Background	Tausta
@@ -235,6 +237,7 @@ Boundary	Raja
 Boxes	Rasiat
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Katkaisukyky oikosulkuvirtaa vastaan verkon jokaisessa suojalaitteessa, poiskytkentä pienimmällä vikavirralla piirin lopussa, kaapelien oikosulkukestoisuus ja selektiivisyys edeltävään laitteeseen.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Silta: neljä johdinta; liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Tuo ruutujen ikkunat pääikkunan näytölle (kun näyttö on irrotettu)
 Building {} added with a level at ground level	Rakennus {} lisätty, kerros maan tasolla
 Building {} at x {} m, z {} m	Rakennus {} kohdassa x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	Rakennus {} kohdassa x {} m, z {} m, käännetty {}°
@@ -627,6 +630,7 @@ Door NC data (DXF)	Oven NC-tiedot (DXF)
 Door clearance	Oven vapaa tila
 Door cutouts (CSV)	Oviaukot (CSV)
 Door hinge	Oven saranat
+Door open	Ovi auki
 Door opening angle	Oven avautumiskulma
 Door: {} devices, {} cutouts	Ovi: {} laitetta, {} aukkoa
 Dot	Piste
@@ -849,6 +853,7 @@ From the function definition	Toimintomäärittelystä
 From the left end	Vasemmasta päästä
 From the top left corner of the drawing area	Piirustusalueen vasemmasta yläkulmasta
 From – to	Mistä – mihin
+Full screen	Koko näyttö
 Fullest stretch	Eniten täytetty osuus
 Function definitions	Toimintomäärittelyt
 Function properties	Toiminnon ominaisuudet
@@ -860,6 +865,7 @@ Further devices	Muut laitteet
 Further project settings	Muut projektin asetukset
 Gap	Väli
 Gap between devices	Laitteiden välinen rako
+Gather windows	Kokoa ikkunat
 Generate	Luo
 Generate all	Luo kaikki
 Generate pages	Luo sivut
@@ -913,6 +919,7 @@ Heights above floor (IEC 60204-1)	Korkeudet lattiasta (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Pidetään painettuna napsautettaessa, siirrettäessä tai vieritettäessä. Ctrl on macOS:ssä Cmd.
 Help	Ohje
 Hide PV modules	Piilota aurinkopaneelit
+Hide the details, the buttons and the note	Piilota tiedot, painikkeet ja huomautus
 Hide the groups you do not need and put the commands you use most into own groups.	Piilota ryhmät, joita et tarvitse, ja kokoa useimmin käyttämäsi komennot omiin ryhmiin.
 Highest phase unbalance	Suurin vaiheiden epäsymmetria
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Suurin jännite (tyhjäkäynti alimmassa lämpötilassa), keskimääräinen ja pienin jännite (maksimiteholla keski- ja korkeimmassa lämpötilassa), virta maksimiteholla, huipputeho
@@ -1220,6 +1227,7 @@ Move selection by	Siirrä valintaa
 Move selection by…	Siirrä valintaa…
 Move the devices of this page into the new structure	Siirrä tämän sivun laitteet uuteen rakenteeseen
 Move to section	Siirrä osioon
+Move to window	Siirrä ikkunaan
 Move up	Siirrä ylöspäin
 Move up in the 3D view (held)	Liiku ylöspäin 3D-näkymässä (pidä painettuna)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Siirretyt symbolit vetävät johtonsa mukanaan ja siirretyt johdot pysyvät liitäntäpisteissä, joihin ne päättyvät. Alt pohjassa vedettäessä kääntää tämän; valitun johdon pään vetäminen irrottaa sen
@@ -1414,6 +1422,7 @@ Open cable ducts	Avaa johtokanavat
 Open demo project	Avaa esittelyprojekti
 Open door	Avaa ovi
 Open in a new page tab	Avaa uudessa sivuvälilehdessä
+Open in new window	Avaa uudessa ikkunassa
 Open link	Avaa linkki
 Open local recovery copy	Avaa paikallinen palautuskopio
 Open project	Avaa projekti
@@ -1500,6 +1509,7 @@ PV array {} lies outside the protection of the air-termination system	Aurinkopan
 PV array {} of building {}: {} modules	Aurinkopaneelikenttä {}, rakennus {}: {} moduulia
 PV array {} of building {}: {} modules, {} kWp	Aurinkopaneelikenttä {}, rakennus {}: {} moduulia, {} kWp
 PV arrays	Aurinkopaneelikentät
+Page beside the 3D view	Sivu 3D-näkymän vieressä
 Page conditions	Sivuehdot
 Page graphics	Sivun grafiikka
 Page heading	Sivun otsikko
@@ -1679,6 +1689,7 @@ Put a room here	Sijoita tila tähän
 Put in	Lisää
 Put into the schematic	Lisää kaavioon
 Put into the vault	Tallenna Vaultiin
+Put the pane back into the main window	Palauta ruutu pääikkunaan
 Put the pane back into the workspace	Palauta ruutu työtilaan
 Puts the project into the folder it was opened from	Tallentaa projektin kansioon, josta se avattiin
 Quick guide	Pikaopas
@@ -2018,11 +2029,16 @@ Show in the schematic	Näytä piirikaaviossa
 Show on the pages	Näytä sivuilla
 Show or hide panes; drag a tab to dock it elsewhere	Näytä tai piilota ruutuja; vedä välilehteä telakoidaksesi sen muualle
 Show project manager	Näytä projektienhallinta
+Show the details, the buttons and the note	Näytä tiedot, painikkeet ja huomautus
 Show the enclosures bayed to this one as well	Näytä myös tähän rivitetyt kotelot
 Show the messages accepted as checked	Näytä tarkistetuiksi hyväksytyt ilmoitukset
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Näytä aurinkopaneelikenttien moduulit läpinäkyvinä 3D-näkymässä: moduulien väliset johdotukset niiden alla näkyvät
 Show the other wires	Näytä muut johdot
 Show the pane as a window	Näytä ruutu ikkunana
+Show the pane as a window inside the editor	Näytä ruutu ikkunana editorin sisällä
+Show the pane below its tabs	Näytä ruutu välilehtiensä alla
+Show the pane beside its tabs	Näytä ruutu välilehtiensä vieressä
+Show the pane in a window of its own, to move to another monitor and maximize	Näytä ruutu omassa ikkunassaan, jonka voi siirtää toiselle näytölle ja suurentaa
 Show the ribbon	Näytä valintanauha
 Show this wire	Näytä tämä johto
 Show who may use the project	Näytä, kuka saa käyttää projektia
@@ -2033,8 +2049,11 @@ Shown instead of the measured value	Näytetään mitatun arvon sijaan
 Shown now: {}	Näytetään nyt: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Näytetään kansilehdellä ja niiden nimiöiden kuvaelementeissä, jotka näyttävät projektin logon
 Shows	Näyttää
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Näyttää keskuksen asettelun 3D-näkymän omassa ikkunassaan, jonka voi siirtää toiselle näytölle ja suurentaa
 Shows the differences of your version to the open project; selected ones can be taken over	Näyttää versiosi erot avoimeen projektiin; valitut voidaan ottaa käyttöön
+Shows the page and the 3D view side by side in this workspace	Näyttää sivun ja 3D-näkymän rinnakkain tässä työtilassa
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Näyttää projektipalvelimelle tallennetut ominaisuudet; muutat niitä tässä, jos sinulla on oikeus eikä kukaan ole lukinnut projektin tietoja
+Shows the window in use full screen; F11 again ends it	Näyttää käytössä olevan ikkunan koko näytöllä; F11 uudelleen lopettaa sen
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sivuseinät, takaseinä, katto ja pohja ulkoa katsottuna: tuulettimet, kaapeliläpiviennit, aukot
 Sign in in the Project server pane; the project opens afterwards	Kirjaudu sisään Projektipalvelin-ruudussa; projekti avautuu sen jälkeen
 Sign in…	Kirjaudu sisään…
@@ -2064,6 +2083,8 @@ Space kept free of routes, or for one class only: click two corners	Tila, joka p
 Spare terminals	Varariviliittimet
 Special text	Erikoisteksti
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Erikoisteksti: projektin ja sivun ominaisuudet, kuten {page} tai {prop:Name}, täytetään, kun sivu piirretään
+Split down	Jaa alas
+Split right	Jaa oikealle
 Stairs	Portaat
 Stamp	Leima
 Standard form of the report	Raportin vakiolomake
@@ -2114,6 +2135,7 @@ Sums the column in a row below the last row of the report	Laskee sarakkeen summa
 Supply and conditions	Syöttö ja olosuhteet
 Surge protection	Ylijännitesuojaus
 Swing the enclosure door open or shut (door devices and their wires move with it)	Avaa tai sulje kotelon ovi (ovilaitteet ja niiden johdot liikkuvat mukana)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Käännä kotelon ovi auki tai kiinni (oven laitteet ja niiden johtimet liikkuvat mukana); kulma on hiiren oikean painikkeen valikossa
 Switch off the check \"{}\"	Poista tarkistus \"{}\" käytöstä
 Switched off on this computer ({})	Poistettu käytöstä tässä tietokoneessa ({})
 Switches	Kytkimet
@@ -2192,6 +2214,7 @@ The dictionary is empty: collect the texts from the project.	Sanakirja on tyhjä
 The door seen from the front: door devices and cutouts	Ovi edestä katsottuna: ovilaitteet ja aukot
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Ovi sisältä katsottuna (peilattuna): johtokourut ja johdotus oven takana
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Elementti piirretään vain, kun tämä teksti paikkamerkkeineen ei ole tyhjä, esim. revisiotaulukon rivit
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Näytetty kotelo tai tila (sen nimi) ja näkymä: sivu, pohjapiirros tai 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kotelon vasen puoli on valitun kotelon oikeaa puolta vasten; johdot kulkevat niiden välillä kaapelin läpivientiaukkojen kautta
 The horizontal wire	Vaakasuora johdin
 The items are selected and moved together	Kohteet valitaan ja siirretään yhdessä
@@ -2389,6 +2412,8 @@ Width × height × depth	Leveys × korkeus × syvyys
 Window macro: {}	Ikkunamakro: {}
 Window macros inserted from now on are recorded as macro boxes.	Tästä lähtien lisätyt ikkunamakrot tallennetaan makrolaatikoina.
 Window macros placed on the pages (not printed)	Sivuille sijoitetut ikkunamakrot (ei tulosteta)
+Window {}	Ikkuna {}
+Windows	Ikkunat
 Wire colour	Johtimen väri
 Wire crossings	Johdinten risteykset
 Wire crossings…	Johdinten risteykset…

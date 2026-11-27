@@ -41,6 +41,7 @@ mod command_search;
 mod commands_ui;
 mod dialog;
 mod dock_ui;
+mod pane_windows_ui;
 mod files;
 mod find_ui;
 mod help_pane;
@@ -131,6 +132,10 @@ struct ShellState {
     placement: crate::dock::Placement,
     /// Placement and floating panes of the other workspaces.
     sides: crate::dock::Sides,
+    /// Windows of their own with panes (current workspace).
+    windows: crate::pane_windows::PaneWindows,
+    /// The wiring and mounting assistants hide the details of the current step.
+    workbench_details_hidden: bool,
     /// Opacity of the walls in front in the 3D view of the panel layout, 0 … 1.
     wall_opacity: f32,
     /// Opening angle of the door and orbit direction of the 3D view.
@@ -171,6 +176,8 @@ impl Default for ShellState {
             docks: Vec::new(),
             placement: crate::dock::Placement::default(),
             sides: crate::dock::Sides::default(),
+            windows: crate::pane_windows::PaneWindows::default(),
+            workbench_details_hidden: false,
             wall_opacity: crate::panel_ui::WALL_OPACITY,
             view_3d: crate::panel_ui::Prefs3d::default(),
             frame_stats: false,
@@ -219,6 +226,8 @@ enum Deferred {
     /// A page shown (and an item on it selected).
     Goto(usize, u64),
     Show(Pane),
+    /// A pane opened in a window of its own.
+    Window(Pane),
     Workspace(Workspace),
 }
 
@@ -267,6 +276,12 @@ pub struct App {
     floating: Vec<Pane>,
     /// The floating pane to bring to the front.
     raise: Option<Pane>,
+    /// The window of panes to bring to the front.
+    raise_window: Option<u32>,
+    /// Where the windows of panes opened (`pane_windows_ui`).
+    window_placed: HashMap<u32, pane_windows_ui::Placed>,
+    /// Panes can have windows of their own (not in the browser).
+    own_windows: bool,
     /// The document pane the user worked in last (keys go to it).
     active_doc: Pane,
     /// The pane last clicked (F6 cycles from it).
@@ -583,6 +598,9 @@ impl App {
             docks,
             floating: Vec::new(),
             raise: None,
+            raise_window: None,
+            window_placed: HashMap::new(),
+            own_windows: false,
             active_doc: Pane::Page,
             active_pane: None,
             page_tabs: Vec::new(),
@@ -719,6 +737,7 @@ impl App {
         }
         app.mounting_ui.active = workspace == Workspace::Mounting;
         app.ribbon.follow_workspace(workspace);
+        app.shell.windows.tidy(&app.dock);
         app.active_doc = crate::dock::panes(&app.dock).into_iter().find(|p| p.is_document()).unwrap_or(Pane::Page);
         if first_start {
             // The start page comes first; the demo project waits behind it.
@@ -998,6 +1017,18 @@ impl App {
             self.deferred.push(Deferred::Show(pane));
             return;
         }
+        // A pane in a window of its own: its tab in front, the window too.
+        if let Some(id) = self.shell.windows.find(pane) {
+            if let Some(w) = self.shell.windows.get_mut(id) {
+                w.tree.make_active(|_, tile| matches!(tile, egui_tiles::Tile::Pane(p) if *p == pane));
+            }
+            self.raise_window = Some(id);
+            if pane.is_document() {
+                self.active_doc = pane;
+            }
+            self.active_pane = Some(pane);
+            return;
+        }
         let docked = crate::dock::find(&self.dock, pane).is_some();
         if self.floating.contains(&pane) || (!docked && self.shell.placement.floats(pane)) {
             if !self.floating.contains(&pane) {
@@ -1015,7 +1046,7 @@ impl App {
     }
 
     pub(super) fn pane_shown(&self, pane: Pane) -> bool {
-        crate::dock::find(&self.dock, pane).is_some() || self.floating.contains(&pane)
+        crate::dock::find(&self.dock, pane).is_some() || self.floating.contains(&pane) || self.shell.windows.find(pane).is_some()
     }
 
     /// Shows a placed device in the panel layout (`three_d`: in the 3D view).
@@ -1023,7 +1054,11 @@ impl App {
         if self.in_dock {
             self.deferred.push(Deferred::Focus(tag.to_string(), three_d));
         } else if self.panel_ui.focus_device(&self.session.prj, tag, three_d) {
-            self.set_workspace(Workspace::Panel);
+            // The layout view where it is seen (beside the page, in a window of its own);
+            // otherwise in the panel layout workspace.
+            if crate::dock::find(&self.dock, Pane::LayoutView).is_none() && self.shell.windows.find(Pane::LayoutView).is_none() {
+                self.set_workspace(Workspace::Panel);
+            }
             self.show_pane(Pane::LayoutView);
         }
     }
@@ -1052,11 +1087,10 @@ impl App {
         let tree = self.docks.remove(&w).unwrap_or_else(|| crate::dock::default_tree_for(w));
         let old = std::mem::replace(&mut self.dock, tree);
         self.docks.insert(self.workspace, old);
-        // Floating panes and where panes open belong to the workspace.
-        let mut side = crate::dock::Side { placement: std::mem::take(&mut self.shell.placement), floating: std::mem::take(&mut self.floating) };
+        // Floating panes, windows and where panes open belong to the workspace.
+        let mut side = self.take_side();
         self.shell.sides.switch(self.workspace, w, &mut side);
-        self.shell.placement = side.placement;
-        self.floating = side.floating;
+        self.put_side(side);
         self.workspace = w;
         self.ribbon.follow_workspace(w);
         self.active_doc = crate::dock::panes(&self.dock).into_iter().find(|p| p.is_document()).unwrap_or(Pane::Page);
@@ -1065,17 +1099,29 @@ impl App {
     /// Puts the panes of the current workspace back at their default places and closes
     /// its floating panes.
     pub(super) fn reset_layout(&mut self) {
-        let mut side = crate::dock::Side { placement: std::mem::take(&mut self.shell.placement), floating: std::mem::take(&mut self.floating) };
+        let mut side = self.take_side();
         crate::dock::reset(self.workspace, &mut self.dock, &mut side);
+        self.put_side(side);
+        self.active_doc = crate::dock::panes(&self.dock).into_iter().find(|p| p.is_document()).unwrap_or(Pane::Page);
+    }
+
+    fn take_side(&mut self) -> crate::dock::Side {
+        crate::dock::Side { placement: std::mem::take(&mut self.shell.placement), floating: std::mem::take(&mut self.floating), windows: std::mem::take(&mut self.shell.windows) }
+    }
+
+    /// The side of the workspace shown; its windows open where they were.
+    fn put_side(&mut self, side: crate::dock::Side) {
         self.shell.placement = side.placement;
         self.floating = side.floating;
-        self.active_doc = crate::dock::panes(&self.dock).into_iter().find(|p| p.is_document()).unwrap_or(Pane::Page);
+        self.shell.windows = side.windows;
+        self.shell.windows.tidy(&self.dock);
+        self.window_placed.clear();
     }
 
     /// Tool windows asked for by a flag of the tools (`open = true`) become panes; a
     /// flag follows whether its pane is shown.
     fn open_requests(&mut self, before: bool) {
-        let shown: Vec<Pane> = crate::dock::panes(&self.dock).into_iter().chain(self.floating.iter().copied()).collect();
+        let shown: Vec<Pane> = crate::dock::panes(&self.dock).into_iter().chain(self.floating.iter().copied()).chain(self.shell.windows.panes()).collect();
         let mut show = Vec::new();
         for (flag, pane) in self.request_flags() {
             let is = shown.contains(&pane);
@@ -1242,6 +1288,7 @@ impl eframe::App for App {
         let ctx = ui.ctx().clone();
         self.frame_stats.record(ctx.input(|i| i.time), frame.info().cpu_usage);
         self.dark = ui.visuals().dark_mode;
+        self.own_windows = !ctx.embed_viewports();
         crate::style::set_dark(self.dark);
         self.apply_scale(&ctx);
         self.panel_ui.wall_opacity = self.shell.wall_opacity;
@@ -1316,12 +1363,16 @@ impl eframe::App for App {
                 egui::CentralPanel::default().frame(egui::Frame::NONE.fill(fill)).show(ui, |ui| self.docked(ui, &idx));
             }
         }
+        if !self.closed {
+            self.pane_windows(&ctx, &idx);
+        }
         for d in std::mem::take(&mut self.deferred) {
             match d {
                 Deferred::Cmd(cmd) => self.run(&ctx, cmd),
                 Deferred::Focus(tag, three_d) => self.focus_device(&tag, three_d),
                 Deferred::Goto(page, id) => self.goto(page, id),
                 Deferred::Show(pane) => self.show_pane(pane),
+                Deferred::Window(pane) => self.open_in_window(pane),
                 Deferred::Workspace(w) => self.set_workspace(w),
             }
         }

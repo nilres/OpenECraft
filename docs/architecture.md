@@ -178,7 +178,10 @@ refer to each other (the registry kinds take an `&Analysis`).
   search, the settings dialog, the start page, the help pane, the Insert center and
   the running of commands (`app/commands_ui.rs`) are `impl App` blocks in modules of
   their own; `app/dock_ui.rs` draws the panes, the page tabs and the panes floating
-  as windows (tools open floating unless the user docked them: `dock::Placement`). Each tool is a pane function (`fn …_pane(&mut self, ui)`) in its module
+  as windows (tools open floating unless the user docked them: `dock::Placement`);
+  `app/pane_windows_ui.rs` draws the windows of their own with panes, for another
+  monitor, as egui viewports (`openecraft_shell::pane_windows`: a tile tree per window,
+  each pane in one place, the page in the main window). Each tool is a pane function (`fn …_pane(&mut self, ui)`) in its module
   under `app/` with a state struct; its `open` flag asks for the pane to be shown.
   Small one-shot dialogs (rename, move by, save as macro, part selection, export
   parameters) stay windows (`app/windows.rs`).

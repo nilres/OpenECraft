@@ -46,7 +46,9 @@ impl App {
             Cmd::RenameDevice | Cmd::PartSelection => self.selected_tag().is_some(),
             Cmd::RenameCable => self.selected_cable().is_some() && self.page_editable() && !self.remote.viewer(),
             Cmd::ShowInLayout | Cmd::ShowIn3d => self.selected_tag().is_some_and(|t| openecraft_core::panel::locate(&self.session.prj, &t).is_some()),
-            Cmd::Quit => FileIo::has_own_window(),
+            Cmd::Quit | Cmd::FullScreen => FileIo::has_own_window(),
+            Cmd::View3dInWindow => self.own_windows,
+            Cmd::GatherWindows => self.own_windows && !self.shell.windows.is_empty(),
             Cmd::CheckForUpdates => crate::updater::supported() && !self.updater.busy(),
             Cmd::InstallUpdate => matches!(self.updater.state(), crate::updater::State::Ready { .. }),
             Cmd::SaveAs | Cmd::SaveAsSplit => FileIo::can_save_in_place(),
@@ -61,6 +63,7 @@ impl App {
             Cmd::LayoutZones | Cmd::LayoutPaperPlan => self.panel_ui.in_room,
             Cmd::LayoutOpenWalls => self.panel_ui.view == crate::panel_ui::View::ThreeD && self.panel_ui.in_room,
             Cmd::LayoutCoversOff => openecraft_core::panel::fit::covers(&self.session.prj, None) != (0, 0),
+            Cmd::LayoutDoorOpen => self.panel_ui.view == crate::panel_ui::View::ThreeD && !self.panel_ui.in_room,
             Cmd::LayoutLineup | Cmd::LayoutSite | Cmd::LayoutHideFrontWalls | Cmd::LayoutHideCeiling | Cmd::LayoutHidePvModules | Cmd::LayoutSeeThroughPv | Cmd::LayoutOpenDucts => self.panel_ui.view == crate::panel_ui::View::ThreeD,
             _ => true,
         }
@@ -447,6 +450,25 @@ impl App {
             Cmd::WorkspacePreplanning => self.set_workspace(Workspace::Preplanning),
             Cmd::SaveWorkspace => self.layout_name = Some(String::new()),
             Cmd::ResetLayout => self.reset_layout(),
+            Cmd::View3dInWindow => {
+                if self.workspace.is_workshop() {
+                    self.set_workspace(Workspace::Panel);
+                }
+                self.panel_ui.view = crate::panel_ui::View::ThreeD;
+                self.open_in_window(Pane::LayoutView);
+            }
+            Cmd::PageBeside3d => {
+                if self.workspace.is_workshop() {
+                    self.set_workspace(Workspace::Panel);
+                }
+                self.panel_ui.view = crate::panel_ui::View::ThreeD;
+                self.floating.retain(|p| !matches!(p, Pane::Page | Pane::LayoutView));
+                self.shell.windows.back(&mut self.dock, Pane::LayoutView);
+                crate::dock::side_by_side(&mut self.dock, Pane::Page, Pane::LayoutView);
+                self.active_doc = Pane::Page;
+            }
+            Cmd::GatherWindows => self.gather_windows(ctx),
+            Cmd::FullScreen => self.toggle_full_screen(ctx),
             Cmd::MinimizeRibbon => self.shell.ribbon_minimized = !self.shell.ribbon_minimized,
             // ------------------------------------------------------------ engineering
             Cmd::DeviceNumbering => self.numbering_ui.show_devices = true,
@@ -700,6 +722,7 @@ impl App {
                                     self.show_pane(pane);
                                 } else {
                                     self.floating.retain(|p| *p != pane);
+                                    self.shell.windows.remove(pane);
                                     crate::dock::close(&mut self.dock, pane);
                                 }
                             }
@@ -821,10 +844,26 @@ impl App {
         if self.ribbon.tips.is_some() {
             return;
         }
-        let typing = ctx.egui_wants_keyboard_input();
         let page_active = self.active_doc == Pane::Page && self.backstage.is_none();
         self.editor.keys_active = page_active && !self.search.is_open();
         self.panel_ui.keys_active = self.active_doc == Pane::LayoutView;
+        self.shortcut_commands(ctx, page_active);
+        if self.backstage.is_some() && ctx.input(|i| i.key_pressed(Key::Escape)) {
+            self.backstage = None;
+        }
+    }
+
+    /// The keys of the commands pressed in a window of panes (its own input).
+    pub(super) fn window_keys(&mut self, ctx: &egui::Context) {
+        if self.recording.is_none() && self.ribbon.tips.is_none() {
+            self.shortcut_commands(ctx, false);
+        }
+    }
+
+    /// Runs the commands whose keys were pressed; plain keys act on the page only
+    /// (`page_active`).
+    fn shortcut_commands(&mut self, ctx: &egui::Context, page_active: bool) {
+        let typing = ctx.egui_wants_keyboard_input();
         let sc = self.editor.shortcuts.clone();
         let mut hit = Vec::new();
         ctx.input_mut(|i| {
@@ -853,9 +892,6 @@ impl App {
             } else {
                 self.run(ctx, cmd);
             }
-        }
-        if self.backstage.is_some() && ctx.input(|i| i.key_pressed(Key::Escape)) {
-            self.backstage = None;
         }
     }
 

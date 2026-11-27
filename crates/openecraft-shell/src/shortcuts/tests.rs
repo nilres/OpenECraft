@@ -91,3 +91,10 @@ fn shortcut_groups_hold_every_binding_once() {
     // The Home tab comes first with its commands.
     assert!(groups[0].1.contains(&commands::def(Cmd::Paste).id));
 }
+
+#[test]
+fn full_screen_acts_in_every_window() {
+    // F11 also works in a window of panes, where the page is not.
+    assert!(!Shortcut::parse("F11").unwrap().page_only());
+    assert!(Shortcut::parse("Delete").unwrap().page_only());
+}

@@ -41,6 +41,7 @@
 3D macro	Makro 3D
 3D macro {} inserted	Wstawiono makro 3D {}
 3D macro {} saved	Zapisano makro 3D {}
+3D view in new window	Widok 3D w nowym oknie
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = jeszcze nie na schemacie
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Wersja bazowa zapisuje cały projekt (strony, urządzenia, artykuły, ustawienia). Wydanie rewizji zapisuje wersję bazową.
@@ -202,6 +203,7 @@ Automatic placement	Automatyczne rozmieszczenie
 Automatic: {}	Automatycznie: {}
 Avoid:	Omijaj:
 Back	Wstecz
+Back to main window	Wróć do okna głównego
 Back to the project (Esc)	Powrót do projektu (Esc)
 Back-up up to (kA)	Ochrona wsteczna do (kA)
 Background	Tło
@@ -235,6 +237,7 @@ Boundary	Granica
 Boxes	Puszki
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Zdolność wyłączania w odniesieniu do prądu zwarciowego w każdym urządzeniu zabezpieczającym sieci, wyłączenie przy najmniejszym prądzie zwarcia na końcu jego obwodu, wytrzymałość zwarciowa kabli i selektywność względem urządzenia zabezpieczającego przed nim.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Mostek: cztery przewody; połączenie wchodzi z jednej strony i idzie do trzech pozostałych, najpierw do przeciwległej
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Przenosi okna paneli na monitor okna głównego (po odłączeniu monitora)
 Building {} added with a level at ground level	Dodano budynek {} z kondygnacją na poziomie terenu
 Building {} at x {} m, z {} m	Budynek {} w x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	Budynek {} w x {} m, z {} m, obrócony o {}°
@@ -627,6 +630,7 @@ Door NC data (DXF)	Dane NC drzwi (DXF)
 Door clearance	Wolna przestrzeń drzwi
 Door cutouts (CSV)	Wycięcia w drzwiach (CSV)
 Door hinge	Zawiasy drzwi
+Door open	Drzwi otwarte
 Door opening angle	Kąt otwarcia drzwi
 Door: {} devices, {} cutouts	Drzwi: urządzenia: {}, wycięcia: {}
 Dot	Punkt
@@ -849,6 +853,7 @@ From the function definition	Z definicji funkcji
 From the left end	Od lewego końca
 From the top left corner of the drawing area	Od lewego górnego rogu obszaru rysunku
 From – to	Od – do
+Full screen	Pełny ekran
 Fullest stretch	Najbardziej wypełniony odcinek
 Function definitions	Definicje funkcji
 Function properties	Właściwości funkcji
@@ -860,6 +865,7 @@ Further devices	Dalsze urządzenia
 Further project settings	Dalsze ustawienia projektu
 Gap	Odstęp
 Gap between devices	Odstęp między urządzeniami
+Gather windows	Zbierz okna
 Generate	Generuj
 Generate all	Generuj wszystko
 Generate pages	Generuj strony
@@ -913,6 +919,7 @@ Heights above floor (IEC 60204-1)	Wysokości nad podłogą (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Przytrzymywany podczas klikania, przesuwania lub przewijania. Ctrl to Cmd w macOS.
 Help	Pomoc
 Hide PV modules	Ukryj moduły PV
+Hide the details, the buttons and the note	Ukryj szczegóły, przyciski i notatkę
 Hide the groups you do not need and put the commands you use most into own groups.	Ukryj grupy, których nie potrzebujesz, a najczęściej używane polecenia umieść we własnych grupach.
 Highest phase unbalance	Największa asymetria faz
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Najwyższe napięcie (jałowe przy najniższej temperaturze), średnie i najniższe napięcie (przy mocy maksymalnej w średniej i najwyższej temperaturze), prąd przy mocy maksymalnej, moc szczytowa
@@ -1220,6 +1227,7 @@ Move selection by	Przesuń zaznaczenie o
 Move selection by…	Przesuń zaznaczenie o…
 Move the devices of this page into the new structure	Przenieś urządzenia tej strony do nowej struktury
 Move to section	Przenieś do sekcji
+Move to window	Przenieś do okna
 Move up	Przesuń w górę
 Move up in the 3D view (held)	Ruch w górę w widoku 3D (przytrzymaj)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Przesuwane symbole ciągną za sobą przewody, a przesuwane przewody pozostają na punktach połączenia, na których się kończą. Przytrzymanie Alt podczas przeciągania to odwraca; przeciągnięcie końca zaznaczonego przewodu go odłącza
@@ -1414,6 +1422,7 @@ Open cable ducts	Otwórz korytka kablowe
 Open demo project	Otwórz projekt demonstracyjny
 Open door	Otwórz drzwi
 Open in a new page tab	Otwórz w nowej karcie strony
+Open in new window	Otwórz w nowym oknie
 Open link	Otwórz łącze
 Open local recovery copy	Otwórz lokalną kopię odzyskiwania
 Open project	Otwórz projekt
@@ -1500,6 +1509,7 @@ PV array {} lies outside the protection of the air-termination system	Pole PV {}
 PV array {} of building {}: {} modules	Pole PV {} budynku {}: {} modułów
 PV array {} of building {}: {} modules, {} kWp	Pole PV {} budynku {}: {} modułów, {} kWp
 PV arrays	Instalacje PV
+Page beside the 3D view	Strona obok widoku 3D
 Page conditions	Warunki stron
 Page graphics	Grafika strony
 Page heading	Nagłówek strony
@@ -1679,6 +1689,7 @@ Put a room here	Umieść tu pomieszczenie
 Put in	Wstaw
 Put into the schematic	Dodaj do schematu
 Put into the vault	Umieść w magazynie Vault
+Put the pane back into the main window	Umieść panel z powrotem w oknie głównym
 Put the pane back into the workspace	Przywróć panel do obszaru roboczego
 Puts the project into the folder it was opened from	Umieszcza projekt w folderze, z którego został otwarty
 Quick guide	Krótki przewodnik
@@ -2018,11 +2029,16 @@ Show in the schematic	Pokaż na schemacie
 Show on the pages	Pokaż na stronach
 Show or hide panes; drag a tab to dock it elsewhere	Pokaż lub ukryj panele; przeciągnij kartę, aby zadokować ją w innym miejscu
 Show project manager	Pokaż menedżera projektów
+Show the details, the buttons and the note	Pokaż szczegóły, przyciski i notatkę
 Show the enclosures bayed to this one as well	Pokaż także obudowy szeregowane z tą obudową
 Show the messages accepted as checked	Pokaż komunikaty zaakceptowane jako sprawdzone
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Pokaż moduły pól PV jako przezroczyste w widoku 3D: widać okablowanie modułów między sobą pod nimi
 Show the other wires	Pokaż pozostałe przewody
 Show the pane as a window	Pokaż panel jako okno
+Show the pane as a window inside the editor	Pokaż panel jako okno wewnątrz edytora
+Show the pane below its tabs	Pokaż panel pod jego kartami
+Show the pane beside its tabs	Pokaż panel obok jego kart
+Show the pane in a window of its own, to move to another monitor and maximize	Pokaż panel we własnym oknie, które można przenieść na inny monitor i zmaksymalizować
 Show the ribbon	Pokaż wstążkę
 Show this wire	Pokaż ten przewód
 Show who may use the project	Pokaż, kto może korzystać z projektu
@@ -2033,8 +2049,11 @@ Shown instead of the measured value	Wyświetlane zamiast zmierzonej wartości
 Shown now: {}	Teraz pokazywane: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Pokazywane na stronie tytułowej i przez elementy obrazu tabliczek, które pokazują logo projektu
 Shows	Pokazuje
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Pokazuje widok 3D zabudowy szafy we własnym oknie, które można przenieść na inny monitor i zmaksymalizować
 Shows the differences of your version to the open project; selected ones can be taken over	Pokazuje różnice Twojej wersji względem otwartego projektu; wybrane można przejąć
+Shows the page and the 3D view side by side in this workspace	Pokazuje stronę i widok 3D obok siebie w tym obszarze roboczym
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Pokazuje właściwości zapisane na serwerze projektów; zmieniasz je tutaj, jeśli masz do tego prawo i nikt nie zablokował danych projektu
+Shows the window in use full screen; F11 again ends it	Pokazuje używane okno na pełnym ekranie; ponowne F11 to kończy
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Ściany boczne, ściana tylna, dach i dno widziane z zewnątrz: wentylatory, dławiki kablowe, wycięcia
 Sign in in the Project server pane; the project opens afterwards	Zaloguj się w panelu Serwer projektów; potem projekt się otworzy
 Sign in…	Zaloguj się…
@@ -2064,6 +2083,8 @@ Space kept free of routes, or for one class only: click two corners	Przestrzeń 
 Spare terminals	Zaciski rezerwowe
 Special text	Tekst specjalny
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Tekst specjalny: właściwości projektu i strony, takie jak {page} lub {prop:Name}, są wypełniane podczas rysowania strony
+Split down	Podziel w dół
+Split right	Podziel w prawo
 Stairs	Schody
 Stamp	Stempel
 Standard form of the report	Formularz standardowy raportu
@@ -2114,6 +2135,7 @@ Sums the column in a row below the last row of the report	Sumuje kolumnę w wier
 Supply and conditions	Zasilanie i warunki
 Surge protection	Ochrona przeciwprzepięciowa
 Swing the enclosure door open or shut (door devices and their wires move with it)	Otwórz lub zamknij drzwi obudowy (urządzenia na drzwiach i ich przewody obracają się razem z nimi)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Otwórz lub zamknij drzwi szafy (urządzenia na drzwiach i ich przewody poruszają się razem z nimi); kąt jest w menu prawego kliknięcia
 Switch off the check \"{}\"	Wyłącz kontrolę \"{}\"
 Switched off on this computer ({})	Wyłączone na tym komputerze ({})
 Switches	Łączniki
@@ -2192,6 +2214,7 @@ The dictionary is empty: collect the texts from the project.	Słownik jest pusty
 The door seen from the front: door devices and cutouts	Drzwi widziane z przodu: urządzenia na drzwiach i wycięcia
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Drzwi widziane od wewnątrz (lustrzane odbicie): kanały kablowe i okablowanie za drzwiami
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Element jest rysowany tylko, gdy ten tekst z symbolami zastępczymi nie jest pusty, np. wiersze tabeli rewizji
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Pokazana szafa lub pomieszczenie (nazwa) i widok: ściana, rzut lub 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Obudowa przylega lewą stroną do prawej strony wybranej obudowy; przewody przechodzą między nimi przez przepusty kablowe
 The horizontal wire	Przewód poziomy
 The items are selected and moved together	Elementy są zaznaczane i przesuwane razem
@@ -2389,6 +2412,8 @@ Width × height × depth	Szerokość × wysokość × głębokość
 Window macro: {}	Makro okna: {}
 Window macros inserted from now on are recorded as macro boxes.	Makra okien wstawiane od teraz są rejestrowane jako ramki makr.
 Window macros placed on the pages (not printed)	Makra okien umieszczone na stronach (niedrukowane)
+Window {}	Okno {}
+Windows	Okna
 Wire colour	Kolor przewodu
 Wire crossings	Skrzyżowania przewodów
 Wire crossings…	Skrzyżowania przewodów…
