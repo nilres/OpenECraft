@@ -23,6 +23,7 @@ pub enum Cmd {
     SaveAs,
     SaveAsSplit,
     SaveAsProjectTemplate,
+    CloseProject,
     CheckInVault,
     ImportDrawing,
     ImportSettings,
@@ -278,6 +279,52 @@ pub enum Cmd {
     TabletMode,
 }
 
+/// Commands that need no open project: after File › Close project only they run (the
+/// start page is shown instead of the pages and the layout); the others wait for a
+/// project.
+const WITHOUT_PROJECT: &[Cmd] = &[
+    Cmd::Backstage,
+    Cmd::StartPage,
+    Cmd::NewProject,
+    Cmd::NewFromTemplateFile,
+    Cmd::OpenDemo,
+    Cmd::OpenExample,
+    Cmd::Open,
+    Cmd::Settings,
+    Cmd::Quit,
+    Cmd::CommandSearch,
+    Cmd::Theme,
+    Cmd::UiScale,
+    Cmd::Language,
+    Cmd::MinimizeRibbon,
+    Cmd::Shortcuts,
+    Cmd::CustomizeRibbon,
+    Cmd::ProjectManagement,
+    Cmd::PartsManagement,
+    Cmd::DataPortal,
+    Cmd::ProjectServer,
+    Cmd::Vault,
+    Cmd::ManagePlugins,
+    Cmd::Help,
+    Cmd::Tutorial,
+    Cmd::About,
+    Cmd::VersionHistory,
+    Cmd::Legal,
+    Cmd::ReportBug,
+    Cmd::CheckForUpdates,
+    Cmd::InstallUpdate,
+];
+
+/// The command acts on the open project (disabled while none is open).
+pub fn needs_project(cmd: Cmd) -> bool {
+    !WITHOUT_PROJECT.contains(&cmd)
+}
+
+/// The pane shows the open project (hidden while none is open).
+pub fn pane_needs_project(pane: Pane) -> bool {
+    ALL.iter().find(|d| d.pane == Some(pane)).is_none_or(|d| needs_project(d.cmd))
+}
+
 /// Commands that change the items of the current page: disabled on a page that
 /// cannot be edited (released, generated, locked by another user).
 pub fn changes_page(cmd: Cmd) -> bool {
@@ -425,6 +472,8 @@ pub static ALL: &[Def] = &[
         .tip(tr_const!("A folder with one small file per page, device and part instead of one project file, for version control such as git")),
     d(C::SaveAsProjectTemplate, "save_as_project_template", tr_const!("Save as project template…"), I::Template)
         .tip(tr_const!("Saves the project without revisions, baselines, review and wiring marks as a template for new projects, in the templates folder beside the bundled ones")),
+    d(C::CloseProject, "close_project", tr_const!("Close project"), I::Close).keys("Ctrl+Shift+F4")
+        .tip(tr_const!("Closes the project, asking to save unsaved changes, and shows the start page")),
     d(C::ProjectTemplate, "project_template", tr_const!("Template parameters"), I::Template).tool(ToolPane::ProjectTemplate)
         .tip(tr_const!("Name, parameters, formulas and page conditions of the project as a template")),
     d(C::CheckInVault, "check_in_vault", tr_const!("Check in to Vault"), I::Upload),

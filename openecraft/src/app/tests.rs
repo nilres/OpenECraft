@@ -15,6 +15,15 @@ fn tablet_mode_of_a_wiring_start_is_not_stored() {
 }
 
 #[test]
+fn a_closed_project_is_stored_with_the_shell() {
+    let shell = ShellState { closed: true, ..Default::default() };
+    let stored: ShellState = serde_json::from_str(&serde_json::to_string(&shell).unwrap()).unwrap();
+    assert!(stored.closed);
+    let old: ShellState = serde_json::from_str("{}").unwrap();
+    assert!(!old.closed, "stores written before have a project open");
+}
+
+#[test]
 fn the_unsaved_state_is_stored_with_the_shell() {
     let shell = ShellState { dirty: true, ..Default::default() };
     let stored: ShellState = serde_json::from_str(&serde_json::to_string(&shell).unwrap()).unwrap();
