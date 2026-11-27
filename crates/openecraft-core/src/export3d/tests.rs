@@ -309,3 +309,41 @@ fn a_makers_enclosure_is_exported_with_its_model() {
     let names: Vec<(&str, bool, usize)> = solids.iter().map(|s| (s.name.as_str(), s.transparent, s.triangles.len())).collect();
     assert_eq!(names, [("+A1 enclosure RIT.1360000", false, 22), ("+A1 door", true, 14)]);
 }
+
+#[test]
+fn a_part_models_colours_are_exported_to_gltf() {
+    use crate::parts::vec3::box_triangles;
+    // A project part painted grey with a green block in front.
+    let (grey, green) = ([128, 128, 128], [0, 160, 60]);
+    let mut prj = demo_project();
+    let it = prj.layout.enclosures[0].items.iter().find(|i| i.kind == ItemKind::Device && !i.part.is_empty() && !i.tag.is_empty() && panel::device_mesh(&prj, i).is_some()).unwrap().clone();
+    let mut part = panel::part_by_number(&prj, &it.part).cloned().unwrap_or_default();
+    part.number = it.part.clone();
+    let mut mesh = crate::parts::Mesh3d::default();
+    for (color, tris) in [(grey, box_triangles([0.0, 0.0, 0.0], [10.0, 10.0, 8.0])), (green, box_triangles([2.0, 2.0, 8.0], [8.0, 8.0, 10.0]))] {
+        for tri in tris {
+            let base = mesh.vertices.len() as u32;
+            mesh.vertices.extend(tri);
+            mesh.triangles.push([base, base + 1, base + 2]);
+            mesh.colors.push(color);
+        }
+    }
+    part.model_3d = Some(mesh.into());
+    prj.parts.retain(|p| p.number != it.part);
+    prj.parts.push(part);
+    let solids = &scene(&prj)[0].solids;
+    let solid = solids.iter().find(|s| s.name == it.tag).unwrap();
+    assert_eq!(solid.colors.len(), solid.triangles.len());
+    assert!(solid.colors.contains(&grey) && solid.colors.contains(&green));
+    let v: serde_json::Value = serde_json::from_str(&gltf(&prj)).unwrap();
+    let mesh = v["meshes"].as_array().unwrap().iter().find(|m| m["name"] == it.tag.as_str()).unwrap();
+    let primitives = mesh["primitives"].as_array().unwrap();
+    // The model's colours first, then those of what the device adds (terminals, …).
+    assert_eq!(primitives.len(), solid.by_color().len());
+    let factor = |p: &serde_json::Value| v["materials"][p["material"].as_u64().unwrap() as usize]["pbrMetallicRoughness"]["baseColorFactor"].clone();
+    let rgb = |c: [u8; 3]| c.map(|x| format!("{:.4}", x as f32 / 255.0).parse::<f64>().unwrap());
+    let colours: Vec<[f64; 3]> = primitives.iter().map(|p| std::array::from_fn(|k| factor(p)[k].as_f64().unwrap())).collect();
+    assert_eq!(colours[..2], [rgb(grey), rgb(green)]);
+    // Solids in one colour keep a single primitive.
+    assert!(v["meshes"].as_array().unwrap().iter().filter(|m| m["name"] == "+A1 mounting plate").all(|m| m["primitives"].as_array().unwrap().len() == 1));
+}

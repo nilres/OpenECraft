@@ -30,6 +30,36 @@ pub struct Solid {
     /// Shown see-through (door, walls of a room).
     pub transparent: bool,
     pub triangles: Vec<Tri>,
+    /// The colour of each triangle (a part model painted in several colours); empty:
+    /// all of them `color`.
+    pub colors: Vec<[u8; 3]>,
+}
+
+impl Solid {
+    /// The colour of triangle `i`.
+    pub fn color_of(&self, i: usize) -> [u8; 3] {
+        self.colors.get(i).copied().unwrap_or(self.color)
+    }
+
+    /// The triangles of the solid grouped by colour, in the order the colours first
+    /// appear.
+    pub fn by_color(&self) -> Vec<([u8; 3], Vec<Tri>)> {
+        let mut groups: Vec<([u8; 3], Vec<Tri>)> = Vec::new();
+        for (i, t) in self.triangles.iter().enumerate() {
+            let c = self.color_of(i);
+            match groups.iter_mut().find(|g| g.0 == c) {
+                Some(g) => g.1.push(*t),
+                None => groups.push((c, vec![*t])),
+            }
+        }
+        groups
+    }
+}
+
+/// Per-triangle colours of a painted mesh as kept by [`Solid::colors`]: empty when
+/// all of them are `base`.
+fn paint(base: [u8; 3], colors: Vec<[u8; 3]>) -> Vec<[u8; 3]> {
+    if colors.iter().all(|c| *c == base) { Vec::new() } else { colors }
 }
 
 /// An enclosure with its solids and its offset (enclosures are placed side by side).
@@ -82,46 +112,51 @@ pub fn enclosure_solids(prj: &Project, e: &Enclosure) -> Vec<Solid> {
     // Boxes in enclosure coordinates (y down) to y up.
     let up_box = |(a, b): ([f32; 3], [f32; 3])| box_triangles(up([a[0], b[1], a[2]]), up([b[0], a[1], b[2]]));
     let mut out = Vec::new();
-    let mut solid = |name: &str, color: [u8; 3], transparent: bool, triangles: Vec<Tri>| {
-        out.push(Solid { name: name.to_string(), color, transparent, triangles });
+    let mut solid = |name: &str, color: [u8; 3], transparent: bool, triangles: Vec<Tri>, colors: Vec<[u8; 3]>| {
+        out.push(Solid { name: name.to_string(), color, transparent, triangles, colors: paint(color, colors) });
     };
     // The maker's model of the enclosure takes the place of the generic body, walls,
     // door and plates.
     let maker = panel::maker_model(prj, e);
     if let Some(model) = &maker {
         let of = |door: bool| -> Vec<Tri> { model.iter().filter(|(f, _)| (*f == Some(panel::Face::Door)) == door).map(|(_, t)| *t).collect() };
-        solid(&format!("{} {} {}", e.name, kind_role(Role::Body), e.part), component_color(Role::Body), false, of(false));
-        solid(&format!("{} {}", e.name, kind_role(Role::Door)), component_color(Role::Door), true, of(true));
+        solid(&format!("{} {} {}", e.name, kind_role(Role::Body), e.part), component_color(Role::Body), false, of(false), Vec::new());
+        solid(&format!("{} {}", e.name, kind_role(Role::Door)), component_color(Role::Door), true, of(true), Vec::new());
     }
     let generic = |role: Role| maker.is_none() || !matches!(role, Role::Body | Role::Door | Role::Wall(_) | Role::GlandPlate | Role::MountingPlate);
     for c in panel::components(e).into_iter().filter(|c| !c.boxes.is_empty() && generic(c.role)) {
         let name = if c.part.is_empty() { format!("{} {}", e.name, kind_role(c.role)) } else { format!("{} {} {}", e.name, kind_role(c.role), c.part) };
         let tris = c.boxes.into_iter().flat_map(up_box).collect();
-        solid(&name, component_color(c.role), matches!(c.role, Role::Door | Role::RoomWall(_)), tris);
+        solid(&name, component_color(c.role), matches!(c.role, Role::Door | Role::RoomWall(_)), tris, Vec::new());
     }
     for it in e.items.iter().filter(|i| i.kind != ItemKind::Cutout) {
         // A busbar system: its copper bars and their insulating holders apart.
         if it.kind == ItemKind::Busbar {
             for (color, name) in [(panel::busbars::COPPER, "Busbar"), (panel::busbars::HOLDER, "Busbar holder")] {
                 let tris: Vec<Tri> = panel::busbars::mesh(prj, it).into_iter().filter(|t| t.1 == Some(color)).map(|t| t.0).collect();
-                solid(name, color, false, panel::place_triangles(e, it, tris).into_iter().map(|t| t.map(up)).collect());
+                solid(name, color, false, panel::place_triangles(e, it, tris).into_iter().map(|t| t.map(up)).collect(), Vec::new());
             }
             continue;
         }
         let name = if it.tag.is_empty() { kind_name(it.kind) } else { it.tag.as_str() };
-        let tris = match panel::device_mesh(prj, it) {
-            Some(tris) => panel::place_triangles(e, it, tris).into_iter().map(|t| t.map(up)).collect(),
+        let base = color(it.kind);
+        let (tris, colors) = match panel::device_mesh_painted(prj, it) {
+            Some(tris) => {
+                let (tris, colors): (Vec<Tri>, Vec<[u8; 3]>) = tris.into_iter().map(|(t, c)| (t, c.unwrap_or(base))).unzip();
+                (panel::place_triangles(e, it, tris).into_iter().map(|t| t.map(up)).collect(), colors)
+            }
             None => {
                 let (b0, b1) = panel::item_box(e, it);
-                box_triangles(up([b0[0], b1[1], b0[2]]), up([b1[0], b0[1], b1[2]]))
+                (box_triangles(up([b0[0], b1[1], b0[2]]), up([b1[0], b0[1], b1[2]])), Vec::new())
             }
         };
-        solid(name, color(it.kind), false, tris);
+        solid(name, base, false, tris, colors);
     }
     // The drives of the machines on the floor (shafts, couplings, belts, gear cases).
     for d in panel::drives(prj, e) {
         let name = e.items.iter().find(|i| i.id == d.machine).map_or_else(|| "Drive".to_string(), |i| format!("{} drive", i.tag));
-        solid(&name, [112, 116, 124], false, d.triangles.into_iter().map(|(t, _)| t.map(up)).collect());
+        let (tris, colors) = d.triangles.into_iter().map(|(t, c)| (t.map(up), c)).unzip();
+        solid(&name, [112, 116, 124], false, tris, colors);
     }
     out
 }
@@ -206,7 +241,8 @@ fn json_str(s: &str) -> String {
 }
 
 /// The scene as glTF 2.0 (JSON, buffer embedded as data URI): a node per enclosure
-/// with a child node and mesh per solid, flat normals, one material per colour.
+/// with a child node and mesh per solid (a primitive per colour of the solid), flat
+/// normals, one material per colour.
 pub fn gltf(prj: &Project) -> String {
     gltf_of(&prj.info.name, &scene(prj))
 }
@@ -220,38 +256,42 @@ pub fn gltf_of(title: &str, scenes: &[EnclosureScene]) -> String {
     for es in scenes {
         let mut children = Vec::new();
         for s in es.solids.iter().filter(|s| !s.triangles.is_empty()) {
-            let mut pos: Vec<f32> = Vec::with_capacity(s.triangles.len() * 9);
-            let mut nrm: Vec<f32> = Vec::with_capacity(s.triangles.len() * 9);
-            let (mut min, mut max) = ([f32::MAX; 3], [f32::MIN; 3]);
-            for t in &s.triangles {
-                let n = norm(cross(sub(t[1], t[0]), sub(t[2], t[0])));
-                for v in t {
-                    let m = v.map(|c| c / 1000.0);
-                    for k in 0..3 {
-                        min[k] = min[k].min(m[k]);
-                        max[k] = max[k].max(m[k]);
+            // A primitive per colour of the solid, each with its material.
+            let mut primitives = Vec::new();
+            for (color, tris) in s.by_color() {
+                let mut pos: Vec<f32> = Vec::with_capacity(tris.len() * 9);
+                let mut nrm: Vec<f32> = Vec::with_capacity(tris.len() * 9);
+                let (mut min, mut max) = ([f32::MAX; 3], [f32::MIN; 3]);
+                for t in &tris {
+                    let n = norm(cross(sub(t[1], t[0]), sub(t[2], t[0])));
+                    for v in t {
+                        let m = v.map(|c| c / 1000.0);
+                        for k in 0..3 {
+                            min[k] = min[k].min(m[k]);
+                            max[k] = max[k].max(m[k]);
+                        }
+                        pos.extend(m);
+                        nrm.extend(n);
                     }
-                    pos.extend(m);
-                    nrm.extend(n);
                 }
+                let count = tris.len() * 3;
+                for (data, with_bounds) in [(&pos, true), (&nrm, false)] {
+                    let offset = bin.len();
+                    bin.extend(data.iter().flat_map(|f| f.to_le_bytes()));
+                    views.push(format!(r#"{{"buffer":0,"byteOffset":{offset},"byteLength":{},"target":34962}}"#, data.len() * 4));
+                    let bounds = if with_bounds { format!(r#","min":[{},{},{}],"max":[{},{},{}]"#, min[0], min[1], min[2], max[0], max[1], max[2]) } else { String::new() };
+                    accessors.push(format!(r#"{{"bufferView":{},"componentType":5126,"count":{count},"type":"VEC3"{bounds}}}"#, views.len() - 1));
+                }
+                let material = *material_of.entry((color, s.transparent)).or_insert_with(|| {
+                    let [r, g, b] = color.map(|c| c as f32 / 255.0);
+                    let (alpha, mode) = if s.transparent { (0.25, r#","alphaMode":"BLEND","doubleSided":true"#) } else { (1.0, "") };
+                    materials.push(format!(r#"{{"pbrMetallicRoughness":{{"baseColorFactor":[{r:.4},{g:.4},{b:.4},{alpha}],"metallicFactor":0.1,"roughnessFactor":0.7}}{mode}}}"#));
+                    materials.len() - 1
+                });
+                let a = accessors.len();
+                primitives.push(format!(r#"{{"attributes":{{"POSITION":{},"NORMAL":{}}},"material":{material}}}"#, a - 2, a - 1));
             }
-            let count = s.triangles.len() * 3;
-            for (data, with_bounds) in [(&pos, true), (&nrm, false)] {
-                let offset = bin.len();
-                bin.extend(data.iter().flat_map(|f| f.to_le_bytes()));
-                views.push(format!(r#"{{"buffer":0,"byteOffset":{offset},"byteLength":{},"target":34962}}"#, data.len() * 4));
-                let bounds = if with_bounds { format!(r#","min":[{},{},{}],"max":[{},{},{}]"#, min[0], min[1], min[2], max[0], max[1], max[2]) } else { String::new() };
-                accessors.push(format!(r#"{{"bufferView":{},"componentType":5126,"count":{count},"type":"VEC3"{bounds}}}"#, views.len() - 1));
-            }
-            let key = (s.color, s.transparent);
-            let material = *material_of.entry(key).or_insert_with(|| {
-                let [r, g, b] = s.color.map(|c| c as f32 / 255.0);
-                let (alpha, mode) = if s.transparent { (0.25, r#","alphaMode":"BLEND","doubleSided":true"#) } else { (1.0, "") };
-                materials.push(format!(r#"{{"pbrMetallicRoughness":{{"baseColorFactor":[{r:.4},{g:.4},{b:.4},{alpha}],"metallicFactor":0.1,"roughnessFactor":0.7}}{mode}}}"#));
-                materials.len() - 1
-            });
-            let a = accessors.len();
-            meshes.push(format!(r#"{{"name":{},"primitives":[{{"attributes":{{"POSITION":{},"NORMAL":{}}},"material":{material}}}]}}"#, json_str(&s.name), a - 2, a - 1));
+            meshes.push(format!(r#"{{"name":{},"primitives":[{}]}}"#, json_str(&s.name), primitives.join(",")));
             nodes.push(format!(r#"{{"name":{},"mesh":{}}}"#, json_str(&s.name), meshes.len() - 1));
             children.push(nodes.len() - 1);
         }
