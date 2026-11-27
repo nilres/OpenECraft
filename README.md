@@ -21,6 +21,7 @@ step.
 | --- | --- |
 | **Website** | [openecraft.org](https://openecraft.org) – what OpenECraft does, with live demos of the schematic editor, the panel in 3D, the check, the reports and the exports in the browser ([website](docs/website.md)) |
 | **Videos** | [youtube.com/@OpenECraft](https://www.youtube.com/@OpenECraft) – a tour of the editor and tutorials that draw the example projects step by step |
+| **Community** | [Discord](https://discord.gg/hC4FRJt2fk) – ask questions, show your projects and talk with other users and the developers |
 | **Web editor** | [editor.openecraft.org](https://editor.openecraft.org) – the full editor in the browser, nothing to install; *Save* downloads the project file ([web version](docs/installation.md#web-webassembly)) |
 | **Parts server** | [parts-server.openecraft.org](https://parts-server.openecraft.org) – the public data portal with the bundled manufacturer catalogs; browse it on its web page or enter its address in the editor's *Data portal* ([parts server](docs/parts-server.md#public-parts-server)) |
 | **Project server** | [project-server.openecraft.org](https://project-server.openecraft.org) – a public project server for shared projects with page locks; it needs an account ([project server](docs/project-server.md#public-project-server)) |

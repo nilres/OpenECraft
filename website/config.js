@@ -18,6 +18,9 @@ window.OPENECRAFT_SITE = {
     // The channel with the videos of the project (OPENECRAFT_VIDEOS_URL). Empty hides
     // the links to it.
     videos: "https://www.youtube.com/@OpenECraft",
+    // The chat of the community, a Discord server (OPENECRAFT_COMMUNITY_URL). Empty
+    // hides the links to it.
+    community: "https://discord.gg/hC4FRJt2fk",
     // The legal notice (Impressum) of the operator of the site, shown by the link
     // "Legal notice" of the footer. Without a name there is neither link nor notice.
     // Addresses and texts take several lines, separated by "\n" or "|".
