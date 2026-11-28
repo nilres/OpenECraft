@@ -33,6 +33,19 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   view and explains itself in a tooltip; the details of the current wire or item in
   the wiring and mounting assistants can be hidden
   ([#268](https://github.com/nilres/OpenECraft/issues/268)).
+- **The website is easier to find:** its pages tell search engines the way to them
+  (main page, section, page), the page of a symbol names its drawing as a picture that
+  is free to use, and the main page names the site, the project and its screenshots,
+  in the language of the page. A link to the page of a symbol, a symbol category or
+  an example project shows a picture of its own in chats and social media: the
+  symbol, or the first schematic page. The sitemap names the day a page last changed,
+  and with a key (`OPENECRAFT_INDEXNOW_KEY`) the Docker image tells Bing, Yandex and
+  other search engines of changed pages at once (IndexNow). `llms.txt` lists the pages for
+  language models, an address without a page gets one that leads on, in the language
+  of the browser, and the site and the web editor have a `favicon.ico`. The web editor
+  has a title and a preview of its own for search results and links, a `robots.txt`
+  and, with `OPENECRAFT_SITE_URL` of its Docker image, its canonical address
+  ([website](docs/website.md#search-engines-and-link-previews)).
 - **Cross references are followed in the editor:** Ctrl + click on a cross reference
   (the key that opens links) opens the page it names; the reference of an interruption
   point selects and centres its counterpart. While the key is held, the pointer is a

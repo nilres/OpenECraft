@@ -19,6 +19,10 @@ pub fn file_name(lang: Lang) -> String {
 /// previews show.
 const META: [&str; 3] = ["<meta name=\"description\" content=\"", "<meta property=\"og:title\" content=\"", "<meta property=\"og:description\" content=\""];
 
+/// The names of the structured data (JSON-LD) whose texts are translated too: what a
+/// search engine reads of the page beside its head.
+const DATA: [&str; 2] = ["\"name\": \"", "\"description\": \""];
+
 /// The English page `html` in `lang`; a text the catalog lacks stays English.
 pub fn translated(html: &str, lang: Lang) -> String {
     if lang == Lang::En {
@@ -30,6 +34,10 @@ pub fn translated(html: &str, lang: Lang) -> String {
     out = rewrite(&out, " data-t-placeholder=\"", '"', |text| find(text).map(|t| format!(" placeholder=\"{}\" data-t-placeholder=\"{text}", attribute(t))));
     for meta in META {
         out = rewrite(&out, meta, '"', |text| find(text).map(|t| format!("{meta}{}", attribute(t))));
+    }
+    // A text with an escaped character ends early here, is not found and stays English.
+    for name in DATA {
+        out = rewrite(&out, name, '"', |text| translation(text, lang).map(|t| format!("{name}{}", t.replace('\\', "\\\\").replace('"', "\\\"").replace("</", "<\\/"))));
     }
     // alt="…" data-t-alt="…": the text shown and its English.
     let keys: Vec<String> = out.split(" data-t-alt=\"").skip(1).filter_map(|rest| rest.split('"').next()).map(String::from).collect();

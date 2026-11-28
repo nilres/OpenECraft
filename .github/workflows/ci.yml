@@ -299,7 +299,9 @@ jobs:
           tags: openecraft-web:ci
           cache-from: type=gha,scope=editor-web
           cache-to: type=gha,scope=editor-web,mode=max
-      # The website builds on the stage of the web editor and shares its cache.
+      # The website builds on the stage of the web editor and shares its cache. The days
+      # its pages last changed come from pages.tsv of the site that is online: the
+      # repository variable OPENECRAFT_SITE_URL (https://…/), else openecraft.org.
       - uses: docker/build-push-action@v6
         with:
           context: .
@@ -310,6 +312,7 @@ jobs:
           build-args: |
             OPENECRAFT_STARS=${{ steps.numbers.outputs.stars }}
             OPENECRAFT_CONTRIBUTORS=${{ steps.numbers.outputs.contributors }}
+            OPENECRAFT_PAGES_URL=${{ vars.OPENECRAFT_SITE_URL || 'https://openecraft.org/' }}pages.tsv
           cache-from: |
             type=gha,scope=editor-web
             type=gha,scope=website
@@ -366,6 +369,7 @@ jobs:
           build-args: |
             OPENECRAFT_STARS=${{ steps.numbers.outputs.stars }}
             OPENECRAFT_CONTRIBUTORS=${{ steps.numbers.outputs.contributors }}
+            OPENECRAFT_PAGES_URL=${{ vars.OPENECRAFT_SITE_URL || 'https://openecraft.org/' }}pages.tsv
           cache-from: |
             type=gha,scope=editor-web
             type=gha,scope=website

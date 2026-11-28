@@ -55,13 +55,17 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   when a screenshot changes), the preview image of links in chats and social media
   (1200 × 630) and the robots.txt of a page without a public address.
 - `social.jpg` is drawn by `social.py`: icon, name and what OpenECraft is beside the
-  screenshot `docs/images/panel-3d.png`.
+  screenshot `docs/images/panel-3d.png`. The pages of the symbols and the examples
+  have pictures of their own, drawn by the build ([below](#the-picture-of-a-link)).
 - `sheet.svg`: the sheet of the first screen as a picture, shown until the module is
   loaded and draws it (`cargo run -p openecraft-website -- sheet > website/sheet.svg`;
   a test compares it with the page the demo opens with).
 - `apple-touch-icon.png`: the icon of the page on the home screen of an iPhone or
   iPad, which takes no SVG: the drawing of `assets/icon.svg` (the icon of the page
   everywhere else) as an opaque square, drawn by `apple-touch-icon.py`.
+- `favicon.ico`: the same drawing in 16, 32 and 48 pixels, drawn by the same script:
+  what a browser or a search engine asks a site for (`/favicon.ico`) without reading a
+  page that names `icon.svg`. The web editor copies it too.
 - `content/`: the pages written as content files, which the build puts into the
   frame of the site ([below](#pages-the-build-writes)).
 - `tools.js`, `src/tools.rs`: the tools ([below](#tools)).
@@ -180,7 +184,98 @@ start. For a page deployed by hand, run it once on the build:
 OPENECRAFT_SITE_URL=https://openecraft.example.com/ sh installer/docker/website-site.sh website/dist website/dist
 ```
 
-Running it again replaces the tags.
+Running it again replaces the tags and the addresses it wrote.
+
+#### Structured data
+
+Beside the application, the main page names the site (`WebSite`: the name search
+results show for it) and the project behind it (`Organization`, with its logo and,
+as `sameAs`, the repository and the channel of `config.js`; a test compares them),
+the screenshots of the gallery with their texts, the license and where to download.
+Every page the build writes names itself (`WebPage`, or `FAQPage` with its
+questions), the site it is part of and the way to it (`BreadcrumbList`: main page,
+section, for a symbol its category, the page), which a search result shows in place
+of the address; the page of a symbol names its drawing as a picture with its license
+(`ImageObject`), so that an image search can show it as free to use. The pages of
+the languages have the texts of their data in their language (`name`,
+`description`; `openecraft_i18n::page`).
+
+An address of the site in the data starts at the folder of the site as seen from
+the page (`"url": "./"`, `"item": "../../symbols/"`), as the value of a name on a
+line of its own: valid as it is, and written whole by `website-site.sh` where the
+public address is known, as search engines want it.
+
+#### The picture of a link
+
+A link to the site in a chat, in social media or in some search results shows a
+picture (`og:image`, 1200 × 630). Most pages have the one of the site, `social.jpg`.
+The pages of the symbol library and of the examples have their own, drawn by the
+build (`crates/openecraft-site`, `preview`): the page of a symbol its drawing
+(`symbols/preview/<key>.png`), the page of a category its first symbols, the page of
+an example its first schematic page (`preview.png` in their folders), each on a card
+with the icon, the name of the project and what the page is about. A card is an SVG
+drawn by `resvg` with the font of the editor, so it is the same on every machine;
+its texts are English, as on `social.jpg`, and one picture serves the page in every
+language. The page names its picture in its structured data (`thumbnailUrl`), and
+`website-site.sh` writes the address of that picture, or of `social.jpg`, into the
+head. To look at cards without building the site:
+
+```bash
+OPENECRAFT_PREVIEW=<folder> cargo test -p openecraft-site preview
+```
+
+#### When a page last changed
+
+A search engine asks for a changed page sooner when the sitemap names the day
+(`<lastmod>`), as long as the days are true. A build has no memory of the one
+before, so the site keeps it: `pages.tsv` beside the main page lists every page with
+a hash of what it says (title, description and content, not the frame around them)
+and the day that last changed. The build (`crates/openecraft-site`, `changes`)
+compares its pages with the file of the site that is online, `website/pages.tsv`,
+which `installer/web/pages.sh` fetches before the build from `OPENECRAFT_PAGES_URL`
+(`https://…/pages.tsv`; a build argument of the Docker image, which CI sets to the
+site of the repository variable `OPENECRAFT_SITE_URL`, by default openecraft.org):
+a page that says the same keeps its day, a changed or new one gets the day of the
+build. Without the file no page has a day and the sitemap names none: the first
+build cannot know them, and a made-up day is worse than none. By hand:
+
+```bash
+OPENECRAFT_PAGES_URL=https://openecraft.example.com/pages.tsv sh installer/web/pages.sh
+cd website && trunk build --release
+```
+
+With a key in `OPENECRAFT_INDEXNOW_KEY` the Docker image also tells search engines
+of the pages that changed with its build ([IndexNow](https://www.indexnow.org):
+Bing, Yandex, Seznam, Naver and others; not Google), once the site answers
+(`installer/docker/website-indexnow.sh`). The key is of your own choice (8 to 128
+letters, digits and dashes: `openssl rand -hex 16`); the image writes it to
+`/indexnow.txt`, where the search engines read it to see that the site itself is
+asking. A build that changed no page tells nothing, and neither does the first one,
+which knows no days: submit the sitemap to the search engines once (Google Search
+Console, Bing Webmaster Tools). The request names addresses of the site and nothing
+of a visitor. For a site deployed by hand, write the key into the build before the
+upload and send the request after it:
+
+```bash
+export OPENECRAFT_SITE_URL=https://openecraft.example.com/ OPENECRAFT_INDEXNOW_KEY=…
+sh installer/docker/website-indexnow.sh website/dist website/dist key
+sh installer/docker/website-indexnow.sh website/dist website/dist send
+```
+
+#### Language models, missing pages
+
+- `llms.txt` beside the main page lists the English pages by title and description
+  under headings (documentation, guides, tools, comparisons, …), as Markdown for the
+  language models that answer questions about software (`crates/openecraft-site`,
+  `llms`; the pages of the single symbols and releases are reached from their
+  overviews). `website-site.sh` writes its links whole.
+- An address the site has nothing at gets a page that says so and leads on, in the
+  frame of the site: `404.html`, `404.de.html`, … (`missing`), kept out of the index
+  (`noindex`). nginx sends the one of the first language the browser asks for, with
+  the status 404 (`website.conf`). The page is asked for at any depth, so
+  `website-site.sh` names the folder its addresses start from (`<base>`: the public
+  address, without one the root of the host). Another web server has to be told to
+  send `404.html` for a missing page.
 
 The page has an address in every language: the build writes `de.html`, `fr.html`, …
 beside the English `index.html` (a hook of `Trunk.toml` runs `cargo run --release -p
@@ -243,6 +338,10 @@ hook of `Trunk.toml` runs `cargo run --release -p openecraft-site --example site
 | `docs/` | The documentation: the tutorial, the installation guide, the feature documents, the command line, the plugins and the servers (`DOCUMENTS` of `docs.rs`), in English, German, French and Spanish | The Markdown files of `docs/` and their translations in `docs/de/`, `docs/fr/` and `docs/es/` |
 | `news/` | A page for every released version, an overview and the feed `news/feed.xml` (Atom) | `CHANGELOG.md` |
 | `faq/`, `how-to/…`, `tools/…`, `reference/…`, `compare/<product>-alternative/` | Questions and answers, guides for single tasks, the tools, the reference tables (letter codes of IEC 81346-2, wire colours, IP ratings) and the comparison with one product | The content files of `website/content/` |
+| `symbols/preview/<key>.png`, `symbols/<category>/preview.png`, `examples/<example>/preview.png` | The pictures of links to these pages ([above](#the-picture-of-a-link)) | The drawings of the symbols, the first schematic page of an example |
+| `404.html`, `404.de.html`, … | The page for an address that has none, in every language ([above](#language-models-missing-pages)) | `missing.rs` |
+| `llms.txt` | The list of the English pages for language models | The pages written, and the built main page and pages written by hand |
+| `pages.tsv` | Every page with a hash of what it says and the day it last changed ([above](#when-a-page-last-changed)) | The built pages, `website/pages.tsv` of the site that is online |
 | `build.js` | What the build knows: the module of the site for the tools and the screen recording ([below](#screen-recording-and-numbers-of-the-project)) | The built page, `website/tour.webm` |
 | `numbers.js` | The stars and the contributors of the repository ([below](#screen-recording-and-numbers-of-the-project)) | The environment; in the Docker image its server |
 | `videos.js` | The videos of the page `videos/` ([below](#videos)): none from the build | In the Docker image its server, from the feed of the channel |
@@ -469,8 +568,14 @@ variables on. At every start the image writes `config.js` from the variables
 of the public address, `robots.txt` and `sitemap.xml` (`website-site.sh`) and its nginx
 site from `installer/docker/website.conf` (mount your own at
 `/etc/nginx/templates/default.conf.template`; it answers `/config.js`, `/index.html`,
-`/robots.txt` and `/sitemap.xml` with the files of `/tmp/openecraft/`);
-put a TLS reverse proxy in front of it for a public site. A host that is not the one
+`/robots.txt`, `/sitemap.xml`, `/llms.txt` and a missing page with the files of
+`/tmp/openecraft/`);
+put a TLS reverse proxy in front of it for a public site. The web editor at
+`/editor/` is a page of the site and of its sitemap; where `OPENECRAFT_EDITOR_URL` is
+the address of a web editor elsewhere, the copy in the image names that one as its
+original (canonical) and is left out of the sitemap. The image of the web editor
+takes `OPENECRAFT_SITE_URL` as well
+([installation](installation.md#docker-image-of-the-web-editor)). A host that is not the one
 of `OPENECRAFT_SITE_URL` (`www.` beside the bare domain, plain `http://`) should be
 redirected there by that proxy (`return 301 https://openecraft.example.com$request_uri;`)
 instead of answering with the page: the pages name their canonical address, but a

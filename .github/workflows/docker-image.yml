@@ -144,6 +144,7 @@ jobs:
           build-args: |
             OPENECRAFT_STARS=${{ steps.numbers.outputs.stars }}
             OPENECRAFT_CONTRIBUTORS=${{ steps.numbers.outputs.contributors }}
+            OPENECRAFT_PAGES_URL=${{ vars.OPENECRAFT_SITE_URL || 'https://openecraft.org/' }}pages.tsv
           no-cache: ${{ inputs.no-cache }}
           cache-from: ${{ inputs.cache-from }}
           cache-to: ${{ inputs.cache-to }}
@@ -164,6 +165,7 @@ jobs:
           build-args: |
             OPENECRAFT_STARS=${{ steps.numbers.outputs.stars }}
             OPENECRAFT_CONTRIBUTORS=${{ steps.numbers.outputs.contributors }}
+            OPENECRAFT_PAGES_URL=${{ vars.OPENECRAFT_SITE_URL || 'https://openecraft.org/' }}pages.tsv
           labels: |
             org.opencontainers.image.title=${{ inputs.image }}
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}

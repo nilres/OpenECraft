@@ -89,9 +89,13 @@ RUN sh installer/docker/compress.sh /src/openecraft/dist
 # parts and project servers from the browser: give their addresses in the editor (the
 # servers allow requests from every origin). The legal notice of the operator (Help >
 # Legal and privacy; an empty OPENECRAFT_LEGAL_NAME: none) is set with the variables
-# below: the image writes config.js from them at every start.
+# below: the image writes config.js from them at every start. OPENECRAFT_SITE_URL is
+# the public address of the editor (https://…/) for search engines and link previews:
+# with it the image writes the canonical address and the preview image into the page
+# and names a sitemap in robots.txt (website-site.sh, as for the website).
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS editor-web
-ENV OPENECRAFT_LEGAL_NAME= \
+ENV OPENECRAFT_SITE_URL= \
+    OPENECRAFT_LEGAL_NAME= \
     OPENECRAFT_LEGAL_ADDRESS= \
     OPENECRAFT_LEGAL_EMAIL= \
     OPENECRAFT_LEGAL_PHONE= \
@@ -103,6 +107,7 @@ ENV OPENECRAFT_LEGAL_NAME= \
     OPENECRAFT_LEGAL_PRIVACY=
 COPY installer/docker/editor-web.conf /etc/nginx/conf.d/default.conf
 COPY --chmod=0755 installer/docker/website-config.sh /docker-entrypoint.d/40-openecraft-website-config.sh
+COPY --chmod=0755 installer/docker/website-site.sh /docker-entrypoint.d/41-openecraft-website-site.sh
 COPY --from=web-compressed /src/openecraft/dist/ /usr/share/nginx/html/
 EXPOSE 8080
 
@@ -113,9 +118,14 @@ EXPOSE 8080
 # compressing 40 MB for every visitor; config.js is written at every start.
 # The screen recording of the first screen is an asset of the release `website-media`
 # (installer/web/tour.sh; an empty OPENECRAFT_TOUR_URL builds the site without it).
+# OPENECRAFT_PAGES_URL is the address of pages.tsv of the site that is online
+# (https://…/pages.tsv; installer/web/pages.sh): the build takes the days its pages
+# last changed from it, for the sitemap. Empty: the sitemap names no days.
 FROM web-build AS website-build
 ARG OPENECRAFT_TOUR_URL=https://github.com/nilres/OpenECraft/releases/download/website-media
+ARG OPENECRAFT_PAGES_URL=
 RUN OPENECRAFT_TOUR_URL="$OPENECRAFT_TOUR_URL" sh installer/web/tour.sh \
+    && OPENECRAFT_PAGES_URL="$OPENECRAFT_PAGES_URL" sh installer/web/pages.sh \
     && cd website \
     && trunk build --release \
     && cd ../openecraft \
@@ -137,8 +147,11 @@ RUN OPENECRAFT_TOUR_URL="$OPENECRAFT_TOUR_URL" sh installer/web/tour.sh \
 # page /videos/ are those of the YouTube channel OPENECRAFT_VIDEOS_CHANNEL (its id;
 # empty: none), whose feed and pictures the image fetches at every start and then every
 # OPENECRAFT_VIDEOS_INTERVAL seconds (website-videos.sh; four times a day, 0: never).
+# With a key in OPENECRAFT_INDEXNOW_KEY it tells search engines of the pages that
+# changed with its build (website-indexnow.sh; empty: nothing is sent).
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS website
 ENV OPENECRAFT_SITE_URL= \
+    OPENECRAFT_INDEXNOW_KEY= \
     OPENECRAFT_EDITOR_URL=editor/ \
     OPENECRAFT_REPOSITORY_URL=https://github.com/nilres/OpenECraft \
     OPENECRAFT_DOWNLOADS_URL= \
@@ -163,6 +176,7 @@ COPY --chmod=0755 installer/docker/website-config.sh /docker-entrypoint.d/40-ope
 COPY --chmod=0755 installer/docker/website-site.sh /docker-entrypoint.d/41-openecraft-website-site.sh
 COPY --chmod=0755 installer/docker/website-numbers.sh /docker-entrypoint.d/42-openecraft-website-numbers.sh
 COPY --chmod=0755 installer/docker/website-videos.sh /docker-entrypoint.d/43-openecraft-website-videos.sh
+COPY --chmod=0755 installer/docker/website-indexnow.sh /docker-entrypoint.d/44-openecraft-website-indexnow.sh
 COPY --from=website-build /src/website/dist/ /usr/share/nginx/html/
 COPY --from=website-build /src/target/website-editor/ /usr/share/nginx/html/editor/
 # Last, so that new numbers leave the layers above as they are.

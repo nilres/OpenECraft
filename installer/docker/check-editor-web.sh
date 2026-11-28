@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Starts the image of the web editor once and checks that it serves the page, the
 # WebAssembly as application/wasm and as the build compressed it, the license files,
-# the worker, the routings of the examples and the legal notice of the operator from
-# the environment; used by the CI workflows (ci.yml, docker-web.yml).
+# the worker, the routings of the examples, the legal notice of the operator and the
+# public address from the environment; used by the CI workflows (ci.yml, docker-web.yml).
 #
 #   bash installer/docker/check-editor-web.sh [image] [port]
 set -euo pipefail
@@ -25,7 +25,8 @@ has() {
     grep -q "$@" "$work/body" || { echo "$address lacks: ${*: -1}" >&2; return 1; }
 }
 
-docker run -d --name "$name" -p "$port:8080" -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' "$image" > /dev/null
+docker run -d --name "$name" -p "$port:8080" -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' \
+  -e OPENECRAFT_SITE_URL=https://editor.example "$image" > /dev/null
 for _ in $(seq 30); do curl -fs "http://127.0.0.1:$port/" > /dev/null && break; sleep 1; done
 curl -fsS "http://127.0.0.1:$port/" -o "$work/index.html" || { docker logs "$name"; exit 1; }
 grep -q openecraft_canvas "$work/index.html"
@@ -42,6 +43,13 @@ done
 curl -fsS -o /dev/null -D "$work/headers.txt" "http://127.0.0.1:$port/"
 if grep -qi '^x-robots-tag' "$work/headers.txt"; then exit 1; fi
 grep -qF '<meta name="description"' "$work/index.html"
+# The tags of the public address, robots.txt, the sitemap and the preview image.
+grep -qF '<link rel="canonical" href="https://editor.example/" />' "$work/index.html"
+grep -qF '<meta property="og:image" content="https://editor.example/social.jpg" />' "$work/index.html"
+has "http://127.0.0.1:$port/index.html" -F 'rel="canonical"'
+has "http://127.0.0.1:$port/robots.txt" -x 'Sitemap: https://editor.example/sitemap.xml'
+has "http://127.0.0.1:$port/sitemap.xml" -F '<url><loc>https://editor.example/</loc></url>'
+curl -fsS -o /dev/null "http://127.0.0.1:$port/social.jpg"
 # The worker that searches the 3D routing of an opened project, the routings of the
 # examples from the build and the catalog of a language the page fetches when it is
 # used.

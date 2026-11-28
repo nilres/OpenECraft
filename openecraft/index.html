@@ -3,12 +3,25 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <title>OpenECraft</title>
-    <!-- What a search engine shows of the page: the editor itself is drawn on a canvas. -->
+    <!-- What a search engine and a link preview show of the page: the editor itself is
+         drawn on a canvas (it names the open project in the title once it runs). The
+         tags that need the public address of the editor go between the two markers
+         (OPENECRAFT_SITE_URL of the Docker image, docs/installation.md). -->
+    <title>OpenECraft web editor – electrical CAE in the browser</title>
     <meta name="description" content="The OpenECraft web editor: draw schematics, write reports and lay out the panel in 3D in the browser. Free and open source, nothing to install, projects stay on your computer." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenECraft" />
+    <meta property="og:title" content="OpenECraft web editor – electrical CAE in the browser" />
+    <meta property="og:description" content="The OpenECraft web editor: draw schematics, write reports and lay out the panel in 3D in the browser. Free and open source, nothing to install, projects stay on your computer." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- site address (installer/docker/website-site.sh) -->
+    <!-- /site address -->
     <link data-trunk rel="rust" data-bin="openecraft" data-cargo-profile-release="web" data-wasm-opt="2" data-initializer="loading.js" />
     <link data-trunk rel="copy-file" href="../assets/icon.svg" />
     <link data-trunk rel="copy-file" href="worker.js" />
+    <link data-trunk rel="copy-file" href="robots.txt" />
+    <link data-trunk rel="copy-file" href="../website/social.jpg" />
+    <link data-trunk rel="copy-file" href="../website/favicon.ico" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <!-- The legal notice of who runs this web editor (config.js, docs/installation.md). -->
     <link data-trunk rel="copy-file" href="config.js" />

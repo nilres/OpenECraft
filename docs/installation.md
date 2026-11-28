@@ -261,6 +261,10 @@ Who runs the editor is set with the variables `OPENECRAFT_LEGAL_NAME`,
 (below, [Legal notice of a web editor](#legal-notice-of-a-web-editor)): the image writes
 `config.js` from them at every start.
 
+The public address of the editor (`https://…/`) is set with `OPENECRAFT_SITE_URL`:
+with it the image writes the canonical address and the preview image of links into
+the page and names a sitemap in `robots.txt`, for search engines and link previews.
+
 The nginx site is `installer/docker/editor-web.conf` (mount your own at
 `/etc/nginx/conf.d/default.conf`): `index.html` and the other files are checked at
 every visit, the WebAssembly and its script, named after their hash, are cached for a

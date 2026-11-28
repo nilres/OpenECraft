@@ -65,6 +65,9 @@ services:
       - "127.0.0.1:8080:8080"
     environment:
       <<: *legal
+      # The public address of the editor (https://…/) for search engines and link
+      # previews: canonical address, preview image, sitemap.
+      OPENECRAFT_SITE_URL: ${OPENECRAFT_EDITOR_SITE_URL:-}
 
   website:
     image: ghcr.io/nilres/openecraft-website:${OPENECRAFT_TAG:-latest}
@@ -79,6 +82,9 @@ services:
       # The public address of the site (https://…/) for search engines and link
       # previews: canonical address, preview image, sitemap.
       OPENECRAFT_SITE_URL: ${OPENECRAFT_SITE_URL:-}
+      # A key of your own choice (openssl rand -hex 16) lets the site tell search
+      # engines of the pages that changed with a new image (IndexNow); empty: nothing.
+      OPENECRAFT_INDEXNOW_KEY: ${OPENECRAFT_INDEXNOW_KEY:-}
       # The stars and contributors of the repository are asked from GitHub every hour;
       # seconds, 0: never.
       OPENECRAFT_NUMBERS_INTERVAL: ${OPENECRAFT_NUMBERS_INTERVAL:-3600}

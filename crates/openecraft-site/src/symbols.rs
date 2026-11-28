@@ -59,7 +59,8 @@ pub fn is_category(folder: &str) -> bool {
 
 /// The folder of a symbol below [`FOLDER`]: its English name in lower case with
 /// dashes (`no-contact`), which people search for. A name taken by a category, by the
-/// drawings or by another symbol gets the key of the symbol.
+/// drawings, by the pictures of the links or by another symbol gets the key of the
+/// symbol.
 pub fn symbol_slug(def: &SymbolDef) -> &'static str {
     static SLUGS: OnceLock<BTreeMap<&'static str, String>> = OnceLock::new();
     let slugs = SLUGS.get_or_init(|| {
@@ -75,12 +76,18 @@ pub fn symbol_slug(def: &SymbolDef) -> &'static str {
             .iter()
             .map(|def| {
                 let name = plain(def.name);
-                let taken = name.is_empty() || name == "art" || is_category(&name) || count[&name] > 1;
+                let taken = name.is_empty() || name == "art" || name == crate::preview::SYMBOLS || is_category(&name) || count[&name] > 1;
                 (def.key, if taken { plain(&format!("{name}-{}", def.key)) } else { name })
             })
             .collect()
     });
     slugs.get(def.key).map_or("", String::as_str)
+}
+
+/// The symbol whose page is `folder` below [`FOLDER`].
+pub fn by_folder(folder: &str) -> Option<&'static SymbolDef> {
+    static FOLDERS: OnceLock<BTreeMap<&'static str, &'static SymbolDef>> = OnceLock::new();
+    FOLDERS.get_or_init(|| library().iter().map(|def| (symbol_slug(def), def)).collect()).get(folder).copied()
 }
 
 /// The symbols of a category, in the order of the library.

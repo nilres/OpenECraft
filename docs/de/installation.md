@@ -281,6 +281,11 @@ Wer den Editor betreibt, wird mit den Variablen `OPENECRAFT_LEGAL_NAME`,
 eingestellt (unten, [Impressum eines Web-Editors](#impressum-eines-web-editors)): Das
 Image schreibt bei jedem Start die `config.js` daraus.
 
+Die öffentliche Adresse des Editors (`https://…/`) wird mit `OPENECRAFT_SITE_URL`
+eingestellt: Damit schreibt das Image die kanonische Adresse und das Vorschaubild von
+Links in die Seite und nennt in `robots.txt` eine Sitemap, für Suchmaschinen und
+Linkvorschauen.
+
 Die nginx-Site ist `installer/docker/editor-web.conf` (eine eigene unter
 `/etc/nginx/conf.d/default.conf` einhängen): `index.html` und die anderen Dateien werden
 bei jedem Besuch geprüft, das WebAssembly und sein Skript, nach ihrem Hash benannt,
