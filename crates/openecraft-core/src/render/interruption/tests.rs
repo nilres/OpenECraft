@@ -195,7 +195,7 @@ fn vertical_points_turn_their_texts_along_the_conductor_on_request() {
             assert_eq!((label.angle, xref.angle), (90.0, 90.0), "{at}");
             assert_eq!((plain.0.angle, plain.1.angle), (0.0, 0.0), "{at}: only on request");
             let pin = def.pin_world(0, s.pos, s.rot, s.mirror);
-            assert!(s.pos.x + label.offset.x < pin.x && s.pos.x + xref.offset.x > pin.x, "{at}: the conductor runs between the texts");
+            assert!(s.pos.x + label.offset.x < pin.x && xref.offset.x == label.offset.x, "{at}: one line beside the conductor");
             let arrow = def.world_bounds(s.pos, s.rot, s.mirror).expand(-0.6);
             let a = place_area(s.pos + label.offset, &s.label, label_size(&def), label);
             let b = place_area(s.pos + xref.offset, "/12.3 /14.1", SMALL_SIZE, xref);

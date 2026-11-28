@@ -68,12 +68,17 @@ pub fn side_places(def: &SymbolDef, s: &SymbolInst, side: TextSide) -> (TextPlac
                 let (above, below) = (pin.y - GAP - size * 0.7, pin.y + GAP + SMALL_SIZE * 0.7);
                 return (place(p(pin.x, above), anchor), place(p(pin.x, below), anchor));
             } else if s.text_along {
-                // Vertical arrows with the texts turned along the conductor (reading from
-                // bottom to top): the name left of the conductor and the cross reference
-                // right of it, running back from the connection point.
-                let anchor = if dir.y > 0.0 { Anchor::Left } else { Anchor::Right };
-                let (left, right) = (pin.x - GAP - size * 0.7, pin.x + GAP + SMALL_SIZE * 0.7);
-                return (TextPlace { angle: 90.0, ..place(p(left, pin.y), anchor) }, TextPlace { angle: 90.0, ..place(p(right, pin.y), anchor) });
+                // Vertical arrows with the texts turned along the conductor: one line left
+                // of it, reading from bottom to top, running back from the connection
+                // point with the name next to it and the cross reference after it.
+                let x = pin.x - GAP - size * 0.7;
+                let gap = if w > 0.0 { w + TEXT_GAP } else { 0.0 };
+                let turned = |q: P, anchor: Anchor| TextPlace { angle: 90.0, ..place(q, anchor) };
+                return if dir.y > 0.0 {
+                    (turned(p(x, pin.y), Anchor::Left), turned(p(x, pin.y - gap), Anchor::Left))
+                } else {
+                    (turned(p(x, pin.y), Anchor::Right), turned(p(x, pin.y + gap), Anchor::Right))
+                };
             } else {
                 // Vertical arrows: the name beside the arrow, the cross reference below it.
                 let next = c.y + (size + SMALL_SIZE) * 0.7 + GAP;
