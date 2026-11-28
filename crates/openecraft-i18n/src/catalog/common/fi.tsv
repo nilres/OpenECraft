@@ -135,6 +135,7 @@ Device connection box three-phase	Laitteen liitäntärasia kolmivaiheinen
 Device connection point	Laitteen liitäntäpiste
 Device description	Laitekuvaus
 Device tag	Laitetunnus
+Device tag of the board (default: the next free one)	Piirilevyn laitetunnus (oletus: seuraava vapaa)
 Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Laite, johon telineen maadoitusjohdin kulkee (maadoitus- tai potentiaalintasauskisko); tyhjä: ei mitään
 Device {}	Laite {}
 Devices	Laitteet
@@ -229,6 +230,7 @@ Image	Kuva
 Import	Tuonti
 Incomplete	Keskeneräinen
 Input	Tulo
+Insert after this page (default: at the end)	Lisää tämän sivun jälkeen (oletus: loppuun)
 Inspection and test report	Tarkastus- ja testauspöytäkirja
 Inspector	Tarkastaja
 Installation	Sijoitus
@@ -493,6 +495,7 @@ Reason for the test	Testauksen syy
 Rectangle	Suorakulmio
 Rectangular	Suorakulmainen
 Redo	Tee uudelleen
+References (J1) or reference prefixes (J) of the components whose pins become connection points, separated by commas (default: the connectors)	Niiden komponenttien viitteet (J1) tai viitteiden etuliitteet (J), joiden nastoista tulee liitäntäpisteitä, pilkuin erotettuina (oletus: liittimet)
 Refresh	Päivitä
 Register entry	Rekisterimerkintä
 Reject	Hylkää

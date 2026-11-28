@@ -1,7 +1,7 @@
 //! The built-in exports as registry entries ([`Exporter`]): drawings of the pages
 //! (SVG, HTML, PDF, DXF, DWG), production and PLC lists, exchange files (AutomationML,
 //! KBL, the harness interface), the panel layout and the harnesses in 3D (glTF, STEP,
-//! IGES, IFC, JT, Parasolid XT) and the translation
+//! IGES, IFC, JT, Parasolid XT), the exchange with KiCad and FreeCAD and the translation
 //! dictionary. The front ends offer them next to the exports of plugins; the language
 //! of the texts is the host's business (`translation::with_language`).
 
@@ -19,6 +19,7 @@ const HARNESS: Param = param("harness", Kind::Str, tr_const!("Harness tag, e.g. 
 const HARNESS_OPT: Param = optional("harness", Kind::Str, tr_const!("Harness tag, e.g. -WH1 (default: the only harness of the project)"));
 const HARNESSES: Param = optional("harness", Kind::Str, tr_const!("Harness tag, e.g. -WH1 (default: all harnesses)"));
 const SCHEME: Param = optional("scheme", Kind::Str, tr_const!("Labeling scheme (default: the scheme selected in the project)"));
+const ALL_SYMBOLS: Param = optional("all", Kind::Bool, tr_const!("All symbols of the library instead of those the project uses"));
 const PLUGS: Param = optional("plug", Kind::Str, tr_const!("Plug tag, e.g. -X10 (default: all plugs)"));
 
 fn marking_scheme(prj: &Project, a: &Args) -> Result<crate::marking::Scheme, String> {
@@ -152,6 +153,12 @@ pub fn builtin() -> Vec<Exporter> {
     .exporter_with("parasolid", tr_const!("Panel layout in 3D (Parasolid XT)"), "x_t", false, vec![], text(|prj, _, _| {
         with_layout(prj)?;
         Ok(crate::export3d::parasolid(prj))
+    }))
+    .exporter_with("kicad_netlist", tr_const!("KiCad netlist of the devices and potentials (.net)"), "net", false, vec![], text(|prj, an, _| Ok(crate::kicad::net::export(prj, an))))
+    .exporter_with("kicad_symbols", tr_const!("KiCad symbol library (.kicad_sym)"), "kicad_sym", false, vec![ALL_SYMBOLS], text(|prj, _, a| Ok(crate::kicad::sym::export_project(prj, a.flag("all")))))
+    .exporter_with("freecad", tr_const!("Panel layout in 3D for FreeCAD (macro)"), "FCMacro", false, vec![], text(|prj, _, _| {
+        with_layout(prj)?;
+        Ok(crate::freecad::macro_text(prj))
     }))
     .exporter_with("dictionary", tr_const!("Translation dictionary (CSV)"), "csv", false, vec![], text(|prj, _, _| Ok(crate::translation::to_csv(prj))));
     reg.exporters

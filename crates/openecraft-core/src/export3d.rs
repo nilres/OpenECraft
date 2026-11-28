@@ -107,13 +107,20 @@ fn kind_name(kind: ItemKind) -> &'static str {
 
 /// The solids of an enclosure (the coordinates of the 3D view).
 pub fn enclosure_solids(prj: &Project, e: &Enclosure) -> Vec<Solid> {
+    enclosure_item_solids(prj, e).into_iter().map(|(_, s)| s).collect()
+}
+
+/// The solids of an enclosure, each with the id of the panel item it shows (`None`: a
+/// component of the enclosure or a drive).
+pub fn enclosure_item_solids(prj: &Project, e: &Enclosure) -> Vec<(Option<u64>, Solid)> {
     let h = e.height;
     let up = |q: [f32; 3]| [q[0], h - q[1], q[2]];
     // Boxes in enclosure coordinates (y down) to y up.
     let up_box = |(a, b): ([f32; 3], [f32; 3])| box_triangles(up([a[0], b[1], a[2]]), up([b[0], a[1], b[2]]));
     let mut out = Vec::new();
+    let item = std::cell::Cell::new(None);
     let mut solid = |name: &str, color: [u8; 3], transparent: bool, triangles: Vec<Tri>, colors: Vec<[u8; 3]>| {
-        out.push(Solid { name: name.to_string(), color, transparent, triangles, colors: paint(color, colors) });
+        out.push((item.get(), Solid { name: name.to_string(), color, transparent, triangles, colors: paint(color, colors) }));
     };
     // The maker's model of the enclosure takes the place of the generic body, walls,
     // door and plates.
@@ -130,6 +137,7 @@ pub fn enclosure_solids(prj: &Project, e: &Enclosure) -> Vec<Solid> {
         solid(&name, component_color(c.role), matches!(c.role, Role::Door | Role::RoomWall(_)), tris, Vec::new());
     }
     for it in e.items.iter().filter(|i| i.kind != ItemKind::Cutout) {
+        item.set(Some(it.id));
         // A busbar system: its copper bars and their insulating holders apart.
         if it.kind == ItemKind::Busbar {
             for (color, name) in [(panel::busbars::COPPER, "Busbar"), (panel::busbars::HOLDER, "Busbar holder")] {
@@ -152,6 +160,7 @@ pub fn enclosure_solids(prj: &Project, e: &Enclosure) -> Vec<Solid> {
         };
         solid(name, base, false, tris, colors);
     }
+    item.set(None);
     // The drives of the machines on the floor (shafts, couplings, belts, gear cases).
     for d in panel::drives(prj, e) {
         let name = e.items.iter().find(|i| i.id == d.machine).map_or_else(|| "Drive".to_string(), |i| format!("{} drive", i.tag));
@@ -186,12 +195,20 @@ fn kind_role(role: Role) -> &'static str {
 /// All enclosures of the project side by side: bayed ones in their line-up, all
 /// standing on the floor (y 0).
 pub fn scene(prj: &Project) -> Vec<EnclosureScene> {
+    scene_items(prj).into_iter().map(|(es, _)| es).collect()
+}
+
+/// The scene with, for every solid of an enclosure, the id of the panel item it shows.
+pub fn scene_items(prj: &Project) -> Vec<(EnclosureScene, Vec<Option<u64>>)> {
     let pos = panel::positions(&prj.layout);
     prj.layout
         .enclosures
         .iter()
         .zip(pos)
-        .map(|(e, o)| EnclosureScene { name: e.name.clone(), offset: [o[0], e.build.plinth, o[2]], solids: enclosure_solids(prj, e) })
+        .map(|(e, o)| {
+            let (items, solids) = enclosure_item_solids(prj, e).into_iter().unzip();
+            (EnclosureScene { name: e.name.clone(), offset: [o[0], e.build.plinth, o[2]], solids }, items)
+        })
         .collect()
 }
 

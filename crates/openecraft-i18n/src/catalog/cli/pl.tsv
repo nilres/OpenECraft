@@ -24,7 +24,7 @@ AutomationML file	Plik AutomationML
 CSV content instead of a file	Zawartość CSV zamiast pliku
 CSV file	Plik CSV
 CSV or Excel file	Plik CSV lub Excel
-CSV or JSON file	Plik CSV lub JSON
+CSV or JSON file, KiCad netlist (.net) or FreeCAD document (.FCStd)	Plik CSV lub JSON, lista połączeń KiCad (.net) lub dokument FreeCAD (.FCStd)
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	Plik CSV, JSON, BMEcat, EPLAN XML lub EDZ
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	Plik CSV, JSON, BMEcat, EPLAN XML, EDZ lub ZIP
 Catalog data; without id it is derived from the name	Dane katalogu; bez identyfikatora jest on tworzony z nazwy
@@ -109,7 +109,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Importuje do projektu opisy urządzeń z pliku GSDML (PROFINET) lub ESI (EtherCAT)
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Importuje segmenty planowania wstępnego i zaplanowane urządzenia z CSV lub Excela (kolumny Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Importuje komentarze recenzenta z eksportu PDF projektu (notatki, pola tekstowe, wyróżnienia, kształty, odpowiedzi) do warstwy przeglądu; komentarze zaimportowane wcześniej są pomijane
-Insert after this page (default: at the end)	Wstaw po tej stronie (domyślnie: na końcu)
 Inserts an edited subproject: its pages replace the pages taken out	Wstawia edytowany podprojekt: jego strony zastępują wydzielone strony
 Invalid form: {}	Nieprawidłowy formularz: {}
 Keep the file checked out after the check-in	Pozostaw plik wyewidencjonowany po zaewidencjonowaniu
@@ -203,7 +202,7 @@ Properties to rename (old name: new name)	Właściwości do zmiany nazwy (stara 
 Property {} needs a text or a number	Właściwość {} wymaga tekstu lub liczby
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Umieszcza projekt, eksport, eksport konektora lub plik lokalny w magazynie Vault; plik o tej samej nazwie w folderze otrzymuje nową wersję (wyewidencjonowanie i zaewidencjonowanie), w przeciwnym razie plik jest dodawany
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor lub Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Odczytuje plik innego systemu (CSV lub JSON) za pomocą konektora i wyświetla listę zmian; z apply są one przejmowane (konflikty tylko z overwrite)
+Reads a file of another system (CSV, JSON, a KiCad netlist or a FreeCAD document) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Odczytuje plik innego systemu (CSV, JSON, listę połączeń KiCad lub dokument FreeCAD) za pomocą konektora i wyświetla listę zmian; z apply są one przejmowane (konflikty tylko z overwrite)
 Reads the project files and archives of a folder (and its subfolders) into the project database	Wczytuje pliki projektów i archiwa z folderu (i jego podfolderów) do bazy danych projektów
 Reads translations from CSV: first column the source line, one column per language code	Odczytuje tłumaczenia z CSV: pierwsza kolumna to wiersz źródłowy, jedna kolumna na kod języka
 Redoes the last undone change	Ponawia ostatnio cofniętą zmianę
@@ -304,8 +303,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Zapisuje ustawienia projektu (numeracja przewodów, potencjały, wartości domyślne i kolory przewodów, oznaczenia, wartości domyślne węży, odsyłacze, schemat kontroli) do pliku
 Writes the structure management (aspects, identifiers, work areas) as a template file	Zapisuje zarządzanie strukturą (aspekty, identyfikatory, obszary robocze) jako plik szablonu
 csv (default) or eplan_xml	csv (domyślnie) lub eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement lub wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine lub exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad lub freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad lub exchange
 json (default), csv or xlsx (Excel, needs path)	json (domyślnie), csv lub xlsx (Excel, wymaga path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nWyświetla wersję wiersza poleceń (także --version lub -V)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo i redo działają tylko w sesji MCP: wiersz poleceń otwiera projekt od nowa dla każdego polecenia

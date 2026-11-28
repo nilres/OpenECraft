@@ -24,7 +24,7 @@ AutomationML file	AutomationML-fil
 CSV content instead of a file	CSV-innehåll i stället för en fil
 CSV file	CSV-fil
 CSV or Excel file	CSV- eller Excel-fil
-CSV or JSON file	CSV- eller JSON-fil
+CSV or JSON file, KiCad netlist (.net) or FreeCAD document (.FCStd)	CSV- eller JSON-fil, KiCad-nätlista (.net) eller FreeCAD-dokument (.FCStd)
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV-, JSON-, BMEcat-, EPLAN XML- eller EDZ-fil
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	CSV-, JSON-, BMEcat-, EPLAN XML-, EDZ- eller ZIP-fil
 Catalog data; without id it is derived from the name	Katalogdata; utan ID härleds det från namnet
@@ -109,7 +109,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Importerar enhetsbeskrivningar från en GSDML-fil (PROFINET) eller ESI-fil (EtherCAT) till projektet
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Importerar förplaneringssegment och planerade apparater från CSV eller Excel (kolumnerna Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Importerar de kommentarer som en granskare gjort i en PDF-export av projektet (anteckningar, textrutor, markeringar, former, svar) till granskningslagret; kommentarer som importerats tidigare hoppas över
-Insert after this page (default: at the end)	Infoga efter den här sidan (standard: i slutet)
 Inserts an edited subproject: its pages replace the pages taken out	Infogar ett redigerat delprojekt: dess sidor ersätter de utlyfta sidorna
 Invalid form: {}	Ogiltigt formulär: {}
 Keep the file checked out after the check-in	Behåll filen utcheckad efter incheckningen
@@ -203,7 +202,7 @@ Properties to rename (old name: new name)	Egenskaper som ska byta namn (gammalt 
 Property {} needs a text or a number	Egenskapen {} kräver en text eller ett tal
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Lägger projektet, en export, en anslutningsexport eller en lokal fil i valvet; en fil med samma namn i mappen får en ny version (utcheckad och incheckad), annars läggs filen till
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor eller Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Läser en fil från ett annat system (CSV eller JSON) med en anslutning och listar ändringarna; med apply överförs de (konflikter endast med overwrite)
+Reads a file of another system (CSV, JSON, a KiCad netlist or a FreeCAD document) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Läser en fil från ett annat system (CSV, JSON, en KiCad-nätlista eller ett FreeCAD-dokument) med en anslutning och listar ändringarna; med apply överförs de (konflikter endast med overwrite)
 Reads the project files and archives of a folder (and its subfolders) into the project database	Läser in projektfilerna och arkiven i en mapp (och dess undermappar) i projektdatabasen
 Reads translations from CSV: first column the source line, one column per language code	Läser översättningar från CSV: första kolumnen är källraden, en kolumn per språkkod
 Redoes the last undone change	Gör om den senast ångrade ändringen
@@ -304,8 +303,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Skriver projektets inställningar (ledningsnumrering, potentialer, standardvärden och färger för ledningar, märkning, standardvärden för slangar, korsreferenser, kontrollschema) till en fil
 Writes the structure management (aspects, identifiers, work areas) as a template file	Skriver strukturhanteringen (aspekter, beteckningar, arbetsområden) som en mallfil
 csv (default) or eplan_xml	csv (standard) eller eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement eller wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine eller exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad eller freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad eller exchange
 json (default), csv or xlsx (Excel, needs path)	json (standard), csv eller xlsx (Excel, kräver path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nVisar kommandoradens version (även --version eller -V)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo och redo fungerar bara i en MCP-session: kommandoraden öppnar projektet på nytt för varje kommando

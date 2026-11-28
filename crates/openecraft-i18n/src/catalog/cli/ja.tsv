@@ -24,7 +24,6 @@ AutomationML file	AutomationML ファイル
 CSV content instead of a file	ファイルの代わりの CSV の内容
 CSV file	CSV ファイル
 CSV or Excel file	CSV または Excel ファイル
-CSV or JSON file	CSV または JSON ファイル
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV、JSON、BMEcat、EPLAN XML または EDZ ファイル
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	CSV、JSON、BMEcat、EPLAN XML、EDZ または ZIP ファイル
 Catalog data; without id it is derived from the name	カタログデータ。ID を省略すると名前から生成されます
@@ -106,7 +105,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	GSDML (PROFINET) または ESI (EtherCAT) ファイルからデバイス記述をプロジェクトにインポートします
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	事前計画のセグメントと計画済みデバイスを CSV または Excel からインポートします (列 Segment、Tag、Kind、Description、Power (kW)、Voltage、Part、Macro)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	レビュー担当者がプロジェクトの PDF エクスポートに付けたコメント (注釈、テキストボックス、ハイライト、図形、返信) をレビューレイヤーにインポートします。インポート済みのコメントはスキップされます
-Insert after this page (default: at the end)	このページの後に挿入 (既定: 末尾)
 Inserts an edited subproject: its pages replace the pages taken out	編集済みのサブプロジェクトを挿入します。そのページで切り出されたページが置き換えられます
 Invalid form: {}	無効なフォーム: {}
 Keep the file checked out after the check-in	チェックイン後もファイルをチェックアウトしたままにする
@@ -198,7 +196,6 @@ Properties to rename (old name: new name)	名前を変更するプロパティ (
 Property {} needs a text or a number	プロパティ {} にはテキストまたは数値が必要です
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	プロジェクト、エクスポート、コネクターのエクスポート、またはローカルファイルを Vault に格納します。フォルダー内に同名のファイルがある場合は新しいバージョンになり (チェックアウトとチェックイン)、ない場合はファイルが追加されます
 Reader, Manufacturer, Editor or Admin	Reader、Manufacturer、Editor または Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	別のシステムのファイル (CSV または JSON) をコネクターで読み込み、変更を一覧表示します。apply を指定すると変更が反映されます (競合は overwrite 指定時のみ)
 Reads the project files and archives of a folder (and its subfolders) into the project database	フォルダー (およびサブフォルダー) のプロジェクトファイルとアーカイブをプロジェクトデータベースに読み込みます
 Reads translations from CSV: first column the source line, one column per language code	CSV から翻訳を読み込みます: 最初の列はソース行、言語コードごとに 1 列
 Redoes the last undone change	最後に元に戻した変更をやり直します
@@ -299,8 +296,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	プロジェクトの設定 (電線番号付け、電位、電線の既定値と色、マーキング、ホースの既定値、相互参照、チェックスキーム) をファイルに書き込みます
 Writes the structure management (aspects, identifiers, work areas) as a template file	構造管理 (アスペクト、識別子、作業領域) をテンプレートファイルとして書き出します
 csv (default) or eplan_xml	csv (既定) または eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp、pdm、plm、ecad、mcad、procurement または wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp、pdm、plm、ecad、mcad、procurement、wiring_machine または exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp、pdm、plm、ecad、mcad、procurement, wiring_machine, kicad または freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp、pdm、plm、ecad、mcad、procurement、wiring_machine, kicad, freecad または exchange
 json (default), csv or xlsx (Excel, needs path)	json (既定)、csv または xlsx (Excel、path が必要)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nコマンドラインのバージョンを表示します (--version または -V でも可)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo と redo は MCP セッションでのみ機能します: コマンドラインはコマンドごとにプロジェクトを開き直します

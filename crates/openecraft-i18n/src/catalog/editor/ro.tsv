@@ -45,6 +45,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = încă nu este în schemă
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	O versiune de referință stochează întregul proiect (pagini, dispozitive, articole, setări). Aprobarea unei revizii stochează una.
+A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist	O placă proiectată în KiCad ca o casetă de dispozitiv cu un punct de conexiune pentru fiecare pin al conectorilor săi, pe baza listei sale de conexiuni
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	O presetupă pentru fiecare cablu care iese dintr-o carcasă și nu găsește nicio presetupă liberă care să îl preia
 A cable of the bus type for every connection without cable	Un cablu de tipul magistralei pentru fiecare conexiune fără cablu
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Un cablu care iese dintr-o carcasă și nu găsește nicio presetupă liberă primește una de mărimea lui: în acoperiș pentru un aparat din încăpere, în fund pentru teren sau o carcasă agățată pe perete
@@ -789,7 +790,7 @@ File format version {}. Files of older versions are converted when they are open
 File name	Nume fișier
 File of another system (connector)	Fișier al unui alt sistem (conector)
 File {}	Fișierul {}
-Files of other systems (CSV, JSON)	Fișiere ale altor sisteme (CSV, JSON)
+Files of other systems (CSV, JSON, KiCad, FreeCAD)	Fișiere ale altor sisteme (CSV, JSON, KiCad, FreeCAD)
 Fill	Completare
 Filled	Umplut
 Filter connections…	Filtrare conexiuni…
@@ -961,6 +962,7 @@ Import CSV / Excel…	Import CSV / Excel…
 Import CSV…	Import CSV…
 Import DXF / DWG as page…	Import DXF / DWG ca pagină…
 Import GSDML / ESI…	Import GSDML / ESI…
+Import KiCad board as device…	Import placă KiCad ca dispozitiv…
 Import PDF comments…	Import comentarii PDF…
 Import a file of another system to see what it changes in the project.	Importați un fișier al unui alt sistem pentru a vedea ce modifică în proiect.
 Import changes	Modificări de import
@@ -1059,6 +1061,9 @@ Keyboard shortcuts…	Comenzi rapide de la tastatură…
 Keys and gestures	Taste și gesturi
 Keys of the 3D view	Tastele vederii 3D
 Keywords: {}	Cuvinte cheie: {}
+KiCad board imported as device {} on page {}: {} connection points	Placă KiCad importată ca dispozitivul {} pe pagina {}: {} puncte de conexiune
+KiCad import failed: {}	Importul KiCad nu a reușit: {}
+KiCad netlist	Listă de conexiuni KiCad
 Label	Etichetă
 Label (grey)	Etichetă (gri)
 Label field	Câmp de etichetă
@@ -2144,6 +2149,7 @@ Switches the options with a condition by the configurator options	Comută opțiu
 Switches to this workspace with its panes at their default places	Comută la acest spațiu de lucru cu panourile la locurile lor implicite
 Switches, push buttons and room thermostats	Întrerupătoare, butoane și termostate de cameră
 Symbol editor	Editor de simboluri
+Symbol library (JSON, EMA, EDZ, KiCad)	Bibliotecă de simboluri (JSON, EMA, EDZ, KiCad)
 Symbol table import failed: {}	Importul tabelului de simboluri nu a reușit: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Simbolurile și conductoarele de pe această pagină sunt desenate, dar nu sunt evaluate (fără dispozitive, conexiuni sau rapoarte).
 Symbols placed next get this device tag (contacts are numbered on)	Simbolurile plasate în continuare primesc acest identificator de dispozitiv (contactele se numerotează în continuare)

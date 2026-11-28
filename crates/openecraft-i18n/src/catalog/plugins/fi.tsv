@@ -16,6 +16,7 @@ Additional power loss in W	Lisähäviöteho W:na
 Address scheme: siemens, iec or rockwell	Osoitemalli: siemens, iec tai rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Lisää aurinkopaneelikentän katolle: moduulirivejä kiskoilla ja kattokoukuilla lappeen suuntaisesti tai tasakatolla kallistettuna tai itä-länsi-suuntaisesti painotetuilla asennusjaloilla; ilman x:ää ja z:aa etu- tai oikean lappeen keskelle. Ilman rakennusta ja kattoa maa-asennettu kenttä tontille: kallistettujen pöytien rivejä lyöntipaaluilla, ilman x:ää ja z:aa laitoksessa olevien kohteiden eteen. Moduulit ja asennustarvikkeet menevät osaluetteloon
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Lisää taivutetun ja poratun kuparikiskon (tai korvaa samannimisen kiskon kotelossa)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	Lisää KiCadissa suunnitellun piirilevyn laitteeksi: laitelaatikko uudella piirikaaviosivulla, jossa on liitäntäpiste jokaiselle sen liittimien nastalle (J1.1) piirilevyn verkkojen mukaan nimettynä, sekä osa sitä varten
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Lisää sopivan kokoisen kaapeliläpiviennin jokaiselle kotelosta lähtevälle kaapelille, joka ei löydä vapaata läpivientiä: kattoon huoneessa olevalle laitteelle, pohjaan kentälle tai seinällä riippuvalle kotelolle
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Lisää kaapelin läpivientiaukon oikeaan naapuriin: pyöreät aukot vastakkain molemmissa sivuseinissä; kotelojen väliset johdot kulkevat sen läpi
 Adds a configurator rule: insert a page macro when the condition holds	Lisää konfiguraattorin säännön: lisää sivumakro, kun ehto täyttyy
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Lisää tai muuttaa projektin koneen (samalla ID:llä oleva sisäinen kone korvataan) tai poistaa sen
 Adds the devices of a template to a segment	Lisää mallin laitteet segmenttiin
 Adds the outline of a machine, building or area to the plant layout	Lisää koneen, rakennuksen tai alueen ääriviivan laitoksen sijoituskuvaan
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Lisää KiCad-symbolikirjaston symbolit projektin symboleihin; aiemmin luetut symbolit korvataan
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Lisää, korvaa tai poistaa profiilin: konnektori, jossa on toisen järjestelmän käyttämät sarakkeiden nimet
 After it instead of before	Taakse eteen sijaan
 Air-termination rod: its name	Ukkosenjohdatintanko: sen nimi
@@ -380,6 +382,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Avain, esim. user.coupling_relay
 Key, e.g. user.customer_code	Avain, esim. user.customer_code
 Keys of the routes, comma separated (all if missing)	Reittien avaimet pilkuin erotettuina (kaikki, jos puuttuu)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	KiCad-piirilevy (.kicad_pcb-tiedoston sisältö): sen ääriviiva antaa osan koon
+KiCad netlist of the board: the content of its .net export	Piirilevyn KiCad-netlista (.net-tiedoston sisältö)
+KiCad symbol library: the content of a .kicad_sym	KiCad-symbolikirjasto (.kicad_sym-tiedoston sisältö)
 Kind: machining, punching or busbar	Laji: machining, punching tai busbar
 Known length of the cable in m (taken instead of the 3D route)	Kaapelin tunnettu pituus metreinä m (käytetään 3D-reitin sijaan)
 Label shown when the value is asked for	Merkintä, joka näytetään arvoa kysyttäessä
@@ -405,6 +410,7 @@ Length of a shield pigtail in mm	Suojavaipan punoksen pituus millimetreinä
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Kerrosriviliittimen kerros (1 = alin); ylemmät kerrokset ovat edellisen riviliittimen lohkon päällä
 Library id or customer rule set name to no longer verify against	Kirjaston tunniste tai asiakkaan sääntökokoelman nimi, jota vasten ei enää validoida
 Library id or customer rule set name to verify against	Kirjaston tunniste tai asiakkaan sääntökokoelman nimi, jota vasten validoidaan
+Library the symbols are listed under (default: KiCad)	Kirjasto, jonka alla symbolit luetellaan (oletus: KiCad)
 Line in the source language	Rivi lähdekielellä
 Line-to-line voltage in V	Pääjännite volteissa
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Linkittää fluidilaitteen sähkölaitteisiin, jotka ohjaavat tai valvovat sitä (korvaa linkit)

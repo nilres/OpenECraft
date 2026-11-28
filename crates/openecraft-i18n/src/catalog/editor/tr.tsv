@@ -45,6 +45,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = henüz şemada değil
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Referans sürüm tüm projeyi (sayfalar, cihazlar, parçalar, ayarlar) saklar. Bir revizyonun yayımlanması bir referans sürüm saklar.
+A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist	KiCad'de tasarlanmış bir kart, net listesine göre, konnektörlerinin her pini için bir bağlantı noktası olan cihaz kutusu olarak
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Bir panodan çıkan ve onu alacak boş rakor bulamayan her kablo için bir kablo rakoru
 A cable of the bus type for every connection without cable	Kablosu olmayan her bağlantı için bus tipinde bir kablo
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Bir panodan çıkan ve boş rakor bulamayan kablo kendi boyutunda bir rakor alır: odadaki bir cihaz için tavana, saha veya duvara asılı bir pano için tabana
@@ -789,7 +790,7 @@ File format version {}. Files of older versions are converted when they are open
 File name	Dosya adı
 File of another system (connector)	Başka bir sistemin dosyası (bağlayıcı)
 File {}	Dosya {}
-Files of other systems (CSV, JSON)	Diğer sistemlerin dosyaları (CSV, JSON)
+Files of other systems (CSV, JSON, KiCad, FreeCAD)	Diğer sistemlerin dosyaları (CSV, JSON, KiCad, FreeCAD)
 Fill	Doldur
 Filled	Dolu
 Filter connections…	Bağlantıları filtrele…
@@ -961,6 +962,7 @@ Import CSV / Excel…	CSV / Excel içe aktar…
 Import CSV…	CSV içe aktar…
 Import DXF / DWG as page…	DXF / DWG'yi sayfa olarak içe aktar…
 Import GSDML / ESI…	GSDML / ESI içe aktar…
+Import KiCad board as device…	KiCad kartını cihaz olarak içe aktar…
 Import PDF comments…	PDF yorumlarını içe aktar…
 Import a file of another system to see what it changes in the project.	Projede neyi değiştirdiğini görmek için başka bir sistemin dosyasını içe aktarın.
 Import changes	İçe aktarma değişiklikleri
@@ -1059,6 +1061,9 @@ Keyboard shortcuts…	Klavye kısayolları…
 Keys and gestures	Tuşlar ve hareketler
 Keys of the 3D view	3B görünüm tuşları
 Keywords: {}	Anahtar sözcükler: {}
+KiCad board imported as device {} on page {}: {} connection points	KiCad kartı {} cihazı olarak {} sayfasına içe aktarıldı: {} bağlantı noktası
+KiCad import failed: {}	KiCad içe aktarma başarısız oldu: {}
+KiCad netlist	KiCad net listesi
 Label	Yazı
 Label (grey)	Yazı (gri)
 Label field	Yazı alanı
@@ -2144,6 +2149,7 @@ Switches the options with a condition by the configurator options	Koşullu seçe
 Switches to this workspace with its panes at their default places	Bu çalışma alanına geçer ve bölmeleri varsayılan yerlerine koyar
 Switches, push buttons and room thermostats	Anahtarlar, butonlar ve oda termostatları
 Symbol editor	Sembol düzenleyici
+Symbol library (JSON, EMA, EDZ, KiCad)	Sembol kütüphanesi (JSON, EMA, EDZ, KiCad)
 Symbol table import failed: {}	Sembol tablosu içe aktarma başarısız oldu: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Bu sayfadaki semboller ve teller çizilir ancak değerlendirilmez (cihaz, bağlantı veya rapor yok).
 Symbols placed next get this device tag (contacts are numbered on)	Bundan sonra yerleştirilen semboller bu cihaz etiketini alır (kontaklar numaralandırılmaya devam eder)

@@ -26,6 +26,7 @@ pub enum Cmd {
     CloseProject,
     CheckInVault,
     ImportDrawing,
+    ImportKicadBoard,
     ImportSettings,
     ExportSettings,
     ImportParts,
@@ -484,6 +485,8 @@ pub static ALL: &[Def] = &[
     d(C::CheckInVault, "check_in_vault", tr_const!("Check in to Vault"), I::Upload),
     d(C::ImportDrawing, "import_drawing", tr_const!("Import DXF / DWG as page…"), I::Download)
         .tip(tr_const!("An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)")),
+    d(C::ImportKicadBoard, "import_kicad_board", tr_const!("Import KiCad board as device…"), I::Download)
+        .tip(tr_const!("A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist")),
     d(C::ImportSettings, "import_settings", tr_const!("Import settings…"), I::Download),
     d(C::ExportSettings, "export_settings", tr_const!("Export settings…"), I::Upload)
         .tip(tr_const!("Wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references and the check scheme as one file")),

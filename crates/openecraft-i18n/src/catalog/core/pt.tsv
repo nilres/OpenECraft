@@ -63,6 +63,7 @@ Align right	Alinhar à direita
 Align top	Alinhar acima
 All aspects (with product)	Todos os aspectos (com produto)
 All devices of page {} are in the schematic already	Todos os dispositivos da página {} já estão no esquema elétrico
+All symbols of the library instead of those the project uses	Todos os símbolos da biblioteca em vez dos que o projeto usa
 Ammeter	Amperímetro
 Ammeter, reactive current	Amperímetro, corrente reativa
 Ampere-hour meter	Medidor de ampère-hora
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	Escape {} aberto para a atmosfer
 Explosion protection marking	Marcação de proteção contra explosão
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Exporta a lista de materiais com os dados do cadastro de itens; importa números ERP, preços, estoque e prazos de entrega
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Exporta os dispositivos e as conexões ponto a ponto para o projeto de PCI; importa atribuições de peças e descrições dos componentes
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Exporta os dispositivos e potenciais como netlist do KiCad para o editor de placas; importa números de peça e descrições de uma netlist ou lista de materiais do KiCad (CSV)
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Exporta a BOM de engenharia (localizações, dispositivos, peças); importa IDs de item, revisões e estados do ciclo de vida
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Exporta a lista de pedidos por fornecedor (quantidade necessária menos o estoque, arredondada para embalagens); importa confirmações de pedido
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Exporta o layout do painel como macro do FreeCAD que o constrói com sólidos nomeados; importa as posições dos dispositivos movidos no documento do FreeCAD salvo (.FCStd)
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Exporta as posições e os tamanhos dos dispositivos no layout do painel; importa posições alteradas no sistema MCAD
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Exporta os metadados do projeto e das páginas com as revisões; importa números de documento, revisões e estados
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Exporta os fios com comprimento de corte, decapagem e ponteiras para máquinas de processamento de fios; importa o retorno do processamento como marcas de fiação
@@ -586,6 +589,7 @@ Frame size	Tamanho construtivo
 Free	Livre
 Free air (mm)	Ao ar livre (mm)
 Free run	Instalação livre
+FreeCAD panel layout (macro, .FCStd)	Layout do painel para FreeCAD (macro, .FCStd)
 Freestanding on posts	No solo sobre estacas
 Frequency converter	Inversor de frequência
 Frequency meter	Frequencímetro
@@ -783,6 +787,9 @@ Key switch NC, latching	Chave com fechadura NF, com retenção
 Key switch NO	Chave com fechadura NA
 Key switch NO, latching	Chave com fechadura NA, com retenção
 Keywords	Palavras-chave
+KiCad netlist (.net)	Netlist do KiCad (.net)
+KiCad netlist of the devices and potentials (.net)	Netlist do KiCad dos dispositivos e potenciais (.net)
+KiCad symbol library (.kicad_sym)	Biblioteca de símbolos do KiCad (.kicad_sym)
 LED	LED
 Labeling scheme (default: the scheme selected in the project)	Esquema de etiquetagem (padrão: o esquema selecionado no projeto)
 Lamp voltage	Tensão da lâmpada
@@ -1001,6 +1008,10 @@ Non-return valve	Válvula de retenção
 Not a DWG file	Não é um arquivo DWG
 Not a DXF file	Não é um arquivo DXF
 Not a DXF file (binary DXF is not supported)	Não é um arquivo DXF (DXF binário não é suportado)
+Not a FreeCAD document (.FCStd)	Não é um documento do FreeCAD (.FCStd)
+Not a KiCad board file (.kicad_pcb)	Não é um arquivo de placa do KiCad (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	Não é uma netlist do KiCad (no KiCad: File › Export › Netlist, formato KiCad)
+Not a KiCad symbol library (.kicad_sym)	Não é uma biblioteca de símbolos do KiCad (.kicad_sym)
 Not a PDF file	Não é um arquivo PDF
 Not a change request file: the column \"Number\" is missing	Não é um arquivo de solicitações de alteração: a coluna \"Number\" está ausente
 Not a change request file: {}	Não é um arquivo de solicitações de alteração: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Não é um banco de dados de projetos: {}
 Not a settings scheme: {}	Não é um esquema de configurações: {}
 Not a structure template: {}	Não é um modelo de estrutura: {}
 Not a valid JSON file: {}	Não é um arquivo JSON válido: {}
+Not a valid KiCad file (line {})	Não é um arquivo válido do KiCad (linha {})
 Not a valid project file: {}	Não é um arquivo de projeto válido: {}
 Not a valid property library: {}	Não é uma biblioteca de propriedades válida: {}
 Not an Excel workbook (.xlsx)	Não é uma pasta de trabalho do Excel (.xlsx)
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	Layout do painel em 3D (JT)
 Panel layout in 3D (Parasolid XT)	Layout do painel em 3D (Parasolid XT)
 Panel layout in 3D (STEP)	Layout do painel em 3D (STEP)
 Panel layout in 3D (glTF)	Layout do painel em 3D (glTF)
+Panel layout in 3D for FreeCAD (macro)	Layout do painel em 3D para FreeCAD (macro)
 Panel layout settings	Configurações do layout do painel
 Panel legend	Legenda do painel
 Parallel to the roof on roof hooks	Paralelo ao telhado sobre ganchos
@@ -1260,6 +1273,7 @@ Pressure switch NC	Pressostato NF
 Pressure switch NO	Pressostato NA
 Pressure switch NO (NFPA)	Pressostato NA (NFPA)
 Primary voltage	Tensão primária
+Printed circuit board {}	Placa de circuito impresso {}
 Problem	Problema
 Process component	Componente de processo
 Process connection	Conexão de processo
@@ -1647,6 +1661,8 @@ Termination (from)	Terminação (de)
 Termination (to)	Terminação (para)
 Text file	Arquivo de texto
 The DXF file contains nothing that can be imported	O arquivo DXF não contém nada que possa ser importado
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	O documento do FreeCAD não tem dispositivos do OpenECraft (objetos com a propriedade OEC_Tag)
+The KiCad symbol library has no symbols	A biblioteca de símbolos do KiCad não tem símbolos
 The PDF has no pages that can be read	O PDF não tem páginas que possam ser lidas
 The answer is OK, Not OK or Not applicable, not {}	A resposta é OK, Não OK ou Não aplicável, não {}
 The archive contains no project	O arquivo compactado não contém nenhum projeto
@@ -1655,6 +1671,7 @@ The archive is damaged	O arquivo compactado está danificado
 The archive unpacks to more than {} MB	O arquivo compactado se descompacta em mais de {} MB
 The archive was written by a newer version (archive version {})	O arquivo compactado foi gravado por uma versão mais recente (versão do arquivo compactado {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	O fabricante do conjunto deve ser indicado (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	A placa não tem contorno na camada Edge.Cuts
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Os painéis em linha em sua sala: planta em L, parede interna, porta e janela, a linha de painéis em seu lugar, um trilho com uma tomada em uma parede, uma luminária de emergência montada na parede e uma eletrocalha sob o teto.
 The cable of {} needs at least {} cores	O cabo de {} precisa de pelo menos {} veias
 The configuration is not a JSON object	A configuração não é um objeto JSON
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	O item não é um quadro numa abertura de uma parede lateral
 The last page cannot be deleted	A última página não pode ser excluída
 The macro box has no items left	A caixa de macro não tem mais itens
+The netlist has no component {} with connected pins	A netlist não tem nenhum componente {} com pinos conectados
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	A netlist não tem conectores (referências J, P, X, CN, TB): indique os componentes cujos pinos são as conexões da placa
 The next free id is already in use	O próximo ID livre já está em uso
 The option needs a name	A opção precisa de um nome
 The page needs a number	A página precisa de um número

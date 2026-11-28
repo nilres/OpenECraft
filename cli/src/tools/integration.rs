@@ -23,7 +23,7 @@ pub static TOOLS: &[Tool] = &[
         name: "integration_export",
         help: tr_const!("Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export"),
         params: &[
-            param("connector", Kind::Str, tr_const!("erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange")),
+            param("connector", Kind::Str, tr_const!("erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange")),
             optional("path", Kind::Str, tr_const!("Output file; without it the content is returned")),
             optional("date", Kind::Str, tr_const!("Date for the exchange log")),
         ],
@@ -32,10 +32,10 @@ pub static TOOLS: &[Tool] = &[
     },
     Tool {
         name: "integration_import",
-        help: tr_const!("Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)"),
+        help: tr_const!("Reads a file of another system (CSV, JSON, a KiCad netlist or a FreeCAD document) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)"),
         params: &[
-            param("connector", Kind::Str, tr_const!("erp, pdm, plm, ecad, mcad, procurement or wiring_machine")),
-            optional("path", Kind::Str, tr_const!("CSV or JSON file")),
+            param("connector", Kind::Str, tr_const!("erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad")),
+            optional("path", Kind::Str, tr_const!("CSV or JSON file, KiCad netlist (.net) or FreeCAD document (.FCStd)")),
             optional("text", Kind::Str, tr_const!("File content instead of a file")),
             optional("profile", Kind::Str, tr_const!("Profile whose column mapping is used")),
             optional("mapping", Kind::Object, tr_const!("Column mapping {field code: column name} (added to the profile's)")),
@@ -45,6 +45,20 @@ pub static TOOLS: &[Tool] = &[
         ],
         needs_project: true,
         run: import,
+    },
+    Tool {
+        name: "import_kicad",
+        help: tr_const!("Reads a file of KiCad: the netlist of a board (.net) adds the board as a device (as import_kicad_board), a symbol library (.kicad_sym) adds its symbols to the project (as import_kicad_symbols)"),
+        params: &[
+            param("path", Kind::Str, tr_const!("KiCad netlist (.net) or symbol library (.kicad_sym)")),
+            optional("board", Kind::Str, tr_const!("KiCad board file (.kicad_pcb) of the netlist: its outline gives the size of the part")),
+            optional("tag", Kind::Str, tr_const!("Device tag of the board (default: the next free one)")),
+            optional("connectors", Kind::Str, tr_const!("References (J1) or reference prefixes (J) of the components whose pins become connection points, separated by commas (default: the connectors)")),
+            optional("after", Kind::Str, tr_const!("Insert after this page (default: at the end)")),
+            optional("library", Kind::Str, tr_const!("Library the symbols are listed under (default: as the library is named in KiCad)")),
+        ],
+        needs_project: true,
+        run: import_kicad,
     },
 ];
 
@@ -107,7 +121,7 @@ fn import(s: &mut Session, a: &Args) -> Result<Value, String> {
     let c = connector(a)?;
     let text = match (a.str("text"), a.str("path")) {
         (Some(t), _) => t.to_string(),
-        (None, Some(path)) => std::fs::read_to_string(path).map_err(|e| tr_fmt!("Cannot read {}: {}", path, openecraft_i18n::io_error(&e)))?,
+        (None, Some(path)) => integration::decode(c, &std::fs::read(path).map_err(|e| tr_fmt!("Cannot read {}: {}", path, openecraft_i18n::io_error(&e)))?)?,
         (None, None) => return Err(tr_fmt!("Missing parameter: {}", "path")),
     };
     let prj = s.project_mut()?;
@@ -126,6 +140,28 @@ fn import(s: &mut Session, a: &Args) -> Result<Value, String> {
         "unmatched": preview.unmatched,
         "applied": applied,
     }))
+}
+
+/// A file of KiCad by its content: the commands of the integration plugin take the
+/// content, this tool the file.
+fn import_kicad(s: &mut Session, a: &Args) -> Result<Value, String> {
+    let read = |path: &str| std::fs::read_to_string(path).map_err(|e| tr_fmt!("Cannot read {}: {}", path, openecraft_i18n::io_error(&e)));
+    let path = a.req("path");
+    let text = read(path)?;
+    let mut args = a.0.clone();
+    args.remove("path");
+    let prj = s.project_mut()?;
+    if openecraft_core::kicad::is_kind(&text, "kicad_symbol_lib") {
+        let file = path.rsplit(['/', '\\']).next().unwrap_or(path);
+        args.entry("library").or_insert_with(|| json!(file.rsplit_once('.').map_or(file, |x| x.0)));
+        args.insert("symbols".into(), json!(text));
+        return openecraft_api::builtin::integration::import_kicad_symbols(prj, &Args(&args));
+    }
+    if let Some(board) = args.remove("board") {
+        args.insert("pcb".into(), json!(read(board.as_str().unwrap_or_default())?));
+    }
+    args.insert("netlist".into(), json!(text));
+    openecraft_api::builtin::integration::import_kicad_board(prj, &Args(&args))
 }
 
 #[cfg(test)]

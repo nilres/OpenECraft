@@ -260,6 +260,7 @@ impl App {
             Cmd::SaveAsProjectTemplate => self.save_as_template(),
             Cmd::CheckInVault => self.check_in_project(),
             Cmd::ImportDrawing => self.io.open(ctx, Purpose::Drawing),
+            Cmd::ImportKicadBoard => self.io.open(ctx, Purpose::KicadBoard),
             Cmd::ImportSettings => self.io.open(ctx, Purpose::SettingsScheme),
             Cmd::ExportSettings => {
                 let json = openecraft_core::settings_scheme::export(&self.session.prj);

@@ -16,6 +16,7 @@ Additional power loss in W	Potenza dissipata aggiuntiva in W
 Address scheme: siemens, iec or rockwell	Schema di indirizzamento: siemens, iec o rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Aggiunge un campo fotovoltaico a un tetto: file di moduli su guide e ganci da tetto parallele a una falda, oppure su un tetto piano inclinati o est-ovest su basi di montaggio zavorrate; senza x e z al centro della falda anteriore o destra. Senza edificio e tetto, un campo a terra sul lotto: file di tavoli inclinati su pali infissi, senza x e z davanti a ciò che si trova nell'impianto. I moduli e il materiale di montaggio entrano nella distinta base
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Aggiunge una barra di rame piegata e forata (o sostituisce quella con lo stesso nome nell'armadio)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	Aggiunge una scheda progettata in KiCad come dispositivo: un box dispositivo su una nuova pagina di schema con un punto di connessione per ogni pin dei suoi connettori (J1.1), denominato con le reti della scheda, e un articolo per essa
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Aggiunge un pressacavo della sua misura per ogni cavo che esce da un armadio e non trova un pressacavo libero: sul tetto per un dispositivo nel locale, sul fondo per il campo o un armadio appeso alla parete
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Aggiunge un passaggio cavi verso il vicino a destra: aperture rotonde affacciate in entrambe le pareti laterali; i conduttori tra gli armadi passano attraverso di esso
 Adds a configurator rule: insert a page macro when the condition holds	Aggiunge una regola del configuratore: inserisce una macro di pagina quando la condizione è soddisfatta
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Aggiunge o modifica una macchina del progetto (una macchina predefinita con lo stesso ID viene sostituita) o la rimuove
 Adds the devices of a template to a segment	Aggiunge i dispositivi di un modello a un segmento
 Adds the outline of a machine, building or area to the plant layout	Aggiunge il contorno di una macchina, di un edificio o di un'area al layout dell'impianto
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Aggiunge i simboli di una libreria di simboli KiCad ai simboli del progetto; i simboli letti in precedenza vengono sostituiti
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Aggiunge, sostituisce o rimuove un profilo: un connettore con i nomi delle colonne usati dall'altro sistema
 After it instead of before	Dopo invece che prima
 Air-termination rod: its name	Asta di captazione: il suo nome
@@ -380,6 +382,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Chiave, ad es. user.coupling_relay
 Key, e.g. user.customer_code	Chiave, ad es. user.customer_code
 Keys of the routes, comma separated (all if missing)	Chiavi dei percorsi, separate da virgole (tutti se omesse)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	Scheda KiCad (contenuto del file .kicad_pcb): il suo contorno determina le dimensioni dell'articolo
+KiCad netlist of the board: the content of its .net export	Netlist KiCad della scheda (contenuto del file .net)
+KiCad symbol library: the content of a .kicad_sym	Libreria di simboli KiCad (contenuto del file .kicad_sym)
 Kind: machining, punching or busbar	Tipo: machining, punching o busbar
 Known length of the cable in m (taken instead of the 3D route)	Lunghezza nota del cavo in m (usata al posto del percorso 3D)
 Label shown when the value is asked for	Etichetta mostrata quando viene richiesto il valore
@@ -405,6 +410,7 @@ Length of a shield pigtail in mm	Lunghezza di un pigtail dello schermo in mm
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Livello di un morsetto multilivello (1 = in basso); i livelli superiori si trovano sul blocco del morsetto precedente
 Library id or customer rule set name to no longer verify against	ID della libreria o nome del set di regole del cliente rispetto a cui non verificare più
 Library id or customer rule set name to verify against	ID della libreria o nome del set di regole del cliente rispetto a cui verificare
+Library the symbols are listed under (default: KiCad)	Libreria sotto cui sono elencati i simboli (predefinita: KiCad)
 Line in the source language	Riga nella lingua di origine
 Line-to-line voltage in V	Tensione concatenata in V
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Collega un dispositivo fluidico ai dispositivi elettrici che lo azionano o monitorano (sostituisce i collegamenti)

@@ -24,7 +24,7 @@ AutomationML file	Файл AutomationML
 CSV content instead of a file	Вміст CSV замість файлу
 CSV file	Файл CSV
 CSV or Excel file	Файл CSV або Excel
-CSV or JSON file	Файл CSV або JSON
+CSV or JSON file, KiCad netlist (.net) or FreeCAD document (.FCStd)	Файл CSV або JSON, список з’єднань KiCad (.net) або документ FreeCAD (.FCStd)
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	Файл CSV, JSON, BMEcat, EPLAN XML або EDZ
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	Файл CSV, JSON, BMEcat, EPLAN XML, EDZ або ZIP
 Catalog data; without id it is derived from the name	Дані каталогу; без ідентифікатора його буде утворено з назви
@@ -109,7 +109,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Імпортує описи пристроїв із файлу GSDML (PROFINET) або ESI (EtherCAT) у проєкт
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Імпортує сегменти попереднього планування та заплановані пристрої з CSV або Excel (стовпці Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Імпортує коментарі, які рецензент зробив в експорті проєкту у PDF (нотатки, текстові поля, виділення, фігури, відповіді), у шар рецензування; раніше імпортовані коментарі пропускаються
-Insert after this page (default: at the end)	Вставити після цієї сторінки (за замовчуванням: у кінці)
 Inserts an edited subproject: its pages replace the pages taken out	Вставляє відредагований підпроєкт: його сторінки замінюють винесені сторінки
 Invalid form: {}	Недійсна форма: {}
 Keep the file checked out after the check-in	Залишити файл отриманим для редагування після повернення
@@ -203,7 +202,7 @@ Properties to rename (old name: new name)	Властивості для пере
 Property {} needs a text or a number	Властивості {} потрібен текст або число
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Поміщає проєкт, експорт, експорт конектора або локальний файл у сховище; однойменний файл у папці отримує нову версію (отримання для редагування й повернення), інакше файл додається
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor або Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Зчитує файл іншої системи (CSV або JSON) за допомогою конектора й перелічує зміни; з apply їх буде перенесено (конфлікти – лише з overwrite)
+Reads a file of another system (CSV, JSON, a KiCad netlist or a FreeCAD document) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Зчитує файл іншої системи (CSV, JSON, список з’єднань KiCad або документ FreeCAD) за допомогою конектора та перелічує зміни; з apply їх буде перенесено (конфлікти лише з overwrite)
 Reads the project files and archives of a folder (and its subfolders) into the project database	Зчитує файли й архіви проєктів із папки (та її вкладених папок) у базу даних проєктів
 Reads translations from CSV: first column the source line, one column per language code	Зчитує переклади з CSV: перший стовпець – рядок оригіналу, по одному стовпцю на код мови
 Redoes the last undone change	Повторює останню скасовану зміну
@@ -304,8 +303,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Записує параметри проєкту (нумерація проводів, потенціали, параметри й кольори проводів за замовчуванням, маркування, параметри шлангів за замовчуванням, перехресні посилання, схема перевірки) у файл
 Writes the structure management (aspects, identifiers, work areas) as a template file	Записує керування структурою (аспекти, позначення, робочі області) як файл шаблону
 csv (default) or eplan_xml	csv (за замовчуванням) або eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement або wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine або exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad або freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad або exchange
 json (default), csv or xlsx (Excel, needs path)	json (за замовчуванням), csv або xlsx (Excel, потрібен path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nПоказує версію командного рядка (також --version або -V)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo і redo працюють лише в сеансі MCP: командний рядок відкриває проєкт заново для кожної команди

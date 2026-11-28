@@ -143,6 +143,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("geom", &[]),
     ("xml", &[]),
     ("zip", &[]),
+    ("sexpr", &[]),
     ("xlsx", &["xml", "zip"]),
     ("params", &[]),
     ("table", &["params"]),
@@ -237,7 +238,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("checks", &["analysis", "cabledef", "climate", "conndef", "device_boxes", "electrofluid", "emc", "ext", "fluid", "frame", "harness", "index", "installation", "integration", "issue", "loads", "model", "mounting", "netlist", "panel", "parts", "pinout", "plc", "plc_hw", "plugs", "potentials", "preplanning", "process", "production", "reports", "routing3d", "rules", "safety", "shortcircuit", "singleline", "sizing", "strips", "structure", "structure_boxes", "symbols", "translation", "wirenum", "wiring"]),
     ("reports", &["analysis", "checks", "climate", "electrofluid", "ext", "field", "fluid", "frame", "geom", "harness", "index", "inspection", "installation", "issue", "loads", "marking", "model", "netlist", "panel", "params", "parts", "plc", "plc_hw", "plugs", "process", "production", "revision", "routing3d", "rules", "safety", "shortcircuit", "sizing", "strips", "symbols", "table", "text"]),
     ("ext", &["analysis", "issue", "model", "params", "table"]),
-    ("exporters", &["aml", "analysis", "dwg", "dxf", "export3d", "ext", "harness", "harness_export", "kbl", "marking", "model", "nailboard", "page_select", "params", "pdf", "pinout", "plc", "plugs", "reports", "svg", "translation", "xlsx"]),
+    ("exporters", &["aml", "analysis", "dwg", "dxf", "export3d", "ext", "freecad", "harness", "harness_export", "kbl", "kicad", "marking", "model", "nailboard", "page_select", "params", "pdf", "pinout", "plc", "plugs", "reports", "svg", "translation", "xlsx"]),
     // 7 output and exchange formats
     ("render", &["analysis", "cabledef", "conndef", "device_boxes", "document", "electrofluid", "forms", "frame", "geom", "graphics", "index", "installation", "macro_boxes", "model", "netlist", "panel", "parts", "potentials", "production", "props", "references", "report_blocks", "review", "revision", "structure", "structure_boxes", "symbols", "text", "wirenum"]),
     ("svg", &["analysis", "frame", "geom", "model", "render", "symbols", "text"]),
@@ -255,7 +256,9 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("kbl", &["analysis", "harness", "model", "netlist", "parts", "plugs", "production", "routing3d", "xml", "zip"]),
     ("harness_export", &["analysis", "export3d", "harness", "model", "plugs", "production"]),
     ("aml", &["devdesc", "model", "netlist", "parts", "plc", "plc_hw", "xml"]),
-    ("integration", &["analysis", "issue", "model", "netlist", "panel", "parts", "wiring"]),
+    ("kicad", &["analysis", "device_boxes", "frame", "geom", "model", "netlist", "ops", "parts", "sexpr", "symbols", "symlib"]),
+    ("freecad", &["export3d", "model", "panel", "xml", "zip"]),
+    ("integration", &["analysis", "freecad", "issue", "kicad", "model", "netlist", "panel", "parts", "wiring"]),
     // 8 project files, sharing, verification
     ("collab", &["inspection", "model", "report_blocks", "review"]),
     ("archive", &["document", "model", "pdf", "storage", "zip"]),
