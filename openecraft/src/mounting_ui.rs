@@ -48,6 +48,8 @@ pub struct MountingUi {
     pub enclosure: Option<usize>,
     /// Current item (enclosure, item id).
     pub current: Option<(usize, u64)>,
+    /// The details of the current item are hidden (the app keeps it).
+    pub details_hidden: bool,
     note: String,
     /// Export of the checklist as CSV requested.
     pub export: bool,
@@ -238,7 +240,11 @@ impl MountingUi {
                 ui.label(RichText::new(mounting::item_title(&it)).size(26.0).strong());
                 let (sym, color) = icon(s.status);
                 ui.label(RichText::new(format!("{sym} {}", s.status.title())).size(18.0).color(color));
+                crate::wiring_ui::details_toggle(ui, &mut self.details_hidden);
             });
+            if self.details_hidden {
+                return;
+            }
             ui.horizontal_wrapped(|ui| {
                 let big = |t: String| RichText::new(t).size(18.0);
                 ui.label(big(format!("{enclosure} · {}", s.phase.title())));

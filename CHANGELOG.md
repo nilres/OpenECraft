@@ -16,6 +16,23 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   come back from the saved document (`.FCStd`). Both tools have a connector in the
   enterprise integration, with the review of changes and the conflict detection of
   the others ([#264](https://github.com/nilres/OpenECraft/issues/264)).
+- **Several monitors:** pane menu › *Open in new window* shows a pane in a window of
+  its own that moves to another monitor, maximizes and goes full screen (`F11`,
+  *View › Full screen*); a window holds several panes as tabs or side by side, *Move to
+  window* and *Back to main window* move them on, closing a window puts its panes back.
+  *View › 3D view in new window* does it for the 3D view, *Page beside the 3D view*
+  shows the page and the 3D view side by side on one monitor, *Split right* /
+  *Split down* in the pane menu put any tab beside its tabs. The windows belong to their
+  workspace and open where they were, also in saved workspaces; *View › Gather windows*
+  brings them back after a monitor was disconnected. The keys of the commands work in
+  every window, *Show in 3D view* goes to the 3D view where it is
+  ([#268](https://github.com/nilres/OpenECraft/issues/268), [user interface](docs/user-interface.md)).
+- **More room for the 3D view:** the door is opened with *Door open* in the row of
+  buttons of the 3D view (and *Layout space › Show*), its angle is in the menu of a
+  right click; the title of the panel layout's 3D view (`+CAB1 · 3D`) is drawn over the
+  view and explains itself in a tooltip; the details of the current wire or item in
+  the wiring and mounting assistants can be hidden
+  ([#268](https://github.com/nilres/OpenECraft/issues/268)).
 - **Cross references are followed in the editor:** Ctrl + click on a cross reference
   (the key that opens links) opens the page it names; the reference of an interruption
   point selects and centres its counterpart. While the key is held, the pointer is a

@@ -252,3 +252,39 @@ fn a_workspace_shows_its_main_document_again() {
     show(&mut tree, main_document(Workspace::Panel));
     assert!(visible(&tree).contains(&Pane::LayoutView) && !visible(&tree).contains(&Pane::Page));
 }
+
+#[test]
+fn split_puts_a_tab_beside_its_tabs() {
+    let mut tree = default_tree_for(Workspace::Panel);
+    // The layout view and the page are tabs of one another.
+    let parent = |tree: &Tree<Pane>, p| tree.tiles.parent_of(find(tree, p).unwrap());
+    assert_eq!(parent(&tree, Pane::Page), parent(&tree, Pane::LayoutView));
+    assert!(split(&mut tree, Pane::Page, LinearDir::Horizontal));
+    assert_ne!(parent(&tree, Pane::Page), parent(&tree, Pane::LayoutView));
+    let shown = visible(&tree);
+    assert!(shown.contains(&Pane::Page) && shown.contains(&Pane::LayoutView), "both seen");
+    let outer = tree.tiles.parent_of(parent(&tree, Pane::Page).unwrap()).unwrap();
+    assert!(matches!(tree.tiles.get(outer), Some(Tile::Container(Container::Linear(l))) if l.dir == LinearDir::Horizontal));
+    // Alone in its tabs: nothing to split.
+    assert!(!split(&mut tree, Pane::Page, LinearDir::Vertical));
+    assert!(!split(&mut tree, Pane::Tool(ToolPane::Reports), LinearDir::Vertical), "not in the tree");
+    assert!(from_json(&to_json(&tree)).is_some());
+
+    // Below: into the vertical split of the view and the messages.
+    let mut tree = default_tree_for(Workspace::Panel);
+    assert!(split(&mut tree, Pane::Page, LinearDir::Vertical));
+    let outer = tree.tiles.parent_of(parent(&tree, Pane::Page).unwrap()).unwrap();
+    assert_eq!(tree.tiles.parent_of(find(&tree, Pane::Navigator(LeftTab::Check)).unwrap()).and_then(|t| tree.tiles.parent_of(t)), Some(outer), "beside the messages");
+}
+
+#[test]
+fn side_by_side_shows_two_documents_at_once() {
+    let mut tree = default_tree_for(Workspace::Schematic);
+    side_by_side(&mut tree, Pane::Page, Pane::LayoutView);
+    let shown = visible(&tree);
+    assert!(shown.contains(&Pane::Page) && shown.contains(&Pane::LayoutView));
+    // Again: nothing changes.
+    let before = to_json(&tree);
+    side_by_side(&mut tree, Pane::Page, Pane::LayoutView);
+    assert_eq!(panes(&tree).len(), panes(&from_json(&before).unwrap()).len());
+}

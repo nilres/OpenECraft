@@ -64,6 +64,7 @@
 3D macro {} inserted	3D-Makro {} eingefügt	Macro 3D {} insérée	Macro 3D {} insertada
 3D macro {} saved	3D-Makro {} gespeichert	Macro 3D {} enregistrée	Macro 3D {} guardada
 3D topology	3D-Topologie	Topologie 3D	Topología 3D
+3D view in new window	3D-Ansicht in neuem Programmfenster	Vue 3D dans une nouvelle fenêtre	Vista 3D en una ventana nueva
 4. Draw wires with the wire tool ({}); they end on connection points. Potentials and interruption points name the nets across pages.	4. Verbindungen mit dem Verbindungswerkzeug ({}) zeichnen; sie enden an Anschlusspunkten. Potenziale und Unterbrechungsstellen benennen die Netze seitenübergreifend.	4. Tracez des fils avec l'outil fil ({}) ; ils se terminent sur les points de connexion. Les potentiels et les points d'interruption nomment les réseaux entre les pages.	4. Dibuje conductores con la herramienta de conductor ({}); terminan en los puntos de conexión. Los potenciales y los puntos de interrupción nombran las redes entre páginas.
 5. Assign parts in the properties (Parts tab) or with Devices › Part selection.	5. Artikel in den Eigenschaften (Registerkarte Artikel) oder mit Betriebsmittel › Artikelauswahl zuordnen.	5. Affectez des articles dans les propriétés (onglet Articles) ou avec Appareils › Sélection d'article.	5. Asigne artículos en las propiedades (pestaña Artículos) o con Dispositivos › Selección de artículo.
 6. Project data › Check: the Messages pane lists what is missing; a click shows the place.	6. Projektdaten › Prüfen: Der Bereich Meldungen listet auf, was fehlt; ein Klick zeigt die Stelle.	6. Données de projet › Vérification : le volet Messages liste ce qui manque ; un clic montre l'endroit.	6. Datos de proyecto › Comprobación: el panel Mensajes enumera lo que falta; un clic muestra el lugar.
@@ -261,6 +262,7 @@ Automatic: {}	Automatisch: {}	Automatique : {}	Automático: {}
 Avoid:	Meiden:	Éviter :	Evitar:
 Back	Zurück	Retour	Atrás
 Back to a rectangle of the room's width and depth	Zurück zu einem Rechteck aus Breite und Tiefe des Raums	Revenir à un rectangle de la largeur et de la profondeur de la salle	Volver a un rectángulo del ancho y la profundidad de la sala
+Back to main window	Zurück ins Hauptfenster	Retour dans la fenêtre principale	Volver a la ventana principal
 Back to the project (Esc)	Zurück zum Projekt (Esc)	Retour au projet (Échap)	Volver al proyecto (Esc)
 Back-up up to (kA)	Back-up bis (kA)	Accompagnement jusqu'à (kA)	Respaldo hasta (kA)
 Background	Hintergrund	Arrière-plan	Fondo
@@ -296,6 +298,7 @@ Boundary	Grenze	Limite	Límite
 Boxes	Dosen	Boîtes	Cajas
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Schaltvermögen gegen den Kurzschlussstrom an jedem Schutzorgan des Netzes, Abschaltung beim kleinsten Fehlerstrom am Ende seines Stromkreises, Kurzschlussfestigkeit der Leitungen und Selektivität zum vorgeschalteten Schutzorgan.	Pouvoir de coupure face au courant de court-circuit à chaque appareil de protection du réseau, coupure au courant de défaut minimal en bout de circuit, tenue au court-circuit des câbles et sélectivité avec l'appareil amont.	Poder de corte frente a la corriente de cortocircuito en cada dispositivo de protección de la red, desconexión con la corriente de defecto mínima al final de su circuito, resistencia al cortocircuito de los cables y selectividad con el dispositivo aguas arriba.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brücke: vier Verbindungslinien; die Verbindung kommt an einer Seite an und geht zu den drei anderen, zuerst zur gegenüberliegenden	Pont : quatre fils ; la liaison arrive d'un côté et va vers les trois autres, le côté opposé d'abord	Puente: cuatro cables; la conexión entra por un lado y va a los otros tres, primero al lado opuesto
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Holt die Programmfenster der Fenster auf den Monitor des Hauptfensters (nachdem ein Monitor getrennt wurde)	Ramène les fenêtres des panneaux sur l'écran de la fenêtre principale (après la déconnexion d'un écran)	Trae las ventanas de los paneles al monitor de la ventana principal (tras desconectar un monitor)
 Building entry: the supply cable, the water main and other lines from outside come into the building through it; click on an outer wall in the floor plan or in the view of the wall	Hauseinführung: Versorgungskabel, Wasserleitung und andere Leitungen von außen kommen durch sie ins Gebäude; im Grundriss oder in der Ansicht der Wand auf eine Außenwand klicken	Entrée de bâtiment : le câble d'alimentation, la conduite d'eau et d'autres lignes venant de l'extérieur entrent par elle dans le bâtiment ; cliquez sur un mur extérieur dans le plan ou dans la vue du mur	Entrada al edificio: el cable de acometida, la tubería de agua y otras líneas del exterior entran por ella al edificio; haga clic en una pared exterior en la planta o en la vista de la pared
 Building level	Gebäudeebene	Niveau du bâtiment	Nivel del edificio
 Building {} added with a level at ground level	Gebäude {} mit einer Ebene auf Geländehöhe hinzugefügt	Bâtiment {} ajouté avec un niveau au niveau du sol	Edificio {} añadido con un nivel a nivel del suelo
@@ -774,6 +777,7 @@ Door clearance	Türfreiraum	Dégagement de porte	Espacio libre de la puerta
 Door cutouts (CSV)	Türausschnitte (CSV)	Découpes de porte (CSV)	Recortes de puerta (CSV)
 Door hinge	Türanschlag	Charnières de la porte	Bisagras de la puerta
 Door in a wall of the room: click on the wall in the floor plan or in the view of the wall	Tür in einer Wand des Raums: im Grundriss oder in der Ansicht der Wand auf die Wand klicken	Porte dans un mur de la salle : cliquez sur le mur dans le plan ou dans la vue du mur	Puerta en una pared de la sala: haga clic en la pared en el plano o en la vista de la pared
+Door open	Tür offen	Porte ouverte	Puerta abierta
 Door opening angle	Öffnungswinkel der Tür	Angle d'ouverture de la porte	Ángulo de apertura de la puerta
 Door: {} devices, {} cutouts	Tür: {} Betriebsmittel, {} Ausschnitte	Porte : {} appareils, {} découpes	Puerta: {} dispositivos, {} recortes
 Dot	Punkt	Point	Punto
@@ -1045,6 +1049,7 @@ From the schematic: the devices behind each protective device, their connections
 From the supply	Ab Einspeisung	Depuis l'alimentation	Desde la alimentación
 From the top left corner of the drawing area	Von der linken oberen Ecke des Zeichenbereichs	Depuis le coin supérieur gauche de la zone de dessin	Desde la esquina superior izquierda del área de dibujo
 From – to	Von – bis	De – à	De – a
+Full screen	Vollbild	Plein écran	Pantalla completa
 Fullest stretch	Vollster Abschnitt	Tronçon le plus rempli	Tramo más lleno
 Function definitions	Funktionsdefinitionen	Définitions de fonction	Definiciones de función
 Function properties	Funktionseigenschaften	Propriétés de la fonction	Propiedades de la función
@@ -1056,6 +1061,7 @@ Further devices	Weitere Betriebsmittel	Autres appareils	Otros equipos
 Further project settings	Weitere Projekteinstellungen	Autres paramètres du projet	Más ajustes del proyecto
 Gap	Abstand	Écart	Separación
 Gap between devices	Abstand zwischen Geräten	Écart entre appareils	Separación entre aparatos
+Gather windows	Programmfenster einsammeln	Rassembler les fenêtres	Reunir las ventanas
 Generate	Erzeugen	Générer	Generar
 Generate all	Alle erzeugen	Tout générer	Generar todo
 Generate pages	Seiten erzeugen	Générer les pages	Generar páginas
@@ -1117,6 +1123,7 @@ Help	Hilfe	Aide	Ayuda
 Hide PV modules	PV-Module ausblenden	Masquer les modules photovoltaïques	Ocultar los módulos fotovoltaicos
 Hide ceiling	Decke ausblenden	Masquer le plafond	Ocultar el techo
 Hide the Discord button (shown again in Settings › Appearance)	Discord-Schaltfläche ausblenden (wieder einblenden unter Einstellungen › Erscheinungsbild)	Masquer le bouton Discord (réaffiché dans Paramètres › Apparence)	Ocultar el botón de Discord (se vuelve a mostrar en Ajustes › Apariencia)
+Hide the details, the buttons and the note	Die Einzelheiten, die Schaltflächen und die Notiz ausblenden	Masquer les détails, les boutons et la note	Ocultar los detalles, los botones y la nota
 Hide the groups you do not need and put the commands you use most into own groups.	Nicht benötigte Gruppen ausblenden und die meistgenutzten Befehle in eigene Gruppen legen.	Masquez les groupes inutiles et placez les commandes les plus utilisées dans vos propres groupes.	Oculte los grupos que no necesita y ponga los comandos que más usa en grupos propios.
 Hide walls in front	Wände davor ausblenden	Masquer les murs de devant	Ocultar las paredes delante
 Higher than its level ({} mm)	Höher als seine Ebene ({} mm)	Plus haute que son niveau ({} mm)	Más alta que su nivel ({} mm)
@@ -1455,6 +1462,7 @@ Move selection right by one grid step	Auswahl um einen Rasterschritt rechts vers
 Move selection up by one grid step	Auswahl um einen Rasterschritt nach oben verschieben	Déplacer la sélection d'un pas de grille vers le haut	Mover la selección un paso de cuadrícula hacia arriba
 Move the devices of this page into the new structure	Die Betriebsmittel dieser Seite in die neue Struktur verschieben	Déplacer les appareils de cette page dans la nouvelle structure	Mover los dispositivos de esta página a la nueva estructura
 Move to section	In Abschnitt verschieben	Déplacer vers la section	Mover a la sección
+Move to window	In Programmfenster verschieben	Déplacer vers la fenêtre	Mover a la ventana
 Move up	Nach oben	Monter	Subir
 Move up in the 3D view (held)	In der 3D-Ansicht nach oben bewegen (gedrückt halten)	Monter dans la vue 3D (maintenir)	Subir en la vista 3D (mantener pulsado)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Verschobene Symbole ziehen ihre Verbindungen mit, verschobene Verbindungen bleiben an den Anschlüssen, an denen sie enden. Alt beim Ziehen kehrt es um; das Ende einer ausgewählten Verbindung ziehen trennt es ab	Les symboles déplacés entraînent leurs fils et les fils déplacés restent sur les points de raccordement où ils aboutissent. Alt maintenu pendant le glissement l'inverse ; faire glisser une extrémité d'un fil sélectionné la déconnecte	Los símbolos movidos arrastran sus cables y los cables movidos permanecen en los puntos de conexión donde terminan. Mantener Alt al arrastrar lo invierte; arrastrar un extremo de un cable seleccionado lo desconecta
@@ -1681,6 +1689,7 @@ Open cable ducts	Kabelkanäle öffnen	Ouvrir les goulottes	Abrir las canaletas
 Open demo project	Demoprojekt öffnen	Ouvrir le projet de démonstration	Abrir proyecto de demostración
 Open door	Tür öffnen	Ouvrir la porte	Abrir la puerta
 Open in a new page tab	In einer neuen Seitenregisterkarte öffnen	Ouvrir dans un nouvel onglet de page	Abrir en una nueva pestaña de página
+Open in new window	In neuem Programmfenster öffnen	Ouvrir dans une nouvelle fenêtre	Abrir en una ventana nueva
 Open link	Link öffnen	Ouvrir le lien	Abrir enlace
 Open local recovery copy	Lokale Wiederherstellungskopie öffnen	Ouvrir la copie de récupération locale	Abrir la copia de recuperación local
 Open mounting assembly: no enclosure walls, the devices give off their heat to the room air (no IEC/TR 60890 calculation)	Offene Montagebaugruppe: keine Gehäusewände, die Geräte geben ihre Wärme an die Raumluft ab (keine Berechnung nach IEC/TR 60890)	Ensemble de montage ouvert : pas de parois d'enveloppe, les appareils cèdent leur chaleur à l'air ambiant (pas de calcul selon IEC/TR 60890)	Conjunto de montaje abierto: sin paredes de envolvente, los aparatos ceden su calor al aire ambiente (sin cálculo según IEC/TR 60890)
@@ -1775,6 +1784,7 @@ PV array {} lies outside the protection of the air-termination system	PV-Anlage 
 PV array {} of building {}: {} modules	PV-Anlage {} von Gebäude {}: {} Module	Champ photovoltaïque {} du bâtiment {} : {} modules	Campo fotovoltaico {} del edificio {}: {} módulos
 PV array {} of building {}: {} modules, {} kWp	PV-Anlage {} von Gebäude {}: {} Module, {} kWp	Champ photovoltaïque {} du bâtiment {} : {} modules, {} kWc	Campo fotovoltaico {} del edificio {}: {} módulos, {} kWp
 PV arrays	PV-Anlagen	Champs photovoltaïques	Campos fotovoltaicos
+Page beside the 3D view	Seite neben der 3D-Ansicht	Page à côté de la vue 3D	Página junto a la vista 3D
 Page conditions	Seitenbedingungen	Conditions de page	Condiciones de página
 Page graphics	Seitengrafik	Graphique de page	Gráficos de página
 Page heading	Seitenüberschrift	Titre de la page	Encabezado de la página
@@ -1978,6 +1988,7 @@ Put another file under the level (scale and place stay)	Eine andere Datei unter 
 Put in	Einsetzen	Insérer	Insertar
 Put into the schematic	In den Schaltplan	Mettre dans le schéma	Poner en el esquema
 Put into the vault	Im Vault ablegen	Placer dans le Vault	Colocar en el Vault
+Put the pane back into the main window	Den Bereich wieder im Hauptfenster andocken	Remettre le panneau dans la fenêtre principale	Volver a colocar el panel en la ventana principal
 Put the pane back into the workspace	Das Fenster wieder im Arbeitsbereich andocken	Remettre le panneau dans l'espace de travail	Volver a acoplar el panel en el espacio de trabajo
 Put under the level	Unter die Ebene legen	Placer sous le niveau	Colocar bajo el nivel
 Puts the panes of this workspace back at their default places and closes its floating panes	Setzt die Fenster dieses Arbeitsbereichs an ihre Standardplätze zurück und schließt seine schwebenden Fenster	Remet les panneaux de cet espace de travail à leur place par défaut et ferme ses panneaux flottants	Devuelve los paneles de este espacio de trabajo a su lugar predeterminado y cierra sus paneles flotantes
@@ -2361,6 +2372,7 @@ Show on the pages	Auf den Seiten zeigen	Afficher sur les pages	Mostrar en las p�
 Show or hide panes; drag a tab to dock it elsewhere	Fenster ein- oder ausblenden; eine Registerkarte ziehen, um sie woanders anzudocken	Afficher ou masquer des panneaux ; faire glisser un onglet pour l'ancrer ailleurs	Mostrar u ocultar paneles; arrastre una pestaña para acoplarla en otro lugar
 Show project manager	Projektverwaltung anzeigen	Afficher le gestionnaire de projets	Mostrar el gestor de proyectos
 Show the button of the Discord server	Schaltfläche des Discord-Servers anzeigen	Afficher le bouton du serveur Discord	Mostrar el botón del servidor de Discord
+Show the details, the buttons and the note	Die Einzelheiten, die Schaltflächen und die Notiz zeigen	Afficher les détails, les boutons et la note	Mostrar los detalles, los botones y la nota
 Show the enclosures bayed to this one as well	Auch die an diesen angereihten Schränke zeigen	Afficher aussi les armoires juxtaposées à celle-ci	Mostrar también los armarios alineados con este
 Show the floor plan on paper (scan or drawing) of the room's level under the floor plan of the room	Den Grundriss auf Papier (Scan oder Zeichnung) der Ebene des Raums unter dem Grundriss des Raums zeigen	Afficher le plan sur papier (scan ou dessin) du niveau de la pièce sous le plan de la pièce	Mostrar el plano en papel (escaneo o dibujo) del nivel de la sala bajo el plano de la sala
 Show the frame time and the frames per second	Bildzeit und Bilder pro Sekunde anzeigen	Afficher le temps par image et les images par seconde	Mostrar el tiempo por fotograma y los fotogramas por segundo
@@ -2369,6 +2381,10 @@ Show the messages accepted as checked	Als geprüft akzeptierte Meldungen anzeige
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Module der PV-Anlagen in der 3D-Ansicht durchsichtig zeigen: die Verdrahtung der Module untereinander darunter wird sichtbar	Afficher les modules des champs photovoltaïques en transparence dans la vue 3D : le câblage des modules entre eux en dessous devient visible	Mostrar transparentes los módulos de los campos fotovoltaicos en la vista 3D: se ve el cableado de los módulos entre sí bajo ellos
 Show the other wires	Andere Drähte anzeigen	Afficher les autres fils	Mostrar los demás cables
 Show the pane as a window	Das Fenster frei schwebend anzeigen	Afficher le panneau dans une fenêtre	Mostrar el panel como ventana
+Show the pane as a window inside the editor	Das Fenster frei schwebend im Editor zeigen	Afficher le panneau dans une fenêtre à l'intérieur de l'éditeur	Mostrar el panel como ventana dentro del editor
+Show the pane below its tabs	Das Fenster unter seinen Registerkarten zeigen	Afficher le panneau sous ses onglets	Mostrar el panel debajo de sus pestañas
+Show the pane beside its tabs	Das Fenster neben seinen Registerkarten zeigen	Afficher le panneau à côté de ses onglets	Mostrar el panel junto a sus pestañas
+Show the pane in a window of its own, to move to another monitor and maximize	Das Fenster in einem eigenen Programmfenster zeigen, das auf einen anderen Monitor verschoben und maximiert werden kann	Afficher le panneau dans sa propre fenêtre, à déplacer sur un autre écran et à agrandir	Mostrar el panel en una ventana propia, para moverla a otro monitor y maximizarla
 Show the ribbon	Menüband anzeigen	Afficher le ruban	Mostrar la cinta de opciones
 Show the whole building of the room in the 3D view: all its levels and rooms, the floor slabs, stairs and roofs	Das ganze Gebäude des Raums in der 3D-Ansicht zeigen: alle Ebenen und Räume, die Geschossdecken, Treppen und Dächer	Afficher le bâtiment entier de la salle dans la vue 3D : tous ses niveaux et salles, les dalles, escaliers et toits	Mostrar el edificio completo de la sala en la vista 3D: todos sus niveles y salas, los forjados, escaleras y cubiertas
 Show this cabinet; its place in the room is in its properties	Diesen Schaltschrank zeigen; sein Platz im Raum steht in seinen Eigenschaften	Afficher cette armoire ; son emplacement dans la salle se trouve dans ses propriétés	Mostrar este armario; su ubicación en la sala está en sus propiedades
@@ -2381,8 +2397,11 @@ Shown instead of the measured value	Wird statt des gemessenen Werts angezeigt	Af
 Shown now: {}	Jetzt angezeigt: {}	Affiché actuellement : {}	Mostrado ahora: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Wird auf dem Deckblatt und von den Bildelementen der Schriftfelder gezeigt, die das Projektlogo zeigen	Affiché sur la page de garde et par les éléments image des cartouches qui affichent le logo du projet	Se muestra en la portada y en los elementos de imagen de los cajetines que muestran el logotipo del proyecto
 Shows	Zeigt	Affiche	Muestra
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Zeigt die 3D-Ansicht des Schaltschrankaufbaus in einem eigenen Programmfenster, das auf einen anderen Monitor verschoben und maximiert werden kann	Affiche la vue 3D de l'implantation d'armoire dans sa propre fenêtre, à déplacer sur un autre écran et à agrandir	Muestra la vista 3D del montaje del armario en una ventana propia, para moverla a otro monitor y maximizarla
 Shows the differences of your version to the open project; selected ones can be taken over	Zeigt die Unterschiede Ihrer Fassung zum geöffneten Projekt; ausgewählte können übernommen werden	Affiche les différences entre votre version et le projet ouvert ; celles sélectionnées peuvent être reprises	Muestra las diferencias de su versión con el proyecto abierto; las seleccionadas se pueden adoptar
+Shows the page and the 3D view side by side in this workspace	Zeigt die Seite und die 3D-Ansicht in diesem Arbeitsbereich nebeneinander	Affiche la page et la vue 3D côte à côte dans cet espace de travail	Muestra la página y la vista 3D una al lado de la otra en este espacio de trabajo
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Zeigt die auf dem Projektserver gespeicherten Eigenschaften; Sie ändern sie hier, wenn Sie dürfen und niemand die Projektdaten gesperrt hat	Affiche les propriétés enregistrées sur le serveur de projets ; vous les modifiez ici si vous en avez le droit et si personne n'a verrouillé les données du projet	Muestra las propiedades guardadas en el servidor de proyectos; se cambian aquí si tiene permiso y nadie ha bloqueado los datos del proyecto
+Shows the window in use full screen; F11 again ends it	Zeigt das Programmfenster, in dem gearbeitet wird, im Vollbild; F11 beendet es wieder	Affiche en plein écran la fenêtre utilisée ; F11 à nouveau le quitte	Muestra a pantalla completa la ventana en uso; F11 de nuevo lo termina
 Side contact directions	Seitliche Kontaktrichtungen	Directions des contacts latéraux	Direcciones de contacto lateral
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Seitenwände, Rückwand, Dach und Boden von außen gesehen: Lüfter, Kabelverschraubungen, Ausschnitte	Parois latérales, paroi arrière, toit et fond vus de l'extérieur : ventilateurs, presse-étoupes, découpes	Paredes laterales, pared trasera, techo y fondo vistos desde fuera: ventiladores, prensaestopas, recortes
 Sign in in the Project server pane; the project opens afterwards	Im Bereich Projektserver anmelden; danach öffnet das Projekt	Connectez-vous dans le volet Serveur de projets ; le projet s'ouvre ensuite	Inicie sesión en el panel Servidor de proyectos; después se abre el proyecto
@@ -2421,6 +2440,8 @@ Space kept free of routes, or for one class only: click two corners	Raum, der fr
 Spare terminals	Reserveklemmen	Bornes de réserve	Bornes de reserva
 Special text	Sondertext	Texte spécial	Texto especial
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Sondertext: Projekt- und Seiteneigenschaften wie {page} oder {prop:Name} werden beim Zeichnen der Seite eingesetzt	Texte spécial : les propriétés du projet et de la page telles que {page} ou {prop:Name} sont remplies au dessin de la page	Texto especial: las propiedades del proyecto y de la página como {page} o {prop:Name} se rellenan al dibujar la página
+Split down	Unten teilen	Scinder en bas	Dividir hacia abajo
+Split right	Rechts teilen	Scinder à droite	Dividir a la derecha
 Stairs	Treppen	Escaliers	Escaleras
 Stamp	Stempel	Tampon	Sello
 Standard form of the report	Standardformular der Auswertung	Formulaire standard du rapport	Formulario estándar del informe
@@ -2475,6 +2496,7 @@ Sums the column in a row below the last row of the report	Summiert die Spalte in
 Supply and conditions	Einspeisung und Bedingungen	Alimentation et conditions	Alimentación y condiciones
 Surge protection	Überspannungsschutz	Protection contre les surtensions	Protección contra sobretensiones
 Swing the enclosure door open or shut (door devices and their wires move with it)	Gehäusetür auf- oder zuschwenken (Türgeräte und ihre Drähte schwenken mit)	Ouvrir ou fermer la porte de l'armoire (les appareils de porte et leurs fils pivotent avec elle)	Abrir o cerrar la puerta del armario (los equipos de la puerta y sus cables giran con ella)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Die Schranktür auf- oder zuschwenken (Türgeräte und ihre Drähte bewegen sich mit); der Winkel steht im Menü eines Rechtsklicks	Ouvrir ou fermer la porte de l'armoire (les appareils de porte et leurs fils suivent) ; l'angle est dans le menu du clic droit	Abrir o cerrar la puerta del armario (los aparatos de la puerta y sus hilos se mueven con ella); el ángulo está en el menú del clic derecho
 Switch off the check \"{}\"	Prüfung \"{}\" abschalten	Désactiver la vérification \"{}\"	Desactivar la comprobación \"{}\"
 Switched off on this computer ({})	Auf diesem Computer abgeschaltet ({})	Désactivé sur cet ordinateur ({})	Desactivado en este equipo ({})
 Switches	Schalter	Interrupteurs	Interruptores
@@ -2564,6 +2586,7 @@ The dictionary is empty: collect the texts from the project.	Das Wörterbuch ist
 The door seen from the front: door devices and cutouts	Die Tür von vorn: Türgeräte und Ausschnitte	La porte vue de face : appareils de porte et découpes	La puerta vista de frente: equipos de la puerta y recortes
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Die Tür von innen (gespiegelt): Kabelkanäle und die Verdrahtung hinter der Tür	La porte vue de l'intérieur (en miroir) : goulottes et câblage derrière la porte	La puerta vista desde dentro (reflejada): canaletas y cableado detrás de la puerta
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Das Element wird nur gezeichnet, wenn dieser Text mit seinen Platzhaltern nicht leer ist, z. B. die Zeilen einer Revisionstabelle	L'élément n'est dessiné que si ce texte avec ses variables n'est pas vide, p. ex. les lignes d'un tableau des révisions	El elemento solo se dibuja si este texto con sus marcadores no está vacío, p. ej. las filas de una tabla de revisiones
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Der gezeigte Schrank oder Raum (sein Name) und seine Ansicht: eine Seite, der Grundriss oder 3D	L'armoire ou la pièce affichée (son nom) et sa vue : une face, le plan ou la 3D	El armario o la sala mostrados (su nombre) y su vista: una cara, la planta o 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Der Schrank steht mit seiner linken Seite an der rechten Seite des gewählten; Drähte laufen durch Kabeldurchführungen hinüber	L'armoire est placée avec son côté gauche contre le côté droit de celle choisie ; les fils passent par des passages de câbles	El armario se coloca con su lado izquierdo contra el lado derecho del elegido; los cables pasan por pasos de cables
 The file could not be opened as an OpenECraft project.	Die Datei konnte nicht als OpenECraft-Projekt geöffnet werden.	Le fichier n'a pas pu être ouvert comme projet OpenECraft.	El archivo no se ha podido abrir como proyecto de OpenECraft.
 The first hour	Die erste Stunde	La première heure	La primera hora
@@ -2815,6 +2838,8 @@ Window macro: {}	Fenstermakro: {}	Macro de fenêtre : {}	Macro de ventana: {}
 Window macros (JSON, EMA, EDZ)	Fenstermakros (JSON, EMA, EDZ)	Macros de fenêtre (JSON, EMA, EDZ)	Macros de ventana (JSON, EMA, EDZ)
 Window macros inserted from now on are recorded as macro boxes.	Ab jetzt eingefügte Fenstermakros werden als Makrokästen erfasst.	Les macros de fenêtre insérées désormais sont enregistrées comme boîtes de macro.	Las macros de ventana insertadas a partir de ahora se registran como cajas de macro.
 Window macros placed on the pages (not printed)	Auf den Seiten platzierte Fenstermakros (nicht gedruckt)	Macros de fenêtre placées sur les pages (non imprimées)	Macros de ventana colocadas en las páginas (no se imprimen)
+Window {}	Programmfenster {}	Fenêtre {}	Ventana {}
+Windows	Programmfenster	Fenêtres	Ventanas
 Wire colour	Aderfarbe	Couleur du fil	Color del cable
 Wire contacts	Drahtverbindungen	Contacts du fil	Contactos del cable
 Wire crossings	Leitungskreuzungen	Croisements de fils	Cruces de cables

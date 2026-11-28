@@ -41,6 +41,7 @@
 3D macro	3D makro
 3D macro {} inserted	3D makro {} eklendi
 3D macro {} saved	3D makro {} kaydedildi
+3D view in new window	Yeni pencerede 3B görünüm
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = henüz şemada değil
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Referans sürüm tüm projeyi (sayfalar, cihazlar, parçalar, ayarlar) saklar. Bir revizyonun yayımlanması bir referans sürüm saklar.
@@ -203,6 +204,7 @@ Automatic placement	Otomatik yerleştirme
 Automatic: {}	Otomatik: {}
 Avoid:	Kaçın:
 Back	Geri
+Back to main window	Ana pencereye geri al
 Back to the project (Esc)	Projeye dön (Esc)
 Back-up up to (kA)	Yedek koruma sınırı (kA)
 Background	Arka plan
@@ -236,6 +238,7 @@ Boundary	Sınır
 Boxes	Kutular
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Şebekenin her koruma cihazında kısa devre akımına karşı kesme kapasitesi, devresinin sonundaki en düşük arıza akımında açma, kabloların kısa devre dayanımı ve üst kademedeki cihazla seçicilik.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Köprü: dört tel; bağlantı bir taraftan gelir ve diğer üçüne gider, önce karşı tarafa
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Panel pencerelerini ana pencerenin monitörüne getirir (bir monitörün bağlantısı kesildikten sonra)
 Building {} added with a level at ground level	{} binası zemin seviyesinde bir katla eklendi
 Building {} at x {} m, z {} m	Bina {}: x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	Bina {}: x {} m, z {} m, {}° döndürülmüş
@@ -628,6 +631,7 @@ Door NC data (DXF)	Kapı NC verileri (DXF)
 Door clearance	Kapı boşluğu
 Door cutouts (CSV)	Kapı kesimleri (CSV)
 Door hinge	Kapı menteşesi
+Door open	Kapı açık
 Door opening angle	Kapı açılma açısı
 Door: {} devices, {} cutouts	Kapı: {} cihaz, {} kesim
 Dot	Nokta
@@ -850,6 +854,7 @@ From the function definition	Fonksiyon tanımından
 From the left end	Sol uçtan
 From the top left corner of the drawing area	Çizim alanının sol üst köşesinden
 From – to	Başlangıç – bitiş
+Full screen	Tam ekran
 Fullest stretch	En dolu bölüm
 Function definitions	Fonksiyon tanımları
 Function properties	Fonksiyon özellikleri
@@ -861,6 +866,7 @@ Further devices	Diğer cihazlar
 Further project settings	Diğer proje ayarları
 Gap	Boşluk
 Gap between devices	Cihazlar arası mesafe
+Gather windows	Pencereleri topla
 Generate	Oluştur
 Generate all	Tümünü oluştur
 Generate pages	Sayfaları oluştur
@@ -915,6 +921,7 @@ Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Tıklarken, taş
 Help	Yardım
 Hide PV modules	PV modüllerini gizle
 Hide the Discord button (shown again in Settings › Appearance)	Discord düğmesini gizle (Ayarlar › Görünüş altında yeniden gösterilir)
+Hide the details, the buttons and the note	Ayrıntıları, düğmeleri ve notu gizle
 Hide the groups you do not need and put the commands you use most into own groups.	İhtiyacınız olmayan grupları gizleyin, en çok kullandığınız komutları kendi gruplarınıza koyun.
 Highest phase unbalance	En yüksek faz dengesizliği
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	En yüksek gerilim (en düşük sıcaklıkta açık devre), ortalama ve en düşük gerilim (ortalama ve en yüksek sıcaklıkta maksimum güçte), maksimum güçteki akım, tepe gücü
@@ -1226,6 +1233,7 @@ Move selection by	Seçimi şu kadar taşı
 Move selection by…	Seçimi taşı…
 Move the devices of this page into the new structure	Bu sayfanın cihazlarını yeni yapıya taşı
 Move to section	Bölüme taşı
+Move to window	Pencereye taşı
 Move up	Yukarı taşı
 Move up in the 3D view (held)	3B görünümde yukarı git (basılı tut)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Taşınan semboller tellerini birlikte çeker, taşınan teller bittikleri bağlantı noktalarında kalır. Sürüklerken Alt basılı tutmak bunu tersine çevirir; seçili bir telin ucunu sürüklemek onu ayırır
@@ -1420,6 +1428,7 @@ Open cable ducts	Kablo kanallarını aç
 Open demo project	Demo projeyi aç
 Open door	Kapıyı aç
 Open in a new page tab	Yeni bir sayfa sekmesinde aç
+Open in new window	Yeni pencerede aç
 Open link	Bağlantıyı aç
 Open local recovery copy	Yerel kurtarma kopyasını aç
 Open project	Proje aç
@@ -1506,6 +1515,7 @@ PV array {} lies outside the protection of the air-termination system	PV dizisi 
 PV array {} of building {}: {} modules	{1} binasının PV dizisi {0}: {2} modül
 PV array {} of building {}: {} modules, {} kWp	{1} binasının PV dizisi {0}: {2} modül, {3} kWp
 PV arrays	PV dizileri
+Page beside the 3D view	3B görünümün yanında sayfa
 Page conditions	Sayfa koşulları
 Page graphics	Sayfa grafikleri
 Page heading	Sayfa başlığı
@@ -1685,6 +1695,7 @@ Put a room here	Buraya oda koy
 Put in	Ekle
 Put into the schematic	Şemaya ekle
 Put into the vault	Kasaya koy
+Put the pane back into the main window	Paneli ana pencereye geri koy
 Put the pane back into the workspace	Paneli çalışma alanına geri koy
 Puts the project into the folder it was opened from	Projeyi açıldığı klasöre koyar
 Quick guide	Hızlı kılavuz
@@ -2025,11 +2036,16 @@ Show on the pages	Sayfalarda göster
 Show or hide panes; drag a tab to dock it elsewhere	Panelleri göster veya gizle; başka yere yerleştirmek için bir sekmeyi sürükleyin
 Show project manager	Proje yöneticisini göster
 Show the button of the Discord server	Discord sunucusunun düğmesini göster
+Show the details, the buttons and the note	Ayrıntıları, düğmeleri ve notu göster
 Show the enclosures bayed to this one as well	Buna yan yana bağlı panoları da göster
 Show the messages accepted as checked	Kontrol edildi olarak kabul edilen mesajları göster
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	3D görünümde PV dizilerinin modüllerini saydam göster: altlarındaki modüller arası kablolama görünür
 Show the other wires	Diğer telleri göster
 Show the pane as a window	Paneli pencere olarak göster
+Show the pane as a window inside the editor	Paneli düzenleyicinin içinde bir pencere olarak göster
+Show the pane below its tabs	Paneli sekmelerinin altında göster
+Show the pane beside its tabs	Paneli sekmelerinin yanında göster
+Show the pane in a window of its own, to move to another monitor and maximize	Paneli başka bir monitöre taşınıp büyütülebilen ayrı bir pencerede göster
 Show the ribbon	Şeridi göster
 Show this wire	Bu teli göster
 Show who may use the project	Projeyi kimlerin kullanabileceğini göster
@@ -2040,8 +2056,11 @@ Shown instead of the measured value	Ölçülen değer yerine gösterilir
 Shown now: {}	Şu anda gösterilen: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Kapak sayfasında ve proje logosunu gösteren antetlerin görüntü öğelerinde gösterilir
 Shows	Gösterir
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Pano yerleşiminin 3B görünümünü başka bir monitöre taşınıp büyütülebilen ayrı bir pencerede gösterir
 Shows the differences of your version to the open project; selected ones can be taken over	Sürümünüzün açık projeden farklarını gösterir; seçilenler alınabilir
+Shows the page and the 3D view side by side in this workspace	Bu çalışma alanında sayfayı ve 3B görünümü yan yana gösterir
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Proje sunucusunda kayıtlı özellikleri gösterir; yetkiniz varsa ve kimse proje verilerini kilitlememişse bunları burada değiştirirsiniz
+Shows the window in use full screen; F11 again ends it	Kullanılan pencereyi tam ekran gösterir; tekrar F11 bunu sonlandırır
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Dışarıdan görülen yan duvarlar, arka duvar, üst ve taban: fanlar, kablo rakorları, kesimler
 Sign in in the Project server pane; the project opens afterwards	Proje sunucusu bölmesinde oturum açın; proje ardından açılır
 Sign in…	Oturum aç…
@@ -2071,6 +2090,8 @@ Space kept free of routes, or for one class only: click two corners	Güzergâhla
 Spare terminals	Yedek klemensler
 Special text	Özel metin
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Özel metin: {page} veya {prop:Name} gibi proje ve sayfa özellikleri sayfa çizilirken doldurulur
+Split down	Aşağı böl
+Split right	Sağa böl
 Stairs	Merdivenler
 Stamp	Damga
 Standard form of the report	Raporun standart formu
@@ -2121,6 +2142,7 @@ Sums the column in a row below the last row of the report	Sütunu raporun son sa
 Supply and conditions	Besleme ve koşullar
 Surge protection	Aşırı gerilim koruması
 Swing the enclosure door open or shut (door devices and their wires move with it)	Pano kapısını aç veya kapat (kapı cihazları ve telleri onunla birlikte döner)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Pano kapısını açar veya kapatır (kapı cihazları ve kabloları onunla birlikte hareket eder); açı sağ tıklama menüsündedir
 Switch off the check \"{}\"	\"{}\" kontrolünü kapat
 Switched off on this computer ({})	Bu bilgisayarda kapatıldı ({})
 Switches	Anahtarlar
@@ -2200,6 +2222,7 @@ The dictionary is empty: collect the texts from the project.	Sözlük boş: meti
 The door seen from the front: door devices and cutouts	Önden görülen kapı: kapı cihazları ve kesimler
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	İçeriden görülen kapı (aynalanmış): kablo kanalları ve kapının arkasındaki kablolama
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Öğe yalnızca yer tutucularıyla bu metin boş değilse çizilir, ör. bir revizyon tablosunun satırları
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Gösterilen pano veya oda (adı) ve görünümü: bir yüz, kat planı veya 3B
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Pano sol tarafıyla seçilen panonun sağ tarafına dayanır; teller aralarında kablo geçişlerinden geçer
 The horizontal wire	Yatay tel
 The items are selected and moved together	Öğeler birlikte seçilir ve taşınır
@@ -2397,6 +2420,8 @@ Width × height × depth	Genişlik × yükseklik × derinlik
 Window macro: {}	Pencere makrosu: {}
 Window macros inserted from now on are recorded as macro boxes.	Bundan sonra eklenen pencere makroları makro kutuları olarak kaydedilir.
 Window macros placed on the pages (not printed)	Sayfalara yerleştirilen pencere makroları (yazdırılmaz)
+Window {}	Pencere {}
+Windows	Pencereler
 Wire colour	Tel rengi
 Wire crossings	Tel kesişimleri
 Wire crossings…	Tel kesişimleri…

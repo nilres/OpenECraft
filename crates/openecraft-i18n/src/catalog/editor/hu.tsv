@@ -41,6 +41,7 @@
 3D macro	3D-makró
 3D macro {} inserted	A(z) {} 3D-makró beszúrva
 3D macro {} saved	A(z) {} 3D-makró mentve
+3D view in new window	3D nézet új ablakban
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = még nincs a kapcsolási rajzon
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Az alapállapot a teljes projektet tárolja (oldalak, készülékek, alkatrészek, beállítások). Egy revízió kiadása létrehoz egyet.
@@ -203,6 +204,7 @@ Automatic placement	Automatikus elhelyezés
 Automatic: {}	Automatikus: {}
 Avoid:	Kerülendő:
 Back	Vissza
+Back to main window	Vissza a főablakba
 Back to the project (Esc)	Vissza a projekthez (Esc)
 Back-up up to (kA)	Tartalékvédelem eddig (kA)
 Background	Háttér
@@ -236,6 +238,7 @@ Boundary	Határ
 Boxes	Dobozok
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Megszakítóképesség a zárlati árammal szemben a hálózat minden védőkészülékénél, lekapcsolás a legkisebb hibaáramnál az áramkör végén, a kábelek zárlati szilárdsága és szelektivitás az előtte kapcsolt készülékkel.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Híd: négy vezeték; a kapcsolat egy oldalon érkezik, és a három másikhoz megy, először a szemköztihez
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	A panelek ablakait a főablak monitorára hozza (miután egy monitort leválasztottak)
 Building {} added with a level at ground level	A(z) {} épület hozzáadva egy talajszinti szinttel
 Building {} at x {} m, z {} m	{} épület: x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	{} épület: x {} m, z {} m, {}°-kal elforgatva
@@ -628,6 +631,7 @@ Door NC data (DXF)	Ajtó NC-adatai (DXF)
 Door clearance	Ajtó szabad tere
 Door cutouts (CSV)	Ajtókivágások (CSV)
 Door hinge	Ajtózsanérok
+Door open	Ajtó nyitva
 Door opening angle	Ajtó nyitási szöge
 Door: {} devices, {} cutouts	Ajtó: {} készülék, {} kivágás
 Dot	Pont
@@ -850,6 +854,7 @@ From the function definition	A funkciódefinícióból
 From the left end	A bal végtől
 From the top left corner of the drawing area	A rajzterület bal felső sarkától
 From – to	Tól – ig
+Full screen	Teljes képernyő
 Fullest stretch	Legtelibb szakasz
 Function definitions	Funkciódefiníciók
 Function properties	Funkciótulajdonságok
@@ -861,6 +866,7 @@ Further devices	További készülékek
 Further project settings	További projektbeállítások
 Gap	Hézag
 Gap between devices	Készülékek közötti távolság
+Gather windows	Ablakok összegyűjtése
 Generate	Generálás
 Generate all	Összes generálása
 Generate pages	Oldalak generálása
@@ -915,6 +921,7 @@ Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Kattintás, mozg
 Help	Súgó
 Hide PV modules	PV modulok elrejtése
 Hide the Discord button (shown again in Settings › Appearance)	Discord gomb elrejtése (újra megjelenítés: Beállítások › Megjelenés)
+Hide the details, the buttons and the note	A részletek, a gombok és a megjegyzés elrejtése
 Hide the groups you do not need and put the commands you use most into own groups.	Rejtse el a szükségtelen csoportokat, a leggyakrabban használt parancsokat pedig tegye saját csoportokba.
 Highest phase unbalance	Legnagyobb fázisaszimmetria
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Legnagyobb feszültség (üresjárás a legalacsonyabb hőmérsékleten), átlagos és legkisebb feszültség (maximális teljesítménynél az átlagos és a legmagasabb hőmérsékleten), áram maximális teljesítménynél, csúcsteljesítmény
@@ -1226,6 +1233,7 @@ Move selection by	Kijelölés mozgatása ennyivel
 Move selection by…	Kijelölés mozgatása…
 Move the devices of this page into the new structure	Az oldal készülékeinek áthelyezése az új struktúrába
 Move to section	Áthelyezés szakaszba
+Move to window	Áthelyezés ablakba
 Move up	Mozgatás felfelé
 Move up in the 3D view (held)	Fel a 3D nézetben (nyomva tartva)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Az áthelyezett szimbólumok magukkal húzzák vezetékeiket, az áthelyezett vezetékek pedig azokon a csatlakozási pontokon maradnak, ahol végződnek. Húzás közben lenyomott Alt megfordítja ezt; egy kijelölt vezeték végének húzása leválasztja azt
@@ -1420,6 +1428,7 @@ Open cable ducts	Kábelcsatornák megnyitása
 Open demo project	Bemutatóprojekt megnyitása
 Open door	Ajtó kinyitása
 Open in a new page tab	Megnyitás új oldallapon
+Open in new window	Megnyitás új ablakban
 Open link	Hivatkozás megnyitása
 Open local recovery copy	Helyi helyreállítási másolat megnyitása
 Open project	Projekt megnyitása
@@ -1506,6 +1515,7 @@ PV array {} lies outside the protection of the air-termination system	A(z) {} PV
 PV array {} of building {}: {} modules	{} PV mező, {} épület: {} modul
 PV array {} of building {}: {} modules, {} kWp	{} PV mező, {} épület: {} modul, {} kWp
 PV arrays	PV-mezők
+Page beside the 3D view	Oldal a 3D nézet mellett
 Page conditions	Oldalfeltételek
 Page graphics	Oldalgrafika
 Page heading	Oldalcím
@@ -1685,6 +1695,7 @@ Put a room here	Helyiség ide
 Put in	Beillesztés
 Put into the schematic	Kapcsolási rajzra
 Put into the vault	Elhelyezés a vaultban
+Put the pane back into the main window	A panel visszahelyezése a főablakba
 Put the pane back into the workspace	A panel visszahelyezése a munkaterületre
 Puts the project into the folder it was opened from	A projektet abba a mappába helyezi, amelyből megnyitották
 Quick guide	Gyors útmutató
@@ -2025,11 +2036,16 @@ Show on the pages	Megjelenítés az oldalakon
 Show or hide panes; drag a tab to dock it elsewhere	Panelek megjelenítése vagy elrejtése; húzzon egy lapot a máshová rögzítéshez
 Show project manager	Projektkezelő megjelenítése
 Show the button of the Discord server	A Discord-szerver gombjának megjelenítése
+Show the details, the buttons and the note	A részletek, a gombok és a megjegyzés megjelenítése
 Show the enclosures bayed to this one as well	Az ehhez sorolt szekrények megjelenítése is
 Show the messages accepted as checked	Az ellenőrzöttként elfogadott üzenetek megjelenítése
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	A PV mezők moduljainak átlátszó megjelenítése a 3D nézetben: látszik alattuk a modulok egymás közötti huzalozása
 Show the other wires	A többi vezeték megjelenítése
 Show the pane as a window	A panel megjelenítése ablakként
+Show the pane as a window inside the editor	A panel megjelenítése ablakként a szerkesztőn belül
+Show the pane below its tabs	A panel megjelenítése a lapjai alatt
+Show the pane beside its tabs	A panel megjelenítése a lapjai mellett
+Show the pane in a window of its own, to move to another monitor and maximize	A panel megjelenítése saját ablakban, amely másik monitorra helyezhető és teljes méretűre nagyítható
 Show the ribbon	A menüszalag megjelenítése
 Show this wire	A vezeték megjelenítése
 Show who may use the project	Annak megjelenítése, hogy ki használhatja a projektet
@@ -2040,8 +2056,11 @@ Shown instead of the measured value	A mért érték helyett jelenik meg
 Shown now: {}	Most megjelenik: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	A fedlapon és azon szövegmezők képelemeiben jelenik meg, amelyek a projekt logóját mutatják
 Shows	Megjelenítés
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	A szekrényelrendezés 3D nézetét saját ablakban mutatja, amely másik monitorra helyezhető és teljes méretűre nagyítható
 Shows the differences of your version to the open project; selected ones can be taken over	Megmutatja a változata eltéréseit a megnyitott projekttől; a kijelöltek átvehetők
+Shows the page and the 3D view side by side in this workspace	Ebben a munkaterületben egymás mellett mutatja az oldalt és a 3D nézetet
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	A projektszerveren mentett tulajdonságokat mutatja; itt módosíthatja őket, ha van rá joga, és senki sem zárolta a projektadatokat
+Shows the window in use full screen; F11 again ends it	A használt ablakot teljes képernyőn mutatja; újabb F11 kilép belőle
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Oldalfalak, hátfal, tető és fenék kívülről nézve: ventilátorok, kábeltömszelencék, kivágások
 Sign in in the Project server pane; the project opens afterwards	Jelentkezzen be a Projektkiszolgáló panelen; utána megnyílik a projekt
 Sign in…	Bejelentkezés…
@@ -2071,6 +2090,8 @@ Space kept free of routes, or for one class only: click two corners	Nyomvonalakt
 Spare terminals	Tartalék sorkapcsok
 Special text	Speciális szöveg
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Speciális szöveg: a projekt- és oldaltulajdonságok, például {page} vagy {prop:Name}, az oldal rajzolásakor töltődnek ki
+Split down	Felosztás lefelé
+Split right	Felosztás jobbra
 Stairs	Lépcsők
 Stamp	Bélyegző
 Standard form of the report	A kimutatás szabványos űrlapja
@@ -2121,6 +2142,7 @@ Sums the column in a row below the last row of the report	Összegzi az oszlopot 
 Supply and conditions	Betáplálás és feltételek
 Surge protection	Túlfeszültség-védelem
 Swing the enclosure door open or shut (door devices and their wires move with it)	A szekrényajtó kinyitása vagy becsukása (az ajtókészülékek és vezetékeik vele együtt mozognak)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	A szekrényajtó kinyitása vagy becsukása (az ajtón lévő készülékek és vezetékeik vele mozognak); a szög a jobb kattintás menüjében van
 Switch off the check \"{}\"	A(z) \"{}\" ellenőrzés kikapcsolása
 Switched off on this computer ({})	Ezen a számítógépen kikapcsolva ({})
 Switches	Kapcsolók
@@ -2200,6 +2222,7 @@ The dictionary is empty: collect the texts from the project.	A szótár üres: g
 The door seen from the front: door devices and cutouts	Az ajtó elölről nézve: ajtókészülékek és kivágások
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Az ajtó belülről nézve (tükrözve): kábelcsatornák és az ajtó mögötti huzalozás
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Az elem csak akkor jelenik meg, ha ez a szöveg a helyőrzőivel nem üres, pl. egy revíziós táblázat sorai
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	A megjelenített szekrény vagy helyiség (a neve) és a nézete: egy oldal, az alaprajz vagy a 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	A szekrény bal oldalával a kiválasztott szekrény jobb oldalához áll; a vezetékek kábelátvezetéseken át futnak közöttük
 The horizontal wire	A vízszintes vezeték
 The items are selected and moved together	Az elemek kijelölése és mozgatása együtt történik
@@ -2397,6 +2420,8 @@ Width × height × depth	Szélesség × magasság × mélység
 Window macro: {}	Ablakmakró: {}
 Window macros inserted from now on are recorded as macro boxes.	A mostantól beszúrt ablakmakrók makródobozként kerülnek rögzítésre.
 Window macros placed on the pages (not printed)	Az oldalakon elhelyezett ablakmakrók (nem nyomtatódnak)
+Window {}	{}. ablak
+Windows	Ablakok
 Wire colour	Érszín
 Wire crossings	Vezetékkereszteződések
 Wire crossings…	Vezetékkereszteződések…

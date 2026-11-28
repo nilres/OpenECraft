@@ -301,14 +301,16 @@ impl Placement {
     }
 }
 
-/// What a workspace keeps besides its tree: where its panes open and which of them float
-/// as windows. Floating panes belong to their workspace and are hidden in the others.
+/// What a workspace keeps besides its tree: where its panes open, which of them float
+/// as windows and the windows of its own with panes (`crate::pane_windows`). Floating
+/// panes and windows belong to their workspace and are hidden in the others.
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
 pub struct Side {
     pub placement: Placement,
     #[serde(skip)]
     pub floating: Vec<Pane>,
+    pub windows: crate::pane_windows::PaneWindows,
 }
 
 /// The `Side` of every workspace not shown (workspace key → side).
@@ -513,6 +515,61 @@ pub fn close(tree: &mut Tree<Pane>, pane: Pane) {
 /// A pane can be closed unless it is the page or the only document left.
 pub fn can_close(tree: &Tree<Pane>, pane: Pane) -> bool {
     pane != Pane::Page && (!pane.is_document() || panes(tree).iter().filter(|p| p.is_document()).count() > 1)
+}
+
+/// Puts a pane beside the tabs it is one of: on their right (`Horizontal`) or below
+/// them (`Vertical`), so that two documents are seen side by side. `false` if it is
+/// not in the tree or the only tab there.
+pub fn split(tree: &mut Tree<Pane>, pane: Pane, dir: LinearDir) -> bool {
+    let Some(id) = find(tree, pane) else { return false };
+    let Some(parent) = tree.tiles.parent_of(id) else { return false };
+    let Some(Tile::Container(c)) = tree.tiles.get_mut(parent) else { return false };
+    if !matches!(c, Container::Tabs(_)) || c.num_children() < 2 {
+        return false;
+    }
+    c.remove_child(id);
+    if let Container::Tabs(t) = c {
+        if t.active == Some(id) || t.active.is_none() {
+            t.active = t.children.first().copied();
+        }
+    }
+    let new = tree.tiles.insert_tab_tile(vec![id]);
+    let grandparent = tree.tiles.parent_of(parent);
+    match grandparent.and_then(|g| tree.tiles.get_mut(g)) {
+        Some(Tile::Container(Container::Linear(l))) if l.dir == dir => {
+            let at = l.children.iter().position(|c| *c == parent).map_or(l.children.len(), |i| i + 1);
+            l.children.insert(at, new);
+            // The two halves share the room of the tabs split.
+            let half = l.shares[parent] / 2.0;
+            l.shares.set_share(parent, half);
+            l.shares.set_share(new, half);
+        }
+        _ => {
+            let linear = tree.tiles.insert_container(Linear::new(dir, vec![parent, new]));
+            match grandparent.and_then(|g| tree.tiles.get_mut(g)) {
+                Some(Tile::Container(g)) => {
+                    let _ = g.replace_child(parent, linear);
+                }
+                _ => tree.root = Some(linear),
+            }
+        }
+    }
+    tree.make_active(|_, tile| matches!(tile, Tile::Pane(p) if *p == pane));
+    true
+}
+
+/// Shows two panes side by side, `right` on the right of `left` when they were tabs of
+/// one another; both are the active tabs afterwards.
+pub fn side_by_side(tree: &mut Tree<Pane>, left: Pane, right: Pane) {
+    show(tree, left);
+    show(tree, right);
+    let parent = |tree: &Tree<Pane>, p| find(tree, p).and_then(|id| tree.tiles.parent_of(id));
+    if parent(tree, left) == parent(tree, right) {
+        split(tree, right, LinearDir::Horizontal);
+    }
+    for p in [left, right] {
+        tree.make_active(|_, tile| matches!(tile, Tile::Pane(q) if *q == p));
+    }
 }
 
 /// The navigator tab shown first: the active one of the navigators on the left.

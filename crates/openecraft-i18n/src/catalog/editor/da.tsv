@@ -41,6 +41,7 @@
 3D macro	3D-makro
 3D macro {} inserted	3D-makroen {} er indsat
 3D macro {} saved	3D-makroen {} er gemt
+3D view in new window	3D-visning i nyt vindue
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = endnu ikke i diagrammet
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baseline gemmer hele projektet (sider, enheder, artikler, indstillinger). Når en revision frigives, gemmes en.
@@ -203,6 +204,7 @@ Automatic placement	Automatisk placering
 Automatic: {}	Automatisk: {}
 Avoid:	Undgå:
 Back	Tilbage
+Back to main window	Tilbage til hovedvinduet
 Back to the project (Esc)	Tilbage til projektet (Esc)
 Back-up up to (kA)	Backup op til (kA)
 Background	Baggrund
@@ -236,6 +238,7 @@ Boundary	Grænse
 Boxes	Dåser
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brydeevne mod kortslutningsstrømmen ved hver beskyttelsesenhed i forsyningsnettet, udkobling ved den laveste fejlstrøm i slutningen af dens kreds, kablernes kortslutningsstyrke og selektivitet med den foranliggende enhed.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Bro: fire ledere; forbindelsen kommer ind på én side og går til de tre andre, den modsatte side først
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Henter panelernes vinduer til hovedvinduets skærm (efter at en skærm er koblet fra)
 Building {} added with a level at ground level	Bygning {} tilføjet med en etage i terrænniveau
 Building {} at x {} m, z {} m	Bygning {} ved x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	Bygning {} ved x {} m, z {} m, drejet {}°
@@ -628,6 +631,7 @@ Door NC data (DXF)	Dør-NC-data (DXF)
 Door clearance	Dørfrigang
 Door cutouts (CSV)	Dørudskæringer (CSV)
 Door hinge	Dørens hængsler
+Door open	Dør åben
 Door opening angle	Dørens åbningsvinkel
 Door: {} devices, {} cutouts	Dør: {} enheder, {} udskæringer
 Dot	Punkt
@@ -850,6 +854,7 @@ From the function definition	Fra funktionsdefinitionen
 From the left end	Fra venstre ende
 From the top left corner of the drawing area	Fra tegneområdets øverste venstre hjørne
 From – to	Fra – til
+Full screen	Fuld skærm
 Fullest stretch	Fyldeste strækning
 Function definitions	Funktionsdefinitioner
 Function properties	Funktionsegenskaber
@@ -861,6 +866,7 @@ Further devices	Yderligere enheder
 Further project settings	Øvrige projektindstillinger
 Gap	Mellemrum
 Gap between devices	Afstand mellem enheder
+Gather windows	Saml vinduerne
 Generate	Generer
 Generate all	Generer alle
 Generate pages	Generer sider
@@ -915,6 +921,7 @@ Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Holdes nede ved 
 Help	Hjælp
 Hide PV modules	Skjul solcellemoduler
 Hide the Discord button (shown again in Settings › Appearance)	Skjul Discord-knappen (vises igen under Indstillinger › Udseende)
+Hide the details, the buttons and the note	Skjul detaljerne, knapperne og noten
 Hide the groups you do not need and put the commands you use most into own groups.	Skjul de grupper, du ikke har brug for, og læg de mest brugte kommandoer i egne grupper.
 Highest phase unbalance	Højeste faseubalance
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Højeste spænding (tomgang ved laveste temperatur), middel- og laveste spænding (ved maksimal effekt ved middel- og højeste temperatur), strøm ved maksimal effekt, spidseffekt
@@ -1226,6 +1233,7 @@ Move selection by	Flyt markeringen med
 Move selection by…	Flyt markeringen med…
 Move the devices of this page into the new structure	Flyt enhederne på denne side til den nye struktur
 Move to section	Flyt til afsnit
+Move to window	Flyt til vindue
 Move up	Flyt op
 Move up in the 3D view (held)	Flyt opad i 3D-visningen (hold nede)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Flyttede symboler trækker deres ledninger med, og flyttede ledninger bliver på de tilslutningspunkter, hvor de ender. Alt holdt nede under trækning vender det om; træk i en ende af en markeret ledning for at koble den fra
@@ -1420,6 +1428,7 @@ Open cable ducts	Åbn kabelkanaler
 Open demo project	Åbn demoprojekt
 Open door	Åbn dør
 Open in a new page tab	Åbn i en ny sidefane
+Open in new window	Åbn i nyt vindue
 Open link	Åbn link
 Open local recovery copy	Åbn den lokale gendannelseskopi
 Open project	Åbn projekt
@@ -1506,6 +1515,7 @@ PV array {} lies outside the protection of the air-termination system	Solcellefe
 PV array {} of building {}: {} modules	Solcellefelt {} i bygning {}: {} moduler
 PV array {} of building {}: {} modules, {} kWp	Solcellefelt {} i bygning {}: {} moduler, {} kWp
 PV arrays	Solcelleanlæg
+Page beside the 3D view	Siden ved siden af 3D-visningen
 Page conditions	Sidebetingelser
 Page graphics	Sidegrafik
 Page heading	Sideoverskrift
@@ -1685,6 +1695,7 @@ Put a room here	Placer et rum her
 Put in	Indsæt
 Put into the schematic	Sæt i diagrammet
 Put into the vault	Læg i vaulten
+Put the pane back into the main window	Sæt panelet tilbage i hovedvinduet
 Put the pane back into the workspace	Sæt panelet tilbage i arbejdsområdet
 Puts the project into the folder it was opened from	Lægger projektet i den mappe, det blev åbnet fra
 Quick guide	Hurtigvejledning
@@ -2025,11 +2036,16 @@ Show on the pages	Vis på siderne
 Show or hide panes; drag a tab to dock it elsewhere	Vis eller skjul paneler; træk en fane for at fastgøre den et andet sted
 Show project manager	Vis projektstyring
 Show the button of the Discord server	Vis knappen til Discord-serveren
+Show the details, the buttons and the note	Vis detaljerne, knapperne og noten
 Show the enclosures bayed to this one as well	Vis også de kapslinger, der er sammenbygget med denne
 Show the messages accepted as checked	Vis de meddelelser, der er accepteret som kontrolleret
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Vis solcellefelternes moduler gennemsigtige i 3D-visningen: modulernes indbyrdes ledningsføring under dem ses
 Show the other wires	Vis de andre ledninger
 Show the pane as a window	Vis panelet som et vindue
+Show the pane as a window inside the editor	Vis panelet som et vindue i editoren
+Show the pane below its tabs	Vis panelet under dets faner
+Show the pane beside its tabs	Vis panelet ved siden af dets faner
+Show the pane in a window of its own, to move to another monitor and maximize	Vis panelet i sit eget vindue, der kan flyttes til en anden skærm og maksimeres
 Show the ribbon	Vis båndet
 Show this wire	Vis denne ledning
 Show who may use the project	Vis, hvem der må bruge projektet
@@ -2040,8 +2056,11 @@ Shown instead of the measured value	Vises i stedet for den målte værdi
 Shown now: {}	Vises nu: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Vises på forsiden og af billedelementerne i tegningshoveder, der viser projektets logo
 Shows	Viser
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Viser 3D-visningen af tavlelayoutet i sit eget vindue, der kan flyttes til en anden skærm og maksimeres
 Shows the differences of your version to the open project; selected ones can be taken over	Viser forskellene mellem din version og det åbne projekt; de valgte kan overtages
+Shows the page and the 3D view side by side in this workspace	Viser siden og 3D-visningen side om side i dette arbejdsområde
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Viser de egenskaber, der er gemt på projektserveren; du ændrer dem her, hvis du må, og ingen har låst projektdata
+Shows the window in use full screen; F11 again ends it	Viser vinduet i brug i fuld skærm; F11 igen afslutter det
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sidevægge, bagvæg, tag og bund set udefra: ventilatorer, kabelforskruninger, udskæringer
 Sign in in the Project server pane; the project opens afterwards	Log ind i ruden Projektserver; derefter åbnes projektet
 Sign in…	Log ind…
@@ -2071,6 +2090,8 @@ Space kept free of routes, or for one class only: click two corners	Plads, der h
 Spare terminals	Reserveklemmer
 Special text	Specialtekst
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Specialtekst: projekt- og sideegenskaber som {page} eller {prop:Name} udfyldes, når siden tegnes
+Split down	Del nedad
+Split right	Del til højre
 Stairs	Trapper
 Stamp	Stempel
 Standard form of the report	Rapportens standardformular
@@ -2121,6 +2142,7 @@ Sums the column in a row below the last row of the report	Summerer kolonnen i en
 Supply and conditions	Forsyning og forhold
 Surge protection	Overspændingsbeskyttelse
 Swing the enclosure door open or shut (door devices and their wires move with it)	Sving kapslingsdøren op eller i (dørenheder og deres ledninger følger med)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Sving tavledøren åben eller lukket (dørapparater og deres ledninger følger med); vinklen findes i højrekliksmenuen
 Switch off the check \"{}\"	Slå kontrollen \"{}\" fra
 Switched off on this computer ({})	Slået fra på denne computer ({})
 Switches	Afbrydere
@@ -2200,6 +2222,7 @@ The dictionary is empty: collect the texts from the project.	Ordbogen er tom: In
 The door seen from the front: door devices and cutouts	Døren set forfra: dørenheder og udskæringer
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Døren set indefra (spejlvendt): kabelkanaler og ledningsføringen bag døren
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Elementet tegnes kun, når denne tekst med sine pladsholdere ikke er tom, f.eks. rækkerne i en revisionstabel
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Det viste skab eller rum (dets navn) og visningen: en side, plantegningen eller 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin venstre side mod den valgtes højre side; ledninger føres mellem dem gennem kabelgennemføringer
 The horizontal wire	Den vandrette ledning
 The items are selected and moved together	Elementerne markeres og flyttes samlet
@@ -2397,6 +2420,8 @@ Width × height × depth	Bredde × højde × dybde
 Window macro: {}	Vinduesmakro: {}
 Window macros inserted from now on are recorded as macro boxes.	Vinduesmakroer, der indsættes fra nu af, registreres som makrobokse.
 Window macros placed on the pages (not printed)	Vinduesmakroer placeret på siderne (udskrives ikke)
+Window {}	Vindue {}
+Windows	Vinduer
 Wire colour	Lederfarve
 Wire crossings	Ledningskrydsninger
 Wire crossings…	Ledningskrydsninger…

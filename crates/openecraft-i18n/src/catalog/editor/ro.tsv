@@ -41,6 +41,7 @@
 3D macro	Macro 3D
 3D macro {} inserted	Macro-ul 3D {} a fost inserat
 3D macro {} saved	Macro-ul 3D {} a fost salvat
+3D view in new window	Vedere 3D într-o fereastră nouă
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = încă nu este în schemă
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	O versiune de referință stochează întregul proiect (pagini, dispozitive, articole, setări). Aprobarea unei revizii stochează una.
@@ -203,6 +204,7 @@ Automatic placement	Plasare automată
 Automatic: {}	Automat: {}
 Avoid:	Evitare:
 Back	Înapoi
+Back to main window	Înapoi în fereastra principală
 Back to the project (Esc)	Înapoi la proiect (Esc)
 Back-up up to (kA)	Protecție de rezervă până la (kA)
 Background	Fundal
@@ -236,6 +238,7 @@ Boundary	Limită
 Boxes	Doze
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacitatea de rupere față de curentul de scurtcircuit la fiecare dispozitiv de protecție al rețelei, deconectarea la cel mai mic curent de defect la capătul circuitului său, rezistența la scurtcircuit a cablurilor și selectivitatea față de dispozitivul din amonte.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Punte: patru fire; conexiunea intră pe o latură și merge spre celelalte trei, întâi spre latura opusă
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	Aduce ferestrele panourilor pe monitorul ferestrei principale (după deconectarea unui monitor)
 Building {} added with a level at ground level	Clădirea {} adăugată cu un nivel la nivelul solului
 Building {} at x {} m, z {} m	Clădirea {} la x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	Clădirea {} la x {} m, z {} m, rotită cu {}°
@@ -628,6 +631,7 @@ Door NC data (DXF)	Date NC ușă (DXF)
 Door clearance	Distanță liberă față de ușă
 Door cutouts (CSV)	Decupaje ușă (CSV)
 Door hinge	Balamalele ușii
+Door open	Ușă deschisă
 Door opening angle	Unghiul de deschidere a ușii
 Door: {} devices, {} cutouts	Ușă: {} dispozitive, {} decupaje
 Dot	Punct
@@ -850,6 +854,7 @@ From the function definition	Din definiția de funcție
 From the left end	De la capătul stâng
 From the top left corner of the drawing area	De la colțul stânga sus al zonei de desen
 From – to	De la – până la
+Full screen	Ecran complet
 Fullest stretch	Porțiunea cea mai plină
 Function definitions	Definiții de funcție
 Function properties	Proprietăți funcție
@@ -861,6 +866,7 @@ Further devices	Alte dispozitive
 Further project settings	Alte setări ale proiectului
 Gap	Distanță
 Gap between devices	Distanță între dispozitive
+Gather windows	Adună ferestrele
 Generate	Generare
 Generate all	Generare toate
 Generate pages	Generare pagini
@@ -915,6 +921,7 @@ Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ținută apăsat
 Help	Ajutor
 Hide PV modules	Ascunde modulele PV
 Hide the Discord button (shown again in Settings › Appearance)	Ascunde butonul Discord (reafișat în Setări › Aspect)
+Hide the details, the buttons and the note	Ascunde detaliile, butoanele și nota
 Hide the groups you do not need and put the commands you use most into own groups.	Ascundeți grupurile de care nu aveți nevoie și puneți comenzile cele mai folosite în grupuri proprii.
 Highest phase unbalance	Cel mai mare dezechilibru de fază
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Tensiunea cea mai mare (în gol la temperatura cea mai scăzută), tensiunea medie și cea mai mică (la putere maximă la temperatura medie și cea mai ridicată), curentul la putere maximă, puterea de vârf
@@ -1226,6 +1233,7 @@ Move selection by	Mutare selecție cu
 Move selection by…	Mutare selecție cu…
 Move the devices of this page into the new structure	Mutarea dispozitivelor acestei pagini în noua structură
 Move to section	Mută în secțiune
+Move to window	Mută în fereastra
 Move up	Mută în sus
 Move up in the 3D view (held)	Deplasare în sus în vederea 3D (ținut apăsat)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Simbolurile mutate își trag conductoarele după ele, iar conductoarele mutate rămân pe punctele de conexiune unde se termină. Alt ținut apăsat în timpul tragerii inversează asta; tragerea unui capăt al unui conductor selectat îl deconectează
@@ -1420,6 +1428,7 @@ Open cable ducts	Deschide canalele de cabluri
 Open demo project	Deschidere proiect demonstrativ
 Open door	Deschidere ușă
 Open in a new page tab	Deschidere într-o filă de pagină nouă
+Open in new window	Deschide într-o fereastră nouă
 Open link	Deschide linkul
 Open local recovery copy	Deschide copia locală de recuperare
 Open project	Deschidere proiect
@@ -1506,6 +1515,7 @@ PV array {} lies outside the protection of the air-termination system	Câmpul PV
 PV array {} of building {}: {} modules	Câmpul PV {} al clădirii {}: {} module
 PV array {} of building {}: {} modules, {} kWp	Câmpul PV {} al clădirii {}: {} module, {} kWp
 PV arrays	Câmpuri fotovoltaice
+Page beside the 3D view	Pagina lângă vederea 3D
 Page conditions	Condiții de pagină
 Page graphics	Grafica paginii
 Page heading	Titlul paginii
@@ -1685,6 +1695,7 @@ Put a room here	Pune o încăpere aici
 Put in	Inserare
 Put into the schematic	Pune în schemă
 Put into the vault	Plasare în vault
+Put the pane back into the main window	Pune panoul înapoi în fereastra principală
 Put the pane back into the workspace	Readucerea panoului în spațiul de lucru
 Puts the project into the folder it was opened from	Plasează proiectul în folderul din care a fost deschis
 Quick guide	Ghid rapid
@@ -2025,11 +2036,16 @@ Show on the pages	Afișare pe pagini
 Show or hide panes; drag a tab to dock it elsewhere	Afișare sau ascundere panouri; trageți o filă pentru a o andoca în altă parte
 Show project manager	Afișează managerul de proiecte
 Show the button of the Discord server	Afișează butonul serverului Discord
+Show the details, the buttons and the note	Afișează detaliile, butoanele și nota
 Show the enclosures bayed to this one as well	Afișare și a carcaselor alăturate acesteia
 Show the messages accepted as checked	Afișare mesaje acceptate ca verificate
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Afișează transparent modulele câmpurilor PV în vizualizarea 3D: se vede cablarea modulelor între ele sub ele
 Show the other wires	Afișare celelalte conductoare
 Show the pane as a window	Afișarea panoului ca fereastră
+Show the pane as a window inside the editor	Afișează panoul ca fereastră în interiorul editorului
+Show the pane below its tabs	Afișează panoul sub filele sale
+Show the pane beside its tabs	Afișează panoul lângă filele sale
+Show the pane in a window of its own, to move to another monitor and maximize	Afișează panoul într-o fereastră proprie, de mutat pe alt monitor și maximizat
 Show the ribbon	Afișarea panglicii
 Show this wire	Afișare acest conductor
 Show who may use the project	Afișați cine poate folosi proiectul
@@ -2040,8 +2056,11 @@ Shown instead of the measured value	Afișat în locul valorii măsurate
 Shown now: {}	Afișat acum: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Afișată pe copertă și de elementele imagine ale cartușelor care arată sigla proiectului
 Shows	Afișează
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Afișează vederea 3D a amplasării în dulap într-o fereastră proprie, de mutat pe alt monitor și maximizat
 Shows the differences of your version to the open project; selected ones can be taken over	Arată diferențele versiunii dvs. față de proiectul deschis; cele selectate pot fi preluate
+Shows the page and the 3D view side by side in this workspace	Afișează pagina și vederea 3D una lângă alta în acest spațiu de lucru
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Afișează proprietățile salvate pe serverul de proiecte; le modificați aici dacă aveți dreptul și nimeni nu a blocat datele proiectului
+Shows the window in use full screen; F11 again ends it	Afișează fereastra folosită pe tot ecranul; F11 din nou îl încheie
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Pereții laterali, peretele din spate, plafonul și baza văzute din exterior: ventilatoare, presetupe, decupaje
 Sign in in the Project server pane; the project opens afterwards	Autentificați-vă în panoul Server de proiecte; apoi proiectul se deschide
 Sign in…	Autentificare…
@@ -2071,6 +2090,8 @@ Space kept free of routes, or for one class only: click two corners	Spațiu păs
 Spare terminals	Borne de rezervă
 Special text	Text special
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Text special: proprietățile proiectului și ale paginii, cum ar fi {page} sau {prop:Name}, sunt completate la desenarea paginii
+Split down	Împarte în jos
+Split right	Împarte la dreapta
 Stairs	Scări
 Stamp	Ștampilă
 Standard form of the report	Formularul standard al raportului
@@ -2121,6 +2142,7 @@ Sums the column in a row below the last row of the report	Însumează coloana î
 Supply and conditions	Alimentare și condiții
 Surge protection	Protecție la supratensiune
 Swing the enclosure door open or shut (door devices and their wires move with it)	Deschiderea sau închiderea ușii carcasei (dispozitivele de pe ușă și conductoarele lor se rotesc odată cu ea)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	Deschide sau închide ușa dulapului (aparatele de pe ușă și firele lor se mișcă odată cu ea); unghiul este în meniul clicului dreapta
 Switch off the check \"{}\"	Dezactivare verificare \"{}\"
 Switched off on this computer ({})	Dezactivat pe acest computer ({})
 Switches	Întrerupătoare
@@ -2200,6 +2222,7 @@ The dictionary is empty: collect the texts from the project.	Dicționarul este g
 The door seen from the front: door devices and cutouts	Ușa văzută din față: dispozitive de ușă și decupaje
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Ușa văzută din interior (în oglindă): canale de cablu și cablarea din spatele ușii
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Elementul este desenat doar când acest text cu substituenții săi nu este gol, de ex. rândurile unui tabel de revizii
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	Dulapul sau camera afișate (numele) și vederea: o față, planul sau 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Carcasa stă cu partea stângă lipită de partea dreaptă a celei alese; conductoarele trec între ele prin treceri de cabluri
 The horizontal wire	Firul orizontal
 The items are selected and moved together	Elementele se selectează și se mută împreună
@@ -2397,6 +2420,8 @@ Width × height × depth	Lățime × înălțime × adâncime
 Window macro: {}	Macro de fereastră: {}
 Window macros inserted from now on are recorded as macro boxes.	Macro-urile de fereastră inserate de acum înainte sunt înregistrate ca casete macro.
 Window macros placed on the pages (not printed)	Macro-uri de fereastră plasate pe pagini (netipărite)
+Window {}	Fereastra {}
+Windows	Ferestre
 Wire colour	Culoarea firului
 Wire crossings	Încrucișări ale firelor
 Wire crossings…	Încrucișări ale firelor…

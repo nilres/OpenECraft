@@ -29,7 +29,7 @@ mod wiring_ui;
 
 use openecraft_canvas::{editor, jobs, panel_ui};
 use openecraft_session::session;
-use openecraft_shell::{commands, dock, gestures, ribbon, shortcuts, style, workspaces};
+use openecraft_shell::{commands, dock, gestures, pane_windows, ribbon, shortcuts, style, workspaces};
 
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result {

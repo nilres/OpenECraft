@@ -41,6 +41,7 @@
 3D macro	3D 宏
 3D macro {} inserted	已插入 3D 宏 {}
 3D macro {} saved	已保存 3D 宏 {}
+3D view in new window	在新窗口中显示 3D 视图
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = 尚未在原理图中
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	基线存储整个项目（页、设备、部件、设置）。发布修订时会存储一个基线。
@@ -201,6 +202,7 @@ Automatic placement	自动放置
 Automatic: {}	自动：{}
 Avoid:	避开：
 Back	返回
+Back to main window	返回主窗口
 Back to the project (Esc)	返回项目 (Esc)
 Back-up up to (kA)	后备保护至 (kA)
 Background	背景
@@ -233,6 +235,7 @@ Boundary	边界
 Boxes	接线盒
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	电网中每个保护设备的分断能力与短路电流的对比、其电路末端最小故障电流时的切断、电缆的短路耐受能力以及与上级设备的选择性。
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	桥接：四条连接线；连接从一侧进入并通往另外三侧，先到对侧
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	将窗格的窗口移到主窗口所在的显示器上（在断开某台显示器之后）
 Building {} added with a level at ground level	已添加建筑物 {}，含一个地面层
 Building {} at x {} m, z {} m	建筑物 {} 位于 x {} m，z {} m
 Building {} at x {} m, z {} m, turned {}°	建筑物 {} 位于 x {} m，z {} m，旋转 {}°
@@ -621,6 +624,7 @@ Door NC data (DXF)	柜门 NC 数据 (DXF)
 Door clearance	柜门间隙
 Door cutouts (CSV)	柜门开孔 (CSV)
 Door hinge	柜门铰链
+Door open	门打开
 Door opening angle	门的打开角度
 Door: {} devices, {} cutouts	柜门：{} 个设备，{} 个开孔
 Dot	点
@@ -840,6 +844,7 @@ From the function definition	来自功能定义
 From the left end	距左端
 From the top left corner of the drawing area	从绘图区域左上角起
 From – to	从 – 到
+Full screen	全屏
 Fullest stretch	最满段
 Function definitions	功能定义
 Function properties	功能属性
@@ -851,6 +856,7 @@ Further devices	其他设备
 Further project settings	其他项目设置
 Gap	间隙
 Gap between devices	设备间距
+Gather windows	集中窗口
 Generate	生成
 Generate all	全部生成
 Generate pages	生成页
@@ -905,6 +911,7 @@ Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	在单击、移�
 Help	帮助
 Hide PV modules	隐藏光伏组件
 Hide the Discord button (shown again in Settings › Appearance)	隐藏 Discord 按钮 (可在 设置 › 外观 中重新显示)
+Hide the details, the buttons and the note	隐藏详细信息、按钮和备注
 Hide the groups you do not need and put the commands you use most into own groups.	隐藏不需要的组，并将最常用的命令放入自定义组。
 Highest phase unbalance	最大相不平衡度
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	最高电压（最低温度下的开路电压），平均和最低电压（平均和最高温度下的最大功率点电压），最大功率点电流，峰值功率
@@ -1207,6 +1214,7 @@ Move selection by	按偏移移动所选内容
 Move selection by…	按偏移移动所选内容…
 Move the devices of this page into the new structure	将此页的设备移动到新结构中
 Move to section	移到分节
+Move to window	移到窗口
 Move up	上移
 Move up in the 3D view (held)	在 3D 视图中向上移动（按住）
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	移动的符号会带动其导线，移动的导线会保留在其端点所在的连接点上。拖动时按住 Alt 可反转此行为；拖动所选导线的一端可将其断开
@@ -1399,6 +1407,7 @@ Open cable ducts	打开线槽
 Open demo project	打开演示项目
 Open door	打开柜门
 Open in a new page tab	在新的页选项卡中打开
+Open in new window	在新窗口中打开
 Open link	打开链接
 Open local recovery copy	打开本地恢复副本
 Open project	打开项目
@@ -1485,6 +1494,7 @@ PV array {} lies outside the protection of the air-termination system	光伏阵�
 PV array {} of building {}: {} modules	建筑物 {1} 的光伏阵列 {0}：{2} 块组件
 PV array {} of building {}: {} modules, {} kWp	建筑物 {1} 的光伏阵列 {0}：{2} 块组件，{3} kWp
 PV arrays	光伏阵列
+Page beside the 3D view	页面与 3D 视图并排
 Page conditions	页条件
 Page graphics	页图形
 Page heading	页标题
@@ -1661,6 +1671,7 @@ Property removed with {} values	已删除属性及其 {} 个值
 Publish	发布
 Put into the schematic	加入原理图
 Put into the vault	放入 Vault
+Put the pane back into the main window	将窗格放回主窗口
 Put the pane back into the workspace	将窗格放回工作区
 Puts the project into the folder it was opened from	将项目放入打开时所在的文件夹
 Quick guide	快速指南
@@ -1995,11 +2006,16 @@ Show on the pages	在页上显示
 Show or hide panes; drag a tab to dock it elsewhere	显示或隐藏窗格；拖动选项卡可将其停靠到别处
 Show project manager	显示项目管理器
 Show the button of the Discord server	显示 Discord 服务器按钮
+Show the details, the buttons and the note	显示详细信息、按钮和备注
 Show the enclosures bayed to this one as well	同时显示与此机柜并柜的机柜
 Show the messages accepted as checked	显示已接受为已检查的消息
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	在 3D 视图中透明显示光伏阵列的组件：可看到其下方组件之间的接线
 Show the other wires	显示其他导线
 Show the pane as a window	将窗格显示为窗口
+Show the pane as a window inside the editor	在编辑器内将窗格显示为窗口
+Show the pane below its tabs	在其选项卡下方显示该窗格
+Show the pane beside its tabs	在其选项卡旁边显示该窗格
+Show the pane in a window of its own, to move to another monitor and maximize	在单独的窗口中显示该窗格，可移到另一台显示器并最大化
 Show the ribbon	显示功能区
 Show this wire	显示此导线
 Show who may use the project	显示可以使用该项目的人员
@@ -2010,8 +2026,11 @@ Shown instead of the measured value	代替测量值显示
 Shown now: {}	当前显示：{}
 Shown on the cover page and by the image elements of title blocks that show the project logo	显示在封面上以及显示项目标志的标题栏图像元素中
 Shows	显示
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	在单独的窗口中显示机柜布置的 3D 视图，可移到另一台显示器并最大化
 Shows the differences of your version to the open project; selected ones can be taken over	显示你的版本与打开的项目之间的差异；可以接受所选的差异
+Shows the page and the 3D view side by side in this workspace	在此工作区中并排显示页面和 3D 视图
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	显示项目服务器上保存的属性；如果您有权限且没有人锁定项目数据，可在此处更改
+Shows the window in use full screen; F11 again ends it	以全屏显示正在使用的窗口；再按 F11 退出
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	从外部看到的侧板、后板、顶板和底板：风扇、电缆密封接头、开孔
 Sign in in the Project server pane; the project opens afterwards	在“项目服务器”窗格中登录；之后项目将打开
 Sign in…	登录…
@@ -2041,6 +2060,8 @@ Space kept free of routes, or for one class only: click two corners	不允许布
 Spare terminals	备用端子
 Special text	特殊文本
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	特殊文本：绘制页时将填入项目和页属性，例如 {page} 或 {prop:Name}
+Split down	向下拆分
+Split right	向右拆分
 Stairs	楼梯
 Stamp	水印
 Standard form of the report	报表的标准表单
@@ -2091,6 +2112,7 @@ Sums the column in a row below the last row of the report	在报表最后一行�
 Supply and conditions	电源进线和条件
 Surge protection	浪涌保护
 Swing the enclosure door open or shut (door devices and their wires move with it)	打开或关闭机柜柜门（柜门设备及其导线随之摆动）
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	打开或关闭机柜门（门上设备及其导线随之移动）；角度在右键菜单中
 Switch off the check \"{}\"	关闭检查 \"{}\"
 Switched off on this computer ({})	已在此计算机上关闭（{}）
 Switches	开关
@@ -2169,6 +2191,7 @@ The dictionary is empty: collect the texts from the project.	词典为空：请�
 The door seen from the front: door devices and cutouts	从正面看柜门：柜门设备和开孔
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	从内侧看柜门（镜像）：线槽和柜门后的接线
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	仅当此文字（含占位符）不为空时才绘制该元素，例如修订表的行
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	所显示的机柜或房间（其名称）及其视图：某个面、平面图或 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	该机柜的左侧紧靠所选机柜的右侧；导线通过电缆过孔在它们之间穿过
 The horizontal wire	水平导线
 The items are selected and moved together	这些元素将一起被选择和移动
@@ -2364,6 +2387,8 @@ Width × height × depth	宽 × 高 × 深
 Window macro: {}	窗口宏：{}
 Window macros inserted from now on are recorded as macro boxes.	此后插入的窗口宏将被记录为宏边框。
 Window macros placed on the pages (not printed)	页上放置的窗口宏（不打印）
+Window {}	窗口 {}
+Windows	窗口
 Wire colour	导线颜色
 Wire crossings	导线交叉
 Wire crossings…	导线交叉…

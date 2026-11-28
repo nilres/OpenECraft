@@ -2957,36 +2957,54 @@ impl PanelUi {
             });
             return;
         };
-        ui.horizontal(|ui| {
-            // A room has no door to swing.
-            if self.view == View::ThreeD && !self.in_room {
-                self.door_button(ui);
-            }
-            if let Tool::PlaceDevice(tag) = &self.tool {
-                ui.label(RichText::new(tr_fmt!("Placing {}", tag)).strong());
-            }
-            if let Some((kind, part)) = self.profile_here() {
-                let choices = panel::profile_choices(kind, db.parts.iter().chain(&prj.parts));
-                if let Some(picked) = profile_part_combo(ui, "profilepart", &choices, &part) {
-                    self.choose_profile_part(kind, &picked);
+        let what = match self.view {
+            View::ThreeD => "3D".to_string(),
+            View::Front if self.face == Face::Door && self.door_inside => tr("Door (inside)").to_string(),
+            View::Front if self.face == Face::Door => tr("Door (front)").to_string(),
+            View::Plan => tr("Floor plan").to_string(),
+            View::Front => prj.layout.enclosures[ei].face_title(self.face),
+        };
+        let title = format!("{}  ·  {}", prj.layout.enclosures[ei].name, what);
+        let tip = tr("The enclosure or room shown (its name) and its view: a face, the floor plan or 3D");
+        let placing = if let Tool::PlaceDevice(tag) = &self.tool { Some(tag.clone()) } else { None };
+        let profile = self.profile_here();
+        // The 3D view gets the full height: its title is drawn over it.
+        let row = self.view != View::ThreeD || placing.is_some() || profile.is_some();
+        if row {
+            ui.horizontal(|ui| {
+                if let Some(tag) = &placing {
+                    ui.label(RichText::new(tr_fmt!("Placing {}", tag)).strong());
                 }
-            }
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                let what = match self.view {
-                    View::ThreeD => "3D".to_string(),
-                    View::Front if self.face == Face::Door && self.door_inside => tr("Door (inside)").to_string(),
-                    View::Front if self.face == Face::Door => tr("Door (front)").to_string(),
-                    View::Plan => tr("Floor plan").to_string(),
-                    View::Front => prj.layout.enclosures[ei].face_title(self.face),
-                };
-                ui.weak(format!("{}  ·  {}", prj.layout.enclosures[ei].name, what));
+                if let Some((kind, part)) = profile {
+                    let choices = panel::profile_choices(kind, db.parts.iter().chain(&prj.parts));
+                    if let Some(picked) = profile_part_combo(ui, "profilepart", &choices, &part) {
+                        self.choose_profile_part(kind, &picked);
+                    }
+                }
+                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                    ui.weak(&title).on_hover_text(tip);
+                });
             });
-        });
-        ui.separator();
+            ui.separator();
+        }
+        let top = ui.cursor().min;
         match self.view {
             View::Front => self.front_view(ui, prj, ei, an, db),
             View::ThreeD => self.view_3d(ui, prj, ei, an),
             View::Plan => self.plan_view(ui, prj, ei),
+        }
+        if !row {
+            // Below the row of buttons at the top middle where a narrow view has no
+            // room beside it.
+            let font = egui::TextStyle::Body.resolve(ui.style());
+            let width = ui.painter().layout_no_wrap(title.clone(), font, Color32::WHITE).size().x;
+            let size = ui.spacing().interact_size.y;
+            let bar = if self.prefs_3d.view_bar { self.view_bar_commands().len() as f32 * (size + 2.0) + 8.0 } else { 0.0 };
+            let below = top.x + 16.0 + width > ui.max_rect().center().x - bar / 2.0;
+            let y = if below { size + 24.0 } else { 6.0 };
+            let at = egui::Rect::from_min_size(top + egui::vec2(8.0, y), egui::vec2(width + 8.0, 20.0));
+            let mut over = ui.new_child(egui::UiBuilder::new().max_rect(at).layout(egui::Layout::left_to_right(egui::Align::Center)));
+            over.weak(&title).on_hover_text(tip);
         }
     }
 
@@ -3025,6 +3043,7 @@ impl PanelUi {
             Cmd::LayoutDuctFill => self.show_fill,
             Cmd::LayoutHeat => self.show_heat,
             Cmd::LayoutLineup => self.show_lineup,
+            Cmd::LayoutDoorOpen => self.door_open,
             Cmd::LayoutSite => self.show_site,
             Cmd::LayoutBuilding => self.show_building,
             Cmd::LayoutZones => self.show_zones,
@@ -3057,6 +3076,7 @@ impl PanelUi {
             Cmd::LayoutWires => &mut self.show_wires,
             Cmd::LayoutDuctFill => &mut self.show_fill,
             Cmd::LayoutHeat => &mut self.show_heat,
+            Cmd::LayoutDoorOpen => &mut self.door_open,
             Cmd::LayoutZones => &mut self.show_zones,
             Cmd::LayoutPaperPlan => &mut self.show_paper,
             Cmd::LayoutOpenWalls => &mut self.open_walls,
@@ -3078,7 +3098,7 @@ impl PanelUi {
         if self.in_room || self.site {
             &[C::LayoutWires, C::LayoutOpenDucts, C::LayoutHideFrontWalls, C::LayoutHideCeiling, C::LayoutOpenWalls, C::LayoutZones, C::LayoutHidePvModules, C::LayoutSeeThroughPv, C::LayoutBuilding, C::LayoutSite]
         } else {
-            &[C::LayoutWires, C::LayoutDuctFill, C::LayoutHeat, C::LayoutOpenDucts, C::LayoutHideFrontWalls, C::LayoutLineup, C::LayoutSite]
+            &[C::LayoutDoorOpen, C::LayoutWires, C::LayoutDuctFill, C::LayoutHeat, C::LayoutOpenDucts, C::LayoutHideFrontWalls, C::LayoutLineup, C::LayoutSite]
         }
     }
 

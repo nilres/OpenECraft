@@ -41,6 +41,7 @@
 3D macro	3D 매크로
 3D macro {} inserted	3D 매크로 {} 삽입됨
 3D macro {} saved	3D 매크로 {} 저장됨
+3D view in new window	새 창에서 3D 보기
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = 아직 회로도에 없음
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	기준선은 전체 프로젝트(페이지, 장치, 부품, 설정)를 저장합니다. 개정을 릴리스하면 기준선이 하나 저장됩니다.
@@ -201,6 +202,7 @@ Automatic placement	자동 배치
 Automatic: {}	자동: {}
 Avoid:	회피:
 Back	뒤로
+Back to main window	기본 창으로 되돌리기
 Back to the project (Esc)	프로젝트로 돌아가기 (Esc)
 Back-up up to (kA)	백업 한계(kA)
 Background	배경
@@ -233,6 +235,7 @@ Boundary	경계
 Boxes	박스
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	전원의 각 보호 장치에서 단락 전류 대비 차단 용량, 회로 끝의 최소 고장 전류에서의 차단, 케이블의 단락 내량 및 상위 장치와의 선택 차단.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	브리지: 네 연결선. 연결은 한쪽에서 들어와 다른 세 쪽으로, 먼저 반대쪽으로 갑니다
+Brings the windows of the panes onto the monitor of the main window (after a monitor was disconnected)	창의 별도 창을 기본 창이 있는 모니터로 가져옵니다(모니터를 분리한 후)
 Building {} added with a level at ground level	지상층 하나로 건물 {}을(를) 추가했습니다
 Building {} at x {} m, z {} m	건물 {} 위치 x {} m, z {} m
 Building {} at x {} m, z {} m, turned {}°	건물 {} 위치 x {} m, z {} m, {}° 회전
@@ -619,6 +622,7 @@ Door NC data (DXF)	도어 NC 데이터(DXF)
 Door clearance	도어 이격 거리
 Door cutouts (CSV)	도어 컷아웃(CSV)
 Door hinge	도어 힌지
+Door open	도어 열림
 Door opening angle	문 열림 각도
 Door: {} devices, {} cutouts	도어: 장치 {}개, 컷아웃 {}개
 Dot	점
@@ -837,6 +841,7 @@ From the function definition	기능 정의에서
 From the left end	왼쪽 끝에서
 From the top left corner of the drawing area	도면 영역의 왼쪽 위 모서리부터
 From – to	시작 – 끝
+Full screen	전체 화면
 Fullest stretch	가장 많이 찬 구간
 Function definitions	기능 정의
 Function properties	기능 속성
@@ -848,6 +853,7 @@ Further devices	추가 장치
 Further project settings	기타 프로젝트 설정
 Gap	간격
 Gap between devices	장치 간 간격
+Gather windows	창 모으기
 Generate	생성
 Generate all	모두 생성
 Generate pages	페이지 생성
@@ -902,6 +908,7 @@ Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	클릭, 이동 �
 Help	도움말
 Hide PV modules	태양광 모듈 숨기기
 Hide the Discord button (shown again in Settings › Appearance)	Discord 버튼 숨기기 (설정 › 모양에서 다시 표시)
+Hide the details, the buttons and the note	세부 정보, 버튼 및 메모 숨기기
 Hide the groups you do not need and put the commands you use most into own groups.	필요 없는 그룹은 숨기고 자주 쓰는 명령은 자체 그룹에 넣습니다.
 Highest phase unbalance	최대 상 불평형
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	최고 전압 (최저 온도에서의 개방 전압), 평균 및 최저 전압 (평균 및 최고 온도에서 최대 출력 시), 최대 출력 시 전류, 피크 출력
@@ -1204,6 +1211,7 @@ Move selection by	선택 항목 이동 거리
 Move selection by…	선택 항목 이동…
 Move the devices of this page into the new structure	이 페이지의 장치를 새 구조로 이동
 Move to section	구역으로 이동
+Move to window	창으로 이동
 Move up	위로 이동
 Move up in the 3D view (held)	3D 보기에서 위로 이동(누른 채로)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	이동한 심볼은 전선을 함께 끌고 가고, 이동한 전선은 끝이 있는 연결 지점에 남습니다. 드래그 중 Alt를 누르면 반대로 동작합니다. 선택한 전선의 끝을 드래그하면 연결이 해제됩니다
@@ -1396,6 +1404,7 @@ Open cable ducts	케이블 덕트 열기
 Open demo project	데모 프로젝트 열기
 Open door	도어 열기
 Open in a new page tab	새 페이지 탭에서 열기
+Open in new window	새 창에서 열기
 Open link	링크 열기
 Open local recovery copy	로컬 복구 사본 열기
 Open project	프로젝트 열기
@@ -1482,6 +1491,7 @@ PV array {} lies outside the protection of the air-termination system	태양광 
 PV array {} of building {}: {} modules	건물 {1}의 태양광 어레이 {0}: 모듈 {2}개
 PV array {} of building {}: {} modules, {} kWp	건물 {1}의 태양광 어레이 {0}: 모듈 {2}개, {3} kWp
 PV arrays	태양광 어레이
+Page beside the 3D view	3D 보기 옆에 페이지
 Page conditions	페이지 조건
 Page graphics	페이지 그래픽
 Page heading	페이지 제목
@@ -1657,6 +1667,7 @@ Property removed with {} values	값 {}개와 함께 속성을 제거했습니다
 Publish	게시
 Put into the schematic	회로도에 넣기
 Put into the vault	Vault에 넣기
+Put the pane back into the main window	창을 기본 창으로 되돌립니다
 Put the pane back into the workspace	창을 작업 공간으로 되돌리기
 Puts the project into the folder it was opened from	프로젝트를 연 폴더에 프로젝트를 넣습니다
 Quick guide	빠른 안내
@@ -1992,11 +2003,16 @@ Show on the pages	페이지에 표시
 Show or hide panes; drag a tab to dock it elsewhere	창 표시 또는 숨기기. 탭을 끌어 다른 곳에 도킹합니다
 Show project manager	프로젝트 관리자 표시
 Show the button of the Discord server	Discord 서버 버튼 표시
+Show the details, the buttons and the note	세부 정보, 버튼 및 메모 표시
 Show the enclosures bayed to this one as well	이 외함에 결합된 외함도 표시
 Show the messages accepted as checked	확인됨으로 승인된 메시지 표시
 Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	3D 보기에서 태양광 어레이의 모듈을 투명하게 표시합니다: 그 아래 모듈 간 배선이 보입니다
 Show the other wires	다른 전선 표시
 Show the pane as a window	창을 별도 창으로 표시
+Show the pane as a window inside the editor	편집기 안에서 창을 별도 창으로 표시
+Show the pane below its tabs	탭 아래에 창 표시
+Show the pane beside its tabs	탭 옆에 창 표시
+Show the pane in a window of its own, to move to another monitor and maximize	창을 별도 창에 표시하여 다른 모니터로 옮기고 최대화할 수 있습니다
 Show the ribbon	리본 표시
 Show this wire	이 전선 표시
 Show who may use the project	프로젝트를 사용할 수 있는 사람 표시
@@ -2007,8 +2023,11 @@ Shown instead of the measured value	측정값 대신 표시됨
 Shown now: {}	현재 표시: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	표지와 프로젝트 로고를 표시하는 표제란의 이미지 요소에 표시됩니다
 Shows	표시
+Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	패널 레이아웃의 3D 보기를 별도 창에 표시하여 다른 모니터로 옮기고 최대화할 수 있습니다
 Shows the differences of your version to the open project; selected ones can be taken over	내 버전과 열린 프로젝트의 차이를 표시합니다. 선택한 항목을 가져올 수 있습니다
+Shows the page and the 3D view side by side in this workspace	이 작업 공간에서 페이지와 3D 보기를 나란히 표시합니다
 Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	프로젝트 서버에 저장된 속성을 표시합니다. 권한이 있고 아무도 프로젝트 데이터를 잠그지 않았으면 여기에서 변경합니다
+Shows the window in use full screen; F11 again ends it	사용 중인 창을 전체 화면으로 표시합니다. F11을 다시 누르면 끝납니다
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	밖에서 본 측벽, 후면벽, 지붕 및 바닥: 팬, 케이블 글랜드, 컷아웃
 Sign in in the Project server pane; the project opens afterwards	프로젝트 서버 창에서 로그인하세요. 이후 프로젝트가 열립니다
 Sign in…	로그인…
@@ -2038,6 +2057,8 @@ Space kept free of routes, or for one class only: click two corners	경로가 �
 Spare terminals	예비 단자
 Special text	특수 텍스트
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	특수 텍스트: {page} 또는 {prop:Name} 같은 프로젝트 및 페이지 속성은 페이지를 그릴 때 채워집니다
+Split down	아래로 분할
+Split right	오른쪽으로 분할
 Stairs	계단
 Stamp	도장
 Standard form of the report	보고서의 표준 양식
@@ -2088,6 +2109,7 @@ Sums the column in a row below the last row of the report	보고서 마지막 �
 Supply and conditions	전원 공급 및 조건
 Surge protection	서지 보호
 Swing the enclosure door open or shut (door devices and their wires move with it)	외함 도어를 열거나 닫습니다(도어 장치와 해당 전선이 함께 움직임)
+Swing the enclosure door open or shut (door devices and their wires move with it); the angle is in the menu of a right click	외함 도어를 열거나 닫습니다(도어 기기와 전선이 함께 움직임). 각도는 마우스 오른쪽 클릭 메뉴에 있습니다
 Switch off the check \"{}\"	\"{}\" 검사 끄기
 Switched off on this computer ({})	이 PC에서 꺼져 있습니다({})
 Switches	스위치
@@ -2166,6 +2188,7 @@ The dictionary is empty: collect the texts from the project.	사전이 비어 �
 The door seen from the front: door devices and cutouts	앞에서 본 도어: 도어 장치 및 컷아웃
 The door seen from the inside (mirrored): cable ducts and the wiring behind the door	안쪽에서 본 도어(좌우 반전): 케이블 덕트 및 도어 뒤 배선
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	자리 표시자가 포함된 이 텍스트가 비어 있지 않을 때만 요소를 그립니다(예: 개정 표의 행)
+The enclosure or room shown (its name) and its view: a face, the floor plan or 3D	표시된 외함 또는 실(이름)과 보기: 면, 평면도 또는 3D
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	외함의 왼쪽 측면이 선택한 외함의 오른쪽 측면에 붙어 있으며, 전선은 케이블 통로를 통해 그 사이를 지나갑니다
 The horizontal wire	가로 전선
 The items are selected and moved together	항목이 함께 선택되고 이동됩니다
@@ -2361,6 +2384,8 @@ Width × height × depth	너비 × 높이 × 깊이
 Window macro: {}	창 매크로: {}
 Window macros inserted from now on are recorded as macro boxes.	지금부터 삽입되는 창 매크로는 매크로 박스로 기록됩니다.
 Window macros placed on the pages (not printed)	페이지에 배치된 창 매크로(인쇄되지 않음)
+Window {}	창 {}
+Windows	창
 Wire colour	전선 색상
 Wire crossings	전선 교차
 Wire crossings…	전선 교차…

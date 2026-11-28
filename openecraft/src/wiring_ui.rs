@@ -50,6 +50,8 @@ pub struct WiringUi {
     /// Current wire (from, to).
     pub current: Option<(String, String)>,
     pub show_others: bool,
+    /// The details of the current wire are hidden (the app keeps it).
+    pub details_hidden: bool,
     note: String,
     /// Export of the checklist as CSV requested.
     pub export: bool,
@@ -225,7 +227,20 @@ impl WiringUi {
             }
         });
     }
+}
 
+/// The button at the right of the title of the current step that hides its details,
+/// its buttons and its note, so that the 3D view gets the room.
+pub(crate) fn details_toggle(ui: &mut egui::Ui, hidden: &mut bool) {
+    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        let (icon, tip) = if *hidden { (Icon::ChevronDown, tr("Show the details, the buttons and the note")) } else { (Icon::ChevronUp, tr("Hide the details, the buttons and the note")) };
+        if icons::button(ui, icon, tip).clicked() {
+            *hidden = !*hidden;
+        }
+    });
+}
+
+impl WiringUi {
     /// The current wire in large print with its actions, above the 3D view.
     pub fn workbench(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, panel: &mut PanelUi) {
         touch_spacing(ui);
@@ -249,7 +264,11 @@ impl WiringUi {
                 ui.label(RichText::new(format!("{}  –  {}", w.from, w.to)).size(26.0).strong());
                 let (sym, color) = icon(status);
                 ui.label(RichText::new(format!("{sym} {}", status.title())).size(18.0).color(color));
+                details_toggle(ui, &mut self.details_hidden);
             });
+            if self.details_hidden {
+                return;
+            }
             ui.horizontal_wrapped(|ui| {
                 let big = |t: String| RichText::new(t).size(18.0);
                 if !w.number.is_empty() {
