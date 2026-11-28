@@ -1,11 +1,14 @@
-// Records a narrated video of the web editor: how the first example project is drawn.
+// Records a narrated video of the web editor: how an example project is drawn.
 // A headless Edge shows the editor, this script works in it with real mouse and key
 // events while the browser sends what it draws (screencast); a second page encodes the
-// frames in real time with the narration (audio/<name>.mp3, spoken by tts_edge.py from
-// narration.json) as the sound track (MediaRecorder). Needs only Edge and Node; on
-// Windows start it from PowerShell.
+// frames in real time with the narration (spoken by tts_edge.py) as the sound track
+// (MediaRecorder). Needs only Edge and Node; on Windows start it from PowerShell.
 //
-//   node record.mjs http://localhost:8083/ <output folder> [record|check] [scale]
+//   node record.mjs http://localhost:8083/ <output folder> [record|check] [scale] [video]
+//
+// The steps of a video are video-<name>.mjs beside this script; its texts are
+// <name>.json, spoken into audio-<name>/ (the first video, "first-circuit":
+// narration.json and audio/).
 //
 // The steps are written for the editor in a window of 1280 x 720. `scale` (1, 1.5 or
 // 2; 1.5 by default) makes the window that much larger and sets the UI scale of the
@@ -14,10 +17,11 @@
 import { spawn } from "node:child_process";
 import { writeFileSync, readFileSync, mkdirSync, rmSync } from "node:fs";
 import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const [site = "http://localhost:8083/", outDir = here, mode = "", scaleArg = "1.5"] = process.argv.slice(2);
+const [site = "http://localhost:8083/", outDir = here, mode = "", scaleArg = "1.5", NAME = "first-circuit"] = process.argv.slice(2);
+const [TEXTS, AUDIO] = NAME === "first-circuit" ? ["narration.json", "audio"] : [NAME + ".json", "audio-" + NAME];
 const SCALE = Number(scaleArg);
 // The entries of the UI scale menu, from its top.
 const SCALES = [0.75, 0.9, 1, 1.1, 1.25, 1.5, 2];
@@ -34,11 +38,11 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 
 // The narration: its texts and the length of each sound file.
-const texts = JSON.parse(readFileSync(join(here, "narration.json"), "utf8"));
-// Spoken by tts_edge.py (audio/<name>.mp3 with their lengths in audio/lengths.json).
-const lengths = JSON.parse(readFileSync(join(here, "audio", "lengths.json"), "utf8"));
+const texts = JSON.parse(readFileSync(join(here, TEXTS), "utf8"));
+// Spoken by tts_edge.py (an MP3 for each text, with their lengths in lengths.json).
+const lengths = JSON.parse(readFileSync(join(here, AUDIO, "lengths.json"), "utf8"));
 const sounds = {};
-for (const name of Object.keys(texts)) sounds[name] = { wav: readFileSync(join(here, "audio", name + ".mp3")), seconds: lengths[name] };
+for (const name of Object.keys(texts)) sounds[name] = { wav: readFileSync(join(here, AUDIO, name + ".mp3")), seconds: lengths[name] };
 
 const profile = join(here, "edge-profile-record");
 rmSync(profile, { recursive: true, force: true });
@@ -50,7 +54,7 @@ const edge = spawn(EDGE, [
     "--enable-unsafe-swiftshader", "--autoplay-policy=no-user-gesture-required", "about:blank",
 ], { stdio: "ignore" });
 const quit = code => { try { edge.kill(); } catch (e) { /* gone */ } process.exit(code); };
-setTimeout(() => { console.error("gave up after 15 minutes"); quit(2); }, 900000);
+setTimeout(() => { console.error("gave up after 40 minutes"); quit(2); }, 2400000);
 process.on("unhandledRejection", e => { console.error(e); quit(3); });
 
 let version;
@@ -146,13 +150,24 @@ async function key(name, modifiers = 0) {
     const codes = { Escape: 27, Enter: 13 };
     const vk = codes[name] ?? name.toUpperCase().charCodeAt(0);
     const code = name.length === 1 ? "Key" + name.toUpperCase() : name;
-    const text = name === "Enter" ? "\r" : undefined;
+    // A letter alone is typed too: the keys of the editor (R turns, W draws a wire).
+    const text = name === "Enter" ? "\r" : name.length === 1 && !modifiers ? name : undefined;
     await page.call("Input.dispatchKeyEvent", { type: text ? "keyDown" : "rawKeyDown", key: name, code, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk, modifiers, text });
     await page.call("Input.dispatchKeyEvent", { type: "keyUp", key: name, code, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk, modifiers });
     await sleep(200);
 }
 async function type(text, each = 75) {
     for (const c of text) { await page.call("Input.insertText", { text: c }); await sleep(each); }
+    await sleep(300);
+}
+// Ctrl and the mouse wheel at a point: the page comes nearer there in small steps
+// (farther with a negative number); the same number back gives the view before.
+async function zoomAt(x, y, steps, each = 5) {
+    await move(x, y, 500);
+    for (let i = 0; i < Math.abs(steps); i++) {
+        await patient(page.call("Input.dispatchMouseEvent", { type: "mouseWheel", x: x * zoom, y: y * zoom, deltaX: 0, deltaY: steps > 0 ? -each : each, modifiers: 2 }));
+        await sleep(45);
+    }
     await sleep(300);
 }
 async function shot(name) {
@@ -165,9 +180,9 @@ async function shot(name) {
 if (SCALE !== 1) {
     await click(211, 37, 200);
     await sleep(500);
-    await click(1318, 87, 200);
+    await click(1600, 87, 200);
     await sleep(500);
-    await click(1298, 115 + 24 * SCALES.indexOf(SCALE), 200);
+    await click(1580, 115 + 24 * SCALES.indexOf(SCALE), 200);
     await sleep(1200);
     zoom = SCALE;
     mouse = { x: mouse.x / zoom, y: mouse.y / zoom };
@@ -215,142 +230,12 @@ async function say(name, actions = async () => {}) {
     if (left > 0) await sleep(left * 1000);
 }
 
-// The pixel of a point of the page in mm, after the view is set below.
-const P = (x, y) => [225.2 + x * 3.065, 196.85 + y * 3.065];
-const [TAB_Y, SEARCH, PAGE_TAB] = [37, [1125, 185], [227, 159]];
-async function search(text) {
-    await click(...SEARCH);
-    await key("a", 2);
-    await type(text);
-    await sleep(500);
-}
-// A symbol or device of the Insert center placed on the page.
-async function place(text, entry, x, y) {
-    await search(text);
-    await click(...entry);
-    await click(...P(x, y), 800);
-    await sleep(400);
-    await key("Escape");
-}
-async function wire(points) {
-    for (const p of points) await click(...P(...p), 600);
-    await key("Enter");
-    await sleep(300);
-}
-const DEVICE = [1115, 324];
-
+// The steps of the video.
+const video = await import(pathToFileURL(join(here, "video-" + NAME + ".mjs")).href);
+// The last frame the browser sent: what the recording shows at this moment.
+const frame = name => writeFileSync(join(outDir, name + ".jpg"), frames.at(-1).data);
 await sleep(700);
-await say("intro", async () => {
-    await move(520, 300, 1200);
-    await sleep(2500);
-    await move(330, 542, 1200);
-    await sleep(3000);
-    await move(269, 307, 1200);
-});
-await say("new", async () => {
-    await click(269, 307);
-    await sleep(1200);
-    await click(...PAGE_TAB);
-});
-await say("zoom", async () => {
-    await click(211, TAB_Y);
-    await sleep(500);
-    await click(34, 75);
-    await sleep(900);
-    for (let i = 0; i < 3; i++) { await click(110, 87, 300); await sleep(350); }
-    await sleep(400);
-    await drag(500, 350, 764, 560, "right");
-});
-if (mode === "check") { await move(1000, 690, 300); await sleep(400); await shot("check-view"); }
-if (mode === "check") { writeFileSync(join(outDir, "check-frame.jpg"), frames.at(-1).data); }
-await say("pot24", async () => {
-    await sleep(2500);
-    await search("24");
-    await sleep(600);
-    await click(1145, 263);
-    await sleep(600);
-    await click(...P(24, 32), 900);
-    await sleep(900);
-    await key("Escape");
-});
-await say("pot0", async () => {
-    await place("0V", [1165, 263], 24, 148);
-});
-await say("breaker", async () => {
-    await sleep(6500);
-    await place("MCB-1P-C6", DEVICE, 60, 56);
-});
-await say("s1", async () => {
-    await place("PB-GN-1NO", DEVICE, 60, 92);
-    await place("LMP-GN-24", DEVICE, 60, 124);
-});
-await say("s2", async () => {
-    await place("SEL-2POS-1NO", DEVICE, 120, 92);
-    await place("LMP-RD-24", DEVICE, 120, 124);
-});
-if (mode === "check") await shot("check-devices");
-await say("wire1", async () => {
-    await sleep(1500);
-    await click(121, TAB_Y);
-    await sleep(700);
-    await click(283, 75);
-    await sleep(4500);
-    await wire([[24, 36], [60, 36], [60, 52]]);
-});
-await say("wire2", async () => {
-    await wire([[60, 60], [60, 88]]);
-    await wire([[60, 72], [120, 72], [120, 88]]);
-});
-await say("wire3", async () => {
-    await wire([[24, 152], [120, 152], [120, 128]]);
-    await wire([[60, 128], [60, 152]]);
-    await key("Escape");
-    await move(...P(150, 100), 700);
-});
-if (mode === "check") await shot("check-wires");
-await say("text", async () => {
-    await click(...P(60, 92), 700);
-    await sleep(900);
-    await click(1200, 581);
-    await type("Test lamp");
-    await key("Enter");
-    await sleep(600);
-    await click(...P(120, 92), 700);
-    await sleep(700);
-    await click(1200, 581);
-    await type("Light on / off");
-    await key("Enter");
-    await sleep(400);
-    await click(...P(170, 110), 600);
-});
-await say("check", async () => {
-    await move(950, 700, 1200);
-});
-if (mode === "check") await shot("check-status");
-await say("bom", async () => {
-    await sleep(1800);
-    await click(430, TAB_Y);
-    await sleep(700);
-    await click(235, 72);
-    await sleep(1800);
-    await click(374, 306);
-    await sleep(2500);
-    await click(928, 237);
-    await sleep(1500);
-    await click(1246, 157);
-    await sleep(800);
-    await move(640, 330, 900);
-});
-if (mode === "check") await shot("check-bom");
-await say("outro", async () => {
-    await click(75, 244);
-    await sleep(800);
-    await click(211, TAB_Y);
-    await sleep(500);
-    await click(34, 75);
-    await sleep(600);
-    await move(700, 420, 900);
-});
+await video.play({ say, move, click, drag, key, type, zoomAt, sleep, shot, frame, mode });
 await sleep(800);
 await page.call("Page.stopScreencast");
 if (mode === "check") await shot("check-end");
@@ -411,11 +296,11 @@ const end = cues.at(-1).at + sounds[cues.at(-1).name].seconds + 1;
 const rest = end * 1000 - (Date.now() - started);
 if (rest > 0) await sleep(rest);
 await sleep(400);
-const video = Buffer.from(await coder.js("tour.stop()"), "base64");
+const file = Buffer.from(await coder.js("tour.stop()"), "base64");
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, "first-circuit.webm"), withDuration(video, Date.now() - started));
-writeFileSync(join(outDir, "first-circuit.jpg"), frames[Math.round(frames.length * 0.72)].data);
-log(`first-circuit.webm: ${(video.length / 1e6).toFixed(2)} MB, ${((Date.now() - started) / 1000).toFixed(0)} s`);
+writeFileSync(join(outDir, NAME + ".webm"), withDuration(file, Date.now() - started));
+writeFileSync(join(outDir, NAME + ".jpg"), frames[Math.round(frames.length * 0.72)].data);
+log(`${NAME}.webm: ${(file.length / 1e6).toFixed(2)} MB, ${((Date.now() - started) / 1000).toFixed(0)} s`);
 quit(0);
 
 // A recording of the browser has no length in its head, so a player shows none and

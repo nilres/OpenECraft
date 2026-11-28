@@ -17,15 +17,13 @@ def change(a, b):
     assert head.count(a) == 1, a[:70]
     head = head.replace(a, b)
 
-change('''// Records a narrated video of the web editor: how the first example project is drawn.''', '''// Records a Short (1080 x 1920) of the web editor: parts of its window cut out and put
+change('''// Records a narrated video of the web editor: how an example project is drawn.''', '''// Records a Short (1080 x 1920) of the web editor: parts of its window cut out and put
 // one above the other, with captions. Written by make_short.py: the head is the one of
 // record.mjs, the scene of a Short is scene-<name>.mjs.
-// Records a narrated video of the web editor: how the first example project is drawn.''')
-change('const [site = "http://localhost:8083/", outDir = here, mode = "", scaleArg = "1.5"]', 'const [site = "http://localhost:8083/", outDir = here, mode = "", scaleArg = "2", NAME = "parts-list"]')
-change('import { fileURLToPath } from "node:url";', 'import { fileURLToPath, pathToFileURL } from "node:url";')
-change('readFileSync(join(here, "narration.json"), "utf8")', 'readFileSync(join(here, NAME + ".json"), "utf8")')
-change('join(here, "audio", "lengths.json")', 'join(here, "audio-" + NAME, "lengths.json")')
-change('readFileSync(join(here, "audio", name + ".mp3"))', 'readFileSync(join(here, "audio-" + NAME, name + ".mp3"))')
+// Records a narrated video of the web editor: how an example project is drawn.''')
+change('scaleArg = "1.5", NAME = "first-circuit"]', 'scaleArg = "2", NAME = "parts-list"]')
+# The texts of a Short are <name>.json, spoken into audio-<name>/.
+change('const [TEXTS, AUDIO] = NAME === "first-circuit" ? ["narration.json", "audio"] : [NAME + ".json", "audio-" + NAME];', 'const [TEXTS, AUDIO] = [NAME + ".json", "audio-" + NAME];')
 change('"edge-profile-record"', '"edge-profile-short"')
 # At twice the size the editor takes long for a frame, and a click or key that is over
 # within one is lost now and then: the clicks and keys of the head are slower here.
