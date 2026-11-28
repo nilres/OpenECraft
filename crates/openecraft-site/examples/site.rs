@@ -1,14 +1,15 @@
 //! Writes the generated pages of the website into the page trunk built
 //! (`openecraft_site`, `docs/website.md`): the symbol library, the example projects,
 //! the documentation, the release notes with their feed, the pages of the content
-//! files (`website/content`), the page for a missing address, `llms.txt`, `build.js`
+//! files (`website/content`), the pictures of links to the pages of the symbols and
+//! the examples, the page for a missing address, `llms.txt`, `build.js`
 //! and, last, when the pages of the site changed (`pages.tsv`).
 //!
 //! `cargo run --release -p openecraft-site --example site -- <folder>`; as a hook of
 //! trunk (no argument) the folder is the page being built.
 
 use openecraft_site::frame::File;
-use openecraft_site::{build, changes, content, docs, examples, llms, missing, news, symbols};
+use openecraft_site::{build, changes, content, docs, examples, llms, missing, news, preview, symbols};
 use std::path::{Path, PathBuf};
 
 fn main() {
@@ -24,6 +25,11 @@ fn main() {
     files.extend(content::site(&content::read(&website.join("content")).unwrap_or_else(|e| fail(&e))));
     files.extend(symbols::site());
     files.extend(examples::site());
+    // The pictures of links to the pages of the symbols and the examples.
+    files.extend(preview::symbols().unwrap_or_else(|e| fail(&e)));
+    for example in &openecraft_core::sample::EXAMPLES {
+        files.push(preview::example(example).unwrap_or_else(|e| fail(&e)));
+    }
     let webp: Vec<String> = std::fs::read_dir(website.join("images"))
         .map(|entries| entries.filter_map(Result::ok).filter_map(|e| e.file_name().to_str().and_then(|n| n.strip_suffix(".webp")).map(String::from)).collect())
         .unwrap_or_default();

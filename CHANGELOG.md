@@ -36,9 +36,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **The website is easier to find:** its pages tell search engines the way to them
   (main page, section, page), the page of a symbol names its drawing as a picture that
   is free to use, and the main page names the site, the project and its screenshots,
-  in the language of the page. The sitemap names the day a page last changed, and
-  with a key (`OPENECRAFT_INDEXNOW_KEY`) the Docker image tells Bing, Yandex and other
-  search engines of changed pages at once (IndexNow). `llms.txt` lists the pages for
+  in the language of the page. A link to the page of a symbol, a symbol category or
+  an example project shows a picture of its own in chats and social media: the
+  symbol, or the first schematic page. The sitemap names the day a page last changed,
+  and with a key (`OPENECRAFT_INDEXNOW_KEY`) the Docker image tells Bing, Yandex and
+  other search engines of changed pages at once (IndexNow). `llms.txt` lists the pages for
   language models, an address without a page gets one that leads on, in the language
   of the browser, and the site and the web editor have a `favicon.ico`. The web editor
   has a title and a preview of its own for search results and links, a `robots.txt`

@@ -145,6 +145,17 @@ fn the_page_of_a_symbol_names_its_category_and_its_drawing() {
     assert_eq!(way(&german)[2], step("../../symbols/contacts/de.html", "Kontakte"));
     // The page of a category has no drawing of its own.
     assert!(crate::symbols::by_folder("contacts").is_none());
+    // The picture of a link to the page (preview): the same for every language, named
+    // from the folder of the site like the other addresses; the script of the public
+    // address reads it for the head of the page.
+    assert_eq!(structured(&english)["thumbnailUrl"], "../../symbols/preview/no.png");
+    assert_eq!(structured(&german)["thumbnailUrl"], "../../symbols/preview/no.png");
+    assert!(english.contains("  \"thumbnailUrl\": \"../../symbols/preview/no.png\""), "on a line of its own");
+    let category = html(&page(Kind::Plain, Langs::All), Lang::En);
+    assert_eq!(structured(&category)["thumbnailUrl"], "../../symbols/contacts/preview.png");
+    let faq = html(&Page { folder: "faq".into(), ..page(Kind::Plain, Langs::All) }, Lang::En);
+    assert!(structured(&faq)["thumbnailUrl"].is_null(), "a page without one has the picture of the site");
+    assert!(!english.contains("og:image\""), "the tag with the address is written by website-site.sh");
 }
 
 #[test]

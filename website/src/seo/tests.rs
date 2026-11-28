@@ -104,6 +104,29 @@ fn the_structured_data_names_the_site_its_pictures_and_where_the_project_is() {
 }
 
 #[test]
+fn a_page_with_a_picture_of_its_own_names_it_in_its_link_preview() {
+    use openecraft_site::preview;
+    assert_eq!(preview::SIZE, (1200, 630), "the size of social.jpg, which the head names for every picture");
+    assert_eq!(preview::of("symbols/no-contact").as_deref(), Some("symbols/preview/no.png"));
+    // The page names its picture in its structured data; the script reads the file
+    // twice, first for the picture, and writes the address of that one or of the
+    // picture of the site.
+    let script = read("../installer/docker/website-site.sh");
+    assert!(script.contains("at = index($0, \"\\\"thumbnailUrl\\\": \\\"\")") && script.contains("picture = substr($0, at + 17)"));
+    assert_eq!("\"thumbnailUrl\": \"".len(), 17);
+    assert!(script.contains("if (picture == \"\") picture = \"social.jpg\""));
+    assert!(script.contains("\"<meta property=\\\"og:image\\\" content=\\\"\" url picture \"\\\" />\"") && script.contains("\"<meta name=\\\"twitter:image\\\" content=\\\"\" url picture \"\\\" />\""));
+    assert!(script.contains("}' \"$page/$1\" \"$page/$1\" > \"$out/$1.new\""), "read twice");
+    assert!(script.contains("og:image:width\\\" content=\\\"1200\\\"") && script.contains("og:image:height\\\" content=\\\"630\\\""));
+    // The build draws the pictures, and the check of the image asks for one.
+    let build = read("../crates/openecraft-site/examples/site.rs");
+    assert!(build.contains("files.extend(preview::symbols()") && build.contains("files.push(preview::example(example)"));
+    let check = read("../installer/docker/check-website.sh");
+    assert!(check.contains("content=\"https://site.example/openecraft/symbols/preview/no.png\"") && check.contains("examples/conveyor/preview.png"));
+    assert!(read("../docs/website.md").contains("`symbols/preview/"));
+}
+
+#[test]
 fn the_sitemap_names_the_days_the_pages_changed() {
     use openecraft_site::changes::FILE;
     assert_eq!(FILE, "pages.tsv");

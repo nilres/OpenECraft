@@ -3771,11 +3771,14 @@ dependencies = [
 name = "openecraft-site"
 version = "0.1.3"
 dependencies = [
+ "epaint_default_fonts",
  "openecraft-api",
  "openecraft-core",
  "openecraft-i18n",
  "openecraft-parts",
+ "png 0.18.1",
  "pulldown-cmark",
+ "resvg",
  "serde_json",
 ]
 

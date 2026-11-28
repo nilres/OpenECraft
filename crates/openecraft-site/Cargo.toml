@@ -11,4 +11,9 @@ openecraft-core = { path = "../openecraft-core" }
 openecraft-i18n = { path = "../openecraft-i18n" }
 openecraft-parts = { path = "../openecraft-parts" }
 pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+# The pictures of links to the pages (preview.rs): cards drawn as SVG, with the font
+# of the editor (the version of egui in the workspace) and written as PNG.
+resvg = { version = "0.45", default-features = false, features = ["text", "raster-images"] }
+epaint_default_fonts = "0.37"
+png = "0.18"
 serde_json = "1"

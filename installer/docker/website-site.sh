@@ -91,6 +91,19 @@ BEGIN {
     if (site == "") site = "./"
     value = "\": \""
 }
+# The file is read twice. First for the picture of a link to the page, which a page
+# with one of its own names in its structured data (thumbnailUrl; crates/openecraft-site,
+# preview): the other pages have the picture of the site.
+NR == FNR {
+    at = index($0, "\"thumbnailUrl\": \"")
+    if (at > 0) {
+        picture = substr($0, at + 17)
+        sub(/".*$/, "", picture)
+        if (before != "" && index(picture, before) == 1) picture = substr(picture, length(before) + 1)
+        else if (index(picture, site) == 1) picture = substr(picture, length(site) + 1)
+    }
+    next
+}
 /<!-- \/site address -->/ { skip = 0 }
 skip { next }
 index($0, "<script type=\"application/ld+json\">") { data = 1 }
@@ -111,12 +124,13 @@ data {
         print indent "<link rel=\"alternate\" hreflang=\"en\" href=\"" base "\" />"
         for (i = 1; i <= count; i++) print indent "<link rel=\"alternate\" hreflang=\"" langs[i] "\" href=\"" base langs[i] ".html\" />"
     }
+    if (picture == "") picture = "social.jpg"
     print indent "<meta property=\"og:url\" content=\"" own "\" />"
-    print indent "<meta property=\"og:image\" content=\"" url "social.jpg\" />"
+    print indent "<meta property=\"og:image\" content=\"" url picture "\" />"
     print indent "<meta property=\"og:image:width\" content=\"1200\" />"
     print indent "<meta property=\"og:image:height\" content=\"630\" />"
-    print indent "<meta name=\"twitter:image\" content=\"" url "social.jpg\" />"
-}' "$page/$1" > "$out/$1.new"
+    print indent "<meta name=\"twitter:image\" content=\"" url picture "\" />"
+}' "$page/$1" "$page/$1" > "$out/$1.new"
     mv "$out/$1.new" "$out/$1"
 }
 

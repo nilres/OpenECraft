@@ -5,7 +5,8 @@
 //! ([`content`]: questions and answers, how-tos, tools, comparisons). Every page gets
 //! the frame of the site ([`frame`]) and is written in the languages it has. Beside
 //! them: the page for an address that has none ([`missing`]), the list of the pages for
-//! language models ([`llms`]) and the days the pages last changed ([`changes`]).
+//! language models ([`llms`]), the days the pages last changed ([`changes`]) and the
+//! pictures of links to the pages of the symbols and the examples ([`preview`]).
 //!
 //! No UI and nothing of the browser: the pages come from the library crates (symbols,
 //! examples and exports of `openecraft-core` and `openecraft-api`) and from the files
@@ -21,5 +22,6 @@ pub mod llms;
 pub mod markdown;
 pub mod missing;
 pub mod news;
+pub mod preview;
 pub mod symbols;
 pub mod texts;

@@ -292,6 +292,10 @@ fn structured(page: &Page, lang: Lang) -> Vec<Value> {
             "creator": { "@type": "Organization", "name": "OpenECraft" }
         });
     }
+    // The picture of a link to the page, where it has one of its own.
+    if let Some(picture) = crate::preview::of(&page.folder) {
+        data["thumbnailUrl"] = json!(place.file(&picture));
+    }
     let mut out = vec![data];
     let trail = trail(page, place);
     if trail.len() > 1 {

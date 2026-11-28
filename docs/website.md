@@ -55,7 +55,8 @@ deleted in the schematic shows in the check, in the reports and in the next expo
   when a screenshot changes), the preview image of links in chats and social media
   (1200 × 630) and the robots.txt of a page without a public address.
 - `social.jpg` is drawn by `social.py`: icon, name and what OpenECraft is beside the
-  screenshot `docs/images/panel-3d.png`.
+  screenshot `docs/images/panel-3d.png`. The pages of the symbols and the examples
+  have pictures of their own, drawn by the build ([below](#the-picture-of-a-link)).
 - `sheet.svg`: the sheet of the first screen as a picture, shown until the module is
   loaded and draws it (`cargo run -p openecraft-website -- sheet > website/sheet.svg`;
   a test compares it with the page the demo opens with).
@@ -204,6 +205,25 @@ the page (`"url": "./"`, `"item": "../../symbols/"`), as the value of a name on 
 line of its own: valid as it is, and written whole by `website-site.sh` where the
 public address is known, as search engines want it.
 
+#### The picture of a link
+
+A link to the site in a chat, in social media or in some search results shows a
+picture (`og:image`, 1200 × 630). Most pages have the one of the site, `social.jpg`.
+The pages of the symbol library and of the examples have their own, drawn by the
+build (`crates/openecraft-site`, `preview`): the page of a symbol its drawing
+(`symbols/preview/<key>.png`), the page of a category its first symbols, the page of
+an example its first schematic page (`preview.png` in their folders), each on a card
+with the icon, the name of the project and what the page is about. A card is an SVG
+drawn by `resvg` with the font of the editor, so it is the same on every machine;
+its texts are English, as on `social.jpg`, and one picture serves the page in every
+language. The page names its picture in its structured data (`thumbnailUrl`), and
+`website-site.sh` writes the address of that picture, or of `social.jpg`, into the
+head. To look at cards without building the site:
+
+```bash
+OPENECRAFT_PREVIEW=<folder> cargo test -p openecraft-site preview
+```
+
 #### When a page last changed
 
 A search engine asks for a changed page sooner when the sitemap names the day
@@ -318,6 +338,7 @@ hook of `Trunk.toml` runs `cargo run --release -p openecraft-site --example site
 | `docs/` | The documentation: the tutorial, the installation guide, the feature documents, the command line, the plugins and the servers (`DOCUMENTS` of `docs.rs`), in English, German, French and Spanish | The Markdown files of `docs/` and their translations in `docs/de/`, `docs/fr/` and `docs/es/` |
 | `news/` | A page for every released version, an overview and the feed `news/feed.xml` (Atom) | `CHANGELOG.md` |
 | `faq/`, `how-to/…`, `tools/…`, `reference/…`, `compare/<product>-alternative/` | Questions and answers, guides for single tasks, the tools, the reference tables (letter codes of IEC 81346-2, wire colours, IP ratings) and the comparison with one product | The content files of `website/content/` |
+| `symbols/preview/<key>.png`, `symbols/<category>/preview.png`, `examples/<example>/preview.png` | The pictures of links to these pages ([above](#the-picture-of-a-link)) | The drawings of the symbols, the first schematic page of an example |
 | `404.html`, `404.de.html`, … | The page for an address that has none, in every language ([above](#language-models-missing-pages)) | `missing.rs` |
 | `llms.txt` | The list of the English pages for language models | The pages written, and the built main page and pages written by hand |
 | `pages.tsv` | Every page with a hash of what it says and the day it last changed ([above](#when-a-page-last-changed)) | The built pages, `website/pages.tsv` of the site that is online |

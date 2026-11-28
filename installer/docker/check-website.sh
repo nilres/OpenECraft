@@ -100,6 +100,15 @@ grep -qF '"item": "https://site.example/openecraft/symbols/contacts/"' symbol.ht
 grep -qF '"contentUrl": "https://site.example/openecraft/symbols/art/no.svg"' symbol.html
 grep -qF '"license": "https://site.example/openecraft/LICENSE-MIT"' symbol.html
 if grep -qF '": "../' symbol.html; then exit 1; fi
+# The picture of a link to the page is its own: the symbol, and for an example its
+# schematic; a page without one keeps the picture of the site.
+grep -qF '<meta property="og:image" content="https://site.example/openecraft/symbols/preview/no.png" />' symbol.html
+grep -qF '<meta name="twitter:image" content="https://site.example/openecraft/symbols/preview/no.png" />' symbol.html
+test "$(curl -fsS -o /dev/null -w '%{content_type}' "$url/symbols/preview/no.png")" = image/png
+has "$url/symbols/contacts/" -F '<meta property="og:image" content="https://site.example/openecraft/symbols/contacts/preview.png" />'
+has "$url/examples/conveyor/de.html" -F '<meta property="og:image" content="https://site.example/openecraft/examples/conveyor/preview.png" />'
+curl -fsS -o /dev/null "$url/examples/conveyor/preview.png"
+has "$url/faq/" -F '<meta property="og:image" content="https://site.example/openecraft/social.jpg" />'
 has "$url/symbols/no-contact/de.html" -F '"item": "https://site.example/openecraft/symbols/contacts/de.html"'
 has "$url/reference/ip-ratings/" -F 'IEC 60529'
 has "$url/examples/conveyor/" -F 'page-1.svg'
