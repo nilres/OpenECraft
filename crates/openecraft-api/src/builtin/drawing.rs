@@ -302,6 +302,9 @@ pub static COMMANDS: &[Spec] = &[
             optional("label_y", Kind::Num, tr_const!("Name placed by hand: Y offset from the insertion point in mm")),
             optional("xref_x", Kind::Num, tr_const!("Cross reference placed by hand: X offset from the insertion point in mm")),
             optional("xref_y", Kind::Num, tr_const!("Cross reference placed by hand: Y offset from the insertion point in mm")),
+            optional("label_angle", Kind::Num, tr_const!("Name: rotation in degrees counter-clockwise on the page (90 reads from bottom to top); places it by hand")),
+            optional("xref_angle", Kind::Num, tr_const!("Cross reference: rotation in degrees counter-clockwise on the page (90 reads from bottom to top); places it by hand")),
+            optional("along", Kind::Bool, tr_const!("Turn both texts along a vertical conductor in the automatic placement (true or false)")),
         ],
         run: place_interruption_texts,
     },
@@ -1205,26 +1208,35 @@ fn place_interruption_texts(prj: &mut Project, a: &Args) -> Result<Value, String
         None => None,
     };
     let sel = selection(&prj.pages[i], a)?;
-    let by_hand = |name: &str, now: TextPlace| {
+    let (label_angle, xref_angle) = (num_in(a, "label_angle", -360.0, 360.0)?, num_in(a, "xref_angle", -360.0, 360.0)?);
+    let along = a.value("along").and_then(Value::as_bool);
+    let by_hand = |name: &str, angle: Option<f32>, now: TextPlace| {
         let (x, y) = (a.num(&format!("{name}_x")), a.num(&format!("{name}_y")));
-        (x.is_some() || y.is_some()).then(|| TextPlace { offset: p(x.unwrap_or(now.offset.x), y.unwrap_or(now.offset.y)), ..now })
+        (x.is_some() || y.is_some() || angle.is_some()).then(|| TextPlace {
+            offset: p(x.unwrap_or(now.offset.x), y.unwrap_or(now.offset.y)),
+            angle: angle.map_or(now.angle, |v| v.rem_euclid(360.0)),
+            ..now
+        })
     };
-    let place_json = |t: TextPlace| json!({ "x": t.offset.x, "y": t.offset.y, "align": anchor_code(t.anchor) });
+    let place_json = |t: TextPlace| json!({ "x": t.offset.x, "y": t.offset.y, "align": anchor_code(t.anchor), "angle": t.angle });
     let mut points = Vec::new();
     for s in prj.pages[i].symbols.iter_mut().filter(|s| sel.contains(&s.id)) {
         let Some(def) = symbols.get(&s.sym).filter(|d| d.func == Func::Interruption) else { continue };
         if let Some(side) = side {
             s.set_text_side(side);
         }
+        if let Some(along) = along {
+            s.text_along = along;
+        }
         let (label, xref) = render::interruption_places(&def, s);
-        if let Some(t) = by_hand("label", label) {
+        if let Some(t) = by_hand("label", label_angle, label) {
             s.label_place = Some(t);
         }
-        if let Some(t) = by_hand("xref", xref) {
+        if let Some(t) = by_hand("xref", xref_angle, xref) {
             s.xref_place = Some(t);
         }
         let (label, xref) = render::interruption_places(&def, s);
-        points.push(json!({ "id": s.id, "name": s.label, "side": s.text_side.code(), "label": place_json(label), "xref": place_json(xref) }));
+        points.push(json!({ "id": s.id, "name": s.label, "side": s.text_side.code(), "along": s.text_along, "label": place_json(label), "xref": place_json(xref) }));
     }
     if points.is_empty() {
         return Err(tr("None of the items is an interruption point").to_string());

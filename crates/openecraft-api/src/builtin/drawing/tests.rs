@@ -924,3 +924,26 @@ fn a_wire_added_in_line_with_another_joins_it() {
     assert_eq!(wires.len(), 1);
     assert_eq!((wires[0].a.x, wires[0].b.x), (20.0, 100.0));
 }
+
+#[test]
+fn interruption_texts_can_be_turned() {
+    let mut s = new_session();
+    let a = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "intr", "x": 200, "y": 80, "rotation": 0, "label": "L1_OUT" })).unwrap()["id"].as_u64().unwrap();
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "along": true })).unwrap();
+    assert_eq!(r["points"][0]["along"], true);
+    assert_eq!((&r["points"][0]["label"]["angle"], &r["points"][0]["xref"]["angle"]), (&json!(90.0), &json!(90.0)));
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "label_angle": 270 })).unwrap();
+    assert_eq!(r["points"][0]["label"]["angle"], 270.0);
+    assert_eq!(r["points"][0]["xref"]["angle"], 90.0, "the other text is left alone");
+    let prj = Project::from_json(&s.project().unwrap().to_json()).unwrap();
+    let placed = prj.pages[0].symbols.iter().find(|x| x.id == a).unwrap();
+    assert!(placed.text_along);
+    assert_eq!(placed.label_place.map(|t| t.angle), Some(270.0), "kept on saving");
+    assert!(placed.xref_place.is_none());
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "side": "auto", "along": false })).unwrap();
+    assert_eq!((&r["points"][0]["label"]["angle"], &r["points"][0]["xref"]["angle"]), (&json!(0.0), &json!(0.0)));
+    assert!(run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "xref_angle": 400 })).is_err());
+}

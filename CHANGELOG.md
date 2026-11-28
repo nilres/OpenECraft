@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Upright texts at interruption points:** the name and the cross reference of an
+  interruption point can be turned, so that those at the ends of vertical conductors
+  read from bottom to top along the conductor. *Turn along a vertical conductor* does it
+  in the automatic placement, `place_interruption_texts` takes `along`, `label_angle`
+  and `xref_angle` for a text of its own angle. The PDF, SVG and DXF exports and the
+  editor draw them turned, the cross reference stays a link to its page, and projects
+  without angles load as before
+  ([#315](https://github.com/nilres/OpenECraft/issues/315)).
 - **Exchange with KiCad and FreeCAD:** a board designed in KiCad becomes a device of
   the project from its netlist (*File › Import › Import KiCad board as device…*,
   `import_kicad`): a device box with a connection point for every pin of its

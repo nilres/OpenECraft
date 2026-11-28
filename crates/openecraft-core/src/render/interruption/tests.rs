@@ -66,7 +66,7 @@ fn texts_placed_by_hand_win_until_a_side_is_chosen() {
     let def = prj.symbol("intr").unwrap();
     let mut s = point(3, false);
     assert!(!s.texts_placed());
-    let hand = TextPlace { offset: p(4.0, -6.0), anchor: Anchor::Center };
+    let hand = TextPlace { offset: p(4.0, -6.0), anchor: Anchor::Center, angle: 0.0 };
     s.xref_place = Some(hand);
     let (label, xref) = interruption_places(&def, &s);
     assert_eq!(xref, hand);
@@ -88,8 +88,8 @@ fn placed_texts_are_saved() {
     let plain = serde_json::to_value(&s).unwrap();
     assert!(plain.get("text_side").is_none() && plain.get("label_place").is_none(), "nothing stored for automatic placement");
     s.text_side = TextSide::Above;
-    s.label_place = Some(TextPlace { offset: p(1.5, -4.0), anchor: Anchor::Left });
-    s.xref_place = Some(TextPlace { offset: p(8.0, -4.0), anchor: Anchor::Right });
+    s.label_place = Some(TextPlace { offset: p(1.5, -4.0), anchor: Anchor::Left, angle: 0.0 });
+    s.xref_place = Some(TextPlace { offset: p(8.0, -4.0), anchor: Anchor::Right, angle: 0.0 });
     let json = serde_json::to_value(&s).unwrap();
     assert_eq!(json["text_side"], "above");
     let back: SymbolInst = serde_json::from_value(json).unwrap();
@@ -108,7 +108,7 @@ fn hit_areas_follow_the_texts() {
     let idx = Index::build(&prj);
     let def = prj.symbol("intr").unwrap();
     let s = &mut prj.pages[0].symbols[0];
-    s.label_place = Some(TextPlace { offset: p(0.0, -10.0), anchor: Anchor::Center });
+    s.label_place = Some(TextPlace { offset: p(0.0, -10.0), anchor: Anchor::Center, angle: 0.0 });
     let s = prj.pages[0].symbols[0].clone();
     let areas = interruption_text_bounds(&prj, &idx, 0, &def, &s);
     assert_eq!(areas.len(), 2);
@@ -176,4 +176,60 @@ fn automatic_texts_of_horizontal_points_stay_behind_the_tip() {
             }
         }
     }
+}
+
+#[test]
+fn vertical_points_turn_their_texts_along_the_conductor_on_request() {
+    let prj = Project::default();
+    let def = prj.symbol("intr").unwrap();
+    for rot in 0..4u8 {
+        for mirror in [false, true] {
+            let s = SymbolInst { text_along: true, ..point(rot, mirror) };
+            let plain = interruption_places(&def, &point(rot, mirror));
+            let (label, xref) = interruption_places(&def, &s);
+            if rot % 2 == 1 {
+                assert_eq!((label, xref), plain, "horizontal arrows already run along the conductor: rot {rot}");
+                continue;
+            }
+            let at = format!("rot {rot}, mirror {mirror}");
+            assert_eq!((label.angle, xref.angle), (90.0, 90.0), "{at}");
+            assert_eq!((plain.0.angle, plain.1.angle), (0.0, 0.0), "{at}: only on request");
+            let pin = def.pin_world(0, s.pos, s.rot, s.mirror);
+            assert!(s.pos.x + label.offset.x < pin.x && s.pos.x + xref.offset.x > pin.x, "{at}: the conductor runs between the texts");
+            let arrow = def.world_bounds(s.pos, s.rot, s.mirror).expand(-0.6);
+            let a = place_area(s.pos + label.offset, &s.label, label_size(&def), label);
+            let b = place_area(s.pos + xref.offset, "/12.3 /14.1", SMALL_SIZE, xref);
+            assert!(!overlap(&a, &arrow) && !overlap(&b, &arrow), "{at}: texts on the arrow");
+            assert!(!overlap(&a, &b), "{at}: texts on each other");
+            assert!(a.max.y - a.min.y > a.max.x - a.min.x, "{at}: the name stands upright");
+            let side = SymbolInst { text_side: TextSide::Above, ..s.clone() };
+            assert_eq!(interruption_places(&def, &side).0.angle, 0.0, "{at}: a chosen side is kept");
+        }
+    }
+}
+
+#[test]
+fn turned_texts_are_saved_and_older_files_still_load() {
+    let flat = TextPlace { offset: p(1.0, 2.0), anchor: Anchor::Left, angle: 0.0 };
+    let json = serde_json::to_value(flat).unwrap();
+    assert!(json.get("angle").is_none(), "nothing stored for an unturned text");
+    assert_eq!(serde_json::from_value::<TextPlace>(json).unwrap(), flat);
+    let turned = TextPlace { angle: 90.0, ..flat };
+    let json = serde_json::to_value(turned).unwrap();
+    assert_eq!(json["angle"], 90.0);
+    assert_eq!(serde_json::from_value::<TextPlace>(json).unwrap(), turned);
+    let s = SymbolInst { text_along: true, label_place: Some(turned), ..point(0, false) };
+    let back: SymbolInst = serde_json::from_value(serde_json::to_value(&s).unwrap()).unwrap();
+    assert_eq!(back, s);
+    assert!(serde_json::to_value(point(0, false)).unwrap().get("text_along").is_none());
+}
+
+#[test]
+fn hit_areas_of_turned_texts_stand_upright() {
+    let flat = TextPlace { offset: p(0.0, -10.0), anchor: Anchor::Left, angle: 0.0 };
+    let turned = TextPlace { angle: 90.0, ..flat };
+    let q = p(100.0, 90.0);
+    let (a, b) = (place_area(q, "L1_OUT", 2.5, flat), place_area(q, "L1_OUT", 2.5, turned));
+    assert!((a.max.x - a.min.x - (b.max.y - b.min.y)).abs() < 0.01 && (a.max.y - a.min.y - (b.max.x - b.min.x)).abs() < 0.01);
+    assert!(b.min.y < q.y && (b.max.y - q.y).abs() < 0.01, "reading upwards from the anchor");
 }

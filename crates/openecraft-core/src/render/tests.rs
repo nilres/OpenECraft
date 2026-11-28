@@ -708,8 +708,8 @@ fn interruption_texts_are_drawn_where_they_were_placed() {
         prj.pages[page].symbols.push(SymbolInst { id, sym: "intr".into(), pos: p(100.0, 100.0), rot: 3, label: "L1_OUT".into(), ..Default::default() });
     }
     let s = &mut prj.pages[0].symbols[0];
-    s.label_place = Some(TextPlace { offset: p(2.0, -5.0), anchor: Anchor::Center });
-    s.xref_place = Some(TextPlace { offset: p(6.0, 5.0), anchor: Anchor::Right });
+    s.label_place = Some(TextPlace { offset: p(2.0, -5.0), anchor: Anchor::Center, angle: 0.0 });
+    s.xref_place = Some(TextPlace { offset: p(6.0, 5.0), anchor: Anchor::Right, angle: 0.0 });
     let an = Analysis::with_builtin(&prj);
     let mut d = Rec::default();
     draw_page(&mut d, &prj, &an.index, &an, 0, &Opts::default());
@@ -845,4 +845,28 @@ fn the_links_of_a_symbol_are_those_drawn_with_it_also_in_a_reference_field() {
     let field = symbol_links(&prj,&idx,0,&def,s);
     assert_eq!(field.iter().map(|l|l.1).collect::<Vec<_>>(),[1],"the reference field links instead");
     assert!(!field[0].0.contains(xref.center()));
+}
+
+#[test]
+fn turned_interruption_texts_are_drawn_upright_with_an_upright_link() {
+    let mut prj = Project::default();
+    let id = prj.new_id();
+    prj.pages.push(Page::new(id, "2", "", PageKind::Schematic));
+    for page in [0, 1] {
+        let id = prj.new_id();
+        prj.pages[page].symbols.push(SymbolInst { id, sym: "intr".into(), pos: p(100.0, 100.0), rot: 0, label: "L1_OUT".into(), text_along: page == 0, ..Default::default() });
+    }
+    let an = Analysis::with_builtin(&prj);
+    let mut d = Rec::default();
+    draw_page(&mut d, &prj, &an.index, &an, 0, &Opts::default());
+    let name = d.styled.iter().find(|t| t.1 == "L1_OUT").expect("the name is turned");
+    assert_eq!(name.2.angle, 90.0);
+    let xref = d.styled.iter().find(|t| t.1.starts_with('/')).expect("the cross reference is turned");
+    assert_eq!(xref.2.angle, 90.0);
+    let link = d.page_links.iter().find(|l| l.2 == 1).expect("link to page 2");
+    assert!(link.1.y - link.0.y > link.1.x - link.0.x, "the link area stands upright too");
+    // The second page keeps its horizontal texts.
+    let mut d = Rec::default();
+    draw_page(&mut d, &prj, &an.index, &an, 1, &Opts::default());
+    assert!(d.styled.iter().all(|t| t.1 != "L1_OUT"));
 }
