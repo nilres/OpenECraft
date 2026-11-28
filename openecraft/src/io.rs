@@ -30,6 +30,8 @@ pub enum Purpose {
     Forms,
     /// A drawing (DXF, DWG) to import as a page.
     Drawing,
+    /// The netlist of a board designed in KiCad, to add the board as a device.
+    KicadBoard,
     /// A floor plan on paper (PDF, picture) to put under a level (its id).
     FloorPlan(u64),
     /// A table (CSV) changed in a spreadsheet.
@@ -96,7 +98,7 @@ impl FileKind for Purpose {
             Purpose::Model(kind) => kind.filter(),
             Purpose::Macros => (tr("Window macros (JSON, EMA, EDZ)"), &["json", "ema", "edz"]),
             Purpose::PlcTable => ("PLC symbol table (CSV)", &["csv", "txt"]),
-            Purpose::Symbols => (tr("Symbol library (JSON, EMA, EDZ)"), &["json", "ema", "edz"]),
+            Purpose::Symbols => (tr("Symbol library (JSON, EMA, EDZ, KiCad)"), &["json", "ema", "edz", "kicad_sym"]),
             Purpose::Forms => (tr("OpenECraft title blocks and report schemes (JSON)"), &["json"]),
             Purpose::StructureTemplate => (tr("OpenECraft structure template (JSON)"), &["json"]),
             Purpose::PageTemplates => (tr("OpenECraft page templates (JSON)"), &["json"]),
@@ -107,9 +109,10 @@ impl FileKind for Purpose {
             Purpose::Table(_) => (tr("CSV or Excel"), &["csv", "txt", "xlsx"]),
             Purpose::Dictionary => ("CSV", &["csv", "txt"]),
             Purpose::Drawing => (tr("Drawing (DXF, DWG)"), &["dxf", "dwg"]),
+            Purpose::KicadBoard => (tr("KiCad netlist"), &["net"]),
             Purpose::FloorPlan(_) => (tr("Floor plan (PDF, PNG, JPEG, TIFF)"), &["pdf", "png", "jpg", "jpeg", "tif", "tiff", "gif", "webp", "bmp"]),
             Purpose::Aml => ("AutomationML", &["aml", "xml"]),
-            Purpose::Integration => (tr("Files of other systems (CSV, JSON)"), &["csv", "json", "txt"]),
+            Purpose::Integration => (tr("Files of other systems (CSV, JSON, KiCad, FreeCAD)"), &["csv", "json", "txt", "net", "FCStd", "fcstd"]),
             Purpose::DeviceDescription => (tr("Device description (GSDML, ESI)"), &["xml"]),
             Purpose::Ribbon => (tr("Ribbon (JSON)"), &["json"]),
             Purpose::Favorites => (tr("Favorites (JSON)"), &["json"]),

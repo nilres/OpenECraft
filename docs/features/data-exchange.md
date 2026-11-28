@@ -1,6 +1,6 @@
 # Output and data exchange
 
-PDF, DXF / DWG, SVG and 3D exports, DXF / DWG import, the enterprise integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machines) and Autodesk Vault.
+PDF, DXF / DWG, SVG and 3D exports, DXF / DWG import, the enterprise integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machines), the exchange with KiCad and FreeCAD, and Autodesk Vault.
 
 ## Output / data exchange
 
@@ -58,6 +58,77 @@ so values changed on both sides since are reported as conflicts and values the
 other system left unchanged never overwrite local edits. A neutral exchange file
 (`openecraft.exchange/1`, JSON) holds everything for systems without a connector;
 the exchange log is kept in the project.
+
+## KiCad and FreeCAD
+
+OpenECraft exchanges data with the free tools for PCB design, [KiCad](https://www.kicad.org),
+and for mechanical design, [FreeCAD](https://www.freecad.org), in their own file formats.
+
+| What | Direction | How |
+| --- | --- | --- |
+| A board as a device | KiCad → OpenECraft | *File › Import › Import KiCad board as device…* reads the netlist of the board (`.net`) |
+| A circuit for a board | OpenECraft → KiCad | *File › Export*, *KiCad netlist*; in KiCad's PCB editor *File › Import › Netlist* |
+| Symbols | both | *File › Export*, *KiCad symbol library*; *Import symbol library…* reads `.kicad_sym` |
+| Part numbers and descriptions | KiCad → OpenECraft | connector *KiCad* of the enterprise integration: a netlist or a bill of materials (CSV) |
+| The panel layout in 3D | OpenECraft → FreeCAD | *File › Export*, *Panel layout in 3D for FreeCAD*: a macro that builds the layout |
+| Positions of the devices | FreeCAD → OpenECraft | connector *FreeCAD* of the enterprise integration: the document saved in FreeCAD (`.FCStd`) |
+| 3D models of parts and boards | KiCad, FreeCAD → OpenECraft | STEP files as the 3D model of a part |
+| Drawings | both | DXF |
+
+**A board designed in KiCad as a device.** Write the netlist in KiCad's schematic
+editor (*File › Export › Netlist…*, format KiCad, or `kicad-cli sch export netlist`).
+*Import KiCad board as device…* adds a schematic page with a device box for the board
+and a device connection point for every pin of its connectors (`J1.1`, `J1.2` …), the
+net of the board written at each pin (`+24V`, `IN1`). The board is then wired like any
+other device and appears in the connection lists, cable plans and the bill of
+materials. Connectors are the components with the references J, P, X, CN, CON, TB or
+XS and those of KiCad's libraries *Connector* and *TerminalBlock*, without test
+points (TP) and jumpers (JP); a board with many
+pins goes on to further boxes and pages. The board gets a part (`PCB.<name>`) with
+the title, company and revision of the title block and the list of its components.
+The tool `import_kicad` of the command line and the MCP server also takes the board
+file (`.kicad_pcb`), whose outline on the layer `Edge.Cuts` gives the size of the
+part, the device tag and the components whose pins are the connections. The 3D model
+of the board is the STEP file KiCad writes (*File › Export › STEP*,
+`kicad-cli pcb export step`), assigned to the part like every model.
+
+**The circuit as a KiCad netlist.** Every device with electrical connections is a
+component (reference: the device tag, value: the type number of its part, fields
+*Part number*, *Manufacturer* and *Order number*), every potential a net of
+connection points. Footprints are assigned in KiCad; their pads are named like the
+connection points (`A1`, `13`). The components keep their identity from export to
+export, so the PCB editor updates a layout instead of starting again. A netlist or a
+bill of materials (CSV with the column *Reference*) that comes back from KiCad
+assigns part numbers and descriptions through the connector *KiCad*, as a list of
+changes to review.
+
+**Symbols.** The export writes the symbols placed in the project and its user symbols
+(with the parameter `all` the whole library) as a KiCad symbol library: 4 mm here are
+2.54 mm (100 mil) there, so the connection points lie on KiCad's grid. A `.kicad_sym`
+file is read as user symbols in a library named after the file, 1.27 mm (50 mil)
+there as 4 mm here: a symbol per unit
+(`LM358 A`, `LM358 B`), the pin names inside, derived symbols with the graphics of
+their parent, power symbols as potentials. Reading a library again replaces its
+symbols.
+
+**The panel layout in FreeCAD.** The export is a macro: run it in FreeCAD (*Macro ›
+Macros…*) and it builds a document with a part container per enclosure and an object
+per component, rail, duct and device, named with the device tags, as solids (objects
+with very many triangles stay meshes; two settings at the top of the macro decide).
+Every device carries its tag, part number, enclosure, mounting face and place as
+properties of the group *OpenECraft*. Move devices in FreeCAD, save the document and
+read the `.FCStd` file with the connector *FreeCAD*: the positions come back as a
+list of changes, with the conflict detection of every connector. Models designed in
+FreeCAD are assigned to parts as STEP files.
+
+```bash
+openecraft-cli -p plant.oec import_kicad --path relay-io.net --board relay-io.kicad_pcb
+openecraft-cli -p plant.oec import_kicad --path Device.kicad_sym
+openecraft-cli -p plant.oec export --format kicad_netlist --path plant.net
+openecraft-cli -p plant.oec export --format kicad_symbols --path plant.kicad_sym
+openecraft-cli -p plant.oec integration_export --connector freecad --path plant.FCMacro
+openecraft-cli -p plant.oec integration_import --connector freecad --path plant.FCStd --apply
+```
 
 ## Autodesk Vault
 

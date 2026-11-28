@@ -373,6 +373,7 @@ impl App {
                 }
             }
             Purpose::Macros => self.import_macros(ctx, &loaded.text()),
+            Purpose::Symbols if openecraft_core::kicad::is_kind(&loaded.text(), "kicad_symbol_lib") => self.import_kicad_symbols(ctx, &loaded),
             Purpose::Symbols => match openecraft_core::symlib::SymbolLibrary::from_json(&loaded.text()) {
                 Ok(lib) => {
                     let (added, replaced) = openecraft_core::symlib::merge(&mut self.session.prj.symbols, lib);
@@ -383,6 +384,7 @@ impl App {
             },
             Purpose::Forms => self.import_forms(ctx, &loaded.text()),
             Purpose::Drawing => self.import_drawing(ctx, &loaded),
+            Purpose::KicadBoard => self.import_kicad_board(ctx, &loaded),
             Purpose::FloorPlan(level) => {
                 // Large scans take a moment.
                 let (name, bytes) = (io::short_name(&loaded.name).to_string(), loaded.bytes.clone());
@@ -469,7 +471,7 @@ impl App {
             Purpose::RuleSets => self.import_rule_sets(ctx, &loaded.text()),
             Purpose::PropertyLibrary => self.import_property_library(ctx, &loaded.text()),
             Purpose::Subproject => self.insert_subproject(ctx, &loaded),
-            Purpose::Integration => self.integration_file_loaded(&loaded.name, loaded.text()),
+            Purpose::Integration => self.integration_file_loaded(ctx, &loaded.name, &loaded.bytes),
             Purpose::Ribbon => self.import_ribbon(ctx, &loaded.text()),
             Purpose::Favorites => match self.insert_center.import_favorites(&loaded.text()) {
                 Ok(n) => self.notify(ctx, tr_fmt!("{} favorites added", n)),
@@ -580,6 +582,33 @@ impl App {
             }
             Err(e) if is_dwg => self.notify_error(ctx, tr_fmt!("DWG import failed: {}", e)),
             Err(e) => self.notify_error(ctx, tr_fmt!("DXF import failed: {}", e)),
+        }
+    }
+
+    /// A KiCad symbol library as user symbols; the library is named after its file, as
+    /// in KiCad.
+    fn import_kicad_symbols(&mut self, ctx: &egui::Context, loaded: &Loaded) {
+        let file = io::short_name(&loaded.name);
+        match openecraft_core::kicad::sym::import(&loaded.text(), file.rsplit_once('.').map_or(file, |x| x.0)) {
+            Ok(symbols) => {
+                let (added, replaced) = openecraft_core::symlib::merge(&mut self.session.prj.symbols, openecraft_core::symlib::SymbolLibrary { symbols });
+                self.symed.open = true;
+                self.notify(ctx, tr_fmt!("{} symbols added, {} replaced", added, replaced));
+            }
+            Err(e) => self.notify_error(ctx, tr_fmt!("Not a symbol library: {}", e)),
+        }
+    }
+
+    /// The board of a KiCad netlist as a device on a new page after the current one.
+    pub(super) fn import_kicad_board(&mut self, ctx: &egui::Context, loaded: &Loaded) {
+        let opts = openecraft_core::kicad::board::Options { after: self.session.page, ..Default::default() };
+        match openecraft_core::kicad::net::read(&loaded.text()).and_then(|netlist| openecraft_core::kicad::board::import(&mut self.session.prj, &netlist, &opts)) {
+            Ok(r) => {
+                self.goto(r.page, 0);
+                let page = self.session.prj.pages[r.page].name.clone();
+                self.notify(ctx, tr_fmt!("KiCad board imported as device {} on page {}: {} connection points", r.tag, page, r.points));
+            }
+            Err(e) => self.notify_error(ctx, tr_fmt!("KiCad import failed: {}", e)),
         }
     }
 }

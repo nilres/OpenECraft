@@ -1,6 +1,6 @@
 # Sorties et échange de données
 
-Exports PDF, DXF / DWG, SVG et 3D, import DXF / DWG, la couche d'intégration d'entreprise (ERP, PDM, PLM, ECAD, MCAD, achats, machines de câblage) et Autodesk Vault.
+Exports PDF, DXF / DWG, SVG et 3D, import DXF / DWG, la couche d'intégration d'entreprise (ERP, PDM, PLM, ECAD, MCAD, achats, machines de câblage), l'échange avec KiCad et FreeCAD et Autodesk Vault.
 
 ## Sorties / échange de données
 
@@ -68,6 +68,83 @@ des deux côtés depuis lors sont signalées comme conflits et que les valeurs l
 inchangées par l'autre système n'écrasent jamais les modifications locales. Un fichier
 d'échange neutre (`openecraft.exchange/1`, JSON) contient tout pour les systèmes sans
 connecteur ; le journal des échanges est conservé dans le projet.
+
+## KiCad et FreeCAD
+
+OpenECraft échange des données avec les outils libres de conception de circuits imprimés, [KiCad](https://www.kicad.org),
+et de conception mécanique, [FreeCAD](https://www.freecad.org), dans leurs propres formats de fichier.
+
+| Quoi | Sens | Comment |
+| --- | --- | --- |
+| Une carte comme appareil | KiCad → OpenECraft | *Fichier › Import › Importer une carte KiCad comme appareil…* lit la liste d'équipotentielles de la carte (`.net`) |
+| Un circuit pour une carte | OpenECraft → KiCad | *Fichier › Export*, *Liste d'équipotentielles KiCad* ; dans l'éditeur de circuits imprimés de KiCad *Fichier › Importer › Netliste* |
+| Symboles | les deux | *Fichier › Export*, *Bibliothèque de symboles KiCad* ; *Importer une bibliothèque de symboles…* lit `.kicad_sym` |
+| Références et descriptions | KiCad → OpenECraft | connecteur *KiCad* de l'intégration d'entreprise : une liste d'équipotentielles ou une nomenclature (CSV) |
+| L'implantation d'armoire en 3D | OpenECraft → FreeCAD | *Fichier › Export*, *Implantation d'armoire en 3D pour FreeCAD* : une macro qui construit l'implantation |
+| Positions des appareils | FreeCAD → OpenECraft | connecteur *FreeCAD* de l'intégration d'entreprise : le document enregistré dans FreeCAD (`.FCStd`) |
+| Modèles 3D d'articles et de cartes | KiCad, FreeCAD → OpenECraft | fichiers STEP comme modèle 3D d'un article |
+| Dessins | les deux | DXF |
+
+**Une carte conçue dans KiCad comme appareil.** Écrivez la liste d'équipotentielles
+dans l'éditeur de schémas de KiCad (*Fichier › Exporter › Netliste…*, format KiCad,
+ou `kicad-cli sch export netlist`). *Importer une carte KiCad comme appareil…* ajoute
+une page de schéma avec une boîte d'appareil pour la carte et un point de connexion
+d'appareil pour chaque broche de ses connecteurs (`J1.1`, `J1.2` …), l'équipotentielle
+de la carte écrite à chaque broche (`+24V`, `IN1`). La carte se câble alors comme tout
+autre appareil et figure dans les listes de connexions, les plans de câbles et la
+nomenclature. Les connecteurs sont les composants de références J, P, X, CN, CON, TB
+ou XS et ceux des bibliothèques *Connector* et *TerminalBlock* de KiCad, sans les
+points de test (TP) ni les cavaliers (JP) ; une carte à
+nombreuses broches se poursuit sur d'autres boîtes et pages. La carte reçoit un
+article (`PCB.<nom>`) avec le titre, la société et la révision du cartouche et la
+liste de ses composants. L'outil `import_kicad` de la ligne de commande et du serveur
+MCP prend aussi le fichier de carte (`.kicad_pcb`), dont le contour sur la couche
+`Edge.Cuts` donne la taille de l'article, le repère d'appareil et les composants dont
+les broches sont les connexions. Le modèle 3D de la carte est le fichier STEP que
+KiCad écrit (*Fichier › Exporter › STEP*, `kicad-cli pcb export step`), affecté à
+l'article comme tout modèle.
+
+**Le circuit comme liste d'équipotentielles KiCad.** Chaque appareil ayant des
+connexions électriques est un composant (référence : le repère d'appareil, valeur :
+le numéro de type de son article, champs *Part number*, *Manufacturer* et
+*Order number*), chaque potentiel une équipotentielle de points de connexion. Les
+empreintes sont affectées dans KiCad ; leurs pastilles portent le nom des points de
+connexion (`A1`, `13`). Les composants gardent leur identité d'un export à l'autre :
+l'éditeur de circuits imprimés met à jour une implantation au lieu de recommencer.
+Une liste d'équipotentielles ou une nomenclature (CSV avec la colonne *Reference*)
+qui revient de KiCad affecte références et descriptions par le connecteur *KiCad*,
+sous forme de liste de modifications à vérifier.
+
+**Symboles.** L'export écrit les symboles placés dans le projet et ses symboles
+utilisateur (avec le paramètre `all` toute la bibliothèque) comme bibliothèque de
+symboles KiCad : 4 mm ici valent 2,54 mm (100 mil) là-bas, de sorte que les points de
+connexion sont sur la grille de KiCad. Un fichier `.kicad_sym` est lu comme symboles
+utilisateur dans une bibliothèque nommée d'après le fichier, 1,27 mm (50 mil)
+là-bas valant 4 mm ici : un symbole par unité
+(`LM358 A`, `LM358 B`), les noms de broches à l'intérieur, les symboles dérivés avec
+le dessin de leur parent, les symboles d'alimentation comme potentiels. Relire une
+bibliothèque remplace ses symboles.
+
+**L'implantation d'armoire dans FreeCAD.** L'export est une macro : exécutée dans
+FreeCAD (*Macro › Macros…*), elle construit un document avec un conteneur de pièce
+par armoire et un objet par composant, rail, goulotte et appareil, nommés par les
+repères d'appareil, sous forme de solides (les objets à très nombreux triangles
+restent des maillages ; deux réglages en tête de la macro en décident). Chaque
+appareil porte son repère, sa référence, son armoire, sa face de montage et sa place
+comme propriétés du groupe *OpenECraft*. Déplacez les appareils dans FreeCAD,
+enregistrez le document et lisez le fichier `.FCStd` avec le connecteur *FreeCAD* :
+les positions reviennent sous forme de liste de modifications, avec la détection de
+conflits de tout connecteur. Les modèles conçus dans FreeCAD sont affectés aux
+articles comme fichiers STEP.
+
+```bash
+openecraft-cli -p plant.oec import_kicad --path relay-io.net --board relay-io.kicad_pcb
+openecraft-cli -p plant.oec import_kicad --path Device.kicad_sym
+openecraft-cli -p plant.oec export --format kicad_netlist --path plant.net
+openecraft-cli -p plant.oec export --format kicad_symbols --path plant.kicad_sym
+openecraft-cli -p plant.oec integration_export --connector freecad --path plant.FCMacro
+openecraft-cli -p plant.oec integration_import --connector freecad --path plant.FCStd --apply
+```
 
 ## Autodesk Vault
 

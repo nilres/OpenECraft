@@ -63,6 +63,7 @@ Align right	Sağa hizala
 Align top	Üste hizala
 All aspects (with product)	Tüm yönler (ürünle birlikte)
 All devices of page {} are in the schematic already	{} sayfasının tüm cihazları zaten şemada
+All symbols of the library instead of those the project uses	Projenin kullandıkları yerine kütüphanenin tüm sembolleri
 Ammeter	Ampermetre
 Ammeter, reactive current	Ampermetre, reaktif akım
 Ampere-hour meter	Amper-saat sayacı
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	Egzoz {} atmosfere açık (sustu
 Explosion protection marking	Patlamadan korunma işareti
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Malzeme listesini malzeme ana verileriyle birlikte dışa aktarır; ERP numaralarını, fiyatları, stokları ve teslim sürelerini içe aktarır
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	PCB tasarımı için cihazları ve noktadan noktaya bağlantıları dışa aktarır; bileşenlerin parça atamalarını ve açıklamalarını içe aktarır
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Cihazları ve potansiyelleri PCB düzenleyicisi için KiCad net listesi olarak dışa aktarır; parça numaralarını ve açıklamaları bir KiCad net listesinden veya malzeme listesinden (CSV) içe aktarır
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Mühendislik malzeme listesini (konumlar, cihazlar, parçalar) dışa aktarır; öğe kimliklerini, revizyonları ve yaşam döngüsü durumlarını içe aktarır
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Tedarikçi başına sipariş listesini dışa aktarır (gereken miktar eksi stok, ambalaj birimine yuvarlanmış); sipariş onaylarını içe aktarır
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Pano yerleşimini, onu adlandırılmış katılarla oluşturan bir FreeCAD makrosu olarak dışa aktarır; kaydedilmiş FreeCAD belgesinde (.FCStd) taşınan cihazların konumlarını içe aktarır
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Pano yerleşimindeki cihazların konumlarını ve boyutlarını dışa aktarır; MCAD sisteminde değiştirilen konumları içe aktarır
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Proje ve sayfa meta verilerini revizyonlarla birlikte dışa aktarır; belge numaralarını, revizyonları ve durumları içe aktarır
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Kablo işleme makineleri için telleri kesim uzunluğu, soyma ve yüksüklerle birlikte dışa aktarır; işleme geri bildirimini kablolama işaretleri olarak içe aktarır
@@ -586,6 +589,7 @@ Frame size	Yapı boyutu
 Free	Serbest
 Free air (mm)	Serbest hava (mm)
 Free run	Serbest döşeme
+FreeCAD panel layout (macro, .FCStd)	FreeCAD pano yerleşimi (makro, .FCStd)
 Freestanding on posts	Direkler üzerinde arazi tipi
 Frequency converter	Frekans konvertörü
 Frequency meter	Frekansmetre
@@ -783,6 +787,9 @@ Key switch NC, latching	Anahtarlı şalter NK, kalıcı
 Key switch NO	Anahtarlı şalter NA
 Key switch NO, latching	Anahtarlı şalter NA, kalıcı
 Keywords	Anahtar sözcükler
+KiCad netlist (.net)	KiCad net listesi (.net)
+KiCad netlist of the devices and potentials (.net)	Cihazların ve potansiyellerin KiCad net listesi (.net)
+KiCad symbol library (.kicad_sym)	KiCad sembol kütüphanesi (.kicad_sym)
 LED	LED
 Labeling scheme (default: the scheme selected in the project)	Etiketleme şeması (varsayılan: projede seçili şema)
 Lamp voltage	Lamba gerilimi
@@ -1001,6 +1008,10 @@ Non-return valve	Çek valf
 Not a DWG file	DWG dosyası değil
 Not a DXF file	DXF dosyası değil
 Not a DXF file (binary DXF is not supported)	DXF dosyası değil (ikili DXF desteklenmez)
+Not a FreeCAD document (.FCStd)	FreeCAD belgesi değil (.FCStd)
+Not a KiCad board file (.kicad_pcb)	KiCad kart dosyası değil (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	KiCad net listesi değil (KiCad'de: File › Export › Netlist, biçim KiCad)
+Not a KiCad symbol library (.kicad_sym)	KiCad sembol kütüphanesi değil (.kicad_sym)
 Not a PDF file	PDF dosyası değil
 Not a change request file: the column \"Number\" is missing	Değişiklik talebi dosyası değil: \"Number\" sütunu eksik
 Not a change request file: {}	Değişiklik talebi dosyası değil: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Proje veritabanı değil: {}
 Not a settings scheme: {}	Ayar şeması değil: {}
 Not a structure template: {}	Yapı şablonu değil: {}
 Not a valid JSON file: {}	Geçerli bir JSON dosyası değil: {}
+Not a valid KiCad file (line {})	Geçerli bir KiCad dosyası değil (satır {})
 Not a valid project file: {}	Geçerli bir proje dosyası değil: {}
 Not a valid property library: {}	Geçerli bir özellik kütüphanesi değil: {}
 Not an Excel workbook (.xlsx)	Excel çalışma kitabı (.xlsx) değil
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	3D pano yerleşimi (JT)
 Panel layout in 3D (Parasolid XT)	3D pano yerleşimi (Parasolid XT)
 Panel layout in 3D (STEP)	3D pano yerleşimi (STEP)
 Panel layout in 3D (glTF)	3D pano yerleşimi (glTF)
+Panel layout in 3D for FreeCAD (macro)	FreeCAD için 3D pano yerleşimi (makro)
 Panel layout settings	Pano yerleşimi ayarları
 Panel legend	Pano lejantı
 Parallel to the roof on roof hooks	Çatı kancaları üzerinde çatıya paralel
@@ -1260,6 +1273,7 @@ Pressure switch NC	Basınç şalteri NK
 Pressure switch NO	Basınç şalteri NA
 Pressure switch NO (NFPA)	Basınç şalteri NA (NFPA)
 Primary voltage	Primer gerilim
+Printed circuit board {}	Baskılı devre kartı {}
 Problem	Sorun
 Process component	Proses bileşeni
 Process connection	Proses bağlantısı
@@ -1647,6 +1661,8 @@ Termination (from)	Sonlandırma (başlangıç)
 Termination (to)	Sonlandırma (bitiş)
 Text file	Metin dosyası
 The DXF file contains nothing that can be imported	DXF dosyası içe aktarılabilecek bir şey içermiyor
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	FreeCAD belgesinde OpenECraft cihazı yok (OEC_Tag özelliğine sahip nesneler)
+The KiCad symbol library has no symbols	KiCad sembol kütüphanesinde sembol yok
 The PDF has no pages that can be read	PDF'te okunabilir sayfa yok
 The answer is OK, Not OK or Not applicable, not {}	Yanıt OK, Not OK veya Uygulanamaz olmalı, {} değil
 The archive contains no project	Arşiv proje içermiyor
@@ -1655,6 +1671,7 @@ The archive is damaged	Arşiv hasarlı
 The archive unpacks to more than {} MB	Arşiv açıldığında {} MB'tan büyük oluyor
 The archive was written by a newer version (archive version {})	Arşiv daha yeni bir sürümle yazılmış (arşiv sürümü {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Düzen imalatçısı belirtilmelidir (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	Kartın Edge.Cuts katmanında dış hattı yok
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Odasındaki yan yana panolar: L biçimli kat planı, iç duvar, kapı ve pencere, yerindeki pano dizisi, bir duvarda prizli bir ray, duvara monte acil durum aydınlatması ve tavan altında bir kablo tavası.
 The cable of {} needs at least {} cores	{} kablosu en az {} damar gerektirir
 The configuration is not a JSON object	Yapılandırma bir JSON nesnesi değil
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	Öğe, bir yan duvar açıklığındaki bir çerçeve değil
 The last page cannot be deleted	Son sayfa silinemez
 The macro box has no items left	Makro kutusunda hiç öğe kalmadı
+The netlist has no component {} with connected pins	Net listesinde pinleri bağlı bir {} bileşeni yok
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	Net listesinde konnektör yok (referanslar J, P, X, CN, TB): pinleri kartın bağlantıları olan bileşenleri belirtin
 The next free id is already in use	Sonraki boş kimlik zaten kullanımda
 The option needs a name	Seçenek için bir ad gerekli
 The page needs a number	Sayfa için bir numara gerekli

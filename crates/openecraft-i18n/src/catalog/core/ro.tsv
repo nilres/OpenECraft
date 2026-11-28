@@ -63,6 +63,7 @@ Align right	Aliniere la dreapta
 Align top	Aliniere sus
 All aspects (with product)	Toate aspectele (cu produs)
 All devices of page {} are in the schematic already	Toate dispozitivele paginii {} sunt deja în schemă
+All symbols of the library instead of those the project uses	Toate simbolurile bibliotecii în locul celor folosite de proiect
 Ammeter	Ampermetru
 Ammeter, reactive current	Ampermetru, curent reactiv
 Ampere-hour meter	Contor de amperi-oră
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	Evacuarea {} este deschisă spre
 Explosion protection marking	Marcaj de protecție la explozie
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Exportă lista de materiale cu datele de bază ale articolelor; importă numere ERP, prețuri, stocuri și timpi de livrare
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Exportă dispozitivele și conexiunile punct la punct pentru proiectarea PCB; importă atribuirile de articole și descrierile componentelor
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Exportă dispozitivele și potențialele ca listă de conexiuni KiCad pentru editorul de PCB; importă numere de articol și descrieri dintr-o listă de conexiuni sau o listă de materiale KiCad (CSV)
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Exportă lista de materiale de proiectare (locuri de montare, dispozitive, articole); importă ID-uri de articol, revizii și stări ale ciclului de viață
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Exportă lista de comenzi pe furnizor (cantitatea necesară minus stocul, rotunjită la ambalaje); importă confirmările de comandă
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Exportă amplasarea în tablou ca macro FreeCAD care o construiește cu solide denumite; importă pozițiile dispozitivelor mutate în documentul FreeCAD salvat (.FCStd)
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Exportă pozițiile și dimensiunile dispozitivelor din amplasarea în tablou; importă pozițiile modificate în sistemul MCAD
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Exportă metadatele proiectului și ale paginilor cu reviziile; importă numere de document, revizii și stări
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Exportă conductoarele cu lungimea de tăiere, dezizolarea și manșoanele de capăt pentru automatele de prelucrare a conductoarelor; importă confirmarea prelucrării ca marcaje de cablare
@@ -586,6 +589,7 @@ Frame size	Mărime constructivă
 Free	Liber
 Free air (mm)	Pozare liberă (mm)
 Free run	Pozare liberă
+FreeCAD panel layout (macro, .FCStd)	Amplasare în tablou pentru FreeCAD (macro, .FCStd)
 Freestanding on posts	La sol pe stâlpi
 Frequency converter	Convertizor de frecvență
 Frequency meter	Frecvențmetru
@@ -783,6 +787,9 @@ Key switch NC, latching	Comutator cu cheie NÎ, cu reținere
 Key switch NO	Comutator cu cheie ND
 Key switch NO, latching	Comutator cu cheie ND, cu reținere
 Keywords	Cuvinte cheie
+KiCad netlist (.net)	Listă de conexiuni KiCad (.net)
+KiCad netlist of the devices and potentials (.net)	Listă de conexiuni KiCad a dispozitivelor și potențialelor (.net)
+KiCad symbol library (.kicad_sym)	Bibliotecă de simboluri KiCad (.kicad_sym)
 LED	LED
 Labeling scheme (default: the scheme selected in the project)	Schemă de marcare (implicit: schema selectată în proiect)
 Lamp voltage	Tensiunea lămpii
@@ -1001,6 +1008,10 @@ Non-return valve	Supapă de reținere
 Not a DWG file	Nu este un fișier DWG
 Not a DXF file	Nu este un fișier DXF
 Not a DXF file (binary DXF is not supported)	Nu este un fișier DXF (DXF binar nu este acceptat)
+Not a FreeCAD document (.FCStd)	Nu este un document FreeCAD (.FCStd)
+Not a KiCad board file (.kicad_pcb)	Nu este un fișier de placă KiCad (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	Nu este o listă de conexiuni KiCad (în KiCad: File › Export › Netlist, format KiCad)
+Not a KiCad symbol library (.kicad_sym)	Nu este o bibliotecă de simboluri KiCad (.kicad_sym)
 Not a PDF file	Nu este un fișier PDF
 Not a change request file: the column \"Number\" is missing	Nu este un fișier de cereri de modificare: lipsește coloana \"Number\"
 Not a change request file: {}	Nu este un fișier de cereri de modificare: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Nu este o bază de date de proiecte: {}
 Not a settings scheme: {}	Nu este o schemă de setări: {}
 Not a structure template: {}	Nu este un șablon de structură: {}
 Not a valid JSON file: {}	Nu este un fișier JSON valid: {}
+Not a valid KiCad file (line {})	Nu este un fișier KiCad valid (linia {})
 Not a valid project file: {}	Nu este un fișier de proiect valid: {}
 Not a valid property library: {}	Nu este o bibliotecă de proprietăți validă: {}
 Not an Excel workbook (.xlsx)	Nu este un registru de lucru Excel (.xlsx)
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	Amplasare în tablou în 3D (JT)
 Panel layout in 3D (Parasolid XT)	Amplasare în tablou în 3D (Parasolid XT)
 Panel layout in 3D (STEP)	Amplasare în tablou în 3D (STEP)
 Panel layout in 3D (glTF)	Amplasare în tablou în 3D (glTF)
+Panel layout in 3D for FreeCAD (macro)	Amplasare în tablou în 3D pentru FreeCAD (macro)
 Panel layout settings	Setări amplasare în tablou
 Panel legend	Legendă tablou
 Parallel to the roof on roof hooks	Paralel cu acoperișul pe cârlige de acoperiș
@@ -1260,6 +1273,7 @@ Pressure switch NC	Presostat NÎ
 Pressure switch NO	Presostat ND
 Pressure switch NO (NFPA)	Presostat ND (NFPA)
 Primary voltage	Tensiune primară
+Printed circuit board {}	Placă de circuit imprimat {}
 Problem	Problemă
 Process component	Componentă de proces
 Process connection	Racord de proces
@@ -1647,6 +1661,8 @@ Termination (from)	Terminație (de la)
 Termination (to)	Terminație (la)
 Text file	Fișier text
 The DXF file contains nothing that can be imported	Fișierul DXF nu conține nimic ce poate fi importat
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	Documentul FreeCAD nu conține dispozitive din OpenECraft (obiecte cu proprietatea OEC_Tag)
+The KiCad symbol library has no symbols	Biblioteca de simboluri KiCad nu conține simboluri
 The PDF has no pages that can be read	PDF-ul nu are pagini care pot fi citite
 The answer is OK, Not OK or Not applicable, not {}	Răspunsul este OK, Neconform sau Nu se aplică, nu {}
 The archive contains no project	Arhiva nu conține niciun proiect
@@ -1655,6 +1671,7 @@ The archive is damaged	Arhiva este deteriorată
 The archive unpacks to more than {} MB	Arhiva se dezarhivează la mai mult de {} MB
 The archive was written by a newer version (archive version {})	Arhiva a fost scrisă de o versiune mai nouă (versiunea arhivei {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Producătorul ansamblului trebuie să fie indicat (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	Placa nu are contur pe stratul Edge.Cuts
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Șirul de dulapuri în camera sa: plan în formă de L, perete interior, ușă și fereastră, șirul de dulapuri la locul său, o șină cu o priză pe un perete, un corp de iluminat de siguranță montat pe perete și un jgheab de cabluri sub tavan.
 The cable of {} needs at least {} cores	Cablul lui {} are nevoie de cel puțin {} fire
 The configuration is not a JSON object	Configurația nu este un obiect JSON
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	Elementul nu este un cadru într-o deschidere a unui perete lateral
 The last page cannot be deleted	Ultima pagină nu poate fi ștearsă
 The macro box has no items left	Caseta macro nu mai are elemente
+The netlist has no component {} with connected pins	Lista de conexiuni nu are nicio componentă {} cu pini conectați
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	Lista de conexiuni nu are conectori (referințe J, P, X, CN, TB): indicați componentele ai căror pini sunt conexiunile plăcii
 The next free id is already in use	Următorul ID liber este deja utilizat
 The option needs a name	Opțiunea necesită un nume
 The page needs a number	Pagina necesită un număr

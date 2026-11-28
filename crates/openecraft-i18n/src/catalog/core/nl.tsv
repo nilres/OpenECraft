@@ -63,6 +63,7 @@ Align right	Rechts uitlijnen
 Align top	Boven uitlijnen
 All aspects (with product)	Alle aspecten (met product)
 All devices of page {} are in the schematic already	Alle apparaten van pagina {} staan al in het schema
+All symbols of the library instead of those the project uses	Alle symbolen van de bibliotheek in plaats van de symbolen die het project gebruikt
 Ammeter	Ampèremeter
 Ammeter, reactive current	Stroommeter, blindstroom
 Ampere-hour meter	Ampère-uurmeter
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	Ontluchting {} open naar de atmo
 Explosion protection marking	Ex-markering
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Exporteert de stuklijst met de artikelstamgegevens; importeert ERP-nummers, prijzen, voorraad en levertijden
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Exporteert de apparaten en punt-tot-puntverbindingen voor printplaatontwerp; importeert artikeltoewijzingen en beschrijvingen van de componenten
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Exporteert de apparaten en potentialen als KiCad-netlijst voor de printplaateditor; importeert artikelnummers en beschrijvingen uit een KiCad-netlijst of -stuklijst (CSV)
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Exporteert de engineeringstuklijst (plaatsen, apparaten, artikelen); importeert item-ID's, revisies en levenscyclusstatussen
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Exporteert de bestellijst per leverancier (benodigde hoeveelheid min voorraad, afgerond op verpakkingseenheden); importeert orderbevestigingen
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Exporteert de kastlay-out als FreeCAD-macro die deze opbouwt met benoemde lichamen; importeert de posities van apparaten die in het opgeslagen FreeCAD-document (.FCStd) zijn verplaatst
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Exporteert de posities en afmetingen van de apparaten in de kastlay-out; importeert in het MCAD-systeem gewijzigde posities
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Exporteert de project- en paginametagegevens met de revisies; importeert documentnummers, revisies en statussen
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Exporteert de draden met snijlengte, strippen en adereindhulzen voor draadbewerkingsmachines; importeert de terugmelding van de bewerking als bedradingsmarkeringen
@@ -586,6 +589,7 @@ Frame size	Bouwgrootte
 Free	Vrij
 Free air (mm)	Vrij in de lucht (mm)
 Free run	Vrije installatie
+FreeCAD panel layout (macro, .FCStd)	FreeCAD-kastlay-out (macro, .FCStd)
 Freestanding on posts	Vrijstaand op palen
 Frequency converter	Frequentieomvormer
 Frequency meter	Frequentiemeter
@@ -783,6 +787,9 @@ Key switch NC, latching	Sleutelschakelaar verbreekcontact, vergrendelend
 Key switch NO	Sleutelschakelaar maakcontact
 Key switch NO, latching	Sleutelschakelaar maakcontact, vergrendelend
 Keywords	Trefwoorden
+KiCad netlist (.net)	KiCad-netlijst (.net)
+KiCad netlist of the devices and potentials (.net)	KiCad-netlijst van de apparaten en potentialen (.net)
+KiCad symbol library (.kicad_sym)	KiCad-symboolbibliotheek (.kicad_sym)
 LED	LED
 Labeling scheme (default: the scheme selected in the project)	Markeringsschema (standaard: het in het project geselecteerde schema)
 Lamp voltage	Lampspanning
@@ -1001,6 +1008,10 @@ Non-return valve	Terugslagventiel
 Not a DWG file	Geen DWG-bestand
 Not a DXF file	Geen DXF-bestand
 Not a DXF file (binary DXF is not supported)	Geen DXF-bestand (binaire DXF wordt niet ondersteund)
+Not a FreeCAD document (.FCStd)	Geen FreeCAD-document (.FCStd)
+Not a KiCad board file (.kicad_pcb)	Geen KiCad-printplaatbestand (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	Geen KiCad-netlijst (in KiCad: File › Export › Netlist, formaat KiCad)
+Not a KiCad symbol library (.kicad_sym)	Geen KiCad-symboolbibliotheek (.kicad_sym)
 Not a PDF file	Geen PDF-bestand
 Not a change request file: the column \"Number\" is missing	Geen bestand met wijzigingsverzoeken: de kolom \"Number\" ontbreekt
 Not a change request file: {}	Geen bestand met wijzigingsverzoeken: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Geen projectdatabase: {}
 Not a settings scheme: {}	Geen instellingenschema: {}
 Not a structure template: {}	Geen structuursjabloon: {}
 Not a valid JSON file: {}	Geen geldig JSON-bestand: {}
+Not a valid KiCad file (line {})	Geen geldig KiCad-bestand (regel {})
 Not a valid project file: {}	Geen geldig projectbestand: {}
 Not a valid property library: {}	Geen geldige eigenschappenbibliotheek: {}
 Not an Excel workbook (.xlsx)	Geen Excel-werkmap (.xlsx)
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	Kastlay-out in 3D (JT)
 Panel layout in 3D (Parasolid XT)	Kastlay-out in 3D (Parasolid XT)
 Panel layout in 3D (STEP)	Kastlay-out in 3D (STEP)
 Panel layout in 3D (glTF)	Kastlay-out in 3D (glTF)
+Panel layout in 3D for FreeCAD (macro)	Kastlay-out in 3D voor FreeCAD (macro)
 Panel layout settings	Instellingen kastlay-out
 Panel legend	Kastlegenda
 Parallel to the roof on roof hooks	Parallel aan het dak op dakhaken
@@ -1260,6 +1273,7 @@ Pressure switch NC	Drukschakelaar verbreekcontact
 Pressure switch NO	Drukschakelaar maakcontact
 Pressure switch NO (NFPA)	Drukschakelaar maakcontact (NFPA)
 Primary voltage	Primaire spanning
+Printed circuit board {}	Printplaat {}
 Problem	Probleem
 Process component	Procescomponent
 Process connection	Procesaansluiting
@@ -1647,6 +1661,8 @@ Termination (from)	Afwerking (van)
 Termination (to)	Afwerking (naar)
 Text file	Tekstbestand
 The DXF file contains nothing that can be imported	Het DXF-bestand bevat niets wat kan worden geïmporteerd
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	Het FreeCAD-document bevat geen apparaten van OpenECraft (objecten met de eigenschap OEC_Tag)
+The KiCad symbol library has no symbols	De KiCad-symboolbibliotheek bevat geen symbolen
 The PDF has no pages that can be read	De PDF heeft geen leesbare pagina's
 The answer is OK, Not OK or Not applicable, not {}	Het antwoord is OK, Niet OK of Niet van toepassing, niet {}
 The archive contains no project	Het archief bevat geen project
@@ -1655,6 +1671,7 @@ The archive is damaged	Het archief is beschadigd
 The archive unpacks to more than {} MB	Het archief pakt uit tot meer dan {} MB
 The archive was written by a newer version (archive version {})	Het archief is geschreven door een nieuwere versie (archiefversie {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	De fabrikant van de verdeelinrichting moet worden vermeld (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	De printplaat heeft geen contour op de laag Edge.Cuts
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	De kastenrij in haar ruimte: L-vormige plattegrond, binnenwand, deur en raam, de kastenrij op haar plaats, een montagerail met een wandcontactdoos, een op de wand gemonteerde noodverlichting en een kabelgoot onder het plafond.
 The cable of {} needs at least {} cores	De kabel van {} heeft minstens {} aders nodig
 The configuration is not a JSON object	De configuratie is geen JSON-object
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	Het element is geen frame in een opening van een zijwand
 The last page cannot be deleted	De laatste pagina kan niet worden verwijderd
 The macro box has no items left	Het macrokader heeft geen elementen meer
+The netlist has no component {} with connected pins	De netlijst heeft geen component {} met aangesloten pennen
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	De netlijst heeft geen connectoren (referenties J, P, X, CN, TB): geef de componenten op waarvan de pennen de aansluitingen van de printplaat zijn
 The next free id is already in use	De volgende vrije ID is al in gebruik
 The option needs a name	De optie heeft een naam nodig
 The page needs a number	De pagina heeft een nummer nodig

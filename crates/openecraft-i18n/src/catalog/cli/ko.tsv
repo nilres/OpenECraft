@@ -24,7 +24,6 @@ AutomationML file	AutomationML 파일
 CSV content instead of a file	파일 대신 CSV 내용
 CSV file	CSV 파일
 CSV or Excel file	CSV 또는 Excel 파일
-CSV or JSON file	CSV 또는 JSON 파일
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV, JSON, BMEcat, EPLAN XML 또는 EDZ 파일
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	CSV, JSON, BMEcat, EPLAN XML, EDZ 또는 ZIP 파일
 Catalog data; without id it is derived from the name	카탈로그 데이터. ID가 없으면 이름에서 생성됩니다
@@ -106,7 +105,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	GSDML(PROFINET) 또는 ESI(EtherCAT) 파일에서 장치 설명을 프로젝트로 가져옵니다
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	CSV 또는 Excel에서 사전 계획 세그먼트와 계획된 장치를 가져옵니다(열 Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	검토자가 프로젝트의 PDF 내보내기에 작성한 주석(메모, 텍스트 상자, 강조 표시, 도형, 회신)을 검토 레이어로 가져옵니다. 이전에 가져온 주석은 건너뜁니다
-Insert after this page (default: at the end)	이 페이지 뒤에 삽입(기본값: 끝에)
 Inserts an edited subproject: its pages replace the pages taken out	편집된 하위 프로젝트를 삽입합니다. 해당 페이지가 반출된 페이지를 대체합니다
 Invalid form: {}	잘못된 양식: {}
 Keep the file checked out after the check-in	체크 인 후에도 파일을 체크 아웃 상태로 유지
@@ -198,7 +196,6 @@ Properties to rename (old name: new name)	이름을 바꿀 속성(이전 이름:
 Property {} needs a text or a number	속성 {}에는 텍스트나 숫자가 필요합니다
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	프로젝트, 내보내기, 커넥터 내보내기 또는 로컬 파일을 Vault에 넣습니다. 폴더에 같은 이름의 파일이 있으면 새 버전이 생성되고(체크 아웃 후 체크 인), 그렇지 않으면 파일이 추가됩니다
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor 또는 Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	커넥터를 사용하여 다른 시스템의 파일(CSV 또는 JSON)을 읽고 변경 내용을 나열합니다. apply를 사용하면 적용됩니다(충돌은 overwrite를 사용한 경우에만)
 Reads the project files and archives of a folder (and its subfolders) into the project database	폴더(및 하위 폴더)의 프로젝트 파일과 아카이브를 프로젝트 데이터베이스로 읽어 들입니다
 Reads translations from CSV: first column the source line, one column per language code	CSV에서 번역을 읽습니다: 첫 번째 열은 원본 줄, 언어 코드별 열 하나
 Redoes the last undone change	마지막으로 실행 취소한 변경을 다시 실행합니다
@@ -299,8 +296,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	프로젝트 설정(전선 번호 지정, 전위, 전선 기본값 및 색상, 마킹, 호스 기본값, 상호 참조, 검사 스키마)을 파일에 씁니다
 Writes the structure management (aspects, identifiers, work areas) as a template file	구조 관리(측면, 식별자, 작업 영역)를 템플릿 파일로 씁니다
 csv (default) or eplan_xml	csv(기본값) 또는 eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement 또는 wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine 또는 exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad 또는 freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad 또는 exchange
 json (default), csv or xlsx (Excel, needs path)	json(기본값), csv 또는 xlsx(Excel, path 필요)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\n명령줄의 버전을 표시합니다(--version 또는 -V도 가능)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo와 redo는 MCP 세션에서만 작동합니다: 명령줄은 명령마다 프로젝트를 새로 엽니다

@@ -24,7 +24,7 @@ AutomationML file	AutomationML-fájl
 CSV content instead of a file	CSV-tartalom fájl helyett
 CSV file	CSV-fájl
 CSV or Excel file	CSV- vagy Excel-fájl
-CSV or JSON file	CSV- vagy JSON-fájl
+CSV or JSON file, KiCad netlist (.net) or FreeCAD document (.FCStd)	CSV- vagy JSON-fájl, KiCad hálózati lista (.net) vagy FreeCAD-dokumentum (.FCStd)
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV-, JSON-, BMEcat-, EPLAN XML- vagy EDZ-fájl
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	CSV-, JSON-, BMEcat-, EPLAN XML-, EDZ- vagy ZIP-fájl
 Catalog data; without id it is derived from the name	Katalógusadatok; azonosító nélkül a névből képződik
@@ -109,7 +109,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Eszközleírásokat importál GSDML- (PROFINET) vagy ESI- (EtherCAT) fájlból a projektbe
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Előtervezési szegmenseket és tervezett készülékeket importál CSV-ből vagy Excelből (Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro oszlopok)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	A véleményezési rétegbe importálja azokat a megjegyzéseket, amelyeket egy véleményező a projekt PDF-exportjában készített (jegyzetek, szövegdobozok, kiemelések, alakzatok, válaszok); a korábban importált megjegyzéseket kihagyja
-Insert after this page (default: at the end)	Beszúrás ezen oldal után (alapértelmezés: a végére)
 Inserts an edited subproject: its pages replace the pages taken out	Beilleszt egy szerkesztett alprojektet: oldalai felváltják a kiemelt oldalakat
 Invalid form: {}	Érvénytelen űrlap: {}
 Keep the file checked out after the check-in	A fájl a beadás után is kivett állapotban marad
@@ -203,7 +202,7 @@ Properties to rename (old name: new name)	Átnevezendő tulajdonságok (régi n�
 Property {} needs a text or a number	A(z) {} tulajdonsághoz szöveg vagy szám kell
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	A projektet, egy exportot, egy összekötő-exportot vagy egy helyi fájlt helyez a vaultba; a mappában lévő azonos nevű fájl új verziót kap (kivétel és beadás), különben a fájl hozzáadódik
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor vagy Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Beolvassa egy másik rendszer fájlját (CSV vagy JSON) egy összekötővel, és felsorolja a változásokat; apply esetén átveszi őket (ütközéseket csak overwrite esetén)
+Reads a file of another system (CSV, JSON, a KiCad netlist or a FreeCAD document) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Beolvassa egy másik rendszer fájlját (CSV, JSON, KiCad hálózati lista vagy FreeCAD-dokumentum) egy összekötővel, és felsorolja a változásokat; apply esetén átveszi őket (ütközéseket csak overwrite esetén)
 Reads the project files and archives of a folder (and its subfolders) into the project database	Beolvassa egy mappa (és almappái) projektfájljait és archívumait a projektadatbázisba
 Reads translations from CSV: first column the source line, one column per language code	Fordításokat olvas be CSV-ből: az első oszlop a forrássor, nyelvkódonként egy oszlop
 Redoes the last undone change	Újra végrehajtja az utoljára visszavont módosítást
@@ -304,8 +303,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Fájlba írja a projekt beállításait (vezetékszámozás, potenciálok, vezeték-alapértékek és -színek, feliratozás, tömlő-alapértékek, kereszthivatkozások, ellenőrzési séma)
 Writes the structure management (aspects, identifiers, work areas) as a template file	A struktúrakezelés adatait (aspektusok, azonosítók, munkaterületek) sablonfájlba írja
 csv (default) or eplan_xml	csv (alapértelmezett) vagy eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement vagy wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine vagy exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad vagy freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad vagy exchange
 json (default), csv or xlsx (Excel, needs path)	json (alapértelmezett), csv vagy xlsx (Excel, path szükséges)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nMegjeleníti a parancssor verzióját (--version vagy -V is)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	Az undo és a redo csak MCP-munkamenetben működik: a parancssor minden parancshoz újra megnyitja a projektet

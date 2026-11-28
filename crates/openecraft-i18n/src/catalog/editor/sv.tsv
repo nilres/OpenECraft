@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = inte i schemat ännu
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baslinje lagrar hela projektet (sidor, apparater, artiklar, inställningar). När en revision frisläpps lagras en.
+A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist	Ett kretskort konstruerat i KiCad som apparatbox med en anslutningspunkt för varje stift i dess kontaktdon, utifrån dess nätlista
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	En kabelförskruvning för varje kabel som lämnar ett skåp och inte hittar någon ledig förskruvning som tar den
 A cable of the bus type for every connection without cable	En kabel av busstypen för varje anslutning utan kabel
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	En kabel som lämnar ett skåp och inte hittar någon ledig förskruvning får en i sin storlek: i taket för en apparat i rummet, i botten för fältet eller ett skåp som hänger på väggen
@@ -785,7 +786,7 @@ File format version {}. Files of older versions are converted when they are open
 File name	Filnamn
 File of another system (connector)	Fil från ett annat system (anslutning)
 File {}	Fil {}
-Files of other systems (CSV, JSON)	Filer från andra system (CSV, JSON)
+Files of other systems (CSV, JSON, KiCad, FreeCAD)	Filer från andra system (CSV, JSON, KiCad, FreeCAD)
 Fill	Fyll
 Filled	Fylld
 Filter connections…	Filtrera förbindelser…
@@ -954,6 +955,7 @@ Import CSV / Excel…	Importera CSV / Excel…
 Import CSV…	Importera CSV…
 Import DXF / DWG as page…	Importera DXF / DWG som sida…
 Import GSDML / ESI…	Importera GSDML / ESI…
+Import KiCad board as device…	Importera KiCad-kretskort som apparat…
 Import PDF comments…	Importera PDF-kommentarer…
 Import a file of another system to see what it changes in the project.	Importera en fil från ett annat system för att se vad den ändrar i projektet.
 Import changes	Importändringar
@@ -1052,6 +1054,9 @@ Keyboard shortcuts…	Kortkommandon…
 Keys and gestures	Tangenter och gester
 Keys of the 3D view	Tangenter i 3D-vyn
 Keywords: {}	Nyckelord: {}
+KiCad board imported as device {} on page {}: {} connection points	KiCad-kretskort importerat som apparat {} på sida {}: {} anslutningspunkter
+KiCad import failed: {}	KiCad-importen misslyckades: {}
+KiCad netlist	KiCad-nätlista
 Label	Etikett
 Label (grey)	Etikett (grå)
 Label field	Etikettfält
@@ -2123,6 +2128,7 @@ Switches the options with a condition by the configurator options	Kopplar altern
 Switches to this workspace with its panes at their default places	Växlar till den här arbetsytan med panelerna på sina standardplatser
 Switches, push buttons and room thermostats	Brytare, tryckknappar och rumstermostater
 Symbol editor	Symbolredigerare
+Symbol library (JSON, EMA, EDZ, KiCad)	Symbolbibliotek (JSON, EMA, EDZ, KiCad)
 Symbol table import failed: {}	Symboltabellimporten misslyckades: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Symboler och ledningar på den här sidan ritas men utvärderas inte (inga apparater, förbindelser eller rapporter).
 Symbols placed next get this device tag (contacts are numbered on)	Symboler som placeras härnäst får den här apparatbeteckningen (kontakter numreras vidare)

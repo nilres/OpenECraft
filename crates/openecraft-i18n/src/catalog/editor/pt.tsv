@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = ainda não está no esquema elétrico
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Uma linha de base armazena o projeto inteiro (páginas, dispositivos, peças, configurações). A liberação de uma revisão armazena uma.
+A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist	Uma placa projetada no KiCad como caixa de dispositivo com um ponto de conexão para cada pino de seus conectores, a partir de sua netlist
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Um prensa-cabo para cada cabo que sai de um invólucro e não encontra prensa-cabo livre que o aceite
 A cable of the bus type for every connection without cable	Um cabo do tipo do barramento para cada conexão sem cabo
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Um cabo que sai de um invólucro e não encontra prensa-cabo livre recebe um do seu tamanho: no teto para um dispositivo na sala, no fundo para o campo ou um invólucro pendurado na parede
@@ -785,7 +786,7 @@ File format version {}. Files of older versions are converted when they are open
 File name	Nome do arquivo
 File of another system (connector)	Arquivo de outro sistema (conector)
 File {}	Arquivo {}
-Files of other systems (CSV, JSON)	Arquivos de outros sistemas (CSV, JSON)
+Files of other systems (CSV, JSON, KiCad, FreeCAD)	Arquivos de outros sistemas (CSV, JSON, KiCad, FreeCAD)
 Fill	Preencher
 Filled	Preenchido
 Filter connections…	Filtrar conexões…
@@ -954,6 +955,7 @@ Import CSV / Excel…	Importar CSV / Excel…
 Import CSV…	Importar CSV…
 Import DXF / DWG as page…	Importar DXF / DWG como página…
 Import GSDML / ESI…	Importar GSDML / ESI…
+Import KiCad board as device…	Importar placa do KiCad como dispositivo…
 Import PDF comments…	Importar comentários do PDF…
 Import a file of another system to see what it changes in the project.	Importe um arquivo de outro sistema para ver o que ele altera no projeto.
 Import changes	Alterações da importação
@@ -1052,6 +1054,9 @@ Keyboard shortcuts…	Atalhos de teclado…
 Keys and gestures	Teclas e gestos
 Keys of the 3D view	Teclas da vista 3D
 Keywords: {}	Palavras-chave: {}
+KiCad board imported as device {} on page {}: {} connection points	Placa do KiCad importada como dispositivo {} na página {}: {} pontos de conexão
+KiCad import failed: {}	Falha na importação do KiCad: {}
+KiCad netlist	Netlist do KiCad
 Label	Rótulo
 Label (grey)	Rótulo (cinza)
 Label field	Campo de rótulo
@@ -2123,6 +2128,7 @@ Switches the options with a condition by the configurator options	Comuta as opç
 Switches to this workspace with its panes at their default places	Muda para este espaço de trabalho com os painéis nas posições padrão
 Switches, push buttons and room thermostats	Interruptores, pulsadores e termostatos de ambiente
 Symbol editor	Editor de símbolos
+Symbol library (JSON, EMA, EDZ, KiCad)	Biblioteca de símbolos (JSON, EMA, EDZ, KiCad)
 Symbol table import failed: {}	Falha na importação da tabela de símbolos: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Os símbolos e fios desta página são desenhados, mas não avaliados (sem dispositivos, conexões ou relatórios).
 Symbols placed next get this device tag (contacts are numbered on)	Os próximos símbolos posicionados recebem este identificador de dispositivo (os contatos continuam a numeração)

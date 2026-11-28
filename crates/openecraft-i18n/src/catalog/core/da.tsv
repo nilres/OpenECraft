@@ -63,6 +63,7 @@ Align right	Højrejuster
 Align top	Juster øverst
 All aspects (with product)	Alle aspekter (med produkt)
 All devices of page {} are in the schematic already	Alle enheder på side {} er allerede i diagrammet
+All symbols of the library instead of those the project uses	Alle bibliotekets symboler i stedet for dem, projektet bruger
 Ammeter	Amperemeter
 Ammeter, reactive current	Amperemeter, reaktiv strøm
 Ampere-hour meter	Amperetimetæller
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	Udluftningen {} er åben mod atm
 Explosion protection marking	Ex-mærkning
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Eksporterer styklisten med varestamdataene; importerer ERP-numre, priser, lagerbeholdning og leveringstider
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Eksporterer enhederne og punkt-til-punkt-forbindelserne til printkortdesign; importerer artikeltildelinger og beskrivelser af komponenterne
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Eksporterer enhederne og potentialerne som KiCad-netliste til printkorteditoren; importerer artikelnumre og beskrivelser fra en KiCad-netliste eller -stykliste (CSV)
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Eksporterer konstruktionsstyklisten (placeringer, enheder, artikler); importerer vare-id'er, revisioner og livscyklusstatusser
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Eksporterer ordrelisten pr. leverandør (behov minus lagerbeholdning, afrundet til pakninger); importerer ordrebekræftelser
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Eksporterer tavlelayoutet som en FreeCAD-makro, der opbygger det med navngivne legemer; importerer positionerne for enheder, der er flyttet i det gemte FreeCAD-dokument (.FCStd)
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Eksporterer enhedernes positioner og størrelser i tavlelayoutet; importerer positioner, der er ændret i MCAD-systemet
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Eksporterer projekt- og sidemetadata med revisionerne; importerer dokumentnumre, revisioner og statusser
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Eksporterer ledningerne med afkortningslængde, afisolering og terminalrør til ledningsbearbejdningsmaskiner; importerer tilbagemeldingen fra bearbejdningen som ledningsmarkeringer
@@ -586,6 +589,7 @@ Frame size	Byggestørrelse
 Free	Fri
 Free air (mm)	Fri luft (mm)
 Free run	Fri føring
+FreeCAD panel layout (macro, .FCStd)	FreeCAD-tavlelayout (makro, .FCStd)
 Freestanding on posts	Jordmonteret på stolper
 Frequency converter	Frekvensomformer
 Frequency meter	Frekvensmåler
@@ -783,6 +787,9 @@ Key switch NC, latching	Nøgleafbryder, bryde, låsende
 Key switch NO	Nøgleafbryder sluttekontakt
 Key switch NO, latching	Nøgleafbryder, slutte, låsende
 Keywords	Nøgleord
+KiCad netlist (.net)	KiCad-netliste (.net)
+KiCad netlist of the devices and potentials (.net)	KiCad-netliste over enhederne og potentialerne (.net)
+KiCad symbol library (.kicad_sym)	KiCad-symbolbibliotek (.kicad_sym)
 LED	LED
 Labeling scheme (default: the scheme selected in the project)	Mærkningsskema (standard: det skema, der er valgt i projektet)
 Lamp voltage	Lampespænding
@@ -1001,6 +1008,10 @@ Non-return valve	Kontraventil
 Not a DWG file	Ikke en DWG-fil
 Not a DXF file	Ikke en DXF-fil
 Not a DXF file (binary DXF is not supported)	Ikke en DXF-fil (binær DXF understøttes ikke)
+Not a FreeCAD document (.FCStd)	Ikke et FreeCAD-dokument (.FCStd)
+Not a KiCad board file (.kicad_pcb)	Ikke en KiCad-printkortfil (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	Ikke en KiCad-netliste (i KiCad: File › Export › Netlist, format KiCad)
+Not a KiCad symbol library (.kicad_sym)	Ikke et KiCad-symbolbibliotek (.kicad_sym)
 Not a PDF file	Ikke en PDF-fil
 Not a change request file: the column \"Number\" is missing	Ikke en fil med ændringsanmodninger: Kolonnen \"Number\" mangler
 Not a change request file: {}	Ikke en fil med ændringsanmodninger: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Ikke en projektdatabase: {}
 Not a settings scheme: {}	Ikke et indstillingsskema: {}
 Not a structure template: {}	Ikke en strukturskabelon: {}
 Not a valid JSON file: {}	Ikke en gyldig JSON-fil: {}
+Not a valid KiCad file (line {})	Ikke en gyldig KiCad-fil (linje {})
 Not a valid project file: {}	Ikke en gyldig projektfil: {}
 Not a valid property library: {}	Ikke et gyldigt egenskabsbibliotek: {}
 Not an Excel workbook (.xlsx)	Ikke en Excel-projektmappe (.xlsx)
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	Tavlelayout i 3D (JT)
 Panel layout in 3D (Parasolid XT)	Tavlelayout i 3D (Parasolid XT)
 Panel layout in 3D (STEP)	Tavlelayout i 3D (STEP)
 Panel layout in 3D (glTF)	Tavlelayout i 3D (glTF)
+Panel layout in 3D for FreeCAD (macro)	Tavlelayout i 3D til FreeCAD (makro)
 Panel layout settings	Indstillinger for tavlelayout
 Panel legend	Tavlelegende
 Parallel to the roof on roof hooks	Parallelt med taget på tagkroge
@@ -1260,6 +1273,7 @@ Pressure switch NC	Trykafbryder, bryde
 Pressure switch NO	Pressostat sluttekontakt
 Pressure switch NO (NFPA)	Trykafbryder, slutte (NFPA)
 Primary voltage	Primærspænding
+Printed circuit board {}	Printkort {}
 Problem	Problem
 Process component	Proceskomponent
 Process connection	Procestilslutning
@@ -1647,6 +1661,8 @@ Termination (from)	Afslutning (fra)
 Termination (to)	Afslutning (til)
 Text file	Tekstfil
 The DXF file contains nothing that can be imported	DXF-filen indeholder intet, der kan importeres
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	FreeCAD-dokumentet indeholder ingen enheder fra OpenECraft (objekter med egenskaben OEC_Tag)
+The KiCad symbol library has no symbols	KiCad-symbolbiblioteket indeholder ingen symboler
 The PDF has no pages that can be read	PDF'en har ingen sider, der kan læses
 The answer is OK, Not OK or Not applicable, not {}	Svaret er OK, Ikke OK eller Ikke relevant, ikke {}
 The archive contains no project	Arkivet indeholder intet projekt
@@ -1655,6 +1671,7 @@ The archive is damaged	Arkivet er beskadiget
 The archive unpacks to more than {} MB	Arkivet udpakkes til mere end {} MB
 The archive was written by a newer version (archive version {})	Arkivet er skrevet af en nyere version (arkivversion {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Tavlefabrikanten skal være angivet (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	Printkortet har intet omrids på laget Edge.Cuts
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Tavlerækken i sit rum: L-formet plan, indervæg, dør og vindue, tavlerækken på sin plads, en skinne med en stikkontakt på en væg, en vægmonteret nødbelysning og en kabelbakke under loftet.
 The cable of {} needs at least {} cores	Kablet til {} skal have mindst {} ledere
 The configuration is not a JSON object	Konfigurationen er ikke et JSON-objekt
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	Elementet er ingen ramme i en åbning i en sidevæg
 The last page cannot be deleted	Den sidste side kan ikke slettes
 The macro box has no items left	Makroboksen har ikke flere elementer
+The netlist has no component {} with connected pins	Netlisten har ingen komponent {} med tilsluttede ben
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	Netlisten har ingen stik (referencer J, P, X, CN, TB): angiv de komponenter, hvis ben er printkortets tilslutninger
 The next free id is already in use	Det næste ledige id er allerede i brug
 The option needs a name	Optionen skal have et navn
 The page needs a number	Siden skal have et nummer

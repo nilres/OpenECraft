@@ -335,7 +335,11 @@ impl App {
                 let today = self.today();
                 let text = integration::export(&mut self.session.prj, &self.session.analysis, c, &today);
                 let name = format!("{}_{}.{}", self.session.prj.info.name, c.id, c.extension);
-                let filter = if c.extension == "csv" { "CSV" } else { "JSON" };
+                let filter = match c.extension {
+                    "csv" => "CSV",
+                    "json" => "JSON",
+                    _ => c.system.title(),
+                };
                 self.export(ctx, name, (filter, c.extension), text);
             }
             Action::ExportExchange => {
@@ -376,10 +380,20 @@ impl App {
                 self.integration_ui.profile.clear();
             }
         }
-        self.integration_file_loaded(name, text);
+        self.integration_text_loaded(name, text);
     }
 
-    pub(super) fn integration_file_loaded(&mut self, name: &str, text: String) {
+    /// A file of another system was opened: files in a format of that system (a KiCad
+    /// netlist, a FreeCAD document) are read by the connector first.
+    pub(super) fn integration_file_loaded(&mut self, ctx: &egui::Context, name: &str, bytes: &[u8]) {
+        let connector = self.integration_ui.connector.min(CONNECTORS.len() - 1);
+        match integration::decode(&CONNECTORS[connector], bytes) {
+            Ok(text) => self.integration_text_loaded(name, text),
+            Err(e) => self.notify_error(ctx, tr_fmt!("Import failed: {}", e)),
+        }
+    }
+
+    fn integration_text_loaded(&mut self, name: &str, text: String) {
         let ui_state = &mut self.integration_ui;
         let connector = ui_state.connector.min(CONNECTORS.len() - 1);
         let mapping = self.session.prj.integration.profile(&ui_state.profile).map(|p| p.mapping.clone()).unwrap_or_default();

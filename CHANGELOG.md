@@ -5,6 +5,17 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Exchange with KiCad and FreeCAD:** a board designed in KiCad becomes a device of
+  the project from its netlist (*File › Import › Import KiCad board as device…*,
+  `import_kicad`): a device box with a connection point for every pin of its
+  connectors, the nets of the board written at the pins, and a part with the size of
+  the board. The devices and potentials of a project are written as a KiCad netlist
+  for the PCB editor, the symbols as a KiCad symbol library, and KiCad symbol
+  libraries (`.kicad_sym`) are read as user symbols. The panel layout is written as a
+  FreeCAD macro that builds it with a named solid per device; devices moved in FreeCAD
+  come back from the saved document (`.FCStd`). Both tools have a connector in the
+  enterprise integration, with the review of changes and the conflict detection of
+  the others ([#264](https://github.com/nilres/OpenECraft/issues/264)).
 - **Cross references are followed in the editor:** Ctrl + click on a cross reference
   (the key that opens links) opens the page it names; the reference of an interruption
   point selects and centres its counterpart. While the key is held, the pointer is a

@@ -291,6 +291,47 @@ pub fn mcad(prj: &Project, _: &Analysis) -> String {
     csv(&placements(prj))
 }
 
+/// The panel layout as a FreeCAD macro (see [`crate::freecad`]).
+pub fn freecad(prj: &Project, _: &Analysis) -> String {
+    crate::freecad::macro_text(prj)
+}
+
+/// The devices of a FreeCAD document with the places they were moved to, or of the
+/// macro with the places they were exported at.
+pub fn freecad_records(bytes: &[u8]) -> Option<Result<String, String>> {
+    if crate::freecad::is_document(bytes) {
+        return Some(crate::freecad::placements(bytes));
+    }
+    crate::freecad::macro_placements(&String::from_utf8_lossy(bytes)).map(Ok)
+}
+
+/// The components of a KiCad netlist as records: the reference is the device tag,
+/// the part number comes from the field KiCad was given it in (or one named like it).
+pub fn kicad_records(bytes: &[u8]) -> Option<Result<String, String>> {
+    let text = String::from_utf8_lossy(bytes);
+    crate::kicad::is_kind(&text, "export").then(|| crate::kicad::net::read(&text).map(|netlist| kicad_rows(&netlist)))
+}
+
+fn kicad_rows(netlist: &crate::kicad::net::Netlist) -> String {
+    let rows: Vec<Value> = netlist
+        .components
+        .iter()
+        .map(|c| {
+            let number = c.fields.iter().find(|(name, v)| !v.trim().is_empty() && super::column_field(name, &Default::default()) == Some(Field::PartNumber)).map(|(_, v)| v.trim());
+            let mut row = Map::new();
+            row.insert(Field::Tag.code().into(), json!(c.reference));
+            if let Some(number) = number {
+                row.insert(Field::PartNumber.code().into(), json!(number));
+            }
+            if !c.description.trim().is_empty() {
+                row.insert(Field::Description.code().into(), json!(c.description.trim()));
+            }
+            Value::Object(row)
+        })
+        .collect();
+    serde_json::to_string(&rows).unwrap_or_default()
+}
+
 pub fn procurement(prj: &Project, an: &Analysis) -> String {
     let mut rows: Vec<(String, String, Row)> = bom(prj, an)
         .into_iter()

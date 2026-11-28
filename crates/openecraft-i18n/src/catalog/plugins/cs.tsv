@@ -16,6 +16,7 @@ Additional power loss in W	Dodatečný ztrátový výkon ve W
 Address scheme: siemens, iec or rockwell	Schéma adresování: siemens, iec nebo rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Přidá FV pole na střechu: řady modulů na lištách a střešních hácích rovnoběžně se střešní plochou, nebo na ploché střeše skloněně nebo východ-západ na zatížených montážních podstavcích; bez x a z uprostřed přední nebo pravé střešní plochy. Bez budovy a střechy pozemní pole na pozemku: řady skloněných stolů na beraněných sloupcích, bez x a z před tím, co stojí v zařízení. Moduly a montážní materiál jdou do kusovníku
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Přidá ohnutou a vrtanou měděnou přípojnici (nebo nahradí stejnojmennou ve skříni)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	Přidá desku navrženou v KiCadu jako přístroj: box zařízení na nové stránce schématu s připojovacím bodem pro každý pin jejích konektorů (J1.1), pojmenovaným podle sítí desky, a artikl pro ni
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Přidá kabelovou vývodku příslušné velikosti pro každý kabel, který opouští skříň a nenajde volnou vývodku: ve stropě pro přístroj v místnosti, ve dně pro pole nebo skříň zavěšenou na stěně
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Přidá kabelovou průchodku k pravému sousedovi: kruhové výřezy proti sobě v obou bočních stěnách; vodiče mezi skříněmi jí procházejí
 Adds a configurator rule: insert a page macro when the condition holds	Přidá pravidlo konfigurátoru: vložit makro stránky, je-li splněna podmínka
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Přidá nebo změní stroj projektu (vestavěný stroj se stejným ID se nahradí) nebo jej odebere
 Adds the devices of a template to a segment	Přidá přístroje šablony do segmentu
 Adds the outline of a machine, building or area to the plant layout	Přidá obrys stroje, budovy nebo oblasti do dispozice zařízení
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Přidá symboly knihovny symbolů KiCad k symbolům projektu; dříve načtené symboly se nahradí
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Přidá, nahradí nebo odebere profil: konektor s názvy sloupců, které používá jiný systém
 After it instead of before	Za ni místo před ni
 Air-termination rod: its name	Jímací tyč: její název
@@ -380,6 +382,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Klíč, např. user.coupling_relay
 Key, e.g. user.customer_code	Klíč, např. user.customer_code
 Keys of the routes, comma separated (all if missing)	Klíče tras oddělené čárkou (všechny, pokud chybí)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	Deska KiCad (obsah souboru .kicad_pcb): její obrys určuje velikost artiklu
+KiCad netlist of the board: the content of its .net export	Seznam sítí KiCad desky (obsah souboru .net)
+KiCad symbol library: the content of a .kicad_sym	Knihovna symbolů KiCad (obsah souboru .kicad_sym)
 Kind: machining, punching or busbar	Druh: machining, punching nebo busbar
 Known length of the cable in m (taken instead of the 3D route)	Známá délka kabelu v m (použije se místo 3D trasy)
 Label shown when the value is asked for	Popisek zobrazený při dotazu na hodnotu
@@ -405,6 +410,7 @@ Length of a shield pigtail in mm	Délka pigtailu stínění v mm
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Patro vícepatrové svorky (1 = dole); horní patra sedí na bloku předchozí svorky
 Library id or customer rule set name to no longer verify against	ID knihovny nebo název zákaznické sady pravidel, podle které se již nemá ověřovat
 Library id or customer rule set name to verify against	ID knihovny nebo název zákaznické sady pravidel, podle které se má ověřovat
+Library the symbols are listed under (default: KiCad)	Knihovna, pod kterou jsou symboly uvedeny (výchozí: KiCad)
 Line in the source language	Řádek ve zdrojovém jazyce
 Line-to-line voltage in V	Sdružené napětí ve V
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Propojí tekutinový přístroj s elektrickými přístroji, které jej ovládají nebo sledují (nahradí propojení)

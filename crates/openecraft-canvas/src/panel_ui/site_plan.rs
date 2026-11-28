@@ -370,7 +370,7 @@ pub fn paint_installation(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SiteP
     // The symbols as on installation plan pages, drawn at 3 points per millimetre.
     let pal = crate::editor::Palette::new(ui.visuals().dark_mode);
     let zoom = 3.0;
-    let mut d = crate::editor::EguiDraw { painter: &painter, origin: Pos2::ZERO, zoom, pal: &pal, force: None, mirror: None, textures: None };
+    let mut d = crate::editor::EguiDraw { painter: &painter, origin: Pos2::ZERO, zoom, pal: &pal, force: None, mirror: None, textures: None, links: Vec::new() };
     for p in &items {
         let ink = circuits.iter().position(|c| c.has_item(p.item)).map_or(Ink::Line, |k| Ink::Color(plan_page::circuit_color(k)));
         let c = frame.at(p.at);

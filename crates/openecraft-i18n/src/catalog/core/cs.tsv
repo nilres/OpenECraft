@@ -63,6 +63,7 @@ Align right	Zarovnat doprava
 Align top	Zarovnat nahoru
 All aspects (with product)	Všechny aspekty (s produktem)
 All devices of page {} are in the schematic already	Všechny přístroje stránky {} už jsou ve schématu zapojení
+All symbols of the library instead of those the project uses	Všechny symboly knihovny místo těch, které projekt používá
 Ammeter	Ampérmetr
 Ammeter, reactive current	Ampérmetr, jalový proud
 Ampere-hour meter	Elektroměr ampérhodin
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	Odfuk {} otevřený do atmosfér
 Explosion protection marking	Značení ochrany proti výbuchu
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Exportuje kusovník s kmenovými daty položek; importuje čísla ERP, ceny, zásoby a dodací lhůty
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Exportuje přístroje a spojení bod–bod pro návrh DPS; importuje přiřazení artiklů a popisy součástek
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Exportuje přístroje a potenciály jako seznam sítí KiCad pro editor DPS; importuje čísla artiklů a popisy ze seznamu sítí nebo kusovníku KiCad (CSV)
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Exportuje konstrukční kusovník (umístění, přístroje, artikly); importuje ID položek, revize a stavy životního cyklu
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Exportuje objednací seznam podle dodavatelů (potřebné množství mínus zásoba, zaokrouhleno na balení); importuje potvrzení objednávek
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Exportuje rozvržení rozváděče jako makro FreeCAD, které je sestaví z pojmenovaných těles; importuje polohy přístrojů přesunutých v uloženém dokumentu FreeCAD (.FCStd)
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Exportuje polohy a rozměry přístrojů v rozvržení rozváděče; importuje polohy změněné v systému MCAD
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Exportuje metadata projektu a stránek s revizemi; importuje čísla dokumentů, revize a stavy
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Exportuje vodiče s délkou řezu, odizolováním a dutinkami pro automaty na zpracování vodičů; importuje zpětné hlášení zpracování jako značky zapojení
@@ -586,6 +589,7 @@ Frame size	Konstrukční velikost
 Free	Volné
 Free air (mm)	Volné vedení (mm)
 Free run	Volné uložení
+FreeCAD panel layout (macro, .FCStd)	Rozvržení rozváděče pro FreeCAD (makro, .FCStd)
 Freestanding on posts	Pozemní na sloupcích
 Frequency converter	Frekvenční měnič
 Frequency meter	Frekvenční měřič
@@ -783,6 +787,9 @@ Key switch NC, latching	Spínač na klíč, rozpínací, s aretací
 Key switch NO	Klíčový spínač spínací
 Key switch NO, latching	Spínač na klíč, spínací, s aretací
 Keywords	Klíčová slova
+KiCad netlist (.net)	Seznam sítí KiCad (.net)
+KiCad netlist of the devices and potentials (.net)	Seznam sítí KiCad přístrojů a potenciálů (.net)
+KiCad symbol library (.kicad_sym)	Knihovna symbolů KiCad (.kicad_sym)
 LED	LED
 Labeling scheme (default: the scheme selected in the project)	Schéma popisování (výchozí: schéma vybrané v projektu)
 Lamp voltage	Napětí žárovky
@@ -1001,6 +1008,10 @@ Non-return valve	Zpětný ventil
 Not a DWG file	Není soubor DWG
 Not a DXF file	Nejde o soubor DXF
 Not a DXF file (binary DXF is not supported)	Nejde o soubor DXF (binární DXF není podporováno)
+Not a FreeCAD document (.FCStd)	Není dokument FreeCAD (.FCStd)
+Not a KiCad board file (.kicad_pcb)	Není soubor desky KiCad (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	Není seznam sítí KiCad (v KiCadu: File › Export › Netlist, formát KiCad)
+Not a KiCad symbol library (.kicad_sym)	Není knihovna symbolů KiCad (.kicad_sym)
 Not a PDF file	Není soubor PDF
 Not a change request file: the column \"Number\" is missing	Nejde o soubor požadavků na změnu: chybí sloupec \"Number\"
 Not a change request file: {}	Nejde o soubor požadavků na změnu: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Není databáze projektů: {}
 Not a settings scheme: {}	Není schéma nastavení: {}
 Not a structure template: {}	Nejde o šablonu struktury: {}
 Not a valid JSON file: {}	Není platný soubor JSON: {}
+Not a valid KiCad file (line {})	Není platný soubor KiCad (řádek {})
 Not a valid project file: {}	Neplatný soubor projektu: {}
 Not a valid property library: {}	Není platná knihovna vlastností: {}
 Not an Excel workbook (.xlsx)	Není sešit aplikace Excel (.xlsx)
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	Rozvržení rozváděče ve 3D (JT)
 Panel layout in 3D (Parasolid XT)	Rozvržení rozváděče ve 3D (Parasolid XT)
 Panel layout in 3D (STEP)	Rozvržení rozváděče ve 3D (STEP)
 Panel layout in 3D (glTF)	Rozvržení rozváděče ve 3D (glTF)
+Panel layout in 3D for FreeCAD (macro)	Rozvržení rozváděče ve 3D pro FreeCAD (makro)
 Panel layout settings	Nastavení rozvržení rozváděče
 Panel legend	Legenda rozváděče
 Parallel to the roof on roof hooks	Rovnoběžně se střechou na střešních hácích
@@ -1260,6 +1273,7 @@ Pressure switch NC	Tlakový spínač, rozpínací
 Pressure switch NO	Tlakový spínač spínací
 Pressure switch NO (NFPA)	Tlakový spínač, spínací (NFPA)
 Primary voltage	Primární napětí
+Printed circuit board {}	Deska plošných spojů {}
 Problem	Problém
 Process component	Procesní komponenta
 Process connection	Procesní přípojka
@@ -1647,6 +1661,8 @@ Termination (from)	Zakončení (od)
 Termination (to)	Zakončení (do)
 Text file	Textový soubor
 The DXF file contains nothing that can be imported	Soubor DXF neobsahuje nic, co by bylo možné importovat
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	Dokument FreeCAD neobsahuje žádné přístroje z OpenECraft (objekty s vlastností OEC_Tag)
+The KiCad symbol library has no symbols	Knihovna symbolů KiCad neobsahuje žádné symboly
 The PDF has no pages that can be read	PDF nemá žádné čitelné stránky
 The answer is OK, Not OK or Not applicable, not {}	Odpověď je OK, Nevyhovuje nebo Nehodí se, ne {}
 The archive contains no project	Archiv neobsahuje žádný projekt
@@ -1655,6 +1671,7 @@ The archive is damaged	Archiv je poškozen
 The archive unpacks to more than {} MB	Archiv se rozbalí na více než {} MB
 The archive was written by a newer version (archive version {})	Archiv byl zapsán novější verzí (verze archivu {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Výrobce rozváděče musí být uveden (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	Deska nemá obrys ve vrstvě Edge.Cuts
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Řada rozvaděčů ve své místnosti: půdorys ve tvaru L, vnitřní stěna, dveře a okno, řada na svém místě, lišta se zásuvkou na stěně, nouzové svítidlo na stěně a kabelový žlab pod stropem.
 The cable of {} needs at least {} cores	Kabel {} potřebuje alespoň {} žil
 The configuration is not a JSON object	Konfigurace není objekt JSON
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	Prvek není rámeček v otvoru boční stěny
 The last page cannot be deleted	Poslední stránku nelze odstranit
 The macro box has no items left	V rámečku makra nezůstaly žádné prvky
+The netlist has no component {} with connected pins	Seznam sítí neobsahuje součástku {} s připojenými piny
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	Seznam sítí neobsahuje žádné konektory (reference J, P, X, CN, TB): uveďte součástky, jejichž piny jsou přípojkami desky
 The next free id is already in use	Další volné ID je již použito
 The option needs a name	Volba potřebuje název
 The page needs a number	Stránka potřebuje číslo

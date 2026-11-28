@@ -24,7 +24,6 @@ AutomationML file	AutomationML 文件
 CSV content instead of a file	CSV 内容（代替文件）
 CSV file	CSV 文件
 CSV or Excel file	CSV 或 Excel 文件
-CSV or JSON file	CSV 或 JSON 文件
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV、JSON、BMEcat、EPLAN XML 或 EDZ 文件
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	CSV、JSON、BMEcat、EPLAN XML、EDZ 或 ZIP 文件
 Catalog data; without id it is derived from the name	目录数据；未指定 ID 时根据名称生成
@@ -106,7 +105,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	从 GSDML (PROFINET) 或 ESI (EtherCAT) 文件将设备描述导入项目
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	从 CSV 或 Excel 导入预规划段和已规划设备（列 Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro）
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	将审阅者在项目 PDF 导出中添加的批注（注释、文本框、突出显示、形状、回复）导入审阅层；跳过之前已导入的批注
-Insert after this page (default: at the end)	在此页之后插入（默认：在末尾）
 Inserts an edited subproject: its pages replace the pages taken out	插入已编辑的子项目：其页替换已移出的页
 Invalid form: {}	无效表单：{}
 Keep the file checked out after the check-in	签入后保持文件签出
@@ -198,7 +196,6 @@ Properties to rename (old name: new name)	要重命名的属性（旧名称: 新
 Property {} needs a text or a number	属性 {} 需要文本或数字
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	将项目、导出、接口导出或本地文件放入 Vault；文件夹中的同名文件将获得新版本（签出后签入），否则添加该文件
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor 或 Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	使用接口读取其他系统的文件（CSV 或 JSON）并列出更改；使用 apply 时采用更改（冲突仅在使用 overwrite 时采用）
 Reads the project files and archives of a folder (and its subfolders) into the project database	将文件夹（及其子文件夹）中的项目文件和归档读入项目数据库
 Reads translations from CSV: first column the source line, one column per language code	从 CSV 读取翻译：第一列为源行，每个语言代码一列
 Redoes the last undone change	恢复上次撤消的更改
@@ -299,8 +296,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	将项目的设置（导线编号、电位、导线默认值和颜色、标记、软管默认值、交叉引用、检查方案）写入文件
 Writes the structure management (aspects, identifiers, work areas) as a template file	将结构标识符管理（方面、标识符、工作区）写入模板文件
 csv (default) or eplan_xml	csv（默认）或 eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement 或 wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine 或 exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad 或 freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad 或 exchange
 json (default), csv or xlsx (Excel, needs path)	json（默认）、csv 或 xlsx（Excel，需要 path）
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\n显示命令行的版本（也可用 --version 或 -V）\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo 和 redo 仅在 MCP 会话中有效：命令行会为每个命令重新打开项目

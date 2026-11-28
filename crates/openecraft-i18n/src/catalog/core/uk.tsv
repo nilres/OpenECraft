@@ -63,6 +63,7 @@ Align right	Вирівняти праворуч
 Align top	Вирівняти вгору
 All aspects (with product)	Усі аспекти (з виробом)
 All devices of page {} are in the schematic already	Усі пристрої сторінки {} уже є на схемі
+All symbols of the library instead of those the project uses	Усі символи бібліотеки замість тих, що використовуються в проєкті
 Ammeter	Амперметр
 Ammeter, reactive current	Амперметр, реактивний струм
 Ampere-hour meter	Лічильник ампер-годин
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	Випуск {} відкрити
 Explosion protection marking	Маркування вибухозахисту
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Експортує специфікацію з даними довідника номенклатури; імпортує номери ERP, ціни, запаси й терміни поставки
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Експортує пристрої та з’єднання «точка-точка» для проєктування друкованих плат; імпортує призначення виробів і описи компонентів
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Експортує пристрої та потенціали як список з’єднань KiCad для редактора друкованих плат; імпортує номери виробів і описи зі списку з’єднань або специфікації KiCad (CSV)
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Експортує конструкторську специфікацію (місця, пристрої, вироби); імпортує ідентифікатори позицій, ревізії та стани життєвого циклу
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Експортує список замовлень за постачальниками (потреба мінус запас, з округленням до упаковок); імпортує підтвердження замовлень
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Експортує компонування шафи як макрос FreeCAD, який будує його з іменованих тіл; імпортує положення пристроїв, переміщених у збереженому документі FreeCAD (.FCStd)
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Експортує позиції та розміри пристроїв у компонуванні шафи; імпортує позиції, змінені в системі MCAD
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Експортує метадані проєкту та сторінок із ревізіями; імпортує номери документів, ревізії та стани
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Експортує проводи з довжиною відрізання, зачищенням і наконечниками для автоматів обробки проводів; імпортує зворотний зв’язок обробки як позначки монтажу проводів
@@ -586,6 +589,7 @@ Frame size	Типорозмір
 Free	Вільно
 Free air (mm)	Вільне прокладання (мм)
 Free run	Вільне прокладання
+FreeCAD panel layout (macro, .FCStd)	Компонування шафи для FreeCAD (макрос, .FCStd)
 Freestanding on posts	Наземне на стійках
 Frequency converter	Перетворювач частоти
 Frequency meter	Частотомір
@@ -783,6 +787,9 @@ Key switch NC, latching	Перемикач із ключем, розмикаль
 Key switch NO	Перемикач із ключем, замикальний
 Key switch NO, latching	Перемикач із ключем, замикальний, з фіксацією
 Keywords	Ключові слова
+KiCad netlist (.net)	Список з’єднань KiCad (.net)
+KiCad netlist of the devices and potentials (.net)	Список з’єднань KiCad для пристроїв і потенціалів (.net)
+KiCad symbol library (.kicad_sym)	Бібліотека символів KiCad (.kicad_sym)
 LED	Світлодіод
 Labeling scheme (default: the scheme selected in the project)	Схема маркування (за замовчуванням: схема, вибрана в проєкті)
 Lamp voltage	Напруга лампи
@@ -1001,6 +1008,10 @@ Non-return valve	Зворотний клапан
 Not a DWG file	Не є файлом DWG
 Not a DXF file	Не файл DXF
 Not a DXF file (binary DXF is not supported)	Не файл DXF (двійковий DXF не підтримується)
+Not a FreeCAD document (.FCStd)	Не документ FreeCAD (.FCStd)
+Not a KiCad board file (.kicad_pcb)	Не файл плати KiCad (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	Не список з’єднань KiCad (у KiCad: File › Export › Netlist, формат KiCad)
+Not a KiCad symbol library (.kicad_sym)	Не бібліотека символів KiCad (.kicad_sym)
 Not a PDF file	Не є файлом PDF
 Not a change request file: the column \"Number\" is missing	Не файл запитів на зміни: відсутній стовпець «Number»
 Not a change request file: {}	Не файл запитів на зміни: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Не є базою даних проєктів: {}
 Not a settings scheme: {}	Не є схемою параметрів: {}
 Not a structure template: {}	Не шаблон структури: {}
 Not a valid JSON file: {}	Недійсний файл JSON: {}
+Not a valid KiCad file (line {})	Недійсний файл KiCad (рядок {})
 Not a valid project file: {}	Недійсний файл проєкту: {}
 Not a valid property library: {}	Недійсна бібліотека властивостей: {}
 Not an Excel workbook (.xlsx)	Не є книгою Excel (.xlsx)
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	Компонування шафи в 3D (JT)
 Panel layout in 3D (Parasolid XT)	Компонування шафи в 3D (Parasolid XT)
 Panel layout in 3D (STEP)	Компонування шафи в 3D (STEP)
 Panel layout in 3D (glTF)	Компонування шафи в 3D (glTF)
+Panel layout in 3D for FreeCAD (macro)	Компонування шафи в 3D для FreeCAD (макрос)
 Panel layout settings	Параметри компонування шафи
 Panel legend	Легенда шафи
 Parallel to the roof on roof hooks	Паралельно даху на покрівельних гаках
@@ -1260,6 +1273,7 @@ Pressure switch NC	Реле тиску, розмикальне
 Pressure switch NO	Реле тиску, замикальне
 Pressure switch NO (NFPA)	Реле тиску, замикальне (NFPA)
 Primary voltage	Первинна напруга
+Printed circuit board {}	Друкована плата {}
 Problem	Проблема
 Process component	Компонент процесу
 Process connection	Технологічне приєднання
@@ -1647,6 +1661,8 @@ Termination (from)	Оконцювання (від)
 Termination (to)	Оконцювання (до)
 Text file	Текстовий файл
 The DXF file contains nothing that can be imported	Файл DXF не містить нічого, що можна імпортувати
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	Документ FreeCAD не містить пристроїв OpenECraft (об’єктів із властивістю OEC_Tag)
+The KiCad symbol library has no symbols	Бібліотека символів KiCad не містить символів
 The PDF has no pages that can be read	PDF не містить сторінок, які можна прочитати
 The answer is OK, Not OK or Not applicable, not {}	Відповідь: OK, Не OK або Не застосовується, а не {}
 The archive contains no project	Архів не містить проєкту
@@ -1655,6 +1671,7 @@ The archive is damaged	Архів пошкоджено
 The archive unpacks to more than {} MB	Архів розпаковується більш ніж у {} МБ
 The archive was written by a newer version (archive version {})	Архів записано новішою версією (версія архіву {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Слід вказати виробника комплектного пристрою (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	Плата не має контуру на шарі Edge.Cuts
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Ряд шаф у своєму приміщенні: Г-подібний план, внутрішня стіна, двері та вікно, ряд шаф на своєму місці, рейка з розеткою на стіні, настінний аварійний світильник і кабельний лоток під стелею.
 The cable of {} needs at least {} cores	Кабелю {} потрібно щонайменше {} жил
 The configuration is not a JSON object	Конфігурація не є об’єктом JSON
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	Елемент не є рамкою в отворі бічної стінки
 The last page cannot be deleted	Останню сторінку не можна видалити
 The macro box has no items left	У рамці макросу не залишилося елементів
+The netlist has no component {} with connected pins	Список з’єднань не містить компонента {} з підключеними контактами
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	Список з’єднань не містить роз’ємів (позначення J, P, X, CN, TB): укажіть компоненти, контакти яких є підключеннями плати
 The next free id is already in use	Наступний вільний ідентифікатор уже зайнято
 The option needs a name	Опції потрібна назва
 The page needs a number	Сторінці потрібен номер

@@ -16,6 +16,7 @@ Additional power loss in W	Додаткові втрати потужності 
 Address scheme: siemens, iec or rockwell	Схема адресації: siemens, iec або rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Додає фотоелектричне поле на дах: ряди модулів на рейках і покрівельних гаках паралельно схилу або на плоскому даху з нахилом чи за схемою схід-захід на баластних монтажних основах; без x і z посередині переднього або правого схилу. Без будівлі й даху — наземне поле на ділянці: ряди похилих столів на забивних стійках, без x і z перед тим, що стоїть в установці. Модулі й монтажний матеріал потрапляють до специфікації
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Додає зігнуту й просвердлену мідну шину (або замінює однойменну в корпусі)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	Додає плату, розроблену в KiCad, як пристрій: блок пристрою на новій сторінці схеми з точкою підключення для кожного контакту її роз’ємів (J1.1), названою за мережами плати, і виріб для неї
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Додає кабельний ввід потрібного розміру для кожного кабелю, що виходить із шафи й не знаходить вільного вводу: у даху для пристрою в приміщенні, у днищі для поля або шафи, що висить на стіні
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Додає кабельний прохід до сусіда праворуч: круглі вирізи один навпроти одного в обох бічних стінках; проводи між корпусами проходять крізь нього
 Adds a configurator rule: insert a page macro when the condition holds	Додає правило конфігуратора: вставити макрос сторінки, коли умова виконується
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Додає або змінює верстат проєкту (вбудований верстат з тим самим ідентифікатором замінюється) або вилучає його
 Adds the devices of a template to a segment	Додає пристрої шаблону до сегмента
 Adds the outline of a machine, building or area to the plant layout	Додає контур машини, будівлі або зони до плану установки
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Додає символи бібліотеки символів KiCad до символів проєкту; раніше зчитані символи замінюються
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Додає, замінює або вилучає профіль: конектор із назвами стовпців, які використовує інша система
 After it instead of before	Після, а не перед
 Air-termination rod: its name	Блискавкоприймальний стрижень: його назва
@@ -380,6 +382,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Ключ, напр. user.coupling_relay
 Key, e.g. user.customer_code	Ключ, напр. user.customer_code
 Keys of the routes, comma separated (all if missing)	Ключі трас через кому (усі, якщо не вказано)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	Плата KiCad (вміст файлу .kicad_pcb): її контур визначає розмір виробу
+KiCad netlist of the board: the content of its .net export	Список з’єднань KiCad плати (вміст файлу .net)
+KiCad symbol library: the content of a .kicad_sym	Бібліотека символів KiCad (вміст файлу .kicad_sym)
 Kind: machining, punching or busbar	Тип: machining, punching або busbar
 Known length of the cable in m (taken instead of the 3D route)	Відома довжина кабелю в m (береться замість 3D-траси)
 Label shown when the value is asked for	Мітка, що показується під час запиту значення
@@ -405,6 +410,7 @@ Length of a shield pigtail in mm	Довжина косички екрана в �
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Ярус багатоярусної клеми (1 = нижній); верхні яруси розташовуються на блоці попередньої клеми
 Library id or customer rule set name to no longer verify against	Ідентифікатор бібліотеки або назва набору правил замовника, за яким більше не виконується перевірка
 Library id or customer rule set name to verify against	Ідентифікатор бібліотеки або назва набору правил замовника, за яким виконується перевірка
+Library the symbols are listed under (default: KiCad)	Бібліотека, у якій перелічуються символи (за замовчуванням: KiCad)
 Line in the source language	Рядок мовою оригіналу
 Line-to-line voltage in V	Лінійна напруга у V
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Пов’язує гідропневматичний пристрій з електричними пристроями, які приводять його в дію або контролюють (замінює зв’язки)

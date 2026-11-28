@@ -44,6 +44,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = még nincs a kapcsolási rajzon
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Az alapállapot a teljes projektet tárolja (oldalak, készülékek, alkatrészek, beállítások). Egy revízió kiadása létrehoz egyet.
+A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist	KiCadben tervezett NYÁK eszközdobozként, csatlakozóinak minden érintkezőjéhez egy csatlakozási ponttal, a hálózati listája alapján
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Tömszelence minden kábelhez, amely kilép egy szekrényből, és nem talál őt fogadó szabad tömszelencét
 A cable of the bus type for every connection without cable	Bustípusú kábel minden kábel nélküli kapcsolathoz
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	A szekrényből kilépő kábel, amely nem talál szabad tömszelencét, a méretének megfelelőt kap: a tetőbe a helyiségben lévő készülékhez, a fenékbe a terephez vagy a falon függő szekrénynél
@@ -785,7 +786,7 @@ File format version {}. Files of older versions are converted when they are open
 File name	Fájlnév
 File of another system (connector)	Más rendszer fájlja (összekötő)
 File {}	{} fájl
-Files of other systems (CSV, JSON)	Más rendszerek fájljai (CSV, JSON)
+Files of other systems (CSV, JSON, KiCad, FreeCAD)	Más rendszerek fájljai (CSV, JSON, KiCad, FreeCAD)
 Fill	Kitöltés
 Filled	Kitöltött
 Filter connections…	Összeköttetések szűrése…
@@ -954,6 +955,7 @@ Import CSV / Excel…	CSV / Excel importálása…
 Import CSV…	CSV importálása…
 Import DXF / DWG as page…	DXF / DWG importálása oldalként…
 Import GSDML / ESI…	GSDML / ESI importálása…
+Import KiCad board as device…	KiCad NYÁK importálása készülékként…
 Import PDF comments…	PDF-megjegyzések importálása…
 Import a file of another system to see what it changes in the project.	Importáljon egy másik rendszerből származó fájlt, hogy lássa, mit módosít a projektben.
 Import changes	Importált változások
@@ -1052,6 +1054,9 @@ Keyboard shortcuts…	Billentyűparancsok…
 Keys and gestures	Billentyűk és kézmozdulatok
 Keys of the 3D view	A 3D nézet billentyűi
 Keywords: {}	Kulcsszavak: {}
+KiCad board imported as device {} on page {}: {} connection points	KiCad NYÁK importálva {} készülékként a(z) {} oldalra: {} csatlakozási pont
+KiCad import failed: {}	Sikertelen KiCad-importálás: {}
+KiCad netlist	KiCad hálózati lista
 Label	Felirat
 Label (grey)	Felirat (szürke)
 Label field	Feliratmező
@@ -2123,6 +2128,7 @@ Switches the options with a condition by the configurator options	A feltétellel
 Switches to this workspace with its panes at their default places	Átvált erre a munkaterületre, a panelek az alapértelmezett helyükön
 Switches, push buttons and room thermostats	Kapcsolók, nyomógombok és szobatermosztátok
 Symbol editor	Szimbólumszerkesztő
+Symbol library (JSON, EMA, EDZ, KiCad)	Szimbólumkönyvtár (JSON, EMA, EDZ, KiCad)
 Symbol table import failed: {}	Sikertelen szimbólumtábla-importálás: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Az oldal szimbólumai és vezetékei megjelennek, de nincsenek kiértékelve (nincsenek készülékek, összeköttetések vagy kimutatások).
 Symbols placed next get this device tag (contacts are numbered on)	A következőként elhelyezett szimbólumok ezt a készülékazonosítót kapják (az érintkezők számozása folytatódik)
