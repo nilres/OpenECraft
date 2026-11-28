@@ -55,7 +55,7 @@ pub fn side_places(def: &SymbolDef, s: &SymbolInst, side: TextSide) -> (TextPlac
     let c = b.center();
     let size = label_size(def);
     let w = name_width(&s.label, size);
-    let place = |q: P, anchor: Anchor| TextPlace { offset: q - s.pos, anchor };
+    let place = |q: P, anchor: Anchor| TextPlace { offset: q - s.pos, anchor, angle: 0.0 };
     let pin = def.pins.first().map(|pin| s.pos + pin.pos.transform(s.rot, s.mirror)).unwrap_or(p(c.x, b.min.y));
     let dir = c - pin;
     let side = match side {
@@ -67,6 +67,18 @@ pub fn side_places(def: &SymbolDef, s: &SymbolInst, side: TextSide) -> (TextPlac
                 let anchor = if dir.x > 0.0 { Anchor::Right } else { Anchor::Left };
                 let (above, below) = (pin.y - GAP - size * 0.7, pin.y + GAP + SMALL_SIZE * 0.7);
                 return (place(p(pin.x, above), anchor), place(p(pin.x, below), anchor));
+            } else if s.text_along {
+                // Vertical arrows with the texts turned along the conductor: one line left
+                // of it, reading from bottom to top, running back from the connection
+                // point with the name next to it and the cross reference after it.
+                let x = pin.x - GAP - size * 0.7;
+                let gap = if w > 0.0 { w + TEXT_GAP } else { 0.0 };
+                let turned = |q: P, anchor: Anchor| TextPlace { angle: 90.0, ..place(q, anchor) };
+                return if dir.y > 0.0 {
+                    (turned(p(x, pin.y), Anchor::Left), turned(p(x, pin.y - gap), Anchor::Left))
+                } else {
+                    (turned(p(x, pin.y), Anchor::Right), turned(p(x, pin.y + gap), Anchor::Right))
+                };
             } else {
                 // Vertical arrows: the name beside the arrow, the cross reference below it.
                 let next = c.y + (size + SMALL_SIZE) * 0.7 + GAP;
@@ -123,7 +135,17 @@ pub(super) fn draw_label(d: &mut dyn Draw, def: &SymbolDef, s: &SymbolInst, ink:
     }
     let (label, _) = interruption_places(def, s);
     let ink = if ink == Ink::Line { Ink::Text } else { ink };
-    d.text(s.pos + label.offset, &s.label, label_size(def), label.anchor, VAnchor::Middle, ink);
+    put_text(d, s.pos + label.offset, &s.label, label_size(def), label, ink);
+}
+
+/// A text at its place: turned when the place has an angle.
+fn put_text(d: &mut dyn Draw, pos: P, text: &str, size: f32, place: TextPlace, ink: Ink) {
+    if place.angle == 0.0 {
+        d.text(pos, text, size, place.anchor, VAnchor::Middle, ink);
+    } else {
+        let style = TextStyle { angle: place.angle, ..TextStyle::plain(size, place.anchor, VAnchor::Middle) };
+        d.styled_text(pos, text, &style, ink);
+    }
 }
 
 /// The cross reference, drawn with the annotations.
@@ -131,9 +153,14 @@ pub(super) fn draw_xref(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: us
     let Some((txt, ink, target)) = interruption_xref(prj, idx, page_i, def, s) else { return };
     let (_, xref) = interruption_places(def, s);
     let q = s.pos + xref.offset;
-    d.text(q, &txt, SMALL_SIZE, xref.anchor, VAnchor::Middle, ink);
+    put_text(d, q, &txt, SMALL_SIZE, xref, ink);
     if let Some(page) = target {
-        link_text(d, q, &txt, SMALL_SIZE, xref.anchor, page);
+        if xref.angle == 0.0 {
+            link_text(d, q, &txt, SMALL_SIZE, xref.anchor, page);
+        } else {
+            let area = place_area(q, &txt, SMALL_SIZE, xref);
+            d.link(area.min, area.max, page);
+        }
     }
 }
 
@@ -145,10 +172,10 @@ pub fn interruption_text_bounds(prj: &Project, idx: &Index, page_i: usize, def: 
     let (label, xref) = interruption_places(def, s);
     let mut v = Vec::new();
     if !s.label.is_empty() {
-        v.push((IntrText::Label, text_area(s.pos + label.offset, &s.label, label_size(def), label.anchor)));
+        v.push((IntrText::Label, place_area(s.pos + label.offset, &s.label, label_size(def), label)));
     }
     if let Some((txt, _, _)) = interruption_xref(prj, idx, page_i, def, s) {
-        v.push((IntrText::Xref, text_area(s.pos + xref.offset, &txt, SMALL_SIZE, xref.anchor)));
+        v.push((IntrText::Xref, place_area(s.pos + xref.offset, &txt, SMALL_SIZE, xref)));
     }
     v
 }
@@ -161,6 +188,19 @@ fn text_area(q: P, text: &str, size: f32, anchor: Anchor) -> R {
         Anchor::Right => q.x - w,
     };
     R::from_points(p(x0, q.y - size * 0.7), p(x0 + w, q.y + size * 0.7))
+}
+
+/// The area of a text at its place: that of the unturned text, turned about its anchor.
+fn place_area(q: P, text: &str, size: f32, place: TextPlace) -> R {
+    let r = text_area(q, text, size, place.anchor);
+    if place.angle == 0.0 {
+        return r;
+    }
+    let turn = |c: P| q + crate::text::rotate(c - q, place.angle);
+    let mut area = R::from_points(turn(r.min), turn(r.max));
+    area.extend(turn(p(r.max.x, r.min.y)));
+    area.extend(turn(p(r.min.x, r.max.y)));
+    area
 }
 
 #[cfg(test)]

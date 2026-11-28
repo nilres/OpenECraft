@@ -1042,6 +1042,10 @@ pub struct SymbolInst {
     /// Interruption points: cross reference placed by hand.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub xref_place: Option<TextPlace>,
+    /// Interruption points: on a vertical conductor the name and the cross reference
+    /// are turned along it (read from bottom to top), as they are on a horizontal one.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub text_along: bool,
     /// Further properties shown beside the symbol (part number, description …).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub props: Vec<PlacedProp>,
@@ -1175,6 +1179,7 @@ impl Default for SymbolInst {
             text_side: TextSide::Auto,
             label_place: None,
             xref_place: None,
+            text_along: false,
             props: Vec::new(),
             scheme: String::new(),
             function_def: String::new(),
@@ -1214,7 +1219,7 @@ impl SymbolInst {
 
     /// Are the name or the cross reference not placed automatically?
     pub fn texts_placed(&self) -> bool {
-        !self.text_side.is_auto() || self.label_place.is_some() || self.xref_place.is_some()
+        !self.text_side.is_auto() || self.label_place.is_some() || self.xref_place.is_some() || self.text_along
     }
 }
 
@@ -1267,12 +1272,16 @@ impl TextSide {
 }
 
 /// A symbol text placed by hand: its anchor point (vertically centred) relative to the
-/// symbol position and its horizontal alignment.
+/// symbol position, its horizontal alignment and its rotation.
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TextPlace {
     pub offset: P,
     #[serde(skip_serializing_if = "is_left", default = "default_anchor")]
     pub anchor: Anchor,
+    /// Rotation in degrees, counter-clockwise on the page (90: reads from bottom to
+    /// top), about the anchor point; the symbol's own turns do not change it.
+    #[serde(skip_serializing_if = "is_zero", default)]
+    pub angle: f32,
 }
 
 

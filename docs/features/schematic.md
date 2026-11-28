@@ -100,6 +100,18 @@ reset button returns to the automatic placement. The places are saved with the p
 and used by the PDF, SVG and DXF exports; the cross reference stays a link to its page.
 Command: `place_interruption_texts`.
 
+The texts can stand upright, as on drawings where the points at the ends of vertical
+conductors are lettered along the conductor. *Turn along a vertical conductor* in the
+properties does that in the automatic placement of a vertical point: the name and the
+cross reference in one line left of the conductor, reading from bottom to top and running
+back from the connection point; horizontal points are not changed. A text placed by hand has an angle
+of its own in degrees, counter-clockwise on the page (90: from bottom to top), which
+does not change when the symbol is turned or mirrored, and which a drag keeps. The
+command takes `along` (true or false) and `label_angle` and `xref_angle`; the answer
+shows the angle of every text. Older projects load unchanged: a text without an angle
+is horizontal. Texts placed by hand win over the automatic placement, so for points
+that have some, `place_interruption_texts` takes `side` `auto` together with `along`.
+
 In the editor a cross reference is followed with Ctrl + click (the key that opens links,
 *File › Settings › Keys and gestures*): the page it names is opened, and for an
 interruption point its counterpart is selected and centred. While the key is held, the

@@ -782,6 +782,9 @@ impl App {
         let by_hand = syms.iter().any(|&i| page.symbols[i].label_place.is_some() || page.symbols[i].xref_place.is_some());
         let placed = syms.iter().any(|&i| page.symbols[i].texts_placed());
         let mut chosen = None;
+        let mut reset = false;
+        let mut turned = syms.iter().all(|&i| page.symbols[i].text_along);
+        let mut turn = false;
         ui.separator();
         ui.horizontal(|ui| {
             ui.label(tr("Name and cross reference"));
@@ -794,8 +797,12 @@ impl App {
             });
             if placed && icons::button(ui, Icon::Undo, tr("Reset to automatic placement")).clicked() {
                 chosen = Some(TextSide::Auto);
+                reset = true;
             }
         });
+        if ui.checkbox(&mut turned, tr("Turn along a vertical conductor")).changed() {
+            turn = true;
+        }
         if by_hand {
             ui.weak(tr("Placed by hand; choosing a side places them anew."));
         } else if syms.len() == 1 {
@@ -804,6 +811,17 @@ impl App {
         if let Some(side) = chosen {
             for &i in syms {
                 page.symbols[i].set_text_side(side);
+                if reset {
+                    page.symbols[i].text_along = false;
+                }
+            }
+        }
+        if turn {
+            for &i in syms {
+                let s = &mut page.symbols[i];
+                s.text_along = turned;
+                s.label_place = None;
+                s.xref_place = None;
             }
         }
     }
