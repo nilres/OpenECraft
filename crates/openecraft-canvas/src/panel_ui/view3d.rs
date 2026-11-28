@@ -501,6 +501,7 @@ impl PanelUi {
             self.delete_selected_3d(prj);
             ui.close();
         }
+        self.delete_completely_entry(ui, prj);
     }
 
     /// Deletes the items selected in the 3D view (of the current enclosure).

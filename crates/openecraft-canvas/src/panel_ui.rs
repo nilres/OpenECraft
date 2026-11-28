@@ -1233,6 +1233,7 @@ impl PanelUi {
             self.remove_selection(prj, ei);
             ui.close();
         }
+        self.delete_completely_entry(ui, prj);
     }
 
     fn select_wire(&mut self, key: (String, String)) {

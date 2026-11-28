@@ -16,7 +16,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   names, and a double-click on a cross reference follows it. *Settings › Keys and
   gestures › Mouse* chooses what a double-click on a device does: open its properties
   or show it in the other view. What one view deletes is no longer selected in the
-  others ([#266](https://github.com/nilres/OpenECraft/issues/266),
+  others; *Delete completely* (`Ctrl+Delete`, also in the right-click menus of the
+  layout and the 3D view) deletes a device from the whole project: its functions on
+  all pages, its places in the layout and its device data (command `delete_device`)
+  ([#266](https://github.com/nilres/OpenECraft/issues/266),
   [user interface](docs/user-interface.md)).
 - **Several monitors:** pane menu › *Open in new window* shows a pane in a window of
   its own that moves to another monitor, maximizes and goes full screen (`F11`,

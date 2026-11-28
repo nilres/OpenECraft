@@ -2,7 +2,7 @@
 //! layout and its 3D view have selected, and selecting there what the schematic has.
 
 use super::*;
-use openecraft_core::cross_select::LayoutPick;
+use openecraft_core::cross_select::{self, Deleted, LayoutPick};
 
 impl PanelUi {
     /// What is selected (items of the current enclosure, a wire, a cable), as the
@@ -85,6 +85,39 @@ impl PanelUi {
         let keys = crate::shortcuts::get(ui.ctx()).cmd_text(Cmd::ShowInSchematic);
         if ui.add_enabled(!self.pick().is_empty(), egui::Button::new(tr(def.title)).shortcut_text(keys)).on_hover_text(tr(def.tip)).clicked() {
             self.show_schematic = true;
+            ui.close();
+        }
+    }
+
+    /// Deletes the selected items of the current enclosure from the whole project: a
+    /// device with its functions on all pages, its places and its device data
+    /// (`cross_select::delete_completely`).
+    pub fn delete_selection_completely(&mut self, prj: &mut Project) -> Deleted {
+        // Taken first: finding the current enclosure may switch the face and clear it.
+        let ids: Vec<u64> = self.selection.iter().copied().collect();
+        let Some(ei) = self.enclosure_index(prj) else { return Deleted::default() };
+        let items: Vec<(usize, u64)> = ids.into_iter().map(|id| (ei, id)).collect();
+        let done = cross_select::delete_completely(prj, &items, &[]);
+        self.selection.clear();
+        self.status = Self::deleted_text(done);
+        done
+    }
+
+    /// What Delete completely did, for the status line.
+    pub fn deleted_text(done: Deleted) -> String {
+        if done.kept > 0 {
+            tr_fmt!("Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited", done.items, done.symbols, done.kept)
+        } else {
+            tr_fmt!("Deleted completely: {} items of the layout, {} functions on the pages", done.items, done.symbols)
+        }
+    }
+
+    /// The menu entry Delete completely, for the selected items.
+    pub(super) fn delete_completely_entry(&mut self, ui: &mut egui::Ui, prj: &mut Project) {
+        let def = crate::commands::def(Cmd::DeleteCompletely);
+        let keys = crate::shortcuts::get(ui.ctx()).cmd_text(Cmd::DeleteCompletely);
+        if ui.add_enabled(!self.selection.is_empty(), egui::Button::new(tr(def.title)).shortcut_text(keys)).on_hover_text(tr(def.tip)).clicked() {
+            self.delete_selection_completely(prj);
             ui.close();
         }
     }

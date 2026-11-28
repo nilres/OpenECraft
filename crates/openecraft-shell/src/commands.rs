@@ -56,6 +56,7 @@ pub enum Cmd {
     Undo,
     Redo,
     Delete,
+    DeleteCompletely,
     Rotate,
     Mirror,
     Align,
@@ -519,6 +520,9 @@ pub static ALL: &[Def] = &[
     d(C::Undo, "undo", tr_const!("Undo"), I::Undo).keys("Ctrl+Z"),
     d(C::Redo, "redo", tr_const!("Redo"), I::Redo).keys("Ctrl+Y|Ctrl+Shift+Z"),
     d(C::Delete, "delete", tr_const!("Delete"), I::Delete).keys("Delete|Backspace").canvas(),
+    d(C::DeleteCompletely, "delete_completely", tr_const!("Delete completely"), I::Delete)
+        .keys("Ctrl+Delete")
+        .tip(tr_const!("Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone")),
     d(C::Rotate, "rotate", tr_const!("Rotate"), I::Rotate).keys("R").canvas().tip(tr_const!("Rotate (selection or symbol being placed)")),
     d(C::Mirror, "mirror", tr_const!("Mirror"), I::Mirror).keys("M").canvas().tip(tr_const!("Mirror (selection or symbol being placed)")),
     d(C::Align, "align", tr_const!("Align"), I::Align).menu(),

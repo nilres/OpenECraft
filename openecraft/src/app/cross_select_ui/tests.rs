@@ -163,3 +163,31 @@ fn show_in_3d_view_keeps_the_selection_of_the_page_in_cross_select_mode() {
     app.cross_select_frame();
     assert_eq!(app.editor.selection, before, "the page keeps what was selected there");
 }
+
+#[test]
+fn delete_completely_deletes_the_device_in_every_view() {
+    // From the page: the device leaves all pages and the layout.
+    let (mut app, ctx) = app();
+    let (page, sym, item) = placed_main(&app);
+    let tag = app.session.prj.pages[page].symbols.iter().find(|s| s.id == sym).unwrap().tag.clone();
+    app.session.page = page;
+    app.editor.selection = [sym].into_iter().collect();
+    assert!(app.cmd_enabled(Cmd::DeleteCompletely));
+    app.run(&ctx, Cmd::DeleteCompletely);
+    assert!(app.editor.selection.is_empty());
+    assert!(!app.session.prj.pages.iter().flat_map(|p| &p.symbols).any(|s| s.tag == tag));
+    assert!(app.session.prj.layout.enclosures[item.0].item(item.1).is_none());
+    assert!(!app.cmd_enabled(Cmd::DeleteCompletely), "nothing selected any more");
+    // From the 3D view, the document worked in.
+    let (mut app, ctx) = self::app();
+    let (_, _, item) = placed_main(&app);
+    let tag = app.session.prj.layout.enclosures[item.0].item(item.1).unwrap().tag.clone();
+    app.active_doc = Pane::LayoutView;
+    app.panel_ui.view = View::ThreeD;
+    app.panel_ui.cross_select(&app.session.prj, &app.session.analysis, &LayoutPick { items: vec![item], ..Default::default() });
+    assert!(app.cmd_enabled(Cmd::DeleteCompletely));
+    app.run(&ctx, Cmd::DeleteCompletely);
+    assert!(app.panel_ui.selection.is_empty());
+    assert!(!app.session.prj.pages.iter().flat_map(|p| &p.symbols).any(|s| s.tag == tag));
+    assert!(!app.session.prj.devices.contains_key(&tag));
+}

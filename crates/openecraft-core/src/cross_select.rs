@@ -2,12 +2,14 @@
 //! selection on a page is in the layout – the placed devices and terminals of its
 //! symbols, the wires of the virtual wiring along its wires, its cables – and where a
 //! selection of the layout is on the pages. No UI: the editor keeps the views in step
-//! with it (cross-select mode, Show in schematic, Show in 3D view).
+//! with it (cross-select mode, Show in schematic, Show in 3D view). A device deleted
+//! completely leaves all views at once: its functions, its places and its data.
 
 use crate::analysis::Analysis;
 use crate::model::Project;
 use crate::netlist::{pin_designation, Connection};
-use crate::panel::{self, ItemKind};
+use crate::panel::{self, ItemKind, PanelItem};
+use crate::symbols::Func;
 use std::collections::BTreeSet;
 
 /// A selection of the panel layout and its 3D view.
@@ -93,14 +95,7 @@ pub fn in_schematic(prj: &Project, an: &Analysis, pick: &LayoutPick) -> Vec<(usi
             continue;
         }
         let mains: Vec<(usize, u64)> = an.index.devices.get(&it.tag).map(|d| d.mains.iter().map(|l| (l.page, l.sym_id)).collect()).unwrap_or_default();
-        let mut of_item: Vec<(bool, usize, u64)> = Vec::new();
-        for (pi, page) in prj.pages.iter().enumerate() {
-            for s in page.symbols.iter().filter(|s| s.tag == it.tag) {
-                if panel::locate_symbol(prj, s).is_some_and(|(k, x)| k == ei && x.id == it.id) {
-                    of_item.push((!mains.contains(&(pi, s.id)), pi, s.id));
-                }
-            }
-        }
+        let mut of_item: Vec<(bool, usize, u64)> = symbols_of(prj, ei, it).into_iter().map(|(pi, sid)| (!mains.contains(&(pi, sid)), pi, sid)).collect();
         of_item.sort_by_key(|&(aux, pi, _)| (aux, pi));
         for (_, pi, sid) in of_item {
             push(&mut found, (pi, sid));
@@ -136,6 +131,108 @@ pub fn in_schematic(prj: &Project, an: &Analysis, pick: &LayoutPick) -> Vec<(usi
         }
     }
     found
+}
+
+/// The symbols of the pages placed as item `it` of enclosure `ei`, in page order.
+fn symbols_of(prj: &Project, ei: usize, it: &PanelItem) -> Vec<(usize, u64)> {
+    let mut out = Vec::new();
+    for (pi, page) in prj.pages.iter().enumerate() {
+        for s in page.symbols.iter().filter(|s| s.tag == it.tag) {
+            if panel::locate_symbol(prj, s).is_some_and(|(k, x)| k == ei && x.id == it.id) {
+                out.push((pi, s.id));
+            }
+        }
+    }
+    out
+}
+
+/// What [`delete_completely`] and [`delete_device`] deleted.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub struct Deleted {
+    /// Items of the panel layout.
+    pub items: usize,
+    /// Symbols on the pages.
+    pub symbols: usize,
+    /// Symbols left on pages that cannot be edited (generated, locked).
+    pub kept: usize,
+}
+
+/// Deletes the layout items `items` (enclosure, item id) and the symbols `symbols`
+/// (page, symbol id) from the whole project with what belongs to them: a device with
+/// all its functions on all pages, all its places in the layout and its device data;
+/// a terminal with its place and its symbols; a cable symbol, a point without a tag and
+/// an item without a device (rail, duct) alone. Pages that cannot be edited keep their
+/// symbols.
+pub fn delete_completely(prj: &mut Project, items: &[(usize, u64)], symbols: &[(usize, u64)]) -> Deleted {
+    let mut tags = BTreeSet::new();
+    let mut gone_items: BTreeSet<(usize, u64)> = items.iter().copied().collect();
+    let mut gone_symbols: BTreeSet<(usize, u64)> = symbols.iter().copied().collect();
+    for &(ei, id) in items {
+        let Some(it) = prj.layout.enclosures.get(ei).and_then(|e| e.item(id)) else { continue };
+        if it.kind != ItemKind::Device || it.tag.is_empty() {
+            continue;
+        }
+        if it.terminal.is_empty() {
+            tags.insert(it.tag.clone());
+        } else {
+            gone_symbols.extend(symbols_of(prj, ei, it));
+        }
+    }
+    for &(pi, id) in symbols {
+        let Some(s) = prj.pages.get(pi).and_then(|p| p.symbols.iter().find(|s| s.id == id)) else { continue };
+        let func = prj.symbol(&s.sym).map(|d| d.func);
+        if s.tag.is_empty() || func.is_some_and(|f| !f.has_tag()) || prj.cable(&s.tag).is_some() {
+            continue;
+        }
+        if func == Some(Func::Terminal) {
+            if let Some((ei, it)) = panel::locate_symbol(prj, s).filter(|(_, it)| !it.terminal.is_empty()) {
+                gone_items.insert((ei, it.id));
+                gone_symbols.extend(symbols_of(prj, ei, it));
+            }
+        } else {
+            tags.insert(s.tag.clone());
+        }
+    }
+    delete(prj, &tags, gone_items, gone_symbols)
+}
+
+/// Deletes the device `tag` from the whole project: its functions on all pages, its
+/// places in the layout and its device data (see [`delete_completely`]).
+pub fn delete_device(prj: &mut Project, tag: &str) -> Deleted {
+    delete(prj, &BTreeSet::from([tag.to_string()]), BTreeSet::new(), BTreeSet::new())
+}
+
+fn delete(prj: &mut Project, tags: &BTreeSet<String>, mut items: BTreeSet<(usize, u64)>, mut symbols: BTreeSet<(usize, u64)>) -> Deleted {
+    for (ei, e) in prj.layout.enclosures.iter().enumerate() {
+        items.extend(e.items.iter().filter(|it| it.kind == ItemKind::Device && tags.contains(&it.tag)).map(|it| (ei, it.id)));
+    }
+    for (pi, page) in prj.pages.iter().enumerate() {
+        symbols.extend(page.symbols.iter().filter(|s| tags.contains(&s.tag)).map(|s| (pi, s.id)));
+    }
+    let mut done = Deleted::default();
+    for (pi, page) in prj.pages.iter_mut().enumerate() {
+        let ids: BTreeSet<u64> = symbols.iter().filter(|g| g.0 == pi).map(|g| g.1).collect();
+        let n = page.symbols.iter().filter(|s| ids.contains(&s.id)).count();
+        if !page.is_editable() {
+            done.kept += n;
+        } else if n > 0 {
+            page.symbols.retain(|s| !ids.contains(&s.id));
+            done.symbols += n;
+        }
+    }
+    for (ei, e) in prj.layout.enclosures.iter_mut().enumerate() {
+        let ids: Vec<u64> = items.iter().filter(|g| g.0 == ei).map(|g| g.1).collect();
+        if !ids.is_empty() {
+            done.items += panel::remove_items(e, &ids);
+        }
+    }
+    for tag in tags {
+        let used = prj.pages.iter().flat_map(|p| &p.symbols).any(|s| &s.tag == tag) || prj.layout.enclosures.iter().flat_map(|e| &e.items).any(|it| &it.tag == tag);
+        if !used {
+            prj.devices.remove(tag);
+        }
+    }
+    done
 }
 
 /// The part of `found` ([`in_schematic`]) to select: what is on page `current`, otherwise

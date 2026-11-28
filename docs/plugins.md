@@ -540,6 +540,11 @@ references follow cable edits only while the old tag has no ordinary device iden
 Renaming a device or cable can retain an unchanged imported prefix containing
 spaces; the new final device name still follows the normal tag validation rules.
 
+`delete_device` takes a device `tag` and deletes the device from the whole project:
+its functions on all pages, its places in the panel layout and its device data. Pages
+that cannot be edited keep their functions (`kept`). Delete completely in the editor
+(Ctrl+Delete) uses the same operation; a terminal selected there goes alone.
+
 ### Explicit cabinet orientation
 
 Hosts advertising `explicit_panel_rotations` preserve optional numeric

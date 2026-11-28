@@ -86,3 +86,93 @@ fn the_current_page_is_kept_when_it_has_counterparts() {
     assert_eq!(on_one_page(&found, 5), Some((3, vec![30, 31])));
     assert_eq!(on_one_page(&[], 0), None);
 }
+
+/// The symbols with the tag `tag` on all pages.
+fn with_tag(prj: &Project, tag: &str) -> usize {
+    prj.pages.iter().flat_map(|p| &p.symbols).filter(|s| s.tag == tag).count()
+}
+
+fn items_with_tag(prj: &Project, tag: &str) -> usize {
+    prj.layout.enclosures.iter().flat_map(|e| &e.items).filter(|it| it.tag == tag).count()
+}
+
+#[test]
+fn a_device_deleted_completely_leaves_the_pages_the_layout_and_the_device_data() {
+    let mut prj = sample::demo_project();
+    let an = Analysis::checked(&prj);
+    let (page, sym, item) = placed_main(&prj, &an);
+    let tag = prj.pages[page].symbols.iter().find(|s| s.id == sym).unwrap().tag.clone();
+    let symbols = with_tag(&prj, &tag);
+    assert!(prj.devices.contains_key(&tag));
+    let done = delete_completely(&mut prj, &[item], &[]);
+    assert_eq!(done, Deleted { items: 1, symbols, kept: 0 });
+    assert_eq!(with_tag(&prj, &tag), 0);
+    assert_eq!(items_with_tag(&prj, &tag), 0);
+    assert!(!prj.devices.contains_key(&tag));
+}
+
+#[test]
+fn a_function_on_a_page_deletes_its_whole_device() {
+    let mut prj = sample::demo_project();
+    let an = Analysis::checked(&prj);
+    let (page, sym, _) = placed_main(&prj, &an);
+    let tag = prj.pages[page].symbols.iter().find(|s| s.id == sym).unwrap().tag.clone();
+    let done = delete_completely(&mut prj, &[], &[(page, sym)]);
+    assert!(done.items >= 1 && done.symbols >= 1);
+    assert_eq!(with_tag(&prj, &tag) + items_with_tag(&prj, &tag), 0);
+    // Gone already: nothing more to delete.
+    assert_eq!(delete_device(&mut prj, &tag), Deleted::default());
+}
+
+#[test]
+fn a_terminal_goes_alone() {
+    let mut prj = sample::demo_project();
+    let terminals: Vec<(usize, u64, String, String)> = prj
+        .pages
+        .iter()
+        .enumerate()
+        .flat_map(|(pi, p)| p.symbols.iter().map(move |s| (pi, s)))
+        .filter(|(_, s)| prj.symbol(&s.sym).is_some_and(|d| d.func == Func::Terminal) && !s.tag.is_empty() && !s.label.is_empty())
+        .map(|(pi, s)| (pi, s.id, s.tag.clone(), s.label.clone()))
+        .collect();
+    let (pi, sid, tag, label) = terminals.first().cloned().expect("the demo has terminals");
+    let others = terminals.iter().filter(|t| t.2 == tag && t.3 != label).count();
+    assert!(others > 0, "the strip has more terminals");
+    // Its place in the layout.
+    let id = prj.new_id();
+    prj.layout.enclosures[0].items.push(panel::PanelItem { id, kind: ItemKind::Device, tag: tag.clone(), terminal: label.clone(), ..Default::default() });
+    let done = delete_completely(&mut prj, &[], &[(pi, sid)]);
+    assert_eq!(done.items, 1);
+    assert!(prj.layout.enclosures[0].item(id).is_none());
+    assert!(!prj.pages.iter().flat_map(|p| &p.symbols).any(|s| s.tag == tag && s.label == label));
+    assert_eq!(prj.pages.iter().flat_map(|p| &p.symbols).filter(|s| s.tag == tag).count(), others, "the other terminals of the strip stay");
+}
+
+#[test]
+fn pages_that_cannot_be_edited_keep_their_functions() {
+    let mut prj = sample::demo_project();
+    let an = Analysis::checked(&prj);
+    let (page, sym, item) = placed_main(&prj, &an);
+    let tag = prj.pages[page].symbols.iter().find(|s| s.id == sym).unwrap().tag.clone();
+    let on_page = prj.pages[page].symbols.iter().filter(|s| s.tag == tag).count();
+    prj.pages[page].locked = true;
+    let done = delete_completely(&mut prj, &[item], &[]);
+    assert_eq!(done.kept, on_page);
+    assert_eq!(with_tag(&prj, &tag), on_page);
+    assert!(prj.devices.contains_key(&tag), "still used on the locked page");
+}
+
+#[test]
+fn an_item_without_a_device_is_deleted_alone() {
+    let mut prj = sample::demo_project();
+    let (ei, id) = prj
+        .layout
+        .enclosures
+        .iter()
+        .enumerate()
+        .find_map(|(ei, e)| e.items.iter().find(|it| it.kind != ItemKind::Device).map(|it| (ei, it.id)))
+        .expect("the demo has a rail or a duct");
+    let symbols: usize = prj.pages.iter().map(|p| p.symbols.len()).sum();
+    assert_eq!(delete_completely(&mut prj, &[(ei, id)], &[]), Deleted { items: 1, symbols: 0, kept: 0 });
+    assert_eq!(prj.pages.iter().map(|p| p.symbols.len()).sum::<usize>(), symbols);
+}

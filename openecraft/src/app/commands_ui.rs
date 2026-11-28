@@ -47,6 +47,8 @@ impl App {
             Cmd::RenameCable => self.selected_cable().is_some() && self.page_editable() && !self.remote.viewer(),
             Cmd::ShowInLayout | Cmd::ShowIn3d => self.page_pick_shown() || self.selected_tag().is_some_and(|t| openecraft_core::panel::locate(&self.session.prj, &t).is_some()),
             Cmd::ShowInSchematic => !self.panel_ui.pick().is_empty(),
+            Cmd::DeleteCompletely if self.active_doc == Pane::LayoutView => !self.panel_ui.selection.is_empty(),
+            Cmd::DeleteCompletely => has_sel && !self.remote.viewer(),
             Cmd::Quit | Cmd::FullScreen => FileIo::has_own_window(),
             Cmd::View3dInWindow => self.own_windows,
             Cmd::GatherWindows => self.own_windows && !self.shell.windows.is_empty(),
@@ -340,6 +342,7 @@ impl App {
                 ops::delete(&mut self.session.prj.pages[page], &items);
                 self.editor.selection.clear();
             }
+            Cmd::DeleteCompletely => self.delete_completely(ctx),
             Cmd::Rotate => {
                 if matches!(self.editor.tool, Tool::Place(_)) {
                     self.editor.place_rot = (self.editor.place_rot + 1) % 4;

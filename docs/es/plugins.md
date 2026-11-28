@@ -619,6 +619,12 @@ Renombrar un dispositivo o un cable puede conservar un prefijo importado sin cam
 contiene espacios; el nuevo nombre final del dispositivo sigue las reglas normales de
 validación de identificadores.
 
+`delete_device` acepta el identificador `tag` de un dispositivo y lo elimina de todo el
+proyecto: sus funciones en todas las páginas, sus posiciones en la disposición del armario
+y sus datos de dispositivo. Las páginas que no se pueden editar conservan sus funciones
+(`kept`). Eliminar por completo en el editor (Ctrl+Delete) usa la misma operación; un borne
+seleccionado allí se elimina solo.
+
 ### Orientación explícita en el armario
 
 Los anfitriones que anuncian `explicit_panel_rotations` conservan los valores numéricos

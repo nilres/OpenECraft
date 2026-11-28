@@ -105,6 +105,26 @@ impl App {
         }
     }
 
+    /// Delete completely: the selection of the panel layout while it is the document
+    /// worked in, otherwise the one of the page (its devices with their functions on
+    /// all pages and their places; the other items of the page as Delete does).
+    pub(super) fn delete_completely(&mut self, ctx: &egui::Context) {
+        let done = if self.active_doc == Pane::LayoutView {
+            self.panel_ui.delete_selection_completely(&mut self.session.prj)
+        } else {
+            let page = self.session.page;
+            let sel: Vec<(usize, u64)> = self.editor.selection.iter().map(|id| (page, *id)).collect();
+            let items = self.editor.items(&self.session.prj, page);
+            let done = cross_select::delete_completely(&mut self.session.prj, &[], &sel);
+            if self.page_editable() {
+                openecraft_core::ops::delete(&mut self.session.prj.pages[page], &items);
+            }
+            self.editor.selection.clear();
+            done
+        };
+        self.notify(ctx, crate::panel_ui::PanelUi::deleted_text(done));
+    }
+
     /// Shows page `page` with the items `ids` selected, the first one in the middle.
     pub(super) fn goto_items(&mut self, page: usize, ids: Vec<u64>) {
         if self.in_dock {

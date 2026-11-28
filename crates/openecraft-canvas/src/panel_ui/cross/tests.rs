@@ -89,3 +89,22 @@ fn what_another_view_deleted_leaves_the_selection() {
     ui.drop_missing(&prj, &an);
     assert!(ui.selected_wire.is_none());
 }
+
+#[test]
+fn delete_completely_takes_the_device_out_of_the_pages_too() {
+    let mut prj = sample::demo_project();
+    let an = Analysis::checked(&prj);
+    let item = placed(&prj);
+    let tag = prj.layout.enclosures[item.0].item(item.1).unwrap().tag.clone();
+    let mut ui = PanelUi::default();
+    assert!(ui.cross_select(&prj, &an, &LayoutPick { items: vec![item], ..Default::default() }));
+    let done = ui.delete_selection_completely(&mut prj);
+    assert_eq!(done.items, 1);
+    assert!(done.symbols > 0);
+    assert!(ui.selection.is_empty());
+    assert_eq!(ui.status, PanelUi::deleted_text(done));
+    assert!(!prj.pages.iter().flat_map(|p| &p.symbols).any(|s| s.tag == tag));
+    assert!(prj.layout.enclosures[item.0].item(item.1).is_none());
+    // Nothing selected: nothing deleted.
+    assert_eq!(ui.delete_selection_completely(&mut prj), Deleted::default());
+}
