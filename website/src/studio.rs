@@ -27,10 +27,10 @@ pub const SYMBOLS: [(&str, &str); 6] = [("no", "no"), ("nc", "nc"), ("coil", "co
 /// last one takes the rest).
 pub const EXPORT_GROUPS: [(&str, &[&str]); 8] = [
     (tr_const!("Documents"), &["html", "pdf", "dictionary", "device_tags"]),
-    (tr_const!("Drawings"), &["dxf", "dwg"]),
-    (tr_const!("3D models"), &["gltf", "step", "iges", "ifc", "jt", "parasolid"]),
+    (tr_const!("Drawings"), &["dxf", "dwg", "kicad_symbols"]),
+    (tr_const!("3D models"), &["gltf", "step", "iges", "ifc", "jt", "parasolid", "freecad"]),
     (tr_const!("PLC and automation"), &["plc_table", "plc_variables", "plc_tia", "plc_rockwell", "plc_step7", "plc_twincat", "plc_mitsubishi", "plc_schneider", "aml"]),
-    (tr_const!("Wiring and harnesses"), &["wire_list", "pinouts", "kbl", "kbl_zip", "harness_json", "harness_processing", "harness_gltf", "harness_jt"]),
+    (tr_const!("Wiring and harnesses"), &["wire_list", "kicad_netlist", "pinouts", "kbl", "kbl_zip", "harness_json", "harness_processing", "harness_gltf", "harness_jt"]),
     (tr_const!("Manufacturing"), &["marking", "marking_xlsx", "manufacturing_package", "copper_bar_program"]),
     (tr_const!("Planning"), &["preplanning_csv", "preplanning_xlsx"]),
     (tr_const!("Other"), &[]),

@@ -16,6 +16,7 @@ Additional power loss in W	Yderligere effekttab i W
 Address scheme: siemens, iec or rockwell	Adresseskema: siemens, iec eller rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Tilføjer et solcellefelt til et tag: rækker af moduler på skinner og tagkroge parallelt med en tagflade, eller på et fladt tag skråt eller øst-vest på ballasterede monteringsfødder; uden x og z midt på den forreste eller højre tagflade. Uden bygning og tag et jordmonteret felt på grunden: rækker af skrå borde på rammede stolper, uden x og z foran det, der står i anlægget. Modulerne og monteringsmaterialet kommer i styklisten
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Tilføjer en bukket og boret kobberskinne (eller erstatter den med samme navn i kapslingen)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	Tilføjer et printkort designet i KiCad som enhed: en enhedsboks på en ny diagramside med et tilslutningspunkt for hvert ben på dets stik (J1.1), navngivet efter printkortets net, og en artikel til det
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Tilføjer en kabelforskruning i passende størrelse for hvert kabel, der forlader et skab og ikke finder nogen ledig forskruning: i taget for en enhed i rummet, i bunden for feltet eller et skab, der hænger på væggen
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Tilføjer en kabelgennemføring til højre nabo: runde udskæringer over for hinanden i begge sidevægge; ledninger mellem kapslingerne føres igennem den
 Adds a configurator rule: insert a page macro when the condition holds	Tilføjer en konfiguratorregel: Indsæt en sidemakro, når betingelsen er opfyldt
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Tilføjer eller ændrer en maskine i projektet (en indbygget maskine med samme id erstattes) eller fjerner den
 Adds the devices of a template to a segment	Føjer enhederne fra en skabelon til et segment
 Adds the outline of a machine, building or area to the plant layout	Tilføjer omridset af en maskine, en bygning eller et område til anlægslayoutet
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Tilføjer symbolerne fra et KiCad-symbolbibliotek til projektets symboler; tidligere indlæste symboler erstattes
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Tilføjer, erstatter eller fjerner en profil: en connector med de kolonnenavne, det andet system bruger
 After it instead of before	Efter i stedet for før
 Air-termination rod: its name	Fangstang: dens navn
@@ -381,6 +383,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Nøgle, f.eks. user.coupling_relay
 Key, e.g. user.customer_code	Nøgle, f.eks. user.customer_code
 Keys of the routes, comma separated (all if missing)	Nøgler for føringerne, kommasepareret (alle, hvis de mangler)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	KiCad-printkort (indholdet af .kicad_pcb-filen): dets omrids giver artiklens størrelse
+KiCad netlist of the board: the content of its .net export	Printkortets KiCad-netliste (indholdet af .net-filen)
+KiCad symbol library: the content of a .kicad_sym	KiCad-symbolbibliotek (indholdet af .kicad_sym-filen)
 Kind: machining, punching or busbar	Type: machining, punching eller busbar
 Known length of the cable in m (taken instead of the 3D route)	Kendt længde af kablet i m (bruges i stedet for 3D-føringen)
 Label shown when the value is asked for	Etiket, der vises, når værdien efterspørges
@@ -406,6 +411,7 @@ Length of a shield pigtail in mm	Længde af en skærmpigtail i mm
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Etage for en etageklemme (1 = nederst); øvre etager sidder på blokken for klemmen foran
 Library id or customer rule set name to no longer verify against	Biblioteks-id eller navn på kunderegelsæt, der ikke længere skal verificeres op imod
 Library id or customer rule set name to verify against	Biblioteks-id eller navn på kunderegelsæt, der skal verificeres op imod
+Library the symbols are listed under (default: KiCad)	Bibliotek, som symbolerne vises under (standard: KiCad)
 Line in the source language	Linje på kildesproget
 Line-to-line voltage in V	Spænding mellem faser i V
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Tilknytter en fluidenhed til de elektriske enheder, der aktiverer eller overvåger den (erstatter tilknytningerne)

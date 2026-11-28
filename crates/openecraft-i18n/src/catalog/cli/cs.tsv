@@ -24,7 +24,7 @@ AutomationML file	Soubor AutomationML
 CSV content instead of a file	Obsah CSV místo souboru
 CSV file	Soubor CSV
 CSV or Excel file	Soubor CSV nebo Excel
-CSV or JSON file	Soubor CSV nebo JSON
+CSV or JSON file, KiCad netlist (.net) or FreeCAD document (.FCStd)	Soubor CSV nebo JSON, seznam sítí KiCad (.net) nebo dokument FreeCAD (.FCStd)
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	Soubor CSV, JSON, BMEcat, EPLAN XML nebo EDZ
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	Soubor CSV, JSON, BMEcat, EPLAN XML, EDZ nebo ZIP
 Catalog data; without id it is derived from the name	Data katalogu; bez ID se odvodí z názvu
@@ -109,7 +109,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Importuje popisy zařízení ze souboru GSDML (PROFINET) nebo ESI (EtherCAT) do projektu
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Importuje segmenty předběžného plánování a plánované přístroje z CSV nebo Excelu (sloupce Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Importuje komentáře, které kontrolor vytvořil v exportu PDF projektu (poznámky, textová pole, zvýraznění, tvary, odpovědi), do vrstvy komentářů; dříve importované komentáře se přeskočí
-Insert after this page (default: at the end)	Vložit za tuto stránku (výchozí: na konec)
 Inserts an edited subproject: its pages replace the pages taken out	Vloží upravený podprojekt: jeho stránky nahradí vyčleněné stránky
 Invalid form: {}	Neplatný formulář: {}
 Keep the file checked out after the check-in	Ponechat soubor po vrácení se změnami rezervovaný
@@ -203,7 +202,7 @@ Properties to rename (old name: new name)	Vlastnosti k přejmenování (starý n
 Property {} needs a text or a number	Vlastnost {} vyžaduje text nebo číslo
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Uloží projekt, export, export konektoru nebo místní soubor do trezoru Vault; soubor se stejným názvem ve složce dostane novou verzi (rezervace a vrácení se změnami), jinak se soubor přidá
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor nebo Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Načte soubor jiného systému (CSV nebo JSON) pomocí konektoru a vypíše změny; s apply se převezmou (konflikty jen s overwrite)
+Reads a file of another system (CSV, JSON, a KiCad netlist or a FreeCAD document) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Načte soubor jiného systému (CSV, JSON, seznam sítí KiCad nebo dokument FreeCAD) pomocí konektoru a vypíše změny; s apply se převezmou (konflikty jen s overwrite)
 Reads the project files and archives of a folder (and its subfolders) into the project database	Načte projektové soubory a archivy složky (a jejích podsložek) do databáze projektů
 Reads translations from CSV: first column the source line, one column per language code	Načte překlady z CSV: první sloupec zdrojový řádek, jeden sloupec na kód jazyka
 Redoes the last undone change	Znovu provede poslední vrácenou změnu
@@ -304,8 +303,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Zapíše nastavení projektu (číslování vodičů, potenciály, výchozí hodnoty a barvy vodičů, popisování, výchozí hodnoty hadic, křížové odkazy, schéma kontroly) do souboru
 Writes the structure management (aspects, identifiers, work areas) as a template file	Zapíše správu struktury (aspekty, identifikátory, pracovní oblasti) jako soubor šablony
 csv (default) or eplan_xml	csv (výchozí) nebo eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement nebo wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine nebo exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad nebo freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad nebo exchange
 json (default), csv or xlsx (Excel, needs path)	json (výchozí), csv nebo xlsx (Excel, vyžaduje path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nZobrazí verzi příkazového řádku (také --version nebo -V)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo a redo fungují jen v relaci MCP: příkazový řádek otevírá projekt pro každý příkaz znovu

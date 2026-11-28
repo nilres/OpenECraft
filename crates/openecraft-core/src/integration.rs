@@ -246,7 +246,7 @@ impl Field {
             Field::OrderStatus => &["orderstate", "bestellstatus", "postatus", "purchaseorderstatus"],
             Field::Ordered => &["orderedquantity", "confirmedquantity", "bestellt", "bestaetigtemenge"],
             Field::Delivery => &["deliverydate", "confirmeddate", "eta", "liefertermin", "lieferdatum"],
-            Field::Tag => &["device", "devicetag", "bmk", "betriebsmittelkennzeichen", "refdes", "reference designator", "designator", "component"],
+            Field::Tag => &["device", "devicetag", "bmk", "betriebsmittelkennzeichen", "refdes", "reference designator", "designator", "component", "refs"],
             Field::Devices => &["usedby", "devicetags"],
             Field::Enclosure => &["location", "cabinet", "schrank", "ort", "einbauort"],
             Field::Face => &["side", "seite", "mountingface"],
@@ -328,7 +328,15 @@ pub struct Connector {
     pub target: Target,
     pub accepts: &'static [Field],
     pub export: fn(&Project, &Analysis) -> String,
+    /// Column names of the other system's own files, before the general aliases.
+    pub columns: &'static [(Field, &'static str)],
+    /// Reads a file in a format of the other system (neither CSV nor JSON) into
+    /// records; `None` for a file that is not in such a format.
+    pub read: Option<Reader>,
 }
+
+/// Reads a file of another system into records (see [`Connector::read`]).
+pub type Reader = fn(&[u8]) -> Option<Result<String, String>>;
 
 pub static CONNECTORS: &[Connector] = &[
     Connector {
@@ -340,6 +348,8 @@ pub static CONNECTORS: &[Connector] = &[
         target: Target::Part,
         accepts: &[Field::ErpNumber, Field::Description, Field::Price, Field::Currency, Field::Stock, Field::LeadTime],
         export: connectors::erp,
+        columns: &[],
+        read: None,
     },
     Connector {
         id: "pdm",
@@ -350,6 +360,8 @@ pub static CONNECTORS: &[Connector] = &[
         target: Target::Document,
         accepts: &[Field::DocumentNumber, Field::Revision, Field::State],
         export: connectors::pdm,
+        columns: &[],
+        read: None,
     },
     Connector {
         id: "plm",
@@ -360,6 +372,8 @@ pub static CONNECTORS: &[Connector] = &[
         target: Target::Part,
         accepts: &[Field::ItemId, Field::Revision, Field::Lifecycle],
         export: connectors::plm,
+        columns: &[],
+        read: None,
     },
     Connector {
         id: "ecad",
@@ -370,6 +384,8 @@ pub static CONNECTORS: &[Connector] = &[
         target: Target::Device,
         accepts: &[Field::PartNumber, Field::Description],
         export: connectors::ecad,
+        columns: &[],
+        read: None,
     },
     Connector {
         id: "mcad",
@@ -380,6 +396,8 @@ pub static CONNECTORS: &[Connector] = &[
         target: Target::Placement,
         accepts: &[Field::X, Field::Y, Field::Z],
         export: connectors::mcad,
+        columns: &[],
+        read: None,
     },
     Connector {
         id: "procurement",
@@ -390,6 +408,8 @@ pub static CONNECTORS: &[Connector] = &[
         target: Target::Part,
         accepts: &[Field::OrderStatus, Field::Ordered, Field::Delivery, Field::Stock, Field::Price],
         export: connectors::procurement,
+        columns: &[],
+        read: None,
     },
     Connector {
         id: "wiring_machine",
@@ -400,6 +420,32 @@ pub static CONNECTORS: &[Connector] = &[
         target: Target::Wire,
         accepts: &[Field::Status, Field::Note],
         export: connectors::wiring_machine,
+        columns: &[],
+        read: None,
+    },
+    Connector {
+        id: "kicad",
+        system: System::Ecad,
+        title: tr_const!("KiCad netlist (.net)"),
+        help: tr_const!("Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)"),
+        extension: "net",
+        target: Target::Device,
+        accepts: &[Field::PartNumber, Field::Description],
+        export: crate::kicad::net::export,
+        columns: &[(Field::Tag, "Reference")],
+        read: Some(connectors::kicad_records),
+    },
+    Connector {
+        id: "freecad",
+        system: System::Mcad,
+        title: tr_const!("FreeCAD panel layout (macro, .FCStd)"),
+        help: tr_const!("Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)"),
+        extension: "FCMacro",
+        target: Target::Placement,
+        accepts: &[Field::X, Field::Y, Field::Z],
+        export: connectors::freecad,
+        columns: &[],
+        read: Some(connectors::freecad_records),
     },
 ];
 
@@ -798,9 +844,19 @@ fn imported_value(field: Field, text: &str) -> Option<String> {
     }
 }
 
+/// The content of a file of another system as the text [`import`] reads: a file in a
+/// format of the other system (a KiCad netlist, a FreeCAD document) is read by the
+/// connector into records, CSV and JSON files stay what they are.
+pub fn decode(c: &Connector, bytes: &[u8]) -> Result<String, String> {
+    c.read.and_then(|read| read(bytes)).unwrap_or_else(|| Ok(String::from_utf8_lossy(bytes).into_owned()))
+}
+
 /// Reads a file of another system with a connector and lists what would change.
 pub fn import(prj: &Project, an: &Analysis, c: &Connector, text: &str, mapping: &BTreeMap<String, String>) -> Result<Preview, String> {
-    let recs = records(text, mapping)?;
+    // The connector's own column names, unless the profile maps the field.
+    let mut columns: BTreeMap<String, String> = c.columns.iter().map(|(f, name)| (f.code().to_string(), name.to_string())).collect();
+    columns.extend(mapping.iter().map(|(k, v)| (k.clone(), v.clone())));
+    let recs = records(&decode(c, text.as_bytes())?, &columns)?;
     let base = prj.integration.baseline.get(c.id);
     let mut out = Preview { records: recs.len(), ..Default::default() };
     for r in &recs {

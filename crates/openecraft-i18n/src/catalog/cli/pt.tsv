@@ -24,7 +24,7 @@ AutomationML file	Arquivo AutomationML
 CSV content instead of a file	Conteúdo CSV em vez de um arquivo
 CSV file	Arquivo CSV
 CSV or Excel file	Arquivo CSV ou Excel
-CSV or JSON file	Arquivo CSV ou JSON
+CSV or JSON file, KiCad netlist (.net) or FreeCAD document (.FCStd)	Arquivo CSV ou JSON, netlist do KiCad (.net) ou documento do FreeCAD (.FCStd)
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	Arquivo CSV, JSON, BMEcat, EPLAN XML ou EDZ
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	Arquivo CSV, JSON, BMEcat, EPLAN XML, EDZ ou ZIP
 Catalog data; without id it is derived from the name	Dados do catálogo; sem ID, ele é derivado do nome
@@ -109,7 +109,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Importa descrições de dispositivo de um arquivo GSDML (PROFINET) ou ESI (EtherCAT) para o projeto
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Importa segmentos de pré-planejamento e dispositivos planejados de CSV ou Excel (colunas Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Importa os comentários que um revisor fez em uma exportação PDF do projeto (notas, caixas de texto, realces, formas, respostas) para a camada de análise; comentários importados antes são ignorados
-Insert after this page (default: at the end)	Inserir após esta página (padrão: no final)
 Inserts an edited subproject: its pages replace the pages taken out	Insere um subprojeto editado: suas páginas substituem as páginas retiradas
 Invalid form: {}	Formulário inválido: {}
 Keep the file checked out after the check-in	Manter o arquivo com check-out após o check-in
@@ -203,7 +202,7 @@ Properties to rename (old name: new name)	Propriedades a renomear (nome antigo: 
 Property {} needs a text or a number	A propriedade {} precisa de um texto ou um número
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Coloca o projeto, uma exportação, uma exportação de conector ou um arquivo local no vault; um arquivo de mesmo nome na pasta recebe uma nova versão (check-out e check-in), caso contrário o arquivo é adicionado
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor ou Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Lê um arquivo de outro sistema (CSV ou JSON) com um conector e lista as alterações; com apply elas são adotadas (conflitos somente com overwrite)
+Reads a file of another system (CSV, JSON, a KiCad netlist or a FreeCAD document) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Lê um arquivo de outro sistema (CSV, JSON, uma netlist do KiCad ou um documento do FreeCAD) com um conector e lista as alterações; com apply elas são adotadas (conflitos somente com overwrite)
 Reads the project files and archives of a folder (and its subfolders) into the project database	Lê os arquivos de projeto e arquivos compactados de uma pasta (e suas subpastas) para o banco de dados de projetos
 Reads translations from CSV: first column the source line, one column per language code	Lê traduções de CSV: primeira coluna a linha de origem, uma coluna por código de idioma
 Redoes the last undone change	Refaz a última alteração desfeita
@@ -304,8 +303,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Grava as configurações do projeto (numeração de fios, potenciais, padrões e cores de fios, marcação, padrões de mangueira, referências cruzadas, esquema de verificação) em um arquivo
 Writes the structure management (aspects, identifiers, work areas) as a template file	Grava o gerenciamento de estruturas (aspectos, identificadores, áreas de trabalho) como arquivo de modelo
 csv (default) or eplan_xml	csv (padrão) ou eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement ou wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine ou exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad ou freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad ou exchange
 json (default), csv or xlsx (Excel, needs path)	json (padrão), csv ou xlsx (Excel, precisa de path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nMostra a versão da linha de comando (também --version ou -V)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo e redo só funcionam em uma sessão MCP: a linha de comando abre o projeto de novo a cada comando

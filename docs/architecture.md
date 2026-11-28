@@ -75,7 +75,7 @@ exceptions, to be removed over time.
 
 Layers, bottom up (a module may use its own layer and the layers below):
 
-1. Foundations without dependencies: `geom`, `xml`, `zip`, `xlsx` (Excel workbooks), `qr`
+1. Foundations without dependencies: `geom`, `xml`, `zip`, `sexpr` (S-expressions of KiCad's files), `xlsx` (Excel workbooks), `qr`
    (QR codes), `raster` (grey images, PNG, morphology), `wallscan` (walls, doors,
    windows and rooms found in a floor plan on paper; uses `raster`),
    `ttf` (TrueType reader and
@@ -118,7 +118,9 @@ Layers, bottom up (a module may use its own layer and the layers below):
    and back: cross-select mode, Show in schematic).
 7. Output and exchange formats: `render`, `svg`, `pdf`, `dxf`, `dxf_import`, `dwg`,
    `export3d`, `aml`, `integration`, `kbl` (harness data as KBL / VDA 4964),
-   `harness_export` (harness interface: JSON, wire processing list, 3D bundle).
+   `harness_export` (harness interface: JSON, wire processing list, 3D bundle), `kicad`
+   (netlists, boards as devices and symbol libraries of KiCad), `freecad` (the panel
+   layout as a FreeCAD macro, device positions from a FreeCAD document).
 8. Project files, sharing, verification: `archive`, `storage` (the project as a set of
    files: the split format for version control), `collab`, `projects`, `verify`, `sample`,
    `project_templates` (bundled and user templates, their parameters, formulas and page

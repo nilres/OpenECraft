@@ -16,6 +16,7 @@ Additional power loss in W	További veszteségi teljesítmény W-ban
 Address scheme: siemens, iec or rockwell	Címséma: siemens, iec vagy rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	PV-mezőt ad egy tetőhöz: modulsorok síneken és tetőkampókon egy tetősíkkal párhuzamosan, vagy lapostetőn döntve vagy kelet-nyugati elrendezésben ballasztolt szerelőtalpakon; x és z nélkül az elülső vagy a jobb oldali tetősík közepén. Épület és tető nélkül szabadföldi mező a telken: döntött asztalok sorai vert oszlopokon, x és z nélkül a létesítményben állók előtt. A modulok és a szerelési anyag az anyagjegyzékbe kerülnek
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Hajlított és fúrt rézsínt ad hozzá (vagy lecseréli a szekrényben lévő azonos nevűt)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	KiCadben tervezett NYÁK-ot ad hozzá készülékként: egy eszközdobozt egy új kapcsolásirajz-oldalon, csatlakozóinak minden érintkezőjéhez (J1.1) egy, a NYÁK hálózatairól elnevezett csatlakozási ponttal, valamint egy hozzá tartozó alkatrészt
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Megfelelő méretű tömszelencét ad minden kábelhez, amely kilép a szekrényből és nem talál szabad tömszelencét: a tetőbe a helyiségben lévő készülékhez, a fenékbe a terephez vagy a falon függő szekrénynél
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Kábelátvezetést ad hozzá a jobb oldali szomszédhoz: egymással szemben lévő kerek kivágások mindkét oldalfalban; a szekrények közötti vezetékek ezen át futnak
 Adds a configurator rule: insert a page macro when the condition holds	Konfigurátorszabályt ad hozzá: oldalmakró beszúrása, ha a feltétel teljesül
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Hozzáad vagy módosít egy projektgépet (az azonos azonosítójú beépített gépet lecseréli), vagy eltávolítja
 Adds the devices of a template to a segment	Egy sablon készülékeit adja hozzá egy szegmenshez
 Adds the outline of a machine, building or area to the plant layout	Egy gép, épület vagy terület körvonalát adja a létesítmény-elrendezéshez
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Egy KiCad szimbólumkönyvtár szimbólumait hozzáadja a projekt szimbólumaihoz; a korábban beolvasott szimbólumokat lecseréli
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Profilt ad hozzá, cserél le vagy távolít el: egy összekötő a másik rendszer által használt oszlopnevekkel
 After it instead of before	Mögé, nem elé
 Air-termination rod: its name	Felfogórúd: a neve
@@ -381,6 +383,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Kulcs, pl. user.coupling_relay
 Key, e.g. user.customer_code	Kulcs, pl. user.customer_code
 Keys of the routes, comma separated (all if missing)	A nyomvonalak kulcsai vesszővel elválasztva (ha hiányzik: az összes)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	KiCad NYÁK (a .kicad_pcb fájl tartalma): a körvonala adja az alkatrész méretét
+KiCad netlist of the board: the content of its .net export	A NYÁK KiCad hálózati listája (a .net fájl tartalma)
+KiCad symbol library: the content of a .kicad_sym	KiCad szimbólumkönyvtár (a .kicad_sym fájl tartalma)
 Kind: machining, punching or busbar	Típus: machining, punching vagy busbar
 Known length of the cable in m (taken instead of the 3D route)	A kábel ismert hossza m-ben (a 3D nyomvonal helyett ezt használja)
 Label shown when the value is asked for	A felirat, amely az érték lekérdezésekor jelenik meg
@@ -406,6 +411,7 @@ Length of a shield pigtail in mm	Az árnyékolás-pigtail hossza mm-ben
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Emeletes sorkapocs szintje (1 = alsó); a felső szintek az előző sorkapocs blokkján ülnek
 Library id or customer rule set name to no longer verify against	A könyvtár azonosítója vagy az ügyfél-szabálykészlet neve, amely alapján már nem kell ellenőrizni
 Library id or customer rule set name to verify against	A könyvtár azonosítója vagy az ügyfél-szabálykészlet neve, amely alapján ellenőrizni kell
+Library the symbols are listed under (default: KiCad)	A könyvtár, amely alatt a szimbólumok megjelennek (alapértelmezett: KiCad)
 Line in the source language	Sor a forrásnyelven
 Line-to-line voltage in V	Vonali feszültség V-ban
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Fluidkészüléket kapcsol össze az azt működtető vagy felügyelő villamos készülékekkel (lecseréli a kapcsolatokat)

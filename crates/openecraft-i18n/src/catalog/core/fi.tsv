@@ -63,6 +63,7 @@ Align right	Tasaa oikealle
 Align top	Tasaa ylös
 All aspects (with product)	Kaikki aspektit (tuotteen kanssa)
 All devices of page {} are in the schematic already	Kaikki sivun {} laitteet ovat jo piirikaaviossa
+All symbols of the library instead of those the project uses	Kaikki kirjaston symbolit projektin käyttämien sijaan
 Ammeter	Virtamittari
 Ammeter, reactive current	Virtamittari, loisvirta
 Ampere-hour meter	Ampeerituntimittari
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	Poisto {} avoin ilmakehään (ei
 Explosion protection marking	Räjähdyssuojausmerkintä
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Vie osaluettelon nimikerekisterin tietoineen; tuo ERP-numerot, hinnat, varastosaldot ja toimitusajat
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Vie laitteet ja pisteestä pisteeseen -yhteydet piirilevysuunnittelua varten; tuo komponenttien osamääritykset ja kuvaukset
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Vie laitteet ja potentiaalit KiCad-netlistana piirilevyeditoria varten; tuo osanumerot ja kuvaukset KiCad-netlistasta tai -osaluettelosta (CSV)
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Vie suunnitteluosaluettelon (sijainnit, laitteet, osat); tuo nimikkeiden ID:t, revisiot ja elinkaaren tilat
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Vie tilausluettelon toimittajittain (tarvittava määrä miinus varasto, pyöristettynä pakkauskokoihin); tuo tilausvahvistukset
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Vie kaappiasennuksen FreeCAD-makrona, joka rakentaa sen nimetyistä kappaleista; tuo tallennetussa FreeCAD-dokumentissa (.FCStd) siirrettyjen laitteiden sijainnit
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Vie laitteiden sijainnit ja koot kaappiasennuksessa; tuo MCAD-järjestelmässä muutetut sijainnit
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Vie projektin ja sivujen metatiedot revisioineen; tuo asiakirjanumerot, revisiot ja tilat
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Vie johdot katkaisupituuksineen, kuorintoineen ja pääteholkkeineen johdinkäsittelykoneille; tuo käsittelyn palautteen johdotusmerkintöinä
@@ -586,6 +589,7 @@ Frame size	Runkokoko
 Free	Vapaa
 Free air (mm)	Vapaa reititys (mm)
 Free run	Vapaa asennus
+FreeCAD panel layout (macro, .FCStd)	FreeCAD-kaappiasennus (makro, .FCStd)
 Freestanding on posts	Maa-asennus paaluilla
 Frequency converter	Taajuusmuuttaja
 Frequency meter	Taajuusmittari
@@ -783,6 +787,9 @@ Key switch NC, latching	Avainkytkin, avautuva, lukittuva
 Key switch NO	Avainkytkin sulkeutuva
 Key switch NO, latching	Avainkytkin, sulkeutuva, lukittuva
 Keywords	Avainsanat
+KiCad netlist (.net)	KiCad-netlista (.net)
+KiCad netlist of the devices and potentials (.net)	Laitteiden ja potentiaalien KiCad-netlista (.net)
+KiCad symbol library (.kicad_sym)	KiCad-symbolikirjasto (.kicad_sym)
 LED	LED
 Labeling scheme (default: the scheme selected in the project)	Merkintäskeema (oletus: projektissa valittu skeema)
 Lamp voltage	Lampun jännite
@@ -1001,6 +1008,10 @@ Non-return valve	Takaiskuventtiili
 Not a DWG file	Ei DWG-tiedosto
 Not a DXF file	Ei DXF-tiedosto
 Not a DXF file (binary DXF is not supported)	Ei DXF-tiedosto (binääristä DXF:ää ei tueta)
+Not a FreeCAD document (.FCStd)	Ei FreeCAD-dokumentti (.FCStd)
+Not a KiCad board file (.kicad_pcb)	Ei KiCad-piirilevytiedosto (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	Ei KiCad-netlista (KiCadissa: File › Export › Netlist, muoto KiCad)
+Not a KiCad symbol library (.kicad_sym)	Ei KiCad-symbolikirjasto (.kicad_sym)
 Not a PDF file	Ei PDF-tiedosto
 Not a change request file: the column \"Number\" is missing	Ei muutospyyntötiedosto: sarake \"Number\" puuttuu
 Not a change request file: {}	Ei muutospyyntötiedosto: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Ei projektitietokanta: {}
 Not a settings scheme: {}	Ei asetusskeema: {}
 Not a structure template: {}	Ei rakennemalli: {}
 Not a valid JSON file: {}	Ei kelvollinen JSON-tiedosto: {}
+Not a valid KiCad file (line {})	Ei kelvollinen KiCad-tiedosto (rivi {})
 Not a valid project file: {}	Ei kelvollinen projektitiedosto: {}
 Not a valid property library: {}	Ei kelvollinen ominaisuuskirjasto: {}
 Not an Excel workbook (.xlsx)	Ei Excel-työkirja (.xlsx)
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	Kaappiasennus 3D-muodossa (JT)
 Panel layout in 3D (Parasolid XT)	Kaappiasennus 3D-muodossa (Parasolid XT)
 Panel layout in 3D (STEP)	Kaappiasennus 3D-muodossa (STEP)
 Panel layout in 3D (glTF)	Kaappiasennus 3D-muodossa (glTF)
+Panel layout in 3D for FreeCAD (macro)	Kaappiasennus 3D-muodossa FreeCADille (makro)
 Panel layout settings	Kaappiasennuksen asetukset
 Panel legend	Kaapin selite
 Parallel to the roof on roof hooks	Katon suuntaisesti kattokoukuilla
@@ -1260,6 +1273,7 @@ Pressure switch NC	Painekytkin, avautuva
 Pressure switch NO	Painekytkin sulkeutuva
 Pressure switch NO (NFPA)	Painekytkin, sulkeutuva (NFPA)
 Primary voltage	Ensiöjännite
+Printed circuit board {}	Piirilevy {}
 Problem	Ongelma
 Process component	Prosessikomponentti
 Process connection	Prosessiliitäntä
@@ -1647,6 +1661,8 @@ Termination (from)	Pääte (mistä)
 Termination (to)	Pääte (mihin)
 Text file	Tekstitiedosto
 The DXF file contains nothing that can be imported	DXF-tiedosto ei sisällä mitään tuotavaa
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	FreeCAD-dokumentissa ei ole OpenECraftin laitteita (objekteja, joilla on ominaisuus OEC_Tag)
+The KiCad symbol library has no symbols	KiCad-symbolikirjastossa ei ole symboleja
 The PDF has no pages that can be read	PDF-tiedostossa ei ole luettavia sivuja
 The answer is OK, Not OK or Not applicable, not {}	Vastaus on OK, Ei OK tai Ei sovellu, ei {}
 The archive contains no project	Arkisto ei sisällä projektia
@@ -1655,6 +1671,7 @@ The archive is damaged	Arkisto on vioittunut
 The archive unpacks to more than {} MB	Arkisto purkautuu yli {} megatavuksi
 The archive was written by a newer version (archive version {})	Arkiston on kirjoittanut uudempi versio (arkistoversio {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Kojeiston valmistaja on mainittava (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	Piirilevyllä ei ole ääriviivaa tasolla Edge.Cuts
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Kaappirivi tilassaan: L-muotoinen pohjapiirros, väliseinä, ovi ja ikkuna, kaappirivi paikallaan, seinällä kisko ja pistorasia, seinään asennettu turvavalaisin ja kaapelihylly katon alla.
 The cable of {} needs at least {} cores	Kohteen {} kaapeli tarvitsee vähintään {} johdinta
 The configuration is not a JSON object	Konfiguraatio ei ole JSON-objekti
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	Kohde ei ole kehys sivuseinän aukossa
 The last page cannot be deleted	Viimeistä sivua ei voi poistaa
 The macro box has no items left	Makrolaatikossa ei ole enää kohteita
+The netlist has no component {} with connected pins	Netlistassa ei ole komponenttia {}, jolla on kytkettyjä nastoja
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	Netlistassa ei ole liittimiä (viitteet J, P, X, CN, TB): nimeä komponentit, joiden nastat ovat piirilevyn liitännät
 The next free id is already in use	Seuraava vapaa tunnus on jo käytössä
 The option needs a name	Vaihtoehto tarvitsee nimen
 The page needs a number	Sivu tarvitsee numeron

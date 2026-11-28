@@ -45,6 +45,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = ще немає на схемі
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Базова версія зберігає весь проєкт (сторінки, пристрої, вироби, параметри). Затвердження ревізії зберігає базову версію.
+A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist	Плата, розроблена в KiCad, як блок пристрою з точкою підключення для кожного контакту її роз’ємів, за її списком з’єднань
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Кабельний ввід для кожного кабелю, що виходить із шафи й не знаходить вільного відповідного вводу
 A cable of the bus type for every connection without cable	Кабель шинного типу для кожного з’єднання без кабелю
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Кабель, що виходить із шафи й не знаходить вільного вводу, отримує ввід свого розміру: у даху для пристрою в приміщенні, у днищі для поля або шафи, що висить на стіні
@@ -796,7 +797,7 @@ File format version {}. Files of older versions are converted when they are open
 File name	Назва файлу
 File of another system (connector)	Файл іншої системи (конектор)
 File {}	Файл {}
-Files of other systems (CSV, JSON)	Файли інших систем (CSV, JSON)
+Files of other systems (CSV, JSON, KiCad, FreeCAD)	Файли інших систем (CSV, JSON, KiCad, FreeCAD)
 Fill	Заповнити
 Filled	Заповнений
 Filter connections…	Фільтрувати з’єднання…
@@ -968,6 +969,7 @@ Import CSV / Excel…	Імпортувати CSV / Excel…
 Import CSV…	Імпортувати CSV…
 Import DXF / DWG as page…	Імпортувати DXF / DWG як сторінку…
 Import GSDML / ESI…	Імпортувати GSDML / ESI…
+Import KiCad board as device…	Імпортувати плату KiCad як пристрій…
 Import PDF comments…	Імпортувати коментарі PDF…
 Import a file of another system to see what it changes in the project.	Імпортуйте файл іншої системи, щоб побачити, що він змінює в проєкті.
 Import changes	Зміни імпорту
@@ -1066,6 +1068,9 @@ Keyboard shortcuts…	Сполучення клавіш…
 Keys and gestures	Клавіші та жести
 Keys of the 3D view	Клавіші 3D-вигляду
 Keywords: {}	Ключові слова: {}
+KiCad board imported as device {} on page {}: {} connection points	Плату KiCad імпортовано як пристрій {} на сторінці {}: точок підключення: {}
+KiCad import failed: {}	Помилка імпорту KiCad: {}
+KiCad netlist	Список з’єднань KiCad
 Label	Мітка
 Label (grey)	Мітка (сіра)
 Label field	Поле мітки
@@ -2154,6 +2159,7 @@ Switches the options with a condition by the configurator options	Перемик
 Switches to this workspace with its panes at their default places	Перемикає на цей робочий простір із панелями на їхніх типових місцях
 Switches, push buttons and room thermostats	Вимикачі, кнопки та кімнатні термостати
 Symbol editor	Редактор символів
+Symbol library (JSON, EMA, EDZ, KiCad)	Бібліотека символів (JSON, EMA, EDZ, KiCad)
 Symbol table import failed: {}	Помилка імпорту таблиці символів: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Символи та проводи на цій сторінці малюються, але не обробляються (без пристроїв, з’єднань і звітів).
 Symbols placed next get this device tag (contacts are numbered on)	Символи, розміщені наступними, отримують це позначення пристрою (контакти нумеруються далі)

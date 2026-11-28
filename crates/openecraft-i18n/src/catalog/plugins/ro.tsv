@@ -16,6 +16,7 @@ Additional power loss in W	Putere disipată suplimentară în W
 Address scheme: siemens, iec or rockwell	Schemă de adresare: siemens, iec sau rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Adaugă un câmp PV pe un acoperiș: rânduri de module pe șine și cârlige de acoperiș paralele cu o pantă, sau pe un acoperiș plat înclinate sau est-vest pe suporturi de montaj lestate; fără x și z în mijlocul pantei din față sau din dreapta. Fără clădire și acoperiș, un câmp la sol pe teren: rânduri de mese înclinate pe stâlpi bătuți, fără x și z în fața a ceea ce se află în instalație. Modulele și materialul de montaj intră în lista de materiale
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Adaugă o bară de cupru îndoită și găurită (sau o înlocuiește pe cea cu același nume din carcasă)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	Adaugă o placă proiectată în KiCad ca dispozitiv: o casetă de dispozitiv pe o pagină de schemă nouă, cu un punct de conexiune pentru fiecare pin al conectorilor săi (J1.1), denumit după rețelele plăcii, și un articol pentru ea
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Adaugă o presetupă de mărimea potrivită pentru fiecare cablu care iese dintr-o carcasă și nu găsește nicio presetupă liberă: în acoperiș pentru un aparat din încăpere, în fund pentru teren sau o carcasă agățată pe perete
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Adaugă o trecere de cabluri spre vecinul din dreapta: decupaje rotunde față în față în ambii pereți laterali; conductoarele dintre carcase trec prin ea
 Adds a configurator rule: insert a page macro when the condition holds	Adaugă o regulă de configurator: inserează un macro de pagină când condiția este îndeplinită
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Adaugă sau modifică o mașină a proiectului (o mașină integrată cu același ID este înlocuită) sau o elimină
 Adds the devices of a template to a segment	Adaugă dispozitivele unui șablon într-un segment
 Adds the outline of a machine, building or area to the plant layout	Adaugă conturul unei mașini, al unei clădiri sau al unei zone în planul de amplasare a instalației
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Adaugă simbolurile unei biblioteci de simboluri KiCad la simbolurile proiectului; simbolurile citite anterior sunt înlocuite
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Adaugă, înlocuiește sau elimină un profil: un conector cu numele de coloane folosite de celălalt sistem
 After it instead of before	După, în loc de înainte
 Air-termination rod: its name	Tijă de captare: numele ei
@@ -381,6 +383,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Cheie, de ex. user.coupling_relay
 Key, e.g. user.customer_code	Cheie, de ex. user.customer_code
 Keys of the routes, comma separated (all if missing)	Cheile traseelor, separate prin virgulă (toate, dacă lipsesc)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	Placă KiCad (conținutul fișierului .kicad_pcb): conturul ei dă dimensiunea articolului
+KiCad netlist of the board: the content of its .net export	Lista de conexiuni KiCad a plăcii (conținutul fișierului .net)
+KiCad symbol library: the content of a .kicad_sym	Bibliotecă de simboluri KiCad (conținutul fișierului .kicad_sym)
 Kind: machining, punching or busbar	Tip: machining, punching sau busbar
 Known length of the cable in m (taken instead of the 3D route)	Lungimea cunoscută a cablului în m (folosită în locul traseului 3D)
 Label shown when the value is asked for	Eticheta afișată la cererea valorii
@@ -406,6 +411,7 @@ Length of a shield pigtail in mm	Lungimea unui pigtail de ecran în mm
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Nivelul unei borne multinivel (1 = jos); nivelurile superioare se află pe blocul bornei anterioare
 Library id or customer rule set name to no longer verify against	ID-ul bibliotecii sau numele setului de reguli al clientului față de care nu se mai verifică
 Library id or customer rule set name to verify against	ID-ul bibliotecii sau numele setului de reguli al clientului față de care se verifică
+Library the symbols are listed under (default: KiCad)	Biblioteca sub care sunt listate simbolurile (implicit: KiCad)
 Line in the source language	Rând în limba sursă
 Line-to-line voltage in V	Tensiunea între faze în V
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Leagă un dispozitiv de fluid de dispozitivele electrice care îl acționează sau îl monitorizează (înlocuiește legăturile)

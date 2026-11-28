@@ -24,7 +24,7 @@ AutomationML file	AutomationML-tiedosto
 CSV content instead of a file	CSV-sisältö tiedoston sijaan
 CSV file	CSV-tiedosto
 CSV or Excel file	CSV- tai Excel-tiedosto
-CSV or JSON file	CSV- tai JSON-tiedosto
+CSV or JSON file, KiCad netlist (.net) or FreeCAD document (.FCStd)	CSV- tai JSON-tiedosto, KiCad-netlista (.net) tai FreeCAD-dokumentti (.FCStd)
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV-, JSON-, BMEcat-, EPLAN XML- tai EDZ-tiedosto
 CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file	CSV-, JSON-, BMEcat-, EPLAN XML-, EDZ- tai ZIP-tiedosto
 Catalog data; without id it is derived from the name	Luettelon tiedot; ilman ID:tä se muodostetaan nimestä
@@ -109,7 +109,6 @@ Imports a parts file into the parts server; the pictures and macros of an EDZ fi
 Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Tuo laitekuvauksia GSDML- (PROFINET) tai ESI-tiedostosta (EtherCAT) projektiin
 Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Tuo esisuunnittelun segmentit ja suunnitellut laitteet CSV- tai Excel-tiedostosta (sarakkeet Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
 Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Tuo tarkastajan projektin PDF-vientiin tekemät kommentit (huomautukset, tekstiruudut, korostukset, muodot, vastaukset) tarkastustasolle; aiemmin tuodut kommentit ohitetaan
-Insert after this page (default: at the end)	Lisää tämän sivun jälkeen (oletus: loppuun)
 Inserts an edited subproject: its pages replace the pages taken out	Liittää muokatun aliprojektin takaisin: sen sivut korvaavat irrotetut sivut
 Invalid form: {}	Virheellinen lomake: {}
 Keep the file checked out after the check-in	Pidä tiedosto uloskirjattuna sisäänkirjauksen jälkeen
@@ -203,7 +202,7 @@ Properties to rename (old name: new name)	Uudelleennimettävät ominaisuudet (va
 Property {} needs a text or a number	Ominaisuus {} vaatii tekstin tai luvun
 Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Tallentaa projektin, viennin, konnektoriviennin tai paikallisen tiedoston Vaultiin; kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
 Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor tai Admin
-Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Lukee toisen järjestelmän tiedoston (CSV tai JSON) konnektorilla ja luettelee muutokset; valinnalla apply ne otetaan käyttöön (ristiriidat vain valinnalla overwrite)
+Reads a file of another system (CSV, JSON, a KiCad netlist or a FreeCAD document) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Lukee toisen järjestelmän tiedoston (CSV, JSON, KiCad-netlista tai FreeCAD-dokumentti) konnektorilla ja luettelee muutokset; valinnalla apply ne otetaan käyttöön (ristiriidat vain valinnalla overwrite)
 Reads the project files and archives of a folder (and its subfolders) into the project database	Lukee kansion (ja sen alikansioiden) projektitiedostot ja arkistot projektitietokantaan
 Reads translations from CSV: first column the source line, one column per language code	Lukee käännökset CSV:stä: ensimmäinen sarake on lähderivi, yksi sarake kielikoodia kohden
 Redoes the last undone change	Tekee uudelleen viimeksi kumotun muutoksen
@@ -304,8 +303,8 @@ Writes the project's property definitions, function definitions and schemes as a
 Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Kirjoittaa projektin asetukset (johtojen numerointi, potentiaalit, johtojen oletukset ja värit, merkinnät, letkujen oletukset, ristiviittaukset, tarkistusskeema) tiedostoon
 Writes the structure management (aspects, identifiers, work areas) as a template file	Kirjoittaa rakennetunnusten hallinnan (aspektit, tunnukset, työalueet) mallitiedostoksi
 csv (default) or eplan_xml	csv (oletus) tai eplan_xml
-erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement tai wiring_machine
-erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine tai exchange
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad or freecad	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad tai freecad
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine, kicad, freecad tai exchange
 json (default), csv or xlsx (Excel, needs path)	json (oletus), csv tai xlsx (Excel, vaatii arvon path)
 openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nNäyttää komentorivin version (myös --version tai -V)\n
 undo and redo work in an MCP session only: the command line opens the project anew for every command	undo ja redo toimivat vain MCP-istunnossa: komentorivi avaa projektin uudelleen jokaista komentoa varten

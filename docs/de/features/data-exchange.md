@@ -1,6 +1,6 @@
 # Ausgabe und Datenaustausch
 
-PDF-, DXF- / DWG-, SVG- und 3D-Exporte, DXF- / DWG-Import, die Schicht für die Unternehmensintegration (ERP, PDM, PLM, ECAD, MCAD, Beschaffung, Verdrahtungsautomaten) und Autodesk Vault.
+PDF-, DXF- / DWG-, SVG- und 3D-Exporte, DXF- / DWG-Import, die Schicht für die Unternehmensintegration (ERP, PDM, PLM, ECAD, MCAD, Beschaffung, Verdrahtungsautomaten), der Austausch mit KiCad und FreeCAD und Autodesk Vault.
 
 ## Ausgabe / Datenaustausch
 
@@ -63,6 +63,81 @@ wurden, als Konflikte gemeldet werden und Werte, die das andere System unveränd
 gelassen hat, lokale Änderungen niemals überschreiben. Eine neutrale Austauschdatei
 (`openecraft.exchange/1`, JSON) enthält alles für Systeme ohne Konnektor;
 das Austauschprotokoll wird im Projekt geführt.
+
+## KiCad und FreeCAD
+
+OpenECraft tauscht Daten mit den freien Werkzeugen für den Leiterplattenentwurf, [KiCad](https://www.kicad.org),
+und für die mechanische Konstruktion, [FreeCAD](https://www.freecad.org), in deren eigenen Dateiformaten aus.
+
+| Was | Richtung | Wie |
+| --- | --- | --- |
+| Eine Platine als Betriebsmittel | KiCad → OpenECraft | *Datei › Import › KiCad-Platine als Betriebsmittel importieren…* liest die Netzliste der Platine (`.net`) |
+| Eine Schaltung für eine Platine | OpenECraft → KiCad | *Datei › Export*, *KiCad-Netzliste*; im Platineneditor von KiCad *Datei › Importieren › Netzliste* |
+| Symbole | beide | *Datei › Export*, *KiCad-Symbolbibliothek*; *Symbolbibliothek importieren…* liest `.kicad_sym` |
+| Artikelnummern und Beschreibungen | KiCad → OpenECraft | Konnektor *KiCad* der Unternehmensintegration: eine Netzliste oder eine Stückliste (CSV) |
+| Der Schaltschrankaufbau in 3D | OpenECraft → FreeCAD | *Datei › Export*, *Schaltschrankaufbau in 3D für FreeCAD*: ein Makro, das den Aufbau erzeugt |
+| Positionen der Geräte | FreeCAD → OpenECraft | Konnektor *FreeCAD* der Unternehmensintegration: das in FreeCAD gespeicherte Dokument (`.FCStd`) |
+| 3D-Modelle von Artikeln und Platinen | KiCad, FreeCAD → OpenECraft | STEP-Dateien als 3D-Modell eines Artikels |
+| Zeichnungen | beide | DXF |
+
+**Eine in KiCad entworfene Platine als Betriebsmittel.** Die Netzliste im
+Schaltplaneditor von KiCad schreiben (*Datei › Exportieren › Netzliste…*, Format
+KiCad, oder `kicad-cli sch export netlist`). *KiCad-Platine als Betriebsmittel
+importieren…* fügt eine Schaltplanseite mit einer Gerätebox für die Platine und einem
+Geräteanschlusspunkt für jeden Pin ihrer Steckverbinder ein (`J1.1`, `J1.2` …), an
+jedem Pin steht das Netz der Platine (`+24V`, `IN1`). Die Platine wird dann wie jedes
+andere Betriebsmittel verdrahtet und erscheint in den Verbindungslisten, Kabelplänen
+und der Stückliste. Steckverbinder sind die Bauteile mit den Referenzen J, P, X, CN,
+CON, TB oder XS und die der KiCad-Bibliotheken *Connector* und *TerminalBlock*, ohne
+Testpunkte (TP) und Steckbrücken (JP); eine
+Platine mit vielen Pins wird auf weiteren Boxen und Seiten fortgesetzt. Die Platine
+bekommt einen Artikel (`PCB.<Name>`) mit Titel, Firma und Revision des Schriftfelds
+und der Liste ihrer Bauteile. Das Werkzeug `import_kicad` der Kommandozeile und des
+MCP-Servers nimmt außerdem die Platinendatei (`.kicad_pcb`), deren Umriss auf der Lage
+`Edge.Cuts` die Größe des Artikels ergibt, das Betriebsmittelkennzeichen und die
+Bauteile, deren Pins die Anschlüsse sind. Das 3D-Modell der Platine ist die
+STEP-Datei, die KiCad schreibt (*Datei › Exportieren › STEP*,
+`kicad-cli pcb export step`), dem Artikel zugewiesen wie jedes Modell.
+
+**Die Schaltung als KiCad-Netzliste.** Jedes Betriebsmittel mit elektrischen
+Anschlüssen ist ein Bauteil (Referenz: das Betriebsmittelkennzeichen, Wert: die
+Typnummer seines Artikels, Felder *Part number*, *Manufacturer* und *Order number*),
+jedes Potenzial ein Netz aus Anschlusspunkten. Footprints werden in KiCad zugewiesen;
+ihre Pads heißen wie die Anschlusspunkte (`A1`, `13`). Die Bauteile behalten ihre
+Identität von Export zu Export, so dass der Platineneditor ein Layout aktualisiert,
+statt neu zu beginnen. Eine Netzliste oder eine Stückliste (CSV mit der Spalte
+*Reference*), die aus KiCad zurückkommt, weist über den Konnektor *KiCad*
+Artikelnummern und Beschreibungen zu, als Liste von Änderungen zur Durchsicht.
+
+**Symbole.** Der Export schreibt die im Projekt platzierten Symbole und seine
+Benutzersymbole (mit dem Parameter `all` die ganze Bibliothek) als
+KiCad-Symbolbibliothek: 4 mm hier sind 2,54 mm (100 mil) dort, so dass die
+Anschlusspunkte auf dem Raster von KiCad liegen. Eine `.kicad_sym`-Datei wird als
+Benutzersymbole in einer nach der Datei benannten Bibliothek gelesen, 1,27 mm
+(50 mil) dort als 4 mm hier: ein Symbol je
+Einheit (`LM358 A`, `LM358 B`), die Pinnamen innen, abgeleitete Symbole mit der Grafik
+ihres Elternsymbols, Spannungssymbole als Potenziale. Erneutes Lesen einer Bibliothek
+ersetzt ihre Symbole.
+
+**Der Schaltschrankaufbau in FreeCAD.** Der Export ist ein Makro: in FreeCAD
+ausgeführt (*Makro › Makros…*), erzeugt es ein Dokument mit einem Part-Container je
+Gehäuse und einem Objekt je Komponente, Schiene, Kanal und Gerät, benannt mit den
+Betriebsmittelkennzeichen, als Volumenkörper (Objekte mit sehr vielen Dreiecken
+bleiben Netze; zwei Einstellungen am Anfang des Makros entscheiden). Jedes Gerät
+trägt Kennzeichen, Artikelnummer, Gehäuse, Montagefläche und Platz als Eigenschaften
+der Gruppe *OpenECraft*. Geräte in FreeCAD verschieben, das Dokument speichern und die
+`.FCStd`-Datei mit dem Konnektor *FreeCAD* lesen: die Positionen kommen als Liste von
+Änderungen zurück, mit der Konflikterkennung jedes Konnektors. In FreeCAD
+konstruierte Modelle werden Artikeln als STEP-Dateien zugewiesen.
+
+```bash
+openecraft-cli -p plant.oec import_kicad --path relay-io.net --board relay-io.kicad_pcb
+openecraft-cli -p plant.oec import_kicad --path Device.kicad_sym
+openecraft-cli -p plant.oec export --format kicad_netlist --path plant.net
+openecraft-cli -p plant.oec export --format kicad_symbols --path plant.kicad_sym
+openecraft-cli -p plant.oec integration_export --connector freecad --path plant.FCMacro
+openecraft-cli -p plant.oec integration_import --connector freecad --path plant.FCStd --apply
+```
 
 ## Autodesk Vault
 

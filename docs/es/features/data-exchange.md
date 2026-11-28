@@ -1,6 +1,6 @@
 # Salida e intercambio de datos
 
-Exportaciones PDF, DXF / DWG, SVG y 3D, importación DXF / DWG, la capa de integración empresarial (ERP, PDM, PLM, ECAD, MCAD, compras, máquinas de cableado) y Autodesk Vault.
+Exportaciones PDF, DXF / DWG, SVG y 3D, importación DXF / DWG, la capa de integración empresarial (ERP, PDM, PLM, ECAD, MCAD, compras, máquinas de cableado), el intercambio con KiCad y FreeCAD y Autodesk Vault.
 
 ## Salida / intercambio de datos
 
@@ -65,6 +65,83 @@ modificados en ambos lados desde entonces se notifican como conflictos y los val
 el otro sistema dejó sin cambios nunca sobrescriben las ediciones locales. Un archivo de
 intercambio neutro (`openecraft.exchange/1`, JSON) lo contiene todo para los sistemas sin
 conector; el registro de intercambio se conserva en el proyecto.
+
+## KiCad y FreeCAD
+
+OpenECraft intercambia datos con las herramientas libres de diseño de placas, [KiCad](https://www.kicad.org),
+y de diseño mecánico, [FreeCAD](https://www.freecad.org), en sus propios formatos de archivo.
+
+| Qué | Sentido | Cómo |
+| --- | --- | --- |
+| Una placa como dispositivo | KiCad → OpenECraft | *Archivo › Importación › Importar placa de KiCad como dispositivo…* lee la lista de redes de la placa (`.net`) |
+| Un circuito para una placa | OpenECraft → KiCad | *Archivo › Exportación*, *Lista de redes de KiCad*; en el editor de placas de KiCad *Archivo › Importar › Lista de redes* |
+| Símbolos | ambos | *Archivo › Exportación*, *Biblioteca de símbolos de KiCad*; *Importar biblioteca de símbolos…* lee `.kicad_sym` |
+| Números de artículo y descripciones | KiCad → OpenECraft | conector *KiCad* de la integración empresarial: una lista de redes o una lista de materiales (CSV) |
+| El diseño de armario en 3D | OpenECraft → FreeCAD | *Archivo › Exportación*, *Diseño de armario en 3D para FreeCAD*: una macro que construye el diseño |
+| Posiciones de los dispositivos | FreeCAD → OpenECraft | conector *FreeCAD* de la integración empresarial: el documento guardado en FreeCAD (`.FCStd`) |
+| Modelos 3D de artículos y placas | KiCad, FreeCAD → OpenECraft | archivos STEP como modelo 3D de un artículo |
+| Dibujos | ambos | DXF |
+
+**Una placa diseñada en KiCad como dispositivo.** Escriba la lista de redes en el
+editor de esquemas de KiCad (*Archivo › Exportar › Lista de redes…*, formato KiCad, o
+`kicad-cli sch export netlist`). *Importar placa de KiCad como dispositivo…* añade una
+página de esquema con una caja de dispositivo para la placa y un punto de conexión
+del dispositivo por cada pin de sus conectores (`J1.1`, `J1.2` …), con la red de la
+placa escrita en cada pin (`+24V`, `IN1`). La placa se cablea entonces como cualquier
+otro dispositivo y aparece en las listas de conexiones, los planos de cables y la
+lista de materiales. Los conectores son los componentes con las referencias J, P, X,
+CN, CON, TB o XS y los de las bibliotecas *Connector* y *TerminalBlock* de KiCad, sin
+los puntos de prueba (TP) ni los puentes (JP); una
+placa con muchos pines continúa en más cajas y páginas. La placa recibe un artículo
+(`PCB.<nombre>`) con el título, la empresa y la revisión del cajetín y la lista de sus
+componentes. La herramienta `import_kicad` de la línea de comandos y del servidor MCP
+toma además el archivo de placa (`.kicad_pcb`), cuyo contorno en la capa `Edge.Cuts`
+da el tamaño del artículo, el identificador del equipo y los componentes cuyos pines
+son las conexiones. El modelo 3D de la placa es el archivo STEP que escribe KiCad
+(*Archivo › Exportar › STEP*, `kicad-cli pcb export step`), asignado al artículo como
+cualquier modelo.
+
+**El circuito como lista de redes de KiCad.** Cada dispositivo con conexiones
+eléctricas es un componente (referencia: el identificador del equipo, valor: el
+número de tipo de su artículo, campos *Part number*, *Manufacturer* y
+*Order number*), cada potencial una red de puntos de conexión. Las huellas se asignan
+en KiCad; sus pads se llaman como los puntos de conexión (`A1`, `13`). Los
+componentes conservan su identidad de una exportación a otra, de modo que el editor
+de placas actualiza un diseño en lugar de empezar de nuevo. Una lista de redes o una
+lista de materiales (CSV con la columna *Reference*) que vuelve de KiCad asigna
+números de artículo y descripciones mediante el conector *KiCad*, como lista de
+cambios para revisar.
+
+**Símbolos.** La exportación escribe los símbolos colocados en el proyecto y sus
+símbolos de usuario (con el parámetro `all` toda la biblioteca) como biblioteca de
+símbolos de KiCad: 4 mm aquí son 2,54 mm (100 mil) allí, de modo que los puntos de
+conexión quedan en la rejilla de KiCad. Un archivo `.kicad_sym` se lee como símbolos
+de usuario en una biblioteca con el nombre del archivo, 1,27 mm (50 mil) allí
+como 4 mm aquí: un símbolo por unidad
+(`LM358 A`, `LM358 B`), los nombres de los pines dentro, los símbolos derivados con
+el dibujo de su padre, los símbolos de alimentación como potenciales. Leer de nuevo
+una biblioteca reemplaza sus símbolos.
+
+**El diseño de armario en FreeCAD.** La exportación es una macro: ejecutada en
+FreeCAD (*Macro › Macros…*), construye un documento con un contenedor de pieza por
+armario y un objeto por componente, carril, canaleta y dispositivo, con los
+identificadores de equipo como nombres, en forma de sólidos (los objetos con
+muchísimos triángulos siguen siendo mallas; dos ajustes al principio de la macro lo
+deciden). Cada dispositivo lleva su identificador, número de artículo, armario, cara
+de montaje y lugar como propiedades del grupo *OpenECraft*. Mueva los dispositivos en
+FreeCAD, guarde el documento y lea el archivo `.FCStd` con el conector *FreeCAD*: las
+posiciones vuelven como lista de cambios, con la detección de conflictos de todo
+conector. Los modelos diseñados en FreeCAD se asignan a los artículos como archivos
+STEP.
+
+```bash
+openecraft-cli -p plant.oec import_kicad --path relay-io.net --board relay-io.kicad_pcb
+openecraft-cli -p plant.oec import_kicad --path Device.kicad_sym
+openecraft-cli -p plant.oec export --format kicad_netlist --path plant.net
+openecraft-cli -p plant.oec export --format kicad_symbols --path plant.kicad_sym
+openecraft-cli -p plant.oec integration_export --connector freecad --path plant.FCMacro
+openecraft-cli -p plant.oec integration_import --connector freecad --path plant.FCStd --apply
+```
 
 ## Autodesk Vault
 

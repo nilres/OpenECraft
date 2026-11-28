@@ -16,6 +16,7 @@ Additional power loss in W	Extra vermogensverlies in W
 Address scheme: siemens, iec or rockwell	Adresschema: siemens, iec of rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Voegt een PV-veld aan een dak toe: rijen modules op rails en dakhaken evenwijdig aan een dakvlak, of op een plat dak schuin of oost-west op geballaste montagevoeten; zonder x en z in het midden van het voorste of rechter dakvlak. Zonder gebouw en dak een vrijstaand veld op het perceel: rijen schuine tafels op geheide palen, zonder x en z vóór wat er in de installatie staat. De modules en het montagemateriaal komen in de stuklijst
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Voegt een gebogen en geboorde koperrail toe (of vervangt die met dezelfde naam in de behuizing)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	Voegt een in KiCad ontworpen printplaat toe als apparaat: een apparaatbox op een nieuwe schemapagina met een aansluitpunt voor elke pen van de connectoren (J1.1), benoemd met de netten van de printplaat, en een artikel ervoor
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Voegt een kabelwartel van zijn maat toe voor elke kabel die een kast verlaat en geen vrije wartel vindt: in het dak voor een apparaat in de ruimte, in de bodem voor het veld of een aan de wand hangende kast
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Voegt een kabeldoorvoer naar de rechterbuur toe: ronde uitsparingen tegenover elkaar in beide zijwanden; draden tussen de behuizingen lopen erdoorheen
 Adds a configurator rule: insert a page macro when the condition holds	Voegt een configuratorregel toe: een paginamacro invoegen als aan de voorwaarde is voldaan
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Voegt een machine van het project toe of wijzigt deze (een ingebouwde machine met dezelfde ID wordt vervangen), of verwijdert deze
 Adds the devices of a template to a segment	Voegt de apparaten van een sjabloon toe aan een segment
 Adds the outline of a machine, building or area to the plant layout	Voegt de contour van een machine, gebouw of zone toe aan de installatielay-out
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Voegt de symbolen van een KiCad-symboolbibliotheek toe aan de symbolen van het project; eerder ingelezen symbolen worden vervangen
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Voegt een profiel toe, vervangt of verwijdert het: een connector met de kolomnamen die het andere systeem gebruikt
 After it instead of before	Erna in plaats van ervoor
 Air-termination rod: its name	Opvangstaaf: de naam
@@ -381,6 +383,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Sleutel, bijv. user.coupling_relay
 Key, e.g. user.customer_code	Sleutel, bijv. user.customer_code
 Keys of the routes, comma separated (all if missing)	Sleutels van de routes, gescheiden door komma's (alle als deze ontbreken)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	KiCad-printplaat (inhoud van het .kicad_pcb-bestand): de contour bepaalt de grootte van het artikel
+KiCad netlist of the board: the content of its .net export	KiCad-netlijst van de printplaat (inhoud van het .net-bestand)
+KiCad symbol library: the content of a .kicad_sym	KiCad-symboolbibliotheek (inhoud van het .kicad_sym-bestand)
 Kind: machining, punching or busbar	Type: machining, punching of busbar
 Known length of the cable in m (taken instead of the 3D route)	Bekende lengte van de kabel in m (gebruikt in plaats van de 3D-route)
 Label shown when the value is asked for	Label dat wordt getoond wanneer om de waarde wordt gevraagd
@@ -406,6 +411,7 @@ Length of a shield pigtail in mm	Lengte van een afschermingspigtail in mm
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Etage van een etageklem (1 = onder); hogere etages zitten op het blok van de voorgaande klem
 Library id or customer rule set name to no longer verify against	Bibliotheek-id of naam van de klantspecifieke regelset waartegen niet meer moet worden geverifieerd
 Library id or customer rule set name to verify against	Bibliotheek-id of naam van de klantspecifieke regelset waartegen moet worden geverifieerd
+Library the symbols are listed under (default: KiCad)	Bibliotheek waaronder de symbolen worden vermeld (standaard: KiCad)
 Line in the source language	Regel in de brontaal
 Line-to-line voltage in V	Spanning tussen de fasen in V
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Koppelt een vloeistoftechnisch apparaat aan de elektrische apparaten die het bedienen of bewaken (vervangt de koppelingen)

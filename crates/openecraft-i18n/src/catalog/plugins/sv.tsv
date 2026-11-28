@@ -16,6 +16,7 @@ Additional power loss in W	Ytterligare effektförlust i W
 Address scheme: siemens, iec or rockwell	Adresschema: siemens, iec eller rockwell
 Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Lägger till ett solcellsfält på ett tak: modulrader på skenor och takkrokar parallellt med ett takfall, eller på ett platt tak lutade eller öst-väst på ballasterade monteringsfötter; utan x och z mitt på det främre eller högra takfallet. Utan byggnad och tak ett markmonterat fält på tomten: rader av lutade bord på nedslagna stolpar, utan x och z framför det som står i anläggningen. Modulerna och monteringsmaterialet hamnar i stycklistan
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Lägger till en bockad och borrad kopparskena (eller ersätter den med samma namn i kapslingen)
+Adds a board designed in KiCad as a device: a device box on a new schematic page with a connection point for every pin of its connectors (J1.1), named with the nets of the board, and a part for it	Lägger till ett kretskort konstruerat i KiCad som apparat: en apparatbox på en ny schemasida med en anslutningspunkt för varje stift i dess kontaktdon (J1.1), namngiven efter kretskortets nät, och en artikel för det
 Adds a cable gland of its size for every cable that leaves an enclosure and finds no free gland: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Lägger till en kabelförskruvning i rätt storlek för varje kabel som lämnar ett skåp och inte hittar någon ledig förskruvning: i taket för en apparat i rummet, i botten för fältet eller ett skåp som hänger på väggen
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Lägger till en kabelgenomföring till grannen till höger: runda urtag mitt emot varandra i båda sidoväggarna; ledningar mellan kapslingarna går genom den
 Adds a configurator rule: insert a page macro when the condition holds	Lägger till en konfiguratorregel: infoga ett sidmakro när villkoret är uppfyllt
@@ -38,6 +39,7 @@ Adds or changes a labeling scheme of the project, removes it, or selects the sch
 Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Lägger till eller ändrar en maskin i projektet (en inbyggd maskin med samma ID ersätts) eller tar bort den
 Adds the devices of a template to a segment	Lägger till apparaterna från en mall i ett segment
 Adds the outline of a machine, building or area to the plant layout	Lägger till konturen av en maskin, en byggnad eller ett område i anläggningslayouten
+Adds the symbols of a KiCad symbol library to the symbols of the project; symbols read before are replaced	Lägger till symbolerna i ett KiCad-symbolbibliotek bland projektets symboler; tidigare inlästa symboler ersätts
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Lägger till, ersätter eller tar bort en profil: en anslutning med de kolumnnamn som det andra systemet använder
 After it instead of before	Efter i stället för före
 Air-termination rod: its name	Spetsledare: dess namn
@@ -381,6 +383,9 @@ Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire
 Key, e.g. user.coupling_relay	Nyckel, t.ex. user.coupling_relay
 Key, e.g. user.customer_code	Nyckel, t.ex. user.customer_code
 Keys of the routes, comma separated (all if missing)	Nycklar för dragningarna, kommaseparerade (alla om de saknas)
+KiCad board: the content of its .kicad_pcb, whose outline gives the size of the part	KiCad-kretskort (innehållet i .kicad_pcb-filen): dess kontur ger artikelns storlek
+KiCad netlist of the board: the content of its .net export	Kretskortets KiCad-nätlista (innehållet i .net-filen)
+KiCad symbol library: the content of a .kicad_sym	KiCad-symbolbibliotek (innehållet i .kicad_sym-filen)
 Kind: machining, punching or busbar	Typ: machining, punching eller busbar
 Known length of the cable in m (taken instead of the 3D route)	Känd längd på kabeln i m (används i stället för 3D-dragningen)
 Label shown when the value is asked for	Etikett som visas när värdet efterfrågas
@@ -406,6 +411,7 @@ Length of a shield pigtail in mm	Längd på en skärm-pigtail i mm
 Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Våning för en våningsplint (1 = nederst); övre våningar sitter på blocket för föregående plint
 Library id or customer rule set name to no longer verify against	Biblioteks-ID eller namn på kundregelverk att inte längre kontrollera mot
 Library id or customer rule set name to verify against	Biblioteks-ID eller namn på kundregelverk att kontrollera mot
+Library the symbols are listed under (default: KiCad)	Bibliotek som symbolerna listas under (standard: KiCad)
 Line in the source language	Rad på källspråket
 Line-to-line voltage in V	Huvudspänning i V
 Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Länkar en fluidapparat med de elektriska apparater som manövrerar eller övervakar den (ersätter länkarna)

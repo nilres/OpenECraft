@@ -63,6 +63,7 @@ Align right	Igazítás jobbra
 Align top	Igazítás felülre
 All aspects (with product)	Minden aspektus (termékkel)
 All devices of page {} are in the schematic already	A(z) {} oldal összes készüléke már szerepel a kapcsolási rajzon
+All symbols of the library instead of those the project uses	A könyvtár összes szimbóluma a projekt által használtak helyett
 Ammeter	Árammérő
 Ammeter, reactive current	Árammérő, meddő áram
 Ampere-hour meter	Amperóra-számláló
@@ -516,8 +517,10 @@ Exhaust {} open to the atmosphere (no silencer)	A(z) {} kipufogó nyitott a lég
 Explosion protection marking	Robbanásvédelmi jelölés
 Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Exportálja az anyagjegyzéket a cikktörzsadatokkal; importálja az ERP-számokat, árakat, készleteket és szállítási időket
 Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Exportálja a készülékeket és a pont-pont összeköttetéseket NYÁK-tervezéshez; importálja az alkatrész-hozzárendeléseket és az alkatrészek leírását
+Exports the devices and potentials as a KiCad netlist for the PCB editor; imports part numbers and descriptions from a KiCad netlist or bill of materials (CSV)	Exportálja a készülékeket és a potenciálokat KiCad hálózati listaként a NYÁK-szerkesztő számára; cikkszámokat és leírásokat importál egy KiCad hálózati listából vagy anyagjegyzékből (CSV)
 Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Exportálja a tervezési anyagjegyzéket (szerelési helyek, készülékek, alkatrészek); importálja a tételazonosítókat, revíziókat és életciklus-állapotokat
 Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Exportálja a rendelési listát szállítónként (szükséges mennyiség mínusz készlet, csomagolási egységre kerekítve); importálja a rendelésvisszaigazolásokat
+Exports the panel layout as a FreeCAD macro that builds it with named solids; imports the positions of devices moved in the saved FreeCAD document (.FCStd)	Exportálja a szekrényelrendezést FreeCAD-makróként, amely elnevezett testekből építi fel; importálja a mentett FreeCAD-dokumentumban (.FCStd) elmozdított készülékek pozícióit
 Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Exportálja a készülékek pozícióit és méreteit a szekrényelrendezésben; importálja az MCAD-rendszerben módosított pozíciókat
 Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Exportálja a projekt és az oldalak metaadatait a revíziókkal; importálja a dokumentumszámokat, revíziókat és állapotokat
 Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Exportálja a vezetékeket vágási hosszal, csupaszítással és érvéghüvelyekkel huzalfeldolgozó gépekhez; a feldolgozási visszajelzést huzalozási jelölésként importálja
@@ -586,6 +589,7 @@ Frame size	Építési méret
 Free	Szabad
 Free air (mm)	Szabad vezetés (mm)
 Free run	Szabad fektetés
+FreeCAD panel layout (macro, .FCStd)	FreeCAD szekrényelrendezés (makró, .FCStd)
 Freestanding on posts	Szabadföldi, oszlopokon
 Frequency converter	Frekvenciaváltó
 Frequency meter	Frekvenciamérő
@@ -783,6 +787,9 @@ Key switch NC, latching	Kulcsos kapcsoló, nyitóérintkező, reteszelő
 Key switch NO	Kulcsos kapcsoló, záróérintkező
 Key switch NO, latching	Kulcsos kapcsoló, záróérintkező, reteszelő
 Keywords	Kulcsszavak
+KiCad netlist (.net)	KiCad hálózati lista (.net)
+KiCad netlist of the devices and potentials (.net)	A készülékek és potenciálok KiCad hálózati listája (.net)
+KiCad symbol library (.kicad_sym)	KiCad szimbólumkönyvtár (.kicad_sym)
 LED	LED
 Labeling scheme (default: the scheme selected in the project)	Feliratozási séma (alapértelmezés: a projektben kiválasztott séma)
 Lamp voltage	Lámpafeszültség
@@ -1001,6 +1008,10 @@ Non-return valve	Visszacsapó szelep
 Not a DWG file	Nem DWG-fájl
 Not a DXF file	Nem DXF-fájl
 Not a DXF file (binary DXF is not supported)	Nem DXF-fájl (a bináris DXF nem támogatott)
+Not a FreeCAD document (.FCStd)	Nem FreeCAD-dokumentum (.FCStd)
+Not a KiCad board file (.kicad_pcb)	Nem KiCad NYÁK-fájl (.kicad_pcb)
+Not a KiCad netlist (in KiCad: File › Export › Netlist, format KiCad)	Nem KiCad hálózati lista (a KiCadben: File › Export › Netlist, KiCad formátum)
+Not a KiCad symbol library (.kicad_sym)	Nem KiCad szimbólumkönyvtár (.kicad_sym)
 Not a PDF file	Nem PDF-fájl
 Not a change request file: the column \"Number\" is missing	Nem módosításikérelem-fájl: hiányzik a \"Number\" oszlop
 Not a change request file: {}	Nem módosításikérelem-fájl: {}
@@ -1011,6 +1022,7 @@ Not a project database: {}	Nem projektadatbázis: {}
 Not a settings scheme: {}	Nem beállításséma: {}
 Not a structure template: {}	Nem struktúrasablon: {}
 Not a valid JSON file: {}	Nem érvényes JSON-fájl: {}
+Not a valid KiCad file (line {})	Nem érvényes KiCad-fájl ({}. sor)
 Not a valid project file: {}	Nem érvényes projektfájl: {}
 Not a valid property library: {}	Nem érvényes tulajdonságkönyvtár: {}
 Not an Excel workbook (.xlsx)	Nem Excel-munkafüzet (.xlsx)
@@ -1147,6 +1159,7 @@ Panel layout in 3D (JT)	Szekrényelrendezés 3D-ben (JT)
 Panel layout in 3D (Parasolid XT)	Szekrényelrendezés 3D-ben (Parasolid XT)
 Panel layout in 3D (STEP)	Szekrényelrendezés 3D-ben (STEP)
 Panel layout in 3D (glTF)	Szekrényelrendezés 3D-ben (glTF)
+Panel layout in 3D for FreeCAD (macro)	Szekrényelrendezés 3D-ben FreeCAD-hez (makró)
 Panel layout settings	Szekrényelrendezés beállításai
 Panel legend	Szekrényjelmagyarázat
 Parallel to the roof on roof hooks	A tetővel párhuzamosan tetőkampókon
@@ -1260,6 +1273,7 @@ Pressure switch NC	Nyomáskapcsoló, nyitóérintkező
 Pressure switch NO	Nyomáskapcsoló, záróérintkező
 Pressure switch NO (NFPA)	Nyomáskapcsoló, záróérintkező (NFPA)
 Primary voltage	Primer feszültség
+Printed circuit board {}	Nyomtatott áramköri lap {}
 Problem	Probléma
 Process component	Folyamatkomponens
 Process connection	Folyamatcsatlakozás
@@ -1647,6 +1661,8 @@ Termination (from)	Lezárás (honnan)
 Termination (to)	Lezárás (hová)
 Text file	Szövegfájl
 The DXF file contains nothing that can be imported	A DXF-fájl nem tartalmaz importálható elemet
+The FreeCAD document has no devices of OpenECraft (objects with the property OEC_Tag)	A FreeCAD-dokumentum nem tartalmaz OpenECraft-készülékeket (OEC_Tag tulajdonságú objektumokat)
+The KiCad symbol library has no symbols	A KiCad szimbólumkönyvtár nem tartalmaz szimbólumokat
 The PDF has no pages that can be read	A PDF-ben nincsenek olvasható oldalak
 The answer is OK, Not OK or Not applicable, not {}	A válasz OK, Nem OK vagy Nem alkalmazható, nem {}
 The archive contains no project	Az archívum nem tartalmaz projektet
@@ -1655,6 +1671,7 @@ The archive is damaged	Az archívum sérült
 The archive unpacks to more than {} MB	Az archívum kicsomagolva több mint {} MB
 The archive was written by a newer version (archive version {})	Az archívumot egy újabb verzió írta (archívumverzió: {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	A berendezés gyártóját meg kell nevezni (IEC 61439-1, 6.1)
+The board has no outline on the layer Edge.Cuts	A NYÁK-nak nincs körvonala az Edge.Cuts rétegen
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	A szekrénysor a helyiségében: L alakú alaprajz, belső fal, ajtó és ablak, a szekrénysor a helyén, egy sín dugaszolóaljzattal a falon, falra szerelt vészvilágító lámpa és kábeltálca a mennyezet alatt.
 The cable of {} needs at least {} cores	A(z) {} kábelének legalább {} érre van szüksége
 The configuration is not a JSON object	A konfiguráció nem JSON-objektum
@@ -1675,6 +1692,8 @@ The index of the project names no file layout: it was not written by OpenECraft	
 The item is no frame in an opening of a side wall	Az elem nem egy oldalfal nyílásában lévő keret
 The last page cannot be deleted	Az utolsó oldal nem törölhető
 The macro box has no items left	A makródoboznak nem maradt eleme
+The netlist has no component {} with connected pins	A hálózati listában nincs csatlakoztatott érintkezőkkel rendelkező {} alkatrész
+The netlist has no connectors (references J, P, X, CN, TB): name the components whose pins are the connections of the board	A hálózati listában nincsenek csatlakozók (J, P, X, CN, TB referenciák): adja meg azokat az alkatrészeket, amelyek érintkezői a NYÁK csatlakozásai
 The next free id is already in use	A következő szabad azonosító már foglalt
 The option needs a name	Az opcióhoz név szükséges
 The page needs a number	Az oldalhoz szám szükséges

@@ -45,6 +45,7 @@
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = ei vielä piirikaaviossa
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Lähtötaso tallentaa koko projektin (sivut, laitteet, osat, asetukset). Revision vapauttaminen tallentaa lähtötason.
+A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist	KiCadissa suunniteltu piirilevy laitelaatikkona, jossa on liitäntäpiste jokaiselle sen liittimien nastalle, sen netlistan perusteella
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Kaapeliläpivienti jokaiselle kaapelille, joka lähtee kotelosta eikä löydä sopivaa vapaata läpivientiä
 A cable of the bus type for every connection without cable	Väylätyypin kaapeli jokaiselle yhteydelle, jolla ei ole kaapelia
 A cable that leaves an enclosure and finds no free gland gets one of its size: in the roof for a device in the room, in the bottom for the field or a cabinet hanging on the wall	Kotelosta lähtevä kaapeli, joka ei löydä vapaata läpivientiä, saa kokoisensa läpiviennin: kattoon huoneessa olevalle laitteelle, pohjaan kentälle tai seinällä riippuvalle kotelolle
@@ -797,7 +798,7 @@ File format version {}. Files of older versions are converted when they are open
 File name	Tiedostonimi
 File of another system (connector)	Toisen järjestelmän tiedosto (konnektori)
 File {}	Tiedosto {}
-Files of other systems (CSV, JSON)	Muiden järjestelmien tiedostot (CSV, JSON)
+Files of other systems (CSV, JSON, KiCad, FreeCAD)	Muiden järjestelmien tiedostot (CSV, JSON, KiCad, FreeCAD)
 Fill	Täytä
 Filled	Täytetty
 Filter connections…	Suodata yhteyksiä…
@@ -969,6 +970,7 @@ Import CSV / Excel…	Tuo CSV / Excel…
 Import CSV…	Tuo CSV…
 Import DXF / DWG as page…	Tuo DXF / DWG sivuksi…
 Import GSDML / ESI…	Tuo GSDML / ESI…
+Import KiCad board as device…	Tuo KiCad-piirilevy laitteeksi…
 Import PDF comments…	Tuo PDF-kommentit…
 Import a file of another system to see what it changes in the project.	Tuo toisen järjestelmän tiedosto nähdäksesi, mitä se muuttaa projektissa.
 Import changes	Tuonnin muutokset
@@ -1067,6 +1069,9 @@ Keyboard shortcuts…	Pikanäppäimet…
 Keys and gestures	Näppäimet ja eleet
 Keys of the 3D view	3D-näkymän näppäimet
 Keywords: {}	Avainsanat: {}
+KiCad board imported as device {} on page {}: {} connection points	KiCad-piirilevy tuotiin laitteeksi {} sivulle {}: {} liitäntäpistettä
+KiCad import failed: {}	KiCad-tuonti epäonnistui: {}
+KiCad netlist	KiCad-netlista
 Label	Merkintä
 Label (grey)	Merkintä (harmaa)
 Label field	Merkintäkenttä
@@ -2155,6 +2160,7 @@ Switches the options with a condition by the configurator options	Kytkee ehdolli
 Switches to this workspace with its panes at their default places	Vaihtaa tähän työtilaan ja palauttaa sen paneelit oletuspaikoilleen
 Switches, push buttons and room thermostats	Kytkimet, painikkeet ja huonetermostaatit
 Symbol editor	Symbolieditori
+Symbol library (JSON, EMA, EDZ, KiCad)	Symbolikirjasto (JSON, EMA, EDZ, KiCad)
 Symbol table import failed: {}	Symbolitaulukon tuonti epäonnistui: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Tämän sivun symbolit ja johdot piirretään, mutta niitä ei arvioida (ei laitteita, yhteyksiä tai raportteja).
 Symbols placed next get this device tag (contacts are numbered on)	Seuraavaksi sijoitettavat symbolit saavat tämän laitetunnuksen (koskettimien numerointi jatkuu)

@@ -73,6 +73,7 @@
 =A1+CAB1	=A1+CAB1	=A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = noch nicht im Schaltplan	? = pas encore dans le schéma	? = aún no está en el esquema
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Eine Baseline speichert das ganze Projekt (Seiten, Geräte, Artikel, Einstellungen). Die Freigabe einer Revision speichert eine.	Une référence enregistre tout le projet (pages, appareils, articles, paramètres). La diffusion d'une révision en enregistre une.	Una línea base guarda todo el proyecto (páginas, dispositivos, artículos, ajustes). Liberar una revisión guarda una.
+A board designed in KiCad as a device box with a connection point for every pin of its connectors, from its netlist	Eine in KiCad entworfene Platine als Gerätebox mit einem Anschlusspunkt für jeden Pin ihrer Steckverbinder, aus ihrer Netzliste	Une carte conçue dans KiCad comme boîte d'appareil avec un point de connexion pour chaque broche de ses connecteurs, d'après sa liste d'équipotentielles	Una placa diseñada en KiCad como caja de dispositivo con un punto de conexión por cada pin de sus conectores, a partir de su lista de redes
 A building with one level at ground level, beside what stands in the plant	Ein Gebäude mit einer Ebene auf Geländehöhe, neben dem, was in der Anlage steht	Un bâtiment avec un niveau au niveau du sol, à côté de ce qui se trouve déjà dans l'installation	Un edificio con un nivel a cota de terreno, junto a lo que ya está en la instalación
 A cable gland for every cable that leaves an enclosure and finds no free gland that takes it	Eine Kabelverschraubung für jedes Kabel, das ein Gehäuse verlässt und keine freie Verschraubung findet, die es aufnimmt	Un presse-étoupe pour chaque câble qui sort d'une armoire et ne trouve aucun presse-étoupe libre qui le prenne	Un prensaestopas para cada cable que sale de un armario y no encuentra ningún prensaestopas libre que lo admita
 A cable of the bus type for every connection without cable	Ein Kabel des Bustyps für jede Verbindung ohne Kabel	Un câble du type de bus pour chaque liaison sans câble	Un cable del tipo de bus para cada conexión sin cable
@@ -968,7 +969,7 @@ File format version {}. Files of older versions are converted when they are open
 File name	Dateiname	Nom du fichier	Nombre del archivo
 File of another system (connector)	Datei eines anderen Systems (Konnektor)	Fichier d'un autre système (connecteur)	Archivo de otro sistema (conector)
 File {}	Datei {}	Fichier {}	Archivo {}
-Files of other systems (CSV, JSON)	Dateien anderer Systeme (CSV, JSON)	Fichiers d'autres systèmes (CSV, JSON)	Archivos de otros sistemas (CSV, JSON)
+Files of other systems (CSV, JSON, KiCad, FreeCAD)	Dateien anderer Systeme (CSV, JSON, KiCad, FreeCAD)	Fichiers d'autres systèmes (CSV, JSON, KiCad, FreeCAD)	Archivos de otros sistemas (CSV, JSON, KiCad, FreeCAD)
 Fill	Füllen	Remplir	Rellenar
 Filled	Gefüllt	Rempli	Relleno
 Filter connections…	Verbindungen filtern…	Filtrer les liaisons…	Filtrar conexiones…
@@ -1176,6 +1177,7 @@ Import CSV / Excel…	CSV / Excel importieren…	Importer CSV / Excel…	Importa
 Import CSV…	CSV importieren…	Importer un CSV…	Importar CSV…
 Import DXF / DWG as page…	DXF / DWG als Seite importieren…	Importer un DXF / DWG comme page…	Importar DXF / DWG como página…
 Import GSDML / ESI…	GSDML / ESI importieren…	Importer GSDML / ESI…	Importar GSDML / ESI…
+Import KiCad board as device…	KiCad-Platine als Betriebsmittel importieren…	Importer une carte KiCad comme appareil…	Importar placa de KiCad como dispositivo…
 Import PDF comments…	PDF-Kommentare importieren…	Importer des commentaires PDF…	Importar comentarios PDF…
 Import a file of another system to see what it changes in the project.	Importieren Sie eine Datei eines anderen Systems, um zu sehen, was sie im Projekt ändert.	Importez un fichier d'un autre système pour voir ce qu'il modifie dans le projet.	Importe un archivo de otro sistema para ver qué cambia en el proyecto.
 Import changes	Importänderungen	Modifications importées	Cambios importados
@@ -1280,6 +1282,9 @@ Keys and gestures	Tasten und Gesten	Touches et gestes	Teclas y gestos
 Keys of the 3D view	Tasten der 3D-Ansicht	Touches de la vue 3D	Teclas de la vista 3D
 Keys of the page editor	Tasten des Seiteneditors	Touches de l'éditeur de page	Teclas del editor de páginas
 Keywords: {}	Schlagwörter: {}	Mots-clés : {}	Palabras clave: {}
+KiCad board imported as device {} on page {}: {} connection points	KiCad-Platine als Betriebsmittel {} auf Seite {} importiert: {} Anschlusspunkte	Carte KiCad importée comme appareil {} sur la page {} : {} points de connexion	Placa de KiCad importada como dispositivo {} en la página {}: {} puntos de conexión
+KiCad import failed: {}	KiCad-Import fehlgeschlagen: {}	Échec de l'import KiCad : {}	Error al importar de KiCad: {}
+KiCad netlist	KiCad-Netzliste	Liste d'équipotentielles KiCad	Lista de redes de KiCad
 Label	Beschriftung	Libellé	Etiqueta
 Label (grey)	Beschriftung (grau)	Libellé (gris)	Etiqueta (gris)
 Label field	Beschriftungsfeld	Champ de libellé	Campo de etiqueta
@@ -2509,7 +2514,7 @@ Switches the options with a condition by the configurator options	Schaltet die O
 Switches to this workspace with its panes at their default places	Wechselt in diesen Arbeitsbereich und setzt seine Fenster an ihre Standardplätze	Passe à cet espace de travail avec ses panneaux à leur place par défaut	Cambia a este espacio de trabajo con sus paneles en su lugar predeterminado
 Switches, push buttons and room thermostats	Schalter, Taster und Raumthermostate	Interrupteurs, boutons-poussoirs et thermostats d'ambiance	Interruptores, pulsadores y termostatos de ambiente
 Symbol editor	Symboleditor	Éditeur de symboles	Editor de símbolos
-Symbol library (JSON, EMA, EDZ)	Symbolbibliothek (JSON, EMA, EDZ)	Bibliothèque de symboles (JSON, EMA, EDZ)	Biblioteca de símbolos (JSON, EMA, EDZ)
+Symbol library (JSON, EMA, EDZ, KiCad)	Symbolbibliothek (JSON, EMA, EDZ, KiCad)	Bibliothèque de symboles (JSON, EMA, EDZ, KiCad)	Biblioteca de símbolos (JSON, EMA, EDZ, KiCad)
 Symbol sizes	Symbolgrößen	Tailles des symboles	Tamaños de los símbolos
 Symbol table import failed: {}	Import der Symboltabelle fehlgeschlagen: {}	Échec de l'import de la table de symboles : {}	Error al importar la tabla de símbolos: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Symbole und Verbindungen dieser Seite werden gezeichnet, aber nicht ausgewertet (keine Betriebsmittel, Verbindungen oder Auswertungen).	Les symboles et liaisons de cette page sont dessinés mais non évalués (ni appareils, ni connexions, ni rapports).	Los símbolos y conexiones de esta página se dibujan pero no se evalúan (sin dispositivos, conexiones ni informes).
