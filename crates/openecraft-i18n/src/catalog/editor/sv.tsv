@@ -481,6 +481,9 @@ Created {} as a copy of {} and opened it	{} skapades som kopia av {} och öppnad
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Skapar ett nytt projekt på servern från det sparade läget för det här projektet; du anger först dess namn och egenskaper
 Creating {} as a copy of {}…	Skapar {} som kopia av {}…
 Cross references…	Korsreferenser…
+Cross-select mode	Korsmarkeringsläge
+Cross-select mode off	Korsmarkeringsläge av
+Cross-select mode on: the schematic and the panel layout select the same	Korsmarkeringsläge på: schemat och skåplayouten markerar samma sak
 Crossed wires	Korsade ledningar
 Ctrl + click on the text opens it as well	Ctrl + klick på texten öppnar den också
 Ctrl+A	Ctrl+A
@@ -636,6 +639,7 @@ Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
 Dot	Punkt
 Double door	Pardörr
 Double-click	Dubbelklick
+Double-click on a device, a cable or a wire	Dubbelklick på en apparat, en kabel eller en ledning
 Down conductors	Nedledare
 Download into database	Ladda ned till databasen
 Download project	Ladda ned projekt
@@ -1466,6 +1470,7 @@ Opening angle of the door in the 3D view	Dörrens öppningsvinkel i 3D-vyn
 Opening in the mounting plate / door: click two corners (round: in the properties)	Öppning i monteringsplåten / dörren: klicka på två hörn (rund: i egenskaperna)
 Opening {}…	Öppnar {}…
 Opens	Öppnas
+Opens its properties (in the 3D view: turns the view to it)	Öppnar dess egenskaper (i 3D-vyn: vrider vyn mot den)
 Opens the page of the release	Öppnar versionens sida
 Opens the pages for printing in the browser with its print dialog	Öppnar sidorna för utskrift i webbläsaren med dess utskriftsdialog
 Open…	Öppna…
@@ -2051,6 +2056,7 @@ Shown instead of the measured value	Visas i stället för det uppmätta värdet
 Shown now: {}	Visas nu: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Visas på försättsbladet och av bildelementen i namnrutor som visar projektets logotyp
 Shows	Visar
+Shows it in the other view: the panel layout or the schematic	Visar den i den andra vyn: skåplayouten eller schemat
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Visar 3D-vyn av skåpslayouten i ett eget fönster som kan flyttas till en annan skärm och maximeras
 Shows the differences of your version to the open project; selected ones can be taken over	Visar skillnaderna mellan din version och det öppna projektet; valda kan tas över
 Shows the page and the 3D view side by side in this workspace	Visar sidan och 3D-vyn sida vid sida i den här arbetsytan
@@ -2386,6 +2392,8 @@ Web at cutouts	Material vid urtag
 Web between holes	Material mellan hål
 Welcome to OpenECraft	Välkommen till OpenECraft
 What is new	Nyheter
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Det som är markerat i skåplayouten eller 3D-vyn, på dess sida i schemat: en apparats huvudfunktion, en förbindelses ledningar, en kabels ledare
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Det som är markerat i schemat markeras också i skåplayouten och 3D-vyn, och tvärtom: apparater, plintar, ledningar och kablar
 What should be checked or changed?	Vad ska kontrolleras eller ändras?
 What's new in OpenECraft {}	Nyheter i OpenECraft {}
 Wheel and touch	Hjul och pekskärm

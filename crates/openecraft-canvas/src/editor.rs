@@ -8,7 +8,7 @@ use openecraft_ui::part_editor::PartDrag;
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_core::geom::{dist_to_segment, p, P, R, GRID};
 use openecraft_core::frame::PlotFrame;
-use openecraft_core::index::Index;
+use openecraft_core::index::{Index, Loc};
 use openecraft_core::model::*;
 use openecraft_core::ops::{self, Clip, PlaceCtx};
 use openecraft_core::render::{self, Draw, Ink, Opts, TextStyle, VAnchor};
@@ -757,6 +757,9 @@ pub struct CanvasOutput {
     /// Cross reference the user Ctrl-clicked: the page it leads to and the item to
     /// show there (0: the page only).
     pub goto: Option<(usize, u64)>,
+    /// The selection was double-clicked (with `open_properties`): the application may
+    /// show it in another view instead.
+    pub double_clicked: bool,
     /// A symbol was placed (its id).
     pub placed: Option<u64>,
     /// The part chosen for the symbol placed.
@@ -1036,6 +1039,17 @@ impl Editor {
         }
     }
 
+    /// Selects the items `ids` of the page `page_i` (cross selection); `centre` moves
+    /// the view to the first one, at the zoom it has.
+    pub fn select_items(&mut self, prj: &Project, page_i: usize, ids: &[u64], centre: bool) {
+        self.cancel();
+        self.selection = ids.iter().copied().collect();
+        let first = ids.first().and_then(|id| ops::item_bounds(&prj.symbol_table(), prj.pages.get(page_i)?, *id));
+        if let Some(b) = first.filter(|_| centre) {
+            self.center_on = Some(b.center());
+        }
+    }
+
     /// Ctrl + click (the key that opens links) on a cross reference: leads to its page.
     fn follow_link(&self, prj: &Project, idx: &Index, page_i: usize, w: P, mods: egui::Modifiers, out: &mut CanvasOutput) -> bool {
         if !self.gestures.held(Role::OpenLink, mods) {
@@ -1055,17 +1069,27 @@ impl Editor {
         self.page_links.iter().find(|(r, _)| r.expand(tol).contains(q)).map(|l| l.1)
     }
 
-    /// The cross reference at `q`: the page it leads to and, for an interruption
-    /// point, its counterpart there (0 for the other references).
+    /// The cross reference at `q`: the page it leads to and the function it names
+    /// there: the counterpart of an interruption point, the contact of a coil, the coil
+    /// of a contact (0 for references to other devices).
     pub fn link_at(&self, prj: &Project, idx: &Index, page_i: usize, q: P) -> Option<(usize, u64)> {
         let page = &prj.pages[page_i];
         let target = self.linked_page(page.id, q)?;
         let tol = (2. / self.zoom).max(0.3);
         let counterpart = page.symbols.iter().find_map(|s| {
-            let def = prj.symbol(&s.sym).filter(|def| def.func == Func::Interruption)?;
-            let (_, to) = render::symbol_links(prj, idx, page_i, &def, s).into_iter().find(|(r, _)| r.expand(tol).contains(q))?;
-            let others = idx.interruption_targets(prj, &s.interruption_key(), s.id);
-            others.iter().find(|l| l.page == to).or(others.first()).copied()
+            let def = prj.symbol(&s.sym)?;
+            let links = render::symbol_links(prj, idx, page_i, &def, s);
+            let (i, &(_, to)) = links.iter().enumerate().find(|(_, (r, _))| r.expand(tol).contains(q))?;
+            if def.func == Func::Interruption {
+                let others = idx.interruption_targets(prj, &s.interruption_key(), s.id);
+                return others.iter().find(|l| l.page == to).or(others.first()).copied();
+            }
+            // A coil and its contacts (and the other functions of a device) refer to each
+            // other: the n-th reference to a page is the n-th function of the device there.
+            let d = idx.devices.get(&s.tag).filter(|_| !s.tag.is_empty())?;
+            let there: Vec<&Loc> = d.mains.iter().chain(&d.auxs).chain(&d.others).chain(&d.boxes).chain(&d.overviews).filter(|l| l.page == to && l.sym_id != s.id).collect();
+            let nth = links[..i].iter().filter(|l| l.1 == to).count();
+            there.get(nth).or(there.first()).map(|l| **l)
         });
         Some(counterpart.map_or((target, 0), |l| (l.page, l.sym_id)))
     }
@@ -2451,8 +2475,19 @@ impl Editor {
                 self.select_at(prj, page_i, w, shift);
             }
         }
-        if self.gestures.double_clicked(MouseAction::OpenProperties, resp, mods) && !self.selection.is_empty() {
+        if self.gestures.double_clicked(MouseAction::OpenProperties, resp, mods) {
+            self.double_click(prj, idx, page_i, world, out);
+        }
+    }
+
+    /// A double-click on a cross reference follows it, like the key that opens links;
+    /// on the selection it opens its properties.
+    fn double_click(&self, prj: &Project, idx: &Index, page_i: usize, world: Option<P>, out: &mut CanvasOutput) {
+        if let Some(target) = world.and_then(|w| self.link_at(prj, idx, page_i, w)) {
+            out.goto = Some(target);
+        } else if !self.selection.is_empty() {
             out.open_properties = true;
+            out.double_clicked = true;
         }
     }
 }

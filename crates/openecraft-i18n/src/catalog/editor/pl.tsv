@@ -481,6 +481,9 @@ Created {} as a copy of {} and opened it	Utworzono {} jako kopię {} i otwarto
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Tworzy na serwerze nowy projekt z zapisanego stanu tego projektu; najpierw ustalasz jego nazwę i właściwości
 Creating {} as a copy of {}…	Tworzenie {} jako kopii {}…
 Cross references…	Odsyłacze…
+Cross-select mode	Tryb wyboru krzyżowego
+Cross-select mode off	Tryb wyboru krzyżowego wyłączony
+Cross-select mode on: the schematic and the panel layout select the same	Tryb wyboru krzyżowego włączony: schemat i zabudowa szafy zaznaczają to samo
 Crossed wires	Przecięte przewody
 Ctrl + click on the text opens it as well	Ctrl + kliknięcie tekstu również go otwiera
 Ctrl+A	Ctrl+A
@@ -636,6 +639,7 @@ Door: {} devices, {} cutouts	Drzwi: urządzenia: {}, wycięcia: {}
 Dot	Punkt
 Double door	Drzwi dwuskrzydłowe
 Double-click	Dwukrotne kliknięcie
+Double-click on a device, a cable or a wire	Dwukrotne kliknięcie urządzenia, kabla lub przewodu
 Down conductors	Przewody odprowadzające
 Download into database	Pobierz do bazy danych
 Download project	Pobierz projekt
@@ -1466,6 +1470,7 @@ Opening angle of the door in the 3D view	Kąt otwarcia drzwi w widoku 3D
 Opening in the mounting plate / door: click two corners (round: in the properties)	Otwór w płycie montażowej / drzwiach: kliknij dwa narożniki (okrągły: we właściwościach)
 Opening {}…	Otwieranie {}…
 Opens	Otwieranie
+Opens its properties (in the 3D view: turns the view to it)	Otwiera jego właściwości (w widoku 3D: obraca widok w jego stronę)
 Opens the page of the release	Otwiera stronę wydania
 Opens the pages for printing in the browser with its print dialog	Otwiera strony do druku w przeglądarce z jej oknem dialogowym drukowania
 Open…	Otwórz…
@@ -2051,6 +2056,7 @@ Shown instead of the measured value	Wyświetlane zamiast zmierzonej wartości
 Shown now: {}	Teraz pokazywane: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Pokazywane na stronie tytułowej i przez elementy obrazu tabliczek, które pokazują logo projektu
 Shows	Pokazuje
+Shows it in the other view: the panel layout or the schematic	Pokazuje je w drugim widoku: w zabudowie szafy lub na schemacie
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Pokazuje widok 3D zabudowy szafy we własnym oknie, które można przenieść na inny monitor i zmaksymalizować
 Shows the differences of your version to the open project; selected ones can be taken over	Pokazuje różnice Twojej wersji względem otwartego projektu; wybrane można przejąć
 Shows the page and the 3D view side by side in this workspace	Pokazuje stronę i widok 3D obok siebie w tym obszarze roboczym
@@ -2386,6 +2392,8 @@ Web at cutouts	Mostek przy wycięciach
 Web between holes	Mostek między otworami
 Welcome to OpenECraft	Witamy w OpenECraft
 What is new	Co nowego
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	To, co jest zaznaczone w zabudowie szafy lub w widoku 3D, na jego stronie schematu: funkcja główna urządzenia, przewody połączenia, żyły kabla
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	To, co jest zaznaczone na schemacie, jest zaznaczane także w zabudowie szafy i w widoku 3D, i odwrotnie: urządzenia, zaciski, przewody i kable
 What should be checked or changed?	Co należy sprawdzić lub zmienić?
 What's new in OpenECraft {}	Nowości w OpenECraft {}
 Wheel and touch	Kółko i dotyk

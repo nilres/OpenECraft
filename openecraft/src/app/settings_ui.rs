@@ -453,6 +453,10 @@ impl App {
     fn mouse_settings(&mut self, ui: &mut egui::Ui) {
         ui.weak(tr("Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu."));
         let conflicts = self.editor.gestures.conflicts();
+        ui.add_space(6.0);
+        ui.label(RichText::new(tr("Double-click on a device, a cable or a wire")).strong());
+        ui.radio_value(&mut self.shell.double_click_other, false, tr("Opens its properties (in the 3D view: turns the view to it)"));
+        ui.radio_value(&mut self.shell.double_click_other, true, tr("Shows it in the other view: the panel layout or the schematic"));
         for (title, view) in [(tr("Pages, panel layout and plans"), View::Flat), (tr("3D view"), View::Spatial)] {
             ui.add_space(6.0);
             ui.label(RichText::new(title).strong());

@@ -481,6 +481,9 @@ Created {} as a copy of {} and opened it	{} létrehozva {} másolataként, és m
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Új projektet hoz létre a szerveren ennek a projektnek a mentett állapotából; előbb megadja a nevét és a tulajdonságait
 Creating {} as a copy of {}…	{} létrehozása {} másolataként…
 Cross references…	Kereszthivatkozások…
+Cross-select mode	Kereszt-kijelölés mód
+Cross-select mode off	Kereszt-kijelölés mód ki
+Cross-select mode on: the schematic and the panel layout select the same	Kereszt-kijelölés mód be: a kapcsolási rajz és a szekrényelrendezés ugyanazt jelöli ki
 Crossed wires	Keresztezett vezetékek
 Ctrl + click on the text opens it as well	A szövegre Ctrl + kattintás szintén megnyitja
 Ctrl+A	Ctrl+A
@@ -636,6 +639,7 @@ Door: {} devices, {} cutouts	Ajtó: {} készülék, {} kivágás
 Dot	Pont
 Double door	Kétszárnyú ajtó
 Double-click	Dupla kattintás
+Double-click on a device, a cable or a wire	Dupla kattintás egy készülékre, kábelre vagy vezetékre
 Down conductors	Levezetők
 Download into database	Letöltés az adatbázisba
 Download project	Projekt letöltése
@@ -1466,6 +1470,7 @@ Opening angle of the door in the 3D view	Az ajtó nyitási szöge a 3D nézetben
 Opening in the mounting plate / door: click two corners (round: in the properties)	Nyílás a szerelőlapon / ajtón: kattintson két sarokra (kerek: a tulajdonságokban)
 Opening {}…	{} megnyitása…
 Opens	Nyílás
+Opens its properties (in the 3D view: turns the view to it)	Megnyitja a tulajdonságait (a 3D nézetben: odafordítja a nézetet)
 Opens the page of the release	Megnyitja a kiadás oldalát
 Opens the pages for printing in the browser with its print dialog	Megnyitja az oldalakat nyomtatásra a böngészőben annak nyomtatási párbeszédablakával
 Open…	Megnyitás…
@@ -2051,6 +2056,7 @@ Shown instead of the measured value	A mért érték helyett jelenik meg
 Shown now: {}	Most megjelenik: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	A fedlapon és azon szövegmezők képelemeiben jelenik meg, amelyek a projekt logóját mutatják
 Shows	Megjelenítés
+Shows it in the other view: the panel layout or the schematic	Megmutatja a másik nézetben: a szekrényelrendezésben vagy a kapcsolási rajzon
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	A szekrényelrendezés 3D nézetét saját ablakban mutatja, amely másik monitorra helyezhető és teljes méretűre nagyítható
 Shows the differences of your version to the open project; selected ones can be taken over	Megmutatja a változata eltéréseit a megnyitott projekttől; a kijelöltek átvehetők
 Shows the page and the 3D view side by side in this workspace	Ebben a munkaterületben egymás mellett mutatja az oldalt és a 3D nézetet
@@ -2386,6 +2392,8 @@ Web at cutouts	Anyaghíd a kivágásoknál
 Web between holes	Anyaghíd a furatok között
 Welcome to OpenECraft	Üdvözli az OpenECraft
 What is new	Újdonságok
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Ami a szekrényelrendezésben vagy a 3D nézetben ki van jelölve, a kapcsolási rajz saját lapján: egy készülék fő funkciója, egy összeköttetés vezetékei, egy kábel erei
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Ami a kapcsolási rajzon ki van jelölve, az a szekrényelrendezésben és a 3D nézetben is ki lesz jelölve, és fordítva: készülékek, sorkapcsok, vezetékek és kábelek
 What should be checked or changed?	Mit kell ellenőrizni vagy módosítani?
 What's new in OpenECraft {}	Az OpenECraft {} újdonságai
 Wheel and touch	Görgő és érintés

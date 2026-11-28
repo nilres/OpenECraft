@@ -9,6 +9,7 @@ pub mod climate;
 pub mod collab;
 pub mod compare;
 pub mod config;
+pub mod cross_select;
 pub mod aml;
 pub mod analysis;
 pub mod cabledef;

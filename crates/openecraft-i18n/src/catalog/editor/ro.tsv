@@ -481,6 +481,9 @@ Created {} as a copy of {} and opened it	{} a fost creat ca o copie a {} și des
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Creează pe server un proiect nou din starea salvată a acestuia; mai întâi îi stabiliți numele și proprietățile
 Creating {} as a copy of {}…	Se creează {} ca o copie a {}…
 Cross references…	Referințe încrucișate…
+Cross-select mode	Mod de selecție încrucișată
+Cross-select mode off	Mod de selecție încrucișată dezactivat
+Cross-select mode on: the schematic and the panel layout select the same	Mod de selecție încrucișată activat: schema și amplasarea în tablou selectează același lucru
 Crossed wires	Conductoare intersectate
 Ctrl + click on the text opens it as well	Ctrl + clic pe text îl deschide de asemenea
 Ctrl+A	Ctrl+A
@@ -636,6 +639,7 @@ Door: {} devices, {} cutouts	Ușă: {} dispozitive, {} decupaje
 Dot	Punct
 Double door	Ușă dublă
 Double-click	Dublu clic
+Double-click on a device, a cable or a wire	Dublu clic pe un dispozitiv, un cablu sau un conductor
 Down conductors	Conductoare de coborâre
 Download into database	Descărcare în baza de date
 Download project	Descărcare proiect
@@ -1466,6 +1470,7 @@ Opening angle of the door in the 3D view	Unghiul de deschidere a ușii în vizua
 Opening in the mounting plate / door: click two corners (round: in the properties)	Deschidere în placa de montaj / ușă: faceți clic pe două colțuri (rotundă: în proprietăți)
 Opening {}…	Se deschide {}…
 Opens	Deschidere
+Opens its properties (in the 3D view: turns the view to it)	Deschide proprietățile sale (în vederea 3D: rotește vederea spre el)
 Opens the page of the release	Deschide pagina versiunii
 Opens the pages for printing in the browser with its print dialog	Deschide paginile pentru tipărire în browser, cu dialogul de tipărire al acestuia
 Open…	Deschidere…
@@ -2051,6 +2056,7 @@ Shown instead of the measured value	Afișat în locul valorii măsurate
 Shown now: {}	Afișat acum: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Afișată pe copertă și de elementele imagine ale cartușelor care arată sigla proiectului
 Shows	Afișează
+Shows it in the other view: the panel layout or the schematic	Îl arată în cealaltă vedere: amplasarea în tablou sau schema
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Afișează vederea 3D a amplasării în dulap într-o fereastră proprie, de mutat pe alt monitor și maximizat
 Shows the differences of your version to the open project; selected ones can be taken over	Arată diferențele versiunii dvs. față de proiectul deschis; cele selectate pot fi preluate
 Shows the page and the 3D view side by side in this workspace	Afișează pagina și vederea 3D una lângă alta în acest spațiu de lucru
@@ -2386,6 +2392,8 @@ Web at cutouts	Punte de material la decupaje
 Web between holes	Punte de material între găuri
 Welcome to OpenECraft	Bun venit în OpenECraft
 What is new	Noutăți
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Ce este selectat în amplasarea în tablou sau în vederea 3D, pe pagina sa din schemă: funcția principală a unui dispozitiv, conductoarele unei conexiuni, firele unui cablu
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Ce este selectat în schemă este selectat și în amplasarea în tablou și în vederea 3D, și invers: dispozitive, borne, conductoare și cabluri
 What should be checked or changed?	Ce trebuie verificat sau modificat?
 What's new in OpenECraft {}	Noutăți în OpenECraft {}
 Wheel and touch	Rotiță și atingere

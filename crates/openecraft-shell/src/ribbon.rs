@@ -151,7 +151,7 @@ pub static TABS: &[Tab] = &[
             g("pages", tr_const!("Pages"), &[S(C::PreviousPage), S(C::NextPage), S(C::NextPageTab), S(C::ClosePageTab)]),
             g("show", tr_const!("Show"), &[S(C::Grid), S(C::GridSize), S(C::ConnectionPoints), S(C::RevisionMarks), S(C::MacroBoxes), S(C::WireColours)]),
             g("panes", tr_const!("Panes"), &[L(C::Panes), S(C::NextPane), S(C::PreviousPane), S(C::ResetLayout)]),
-            g("windows", tr_const!("Windows"), &[S(C::View3dInWindow), S(C::PageBeside3d), S(C::GatherWindows), S(C::FullScreen)]),
+            g("windows", tr_const!("Windows"), &[S(C::View3dInWindow), S(C::PageBeside3d), S(C::CrossSelect), S(C::GatherWindows), S(C::FullScreen)]),
             g(
                 "workspaces",
                 tr_const!("Workspaces"),
@@ -287,7 +287,7 @@ pub static TABS: &[Tab] = &[
             g(
                 "view",
                 tr_const!("View"),
-                &[L(C::Layout3d), S(C::LayoutFloorPlan), S(C::LayoutFront), S(C::LayoutDoor), S(C::LayoutDoorInside), S(C::LayoutWalls), S(C::LayoutFit)],
+                &[L(C::Layout3d), S(C::LayoutFloorPlan), S(C::LayoutFront), S(C::LayoutDoor), S(C::LayoutDoorInside), S(C::LayoutWalls), S(C::LayoutFit), S(C::ShowInSchematic)],
             ),
             g("show", tr_const!("Show"), &[S(C::LayoutWires), S(C::LayoutDuctFill), S(C::LayoutHeat), S(C::LayoutLineup), S(C::LayoutDoorOpen), S(C::LayoutSite), S(C::LayoutBuilding), S(C::LayoutHideFrontWalls), S(C::LayoutHideCeiling), S(C::LayoutHidePvModules), S(C::LayoutSeeThroughPv), S(C::LayoutOpenDucts), S(C::LayoutCoversOff), S(C::LayoutZones), S(C::LayoutPaperPlan), S(C::LayoutOpenWalls)])
                 .icon(openecraft_ui::icons::Icon::Eye),

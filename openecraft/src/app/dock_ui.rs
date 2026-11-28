@@ -478,7 +478,7 @@ impl App {
         let out = self.editor.ui(ui, &mut self.session.prj, page, idx, &self.session.analysis);
         if out.open_properties && matches!(self.editor.tool, Tool::Junction(_)) {
             self.show_symbol_tool_properties();
-        } else if out.open_properties {
+        } else if out.open_properties && !(out.double_clicked && self.double_click_shows_layout(&ctx)) {
             self.open_properties(&ctx);
         }
         if let Some(url) = out.open_url {

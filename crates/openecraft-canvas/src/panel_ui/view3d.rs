@@ -268,7 +268,14 @@ impl PanelUi {
         }
         let mut view = self.view_cube(ui, rect, resp.id, cam, fitted);
         view_cube::axes(&painter, rect.left_bottom() + vec2(34.0, -58.0), cam.yaw, cam.pitch, 20.0);
-        // Double-click: the camera turns to what is under the pointer and closes in.
+        // Double-click: what is selected in the schematic where the user chose it,
+        // otherwise the camera turns to what is under the pointer and closes in.
+        let focusing = if focusing && self.double_click_other && !self.pick().is_empty() {
+            self.show_schematic = true;
+            false
+        } else {
+            focusing
+        };
         if let Some(ptr) = resp.interact_pointer_pos().filter(|_| focusing) {
             if let Some(z) = depth_under(&prims, ptr, opacity < 0.99) {
                 view = Some(nav3d::look_at(&cam, camera.unproject(ptr - rect.center(), z)));
@@ -483,6 +490,7 @@ impl PanelUi {
         // The selection is of the current enclosure (picking an item makes its enclosure
         // the current one).
         self.fittings_menu(ui, prj, self.enclosure);
+        self.schematic_entry(ui);
         let any = !self.selection.is_empty();
         if ui.add_enabled(any, egui::Button::new(tr("Properties"))).clicked() {
             self.open_properties = true;

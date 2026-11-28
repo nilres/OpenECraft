@@ -114,7 +114,8 @@ Layers, bottom up (a module may use its own layer and the layers below):
    connections, wire ends, panel wiring, routing, field plan, report tables on demand), `checks`
    (the built-in checks as `Check` entries), `reports` (the built-in tables as `Report`
    entries), `exporters` (the built-in exports as `Exporter` entries), `ext` (the
-   registry kinds).
+   registry kinds), `cross_select` (what a selection on a page is in the panel layout
+   and back: cross-select mode, Show in schematic).
 7. Output and exchange formats: `render`, `svg`, `pdf`, `dxf`, `dxf_import`, `dwg`,
    `export3d`, `aml`, `integration`, `kbl` (harness data as KBL / VDA 4964),
    `harness_export` (harness interface: JSON, wire processing list, 3D bundle).

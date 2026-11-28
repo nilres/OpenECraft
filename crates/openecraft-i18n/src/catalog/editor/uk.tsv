@@ -480,6 +480,9 @@ Created {} as a copy of {} and opened it	{} створено як копію {} 
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Створює на сервері новий проєкт зі збереженого стану цього проєкту; спочатку ви задаєте його назву та властивості
 Creating {} as a copy of {}…	Створення {} як копії {}…
 Cross references…	Перехресні посилання…
+Cross-select mode	Режим перехресного вибору
+Cross-select mode off	Режим перехресного вибору вимкнено
+Cross-select mode on: the schematic and the panel layout select the same	Режим перехресного вибору ввімкнено: схема й компонування шафи вибирають те саме
 Crossed wires	Перетнуті проводи
 Ctrl + click on the text opens it as well	Ctrl + клацання тексту також відкриває його
 Ctrl+A	Ctrl+A
@@ -635,6 +638,7 @@ Door: {} devices, {} cutouts	Двері: пристроїв – {}, вирізі
 Dot	Точка
 Double door	Двостулкові
 Double-click	Подвійне клацання
+Double-click on a device, a cable or a wire	Подвійне клацання на пристрої, кабелі або проводі
 Down conductors	Струмовідводи
 Download into database	Завантажити до бази даних
 Download project	Завантажити проєкт
@@ -1465,6 +1469,7 @@ Opening angle of the door in the 3D view	Кут відчинення двере�
 Opening in the mounting plate / door: click two corners (round: in the properties)	Отвір у монтажній панелі / дверях: клацніть два кути (круглий: у властивостях)
 Opening {}…	Відкриття {}…
 Opens	Відчинення
+Opens its properties (in the 3D view: turns the view to it)	Відкриває його властивості (у 3D-виді: повертає вигляд до нього)
 Opens the page of the release	Відкриває сторінку випуску
 Opens the pages for printing in the browser with its print dialog	Відкриває сторінки для друку в браузері з його діалоговим вікном друку
 Open…	Відкрити…
@@ -2050,6 +2055,7 @@ Shown instead of the measured value	Показується замість вим
 Shown now: {}	Зараз показується: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Показується на титульній сторінці та в елементах зображення основних написів, що показують логотип проєкту
 Shows	Показує
+Shows it in the other view: the panel layout or the schematic	Показує його в іншому виді: у компонуванні шафи або на схемі
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Показує 3D-вигляд компонування шафи в окремому вікні, яке можна перенести на інший монітор і розгорнути
 Shows the differences of your version to the open project; selected ones can be taken over	Показує відмінності вашої версії від відкритого проєкту; вибрані можна перейняти
 Shows the page and the 3D view side by side in this workspace	Показує сторінку та 3D-вигляд поруч у цій робочій області
@@ -2385,6 +2391,8 @@ Web at cutouts	Перемичка біля вирізів
 Web between holes	Перемичка між отворами
 Welcome to OpenECraft	Ласкаво просимо до OpenECraft
 What is new	Що нового
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Вибране в компонуванні шафи або в 3D-виді на його сторінці схеми: головна функція пристрою, проводи з'єднання, жили кабелю
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Вибране на схемі вибирається й у компонуванні шафи та в 3D-виді, і навпаки: пристрої, клеми, проводи та кабелі
 What should be checked or changed?	Що слід перевірити або змінити?
 What's new in OpenECraft {}	Що нового в OpenECraft {}
 Wheel and touch	Коліщатко та дотик

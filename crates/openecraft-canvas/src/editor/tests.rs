@@ -1477,3 +1477,31 @@ fn ctrl_click_on_a_cross_reference_leads_to_the_counterpart() {
     assert_eq!(press(&mut ed, &mut prj, Modifiers::default()), None, "a plain click only selects");
     assert_eq!(press(&mut ed, &mut prj, Modifiers::COMMAND | Modifiers::CTRL), Some((1, 8)));
 }
+
+#[test]
+fn the_cross_references_of_a_coil_and_its_contacts_lead_to_each_other() {
+    let mut prj = Project::default();
+    let id = prj.new_id();
+    prj.pages.push(Page::new(id, "2", "", PageKind::Schematic));
+    prj.pages[0].symbols.push(coil(7, p(100.0, 100.0), "-K1"));
+    for (id, x) in [(8, 60.0), (9, 200.0)] {
+        prj.pages[1].symbols.push(SymbolInst { id, sym: "no".into(), pos: p(x, 100.0), tag: "-K1".into(), pins: vec!["13".into(), "14".into()], ..Default::default() });
+    }
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    let idx = Index::build(&prj);
+    let links = |prj: &Project, page: usize, id: u64| {
+        let s = prj.pages[page].symbols.iter().find(|s| s.id == id).unwrap().clone();
+        render::symbol_links(prj, &idx, page, &prj.symbol(&s.sym).unwrap(), &s)
+    };
+    let coil = links(&prj, 0, 7);
+    assert_eq!(coil.iter().filter(|l| l.1 == 1).count(), 2, "{coil:?}");
+    let targets: Vec<_> = coil.iter().map(|(r, _)| ed.link_at(&prj, &idx, 0, r.center())).collect();
+    assert_eq!(targets, vec![Some((1, 8)), Some((1, 9))], "each reference names its contact");
+    // Page 2 drawn: its contacts lead back to the coil.
+    frame(&mut ed, &ctx, &mut prj, 1, vec![]);
+    let contact = links(&prj, 1, 9);
+    assert_eq!(ed.link_at(&prj, &idx, 1, contact[0].0.center()), Some((0, 7)));
+}
