@@ -109,7 +109,8 @@ of its own in degrees, counter-clockwise on the page (90: from bottom to top), w
 does not change when the symbol is turned or mirrored, and which a drag keeps. The
 command takes `along` (true or false) and `label_angle` and `xref_angle`; the answer
 shows the angle of every text. Older projects load unchanged: a text without an angle
-is horizontal.
+is horizontal. Texts placed by hand win over the automatic placement, so for points
+that have some, `place_interruption_texts` takes `side` `auto` together with `along`.
 
 In the editor a cross reference is followed with Ctrl + click (the key that opens links,
 *File › Settings › Keys and gestures*): the page it names is opened, and for an
