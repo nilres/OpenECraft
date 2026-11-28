@@ -83,6 +83,12 @@ pub fn symbol_slug(def: &SymbolDef) -> &'static str {
     slugs.get(def.key).map_or("", String::as_str)
 }
 
+/// The symbol whose page is `folder` below [`FOLDER`].
+pub fn by_folder(folder: &str) -> Option<&'static SymbolDef> {
+    static FOLDERS: OnceLock<BTreeMap<&'static str, &'static SymbolDef>> = OnceLock::new();
+    FOLDERS.get_or_init(|| library().iter().map(|def| (symbol_slug(def), def)).collect()).get(folder).copied()
+}
+
 /// The symbols of a category, in the order of the library.
 pub fn of(category: Category) -> Vec<&'static SymbolDef> {
     library().iter().filter(|def| def.category == category).collect()

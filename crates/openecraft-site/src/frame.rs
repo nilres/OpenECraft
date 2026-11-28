@@ -65,6 +65,9 @@ pub enum Kind {
     /// The videos of the project, listed by a script the server of the site keeps
     /// current (`videos.js`, `installer/docker/website-videos.sh`).
     Videos,
+    /// The page shown for an address that has none (`missing`): beside the main page
+    /// whatever was asked for, and kept out of the index of a search engine.
+    Missing,
 }
 
 /// A page in one language, without its frame.
@@ -153,7 +156,7 @@ pub fn title(full: String, name: &str) -> String {
 }
 
 /// The pages of the bar, as on the pages written by hand (`website/src/pages.rs`).
-const BAR: [(&str, &str); 7] = [
+pub const BAR: [(&str, &str); 7] = [
     ("#features", "Features"),
     ("#studio", "Live demo"),
     ("panel-builders/", "Panel builders"),
@@ -211,11 +214,51 @@ pub fn section_text(text: &str) -> &'static str {
     }
 }
 
-/// What the page tells search engines about itself (JSON-LD).
-fn structured(page: &Page, lang: Lang) -> Value {
+/// The text of the first heading of `main`.
+fn heading(main: &str) -> Option<String> {
+    let rest = main.split("<h1").nth(1)?;
+    let text = rest.split_once('>')?.1.split("</h1>").next()?;
+    // Without the tags inside it.
+    let plain: String = text.split('<').enumerate().map(|(i, part)| if i == 0 { part } else { part.split_once('>').map_or("", |p| p.1) }).collect();
+    let plain = plain.replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&amp;", "&");
+    (!plain.trim().is_empty()).then(|| plain.trim().to_string())
+}
+
+/// The way from the main page to `page`: the pages above it and the page itself, each
+/// with its address seen from the page and its name in the language of the page.
+pub fn trail(page: &Page, place: Place) -> Vec<(String, String)> {
+    let mut parts = page.folder.split('/').filter(|part| !part.is_empty());
+    let Some(first) = parts.next() else { return Vec::new() };
+    let section = format!("{first}/");
+    let named = SECTIONS.iter().find(|s| s.0 == section).map(|s| section_text(s.1)).or_else(|| BAR.iter().find(|b| b.0 == section).map(|b| bar_text(b.1)));
+    let own = || heading(&page.main).unwrap_or_else(|| page.title.clone());
+    let mut out = vec![(place.to(""), "OpenECraft".to_string())];
+    let Some(below) = parts.next() else {
+        out.push((place.to(&section), named.map_or_else(own, str::to_string)));
+        return out;
+    };
+    if let Some(name) = named {
+        out.push((place.to(&section), name.to_string()));
+    }
+    // A symbol lies beside the categories: its category comes between.
+    if let Some(def) = (first == crate::symbols::FOLDER).then(|| crate::symbols::by_folder(below)).flatten() {
+        out.push((place.to(&format!("{section}{}/", crate::symbols::slug(def.category))), def.category.title().to_string()));
+    }
+    out.push((place.to(&format!("{section}{below}/")), own()));
+    out
+}
+
+/// What the page tells search engines about itself (JSON-LD): the page, and the way
+/// to it. The addresses of the site in it start at the folder of the site, seen from
+/// the page (`../../symbols/`); `website-site.sh` writes them whole where the public
+/// address is known.
+fn structured(page: &Page, lang: Lang) -> Vec<Value> {
+    let place = Place::of(&page.folder, lang);
+    let site = if place.depth == 0 { "./".to_string() } else { place.root() };
     let about = json!({
         "@type": "SoftwareApplication",
         "name": "OpenECraft",
+        "url": site,
         "applicationCategory": "DesignApplication",
         "applicationSubCategory": "Electrical CAE",
         "operatingSystem": "Windows, Linux, macOS, web browser",
@@ -228,13 +271,34 @@ fn structured(page: &Page, lang: Lang) -> Value {
         "name": page.title,
         "description": page.description,
         "inLanguage": lang.code(),
+        "isPartOf": { "@type": "WebSite", "name": "OpenECraft", "url": site },
         "about": about
     });
     if let Kind::Faq(questions) = &page.kind {
         data["@type"] = json!("FAQPage");
         data["mainEntity"] = questions.iter().map(|(q, a)| json!({ "@type": "Question", "name": q, "acceptedAnswer": { "@type": "Answer", "text": a } })).collect();
     }
-    data
+    // The drawing of a symbol, with the license that lets everybody use it.
+    let mut folders = page.folder.split('/').filter(|part| !part.is_empty());
+    if let (Some(crate::symbols::FOLDER), Some(def)) = (folders.next(), folders.next().and_then(crate::symbols::by_folder)) {
+        data["primaryImageOfPage"] = json!({
+            "@type": "ImageObject",
+            "name": openecraft_i18n::tr_fmt!("Symbol: {}", tr(def.name)),
+            "contentUrl": place.file(&format!("{}/{}", crate::symbols::FOLDER, crate::symbols::drawing_file(def))),
+            "encodingFormat": "image/svg+xml",
+            "license": place.file("LICENSE-MIT"),
+            "acquireLicensePage": place.to(&format!("{}/", page.folder.trim_matches('/'))),
+            "creditText": "OpenECraft",
+            "creator": { "@type": "Organization", "name": "OpenECraft" }
+        });
+    }
+    let mut out = vec![data];
+    let trail = trail(page, place);
+    if trail.len() > 1 {
+        let items: Vec<Value> = trail.iter().enumerate().map(|(i, (address, name))| json!({ "@type": "ListItem", "position": i + 1, "name": name, "item": address })).collect();
+        out.push(json!({ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items }));
+    }
+    out
 }
 
 /// The page in its frame, as the file of `lang`.
@@ -245,18 +309,21 @@ pub fn html(page: &Page, lang: Lang) -> String {
     // A tool runs the WebAssembly of the site; no other page may.
     let scripts = if page.kind == Kind::Tool { "script-src 'self' 'wasm-unsafe-eval'" } else { "script-src 'self'" };
     // "</" would end the script element.
-    let data = serde_json::to_string_pretty(&structured(page, lang)).unwrap_or_default().replace("</", "<\\/");
+    let script = |data: &Value| format!("    <script type=\"application/ld+json\">\n{}\n    </script>\n", serde_json::to_string_pretty(data).unwrap_or_default().replace("</", "<\\/"));
+    let (robots, data) = match page.kind {
+        Kind::Missing => ("    <meta name=\"robots\" content=\"noindex\" />\n", String::new()),
+        _ => ("", structured(page, lang).iter().map(script).collect()),
+    };
     let mut out = String::with_capacity(page.main.len() + 8000);
     out.push_str(&format!(
         "<!DOCTYPE html>\n<html lang=\"{code}\">\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    \
          <!-- Written by the build of the site (crates/openecraft-site, docs/website.md). It loads nothing beyond its own address. -->\n    \
          <meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; {scripts}; style-src 'self'; img-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'\" />\n    \
-         <title>{title}</title>\n    <meta name=\"description\" content=\"{description}\" />\n    <meta name=\"theme-color\" content=\"#070b14\" />\n    \
+         <title>{title}</title>\n    <meta name=\"description\" content=\"{description}\" />\n{robots}    <meta name=\"theme-color\" content=\"#070b14\" />\n    \
          <meta property=\"og:type\" content=\"website\" />\n    <meta property=\"og:site_name\" content=\"OpenECraft\" />\n    \
          <meta property=\"og:title\" content=\"{title}\" />\n    <meta property=\"og:description\" content=\"{description}\" />\n    \
          <meta name=\"twitter:card\" content=\"summary_large_image\" />\n    \
-         <!-- site address (installer/docker/website-site.sh) -->\n    <!-- /site address -->\n    \
-         <script type=\"application/ld+json\">\n{data}\n    </script>\n    \
+         <!-- site address (installer/docker/website-site.sh) -->\n    <!-- /site address -->\n{data}    \
          <link rel=\"stylesheet\" href=\"{root}site.css\" />\n    <link rel=\"icon\" href=\"{root}icon.svg\" type=\"image/svg+xml\" />\n    \
          <link rel=\"apple-touch-icon\" href=\"{root}apple-touch-icon.png\" />\n",
         code = lang.code()

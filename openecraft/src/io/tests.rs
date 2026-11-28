@@ -56,6 +56,37 @@ fn projects_are_read_and_written_by_the_kind_of_their_file() {
 }
 
 #[test]
+fn the_web_page_names_itself_to_search_engines_and_link_previews() {
+    let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    let read = |path: &str| std::fs::read_to_string(dir.join(path)).unwrap_or_else(|e| panic!("{path}: {e}")).replace("\r\n", "\n");
+    let html = read("index.html");
+    let content = |tag: &str| html.split(tag).nth(1).and_then(|rest| rest.split('"').next()).unwrap_or_else(|| panic!("no {tag}")).to_string();
+    // The editor is drawn on a canvas: the head is all a search engine reads of it.
+    let title = html.split("<title>").nth(1).and_then(|rest| rest.split("</title>").next()).unwrap();
+    assert!(title.starts_with("OpenECraft ") && title.len() > 30 && title.len() <= 70, "{title}");
+    let description = content("<meta name=\"description\" content=\"");
+    assert!(description.len() > 80 && description.len() < 180);
+    assert_eq!(content("<meta property=\"og:title\" content=\""), title);
+    assert_eq!(content("<meta property=\"og:description\" content=\""), description);
+    // The tags with the public address are written by the image, between the markers.
+    assert!(html.contains("    <!-- site address (installer/docker/website-site.sh) -->\n    <!-- /site address -->\n"));
+    assert!(!html.contains("rel=\"canonical\"") && !html.contains("og:image\""));
+    for file in ["robots.txt", "../website/social.jpg", "../website/favicon.ico"] {
+        assert!(html.contains(&format!("rel=\"copy-file\" href=\"{file}\"")) && dir.join(file).exists(), "{file}");
+    }
+    assert_eq!(read("robots.txt"), "User-agent: *\nAllow: /\n");
+    let dockerfile = read("../installer/docker/Dockerfile");
+    let image = dockerfile.split("AS editor-web\n").nth(1).and_then(|rest| rest.split("\nFROM ").next()).unwrap();
+    assert!(image.contains("ENV OPENECRAFT_SITE_URL= \\") && image.contains("installer/docker/website-site.sh /docker-entrypoint.d/"));
+    let nginx = read("../installer/docker/editor-web.conf");
+    assert!(nginx.contains("location = / {\n        rewrite ^ /index.html last;"));
+    for file in ["index.html", "robots.txt", "sitemap.xml"] {
+        assert!(nginx.contains(&format!("location = /{file} {{\n        alias /tmp/openecraft/{file};")), "editor-web.conf: {file}");
+    }
+    assert!(read("../installer/docker/check-editor-web.sh").contains("-e OPENECRAFT_SITE_URL="));
+}
+
+#[test]
 fn the_worker_of_the_web_page_searches_with_the_module() {
     let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
     let read = |path: &str| std::fs::read_to_string(dir.join(path)).unwrap_or_else(|e| panic!("{path}: {e}")).replace("\r\n", "\n");

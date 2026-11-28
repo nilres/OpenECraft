@@ -17,6 +17,24 @@ fn structured(html: &str) -> Value {
     serde_json::from_str(json).expect("JSON-LD is JSON")
 }
 
+/// Every block of structured data of a page.
+fn all_structured(html: &str) -> Vec<Value> {
+    html.split("<script type=\"application/ld+json\">").skip(1).map(|s| serde_json::from_str(s.split("</script>").next().unwrap()).expect("JSON-LD is JSON")).collect()
+}
+
+/// The way to a page as its structured data names it: address and name of every step.
+fn way(html: &str) -> Vec<(String, String)> {
+    let data = all_structured(html);
+    let list = data.iter().find(|block| block["@type"] == "BreadcrumbList").expect("a way to the page");
+    let items = list["itemListElement"].as_array().unwrap();
+    assert!(items.iter().enumerate().all(|(i, item)| item["@type"] == "ListItem" && item["position"] == i + 1));
+    items.iter().map(|item| (item["item"].as_str().unwrap().to_string(), item["name"].as_str().unwrap().to_string())).collect()
+}
+
+fn step(address: &str, name: &str) -> (String, String) {
+    (address.to_string(), name.to_string())
+}
+
 #[test]
 fn links_lead_to_the_page_in_the_language() {
     let english = Place::of("symbols/contacts", Lang::En);
@@ -79,6 +97,63 @@ fn the_frame_names_the_page_to_search_engines() {
     assert_eq!(data["about"]["offers"]["price"], "0");
     assert_eq!(html.matches("<h1").count(), 1);
     assert!(html.ends_with("</body>\n</html>\n"));
+}
+
+#[test]
+fn the_structured_data_names_the_site_and_the_way_to_the_page() {
+    let english = html(&page(Kind::Plain, Langs::All), Lang::En);
+    let data = structured(&english);
+    // The addresses of the site start at its folder, where website-site.sh puts the
+    // public address.
+    assert_eq!(data["isPartOf"], serde_json::json!({ "@type": "WebSite", "name": "OpenECraft", "url": "../../" }));
+    assert_eq!(data["about"]["url"], "../../");
+    assert!(data["primaryImageOfPage"].is_null());
+    assert_eq!(way(&english), [step("../../", "OpenECraft"), step("../../symbols/", "Symbols"), step("../../symbols/contacts/", "Contacts")]);
+    // In the language of the page, to the pages of that language.
+    let german = openecraft_i18n::with_lang(Lang::De, || html(&page(Kind::Plain, Langs::All), Lang::De));
+    assert_eq!(way(&german), [step("../../de.html", "OpenECraft"), step("../../symbols/de.html", "Symbole"), step("../../symbols/contacts/de.html", "Contacts")]);
+    // A page right below the main one, and one below a page written by hand.
+    let main = "<h1 data-t=\"Questions\">Questions &amp; <em>answers</em></h1>".to_string();
+    let faq = html(&Page { folder: "faq".into(), main: main.clone(), ..page(Kind::Plain, Langs::All) }, Lang::En);
+    assert_eq!(way(&faq), [step("../", "OpenECraft"), step("../faq/", "FAQ")]);
+    assert_eq!(structured(&faq)["isPartOf"]["url"], "../");
+    let product = html(&Page { folder: "compare/eplan-alternative".into(), main, ..page(Kind::Plain, Langs::All) }, Lang::En);
+    assert_eq!(way(&product), [step("../../", "OpenECraft"), step("../../compare/", "Comparison"), step("../../compare/eplan-alternative/", "Questions & answers")]);
+    // Every address of the site is the value of a name, on a line of its own.
+    let blocks: String = english.split("<script type=\"application/ld+json\">").skip(1).filter_map(|s| s.split("</script>").next()).collect();
+    assert_eq!(blocks.matches("\"../../").count(), blocks.matches("\": \"../../").count());
+    assert!(blocks.lines().all(|line| line.matches("\": \"../../").count() <= 1));
+    assert_eq!(english.matches("</script>").count(), english.matches("<script").count());
+}
+
+#[test]
+fn the_page_of_a_symbol_names_its_category_and_its_drawing() {
+    let def = crate::symbols::by_folder("no-contact").expect("the NO contact");
+    let english = html(&crate::symbols::symbol_page(def, Lang::En), Lang::En);
+    assert_eq!(way(&english), [step("../../", "OpenECraft"), step("../../symbols/", "Symbols"), step("../../symbols/contacts/", "Contacts"), step("../../symbols/no-contact/", "NO contact")]);
+    let image = &structured(&english)["primaryImageOfPage"];
+    assert_eq!(image["@type"], "ImageObject");
+    assert_eq!(image["name"], "Symbol: NO contact");
+    assert_eq!(image["contentUrl"], format!("../../symbols/{}", crate::symbols::drawing_file(def)));
+    // What makes a picture one that may be used: its license and where it is from.
+    assert_eq!(image["license"], "../../LICENSE-MIT");
+    assert_eq!(image["acquireLicensePage"], "../../symbols/no-contact/");
+    assert_eq!(image["creditText"], "OpenECraft");
+    let german = openecraft_i18n::with_lang(Lang::De, || html(&crate::symbols::symbol_page(def, Lang::De), Lang::De));
+    assert_eq!(structured(&german)["primaryImageOfPage"]["name"], "Symbol: Schließer");
+    assert_eq!(structured(&german)["primaryImageOfPage"]["acquireLicensePage"], "../../symbols/no-contact/de.html");
+    assert_eq!(way(&german)[2], step("../../symbols/contacts/de.html", "Kontakte"));
+    // The page of a category has no drawing of its own.
+    assert!(crate::symbols::by_folder("contacts").is_none());
+}
+
+#[test]
+fn the_page_for_a_missing_address_is_kept_out_of_the_index() {
+    let missing = html(&Page { folder: String::new(), ..page(Kind::Missing, Langs::All) }, Lang::En);
+    assert!(missing.contains("<meta name=\"robots\" content=\"noindex\" />") && !missing.contains("application/ld+json"));
+    assert!(missing.contains("<link rel=\"stylesheet\" href=\"site.css\" />"));
+    let plain = html(&page(Kind::Plain, Langs::All), Lang::En);
+    assert!(!plain.contains("name=\"robots\""));
 }
 
 #[test]

@@ -27,6 +27,17 @@ fn texts_are_translated_and_keep_their_english() {
 }
 
 #[test]
+fn the_structured_data_is_translated_as_json() {
+    let page = "<html lang=\"en\">\n<script type=\"application/ld+json\">\n{ \"name\": \"OpenECraft\", \"description\": \"Close\", \"about\": { \"name\": \"Open\" }, \"text\": \"Close\", \"description\": \"a \\\"b\\\"\" }\n</script>\n</html>\n";
+    let german = translated(page, Lang::De);
+    let open = translation("Open", Lang::De).unwrap();
+    // The name of the project has no translation, another name has; other texts stay.
+    assert!(german.contains(&format!("{{ \"name\": \"OpenECraft\", \"description\": \"Schließen\", \"about\": {{ \"name\": \"{open}\" }}, \"text\": \"Close\", ")), "{german}");
+    assert!(german.contains("\"description\": \"a \\\"b\\\"\" }"), "a text with an escaped quote stays as it is: {german}");
+    assert_eq!(translated(page, Lang::En), page);
+}
+
+#[test]
 fn translations_are_written_as_html() {
     let page = "<p data-t>Wires &amp; cables</p><p data-t>a \"b\"</p>";
     let out = rewrite(page, " data-t>", '<', |text| Some(format!(" data-t=\"{}\">{}", attribute(&unescape(text)), escape("x < y & \"z\""))));

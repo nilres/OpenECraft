@@ -1,6 +1,9 @@
 """Draws apple-touch-icon.png, the icon of the page on the home screen of an iPhone or
 iPad: the drawing of assets/icon.svg as an opaque square of 180 x 180 pixels (iOS rounds
-the corners itself and shows transparent ones black). Run it again when the icon changes:
+the corners itself and shows transparent ones black), and favicon.ico, the same drawing
+with the round corners of the tile in 16, 32 and 48 pixels: what a browser or a search
+engine asks the site for (/favicon.ico) when it reads no page that names icon.svg. Run
+it again when the icon changes:
 
     python website/apple-touch-icon.py        (needs Pillow)
 """
@@ -35,3 +38,10 @@ for start, end, colour in LINES:
     for x, y in points:
         draw.ellipse([x - radius, y - radius, x + radius, y + radius], fill=colour)
 image.resize((SIZE, SIZE), Image.LANCZOS).save(Path(__file__).with_name("apple-touch-icon.png"), optimize=True)
+
+# The tile of assets/icon.svg: 7.68 units from the edge, corners of 51.2 units.
+tile = Image.new("L", (side, side), 0)
+ImageDraw.Draw(tile).rounded_rectangle([7.68 * unit, 7.68 * unit, side - 7.68 * unit, side - 7.68 * unit], radius=51.2 * unit, fill=255)
+icon = image.convert("RGBA")
+icon.putalpha(tile)
+icon.resize((256, 256), Image.LANCZOS).save(Path(__file__).with_name("favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48)])

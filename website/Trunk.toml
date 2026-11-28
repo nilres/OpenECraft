@@ -48,7 +48,9 @@ command_arguments = ["-ExecutionPolicy", "Bypass", "-File", "pages.ps1"]
 
 # The pages the build writes (crates/openecraft-site, docs/website.md): the symbol
 # library, the example projects, the documentation, the news with their feed and the
-# pages of content/, each in its languages, and build.js.
+# pages of content/, each in its languages, the page for a missing address, llms.txt,
+# build.js and, of every page of the site, the day it last changed (pages.tsv): it
+# runs last.
 [[hooks]]
 stage = "post_build"
 command = "cargo"

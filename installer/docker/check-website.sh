@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Starts the image of the website once and checks that it serves the page in its
-# languages, the settings and the public address from the environment, the
-# WebAssembly as the build compressed it, the license files and the web editor at
-# /editor/; used by the CI workflows (ci.yml, docker-website.yml). The downloads go to
+# languages, the settings and the public address from the environment (in the tags of
+# the pages, their structured data, the sitemap and llms.txt), a page for an address
+# that has none, the WebAssembly as the build compressed it, the license files and the
+# web editor at /editor/; used by the CI workflows (ci.yml, docker-website.yml). The downloads go to
 # a temporary folder: files in the checkout would change the build context.
 #
 #   bash installer/docker/check-website.sh [image] [port]
@@ -32,6 +33,7 @@ docker run -d --name "$name" -p "$port:8080" -e OPENECRAFT_EDITOR_URL=https://ed
   -e OPENECRAFT_SITE_URL=https://site.example/openecraft \
   -e OPENECRAFT_STARS=1234 -e OPENECRAFT_CONTRIBUTORS=56 -e OPENECRAFT_NUMBERS_INTERVAL=0 \
   -e OPENECRAFT_VIDEOS_INTERVAL=0 \
+  -e OPENECRAFT_INDEXNOW_KEY=0123456789abcdef -e OPENECRAFT_INDEXNOW_API=http://127.0.0.1:9/ \
   -e OPENECRAFT_LEGAL_NAME='ACME "Tools" GmbH' -e OPENECRAFT_LEGAL_ADDRESS='Street 1 | 12345 City' "$image" > /dev/null
 for _ in $(seq 30); do curl -fs "$url/" > /dev/null && break; sleep 1; done
 curl -fsS "$url/" -o site.html || { docker logs "$name"; exit 1; }
@@ -61,6 +63,10 @@ grep -qF '<meta property="og:image" content="https://site.example/openecraft/soc
 has "$url/robots.txt" -x 'Sitemap: https://site.example/openecraft/sitemap.xml'
 has "$url/sitemap.xml" -F '<loc>https://site.example/openecraft/</loc>'
 has "$url/index.html" -F 'rel="canonical"'
+# The addresses of the site in the structured data are written whole.
+grep -qF '"url": "https://site.example/openecraft/",' site.html
+grep -qF '"contentUrl": "https://site.example/openecraft/images/schematic.webp" }' site.html
+if grep -qF '": "./' site.html; then exit 1; fi
 # The page in the other languages, each with its own address and the others'.
 grep -qF '<link rel="alternate" hreflang="de" href="https://site.example/openecraft/de.html" />' site.html
 curl -fsS "$url/de.html" -o de.html
@@ -88,6 +94,13 @@ grep -qF '<link rel="alternate" hreflang="es" href="https://site.example/openecr
 if grep -q 'hreflang="ko"' symbol.html; then exit 1; fi
 has "$url/symbols/no-contact/de.html" -F '<html lang="de">'
 has "$url/symbols/art/no.dxf" -F 'ENTITIES'
+# The way to the page and its drawing, as search engines read them.
+grep -qF '"@type": "BreadcrumbList"' symbol.html
+grep -qF '"item": "https://site.example/openecraft/symbols/contacts/"' symbol.html
+grep -qF '"contentUrl": "https://site.example/openecraft/symbols/art/no.svg"' symbol.html
+grep -qF '"license": "https://site.example/openecraft/LICENSE-MIT"' symbol.html
+if grep -qF '": "../' symbol.html; then exit 1; fi
+has "$url/symbols/no-contact/de.html" -F '"item": "https://site.example/openecraft/symbols/contacts/de.html"'
 has "$url/reference/ip-ratings/" -F 'IEC 60529'
 has "$url/examples/conveyor/" -F 'page-1.svg'
 curl -fsS -o /dev/null "$url/examples/conveyor/page-1.svg"
@@ -109,6 +122,26 @@ curl -fsS "$url/news/" -o news.html
 grep -qF 'feed.xml' news.html
 if grep -q 'hreflang=' news.html; then exit 1; fi
 has "$url/news/feed.xml" -F '<feed xml:base="https://site.example/openecraft/news/" xmlns="http://www.w3.org/2005/Atom">'
+# The list of the pages for language models, its links written whole.
+has "$url/llms.txt" -F '](https://site.example/openecraft/docs/tutorial/)'
+if grep -qF '](./' "$work/body"; then exit 1; fi
+# An address that has no page gets one that leads on, in the language of the browser,
+# with the folder of the site for its links, and stays a missing one.
+test "$(curl -s -o missing.html -w '%{http_code}' "$url/no/such/page")" = 404
+grep -qF '<base href="https://site.example/openecraft/" />' missing.html
+grep -qF '<meta name="robots" content="noindex" />' missing.html
+grep -qF '<html lang="en">' missing.html
+test "$(curl -s -o missing.html -H 'Accept-Language: de-DE,de;q=0.9,en;q=0.8' -w '%{http_code}' "$url/symbols/nothing/")" = 404
+grep -qF '<html lang="de">' missing.html
+curl -fsS -o /dev/null "$url/favicon.ico"
+# When the pages last changed, for the next build; the key of IndexNow from the
+# environment. A page has a day only where the build had the file of the site before.
+has "$url/pages.tsv" '^# built [0-9-]*$'
+grep -q '^symbols/contacts/de\.html	[0-9a-f]\{16\}	[0-9-]*$' "$work/body"
+curl -fsS -o /dev/null -D headers.txt "$url/pages.tsv"
+grep -qi '^x-robots-tag: noindex' headers.txt
+has "$url/indexnow.txt" -x '0123456789abcdef'
+has "$url/sitemap.xml" -F '<url><loc>https://site.example/openecraft/faq/</loc>'
 # The tools get the module from the script of the build.
 has "$url/tools/voltage-drop-calculator/" -F 'data-tool="voltage_drop"'
 has "$url/tools/cable-size-calculator/de.html" -F 'data-tool="cable_size"'
@@ -162,6 +195,11 @@ grep -qi '^cache-control: .*immutable' headers.txt
 test "$(wc -c < wasm.br)" -lt "$(wc -c < wasm.gz)"
 curl -fsS "$url/editor/" -o editor.html
 grep -q openecraft_canvas editor.html
+# The links of the page lead to a web editor elsewhere: this copy names that one as
+# its original and is no page of the sitemap.
+grep -qF '<link rel="canonical" href="https://editor.example/" />' editor.html
+has "$url/sitemap.xml" -F '</urlset>'
+if grep -qF '/editor/' "$work/body"; then exit 1; fi
 grep -qF '<meta name="description"' editor.html
 editor=$(grep -o '[^"/]*_bg\.wasm' editor.html | awk 'NR == 1')
 test -n "$editor"

@@ -23,13 +23,50 @@
         "@type": "SoftwareApplication",
         "name": "OpenECraft",
         "description": "OpenECraft is an open source electrical CAE editor: schematics, reports, panel layout in 3D, a command line and an MCP server. Try it live in the browser.",
+        "url": "./",
+        "image": "./social.jpg",
         "applicationCategory": "DesignApplication",
         "applicationSubCategory": "Electrical CAE",
         "operatingSystem": "Windows, Linux, macOS, web browser",
         "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "license": "./LICENSE-MIT",
+        "downloadUrl": "https://github.com/nilres/OpenECraft/releases/latest",
+        "sameAs": ["https://github.com/nilres/OpenECraft"],
+        "screenshot": [
+            { "@type": "ImageObject", "name": "Screenshot of the schematic editor of OpenECraft",
+              "contentUrl": "./images/schematic.webp" },
+            { "@type": "ImageObject", "name": "Screenshot of two bayed enclosures in the 3D panel layout",
+              "contentUrl": "./images/panel-3d.webp" },
+            { "@type": "ImageObject", "name": "Screenshot of the heat map of a mounting plate",
+              "contentUrl": "./images/heat-map.webp" },
+            { "@type": "ImageObject", "name": "Screenshot of the wiring assistant in the 3D view",
+              "contentUrl": "./images/wiring-assistant.webp" },
+            { "@type": "ImageObject", "name": "Screenshot of a pneumatic circuit linked to the schematic",
+              "contentUrl": "./images/pneumatics.webp" },
+            { "@type": "ImageObject", "name": "Screenshot of a graphical terminal diagram",
+              "contentUrl": "./images/terminal-diagram.webp" }
+        ],
         "inLanguage": ["en", "de", "fr", "es", "pt-BR", "it", "nl", "pl", "cs", "ru", "uk", "tr", "sv", "da", "fi", "hu", "ro", "zh-CN", "ja", "ko"],
         "keywords": "electrical CAE, electrical CAD, schematic editor, wiring diagram, control panel design, panel layout in 3D, installation plan, IEC 81346, terminal diagram, open source, free"
+    }
+    </script>
+    <!-- The site and the project behind it: the name search results show for the site.
+         The addresses of the site start at its folder ("./"); website-site.sh writes
+         them whole where the public address is known. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "OpenECraft",
+        "url": "./",
+        "publisher": {
+            "@type": "Organization",
+            "name": "OpenECraft",
+            "url": "./",
+            "logo": "./apple-touch-icon.png",
+            "sameAs": ["https://github.com/nilres/OpenECraft", "https://www.youtube.com/@OpenECraft"]
+        }
     }
     </script>
     <!-- The module: trunk names it here (pattern_script of Trunk.toml), site.js loads
@@ -42,6 +79,7 @@
     <link data-trunk rel="copy-file" href="tools.js" />
     <link data-trunk rel="copy-file" href="../assets/icon.svg" />
     <link data-trunk rel="copy-file" href="apple-touch-icon.png" />
+    <link data-trunk rel="copy-file" href="favicon.ico" />
     <link data-trunk rel="copy-file" href="sheet.svg" />
     <link data-trunk rel="copy-dir" href="images" />
     <link data-trunk rel="copy-file" href="social.jpg" />
