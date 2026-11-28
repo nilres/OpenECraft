@@ -482,6 +482,9 @@ Created {} as a copy of {} and opened it	{} creato come copia di {} e aperto
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Crea sul server un nuovo progetto dallo stato salvato di questo; prima ne imposti il nome e le proprietà
 Creating {} as a copy of {}…	Creazione di {} come copia di {}…
 Cross references…	Riferimenti incrociati…
+Cross-select mode	Modalità selezione incrociata
+Cross-select mode off	Modalità selezione incrociata disattivata
+Cross-select mode on: the schematic and the panel layout select the same	Modalità selezione incrociata attiva: lo schema e il layout del quadro selezionano la stessa cosa
 Crossed wires	Conduttori attraversati
 Ctrl + click on the text opens it as well	Anche Ctrl + clic sul testo lo apre
 Ctrl+A	Ctrl+A
@@ -525,6 +528,7 @@ Delete PV array	Elimina campo fotovoltaico
 Delete air-termination rod	Elimina asta di captazione
 Delete cable (its wires are removed from it)	Elimina cavo (i suoi conduttori vengono rimossi)
 Delete comment	Elimina commento
+Delete completely	Elimina completamente
 Delete connection point	Elimina punto di connessione
 Delete earth electrode	Elimina dispersore
 Delete element	Elimina elemento
@@ -553,6 +557,9 @@ Delete the property and all its values	Elimina la proprietà e tutti i suoi valo
 Delete this workspace	Elimina questa area di lavoro
 Delete variant	Elimina variante
 Delete zone	Elimina zona
+Deleted completely: {} items of the layout, {} functions on the pages	Eliminato completamente: {} elementi del layout, {} funzioni sulle pagine
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Eliminato completamente: {} elementi del layout, {} funzioni sulle pagine; {} funzioni restano su pagine non modificabili
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Elimina i dispositivi selezionati dall'intero progetto: le loro funzioni su tutte le pagine, le loro posizioni nel layout del quadro e nella vista 3D, i loro dati dispositivo; un morsetto selezionato viene eliminato da solo
 Deletes this copy of your changes for good	Elimina definitivamente questa copia delle tue modifiche
 Depth / mounted at	Profondità / montato a
 Depth below the ground	Profondità sotto il terreno
@@ -637,6 +644,7 @@ Door: {} devices, {} cutouts	Porta: {} dispositivi, {} aperture
 Dot	Punto
 Double door	Porta a due ante
 Double-click	Doppio clic
+Double-click on a device, a cable or a wire	Doppio clic su un dispositivo, un cavo o un conduttore
 Down conductors	Calate
 Download into database	Scarica nel database
 Download project	Scarica progetto
@@ -1471,6 +1479,7 @@ Opening angle of the door in the 3D view	Angolo di apertura della porta nella vi
 Opening in the mounting plate / door: click two corners (round: in the properties)	Apertura nella piastra di montaggio / porta: fai clic su due angoli (rotonda: nelle proprietà)
 Opening {}…	Apertura di {}…
 Opens	Apertura
+Opens its properties (in the 3D view: turns the view to it)	Apre le sue proprietà (nella vista 3D: ruota la vista verso di esso)
 Opens the page of the release	Apre la pagina della versione
 Opens the pages for printing in the browser with its print dialog	Apre le pagine per la stampa nel browser con la relativa finestra di stampa
 Open…	Apri…
@@ -2056,6 +2065,7 @@ Shown instead of the measured value	Mostrato al posto del valore misurato
 Shown now: {}	Mostrato ora: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Mostrato nel frontespizio e dagli elementi immagine dei cartigli che mostrano il logo del progetto
 Shows	Mostra
+Shows it in the other view: the panel layout or the schematic	Lo mostra nell'altra vista: il layout del quadro o lo schema
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Mostra la vista 3D del layout del quadro in una finestra propria, da spostare su un altro monitor e ingrandire
 Shows the differences of your version to the open project; selected ones can be taken over	Mostra le differenze della tua versione rispetto al progetto aperto; quelle selezionate possono essere riprese
 Shows the page and the 3D view side by side in this workspace	Mostra la pagina e la vista 3D affiancate in questo spazio di lavoro
@@ -2392,6 +2402,8 @@ Web at cutouts	Nervatura alle forature
 Web between holes	Nervatura tra i fori
 Welcome to OpenECraft	Benvenuto in OpenECraft
 What is new	Novità
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Ciò che è selezionato nel layout del quadro o nella vista 3D, sulla sua pagina dello schema: la funzione principale di un dispositivo, i conduttori di una connessione, le anime di un cavo
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Ciò che è selezionato nello schema viene selezionato anche nel layout del quadro e nella vista 3D, e viceversa: dispositivi, morsetti, conduttori e cavi
 What should be checked or changed?	Cosa deve essere verificato o modificato?
 What's new in OpenECraft {}	Novità di OpenECraft {}
 Wheel and touch	Rotella e tocco

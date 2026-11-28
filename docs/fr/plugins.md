@@ -607,6 +607,12 @@ Renommer un appareil ou un câble peut conserver un préfixe importé inchangé 
 espaces ; le nouveau nom final de l'appareil suit toujours les règles normales de
 validation des repères.
 
+`delete_device` accepte le repère `tag` d'un appareil et le supprime de tout le projet :
+ses fonctions sur toutes les pages, ses emplacements dans l'implantation et ses données
+d'appareil. Les pages qui ne peuvent pas être modifiées gardent leurs fonctions (`kept`).
+Supprimer entièrement dans l'éditeur (Ctrl+Delete) utilise la même opération ; une borne
+sélectionnée y est supprimée seule.
+
 ### Orientation explicite dans l'armoire
 
 Les hôtes qui annoncent `explicit_panel_rotations` préservent les valeurs numériques

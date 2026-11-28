@@ -482,6 +482,9 @@ Created {} as a copy of {} and opened it	{} oprettet som kopi af {} og åbnet
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Opretter et nyt projekt på serveren ud fra den gemte tilstand af dette projekt; du angiver først dets navn og egenskaber
 Creating {} as a copy of {}…	Opretter {} som kopi af {}…
 Cross references…	Krydsreferencer…
+Cross-select mode	Krydsmarkeringstilstand
+Cross-select mode off	Krydsmarkeringstilstand fra
+Cross-select mode on: the schematic and the panel layout select the same	Krydsmarkeringstilstand til: diagrammet og tavlelayoutet markerer det samme
 Crossed wires	Krydsede ledninger
 Ctrl + click on the text opens it as well	Ctrl + klik på teksten åbner den også
 Ctrl+A	Ctrl+A
@@ -525,6 +528,7 @@ Delete PV array	Slet solcelleanlæg
 Delete air-termination rod	Slet fangstang
 Delete cable (its wires are removed from it)	Slet kabel (dets ledninger fjernes fra det)
 Delete comment	Slet kommentar
+Delete completely	Slet helt
 Delete connection point	Slet tilslutningspunkt
 Delete earth electrode	Slet jordelektrode
 Delete element	Slet element
@@ -553,6 +557,9 @@ Delete the property and all its values	Slet egenskaben og alle dens værdier
 Delete this workspace	Slet dette arbejdsområde
 Delete variant	Slet variant
 Delete zone	Slet zone
+Deleted completely: {} items of the layout, {} functions on the pages	Slettet helt: {} elementer i layoutet, {} funktioner på siderne
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Slettet helt: {} elementer i layoutet, {} funktioner på siderne; {} funktioner bliver på sider, der ikke kan redigeres
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Sletter de markerede enheder fra hele projektet: deres funktioner på alle sider, deres pladser i skabslayoutet og i 3D-visningen, deres enhedsdata; en markeret klemme slettes alene
 Deletes this copy of your changes for good	Sletter denne kopi af dine ændringer for altid
 Depth / mounted at	Dybde / monteret ved
 Depth below the ground	Dybde under terræn
@@ -637,6 +644,7 @@ Door: {} devices, {} cutouts	Dør: {} enheder, {} udskæringer
 Dot	Punkt
 Double door	Dobbeltdør
 Double-click	Dobbeltklik
+Double-click on a device, a cable or a wire	Dobbeltklik på en enhed, et kabel eller en ledning
 Down conductors	Nedledere
 Download into database	Download til database
 Download project	Download projekt
@@ -1471,6 +1479,7 @@ Opening angle of the door in the 3D view	Dørens åbningsvinkel i 3D-visningen
 Opening in the mounting plate / door: click two corners (round: in the properties)	Åbning i monteringsplade / dør: Klik på to hjørner (rund: i egenskaberne)
 Opening {}…	Åbner {}…
 Opens	Åbner
+Opens its properties (in the 3D view: turns the view to it)	Åbner dens egenskaber (i 3D-visningen: drejer visningen mod den)
 Opens the page of the release	Åbner versionens side
 Opens the pages for printing in the browser with its print dialog	Åbner siderne til udskrivning i browseren med dens udskriftsdialog
 Open…	Åbn…
@@ -2056,6 +2065,7 @@ Shown instead of the measured value	Vises i stedet for den målte værdi
 Shown now: {}	Vises nu: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Vises på forsiden og af billedelementerne i tegningshoveder, der viser projektets logo
 Shows	Viser
+Shows it in the other view: the panel layout or the schematic	Viser den i den anden visning: tavlelayoutet eller diagrammet
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Viser 3D-visningen af tavlelayoutet i sit eget vindue, der kan flyttes til en anden skærm og maksimeres
 Shows the differences of your version to the open project; selected ones can be taken over	Viser forskellene mellem din version og det åbne projekt; de valgte kan overtages
 Shows the page and the 3D view side by side in this workspace	Viser siden og 3D-visningen side om side i dette arbejdsområde
@@ -2392,6 +2402,8 @@ Web at cutouts	Materiale ved udskæringer
 Web between holes	Materiale mellem huller
 Welcome to OpenECraft	Velkommen til OpenECraft
 What is new	Nyheder
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Det, der er markeret i tavlelayoutet eller 3D-visningen, på dets side i diagrammet: en enheds hovedfunktion, en forbindelses ledninger, et kabels ledere
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Det, der er markeret i diagrammet, markeres også i tavlelayoutet og 3D-visningen, og omvendt: enheder, klemmer, ledninger og kabler
 What should be checked or changed?	Hvad skal kontrolleres eller ændres?
 What's new in OpenECraft {}	Nyt i OpenECraft {}
 Wheel and touch	Hjul og berøring

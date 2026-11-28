@@ -39,6 +39,7 @@ mod bug_report_ui;
 mod check_ui;
 mod command_search;
 mod commands_ui;
+mod cross_select_ui;
 mod dialog;
 mod dock_ui;
 mod pane_windows_ui;
@@ -144,6 +145,11 @@ struct ShellState {
     frame_stats: bool,
     /// Extend the schematic placement crosshair to the edges of the canvas.
     full_crosshair: bool,
+    /// Cross-select mode: the schematic and the panel layout select the same.
+    cross_select: bool,
+    /// A double-click on a device, a cable or a wire shows it in the other view (the
+    /// panel layout or the schematic) instead of opening its properties.
+    double_click_other: bool,
     /// The 3D view of the panel layout is drawn by the graphics card.
     gpu_3d: bool,
     /// The data portal shows the logos of the parts server's catalogs.
@@ -184,6 +190,8 @@ impl Default for ShellState {
             view_3d: crate::panel_ui::Prefs3d::default(),
             frame_stats: false,
             full_crosshair: false,
+            cross_select: false,
+            double_click_other: false,
             gpu_3d: true,
             catalog_logos: true,
             update_check: true,
@@ -228,6 +236,8 @@ enum Deferred {
     Focus(String, bool),
     /// A page shown (and an item on it selected).
     Goto(usize, u64),
+    /// A page shown with items on it selected (the first one shown).
+    Select(usize, Vec<u64>),
     Show(Pane),
     /// A pane opened in a window of its own.
     Window(Pane),
@@ -281,6 +291,8 @@ pub struct App {
     raise: Option<Pane>,
     /// The window of panes to bring to the front.
     raise_window: Option<u32>,
+    /// The selections of the page and the panel layout, kept in step (`cross_select_ui`).
+    cross: cross_select_ui::CrossState,
     /// Where the windows of panes opened (`pane_windows_ui`).
     window_placed: HashMap<u32, pane_windows_ui::Placed>,
     /// Panes can have windows of their own (not in the browser).
@@ -602,6 +614,7 @@ impl App {
             floating: Vec::new(),
             raise: None,
             raise_window: None,
+            cross: cross_select_ui::CrossState::default(),
             window_placed: HashMap::new(),
             own_windows: false,
             active_doc: Pane::Page,
@@ -1049,12 +1062,7 @@ impl App {
         if self.in_dock {
             self.deferred.push(Deferred::Focus(tag.to_string(), three_d));
         } else if self.panel_ui.focus_device(&self.session.prj, tag, three_d) {
-            // The layout view where it is seen (beside the page, in a window of its own);
-            // otherwise in the panel layout workspace.
-            if crate::dock::find(&self.dock, Pane::LayoutView).is_none() && self.shell.windows.find(Pane::LayoutView).is_none() {
-                self.set_workspace(Workspace::Panel);
-            }
-            self.show_pane(Pane::LayoutView);
+            self.bring_layout_view();
         }
     }
 
@@ -1287,6 +1295,7 @@ impl eframe::App for App {
         crate::style::set_dark(self.dark);
         self.apply_scale(&ctx);
         self.panel_ui.wall_opacity = self.shell.wall_opacity;
+        self.panel_ui.double_click_other = self.shell.double_click_other;
         self.panel_ui.gpu_3d = self.shell.gpu_3d && frame.gl().is_some();
         openecraft_ui::nav::set(&ctx, self.editor.gestures.nav(self.shell.nav));
         crate::shortcuts::set(&ctx, &self.editor.shortcuts);
@@ -1344,6 +1353,8 @@ impl eframe::App for App {
         }
         self.open_requests(true);
         self.layout_frame();
+        // Show in panel layout and Show in 3D view in the ribbon follow the selection.
+        self.page_pick();
         egui::Panel::top("ribbon").show(ui, |ui| self.ribbon_bar(ui));
         egui::Panel::bottom("status").show(ui, |ui| self.status_bar(ui));
         match self.backstage {
@@ -1366,6 +1377,7 @@ impl eframe::App for App {
                 Deferred::Cmd(cmd) => self.run(&ctx, cmd),
                 Deferred::Focus(tag, three_d) => self.focus_device(&tag, three_d),
                 Deferred::Goto(page, id) => self.goto(page, id),
+                Deferred::Select(page, ids) => self.goto_items(page, ids),
                 Deferred::Show(pane) => self.show_pane(pane),
                 Deferred::Window(pane) => self.open_in_window(pane),
                 Deferred::Workspace(w) => self.set_workspace(w),
@@ -1373,6 +1385,7 @@ impl eframe::App for App {
         }
         self.open_requests(false);
         self.layout_requests(&ctx, &idx);
+        self.cross_select_frame();
         self.session.index = idx;
         self.windows(&ctx);
 

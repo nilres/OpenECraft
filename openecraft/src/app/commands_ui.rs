@@ -45,7 +45,10 @@ impl App {
             Cmd::UpdateReportBlocks => !self.session.prj.report_blocks.is_empty(),
             Cmd::RenameDevice | Cmd::PartSelection => self.selected_tag().is_some(),
             Cmd::RenameCable => self.selected_cable().is_some() && self.page_editable() && !self.remote.viewer(),
-            Cmd::ShowInLayout | Cmd::ShowIn3d => self.selected_tag().is_some_and(|t| openecraft_core::panel::locate(&self.session.prj, &t).is_some()),
+            Cmd::ShowInLayout | Cmd::ShowIn3d => self.page_pick_shown() || self.selected_tag().is_some_and(|t| openecraft_core::panel::locate(&self.session.prj, &t).is_some()),
+            Cmd::ShowInSchematic => !self.panel_ui.pick().is_empty(),
+            Cmd::DeleteCompletely if self.active_doc == Pane::LayoutView => !self.panel_ui.selection.is_empty(),
+            Cmd::DeleteCompletely => has_sel && !self.remote.viewer(),
             Cmd::Quit | Cmd::FullScreen => FileIo::has_own_window(),
             Cmd::View3dInWindow => self.own_windows,
             Cmd::GatherWindows => self.own_windows && !self.shell.windows.is_empty(),
@@ -147,6 +150,7 @@ impl App {
             Cmd::WiringMode => !self.mounting_ui.active,
             Cmd::MountingMode => self.mounting_ui.active,
             Cmd::TabletMode => self.shell.tablet(),
+            Cmd::CrossSelect => self.shell.cross_select,
             _ => return None,
         };
         Some(on)
@@ -339,6 +343,7 @@ impl App {
                 ops::delete(&mut self.session.prj.pages[page], &items);
                 self.editor.selection.clear();
             }
+            Cmd::DeleteCompletely => self.delete_completely(ctx),
             Cmd::Rotate => {
                 if matches!(self.editor.tool, Tool::Place(_)) {
                     self.editor.place_rot = (self.editor.place_rot + 1) % 4;
@@ -433,9 +438,18 @@ impl App {
                 }
             }
             Cmd::ShowInLayout | Cmd::ShowIn3d => {
-                if let Some(tag) = self.selected_tag() {
-                    self.focus_device(&tag, cmd == Cmd::ShowIn3d);
+                if self.page_pick().is_empty() {
+                    if let Some(tag) = self.selected_tag() {
+                        self.focus_device(&tag, cmd == Cmd::ShowIn3d);
+                    }
+                } else {
+                    self.show_selection_in_layout(cmd == Cmd::ShowIn3d);
                 }
+            }
+            Cmd::ShowInSchematic => self.show_selection_in_schematic(ctx),
+            Cmd::CrossSelect => {
+                self.shell.cross_select = !self.shell.cross_select;
+                self.notify(ctx, if self.shell.cross_select { tr("Cross-select mode on: the schematic and the panel layout select the same") } else { tr("Cross-select mode off") });
             }
             // ------------------------------------------------------------ view
             Cmd::FitPage => self.editor.fit_pending = true,

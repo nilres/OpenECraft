@@ -476,6 +476,9 @@ Created {} as a copy of {} and opened it	{}을(를) {}의 사본으로 만들고
 Creates a new project on the server from the saved state of this one; you set its name and properties first	이 프로젝트의 저장된 상태로 서버에 새 프로젝트를 만듭니다. 먼저 이름과 속성을 설정합니다
 Creating {} as a copy of {}…	{}을(를) {}의 사본으로 만드는 중…
 Cross references…	상호 참조…
+Cross-select mode	교차 선택 모드
+Cross-select mode off	교차 선택 모드 꺼짐
+Cross-select mode on: the schematic and the panel layout select the same	교차 선택 모드 켜짐: 회로도와 패널 레이아웃이 같은 것을 선택합니다
 Crossed wires	교차된 전선
 Ctrl + click on the text opens it as well	텍스트를 Ctrl + 클릭해도 열립니다
 Ctrl+A	Ctrl+A
@@ -519,6 +522,7 @@ Delete PV array	태양광 어레이 삭제
 Delete air-termination rod	피뢰침 삭제
 Delete cable (its wires are removed from it)	케이블 삭제(케이블의 전선은 케이블에서 제거됨)
 Delete comment	주석 삭제
+Delete completely	완전히 삭제
 Delete connection point	연결 지점 삭제
 Delete earth electrode	접지극 삭제
 Delete element	요소 삭제
@@ -545,6 +549,9 @@ Delete the property and all its values	속성 및 모든 값 삭제
 Delete this workspace	이 작업 공간 삭제
 Delete variant	변형 삭제
 Delete zone	구역 삭제
+Deleted completely: {} items of the layout, {} functions on the pages	완전히 삭제됨: 레이아웃 요소 {}개, 페이지의 기능 {}개
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	완전히 삭제됨: 레이아웃 요소 {}개, 페이지의 기능 {}개. 기능 {}개는 편집할 수 없는 페이지에 남습니다
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	선택한 장치를 전체 프로젝트에서 삭제합니다: 모든 페이지의 기능, 패널 레이아웃과 3D 뷰의 위치, 장치 데이터. 선택한 단자는 그것만 삭제됩니다
 Deletes this copy of your changes for good	이 변경 내용의 사본을 영구히 삭제합니다
 Depth / mounted at	깊이 / 장착 위치
 Depth below the ground	지면 아래 깊이
@@ -628,6 +635,7 @@ Door: {} devices, {} cutouts	도어: 장치 {}개, 컷아웃 {}개
 Dot	점
 Double door	양문형
 Double-click	두 번 클릭
+Double-click on a device, a cable or a wire	장치, 케이블 또는 전선 더블클릭
 Down conductors	인하 도선
 Download into database	데이터베이스로 다운로드
 Download project	프로젝트 다운로드
@@ -1447,6 +1455,7 @@ Opening angle of the door in the 3D view	3D 보기에서 문이 열리는 각도
 Opening in the mounting plate / door: click two corners (round: in the properties)	장착 플레이트 / 도어의 개구부: 두 모서리를 클릭하세요(원형: 속성에서)
 Opening {}…	{} 여는 중…
 Opens	열림 방식
+Opens its properties (in the 3D view: turns the view to it)	속성을 엽니다 (3D 뷰에서: 뷰를 그쪽으로 돌림)
 Opens the page of the release	릴리스 페이지를 엽니다
 Opens the pages for printing in the browser with its print dialog	브라우저의 인쇄 대화 상자로 인쇄할 페이지를 엽니다
 Open…	열기…
@@ -2023,6 +2032,7 @@ Shown instead of the measured value	측정값 대신 표시됨
 Shown now: {}	현재 표시: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	표지와 프로젝트 로고를 표시하는 표제란의 이미지 요소에 표시됩니다
 Shows	표시
+Shows it in the other view: the panel layout or the schematic	다른 뷰에서 표시: 패널 레이아웃 또는 회로도
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	패널 레이아웃의 3D 보기를 별도 창에 표시하여 다른 모니터로 옮기고 최대화할 수 있습니다
 Shows the differences of your version to the open project; selected ones can be taken over	내 버전과 열린 프로젝트의 차이를 표시합니다. 선택한 항목을 가져올 수 있습니다
 Shows the page and the 3D view side by side in this workspace	이 작업 공간에서 페이지와 3D 보기를 나란히 표시합니다
@@ -2356,6 +2366,8 @@ Web at cutouts	컷아웃의 웹
 Web between holes	구멍 사이 웹
 Welcome to OpenECraft	OpenECraft에 오신 것을 환영합니다
 What is new	새로운 기능
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	패널 레이아웃 또는 3D 뷰에서 선택한 것을 회로도의 해당 페이지에서: 장치의 주 기능, 연결의 전선, 케이블의 심선
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	회로도에서 선택한 것이 패널 레이아웃과 3D 뷰에서도 선택되며 그 반대도 마찬가지입니다: 장치, 단자, 전선 및 케이블
 What should be checked or changed?	무엇을 검사하거나 변경해야 합니까?
 What's new in OpenECraft {}	OpenECraft {}의 새로운 기능
 Wheel and touch	휠 및 터치

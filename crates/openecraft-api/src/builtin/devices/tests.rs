@@ -89,3 +89,18 @@ fn invalid_literal_counts_and_assignment_indices_do_not_change_the_selected_slot
     assert!(run(&mut s,"add_device_part",json!({"tag":"-Maximum","part":number,"count":1,"total":true})).is_err());
     assert_eq!(s.project().unwrap().devices["-Maximum"].parts[0].count,u32::MAX);
 }
+
+#[test]
+fn a_deleted_device_leaves_the_pages_and_the_layout() {
+    let mut s=demo_session();
+    let prj=s.project().unwrap();
+    let it=prj.layout.enclosures.iter().flat_map(|e|&e.items).find(|it|!it.tag.is_empty() && it.terminal.is_empty() && prj.pages.iter().any(|p|p.symbols.iter().any(|x|x.tag==it.tag))).unwrap();
+    let tag=it.tag.clone();
+    let done=run(&mut s,"delete_device",json!({"tag":tag})).unwrap();
+    assert!(done["symbols"].as_u64().unwrap()>0 && done["items"].as_u64().unwrap()>0);
+    let prj=s.project().unwrap();
+    assert!(!prj.pages.iter().flat_map(|p|&p.symbols).any(|x|x.tag==tag));
+    assert!(!prj.layout.enclosures.iter().flat_map(|e|&e.items).any(|it|it.tag==tag));
+    assert!(!prj.devices.contains_key(&tag));
+    assert!(run(&mut s,"delete_device",json!({"tag":tag})).unwrap_err().contains(&tag));
+}

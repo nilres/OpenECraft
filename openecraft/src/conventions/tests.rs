@@ -235,6 +235,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("testkit", &["analysis", "geom", "model", "parts", "symbols"]),
     // 6 derived data, checks, reports, registry
     ("analysis", &["ext", "field", "index", "issue", "model", "netlist", "panel", "parallel", "production", "revision", "routing3d", "table"]),
+    ("cross_select", &["analysis", "model", "netlist", "panel", "symbols"]),
     ("checks", &["analysis", "cabledef", "climate", "conndef", "device_boxes", "electrofluid", "emc", "ext", "fluid", "frame", "harness", "index", "installation", "integration", "issue", "loads", "model", "mounting", "netlist", "panel", "parts", "pinout", "plc", "plc_hw", "plugs", "potentials", "preplanning", "process", "production", "reports", "routing3d", "rules", "safety", "shortcircuit", "singleline", "sizing", "strips", "structure", "structure_boxes", "symbols", "translation", "wirenum", "wiring"]),
     ("reports", &["analysis", "checks", "climate", "electrofluid", "ext", "field", "fluid", "frame", "geom", "harness", "index", "inspection", "installation", "issue", "loads", "marking", "model", "netlist", "panel", "params", "parts", "plc", "plc_hw", "plugs", "process", "production", "revision", "routing3d", "rules", "safety", "shortcircuit", "sizing", "strips", "symbols", "table", "text"]),
     ("ext", &["analysis", "issue", "model", "params", "table"]),

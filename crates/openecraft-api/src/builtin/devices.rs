@@ -1,4 +1,4 @@
-//! Device commands: list, rename, assign parts, accessories of their parts.
+//! Device commands: list, rename, delete, assign parts, accessories of their parts.
 
 use crate::builtin::common::{check_placeholders, int_in, page_index};
 use crate::params::{optional, param, Args, Kind};
@@ -53,6 +53,12 @@ pub static COMMANDS: &[Spec] = &[
             param("new_tag", Kind::Str, tr_const!("New device tag")),
         ],
         run: rename_device,
+    },
+    Spec {
+        name: "delete_device",
+        help: tr_const!("Deletes a device from the whole project: its functions on all pages, its places in the panel layout and its device data"),
+        params: &[param("tag", Kind::Str, tr_const!("Device tag"))],
+        run: delete_device,
     },
     Spec {
         name: "rename_symbol_device",
@@ -242,6 +248,15 @@ fn rename_device(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     ops::rename_device(prj, old, new);
     Ok(json!({ "old": old, "new": new }))
+}
+
+fn delete_device(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let tag = a.req("tag").trim();
+    if tag.is_empty() || (!prj.all_tags().iter().any(|t| t == tag) && !prj.unplaced_tags().any(|t| t == tag) && !prj.devices.contains_key(tag)) {
+        return Err(tr_fmt!("No device {}", tag));
+    }
+    let done = openecraft_core::cross_select::delete_device(prj, tag);
+    Ok(json!({ "tag": tag, "symbols": done.symbols, "items": done.items, "kept": done.kept }))
 }
 
 fn rename_symbol_device(prj:&mut Project,a:&Args)->Result<Value,String> {

@@ -481,6 +481,9 @@ Created {} as a copy of {} and opened it	{} создан как копия {} и
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Создаёт на сервере новый проект из сохранённого состояния этого проекта; сначала вы задаёте его имя и свойства
 Creating {} as a copy of {}…	Создание {} как копии {}…
 Cross references…	Перекрёстные ссылки…
+Cross-select mode	Режим перекрёстного выбора
+Cross-select mode off	Режим перекрёстного выбора выключен
+Cross-select mode on: the schematic and the panel layout select the same	Режим перекрёстного выбора включён: схема и компоновка шкафа выбирают одно и то же
 Crossed wires	Пересекаемые провода
 Ctrl + click on the text opens it as well	Ctrl + щелчок по тексту также открывает его
 Ctrl+A	Ctrl+A
@@ -524,6 +527,7 @@ Delete PV array	Удалить фотоэлектрическое поле
 Delete air-termination rod	Удалить молниеприёмный стержень
 Delete cable (its wires are removed from it)	Удалить кабель (его провода отвязываются от него)
 Delete comment	Удалить комментарий
+Delete completely	Удалить полностью
 Delete connection point	Удалить точку подключения
 Delete earth electrode	Удалить заземлитель
 Delete element	Удалить элемент
@@ -552,6 +556,9 @@ Delete the property and all its values	Удалить свойство со вс
 Delete this workspace	Удалить это рабочее пространство
 Delete variant	Удалить вариант
 Delete zone	Удалить зону
+Deleted completely: {} items of the layout, {} functions on the pages	Удалено полностью: {} элементов компоновки, {} функций на страницах
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Удалено полностью: {} элементов компоновки, {} функций на страницах; {} функций остаются на страницах, которые нельзя редактировать
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Удаляет выбранные устройства из всего проекта: их функции на всех страницах, их места в компоновке шкафа и в 3D-виде, их данные устройства; выбранная клемма удаляется отдельно
 Deletes this copy of your changes for good	Окончательно удаляет эту копию ваших изменений
 Depth / mounted at	Глубина / монтаж на
 Depth below the ground	Глубина под землёй
@@ -636,6 +643,7 @@ Door: {} devices, {} cutouts	Дверь: устройств – {}, вырезо
 Dot	Точка
 Double door	Двустворчатая
 Double-click	Двойной щелчок
+Double-click on a device, a cable or a wire	Двойной щелчок по устройству, кабелю или проводу
 Down conductors	Токоотводы
 Download into database	Загрузить в базу данных
 Download project	Скачать проект
@@ -1470,6 +1478,7 @@ Opening angle of the door in the 3D view	Угол открывания двер�
 Opening in the mounting plate / door: click two corners (round: in the properties)	Проём в монтажной панели / двери: щёлкните два угла (круглый – в свойствах)
 Opening {}…	Открытие {}…
 Opens	Открывание
+Opens its properties (in the 3D view: turns the view to it)	Открывает его свойства (в 3D-виде: поворачивает вид к нему)
 Opens the page of the release	Открывает страницу выпуска
 Opens the pages for printing in the browser with its print dialog	Открывает листы для печати в браузере с его диалогом печати
 Open…	Открыть…
@@ -2055,6 +2064,7 @@ Shown instead of the measured value	Отображается вместо изм
 Shown now: {}	Сейчас показывается: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Показывается на титульном листе и в элементах изображения основных надписей, показывающих логотип проекта
 Shows	Показывает
+Shows it in the other view: the panel layout or the schematic	Показывает его в другом виде: в компоновке шкафа или на схеме
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Показывает 3D-вид компоновки шкафа в отдельном окне, которое можно перенести на другой монитор и развернуть
 Shows the differences of your version to the open project; selected ones can be taken over	Показывает отличия вашей версии от открытого проекта; выбранные можно перенять
 Shows the page and the 3D view side by side in this workspace	Показывает страницу и 3D-вид рядом в этой рабочей области
@@ -2391,6 +2401,8 @@ Web at cutouts	Перемычка у вырезов
 Web between holes	Перемычка между отверстиями
 Welcome to OpenECraft	Добро пожаловать в OpenECraft
 What is new	Что нового
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Выбранное в компоновке шкафа или в 3D-виде на его странице схемы: главная функция устройства, провода соединения, жилы кабеля
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Выбранное на схеме выбирается и в компоновке шкафа и в 3D-виде, и наоборот: устройства, клеммы, провода и кабели
 What should be checked or changed?	Что нужно проверить или изменить?
 What's new in OpenECraft {}	Что нового в OpenECraft {}
 Wheel and touch	Колесо и касание

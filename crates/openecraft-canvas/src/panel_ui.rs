@@ -22,6 +22,7 @@ use std::sync::Arc;
 use view3d::default_cam;
 
 mod accessory_drop;
+mod cross;
 mod gpu3d;
 mod nav3d;
 mod new_enclosure;
@@ -589,6 +590,11 @@ pub struct PanelUi {
     pub status: String,
     /// Requests for the application.
     pub goto_schematic: Option<String>,
+    /// Show in schematic: what is selected (a double-click with [`PanelUi::double_click_other`]).
+    pub show_schematic: bool,
+    /// A double-click on what is selected shows it in the schematic (set by the
+    /// application), instead of turning the 3D view to it.
+    pub double_click_other: bool,
     pub add_page: Option<u64>,
     /// Parts management opened (to mark parts for wall mounting).
     pub open_parts: bool,
@@ -825,6 +831,8 @@ impl Default for PanelUi {
             dragged: None,
             status: String::new(),
             goto_schematic: None,
+            show_schematic: false,
+            double_click_other: false,
             add_page: None,
             open_parts: false,
             open_properties: false,
@@ -1215,6 +1223,7 @@ impl PanelUi {
             ui.close();
         }
         ui.separator();
+        self.schematic_entry(ui);
         if ui.add_enabled(any, egui::Button::new(tr("Properties"))).clicked() {
             self.open_properties = true;
             ui.close();
@@ -1224,6 +1233,7 @@ impl PanelUi {
             self.remove_selection(prj, ei);
             ui.close();
         }
+        self.delete_completely_entry(ui, prj);
     }
 
     fn select_wire(&mut self, key: (String, String)) {
@@ -4268,6 +4278,9 @@ impl PanelUi {
         let sc = crate::shortcuts::get(ui.ctx());
         let enter = !ui.ctx().egui_wants_keyboard_input() && ui.input(|i| sc.action_pressed(i, Action::FinishPolyline));
         self.control_feedback(an);
+        if self.tool == Tool::Select && self.double_click_other && gestures.double_clicked(MouseAction::OpenProperties, &resp, mods) && !self.pick().is_empty() {
+            self.show_schematic = true;
+        }
         match self.tool.clone() {
             _ if navigating => {}
             Tool::Select if self.control_points_2d(ui, &resp, prj, ei, rect, an) => {}

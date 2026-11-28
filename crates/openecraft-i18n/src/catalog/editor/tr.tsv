@@ -482,6 +482,9 @@ Created {} as a copy of {} and opened it	{}, {} projesinin kopyası olarak oluş
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Bu projenin kayıtlı durumundan sunucuda yeni bir proje oluşturur; önce adını ve özelliklerini belirlersiniz
 Creating {} as a copy of {}…	{}, {} projesinin kopyası olarak oluşturuluyor…
 Cross references…	Çapraz referanslar…
+Cross-select mode	Çapraz seçim modu
+Cross-select mode off	Çapraz seçim modu kapalı
+Cross-select mode on: the schematic and the panel layout select the same	Çapraz seçim modu açık: şema ve pano yerleşimi aynı şeyi seçer
 Crossed wires	Kesişen teller
 Ctrl + click on the text opens it as well	Metne Ctrl + tıklama da onu açar
 Ctrl+A	Ctrl+A
@@ -525,6 +528,7 @@ Delete PV array	PV dizisini sil
 Delete air-termination rod	Paratoner çubuğunu sil
 Delete cable (its wires are removed from it)	Kabloyu sil (telleri kablodan çıkarılır)
 Delete comment	Yorumu sil
+Delete completely	Tamamen sil
 Delete connection point	Bağlantı noktasını sil
 Delete earth electrode	Topraklama elektrodunu sil
 Delete element	Öğeyi sil
@@ -553,6 +557,9 @@ Delete the property and all its values	Özelliği ve tüm değerlerini sil
 Delete this workspace	Bu çalışma alanını sil
 Delete variant	Varyantı sil
 Delete zone	Bölgeyi sil
+Deleted completely: {} items of the layout, {} functions on the pages	Tamamen silindi: yerleşimin {} öğesi, sayfalardaki {} fonksiyon
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Tamamen silindi: yerleşimin {} öğesi, sayfalardaki {} fonksiyon; {} fonksiyon düzenlenemeyen sayfalarda kalır
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Seçili cihazları tüm projeden siler: tüm sayfalardaki fonksiyonlarını, pano yerleşimindeki ve 3D görünümdeki yerlerini, cihaz verilerini; seçili bir klemens tek başına silinir
 Deletes this copy of your changes for good	Değişikliklerinizin bu kopyasını kalıcı olarak siler
 Depth / mounted at	Derinlik / montaj konumu
 Depth below the ground	Zeminin altındaki derinlik
@@ -637,6 +644,7 @@ Door: {} devices, {} cutouts	Kapı: {} cihaz, {} kesim
 Dot	Nokta
 Double door	Çift kanatlı
 Double-click	Çift tıklama
+Double-click on a device, a cable or a wire	Bir cihaza, kabloya veya tele çift tıklama
 Down conductors	İniş iletkenleri
 Download into database	Veritabanına indir
 Download project	Projeyi indir
@@ -1471,6 +1479,7 @@ Opening angle of the door in the 3D view	3B görünümde kapının açılma aç�
 Opening in the mounting plate / door: click two corners (round: in the properties)	Montaj plakasında / kapıda açıklık: iki köşeye tıklayın (yuvarlak: özelliklerde)
 Opening {}…	{} açılıyor…
 Opens	Açılış
+Opens its properties (in the 3D view: turns the view to it)	Özelliklerini açar (3B görünümde: görünümü ona çevirir)
 Opens the page of the release	Sürümün sayfasını açar
 Opens the pages for printing in the browser with its print dialog	Sayfaları yazdırmak için tarayıcıda yazdırma iletişim kutusuyla açar
 Open…	Aç…
@@ -2056,6 +2065,7 @@ Shown instead of the measured value	Ölçülen değer yerine gösterilir
 Shown now: {}	Şu anda gösterilen: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Kapak sayfasında ve proje logosunu gösteren antetlerin görüntü öğelerinde gösterilir
 Shows	Gösterir
+Shows it in the other view: the panel layout or the schematic	Onu diğer görünümde gösterir: pano yerleşimi veya şema
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Pano yerleşiminin 3B görünümünü başka bir monitöre taşınıp büyütülebilen ayrı bir pencerede gösterir
 Shows the differences of your version to the open project; selected ones can be taken over	Sürümünüzün açık projeden farklarını gösterir; seçilenler alınabilir
 Shows the page and the 3D view side by side in this workspace	Bu çalışma alanında sayfayı ve 3B görünümü yan yana gösterir
@@ -2392,6 +2402,8 @@ Web at cutouts	Kesimlerdeki ara
 Web between holes	Delikler arası ara
 Welcome to OpenECraft	OpenECraft'a hoş geldiniz
 What is new	Yenilikler
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Pano yerleşiminde veya 3B görünümde seçilen, şemadaki sayfasında: bir cihazın ana işlevi, bir bağlantının telleri, bir kablonun damarları
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Şemada seçilen, pano yerleşiminde ve 3B görünümde de seçilir ve tersi: cihazlar, klemensler, teller ve kablolar
 What should be checked or changed?	Ne kontrol edilmeli veya değiştirilmeli?
 What's new in OpenECraft {}	OpenECraft {} sürümündeki yenilikler
 Wheel and touch	Tekerlek ve dokunma

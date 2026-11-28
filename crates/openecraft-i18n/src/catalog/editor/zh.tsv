@@ -478,6 +478,9 @@ Created {} as a copy of {} and opened it	已将 {} 创建为 {} 的副本并打�
 Creates a new project on the server from the saved state of this one; you set its name and properties first	根据此项目已保存的状态在服务器上创建新项目；您先设置其名称和属性
 Creating {} as a copy of {}…	正在将 {} 创建为 {} 的副本…
 Cross references…	交叉引用…
+Cross-select mode	交叉选择模式
+Cross-select mode off	交叉选择模式已关闭
+Cross-select mode on: the schematic and the panel layout select the same	交叉选择模式已开启：原理图和安装板布局选中相同的内容
 Crossed wires	穿过的导线
 Ctrl + click on the text opens it as well	按 Ctrl + 单击文本也可将其打开
 Ctrl+A	Ctrl+A
@@ -521,6 +524,7 @@ Delete PV array	删除光伏阵列
 Delete air-termination rod	删除接闪杆
 Delete cable (its wires are removed from it)	删除电缆（其导线将从中移除）
 Delete comment	删除批注
+Delete completely	完全删除
 Delete connection point	删除连接点
 Delete earth electrode	删除接地极
 Delete element	删除元素
@@ -547,6 +551,9 @@ Delete the property and all its values	删除该属性及其所有值
 Delete this workspace	删除此工作区
 Delete variant	删除变体
 Delete zone	删除安装区
+Deleted completely: {} items of the layout, {} functions on the pages	已完全删除：布局中的 {} 个元素，页面上的 {} 个功能
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	已完全删除：布局中的 {} 个元素，页面上的 {} 个功能；{} 个功能保留在无法编辑的页面上
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	从整个项目中删除所选设备：它们在所有页面上的功能、在柜体布局和3D视图中的位置以及设备数据；所选端子单独删除
 Deletes this copy of your changes for good	永久删除你的更改的此副本
 Depth / mounted at	深度 / 安装于
 Depth below the ground	地面以下深度
@@ -630,6 +637,7 @@ Door: {} devices, {} cutouts	柜门：{} 个设备，{} 个开孔
 Dot	点
 Double door	双开门
 Double-click	双击
+Double-click on a device, a cable or a wire	双击设备、电缆或导线
 Down conductors	引下线
 Download into database	下载到数据库
 Download project	下载项目
@@ -1450,6 +1458,7 @@ Opening angle of the door in the 3D view	3D 视图中门的打开角度
 Opening in the mounting plate / door: click two corners (round: in the properties)	安装板 / 柜门中的开口：单击两个角点（圆形：在属性中设置）
 Opening {}…	正在打开 {}…
 Opens	开启方式
+Opens its properties (in the 3D view: turns the view to it)	打开其属性（在三维视图中：将视图转向它）
 Opens the page of the release	打开该版本的页面
 Opens the pages for printing in the browser with its print dialog	在浏览器中打开页并使用其打印对话框打印
 Open…	打开…
@@ -2026,6 +2035,7 @@ Shown instead of the measured value	代替测量值显示
 Shown now: {}	当前显示：{}
 Shown on the cover page and by the image elements of title blocks that show the project logo	显示在封面上以及显示项目标志的标题栏图像元素中
 Shows	显示
+Shows it in the other view: the panel layout or the schematic	在另一个视图中显示：安装板布局或原理图
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	在单独的窗口中显示机柜布置的 3D 视图，可移到另一台显示器并最大化
 Shows the differences of your version to the open project; selected ones can be taken over	显示你的版本与打开的项目之间的差异；可以接受所选的差异
 Shows the page and the 3D view side by side in this workspace	在此工作区中并排显示页面和 3D 视图
@@ -2359,6 +2369,8 @@ Web at cutouts	开孔处筋宽
 Web between holes	孔间筋宽
 Welcome to OpenECraft	欢迎使用 OpenECraft
 What is new	新功能
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	安装板布局或三维视图中选中的内容在原理图中所在的页面：设备的主功能、连接的导线、电缆的芯线
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	在原理图中选中的内容也会在安装板布局和三维视图中选中，反过来也一样：设备、端子、导线和电缆
 What should be checked or changed?	应检查或更改什么？
 What's new in OpenECraft {}	OpenECraft {} 的新功能
 Wheel and touch	滚轮和触摸

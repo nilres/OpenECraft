@@ -482,6 +482,9 @@ Created {} as a copy of {} and opened it	{} criado como cópia de {} e aberto
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Cria no servidor um novo projeto a partir do estado salvo deste; primeiro você define o nome e as propriedades
 Creating {} as a copy of {}…	Criando {} como cópia de {}…
 Cross references…	Referências cruzadas…
+Cross-select mode	Modo de seleção cruzada
+Cross-select mode off	Modo de seleção cruzada desativado
+Cross-select mode on: the schematic and the panel layout select the same	Modo de seleção cruzada ativado: o esquema e o layout do painel selecionam o mesmo
 Crossed wires	Fios cruzados
 Ctrl + click on the text opens it as well	Ctrl + clique no texto também o abre
 Ctrl+A	Ctrl+A
@@ -525,6 +528,7 @@ Delete PV array	Excluir sistema fotovoltaico
 Delete air-termination rod	Excluir captor tipo haste
 Delete cable (its wires are removed from it)	Excluir cabo (seus fios são removidos dele)
 Delete comment	Excluir comentário
+Delete completely	Excluir por completo
 Delete connection point	Excluir ponto de conexão
 Delete earth electrode	Excluir eletrodo de aterramento
 Delete element	Excluir elemento
@@ -553,6 +557,9 @@ Delete the property and all its values	Excluir a propriedade e todos os seus val
 Delete this workspace	Excluir este espaço de trabalho
 Delete variant	Excluir variante
 Delete zone	Excluir zona
+Deleted completely: {} items of the layout, {} functions on the pages	Excluído por completo: {} itens do layout, {} funções nas páginas
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Excluído por completo: {} itens do layout, {} funções nas páginas; {} funções ficam em páginas que não podem ser editadas
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Exclui os dispositivos selecionados de todo o projeto: suas funções em todas as páginas, suas posições no layout do painel e na vista 3D, seus dados de dispositivo; um borne selecionado é excluído sozinho
 Deletes this copy of your changes for good	Exclui definitivamente esta cópia das suas alterações
 Depth / mounted at	Profundidade / montado em
 Depth below the ground	Profundidade abaixo do solo
@@ -637,6 +644,7 @@ Door: {} devices, {} cutouts	Porta: {} dispositivos, {} recortes
 Dot	Ponto
 Double door	Porta dupla
 Double-click	Clique duplo
+Double-click on a device, a cable or a wire	Clique duplo em um dispositivo, um cabo ou um fio
 Down conductors	Descidas
 Download into database	Baixar para o banco de dados
 Download project	Baixar projeto
@@ -1471,6 +1479,7 @@ Opening angle of the door in the 3D view	Ângulo de abertura da porta na vista 3
 Opening in the mounting plate / door: click two corners (round: in the properties)	Abertura na placa de montagem / porta: clique em dois cantos (redonda: nas propriedades)
 Opening {}…	Abrindo {}…
 Opens	Abertura
+Opens its properties (in the 3D view: turns the view to it)	Abre suas propriedades (na vista 3D: gira a vista para ele)
 Opens the page of the release	Abre a página da versão
 Opens the pages for printing in the browser with its print dialog	Abre as páginas para impressão no navegador com a caixa de diálogo de impressão dele
 Open…	Abrir…
@@ -2056,6 +2065,7 @@ Shown instead of the measured value	Exibido em vez do valor medido
 Shown now: {}	Mostrado agora: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Mostrado na capa e pelos elementos de imagem dos selos que mostram o logotipo do projeto
 Shows	Mostra
+Shows it in the other view: the panel layout or the schematic	Mostra-o na outra vista: o layout do painel ou o esquema
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Mostra a vista 3D do layout do painel numa janela própria, para mover para outro monitor e maximizar
 Shows the differences of your version to the open project; selected ones can be taken over	Mostra as diferenças da sua versão em relação ao projeto aberto; as selecionadas podem ser adotadas
 Shows the page and the 3D view side by side in this workspace	Mostra a página e a vista 3D lado a lado neste espaço de trabalho
@@ -2392,6 +2402,8 @@ Web at cutouts	Nervura em recortes
 Web between holes	Nervura entre furos
 Welcome to OpenECraft	Bem-vindo ao OpenECraft
 What is new	Novidades
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	O que está selecionado no layout do painel ou na vista 3D, na sua página do esquema: a função principal de um dispositivo, os fios de uma conexão, as veias de um cabo
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	O que é selecionado no esquema também é selecionado no layout do painel e na vista 3D, e vice-versa: dispositivos, bornes, fios e cabos
 What should be checked or changed?	O que deve ser verificado ou alterado?
 What's new in OpenECraft {}	Novidades do OpenECraft {}
 Wheel and touch	Roda e toque

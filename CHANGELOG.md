@@ -5,6 +5,22 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.4] - unreleased
 
+- **Cross-select between the schematic and the panel layout:** *View › Cross-select
+  mode* (`Ctrl+Shift+X`) keeps the selections of the page, the panel layout and its 3D
+  view in step, both ways and across the windows of panes, for devices, terminals,
+  wires and cables. *Show in schematic* (`Ctrl+Shift+E`, in *Layout space › View* and
+  the right-click menu of the layout) goes from the layout or the 3D view to the main
+  function of a device, the wires of a connection or the cores of a cable; *Show in 3D
+  view* (`Ctrl+Shift+D`) and *Show in panel layout* take cables and wires too. Ctrl +
+  click on a cross reference of a coil or a contact selects the contact or the coil it
+  names, and a double-click on a cross reference follows it. *Settings › Keys and
+  gestures › Mouse* chooses what a double-click on a device does: open its properties
+  or show it in the other view. What one view deletes is no longer selected in the
+  others; *Delete completely* (`Ctrl+Delete`, also in the right-click menus of the
+  layout and the 3D view) deletes a device from the whole project: its functions on
+  all pages, its places in the layout and its device data (command `delete_device`)
+  ([#266](https://github.com/nilres/OpenECraft/issues/266),
+  [user interface](docs/user-interface.md)).
 - **Exchange with KiCad and FreeCAD:** a board designed in KiCad becomes a device of
   the project from its netlist (*File › Import › Import KiCad board as device…*,
   `import_kicad`): a device box with a connection point for every pin of its

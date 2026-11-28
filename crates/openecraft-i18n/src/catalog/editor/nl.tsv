@@ -482,6 +482,9 @@ Created {} as a copy of {} and opened it	{} aangemaakt als kopie van {} en geope
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Maakt op de server een nieuw project van de opgeslagen toestand van dit project; je legt eerst de naam en de eigenschappen vast
 Creating {} as a copy of {}…	{} wordt aangemaakt als kopie van {}…
 Cross references…	Kruisverwijzingen…
+Cross-select mode	Kruisselectiemodus
+Cross-select mode off	Kruisselectiemodus uit
+Cross-select mode on: the schematic and the panel layout select the same	Kruisselectiemodus aan: het schema en de kastlay-out selecteren hetzelfde
 Crossed wires	Gekruiste draden
 Ctrl + click on the text opens it as well	Ctrl + klik op de tekst opent deze ook
 Ctrl+A	Ctrl+A
@@ -525,6 +528,7 @@ Delete PV array	PV-veld verwijderen
 Delete air-termination rod	Opvangstaaf verwijderen
 Delete cable (its wires are removed from it)	Kabel verwijderen (de draden worden eruit verwijderd)
 Delete comment	Opmerking verwijderen
+Delete completely	Volledig verwijderen
 Delete connection point	Aansluitpunt verwijderen
 Delete earth electrode	Aardelektrode verwijderen
 Delete element	Element verwijderen
@@ -553,6 +557,9 @@ Delete the property and all its values	Eigenschap met alle waarden verwijderen
 Delete this workspace	Deze werkruimte verwijderen
 Delete variant	Variant verwijderen
 Delete zone	Zone verwijderen
+Deleted completely: {} items of the layout, {} functions on the pages	Volledig verwijderd: {} elementen van de indeling, {} functies op de pagina's
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Volledig verwijderd: {} elementen van de indeling, {} functies op de pagina's; {} functies blijven op pagina's die niet bewerkt kunnen worden
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Verwijdert de geselecteerde apparaten uit het hele project: hun functies op alle pagina's, hun plaatsen in de kastindeling en de 3D-weergave, hun apparaatgegevens; een geselecteerde klem wordt alleen verwijderd
 Deletes this copy of your changes for good	Verwijdert deze kopie van je wijzigingen definitief
 Depth / mounted at	Diepte / gemonteerd op
 Depth below the ground	Diepte onder maaiveld
@@ -637,6 +644,7 @@ Door: {} devices, {} cutouts	Deur: {} apparaten, {} uitsparingen
 Dot	Punt
 Double door	Dubbele deur
 Double-click	Dubbelklik
+Double-click on a device, a cable or a wire	Dubbelklik op een apparaat, een kabel of een draad
 Down conductors	Afleidingen
 Download into database	Downloaden naar database
 Download project	Project downloaden
@@ -1471,6 +1479,7 @@ Opening angle of the door in the 3D view	Openingshoek van de deur in de 3D-weerg
 Opening in the mounting plate / door: click two corners (round: in the properties)	Opening in montageplaat / deur: klik op twee hoeken (rond: in de eigenschappen)
 Opening {}…	{} openen…
 Opens	Opent
+Opens its properties (in the 3D view: turns the view to it)	Opent de eigenschappen (in de 3D-weergave: draait de weergave ernaartoe)
 Opens the page of the release	Opent de pagina van de versie
 Opens the pages for printing in the browser with its print dialog	Opent de pagina's om af te drukken in de browser met het afdrukdialoogvenster daarvan
 Open…	Openen…
@@ -2056,6 +2065,7 @@ Shown instead of the measured value	Wordt weergegeven in plaats van de gemeten w
 Shown now: {}	Nu getoond: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Getoond op het voorblad en door de afbeeldingselementen van titelblokken die het projectlogo tonen
 Shows	Toont
+Shows it in the other view: the panel layout or the schematic	Toont het in de andere weergave: de kastlay-out of het schema
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Toont de 3D-weergave van de kastopbouw in een eigen venster, om naar een andere monitor te verplaatsen en te maximaliseren
 Shows the differences of your version to the open project; selected ones can be taken over	Toont de verschillen van je versie met het geopende project; geselecteerde kunnen worden overgenomen
 Shows the page and the 3D view side by side in this workspace	Toont de pagina en de 3D-weergave naast elkaar in deze werkruimte
@@ -2392,6 +2402,8 @@ Web at cutouts	Brug bij uitsparingen
 Web between holes	Brug tussen boringen
 Welcome to OpenECraft	Welkom bij OpenECraft
 What is new	Nieuw
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Wat in de kastlay-out of de 3D-weergave geselecteerd is, op zijn pagina van het schema: de hoofdfunctie van een apparaat, de draden van een verbinding, de aders van een kabel
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Wat in het schema geselecteerd is, wordt ook in de kastlay-out en de 3D-weergave geselecteerd, en omgekeerd: apparaten, klemmen, draden en kabels
 What should be checked or changed?	Wat moet er worden gecontroleerd of gewijzigd?
 What's new in OpenECraft {}	Nieuw in OpenECraft {}
 Wheel and touch	Wiel en aanraking

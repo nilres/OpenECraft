@@ -79,6 +79,9 @@ impl App {
             let content = openecraft_core::wiring::csv(prj, &an.ends, &an.wiring, self.wiring_ui.order);
             self.export(ctx, "wiring.csv".into(), ("CSV", "csv"), content);
         }
+        if std::mem::take(&mut self.panel_ui.show_schematic) {
+            self.show_selection_in_schematic(ctx);
+        }
         if let Some(tag) = self.panel_ui.goto_schematic.take() {
             let target = idx.devices.get(&tag).and_then(|d| d.mains.first().or(d.others.first()).or(d.auxs.first()).copied());
             if let Some(loc) = target {

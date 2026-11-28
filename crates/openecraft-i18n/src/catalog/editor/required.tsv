@@ -606,6 +606,9 @@ Created {} as a copy of {} and opened it	{} als Kopie von {} angelegt und geöff
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Legt auf dem Server ein neues Projekt aus dem gespeicherten Stand dieses Projekts an; Name und Eigenschaften legen Sie vorher fest	Crée sur le serveur un nouveau projet à partir de l'état enregistré de celui-ci ; vous définissez d'abord son nom et ses propriétés	Crea en el servidor un proyecto nuevo a partir del estado guardado de este; primero se definen su nombre y sus propiedades
 Creating {} as a copy of {}…	{} wird als Kopie von {} angelegt…	Création de {} comme copie de {}…	Creando {} como copia de {}…
 Cross references…	Querverweise…	Renvois…	Referencias cruzadas…
+Cross-select mode	Querauswahl-Modus	Mode de sélection croisée	Modo de selección cruzada
+Cross-select mode off	Querauswahl-Modus aus	Mode de sélection croisée désactivé	Modo de selección cruzada desactivado
+Cross-select mode on: the schematic and the panel layout select the same	Querauswahl-Modus an: Schaltplan und Schaltschrankaufbau markieren dasselbe	Mode de sélection croisée activé : le schéma et l'implantation d'armoire sélectionnent la même chose	Modo de selección cruzada activado: el esquema y el diseño del armario seleccionan lo mismo
 Crossed wires	Gekreuzte Verbindungen	Fils croisés	Cables cruzados
 Ctrl + click on the text opens it as well	Strg + Klick auf den Text öffnet ihn ebenfalls	Ctrl + clic sur le texte l'ouvre aussi	Ctrl + clic en el texto también lo abre
 Ctrl+A	Ctrl+A	Ctrl+A	Ctrl+A
@@ -652,6 +655,7 @@ Delete air-termination rod	Fangstange löschen	Supprimer la tige captrice	Elimin
 Delete building; its rooms stay where they stand	Gebäude löschen; seine Räume bleiben, wo sie stehen	Supprimer le bâtiment ; ses pièces restent où elles sont	Eliminar el edificio; sus salas quedan donde están
 Delete cable (its wires are removed from it)	Kabel löschen (seine Leitungen werden entfernt)	Supprimer le câble (ses fils en sont retirés)	Eliminar cable (sus hilos se quitan de él)
 Delete comment	Kommentar löschen	Supprimer le commentaire	Eliminar comentario
+Delete completely	Vollständig löschen	Supprimer entièrement	Eliminar por completo
 Delete connection point	Anschlusspunkt löschen	Supprimer le point de connexion	Eliminar punto de conexión
 Delete earth electrode	Erder löschen	Supprimer la prise de terre	Eliminar el electrodo de tierra
 Delete element	Element löschen	Supprimer l'élément	Eliminar elemento
@@ -685,6 +689,9 @@ Delete the workspace {}?	Arbeitsbereich {} löschen?	Supprimer l'espace de trava
 Delete this workspace	Diesen Arbeitsbereich löschen	Supprimer cet espace de travail	Eliminar este espacio de trabajo
 Delete variant	Variante löschen	Supprimer la variante	Eliminar variante
 Delete zone	Zone löschen	Supprimer la zone	Eliminar zona
+Deleted completely: {} items of the layout, {} functions on the pages	Vollständig gelöscht: {} Elemente des Aufbaus, {} Funktionen auf den Seiten	Supprimé entièrement : {} éléments de l'implantation, {} fonctions sur les pages	Eliminado por completo: {} elementos del diseño, {} funciones en las páginas
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Vollständig gelöscht: {} Elemente des Aufbaus, {} Funktionen auf den Seiten; {} Funktionen bleiben auf Seiten, die nicht bearbeitet werden können	Supprimé entièrement : {} éléments de l'implantation, {} fonctions sur les pages ; {} fonctions restent sur des pages qui ne peuvent pas être modifiées	Eliminado por completo: {} elementos del diseño, {} funciones en las páginas; {} funciones quedan en páginas que no se pueden editar
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Löscht die markierten Betriebsmittel aus dem ganzen Projekt: ihre Funktionen auf allen Seiten, ihre Plätze im Schaltschrankaufbau und in der 3D-Ansicht, ihre Betriebsmitteldaten; eine markierte Klemme wird allein gelöscht	Supprime les appareils sélectionnés de tout le projet : leurs fonctions sur toutes les pages, leurs emplacements dans l'implantation d'armoire et la vue 3D, leurs données d'appareil ; une borne sélectionnée est supprimée seule	Elimina los dispositivos seleccionados de todo el proyecto: sus funciones en todas las páginas, sus posiciones en el diseño del armario y en la vista 3D, sus datos de dispositivo; un borne seleccionado se elimina solo
 Deletes this copy of your changes for good	Löscht diese Kopie Ihrer Änderungen endgültig	Supprime définitivement cette copie de vos modifications	Elimina definitivamente esta copia de sus cambios
 Depth / mounted at	Tiefe / Montage bei	Profondeur / montage à	Profundidad / montaje a
 Depth below the ground	Tiefe unter dem Gelände	Profondeur sous le sol	Profundidad bajo el terreno
@@ -783,6 +790,7 @@ Door: {} devices, {} cutouts	Tür: {} Betriebsmittel, {} Ausschnitte	Porte : {} 
 Dot	Punkt	Point	Punto
 Double door	Zweiflügelig	Porte double	Puerta doble
 Double-click	Doppelklick	Double-clic	Doble clic
+Double-click on a device, a cable or a wire	Doppelklick auf ein Betriebsmittel, ein Kabel oder eine Leitung	Double-clic sur un appareil, un câble ou un fil	Doble clic en un dispositivo, un cable o un hilo
 Down	Unten	Bas	Abajo
 Down conductors	Ableitungen	Conducteurs de descente	Bajantes
 Download into database	In Datenbank laden	Télécharger dans la base	Descargar a la base de datos
@@ -1735,6 +1743,7 @@ Opening in the mounting plate / door: click two corners (round: in the propertie
 Opening the project	Projekt wird geöffnet	Ouverture du projet	Abriendo el proyecto
 Opening {}…	{} wird geöffnet…	Ouverture de {}…	Abriendo {}…
 Opens	Öffnet	Ouverture	Apertura
+Opens its properties (in the 3D view: turns the view to it)	Öffnet seine Eigenschaften (in der 3D-Ansicht: dreht die Ansicht dorthin)	Ouvre ses propriétés (dans la vue 3D : tourne la vue vers lui)	Abre sus propiedades (en la vista 3D: gira la vista hacia él)
 Opens the page of the release	Öffnet die Seite der Version	Ouvre la page de la version	Abre la página de la versión
 Opens the pages for printing in the browser with its print dialog	Öffnet die Seiten zum Drucken im Browser mit dessen Druckdialog	Ouvre les pages pour l'impression dans le navigateur avec sa boîte de dialogue d'impression	Abre las páginas para imprimir en el navegador con su diálogo de impresión
 Open…	Öffnen…	Ouvrir…	Abrir…
@@ -2397,6 +2406,7 @@ Shown instead of the measured value	Wird statt des gemessenen Werts angezeigt	Af
 Shown now: {}	Jetzt angezeigt: {}	Affiché actuellement : {}	Mostrado ahora: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Wird auf dem Deckblatt und von den Bildelementen der Schriftfelder gezeigt, die das Projektlogo zeigen	Affiché sur la page de garde et par les éléments image des cartouches qui affichent le logo du projet	Se muestra en la portada y en los elementos de imagen de los cajetines que muestran el logotipo del proyecto
 Shows	Zeigt	Affiche	Muestra
+Shows it in the other view: the panel layout or the schematic	Zeigt es in der anderen Ansicht: im Schaltschrankaufbau oder im Schaltplan	Le montre dans l'autre vue : l'implantation d'armoire ou le schéma	Lo muestra en la otra vista: el diseño del armario o el esquema
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Zeigt die 3D-Ansicht des Schaltschrankaufbaus in einem eigenen Programmfenster, das auf einen anderen Monitor verschoben und maximiert werden kann	Affiche la vue 3D de l'implantation d'armoire dans sa propre fenêtre, à déplacer sur un autre écran et à agrandir	Muestra la vista 3D del montaje del armario en una ventana propia, para moverla a otro monitor y maximizarla
 Shows the differences of your version to the open project; selected ones can be taken over	Zeigt die Unterschiede Ihrer Fassung zum geöffneten Projekt; ausgewählte können übernommen werden	Affiche les différences entre votre version et le projet ouvert ; celles sélectionnées peuvent être reprises	Muestra las diferencias de su versión con el proyecto abierto; las seleccionadas se pueden adoptar
 Shows the page and the 3D view side by side in this workspace	Zeigt die Seite und die 3D-Ansicht in diesem Arbeitsbereich nebeneinander	Affiche la page et la vue 3D côte à côte dans cet espace de travail	Muestra la página y la vista 3D una al lado de la otra en este espacio de trabajo
@@ -2806,6 +2816,8 @@ Web at cutouts	Steg an Ausschnitten	Âme aux découpes	Alma en los recortes
 Web between holes	Steg zwischen Bohrungen	Âme entre perçages	Alma entre taladros
 Welcome to OpenECraft	Willkommen bei OpenECraft	Bienvenue dans OpenECraft	Bienvenido a OpenECraft
 What is new	Neuigkeiten	Nouveautés	Novedades
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Das im Schaltschrankaufbau oder in der 3D-Ansicht Markierte auf seiner Seite des Schaltplans: die Hauptfunktion eines Betriebsmittels, die Leitungen einer Verbindung, die Adern eines Kabels	Ce qui est sélectionné dans l'implantation d'armoire ou la vue 3D, sur sa page du schéma : la fonction principale d'un appareil, les fils d'une connexion, les âmes d'un câble	Lo seleccionado en el diseño del armario o en la vista 3D, en su página del esquema: la función principal de un dispositivo, los hilos de una conexión, los núcleos de un cable
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Was im Schaltplan markiert ist, wird auch im Schaltschrankaufbau und in der 3D-Ansicht markiert und umgekehrt: Betriebsmittel, Klemmen, Leitungen und Kabel	Ce qui est sélectionné dans le schéma l'est aussi dans l'implantation d'armoire et la vue 3D, et inversement : appareils, bornes, fils et câbles	Lo que se selecciona en el esquema también se selecciona en el diseño del armario y en la vista 3D, y viceversa: dispositivos, bornes, hilos y cables
 What should be checked or changed?	Was soll geprüft oder geändert werden?	Que faut-il vérifier ou modifier ?	¿Qué hay que comprobar o cambiar?
 What's new in OpenECraft {}	Neu in OpenECraft {}	Nouveautés d'OpenECraft {}	Novedades de OpenECraft {}
 Wheel and touch	Mausrad und Touch	Molette et tactile	Rueda y táctil

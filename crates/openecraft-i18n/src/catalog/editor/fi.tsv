@@ -482,6 +482,9 @@ Created {} as a copy of {} and opened it	{} luotiin projektin {} kopiona ja avat
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Luo palvelimelle uuden projektin tämän projektin tallennetusta tilasta; määrität ensin sen nimen ja ominaisuudet
 Creating {} as a copy of {}…	Luodaan {} projektin {} kopiona…
 Cross references…	Ristiviittaukset…
+Cross-select mode	Ristivalintatila
+Cross-select mode off	Ristivalintatila pois
+Cross-select mode on: the schematic and the panel layout select the same	Ristivalintatila päällä: kaavio ja kaappiasennus valitsevat saman
 Crossed wires	Ristityt johdot
 Ctrl + click on the text opens it as well	Ctrl + napsautus tekstiin avaa sen myös
 Ctrl+A	Ctrl+A
@@ -525,6 +528,7 @@ Delete PV array	Poista aurinkopaneelikenttä
 Delete air-termination rod	Poista ukkosenjohdatintanko
 Delete cable (its wires are removed from it)	Poista kaapeli (sen johdot poistetaan siitä)
 Delete comment	Poista kommentti
+Delete completely	Poista kokonaan
 Delete connection point	Poista liitäntäpiste
 Delete earth electrode	Poista maadoituselektrodi
 Delete element	Poista elementti
@@ -553,6 +557,9 @@ Delete the property and all its values	Poista ominaisuus ja kaikki sen arvot
 Delete this workspace	Poista tämä työtila
 Delete variant	Poista muunnelma
 Delete zone	Poista vyöhyke
+Deleted completely: {} items of the layout, {} functions on the pages	Poistettu kokonaan: asettelun {} kohdetta, sivujen {} toimintoa
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Poistettu kokonaan: asettelun {} kohdetta, sivujen {} toimintoa; {} toimintoa jää sivuille, joita ei voi muokata
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Poistaa valitut laitteet koko projektista: niiden toiminnot kaikilla sivuilla, niiden paikat keskuksen asettelussa ja 3D-näkymässä, niiden laitetiedot; valittu liitin poistetaan yksinään
 Deletes this copy of your changes for good	Poistaa tämän muutostesi kopion pysyvästi
 Depth / mounted at	Syvyys / asennettu kohtaan
 Depth below the ground	Syvyys maanpinnan alla
@@ -637,6 +644,7 @@ Door: {} devices, {} cutouts	Ovi: {} laitetta, {} aukkoa
 Dot	Piste
 Double door	Pariovi
 Double-click	Kaksoisnapsautus
+Double-click on a device, a cable or a wire	Kaksoisnapsautus laitteeseen, kaapeliin tai johtoon
 Down conductors	Alastulojohtimet
 Download into database	Lataa tietokantaan
 Download project	Lataa projekti
@@ -1471,6 +1479,7 @@ Opening angle of the door in the 3D view	Oven avautumiskulma 3D-näkymässä
 Opening in the mounting plate / door: click two corners (round: in the properties)	Aukko asennuslevyyn / oveen: napsauta kahta kulmaa (pyöreä: ominaisuuksissa)
 Opening {}…	Avataan {}…
 Opens	Avautuu
+Opens its properties (in the 3D view: turns the view to it)	Avaa sen ominaisuudet (3D-näkymässä: kääntää näkymän siihen)
 Opens the page of the release	Avaa julkaisun sivun
 Opens the pages for printing in the browser with its print dialog	Avaa sivut tulostettaviksi selaimessa sen tulostusikkunalla
 Open…	Avaa…
@@ -2056,6 +2065,7 @@ Shown instead of the measured value	Näytetään mitatun arvon sijaan
 Shown now: {}	Näytetään nyt: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Näytetään kansilehdellä ja niiden nimiöiden kuvaelementeissä, jotka näyttävät projektin logon
 Shows	Näyttää
+Shows it in the other view: the panel layout or the schematic	Näyttää sen toisessa näkymässä: kaappiasennuksessa tai kaaviossa
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Näyttää keskuksen asettelun 3D-näkymän omassa ikkunassaan, jonka voi siirtää toiselle näytölle ja suurentaa
 Shows the differences of your version to the open project; selected ones can be taken over	Näyttää versiosi erot avoimeen projektiin; valitut voidaan ottaa käyttöön
 Shows the page and the 3D view side by side in this workspace	Näyttää sivun ja 3D-näkymän rinnakkain tässä työtilassa
@@ -2392,6 +2402,8 @@ Web at cutouts	Kannas aukkojen kohdalla
 Web between holes	Kannas reikien välissä
 Welcome to OpenECraft	Tervetuloa OpenECraftiin
 What is new	Uutta
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Kaappiasennuksessa tai 3D-näkymässä valittu kaavion sivullaan: laitteen päätoiminto, liitännän johdot, kaapelin johtimet
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Kaaviossa valittu valitaan myös kaappiasennuksessa ja 3D-näkymässä, ja päinvastoin: laitteet, riviliittimet, johdot ja kaapelit
 What should be checked or changed?	Mitä pitäisi tarkistaa tai muuttaa?
 What's new in OpenECraft {}	Uutta OpenECraftissa {}
 Wheel and touch	Rulla ja kosketus

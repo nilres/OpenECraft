@@ -57,6 +57,7 @@ pub enum Cmd {
     Undo,
     Redo,
     Delete,
+    DeleteCompletely,
     Rotate,
     Mirror,
     Align,
@@ -113,6 +114,8 @@ pub enum Cmd {
     PartSelection,
     ShowInLayout,
     ShowIn3d,
+    ShowInSchematic,
+    CrossSelect,
     // View
     FitPage,
     ZoomActual,
@@ -520,6 +523,9 @@ pub static ALL: &[Def] = &[
     d(C::Undo, "undo", tr_const!("Undo"), I::Undo).keys("Ctrl+Z"),
     d(C::Redo, "redo", tr_const!("Redo"), I::Redo).keys("Ctrl+Y|Ctrl+Shift+Z"),
     d(C::Delete, "delete", tr_const!("Delete"), I::Delete).keys("Delete|Backspace").canvas(),
+    d(C::DeleteCompletely, "delete_completely", tr_const!("Delete completely"), I::Delete)
+        .keys("Ctrl+Delete")
+        .tip(tr_const!("Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone")),
     d(C::Rotate, "rotate", tr_const!("Rotate"), I::Rotate).keys("R").canvas().tip(tr_const!("Rotate (selection or symbol being placed)")),
     d(C::Mirror, "mirror", tr_const!("Mirror"), I::Mirror).keys("M").canvas().tip(tr_const!("Mirror (selection or symbol being placed)")),
     d(C::Align, "align", tr_const!("Align"), I::Align).menu(),
@@ -593,7 +599,14 @@ pub static ALL: &[Def] = &[
     d(C::RenameCable, "rename_cable", tr_const!("Rename cable…"), I::CableDef),
     d(C::PartSelection, "part_selection", tr_const!("Part selection…"), I::Parts),
     d(C::ShowInLayout, "show_in_layout", tr_const!("Show in panel layout"), I::Enclosure).tip(tr_const!("The selected device in the layout of its cabinet or room")),
-    d(C::ShowIn3d, "show_in_3d", tr_const!("Show in 3D view"), I::Cube).tip(tr_const!("The selected device in the 3D view of its cabinet or room, seen from close by")),
+    d(C::ShowIn3d, "show_in_3d", tr_const!("Show in 3D view"), I::Cube).keys("Ctrl+Shift+D").tip(tr_const!("The selected device in the 3D view of its cabinet or room, seen from close by")),
+    d(C::ShowInSchematic, "show_in_schematic", tr_const!("Show in schematic"), I::Symbol)
+        .keys("Ctrl+Shift+E")
+        .tip(tr_const!("What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable")),
+    d(C::CrossSelect, "cross_select", tr_const!("Cross-select mode"), I::CrossRef)
+        .toggle()
+        .keys("Ctrl+Shift+X")
+        .tip(tr_const!("What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables")),
     // ---------------------------------------------------------------- view
     d(C::FitPage, "fit_page", tr_const!("Fit page"), I::Fit).keys("F|Home").canvas(),
     d(C::ZoomActual, "zoom_actual", tr_const!("Zoom 100 %"), I::Scale).tip(tr_const!("Real size on a 96 dpi screen")),

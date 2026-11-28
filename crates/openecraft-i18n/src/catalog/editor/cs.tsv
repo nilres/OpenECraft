@@ -482,6 +482,9 @@ Created {} as a copy of {} and opened it	{} vytvořen jako kopie {} a otevřen
 Creates a new project on the server from the saved state of this one; you set its name and properties first	Vytvoří na serveru nový projekt z uloženého stavu tohoto projektu; nejprve nastavíte jeho název a vlastnosti
 Creating {} as a copy of {}…	Vytváření {} jako kopie {}…
 Cross references…	Křížové odkazy…
+Cross-select mode	Režim křížového výběru
+Cross-select mode off	Režim křížového výběru vypnut
+Cross-select mode on: the schematic and the panel layout select the same	Režim křížového výběru zapnut: schéma a rozvržení rozváděče vybírají totéž
 Crossed wires	Překřížené vodiče
 Ctrl + click on the text opens it as well	Ctrl + kliknutí na text jej také otevře
 Ctrl+A	Ctrl+A
@@ -525,6 +528,7 @@ Delete PV array	Smazat FV pole
 Delete air-termination rod	Smazat jímací tyč
 Delete cable (its wires are removed from it)	Odstranit kabel (jeho vodiče z něj budou odebrány)
 Delete comment	Odstranit komentář
+Delete completely	Odstranit úplně
 Delete connection point	Odstranit přípojný bod
 Delete earth electrode	Smazat zemnič
 Delete element	Odstranit prvek
@@ -553,6 +557,9 @@ Delete the property and all its values	Odstranit vlastnost se všemi hodnotami
 Delete this workspace	Odstranit tento pracovní prostor
 Delete variant	Odstranit variantu
 Delete zone	Smazat zónu
+Deleted completely: {} items of the layout, {} functions on the pages	Úplně odstraněno: {} prvků rozvržení, {} funkcí na stránkách
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	Úplně odstraněno: {} prvků rozvržení, {} funkcí na stránkách; {} funkcí zůstává na stránkách, které nelze upravovat
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	Odstraní vybraná zařízení z celého projektu: jejich funkce na všech stránkách, jejich místa v rozvržení rozvaděče a ve 3D zobrazení, jejich data zařízení; vybraná svorka se odstraní sama
 Deletes this copy of your changes for good	Trvale odstraní tuto kopii vašich změn
 Depth / mounted at	Hloubka / montáž na
 Depth below the ground	Hloubka pod terénem
@@ -637,6 +644,7 @@ Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
 Double door	Dvoukřídlé dveře
 Double-click	Dvojklik
+Double-click on a device, a cable or a wire	Dvojklik na přístroj, kabel nebo vodič
 Down conductors	Svody
 Download into database	Stáhnout do databáze
 Download project	Stáhnout projekt
@@ -1471,6 +1479,7 @@ Opening angle of the door in the 3D view	Úhel otevření dveří ve 3D pohledu
 Opening in the mounting plate / door: click two corners (round: in the properties)	Otvor v montážní desce / dveřích: klikněte na dva rohy (kruhový: ve vlastnostech)
 Opening {}…	Otevírání {}…
 Opens	Otevírání
+Opens its properties (in the 3D view: turns the view to it)	Otevře jeho vlastnosti (ve 3D zobrazení: natočí pohled k němu)
 Opens the page of the release	Otevře stránku vydání
 Opens the pages for printing in the browser with its print dialog	Otevře stránky k tisku v prohlížeči s jeho dialogem tisku
 Open…	Otevřít…
@@ -2056,6 +2065,7 @@ Shown instead of the measured value	Zobrazí se místo naměřené hodnoty
 Shown now: {}	Nyní zobrazeno: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Zobrazuje se na titulním listu a v obrázkových prvcích razítek, které zobrazují logo projektu
 Shows	Zobrazuje
+Shows it in the other view: the panel layout or the schematic	Zobrazí jej v druhém pohledu: v rozvržení rozváděče nebo ve schématu
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	Zobrazí 3D pohled rozvaděče ve vlastním okně, které lze přesunout na jiný monitor a maximalizovat
 Shows the differences of your version to the open project; selected ones can be taken over	Zobrazí rozdíly vaší verze oproti otevřenému projektu; vybrané lze převzít
 Shows the page and the 3D view side by side in this workspace	Zobrazí stránku a 3D pohled vedle sebe v tomto pracovním prostoru
@@ -2392,6 +2402,8 @@ Web at cutouts	Můstek u výřezů
 Web between holes	Můstek mezi otvory
 Welcome to OpenECraft	Vítejte v OpenECraft
 What is new	Co je nového
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	Co je vybráno v rozvržení rozváděče nebo ve 3D zobrazení, na jeho stránce schématu: hlavní funkce přístroje, vodiče spojení, žíly kabelu
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	Co je vybráno ve schématu, je vybráno i v rozvržení rozváděče a ve 3D zobrazení, a naopak: přístroje, svorky, vodiče a kabely
 What should be checked or changed?	Co se má zkontrolovat nebo změnit?
 What's new in OpenECraft {}	Novinky v OpenECraft {}
 Wheel and touch	Kolečko a dotyk

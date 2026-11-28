@@ -603,6 +603,12 @@ Das Umbenennen eines Betriebsmittels oder Kabels kann ein unverändertes importi
 Präfix mit Leerzeichen behalten; der neue endgültige Betriebsmittelname folgt weiterhin
 den normalen Prüfregeln für Kennzeichen.
 
+`delete_device` nimmt das Kennzeichen `tag` eines Betriebsmittels an und löscht es aus
+dem ganzen Projekt: seine Funktionen auf allen Seiten, seine Plätze im Aufbau und seine
+Betriebsmitteldaten. Seiten, die nicht bearbeitet werden können, behalten ihre Funktionen
+(`kept`). Vollständig löschen im Editor (Ctrl+Delete) verwendet dieselbe Operation; eine
+dort gewählte Klemme wird allein gelöscht.
+
 ### Explizite Ausrichtung im Schaltschrank
 
 Hosts, die `explicit_panel_rotations` bekannt geben, erhalten optionale numerische Werte

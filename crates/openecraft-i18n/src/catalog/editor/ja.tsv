@@ -478,6 +478,9 @@ Created {} as a copy of {} and opened it	{} を {} のコピーとして作成�
 Creates a new project on the server from the saved state of this one; you set its name and properties first	このプロジェクトの保存済みの状態からサーバーに新しいプロジェクトを作成します。先に名前とプロパティを設定します
 Creating {} as a copy of {}…	{} を {} のコピーとして作成しています…
 Cross references…	相互参照…
+Cross-select mode	クロス選択モード
+Cross-select mode off	クロス選択モード オフ
+Cross-select mode on: the schematic and the panel layout select the same	クロス選択モード オン：回路図と盤レイアウトが同じものを選択します
 Crossed wires	横切った電線
 Ctrl + click on the text opens it as well	テキストを Ctrl + クリックしても開きます
 Ctrl+A	Ctrl+A
@@ -520,6 +523,7 @@ Delete PV array	PVアレイを削除
 Delete air-termination rod	突針を削除
 Delete cable (its wires are removed from it)	ケーブルを削除 (その電線はケーブルから外されます)
 Delete comment	コメントを削除
+Delete completely	完全に削除
 Delete connection point	接続ポイントを削除
 Delete earth electrode	接地極を削除
 Delete element	要素を削除
@@ -546,6 +550,9 @@ Delete the property and all its values	プロパティとそのすべての値�
 Delete this workspace	このワークスペースを削除
 Delete variant	バリアントを削除
 Delete zone	ゾーンを削除
+Deleted completely: {} items of the layout, {} functions on the pages	完全に削除しました：レイアウトの要素 {} 個、ページ上の機能 {} 個
+Deleted completely: {} items of the layout, {} functions on the pages; {} functions stay on pages that cannot be edited	完全に削除しました：レイアウトの要素 {} 個、ページ上の機能 {} 個。{} 個の機能は編集できないページに残ります
+Deletes the selected devices from the whole project: their functions on all pages, their places in the panel layout and the 3D view, their device data; a selected terminal goes alone	選択したデバイスをプロジェクト全体から削除します：すべてのページ上の機能、盤レイアウトと3Dビューでの位置、デバイスデータ。選択した端子はそれだけが削除されます
 Deletes this copy of your changes for good	この変更のコピーを完全に削除します
 Depth / mounted at	奥行き / 取付位置
 Depth below the ground	地表からの深さ
@@ -629,6 +636,7 @@ Door: {} devices, {} cutouts	扉: デバイス {} 個、切り欠き {} 個
 Dot	点
 Double door	両開き
 Double-click	ダブルクリック
+Double-click on a device, a cable or a wire	デバイス、ケーブル、電線のダブルクリック
 Down conductors	引下げ導線
 Download into database	データベースにダウンロード
 Download project	プロジェクトをダウンロード
@@ -1449,6 +1457,7 @@ Opening angle of the door in the 3D view	3D ビューでのドアの開き角度
 Opening in the mounting plate / door: click two corners (round: in the properties)	取付板 / 扉の開口部: 2 つのコーナーをクリック (円形: プロパティで設定)
 Opening {}…	{} を開いています…
 Opens	開き方
+Opens its properties (in the 3D view: turns the view to it)	プロパティを開く（3Dビューでは：ビューをそこへ向ける）
 Opens the page of the release	リリースのページを開きます
 Opens the pages for printing in the browser with its print dialog	ブラウザーの印刷ダイアログでページを印刷用に開きます
 Open…	開く…
@@ -2026,6 +2035,7 @@ Shown instead of the measured value	測定値の代わりに表示されます
 Shown now: {}	現在の表示: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	表紙と、プロジェクトのロゴを表示する表題欄の画像要素に表示されます
 Shows	表示
+Shows it in the other view: the panel layout or the schematic	もう一方のビューで表示：盤レイアウトまたは回路図
 Shows the 3D view of the panel layout in a window of its own, to move to another monitor and maximize	盤レイアウトの 3D ビューを独立したウィンドウで表示し、別のモニターに移して最大化できます
 Shows the differences of your version to the open project; selected ones can be taken over	あなたの版と開いているプロジェクトの差分を表示します。選択したものを取り込めます
 Shows the page and the 3D view side by side in this workspace	このワークスペースでページと 3D ビューを並べて表示します
@@ -2360,6 +2370,8 @@ Web at cutouts	切り欠きの残し幅
 Web between holes	穴間の残し幅
 Welcome to OpenECraft	OpenECraft へようこそ
 What is new	新機能
+What is selected in the panel layout or the 3D view on its page of the schematic: the main function of a device, the wires of a connection, the cores of a cable	盤レイアウトまたは3Dビューで選択したものを回路図のそのページで表示：デバイスの主機能、接続の電線、ケーブルの心線
+What is selected in the schematic is selected in the panel layout and the 3D view too, and the other way round: devices, terminals, wires and cables	回路図で選択したものは盤レイアウトと3Dビューでも選択され、その逆も同様です：デバイス、端子、電線、ケーブル
 What should be checked or changed?	何をチェックまたは変更しますか?
 What's new in OpenECraft {}	OpenECraft {} の新機能
 Wheel and touch	ホイールとタッチ
